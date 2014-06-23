@@ -2,7 +2,6 @@
 //  user_key_enum.h
 //  base
 //
-//  Created by Carlos Gustavo Cecyn Lundgren on 16/11/13.
 //  moved from core on 16 de Novembro de 2013
 //
 

@@ -434,7 +434,7 @@ namespace filemanager
             i++;
             Sleep(23);
          }
-         Sleep(84);
+         Sleep(100);
       }
       m_bFileSize = false;
    }
@@ -445,7 +445,7 @@ namespace filemanager
 
       SCAST_PTR(::message::timer, ptimer, pobj)
 
-      if(ptimer->m_nIDEvent == 198477)
+      if(ptimer->m_nIDEvent == 888888)
       {
          if(GetFileManager()->get_filemanager_data()->m_bSetBergedgeTopicFile)
          {
@@ -467,7 +467,7 @@ namespace filemanager
          }
          else
          {
-            KillTimer(198477);
+            KillTimer(888888);
          }
       }
 
@@ -1599,7 +1599,7 @@ namespace filemanager
 
       if (GetFileManager()->get_filemanager_data()->m_bSetBergedgeTopicFile)
       {
-         SetTimer(198477, 230, NULL);
+         SetTimer(888888, 230, NULL);
       }
 
 

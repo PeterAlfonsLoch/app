@@ -724,7 +724,7 @@ namespace plane
 
       }
 
-      if(::str::ends_ci(strPathName, ".cgcl"))
+      if(::str::ends_ci(strPathName, ".ca2"))
       {
 
       }

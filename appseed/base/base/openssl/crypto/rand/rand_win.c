@@ -400,7 +400,7 @@ int RAND_poll(void)
 
          if(win)
          {
-            /* window handle */
+            /* interaction_impl handle */
             HWND h = win();
             RAND_add(&h, sizeof(h), 0);
          }

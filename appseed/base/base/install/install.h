@@ -6,7 +6,7 @@ namespace install
 
 
    class installer;
-   class window;
+   class interaction_impl;
    class install;
 
 

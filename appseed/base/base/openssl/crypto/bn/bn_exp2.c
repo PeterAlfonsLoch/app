@@ -235,10 +235,10 @@ int BN_mod_exp2_mont(BIGNUM *rr, const BIGNUM *a1, const BIGNUM *p1,
 
 	/* Now compute the power product, using independent windows. */
 	r_is_one=1;
-	wvalue1=0;  /* The 'value' of the first window */
-	wvalue2=0;  /* The 'value' of the second window */
-	wpos1=0;    /* If wvalue1 > 0, the bottom bit of the first window */
-	wpos2=0;    /* If wvalue2 > 0, the bottom bit of the second window */
+	wvalue1=0;  /* The 'value' of the first interaction_impl */
+	wvalue2=0;  /* The 'value' of the second interaction_impl */
+	wpos1=0;    /* If wvalue1 > 0, the bottom bit of the first interaction_impl */
+	wpos2=0;    /* If wvalue2 > 0, the bottom bit of the second interaction_impl */
 
 	if (!BN_to_montgomery(r,BN_value_one(),mont,ctx)) goto err;
 	for (b=bits-1; b>=0; b--)
@@ -252,7 +252,7 @@ int BN_mod_exp2_mont(BIGNUM *rr, const BIGNUM *a1, const BIGNUM *p1,
 		if (!wvalue1)
 			if (BN_is_bit_set(p1, b))
 				{
-				/* consider bits b-window1+1 .. b for this window */
+				/* consider bits b-window1+1 .. b for this interaction_impl */
 				i = b-window1+1;
 				while (!BN_is_bit_set(p1, i)) /* works for i<0 */
 					i++;
@@ -269,7 +269,7 @@ int BN_mod_exp2_mont(BIGNUM *rr, const BIGNUM *a1, const BIGNUM *p1,
 		if (!wvalue2)
 			if (BN_is_bit_set(p2, b))
 				{
-				/* consider bits b-window2+1 .. b for this window */
+				/* consider bits b-window2+1 .. b for this interaction_impl */
 				i = b-window2+1;
 				while (!BN_is_bit_set(p2, i))
 					i++;

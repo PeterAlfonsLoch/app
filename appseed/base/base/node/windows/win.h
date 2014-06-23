@@ -5,7 +5,7 @@
 namespace windows
 {
 
-   class window;
+   class interaction_impl;
    class graphics;
    class object;
 

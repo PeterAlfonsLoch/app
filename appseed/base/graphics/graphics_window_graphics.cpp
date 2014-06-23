@@ -20,7 +20,7 @@ window_graphics::~window_graphics()
 }
 
 
-void window_graphics::create(oswindow window, int64_t cxParam, int64_t cyParam, int iStride)
+void window_graphics::create(oswindow interaction_impl, int64_t cxParam, int64_t cyParam, int iStride)
 {
 
    cx = (int32_t)cxParam;
@@ -39,7 +39,7 @@ void window_graphics::destroy()
 }
 
 
-void window_graphics::update_window(window_graphics * & pdata, oswindow window, COLORREF * pOsBitmapData, LPCRECT lpcrect, int iStride)
+void window_graphics::update_window(window_graphics * & pdata, oswindow interaction_impl, COLORREF * pOsBitmapData, LPCRECT lpcrect, int iStride)
 {
 
    if (pdata == NULL || (pdata->cx != width(lpcrect) || pdata->cy != height(lpcrect)))
@@ -63,7 +63,7 @@ void window_graphics::update_window(window_graphics * & pdata, oswindow window, 
       if (pdata != NULL)
       {
 
-         pdata->create(window, width(lpcrect), height(lpcrect), iStride);
+         pdata->create(interaction_impl, width(lpcrect), height(lpcrect), iStride);
 
       }
 
@@ -73,17 +73,17 @@ void window_graphics::update_window(window_graphics * & pdata, oswindow window, 
    if (pdata != NULL)
    {
 
-      pdata->update_window(window, pOsBitmapData, lpcrect, iStride);
+      pdata->update_window(interaction_impl, pOsBitmapData, lpcrect, iStride);
 
    }
 
 }
 
 
-void window_graphics::update_window(oswindow window, COLORREF * pOsBitmapData, LPCRECT lpcrect, int iStride)
+void window_graphics::update_window(oswindow interaction_impl, COLORREF * pOsBitmapData, LPCRECT lpcrect, int iStride)
 {
 
-   UNREFERENCED_PARAMETER(window);
+   UNREFERENCED_PARAMETER(interaction_impl);
    UNREFERENCED_PARAMETER(pOsBitmapData);
    UNREFERENCED_PARAMETER(lpcrect);
    UNREFERENCED_PARAMETER(iStride);

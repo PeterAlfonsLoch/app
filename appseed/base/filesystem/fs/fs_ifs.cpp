@@ -166,7 +166,7 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int
       {
          throw string("uifs:// You have not logged in!");
       }
-      m_maplsTimeout.set_at(strDir, get_tick_count() + ((1984 + 1977) * 4));
+      m_maplsTimeout.set_at(strDir, get_tick_count() + ((5000) * 4));
       return false;
    }
 
@@ -185,19 +185,19 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int
 
    if(strSource.is_empty())
    {
-      m_maplsTimeout.set_at(strDir, get_tick_count() + ((1984 + 1977) * 4));
+      m_maplsTimeout.set_at(strDir, get_tick_count() + ((5000) * 4));
       return false;
    }
 
    if(!doc.load(strSource))
    {
-      m_maplsTimeout.set_at(strDir, get_tick_count() + ((1984 + 1977) * 4));
+      m_maplsTimeout.set_at(strDir, get_tick_count() + ((5000) * 4));
       return false;
    }
 
    if(doc.get_root()->get_name() != "folder")
    {
-      m_maplsTimeout.set_at(strDir, get_tick_count() + ((1984 + 1977) * 4));
+      m_maplsTimeout.set_at(strDir, get_tick_count() + ((5000) * 4));
       return false;
    }
 
@@ -254,7 +254,7 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int
       piaSize->add(iaFileSize);
    }
 
-   m_maplsTimeout.set_at(strDir, get_tick_count() + ((1984 + 1977) * 4));
+   m_maplsTimeout.set_at(strDir, get_tick_count() + ((5000) * 4));
 
    return true;
 }

@@ -7,7 +7,7 @@ namespace windows
 
    class CLASS_DECL_BASE copydesk : 
       virtual public ::base::copydesk,
-      virtual public ::window_sp
+      virtual public ::user::interaction
    {
    public:
 

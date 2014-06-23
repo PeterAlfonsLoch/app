@@ -74,7 +74,7 @@ CLASS_DECL_BASE bool __wait_threading_count(::duration dur)
 
       }
 
-      Sleep(84);
+      Sleep(100);
 
    }
 
@@ -141,7 +141,7 @@ CLASS_DECL_BASE bool __wait_threading_count_except(::thread * pthread, ::duratio
       
       sl.unlock();
       
-      Sleep(84);
+      Sleep(100);
       
    }
    

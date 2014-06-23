@@ -2844,12 +2844,12 @@ namespace draw2d_direct2d
 #if defined(WINDOWSEX)
 
 
-   bool dib::update_window(window * pwnd, signal_details * pobj)
+   bool dib::update_window(::user::interaction_impl * pwnd, signal_details * pobj)
    {
 
       rect64 rectWindow;
 
-      rectWindow = pwnd->m_rectParentClient;
+      rectWindow = pwnd->m_pui->m_rectParentClient;
 
       m_spgraphics->SetViewportOrg(0, 0);
 
@@ -2857,7 +2857,7 @@ namespace draw2d_direct2d
 
       rect rect(rectWindow);
 
-      window_graphics::update_window(pwnd->m_pgraphics, pwnd->get_handle(), m_pcolorref, rect, m_iScan);
+      window_graphics::update_window(pwnd->m_pgraphics,pwnd->get_handle(),m_pcolorref,rect,m_iScan);
 
       return true;
 
@@ -2937,7 +2937,6 @@ namespace draw2d_direct2d
    pdc, rectUpdate.left, rectUpdate.top,
    SRCCOPY);
 
-   m_spgraphics->TextOut(0, 0, "Te Amo CGCL", 11);
    }
    catch(...)
    {

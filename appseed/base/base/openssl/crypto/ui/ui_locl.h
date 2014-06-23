@@ -73,7 +73,7 @@ struct ui_method_st
 	/* All the functions return 1 or non-NULL for success and 0 or NULL
 	   for failure */
 
-	/* Open whatever channel for this, be it the console, an X window
+	/* Open whatever channel for this, be it the console, an X interaction_impl
 	   or whatever.
 	   This function should use the ex_data structure to save
 	   intermediate data. */

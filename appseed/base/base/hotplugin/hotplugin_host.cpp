@@ -178,7 +178,7 @@ namespace hotplugin
 
       }
 
-      if(::user::interaction::m_pimpl.is_set())
+      if(::user::interaction::m_pimpl != NULL)
       {
 
          ::user::interaction::m_pimpl->_001Print(pgraphics);

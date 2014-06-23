@@ -4,90 +4,20 @@
 
 #define DRAWDD() virtual void _001OnDraw(::draw2d::graphics * pgraphics)
 
+
 namespace user
 {
 
+   
+   class interaction_impl_base;
+
 
    class CLASS_DECL_BASE interaction :
-      virtual public window_interface
+      virtual public interaction_base
    {
    public:
 
 
-      enum e_message
-      {
-
-         message_simple_command = WM_APP + 1985
-
-      };
-
-
-      enum e_simple_command
-      {
-
-         simple_command_load_window_rect,
-         simple_command_update_frame_title,
-         simple_command_set_edit_file,
-         simple_command_layout
-
-      };
-
-
-      enum e_type
-      {
-
-         type_window,
-         type_frame,
-         type_view
-
-      };
-
-
-
-      class CLASS_DECL_BASE timer_item :
-         virtual public element
-      {
-      public:
-
-
-         interaction *        m_pui;
-         uint_ptr             m_uiId;
-         UINT                 m_uiElapse;
-         UINT                 m_uiLastSent;
-
-         bool check(single_lock & sl);
-
-
-      };
-
-      class CLASS_DECL_BASE timer_array :
-         virtual public spa(interaction)
-      {
-      public:
-
-
-         mutex                               m_mutex;
-         spa(timer_item)                     m_timera;
-         index                               m_iItem;
-
-
-         timer_array(sp(::base::application) papp);
-
-
-         uint_ptr set(sp(interaction) pui, uint_ptr uiId, UINT uiElapse);
-         void check();
-         bool unset(sp(interaction) pui, uint_ptr uiId);
-         void unset(sp(interaction) pui);
-         void detach(spa(timer_item) & timera, sp(interaction) pui);
-         void transfer(::window_sp pwindow, sp(interaction) pui);
-         sp(interaction) find(sp(element) pca);
-         index find(sp(interaction) pui, uint_ptr uiId);
-         index find_from(sp(interaction) pui, index iStart);
-
-         virtual void assert_valid() const;
-         virtual void dump(dump_context & dc) const;
-
-         };
 
 
 
@@ -97,11 +27,24 @@ namespace user
 #endif
 
 
+      // interaction_impl rectangle relative to the parent
+      // this rectangle comes before in importance compared to m_rectWindow
+      // m_rectWindow should be sychronized and recalculated based
+      // on m_rectParentClient values of the interaction_impl and its ascendants.
+      rect64                              m_rectParentClient;
+      bool                                m_bVisible;
+      bool                                m_bVoidPaint;
+      draw_interface *                    m_pdrawinterfaceBackground;
+      bool                                m_bBackgroundBypass;
+      ETranslucency                       m_etranslucency;
+
+      ::user::interaction *               m_pparent;
 
       sp(mutex)                           m_spmutex;
       EAppearance                         m_eappearance;
-      interaction *                       m_pimpl;
-      static interaction *                g_puiMouseMoveCapture;
+      sp(interaction_impl_base)           m_pimpl;
+
+
       ptr_array < interaction >           m_uiptraChild;
       string                              m_strName;
       id                                  m_id;
@@ -125,13 +68,16 @@ namespace user
 
 #endif
 
-      id                                  m_idModalResult; // for return values from window::RunModalLoop
+      id                                  m_idModalResult; // for return values from interaction_impl::RunModalLoop
       COLORREF                            m_crDefaultBackgroundColor;
       sp(::thread)                        m_pthread;
 
       sp(::user::menu_base)               m_spmenuPopup;
 
       COLORREF                            m_crText;
+      int32_t                             m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
+
+
 
 
       interaction();
@@ -207,13 +153,11 @@ namespace user
       virtual void _001WindowFullScreen();
       virtual void _001WindowRestore();
 
-
+      using ::user::interaction_base::GetWindowRect;
       virtual void GetClientRect(LPRECT lprect);
       virtual void GetClientRect(__rect64 * lprect);
       virtual void GetWindowRect(LPRECT lprect);
       virtual void GetWindowRect(__rect64 * lprect);
-      virtual rect GetWindowRect();
-      virtual rect64 GetWindowRect64();
       virtual void ClientToScreen(LPRECT lprect);
       virtual void ClientToScreen(__rect64 * lprect);
       virtual void ClientToScreen(LPPOINT lppoint);
@@ -352,12 +296,9 @@ namespace user
       virtual void draw_control_background(::draw2d::graphics *pdc);
 
       virtual bool IsChild(interaction * pui) const;
-      virtual window_interface * window_interface_get_parent() const;
       virtual ::user::interaction * get_parent() const;
       virtual ::user::interaction * set_parent(::user::interaction * puiParent);
       virtual oswindow get_parent_handle() const;
-      virtual ::user::interaction * get_parent_base() const;
-      virtual ::user::interaction * set_parent_base(::user::interaction * puiParent);
 
       virtual id GetDlgCtrlId() const;
       virtual id SetDlgCtrlId(class id id);
@@ -422,6 +363,12 @@ namespace user
          virtual DECL_GEN_SIGNAL(_002OnTimer);
 
 
+         DECL_GEN_VSIGNAL(_001OnBaseWndGetProperty);
+
+
+         virtual LRESULT _001BaseWndGetProperty(EProperty eproperty,LPARAM lparam);
+
+
 
          virtual bool _001IsPointInside(point64 pt);
       virtual sp(interaction) _001FromPoint(point64 pt, bool bTestedIfParentVisible = false);
@@ -444,18 +391,9 @@ namespace user
       virtual sp(::user::interaction) get_focusable_descendant(sp(::user::interaction) pui = NULL);
 
 
-      virtual window * get_wnd() const;
+      virtual interaction_impl * get_wnd() const;
 
 
-      enum RepositionFlags
-      {
-
-         reposDefault = 0,
-         reposQuery = 1,
-         reposExtra = 2,
-         reposNoPosLeftOver = 0x8000
-
-      };
 
 
       virtual void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlag = reposDefault, LPRECT lpRectParam = NULL, LPCRECT lpRectClient = NULL, bool bStretch = TRUE);

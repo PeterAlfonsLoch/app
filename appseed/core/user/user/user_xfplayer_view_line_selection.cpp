@@ -152,7 +152,7 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, signal_
    else if(message == WM_TIMER)
    {
       uint_ptr nIDEvent = pbase->m_wparam;
-      if(nIDEvent == ::timer::ID_HOVER)
+      if(nIDEvent == ::core::timer::ID_HOVER)
       {
          point pt;
          BaseSession.get_cursor_pos(&pt);
@@ -160,7 +160,7 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, signal_
          if(!viewline.IsInHover())
          {
             sp(::user::interaction) pwnd = viewline.get_interaction();
-            pwnd->KillTimer(::timer::ID_HOVER);
+            pwnd->KillTimer(::core::timer::ID_HOVER);
          }
       }
    }
@@ -632,7 +632,7 @@ bool XfplayerViewLineSelection::OnLButtonUp(XfplayerViewLine & viewline, UINT us
 bool XfplayerViewLineSelection::OnTimer(XfplayerViewLine & viewline, UINT user)
 {
    UINT nIDEvent = user;
-   if(nIDEvent == ::timer::ID_HOVER)
+   if(nIDEvent == ::core::timer::ID_HOVER)
    {
       if(viewline.IsInHover())
       {
@@ -646,8 +646,6 @@ bool XfplayerViewLineSelection::OnTimer(XfplayerViewLine & viewline, UINT user)
             viewline.GetPlacement(rectPlacement);
             viewline.get_interaction()->_001RedrawWindow();
          }
-         //         ::window_sp pwnd = viewline.get_window();
-         //         pwnd->KillTimer(::timer::ID_HOVER);
       }
    }
    return false;

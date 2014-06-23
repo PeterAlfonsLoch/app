@@ -355,7 +355,7 @@ namespace uinteraction
 
          pwndRegion->SetTimer(16319, 100, NULL);
 
-         _001InstallEventHandling(dynamic_cast < ::message::dispatch * >(pwndEvent->m_pimpl.m_p));
+         _001InstallEventHandling(pwndEvent->m_pimpl);
 
          return true;
       }
@@ -999,22 +999,14 @@ namespace uinteraction
          {
 
          }
-         else if ((bool)pActive->oprop("combo_list"))
+         else if (pActive->oprop("combo_list"))
          {
 
             pactivate->m_bRet = true;
 
-            return;
+            pActive->oprop("deactivate_together") = get_draw_window();
 
-         }
-         else if (pActive->m_pui != NULL && (bool)pActive->m_pui->oprop("combo_list"))
-         {
-
-            pactivate->m_bRet = true;
-
-            pActive->m_pui->oprop("deactivate_together") = get_draw_window();
-
-            pActive->m_pui->oprop("deactivate_together_set") = this;
+            pActive->oprop("deactivate_together_set") = this;
 
             return;
 

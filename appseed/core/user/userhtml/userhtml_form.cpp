@@ -53,28 +53,23 @@ void html_form::_001OnDraw(::draw2d::graphics * pdc)
 void html_form::_001DrawChildren(::draw2d::graphics *pdc)
 {
 
-   if(m_pui != NULL && m_pui != this)
+   sp(::user::interaction) pui = get_bottom_child();
+
+   while(pui != NULL)
    {
-      m_pui->_001DrawChildren(pdc);
-   }
-   else
-   {
-      sp(::user::interaction) pui = get_bottom_child();
-      while(pui != NULL)
+      try
       {
-         try
+         if(pui->m_bVisible && (get_html_data() == NULL || !get_html_data()->contains(pui)))
          {
-            if(pui->m_bVisible && (get_html_data() == NULL || !get_html_data()->contains(pui)))
-            {
-               pui->_000OnDraw(pdc);
-            }
-            pui = pui->above_sibling();
+            pui->_000OnDraw(pdc);
          }
-         catch(...)
-         {
-         }
+         pui = pui->above_sibling();
+      }
+      catch(...)
+      {
       }
    }
+
 }
 
 

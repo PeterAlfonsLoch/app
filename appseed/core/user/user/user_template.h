@@ -29,7 +29,7 @@ inline UINT HashKey(INT_PTR key)
 namespace user
 {
 
-   typedef ::collection::map < INT_PTR, INT_PTR, ::user::window_interface *, ::user::window_interface * > int_to_window_interface;
+   typedef ::collection::map < INT_PTR, INT_PTR, ::user::interaction_base *, ::user::interaction_base * > int_to_window_interface;
    typedef pointer_array < interaction > interaction_array;
 
 } // namespace user

@@ -234,7 +234,7 @@ int tls1_cbc_remove_padding(const SSL* s,
 
 /* ssl3_cbc_copy_mac copies |md_size| bytes from the end of |rec| to |out| in
  * constant time (independent of the concrete value of rec->length, which may
- * vary within a 256-byte window).
+ * vary within a 256-byte interaction_impl).
  *
  * ssl3_cbc_remove_padding or tls1_cbc_remove_padding must be called prior to
  * this function.

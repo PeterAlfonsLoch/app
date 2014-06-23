@@ -2,7 +2,6 @@
 //  base_draw2d.h
 //  base
 //
-//  Created by Carlos Gustavo Cecyn Lundgren on 16/11/13.
 //
 //
 #pragma once

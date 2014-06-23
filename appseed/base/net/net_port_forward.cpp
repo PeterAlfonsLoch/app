@@ -113,12 +113,12 @@ namespace net
    // which the thread sends to your application and which your application must interpret and process.
    //
    // To use this function, your program must be able to receive (and process)
-   // a registered window message posted from the thread when the thread is finished.
+   // a registered interaction_impl message posted from the thread when the thread is finished.
    // Thus, you must pass in a oswindow of one of your windows that will receive the message.  Typically,
-   // you would choose your CMainFrame window (use the ::__get_main_window() function).  However, you might
-   // choose a different window, such as your CView-derived window for SDI applications
+   // you would choose your CMainFrame interaction_impl (use the ::__get_main_window() function).  However, you might
+   // choose a different interaction_impl, such as your CView-derived interaction_impl for SDI applications
    //
-   // The window that you choose must be able to process the message, which is a UINT named
+   // The interaction_impl that you choose must be able to process the message, which is a UINT named
    // UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION.  For an MFC application, here are the changes
    // you must make to your ::user::interaction class:
    //

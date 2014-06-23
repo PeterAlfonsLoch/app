@@ -131,7 +131,7 @@ namespace userstack
       if(pobj->previous())
          return;
 
-      SetTimer(198477, 1977, NULL);
+      SetTimer(888888, 1977, NULL);
 
       sp(frame) pframe = GetTypedParent < frame > ();
 
@@ -230,7 +230,7 @@ namespace userstack
       {
          check_apps();
       }
-      else if(ptimer->m_nIDEvent == 198477)
+      else if(ptimer->m_nIDEvent == 888888)
       {
          PlaneSession.check_topic_file_change();
       }

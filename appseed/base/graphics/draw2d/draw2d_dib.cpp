@@ -3882,13 +3882,13 @@ namespace draw2d
    }
 
 
-   bool dib::update_window(window * pwnd, signal_details * pobj)
+   bool dib::update_window(::user::interaction_impl * pwnd, signal_details * pobj)
    {
 
       UNREFERENCED_PARAMETER(pwnd);
       UNREFERENCED_PARAMETER(pobj);
 
-      // default implementation does nothing, dib should be now updated (before calling update window)
+      // default implementation does nothing, dib should be now updated (before calling update interaction_impl)
       // and ready to be queried if post queried
 
 //      throw interface_only_exception(get_app());
@@ -3899,7 +3899,7 @@ namespace draw2d
    }
 
 
-   bool dib::print_window(window * pwnd, signal_details * pobj)
+   bool dib::print_window(::user::interaction_impl * pwnd, signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pwnd);
       UNREFERENCED_PARAMETER(pobj);

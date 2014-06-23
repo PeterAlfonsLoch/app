@@ -39,7 +39,6 @@ namespace html
          {
             m_pbutton->m_id = pelemental->m_pbase->get_tag()->get_attr_value("name");
          }
-         m_pbutton->m_pimpl->m_id = m_pbutton->m_id;
          m_cxMax = 200;
          m_cxMin = 200;
       }
@@ -53,7 +52,7 @@ namespace html
 
          m_pbutton->GetClientRect(rectClient);
 
-         m_box.set_cxy(rectClient.width(), rectClient.height());
+         m_box.set_cxy((float) rectClient.width(), (float) rectClient.height());
 
       }
 

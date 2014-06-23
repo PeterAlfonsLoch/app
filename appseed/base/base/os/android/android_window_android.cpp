@@ -16,7 +16,7 @@ window_android::~window_android()
 }
 
 
-void window_android::create(oswindow window, int64_t cxParam, int64_t cyParam, int iStrideParam)
+void window_android::create(oswindow interaction_impl, int64_t cxParam, int64_t cyParam, int iStrideParam)
 {
 
    destroy();
@@ -47,7 +47,7 @@ void window_android::create(oswindow window, int64_t cxParam, int64_t cyParam, i
 
    //m_cairoSource = cairo_create(m_cairosurfaceSource);
 
-   window_graphics::create(window, cxParam, cyParam, iStride);
+   window_graphics::create(interaction_impl, cxParam, cyParam, iStride);
 
 }
 
@@ -64,7 +64,7 @@ void window_android::destroy()
 }
 
 
-void window_android::update_window(oswindow window, COLORREF * pOsBitmapData, LPCRECT lpcrect, int iStride)
+void window_android::update_window(oswindow interaction_impl, COLORREF * pOsBitmapData, LPCRECT lpcrect, int iStride)
 {
 
 

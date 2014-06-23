@@ -112,7 +112,7 @@ namespace plugin
    void host_interaction::_001OnTimer(signal_details * pobj)
    {
       SCAST_PTR(::message::timer, ptimer, pobj);
-      if(ptimer->m_nIDEvent == 19841115)
+      if(ptimer->m_nIDEvent == 88881115)
       {
          KillTimer(19841115);
          m_pplugin->ready_on_main_thread();
@@ -250,9 +250,9 @@ namespace plugin
       }
       else
       {
-         if(m_uiptraChild.get_size() > 0 && m_uiptraChild[0].m_pbaseapp != NULL && m_uiptraChild[0].m_pbaseapp->m_pbasesession->m_pplanesession != NULL)
+         if(m_uiptraChild.get_size() > 0 && m_uiptraChild[0]->m_pbaseapp != NULL && m_uiptraChild[0]->m_pbaseapp->m_pbasesession->m_pplanesession != NULL)
          {
-            set_app(m_uiptraChild[0].m_pbaseapp);
+            set_app(m_uiptraChild[0]->m_pbaseapp);
          }
       }
       ::user::interaction::_000OnMouse(pmouse);

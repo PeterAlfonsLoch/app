@@ -1403,7 +1403,7 @@ namespace user
       ::window_sp pwnd;
    //   if((pwnd = m_pui->get_owner()) != NULL)
      //    return pwnd;
-      if((pwnd = m_pui->get_parent()->get_wnd()) != NULL)
+      if((pwnd = get_parent()->get_wnd()) != NULL)
          return pwnd;
       return NULL;
 #endif

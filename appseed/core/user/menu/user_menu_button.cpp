@@ -21,7 +21,7 @@ namespace user
    {
       button::_001OnDraw(pdc);
       rect rectClient;
-      m_pui->GetClientRect(rectClient);
+      GetClientRect(rectClient);
       if(m_pitem != NULL && m_pitem->m_bPopup)
       {
          ::draw2d::brush_sp br(allocer(), RGB(0, 0, 0));
@@ -44,13 +44,13 @@ namespace user
       _001DrawCheck(pdc);
    }
 
+
    void menu_button::_001Layout()
    {
       rect rect;
       class rect rectClient;
-      if(m_pui == NULL)
-         return;
-      m_pui->GetClientRect(rectClient);
+      
+      GetClientRect(rectClient);
 
       rect = rectClient;
       rect.left   += 3 + 16 + 2;

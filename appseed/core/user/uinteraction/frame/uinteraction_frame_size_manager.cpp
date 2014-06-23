@@ -392,7 +392,7 @@ namespace user
             if(rectWindowNow == rectWindow)
                return;
 
-            //      ::user::window_interface * ptwi = dynamic_cast<::user::window_interface *>(pwnd);
+            //      ::user::interaction_base * ptwi = dynamic_cast<::user::interaction_base *>(pwnd);
             //      if(ptwi != NULL)
             if(true)
             {

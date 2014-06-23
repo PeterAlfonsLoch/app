@@ -435,19 +435,19 @@ namespace userstack
          switch(m_iArea)
          {
          case 0:
-            strWallpaper = System.dir().standard_square_matter("cgcliscstlife1_23.bmp");
+            strWallpaper = System.dir().standard_square_matter("windeskframe1_23.bmp");
             break;
          case 1:
-            strWallpaper = System.dir().standard_square_matter("cgcliscstlife1_24.bmp");
+            strWallpaper = System.dir().standard_square_matter("windeskframe1_24.bmp");
             break;
          case 2:
-            strWallpaper = System.dir().standard_square_matter("cgcliscstlife1_25.bmp");
+            strWallpaper = System.dir().standard_square_matter("windeskframe1_25.bmp");
             break;
          case 3:on_create_on_crea
-            strWallpaper = System.dir().standard_square_matter("cgcliscstlife1_26.bmp");
+            strWallpaper = System.dir().standard_square_matter("windeskframe1_26.bmp");
             break;
          default:
-            strWallpaper = System.dir().standard_square_matter("cgcliscstlife1_23.bmp");
+            strWallpaper = System.dir().standard_square_matter("windeskframe1_23.bmp");
             break;
          }
          FIBITMAP * pfi;

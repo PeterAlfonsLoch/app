@@ -196,7 +196,7 @@ namespace android
 
 //      try
 //      {
-//         // cleanup thread local tooltip ::window
+//         // cleanup thread local tooltip ::interaction_impl
 //         if (hInstTerm == NULL)
 //         {
 ////            __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
@@ -477,18 +477,18 @@ if(__get_module_state()->m_pmapHWND == NULL)
       for(int i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
       {
 
-         oswindow window = ::oswindow_data::s_pdataptra->element_at(i);
+         oswindow interaction_impl = ::oswindow_data::s_pdataptra->element_at(i);
 
-         if(window->m_bMessageOnlyWindow)
+         if(interaction_impl->m_bMessageOnlyWindow)
             continue;
 
 /*
-         if(window->display() == NULL)
+         if(interaction_impl->display() == NULL)
             continue;
 
-         Cursor cursor = XCreateFontCursor(window->display(), uiShape);
+         Cursor cursor = XCreateFontCursor(interaction_impl->display(), uiShape);
 
-         XDefineCursor(window->display(), window->window(), cursor);
+         XDefineCursor(interaction_impl->display(), interaction_impl->interaction_impl(), cursor);
 
 */
 
@@ -496,14 +496,14 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
    }
 
-   sp(::window) application::window_from_os_data(void * pdata)
+   sp(::interaction_impl) application::window_from_os_data(void * pdata)
    {
       return ::window_from_handle((oswindow) pdata);
    }
 
-   sp(::window) application::window_from_os_data_permanent(void * pdata)
+   sp(::interaction_impl) application::window_from_os_data_permanent(void * pdata)
    {
-      sp(::window) pwnd = ::window_from_handle((oswindow) pdata);
+      sp(::interaction_impl) pwnd = ::window_from_handle((oswindow) pdata);
       if(pwnd != NULL)
          return pwnd;
       user::interaction_ptr_array wndptra = System.frames();
@@ -564,14 +564,14 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
    }
 
-   sp(::window) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+   sp(::interaction_impl) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
    {
-      return window::FindWindow(lpszClassName, lpszWindowName);
+      return interaction_impl::FindWindow(lpszClassName, lpszWindowName);
    }
 
-   sp(::window) application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
+   sp(::interaction_impl) application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
    {
-      return window::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow);
+      return interaction_impl::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow);
    }
 
 
@@ -667,11 +667,11 @@ if(__get_module_state()->m_pmapHWND == NULL)
          //if (!afxContextIsDLL)
             __init_thread();
 
-         // Initialize ::window::m_pfnNotifyWinEvent
+         // Initialize ::interaction_impl::m_pfnNotifyWinEvent
       /*   HMODULE hModule = ::GetModuleHandle("user32.dll");
          if (hModule != NULL)
          {
-            ::window::m_pfnNotifyWinEvent = (::window::PFNNOTIFYWINEVENT)::GetProcaddress(hModule, "NotifyWinEvent");
+            ::interaction_impl::m_pfnNotifyWinEvent = (::interaction_impl::PFNNOTIFYWINEVENT)::GetProcaddress(hModule, "NotifyWinEvent");
          }*/
 
       return true;

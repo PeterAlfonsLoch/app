@@ -18,19 +18,19 @@ void request_interface::add_line(const char * pszCommandLine, application_bias *
    createcontext->m_spApplicationBias = pbiasCreate;
    createcontext->m_spCommandLine->_001ParseCommandLine(pszCommandLine);
 
-   if (get_app()->command_central()->m_varTopicQuery.has_property("cgcl_app"))
+   if (get_app()->command_central()->m_varTopicQuery.has_property("appid"))
    {
 
       if (createcontext->m_spCommandLine->m_varQuery["app"].is_empty())
       {
 
-         createcontext->m_spCommandLine->m_varQuery["app"] = get_app()->command_central()->m_varTopicQuery["cgcl_app"];
+         createcontext->m_spCommandLine->m_varQuery["app"] = get_app()->command_central()->m_varTopicQuery["appid"];
 
       }
       else
       {
 
-         createcontext->m_spCommandLine->m_varQuery["app"].stra().insert_at(0, get_app()->command_central()->m_varTopicQuery["cgcl_app"].get_string());
+         createcontext->m_spCommandLine->m_varQuery["app"].stra().insert_at(0, get_app()->command_central()->m_varTopicQuery["appid"].get_string());
 
       }
 

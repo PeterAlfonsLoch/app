@@ -1691,7 +1691,7 @@ static int dtls1_record_replay_check(SSL *s, DTLS1_BITMAP *bitmap)
 		}
 	shift = -cmp;
 	if (shift >= sizeof(bitmap->map)*8)
-		return 0; /* stale, outside the window */
+		return 0; /* stale, outside the interaction_impl */
 	else if (bitmap->map & (1UL<<shift))
 		return 0; /* record previously received */
 

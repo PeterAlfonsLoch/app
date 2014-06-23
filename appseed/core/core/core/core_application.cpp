@@ -2716,119 +2716,6 @@ bool application::activate_app()
 
 
 
-/*   int32_t application::GetResourceId(const id_space * pspace, int32_t iKey)
-{
-int32_t iId;
-if(!m_imapResource.get(pspace, iKey, iId))
-{
-m_imapResource.set(pspace, iKey, m_iResourceId);
-m_iResourceId++;
-if(!m_imapResource.get(pspace, iKey, iId))
-{
-return -1;
-}
-}
-return iId;
-}
-
-int32_t application::GetResourceId(const id_space * pspace, const char * lpcszKey)
-{
-int32_t iId;
-if(!m_strmapResource.get(pspace, lpcszKey, iId))
-{
-m_strmapResource.set(pspace, lpcszKey, m_iResourceId);
-m_iResourceId++;
-if(!m_strmapResource.get(pspace, lpcszKey, iId))
-{
-return -1;
-}
-}
-return iId;
-}
-
-
-int32_t application::GetResourceId(const id_space & space, int32_t iKey)
-{
-return GetResourceId(&space, iKey);
-}
-
-int32_t application::GetResourceId(const id_space & space, const char * lpcszKey)
-{
-return GetResourceId(&space, lpcszKey);
-}
-*/
-
-string application::matter_as_string(const char * pszMatter, const char * pszMatter2)
-{
-   UNREFERENCED_PARAMETER(pszMatter);
-   UNREFERENCED_PARAMETER(pszMatter2);
-   throw not_implemented(get_app());
-}
-
-string application::dir_matter(const char * pszMatter, const char * pszMatter2)
-{
-   UNREFERENCED_PARAMETER(pszMatter);
-   UNREFERENCED_PARAMETER(pszMatter2);
-   throw not_implemented(get_app());
-}
-
-bool application::is_inside_time_dir(const char * pszPath)
-{
-   UNREFERENCED_PARAMETER(pszPath);
-   throw not_implemented(get_app());
-}
-
-bool application::file_is_read_only(const char * pszPath)
-{
-   UNREFERENCED_PARAMETER(pszPath);
-   throw not_implemented(get_app());
-}
-
-/*
-string application::file_as_string(const char * pszPath)
-{
-UNREFERENCED_PARAMETER(pszPath);
-throw not_implemented(get_app());
-}*/
-
-string application::dir_path(const char * psz1, const char * psz2, const char * psz3)
-{
-   UNREFERENCED_PARAMETER(psz1);
-   UNREFERENCED_PARAMETER(psz2);
-   UNREFERENCED_PARAMETER(psz3);
-   throw not_implemented(get_app());
-}
-
-string application::dir_name(const char * psz)
-{
-   UNREFERENCED_PARAMETER(psz);
-   throw not_implemented(get_app());
-}
-
-bool application::dir_mk(const char * psz)
-{
-   UNREFERENCED_PARAMETER(psz);
-   throw not_implemented(get_app());
-}
-
-string application::file_title(const char * psz)
-{
-   return System.file_title(psz);
-}
-
-string application::file_name(const char * psz)
-{
-   return System.file_name(psz);
-}
-
-
-
-
-oswindow application::get_ca2_app_wnd(const char * psz)
-{
-   UNREFERENCED_PARAMETER(psz);
-   return NULL;
-}
 
 
 
@@ -2836,29 +2723,10 @@ oswindow application::get_ca2_app_wnd(const char * psz)
 
 
 
-int32_t application::get_document_count()
-{
-   //      return m_pdocmanager->get_document_count();
-   return 0;
-}
 
 
 
-void application::TermThread(HINSTANCE hInstTerm)
-{
-   UNREFERENCED_PARAMETER(hInstTerm);
-}
 
-
-::window_sp application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
-{
-   return m_pimpl->FindWindow(lpszClassName, lpszWindowName);
-}
-
-::window_sp application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
-{
-   return m_pimpl->FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
-}
 
 
 bool application::finalize()
@@ -3702,6 +3570,13 @@ bool application::_001CloseApplicationByUser(sp(::user::interaction) pwndExcept)
 
 }
 
+oswindow application::get_ca2_app_wnd(const char * psz)
+{
+   UNREFERENCED_PARAMETER(psz);
+   return NULL;
+}
+
+
 int32_t application::send_simple_command(const char * psz, void * osdataSender)
 {
    string strApp;
@@ -3727,7 +3602,7 @@ int32_t application::send_simple_command(void * osdata, const char * psz, void *
       return -1;
    COPYDATASTRUCT cds;
    memset(&cds, 0, sizeof(cds));
-   cds.dwData = 198477;
+   cds.dwData = 888888;
    cds.cbData = (uint32_t)strlen(psz);
    cds.lpData = (PVOID)psz;
    return (int32_t)SendMessage(oswindow, WM_COPYDATA, (WPARAM)osdataSender, (LPARAM)&cds);
@@ -3755,15 +3630,6 @@ void application::ensure_app_interest()
    //throw todo(get_app());
 
 #endif
-
-}
-
-
-
-string application::file_as_string(var varFile)
-{
-
-   return m_pplaneapp->file().as_string(varFile);
 
 }
 

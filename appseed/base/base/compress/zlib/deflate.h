@@ -90,7 +90,7 @@ typedef ush Pos;
 typedef Pos FAR Posf;
 typedef unsigned IPos;
 
-/* A Pos is an index in the character window. We use short instead of int to
+/* A Pos is an index in the character interaction_impl. We use short instead of int to
  * save space in the various tables. IPos is used only for parameter passing.
  */
 
@@ -109,29 +109,29 @@ typedef struct internal_state {
 
                 /* used by deflate.c: */
 
-    uInt  w_size;        /* LZ77 window size (32K by default) */
+    uInt  w_size;        /* LZ77 interaction_impl size (32K by default) */
     uInt  w_bits;        /* log2(w_size)  (8..16) */
     uInt  w_mask;        /* w_size - 1 */
 
-    Bytef *window;
-    /* Sliding window. Input bytes are read into the second half of the window,
+    Bytef *interaction_impl;
+    /* Sliding interaction_impl. Input bytes are read into the second half of the interaction_impl,
      * and move to the first half later to keep a dictionary of at least wSize
      * bytes. With this organization, matches are limited to a distance of
      * wSize-MAX_MATCH bytes, but this ensures that IO is always
      * performed with a length multiple of the block size. Also, it limits
-     * the window size to 64K, which is quite useful on MSDOS.
-     * To do: use the user input buffer as sliding window.
+     * the interaction_impl size to 64K, which is quite useful on MSDOS.
+     * To do: use the user input buffer as sliding interaction_impl.
      */
 
     ulg window_size;
-    /* Actual size of window: 2*wSize, except when the user input buffer
-     * is directly used as sliding window.
+    /* Actual size of interaction_impl: 2*wSize, except when the user input buffer
+     * is directly used as sliding interaction_impl.
      */
 
     Posf *prev;
     /* Link to older string with same hash index. To limit the size of this
      * array to 64K, this link is maintained only for the last 32K strings.
-     * An index in this array is thus a window index modulo 32K.
+     * An index in this array is thus a interaction_impl index modulo 32K.
      */
 
     Posf *head; /* Heads of the hash chains or NIL. */
@@ -150,7 +150,7 @@ typedef struct internal_state {
 
     long block_start;
     /* Window position at the beginning of the current output block. Gets
-     * negative when the window is moved backwards.
+     * negative when the interaction_impl is moved backwards.
      */
 
     uInt match_length;           /* length of best match */
@@ -158,7 +158,7 @@ typedef struct internal_state {
     int match_available;         /* set if previous match exists */
     uInt strstart;               /* start of string to insert */
     uInt match_start;            /* start of matching string */
-    uInt lookahead;              /* number of valid bytes ahead in window */
+    uInt lookahead;              /* number of valid bytes ahead in interaction_impl */
 
     uInt prev_length;
     /* Length of the best match at previous step. Matches not greater than this
@@ -221,7 +221,7 @@ typedef struct internal_state {
      * limiting lit_bufsize to 64K:
      *   - frequencies can be kept in 16 bit counters
      *   - if compression is not successful for the first block, all input
-     *     data is still in the window so we can still emit a stored block even
+     *     data is still in the interaction_impl so we can still emit a stored block even
      *     when input comes from standard input.  (This can also be done for
      *     all blocks if lit_bufsize is not greater than 32K.)
      *   - if compression is not successful for a file smaller than 64K, we can
@@ -247,7 +247,7 @@ typedef struct internal_state {
     ulg opt_len;        /* bit length of current block with optimal trees */
     ulg static_len;     /* bit length of current block with static trees */
     uInt matches;       /* number of string matches in current block */
-    uInt insert;        /* bytes at end of window left to insert */
+    uInt insert;        /* bytes at end of interaction_impl left to insert */
 
 #ifdef DEBUG
     ulg compressed_len; /* total bit length of compressed file mod 2^32 */
@@ -264,7 +264,7 @@ typedef struct internal_state {
      */
 
     ulg high_water;
-    /* High water mark offset in window for initialized bytes -- bytes above
+    /* High water mark offset in interaction_impl for initialized bytes -- bytes above
      * this are set to zero in order to avoid memory check warnings when
      * longest match routines access bytes past the input.  This is then
      * updated to the new high water mark.
@@ -289,7 +289,7 @@ typedef struct internal_state {
  */
 
 #define WIN_INIT MAX_MATCH
-/* Number of bytes after end of data in window to initialize in order to avoid
+/* Number of bytes after end of data in interaction_impl to initialize in order to avoid
    memory checker errors from longest match routines */
 
         /* in trees.c */

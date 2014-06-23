@@ -63,7 +63,7 @@ namespace userex
          {
             wnda.add(pui);
             puiNext = pui->get_parent();
-            if(puiNext == NULL || (pui->m_pimpl.m_p) != NULL)
+            if(puiNext == NULL || (pui->m_pimpl) != NULL)
                break;
             pui = puiNext;
          }

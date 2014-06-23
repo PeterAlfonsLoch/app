@@ -1,6 +1,6 @@
 #pragma once
 
-template < int t_iTimeout = ((1984 + 1977) * 2) >
+template < int t_iTimeout = ((5000) * 2) >
 class string_timeout
 {
 public:

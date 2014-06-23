@@ -29,7 +29,7 @@ namespace user
 
    void button::install_message_handling(::message::dispatch * pinterface)
    {
-      //::user::window_interface::install_message_handling(pinterface);
+      //::user::interaction_base::install_message_handling(pinterface);
       ::user::control::install_message_handling(pinterface);
       //::user::button::install_message_handling(pinterface);
 
@@ -119,7 +119,7 @@ namespace user
 
       if(hit_test(pmouse->m_pt, eelement) >= 0)
       {
-         g_pwndLastLButtonDown = this;
+         BaseSession.m_puiLastLButtonDown = this;
          pmouse->set_lresult(1);
          pobj->m_bRet = true;
       }
@@ -127,7 +127,7 @@ namespace user
 
    bool button::_001IsPressed()
    {
-      return g_pwndLastLButtonDown == this;
+      return BaseSession.m_puiLastLButtonDown == this;
    }
 
    void button::_001OnLButtonUp(signal_details * pobj)
@@ -136,9 +136,9 @@ namespace user
 
          e_element eelement;
 
-      if(hit_test(pmouse->m_pt, eelement) >= 0 && g_pwndLastLButtonDown == this)
+      if(hit_test(pmouse->m_pt, eelement) >= 0 && BaseSession.m_puiLastLButtonDown == this)
       {
-         g_pwndLastLButtonDown = NULL;
+         BaseSession.m_puiLastLButtonDown = NULL;
          ::user::control_event ev;
          ev.m_puie = this;
          ev.m_eevent = ::user::event_button_clicked;
@@ -482,7 +482,8 @@ namespace user
 
 
       rect rectClient;
-      m_pui->GetClientRect(rectClient);
+      
+      GetClientRect(rectClient);
 
       COLORREF crBk;
       if(!is_window_enabled())

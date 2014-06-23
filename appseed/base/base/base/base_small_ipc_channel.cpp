@@ -4,7 +4,7 @@
 small_ipc_channel::small_ipc_channel()
 {
    
-   m_dwTimeout = (1984 + 1977) * 11;
+   m_dwTimeout = (5000) * 11;
 
 }
 

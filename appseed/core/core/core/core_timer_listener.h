@@ -1,19 +1,28 @@
 #pragma once
 
 
-class timer_listener  
+namespace core
 {
-public:
+
+   class timer_listener
+   {
+   public:
 
 
-   timer_listener();
-   virtual ~timer_listener();
+      timer_listener();
+      virtual ~timer_listener();
 
 
-   virtual void TimerProc(UINT nID) = 0;
+      virtual void TimerProc(UINT nID) = 0;
 
 
-};
+   };
+
+
+} // namespace core
+
+
+
 
 
 

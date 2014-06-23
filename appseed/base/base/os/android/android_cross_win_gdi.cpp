@@ -23,9 +23,9 @@
 //
 ////   XWindowAttributes attrs;
 //
-//   /* Fill attribute structure with information about root window */
+//   /* Fill attribute structure with information about root interaction_impl */
 //
-///*   if(XGetWindowAttributes(hwnd->display(), hwnd->window(), &attrs) == 0)
+///*   if(XGetWindowAttributes(hwnd->display(), hwnd->interaction_impl(), &attrs) == 0)
 //   {
 //
 //      return FALSE;
@@ -56,7 +56,7 @@
 //
 //   bool bDestroying = hwnd->m_bDestroying;
 ///*   Display * pdisplay = hwnd->display();
-//   Window window = hwnd->window();
+//   Window interaction_impl = hwnd->interaction_impl();
 //
 //
 //   if(pdisplay == NULL)
@@ -67,9 +67,9 @@
 //
 //   XSync(hwnd->display(), False);
 //
-//   // Fill attribute structure with information about root window 
+//   // Fill attribute structure with information about root interaction_impl 
 //
-//   /*if(!XGetWindowAttributes(hwnd->display(), hwnd->window(), &attrs))
+//   /*if(!XGetWindowAttributes(hwnd->display(), hwnd->interaction_impl(), &attrs))
 //   {
 //      return FALSE;
 //   }
@@ -78,7 +78,7 @@
 //   int y;
 //   Window child;
 //
-//   if(!XTranslateCoordinates(hwnd->display(), hwnd->window(), DefaultRootWindow(hwnd->display()), 0, 0, &x, &y, &child))
+//   if(!XTranslateCoordinates(hwnd->display(), hwnd->interaction_impl(), DefaultRootWindow(hwnd->display()), 0, 0, &x, &y, &child))
 //   {
 //      return FALSE;
 //   }
@@ -165,26 +165,26 @@
 //   if(!(uFlags & SWP_NOZORDER) && hwndInsertAfter >= 0)
 //   {
 //      value_mask |= CWSibling;
-//      values.sibling = hwndInsertAfter->window();
+//      values.sibling = hwndInsertAfter->interaction_impl();
 //      values.stack_mode = Above;
 //   }
 //
-//   XConfigureWindow(hwnd->display(), hwnd->window(), value_mask, &values);
+//   XConfigureWindow(hwnd->display(), hwnd->interaction_impl(), value_mask, &values);
 //
 //   if(uFlags & SWP_SHOWWINDOW)
 //   {
-//      XMapWindow(hwnd->display(), hwnd->window());
+//      XMapWindow(hwnd->display(), hwnd->interaction_impl());
 //   }
 //
 //   if(!(uFlags & SWP_NOZORDER) && hwndInsertAfter < 0)
 //   {
-//      if(hwndInsertAfter->window() == ZORDER_TOP || hwndInsertAfter->window() == ZORDER_TOPMOST)
+//      if(hwndInsertAfter->interaction_impl() == ZORDER_TOP || hwndInsertAfter->interaction_impl() == ZORDER_TOPMOST)
 //      {
-//         XRaiseWindow(hwnd->display(), hwnd->window());
+//         XRaiseWindow(hwnd->display(), hwnd->interaction_impl());
 //      }
-//      else if(hwndInsertAfter->window() == ZORDER_BOTTOM)
+//      else if(hwndInsertAfter->interaction_impl() == ZORDER_BOTTOM)
 //      {
-//         XLowerWindow(hwnd->display(), hwnd->window());
+//         XLowerWindow(hwnd->display(), hwnd->interaction_impl());
 //      }
 //
 //   }

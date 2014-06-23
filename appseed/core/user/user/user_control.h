@@ -180,7 +180,7 @@ namespace user
 
 
       bool _003IsCustomMessage();
-      ::user::window_interface * _003GetCustomMessageWnd();
+      ::user::interaction_base * _003GetCustomMessageWnd();
 
 
 

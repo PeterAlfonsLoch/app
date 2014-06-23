@@ -246,7 +246,7 @@
 
 /*
  * For VarBstrFromDate only - forces years to be 4 digits rather than shortening
- * to 2-digits when the years is in the date window.
+ * to 2-digits when the years is in the date interaction_impl.
  */
 #define VAR_FOURDIGITYEARS	((DWORD)0x00000040)
 
@@ -260,7 +260,7 @@
 // SOUTHASIA START
 /* SOUTHASIA
  * For VarBstrFromDate only - forces years to be 4 digits rather than shortening
- * to 2-digits when the years is in the date window.
+ * to 2-digits when the years is in the date interaction_impl.
  */
 #define VAR_CALENDAR_THAI	   ((DWORD)0x00000080)
 #define	VAR_CALENDAR_GREGORIAN ((DWORD)0x00000100)

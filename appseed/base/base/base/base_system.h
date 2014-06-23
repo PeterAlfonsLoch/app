@@ -110,12 +110,12 @@ namespace base
 
 #ifdef WINDOWSEX
 
-      class window:
+      class interaction_impl:
          virtual public ::user::interaction
       {
       public:
 
-         window(sp(::base::application) papp);
+         interaction_impl(sp(::base::application) papp);
 
          void install_message_handling(::message::dispatch * pdispath);
 
@@ -124,7 +124,7 @@ namespace base
 
       };
 
-      sp(window)                                   m_spwindow;
+      sp(interaction_impl)                                   m_spwindow;
 
       raw_array < MONITORINFO >                    m_monitorinfoa;
       raw_array < HMONITOR >                       m_hmonitora;

@@ -453,7 +453,7 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
    } // namespace user
 
 
-      class virtual_user_interface;
+      class ::user::interaction_child;
          class dialog;          // a dialog
 
          // standard windows controls
@@ -636,7 +636,6 @@ namespace user
 #include "core_profiler.h"
 #include "core_timer.h"
 #include "core_timer_callback.h"
-#include "core_timer_window.h"
 #include "core_timer_listener.h"
 #include "user/user/user_window_draw.h"
 #include "core_history.h"

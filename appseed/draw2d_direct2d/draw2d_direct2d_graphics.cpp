@@ -123,22 +123,16 @@ namespace draw2d_direct2d
    }
 
 
-   window * graphics::GetWindow() const
-   { 
-#ifdef WINDOWSEX
-      throw todo(get_app());
-#else
-      throw todo(get_app());
-#endif
-   }
 
    bool graphics::IsPrinting() const
    {
+
       return m_bPrinting; 
+
    }
 
-   bool graphics::CreateDC(const char * lpszDriverName,
-      const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData)
+
+   bool graphics::CreateDC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData)
    {
       throw todo(get_app());
       //return Attach(::CreateDC(lpszDriverName, lpszDeviceName, lpszOutput, (const DEVMODE*)lpInitData)); 
@@ -302,13 +296,18 @@ namespace draw2d_direct2d
 
    }
 
-   int graphics::ExcludeUpdateRgn(window * pwindow)
+
+   int graphics::ExcludeUpdateRgn(::user::interaction * pwindow)
    { 
+      
       throw todo(get_app());
 
       //ASSERT(get_handle1() != NULL); 
+
       //return ::ExcludeUpdateRgn(get_handle1(), WIN_WINDOW(pwindow)->get_handle()); 
+
    }
+
 
    int graphics::GetDeviceCaps(int nIndex) const
    { 

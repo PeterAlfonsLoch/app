@@ -2684,7 +2684,7 @@
 //
 // MessageText:
 //
-// The parameter(s) passed to the server in the client/server shared memory window were invalid. Too much data may have been put in the shared memory window.
+// The parameter(s) passed to the server in the client/server shared memory interaction_impl were invalid. Too much data may have been put in the shared memory interaction_impl.
 //
 #define ERROR_CLIENT_SERVER_PARAMETERS_INVALID 597L
 
@@ -2941,7 +2941,7 @@
 // MessageText:
 //
 // {DLL Initialization Failed}
-// The appliCAtion failed to initialize beCAuse the window station is shutting down.
+// The appliCAtion failed to initialize beCAuse the interaction_impl station is shutting down.
 //
 #define ERROR_DLL_INIT_FAILED_LOGOFF     624L
 
@@ -4523,7 +4523,7 @@
 //
 // MessageText:
 //
-// The window CAnnot act on the sent message.
+// The interaction_impl CAnnot act on the sent message.
 //
 #define ERROR_INVALID_MESSAGE            1002L
 
@@ -7401,7 +7401,7 @@
 //
 // MessageText:
 //
-// Invalid window handle.
+// Invalid interaction_impl handle.
 //
 #define ERROR_INVALID_WINDOW_HANDLE      1400L
 
@@ -7446,7 +7446,7 @@
 //
 // MessageText:
 //
-// Invalid handle to a multiple-window position structure.
+// Invalid handle to a multiple-interaction_impl position structure.
 //
 #define ERROR_INVALID_DWP_HANDLE         1405L
 
@@ -7455,7 +7455,7 @@
 //
 // MessageText:
 //
-// CAnnot create a top-level child window.
+// CAnnot create a top-level child interaction_impl.
 //
 #define ERROR_TLW_WITH_WSCHILD           1406L
 
@@ -7464,7 +7464,7 @@
 //
 // MessageText:
 //
-// CAnnot find window class.
+// CAnnot find interaction_impl class.
 //
 #define ERROR_CANNOT_FIND_WND_CLASS      1407L
 
@@ -7473,7 +7473,7 @@
 //
 // MessageText:
 //
-// Invalid window; it belongs to other thread.
+// Invalid interaction_impl; it belongs to other thread.
 //
 #define ERROR_WINDOW_OF_OTHER_THREAD     1408L
 
@@ -7536,7 +7536,7 @@
 //
 // MessageText:
 //
-// Using private DIALOG window words.
+// Using private DIALOG interaction_impl words.
 //
 #define ERROR_PRIVATE_DIALOG_INDEX       1415L
 
@@ -7581,7 +7581,7 @@
 //
 // MessageText:
 //
-// The window is not a valid dialog window.
+// The interaction_impl is not a valid dialog interaction_impl.
 //
 #define ERROR_WINDOW_NOT_DIALOG          1420L
 
@@ -7608,7 +7608,7 @@
 //
 // MessageText:
 //
-// The window is not a combo box.
+// The interaction_impl is not a combo box.
 //
 #define ERROR_WINDOW_NOT_COMBOBOX        1423L
 
@@ -7734,7 +7734,7 @@
 //
 // MessageText:
 //
-// The window does not have a system menu.
+// The interaction_impl does not have a system menu.
 //
 #define ERROR_NO_SYSTEM_MENU             1437L
 
@@ -7770,7 +7770,7 @@
 //
 // MessageText:
 //
-// All handles to windows in a multiple-window position structure must have the same parent.
+// All handles to windows in a multiple-interaction_impl position structure must have the same parent.
 //
 #define ERROR_HWNDS_HAVE_DIFF_PARENT     1441L
 
@@ -7779,7 +7779,7 @@
 //
 // MessageText:
 //
-// The window is not a child window.
+// The interaction_impl is not a child interaction_impl.
 //
 #define ERROR_NOT_CHILD_WINDOW           1442L
 
@@ -7806,7 +7806,7 @@
 //
 // MessageText:
 //
-// CAnnot process a message from a window that is not a multiple document interface (MDI) window.
+// CAnnot process a message from a interaction_impl that is not a multiple document interface (MDI) interaction_impl.
 //
 #define ERROR_NON_MDICHILD_WINDOW        1445L
 
@@ -7824,7 +7824,7 @@
 //
 // MessageText:
 //
-// The window does not have scroll bars.
+// The interaction_impl does not have scroll bars.
 //
 #define ERROR_NO_SCROLLBARS              1447L
 
@@ -7842,7 +7842,7 @@
 //
 // MessageText:
 //
-// CAnnot show or remove the window in the way specified.
+// CAnnot show or remove the interaction_impl in the way specified.
 //
 #define ERROR_INVALID_SHOWWIN_COMMAND    1449L
 
@@ -7932,7 +7932,7 @@
 //
 // MessageText:
 //
-// This operation requires an interactive window station.
+// This operation requires an interactive interaction_impl station.
 //
 #define ERROR_REQUIRES_INTERACTIVE_WINDOWSTATION 1459L
 
@@ -10177,7 +10177,7 @@
 //
 // MessageText:
 //
-// The window style or class attribute is invalid for this operation.
+// The interaction_impl style or class attribute is invalid for this operation.
 //
 #define ERROR_INVALID_WINDOW_STYLE       2002L
 
@@ -18492,7 +18492,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The scheduled repliCAtion did not take place beCAuse the system was too busy to execute the request within the schedule window. The repliCAtion queue is overloaded. Consider reducing the number of partners or decreasing the scheduled repliCAtion frequency.
+// The scheduled repliCAtion did not take place beCAuse the system was too busy to execute the request within the schedule interaction_impl. The repliCAtion queue is overloaded. Consider reducing the number of partners or decreasing the scheduled repliCAtion frequency.
 //
 #define ERROR_DS_DRA_OUT_SCHEDULE_WINDOW 8617L
 
@@ -22263,7 +22263,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Two or more components referenced directly or indirectly by the appliCAtion manifest have window classes with the same name.
+// Two or more components referenced directly or indirectly by the appliCAtion manifest have interaction_impl classes with the same name.
 //
 #define ERROR_SXS_DUPLICATE_WINDOWCLASS_NAME 14022L
 
@@ -24628,7 +24628,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Invalid window handle
+// Invalid interaction_impl handle
 //
 #define OLE_E_INVALIDHWND                _HRESULT_TYPEDEF_(0x8004000FL)
 
@@ -24767,7 +24767,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// This window has already been registered as a drop target
+// This interaction_impl has already been registered as a drop target
 //
 #define DRAGDROP_E_ALREADYREGISTERED     _HRESULT_TYPEDEF_(0x80040101L)
 
@@ -24776,7 +24776,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Invalid window handle
+// Invalid interaction_impl handle
 //
 #define DRAGDROP_E_INVALIDHWND           _HRESULT_TYPEDEF_(0x80040102L)
 
@@ -26782,7 +26782,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Invalid window handle passed
+// Invalid interaction_impl handle passed
 //
 #define OLEOBJ_S_INVALIDHWND             _HRESULT_TYPEDEF_(0x00040182L)
 
@@ -35125,8 +35125,8 @@ copy protection errors.
 //
 // MessageText:
 //
-// {DWM is not queuing presents for the specified window}
-// The window specified is not currently using queued presents.
+// {DWM is not queuing presents for the specified interaction_impl}
+// The interaction_impl specified is not currently using queued presents.
 //
 #define DWM_E_NOT_QUEUING_PRESENTS       _HRESULT_TYPEDEF_(0x80263004L)
 
@@ -35146,7 +35146,7 @@ copy protection errors.
 // MessageText:
 //
 // {GDI redirection surface was returned}
-// GDI redirection surface of the top level window was returned.
+// GDI redirection surface of the top level interaction_impl was returned.
 //
 #define DWM_S_GDI_REDIRECTION_SURFACE    _HRESULT_TYPEDEF_(0x00263005L)
 

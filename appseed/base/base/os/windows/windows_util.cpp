@@ -59,7 +59,7 @@ oswindow CLASS_DECL_BASE __child_window_from_point(oswindow oswindow, POINT pt)
       if (__get_dialog_control_id(oswindow_Child) != (WORD)0 &&
          (::GetWindowLong(oswindow_Child, GWL_STYLE) & WS_VISIBLE))
       {
-         // see if point hits the child window
+         // see if point hits the child interaction_impl
          rect rect;
          ::GetWindowRect(oswindow_Child, rect);
          if (rect.contains(pt))

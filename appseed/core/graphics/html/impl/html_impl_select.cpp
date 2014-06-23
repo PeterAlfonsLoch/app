@@ -56,7 +56,6 @@ namespace html
             m_pcombo->m_bPassword = pelemental->m_propertyset["type"].compare_value_ci("password") == 0;
             m_pcombo->m_strName = pelemental->m_pbase->get_tag()->get_attr_value("name");
             m_pcombo->m_id = pelemental->m_pbase->get_tag()->get_attr_value("id");
-            m_pcombo->m_pimpl->m_id = m_pcombo->m_id;
             m_pcombo->m_edatamode = ::simple_combo_box::data_mode_string;
 
             for (index i = 0; i < pelemental->m_pbase->get_tag()->baseptra().get_count(); i++)

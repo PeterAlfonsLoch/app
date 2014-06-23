@@ -63,6 +63,11 @@ namespace base
       m_ecursor         = ::visual::cursor_default;
 
 
+      m_puiMouseMoveCapture = NULL;
+      m_puiLastLButtonDown = NULL;
+
+
+
       m_pbasesystem->m_basesessionptra.add_unique(this);
 
    }
@@ -533,7 +538,7 @@ namespace base
    {
 
       index iMatchingMonitor = -1;
-      index iBestArea = -1;
+      int64_t iBestArea = -1;
       rect rectMatch;
 
       for(index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
@@ -917,7 +922,7 @@ namespace base
 
 #if defined (METROWIN)
 
-      return GetFocus()->window();
+      return GetFocus()->interaction_impl();
 
 #elif defined(WINDOWSEX) || defined(LINUX)
 

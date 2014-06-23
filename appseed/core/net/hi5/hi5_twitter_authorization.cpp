@@ -43,7 +43,7 @@ namespace hi5
          if(m_pviewAuth == NULL)
             return "";
 
-         m_pviewAuth->SetTimer(1984, 484, NULL);
+         m_pviewAuth->SetTimer(8888, 484, NULL);
          m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
          m_ptemplatePane->close_all_documents(FALSE);
          return m_strPin;

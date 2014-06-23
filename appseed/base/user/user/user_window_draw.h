@@ -9,7 +9,7 @@ namespace user
    
    
    class buffer;
-   class window_interface;
+   class interaction_base;
 
 }
 
@@ -25,9 +25,9 @@ namespace user
 
 
       bool                 m_bProDevianMode;
-      //::user::buffer *     m_pbuffer;
       uint32_t             m_iFramesPerSecond;
       event                m_eventFree;
+      bool                 m_bRunning;
 
 
       window_draw(sp(::base::application) papp);
@@ -42,7 +42,10 @@ namespace user
       virtual void asynch_redraw();
       virtual void synch_redraw();
 
-      static bool s_bRunning;
+
+      ::user::interaction_ptr_array get_wnda();
+
+      
    };
 
 

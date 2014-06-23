@@ -177,7 +177,7 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
 
       *plValue = ::str::to_int64(string((const char *) m_phttpsession->m_memoryfile.get_memory()->get_data(), m_phttpsession->m_memoryfile.get_memory()->get_size()));
 
-      longitem.m_dwTimeout = get_tick_count() + 23 * (1984 + 1977);
+      longitem.m_dwTimeout = get_tick_count() + 23 * (5000);
       longitem.m_l = *plValue;
 
       m_map.set_at(lpKey, longitem);
@@ -261,7 +261,7 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
 
       item longitem;
 
-      longitem.m_dwTimeout = get_tick_count() + 23 * (1984 + 1977);
+      longitem.m_dwTimeout = get_tick_count() + 23 * (5000);
       longitem.m_l = lValue;
 
       m_map.set_at(lpKey, longitem);

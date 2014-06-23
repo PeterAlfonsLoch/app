@@ -13,7 +13,7 @@
 
 
 CHAR szTitle[1024];					// The title bar text
-CHAR szWindowClassSpaAdmin[1024];			// the main window class name
+CHAR szWindowClassSpaAdmin[1024];			// the main interaction_impl class name
 
 //void ensure_trace_file();
 //CLASS_DECL_BASE bool g_bInstalling = false;
@@ -442,9 +442,9 @@ RetryHost:
 
          set["raw_http"] = true;
 
-         string strCgclIndexMd5 = Application.http().get(strUrl, set);
-         if(strCgclIndexMd5.length() != 32
-            || stricmp_dup(get_file_md5(strIndexPath), strCgclIndexMd5) != 0)
+         string strIndexMd5 = Application.http().get(strUrl, set);
+         if(strIndexMd5.length() != 32
+            || stricmp_dup(get_file_md5(strIndexPath), strIndexMd5) != 0)
          {
             System.install().trace().rich_trace("Invalid file list!");
             System.install().trace().rich_trace("Going to retry host...");
@@ -1509,7 +1509,7 @@ RetryHost:
             //System.install().trace().rich_trace("time the patch is requested for the older-newer-pair patch combination.");
             //System.install().trace().rich_trace("Other users later requesting the same older-newer-pair patch combination will");
             //System.install().trace().rich_trace("benefit from the cached patch.");
-            Sleep((1984 + 1977) * 5);
+            Sleep((5000) * 5);
             if(iRetry >= iMaxRetry)
                break;
          }
@@ -2554,7 +2554,7 @@ RetryHost:
          System.install().set_updated(m_strBuild);
 //         System.install().installation_file_lock(false);
          //       // keeps g_bInstalling for a while
-         //         Sleep((1984 + 1977) * 5);
+         //         Sleep((5000) * 5);
          //::PostMessage(g_oswindow, WM_CLOSE, 0, 0);
 
          if(m_straRestartProcess.get_count() > 0)
@@ -3060,7 +3060,7 @@ RetryBuildNumber:
 
       if(nCmdShow != SW_HIDE)
       {
-         //m_pwindow = new install::window;
+         //m_pwindow = new install::interaction_impl;
       }
 
 #if defined(WINDOWSEX)

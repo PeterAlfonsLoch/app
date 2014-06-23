@@ -74,13 +74,13 @@ namespace hotplugin
 
       pgraphics->SelectObject(f);
 
-      pgraphics->TextOut(lprect->left + 84, (int32_t)(lprect->top + 84 + 49 + 49 * 0.2), strProgress);
+      pgraphics->TextOut(lprect->left + 84, (int32_t)(lprect->top + 133 + 49 * 0.2), strProgress);
 
       f->create_pixel_font("Tahoma", 23);
 
       pgraphics->SelectObject(f);
 
-      pgraphics->TextOut(lprect->left + 84, (int32_t)(lprect->top + 84 + 49 + 49 * 0.2 + 84 + 49 * 0.2), m_strStatus2);
+      pgraphics->TextOut(lprect->left + 84, (int32_t)(lprect->top + 133 + 49 * 0.2 + 133 * 0.2), m_strStatus2);
 
    }
 

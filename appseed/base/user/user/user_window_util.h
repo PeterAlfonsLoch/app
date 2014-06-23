@@ -79,7 +79,7 @@ namespace user
 
 
       oswindow_tree();
-      oswindow_tree(oswindow window);
+      oswindow_tree(oswindow interaction_impl);
       oswindow_tree(const oswindow_tree & tree);
 
       void EnumDescendants();

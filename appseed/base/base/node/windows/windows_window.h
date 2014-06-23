@@ -9,8 +9,8 @@ namespace windows
    CLASS_DECL_BASE LRESULT CALLBACK __cbt_filter_hook(int32_t,WPARAM,LPARAM);
 
 
-   class CLASS_DECL_BASE window:
-      virtual public ::window
+   class CLASS_DECL_BASE interaction_impl:
+      virtual public ::user::interaction_impl
    {
    public:
 
@@ -25,14 +25,14 @@ namespace windows
       size                             m_size;
       point                            m_pt;
 
-      ::user::window_interface *       m_pbasewnd;
-      sp(::user::interaction)          m_puiCapture;
+      ::user::interaction_base *       m_pbasewnd;
+      
 
 
 
-      window();
-      window(sp(::base::application) papp);
-      virtual ~window();
+      interaction_impl();
+      interaction_impl(sp(::base::application) papp);
+      virtual ~interaction_impl();
 
 
       virtual void construct(oswindow oswindow);
@@ -51,8 +51,8 @@ namespace windows
 
       virtual void install_message_handling(::message::dispatch * pinterface);
 
-      bool operator==(const window& wnd) const;
-      bool operator!=(const window& wnd) const;
+      bool operator==(const interaction_impl& wnd) const;
+      bool operator!=(const interaction_impl& wnd) const;
 
       uint32_t GetStyle() const;
       uint32_t GetExStyle() const;
@@ -60,11 +60,9 @@ namespace windows
       bool ModifyStyleEx(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
 
       //virtual sp(::user::interaction) get_owner();
-      virtual void set_owner(sp(::user::interaction) pOwnerWnd);
+      //virtual void set_owner(sp(::user::interaction) pOwnerWnd);
 
       virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
-
-      virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
       void _002OnDraw(::draw2d::graphics * pdc);
 
@@ -99,7 +97,7 @@ namespace windows
       bool ExecuteDlgInit(const char * lpszResourceName);
       bool ExecuteDlgInit(LPVOID lpResource);
 
-      using ::user::interaction::create;
+      using ::user::interaction_impl::create;
       // for child windows, views, panes etc
       virtual bool create(const char * lpszClassName,
          const char * lpszWindowName,uint32_t dwStyle,
@@ -121,7 +119,7 @@ namespace windows
 
       virtual bool DestroyWindow();
 
-      // special pre-creation and window rect adjustment hooks
+      // special pre-creation and interaction_impl rect adjustment hooks
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
       // Advanced: virtual AdjustWindowRect
@@ -130,10 +128,10 @@ namespace windows
 
 
       // get immediate child with given ID
-      using ::user::interaction::get_child_by_id;
+      using ::user::interaction_impl::get_child_by_id;
       void get_child_by_id(id id,oswindow* poswindow_) const;
       // as above, but returns oswindow
-      using ::user::interaction::GetDescendantWindow;
+      using ::user::interaction_impl::GetDescendantWindow;
       sp(::user::interaction) GetDescendantWindow(id id) const;
       // like get_child_by_id but recursive
       void SendMessageToDescendants(UINT message,WPARAM wParam = 0,lparam lParam = 0,bool bDeep = TRUE,bool bOnlyPerm = FALSE);
@@ -179,14 +177,14 @@ namespace windows
       int32_t SetWindowRgn(HRGN hRgn,bool bRedraw);
       int32_t GetWindowRgn(HRGN hRgn);
 
-      using interaction::SetWindowPos;
+      using ::user::interaction_impl::SetWindowPos;
       virtual bool SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
       virtual UINT ArrangeIconicWindows();
       virtual void BringToTop(int nCmdShow);
       virtual bool BringWindowToTop();
-      using interaction::GetWindowRect;
+      using ::user::interaction_impl::GetWindowRect;
       virtual void GetWindowRect(__rect64 * lpRect);
-      using interaction::GetClientRect;
+      using ::user::interaction_impl::GetClientRect;
       virtual void GetClientRect(__rect64 * lpRect);
 
       void ClientToScreen(LPRECT lprect);
@@ -273,16 +271,13 @@ namespace windows
       virtual bool is_window_enabled();
       virtual bool enable_window(bool bEnable = TRUE);
 
-      // the active window applies only to top-level (frame windows)
+      // the active interaction_impl applies only to top-level (frame windows)
       virtual sp(::user::interaction) GetActiveWindow();
       virtual sp(::user::interaction) SetActiveWindow();
 
-      // the foreground window applies only to top-level windows (frame windows)
+      // the foreground interaction_impl applies only to top-level windows (frame windows)
       virtual bool SetForegroundWindow();
       static ::window_sp GetForegroundWindow();
-
-      virtual id SetDlgCtrlId(id id);
-      virtual id GetDlgCtrlId() const;
 
 
 
@@ -364,7 +359,7 @@ namespace windows
 
       virtual bool IsChild(::user::interaction * pwindow) const;
       virtual ::user::interaction * get_parent() const;
-      using ::user::interaction::set_parent;
+      using ::user::interaction_impl::set_parent;
       ::window_sp set_parent(::window_sp pWndNewParent);
       static ::window_sp WindowFromPoint(POINT point);
 
@@ -422,14 +417,6 @@ namespace windows
       //virtual void HtmlHelp(uint_ptr dwData, UINT nCmd = 0x000F);
       virtual void WinHelpInternal(uint_ptr dwData,UINT nCmd = HELP_CONTEXT);
 
-      // layout and other functions
-      /*   void RepositionBars(const char * pszPrefix, const char * pszIdLeftOver,
-      UINT nFlag = reposDefault, LPRECT lpRectParam = NULL,
-      LPCRECT lpRectClient = NULL, bool bStretch = TRUE);*/
-
-      void RepositionBars(UINT nIDFirst,UINT nIDLast,id nIDLeftOver,
-         UINT nFlags = reposDefault,LPRECT lpRectParam = NULL,
-         LPCRECT lpRectClient = NULL,bool bStretch = TRUE);
 
 
       // dialog support
@@ -645,7 +632,7 @@ namespace windows
 
       WNDPROC m_pfnSuper; // for subclassing of controls
       static const UINT m_nMsgDragList;
-      int32_t m_nModalResult; // for return values from window::RunModalLoop
+      int32_t m_nModalResult; // for return values from interaction_impl::RunModalLoop
 
       ::draw2d::font_sp m_pfont;
 

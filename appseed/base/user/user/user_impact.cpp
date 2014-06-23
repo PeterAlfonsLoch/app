@@ -1063,7 +1063,7 @@ namespace user
    ASSERT(pContext != NULL);
    ASSERT(pContext->m_typeinfoNewView != NULL);
 
-   // Note: can be a window with PostNcDestroy self cleanup
+   // Note: can be a interaction_impl with PostNcDestroy self cleanup
    ::window_sp pview = (pwndParent->System.alloc(pContext->m_typeinfoNewView));
    if (pview == NULL)
    {
@@ -1071,7 +1071,7 @@ namespace user
    pContext->m_typeinfoNewView.name());
    return NULL;
    }
-   ASSERT_KINDOF(window, pview);
+   ASSERT_KINDOF(interaction_impl, pview);
 
    // views are always created with a border!
    if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,

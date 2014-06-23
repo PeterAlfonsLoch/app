@@ -457,10 +457,10 @@ ZEXTERN int ZEXPORT inflate OF((z_streamp strm, int flush));
   saved by the compressor for this purpose.) The use of Z_FINISH is not
   required to perform an inflation in one step.  However it may be used to
   inform inflate that a faster approach can be used for the single inflate()
-  call.  Z_FINISH also informs inflate to not maintain a sliding window if the
+  call.  Z_FINISH also informs inflate to not maintain a sliding interaction_impl if the
   stream completes, which reduces inflate's memory footprint.  If the stream
   does not complete, either because not all of the stream is provided or not
-  enough output space is provided, then a sliding window will be allocated and
+  enough output space is provided, then a sliding interaction_impl will be allocated and
   inflate() can be called again to continue the operation as if Z_NO_FLUSH had
   been used.
 
@@ -469,7 +469,7 @@ ZEXTERN int ZEXPORT inflate OF((z_streamp strm, int flush));
   first call.  So the effects of the flush parameter in this implementation are
   on the return value of inflate() as noted below, when inflate() returns early
   when Z_BLOCK or Z_TREES is used, and when inflate() avoids the allocation of
-  memory for a sliding window when Z_FINISH is used.
+  memory for a sliding interaction_impl when Z_FINISH is used.
 
      If a preset dictionary is needed after this call (see inflateSetDictionary
   below), inflate sets strm->adler to the Adler-32 checksum of the dictionary
@@ -538,14 +538,14 @@ ZEXTERN int ZEXPORT deflateInit2 OF((z_streamp strm,
      The method parameter is the compression method.  It must be Z_DEFLATED in
    this version of the library.
 
-     The windowBits parameter is the base two logarithm of the window size
+     The windowBits parameter is the base two logarithm of the interaction_impl size
    (the size of the history buffer).  It should be in the range 8..15 for this
    version of the library.  Larger values of this parameter result in better
    compression at the expense of memory usage.  The default value is 15 if
    deflateInit is used instead.
 
      windowBits can also be -8..-15 for raw deflate.  In this case, -windowBits
-   determines the window size.  deflate() will then generate raw deflate data
+   determines the interaction_impl size.  deflate() will then generate raw deflate data
    with no zlib header or trailer, and will not compute an adler32 check value.
 
      windowBits can also be greater than 15 for optional gzip encoding.  Add
@@ -608,10 +608,10 @@ ZEXTERN int ZEXPORT deflateSetDictionary OF((z_streamp strm,
 
      Depending on the size of the compression data structures selected by
    deflateInit or deflateInit2, a part of the dictionary may in effect be
-   discarded, for example if the dictionary is larger than the window size
+   discarded, for example if the dictionary is larger than the interaction_impl size
    provided in deflateInit or deflateInit2.  Thus the strings most likely to be
    useful should be put at the end of the dictionary, not at the front.  In
-   addition, the current implementation of deflate will use at most the window
+   addition, the current implementation of deflate will use at most the interaction_impl
    size minus 262 bytes of the provided dictionary.
 
      Upon return of this function, strm->adler is set to the adler32 value
@@ -774,20 +774,20 @@ ZEXTERN int ZEXPORT inflateInit2 OF((z_streamp strm,
    fields next_in, avail_in, zalloc, zfree and opaque must be initialized
    before by the caller.
 
-     The windowBits parameter is the base two logarithm of the maximum window
+     The windowBits parameter is the base two logarithm of the maximum interaction_impl
    size (the size of the history buffer).  It should be in the range 8..15 for
    this version of the library.  The default value is 15 if inflateInit is used
    instead.  windowBits must be greater than or equal to the windowBits value
    provided to deflateInit2() while compressing, or it must be equal to 15 if
-   deflateInit2() was not used.  If a compressed stream with a larger window
+   deflateInit2() was not used.  If a compressed stream with a larger interaction_impl
    size is given as input, inflate() will return with the error code
-   Z_DATA_ERROR instead of trying to allocate a larger window.
+   Z_DATA_ERROR instead of trying to allocate a larger interaction_impl.
 
-     windowBits can also be zero to request that inflate use the window size in
+     windowBits can also be zero to request that inflate use the interaction_impl size in
    the zlib header of the compressed stream.
 
      windowBits can also be -8..-15 for raw inflate.  In this case, -windowBits
-   determines the window size.  inflate() will then process raw deflate data,
+   determines the interaction_impl size.  inflate() will then process raw deflate data,
    not looking for a zlib or gzip header, not generating a check value, and not
    looking for any check values for comparison at the end of the stream.  This
    is for use with other formats that use the deflate compressed data format
@@ -827,7 +827,7 @@ ZEXTERN int ZEXPORT inflateSetDictionary OF((z_streamp strm,
    The compressor and decompressor must use exactly the same dictionary (see
    deflateSetDictionary).  For raw inflate, this function can be called at any
    time to set the dictionary.  If the provided dictionary is smaller than the
-   window and there is already data in the window, then the provided dictionary
+   interaction_impl and there is already data in the interaction_impl, then the provided dictionary
    will amend what's there.  The application must insure that the dictionary
    that was used for compression is provided.
 
@@ -888,7 +888,7 @@ ZEXTERN int ZEXPORT inflateReset2 OF((z_streamp strm,
                                       int windowBits));
 /*
      This function is the same as inflateReset, but it also permits changing
-   the wrap and window size requests.  The windowBits parameter is interpreted
+   the wrap and interaction_impl size requests.  The windowBits parameter is interpreted
    the same as it is for inflateInit2.
 
      inflateReset2 returns Z_OK if success, or Z_STREAM_ERROR if the source
@@ -987,16 +987,16 @@ ZEXTERN int ZEXPORT inflateGetHeader OF((z_streamp strm,
 
 /*
 ZEXTERN int ZEXPORT inflateBackInit OF((z_streamp strm, int windowBits,
-                                        unsigned char FAR *window));
+                                        unsigned char FAR *interaction_impl));
 
      Initialize the internal stream state for decompression using inflateBack()
    calls.  The fields zalloc, zfree and opaque in strm must be initialized
    before the call.  If zalloc and zfree are Z_NULL, then the default library-
    derived memory allocation routines are used.  windowBits is the base two
-   logarithm of the window size, in the range 8..15.  window is a caller
+   logarithm of the interaction_impl size, in the range 8..15.  interaction_impl is a caller
    supplied buffer of that size.  Except for special applications where it is
-   assured that deflate was used with small window sizes, windowBits must be 15
-   and a 32K byte window must be supplied to be able to decompress general
+   assured that deflate was used with small interaction_impl sizes, windowBits must be 15
+   and a 32K byte interaction_impl must be supplied to be able to decompress general
    deflate streams.
 
      See inflateBack() for the usage of these routines.
@@ -1017,12 +1017,12 @@ ZEXTERN int ZEXPORT inflateBack OF((z_streamp strm,
      inflateBack() does a raw inflate with a single call using a call-back
    interface for input and output.  This is more efficient than inflate() for
    file i/o applications in that it avoids copying between the output and the
-   sliding window by simply making the window itself the output buffer.  This
+   sliding interaction_impl by simply making the interaction_impl itself the output buffer.  This
    function trusts the application to not change the output buffer passed by
    the output function, at least until inflateBack() returns.
 
      inflateBackInit() must be called first to allocate the internal state
-   and to initialize the state with the user-provided window buffer.
+   and to initialize the state with the user-provided interaction_impl buffer.
    inflateBack() may then be used multiple times to inflate a complete, raw
    deflate stream with each call.  inflateBackEnd() is then called to free the
    allocated state.
@@ -1047,9 +1047,9 @@ ZEXTERN int ZEXPORT inflateBack OF((z_streamp strm,
    out(out_desc, buf, len) to write the uncompressed data buf[0..len-1].  out()
    should return zero on success, or non-zero on failure.  If out() returns
    non-zero, inflateBack() will return with an error.  Neither in() nor out()
-   are permitted to change the contents of the window provided to
+   are permitted to change the contents of the interaction_impl provided to
    inflateBackInit(), which is also the buffer that out() uses to write from.
-   The length written by out() will be at most the window size.  Any non-zero
+   The length written by out() will be at most the interaction_impl size.  Any non-zero
    amount of input may be provided by in().
 
      For convenience, inflateBack() can be provided input on the first call by
@@ -1624,7 +1624,7 @@ ZEXTERN int ZEXPORT deflateInit2_ OF((z_streamp strm, int  level, int  method,
 ZEXTERN int ZEXPORT inflateInit2_ OF((z_streamp strm, int  windowBits,
                                       const char *version, int stream_size));
 ZEXTERN int ZEXPORT inflateBackInit_ OF((z_streamp strm, int windowBits,
-                                         unsigned char FAR *window,
+                                         unsigned char FAR *interaction_impl,
                                          const char *version,
                                          int stream_size));
 #define deflateInit(strm, level) \
@@ -1637,8 +1637,8 @@ ZEXTERN int ZEXPORT inflateBackInit_ OF((z_streamp strm, int windowBits,
 #define inflateInit2(strm, windowBits) \
         inflateInit2_((strm), (windowBits), ZLIB_VERSION, \
                       (int)sizeof(z_stream))
-#define inflateBackInit(strm, windowBits, window) \
-        inflateBackInit_((strm), (windowBits), (window), \
+#define inflateBackInit(strm, windowBits, interaction_impl) \
+        inflateBackInit_((strm), (windowBits), (interaction_impl), \
                       ZLIB_VERSION, (int)sizeof(z_stream))
 
 #ifndef Z_SOLO

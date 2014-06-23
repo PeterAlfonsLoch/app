@@ -343,7 +343,7 @@ void * small_ipc_rx_channel::receive()
             {
                if(!on_idle())
                {
-                  sleep(84);
+                  Sleep(100);
                }
             }
             else

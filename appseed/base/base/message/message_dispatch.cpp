@@ -174,7 +174,7 @@ namespace message
 #if defined(METROWIN)
       if(pwnd == NULL && lpmsg->oswindow != NULL)
       {
-         sp(::user::interaction) pwindow = lpmsg->oswindow->window();
+         sp(::user::interaction) pwindow = lpmsg->oswindow->interaction_impl();
 #else
       if(pwnd == NULL && lpmsg->hwnd != NULL)
       {
@@ -189,7 +189,7 @@ namespace message
          {
             try
             {
-               pwnd = pwindow->m_pui;
+               pwnd = pwindow;
             }
             catch(...)
             {
@@ -374,7 +374,7 @@ namespace message
 
    ::window_sp dispatch::_GetWnd()
    {
-      return dynamic_cast <window *> (this);
+      return dynamic_cast < ::user::interaction_impl *> (this);
    }
 
 

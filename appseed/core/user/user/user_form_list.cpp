@@ -67,7 +67,7 @@ namespace user
             {
 
 
-               g_pwndLastLButtonDown      = NULL;
+               BaseSession.m_puiLastLButtonDown      = NULL;
 
                ::user::control_event ev;
                ev.m_puie                  = pcontrol;
@@ -268,7 +268,7 @@ namespace user
       case list::PropertyBaseWndInterface:
       case list::PropertyDrawBaseWndInterface:
          {
-            const ::user::window_interface ** ppinterface = (const ::user::window_interface **) lparam;
+            const ::user::interaction_base ** ppinterface = (const ::user::interaction_base **) lparam;
             *ppinterface = (list * )this;
          }
          return 1;

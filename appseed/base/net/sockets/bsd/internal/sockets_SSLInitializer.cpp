@@ -115,8 +115,8 @@ void ssl_sigpipe_handle( int x ) {
       }*/
 
       //primitive::memory memstorage;
-      //memstorage.allocate(1984 + 1977);
-      //memstorage.allocate(1984 + 1977);
+      //memstorage.allocate(5000);
+      //memstorage.allocate(5000);
       //System.math().gen_rand(memstorage.get_data(), memstorage.get_size());
 
       /*for(int32_t i = 0; i < memstorage.get_size(); i += 3)

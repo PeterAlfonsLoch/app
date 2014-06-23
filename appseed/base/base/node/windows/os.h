@@ -50,15 +50,15 @@ namespace windows
 {
    
 
-   class window;
+   class interaction_impl;
 
 
 } // namespace windows
 
 
 
-// window creation hooking
-CLASS_DECL_BASE void hook_window_create(::windows::window * pwindow);
+// interaction_impl creation hooking
+CLASS_DECL_BASE void hook_window_create(::windows::interaction_impl * pwindow);
 CLASS_DECL_BASE bool unhook_window_create();
 CLASS_DECL_BASE void reset_message_cache();
 
@@ -80,7 +80,7 @@ CLASS_DECL_BASE WNDPROC __get_window_procedure();
 #define __window_procedure (*__get_window_procedure())
 
 #define NODE_THREAD(pthread) (dynamic_cast < ::windows::thread * > (dynamic_cast < thread * >(pthread)))
-#define NODE_WINDOW(pwnd) ((sp(::windows::window))(pwnd))
+#define NODE_WINDOW(pwnd) ((sp(::windows::interaction_impl))(pwnd))
 
 
 #pragma comment(lib, "kernel32.lib")

@@ -168,7 +168,7 @@ CLASS_DECL_BASE bool main_finalize()
 
    }
 
-   os_thread::stop_all((1984 + 1977) * 49);
+   os_thread::stop_all((5000) * 49);
 
    //finalize_primitive_trace();
 

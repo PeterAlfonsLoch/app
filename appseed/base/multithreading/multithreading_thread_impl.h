@@ -2,7 +2,6 @@
 //  multithreading_thread_impl.h
 //  base
 //
-//  Created by Carlos Gustavo Cecyn Lundgren on 16/05/14.
 //
 //
 #pragma once
@@ -38,8 +37,8 @@ class CLASS_DECL_BASE thread_impl :
 public:
 
 
-   sp(::user::interaction_ptr_array)      m_puiptra;
-   sp(::user::interaction::timer_array)   m_ptimera;
+   sp(ptr_array < ::user::interaction >)     m_puiptra;
+   sp(::user::interaction::timer_array)      m_ptimera;
    
    HTHREAD                                   m_hthread;
    uint32_t                                  m_uiThread;

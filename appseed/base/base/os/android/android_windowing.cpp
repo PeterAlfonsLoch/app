@@ -142,12 +142,12 @@ oswindow::oswindow(::user::interaction * pui)
 
 }
 
-oswindow::oswindow(Display * pdisplay, Window window, Visual * pvisual)
+oswindow::oswindow(Display * pdisplay, Window interaction_impl, Visual * pvisual)
 {
 
    synch_lock slOsWindow(s_pmutex);
 
-   m_pdata = get(pdisplay, window);
+   m_pdata = get(pdisplay, interaction_impl);
 
    if(pvisual != NULL)
    {
@@ -260,7 +260,7 @@ int32_t oswindow_data::store_name(const char * psz)
 
    xdisplay d(display());
 
-   return XStoreName(display(), window(), psz);
+   return XStoreName(display(), interaction_impl(), psz);
 
    */
 
@@ -281,7 +281,7 @@ int32_t oswindow_data::select_input(int32_t iInput)
 
    xdisplay d(display());
 
-   return XSelectInput(display(), window(), iInput);
+   return XSelectInput(display(), interaction_impl(), iInput);
 
    */
 
@@ -317,7 +317,7 @@ int32_t oswindow_data::map_window()
 
    xdisplay d(display());
 
-   return XMapWindow(display(), window());
+   return XMapWindow(display(), interaction_impl());
 
    */
 
@@ -420,7 +420,7 @@ oswindow oswindow_data::get_parent()
    Window * pchildren = NULL;
    uint32_t ncount = 0;
 
-   XQueryTree(display(), window(), &root, &parent, &pchildren, &ncount);
+   XQueryTree(display(), interaction_impl(), &root, &parent, &pchildren, &ncount);
 
    if(pchildren != NULL)
       XFree(pchildren);
@@ -449,7 +449,7 @@ oswindow oswindow_data::set_parent(oswindow oswindow)
 
    ::oswindow oswindowOldParent = get_parent();
 
-   XReparentWindow(display(), window(), oswindow->window(), 0, 0);
+   XReparentWindow(display(), interaction_impl(), oswindow->interaction_impl(), 0, 0);
 
    return oswindowOldParent;
 
@@ -473,13 +473,13 @@ bool oswindow_data::show_window(int32_t nCmdShow)
    if(nCmdShow == SW_HIDE)
    {
 
-      XUnmapWindow(display(), window());
+      XUnmapWindow(display(), interaction_impl());
 
    }
    else
    {
 
-      XMapWindow(display(), window());
+      XMapWindow(display(), interaction_impl());
 
    }
 
@@ -503,7 +503,7 @@ LONG oswindow_data::get_window_long(int32_t nIndex)
    LONG * pl = NULL;
    LONG l;
 
-   if(XGetWindowProperty(display(), window(), m_pdata->m_osdisplay.get_window_long_atom(nIndex), 0, 1, False, m_pdata->m_osdisplay.atom_long_type(), &type, &format, &itemcount, &remaining, (unsigned char **) &pl) == Success)
+   if(XGetWindowProperty(display(), interaction_impl(), m_pdata->m_osdisplay.get_window_long_atom(nIndex), 0, 1, False, m_pdata->m_osdisplay.atom_long_type(), &type, &format, &itemcount, &remaining, (unsigned char **) &pl) == Success)
    {
 
       if(pl != NULL)
@@ -543,7 +543,7 @@ LONG oswindow_data::set_window_long(int32_t nIndex, LONG l)
    m_plongmap->operator[](nIndex) = l;
 /*   LONG lOld = get_window_long(nIndex);
 
-   XChangeProperty(display(), window(), m_osdisplay.get_window_long_atom(nIndex), m_osdisplay.atom_long_type(), 32, PropModeReplace, (unsigned char *) &l, 1);*/
+   XChangeProperty(display(), interaction_impl(), m_osdisplay.get_window_long_atom(nIndex), m_osdisplay.atom_long_type(), 32, PropModeReplace, (unsigned char *) &l, 1);*/
 
    return lOld;
 
@@ -595,7 +595,7 @@ long oswindow_data::get_state()
 
   xa_WM_STATE = XInternAtom(display(), "WM_STATE", false);
 
-  status = XGetWindowProperty(display(), window(), xa_WM_STATE, 0L, WM_STATE_ELEMENTS, False, xa_WM_STATE, &actual_type, &actual_format, &nitems, &leftover, &p);
+  status = XGetWindowProperty(display(), interaction_impl(), xa_WM_STATE, 0L, WM_STATE_ELEMENTS, False, xa_WM_STATE, &actual_type, &actual_format, &nitems, &leftover, &p);
 
 
   if(status == 0)
@@ -643,7 +643,7 @@ bool oswindow_data::is_window_visible()
     return false;
 
    XWindowAttributes attr;
-   if(!XGetWindowAttributes(display(), window(), &attr))
+   if(!XGetWindowAttributes(display(), interaction_impl(), &attr))
       return false;
    return attr.map_state == IsViewable;
 
@@ -1007,25 +1007,25 @@ oswindow GetCapture()
       return g_oswindowCapture;
 }
 
-oswindow SetCapture(oswindow window)
+oswindow SetCapture(oswindow interaction_impl)
 {
 
    synch_lock sl(&user_mutex());
 
    oswindow windowOld(g_oswindowCapture);
    /*
-   if(window->display() == NULL)
+   if(interaction_impl->display() == NULL)
       return NULL;
 
-   if(window->window() == None)
+   if(interaction_impl->interaction_impl() == None)
       return NULL;
 
-   xdisplay d(window->display());
+   xdisplay d(interaction_impl->display());
 
-   if(XGrabPointer(window->display(), window->window(), False, ButtonPressMask | ButtonReleaseMask | PointerMotionMask, GrabModeAsync, GrabModeAsync, None, None, CurrentTime) == GrabSuccess)
+   if(XGrabPointer(interaction_impl->display(), interaction_impl->interaction_impl(), False, ButtonPressMask | ButtonReleaseMask | PointerMotionMask, GrabModeAsync, GrabModeAsync, None, None, CurrentTime) == GrabSuccess)
    {
 
-      g_oswindowCapture = window;
+      g_oswindowCapture = interaction_impl;
 
       return windowOld;
 
@@ -1056,20 +1056,20 @@ int_bool ReleaseCapture()
 }
 
 
-oswindow SetFocus(oswindow window)
+oswindow SetFocus(oswindow interaction_impl)
 {
 
    synch_lock sl(&user_mutex());
 
    /*
-   xdisplay display(window->display());
+   xdisplay display(interaction_impl->display());
 
-   if(!IsWindow(window))
+   if(!IsWindow(interaction_impl))
       return NULL;
 
    oswindow windowOld = ::GetFocus();
 
-   if(!XSetInputFocus(window->display(), window->window(), RevertToNone, CurrentTime))
+   if(!XSetInputFocus(interaction_impl->display(), interaction_impl->interaction_impl(), RevertToNone, CurrentTime))
       return NULL;
 
    return windowOld;
@@ -1095,21 +1095,21 @@ oswindow GetFocus()
    if(pdisplay == NULL)
    return NULL;
 
-   Window window = None;
+   Window interaction_impl = None;
 
    int revert_to = 0;
 
-   bool bOk = XGetInputFocus(pdisplay, &window, &revert_to) != 0;
+   bool bOk = XGetInputFocus(pdisplay, &interaction_impl, &revert_to) != 0;
 
     pdisplay.close();
 
    if(!bOk)
       return NULL;
 
-   if(window == None || window == PointerRoot)
+   if(interaction_impl == None || interaction_impl == PointerRoot)
       return NULL;
 
-   return oswindow_defer_get(window);
+   return oswindow_defer_get(interaction_impl);
    */
 
    return NULL;
@@ -1242,10 +1242,10 @@ oswindow GetActiveWindow()
 }
 
 
-oswindow SetActiveWindow(oswindow window)
+oswindow SetActiveWindow(oswindow interaction_impl)
 {
 
-   return SetFocus(window);
+   return SetFocus(interaction_impl);
 
 }
 
@@ -1258,14 +1258,14 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
 
 
 
-   oswindow window = windowParam;
+   oswindow interaction_impl = windowParam;
 
-   if(window == NULL)
+   if(interaction_impl == NULL)
       return NULL;
 
    /*
 
-   xdisplay d(window->display());
+   xdisplay d(interaction_impl->display());
 
    if(iParentHood == GW_HWNDFIRST
    || iParentHood == GW_HWNDLAST
@@ -1273,9 +1273,9 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
    || iParentHood == GW_HWNDPREV)
    {
 
-      window = ::GetParent(window);
+      interaction_impl = ::GetParent(interaction_impl);
 
-      if(window == NULL)
+      if(interaction_impl == NULL)
          return NULL;
 
    }
@@ -1286,7 +1286,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
    Window * pchildren = NULL;
    uint32_t ncount = 0;
 
-   XQueryTree(window->display(), window->window(), &root, &parent, &pchildren, &ncount);
+   XQueryTree(interaction_impl->display(), interaction_impl->interaction_impl(), &root, &parent, &pchildren, &ncount);
 
    switch(iParentHood)
    {
@@ -1297,7 +1297,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
          if(pchildren == NULL)
             return NULL;
 
-         window = ::oswindow_get(window->display(), pchildren[0]);
+         interaction_impl = ::oswindow_get(interaction_impl->display(), pchildren[0]);
 
       }
       break;
@@ -1307,7 +1307,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
          if(pchildren == NULL)
             return NULL;
 
-         window = ::oswindow_get(window->display(), pchildren[ncount - 1]);
+         interaction_impl = ::oswindow_get(interaction_impl->display(), pchildren[ncount - 1]);
 
       }
       break;
@@ -1322,7 +1322,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
 
          for(int i = 0; i < ncount; i++)
          {
-               if(pchildren[i] == windowParam->window())
+               if(pchildren[i] == windowParam->interaction_impl())
                {
                   iFound = i;
                   break;
@@ -1338,7 +1338,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
             if(iFound + 1 >= ncount)
                return NULL;
 
-            window = ::oswindow_get(window->display(), pchildren[iFound - 1]);
+            interaction_impl = ::oswindow_get(interaction_impl->display(), pchildren[iFound - 1]);
 
          }
          else
@@ -1347,7 +1347,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
             if(iFound - 1 < 0)
                return NULL;
 
-            window = ::oswindow_get(window->display(), pchildren[iFound - 1]);
+            interaction_impl = ::oswindow_get(interaction_impl->display(), pchildren[iFound - 1]);
 
          }
 
@@ -1360,7 +1360,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
       XFree(pchildren);
 
 
-   return window;
+   return interaction_impl;
    */
 
    return NULL;
@@ -1369,27 +1369,27 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
 
 
 
-int_bool DestroyWindow(oswindow window)
+int_bool DestroyWindow(oswindow interaction_impl)
 {
 
    synch_lock sl(&user_mutex());
 
-   if(!IsWindow(window))
+   if(!IsWindow(interaction_impl))
       return FALSE;
 
    /*
-   Display * pdisplay = window->display();
+   Display * pdisplay = interaction_impl->display();
 
-   Window win = window->window();
+   Window win = interaction_impl->interaction_impl();
 
    xdisplay d(pdisplay);
 
 
-   oswindow_data * pdata = (oswindow_data *) (void *) window;
+   oswindow_data * pdata = (oswindow_data *) (void *) interaction_impl;
 
    pdata->m_bDestroying = true;
 
-   bool bIs = IsWindow(window);
+   bool bIs = IsWindow(interaction_impl);
 
    XDestroyWindow(pdisplay, win);
 
@@ -1434,7 +1434,7 @@ bool c_xstart()
 
    g_oswindowDesktop = oswindow_get(dpy, DefaultRootWindow(dpy));
 
-   XSelectInput(g_oswindowDesktop->display(), g_oswindowDesktop->window(), StructureNotifyMask);
+   XSelectInput(g_oswindowDesktop->display(), g_oswindowDesktop->interaction_impl(), StructureNotifyMask);
 
 
    return true;

@@ -1582,10 +1582,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core\core_stra.h" />
     <ClInclude Include="core\core\core_strn.h" />
     <ClInclude Include="core\core\core_system.h" />
-    <ClInclude Include="core\core\core_timer.h" />
     <ClInclude Include="core\core\core_timer_callback.h" />
     <ClInclude Include="core\core\core_timer_listener.h" />
-    <ClInclude Include="core\core\core_timer_window.h" />
+    <ClInclude Include="core\core\core_timer.h" />
     <ClInclude Include="core\core\core_types.h" />
     <ClInclude Include="core\core\core_util.h" />
     <ClInclude Include="core\core\core_util1.h" />
@@ -1854,10 +1853,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="core\core\core_strn.cpp" />
     <ClCompile Include="core\core\core_str_format.cpp" />
     <ClCompile Include="core\core\core_system.cpp" />
-    <ClCompile Include="core\core\core_Timer.cpp" />
     <ClCompile Include="core\core\core_timer_callback.cpp" />
     <ClCompile Include="core\core\core_timer_listener.cpp" />
-    <ClCompile Include="core\core\core_timer_window.cpp" />
+    <ClCompile Include="core\core\core_Timer.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">Create</PrecompiledHeader>

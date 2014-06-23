@@ -2,18 +2,53 @@
 
 
 
-template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = comparable_eq_array < TYPE, ARG_TYPE > >
+template < class TYPE,class ARG_TYPE = TYPE const &,class ARRAY_TYPE = comparable_eq_array < TYPE,ARG_TYPE > >
 class comparable_array :
    virtual public ARRAY_TYPE
 {
 public:
+
    comparable_array();
    comparable_array(const comparable_array & array);
 
    void quick_sort(bool bAsc = true);
 
 
-   inline bool sort_find(void * p, index & iIndex, index iStart, index iEnd) const
+
+
+};
+
+
+
+template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
+comparable_array()
+{
+
+}
+
+
+template < class TYPE,class ARG_TYPE,class ARRAY_TYPE>
+comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
+comparable_array(const comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & a) :
+ARRAY_TYPE(a)
+{
+
+   this->operator = (a);
+
+}
+
+
+
+template < class TYPE,class ARG_TYPE = TYPE const &,class ARRAY_TYPE = comparable_array < TYPE,ARG_TYPE >,class COMPARE = ::comparison::compare_type_arg_type < TYPE,ARG_TYPE >  >
+class full_comparable_array:
+   virtual public ARRAY_TYPE
+{
+public:
+   full_comparable_array();
+   full_comparable_array(const full_comparable_array & array);
+
+   inline bool sort_find(ARG_TYPE & arg,index & iIndex,index iStart,index iEnd) const
    {
       if(this->get_size() == 0)
       {
@@ -27,7 +62,7 @@ public:
       iIndex = (iUpperBound + iLowerBound) / 2;
       while(iUpperBound - iLowerBound >= 8)
       {
-         iCompare = (byte *) this->element_at(iIndex) - (byte *) p;
+         iCompare = COMPARE::CompareElements(&this->element_at(iIndex),arg);
          if(iCompare == 0)
          {
             return true;
@@ -55,7 +90,7 @@ public:
       // do sequential search
       while(iIndex < this->get_count())
       {
-         iCompare = (byte *) this->element_at(iIndex) - (byte *) p;
+         iCompare = COMPARE::CompareElements(&this->element_at(iIndex),arg);
          if(iCompare == 0)
             return true;
          else if(iCompare < 0)
@@ -67,7 +102,7 @@ public:
          return false;
       while(iIndex >= 0)
       {
-         iCompare = (byte *) this->element_at(iIndex) - (byte *) p;
+         iCompare = COMPARE::CompareElements(&this->element_at(iIndex),arg);
          if(iCompare == 0)
             return true;
          else if(iCompare > 0)
@@ -85,27 +120,23 @@ public:
 
 
 
-template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
-comparable_array()
+template < class TYPE,class ARG_TYPE,class ARRAY_TYPE,class COMPARE>
+full_comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE,COMPARE>::
+full_comparable_array()
 {
 }
-template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
-comparable_array(const comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & a) :
+template < class TYPE,class ARG_TYPE,class ARRAY_TYPE,class COMPARE>
+full_comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE,COMPARE>::
+full_comparable_array(const full_comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE,COMPARE> & a):
 ARRAY_TYPE(a)
 {
    this->operator = (a);
 }
 
 
-class CLASS_DECL_BASE const_char_ptra :
-   public comparable_array < const char * >
-{
-};
 
 
-template < class TYPE, class ARRAY_TYPE = comparable_array < TYPE * > >
+template < class TYPE, class ARRAY_TYPE = full_comparable_array < TYPE * > >
 class ptr_array :
    virtual public ARRAY_TYPE
 {
@@ -135,3 +166,10 @@ ARRAY_TYPE(a)
 {
    this->operator = (a);
 }
+
+
+
+class CLASS_DECL_BASE const_char_ptra:
+   public ptr_array < const char >
+{
+};

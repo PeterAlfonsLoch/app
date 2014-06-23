@@ -2,7 +2,6 @@
 //  multithreading_thread_impl.cpp
 //  base
 //
-//  Created by Carlos Gustavo Cecyn Lundgren on 16/05/14.
 //
 //
 
@@ -123,7 +122,7 @@ void thread_impl::dispatch_thread_message(signal_details * pobj)
    ASSERT(pMessageMap != (*pMessageMap->pfnGetBaseMap)());
    if (pMsg->message < 0xC000)
    {
-   // constant window message
+   // constant interaction_impl message
    if ((lpEntry = ::core::FindMessageEntry(pMessageMap->lpEntries,
    pMsg->message, 0, 0)) != NULL)
    goto LDispatch;
@@ -194,7 +193,7 @@ void thread_impl::pre_translate_message(signal_details * pobj)
             return;
       }
 
-      sp(::user::interaction) puiTopic = pbase->m_pwnd.is_null() ? NULL : pbase->m_pwnd->m_pui;
+      sp(::user::interaction) puiTopic = pbase->m_pwnd.is_null() ? NULL : pbase->m_pwnd;
 
       try
       {
@@ -206,21 +205,12 @@ void thread_impl::pre_translate_message(signal_details * pobj)
                {
                   try
                   {
-                     sp(::user::interaction) pui = m_pbaseapp->m_pbasesession->frames()(i);
+                     sp(::user::interaction) pui = m_pbaseapp->m_pbasesession->frames()[i];
                      if(pui != NULL)
                      {
-                        if(pui->m_pui != NULL)
-                        {
-                           pui->m_pui->pre_translate_message(pobj);
-                           if(pobj->m_bRet)
-                              return;
-                        }
-                        else
-                        {
-                           pui->pre_translate_message(pobj);
-                           if(pobj->m_bRet)
-                              return;
-                        }
+                        pui->pre_translate_message(pobj);
+                        if(pobj->m_bRet)
+                           return;
                      }
                   }
                   catch(exit_exception & e)
@@ -275,7 +265,7 @@ void thread_impl::process_window_procedure_exception(::exception::base*,signal_d
    }
    else if(pbase->m_uiMessage == WM_PAINT)
    {
-      // force validation of window to prevent getting WM_PAINT again
+      // force validation of interaction_impl to prevent getting WM_PAINT again
       #ifdef WIDOWSEX
       ValidateRect(pbase->m_pwnd->get_safe_handle(),NULL);
       #endif
@@ -875,7 +865,7 @@ void thread_impl::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
 DWORD dwRet = 0;
                   sl.unlock();
 #ifdef WINDOWSEX
-                  dwRet = ::WaitForSingleObject(::multithreading::s_phaThread->element_at(i),(1984 + 1977) * 2);
+                  dwRet = ::WaitForSingleObject(::multithreading::s_phaThread->element_at(i),(5000) * 2);
 #endif
                   sl.lock();
 
@@ -1351,39 +1341,11 @@ void thread_impl::remove(::user::interaction * pui)
    catch(...)
    {
    }
-   try
-   {
-      if(pui->m_pimpl != NULL && pui->m_pimpl != pui)
-      {
-         if(pui->m_pimpl->m_pthread->m_pimpl == this)
-         {
-            pui->m_pimpl->m_pthread = NULL;
-         }
-      }
-   }
-   catch(...)
-   {
-   }
-   try
-   {
-      if(pui->m_pui != NULL && pui->m_pui != pui)
-      {
-         if(pui->m_pui->m_pthread->m_pimpl == this)
-         {
-            pui->m_pui->m_pthread = NULL;
-         }
-      }
-   }
-   catch(...)
-   {
-   }
 
 
    if(m_puiptra != NULL)
    {
       m_puiptra->remove(pui);
-      m_puiptra->remove(pui->m_pui);
-      m_puiptra->remove(pui->m_pimpl);
    }
 
    sl.unlock();
@@ -1391,8 +1353,6 @@ void thread_impl::remove(::user::interaction * pui)
    if(m_ptimera != NULL)
    {
       m_ptimera->unset(pui);
-      m_ptimera->unset(pui->m_pui);
-      m_ptimera->unset(pui->m_pimpl);
    }
 
 

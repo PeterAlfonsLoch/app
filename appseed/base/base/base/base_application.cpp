@@ -61,7 +61,7 @@ namespace base
    {
 
       m_peventReady = NULL;
-      m_pframea = new ::user::interaction_ptr_array(this);
+      m_pframea = canew(ptr_array < ::user::interaction >);
 
 
 #ifdef WINDOWS
@@ -466,8 +466,25 @@ namespace base
 
    }
 
-   //string application::matter_as_string(const char * pszMatter, const char * pszMatter2 = NULL);
-   //string application::dir_matter(const char * pszMatter, const char * pszMatter2 = NULL);
+   
+   string application::matter_as_string(const char * pszMatter,const char * pszMatter2)
+   {
+      
+      var varQuery;
+
+      varQuery["disable_ca2_sessid"] = true;
+
+      return file().as_string(dir_matter(pszMatter,pszMatter2),varQuery);
+
+   }
+
+   string application::dir_matter(const char * pszMatter,const char * pszMatter2)
+   {
+
+      return dir().matter(pszMatter,pszMatter2);
+
+   }
+
    bool application::is_inside_time_dir(const char * pszPath)
    {
       throw not_implemented(this);
@@ -788,7 +805,7 @@ namespace base
 
 #else
 
-   ::window_sp application::window_from_os_data(void * pdata)
+   sp(::user::interaction) application::window_from_os_data(void * pdata)
    {
 
       return window_from_handle((oswindow)pdata);
@@ -874,7 +891,7 @@ namespace base
 
 
 
-   ::window_sp application::FindWindow(const char * lpszClassName,const char * lpszWindowName)
+   sp(::user::interaction) application::FindWindow(const char * lpszClassName,const char * lpszWindowName)
    {
 
       throw interface_only_exception(this);
@@ -882,7 +899,7 @@ namespace base
    }
 
 
-   ::window_sp application::FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow)
+   sp(::user::interaction) application::FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow)
    {
 
       throw interface_only_exception(this);
@@ -1181,7 +1198,7 @@ namespace base
       if (oswindowCapture == NULL)
          return NULL;
 
-      ::user::interaction * pui = oswindowCapture->window();
+      ::user::interaction * pui = oswindowCapture->interaction_impl();
 
       if (pui == NULL)
          return NULL;
@@ -1195,7 +1212,7 @@ namespace base
       if(oswindowCapture == NULL)
          return NULL;
 
-      window * pwindow = System.window_from_os_data(oswindowCapture).cast < window >();
+      ::user::interaction_impl * pwindow = System.window_from_os_data(oswindowCapture).cast < ::user::interaction_impl >();
 
       if(pwindow == NULL)
          return NULL;
@@ -1754,7 +1771,7 @@ namespace base
 
             post_to_all_threads(WM_QUIT,0,0);
 
-            Sleep(1984 + 1977);
+            Sleep(5000);
 
          }
 
@@ -2936,7 +2953,7 @@ namespace base
       if(!create_message_queue(this,strWindow))
       {
          dappy(string(typeid(*this).name()) + " : create_message_queue failure : " + ::str::from(m_iReturnCode));
-         TRACE("Fatal error: could not initialize application message window (name=\"%s\").",strWindow.c_str());
+         TRACE("Fatal error: could not initialize application message interaction_impl (name=\"%s\").",strWindow.c_str());
          return false;
       }
 
@@ -3343,7 +3360,7 @@ namespace base
             //if(!destroy_message_queue())
             {
 
-               // TRACE("Could not finalize message window");
+               // TRACE("Could not finalize message interaction_impl");
 
             }
 

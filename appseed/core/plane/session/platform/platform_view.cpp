@@ -189,7 +189,7 @@ namespace platform
       if(pobj->previous())
          return;
 
-      SetTimer(198477, 230, NULL);
+      SetTimer(888888, 230, NULL);
 
 
       //FIBITMAP * pfi;

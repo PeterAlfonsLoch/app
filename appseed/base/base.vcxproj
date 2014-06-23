@@ -4448,6 +4448,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\collection\collection_var_array.h" />
     <ClInclude Include="primitive\comparison\comparison.h" />
     <ClInclude Include="primitive\comparison\comparison_binary.h" />
+    <ClInclude Include="primitive\comparison\comparison_compare.h" />
     <ClInclude Include="primitive\comparison\comparison_equals.h" />
     <ClInclude Include="primitive\comparison\comparison_hash.h" />
     <ClInclude Include="primitive\comparison\comparison_less.h" />
@@ -4922,6 +4923,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user\user_impact_update_hint.h" />
     <ClInclude Include="user\user\user_inline.h" />
     <ClInclude Include="user\user\user_interaction.h" />
+    <ClInclude Include="user\user\user_interaction_impl_base.h" />
     <ClInclude Include="user\user\user_job.h" />
     <ClInclude Include="user\user\user_keyboard.h" />
     <ClInclude Include="user\user\user_keyboard_focus.h" />
@@ -4943,12 +4945,12 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user\user_view_container.h" />
     <ClInclude Include="user\user\user_view_creator.h" />
     <ClInclude Include="user\user\user_view_creator_data.h" />
-    <ClInclude Include="user\user\user_virtual_user_interface.h" />
+    <ClInclude Include="user\user\user_interaction_child.h" />
     <ClInclude Include="user\user\user_wait_cursor.h" />
-    <ClInclude Include="user\user\user_window.h" />
+    <ClInclude Include="user\user\user_interaction_impl.h" />
     <ClInclude Include="user\user\user_windowing.h" />
     <ClInclude Include="user\user\user_window_draw.h" />
-    <ClInclude Include="user\user\user_window_interface.h" />
+    <ClInclude Include="user\user\user_interaction_base.h" />
     <ClInclude Include="user\user\user_window_map.h" />
     <ClInclude Include="user\user\user_window_util.h" />
     <ClInclude Include="version.config.h" />
@@ -18335,6 +18337,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\user\user_impact_system.cpp" />
     <ClCompile Include="user\user\user_impact_update_hint.cpp" />
     <ClCompile Include="user\user\user_interaction.cpp" />
+    <ClCompile Include="user\user\user_interaction_impl_base.cpp" />
     <ClCompile Include="user\user\user_job.cpp" />
     <ClCompile Include="user\user\user_keyboard.cpp" />
     <ClCompile Include="user\user\user_keyboard_focus.cpp" />
@@ -18354,12 +18357,12 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\user\user_user.cpp" />
     <ClCompile Include="user\user\user_view_container.cpp" />
     <ClCompile Include="user\user\user_view_creator.cpp" />
-    <ClCompile Include="user\user\user_virtual_user_interface.cpp" />
+    <ClCompile Include="user\user\user_interaction_child.cpp" />
     <ClCompile Include="user\user\user_wait_cursor.cpp" />
-    <ClCompile Include="user\user\user_window.cpp" />
+    <ClCompile Include="user\user\user_interaction_impl.cpp" />
     <ClCompile Include="user\user\user_windowing.cpp" />
     <ClCompile Include="user\user\user_window_draw.cpp" />
-    <ClCompile Include="user\user\user_window_interface.cpp" />
+    <ClCompile Include="user\user\user_interaction_base.cpp" />
     <ClCompile Include="user\user\user_window_map.cpp" />
     <ClCompile Include="user\user\user_window_util.cpp" />
     <ClCompile Include="version.cpp" />

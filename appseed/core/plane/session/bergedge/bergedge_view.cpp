@@ -158,7 +158,7 @@ namespace bergedge
       if(pobj->previous())
          return;
 
-      SetTimer(198477, 1977, NULL);
+      SetTimer(888888, 1977, NULL);
 
       sp(::bergedge::frame) pframe = GetTypedParent < ::bergedge::frame > ();
 
@@ -261,7 +261,7 @@ namespace bergedge
       {
          check_apps();
       }
-      else if(ptimer->m_nIDEvent == 198477)
+      else if(ptimer->m_nIDEvent == 888888)
       {
          PlaneSession.check_topic_file_change();
       }

@@ -243,7 +243,7 @@
  * gzip.)
  */
 #ifndef MAX_WBITS
-#  define MAX_WBITS   15 /* 32K LZ77 window */
+#  define MAX_WBITS   15 /* 32K LZ77 interaction_impl */
 #endif
 
 /* The memory requirements for deflate are (in bytes):

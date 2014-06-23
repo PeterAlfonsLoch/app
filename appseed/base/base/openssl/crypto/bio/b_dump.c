@@ -142,7 +142,7 @@ int BIO_dump_indent_cb(int (*cb)(const void *data, size_t len, void *u),
 			}
 		BUF_strlcat(buf,"\n",sizeof buf);
 		/* if this is the last call then update the ddt_dump thing so
-		 * that we will move the selection point in the debug window
+		 * that we will move the selection point in the debug interaction_impl
 		 */
 		ret+=cb((void *)buf,strlen(buf),u);
 		}

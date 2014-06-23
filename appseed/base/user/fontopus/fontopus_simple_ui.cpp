@@ -135,7 +135,7 @@ namespace fontopus
 
       rect rectLogin;
 
-      int stdw = 884;
+      int stdw = 800;
 
       int stdh = 184 + 23 + 184;
       

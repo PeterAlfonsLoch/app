@@ -55,17 +55,17 @@ const char gen_Wnd[] = __WND;
 namespace android
 {
 
-   void window::mouse_hover_add(sp(::user::interaction) pinterface)
+   void interaction_impl::mouse_hover_add(sp(::user::interaction) pinterface)
    {
       m_guieptraMouseHover.add_unique(pinterface);
    }
 
-   void window::mouse_hover_remove(sp(::user::interaction) pinterface)
+   void interaction_impl::mouse_hover_remove(sp(::user::interaction) pinterface)
    {
       m_guieptraMouseHover.remove(pinterface);
    }
 
-   window::window()
+   interaction_impl::interaction_impl()
    {
       m_pcallback = NULL;
 //      m_pguie = this;
@@ -88,7 +88,7 @@ namespace android
       m_oswindow = NULL;
    }
 
-   void window::construct(oswindow hWnd)
+   void interaction_impl::construct(oswindow hWnd)
    {
       m_pcallback = NULL;
       //m_pguie = this;
@@ -111,7 +111,7 @@ namespace android
 
    }
 
-   window::window(sp(::base::application) papp) :
+   interaction_impl::interaction_impl(sp(::base::application) papp) :
       element(papp),
       ::user::interaction(papp)
    {
@@ -137,7 +137,7 @@ namespace android
 
    }
 
-   window::~window()
+   interaction_impl::~interaction_impl()
    {
 
       if(m_papp != NULL && m_papp->m_psystem != NULL && Sys(m_papp).user().is_set() && Sys(m_papp).user()->m_pwindowmap != NULL)
@@ -154,7 +154,7 @@ namespace android
       if(m_oswindow != NULL)
       {
 
-         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: calling DestroyWindow in window::~window; "
+         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: calling DestroyWindow in interaction_impl::~interaction_impl; "
             "OnDestroy or PostNcDestroy in derived class will not be called.\n");
          m_pcallback = NULL;
          DestroyWindow();
@@ -162,19 +162,19 @@ namespace android
    }
 
 
-   sp(::window) window::from_os_data(void * pdata)
+   sp(::interaction_impl) interaction_impl::from_os_data(void * pdata)
    {
       return from_handle((oswindow) pdata);
    }
 
-   void * window::get_os_data() const
+   void * interaction_impl::get_os_data() const
    {
       return m_oswindow;
    }
 
 
 
-   // Change a window's style
+   // Change a interaction_impl's style
 
    /*__STATIC bool CLASS_DECL_BASE __modify_style(oswindow hWnd, int32_t nStyleOffset,
       DWORD dwRemove, DWORD dwAdd, UINT nFlags)
@@ -194,7 +194,7 @@ namespace android
       return TRUE;
    }*/
 
-   bool  window::ModifyStyle(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+   bool  interaction_impl::ModifyStyle(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags)
    {
       DWORD dw = hWnd->get_window_long(GWL_STYLE);
       dw &= ~dwRemove;
@@ -204,7 +204,7 @@ namespace android
       return true;
    }
 
-   bool window::ModifyStyleEx(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+   bool interaction_impl::ModifyStyleEx(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags)
    {
       DWORD dw = hWnd->get_window_long(GWL_EXSTYLE);
       dw &= ~dwRemove;
@@ -216,7 +216,7 @@ namespace android
 
 
 
-   const MESSAGE* PASCAL window::GetCurrentMessage()
+   const MESSAGE* PASCAL interaction_impl::GetCurrentMessage()
    {
       // fill in time and position when asked for
   /*    ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
@@ -226,7 +226,7 @@ namespace android
       return NULL;
    }
 
-   LRESULT window::Default()
+   LRESULT interaction_impl::Default()
    {
       // call DefWindowProc with the last message
 /*      ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
@@ -236,7 +236,7 @@ namespace android
    }
 
 
-   ::android::window * window::from_handle(oswindow oswindow)
+   ::android::interaction_impl * interaction_impl::from_handle(oswindow oswindow)
    {
 
       if(oswindow->get_user_interaction() == NULL)
@@ -244,22 +244,22 @@ namespace android
 
       ::user::interaction * pui = oswindow->get_user_interaction()->m_pimpl.m_p;
 
-      return dynamic_cast < ::android::window * > (pui);
+      return dynamic_cast < ::android::interaction_impl * > (pui);
 
    }
 
 
-   window * PASCAL window::FromHandlePermanent(oswindow oswindow)
+   interaction_impl * PASCAL interaction_impl::FromHandlePermanent(oswindow oswindow)
    {
 
       if(oswindow->get_user_interaction() == NULL)
          return NULL;
 
-      return dynamic_cast < ::android::window * > (oswindow->get_user_interaction()->m_pimpl.m_p);
+      return dynamic_cast < ::android::interaction_impl * > (oswindow->get_user_interaction()->m_pimpl.m_p);
 
    }
 
-   bool window::Attach(oswindow hWndNew)
+   bool interaction_impl::Attach(oswindow hWndNew)
    {
 
       ASSERT(get_handle() == NULL);     // only attach once, detach on destroy
@@ -284,7 +284,7 @@ namespace android
 
    }
 
-   oswindow window::Detach()
+   oswindow interaction_impl::Detach()
    {
 
       oswindow hWnd = (oswindow) get_handle();
@@ -305,16 +305,16 @@ namespace android
    }
 
 
-   void window::pre_subclass_window()
+   void interaction_impl::pre_subclass_window()
    {
       // no default processing
    }
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // window creation
+   // interaction_impl creation
 
-   bool window::CreateEx(DWORD dwExStyle, const char * lpszClassName,
+   bool interaction_impl::CreateEx(DWORD dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
       const RECT& rect, sp(::user::interaction) pParentWnd, id id,
       LPVOID lpParam /* = NULL */)
@@ -357,7 +357,7 @@ namespace android
 
 xdisplay d(w->display());
     Display * dpy = w->display();
-    Window window = w->window();
+    Window interaction_impl = w->interaction_impl();
 
    int scr=DefaultScreen(dpy);
    Window rootw=RootWindow(dpy, scr);
@@ -373,14 +373,14 @@ xdisplay d(w->display());
           unsigned long status;
         } MWMHints = { MWM_HINTS_DECORATIONS, 0,
             MWM_DECOR_NONE, 0, 0 };
-        XChangeProperty(dpy, window, WM_HINTS, WM_HINTS, 32,
+        XChangeProperty(dpy, interaction_impl, WM_HINTS, WM_HINTS, 32,
                         PropModeReplace, (unsigned char *)&MWMHints,
                         sizeof(MWMHints)/4);
     }
     WM_HINTS = XInternAtom(dpy, "KWM_WIN_DECORATION", True);
     if ( WM_HINTS != None ) {
         long KWMHints = KDE_tinyDecoration;
-        XChangeProperty(dpy, window, WM_HINTS, WM_HINTS, 32,
+        XChangeProperty(dpy, interaction_impl, WM_HINTS, WM_HINTS, 32,
                         PropModeReplace, (unsigned char *)&KWMHints,
                         sizeof(KWMHints)/4);
     }
@@ -388,7 +388,7 @@ xdisplay d(w->display());
     WM_HINTS = XInternAtom(dpy, "_WIN_HINTS", True);
     if ( WM_HINTS != None ) {
         long GNOMEHints = 0;
-        XChangeProperty(dpy, window, WM_HINTS, WM_HINTS, 32,
+        XChangeProperty(dpy, interaction_impl, WM_HINTS, WM_HINTS, 32,
                         PropModeReplace, (unsigned char *)&GNOMEHints,
                         sizeof(GNOMEHints)/4);
     }
@@ -398,21 +398,21 @@ xdisplay d(w->display());
         NET_WMHints[0] = XInternAtom(dpy,
             "_KDE_NET_WM_WINDOW_TYPE_OVERRIDE", True);
         NET_WMHints[1] = XInternAtom(dpy, "_NET_WM_WINDOW_TYPE_NORMAL", True);
-        XChangeProperty(dpy, window,
+        XChangeProperty(dpy, interaction_impl,
                         WM_HINTS, XA_ATOM, 32, PropModeReplace,
                         (unsigned char *)&NET_WMHints, 2);
     }
-    XSetTransientForHint(dpy, window, rootw);
+    XSetTransientForHint(dpy, interaction_impl, rootw);
     if(map)
     {
-    XUnmapWindow(dpy, window);
-    XMapWindow(dpy, window);
+    XUnmapWindow(dpy, interaction_impl);
+    XMapWindow(dpy, interaction_impl);
 
     }
  }
  */
 
-   bool window::CreateEx(DWORD dwExStyle, const char * lpszClassName,
+   bool interaction_impl::CreateEx(DWORD dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
       int32_t x, int32_t y, int32_t nWidth, int32_t nHeight,
       oswindow hWndParent, id id, LPVOID lpParam)
@@ -510,7 +510,7 @@ xdisplay d(w->display());
          if(cs.cy <= 256)
             cs.cy = 256;
 
-   //      Window window = XCreateSimpleWindow(dpy, rootwin, 256, 256, cs.cx, cs.cy, 0, BlackPixel(dpy, scr), BlackPixel(dpy, scr));
+   //      Window interaction_impl = XCreateSimpleWindow(dpy, rootwin, 256, 256, cs.cx, cs.cy, 0, BlackPixel(dpy, scr), BlackPixel(dpy, scr));
 
          const char * xserver = getenv( "DISPLAY" ) ;
 
@@ -547,7 +547,7 @@ xdisplay d(w->display());
 
 
          }
-         // create window
+         // create interaction_impl
 
          XSetWindowAttributes attr;
 
@@ -565,7 +565,7 @@ xdisplay d(w->display());
 
          attr.override_redirect = True;
 
-         Window window = XCreateWindow( display, DefaultRootWindow(display), 256, 256, cs.cx, cs.cy, 0, depth, InputOutput, vis, CWColormap|CWEventMask|CWBackPixmap|CWBorderPixel, &attr);
+         Window interaction_impl = XCreateWindow( display, DefaultRootWindow(display), 256, 256, cs.cx, cs.cy, 0, depth, InputOutput, vis, CWColormap|CWEventMask|CWBackPixmap|CWBorderPixel, &attr);
 
 
          /*oswindow hWnd = ::CreateWindowEx(cs.dwExStyle, cs.lpszClass,
@@ -573,7 +573,7 @@ xdisplay d(w->display());
             cs.hwndParent, cs.hMenu, cs.hInstance, cs.lpCreateParams);*/
          /*
    #ifdef DEBUG
-         if (window == 0)
+         if (interaction_impl == 0)
          {
             DWORD dwLastError = GetLastError();
             string strLastError = FormatMessageFromSystem(dwLastError);
@@ -586,7 +586,7 @@ xdisplay d(w->display());
             {
                if(dwLastError == 0x0000057e)
                {
-                  System.simple_message_box(NULL, "cannot create a top-level child window.");
+                  System.simple_message_box(NULL, "cannot create a top-level child interaction_impl.");
                }
                else
                {
@@ -600,11 +600,11 @@ xdisplay d(w->display());
          }
    #endif
 
-         m_oswindow = oswindow_get(display, window, vis);
+         m_oswindow = oswindow_get(display, interaction_impl, vis);
 
          m_oswindow->set_user_interaction(m_pguie);
 
-         XGetWindowAttributes(m_oswindow->display(), m_oswindow->window(), &m_attr);
+         XGetWindowAttributes(m_oswindow->display(), m_oswindow->interaction_impl(), &m_attr);
 
 
          m_pgraphics = new window_cairo();
@@ -622,16 +622,16 @@ xdisplay d(w->display());
 
          if(lpszWindowName != NULL && strlen(lpszWindowName) > 0)
          {
-            XStoreName(m_oswindow->display(), m_oswindow->window(), lpszWindowName);
+            XStoreName(m_oswindow->display(), m_oswindow->interaction_impl(), lpszWindowName);
          }
 
          wm_nodecorations(m_oswindow, 0);
 
-         //XSelectInput(m_oswindow->display(), m_oswindow->window(), ExposureMask | ButtonPressMask | ButtonReleaseMask | PointerMotionMask | KeyPressMask);
+         //XSelectInput(m_oswindow->display(), m_oswindow->interaction_impl(), ExposureMask | ButtonPressMask | ButtonReleaseMask | PointerMotionMask | KeyPressMask);
 
          if(cs.style & WS_VISIBLE)
          {
-            XMapWindow(m_oswindow->display(), m_oswindow->window());
+            XMapWindow(m_oswindow->display(), m_oswindow->interaction_impl());
          }
 
 d.unlock();
@@ -676,20 +676,20 @@ d.unlock();
    }
 
    // for child windows
-   bool window::pre_create_window(CREATESTRUCT& cs)
+   bool interaction_impl::pre_create_window(CREATESTRUCT& cs)
    {
 /*      if (cs.lpszClass == NULL)
       {
-         // make sure the default window class is registered
+         // make sure the default interaction_impl class is registered
          VERIFY(__end_defer_register_class(__WND_REG, &cs.lpszClass));
 
-         // no WNDCLASS provided - use child window default
+         // no WNDCLASS provided - use child interaction_impl default
          ASSERT(cs.style & WS_CHILD);
       }*/
       return TRUE;
    }
 
-   bool window::create(const char * lpszClassName,
+   bool interaction_impl::create(const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
       const RECT& rect,
       sp(::user::interaction) pParentWnd, id id,
@@ -706,7 +706,7 @@ d.unlock();
          pParentWnd->get_handle(), id, (LPVOID)pContext);
    }
 
-   bool window::create_message_window(const char * pszName, ::message_queue_listener * pcallback)
+   bool interaction_impl::create_message_window(const char * pszName, ::message_queue_listener * pcallback)
    {
       m_pcallback = pcallback;
       if(IsWindow())
@@ -727,28 +727,28 @@ d.unlock();
 
 
 
-   void window::install_message_handling(::message::dispatch * pinterface)
+   void interaction_impl::install_message_handling(::message::dispatch * pinterface)
    {
       //m_pbuffer->InstallMessageHandling(pinterface);
-      IGUI_WIN_MSG_LINK(WM_DESTROY           , pinterface, this, &window::_001OnDestroy);
-      IGUI_WIN_MSG_LINK(WM_NCDESTROY         , pinterface, this, &window::_001OnNcDestroy);
-      IGUI_WIN_MSG_LINK(WM_PAINT             , pinterface, this, &window::_001OnPaint);
-      IGUI_WIN_MSG_LINK(WM_PRINT             , pinterface, this, &window::_001OnPrint);
+      IGUI_WIN_MSG_LINK(WM_DESTROY           , pinterface, this, &interaction_impl::_001OnDestroy);
+      IGUI_WIN_MSG_LINK(WM_NCDESTROY         , pinterface, this, &interaction_impl::_001OnNcDestroy);
+      IGUI_WIN_MSG_LINK(WM_PAINT             , pinterface, this, &interaction_impl::_001OnPaint);
+      IGUI_WIN_MSG_LINK(WM_PRINT             , pinterface, this, &interaction_impl::_001OnPrint);
       if(m_pguie != NULL && m_pguie != this)
       {
          m_pguie->install_message_handling(pinterface);
       }
-      IGUI_WIN_MSG_LINK(WM_CAPTURECHANGED    , pinterface, this, &window::_001OncaptureChanged);
-      IGUI_WIN_MSG_LINK(WM_CREATE            , pinterface, this, &window::_001OnCreate);
-      IGUI_WIN_MSG_LINK(WM_SETCURSOR         , pinterface, this, &window::_001OnSetCursor);
-      IGUI_WIN_MSG_LINK(WM_ERASEBKGND        , pinterface, this, &window::_001OnEraseBkgnd);
-      IGUI_WIN_MSG_LINK(WM_MOVE              , pinterface, this, &window::_001OnMove);
-      IGUI_WIN_MSG_LINK(WM_SIZE              , pinterface, this, &window::_001OnSize);
-      IGUI_WIN_MSG_LINK(WM_SHOWWINDOW        , pinterface, this, &window::_001OnShowWindow);
-      IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH , pinterface, this, &window::_001OnProdevianSynch);
+      IGUI_WIN_MSG_LINK(WM_CAPTURECHANGED    , pinterface, this, &interaction_impl::_001OncaptureChanged);
+      IGUI_WIN_MSG_LINK(WM_CREATE            , pinterface, this, &interaction_impl::_001OnCreate);
+      IGUI_WIN_MSG_LINK(WM_SETCURSOR         , pinterface, this, &interaction_impl::_001OnSetCursor);
+      IGUI_WIN_MSG_LINK(WM_ERASEBKGND        , pinterface, this, &interaction_impl::_001OnEraseBkgnd);
+      IGUI_WIN_MSG_LINK(WM_MOVE              , pinterface, this, &interaction_impl::_001OnMove);
+      IGUI_WIN_MSG_LINK(WM_SIZE              , pinterface, this, &interaction_impl::_001OnSize);
+      IGUI_WIN_MSG_LINK(WM_SHOWWINDOW        , pinterface, this, &interaction_impl::_001OnShowWindow);
+      IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH , pinterface, this, &interaction_impl::_001OnProdevianSynch);
    }
 
-   void window::_001OnMove(::signal_details * pobj)
+   void interaction_impl::_001OnMove(::signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 /*      if(!m_bRectOk && !(GetExStyle() & WS_EX_LAYERED))
@@ -760,7 +760,7 @@ d.unlock();
       }*/
    }
 
-   void window::_001OnSize(::signal_details * pobj)
+   void interaction_impl::_001OnSize(::signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 
@@ -794,7 +794,7 @@ d.unlock();
 
    }
 
-   void window::_001OnShowWindow(::signal_details * pobj)
+   void interaction_impl::_001OnShowWindow(::signal_details * pobj)
    {
       SCAST_PTR(::message::show_window, pshowwindow, pobj);
       m_bVisible = pshowwindow->m_bShow != FALSE;
@@ -802,7 +802,7 @@ d.unlock();
          m_pguie->m_bVisible = m_bVisible;
    }
 
-   void window::_001OnDestroy(::signal_details * pobj)
+   void interaction_impl::_001OnDestroy(::signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       Default();
@@ -814,17 +814,17 @@ d.unlock();
          pdraw->m_wndpaOut.remove(m_pguie);
       }
       ANDROID_THREAD(m_pthread)->m_oswindowa.remove(m_oswindow);
-      //oswindow_remove(m_oswindow->display(), m_oswindow->window());
+      //oswindow_remove(m_oswindow->display(), m_oswindow->interaction_impl());
    }
 
-   void window::_001OncaptureChanged(::signal_details * pobj)
+   void interaction_impl::_001OncaptureChanged(::signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       m_pguiecapture = NULL;
    }
 
    // WM_NCDESTROY is the absolute LAST message sent.
-   void window::_001OnNcDestroy(::signal_details * pobj)
+   void interaction_impl::_001OnNcDestroy(::signal_details * pobj)
    {
 
       single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex, TRUE);
@@ -889,7 +889,7 @@ d.unlock();
 
       ASSERT(get_handle() == NULL);
 
-      m_pfnDispatchWindowProc = &window::_start_user_message_handler;
+      m_pfnDispatchWindowProc = &interaction_impl::_start_user_message_handler;
 
       // call special post-cleanup routine
 
@@ -902,14 +902,14 @@ d.unlock();
 
    }
 
-   void window::PostNcDestroy()
+   void interaction_impl::PostNcDestroy()
    {
       //set_handle(NULL);
       m_oswindow->post_nc_destroy();
       // default to nothing
    }
 
-   void window::on_final_release()
+   void interaction_impl::on_final_release()
    {
       if (get_handle() != NULL)
          DestroyWindow();    // will call PostNcDestroy
@@ -917,7 +917,7 @@ d.unlock();
          PostNcDestroy();
    }
 
-   void window::assert_valid() const
+   void interaction_impl::assert_valid() const
    {
       if (get_handle() == NULL)
          return;     // null (unattached) windows are valid
@@ -935,7 +935,7 @@ d.unlock();
       }
       else
       {
-         // should be a normal window
+         // should be a normal interaction_impl
          ASSERT(::IsWindow((oswindow) get_handle()));
 
          // should also be in the permanent or temporary handle ::collection::map
@@ -960,9 +960,9 @@ d.unlock();
          // and have used that object in a way that was not intended.
          // (only simple inline wrapper functions should be used)
          //
-         // In general, window objects should be passed by oswindow from
+         // In general, interaction_impl objects should be passed by oswindow from
          // one thread to another.  The receiving thread can wrap
-         // the oswindow with a window object by using ::android::window::from_handle.
+         // the oswindow with a interaction_impl object by using ::android::interaction_impl::from_handle.
          //
          // It is dangerous to pass C++ objects from one thread to
          // another, unless the objects are designed to be used in
@@ -971,7 +971,7 @@ d.unlock();
    }
 
 
-   void window::dump(dump_context & dumpcontext) const
+   void interaction_impl::dump(dump_context & dumpcontext) const
    {
       ::object::dump(dumpcontext);
 
@@ -980,27 +980,27 @@ d.unlock();
 /*      if (get_handle() == NULL || get_handle() == oswindow_BOTTOM ||
          get_handle() == oswindow_TOPMOST || get_handle() == oswindow_NOTOPMOST)
       {
-         // not a normal window - nothing more to dump
+         // not a normal interaction_impl - nothing more to dump
          return;
       }*/
 
 /*      if (!::IsWindow((oswindow) get_handle()))
       {
-         // not a valid window
+         // not a valid interaction_impl
          dumpcontext << " (illegal oswindow)";
          return; // don't do anything more
       }*/
 
-      sp(::window) pWnd = (::window *) this;
+      sp(::interaction_impl) pWnd = (::interaction_impl *) this;
       if (pWnd != this)
-         dumpcontext << " (Detached or temporary window)";
+         dumpcontext << " (Detached or temporary interaction_impl)";
       else
-         dumpcontext << " (permanent window)";
+         dumpcontext << " (permanent interaction_impl)";
 
-      // dump out window specific statistics
+      // dump out interaction_impl specific statistics
       char szBuf [64];
-//      if (!const_cast < window * > (this)->send_message(WM_QUERYAFXWNDPROC, 0, 0) && pWnd == this)
-  //       ((::window *) this)->GetWindowText(szBuf, _countof(szBuf));
+//      if (!const_cast < interaction_impl * > (this)->send_message(WM_QUERYAFXWNDPROC, 0, 0) && pWnd == this)
+  //       ((::interaction_impl *) this)->GetWindowText(szBuf, _countof(szBuf));
   //    else
 //         ::DefWindowProc(get_handle(), WM_GETTEXT, _countof(szBuf), (LPARAM)&szBuf[0]);
     //  dumpcontext << "\ncaption = \"" << szBuf << "\"";
@@ -1009,9 +1009,9 @@ d.unlock();
   //    dumpcontext << "\nclass name = \"" << szBuf << "\"";
 
       rect rect;
-      ((::window *) this)->GetWindowRect(&rect);
+      ((::interaction_impl *) this)->GetWindowRect(&rect);
       dumpcontext << "\nrect = " << rect;
-      dumpcontext << "\nparent sp(::window) = " << (void *)((::window *) this)->get_parent();
+      dumpcontext << "\nparent sp(::interaction_impl) = " << (void *)((::interaction_impl *) this)->get_parent();
 
 //      dumpcontext << "\nstyle = " << (void *)(dword_ptr)::GetWindowLong(get_handle(), GWL_STYLE);
   //    if (::GetWindowLong(get_handle(), GWL_STYLE) & WS_CHILD)
@@ -1020,7 +1020,7 @@ d.unlock();
       dumpcontext << "\n";
    }
 
-   bool window::DestroyWindow()
+   bool interaction_impl::DestroyWindow()
    {
 
       if((get_handle() == NULL))
@@ -1038,7 +1038,7 @@ d.unlock();
       }
 
       single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex, TRUE);
-      sp(::window) pWnd;
+      sp(::interaction_impl) pWnd;
       hwnd_map * pMap;
       oswindow hWndOrig;
       bool bResult;
@@ -1072,7 +1072,7 @@ d.unlock();
          {
             // Should have been detached by OnNcDestroy
 #ifdef DEBUG
-//            sp(::window) pWndPermanent =  (pMap->lookup_permanent(hWndOrig));;
+//            sp(::interaction_impl) pWndPermanent =  (pMap->lookup_permanent(hWndOrig));;
   //          ASSERT(pWndPermanent == NULL);
             // It is important to call base class, including ca2 core
             // base classes implementation of install_message_handling
@@ -1093,10 +1093,10 @@ d.unlock();
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // Default window implementation
+   // Default interaction_impl implementation
 
 
-   LRESULT window::DefWindowProc(UINT nMsg, WPARAM wparam, LPARAM lparam)
+   LRESULT interaction_impl::DefWindowProc(UINT nMsg, WPARAM wparam, LPARAM lparam)
    {
     /*  if (m_pfnSuper != NULL)
          return ::callWindowProc(m_pfnSuper, get_handle(), nMsg, wparam, lparam);
@@ -1111,7 +1111,7 @@ d.unlock();
    }
 
 /*
-   WNDPROC* window::GetSuperWndProcaddr()
+   WNDPROC* interaction_impl::GetSuperWndProcaddr()
    {
       // Note: it is no longer necessary to override GetSuperWndProcaddr
       //  for each control class with a different WNDCLASS.
@@ -1121,14 +1121,14 @@ d.unlock();
       return &m_pfnSuper;
    }
 */
-   void window::pre_translate_message(::signal_details * pobj)
+   void interaction_impl::pre_translate_message(::signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       // no default processing
    }
 
 
-   void window::GetWindowText(string & rString)
+   void interaction_impl::GetWindowText(string & rString)
    {
       /*ASSERT(::IsWindow((oswindow) get_handle()));
 
@@ -1140,7 +1140,7 @@ d.unlock();
    }
 
 /*
-   int32_t window::GetDlgItemText(int32_t nID, string & rString) const
+   int32_t interaction_impl::GetDlgItemText(int32_t nID, string & rString) const
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
       rString = "";    // is_empty without deallocating
@@ -1157,7 +1157,7 @@ d.unlock();
    }
 */
 
-   bool window::GetWindowPlacement(WINDOWPLACEMENT* lpwndpl)
+   bool interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* lpwndpl)
    {
   /*    ASSERT(::IsWindow((oswindow) get_handle()));
       lpwndpl->length = sizeof(WINDOWPLACEMENT);
@@ -1165,7 +1165,7 @@ d.unlock();
       return false;
    }
 
-   bool window::SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl)
+   bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl)
    {
 /*      ASSERT(::IsWindow((oswindow) get_handle()));
       ((WINDOWPLACEMENT*)lpwndpl)->length = sizeof(WINDOWPLACEMENT);
@@ -1174,13 +1174,13 @@ d.unlock();
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // window will delegate owner draw messages to self drawing controls
+   // interaction_impl will delegate owner draw messages to self drawing controls
 
    // Drawing: for all 4 control types
-// /*   void window::OnDrawItem(int32_t /*nIDCtl*/, LPDRAWITEMSTRUCT lpDrawItemStruct)
+// /*   void interaction_impl::OnDrawItem(int32_t /*nIDCtl*/, LPDRAWITEMSTRUCT lpDrawItemStruct)
   // {
 
-      // reflect notification to child window control
+      // reflect notification to child interaction_impl control
     //  if (ReflectLastMsg(lpDrawItemStruct->hwndItem))
       //   return;     // eat it
 
@@ -1189,9 +1189,9 @@ d.unlock();
   // }
 
    // Drawing: for all 4 control types
-//   int32_t window::OnCompareItem(int32_t /*nIDCtl*/, LPCOMPAREITEMSTRUCT lpCompareItemStruct)
+//   int32_t interaction_impl::OnCompareItem(int32_t /*nIDCtl*/, LPCOMPAREITEMSTRUCT lpCompareItemStruct)
   // {
-    //  // reflect notification to child window control
+    //  // reflect notification to child interaction_impl control
       //LRESULT lResult;
 //      if (ReflectLastMsg(lpCompareItemStruct->hwndItem, &lResult))
   //       return (int32_t)lResult;        // eat it
@@ -1200,16 +1200,16 @@ d.unlock();
     //  return (int32_t)Default();
 //   }
 
-  // void window::OnDeleteItem(int32_t /*nIDCtl*/, LPDELETEITEMSTRUCT lpDeleteItemStruct)
+  // void interaction_impl::OnDeleteItem(int32_t /*nIDCtl*/, LPDELETEITEMSTRUCT lpDeleteItemStruct)
    //{
-      // reflect notification to child window control
+      // reflect notification to child interaction_impl control
      // if (ReflectLastMsg(lpDeleteItemStruct->hwndItem))
        //  return;     // eat it
       // not handled - do default
 //      Default();
   // }
 
-   bool window::_EnableToolTips(bool bEnable, UINT nFlag)
+   bool interaction_impl::_EnableToolTips(bool bEnable, UINT nFlag)
    {
       UNREFERENCED_PARAMETER(bEnable);
       UNREFERENCED_PARAMETER(nFlag);
@@ -1218,7 +1218,7 @@ d.unlock();
 
 
    // Measure item implementation relies on unique control/menu IDs
-//   void window::OnMeasureItem(int32_t /*nIDCtl*/, LPMEASUREITEMSTRUCT lpMeasureItemStruct)
+//   void interaction_impl::OnMeasureItem(int32_t /*nIDCtl*/, LPMEASUREITEMSTRUCT lpMeasureItemStruct)
   /* {
       if (lpMeasureItemStruct->CtlType == ODT_MENU)
       {
@@ -1234,38 +1234,38 @@ d.unlock();
       Default();
    }*/
 
-/*   bool window::GetWindowInfo(PWINDOWINFO pwi) const
+/*   bool interaction_impl::GetWindowInfo(PWINDOWINFO pwi) const
    {
       ASSERT(::IsWindow((oswindow)get_handle()));
       return ::GetWindowInfo((oswindow)get_handle(), pwi) != FALSE;
    }*/
 
-/*   sp(::window) window::GetAncestor(UINT gaFlags) const
-   { ASSERT(::IsWindow((oswindow)get_handle())); return  ::android::window::from_handle(::GetAncestor((oswindow)get_handle(), gaFlags)); }
+/*   sp(::interaction_impl) interaction_impl::GetAncestor(UINT gaFlags) const
+   { ASSERT(::IsWindow((oswindow)get_handle())); return  ::android::interaction_impl::from_handle(::GetAncestor((oswindow)get_handle(), gaFlags)); }
 
 */
 
-/*   bool window::GetScrollBarInfo(LONG idObject, PSCROLLBARINFO psbi) const
+/*   bool interaction_impl::GetScrollBarInfo(LONG idObject, PSCROLLBARINFO psbi) const
    {
       ASSERT(::IsWindow((oswindow)get_handle()));
       ASSERT(psbi != NULL);
       return ::GetScrollBarInfo((oswindow)get_handle(), idObject, psbi) != FALSE;
    }
 */
-/*   bool window::GetTitleBarInfo(PTITLEBARINFO pti) const
+/*   bool interaction_impl::GetTitleBarInfo(PTITLEBARINFO pti) const
    {
       ASSERT(::IsWindow((oswindow)get_handle()));
       ASSERT(pti != NULL);
       return ::GetTitleBarInfo((oswindow)get_handle(), pti) != FALSE;
    }
 */
-/*   bool window::AnimateWindow(DWORD dwTime, DWORD dwFlags)
+/*   bool interaction_impl::AnimateWindow(DWORD dwTime, DWORD dwFlags)
    {
       ASSERT(::IsWindow((oswindow)get_handle()));
       return ::AnimateWindow((oswindow)get_handle(), dwTime, dwFlags) != FALSE;
    }
 
-   bool window::FlashWindowEx(DWORD dwFlags, UINT  uCount, DWORD dwTimeout)
+   bool interaction_impl::FlashWindowEx(DWORD dwFlags, UINT  uCount, DWORD dwTimeout)
    {
       ASSERT(::IsWindow((oswindow)get_handle()));
       FLASHWINFO fwi;
@@ -1280,13 +1280,13 @@ d.unlock();
 */
 
 /*
-   bool window::SetLayeredWindowAttributes(COLORREF crKey, BYTE bAlpha, DWORD dwFlags)
+   bool interaction_impl::SetLayeredWindowAttributes(COLORREF crKey, BYTE bAlpha, DWORD dwFlags)
    {
       ASSERT(::IsWindow((oswindow)get_handle()));
       return ::SetLayeredWindowAttributes((oswindow)get_handle(), crKey, bAlpha, dwFlags) != FALSE;
    }
 
-   bool window::UpdateLayeredWindow(::draw2d::graphics * pDCDst, POINT *pptDst, SIZE *psize,
+   bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst, POINT *pptDst, SIZE *psize,
       ::draw2d::graphics * pDCSrc, POINT *pptSrc, COLORREF crKey, BLENDFUNCTION *pblend, DWORD dwFlags)
    {
       ASSERT(::IsWindow((oswindow)get_handle()));
@@ -1296,20 +1296,20 @@ d.unlock();
 
 */
 /*
-   bool window::GetLayeredWindowAttributes(COLORREF *pcrKey, BYTE *pbAlpha, DWORD *pdwFlags) const
+   bool interaction_impl::GetLayeredWindowAttributes(COLORREF *pcrKey, BYTE *pbAlpha, DWORD *pdwFlags) const
    {
       ASSERT(::IsWindow((oswindow)get_handle()));
       return ::GetLayeredWindowAttributes((oswindow)get_handle(), pcrKey, pbAlpha, pdwFlags) != FALSE;
    }
 
-   bool window::PrintWindow(::draw2d::graphics * pgraphics, UINT nFlags) const
+   bool interaction_impl::PrintWindow(::draw2d::graphics * pgraphics, UINT nFlags) const
    {
       ASSERT(::IsWindow((oswindow)get_handle()));
       return ::PrintWindow((oswindow)get_handle(), (HDC)(dynamic_cast<::android::graphics * >(pgraphics))->get_handle(), nFlags) != FALSE;
    }
 
 */
-   LRESULT window::OnNTCtlColor(WPARAM wparam, LPARAM lparam)
+   LRESULT interaction_impl::OnNTCtlColor(WPARAM wparam, LPARAM lparam)
    {
       // fill in special struct for compatiblity with 16-bit WM_CTLCOLOR
   /*    __CTLCOLOR ctl;
@@ -1320,9 +1320,9 @@ d.unlock();
       //ASSERT(ctl.nCtlType >= CTLCOLOR_MSGBOX);
       ASSERT(ctl.nCtlType <= CTLCOLOR_STATIC);
 
-      // Note: We call the virtual message_handler for this window directly,
+      // Note: We call the virtual message_handler for this interaction_impl directly,
       //  instead of calling ::ca2::callWindowProc, so that Default()
-      //  will still work (it will call the Default window proc with
+      //  will still work (it will call the Default interaction_impl proc with
       //  the original Win32 WM_CTLCOLOR message).
       /*
       return message_handler(WM_CTLCOLOR, 0, (LPARAM)&ctl);*/
@@ -1330,9 +1330,9 @@ d.unlock();
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // window extensions for help support
+   // interaction_impl extensions for help support
 
-/*   void window::WinHelp(dword_ptr dwData, UINT nCmd)
+/*   void interaction_impl::WinHelp(dword_ptr dwData, UINT nCmd)
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
@@ -1360,7 +1360,7 @@ d.unlock();
       }*/
    //}
 
-   //void window::HtmlHelp(dword_ptr dwData, UINT nCmd)
+   //void interaction_impl::HtmlHelp(dword_ptr dwData, UINT nCmd)
    //{
    // throw not_implemented(get_app());
    /*
@@ -1388,7 +1388,7 @@ d.unlock();
    }*/
    //}
 
-   void window::PrepareForHelp()
+   void interaction_impl::PrepareForHelp()
    {
       /*if (is_frame_window())
       {
@@ -1413,7 +1413,7 @@ d.unlock();
    }
 
 
-   /*void window::WinHelpInternal(dword_ptr dwData, UINT nCmd)
+   /*void interaction_impl::WinHelpInternal(dword_ptr dwData, UINT nCmd)
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
@@ -1439,7 +1439,7 @@ d.unlock();
 
 
 
-   bool window::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
+   bool interaction_impl::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
    {
       if(command_target_interface::_001OnCmdMsg(pcmdmsg))
          return TRUE;
@@ -1454,13 +1454,13 @@ d.unlock();
    }
 
 
-   bool window::BaseOnControlEvent(::user::control_event * pevent)
+   bool interaction_impl::BaseOnControlEvent(::user::control_event * pevent)
    {
       UNREFERENCED_PARAMETER(pevent);
       return false;
    }
 
-   void window::_002OnDraw(::draw2d::graphics * pdc)
+   void interaction_impl::_002OnDraw(::draw2d::graphics * pdc)
    {
 
 //      ::callWindowProc(*GetSuperWndProcaddr(), get_handle(), WM_PRINT, (WPARAM)((dynamic_cast<::android::graphics * >(pdc))->get_handle()), (LPARAM)(PRF_CHILDREN | PRF_CLIENT));
@@ -1470,7 +1470,7 @@ d.unlock();
    /////////////////////////////////////////////////////////////////////////////
    // main message_handler implementation
 
-   void window::message_handler(::signal_details * pobj)
+   void interaction_impl::message_handler(::signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
 
@@ -1493,7 +1493,7 @@ d.unlock();
       }
       else if(pbase->m_uiMessage == WM_LBUTTONDOWN)
       {
-         g_pwndLastLButtonDown = this;
+         BaseSession.m_puiLastLButtonDown = this;
       }
       /*      else if(pbase->m_uiMessage == ca2M_BERGEDGE)
       {
@@ -1787,7 +1787,7 @@ restart_mouse_hover_check:
    }
 
    /*
-   bool window::OnWndMsg(UINT message, WPARAM wparam, LPARAM lparam, LRESULT* pResult)
+   bool interaction_impl::OnWndMsg(UINT message, WPARAM wparam, LPARAM lparam, LRESULT* pResult)
    {
    LRESULT lResult = 0;
    union MessageMapFunctions mmf;
@@ -1815,7 +1815,7 @@ restart_mouse_hover_check:
 
    // special case for activation
    if (message == WM_ACTIVATE)
-   __handle_activate(this, wparam, ::android::window::from_handle((oswindow)lparam));
+   __handle_activate(this, wparam, ::android::interaction_impl::from_handle((oswindow)lparam));
 
    // special case for set cursor HTERROR
    if (message == WM_SETCURSOR &&
@@ -1863,7 +1863,7 @@ restart_mouse_hover_check:
    ASSERT(pMessageMap != (*pMessageMap->pfnGetBaseMap)());
    if (message < 0xC000)
    {
-   // constant window message
+   // constant interaction_impl message
    if ((lpEntry = ::ca2::FindMessageEntry(pMessageMap->lpEntries,
    message, 0, 0)) != NULL)
    {
@@ -1939,7 +1939,7 @@ restart_mouse_hover_check:
 
    case ::ca2::Sig_v_u_W:
    (this->*mmf.pfn_v_u_W)(static_cast<UINT>(wparam),
-   ::android::window::from_handle(reinterpret_cast<oswindow>(lparam)));
+   ::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)));
    break;
 
    case ::ca2::Sig_u_u_v:
@@ -1951,13 +1951,13 @@ restart_mouse_hover_check:
    break;
 
    case ::ca2::Sig_b_W_uu:
-   lResult = (this->*mmf.pfn_b_W_u_u)(::android::window::from_handle(reinterpret_cast<oswindow>(wparam)),
+   lResult = (this->*mmf.pfn_b_W_u_u)(::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)),
    LOWORD(lparam), HIWORD(lparam));
    break;
 
    case ::ca2::Sig_b_W_COPYDATASTRUCT:
    lResult = (this->*mmf.pfn_b_W_COPYDATASTRUCT)(
-   ::android::window::from_handle(reinterpret_cast<oswindow>(wparam)),
+   ::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)),
    reinterpret_cast<COPYDATASTRUCT*>(lparam));
    break;
 
@@ -1972,11 +1972,11 @@ restart_mouse_hover_check:
    __CTLCOLOR* pCtl = reinterpret_cast<__CTLCOLOR*>(lparam);
    ::draw2d::graphics_sp dcTemp;
    dcTemp.set_handle1(pCtl->hDC);
-   window wndTemp;
+   interaction_impl wndTemp;
    wndTemp.set_handle(pCtl->hWnd);
    UINT nCtlType = pCtl->nCtlType;
-   // if not coming from a permanent window, use stack temporary
-   sp(::window) pWnd = ::android::window::FromHandlePermanent(wndTemp.get_handle());
+   // if not coming from a permanent interaction_impl, use stack temporary
+   sp(::interaction_impl) pWnd = ::android::interaction_impl::FromHandlePermanent(wndTemp.get_handle());
    if (pWnd == NULL)
    {
    pWnd = &wndTemp;
@@ -2006,7 +2006,7 @@ restart_mouse_hover_check:
 
    case ::ca2::Sig_i_u_W_u:
    lResult = (this->*mmf.pfn_i_u_W_u)(LOWORD(wparam),
-   ::android::window::from_handle(reinterpret_cast<oswindow>(lparam)), HIWORD(wparam));
+   ::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)), HIWORD(wparam));
    break;
 
    case ::ca2::Sig_i_uu_v:
@@ -2014,7 +2014,7 @@ restart_mouse_hover_check:
    break;
 
    case ::ca2::Sig_i_W_uu:
-   lResult = (this->*mmf.pfn_i_W_u_u)(::android::window::from_handle(reinterpret_cast<oswindow>(wparam)),
+   lResult = (this->*mmf.pfn_i_W_u_u)(::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)),
    LOWORD(lparam), HIWORD(lparam));
    break;
 
@@ -2076,8 +2076,8 @@ restart_mouse_hover_check:
 
    case ::ca2::Sig_MDIACTIVATE:
    (this->*mmf.pfn_v_b_W_W)(get_handle() == reinterpret_cast<oswindow>(lparam),
-   ::android::window::from_handle(reinterpret_cast<oswindow>(lparam)),
-   ::android::window::from_handle(reinterpret_cast<oswindow>(wparam)));
+   ::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)),
+   ::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)));
    break;
 
    case ::ca2::Sig_v_D_v:
@@ -2086,33 +2086,33 @@ restart_mouse_hover_check:
 
 
    case ::ca2::Sig_v_W_v:
-   (this->*mmf.pfn_v_W)(::android::window::from_handle(reinterpret_cast<oswindow>(wparam)));
+   (this->*mmf.pfn_v_W)(::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)));
    break;
 
    case ::ca2::Sig_v_v_W:
-   (this->*mmf.pfn_v_W)(::android::window::from_handle(reinterpret_cast<oswindow>(lparam)));
+   (this->*mmf.pfn_v_W)(::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)));
    break;
 
    case ::ca2::Sig_v_W_uu:
-   (this->*mmf.pfn_v_W_u_u)(::android::window::from_handle(reinterpret_cast<oswindow>(wparam)), LOWORD(lparam),
+   (this->*mmf.pfn_v_W_u_u)(::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)), LOWORD(lparam),
    HIWORD(lparam));
    break;
 
    case ::ca2::Sig_v_W_p:
    {
    point point(lparam);
-   (this->*mmf.pfn_v_W_p)(::android::window::from_handle(reinterpret_cast<oswindow>(wparam)), point);
+   (this->*mmf.pfn_v_W_p)(::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)), point);
    }
    break;
 
    case ::ca2::Sig_v_W_h:
-   (this->*mmf.pfn_v_W_h)(::android::window::from_handle(reinterpret_cast<oswindow>(wparam)),
+   (this->*mmf.pfn_v_W_h)(::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)),
    reinterpret_cast<HANDLE>(lparam));
    break;
 
    case ::ca2::Sig_ACTIVATE:
    (this->*mmf.pfn_v_u_W_b)(LOWORD(wparam),
-   ::android::window::from_handle(reinterpret_cast<oswindow>(lparam)), HIWORD(wparam));
+   ::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)), HIWORD(wparam));
    break;
 
    case ::ca2::Sig_SCROLL:
@@ -2125,7 +2125,7 @@ restart_mouse_hover_check:
    int32_t nPos = (short)HIWORD(wparam);
    if (lpEntry->nSig == ::ca2::Sig_SCROLL)
    (this->*mmf.pfn_v_u_u_W)(nScrollCode, nPos,
-   ::android::window::from_handle(reinterpret_cast<oswindow>(lparam)));
+   ::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)));
    else
    (this->*mmf.pfn_v_u_u)(nScrollCode, nPos);
    }
@@ -2213,9 +2213,9 @@ restart_mouse_hover_check:
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // window command handling
+   // interaction_impl command handling
 
-   bool window::OnCommand(WPARAM wparam, LPARAM lparam)
+   bool interaction_impl::OnCommand(WPARAM wparam, LPARAM lparam)
       // return TRUE if command invocation was attempted
    {
       UNREFERENCED_PARAMETER(wparam);
@@ -2253,7 +2253,7 @@ restart_mouse_hover_check:
       if (gen_ThreadState->m_hLockoutNotifyWindow == get_handle())
       return TRUE;        // locked out - ignore control notification
 
-      // reflect notification to child window control
+      // reflect notification to child interaction_impl control
       if (ReflectLastMsg(hWndCtrl))
       return TRUE;    // eaten by child
 
@@ -2272,13 +2272,13 @@ restart_mouse_hover_check:
       return FALSE;
    }
 
-   bool window::OnNotify(WPARAM, LPARAM lparam, LRESULT* pResult)
+   bool interaction_impl::OnNotify(WPARAM, LPARAM lparam, LRESULT* pResult)
    {
   /*    ASSERT(pResult != NULL);
       NMHDR* pNMHDR = (NMHDR*)lparam;
       oswindow hWndCtrl = pNMHDR->hwndFrom;
 
-      // get the child ID from the window itself
+      // get the child ID from the interaction_impl itself
       //      uint_ptr nID = __get_dialog_control_id(hWndCtrl);
       //      int32_t nCode = pNMHDR->code;
 
@@ -2288,7 +2288,7 @@ restart_mouse_hover_check:
       if (gen_ThreadState->m_hLockoutNotifyWindow == get_handle())
          return true;        // locked out - ignore control notification
 
-      // reflect notification to child window control
+      // reflect notification to child interaction_impl control
       if (ReflectLastMsg(hWndCtrl, pResult))
          return true;        // eaten by child
 
@@ -2300,9 +2300,9 @@ restart_mouse_hover_check:
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // window extensions
+   // interaction_impl extensions
 
-   sp(::user::frame_window) window::GetParentFrame()
+   sp(::user::frame_window) interaction_impl::GetParentFrame()
    {
 
       if (get_handle() == NULL) // no oswindow attached
@@ -2331,8 +2331,8 @@ restart_mouse_hover_check:
 
    /* trans oswindow CLASS_DECL_BASE __get_parent_owner(sp(::user::interaction) hWnd)
    {
-   // check for permanent-owned window first
-   sp(::window) pWnd = ::android::window::FromHandlePermanent(hWnd);
+   // check for permanent-owned interaction_impl first
+   sp(::interaction_impl) pWnd = ::android::interaction_impl::FromHandlePermanent(hWnd);
    if (pWnd != NULL)
    return ANDROID_WINDOW(pWnd)->GetOwner();
 
@@ -2342,7 +2342,7 @@ restart_mouse_hover_check:
    }*/
 
 
-   sp(::user::interaction) window::GetTopLevelParent()
+   sp(::user::interaction) interaction_impl::GetTopLevelParent()
    {
       if (get_handle() == NULL) // no oswindow attached
          return NULL;
@@ -2357,7 +2357,7 @@ restart_mouse_hover_check:
       return hWndParent;
    }
 
-   sp(::user::interaction) window::GetTopLevelOwner()
+   sp(::user::interaction) interaction_impl::GetTopLevelOwner()
    {
       if (get_handle() == NULL) // no oswindow attached
          return NULL;
@@ -2369,11 +2369,11 @@ restart_mouse_hover_check:
     //  while ((hWndT = ::GetWindow(hWndOwner, GW_OWNER)) != NULL)
       //   hWndOwner = hWndT;
 
-//      return ::android::window::from_handle(hWndOwner);
+//      return ::android::interaction_impl::from_handle(hWndOwner);
         return NULL;
    }
 
-   sp(::user::interaction) window::GetParentOwner()
+   sp(::user::interaction) interaction_impl::GetParentOwner()
    {
       if (get_handle() == NULL) // no oswindow attached
          return NULL;
@@ -2388,25 +2388,25 @@ restart_mouse_hover_check:
          hWndParent = hWndT;
       }
 
-      return ::android::window::from_handle(hWndParent);*/
+      return ::android::interaction_impl::from_handle(hWndParent);*/
 
       return NULL;
    }
 
-   bool window::IsTopParentActive()
+   bool interaction_impl::IsTopParentActive()
    {
       ASSERT(get_handle() != NULL);
       ASSERT_VALID(this);
 
       sp(::user::interaction)pWndTopLevel=EnsureTopLevelParent();
 
-      return window::GetForegroundWindow() == pWndTopLevel->GetLastActivePopup();
+      return interaction_impl::GetForegroundWindow() == pWndTopLevel->GetLastActivePopup();
    }
 
-   void window::ActivateTopParent()
+   void interaction_impl::ActivateTopParent()
    {
       // special activate logic for floating toolbars and palettes
-      sp(::window) pActiveWnd = GetForegroundWindow();
+      sp(::interaction_impl) pActiveWnd = GetForegroundWindow();
 //      if (pActiveWnd == NULL || !(ANDROID_WINDOW(pActiveWnd)->get_handle() == get_handle() || ::IsChild(ANDROID_WINDOW(pActiveWnd)->get_handle(), get_handle())))
       {
          // clicking on floating frame when it does not have
@@ -2415,7 +2415,7 @@ restart_mouse_hover_check:
       }
    }
 
-   sp(::user::frame_window) window::GetTopLevelFrame()
+   sp(::user::frame_window) interaction_impl::GetTopLevelFrame()
    {
       if (get_handle() == NULL) // no oswindow attached
          return NULL;
@@ -2439,13 +2439,13 @@ restart_mouse_hover_check:
       return pFrameWnd;
    }
 
-/*   sp(::window) window::GetSafeOwner(::window * pParent, oswindow* pWndTop)
+/*   sp(::interaction_impl) interaction_impl::GetSafeOwner(::interaction_impl * pParent, oswindow* pWndTop)
    {
       oswindow hWnd = GetSafeOwner_((oswindow) pParent->get_handle(), pWndTop);
-      return ::android::window::from_handle(hWnd);
+      return ::android::interaction_impl::from_handle(hWnd);
    }
 */
-   int32_t window::message_box(const char * lpszText, const char * lpszcaption, UINT nType)
+   int32_t interaction_impl::message_box(const char * lpszText, const char * lpszcaption, UINT nType)
    {
       if (lpszcaption == NULL)
          lpszcaption = __get_app_name();
@@ -2453,7 +2453,7 @@ restart_mouse_hover_check:
       return nResult;
    }
 
-   sp(::user::interaction) PASCAL window::GetDescendantWindow(sp(::user::interaction) hWnd, id id)
+   sp(::user::interaction) PASCAL interaction_impl::GetDescendantWindow(sp(::user::interaction) hWnd, id id)
    {
 
       single_lock sl(&hWnd->m_pthread->m_pthread->m_mutex, TRUE);
@@ -2473,9 +2473,9 @@ restart_mouse_hover_check:
 
    }
 
-   void PASCAL window::SendMessageToDescendants(void * hWnd, UINT message, WPARAM wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
+   void PASCAL interaction_impl::SendMessageToDescendants(void * hWnd, UINT message, WPARAM wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
    {
-      // walk through oswindows to avoid creating temporary window objects
+      // walk through oswindows to avoid creating temporary interaction_impl objects
       // unless we need to call this function recursively
       /*for (oswindow hWndChild = ::GetTopWindow(hWnd); hWndChild != NULL;
          hWndChild = ::GetNextWindow(hWndChild, GW_HWNDNEXT))*/
@@ -2483,10 +2483,10 @@ restart_mouse_hover_check:
          // if bOnlyPerm is TRUE, don't send to non-permanent windows
          /*if (bOnlyPerm)
          {
-            sp(::window) pWnd = ::android::window::FromHandlePermanent(hWndChild);
+            sp(::interaction_impl) pWnd = ::android::interaction_impl::FromHandlePermanent(hWndChild);
             if (pWnd != NULL)
             {
-               // call window proc directly since it is a C++ window
+               // call interaction_impl proc directly since it is a C++ interaction_impl
                __call_window_procedure( (pWnd), ANDROID_WINDOW(pWnd)->get_handle(), message, wparam, lparam);
             }
          }
@@ -2519,34 +2519,34 @@ restart_mouse_hover_check:
 
    /////////////////////////////////////////////////////////////////////////////
    // Scroll bar helpers
-   //  hook for window functions
+   //  hook for interaction_impl functions
    //    only works for derived class (eg: ::view) that override 'GetScrollBarCtrl'
-   // if the window doesn't have a _visible_ windows scrollbar - then
+   // if the interaction_impl doesn't have a _visible_ windows scrollbar - then
    //   look for a sibling with the appropriate ID
 
-   CScrollBar* window::GetScrollBarCtrl(int32_t) const
+   CScrollBar* interaction_impl::GetScrollBarCtrl(int32_t) const
    {
       return NULL;        // no special scrollers supported
    }
 
-   int32_t window::SetScrollPos(int32_t nBar, int32_t nPos, bool bRedraw)
+   int32_t interaction_impl::SetScrollPos(int32_t nBar, int32_t nPos, bool bRedraw)
    {
 //      return ::SetScrollPos(get_handle(), nBar, nPos, bRedraw);
 return 0;
    }
 
-   int32_t window::GetScrollPos(int32_t nBar) const
+   int32_t interaction_impl::GetScrollPos(int32_t nBar) const
    {
       //return ::GetScrollPos(get_handle(), nBar);
       return 0;
    }
 
-   void window::SetScrollRange(int32_t nBar, int32_t nMinPos, int32_t nMaxPos, bool bRedraw)
+   void interaction_impl::SetScrollRange(int32_t nBar, int32_t nMinPos, int32_t nMaxPos, bool bRedraw)
    {
       //::SetScrollRange(get_handle(), nBar, nMinPos, nMaxPos, bRedraw);
    }
 
-   void window::GetScrollRange(int32_t nBar, LPINT lpMinPos, LPINT lpMaxPos) const
+   void interaction_impl::GetScrollRange(int32_t nBar, LPINT lpMinPos, LPINT lpMaxPos) const
    {
       //::GetScrollRange(get_handle(), nBar, lpMinPos, lpMaxPos);
    }
@@ -2554,14 +2554,14 @@ return 0;
    // Turn on/off non-control scrollbars
    //   for WS_?SCROLL scrollbars - show/hide them
    //   for control scrollbar - enable/disable them
-   void window::EnableScrollBarCtrl(int32_t nBar, bool bEnable)
+   void interaction_impl::EnableScrollBarCtrl(int32_t nBar, bool bEnable)
    {
       // WS_?SCROLL scrollbar - show or hide
       ShowScrollBar(nBar, bEnable);
    }
 
 /*
-   bool window::SetScrollInfo(int32_t nBar, LPSCROLLINFO lpScrollInfo, bool bRedraw)
+   bool interaction_impl::SetScrollInfo(int32_t nBar, LPSCROLLINFO lpScrollInfo, bool bRedraw)
    {
       ASSERT(lpScrollInfo != NULL);
 
@@ -2571,7 +2571,7 @@ return 0;
       return true;
    }
 
-   bool window::GetScrollInfo(int32_t nBar, LPSCROLLINFO lpScrollInfo, UINT nMask)
+   bool interaction_impl::GetScrollInfo(int32_t nBar, LPSCROLLINFO lpScrollInfo, UINT nMask)
    {
       UNREFERENCED_PARAMETER(nMask);
       ASSERT(lpScrollInfo != NULL);
@@ -2580,7 +2580,7 @@ return 0;
       return ::GetScrollInfo(hWnd, nBar, lpScrollInfo) != FALSE;
    }
 */
-   int32_t window::GetScrollLimit(int32_t nBar)
+   int32_t interaction_impl::GetScrollLimit(int32_t nBar)
    {
       int32_t nMin, nMax;
       GetScrollRange(nBar, &nMin, &nMax);
@@ -2592,7 +2592,7 @@ return 0;
       return nMax;
    }
 
-   void window::ScrollWindow(int32_t xAmount, int32_t yAmount,
+   void interaction_impl::ScrollWindow(int32_t xAmount, int32_t yAmount,
       LPCRECT lpRect, LPCRECT lpClipRect)
    {
 /*      ASSERT(::IsWindow((oswindow) get_handle()));
@@ -2604,7 +2604,7 @@ return 0;
       }
       else
       {
-         // oswindows does not perform any scrolling if the window is
+         // oswindows does not perform any scrolling if the interaction_impl is
          // not visible.  This leaves child windows unscrolled.
          // To account for this oversight, the child windows are moved
          // directly instead.
@@ -2630,7 +2630,7 @@ return 0;
    // minimal layout support
 
    /*
-   void window::RepositionBars(const char * pszPrefix, const char * pszIdLeftOver,
+   void interaction_impl::RepositionBars(const char * pszPrefix, const char * pszIdLeftOver,
    UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, bool bStretch)
    {
    ASSERT(nFlags == 0 || (nFlags & ~reposNoPosLeftOver) == reposQuery ||
@@ -2736,7 +2736,7 @@ return 0;
    layout.rect.right -= lpRectParam->right;
    layout.rect.bottom -= lpRectParam->bottom;
    }
-   // reposition the window
+   // reposition the interaction_impl
    if ((nFlags & reposNoPosLeftOver) != reposNoPosLeftOver)
    {
    pLeftOver->CalcWindowRect(&layout.rect);
@@ -2751,7 +2751,7 @@ return 0;
 
    */
 
-   void window::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIdLeftOver,
+   void interaction_impl::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIdLeftOver,
       UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, bool bStretch)
    {
       UNREFERENCED_PARAMETER(nIDFirst);
@@ -2860,7 +2860,7 @@ return 0;
             layout.rect.right -= lpRectParam->right;
             layout.rect.bottom -= lpRectParam->bottom;
          }
-         // reposition the window
+         // reposition the interaction_impl
          if ((nFlags & reposNoPosLeftOver) != reposNoPosLeftOver)
          {
             pLeftOver->CalcWindowRect(&layout.rect);
@@ -2875,7 +2875,7 @@ return 0;
 
 
 
-   void window::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType)
+   void interaction_impl::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType)
    {
       /*DWORD dwExStyle = GetExStyle();
       if (nAdjustType == 0)
@@ -2886,7 +2886,7 @@ return 0;
    /////////////////////////////////////////////////////////////////////////////
    // Special keyboard/system command processing
 
-   bool window::HandleFloatingSysCommand(UINT nID, LPARAM lparam)
+   bool interaction_impl::HandleFloatingSysCommand(UINT nID, LPARAM lparam)
    {
 /*      sp(::user::interaction) pParent = GetTopLevelParent();
       switch (nID & 0xfff0)
@@ -2931,14 +2931,14 @@ return 0;
       return false;*/
    }
 
-   void window::WalkPreTranslateTree(sp(::user::interaction) puiStop, ::signal_details * pobj)
+   void interaction_impl::WalkPreTranslateTree(sp(::user::interaction) puiStop, ::signal_details * pobj)
    {
       ASSERT(puiStop == NULL || puiStop->IsWindow());
       ASSERT(pobj != NULL);
 
       SCAST_PTR(::message::base, pbase, pobj);
-      // walk from the target window up to the hWndStop window checking
-      //  if any window wants to translate this message
+      // walk from the target interaction_impl up to the hWndStop interaction_impl checking
+      //  if any interaction_impl wants to translate this message
 
       for (sp(::user::interaction) pui = pbase->m_pwnd; pui != NULL; pui->get_parent())
       {
@@ -2946,9 +2946,9 @@ return 0;
          pui->pre_translate_message(pobj);
 
          if(pobj->m_bRet)
-            return; // trapped by target window (eg: accelerators)
+            return; // trapped by target interaction_impl (eg: accelerators)
 
-         // got to hWndStop window without interest
+         // got to hWndStop interaction_impl without interest
          if(pui == puiStop)
             break;
 
@@ -2956,13 +2956,13 @@ return 0;
       // no special processing
    }
 
-   bool window::SendChildNotifyLastMsg(LRESULT* pResult)
+   bool interaction_impl::SendChildNotifyLastMsg(LRESULT* pResult)
    {
       ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
       return OnChildNotify(pThreadState->m_lastSentMsg.message, pThreadState->m_lastSentMsg.wParam, pThreadState->m_lastSentMsg.lParam, pResult);
    }
 
-   bool PASCAL window::ReflectLastMsg(oswindow hWndChild, LRESULT* pResult)
+   bool PASCAL interaction_impl::ReflectLastMsg(oswindow hWndChild, LRESULT* pResult)
    {
       // get the ::collection::map, and if no ::collection::map, then this message does not need reflection
 /*      single_lock sl(afxMutexHwnd(), TRUE);
@@ -2971,8 +2971,8 @@ return 0;
          return FALSE;
 
       // check if in permanent ::collection::map, if it is reflect it (could be OLE control)
-      sp(::window) pWnd =  (pMap->lookup_permanent(hWndChild)); */
-      sp(::window) pWnd =  (FromHandlePermanent(hWndChild));
+      sp(::interaction_impl) pWnd =  (pMap->lookup_permanent(hWndChild)); */
+      sp(::interaction_impl) pWnd =  (FromHandlePermanent(hWndChild));
       ASSERT(pWnd == NULL || ANDROID_WINDOW(pWnd)->get_handle() == hWndChild);
       if (pWnd == NULL)
       {
@@ -2984,17 +2984,17 @@ return 0;
       return ANDROID_WINDOW(pWnd)->SendChildNotifyLastMsg(pResult);
    }
 
-   bool window::OnChildNotify(UINT uMsg, WPARAM wparam, LPARAM lparam, LRESULT* pResult)
+   bool interaction_impl::OnChildNotify(UINT uMsg, WPARAM wparam, LPARAM lparam, LRESULT* pResult)
    {
 
       return ReflectChildNotify(uMsg, wparam, lparam, pResult);
    }
 
-   bool window::ReflectChildNotify(UINT uMsg, WPARAM wparam, LPARAM lparam, LRESULT* pResult)
+   bool interaction_impl::ReflectChildNotify(UINT uMsg, WPARAM wparam, LPARAM lparam, LRESULT* pResult)
    {
       UNREFERENCED_PARAMETER(wparam);
-      // Note: reflected messages are send directly to window::OnWndMsg
-      //  and window::_001OnCommand for speed and because these messages are not
+      // Note: reflected messages are send directly to interaction_impl::OnWndMsg
+      //  and interaction_impl::_001OnCommand for speed and because these messages are not
       //  routed by normal _001OnCommand routing (they are only dispatched)
 
       switch (uMsg)
@@ -3010,7 +3010,7 @@ return 0;
       case WM_CHARTOITEM:
       case WM_COMPAREITEM:
          // reflect the message through the message ::collection::map as WM_REFLECT_BASE+uMsg
-         //return window::OnWndMsg(WM_REFLECT_BASE+uMsg, wparam, lparam, pResult);
+         //return interaction_impl::OnWndMsg(WM_REFLECT_BASE+uMsg, wparam, lparam, pResult);
          return FALSE;
 
          // special case for WM_COMMAND
@@ -3018,7 +3018,7 @@ return 0;
          {
             // reflect the message through the message ::collection::map as OCM_COMMAND
             /* xxx         int32_t nCode = HIWORD(wparam);
-            if (window::_001OnCommand(0, MAKELONG(nCode, WM_REFLECT_BASE+WM_COMMAND), NULL, NULL))
+            if (interaction_impl::_001OnCommand(0, MAKELONG(nCode, WM_REFLECT_BASE+WM_COMMAND), NULL, NULL))
             {
             if (pResult != NULL)
             *pResult = 1;
@@ -3036,7 +3036,7 @@ return 0;
             //            __NOTIFY notify;
             //          notify.pResult = pResult;
             //        notify.pNMHDR = pNMHDR;
-            // xxxx         return window::_001OnCommand(0, MAKELONG(nCode, WM_REFLECT_BASE+WM_NOTIFY), &notify, NULL);
+            // xxxx         return interaction_impl::_001OnCommand(0, MAKELONG(nCode, WM_REFLECT_BASE+WM_NOTIFY), &notify, NULL);
          }
 
          // other special cases (WM_CTLCOLOR family)*/
@@ -3051,7 +3051,7 @@ return 0;
             ASSERT(ctl.nCtlType <= CTLCOLOR_STATIC);
 
             // reflect the message through the message ::collection::map as OCM_CTLCOLOR
-            bool bResult = window::OnWndMsg(WM_REFLECT_BASE+WM_CTLCOLOR, 0, (LPARAM)&ctl, pResult);
+            bool bResult = interaction_impl::OnWndMsg(WM_REFLECT_BASE+WM_CTLCOLOR, 0, (LPARAM)&ctl, pResult);
             if ((HBRUSH)*pResult == NULL)
             bResult = FALSE;
             return bResult;*/
@@ -3063,7 +3063,7 @@ return 0;
       return false;   // let the parent handle it
    }
 
-   void window::OnParentNotify(UINT message, LPARAM lparam)
+   void interaction_impl::OnParentNotify(UINT message, LPARAM lparam)
    {
       if ((LOWORD(message) == WM_CREATE || LOWORD(message) == WM_DESTROY))
       {
@@ -3074,7 +3074,7 @@ return 0;
       Default();
    }
 
-   void window::OnSetFocus(::window *)
+   void interaction_impl::OnSetFocus(::interaction_impl *)
    {
       bool bHandled;
 
@@ -3085,7 +3085,7 @@ return 0;
       }
    }
 
-   LRESULT window::OnActivateTopLevel(WPARAM wparam, LPARAM)
+   LRESULT interaction_impl::OnActivateTopLevel(WPARAM wparam, LPARAM)
    {
       if (LOWORD(wparam) == WA_INACTIVE)
       {
@@ -3095,7 +3095,7 @@ return 0;
       return 0;
    }
 
-   void window::OnSysColorChange()
+   void interaction_impl::OnSysColorChange()
    {
       throw not_implemented(get_app());
 
@@ -3115,7 +3115,7 @@ return 0;
 
    bool gen_GotScrollLines;
 
-   void window::OnSettingChange(UINT uFlags, const char * lpszSection)
+   void interaction_impl::OnSettingChange(UINT uFlags, const char * lpszSection)
    {
 //      UNUSED_ALWAYS(uFlags);
   //    UNUSED_ALWAYS(lpszSection);
@@ -3124,10 +3124,10 @@ return 0;
       gen_GotScrollLines = FALSE;
 
 
-      window::OnDisplayChange(0, 0);    // to update system metrics, etc.
+      interaction_impl::OnDisplayChange(0, 0);    // to update system metrics, etc.
    }
 
-/*   void window::OnDevModeChange(__in LPTSTR lpDeviceName)
+/*   void interaction_impl::OnDevModeChange(__in LPTSTR lpDeviceName)
    {
       UNREFERENCED_PARAMETER(lpDeviceName);
       throw not_implemented(get_app());
@@ -3146,7 +3146,7 @@ return 0;
 
 
 //
-//   bool window::OnHelpInfo(HELPINFO* /*pHelpInfo*/)
+//   bool interaction_impl::OnHelpInfo(HELPINFO* /*pHelpInfo*/)
 //   {
 //      if (!(GetStyle() & WS_CHILD))
 //      {
@@ -3163,9 +3163,9 @@ return 0;
 //      return Default() != 0;
 //   }
 //
-   LRESULT window::OnDisplayChange(WPARAM, LPARAM)
+   LRESULT interaction_impl::OnDisplayChange(WPARAM, LPARAM)
    {
-      // update metrics if this window is the main window
+      // update metrics if this interaction_impl is the main interaction_impl
       if (System.GetMainWnd() == this)
       {
          // update any system metrics cache
@@ -3182,7 +3182,7 @@ return 0;
       return Default();
    }
 
-   LRESULT window::OnDragList(WPARAM, LPARAM lparam)
+   LRESULT interaction_impl::OnDragList(WPARAM, LPARAM lparam)
    {
 
       throw not_implemented(get_app());
@@ -3198,38 +3198,38 @@ return 0;
 //      return (int32_t)Default();
    }
 
-   void window::_001OnCreate(::signal_details * pobj)
+   void interaction_impl::_001OnCreate(::signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       Default();
    }
 
-   void window::OnHScroll(UINT, UINT, CScrollBar* pScrollBar)
+   void interaction_impl::OnHScroll(UINT, UINT, CScrollBar* pScrollBar)
    {
       UNREFERENCED_PARAMETER(pScrollBar);
       Default();
    }
 
-   void window::OnVScroll(UINT, UINT, CScrollBar* pScrollBar)
+   void interaction_impl::OnVScroll(UINT, UINT, CScrollBar* pScrollBar)
    {
       UNREFERENCED_PARAMETER(pScrollBar);
       Default();
    }
 
-   bool CALLBACK window::GetAppsEnumWindowsProc(oswindow hwnd, LPARAM lparam)
+   bool CALLBACK interaction_impl::GetAppsEnumWindowsProc(oswindow hwnd, LPARAM lparam)
    {
       user::oswindow_array * phwnda = (user::oswindow_array *) lparam;
       phwnda->add(hwnd);
       return TRUE;
    }
 
-   void window::get_app_wnda(user::oswindow_array & wnda)
+   void interaction_impl::get_app_wnda(user::oswindow_array & wnda)
    {
       throw not_implemented(::get_thread_app());
 //      EnumWindows(GetAppsEnumWindowsProc, (LPARAM) &wnda);
    }
 
-   /*   void window::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
+   /*   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
    {
    _001DeferPaintLayeredWindowBackground(pdc);
    }*/
@@ -3279,7 +3279,7 @@ return 0;
       }
    };
 
-   void window::_001DeferPaintLayeredWindowBackground(HDC hdc)
+   void interaction_impl::_001DeferPaintLayeredWindowBackground(HDC hdc)
    {
 
       rect rectClient;
@@ -3378,7 +3378,7 @@ throw not_implemented(get_app());
 //               rect9.intersect(rect5, rectUpdate);
 //               if(rect9.width() >0 && rect9.height() > 0)
 //               {
-//                  /*::window * pwnd =  (window::FromHandlePermanent(hWnd));
+//                  /*::interaction_impl * pwnd =  (interaction_impl::FromHandlePermanent(hWnd));
 //                  if(pwnd == NULL)
 //                  {
 //                  for(int32_t l = 0; l < wndpa.get_count(); l++)
@@ -3459,14 +3459,14 @@ throw not_implemented(get_app());
 //      ::DeleteObject(rgnUpdate);
    }
 
-   void window::_001OnProdevianSynch(::signal_details * pobj)
+   void interaction_impl::_001OnProdevianSynch(::signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      System.get_event(m_pthread->m_pthread)->SetEvent();
   //    System.get_event(System.get_twf())->wait(millis(8400));
    }
 
-   void window::_001OnPaint(::signal_details * pobj)
+   void interaction_impl::_001OnPaint(::signal_details * pobj)
    {
 
       _001Expose();
@@ -3545,80 +3545,13 @@ throw not_implemented(get_app());
    }
 
 
-   void window::_001OnPrint(::signal_details * pobj)
+   void interaction_impl::_001OnPrint(::signal_details * pobj)
    {
 throw not_implemented(get_app());
-//      SCAST_PTR(::message::base, pbase, pobj);
-//
-//      if(pbase->m_wparam == NULL)
-//         return;
-//
-//      ::draw2d::graphics_sp graphics(get_app());
-//      WIN_DC(graphics.m_p)->Attach((HDC) pbase->m_wparam);
-//      rect rectx;
-//      ::draw2d::bitmap * pbitmap = &graphics->GetCurrentBitmap();
-//      ::GetCurrentObject((HDC) pbase->m_wparam, OBJ_BITMAP);
-//      //      DWORD dw = ::GetLastError();
-//      class size size = pbitmap->get_size();
-//      rectx.left = 0;
-//      rectx.top = 0;
-//      rectx.right = size.cx;
-//      rectx.bottom = size.cy;
-//      try
-//      {
-//         rect rectWindow;
-//         GetWindowRect(rectWindow);
-//
-//         ::draw2d::dib_sp dib(get_app());
-//         if(!dib->create(rectWindow.bottom_right()))
-//            return;
-//
-//         ::draw2d::graphics * pdc = dib->get_graphics();
-//
-//         if(pdc->get_handle() == NULL)
-//            return;
-//
-//         rect rectPaint;
-//         rect rectUpdate;
-//         rectUpdate = rectWindow;
-//         rectPaint = rectWindow;
-//         rectPaint.offset(-rectPaint.top_left());
-//         (dynamic_cast<::android::graphics * >(pdc))->SelectClipRgn(NULL);
-//         if(m_pguie != NULL && m_pguie != this)
-//         {
-//            m_pguie->_001OnDeferPaintLayeredWindowBackground(pdc);
-//         }
-//         else
-//         {
-//            _001OnDeferPaintLayeredWindowBackground(pdc);
-//         }
-//         (dynamic_cast<::android::graphics * >(pdc))->SelectClipRgn(NULL);
-//         (dynamic_cast<::android::graphics * >(pdc))->SetViewportOrg(point(0, 0));
-//         _000OnDraw(pdc);
-//         (dynamic_cast<::android::graphics * >(pdc))->SetViewportOrg(point(0, 0));
-//         //(dynamic_cast<::android::graphics * >(pdc))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
-//         (dynamic_cast<::android::graphics * >(pdc))->SelectClipRgn(NULL);
-//         (dynamic_cast<::android::graphics * >(pdc))->SetViewportOrg(point(0, 0));
-//
-//         graphics->SelectClipRgn( NULL);
-//         graphics->BitBlt(rectPaint.left, rectPaint.top,
-//            rectPaint.width(), rectPaint.height(),
-//            pdc, rectUpdate.left, rectUpdate.top,
-//            SRCCOPY);
-//
-//         graphics->TextOut(0, 0, "Te Amo CGCL", 11);
-//      }
-//      catch(...)
-//      {
-//      }
-//      graphics->FillSolidRect(rectx, RGB(255, 255, 255));
-//      WIN_DC(graphics.m_p)->Detach();
-//      pobj->m_bRet = true;
-//      pbase->set_lresult(0);
    }
 
 
-   void window::OnEnterIdle(UINT /*nWhy*/, sp(::window) /*pWho*/)
+   void interaction_impl::OnEnterIdle(UINT /*nWhy*/, sp(::interaction_impl) /*pWho*/)
    {
       // In some OLE inplace active scenarios, OLE will post a
       // message instead of sending it.  This causes so many WM_ENTERIDLE
@@ -3637,7 +3570,7 @@ throw not_implemented(get_app());
       Default();
    }
 
-   HBRUSH window::OnCtlColor(::draw2d::graphics *, sp(::window) pWnd, UINT)
+   HBRUSH interaction_impl::OnCtlColor(::draw2d::graphics *, sp(::interaction_impl) pWnd, UINT)
    {
       ASSERT(pWnd != NULL && ANDROID_WINDOW(pWnd)->get_handle() != NULL);
       LRESULT lResult;
@@ -3647,18 +3580,18 @@ throw not_implemented(get_app());
    }
 
    // implementation of OnCtlColor for default gray backgrounds
-   //   (works for any window containing controls)
+   //   (works for any interaction_impl containing controls)
    //  return value of FALSE means caller must call DefWindowProc's default
    //  TRUE means that 'hbrGray' will be used and the appropriate text
    //    ('clrText') and background colors are set.
-   bool PASCAL window::GrayCtlColor(HDC hDC, oswindow hWnd, UINT nCtlColor,
+   bool PASCAL interaction_impl::GrayCtlColor(HDC hDC, oswindow hWnd, UINT nCtlColor,
       HBRUSH hbrGray, COLORREF clrText)
    {
       throw not_implemented(::get_thread_app());
 //      if (hDC == NULL)
 //      {
 //         // sometimes Win32 passes a NULL hDC in the WM_CTLCOLOR message.
-//         //         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: hDC is NULL in window::GrayCtlColor; WM_CTLCOLOR not processed.\n");
+//         //         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: hDC is NULL in interaction_impl::GrayCtlColor; WM_CTLCOLOR not processed.\n");
 //         return FALSE;
 //      }
 //
@@ -3690,7 +3623,7 @@ throw not_implemented(get_app());
    /////////////////////////////////////////////////////////////////////////////
    // 'dialog data' support
 
-   /*bool window::UpdateData(bool bSaveAndValidate)
+   /*bool interaction_impl::UpdateData(bool bSaveAndValidate)
    {
    ASSERT(::IsWindow((oswindow) get_handle())); // calling UpdateData before DoModal?
 
@@ -3730,14 +3663,14 @@ throw not_implemented(get_app());
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // Centering dialog support (works for any non-child window)
+   // Centering dialog support (works for any non-child interaction_impl)
 
-   void window::CenterWindow(sp(::user::interaction) pAlternateOwner)
+   void interaction_impl::CenterWindow(sp(::user::interaction) pAlternateOwner)
    {
       throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
 //
-//      // determine owner window to center against
+//      // determine owner interaction_impl to center against
 //      DWORD dwStyle = GetStyle();
 //      sp(::user::interaction) hWndCenter = pAlternateOwner;
 //      if (pAlternateOwner == NULL)
@@ -3748,7 +3681,7 @@ throw not_implemented(get_app());
 //            hWndCenter = GetWindow(GW_OWNER);
 //         if (hWndCenter != NULL)
 //         {
-//            // let parent determine alternate center window
+//            // let parent determine alternate center interaction_impl
 //            sp(::user::interaction) hWndTemp =
 //               (sp(::user::interaction) )hWndCenter->send_message(WM_QUERYCENTERWND, 0, 0);
 //            if (hWndTemp != NULL)
@@ -3756,7 +3689,7 @@ throw not_implemented(get_app());
 //         }
 //      }
 //
-//      // get coordinates of the window relative to its parent
+//      // get coordinates of the interaction_impl relative to its parent
 //      rect rcDlg;
 //      GetWindowRect(&rcDlg);
 //      rect rcarea;
@@ -3825,7 +3758,7 @@ throw not_implemented(get_app());
 //         SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE);
    }
 
-   bool window::CheckAutoCenter()
+   bool interaction_impl::CheckAutoCenter()
    {
       return TRUE;
    }
@@ -3833,7 +3766,7 @@ throw not_implemented(get_app());
    /////////////////////////////////////////////////////////////////////////////
    // Dialog initialization support
 
-   bool window::ExecuteDlgInit(const char * lpszResourceName)
+   bool interaction_impl::ExecuteDlgInit(const char * lpszResourceName)
    {
       // find resource handle
       LPVOID lpResource = NULL;
@@ -3867,7 +3800,7 @@ throw not_implemented(get_app());
       return bResult;
    }
 
-   bool window::ExecuteDlgInit(LPVOID lpResource)
+   bool interaction_impl::ExecuteDlgInit(LPVOID lpResource)
    {
       throw not_implemented(get_app());
 //      bool bSuccess = TRUE;
@@ -3938,12 +3871,12 @@ throw not_implemented(get_app());
 //      return bSuccess;
    }
 
-   void window::UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHndler)
+   void interaction_impl::UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHndler)
    {
       UNREFERENCED_PARAMETER(pTarget);
       UNREFERENCED_PARAMETER(bDisableIfNoHndler);
       cmd_ui state(get_app());
-      window wndTemp;       // very temporary window just for CmdUI update
+      interaction_impl wndTemp;       // very temporary interaction_impl just for CmdUI update
 
       // walk all the kids - assume the IDs are for buttons
       /* xxx   for (oswindow hWndChild = ::GetTopWindow(get_handle()); hWndChild != NULL;
@@ -3954,18 +3887,18 @@ throw not_implemented(get_app());
       state.m_nID = __get_dialog_control_id(hWndChild);
       state.m_pOther = &wndTemp;
 
-      // check for reflect handlers in the child window
-      sp(::window) pWnd = ::android::window::FromHandlePermanent(hWndChild);
+      // check for reflect handlers in the child interaction_impl
+      sp(::interaction_impl) pWnd = ::android::interaction_impl::FromHandlePermanent(hWndChild);
       if (pWnd != NULL)
       {
       // call it directly to disable any routing
-      if (ANDROID_WINDOW(pWnd)->window::_001OnCommand(0, MAKELONG(0xffff,
+      if (ANDROID_WINDOW(pWnd)->interaction_impl::_001OnCommand(0, MAKELONG(0xffff,
       WM_COMMAND+WM_REFLECT_BASE), &state, NULL))
       continue;
       }
 
-      // check for handlers in the parent window
-      if (window::_001OnCommand((UINT)state.m_nID, CN_UPDATE_COMMAND_UI, &state, NULL))
+      // check for handlers in the parent interaction_impl
+      if (interaction_impl::_001OnCommand((UINT)state.m_nID, CN_UPDATE_COMMAND_UI, &state, NULL))
       continue;
 
       // determine whether to disable when no handler exists
@@ -3999,7 +3932,7 @@ throw not_implemented(get_app());
 
 
 
-   id window::RunModalLoop(DWORD dwFlags, ::base::live_object * pliveobject)
+   id interaction_impl::RunModalLoop(DWORD dwFlags, ::base::live_object * pliveobject)
    {
       // for tracking the idle time state
       bool bIdle = TRUE;
@@ -4094,7 +4027,7 @@ throw not_implemented(get_app());
                return -1;
             }
 
-            // show the window when certain special messages rec'd
+            // show the interaction_impl when certain special messages rec'd
             if (bShowIdle &&
                (msg.message == 0x118 || msg.message == WM_SYSKEYDOWN))
             {
@@ -4153,16 +4086,16 @@ ExitModal:
       return m_nModalResult;
    }
 
-   bool window::ContinueModal(int32_t iLevel)
+   bool interaction_impl::ContinueModal(int32_t iLevel)
    {
       return iLevel < m_iModalCount;
    }
 
-   void window::EndModalLoop(id nResult)
+   void interaction_impl::EndModalLoop(id nResult)
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
 
-      // this result will be returned from window::RunModalLoop
+      // this result will be returned from interaction_impl::RunModalLoop
       m_nModalResult = (int32_t) nResult;
 
       // make sure a message goes through to exit the modal loop
@@ -4178,11 +4111,11 @@ ExitModal:
       }
    }
 
-   void window::EndAllModalLoops(id nResult)
+   void interaction_impl::EndAllModalLoops(id nResult)
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
 
-      // this result will be returned from window::RunModalLoop
+      // this result will be returned from interaction_impl::RunModalLoop
       m_idModalResult = nResult;
 
       // make sure a message goes through to exit the modal loop
@@ -4210,14 +4143,14 @@ ExitModal:
    /////////////////////////////////////////////////////////////////////////////
    // frame_window (here for library granularity)
 
-   bool window::is_frame_window()
+   bool interaction_impl::is_frame_window()
    {
       return FALSE;
    }
    /////////////////////////////////////////////////////////////////////////////
-   // Extra window support for dynamic subclassing of controls
+   // Extra interaction_impl support for dynamic subclassing of controls
 
-   bool window::SubclassWindow(oswindow hWnd)
+   bool interaction_impl::SubclassWindow(oswindow hWnd)
    {
       if (!Attach(hWnd))
          return FALSE;
@@ -4239,7 +4172,7 @@ throw not_implemented(get_app());
 //#ifdef DEBUG
 //      else if (*lplpfn != oldWndProc)
 //      {
-//         TRACE(::ca2::trace::category_AppMsg, 0, "p: Trying to use SubclassWindow with incorrect window\n");
+//         TRACE(::ca2::trace::category_AppMsg, 0, "p: Trying to use SubclassWindow with incorrect interaction_impl\n");
 //         TRACE(::ca2::trace::category_AppMsg, 0, "\tderived class.\n");
 //         TRACE(::ca2::trace::category_AppMsg, 0, "\thWnd = $%08X (nIDC=$%08X) is not a %hs.\n", (UINT)(uint_ptr)hWnd,
 //            __get_dialog_control_id(hWnd), typeid(*this).name());
@@ -4253,7 +4186,7 @@ throw not_implemented(get_app());
 //      return TRUE;
 //   }
 //
-//   bool window::SubclassDlgItem(UINT nID, sp(::window) pParent)
+//   bool interaction_impl::SubclassDlgItem(UINT nID, sp(::interaction_impl) pParent)
 //   {
 //      ASSERT(pParent != NULL);
 //      ASSERT(::IsWindow(ANDROID_WINDOW(pParent)->get_handle()));
@@ -4267,7 +4200,7 @@ throw not_implemented(get_app());
 //      return FALSE;   // control not found
    }
 
-   oswindow window::UnsubclassWindow()
+   oswindow interaction_impl::UnsubclassWindow()
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
 
@@ -4277,7 +4210,7 @@ throw not_implemented(get_app());
 //      SetWindowLongPtr(get_handle(), GWLP_WNDPROC, (int_ptr)*lplpfn);
 //      *lplpfn = NULL;
 //
-//      // and Detach the oswindow from the window object
+//      // and Detach the oswindow from the interaction_impl object
 //      return Detach();
    }
 
@@ -4290,7 +4223,7 @@ throw not_implemented(get_app());
 
 
 
-   bool window::IsChild(sp(::user::interaction) pWnd)
+   bool interaction_impl::IsChild(sp(::user::interaction) pWnd)
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
       if(ANDROID_WINDOW(pWnd)->get_handle() == NULL)
@@ -4303,12 +4236,12 @@ throw not_implemented(get_app());
       }
    }
 
-   bool window::IsWindow()
+   bool interaction_impl::IsWindow()
    {
       return ::IsWindow((oswindow) get_handle()) != FALSE;
    }
 
-   oswindow window::get_handle() const
+   oswindow interaction_impl::get_handle() const
    {
       return (oswindow) get_os_data();
    }
@@ -4316,7 +4249,7 @@ throw not_implemented(get_app());
 
    #define SWP_IGNOREPALACEGUARD 0x80000000
 
-   bool window::SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags)
+   bool interaction_impl::SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags)
    {
 
 
@@ -4380,24 +4313,24 @@ throw not_implemented(get_app());
             hints.flags = PSize;
             hints.width = cx;
             hints.height = cy;
-            XResizeWindow(m_oswindow->display(), m_oswindow->window(), cx, cy);
-//            XClearWindow(m_oswindow->display(), m_oswindow->window());
+            XResizeWindow(m_oswindow->display(), m_oswindow->interaction_impl(), cx, cy);
+//            XClearWindow(m_oswindow->display(), m_oswindow->interaction_impl());
          }
       }
       else
       {
          if(nFlags & SWP_NOSIZE)
          {
-            XMoveWindow(m_oswindow->display(), m_oswindow->window(), x, y);
-  //          XClearWindow(m_oswindow->display(), m_oswindow->window());
+            XMoveWindow(m_oswindow->display(), m_oswindow->interaction_impl(), x, y);
+  //          XClearWindow(m_oswindow->display(), m_oswindow->interaction_impl());
             hints.flags = PPosition;
             hints.x = x;
             hints.y = y;
          }
          else
          {
-            XMoveResizeWindow(m_oswindow->display(), m_oswindow->window(), x, y, cx, cy);
-    //        XClearWindow(m_oswindow->display(), m_oswindow->window());
+            XMoveResizeWindow(m_oswindow->display(), m_oswindow->interaction_impl(), x, y, cx, cy);
+    //        XClearWindow(m_oswindow->display(), m_oswindow->interaction_impl());
             hints.flags = PPosition | PSize;
             hints.x = x;
             hints.y = y;
@@ -4409,7 +4342,7 @@ throw not_implemented(get_app());
       if(!IsWindowVisible())
       {
 
-         XSetNormalHints(m_oswindow->display(), m_oswindow->window(), &hints);
+         XSetNormalHints(m_oswindow->display(), m_oswindow->interaction_impl(), &hints);
 
       }
 
@@ -4419,7 +4352,7 @@ throw not_implemented(get_app());
          if(!IsWindowVisible())
          {
 
-            XMapWindow(m_oswindow->display(), m_oswindow->window());
+            XMapWindow(m_oswindow->display(), m_oswindow->interaction_impl());
 
          }
 
@@ -4481,13 +4414,13 @@ throw not_implemented(get_app());
 
    }
 
-   void window::MoveWindow(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, bool bRepaint)
+   void interaction_impl::MoveWindow(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, bool bRepaint)
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
       SetWindowPos(0, x, y, nWidth, nHeight, bRepaint ? SWP_SHOWWINDOW : 0);
    }
 
-   void window::ClientToScreen(LPRECT lprect)
+   void interaction_impl::ClientToScreen(LPRECT lprect)
    {
 
       class rect64 rectWindow;
@@ -4500,7 +4433,7 @@ throw not_implemented(get_app());
 
    }
 
-   void window::ClientToScreen(LPPOINT lppoint)
+   void interaction_impl::ClientToScreen(LPPOINT lppoint)
    {
       class rect64 rectWindow;
       GetWindowRect(rectWindow);
@@ -4510,7 +4443,7 @@ throw not_implemented(get_app());
    }
 
 
-   void window::ClientToScreen(__rect64 * lprect)
+   void interaction_impl::ClientToScreen(__rect64 * lprect)
    {
       class rect rectWindow;
       GetWindowRect(rectWindow);
@@ -4522,7 +4455,7 @@ throw not_implemented(get_app());
 
    }
 
-   void window::ClientToScreen(__point64 * lppoint)
+   void interaction_impl::ClientToScreen(__point64 * lppoint)
    {
       class rect64 rectWindow;
       GetWindowRect(rectWindow);
@@ -4532,7 +4465,7 @@ throw not_implemented(get_app());
    }
 
 
-   void window::ScreenToClient(LPRECT lprect)
+   void interaction_impl::ScreenToClient(LPRECT lprect)
    {
       class rect64 rectWindow;
       GetWindowRect(rectWindow);
@@ -4544,7 +4477,7 @@ throw not_implemented(get_app());
 
    }
 
-   void window::ScreenToClient(LPPOINT lppoint)
+   void interaction_impl::ScreenToClient(LPPOINT lppoint)
    {
       class rect64 rectWindow;
       GetWindowRect(rectWindow);
@@ -4554,7 +4487,7 @@ throw not_implemented(get_app());
    }
 
 
-   void window::ScreenToClient(__rect64 * lprect)
+   void interaction_impl::ScreenToClient(__rect64 * lprect)
    {
       class rect64 rectWindow;
       GetWindowRect(rectWindow);
@@ -4566,7 +4499,7 @@ throw not_implemented(get_app());
 
    }
 
-   void window::ScreenToClient(__point64 * lppoint)
+   void interaction_impl::ScreenToClient(__point64 * lppoint)
    {
       class rect64 rectWindow;
       GetWindowRect(rectWindow);
@@ -4576,11 +4509,11 @@ throw not_implemented(get_app());
    }
 
 
-   void window::GetWindowRect(__rect64 * lprect)
+   void interaction_impl::GetWindowRect(__rect64 * lprect)
    {
       if(!::IsWindow((oswindow) get_handle()))
-         throw simple_exception(get_app(), "no more a window");
-      // if it is temporary window - probably not ca2 wrapped window
+         throw simple_exception(get_app(), "no more a interaction_impl");
+      // if it is temporary interaction_impl - probably not ca2 wrapped interaction_impl
       //if(m_pguie == NULL || m_pguie == this)
       {
          rect rect32;
@@ -4593,10 +4526,10 @@ throw not_implemented(get_app());
       }
    }
 
-   void window::GetClientRect(__rect64 * lprect)
+   void interaction_impl::GetClientRect(__rect64 * lprect)
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
-      // if it is temporary window - probably not ca2 wrapped window
+      // if it is temporary interaction_impl - probably not ca2 wrapped interaction_impl
       //if(m_pguie == NULL || m_pguie == this)
       {
          rect rect32;
@@ -4609,13 +4542,13 @@ throw not_implemented(get_app());
       }
    }
 
-   id window::SetDlgCtrlId(id id)
+   id interaction_impl::SetDlgCtrlId(id id)
    {
       m_id = id;
       return m_id;
    }
 
-   id window::GetDlgCtrlId()
+   id interaction_impl::GetDlgCtrlId()
    {
       return m_id;
    }
@@ -4638,12 +4571,12 @@ throw not_implemented(get_app());
    }
    }*/
 
-   void window::_001WindowMaximize()
+   void interaction_impl::_001WindowMaximize()
    {
       ::user::interaction::_001WindowMaximize();
    }
 
-   void window::_001WindowRestore()
+   void interaction_impl::_001WindowRestore()
    {
       m_eappearance = appearance_normal;
       if(m_pguie != NULL)
@@ -4651,7 +4584,7 @@ throw not_implemented(get_app());
       ::ShowWindow((oswindow) get_handle(), SW_RESTORE);
    }
 
-   bool window::ShowWindow(int32_t nCmdShow)
+   bool interaction_impl::ShowWindow(int32_t nCmdShow)
    {
       if(!::IsWindow((oswindow) get_handle()))
          return false;
@@ -4704,7 +4637,7 @@ throw not_implemented(get_app());
    }
 
 
-   bool window::IsIconic()
+   bool interaction_impl::IsIconic()
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
       if(GetExStyle() & WS_EX_LAYERED)
@@ -4717,35 +4650,35 @@ throw not_implemented(get_app());
       }
    }
 
-   bool window::IsZoomed()
+   bool interaction_impl::IsZoomed()
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
       return m_pguie->m_eappearance == appearance_zoomed;
    }
 
 
-   sp(::user::interaction) window::get_parent() const
+   sp(::user::interaction) interaction_impl::get_parent() const
    {
       if(!::IsWindow((oswindow) get_handle()))
          return NULL;
       if(get_handle() == NULL)
          return NULL;
-      //return ::android::window::from_handle(::GetParent(get_handle()));
+      //return ::android::interaction_impl::from_handle(::GetParent(get_handle()));
       return NULL;
    }
 
-   LONG window::GetWindowLong(int32_t nIndex)
+   LONG interaction_impl::GetWindowLong(int32_t nIndex)
    {
       return ::GetWindowLong((oswindow) get_handle(), nIndex);
    }
 
-   LONG window::SetWindowLong(int32_t nIndex, LONG lValue)
+   LONG interaction_impl::SetWindowLong(int32_t nIndex, LONG lValue)
    {
       return ::SetWindowLong((oswindow) get_handle(), nIndex, lValue);
    }
 
 
-   sp(::user::interaction) window::release_capture()
+   sp(::user::interaction) interaction_impl::release_capture()
    {
       //throw not_implemented(get_app());
       oswindow hwndcapture = ::GetCapture();
@@ -4766,11 +4699,11 @@ throw not_implemented(get_app());
       }
       else
       {
-         return window::GetCapture()->release_capture();
+         return interaction_impl::GetCapture()->release_capture();
       }
    }
 
-   sp(::user::interaction) window::get_capture()
+   sp(::user::interaction) interaction_impl::get_capture()
    {
 //      throw not_implemented(get_app());
       oswindow hwndcapture = ::GetCapture();
@@ -4803,55 +4736,55 @@ throw not_implemented(get_app());
       }
       else
       {
-         return window::GetCapture()->get_capture();
+         return interaction_impl::GetCapture()->get_capture();
       }
    }
 
 
 
-   // window
-   /* window::operator oswindow() const
+   // interaction_impl
+   /* interaction_impl::operator oswindow() const
    { return this == NULL ? NULL : get_handle(); }*/
-   bool window::operator==(const ::window& wnd) const
+   bool interaction_impl::operator==(const ::interaction_impl& wnd) const
    {
-      return ANDROID_WINDOW(const_cast < ::window * >  (&wnd))->get_handle() == get_handle();
+      return ANDROID_WINDOW(const_cast < ::interaction_impl * >  (&wnd))->get_handle() == get_handle();
    }
 
-   bool window::operator!=(const ::window& wnd) const
+   bool interaction_impl::operator!=(const ::interaction_impl& wnd) const
    {
-      return ANDROID_WINDOW(const_cast < ::window * >  (&wnd))->get_handle() != get_handle();
+      return ANDROID_WINDOW(const_cast < ::interaction_impl * >  (&wnd))->get_handle() != get_handle();
    }
 
-   DWORD window::GetStyle()
+   DWORD interaction_impl::GetStyle()
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
       return (DWORD)::GetWindowLong((oswindow) get_handle(), GWL_STYLE);
    }
 
-   DWORD window::GetExStyle()
+   DWORD interaction_impl::GetExStyle()
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
       return (DWORD)::GetWindowLong((oswindow) get_handle(), GWL_EXSTYLE);
    }
 
-   bool window::ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+   bool interaction_impl::ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags)
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
       return ModifyStyle((oswindow) get_handle(), dwRemove, dwAdd, nFlags);
    }
 
-   bool window::ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+   bool interaction_impl::ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags)
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
       return ModifyStyleEx((oswindow) get_handle(), dwRemove, dwAdd, nFlags);
    }
 
-   void window::set_owner(sp(::user::interaction) pOwnerWnd)
+   void interaction_impl::set_owner(sp(::user::interaction) pOwnerWnd)
    {
       m_pguieOwner = pOwnerWnd;
    }
 
-   LRESULT window::send_message(UINT message, WPARAM wparam, lparam lparam)
+   LRESULT interaction_impl::send_message(UINT message, WPARAM wparam, lparam lparam)
    {
 
       ::ca::smart_pointer < ::message::base > spbase;
@@ -4910,7 +4843,7 @@ throw not_implemented(get_app());
    }
 
 
-   bool window::post_message(UINT message, WPARAM wparam, lparam lparam)
+   bool interaction_impl::post_message(UINT message, WPARAM wparam, lparam lparam)
    {
 
       return ::PostMessage((oswindow) get_handle(), message, wparam, lparam) != FALSE;
@@ -4918,7 +4851,7 @@ throw not_implemented(get_app());
    }
 
 
-   bool window::DragDetect(POINT pt) const
+   bool interaction_impl::DragDetect(POINT pt) const
    {
 
       throw not_implemented(get_app());
@@ -4929,7 +4862,7 @@ throw not_implemented(get_app());
    }
 
 
-   void window::SetWindowText(const char * lpszString)
+   void interaction_impl::SetWindowText(const char * lpszString)
    {
 
       m_strWindowText = lpszString;
@@ -4937,7 +4870,7 @@ throw not_implemented(get_app());
    }
 
 
-   strsize window::GetWindowText(LPTSTR lpszString, strsize nMaxCount)
+   strsize interaction_impl::GetWindowText(LPTSTR lpszString, strsize nMaxCount)
    {
 
       strncpy(lpszString, m_strWindowText, nMaxCount);
@@ -4947,7 +4880,7 @@ throw not_implemented(get_app());
    }
 
 
-   strsize window::GetWindowTextLength()
+   strsize interaction_impl::GetWindowTextLength()
    {
 
       throw not_implemented(get_app());
@@ -4958,7 +4891,7 @@ throw not_implemented(get_app());
    }
 
 
-   void window::SetFont(::draw2d::font* pfont, bool bRedraw)
+   void interaction_impl::SetFont(::draw2d::font* pfont, bool bRedraw)
    {
 
       UNREFERENCED_PARAMETER(bRedraw);
@@ -4968,7 +4901,7 @@ throw not_implemented(get_app());
    }
 
 
-   ::draw2d::font* window::GetFont()
+   ::draw2d::font* interaction_impl::GetFont()
    {
 
       ASSERT(::IsWindow((oswindow) get_handle()));
@@ -4978,7 +4911,7 @@ throw not_implemented(get_app());
    }
 
 
-   void window::DragAcceptFiles(bool bAccept)
+   void interaction_impl::DragAcceptFiles(bool bAccept)
    {
 
       throw not_implemented(get_app());
@@ -4989,7 +4922,7 @@ throw not_implemented(get_app());
    }
 
 
-   sp(::user::frame_window) window::EnsureParentFrame()
+   sp(::user::frame_window) interaction_impl::EnsureParentFrame()
    {
 
       sp(::user::frame_window) pFrameWnd=GetParentFrame();
@@ -5001,7 +4934,7 @@ throw not_implemented(get_app());
    }
 
 
-   sp(::user::interaction) window::EnsureTopLevelParent()
+   sp(::user::interaction) interaction_impl::EnsureTopLevelParent()
    {
 
       sp(::user::interaction)pWnd=GetTopLevelParent();
@@ -5013,7 +4946,7 @@ throw not_implemented(get_app());
    }
 
 
-   void window::MoveWindow(LPCRECT lpRect, bool bRepaint)
+   void interaction_impl::MoveWindow(LPCRECT lpRect, bool bRepaint)
    {
 
       MoveWindow(lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top, bRepaint);
@@ -5021,7 +4954,7 @@ throw not_implemented(get_app());
    }
 
 
-   UINT window::ArrangeIconicWindows()
+   UINT interaction_impl::ArrangeIconicWindows()
    {
 
       throw not_implemented(get_app());
@@ -5031,7 +4964,7 @@ throw not_implemented(get_app());
    }
 
 
-   int32_t window::SetWindowRgn(HRGN hRgn, bool bRedraw)
+   int32_t interaction_impl::SetWindowRgn(HRGN hRgn, bool bRedraw)
    {
 
       throw not_implemented(get_app());
@@ -5041,7 +4974,7 @@ throw not_implemented(get_app());
    }
 
 
-   int32_t window::GetWindowRgn(HRGN hRgn)
+   int32_t interaction_impl::GetWindowRgn(HRGN hRgn)
    {
 
       throw not_implemented(get_app());
@@ -5051,7 +4984,7 @@ throw not_implemented(get_app());
    }
 
 
-   bool window::BringWindowToTop()
+   bool interaction_impl::BringWindowToTop()
    {
 
 //      throw not_implemented(get_app());
@@ -5060,7 +4993,7 @@ throw not_implemented(get_app());
    }
 
 
-   void window::MapWindowPoints(::window * pwndTo, LPPOINT lpPoint, UINT nCount)
+   void interaction_impl::MapWindowPoints(::interaction_impl * pwndTo, LPPOINT lpPoint, UINT nCount)
    {
 
       throw not_implemented(get_app());
@@ -5071,7 +5004,7 @@ throw not_implemented(get_app());
    }
 
 
-   void window::MapWindowPoints(::window * pwndTo, LPRECT lpRect)
+   void interaction_impl::MapWindowPoints(::interaction_impl * pwndTo, LPRECT lpRect)
    {
 
       throw not_implemented(get_app());
@@ -5082,7 +5015,7 @@ throw not_implemented(get_app());
    }
 
 
-   ::draw2d::graphics * window::GetDC()
+   ::draw2d::graphics * interaction_impl::GetDC()
    {
 
       ::draw2d::graphics_sp g(allocer());
@@ -5113,13 +5046,13 @@ throw not_implemented(get_app());
       rectClient.top = 0;
       rectClient.right = 500;
       rectClient.bottom = 500;
-//      (dynamic_cast < ::android::graphics * >(g.m_p))->attach(cairo_create(cairo_xlib_surface_create(oswindow->display(), oswindow->window(), oswindow->visual(),rectClient.width(), rectClient.height())));
+//      (dynamic_cast < ::android::graphics * >(g.m_p))->attach(cairo_create(cairo_xlib_surface_create(oswindow->display(), oswindow->interaction_impl(), oswindow->visual(),rectClient.width(), rectClient.height())));
       return g.detach();
       */
       return NULL;
    }
 
-   ::draw2d::graphics * window::GetWindowDC()
+   ::draw2d::graphics * interaction_impl::GetWindowDC()
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
       ::draw2d::graphics_sp g(allocer());
@@ -5127,7 +5060,7 @@ throw not_implemented(get_app());
       return g.detach();
    }
 
-   bool window::ReleaseDC(::draw2d::graphics * pgraphics)
+   bool interaction_impl::ReleaseDC(::draw2d::graphics * pgraphics)
    {
 
       if(pgraphics == NULL)
@@ -5162,69 +5095,69 @@ if(psurface == g_cairosurface)
 
    }
 
-   void window::UpdateWindow()
+   void interaction_impl::UpdateWindow()
    {
       throw not_implemented(get_app());
       //::UpdateWindow(get_handle());
    }
 
-   void window::SetRedraw(bool bRedraw)
+   void interaction_impl::SetRedraw(bool bRedraw)
    {
       throw not_implemented(get_app());
       //ASSERT(::IsWindow((oswindow) get_handle()));
       //::SendMessage(get_handle(), WM_SETREDRAW, bRedraw, 0);
    }
 
-   bool window::GetUpdateRect(LPRECT lpRect, bool bErase)
+   bool interaction_impl::GetUpdateRect(LPRECT lpRect, bool bErase)
    {
       throw not_implemented(get_app());
       //ASSERT(::IsWindow((oswindow) get_handle()));
       //return ::GetUpdateRect(get_handle(), lpRect, bErase) != FALSE;
    }
 
-   int32_t window::GetUpdateRgn(draw2d::region * pRgn, bool bErase)
+   int32_t interaction_impl::GetUpdateRgn(draw2d::region * pRgn, bool bErase)
    {
       throw not_implemented(get_app());
       //ASSERT(::IsWindow((oswindow) get_handle()));
       //return ::GetUpdateRgn(get_handle(), (HRGN)pRgn->get_handle(), bErase);
    }
 
-   void window::Invalidate(bool bErase)
+   void interaction_impl::Invalidate(bool bErase)
    {
       throw not_implemented(get_app());
       //ASSERT(::IsWindow((oswindow) get_handle()));
       //::InvalidateRect(get_handle(), NULL, bErase);
    }
 
-   void window::InvalidateRect(LPCRECT lpRect, bool bErase)
+   void interaction_impl::InvalidateRect(LPCRECT lpRect, bool bErase)
    {
       throw not_implemented(get_app());
       //ASSERT(::IsWindow((oswindow) get_handle()));
       //::InvalidateRect(get_handle(), lpRect, bErase);
    }
 
-   void window::InvalidateRgn(::draw2d::region* pRgn, bool bErase)
+   void interaction_impl::InvalidateRgn(::draw2d::region* pRgn, bool bErase)
    {
       throw not_implemented(get_app());
       //ASSERT(::IsWindow((oswindow) get_handle()));
       //::InvalidateRgn(get_handle(), (HRGN)pRgn->get_handle(), bErase);
    }
 
-   void window::ValidateRect(LPCRECT lpRect)
+   void interaction_impl::ValidateRect(LPCRECT lpRect)
    {
       throw not_implemented(get_app());
       //ASSERT(::IsWindow((oswindow) get_handle()));
       //::ValidateRect(get_handle(), lpRect);
    }
 
-   void window::ValidateRgn(::draw2d::region* pRgn)
+   void interaction_impl::ValidateRgn(::draw2d::region* pRgn)
    {
       throw not_implemented(get_app());
       //ASSERT(::IsWindow((oswindow) get_handle()));
       //::ValidateRgn(get_handle(), (HRGN)pRgn->get_handle());
    }
 
-   bool window::IsWindowVisible()
+   bool interaction_impl::IsWindowVisible()
    {
 
    mutex_lock sl(user_mutex(), true);
@@ -5251,7 +5184,7 @@ if(psurface == g_cairosurface)
    }
 
 
-   void window::ShowOwnedPopups(bool bShow)
+   void interaction_impl::ShowOwnedPopups(bool bShow)
    {
 
       throw not_implemented(get_app());
@@ -5260,12 +5193,12 @@ if(psurface == g_cairosurface)
 
    }
 
-   void window::SendMessageToDescendants(UINT message, WPARAM wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
+   void interaction_impl::SendMessageToDescendants(UINT message, WPARAM wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
-      //window::SendMessageToDescendants(get_handle(), message, wparam, lparam, bDeep, bOnlyPerm);
+      //interaction_impl::SendMessageToDescendants(get_handle(), message, wparam, lparam, bDeep, bOnlyPerm);
 
-      // walk through oswindows to avoid creating temporary window objects
+      // walk through oswindows to avoid creating temporary interaction_impl objects
       // unless we need to call this function recursively
       user::interaction * pui = m_pguie->get_top_child();
       while(pui != NULL)
@@ -5299,14 +5232,14 @@ if(psurface == g_cairosurface)
       }
    }
 
-   sp(::user::interaction) window::GetDescendantWindow(id id)
+   sp(::user::interaction) interaction_impl::GetDescendantWindow(id id)
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
-      return window::GetDescendantWindow(this, id);
+      return interaction_impl::GetDescendantWindow(this, id);
    }
 
 
-   ::draw2d::graphics * window::GetDCEx(::draw2d::region * prgnClip, DWORD flags)
+   ::draw2d::graphics * interaction_impl::GetDCEx(::draw2d::region * prgnClip, DWORD flags)
    {
 
       throw not_implemented(get_app());
@@ -5317,7 +5250,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   bool window::LockWindowUpdate()
+   bool interaction_impl::LockWindowUpdate()
    {
 
       throw not_implemented(get_app());
@@ -5326,7 +5259,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   void window::UnlockWindowUpdate()
+   void interaction_impl::UnlockWindowUpdate()
    {
 
       throw not_implemented(get_app());
@@ -5335,7 +5268,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   bool window::RedrawWindow(LPCRECT lpRectUpdate, ::draw2d::region * prgnUpdate, UINT flags)
+   bool interaction_impl::RedrawWindow(LPCRECT lpRectUpdate, ::draw2d::region * prgnUpdate, UINT flags)
    {
 
       if(System.get_twf() == NULL)
@@ -5353,7 +5286,7 @@ if(psurface == g_cairosurface)
    }
 
 /*
-   bool window::EnableScrollBar(int32_t nSBFlags, UINT nArrowFlags)
+   bool interaction_impl::EnableScrollBar(int32_t nSBFlags, UINT nArrowFlags)
    {
 
       ASSERT(::IsWindow((oswindow) get_handle()));
@@ -5363,7 +5296,7 @@ if(psurface == g_cairosurface)
    }
 */
 
-   bool window::DrawAnimatedRects(int32_t idAni, CONST RECT *lprcFrom, CONST RECT *lprcTo)
+   bool interaction_impl::DrawAnimatedRects(int32_t idAni, CONST RECT *lprcFrom, CONST RECT *lprcTo)
    {
 
       throw not_implemented(get_app());
@@ -5372,7 +5305,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   bool window::DrawCaption(::draw2d::graphics * pgraphics, LPCRECT lprc, UINT uFlags)
+   bool interaction_impl::DrawCaption(::draw2d::graphics * pgraphics, LPCRECT lprc, UINT uFlags)
    {
 
       throw not_implemented(get_app());
@@ -5381,7 +5314,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   uint_ptr window::SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, DWORD))
+   uint_ptr interaction_impl::SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, DWORD))
    {
 
 
@@ -5398,7 +5331,7 @@ if(psurface == g_cairosurface)
    }
 
 
-   bool window::KillTimer(uint_ptr nIDEvent)
+   bool interaction_impl::KillTimer(uint_ptr nIDEvent)
    {
 
        m_pguie->m_pthread->m_pthread->unset_timer(m_pguie, nIDEvent);
@@ -5410,7 +5343,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   bool window::IsWindowEnabled()
+   bool interaction_impl::IsWindowEnabled()
    {
 
       return true;
@@ -5424,7 +5357,7 @@ if(psurface == g_cairosurface)
    }
 
 
-   bool window::EnableWindow(bool bEnable)
+   bool interaction_impl::EnableWindow(bool bEnable)
    {
 
 /*      ASSERT(::IsWindow((oswindow) get_handle()));
@@ -5436,24 +5369,24 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::user::interaction) window::GetActiveWindow()
+   sp(::user::interaction) interaction_impl::GetActiveWindow()
    {
 
       throw not_implemented(get_app());
-      //return ::android::window::from_handle(::GetActiveWindow());
+      //return ::android::interaction_impl::from_handle(::GetActiveWindow());
 
    }
 
-   sp(::user::interaction) window::SetActiveWindow()
+   sp(::user::interaction) interaction_impl::SetActiveWindow()
    {
 
       throw not_implemented(get_app());
       //ASSERT(::IsWindow((oswindow) get_handle()));
-      //return ::android::window::from_handle(::SetActiveWindow(get_handle()));
+      //return ::android::interaction_impl::from_handle(::SetActiveWindow(get_handle()));
 
    }
 
-   sp(::window) PASCAL window::GetCapture()
+   sp(::interaction_impl) PASCAL interaction_impl::GetCapture()
    {
 
       if(::GetCapture() == NULL)
@@ -5463,7 +5396,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::user::interaction) window::set_capture(sp(::user::interaction) pinterface)
+   sp(::user::interaction) interaction_impl::set_capture(sp(::user::interaction) pinterface)
    {
 
       ASSERT(::IsWindow((oswindow) get_handle()));
@@ -5482,7 +5415,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::window) PASCAL window::GetFocus()
+   sp(::interaction_impl) PASCAL interaction_impl::GetFocus()
    {
 
       oswindow w = ::GetFocus();
@@ -5494,7 +5427,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::user::interaction) window::SetFocus()
+   sp(::user::interaction) interaction_impl::SetFocus()
    {
 
       ASSERT(::IsWindow((oswindow) get_handle()));
@@ -5508,17 +5441,17 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::window) PASCAL window::GetDesktopWindow()
+   sp(::interaction_impl) PASCAL interaction_impl::GetDesktopWindow()
    {
 /*
-      return ::android::window::from_handle(::GetDesktopWindow());
+      return ::android::interaction_impl::from_handle(::GetDesktopWindow());
 */
       return NULL;
    }
 
 
    // Helper for radio buttons
-   int32_t window::GetCheckedRadioButton(int32_t nIDFirstButton, int32_t nIDLastButton)
+   int32_t interaction_impl::GetCheckedRadioButton(int32_t nIDFirstButton, int32_t nIDLastButton)
    {
       for (int32_t nID = nIDFirstButton; nID <= nIDLastButton; nID++)
       {
@@ -5528,7 +5461,7 @@ if(psurface == g_cairosurface)
       return 0; // invalid ID
    }
 
-   void window::CheckDlgButton(int32_t nIDButton, UINT nCheck)
+   void interaction_impl::CheckDlgButton(int32_t nIDButton, UINT nCheck)
    {
 
       throw not_implemented(get_app());
@@ -5537,7 +5470,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   void window::CheckRadioButton(int32_t nIDFirstButton, int32_t nIDLastButton, int32_t nIDCheckButton)
+   void interaction_impl::CheckRadioButton(int32_t nIDFirstButton, int32_t nIDLastButton, int32_t nIDCheckButton)
    {
 
       throw not_implemented(get_app());
@@ -5546,7 +5479,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   int32_t window::DlgDirList(LPTSTR lpPathSpec, int32_t nIDListBox, int32_t nIDStaticPath, UINT nFileType)
+   int32_t interaction_impl::DlgDirList(LPTSTR lpPathSpec, int32_t nIDListBox, int32_t nIDStaticPath, UINT nFileType)
    {
 
       throw not_implemented(get_app());
@@ -5555,7 +5488,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   int32_t window::DlgDirListComboBox(LPTSTR lpPathSpec, int32_t nIDComboBox, int32_t nIDStaticPath, UINT nFileType)
+   int32_t interaction_impl::DlgDirListComboBox(LPTSTR lpPathSpec, int32_t nIDComboBox, int32_t nIDStaticPath, UINT nFileType)
    {
 
       throw not_implemented(get_app());
@@ -5564,7 +5497,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   bool window::DlgDirSelect(LPTSTR lpString, int32_t nSize, int32_t nIDListBox)
+   bool interaction_impl::DlgDirSelect(LPTSTR lpString, int32_t nSize, int32_t nIDListBox)
    {
 
       throw not_implemented(get_app());
@@ -5573,7 +5506,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   bool window::DlgDirSelectComboBox(LPTSTR lpString, int32_t nSize, int32_t nIDComboBox)
+   bool interaction_impl::DlgDirSelectComboBox(LPTSTR lpString, int32_t nSize, int32_t nIDComboBox)
    {
 
       throw not_implemented(get_app());
@@ -5583,7 +5516,7 @@ if(psurface == g_cairosurface)
    }
 
 /*
-   void window::GetDlgItem(id id, oswindow* phWnd) const
+   void interaction_impl::GetDlgItem(id id, oswindow* phWnd) const
    {
 
       ASSERT(::IsWindow((oswindow) get_handle()));
@@ -5594,7 +5527,7 @@ if(psurface == g_cairosurface)
 */
 
 /*
-   UINT window::GetDlgItemInt(int32_t nID, WINBOOL * lpTrans, bool bSigned) const
+   UINT interaction_impl::GetDlgItemInt(int32_t nID, WINBOOL * lpTrans, bool bSigned) const
    {
 
       ASSERT(::IsWindow((oswindow) get_handle()));
@@ -5604,31 +5537,31 @@ if(psurface == g_cairosurface)
    }
 */
 
-//   int32_t window::GetDlgItemText(int32_t nID, LPTSTR lpStr, int32_t nMaxCount) const
+//   int32_t interaction_impl::GetDlgItemText(int32_t nID, LPTSTR lpStr, int32_t nMaxCount) const
 //   {
 //
 //      throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle())); return ::GetDlgItemText(get_handle(), nID, lpStr, nMaxCount);}
 
-   sp(::window) window::GetNextDlgGroupItem(::window * pWndCtl, bool bPrevious) const
+   sp(::interaction_impl) interaction_impl::GetNextDlgGroupItem(::interaction_impl * pWndCtl, bool bPrevious) const
    {
 
       throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::android::window::from_handle(::GetNextDlgGroupItem(get_handle(), (oswindow) pWndCtl->get_handle(), bPrevious));
+//      return ::android::interaction_impl::from_handle(::GetNextDlgGroupItem(get_handle(), (oswindow) pWndCtl->get_handle(), bPrevious));
 
    }
 
-   sp(::window) window::GetNextDlgTabItem(::window * pWndCtl, bool bPrevious) const
+   sp(::interaction_impl) interaction_impl::GetNextDlgTabItem(::interaction_impl * pWndCtl, bool bPrevious) const
    {
 
       throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::android::window::from_handle(::GetNextDlgTabItem(get_handle(), (oswindow) pWndCtl->get_handle(), bPrevious));
+//      return ::android::interaction_impl::from_handle(::GetNextDlgTabItem(get_handle(), (oswindow) pWndCtl->get_handle(), bPrevious));
 
    }
 
-   UINT window::IsDlgButtonChecked(int32_t nIDButton) const
+   UINT interaction_impl::IsDlgButtonChecked(int32_t nIDButton) const
    {
 
       throw not_implemented(get_app());
@@ -5637,7 +5570,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   LPARAM window::SendDlgItemMessage(int32_t nID, UINT message, WPARAM wparam, LPARAM lparam)
+   LPARAM interaction_impl::SendDlgItemMessage(int32_t nID, UINT message, WPARAM wparam, LPARAM lparam)
    {
 
       throw not_implemented(get_app());
@@ -5646,7 +5579,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   void window::SetDlgItemInt(int32_t nID, UINT nValue, bool bSigned)
+   void interaction_impl::SetDlgItemInt(int32_t nID, UINT nValue, bool bSigned)
    {
 
       throw not_implemented(get_app());
@@ -5655,7 +5588,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   void window::SetDlgItemText(int32_t nID, const char * lpszString)
+   void interaction_impl::SetDlgItemText(int32_t nID, const char * lpszString)
    {
 
       throw not_implemented(get_app());
@@ -5664,7 +5597,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   int32_t window::ScrollWindowEx(int32_t dx, int32_t dy, LPCRECT lpRectScroll, LPCRECT lpRectClip, ::draw2d::region * prgnUpdate, LPRECT lpRectUpdate, UINT flags)
+   int32_t interaction_impl::ScrollWindowEx(int32_t dx, int32_t dy, LPCRECT lpRectScroll, LPCRECT lpRectClip, ::draw2d::region * prgnUpdate, LPRECT lpRectUpdate, UINT flags)
    {
 
       throw not_implemented(get_app());
@@ -5673,7 +5606,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   void window::ShowScrollBar(UINT nBar, bool bShow)
+   void interaction_impl::ShowScrollBar(UINT nBar, bool bShow)
    {
 
       throw not_implemented(get_app());
@@ -5682,52 +5615,52 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::user::interaction) window::ChildWindowFromPoint(POINT point)
+   sp(::user::interaction) interaction_impl::ChildWindowFromPoint(POINT point)
    {
 
 
       throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::android::window::from_handle(::ChildWindowFromPoint(get_handle(), point));
+//      return ::android::interaction_impl::from_handle(::ChildWindowFromPoint(get_handle(), point));
 
    }
 
-   sp(::user::interaction) window::ChildWindowFromPoint(POINT point, UINT nFlags)
+   sp(::user::interaction) interaction_impl::ChildWindowFromPoint(POINT point, UINT nFlags)
    {
 
       throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::android::window::from_handle(::ChildWindowFromPointEx(get_handle(), point, nFlags));
+//      return ::android::interaction_impl::from_handle(::ChildWindowFromPointEx(get_handle(), point, nFlags));
 
    }
 
-   sp(::window) PASCAL window::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+   sp(::interaction_impl) PASCAL interaction_impl::FindWindow(const char * lpszClassName, const char * lpszWindowName)
    {
 
 //      throw not_implemented(get_app());
-//      return ::android::window::from_handle(::FindWindow(lpszClassName, lpszWindowName));
+//      return ::android::interaction_impl::from_handle(::FindWindow(lpszClassName, lpszWindowName));
       return NULL;
 
    }
 
-   sp(::window) window::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
+   sp(::interaction_impl) interaction_impl::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
    {
 
       throw not_implemented(::get_thread_app());
-//      return ::android::window::from_handle(::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow));
+//      return ::android::interaction_impl::from_handle(::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow));
 
    }
 
-   sp(::user::interaction) window::GetNextWindow(UINT nFlag)
+   sp(::user::interaction) interaction_impl::GetNextWindow(UINT nFlag)
    {
 
       throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::android::window::from_handle(::GetNextWindow(get_handle(), nFlag));
+//      return ::android::interaction_impl::from_handle(::GetNextWindow(get_handle(), nFlag));
 
    }
 
-   sp(::user::interaction) window::GetTopWindow()
+   sp(::user::interaction) interaction_impl::GetTopWindow()
    {
 
       if(m_pguie->m_uiptraChild.get_size() <= 0)
@@ -5736,47 +5669,47 @@ if(psurface == g_cairosurface)
       return m_pguie->m_uiptraChild(0);
     //  throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::android::window::from_handle(::GetTopWindow(get_handle()));
+//      return ::android::interaction_impl::from_handle(::GetTopWindow(get_handle()));
 
    }
 
-   sp(::user::interaction) window::GetWindow(UINT nCmd)
+   sp(::user::interaction) interaction_impl::GetWindow(UINT nCmd)
    {
 
       ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::android::window::from_handle(::GetWindow(get_handle(), nCmd));
+//      return ::android::interaction_impl::from_handle(::GetWindow(get_handle(), nCmd));
       return NULL;
 
    }
 
-   sp(::user::interaction) window::GetLastActivePopup()
+   sp(::user::interaction) interaction_impl::GetLastActivePopup()
    {
 
 
       throw todo(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::android::window::from_handle(::GetLastActivePopup(get_handle()));
+//      return ::android::interaction_impl::from_handle(::GetLastActivePopup(get_handle()));
 
    }
 
-   sp(::window) window::set_parent(::window * pWndNewParent)
+   sp(::interaction_impl) interaction_impl::set_parent(::interaction_impl * pWndNewParent)
    {
 
       ASSERT(::IsWindow((oswindow) get_handle()));
-      return ::android::window::from_handle(::SetParent(get_handle(), (oswindow) pWndNewParent->get_handle()));
+      return ::android::interaction_impl::from_handle(::SetParent(get_handle(), (oswindow) pWndNewParent->get_handle()));
 
    }
 
-   sp(::window) PASCAL window::oswindowFromPoint(POINT point)
+   sp(::interaction_impl) PASCAL interaction_impl::oswindowFromPoint(POINT point)
    {
 
 
       throw not_implemented(::get_thread_app());
-//      return ::android::window::from_handle(::oswindowFromPoint(point));
+//      return ::android::interaction_impl::from_handle(::oswindowFromPoint(point));
 
    }
 
-   bool window::FlashWindow(bool bInvert)
+   bool interaction_impl::FlashWindow(bool bInvert)
    {
 
 
@@ -5786,7 +5719,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   bool window::ChangeClipboardChain(oswindow hWndNext)
+   bool interaction_impl::ChangeClipboardChain(oswindow hWndNext)
    {
 
       throw not_implemented(get_app());
@@ -5795,7 +5728,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   oswindow window::SetClipboardViewer()
+   oswindow interaction_impl::SetClipboardViewer()
    {
 
       throw not_implemented(get_app());
@@ -5804,7 +5737,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   bool window::OpenClipboard()
+   bool interaction_impl::OpenClipboard()
    {
 
       throw not_implemented(get_app());
@@ -5813,31 +5746,31 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::window) PASCAL window::GetOpenClipboardWindow()
+   sp(::interaction_impl) PASCAL interaction_impl::GetOpenClipboardWindow()
    {
 
       throw not_implemented(::get_thread_app());
-//      return ::android::window::from_handle(::GetOpenClipboardWindow());
+//      return ::android::interaction_impl::from_handle(::GetOpenClipboardWindow());
 
    }
 
-   sp(::window) PASCAL window::GetClipboardOwner()
+   sp(::interaction_impl) PASCAL interaction_impl::GetClipboardOwner()
    {
 
       throw not_implemented(::get_thread_app());
-//      return ::android::window::from_handle(::GetClipboardOwner());
+//      return ::android::interaction_impl::from_handle(::GetClipboardOwner());
 
    }
 
-   sp(::window) PASCAL window::GetClipboardViewer()
+   sp(::interaction_impl) PASCAL interaction_impl::GetClipboardViewer()
    {
 
       throw not_implemented(::get_thread_app());
-//      return ::android::window::from_handle(::GetClipboardViewer());
+//      return ::android::interaction_impl::from_handle(::GetClipboardViewer());
 
    }
 
-   void window::Createcaret(::draw2d::bitmap* pBitmap)
+   void interaction_impl::Createcaret(::draw2d::bitmap* pBitmap)
    {
 
       throw not_implemented(get_app());
@@ -5846,7 +5779,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   void window::CreateSolidcaret(int32_t nWidth, int32_t nHeight)
+   void interaction_impl::CreateSolidcaret(int32_t nWidth, int32_t nHeight)
    {
 
       throw not_implemented(get_app());
@@ -5855,7 +5788,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   void window::CreateGraycaret(int32_t nWidth, int32_t nHeight)
+   void interaction_impl::CreateGraycaret(int32_t nWidth, int32_t nHeight)
    {
 
       throw not_implemented(get_app());
@@ -5864,7 +5797,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   point PASCAL window::GetcaretPos()
+   point PASCAL interaction_impl::GetcaretPos()
    {
 
       throw not_implemented(::get_thread_app());
@@ -5873,7 +5806,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   void PASCAL window::SetcaretPos(POINT point)
+   void PASCAL interaction_impl::SetcaretPos(POINT point)
    {
 
     throw not_implemented(::get_thread_app());
@@ -5881,7 +5814,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   void window::Hidecaret()
+   void interaction_impl::Hidecaret()
    {
 
       throw not_implemented(get_app());
@@ -5889,7 +5822,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   void window::Showcaret()
+   void interaction_impl::Showcaret()
    {
 
       throw not_implemented(get_app());
@@ -5897,7 +5830,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   bool window::SetForegroundWindow()
+   bool interaction_impl::SetForegroundWindow()
    {
 
 //    throw not_implemented(get_app());
@@ -5905,17 +5838,17 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::window) PASCAL window::GetForegroundWindow()
+   sp(::interaction_impl) PASCAL interaction_impl::GetForegroundWindow()
    {
 
       return NULL;
 
          throw not_implemented(::get_thread_app());
-//      return ::android::window::from_handle(::GetForegroundWindow());
+//      return ::android::interaction_impl::from_handle(::GetForegroundWindow());
 
    }
 
-   bool window::SendNotifyMessage(UINT message, WPARAM wparam, lparam lparam)
+   bool interaction_impl::SendNotifyMessage(UINT message, WPARAM wparam, lparam lparam)
    {
 
       throw not_implemented(get_app());
@@ -5924,25 +5857,25 @@ if(psurface == g_cairosurface)
    }
 
 
-   void window::Print(::draw2d::graphics * pgraphics, DWORD dwFlags) const
+   void interaction_impl::Print(::draw2d::graphics * pgraphics, DWORD dwFlags) const
    {
 
       throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      const_cast < window * > (this)->send_message(WM_PRINT, (WPARAM)(dynamic_cast<::android::graphics * >(pgraphics))->get_handle(), dwFlags);
+//      const_cast < interaction_impl * > (this)->send_message(WM_PRINT, (WPARAM)(dynamic_cast<::android::graphics * >(pgraphics))->get_handle(), dwFlags);
 
    }
 
-   void window::PrintClient(::draw2d::graphics * pgraphics, DWORD dwFlags) const
+   void interaction_impl::PrintClient(::draw2d::graphics * pgraphics, DWORD dwFlags) const
    {
 
       throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      const_cast < window * > (this)->send_message(WM_PRINTCLIENT, (WPARAM)(dynamic_cast<::android::graphics * >(pgraphics))->get_handle(), dwFlags);
+//      const_cast < interaction_impl * > (this)->send_message(WM_PRINTCLIENT, (WPARAM)(dynamic_cast<::android::graphics * >(pgraphics))->get_handle(), dwFlags);
 
    }
 
-   bool window::SetWindowContextHelpId(DWORD dwContextHelpId)
+   bool interaction_impl::SetWindowContextHelpId(DWORD dwContextHelpId)
    {
 
       throw not_implemented(get_app());
@@ -5951,7 +5884,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   DWORD window::GetWindowContextHelpId() const
+   DWORD interaction_impl::GetWindowContextHelpId() const
    {
 
       throw not_implemented(get_app());
@@ -5962,75 +5895,75 @@ if(psurface == g_cairosurface)
 
 
    // Default message ::collection::map implementations
-   void window::OnActivateApp(bool, DWORD)
+   void interaction_impl::OnActivateApp(bool, DWORD)
    { Default(); }
-   void window::OnActivate(UINT, sp(::window), bool)
+   void interaction_impl::OnActivate(UINT, sp(::interaction_impl), bool)
    { Default(); }
-   void window::OncancelMode()
+   void interaction_impl::OncancelMode()
    { Default(); }
-   void window::OnChildActivate()
+   void interaction_impl::OnChildActivate()
    { Default(); }
-   void window::OnClose()
+   void interaction_impl::OnClose()
    { Default(); }
-   void window::OnContextMenu(::window *, point)
+   void interaction_impl::OnContextMenu(::interaction_impl *, point)
    { Default(); }
 
-   bool window::OnCopyData(::window *, COPYDATASTRUCT*)
+   bool interaction_impl::OnCopyData(::interaction_impl *, COPYDATASTRUCT*)
    {
 
       return Default() != FALSE;
 
    }
 
-   void window::OnEnable(bool)
+   void interaction_impl::OnEnable(bool)
    { Default(); }
-   void window::OnEndSession(bool)
+   void interaction_impl::OnEndSession(bool)
    { Default(); }
 
-   bool window::OnEraseBkgnd(::draw2d::graphics *)
+   bool interaction_impl::OnEraseBkgnd(::draw2d::graphics *)
    {
 
       return Default() != FALSE;
 
    }
 
-   void window::OnGetMinMaxInfo(MINMAXINFO*)
+   void interaction_impl::OnGetMinMaxInfo(MINMAXINFO*)
    { Default(); }
-   void window::OnIconEraseBkgnd(::draw2d::graphics *)
+   void interaction_impl::OnIconEraseBkgnd(::draw2d::graphics *)
    { Default(); }
-   void window::OnKillFocus(::window *)
+   void interaction_impl::OnKillFocus(::interaction_impl *)
    { Default(); }
-   LRESULT window::OnMenuChar(UINT, UINT, ::user::menu*)
+   LRESULT interaction_impl::OnMenuChar(UINT, UINT, ::user::menu*)
    { return Default(); }
-   void window::OnMenuSelect(UINT, UINT, HMENU)
+   void interaction_impl::OnMenuSelect(UINT, UINT, HMENU)
    { Default(); }
-   void window::OnMove(int32_t, int32_t)
+   void interaction_impl::OnMove(int32_t, int32_t)
    { Default(); }
-   HCURSOR window::OnQueryDragIcon()
+   HCURSOR interaction_impl::OnQueryDragIcon()
    { return (HCURSOR)Default(); }
 
-   bool window::OnQueryEndSession()
+   bool interaction_impl::OnQueryEndSession()
    {
 
       return Default() != FALSE;
 
    }
 
-   bool window::OnQueryNewPalette()
+   bool interaction_impl::OnQueryNewPalette()
    {
 
       return Default() != FALSE;
 
    }
 
-   bool window::OnQueryOpen()
+   bool interaction_impl::OnQueryOpen()
    {
 
       return Default() != FALSE;
 
    }
 
-   void window::_001OnSetCursor(::signal_details * pobj)
+   void interaction_impl::_001OnSetCursor(::signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
       if(BaseSession.get_cursor() != NULL
@@ -6044,129 +5977,129 @@ if(psurface == g_cairosurface)
       pbase->m_bRet = true;
       //(bool)Default();
    }
-   void window::OnShowWindow(bool, UINT)
+   void interaction_impl::OnShowWindow(bool, UINT)
    { Default(); }
-   void window::OnSize(UINT, int32_t, int32_t)
+   void interaction_impl::OnSize(UINT, int32_t, int32_t)
    { Default(); }
-   void window::OnTcard(UINT, DWORD)
+   void interaction_impl::OnTcard(UINT, DWORD)
    { Default(); }
-   void window::OnWindowPosChanging(WINDOWPOS*)
+   void interaction_impl::OnWindowPosChanging(WINDOWPOS*)
    { Default(); }
-   void window::OnWindowPosChanged(WINDOWPOS*)
+   void interaction_impl::OnWindowPosChanged(WINDOWPOS*)
    { Default(); }
-   void window::OnDropFiles(HDROP)
+   void interaction_impl::OnDropFiles(HDROP)
    { Default(); }
-   void window::OnPaletteIsChanging(::window *)
+   void interaction_impl::OnPaletteIsChanging(::interaction_impl *)
    { Default(); }
 
-   bool window::OnNcActivate(bool)
+   bool interaction_impl::OnNcActivate(bool)
    {
 
       return Default() != FALSE;
 
    }
 
-   void window::OnNcCalcSize(bool, NCCALCSIZE_PARAMS*)
+   void interaction_impl::OnNcCalcSize(bool, NCCALCSIZE_PARAMS*)
    { Default(); }
 
-   bool window::OnNcCreate(LPCREATESTRUCT)
+   bool interaction_impl::OnNcCreate(LPCREATESTRUCT)
    {
 
       return Default() != FALSE;
 
    }
 
-   LRESULT window::OnNcHitTest(point)
+   LRESULT interaction_impl::OnNcHitTest(point)
    { return Default(); }
-   void window::OnNcLButtonDblClk(UINT, point)
+   void interaction_impl::OnNcLButtonDblClk(UINT, point)
    { Default(); }
-   void window::OnNcLButtonDown(UINT, point)
+   void interaction_impl::OnNcLButtonDown(UINT, point)
    { Default(); }
-   void window::OnNcLButtonUp(UINT, point)
+   void interaction_impl::OnNcLButtonUp(UINT, point)
    { Default(); }
-   void window::OnNcMButtonDblClk(UINT, point)
+   void interaction_impl::OnNcMButtonDblClk(UINT, point)
    { Default(); }
-   void window::OnNcMButtonDown(UINT, point)
+   void interaction_impl::OnNcMButtonDown(UINT, point)
    { Default(); }
-   void window::OnNcMButtonUp(UINT, point)
+   void interaction_impl::OnNcMButtonUp(UINT, point)
    { Default(); }
-   void window::OnNcMouseMove(UINT, point)
+   void interaction_impl::OnNcMouseMove(UINT, point)
    { Default(); }
-   void window::OnNcPaint()
+   void interaction_impl::OnNcPaint()
    { Default(); }
-   void window::OnNcRButtonDblClk(UINT, point)
+   void interaction_impl::OnNcRButtonDblClk(UINT, point)
    { Default(); }
-   void window::OnNcRButtonDown(UINT, point)
+   void interaction_impl::OnNcRButtonDown(UINT, point)
    { Default(); }
-   void window::OnNcRButtonUp(UINT, point)
+   void interaction_impl::OnNcRButtonUp(UINT, point)
    { Default(); }
-   void window::OnSysChar(UINT, UINT, UINT)
+   void interaction_impl::OnSysChar(UINT, UINT, UINT)
    { Default(); }
-   void window::OnSysCommand(UINT, LPARAM)
+   void interaction_impl::OnSysCommand(UINT, LPARAM)
    { Default(); }
-   void window::OnSysDeadChar(UINT, UINT, UINT)
+   void interaction_impl::OnSysDeadChar(UINT, UINT, UINT)
    { Default(); }
-   void window::OnSysKeyDown(UINT, UINT, UINT)
+   void interaction_impl::OnSysKeyDown(UINT, UINT, UINT)
    { Default(); }
-   void window::OnSysKeyUp(UINT, UINT, UINT)
+   void interaction_impl::OnSysKeyUp(UINT, UINT, UINT)
    { Default(); }
-   void window::OnCompacting(UINT)
+   void interaction_impl::OnCompacting(UINT)
    { Default(); }
-   void window::OnFontChange()
+   void interaction_impl::OnFontChange()
    { Default(); }
-   void window::OnPaletteChanged(::window *)
+   void interaction_impl::OnPaletteChanged(::interaction_impl *)
    { Default(); }
-   void window::OnSpoolerStatus(UINT, UINT)
+   void interaction_impl::OnSpoolerStatus(UINT, UINT)
    { Default(); }
-   void window::OnTimeChange()
+   void interaction_impl::OnTimeChange()
    { Default(); }
-   void window::OnChar(UINT, UINT, UINT)
+   void interaction_impl::OnChar(UINT, UINT, UINT)
    { Default(); }
-   void window::OnDeadChar(UINT, UINT, UINT)
+   void interaction_impl::OnDeadChar(UINT, UINT, UINT)
    { Default(); }
-   void window::OnKeyDown(UINT, UINT, UINT)
+   void interaction_impl::OnKeyDown(UINT, UINT, UINT)
    { Default(); }
-   void window::OnKeyUp(UINT, UINT, UINT)
+   void interaction_impl::OnKeyUp(UINT, UINT, UINT)
    { Default(); }
-   void window::OnLButtonDblClk(UINT, point)
+   void interaction_impl::OnLButtonDblClk(UINT, point)
    { Default(); }
-   void window::OnLButtonDown(UINT, point)
+   void interaction_impl::OnLButtonDown(UINT, point)
    { Default(); }
-   void window::OnLButtonUp(UINT, point)
+   void interaction_impl::OnLButtonUp(UINT, point)
    { Default(); }
-   void window::OnMButtonDblClk(UINT, point)
+   void interaction_impl::OnMButtonDblClk(UINT, point)
    { Default(); }
-   void window::OnMButtonDown(UINT, point)
+   void interaction_impl::OnMButtonDown(UINT, point)
    { Default(); }
-   void window::OnMButtonUp(UINT, point)
+   void interaction_impl::OnMButtonUp(UINT, point)
    { Default(); }
-   int32_t window::OnMouseActivate(::window *, UINT, UINT)
+   int32_t interaction_impl::OnMouseActivate(::interaction_impl *, UINT, UINT)
    { return (int32_t)Default(); }
-   void window::OnMouseMove(UINT, point)
+   void interaction_impl::OnMouseMove(UINT, point)
    { Default(); }
 
-   bool window::OnMouseWheel(UINT, short, point)
+   bool interaction_impl::OnMouseWheel(UINT, short, point)
    {
 
       return Default() != FALSE;
 
    }
 
-   LRESULT window::OnRegisteredMouseWheel(WPARAM, LPARAM)
+   LRESULT interaction_impl::OnRegisteredMouseWheel(WPARAM, LPARAM)
    { return Default(); }
-   void window::OnRButtonDblClk(UINT, point)
+   void interaction_impl::OnRButtonDblClk(UINT, point)
    { Default(); }
-   void window::OnRButtonDown(UINT, point)
+   void interaction_impl::OnRButtonDown(UINT, point)
    { Default(); }
-   void window::OnRButtonUp(UINT, point)
+   void interaction_impl::OnRButtonUp(UINT, point)
    { Default(); }
-   void window::OnTimer(uint_ptr)
+   void interaction_impl::OnTimer(uint_ptr)
    { Default(); }
-   void window::OnInitMenu(::user::menu*)
+   void interaction_impl::OnInitMenu(::user::menu*)
    { Default(); }
-   void window::OnInitMenuPopup(::user::menu*, UINT, bool)
+   void interaction_impl::OnInitMenuPopup(::user::menu*, UINT, bool)
    { Default(); }
-   void window::OnAskCbFormatName(UINT nMaxCount, LPTSTR pszName)
+   void interaction_impl::OnAskCbFormatName(UINT nMaxCount, LPTSTR pszName)
    {
       (nMaxCount);
       if(nMaxCount>0)
@@ -6176,72 +6109,72 @@ if(psurface == g_cairosurface)
       }
       Default();
    }
-   void window::OnChangeCbChain(oswindow, oswindow)
+   void interaction_impl::OnChangeCbChain(oswindow, oswindow)
    { Default(); }
-   void window::OnDestroyClipboard()
+   void interaction_impl::OnDestroyClipboard()
    { Default(); }
-   void window::OnDrawClipboard()
+   void interaction_impl::OnDrawClipboard()
    { Default(); }
-   void window::OnHScrollClipboard(::window *, UINT, UINT)
+   void interaction_impl::OnHScrollClipboard(::interaction_impl *, UINT, UINT)
    { Default(); }
-   void window::OnPaintClipboard(::window *, HGLOBAL)
+   void interaction_impl::OnPaintClipboard(::interaction_impl *, HGLOBAL)
    { Default(); }
-   void window::OnRenderAllFormats()
+   void interaction_impl::OnRenderAllFormats()
    { Default(); }
-   void window::OnRenderFormat(UINT)
+   void interaction_impl::OnRenderFormat(UINT)
    { Default(); }
-   void window::OnSizeClipboard(::window *, HGLOBAL)
+   void interaction_impl::OnSizeClipboard(::interaction_impl *, HGLOBAL)
    { Default(); }
-   void window::OnVScrollClipboard(::window *, UINT, UINT)
+   void interaction_impl::OnVScrollClipboard(::interaction_impl *, UINT, UINT)
    { Default(); }
-   UINT window::OnGetDlgCode()
+   UINT interaction_impl::OnGetDlgCode()
    { return (UINT)Default(); }
-   void window::OnMDIActivate(bool, sp(::window), sp(::window))
+   void interaction_impl::OnMDIActivate(bool, sp(::interaction_impl), sp(::interaction_impl))
    { Default(); }
-   void window::OnEnterMenuLoop(bool)
+   void interaction_impl::OnEnterMenuLoop(bool)
    { Default(); }
-   void window::OnExitMenuLoop(bool)
+   void interaction_impl::OnExitMenuLoop(bool)
    { Default(); }
    // Win4 support
-//   void window::OnStyleChanged(int32_t, LPSTYLESTRUCT)
+//   void interaction_impl::OnStyleChanged(int32_t, LPSTYLESTRUCT)
 //   { Default(); }
-//   void window::OnStyleChanging(int32_t, LPSTYLESTRUCT)
+//   void interaction_impl::OnStyleChanging(int32_t, LPSTYLESTRUCT)
 //   { Default(); }
-   void window::OnSizing(UINT, LPRECT)
+   void interaction_impl::OnSizing(UINT, LPRECT)
    { Default(); }
-   void window::OnMoving(UINT, LPRECT)
+   void interaction_impl::OnMoving(UINT, LPRECT)
    { Default(); }
-   void window::OncaptureChanged(::window *)
+   void interaction_impl::OncaptureChanged(::interaction_impl *)
    { Default(); }
 
-   bool window::OnDeviceChange(UINT, dword_ptr)
+   bool interaction_impl::OnDeviceChange(UINT, dword_ptr)
    {
 
       return Default() != FALSE;
 
    }
 
-   void window::OnWinIniChange(const char *)
+   void interaction_impl::OnWinIniChange(const char *)
    { Default(); }
-   void window::OnChangeUIState(UINT, UINT)
+   void interaction_impl::OnChangeUIState(UINT, UINT)
    { Default(); }
-   void window::OnUpdateUIState(UINT, UINT)
+   void interaction_impl::OnUpdateUIState(UINT, UINT)
    { Default(); }
 
-   UINT window::OnQueryUIState()
+   UINT interaction_impl::OnQueryUIState()
    {
 
       return (UINT)Default();
 
    }
 
-   // window dialog data support
-   //    void window::DoDataExchange(CDataExchange*)
+   // interaction_impl dialog data support
+   //    void interaction_impl::DoDataExchange(CDataExchange*)
    //   { } // default does nothing
 
-   // window modality support
+   // interaction_impl modality support
 
-   void window::BeginModalState()
+   void interaction_impl::BeginModalState()
    {
 
       throw todo(get_app());
@@ -6250,7 +6183,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   void window::EndModalState()
+   void interaction_impl::EndModalState()
    {
 
       throw todo(get_app());
@@ -6274,7 +6207,7 @@ if(psurface == g_cairosurface)
 
 
 
-   void window::CloseWindow()
+   void interaction_impl::CloseWindow()
    {
 
       throw not_implemented(get_app());
@@ -6283,7 +6216,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   bool window::OpenIcon()
+   bool interaction_impl::OpenIcon()
    {
 
       throw not_implemented(get_app());
@@ -6293,11 +6226,11 @@ if(psurface == g_cairosurface)
    }
 
    ////////////////////////////////////////////////////////////////////////////
-   // UI related ::window functions
+   // UI related ::interaction_impl functions
 
-   oswindow PASCAL window::GetSafeOwner_(oswindow hParent, oswindow* pWndTop)
+   oswindow PASCAL interaction_impl::GetSafeOwner_(oswindow hParent, oswindow* pWndTop)
    {
-      // get ::window to start with
+      // get ::interaction_impl to start with
       oswindow hWnd = hParent;
       if (hWnd == NULL)
       {
@@ -6308,11 +6241,11 @@ if(psurface == g_cairosurface)
          hWnd = System.GetMainWnd()->get_handle();*/
       }
 
-      // a popup ::window cannot be owned by a child ::window
+      // a popup ::interaction_impl cannot be owned by a child ::interaction_impl
       while (hWnd != NULL && (::GetWindowLong(hWnd, GWL_STYLE) & WS_CHILD))
          hWnd = ::GetParent(hWnd);
 
-      // determine toplevel ::window to disable as well
+      // determine toplevel ::interaction_impl to disable as well
       oswindow hWndTop = hWnd, hWndTemp = hWnd;
       for (;;)
       {
@@ -6328,7 +6261,7 @@ if(psurface == g_cairosurface)
   //    if (hParent == NULL && hWnd != NULL)
   //       hWnd = ::GetLastActivePopup(hWnd);
 
-      // disable and store top level parent ::window if specified
+      // disable and store top level parent ::interaction_impl if specified
       if (pWndTop != NULL)
       {
 /*         if (hWndTop != NULL && ::IsWindowEnabled(hWndTop) && hWndTop != hWnd)
@@ -6343,14 +6276,14 @@ if(psurface == g_cairosurface)
       return hWnd;    // return the owner as oswindow
    }
 
-   void window::on_delete(::ca2::ca2 * pui)
+   void interaction_impl::on_delete(::ca2::ca2 * pui)
    {
       UNREFERENCED_PARAMETER(pui);
    }
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // Official way to send message to a window
+   // Official way to send message to a interaction_impl
 
    CLASS_DECL_BASE LRESULT __call_window_procedure(sp(::user::interaction) pinteraction, oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam)
    {
@@ -6429,7 +6362,7 @@ if(psurface == g_cairosurface)
    }
 
 
-   /*CDataExchange::CDataExchange(::window * pDlgWnd, bool bSaveAndValidate)
+   /*CDataExchange::CDataExchange(::interaction_impl * pDlgWnd, bool bSaveAndValidate)
    {
    ASSERT_VALID(pDlgWnd);
    m_bSaveAndValidate = bSaveAndValidate;
@@ -6461,14 +6394,14 @@ if(psurface == g_cairosurface)
 //      bool bContextIsDLL = afxContextIsDLL;
 //      if (pWndInit != NULL || (!(lpcs->style & WS_CHILD) && !bContextIsDLL))
 //      {
-//         // Note: special check to avoid subclassing the IME window
+//         // Note: special check to avoid subclassing the IME interaction_impl
 //         //if (gen_DBCS)
 //         {
 //            // check for cheap CS_IME style first...
 //            if (GetClassLong((oswindow)wparam, GCL_STYLE) & CS_IME)
 //               goto lcallNextHook;
 //
-//            // get class name of the window that is being created
+//            // get class name of the interaction_impl that is being created
 //            const char * pszClassName;
 //            char szClassName[_countof("ime")+1];
 //            if (dword_ptr(lpcs->lpszClass) > 0xffff)
@@ -6492,8 +6425,8 @@ if(psurface == g_cairosurface)
 //         WNDPROC oldWndProc;
 //         if (pWndInit != NULL)
 //         {
-//            // the window should not be in the permanent ::collection::map at this time
-//            ASSERT(::android::window::FromHandlePermanent(hWnd) == NULL);
+//            // the interaction_impl should not be in the permanent ::collection::map at this time
+//            ASSERT(::android::interaction_impl::FromHandlePermanent(hWnd) == NULL);
 //
 //            pWndInit->m_pthread = dynamic_cast < ::thread * > (::android::get_thread());
 //            pWndInit->m_pthread->add(pWndInit);
@@ -6509,7 +6442,7 @@ if(psurface == g_cairosurface)
 //            WNDPROC *pOldWndProc = pWndInit->GetSuperWndProcaddr();
 //            ASSERT(pOldWndProc != NULL);
 //
-//            // subclass the window with standard __window_procedure
+//            // subclass the interaction_impl with standard __window_procedure
 //            WNDPROC afxWndProc = __get_window_procedure();
 //            oldWndProc = (WNDPROC)SetWindowLongPtr(hWnd, GWLP_WNDPROC,
 //               (dword_ptr)afxWndProc);
@@ -6553,7 +6486,7 @@ if(psurface == g_cairosurface)
 //            }
 //            if (bSubclass)
 //            {
-//               // subclass the window with the proc which does gray backgrounds
+//               // subclass the interaction_impl with the proc which does gray backgrounds
 //               oldWndProc = (WNDPROC)GetWindowLongPtr(hWnd, GWLP_WNDPROC);
 //               if (oldWndProc != NULL && GetProp(hWnd, gen_OldWndProc) == NULL)
 //               {
@@ -6578,20 +6511,20 @@ if(psurface == g_cairosurface)
 
 
 
-   void window::_001OnEraseBkgnd(::signal_details * pobj)
+   void interaction_impl::_001OnEraseBkgnd(::signal_details * pobj)
    {
       SCAST_PTR(::message::erase_bkgnd, perasebkgnd, pobj);
       perasebkgnd->m_bRet = true;
       perasebkgnd->set_result(TRUE);
    }
 
-   void window::_001BaseWndInterfaceMap()
+   void interaction_impl::_001BaseWndInterfaceMap()
    {
       System.user()->window_map().set((int_ptr)get_handle(), this);
    }
 
 
-   void window::_001OnTriggerMouseInside()
+   void interaction_impl::_001OnTriggerMouseInside()
    {
 
 
@@ -6638,7 +6571,7 @@ void CTestCmdUI::SetText(const char *)
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Map from oswindow to sp(::window)
+// Map from oswindow to sp(::interaction_impl)
 
 hwnd_map* PASCAL afxMapHWND(bool bCreate)
 {
@@ -6673,20 +6606,20 @@ mutex * PASCAL afxMutexHwnd()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// The WndProc for all window's and derived classes
+// The WndProc for all interaction_impl's and derived classes
 
 #undef __window_procedure
 
 LRESULT CALLBACK __window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam)
 {
-   // special message which identifies the window as using __window_procedure
+   // special message which identifies the interaction_impl as using __window_procedure
 //   if (nMsg == WM_QUERYAFXWNDPROC)
   //    return 1;
 
    throw not_implemented(::get_thread_app());
 
 //   // all other messages route through message ::collection::map
-//   sp(::window) pWnd = ::android::window::FromHandlePermanent(hWnd);
+//   sp(::interaction_impl) pWnd = ::android::interaction_impl::FromHandlePermanent(hWnd);
 //   //ASSERT(pWnd != NULL);
 //   //ASSERT(pWnd==NULL || ANDROID_WINDOW(pWnd)->get_handle() == hWnd);
 //   if (pWnd == NULL || ANDROID_WINDOW(pWnd)->get_handle() != hWnd)
@@ -6839,7 +6772,7 @@ CLASS_DECL_BASE const char * __register_window_class(UINT nClassStyle,
 
 
 __STATIC void CLASS_DECL_BASE
-   __handle_activate(::window * pWnd, WPARAM nState, sp(::window) pWndOther)
+   __handle_activate(::interaction_impl * pWnd, WPARAM nState, sp(::interaction_impl) pWndOther)
 {
 
       throw not_implemented(::get_thread_app());
@@ -6851,7 +6784,7 @@ __STATIC void CLASS_DECL_BASE
 //      sp(::user::interaction) pTopLevel= ANDROID_WINDOW(pWnd)->GetTopLevelParent();
 //      if (pTopLevel && (pWndOther == NULL || !::IsWindow(ANDROID_WINDOW(pWndOther)->get_handle()) || pTopLevel != ANDROID_WINDOW(pWndOther)->GetTopLevelParent()))
 //      {
-//         // lparam points to window getting the WM_ACTIVATE message and
+//         // lparam points to interaction_impl getting the WM_ACTIVATE message and
 //         //  hWndOther from the WM_ACTIVATE.
 //         oswindow hWnd2[2];
 //         hWnd2[0] = ANDROID_WINDOW(pWnd)->get_handle();
@@ -6870,7 +6803,7 @@ __STATIC void CLASS_DECL_BASE
 }
 
 __STATIC bool CLASS_DECL_BASE
-   __handle_set_cursor(::window * pWnd, UINT nHitTest, UINT nMsg)
+   __handle_set_cursor(::interaction_impl * pWnd, UINT nHitTest, UINT nMsg)
 {
 
       throw not_implemented(::get_thread_app());
@@ -6878,12 +6811,12 @@ __STATIC bool CLASS_DECL_BASE
 //      (nMsg == WM_LBUTTONDOWN || nMsg == WM_MBUTTONDOWN ||
 //      nMsg == WM_RBUTTONDOWN))
 //   {
-//      // activate the last active window if not active
+//      // activate the last active interaction_impl if not active
 //      sp(::user::interaction) pLastActive = ANDROID_WINDOW(pWnd)->GetTopLevelParent();
 //      if (pLastActive != NULL)
 //         pLastActive = pLastActive->GetLastActivePopup();
 //      if (pLastActive != NULL &&
-//         pLastActive != ::android::window::GetForegroundWindow() &&
+//         pLastActive != ::android::interaction_impl::GetForegroundWindow() &&
 //         pLastActive->IsWindowEnabled())
 //      {
 //         pLastActive->SetForegroundWindow();
@@ -6999,7 +6932,7 @@ __STATIC bool CLASS_DECL_BASE
 //   }
 //   if (fToRegister & __WNDMDIFRAME_REG)
 //   {
-//      // MDI Frame window (also used for splitter window)
+//      // MDI Frame interaction_impl (also used for splitter interaction_impl)
 //      wndcls.style = CS_DBLCLKS;
 //      wndcls.hbrBackground = NULL;
 //      /*      if (__register_with_icon(&wndcls, gen_WndMDIFrame, __IDI_STD_MDIFRAME))
@@ -7064,7 +6997,7 @@ LRESULT CALLBACK
 //         {
 //            DWORD dwStyle;
 //            rect rectOld;
-//            sp(::window) pWnd = ::android::window::from_handle(hWnd);
+//            sp(::interaction_impl) pWnd = ::android::interaction_impl::from_handle(hWnd);
 //            __pre_init_dialog(pWnd, &rectOld, &dwStyle);
 //            bcallDefault = FALSE;
 //            lResult = callWindowProc(oldWndProc, hWnd, nMsg, wparam, lparam);
@@ -7073,12 +7006,12 @@ LRESULT CALLBACK
 //         break;
 //
 //      case WM_ACTIVATE:
-//         __handle_activate(::android::window::from_handle(hWnd), wparam,
-//            ::android::window::from_handle((oswindow)lparam));
+//         __handle_activate(::android::interaction_impl::from_handle(hWnd), wparam,
+//            ::android::interaction_impl::from_handle((oswindow)lparam));
 //         break;
 //
 //      case WM_SETCURSOR:
-//         bcallDefault = !__handle_set_cursor(::android::window::from_handle(hWnd),
+//         bcallDefault = !__handle_set_cursor(::android::interaction_impl::from_handle(hWnd),
 //            (short)LOWORD(lparam), HIWORD(lparam));
 //         break;
 //
@@ -7131,7 +7064,7 @@ LRESULT CALLBACK
 //
 //   if (!::RegisterClass(lpWndClass))
 //   {
-//      //      TRACE(::ca2::trace::category_AppMsg, 0, "can't register window class named %s\n",
+//      //      TRACE(::ca2::trace::category_AppMsg, 0, "can't register interaction_impl class named %s\n",
 //      //       lpWndClass->lpszClassName);
 //      return FALSE;
 //   }
@@ -7170,12 +7103,12 @@ LRESULT CALLBACK
 namespace android
 {
 
-   /*   void window::_001DeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
+   /*   void interaction_impl::_001DeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
    {
 
 
    }*/
-   void window::_001Expose()
+   void interaction_impl::_001Expose()
    {
 
       if(m_bExposing)
@@ -7283,13 +7216,13 @@ namespace android
 
       }
 
-      ::window::_001UpdateWindow();
+      ::interaction_impl::_001UpdateWindow();
 
 }
 
 
 
-   void window::_001UpdateWindow()
+   void interaction_impl::_001UpdateWindow()
    {
 
       single_lock sl(mutex_graphics(), false);
@@ -7299,7 +7232,7 @@ namespace android
 
       _001Expose();
 
-//      XClearWindow(m_oswindow->display(), m_oswindow->window());
+//      XClearWindow(m_oswindow->display(), m_oswindow->interaction_impl());
 
       //cairo_surface_t * csSrc;
 
@@ -7310,7 +7243,7 @@ namespace android
 
       //XEvent e;
 
-      //if(!XCheckTypedWindowEvent(m_oswindow->display(), m_oswindow->window(), Expose, &e))
+      //if(!XCheckTypedWindowEvent(m_oswindow->display(), m_oswindow->interaction_impl(), Expose, &e))
         // return;
 
       //if(e.type != Expose)
@@ -7363,7 +7296,7 @@ namespace android
       try
       {
 
-         cairo_surface_t * cs = cairo_xlib_surface_create(m_oswindow->display(), m_oswindow->window(), m_oswindow->visual(), rectWindow.width(), rectWindow.height());
+         cairo_surface_t * cs = cairo_xlib_surface_create(m_oswindow->display(), m_oswindow->interaction_impl(), m_oswindow->visual(), rectWindow.width(), rectWindow.height());
 
          cairo_t * c = cairo_create(cs);
 
@@ -7611,7 +7544,7 @@ namespace android
 //      ::DeleteObject(hbitmap);
    }
 
-   void window::_001UpdateWindow()
+   void interaction_impl::_001UpdateWindow()
    {
 
       rect rectWindow;
@@ -7629,7 +7562,7 @@ namespace android
 
       XEvent e;
 
-/*      if(!XCheckTypedWindowEvent(m_oswindow->display(), m_oswindow->window(), Expose, &e))
+/*      if(!XCheckTypedWindowEvent(m_oswindow->display(), m_oswindow->interaction_impl(), Expose, &e))
          return;
 
       if(e.type != Expose)
@@ -7839,9 +7772,9 @@ namespace android
 */
    }
 
-   void window::set_view_port_org(::draw2d::graphics * pgraphics)
+   void interaction_impl::set_view_port_org(::draw2d::graphics * pgraphics)
    {
-      // graphics will be already set its view port to the window for linux - cairo with xlib
+      // graphics will be already set its view port to the interaction_impl for linux - cairo with xlib
 
       pgraphics->SetViewportOrg(point(0, 0));
 

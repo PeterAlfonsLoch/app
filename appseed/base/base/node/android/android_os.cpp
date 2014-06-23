@@ -576,49 +576,6 @@ namespace android
       //throw not_implemented(get_app());
       return false;
 
-/*
-      if(papp->m_strAppName.is_empty()
-      || papp->m_strAppName.CompareNoCase("bergedge") == 0
-      || !papp->is_serviceable())
-         return false;
-
-      SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_CREATE_SERVICE);
-
-      string strcalling = papp->m_strModulePath + " : app=" + papp->m_strAppId + " service usehostlogin";
-
-      if(hdlSCM == 0)
-      {
-         //::GetLastError()
-         return false;
-      }
-
-      SC_HANDLE hdlServ = ::CreateService(
-         hdlSCM,                    // SCManager database
-         "CGCLCSTvotagusca2FontopusMain-" + papp->m_strAppName,               // name of service
-         "ccvotagus ca2 fontopus " + papp->m_strAppName,        // service name to display
-         STANDARD_RIGHTS_REQUIRED,  // desired access
-         SERVICE_WIN32_OWN_PROCESS | SERVICE_INTERACTIVE_PROCESS, // service type
-         SERVICE_AUTO_START,      // start type
-         SERVICE_ERROR_NORMAL,      // error control type
-         strcalling,                   // service's binary Path name
-         0,                      // no load ordering group
-         0,                      // no tag identifier
-         0,                      // no dependencies
-         0,                      // LocalSystem account
-         0);                     // no password
-
-      if (!hdlServ)
-      {
-         CloseServiceHandle(hdlSCM);
-         //Ret = ::GetLastError();
-         return FALSE;
-      }
-
-      CloseServiceHandle(hdlServ);
-      CloseServiceHandle(hdlSCM);
-
-      return true;
-*/
 
    }
 
@@ -628,40 +585,6 @@ namespace android
 //      throw not_implemented(get_app());
       return false;
 
-/*
-      if(papp->m_strAppName.is_empty()
-      || papp->m_strAppName.CompareNoCase("bergedge") == 0
-      || !papp->is_serviceable())
-         return false;
-
-      SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
-
-      if(hdlSCM == 0)
-      {
-         //::GetLastError();
-         return false;
-      }
-
-      SC_HANDLE hdlServ = ::OpenService(
-         hdlSCM,                    // SCManager database
-         "CGCLCSTvotagusca2FontopusMain-" + papp->m_strAppName,               // name of service
-         DELETE);                     // no password
-
-      if (!hdlServ)
-      {
-         // Ret = ::GetLastError();
-         CloseServiceHandle(hdlSCM);
-         return false;
-      }
-
-      ::DeleteService(hdlServ);
-
-      CloseServiceHandle(hdlServ);
-
-      CloseServiceHandle(hdlSCM);
-
-      return false;
-*/
    }
 
    bool os::start_service(::plane::application * papp)
@@ -669,40 +592,6 @@ namespace android
       //throw not_implemented(get_app());
       return false;
 
-/*
-      if(papp->m_strAppName.is_empty()
-      || papp->m_strAppName.CompareNoCase("bergedge") == 0
-      || !papp->is_serviceable())
-         return false;
-
-      SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
-
-      if(hdlSCM == 0)
-      {
-         //::GetLastError();
-         return false;
-      }
-
-      SC_HANDLE hdlServ = ::OpenService(
-         hdlSCM,                    // SCManager database
-         "CGCLCSTvotagusca2FontopusMain-" + papp->m_strAppName,               // name of service
-         SERVICE_START);                     // no password
-
-
-      if (!hdlServ)
-      {
-         CloseServiceHandle(hdlSCM);
-         //Ret = ::GetLastError();
-         return FALSE;
-      }
-
-      bool bOk = StartService(hdlServ, 0, NULL) != FALSE;
-
-      CloseServiceHandle(hdlServ);
-      CloseServiceHandle(hdlSCM);
-
-      return bOk != FALSE;
-      */
    }
 
    bool os::stop_service(::plane::application * papp)
@@ -710,46 +599,6 @@ namespace android
       throw not_implemented(get_app());
       return false;
 
-/*
-      if(papp->m_strAppName.is_empty()
-      || papp->m_strAppName.CompareNoCase("bergedge") == 0
-      || !papp->is_serviceable())
-         return false;
-
-      SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
-
-      if(hdlSCM == 0)
-      {
-         //::GetLastError();
-         return false;
-      }
-
-      SC_HANDLE hdlServ = ::OpenService(
-         hdlSCM,                    // SCManager database
-         "CGCLCSTvotagusca2FontopusMain-" + papp->m_strAppName,               // name of service
-         SERVICE_STOP);                     // no password
-
-      if (!hdlServ)
-      {
-         // Ret = ::GetLastError();
-         CloseServiceHandle(hdlSCM);
-         return false;
-      }
-
-      SERVICE_STATUS ss;
-
-      memset(&ss, 0, sizeof(ss));
-
-      bool bOk = ::ControlService(hdlServ, SERVICE_CONTROL_STOP, &ss) != FALSE;
-
-      ::DeleteService(hdlServ);
-
-      CloseServiceHandle(hdlServ);
-
-      CloseServiceHandle(hdlSCM);
-
-      return bOk != FALSE;
-*/
    }
 
    bool os::resolve_link(string & strTarget, const char * pszSource, sp(::user::interaction) puiMessageParentOptional)

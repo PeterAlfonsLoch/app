@@ -4,23 +4,23 @@
 char char_to_upper(int32_t ch);
 
 
-int_bool MessageBoxAForConsole(oswindow window, const char * psz, const char * pszTitle, uint32_t uiFlags);
+int_bool MessageBoxAForConsole(oswindow interaction_impl, const char * psz, const char * pszTitle, uint32_t uiFlags);
 
 
-//int_bool (* g_messageboxa)(oswindow window, const char * psz, const char * pszTitle, uint32_t uiFlags) = MessageBoxAForConsole;
+//int_bool (* g_messageboxa)(oswindow interaction_impl, const char * psz, const char * pszTitle, uint32_t uiFlags) = MessageBoxAForConsole;
 
 
-int_bool MessageBoxA(oswindow window, const char * psz, const char * pszTitle, uint32_t uiFlags)
+int_bool MessageBoxA(oswindow interaction_impl, const char * psz, const char * pszTitle, uint32_t uiFlags)
 {
 
-//   return (*g_messageboxa)(window, psz, pszTitle, uiFlags);
+//   return (*g_messageboxa)(interaction_impl, psz, pszTitle, uiFlags);
 
-   return simple_message_box(window, psz, pszTitle, uiFlags);
+   return simple_message_box(interaction_impl, psz, pszTitle, uiFlags);
 
 }
 
 
-int_bool MessageBoxAForConsole(oswindow window, const char * psz, const char * pszTitle, uint32_t uiFlags)
+int_bool MessageBoxAForConsole(oswindow interaction_impl, const char * psz, const char * pszTitle, uint32_t uiFlags)
 {
 
    string strLine;

@@ -127,8 +127,8 @@ public:
 
    virtual bool process_initialize();
 
-   virtual bool initialize1(); // cgcl // first initialization
-   virtual bool initialize2(); // cst  // second initialization
+   virtual bool initialize1(); // first initialization
+   virtual bool initialize2(); // second initialization
    virtual bool initialize3(); // third initialization and so on...
 
    virtual bool initialize(); // last initialization
@@ -427,43 +427,8 @@ public:
 
 
 
-   virtual oswindow get_ca2_app_wnd(const char * psz);
 
 
-   virtual int32_t get_document_count();
-
-   // transparent window framework
-
-
-   //mutex * get_mutex(::waitable * pobject);
-   //using thread::lock;
-   //void wait(::waitable * pobject);
-   //wait_result wait(::waitable * pobject, duration dwTimeout);
-   //void lock(::waitable * pobject);
-   //bool lock(::waitable * pobject, duration dwTimeout);
-   //using thread::unlock;
-   //bool unlock(::waitable * pobject);
-
-   //      event * get_event(::waitable * pobject, int32_t iEvent = 0);
-   //      bool event_lock(::waitable * pobject, int32_t iEvent = 0, duration dwTimeout = duration::infinite());
-   //      bool event_unlock(::waitable * pobject, int32_t iEvent = 0);
-
-   /*   int32_t GetResourceId(const id_space * pspace, int32_t iKey);
-   int32_t GetResourceId(const id_space & pspace, int32_t iKey);
-   int32_t GetResourceId(const id_space * pspace, const char * lpcszKey);
-   int32_t GetResourceId(const id_space & pspace, const char * lpcszKey);*/
-
-
-   virtual string matter_as_string(const char * pszMatter, const char * pszMatter2 = NULL);
-   virtual string dir_matter(const char * pszMatter, const char * pszMatter2 = NULL);
-   virtual bool is_inside_time_dir(const char * pszPath);
-   virtual bool file_is_read_only(const char * pszPath);
-   virtual string file_as_string(var varFile);
-   virtual string dir_path(const char * psz1, const char * psz2, const char * psz3 = NULL);
-   virtual string dir_name(const char * psz);
-   virtual bool dir_mk(const char * psz);
-   virtual string file_title(const char * psz);
-   virtual string file_name(const char * psz);
 
 
 
@@ -477,12 +442,6 @@ public:
 
    virtual bool initialize_instance();
 
-
-
-   virtual void TermThread(HINSTANCE hInstTerm);
-
-   virtual ::window_sp FindWindow(const char * lpszClassName, const char * lpszWindowName);
-   virtual ::window_sp FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);
 
 
 
@@ -544,7 +503,7 @@ public:
    void ensure_app_interest();
 
 
-   //virtual oswindow get_ca2_app_wnd(const char * psz);
+   virtual oswindow get_ca2_app_wnd(const char * psz);
 
 
    //virtual void request_create(sp(::create_context) pcreatecontext);

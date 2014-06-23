@@ -6,7 +6,7 @@ namespace install
 {
 
 
-   class CLASS_DECL_BASE window :
+   class CLASS_DECL_BASE interaction_impl :
       virtual public ::user::interaction
    {
    public:
@@ -28,8 +28,8 @@ namespace install
       RECT                    m_rectWindowDragStart;
 
 
-      window(sp(::base::application) papp);
-      ~window();
+      interaction_impl(sp(::base::application) papp);
+      ~interaction_impl();
 
 
       void PaintOpaqueBk(::draw2d::graphics * pgraphics);

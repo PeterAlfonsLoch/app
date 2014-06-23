@@ -24,11 +24,11 @@ namespace userpresence
    {
 
       int iStatus = (int) m_iShortStatusWayTag;
-      if(::get_tick_count() - m_dwLastActivity < ((1984 + 1977) * 4))
+      if(::get_tick_count() - m_dwLastActivity < ((5000) * 4))
       {
          iStatus = status_online;
       }
-      /*else if(::get_tick_count() - m_dwLastActivity < ((1984 + 1977) * 10))
+      /*else if(::get_tick_count() - m_dwLastActivity < ((5000) * 10))
       {
          m_iShortStatusWayTag = status_away;
       }*/
@@ -37,7 +37,7 @@ namespace userpresence
          iStatus = status_offline;
       }
 
-      if(iStatus == m_iShortStatusWayTag && (::get_tick_count() - m_dwLastPulse) <((1984 + 1977) * 2))
+      if(iStatus == m_iShortStatusWayTag && (::get_tick_count() - m_dwLastPulse) <((5000) * 2))
          return;
 
       m_iShortStatusWayTag = iStatus;

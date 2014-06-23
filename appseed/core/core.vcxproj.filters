@@ -2435,16 +2435,10 @@
     <ClInclude Include="core\core\core_system.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core\core_timer.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core\core_timer_callback.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core\core_timer_listener.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core\core_timer_window.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core\core_types.h">
@@ -2458,6 +2452,9 @@
     </ClInclude>
     <ClInclude Include="core\core\core_simple_app.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_timer.h">
+      <Filter>Header Files\core\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4012,20 +4009,17 @@
     <ClCompile Include="core\core\core_system.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core\core_Timer.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core\core_timer_callback.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core\core_timer_listener.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core\core_timer_window.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core\core_simple_app.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_Timer.cpp">
+      <Filter>Source Files\core\core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

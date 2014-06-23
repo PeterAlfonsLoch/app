@@ -172,7 +172,7 @@ namespace message
    sp(::user::interaction) mouse_activate::GetDesktopWindow()
    {
       throw not_implemented(get_app());
-      //      return window::from_handle_dup(reinterpret_cast<oswindow>(m_wparam));
+      //      return interaction_impl::from_handle_dup(reinterpret_cast<oswindow>(m_wparam));
       return NULL;
    }
 
@@ -190,7 +190,7 @@ namespace message
    {
       throw not_implemented(get_app());
       return NULL;
-      //            return window::from_handle_dup(reinterpret_cast<oswindow>(m_wparam));
+      //            return interaction_impl::from_handle_dup(reinterpret_cast<oswindow>(m_wparam));
    }
 
    point context_menu::GetPoint()

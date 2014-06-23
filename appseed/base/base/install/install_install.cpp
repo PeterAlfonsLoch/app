@@ -353,7 +353,7 @@ namespace install
 
       string strLatestBuildNumber = m_strmapLatestBuildNumber[pszVersion];
 
-      if (!strLatestBuildNumber.is_empty() && (get_tick_count() - m_dwLatestBuildNumberLastFetch) < ((1984 + 1977) * 3))
+      if (!strLatestBuildNumber.is_empty() && (get_tick_count() - m_dwLatestBuildNumberLastFetch) < ((5000) * 3))
          return strLatestBuildNumber;
 
       strLatestBuildNumber = fetch_latest_build_number(pszVersion);

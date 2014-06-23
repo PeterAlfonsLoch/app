@@ -95,7 +95,7 @@ namespace base
       string                                          m_strModuleFolder;
 
       string                                          m_strCmdLine;
-      // Initial state of the application's window; normally,
+      // Initial state of the application's interaction_impl; normally,
       // this is an argument to ShowWindow().
       int32_t                                         m_nCmdShow;
       size_t                                          m_nSafetyPoolSize;      // ideal size
@@ -218,8 +218,8 @@ namespace base
 
 
 
-      //   virtual string matter_as_string(const char * pszMatter, const char * pszMatter2 = NULL);
-      //   virtual string dir_matter(const char * pszMatter, const char * pszMatter2 = NULL);
+      virtual string matter_as_string(const char * pszMatter, const char * pszMatter2 = NULL);
+      virtual string dir_matter(const char * pszMatter, const char * pszMatter2 = NULL);
       virtual bool is_inside_time_dir(const char * pszPath);
       virtual bool file_is_read_only(const char * pszPath);
       virtual string file_as_string(var varFile);
@@ -292,13 +292,11 @@ namespace base
 
 
       virtual bool is_key_pressed(::user::e_key ekey);
+
       virtual void set_key_pressed(::user::e_key ekey,bool bPressed);
 
-#if defined(METROWIN) || defined(APPLE_IOS)
+
       virtual sp(::user::interaction) window_from_os_data(void * pdata);
-#else
-      virtual ::window_sp window_from_os_data(void * pdata);
-#endif
 
 
       virtual void construct();
@@ -356,8 +354,8 @@ namespace base
 
 
 
-      virtual ::window_sp FindWindow(const char * lpszClassName,const char * lpszWindowName);
-      virtual ::window_sp FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow);
+      virtual sp(::user::interaction) FindWindow(const char * lpszClassName,const char * lpszWindowName);
+      virtual sp(::user::interaction) FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow);
 
       virtual string get_version();
 

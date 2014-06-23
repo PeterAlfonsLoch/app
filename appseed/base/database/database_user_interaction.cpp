@@ -306,7 +306,7 @@ namespace database
 
             keeper < bool > keepEnable(&m_bEnableSaveWindowRect, false, m_bEnableSaveWindowRect, true);
 
-            m_pimpl->m_eappearance = ::user::AppearanceNormal;
+            m_eappearance = ::user::AppearanceNormal;
 
             m_pimpl->_001WindowRestore();
 

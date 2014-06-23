@@ -20,7 +20,7 @@ namespace user
 {
 
 
-   class window_interface;
+   class interaction_base;
 
 
    class CLASS_DECL_BASE window_map :
@@ -29,17 +29,17 @@ namespace user
    public:
 
 
-      map < int_ptr, int_ptr, ::user::window_interface *, ::user::window_interface * > m_map;
+      map < int_ptr, int_ptr, ::user::interaction_base *, ::user::interaction_base * > m_map;
 
 
       window_map(sp(::base::application) papp);
       virtual ~window_map();
 
 
-      ::user::window_interface * get(int_ptr iWindow);
+      ::user::interaction_base * get(int_ptr iWindow);
 
 
-      void set(int_ptr iWindow, const ::user::window_interface * pinterface);
+      void set(int_ptr iWindow, const ::user::interaction_base * pinterface);
 
    };
 

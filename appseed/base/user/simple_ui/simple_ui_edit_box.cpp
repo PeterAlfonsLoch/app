@@ -104,7 +104,7 @@ namespace simple_ui
 
       ::draw2d::brush_sp br(allocer());
 
-      br->create_solid(ARGB(84 + 49, 255, 255, 233));
+      br->create_solid(ARGB(133, 255, 255, 233));
 
       pgraphics->FillRect(rectClient, br);
 

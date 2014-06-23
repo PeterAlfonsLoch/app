@@ -10,7 +10,7 @@ template < class T >
 class smart_pointer;
 
 
-#define sp(TYPE) smart_pointer < TYPE >
+#define sp(TYPE) ::smart_pointer < TYPE >
 
 
 class string;
@@ -120,10 +120,14 @@ namespace html
 } // namespace html
 
 
+namespace user
+{
 
-class window;
+   class interaction_impl;
 
-typedef sp(window) window_sp;
+}
+
+typedef sp(::user::interaction_impl) window_sp;
 
 namespace user
 {
@@ -228,7 +232,7 @@ namespace user
    public:
 
 
-      Platform::Agile<Windows::UI::Core::CoreWindow> window;
+      Platform::Agile<Windows::UI::Core::CoreWindow> interaction_impl;
       ::core::system_window ^ pwindow;
 
 
@@ -644,13 +648,14 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "user/user/user_text_interface.h"
 #include "user/user/user_draw_interface.h"
 #include "user/user/user_window_util.h"
-#include "user/user/user_window_interface.h"
+#include "user/user/user_interaction_base.h"
 #include "user/user/user_buffer.h"
 #include "base_keeper.h"
 #include "base/filesystem/file/file_stream2.h"
 #include "user/user/user_interaction.h"
-#include "user/user/user_virtual_user_interface.h"
-#include "user/user/user_window.h"
+#include "user/user/user_interaction_impl_base.h"
+#include "user/user/user_interaction_child.h"
+#include "user/user/user_interaction_impl.h"
 #include "user/user/user_control_bar.h"
 #include "user/user/user_wait_cursor.h"
 #include "user/user/user_frame_window.h"

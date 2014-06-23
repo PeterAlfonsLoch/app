@@ -251,7 +251,7 @@ int BN_mod_exp(BIGNUM *r, const BIGNUM *a, const BIGNUM *p, const BIGNUM *m,
 int BN_mod_exp_recp(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
 		    const BIGNUM *m, BN_CTX *ctx)
 	{
-	int i,j,bits,ret=0,wstart,wend,window,wvalue;
+	int i,j,bits,ret=0,wstart,wend,interaction_impl,wvalue;
 	int start=1;
 	BIGNUM *aa;
 	/* Table of variables obtained from 'ctx' */
@@ -299,12 +299,12 @@ int BN_mod_exp_recp(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
 		goto err;
 		}
 
-	window = BN_window_bits_for_exponent_size(bits);
-	if (window > 1)
+	interaction_impl = BN_window_bits_for_exponent_size(bits);
+	if (interaction_impl > 1)
 		{
 		if (!BN_mod_mul_reciprocal(aa,val[0],val[0],&recp,ctx))
 			goto err;				/* 2 */
-		j=1<<(window-1);
+		j=1<<(interaction_impl-1);
 		for (i=1; i<j; i++)
 			{
 			if(((val[i] = BN_CTX_get(ctx)) == NULL) ||
@@ -317,9 +317,9 @@ int BN_mod_exp_recp(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
 	start=1;	/* This is used to avoid multiplication etc
 			 * when there is only the value '1' in the
 			 * buffer. */
-	wvalue=0;	/* The 'value' of the window */
-	wstart=bits-1;	/* The top bit of the window */
-	wend=0;		/* The bottom bit of the window */
+	wvalue=0;	/* The 'value' of the interaction_impl */
+	wstart=bits-1;	/* The top bit of the interaction_impl */
+	wend=0;		/* The bottom bit of the interaction_impl */
 
 	if (!BN_one(r)) goto err;
 
@@ -335,13 +335,13 @@ int BN_mod_exp_recp(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
 			continue;
 			}
 		/* We now have wstart on a 'set' bit, we now need to work out
-		 * how bit a window to do.  To do this we need to scan
+		 * how bit a interaction_impl to do.  To do this we need to scan
 		 * forward until the last set bit before the end of the
-		 * window */
+		 * interaction_impl */
 		j=wstart;
 		wvalue=1;
 		wend=0;
-		for (i=1; i<window; i++)
+		for (i=1; i<interaction_impl; i++)
 			{
 			if (wstart-i < 0) break;
 			if (BN_is_bit_set(p,wstart-i))
@@ -352,7 +352,7 @@ int BN_mod_exp_recp(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
 				}
 			}
 
-		/* wend is the size of the current window */
+		/* wend is the size of the current interaction_impl */
 		j=wend+1;
 		/* add the 'bytes above' */
 		if (!start)
@@ -362,11 +362,11 @@ int BN_mod_exp_recp(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
 					goto err;
 				}
 
-		/* wvalue will be an odd number < 2^window */
+		/* wvalue will be an odd number < 2^interaction_impl */
 		if (!BN_mod_mul_reciprocal(r,r,val[wvalue>>1],&recp,ctx))
 			goto err;
 
-		/* move the 'window' down further */
+		/* move the 'interaction_impl' down further */
 		wstart-=wend+1;
 		wvalue=0;
 		start=0;
@@ -384,7 +384,7 @@ err:
 int BN_mod_exp_mont(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
 		    const BIGNUM *m, BN_CTX *ctx, BN_MONT_CTX *in_mont)
 	{
-	int i,j,bits,ret=0,wstart,wend,window,wvalue;
+	int i,j,bits,ret=0,wstart,wend,interaction_impl,wvalue;
 	int start=1;
 	BIGNUM *d,*r;
 	const BIGNUM *aa;
@@ -446,11 +446,11 @@ int BN_mod_exp_mont(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
 		}
 	if (!BN_to_montgomery(val[0],aa,mont,ctx)) goto err; /* 1 */
 
-	window = BN_window_bits_for_exponent_size(bits);
-	if (window > 1)
+	interaction_impl = BN_window_bits_for_exponent_size(bits);
+	if (interaction_impl > 1)
 		{
 		if (!BN_mod_mul_montgomery(d,val[0],val[0],mont,ctx)) goto err; /* 2 */
-		j=1<<(window-1);
+		j=1<<(interaction_impl-1);
 		for (i=1; i<j; i++)
 			{
 			if(((val[i] = BN_CTX_get(ctx)) == NULL) ||
@@ -463,9 +463,9 @@ int BN_mod_exp_mont(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
 	start=1;	/* This is used to avoid multiplication etc
 			 * when there is only the value '1' in the
 			 * buffer. */
-	wvalue=0;	/* The 'value' of the window */
-	wstart=bits-1;	/* The top bit of the window */
-	wend=0;		/* The bottom bit of the window */
+	wvalue=0;	/* The 'value' of the interaction_impl */
+	wstart=bits-1;	/* The top bit of the interaction_impl */
+	wend=0;		/* The bottom bit of the interaction_impl */
 
 	if (!BN_to_montgomery(r,BN_value_one(),mont,ctx)) goto err;
 	for (;;)
@@ -482,13 +482,13 @@ int BN_mod_exp_mont(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
 			continue;
 			}
 		/* We now have wstart on a 'set' bit, we now need to work out
-		 * how bit a window to do.  To do this we need to scan
+		 * how bit a interaction_impl to do.  To do this we need to scan
 		 * forward until the last set bit before the end of the
-		 * window */
+		 * interaction_impl */
 		j=wstart;
 		wvalue=1;
 		wend=0;
-		for (i=1; i<window; i++)
+		for (i=1; i<interaction_impl; i++)
 			{
 			if (wstart-i < 0) break;
 			if (BN_is_bit_set(p,wstart-i))
@@ -499,7 +499,7 @@ int BN_mod_exp_mont(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
 				}
 			}
 
-		/* wend is the size of the current window */
+		/* wend is the size of the current interaction_impl */
 		j=wend+1;
 		/* add the 'bytes above' */
 		if (!start)
@@ -509,11 +509,11 @@ int BN_mod_exp_mont(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
 					goto err;
 				}
 
-		/* wvalue will be an odd number < 2^window */
+		/* wvalue will be an odd number < 2^interaction_impl */
 		if (!BN_mod_mul_montgomery(r,r,val[wvalue>>1],mont,ctx))
 			goto err;
 
-		/* move the 'window' down further */
+		/* move the 'interaction_impl' down further */
 		wstart-=wend+1;
 		wvalue=0;
 		start=0;
@@ -578,7 +578,7 @@ static int MOD_EXP_CTIME_COPY_FROM_PREBUF(BIGNUM *b, int top, unsigned char *buf
 int BN_mod_exp_mont_consttime(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
 		    const BIGNUM *m, BN_CTX *ctx, BN_MONT_CTX *in_mont)
 	{
-	int i,bits,ret=0,window,wvalue;
+	int i,bits,ret=0,interaction_impl,wvalue;
 	int top;
 	BN_MONT_CTX *mont=NULL;
 
@@ -619,16 +619,16 @@ int BN_mod_exp_mont_consttime(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
 		if (!BN_MONT_CTX_set(mont,m,ctx)) goto err;
 		}
 
-	/* Get the window size to use with size of p. */
-	window = BN_window_bits_for_ctime_exponent_size(bits);
+	/* Get the interaction_impl size to use with size of p. */
+	interaction_impl = BN_window_bits_for_ctime_exponent_size(bits);
 #if defined(OPENSSL_BN_ASM_MONT5)
-	if (window==6 && bits<=1024) window=5;	/* ~5% improvement of 2048-bit RSA sign */
+	if (interaction_impl==6 && bits<=1024) interaction_impl=5;	/* ~5% improvement of 2048-bit RSA sign */
 #endif
 
 	/* Allocate a buffer large enough to hold all of the pre-computed
 	 * powers of am, am itself and tmp.
 	 */
-	numPowers = 1 << window;
+	numPowers = 1 << interaction_impl;
 	powerbufLen = sizeof(m->d[0])*(top*numPowers +
 				((2*top)>numPowers?(2*top):numPowers));
 #ifdef alloca
@@ -678,9 +678,9 @@ int BN_mod_exp_mont_consttime(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
      * specifically optimization of cache-timing attack countermeasures
      * and pre-computation optimization. */
 
-    /* Dedicated window==4 case improves 512-bit RSA sign by ~15%, but as
+    /* Dedicated interaction_impl==4 case improves 512-bit RSA sign by ~15%, but as
      * 512-bit RSA is hardly relevant, we omit it to spare size... */
-    if (window==5)
+    if (interaction_impl==5)
 	{
 	void bn_mul_mont_gather5(BN_ULONG *rp,const BN_ULONG *ap,
 			const void *table,const BN_ULONG *np,
@@ -745,7 +745,7 @@ int BN_mod_exp_mont_consttime(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
 		wvalue = (wvalue<<1)+BN_is_bit_set(p,bits);
 	bn_gather5(tmp.d,top,powerbuf,wvalue);
 
-	/* Scan the exponent one window at a time starting from the most
+	/* Scan the exponent one interaction_impl at a time starting from the most
 	 * significant bits.
 	 */
 	while (bits >= 0)
@@ -770,12 +770,12 @@ int BN_mod_exp_mont_consttime(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
 	if (!MOD_EXP_CTIME_COPY_TO_PREBUF(&tmp, top, powerbuf, 0, numPowers)) goto err;
 	if (!MOD_EXP_CTIME_COPY_TO_PREBUF(&am,  top, powerbuf, 1, numPowers)) goto err;
 
-	/* If the window size is greater than 1, then calculate
+	/* If the interaction_impl size is greater than 1, then calculate
 	 * val[i=2..2^winsize-1]. Powers are computed as a*a^(i-1)
 	 * (even powers could instead be computed as (a^(i/2))^2
 	 * to use the slight performance advantage of sqr over mul).
 	 */
-	if (window > 1)
+	if (interaction_impl > 1)
 		{
 		if (!BN_mod_mul_montgomery(&tmp,&am,&am,mont,ctx))	goto err;
 		if (!MOD_EXP_CTIME_COPY_TO_PREBUF(&tmp, top, powerbuf, 2, numPowers)) goto err;
@@ -789,19 +789,19 @@ int BN_mod_exp_mont_consttime(BIGNUM *rr, const BIGNUM *a, const BIGNUM *p,
 		}
 
 	bits--;
-	for (wvalue=0, i=bits%window; i>=0; i--,bits--)
+	for (wvalue=0, i=bits%interaction_impl; i>=0; i--,bits--)
 		wvalue = (wvalue<<1)+BN_is_bit_set(p,bits);
 	if (!MOD_EXP_CTIME_COPY_FROM_PREBUF(&tmp,top,powerbuf,wvalue,numPowers)) goto err;
 
-	/* Scan the exponent one window at a time starting from the most
+	/* Scan the exponent one interaction_impl at a time starting from the most
 	 * significant bits.
 	 */
  	while (bits >= 0)
   		{
- 		wvalue=0; /* The 'value' of the window */
+ 		wvalue=0; /* The 'value' of the interaction_impl */
 
- 		/* Scan the window, squaring the result as we go */
- 		for (i=0; i<window; i++,bits--)
+ 		/* Scan the interaction_impl, squaring the result as we go */
+ 		for (i=0; i<interaction_impl; i++,bits--)
  			{
 			if (!BN_mod_mul_montgomery(&tmp,&tmp,&tmp,mont,ctx))	goto err;
 			wvalue = (wvalue<<1)+BN_is_bit_set(p,bits);
@@ -983,7 +983,7 @@ err:
 int BN_mod_exp_simple(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
 		const BIGNUM *m, BN_CTX *ctx)
 	{
-	int i,j,bits,ret=0,wstart,wend,window,wvalue;
+	int i,j,bits,ret=0,wstart,wend,interaction_impl,wvalue;
 	int start=1;
 	BIGNUM *d;
 	/* Table of variables obtained from 'ctx' */
@@ -1017,12 +1017,12 @@ int BN_mod_exp_simple(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
 		goto err;
 		}
 
-	window = BN_window_bits_for_exponent_size(bits);
-	if (window > 1)
+	interaction_impl = BN_window_bits_for_exponent_size(bits);
+	if (interaction_impl > 1)
 		{
 		if (!BN_mod_mul(d,val[0],val[0],m,ctx))
 			goto err;				/* 2 */
-		j=1<<(window-1);
+		j=1<<(interaction_impl-1);
 		for (i=1; i<j; i++)
 			{
 			if(((val[i] = BN_CTX_get(ctx)) == NULL) ||
@@ -1034,9 +1034,9 @@ int BN_mod_exp_simple(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
 	start=1;	/* This is used to avoid multiplication etc
 			 * when there is only the value '1' in the
 			 * buffer. */
-	wvalue=0;	/* The 'value' of the window */
-	wstart=bits-1;	/* The top bit of the window */
-	wend=0;		/* The bottom bit of the window */
+	wvalue=0;	/* The 'value' of the interaction_impl */
+	wstart=bits-1;	/* The top bit of the interaction_impl */
+	wend=0;		/* The bottom bit of the interaction_impl */
 
 	if (!BN_one(r)) goto err;
 
@@ -1052,13 +1052,13 @@ int BN_mod_exp_simple(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
 			continue;
 			}
 		/* We now have wstart on a 'set' bit, we now need to work out
-		 * how bit a window to do.  To do this we need to scan
+		 * how bit a interaction_impl to do.  To do this we need to scan
 		 * forward until the last set bit before the end of the
-		 * window */
+		 * interaction_impl */
 		j=wstart;
 		wvalue=1;
 		wend=0;
-		for (i=1; i<window; i++)
+		for (i=1; i<interaction_impl; i++)
 			{
 			if (wstart-i < 0) break;
 			if (BN_is_bit_set(p,wstart-i))
@@ -1069,7 +1069,7 @@ int BN_mod_exp_simple(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
 				}
 			}
 
-		/* wend is the size of the current window */
+		/* wend is the size of the current interaction_impl */
 		j=wend+1;
 		/* add the 'bytes above' */
 		if (!start)
@@ -1079,11 +1079,11 @@ int BN_mod_exp_simple(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
 					goto err;
 				}
 
-		/* wvalue will be an odd number < 2^window */
+		/* wvalue will be an odd number < 2^interaction_impl */
 		if (!BN_mod_mul(r,r,val[wvalue>>1],m,ctx))
 			goto err;
 
-		/* move the 'window' down further */
+		/* move the 'interaction_impl' down further */
 		wstart-=wend+1;
 		wvalue=0;
 		start=0;

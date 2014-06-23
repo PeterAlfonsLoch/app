@@ -57,7 +57,7 @@ namespace simple_ui
 
       rect rectFontopus;
 
-      int stdw = 884;
+      int stdw = 800;
 
       int stdh = 184 + 23 + 184;
 
@@ -207,13 +207,13 @@ namespace simple_ui
 } // namespace simple_ui
 
 
-int32_t simple_ui_message_box(oswindow window, const char * lpText,const char * lpCaption, uint32_t uiFlags)
+int32_t simple_ui_message_box(oswindow interaction_impl, const char * lpText,const char * lpCaption, uint32_t uiFlags)
 {
 
    if(::get_thread_app() == NULL || ::get_thread_app()->m_pbasesession == NULL)
    {
 
-      return MessageBox(window,lpText,lpCaption,uiFlags);
+      return MessageBox(interaction_impl,lpText,lpCaption,uiFlags);
 
    }
 
@@ -229,9 +229,9 @@ int32_t simple_ui_message_box(oswindow window, const char * lpText,const char * 
 
 
 extern "C"
-CLASS_DECL_BASE int32_t simple_message_box(oswindow window,const char * lpText,const char * lpCaption,uint32_t uiFlags)
+CLASS_DECL_BASE int32_t simple_message_box(oswindow interaction_impl,const char * lpText,const char * lpCaption,uint32_t uiFlags)
 {
 
-   return simple_ui_message_box(window,lpText,lpCaption,uiFlags);
+   return simple_ui_message_box(interaction_impl,lpText,lpCaption,uiFlags);
 
 }

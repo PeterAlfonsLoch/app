@@ -50,9 +50,6 @@ namespace draw2d_direct2d
          return *m_pdevice.Get();
       }
 
-      window * GetWindow() const;
-
-
       bool IsPrinting() const;            // TRUE if being used for printing
 
       ::draw2d::pen_sp     get_current_pen() const;
@@ -206,7 +203,7 @@ namespace draw2d_direct2d
             int SelectClipRgn(::draw2d::region* pRgn);
             int ExcludeClipRect(int x1, int y1, int x2, int y2);
             int ExcludeClipRect(LPCRECT lpRect);
-            int ExcludeUpdateRgn(window * pwindow);
+            int ExcludeUpdateRgn(::user::interaction * pwindow);
             int IntersectClipRect(int x1, int y1, int x2, int y2);
             int IntersectClipRect(LPCRECT lpRect);
             int OffsetClipRgn(int x, int y);

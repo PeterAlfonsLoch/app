@@ -1,14 +1,14 @@
 #include "framework.h"
 
+
 simple_tab_view::simple_tab_view(sp(::base::application) papp) :
    element(papp),
-   
    ::user::interaction(papp), 
    ::user::tab(papp),
    place_holder_container(papp)
 {
-   m_pui = this;
 }
+
 
 simple_tab_view::~simple_tab_view()
 {
@@ -80,7 +80,7 @@ void simple_tab_view::_001OnLButtonUp(signal_details * pobj)
    ::user::tab::_001OnLButtonUp(pobj);
    if(pmouse->m_bRet)
       return;
- // trans  virtual_user_interface::_001OnLButtonUp(pobj);
+ // trans  ::user::interaction_child::_001OnLButtonUp(pobj);
    if(pmouse->m_bRet)
       return;
 }
@@ -91,7 +91,7 @@ void simple_tab_view::_001OnMouseMove(signal_details * pobj)
    ::user::tab::_001OnMouseMove(pobj);
    if(pmouse->m_bRet)
       return;
-// trans   virtual_user_interface::_001OnMouseMove(pobj);
+// trans   ::user::interaction_child::_001OnMouseMove(pobj);
    if(pmouse->m_bRet)
       return;
 }
@@ -102,7 +102,7 @@ void simple_tab_view::_001OnMouseLeave(signal_details * pobj)
    ::user::tab::_001OnMouseLeave(pobj);
    if(pmouse->m_bRet)
       return;
-// trans   virtual_user_interface::_001OnMouseLeave(pobj);
+// trans   ::user::interaction_child::_001OnMouseLeave(pobj);
    if(pmouse->m_bRet)
       return;
 }

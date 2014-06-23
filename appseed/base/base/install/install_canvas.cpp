@@ -210,7 +210,7 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, LPCRECT lpcrect)
 
       pgraphics->SelectObject(brush);
 
-      size_t iRefresh = 884;
+      size_t iRefresh = 1000;
       size_t iEat = 8;
       const char * psz = "development message so international english file \"C:\\core\\install.log\" excerpt  ::::::::";
       pgraphics->TextOut(10, 10 + size.cy * 2, psz, (int32_t) (strlen_dup(psz) - iEat + 1 + ((::get_tick_count() / (iRefresh - 277) % iEat))));
@@ -297,7 +297,7 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, LPCRECT lpcrect)
 
       pgraphics->SelectObject(brush);
 
-      size_t iRefresh = 884;
+      size_t iRefresh = 1000;
       size_t iEat = 8;
       const char * psz = "development message so international english last lines of file \"C:\\core\\install.log\" ::::::::";
       pgraphics->TextOut(10, 10 + size.cy * 2, psz, (int32_t) (strlen_dup(psz) - iEat + 1 + ((::get_tick_count() / (iRefresh - 277) % iEat))));
@@ -487,7 +487,7 @@ void canvas_zero::on_paint(simple_graphics & gPaint, LPCRECT lpcrect)
       m_pta.insert_at(0, pt);
       m_ia.insert_at(0, ((rand_dup() * max(cx, cy) / 4 / RAND_MAX) + 23));
       m_dwCurZero = ::get_tick_count();
-      m_dwNextZero = m_dwCurZero + m_ia[m_ia.get_count() - 1] * 1000 / iTimeFactor + 1984 + 1977;
+      m_dwNextZero = m_dwCurZero + m_ia[m_ia.get_count() - 1] * 1000 / iTimeFactor + 5000;
       m_iLast = 0;
       int32_t iSize = m_ia[0];
       int32_t w = iSize * 2 + 1;

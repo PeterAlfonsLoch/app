@@ -241,14 +241,20 @@ namespace windows
 
    }
 
-   ::window_sp application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+
+   sp(::user::interaction) application::FindWindow(const char * lpszClassName,const char * lpszWindowName)
    {
-      return window::FindWindow(lpszClassName, lpszWindowName);
+
+      return interaction_impl::FindWindow(lpszClassName, lpszWindowName);
+
    }
 
-   ::window_sp application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
+
+   sp(::user::interaction) application::FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow)
    {
-      return window::FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
+
+      return interaction_impl::FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
+
    }
 
 
@@ -333,19 +339,19 @@ namespace windows
          //pApp->SetCurrentHandles();
          m_pimpl->SetCurrentHandles();
 
-         string strCgcl = read_resource_as_string_dup(NULL, 1984, "CGCL");
+         string strAppId = read_resource_as_string_dup(NULL, 1984, "APPID");
 
-         if (strCgcl.has_char())
+         if(strAppId.has_char())
          {
-            directrix()->m_varTopicQuery["cgcl_app"] = strCgcl;
-            m_pimpl->directrix()->m_varTopicQuery["cgcl_app"] = strCgcl;
+            directrix()->m_varTopicQuery["appid"] = strAppId;
+            m_pimpl->directrix()->m_varTopicQuery["appid"] = strAppId;
          }
 
-         // Initialize window::m_pfnNotifyWinEvent
+         // Initialize interaction_impl::m_pfnNotifyWinEvent
       /*   HMODULE hModule = ::GetModuleHandle("user32.dll");
          if (hModule != NULL)
          {
-            window::m_pfnNotifyWinEvent = (window::PFNNOTIFYWINEVENT)::GetProcAddress(hModule, "NotifyWinEvent");
+            interaction_impl::m_pfnNotifyWinEvent = (interaction_impl::PFNNOTIFYWINEVENT)::GetProcAddress(hModule, "NotifyWinEvent");
          }*/
 
       return true;

@@ -122,7 +122,7 @@ namespace dynamic_source
    bool script_manager::initialize_instance()
    {
 
-      create_message_queue("::core::netnode::cgclcst");
+      create_message_queue("::core::netnode::ca2");
       m_pcompiler->initialize();
 #ifdef WINDOWS
       {
@@ -680,7 +680,7 @@ namespace dynamic_source
    sp(::crypto::rsa) script_manager::get_rsa_key()
    {
 
-      /*if(::get_tick_count() - m_dwLastRsa > (1984 + 1977))
+      /*if(::get_tick_count() - m_dwLastRsa > (5000))
       {
 
          calc_rsa_key();
@@ -765,7 +765,7 @@ namespace dynamic_source
          if(has_link_out_link(pszServer, pinsocket, NULL))
             break;
 
-         Sleep(84);
+         Sleep(100);
 
       }
 

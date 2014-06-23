@@ -597,7 +597,7 @@ namespace plane
    int32_t system::exit_instance()
    {
 
-      __wait_threading_count(::millis((1984 + 1977) * 8));
+      __wait_threading_count(::millis((5000) * 8));
 
       try
       {
@@ -643,7 +643,7 @@ namespace plane
       {
          try
          {
-            m_serviceptra(i)->Stop((1984 + 1977) * 2);
+            m_serviceptra(i)->Stop((5000) * 2);
          }
          catch(...)
          {
@@ -840,7 +840,7 @@ namespace plane
    bool system::finalize()
    {
 
-      __wait_threading_count_except(this, ::millis((1984 + 1977) * 77));
+      __wait_threading_count_except(this, ::millis((5000) * 77));
 
       try
       {
@@ -896,81 +896,6 @@ namespace plane
    }
 
 
-   string system::matter_as_string(sp(::base::application) papp, const char * pszMatter, const char * pszMatter2)
-   {
-      var varQuery;
-      varQuery["disable_ca2_sessid"] = true;
-      return file().as_string(dir_matter(papp, pszMatter, pszMatter2), varQuery, papp);
-   }
-
-   string system::dir_matter(sp(::base::application) papp, const char * pszMatter, const char * pszMatter2)
-   {
-      return dir().matter(papp, pszMatter, pszMatter2);
-   }
-
-   bool system::is_inside_time_dir(const char * pszPath)
-   {
-      return dir().is_inside_time(pszPath, this);
-   }
-
-   bool system::file_is_read_only(const char * pszPath)
-   {
-      return file().is_read_only(pszPath);
-   }
-
-   string system::file_as_string(sp(::base::application) papp, const char * pszPath)
-   {
-      return file().as_string(pszPath, papp);
-   }
-
-   string system::dir_path(const char * psz1, const char * psz2, const char * psz3)
-   {
-      return dir().path(psz1, strlen(psz1), psz2, strlen(psz2), psz3, strlen(psz3));
-   }
-
-   string system::dir_name(const char * psz)
-   {
-      return dir().name(psz);
-   }
-
-   bool system::dir_mk(const char * psz)
-   {
-      return dir().mk(psz, this);
-   }
-
-   string system::file_title(const char * psz)
-   {
-      return file().name_(psz);
-   }
-
-   string system::file_name(const char * psz)
-   {
-      return file().title_(psz);
-   }
-
-   /*void system::register_delete(sp(element) plistened, sp(element) plistener)
-   {
-      if(plistened == plistener)
-         return;
-      if(plistened == NULL)
-         return;
-      if(plistener == NULL)
-         return;
-      plistener->listenedptra().add(plistened);
-      plistened->listenerptra().add(plistener);
-   }
-
-   void system::unregister_delete(sp(element) plistened, sp(element) plistener)
-   {
-      if(plistened == plistener)
-         return;
-      if(plistened == NULL)
-         return;
-      if(plistener == NULL)
-         return;
-      plistener->listenedptra().remove(plistened);
-      plistened->listenerptra().remove(plistener);
-   }*/
 
    int32_t system::__ca2_logging_report(
       int32_t iReportType,
@@ -1452,8 +1377,8 @@ namespace plane
 
       set._008ParseCommandFork(pdata->m_vssCommandLine, varFile, strApp);
 
-      if ((varFile.is_empty() && ((!set.has_property("app") && !directrix()->m_varTopicQuery.has_property("cgcl_app") && !set.has_property("show_platform"))
-         || set["app"] == "bergedge" || directrix()->m_varTopicQuery["cgcl_app"] == "bergedge")) &&
+      if ((varFile.is_empty() && ((!set.has_property("app") && !directrix()->m_varTopicQuery.has_property("appid") && !set.has_property("show_platform"))
+         || set["app"] == "bergedge" || directrix()->m_varTopicQuery["appid"] == "bergedge")) &&
          !(set.has_property("install") || set.has_property("uninstall")))
       {
          if(!set.has_property("show_platform") || set["show_platform"] == 1)

@@ -411,7 +411,7 @@ typedef struct tagMINMAXINFO {
 
 #define WM_POWER                        0x0048
 /*
- * wParam for WM_POWER window message and DRV_POWER driver notification
+ * wParam for WM_POWER interaction_impl message and DRV_POWER driver notification
  */
 #define PWR_OK              1
 #define PWR_FAIL            (-1)
@@ -1023,7 +1023,7 @@ typedef struct tagNCCALCSIZE_PARAMS {
 //#pragma endregion
 
 /*
- * WM_NCCALCSIZE "window valid rect" return values
+ * WM_NCCALCSIZE "interaction_impl valid rect" return values
  */
 #define WVR_ALIGNTOP        0x0010
 #define WVR_ALIGNLEFT       0x0020

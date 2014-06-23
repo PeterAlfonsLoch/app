@@ -64,7 +64,7 @@ uint32_t call_sync(
          break;
       if(dwExitCode != STILL_ACTIVE)
          break;
-      Sleep(84);
+      Sleep(100);
       if(pfnOnRetry != NULL)
       {
          if(!pfnOnRetry(iTry, dwParam))

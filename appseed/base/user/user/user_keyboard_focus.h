@@ -20,7 +20,7 @@ namespace user
 #ifdef METROWIN
       virtual interaction * get_wnd() const = 0;
 #else
-      virtual window * get_wnd() const = 0;
+      virtual interaction_impl * get_wnd() const = 0;
 #endif
       virtual bool BaseOnControlEvent(control_event * pevent) = 0;
       virtual keyboard_focus * keyboard_get_next_focusable();

@@ -120,10 +120,10 @@ extern "C" {
 
 
 /*
- * BN_window_bits_for_exponent_size -- macro for sliding window mod_exp functions
+ * BN_window_bits_for_exponent_size -- macro for sliding interaction_impl mod_exp functions
  *
  *
- * For window size 'w' (w >= 2) and a random 'b' bits exponent,
+ * For interaction_impl size 'w' (w >= 2) and a random 'b' bits exponent,
  * the number of multiplications is a constant plus on average
  *
  *    2^(w-1) + (b-w)/(w+1);
@@ -152,7 +152,7 @@ extern "C" {
 		 (b) >  23 ? 3 : 1)
 #else
 /* Old SSLeay/OpenSSL table.
- * Maximum window size was 5, so this table differs for b==1024;
+ * Maximum interaction_impl size was 5, so this table differs for b==1024;
  * but it coincides for other interesting values (b==160, b==512).
  */
 #define BN_window_bits_for_exponent_size(b) \
@@ -170,16 +170,16 @@ extern "C" {
 #define MOD_EXP_CTIME_MIN_CACHE_LINE_WIDTH	( 64 )
 #define MOD_EXP_CTIME_MIN_CACHE_LINE_MASK	(MOD_EXP_CTIME_MIN_CACHE_LINE_WIDTH - 1)
 
-/* Window sizes optimized for fixed window size modular exponentiation
+/* Window sizes optimized for fixed interaction_impl size modular exponentiation
  * algorithm (BN_mod_exp_mont_consttime).
  *
  * To achieve the security goals of BN_mode_exp_mont_consttime, the
- * maximum size of the window must not exceed
+ * maximum size of the interaction_impl must not exceed
  * log_2(MOD_EXP_CTIME_MIN_CACHE_LINE_WIDTH). 
  *
  * Window size thresholds are defined for cache line sizes of 32 and 64,
  * cache line sizes where log_2(32)=5 and log_2(64)=6 respectively. A
- * window size of 7 should only be used on processors that have a 128
+ * interaction_impl size of 7 should only be used on processors that have a 128
  * byte or greater cache line size.
  */
 #if MOD_EXP_CTIME_MIN_CACHE_LINE_WIDTH == 64

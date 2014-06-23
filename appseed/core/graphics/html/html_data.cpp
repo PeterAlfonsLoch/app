@@ -279,7 +279,7 @@ namespace html
       int32_t iCount = 24;
       while(m_bImplement && iCount >= 0)
       {
-         Sleep(84);
+         Sleep(100);
          iCount--;
       }
       if(m_bImplement)
@@ -328,7 +328,7 @@ namespace html
       int32_t iCount = 24;
       while(m_bLayout && iCount >= 0)
       {
-         Sleep(84);
+         Sleep(100);
          iCount--;
       }
       if(m_bLayout)

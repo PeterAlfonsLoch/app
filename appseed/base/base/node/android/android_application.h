@@ -163,11 +163,11 @@ namespace android
 
       virtual void ShowWaitCursor(bool bShow = true);
 
-      sp(::window) window_from_os_data(void * pdata);
-      sp(::window) window_from_os_data_permanent(void * pdata);
+      sp(::interaction_impl) window_from_os_data(void * pdata);
+      sp(::interaction_impl) window_from_os_data_permanent(void * pdata);
 
-      virtual sp(::window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
-      virtual sp(::window) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+      virtual sp(::interaction_impl) FindWindow(const char * lpszClassName, const char * lpszWindowName);
+      virtual sp(::interaction_impl) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 
       virtual void get_time(struct timeval *p);
       virtual void set_env_var(const string & var,const string & value);

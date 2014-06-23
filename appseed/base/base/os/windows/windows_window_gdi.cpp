@@ -18,7 +18,7 @@ window_gdi::~window_gdi()
 }
 
 
-void window_gdi::create(oswindow window, int64_t cxParam, int64_t cyParam, int iStrideParam)
+void window_gdi::create(oswindow interaction_impl, int64_t cxParam, int64_t cyParam, int iStrideParam)
 {
 
    destroy();
@@ -43,7 +43,7 @@ void window_gdi::create(oswindow window, int64_t cxParam, int64_t cyParam, int i
 
    m_hbitmapOld = (HBITMAP) ::SelectObject(m_hdc, m_hbitmap);
 
-   window_graphics::create(window, cxParam, cyParam, iStride);
+   window_graphics::create(interaction_impl, cxParam, cyParam, iStride);
 
 }
 
@@ -83,26 +83,26 @@ void window_gdi::destroy()
 }
 
 
-void window_gdi::update_window(oswindow window, COLORREF * pcolorref, LPCRECT lpcrect, int iStride)
+void window_gdi::update_window(oswindow interaction_impl, COLORREF * pcolorref, LPCRECT lpcrect, int iStride)
 {
 
    if (width(lpcrect) <= 0 || height(lpcrect) <= 0)
       return;
 
-   if (window == NULL)
+   if (interaction_impl == NULL)
       return;
 
-   HDC hdcScreen = ::GetDCEx(window, NULL,  DCX_CLIPSIBLINGS | DCX_WINDOW);
+   HDC hdcScreen = ::GetDCEx(interaction_impl, NULL,  DCX_CLIPSIBLINGS | DCX_WINDOW);
 
    bool bOwnDC;
 
    if(hdcScreen == NULL)
    {
 
-      // If it has failed to get window
+      // If it has failed to get interaction_impl
       // owned device context, try to get
       // a device context from the cache.
-      hdcScreen = ::GetDCEx(window, NULL, DCX_CACHE | DCX_CLIPSIBLINGS | DCX_WINDOW);
+      hdcScreen = ::GetDCEx(interaction_impl, NULL, DCX_CACHE | DCX_CLIPSIBLINGS | DCX_WINDOW);
 
       // If no device context could be retrieved,
       // nothing can be drawn at the screen.
@@ -138,7 +138,7 @@ void window_gdi::update_window(oswindow window, COLORREF * pcolorref, LPCRECT lp
    rectOutputClient.top    -= lpcrect->top;
    rectOutputClient.bottom -= lpcrect->top;
 
-   bool bLayered = (::GetWindowLong(window, GWL_EXSTYLE) & WS_EX_LAYERED) != 0;
+   bool bLayered = (::GetWindowLong(interaction_impl, GWL_EXSTYLE) & WS_EX_LAYERED) != 0;
 
    try
    {
@@ -179,7 +179,7 @@ void window_gdi::update_window(oswindow window, COLORREF * pcolorref, LPCRECT lp
 
       BLENDFUNCTION blendPixelFunction = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
 
-      bool bOk = ::UpdateLayeredWindow(window, hdcScreen, &pt, &sz, m_hdc, &ptSrc, RGB(0, 0, 0), &blendPixelFunction, ULW_ALPHA) != FALSE;
+      bool bOk = ::UpdateLayeredWindow(interaction_impl, hdcScreen, &pt, &sz, m_hdc, &ptSrc, RGB(0, 0, 0), &blendPixelFunction, ULW_ALPHA) != FALSE;
 
 
    }
@@ -190,7 +190,7 @@ void window_gdi::update_window(oswindow window, COLORREF * pcolorref, LPCRECT lp
 
    }
 
-   ::ReleaseDC(window, hdcScreen);
+   ::ReleaseDC(interaction_impl, hdcScreen);
 
 }
 

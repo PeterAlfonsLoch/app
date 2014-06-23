@@ -243,7 +243,7 @@ namespace base
 
 #ifdef WINDOWS
 
-      m_spwindow = canew(window(this));
+      m_spwindow = canew(interaction_impl(this));
 
 #endif
 
@@ -271,7 +271,7 @@ namespace base
 
       dappy(string(typeid(*this).name()) + " : Going to ::base::system::m_spwindow->CreateEx : " + ::str::from(m_iReturnCode));
 
-      if(!m_spwindow->CreateEx(0,NULL,NULL,0,null_rect(),NULL,"::base::system::window::no_twf"))
+      if(!m_spwindow->CreateEx(0,NULL,NULL,0,null_rect(),NULL,"::base::system::interaction_impl::no_twf"))
       {
 
          dappy(string(typeid(*this).name()) + " : ::base::system::m_spwindow->CreateEx failure : " + ::str::from(m_iReturnCode));
@@ -934,22 +934,22 @@ namespace base
 #ifdef WINDOWS
 
 
-   system::window::window(sp(::base::application) papp):
+   system::interaction_impl::interaction_impl(sp(::base::application) papp):
       element(papp)
    {
 
    }
 
-   void system::window::install_message_handling(::message::dispatch * pdispatch)
+   void system::interaction_impl::install_message_handling(::message::dispatch * pdispatch)
    {
 
       ::user::interaction::install_message_handling(pdispatch);
 
-      IGUI_WIN_MSG_LINK(WM_DISPLAYCHANGE,pdispatch,this,&::base::system::window::_001MessageHub);
+      IGUI_WIN_MSG_LINK(WM_DISPLAYCHANGE,pdispatch,this,&::base::system::interaction_impl::_001MessageHub);
 
    }
 
-   void system::window::_001MessageHub(signal_details * pobj)
+   void system::interaction_impl::_001MessageHub(signal_details * pobj)
    {
 
       SCAST_PTR(::message::base,pbase,pobj);
@@ -968,7 +968,7 @@ namespace base
                try
                {
 
-                  System.frames()[i].WfiRestore(true);
+                  System.frames()[i]->WfiRestore(true);
 
                }
                catch(...)
@@ -1012,7 +1012,7 @@ namespace base
 
 #if defined (METROWIN)
 
-      return GetFocus()->window();
+      return GetFocus()->interaction_impl();
 
 #elif defined(WINDOWSEX) || defined(LINUX)
 

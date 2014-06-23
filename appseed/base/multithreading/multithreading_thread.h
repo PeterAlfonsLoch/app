@@ -28,8 +28,8 @@ public:
    bool                                   m_bReady;
    int32_t                                m_iReturnCode;
    sp(::base::application)                m_pappDelete;
-   sp(::user::interaction)                m_puiMain;           // main window (usually same System.m_puiMain)
-   sp(::user::interaction)                m_puiActive;         // active main window (may not be m_puiMain)
+   sp(::user::interaction)                m_puiMain;           // main interaction_impl (usually same System.m_puiMain)
+   sp(::user::interaction)                m_puiActive;         // active main interaction_impl (may not be m_puiMain)
    bool *                                 m_pbReady;
    property_set                           m_set;
    string                                 m_strWorkUrl;

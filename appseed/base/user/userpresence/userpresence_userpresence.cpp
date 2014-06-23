@@ -107,7 +107,7 @@ namespace userpresence
       }
 
 
-      m_spuiMessage->SetTimer(1984, 1000, NULL);
+      m_spuiMessage->SetTimer(8888, 1000, NULL);
 
       if(ApplicationUser.m_ppresence == NULL)
       {
@@ -193,7 +193,7 @@ namespace userpresence
 
             presence * ppresence = ApplicationUser.m_ppresence;
 
-            if(ptimer->m_nIDEvent == 1984 && ppresence != NULL)
+            if(ptimer->m_nIDEvent == 8888 && ppresence != NULL)
             {
 
                ppresence->defer_pulse_user_presence();

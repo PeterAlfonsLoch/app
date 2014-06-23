@@ -212,7 +212,7 @@ struct rsa_st
                                                 * implementation now uses constant time
                                                 * modular exponentiation for secret exponents
                                                 * by default. This flag causes the
-                                                * faster variable sliding window method to
+                                                * faster variable sliding interaction_impl method to
                                                 * be used for all exponents.
                                                 */
 #endif

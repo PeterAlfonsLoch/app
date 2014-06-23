@@ -21,7 +21,7 @@ namespace file_watcher
 
       while(!m_bUpdating)
       {
-         Sleep(84);
+         Sleep(100);
       }
 
       PostThreadMessage(m_nId, WM_USER + 123, 0, (lparam) pop);

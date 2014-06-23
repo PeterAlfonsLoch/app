@@ -1,11 +1,20 @@
 #include "framework.h"
 
-timer_listener::timer_listener()
+
+namespace core
 {
 
-}
 
-timer_listener::~timer_listener()
-{
+   timer_listener::timer_listener()
+   {
 
-}
+   }
+
+   timer_listener::~timer_listener()
+   {
+
+   }
+
+
+
+} // namespace core

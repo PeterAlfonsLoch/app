@@ -826,7 +826,7 @@ namespace plugin
                         //m_bMainReady = false;
 
                         return;
-                        //m_puiHost->SetTimer(19841115, (1984 + 1977 )* 2, NULL);
+                        //m_puiHost->SetTimer(88881115, (5000 )* 2, NULL);
 
                      }
                      else
@@ -1062,13 +1062,9 @@ namespace plugin
 
          m_puiHost->m_bRectOk = true;
 
-         m_puiHost->m_pimpl->m_bRectOk = true;
-
          m_puiHost->m_rectParentClient =  *lpcrect;
 
          m_puiHost->m_rectParentClient.offset(-point64(m_puiHost->m_rectParentClient.top_left()));
-
-         m_puiHost->m_pimpl->m_rectParentClient = m_puiHost->m_rectParentClient;
 
          rect64 rectWindow64;
 

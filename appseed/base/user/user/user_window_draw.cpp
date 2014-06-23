@@ -1,9 +1,9 @@
 #include "framework.h"
 
+
 namespace user
 {
 
-   CLASS_DECL_BASE bool window_draw::s_bRunning = false;
 
    window_draw::window_draw(sp(::base::application) papp) :
       element(papp),
@@ -12,8 +12,10 @@ namespace user
    {
       m_bProDevianMode                    = true;
       m_iFramesPerSecond                  = 20;
+      m_bRunning                          = false;
       m_bRun                              = true;
    }
+
 
    bool window_draw::twf_start()
    {
@@ -40,17 +42,17 @@ namespace user
 
    bool window_draw::twf_stop()
    {
-      const uint32_t dwTimeOut = 184 * (1984 + 1977);
+      const uint32_t dwTimeOut = 184 * (5000);
       m_bRun = false;
       uint32_t dwStart = ::get_tick_count();
-      while(s_bRunning && ((::get_tick_count() - dwStart) < dwTimeOut))
+      while(m_bRunning && ((::get_tick_count() - dwStart) < dwTimeOut))
       {
 #ifdef WINDOWSEX
          if(!::SwitchToThread())
 #endif
             Sleep(184);
       }
-      bool bStopped = !s_bRunning;
+      bool bStopped = !m_bRunning;
       if(!bStopped)
       {
          TRACE("Failed to stop with the timeout %d milliseconds", dwTimeOut);
@@ -67,6 +69,14 @@ namespace user
    void window_draw::synch_redraw()
    {
       throw interface_only_exception(get_app());
+   }
+
+
+   ::user::interaction_ptr_array window_draw::get_wnda()
+   {
+
+      return System.frames();
+
    }
 
 

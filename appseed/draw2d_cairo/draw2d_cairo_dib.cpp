@@ -2580,13 +2580,13 @@ synch_lock ml(&user_mutex());
 
 #if defined(WINDOWS)
 
-   bool dib::update_window(window * pwnd, signal_details * pobj)
+   bool dib::update_window(::user::interaction_impl * pwnd, signal_details * pobj)
    {
 
 
       rect64 rectWindow;
 
-      rectWindow = pwnd->m_rectParentClient;
+      rectWindow = pwnd->m_pui->m_rectParentClient;
 
       m_spgraphics->SetViewportOrg(0, 0);
 
@@ -2601,7 +2601,7 @@ synch_lock ml(&user_mutex());
    }
 
 
-   bool dib::print_window(window * pwnd, signal_details * pobj)
+   bool dib::print_window(::user::interaction_impl * pwnd, signal_details * pobj)
    {
 
       SCAST_PTR(::message::base, pbase, pobj);
@@ -2648,7 +2648,7 @@ synch_lock ml(&user_mutex());
          rectPaint = rectWindow;
          rectPaint.offset(-rectPaint.top_left());
          m_spgraphics->SelectClipRgn(NULL);
-         if(pwnd->m_pui != NULL && pwnd->m_pui != this)
+         if(pwnd->m_pui != NULL)
          {
             pwnd->m_pui->_001OnDeferPaintLayeredWindowBackground(pdc);
          }
@@ -2670,7 +2670,6 @@ synch_lock ml(&user_mutex());
             pdc, rectUpdate.left, rectUpdate.top,
             SRCCOPY);
 
-         m_spgraphics->TextOut(0, 0, "Te Amo CGCL", 11);
       }
       catch(...)
       {
@@ -2709,7 +2708,7 @@ synch_lock ml(&user_mutex());
 
 
 
-   bool dib::update_window(window * pwnd, signal_details * pobj)
+   bool dib::update_window(::user::interaction_impl * pwnd, signal_details * pobj)
    {
 
 

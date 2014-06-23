@@ -83,7 +83,7 @@ typedef struct ec_pre_comp_st {
 	const EC_GROUP *group; /* parent EC_GROUP object */
 	size_t blocksize;      /* block size for wNAF splitting */
 	size_t numblocks;      /* max. number of blocks for which we have precomputation */
-	size_t w;              /* window size */
+	size_t w;              /* interaction_impl size */
 	EC_POINT **points;     /* array with pre-calculated multiples of generator:
 	                        * 'num' pointers to EC_POINT objects followed by a NULL */
 	size_t num;            /* numblocks * 2^(w-1) */
@@ -283,7 +283,7 @@ static signed char *compute_wNAF(const BIGNUM *scalar, int w, size_t *ret_len)
 			window_val -= digit;
 
 			/* now window_val is 0 or 2^(w+1) in standard wNAF generation;
-			 * for modified window NAFs, it may also be 2^w
+			 * for modified interaction_impl NAFs, it may also be 2^w
 			 */
 			if (window_val != 0 && window_val != next_bit && window_val != bit)
 				{
@@ -356,7 +356,7 @@ int ec_wNAF_mul(const EC_GROUP *group, EC_POINT *r, const BIGNUM *scalar,
 	int k;
 	int r_is_inverted = 0;
 	int r_is_at_infinity = 1;
-	size_t *wsize = NULL; /* individual window sizes */
+	size_t *wsize = NULL; /* individual interaction_impl sizes */
 	signed char **wNAF = NULL; /* individual wNAFs */
 	size_t *wNAF_len = NULL;
 	size_t max_len = 0;
@@ -496,7 +496,7 @@ int ec_wNAF_mul(const EC_GROUP *group, EC_POINT *r, const BIGNUM *scalar,
 				goto err;
 				}
 
-			/* use the window size for which we have precomputation */
+			/* use the interaction_impl size for which we have precomputation */
 			wsize[num] = pre_comp->w;
 			tmp_wNAF = compute_wNAF(scalar, wsize[num], &tmp_len);
 			if (!tmp_wNAF)
@@ -816,7 +816,7 @@ int ec_wNAF_precompute_mult(EC_GROUP *group, BN_CTX *ctx)
 	w = 4;
 	if (EC_window_bits_for_scalar_size(bits) > w)
 		{
-		/* let's not make the window too small ... */
+		/* let's not make the interaction_impl too small ... */
 		w = EC_window_bits_for_scalar_size(bits);
 		}
 

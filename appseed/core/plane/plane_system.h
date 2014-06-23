@@ -152,17 +152,6 @@ namespace plane
 
       virtual void on_allocation_error(sp(::base::application) papp, sp(type) info);
 
-      // file & dir
-      virtual string matter_as_string(sp(::base::application) papp, const char * pszMatter, const char * pszMatter2 = NULL);
-      virtual string dir_matter(sp(::base::application) papp, const char * pszMatter, const char * pszMatter2 = NULL);
-      virtual bool is_inside_time_dir(const char * pszPath);
-      virtual bool file_is_read_only(const char * pszPath);
-      virtual string file_as_string(sp(::base::application) papp, const char * pszPath);
-      virtual string dir_path(const char * psz1, const char * psz2, const char * psz3 = NULL);
-      virtual string dir_name(const char * psz);
-      virtual bool dir_mk(const char * psz);
-      virtual string file_title(const char * psz);
-      virtual string file_name(const char * psz);
 
       FT_Library                             & ftlibrary();
 
@@ -204,19 +193,10 @@ namespace plane
 
       virtual void post_fork_uri(const char * pszUri, application_bias * pbiasCreate);
 
-
-      //      sp(::plane::session) get_session(index iEdge, application_bias * pbiasCreation = NULL);
       sp(::base::session) query_session(index iEdge);
-
-
-      //static void register_delete(sp(element) plistened, sp(element) plistener);
-      //static void unregister_delete(sp(element) plistened, sp(element) plistenerOld);
 
       virtual bool wait_twf(uint32_t dwTimeOut = INFINITE);
 
-
-
-      //virtual void discard_to_factory(sp(element) pca);
 
       virtual bool verb();
 

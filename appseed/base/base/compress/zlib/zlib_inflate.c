@@ -8,7 +8,7 @@
  *
  * 1.2.beta0    24 Nov 2002
  * - First version -- complete rewrite of inflate to simplify code, avoid
- *   creation of window when not needed, minimize use of window when it is
+ *   creation of interaction_impl when not needed, minimize use of interaction_impl when it is
  *   needed, make inffast.c even faster, implement gzip decoding, and to
  *   improve code readability and style over the previous zlib inflate code
  *
@@ -29,7 +29,7 @@
  * 1.2.beta3    22 Dec 2002
  * - Add comments on state->bits assertion in inffast.c
  * - Add comments on op field in inftrees.h
- * - Fix bug in reuse of allocated window after inflateReset()
+ * - Fix bug in reuse of allocated interaction_impl after inflateReset()
  * - Remove bit fields--back to byte structure for speed
  * - Remove distance extra == 0 check in inflate_fast()--only helps for lengths
  * - Change post-increments to pre-increments in inflate_fast(), PPC biased?
@@ -42,17 +42,17 @@
  * - Split ptr - 257 statements in inflate_table() to avoid compiler warnings
  * - Move a comment on output buffer sizes from inffast.c to inflate.c
  * - Add comments in inffast.c to introduce the inflate_fast() routine
- * - Rearrange window copies in inflate_fast() for speed and simplification
- * - Unroll last copy for window match in inflate_fast()
- * - Use local copies of window variables in inflate_fast() for speed
+ * - Rearrange interaction_impl copies in inflate_fast() for speed and simplification
+ * - Unroll last copy for interaction_impl match in inflate_fast()
+ * - Use local copies of interaction_impl variables in inflate_fast() for speed
  * - Pull out common wnext == 0 case for speed in inflate_fast()
  * - Make op and len in inflate_fast() unsigned for consistency
  * - Add FAR to lcode and dcode declarations in inflate_fast()
  * - Simplified bad distance check in inflate_fast()
  * - Added inflateBackInit(), inflateBack(), and inflateBackEnd() in new
  *   source file infback.c to provide a call-back interface to inflate for
- *   programs like gzip and unzip -- uses window as output buffer to avoid
- *   window copying
+ *   programs like gzip and unzip -- uses interaction_impl as output buffer to avoid
+ *   interaction_impl copying
  *
  * 1.2.beta5    1 Jan 2003
  * - Improved inflateBack() interface to allow the caller to provide initial
@@ -64,7 +64,7 @@
  * - Typecasting all around to reduce compiler warnings
  * - Changed loops from while (1) or do {} while (1) to for (;;), again to
  *   make compilers happy
- * - Changed type of window in inflateBackInit() to unsigned char *
+ * - Changed type of interaction_impl in inflateBackInit() to unsigned char *
  *
  * 1.2.beta7    27 Jan 2003
  * - Changed many types to unsigned or unsigned short to avoid warnings
@@ -162,12 +162,12 @@ int windowBits;
 #endif
     }
 
-    /* set number of window bits, free window if different */
+    /* set number of interaction_impl bits, free interaction_impl if different */
     if (windowBits && (windowBits < 8 || windowBits > 15))
         return Z_STREAM_ERROR;
-    if (state->window != Z_NULL && state->wbits != (unsigned)windowBits) {
-        ZFREE(strm, state->window);
-        state->window = Z_NULL;
+    if (state->interaction_impl != Z_NULL && state->wbits != (unsigned)windowBits) {
+        ZFREE(strm, state->interaction_impl);
+        state->interaction_impl = Z_NULL;
     }
 
     /* update state and reset the rest of it */
@@ -209,7 +209,7 @@ int stream_size;
     if (state == Z_NULL) return Z_MEM_ERROR;
     Tracev((stderr, "inflate: allocated\n"));
     strm->state = (struct internal_state FAR *)state;
-    state->window = Z_NULL;
+    state->interaction_impl = Z_NULL;
     ret = inflateReset2(strm, windowBits);
     if (ret != Z_OK) {
         ZFREE(strm, state);
@@ -362,15 +362,15 @@ void makefixed()
 #endif /* MAKEFIXED */
 
 /*
-   Update the window with the last wsize (normally 32K) bytes written before
-   returning.  If window does not exist yet, create it.  This is only called
-   when a window is already in use, or when output has been written during this
+   Update the interaction_impl with the last wsize (normally 32K) bytes written before
+   returning.  If interaction_impl does not exist yet, create it.  This is only called
+   when a interaction_impl is already in use, or when output has been written during this
    inflate call, but the end of the deflate stream has not been reached yet.
-   It is also called to create a window for dictionary data when a dictionary
+   It is also called to create a interaction_impl for dictionary data when a dictionary
    is loaded.
 
    Providing output buffers larger than 32K to inflate() should provide a speed
-   advantage, since only the last 32K of output is copied to the sliding window
+   advantage, since only the last 32K of output is copied to the sliding interaction_impl
    upon return from inflate(), and since all distances after the first 32K of
    output will fall in the output data, making match copies simpler and faster.
    The advantage may be dependent on the size of the processor's data caches.
@@ -384,35 +384,35 @@ unsigned out;
 
     state = (struct inflate_state FAR *)strm->state;
 
-    /* if it hasn't been done already, allocate space for the window */
-    if (state->window == Z_NULL) {
-        state->window = (unsigned char FAR *)
+    /* if it hasn't been done already, allocate space for the interaction_impl */
+    if (state->interaction_impl == Z_NULL) {
+        state->interaction_impl = (unsigned char FAR *)
                         ZALLOC(strm, 1U << state->wbits,
                                sizeof(unsigned char));
-        if (state->window == Z_NULL) return 1;
+        if (state->interaction_impl == Z_NULL) return 1;
     }
 
-    /* if window not in use yet, initialize */
+    /* if interaction_impl not in use yet, initialize */
     if (state->wsize == 0) {
         state->wsize = 1U << state->wbits;
         state->wnext = 0;
         state->whave = 0;
     }
 
-    /* copy state->wsize or less output bytes into the circular window */
+    /* copy state->wsize or less output bytes into the circular interaction_impl */
     copy = out - strm->avail_out;
     if (copy >= state->wsize) {
-        zmemcpy(state->window, strm->next_out - state->wsize, state->wsize);
+        zmemcpy(state->interaction_impl, strm->next_out - state->wsize, state->wsize);
         state->wnext = 0;
         state->whave = state->wsize;
     }
     else {
         dist = state->wsize - state->wnext;
         if (dist > copy) dist = copy;
-        zmemcpy(state->window + state->wnext, strm->next_out - copy, dist);
+        zmemcpy(state->interaction_impl + state->wnext, strm->next_out - copy, dist);
         copy -= dist;
         if (copy) {
-            zmemcpy(state->window, strm->next_out - copy, copy);
+            zmemcpy(state->interaction_impl, strm->next_out - copy, copy);
             state->wnext = copy;
             state->whave = state->wsize;
         }
@@ -585,16 +585,16 @@ unsigned out;
    update the check value, and determine whether any progress has been made
    during that inflate() call in order to return the proper return code.
    Progress is defined as a change in either strm->avail_in or strm->avail_out.
-   When there is a window, goto inf_leave will update the window with the last
+   When there is a interaction_impl, goto inf_leave will update the interaction_impl with the last
    output written.  If a goto inf_leave occurs in the middle of decompression
-   and there is no window currently, goto inf_leave will create one and copy
-   output to the window for the next call of inflate().
+   and there is no interaction_impl currently, goto inf_leave will create one and copy
+   output to the interaction_impl for the next call of inflate().
 
    In this implementation, the flush parameter of inflate() only affects the
    return code (per zlib.h).  inflate() always writes as much as possible to
    strm->next_out, given the space available and the provided input--the effect
    documented in zlib.h of Z_SYNC_FLUSH.  Furthermore, inflate() always defers
-   the allocation of and copying into a sliding window until necessary, which
+   the allocation of and copying into a sliding interaction_impl until necessary, which
    provides the effect documented in zlib.h for Z_FINISH when the entire input
    stream available.  So the only thing the flush parameter actually does is:
    when flush is set to Z_FINISH, inflate() cannot return Z_OK.  Instead it
@@ -672,7 +672,7 @@ int flush;
             if (state->wbits == 0)
                 state->wbits = len;
             else if (len > state->wbits) {
-                strm->msg = (char *)"invalid window size";
+                strm->msg = (char *)"invalid interaction_impl size";
                 state->mode = BAD;
                 break;
             }
@@ -1122,7 +1122,7 @@ int flush;
         case MATCH:
             if (left == 0) goto inf_leave;
             copy = out - left;
-            if (state->offset > copy) {         /* copy from window */
+            if (state->offset > copy) {         /* copy from interaction_impl */
                 copy = state->offset - copy;
                 if (copy > state->whave) {
                     if (state->sane) {
@@ -1146,10 +1146,10 @@ int flush;
                 }
                 if (copy > state->wnext) {
                     copy -= state->wnext;
-                    from = state->window + (state->wsize - copy);
+                    from = state->interaction_impl + (state->wsize - copy);
                 }
                 else
-                    from = state->window + (state->wnext - copy);
+                    from = state->interaction_impl + (state->wnext - copy);
                 if (copy > state->length) copy = state->length;
             }
             else {                              /* copy from output */
@@ -1223,7 +1223,7 @@ int flush;
     /*
        Return from inflate(), updating the total counts and the check value.
        If there was no progress during the inflate() call, return a buffer
-       error.  Call updatewindow() to create and/or update the window state.
+       error.  Call updatewindow() to create and/or update the interaction_impl state.
        Note: a memory error from inflate() is non-recoverable.
      */
   inf_leave:
@@ -1257,7 +1257,7 @@ z_streamp strm;
     if (strm == Z_NULL || strm->state == Z_NULL || strm->zfree == (free_func)0)
         return Z_STREAM_ERROR;
     state = (struct inflate_state FAR *)strm->state;
-    if (state->window != Z_NULL) ZFREE(strm, state->window);
+    if (state->interaction_impl != Z_NULL) ZFREE(strm, state->interaction_impl);
     ZFREE(strm, strm->state);
     strm->state = Z_NULL;
     Tracev((stderr, "inflate: end\n"));
@@ -1289,7 +1289,7 @@ uInt dictLength;
             return Z_DATA_ERROR;
     }
 
-    /* copy dictionary to window using updatewindow(), which will amend the
+    /* copy dictionary to interaction_impl using updatewindow(), which will amend the
        existing dictionary if appropriate */
     next = strm->next_out;
     avail = strm->avail_out;
@@ -1425,7 +1425,7 @@ z_streamp source;
 {
     struct inflate_state FAR *state;
     struct inflate_state FAR *copy;
-    unsigned char FAR *window;
+    unsigned char FAR *interaction_impl;
     unsigned wsize;
 
     /* check input */
@@ -1438,11 +1438,11 @@ z_streamp source;
     copy = (struct inflate_state FAR *)
            ZALLOC(source, 1, sizeof(struct inflate_state));
     if (copy == Z_NULL) return Z_MEM_ERROR;
-    window = Z_NULL;
-    if (state->window != Z_NULL) {
-        window = (unsigned char FAR *)
+    interaction_impl = Z_NULL;
+    if (state->interaction_impl != Z_NULL) {
+        interaction_impl = (unsigned char FAR *)
                  ZALLOC(source, 1U << state->wbits, sizeof(unsigned char));
-        if (window == Z_NULL) {
+        if (interaction_impl == Z_NULL) {
             ZFREE(source, copy);
             return Z_MEM_ERROR;
         }
@@ -1457,11 +1457,11 @@ z_streamp source;
         copy->distcode = copy->codes + (state->distcode - state->codes);
     }
     copy->next = copy->codes + (state->next - state->codes);
-    if (window != Z_NULL) {
+    if (interaction_impl != Z_NULL) {
         wsize = 1U << state->wbits;
-        zmemcpy(window, state->window, wsize);
+        zmemcpy(interaction_impl, state->interaction_impl, wsize);
     }
-    copy->window = window;
+    copy->interaction_impl = interaction_impl;
     dest->state = (struct internal_state FAR *)copy;
     return Z_OK;
 }

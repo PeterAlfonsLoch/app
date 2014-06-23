@@ -27,7 +27,7 @@ namespace net
    public:
 
 
-      // a public enum which is used by classes that respond to the registered window message
+      // a public enum which is used by classes that respond to the registered interaction_impl message
 	   // UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, so they can decode the wParam and lParam values
 
 

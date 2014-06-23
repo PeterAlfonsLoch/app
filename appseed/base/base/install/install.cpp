@@ -34,7 +34,7 @@ double g_dPi = asin_dup(1.0) * 4;
 namespace install
 {
 
-//   window g_window;
+//   interaction_impl g_window;
 
 } // namespace install
 

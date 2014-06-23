@@ -1327,8 +1327,8 @@ namespace sort
 #include "collection_key_sort_array.h"
 
 
-template < class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-void comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::quick_sort(bool bAsc)
+template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+void comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE >::quick_sort(bool bAsc)
 {
    if(bAsc)
    {

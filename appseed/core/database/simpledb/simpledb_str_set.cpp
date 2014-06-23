@@ -125,7 +125,7 @@ repeat:;
           if(BaseSession.fontopus()->m_puser == NULL)
           {
              sl.unlock();
-             Sleep(1984 + 1977);
+             Sleep(5000);
              goto repeat;
           }
 
@@ -259,7 +259,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       strValue = set["get_response"];
 
-      stritem.m_dwTimeout = get_tick_count() + 23 * (1984 + 1977);
+      stritem.m_dwTimeout = get_tick_count() + 23 * (5000);
       stritem.m_str = strValue;
 
       m_map.set_at(lpKey, stritem);
@@ -406,7 +406,7 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
 
       item stritem;
 
-      stritem.m_dwTimeout = get_tick_count() + 23 * (1984 + 1977);
+      stritem.m_dwTimeout = get_tick_count() + 23 * (5000);
       stritem.m_str = lpcsz;
 
       m_map.set_at(lpKey, stritem);

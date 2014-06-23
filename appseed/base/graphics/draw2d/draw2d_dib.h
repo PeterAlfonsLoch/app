@@ -262,8 +262,8 @@ namespace draw2d
       virtual void write(::file::output_stream & ostream);
       virtual void read(::file::input_stream & istream);
 
-      virtual bool update_window(window * pwnd, signal_details * pobj);
-      virtual bool print_window(window * pwnd, signal_details * pobj);
+      virtual bool update_window(::user::interaction_impl * pui, signal_details * pobj);
+      virtual bool print_window(::user::interaction_impl * pui, signal_details * pobj);
 
 
       static void static_initialize();

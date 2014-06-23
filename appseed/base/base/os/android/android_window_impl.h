@@ -6,7 +6,7 @@ namespace boot
 
 
    class thread_base;
-   class window;
+   class interaction_impl;
 
 
 } // namespace boot
@@ -70,7 +70,7 @@ struct CLASS_DECL_BASE oswindow_data
       return (void *) this;
    }
 
-   oswindow_data & operator = (const oswindow_data & window);
+   oswindow_data & operator = (const oswindow_data & interaction_impl);
 
    bool operator == (const void * p) const
    {

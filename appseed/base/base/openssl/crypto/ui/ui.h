@@ -247,20 +247,20 @@ UI_METHOD *UI_OpenSSL(void);
    of the User Interface.  The functions are:
 
 	an opener	This function starts a session, maybe by opening
-			a channel to a tty, or by opening a window.
+			a channel to a tty, or by opening a interaction_impl.
 	a writer	This function is called to write a given string,
 			maybe to the tty, maybe as a field label in a
-			window.
+			interaction_impl.
 	a flusher	This function is called to flush everything that
 			has been output so far.  It can be used to actually
 			display a dialog box after it has been built.
 	a reader	This function is called to read a given prompt,
 			maybe from the tty, maybe from a field in a
-			window.  Note that it's called wth all string
+			interaction_impl.  Note that it's called wth all string
 			structures, not only the prompt ones, so it must
 			check such things itself.
 	a closer	This function closes the session, maybe by closing
-			the channel to the tty, or closing the window.
+			the channel to the tty, or closing the interaction_impl.
 
    All these functions are expected to return:
 

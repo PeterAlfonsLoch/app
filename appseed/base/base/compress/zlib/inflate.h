@@ -88,12 +88,12 @@ struct inflate_state {
     unsigned long check;        /* protected copy of check value */
     unsigned long total;        /* protected copy of output count */
     gz_headerp head;            /* where to save gzip header information */
-        /* sliding window */
-    unsigned wbits;             /* log base 2 of requested window size */
-    unsigned wsize;             /* window size or zero if not using window */
-    unsigned whave;             /* valid bytes in the window */
-    unsigned wnext;             /* window write index */
-    unsigned char FAR *window;  /* allocated sliding window, if needed */
+        /* sliding interaction_impl */
+    unsigned wbits;             /* log base 2 of requested interaction_impl size */
+    unsigned wsize;             /* interaction_impl size or zero if not using interaction_impl */
+    unsigned whave;             /* valid bytes in the interaction_impl */
+    unsigned wnext;             /* interaction_impl write index */
+    unsigned char FAR *interaction_impl;  /* allocated sliding interaction_impl, if needed */
         /* bit accumulator */
     unsigned long hold;         /* input bit accumulator */
     unsigned bits;              /* number of bits in "in" */

@@ -1,11 +1,15 @@
 #pragma once
 
+
 namespace user
 {
 
+
    class tool_tip_tool;
 
-   class tool_tip_window : public window
+
+   class tool_tip_window :
+      virtual public ::user::interaction
    {
    public:
 

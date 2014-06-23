@@ -10,8 +10,8 @@ namespace base
    enum e_application_signal
    {
 
-      application_signal_initialize1, // cgcl // first initialization
-      application_signal_initialize2, // cst  // second initialization
+      application_signal_initialize1, // first initialization
+      application_signal_initialize2, // second initialization
       application_signal_initialize3, // third initialization and so on...
       application_signal_initialize, // last initialization
       application_signal_start,

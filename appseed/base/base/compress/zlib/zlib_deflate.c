@@ -8,7 +8,7 @@
  *
  *      The "deflation" process depends on being able to identify portions
  *      of the input text which are identical to earlier input (within a
- *      sliding window trailing behind the input currently being processed).
+ *      sliding interaction_impl trailing behind the input currently being processed).
  *
  *      The most straightforward technique turns out to be the fastest for
  *      most input files: try all possible matches and select the longest.
@@ -179,12 +179,12 @@ struct static_tree_desc_s {int dummy;}; /* for buggy compilers */
  */
 #ifdef FASTEST
 #define INSERT_STRING(s, str, match_head) \
-   (UPDATE_HASH(s, s->ins_h, s->window[(str) + (MIN_MATCH-1)]), \
+   (UPDATE_HASH(s, s->ins_h, s->interaction_impl[(str) + (MIN_MATCH-1)]), \
     match_head = s->head[s->ins_h], \
     s->head[s->ins_h] = (Pos)(str))
 #else
 #define INSERT_STRING(s, str, match_head) \
-   (UPDATE_HASH(s, s->ins_h, s->window[(str) + (MIN_MATCH-1)]), \
+   (UPDATE_HASH(s, s->ins_h, s->interaction_impl[(str) + (MIN_MATCH-1)]), \
     match_head = s->prev[(str) & s->w_mask] = s->head[s->ins_h], \
     s->head[s->ins_h] = (Pos)(str))
 #endif
@@ -206,7 +206,7 @@ int ZEXPORT deflateInit_(strm, level, version, stream_size)
 {
     return deflateInit2_(strm, level, Z_DEFLATED, MAX_WBITS, DEF_MEM_LEVEL,
                          Z_DEFAULT_STRATEGY, version, stream_size);
-    /* To do: ignore strm->next_in if we use it as window */
+    /* To do: ignore strm->next_in if we use it as interaction_impl */
 }
 
 /* ========================================================================= */
@@ -273,7 +273,7 @@ int ZEXPORT deflateInit2_(strm, level, method, windowBits, memLevel, strategy,
         strategy < 0 || strategy > Z_FIXED) {
         return Z_STREAM_ERROR;
     }
-    if (windowBits == 8) windowBits = 9;  /* until 256-byte window bug fixed */
+    if (windowBits == 8) windowBits = 9;  /* until 256-byte interaction_impl bug fixed */
     s = (deflate_state *) ZALLOC(strm, 1, sizeof(deflate_state));
     if (s == Z_NULL) return Z_MEM_ERROR;
     strm->state = (struct internal_state FAR *)s;
@@ -290,11 +290,11 @@ int ZEXPORT deflateInit2_(strm, level, method, windowBits, memLevel, strategy,
     s->hash_mask = s->hash_size - 1;
     s->hash_shift =  ((s->hash_bits+MIN_MATCH-1)/MIN_MATCH);
 
-    s->window = (Bytef *) ZALLOC(strm, s->w_size, 2*sizeof(Byte));
+    s->interaction_impl = (Bytef *) ZALLOC(strm, s->w_size, 2*sizeof(Byte));
     s->prev   = (Posf *)  ZALLOC(strm, s->w_size, sizeof(Pos));
     s->head   = (Posf *)  ZALLOC(strm, s->hash_size, sizeof(Pos));
 
-    s->high_water = 0;      /* nothing written to s->window yet */
+    s->high_water = 0;      /* nothing written to s->interaction_impl yet */
 
     s->lit_bufsize = 1 << (memLevel + 6); /* 16K elements by default */
 
@@ -302,7 +302,7 @@ int ZEXPORT deflateInit2_(strm, level, method, windowBits, memLevel, strategy,
     s->pending_buf = (uchf *) overlay;
     s->pending_buf_size = (ulg)s->lit_bufsize * (sizeof(ush)+2L);
 
-    if (s->window == Z_NULL || s->prev == Z_NULL || s->head == Z_NULL ||
+    if (s->interaction_impl == Z_NULL || s->prev == Z_NULL || s->head == Z_NULL ||
         s->pending_buf == Z_NULL) {
         s->status = FINISH_STATE;
         strm->msg = (char*)ERR_MSG(Z_MEM_ERROR);
@@ -343,7 +343,7 @@ int ZEXPORT deflateSetDictionary (strm, dictionary, dictLength)
         strm->adler = adler32(strm->adler, dictionary, dictLength);
     s->wrap = 0;                    /* avoid computing Adler-32 in read_buf */
 
-    /* if dictionary would fill window, just replace the history */
+    /* if dictionary would fill interaction_impl, just replace the history */
     if (dictLength >= s->w_size) {
         if (wrap == 0) {            /* already empty otherwise */
             CLEAR_HASH(s);
@@ -355,7 +355,7 @@ int ZEXPORT deflateSetDictionary (strm, dictionary, dictLength)
         dictLength = s->w_size;
     }
 
-    /* insert dictionary into window and hash */
+    /* insert dictionary into interaction_impl and hash */
     avail = strm->avail_in;
     next = strm->next_in;
     strm->avail_in = dictLength;
@@ -365,7 +365,7 @@ int ZEXPORT deflateSetDictionary (strm, dictionary, dictLength)
         str = s->strstart;
         n = s->lookahead - (MIN_MATCH-1);
         do {
-            UPDATE_HASH(s, s->ins_h, s->window[str + MIN_MATCH-1]);
+            UPDATE_HASH(s, s->ins_h, s->interaction_impl[str + MIN_MATCH-1]);
 #ifndef FASTEST
             s->prev[str & s->w_mask] = s->head[s->ins_h];
 #endif
@@ -996,7 +996,7 @@ int ZEXPORT deflateEnd (strm)
     TRY_FREE(strm, strm->state->pending_buf);
     TRY_FREE(strm, strm->state->head);
     TRY_FREE(strm, strm->state->prev);
-    TRY_FREE(strm, strm->state->window);
+    TRY_FREE(strm, strm->state->interaction_impl);
 
     ZFREE(strm, strm->state);
     strm->state = Z_NULL;
@@ -1035,19 +1035,19 @@ int ZEXPORT deflateCopy (dest, source)
     zmemcpy((voidpf)ds, (voidpf)ss, sizeof(deflate_state));
     ds->strm = dest;
 
-    ds->window = (Bytef *) ZALLOC(dest, ds->w_size, 2*sizeof(Byte));
+    ds->interaction_impl = (Bytef *) ZALLOC(dest, ds->w_size, 2*sizeof(Byte));
     ds->prev   = (Posf *)  ZALLOC(dest, ds->w_size, sizeof(Pos));
     ds->head   = (Posf *)  ZALLOC(dest, ds->hash_size, sizeof(Pos));
     overlay = (ushf *) ZALLOC(dest, ds->lit_bufsize, sizeof(ush)+2);
     ds->pending_buf = (uchf *) overlay;
 
-    if (ds->window == Z_NULL || ds->prev == Z_NULL || ds->head == Z_NULL ||
+    if (ds->interaction_impl == Z_NULL || ds->prev == Z_NULL || ds->head == Z_NULL ||
         ds->pending_buf == Z_NULL) {
         deflateEnd (dest);
         return Z_MEM_ERROR;
     }
     /* following zmemcpy do not work for 16-bit MSDOS */
-    zmemcpy(ds->window, ss->window, ds->w_size * 2 * sizeof(Byte));
+    zmemcpy(ds->interaction_impl, ss->interaction_impl, ds->w_size * 2 * sizeof(Byte));
     zmemcpy((voidpf)ds->prev, (voidpf)ss->prev, ds->w_size * sizeof(Pos));
     zmemcpy((voidpf)ds->head, (voidpf)ss->head, ds->hash_size * sizeof(Pos));
     zmemcpy(ds->pending_buf, ss->pending_buf, (uInt)ds->pending_buf_size);
@@ -1148,7 +1148,7 @@ local uInt longest_match(s, cur_match)
     IPos cur_match;                             /* current match */
 {
     unsigned chain_length = s->max_chain_length;/* max hash chain length */
-    register Bytef *scan = s->window + s->strstart; /* current string */
+    register Bytef *scan = s->interaction_impl + s->strstart; /* current string */
     register Bytef *match;                       /* matched string */
     register int len;                           /* length of current match */
     int best_len = s->prev_length;              /* best match length so far */
@@ -1156,7 +1156,7 @@ local uInt longest_match(s, cur_match)
     IPos limit = s->strstart > (IPos)MAX_DIST(s) ?
         s->strstart - (IPos)MAX_DIST(s) : NIL;
     /* Stop when cur_match becomes <= limit. To simplify the code,
-     * we prevent matches with the string of window index 0.
+     * we prevent matches with the string of interaction_impl index 0.
      */
     Posf *prev = s->prev;
     uInt wmask = s->w_mask;
@@ -1165,11 +1165,11 @@ local uInt longest_match(s, cur_match)
     /* Compare two bytes at a time. Note: this is not always beneficial.
      * Try with and without -DUNALIGNED_OK to check.
      */
-    register Bytef *strend = s->window + s->strstart + MAX_MATCH - 1;
+    register Bytef *strend = s->interaction_impl + s->strstart + MAX_MATCH - 1;
     register ush scan_start = *(ushf*)scan;
     register ush scan_end   = *(ushf*)(scan+best_len-1);
 #else
-    register Bytef *strend = s->window + s->strstart + MAX_MATCH;
+    register Bytef *strend = s->interaction_impl + s->strstart + MAX_MATCH;
     register Byte scan_end1  = scan[best_len-1];
     register Byte scan_end   = scan[best_len];
 #endif
@@ -1192,7 +1192,7 @@ local uInt longest_match(s, cur_match)
 
     do {
         Assert(cur_match < s->strstart, "no future");
-        match = s->window + cur_match;
+        match = s->interaction_impl + cur_match;
 
         /* Skip to next match if the match length cannot increase
          * or if the match length is less than 2.  Note that the checks below
@@ -1215,7 +1215,7 @@ local uInt longest_match(s, cur_match)
          * strstart+3, +5, ... up to strstart+257. We check for insufficient
          * lookahead only every 4th comparison; the 128th check will be made
          * at strstart+257. If MAX_MATCH-2 is not a multiple of 8, it is
-         * necessary to put more guard bytes at the end of the window, or
+         * necessary to put more guard bytes at the end of the interaction_impl, or
          * to check more often for insufficient lookahead.
          */
         Assert(scan[2] == match[2], "scan[2]?");
@@ -1228,8 +1228,8 @@ local uInt longest_match(s, cur_match)
                  scan < strend);
         /* The funny "do {}" generates better code on most compilers */
 
-        /* Here, scan <= window+strstart+257 */
-        Assert(scan <= s->window+(unsigned)(s->window_size-1), "wild scan");
+        /* Here, scan <= interaction_impl+strstart+257 */
+        Assert(scan <= s->interaction_impl+(unsigned)(s->window_size-1), "wild scan");
         if (*scan == *match) scan++;
 
         len = (MAX_MATCH - 1) - (int)(strend-scan);
@@ -1261,7 +1261,7 @@ local uInt longest_match(s, cur_match)
                  *++scan == *++match && *++scan == *++match &&
                  scan < strend);
 
-        Assert(scan <= s->window+(unsigned)(s->window_size-1), "wild scan");
+        Assert(scan <= s->interaction_impl+(unsigned)(s->window_size-1), "wild scan");
 
         len = MAX_MATCH - (int)(strend - scan);
         scan = strend - MAX_MATCH;
@@ -1296,10 +1296,10 @@ local uInt longest_match(s, cur_match)
     deflate_state *s;
     IPos cur_match;                             /* current match */
 {
-    register Bytef *scan = s->window + s->strstart; /* current string */
+    register Bytef *scan = s->interaction_impl + s->strstart; /* current string */
     register Bytef *match;                       /* matched string */
     register int len;                           /* length of current match */
-    register Bytef *strend = s->window + s->strstart + MAX_MATCH;
+    register Bytef *strend = s->interaction_impl + s->strstart + MAX_MATCH;
 
     /* The code is optimized for HASH_BITS >= 8 and MAX_MATCH-2 multiple of 16.
      * It is easy to get rid of this optimization if necessary.
@@ -1310,7 +1310,7 @@ local uInt longest_match(s, cur_match)
 
     Assert(cur_match < s->strstart, "no future");
 
-    match = s->window + cur_match;
+    match = s->interaction_impl + cur_match;
 
     /* Return failure if the match length is less than 2:
      */
@@ -1335,7 +1335,7 @@ local uInt longest_match(s, cur_match)
              *++scan == *++match && *++scan == *++match &&
              scan < strend);
 
-    Assert(scan <= s->window+(unsigned)(s->window_size-1), "wild scan");
+    Assert(scan <= s->interaction_impl+(unsigned)(s->window_size-1), "wild scan");
 
     len = MAX_MATCH - (int)(strend - scan);
 
@@ -1357,18 +1357,18 @@ local void check_match(s, start, match, length)
     int length;
 {
     /* check that the match is indeed a match */
-    if (zmemcmp(s->window + match,
-                s->window + start, length) != EQUAL) {
+    if (zmemcmp(s->interaction_impl + match,
+                s->interaction_impl + start, length) != EQUAL) {
         fprintf(stderr, " start %u, match %u, length %d\n",
                 start, match, length);
         do {
-            fprintf(stderr, "%c%c", s->window[match++], s->window[start++]);
+            fprintf(stderr, "%c%c", s->interaction_impl[match++], s->interaction_impl[start++]);
         } while (--length != 0);
         z_error("invalid match");
     }
     if (z_verbose > 1) {
         fprintf(stderr,"\\[%d,%d]", start-match, length);
-        do { putc(s->window[start++], stderr); } while (--length != 0);
+        do { putc(s->interaction_impl[start++], stderr); } while (--length != 0);
     }
 }
 #else
@@ -1376,7 +1376,7 @@ local void check_match(s, start, match, length)
 #endif /* DEBUG */
 
 /* ===========================================================================
- * Fill the window when the lookahead becomes insufficient.
+ * Fill the interaction_impl when the lookahead becomes insufficient.
  * Updates strstart and lookahead.
  *
  * IN assertion: lookahead < MIN_LOOKAHEAD
@@ -1390,7 +1390,7 @@ local void fill_window(s)
 {
     register unsigned n, m;
     register Posf *p;
-    unsigned more;    /* Amount of free space at the end of the window. */
+    unsigned more;    /* Amount of free space at the end of the interaction_impl. */
     uInt wsize = s->w_size;
 
     Assert(s->lookahead < MIN_LOOKAHEAD, "already enough lookahead");
@@ -1411,12 +1411,12 @@ local void fill_window(s)
             }
         }
 
-        /* If the window is almost full and there is insufficient lookahead,
+        /* If the interaction_impl is almost full and there is insufficient lookahead,
          * move the upper half to the lower one to make room in the upper half.
          */
         if (s->strstart >= wsize+MAX_DIST(s)) {
 
-            zmemcpy(s->window, s->window+wsize, (unsigned)wsize);
+            zmemcpy(s->interaction_impl, s->interaction_impl+wsize, (unsigned)wsize);
             s->match_start -= wsize;
             s->strstart    -= wsize; /* we now have strstart >= MAX_DIST */
             s->block_start -= (long) wsize;
@@ -1462,19 +1462,19 @@ local void fill_window(s)
          */
         Assert(more >= 2, "more < 2");
 
-        n = read_buf(s->strm, s->window + s->strstart + s->lookahead, more);
+        n = read_buf(s->strm, s->interaction_impl + s->strstart + s->lookahead, more);
         s->lookahead += n;
 
         /* Initialize the hash value now that we have some input: */
         if (s->lookahead + s->insert >= MIN_MATCH) {
             uInt str = s->strstart - s->insert;
-            s->ins_h = s->window[str];
-            UPDATE_HASH(s, s->ins_h, s->window[str + 1]);
+            s->ins_h = s->interaction_impl[str];
+            UPDATE_HASH(s, s->ins_h, s->interaction_impl[str + 1]);
 #if MIN_MATCH != 3
             Call UPDATE_HASH() MIN_MATCH-3 more times
 #endif
             while (s->insert) {
-                UPDATE_HASH(s, s->ins_h, s->window[str + MIN_MATCH-1]);
+                UPDATE_HASH(s, s->ins_h, s->interaction_impl[str + MIN_MATCH-1]);
 #ifndef FASTEST
                 s->prev[str & s->w_mask] = s->head[s->ins_h];
 #endif
@@ -1504,23 +1504,23 @@ local void fill_window(s)
 
         if (s->high_water < curr) {
             /* Previous high water mark below current data -- zero WIN_INIT
-             * bytes or up to end of window, whichever is less.
+             * bytes or up to end of interaction_impl, whichever is less.
              */
             init = s->window_size - curr;
             if (init > WIN_INIT)
                 init = WIN_INIT;
-            zmemzero(s->window + curr, (unsigned)init);
+            zmemzero(s->interaction_impl + curr, (unsigned)init);
             s->high_water = curr + init;
         }
         else if (s->high_water < (ulg)curr + WIN_INIT) {
             /* High water mark at or above current data, but below current data
              * plus WIN_INIT -- zero out to current data plus WIN_INIT, or up
-             * to end of window, whichever is less.
+             * to end of interaction_impl, whichever is less.
              */
             init = (ulg)curr + WIN_INIT - s->high_water;
             if (init > s->window_size - s->high_water)
                 init = s->window_size - s->high_water;
-            zmemzero(s->window + s->high_water, (unsigned)init);
+            zmemzero(s->interaction_impl + s->high_water, (unsigned)init);
             s->high_water += init;
         }
     }
@@ -1535,7 +1535,7 @@ local void fill_window(s)
  */
 #define FLUSH_BLOCK_ONLY(s, last) { \
    _tr_flush_block(s, (s->block_start >= 0L ? \
-                   (charf *)&s->window[(unsigned)s->block_start] : \
+                   (charf *)&s->interaction_impl[(unsigned)s->block_start] : \
                    (charf *)Z_NULL), \
                 (ulg)((long)s->strstart - s->block_start), \
                 (last)); \
@@ -1557,7 +1557,7 @@ local void fill_window(s)
  * uncompressible data is probably not useful. This function is used
  * only for the level=0 compression option.
  * NOTE: this function should be optimized to avoid extra copying from
- * window to pending_buf.
+ * interaction_impl to pending_buf.
  */
 local block_state deflate_stored(s, flush)
     deflate_state *s;
@@ -1575,7 +1575,7 @@ local block_state deflate_stored(s, flush)
 
     /* Copy as much as possible from input to output: */
     for (;;) {
-        /* Fill the window as much as possible: */
+        /* Fill the interaction_impl as much as possible: */
         if (s->lookahead <= 1) {
 
             Assert(s->strstart < s->w_size+MAX_DIST(s) ||
@@ -1644,7 +1644,7 @@ local block_state deflate_fast(s, flush)
             if (s->lookahead == 0) break; /* flush the current block */
         }
 
-        /* Insert the string window[strstart .. strstart+2] in the
+        /* Insert the string interaction_impl[strstart .. strstart+2] in the
          * dictionary, and set hash_head to the head of the hash chain:
          */
         hash_head = NIL;
@@ -1657,7 +1657,7 @@ local block_state deflate_fast(s, flush)
          */
         if (hash_head != NIL && s->strstart - hash_head <= MAX_DIST(s)) {
             /* To simplify the code, we prevent matches with the string
-             * of window index 0 (in particular we have to avoid a match
+             * of interaction_impl index 0 (in particular we have to avoid a match
              * of the string with itself at the start of the input file).
              */
             s->match_length = longest_match (s, hash_head);
@@ -1691,8 +1691,8 @@ local block_state deflate_fast(s, flush)
             {
                 s->strstart += s->match_length;
                 s->match_length = 0;
-                s->ins_h = s->window[s->strstart];
-                UPDATE_HASH(s, s->ins_h, s->window[s->strstart+1]);
+                s->ins_h = s->interaction_impl[s->strstart];
+                UPDATE_HASH(s, s->ins_h, s->interaction_impl[s->strstart+1]);
 #if MIN_MATCH != 3
                 Call UPDATE_HASH() MIN_MATCH-3 more times
 #endif
@@ -1702,8 +1702,8 @@ local block_state deflate_fast(s, flush)
             }
         } else {
             /* No match, output a literal byte */
-            Tracevv((stderr,"%c", s->window[s->strstart]));
-            _tr_tally_lit (s, s->window[s->strstart], bflush);
+            Tracevv((stderr,"%c", s->interaction_impl[s->strstart]));
+            _tr_tally_lit (s, s->interaction_impl[s->strstart], bflush);
             s->lookahead--;
             s->strstart++;
         }
@@ -1723,7 +1723,7 @@ local block_state deflate_fast(s, flush)
 /* ===========================================================================
  * Same as above, but achieves better compression. We use a lazy
  * evaluation for matches: a match is finally adopted only if there is
- * no better match at the next window position.
+ * no better match at the next interaction_impl position.
  */
 local block_state deflate_slow(s, flush)
     deflate_state *s;
@@ -1747,7 +1747,7 @@ local block_state deflate_slow(s, flush)
             if (s->lookahead == 0) break; /* flush the current block */
         }
 
-        /* Insert the string window[strstart .. strstart+2] in the
+        /* Insert the string interaction_impl[strstart .. strstart+2] in the
          * dictionary, and set hash_head to the head of the hash chain:
          */
         hash_head = NIL;
@@ -1763,7 +1763,7 @@ local block_state deflate_slow(s, flush)
         if (hash_head != NIL && s->prev_length < s->max_lazy_match &&
             s->strstart - hash_head <= MAX_DIST(s)) {
             /* To simplify the code, we prevent matches with the string
-             * of window index 0 (in particular we have to avoid a match
+             * of interaction_impl index 0 (in particular we have to avoid a match
              * of the string with itself at the start of the input file).
              */
             s->match_length = longest_match (s, hash_head);
@@ -1817,8 +1817,8 @@ local block_state deflate_slow(s, flush)
              * single literal. If there was a match but the current match
              * is longer, truncate the previous match to a single literal.
              */
-            Tracevv((stderr,"%c", s->window[s->strstart-1]));
-            _tr_tally_lit(s, s->window[s->strstart-1], bflush);
+            Tracevv((stderr,"%c", s->interaction_impl[s->strstart-1]));
+            _tr_tally_lit(s, s->interaction_impl[s->strstart-1], bflush);
             if (bflush) {
                 FLUSH_BLOCK_ONLY(s, 0);
             }
@@ -1836,8 +1836,8 @@ local block_state deflate_slow(s, flush)
     }
     Assert (flush != Z_NO_FLUSH, "no flush?");
     if (s->match_available) {
-        Tracevv((stderr,"%c", s->window[s->strstart-1]));
-        _tr_tally_lit(s, s->window[s->strstart-1], bflush);
+        Tracevv((stderr,"%c", s->interaction_impl[s->strstart-1]));
+        _tr_tally_lit(s, s->interaction_impl[s->strstart-1], bflush);
         s->match_available = 0;
     }
     s->insert = s->strstart < MIN_MATCH-1 ? s->strstart : MIN_MATCH-1;
@@ -1880,10 +1880,10 @@ local block_state deflate_rle(s, flush)
         /* See how many times the previous byte repeats */
         s->match_length = 0;
         if (s->lookahead >= MIN_MATCH && s->strstart > 0) {
-            scan = s->window + s->strstart - 1;
+            scan = s->interaction_impl + s->strstart - 1;
             prev = *scan;
             if (prev == *++scan && prev == *++scan && prev == *++scan) {
-                strend = s->window + s->strstart + MAX_MATCH;
+                strend = s->interaction_impl + s->strstart + MAX_MATCH;
                 do {
                 } while (prev == *++scan && prev == *++scan &&
                          prev == *++scan && prev == *++scan &&
@@ -1894,7 +1894,7 @@ local block_state deflate_rle(s, flush)
                 if (s->match_length > s->lookahead)
                     s->match_length = s->lookahead;
             }
-            Assert(scan <= s->window+(uInt)(s->window_size-1), "wild scan");
+            Assert(scan <= s->interaction_impl+(uInt)(s->window_size-1), "wild scan");
         }
 
         /* Emit match if have run of MIN_MATCH or longer, else emit literal */
@@ -1908,8 +1908,8 @@ local block_state deflate_rle(s, flush)
             s->match_length = 0;
         } else {
             /* No match, output a literal byte */
-            Tracevv((stderr,"%c", s->window[s->strstart]));
-            _tr_tally_lit (s, s->window[s->strstart], bflush);
+            Tracevv((stderr,"%c", s->interaction_impl[s->strstart]));
+            _tr_tally_lit (s, s->interaction_impl[s->strstart], bflush);
             s->lookahead--;
             s->strstart++;
         }
@@ -1948,8 +1948,8 @@ local block_state deflate_huff(s, flush)
 
         /* Output a literal byte */
         s->match_length = 0;
-        Tracevv((stderr,"%c", s->window[s->strstart]));
-        _tr_tally_lit (s, s->window[s->strstart], bflush);
+        Tracevv((stderr,"%c", s->interaction_impl[s->strstart]));
+        _tr_tally_lit (s, s->interaction_impl[s->strstart], bflush);
         s->lookahead--;
         s->strstart++;
         if (bflush) FLUSH_BLOCK(s, 0);

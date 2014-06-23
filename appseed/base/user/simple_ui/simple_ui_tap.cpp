@@ -195,7 +195,7 @@ namespace simple_ui
 
             crOut = ARGB(184 + 49, 255, 230, 255);
 
-            crIn = ARGB(255, 255, 84 + 49, 255);
+            crIn = ARGB(255, 255, 133, 255);
 
             crBorderOut = ARGB(184, 150, 100, 150);
 
@@ -205,7 +205,7 @@ namespace simple_ui
 
             crOut = ARGB(184 + 49, 230, 255, 225);
 
-            crIn = ARGB(255, 84 + 49, 255, 77 + 49);
+            crIn = ARGB(255, 133, 255, 77 + 49);
 
             crBorderOut = ARGB(184, 100, 150, 100);
 
@@ -231,7 +231,7 @@ namespace simple_ui
 
             crOut = ARGB(184, 210, 255, 205);
 
-            crIn = ARGB(255, 84 + 49, 255, 77 + 49);
+            crIn = ARGB(255, 133, 255, 77 + 49);
 
             crBorderOut = ARGB(184, 20, 90, 20);
 

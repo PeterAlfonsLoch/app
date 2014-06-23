@@ -49,7 +49,7 @@ namespace usernet // ca8 + cube
 
       xml::document doc(get_app());
 
-      if(doc.load(System.file_as_string(&System, System.dir().appdata("proxy.xml"))))
+      if(doc.load(Application.file_as_string(System.dir().appdata("proxy.xml"))))
       {
          string strProxy = doc.get_root()->attr("server");
          int32_t iProxyPort = doc.get_root()->attr("port");

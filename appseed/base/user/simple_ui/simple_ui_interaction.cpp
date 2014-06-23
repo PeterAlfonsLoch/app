@@ -228,7 +228,7 @@ namespace simple_ui
 
          crOut = ARGB(0, 84, 84, 77);
 
-         crIn = ARGB(84 + 49, 84, 84, 77);
+         crIn = ARGB(133, 84, 84, 77);
 
          }
          else*/
@@ -236,7 +236,7 @@ namespace simple_ui
 
          crOut = ARGB(0, 255, 255, 233);
 
-         crIn = ARGB(84 + 49, 255, 255, 233);
+         crIn = ARGB(133, 255, 255, 233);
 
       }
 

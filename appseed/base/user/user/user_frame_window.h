@@ -45,20 +45,17 @@
 #define CBRS_BOTTOM         (CBRS_ALIGN_BOTTOM|CBRS_BORDER_TOP)
 
 
-// Frame window styles
+// Frame interaction_impl styles
 #define FWS_ADDTOTITLE  0x00008000L // modify title based on content
 #define FWS_PREFIXTITLE 0x00004000L // show document name before cast name
 #define FWS_SNAPTOBARS  0x00002000L // snap size to size of contained bars
-
-
-class window;
-
 
 
 namespace user
 {
 
 
+   class interaction_impl;
    class impact;
    class frame_window;
    class mdi_child_window;
@@ -114,8 +111,8 @@ namespace user
 
 
 
-      int32_t m_nWindow;  // general purpose window number - display as ":n"
-      // -1 => unknown, 0 => only window viewing ::user::object
+      int32_t m_nWindow;  // general purpose interaction_impl number - display as ":n"
+      // -1 => unknown, 0 => only interaction_impl viewing ::user::object
       // 1 => first of many windows viewing ::user::object, 2=> second
 
       HMENU m_hMenuDefault;       // default menu resource for this frame
@@ -126,7 +123,7 @@ namespace user
       rect m_rectBorder;         // for OLE border space negotiation
 
       pointer_list m_listControlBars; // array of all control bars that have this
-      // window as their dock site
+      // interaction_impl as their dock site
       int32_t m_nShowDelay;           // SW_ command for delay show/hide
 
       bool m_bFrameMoveEnable;
@@ -234,7 +231,7 @@ namespace user
 
       ::user::control_bar* GetControlBar(UINT nID);
 
-      // frame window based modality
+      // frame interaction_impl based modality
       virtual void BeginModalState();
       virtual void EndModalState();
       bool InModalState() const;
@@ -299,7 +296,7 @@ namespace user
       virtual void PostNcDestroy();   // default to delete this.
       int32_t OnCreateHelper(LPCREATESTRUCT lpcs, sp(::create_context) pContext);
       void BringToTop(int32_t nCmdShow);
-      // bring window to top for SW_ commands which affect z-order
+      // bring interaction_impl to top for SW_ commands which affect z-order
 
       // implementation helpers for Shift+F1 help mode
       bool ProcessHelpMsg(MESSAGE & msg, uint32_t * pContext);
@@ -309,7 +306,7 @@ namespace user
       void AddFrameWnd();
       void RemoveFrameWnd();
 
-      friend class window;  // for access to m_bModalDisable
+      friend class interaction_impl;  // for access to m_bModalDisable
       friend class CReBar; // for access to m_bInRecalcLayout
 
       DECL_GEN_SIGNAL(_001OnCreate);

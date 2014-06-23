@@ -30,9 +30,11 @@ namespace simpledb
 
    bool manager::initialize_instance()
    {
-      create_message_queue("::core::netnode::cgclcst");
+
+      create_message_queue("::core::netnode::ca2");
 
       return true;
+
    }
 
 

@@ -22,13 +22,13 @@ local void fixedtables OF((struct inflate_state FAR *state));
    strm provides memory allocation functions in zalloc and zfree, or
    Z_NULL to use the library memory allocation functions.
 
-   windowBits is in the range 8..15, and window is a user-supplied
-   window and output buffer that is 2**windowBits bytes.
+   windowBits is in the range 8..15, and interaction_impl is a user-supplied
+   interaction_impl and output buffer that is 2**windowBits bytes.
  */
-int ZEXPORT inflateBackInit_(strm, windowBits, window, version, stream_size)
+int ZEXPORT inflateBackInit_(strm, windowBits, interaction_impl, version, stream_size)
 z_streamp strm;
 int windowBits;
-unsigned char FAR *window;
+unsigned char FAR *interaction_impl;
 const char *version;
 int stream_size;
 {
@@ -37,7 +37,7 @@ int stream_size;
     if (version == Z_NULL || version[0] != ZLIB_VERSION[0] ||
         stream_size != (int)(sizeof(z_stream)))
         return Z_VERSION_ERROR;
-    if (strm == Z_NULL || window == Z_NULL ||
+    if (strm == Z_NULL || interaction_impl == Z_NULL ||
         windowBits < 8 || windowBits > 15)
         return Z_STREAM_ERROR;
     strm->msg = Z_NULL;                 /* in case we return an error */
@@ -63,7 +63,7 @@ int stream_size;
     state->dmax = 32768U;
     state->wbits = windowBits;
     state->wsize = 1U << windowBits;
-    state->window = window;
+    state->interaction_impl = interaction_impl;
     state->wnext = 0;
     state->whave = 0;
     return Z_OK;
@@ -204,13 +204,13 @@ struct inflate_state FAR *state;
         bits -= bits & 7; \
     } while (0)
 
-/* Assure that some output space is available, by writing out the window
+/* Assure that some output space is available, by writing out the interaction_impl
    if it's full.  If the write fails, return from inflateBack() with a
    Z_BUF_ERROR. */
 #define ROOM() \
     do { \
         if (left == 0) { \
-            put = state->window; \
+            put = state->interaction_impl; \
             left = state->wsize; \
             state->whave = left; \
             if (out(out_desc, put, left)) { \
@@ -221,16 +221,16 @@ struct inflate_state FAR *state;
     } while (0)
 
 /*
-   strm provides the memory allocation functions and window buffer on input,
+   strm provides the memory allocation functions and interaction_impl buffer on input,
    and provides information on the unused input on return.  For Z_DATA_ERROR
    returns, strm will also provide an error message.
 
    in() and out() are the call-back input and output functions.  When
    inflateBack() needs more input, it calls in().  When inflateBack() has
-   filled the window with output, or when it completes with data in the
-   window, it calls out() to write out the data.  The application must not
+   filled the interaction_impl with output, or when it completes with data in the
+   interaction_impl, it calls out() to write out the data.  The application must not
    change the provided input until in() is called again or inflateBack()
-   returns.  The application must not change the window/output buffer until
+   returns.  The application must not change the interaction_impl/output buffer until
    inflateBack() returns.
 
    in() and out() are called with a descriptor parameter provided in the
@@ -283,7 +283,7 @@ void FAR *out_desc;
     have = next != Z_NULL ? strm->avail_in : 0;
     hold = 0;
     bits = 0;
-    put = state->window;
+    put = state->interaction_impl;
     left = state->wsize;
 
     /* Inflate until end of block marked as last */
@@ -582,7 +582,7 @@ void FAR *out_desc;
             }
             Tracevv((stderr, "inflate:         distance %u\n", state->offset));
 
-            /* copy match from window to output */
+            /* copy match from interaction_impl to output */
             do {
                 ROOM();
                 copy = state->wsize - state->offset;
@@ -607,7 +607,7 @@ void FAR *out_desc;
             /* inflate stream terminated properly -- write leftover output */
             ret = Z_STREAM_END;
             if (left < state->wsize) {
-                if (out(out_desc, state->window, state->wsize - left))
+                if (out(out_desc, state->interaction_impl, state->wsize - left))
                     ret = Z_BUF_ERROR;
             }
             goto inf_leave;

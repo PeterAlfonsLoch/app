@@ -264,7 +264,7 @@ int BN_div(BIGNUM *dv, BIGNUM *rm, const BIGNUM *num, const BIGNUM *divisor,
 	div_n=sdiv->top;
 	num_n=snum->top;
 	loop=num_n-div_n;
-	/* Lets setup a 'window' into snum
+	/* Lets setup a 'interaction_impl' into snum
 	 * This is the part that corresponds to the current
 	 * 'area' being divided */
 	wnum.neg   = 0;

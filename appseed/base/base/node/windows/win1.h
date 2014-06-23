@@ -70,8 +70,8 @@ CLASS_DECL_BASE LRESULT CALLBACK __window_procedure(oswindow oswindow, UINT nMsg
 CLASS_DECL_BASE WNDPROC __get_window_procedure();
 #define __window_procedure (*__get_window_procedure())
 
-typedef void (__MSG_CALL window::*__PMSGW)();
-   // like '__PMSG' but for window derived classes only
+typedef void (__MSG_CALL ::user::interaction_impl::*__PMSGW)();
+   // like '__PMSG' but for interaction_impl derived classes only
 
 typedef void (__MSG_CALL thread::*__PMSGT)();
    // like '__PMSG' but for thread-derived classes only

@@ -8,7 +8,7 @@ namespace user
       window_util::SortByZOrder(*this);
    }
 
-   // This function sort the window array
+   // This function sort the interaction_impl array
    // by ascending z order.
 
    // This implementation relays in the fact
@@ -65,13 +65,13 @@ namespace user
 
    }
 
-   // This function sort the window array
+   // This function sort the interaction_impl array
    // by ascending z order.
 
    // This implementation relays in the fact
    // that all windows are siblings,
-   // have a permanent window associated object
-   // and that all window array pointers
+   // have a permanent interaction_impl associated object
+   // and that all interaction_impl array pointers
    // are pointers to permanent objects.
    /*void window_util::SortByZOrder(Carray < ::window_sp, ::window_sp > & wndpa)
    {
@@ -87,7 +87,7 @@ namespace user
    while(pwndChild != NULL
    && ::IsWindow(pwndChild->GetSafeoswindow_()))
    {
-   pwnd = window::FromHandlePermanent(pwndChild->GetSafeoswindow_());
+   pwnd = interaction_impl::FromHandlePermanent(pwndChild->GetSafeoswindow_());
    if(pwnd == NULL)
    {
    CTransparentWndInterface * ptwi = NULL;
@@ -135,13 +135,13 @@ namespace user
 
    }*/
 
-   // This function sort the window array
+   // This function sort the interaction_impl array
    // by ascending z order.
 
    // This implementation relays in the fact
    // that all windows are siblings,
-   // have a permanent window associated object
-   // and that all window array pointers
+   // have a permanent interaction_impl associated object
+   // and that all interaction_impl array pointers
    // are pointers to permanent objects.
    /*void window_util::SortByZOrder(Carray < oswindow, oswindow > & oswindowa)
    {
@@ -296,8 +296,8 @@ namespace user
    }
 
 
-   oswindow_tree::oswindow_tree(oswindow window) :
-      m_oswindow(window)
+   oswindow_tree::oswindow_tree(oswindow interaction_impl) :
+      m_oswindow(interaction_impl)
    {
 
    }
@@ -373,8 +373,8 @@ namespace user
 
 
    // This function get all child windows of
-   // the window pointed by pwnd and add it
-   // to the window array wndpa. The top
+   // the interaction_impl pointed by pwnd and add it
+   // to the interaction_impl array wndpa. The top
    // windows come first in the enumeration.
 
    /*void window_util::EnumChildren(::window_sp pwnd, interaction_ptr_array & wndpa)
@@ -390,8 +390,8 @@ namespace user
    }*/
 
    // This function get all child windows of
-   // the window pointed by pwnd and add it
-   // to the window array wndpa. The top
+   // the interaction_impl pointed by pwnd and add it
+   // to the interaction_impl array wndpa. The top
    // windows come first in the enumeration.
 
    void window_util::EnumChildren(oswindow oswindow, oswindow_array & oswindowa)
@@ -422,13 +422,13 @@ namespace user
    }
 
 
-   // This function sort the window array
+   // This function sort the interaction_impl array
    // by ascending z order.
 
    // This implementation relays in the fact
    // that all windows are siblings,
-   // have a permanent window associated object
-   // and that all window array pointers
+   // have a permanent interaction_impl associated object
+   // and that all interaction_impl array pointers
    // are pointers to permanent objects.
    /*void window_util::SortByZOrder(interaction_ptr_array & wndpa)
    {
@@ -443,7 +443,7 @@ namespace user
 
    while(pwndChild != NULL)
    {
-   pwnd = window::FromHandlePermanent(pwndChild->GetSafeoswindow_());
+   pwnd = interaction_impl::FromHandlePermanent(pwndChild->GetSafeoswindow_());
    if(pwnd == NULL)
    {
    wndpa2.add(pwnd);
@@ -595,7 +595,7 @@ namespace user
    /*void window_util::SendMessageToDescendants(oswindow oswindow, UINT message,
    WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm)
    {
-   // walk through HWNDs to avoid creating temporary window objects
+   // walk through HWNDs to avoid creating temporary interaction_impl objects
    // unless we need to call this function recursively
    for (oswindow oswindow_Child = ::GetTopWindow; oswindow_Child != NULL;
    oswindow_Child = ::GetNextWindow(oswindow_Child, GW_HWNDNEXT))
@@ -603,10 +603,10 @@ namespace user
    // if bOnlyPerm is TRUE, don't send to non-permanent windows
    if (bOnlyPerm)
    {
-   ::window_sp pwindow = window::FromHandlePermanent(oswindow_Child);
+   ::window_sp pwindow = interaction_impl::FromHandlePermanent(oswindow_Child);
    if (pwindow != NULL)
    {
-   // call window proc directly since it is a C++ window
+   // call interaction_impl proc directly since it is a C++ interaction_impl
    __call_window_procedure(pwindow, pwindow->m_oswindow_, message, wParam, lParam);
    }
    }
@@ -630,7 +630,7 @@ namespace user
 
 #if defined(WINDOWSEX)
 
-      // walk through HWNDs to avoid creating temporary window objects
+      // walk through HWNDs to avoid creating temporary interaction_impl objects
       // unless we need to call this function recursively
       for(::oswindow oswindow_Child = ::GetTopWindow(oswindow); oswindow_Child != NULL; oswindow_Child = ::GetNextWindow(oswindow_Child, GW_HWNDNEXT))
       {
@@ -670,7 +670,7 @@ namespace user
 
    }
 
-   // This function sort the window array
+   // This function sort the interaction_impl array
    // by ascending z order.
 
    // This implementation relays in the fact

@@ -50,7 +50,7 @@ namespace filehandler
    void view::_001OnTimer(signal_details * pobj)
    {
       SCAST_PTR(::message::timer, ptimer, pobj);
-      if(ptimer->m_nIDEvent == 1984)
+      if(ptimer->m_nIDEvent == 8888)
       {
          refresh();
       }
@@ -62,7 +62,7 @@ namespace filehandler
       if(pobj->previous())
          return;
 
-      SetTimer(1984, 1984 + 1977, NULL);
+      SetTimer(8888, 5000, NULL);
 
    }
 

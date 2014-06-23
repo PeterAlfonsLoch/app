@@ -237,14 +237,14 @@ namespace filemanager
             if (pwnd != NULL)
             {
                //pwnd->m_workset.SetAppearanceTransparency(frame::Transparent);
-               pwnd->m_etranslucency = ::user::window_interface::TranslucencyTotal;
+               pwnd->m_etranslucency = ::user::interaction_base::TranslucencyTotal;
             }
             pwndTopLevel = (pview->GetTopLevelFrame());
 
             if (pwndTopLevel != NULL)
             {
                //pwndTopLevel->m_workset.SetAppearanceTransparency(frame::Transparent);
-               pwndTopLevel->m_etranslucency = ::user::window_interface::TranslucencyPresent;
+               pwndTopLevel->m_etranslucency = ::user::interaction_base::TranslucencyPresent;
             }
 
             //pdoc->CreateViews();

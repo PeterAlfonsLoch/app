@@ -27,11 +27,6 @@ namespace android
       DWORD                                  m_dwLastRedrawRequest;
       mutex                                  m_mutexRender;
       critical_section                       m_csWndInterfaceMap;
-      typed_pointer_map <
-         map_ptr_to_ptr,
-         void *,
-         ::user::window_interface *>
-                                             m_wndinterfacemap;
       DWORD                                  m_dwLastUpdate;
       DWORD                                  m_dwLastDelay;
 

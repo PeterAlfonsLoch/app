@@ -11,6 +11,10 @@ namespace base
    public:
 
       
+
+      ::user::interaction *                                    m_puiMouseMoveCapture;
+      ::user::interaction *                                    m_puiLastLButtonDown;
+
       bool                                                     m_bMatterFromHttpCache;
 
       bool                                                     m_bSystemSynchronizedCursor;

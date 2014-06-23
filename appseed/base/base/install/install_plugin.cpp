@@ -60,7 +60,7 @@ namespace install
 
 #else
 
-      m_dwTimeout             = (1984 + 1977) * 11;
+      m_dwTimeout             = (5000) * 11;
 
 #endif
 
@@ -112,7 +112,7 @@ namespace install
       if(!is_installing())
       {
 
-         if((get_tick_count() - m_dwLastRestart) > (1984 + 1977) * 5)
+         if((get_tick_count() - m_dwLastRestart) > (5000) * 5)
          {
 
             m_dwLastRestart = get_tick_count();
@@ -151,7 +151,7 @@ namespace install
          }
 
       }
-      else if((::get_tick_count() - m_dwLastInstallingCheck) > ((1984 + 1977) * 2))
+      else if((::get_tick_count() - m_dwLastInstallingCheck) > ((5000) * 2))
       {
 
          m_dwLastInstallingCheck = get_tick_count();
@@ -203,7 +203,7 @@ namespace install
             bJob                 = true;
 
          }
-         else if(get_tick_count() - m_dwLastOk > ((1984 + 1977) * 2))
+         else if(get_tick_count() - m_dwLastOk > ((5000) * 2))
          {
 
 

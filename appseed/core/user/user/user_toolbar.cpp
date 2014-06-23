@@ -147,7 +147,7 @@ namespace user
       // if the owner was set before the toolbar was created, set it now
 #ifdef WINDOWSEX
       if (m_puiOwner != NULL)
-         DefWindowProc(TB_SETPARENT, (WPARAM)m_puiOwner.m_p, 0);
+         DefWindowProc(TB_SETPARENT, (WPARAM)m_puiOwner, 0);
 
       DefWindowProc(TB_BUTTONSTRUCTSIZE, (WPARAM)sizeof(TBBUTTON), 0);
 #else

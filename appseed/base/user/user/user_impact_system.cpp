@@ -27,10 +27,6 @@ namespace user
 
    void impact_system::load_template()
    {
-/*      if (m_strDocStrings.is_empty() && System.matter_as_string(get_app(), m_strMatter, "full_string.txt").is_empty())
-      {
-         TRACE(::base::trace::category_AppMsg, 0, "Warning: no ::user::object names in string for template #%d.\n", m_strMatter);
-      }*/
    }
 
 
@@ -376,14 +372,6 @@ namespace user
 
    void impact_system::reload_template()
    {
-      /*
-      m_strDocStrings = System.matter_as_string(get_app(), m_strMatter, "full_string.txt");
-      if (m_strDocStrings.is_empty())
-      {
-         TRACE1("Warning: no document names in string for template #%s.\n",
-            m_strMatter);
-      }
-      */
    }
 
 

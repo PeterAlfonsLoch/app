@@ -501,7 +501,7 @@ namespace dynamic_source
       {
          if(process.has_exited(&dwExitCode))
             break;
-         Sleep(84);
+         Sleep(100);
          if(::get_tick_count() - dwStart > 5 * 60 * 1000) // 5 minutes
          {
             bTimeout = true;
@@ -1046,7 +1046,7 @@ namespace dynamic_source
          {
             if(process.has_exited(&dwExitCode))
                break;
-            Sleep(84);
+            Sleep(100);
          }
 #else
 
@@ -1123,7 +1123,7 @@ namespace dynamic_source
       {
          if(process.has_exited(&dwExitCode))
             break;
-         Sleep(84);
+         Sleep(100);
       }
 
 #endif
@@ -1997,7 +1997,7 @@ ch_else:
    bool script_compiler::library_DoesMatchVersion()
    {
 
-      if(get_tick_count() - m_dwLastLibraryVersionCheck < (1984 + 1977))
+      if(get_tick_count() - m_dwLastLibraryVersionCheck < (5000))
       {
          return m_bLastLibraryVersionCheck;
       }

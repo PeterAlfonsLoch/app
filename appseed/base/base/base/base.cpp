@@ -105,7 +105,7 @@ bool base_init()
 bool base_term()
 {
 
-   __wait_threading_count(::millis((1984 + 1977) * 8));
+   __wait_threading_count(::millis((5000) * 8));
 
    __node_pre_term();
 

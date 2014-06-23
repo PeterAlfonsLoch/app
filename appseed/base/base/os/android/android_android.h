@@ -71,14 +71,14 @@ CLASS_DECL_BASE bool _istlead(int32_t ch);
 
 
 oswindow GetCapture();
-oswindow SetCapture(oswindow window);
+oswindow SetCapture(oswindow interaction_impl);
 int_bool ReleaseCapture();
-oswindow SetFocus(oswindow window);
+oswindow SetFocus(oswindow interaction_impl);
 oswindow GetFocus();
-oswindow GetWindow(oswindow window, int iParentHood);
+oswindow GetWindow(oswindow interaction_impl, int iParentHood);
 oswindow GetActiveWindow();
-oswindow SetActiveWindow(oswindow window);
-int_bool DestroyWindow(oswindow window);
+oswindow SetActiveWindow(oswindow interaction_impl);
+int_bool DestroyWindow(oswindow interaction_impl);
 oswindow GetDesktopWindow();
 
 

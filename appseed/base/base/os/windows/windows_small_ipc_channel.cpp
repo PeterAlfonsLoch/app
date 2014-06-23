@@ -42,7 +42,7 @@ bool small_ipc_tx_channel::open(const char * pszKey, launcher * plauncher)
          {
             break;
          }
-         Sleep(884);
+         Sleep(1000);
       }
       if(m_oswindow != NULL)
          break;
@@ -197,7 +197,7 @@ bool small_ipc_rx_channel::create(const char * pszKey, const char * pszWindowPro
       return false;
    }
 
-   SetTimer(m_oswindow, 198477, 84, NULL);
+   SetTimer(m_oswindow, 888888, 84, NULL);
 
    SetWindowLongPtr(m_oswindow, GWLP_USERDATA, (LONG_PTR) this);
 

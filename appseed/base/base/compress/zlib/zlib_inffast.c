@@ -77,10 +77,10 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
 #ifdef INFLATE_STRICT
     unsigned dmax;              /* maximum distance from zlib header */
 #endif
-    unsigned wsize;             /* window size or zero if not using window */
-    unsigned whave;             /* valid bytes in the window */
-    unsigned wnext;             /* window write index */
-    unsigned char FAR *window;  /* allocated sliding window, if wsize != 0 */
+    unsigned wsize;             /* interaction_impl size or zero if not using interaction_impl */
+    unsigned whave;             /* valid bytes in the interaction_impl */
+    unsigned wnext;             /* interaction_impl write index */
+    unsigned char FAR *interaction_impl;  /* allocated sliding interaction_impl, if wsize != 0 */
     unsigned long hold;         /* local strm->hold */
     unsigned bits;              /* local strm->bits */
     code const FAR *lcode;      /* local strm->lencode */
@@ -89,7 +89,7 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
     unsigned dmask;             /* mask for first level of distance codes */
     code here;                  /* retrieved table entry */
     unsigned op;                /* code bits, operation, extra bits, or */
-                                /*  window position, window bytes to copy */
+                                /*  interaction_impl position, interaction_impl bytes to copy */
     unsigned len;               /* match length, unused bytes */
     unsigned dist;              /* match distance */
     unsigned char FAR *from;    /* where to copy match from */
@@ -107,7 +107,7 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
     wsize = state->wsize;
     whave = state->whave;
     wnext = state->wnext;
-    window = state->window;
+    interaction_impl = state->interaction_impl;
     hold = state->hold;
     bits = state->bits;
     lcode = state->lencode;
@@ -184,8 +184,8 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
                 bits -= op;
                 Tracevv((stderr, "inflate:         distance %u\n", dist));
                 op = (unsigned)(out - beg);     /* max distance in output */
-                if (dist > op) {                /* see if copy from window */
-                    op = dist - op;             /* distance back in window */
+                if (dist > op) {                /* see if copy from interaction_impl */
+                    op = dist - op;             /* distance back in interaction_impl */
                     if (op > whave) {
                         if (state->sane) {
                             strm->msg =
@@ -213,10 +213,10 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
                         }
 #endif
                     }
-                    from = window - OFF;
+                    from = interaction_impl - OFF;
                     if (wnext == 0) {           /* very common case */
                         from += wsize - op;
-                        if (op < len) {         /* some from window */
+                        if (op < len) {         /* some from interaction_impl */
                             len -= op;
                             do {
                                 PUP(out) = PUP(from);
@@ -224,16 +224,16 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
                             from = out - dist;  /* rest from output */
                         }
                     }
-                    else if (wnext < op) {      /* wrap around window */
+                    else if (wnext < op) {      /* wrap around interaction_impl */
                         from += wsize + wnext - op;
                         op -= wnext;
-                        if (op < len) {         /* some from end of window */
+                        if (op < len) {         /* some from end of interaction_impl */
                             len -= op;
                             do {
                                 PUP(out) = PUP(from);
                             } while (--op);
-                            from = window - OFF;
-                            if (wnext < len) {  /* some from start of window */
+                            from = interaction_impl - OFF;
+                            if (wnext < len) {  /* some from start of interaction_impl */
                                 op = wnext;
                                 len -= op;
                                 do {
@@ -243,9 +243,9 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
                             }
                         }
                     }
-                    else {                      /* contiguous in window */
+                    else {                      /* contiguous in interaction_impl */
                         from += wnext - op;
-                        if (op < len) {         /* some from window */
+                        if (op < len) {         /* some from interaction_impl */
                             len -= op;
                             do {
                                 PUP(out) = PUP(from);
@@ -327,12 +327,12 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
    inflate_fast() speedups that turned out slower (on a PowerPC G3 750CXe):
    - Using bit fields for code structure
    - Different op definition to avoid & for extra bits (do & for table bits)
-   - Three separate decoding do-loops for direct, window, and wnext == 0
+   - Three separate decoding do-loops for direct, interaction_impl, and wnext == 0
    - Special case for distance > 1 copies to do overlapped load and store copy
    - Explicit branch predictions (based on measured branch probabilities)
    - Deferring match copy and interspersed it with decoding subsequent codes
    - Swapping literal/length else
-   - Swapping window/direct else
+   - Swapping interaction_impl/direct else
    - Larger unrolled copy loops (three is about right)
    - Moving len -= 3 statement into middle of loop
  */

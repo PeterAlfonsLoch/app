@@ -2,7 +2,7 @@
 
 
 
-bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, bool bPeek)
+bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow interaction_impl, bool bPeek)
 {
 #ifndef ANDROID
 
@@ -53,7 +53,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
             {
 
                lpMsg->message       = WM_PAINT;
-               lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
+               lpMsg->hwnd          = oswindow_get(display, e.xbutton.interaction_impl);
                lpMsg->lParam        = 0;
                lpMsg->wParam        = 0;
 
@@ -62,7 +62,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
             }
             else if(e.type == ConfigureNotify)
             {
-               if(e.xconfigure.window == g_oswindowDesktop->window())
+               if(e.xconfigure.interaction_impl == g_oswindowDesktop->interaction_impl())
                {
                   for(int j = 0; j < ::oswindow_data::s_pdataptra->get_count(); j++)
                   {
@@ -72,7 +72,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
                   }
                   continue;
                }
-                              //               XClearWindow(w.display(), w.window());
+                              //               XClearWindow(w.display(), w.interaction_impl());
             }
             else if(e.type == ButtonPress || e.type == ButtonRelease)
             {
@@ -130,7 +130,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
                if(bRet)
                {
 
-                  lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
+                  lpMsg->hwnd          = oswindow_get(display, e.xbutton.interaction_impl);
                   lpMsg->wParam        = 0;
                   lpMsg->lParam        = MAKELONG(e.xbutton.x_root, e.xbutton.y_root);
 
@@ -140,7 +140,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
             else if(e.type == KeyPress || e.type == KeyRelease)
             {
 
-               oswindow w = oswindow_get(display, e.xexpose.window);
+               oswindow w = oswindow_get(display, e.xexpose.interaction_impl);
 
                bRet                 = true;
 
@@ -163,7 +163,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
 
                }
 
-               lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
+               lpMsg->hwnd          = oswindow_get(display, e.xbutton.interaction_impl);
                lpMsg->wParam        = e.xkey.keycode;
                lpMsg->lParam        = MAKELONG(0, e.xkey.keycode);
 
@@ -173,7 +173,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
             else if(e.type == MotionNotify)
             {
 
-               lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
+               lpMsg->hwnd          = oswindow_get(display, e.xbutton.interaction_impl);
                lpMsg->message       = WM_MOUSEMOVE;
                lpMsg->wParam        = 0;
                lpMsg->lParam        = MAKELONG(e.xmotion.x_root, e.xmotion.y_root);
@@ -184,7 +184,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
             else if(e.type == DestroyNotify)
             {
 
-               lpMsg->hwnd          = oswindow_get(display, e.xdestroywindow.window);
+               lpMsg->hwnd          = oswindow_get(display, e.xdestroywindow.interaction_impl);
                lpMsg->message       = WM_DESTROY;
 
                bRet                 = true;
@@ -198,7 +198,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, 
 
          }
 
-         if(bRet && lpMsg->hwnd->window() != None)
+         if(bRet && lpMsg->hwnd->interaction_impl() != None)
          {
 
             if(lpMsg->hwnd->m_hthread != hthread)

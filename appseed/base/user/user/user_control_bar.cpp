@@ -301,7 +301,7 @@ namespace user
       if (pFrameWnd != NULL && pFrameWnd->m_bHelpMode)
          return;
 
-      // since 'IsDialogMessage' will eat frame window accelerators,
+      // since 'IsDialogMessage' will eat frame interaction_impl accelerators,
       //   we call all frame windows' pre_translate_message first
       while (pOwner != NULL)
       {
@@ -467,7 +467,7 @@ namespace user
 
    void control_bar::EraseNonClient()
    {
-      // get window DC that is clipped to the non-client area
+      // get interaction_impl DC that is clipped to the non-client area
    /* trans   CWindowDC spgraphics(this);
       rect rectClient;
       GetClientRect(rectClient);
@@ -491,7 +491,7 @@ namespace user
 
    void control_bar::EraseNonClient(::draw2d::graphics * pdc)
    {
-      // get window DC that is clipped to the non-client area
+      // get interaction_impl DC that is clipped to the non-client area
       rect rectClient;
       GetClientRect(rectClient);
       rect rectWindow;
@@ -530,7 +530,7 @@ namespace user
       }
 
       // force black text on gray background all the time
-/*      if (!window::GrayCtlColor((HDC)pctlcolor->m_pdc->get_os_data(), pctlcolor->m_pwnd->get_os_data(), pctlcolor->m_nCtlType,
+/*      if (!interaction_impl::GrayCtlColor((HDC)pctlcolor->m_pdc->get_os_data(), pctlcolor->m_pwnd->get_os_data(), pctlcolor->m_nCtlType,
          afxData.hbrBtnFace, afxData.clrBtnText))
       {
          pctlcolor->set_lresult(Default());
@@ -650,16 +650,16 @@ namespace user
          }
          if (swpFlags != 0)
          {
-            // make the window seem visible/hidden
+            // make the interaction_impl seem visible/hidden
             dwStyle ^= WS_VISIBLE;
             // clear delay flags
             m_nStateFlags &= ~(delayShow|delayHide);
-            // hide/show the window if actually doing layout
+            // hide/show the interaction_impl if actually doing layout
             SetWindowPos(0, 0, 0, 0, 0, swpFlags | SWP_NOMOVE|SWP_NOSIZE|SWP_NOZORDER|SWP_NOACTIVATE|SWP_NOREDRAW);
          }
          else
          {
-            // clear delay flags -- window is already in correct state
+            // clear delay flags -- interaction_impl is already in correct state
             m_nStateFlags &= ~(delayShow|delayHide);
          }
       }
@@ -726,7 +726,7 @@ namespace user
          rect.right = rect.left + size.cx;
          rect.bottom = rect.top + size.cy;
 
-         // only resize the window if doing layout and not just rect query
+         // only resize the interaction_impl if doing layout and not just rect query
          if (lpLayout->hDWP != NULL)
             __reposition_window(lpLayout, this, &rect);
       }

@@ -26,12 +26,12 @@ class BaseDockState;
 
 
 
-// Standard control bars (IDW = window ID)
+// Standard control bars (IDW = interaction_impl ID)
 #define __IDW_CONTROLBAR_FIRST        0xE800
 #define __IDW_CONTROLBAR_LAST         0xE8FF
 
-#define __IDW_TOOLBAR                 0xE800  // main Toolbar for window
-//#define "status_bar"              0xE801  // Status bar window
+#define __IDW_TOOLBAR                 0xE800  // main Toolbar for interaction_impl
+//#define "status_bar"              0xE801  // Status bar interaction_impl
 #define __IDW_PREVIEW_BAR             0xE802  // PrintPreview Dialog Bar
 #define __IDW_RESIZE_BAR              0xE803  // OLE in-place resize bar
 #define __IDW_REBAR                   0xE804  // COMCTL32 "rebar" Bar
@@ -82,7 +82,7 @@ public:
    bool m_bFloating;   // whether floating or not
    bool m_bHorz;       // orientation of floating dockbar
    bool m_bDockBar;    // TRUE if a dockbar
-   point m_pointPos;  // topleft point of window
+   point m_pointPos;  // topleft point of interaction_impl
 
    UINT m_nMRUWidth;   // MRUWidth for Dynamic Toolbars
    bool m_bDocking;    // TRUE if this bar has a DockContext

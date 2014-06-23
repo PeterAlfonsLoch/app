@@ -3275,19 +3275,10 @@
     <ClInclude Include="user\user\user_view_creator_data.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_virtual_user_interface.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_wait_cursor.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_window.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_window_draw.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_window_interface.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_window_map.h">
@@ -4615,6 +4606,21 @@
     </ClInclude>
     <ClInclude Include="base\base\base_application_interface.h">
       <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\comparison\comparison_compare.h">
+      <Filter>Header Files\primitive\comparison</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_interaction_base.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_interaction_impl.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_interaction_child.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_interaction_impl_base.h">
+      <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -8086,19 +8092,10 @@
     <ClCompile Include="user\user\user_view_creator.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_virtual_user_interface.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_wait_cursor.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_window.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_window_draw.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_window_interface.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_window_map.cpp">
@@ -8764,6 +8761,18 @@
     <ClCompile Include="base\base\base_application_interface.cpp">
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\user_interaction_base.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_interaction_impl_base.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_interaction_impl.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_interaction_child.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -8957,6 +8966,12 @@
     </None>
     <None Include="base\message\message.inl">
       <Filter>Header Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

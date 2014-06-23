@@ -66,7 +66,7 @@ namespace android
    void window_draw::message_window_message_handler(::signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
-      if(pbase->m_uiMessage == (WM_USER + 1984 + 1977))
+      if(pbase->m_uiMessage == (WM_USER + 5000))
       {
          _synch_redraw();
       }
@@ -92,7 +92,7 @@ namespace android
    {
       if(!m_bProDevianMode)
       {
-         m_spuiMessage->post_message(WM_USER + 1984 + 1977);
+         m_spuiMessage->post_message(WM_USER + 5000);
       }
    }
 
@@ -101,7 +101,7 @@ namespace android
 
 /*      if(!m_bProDevianMode && ::IsWindow((oswindow) m_spwindowMessage->get_os_data()))
       {
-         m_spwindowMessage->send_message(WM_USER + 1984 + 1977);
+         m_spwindowMessage->send_message(WM_USER + 5000);
       }*/
    }
 
@@ -266,7 +266,7 @@ namespace android
       }
       else
       {
-         ::user::window_interface * ptwi = System.user()->window_map().get((int_ptr) hwndParam);
+         ::user::interaction_base * ptwi = System.user()->window_map().get((int_ptr) hwndParam);
          sp(::user::interaction) pguie =  (ptwi);
          rect rectWindow;
          ::GetWindowRect((oswindow) hwndParam, rectWindow);
@@ -510,13 +510,13 @@ namespace android
          {
             if(wndpa[l].oprop("session").is_new())
             {
-               wndpa[l].m_pimpl.cast < ::window >()->_001UpdateWindow();
+               wndpa[l].m_pimpl.cast < ::interaction_impl >()->_001UpdateWindow();
             }
             l++;
          }
          catch(simple_exception & se)
          {
-            if(se.m_strMessage == "no more a window")
+            if(se.m_strMessage == "no more a interaction_impl")
             {
                System.frames().remove(wndpa(l));
                wndpa.remove_at(l);
@@ -535,8 +535,8 @@ namespace android
       {
          oswindow hwndTopic = wndaApp[j];
 
-         sp(::window) pwnd = NULL;
-         //::window * pwnd =  (System.window_map().get((int_ptr) hwndTopic));
+         sp(::interaction_impl) pwnd = NULL;
+         //::interaction_impl * pwnd =  (System.window_map().get((int_ptr) hwndTopic));
          //if(pwnd == NULL)
          //{
          for(int32_t l = 0; l < wndpa.get_count(); l++)
@@ -557,7 +557,7 @@ namespace android
          if(rectIntersect.area() <= 0)
          {
             pwnd->PostMessage(WM_USER + 184, 0, 0);
-            // TODO: should use iMaxMonitor information to set window
+            // TODO: should use iMaxMonitor information to set interaction_impl
             // to a more visible position in the monitor iMaxMonitor with greatest
             // area.
 
@@ -664,8 +664,8 @@ namespace android
       return &m_semaphoreBuffer;
    }
 
-   // The first ::window handle in the array must belong
-   // to the higher z order ::window.
+   // The first ::interaction_impl handle in the array must belong
+   // to the higher z order ::interaction_impl.
    // The rectangle must contain all update region.
    // It must be in screen coordinates.
 
@@ -673,7 +673,7 @@ namespace android
 
    // Remark: this optimization eliminates top level lnxdows
    // that are lower z order siblings of a higher z order
-   // top level ::window that contains all
+   // top level ::interaction_impl that contains all
    // the update region in a opaque area.
    // It doesn´t eliminates from the update parent lnxdows
    // obscured by opaque children.
@@ -768,7 +768,7 @@ namespace android
 
       ::oswindow oswindow = hwndtree.m_oswindow;
 
-      ::user::window_interface * ptwi = oswindow->get_user_interaction();
+      ::user::interaction_base * ptwi = oswindow->get_user_interaction();
 
       if(!::IsWindowVisible(oswindow))
       {
@@ -799,13 +799,13 @@ namespace android
          return OptimizeNone;
       }
 
-   //    sp(::window) pwnd = window::FromHandlePermanent(hwnd);
+   //    sp(::interaction_impl) pwnd = interaction_impl::FromHandlePermanent(hwnd);
 
 
       if(ptwi == NULL)
       {
 
-   //      ::user::window_interface::GetProperty getp;
+   //      ::user::interaction_base::GetProperty getp;
    //      getp.m_eproperty = CTransparentWndInterface::PropertyInterface;
    //      ::SendMessage(hwnd, CTransparentWndInterface::MessageGetProperty, 0, (LPARAM) &getp);
    //      ptwi = getp.m_pinterface;
@@ -890,7 +890,7 @@ namespace android
       ::GetWindowRect((::oswindow) oswindow, rectWindow);
 
 
-   //   sp(::window) pwnd = ::android::window::from_handle(oswindow);
+   //   sp(::interaction_impl) pwnd = ::android::interaction_impl::from_handle(oswindow);
 
       if(!TwfGetTopWindow(
             hwndParam,
@@ -918,14 +918,14 @@ throw not_implemented(get_app());
 //
 //
 //
-//      ::user::window_interface * pwndi = System.window_map().get((int_ptr) hwnd);
+//      ::user::interaction_base * pwndi = System.window_map().get((int_ptr) hwnd);
 //
 //      if(pwndi == NULL)
 //      {
 //         ::SendMessage(
 //            (oswindow) hwnd,
-//            ::user::window_interface::MessageBaseWndGetProperty,
-//            ::user::window_interface::PropertyDrawBaseWndInterface,
+//            ::user::interaction_base::MessageBaseWndGetProperty,
+//            ::user::interaction_base::PropertyDrawBaseWndInterface,
 //            (LPARAM) &pwndi);
 //      }
 //
@@ -996,7 +996,7 @@ throw not_implemented(get_app());
    {
       rect rectWindow;
 
-   //   sp(::window) pwndOpaque = window::FromHandlePermanent(hwndOpaque);
+   //   sp(::interaction_impl) pwndOpaque = interaction_impl::FromHandlePermanent(hwndOpaque);
 
       ::GetWindowRect((oswindow) hwndOpaque, rectWindow);
 
@@ -1092,7 +1092,7 @@ throw not_implemented(get_app());
       // pdc is the source primitive::memory device context
       // from which bitmap the screen is updated.
       user::buffer * pbuffer,
-      // hwndParam ::window device context
+      // hwndParam ::interaction_impl device context
       // is used from screen output
       sp(::user::interaction) pwnd)
    {
@@ -1127,7 +1127,7 @@ throw not_implemented(get_app());
 //
 //      if(hdcScreen == NULL)
 //      {
-//         // If it has failed to get ::window
+//         // If it has failed to get ::interaction_impl
 //         // owned device context, try to get
 //         // a device context from the cache.
 //         hdcScreen = ::GetDCEx((oswindow) hwndParam, NULL, DCX_caCHE | DCX_CLIPSIBLINGS | DCX_WINDOW);
@@ -1155,13 +1155,13 @@ throw not_implemented(get_app());
 //      // rect rectUpdate;
 //      // rgnUpdate.get_bounding_box(rectUpdate);
 //
-//      // get the ::window client area box
+//      // get the ::interaction_impl client area box
 //      // in screen coordinates.
 //      rect64 rectWindow;
 //      rectWindow = pwnd->m_rectParentClient;
 //
 //      // Output rectangle receive the intersection
-//      // of ::window box and update box.
+//      // of ::interaction_impl box and update box.
 //      //rect rectOutput;
 //      //rectOutput.intersect(rectWnd, rectUpdate);
 //
@@ -1175,9 +1175,9 @@ throw not_implemented(get_app());
 //      rect64 rectOutputClient(rectWindow);
 //      rectOutputClient -= rectWindow.top_left();
 //
-//      // The ::window owned device context is clipped
+//      // The ::interaction_impl owned device context is clipped
 //      // with the update region in screen coordinates
-//      // translated to ::window client coordinates.
+//      // translated to ::interaction_impl client coordinates.
 //      //_sp rgnClip(get_app());
 //      //rgnClip->create_rect(0, 0, 0, 0);
 //      //rgnClip->CopyRgn(&rgnUpdate);
@@ -1322,8 +1322,8 @@ throw not_implemented(get_app());
 
 
 
-   // The first ::window handle in the array must belong
-   // to the higher z order ::window.
+   // The first ::interaction_impl handle in the array must belong
+   // to the higher z order ::interaction_impl.
    // The rectangle must contain all update region.
    // It must be in screen coordinates.
 
@@ -1331,7 +1331,7 @@ throw not_implemented(get_app());
 
    // Remark: this optimization eliminates top level lnxdows
    // that are lower z order siblings of a higher z order
-   // top level ::window that contains all
+   // top level ::interaction_impl that contains all
    // the update region in a opaque area.
    // It doesn´t eliminates from the update parent lnxdows
    // obscured by opaque children.

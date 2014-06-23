@@ -16,7 +16,7 @@ namespace user
       enum DocStringIndex
       {
          
-         windowTitle,        // default window title
+         windowTitle,        // default interaction_impl title
          docName,            // ::fontopus::user visible name for default ::user::object
          fileNewName,        // ::fontopus::user visible name for FileNew
          // for file based documents:

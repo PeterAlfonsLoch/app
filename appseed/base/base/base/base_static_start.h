@@ -2,7 +2,6 @@
 //  base_static_start.h
 //  base
 //
-//  Created by Carlos Gustavo Cecyn Lundgren on 21/05/14.
 //
 //
 

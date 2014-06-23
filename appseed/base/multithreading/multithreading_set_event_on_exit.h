@@ -2,7 +2,6 @@
 //  multithreading_set_event_on_exit.h
 //  base
 //
-//  Created by Carlos Gustavo Cecyn Lundgren on 18/10/13.
 //
 //
 

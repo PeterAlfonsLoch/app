@@ -3513,7 +3513,7 @@ namespace user
 
    void list::PreSubClassWindow()
    {
-      //   ::user::window_interface::PreSubClassWindow();
+      //   ::user::interaction_base::PreSubClassWindow();
       if(IsWindowVisible())
       {
          RedrawWindow(NULL, NULL, RDW_INVALIDATE);

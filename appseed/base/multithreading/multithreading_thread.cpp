@@ -296,7 +296,7 @@ bool thread::is_alive()
    if (!get_run() || !m_pimpl->get_run())
       return false;
 
-   //if ((::get_tick_count() - m_dwAlive) > ((1984 + 1977) * 91))
+   //if ((::get_tick_count() - m_dwAlive) > ((5000) * 91))
      // return false;
 
    return true;

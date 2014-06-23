@@ -83,8 +83,6 @@ namespace plugin
 
       pinteraction->m_bMessageWindow = false;
 
-      pinteraction->m_pimpl->m_bMessageWindow = false;
-
       pinteraction->install_message_handling(pinteraction->m_pimpl);
 
       ::window_sp pwindow = pinteraction->m_pimpl;

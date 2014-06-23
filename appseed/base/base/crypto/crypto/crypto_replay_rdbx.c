@@ -207,7 +207,7 @@ rdbx_check(const rdbx_t *rdbx, int32_t delta) {
     return err_status_replay_old; 
   } else if (v128_get_bit(&rdbx->bitmask, 
            rdbx_high_bit_in_bitmask + delta) == 1) {
-                         /* delta is within the window, so check the bitmask */
+                         /* delta is within the interaction_impl, so check the bitmask */
     return err_status_replay_fail;    
   }
  /* otherwise, the index is okay */
@@ -233,7 +233,7 @@ rdbx_add_index(rdbx_t *rdbx, int32_t delta) {
     v128_left_shift(&rdbx->bitmask, delta);
     v128_set_bit(&rdbx->bitmask, 127);
   } else {
-    /* delta is in window, so flip bit in bitmask */
+    /* delta is in interaction_impl, so flip bit in bitmask */
     v128_set_bit(&rdbx->bitmask, -delta);
   }
 

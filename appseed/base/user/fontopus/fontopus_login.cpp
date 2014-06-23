@@ -114,7 +114,7 @@ namespace fontopus
    {
 
 
-      int stdw = 884;
+      int stdw = 800;
       int stdh = 184 + 23 + 184;
 
       int h;
@@ -224,7 +224,7 @@ namespace fontopus
 
       crOut = ARGB(184 + 49, 255, 230, 255);
 
-      crIn = ARGB(255, 255, 84 + 49, 255);
+      crIn = ARGB(255, 255, 133, 255);
 
       crBorderOut = ARGB(184, 150, 100, 150);
 
@@ -234,7 +234,7 @@ namespace fontopus
 
       crOut = ARGB(184 + 49, 230, 255, 225);
 
-      crIn = ARGB(255, 84 + 49, 255, 77 + 49);
+      crIn = ARGB(255, 133, 255, 77 + 49);
 
       crBorderOut = ARGB(184, 100, 150, 100);
 
@@ -268,7 +268,7 @@ namespace fontopus
 
          crOut = ARGB(184, 210, 255, 205);
 
-         crIn = ARGB(255, 84 + 49, 255, 77 + 49);
+         crIn = ARGB(255, 133, 255, 77 + 49);
 
          crBorderOut = ARGB(184, 20, 90, 20);
 
@@ -389,7 +389,7 @@ namespace fontopus
       m_labelPassword.SetWindowText("password:");
       m_tap.SetWindowText("open");
 
-      int stdw = 884;
+      int stdw = 800;
       int stdh = 177 + 23 + 184 + 49;
 
       RepositionWindow(0,0,stdw,stdh);

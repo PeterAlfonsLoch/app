@@ -613,29 +613,20 @@ void simple_frame_window::_001OnClose(signal_details * pobj)
       pobj->m_bRet = true;
       return;
    }
-   else if (m_pimpl->m_iModalCount > 0)
+   else if (m_iModalCount > 0)
    {
       m_pimpl->EndModalLoop(IDOK);
       pobj->m_bRet = true;
       ShowWindow(SW_HIDE);
       return;
    }
-   else if (GetTopLevelFrame() != NULL
-      && GetTopLevelFrame()->m_pimpl != NULL
-      && (GetTopLevelFrame()->m_pimpl->m_iModalCount > 0))
+   else if (GetTopLevelFrame() != NULL && GetTopLevelFrame()->m_iModalCount > 0)
    {
-      GetTopLevelFrame()->m_pimpl->EndModalLoop(IDOK);
+      GetTopLevelFrame()->EndModalLoop(IDOK);
       pobj->m_bRet = true;
       return;
    }
 
-   if (get_wnd() != NULL
-      && get_wnd()->m_iModalCount > 0)
-   {
-      get_wnd()->EndModalLoop(IDOK);
-      pobj->m_bRet = true;
-      return;
-   }
 
    pobj->m_bRet = true;
    // Note: only queries the active document
@@ -1553,12 +1544,8 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
 
    if (GetExStyle() & WS_EX_LAYERED || m_etranslucency == TranslucencyTotal || m_etranslucency == TranslucencyPresent)
    {
-      sp(::user::interaction) pui;
 
-      if (m_pui != NULL)
-         pui = m_pui->get_bottom_child();
-      else
-         pui = get_bottom_child();
+      sp(::user::interaction) pui = get_bottom_child();
 
       while (pui != NULL)
       {
@@ -1576,10 +1563,8 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
 
       _001DrawThis(pdc);
 
-      if (m_pui != NULL)
-         pui = m_pui->get_bottom_child();
-      else
-         pui = get_bottom_child();
+      pui = get_bottom_child();
+
       while (pui != NULL)
       {
          if (base_class < ::user::uinteraction::frame::control_box > ::bases(pui))

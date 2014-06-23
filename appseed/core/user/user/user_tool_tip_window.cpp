@@ -304,7 +304,7 @@ namespace user
          break;
       }
 
-       window::OnTimer(nIDEvent);
+       
    }
 
 
@@ -328,7 +328,7 @@ namespace user
          return false;
       }
       m_font->create_point_font("Arial", 10.0);
-      return CreateEx(WS_EX_TOOLWINDOW, NULL, NULL, WS_POPUP, 0, 0, 0, 0, NULL, id) != 0;
+      return CreateEx(WS_EX_TOOLWINDOW, NULL, NULL, WS_POPUP, null_rect(), NULL, id) != 0;
    }
 
    ///////////////////////////////////////////////////////////
@@ -345,8 +345,6 @@ namespace user
    ///////////////////////////////////////////////////////////
    void tool_tip_window::OnSize(UINT nType, int32_t cx, int32_t cy)
    {
-       window::OnSize(nType, cx, cy);
-
       update_drawing_objects();
    }
 

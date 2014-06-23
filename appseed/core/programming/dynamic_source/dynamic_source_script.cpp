@@ -75,7 +75,7 @@ namespace dynamic_source
    bool ds_script::DoesMatchVersion()
    {
 
-      if(get_tick_count() - m_dwLastVersionCheck < (1984 + 1977))
+      if(get_tick_count() - m_dwLastVersionCheck < (5000))
       {
          return m_bLastVersionCheck;
       }
@@ -462,7 +462,7 @@ namespace dynamic_source
             if (iRetry > 0)
             {
 
-               Sleep(884);
+               Sleep(1000);
 
             }
 
