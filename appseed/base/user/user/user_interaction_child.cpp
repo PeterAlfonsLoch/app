@@ -852,40 +852,6 @@ namespace user
 
 
 
-   void interaction_child::SetFont(::draw2d::font* pFont,bool bRedraw)
-   {
-
-      if(pFont == NULL)
-         return;
-
-#ifdef WINDOWS
-
-      //if(pFont->get_os_data() == NULL)
-      // return;
-
-#else
-
-      //if(pFont->get_os_data() == 0)
-      // return;
-
-#endif
-
-      m_spfont.create(allocer());
-
-      m_spfont->operator=(*pFont);
-
-      if(bRedraw)
-         _001RedrawWindow();
-
-   }
-
-
-   ::draw2d::font* interaction_child::GetFont()
-   {
-      if(m_spfont.is_null())
-         m_spfont.create(allocer());
-      return m_spfont;
-   }
 
 
    uint_ptr interaction_child::SetTimer(uint_ptr nIDEvent,UINT nElapse,void (CALLBACK* lpfnTimer)(oswindow,UINT,uint_ptr,uint32_t))
@@ -1108,7 +1074,7 @@ namespace user
 
       rect rectWindow;
       GetWindowRect(rectWindow);
-      get_wnd()->m_pui->viewport_screen_to_client(rectWindow);
+      get_wnd()->viewport_screen_to_client(rectWindow);
       pgraphics->SetViewportOrg(rectWindow.top_left());
       pgraphics->SelectClipRgn(NULL);
 

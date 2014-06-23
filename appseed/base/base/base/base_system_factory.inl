@@ -6,6 +6,8 @@ template < class CREATABLE_TYPE >
 sp(element) creatable_factory_item < CREATABLE_TYPE > ::create(sp(::base::application) papp)
 {
 
+   synch_lock sl(g_pmutexFactory);
+
    if(m_pallocator == NULL)
       return NULL;
 
@@ -32,6 +34,9 @@ sp(element) creatable_factory_item < CREATABLE_TYPE > ::clone(sp(element) pobjec
 template < class CLONEABLE_TYPE >
 sp(element) cloneable_factory_item < CLONEABLE_TYPE > ::clone(sp(element) pobject)
 {
+   
+   synch_lock sl(g_pmutexFactory);
+
    const CLONEABLE_TYPE * ptSrc = dynamic_cast < const CLONEABLE_TYPE * > (pobject.m_p);
    void * pv = this->m_pallocator->alloc();
 #undef new

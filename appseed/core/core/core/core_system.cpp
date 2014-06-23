@@ -78,6 +78,29 @@ namespace core
    }
 
 
+   bool system::finalize()
+   {
+
+      bool bOk = false;
+
+      try
+      {
+
+         bOk = ::base::system::finalize();
+
+      }
+      catch(...)
+      {
+
+         bOk = false;
+
+      }
+
+      return bOk;
+
+   }
+
+
    int32_t system::exit_instance()
    {
 

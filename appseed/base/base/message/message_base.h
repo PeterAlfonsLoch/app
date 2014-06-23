@@ -15,7 +15,7 @@ namespace message
    public:
 
 
-      sp(::user::interaction)    m_pwnd;
+      ::user::interaction *      m_pwnd;
       UINT                       m_uiMessage;
       WPARAM                     m_wparam;
       lparam                     m_lparam;

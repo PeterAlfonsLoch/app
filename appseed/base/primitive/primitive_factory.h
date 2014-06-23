@@ -5,6 +5,9 @@ class strid_array;
 class mutex;
 
 
+extern CLASS_DECL_BASE mutex * g_pmutexFactory;
+
+
 class CLASS_DECL_BASE factory_allocator :
    virtual public ::object
 {
@@ -77,6 +80,7 @@ public:
 
    virtual void discard(element * pca)
    {
+      synch_lock sl(g_pmutexFactory);
       TYPE * ptype = (TYPE *) pca->m_pthis;
       if(ptype == NULL)
          return;

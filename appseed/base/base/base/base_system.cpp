@@ -316,8 +316,35 @@ namespace base
    }
 
 
+   bool system::finalize()
+   {
+
+      __wait_threading_count_except(this,::millis((5000) * 77));
+
+      bool bOk = false;
+
+      try
+      {
+
+         bOk = ::base::application::finalize();
+
+      }
+      catch(...)
+      {
+
+         bOk = false;
+
+      }
+
+      return bOk;
+
+   }
+
+
    int32_t system::exit_instance()
    {
+
+      __wait_threading_count(::millis((5000) * 8));
 
       ::base::application::exit_instance();
 

@@ -4,9 +4,12 @@
 namespace simple_ui
 {
 
+
    byte brate(double dRate, double dMin, double dMax)
    {
+
       return (byte)(dRate * (dMax - dMin) + dMin);
+
    }
 
 
@@ -312,7 +315,7 @@ namespace simple_ui
             {
 
                //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 108, 149, 255));
-               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 120, 190, 255));
+               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(135, 120, 190, 255));
 
                pgraphics->DrawRect(rectClient, pen);
 
@@ -334,7 +337,7 @@ namespace simple_ui
                pathRound->end_figure(true);*/
 
                //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(84, 108, 149, 255));
-               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 140, 200, 255));
+               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(105, 140, 200, 255));
 
                pgraphics->SelectObject(pen);
 
@@ -358,7 +361,7 @@ namespace simple_ui
                pathRound->end_figure(true);
 
                //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(72, 108, 149, 255));
-               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 160, 210, 255));
+               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(95, 160, 210, 255));
 
                pgraphics->SelectObject(pen);
 
@@ -382,7 +385,7 @@ namespace simple_ui
                pathRound->end_figure(true);
 
                //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(60, 108, 149, 255));
-               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 180, 220, 255));
+               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(75, 180, 220, 255));
 
                pgraphics->SelectObject(pen);
 
@@ -407,7 +410,7 @@ namespace simple_ui
                pathRound->end_figure(true);
 
                //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(48, 108, 149, 255));
-               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 200, 230, 255));
+               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(55, 200, 230, 255));
 
                pgraphics->SelectObject(pen);
 
@@ -433,7 +436,7 @@ namespace simple_ui
                pathRound->end_figure(true);
 
                //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(36, 108, 149, 255));
-               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 220, 240, 255));
+               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(45, 220, 240, 255));
 
                pgraphics->SelectObject(pen);
 
@@ -462,7 +465,7 @@ namespace simple_ui
 
                //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(24, 108, 149, 255));
 
-               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 240, 250, 255));
+               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(25, 240, 250, 255));
 
                pgraphics->SelectObject(pen);
 

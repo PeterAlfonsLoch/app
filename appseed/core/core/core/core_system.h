@@ -31,6 +31,8 @@ namespace core
 
       virtual bool initialize_instance();
 
+      virtual bool finalize();
+
       virtual int32_t exit_instance();
 
    };

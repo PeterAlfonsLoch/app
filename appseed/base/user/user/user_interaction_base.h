@@ -212,7 +212,7 @@ namespace user
       virtual void _001DrawBackground(::draw2d::graphics * pdc,LPRECT lprect);
 
 
-      virtual interaction_impl * get_wnd() const;
+      virtual interaction * get_wnd() const;
 
 
       enum EOptimize

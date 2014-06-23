@@ -63,6 +63,20 @@ namespace user
       virtual void draw_control_background(::draw2d::graphics *pdc);
 
 
+      virtual interaction * get_wnd() const;
+
+
+      virtual void set_viewport_org(::draw2d::graphics * pgraphics);
+
+      virtual void viewport_screen_to_client(POINT * ppt);
+      virtual void viewport_client_to_screen(POINT * ppt);
+      virtual void viewport_client_to_screen(RECT * ppt);
+      virtual void viewport_screen_to_client(RECT * ppt);
+
+
+      virtual void SetFont(::draw2d::font* pFont,bool bRedraw = true);
+      virtual ::draw2d::font* GetFont();
+
 
    };
 

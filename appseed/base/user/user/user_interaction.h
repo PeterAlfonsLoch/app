@@ -18,15 +18,6 @@ namespace user
    public:
 
 
-
-
-
-      virtual bool create_message_queue(const char * pszName, ::message_queue_listener * pcallback = NULL);
-#if defined(METROWIN) || defined(APPLE_IOS)
-      virtual bool initialize(native_window_initialize * pinitialize);
-#endif
-
-
       // interaction_impl rectangle relative to the parent
       // this rectangle comes before in importance compared to m_rectWindow
       // m_rectWindow should be sychronized and recalculated based
@@ -76,13 +67,19 @@ namespace user
 
       COLORREF                            m_crText;
       int32_t                             m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
-
-
+      ::draw2d::font_sp                   m_pfont;
 
 
       interaction();
       interaction(sp(::base::application) papp);
       virtual ~interaction();
+
+
+      virtual bool create_message_queue(const char * pszName,::message_queue_listener * pcallback = NULL);
+#if defined(METROWIN) || defined(APPLE_IOS)
+      virtual bool initialize(native_window_initialize * pinitialize);
+#endif
+
 
 
       virtual void on_select();
@@ -391,7 +388,7 @@ namespace user
       virtual sp(::user::interaction) get_focusable_descendant(sp(::user::interaction) pui = NULL);
 
 
-      virtual interaction_impl * get_wnd() const;
+      virtual interaction * get_wnd() const;
 
 
 

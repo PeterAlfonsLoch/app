@@ -143,6 +143,7 @@ namespace base
       virtual bool initialize_instance();
 
       virtual int32_t exit_instance();
+      virtual bool finalize();
 
       spa(::base::session)                         & basesessionptra();
       application_ptra                                get_appptra();

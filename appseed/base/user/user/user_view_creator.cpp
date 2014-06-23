@@ -14,7 +14,7 @@ namespace user
       m_pholder            = NULL;
    }
 
-   sp(::user::interaction)   view_creator_data::get_wnd()
+   ::user::interaction * view_creator_data::get_wnd()
    {
       if(m_pwnd != NULL)
          return m_pwnd;

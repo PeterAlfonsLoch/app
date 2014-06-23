@@ -84,6 +84,8 @@ namespace user
    interaction::~interaction()
    {
 
+      add_ref();
+
       DestroyWindow();
 
    }
@@ -787,12 +789,18 @@ namespace user
 
       }
 
+      GetFont();
+
+      /*
+
       if(GetFont() != NULL)
       {
          GetFont()->m_dFontSize = 12.0;
          GetFont()->m_eunitFontSize = ::draw2d::unit_point;
          GetFont()->m_strFontFamilyName = "Times New Roman";
       }
+
+      */
 
       m_spmutex = m_pthread->m_pmutex;
 
@@ -1286,12 +1294,20 @@ namespace user
       return NULL;
 
 #else
-      ::window_sp pwnd = NULL;
+
+      sp(::user::interaction) pui;
+
+      ::window_sp pwnd;
 
       try
       {
 
-         pwnd = get_wnd();
+         pui = get_wnd();
+
+         if(pui == NULL)
+            return NULL;
+
+         pwnd = pui->m_pimpl;
 
          if(pwnd == NULL)
             return NULL;
@@ -1843,16 +1859,21 @@ namespace user
          return m_pimpl->GetLastActivePopup();
    }
 
+
    void interaction::SetWindowText(const char * lpszString)
    {
+
       if(m_pimpl == NULL)
          return;
       else
          m_pimpl->SetWindowText(lpszString);
+
    }
+
 
    strsize interaction::GetWindowText(LPTSTR lpszStringBuf,int32_t nMaxCount)
    {
+
       if(m_pimpl == NULL)
       {
          if(nMaxCount > 0)
@@ -1861,63 +1882,54 @@ namespace user
       }
       else
          return m_pimpl->GetWindowText(lpszStringBuf,nMaxCount);
+
    }
+
 
    string interaction::get_window_text()
    {
+
       string str;
       GetWindowText(str);
       return str;
+
    }
+
 
    void interaction::GetWindowText(string & rString)
    {
+
       if(m_pimpl == NULL)
       {
          rString.Empty();
       }
       else
          m_pimpl->GetWindowText(rString);
+
    }
+
 
    strsize interaction::GetWindowTextLength()
    {
+
       if(m_pimpl == NULL)
          return 0;
       else
          return m_pimpl->GetWindowTextLength();
+
    }
 
-   void interaction::SetFont(::draw2d::font* pFont,bool bRedraw)
-   {
-      if(m_pimpl == NULL)
-         return;
-      else
-         m_pimpl->SetFont(pFont,bRedraw);
-   }
-   ::draw2d::font* interaction::GetFont()
-   {
-      if(m_pimpl == NULL)
-         return NULL;
-      else
-         return m_pimpl->GetFont();
-   }
-
-   //bool interaction::SendChildNotifyLastMsg(LRESULT* pResult)
-   //{
-   //   if (m_pimpl == NULL)
-   //      return false;
-   //   else
-   //      return m_pimpl->SendChildNotifyLastMsg(pResult);
-   //}
 
    sp(interaction) interaction::EnsureTopLevelParent()
    {
+
       if(m_pimpl == NULL)
          return NULL;
       else
          return m_pimpl->EnsureTopLevelParent();
+
    }
+
 
    sp(interaction) interaction::GetTopLevelParent() const
    {
@@ -1984,28 +1996,18 @@ namespace user
    void interaction::PostNcDestroy()
    {
 
-      if(is_heap())
+      if(m_pthread != NULL)
       {
-
-         if(m_pthread != NULL)
+         try
          {
-            try
-            {
-               m_pthread->remove(this);
-            }
-            catch(...)
-            {
-            }
+            m_pthread->remove(this);
          }
-
-         if(m_pimpl != NULL)
+         catch(...)
          {
-
-            m_pimpl.release();
-
          }
-
       }
+
+      m_pimpl.release();
 
    }
 
@@ -2079,18 +2081,7 @@ namespace user
    void interaction::viewport_client_to_screen(POINT * ppt)
    {
 
-      if(m_pimpl == NULL)
-      {
-
-         ClientToScreen(ppt);
-
-      }
-      else
-      {
-
-         m_pimpl->viewport_client_to_screen(ppt);
-
-      }
+      m_pimpl->viewport_client_to_screen(ppt);
 
    }
 
@@ -2098,18 +2089,7 @@ namespace user
    void interaction::viewport_screen_to_client(POINT * ppt)
    {
 
-      if(m_pimpl == NULL)
-      {
-
-         ScreenToClient(ppt);
-
-      }
-      else
-      {
-
-         m_pimpl->viewport_screen_to_client(ppt);
-
-      }
+      m_pimpl->viewport_screen_to_client(ppt);
 
    }
 
@@ -2136,11 +2116,14 @@ namespace user
 
    int32_t interaction::SetWindowRgn(HRGN hRgn,bool bRedraw)
    {
+   
       if(m_pimpl == NULL)
          return 0;
       else
          return m_pimpl->SetWindowRgn(hRgn,bRedraw);
+
    }
+
 
    int32_t interaction::GetWindowRgn(HRGN hRgn)
    {
@@ -2394,25 +2377,7 @@ namespace user
    id interaction::RunModalLoop(uint32_t dwFlags,::base::live_object * pliveobject)
    {
 
-      if(get_wnd() != NULL)
-      {
-
-         return get_wnd()->run_modal_loop(this,dwFlags,pliveobject);
-
-      }
-      else if(m_pimpl == NULL)
-      {
-
-         return _001RunModalLoop(dwFlags,pliveobject);
-
-      }
-      else
-      {
-
-         return m_pimpl->RunModalLoop(dwFlags,pliveobject);
-
-      }
-
+      return _001RunModalLoop(dwFlags,pliveobject);
 
    }
 
@@ -3168,7 +3133,7 @@ namespace user
    }
 
 
-   interaction_impl * interaction::get_wnd() const
+   interaction * interaction::get_wnd() const
    {
 
       if(m_pimpl != NULL)
@@ -3177,7 +3142,7 @@ namespace user
          ::window_sp pwnd = m_pimpl;
 
          if(pwnd != NULL)
-            return pwnd;
+            return (::user::interaction *) this;
 
       }
 
@@ -4233,6 +4198,7 @@ namespace user
          pbase->set_lresult(_001BaseWndGetProperty((EProperty)pbase->m_wparam,pbase->m_lparam));
    }
 
+
    LRESULT interaction::_001BaseWndGetProperty(EProperty eprop,LPARAM lparam)
    {
       switch(eprop)
@@ -4250,6 +4216,29 @@ namespace user
       return 0;
    }
 
+
+   void interaction::SetFont(::draw2d::font* pfont,bool bRedraw)
+   {
+
+      UNREFERENCED_PARAMETER(bRedraw);
+
+      if(m_pfont.is_null())
+         m_pfont.create(allocer());
+
+      *m_pfont = *pfont;
+
+   }
+
+
+   ::draw2d::font* interaction::GetFont()
+   {
+
+      if(m_pfont.is_null())
+         m_pfont.create(allocer());
+
+      return m_pfont;
+
+   }
 
 
 } // namespace user

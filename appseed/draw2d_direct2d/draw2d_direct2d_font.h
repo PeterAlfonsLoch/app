@@ -12,7 +12,6 @@ namespace draw2d_direct2d
    public:
 
       
-      //Gdiplus::Font *   m_pfont;
       Microsoft::WRL::ComPtr<IDWriteTextFormat>                  m_pformat;
 
 

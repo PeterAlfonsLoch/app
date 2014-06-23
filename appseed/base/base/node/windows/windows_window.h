@@ -28,6 +28,12 @@ namespace windows
       ::user::interaction_base *       m_pbasewnd;
       
 
+      //UINT m_nFlags;      // see WF_ flags above
+
+      WNDPROC m_pfnSuper; // for subclassing of controls
+      static const UINT m_nMsgDragList;
+      int32_t m_nModalResult; // for return values from interaction_impl::RunModalLoop
+
 
 
       interaction_impl();
@@ -82,10 +88,10 @@ namespace windows
 
 #endif   // WINVER >= 0x0500
 
-      virtual ::window_sp from_os_data(void * pdata);
+      virtual sp(::user::interaction) from_os_data(void * pdata);
       virtual void * get_os_data() const;
 
-      static ::window_sp from_handle(oswindow oswindow);
+      static sp(::user::interaction) from_handle(oswindow oswindow);
 
       // subclassing/unsubclassing functions
       virtual void pre_subclass_window();
@@ -166,10 +172,10 @@ namespace windows
       strsize GetWindowText(LPTSTR lpszStringBuf,strsize nMaxCount);
       void GetWindowText(string & rString);
       strsize GetWindowTextLength();
-      void SetFont(::draw2d::font* pFont,bool bRedraw = TRUE);
-      ::draw2d::font* GetFont();
+
 
       inline mutex * mutex_graphics() { if(m_pmutexGraphics != NULL) return m_pmutexGraphics; m_pmutexGraphics = new mutex(get_app()); return m_pmutexGraphics; }
+
 
       // Window size and position Functions
       virtual bool WfiIsIconic();
@@ -628,13 +634,6 @@ namespace windows
       static oswindow get_safe_owner(::oswindow oswindow,::oswindow * pWndTop);
       void PrepareForHelp();
 
-      //UINT m_nFlags;      // see WF_ flags above
-
-      WNDPROC m_pfnSuper; // for subclassing of controls
-      static const UINT m_nMsgDragList;
-      int32_t m_nModalResult; // for return values from interaction_impl::RunModalLoop
-
-      ::draw2d::font_sp m_pfont;
 
       friend class frame_window;
 

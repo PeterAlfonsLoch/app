@@ -394,7 +394,7 @@ namespace user
    void interaction_impl_base::_001Print(::draw2d::graphics * pdc)
    {
 
-      m_pui->draw_control_background(pdc);
+      m_pui->_001Print(pdc);
 
    }
 
@@ -402,7 +402,7 @@ namespace user
    void interaction_impl_base::_000OnDraw(::draw2d::graphics *pdc)
    {
 
-      m_pui->draw_control_background(pdc);
+      m_pui->_000OnDraw(pdc);
 
    }
 
@@ -410,7 +410,7 @@ namespace user
    void interaction_impl_base::_001DrawThis(::draw2d::graphics *pdc)
    {
 
-      m_pui->draw_control_background(pdc);
+      m_pui->_001DrawThis(pdc);
 
    }
 
@@ -418,7 +418,7 @@ namespace user
    void interaction_impl_base::_001DrawChildren(::draw2d::graphics *pdc)
    {
 
-      m_pui->draw_control_background(pdc);
+      m_pui->_001DrawChildren(pdc);
 
    }
 
@@ -426,7 +426,7 @@ namespace user
    void interaction_impl_base::_001OnDraw(::draw2d::graphics *pdc)
    {
 
-      m_pui->draw_control_background(pdc);
+      m_pui->_001OnDraw(pdc);
 
    }
 
@@ -435,6 +435,73 @@ namespace user
    {
 
       m_pui->draw_control_background(pdc);
+
+   }
+
+   
+   interaction * interaction_impl_base::get_wnd() const
+   {
+
+      return m_pui->get_wnd();
+
+   }
+
+
+
+   void interaction_impl_base::set_viewport_org(::draw2d::graphics * pgraphics)
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
+
+   void interaction_impl_base::viewport_client_to_screen(POINT * ppt)
+   {
+
+      ClientToScreen(ppt);
+
+   }
+
+
+   void interaction_impl_base::viewport_screen_to_client(POINT * ppt)
+   {
+
+      ScreenToClient(ppt);
+
+   }
+
+
+   void interaction_impl_base::viewport_client_to_screen(RECT * prect)
+   {
+
+      viewport_client_to_screen((POINT *)&prect->left);
+      viewport_client_to_screen((POINT *)&prect->right);
+
+   }
+
+
+   void interaction_impl_base::viewport_screen_to_client(RECT * prect)
+   {
+
+      viewport_screen_to_client((POINT *)&prect->left);
+      viewport_screen_to_client((POINT *)&prect->right);
+
+   }
+
+
+   void interaction_impl_base::SetFont(::draw2d::font* pFont,bool bRedraw)
+   {
+
+      m_pui->SetFont(pFont,bRedraw);
+
+   }
+
+
+   ::draw2d::font* interaction_impl_base::GetFont()
+   {
+
+      return m_pui->GetFont();
 
    }
 

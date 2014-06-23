@@ -681,6 +681,9 @@ namespace base
 
       synch_lock sl(&m_mutexFrame);
 
+      if(m_pframea == NULL)
+         return;
+
       m_pframea->remove(pwnd);
 
    }
@@ -3325,6 +3328,21 @@ namespace base
 
    int32_t application::exit_instance()
    {
+
+
+      try
+      {
+
+         destroy_message_queue();
+
+      }
+      catch(...)
+      {
+
+         m_iReturnCode = -1;
+
+      }
+
 
       try
       {

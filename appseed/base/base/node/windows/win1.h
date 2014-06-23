@@ -111,7 +111,9 @@ static int32_t s_main(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR lpCmdLi
 
    papp->init_main_data(pmaininitdata);
 
-   int32_t iRet = papp->main();
+   int32_t iRet;
+   
+   iRet = papp->main();
 
    try
    {

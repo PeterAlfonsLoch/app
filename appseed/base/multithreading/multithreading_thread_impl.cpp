@@ -193,7 +193,7 @@ void thread_impl::pre_translate_message(signal_details * pobj)
             return;
       }
 
-      sp(::user::interaction) puiTopic = pbase->m_pwnd.is_null() ? NULL : pbase->m_pwnd;
+      ::user::interaction * puiTopic = pbase->m_pwnd;
 
       try
       {

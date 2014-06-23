@@ -60,7 +60,6 @@ namespace user
       native_window *               m_pwindow;
 
 
-      ::draw2d::font * m_pfont;
       window_graphics *             m_pgraphics;
       ::draw2d::dib_sp              m_spdib;
       ::draw2d::dib_sp              m_spdibFlip;
@@ -97,7 +96,7 @@ namespace user
 
 
 
-      virtual ::window_sp from_os_data(void * pdata);
+      virtual sp(::user::interaction) from_os_data(void * pdata);
       virtual void * get_os_data() const;
 
       bool attach(oswindow oswindow_New);
@@ -191,8 +190,8 @@ namespace user
       virtual strsize GetWindowText(char * lpszStringBuf,int32_t nMaxCount);
       virtual void GetWindowText(string & rString);
       virtual strsize GetWindowTextLength();
-      virtual void SetFont(::draw2d::font* pFont,bool bRedraw = TRUE);
-      virtual ::draw2d::font* GetFont();
+//      virtual void SetFont(::draw2d::font* pFont,bool bRedraw = TRUE);
+//      virtual ::draw2d::font* GetFont();
 
 
       // Window size and position Functions
@@ -505,7 +504,6 @@ namespace user
       void OnNcCalcSize(bool bCalcValidRects,NCCALCSIZE_PARAMS* lpncsp);
 #endif
       bool OnNcCreate(LPCREATESTRUCT lpCreateStruct);
-      DECL_GEN_SIGNAL(_001OnNcDestroy);
       LRESULT OnNcHitTest(point point);
       void OnNcLButtonDblClk(UINT nHitTest,point point);
       void OnNcLButtonDown(UINT nHitTest,point point);

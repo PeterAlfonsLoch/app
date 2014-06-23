@@ -14,7 +14,6 @@ namespace user
       size                       m_size;
       string                     m_strWindowText;
       bool                       m_bEnabled;
-      ::draw2d::font_sp              m_spfont;
       bool                       m_bCreate;
       sp(::user::interaction)    m_puiMessage;
 
@@ -53,9 +52,6 @@ namespace user
       virtual uint32_t GetStyle() const;
       virtual uint32_t GetExStyle() const;
       virtual LRESULT Default();
-
-      virtual void SetFont(::draw2d::font* pFont,bool bRedraw = TRUE);
-      virtual ::draw2d::font* GetFont();
 
       virtual LRESULT send_message(UINT uiMessage,WPARAM wparam = 0,lparam lparam = 0);
 

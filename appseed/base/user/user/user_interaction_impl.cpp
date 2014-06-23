@@ -157,19 +157,24 @@ namespace user
       throw interface_only_exception(get_app());
    }
 
-   ::window_sp interaction_impl::from_os_data(void * pdata)
+
+   sp(::user::interaction) interaction_impl::from_os_data(void * pdata)
    {
+
       UNREFERENCED_PARAMETER(pdata);
+
       throw interface_only_exception(get_app());
+
    }
+
 
    void * interaction_impl::get_os_data() const
    {
+
       throw interface_only_exception(get_app());
+
    }
 
-   /////////////////////////////////////////////////////////////////////////////
-   // interaction_impl creation
 
    bool interaction_impl::CreateEx(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,id id,LPVOID lpParam /* = NULL */)
    {
@@ -242,12 +247,6 @@ namespace user
    }
 
    // WM_NCDESTROY is the absolute LAST message sent.
-   void interaction_impl::_001OnNcDestroy(signal_details * pobj)
-   {
-      UNREFERENCED_PARAMETER(pobj);
-      throw interface_only_exception(get_app());
-   }
-
    void interaction_impl::PostNcDestroy()
    {
       throw interface_only_exception(get_app());
@@ -1054,22 +1053,14 @@ namespace user
       throw interface_only_exception(get_app());
    }
 
+
    strsize interaction_impl::GetWindowTextLength()
    {
+
       throw interface_only_exception(get_app());
+
    }
 
-   void interaction_impl::SetFont(::draw2d::font * pfont,bool bRedraw)
-   {
-      UNREFERENCED_PARAMETER(pfont);
-      UNREFERENCED_PARAMETER(bRedraw);
-      throw interface_only_exception(get_app());
-   }
-
-   ::draw2d::font* interaction_impl::GetFont()
-   {
-      throw interface_only_exception(get_app());
-   }
 
    void interaction_impl::DragAcceptFiles(bool bAccept)
    {

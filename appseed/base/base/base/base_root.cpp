@@ -27,11 +27,13 @@ root::~root()
 
 int64_t root::add_ref()
 {
+   
 #ifdef WINDOWS
    return InterlockedIncrement64(&m_countReference);
 #else
    return __sync_add_and_fetch(&m_countReference, 1);
 #endif
+
 }
 
 int64_t root::dec_ref()

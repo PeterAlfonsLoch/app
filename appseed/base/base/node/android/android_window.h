@@ -24,6 +24,11 @@ namespace android
       sp(::user::interaction)          m_pguiecapture;
       bool                             m_bExposing;
       int32_t                          m_iDepth;
+      //UINT m_nFlags;      // see WF_ flags above
+
+      // xxx      WNDPROC m_pfnSuper; // for subclassing of controls
+      static const UINT m_nMsgDragList;
+
 
 
       interaction_impl();
@@ -619,13 +624,6 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       bool _EnableToolTips(bool bEnable, UINT nFlag);
       static oswindow PASCAL GetSafeOwner_(oswindow hWnd, oswindow* pWndTop);
       void PrepareForHelp();
-
-      //UINT m_nFlags;      // see WF_ flags above
-
-// xxx      WNDPROC m_pfnSuper; // for subclassing of controls
-      static const UINT m_nMsgDragList;
-
-      ::draw2d::font * m_pfont;
 
       friend class frame_window;
 

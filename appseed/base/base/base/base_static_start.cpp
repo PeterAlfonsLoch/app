@@ -36,6 +36,8 @@ void create_id_space();
 
 void destroy_id_space();
 
+extern mutex * g_pmutexFactory;
+
 //extern string * g_pstrLastStatus;
 
 //extern string * g_pstrLastGlsStatus;
@@ -214,6 +216,8 @@ namespace base
          ::str::international::g_pmapRTL = new ::map < ::id,const ::id &,::id,const ::id & >();
 
          g_pmapLibrary = new string_map < INT_PTR,INT_PTR >();
+
+         g_pmutexFactory = new mutex;
    
       }
       
@@ -264,6 +268,10 @@ namespace base
       
       CLASS_DECL_BASE void term()
       {
+
+         delete g_pmutexFactory;
+
+         g_pmutexFactory = NULL;
 
          delete g_pmapLibrary;
 

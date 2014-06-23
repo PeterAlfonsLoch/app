@@ -120,9 +120,12 @@ namespace windows
 
    }
 
-   ::window_sp interaction_impl::from_os_data(void * pdata)
+
+   sp(::user::interaction) interaction_impl::from_os_data(void * pdata)
    {
+
       return from_handle((oswindow)pdata);
+
    }
 
 
@@ -160,18 +163,24 @@ namespace windows
       return __modify_style(oswindow,GWL_STYLE,dwRemove,dwAdd,nFlags);
    }
 
+
    bool interaction_impl::ModifyStyleEx(oswindow oswindow,uint32_t dwRemove,uint32_t dwAdd,UINT nFlags)
    {
+
       return __modify_style(oswindow,GWL_EXSTYLE,dwRemove,dwAdd,nFlags);
+
    }
+
 
    LRESULT interaction_impl::Default()
    {
+
       return 0;
+
    }
 
 
-   ::window_sp interaction_impl::from_handle(oswindow oswindow)
+   sp(::user::interaction) interaction_impl::from_handle(oswindow oswindow)
    {
       
       return ::window_from_handle(oswindow);
@@ -614,7 +623,7 @@ namespace windows
       m_pfnDispatchWindowProc = &interaction_impl::_start_user_message_handler;
       // call special post-cleanup routine
       m_pui->PostNcDestroy();
-      PostNcDestroy();
+//      PostNcDestroy();
    }
 
    void interaction_impl::PostNcDestroy()
@@ -3748,28 +3757,6 @@ namespace windows
 
    }
 
-   void interaction_impl::SetFont(::draw2d::font* pfont,bool bRedraw)
-   {
-
-      UNREFERENCED_PARAMETER(bRedraw);
-
-      if(m_pfont.is_null())
-         m_pfont.create(allocer());
-
-      *m_pfont = *pfont;
-
-   }
-
-   ::draw2d::font* interaction_impl::GetFont()
-   {
-      ASSERT(::IsWindow(get_handle()));
-
-      if(m_pfont.is_null())
-         m_pfont.create(allocer());
-
-
-      return m_pfont;
-   }
 
    void interaction_impl::DragAcceptFiles(bool bAccept)
    {
@@ -3829,7 +3816,12 @@ namespace windows
 
             oswindow = ::GetLastActivePopup(oswindow);
 
-            from_handle(oswindow)->BringWindowToTop();
+            ::user::interaction * pui = from_handle(oswindow);
+
+            if(pui == NULL)
+               BringWindowToTop();
+            else
+               pui->BringWindowToTop();
 
          }
 
@@ -5406,12 +5398,12 @@ namespace windows
 LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam,LPARAM lparam)
 {
 
-   ::window_sp pwindow = ::window_from_handle(oswindow);
+   ::user::interaction * pui = ::window_from_handle(oswindow);
 
-   if(pwindow == NULL || pwindow->get_safe_handle() != oswindow)
+   if(pui == NULL || pui->get_safe_handle() != oswindow)
       return ::DefWindowProc(oswindow,message,wparam,lparam);
 
-   return pwindow->call_message_handler(message,wparam,lparam);
+   return pui->call_message_handler(message,wparam,lparam);
 
 }
 

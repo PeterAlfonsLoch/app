@@ -90,7 +90,7 @@ namespace user
          if(!System.get_twf()->m_bProDevianMode)
          {
             synch_lock lock(System.get_twf());
-            get_wnd()->m_pui->RedrawWindow();
+            get_wnd()->RedrawWindow();
          }
       }
    }
@@ -210,7 +210,7 @@ namespace user
    }
 
 
-   interaction_impl * interaction_base::get_wnd() const
+   interaction * interaction_base::get_wnd() const
    {
 
       return NULL;
@@ -975,14 +975,6 @@ namespace user
    }
 
 
-   void interaction_base::set_viewport_org(::draw2d::graphics * pgraphics)
-   {
-
-      throw interface_only_exception(get_app());
-
-   }
-
-
    void interaction_base::_001DrawThis(::draw2d::graphics * pgraphics)
    {
 
@@ -1605,6 +1597,14 @@ namespace user
    sp(interaction) interaction_base::GetDescendantWindow(id iId) const
    {
       
+      throw interface_only_exception(get_app());
+
+   }
+
+
+   void interaction_base::set_viewport_org(::draw2d::graphics * pgraphics)
+   {
+
       throw interface_only_exception(get_app());
 
    }

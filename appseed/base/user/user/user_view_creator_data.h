@@ -36,7 +36,7 @@ namespace user
       view_creator_data();
 
 
-      sp(::user::interaction)   get_wnd();
+      ::user::interaction *   get_wnd();
 
 
    };
