@@ -1545,8 +1545,6 @@ namespace user
    void interaction_base::PostNcDestroy()
    {
 
-      throw interface_only_exception(get_app());
-
    }
 
 
