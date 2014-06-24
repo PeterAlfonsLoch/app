@@ -60,10 +60,10 @@ namespace windows
       bool operator==(const interaction_impl& wnd) const;
       bool operator!=(const interaction_impl& wnd) const;
 
-      uint32_t GetStyle() const;
-      uint32_t GetExStyle() const;
-      bool ModifyStyle(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
-      bool ModifyStyleEx(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
+      virtual uint32_t GetStyle() const;
+      virtual uint32_t GetExStyle() const;
+      virtual bool ModifyStyle(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
+      virtual bool ModifyStyleEx(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
 
       //virtual sp(::user::interaction) get_owner();
       //virtual void set_owner(sp(::user::interaction) pOwnerWnd);
@@ -655,9 +655,9 @@ namespace windows
 
       virtual void _001DeferPaintLayeredWindowBackground(HDC hdc);
 
-      virtual LONG get_window_long(int32_t nIndex);
+      virtual LONG get_window_long(int32_t nIndex) const;
       virtual LONG set_window_long(int32_t nIndex,LONG lValue);
-      virtual LONG_PTR get_window_long_ptr(int32_t nIndex);
+      virtual LONG_PTR get_window_long_ptr(int32_t nIndex) const;
       virtual LONG_PTR set_window_long_ptr(int32_t nIndex,LONG_PTR lValue);
 
       virtual void _001BaseWndInterfaceMap();

@@ -3557,7 +3557,7 @@ namespace windows
 
    }
 
-   LONG interaction_impl::get_window_long(int32_t nIndex)
+   LONG interaction_impl::get_window_long(int32_t nIndex) const
    {
       return ::GetWindowLong(get_handle(),nIndex);
    }
@@ -3567,7 +3567,7 @@ namespace windows
       return ::SetWindowLong(get_handle(),nIndex,lValue);
    }
 
-   LONG_PTR interaction_impl::get_window_long_ptr(int32_t nIndex)
+   LONG_PTR interaction_impl::get_window_long_ptr(int32_t nIndex) const
    {
       return ::GetWindowLongPtr(get_handle(),nIndex);
    }

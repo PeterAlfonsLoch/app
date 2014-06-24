@@ -77,6 +77,36 @@ namespace user
       virtual void SetFont(::draw2d::font* pFont,bool bRedraw = true);
       virtual ::draw2d::font* GetFont();
 
+      
+      virtual uint32_t GetStyle() const;
+      virtual uint32_t GetExStyle() const;
+      virtual bool ModifyStyle(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
+      virtual bool ModifyStyleEx(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
+
+      virtual LONG get_window_long(int32_t nIndex) const;
+      virtual LONG set_window_long(int32_t nIndex,LONG lValue);
+
+      virtual LONG_PTR get_window_long_ptr(int32_t nIndex) const;
+      virtual LONG_PTR set_window_long_ptr(int32_t nIndex,LONG_PTR lValue);
+
+      virtual id GetDlgCtrlId() const;
+      virtual id SetDlgCtrlId(class id id);
+
+
+      virtual sp(interaction) get_bottom_child();
+      virtual sp(interaction) get_top_child();
+      virtual sp(interaction) under_sibling();
+      virtual sp(interaction) above_sibling();
+
+      virtual sp(interaction) above_sibling(sp(interaction) pui);
+      virtual sp(interaction) under_sibling(sp(interaction) pui);
+
+
+      virtual UINT ArrangeIconicWindows();
+      virtual void BringToTop(int nCmdShow);
+      virtual bool BringWindowToTop();
+
+
 
    };
 

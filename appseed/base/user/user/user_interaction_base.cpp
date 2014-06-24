@@ -967,14 +967,6 @@ namespace user
    }
 
 
-   id interaction_base::GetDlgCtrlId() const
-   {
-
-      throw interface_only_exception(get_app());
-
-   }
-
-
    void interaction_base::_001DrawThis(::draw2d::graphics * pgraphics)
    {
 
@@ -1292,7 +1284,7 @@ namespace user
    }
 
 
-   LONG interaction_base::get_window_long(int32_t nIndex)
+   LONG interaction_base::get_window_long(int32_t nIndex) const
    {
 
       throw interface_only_exception(get_app());
@@ -1308,7 +1300,7 @@ namespace user
    }
 
 
-   LONG_PTR interaction_base::get_window_long_ptr(int32_t nIndex)
+   LONG_PTR interaction_base::get_window_long_ptr(int32_t nIndex) const
    {
       
       throw interface_only_exception(get_app());
@@ -1377,7 +1369,7 @@ namespace user
    sp(interaction) interaction_base::GetTopWindow()
    {
 
-      throw interface_only_exception(get_app());
+      return get_wnd()->GetTopWindow();
 
    }
 
@@ -2206,8 +2198,6 @@ namespace user
    void interaction_base::on_keyboard_focus(::user::keyboard_focus * pfocus)
    {
 
-      throw interface_only_exception(get_app());
-
    }
 
 
@@ -2659,6 +2649,14 @@ namespace user
       throw interface_only_exception(get_app());
 
       return false;
+
+   }
+
+
+   id interaction_base::GetDlgCtrlId() const
+   {
+
+      throw interface_only_exception(get_app());
 
    }
 

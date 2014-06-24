@@ -506,6 +506,162 @@ namespace user
    }
 
 
+   uint32_t interaction_impl_base::GetStyle() const
+   {
+      
+      return get_window_long(GWL_STYLE);
+
+   }
+   
+   
+   uint32_t interaction_impl_base::GetExStyle() const
+   {
+
+      return get_window_long(GWL_EXSTYLE);
+
+   }
+
+
+   bool interaction_impl_base::ModifyStyle(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags)
+   {
+
+      set_window_long(GWL_STYLE,(GetStyle() | dwAdd) & ~dwRemove);
+
+      return true;
+
+   }
+
+
+   bool interaction_impl_base::ModifyStyleEx(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags)
+   {
+
+      set_window_long(GWL_EXSTYLE,(GetExStyle() | dwAdd) & ~dwRemove);
+
+      return true;
+
+   }
+
+
+   LONG interaction_impl_base::get_window_long(int32_t nIndex) const
+   {
+
+      return (LONG)get_window_long_ptr(nIndex);
+
+   }
+
+
+   LONG interaction_impl_base::set_window_long(int32_t nIndex,LONG lValue)
+   {
+
+      return (LONG)set_window_long_ptr(nIndex, lValue);
+
+   }
+
+
+   LONG_PTR interaction_impl_base::get_window_long_ptr(int32_t nIndex) const
+   {
+
+      return oprop("window_long:" + ::str::from(nIndex));
+
+   }
+
+
+   LONG_PTR interaction_impl_base::set_window_long_ptr(int32_t nIndex,LONG_PTR lValue)
+   {
+
+      return oprop("window_long:" + ::str::from(nIndex)) = lValue;
+
+   }
+
+
+   id interaction_impl_base::GetDlgCtrlId() const
+   {
+
+      return m_pui->GetDlgCtrlId();
+
+   }
+
+
+   id interaction_impl_base::SetDlgCtrlId(id id)
+   {
+
+      return m_pui->SetDlgCtrlId(id);
+
+   }
+
+
+   sp(interaction) interaction_impl_base::get_bottom_child()
+   {
+
+      return m_pui->get_bottom_child();
+
+   }
+
+
+   sp(interaction) interaction_impl_base::get_top_child()
+   {
+
+      return m_pui->get_bottom_child();
+
+   }
+
+
+   sp(interaction) interaction_impl_base::under_sibling()
+   {
+
+      return m_pui->under_sibling();
+
+   }
+
+
+   sp(interaction) interaction_impl_base::above_sibling()
+   {
+
+      return m_pui->above_sibling();
+
+   }
+
+
+   sp(interaction) interaction_impl_base::above_sibling(sp(interaction) pui)
+   {
+
+      return m_pui->above_sibling(pui);
+
+   }
+
+
+   sp(interaction) interaction_impl_base::under_sibling(sp(interaction) pui)
+   {
+
+      return m_pui->under_sibling(pui);
+
+   }
+
+
+   UINT interaction_impl_base::ArrangeIconicWindows()
+   {
+
+//      return m_pui->ArrangeIconicWindows();
+      return 0;
+
+   }
+
+
+   void interaction_impl_base::BringToTop(int nCmdShow)
+   {
+
+      //return m_pui->BringToTop(nCmdShow);
+
+   }
+
+
+   bool interaction_impl_base::BringWindowToTop()
+   {
+
+      return m_pui->BringWindowToTop();
+
+   }
+
 
 } // namespace user
 

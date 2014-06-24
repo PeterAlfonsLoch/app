@@ -910,7 +910,7 @@ namespace user
    }
 
 
-   LONG interaction_impl::get_window_long(int32_t nIndex)
+   LONG interaction_impl::get_window_long(int32_t nIndex) const
    {
 
       UNREFERENCED_PARAMETER(nIndex);
@@ -927,7 +927,7 @@ namespace user
    }
 
 
-   LONG_PTR interaction_impl::get_window_long_ptr(int32_t nIndex)
+   LONG_PTR interaction_impl::get_window_long_ptr(int32_t nIndex) const
    {
 
       UNREFERENCED_PARAMETER(nIndex);

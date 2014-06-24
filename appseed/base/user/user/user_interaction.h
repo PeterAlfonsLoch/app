@@ -95,10 +95,10 @@ namespace user
 
       virtual bool IsWindow() const;
 
-      virtual LONG get_window_long(int32_t nIndex);
+      virtual LONG get_window_long(int32_t nIndex) const;
       virtual LONG set_window_long(int32_t nIndex, LONG lValue);
 
-      virtual LONG_PTR get_window_long_ptr(int32_t nIndex);
+      virtual LONG_PTR get_window_long_ptr(int32_t nIndex) const;
       virtual LONG_PTR set_window_long_ptr(int32_t nIndex,LONG_PTR lValue);
 
       virtual bool on_before_set_parent(sp(interaction) pinterface);
@@ -258,6 +258,8 @@ namespace user
 
       virtual uint32_t GetStyle() const;
       virtual uint32_t GetExStyle() const;
+      virtual bool ModifyStyle(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
+      virtual bool ModifyStyleEx(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
       virtual LRESULT Default();
 
       virtual LRESULT send(::message::base * pbase);
@@ -273,8 +275,6 @@ namespace user
       virtual bool post_message(UINT message, WPARAM wParam = 0, lparam lParam = 0);
       virtual bool post_simple_command(e_simple_command ecommand, lparam lParam = 0);
 
-      virtual bool ModifyStyle(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags = 0);
-      virtual bool ModifyStyleEx(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags = 0);
       virtual bool ShowWindow(int32_t nCmdShow);
       virtual bool is_frame_window();
 

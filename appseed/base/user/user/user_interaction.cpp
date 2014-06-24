@@ -443,13 +443,8 @@ namespace user
 
    }
 
-   id interaction::GetDlgCtrlId() const
-   {
-      if(m_pimpl == NULL)
-         return "";
-      else
-         return m_pimpl->GetDlgCtrlId();
-   }
+   
+
 
    void interaction::install_message_handling(::message::dispatch * pinterface)
    {
@@ -1179,28 +1174,15 @@ namespace user
          return m_pimpl->IsWindowVisible();
    }
 
+
    bool interaction::enable_window(bool bEnable)
    {
+
       if(m_pimpl == NULL)
          return FALSE;
       else
          return m_pimpl->enable_window(bEnable);
-   }
 
-   bool interaction::ModifyStyle(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags)
-   {
-      if(m_pimpl == NULL)
-         return FALSE;
-      else
-         return m_pimpl->ModifyStyle(dwRemove,dwAdd,nFlags);
-   }
-
-   bool interaction::ModifyStyleEx(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags)
-   {
-      if(m_pimpl == NULL)
-         return FALSE;
-      else
-         return m_pimpl->ModifyStyleEx(dwRemove,dwAdd,nFlags);
    }
 
 
@@ -1688,7 +1670,7 @@ namespace user
          return m_pimpl->IsWindow();
    }
 
-   LONG interaction::get_window_long(int32_t nIndex)
+   LONG interaction::get_window_long(int32_t nIndex) const
    {
       if(m_pimpl == NULL)
          return 0;
@@ -1704,7 +1686,7 @@ namespace user
          return m_pimpl->set_window_long(nIndex,lValue);
    }
 
-   LONG_PTR interaction::get_window_long_ptr(int32_t nIndex)
+   LONG_PTR interaction::get_window_long_ptr(int32_t nIndex) const
    {
       if(m_pimpl == NULL)
          return 0;
@@ -1958,29 +1940,61 @@ namespace user
          return m_pimpl->EnsureParentFrame();
    }
 
+
    LRESULT interaction::Default()
    {
+
       if(m_pimpl == NULL)
          return 0;
       else
          return m_pimpl->Default();
+
    }
+
 
    uint32_t interaction::GetStyle() const
    {
+
       if(m_pimpl == NULL)
          return 0;
       else
          return m_pimpl->GetStyle();
+
    }
+
 
    uint32_t interaction::GetExStyle() const
    {
+
       if(m_pimpl == NULL)
          return 0;
       else
          return m_pimpl->GetExStyle();
+
    }
+
+
+   bool interaction::ModifyStyle(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags)
+   {
+
+      if(m_pimpl == NULL)
+         return false;
+
+      return m_pimpl->ModifyStyle(dwRemove,dwAdd,nFlags);
+
+   }
+
+
+   bool interaction::ModifyStyleEx(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags)
+   {
+
+      if(m_pimpl == NULL)
+         return false;
+
+      return m_pimpl->ModifyStyleEx(dwRemove,dwAdd,nFlags);
+
+   }
+
 
    bool interaction::DestroyWindow()
    {
@@ -4179,6 +4193,14 @@ namespace user
       lprect->bottom -= lprect->top;
       lprect->left = 0;
       lprect->top = 0;
+   }
+
+
+   id interaction::GetDlgCtrlId() const
+   {
+
+      return m_id;
+
    }
 
 
