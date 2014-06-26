@@ -90,7 +90,7 @@ namespace data
       virtual sp(image_list) get_image_list() const;
 
 
-      void set_parent(sp(tree_item) pparent);
+      void SetParent(sp(tree_item) pparent);
 
       ::count remove_tree_item();
       ::count remove_tree_item_descendants();

@@ -141,12 +141,6 @@ namespace windows
       sp(::user::interaction) GetDescendantWindow(id id) const;
       // like get_child_by_id but recursive
       void SendMessageToDescendants(UINT message,WPARAM wParam = 0,lparam lParam = 0,bool bDeep = TRUE,bool bOnlyPerm = FALSE);
-      sp(::user::frame_window) GetParentFrame() const;
-      sp(::user::frame_window) EnsureParentFrame();
-      sp(::user::interaction) EnsureTopLevelParent();
-      sp(::user::interaction) GetTopLevelOwner() const;
-      sp(::user::interaction) GetParentOwner() const;
-      sp(::user::frame_window) GetTopLevelFrame() const;
       static ::window_sp get_safe_owner(::window_sp pParent = NULL,oswindow* pWndTop = NULL);
 
       virtual bool IsWindow() const;
@@ -288,10 +282,10 @@ namespace windows
 
 
       // capture and focus apply to all windows
-      static ::window_sp GetCapture();
-      virtual sp(::user::interaction) set_capture(sp(::user::interaction) pinterface = NULL);
-      virtual sp(::user::interaction) release_capture();
-      virtual sp(::user::interaction) get_capture();
+      static sp(::user::interaction) s_GetCapture();
+      virtual sp(::user::interaction) SetCapture(sp(::user::interaction) pinterface = NULL);
+      virtual sp(::user::interaction) ReleaseCapture();
+      virtual sp(::user::interaction) GetCapture();
       virtual sp(::user::interaction) SetFocus();
 
       static  sp(::user::interaction) GetFocus();
@@ -358,20 +352,16 @@ namespace windows
       static ::window_sp FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow);
 
       virtual sp(::user::interaction) GetNextWindow(UINT nFlag = GW_HWNDNEXT);
-      virtual sp(::user::interaction) GetTopWindow();
+      virtual sp(::user::interaction) GetTopWindow() const;
 
-      virtual sp(::user::interaction) GetWindow(UINT nCmd);
-      virtual sp(::user::interaction) GetLastActivePopup();
+      virtual sp(::user::interaction) GetWindow(UINT nCmd) const;
+      virtual sp(::user::interaction) GetLastActivePopup() const;
 
-      virtual bool IsChild(::user::interaction * pwindow) const;
-      virtual ::user::interaction * get_parent() const;
-      using ::user::interaction_impl::set_parent;
-      ::window_sp set_parent(::window_sp pWndNewParent);
-      static ::window_sp WindowFromPoint(POINT point);
+      virtual sp(::user::interaction) GetParent() const;
+      virtual sp(::user::interaction) SetParent(sp(::user::interaction) pWndNewParent);
+      static sp(::user::interaction) WindowFromPoint(POINT point);
 
-      // Alert Functions
-
-      bool FlashWindow(bool bInvert);
+      virtual bool FlashWindow(bool bInvert);
 
       virtual int32_t message_box(const char * lpszText,const char * lpszCaption = NULL,UINT nType = MB_OK);
 
@@ -625,7 +615,6 @@ namespace windows
       virtual void WalkPreTranslateTree(sp(::user::interaction) puiStop,signal_details * pobj);
       static sp(::user::interaction) GetDescendantWindow(sp(::user::interaction) oswindow,id id);
       static void SendMessageToDescendants(oswindow  oswindow,UINT message,WPARAM wParam,lparam lParam,bool bDeep,bool bOnlyPerm);
-      virtual bool is_frame_window(); // is_kind_of(System.type_info < frame_window > ()))
       virtual void on_final_release();
       static bool ModifyStyle(oswindow oswindow,uint32_t dwRemove,uint32_t dwAdd,UINT nFlags);
       static bool ModifyStyleEx(oswindow oswindow,uint32_t dwRemove,uint32_t dwAdd,UINT nFlags);
@@ -674,7 +663,6 @@ namespace windows
       string calc_window_class();
 
       void on_set_parent(sp(::user::interaction) pui);
-
 
       
 

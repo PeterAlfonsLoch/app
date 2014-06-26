@@ -56,7 +56,7 @@ namespace data
    }
 
 
-   void tree_item::set_parent(sp(tree_item) pparent)
+   void tree_item::SetParent(sp(tree_item) pparent)
    {
 
       if(pparent == this || is_descendant(pparent) || is_ascendant(pparent))

@@ -401,7 +401,7 @@ void cmd_ui::Enable(bool bOn, ::action::context actioncontext)
 
       // if control has the focus, move the focus before disabling
       if (!bOn && (System.get_focus_guie() == m_pOther))
-         m_pOther->get_parent()->send_message(WM_NEXTDLGCTL, 0, (LPARAM) FALSE);
+         m_pOther->GetParent()->send_message(WM_NEXTDLGCTL, 0, (LPARAM) FALSE);
 
       m_pOther->enable_window(bOn);
 

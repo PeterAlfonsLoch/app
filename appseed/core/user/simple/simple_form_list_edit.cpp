@@ -31,7 +31,7 @@ void simple_form_list_edit::_001OnCreate(signal_details * pobj)
    UNREFERENCED_PARAMETER(pobj);
 
 
-   sp(::user::interaction) pwndParent = ::user::interaction::get_parent();
+   sp(::user::interaction) pwndParent = ::user::interaction::GetParent();
    if(base_class < simple_form_list_view >::bases(pwndParent))
    {
 
@@ -67,10 +67,10 @@ void simple_form_list_edit::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 sp(::user::interaction) simple_form_list_edit::GetNotifyWnd()
 {
-   sp(::user::interaction) pwnd = get_owner();
+   sp(::user::interaction) pwnd = GetOwner();
    if(pwnd != NULL)
       return pwnd;
-   return ::user::interaction::get_parent();
+   return ::user::interaction::GetParent();
 }
 
 void simple_form_list_edit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)

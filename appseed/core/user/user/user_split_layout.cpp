@@ -86,7 +86,7 @@ namespace user
          if(PlaneSession.is_mouse_button_pressed(::user::mouse_left_button))
          {
             ::user::split_bar & splitbar = *m_splitbara.element_at(iIndex);
-            splitbar.set_capture();
+            splitbar.SetCapture();
             m_iIndex = iIndex;
             m_iState = stateDragging;
          }
@@ -255,10 +255,7 @@ namespace user
       {
 
          CalcSplitBarRect(i, &rectA);
-         ClientToScreen(rectA);
-
          pwnd = m_splitbara.element_at(i);
-         ScreenToClient(rectA);
          pwnd->SetWindowPos(
             ZORDER_TOP,
             rectA.left,
@@ -552,7 +549,7 @@ namespace user
 
       pcomponent->m_id = id.is_empty() ? (::id) iIndex : id;
 
-      //pwnd->set_parent(this);
+      //pwnd->SetParent(this);
 
       //pwnd->ModifyStyle(WS_BORDER, 0, 0);
       //pwnd->ModifyStyleEx(WS_EX_CLIENTEDGE, 0, 0);
@@ -603,7 +600,7 @@ namespace user
       }
 
       pcomponent->m_id = id.is_empty() ? (::id) iIndex : id;
-      //pwnd->set_parent(this);
+      //pwnd->SetParent(this);
 
       //pwnd->ModifyStyle(WS_BORDER, 0, 0);
       //pwnd->ModifyStyleEx(WS_EX_CLIENTEDGE, 0, 0);
@@ -686,7 +683,7 @@ namespace user
          if((fwKeys & MK_LBUTTON) > 0)
          {
             ::user::split_bar * pSplitBar = m_splitbara.element_at(iSplitBar);
-            pSplitBar->set_capture();
+            pSplitBar->SetCapture();
             m_iIndex = iSplitBar;
             m_iState = stateDragging;
          }

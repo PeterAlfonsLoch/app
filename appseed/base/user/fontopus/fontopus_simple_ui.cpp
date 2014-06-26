@@ -250,18 +250,19 @@ namespace fontopus
       if (pobj->previous())
          return;
       
-      get_wnd()->show_keyboard(false);
+      GetWindow()->show_keyboard(false);
 
       m_bLButtonDown = true;
       m_bDrag = false;
 
       m_ptLButtonDownPos = pmouse->m_pt;
       ::GetCursorPos(&m_ptLButtonDown);
-      set_capture();
+      SetCapture();
 
       pmouse->m_bRet = true;
 
    }
+
 
    void simple_ui::_001OnLButtonUp(signal_details * pobj)
    {
@@ -273,14 +274,11 @@ namespace fontopus
       if(pmouse->previous())
          return;
 
+      ReleaseCapture();
 
-
-         release_capture();
-
-         m_bDrag = false;
+      m_bDrag = false;
 
       pobj->m_bRet = true;
-
 
    }
 

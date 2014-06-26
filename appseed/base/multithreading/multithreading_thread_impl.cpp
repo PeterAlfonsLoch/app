@@ -1124,7 +1124,8 @@ int32_t thread_impl::thread_startup(::thread_startup * pstartup)
 
    m_puser->install_message_handling(pthreadimpl);
 
-   IGUI_WIN_MSG_LINK(WM_USER + 123,pthreadimpl,pthreadimpl,&thread_impl::_001OnCreateMessageWindow);
+   if(!initialize_message_queue())
+      return -1;
 
    return 0;
 
@@ -1386,11 +1387,6 @@ void thread_impl::set_timer(sp(::user::interaction) pui,uint_ptr nIDEvent,UINT n
 
    m_ptimera->set(pui,nIDEvent,nEllapse);
 
-   if(!m_bCreatingMessageWindow && m_spuiMessage.is_null())
-   {
-      _001PostCreateMessageWindow();
-   }
-
 }
 
 void thread_impl::unset_timer(sp(::user::interaction) pui,uint_ptr nIDEvent)
@@ -1450,35 +1446,22 @@ thread_impl::operator HTHREAD() const
 
 
 
-void thread_impl::_001PostCreateMessageWindow()
+bool thread_impl::initialize_message_queue()
 {
-
-   post_thread_message(WM_USER + 123);
-
-}
-
-
-void thread_impl::_001OnCreateMessageWindow(signal_details * pobj)
-{
-
-   if(m_bCreatingMessageWindow)
-      return;
 
    if(m_spuiMessage.is_set() && m_spuiMessage->IsWindow())
-      return;
-
-   keeper < bool > keepCreating(&m_bCreatingMessageWindow,true,false,true);
+      return true;
 
    try
    {
 
       if(!create_message_queue(get_app(),""))
-         return;
+         return false;
 
    }
    catch(...)
    {
-      return;
+      return false;
    }
 
    if(m_spuiMessage->IsWindow())
@@ -1495,6 +1478,8 @@ void thread_impl::_001OnCreateMessageWindow(signal_details * pobj)
       sl.unlock();
       m_spuiMessage->SetTimer((uint_ptr)-2,iMin,NULL);
    }
+
+   return true;
 
 }
 
@@ -1580,7 +1565,7 @@ void thread_impl::message_handler(signal_details * pobj)
 
    SCAST_PTR(::message::base,pbase,pobj);
 
-   ::window_sp pwindow = pbase->m_pwnd->get_wnd();
+   ::window_sp pwindow = pbase->m_pwnd->GetWindow();
 
    ASSERT(pwindow == NULL || pwindow == pbase->m_pwnd->m_pimpl);
 
@@ -1919,3 +1904,11 @@ void thread_impl::Delete()
 
 
 
+bool thread_impl::finalize()
+{
+
+   destroy_message_queue();
+
+   return true;
+
+}

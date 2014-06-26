@@ -3,14 +3,17 @@
 
 void __reposition_window(__SIZEPARENTPARAMS* lpLayout,oswindow oswindow,LPCRECT lpRect);
 
+
 namespace user
 {
+
 
    interaction_child::interaction_child()
    {
 
       m_bCreate         = false;
       m_bEnabled        = true;
+      m_puiOwner        = NULL;
 
    }
 
@@ -21,6 +24,7 @@ namespace user
 
       m_bCreate         = false;
       m_bEnabled        = true;
+      m_puiOwner        = NULL;
 
    }
 
@@ -458,22 +462,6 @@ namespace user
    }
 
 
-   sp(frame_window) interaction_child::GetParentFrame()
-   {
-
-      ASSERT_VALID(this);
-
-      sp(interaction) pParentWnd = get_parent();  // start with one parent up
-      while(pParentWnd != NULL)
-      {
-         if(base_class < interaction>::bases(pParentWnd))
-         {
-            return pParentWnd;
-         }
-         pParentWnd = pParentWnd->get_parent();
-      }
-      return NULL;
-   }
 
 
    LRESULT interaction_child::send_message(UINT uiMessage,WPARAM wparam,lparam lparam)
@@ -500,7 +488,7 @@ namespace user
                return spbase->get_lresult();
             try
             {
-               pui = pui->get_parent();
+               pui = pui->GetParent();
             }
             catch(...)
             {
@@ -573,16 +561,8 @@ namespace user
 
    bool interaction_child::is_window_enabled()
    {
-      return m_bEnabled && ((m_pui == NULL || m_pui->get_parent() == NULL) ? true : m_pui->get_parent()->is_window_enabled());
+      return m_bEnabled && ((m_pui == NULL || m_pui->GetParent() == NULL) ? true : m_pui->GetParent()->is_window_enabled());
    }
-
-   sp(frame_window) interaction_child::EnsureParentFrame()
-   {
-      sp(interaction) pFrameWnd = GetParentFrame();
-      ENSURE_VALID(pFrameWnd);
-      return pFrameWnd;
-   }
-
 
    uint32_t interaction_child::GetStyle() const
    {
@@ -813,16 +793,6 @@ namespace user
    }
 
 
-   sp(interaction) interaction_child::EnsureTopLevelParent()
-   {
-      sp(interaction)pwindow=GetTopLevelParent();
-      ENSURE_VALID(pwindow);
-      return pwindow;
-   }
-
-
-
-
    void interaction_child::message_handler(signal_details * pobj)
    {
       SCAST_PTR(::message::base,pbase,pobj);
@@ -876,6 +846,16 @@ namespace user
    }
 
 
+   bool interaction_child::ShowWindow(int32_t nCmdShow)
+   {
+
+      UNREFERENCED_PARAMETER(nCmdShow);
+
+      return true;
+
+   }
+
+
    sp(interaction) interaction_child::GetDescendantWindow(id id) const
    {
       single_lock sl(m_pui->m_pthread->m_pmutex,TRUE);
@@ -895,25 +875,6 @@ namespace user
 
 
 
-
-   sp(frame_window) interaction_child::GetTopLevelFrame() const
-   {
-
-      ASSERT_VALID(this);
-
-      sp(interaction) pFrameWnd = m_pui;
-
-      if(pFrameWnd == NULL || !pFrameWnd->is_frame_window())
-         pFrameWnd = ((interaction_child *)(this))->GetParentFrame();
-
-      if(pFrameWnd != NULL)
-      {
-         sp(interaction) pTemp;
-         while((pTemp = pFrameWnd->GetParentFrame()) != NULL)
-            pFrameWnd = pTemp;
-      }
-      return pFrameWnd;
-   }
 
 
 
@@ -1024,7 +985,7 @@ namespace user
             return FALSE;
 
          }
-         if(m_pui->get_parent() != NULL && !m_pui->get_parent()->IsWindowVisible())
+         if(m_pui->GetParent() != NULL && !m_pui->GetParent()->IsWindowVisible())
          {
             //string str;
             //m_pui->GetWindowText(str);
@@ -1087,6 +1048,37 @@ namespace user
       return true;
 
    }
+
+
+   bool interaction_child::RedrawWindow(LPCRECT lpRectUpdate,::draw2d::region* prgnUpdate,UINT flags)
+   {
+      
+      UNREFERENCED_PARAMETER(lpRectUpdate);
+      UNREFERENCED_PARAMETER(prgnUpdate);
+      UNREFERENCED_PARAMETER(flags);
+
+      return false;
+
+   }
+
+
+   sp(::user::interaction) interaction_child::SetOwner(sp(::user::interaction) pui)
+   {
+
+      m_puiOwner = pui;
+
+      return m_puiOwner;
+
+   }
+
+
+   sp(::user::interaction) interaction_child::GetOwner() const
+   {
+
+      return m_puiOwner;
+
+   }
+
 
 
 } // namespace user

@@ -312,6 +312,7 @@ namespace base
       virtual int32_t exit_instance();
 
       virtual bool initialize();
+      virtual bool finalize();
 
       bool ca_process_initialize();
       bool ca_initialize1();

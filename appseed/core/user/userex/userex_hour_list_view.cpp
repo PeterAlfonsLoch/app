@@ -87,7 +87,7 @@ namespace userex
       ev.m_puie         = this;
       ev.m_eevent       = ::user::event_after_change_text;
       ev.m_actioncontext   = ::action::source_user;
-      get_parent()->BaseOnControlEvent(&ev);
+      GetParent()->BaseOnControlEvent(&ev);
       BaseOnControlEvent(&ev);
 
    }

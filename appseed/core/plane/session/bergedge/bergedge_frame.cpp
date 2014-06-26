@@ -190,7 +190,7 @@ namespace bergedge
          ScreenToClient(&pt);
          if(rectClient.contains(pt))
          {
-            get_wnd()->set_capture();
+            GetWindow()->SetCapture();
             if(!m_bMouseOver)
             {
                m_bMouseOver = true;
@@ -199,7 +199,7 @@ namespace bergedge
          }
          else
          {
-            get_wnd()->release_capture();
+            GetWindow()->ReleaseCapture();
             m_bMouseOver = false;
             m_pdocument->m_pplatformdocument->get_platform_frame()->super_dock_on_bergedge();
          }

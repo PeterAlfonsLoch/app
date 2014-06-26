@@ -605,9 +605,9 @@ namespace user
       }
 
    /*
-      if(get_owner() != NULL)
+      if(GetOwner() != NULL)
       {
-         get_owner()->SendMessage(
+         GetOwner()->SendMessage(
             WM_USER + 723,
             GetDlgCtrlId(),
             (LPARAM) this);

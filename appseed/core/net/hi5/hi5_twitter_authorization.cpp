@@ -44,7 +44,7 @@ namespace hi5
             return "";
 
          m_pviewAuth->SetTimer(8888, 484, NULL);
-         m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
+         m_ptabview->GetWindow()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
          m_ptemplatePane->close_all_documents(FALSE);
          return m_strPin;
       }
@@ -191,8 +191,8 @@ namespace hi5
          m_pdocAuth->get_html_data()->m_propertyset = set;
          m_pdocAuth->on_open_document(Application.dir().matter(pszMatter));
          display_main_frame();
-         m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
-         m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
+         m_ptabview->GetWindow()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
+         m_ptabview->GetWindow()->EndAllModalLoops(IDOK);
       }
 
       void authorization::on_create_view(::user::view_creator_data * pcreatordata)
@@ -251,7 +251,7 @@ namespace hi5
                sp(::user::interaction) pui = m_pviewAuth->get_child_by_name("pin");
                sp(text_interface) ptext =  (pui.m_p);
                ptext->_001GetText(m_strPin);
-               m_ptabview->get_wnd()->EndModalLoop(IDOK);
+               m_ptabview->GetWindow()->EndModalLoop(IDOK);
                m_ptabview->GetParentFrame()->ShowWindow(SW_HIDE);
             }
          }

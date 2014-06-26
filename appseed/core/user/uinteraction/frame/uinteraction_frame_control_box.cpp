@@ -62,7 +62,7 @@ namespace user
 
             ScreenToClient(&m_ptDrag);
 
-            set_capture();
+            SetCapture();
 
             pmouse->m_bRet = true;
 
@@ -78,7 +78,7 @@ namespace user
 
             m_bDrag = false;
 
-            release_capture();
+            ReleaseCapture();
 
 
             pmouse->m_bRet = true;
@@ -109,7 +109,7 @@ namespace user
 
             rect rectParent;
 
-            get_parent()->GetWindowRect(rectParent);
+            GetParent()->GetWindowRect(rectParent);
 
             rect rectClient;
 
@@ -127,7 +127,7 @@ namespace user
 
             point ptClient(x, rectWindow.top);
 
-            get_parent()->ScreenToClient(ptClient);
+            GetParent()->ScreenToClient(ptClient);
 
             SetWindowPos(ZORDER_TOP, ptClient.x, ptClient.y, 0, 0, SWP_NOSIZE);
 
@@ -445,7 +445,7 @@ namespace user
 
                get_control_box_button_caption(ebutton, strCaption);
 
-               pbutton->set_parent(this);
+               pbutton->SetParent(this);
 
                pbutton->SetWindowText(strCaption);
 

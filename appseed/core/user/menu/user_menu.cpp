@@ -105,7 +105,7 @@ namespace user
       if(!CreateEx(WS_EX_LAYERED | WS_EX_TOOLWINDOW,NULL,NULL,0,rect(0,0,0,0),PlaneSession.get_view(),id(),lpvoid))
          return false;
 
-      set_owner(oswindowParent);
+      SetOwner(oswindowParent);
 
       if(!m_buttonClose.create(this, ChildIdClose))
          return false;
@@ -123,9 +123,9 @@ namespace user
 
       point pt(x, y);
 
-      if(get_parent() != NULL)
+      if(GetParent() != NULL)
       {
-         get_parent()->ScreenToClient(&pt);
+         GetParent()->ScreenToClient(&pt);
       }
 
       m_ptTrack = pt;

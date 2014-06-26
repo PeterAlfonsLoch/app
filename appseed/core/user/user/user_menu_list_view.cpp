@@ -45,13 +45,13 @@ namespace user
       SCAST_PTR(::message::base, pbase, pobj);
       if(pbase->m_uiMessage == m_uiMessage)
       {
-         if(base_class < ::user::place_holder >::bases(get_parent()))
+         if(base_class < ::user::place_holder >::bases(GetParent()))
          {
-            pbase->set_lresult(get_parent()->get_parent()->send_message(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
+            pbase->set_lresult(GetParent()->GetParent()->send_message(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
          }
          else
          {
-            pbase->set_lresult(get_parent()->send_message(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
+            pbase->set_lresult(GetParent()->send_message(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
          }
          pbase->m_bRet = true;
          return;

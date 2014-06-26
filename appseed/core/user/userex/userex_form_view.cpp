@@ -141,9 +141,9 @@ void form_view::_001OnUser123(signal_details * pobj)
    SCAST_PTR(::message::base, pbase, pobj);
    if(pbase->m_wparam == 0x80000001)
    {
-      if(GetTopLevelParent() != NULL)
+      if(GetTopLevel() != NULL)
       {
-         GetTopLevelParent()->EndModalLoop(IDOK);
+         GetTopLevel()->EndModalLoop(IDOK);
       }
       return;
    }

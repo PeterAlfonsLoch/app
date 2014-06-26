@@ -52,7 +52,7 @@ namespace windows
 
    void thread::CommonConstruct()
    {
-      m_bCreatingMessageWindow = false;
+
       m_ptimera      = NULL;
       m_puiptra      = NULL;
       m_puiMain      = NULL;

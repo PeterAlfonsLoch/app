@@ -137,9 +137,9 @@ namespace user
       }
       else
       {
-         if(get_parent() != pwndFill)
+         if(GetParent() != pwndFill)
          {
-            set_parent(pwndFill);
+            SetParent(pwndFill);
          }
       }
 
@@ -235,10 +235,10 @@ namespace user
 
    void menu_list_window::layout()
    {
-      if(get_parent() == NULL)
+      if(GetParent() == NULL)
          return;
       rect rectClient;
-      get_parent()->GetClientRect(rectClient);
+      GetParent()->GetClientRect(rectClient);
       ::draw2d::memory_graphics pdc(allocer());
       pdc->SelectObject(m_pschema->m_font);
       size size = pdc->GetTextExtent("XXXMMM");
@@ -379,13 +379,13 @@ namespace user
             {
                send_message(WM_CLOSE);
             }
-            if(base_class < ::user::place_holder > ::bases(get_parent()))
+            if(base_class < ::user::place_holder > ::bases(GetParent()))
             {
-               get_parent()->get_parent()->send_message(m_uiMessage);
+               GetParent()->GetParent()->send_message(m_uiMessage);
             }
             else
             {
-               get_parent()->send_message(m_uiMessage);
+               GetParent()->send_message(m_uiMessage);
             }
          }
          else
@@ -402,13 +402,13 @@ namespace user
                   {
                      send_message(WM_CLOSE);
                   }
-                  if(base_class < ::user::place_holder > ::bases(get_parent()))
+                  if(base_class < ::user::place_holder > ::bases(GetParent()))
                   {
-                     get_parent()->get_parent()->send_message(m_uiMessage);
+                     GetParent()->GetParent()->send_message(m_uiMessage);
                   }
                   else
                   {
-                     get_parent()->send_message(m_uiMessage);
+                     GetParent()->send_message(m_uiMessage);
                   }
                }
             }

@@ -181,7 +181,7 @@ void MetaButton::_001OnTimer(signal_details * pobj)
       else
       {
 
-         //      sp(::user::interaction) pwnd = ::user::interaction::get_parent();
+         //      sp(::user::interaction) pwnd = ::user::interaction::GetParent();
 
 
          rect rect;

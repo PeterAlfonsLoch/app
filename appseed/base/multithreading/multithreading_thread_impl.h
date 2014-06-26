@@ -45,8 +45,6 @@ public:
 
    list < sp(::user::frame_window) >         m_frameList;
 
-   bool                                      m_bCreatingMessageWindow;
-
    LPVOID                                    m_pThreadParams;
    __THREADPROC                              m_pfnThreadProc;
 
@@ -70,6 +68,8 @@ public:
    virtual bool pre_init_instance();
 
    virtual bool initialize_instance();
+
+   virtual bool finalize();
 
    virtual void pre_translate_message(signal_details * pobj);
 
@@ -121,8 +121,7 @@ public:
    virtual void set_os_int(int_ptr iData);
    virtual void message_queue_message_handler(signal_details * pobj);
 
-   void _001PostCreateMessageWindow();
-   DECL_GEN_SIGNAL(_001OnCreateMessageWindow);
+   virtual bool initialize_message_queue();
 
 
    virtual int32_t run();
@@ -146,6 +145,8 @@ public:
    void Delete();
 
    virtual void dispatch_thread_message(signal_details * pobj);
+
+   
 
 };
 

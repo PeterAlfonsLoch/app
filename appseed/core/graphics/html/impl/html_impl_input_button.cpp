@@ -71,7 +71,7 @@ namespace html
       {
          //rect rectWindow;
          //m_pbutton->GetWindowRect(rectWindow);
-         //m_pbutton->get_wnd()->ScreenToClient(rectWindow);
+         //m_pbutton->GetWindow()->ScreenToClient(rectWindow);
          ::point ptPreviousViewportOrg = pdata->m_pdc->GetViewportOrg();
          pdata->m_pdc->OffsetViewportOrg((int32_t) m_box.left, (int32_t) m_box.top);
          m_pbutton->_001OnDraw(pdata->m_pdc);

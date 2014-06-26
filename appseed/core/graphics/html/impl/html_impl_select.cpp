@@ -135,7 +135,7 @@ namespace html
       {
          rect rectWindow;
          m_pcombo->GetWindowRect(rectWindow);
-         m_pcombo->get_wnd()->ScreenToClient(rectWindow);
+         m_pcombo->GetWindow()->ScreenToClient(rectWindow);
          ::point ptPreviousViewportOrg = pdata->m_pdc->GetViewportOrg();
          pdata->m_pdc->SetViewportOrg(rectWindow.top_left());
          m_pcombo->_001OnDraw(pdata->m_pdc);

@@ -139,13 +139,6 @@ namespace mac
       // like get_child_by_id but recursive
       void SendMessageToDescendants(UINT message, WPARAM wParam = 0,
                                     lparam lParam = NULL, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
-      sp(::user::frame_window) GetParentFrame();
-      sp(::user::frame_window) EnsureParentFrame();
-      sp(::user::interaction) GetTopLevelParent();
-      sp(::user::interaction) EnsureTopLevelParent();
-      sp(::user::interaction) GetTopLevelOwner();
-      sp(::user::interaction) GetParentOwner();
-      sp(::user::frame_window) GetTopLevelFrame();
       static ::window * PASCAL GetSafeOwner(::window * pParent = NULL, oswindow* pWndTop = NULL);
       
       virtual bool IsWindow() const;

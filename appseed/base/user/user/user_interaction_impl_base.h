@@ -55,6 +55,21 @@ namespace user
       //virtual int32_t GetWindowRgn(HRGN hRgn);
 
 
+#ifdef WINDOWS
+
+      virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,::draw2d::region* prgnUpdate = NULL,UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
+
+#else
+
+      virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,::draw2d::region* prgnUpdate = NULL,UINT flags = 0);
+
+#endif
+
+
+      virtual void SetFont(::draw2d::font* pFont,bool bRedraw = true);
+      virtual ::draw2d::font* GetFont();
+
+
       virtual void _001Print(::draw2d::graphics * pdc);
       virtual void _000OnDraw(::draw2d::graphics *pdc);
       virtual void _001DrawThis(::draw2d::graphics *pdc);
@@ -74,8 +89,6 @@ namespace user
       virtual void viewport_screen_to_client(RECT * ppt);
 
 
-      virtual void SetFont(::draw2d::font* pFont,bool bRedraw = true);
-      virtual ::draw2d::font* GetFont();
 
       
       virtual uint32_t GetStyle() const;
@@ -105,6 +118,48 @@ namespace user
       virtual UINT ArrangeIconicWindows();
       virtual void BringToTop(int nCmdShow);
       virtual bool BringWindowToTop();
+
+
+      virtual bool IsAscendant(const interaction * puiIsAscendant) const;
+      virtual bool IsParent(const interaction * puiIsParent) const;
+      virtual bool IsChild(const interaction * puiIsChild) const;
+      virtual bool IsDescendant(const interaction * puiIsDescendant) const;
+
+
+      virtual sp(::user::interaction) GetWindow() const;
+      virtual sp(::user::interaction) GetWindow(UINT nCmd) const;
+
+
+      virtual sp(::user::interaction) GetTopWindow() const;
+      virtual sp(::user::interaction) GetParent() const;
+      virtual sp(::user::interaction) GetTopLevel() const;
+      virtual sp(::user::interaction) GetParentTopLevel() const;
+      virtual sp(::user::interaction) EnsureTopLevel();
+      virtual sp(::user::interaction) EnsureParentTopLevel();
+      virtual sp(::user::interaction) GetOwner() const;
+      virtual sp(::user::interaction) GetParentOwner() const;
+      virtual sp(::user::interaction) GetTopLevelOwner() const;
+      virtual sp(::user::frame_window) GetFrame() const;
+      virtual sp(::user::frame_window) GetParentFrame() const;
+      virtual sp(::user::frame_window) GetTopLevelFrame() const;
+      virtual sp(::user::frame_window) GetParentTopLevelFrame() const;
+      virtual sp(::user::frame_window) EnsureParentFrame();
+
+      
+      virtual void SendMessageToDescendants(UINT message,WPARAM wParam = 0,lparam lParam = 0,bool bDeep = TRUE,bool bOnlyPerm = FALSE);
+
+
+      virtual void pre_translate_message(signal_details * pobj);
+
+
+      virtual sp(::user::interaction) SetCapture(sp(::user::interaction) pinterface = NULL);
+      virtual sp(::user::interaction) ReleaseCapture();
+      virtual sp(::user::interaction) GetCapture();
+
+
+      virtual sp(::user::interaction) SetFocus();
+
+
 
 
 

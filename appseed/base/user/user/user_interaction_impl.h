@@ -152,12 +152,6 @@ namespace user
       virtual sp(::user::interaction) GetDescendantWindow(id id) const;
       // like get_child_by_id but recursive
       void SendMessageToDescendants(UINT message,WPARAM wParam = 0,lparam lParam = 0,bool bDeep = TRUE,bool bOnlyPerm = FALSE);
-      virtual sp(::user::frame_window) GetParentFrame() const;
-      virtual sp(::user::frame_window) EnsureParentFrame();
-      virtual sp(::user::interaction) EnsureTopLevelParent();
-      virtual sp(::user::interaction) GetTopLevelOwner() const;
-      virtual sp(::user::interaction) GetParentOwner() const;
-      virtual sp(::user::frame_window) GetTopLevelFrame() const;
 
       virtual bool IsWindow() const;
 
@@ -234,35 +228,46 @@ namespace user
       virtual bool LockWindowUpdate();
       virtual void UnlockWindowUpdate();
 
+
 #ifdef WINDOWS
+
       virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,::draw2d::region* prgnUpdate = NULL,UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
+
 #else
+
       virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,::draw2d::region* prgnUpdate = NULL,UINT flags = 0);
+
 #endif
 
 
 #ifdef WINDOWSEX
+
       virtual bool EnableScrollBar(int32_t nSBFlags,UINT nArrowFlags = ESB_ENABLE_BOTH);
+
 #else
+
       virtual bool EnableScrollBar(int32_t nSBFlags,UINT nArrowFlags = 3);
+
 #endif
 
+      
       virtual bool DrawAnimatedRects(int32_t idAni,CONST RECT *lprcFrom,CONST RECT *lprcTo);
+
       virtual bool DrawCaption(::draw2d::graphics * pgraphics,LPCRECT lprc,UINT uFlags);
 
 #if(WINVER >= 0x0500)
 
       virtual bool AnimateWindow(uint32_t dwTime,uint32_t dwFlags);
 
-#endif   // WINVER >= 0x0500
+#endif
+
 
 #if(_WIN32_WINNT >= 0x0501)
 
       virtual bool PrintWindow(::draw2d::graphics * pgraphics,UINT nFlags) const;
 
-#endif   // _WIN32_WINNT >= 0x0501
+#endif
 
-      // Layered Window
 
 #if(_WIN32_WINNT >= 0x0500)
 
@@ -299,9 +304,9 @@ namespace user
 
 
       // capture and focus apply to all windows
-      virtual sp(::user::interaction) set_capture(sp(::user::interaction) pinterface = NULL);
-      virtual sp(::user::interaction) release_capture();
-      virtual sp(::user::interaction) get_capture();
+      virtual sp(::user::interaction) SetCapture(sp(::user::interaction) pinterface = NULL);
+      virtual sp(::user::interaction) ReleaseCapture();
+      virtual sp(::user::interaction) GetCapture();
       virtual sp(::user::interaction) SetFocus();
 
       // Obsolete and non-portable APIs - not recommended for new code
@@ -658,7 +663,6 @@ namespace user
       virtual bool IsTopParentActive();
       virtual void ActivateTopParent();
       virtual void WalkPreTranslateTree(sp(::user::interaction) puiStop,signal_details * pobj);
-      virtual bool is_frame_window(); // is_kind_of(System.type_info < frame_window > ()))
       virtual void on_final_release();
 
 

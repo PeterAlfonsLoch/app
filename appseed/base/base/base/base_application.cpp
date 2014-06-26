@@ -1166,21 +1166,21 @@ namespace base
       oswindow oswindowCapture = ::GetCapture();
       if (oswindowCapture == NULL)
          return NULL;
-      return oswindowCapture->get_user_interaction()->release_capture();
+      return oswindowCapture->get_user_interaction()->ReleaseCapture();
 
 #elif defined(WINDOWS)
 
       oswindow oswindowCapture = ::GetCapture();
       if(oswindowCapture == NULL)
          return NULL;
-      return System.window_from_os_data(oswindowCapture)->release_capture();
+      return System.window_from_os_data(oswindowCapture)->ReleaseCapture();
 
 #elif defined(APPLEOS)
 
       oswindow oswindowCapture = ::GetCapture();
       if (oswindowCapture == NULL)
          return NULL;
-      return oswindowCapture->get_user_interaction()->release_capture();
+      return oswindowCapture->get_user_interaction()->ReleaseCapture();
 
 #else
 
@@ -1215,12 +1215,12 @@ namespace base
       if(oswindowCapture == NULL)
          return NULL;
 
-      ::user::interaction_impl * pwindow = System.window_from_os_data(oswindowCapture).cast < ::user::interaction_impl >();
+      sp(::user::interaction) pui = System.window_from_os_data(oswindowCapture);
 
-      if(pwindow == NULL)
+      if(pui == NULL)
          return NULL;
 
-      return pwindow->get_capture();
+      return pui->GetCapture();
 
 #else
 
@@ -1231,7 +1231,7 @@ namespace base
       if (oswindowCapture == NULL)
          return NULL;
 
-      return ::GetCapture()->get_user_interaction()->m_pimpl->get_capture();
+      return ::GetCapture()->get_user_interaction()->m_pimpl->GetCapture();
 
 #endif
 
@@ -3344,6 +3344,8 @@ namespace base
       }
 
 
+
+
       try
       {
 
@@ -3541,7 +3543,27 @@ namespace base
    }
 
 
+   bool application::finalize()
+   {
 
+      bool bOk = false;
+
+      try
+      {
+
+         bOk = thread::finalize();
+
+      }
+      catch(...)
+      {
+
+         bOk = false;
+
+      }
+
+      return bOk;
+
+   }
 
 
 

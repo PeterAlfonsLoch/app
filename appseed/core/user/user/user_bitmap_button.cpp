@@ -150,7 +150,7 @@ namespace user
             m_bHover = true;
             if(System.get_capture_uie() != this)
             {
-               set_capture();
+               SetCapture();
             }
          }
       }
@@ -163,7 +163,7 @@ namespace user
             if(rectClient.contains(point))
             {
                 m_bHover = true;
-               set_capture();
+               SetCapture();
                RedrawWindow();
             }
          }

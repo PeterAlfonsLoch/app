@@ -122,13 +122,6 @@ namespace android
       sp(::user::interaction) GetDescendantWindow(id id);
          // like get_child_by_id but recursive
       void SendMessageToDescendants(UINT message, WPARAM wParam = 0, lparam lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
-      sp(::user::frame_window) GetParentFrame();
-      sp(::user::frame_window) EnsureParentFrame();
-      sp(::user::interaction) GetTopLevelParent();
-      sp(::user::interaction) EnsureTopLevelParent();
-      sp(::user::interaction) GetTopLevelOwner();
-      sp(::user::interaction) GetParentOwner();
-      sp(::user::frame_window) GetTopLevelFrame();
       static sp(::interaction_impl) PASCAL GetSafeOwner(::interaction_impl * pParent = NULL, oswindow* pWndTop = NULL);
 
       virtual bool IsWindow();
@@ -616,7 +609,6 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       virtual void WalkPreTranslateTree(sp(::user::interaction) puiStop, ::signal_details * pobj);
       static sp(::user::interaction) PASCAL GetDescendantWindow(sp(::user::interaction) hWnd, id id);
       static void PASCAL SendMessageToDescendants(void*  hWnd, UINT message, WPARAM wParam, lparam lParam, bool bDeep, bool bOnlyPerm);
-      virtual bool is_frame_window(); // is_kind_of(System.type_info < frame_window > ()))
       virtual void on_final_release();
       static bool PASCAL ModifyStyle(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags);
       static bool PASCAL ModifyStyleEx(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags);

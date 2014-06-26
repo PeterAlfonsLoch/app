@@ -340,7 +340,7 @@ namespace filemanager
             if(pitem->m_pparent != pitemParent && !straRootPath.contains_ci(pitem->m_pitem.cast < ::fs::item >()->m_strPath))
             {
 
-               pitem->set_parent(pitemParent);
+               pitem->SetParent(pitemParent);
 
             }
 
@@ -467,7 +467,7 @@ namespace filemanager
                if(pitem->m_pparent != pitemParent)
                {
 
-                  pitem->set_parent(pitemParent);
+                  pitem->SetParent(pitemParent);
 
                }
 

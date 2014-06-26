@@ -239,7 +239,7 @@ namespace user
    bool control_bar::SetStatusText(int32_t nHit)
    {
 
-      sp(::user::interaction) pOwner = get_owner();
+      sp(::user::interaction) pOwner = GetOwner();
 
       if (nHit == -1)
       {
@@ -277,7 +277,7 @@ namespace user
       if(pobj->m_bRet)
          return;
 
-      sp(::user::interaction) pOwner = get_owner();
+      sp(::user::interaction) pOwner = GetOwner();
 
 #ifdef WINDOWSEX
 
@@ -346,7 +346,7 @@ namespace user
    //      else
          {
             // try owner next
-            lResult = get_owner()->send_message(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam);
+            lResult = GetOwner()->send_message(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam);
 
             // special case for TTN_NEEDTEXTA and TTN_NEEDTEXTW
 #ifdef WINDOWSEX
@@ -396,9 +396,9 @@ namespace user
       if(pobj->previous())
          return;
 
-      sp(::user::frame_window)pFrameWnd = get_parent();
+      sp(::user::frame_window) pFrameWnd = GetParent();
 
-      if (pFrameWnd->is_frame_window())
+      if (pFrameWnd.is_set())
       {
 
          m_pDockSite = pFrameWnd;
@@ -605,8 +605,8 @@ namespace user
       // the dockbar style must also be visible
       if ((GetStyle() & WS_VISIBLE))
       {
-         sp(::user::frame_window) pTarget = (get_owner().m_p);
-         if (pTarget == NULL || !pTarget->is_frame_window())
+         sp(::user::frame_window) pTarget = (GetOwner().m_p);
+         if (pTarget == NULL)
             pTarget = (GetParentFrame());
          if (pTarget != NULL)
             OnUpdateCmdUI(pTarget, pbase->m_wparam != FALSE);

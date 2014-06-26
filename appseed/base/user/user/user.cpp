@@ -22,15 +22,36 @@ namespace user
       //  (works with owned popups as well)
    {
 
+      if(pui == NULL)
+         return false;
+
+      ::user::interaction * puiAscendant = pui;
+
       do
       {
-         
-         if (puiParent == pui)
+
+         puiAscendant = puiAscendant->GetOwner();
+
+
+         if(puiParent == puiAscendant)
             return true;
 
-         pui = pui->get_owner();
+      } while(puiAscendant != NULL);
 
-      } while (pui != NULL);
+
+      puiAscendant = pui;
+
+      do
+      {
+
+         puiAscendant = puiAscendant->GetParent();
+
+
+         if(puiParent == puiAscendant)
+            return true;
+
+      } while(puiAscendant != NULL);
+
 
       return false;
 

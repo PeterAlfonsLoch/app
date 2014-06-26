@@ -149,7 +149,7 @@ namespace user
          }
          else
          {
-            get_parent()->send_message(
+            GetParent()->send_message(
                ::message::message_event, 0, (LPARAM)&ev);
          }
          pobj->m_bRet = true;
@@ -179,7 +179,7 @@ namespace user
                ::user::control_event ev;
                ev.m_puie = this;
                ev.m_eevent = ::user::event_mouse_enter;
-               get_parent()->send_message(
+               GetParent()->send_message(
                   ::message::message_event, 0, (LPARAM)&ev);
             }
             else if(iHover == -1)
@@ -187,7 +187,7 @@ namespace user
                ::user::control_event ev;
                ev.m_puie = this;
                ev.m_eevent = ::user::event_mouse_leave;
-               get_parent()->send_message(
+               GetParent()->send_message(
                   ::message::message_event, 0, (LPARAM)&ev);
             }
             track_mouse_hover();
@@ -211,9 +211,9 @@ namespace user
             ::user::control_event ev;
             ev.m_puie = this;
             ev.m_eevent = ::user::event_mouse_leave;
-            if(get_parent() != NULL)
+            if(GetParent() != NULL)
             {
-               get_parent()->send_message(::message::message_event, 0, (LPARAM)&ev);
+               GetParent()->send_message(::message::message_event, 0, (LPARAM)&ev);
             }
             track_mouse_leave();
          }

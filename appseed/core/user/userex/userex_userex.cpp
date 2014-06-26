@@ -309,7 +309,7 @@ namespace userex
          {
             string strMessage = pszMessage;
             strMessage.replace("<br>","\r\n");
-            return ::simple_message_box((oswindow)(pwndOwner.is_null() ? NULL : pwndOwner->get_wnd()->get_os_data()),strMessage,Application.m_strAppName,fuStyle);
+            return ::simple_message_box((oswindow)(pwndOwner.is_null() ? NULL : pwndOwner->GetWindow()->get_os_data()),strMessage,Application.m_strAppName,fuStyle);
          }
       }
       catch(...)

@@ -806,6 +806,7 @@ namespace base
 
       }
 
+
       ::base::application::exit_instance();
 
       return 0;

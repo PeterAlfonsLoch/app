@@ -442,7 +442,7 @@ namespace user
    interaction * interaction_impl_base::get_wnd() const
    {
 
-      return m_pui->get_wnd();
+      return m_pui->GetWindow();
 
    }
 
@@ -488,6 +488,15 @@ namespace user
       viewport_screen_to_client((POINT *)&prect->right);
 
    }
+
+
+   bool interaction_impl_base::RedrawWindow(LPCRECT lpRectUpdate,::draw2d::region* prgnUpdate,UINT flags)
+   {
+
+      return m_pui->RedrawWindow(lpRectUpdate,prgnUpdate,flags);
+
+   }
+
 
 
    void interaction_impl_base::SetFont(::draw2d::font* pFont,bool bRedraw)
@@ -661,6 +670,243 @@ namespace user
       return m_pui->BringWindowToTop();
 
    }
+
+
+   bool interaction_impl_base::IsAscendant(const interaction * puiIsAscendant) const
+   {
+
+      if(puiIsAscendant == NULL)
+         return false;
+
+      return puiIsAscendant->IsDescendant(m_pui);
+
+   }
+
+
+   bool interaction_impl_base::IsParent(const interaction * puiIsParent) const
+   {
+
+      if(puiIsParent == NULL)
+         return false;
+
+      return puiIsParent->IsChild(m_pui);
+
+   }
+
+
+   bool interaction_impl_base::IsChild(const interaction * puiIsChild) const
+   {
+
+      interaction * puiProbe = puiIsChild->GetParent();
+
+      return puiProbe == m_pui;
+
+   }
+
+
+   bool interaction_impl_base::IsDescendant(const interaction * puiIsDescendant) const
+   {
+
+      interaction * puiProbe = puiIsDescendant->GetParent();
+
+      if(puiProbe == NULL)
+         return false;
+
+      do
+      {
+
+         if(puiProbe == m_pui)
+            return true;
+
+         puiProbe = puiProbe->GetParent();
+
+      } while(puiProbe != NULL);
+
+      return false;
+
+   }
+
+   sp(::user::interaction) interaction_impl_base::GetWindow() const
+   {
+
+      return m_pui->GetWindow();
+
+   }
+
+
+   sp(interaction) interaction_impl_base::GetWindow(UINT nCmd) const
+   {
+
+      return m_pui->GetWindow(nCmd);
+
+   }
+
+
+   sp(::user::interaction) interaction_impl_base::GetTopWindow() const
+   {
+
+      sp(interaction) pui = GetWindow();
+
+      if(pui.is_null())
+         return NULL;
+
+      return pui->GetTopWindow();
+
+   }
+
+
+   sp(interaction) interaction_impl_base::GetParent() const
+   {
+
+      return m_pui->GetParent();
+
+   }
+
+
+   sp(interaction) interaction_impl_base::GetOwner() const
+   {
+
+      return m_pui->GetOwner();
+
+   }
+
+
+   sp(frame_window) interaction_impl_base::GetFrame() const
+   {
+
+      return m_pui->GetFrame();
+
+   }
+
+
+   sp(frame_window) interaction_impl_base::GetParentFrame() const
+   {
+
+      return m_pui->GetParentFrame();
+
+   }
+
+
+   sp(::user::interaction) interaction_impl_base::GetParentOwner() const
+   {
+
+      return m_pui->GetParentOwner();
+
+   }
+
+
+   sp(::user::interaction) interaction_impl_base::GetTopLevelOwner() const
+   {
+
+      return m_pui->GetTopLevelOwner();
+
+   }
+
+
+   sp(::user::frame_window) interaction_impl_base::GetTopLevelFrame() const
+   {
+
+      return m_pui->GetTopLevelFrame();
+
+   }
+
+   sp(::user::frame_window) interaction_impl_base::EnsureParentFrame()
+   {
+
+      return m_pui->EnsureParentFrame();
+
+   }
+
+
+   sp(interaction) interaction_impl_base::GetTopLevel() const
+   {
+
+      return m_pui->GetTopLevel();
+
+   }
+
+
+   sp(interaction) interaction_impl_base::GetParentTopLevel() const
+   {
+
+      return m_pui->GetParentTopLevel();
+
+   }
+
+
+   sp(frame_window) interaction_impl_base::GetParentTopLevelFrame() const
+   {
+
+      return m_pui->GetParentTopLevelFrame();
+
+   }
+
+
+   sp(interaction) interaction_impl_base::EnsureTopLevel()
+   {
+
+      return m_pui->EnsureTopLevel();
+
+   }
+
+
+   sp(interaction) interaction_impl_base::EnsureParentTopLevel()
+   {
+
+      return m_pui->EnsureParentTopLevel();
+
+   }
+
+
+   void interaction_impl_base::SendMessageToDescendants(UINT message,WPARAM wparam,lparam lparam,bool bDeep,bool bOnlyPerm)
+   {
+
+      return m_pui->SendMessageToDescendants(message, wparam, lparam, bDeep, bOnlyPerm);
+
+   }
+
+
+   void interaction_impl_base::pre_translate_message(signal_details * pobj)
+   {
+
+      m_pui->pre_translate_message(pobj);
+
+   }
+
+
+   sp(interaction) interaction_impl_base::SetCapture(sp(interaction) pinterface)
+   {
+
+      return GetWindow()->SetCapture(pinterface);
+
+   }
+
+
+   sp(interaction) interaction_impl_base::GetCapture()
+   {
+
+      return GetWindow()->GetCapture();
+
+   }
+
+
+   sp(interaction) interaction_impl_base::ReleaseCapture()
+   {
+
+      return GetWindow()->ReleaseCapture();
+
+   }
+
+
+   sp(::user::interaction) interaction_impl_base::SetFocus()
+   {
+
+      return m_pui->SetFocus();
+
+   }
+
+
+
 
 
 } // namespace user

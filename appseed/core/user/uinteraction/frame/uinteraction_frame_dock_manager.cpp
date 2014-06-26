@@ -95,7 +95,7 @@ namespace user
             sp(::user::interaction) pwndChild = m_pworkset->GetEventWindow();
             if (pwndChild == NULL)
                return;
-            sp(::user::interaction) pwndParent = pwndChild->get_parent();
+            sp(::user::interaction) pwndParent = pwndChild->GetParent();
             if (pwndParent == NULL)
                return;
             rect rectParent;
@@ -131,7 +131,7 @@ namespace user
                && cy == 0)
                return true;
             sp(::user::interaction) pwnd = m_pworkset->GetEventWindow();
-            sp(::user::interaction) pwndParent = pwnd->get_parent();
+            sp(::user::interaction) pwndParent = pwnd->GetParent();
             rect rectPos;
             pwnd->GetWindowRect(rectPos);
             if (pwndParent != NULL)
@@ -221,7 +221,7 @@ namespace user
          bool DockManager::MoveWindow(int32_t x, int32_t y)
          {
             ASSERT(m_pworkset->GetEventWindow() != NULL);
-            sp(::user::interaction) pwndParent = m_pworkset->GetEventWindow()->get_parent();
+            sp(::user::interaction) pwndParent = m_pworkset->GetEventWindow()->GetParent();
             if (pwndParent == NULL)
                return false;
             rect rectParent;
@@ -269,7 +269,7 @@ namespace user
          EDock DockManager::CalcDock(int32_t x, int32_t y)
          {
             ASSERT(m_pworkset->GetEventWindow() != NULL);
-            sp(::user::interaction) pwndParent = m_pworkset->GetEventWindow()->get_parent();
+            sp(::user::interaction) pwndParent = m_pworkset->GetEventWindow()->GetParent();
             if (pwndParent == NULL)
                return DockNone;
             rect rectParent;
@@ -368,7 +368,7 @@ namespace user
          {
             if (m_pworkset->GetEventWindow() == NULL)
                return;
-            sp(::user::interaction) pwndParent = m_pworkset->GetEventWindow()->get_parent();
+            sp(::user::interaction) pwndParent = m_pworkset->GetEventWindow()->GetParent();
             if (pwndParent == NULL)
                return;
             rect rectParent;

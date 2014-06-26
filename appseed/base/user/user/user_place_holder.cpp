@@ -80,7 +80,7 @@ namespace user
 
       if(m_uiptraHold.get_count() == 1)
       {
-         pui->set_parent(this);
+         pui->SetParent(this);
       }
 
       return true;

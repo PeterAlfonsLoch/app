@@ -471,7 +471,7 @@ namespace user
 
       // determine top-level parent, since that is the true parent of any
       //  modeless windows anyway...
-      sp(::user::interaction) pParent = EnsureTopLevelParent();
+      sp(::user::interaction) pParent = EnsureTopLevel();
 
       m_uiptraDisable.remove_all();
 
@@ -806,7 +806,7 @@ namespace user
       if (bMakeVisible)
       {
 
-         if (get_parent() == NULL || !get_parent()->is_place_holder())
+         if (GetParent() == NULL || !GetParent()->is_place_holder())
          {
 
             InitialFramePosition();
@@ -833,13 +833,13 @@ namespace user
          pDoc->update_frame_counts();
       on_update_frame_title(TRUE);
 
-      if (get_parent() != NULL
-         && get_parent()->is_place_holder()
+      if (GetParent() != NULL
+         && GetParent()->is_place_holder()
          && (!oprop("should_not_be_automatically_holded_on_initial_update_frame").is_set()
          || !oprop("should_not_be_automatically_holded_on_initial_update_frame")))
       {
-         get_parent()->place(this);
-         get_parent()->layout();
+         GetParent()->place(this);
+         GetParent()->layout();
       }
 
 
@@ -1709,13 +1709,6 @@ namespace user
    //}
 
 
-
-
-   bool frame_window::is_frame_window()
-   {
-      return true;
-   }
-
    bool frame_window::IsTracking() const
    {
       /*   return m_nIDTracking != 0 &&
@@ -1728,7 +1721,7 @@ namespace user
    bool frame_window::ShowWindow(int32_t nCmdShow)
    {
       bool bResult = interaction::ShowWindow(nCmdShow);
-      if (get_parent() != NULL
+      if (GetParent() != NULL
          && nCmdShow == SW_RESTORE)
       {
          InitialFramePosition(true);
@@ -1744,7 +1737,7 @@ namespace user
 #ifdef WINDOWS
 
       SCAST_PTR(::message::base, pbase, pobj);
-      if (get_parent() == NULL)
+      if (GetParent() == NULL)
       {
          if (pbase->m_wparam == SC_RESTORE)
          {
@@ -2043,10 +2036,10 @@ namespace user
 
       }
 
-      if (get_parent() != NULL)
+      if (GetParent() != NULL)
       {
 
-         if (get_parent()->_001HasCommandHandler(id))
+         if (GetParent()->_001HasCommandHandler(id))
             return true;
 
       }

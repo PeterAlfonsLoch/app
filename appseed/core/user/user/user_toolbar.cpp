@@ -156,7 +156,7 @@ namespace user
 #endif
    }
 
-   void tool_bar::set_owner(sp(::user::interaction) pOwnerWnd)
+   sp(::user::interaction) tool_bar::SetOwner(sp(::user::interaction) pOwnerWnd)
    {
 #ifdef WINDOWSEX
       ASSERT_VALID(this);
@@ -166,7 +166,7 @@ namespace user
       throw todo(get_app());
 
 #endif
-      ::user::control_bar::set_owner(pOwnerWnd);
+      return ::user::control_bar::SetOwner(pOwnerWnd);
    }
 
    void tool_bar::SetSizes(SIZE sizeButton, SIZE sizeImage)

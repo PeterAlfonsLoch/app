@@ -344,7 +344,7 @@ namespace fontopus
       if (!strcmp(pszId, "submit"))
       {
 
-         get_parent()->EndModalLoop("ok");
+         GetParent()->EndModalLoop("ok");
 
          return true;
 
@@ -352,7 +352,7 @@ namespace fontopus
       else if (!strcmp(pszId, "escape"))
       {
 
-         get_parent()->EndModalLoop("cancel");
+         GetParent()->EndModalLoop("cancel");
 
          return true;
 

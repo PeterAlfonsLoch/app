@@ -19,7 +19,7 @@ namespace html
    }
 
 
-   class tag * base::get_parent()
+   class tag * base::GetParent()
    {
 
       return m_ptagParent;

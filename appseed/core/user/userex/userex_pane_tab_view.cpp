@@ -46,7 +46,7 @@ namespace userex
          sp(::user::interaction) puiNext = m_pviewdata->m_pwnd;
          for(; i > 0; i--)
          {
-            puiNext = pui->get_parent();
+            puiNext = pui->GetParent();
             if(puiNext == NULL || !puiNext->IsWindow())
                break;
             pui = puiNext;
@@ -62,7 +62,7 @@ namespace userex
          while(true)
          {
             wnda.add(pui);
-            puiNext = pui->get_parent();
+            puiNext = pui->GetParent();
             if(puiNext == NULL || (pui->m_pimpl) != NULL)
                break;
             pui = puiNext;

@@ -87,7 +87,7 @@ namespace user
          && !m_pparent->m_panea[m_iIndex].m_bFixedSize)
       {
          m_pparent->m_iState = split_layout::stateDragging;
-         set_capture();
+         SetCapture();
          pmouse->m_bRet = true;
          pmouse->set_lresult(1);
       }

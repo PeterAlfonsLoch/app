@@ -97,8 +97,8 @@ struct CLASS_DECL_BASE oswindow_data
 
 
    bool is_child(oswindow oswindowCandidateChildOrDescendant); // or descendant
-   oswindow get_parent();
-   oswindow set_parent(oswindow oswindowNewParent);
+   oswindow GetParent();
+   oswindow SetParent(oswindow oswindowNewParent);
    long get_state();
    bool is_iconic();
    bool is_window_visible();

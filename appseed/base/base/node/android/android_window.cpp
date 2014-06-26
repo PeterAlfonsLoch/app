@@ -1390,10 +1390,13 @@ d.unlock();
 
    void interaction_impl::PrepareForHelp()
    {
-      /*if (is_frame_window())
+      /*
+      
+      sp(frame_window) pFrameWnd = m_pui;
+
+      if (pFrameWnd.is_set())
       {
          // frame_window windows should be allowed to exit help mode first
-         sp(frame_window) pFrameWnd = dynamic_cast < sp(frame_window) >(this);
          pFrameWnd->ExitHelpMode();
       }
 
@@ -2318,9 +2321,10 @@ restart_mouse_hover_check:
 
       while (pParentWnd != NULL)
       {
-         if (pParentWnd->is_frame_window())
+         sp(frame_window) * pframe = pParentWnd;
+         if (pframe != NULL)
          {
-            return  (pParentWnd);
+            return  pframe;
          }
          pParentWnd = pParentWnd->get_parent();
       }
@@ -2427,7 +2431,7 @@ restart_mouse_hover_check:
          pFrameWnd =  (m_pguie);
       else
          pFrameWnd =  (this);
-      if (pFrameWnd == NULL || !pFrameWnd->is_frame_window())
+      if (pFrameWnd == NULL)
          pFrameWnd = GetParentFrame();
 
       if (pFrameWnd != NULL)
@@ -4134,21 +4138,15 @@ ExitModal:
             }
             catch(...)
             {
+
             }
+
          }
+
       }
+
    }
 
-
-   /////////////////////////////////////////////////////////////////////////////
-   // frame_window (here for library granularity)
-
-   bool interaction_impl::is_frame_window()
-   {
-      return FALSE;
-   }
-   /////////////////////////////////////////////////////////////////////////////
-   // Extra interaction_impl support for dynamic subclassing of controls
 
    bool interaction_impl::SubclassWindow(oswindow hWnd)
    {

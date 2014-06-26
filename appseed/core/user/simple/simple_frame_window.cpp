@@ -158,11 +158,11 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
    if (pobj->previous())
       return;
 
-   sp(::user::place_holder) pplaceholder = get_parent();
+   sp(::user::place_holder) pplaceholder = GetParent();
 
    if (pplaceholder != NULL)
    {
-      sp(::user::place_holder_container) pcontainer = pplaceholder->get_parent();
+      sp(::user::place_holder_container) pcontainer = pplaceholder->GetParent();
       if (pcontainer != NULL)
       {
          pcontainer->on_hold(this, pplaceholder);
@@ -172,9 +172,9 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
    if (m_bAutoWindowFrame)
    {
 #ifdef METROWIN
-      m_bWindowFrame = get_parent() == NULL || dynamic_cast < window * > (get_parent()->m_pimpl.m_p) != NULL;
+      m_bWindowFrame = GetParent() == NULL || dynamic_cast < window * > (GetParent()->m_pimpl.m_p) != NULL;
 #else
-      m_bWindowFrame = get_parent() == NULL;
+      m_bWindowFrame = GetParent() == NULL;
 #endif
    }
 
@@ -885,7 +885,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pdc)
    else if(!BaseSession.savings().is_trying_to_save(::base::resource_processing)
       && !BaseSession.savings().is_trying_to_save(::base::resource_display_bandwidth)
       && !BaseSession.savings().is_trying_to_save(::base::resource_memory))
-      //&& (get_parent() != NULL || (this->GetExStyle() & WS_EX_LAYERED) != 0))
+      //&& (GetParent() != NULL || (this->GetExStyle() & WS_EX_LAYERED) != 0))
    {
 #if TEST
 
@@ -1174,7 +1174,7 @@ bool simple_frame_window::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
       return TRUE;
 
    // then pump through parent
-   sp(::user::interaction) puiParent = get_parent();
+   sp(::user::interaction) puiParent = GetParent();
    if (puiParent != NULL && puiParent->_001OnCmdMsg(pcmdmsg))
       return TRUE;
 

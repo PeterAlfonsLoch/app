@@ -781,7 +781,7 @@ namespace user
          ev.m_puie = this;
          ev.m_eevent = ::user::event_after_change_cur_sel;
          ev.m_actioncontext = actioncontext;
-         //if(!get_parent()->BaseOnControlEvent(&ev))
+         //if(!GetParent()->BaseOnControlEvent(&ev))
          BaseOnControlEvent(&ev);
 
       }

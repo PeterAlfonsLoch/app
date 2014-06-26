@@ -853,7 +853,7 @@ namespace user
             {
                pFrame->ActivateFrame();
 
-               if (pFrame->get_parent() != NULL)
+               if (pFrame->GetParent() != NULL)
                {
                   sp(::user::frame_window) pAppFrame;
                   ASSERT_KINDOF(frame_window, pAppFrame);

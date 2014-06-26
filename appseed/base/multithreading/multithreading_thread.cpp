@@ -183,6 +183,8 @@ bool thread::create_thread_synch(int32_t * piStartupError,int32_t epriority,uint
 bool thread::finalize()
 {
 
+   m_pimpl->finalize();
+
    return true;
 
 }

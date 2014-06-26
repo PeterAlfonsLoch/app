@@ -435,21 +435,6 @@ namespace user
    }
 
 
-   sp(::user::frame_window) interaction_impl::GetParentFrame() const
-   {
-      throw interface_only_exception(get_app());
-   }
-
-   sp(::user::interaction) interaction_impl::GetTopLevelOwner() const
-   {
-      throw interface_only_exception(get_app());
-   }
-
-   sp(::user::interaction) interaction_impl::GetParentOwner() const
-   {
-      throw interface_only_exception(get_app());
-   }
-
    bool interaction_impl::IsTopParentActive()
    {
       throw interface_only_exception(get_app());
@@ -460,10 +445,6 @@ namespace user
       throw interface_only_exception(get_app());
    }
 
-   sp(::user::frame_window) interaction_impl::GetTopLevelFrame() const
-   {
-      throw interface_only_exception(get_app());
-   }
 
    int32_t interaction_impl::message_box(const char * lpszText,const char * lpszCaption,UINT nType)
    {
@@ -779,33 +760,6 @@ namespace user
    }
 
 
-   /*   id interaction_impl::RunModalLoop(uint32_t dwFlags, ::base::live_object * pliveobject)
-   {
-   UNREFERENCED_PARAMETER(dwFlags);
-   UNREFERENCED_PARAMETER(pliveobject);
-   throw interface_only_exception(get_app());
-   }
-
-   bool interaction_impl::ContinueModal(int32_t iLevel)
-   {
-   UNREFERENCED_PARAMETER(iLevel);
-   throw interface_only_exception(get_app());
-   }
-
-   void interaction_impl::EndModalLoop(id nResult)
-   {
-   UNREFERENCED_PARAMETER(nResult);
-   throw interface_only_exception(get_app());
-   }*/
-
-   bool interaction_impl::is_frame_window()
-   {
-      throw interface_only_exception(get_app());
-   }
-
-
-   /////////////////////////////////////////////////////////////////////////////
-   // Extra interaction_impl support for dynamic subclassing of controls
 
    bool interaction_impl::subclass_window(oswindow oswindow)
    {
@@ -944,15 +898,21 @@ namespace user
    }
 
 
-   sp(::user::interaction) interaction_impl::release_capture()
+   sp(::user::interaction) interaction_impl::ReleaseCapture()
    {
+
       throw interface_only_exception(get_app());
+
    }
 
-   sp(::user::interaction) interaction_impl::get_capture()
+
+   sp(::user::interaction) interaction_impl::GetCapture()
    {
+
       throw interface_only_exception(get_app());
+
    }
+
 
    // interaction_impl
    /* interaction_impl::operator oswindow() const
@@ -1068,19 +1028,12 @@ namespace user
       throw interface_only_exception(get_app());
    }
 
-   sp(::user::frame_window) interaction_impl::EnsureParentFrame()
-   {
-      throw interface_only_exception(get_app());
-   }
-
-   sp(::user::interaction) interaction_impl::EnsureTopLevelParent()
-   {
-      throw interface_only_exception(get_app());
-   }
 
    UINT interaction_impl::ArrangeIconicWindows()
    {
+
       throw interface_only_exception(get_app());
+
    }
 
    int32_t interaction_impl::SetWindowRgn(HRGN hRgn,bool bRedraw)
@@ -1283,16 +1236,24 @@ namespace user
       throw interface_only_exception(get_app());
    }
 
-   sp(::user::interaction) interaction_impl::set_capture(sp(::user::interaction) pinterface)
+
+   sp(::user::interaction) interaction_impl::SetCapture(sp(::user::interaction) pinterface)
    {
+
       UNREFERENCED_PARAMETER(pinterface);
+
       throw interface_only_exception(get_app());
+
    }
+
 
    sp(::user::interaction) interaction_impl::SetFocus()
    {
+
       throw interface_only_exception(get_app());
+
    }
+
 
    void interaction_impl::CheckDlgButton(int32_t nIDButton,UINT nCheck)
    {
@@ -2413,7 +2374,7 @@ namespace user
    {
       ASSERT(oswindow != NULL);
       ASSERT(lpRect != NULL);
-      sp(::user::interaction) puiParent = oswindow->get_parent();
+      sp(::user::interaction) puiParent = oswindow->GetParent();
       ASSERT(puiParent != NULL);
 
       //if (lpLayout != NULL && lpLayout->hDWP == NULL)

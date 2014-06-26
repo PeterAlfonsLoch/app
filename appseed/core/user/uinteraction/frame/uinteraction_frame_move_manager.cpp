@@ -56,7 +56,7 @@ namespace user
             rect rectWindow;
             m_pworkset->get_draw_window()->GetWindowRect(rectWindow);
             m_ptWindowOrigin = rectWindow.top_left();
-            GetEventWindow()->set_capture();
+            GetEventWindow()->SetCapture();
             m_bMoving = true;
             pmouse->m_bRet = true;
             return true;
@@ -141,10 +141,10 @@ namespace user
             rect rectWindow;
             m_pworkset->GetWndDraw()->GetWindowRect(rectWindow);
             bool bMove = true;
-            //      sp(::user::interaction) pWndParent = m_pworkset->GetWndDraw()->get_parent();
+            //      sp(::user::interaction) pWndParent = m_pworkset->GetWndDraw()->GetParent();
 
             //::ReleaseCapture();
-            //::ShowWindow(m_pworkset->GetWndDraw()->get_wnd()->get_os_data(), SW_HIDE);
+            //::ShowWindow(m_pworkset->GetWndDraw()->GetWindow()->get_os_data(), SW_HIDE);
             rect rectEvent = rectWindow;
 
             rectEvent.move_to(pt);
@@ -176,9 +176,9 @@ namespace user
             if(bMove && rectWindow.top_left() != pt)
             {
                class point ptMove = pt;
-               if(GetMoveWindow()->get_parent() != NULL)
+               if(GetMoveWindow()->GetParent() != NULL)
                {
-                  GetMoveWindow()->get_parent()->ScreenToClient(&ptMove);
+                  GetMoveWindow()->GetParent()->ScreenToClient(&ptMove);
                }
                GetMoveWindow()->SetWindowPos(ZORDER_TOP, ptMove.x, ptMove.y, 0, 0, SWP_NOSIZE);
             }
@@ -218,7 +218,7 @@ namespace user
             m_ptCursorOrigin = ptCursor;
             rect rectWindow;
             GetMoveWindow()->GetWindowRect(rectWindow);
-            sp(::user::interaction) pWndParent = GetMoveWindow()->get_parent();
+            sp(::user::interaction) pWndParent = GetMoveWindow()->GetParent();
             if(pWndParent != NULL)
             {
             pWndParent->ScreenToClient(rectWindow);
@@ -249,7 +249,7 @@ namespace user
             rect rectWindow;
             GetEventWindow()->GetWindowRect(rectWindow);
             bool bMove = true;
-            sp(::user::interaction) pWndParent = GetMoveWindow()->get_parent();
+            sp(::user::interaction) pWndParent = GetMoveWindow()->GetParent();
             if(pWndParent != NULL)
             {
             pWndParent->ScreenToClient(rectWindow);
@@ -336,7 +336,7 @@ namespace user
             && !(iStyleEx & WS_EX_TOOLWINDOW)
             &&((iStyleEx & WS_EX_APPWINDOW)
             || (!(iStyle & WS_CHILD)
-            && pwnd->get_owner() == NULL)))
+            && pwnd->GetOwner() == NULL)))
             {
             if(!pview->m_areaa.Contains(pwnd->GetSafeoswindow_(), pview->m_iArea))
             pview->m_areaa[pview->m_iArea].m_oswindowa.add(pwnd->GetSafeoswindow_());
@@ -372,7 +372,7 @@ namespace user
             //   TRACE("pt.y  : %d,\n ", pt.y);
             //   TRACE("rectClipBox.right : %d, ", ((CPlaylistInPlaceWnd *) m_pWndMoving)->m_rectWindow.right);
             //   TRACE("rectClipBox.bottom: %d\n", ((CPlaylistInPlaceWnd *) m_pWndMoving)->m_rectWindow.bottom);
-            /*sp(::user::interaction)  pParentWnd  = m_pWndMoving->get_parent();
+            /*sp(::user::interaction)  pParentWnd  = m_pWndMoving->GetParent();
             rect rectWindow;
             if(pParentWnd != NULL)
             {
@@ -382,7 +382,7 @@ namespace user
             }*/
 
             ASSERT(GetEventWindow() != NULL);
-            sp(::user::interaction) pwndParent = GetEventWindow()->get_parent();
+            sp(::user::interaction) pwndParent = GetEventWindow()->GetParent();
             if(pwndParent != NULL)
             {
                EDock edock = m_pworkset->GetDockManager()->GetDockState();
@@ -442,13 +442,13 @@ namespace user
                m_ptCursorOrigin = ptCursor;
                rect rectWindow;
                GetMoveWindow()->GetWindowRect(rectWindow);
-               sp(::user::interaction) pWndParent = GetMoveWindow()->get_parent();
+               sp(::user::interaction) pWndParent = GetMoveWindow()->GetParent();
                if(pWndParent != NULL)
                {
                   pWndParent->ScreenToClient(rectWindow);
                }
                m_ptWindowOrigin = rectWindow.top_left();
-               GetEventWindow()->set_capture();
+               GetEventWindow()->SetCapture();
                m_bMoving = true;
                pbase->m_bRet = true;
                return;
@@ -486,7 +486,7 @@ namespace user
                rect rectWindow;
                GetEventWindow()->GetWindowRect(rectWindow);
                bool bMove = true;
-               sp(::user::interaction) pWndParent = GetMoveWindow()->get_parent();
+               sp(::user::interaction) pWndParent = GetMoveWindow()->GetParent();
                if(pWndParent == NULL)
                   pWndParent = System.get_desktop_window();
                if(pWndParent != NULL)

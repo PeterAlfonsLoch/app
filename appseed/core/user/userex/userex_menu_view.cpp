@@ -35,9 +35,9 @@ bool menu_view::BaseOnControlEvent(::user::control_event * pevent)
          this,
          pevent);
    }
-   if(get_parent() != NULL)
+   if(GetParent() != NULL)
    {
-      return get_parent()->BaseOnControlEvent(pevent);
+      return GetParent()->BaseOnControlEvent(pevent);
    }
    else
    {
@@ -83,7 +83,7 @@ void menu_view::_001OnUser123(signal_details * pobj)
    SCAST_PTR(::message::base, pbase, pobj);
    if(pbase->m_wparam == 0x80000001)
    {
-      GetTopLevelParent()->EndModalLoop(IDOK);
+      GetTopLevel()->EndModalLoop(IDOK);
       return;
    }
    if(m_pcallback != NULL)

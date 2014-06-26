@@ -172,27 +172,7 @@ namespace user
 
       thread* pThread = ::get_thread();
       
-      if(pThread != NULL)
-      {
-         
-         ASSERT(pThread);
-      
-         if(bCreated)
-         {
-            
-            
-            if(Application.m_puiMain == NULL)
-            {
-               
-               Application.m_puiMain = pFrame;
-               
-            }
-            
-         }
-         
-      }
-
-      if(!pcreatecontext->m_bHold)
+if(!pcreatecontext->m_bHold)
       {
          pFrame->oprop("should_not_be_automatically_holded_on_initial_update_frame") = true;
       }

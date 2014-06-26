@@ -103,7 +103,7 @@ namespace html
       {
          rect rectWindow;
          m_pedit->GetWindowRect(rectWindow);
-         m_pedit->get_wnd()->ScreenToClient(rectWindow);
+         m_pedit->GetWindow()->ScreenToClient(rectWindow);
          ::point ptPreviousViewportOrg = pdata->m_pdc->GetViewportOrg();
          pdata->m_pdc->SetViewportOrg(rectWindow.top_left());
          m_pedit->_001OnDraw(pdata->m_pdc);

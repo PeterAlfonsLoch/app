@@ -16,6 +16,7 @@ namespace user
       bool                       m_bEnabled;
       bool                       m_bCreate;
       sp(::user::interaction)    m_puiMessage;
+      interaction *              m_puiOwner;
 
 
       interaction_child();
@@ -37,7 +38,6 @@ namespace user
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
       virtual void CalcWindowRect(LPRECT lpClientRect,UINT nAdjustType = adjustBorder);
-      virtual sp(::user::frame_window) GetParentFrame();
 
       virtual sp(::user::interaction) SetFocus();
 
@@ -89,6 +89,9 @@ namespace user
       virtual bool KillTimer(uint_ptr nIDEvent);
 
 
+      virtual bool ShowWindow(int32_t nCmdShow);
+
+
       virtual bool IsWindow() const;
       virtual bool is_window_enabled();
       virtual bool IsWindowVisible();
@@ -96,9 +99,6 @@ namespace user
       virtual void VirtualOnSize();
 
 
-      virtual sp(::user::frame_window) EnsureParentFrame();
-      virtual sp(::user::interaction) EnsureTopLevelParent();
-      virtual sp(::user::frame_window) GetTopLevelFrame() const;
 
       using ::user::interaction_base::GetWindowText;
       strsize GetWindowText(LPTSTR lpszStringBuf,int32_t nMaxCount);
@@ -118,6 +118,11 @@ namespace user
 
       virtual void set_viewport_org(::draw2d::graphics * pgraphics);
 
+
+      virtual bool RedrawWindow(LPCRECT lpRectUpdate,::draw2d::region* prgnUpdate,UINT flags);
+
+      virtual sp(::user::interaction) SetOwner(sp(::user::interaction) pui);
+      virtual sp(::user::interaction) GetOwner() const;
 
    };
 

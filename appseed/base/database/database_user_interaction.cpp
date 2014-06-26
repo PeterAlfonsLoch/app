@@ -79,10 +79,7 @@ namespace database
       {
 
          UNREFERENCED_PARAMETER(pobj);
-         //         SCAST_PTR(::message::show_window, pshowwindow, pobj)
-         if(get_parent() == NULL)
-         {
-         }
+
       }
 
 
@@ -398,7 +395,7 @@ namespace database
 
          string str;
 
-         sp(::database::user::interaction) puiParent = get_parent();
+         sp(::database::user::interaction) puiParent = GetParent();
 
          if (puiParent.is_set())
          {

@@ -562,12 +562,8 @@ int32_t get_os_class_scheduling_priority(int32_t nPriority)
 bool on_init_thread()
 {
 
-   __inc_threading_count();
-
    if(!__os_init_thread())
    {
-
-      __dec_threading_count();
 
       return false;
 
@@ -582,8 +578,6 @@ bool on_term_thread()
 {
 
    bool bOk1 = __os_term_thread();
-
-   __dec_threading_count();
 
    return bOk1;
 

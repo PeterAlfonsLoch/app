@@ -581,8 +581,8 @@ namespace user
        // the style must be visible
        if (bVis)
        {
-           sp(::user::frame_window) pTarget = pview->get_owner();
-           if (pTarget == NULL || !pTarget->is_frame_window())
+           sp(::user::frame_window) pTarget = pview->GetOwner();
+           if (pTarget == NULL)
                pTarget = pview->GetParentFrame();
            if (pTarget != NULL)
                BaseControlExOnUpdateCmdUI(pTarget, wParam != FALSE);
@@ -603,7 +603,7 @@ namespace user
       sp(control) pcontrolex;
        for (; pwndIterator != NULL; pwndIterator = pwndIterator->GetNextWindow())
        {
-         pwnd = pwndIterator->GetTopLevelParent();
+         pwnd = pwndIterator->GetTopLevel();
          pcontrolex = NULL;
          if(pwnd != NULL)
          {
@@ -701,7 +701,7 @@ namespace user
          {
             m_iHover = iHover;
             pwnd->RedrawWindow(0, 0, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE | RDW_FRAME);
-            pwnd->set_capture();
+            pwnd->SetCapture();
          }
       }
       else

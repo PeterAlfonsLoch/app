@@ -1413,8 +1413,8 @@ void simple_toolbar::_001OnLButtonUp(signal_details * pobj)
          pmouse->m_bRet = true;
          pmouse->set_lresult(1);
       }
-      sp(::user::frame_window) pTarget = (get_owner().m_p);
-      if (pTarget == NULL || !pTarget->is_frame_window())
+      sp(::user::frame_window) pTarget = (GetOwner().m_p);
+      if (pTarget == NULL)
          pTarget = GetParentFrame();
       if (pTarget != NULL)
          pTarget->SendMessageToDescendants(WM_IDLEUPDATECMDUI);
@@ -1489,7 +1489,7 @@ void simple_toolbar::_001OnTimer(signal_details * pobj)
 
 void simple_toolbar::_001OnClick(index iItem)
 {
-   sp(::user::interaction) pwnd = get_owner();
+   sp(::user::interaction) pwnd = GetOwner();
    pwnd->_001SendCommand(m_itema[iItem].m_id);
 }
 

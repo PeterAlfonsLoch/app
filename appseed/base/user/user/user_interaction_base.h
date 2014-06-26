@@ -180,7 +180,7 @@ namespace user
       virtual bool ResizeWindow(SIZE sz,UINT nFlags = SWP_SHOWWINDOW);
       virtual bool SetWindowPos(int32_t z,LPCRECT lpcrect,UINT nFlags = SWP_SHOWWINDOW);
       virtual bool SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
-      virtual bool defer_set_window_pos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags); // only set_windows_pos if get_parent()->ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)      virtual bool set_placement(LPRECT lprect);
+      virtual bool defer_set_window_pos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags); // only set_windows_pos if GetParent()->ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)      virtual bool set_placement(LPRECT lprect);
       virtual int32_t SetWindowRgn(HRGN hRgn,bool bRedraw);
       virtual int32_t GetWindowRgn(HRGN hRgn);
 
@@ -212,7 +212,6 @@ namespace user
       virtual void _001DrawBackground(::draw2d::graphics * pdc,LPRECT lprect);
 
 
-      virtual interaction * get_wnd() const;
 
 
       enum EOptimize
@@ -362,7 +361,6 @@ namespace user
          LPVOID lpParam = NULL);
       enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
       virtual void CalcWindowRect(LPRECT lpClientRect,UINT nAdjustType = adjustBorder);
-      virtual sp(::user::frame_window) GetParentFrame() const;
 
       virtual bool IsTopParentActive();
       virtual void ActivateTopParent();
@@ -371,17 +369,14 @@ namespace user
 
 
 #ifdef WINDOWS
-      virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
-         ::draw2d::region* prgnUpdate = NULL,
-         UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
+
+      virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL, ::draw2d::region* prgnUpdate = NULL, UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
+
 #else
-      virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
-         ::draw2d::region* prgnUpdate = NULL,
-         UINT flags = 0);
+
+      virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL, ::draw2d::region* prgnUpdate = NULL, UINT flags = 0);
+
 #endif
-
-
-
 
 
 //      virtual void UpdateWindow();
@@ -416,7 +411,6 @@ namespace user
       virtual bool ModifyStyle(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
       virtual bool ModifyStyleEx(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
       virtual bool ShowWindow(int32_t nCmdShow);
-      virtual bool is_frame_window();
 
       // timer Functions
       virtual uint_ptr SetTimer(uint_ptr nIDEvent,UINT nElapse,void (CALLBACK* lpfnTimer)(oswindow,UINT,uint_ptr,uint32_t));
@@ -432,15 +426,19 @@ namespace user
       virtual void _001OnDraw(::draw2d::graphics *pdc);
       virtual void draw_control_background(::draw2d::graphics *pdc);
 
-      virtual bool IsChild(interaction * pui) const;
-      virtual ::user::interaction * get_parent() const;
-      virtual oswindow get_parent_handle() const;
+      
+      virtual bool IsAscendant(const interaction * puiIsAscendant) const;
+      virtual bool IsParent(const interaction * puiIsParent) const;
+      virtual bool IsChild(const interaction * puiIsChild) const;
+      virtual bool IsDescendant(const interaction * puiIsDescendant) const;
+
+
       virtual id GetDlgCtrlId() const;
       virtual id SetDlgCtrlId(class id id);
 
-      virtual sp(interaction) set_capture(sp(interaction) pinterface = NULL);
-      virtual sp(interaction) get_capture();
-      virtual sp(interaction) release_capture();
+      virtual sp(interaction) SetCapture(sp(interaction) pinterface = NULL);
+      virtual sp(interaction) GetCapture();
+      virtual sp(interaction) ReleaseCapture();
 
 
       virtual bool has_focus();
@@ -478,10 +476,32 @@ namespace user
       sp(interaction) get_child_by_name(const char * pszName,int32_t iLevel = -1);
       sp(interaction) get_child_by_id(id id,int32_t iLevel = -1);
 
-      virtual sp(::user::frame_window) EnsureParentFrame();
-      virtual sp(interaction) GetTopLevelParent() const;
-      virtual sp(interaction) EnsureTopLevelParent();
+
+      virtual sp(::user::interaction) GetWindow() const;
+      virtual sp(::user::interaction) GetWindow(UINT nCmd) const;
+
+
+      virtual sp(::user::interaction) SetParent(sp(::user::interaction) pui);
+      virtual sp(::user::interaction) SetOwner(sp(::user::interaction) pui);
+
+
+      virtual sp(::user::interaction) GetTopWindow() const;
+      virtual sp(::user::interaction) GetParent() const;
+      virtual sp(::user::interaction) GetTopLevel() const;
+      virtual sp(::user::interaction) GetParentTopLevel() const;
+      virtual sp(::user::interaction) EnsureTopLevel();
+      virtual sp(::user::interaction) EnsureParentTopLevel();
+      virtual sp(::user::interaction) GetOwner() const;
+      virtual sp(::user::interaction) GetParentOwner() const;
+      virtual sp(::user::interaction) GetTopLevelOwner() const;
+      virtual sp(::user::frame_window) GetFrame() const;
+      virtual sp(::user::frame_window) GetParentFrame() const;
       virtual sp(::user::frame_window) GetTopLevelFrame() const;
+      virtual sp(::user::frame_window) GetParentTopLevelFrame() const;
+      virtual sp(::user::frame_window) EnsureParentFrame();
+
+
+
       virtual void SendMessageToDescendants(UINT message,WPARAM wParam = 0,lparam lParam = 0,bool bDeep = TRUE,bool bOnlyPerm = FALSE);
       virtual void pre_translate_message(signal_details * pobj);
 
@@ -498,8 +518,6 @@ namespace user
 
       virtual void RepositionBars(UINT nIDFirst,UINT nIDLast,id nIDLeftOver,UINT nFlag = reposDefault,LPRECT lpRectParam = NULL,LPCRECT lpRectClient = NULL,bool bStretch = TRUE);
 
-      virtual sp(interaction) get_owner();
-      virtual void set_owner(sp(interaction) pui);
 
       virtual sp(interaction) ChildWindowFromPoint(POINT point);
       virtual sp(interaction) ChildWindowFromPoint(POINT point,UINT nFlags);
@@ -511,11 +529,8 @@ namespace user
       virtual sp(interaction) GetNextWindow(UINT nFlag = 0);
 #endif
 
-      virtual sp(interaction) GetTopWindow();
-
       virtual sp(interaction) get_next(bool bIgnoreChildren = false,int32_t * piLevel = NULL);
 
-      virtual sp(interaction) GetWindow(UINT nCmd);
       virtual sp(interaction) GetLastActivePopup();
 
       virtual bool is_message_only_window() const;

@@ -101,6 +101,31 @@ CLASS_DECL_BASE void __inc_threading_count();
 CLASS_DECL_BASE void __dec_threading_count();
 
 
+class CLASS_DECL_BASE keep_threading_count
+{
+public:
+
+
+   keep_threading_count()
+   {
+      
+      __inc_threading_count();
+
+   }
+
+
+   ~keep_threading_count()
+   {
+
+      __dec_threading_count();
+
+   }
+
+
+};
+
+
+
 CLASS_DECL_BASE bool __wait_threading_count(::duration dur);
 CLASS_DECL_BASE bool __wait_threading_count_except(::thread * pthread, ::duration dur);
 

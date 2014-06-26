@@ -61,9 +61,9 @@ namespace html
             pattr->set_value(pTag->getAttributes()->getAttribute(i).getValue());
          }
       }
-      if(m_ptag->get_parent() != NULL && pTag->getTagName() == "visual")
+      if(m_ptag->GetParent() != NULL && pTag->getTagName() == "visual")
       {
-         m_ptag = m_ptag->get_parent();
+         m_ptag = m_ptag->GetParent();
       }
       bAbort = false;
    }
@@ -72,9 +72,9 @@ namespace html
    {
       UNREFERENCED_PARAMETER(pTag);
       UNREFERENCED_PARAMETER(dwAppData);
-      if(m_ptag->get_parent() != NULL && pTag->getTagName() != "visual")
+      if(m_ptag->GetParent() != NULL && pTag->getTagName() != "visual")
       {
-         m_ptag = m_ptag->get_parent();
+         m_ptag = m_ptag->GetParent();
       }
 
       bAbort = false;

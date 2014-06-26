@@ -41,7 +41,7 @@ namespace user
       }
       else
       {
-         get_parent()->send_message(
+         GetParent()->send_message(
             ::message::message_event, 0, (LPARAM) &ev);
       }
    }

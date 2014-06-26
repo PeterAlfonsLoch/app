@@ -101,7 +101,7 @@ namespace user
                // SizeManager captures the mouse and
                // now have priority with mouse messages
                m_pworkset->m_bSizingCapture = true;
-               GetEventWindow()->set_capture();
+               GetEventWindow()->SetCapture();
                pmouse->m_bRet = true;
             }
             else
@@ -396,7 +396,7 @@ namespace user
             //      if(ptwi != NULL)
             if(true)
             {
-               //if(pwnd->get_parent() == NULL)
+               //if(pwnd->GetParent() == NULL)
                if(true)
                {
                   
@@ -413,9 +413,9 @@ namespace user
                   pwnd->GetWindowRect(rectBefore);
                   rect rectAfter = rectWindow;
                   rect rectParentClient = rectAfter;
-                  if(m_pworkset->GetWndDraw()->get_parent() != NULL)
+                  if(m_pworkset->GetWndDraw()->GetParent() != NULL)
                   {
-                     m_pworkset->GetWndDraw()->get_parent()->ScreenToClient(rectParentClient);
+                     m_pworkset->GetWndDraw()->GetParent()->ScreenToClient(rectParentClient);
                   }
 
                   rect rectTotal;
@@ -541,7 +541,7 @@ namespace user
                GetEventWindow()->GetWindowRect(rectEvent);
                EHitTest emode = hit_test(ptCursor);
                if(emode != HitTestNone)
-                  GetEventWindow()->set_capture();
+                  GetEventWindow()->SetCapture();
                else
                   System.release_capture_uie();
                pmouse->m_ecursor = translate(emode);
@@ -582,7 +582,7 @@ namespace user
                   {
                      EHitTest emode = hit_test(ptCursor);
                      if(emode != HitTestNone)
-                        GetEventWindow()->set_capture();
+                        GetEventWindow()->SetCapture();
                      pmouse->m_ecursor = translate(emode);
                      m_ehittestCursor = emode;
                   }
@@ -604,7 +604,7 @@ namespace user
                {
                   point pt;
                   pt = ptCursor;
-                  sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
+                  sp(::user::interaction) pWndParent = GetSizingWindow()->GetParent();
                   if(pWndParent != NULL)
                   {
                      pWndParent->ScreenToClient(&pt);
@@ -631,7 +631,7 @@ namespace user
                   bSize = true;
                   point pt;
                   pt = ptCursor;
-                  sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
+                  sp(::user::interaction) pWndParent = GetSizingWindow()->GetParent();
                   if(pWndParent != NULL)
                   {
                      pWndParent->ScreenToClient(&pt);
@@ -651,7 +651,7 @@ namespace user
                   bSize = true;
                   point pt;
                   pt = ptCursor;
-                  sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
+                  sp(::user::interaction) pWndParent = GetSizingWindow()->GetParent();
                   if(pWndParent != NULL)
                   {
                      pWndParent->ScreenToClient(&pt);
@@ -676,7 +676,7 @@ namespace user
                   bSize = true;
                   point pt;
                   pt = ptCursor;
-                  sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
+                  sp(::user::interaction) pWndParent = GetSizingWindow()->GetParent();
                   if(pWndParent != NULL)
                   {
                      pWndParent->ScreenToClient(&pt);
@@ -697,7 +697,7 @@ namespace user
                   bSize = true;
                   point pt;
                   pt = ptCursor;
-                  sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
+                  sp(::user::interaction) pWndParent = GetSizingWindow()->GetParent();
                   if(pWndParent != NULL)
                   {
                      pWndParent->ScreenToClient(&pt);
@@ -722,7 +722,7 @@ namespace user
                   bSize = true;
                   point pt;
                   pt = ptCursor;
-                  sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
+                  sp(::user::interaction) pWndParent = GetSizingWindow()->GetParent();
                   if(pWndParent != NULL)
                   {
                      pWndParent->ScreenToClient(&pt);
@@ -742,7 +742,7 @@ namespace user
                   bSize = true;
                   point pt;
                   pt = ptCursor;
-                  sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
+                  sp(::user::interaction) pWndParent = GetSizingWindow()->GetParent();
                   if(pWndParent != NULL)
                   {
                      pWndParent->ScreenToClient(&pt);
@@ -767,7 +767,7 @@ namespace user
                   bSize = true;
                   point pt;
                   pt = ptCursor;
-                  sp(::user::interaction) pWndParent = GetSizingWindow()->get_parent();
+                  sp(::user::interaction) pWndParent = GetSizingWindow()->GetParent();
                   if(pWndParent != NULL)
                   {
                      pWndParent->ScreenToClient(&pt);

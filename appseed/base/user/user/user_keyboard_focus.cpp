@@ -43,7 +43,7 @@ namespace user
          ev.m_eevent                = ::user::event_tab_key;
          ev.m_actioncontext         = ::action::source_user;
          
-         get_parent()->BaseOnControlEvent(&ev);
+         GetParent()->BaseOnControlEvent(&ev);
          
          BaseOnControlEvent(&ev);
 
@@ -82,7 +82,7 @@ namespace user
             return pui;
          pui = pui->above_sibling();
       }
-      pui = puiThis->get_parent()->get_bottom_child();
+      pui = puiThis->GetParent()->get_bottom_child();
       while(pui != NULL && pui != puiThis)
       {
          if(pui->keyboard_focus_is_focusable())

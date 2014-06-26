@@ -471,7 +471,7 @@ retry_license:
          sp(::user::interaction) puieFocus = Application.get_focus_guie();
          if(m_pkeyboardfocus != NULL && puieFocus != NULL)
          {
-            if((bool)oprop("NativeWindowFocus") && puieFocus != m_pkeyboardfocus->get_wnd())
+            if((bool)oprop("NativeWindowFocus") && puieFocus != m_pkeyboardfocus->GetWindow())
                return NULL;
             return m_pkeyboardfocus;
          }
@@ -509,10 +509,10 @@ retry_license:
             if(m_pkeyboardfocus != NULL)
             {
 
-               if(m_pkeyboardfocus->get_wnd() != NULL)
+               if(m_pkeyboardfocus->GetWindow() != NULL)
                {
 
-                  m_pkeyboardfocus->get_wnd()->on_keyboard_focus(m_pkeyboardfocus);
+                  m_pkeyboardfocus->GetWindow()->on_keyboard_focus(m_pkeyboardfocus);
 
                }
 

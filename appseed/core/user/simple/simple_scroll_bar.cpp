@@ -126,7 +126,7 @@ void simple_scroll_bar::_001OnLButtonDown(signal_details * pobj)
    pmouse->m_bRet = false;
    if(rectTrack.contains(pt))
    {
-      set_capture();
+      SetCapture();
       m_bTracking = true;
       point ptTrackOffset;
       ptTrackOffset = pt;
@@ -137,7 +137,7 @@ void simple_scroll_bar::_001OnLButtonDown(signal_details * pobj)
    }
    else if(m_rgnA->contains(pt))
    {
-      set_capture();
+      SetCapture();
       ScrollLineA();
       SetTimer(100, 300, NULL);
       pmouse->m_bRet = true;
@@ -145,7 +145,7 @@ void simple_scroll_bar::_001OnLButtonDown(signal_details * pobj)
    }
    else if(m_rgnB->contains(pt))
    {
-      set_capture();
+      SetCapture();
       ScrollLineB();
       SetTimer(200, 300, NULL);
       pmouse->m_bRet = true;
@@ -155,7 +155,7 @@ void simple_scroll_bar::_001OnLButtonDown(signal_details * pobj)
    {
       if(!rectTrack.contains(pt))
       {
-         set_capture();
+         SetCapture();
          ScrollPageA();
          SetTimer(300, 300, NULL);
          pmouse->m_bRet = true;
@@ -166,7 +166,7 @@ void simple_scroll_bar::_001OnLButtonDown(signal_details * pobj)
    {
       if(!rectTrack.contains(pt))
       {
-         set_capture();
+         SetCapture();
          ScrollPageB();
          SetTimer(400, 300, NULL);
          pmouse->m_bRet = true;
@@ -198,7 +198,7 @@ void simple_scroll_bar::_001OnLButtonUp(signal_details * pobj)
       System.release_capture_uie();
       bool bWasTracking = m_bTracking;
       m_bTracking = false;
-//      sp(::user::interaction) pParentWnd = get_parent();
+//      sp(::user::interaction) pParentWnd = GetParent();
       if(bWasTracking)
          SetTrackingPos(pt);
       send_scroll_message(SB_THUMBPOSITION);
@@ -624,7 +624,7 @@ int32_t simple_scroll_bar::ScrollLineB()
 
 int32_t simple_scroll_bar::ScrollPageA()
 {
-//   sp(::user::interaction) pParentWnd = get_parent();
+//   sp(::user::interaction) pParentWnd = GetParent();
    int32_t nPos = m_scrollinfo.nPos;
    nPos-=m_scrollinfo.nPage ;
    if(nPos < m_scrollinfo.nMin)
@@ -644,7 +644,7 @@ int32_t simple_scroll_bar::ScrollPageA()
 
 int32_t simple_scroll_bar::ScrollPageB()
 {
-//   sp(::user::interaction) pParentWnd = get_parent();
+//   sp(::user::interaction) pParentWnd = GetParent();
    int32_t nPos = m_scrollinfo.nPos;
    nPos+=m_scrollinfo.nPage ;
    if(nPos > m_scrollinfo.nMax - m_scrollinfo.nPage)
@@ -669,7 +669,7 @@ int32_t simple_scroll_bar::ScrollPageB()
 return;
 }
 
-sp(::user::interaction) pParentWnd = get_parent();
+sp(::user::interaction) pParentWnd = GetParent();
 int32_t nPos = m_scrollinfo.nPos;
 nPos+=m_scrollinfo.nPage;
 if(nPos > m_scrollinfo.nMax - m_scrollinfo.nPage)

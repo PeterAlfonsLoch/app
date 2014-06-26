@@ -357,6 +357,20 @@ namespace base
 #endif
 
 
+      try
+      {
+
+         m_spwindow.release();
+
+      }
+      catch(...)
+      {
+
+         m_iReturnCode = -2;
+
+      }
+
+
       if(m_psslinit != NULL)
       {
 

@@ -50,8 +50,6 @@ namespace multithreading
 
       s_pthreadptra->add(pthread);
 
-      __inc_threading_count();
-      
    }
 
 
@@ -60,8 +58,6 @@ namespace multithreading
 
       synch_lock sl(s_pmutex);
 
-      __dec_threading_count();
-      
       s_phaThread->remove(hthread);
 
       s_pthreadptra->remove(pthread);

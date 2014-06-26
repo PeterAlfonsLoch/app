@@ -222,7 +222,6 @@ namespace user
          LPVOID lpParam = NULL);
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
       virtual void CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType = adjustBorder);
-      virtual sp(::user::frame_window) GetParentFrame() const;
 
       virtual bool IsTopParentActive();
       virtual void ActivateTopParent();
@@ -276,7 +275,6 @@ namespace user
       virtual bool post_simple_command(e_simple_command ecommand, lparam lParam = 0);
 
       virtual bool ShowWindow(int32_t nCmdShow);
-      virtual bool is_frame_window();
 
       // timer Functions
       virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, uint32_t));
@@ -292,17 +290,14 @@ namespace user
       virtual void _001OnDraw(::draw2d::graphics *pdc);
       virtual void draw_control_background(::draw2d::graphics *pdc);
 
-      virtual bool IsChild(interaction * pui) const;
-      virtual ::user::interaction * get_parent() const;
-      virtual ::user::interaction * set_parent(::user::interaction * puiParent);
-      virtual oswindow get_parent_handle() const;
 
       virtual id GetDlgCtrlId() const;
       virtual id SetDlgCtrlId(class id id);
 
-      virtual sp(interaction) set_capture(sp(interaction) pinterface = NULL);
-      virtual sp(interaction) get_capture();
-      virtual sp(interaction) release_capture();
+
+      virtual sp(interaction) SetCapture(sp(interaction) pinterface = NULL);
+      virtual sp(interaction) GetCapture();
+      virtual sp(interaction) ReleaseCapture();
 
 
       virtual bool has_focus();
@@ -372,31 +367,59 @@ namespace user
 
       virtual void OnLinkClick(const char * psz, const char * pszTarget = NULL);
 
+      virtual void pre_translate_message(signal_details * pobj);
+
+
       sp(interaction) get_child_by_name(const char * pszName, int32_t iLevel = -1);
       sp(interaction) get_child_by_id(id id, int32_t iLevel = -1);
 
-      virtual sp(::user::frame_window) EnsureParentFrame();
-      virtual sp(interaction) GetTopLevelParent() const;
-      virtual sp(interaction) EnsureTopLevelParent();
+      
+      virtual bool IsAscendant(const interaction * puiIsAscendant) const;
+      virtual bool IsParent(const interaction * puiIsParent) const;
+      virtual bool IsChild(const interaction * puiIsChild) const;
+      virtual bool IsDescendant(const interaction * puiIsDescendant) const;
+
+
+      virtual sp(::user::interaction) GetWindow() const;
+      virtual sp(::user::interaction) GetWindow(UINT nCmd) const;
+
+
+      virtual sp(::user::interaction) SetParent(sp(::user::interaction) pui);
+      virtual sp(::user::interaction) SetOwner(sp(::user::interaction) pui);
+
+
+      virtual sp(::user::interaction) GetTopWindow() const;
+      virtual sp(::user::interaction) GetParent() const;
+      virtual sp(::user::interaction) GetTopLevel() const;
+      virtual sp(::user::interaction) GetParentTopLevel() const;
+      virtual sp(::user::interaction) EnsureTopLevel();
+      virtual sp(::user::interaction) EnsureParentTopLevel();
+      virtual sp(::user::interaction) GetOwner() const;
+      virtual sp(::user::interaction) GetParentOwner() const;
+      virtual sp(::user::interaction) GetTopLevelOwner() const;
+      virtual sp(::user::frame_window) GetFrame() const;
+      virtual sp(::user::frame_window) GetParentFrame() const;
       virtual sp(::user::frame_window) GetTopLevelFrame() const;
-      virtual void SendMessageToDescendants(UINT message, WPARAM wParam = 0, lparam lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
-      virtual void pre_translate_message(signal_details * pobj);
+      virtual sp(::user::frame_window) GetParentTopLevelFrame() const;
+      virtual sp(::user::frame_window) EnsureParentFrame();
+
+      virtual void SendMessageToDescendants(UINT message,WPARAM wParam = 0,lparam lParam = 0,bool bDeep = TRUE,bool bOnlyPerm = FALSE);
 
 
       virtual int32_t get_descendant_level(sp(::user::interaction) pui);
       virtual bool is_descendant(sp(::user::interaction) pui, bool bIncludeSelf = false);
+
+
+
+      virtual oswindow GetParentHandle() const;
+
+
       virtual sp(::user::interaction) get_focusable_descendant(sp(::user::interaction) pui = NULL);
-
-
-      virtual interaction * get_wnd() const;
-
 
 
 
       virtual void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlag = reposDefault, LPRECT lpRectParam = NULL, LPCRECT lpRectClient = NULL, bool bStretch = TRUE);
 
-      virtual sp(interaction) get_owner();
-      virtual void set_owner(sp(interaction) pui);
 
       virtual sp(interaction) ChildWindowFromPoint(POINT point);
       virtual sp(interaction) ChildWindowFromPoint(POINT point, UINT nFlags);
@@ -412,7 +435,6 @@ namespace user
 
       virtual sp(interaction) get_next(bool bIgnoreChildren = false, int32_t * piLevel = NULL);
 
-      virtual sp(interaction) GetWindow(UINT nCmd);
       virtual sp(interaction) GetLastActivePopup();
 
       virtual bool is_message_only_window() const;
@@ -449,14 +471,14 @@ namespace user
 
          ASSERT_VALID(pthis);
 
-         sp(interaction) pParentWnd = get_parent();  // start with one parent up
+         sp(interaction) pParentWnd = GetParent();  // start with one parent up
          while (pParentWnd != NULL)
          {
             if (dynamic_cast < T * > (pParentWnd.m_p) != NULL)
             {
                return dynamic_cast < T * > (pParentWnd.m_p);
             }
-            pParentWnd = pParentWnd->get_parent();
+            pParentWnd = pParentWnd->GetParent();
          }
          return NULL;
       }

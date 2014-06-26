@@ -77,7 +77,7 @@ namespace user
       virtual size CalcFixedLayout(bool bStretch, bool bHorz);
       virtual size CalcDynamicLayout(int32_t nLength, uint32_t nMode);
       //virtual void OnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler);
-      void set_owner(sp(::user::interaction) pOwnerWnd);
+      sp(::user::interaction)  SetOwner(sp(::user::interaction) pOwnerWnd);
       bool AddReplaceBitmap(HBITMAP hbmImageWell);
       virtual void OnBarStyleChange(uint32_t dwOldStyle, uint32_t dwNewStyle);
 

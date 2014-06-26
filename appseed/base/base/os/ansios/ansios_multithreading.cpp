@@ -923,6 +923,8 @@ extern "C"
 void * os_thread_thread_proc(LPVOID lpparameter)
 {
 
+   keep_threading_count keepthreadingcount;
+
    os_thread * posthread = (os_thread *)lpparameter;
 
    t_posthread = posthread;

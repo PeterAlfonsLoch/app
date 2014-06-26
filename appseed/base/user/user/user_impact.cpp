@@ -226,9 +226,9 @@ namespace user
       if (::user::interaction::_001OnCmdMsg(pcmdmsg))
          return TRUE;
       sp(::user::interaction) pwndex;
-      if (base_class < ::user::impact > ::bases(get_parent()))
+      if (base_class < ::user::impact > ::bases(GetParent()))
       {
-         pwndex = get_parent();
+         pwndex = GetParent();
          if (pwndex != NULL)
          {
             if (pwndex->_001OnCmdMsg(pcmdmsg))
@@ -243,8 +243,7 @@ namespace user
             return TRUE;
          sp(::user::impact) pview = ::user::impact::get_document()->get_view(0);
          ASSERT_VALID(pview);
-         if (pview != this
-            && pview != get_parent())
+         if (pview != this && pview != GetParent())
          {
             pwndex = (pview);
             if (pwndex != NULL)
@@ -673,15 +672,15 @@ namespace user
       if (pui != NULL)
       {
 
-         if (pui->get_parent() != NULL)
+         if (pui->GetParent() != NULL)
          {
 
 
 
-            if (pui->get_parent()->is_place_holder())
+            if (pui->GetParent()->is_place_holder())
             {
 
-               pui->get_parent()->place(pui);
+               pui->GetParent()->place(pui);
 
             }
 

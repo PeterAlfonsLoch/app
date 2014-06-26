@@ -2575,7 +2575,7 @@ namespace user
       }
       else
       {
-         get_parent()->send_message(
+         GetParent()->send_message(
             ::message::message_event, 0, (LPARAM) &ev);
       }
 
@@ -2768,9 +2768,9 @@ namespace user
       Redraw();
 
 
-      /* trans window_id wndidNotify = pwnd->get_owner()->GetSafeoswindow_();
+      /* trans window_id wndidNotify = pwnd->GetOwner()->GetSafeoswindow_();
       if(wndidNotify == NULL)
-      wndidNotify = pwnd->get_parent()->GetSafeoswindow_();*/
+      wndidNotify = pwnd->GetParent()->GetSafeoswindow_();*/
 
 
       LRESULT lresult = 0;
@@ -3615,9 +3615,9 @@ namespace user
 
 
                /* trans
-               window_id wndidNotify = pwnd->get_owner()->GetSafeoswindow_();
+               window_id wndidNotify = pwnd->GetOwner()->GetSafeoswindow_();
                if(wndidNotify == NULL)
-               wndidNotify = pwnd->get_parent()->GetSafeoswindow_(); */
+               wndidNotify = pwnd->GetParent()->GetSafeoswindow_(); */
 
 //               LRESULT lresult = 0;
 
@@ -3654,9 +3654,9 @@ namespace user
 
 
             /* trans
-            window_id wndidNotify = pwnd->get_owner()->GetSafeoswindow_();
+            window_id wndidNotify = pwnd->GetOwner()->GetSafeoswindow_();
             if(wndidNotify == NULL)
-            wndidNotify = pwnd->get_parent()->GetSafeoswindow_(); */
+            wndidNotify = pwnd->GetParent()->GetSafeoswindow_(); */
 
 //            LRESULT lresult = 0;
 

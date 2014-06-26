@@ -1206,7 +1206,7 @@ namespace user
    {
       SCAST_PTR(::message::base, pbase, pobj);
       m_iHover = -1;
-      //get_parent()->_001RedrawWindow();
+      //GetParent()->_001RedrawWindow();
       pbase->set_lresult(0);
       pobj->m_bRet = true;
    }
@@ -1401,9 +1401,9 @@ namespace user
 
 #else
       ::window_sp pwnd;
-   //   if((pwnd = m_pui->get_owner()) != NULL)
+   //   if((pwnd = m_pui->GetOwner()) != NULL)
      //    return pwnd;
-      if((pwnd = get_parent()->get_wnd()) != NULL)
+      if((pwnd = GetParent()->GetWindow()) != NULL)
          return pwnd;
       return NULL;
 #endif

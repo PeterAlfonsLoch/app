@@ -268,7 +268,6 @@ namespace user
       virtual void LoadToolBar(id idToolBar, const char * pszToolBar, uint32_t dwCtrlStyle = 0, uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 #endif
 
-      virtual bool is_frame_window();
       virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
       virtual void on_update_frame_title(bool bAddToTitle);
       virtual void OnUpdateFrameMenu(HMENU hMenuAlt);

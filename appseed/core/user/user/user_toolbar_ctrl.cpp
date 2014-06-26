@@ -530,7 +530,7 @@ namespace user
    }
 
 
-   void tool_bar_control::set_owner(sp(::user::interaction) pwindow)
+   sp(::user::interaction)  tool_bar_control::SetOwner(sp(::user::interaction) pwindow)
    {
 
 #ifdef WINDOWSEX
@@ -542,6 +542,7 @@ namespace user
       throw todo(get_app());
 
 #endif
+      return pwindow;
 
    }
 

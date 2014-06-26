@@ -72,7 +72,7 @@ namespace user
       {
 
          CalcTension(pt);
-         set_capture();
+         SetCapture();
          m_dwLastTime = ::get_tick_count();
          m_daScalar.set(0.0);
          m_iScalar = 0;

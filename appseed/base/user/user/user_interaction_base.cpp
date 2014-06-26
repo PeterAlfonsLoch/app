@@ -90,7 +90,7 @@ namespace user
          if(!System.get_twf()->m_bProDevianMode)
          {
             synch_lock lock(System.get_twf());
-            get_wnd()->RedrawWindow();
+            GetWindow()->RedrawWindow();
          }
       }
    }
@@ -210,7 +210,7 @@ namespace user
    }
 
 
-   interaction * interaction_base::get_wnd() const
+   sp(interaction) interaction_base::GetWindow() const
    {
 
       return NULL;
@@ -282,7 +282,7 @@ namespace user
       for(int32_t i = 0; i < recta.get_size(); i++)
       {
 
-         if(!get_wnd()->RedrawWindow(recta[i]))
+         if(!GetWindow()->RedrawWindow(recta[i]))
             bOk = false;
 
       }
@@ -295,10 +295,10 @@ namespace user
    bool interaction_base::Redraw(LPCRECT lprect, ::draw2d::region * prgn)
    {
 
-      if(get_wnd() == NULL)
+      if(GetWindow() == NULL)
          return false;
 
-      return get_wnd()->RedrawWindow(lprect, prgn, RDW_INVALIDATE);
+      return GetWindow()->RedrawWindow(lprect, prgn, RDW_INVALIDATE);
 
    }
 
@@ -308,10 +308,10 @@ namespace user
 
       UNREFERENCED_PARAMETER(pdc);
 
-      if(get_wnd() == NULL)
+      if(GetWindow() == NULL)
          return false;
 
-      return get_wnd()->RedrawWindow();
+      return GetWindow()->RedrawWindow();
 
    }
 
@@ -832,9 +832,7 @@ namespace user
 
 
 
-
-
-   bool interaction_base::IsChild(interaction * pui) const
+   bool interaction_base::IsAscendant(const interaction * puiIsAscendant) const
    {
 
       throw interface_only_exception(get_app());
@@ -842,7 +840,7 @@ namespace user
    }
 
 
-   interaction * interaction_base::get_parent() const
+   bool interaction_base::IsParent(const interaction * puiIsParent) const
    {
 
       throw interface_only_exception(get_app());
@@ -850,7 +848,15 @@ namespace user
    }
 
 
-   oswindow interaction_base::get_parent_handle() const
+   bool interaction_base::IsChild(const interaction * puiIsChild) const
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
+
+   bool interaction_base::IsDescendant(const interaction * puiIsDescendant) const
    {
 
       throw interface_only_exception(get_app());
@@ -1114,14 +1120,6 @@ namespace user
    }
 
 
-   bool interaction_base::is_frame_window()
-   {
-
-      throw interface_only_exception(get_app());
-
-   }
-
-
    sp(::user::frame_window) interaction_base::GetTopLevelFrame() const
    {
 
@@ -1316,9 +1314,7 @@ namespace user
    }
 
 
-   bool interaction_base::RedrawWindow(LPCRECT lpRectUpdate,
-      ::draw2d::region* prgnUpdate,
-      UINT flags)
+   bool interaction_base::RedrawWindow(LPCRECT lpRectUpdate, ::draw2d::region* prgnUpdate, UINT flags)
    {
 
       throw interface_only_exception(get_app());
@@ -1366,15 +1362,15 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::GetTopWindow()
+   sp(interaction) interaction_base::GetTopWindow() const
    {
 
-      return get_wnd()->GetTopWindow();
+      throw interface_only_exception(get_app());
 
    }
 
 
-   sp(interaction) interaction_base::GetWindow(UINT nCmd)
+   sp(interaction) interaction_base::GetWindow(UINT nCmd) const
    {
 
       throw interface_only_exception(get_app());
@@ -1478,7 +1474,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::EnsureTopLevelParent()
+   sp(interaction) interaction_base::EnsureTopLevel()
    {
       
       throw interface_only_exception(get_app());
@@ -1486,7 +1482,31 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::GetTopLevelParent() const
+   sp(interaction) interaction_base::EnsureParentTopLevel()
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
+
+   sp(interaction) interaction_base::GetTopLevel() const
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
+
+   sp(interaction) interaction_base::GetParentTopLevel() const
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
+
+   sp(frame_window) interaction_base::GetParentTopLevelFrame() const
    {
 
       throw interface_only_exception(get_app());
@@ -1568,7 +1588,23 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::get_owner()
+   sp(interaction) interaction_base::SetOwner(sp(interaction) pui)
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
+
+   sp(interaction) interaction_base::SetParent(sp(interaction) pui)
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
+
+   sp(interaction) interaction_base::GetOwner() const
    {
       
       throw interface_only_exception(get_app());
@@ -1576,9 +1612,33 @@ namespace user
    }
 
 
-   void interaction_base::set_owner(sp(interaction) pui)
+   sp(interaction) interaction_base::GetParent() const
    {
-      
+
+      throw interface_only_exception(get_app());
+
+   }
+
+
+   sp(frame_window) interaction_base::GetFrame() const
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
+
+   sp(::user::interaction) interaction_base::GetParentOwner() const
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
+
+   sp(::user::interaction) interaction_base::GetTopLevelOwner() const
+   {
+
       throw interface_only_exception(get_app());
 
    }
@@ -1952,7 +2012,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::set_capture(sp(interaction) pinterface)
+   sp(interaction) interaction_base::SetCapture(sp(interaction) pinterface)
    {
 
       throw interface_only_exception(get_app());
@@ -1960,7 +2020,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::get_capture()
+   sp(interaction) interaction_base::GetCapture()
    {
 
       throw interface_only_exception(get_app());
@@ -1968,7 +2028,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::release_capture()
+   sp(interaction) interaction_base::ReleaseCapture()
    {
 
       throw interface_only_exception(get_app());

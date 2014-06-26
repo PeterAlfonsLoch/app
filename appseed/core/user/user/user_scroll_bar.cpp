@@ -54,7 +54,7 @@ namespace user
 
       }
 
-      sp(::user::interaction) pParentWnd = get_parent();
+      sp(::user::interaction) pParentWnd = GetParent();
 
       pParentWnd->send(pscroll);
 
