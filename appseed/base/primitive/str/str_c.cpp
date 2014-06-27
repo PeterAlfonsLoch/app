@@ -82,30 +82,69 @@ int32_t strcmp_dup(const char * sz1, const char * sz2)
 
 int32_t strnicmp_dup(const char * sz1, const char * sz2, ::count iLen)
 {
+
    if(iLen <= 0)
+   {
+
       return 0; // equal
+
+   }
+
    if(sz1 == NULL)
    {
+
       if(sz2 == NULL)
+      {
+
          return 0;
+
+      }
       else
+      {
+
          return -1;
+
+      }
+
    }
    else if(sz2 == NULL)
    {
+
       return 1;
+
    }
+
    int32_t iCmp = 0;
-   while(iLen > 0 && *sz1 != '\0' && *sz2 != '\0')
+   
+   while(iLen > 0)
    {
+      
       iCmp = char_to_lower(*sz1) - char_to_lower(*sz2);
+      
       if(iCmp != 0)
+      {
+
          return iCmp;
+
+      }
+      
+      if(*sz1 == '\0' || *sz2 == '\0')
+      {
+
+         return iCmp;
+
+      }
+
       sz1++;
+
       sz2++;
+
       iLen--;
+
    }
+
    return iCmp;
+
 }
 
 int32_t strncmp_dup(const char * sz1, const char * sz2, ::count iLen)
