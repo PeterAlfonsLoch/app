@@ -225,9 +225,9 @@ void ssl_sigpipe_handle( int x ) {
 #ifdef WIN32
       if(::get_thread() == NULL)
          return ::GetCurrentThreadId();
-      if(::get_thread()->m_pimpl.is_null())
+      if(::get_thread()->m_pthreadimpl == NULL)
          return ::GetCurrentThreadId();
-      return ::get_thread()->m_pimpl->get_os_int();
+      return ::get_thread()->m_pthreadimpl->get_os_int();
 #else
       return (unsigned long) (int_ptr) ::pthread_self();
       //return System.get_thread_id();

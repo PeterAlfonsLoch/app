@@ -9,7 +9,7 @@ class CLASS_DECL_BASE thread :
 #ifdef WINDOWS
    virtual public ::exception::translator,
 #endif
-   virtual public spa(::user::interaction),
+   virtual public ptr_array < ::user::interaction >,
    virtual public ::base::live_object,
    virtual public event_base
 {
@@ -20,16 +20,15 @@ public:
    mutex *                                m_pmutex;
    bool                                   m_bRun;
 
-   thread_impl_sp                         m_pimpl;
-   thread_sp                              m_puser;
+   thread_impl_sp                         m_pthreadimpl;
 
    bool                                   m_bAutoDelete;       // enables 'delete this' after thread termination
    uint_ptr                               m_dwAlive;
    bool                                   m_bReady;
    int32_t                                m_iReturnCode;
    sp(::base::application)                m_pappDelete;
-   sp(::user::interaction)                m_puiMain;           // main interaction_impl (usually same System.m_puiMain)
-   sp(::user::interaction)                m_puiActive;         // active main interaction_impl (may not be m_puiMain)
+   ::user::interaction *                  m_puiMain;           // main interaction_impl (usually same System.m_puiMain)
+   ::user::interaction *                  m_puiActive;         // active main interaction_impl (may not be m_puiMain)
    bool *                                 m_pbReady;
    property_set                           m_set;
    string                                 m_strWorkUrl;

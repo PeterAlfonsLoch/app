@@ -1050,7 +1050,25 @@ restart:
    void system::del(const char * psz)
    {
 #ifdef WINDOWS
-      if(!::DeleteFileW(::str::international::utf8_to_unicode(string("\\\\?\\") + psz)))
+      
+      HANDLE h = ::CreateFileW(::str::international::utf8_to_unicode(string("\\\\?\\") + psz),GENERIC_READ | GENERIC_WRITE,0,NULL,OPEN_EXISTING,FILE_FLAG_OPEN_REPARSE_POINT | FILE_FLAG_DELETE_ON_CLOSE,NULL);
+
+      if(h == INVALID_HANDLE_VALUE)
+      {
+         uint32_t dwError = ::GetLastError();
+         if(dwError == 2) // the file does not exist, so delete "failed"
+            return;
+         string strError;
+         strError.Format("Failed to delete file \"%s\" error=%d",psz,dwError);
+         throw io_exception(get_app(),strError);
+      }
+      else
+      {
+         ::FlushFileBuffers(h);
+         ::CloseHandle(h);
+      }
+
+/*      if(!::DeleteFileW(::str::international::utf8_to_unicode(string("\\\\?\\") + psz)))
       {
          uint32_t dwError = ::GetLastError();
          if(dwError == 2) // the file does not exist, so delete "failed"
@@ -1058,7 +1076,7 @@ restart:
          string strError;
          strError.Format("Failed to delete file \"%s\" error=%d", psz, dwError);
          throw io_exception(get_app(), strError);
-      }
+      }*/
 #else
       if(remove(psz) != 0)
       {

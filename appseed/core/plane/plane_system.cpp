@@ -601,15 +601,14 @@ namespace plane
 
       try
       {
+         
          if(m_ptwf != NULL)
          {
 
             m_ptwf->m_bRun = false;
-            if(m_ptwf->m_pimpl != NULL)
-            {
-               m_ptwf->m_pimpl->m_bRun = false;
-            }
+
          }
+
       }
       catch(...)
       {

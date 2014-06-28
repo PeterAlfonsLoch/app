@@ -199,9 +199,9 @@ namespace user
                iStyle &= ~WS_VISIBLE;
             }
             smart_pointer_array < timer_item > timera;
-            if(m_pthread != NULL && m_pthread->m_pimpl != NULL && m_pthread->m_pimpl->m_ptimera != NULL)
+            if(m_pthread != NULL && m_pthread->m_pthreadimpl != NULL && m_pthread->m_pthreadimpl->m_sptimera.is_set())
             {
-               m_pthread->m_pimpl->m_ptimera->detach(timera,this);
+               m_pthread->m_pthreadimpl->m_sptimera->detach(timera,this);
             }
             if(!pimplNew->CreateEx(0,NULL,strName,iStyle,rect(0,0,0,0),NULL,GetDlgCtrlId()))
             {
@@ -2569,7 +2569,7 @@ namespace user
       //bool bAttach = AttachThreadInput(GetWindow()->get_os_int(), ::GetCurrentThreadId(), TRUE);
 
       m_iaModalThread.add(::get_thread()->get_os_int());
-      sp(::base::application) pappThis1 = (m_pthread->m_pimpl);
+      sp(::base::application) pappThis1 = (m_pimpl);
       sp(::base::application) pappThis2 = (m_pthread);
       // acquire and dispatch messages until the modal state is done
       MESSAGE msg;
@@ -2607,7 +2607,7 @@ namespace user
             bIdle = FALSE;
             }*/
 
-            m_pthread->m_pimpl->m_dwAlive = m_pthread->m_dwAlive = ::get_tick_count();
+            m_pthread->m_dwAlive = ::get_tick_count();
             if(pappThis1 != NULL)
             {
                pappThis1->m_dwAlive = m_pthread->m_dwAlive;

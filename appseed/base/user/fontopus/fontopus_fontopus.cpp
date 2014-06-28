@@ -470,7 +470,7 @@ namespace fontopus
 
 #ifdef WINDOWSEX
 
-      ::AttachThreadInput(GetCurrentThreadId(),(uint32_t)System.thread::m_pimpl->get_os_int(),TRUE);
+      ::AttachThreadInput(GetCurrentThreadId(),(uint32_t)System.m_pthreadimpl->get_os_int(),TRUE);
 
 #endif
 

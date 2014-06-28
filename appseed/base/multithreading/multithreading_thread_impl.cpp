@@ -61,23 +61,13 @@ void thread_impl::CommonConstruct()
    m_pThreadParams = NULL;
    m_pfnThreadProc = NULL;
 
-   m_ptimera      = NULL;
-   m_puiptra      = NULL;
-   m_puiMain      = NULL;
-   m_puiActive    = NULL;
-   
    m_nDisablePumpCount  = 0;
    
-   m_bAutoDelete = TRUE;
-   m_bRun = false;
-
-   m_ptimera = canew(::user::interaction::timer_array(get_app()));
-   m_puiptra = canew(::user::interaction_ptr_array(get_app()));
+   m_sptimera = canew(::user::interaction::timer_array(get_app()));
+   m_spuiptra = canew(::user::interaction_ptr_array(get_app()));
    
    m_hthread = NULL;
 
-   m_iReturnCode = 0;
-   
 }
 
 
@@ -100,6 +90,7 @@ bool thread_impl::initialize_instance()
 
 void thread_impl::dispatch_thread_message(signal_details * pobj)
 {
+
    SCAST_PTR(::message::base,pbase,pobj);
    if(!pbase->m_bRet && pbase->m_uiMessage == WM_APP + 1984 && pbase->m_wparam == 77)
    {
@@ -110,48 +101,6 @@ void thread_impl::dispatch_thread_message(signal_details * pobj)
       pbase->m_bRet        = true;
       return;
    }
-   /*   const __MSGMAP* pMessageMap; pMessageMap = GetMessageMap();
-   const __MSGMAP_ENTRY* lpEntry;
-
-   for (/* pMessageMap already init'ed *//*; pMessageMap->pfnGetBaseMap != NULL;
-   pMessageMap = (*pMessageMap->pfnGetBaseMap)())
-   {
-   // Note: catch not so common but fatal mistake!!
-   //       // BEGIN_MESSAGE_MAP(CMyThread, CMyThread)
-
-   ASSERT(pMessageMap != (*pMessageMap->pfnGetBaseMap)());
-   if (pMsg->message < 0xC000)
-   {
-   // constant interaction_impl message
-   if ((lpEntry = ::core::FindMessageEntry(pMessageMap->lpEntries,
-   pMsg->message, 0, 0)) != NULL)
-   goto LDispatch;
-   }
-   else
-   {
-   // registered windows message
-   lpEntry = pMessageMap->lpEntries;
-   while ((lpEntry = ::core::FindMessageEntry(lpEntry, 0xC000, 0, 0)) != NULL)
-   {
-   UINT* pnID = (UINT*)(lpEntry->nSig);
-   ASSERT(*pnID >= 0xC000);
-   // must be successfully registered
-   if (*pnID == pMsg->message)
-   goto LDispatch;
-   lpEntry++;      // keep looking past this one
-   }
-   }
-   }
-   return FALSE;
-
-   LDispatch:
-   union MessageMapFunctions mmf;
-   mmf.pfn = lpEntry->pfn;
-
-   // always posted, so return value is meaningless
-
-   (this->*mmf.pfn_THREAD)(pMsg->wParam, pMsg->lParam);*/
-
    LRESULT lresult;
    SignalPtrArray signalptra;
    m_signala.GetSignalsByMessage(signalptra,pbase->m_uiMessage,0,0);
@@ -173,6 +122,7 @@ void thread_impl::dispatch_thread_message(signal_details * pobj)
       break;
    }
    pbase->m_bRet = true;
+
 }
 
 
@@ -188,7 +138,7 @@ void thread_impl::pre_translate_message(signal_details * pobj)
       // if this is a thread-message, int16_t-circuit this function
       if(pbase->m_pwnd == NULL)
       {
-         m_puser->dispatch_thread_message(pobj);
+         m_pthread->dispatch_thread_message(pobj);
          if(pobj->m_bRet)
             return;
       }
@@ -334,7 +284,7 @@ void thread_impl::process_message_filter(int32_t code,signal_details * pobj)
 
    case MSGF_DIALOGBOX:    // handles message boxes as well.
       //pMainWnd = __get_main_window();
-      if(code == MSGF_DIALOGBOX && m_puiActive != NULL &&
+      if(code == MSGF_DIALOGBOX && m_pthread->m_puiActive != NULL &&
          pbase->m_uiMessage >= WM_KEYFIRST && pbase->m_uiMessage <= WM_KEYLAST)
       {
          //// need to translate messages for the in-place container
@@ -400,7 +350,7 @@ bool thread_impl::begin_thread(bool bSynch,int32_t * piStartupError,int32_t epri
 
    pstartup->m_pthreadimpl = this;
 
-   pstartup->m_pthread = m_puser;
+   pstartup->m_pthread = m_pthread;
 
    pstartup->m_dwCreateFlags = dwCreateFlags;
 
@@ -718,7 +668,7 @@ uint32_t __thread_entry(void * pparam)
       try
       {
 
-         n = pthreadimpl->m_puser->main();
+         n = pthreadimpl->m_pthread->main();
 
       }
       catch(::exit_exception &)
@@ -726,7 +676,7 @@ uint32_t __thread_entry(void * pparam)
 
          __node_term_thread(pthread);
 
-         pthreadimpl->m_puser->post_to_all_threads(WM_QUIT,0,0);
+         pthreadimpl->m_pthread->post_to_all_threads(WM_QUIT,0,0);
 
          return -1;
 
@@ -756,7 +706,7 @@ void CLASS_DECL_BASE __end_thread(sp(::base::application) papp,UINT nExitCode,bo
    if(pthread != NULL)
    {
 
-      ::thread_impl * pthreadimpl = pthread->m_pimpl;
+      ::thread_impl * pthreadimpl = pthread->m_pthreadimpl;
 
       if(pthreadimpl != NULL)
       {
@@ -824,10 +774,6 @@ void thread_impl::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
          {
             pthread = dynamic_cast < thread * >(threadptra[i]);
             pthread->m_bRun = false;
-            if(pthread->m_pimpl != NULL)
-            {
-               pthread->m_pimpl->m_bRun = false;
-            }
          }
          catch(...)
          {
@@ -859,8 +805,8 @@ void thread_impl::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
             {
 
                if(::get_thread() == NULL
-                  || ::get_thread()->m_pimpl.is_null()
-                  || ::multithreading::s_phaThread->element_at(i) != ::get_thread()->m_pimpl->m_hthread)
+                  || ::get_thread()->m_pthreadimpl == NULL
+                  || ::multithreading::s_phaThread->element_at(i) != ::get_thread()->m_pthreadimpl->m_hthread)
                {
 DWORD dwRet = 0;
                   sl.unlock();
@@ -929,12 +875,12 @@ int32_t thread_impl::exit_instance()
 
       single_lock sl(&m_mutexUiPtra,TRUE);
       
-      if(m_puiptra != NULL)
+      if(m_spuiptra.is_set())
       {
 
-         sp(::user::interaction_ptr_array) puiptra = m_puiptra;
+         sp(::user::interaction_ptr_array) puiptra = m_spuiptra;
 
-         m_puiptra = NULL;
+         m_spuiptra.release();
 
          for(int32_t i = 0; i < puiptra->get_size(); i++)
          {
@@ -944,14 +890,14 @@ int32_t thread_impl::exit_instance()
             if(pui->m_pthread != NULL)
             {
 
-               if(pui->m_pthread->m_pimpl == this)
+               if(pui->m_pthread->m_pthreadimpl == this)
                {
 
                   pui->m_pthread = NULL;
 
                }
 
-               if(pui->m_pthread == m_puser)
+               if(pui->m_pthread == m_pthread)
                {
 
                   pui->m_pthread = NULL;
@@ -974,16 +920,16 @@ int32_t thread_impl::exit_instance()
 
    try
    {
-      ::user::interaction::timer_array * ptimera = m_ptimera;
-      m_ptimera = NULL;
-      delete ptimera;
+      
+      m_sptimera.release();
+
    }
    catch(...)
    {
    }
 
 
-   return m_iReturnCode;
+   return m_pthread->m_iReturnCode;
 
 }
 
@@ -1001,11 +947,11 @@ bool thread_impl::on_idle(LONG lCount)
    single_lock sl(&m_mutexUiPtra, TRUE);
 
 
-   if(lCount <= 0 && m_puiptra != NULL)
+   if(lCount <= 0 && m_spuiptra.is_set())
    {
-      for(int32_t i = 0; i < m_puiptra->get_count();)
+      for(int32_t i = 0; i < m_spuiptra->get_count();)
       {
-         sp(::user::interaction) pui = m_puiptra->element_at(i);
+         sp(::user::interaction) pui = m_spuiptra->element_at(i);
          bool bOk = false;
          try
          {
@@ -1017,7 +963,7 @@ bool thread_impl::on_idle(LONG lCount)
          }
          if(!bOk)
          {
-            m_puiptra->remove_at(i);
+            m_spuiptra->remove_at(i);
          }
          else
          {
@@ -1111,10 +1057,8 @@ int32_t thread_impl::thread_startup(::thread_startup * pstartup)
    ASSERT(pstartup->m_pthread != NULL);
    ASSERT(pstartup->m_pthreadimpl != NULL);
    ASSERT(!pstartup->m_bError);
-   ASSERT(pstartup->m_pthreadimpl == pstartup->m_pthread->m_pimpl);
-   ASSERT(pstartup->m_pthread == pstartup->m_pthreadimpl->m_puser);
-   ASSERT(pstartup->m_pthreadimpl->m_pimpl.is_null());
-   ASSERT(pstartup->m_pthread->m_puser.is_null());
+   ASSERT(pstartup->m_pthreadimpl == pstartup->m_pthread->m_pthreadimpl);
+   ASSERT(pstartup->m_pthread == pstartup->m_pthreadimpl->m_pthread);
 
    ::thread_impl * pthreadimpl = pstartup->m_pthreadimpl;
 
@@ -1122,7 +1066,7 @@ int32_t thread_impl::thread_startup(::thread_startup * pstartup)
 
    install_message_handling(pthreadimpl);
 
-   m_puser->install_message_handling(pthreadimpl);
+   m_pthread->install_message_handling(pthreadimpl);
 
    if(!initialize_message_queue())
       return -1;
@@ -1143,7 +1087,7 @@ bool thread_impl::thread_entry(int32_t * piStartupError)
    try
    {
 
-      if(!m_puser->pre_run())
+      if(!m_pthread->pre_run())
       {
 
          bError = true;
@@ -1161,27 +1105,14 @@ bool thread_impl::thread_entry(int32_t * piStartupError)
    if(bError)
    {
 
-      if(m_iReturnCode != 0)
+      if(m_pthread->m_iReturnCode != 0)
       {
-         iError = m_iReturnCode;
-         if(m_puser->m_iReturnCode == 0)
-         {
-            m_puser->m_iReturnCode = m_iReturnCode;
-         }
-      }
-      else if(m_puser->m_iReturnCode != 0)
-      {
-         iError = m_puser->m_iReturnCode;
-         if(m_iReturnCode == 0)
-         {
-            m_iReturnCode = m_puser->m_iReturnCode;
-         }
+         iError = m_pthread->m_iReturnCode;
       }
       else
       {
          iError = -1;
-         m_iReturnCode = -1;
-         m_puser->m_iReturnCode = -1;
+         m_pthread->m_iReturnCode = -1;
       }
 
    }
@@ -1214,7 +1145,7 @@ bool thread_impl::thread_entry(int32_t * piStartupError)
 int32_t thread_impl::main()
 {
 
-   if(!m_puser->pre_init_instance())
+   if(!m_pthread->pre_init_instance())
    {
       return 0;
    }
@@ -1226,11 +1157,11 @@ int32_t thread_impl::main()
       nResult = (*m_pfnThreadProc)(m_pThreadParams);
    }
    // else -- check for thread with message loop
-   else if(!m_puser->initialize_instance())
+   else if(!m_pthread->initialize_instance())
    {
       try
       {
-         nResult = exit();
+         nResult = m_pthread->exit();
       }
       catch(...)
       {
@@ -1246,11 +1177,9 @@ int32_t thread_impl::main()
    run:
       try
       {
-         m_bReady = true;
-         m_puser->m_bReady = true;
-         m_bRun = true;
-         m_puser->m_bRun = true;
-         nResult = m_puser->run();
+         m_pthread->m_bReady = true;
+         m_pthread->m_bRun = true;
+         nResult = m_pthread->run();
       }
       catch(::exit_exception & e)
       {
@@ -1268,7 +1197,7 @@ int32_t thread_impl::main()
             goto run;
          try
          {
-            nResult = exit();
+            nResult = m_pthread->exit();
          }
          catch(...)
          {
@@ -1299,7 +1228,7 @@ int32_t thread_impl::thread_term(int32_t nResult)
 
    try
    {
-      ::multithreading::__node_on_term_thread(m_hthread, m_puser,nResult);
+      ::multithreading::__node_on_term_thread(m_hthread, m_pthread,nResult);
    }
    catch(...)
    {
@@ -1318,9 +1247,9 @@ int32_t thread_impl::thread_term(int32_t nResult)
 void thread_impl::add(sp(::user::interaction) pui)
 {
    single_lock sl(&m_mutexUiPtra,TRUE);
-   if(m_puiptra != NULL)
+   if(m_spuiptra.is_set())
    {
-      m_puiptra->add(pui);
+      m_spuiptra->add(pui);
    }
 }
 
@@ -1334,7 +1263,7 @@ void thread_impl::remove(::user::interaction * pui)
 
    try
    {
-      if(pui->m_pthread->m_pimpl == this)
+      if(pui->m_pthread->m_pthreadimpl == this)
       {
          pui->m_pthread = NULL;
       }
@@ -1344,18 +1273,21 @@ void thread_impl::remove(::user::interaction * pui)
    }
 
 
-   if(m_puiptra != NULL)
+   if(m_spuiptra.is_set())
    {
-      m_puiptra->remove(pui);
+
+      m_spuiptra->remove(pui);
+
    }
 
    sl.unlock();
 
-   if(m_ptimera != NULL)
+   if(m_sptimera.is_null())
    {
-      m_ptimera->unset(pui);
-   }
 
+      m_sptimera->unset(pui);
+
+   }
 
 }
 
@@ -1365,7 +1297,7 @@ void thread_impl::remove(::user::interaction * pui)
 
    single_lock sl(&m_mutexUiPtra,TRUE);
 
-   return m_puiptra->get_count();
+   return m_spuiptra->get_count();
 
 }
 
@@ -1375,7 +1307,7 @@ void thread_impl::remove(::user::interaction * pui)
 
    single_lock sl(&m_mutexUiPtra,TRUE);
 
-   return m_puiptra->element_at(iIndex);
+   return m_spuiptra->element_at(iIndex);
 
 }
 
@@ -1385,52 +1317,34 @@ void thread_impl::remove(::user::interaction * pui)
 void thread_impl::set_timer(sp(::user::interaction) pui,uint_ptr nIDEvent,UINT nEllapse)
 {
 
-   m_ptimera->set(pui,nIDEvent,nEllapse);
+   m_sptimera->set(pui,nIDEvent,nEllapse);
 
 }
+
 
 void thread_impl::unset_timer(sp(::user::interaction) pui,uint_ptr nIDEvent)
 {
-   m_ptimera->unset(pui,nIDEvent);
+   
+   m_sptimera->unset(pui,nIDEvent);
+
 }
 
-void thread_impl::set_auto_delete(bool bAutoDelete)
-{
-   m_bAutoDelete = bAutoDelete;
-}
-
-void thread_impl::set_run(bool bRun)
-{
-   m_bRun = bRun;
-}
 
 event & thread_impl::get_finish_event()
 {
    return m_evFinish;
 }
 
-bool thread_impl::get_run()
-{
-   return m_bRun;
-}
 
-sp(::user::interaction) thread_impl::get_active_ui()
-{
-   return m_puiActive;
-}
-
-sp(::user::interaction) thread_impl::set_active_ui(sp(::user::interaction) pui)
-{
-   sp(::user::interaction) puiPrevious = m_puiActive;
-   m_puiActive = pui;
-   return puiPrevious;
-}
 
 void thread_impl::step_timer()
 {
-   if(m_ptimera == NULL)
+   
+   if(m_sptimera.is_null())
       return;
-   m_ptimera->check();
+
+   m_sptimera->check();
+
 }
 
 
@@ -1466,13 +1380,13 @@ bool thread_impl::initialize_message_queue()
 
    if(m_spuiMessage->IsWindow())
    {
-      single_lock sl(&m_ptimera->m_mutex,TRUE);
+      single_lock sl(&m_sptimera->m_mutex,TRUE);
       int32_t iMin = 100;
-      for(int32_t i = 0; i < m_ptimera->m_timera.get_count(); i++)
+      for(int32_t i = 0; i < m_sptimera->m_timera.get_count(); i++)
       {
-         if(m_ptimera->m_timera.element_at(i)->m_uiElapse < natural(iMin))
+         if(m_sptimera->m_timera.element_at(i)->m_uiElapse < natural(iMin))
          {
-            iMin = m_ptimera->m_timera.element_at(i)->m_uiElapse;
+            iMin = m_sptimera->m_timera.element_at(i)->m_uiElapse;
          }
       }
       sl.unlock();
@@ -1499,7 +1413,7 @@ int32_t thread_impl::run()
 
    // acquire and dispatch messages until a WM_QUIT message is received.
    MESSAGE msg;
-   while(m_bRun)
+   while(m_pthread->m_bRun)
    {
       // phase1: check to see if we can do idle work
       while(bIdle && !::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE))
@@ -1514,7 +1428,7 @@ int32_t thread_impl::run()
 
 
 
-         if(!m_puser->on_run_step())
+         if(!m_pthread->on_run_step())
             goto stop_run;
 
       }
@@ -1524,11 +1438,11 @@ int32_t thread_impl::run()
       {
 
          // pump message, but quit on WM_QUIT
-         if(!m_bRun || !pump_message())
+         if(!m_pthread->m_bRun || !pump_message())
          {
             try
             {
-               return exit();
+               return m_pthread->exit();
             }
             catch(...)
             {
@@ -1544,7 +1458,7 @@ int32_t thread_impl::run()
             lIdleCount = 0;
          }
 
-         if(!m_puser->on_run_step())
+         if(!m_pthread->on_run_step())
             goto stop_run;
 
       }
@@ -1666,9 +1580,9 @@ bool thread_impl::pump_message()
 
                try
                {
-                  if(m_puser != NULL)
+                  if(m_pthread != NULL)
                   {
-                     m_puser->pre_translate_message(spbase);
+                     m_pthread->pre_translate_message(spbase);
                      if(spbase->m_bRet)
                         return TRUE;
                   }
@@ -1813,12 +1727,12 @@ int32_t thread_impl::get_thread_priority()
 
 void thread_impl::Delete()
 {
-   if(m_bAutoDelete)
+   if(m_pthread->m_bAutoDelete)
    {
       try
       {
-         if(m_pappDelete != NULL)
-            m_pappDelete.release();
+         if(m_pthread->m_pappDelete != NULL)
+            m_pthread->m_pappDelete.release();
       }
       catch(...)
       {
@@ -1842,7 +1756,7 @@ void thread_impl::Delete()
       }
       try
       {
-         m_bRun = false;
+         m_pthread->m_bRun = false;
       }
       catch(...)
       {
@@ -1850,9 +1764,9 @@ void thread_impl::Delete()
    }
    try
    {
-      if(m_puser != NULL)
+      if(m_pthread != NULL)
       {
-         ::thread * pthread = thread::m_puser;
+         ::thread * pthread = m_pthread;
          if(pthread != NULL && pthread->m_pbReady != NULL)
          {
             *pthread->m_pbReady = true;
@@ -1864,9 +1778,9 @@ void thread_impl::Delete()
    }
    try
    {
-      if(m_pbReady != NULL)
+      if(m_pthread->m_pbReady != NULL)
       {
-         *m_pbReady = true;
+         *m_pthread->m_pbReady = true;
       }
    }
    catch(...)
@@ -1880,18 +1794,17 @@ void thread_impl::Delete()
    {
    }
 
-   if(m_bAutoDelete)
+   if(m_pthread->m_bAutoDelete)
    {
-      // delete thread if it is auto-deleting
-      //pthread->smart_pointer < thread >::m_p = NULL;
-      m_puser.release();
-      // delete_this();
+
+      m_pthread = NULL;
+
    }
    else
    {
       try
       {
-         m_puser->m_bRun = false;
+         m_pthread->m_bRun = false;
       }
       catch(...)
       {
@@ -1912,3 +1825,69 @@ bool thread_impl::finalize()
    return true;
 
 }
+
+
+void thread_impl::start()
+{
+
+}
+
+
+uint32_t thread_impl::ResumeThread()
+{
+
+   return 0;
+
+}
+
+
+bool thread_impl::has_message()
+{
+
+   return false;
+
+}
+
+void thread_impl::set_priority(int32_t priority)
+{
+
+   UNREFERENCED_PARAMETER(priority);
+
+}
+
+
+int32_t thread_impl::priority()
+{
+
+   return ::base::scheduling_priority_normal;
+
+}
+
+
+bool thread_impl::on_run_exception(::exception::exception &)
+{
+
+   return true;
+
+}
+
+
+
+message::e_prototype thread_impl::GetMessagePrototype(UINT uiMessage,UINT uiCode)
+{
+
+   UNREFERENCED_PARAMETER(uiMessage);
+   UNREFERENCED_PARAMETER(uiCode);
+
+   return message::PrototypeNone;
+
+
+}
+
+int thread_impl::get_x_window_count() const
+{
+
+   return 0;
+
+}
+

@@ -699,12 +699,12 @@ namespace user
       if(m_pui->m_pthread.is_set())
       {
 
-         synch_lock sl(&m_pui->m_pthread->m_pimpl->m_mutexUiPtra);
+         synch_lock sl(&m_pui->m_pthread->m_pthreadimpl->m_mutexUiPtra);
 
-         if(m_pui->m_pthread->m_pimpl->m_puiptra.is_set())
+         if(m_pui->m_pthread->m_pthreadimpl->m_spuiptra.is_set())
          {
 
-            m_pui->m_pthread->m_pimpl->m_puiptra->remove(m_pui);
+            m_pui->m_pthread->m_pthreadimpl->m_spuiptra->remove(m_pui);
 
          }
 

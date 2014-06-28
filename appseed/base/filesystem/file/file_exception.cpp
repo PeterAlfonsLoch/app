@@ -345,6 +345,7 @@ void throw_file_exception(::base::application * papp, int32_t cause, LONG lOsErr
 
 #endif
 
+
    throw ::file::exception(papp, cause, lOsError, lpszFileName);
 
 }

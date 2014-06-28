@@ -156,11 +156,23 @@ unsigned int WINAPI os_thread::thread_proc(void * lpparameter)
 
    os_thread * posthread = (os_thread *)lpparameter;
 
-   t_posthread = posthread;
+   uint32_t uiRet = -1;
 
-   uint32_t uiRet = posthread->run();
+   try
+   {
 
-   t_posthread = NULL;
+      keep_threading_count keepthreadingcount;
+
+      t_posthread = posthread;
+
+      uiRet = posthread->run();
+
+      t_posthread = NULL;
+
+   }
+   catch(...)
+   {
+   }
 
    posthread->release();
 

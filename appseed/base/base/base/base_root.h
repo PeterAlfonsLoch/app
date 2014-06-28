@@ -60,8 +60,9 @@ inline int64_t release(c_derived * & pca)
 {
    if(pca == NULL)
       return -1;
-   int64_t count = pca->release();
+   c_derived * p = pca;
    pca = NULL;
+   int64_t count = p->release();
    return count;
 }
 

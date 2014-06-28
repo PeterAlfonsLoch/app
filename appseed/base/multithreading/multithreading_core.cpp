@@ -70,8 +70,6 @@ CLASS_DECL_BASE bool __wait_threading_count(::duration dur)
 
          ::multithreading::s_pthreadptra->element_at(i)->m_bRun = false;
 
-         ::multithreading::s_pthreadptra->element_at(i)->m_pimpl->m_bRun = false;
-
       }
 
       Sleep(100);
@@ -121,13 +119,6 @@ CLASS_DECL_BASE bool __wait_threading_count_except(::thread * pthread, ::duratio
             {
 
                ::multithreading::s_pthreadptra->element_at(i)->m_bRun = false;
-               
-               if(::multithreading::s_pthreadptra->element_at(i)->m_pimpl.is_set())
-               {
-
-                  ::multithreading::s_pthreadptra->element_at(i)->m_pimpl->m_bRun = false;
-                  
-               }
                
             }
             catch (...)

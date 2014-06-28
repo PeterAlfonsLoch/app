@@ -31,19 +31,21 @@ public:
 
 
 class CLASS_DECL_BASE thread_impl :
-   virtual public thread,
+   virtual public command_target,
    virtual public message_queue
 {
 public:
 
 
-   sp(ptr_array < ::user::interaction >)     m_puiptra;
-   sp(::user::interaction::timer_array)      m_ptimera;
+   thread *                                  m_pthread;
+
+   sp(ptr_array < ::user::interaction >)     m_spuiptra;
+   sp(::user::interaction::timer_array)      m_sptimera;
    
    HTHREAD                                   m_hthread;
    uint32_t                                  m_uiThread;
 
-   list < sp(::user::frame_window) >         m_frameList;
+   list < ::user::frame_window * >           m_frameList;
 
    LPVOID                                    m_pThreadParams;
    __THREADPROC                              m_pfnThreadProc;
@@ -108,12 +110,7 @@ public:
    virtual ::user::interaction * get_ui(::index iIndex);
    virtual void set_timer(sp(::user::interaction) pui,uint_ptr nIDEvent,UINT nEllapse);
    virtual void unset_timer(sp(::user::interaction) pui,uint_ptr nIDEvent);
-   virtual void set_auto_delete(bool bAutoDelete = true);
-   virtual void set_run(bool bRun = true);
    virtual event & get_finish_event();
-   virtual bool get_run();
-   virtual sp(::user::interaction) get_active_ui();
-   virtual sp(::user::interaction) set_active_ui(sp(::user::interaction) pui);
    virtual void step_timer();
 
 
@@ -126,13 +123,11 @@ public:
 
    virtual int32_t run();
 
-   void message_handler(signal_details * pobj);
+   virtual void message_handler(signal_details * pobj);
 
 
    virtual bool pump_message();
 
-   bool set_thread_priority(int32_t priority);
-   int32_t get_thread_priority();
 
 
 
@@ -142,11 +137,27 @@ public:
    virtual bool create_thread_synch(int32_t *piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs);
    virtual bool begin_thread(bool bSynchStartup,int32_t *piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlagsParam,LPSECURITY_ATTRIBUTES lpSecurityAttrs);
 
-   void Delete();
+   virtual void Delete();
 
    virtual void dispatch_thread_message(signal_details * pobj);
 
+   virtual void start();
+   virtual uint32_t ResumeThread();
+   virtual bool has_message();
    
+   virtual void set_priority(int32_t priority);
+   virtual int32_t priority();
+
+   virtual bool set_thread_priority(int32_t priority);
+   virtual int32_t get_thread_priority();
+
+   virtual bool on_run_exception(::exception::exception &);
+
+
+   virtual message::e_prototype GetMessagePrototype(UINT uiMessage,UINT uiCode);
+
+   virtual int get_x_window_count() const;
+
 
 };
 

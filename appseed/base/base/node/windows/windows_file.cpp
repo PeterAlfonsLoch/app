@@ -18,6 +18,7 @@ namespace windows
    {
 
       m_hFile = (UINT) hFileNull;
+      m_dwAccessMode = 0;
 
    }
 
@@ -26,6 +27,7 @@ namespace windows
    {
 
       m_hFile = hFile;
+      m_dwAccessMode = 0;
 
    }
 
@@ -43,8 +45,11 @@ namespace windows
    file::~file()
    {
 
-      if (m_hFile != (UINT)hFileNull)
+      if(m_hFile != (UINT)hFileNull)
+      {
+         flush();
          close();
+      }
 
    }
 
@@ -164,14 +169,25 @@ namespace windows
       else
          dwCreateFlag = OPEN_EXISTING;
 
+      HANDLE hFile = INVALID_HANDLE_VALUE;
+      int iRetrySharingViolation = 0;
+      DWORD dwWaitSharingViolation = 84;
+retry:
       // attempt file creation
       //HANDLE hFile = shell::CreateFile(::str::international::utf8_to_unicode(m_strFileName), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
-      HANDLE hFile = ::CreateFileW(m_wstrFileName, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
+      hFile = ::CreateFileW(m_wstrFileName, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
       if (hFile == INVALID_HANDLE_VALUE)
       {
          DWORD dwLastError = ::GetLastError();
 
-         if(dwLastError != ERROR_FILE_NOT_FOUND && dwLastError != ERROR_PATH_NOT_FOUND)
+         if(dwLastError == ERROR_SHARING_VIOLATION && iRetrySharingViolation < 23)
+         {
+            iRetrySharingViolation++;
+            Sleep(dwWaitSharingViolation);
+            dwWaitSharingViolation += 840;
+            goto retry;
+         }
+         else if(dwLastError != ERROR_FILE_NOT_FOUND && dwLastError != ERROR_PATH_NOT_FOUND)
          {
             /*         if (pException != NULL)
             {
@@ -207,7 +223,18 @@ namespace windows
 
          m_strFileName = ::str::international::unicode_to_utf8(m_wstrFileName);
 
-         hFile = ::CreateFileW(m_wstrFileName, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
+         DWORD dwFlags;
+
+         if(dwCreateFlag & CREATE_ALWAYS)
+         {
+            dwFlags = FILE_ATTRIBUTE_NORMAL;
+         }
+         else
+         {
+            dwFlags = FILE_FLAG_OPEN_REPARSE_POINT;
+         }
+
+         hFile = ::CreateFileW(m_wstrFileName,dwAccess,dwShareMode,&sa,dwCreateFlag, dwFlags,NULL);
 
          if (hFile == INVALID_HANDLE_VALUE)
          {
@@ -239,8 +266,15 @@ namespace windows
 
       m_hFile = (HFILE)hFile;
 
-      return TRUE;
+      if(m_hFile == (HFILE)INVALID_HANDLE_VALUE)
+         return false;
+
+      m_dwAccessMode = dwAccess;
+
+      return true;
+
    }
+
 
    ::primitive::memory_size file::read(void * lpBuf, ::primitive::memory_size nCount)
    {
@@ -322,11 +356,21 @@ namespace windows
    {
       ASSERT_VALID(this);
 
-      if (m_hFile == (UINT)hFileNull)
+      if(m_hFile == (UINT)hFileNull || !(m_dwAccessMode & GENERIC_WRITE))
          return;
 
-      if (!::FlushFileBuffers((HANDLE)m_hFile))
-         file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
+      if(!::FlushFileBuffers((HANDLE)m_hFile))
+      {
+         DWORD dwLastError = ::GetLastError();
+         if(dwLastError == ERROR_INVALID_HANDLE
+         || dwLastError == ERROR_ACCESS_DENIED)
+         {
+         }
+         else
+         {
+            file_exception::ThrowOsError(get_app(),(LONG)dwLastError);
+         }
+      }
    }
 
    void file::close()
@@ -347,6 +391,8 @@ namespace windows
       }
 
       m_hFile = (UINT) hFileNull;
+
+      m_dwAccessMode = 0; 
 
       if (bError)
          file_exception::ThrowOsError(get_app(), dwLastError, m_strFileName);

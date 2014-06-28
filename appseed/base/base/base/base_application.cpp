@@ -1730,13 +1730,7 @@ namespace base
          dappy(string(typeid(*this).name()) + " : going to on_run : " + ::str::from(m_iReturnCode));
          m_iReturnCode = 0;
          m_bReady = true;
-         m_pimpl->m_bReady = true;
-         thread::m_bReady = true;
-         thread::m_pimpl->m_bReady = true;
          m_bRun = true;
-         m_pimpl->m_bRun = true;
-         thread::m_bRun = true;
-         thread::m_pimpl->m_bRun = true;
          m_iReturnCode = on_run();
          if(m_iReturnCode != 0)
          {
@@ -1893,7 +1887,7 @@ namespace base
 
       thread * pthread = ::get_thread();
 
-      install_message_handling(pthread->m_pimpl);
+      install_message_handling(pthread->m_pthreadimpl);
 
       dappy(string(typeid(*this).name()) + " : starting on_run 2 : " + ::str::from(m_iReturnCode));
 
@@ -2022,7 +2016,7 @@ namespace base
       }
       try
       {
-         thread * pthread = thread::m_pimpl;
+         thread * pthread = this;
          if(pthread != NULL && pthread->m_pbReady != NULL)
          {
             *pthread->m_pbReady = true;
@@ -2064,7 +2058,7 @@ namespace base
 
       if(!is_system() && (bool)oprop("SessionSynchronizedInput"))
       {
-         ::AttachThreadInput(GetCurrentThreadId(),(uint32_t)System.thread::m_pimpl->get_os_int(),TRUE);
+         ::AttachThreadInput(GetCurrentThreadId(),(uint32_t)System.m_pthreadimpl->get_os_int(),TRUE);
       }
 
 #endif
@@ -2845,12 +2839,12 @@ namespace base
 
       thread::s_bAllocReady = true;
 
-      if(thread::m_pimpl == NULL)
+      if(m_pthreadimpl == NULL)
       {
 
-         thread::m_pimpl.create(allocer());
+         m_pthreadimpl.create(allocer());
 
-         thread::m_pimpl->m_puser = this;
+         m_pthreadimpl->m_pthread = this;
 
       }
 
@@ -3447,7 +3441,7 @@ namespace base
          try
          {
 
-            thread         * pthread = thread::m_pimpl.detach();
+            sp(thread_impl) pthread = m_pthreadimpl;
 
             if(pthread != NULL)
             {
@@ -3458,11 +3452,11 @@ namespace base
                   // during the thread destructor
                   // avoid thread object data auto deletion on thread termination,
                   // letting thread function terminate
-                  pthread->m_bAutoDelete = false;
+                  m_bAutoDelete = false;
 
-                  pthread->set_os_data(NULL);
+                  set_run(false);
 
-                  pthread->set_run(false);
+                  pthread->exit_instance();
 
                }
                catch(...)
@@ -3477,6 +3471,18 @@ namespace base
          {
 
          }
+
+         try
+         {
+
+            m_pthreadimpl.release();
+
+         }
+         catch(...)
+         {
+
+         }
+
 
          try
          {
@@ -4395,7 +4401,9 @@ namespace base
 
          }
 
-         ::file::byte_input_stream is(file);
+         ::file::buffered_buffer buffer(this,file);
+
+         ::file::byte_input_stream is(&buffer);
 
          try
          {
@@ -4434,7 +4442,9 @@ namespace base
 
          }
 
-         ::file::byte_output_stream os(file);
+         ::file::buffered_buffer buffer(this, file);
+
+         ::file::byte_output_stream os(&buffer);
 
          try
          {

@@ -23,7 +23,6 @@ public:
       thread(papp)
    {
       m_bAutoDelete = true;
-      m_pimpl->m_bAutoDelete = true;
       m_psignalizableDst = psignalizableDst;
       m_pfnDst = pfnDst;
       m_psignalizableSrc = psignalizableSrc;

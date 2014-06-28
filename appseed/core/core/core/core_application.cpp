@@ -525,7 +525,7 @@ int32_t application::exit_instance()
    try
    {
 
-      thread         * pthread = thread::m_pimpl.detach();
+      thread         * pthread = this;
 
       if (pthread != NULL)
       {
@@ -3393,9 +3393,9 @@ bool application::start_application(bool bSynch, application_bias * pbias)
       peventReady->ResetEvent();
    }
 
-   thread::m_pimpl.create(allocer());
+   m_pthreadimpl.create(allocer());
    
-   thread::m_pimpl->m_puser = this;
+   m_pthreadimpl->m_pthread = this;
 
    if (pbias != NULL)
    {

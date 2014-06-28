@@ -10,9 +10,9 @@ namespace windows
       element(papp)
    {
 
-      ::thread::m_pimpl.create(allocer());
+      m_pthreadimpl.create(allocer());
 
-      ::thread::m_pimpl->m_puser = this;
+      m_pthreadimpl->m_pthread = this;
 
       m_pbasesystem                    =  papp->m_pbaseapp->m_pbasesystem;
 

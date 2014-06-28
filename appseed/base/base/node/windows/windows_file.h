@@ -55,6 +55,7 @@ namespace windows
       string         m_strFileName;
       wstring        m_wstrFileName;
       UINT           m_hFile;
+      DWORD          m_dwAccessMode;
 
 
       file(sp(::base::application) papp);

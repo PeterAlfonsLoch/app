@@ -53,21 +53,10 @@ namespace windows
    void thread::CommonConstruct()
    {
 
-      m_ptimera      = NULL;
-      m_puiptra      = NULL;
-      m_puiMain      = NULL;
-      m_puiActive    = NULL;
-
-
-      m_nDisablePumpCount  = 0;
-
-
       m_nDisablePumpCount = 0;
-      m_bAutoDelete  = TRUE;
-
-      m_ptimera = canew(::user::interaction::timer_array(get_app()));
-      m_puiptra = canew(::user::interaction_ptr_array(get_app()));
-
+         
+      thread_impl::CommonConstruct();
+   
    }
 
 
@@ -103,22 +92,19 @@ namespace windows
 
    void thread::assert_valid() const
    {
-      command_target::assert_valid();
+      message_queue::assert_valid();
    }
    void thread::dump(dump_context & dumpcontext) const
    {
-      command_target::dump(dumpcontext);
+      message_queue::dump(dumpcontext);
 
       dumpcontext << "m_pThreadParams = " << m_pThreadParams;
       dumpcontext << "\nm_pfnThreadProc = " << (void *)m_pfnThreadProc;
-      dumpcontext << "\nm_bAutoDelete = " << m_bAutoDelete;
       dumpcontext << "\nm_hThread = " << (void *)m_hthread;
       dumpcontext << "\nm_nThreadID = " << m_uiThread;
 #ifdef DEBUG
       //    dumpcontext << "\nm_nDisablePumpCount = " << pState->m_nDisablePumpCount;
 #endif
-      if(get_thread() == m_puser)
-         dumpcontext << "\nm_pMainWnd = " << m_puiMain.m_p;
 
       dumpcontext << "\nm_msgCur = {";
       /*      dumpcontext << "\n\toswindow = " << (void *)pState->m_msgCur.hwnd;
@@ -310,7 +296,7 @@ bool __node_init_thread(::thread * pthread)
    try
    {
 
-      pthread->m_pimpl->::exception::translator::attach();
+      pthread->::exception::translator::attach();
 
    }
    catch(...)
@@ -335,10 +321,10 @@ bool __node_term_thread(::thread * pthread)
    try
    {
 
-      if(pthread != NULL && pthread->m_pimpl.is_set())
+      if(pthread != NULL)
       {
 
-         pthread->m_pimpl->::exception::translator::detach();
+         pthread->::exception::translator::detach();
 
       }
 

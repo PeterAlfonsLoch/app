@@ -29,9 +29,9 @@ m_set(papp)
    set_app(papp);
    if (!s_bAllocReady)
       return;
-   thread::m_pimpl.create(allocer());
-   m_pimpl->m_puser = this;
-   m_pimpl->construct();
+   m_pthreadimpl.create(allocer());
+   m_pthreadimpl->m_pthread = this;
+   m_pthreadimpl->construct();
 
 }
 
@@ -41,9 +41,9 @@ element(papp)
 
    CommonConstruct();
 
-   thread::m_pimpl.create(allocer());
-   m_pimpl->m_puser = this;
-   m_pimpl->construct(pfnThreadProc, pParam);
+   m_pthreadimpl.create(allocer());
+   m_pthreadimpl->m_pthread = this;
+   m_pthreadimpl->construct(pfnThreadProc, pParam);
 
 }
 
@@ -91,14 +91,14 @@ thread::~thread()
 
 void * thread::get_os_data() const
 {
-   return m_pimpl == NULL ? NULL : m_pimpl->get_os_data();
+   return m_pthreadimpl == NULL ? NULL : m_pthreadimpl->get_os_data();
 }
 
 
 int_ptr thread::get_os_int() const
 {
 
-   return m_pimpl == NULL ? -1 : m_pimpl->get_os_int();
+   return m_pthreadimpl == NULL ? -1 : m_pthreadimpl->get_os_int();
 
 }
 
@@ -116,10 +116,10 @@ HTHREAD thread::get_os_handle() const
 void thread::start()
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return;
 
-   m_pimpl->start();
+   m_pthreadimpl->start();
 
 }
 
@@ -135,12 +135,12 @@ bool thread::verb()
 bool thread::begin(int32_t epriority, uint_ptr nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
-   if (m_pimpl.is_null())
+   if (m_pthreadimpl.is_null())
       return false;
 
-   m_pimpl->m_puser = this;
+   m_pthreadimpl->m_pthread = this;
 
-   return m_pimpl->begin(epriority,nStackSize,dwCreateFlags,lpSecurityAttrs);
+   return m_pthreadimpl->begin(epriority,nStackSize,dwCreateFlags,lpSecurityAttrs);
 
 }
 
@@ -148,10 +148,10 @@ bool thread::begin(int32_t epriority, uint_ptr nStackSize, uint32_t dwCreateFlag
 bool thread::create_thread(int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
-   if (m_pimpl.is_null())
+   if (m_pthreadimpl.is_null())
       return false;
 
-   return m_pimpl->create_thread(epriority,nStackSize,dwCreateFlags,lpSecurityAttrs);
+   return m_pthreadimpl->create_thread(epriority,nStackSize,dwCreateFlags,lpSecurityAttrs);
 
 }
 
@@ -159,12 +159,12 @@ bool thread::create_thread(int32_t epriority,uint_ptr nStackSize,uint32_t dwCrea
 bool thread::begin_synch(int32_t * piStartupError, int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return false;
 
-   m_pimpl->m_puser = this;
+   m_pthreadimpl->m_pthread = this;
 
-   return m_pimpl->begin_synch(piStartupError, epriority,nStackSize,dwCreateFlags,lpSecurityAttrs);
+   return m_pthreadimpl->begin_synch(piStartupError, epriority,nStackSize,dwCreateFlags,lpSecurityAttrs);
 
 }
 
@@ -172,10 +172,10 @@ bool thread::begin_synch(int32_t * piStartupError, int32_t epriority,uint_ptr nS
 bool thread::create_thread_synch(int32_t * piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return false;
 
-   return m_pimpl->create_thread_synch(piStartupError,epriority,nStackSize,dwCreateFlags,lpSecurityAttrs);
+   return m_pthreadimpl->create_thread_synch(piStartupError,epriority,nStackSize,dwCreateFlags,lpSecurityAttrs);
 
 }
 
@@ -183,7 +183,7 @@ bool thread::create_thread_synch(int32_t * piStartupError,int32_t epriority,uint
 bool thread::finalize()
 {
 
-   m_pimpl->finalize();
+   m_pthreadimpl->finalize();
 
    return true;
 
@@ -218,10 +218,10 @@ int32_t thread::exit()
 int32_t thread::get_thread_priority()
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return -1;
 
-   return m_pimpl->get_thread_priority();
+   return m_pthreadimpl->get_thread_priority();
 
 }
 
@@ -229,10 +229,10 @@ int32_t thread::get_thread_priority()
 bool thread::set_thread_priority(int32_t epriority)
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return false;
 
-   return m_pimpl->set_thread_priority(epriority);
+   return m_pthreadimpl->set_thread_priority(epriority);
 
 }
 
@@ -240,10 +240,10 @@ bool thread::set_thread_priority(int32_t epriority)
 uint32_t thread::ResumeThread()
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return false;
 
-   return m_pimpl->ResumeThread();
+   return m_pthreadimpl->ResumeThread();
 
 }
 
@@ -251,10 +251,10 @@ uint32_t thread::ResumeThread()
 bool thread::post_thread_message(UINT message, WPARAM wParam, lparam lParam)
 {
 
-   if (m_pimpl.is_null())
+   if (m_pthreadimpl.is_null())
       return false;
 
-   return m_pimpl->post_thread_message(message, wParam, lParam);
+   return m_pthreadimpl->post_thread_message(message, wParam, lParam);
 
 }
 
@@ -262,10 +262,10 @@ bool thread::post_thread_message(UINT message, WPARAM wParam, lparam lParam)
 void thread::set_os_data(void * pvoidOsData)
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return;
 
-   m_pimpl->set_os_data(pvoidOsData);
+   m_pthreadimpl->set_os_data(pvoidOsData);
 
 }
 
@@ -273,10 +273,10 @@ void thread::set_os_data(void * pvoidOsData)
 void thread::set_os_int(int_ptr iData)
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return;
 
-   m_pimpl->set_os_int(iData);
+   m_pthreadimpl->set_os_int(iData);
 
 }
 
@@ -292,10 +292,10 @@ void thread::on_keep_alive()
 bool thread::is_alive()
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return false;
 
-   if (!get_run() || !m_pimpl->get_run())
+   if (!m_bRun)
       return false;
 
    //if ((::get_tick_count() - m_dwAlive) > ((5000) * 91))
@@ -308,10 +308,10 @@ bool thread::is_alive()
 bool thread::has_message()
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return false;
 
-   return m_pimpl->has_message();
+   return m_pthreadimpl->has_message();
 
 
 }
@@ -320,10 +320,7 @@ bool thread::has_message()
 bool thread::is_auto_delete()
 {
 
-   if(m_pimpl.is_null())
-      return false;
-
-   return m_pimpl->is_auto_delete();
+   return m_bAutoDelete;
 
 }
 
@@ -331,10 +328,10 @@ bool thread::is_auto_delete()
 wait_result thread::wait(const duration & duration)
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return wait_result();
 
-   return m_pimpl->wait(duration);
+   return m_pthreadimpl->wait(duration);
 
 }
 
@@ -342,20 +339,20 @@ wait_result thread::wait(const duration & duration)
 void thread::set_priority(int32_t priority)
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return;
 
-   m_pimpl->set_priority(priority);
+   m_pthreadimpl->set_priority(priority);
 
 }
 
 int32_t thread::priority()
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return 0x80000000;
 
-   return m_pimpl->priority();
+   return m_pthreadimpl->priority();
 
 }
 
@@ -372,10 +369,10 @@ CLASS_DECL_BASE void thread_alloc_ready(bool bReady)
 void thread::process_message_filter(int32_t code, signal_details * pobj)
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return;
 
-   return  m_pimpl->process_message_filter(code, pobj);
+   return  m_pthreadimpl->process_message_filter(code, pobj);
 
 }
 
@@ -383,20 +380,20 @@ void thread::process_message_filter(int32_t code, signal_details * pobj)
 bool thread::post_message(sp(::user::interaction) pui, UINT message, WPARAM wParam, lparam lParam)
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return false;
 
-   return m_pimpl->post_message(pui, message, wParam, lParam);
+   return m_pthreadimpl->post_message(pui, message, wParam, lParam);
 
 }
 
 bool thread::pre_init_instance()
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return false;
 
-   return m_pimpl->pre_init_instance();
+   return m_pthreadimpl->pre_init_instance();
 
 }
 
@@ -406,10 +403,10 @@ bool thread::on_run_exception(::exception::exception & e)
    try
    {
 
-      if (m_pimpl.is_null())
+      if (m_pthreadimpl.is_null())
          return false;
 
-      return m_pimpl->on_run_exception(e);
+      return m_pthreadimpl->on_run_exception(e);
 
    }
    catch (::exception::standard_access_violation &)
@@ -436,10 +433,10 @@ bool thread::on_run_exception(::exception::exception & e)
 bool thread::initialize_instance()
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return false;
 
-   return m_pimpl->initialize_instance();
+   return m_pthreadimpl->initialize_instance();
 
 }
 
@@ -447,30 +444,27 @@ bool thread::initialize_instance()
 message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return ::message::PrototypeNone;
 
-   return m_pimpl->GetMessagePrototype(uiMessage, uiCode);
+   return m_pthreadimpl->GetMessagePrototype(uiMessage, uiCode);
 
 }
 
 bool thread::pre_run()
 {
 
-   if(m_pimpl.is_null())
-      return true;
-
-   return m_pimpl->pre_run();
+   return true;
 
 }
 
 int32_t thread::run()
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return -1;
 
-   return m_pimpl->run();
+   return m_pthreadimpl->run();
 
 }
 
@@ -478,10 +472,10 @@ int32_t thread::run()
 void thread::pre_translate_message(signal_details * pobj)
 {
 
-   if (m_pimpl.is_null())
+   if (m_pthreadimpl.is_null())
       return;
 
-   return m_pimpl->pre_translate_message(pobj);
+   return m_pthreadimpl->pre_translate_message(pobj);
 
 }
 
@@ -489,10 +483,10 @@ void thread::pre_translate_message(signal_details * pobj)
 bool thread::pump_message()
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return false;
 
-   return m_pimpl->pump_message();
+   return m_pthreadimpl->pump_message();
 
 }
 
@@ -500,10 +494,10 @@ bool thread::pump_message()
 bool thread::on_idle(LONG lCount)
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return false;
 
-   return m_pimpl->on_idle(lCount);
+   return m_pthreadimpl->on_idle(lCount);
 
 }
 
@@ -511,10 +505,10 @@ bool thread::on_idle(LONG lCount)
 bool thread::is_idle_message(signal_details * pobj)
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return false;
 
-   return m_pimpl->is_idle_message(pobj);
+   return m_pthreadimpl->is_idle_message(pobj);
 
 }
 
@@ -522,10 +516,10 @@ bool thread::is_idle_message(signal_details * pobj)
 bool thread::is_idle_message(LPMESSAGE lpmsg)
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return false;
 
-   return m_pimpl->is_idle_message(lpmsg);
+   return m_pthreadimpl->is_idle_message(lpmsg);
 
 }
 
@@ -533,10 +527,10 @@ bool thread::is_idle_message(LPMESSAGE lpmsg)
 int32_t thread::exit_instance()
 {
 
-   if (m_pimpl.is_null())
+   if (m_pthreadimpl.is_null())
       return 0;
 
-   return m_pimpl->exit_instance();
+   return m_pthreadimpl->exit_instance();
 
 }
 
@@ -544,10 +538,10 @@ int32_t thread::exit_instance()
 void thread::process_window_procedure_exception(::exception::base* e, signal_details * pobj)
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return;
 
-   return m_pimpl->process_window_procedure_exception(e,pobj);
+   return m_pthreadimpl->process_window_procedure_exception(e,pobj);
 
 }
 
@@ -556,10 +550,10 @@ void thread::process_window_procedure_exception(::exception::base* e, signal_det
 void thread::add(sp(::user::interaction) pui)
 {
 
-   if (m_pimpl.is_null())
+   if (m_pthreadimpl.is_null())
       return;
 
-   m_pimpl->add(pui);
+   m_pthreadimpl->add(pui);
 
 }
 
@@ -567,10 +561,10 @@ void thread::add(sp(::user::interaction) pui)
 void thread::remove(::user::interaction * pui)
 {
 
-   if (m_pimpl.is_null())
+   if (m_pthreadimpl.is_null())
       return;
 
-   m_pimpl->remove(pui);
+   m_pthreadimpl->remove(pui);
 
 }
 
@@ -578,10 +572,10 @@ void thread::remove(::user::interaction * pui)
 ::count thread::get_ui_count()
 {
 
-   if (m_pimpl.is_null())
+   if (m_pthreadimpl.is_null())
       return 0;
 
-   return m_pimpl->get_ui_count();
+   return m_pthreadimpl->get_ui_count();
 
 }
 
@@ -589,10 +583,10 @@ void thread::remove(::user::interaction * pui)
 ::user::interaction * thread::get_ui(index iIndex)
 {
 
-   if (m_pimpl.is_null())
+   if (m_pthreadimpl.is_null())
       return NULL;
 
-   return m_pimpl->get_ui(iIndex);
+   return m_pthreadimpl->get_ui(iIndex);
 
 }
 
@@ -600,10 +594,10 @@ void thread::remove(::user::interaction * pui)
 void thread::set_timer(sp(::user::interaction) pui, uint_ptr nIDEvent, UINT nEllapse)
 {
 
-   if (m_pimpl.is_null())
+   if (m_pthreadimpl.is_null())
       return;
 
-   m_pimpl->set_timer(pui, nIDEvent, nEllapse);
+   m_pthreadimpl->set_timer(pui, nIDEvent, nEllapse);
 
 }
 
@@ -611,10 +605,10 @@ void thread::set_timer(sp(::user::interaction) pui, uint_ptr nIDEvent, UINT nEll
 void thread::unset_timer(sp(::user::interaction) pui, uint_ptr nIDEvent)
 {
 
-   if (m_pimpl.is_null())
+   if (m_pthreadimpl.is_null())
       return;
 
-   m_pimpl->unset_timer(pui, nIDEvent);
+   m_pthreadimpl->unset_timer(pui, nIDEvent);
 
 }
 
@@ -622,10 +616,7 @@ void thread::unset_timer(sp(::user::interaction) pui, uint_ptr nIDEvent)
 void thread::set_auto_delete(bool bAutoDelete)
 {
 
-   if (m_pimpl.is_null())
-      return;
-
-   m_pimpl->set_auto_delete(bAutoDelete);
+   m_bAutoDelete = bAutoDelete;
 
 }
 
@@ -633,10 +624,7 @@ void thread::set_auto_delete(bool bAutoDelete)
 void thread::set_run(bool bRun)
 {
 
-   if (m_pimpl.is_null())
-      return;
-
-   m_pimpl->set_run(bRun);
+   m_bRun = bRun;
 
 }
 
@@ -644,10 +632,10 @@ void thread::set_run(bool bRun)
 event & thread::get_finish_event()
 {
 
-   if (m_pimpl.is_null())
+   if (m_pthreadimpl.is_null())
       return *((event *)NULL);
 
-   return m_pimpl->get_finish_event();
+   return m_pthreadimpl->get_finish_event();
 
 }
 
@@ -655,10 +643,7 @@ event & thread::get_finish_event()
 bool thread::get_run()
 {
 
-   if (m_pimpl.is_null())
-      return false;
-
-   return m_pimpl->get_run();
+   return m_bRun;
 
 }
 
@@ -668,10 +653,7 @@ bool thread::get_run()
 sp(::user::interaction) thread::get_active_ui()
 {
 
-   if (m_pimpl.is_null())
-      return NULL;
-
-   return m_pimpl->get_active_ui();
+   return m_puiActive;
 
 }
 
@@ -679,20 +661,18 @@ sp(::user::interaction) thread::get_active_ui()
 sp(::user::interaction) thread::set_active_ui(sp(::user::interaction) pui)
 {
 
-   if (m_pimpl.is_null())
-      return NULL;
-
-   return m_pimpl->set_active_ui(pui);
+   return m_puiActive = pui;
 
 }
+
 
 void thread::step_timer()
 {
 
-   if (m_pimpl.is_null())
+   if (m_pthreadimpl.is_null())
       return;
 
-   return m_pimpl->step_timer();
+   return m_pthreadimpl->step_timer();
 
 }
 
@@ -700,7 +680,7 @@ void thread::step_timer()
 bool thread::on_run_step()
 {
 
-   if (m_pimpl.is_null())
+   if (m_pthreadimpl.is_null())
       return false;
 
 
@@ -708,7 +688,7 @@ bool thread::on_run_step()
 
    sp(::base::application) papp = (this);
 
-   m_dwAlive = m_dwAlive = ::get_tick_count();
+   m_dwAlive = ::get_tick_count();
 
    if (papp != NULL)
    {
@@ -718,8 +698,6 @@ bool thread::on_run_step()
    }
 
    sp(::base::application) pappP = (this);
-
-   m_pimpl->m_dwAlive = m_dwAlive = ::get_tick_count();
 
    if (pappP != NULL)
    {
@@ -761,7 +739,7 @@ bool thread::on_run_step()
 int32_t thread::main()
 {
 
-   return m_pimpl->main();
+   return m_pthreadimpl->main();
 
 }
 
@@ -770,10 +748,10 @@ int32_t thread::main()
 void thread::assert_valid() const
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return;
 
-   m_pimpl->assert_valid();
+   m_pthreadimpl->assert_valid();
 
 }
 
@@ -781,10 +759,10 @@ void thread::assert_valid() const
 void thread::dump(dump_context & dumpcontext) const
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return;
 
-   m_pimpl->dump(dumpcontext);
+   m_pthreadimpl->dump(dumpcontext);
 
 }
 
@@ -800,21 +778,17 @@ void thread::Delete()
 
 void thread::dispatch_thread_message(signal_details * pobj)  // helper
 {
-
-   if(m_pimpl.is_null())
-      return;
-
-   return m_pimpl->dispatch_thread_message(pobj);
+   m_pthreadimpl->dispatch_thread_message(pobj);
 
 }
 
 void thread::wait()
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return;
 
-   return m_pimpl->wait();
+   return m_pthreadimpl->wait();
 
 }
 
@@ -822,10 +796,10 @@ void thread::wait()
 int_ptr thread::item() const
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return -1;
 
-   return m_pimpl->item();
+   return m_pthreadimpl->item();
 
 }
 
@@ -833,10 +807,10 @@ int_ptr thread::item() const
 int thread::get_x_window_count() const
 {
 
-   if (m_pimpl.is_null())
+   if (m_pthreadimpl.is_null())
       return 0;
 
-   return m_pimpl->get_x_window_count();
+   return m_pthreadimpl->get_x_window_count();
 
 }
 
@@ -846,10 +820,10 @@ int thread::get_x_window_count() const
 void thread::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
 {
 
-   if(m_pimpl.is_null())
+   if(m_pthreadimpl.is_null())
       return;
 
-   m_pimpl->post_to_all_threads(message,wparam,lparam);
+   m_pthreadimpl->post_to_all_threads(message,wparam,lparam);
 
 }
 

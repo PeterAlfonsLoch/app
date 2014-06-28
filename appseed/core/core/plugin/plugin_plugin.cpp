@@ -895,7 +895,7 @@ namespace plugin
       try
       {
 
-         thread * pthread = System.thread::m_pimpl;
+         thread * pthread = &System;
 
          if(pthread->get_run())
          {
