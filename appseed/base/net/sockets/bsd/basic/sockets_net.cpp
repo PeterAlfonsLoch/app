@@ -32,9 +32,14 @@ namespace sockets
    bool net::initialize()
    {
 
-      Application.gudo_get("sockets::net::m_mapCache",m_mapCache);
+      if(System.m_bGudoNetCache)
+      {
 
-      Application.gudo_get("sockets::net::m_mapReverseCache",m_mapReverseCache);
+         Application.gudo_get("sockets::net::m_mapCache",m_mapCache);
+
+         Application.gudo_get("sockets::net::m_mapReverseCache",m_mapReverseCache);
+
+      }
 
       return true;
 
@@ -279,7 +284,12 @@ namespace sockets
       item.m_dwLastChecked = ::get_tick_count();
       m_mapCache.set_at(str, item);
 
-      Application.gudo_set("sockets::net::m_mapCache",m_mapCache);
+      if(System.m_bGudoNetCache)
+      {
+
+         Application.gudo_set("sockets::net::m_mapCache",m_mapCache);
+
+      }
 
 //      uint32_t dwTimeProfile2 = get_tick_count();
 //      TRACE("DNS Lookup net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",

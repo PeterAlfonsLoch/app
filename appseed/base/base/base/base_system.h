@@ -107,6 +107,7 @@ namespace base
       bool                                         m_bMatterFromHttpCache;
       bool                                         m_bSystemSynchronizedCursor;
       bool                                         m_bSystemSynchronizedScreen;
+      bool                                         m_bGudoNetCache;
 
 #ifdef WINDOWSEX
 

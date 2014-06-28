@@ -194,6 +194,9 @@ namespace base
       m_spmutexUserAppData = canew(mutex(get_app(),false,"Local\\ca2.UserAppData"));
       m_spmutexSystemAppData = canew(mutex(get_app(),false,"Global\\ca2.SystemAppData"));
 
+
+      m_bGudoNetCache = true;
+
    }
 
 
