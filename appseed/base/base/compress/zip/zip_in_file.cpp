@@ -4,10 +4,11 @@
 namespace zip
 {
 
-   InFile::InFile(sp(::base::application) papp) :
+   InFile::InFile(sp(::base::application) papp):
       element(papp)
    {
-      
+
+   }
 
    InFile::~InFile()
    {
