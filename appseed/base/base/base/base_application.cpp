@@ -4384,25 +4384,29 @@ namespace base
 
       synch_lock sl(System.m_spmutexUserAppData);
 
-      ::file::binary_buffer_sp file = Application.file_get_file(Application.dir().userappdata(strPath),::file::mode_read);
-
-      if(file.is_null())
       {
 
-         return false;
+         ::file::binary_buffer_sp file = Application.file_get_file(Application.dir().userappdata(strPath),::file::mode_read);
 
-      }
+         if(file.is_null())
+         {
 
-      ::file::byte_input_stream is(file);
+            return false;
 
-      try
-      {
+         }
 
-         obj.read(is);
+         ::file::byte_input_stream is(file);
 
-      }
-      catch(...)
-      {
+         try
+         {
+
+            obj.read(is);
+
+         }
+         catch(...)
+         {
+
+         }
 
       }
 
@@ -4419,25 +4423,29 @@ namespace base
 
       synch_lock sl(System.m_spmutexUserAppData);
 
-      ::file::binary_buffer_sp file = Application.file_get_file(Application.dir().userappdata(strPath),::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
-
-      if(file.is_null())
       {
 
-         return false;
+         ::file::binary_buffer_sp file = Application.file_get_file(Application.dir().userappdata(strPath),::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
 
-      }
+         if(file.is_null())
+         {
 
-      ::file::byte_output_stream os(file);
+            return false;
 
-      try
-      {
+         }
 
-         obj.write(os);
+         ::file::byte_output_stream os(file);
 
-      }
-      catch(...)
-      {
+         try
+         {
+
+            obj.write(os);
+
+         }
+         catch(...)
+         {
+
+         }
 
       }
 
