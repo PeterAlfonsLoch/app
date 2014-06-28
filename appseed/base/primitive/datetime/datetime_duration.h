@@ -158,13 +158,17 @@ int64_t duration::get_total_milliseconds() const
 
 os_lock_duration duration::os_lock_duration() const
 {
+
    if(is_pos_infinity())
-      return 0xfffffffe;
-//      return INFINITE;
+      return INFINITE;
+
    if(get_total_milliseconds() >= 0xffffffff)
       return 0xfffffffe;
+
    return (uint32_t) get_total_milliseconds();
+
 }
+
 
 duration::operator ::os_lock_duration() const
 {
