@@ -28,8 +28,6 @@ namespace android
 
       m_iFile = (UINT) hFileNull;
 
-      m_bCloseOnDelete = TRUE;
-
    }
 
    file::file(sp(::base::application) papp, int32_t hFile) :
@@ -37,8 +35,6 @@ namespace android
    {
 
       m_iFile = hFile;
-
-      m_bCloseOnDelete = TRUE;
 
    }
 
@@ -56,7 +52,7 @@ namespace android
    file::~file()
    {
 
-      if (m_iFile != (UINT)hFileNull && m_bCloseOnDelete)
+      if (m_iFile != (UINT)hFileNull)
          close();
 
    }
@@ -74,7 +70,6 @@ namespace android
       file* pFile = new file(get_app(), iNew);
       pFile->m_iFile = (UINT)iNew;
       ASSERT(pFile->m_iFile != (UINT)hFileNull);
-      pFile->m_bCloseOnDelete = m_bCloseOnDelete;
       return pFile;
    }
 
@@ -97,7 +92,6 @@ namespace android
          System.dir_mk(System.dir_name(lpszFileName));
       }
 
-      m_bCloseOnDelete = FALSE;
       m_iFile = (UINT)hFileNull;
       m_strFileName.Empty();
 
@@ -234,10 +228,10 @@ namespace android
 
       m_iFile = (int32_t)hFile;
 
-      m_bCloseOnDelete = TRUE;
-
       return TRUE;
+
    }
+
 
    ::primitive::memory_size file::read(void * lpBuf, ::primitive::memory_size nCount)
    {
@@ -373,12 +367,12 @@ namespace android
          bError = ::close(m_iFile) == -1;
 
       m_iFile = (UINT) hFileNull;
-      m_bCloseOnDelete = FALSE;
       m_strFileName.Empty();
 
       if (bError)
          file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
    }
+
 
    void file::Abort()
    {

@@ -41,7 +41,6 @@ namespace zip {
         };
 
         unz_file_info m_fi;
-        bool m_bCloseOnDelete;
         string m_strFileName;
         uint64_t m_iPosition;
         stringa m_straPath;

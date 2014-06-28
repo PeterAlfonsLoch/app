@@ -7,12 +7,11 @@ namespace zip
    InFile::InFile(sp(::base::application) papp) :
       element(papp)
    {
-      m_bCloseOnDelete = true;
-   }
+      
 
    InFile::~InFile()
    {
-      if(get_zip_file() != NULL && m_bCloseOnDelete)
+      if(get_zip_file() != NULL)
          close();
    }
 
@@ -359,7 +358,6 @@ namespace zip
       m_izfilea.remove_all();
       m_straPath.remove_all();
       m_straPrefix.remove_all();
-      m_bCloseOnDelete = false;
       m_strFileName.Empty();
 
       if (bError)

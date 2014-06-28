@@ -19,8 +19,6 @@ namespace windows
 
       m_hFile = (UINT) hFileNull;
 
-      m_bCloseOnDelete = TRUE;
-
    }
 
    file::file(sp(::base::application) papp, int32_t hFile) :
@@ -28,8 +26,6 @@ namespace windows
    {
 
       m_hFile = hFile;
-
-      m_bCloseOnDelete = TRUE;
 
    }
 
@@ -47,7 +43,7 @@ namespace windows
    file::~file()
    {
 
-      if (m_hFile != (UINT)hFileNull && m_bCloseOnDelete)
+      if (m_hFile != (UINT)hFileNull)
          close();
 
    }
@@ -68,9 +64,11 @@ namespace windows
       }
       pFile->m_hFile = (UINT)hFile;
       ASSERT(pFile->m_hFile != (UINT)hFileNull);
-      pFile->m_bCloseOnDelete = m_bCloseOnDelete;
+
       return pFile;
+
    }
+
 
    bool file::open(const char * lpszFileName, UINT nOpenFlags)
    {
@@ -97,7 +95,6 @@ namespace windows
          System.dir_mk(System.dir_name(lpszFileName));
       }
 
-      m_bCloseOnDelete = FALSE;
       m_hFile = (UINT)hFileNull;
       m_strFileName.Empty();
 
@@ -242,8 +239,6 @@ namespace windows
 
       m_hFile = (HFILE)hFile;
 
-      m_bCloseOnDelete = TRUE;
-
       return TRUE;
    }
 
@@ -352,7 +347,6 @@ namespace windows
       }
 
       m_hFile = (UINT) hFileNull;
-      m_bCloseOnDelete = FALSE;
 
       if (bError)
          file_exception::ThrowOsError(get_app(), dwLastError, m_strFileName);

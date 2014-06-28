@@ -11,18 +11,19 @@ stdio_file::stdio_file(sp(::base::application) papp) :
    element(papp),
    ::android::file(papp)
 {
+
    m_pStream = NULL;
+
 }
+
 
 stdio_file::~stdio_file()
 {
-//   ASSERT_VALID(this);
 
-//   if (m_pStream != NULL && m_bCloseOnDelete)
-      //close();
    if (m_pStream != NULL)
       close();
 }
+
 
 bool stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
 {
@@ -37,9 +38,6 @@ bool stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
    m_pStream = NULL;
    //if (!::android::file::open(lpszFileName, (nOpenFlags & ~::file::type_text)))
      // return FALSE;
-
-//   ASSERT(m_hFile != hFileNull);
-  // ASSERT(m_bCloseOnDelete);
 
    char szMode[4]; // C-runtime open string
    int32_t nMode = 0;
@@ -286,8 +284,6 @@ void stdio_file::close()
    if (m_pStream != NULL)
       nErr = fclose(m_pStream);
 
-//   m_hFile = (UINT) hFileNull;
-   m_bCloseOnDelete = FALSE;
    m_pStream = NULL;
 
    if (nErr != 0)
@@ -299,12 +295,12 @@ void stdio_file::Abort()
 {
    ASSERT_VALID(this);
 
-   if (m_pStream != NULL && m_bCloseOnDelete)
+   if (m_pStream != NULL)
       fclose(m_pStream);  // close but ignore errors
-//   m_hFile = (UINT) hFileNull;
    m_pStream = NULL;
-   m_bCloseOnDelete = FALSE;
+
 }
+
 
 ::file::buffer_sp stdio_file::Duplicate() const
 {

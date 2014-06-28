@@ -31,12 +31,10 @@ namespace file
 
    simple_binary_buffer::~simple_binary_buffer()
    {
-      //   ASSERT_VALID(this);
 
-      //   if (m_pfile != NULL && m_bCloseOnDelete)
-      //close();
       if (m_pfile != NULL)
          close();
+
    }
 
 

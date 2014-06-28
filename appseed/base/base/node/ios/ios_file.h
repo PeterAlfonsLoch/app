@@ -46,10 +46,9 @@ namespace ios
       };
       
       zip::Util *    m_pziputil;
-      bool           m_bCloseOnDelete;
       string         m_strFileName;
       wstring        m_wstrFileName;
-      int32_t            m_iFile;
+      int32_t        m_iFile;
       
       
       file(::base::application * papp);
