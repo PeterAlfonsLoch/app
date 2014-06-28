@@ -1668,6 +1668,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base\base_fixed_alloc.h" />
     <ClInclude Include="base\base\base_fixed_alloc_impl.h" />
     <ClInclude Include="base\base\base_flags.h" />
+    <ClInclude Include="base\base\base_gudo.h" />
+    <ClInclude Include="base\base\base_gudo_application.h" />
     <ClInclude Include="base\base\base_heap.h" />
     <ClInclude Include="base\base\base_heap_item.h" />
     <ClInclude Include="base\base\base_heap_item_array.h" />
@@ -2974,6 +2976,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="filesystem\fs\fs_remote_native_fs.h" />
     <ClInclude Include="filesystem\fs\fs_set.h" />
     <ClCompile Include="base\base\base_application_interface.cpp" />
+    <ClCompile Include="base\base\base_gudo.cpp" />
     <ClCompile Include="base\base\base_id_pool.cpp" />
     <ClCompile Include="base\base\base_print_job.cpp" />
     <ClCompile Include="base\base\base_session_interface.cpp" />

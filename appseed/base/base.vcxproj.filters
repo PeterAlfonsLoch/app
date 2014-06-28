@@ -4622,6 +4622,12 @@
     <ClInclude Include="user\user\user_interaction_impl_base.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="base\base\base_gudo.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_gudo_application.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -8773,6 +8779,9 @@
     <ClCompile Include="user\user\user_interaction_child.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="base\base\base_gudo.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -8966,6 +8975,9 @@
     </None>
     <None Include="base\message\message.inl">
       <Filter>Header Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

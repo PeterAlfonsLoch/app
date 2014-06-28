@@ -64,9 +64,8 @@ void thread::CommonConstruct()
    m_pappDelete = NULL;
    m_pbReady = NULL;
 
-   m_pappDelete = NULL;
-   m_pbReady = NULL;
-   m_bReady = false;
+   m_puiActive = NULL;
+   m_puiMain = NULL;
 
    m_iReturnCode = 0;
 
@@ -182,6 +181,9 @@ bool thread::create_thread_synch(int32_t * piStartupError,int32_t epriority,uint
 
 bool thread::finalize()
 {
+
+   if(m_pthreadimpl == NULL)
+      return true;
 
    m_pthreadimpl->finalize();
 

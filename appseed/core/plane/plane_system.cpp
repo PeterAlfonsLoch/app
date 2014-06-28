@@ -80,7 +80,6 @@ namespace plane
 
 
 
-      m_net.set_app(this);
       m_stra.set_app(this);
 //      m_url.set_app(this);
       m_userset.set_app(this);

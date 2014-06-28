@@ -19,8 +19,13 @@ namespace sockets
 
 
    net::net(sp(::base::application) papp) :
-      element(papp)
+      element(papp),
+      m_mapCache(papp,"sockets::net::m_mapCache"),
+      m_mapReverseCache(papp,"sockets::net::m_mapReverseCache")
    {
+
+      m_mapCache.m_bAutoGudoSet = false;
+      m_mapReverseCache.m_bAutoGudoSet = false;
 
    }
 
@@ -35,11 +40,24 @@ namespace sockets
       //if(System.m_bGudoNetCache)
       {
 
-         Application.gudo_get("sockets::net::m_mapCache",m_mapCache);
+         //Application.gudo_get("sockets::net::m_mapCache",m_mapCache);
 
-         Application.gudo_get("sockets::net::m_mapReverseCache",m_mapReverseCache);
+         //Application.gudo_get("sockets::net::m_mapReverseCache",m_mapReverseCache);
 
       }
+
+
+      return true;
+
+   }
+
+
+   bool net::finalize()
+   {
+
+      m_mapCache.gudo_set();
+
+      m_mapReverseCache.gudo_set();
 
       return true;
 
@@ -287,7 +305,7 @@ namespace sockets
       //if(System.m_bGudoNetCache)
       {
 
-         Application.gudo_set("sockets::net::m_mapCache",m_mapCache);
+         //Application.gudo_set("sockets::net::m_mapCache",m_mapCache);
 
       }
 

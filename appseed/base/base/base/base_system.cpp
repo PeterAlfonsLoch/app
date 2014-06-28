@@ -61,13 +61,12 @@ namespace base
       m_urldepartament(this),
       //m_mutexDelete(this),
       m_httpsystem(this),
-      m_net(this)
       //m_mutex(this),
 #ifndef METROWIN
       //m_processsection(this),
 #endif
       //m_visual(this),
-      ,m_libraryDraw2d(this)
+      m_libraryDraw2d(this)
    {
 
 
@@ -264,7 +263,20 @@ namespace base
       if(!m_spcrypto.is_set())
          return false;
 
-      if(!m_net.initialize())
+      m_spnet = canew(::sockets::net(this));
+      //m_spnet.create(allocer());
+
+      if(m_spnet.is_null())
+      {
+         
+         m_iReturnCode = -1986;
+
+         return false;
+
+      }
+       
+
+      if(!m_spnet->initialize())
          return false;
 
       if(!set_main_init_data(m_pinitmaindata))
@@ -349,6 +361,25 @@ namespace base
 
       __wait_threading_count(::millis((5000) * 8));
 
+      try
+      {
+
+         if(!m_spnet->finalize())
+         {
+          
+            m_iReturnCode = -87;
+
+         }
+
+      }
+      catch(...)
+      {
+
+         m_iReturnCode = -87;
+
+      }
+
+
       ::base::application::exit_instance();
 
 #ifdef WINDOWS
@@ -373,6 +404,18 @@ namespace base
 
       }
 
+      try
+      {
+
+         m_spnet.release();
+
+      }
+      catch(...)
+      {
+
+         m_iReturnCode = -86;
+
+      }
 
       if(m_psslinit != NULL)
       {
@@ -539,7 +582,7 @@ namespace base
 
    ::sockets::net & system::net()
    {
-      return m_net;
+      return *m_spnet;
    }
 
 
