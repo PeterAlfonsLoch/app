@@ -244,7 +244,7 @@ namespace windows
 
          PostNcDestroy();
 
-         return FALSE;
+         return false;
 
       }
 
@@ -255,7 +255,14 @@ namespace windows
 
       }
 
-      hook_window_create(this);
+      if(!hook_window_create(this))
+      {
+
+         PostNcDestroy();
+
+         return false;
+
+      }
 
       oswindow oswindow = ::CreateWindowEx(cs.dwExStyle,cs.lpszClass,cs.lpszName,cs.style,cs.x,cs.y,cs.cx,cs.cy,cs.hwndParent,cs.hMenu,cs.hInstance,cs.lpCreateParams);
 
@@ -5392,11 +5399,17 @@ WNDPROC CLASS_DECL_BASE __get_window_procedure()
 
 
 
-CLASS_DECL_BASE void hook_window_create(::windows::interaction_impl * pwindow)
+CLASS_DECL_BASE bool hook_window_create(::windows::interaction_impl * pwindow)
 {
-   
+
+   if(pwindow == NULL)
+      return false;
+
+   if(pwindow->get_handle() != NULL)
+      return false;
+
    if(t_pwndInit == pwindow)
-      return;
+      return true;
 
    if(t_hHookOldCbtFilter == NULL)
    {
@@ -5406,23 +5419,27 @@ CLASS_DECL_BASE void hook_window_create(::windows::interaction_impl * pwindow)
       if(t_hHookOldCbtFilter == NULL)
       {
 
-         throw memory_exception(pwindow->get_app());
+         return false;
 
       }
 
    }
 
-   ASSERT(t_hHookOldCbtFilter != NULL);
+   if(t_hHookOldCbtFilter == NULL)
+      return false;
 
-   ASSERT(pwindow != NULL);
-
-   ASSERT(pwindow->get_handle() == NULL);   // only do once
-
-   ASSERT(t_pwndInit == NULL);   // hook not already in progress
+   if(t_pwndInit != NULL)
+      return false;
 
    t_pwndInit = pwindow;
 
-   ASSERT(t_pwndInit != NULL);   // hook not already in progress
+   if(t_pwndInit == NULL)   // hook not already in progress
+      return false;
+
+   if(t_pwndInit != pwindow)
+      return false;
+   
+   return true;
 
 }
 

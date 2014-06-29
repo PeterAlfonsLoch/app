@@ -6674,13 +6674,13 @@ __STATIC void CLASS_DECL_BASE __post_init_dialog(
 
 
 
-CLASS_DECL_BASE void hook_window_create(sp(::user::interaction) pWnd)
+CLASS_DECL_BASE bool hook_window_create(sp(::user::interaction) pWnd)
 {
 
 //      throw not_implemented(::get_thread_app());
    ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
    if (pThreadState->m_pWndInit == pWnd)
-      return;
+      return true;
 
 //   if (pThreadState->m_hHookOldCbtFilter == NULL)
 //   {

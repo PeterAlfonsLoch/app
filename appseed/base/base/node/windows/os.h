@@ -58,7 +58,7 @@ namespace windows
 
 
 // interaction_impl creation hooking
-CLASS_DECL_BASE void hook_window_create(::windows::interaction_impl * pwindow);
+CLASS_DECL_BASE bool hook_window_create(::windows::interaction_impl * pwindow);
 CLASS_DECL_BASE bool unhook_window_create();
 CLASS_DECL_BASE void reset_message_cache();
 
