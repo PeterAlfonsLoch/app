@@ -4677,7 +4677,7 @@ namespace windows
       SCAST_PTR(::message::base,pbase,pobj);
       if(BaseSession.get_cursor() != NULL && BaseSession.get_cursor()->m_ecursor != ::visual::cursor_system)
       {
-         ::SetCursor(NULL);
+         //::SetCursor(NULL);
       }
       pbase->set_lresult(1);
       pbase->m_bRet = true;

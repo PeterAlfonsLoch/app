@@ -58,7 +58,7 @@ namespace base
       pset->m_spafsdata.add(new ::fs::native(this));
       m_spfsdata = pset;
 
-      m_bDrawCursor              = true;
+      m_bDrawCursor              = false;
       m_ecursorDefault  = ::visual::cursor_arrow;
       m_ecursor         = ::visual::cursor_default;
 
@@ -135,6 +135,12 @@ namespace base
    {
 
       m_ecursor = ecursor;
+
+#ifdef WINDOWSEX
+
+      ::SetCursor(get_cursor()->get_HCURSOR());
+
+#endif
 
    }
 
