@@ -411,7 +411,7 @@ namespace user
 
 #endif
 
-      cs.lpCreateParams = (LPVOID) NULL;
+      cs.lpCreateParams = (LPVOID)NULL;
 
       m_pui->pre_create_window(cs);
 
@@ -601,7 +601,7 @@ namespace user
       ::oswindow oswindow_Parent = ::GetParent(oswindow);
       ASSERT(oswindow_Parent != NULL);
 
-      if (lpLayout != NULL && lpLayout->hDWP == NULL)
+      if(lpLayout != NULL && lpLayout->hDWP == NULL)
          return;
 
       // first check if the new rectangle is the same as the current
@@ -623,7 +623,7 @@ namespace user
          return;     // nothing to do
 
       // try to use DeferWindowPos for speed, otherwise use SetWindowPos
-      if (lpLayout != NULL)
+      if(lpLayout != NULL)
       {
 
 #ifdef WINDOWS
@@ -641,9 +641,9 @@ namespace user
       }
       else
       {
-         ::SetWindowPos(oswindow, NULL, lpRect->left, lpRect->top,
-            lpRect->right - lpRect->left, lpRect->bottom - lpRect->top,
-            SWP_NOACTIVATE|SWP_NOZORDER);
+         ::SetWindowPos(oswindow,NULL,lpRect->left,lpRect->top,
+            lpRect->right - lpRect->left,lpRect->bottom - lpRect->top,
+            SWP_NOACTIVATE | SWP_NOZORDER);
       }
 
 #endif
@@ -805,7 +805,7 @@ namespace user
       }
       if(pbase->m_uiMessage == ::message::message_event)
       {
-            m_pui->BaseOnControlEvent((control_event *)pbase->m_lparam.m_lparam);
+         m_pui->BaseOnControlEvent((control_event *)pbase->m_lparam.m_lparam);
          return;
       }
       (this->*m_pfnDispatchWindowProc)(pobj);
@@ -1045,6 +1045,24 @@ namespace user
    bool interaction_child::SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
    {
 
+      send_message(WM_SIZE,0,MAKELONG(max(0,cx),max(0,cy)));
+
+      send_message(WM_MOVE);
+
+      if(nFlags & SWP_SHOWWINDOW)
+      {
+
+         ShowWindow(SW_SHOW);
+
+      }
+
+      if(!(nFlags & SWP_NOREDRAW))
+      {
+
+         _001RedrawWindow();
+
+      }
+
       return true;
 
    }
@@ -1052,7 +1070,7 @@ namespace user
 
    bool interaction_child::RedrawWindow(LPCRECT lpRectUpdate,::draw2d::region* prgnUpdate,UINT flags)
    {
-      
+
       UNREFERENCED_PARAMETER(lpRectUpdate);
       UNREFERENCED_PARAMETER(prgnUpdate);
       UNREFERENCED_PARAMETER(flags);

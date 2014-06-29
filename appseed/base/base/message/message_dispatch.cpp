@@ -533,7 +533,7 @@ namespace message
    {
 
 
-      synch_lock ml(&user_mutex());
+      synch_lock ml(&message_dispatch_mutex());
 
       if(m_pfnDispatchWindowProc == &dispatch::_user_message_handler)
       {

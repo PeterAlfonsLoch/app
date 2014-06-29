@@ -300,12 +300,12 @@ void simple_frame_window::_001OnDisplayChange(signal_details * pobj)
 void simple_frame_window::_001OnSize(signal_details * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-   if ((m_workset.GetMovingManager() == NULL ||
-      m_workset.GetSizingManager() == NULL) || (!m_workset.GetMovingManager()->IsMoving()
-      && !m_workset.GetSizingManager()->IsSizing()))
-   {
-      _001RedrawWindow();
-   }
+   //if ((m_workset.GetMovingManager() == NULL ||
+   //   m_workset.GetSizingManager() == NULL) || (!m_workset.GetMovingManager()->IsMoving()
+   //   && !m_workset.GetSizingManager()->IsSizing()))
+   //{
+   //   _001RedrawWindow();
+   //}
 
    if (does_display_match())
    {

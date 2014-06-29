@@ -2940,6 +2940,14 @@ namespace user
    }
 
 
+   void interaction::_001UpdateWindow()
+   {
+
+      m_pimpl->_001UpdateWindow();
+
+   }
+
+
    void interaction::_001WindowMinimize()
    {
 
@@ -4183,10 +4191,15 @@ namespace user
 
    bool interaction::SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
    {
-      
-      synch_lock lock(m_pmutex);
 
-      //   rect64 rectOld = m_rectParentClient;
+      synch_lock slUserMutex(&user_mutex());
+
+      sp(interaction_impl) pimpl = m_pimpl;
+
+      synch_lock sl(pimpl.is_null() ? NULL : pimpl->mutex_graphics());
+
+      bool bOk = false;
+
 
       if(nFlags & SWP_NOMOVE)
       {
@@ -4215,47 +4228,6 @@ namespace user
             m_rectParentClient.right   = pt.x + cx;
             m_rectParentClient.bottom  = pt.y + cy;
          }
-      }
-
-      lock.unlock();
-
-      m_bRectOk = false;
-
-      //if(rectOld.size() != m_rectParentClient.size())
-      {
-
-#if defined(WINDOWS) || defined(LINUX) || defined(APPLEOS)
-
-         send_message(WM_SIZE,0,MAKELONG(max(0,m_rectParentClient.width()),max(0,m_rectParentClient.height())));
-
-#else
-
-         throw todo(get_app());
-
-#endif
-
-      }
-
-      //if(rectOld.top_left() != m_rectParentClient.top_left())
-      {
-
-#if defined(WINDOWS) || defined(LINUX) || defined(APPLEOS)
-
-         send_message(WM_MOVE);
-
-#else
-
-         throw todo(get_app());
-
-#endif
-
-      }
-
-      if(nFlags & SWP_SHOWWINDOW)
-      {
-
-         ShowWindow(SW_SHOW);
-
       }
 
       if(!(nFlags & SWP_NOZORDER))
@@ -4290,9 +4262,11 @@ namespace user
          }
       }
 
-      bool bOk = m_pimpl->SetWindowPos(z,x,y,cx,cy,nFlags);
+      bOk = m_pimpl->SetWindowPos(z,x,y,cx,cy,nFlags);
 
-      if(!(nFlags & SWP_NOREDRAW))
+      m_bRectOk = false;
+
+      if(!(nFlags & SWP_NOREDRAW) && IsWindowVisible())
       {
 
          _001RedrawWindow();

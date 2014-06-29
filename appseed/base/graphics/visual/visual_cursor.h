@@ -17,10 +17,23 @@ namespace visual
       //::draw2d::dib_sp        m_dibWork2;
       size                    m_szHotspotOffset;
 
+#ifdef WINDOWSEX
+
+      HCURSOR                 m_hcursor;
+
+#endif
+
 
       cursor(sp(::base::application) papp);
 
       bool to(::draw2d::graphics * pgraphics, point pt);
+
+
+#ifdef WINDOWSEX
+
+      HCURSOR get_HCURSOR();
+
+#endif
 
 
    };

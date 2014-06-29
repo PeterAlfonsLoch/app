@@ -79,20 +79,9 @@ namespace user
 
    void interaction_base::_001RedrawWindow()
    {
-      if(&System == NULL)
-         return;
 
-      // Currently does not redraw upon coercive request
-      // Only prodevian or netshare redraw
-
-      if(System.get_twf() != NULL )
-      {
-         if(!System.get_twf()->m_bProDevianMode)
-         {
-            synch_lock lock(System.get_twf());
-            GetWindow()->RedrawWindow();
-         }
-      }
+      GetWindow()->_001UpdateWindow();
+      
    }
 
 
@@ -2045,6 +2034,14 @@ namespace user
 
 
    void interaction_base::track_mouse_hover()
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
+
+   void interaction_base::_001UpdateWindow()
    {
 
       throw interface_only_exception(get_app());

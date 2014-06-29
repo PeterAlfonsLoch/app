@@ -140,6 +140,14 @@ mutex & user_mutex()
 
 }
 
+mutex & message_dispatch_mutex()
+{
+
+   static mutex * s_pmutexMessageDispatch = new mutex();
+
+   return *s_pmutexMessageDispatch;
+
+}
 
 
 

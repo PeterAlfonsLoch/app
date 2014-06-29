@@ -89,17 +89,17 @@ namespace windows
    interaction_impl::interaction_impl(sp(::base::application) papp):
       element(papp)
    {
-         m_pcallback = NULL;
-         set_handle(NULL);
-         m_pfnSuper = NULL;
-         m_nModalResult = 0;
-         m_bMouseHover = false;
-         m_puiCapture = NULL;
-         ZERO(m_size);
-         ZERO(m_pt);
-         m_pmutexGraphics = NULL;
-         m_bUpdateGraphics = false;
-      }
+      m_pcallback = NULL;
+      set_handle(NULL);
+      m_pfnSuper = NULL;
+      m_nModalResult = 0;
+      m_bMouseHover = false;
+      m_puiCapture = NULL;
+      ZERO(m_size);
+      ZERO(m_pt);
+      m_pmutexGraphics = NULL;
+      m_bUpdateGraphics = false;
+   }
 
 
    interaction_impl::~interaction_impl()
@@ -182,7 +182,7 @@ namespace windows
 
    sp(::user::interaction) interaction_impl::from_handle(oswindow oswindow)
    {
-      
+
       return ::window_from_handle(oswindow);
 
    }
@@ -515,7 +515,7 @@ namespace windows
          class rect rectWindow;
          ::GetWindowRect(get_handle(),rectWindow);
          m_pui->m_rectParentClient = rectWindow;
-       
+
       }
 
       /*      if(m_spdibMultAlphaWork.is_null())
@@ -584,14 +584,14 @@ namespace windows
 
       if(m_pui->m_pthread != NULL && m_pui->m_pthread->m_pthreadimpl.is_set())
       {
-         
+
          synch_lock sl(&m_pui->m_pthread->m_pthreadimpl->m_mutexUiPtra);
 
          if(m_pui->m_pthread->m_pthreadimpl->m_spuiptra.is_set())
          {
 
             m_pui->m_pthread->m_pthreadimpl->m_spuiptra->remove(m_pui);
-            
+
          }
 
       }
@@ -630,7 +630,7 @@ namespace windows
       m_pfnDispatchWindowProc = &interaction_impl::_start_user_message_handler;
       // call special post-cleanup routine
       m_pui->PostNcDestroy();
-//      PostNcDestroy();
+      //      PostNcDestroy();
    }
 
    void interaction_impl::PostNcDestroy()
@@ -837,7 +837,7 @@ namespace windows
    int32_t interaction_impl::OnCompareItem(int32_t /*nIDCtl*/,LPCOMPAREITEMSTRUCT lpCompareItemStruct)
    {
       // reflect notification to child interaction_impl control
-//      LRESULT lResult;
+      //      LRESULT lResult;
       //      if (ReflectLastMsg(lpCompareItemStruct->hwndItem, &lResult))
       //       return (int32_t)lResult;        // eat it
 
@@ -1034,9 +1034,9 @@ namespace windows
 
       if(pFrameWnd.is_set())
       {
-         
+
          // frame_window windows should be allowed to exit help mode first
-         
+
          pFrameWnd->ExitHelpMode();
 
       }
@@ -1093,7 +1093,7 @@ namespace windows
       //if(_iguimessageDispatchCommandMessage(pcommand, b))
       // return b;
 
-      command_target * pcmdtarget = dynamic_cast < command_target * > (this);
+      command_target * pcmdtarget = dynamic_cast <command_target *> (this);
       return pcmdtarget->command_target::_001OnCmdMsg(pcmdmsg);
    }
 
@@ -1259,12 +1259,12 @@ namespace windows
             }
             /*if(System.get_monitor_count() > 0)
             {
-               rect rcMonitor;
-               System.get_monitor_rect(0,&rcMonitor);
-               if(rectWindow.left >= rcMonitor.left)
-                  pmouse->m_pt.x += (LONG)rectWindow.left;
-               if(rectWindow.top >= rcMonitor.top)
-                  pmouse->m_pt.y += (LONG)rectWindow.top;
+            rect rcMonitor;
+            System.get_monitor_rect(0,&rcMonitor);
+            if(rectWindow.left >= rcMonitor.left)
+            pmouse->m_pt.x += (LONG)rectWindow.left;
+            if(rectWindow.top >= rcMonitor.top)
+            pmouse->m_pt.y += (LONG)rectWindow.top;
             }
             else*/
             {
@@ -1306,7 +1306,7 @@ namespace windows
                //m_puiCapture->m_pimpl->SendMessage(pbase);
                try
                {
-                  (m_puiCapture->m_pimpl->*m_puiCapture->m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < signal_details * > (pmouse));
+                  (m_puiCapture->m_pimpl->*m_puiCapture->m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast <signal_details *> (pmouse));
                   if(pmouse->get_lresult() != 0)
                      return;
                }
@@ -1320,7 +1320,7 @@ namespace windows
                //m_puiCapture->SendMessage(pbase);
                try
                {
-                  (m_puiCapture->*m_puiCapture->m_pfnDispatchWindowProc)(dynamic_cast < signal_details * > (pmouse));
+                  (m_puiCapture->*m_puiCapture->m_pfnDispatchWindowProc)(dynamic_cast <signal_details *> (pmouse));
                   if(pmouse->get_lresult() != 0)
                      return;
                }
@@ -1993,7 +1993,7 @@ namespace windows
       }
    }
 
-   
+
    LRESULT interaction_impl::OnActivateTopLevel(WPARAM wParam,LPARAM)
    {
 
@@ -2074,7 +2074,7 @@ namespace windows
       LPDRAGLISTINFO lpInfo = (LPDRAGLISTINFO)lParam;
       ASSERT(lpInfo != NULL);
 
-//      LRESULT lResult;
+      //      LRESULT lResult;
       //if (ReflectLastMsg(lpInfo->hWnd, &lResult))
       //   return (int32_t)lResult;    // eat it
 
@@ -2582,7 +2582,7 @@ namespace windows
    HBRUSH interaction_impl::OnCtlColor(::draw2d::graphics *,::window_sp pwindow,UINT)
    {
       ASSERT(pwindow != NULL && NODE_WINDOW(pwindow)->get_handle() != NULL);
-//      LRESULT lResult;
+      //      LRESULT lResult;
       //if (NODE_WINDOW(pwindow)->OnChildNotify(&lResult))
       //   return (HBRUSH)lResult;     // eat it
       return (HBRUSH)Default();
@@ -2674,15 +2674,15 @@ namespace windows
          if(oswindow_Center == NULL)
          {
 
-            :: GetMonitorInfo(::MonitorFromWindow(hwDefault,MONITOR_DEFAULTTOPRIMARY),&mi);
-            rcCenter = mi.rcWork;
-            rcArea = mi.rcWork;
+         :: GetMonitorInfo(::MonitorFromWindow(hwDefault,MONITOR_DEFAULTTOPRIMARY),&mi);
+         rcCenter = mi.rcWork;
+         rcArea = mi.rcWork;
          }
          else
          {
-            oswindow_Center->GetWindowRect(&rcCenter);
-            ::GetMonitorInfo(::MonitorFromWindow(oswindow_Center->get_handle(),MONITOR_DEFAULTTONEAREST),&mi);
-            rcArea = mi.rcWork;
+         oswindow_Center->GetWindowRect(&rcCenter);
+         ::GetMonitorInfo(::MonitorFromWindow(oswindow_Center->get_handle(),MONITOR_DEFAULTTONEAREST),&mi);
+         rcArea = mi.rcWork;
          }
          */
       }
@@ -2836,7 +2836,7 @@ namespace windows
       cmd_ui state(get_app());
       interaction_impl wndTemp;       // very temporary interaction_impl just for CmdUI update
 
-      
+
    }
 
 
@@ -2995,7 +2995,7 @@ namespace windows
       // make sure a message goes through to exit the modal loop
       if(m_pui->m_iModalCount > 0)
       {
-         
+
          int32_t iLevel = m_pui->m_iModalCount - 1;
 
          m_pui->m_iModalCount = 0;
@@ -3061,7 +3061,7 @@ namespace windows
 
       }
 #endif
-      
+
       message::size size(get_app());
 
       _001OnSize(&size);
@@ -3110,20 +3110,20 @@ namespace windows
 
 
    /*
-   
+
    bool interaction_impl::IsChild(const ::user::interaction * pwindow) const
    {
-      
-      ASSERT(::IsWindow(get_handle()));
-      
-      if(pwindow->get_handle() == NULL)
-      {
-         return ::user::interaction_impl_base::IsChild(pwindow);
-      }
-      else
-      {
-         return ::IsChild(get_handle(),pwindow->get_handle()) != FALSE;
-      }
+
+   ASSERT(::IsWindow(get_handle()));
+
+   if(pwindow->get_handle() == NULL)
+   {
+   return ::user::interaction_impl_base::IsChild(pwindow);
+   }
+   else
+   {
+   return ::IsChild(get_handle(),pwindow->get_handle()) != FALSE;
+   }
 
    }
 
@@ -3141,7 +3141,6 @@ namespace windows
 
       single_lock sl(mutex_graphics());
 
-
       if(GetExStyle() & WS_EX_LAYERED)
       {
 
@@ -3151,9 +3150,27 @@ namespace windows
 
          nFlags |= SWP_FRAMECHANGED;
 
-         _001UpdateWindow();
+         //_001UpdateWindow();
 
          ::SetWindowPos(get_handle(),(oswindow)z,x,y,cx,cy,nFlags);
+
+         //m_pui->send_message(WM_SIZE,0,MAKELONG(max(0,cx),max(0,cy)));
+
+         //m_pui->send_message(WM_MOVE);
+
+         if(nFlags & SWP_SHOWWINDOW)
+         {
+
+            ShowWindow(SW_SHOW);
+
+         }
+
+         if(!(nFlags & SWP_NOREDRAW))
+         {
+
+            _001RedrawWindow();
+
+         }
 
       }
       else
@@ -3548,7 +3565,7 @@ namespace windows
 
    sp(::user::interaction) interaction_impl::GetCapture()
    {
-      
+
       oswindow oswindowCapture = ::GetCapture();
 
       if(oswindowCapture == NULL)
@@ -3941,7 +3958,7 @@ namespace windows
 
       ASSERT(::IsWindow(get_handle()));
 
-      
+
       return interaction_impl::GetDescendantWindow((::windows::interaction_impl *) this,id);
    }
 
@@ -4158,9 +4175,9 @@ namespace windows
    }
 
 
-   int32_t interaction_impl::DlgDirList(LPTSTR lpPathSpec, int32_t nIDListBox, int32_t nIDStaticPath, UINT nFileType)
+   int32_t interaction_impl::DlgDirList(LPTSTR lpPathSpec,int32_t nIDListBox,int32_t nIDStaticPath,UINT nFileType)
    {
-      
+
       ASSERT(::IsWindow(get_handle()));
 
       return ::DlgDirList(get_handle(),lpPathSpec,nIDListBox,nIDStaticPath,nFileType);
@@ -4168,7 +4185,7 @@ namespace windows
    }
 
 
-   int32_t interaction_impl::DlgDirListComboBox(LPTSTR lpPathSpec, int32_t nIDComboBox, int32_t nIDStaticPath, UINT nFileType)
+   int32_t interaction_impl::DlgDirListComboBox(LPTSTR lpPathSpec,int32_t nIDComboBox,int32_t nIDStaticPath,UINT nFileType)
    {
 
       ASSERT(::IsWindow(get_handle()));
@@ -4220,11 +4237,11 @@ namespace windows
    }
 
 
-   int32_t interaction_impl::GetChildByIdText(int32_t nID, LPTSTR lpStr, int32_t nMaxCount) const
+   int32_t interaction_impl::GetChildByIdText(int32_t nID,LPTSTR lpStr,int32_t nMaxCount) const
    {
-      
+
       ASSERT(::IsWindow(((interaction_impl *) this)->get_handle()));
-      
+
       return ::GetDlgItemText(((interaction_impl *) this)->get_handle(),nID,lpStr,nMaxCount);
 
    }
@@ -4320,8 +4337,8 @@ namespace windows
    sp(::user::interaction) interaction_impl::GetTopWindow() const
    {
 
-      ASSERT(::IsWindow(get_handle())); 
-      
+      ASSERT(::IsWindow(get_handle()));
+
       return ::windows::interaction_impl::from_handle(::GetTopWindow(get_handle()));
 
    }
@@ -4330,8 +4347,8 @@ namespace windows
    sp(::user::interaction) interaction_impl::GetWindow(UINT nCmd) const
    {
 
-      ASSERT(::IsWindow(get_handle())); 
-      
+      ASSERT(::IsWindow(get_handle()));
+
       return ::windows::interaction_impl::from_handle(::GetWindow(get_handle(),nCmd));
 
    }
@@ -4340,8 +4357,8 @@ namespace windows
    sp(::user::interaction) interaction_impl::GetLastActivePopup() const
    {
 
-      ASSERT(::IsWindow(get_handle())); 
-      
+      ASSERT(::IsWindow(get_handle()));
+
       return ::windows::interaction_impl::from_handle(::GetLastActivePopup(get_handle()));
 
    }
@@ -4513,7 +4530,7 @@ namespace windows
 
       ASSERT(::IsWindow(((interaction_impl *) this)->get_handle()));
 
-      return (HICON)const_cast < ::windows::interaction_impl * > (this)->send_message(WM_GETICON,bBigIcon);
+      return (HICON)const_cast <::windows::interaction_impl *> (this)->send_message(WM_GETICON,bBigIcon);
 
    }
 
@@ -4895,7 +4912,7 @@ namespace windows
    void interaction_impl::OnAskCbFormatName(__in UINT nMaxCount,__out_ecount_z(nMaxCount) LPTSTR pszName)
    {
       (nMaxCount);
-      if(nMaxCount>0)
+      if(nMaxCount > 0)
       {
          /* defwindow proc should do this for us, but to be safe, we'll do it here too */
          pszName[0]='\0';
@@ -5106,7 +5123,7 @@ namespace windows
 
       if(code != HCBT_CREATEWND)
       {
-         
+
          // wait for HCBT_CREATEWND just pass others on...
 
          return CallNextHookEx(t_hHookOldCbtFilter,code,wParam,lParam);
@@ -5199,7 +5216,7 @@ namespace windows
             if(oldWndProc != afxWndProc)
                *pOldWndProc = oldWndProc;
 
-            
+
 
          }
       }
@@ -5679,8 +5696,8 @@ bool CLASS_DECL_BASE __register_class(WNDCLASS* lpWndClass)
 {
 
    WNDCLASS wndcls;
-   
-   if(GetClassInfo(lpWndClass->hInstance,lpWndClass->lpszClassName,  &wndcls))
+
+   if(GetClassInfo(lpWndClass->hInstance,lpWndClass->lpszClassName,&wndcls))
    {
       return TRUE;
    }

@@ -215,6 +215,7 @@ CLASS_DECL_BASE void thread_alloc_ready(bool bReady);
 
 
 CLASS_DECL_BASE mutex & user_mutex();
+CLASS_DECL_BASE mutex & message_dispatch_mutex();
 
 
 

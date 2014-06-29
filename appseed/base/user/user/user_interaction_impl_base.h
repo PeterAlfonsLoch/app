@@ -18,6 +18,9 @@ namespace user
       virtual ~interaction_impl_base();
 
 
+      virtual void _001UpdateWindow();
+
+
       virtual void _001WindowMinimize();
       virtual void _001WindowMaximize();
       virtual void _001WindowFullScreen();

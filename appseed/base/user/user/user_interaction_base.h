@@ -309,6 +309,9 @@ namespace user
       virtual void on_keyboard_focus(::user::keyboard_focus * pfocus);
 
 
+      virtual void _001UpdateWindow();
+
+
       virtual void _001WindowMinimize();
       virtual void _001WindowMaximize();
       virtual void _001WindowFullScreen();
