@@ -669,6 +669,7 @@ namespace windows
       void on_set_parent(sp(::user::interaction) pui);
 
       
+      virtual bool get_rect_normal(LPRECT lprect);
 
 
    };

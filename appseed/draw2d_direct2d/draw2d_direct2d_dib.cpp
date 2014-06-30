@@ -2849,7 +2849,7 @@ namespace draw2d_direct2d
 
       rect64 rectWindow;
 
-      rectWindow = pwnd->m_pui->m_rectParentClient;
+      pwnd->m_pui->GetWindowRect(rectWindow);
 
       m_spgraphics->SetViewportOrg(0, 0);
 

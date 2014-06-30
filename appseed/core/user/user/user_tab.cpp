@@ -42,6 +42,7 @@ namespace user
       m_bEnableCloseAll = false;
 
 
+
    }
 
    tab::data::~data()
@@ -78,6 +79,9 @@ namespace user
       m_bRestoringTabs           = true;
 
       m_bShowTabs                = true;
+
+      m_bHidingTabs              = false;
+
 
       m_bNoTabs = System.directrix()->m_varTopicQuery.has_property("no_tabs");
 
@@ -260,24 +264,9 @@ namespace user
       }
    }
 
-   void tab::_001OnDraw(::draw2d::graphics * pdc)
+   
+   void tab::defer_handle_full_screen_show_tabs()
    {
-
-
-      get_data()->m_pen->create_solid(1, RGB(32, 32, 32));
-
-
-      _001OnDrawSchema01(pdc);
-
-   }
-
-
-   void tab::_001OnDrawStandard(::draw2d::graphics * pdc)
-   {
-
-
-      pdc->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
-
 
       if(m_bNoTabs)
       {
@@ -287,7 +276,7 @@ namespace user
 
             m_bShowTabs = false;
 
-            post_simple_command(simple_command_layout);
+            layout();
 
          }
 
@@ -295,34 +284,124 @@ namespace user
 
       }
 
-      if(!m_bShowTabs)
+      if(m_bShowTabs)
       {
+
+         if(GetParentFrame()->WfiIsFullScreen())
+         {
+
+            rect rectTab(get_data()->m_rectTab);
+
+            ClientToScreen(rectTab);
+
+            point ptCursor;
+
+            BaseSession.get_cursor_pos(&ptCursor);
+
+            bool bShowTabs = rectTab.contains(ptCursor);
+
+            if(bShowTabs)
+            {
+
+               m_bHidingTabs = false;
+
+            }
+            else if(m_bHidingTabs)
+            {
+
+               if(get_tick_count() - m_dwHidingTabs > 884)
+               {
+
+                  m_bHidingTabs = false;
+
+                  m_bShowTabs = false;
+
+                  layout();
+
+               }
+
+            }
+            else 
+            {
+
+               m_bHidingTabs = true;
+
+               m_dwHidingTabs = get_tick_count();
+
+            }
+
+         }
+
+      }
+      else
+      {
+
          if(!GetParentFrame()->WfiIsFullScreen())
          {
+
             m_bShowTabs = true;
-            post_simple_command(simple_command_layout);
+
+            layout();
+
          }
          else
          {
-            return;
+
+            rect rectWindow;
+
+            GetWindowRect(rectWindow);
+
+            bool bShowTabs;
+
+            point ptCursor;
+
+            BaseSession.get_cursor_pos(&ptCursor);
+
+            if(get_data()->m_bVertical)
+            {
+               bShowTabs = ptCursor.x <= rectWindow.left;
+            }
+            else
+            {
+               bShowTabs = ptCursor.y <= rectWindow.top;
+            }
+
+            m_bShowTabs = bShowTabs;
+
+            if(bShowTabs)
+            {
+
+               layout();
+
+            }
+
          }
+
       }
 
-      if(GetParentFrame()->WfiIsFullScreen())
-      {
-         rect rectTab(get_data()->m_rectTab);
-         ClientToScreen(rectTab);
-         point ptCursor = BaseSession.m_ptCursor;
-         m_bShowTabs = rectTab.contains(ptCursor);
-         post_simple_command(simple_command_layout);
-         if(!m_bShowTabs)
-            return;
-      }
+
+
+   }
+
+
+   void tab::_001OnDraw(::draw2d::graphics * pdc)
+   {
+
+      defer_handle_full_screen_show_tabs();
+
+      if(m_bNoTabs || !m_bShowTabs)
+         return;
 
       if(get_data()->is_locked())
          return;
 
-      //pdc->SetBkColor(RGB(255, 255, 255));
+      _001OnDrawSchema01(pdc);
+
+   }
+
+
+   void tab::_001OnDrawStandard(::draw2d::graphics * pdc)
+   {
 
       class rect rect;
       class rect rectBorder;
@@ -331,15 +410,13 @@ namespace user
       class rect rectIcon;
       class rect rectClose;
 
-      //HGDIOBJ hOldPen = pdc->SelectObject(get_data()->m_pen);
+      get_data()->m_pen->create_solid(1,RGB(32,32,32));
 
-//      class imaging & imaging = System.visual().imaging();
+      pdc->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
 
       pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       pdc->FillSolidRect(get_data()->m_rectTab, ARGB(0xc0, 250, 255, 255));
-
-            //pdc->SetBkMode(OPAQUE);
 
       pdc->set_alpha_mode(::draw2d::alpha_mode_set);
 
@@ -520,56 +597,6 @@ namespace user
    void tab::_001OnDrawSchema01(::draw2d::graphics * pdc)
    {
 
-      pdc->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
-
-
-      if(m_bNoTabs)
-      {
-
-         if(m_bShowTabs)
-         {
-
-            m_bShowTabs = false;
-
-            post_simple_command(simple_command_layout);
-
-         }
-
-         return;
-
-      }
-
-      if(!m_bShowTabs)
-      {
-         if(!GetParentFrame()->WfiIsFullScreen())
-         {
-            m_bShowTabs = true;
-            post_simple_command(simple_command_layout);
-         }
-         else
-         {
-            return;
-         }
-      }
-
-      if(GetParentFrame()->WfiIsFullScreen())
-      {
-         rect rectTab(get_data()->m_rectTab);
-         ClientToScreen(rectTab);
-         point ptCursor = BaseSession.m_ptCursor;
-         m_bShowTabs = rectTab.contains(ptCursor);
-         if(!m_bShowTabs)
-         {
-            post_simple_command(simple_command_layout);
-            return;
-         }
-      }
-
-      if(get_data()->is_locked())
-         return;
-
-      //pdc->SetBkColor(RGB(255, 255, 255));
-
       class rect rect;
       class rect rectBorder;
       class rect rectText;
@@ -577,21 +604,13 @@ namespace user
       class rect rectIcon;
       class rect rectClose;
 
-      //HGDIOBJ hOldPen = pdc->SelectObject(get_data()->m_pen);
+      get_data()->m_pen->create_solid(1,RGB(32,32,32));
 
-//      class imaging & imaging = System.visual().imaging();
+      pdc->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
 
       pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      //pdc->FillSolidRect(get_data()->m_rectTab, ARGB(0xc0, 250, 255, 255));
-
-            //pdc->SetBkMode(OPAQUE);
-
-      //pdc->set_alpha_mode(::draw2d::alpha_mode_set);
-
       int32_t iVisiblePane = 0;
-
-      //return;
 
       ::draw2d::brush_sp brushText;
 
@@ -2015,41 +2034,6 @@ namespace user
       }
       else if(pmouse->m_uiMessage == WM_MOUSEMOVE)
       {
-         try
-         {
-            if(!m_bNoTabs && GetParentFrame()->WfiIsFullScreen())
-            {
-
-               rect rectWindow;
-
-               GetWindowRect(rectWindow);
-
-               bool bShowTabs;
-
-               if(get_data()->m_bVertical)
-               {
-                  bShowTabs = pmouse->m_pt.x <= rectWindow.left;
-               }
-               else
-               {
-                  bShowTabs = pmouse->m_pt.y <= rectWindow.top;
-               }
-
-               m_bShowTabs = bShowTabs;
-
-               if(bShowTabs)
-               {
-
-                  layout();
-
-               }
-
-            }
-
-         }
-         catch(...)
-         {
-         }
       }
       sp(::user::interaction) pui = get_top_child();
 //      int32_t iSize;

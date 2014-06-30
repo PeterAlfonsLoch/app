@@ -2238,7 +2238,7 @@ namespace user
 
       rect64 rectWindow;
 
-      rectWindow = m_pui->m_rectParentClient;
+      m_pui->GetWindowRect(rectWindow);
 
       if(m_bComposite)
       {

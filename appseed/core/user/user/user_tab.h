@@ -134,6 +134,8 @@ namespace user
       ::visual::graphics_extension     m_dcextension;
       bool                             m_bRestoringTabs;
       bool                             m_bShowTabs;
+      bool                             m_bHidingTabs;
+      DWORD                            m_dwHidingTabs;
       bool                             m_bNoTabs;
       e_element                        m_eelement;
       sp(::create_context)         m_spcreatecontext;
@@ -247,6 +249,10 @@ namespace user
       DECL_GEN_SIGNAL(_001OnAppLanguage);
       DECL_GEN_SIGNAL(_001OnSize);
       DECL_GEN_SIGNAL(_001OnTimer);
+
+
+      virtual void defer_handle_full_screen_show_tabs();
+
 
    };
 

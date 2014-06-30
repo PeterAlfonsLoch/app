@@ -149,7 +149,7 @@ namespace user
 
             rectEvent.move_to(pt);
 
-            index iMatchingMonitor = m_pworkset->GetWndDraw()->good_move(rectEvent, true);
+            index iMatchingMonitor = m_pworkset->GetWndDraw()->good_move(rectEvent, NULL, true);
 
             if(iMatchingMonitor >= 0)
             {

@@ -20,8 +20,10 @@ namespace base
       bool                                                     m_bSystemSynchronizedCursor;
       point                                                    m_ptCursor;
       bool                                                     m_bSystemSynchronizedScreen;
-      rect_array                                               m_rectaScreen;
+      rect_array                                               m_rectaMonitor;
+      rect_array                                               m_rectaWkspace;
       index                                                    m_iMainMonitor;
+      index                                                    m_iMainWkspace;
 
 
 
@@ -102,6 +104,19 @@ namespace base
       virtual bool set_main_monitor(index iMonitor);
       virtual ::count get_monitor_count();
       virtual bool  get_monitor_rect(index iMonitor,LPRECT lprect);
+
+      virtual index get_ui_wkspace(::user::interaction * pui);
+      virtual index get_main_wkspace(LPRECT lprect = NULL);
+      virtual bool set_main_wkspace(index iWkspace);
+      virtual ::count get_wkspace_count();
+      virtual bool  get_wkspace_rect(index iWkspace,LPRECT lprect);
+
+      virtual bool wkspace_to_monitor(LPRECT lprect,index iMonitor,index iWkspace);
+      virtual bool monitor_to_wkspace(LPRECT lprect,index iWkspace,index iMonitor);
+
+      virtual bool wkspace_to_monitor(LPRECT lprect);
+      virtual bool monitor_to_wkspace(LPRECT lprect);
+
       virtual ::count get_desk_monitor_count();
       virtual bool  get_desk_monitor_rect(index iMonitor,LPRECT lprect);
 
@@ -110,6 +125,7 @@ namespace base
       virtual void  get_monitor(rect_array & rectaMonitor, rect_array & rectaIntersect, LPCRECT lpcrect);
 
       virtual index get_best_monitor(LPRECT lprect,LPCRECT lpcrect);
+      virtual index get_best_wkspace(LPRECT lprect,LPCRECT lpcrect);
       virtual index get_good_restore(LPRECT lprect,LPCRECT lpcrect);
       virtual index get_good_iconify(LPRECT lprect,LPCRECT lpcrect);
 

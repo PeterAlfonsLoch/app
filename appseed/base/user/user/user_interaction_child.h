@@ -11,12 +11,17 @@ namespace user
    public:
 
 
-      size                       m_size;
-      string                     m_strWindowText;
-      bool                       m_bEnabled;
-      bool                       m_bCreate;
-      sp(::user::interaction)    m_puiMessage;
-      interaction *              m_puiOwner;
+      // interaction_impl rectangle relative to the parent
+      // this rectangle comes before in importance compared to m_rectWindow
+      // m_rectWindow should be sychronized and recalculated based
+      // on m_rectParentClient values of the interaction_impl and its ascendants.
+      rect64                              m_rectParentClient;
+      size                                m_size;
+      string                              m_strWindowText;
+      bool                                m_bEnabled;
+      bool                                m_bCreate;
+      sp(::user::interaction)             m_puiMessage;
+      interaction *                       m_puiOwner;
 
 
       interaction_child();
@@ -123,6 +128,20 @@ namespace user
 
       virtual sp(::user::interaction) SetOwner(sp(::user::interaction) pui);
       virtual sp(::user::interaction) GetOwner() const;
+
+      using ::user::interaction_impl_base::GetWindowRect;
+      void GetWindowRect(__rect64 * lprect);
+      using ::user::interaction_impl_base::GetClientRect;
+      void GetClientRect(__rect64 * lprect);
+
+      virtual void ClientToScreen(LPRECT lprect);
+      virtual void ClientToScreen(__rect64 * lprect);
+      virtual void ClientToScreen(LPPOINT lppoint);
+      virtual void ClientToScreen(__point64 * lppoint);
+      virtual void ScreenToClient(LPRECT lprect);
+      virtual void ScreenToClient(__rect64 * lprect);
+      virtual void ScreenToClient(LPPOINT lppoint);
+      virtual void ScreenToClient(__point64 * lppoint);
 
    };
 

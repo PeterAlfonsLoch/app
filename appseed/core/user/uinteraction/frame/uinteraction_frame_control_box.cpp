@@ -156,7 +156,9 @@ namespace user
          void control_box::_001OnTimer(signal_details * pobj)
          {
 
-            //         SCAST_PTR(::message::timer, ptimer, pobj)
+            point ptCursor;
+
+            BaseSession.get_cursor_pos(&ptCursor);
 
             if (IsWindowVisible())
             {
@@ -176,15 +178,16 @@ namespace user
 
                         GetWindowRect(rectWindow);
 
-                        if (rectWindow.contains(BaseSession.m_ptCursor))
+                        if (rectWindow.contains(ptCursor))
                         {
+
                            m_dwShowTime = ::get_tick_count();
+
                         }
                         else
                         {
                            if ((::get_tick_count() - m_dwShowTime) > (884))
                            {
-
 
                               ShowWindow(SW_HIDE);
 
@@ -213,7 +216,7 @@ namespace user
 
                         GetWindowRect(rectWindow);
 
-                        if (BaseSession.m_ptCursor.x >= rectWindow.left && BaseSession.m_ptCursor.y <= rectWindow.right && BaseSession.m_ptCursor.y == 0)
+                        if (ptCursor.x >= rectWindow.left && ptCursor.y <= rectWindow.right && ptCursor.y == 0)
                         {
 
                            ShowWindow(SW_SHOW);

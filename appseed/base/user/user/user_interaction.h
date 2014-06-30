@@ -18,11 +18,6 @@ namespace user
    public:
 
 
-      // interaction_impl rectangle relative to the parent
-      // this rectangle comes before in importance compared to m_rectWindow
-      // m_rectWindow should be sychronized and recalculated based
-      // on m_rectParentClient values of the interaction_impl and its ascendants.
-      rect64                              m_rectParentClient;
       bool                                m_bVisible;
       bool                                m_bVoidPaint;
       bool                                m_bLockWindowUpdate;
@@ -34,6 +29,7 @@ namespace user
 
       sp(mutex)                           m_spmutex;
       EAppearance                         m_eappearance;
+      EAppearance                         m_eappearanceBefore;
       sp(interaction_impl_base)           m_pimpl;
 
 
@@ -592,12 +588,14 @@ namespace user
 
       virtual sp(::user::interaction) best_top_level_parent(LPRECT lprect);
 
-      virtual index best_monitor(LPRECT lprect,bool bSet = false,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
-      virtual index good_restore(LPRECT lprect,bool bSet = false,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
-      virtual index good_iconify(LPRECT lprect,bool bSet = false,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
+      virtual index best_monitor(LPRECT lprect,LPCRECT lpcrect=NULL,bool bSet = false,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
+      virtual index best_wkspace(LPRECT lprect,LPCRECT lpcrect=NULL,bool bSet = false,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
+      virtual index good_restore(LPRECT lprect,LPCRECT lpcrect=NULL,bool bSet = false,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
+      virtual index good_iconify(LPRECT lprect,LPCRECT lpcrect=NULL,bool bSet = false,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
 
-      virtual index good_move(LPRECT lprect,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
+      virtual index good_move(LPRECT lprect,LPCRECT lpcrect=NULL,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
 
+      virtual bool get_rect_normal(LPRECT lprect);
 
    };
 

@@ -4,6 +4,15 @@ void dappy(const char * psz);
 
 #ifdef WINDOWSEX
 
+
+CLASS_DECL_BASE HMONITOR GetUiMonitorHandle(HWND hwnd)
+{
+
+   return MonitorFromWindow(hwnd,MONITOR_DEFAULTTOPRIMARY);
+
+}
+
+
 CLASS_DECL_BASE HMONITOR GetPrimaryMonitorHandle()
 {
 
@@ -1169,6 +1178,152 @@ namespace base
 
    }
 
+
+   index system::get_ui_wkspace(::user::interaction * pui)
+   {
+
+      int iMainWkspace = 0;
+
+#ifdef WINDOWSEX
+
+      HMONITOR hwkspacePrimary = GetUiMonitorHandle(pui->get_handle());
+
+      for(index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
+      {
+
+         if(m_hmonitora[iWkspace] == hwkspacePrimary)
+         {
+
+            iMainWkspace = iWkspace;
+
+            break;
+
+         }
+
+      }
+
+
+#endif
+
+      return iMainWkspace;
+
+   }
+
+
+   index system::get_main_wkspace(LPRECT lprect)
+   {
+
+      int iMainWkspace = 0;
+
+#ifdef WINDOWSEX
+
+      HMONITOR hwkspacePrimary = GetPrimaryMonitorHandle();
+
+      for(index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
+      {
+
+         if(m_hmonitora[iWkspace] == hwkspacePrimary)
+         {
+
+            iMainWkspace = iWkspace;
+
+            break;
+
+         }
+
+      }
+
+
+#endif
+
+      if(lprect != NULL)
+      {
+
+         get_wkspace_rect(iMainWkspace,lprect);
+
+      }
+
+      return iMainWkspace;
+
+   }
+
+
+   ::count system::get_wkspace_count()
+   {
+
+#ifdef WINDOWSEX
+
+      return m_monitorinfoa.get_count();
+
+#else
+
+      return 1;
+
+#endif
+
+   }
+
+
+   bool system::get_wkspace_rect(index iWkspace,LPRECT lprect)
+   {
+
+#ifdef WINDOWSEX
+
+      if(iWkspace < 0 || iWkspace >= get_wkspace_count())
+         return false;
+
+      *lprect = m_monitorinfoa[iWkspace].rcWork;
+
+#elif defined(METROWIN)
+
+      return System.GetWindowRect(lprect);
+
+#elif defined(LINUX)
+
+      xdisplay  d;
+
+      if(!d.open(NULL))
+         return false;
+
+      lprect->left = 0;
+      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
+      lprect->top = 0;
+      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
+
+#elif defined(APPLEOS)
+
+      if(iWkspace < 0 || iWkspace >= get_wkspace_count())
+         return false;
+
+      GetMainScreenRect(lprect);
+
+#else
+
+      throw todo(get_app());
+
+      ::GetWindowRect(::GetDesktopWindow(),lprect);
+
+#endif
+
+      return true;
+
+   }
+
+
+   ::count system::get_desk_wkspace_count()
+   {
+
+      return get_wkspace_count();
+
+   }
+
+
+   bool system::get_desk_wkspace_rect(index iWkspace,LPRECT lprect)
+   {
+
+      return get_wkspace_rect(iWkspace,lprect);
+
+   }
 
 #ifdef WINDOWS
 

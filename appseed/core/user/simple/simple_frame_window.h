@@ -208,6 +208,7 @@ public:
 
 
 
+   virtual bool set_appearance(::user::EAppearance eappearance);
 
 };
 

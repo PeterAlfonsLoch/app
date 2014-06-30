@@ -41,9 +41,9 @@ namespace database
          virtual bool IsFullScreen();
          void WindowDataEnableSaveWindowRect(bool bEnable);
          bool WindowDataSaveWindowRect();
-         bool WindowDataLoadWindowRect(bool bForceRestore = false);
+         bool WindowDataLoadWindowRect(bool bForceRestore = false, bool bInitialFramePosition = false);
 
-         virtual bool LoadWindowRect_(class id key, class id idIndex, sp(::user::interaction) pwindow, bool bForceRestore = false);
+         virtual bool LoadWindowRect_(class id key, class id idIndex, sp(::user::interaction) pwindow, bool bForceRestore = false, bool bInitialFramePosition = false);
          virtual bool SaveWindowRect_(class id key, class id idIndex, sp(::user::interaction) pwindow);
         
          

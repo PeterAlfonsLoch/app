@@ -259,6 +259,117 @@ namespace base
 
    }
 
+   index session::get_ui_wkspace(::user::interaction * pui)
+   {
+
+      if(m_bSystemSynchronizedScreen)
+      {
+
+         return System.get_ui_wkspace(pui);
+
+      }
+      else
+      {
+
+         ::rect rect;
+
+         pui->GetWindowRect(rect);
+
+         return get_best_wkspace(NULL,rect);
+
+      }
+
+
+   }
+
+   index session::get_main_wkspace(LPRECT lprect)
+   {
+
+      if(m_bSystemSynchronizedScreen)
+      {
+
+         if(m_iMainWkspace < 0 || m_iMainWkspace >= System.get_monitor_count())
+         {
+
+            return System.get_main_wkspace(lprect);
+
+         }
+         else
+         {
+
+            if(System.get_monitor_rect(m_iMainWkspace,lprect))
+            {
+
+               return m_iMainMonitor;
+
+            }
+            else
+            {
+
+               System.get_wkspace_rect(0,lprect);
+
+               return 0;
+
+            }
+
+         }
+
+      }
+      else
+      {
+
+         int iMainWkspace = m_iMainWkspace;
+
+         if(iMainWkspace < 0 || iMainWkspace >= m_rectaWkspace.get_count())
+         {
+
+            iMainWkspace = 0;
+
+         }
+
+         if(m_rectaWkspace.get_count() <= 0)
+         {
+
+            return -1;
+
+         }
+
+         *lprect = m_rectaWkspace[iMainWkspace];
+
+         return iMainWkspace;
+
+      }
+
+   }
+
+
+   bool session::set_main_wkspace(index iWkspace)
+   {
+
+      if(iWkspace == -1)
+      {
+
+         m_iMainWkspace = -1;
+
+         return true;
+
+      }
+      else if(iWkspace < 0 || iWkspace >= get_wkspace_count())
+      {
+
+         return false;
+
+      }
+      else
+      {
+
+         m_iMainWkspace = iWkspace;
+
+         return true;
+
+      }
+
+   }
 
    index session::get_main_monitor(LPRECT lprect)
    {
@@ -298,21 +409,21 @@ namespace base
 
          int iMainMonitor = m_iMainMonitor;
 
-         if(iMainMonitor < 0 || iMainMonitor >= m_rectaScreen.get_count())
+         if(iMainMonitor < 0 || iMainMonitor >= m_rectaMonitor.get_count())
          {
 
             iMainMonitor = 0;
 
          }
 
-         if(m_rectaScreen.get_count() <= 0)
+         if(m_rectaMonitor.get_count() <= 0)
          {
 
             return -1;
 
          }
 
-         *lprect = m_rectaScreen[iMainMonitor];
+         *lprect = m_rectaMonitor[iMainMonitor];
 
          return iMainMonitor;
 
@@ -350,6 +461,25 @@ namespace base
    }
 
 
+   ::count session::get_wkspace_count()
+   {
+
+      if(m_bSystemSynchronizedScreen)
+      {
+
+         return System.get_wkspace_count();
+
+      }
+      else
+      {
+
+         return m_rectaWkspace.get_count();
+
+      }
+
+   }
+
+
    ::count session::get_monitor_count()
    {
 
@@ -362,7 +492,7 @@ namespace base
       else
       {
 
-         return m_rectaScreen.get_count();
+         return m_rectaMonitor.get_count();
 
       }
 
@@ -381,14 +511,14 @@ namespace base
       else
       {
 
-         if(iMonitor < 0 || iMonitor >= m_rectaScreen.get_count())
+         if(iMonitor < 0 || iMonitor >= m_rectaMonitor.get_count())
          {
 
             return false;
 
          }
 
-         *lprect = m_rectaScreen[iMonitor];
+         *lprect = m_rectaMonitor[iMonitor];
 
          return true;
 
@@ -396,6 +526,106 @@ namespace base
 
    }
 
+   bool session::wkspace_to_monitor(LPRECT lprect,index iMonitor,index iWkspace)
+   {
+
+      rect rect(lprect);
+
+      ::rect rectWkspace;
+
+      if(!BaseSession.get_wkspace_rect(iWkspace,rectWkspace))
+         return false;
+
+      rect -= rectWkspace.top_left();
+
+      ::rect rectMonitor;
+
+      if(!BaseSession.get_monitor_rect(iMonitor,rectMonitor))
+         return false;
+
+      rect += rectMonitor.top_left();
+
+      *lprect = rect;
+
+      return true;
+
+   }
+
+   
+   bool session::wkspace_to_monitor(LPRECT lprect)
+   {
+      
+      int iWkspace = get_best_wkspace(NULL,lprect);
+
+      return wkspace_to_monitor(lprect,iWkspace,iWkspace);
+
+   }
+
+
+   bool session::monitor_to_wkspace(LPRECT lprect)
+   {
+
+      int iMonitor = get_best_monitor(NULL, lprect);
+
+      return monitor_to_wkspace(lprect,iMonitor,iMonitor);
+
+   }
+
+
+   bool session::monitor_to_wkspace(LPRECT lprect,index iWkspace,index iMonitor)
+   {
+
+      rect rect(lprect);
+
+      ::rect rectMonitor;
+
+      if(!BaseSession.get_monitor_rect(iMonitor,rectMonitor))
+         return false;
+
+      rect -= rectMonitor.top_left();
+
+      ::rect rectWkspace;
+
+      if(!BaseSession.get_wkspace_rect(iWkspace,rectWkspace))
+         return false;
+
+      rect += rectWkspace.top_left();
+
+      *lprect = rect;
+
+      return true;
+
+   }
+
+
+
+
+   bool session::get_wkspace_rect(index iWkspace,LPRECT lprect)
+   {
+
+      if(m_bSystemSynchronizedScreen)
+      {
+
+         return System.get_wkspace_rect(iWkspace,lprect);
+
+      }
+      else
+      {
+
+         if(iWkspace < 0 || iWkspace >= m_rectaWkspace.get_count())
+         {
+
+            return false;
+
+         }
+
+         *lprect = m_rectaWkspace[iWkspace];
+
+         return true;
+
+      }
+
+   }
 
    ::count session::get_desk_monitor_count()
    {
@@ -580,7 +810,12 @@ namespace base
       if(iMatchingMonitor >= 0)
       {
 
-         *lprect = rectMatch;
+         if(lprect != NULL)
+         {
+
+            *lprect = rectMatch;
+
+         }
 
          return iMatchingMonitor;
 
@@ -592,6 +827,58 @@ namespace base
 
    }
 
+
+   index session::get_best_wkspace(LPRECT lprect,LPCRECT lpcrect)
+   {
+
+      index iMatchingWkspace = -1;
+      int64_t iBestArea = -1;
+      rect rectMatch;
+
+      for(index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
+      {
+
+         rect rectIntersect;
+
+         rect rectMonitor;
+
+         if(get_wkspace_rect(iWkspace,rectMonitor))
+         {
+
+            if(rectIntersect.top_left_null_intersect(lpcrect,rectMonitor))
+            {
+
+               if(rectIntersect.area() > iBestArea)
+               {
+
+                  iMatchingWkspace = iWkspace;
+
+                  iBestArea = rectIntersect.area();
+
+                  rectMatch = rectMonitor;
+
+               }
+
+            }
+
+         }
+
+      }
+
+      if(iMatchingWkspace >= 0)
+      {
+
+         *lprect = rectMatch;
+
+         return iMatchingWkspace;
+
+      }
+
+      iMatchingWkspace = get_main_wkspace(lprect);
+
+      return iMatchingWkspace;
+
+   }
 
 
    index session::get_good_restore(LPRECT lprect,LPCRECT lpcrect)

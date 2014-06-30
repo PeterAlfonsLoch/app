@@ -22,7 +22,6 @@ namespace plugin
       };
 
 
-
       sp(::user::interaction)     m_pframe;
       plugin *                m_pplugin;
 

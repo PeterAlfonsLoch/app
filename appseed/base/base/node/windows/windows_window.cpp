@@ -103,6 +103,9 @@ namespace windows
       ZERO(m_pt);
       m_pmutexGraphics = NULL;
       m_bUpdateGraphics = false;
+      m_bIgnoreSizeEvent = false;
+
+      m_bIgnoreMoveEvent = false;
    }
 
 
@@ -515,12 +518,6 @@ namespace windows
 
       }
 
-      if(!m_pui->m_bRectOk && !(GetExStyle() & WS_EX_LAYERED))
-      {
-         class rect rectWindow;
-         ::GetWindowRect(get_handle(),rectWindow);
-         m_pui->m_rectParentClient = rectWindow;
-      }
    }
 
 
@@ -537,31 +534,6 @@ namespace windows
          return;
 
       }
-
-      if(!m_pui->m_bRectOk && !(GetExStyle() & WS_EX_LAYERED))
-      {
-         class rect rectWindow;
-         ::GetWindowRect(get_handle(),rectWindow);
-         m_pui->m_rectParentClient = rectWindow;
-
-      }
-
-      /*      if(m_spdibMultAlphaWork.is_null())
-      {
-      m_spdibMultAlphaWork.create(allocer());
-      }
-
-      if(m_spdib.is_null())
-      {
-      m_spdib.create(allocer());
-      }
-
-      if(m_spdib.is_set() && m_rectParentClient.area() > 0)
-      {
-      m_spdib->create(m_rectParentClient.size());
-      }*/
-
-
 
 
 
@@ -604,7 +576,7 @@ namespace windows
 
       SCAST_PTR(message::base,pbase,pobj);
 
-      //pbase->set_lresult(layered_window_nc_calc_size(pbase->m_wparam,pbase->m_lparam));
+      pbase->set_lresult(0);
 
       pobj->m_bRet = true;
 
@@ -1250,6 +1222,7 @@ namespace windows
          pbase->m_uiMessage == WM_RBUTTONUP ||
          pbase->m_uiMessage == WM_LBUTTONDBLCLK ||
          pbase->m_uiMessage == WM_MOUSEMOVE ||
+         pbase->m_uiMessage == WM_NCMOUSEMOVE ||
          pbase->m_uiMessage == WM_MOUSEWHEEL)
       {
          // user presence status activity reporting
@@ -1319,6 +1292,15 @@ namespace windows
          }
 
          if(pbase->m_uiMessage == WM_MOUSEMOVE)
+         {
+            // We are at the message_handler procedure.
+            // mouse messages originated from message_handler and that are mouse move events should end up with the correct cursor.
+            // So the procedure starts by setting to the default cursor,
+            // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
+            // handler has set it to another one.
+            pmouse->m_ecursor = visual::cursor_default;
+         }
+         else if(pbase->m_uiMessage == WM_NCMOUSEMOVE)
          {
             // We are at the message_handler procedure.
             // mouse messages originated from message_handler and that are mouse move events should end up with the correct cursor.
@@ -2487,7 +2469,7 @@ namespace windows
 
       rect64 rectWindow;
 
-      rectWindow = m_pui->m_rectParentClient;
+      m_pui->GetWindowRect(rectWindow);
 
       m_spdib->Fill(0,0,0,0);
 
@@ -3193,21 +3175,7 @@ namespace windows
 
          nFlags |= SWP_FRAMECHANGED;
 
-         m_pui->send_message(WM_SIZE,0,MAKELONG(max(0,cx),max(0,cy)));
-
-         m_pui->send_message(WM_MOVE);
-
-         _001UpdateWindow();
-
-         {
-
-            keeper < bool > keepIgnoreSizeEvent(&m_bIgnoreSizeEvent,true,false,true);
-
-            keeper < bool > keepIgnoreMoveEvent(&m_bIgnoreMoveEvent,true,false,true);
-
-            ::SetWindowPos(get_handle(),(oswindow)z,x,y,cx,cy,nFlags);
-
-         }
+         ::SetWindowPos(get_handle(),(oswindow)z,x,y,cx,cy,nFlags);
 
          if(nFlags & SWP_SHOWWINDOW)
          {
@@ -3272,8 +3240,10 @@ namespace windows
 
    void interaction_impl::ClientToScreen(__rect64 * lprect)
    {
+      
       class rect rectWindow;
-      m_pui->GetWindowRect(rectWindow);
+
+      ::GetWindowRect(get_handle(), rectWindow);
 
       lprect->left   += rectWindow.left;
       lprect->right  += rectWindow.left;
@@ -3284,7 +3254,9 @@ namespace windows
 
    void interaction_impl::ClientToScreen(__point64 * lppoint)
    {
+      
       class rect64 rectWindow;
+
       m_pui->GetWindowRect(rectWindow);
 
       lppoint->x     += rectWindow.left;
@@ -3313,7 +3285,9 @@ namespace windows
 
    void interaction_impl::ScreenToClient(__rect64 * lprect)
    {
+      
       class rect64 rectWindow;
+
       m_pui->GetWindowRect(rectWindow);
 
       lprect->left   -= rectWindow.left;
@@ -3325,7 +3299,9 @@ namespace windows
 
    void interaction_impl::ScreenToClient(__point64 * lppoint)
    {
+      
       class rect64 rectWindow;
+
       m_pui->GetWindowRect(rectWindow);
 
       lppoint->x     -= rectWindow.left;
@@ -3368,16 +3344,6 @@ namespace windows
 
       m_pui->m_eappearance = ::user::AppearanceIconic;
 
-      {
-
-         keeper < bool > keepIgnoreSizeEvent(&m_bIgnoreSizeEvent,true,false,true);
-
-         keeper < bool > keepIgnoreMoveEvent(&m_bIgnoreMoveEvent,true,false,true);
-
-         ::ShowWindow(get_handle(),SW_MINIMIZE);
-
-      }
-
       interaction_impl_base::_001WindowMinimize();
 
    }
@@ -3388,15 +3354,6 @@ namespace windows
 
       m_pui->m_eappearance = ::user::AppearanceZoomed;
 
-      {
-
-         keeper < bool > keepIgnoreSizeEvent(&m_bIgnoreSizeEvent,true,false,true);
-
-         keeper < bool > keepIgnoreMoveEvent(&m_bIgnoreMoveEvent,true,false,true);
-
-         ::ShowWindow(get_handle(),SW_MAXIMIZE);
-
-      }
 
       interaction_impl_base::_001WindowMaximize();
 
@@ -3408,16 +3365,6 @@ namespace windows
 
       m_pui->m_eappearance = ::user::AppearanceFullScreen;
 
-      {
-
-         keeper < bool > keepIgnoreSizeEvent(&m_bIgnoreSizeEvent,true,false,true);
-
-         keeper < bool > keepIgnoreMoveEvent(&m_bIgnoreMoveEvent,true,false,true);
-
-         ::ShowWindow(get_handle(),SW_MAXIMIZE);
-
-      }
-
       interaction_impl_base::_001WindowFullScreen();
 
    }
@@ -3427,16 +3374,6 @@ namespace windows
    {
 
       m_pui->m_eappearance = ::user::AppearanceNormal;
-
-      {
-
-         keeper < bool > keepIgnoreSizeEvent(&m_bIgnoreSizeEvent,true,false,true);
-
-         keeper < bool > keepIgnoreMoveEvent(&m_bIgnoreMoveEvent,true,false,true);
-
-         ::ShowWindow(get_handle(),SW_RESTORE);
-
-      }
 
       interaction_impl_base::_001WindowRestore();
 
@@ -3528,15 +3465,6 @@ namespace windows
          ::ShowWindow(get_handle(),nCmdShow);
 
          m_pui->m_bVisible = ::IsWindowVisible(get_handle()) != FALSE;
-
-         GetWindowRect(m_pui->m_rectParentClient);
-
-         if(m_pui != NULL)
-         {
-
-            GetWindowRect(m_pui->m_rectParentClient);
-
-         }
 
          return m_pui->m_bVisible;
 
@@ -5408,7 +5336,7 @@ namespace windows
 
       rect64 rectWindow;
 
-      rectWindow = m_pui->m_rectParentClient;
+      m_pui->GetWindowRect(rectWindow);
 
       if(GetExStyle() & WS_EX_LAYERED)
       {
@@ -5486,7 +5414,21 @@ namespace windows
    }
 
 
+   bool interaction_impl::get_rect_normal(LPRECT lprect)
+   {
 
+      WINDOWPLACEMENT wp;
+
+      ZERO(wp);
+
+      if(!GetWindowPlacement(&wp))
+         return false;
+
+      *lprect = wp.rcNormalPosition;
+
+      return true;
+
+   }
 
 
 

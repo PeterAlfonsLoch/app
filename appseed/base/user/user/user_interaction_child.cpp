@@ -11,6 +11,8 @@ namespace user
    interaction_child::interaction_child()
    {
 
+      m_rectParentClient.null();
+
       m_bCreate         = false;
       m_bEnabled        = true;
       m_puiOwner        = NULL;
@@ -21,6 +23,8 @@ namespace user
    interaction_child::interaction_child(sp(::base::application) papp):
       element(papp)
    {
+
+      m_rectParentClient.null();
 
       m_bCreate         = false;
       m_bEnabled        = true;
@@ -1045,6 +1049,39 @@ namespace user
    bool interaction_child::SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
    {
 
+      synch_lock slUserMutex(&user_mutex());
+
+      bool bOk = false;
+
+      if(nFlags & SWP_NOMOVE)
+      {
+
+         if(nFlags & SWP_NOSIZE)
+         {
+
+         }
+         else
+         {
+            m_rectParentClient.right   = m_rectParentClient.left + cx;
+            m_rectParentClient.bottom  = m_rectParentClient.top + cy;
+         }
+      }
+      else
+      {
+         point pt(x,y);
+         if(nFlags & SWP_NOSIZE)
+         {
+            m_rectParentClient.move_to(point64(pt));
+         }
+         else
+         {
+            m_rectParentClient.left    = pt.x;
+            m_rectParentClient.top     = pt.y;
+            m_rectParentClient.right   = pt.x + cx;
+            m_rectParentClient.bottom  = pt.y + cy;
+         }
+      }
+
       send_message(WM_SIZE,0,MAKELONG(max(0,cx),max(0,cy)));
 
       send_message(WM_MOVE);
@@ -1053,13 +1090,6 @@ namespace user
       {
 
          m_pui->ShowWindow(SW_SHOW);
-
-      }
-
-      if(!(nFlags & SWP_NOREDRAW))
-      {
-
-         m_pui->_001RedrawWindow();
 
       }
 
@@ -1096,10 +1126,138 @@ namespace user
       return m_puiOwner;
 
    }
+   
+   
+   void interaction_child::GetClientRect(__rect64 * lprect)
+   {
+
+      *lprect = m_rectParentClient;
+      lprect->right -= lprect->left;
+      lprect->bottom -= lprect->top;
+      lprect->left = 0;
+      lprect->top = 0;
+
+   }
+
+
+   void interaction_child::GetWindowRect(__rect64 * lprect)
+   {
+
+      *lprect = m_rectParentClient;
+
+      if(GetParent() != NULL)
+      {
+
+         GetParent()->ClientToScreen(lprect);
+
+      }
+
+   }
+
+
+
+   void interaction_child::ClientToScreen(LPRECT lprect)
+   {
+
+      lprect->left   += (LONG)m_rectParentClient.left;
+      lprect->right  += (LONG)m_rectParentClient.left;
+      lprect->top    += (LONG)m_rectParentClient.top;
+      lprect->bottom += (LONG)m_rectParentClient.top;
+
+      if(GetParent() != NULL)
+      {
+         GetParent()->ClientToScreen(lprect);
+      }
+   }
+
+   void interaction_child::ClientToScreen(LPPOINT lppoint)
+   {
+      lppoint->x     += (LONG)m_rectParentClient.left;
+      lppoint->y     += (LONG)m_rectParentClient.top;
+      if(GetParent() != NULL)
+      {
+         GetParent()->ClientToScreen(lppoint);
+      }
+   }
+
+
+   void interaction_child::ClientToScreen(__rect64 * lprect)
+   {
+      lprect->left   += m_rectParentClient.left;
+      lprect->right  += m_rectParentClient.left;
+      lprect->top    += m_rectParentClient.top;
+      lprect->bottom += m_rectParentClient.top;
+
+      if(GetParent() != NULL)
+      {
+         GetParent()->ClientToScreen(lprect);
+      }
+   }
+
+   void interaction_child::ClientToScreen(__point64 * lppoint)
+   {
+      lppoint->x     += m_rectParentClient.left;
+      lppoint->y     += m_rectParentClient.top;
+      if(GetParent() != NULL)
+      {
+         GetParent()->ClientToScreen(lppoint);
+      }
+   }
+
+
+   void interaction_child::ScreenToClient(LPRECT lprect)
+   {
+      lprect->left   -= (LONG)m_rectParentClient.left;
+      lprect->right  -= (LONG)m_rectParentClient.left;
+      lprect->top    -= (LONG)m_rectParentClient.top;
+      lprect->bottom -= (LONG)m_rectParentClient.top;
+
+      if(GetParent() != NULL)
+      {
+         GetParent()->ScreenToClient(lprect);
+      }
+   }
+
+   void interaction_child::ScreenToClient(LPPOINT lppoint)
+   {
+      lppoint->x     -= (LONG)m_rectParentClient.left;
+      lppoint->y     -= (LONG)m_rectParentClient.top;
+      if(GetParent() != NULL)
+      {
+         GetParent()->ScreenToClient(lppoint);
+      }
+   }
+
+
+   void interaction_child::ScreenToClient(__rect64 * lprect)
+   {
+      lprect->left   -= m_rectParentClient.left;
+      lprect->right  -= m_rectParentClient.left;
+      lprect->top    -= m_rectParentClient.top;
+      lprect->bottom -= m_rectParentClient.top;
+
+      if(GetParent() != NULL)
+      {
+         GetParent()->ScreenToClient(lprect);
+      }
+   }
+
+   void interaction_child::ScreenToClient(__point64 * lppoint)
+   {
+      lppoint->x     -= m_rectParentClient.left;
+      lppoint->y     -= m_rectParentClient.top;
+      if(GetParent() != NULL)
+      {
+         GetParent()->ScreenToClient(lppoint);
+      }
+   }
+
 
 
 
 } // namespace user
+
+
 
 
 

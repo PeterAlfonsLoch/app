@@ -353,6 +353,12 @@ namespace base
       virtual ::count get_desk_monitor_count();
       virtual bool  get_desk_monitor_rect(index iMonitor,LPRECT lprect);
 
+      virtual index get_ui_wkspace(::user::interaction * pui);
+      virtual index get_main_wkspace(LPRECT lprect = NULL);
+      virtual ::count get_wkspace_count();
+      virtual bool  get_wkspace_rect(index iWkspace,LPRECT lprect);
+      virtual ::count get_desk_wkspace_count();
+      virtual bool  get_desk_wkspace_rect(index iWkspace,LPRECT lprect);
 
       virtual sp(::user::interaction) get_active_guie();
       virtual sp(::user::interaction) get_focus_guie();

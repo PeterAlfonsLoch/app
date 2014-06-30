@@ -1062,9 +1062,11 @@ namespace plugin
 
          m_puiHost->m_bRectOk = true;
 
-         m_puiHost->m_rectParentClient =  *lpcrect;
+         rect rectHost(lpcrect);
 
-         m_puiHost->m_rectParentClient.offset(-point64(m_puiHost->m_rectParentClient.top_left()));
+         rectHost.offset(-rectHost.top_left());
+
+         m_puiHost->SetPlacement(rectHost);
 
          rect64 rectWindow64;
 

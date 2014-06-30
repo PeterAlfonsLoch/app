@@ -837,7 +837,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
    if (m_bFrameMoveEnable)
    {
 
-      WindowDataLoadWindowRect(bForceRestore);
+      WindowDataLoadWindowRect(bForceRestore, true);
 
       WindowDataEnableSaveWindowRect(true);
 
@@ -1679,7 +1679,7 @@ void simple_frame_window::WfiOnRestore()
 
    _001WindowRestore();
 
-   good_restore(NULL,true);
+   //good_restore(NULL,NULL,true);
 
 }
 
@@ -1789,6 +1789,37 @@ class mini_dock_frame_window* simple_frame_window::CreateFloatingFrame(uint32_t 
    UNREFERENCED_PARAMETER(dwStyle);
    return NULL;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bool simple_frame_window::set_appearance(::user::EAppearance eappearance)
+{
+
+   bool bOk1 = ::user::frame_window::set_appearance(eappearance);
+
+   m_workset.SetAppearance(eappearance);
+
+   return bOk1;
+
+}
+
+
+
 
 
 

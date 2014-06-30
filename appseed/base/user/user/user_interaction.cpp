@@ -18,8 +18,6 @@ namespace user
    interaction::interaction()
    {
 
-      m_rectParentClient.null();
-
       m_pthread                     = NULL;
       m_pimpl                       = NULL;
       m_pparent                     = NULL;
@@ -34,7 +32,6 @@ namespace user
       m_bRectOk                     = false;
       m_bVisible                    = true;
       m_crDefaultBackgroundColor    = ARGB(255,255,255,255);
-      m_rectParentClient            = ::null_rect();
 
       m_psession                    = NULL;
       m_bMessageWindow              = false;
@@ -52,8 +49,6 @@ namespace user
       ::user::interaction_base(papp)
    {
 
-         m_rectParentClient.null();
-
          m_pthread                  = NULL;
          m_pmutex                   = NULL;
          m_eappearance              = AppearanceNormal;
@@ -67,7 +62,6 @@ namespace user
          m_iModalCount              = 0;
          m_bRectOk                  = false;
          m_bVisible                 = true;
-         m_rectParentClient         = ::null_rect();
 
 
          m_crDefaultBackgroundColor = ARGB(255,255,255,255);
@@ -336,14 +330,7 @@ namespace user
    void interaction::GetWindowRect(__rect64 * lprect)
    {
 
-      *lprect = m_rectParentClient;
-
-      if(GetParent() != NULL)
-      {
-
-         GetParent()->ClientToScreen(lprect);
-
-      }
+      m_pimpl->GetWindowRect(lprect);
       
    }
 
@@ -2153,7 +2140,13 @@ namespace user
          }
       }
 
-      m_pimpl.release();
+      {
+
+         synch_lock sl(&user_mutex());
+
+         m_pimpl.release();
+
+      }
 
    }
 
@@ -3631,9 +3624,9 @@ namespace user
       {
                                    layout();
       }
-         break;
+         return true;
       default:
-         break;
+         return true;
       }
 
       return false;
@@ -3940,9 +3933,9 @@ namespace user
    bool interaction::set_appearance_before(EAppearance eappearance)
    {
 
-      UNREFERENCED_PARAMETER(eappearance);
+      m_eappearanceBefore = eappearance;
 
-      return false;
+      return true;
 
    }
 
@@ -4074,21 +4067,53 @@ namespace user
    }
 
 
-   index interaction::best_monitor(LPRECT lprect,bool bSet,UINT uiSwpFlags,int_ptr iZOrder)
+   index interaction::best_monitor(LPRECT lprect,LPCRECT lpcrect,bool bSet,UINT uiSwpFlags,int_ptr iZOrder)
    {
 
       ::rect rectWindow;
 
-      GetWindowRect(rectWindow);
+      if(lpcrect != NULL && !::IsRectEmpty(lpcrect))
+      {
+
+         rectWindow = *lpcrect;
+
+      }
+      else
+      {
+
+         GetWindowRect(rectWindow);
+
+      }
 
       ::rect rect;
 
       index iMatchingMonitor = BaseSession.get_best_monitor(rect,rectWindow);
 
-      if(bSet && iMatchingMonitor >= 0)
+      if(bSet && (lpcrect != NULL || iMatchingMonitor >= 0))
       {
 
+#ifdef WINDOWSEX
+
+         WINDOWPLACEMENT wp;
+
+         GetWindowPlacement(&wp);
+
+         wp.showCmd = SW_SHOWNORMAL;
+
+         wp.flags = 0;
+
+         BaseSession.monitor_to_wkspace(rect);
+
+         wp.rcNormalPosition = rect;
+
+         SetWindowPlacement(&wp);
+
+#else
+
+
          SetWindowPos(iZOrder,rect,uiSwpFlags);
+
+#endif
 
       }
 
@@ -4104,21 +4129,117 @@ namespace user
    }
 
 
-   index interaction::good_restore(LPRECT lprect,bool bSet,UINT uiSwpFlags,int_ptr iZOrder)
+   index interaction::best_wkspace(LPRECT lprect,LPCRECT lpcrect,bool bSet,UINT uiSwpFlags,int_ptr iZOrder)
    {
 
       ::rect rectWindow;
 
-      GetWindowRect(rectWindow);
+      if(lpcrect != NULL && !::IsRectEmpty(lpcrect))
+      {
+
+         rectWindow = *lpcrect;
+
+      }
+      else
+      {
+
+         GetWindowRect(rectWindow);
+
+      }
+
+      ::rect rect;
+
+      index iMatchingMonitor = BaseSession.get_best_monitor(rect,rectWindow);
+
+      if(bSet && (lpcrect != NULL || iMatchingMonitor >= 0))
+      {
+
+#ifdef WINDOWSEX
+
+         BaseSession.get_wkspace_rect(iMatchingMonitor, rect);
+
+         WINDOWPLACEMENT wp;
+
+         GetWindowPlacement(&wp);
+
+         wp.showCmd = SW_MAXIMIZE;
+
+         wp.flags = 0;
+
+         BaseSession.monitor_to_wkspace(rect);
+
+         wp.rcNormalPosition = rect;
+
+         SetWindowPlacement(&wp);
+
+#else
+
+
+         SetWindowPos(iZOrder,rect,uiSwpFlags);
+
+#endif
+
+      }
+
+      if(lprect != NULL)
+      {
+
+         *lprect = rect;
+
+      }
+
+      return iMatchingMonitor;
+
+   }
+
+
+   index interaction::good_restore(LPRECT lprect,LPCRECT lpcrect,bool bSet,UINT uiSwpFlags,int_ptr iZOrder)
+   {
+
+      ::rect rectWindow;
+
+      if(lpcrect != NULL && !::IsRectEmpty(lpcrect))
+      {
+
+         rectWindow = *lpcrect;
+
+      }
+      else
+      {
+
+         GetWindowRect(rectWindow);
+
+      }
 
       ::rect rect;
 
       index iMatchingMonitor = BaseSession.get_good_restore(rect,rectWindow);
 
-      if(bSet && iMatchingMonitor >= 0)
+      if(bSet && (lpcrect != NULL || iMatchingMonitor >= 0))
       {
 
+#ifdef WINDOWSEX
+
+         WINDOWPLACEMENT wp;
+
+         GetWindowPlacement(&wp);
+
+         wp.showCmd = SW_SHOWNORMAL;
+
+         wp.flags = 0;
+
+         BaseSession.monitor_to_wkspace(rect);
+
+         wp.rcNormalPosition = rect;
+
+         SetWindowPlacement(&wp);
+
+#else
+
+
          SetWindowPos(iZOrder,rect,uiSwpFlags);
+
+#endif
 
       }
 
@@ -4134,21 +4255,55 @@ namespace user
    }
 
 
-   index interaction::good_iconify(LPRECT lprect,bool bSet,UINT uiSwpFlags,int_ptr iZOrder)
+   index interaction::good_iconify(LPRECT lprect,LPCRECT lpcrect,bool bSet,UINT uiSwpFlags,int_ptr iZOrder)
    {
 
       ::rect rectWindow;
 
-      GetWindowRect(rectWindow);
+      if(lpcrect != NULL && !::IsRectEmpty(lpcrect))
+      {
+
+         rectWindow = *lpcrect;
+
+      }
+      else
+      {
+
+         GetWindowRect(rectWindow);
+
+      }
 
       ::rect rect;
 
       index iMatchingMonitor = BaseSession.get_good_iconify(rect,rectWindow);
 
-      if(bSet && iMatchingMonitor >= 0)
+      if(bSet && (lpcrect != NULL || iMatchingMonitor >= 0))
       {
 
+#ifdef WINDOWSEX
+
+         WINDOWPLACEMENT wp;
+
+         GetWindowPlacement(&wp);
+
+         wp.showCmd = SW_MINIMIZE;
+
+         wp.flags = WPF_SETMINPOSITION;
+
+         BaseSession.monitor_to_wkspace(rect);
+
+         //wp.rcNormalPosition = rect;
+
+         wp.ptMinPosition = rect.top_left();
+
+         SetWindowPlacement(&wp);
+
+#else
+
+
          SetWindowPos(iZOrder,rect,uiSwpFlags);
+
+#endif
 
       }
 
@@ -4164,18 +4319,29 @@ namespace user
    }
 
 
-   index interaction::good_move(LPRECT lprect,UINT uiSwpFlags,int_ptr iZOrder)
+   index interaction::good_move(LPRECT lprect,LPCRECT lpcrect,UINT uiSwpFlags,int_ptr iZOrder)
    {
 
       ::rect rectWindow;
 
-      GetWindowRect(rectWindow);
+      if(lpcrect != NULL && !::IsRectEmpty(lpcrect))
+      {
+
+         rectWindow = *lpcrect;
+
+      }
+      else
+      {
+
+         GetWindowRect(rectWindow);
+
+      }
 
       ::rect rect;
 
       index iMatchingMonitor = BaseSession.get_good_move(rect,rectWindow);
 
-      if(iMatchingMonitor >= 0)
+      if(lpcrect != NULL || iMatchingMonitor >= 0)
       {
 
          SetWindowPos(iZOrder,rect,uiSwpFlags);
@@ -4205,35 +4371,6 @@ namespace user
       keeper < bool > keepLockWindowUpdate(&m_bLockWindowUpdate,true,false,true);
 
       bool bOk = false;
-
-      if(nFlags & SWP_NOMOVE)
-      {
-
-         if(nFlags & SWP_NOSIZE)
-         {
-
-         }
-         else
-         {
-            m_rectParentClient.right   = m_rectParentClient.left + cx;
-            m_rectParentClient.bottom  = m_rectParentClient.top + cy;
-         }
-      }
-      else
-      {
-         point pt(x,y);
-         if(nFlags & SWP_NOSIZE)
-         {
-            m_rectParentClient.move_to(point64(pt));
-         }
-         else
-         {
-            m_rectParentClient.left    = pt.x;
-            m_rectParentClient.top     = pt.y;
-            m_rectParentClient.right   = pt.x + cx;
-            m_rectParentClient.bottom  = pt.y + cy;
-         }
-      }
 
       if(!(nFlags & SWP_NOZORDER))
       {
@@ -4288,109 +4425,72 @@ namespace user
    void interaction::ClientToScreen(LPRECT lprect)
    {
 
-      lprect->left   += (LONG)m_rectParentClient.left;
-      lprect->right  += (LONG)m_rectParentClient.left;
-      lprect->top    += (LONG)m_rectParentClient.top;
-      lprect->bottom += (LONG)m_rectParentClient.top;
+      m_pimpl->ClientToScreen(lprect);
 
-      if(GetParent() != NULL)
-      {
-         GetParent()->ClientToScreen(lprect);
-      }
    }
+
 
    void interaction::ClientToScreen(LPPOINT lppoint)
    {
-      lppoint->x     += (LONG)m_rectParentClient.left;
-      lppoint->y     += (LONG)m_rectParentClient.top;
-      if(GetParent() != NULL)
-      {
-         GetParent()->ClientToScreen(lppoint);
-      }
+      
+      m_pimpl->ClientToScreen(lppoint);
+
    }
 
 
    void interaction::ClientToScreen(__rect64 * lprect)
    {
-      lprect->left   += m_rectParentClient.left;
-      lprect->right  += m_rectParentClient.left;
-      lprect->top    += m_rectParentClient.top;
-      lprect->bottom += m_rectParentClient.top;
+      
+      m_pimpl->ClientToScreen(lprect);
 
-      if(GetParent() != NULL)
-      {
-         GetParent()->ClientToScreen(lprect);
-      }
    }
+
 
    void interaction::ClientToScreen(__point64 * lppoint)
    {
-      lppoint->x     += m_rectParentClient.left;
-      lppoint->y     += m_rectParentClient.top;
-      if(GetParent() != NULL)
-      {
-         GetParent()->ClientToScreen(lppoint);
-      }
+      
+      m_pimpl->ClientToScreen(lppoint);
+
    }
 
 
    void interaction::ScreenToClient(LPRECT lprect)
    {
-      lprect->left   -= (LONG)m_rectParentClient.left;
-      lprect->right  -= (LONG)m_rectParentClient.left;
-      lprect->top    -= (LONG)m_rectParentClient.top;
-      lprect->bottom -= (LONG)m_rectParentClient.top;
+      
+      m_pimpl->ScreenToClient(lprect);
 
-      if(GetParent() != NULL)
-      {
-         GetParent()->ScreenToClient(lprect);
-      }
    }
+
 
    void interaction::ScreenToClient(LPPOINT lppoint)
    {
-      lppoint->x     -= (LONG)m_rectParentClient.left;
-      lppoint->y     -= (LONG)m_rectParentClient.top;
-      if(GetParent() != NULL)
-      {
-         GetParent()->ScreenToClient(lppoint);
-      }
+
+      m_pimpl->ScreenToClient(lppoint);
+
    }
 
 
    void interaction::ScreenToClient(__rect64 * lprect)
    {
-      lprect->left   -= m_rectParentClient.left;
-      lprect->right  -= m_rectParentClient.left;
-      lprect->top    -= m_rectParentClient.top;
-      lprect->bottom -= m_rectParentClient.top;
+      
+      m_pimpl->ScreenToClient(lprect);
 
-      if(GetParent() != NULL)
-      {
-         GetParent()->ScreenToClient(lprect);
-      }
    }
+
 
    void interaction::ScreenToClient(__point64 * lppoint)
    {
-      lppoint->x     -= m_rectParentClient.left;
-      lppoint->y     -= m_rectParentClient.top;
-      if(GetParent() != NULL)
-      {
-         GetParent()->ScreenToClient(lppoint);
-      }
+      
+      m_pimpl->ScreenToClient(lppoint);
+
    }
-
-
 
 
    void interaction::GetClientRect(__rect64 * lprect)
    {
-      *lprect = m_rectParentClient;
-      lprect->right -= lprect->left;
-      lprect->bottom -= lprect->top;
-      lprect->left = 0;
-      lprect->top = 0;
+
+      m_pimpl->GetClientRect(lprect);
+      
    }
 
 
@@ -4460,6 +4560,12 @@ namespace user
 
    }
 
+   bool interaction::get_rect_normal(LPRECT lprect)
+   {
+
+      return m_pimpl->get_rect_normal(lprect);
+
+   }
 
 } // namespace user
 

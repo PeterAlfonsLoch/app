@@ -33,7 +33,11 @@ namespace user
 
       m_pui->m_eappearance = AppearanceIconic;
 
-      m_pui->good_iconify(NULL,true);
+      rect rectNormal;
+
+      m_pui->get_rect_normal(rectNormal);
+
+      m_pui->good_iconify(NULL,rectNormal,true);
 
    }
 
@@ -43,7 +47,11 @@ namespace user
 
       m_pui->m_eappearance = AppearanceZoomed;
 
-      m_pui->best_monitor(NULL,true);
+      rect rectNormal;
+
+      m_pui->get_rect_normal(rectNormal);
+
+      m_pui->best_wkspace(NULL, rectNormal,true);
 
    }
 
@@ -53,7 +61,11 @@ namespace user
 
       m_pui->m_eappearance = ::user::AppearanceFullScreen;
 
-      m_pui->best_monitor(NULL,true);
+      rect rectNormal;
+
+      m_pui->get_rect_normal(rectNormal);
+
+      m_pui->best_monitor(NULL,rectNormal,true);
 
    }
 
@@ -63,7 +75,11 @@ namespace user
 
       m_pui->m_eappearance = AppearanceNormal;
 
-      //m_pui->good_restore(NULL,true);
+      rect rectNormal;
+
+      m_pui->get_rect_normal(rectNormal);
+
+      m_pui->good_restore(NULL,rectNormal,true);
 
    }
 
@@ -913,6 +929,14 @@ namespace user
    }
 
 
+   bool interaction_impl_base::get_rect_normal(LPRECT lprect)
+   {
+
+      GetWindowRect(lprect);
+
+      return true;
+
+   }
 
 
 

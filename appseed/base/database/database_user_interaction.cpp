@@ -117,7 +117,7 @@ namespace database
       }
 
 
-      bool interaction::WindowDataLoadWindowRect(bool bForceRestore)
+      bool interaction::WindowDataLoadWindowRect(bool bForceRestore, bool bInitialFramePosition)
       {
 
          single_lock sl(m_spmutex, true);
@@ -134,7 +134,7 @@ namespace database
 
          sl.unlock();
 
-         bLoad = LoadWindowRect_(idWindow, idKey, this, bForceRestore);
+         bLoad = LoadWindowRect_(idWindow, idKey, this, bForceRestore, bInitialFramePosition);
 
          return bLoad;
 
@@ -149,7 +149,7 @@ namespace database
       }
 
 
-      bool interaction::LoadWindowRect_(::database::id key, ::database::id idIndex, sp(::user::interaction) pwindow, bool bForceRestore)
+      bool interaction::LoadWindowRect_(::database::id key, ::database::id idIndex, sp(::user::interaction) pwindow, bool bForceRestore, bool bInitialFramePosition)
       {
 
          try
@@ -184,45 +184,51 @@ namespace database
 
             memstream >> rectWindow;
 
-            rect rectRestore;
-
-            BaseSession.get_good_restore(rectRestore,rectWindow);
-
-            SetWindowPos(
-               ZORDER_TOP,
-               rectRestore.left,
-               rectRestore.top,
-               rectRestore.width(),
-               rectRestore.height(),
-               bForceRestore && (!bZoomed && !bFullScreen && !bIconic) ? SWP_SHOWWINDOW : 0);
-
             if(!bForceRestore)
             {
 
-               if(bZoomed)
+               if(bZoomed || (bInitialFramePosition && m_eappearanceBefore == ::user::AppearanceZoomed))
                {
 
-                  pwindow->WfiMaximize();
+                  pwindow->set_appearance(::user::AppearanceZoomed);
+
+                  pwindow->best_wkspace(NULL,rectWindow,true);
 
                }
-               else if(bFullScreen)
+               else if(bFullScreen || (bInitialFramePosition && m_eappearanceBefore == ::user::AppearanceFullScreen)
                {
 
-                  pwindow->WfiFullScreen();
+                  pwindow->set_appearance(::user::AppearanceFullScreen);
+
+                  pwindow->best_monitor(NULL,rectWindow,true);
 
                }
-               else if(bIconic)
+               else if(bIconic && !bInitialFramePosition)
                {
 
-                  pwindow->WfiMinimize();
+                  pwindow->set_appearance(::user::AppearanceIconic);
+
+                  pwindow->good_iconify(NULL,rectWindow,true);
+
+               }
+               else
+               {
+
+                  pwindow->set_appearance(::user::AppearanceNormal);
+
+                  pwindow->good_restore(NULL,rectWindow,true);
 
                }
 
             }
+            else
+            {
 
+               pwindow->set_appearance(::user::AppearanceNormal);
 
+               pwindow->good_restore(NULL,rectWindow,true);
 
-
+            }
 
             return true;
 

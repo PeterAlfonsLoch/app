@@ -163,7 +163,7 @@ namespace user
       virtual sp(::user::interaction) SetFocus();
 
 
-
+      virtual bool get_rect_normal(LPRECT lprect);
 
 
    };
