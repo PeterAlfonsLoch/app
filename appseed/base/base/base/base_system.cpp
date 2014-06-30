@@ -366,7 +366,7 @@ namespace base
 
          if(!m_spnet->finalize())
          {
-          
+
             m_iReturnCode = -87;
 
          }
@@ -378,6 +378,157 @@ namespace base
          m_iReturnCode = -87;
 
       }
+
+
+      try
+      {
+
+         if(m_ptwf != NULL)
+         {
+
+            m_ptwf->m_bRun = false;
+
+         }
+
+      }
+      catch(...)
+      {
+      }
+
+
+      for(int i = 0; i < m_serviceptra.get_size(); i++)
+      {
+         try
+         {
+            m_serviceptra(i)->Stop(0);
+         }
+         catch(...)
+         {
+         }
+      }
+
+      try
+      {
+         if(m_ptwf != NULL)
+         {
+            m_ptwf->twf_stop();
+            m_ptwf = NULL;
+         }
+      }
+      catch(...)
+      {
+      }
+
+      for(int i = 0; i < m_serviceptra.get_size(); i++)
+      {
+         try
+         {
+            m_serviceptra(i)->Stop((5000) * 2);
+         }
+         catch(...)
+         {
+         }
+      }
+
+      m_serviceptra.remove_all();
+
+      try
+      {
+         if(m_pfactory != NULL)
+         {
+
+            m_pfactory->enable_simple_factory_request(false);
+
+            m_pfactory.release();
+
+         }
+
+      }
+      catch(...)
+      {
+         TRACE("system::exit_instance: Potentially catastrophical error : error disabling simple factory request");
+      }
+
+
+      int32_t iRet = 0;
+
+
+      try
+      {
+
+         iRet = ::base::application::exit_instance();
+
+      }
+      catch(...)
+      {
+
+      }
+
+
+
+      try
+      {
+         m_spportforward.release();
+      }
+      catch(...)
+      {
+      }
+
+
+
+      try
+      {
+         if(m_spos.is_set())
+         {
+            m_spos.release();
+         }
+      }
+      catch(...)
+      {
+      }
+      try
+      {
+         m_spdir.release();
+      }
+      catch(...)
+      {
+      }
+
+
+      try
+      {
+         m_spos.release();
+      }
+      catch(...)
+      {
+      }
+      try
+      {
+         m_spdir.release();
+      }
+      catch(...)
+      {
+      }
+
+      try
+      {
+         if(m_pmachineeventcentral != NULL)
+         {
+            m_pmachineeventcentral->set_run(false);
+         }
+      }
+      catch(...)
+      {
+      }
+
+
+
+      m_plog.release();
+
+      m_typemap.remove_all();
+
+      m_typemap.release();
+
 
 
       ::base::application::exit_instance();
@@ -435,7 +586,8 @@ namespace base
 
       }
 
-      return 0;
+
+      return iRet;
 
    }
 

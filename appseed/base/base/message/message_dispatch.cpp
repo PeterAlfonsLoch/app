@@ -482,6 +482,7 @@ namespace message
       case WM_SETFOCUS:
          return PrototypeSetFocus;
       case WM_WINDOWPOSCHANGING:
+      case WM_WINDOWPOSCHANGED:
          return PrototypeWindowPos;
       case WM_NCCALCSIZE:
          return PrototypeNcCalcSize;

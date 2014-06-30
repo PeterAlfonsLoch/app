@@ -24,6 +24,7 @@ namespace sockets
       m_mapReverseCache(papp,"sockets::net::m_mapReverseCache")
    {
 
+      m_bInitialized = false;
       m_mapCache.m_bAutoGudoSet = false;
       m_mapReverseCache.m_bAutoGudoSet = false;
 
@@ -36,6 +37,11 @@ namespace sockets
 
    bool net::initialize()
    {
+
+      if(m_bInitialized)
+         return true;
+
+      m_bInitialized = true;
 
       //if(System.m_bGudoNetCache)
       {
@@ -54,6 +60,9 @@ namespace sockets
 
    bool net::finalize()
    {
+
+      if(!m_bInitialized)
+         return false;
 
       m_mapCache.gudo_set();
 

@@ -77,6 +77,7 @@ namespace base
       ::file::system_sp                            m_spfile;
       ::file::dir::system_sp                       m_spdir;
       sp(::sockets::net)                           m_spnet;
+      ::net::port_forward_sp                       m_spportforward;
       ::http::system                               m_httpsystem;
       ::string_to_string                           m_mapAppLibrary;
       class machine_event_central *                m_pmachineeventcentral;

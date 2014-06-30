@@ -83,6 +83,10 @@ namespace windows
 
       m_bUpdateGraphics = false;
 
+      m_bIgnoreSizeEvent = false;
+
+      m_bIgnoreMoveEvent = false;
+
    }
 
 
@@ -448,22 +452,12 @@ namespace windows
          IGUI_WIN_MSG_LINK(WM_ERASEBKGND,pinterface,this,&interaction_impl::_001OnEraseBkgnd);
          IGUI_WIN_MSG_LINK(WM_MOVE,pinterface,this,&interaction_impl::_001OnMove);
          IGUI_WIN_MSG_LINK(WM_SIZE,pinterface,this,&interaction_impl::_001OnSize);
+         IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGED,pinterface,this,&interaction_impl::_001OnWindowPosChanged);
          IGUI_WIN_MSG_LINK(WM_SHOWWINDOW,pinterface,this,&interaction_impl::_001OnShowWindow);
          IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH,pinterface,this,&interaction_impl::_001OnProdevianSynch);
       }
       IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction_impl::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_NCCALCSIZE,pinterface,this,&interaction_impl::_001OnNcCalcSize);
-   }
-
-   void interaction_impl::_001OnMove(signal_details * pobj)
-   {
-      UNREFERENCED_PARAMETER(pobj);
-      if(!m_pui->m_bRectOk && !(GetExStyle() & WS_EX_LAYERED))
-      {
-         class rect rectWindow;
-         ::GetWindowRect(get_handle(),rectWindow);
-         m_pui->m_rectParentClient = rectWindow;
-      }
    }
 
    void interaction_impl::win_update_graphics()
@@ -505,10 +499,44 @@ namespace windows
 
    }
 
+
+
+   void interaction_impl::_001OnMove(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::move,pmove,pobj);
+
+      if(m_bIgnoreMoveEvent)
+      {
+
+         pobj->m_bRet = true;
+
+         return;
+
+      }
+
+      if(!m_pui->m_bRectOk && !(GetExStyle() & WS_EX_LAYERED))
+      {
+         class rect rectWindow;
+         ::GetWindowRect(get_handle(),rectWindow);
+         m_pui->m_rectParentClient = rectWindow;
+      }
+   }
+
+
    void interaction_impl::_001OnSize(signal_details * pobj)
    {
-      UNREFERENCED_PARAMETER(pobj);
 
+      SCAST_PTR(::message::size,psize,pobj);
+
+      if(m_bIgnoreSizeEvent)
+      {
+
+         pobj->m_bRet = true;
+
+         return;
+
+      }
 
       if(!m_pui->m_bRectOk && !(GetExStyle() & WS_EX_LAYERED))
       {
@@ -542,8 +570,23 @@ namespace windows
 
    void interaction_impl::_001OnShowWindow(signal_details * pobj)
    {
+      
       SCAST_PTR(::message::show_window,pshowwindow,pobj);
-      m_pui->m_bVisible = pshowwindow->m_bShow != FALSE;
+
+      if(pshowwindow->m_bShow != FALSE)
+      {
+
+         m_pui->m_bVisible = true;
+
+      }
+      else
+      {
+
+         m_pui->m_bVisible = false;
+
+      }
+
+      
    }
 
    void interaction_impl::_001OnDestroy(signal_details * pobj)
@@ -3150,13 +3193,21 @@ namespace windows
 
          nFlags |= SWP_FRAMECHANGED;
 
-         //_001UpdateWindow();
+         m_pui->send_message(WM_SIZE,0,MAKELONG(max(0,cx),max(0,cy)));
 
-         ::SetWindowPos(get_handle(),(oswindow)z,x,y,cx,cy,nFlags);
+         m_pui->send_message(WM_MOVE);
 
-         //m_pui->send_message(WM_SIZE,0,MAKELONG(max(0,cx),max(0,cy)));
+         _001UpdateWindow();
 
-         //m_pui->send_message(WM_MOVE);
+         {
+
+            keeper < bool > keepIgnoreSizeEvent(&m_bIgnoreSizeEvent,true,false,true);
+
+            keeper < bool > keepIgnoreMoveEvent(&m_bIgnoreMoveEvent,true,false,true);
+
+            ::SetWindowPos(get_handle(),(oswindow)z,x,y,cx,cy,nFlags);
+
+         }
 
          if(nFlags & SWP_SHOWWINDOW)
          {
@@ -3317,7 +3368,15 @@ namespace windows
 
       m_pui->m_eappearance = ::user::AppearanceIconic;
 
-      ::ShowWindow(get_handle(),SW_MINIMIZE);
+      {
+
+         keeper < bool > keepIgnoreSizeEvent(&m_bIgnoreSizeEvent,true,false,true);
+
+         keeper < bool > keepIgnoreMoveEvent(&m_bIgnoreMoveEvent,true,false,true);
+
+         ::ShowWindow(get_handle(),SW_MINIMIZE);
+
+      }
 
       interaction_impl_base::_001WindowMinimize();
 
@@ -3329,7 +3388,15 @@ namespace windows
 
       m_pui->m_eappearance = ::user::AppearanceZoomed;
 
-      ::ShowWindow(get_handle(),SW_MAXIMIZE);
+      {
+
+         keeper < bool > keepIgnoreSizeEvent(&m_bIgnoreSizeEvent,true,false,true);
+
+         keeper < bool > keepIgnoreMoveEvent(&m_bIgnoreMoveEvent,true,false,true);
+
+         ::ShowWindow(get_handle(),SW_MAXIMIZE);
+
+      }
 
       interaction_impl_base::_001WindowMaximize();
 
@@ -3341,7 +3408,15 @@ namespace windows
 
       m_pui->m_eappearance = ::user::AppearanceFullScreen;
 
-      ::ShowWindow(get_handle(),SW_MAXIMIZE);
+      {
+
+         keeper < bool > keepIgnoreSizeEvent(&m_bIgnoreSizeEvent,true,false,true);
+
+         keeper < bool > keepIgnoreMoveEvent(&m_bIgnoreMoveEvent,true,false,true);
+
+         ::ShowWindow(get_handle(),SW_MAXIMIZE);
+
+      }
 
       interaction_impl_base::_001WindowFullScreen();
 
@@ -3353,7 +3428,15 @@ namespace windows
 
       m_pui->m_eappearance = ::user::AppearanceNormal;
 
-      ::ShowWindow(get_handle(),SW_RESTORE);
+      {
+
+         keeper < bool > keepIgnoreSizeEvent(&m_bIgnoreSizeEvent,true,false,true);
+
+         keeper < bool > keepIgnoreMoveEvent(&m_bIgnoreMoveEvent,true,false,true);
+
+         ::ShowWindow(get_handle(),SW_RESTORE);
+
+      }
 
       interaction_impl_base::_001WindowRestore();
 
@@ -3374,13 +3457,23 @@ namespace windows
          if(nCmdShow == SW_HIDE)
          {
 
-            ModifyStyle(get_handle(),WS_VISIBLE,0,0);
+            if(GetStyle() & WS_VISIBLE)
+            {
+
+               ModifyStyle(get_handle(),WS_VISIBLE,0,0);
+
+            }
 
          }
          else
          {
 
-            ModifyStyle(get_handle(),0,WS_VISIBLE,0);
+            if(!(GetStyle() & WS_VISIBLE))
+            {
+
+               ModifyStyle(get_handle(),0,WS_VISIBLE,0);
+
+            }
 
          }
 
@@ -3405,13 +3498,13 @@ namespace windows
          else
          {
 
-            if(nCmdShow != SW_HIDE)
-            {
-
-               ::SetWindowPos(get_safe_handle(),0,(int)m_pui->m_rectParentClient.left,(int)m_pui->m_rectParentClient.top,
-                  (int)m_pui->m_rectParentClient.width(),(int)m_pui->m_rectParentClient.height(),SWP_SHOWWINDOW | SWP_NOZORDER);
-
-            }
+//            if(nCmdShow != SW_HIDE)
+//            {
+//
+//               ::SetWindowPos(get_safe_handle(),0,(int)m_pui->m_rectParentClient.left,(int)m_pui->m_rectParentClient.top,
+//                  (int)m_pui->m_rectParentClient.width(),(int)m_pui->m_rectParentClient.height(),SWP_SHOWWINDOW | SWP_NOZORDER);
+//
+//            }
 
             ::ShowWindow(get_handle(),nCmdShow);
 
@@ -3419,7 +3512,7 @@ namespace windows
 
          m_pui->m_bVisible = ::IsWindowVisible(get_handle()) != FALSE;
 
-         if(!m_pui->m_bVisible || m_pui->WfiIsIconic())
+         if((GetExStyle() & WS_EX_LAYERED) && (!m_pui->m_bVisible || m_pui->WfiIsIconic()))
          {
 
             ::UpdateLayeredWindow(get_handle(),NULL,NULL,NULL,NULL,NULL,0,NULL,0);
@@ -4705,10 +4798,16 @@ namespace windows
    {
       Default();
    }
-   void interaction_impl::OnWindowPosChanged(WINDOWPOS*)
+
+   void interaction_impl::_001OnWindowPosChanged(signal_details * pobj)
    {
+
+      SCAST_PTR(::message::window_pos,pwindowpos,pobj);
+
       Default();
+
    }
+
    void interaction_impl::OnDropFiles(HDROP)
    {
       Default();
@@ -5287,6 +5386,9 @@ namespace windows
       }*/
 
       synch_lock slUserMutex(&user_mutex());
+
+      //if(m_pui->m_bLockWindowUpdate)
+        // return;
 
       single_lock sl(mutex_graphics(),false);
 

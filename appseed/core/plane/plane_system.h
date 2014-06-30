@@ -45,8 +45,6 @@ namespace plane
       ::net::email_departament                        m_emaildepartament;
       sp(colorertake5::ParserFactory)              m_pparserfactory;
 
-      ::net::port_forward_sp                        m_spportforward;
-
       sp(::plane::session::run_start_installer)      m_prunstartinstaller;
       sp(::plane::session::map)                      m_pbergedgemap;
       spa(::plane::session)                           m_planesessionptra;

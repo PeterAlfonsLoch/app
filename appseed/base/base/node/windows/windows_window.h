@@ -26,6 +26,9 @@ namespace windows
       point                            m_pt;
 
       ::user::interaction_base *       m_pbasewnd;
+
+      bool                             m_bIgnoreSizeEvent;
+      bool                             m_bIgnoreMoveEvent;
       
 
       //UINT m_nFlags;      // see WF_ flags above
@@ -77,6 +80,7 @@ namespace windows
       DECL_GEN_SIGNAL(_001OnSize);
       DECL_GEN_SIGNAL(_001OnShowWindow);
       DECL_GEN_SIGNAL(_001OnProdevianSynch);
+      DECL_GEN_SIGNAL(_001OnWindowPosChanged);
 
 
       virtual void win_update_graphics();

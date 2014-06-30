@@ -1052,14 +1052,14 @@ namespace user
       if(nFlags & SWP_SHOWWINDOW)
       {
 
-         ShowWindow(SW_SHOW);
+         m_pui->ShowWindow(SW_SHOW);
 
       }
 
       if(!(nFlags & SWP_NOREDRAW))
       {
 
-         _001RedrawWindow();
+         m_pui->_001RedrawWindow();
 
       }
 

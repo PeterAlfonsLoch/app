@@ -495,7 +495,7 @@ namespace user
 
 #ifdef WINDOWSEX
       void OnWindowPosChanging(WINDOWPOS* lpwndpos);
-      void OnWindowPosChanged(WINDOWPOS* lpwndpos);
+      DECL_GEN_SIGNAL(_001OnWindowPosChanged);
 #endif
 
       void OnChangeUIState(UINT nAction,UINT nUIElement);

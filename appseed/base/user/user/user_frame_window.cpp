@@ -853,7 +853,7 @@ namespace user
       if (m_bFrameMoveEnable)
       {
       
-         good_restore(NULL, true);
+//         good_restore(NULL, true);
 
       }
       ActivateTopParent();

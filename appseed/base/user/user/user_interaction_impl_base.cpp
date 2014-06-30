@@ -63,7 +63,7 @@ namespace user
 
       m_pui->m_eappearance = AppearanceNormal;
 
-      m_pui->good_restore(NULL,true);
+      //m_pui->good_restore(NULL,true);
 
    }
 

@@ -43,6 +43,7 @@ namespace user
       m_pparent                     = NULL;
       m_etranslucency               = TranslucencyNone;
       m_bBackgroundBypass           = false;
+      m_bLockWindowUpdate           = false;
 
    }
 
@@ -2943,6 +2944,9 @@ namespace user
    void interaction::_001UpdateWindow()
    {
 
+      if(m_bLockWindowUpdate)
+         return;
+
       m_pimpl->_001UpdateWindow();
 
    }
@@ -4198,8 +4202,9 @@ namespace user
 
       synch_lock sl(pimpl.is_null() ? NULL : pimpl->mutex_graphics());
 
-      bool bOk = false;
+      keeper < bool > keepLockWindowUpdate(&m_bLockWindowUpdate,true,false,true);
 
+      bool bOk = false;
 
       if(nFlags & SWP_NOMOVE)
       {
@@ -4266,8 +4271,10 @@ namespace user
 
       m_bRectOk = false;
 
-      if(!(nFlags & SWP_NOREDRAW) && IsWindowVisible())
+      if(!(nFlags & SWP_NOREDRAW) && IsWindowVisible() && !(GetExStyle() & WS_EX_LAYERED))
       {
+
+         keepLockWindowUpdate.KeepAway();
 
          _001RedrawWindow();
 

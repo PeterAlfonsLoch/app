@@ -97,9 +97,12 @@ namespace sockets
       string         m_local_addr6; ///< local ip address in string format
       in6_addr       m_local_ip6; ///< local ipv6 address
       bool           m_local_resolved; ///< ResolveLocal has been called if true
+      
 
 
    public:
+
+      bool           m_bInitialized;
 
 
       class CLASS_DECL_BASE dns_cache_item :

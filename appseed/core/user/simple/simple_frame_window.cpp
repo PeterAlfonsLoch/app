@@ -320,12 +320,12 @@ void simple_frame_window::_001OnSize(signal_details * pobj)
 void simple_frame_window::_001OnMove(signal_details * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-   if ((m_workset.GetMovingManager() == NULL ||
-      m_workset.GetSizingManager() == NULL) || (!m_workset.GetMovingManager()->IsMoving()
-      && !m_workset.GetSizingManager()->IsSizing()))
-   {
-      _001RedrawWindow();
-   }
+   //if ((m_workset.GetMovingManager() == NULL ||
+   //   m_workset.GetSizingManager() == NULL) || (!m_workset.GetMovingManager()->IsMoving()
+   //   && !m_workset.GetSizingManager()->IsSizing()))
+   //{
+   //   _001RedrawWindow();
+   //}
 
 
 
@@ -843,7 +843,9 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
    }
 
-   ::user::frame_window::InitialFramePosition(bForceRestore);
+   ActivateTopParent();
+
+   BringToTop(-1);
 
    if (m_workset.get_appearance() != NULL && m_workset.GetAppearance() == ::user::AppearanceIconic)
    {

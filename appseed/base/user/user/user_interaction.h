@@ -25,6 +25,7 @@ namespace user
       rect64                              m_rectParentClient;
       bool                                m_bVisible;
       bool                                m_bVoidPaint;
+      bool                                m_bLockWindowUpdate;
       draw_interface *                    m_pdrawinterfaceBackground;
       bool                                m_bBackgroundBypass;
       ETranslucency                       m_etranslucency;

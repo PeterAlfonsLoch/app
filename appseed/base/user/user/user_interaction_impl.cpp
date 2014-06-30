@@ -1700,7 +1700,7 @@ namespace user
    }
 
 
-   void interaction_impl::OnWindowPosChanged(WINDOWPOS*)
+   void interaction_impl::_001OnWindowPosChanged(signal_details * pobj)
    {
 
       throw interface_only_exception(get_app());
