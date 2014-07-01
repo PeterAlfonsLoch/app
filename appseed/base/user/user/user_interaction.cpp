@@ -2948,6 +2948,8 @@ namespace user
    void interaction::_001WindowMinimize()
    {
 
+      set_appearance_before(get_appearance());
+
       m_pimpl->_001WindowMinimize();
 
    }
@@ -3912,14 +3914,6 @@ namespace user
    }
 
 
-   EAppearance interaction::get_appearance_before()
-   {
-
-      return AppearanceNone;
-
-   }
-
-
    bool interaction::set_appearance(EAppearance eappearance)
    {
 
@@ -3936,6 +3930,14 @@ namespace user
       m_eappearanceBefore = eappearance;
 
       return true;
+
+   }
+
+
+   EAppearance interaction::get_appearance_before()
+   {
+
+      return m_eappearanceBefore;
 
    }
 

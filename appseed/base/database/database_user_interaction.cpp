@@ -195,7 +195,7 @@ namespace database
                   pwindow->best_wkspace(NULL,rectWindow,true);
 
                }
-               else if(bFullScreen || (bInitialFramePosition && m_eappearanceBefore == ::user::AppearanceFullScreen)
+               else if(bFullScreen || (bInitialFramePosition && m_eappearanceBefore == ::user::AppearanceFullScreen))
                {
 
                   pwindow->set_appearance(::user::AppearanceFullScreen);
@@ -327,9 +327,13 @@ namespace database
 
          string strDisplay;
 
+         rect rectNormal;
+
+         get_rect_normal(rectNormal);
+
          rect rectScreen;
 
-         best_monitor(rectScreen);
+         best_monitor(rectScreen, rectNormal);
 
          strDisplay.Format("Display(%d, %d)", rectScreen.width(), rectScreen.height());
 
