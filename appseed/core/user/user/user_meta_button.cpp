@@ -118,7 +118,7 @@ void MetaButton::_001OnLButtonUp(signal_details * pobj)
 
    UNREFERENCED_PARAMETER(pobj);
 
-   _001RedrawWindow();
+   //_001RedrawWindow();
 
 }
 

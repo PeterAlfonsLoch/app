@@ -13,8 +13,6 @@ namespace user
       m_pgraphics = NULL;
       m_bComposite = true;
       m_bUpdateGraphics = false;
-      m_pmutexGraphics = NULL;
-      m_pmutexDisplay = NULL;
       m_oswindow = NULL;
 
    }
@@ -230,8 +228,9 @@ namespace user
 
    void interaction_impl::install_message_handling(::message::dispatch * pinterface)
    {
-      UNREFERENCED_PARAMETER(pinterface);
-      throw interface_only_exception(get_app());
+      
+      IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&interaction_impl::_001OnCreate);
+
    }
 
    void interaction_impl::_001OnDestroy(signal_details * pobj)
@@ -1595,8 +1594,20 @@ namespace user
 
    void interaction_impl::_001OnCreate(signal_details * pobj)
    {
-      throw interface_only_exception(get_app());
+
+      pobj->previous();
+
+      if(!m_pui->m_bMessageWindow)
+      {
+
+         m_spmutexGraphics    = canew(mutex(get_app()));
+
+         m_spmutexDisplay     = canew(mutex(get_app()));
+
+      }
+
    }
+
 
    void interaction_impl::OnEnable(bool)
    {
@@ -2289,6 +2300,8 @@ namespace user
    void interaction_impl::update_graphics_resources()
    {
 
+/*
+      
       if(m_pmutexGraphics == NULL)
       {
 
@@ -2296,12 +2309,17 @@ namespace user
 
       }
 
+*/
+
+/*
       if(m_pmutexDisplay == NULL)
       {
 
          m_pmutexDisplay = new mutex(get_app());
 
       }
+
+*/
 
       single_lock sl(mutex_graphics(),false);
 
@@ -2477,6 +2495,21 @@ namespace user
 
       return m_oswindow;
 
+   }
+
+   
+   sp(mutex) interaction_impl::mutex_graphics() 
+   { 
+      
+      return m_spmutexGraphics; 
+   
+   }
+   
+   sp(mutex) interaction_impl::mutex_display() 
+   {
+      
+      return m_spmutexDisplay; 
+   
    }
 
 

@@ -4493,9 +4493,6 @@
     <ClInclude Include="base\base\base_application_signal_details.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
-    <ClInclude Include="base\base\base_keeper.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
     <ClInclude Include="base\message\message_dispatch.h">
       <Filter>Header Files\base\message</Filter>
     </ClInclude>
@@ -4626,6 +4623,9 @@
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base_gudo_application.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_keep.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
   </ItemGroup>
@@ -8975,6 +8975,9 @@
     </None>
     <None Include="base\message\message.inl">
       <Filter>Header Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

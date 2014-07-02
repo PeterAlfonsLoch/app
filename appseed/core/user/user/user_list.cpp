@@ -3475,7 +3475,7 @@ namespace user
    void list::_001UpdateColumns()
    {
       _001RemoveAllColumns();
-      keeper < bool > keepLockViewUpdate(&m_bLockViewUpdate, true, false, true);
+      keep < bool > keepLockViewUpdate(&m_bLockViewUpdate, true, false, true);
       _001InsertColumns();
       keepLockViewUpdate.KeepAway();
       DIDDXHeaderLayout(false);

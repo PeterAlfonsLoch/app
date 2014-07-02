@@ -35,7 +35,7 @@ namespace http
 
       }
 
-      keeper < string > keepWorkUrl(get_thread() == NULL ? &strWorkUrl : &get_thread()->m_strWorkUrl, pszUrl, strWorkUrl, true);
+      keep < string > keepWorkUrl(get_thread() == NULL ? &strWorkUrl : &get_thread()->m_strWorkUrl, pszUrl, strWorkUrl, true);
 
       if ((bool)set["optional_ca2_sessid"])
       {

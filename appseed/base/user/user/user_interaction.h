@@ -21,6 +21,8 @@ namespace user
       bool                                m_bVisible;
       bool                                m_bVoidPaint;
       bool                                m_bLockWindowUpdate;
+      bool                                m_bEnableSaveWindowRect;
+
       draw_interface *                    m_pdrawinterfaceBackground;
       bool                                m_bBackgroundBypass;
       ETranslucency                       m_etranslucency;

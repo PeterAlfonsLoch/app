@@ -211,7 +211,7 @@ namespace user
       SCAST_PTR(::message::scroll, pscroll, pobj);
 
 
-      keeper < bool > keepVScroll(&m_scrollinfo.m_bVScroll, true, false, true);
+      keep < bool > keepVScroll(&m_scrollinfo.m_bVScroll, true, false, true);
 
 
       m_scrollinfo.m_ptScroll.y = pscroll->m_nPos;
@@ -233,7 +233,7 @@ namespace user
       SCAST_PTR(::message::scroll, pscroll, pobj);
 
 
-      keeper < bool > keepHScroll(&m_scrollinfo.m_bHScroll, true, false, true);
+      keep < bool > keepHScroll(&m_scrollinfo.m_bHScroll, true, false, true);
 
 
       m_scrollinfo.m_ptScroll.x = pscroll->m_nPos;

@@ -608,7 +608,7 @@ namespace user
 
 #ifdef WINDOWS
 
-      cs.dwExStyle |= WS_EX_CLIENTEDGE;
+      //cs.dwExStyle |= WS_EX_CLIENTEDGE;
 
 #endif
 
@@ -1517,7 +1517,7 @@ namespace user
       if (m_bInRecalcLayout)
          return;
 
-      keeper < bool > keepInRecalcLayout(&m_bInRecalcLayout, true, false, true);
+      keep < bool > keepInRecalcLayout(&m_bInRecalcLayout, true, false, true);
       // clear idle flags for recalc layout if called elsewhere
       //   if (m_nIdleFlags & idleNotify)
       //   bNotify = TRUE;
@@ -1595,11 +1595,6 @@ namespace user
 
    void frame_window::OnSize(UINT nType, int32_t cx, int32_t cy)
    {
-      UNREFERENCED_PARAMETER(cx);
-      UNREFERENCED_PARAMETER(cy);
-      // trans   user::frame_window::OnSize(nType, cx, cy);    // important for MDI Children
-      if (nType != SIZE_MINIMIZED)
-         layout();
    }
 
    bool frame_window::OnEraseBkgnd(::draw2d::graphics * pgraphics)
@@ -1737,15 +1732,21 @@ namespace user
 #ifdef WINDOWS
 
       SCAST_PTR(::message::base, pbase, pobj);
+      
       if (GetParent() == NULL)
       {
+         
          if (pbase->m_wparam == SC_RESTORE)
          {
-            m_eappearance = AppearanceNormal;
-            InitialFramePosition(true);
+
+            WfiRestore(true);
+
             pbase->m_bRet = true;
+
             pbase->set_lresult(0);
+
          }
+
       }
 
 #else
@@ -1956,8 +1957,9 @@ namespace user
 
    void frame_window::_001OnSize(signal_details * pobj)
    {
+      
       UNREFERENCED_PARAMETER(pobj);
-      //      SCAST_PTR(::message::size, psize, pobj)
+      
    }
 
 

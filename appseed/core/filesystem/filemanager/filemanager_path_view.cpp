@@ -157,7 +157,7 @@ namespace filemanager
             {
                if (!System.file().path().is_equal(GetFileManager()->get_item().m_strPath, strName))
                {
-                  keeper < bool > keepVoidSync(&m_bVoidSync, true, false, true);
+                  keep < bool > keepVoidSync(&m_bVoidSync, true, false, true);
                   GetFileManager()->FileManagerBrowse(strName, ::action::source::sync(actioncontext));
                }
                break;

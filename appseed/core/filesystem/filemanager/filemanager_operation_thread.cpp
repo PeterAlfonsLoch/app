@@ -23,7 +23,7 @@ bool file_manager_operation_thread::step()
       return true;
    if(m_bStep)
       return true;
-   keeper < bool >  keepStep(&m_bStep, true, false, true);
+   keep < bool >  keepStep(&m_bStep, true, false, true);
          if(m_iOperation >= m_fileoperationa.get_size())
          {
             m_estate = filemanager::state_initial;

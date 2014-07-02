@@ -49,8 +49,8 @@ namespace user
       bool                          m_bTranslateMouseMessageCursor;
       bool                          m_bComposite;
       bool                          m_bUpdateGraphics;
-      mutex *                       m_pmutexGraphics;
-      mutex *                       m_pmutexDisplay;
+      sp(mutex)                     m_spmutexGraphics;
+      sp(mutex)                     m_spmutexDisplay;
       point                         m_pt;
       size                          m_size;
 
@@ -66,7 +66,6 @@ namespace user
 
       int32_t                       m_nModalResult;
       ::user::interaction *         m_puiCapture;
-
 
       interaction_impl();
 
@@ -701,8 +700,8 @@ namespace user
 
       virtual void update_graphics_resources();
 
-      inline mutex * mutex_graphics() { return m_pmutexGraphics; }
-      inline mutex * mutex_display() { return m_pmutexDisplay; }
+      virtual sp(mutex) mutex_graphics();
+      virtual sp(mutex) mutex_display();
 
 
       virtual void set_handle(oswindow oswindow);

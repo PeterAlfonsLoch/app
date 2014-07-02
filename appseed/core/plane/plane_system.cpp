@@ -90,7 +90,6 @@ namespace plane
       m_pdatetime = new class ::datetime::departament(this);
 //      m_email.set_app(this);
 
-      m_pmachineeventcentral     = NULL;
 
 
 
@@ -200,16 +199,6 @@ namespace plane
          return false;
       }
 
-      if(m_pmachineeventcentral == NULL)
-      {
-
-         m_pmachineeventcentral = new ::machine_event_central(this);
-         if(!m_pmachineeventcentral->initialize())
-            return false;
-         if(m_pmachineeventcentral->is_close_application())
-            return false;
-
-      }
 
 #ifndef APPLEOS
 
@@ -660,17 +649,6 @@ namespace plane
       try
       {
          m_spdir.release();
-      }
-      catch(...)
-      {
-      }
-
-      try
-      {
-         if(m_pmachineeventcentral != NULL)
-         {
-            m_pmachineeventcentral->set_run(false);
-         }
       }
       catch(...)
       {

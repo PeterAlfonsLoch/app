@@ -11,12 +11,15 @@ namespace user
    public:
 
 
-      interaction * m_pui;
+      interaction *                 m_pui;
+      bool                          m_bIgnoreSizeEvent;
+      bool                          m_bIgnoreMoveEvent;
 
 
       interaction_impl_base();
       virtual ~interaction_impl_base();
 
+      virtual sp(mutex) mutex_graphics();
 
       virtual void _001UpdateWindow();
 

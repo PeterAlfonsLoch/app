@@ -29,63 +29,52 @@ struct __CTLCOLOR
    UINT nCtlType;
 };
 
+
 const char gen_Wnd[] = __WND;
+
 
 namespace windows
 {
 
-   void interaction_impl::mouse_hover_add(sp(::user::interaction) pinterface)
-   {
-      m_guieptraMouseHover.add_unique(pinterface);
-   }
-
-   void interaction_impl::mouse_hover_remove(sp(::user::interaction) pinterface)
-   {
-      m_guieptraMouseHover.remove(pinterface);
-   }
 
    interaction_impl::interaction_impl()
    {
-      m_pcallback = NULL;
-      m_pui->m_nFlags = 0;
-      m_pfnSuper = NULL;
-      m_nModalResult = 0;
-      m_bMouseHover = false;
-      m_puiCapture = NULL;
+
+      m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
+      m_bRectParentClient  = false;
+      m_pcallback          = NULL;
+      m_pfnSuper           = NULL;
+      m_nModalResult       = 0;
+      m_bMouseHover        = false;
+      m_puiCapture         = NULL;
+      m_bUpdateGraphics    = false;
+
+      ZERO(m_rectParentClient);
       ZERO(m_size);
       ZERO(m_pt);
-      m_pmutexGraphics = NULL;
-      m_bUpdateGraphics = false;
+
+      set_handle(NULL);
+
    }
+
 
    void interaction_impl::construct(oswindow oswindow)
    {
 
-      m_pcallback = NULL;
+      m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
+      m_bRectParentClient  = false;
+      m_pcallback          = NULL;
+      m_pfnSuper           = NULL;
+      m_nModalResult       = 0;
+      m_bMouseHover        = false;
+      m_puiCapture         = NULL;
+      m_bUpdateGraphics    = false;
 
-      set_handle(oswindow);
-
-      m_pui->m_nFlags = 0;
-
-      m_pfnSuper = NULL;
-
-      m_nModalResult = 0;
-
-      m_bMouseHover = false;
-
-      m_puiCapture = NULL;
-
+      ZERO(m_rectParentClient);
       ZERO(m_size);
-
       ZERO(m_pt);
 
-      m_pmutexGraphics = NULL;
-
-      m_bUpdateGraphics = false;
-
-      m_bIgnoreSizeEvent = false;
-
-      m_bIgnoreMoveEvent = false;
+      set_handle(oswindow);
 
    }
 
@@ -93,19 +82,24 @@ namespace windows
    interaction_impl::interaction_impl(sp(::base::application) papp):
       element(papp)
    {
-      m_pcallback = NULL;
-      set_handle(NULL);
-      m_pfnSuper = NULL;
-      m_nModalResult = 0;
-      m_bMouseHover = false;
-      m_puiCapture = NULL;
+
+      m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
+      m_bRectParentClient  = false;
+      m_pcallback          = NULL;
+      m_pfnSuper           = NULL;
+      m_nModalResult       = 0;
+      m_bMouseHover        = false;
+      m_puiCapture         = NULL;
+      m_bUpdateGraphics    = false;
+      m_bIgnoreSizeEvent   = false;
+      m_bIgnoreMoveEvent   = false;
+
+      ZERO(m_rectParentClient);
       ZERO(m_size);
       ZERO(m_pt);
-      m_pmutexGraphics = NULL;
-      m_bUpdateGraphics = false;
-      m_bIgnoreSizeEvent = false;
 
-      m_bIgnoreMoveEvent = false;
+      set_handle(NULL);
+
    }
 
 
@@ -123,7 +117,6 @@ namespace windows
          }
 
       }
-
 
    }
 
@@ -159,8 +152,7 @@ namespace windows
       ::SetWindowLong(oswindow,nStyleOffset,dwNewStyle);
       if(nFlags != 0)
       {
-         ::SetWindowPos(oswindow,NULL,0,0,0,0,
-            SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE | nFlags);
+         ::SetWindowPos(oswindow,NULL,0,0,0,0,SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE | nFlags);
       }
       return TRUE;
    }
@@ -439,7 +431,9 @@ namespace windows
 
    void interaction_impl::install_message_handling(::message::dispatch * pinterface)
    {
-      //m_pbuffer->InstallMessageHandling(pinterface);
+      
+      ::user::interaction_impl::install_message_handling(pinterface);
+
       IGUI_WIN_MSG_LINK(WM_NCDESTROY,pinterface,this,&interaction_impl::_001OnNcDestroy);
       if(!m_pui->m_bMessageWindow)
       {
@@ -455,7 +449,9 @@ namespace windows
          IGUI_WIN_MSG_LINK(WM_ERASEBKGND,pinterface,this,&interaction_impl::_001OnEraseBkgnd);
          IGUI_WIN_MSG_LINK(WM_MOVE,pinterface,this,&interaction_impl::_001OnMove);
          IGUI_WIN_MSG_LINK(WM_SIZE,pinterface,this,&interaction_impl::_001OnSize);
+         IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGING,pinterface,this,&interaction_impl::_001OnWindowPosChanging);
          IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGED,pinterface,this,&interaction_impl::_001OnWindowPosChanged);
+         IGUI_WIN_MSG_LINK(WM_GETMINMAXINFO,pinterface,this,&interaction_impl::_001OnGetMinMaxInfo);
          IGUI_WIN_MSG_LINK(WM_SHOWWINDOW,pinterface,this,&interaction_impl::_001OnShowWindow);
          IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH,pinterface,this,&interaction_impl::_001OnProdevianSynch);
       }
@@ -535,10 +531,8 @@ namespace windows
 
       }
 
-
-
-
    }
+
 
    void interaction_impl::_001OnShowWindow(signal_details * pobj)
    {
@@ -819,19 +813,32 @@ namespace windows
       return (int32_t)rString.get_length();
    }
 
+
    bool interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* lpwndpl)
    {
+
       ASSERT(::IsWindow(get_handle()));
+
       lpwndpl->length = sizeof(WINDOWPLACEMENT);
+
       return ::GetWindowPlacement(get_handle(),lpwndpl) != FALSE;
+
    }
+
 
    bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl)
    {
+
+      synch_lock sl(&user_mutex());
+
       ASSERT(::IsWindow(get_handle()));
+
       ((WINDOWPLACEMENT*)lpwndpl)->length = sizeof(WINDOWPLACEMENT);
+
       return ::SetWindowPlacement(get_handle(),lpwndpl) != FALSE;
+
    }
+
 
    /////////////////////////////////////////////////////////////////////////////
    // interaction_impl will delegate owner draw messages to self drawing controls
@@ -1188,6 +1195,24 @@ namespace windows
       }
       else if(pbase->m_uiMessage == WM_LBUTTONDOWN)
       {
+         ::rect rectClient;
+         ::GetClientRect(get_handle(),rectClient);
+         ::rect rectWindow;
+         ::GetWindowRect(get_handle(),rectWindow);
+         ::rect rectRegion;
+         HRGN hrgn = CreateRectRgn(0,0,0,0);
+         int regionType = ::GetWindowRgn(get_handle(),hrgn);
+         if(regionType != ERROR)
+         {
+            ::GetRgnBox(hrgn,rectRegion);
+         }
+         ::DeleteObject(hrgn); /* finished with region */
+         WINDOWPLACEMENT wp;
+         ZERO(wp);
+         wp.length = sizeof(WINDOWPLACEMENT);
+         ::GetWindowPlacement(get_handle(),&wp);
+         bool bZoomed = ::IsZoomed(get_handle()) != FALSE;
+         bool bIconic = ::IsIconic(get_handle()) != FALSE;
          BaseSession.m_puiLastLButtonDown = m_pui;
       }
       /*      else if(pbase->m_uiMessage == CA2M_BERGEDGE)
@@ -1205,13 +1230,13 @@ namespace windows
       if(pbase->m_uiMessage == WM_MOUSELEAVE)
       {
          m_bMouseHover = false;
-         for(int32_t i = 0; i < m_guieptraMouseHover.get_size(); i++)
+         for(int32_t i = 0; i < m_guieptraMouseHover->get_size(); i++)
          {
-            if(m_guieptraMouseHover(i) == m_pui)
+            if(m_guieptraMouseHover->element_at(i) == m_pui)
                continue;
-            m_guieptraMouseHover[i].send_message(WM_MOUSELEAVE);
+            m_guieptraMouseHover->element_at(i)->send_message(WM_MOUSELEAVE);
          }
-         m_guieptraMouseHover.remove_all();
+         m_guieptraMouseHover->remove_all();
       }
 
       if(pbase->m_uiMessage == WM_LBUTTONDOWN ||
@@ -1266,7 +1291,7 @@ namespace windows
             if(m_bOSNativeMouseMessagePosition)
             {
                class rect rectWindow32;
-               ::GetWindowRect(get_handle(),&rectWindow32);
+               GetWindowRect(rectWindow32);
                ::copy(rectWindow,rectWindow32);
             }
             else
@@ -1310,13 +1335,13 @@ namespace windows
             pmouse->m_ecursor = visual::cursor_default;
          }
       restart_mouse_hover_check:
-         for(int32_t i = 0; i < m_guieptraMouseHover.get_size(); i++)
+         for(int32_t i = 0; i < m_guieptraMouseHover->get_size(); i++)
          {
-            if(!m_guieptraMouseHover(i)->_001IsPointInside(pmouse->m_pt))
+            if(!m_guieptraMouseHover->element_at(i)->_001IsPointInside(pmouse->m_pt))
             {
-               sp(::user::interaction) pui = m_guieptraMouseHover(i);
+               sp(::user::interaction) pui = m_guieptraMouseHover->element_at(i);
                pui->send_message(WM_MOUSELEAVE);
-               m_guieptraMouseHover.remove(pui);
+               m_guieptraMouseHover->remove(pui);
                goto restart_mouse_hover_check;
             }
          }
@@ -1684,9 +1709,7 @@ namespace windows
                rect rect;
                ::GetWindowRect(oswindow_Child,&rect);
                ScreenToClient(&rect);
-               ::SetWindowPos(oswindow_Child,NULL,
-                  rect.left + xAmount,rect.top + yAmount,0,0,
-                  SWP_NOSIZE | SWP_NOACTIVATE | SWP_NOZORDER);
+               ::SetWindowPos(oswindow_Child,NULL,rect.left + xAmount,rect.top + yAmount,0,0,SWP_NOSIZE | SWP_NOACTIVATE | SWP_NOZORDER);
             }
          }
       }
@@ -1951,7 +1974,7 @@ namespace windows
       case WM_COMMAND:
       {
                         // reflect the message through the message map as OCM_COMMAND
-                        keeper < bool > keepReflect(&pbase->m_bReflect,true,pbase->m_bReflect,true);
+                        keep < bool > keepReflect(&pbase->m_bReflect,true,pbase->m_bReflect,true);
                         if(interaction_impl::OnCommand(pbase))
                         {
                            pbase->m_bRet = true;
@@ -2109,8 +2132,11 @@ namespace windows
 
    void interaction_impl::_001OnCreate(signal_details * pobj)
    {
+
       UNREFERENCED_PARAMETER(pobj);
+
       Default();
+
    }
 
    /*   void interaction_impl::OnHScroll(UINT, UINT, CScrollBar* pScrollBar)
@@ -3243,7 +3269,7 @@ namespace windows
       
       class rect rectWindow;
 
-      ::GetWindowRect(get_handle(), rectWindow);
+      GetWindowRect(rectWindow);
 
       lprect->left   += rectWindow.left;
       lprect->right  += rectWindow.left;
@@ -3315,11 +3341,29 @@ namespace windows
       if(!::IsWindow(get_handle()))
          return;
 
-      rect rect32;
+      if(m_bRectParentClient)
+      {
 
-      ::GetWindowRect(get_handle(),rect32);
+         ::copy(lprect,m_rectParentClient);
 
-      ::copy(lprect,rect32);
+         if(GetParent() != NULL)
+         {
+
+            GetParent()->ClientToScreen(lprect);
+
+         }
+
+      }
+      else
+      {
+
+         rect rect32;
+
+         ::GetWindowRect(get_handle(),rect32);
+
+         ::copy(lprect,rect32);
+
+      }
 
    }
 
@@ -3332,17 +3376,30 @@ namespace windows
 
       rect rect32;
 
-      ::GetClientRect(get_handle(),rect32);
+      if(m_bRectParentClient)
+      {
 
-      ::copy(lprect,rect32);
+         rect32 = m_rectParentClient;
+
+         rect32.offset(-rect32.top_left());
+
+         ::copy(lprect,rect32);
+
+      }
+      else
+      {
+
+         ::GetClientRect(get_handle(),rect32);
+
+         ::copy(lprect,rect32);
+
+      }
 
    }
 
 
    void interaction_impl::_001WindowMinimize()
    {
-
-      m_pui->m_eappearance = ::user::AppearanceIconic;
 
       interaction_impl_base::_001WindowMinimize();
 
@@ -3352,9 +3409,6 @@ namespace windows
    void interaction_impl::_001WindowMaximize()
    {
 
-      m_pui->m_eappearance = ::user::AppearanceZoomed;
-
-
       interaction_impl_base::_001WindowMaximize();
 
    }
@@ -3363,8 +3417,6 @@ namespace windows
    void interaction_impl::_001WindowFullScreen()
    {
 
-      m_pui->m_eappearance = ::user::AppearanceFullScreen;
-
       interaction_impl_base::_001WindowFullScreen();
 
    }
@@ -3372,8 +3424,6 @@ namespace windows
 
    void interaction_impl::_001WindowRestore()
    {
-
-      m_pui->m_eappearance = ::user::AppearanceNormal;
 
       interaction_impl_base::_001WindowRestore();
 
@@ -3493,7 +3543,7 @@ namespace windows
       if(!::IsWindow(get_handle()))
          return false;
 
-      return m_pui->m_eappearance == ::user::AppearanceZoomed;
+      return m_pui->get_appearance() == ::user::AppearanceZoomed;
 
    }
 
@@ -4716,23 +4766,132 @@ namespace windows
 
    void interaction_impl::OnSize(UINT,int32_t,int32_t)
    {
+
       Default();
+
    }
+
+
    void interaction_impl::OnTCard(UINT,uint32_t)
    {
+
       Default();
+
    }
-   void interaction_impl::OnWindowPosChanging(WINDOWPOS*)
+   
+   
+   void interaction_impl::_001OnWindowPosChanging(signal_details * pobj)
    {
-      Default();
+
+      SCAST_PTR(::message::window_pos,pwindowpos,pobj);
+
+      TRACE("::windows::interaction_impl::_001OnWindowPosChanging");
+
+      if(GetExStyle() & WS_EX_LAYERED)
+      {
+
+         if(pwindowpos->m_pwindowpos->flags & 0x8000) // SWP_STATECHANGED
+         {
+            
+            pwindowpos->m_pwindowpos->flags |= SWP_NOSIZE;
+            pwindowpos->m_pwindowpos->flags |= SWP_NOMOVE;
+            pwindowpos->m_pwindowpos->flags |= 0x0800; // SWP_NOCLIENTSIZE
+            pwindowpos->m_pwindowpos->flags |= 0x1000; // SWP_NOCLIENTMOVE
+
+            pobj->m_bRet = true;
+
+         }
+         else
+         {
+
+            ::rect rectBefore;
+
+            ::GetWindowRect(get_handle(),rectBefore);
+
+            m_rectParentClient = rectBefore;
+
+            ::rect rect = m_rectParentClient;
+
+            if(pwindowpos->m_pwindowpos->flags & SWP_NOMOVE)
+            {
+
+               TRACE("::window::interaction_impl::_001OnWindowPosChanging SWP_NOMOVE");
+
+            }
+            else
+            {
+
+               rect.move_to(pwindowpos->m_pwindowpos->x,pwindowpos->m_pwindowpos->y);
+
+            }
+
+            if(pwindowpos->m_pwindowpos->flags & SWP_NOSIZE)
+            {
+
+               TRACE("::window::interaction_impl::_001OnWindowPosChanging SWP_NOSIZE");
+
+            }
+            else
+            {
+
+               rect.size(pwindowpos->m_pwindowpos->cx,pwindowpos->m_pwindowpos->cy);
+
+            }
+
+            m_rectParentClient = rect;
+
+            keep < bool > keepRectParentClient(&m_bRectParentClient,true,false,true);
+
+            keep < bool > keepLockWindowUpdate(&m_pui->m_bLockWindowUpdate,true,false,true);
+
+            if(rectBefore.top_left() != rect.top_left())
+            {
+
+               send_message(WM_MOVE);
+
+            }
+
+            if(rectBefore.size() != rect.size() || m_pui->get_appearance() != m_eapperanceLayout)
+            {
+
+               m_eapperanceLayout = m_pui->get_appearance();
+
+               send_message(WM_SIZE, 0, MAKELONG(max(0, rect.width()), max(0, rect.height())));
+
+               keepLockWindowUpdate.KeepAway();
+
+               _001UpdateWindow();
+
+            }
+
+            
+
+         }
+
+      }
+
    }
+
 
    void interaction_impl::_001OnWindowPosChanged(signal_details * pobj)
    {
 
       SCAST_PTR(::message::window_pos,pwindowpos,pobj);
 
-      Default();
+      if(GetExStyle() & WS_EX_LAYERED)
+      {
+
+         pwindowpos->m_bRet = true;
+
+      }
+
+   }
+
+
+   void interaction_impl::_001OnGetMinMaxInfo(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::base,pbase,pobj);
 
    }
 
@@ -5430,6 +5589,21 @@ namespace windows
 
    }
 
+
+   void interaction_impl::mouse_hover_add(sp(::user::interaction) pinterface)
+   {
+
+      m_guieptraMouseHover->add_unique(pinterface);
+
+   }
+
+
+   void interaction_impl::mouse_hover_remove(sp(::user::interaction) pinterface)
+   {
+
+      m_guieptraMouseHover->remove(pinterface);
+
+   }
 
 
 } // namespace windows

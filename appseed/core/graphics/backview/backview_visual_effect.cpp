@@ -2670,7 +2670,7 @@ namespace backview
 
       if(m_iVisual == VisualEffectRotateEx6)
       {
-         keeper < bool > keepTransferVoid (&HelperGetMain().GetInterface().m_bTransferVoid, true, false, true);
+         keep < bool > keepTransferVoid (&HelperGetMain().GetInterface().m_bTransferVoid, true, false, true);
          pdib4->get_graphics()->SetStretchBltMode(HALFTONE);
          pdib4->stretch_dib(pdib1);
          HelperGetMain().GetInterface().BackViewFeedback(pdib4->get_graphics());
@@ -4656,7 +4656,7 @@ namespace backview
       {
 
 
-         keeper < bool > keepTransferVoid (&HelperGetMain().GetInterface().m_bTransferVoid, true, false, true);
+         keep < bool > keepTransferVoid (&HelperGetMain().GetInterface().m_bTransferVoid, true, false, true);
 
 
          pdib4->stretch_dib(pdib1);

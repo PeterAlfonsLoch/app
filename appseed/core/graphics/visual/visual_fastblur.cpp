@@ -96,7 +96,7 @@ namespace visual
    bool fastblur::blur()
    {
 
-      synch_lock ml(&user_mutex());
+      //synch_lock ml(&user_mutex());
 
       m_p->map();
 

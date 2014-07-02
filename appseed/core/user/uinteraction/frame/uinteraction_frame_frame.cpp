@@ -657,7 +657,7 @@ namespace user
             if (pwnd == NULL)
                return;
 
-            pwnd->SetWindowRgn(NULL, TRUE);
+            //pwnd->SetWindowRgn(NULL, TRUE);
 
          }
 

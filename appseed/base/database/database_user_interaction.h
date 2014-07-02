@@ -18,7 +18,6 @@ namespace database
 
          string         m_strDisplay;
 
-         bool           m_bEnableSaveWindowRect;
          id             m_dataidWindow;
 
 

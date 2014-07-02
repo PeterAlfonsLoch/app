@@ -395,7 +395,7 @@ namespace android
       //single_lock sl(&m_mutexRender, FALSE);
       //if(!sl.lock(duration::zero()))
         // return false;
-      //keeper<bool> keepRender(&m_bRender, true, false, true);
+      //keep<bool> keepRender(&m_bRender, true, false, true);
    //   TRACE("////////////////////////////////////////////////////\n");
    //   TRACE("// window_draw::TwfRender\n");
    //   TRACE("//\n");
@@ -642,7 +642,7 @@ namespace android
       if(!sl.lock(duration::zero()))
          return false;
 
-      keeper<bool> keepRender(&m_bRender, true, false, true);
+      keep<bool> keepRender(&m_bRender, true, false, true);
 
       static bool bTest = false;
 

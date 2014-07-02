@@ -378,7 +378,7 @@ namespace platform
          {
             ::draw2d::dib_sp dib(allocer());
             dib->create(1920, 1080);
-            keeper < bool > keepOnDraw(&GetParentFrame().cast < ::platform::frame > ()->m_bOnDraw, true, false, true);
+            keep < bool > keepOnDraw(&GetParentFrame().cast < ::platform::frame > ()->m_bOnDraw, true, false, true);
             PlaneSession.get_document()->get_bergedge_view()->_000OnDraw(dib->get_graphics());
             dib->get_graphics()->SetViewportOrg(0, 0);
             keepOnDraw.KeepAway();

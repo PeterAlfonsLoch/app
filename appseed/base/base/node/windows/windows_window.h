@@ -15,28 +15,28 @@ namespace windows
    public:
 
 
-      spa(::user::interaction)         m_guieptraMouseHover;
-      ::message_queue_listener *       m_pcallback;
-      string                           m_strWindowText;
-      bool                             m_bUpdateGraphics;
+      bool                                      m_bRectParentClient;
+      ::rect                                    m_rectParentClient;
+      sp(ptr_array < ::user::interaction > )    m_guieptraMouseHover;
+      ::message_queue_listener *                m_pcallback;
+      string                                    m_strWindowText;
+      bool                                      m_bUpdateGraphics;
 
-      mutex *                          m_pmutexGraphics;
-      ::draw2d::dib_sp                 m_spdib;
-      size                             m_size;
-      point                            m_pt;
+      ::draw2d::dib_sp                          m_spdib;
+      size                                      m_size;
+      point                                     m_pt;
 
-      ::user::interaction_base *       m_pbasewnd;
+      ::user::interaction_base *                m_pbasewnd;
 
-      bool                             m_bIgnoreSizeEvent;
-      bool                             m_bIgnoreMoveEvent;
       
 
-      //UINT m_nFlags;      // see WF_ flags above
+    //UINT                                      m_nFlags;            // see WF_ flags above
 
-      WNDPROC m_pfnSuper; // for subclassing of controls
-      static const UINT m_nMsgDragList;
-      int32_t m_nModalResult; // for return values from interaction_impl::RunModalLoop
+      WNDPROC                                   m_pfnSuper;          // for subclassing of controls
+      static const UINT                         m_nMsgDragList;
+      int32_t                                   m_nModalResult;      // for return values from interaction_impl::RunModalLoop
 
+      ::user::EAppearance                       m_eapperanceLayout;
 
 
       interaction_impl();
@@ -80,7 +80,9 @@ namespace windows
       DECL_GEN_SIGNAL(_001OnSize);
       DECL_GEN_SIGNAL(_001OnShowWindow);
       DECL_GEN_SIGNAL(_001OnProdevianSynch);
+      DECL_GEN_SIGNAL(_001OnWindowPosChanging);
       DECL_GEN_SIGNAL(_001OnWindowPosChanged);
+      DECL_GEN_SIGNAL(_001OnGetMinMaxInfo);
 
 
       virtual void win_update_graphics();
@@ -170,9 +172,6 @@ namespace windows
       strsize GetWindowText(LPTSTR lpszStringBuf,strsize nMaxCount);
       void GetWindowText(string & rString);
       strsize GetWindowTextLength();
-
-
-      inline mutex * mutex_graphics() { if(m_pmutexGraphics != NULL) return m_pmutexGraphics; m_pmutexGraphics = new mutex(get_app()); return m_pmutexGraphics; }
 
 
       // Window size and position Functions
@@ -468,8 +467,6 @@ namespace windows
       void OnShowWindow(bool bShow,UINT nStatus);
       void OnSize(UINT nType,int32_t cx,int32_t cy);
       void OnTCard(UINT idAction,uint32_t dwActionData);
-      void OnWindowPosChanging(WINDOWPOS* lpwndpos);
-      void OnWindowPosChanged(WINDOWPOS* lpwndpos);
 
       void OnChangeUIState(UINT nAction,UINT nUIElement);
       void OnUpdateUIState(UINT nAction,UINT nUIElement);

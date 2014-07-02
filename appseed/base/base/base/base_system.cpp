@@ -104,6 +104,9 @@ namespace base
 
       m_peengine = NULL;
 
+
+      m_pmachineeventcentral = NULL;
+
       //::ca::application::m_file.set_app(this);
       //::ca::application::m_dir.set_app(this);
 
@@ -205,6 +208,8 @@ namespace base
 
       m_bGudoNetCache = true;
 
+
+
    }
 
 
@@ -290,6 +295,18 @@ namespace base
 
       if(!set_main_init_data(m_pinitmaindata))
          return false;
+
+
+      if(m_pmachineeventcentral == NULL)
+      {
+
+         m_pmachineeventcentral = new ::machine_event_central(this);
+         if(!m_pmachineeventcentral->initialize())
+            return false;
+         if(m_pmachineeventcentral->is_close_application())
+            return false;
+
+      }
 
 #ifdef WINDOWSEX
 

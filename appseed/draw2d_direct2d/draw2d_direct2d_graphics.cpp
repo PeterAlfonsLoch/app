@@ -2506,7 +2506,7 @@ namespace draw2d_direct2d
    pdibWork->channel_multiply(visual::rgba::channel_alpha, pdibWork4);
 
 
-   keeper < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
+   keep < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
 
 
    return Application.m_visual.imaging().true_blend(this, ptDest, size, pdibWork->get_graphics(), ptSrc); 
@@ -4685,7 +4685,7 @@ namespace draw2d_direct2d
       if (ppath == NULL)
          return false;
 
-      keeper < bool > keepPreviousFill(&ppath->m_bFill, true, ppath->m_bFill, true);
+      keep < bool > keepPreviousFill(&ppath->m_bFill, true, ppath->m_bFill, true);
 
       ppath->m_bFill = true;
 

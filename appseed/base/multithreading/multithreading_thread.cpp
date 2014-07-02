@@ -182,6 +182,12 @@ bool thread::create_thread_synch(int32_t * piStartupError,int32_t epriority,uint
 bool thread::finalize()
 {
 
+   signal_close_dependant_threads();
+
+   unregister_dependencies();
+
+   wait_dependant_threads(minutes(1));
+
    if(m_pthreadimpl == NULL)
       return true;
 
@@ -455,6 +461,8 @@ message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
 
 bool thread::pre_run()
 {
+
+   register_dependencies();
 
    return true;
 
@@ -829,4 +837,189 @@ void thread::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
 
 }
 
+
+void thread::register_dependant_thread(::thread * pthread)
+{
+
+   if(pthread == this)
+      return;
+
+   {
+
+      synch_lock sl(m_pmutex);
+
+      m_threadptraDependant.add_unique(pthread);
+
+   }
+
+   {
+
+      synch_lock slThread(pthread->m_pmutex);
+
+      pthread->m_threadptraDependency.add_unique(this);
+
+   }
+
+}
+
+
+void thread::unregister_dependant_thread(::thread * pthread)
+{
+
+   {
+
+      synch_lock sl(m_pmutex);
+
+      m_threadptraDependant.remove(pthread);
+
+   }
+
+   {
+
+      synch_lock slThread(pthread->m_pmutex);
+
+      pthread->m_threadptraDependency.remove(this);
+
+   }
+
+}
+
+
+void thread::signal_close_dependant_threads()
+{
+
+   synch_lock sl(m_pmutex);
+
+   for(index i = m_threadptraDependant.get_upper_bound(); i >= 0;)
+   {
+
+      try
+      {
+
+         synch_lock slThread(m_threadptraDependant[i]->m_pmutex);
+
+         m_threadptraDependant[i]->m_bRun = false;
+
+         i--;
+
+      }
+      catch(...)
+      {
+
+      }
+
+      sl.unlock();
+
+      sl.lock();
+
+
+   }
+
+}
+
+
+void thread::wait_dependant_threads(duration & duration)
+{
+
+   DWORD dwStart = ::get_tick_count();
+
+   while(::get_tick_count() - dwStart < duration.get_total_milliseconds())
+   {
+
+      {
+
+         synch_lock sl(m_pmutex);
+
+         if(m_threadptraDependant.get_count() <= 0)
+            break;
+
+         for(index i = 0; i < m_threadptraDependant.get_count(); i++)
+         {
+            TRACE(string("---"));
+            TRACE(string("DEPENDENCY : ") + typeid(*this).raw_name() + string(" (") + ::str::from(this) + ")");
+            TRACE(string("dependant  :") + typeid(*m_threadptraDependant[i]).raw_name() + string(" (") + ::str::from(m_threadptraDependant[i]) + ")");
+
+         }
+
+      }
+
+      Sleep(11);
+
+   }
+
+}
+
+void thread::register_dependencies()
+{
+
+   // register default dependencies
+
+   sp(::base::application) papp = this;
+
+   sp(::base::session) psession = this;
+
+   sp(::base::system) psystem = this;
+
+   if(&Application != NULL)
+   {
+
+      Application.register_dependant_thread(this);
+
+      if(psystem == NULL && &BaseSession != NULL)
+      {
+
+         BaseSession.register_dependant_thread(this);
+
+         if(BaseSession.m_pplanecomposite != NULL)
+         {
+
+            BaseSession.m_pplanecomposite->register_dependant_thread(this);
+
+         }
+
+      }
+
+      if(&System != NULL)
+      {
+
+         System.register_dependant_thread(this);
+
+      }
+
+   }
+
+}
+
+
+
+void thread::unregister_dependencies()
+{
+
+   synch_lock sl(m_pmutex);
+
+   for(index i = m_threadptraDependency.get_upper_bound(); i >= 0;)
+   {
+
+      try
+      {
+
+         synch_lock slThread(m_threadptraDependency[i]->m_pmutex);
+
+         m_threadptraDependency[i]->unregister_dependant_thread(this);
+
+         i--;
+
+      }
+      catch(...)
+      {
+
+      }
+
+      sl.unlock();
+
+      sl.lock();
+
+   }
+
+}
 

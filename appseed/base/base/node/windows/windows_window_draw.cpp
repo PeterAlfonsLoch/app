@@ -284,7 +284,7 @@ namespace windows
       single_lock sl(&m_mutexRender,FALSE);
       if(!sl.lock(duration::zero()))
          return false;
-      keeper<bool> keepRender(&m_bRender,true,false,true);
+      keep<bool> keepRender(&m_bRender,true,false,true);
 
 
 
@@ -299,26 +299,28 @@ namespace windows
 
       for(int32_t l = 0; l < wndpa.get_count();)
       {
+
          try
          {
+
             if(wndpa[l].m_psession.is_null())
             {
+
                try
                {
-                  ::windows::interaction_impl * pwindow = NODE_WINDOW(wndpa[l].m_pimpl);
-                  if(pwindow != NULL)
-                  {
-                     pwindow->_001UpdateWindow();
-                  }
+
+                  wndpa[l]._001UpdateWindow();
 
                }
                catch(...)
                {
+
                }
 
-
             }
+
             l++;
+
          }
          catch(simple_exception & se)
          {

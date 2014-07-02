@@ -6,7 +6,12 @@ namespace base
 
 
    class CLASS_DECL_BASE application_interface:
-      virtual public ::object
+      virtual public ::thread,
+      virtual public ::base::live_object,
+      virtual public command_target_interface,
+      virtual public request_interface,
+      virtual public message_queue,
+      virtual public int_scalar_source
    {
    public:
 

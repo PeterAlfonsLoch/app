@@ -40,7 +40,7 @@ namespace simple_ui
       //simple_ui_ptra                   m_uiptra;
       //interaction *                    m_puiParent;
       //interaction *                    m_puiFocus;
-      style *                          m_pstyle;
+      style *                             m_pstyle;
 
 
       interaction();

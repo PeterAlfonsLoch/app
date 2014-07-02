@@ -33,6 +33,7 @@ public:
    int32_t height() const throw();
    // returns the size
    class size size() const throw();
+   class size size(LONG cx, LONG cy) throw();
    // reference to the top-left point
    point& top_left() throw();
    // reference to the bottom-right point

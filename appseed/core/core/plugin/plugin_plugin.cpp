@@ -463,7 +463,7 @@ namespace plugin
       if(m_bMainReady)
          return;
 
-      keeper < bool > keepMainReady(&m_bMainReady, true, false, true);
+      keep < bool > keepMainReady(&m_bMainReady, true, false, true);
 
       xxdebug_box("core plugin plugin", "ready_on_main_thread", 0);
 

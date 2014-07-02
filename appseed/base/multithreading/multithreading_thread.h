@@ -32,6 +32,8 @@ public:
    bool *                                 m_pbReady;
    property_set                           m_set;
    string                                 m_strWorkUrl;
+   ptr_array < thread >                   m_threadptraDependant;
+   ptr_array < thread >                   m_threadptraDependency;
 
 
    thread();
@@ -164,6 +166,12 @@ public:
    virtual void post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam);
 
 
+   virtual void register_dependant_thread(::thread * pthread);
+   virtual void unregister_dependant_thread(::thread * pthread);
+   virtual void signal_close_dependant_threads();
+   virtual void wait_dependant_threads(duration & duration);
+   virtual void register_dependencies();
+   virtual void unregister_dependencies();
 
 };
 

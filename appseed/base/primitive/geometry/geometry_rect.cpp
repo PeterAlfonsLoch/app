@@ -493,6 +493,13 @@ class size rect::size() const throw()
    {
       class size sizeRet(right - left, bottom - top);
       return sizeRet; }
+class size rect::size(LONG cx, LONG cy) throw()
+{
+   right = left + cx;
+   bottom = top + cy;
+   class size sizeRet(right - left,bottom - top);
+   return sizeRet;
+}
 point& rect::top_left() throw()
    { return *((point*)this); }
 point& rect::bottom_right() throw()

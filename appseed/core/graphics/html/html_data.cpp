@@ -284,7 +284,7 @@ namespace html
       }
       if(m_bImplement)
          return;
-      keeper < bool > keepImplement(&m_bImplement, true, false, true);
+      keep < bool > keepImplement(&m_bImplement, true, false, true);
       m_pdc = pdc;
       m_focusptra.remove_all();
       m_elemental.implement(this);
@@ -335,7 +335,7 @@ namespace html
          return;
       if(!m_bImplemented)
          implement(pdc);
-      keeper < bool > keepLayout(&m_bLayout, true, false, true);
+      keep < bool > keepLayout(&m_bLayout, true, false, true);
       m_pdc = pdc;
       m_layoutstate1.reset();
       m_layoutstate2.reset();

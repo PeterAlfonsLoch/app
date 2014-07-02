@@ -8,7 +8,12 @@ namespace user
    interaction_impl_base::interaction_impl_base()
    {
 
-      m_pui = NULL;
+      m_pui                = NULL;
+      m_bIgnoreSizeEvent   = false;
+      m_bIgnoreMoveEvent   = false;
+
+
+
 
    }
 
@@ -17,6 +22,14 @@ namespace user
    {
 
       m_pui = NULL;
+
+   }
+
+
+   sp(mutex) interaction_impl_base::mutex_graphics()
+   {
+
+      return NULL;
 
    }
 
@@ -31,7 +44,7 @@ namespace user
    void interaction_impl_base::_001WindowMinimize()
    {
 
-      m_pui->m_eappearance = AppearanceIconic;
+      m_pui->set_appearance(AppearanceIconic);
 
       rect rectNormal;
 
@@ -45,7 +58,7 @@ namespace user
    void interaction_impl_base::_001WindowMaximize()
    {
 
-      m_pui->m_eappearance = AppearanceZoomed;
+      m_pui->set_appearance(AppearanceZoomed);
 
       rect rectNormal;
 
@@ -59,7 +72,7 @@ namespace user
    void interaction_impl_base::_001WindowFullScreen()
    {
 
-      m_pui->m_eappearance = ::user::AppearanceFullScreen;
+      m_pui->set_appearance(AppearanceFullScreen);
 
       rect rectNormal;
 
@@ -73,7 +86,7 @@ namespace user
    void interaction_impl_base::_001WindowRestore()
    {
 
-      m_pui->m_eappearance = AppearanceNormal;
+      m_pui->set_appearance(AppearanceNormal);
 
       rect rectNormal;
 

@@ -19,7 +19,7 @@ namespace user
       index iItemStart,
       index iItemCount)
    {
-      keeper < bool > keepCaching(&m_bCaching, true, false, true);
+      keep < bool > keepCaching(&m_bCaching, true, false, true);
 
       //static critical_section l_cs;
       //single_lock sl(&l_cs, TRUE);

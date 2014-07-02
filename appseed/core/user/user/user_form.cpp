@@ -520,7 +520,7 @@ namespace user
 
       if(m_bOnEditUpdate)
          return;
-      keeper<bool> keepUpdateLock(&m_bOnEditUpdate, true, false, true);
+      keep<bool> keepUpdateLock(&m_bOnEditUpdate, true, false, true);
 
       ASSERT(pcontrol->descriptor().get_type() == control::type_edit
          || pcontrol->descriptor().get_type() == control::type_edit_plain_text);
@@ -894,7 +894,7 @@ namespace user
 
       SCAST_PTR(::message::base, pbase, pobj)
 
-      keeper < bool > keepOnLanguageChange(&m_bOnLanguageChange, true, false, true);
+      keep < bool > keepOnLanguageChange(&m_bOnLanguageChange, true, false, true);
 
       _017OnAppLanguage();
 

@@ -990,7 +990,7 @@ namespace html
          if(m_bOnAfterChangeText)
             return;
 
-         keeper < bool > keep(&m_bOnAfterChangeText, true, false, true);
+         keep < bool > keep(&m_bOnAfterChangeText, true, false, true);
 
          string strText;
 

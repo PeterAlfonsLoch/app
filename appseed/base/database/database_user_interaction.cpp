@@ -12,8 +12,6 @@ namespace database
       interaction::interaction()
       {
 
-         m_bEnableSaveWindowRect = false;
-
       }
 
 
@@ -124,7 +122,7 @@ namespace database
 
          bool bLoad = false;
 
-         keeper < bool > keepEnable(&m_bEnableSaveWindowRect, false, m_bEnableSaveWindowRect, true);
+         keep < bool > keepEnable(&m_bEnableSaveWindowRect, false, m_bEnableSaveWindowRect, true);
 
          defer_update_display();
 
@@ -304,20 +302,9 @@ namespace database
       void interaction::_001WindowRestore()
       {
 
-         if (m_pimpl != NULL)
-         {
+         set_appearance(::user::AppearanceNormal);
 
-            keeper < bool > keepEnable(&m_bEnableSaveWindowRect, false, m_bEnableSaveWindowRect, true);
-
-            m_eappearance = ::user::AppearanceNormal;
-
-            m_pimpl->_001WindowRestore();
-
-         }
-            
          WindowDataLoadWindowRect(true);
-         
-         m_eappearance = ::user::AppearanceNormal;
 
       }
 

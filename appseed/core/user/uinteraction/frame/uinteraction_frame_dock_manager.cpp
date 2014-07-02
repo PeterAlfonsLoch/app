@@ -93,7 +93,7 @@ namespace user
             if (m_pworkset == NULL)
                return;
             sp(::user::interaction) pwndChild = m_pworkset->GetEventWindow();
-            if (pwndChild == NULL)
+            if (pwndChild == NULL || pwndChild->m_pimpl->m_bIgnoreSizeEvent)
                return;
             sp(::user::interaction) pwndParent = pwndChild->GetParent();
             if (pwndParent == NULL)

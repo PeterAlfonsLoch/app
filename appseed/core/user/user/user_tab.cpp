@@ -1467,7 +1467,7 @@ namespace user
 
 //      SCAST_PTR(::message::base, pbase, pobj);
 
-      keeper < bool > keepRestoringTabs(&m_bRestoringTabs, true, false, true);
+      keep < bool > keepRestoringTabs(&m_bRestoringTabs, true, false, true);
 
       if(get_data()->m_matchanyRestore.get_count() > 0)
       {

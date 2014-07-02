@@ -650,7 +650,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "user/user/user_window_util.h"
 #include "user/user/user_interaction_base.h"
 #include "user/user/user_buffer.h"
-#include "base_keeper.h"
+#include "base_keep.h"
 #include "base/filesystem/file/file_stream2.h"
 #include "user/user/user_interaction.h"
 #include "user/user/user_interaction_impl_base.h"

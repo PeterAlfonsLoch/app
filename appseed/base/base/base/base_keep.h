@@ -1,6 +1,6 @@
 #pragma once
 
-template <class TYPE> class keeper
+template <class TYPE> class keep
 {
 public:
 
@@ -11,8 +11,8 @@ public:
    bool    m_bKept;
 
 
-   keeper(TYPE * pKept,TYPE keepValue,TYPE keepAwayValue,bool bStartKept);
-   virtual ~keeper();
+   keep(TYPE * pKept,TYPE keepValue,TYPE keepAwayValue,bool bStartKept);
+   virtual ~keep();
 
    void Keep();
    void KeepAway();
@@ -21,7 +21,7 @@ public:
 };
 
 template <class TYPE>
-keeper<TYPE>::keeper(TYPE * pKept,TYPE keepValue,TYPE keepAwayValue,bool bStartKept):
+keep<TYPE>::keep(TYPE * pKept,TYPE keepValue,TYPE keepAwayValue,bool bStartKept):
 m_pKept(pKept),
 m_keepValue(keepValue),
 m_keepAwayValue(keepAwayValue)
@@ -39,7 +39,7 @@ m_keepAwayValue(keepAwayValue)
 
 }
 template <class TYPE>
-keeper<TYPE>::~keeper()
+keep<TYPE>::~keep()
 {
    if(m_bKept)
    {
@@ -48,7 +48,7 @@ keeper<TYPE>::~keeper()
 }
 
 template <class TYPE>
-void keeper<TYPE>::Keep()
+void keep<TYPE>::Keep()
 {
    if(m_pKept)
    {
@@ -58,7 +58,7 @@ void keeper<TYPE>::Keep()
 }
 
 template <class TYPE>
-void keeper<TYPE>::KeepAway()
+void keep<TYPE>::KeepAway()
 {
    if(m_pKept)
    {

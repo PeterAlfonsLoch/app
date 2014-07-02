@@ -41,6 +41,7 @@ namespace user
       m_etranslucency               = TranslucencyNone;
       m_bBackgroundBypass           = false;
       m_bLockWindowUpdate           = false;
+      m_bEnableSaveWindowRect       = false;
 
    }
 
@@ -49,32 +50,33 @@ namespace user
       ::user::interaction_base(papp)
    {
 
-         m_pthread                  = NULL;
-         m_pmutex                   = NULL;
-         m_eappearance              = AppearanceNormal;
-         m_bCursorInside            = false;
-         m_nFlags                   = 0;
-         m_puiOwner                 = NULL;
-         m_pimpl                    = NULL;
-         m_pthread                  = NULL;
-         m_ecursor                  = ::visual::cursor_default;
-         m_iModal                   = 0;
-         m_iModalCount              = 0;
-         m_bRectOk                  = false;
-         m_bVisible                 = true;
+      m_pthread                  = NULL;
+      m_pmutex                   = NULL;
+      m_eappearance              = AppearanceNormal;
+      m_bCursorInside            = false;
+      m_nFlags                   = 0;
+      m_puiOwner                 = NULL;
+      m_pimpl                    = NULL;
+      m_pthread                  = NULL;
+      m_ecursor                  = ::visual::cursor_default;
+      m_iModal                   = 0;
+      m_iModalCount              = 0;
+      m_bRectOk                  = false;
+      m_bVisible                 = true;
 
 
-         m_crDefaultBackgroundColor = ARGB(255,255,255,255);
+      m_crDefaultBackgroundColor = ARGB(255,255,255,255);
 
-         m_psession                 = NULL;
-         m_bMessageWindow           = false;
+      m_psession                 = NULL;
+      m_bMessageWindow           = false;
 
-         m_bVoidPaint                  = false;
-         m_pparent                     = NULL;
-         m_etranslucency               = TranslucencyNone;
-         m_bBackgroundBypass           = false;
+      m_bVoidPaint                  = false;
+      m_pparent                     = NULL;
+      m_etranslucency               = TranslucencyNone;
+      m_bBackgroundBypass           = false;
+      m_bEnableSaveWindowRect       = false;
 
-      }
+   }
 
    interaction::~interaction()
    {
@@ -583,9 +585,28 @@ namespace user
    void interaction::_001OnSize(signal_details * pobj)
    {
 
+      SCAST_PTR(::message::size,psize,pobj);
+
       pobj->previous();
 
-      layout();
+      if(psize->m_nType == SIZE_MINIMIZED)
+      {
+
+         TRACE("::user::interaction::_001OnSize SIZE_MINIMIZED - ignoring event");
+
+      }
+      else if(m_pimpl->m_bIgnoreSizeEvent)
+      {
+
+         TRACE("::user::interaction::_001OnSize instructed to m_bIgnoreSizeEvent");
+
+      }
+      else
+      {
+
+         layout();
+
+      }
 
    }
 
@@ -2142,7 +2163,9 @@ namespace user
 
       {
 
-         synch_lock sl(&user_mutex());
+         sp(mutex) pmutexGraphics = m_pimpl->mutex_graphics();
+
+         synch_lock sl(pmutexGraphics);
 
          m_pimpl.release();
 
@@ -2947,8 +2970,6 @@ namespace user
 
    void interaction::_001WindowMinimize()
    {
-
-      set_appearance_before(get_appearance());
 
       m_pimpl->_001WindowMinimize();
 
@@ -3917,6 +3938,13 @@ namespace user
    bool interaction::set_appearance(EAppearance eappearance)
    {
 
+      if(get_appearance() != get_appearance_before())
+      {
+
+         set_appearance_before(get_appearance());
+
+      }
+
       m_eappearance = eappearance;
 
       return true;
@@ -4096,11 +4124,42 @@ namespace user
 
 #ifdef WINDOWSEX
 
+         synch_lock slUserMutex(&user_mutex());
+
+         {
+
+            keep < bool > keepLockWindowUpdate(&m_bLockWindowUpdate,true,false,true);
+
+            keep < bool > keepIgnoreSizeEvent(&m_pimpl->m_bIgnoreSizeEvent,true,false,true);
+
+            keep < bool > keepIgnoreMoveEvent(&m_pimpl->m_bIgnoreMoveEvent,true,false,true);
+
+            keep < bool > keepDisableSaveWindowRect(&m_bEnableSaveWindowRect,false,m_bEnableSaveWindowRect,true);
+
+            ::ShowWindow(get_handle(),SW_RESTORE);
+
+         }
+
+         SetWindowPos(iZOrder,rect,uiSwpFlags);
+
+#elif defined WINDOWSEX
+
          WINDOWPLACEMENT wp;
 
          GetWindowPlacement(&wp);
 
-         wp.showCmd = SW_SHOWNORMAL;
+         if(::IsZoomed(get_handle()) || ::IsIconic(get_handle()))
+         {
+
+            wp.showCmd = SW_RESTORE;
+
+         }
+         else
+         {
+
+            wp.showCmd = SW_SHOW;
+
+         }
 
          wp.flags = 0;
 
@@ -4155,10 +4214,49 @@ namespace user
 
       if(bSet && (lpcrect != NULL || iMatchingMonitor >= 0))
       {
-
 #ifdef WINDOWSEX
 
-         BaseSession.get_wkspace_rect(iMatchingMonitor, rect);
+         ::rect rectWkspace;
+
+         BaseSession.get_wkspace_rect(iMatchingMonitor,rectWkspace);
+
+         synch_lock slUserMutex(&user_mutex());
+
+         {
+
+            keep < bool > keepLockWindowUpdate(&m_bLockWindowUpdate,true,false,true);
+
+            keep < bool > keepIgnoreSizeEvent(&m_pimpl->m_bIgnoreSizeEvent,true,false,true);
+
+            keep < bool > keepIgnoreMoveEvent(&m_pimpl->m_bIgnoreMoveEvent,true,false,true);
+
+            keep < bool > keepDisableSaveWindowRect(&m_bEnableSaveWindowRect,false,m_bEnableSaveWindowRect,true);
+
+            ::ShowWindow(get_handle(),SW_MAXIMIZE);
+
+         }
+
+         SetWindowPos(iZOrder,rectWkspace,uiSwpFlags);
+
+#elif defined WINDOWSEX
+
+         ::rect rectWkspace;
+
+         BaseSession.get_wkspace_rect(iMatchingMonitor,rectWkspace);
+
+         if(lpcrect != NULL)
+         {
+
+            rect.intersect(lpcrect,rectWkspace);
+
+         }
+         else
+         {
+
+            rect = rectWkspace;
+
+         }
+
 
          WINDOWPLACEMENT wp;
 
@@ -4170,7 +4268,9 @@ namespace user
 
          BaseSession.monitor_to_wkspace(rect);
 
-         wp.rcNormalPosition = rect;
+         wp.rcNormalPosition = rectWkspace;
+
+         //wp.ptMaxPosition = rectWkspace.top_left();
 
          SetWindowPlacement(&wp);
 
@@ -4219,14 +4319,45 @@ namespace user
 
       if(bSet && (lpcrect != NULL || iMatchingMonitor >= 0))
       {
-
 #ifdef WINDOWSEX
+
+         synch_lock slUserMutex(&user_mutex());
+
+         {
+
+            keep < bool > keepLockWindowUpdate(&m_bLockWindowUpdate,true,false,true);
+
+            keep < bool > keepIgnoreSizeEvent(&m_pimpl->m_bIgnoreSizeEvent,true,false,true);
+
+            keep < bool > keepIgnoreMoveEvent(&m_pimpl->m_bIgnoreMoveEvent,true,false,true);
+
+            keep < bool > keepDisableSaveWindowRect(&m_bEnableSaveWindowRect,false,m_bEnableSaveWindowRect,true);
+
+            ::ShowWindow(get_handle(),SW_RESTORE);
+
+         }
+
+         SetWindowPos(iZOrder,rect,uiSwpFlags);
+
+
+#elif defined WINDOWSEX
 
          WINDOWPLACEMENT wp;
 
          GetWindowPlacement(&wp);
 
-         wp.showCmd = SW_SHOWNORMAL;
+         if(::IsZoomed(get_handle()) || ::IsIconic(get_handle()))
+         {
+
+            wp.showCmd = SW_RESTORE;
+
+         }
+         else
+         {
+
+            wp.showCmd = SW_SHOW;
+
+         }
 
          wp.flags = 0;
 
@@ -4283,6 +4414,27 @@ namespace user
       {
 
 #ifdef WINDOWSEX
+
+         synch_lock slUserMutex(&user_mutex());
+
+         {
+
+            keep < bool > keepLockWindowUpdate(&m_bLockWindowUpdate,true,false,true);
+
+            keep < bool > keepIgnoreSizeEvent(&m_pimpl->m_bIgnoreSizeEvent,true,false,true);
+
+            keep < bool > keepIgnoreMoveEvent(&m_pimpl->m_bIgnoreMoveEvent,true,false,true);
+
+            keep < bool > keepDisableSaveWindowRect(&m_bEnableSaveWindowRect,false,m_bEnableSaveWindowRect,true);
+
+            ::ShowWindow(get_handle(),SW_MINIMIZE);
+
+         }
+
+         SetWindowPos(iZOrder,rect,uiSwpFlags);
+
+
+#elif defined WINDOWSEX
 
          WINDOWPLACEMENT wp;
 
@@ -4370,8 +4522,6 @@ namespace user
 
       synch_lock sl(pimpl.is_null() ? NULL : pimpl->mutex_graphics());
 
-      keeper < bool > keepLockWindowUpdate(&m_bLockWindowUpdate,true,false,true);
-
       bool bOk = false;
 
       if(!(nFlags & SWP_NOZORDER))
@@ -4412,8 +4562,6 @@ namespace user
 
       if(!(nFlags & SWP_NOREDRAW) && IsWindowVisible() && !(GetExStyle() & WS_EX_LAYERED))
       {
-
-         keepLockWindowUpdate.KeepAway();
 
          _001RedrawWindow();
 

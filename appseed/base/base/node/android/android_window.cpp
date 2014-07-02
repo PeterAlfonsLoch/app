@@ -4289,7 +4289,7 @@ throw not_implemented(get_app());
       bool * pb = &b;
       if(m_papp->s_ptwf != NULL)
       pb = &m_papp->s_ptwf->m_bProDevianMode;
-      keeper < bool > keepOnDemandDraw(pb, false, *pb, true);
+      keep < bool > keepOnDemandDraw(pb, false, *pb, true);
       */
       ASSERT(::IsWindow((oswindow) get_handle()));
       /*   return ::SetWindowPos(get_handle(), pWndInsertAfter->get_handle(),
@@ -7112,7 +7112,7 @@ namespace android
       if(m_bExposing)
          return;
 
-      keeper < bool > keepExposing(&m_bExposing, true, false, true);
+      keep < bool > keepExposing(&m_bExposing, true, false, true);
 
       bool bMove;
 

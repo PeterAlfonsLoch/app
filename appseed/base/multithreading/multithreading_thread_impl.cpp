@@ -1157,18 +1157,7 @@ int32_t thread_impl::main()
       nResult = (*m_pfnThreadProc)(m_pThreadParams);
    }
    // else -- check for thread with message loop
-   else if(!m_pthread->initialize_instance())
-   {
-      try
-      {
-         nResult = m_pthread->exit();
-      }
-      catch(...)
-      {
-         nResult = (DWORD)-1;
-      }
-   }
-   else
+   else if(m_pthread->initialize_instance())
    {
       // will stop after PostQuitMessage called
       ASSERT_VALID(this);
@@ -1195,26 +1184,27 @@ int32_t thread_impl::main()
 
          if(App(get_app()).final_handle_exception((::exception::exception &) e))
             goto run;
-         try
-         {
-            nResult = m_pthread->exit();
-         }
-         catch(...)
-         {
-            nResult = (DWORD)-1;
-         }
       }
       catch(...)
       {
       }
-      // let translator run undefinetely
-      //translator::detach();
    }
 
+   // let translator run undefinetely
+   //translator::detach();
+   try
+   {
+      nResult = m_pthread->exit();
+   }
+   catch(...)
+   {
+      nResult = (DWORD)-1;
+   }
 
+   return nResult;
 
-   return 0;   // not reached
 }
+
 
 int32_t thread_impl::thread_term(int32_t nResult)
 {

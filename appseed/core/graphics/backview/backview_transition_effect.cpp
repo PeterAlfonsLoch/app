@@ -292,7 +292,7 @@ namespace backview
 
 //         Main & viewinterface = HelperGetMain();
 
-      keeper <bool> keepTransitionStepRunActive(
+      keep <bool> keepTransitionStepRunActive(
          &m_bTransitionStepRunActive,
          true,
          false,

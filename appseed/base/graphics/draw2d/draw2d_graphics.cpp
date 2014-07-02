@@ -1066,7 +1066,7 @@ namespace draw2d
 
                dib1->blend(point(0, 0), m_pdibAlphaBlend, point((int)max(0, x - m_ptAlphaBlend.x), (int)max(0, y - m_ptAlphaBlend.y)), rectBlt.size());
 
-               keeper < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
+               keep < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
 
                return BitBlt(x, y, nWidth, nHeight, dib1->get_graphics(), 0, 0, dwRop);
 
@@ -1208,7 +1208,7 @@ namespace draw2d
 
                set_alpha_mode(::draw2d::alpha_mode_blend);
 
-               keeper < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
+               keep < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
 
                BitBlt((int)x, (int)y, rectText.width(), rectText.height(), dib1->get_graphics(), 0, 0, SRCCOPY);
 

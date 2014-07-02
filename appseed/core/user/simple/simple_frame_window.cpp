@@ -297,15 +297,11 @@ void simple_frame_window::_001OnDisplayChange(signal_details * pobj)
 
 }
 
+
 void simple_frame_window::_001OnSize(signal_details * pobj)
 {
+
    UNREFERENCED_PARAMETER(pobj);
-   //if ((m_workset.GetMovingManager() == NULL ||
-   //   m_workset.GetSizingManager() == NULL) || (!m_workset.GetMovingManager()->IsMoving()
-   //   && !m_workset.GetSizingManager()->IsSizing()))
-   //{
-   //   _001RedrawWindow();
-   //}
 
    if (does_display_match())
    {
@@ -833,6 +829,31 @@ void simple_frame_window::pre_translate_message(signal_details * pobj)
 
 void simple_frame_window::InitialFramePosition(bool bForceRestore)
 {
+
+#ifdef WINDOWSEX
+
+   if(GetParent() == NULL)
+   {
+
+      //::SetWindowRgn(get_handle(),NULL,false); // Clean any persisted window region
+
+      /*keep < bool > keepDisableSaveWindowRect(&m_bEnableSaveWindowRect,false,m_bEnableSaveWindowRect,true);
+
+      keep < bool > keepIgnoreSizeEvent(&m_pimpl->m_bIgnoreSizeEvent,true,false,true);
+
+      keep < bool > keepIgnoreMoveEvent(&m_pimpl->m_bIgnoreMoveEvent,true,false,true);
+
+      keep < bool > keepLockWindowUpdate(&m_bLockWindowUpdate,true,false,true);
+
+      ::SetWindowPos(get_handle(),NULL,0,0,0,0,SWP_SHOWWINDOW); // skip possible ShowWindow with "good" (worst ) "Windows" (Loosedows) defaults*/
+
+      //::ShowWindow(get_handle(),SW_SHOWNORMAL); // skip possible ShowWindow with "good" (worst ) "Windows" (Loosedows) defaults
+
+      //::ShowWindow(get_handle(),SW_SHOWDEFAULT); // skip possible ShowWindow with "good" (worst ) "Windows" (Loosedows) defaults
+
+   }
+
+#endif
 
    if (m_bFrameMoveEnable)
    {
@@ -1759,9 +1780,13 @@ bool simple_frame_window::calc_layered()
    }
    else
    {
+
       return false;
-   }
+
+   } 
+
 }
+
 
 void simple_frame_window::data_on_after_change(signal_details * pobj)
 {
