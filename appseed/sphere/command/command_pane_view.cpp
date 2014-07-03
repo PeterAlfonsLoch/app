@@ -162,7 +162,7 @@ namespace command
                   #ifdef WINDOWSEX
                      pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
                      #endif
-                     pframe->set_parent(this);
+                     pframe->SetParent(this);
                      pcreatordata->m_pdoc = pdoc;
                      pcreatordata->m_pwnd = pframe;
                   }
@@ -199,7 +199,7 @@ namespace command
                   #ifdef WINDOWSEX
                      pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
                      #endif
-                     pframe->set_parent(this);
+                     pframe->SetParent(this);
                      pcreatordata->m_pdoc = pdoc;
                      pcreatordata->m_pwnd = pframe;
 
@@ -232,7 +232,7 @@ namespace command
                   #ifdef WINDOWSEX
                      pframe->ModifyStyle(WS_CAPTION, WS_CHILD, 0);
                      #endif
-                     pframe->set_parent(this);
+                     pframe->SetParent(this);
                      pcreatordata->m_pdoc = pdoc;
                      pcreatordata->m_pwnd = pframe;
 
@@ -324,7 +324,7 @@ namespace command
 #ifdef WINDOWSEX
 
          i = (int32_t) ::ShellExecuteW(
-            GetTopLevelParent()->get_handle(),
+            GetTopLevel()->get_handle(),
             NULL,
             ::str::international::utf8_to_unicode("\"" + itema[0].m_strPath + "\""),
             NULL,

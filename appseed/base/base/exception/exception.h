@@ -105,12 +105,10 @@ enum e_memdbg // primitive::memory debug/diagnostic flags
    memdbg_alloc            = _CRTDBG_ALLOC_MEM_DF,         // turn on debugging allocator
    memdbg_delay_free       = _CRTDBG_DELAY_FREE_MEM_DF,         // delay freeing primitive::memory
    memdbg_check_always     = _CRTDBG_CHECK_ALWAYS_DF,          // __check_memory on every alloc/free
-#if !core_level_1
    memdbg_check_every16    = _CRTDBG_CHECK_EVERY_16_DF,
    memdbg_check_every128   = _CRTDBG_CHECK_EVERY_128_DF,
    memdbg_check_every1024  = _CRTDBG_CHECK_EVERY_1024_DF,
    memdbg_check_default    = _CRTDBG_CHECK_DEFAULT_DF
-#endif
 };
 
 #define __output_debug_string TRACE

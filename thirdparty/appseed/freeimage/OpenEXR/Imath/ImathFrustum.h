@@ -444,7 +444,7 @@ Matrix44<T> Frustum<T>::projectionMatrix() const
 }
 
 template<class T>
-Frustum<T> Frustum<T>::window(T l, T r, T t, T b) const
+Frustum<T> Frustum<T>::user::interaction_impl(T l, T r, T t, T b) const
 {
     // move it to 0->1 space
 

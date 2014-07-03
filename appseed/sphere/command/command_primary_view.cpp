@@ -121,7 +121,7 @@ namespace command
                         _001SetText(strNewText, ::action::source::sync());
                         str = strNewText;
                         m_iCompromised = m_ptree->m_iSelStart = m_ptree->m_iSelEnd = strNewText.get_length();
-                        Application.send_simple_command("winactionareaview::show_calendar(\""+ ::str::from((int32_t) pelement->get_value().mod()) +"\")", (void *) get_wnd()->get_os_data());
+                        Application.send_simple_command("winactionareaview::show_calendar(\""+ ::str::from((int32_t) pelement->get_value().mod()) +"\")", (void *) GetWindow()->get_os_data());
                         bOk = true;
                      }
                   }

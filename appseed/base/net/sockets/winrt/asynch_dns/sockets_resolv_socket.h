@@ -76,9 +76,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          void OnConnect();
 
-#if !core_level_1
          void SetResolveIpv6(bool x = true) { m_resolve_ipv6 = x; }
-#endif
 
       };
 

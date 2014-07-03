@@ -24,9 +24,9 @@ namespace command
    {
       UNREFERENCED_PARAMETER(pview);
       sp(::user::interaction) pui =  (this);
-      if(pui != NULL && pui->get_parent() != NULL)
+      if(pui != NULL && pui->GetParent() != NULL)
       {
-         return pui->get_parent()->BaseOnControlEvent(pevent);
+         return pui->GetParent()->BaseOnControlEvent(pevent);
       }
       return false;
    }

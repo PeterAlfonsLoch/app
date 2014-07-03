@@ -292,7 +292,7 @@ namespace userstack
       if(itema.get_size() > 0)
       {
          int32_t i = (int32_t) ::ShellExecuteW(
-            GetTopLevelParent()->get_handle(),
+            GetTopLevel()->get_handle(),
             NULL,
             L"\"" + ::str::international::utf8_to_unicode(itema[0].m_strPath) + L"\"",
             NULL,

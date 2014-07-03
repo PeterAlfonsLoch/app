@@ -29,9 +29,7 @@ namespace nature
 
       appearance_view(sp(::base::application) papp);
 
-#if !core_level_1
       using ::user::tab_view::on_show_view;
-#endif
 
       virtual void install_message_handling(::message::dispatch * pinterface);
       virtual void on_show_view();

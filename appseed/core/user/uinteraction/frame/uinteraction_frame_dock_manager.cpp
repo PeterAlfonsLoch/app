@@ -162,7 +162,7 @@ namespace user
             }
             /*else
             {
-            sp(::user::interaction) pwndTopLevel = pwnd->GetTopLevelParent();
+            sp(::user::interaction) pwndTopLevel = pwnd->GetTopLevel();
             if(pwndTopLevel != NULL &&
             pwndTopLevel->get_handle() == pwnd->get_handle())
             {

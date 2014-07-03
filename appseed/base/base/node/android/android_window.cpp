@@ -1739,7 +1739,7 @@ restart_mouse_hover_check:
          sp(::user::interaction) puiFocus =  (Application.user()->get_keyboard_focus());
          if(puiFocus != NULL
             && puiFocus->IsWindow()
-            && puiFocus->GetTopLevelParent() != NULL)
+            && puiFocus->GetTopLevel() != NULL)
          {
             puiFocus->send(pkey);
             if(pbase->m_bRet)
@@ -2346,7 +2346,7 @@ restart_mouse_hover_check:
    }*/
 
 
-   sp(::user::interaction) interaction_impl::GetTopLevelParent()
+   sp(::user::interaction) interaction_impl::GetTopLevel()
    {
       if (get_handle() == NULL) // no oswindow attached
          return NULL;
@@ -2892,7 +2892,7 @@ return 0;
 
    bool interaction_impl::HandleFloatingSysCommand(UINT nID, LPARAM lparam)
    {
-/*      sp(::user::interaction) pParent = GetTopLevelParent();
+/*      sp(::user::interaction) pParent = GetTopLevel();
       switch (nID & 0xfff0)
       {
       case SC_PREVWINDOW:
@@ -4935,7 +4935,7 @@ throw not_implemented(get_app());
    sp(::user::interaction) interaction_impl::EnsureTopLevelParent()
    {
 
-      sp(::user::interaction)pWnd=GetTopLevelParent();
+      sp(::user::interaction)pWnd=GetTopLevel();
 
       ENSURE_VALID(pWnd);
 
@@ -6779,8 +6779,8 @@ __STATIC void CLASS_DECL_BASE
 //   // send WM_ACTIVATETOPLEVEL when top-level parents change
 //   if (!(ANDROID_WINDOW(pWnd)->GetStyle() & WS_CHILD))
 //   {
-//      sp(::user::interaction) pTopLevel= ANDROID_WINDOW(pWnd)->GetTopLevelParent();
-//      if (pTopLevel && (pWndOther == NULL || !::IsWindow(ANDROID_WINDOW(pWndOther)->get_handle()) || pTopLevel != ANDROID_WINDOW(pWndOther)->GetTopLevelParent()))
+//      sp(::user::interaction) pTopLevel= ANDROID_WINDOW(pWnd)->GetTopLevel();
+//      if (pTopLevel && (pWndOther == NULL || !::IsWindow(ANDROID_WINDOW(pWndOther)->get_handle()) || pTopLevel != ANDROID_WINDOW(pWndOther)->GetTopLevel()))
 //      {
 //         // lparam points to interaction_impl getting the WM_ACTIVATE message and
 //         //  hWndOther from the WM_ACTIVATE.
@@ -6810,7 +6810,7 @@ __STATIC bool CLASS_DECL_BASE
 //      nMsg == WM_RBUTTONDOWN))
 //   {
 //      // activate the last active interaction_impl if not active
-//      sp(::user::interaction) pLastActive = ANDROID_WINDOW(pWnd)->GetTopLevelParent();
+//      sp(::user::interaction) pLastActive = ANDROID_WINDOW(pWnd)->GetTopLevel();
 //      if (pLastActive != NULL)
 //         pLastActive = pLastActive->GetLastActivePopup();
 //      if (pLastActive != NULL &&

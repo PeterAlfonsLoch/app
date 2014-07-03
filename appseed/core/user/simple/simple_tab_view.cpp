@@ -80,7 +80,6 @@ void simple_tab_view::_001OnLButtonUp(signal_details * pobj)
    ::user::tab::_001OnLButtonUp(pobj);
    if(pmouse->m_bRet)
       return;
- // trans  ::user::interaction_child::_001OnLButtonUp(pobj);
    if(pmouse->m_bRet)
       return;
 }
@@ -91,7 +90,6 @@ void simple_tab_view::_001OnMouseMove(signal_details * pobj)
    ::user::tab::_001OnMouseMove(pobj);
    if(pmouse->m_bRet)
       return;
-// trans   ::user::interaction_child::_001OnMouseMove(pobj);
    if(pmouse->m_bRet)
       return;
 }
@@ -102,7 +100,6 @@ void simple_tab_view::_001OnMouseLeave(signal_details * pobj)
    ::user::tab::_001OnMouseLeave(pobj);
    if(pmouse->m_bRet)
       return;
-// trans   ::user::interaction_child::_001OnMouseLeave(pobj);
    if(pmouse->m_bRet)
       return;
 }

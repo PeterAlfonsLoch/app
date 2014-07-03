@@ -45,7 +45,7 @@ namespace filehandler
          this,
          "html/frame",
          System.type_info < document > (),
-         System.type_info < frame > (),       // top level SDI frame::window
+         System.type_info < frame > (),       // top level SDI frame::user::interaction_impl
          System.type_info < pane_view > ());
       userex()->add_document_template(pdoctemplate);
       m_ptemplateMenu = pdoctemplate;

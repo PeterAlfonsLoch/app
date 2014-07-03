@@ -450,10 +450,11 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
       class view;            // a ::user::impact on a document
       class document_manager;      // impact_system manager object
       class frame_window;        // standard SDI frame
+      class interaction_child;
    } // namespace user
 
 
-      class ::user::interaction_child;
+      
          class dialog;          // a dialog
 
          // standard windows controls

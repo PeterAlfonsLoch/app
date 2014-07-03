@@ -188,9 +188,25 @@ namespace base
       return 0;
    }
 
+
    bool simple_app::end()
    {
+
+      try
+      {
+
+         //m_iReturnCode = exit();
+
+      }
+      catch(...)
+      {
+
+         m_iReturnCode = -1;
+
+      }
+
       return true;
+
    }
 
 

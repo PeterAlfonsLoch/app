@@ -4815,7 +4815,7 @@ namespace windows
             if(pwindowpos->m_pwindowpos->flags & SWP_NOMOVE)
             {
 
-               TRACE("::window::interaction_impl::_001OnWindowPosChanging SWP_NOMOVE");
+               TRACE("::user::interaction_impl::interaction_impl::_001OnWindowPosChanging SWP_NOMOVE");
 
             }
             else
@@ -4828,7 +4828,7 @@ namespace windows
             if(pwindowpos->m_pwindowpos->flags & SWP_NOSIZE)
             {
 
-               TRACE("::window::interaction_impl::_001OnWindowPosChanging SWP_NOSIZE");
+               TRACE("::user::interaction_impl::interaction_impl::_001OnWindowPosChanging SWP_NOSIZE");
 
             }
             else

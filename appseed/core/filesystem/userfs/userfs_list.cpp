@@ -990,7 +990,7 @@ namespace userfs
 
    ///IShellFolder * lpsf = m_pshellfolder;
    item.m_iImage = System.userex()->shellimageset().GetImage(
-   _GetWnd()->GetTopLevelParent()->get_handle(),
+   _GetWnd()->GetTopLevel()->get_handle(),
    item.m_strPath,
    ::str::international::utf8_to_unicode(item.m_strExtra),
    _shell::IconNormal);

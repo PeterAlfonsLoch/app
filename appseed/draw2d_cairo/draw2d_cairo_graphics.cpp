@@ -108,7 +108,7 @@ namespace draw2d_cairo
 
 /*   ::window_sp graphics::GetWindow() const
    {
-      //ASSERT(get_handle1() != NULL); return ::win::window::from_handle(::WindowFromDC(get_handle1()));
+      //ASSERT(get_handle1() != NULL); return ::win::user::interaction_impl::from_handle(::WindowFromDC(get_handle1()));
    }
 */
 
