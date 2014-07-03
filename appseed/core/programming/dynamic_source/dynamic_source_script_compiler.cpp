@@ -975,6 +975,32 @@ namespace dynamic_source
 
       string strN = m_pmanager->m_strNetnodePath;
 
+#ifdef WINDOWS
+      string vars1batSrc;
+      string vars2batSrc;
+      string vars1batDst;
+      string vars2batDst;
+      vars1batSrc = System.dir().element("nodeapp/stage/dynamic_source/vc_vars.bat");
+      vars2batSrc = System.dir().element("nodeapp/stage/dynamic_source/vc_vars_query_registry.bat");
+      vars1batDst = System.dir().stage("stage\\front","vc_vars.bat");
+      vars2batDst = System.dir().stage("stage\\front","vc_vars_query_registry.bat");
+      try
+      {
+         Application.file().copy(vars1batDst,vars1batSrc,false);
+      }
+      catch(...)
+      {
+      }
+      try
+      {
+         Application.file().copy(vars2batDst,vars2batSrc,false);
+      }
+      catch(...)
+      {
+      }
+
+#endif
+
       for(int32_t i = 0; i < m_straLibSourcePath.get_size(); i++)
       {
          cppize(m_straLibSourcePath[i], m_straLibCppPath[i], cpptype_source);
@@ -1004,33 +1030,18 @@ namespace dynamic_source
          str.replace("%SDK1%", m_strSdk1);
          Application.dir().mk(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_library\\" + System.dir().name(str1)));
          Application.dir().mk(System.dir().path(m_strTime, "library\\" + m_strPlatform + "\\" + System.dir().name(str1), false));
+         
+         string strFormat = "libc-" + str1;
+
+         strFormat.replace("/", "-");
+         strFormat.replace("\\", "-");
+
 #ifdef LINUX
-         strCmd = System.dir().element("stage\\front\\libc1.bash");
+         strFormat += ".bash";
 #else
-         strCmd = System.dir().element("stage\\front\\libc1.bat");
-         string vars1batSrc;
-         string vars2batSrc;
-         string vars1batDst;
-         string vars2batDst;
-         vars1batSrc = System.dir().element("nodeapp/stage/dynamic_source/vc_vars.bat");
-         vars2batSrc = System.dir().element("nodeapp/stage/dynamic_source/vc_vars_query_registry.bat");
-         vars1batDst = System.dir().stage("stage\\front", "vc_vars.bat");
-         vars2batDst = System.dir().stage("stage\\front", "vc_vars_query_registry.bat");
-         try
-         {
-            Application.file().copy(vars1batDst, vars1batSrc, false);
-         }
-         catch(...)
-         {
-         }
-         try
-         {
-            Application.file().copy(vars2batDst, vars2batSrc, false);
-         }
-         catch(...)
-         {
-         }
+         strFormat += ".bat";
 #endif
+         strCmd = System.dir().element("stage\\front", strFormat);
 
          //Application.file().put_contents_utf8(strCmd, str);
          Application.file().put_contents(strCmd, str);

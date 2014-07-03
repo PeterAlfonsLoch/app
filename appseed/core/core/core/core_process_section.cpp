@@ -119,13 +119,12 @@ namespace core
          }
          Sleep(100);
       }
-      int32_t iRetry = 5;
-      while(iRetry > 0 && get_run())
+      while(get_run())
       {
          strRead = m_process.m_pipe.m_pipeOut.read();
          if(strRead.is_empty())
          {
-            iRetry--;
+            break;
          }
          else
          {
@@ -133,10 +132,7 @@ namespace core
             {
                *m_pstrRead += strRead;
             }
-            strRead.Empty();
-            iRetry = 5;
          }
-         Sleep(100);
       }
       if(m_pevReady != NULL)
       {
