@@ -294,13 +294,13 @@ namespace windows
             if(dwLastError == 0x0000057e)
             {
 
-               System.simple_message_box(NULL,"Cannot create a top-level child interaction_impl.");
+               TRACE("Cannot create a top-level child interaction_impl.");
 
             }
             else
             {
 
-               System.simple_message_box(NULL,strMessage);
+               TRACE0(strMessage);
 
             }
 

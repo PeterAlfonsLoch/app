@@ -19,12 +19,12 @@ namespace core
       public:
 
 
-         ::core::process           m_process;
-         string                  m_strRead;
-         manual_reset_event      m_evReady;
+         ::core::process            m_process;
+         string *                   m_pstrRead;
+         manual_reset_event *       m_pevReady;
 
 
-         process_thread(sp(::base::application) papp);
+         process_thread(sp(::base::application) papp, string * pstrRead = NULL, manual_reset_event * pevReady = NULL);
          int32_t run();
 
 

@@ -19,12 +19,16 @@ namespace core
 
    var process_departament::get_output(const char * pszCmdLine)
    {
-      process_thread thread(get_app());
-      if(!thread.m_process.create_child_process(pszCmdLine, true))
+      string strRead;
+      manual_reset_event evReady(get_app());
+      evReady.ResetEvent();
+      process_thread * pthread = new process_thread(get_app(), &strRead, &evReady);
+      pthread->m_bAutoDelete = true;
+      if(!pthread->m_process.create_child_process(pszCmdLine,true))
          return false;
-      thread.begin();
-      thread.m_evReady.wait();
-      return thread.m_strRead;
+      pthread->begin();
+      evReady.wait();
+      return strRead;
    }
 
    uint32_t process_departament::retry(const char * pszCmdLine, uint32_t dwTimeout, int32_t iShow)
@@ -94,19 +98,25 @@ namespace core
 
    }
 
-   process_departament::process_thread::process_thread(sp(::base::application) papp) :
+   process_departament::process_thread::process_thread(sp(::base::application) papp,string * pstrRead,manual_reset_event * pevReady):
       element(papp),
       thread(papp),
       simple_thread(papp),
-      m_evReady(papp)
+      m_pstrRead(pstrRead),
+      m_pevReady(pevReady)
    {
    }
 
    int32_t process_departament::process_thread::run()
    {
+      string strRead;
       while(!m_process.has_exited())
       {
-         m_strRead += m_process.m_pipe.m_pipeOut.read();
+         strRead = m_process.m_pipe.m_pipeOut.read();
+         if(m_pstrRead != NULL)
+         {
+            *m_pstrRead += strRead;
+         }
          Sleep(100);
       }
       int32_t iRetry = 5;
@@ -120,13 +130,19 @@ namespace core
          }
          else
          {
-            m_strRead += strRead;
+            if(m_pstrRead != NULL)
+            {
+               *m_pstrRead += strRead;
+            }
             strRead.Empty();
             iRetry = 5;
          }
          Sleep(100);
       }
-      m_evReady.SetEvent();
+      if(m_pevReady != NULL)
+      {
+         m_pevReady.SetEvent();
+      }
       return 0;
    }
 
