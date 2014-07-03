@@ -120,7 +120,6 @@ namespace core
          Sleep(100);
       }
       int32_t iRetry = 5;
-      string strRead;
       while(iRetry > 0 && get_run())
       {
          strRead = m_process.m_pipe.m_pipeOut.read();
@@ -141,7 +140,7 @@ namespace core
       }
       if(m_pevReady != NULL)
       {
-         m_pevReady.SetEvent();
+         m_pevReady->SetEvent();
       }
       return 0;
    }
