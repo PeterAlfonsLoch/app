@@ -1820,6 +1820,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\exception\exception_operation_canceled.h" />
     <ClInclude Include="base\exception\exception_os.h" />
     <ClInclude Include="base\exception\exception_overflow_error.h" />
+    <ClInclude Include="base\exception\exception_parsing.h" />
     <ClInclude Include="base\exception\exception_range_error.h" />
     <ClInclude Include="base\exception\exception_resource.h" />
     <ClInclude Include="base\exception\exception_runtime_error.h" />
@@ -2981,6 +2982,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\base\base_print_job.cpp" />
     <ClCompile Include="base\base\base_session_interface.cpp" />
     <ClCompile Include="base\base\base_static_start.cpp" />
+    <ClCompile Include="base\exception\exception_parsing.cpp" />
     <ClCompile Include="base\geoip\geoip.cpp" />
     <ClCompile Include="base\geoip\geoip_city.cpp" />
     <ClCompile Include="base\geoip\geoip_region_name.cpp" />

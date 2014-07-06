@@ -1269,7 +1269,7 @@ void thread_impl::remove(::user::interaction * pui)
 
    sl.unlock();
 
-   if(m_sptimera.is_null())
+   if(m_sptimera.is_set())
    {
 
       m_sptimera->unset(pui);

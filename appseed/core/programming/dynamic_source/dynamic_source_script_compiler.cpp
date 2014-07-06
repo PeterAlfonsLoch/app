@@ -1952,6 +1952,7 @@ ch_else:
          }
          try
          {
+            avoid_parsing_exception avoidparsingexception;
             pinstance->run();
             pinstance->destroy();
          }

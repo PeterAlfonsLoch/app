@@ -10,6 +10,8 @@ namespace str
 {
 
 
+
+
    const char trailingBytesForUTF8[256] = {
 (const char)  -1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -466,7 +468,10 @@ namespace str
       {
 
          if(iFind < iStart)
-            throw "errror";
+         {
+            throw_parsing_exception("random replace error");
+            return "";
+         }
 
          index i = (index) (rand() % straReplacement.get_size());
 
@@ -1811,7 +1816,8 @@ namespace str
       {
          if(pszXml[idx] != psz[idx])
          {
-            throw "Name does not match expected";
+            throw_parsing_exception("Name does not match expected");
+            break;
          }
       }
       pszXml += len;
@@ -1826,7 +1832,8 @@ namespace str
       {
          if(pszXml[idx] != psz[idx])
          {
-            throw "Name does not match expected";
+            throw_parsing_exception("Name does not match expected");
+            break;
          }
       }
       pszXml += len;
@@ -1840,7 +1847,8 @@ namespace str
       {
          if(pszXml[idx] != psz[idx])
          {
-            throw "Name does not match expected";
+            throw_parsing_exception("Name does not match expected");
+            break;
          }
       }
       pszXml += len;
@@ -1857,7 +1865,7 @@ namespace str
       }
       if(i < iMinimumCount)
       {
-         throw "Space is required";
+         throw_parsing_exception("Space is required");
       }
       pszXml = psz;
    }
@@ -1878,18 +1886,19 @@ namespace str
       }
       if(psz == pszXml)
       {
-         throw "empty natural found";
+         throw_parsing_exception("empty natural found");
+         goto end;
       }
       ui = ::str::to_uint(string(pszXml, psz - pszXml));
       if(ui < uiMin)
       {
-         throw "natural less than min";
+         throw_parsing_exception("natural less than min");
       }
       else if(ui > uiMax)
       {
-         throw "natural greater than max";
+         throw_parsing_exception("natural greater than max");
       }
-
+      end:
       pszXml = psz;
 
       return ui;
@@ -1904,12 +1913,15 @@ namespace str
       {
          psz = __utf8_inc(psz);
          if(psz > pszEnd)
-            throw "premature end";
+         {
+            throw_parsing_exception("premature end");
+            break;
+         }
          i++;
       }
       if(i < iMinimumCount)
       {
-         throw "Space is required";
+         throw_parsing_exception("Space is required");
       }
       pszXml = psz;
    }
@@ -1928,7 +1940,8 @@ namespace str
       }
       if(psz == pszXml)
       {
-         throw "no hex consumed";
+         throw_parsing_exception("no hex consumed");
+         return "";
       }
       string str(pszXml, psz - pszXml);
       pszXml = psz;
@@ -1948,7 +1961,8 @@ namespace str
          {
             if(!::str::ch::is_letter(ca) || *ca == '\0')
             {
-               throw "NCName required here";
+               throw_parsing_exception("NCName required here");
+               return "";
             }
             start = false;
          }
@@ -1972,7 +1986,8 @@ namespace str
       string qc = get_utf8_char(psz); // quote character
       if(qc != "\"" && qc != "\\")
       {
-         throw "Quote character is required here";
+         throw_parsing_exception("Quote character is required here");
+         return "";
       }
       string str;
       string qc2;
@@ -1983,7 +1998,8 @@ namespace str
          //string str = ::str::international::utf8_to_unicode(qc2);
          if(qc2.is_empty())
          {
-            throw "Quote character is required here, premature end";
+            throw_parsing_exception("Quote character is required here, premature end");
+            return "";
          }
          if(qc2 == qc)
             break;
@@ -1998,13 +2014,15 @@ namespace str
    {
       const char * psz = pszXml;
       string qc; // quote character
-      if(!get_utf8_char(qc, psz, pszEnd))
+      if(!get_utf8_char(qc,psz,pszEnd))
       {
-         throw "Quote character is required here, premature end";
+         throw_parsing_exception("Quote character is required here, premature end");
+         return "";
       }
       if(qc != "\"" && qc != "\\")
       {
-         throw "Quote character is required here";
+         throw_parsing_exception("Quote character is required here");
+         return "";
       }
       const char * pszValueStart = psz;
       const char * pszValueEnd = psz;
@@ -2018,7 +2036,8 @@ namespace str
          pszNext = __utf8_inc(psz);
          if(pszNext > pszEnd)
          {
-            throw "Quote character is required here, premature end";
+            throw_parsing_exception("Quote character is required here, premature end");
+            return "";
          }
          for(i = 0; i < qclen && psz < pszNext; i++)
          {
@@ -2041,7 +2060,8 @@ namespace str
       string strQuoteChar = get_utf8_char(psz);
       if(strQuoteChar != "\"" && strQuoteChar != "\\")
       {
-         throw "Quote character is required here";
+         throw_parsing_exception("Quote character is required here");
+         return "";
       }
       string strCurrentChar;
       string str;
@@ -2054,7 +2074,8 @@ namespace str
          //string str = ::str::international::utf8_to_unicode(qc2);
          if(strCurrentChar.is_empty())
          {
-            throw "Quote character is required here, premature end";
+            throw_parsing_exception("Quote character is required here, premature end");
+            return "";
          }
          if(strPreviousChar == "\\")
          {
