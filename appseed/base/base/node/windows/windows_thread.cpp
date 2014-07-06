@@ -137,7 +137,7 @@ namespace windows
    bool thread::set_thread_priority(int32_t iCa2Priority)
    {
 
-      ASSERT(m_hthread != NULL);
+      //ASSERT(m_hthread != NULL);
 
       int32_t nPriority = (int)get_os_thread_priority(iCa2Priority);
 

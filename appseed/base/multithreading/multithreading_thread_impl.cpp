@@ -63,8 +63,6 @@ void thread_impl::CommonConstruct()
 
    m_nDisablePumpCount  = 0;
    
-   m_sptimera = canew(::user::interaction::timer_array(get_app()));
-   m_spuiptra = canew(::user::interaction_ptr_array(get_app()));
    
    m_hthread = NULL;
 
@@ -565,8 +563,6 @@ uint32_t __thread_entry(void * pparam)
          __node_term_thread(pthread);
 
          ::multithreading::__node_on_term_thread(pthreadimpl->m_hthread,pthread,-1);
-
-         ASSERT(FALSE);  // unreachable
 
          return -1; // anyway...
 
@@ -1087,6 +1083,7 @@ bool thread_impl::thread_entry(int32_t * piStartupError)
    try
    {
 
+
       if(!m_pthread->pre_run())
       {
 
@@ -1355,6 +1352,10 @@ bool thread_impl::initialize_message_queue()
 
    if(m_spuiMessage.is_set() && m_spuiMessage->IsWindow())
       return true;
+
+   m_sptimera = canew(::user::interaction::timer_array(get_app()));
+
+   m_spuiptra = canew(::user::interaction_ptr_array(get_app()));
 
    try
    {
