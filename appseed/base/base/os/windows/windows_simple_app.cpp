@@ -195,7 +195,7 @@ namespace base
       try
       {
 
-         //m_iReturnCode = exit();
+         m_iReturnCode = exit();
 
       }
       catch(...)

@@ -80,15 +80,22 @@ namespace hotplugin
       virtual void         post_message(UINT uiMessage, WPARAM wparam, LPARAM lparam);
       virtual oswindow         get_host_window();
 
-      using ::user::interaction::ClientToScreen;
+      using ::simple_ui::interaction::ClientToScreen;
       virtual void ClientToScreen(POINT * ppt);
 
-      using ::user::interaction::ScreenToClient;
+      using ::simple_ui::interaction::ScreenToClient;
       virtual void ScreenToClient(POINT * ppt);
 
       // client should implement
       //using ::simple_ui::interaction::SetWindowPos;
       //virtual bool SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
+
+      using ::simple_ui::interaction::GetWindowRect;
+      virtual void GetWindowRect(__rect64 * prect);
+
+      using ::simple_ui::interaction::GetClientRect;
+      virtual void GetClientRect(__rect64 * lprect);
+
 
 
       virtual void translate_mouse_message(int * px, int * py);
@@ -127,6 +134,8 @@ namespace hotplugin
       using ::user::interaction::message_handler;
       virtual int32_t message_handler(XEvent * pevent);
 #endif
+      virtual void message_handler(signal_details * pobj);
+
 
       virtual void on_bare_paint(::draw2d::graphics * pgraphics, LPCRECT lprect);
 

@@ -1136,17 +1136,7 @@ namespace user
    oswindow interaction_base::get_handle() const
    {
 
-#if defined(METROWIN)
-
-      throw interface_only_exception(get_app());
-
-#else
-
-      throw interface_only_exception(get_app());
-
       return NULL;
-
-#endif
 
    }
 
@@ -1394,7 +1384,7 @@ namespace user
    bool interaction_base::SetForegroundWindow()
    {
       
-      throw interface_only_exception(get_app());
+      return true;
 
    }
 
@@ -1716,7 +1706,7 @@ namespace user
    bool interaction_base::WfiIsIconic()
    {
 
-      throw interface_only_exception(get_app());
+      return false;
 
    }
 
@@ -1802,8 +1792,6 @@ namespace user
    void interaction_base::ActivateTopParent()
    {
    
-      throw interface_only_exception(get_app());
-
    }
 
 
@@ -2677,7 +2665,7 @@ namespace user
    void interaction_base::show_keyboard(bool bShow)
    {
 
-      throw interface_only_exception(get_app());
+      UNREFERENCED_PARAMETER(bShow);
 
    }
 

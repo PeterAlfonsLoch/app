@@ -11,10 +11,14 @@ namespace base
       ::thread(papp)
    {
 
-      m_pbasesession = this;
+      m_pbaseapp        = this;
+
+      m_pbasesession    = this;
 
       if(papp->is_system())
       {
+
+         m_pbasesystem = papp.cast < ::base::system >();
 
          m_pfontopus = create_fontopus();
 
@@ -27,7 +31,9 @@ namespace base
       else
       {
 
-         m_pfontopus = m_pbaseapp->m_pbasesession->m_pfontopus;
+         m_pbasesystem  = papp->m_pbasesystem;
+
+         m_pfontopus    = m_pbaseapp->m_pbasesession->m_pfontopus;
 
       }
 
@@ -138,7 +144,14 @@ namespace base
 
 #ifdef WINDOWSEX
 
-      ::SetCursor(get_cursor()->get_HCURSOR());
+      ::visual::cursor * pcursor = get_cursor();
+
+      if(pcursor != NULL)
+      {
+
+         ::SetCursor(pcursor->get_HCURSOR());
+
+      }
 
 #endif
 

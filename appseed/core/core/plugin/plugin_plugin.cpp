@@ -238,10 +238,6 @@ namespace plugin
    void plugin::on_paint(::draw2d::graphics * pgraphics, LPCRECT lprectOut)
    {
 
-      //class rect rect = m_phost->m_rect;
-
-      //set_window_rect(rect);
-
       UNREFERENCED_PARAMETER(lprectOut);
 
       ::rect rectClient;
@@ -264,7 +260,12 @@ namespace plugin
 
          m_dib->create(rectClient.size());
 
+         if(m_dib->area() <= 0)
+            return;
+
          m_dib->Fill(0, 0, 0, 0);
+
+
 
 //         ::draw2d::graphics_sp dc(get_app());
 

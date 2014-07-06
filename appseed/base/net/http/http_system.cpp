@@ -889,7 +889,16 @@ retry:
 
          int32_t iStatusCode = psession->outattr("http_status_code");
 
-         if(iStatusCode != 200)
+         if(iStatusCode == 0)
+         {
+#if defined(BSD_STYLE_SOCKETS)
+            if(psession->m_spsslclientcontext.is_set() && psession->m_spsslclientcontext->m_iRetry == 1 && iTry < 8)
+            {
+               goto retry;
+            }
+#endif
+         }
+         else if(iStatusCode != 200)
          {
             psession = NULL;
             if(iTry < 8)
@@ -900,15 +909,6 @@ retry:
 
          e_status estatus = status_ok;
 
-         if(iStatusCode == 0)
-         {
-#if defined(BSD_STYLE_SOCKETS)
-            if(psession->m_spsslclientcontext.is_set() && psession->m_spsslclientcontext->m_iRetry == 1 && iTry < 8)
-            {
-               goto retry;
-            }
-#endif
-         }
          if(iStatusCode == 200 || psession->outattr("http_status_code").is_empty())
          {
             estatus = status_ok;

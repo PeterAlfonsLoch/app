@@ -29,6 +29,8 @@ namespace core
 
       virtual bool process_initialize();
 
+      virtual bool initialize2();
+
       virtual bool initialize_instance();
 
       virtual bool finalize();

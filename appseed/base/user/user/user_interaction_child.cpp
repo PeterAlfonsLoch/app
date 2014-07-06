@@ -71,14 +71,12 @@ namespace user
 
       //   if(m_pui->m_pthread == NULL)
 
-      m_pui->m_pthread = get_app();
+      m_pui->m_pthread = ::get_thread();
 
       if(m_pui->m_pthread == NULL)
          return false;
 
       m_pui->m_pthread->add(this);
-
-      m_pui->m_pthread = m_pui->m_pthread;
 
       m_pui->m_pthread->add(m_pui);
 
@@ -209,7 +207,7 @@ namespace user
 
       //   if(m_pui->m_pthread == NULL)
 
-      m_pui->m_pthread = get_app();
+      m_pui->m_pthread = ::get_thread();
 
       if(m_pui->m_pthread == NULL)
          return false;
@@ -220,8 +218,6 @@ namespace user
          return FALSE;
 
       m_pui->m_pthread->add(this);
-
-      m_pui->m_pthread = m_pui->m_pthread;
 
       m_pui->m_pthread->add(m_pui);
 
@@ -330,7 +326,7 @@ namespace user
       }
 
 
-      m_pui->m_pthread = get_app();
+      m_pui->m_pthread = ::get_thread();
 
       if(m_pui->m_pthread == NULL)
          return false;
@@ -341,8 +337,6 @@ namespace user
       m_bCreate = true;
 
       m_pui->m_pthread->add(this);
-
-      m_pui->m_pthread = m_pui->m_pthread;
 
       m_pui->m_pthread->add(m_pui);
 

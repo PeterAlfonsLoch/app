@@ -221,6 +221,11 @@ namespace base
    }
 
 
+   system::~system()
+   {
+
+   }
+
 
    base_factory & system::factory()
    {
@@ -342,6 +347,15 @@ namespace base
    }
 
 
+   bool system::initialize2()
+   {
+
+      if(!::base::application::initialize2())
+         return false;
+
+      return true;
+
+   }
 
 
    bool system::initialize_instance()

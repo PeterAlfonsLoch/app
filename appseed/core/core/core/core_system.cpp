@@ -64,6 +64,21 @@ namespace core
 
    }
 
+
+   bool system::initialize2()
+   {
+
+      if(!::application::initialize2())
+         return false;
+
+      if(!::base::system::initialize2())
+         return false;
+
+      return true;
+
+   }
+
+
    bool system::initialize_instance()
    {
 

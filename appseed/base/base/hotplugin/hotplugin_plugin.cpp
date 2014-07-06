@@ -701,6 +701,9 @@ namespace hotplugin
 
    void plugin::ensure_bitmap_data(int32_t cx, int32_t cy, bool bCreateFile)
    {
+      
+      if((cx * cy) <= 0)
+         return;
 
       if(m_pcolorref == NULL
          || m_sizeBitmapData.cx != cx
@@ -925,6 +928,32 @@ namespace hotplugin
    }
 
 
+   void plugin::GetWindowRect(__rect64 * prect)
+   {
+
+      if(m_phost != NULL)
+      {
+
+         m_phost->GetWindowRect(prect);
+
+      }
+
+   }
+
+
+   void plugin::GetClientRect(__rect64 * prect)
+   {
+
+      if(m_phost != NULL)
+      {
+
+         m_phost->GetClientRect(prect);
+
+      }
+
+   }
+
+
    void plugin::translate_mouse_message(int * px, int * py)
    {
 
@@ -987,6 +1016,32 @@ namespace hotplugin
    }
 
 
+   void plugin::message_handler(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::base,pbase,pobj);
+
+      MESSAGE msg;
+
+      ZERO(msg);
+
+      // only valid fields
+      msg.message    = pbase->m_uiMessage;
+      msg.wParam     = pbase->m_wparam;
+      msg.lParam     = pbase->m_lparam;
+
+      ensure_tx(::hotplugin::message_message,&msg,sizeof(msg));
+
+   }
+
+
 } // namespace hotplugin
+
+
+
+
+
+
+
 
 

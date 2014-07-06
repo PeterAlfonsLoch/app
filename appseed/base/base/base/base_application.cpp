@@ -82,6 +82,19 @@ namespace base
 
          m_pbasesystem           = m_pbaseapp->m_pbasesystem;
 
+         if(m_pbaseapp->m_pbasesession == NULL && m_pbasesystem != NULL)
+         {
+
+            m_pbasesession       = m_pbasesystem->m_pbasesession;
+
+         }
+         else
+         {
+
+            m_pbasesession       = m_pbaseapp->m_pbasesession;
+
+         }
+
 #ifdef WINDOWS
 
          m_hinstance             = m_pbaseapp->m_hinstance;

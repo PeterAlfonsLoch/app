@@ -5324,6 +5324,13 @@ namespace windows
 
       ::windows::interaction_impl * pwnd = t_pwndInit;
 
+      if(pwnd != NULL)
+      {
+
+         pwnd->m_pui->m_pthread = ::get_thread();
+
+      }
+
       if(pwnd != NULL || (!(lpcs->style & WS_CHILD)))
       {
 
@@ -5367,20 +5374,10 @@ namespace windows
 
             ASSERT(::window_from_handle(oswindow) == NULL);
 
-            pwnd->m_pui->m_pthread = ::get_thread();
-
             if(pwnd->m_pui->m_pthread != NULL)
             {
 
                pwnd->m_pui->m_pthread->add(pwnd);
-
-            }
-
-            pwnd->m_pui->m_pthread = pwnd->m_pui->m_pthread;
-
-            if(pwnd->m_pui->m_pthread != NULL)
-            {
-
                pwnd->m_pui->m_pthread->add(pwnd->m_pui);
 
             }
@@ -5643,9 +5640,6 @@ CLASS_DECL_BASE bool hook_window_create(::windows::interaction_impl * pwindow)
    if(pwindow->get_handle() != NULL)
       return false;
 
-   if(t_pwndInit == pwindow)
-      return true;
-
    if(t_hHookOldCbtFilter == NULL)
    {
 
@@ -5663,8 +5657,6 @@ CLASS_DECL_BASE bool hook_window_create(::windows::interaction_impl * pwindow)
    if(t_hHookOldCbtFilter == NULL)
       return false;
 
-   if(t_pwndInit != NULL)
-      return false;
 
    t_pwndInit = pwindow;
 

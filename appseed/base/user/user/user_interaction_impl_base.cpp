@@ -703,7 +703,7 @@ namespace user
    bool interaction_impl_base::BringWindowToTop()
    {
 
-      return m_pui->BringWindowToTop();
+      return true;
 
    }
 

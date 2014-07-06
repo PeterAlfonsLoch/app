@@ -1432,6 +1432,26 @@ uint32_t _thread_proc_start_core_system(void * p)
 
    ::plane::system * pplanesystem = dynamic_cast < ::plane::system * > (psystem);
 
+   ::set_thread(pplanesystem);
+
+   try
+   {
+
+      if(!pplanesystem->pre_run())
+      {
+
+         return pplanesystem->m_iReturnCode;
+
+      }
+
+   }
+   catch(...)
+   {
+
+      return -1;
+
+   }
+
    return pplanesystem->::core::system::main();
 
 }

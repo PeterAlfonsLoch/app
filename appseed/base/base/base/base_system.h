@@ -138,6 +138,7 @@ namespace base
 
 
       system(sp(::base::application) papp);
+      virtual ~system();
 
 
       virtual void construct();
@@ -219,9 +220,9 @@ namespace base
 
       virtual bool process_initialize();
 
+      virtual bool initialize2();
 
       virtual void wait_twf();
-
 
       virtual bool is_system();
 

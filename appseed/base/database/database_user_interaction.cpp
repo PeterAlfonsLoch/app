@@ -134,6 +134,15 @@ namespace database
 
          bLoad = LoadWindowRect_(idWindow, idKey, this, bForceRestore, bInitialFramePosition);
 
+         if(!bLoad && (bForceRestore || bInitialFramePosition))
+         {
+
+            bool bRestore = good_restore(NULL,NULL,true) >= 0;
+
+            return bRestore;
+
+         }
+
          return bLoad;
 
       }

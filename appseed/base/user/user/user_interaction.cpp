@@ -331,6 +331,9 @@ namespace user
 
    void interaction::GetWindowRect(__rect64 * lprect)
    {
+      
+      if(m_pimpl == NULL)
+         return;
 
       m_pimpl->GetWindowRect(lprect);
       
@@ -3118,8 +3121,6 @@ namespace user
 
       }
 
-      m_pthread = ::get_thread();
-
       return true;
 
    }
@@ -4556,7 +4557,12 @@ namespace user
          }
       }
 
-      bOk = m_pimpl->SetWindowPos(z,x,y,cx,cy,nFlags);
+      if(m_pimpl != NULL)
+      {
+
+         bOk = m_pimpl->SetWindowPos(z,x,y,cx,cy,nFlags);
+
+      }
 
       m_bRectOk = false;
 
@@ -4575,6 +4581,9 @@ namespace user
    void interaction::ClientToScreen(LPRECT lprect)
    {
 
+      if(m_pimpl == NULL)
+         return;
+
       m_pimpl->ClientToScreen(lprect);
 
    }
@@ -4583,6 +4592,9 @@ namespace user
    void interaction::ClientToScreen(LPPOINT lppoint)
    {
       
+      if(m_pimpl == NULL)
+         return;
+
       m_pimpl->ClientToScreen(lppoint);
 
    }
@@ -4591,6 +4603,9 @@ namespace user
    void interaction::ClientToScreen(__rect64 * lprect)
    {
       
+      if(m_pimpl == NULL)
+         return;
+
       m_pimpl->ClientToScreen(lprect);
 
    }
@@ -4599,6 +4614,9 @@ namespace user
    void interaction::ClientToScreen(__point64 * lppoint)
    {
       
+      if(m_pimpl == NULL)
+         return;
+
       m_pimpl->ClientToScreen(lppoint);
 
    }
@@ -4607,6 +4625,9 @@ namespace user
    void interaction::ScreenToClient(LPRECT lprect)
    {
       
+      if(m_pimpl == NULL)
+         return;
+
       m_pimpl->ScreenToClient(lprect);
 
    }
@@ -4614,6 +4635,9 @@ namespace user
 
    void interaction::ScreenToClient(LPPOINT lppoint)
    {
+
+      if(m_pimpl == NULL)
+         return;
 
       m_pimpl->ScreenToClient(lppoint);
 
@@ -4623,6 +4647,9 @@ namespace user
    void interaction::ScreenToClient(__rect64 * lprect)
    {
       
+      if(m_pimpl == NULL)
+         return;
+
       m_pimpl->ScreenToClient(lprect);
 
    }
@@ -4631,6 +4658,9 @@ namespace user
    void interaction::ScreenToClient(__point64 * lppoint)
    {
       
+      if(m_pimpl == NULL)
+         return;
+
       m_pimpl->ScreenToClient(lppoint);
 
    }
@@ -4638,6 +4668,9 @@ namespace user
 
    void interaction::GetClientRect(__rect64 * lprect)
    {
+
+      if(m_pimpl == NULL)
+         return;
 
       m_pimpl->GetClientRect(lprect);
       

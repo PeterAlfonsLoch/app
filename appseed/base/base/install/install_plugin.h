@@ -31,9 +31,9 @@ namespace install
       public:
 
 
-        plugin * m_pplugin;
+         plugin * m_pplugin;
 
-         virtual bool on_idle();
+         virtual int32_t run();
 
 
       } ;

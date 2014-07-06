@@ -29,6 +29,8 @@ namespace hotplugin
 
       ::draw2d::dib_sp              m_dib;
 
+      rect                          m_rect;
+
 
 
 
@@ -54,7 +56,15 @@ namespace hotplugin
 
       virtual void         post_message(UINT uiMessage, WPARAM wparam, LPARAM lparam);
       virtual oswindow         get_host_window();
-      virtual void         GetWindowRect(LPRECT lprect);
+
+
+      using ::hotplugin::plugin::GetWindowRect;
+      virtual void GetWindowRect(__rect64 * prect);
+
+      using ::hotplugin::plugin::GetClientRect;
+      virtual void GetClientRect(__rect64 * lprect);
+
+
 
       // client should implement
       //using plugin::SetWindowPos;
@@ -92,7 +102,6 @@ namespace hotplugin
 
       virtual void deferred_prodevian_redraw();
 
-      
       virtual void start_ca2();
 
       virtual void set_progress_rate(double dRate);
@@ -111,11 +120,12 @@ namespace hotplugin
 
       virtual void blend_bitmap(::draw2d::graphics * pgraphics, LPCRECT lprect);
 
-
       virtual void translate_mouse_message(int * px, int * py);
 
       //virtual bool ShowWindow(int nCmdShow);
       //virtual bool DestroyWindow();
+
+      virtual void message_handler(signal_details * pobj);
 
 
    };

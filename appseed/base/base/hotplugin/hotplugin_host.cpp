@@ -65,29 +65,30 @@ namespace hotplugin
 
    string host::get_host_location_url()
    {
+
       return m_strHostPluginLocation;
+
    }
+
 
    void host::redraw()
    {
+
    }
+
 
    void host::post_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
+
    }
+
 
    oswindow host::get_host_window()
    {
+
       return NULL;
-   }
-
-   void host::GetWindowRect(LPRECT lprect)
-   {
-
-      ::user::interaction::GetWindowRect(lprect);
 
    }
-
 
 
    void host::set_memory(void * puchMemory, ::count c)
@@ -562,6 +563,48 @@ throw todo(get_thread_app());
    //   return ::user::interaction::destroy_window();
 
    //}
+
+   void host::GetWindowRect(__rect64 * prect)
+   {
+
+      prect->left       = 0;
+
+      prect->top        = 0;
+
+      prect->right      = m_rect.width();
+
+      prect->bottom     = m_rect.height();
+
+   }
+
+
+   void host::GetClientRect(__rect64 * prect)
+   {
+
+      prect->left       = 0;
+
+      prect->top        = 0;
+
+      prect->right      = m_rect.width();
+
+      prect->bottom     = m_rect.height();
+
+   }
+
+
+   void host::message_handler(signal_details * pobj)
+   {
+
+      if(m_pplugin != NULL)
+      {
+
+         m_pplugin->message_handler(pobj);
+
+      }
+
+      ::simple_ui::interaction::message_handler(pobj);
+
+   }
 
 
 } // namespace hotplugin

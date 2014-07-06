@@ -298,10 +298,28 @@ namespace install
 
    }
 
-   bool plugin::thread_start_ca2::on_idle()
+   int32_t plugin::thread_start_ca2::run()
    {
 
-      return m_pplugin->thread_start_ca2_on_idle();
+      while(m_bRun)
+      {
+
+         try
+         {
+
+            m_pplugin->thread_start_ca2_on_idle();
+
+         }
+         catch(...)
+         {
+
+         }
+
+         Sleep(84 + 77);
+
+      }
+
+      return 0;
 
    }
 
@@ -327,42 +345,37 @@ namespace install
       }
 
 
-      if (!m_phost->m_bOk)
+      if (!m_phost->m_bOk || !m_bLogged)
          return;
 
 
-      if(m_bLogged)
+      m_bLogin = false;
+
+      string strScript = System.url().get_script(m_phost->m_strPluginUrl);
+
+      if(!m_bCa2Login && strScript == "/ca2login")
       {
-
-
-
-         string strScript = System.url().get_script(m_phost->m_strPluginUrl);
-
-         if(!m_bCa2Login && strScript == "/ca2login")
-         {
-            m_bCa2Login = true;
-            m_bOk = false;
-            m_phost->m_bOk = false;
-            property_set set(get_app());
-            set.parse_url_query(System.url().get_query(m_phost->m_strPluginUrl));
-            string strUrl;
-            System.url().set_param(strUrl,set["ruri"],"sessid",ApplicationUser.get_sessid(set["ruri"]));
-            m_phost->open_url(strUrl);
-            m_startca2.m_bRun = false;
-            return;
-         }
-         else if(!m_bCa2Logout && strScript == "/ca2logout")
-         {
-            m_bCa2Logout = true;
-            m_bOk = false;
-            m_phost->m_bOk = false;
-            property_set set(get_app());
-            set.parse_url_query(System.url().get_query(m_phost->m_strPluginUrl));
-            //ca2logout(set);
-            m_startca2.m_bRun = false;
-            return;
-         }
-
+         m_bCa2Login = true;
+         m_bOk = false;
+         m_phost->m_bOk = false;
+         property_set set(get_app());
+         set.parse_url_query(System.url().get_query(m_phost->m_strPluginUrl));
+         string strUrl;
+         System.url().set_param(strUrl,set["ruri"],"sessid",ApplicationUser.get_sessid(set["ruri"]));
+         m_phost->open_url(strUrl);
+         m_startca2.m_bRun = false;
+         return;
+      }
+      else if(!m_bCa2Logout && strScript == "/ca2logout")
+      {
+         m_bCa2Logout = true;
+         m_bOk = false;
+         m_phost->m_bOk = false;
+         property_set set(get_app());
+         set.parse_url_query(System.url().get_query(m_phost->m_strPluginUrl));
+         //ca2logout(set);
+         m_startca2.m_bRun = false;
+         return;
       }
 
 
@@ -505,7 +518,8 @@ namespace install
       RECT rect;
 
       RECT rectWindow;
-      ::hotplugin::plugin::GetWindowRect(&rectWindow);
+
+      GetWindowRect(&rectWindow);
 
       int32_t cx = rectWindow.right - rectWindow.left;
       int32_t cy = rectWindow.bottom - rectWindow.top;
@@ -618,28 +632,16 @@ namespace install
    void plugin::message_handler(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::base,pbase,pobj);
-
-      if(!m_bLogin && m_bLogged && !m_bCa2Login && !m_bCa2Logout && pbase != NULL && !is_installing() && System.install().is_ca2_installed())
+      if(!m_bLogin && m_bLogged && !m_bCa2Login && !m_bCa2Logout && pobj != NULL && !is_installing() && System.install().is_ca2_installed())
       {
 
-
-         MESSAGE msg;
-
-         ZERO(msg);
-
-         // only valid fields
-         msg.message    = pbase->m_uiMessage;
-         msg.wParam     = pbase->m_wparam;
-         msg.lParam     = pbase->m_lparam;
-
-         ensure_tx(::hotplugin::message_message, &msg, sizeof(msg));
+         ::hotplugin::plugin::message_handler(pobj);
 
       }
       else
       {
 
-         ::hotplugin::plugin::message_handler(pobj);
+         ::simple_ui::interaction::message_handler(pobj);
 
       }
       
@@ -1078,20 +1080,15 @@ restart:
    void plugin::on_host_timer()
    {
 
-      if(m_bLogin)
+      if((m_bLogin && !m_bLogged) || !m_phost->m_bOk)
       {
 
-         if(!m_bLogged)
+         if((get_tick_count() - m_dwLastRestart) > (840 + 770))
          {
 
-            if((get_tick_count() - m_dwLastRestart) > (84 + 77))
-            {
+            m_dwLastRestart = get_tick_count();
 
-               m_dwLastRestart = get_tick_count();
-
-               start_ca2();
-
-            }
+            start_ca2();
 
          }
 

@@ -858,7 +858,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
    if (m_bFrameMoveEnable)
    {
 
-      WindowDataLoadWindowRect(bForceRestore, true);
+      WindowDataLoadWindowRect(bForceRestore,true);
 
       WindowDataEnableSaveWindowRect(true);
 
@@ -875,7 +875,12 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
    }
 
-   m_workset.m_pframeschema->title_bar_layout(true);
+   if(m_workset.m_pframeschema != NULL)
+   {
+
+      m_workset.m_pframeschema->title_bar_layout(true);
+
+   }
 
 }
 
