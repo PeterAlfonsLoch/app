@@ -1954,6 +1954,12 @@ ch_else:
          {
             avoid_parsing_exception avoidparsingexception;
             pinstance->run();
+         }
+         catch(...)
+         {
+         }
+         try
+         {
             pinstance->destroy();
          }
          catch(...)
@@ -1991,8 +1997,21 @@ ch_else:
                {
                }
             }
-            pinstance->run();
-            pinstance->destroy();
+            try
+            {
+               avoid_parsing_exception avoidparsingexception;
+               pinstance->run();
+            }
+            catch(...)
+            {
+            }
+            try
+            {
+               pinstance->destroy();
+            }
+            catch(...)
+            {
+            }
          }
       }
       else if(::str::begins_eat_ci(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "core\\persistent", false))
