@@ -196,12 +196,21 @@ namespace calculator
    {
       error(string("syntax") + psz);
    }
+
+
+
    void parser::error(const char * psz)
    {
       string str;
       str = "error: ";
       str += psz;
-      throw (const char *) str;
+
+      throw_numeric_parser_exception(str);
+
    }
 
+
 } // namespace calculator
+
+
+

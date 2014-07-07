@@ -1987,10 +1987,12 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="math\calculator\calculator_calculator.h" />
     <ClInclude Include="math\calculator\datetime_element.h" />
     <ClInclude Include="math\calculator\datetime_parser.h" />
+    <ClInclude Include="math\calculator\datetime_parser_exception.h" />
     <ClInclude Include="math\calculator\datetime_scanner.h" />
     <ClInclude Include="math\calculator\datetime_token.h" />
     <ClInclude Include="math\calculator\numeric_element.h" />
     <ClInclude Include="math\calculator\numeric_parser.h" />
+    <ClInclude Include="math\calculator\numeric_parser_exception.h" />
     <ClInclude Include="math\calculator\numeric_scanner.h" />
     <ClInclude Include="math\calculator\numeric_token.h" />
     <ClInclude Include="math\calculator\numeric_value.h" />
@@ -2641,10 +2643,12 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="math\calculator\calculator_calculator.cpp" />
     <ClCompile Include="math\calculator\datetime_element.cpp" />
     <ClCompile Include="math\calculator\datetime_parser.cpp" />
+    <ClCompile Include="math\calculator\datetime_parser_exception.cpp" />
     <ClCompile Include="math\calculator\datetime_scanner.cpp" />
     <ClCompile Include="math\calculator\datetime_token.cpp" />
     <ClCompile Include="math\calculator\numeric_element.cpp" />
     <ClCompile Include="math\calculator\numeric_parser.cpp" />
+    <ClCompile Include="math\calculator\numeric_parser_exception.cpp" />
     <ClCompile Include="math\calculator\numeric_scanner.cpp" />
     <ClCompile Include="math\calculator\numeric_value.cpp" />
     <ClCompile Include="math\math.cpp" />

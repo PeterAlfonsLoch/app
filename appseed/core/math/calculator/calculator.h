@@ -6,6 +6,7 @@
 #include "numeric_scanner.h"
 #include "numeric_element.h"
 #include "numeric_parser.h"
+#include "numeric_parser_exception.h"
 
 
 #include "primitive/datetime/datetime_value.h"
@@ -15,6 +16,7 @@
 #include "datetime_scanner.h"
 #include "datetime_element.h"
 #include "datetime_parser.h"
+#include "datetime_parser_exception.h"
 
 
 #include "core/primitive/datetime/datetime_calendar_interface.h"

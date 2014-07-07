@@ -2456,6 +2456,12 @@
     <ClInclude Include="core\core\core_timer.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
+    <ClInclude Include="math\calculator\numeric_parser_exception.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\datetime_parser_exception.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="compress\compress_archive.cpp">
@@ -4020,6 +4026,12 @@
     </ClCompile>
     <ClCompile Include="core\core\core_Timer.cpp">
       <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="math\calculator\datetime_parser_exception.cpp">
+      <Filter>Source Files\math\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="math\calculator\numeric_parser_exception.cpp">
+      <Filter>Source Files\math\calculator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

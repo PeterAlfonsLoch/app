@@ -208,7 +208,9 @@ element * parser::expr(::datetime::element * pelement1)
       string str;
       str = "error: ";
       str += psz;
-      throw (const char *) str;
+      throw_datetime_parser_exception(str);
+
    }
+
 
 } // namespace datetime
