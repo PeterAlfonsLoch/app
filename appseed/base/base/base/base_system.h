@@ -102,6 +102,8 @@ namespace base
       sp(mutex)                                    m_pmutexDc;
 #endif
 
+      sp(mutex)                                    m_spmutexFactory;
+
       ::base::library                              m_libraryDraw2d;
 
 
@@ -206,7 +208,11 @@ namespace base
       virtual sp(::type) get_type_info(const ::std_type_info & info);
       sp(::type) get_type_info(const class id & idType)
       {
+
+         synch_lock sl(m_spmutexFactory);
+
          return m_typemap[idType];
+
       }
 
 

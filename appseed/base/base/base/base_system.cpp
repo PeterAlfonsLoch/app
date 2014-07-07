@@ -205,6 +205,7 @@ namespace base
       m_spmutexUserAppData = canew(mutex(get_app(),false,"Local\\ca2.UserAppData"));
       m_spmutexSystemAppData = canew(mutex(get_app(),false,"Global\\ca2.SystemAppData"));
 
+      m_spmutexFactory = canew(mutex(get_app()));
 
       m_bGudoNetCache = true;
 
@@ -565,9 +566,17 @@ namespace base
 
       m_plog.release();
 
-      m_typemap.remove_all();
 
-      m_typemap.release();
+      
+      {
+
+         synch_lock sl(m_spmutexFactory);
+
+         m_typemap.remove_all();
+
+         m_typemap.release();
+
+      }
 
 
 
@@ -739,6 +748,8 @@ namespace base
 
    sp(type) system::get_type_info(const ::std_type_info & info)
    {
+
+      synch_lock sl(m_spmutexFactory);
 
 #ifdef WINDOWS
       sp(type) & typeinfo = m_typemap[info.raw_name()];
