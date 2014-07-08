@@ -29,7 +29,7 @@ mutex::mutex(sp(::base::application) papp, bool bInitiallyOwn, const char * pstr
 
 #ifdef _WIN32
 
-    m_object = ::CreateMutexExW(lpsaAttribute,pstrName == NULL ? NULL : (const wchar_t *) ::str::international::utf8_to_unicode(pstrName),bInitiallyOwn ?  CREATE_MUTEX_INITIAL_OWNER : 0,DELETE | SYNCHRONIZE | READ_CONTROL);
+    m_object = ::CreateMutexExW(lpsaAttribute,pstrName == NULL ? NULL : (const wchar_t *) ::str::international::utf8_to_unicode(pstrName),bInitiallyOwn ?  CREATE_MUTEX_INITIAL_OWNER : 0,MUTEX_ALL_ACCESS);
 
    if(m_object == NULL)
    {
