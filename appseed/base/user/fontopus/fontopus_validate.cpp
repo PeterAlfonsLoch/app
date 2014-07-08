@@ -42,6 +42,11 @@ namespace fontopus
    {
 
       m_bInteractive          = bInteractive;
+      if(bInteractive)
+      {
+         oprop("defer_registration") = "defer_registration";
+      }
+
       m_bAuth          = bAuth;
       m_strForm               = pszForm;
       m_bDeferRegistration    = false;

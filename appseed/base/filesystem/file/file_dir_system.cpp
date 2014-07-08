@@ -1829,7 +1829,8 @@ else
 
 
             if(papp->m_pbasesession != NULL && papp->m_pbasesession != papp &&
-               (sp(::base::application)) papp->m_pbasesystem != (sp(::base::application)) papp)
+               (sp(::base::application)) papp->m_pbasesystem != (sp(::base::application)) papp
+               && papp->m_pbasesession->m_bBaseInitialize1)
             {
                strPath = matter(papp->m_pbasesession, str, str2, bDir);
                if(bDir)
@@ -1849,7 +1850,8 @@ else
 
 
          if(papp->m_pbasesystem != NULL && papp->m_pbasesystem != papp &&
-            (sp(::base::application)) papp->m_pbasesystem != (sp(::base::application)) papp->m_pbasesession)
+            (sp(::base::application)) papp->m_pbasesystem != (sp(::base::application)) papp->m_pbasesession
+            && papp->m_pbasesystem->m_bBaseInitialize1)
          {
             strPath = matter(papp->m_pbasesystem, str, str2, bDir);
             if(bDir)

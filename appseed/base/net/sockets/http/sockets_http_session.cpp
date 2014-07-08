@@ -65,7 +65,7 @@ namespace sockets
       m_emethod                     = emethod;
       inattr(__id(request_uri))     = strRequest;
       inattr(__id(http_protocol))   = m_strProtocol;
-      m_strUrl                      = m_strProtocol + "://" + m_strHost + inattr("request_uri");
+      m_strUrl                      = m_strProtocol + "://" + GetUrlHost() + inattr("request_uri");
       inattr(__id(http_version))    = "HTTP/1.1";
       m_b_keepalive                 = true;
       m_content_ptr                 = 0;

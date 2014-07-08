@@ -789,7 +789,9 @@ retry:
             psession->request().header(__id(cookie)) = set[__id(cookie)];
          }
 
-         psession->m_request.m_propertysetHeader[__id(host)] = System.url().get_server(pszRequest);
+         psession->m_host  =System.url().get_server(pszRequest);
+         psession->m_request.m_propertysetHeader[__id(host)] = psession->m_host;
+         
 
          bool bPost;
          bool bPut;
