@@ -1380,7 +1380,7 @@ restart:
 
       try
       {
-         if(!spfile->open(psz, ::file::type_binary | ::file::mode_read))
+         if(!spfile->open(psz, ::file::type_binary | ::file::mode_read | ::file::share_deny_write))
             return "";
       }
       catch(::file::exception &)
