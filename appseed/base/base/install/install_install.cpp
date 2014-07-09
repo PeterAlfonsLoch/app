@@ -1439,7 +1439,7 @@ namespace install
 
       set["raw_http"] = true;
 
-      bool bOk = file_exists_dup(path1) && !stricmp_dup(get_file_md5(path1), Application.http().get(strUrl, set));
+      bool bOk = file_exists_dup(path1) && !stricmp_dup(System.file().md5(path1), Application.http().get(strUrl, set));
 
       return bOk;
 
