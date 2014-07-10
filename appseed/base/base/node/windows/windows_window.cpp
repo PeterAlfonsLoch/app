@@ -3594,10 +3594,7 @@ namespace windows
    sp(::user::interaction) interaction_impl::SetOwner(sp(::user::interaction) pWndNewParent)
    {
 
-      ASSERT(::IsWindow(get_handle()));
-
-      return ::windows::interaction_impl::from_handle((HWND) ::SetWindowLongPtr(get_handle(), GWL_HWNDPARENT, (LONG_PTR) pWndNewParent->get_handle()));
-
+      return NULL;
 
    }
 
