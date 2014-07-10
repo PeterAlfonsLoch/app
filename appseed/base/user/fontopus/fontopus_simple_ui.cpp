@@ -107,7 +107,7 @@ namespace fontopus
             string strUsername;
             string strPassword;
 
-            ::fontopus::get_cred(get_app(),m_login.m_strUsername,m_login.m_strPassword,"ca2");
+            ::fontopus::get_cred(get_app(),strUsername,strPassword,"ca2");
 
             if(strUsername.has_char() && strPassword.has_char())
             {
