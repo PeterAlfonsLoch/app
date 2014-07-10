@@ -357,29 +357,54 @@ namespace install
 
       if(!m_bCa2Login && strScript == "/ca2login")
       {
+         
          m_bCa2Login = true;
+         
          m_bOk = false;
+         
          m_phost->m_bOk = false;
+         
          property_set set(get_app());
+         
          set.parse_url_query(System.url().get_query(m_phost->m_strPluginUrl));
+         
          string strUrl(set["ruri"]);
+
          if(strUrl.is_empty())
-            strUrl = BaseSession.fontopus()->get_server(m_phost->m_strPluginUrl);
-         System.url().set_param(strUrl,set["ruri"],"sessid",ApplicationUser.get_sessid(set["ruri"]));
+         {
+          
+            strUrl = "http://" + BaseSession.fontopus()->get_server(m_phost->m_strPluginUrl) + "/";
+
+         }
+
+         System.url().set_param(strUrl,strUrl,"sessid",ApplicationUser.get_sessid(strUrl));
+
          m_phost->open_url(strUrl);
+
          m_startca2.m_bRun = false;
+
          return;
+
       }
       else if(!m_bCa2Logout && strScript == "/ca2logout")
       {
+         
          m_bCa2Logout = true;
+
          m_bOk = false;
+
          m_phost->m_bOk = false;
+
          property_set set(get_app());
+
          set.parse_url_query(System.url().get_query(m_phost->m_strPluginUrl));
+         
          //ca2logout(set);
+
          m_startca2.m_bRun = false;
+
          return;
+
       }
 
 
