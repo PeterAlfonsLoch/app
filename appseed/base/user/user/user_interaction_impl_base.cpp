@@ -26,14 +26,6 @@ namespace user
    }
 
 
-   sp(mutex) interaction_impl_base::mutex_graphics()
-   {
-
-      return NULL;
-
-   }
-
-
    void interaction_impl_base::_001UpdateWindow()
    {
 
@@ -951,6 +943,12 @@ namespace user
 
    }
 
+   interaction_base::ETranslucency interaction_impl_base::_001GetTranslucency()
+   {
+
+      return m_pui->_001GetTranslucency();
+
+   }
 
 
 } // namespace user

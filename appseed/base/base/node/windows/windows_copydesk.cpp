@@ -11,7 +11,8 @@ namespace windows
 
    copydesk::copydesk(sp(::base::application) papp) :
       element(papp),
-      ::base::copydesk(papp)
+      ::base::copydesk(papp),
+      ::user::interaction(papp)
    {
    }
 

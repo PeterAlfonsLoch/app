@@ -27,9 +27,9 @@ namespace user
       string                     m_strText;
       bool                       m_bCaseSensitiveMatch;
 
-      sp(combo_list)              m_plist;
+      sp(combo_list)             m_plist;
 
-      sp(type)            m_typeComboList;
+      sp(type)                   m_typeComboList;
 
       e_style                    m_estyle;
 

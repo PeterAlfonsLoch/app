@@ -80,7 +80,6 @@ public:
 
    virtual void discard(element * pca)
    {
-      synch_lock sl(g_pmutexFactory);
       TYPE * ptype = (TYPE *) pca->m_pthis;
       if(ptype == NULL)
          return;
@@ -91,6 +90,7 @@ public:
       catch(...)
       {
       }
+      synch_lock sl(g_pmutexFactory);
       try
       {
          memory_free(ptype);

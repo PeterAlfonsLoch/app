@@ -149,21 +149,60 @@ void thread_impl::pre_translate_message(signal_details * pobj)
          {
             try
             {
-               for(int32_t i = 0; i < m_pbaseapp->m_pbasesession->frames().get_count(); i++)
+
+               index_iterator it(m_pbaseapp->m_pbasesession->m_framea);
+
+               sp(::user::interaction) pui;
+
+               for(it.m_i = 0; it.m_i < m_pbaseapp->m_pbasesession->frames().get_count(); it.m_i++)
                {
+                  
                   try
                   {
-                     sp(::user::interaction) pui = m_pbaseapp->m_pbasesession->frames()[i];
+
+                     pui = m_pbaseapp->m_pbasesession->frames()[it.m_i];
+
+                  }
+                  catch(...)
+                  {
+
+                     pui = NULL;
+
+                  }
+                  
+                  try
+                  {
+                     it.unlock();
+                  }
+                  catch(...)
+                  {
+                  }
+
+                  try
+                  {
+
                      if(pui != NULL)
                      {
+
                         pui->pre_translate_message(pobj);
+
                         if(pobj->m_bRet)
                            return;
+
                      }
+
                   }
                   catch(exit_exception & e)
                   {
                      throw e;
+                  }
+                  catch(...)
+                  {
+                  }
+
+                  try
+                  {
+                     it.lock();
                   }
                   catch(...)
                   {
@@ -883,25 +922,6 @@ int32_t thread_impl::exit_instance()
 
             sp(::user::interaction) pui = puiptra->element_at(i);
 
-            if(pui->m_pthread != NULL)
-            {
-
-               if(pui->m_pthread->m_pthreadimpl == this)
-               {
-
-                  pui->m_pthread = NULL;
-
-               }
-
-               if(pui->m_pthread == m_pthread)
-               {
-
-                  pui->m_pthread = NULL;
-
-               }
-
-            }
-
          }
 
          puiptra.release();
@@ -1248,16 +1268,6 @@ void thread_impl::remove(::user::interaction * pui)
 
    single_lock sl(&m_mutexUiPtra,TRUE);
 
-   try
-   {
-      if(pui->m_pthread->m_pthreadimpl == this)
-      {
-         pui->m_pthread = NULL;
-      }
-   }
-   catch(...)
-   {
-   }
 
 
    if(m_spuiptra.is_set())

@@ -21,7 +21,7 @@ namespace http
 
       if ((bool)set["raw_http"] || (bool)set["disable_ca2_sessid"]
          || ::str::find_ci("/matter.ca2.cc/", pszUrl) >= 0 || ::str::find_ci("-matter.ca2.cc/", pszUrl) >= 0
-         || ::str::find_ci("sessid=noauth", pszUrl)
+         || ::str::find_ci("sessid=noauth", pszUrl) >= 0
          || ::str::find_ci("/matter/",System.url().get_query(pszUrl)) == 0
          || set["user"].cast < ::fontopus::user >() != NULL)
          return set;

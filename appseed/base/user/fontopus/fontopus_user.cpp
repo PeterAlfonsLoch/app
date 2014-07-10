@@ -9,9 +9,18 @@ namespace fontopus
       element(papp)
    {
 
-      m_ppresence       = NULL;
-      m_phttpcookies    = new ::http::cookies();
-      m_pifs            = NULL;
+      m_ppresence          = NULL;
+      m_phttpcookies       = new ::http::cookies();
+      m_pifs               = NULL;
+
+      string strFormat;
+      for(int32_t i = 0; i < 64; i += 2)
+      {
+         int64_t iDigit = System.math().RandRange(0,255);
+         strFormat.Format("%02x",iDigit);
+         m_strSessionSecret += strFormat;
+      }
+
 
    }
 
@@ -215,6 +224,11 @@ restart:
 
    }
 
+
+   string user::get_session_secret()
+   {
+      return m_strSessionSecret;
+   }
 
 } // namespace fontopus
 

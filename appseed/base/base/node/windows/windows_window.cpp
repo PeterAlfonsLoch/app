@@ -462,7 +462,7 @@ namespace windows
    void interaction_impl::win_update_graphics()
    {
 
-      single_lock sl(mutex_graphics(),false);
+      single_lock sl(m_pui->m_spmutex,false);
 
       if(!sl.lock(millis(0)))
       {
@@ -587,19 +587,19 @@ namespace windows
    void interaction_impl::_001OnNcDestroy(signal_details * pobj)
    {
 
-      single_lock sl(m_pui->m_pthread == NULL ? NULL : m_pui->m_pthread->m_pmutex,TRUE);
+      single_lock sl(m_pui->m_pbaseapp->m_pmutex,TRUE);
 
       ::window_sp pwindow;
 
-      if(m_pui->m_pthread != NULL && m_pui->m_pthread->m_pthreadimpl.is_set())
+      if(m_pui->m_pbaseapp != NULL && m_pui->m_pbaseapp->m_pthreadimpl.is_set())
       {
 
-         synch_lock sl(&m_pui->m_pthread->m_pthreadimpl->m_mutexUiPtra);
+         synch_lock sl(&m_pui->m_pbaseapp->m_pthreadimpl->m_mutexUiPtra);
 
-         if(m_pui->m_pthread->m_pthreadimpl->m_spuiptra.is_set())
+         if(m_pui->m_pbaseapp->m_pthreadimpl->m_spuiptra.is_set())
          {
 
-            m_pui->m_pthread->m_pthreadimpl->m_spuiptra->remove(m_pui);
+            m_pui->m_pbaseapp->m_pthreadimpl->m_spuiptra->remove(m_pui);
 
          }
 
@@ -1191,7 +1191,7 @@ namespace windows
       }
       if(pbase->m_uiMessage == WM_TIMER)
       {
-         m_pui->m_pthread->step_timer();
+         m_pui->m_pbaseapp->step_timer();
       }
       else if(pbase->m_uiMessage == WM_LBUTTONDOWN)
       {
@@ -1525,7 +1525,7 @@ namespace windows
 
    sp(::user::interaction) interaction_impl::GetDescendantWindow(sp(::user::interaction) oswindow,id id)
    {
-      single_lock sl(oswindow->m_pthread->m_pmutex,TRUE);
+      single_lock sl(oswindow->m_pbaseapp->m_pmutex,TRUE);
       // get_child_by_id recursive (return first found)
       // breadth-first for 1 level, then depth-first for next level
 
@@ -2475,7 +2475,7 @@ namespace windows
 
       synch_lock slUserMutex(&user_mutex());
 
-      single_lock sl(mutex_graphics(),false);
+      single_lock sl(m_pui->m_spmutex,false);
 
 
       if(!sl.lock(millis(84)))
@@ -2946,7 +2946,7 @@ namespace windows
                goto ExitModal;
 
             // pump message, but quit on WM_QUIT
-            if(!m_pui->m_pthread->pump_message())
+            if(!::get_thread()->pump_message())
             {
                __post_quit_message(0);
                return -1;
@@ -2965,7 +2965,7 @@ namespace windows
                goto ExitModal;
 
             // reset "no idle" state after pumping "normal" message
-            if(m_pui->m_pthread->is_idle_message(&msg))
+            if(::get_thread()->is_idle_message(&msg))
             {
                bIdle = TRUE;
                lIdleCount = 0;
@@ -2976,10 +2976,8 @@ namespace windows
          } while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE);
 
 
-         if(m_pui->m_pthread != NULL)
-         {
-            m_pui->m_pthread->step_timer();
-         }
+         ::get_thread()->step_timer();
+
          if(!ContinueModal(iLevel))
             goto ExitModal;
 
@@ -3190,7 +3188,7 @@ namespace windows
    bool interaction_impl::SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
    {
 
-      single_lock sl(mutex_graphics());
+      single_lock sl(m_pui->m_spmutex, true);
 
       if(GetExStyle() & WS_EX_LAYERED)
       {
@@ -3565,6 +3563,44 @@ namespace windows
       return ::windows::interaction_impl::from_handle(hwndParent);
 
    }
+
+
+   sp(::user::interaction) interaction_impl::SetParent(sp(::user::interaction) pWndNewParent)
+   {
+
+      ASSERT(::IsWindow(get_handle()));
+
+      return ::windows::interaction_impl::from_handle(::SetParent(get_handle(),pWndNewParent->get_handle()));
+
+   }
+
+   sp(::user::interaction) interaction_impl::GetOwner() const
+   {
+
+      if(!::IsWindow(get_handle()))
+         return NULL;
+
+      if(get_handle() == NULL)
+         return NULL;
+
+      HWND hwndParent = ::GetWindow(get_handle(), GW_OWNER);
+
+      if(hwndParent == NULL)
+         return GetParent();
+
+      return ::windows::interaction_impl::from_handle(hwndParent);
+   }
+
+   sp(::user::interaction) interaction_impl::SetOwner(sp(::user::interaction) pWndNewParent)
+   {
+
+      ASSERT(::IsWindow(get_handle()));
+
+      return ::windows::interaction_impl::from_handle((HWND) ::SetWindowLongPtr(get_handle(), GWL_HWNDPARENT, (LONG_PTR) pWndNewParent->get_handle()));
+
+
+   }
+
 
 
    LONG interaction_impl::get_window_long(int32_t nIndex) const
@@ -4431,16 +4467,6 @@ namespace windows
       ASSERT(::IsWindow(get_handle()));
 
       return ::windows::interaction_impl::from_handle(::GetLastActivePopup(get_handle()));
-
-   }
-
-
-   sp(::user::interaction) interaction_impl::SetParent(sp(::user::interaction) pWndNewParent)
-   {
-
-      ASSERT(::IsWindow(get_handle()));
-
-      return ::windows::interaction_impl::from_handle(::SetParent(get_handle(),pWndNewParent->get_handle()));
 
    }
 
@@ -5324,13 +5350,6 @@ namespace windows
 
       ::windows::interaction_impl * pwnd = t_pwndInit;
 
-      if(pwnd != NULL)
-      {
-
-         pwnd->m_pui->m_pthread = ::get_thread();
-
-      }
-
       if(pwnd != NULL || (!(lpcs->style & WS_CHILD)))
       {
 
@@ -5373,14 +5392,6 @@ namespace windows
          {
 
             ASSERT(::window_from_handle(oswindow) == NULL);
-
-            if(pwnd->m_pui->m_pthread != NULL)
-            {
-
-               pwnd->m_pui->m_pthread->add(pwnd);
-               pwnd->m_pui->m_pthread->add(pwnd->m_pui);
-
-            }
 
             pwnd->m_pui->m_pimpl = pwnd;
 
@@ -5474,11 +5485,10 @@ namespace windows
       //if(m_pui->m_bLockWindowUpdate)
         // return;
 
-      single_lock sl(mutex_graphics(),false);
+      single_lock sl(m_pui->m_spmutex,false);
 
       if(!sl.lock(millis(84)))
          return;
-
 
       win_update_graphics();
 

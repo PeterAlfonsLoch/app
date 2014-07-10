@@ -417,7 +417,7 @@ namespace filemanager
          {
             int64_t i64Size;
             bool bPendingSize;
-            single_lock lock(m_pthread);
+            single_lock lock(m_pbaseapp);
             if(!lock.lock(millis(1984)))
                return;
             if(i >= get_fs_list_data()->m_itema.get_count())
@@ -1237,7 +1237,7 @@ namespace filemanager
       }
    endloop:
       m_plist->post_message(MessageMainPost, MessageMainPostCreateImageListItemRedraw);
-      synch_lock lock(m_plist->m_pthread);
+      synch_lock lock(m_plist->m_pbaseapp);
       m_plist->m_pcreateimagelistthread = NULL;
       return 0;
 

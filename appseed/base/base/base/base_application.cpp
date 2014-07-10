@@ -57,11 +57,11 @@ namespace base
    application::application():
       m_allocer(this),
       m_mutexMatterLocator(this),
-      m_mutexStr(this)
+      m_mutexStr(this),
+      m_framea(this)
    {
 
       m_peventReady = NULL;
-      m_pframea = canew(ptr_array < ::user::interaction >);
 
 
 #ifdef WINDOWS
@@ -672,9 +672,7 @@ namespace base
    ptr_array < ::user::interaction > application::frames()
    {
 
-      synch_lock sl(&m_mutexFrame);
-
-      return *m_pframea;
+      return m_framea.base_ptra();
 
    }
 
@@ -682,9 +680,16 @@ namespace base
    void application::add_frame(sp(::user::interaction) pwnd)
    {
 
-      synch_lock sl(&m_mutexFrame);
+      synch_lock sl(&m_framea.m_mutex); // recursive lock (on m_framea.add(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
 
-      m_pframea->add_unique(pwnd);
+      m_framea.add(pwnd);
+
+      if(m_puiMain == NULL)
+      {
+
+         m_puiMain = pwnd;
+
+      }
 
    }
 
@@ -692,12 +697,16 @@ namespace base
    void application::remove_frame(sp(::user::interaction) pwnd)
    {
 
-      synch_lock sl(&m_mutexFrame);
+      synch_lock sl(&m_framea.m_mutex); // recursive lock (on m_framea.remove(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
 
-      if(m_pframea == NULL)
-         return;
+      if(m_puiMain == pwnd)
+      {
 
-      m_pframea->remove(pwnd);
+         m_puiMain = NULL;
+
+      }
+
+      m_framea.remove(pwnd);
 
    }
 

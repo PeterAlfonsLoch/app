@@ -1,5 +1,191 @@
 #pragma once
 
+class CLASS_DECL_BASE index_ptr_array:
+   virtual protected ptr_array < index >
+{
+public:
+
+   ::mutex * m_pmutex;
+
+
+   index_ptr_array(mutex * pmutex) { m_pmutex = pmutex; }
+   virtual ~index_ptr_array() {}
+
+   void reg(index *pi)
+   {
+      synch_lock sl(m_pmutex);
+      add(pi);
+   }
+
+   void on_removed(index i)
+   {
+
+      synch_lock sl(m_pmutex);
+
+      for(index iPointer = 0; iPointer < get_count(); iPointer++)
+      {
+         if(*element_at(iPointer) > i)
+         {
+
+            (*element_at(iPointer))--;
+
+         }
+      }
+
+   }
+
+   void unreg(index *pi)
+   {
+      synch_lock sl(m_pmutex);
+      add(pi);
+   }
+#undef new
+   DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
+#define new BASE_NEW
+
+};
+
+
+template < class T >
+class mutex_ptr_array;
+
+class  CLASS_DECL_BASE index_iterator :
+   public single_lock
+{
+public:
+
+   index m_i;
+   index_ptr_array * m_pindexptra;
+   ::mutex * m_pmutex;
+
+   index_iterator(index_ptr_array * pindexptra,mutex * pmutex,bool bInitialLock = true) :
+      single_lock(pmutex, true)
+   {
+      init(pindexptra,bInitialLock);
+   }
+
+   template < class T >
+   index_iterator(mutex_ptr_array < T > & ptra, bool bInitialLock = true);
+
+
+   void init(index_ptr_array * pindexptra, bool bInitialLock)
+   {
+      try
+      {
+         m_pindexptra = pindexptra;
+         m_pindexptra->reg(&m_i);
+
+      }
+      catch(...)
+      {
+
+      }
+
+      if(!bInitialLock)
+      {
+       
+         unlock();
+
+      }
+
+   }
+
+   ~index_iterator()
+   {
+      try
+      {
+
+         lock();
+         m_pindexptra->unreg(&m_i);
+
+      }
+      catch(...)
+      {
+
+      }
+
+   }
+
+};
+
+template < class T >
+class mutex_ptr_array :
+   virtual protected ptr_array < T >
+{
+public:
+
+   mutex m_mutex;
+   index_ptr_array m_indexptra;
+
+   mutex_ptr_array(sp(::base::application) papp): element(papp),m_mutex(papp),m_indexptra(&m_mutex){}
+   virtual ~mutex_ptr_array() {}
+
+   bool add(T * p)
+   {
+      synch_lock sl(&m_mutex);
+      return add_unique(p);
+   }
+
+   ::count remove(T * p)
+   {
+      
+      synch_lock sl(&m_mutex);
+      
+      index  iRemove;
+
+
+      ::count c = 0;
+
+      while((iRemove = remove_first(p)) >= 0)
+      {
+
+         m_indexptra.on_removed(iRemove);
+
+         c++;
+
+      }
+
+      return c;
+
+   }
+
+   void preg(index * pi)
+   {
+
+      m_indexptra.reg(pi);
+
+   }
+
+   void punreg(index * pi)
+   {
+
+      m_indexptra.unreg(pi);
+
+   }
+
+
+   ptr_array < T > base_ptra()
+   {
+      synch_lock sl(&m_mutex);
+      return *dynamic_cast < ptr_array < T > * > (this);
+
+   }
+
+
+
+#undef new
+   DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
+#define new BASE_NEW
+
+   
+};
+
+template <class T >
+inline index_iterator::index_iterator(mutex_ptr_array < T > & ptra,bool bInitialLock):
+single_lock(&ptra.m_mutex,true)
+{
+   init(&ptra.m_indexptra,bInitialLock);
+}
 
 namespace base
 {
@@ -46,6 +232,7 @@ namespace base
       sp(::mutex)                                     m_pmutexGlobalId;
 
 
+
       class ::http::application                       m_http;
       class ::file::dir::application                  m_dir;
       class ::file::application                       m_file;
@@ -57,8 +244,7 @@ namespace base
       sp(::user::str_context)                         m_puserstrcontext;
       string                                          m_strLibraryName;
       string                                          m_strAppId;
-      mutex                                           m_mutexFrame;
-      sp(::ptr_array < ::user::interaction > )        m_pframea;
+      mutex_ptr_array < ::user::interaction >         m_framea;
       sp(::user::user)                                m_spuser;
       sp(::database::server)                          m_spdataserver;
 #ifdef WINDOWS

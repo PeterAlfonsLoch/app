@@ -707,12 +707,8 @@ namespace user
 
 
 
-         if(m_plist != NULL)
+         if(m_plist.is_set())
          {
-
-            m_plist->ShowWindow(SW_HIDE);
-
-            m_plist->post_message(WM_CLOSE);
 
             m_plist.release();
 

@@ -19,8 +19,6 @@ namespace user
       interaction_impl_base();
       virtual ~interaction_impl_base();
 
-      virtual sp(mutex) mutex_graphics();
-
       virtual void _001UpdateWindow();
 
 
@@ -167,6 +165,9 @@ namespace user
 
 
       virtual bool get_rect_normal(LPRECT lprect);
+
+
+      virtual interaction_base::ETranslucency _001GetTranslucency();
 
 
    };

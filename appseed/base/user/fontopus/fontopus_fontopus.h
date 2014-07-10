@@ -27,12 +27,12 @@ namespace fontopus
       virtual user * create_user(::fontopus::user * puser);
       virtual user * create_system_user(const string & strSystemUserName);
       virtual user * allocate_user();
-      virtual user * create_current_user();
+      virtual user * create_current_user(const char * psz = NULL);
       virtual user * login(property_set & set);
 
       virtual void logout();
 
-      virtual user * get_user(bool bSynch = true);
+      virtual user * get_user(bool bSynch = true, const char * pszRequestUrl = NULL);
       virtual void set_user(const char * psz);
       virtual void set_user(::fontopus::user * psz);
 
@@ -64,6 +64,7 @@ namespace fontopus
 
 
       manual_reset_event m_evReady;
+      string m_strRequestUrl;
 
       create_user_thread(sp(::base::application) papp);
       virtual ~create_user_thread();

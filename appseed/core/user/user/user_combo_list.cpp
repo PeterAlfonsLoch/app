@@ -377,7 +377,12 @@ namespace user
 
             ::user::uinteraction::frame::WorkSet * pset = oprop("deactivate_together_set").cast < ::user::uinteraction::frame::WorkSet > ();
 
-            pset->SetActiveFlag(FALSE);
+            if(pset != NULL)
+            {
+
+               pset->SetActiveFlag(FALSE);
+
+            }
 
          }
 

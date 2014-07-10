@@ -364,6 +364,10 @@ namespace windows
       virtual sp(::user::interaction) SetParent(sp(::user::interaction) pWndNewParent);
       static sp(::user::interaction) WindowFromPoint(POINT point);
 
+
+      virtual sp(::user::interaction) SetOwner(sp(::user::interaction) pWndNewParent);
+      virtual sp(::user::interaction) GetOwner() const;
+
       virtual bool FlashWindow(bool bInvert);
 
       virtual int32_t message_box(const char * lpszText,const char * lpszCaption = NULL,UINT nType = MB_OK);

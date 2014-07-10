@@ -22,8 +22,10 @@ namespace fontopus
       string                                 m_strPath;
       string                                 m_strDataPath;
       string                                 m_strAppDataPath;
-      string_to_string                   m_sessionidmap;
+      string_to_string                       m_sessionidmap;
       string                                 m_strFunUserId;
+      string                                 m_strSessionRsa;
+      string                                 m_strSessionSecret;
 
 
       string                                 m_strFontopusServerSessId;
@@ -59,6 +61,8 @@ namespace fontopus
 
       virtual bool create_ifs();
 
+
+      string get_session_secret();
 
    };
 

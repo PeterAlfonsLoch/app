@@ -959,6 +959,8 @@ namespace file
 
             property_set set(get_app());
 
+            set["raw_http"] = true;
+
             string strLs = App(papp).http().get("http://" + get_api_cc() + "/api/matter/list_dir?dir=" + System.url().url_encode(strDir),set);
 
             stringa straLs;

@@ -49,7 +49,6 @@ namespace user
       bool                          m_bTranslateMouseMessageCursor;
       bool                          m_bComposite;
       bool                          m_bUpdateGraphics;
-      sp(mutex)                     m_spmutexGraphics;
       sp(mutex)                     m_spmutexDisplay;
       point                         m_pt;
       size                          m_size;
@@ -700,7 +699,6 @@ namespace user
 
       virtual void update_graphics_resources();
 
-      virtual sp(mutex) mutex_graphics();
       virtual sp(mutex) mutex_display();
 
 

@@ -71,15 +71,6 @@ namespace user
 
       //   if(m_pui->m_pthread == NULL)
 
-      m_pui->m_pthread = ::get_thread();
-
-      if(m_pui->m_pthread == NULL)
-         return false;
-
-      m_pui->m_pthread->add(this);
-
-      m_pui->m_pthread->add(m_pui);
-
       m_bCreate = true;
 
       if(!create_message_queue())
@@ -207,19 +198,10 @@ namespace user
 
       //   if(m_pui->m_pthread == NULL)
 
-      m_pui->m_pthread = ::get_thread();
-
-      if(m_pui->m_pthread == NULL)
-         return false;
-
       m_bCreate = true;
 
       if(!create_message_queue())
          return FALSE;
-
-      m_pui->m_pthread->add(this);
-
-      m_pui->m_pthread->add(m_pui);
 
       m_pui->m_bVisible = (dwStyle & WS_VISIBLE) != 0;
 
@@ -326,19 +308,10 @@ namespace user
       }
 
 
-      m_pui->m_pthread = ::get_thread();
-
-      if(m_pui->m_pthread == NULL)
-         return false;
-
       if(!create_message_queue())
          return false;
 
       m_bCreate = true;
-
-      m_pui->m_pthread->add(this);
-
-      m_pui->m_pthread->add(m_pui);
 
       m_pui->m_bVisible = true;
 
@@ -694,15 +667,14 @@ namespace user
       if(m_pui == NULL)
          return FALSE;
 
-      if(m_pui->m_pthread.is_set())
       {
 
-         synch_lock sl(&m_pui->m_pthread->m_pthreadimpl->m_mutexUiPtra);
+         synch_lock sl(&m_pui->m_pbaseapp->m_pthreadimpl->m_mutexUiPtra);
 
-         if(m_pui->m_pthread->m_pthreadimpl->m_spuiptra.is_set())
+         if(m_pui->m_pbaseapp->m_pthreadimpl->m_spuiptra.is_set())
          {
 
-            m_pui->m_pthread->m_pthreadimpl->m_spuiptra->remove(m_pui);
+            m_pui->m_pbaseapp->m_pthreadimpl->m_spuiptra->remove(m_pui);
 
          }
 
@@ -724,44 +696,12 @@ namespace user
       try
       {
 
-         single_lock sl(m_pui->m_pthread == NULL ? NULL : m_pui->m_pthread->m_pmutex,TRUE);
+         single_lock sl(m_pui->m_pbaseapp->m_pmutex,TRUE);
 
          try
          {
 
-            if(m_pui->m_pthread != NULL)
-            {
-
-               m_pui->m_pthread->remove(m_pui);
-
-            }
-
-         }
-         catch(...)
-         {
-
-         }
-
-         try
-         {
-
-            if(m_pui->m_pthread != NULL)
-            {
-
-               m_pui->m_pthread->remove(m_pui);
-
-            }
-
-         }
-         catch(...)
-         {
-
-         }
-
-         try
-         {
-
-            m_pui->m_pthread = NULL;
+            m_pui->m_pbaseapp->remove(m_pui);
 
          }
          catch(...)
@@ -813,9 +753,9 @@ namespace user
 
    bool interaction_child::IsWindow() const
    {
-      return
-         m_bCreate
-         && m_pui->m_pthread != NULL;
+
+      return m_bCreate && m_pui->m_pbaseapp != NULL;
+
    }
 
 
@@ -827,7 +767,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(lpfnTimer);
 
-      m_pui->m_pthread->set_timer(m_pui,nIDEvent,nElapse);
+      m_pui->m_pbaseapp->set_timer(m_pui,nIDEvent,nElapse);
 
       return nIDEvent;
 
@@ -837,7 +777,7 @@ namespace user
    bool interaction_child::KillTimer(uint_ptr nIDEvent)
    {
 
-      m_pui->m_pthread->unset_timer(m_pui,nIDEvent);
+      m_pui->m_pbaseapp->unset_timer(m_pui,nIDEvent);
 
       return true;
 
@@ -856,7 +796,9 @@ namespace user
 
    sp(interaction) interaction_child::GetDescendantWindow(id id) const
    {
-      single_lock sl(m_pui->m_pthread->m_pmutex,TRUE);
+
+      single_lock sl(m_pui->m_pbaseapp->m_pmutex,TRUE);
+
       for(int32_t i = 0; i < m_pui->m_uiptraChild.get_count(); i++)
       {
          if(m_pui->m_uiptraChild[i]->GetDlgCtrlId() == id)
@@ -1014,9 +956,9 @@ namespace user
    bool interaction_child::post_message(UINT uiMessage,WPARAM wparam,lparam lparam)
    {
 
-      if(m_pui->m_pthread != NULL)
+      if(m_pui->m_pbaseapp != NULL)
       {
-         return m_pui->m_pthread->post_message(m_pui,uiMessage,wparam,lparam);
+         return m_pui->m_pbaseapp->post_message(m_pui,uiMessage,wparam,lparam);
       }
       else
       {
@@ -1117,7 +1059,14 @@ namespace user
    sp(::user::interaction) interaction_child::GetOwner() const
    {
 
-      return m_puiOwner;
+      if(m_puiOwner != NULL)
+      {
+
+         return m_puiOwner;
+
+      }
+
+      return GetParent();
 
    }
    

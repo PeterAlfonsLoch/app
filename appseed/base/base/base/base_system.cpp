@@ -1372,7 +1372,8 @@ namespace base
 
 
    system::interaction_impl::interaction_impl(sp(::base::application) papp):
-      element(papp)
+      element(papp),
+      ::user::interaction(papp)
    {
 
    }

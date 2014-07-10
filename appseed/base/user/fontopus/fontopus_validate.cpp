@@ -299,10 +299,16 @@ namespace fontopus
       straRequestingServer.add("account.ca2.cc");
       //straRequestingServer.add("eu-account.ca2.cc");
       //straRequestingServer.add("asia-account.ca2.cc");
-      if(!straRequestingServer.contains_ci(strHost))
+      if(System.url().get_server(strHost).has_char())
+      {
+         strHost = System.url().get_server(strHost);
+      }
+      else
       {
          strHost = "account.ca2.cc";
       }
+
+      strHost = BaseSession.fontopus()->get_server(strHost);
 
       if(straRequestingServer.contains(Application.command_thread()->m_varTopicQuery["fontopus"].get_string())
          && Application.command_thread()->m_varTopicQuery["sessid"].get_string().get_length() > 16)
@@ -316,7 +322,7 @@ namespace fontopus
 
       strApiHost.replace("account","api");
 
-      strAuthUrl = "https://" + strApiHost + "/account/auth";
+      strAuthUrl = "https://" + strApiHost + "/account/license";
 
       property_set set;
 
@@ -335,7 +341,7 @@ namespace fontopus
       doc.load(strAuth);
       if(doc.get_root()->get_name() == "response")
       {
-         if(doc.get_root()->attr("id") == "auth")
+         if(doc.get_root()->attr("id") == ApplicationUser.get_session_secret())
          {
             return true;
          }
@@ -756,8 +762,9 @@ namespace fontopus
          strPass = m_strPasshash;
       }
 
-
       string strHex = System.crypto().spa_login_crypt(strPass,strRsaModulus);
+
+      string strSec = System.crypto().spa_login_crypt(m_puser->m_strSessionSecret,strRsaModulus);
 
       m_puser->m_strLogin = m_strUsername;
 
@@ -780,6 +787,8 @@ namespace fontopus
             set["post"]["entered_passhash"] = strHex;
          }
          string strCrypt;
+
+         set["post"]["session_secret"] = strSec;
 
          string strUsername = m_strUsername;
 

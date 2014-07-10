@@ -3907,7 +3907,6 @@ sp(::base::application) application::instantiate_application(const char * pszTyp
 
    }
 
-   //pbaseapp->m_pbaseapp                               = this;
    papp->m_pplaneapp->m_psystem = m_psystem;
 
    papp->m_pbasesystem = m_pbasesystem;

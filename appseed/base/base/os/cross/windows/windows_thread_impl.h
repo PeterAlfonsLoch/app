@@ -6,9 +6,9 @@ struct hthread :
 {
 
 
-   event               * m_pevent;
-   ::thread          * m_pthread;
-   os_thread                  * m_posthread;
+   event *           m_pevent;
+   ::thread *        m_pthread;
+   os_thread *       m_posthread;
 
 
    hthread();

@@ -97,7 +97,7 @@ namespace user
    bool interaction_base::_001IsTranslucent()
    {
 
-      return _001GetTranslucency() == TranslucencyPresent;
+      return _001GetTranslucency() == TranslucencyPresent || _001GetTranslucency() == TranslucencyTotal;
 
    }
 
@@ -1128,7 +1128,7 @@ namespace user
    void interaction_base::pre_translate_message(signal_details * pobj)
    {
 
-      throw interface_only_exception(get_app());
+      UNREFERENCED_PARAMETER(pobj);
 
    }
 
@@ -1730,7 +1730,7 @@ namespace user
    LRESULT interaction_base::DefWindowProc(UINT uiMessage,WPARAM wparam,lparam lparam)
    {
 
-      throw interface_only_exception(get_app());
+      return 0;
 
    }
 
@@ -1798,7 +1798,7 @@ namespace user
    void interaction_base::UpdateDialogControls(command_target* pTarget,bool bDisableIfNoHandler)
    {
       
-      throw interface_only_exception(get_app());
+      //throw interface_only_exception(get_app());
 
    }
 

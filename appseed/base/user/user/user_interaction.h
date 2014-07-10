@@ -8,11 +8,11 @@
 namespace user
 {
 
-   
+
    class interaction_impl_base;
 
 
-   class CLASS_DECL_BASE interaction :
+   class CLASS_DECL_BASE interaction:
       virtual public interaction_base
    {
    public:
@@ -60,7 +60,6 @@ namespace user
 
       id                                  m_idModalResult; // for return values from interaction_impl::RunModalLoop
       COLORREF                            m_crDefaultBackgroundColor;
-      sp(::thread)                        m_pthread;
 
       sp(::user::menu_base)               m_spmenuPopup;
 
@@ -72,6 +71,8 @@ namespace user
       interaction();
       interaction(sp(::base::application) papp);
       virtual ~interaction();
+
+      void user_interaction_common_construct();
 
 
       virtual bool create_message_queue(const char * pszName,::message_queue_listener * pcallback = NULL);
@@ -95,7 +96,7 @@ namespace user
       virtual bool IsWindow() const;
 
       virtual LONG get_window_long(int32_t nIndex) const;
-      virtual LONG set_window_long(int32_t nIndex, LONG lValue);
+      virtual LONG set_window_long(int32_t nIndex,LONG lValue);
 
       virtual LONG_PTR get_window_long_ptr(int32_t nIndex) const;
       virtual LONG_PTR set_window_long_ptr(int32_t nIndex,LONG_PTR lValue);
@@ -123,11 +124,11 @@ namespace user
       virtual void track_mouse_leave();
 
       // dialog support
-      void UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHndler);
+      void UpdateDialogControls(command_target* pTarget,bool bDisableIfNoHndler);
       virtual void CenterWindow(sp(interaction) pAlternateOwner = NULL);
-      virtual id   run_modal_loop(::user::interaction * pui, uint32_t dwFlags = 0, ::base::live_object * pliveobject = NULL);
-      virtual id   RunModalLoop(uint32_t dwFlags = 0, ::base::live_object * pliveobject = NULL);
-      virtual id   _001RunModalLoop(uint32_t dwFlags = 0, ::base::live_object * pliveobject = NULL);
+      virtual id   run_modal_loop(::user::interaction * pui,uint32_t dwFlags = 0,::base::live_object * pliveobject = NULL);
+      virtual id   RunModalLoop(uint32_t dwFlags = 0,::base::live_object * pliveobject = NULL);
+      virtual id   _001RunModalLoop(uint32_t dwFlags = 0,::base::live_object * pliveobject = NULL);
       virtual bool ContinueModal(int32_t iLevel);
       virtual void EndModalLoop(id nResult);
       virtual void EndAllModalLoops(id nResult);
@@ -175,8 +176,8 @@ namespace user
       virtual bool ResizeWindow(int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
       virtual bool ResizeWindow(SIZE sz,UINT nFlags = SWP_SHOWWINDOW);
       virtual bool SetWindowPos(int32_t z,LPCRECT lpcrect,UINT nFlags = SWP_SHOWWINDOW);
-      virtual bool SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags = SWP_SHOWWINDOW);
-      virtual bool defer_set_window_pos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags); // only set_windows_pos if get_parent()->ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)      virtual bool set_placement(LPRECT lprect);
+      virtual bool SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
+      virtual bool defer_set_window_pos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags); // only set_windows_pos if get_parent()->ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)      virtual bool set_placement(LPRECT lprect);
       virtual int32_t SetWindowRgn(HRGN hRgn,bool bRedraw);
       virtual int32_t GetWindowRgn(HRGN hRgn);
 
@@ -200,30 +201,30 @@ namespace user
       virtual oswindow unsubclass_window();
 
 
-      virtual bool create(sp(interaction)pparent, id id);
+      virtual bool create(sp(interaction)pparent,id id);
       virtual bool create_window(const char * lpszClassName,
-         const char * lpszWindowName, uint32_t dwStyle,
+         const char * lpszWindowName,uint32_t dwStyle,
          const RECT& rect,
-         sp(interaction) pParentWnd, id id,
+         sp(interaction) pParentWnd,id id,
          sp(::create_context) pContext = NULL);
       using ::request_interface::create;
       virtual bool create(const char * lpszClassName,
-         const char * lpszWindowName, uint32_t dwStyle,
+         const char * lpszWindowName,uint32_t dwStyle,
          const RECT& rect,
-         sp(interaction) pParentWnd, id id,
+         sp(interaction) pParentWnd,id id,
          sp(::create_context) pContext = NULL);
-      virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName,
-         const char * lpszWindowName, uint32_t dwStyle,
+      virtual bool CreateEx(uint32_t dwExStyle,const char * lpszClassName,
+         const char * lpszWindowName,uint32_t dwStyle,
          const RECT& rect,
-         sp(interaction) pParentWnd, id id,
+         sp(interaction) pParentWnd,id id,
          LPVOID lpParam = NULL);
-      virtual bool create_window_ex(uint32_t dwExStyle, const char * lpszClassName,
-         const char * lpszWindowName, uint32_t dwStyle,
+      virtual bool create_window_ex(uint32_t dwExStyle,const char * lpszClassName,
+         const char * lpszWindowName,uint32_t dwStyle,
          const RECT& rect,
-         sp(interaction) pParentWnd, id id,
+         sp(interaction) pParentWnd,id id,
          LPVOID lpParam = NULL);
-      enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
-      virtual void CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType = adjustBorder);
+      enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
+      virtual void CalcWindowRect(LPRECT lpClientRect,UINT nAdjustType = adjustBorder);
 
       virtual bool IsTopParentActive();
       virtual void ActivateTopParent();
@@ -247,11 +248,11 @@ namespace user
 
       virtual void UpdateWindow();
       virtual void SetRedraw(bool bRedraw = TRUE);
-      virtual bool GetUpdateRect(LPRECT lpRect, bool bErase = FALSE);
-      virtual int32_t GetUpdateRgn(::draw2d::region* pRgn, bool bErase = FALSE);
+      virtual bool GetUpdateRect(LPRECT lpRect,bool bErase = FALSE);
+      virtual int32_t GetUpdateRgn(::draw2d::region* pRgn,bool bErase = FALSE);
       virtual void Invalidate(bool bErase = TRUE);
-      virtual void InvalidateRect(LPCRECT lpRect, bool bErase = TRUE);
-      virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = TRUE);
+      virtual void InvalidateRect(LPCRECT lpRect,bool bErase = TRUE);
+      virtual void InvalidateRgn(::draw2d::region* pRgn,bool bErase = TRUE);
       virtual void ValidateRect(LPCRECT lpRect);
       virtual void ValidateRgn(::draw2d::region* pRgn);
       virtual void ShowOwnedPopups(bool bShow = TRUE);
@@ -265,7 +266,7 @@ namespace user
 
       virtual LRESULT send(::message::base * pbase);
       virtual bool post(::message::base * pbase);
-      virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = 0);
+      virtual LRESULT send_message(UINT uiMessage,WPARAM wparam = 0,lparam lparam = 0);
 
 #ifdef LINUX
 
@@ -273,13 +274,13 @@ namespace user
 
 #endif
 
-      virtual bool post_message(UINT message, WPARAM wParam = 0, lparam lParam = 0);
-      virtual bool post_simple_command(e_simple_command ecommand, lparam lParam = 0);
+      virtual bool post_message(UINT message,WPARAM wParam = 0,lparam lParam = 0);
+      virtual bool post_simple_command(e_simple_command ecommand,lparam lParam = 0);
 
       virtual bool ShowWindow(int32_t nCmdShow);
 
       // timer Functions
-      virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, uint32_t));
+      virtual uint_ptr SetTimer(uint_ptr nIDEvent,UINT nElapse,void (CALLBACK* lpfnTimer)(oswindow,UINT,uint_ptr,uint32_t));
       virtual bool KillTimer(uint_ptr nIDEvent);
 
       virtual bool is_window_enabled();
@@ -309,16 +310,16 @@ namespace user
       virtual sp(interaction) SetActiveWindow();
 
       virtual void WalkPreTranslateTree(signal_details * pobj);
-      virtual void WalkPreTranslateTree(sp(::user::interaction) puiStop, signal_details * pobj);
+      virtual void WalkPreTranslateTree(sp(::user::interaction) puiStop,signal_details * pobj);
 
       virtual sp(interaction) GetDescendantWindow(id id) const;
 
       virtual void SetWindowText(const char * lpszString);
-      virtual strsize GetWindowText(LPTSTR lpszStringBuf, int32_t nMaxCount);
+      virtual strsize GetWindowText(LPTSTR lpszStringBuf,int32_t nMaxCount);
       virtual string get_window_text();
       virtual void GetWindowText(string & rString);
       virtual strsize GetWindowTextLength();
-      virtual void SetFont(::draw2d::font* pFont, bool bRedraw = TRUE);
+      virtual void SetFont(::draw2d::font* pFont,bool bRedraw = TRUE);
       virtual ::draw2d::font* GetFont();
 
       virtual void set_text_color(COLORREF crText);
@@ -329,53 +330,53 @@ namespace user
       virtual void _000OnMouse(::message::mouse * pmouse);
       virtual void _000OnKey(::message::key * pkey);
       DECL_GEN_SIGNAL(_001OnMouseMove);
-         DECL_GEN_SIGNAL(_001OnMouseEnter);
-         DECL_GEN_SIGNAL(_001OnMouseLeave);
-         DECL_GEN_SIGNAL(_001OnKeyDown);
-         DECL_GEN_SIGNAL(_001OnKeyUp);
-         DECL_GEN_SIGNAL(_001OnTimer);
-         DECL_GEN_SIGNAL(_001OnChar);
-         DECL_GEN_SIGNAL(_001OnDestroy);
-         DECL_GEN_SIGNAL(_001OnSize);
-         DECL_GEN_SIGNAL(_001OnCreate);
-         DECL_GEN_SIGNAL(_001OnMove);
-         DECL_GEN_SIGNAL(_001OnUser184);
-         DECL_GEN_SIGNAL(_001OnNcCalcSize);
-         DECL_GEN_SIGNAL(_001OnClose);
-         DECL_GEN_SIGNAL(_001OnCommand);
-         DECL_GEN_SIGNAL(_001OnSimpleCommand);
+      DECL_GEN_SIGNAL(_001OnMouseEnter);
+      DECL_GEN_SIGNAL(_001OnMouseLeave);
+      DECL_GEN_SIGNAL(_001OnKeyDown);
+      DECL_GEN_SIGNAL(_001OnKeyUp);
+      DECL_GEN_SIGNAL(_001OnTimer);
+      DECL_GEN_SIGNAL(_001OnChar);
+      DECL_GEN_SIGNAL(_001OnDestroy);
+      DECL_GEN_SIGNAL(_001OnSize);
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnMove);
+      DECL_GEN_SIGNAL(_001OnUser184);
+      DECL_GEN_SIGNAL(_001OnNcCalcSize);
+      DECL_GEN_SIGNAL(_001OnClose);
+      DECL_GEN_SIGNAL(_001OnCommand);
+      DECL_GEN_SIGNAL(_001OnSimpleCommand);
 
 
 
       virtual DECL_GEN_SIGNAL(_002OnLButtonDown);
-         virtual DECL_GEN_SIGNAL(_002OnLButtonUp);
-         virtual DECL_GEN_SIGNAL(_002OnMouseMove);
-         virtual DECL_GEN_SIGNAL(_002OnMouseEnter);
-         virtual DECL_GEN_SIGNAL(_002OnMouseLeave);
-         virtual DECL_GEN_SIGNAL(_002OnKeyDown);
-         virtual DECL_GEN_SIGNAL(_002OnKeyUp);
-         virtual DECL_GEN_SIGNAL(_002OnTimer);
+      virtual DECL_GEN_SIGNAL(_002OnLButtonUp);
+      virtual DECL_GEN_SIGNAL(_002OnMouseMove);
+      virtual DECL_GEN_SIGNAL(_002OnMouseEnter);
+      virtual DECL_GEN_SIGNAL(_002OnMouseLeave);
+      virtual DECL_GEN_SIGNAL(_002OnKeyDown);
+      virtual DECL_GEN_SIGNAL(_002OnKeyUp);
+      virtual DECL_GEN_SIGNAL(_002OnTimer);
 
 
-         DECL_GEN_VSIGNAL(_001OnBaseWndGetProperty);
+      DECL_GEN_VSIGNAL(_001OnBaseWndGetProperty);
 
 
-         virtual LRESULT _001BaseWndGetProperty(EProperty eproperty,LPARAM lparam);
+      virtual LRESULT _001BaseWndGetProperty(EProperty eproperty,LPARAM lparam);
 
 
 
-         virtual bool _001IsPointInside(point64 pt);
-      virtual sp(interaction) _001FromPoint(point64 pt, bool bTestedIfParentVisible = false);
+      virtual bool _001IsPointInside(point64 pt);
+      virtual sp(interaction) _001FromPoint(point64 pt,bool bTestedIfParentVisible = false);
 
-      virtual void OnLinkClick(const char * psz, const char * pszTarget = NULL);
+      virtual void OnLinkClick(const char * psz,const char * pszTarget = NULL);
 
       virtual void pre_translate_message(signal_details * pobj);
 
 
-      sp(interaction) get_child_by_name(const char * pszName, int32_t iLevel = -1);
-      sp(interaction) get_child_by_id(id id, int32_t iLevel = -1);
+      sp(interaction) get_child_by_name(const char * pszName,int32_t iLevel = -1);
+      sp(interaction) get_child_by_id(id id,int32_t iLevel = -1);
 
-      
+
       virtual bool IsAscendant(const interaction * puiIsAscendant) const;
       virtual bool IsParent(const interaction * puiIsParent) const;
       virtual bool IsChild(const interaction * puiIsChild) const;
@@ -409,7 +410,7 @@ namespace user
 
 
       virtual int32_t get_descendant_level(sp(::user::interaction) pui);
-      virtual bool is_descendant(sp(::user::interaction) pui, bool bIncludeSelf = false);
+      virtual bool is_descendant(sp(::user::interaction) pui,bool bIncludeSelf = false);
 
 
 
@@ -420,11 +421,11 @@ namespace user
 
 
 
-      virtual void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlag = reposDefault, LPRECT lpRectParam = NULL, LPCRECT lpRectClient = NULL, bool bStretch = TRUE);
+      virtual void RepositionBars(UINT nIDFirst,UINT nIDLast,id nIDLeftOver,UINT nFlag = reposDefault,LPRECT lpRectParam = NULL,LPCRECT lpRectClient = NULL,bool bStretch = TRUE);
 
 
       virtual sp(interaction) ChildWindowFromPoint(POINT point);
-      virtual sp(interaction) ChildWindowFromPoint(POINT point, UINT nFlags);
+      virtual sp(interaction) ChildWindowFromPoint(POINT point,UINT nFlags);
 
 
 #ifdef WINDOWSEX
@@ -435,7 +436,7 @@ namespace user
 
       virtual sp(interaction) GetTopWindow();
 
-      virtual sp(interaction) get_next(bool bIgnoreChildren = false, int32_t * piLevel = NULL);
+      virtual sp(interaction) get_next(bool bIgnoreChildren = false,int32_t * piLevel = NULL);
 
       virtual sp(interaction) GetLastActivePopup();
 
@@ -446,7 +447,7 @@ namespace user
       // for custom cleanup after WM_NCDESTROY
       virtual void PostNcDestroy();
 
-      virtual LRESULT DefWindowProc(UINT uiMessage, WPARAM wparam, lparam lparam);
+      virtual LRESULT DefWindowProc(UINT uiMessage,WPARAM wparam,lparam lparam);
 
       virtual LRESULT call_message_handler(UINT message,WPARAM wparam,LPARAM lparam);
 
@@ -474,11 +475,11 @@ namespace user
          ASSERT_VALID(pthis);
 
          sp(interaction) pParentWnd = GetParent();  // start with one parent up
-         while (pParentWnd != NULL)
+         while(pParentWnd != NULL)
          {
-            if (dynamic_cast < T * > (pParentWnd.m_p) != NULL)
+            if(dynamic_cast <T *> (pParentWnd.m_p) != NULL)
             {
-               return dynamic_cast < T * > (pParentWnd.m_p);
+               return dynamic_cast <T *> (pParentWnd.m_p);
             }
             pParentWnd = pParentWnd->GetParent();
          }
@@ -495,9 +496,9 @@ namespace user
 
       virtual void _001OnTriggerMouseInside();
 
-//#ifdef METROWIN
-//      Platform::Agile<Windows::UI::Core::CoreWindow> get_os_window();
-//#endif
+      //#ifdef METROWIN
+      //      Platform::Agile<Windows::UI::Core::CoreWindow> get_os_window();
+      //#endif
 
 
       virtual void set_viewport_org(::draw2d::graphics * pgraphics);
@@ -514,7 +515,7 @@ namespace user
       virtual e_type get_window_type();
 
 
-      virtual bool on_simple_command(e_simple_command ecommand, lparam lparam, LRESULT & lresult);
+      virtual bool on_simple_command(e_simple_command ecommand,lparam lparam,LRESULT & lresult);
 
 
       // Window-Management message handler member functions
@@ -548,17 +549,17 @@ namespace user
 
 
 
-      virtual bool track_popup_menu(sp(::user::menu_base_item) pitem, int32_t iFlags, int32_t x, int32_t y);
-      virtual bool track_popup_menu(sp(::xml::node) lpnode, int32_t iFlags, int32_t x, int32_t y);
-      virtual bool track_popup_xml_matter_menu(const char * pszMatter, int32_t iFlags, int32_t x, int32_t y);
+      virtual bool track_popup_menu(sp(::user::menu_base_item) pitem,int32_t iFlags,int32_t x,int32_t y);
+      virtual bool track_popup_menu(sp(::xml::node) lpnode,int32_t iFlags,int32_t x,int32_t y);
+      virtual bool track_popup_xml_matter_menu(const char * pszMatter,int32_t iFlags,int32_t x,int32_t y);
 
-      virtual bool track_popup_menu(sp(::user::menu_base_item) pitem, int32_t iFlags, signal_details * pobj);
-      virtual bool track_popup_menu(sp(::xml::node) lpnode, int32_t iFlags, signal_details * pobj);
-      virtual bool track_popup_xml_matter_menu(const char * pszMatter, int32_t iFlags, signal_details * pobj);
+      virtual bool track_popup_menu(sp(::user::menu_base_item) pitem,int32_t iFlags,signal_details * pobj);
+      virtual bool track_popup_menu(sp(::xml::node) lpnode,int32_t iFlags,signal_details * pobj);
+      virtual bool track_popup_xml_matter_menu(const char * pszMatter,int32_t iFlags,signal_details * pobj);
 
-      virtual bool track_popup_menu(sp(::user::menu_base_item) pitem, int32_t iFlags);
-      virtual bool track_popup_menu(sp(::xml::node) lpnode, int32_t iFlags);
-      virtual bool track_popup_xml_matter_menu(const char * pszMatter, int32_t iFlags);
+      virtual bool track_popup_menu(sp(::user::menu_base_item) pitem,int32_t iFlags);
+      virtual bool track_popup_menu(sp(::xml::node) lpnode,int32_t iFlags);
+      virtual bool track_popup_xml_matter_menu(const char * pszMatter,int32_t iFlags);
 
 
       virtual void WfiEnableFullScreen(bool bEnable = true);
@@ -598,6 +599,8 @@ namespace user
       virtual index good_move(LPRECT lprect,LPCRECT lpcrect=NULL,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
 
       virtual bool get_rect_normal(LPRECT lprect);
+
+      virtual interaction_base::ETranslucency _001GetTranslucency();
 
    };
 

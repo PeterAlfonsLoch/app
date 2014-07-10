@@ -37,7 +37,6 @@ namespace install
    plugin::plugin(sp(::base::application) papp) :
       element(papp),
       ::simple_ui::style(papp),
-      ::user::interaction(papp),
       hotplugin::plugin(papp),
       m_canvas(papp),
       ::base::session(papp)
@@ -337,7 +336,10 @@ namespace install
          xxdebug_box("plugin::start_ca2 not logged", "not logged", 0);
 
          m_bLogin = true;
-         m_bLogged = BaseSession.fontopus()->get_user(false) != NULL;
+         if(m_phost->m_strPluginUrl.has_char())
+         {
+            m_bLogged = BaseSession.fontopus()->get_user(false,m_phost->m_strPluginUrl) != NULL;
+         }
 
          m_bCa2Login = false;
          m_bCa2Logout = false;
@@ -360,7 +362,9 @@ namespace install
          m_phost->m_bOk = false;
          property_set set(get_app());
          set.parse_url_query(System.url().get_query(m_phost->m_strPluginUrl));
-         string strUrl;
+         string strUrl(set["ruri"]);
+         if(strUrl.is_empty())
+            strUrl = BaseSession.fontopus()->get_server(m_phost->m_strPluginUrl);
          System.url().set_param(strUrl,set["ruri"],"sessid",ApplicationUser.get_sessid(set["ruri"]));
          m_phost->open_url(strUrl);
          m_startca2.m_bRun = false;

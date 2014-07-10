@@ -35,13 +35,11 @@ namespace plugin
       ::base::session(papp)
    {
 
-      //m_pbaseapp                  = NULL;
       m_puiHost               = NULL;
       m_iHealingSurface       = 0;
       m_iEdge                 = -1;
       m_bAppStarted           = false;
       m_pbReady               = NULL;
-//      m_psystem               = NULL;
       m_bMainReady            = false;
 
       m_pbitmap               = NULL;

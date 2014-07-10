@@ -18,30 +18,7 @@ namespace user
    interaction::interaction()
    {
 
-      m_pthread                     = NULL;
-      m_pimpl                       = NULL;
-      m_pparent                     = NULL;
-      m_pmutex                      = NULL;
-      m_eappearance                 = AppearanceNormal;
-      m_bCursorInside               = false;
-      m_nFlags                      = 0;
-      m_puiOwner                    = NULL;
-      m_ecursor                     = ::visual::cursor_default;
-      m_iModal                      = 0;
-      m_iModalCount                 = 0;
-      m_bRectOk                     = false;
-      m_bVisible                    = true;
-      m_crDefaultBackgroundColor    = ARGB(255,255,255,255);
-
-      m_psession                    = NULL;
-      m_bMessageWindow              = false;
-
-      m_bVoidPaint                  = false;
-      m_pparent                     = NULL;
-      m_etranslucency               = TranslucencyNone;
-      m_bBackgroundBypass           = false;
-      m_bLockWindowUpdate           = false;
-      m_bEnableSaveWindowRect       = false;
+      user_interaction_common_construct();
 
    }
 
@@ -50,14 +27,19 @@ namespace user
       ::user::interaction_base(papp)
    {
 
-      m_pthread                  = NULL;
+      user_interaction_common_construct();
+
+   }
+
+   void interaction::user_interaction_common_construct()
+   {
+
       m_pmutex                   = NULL;
       m_eappearance              = AppearanceNormal;
       m_bCursorInside            = false;
       m_nFlags                   = 0;
       m_puiOwner                 = NULL;
       m_pimpl                    = NULL;
-      m_pthread                  = NULL;
       m_ecursor                  = ::visual::cursor_default;
       m_iModal                   = 0;
       m_iModalCount              = 0;
@@ -77,6 +59,7 @@ namespace user
       m_bEnableSaveWindowRect       = false;
 
    }
+
 
    interaction::~interaction()
    {
@@ -196,9 +179,9 @@ namespace user
                iStyle &= ~WS_VISIBLE;
             }
             smart_pointer_array < timer_item > timera;
-            if(m_pthread != NULL && m_pthread->m_pthreadimpl != NULL && m_pthread->m_pthreadimpl->m_sptimera.is_set())
+            if(m_pbaseapp != NULL && m_pbaseapp->m_pthreadimpl != NULL && m_pbaseapp->m_pthreadimpl->m_sptimera.is_set())
             {
-               m_pthread->m_pthreadimpl->m_sptimera->detach(timera,this);
+               m_pbaseapp->m_pthreadimpl->m_sptimera->detach(timera,this);
             }
             if(!pimplNew->CreateEx(0,NULL,strName,iStyle,rect(0,0,0,0),NULL,GetDlgCtrlId()))
             {
@@ -487,66 +470,8 @@ namespace user
 
       try
       {
+
          ShowWindow(SW_HIDE);
-      }
-      catch(...)
-      {
-
-      }
-
-      try
-      {
-
-         System.remove_frame(this);
-
-      }
-      catch(...)
-      {
-
-      }
-
-      try
-      {
-         if(m_pbaseapp != NULL)
-         {
-            m_pbaseapp->remove_frame(this);
-         }
-      }
-      catch(...)
-      {
-      }
-
-      try
-      {
-         if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL)
-         {
-            m_pbaseapp->m_pbasesession->remove_frame(this);
-         }
-      }
-      catch(...)
-      {
-      }
-
-      try
-      {
-         if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesystem != NULL)
-         {
-            m_pbaseapp->m_pbasesystem->remove_frame(this);
-         }
-      }
-      catch(...)
-      {
-      }
-
-      try
-      {
-
-         if(m_pthread != NULL)
-         {
-
-            m_pthread->remove(this);
-
-         }
 
       }
       catch(...)
@@ -556,15 +481,98 @@ namespace user
 
       array < ::user::interaction  * > uiptra;
 
-      single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex,TRUE);
-
-      if(GetParent() != NULL)
+      if(GetParent() == NULL && !is_message_only_window())
       {
+
+         synch_lock slUser(&user_mutex());
+
+         synch_lock sl(m_spmutex);
 
          try
          {
 
-            GetParent()->m_uiptraChild.remove(this);
+            m_pbaseapp->remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
+
+         }
+         catch(...)
+         {
+
+         }
+
+         try
+         {
+
+            if(m_pbaseapp->m_pbasesession != NULL)
+            {
+
+               m_pbaseapp->m_pbasesession->remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
+
+            }
+
+         }
+         catch(...)
+         {
+
+         }
+
+         try
+         {
+
+            if(m_pbaseapp->m_pbasesystem != NULL)
+            {
+
+               m_pbaseapp->m_pbasesystem->remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
+
+            }
+
+         }
+         catch(...)
+         {
+         }
+
+         try
+         {
+
+            Application.remove(this);
+
+         }
+         catch(...)
+         {
+
+         }
+
+         single_lock slApp(m_pbaseapp->m_pmutex,TRUE);
+
+         if(GetParent() != NULL)
+         {
+
+            try
+            {
+
+               GetParent()->m_uiptraChild.remove(this);
+
+            }
+            catch(...)
+            {
+
+            }
+
+         }
+
+
+         m_uiptraChild.get_array(uiptra);
+
+      }
+
+      for(int32_t i = 0; i < uiptra.get_count(); i++)
+      {
+
+         ::user::interaction  * pui = uiptra[i];
+
+         try
+         {
+
+            pui->DestroyWindow();
 
          }
          catch(...)
@@ -574,13 +582,6 @@ namespace user
 
       }
 
-      m_uiptraChild.get_array(uiptra);
-      sl.unlock();
-      for(int32_t i = 0; i < uiptra.get_count(); i++)
-      {
-         ::user::interaction  * pui = uiptra[i];
-         pui->DestroyWindow();
-      }
    }
 
 
@@ -634,26 +635,47 @@ namespace user
 
    void interaction::_001DrawThis(::draw2d::graphics * pgraphics)
    {
+
       try
       {
+
          set_viewport_org(pgraphics);
+
          pgraphics->m_dFontFactor = 1.0;
+
          try
          {
+
             if(GetFont() != NULL)
             {
+
                pgraphics->selectFont(GetFont());
+
             }
+
          }
          catch(...)
          {
+
          }
-         _001OnDraw(pgraphics);
+
+         {
+
+            synch_lock sl(m_spmutex);
+
+            _001OnDraw(pgraphics);
+
+         }
+
+
       }
       catch(...)
       {
+
       }
+
    }
+
 
    void interaction::_001DrawChildren(::draw2d::graphics *pdc)
    {
@@ -715,7 +737,7 @@ namespace user
 
       pgraphics->SetViewportOrg(ptViewport);
 
-      if(BaseSession.m_bDrawCursor)
+      if(&BaseSession != NULL && BaseSession.m_bDrawCursor)
       {
 
          point ptCursor;
@@ -802,17 +824,43 @@ namespace user
 
    void interaction::_001OnCreate(signal_details * pobj)
    {
+
       UNREFERENCED_PARAMETER(pobj);
 
-      if(GetParent() == NULL && !is_message_only_window())
+      if(m_pbaseapp == NULL)
+         throw simple_exception(get_app(), "m_pbaseapp cannot be null");
+
       {
 
-         System.add_frame(this);
+         m_pbaseapp->add(this);
 
-         if(Application.m_puiMain == NULL)
+         if(GetParent() == NULL && !is_message_only_window())
          {
 
-            Application.m_puiMain = this;
+            synch_lock slUser(&user_mutex());
+
+            synch_lock sl(m_spmutex);
+
+            if(m_pbaseapp->m_pbasesystem != NULL)
+            {
+
+               m_pbaseapp->m_pbasesystem->add_frame(this);
+
+            }
+
+            if(m_pbaseapp->m_pbasesession != NULL)
+            {
+
+               m_pbaseapp->m_pbasesession->add_frame(this);
+
+            }
+
+            if(m_pbaseapp != NULL)
+            {
+
+               m_pbaseapp->add_frame(this);
+
+            }
 
          }
 
@@ -831,7 +879,7 @@ namespace user
 
       */
 
-      m_spmutex = m_pthread->m_pmutex;
+      m_spmutex = canew(::mutex(get_app()));
 
    }
 
@@ -1383,8 +1431,6 @@ namespace user
 
          }
 
-         m_pthread = ::get_thread();
-
          m_pimpl = pimplNew;
 
          return true;
@@ -1570,7 +1616,7 @@ namespace user
             {
                pwindowOld->install_message_handling(pimplOld);
             }
-            single_lock sl(m_pthread->m_pmutex,TRUE);
+            single_lock sl(m_pbaseapp->m_pmutex,TRUE);
             sl.unlock();
             if(pParentWnd != NULL)
             {
@@ -2153,22 +2199,9 @@ namespace user
    void interaction::PostNcDestroy()
    {
 
-      if(m_pthread != NULL)
-      {
-         try
-         {
-            m_pthread->remove(this);
-         }
-         catch(...)
-         {
-         }
-      }
-
       {
 
-         sp(mutex) pmutexGraphics = m_pimpl->mutex_graphics();
-
-         synch_lock sl(pmutexGraphics);
+         synch_lock sl(m_spmutex);
 
          m_pimpl.release();
 
@@ -2590,7 +2623,7 @@ namespace user
 
       m_iaModalThread.add(::get_thread()->get_os_int());
       sp(::base::application) pappThis1 = (m_pimpl);
-      sp(::base::application) pappThis2 = (m_pthread);
+      sp(::base::application) pappThis2 = (::get_thread());
       // acquire and dispatch messages until the modal state is done
       MESSAGE msg;
 
@@ -2627,14 +2660,14 @@ namespace user
             bIdle = FALSE;
             }*/
 
-            m_pthread->m_dwAlive = ::get_tick_count();
+            ::get_thread()->m_dwAlive = ::get_tick_count();
             if(pappThis1 != NULL)
             {
-               pappThis1->m_dwAlive = m_pthread->m_dwAlive;
+               pappThis1->m_dwAlive = ::get_thread()->m_dwAlive;
             }
             if(pappThis2 != NULL)
             {
-               pappThis2->m_dwAlive = m_pthread->m_dwAlive;
+               pappThis2->m_dwAlive = ::get_thread()->m_dwAlive;
             }
             if(pliveobject != NULL)
             {
@@ -2650,7 +2683,7 @@ namespace user
                goto ExitModal;
 
             // pump message, but quit on WM_QUIT
-            if(!m_pthread->pump_message())
+            if(!::get_thread()->pump_message())
             {
                __post_quit_message(0);
                return -1;
@@ -2674,10 +2707,7 @@ namespace user
          } while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE);
 
 
-         if(m_pthread != NULL)
-         {
-            m_pthread->step_timer();
-         }
+         ::get_thread()->step_timer();
 
          if(!ContinueModal(iLevel))
             goto ExitModal;
@@ -2707,7 +2737,7 @@ namespace user
 
    bool interaction::ContinueModal(int32_t iLevel)
    {
-      return iLevel < m_iModalCount && m_pthread->m_bRun;
+      return iLevel < m_iModalCount && ::get_thread()->m_bRun && m_pbaseapp->m_bRun;
    }
 
    void interaction::EndModalLoop(id nResult)
@@ -2759,7 +2789,7 @@ namespace user
          try
          {
 
-            sp(::thread) pthread = m_pthread;
+            sp(::thread) pthread = ::get_thread();
 
             if(pthread.is_set())
             {
@@ -3045,9 +3075,9 @@ namespace user
          if(puiParent != NULL)
          {
 
-            single_lock sl(puiParent->m_pthread == NULL ? NULL : puiParent->m_pthread->m_pmutex,TRUE);
+            single_lock sl(puiParent->m_pbaseapp->m_pmutex,TRUE);
 
-            single_lock sl2(m_pthread == NULL ? NULL : m_pthread->m_pmutex,TRUE);
+            single_lock sl2(m_pbaseapp->m_pmutex,TRUE);
 
             puiParent->m_uiptraChild.add_unique(this);
 
@@ -3067,9 +3097,9 @@ namespace user
             if(pholder.is_set())
             {
 
-               single_lock sl(puiParent->m_pthread == NULL ? NULL :puiParent->m_pthread->m_pmutex,TRUE);
+               single_lock sl(puiParent->m_pbaseapp->m_pmutex,TRUE);
 
-               single_lock sl2(m_pthread == NULL ? NULL : m_pthread->m_pmutex,TRUE);
+               single_lock sl2(m_pbaseapp->m_pmutex,TRUE);
 
                if(!pholder->is_holding(this))
                {
@@ -3203,7 +3233,7 @@ namespace user
 
    sp(interaction) interaction::get_bottom_child()
    {
-      single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex,TRUE);
+      single_lock sl(m_pbaseapp->m_pmutex,TRUE);
       if(m_uiptraChild.get_count() <= 0)
          return NULL;
       else
@@ -3212,7 +3242,7 @@ namespace user
 
    sp(interaction) interaction::get_top_child()
    {
-      single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex,TRUE);
+      single_lock sl(m_pbaseapp->m_pmutex,TRUE);
       if(m_uiptraChild.get_count() <= 0)
          return NULL;
       else
@@ -3221,7 +3251,7 @@ namespace user
 
    sp(interaction) interaction::under_sibling()
    {
-      single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex,TRUE);
+      single_lock sl(m_pbaseapp->m_pmutex,TRUE);
       sp(interaction) pui = NULL;
       try
       {
@@ -3245,7 +3275,7 @@ namespace user
 
    sp(interaction) interaction::under_sibling(sp(interaction) pui)
    {
-      single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex,TRUE);
+      single_lock sl(m_pbaseapp->m_pmutex,TRUE);
       index i = m_uiptraChild.find_first(pui);
       if(i < 0)
          return NULL;
@@ -3269,7 +3299,7 @@ namespace user
 
    sp(interaction) interaction::above_sibling()
    {
-      single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex,TRUE);
+      single_lock sl(m_pbaseapp->m_pmutex,TRUE);
       sp(interaction) pui = NULL;
       try
       {
@@ -3303,7 +3333,7 @@ namespace user
 
    sp(interaction) interaction::above_sibling(sp(interaction) pui)
    {
-      single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex,TRUE);
+      single_lock sl(m_pbaseapp->m_pmutex,TRUE);
       index i = m_uiptraChild.find_first(pui);
       if(i < 0)
          return NULL;
@@ -4023,7 +4053,7 @@ namespace user
       catch(::exception::base * pe)
       {
 
-         m_pthread->process_window_procedure_exception(pe,spbase);
+         m_pbaseapp->process_window_procedure_exception(pe,spbase);
 
          pe->Delete();
 
@@ -4053,17 +4083,9 @@ namespace user
    void interaction::keep_alive(::base::live_object * pliveobject)
    {
 
-      m_pthread->keep_alive();
+      m_pbaseapp->keep_alive();
 
-      if(get_app() != NULL)
-      {
-         get_app()->keep_alive();
-      }
-
-      if(m_pthread->get_app() != NULL)
-      {
-         m_pthread->get_app()->keep_alive();
-      }
+      ::get_thread()->keep_alive();
 
       if(pliveobject != NULL)
       {
@@ -4519,9 +4541,7 @@ namespace user
 
       synch_lock slUserMutex(&user_mutex());
 
-      sp(interaction_impl) pimpl = m_pimpl;
-
-      synch_lock sl(pimpl.is_null() ? NULL : pimpl->mutex_graphics());
+      synch_lock sl(m_spmutex);
 
       bool bOk = false;
 
@@ -4531,7 +4551,7 @@ namespace user
          {
             if(z == ZORDER_TOP || z == ZORDER_TOPMOST)
             {
-               single_lock sl(m_pthread == NULL ? NULL : m_pthread->m_pmutex);
+               single_lock sl(m_pbaseapp->m_pmutex);
                if(sl.lock(millis(84)))
                {
                   index iFind = GetParent()->m_uiptraChild.find_first(this);
@@ -4749,6 +4769,14 @@ namespace user
       return m_pimpl->get_rect_normal(lprect);
 
    }
+
+   interaction_base::ETranslucency interaction::_001GetTranslucency()
+   {
+
+      return m_etranslucency;
+
+   }
+
 
 } // namespace user
 

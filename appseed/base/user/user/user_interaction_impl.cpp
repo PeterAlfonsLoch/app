@@ -1600,8 +1600,6 @@ namespace user
       if(!m_pui->m_bMessageWindow)
       {
 
-         m_spmutexGraphics    = canew(mutex(get_app()));
-
          m_spmutexDisplay     = canew(mutex(get_app()));
 
       }
@@ -2237,7 +2235,7 @@ namespace user
          update_graphics_resources();
       }
 
-      single_lock sl(mutex_graphics(),true);
+      single_lock sl(m_pui->m_spmutex,true);
 
       if(m_spdib.is_null())
          return;
@@ -2321,7 +2319,7 @@ namespace user
 
 */
 
-      single_lock sl(mutex_graphics(),false);
+      single_lock sl(m_pui->m_spmutex,false);
 
       if(!sl.lock(millis(0)))
       {
@@ -2497,13 +2495,6 @@ namespace user
 
    }
 
-   
-   sp(mutex) interaction_impl::mutex_graphics() 
-   { 
-      
-      return m_spmutexGraphics; 
-   
-   }
    
    sp(mutex) interaction_impl::mutex_display() 
    {

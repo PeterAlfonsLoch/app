@@ -14,7 +14,6 @@ namespace fontopus
    simple_ui::simple_ui(sp(::base::application) papp) :
       element(papp),
       ::simple_ui::style(papp),
-      ::user::interaction(papp),
       m_login(papp, 0, 0)
    {
 

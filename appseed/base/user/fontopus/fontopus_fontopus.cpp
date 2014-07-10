@@ -43,11 +43,21 @@ namespace fontopus
    }
 
 
-   user * fontopus::create_current_user()
+   user * fontopus::create_current_user(const char * pszRequestUrl)
    {
+      
       property_set set(get_app());
+
       if(m_puser == NULL)
       {
+
+         if(pszRequestUrl != NULL)
+         {
+            
+            set["ruri"] = pszRequestUrl;
+
+         }
+
          int32_t iRetry = 3;
          ::fontopus::user * puser = NULL;
          while(iRetry > 0)
@@ -99,18 +109,21 @@ namespace fontopus
       user * puser = NULL;
 
       class validate authuser(get_app(), "system\\user\\authenticate.xhtml", true);
+      
       authuser.m_bDeferRegistration = true;
+
       authuser.propset().merge(set);
 
       if(set.has_property("ruri"))
       {
+         
          puser = authuser.get_user(set["ruri"]);
+
       }
       else
       {
 
          puser = authuser.get_user();
-
 
       }
 
@@ -219,7 +232,7 @@ namespace fontopus
 
 
 
-   user * fontopus::get_user(bool bSynch)
+   user * fontopus::get_user(bool bSynch, const char * pszRequestUrl)
    {
 
       if(m_puser == NULL)
@@ -248,7 +261,18 @@ namespace fontopus
 
          }
 
-         m_pthreadCreatingUser = __begin_thread < create_user_thread >(get_app());
+         m_pthreadCreatingUser = new create_user_thread(get_app());
+
+         if(pszRequestUrl != NULL)
+         {
+
+            m_pthreadCreatingUser->m_strRequestUrl = pszRequestUrl;
+
+         }
+
+         m_pthreadCreatingUser->m_bAutoDelete = true;
+
+         m_pthreadCreatingUser->begin();
 
          if(!bSynch)
             return m_puser;
@@ -368,6 +392,13 @@ namespace fontopus
 
       string strHost(url_get_server(pszUrl));
 
+      if(strHost.is_empty())
+      {
+
+         strHost = System.url().get_server(pszUrl);
+
+      }
+
       string strFontopusServer;
 
       if (m_mapFontopusServer.Lookup(strHost, strFontopusServer) && strFontopusServer.has_char())
@@ -474,7 +505,7 @@ namespace fontopus
 
 #endif
 
-      ::fontopus::user * puser = BaseSession.fontopus()->create_current_user();
+      ::fontopus::user * puser = BaseSession.fontopus()->create_current_user(m_strRequestUrl);
 
       if(puser != NULL)
       {
