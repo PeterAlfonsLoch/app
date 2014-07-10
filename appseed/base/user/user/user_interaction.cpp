@@ -479,8 +479,6 @@ namespace user
 
       }
 
-      array < ::user::interaction  * > uiptra;
-
       if(GetParent() == NULL && !is_message_only_window())
       {
 
@@ -541,6 +539,16 @@ namespace user
 
          }
 
+
+      }
+
+
+      array < ::user::interaction  * > uiptra;
+
+      {
+
+         synch_lock sl(m_spmutex);
+
          single_lock slApp(m_pbaseapp->m_pmutex,TRUE);
 
          if(GetParent() != NULL)
@@ -563,6 +571,7 @@ namespace user
          m_uiptraChild.get_array(uiptra);
 
       }
+
 
       for(int32_t i = 0; i < uiptra.get_count(); i++)
       {
@@ -771,7 +780,16 @@ namespace user
 
       _001DrawThis(pdc);
 
-      _001DrawChildren(pdc);
+      try
+      {
+
+         _001DrawChildren(pdc);
+
+      }
+      catch(...)
+      {
+
+      }
 
    }
 
