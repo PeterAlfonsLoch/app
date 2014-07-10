@@ -41,6 +41,7 @@ namespace fontopus
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE,pdispatch,this,&simple_ui::_001OnMouseMove);
       IGUI_WIN_MSG_LINK(WM_MOVE,pdispatch,this,&simple_ui::_001OnMove);
       IGUI_WIN_MSG_LINK(WM_SIZE,pdispatch,this,&simple_ui::_001OnSize);
+      IGUI_WIN_MSG_LINK(WM_TIMER,pdispatch,this,&simple_ui::_001OnTimer);
 
    }
 
@@ -92,8 +93,41 @@ namespace fontopus
    //}
 
 
+   void simple_ui::_001OnTimer(::signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::timer,ptimer,pobj);
+
+      if(ptimer->m_nIDEvent == 1984)
+      {
+
+         try
+         {
+
+            string strUsername;
+            string strPassword;
+
+            ::fontopus::get_cred(get_app(),m_login.m_strUsername,m_login.m_strPassword,"ca2");
+
+            if(strUsername.has_char() && strPassword.has_char())
+            {
+               KillTimer(1984);
+
+               m_login.on_action("submit");
 
 
+
+            }
+
+         }
+         catch(...)
+         {
+
+         }
+
+      }
+
+   }
 
 
 
@@ -177,6 +211,8 @@ namespace fontopus
       BringWindowToTop();
 
       BringToTop(SW_NORMAL);
+
+      SetTimer(1984,284,NULL);
 
       id idResult = RunModalLoop();
 
