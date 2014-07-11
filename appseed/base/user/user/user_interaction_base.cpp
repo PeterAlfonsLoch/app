@@ -80,7 +80,14 @@ namespace user
    void interaction_base::_001RedrawWindow()
    {
 
-      GetWindow()->_001UpdateWindow();
+      sp(::user::interaction) pui = GetWindow();
+
+      if(pui.is_set())
+      {
+
+         GetWindow()->_001UpdateWindow();
+
+      }
       
    }
 

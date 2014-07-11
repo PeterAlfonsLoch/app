@@ -744,7 +744,7 @@ namespace user
 
       pgraphics->SelectClipRgn(NULL);
 
-      pgraphics->SetViewportOrg(ptViewport);
+      set_viewport_org(pgraphics);
 
       if(&BaseSession != NULL && BaseSession.m_bDrawCursor)
       {
@@ -767,6 +767,25 @@ namespace user
          }
 
       }
+
+      /*
+      
+      if(&BaseSession != NULL )
+      {
+         string strText;
+         point ptCursor;
+
+         BaseSession.get_cursor_pos(&ptCursor);
+
+         ScreenToClient(&ptCursor);
+         strText += ":[" + ::str::from(ptCursor.x) + ", " + ::str::from(ptCursor.y) + ":]";
+         pgraphics->TextOut(ptCursor.x,ptCursor.y,strText);
+      }
+
+      */
+
+      pgraphics->SetViewportOrg(ptViewport);
+
 
 
    }
@@ -2669,7 +2688,7 @@ namespace user
             if(!(dwFlags & MLF_NOIDLEMSG) && puieParent != NULL && lIdleCount == 0)
             {
                // send WM_ENTERIDLE to the parent
-               puieParent->send_message(WM_ENTERIDLE,MSGF_DIALOGBOX,(LPARAM)(DWORD_PTR)NULL);
+               //puieParent->send_message(WM_ENTERIDLE,MSGF_DIALOGBOX,(LPARAM)(DWORD_PTR)NULL);
             }
             /*if ((dwFlags & MLF_NOKICKIDLE) ||
             !__call_window_procedure(this, get_handle(), WM_KICKIDLE, MESSAGEF_DIALOGBOX, lIdleCount++))

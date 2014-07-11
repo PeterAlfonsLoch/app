@@ -20,7 +20,7 @@ namespace fontopus
       m_eschema = schema_normal;
       m_login.m_pstyle = this;
       m_bLButtonDown = false;
-
+      m_bFontopusSimpleUiLayout = false;
    }
 
 
@@ -195,6 +195,8 @@ namespace fontopus
       rectFontopus.right = rectFontopus.left + w;
       rectFontopus.bottom = rectFontopus.top + h;
 
+      if(puiParent != NULL)
+         puiParent->ScreenToClient(rectFontopus);
 
 
       m_login.defer_translate(this);
@@ -265,6 +267,95 @@ namespace fontopus
 
    void simple_ui::layout()
    {
+
+      if(!m_bFontopusSimpleUiLayout)
+      {
+
+         keep < bool > keepLayout(&m_bFontopusSimpleUiLayout,true,false,true);
+
+         rect rectClient1;
+
+         GetClientRect(rectClient1);
+
+         bool bParentChange = false;
+
+         if(GetParent() != NULL)
+         {
+
+            ::rect rectParent;
+
+            GetParent()->GetWindowRect(rectParent);
+
+            if(rectParent != m_rectParent)
+            {
+
+               bParentChange = true;
+
+            }
+
+         }
+
+
+         if(rectClient1.area() < 100 * 100 || bParentChange)
+         {
+
+            ::rect rectDesktop;
+
+            if(GetParent() != NULL)
+            {
+
+               GetParent()->GetWindowRect(rectDesktop);
+
+            }
+            else
+            {
+
+               BaseSession.get_main_monitor(rectDesktop);
+
+            }
+
+            rect rectFontopus;
+
+            rect rectLogin;
+
+            int stdw = 800;
+
+            int stdh = 184 + 23 + 184;
+
+            int w = stdw;
+
+            int h = stdh;
+
+            if(w > rectDesktop.width())
+            {
+
+               w = rectDesktop.width();
+
+            }
+
+            if(h > rectDesktop.height())
+            {
+
+               h = rectDesktop.height();
+
+            }
+
+            rectFontopus.left = rectDesktop.left + (width(rectDesktop) - w) / 2;
+            rectFontopus.top = rectDesktop.top + (height(rectDesktop) - h) / 3;
+            rectFontopus.right = rectFontopus.left + w;
+            rectFontopus.bottom = rectFontopus.top + h;
+
+
+            if(GetParent() != NULL)
+               GetParent()->ScreenToClient(rectFontopus);
+
+
+            SetWindowPos(ZORDER_TOP,rectFontopus,SWP_SHOWWINDOW);
+
+         }
+
+      }
+
 
       rect rectClient;
 

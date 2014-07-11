@@ -126,6 +126,16 @@ namespace simple_ui
 
       GetWindowText(strText);
 
+      /*
+      
+      ::rect rectWindow;
+
+      GetWindowRect(rectWindow);
+
+      strText += ":[" + ::str::from(rectWindow.left) + ", " + ::str::from(rectWindow.top) +":]";
+
+      */
+
       pgraphics->TextOut((int32_t)(rectClient.left + fMargin), (int32_t)(rectClient.top + fMargin), strText);
 
    }

@@ -19,6 +19,8 @@ namespace fontopus
       POINT                      m_ptLButtonDownPos;
 
       bool                       m_bDrag;
+      bool                       m_bFontopusSimpleUiLayout;
+      rect                       m_rectParent;
 
 
       simple_ui(sp(::base::application) papp);

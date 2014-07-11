@@ -30,6 +30,8 @@ namespace hotplugin
       ::draw2d::dib_sp              m_dib;
 
       rect                          m_rect;
+      rect                          m_rectClient;
+      rect                          m_rectWindow;
 
 
 

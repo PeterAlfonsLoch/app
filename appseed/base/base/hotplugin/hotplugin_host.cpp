@@ -563,16 +563,11 @@ throw todo(get_thread_app());
 
    //}
 
+
    void host::GetWindowRect(__rect64 * prect)
    {
 
-      prect->left       = 0;
-
-      prect->top        = 0;
-
-      prect->right      = m_rect.width();
-
-      prect->bottom     = m_rect.height();
+      ::copy(prect, m_rectWindow);
 
    }
 
@@ -580,19 +575,16 @@ throw todo(get_thread_app());
    void host::GetClientRect(__rect64 * prect)
    {
 
-      prect->left       = 0;
-
-      prect->top        = 0;
-
-      prect->right      = m_rect.width();
-
-      prect->bottom     = m_rect.height();
+      ::copy(prect,m_rectClient);
 
    }
 
 
    void host::message_handler(signal_details * pobj)
    {
+
+      if(pobj == NULL)
+         return;
 
       if(m_pplugin != NULL)
       {
