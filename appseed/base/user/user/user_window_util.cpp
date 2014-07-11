@@ -714,6 +714,13 @@ namespace user
 #if !defined(METROWIN) && !defined(APPLEOS)
 //      int32_t iOrder = 0;
       ::oswindow oswindowOrder = NULL;
+
+      if(!::IsWindow(oswindow))
+         return 0x7fffffff;
+
+      if(::GetParent(oswindow) == HWND_MESSAGE)
+         return 0x7fffffff;
+
       try
       {
          oswindowOrder = ::GetWindow(oswindow, GW_HWNDFIRST);
@@ -753,6 +760,9 @@ namespace user
    {
 
 #if defined(WINDOWSEX) || defined(LINUX)
+
+      if(!IsWindow(oswindow))
+         return;
 
       int32_t iOrder;
       ia.remove_all();
