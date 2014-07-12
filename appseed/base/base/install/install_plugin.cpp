@@ -377,7 +377,7 @@ namespace install
 
          }
 
-         System.url().set_param(strUrl,strUrl,"sessid",ApplicationUser.get_sessid(strUrl));
+         System.url().set_param(strUrl,strUrl,"sessid",ApplicationUser.get_sessid(System.url().get_server(m_phost->m_strPluginUrl)));
 
          m_phost->open_url(strUrl);
 
