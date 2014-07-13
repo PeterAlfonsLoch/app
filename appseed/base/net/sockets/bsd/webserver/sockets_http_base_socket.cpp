@@ -72,7 +72,14 @@ namespace sockets
 #ifndef DEBUG
          ::OutputDebugString("user-agent: " + m_request.header(__id(user_agent)) + "\n");
 #endif
-         TRACE0("user-agent: " + m_request.header(__id(user_agent)) + "\n");
+         TRACE0("user-agent: " + m_request.header(__id(user_agent)) + " :[ " + inattr("remote_addr") + "] \n");
+      }
+      else
+      {
+#ifndef DEBUG
+         ::OutputDebugString("user-agent: " + m_request.header(__id(user_agent)) + "\n");
+#endif
+         TRACE0("user-agent: () :[ " + inattr("remote_addr") + " ]\n");
       }
       if(m_request.headers().has_property(__id(from)))
       {
