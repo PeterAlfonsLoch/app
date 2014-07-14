@@ -94,7 +94,7 @@ namespace install
       if (!::hotplugin::plugin::set_host(phost))
          return false;
 
-      m_strLoginRequestingServer = System.url().get_server(m_phost->m_strHostPluginLocation);
+      m_strLoginRequestingServer = System.url().get_server(m_phost->get_host_location_url());
 
       return true;
 
@@ -273,7 +273,7 @@ namespace install
 
                //set_ready();
 
-               ensure_tx(::hotplugin::message_set_plugin_url, (void *) (const char*) m_phost->m_strPluginUrl, (int32_t) m_phost->m_strPluginUrl.length());
+               ensure_tx(::hotplugin::message_set_plugin_url,(void *)(const char*)m_phost->m_pbasecomposer->m_strPluginUrl,(int32_t)m_phost->m_pbasecomposer->m_strPluginUrl.length());
 
                ensure_tx(::hotplugin::message_set_ready, m_phost->m_memory.get_data(), (int32_t)m_phost->m_memory.get_size());
 
@@ -336,12 +336,16 @@ namespace install
          xxdebug_box("plugin::start_ca2 not logged", "not logged", 0);
 
          m_bLogin = true;
-         if(m_phost->m_strPluginUrl.has_char())
+
+         if(m_phost->m_pbasecomposer->m_strPluginUrl.has_char())
          {
-            m_bLogged = BaseSession.fontopus()->get_user(false,m_phost->m_strPluginUrl) != NULL;
+
+            m_bLogged = BaseSession.fontopus()->get_user(false,m_phost->m_pbasecomposer->m_strPluginUrl) != NULL;
+
          }
 
          m_bCa2Login = false;
+
          m_bCa2Logout = false;
 
       }
@@ -353,7 +357,7 @@ namespace install
 
       m_bLogin = false;
 
-      string strScript = System.url().get_script(m_phost->m_strPluginUrl);
+      string strScript = System.url().get_script(m_phost->m_pbasecomposer->m_strPluginUrl);
 
       if(!m_bCa2Login && strScript == "/ca2login")
       {
@@ -366,18 +370,18 @@ namespace install
          
          property_set set(get_app());
          
-         set.parse_url_query(System.url().get_query(m_phost->m_strPluginUrl));
+         set.parse_url_query(System.url().get_query(m_phost->m_pbasecomposer->m_strPluginUrl));
          
          string strUrl(set["ruri"]);
 
          if(strUrl.is_empty())
          {
           
-            strUrl = "http://" + BaseSession.fontopus()->get_server(m_phost->m_strPluginUrl) + "/";
+            strUrl = "http://" + BaseSession.fontopus()->get_server(m_phost->m_pbasecomposer->m_strPluginUrl) + "/";
 
          }
 
-         System.url().set_param(strUrl,strUrl,"sessid",ApplicationUser.get_sessid(System.url().get_server(m_phost->m_strPluginUrl)));
+         System.url().set_param(strUrl,strUrl,"sessid",ApplicationUser.get_sessid(System.url().get_server(m_phost->m_pbasecomposer->m_strPluginUrl)));
 
          m_phost->open_url(strUrl);
 
@@ -397,7 +401,7 @@ namespace install
 
          property_set set(get_app());
 
-         set.parse_url_query(System.url().get_query(m_phost->m_strPluginUrl));
+         set.parse_url_query(System.url().get_query(m_phost->m_pbasecomposer->m_strPluginUrl));
          
          //ca2logout(set);
 
@@ -944,7 +948,7 @@ namespace install
       if(!m_bLogged)
          return;
 
-      string strScript = System.url().get_script(m_phost->m_strPluginUrl);
+      string strScript = System.url().get_script(m_phost->m_pbasecomposer->m_strPluginUrl);
 
       if (!m_bInstalling && System.install().is_ca2_installed())
       {
@@ -976,7 +980,7 @@ namespace install
 
             property_set set(get_app());
 
-            strPrompt = Application.http().get(m_phost->m_strPluginUrl, set);
+            strPrompt = Application.http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set);
 
             if (strPrompt.is_empty())
             {
@@ -1061,7 +1065,7 @@ restart:
          Sleep(iAttemptStream * 84);
       }
 
-      while(m_phost->m_strPluginUrl.is_empty())
+      while(m_phost->m_pbasecomposer->m_strPluginUrl.is_empty())
       {
          if(!m_phost->m_bStream)
          {
@@ -1076,7 +1080,7 @@ restart:
 
       property_set set(get_app());
 
-      while((str = Application.http().get(m_phost->m_strPluginUrl, set)).is_empty())
+      while((str = Application.http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set)).is_empty())
       {
          if(!m_phost->m_bStream)
          {

@@ -37,7 +37,7 @@ public:
    void unreg(index *pi)
    {
       synch_lock sl(m_pmutex);
-      add(pi);
+      remove(pi);
    }
 #undef new
    DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION

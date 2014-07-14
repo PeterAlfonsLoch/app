@@ -9,10 +9,20 @@
 // hot plugin host - is a plugin - also - that can host a plugin by forwarding calls
 
 
+namespace hotplugin
+{
+
+   
+   class composer;
+
+
+} // namespace hotplugin
+
+
 #include "hotplugin_plugin.h"
 #include "hotplugin_host.h"
 #include "hotplugin_container_launcher.h"
-
+#include "hotplugin_composer.h"
 
 typedef ::hotplugin::plugin * (* FN_NEW_HOTPLUGIN)();
 
@@ -36,6 +46,22 @@ namespace hotplugin
 
    };
 
+
+
+   CLASS_DECL_BASE ::base::system * get_base_system();
+
+   CLASS_DECL_BASE bool start_base_system();
+   CLASS_DECL_BASE void stop_base_system();
+
+
+#ifdef WINDOWS
+
+   // hotplugin plugin dll HINSTANCE
+   CLASS_DECL_BASE HINSTANCE get_hinstance();
+   CLASS_DECL_BASE void set_hinstance(HINSTANCE hinstance);
+   CLASS_DECL_BASE void entry_hall_windows_on_paint(HDC hdc,LPCRECT lpcrect);
+
+#endif
 
 } // namespace ca2plugin_container
 

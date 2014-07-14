@@ -20,6 +20,7 @@ namespace hotplugin
       ::base::session(this)
    {
 
+      m_pbasecomposer            = NULL;
       m_pplugin                  = NULL;
       m_dProgressRate            = 0.0;
       m_bShowProgress            = true;
@@ -50,7 +51,12 @@ namespace hotplugin
    bool host::open_url(const char * psz)
    {
 
-      UNREFERENCED_PARAMETER(psz);
+      if(m_pbasecomposer != NULL)
+      {
+
+         return m_pbasecomposer->open_url(psz);
+
+      }
 
       return false;
 
@@ -59,13 +65,23 @@ namespace hotplugin
 
    bool host::reload_plugin()
    {
+
       return false;
+
    }
+
 
    string host::get_host_location_url()
    {
 
-      return m_strHostPluginLocation;
+      if(m_pbasecomposer != NULL)
+      {
+
+         return m_pbasecomposer->m_strHostPluginLocation;
+
+      }
+
+      return "";
 
    }
 
@@ -97,6 +113,7 @@ namespace hotplugin
 
    }
 
+
    void host::append_memory(void * puchMemory, ::count c)
    {
 
@@ -104,12 +121,14 @@ namespace hotplugin
 
    }
 
+
    ::count host::get_memory_length()
    {
       
       return m_memory.get_size();
 
    }
+
 
    ::count host::read_memory(void * puchMemory, ::count c)
    {
@@ -123,6 +142,7 @@ namespace hotplugin
 
    }
 
+
    void host::free_memory()
    {
       
@@ -130,28 +150,21 @@ namespace hotplugin
 
    }
 
-   /*void host::free_memory(byte ** ppuchMemory)
-   {
-   }*/
-
-
-   //void host::start_ca2();
-
-
-   //void host::finalize();
-
-   //bool host::os_native_bergedge_start();
-
-   //int32_t starter_start(const char * pszId);
 
    int32_t host::start_ca2_system()
    {
+
       if(m_pplugin != NULL)
       {
+
          return m_pplugin->start_ca2_system();
+
       }
+
       return -1;
+
    }
+
 
    void host::on_paint(::draw2d::graphics * pgraphics, LPCRECT lprect)
    {
@@ -168,6 +181,7 @@ namespace hotplugin
          }
          catch(...)
          {
+
          }
 
       }
@@ -186,31 +200,6 @@ namespace hotplugin
       }
 
    }
-
-
-//#ifdef WINDOWS
-//
-//   LRESULT host::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
-//   {
-//      if(m_pplugin != NULL)
-//      {
-//         return m_pplugin->message_handler(uiMessage, wparam, lparam);
-//      }
-//      return 0;
-//   }
-//
-//#else
-//
-//   int32_t host::message_handler(XEvent * pevent)
-//   {
-//      if(m_pplugin != NULL)
-//      {
-//         return m_pplugin->message_handler(pevent);
-//      }
-//      return 0;
-//   }
-//
-//#endif
 
 
    void host::set_ready()
@@ -277,62 +266,81 @@ namespace hotplugin
    void host::start_plugin()
    {
 
-      //Sleep(15 * 1000);
-      //Sleep(15 * 1000);
-      //      update_npca2_installed();
-      mutex * pmutex = new mutex(get_thread_app(), "Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
-      if(::GetLastError() == ERROR_ALREADY_EXISTS)
       {
-         m_bRunningSpaAdmin = true;
-         delete pmutex;
-         return;
-      }
-      delete pmutex;
+       
+         sp(mutex) pmutex = canew(mutex(get_thread_app(),"Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"));
+         
+         if(::GetLastError() == ERROR_ALREADY_EXISTS)
+         {
 
+            m_bRunningSpaAdmin = true;
+
+            return;
+
+         }
+
+      }
 
       m_pplugin = new install::plugin(get_app());
+
       m_pplugin->set_host(this);
       
-
-
-
    }
+
 
    void host::start_ca2()
    {
+
       if(m_pplugin != NULL)
       {
+
          m_pplugin->start_ca2();
+
       }
       else
       {
+
          ::hotplugin::plugin::start_ca2();
+
       }
+
    }
+
 
    void host::set_progress_rate(double dRate)
    {
+
       m_dProgressRate = dRate;
+
    }
+
 
    double host::get_progress_rate()
    {
+
       if(m_dProgressRate < 0.0)
          return 0.0;
       else if(m_dProgressRate > 1.0)
          return 1.0;
       else
          return m_dProgressRate;
+
    }
+
 
    void host::set_ca2_installation_ready(bool bReady)
    {
+
       m_bCa2InstallationReady = bReady;
+
    }
+
 
    bool host::is_ca2_installation_ready()
    {
+
       return m_bCa2InstallationReady;
+
    }
 
 
@@ -373,8 +381,11 @@ throw todo(get_thread_app());
 //      if((rc = pthread_create(&threadId, &attr, (void*(*)(void*))&::_ca2_starter_start,  pstart)))
   //       return -1;
 #endif
+
       return 0;
+
    }
+
 
    int32_t host::host_starter_start_sync(const char * pszCommandLine, ::base::application * papp, plugin * pplugin)
    {
@@ -388,7 +399,6 @@ throw todo(get_thread_app());
       ::install::_ca2_starter_start(pstart);
 
       return 0;
-      
 
    }
 
@@ -398,10 +408,13 @@ throw todo(get_thread_app());
 
       if(m_pplugin != NULL)
       {
+
          m_pplugin->deferred_prodevian_redraw();
+
       }
 
    }
+
 
    void * host::get_system()
    {
@@ -410,12 +423,6 @@ throw todo(get_thread_app());
 
    }
 
-   /*void host::set_system(void * pvoidSystem)
-   {
-
-      m_pvoidSystem = pvoidSystem;
-
-   }*/
 
    void host::set_status(const char * pszStatus)
    {
@@ -424,7 +431,9 @@ throw todo(get_thread_app());
 
       if(m_pplugin != NULL)
       {
+
          m_pplugin->set_status(pszStatus);
+
       }
 
    }
@@ -462,11 +471,13 @@ throw todo(get_thread_app());
       }
       catch(...)
       {
+
       }
 
       return;
 
    }
+
 
    void host::paint_bitmap(::draw2d::graphics * pgraphics, LPCRECT lprect)
    {
@@ -500,6 +511,7 @@ throw todo(get_thread_app());
       }
       catch(...)
       {
+
       }
 
       return;
@@ -542,26 +554,11 @@ throw todo(get_thread_app());
 
    }
 
+
    void host::translate_mouse_message(int * px, int * py)
    {
 
    }
-
-
-   //bool host::show_window(bool bShow)
-   //{
-
-   //   return ::user::interaction::show_window(bShow);
-
-   //}
-
-
-   //bool host::destroy_window()
-   //{
-
-   //   return ::user::interaction::destroy_window();
-
-   //}
 
 
    void host::GetWindowRect(__rect64 * prect)
@@ -598,7 +595,79 @@ throw todo(get_thread_app());
    }
 
 
+   bool host::hotplugin_host_begin()
+   {
+
+      try
+      {
+
+         if(!begin())
+            return false;
+
+      }
+      catch(...)
+      {
+
+         return false;
+
+      }
+
+
+      return true;
+
+   }
+
+
+   bool host::hotplugin_host_is_initialized()
+   {
+
+      return m_bInitialized;
+
+   }
+
+
+   bool host::hotplugin_host_initialize()
+   {
+
+      m_bInitialized = true;
+
+      return true;
+
+   }
+
+
+   void host::hotplugin_host_on_write()
+   {
+
+
+   }
+
+
+
+   bool host::SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
+   {
+
+      bool bOk = ::hotplugin::plugin::SetWindowPos(z,x,y,cx,cy,nFlags);
+
+      for(index i = 0; i < m_uiptraChild.get_count(); i++)
+      {
+
+         m_uiptraChild[i]->layout();
+
+      }
+
+      return bOk;
+
+   }
+
+
+
 } // namespace hotplugin
+
+
+
+
+
 
 
 

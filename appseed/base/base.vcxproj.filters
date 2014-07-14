@@ -4631,6 +4631,9 @@
     <ClInclude Include="base\exception\exception_parsing.h">
       <Filter>Header Files\base\exception</Filter>
     </ClInclude>
+    <ClInclude Include="base\hotplugin\hotplugin_composer.h">
+      <Filter>Header Files\base\hotplugin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -8788,6 +8791,15 @@
     <ClCompile Include="base\exception\exception_parsing.cpp">
       <Filter>Source Files\base\exception</Filter>
     </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_composer.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_windows.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -8981,6 +8993,9 @@
     </None>
     <None Include="base\message\message.inl">
       <Filter>Header Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

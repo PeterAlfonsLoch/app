@@ -19,9 +19,6 @@ namespace hotplugin
    public:
 
 
-      string                        m_strPluginUrl;
-      string                        m_strPluginHeaders;
-      //primitive::memory             m_memoryPlugin;
       bool                          m_bOnPaint;
       bool                          m_bInitialized;
       FILE *                        m_pfile;

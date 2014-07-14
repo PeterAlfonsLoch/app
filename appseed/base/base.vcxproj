@@ -1840,6 +1840,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\geoip\geoip_update.h" />
     <ClInclude Include="base\geoip\global.h" />
     <ClInclude Include="base\hotplugin\hotplugin.h" />
+    <ClInclude Include="base\hotplugin\hotplugin_composer.h" />
     <ClInclude Include="base\hotplugin\hotplugin_container_launcher.h" />
     <ClInclude Include="base\hotplugin\hotplugin_host.h" />
     <ClInclude Include="base\hotplugin\hotplugin_plugin.h" />
@@ -2988,6 +2989,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\geoip\geoip_region_name.cpp" />
     <ClCompile Include="base\geoip\geoip_time_zone.cpp" />
     <ClCompile Include="base\geoip\geoip_update.cpp" />
+    <ClCompile Include="base\hotplugin\hotplugin.cpp" />
+    <ClCompile Include="base\hotplugin\hotplugin_composer.cpp" />
+    <ClCompile Include="base\hotplugin\hotplugin_windows.cpp" />
     <ClCompile Include="base\install\install_plugin_bare_paint_discreet.cpp" />
     <ClCompile Include="base\install\install_plugin_bare_paint_full_screen.cpp" />
     <ClCompile Include="base\message\message.cpp" />

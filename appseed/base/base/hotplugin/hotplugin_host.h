@@ -4,18 +4,18 @@
 namespace hotplugin
 {
 
-
+   
    class CLASS_DECL_BASE host :
       virtual public plugin
    {
    public:
 
 
+      ::hotplugin::composer *       m_pbasecomposer;
       plugin *                      m_pplugin;
       primitive::memory             m_memory;
       double                        m_dProgressRate;
       bool                          m_bShowProgress;
-      string                        m_strHostPluginLocation;
 
 
       bool                          m_bCa2InstallationReady;
@@ -66,6 +66,12 @@ namespace hotplugin
       using ::hotplugin::plugin::GetClientRect;
       virtual void GetClientRect(__rect64 * lprect);
 
+      virtual bool hotplugin_host_begin();
+      virtual bool hotplugin_host_is_initialized();
+      virtual bool hotplugin_host_initialize();
+
+
+      virtual void hotplugin_host_on_write();
 
 
       // client should implement
@@ -128,6 +134,9 @@ namespace hotplugin
       //virtual bool DestroyWindow();
 
       virtual void message_handler(signal_details * pobj);
+
+      using ::hotplugin::plugin::SetWindowPos;
+      virtual bool SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags);
 
 
    };

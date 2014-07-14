@@ -478,10 +478,10 @@ namespace plugin
 
          open_ca2_string((const char *) m_memory.get_data());
       }
-      else if(m_phost->m_strPluginUrl.get_length() > 0)
+      else if(m_phost->m_pbasecomposer->m_strPluginUrl.get_length() > 0)
       {
 
-         string strPluginUrl     = System.url().override_if_empty(m_phost->m_strPluginUrl, get_host_location_url());
+         string strPluginUrl     = System.url().override_if_empty(m_phost->m_pbasecomposer->m_strPluginUrl,get_host_location_url());
 
          string strExtension     = System.file().extension(System.url().get_script(strPluginUrl));
 
@@ -550,16 +550,16 @@ namespace plugin
 
          string strPluginUrl;
 
-         strPluginUrl = m_phost->m_strPluginUrl;
+         strPluginUrl = m_phost->m_pbasecomposer->m_strPluginUrl;
 
          System.url().override_if_empty(strPluginUrl, get_host_location_url());
 
-         string strPluginScript = System.url().get_script(m_phost->m_strPluginUrl);
+         string strPluginScript = System.url().get_script(m_phost->m_pbasecomposer->m_strPluginUrl);
 
 
          property_set headers(get_app());
 
-         headers.parse_http_headers(m_phost->m_strPluginHeaders);
+         headers.parse_http_headers(m_phost->m_pbasecomposer->m_strPluginHeaders);
 
          string strContentType = headers[__id(content_type)];
 
