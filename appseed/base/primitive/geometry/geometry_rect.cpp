@@ -39,26 +39,55 @@ void rect::ExtendOnCenter(LPCRECT lpcrect)
    
 }
 
+void rect::FitOnCenterOf(LPCRECT lpcrect,SIZE size)
+{
+   int32_t cx = size.cx;
+   int32_t cy = size.cy;
+
+   double dx = lpcrect->right - lpcrect->left;
+   double dy = lpcrect->bottom - lpcrect->top;
+   double dr = min(cx == 0 ? 1 : dx / cx,cy == 0 ? 1 : dy / cy);
+
+   int32_t cw = cx == 0 ? (int32_t)dx : ((int32_t)(cx * dr));
+   int32_t ch = cy == 0 ? (int32_t)dy : ((int32_t)(cy * dr));
+
+   left = (LONG)((lpcrect->left) + (dx - cw) / 2.0);
+   top = (LONG)((lpcrect->top) + (dy - ch) / 2.0);
+   right = left + cw;
+   bottom = top + ch;
+
+}
 
 void rect::FitOnCenterOf(LPCRECT lpcrect)
 {
    
-   int32_t cx = width();
-   int32_t cy = height();
-
-   double dx = lpcrect->right - lpcrect->left;
-   double dy = lpcrect->bottom - lpcrect->top;
-   double dr = min(cx == 0 ? 1 : dx / cx, cy == 0 ? 1 : dy / cy);
-
-   int32_t cw = cx == 0 ? (int32_t) dx : ((int32_t) (cx * dr));
-   int32_t ch = cy == 0 ? (int32_t) dy : ((int32_t) (cy * dr));
-
-   left = (LONG) ((lpcrect->left) + (dx - cw) / 2.0);
-   top = (LONG) ((lpcrect->top) + (dy - ch) / 2.0);
-   right = left + cw;
-   bottom = top + ch;
+   FitOnCenterOf(lpcrect,size());
    
 }
+
+
+void rect::CenterOf(LPCRECT lpcrect,SIZE size)
+{
+   int32_t cx = size.cx;
+   int32_t cy = size.cy;
+
+   double dx = ::width(lpcrect);
+   double dy = ::height(lpcrect);
+
+   left     = lpcrect->left   + (dx - cx) / 2;
+   top      = lpcrect->top    + (dy - cy) / 2;
+   right    = left            + cx;
+   bottom   = top             + cy;
+
+}
+
+void rect::CenterOf(LPCRECT lpcrect)
+{
+
+   CenterOf(lpcrect,size());
+
+}
+
 
 void rect::ScaleRect(double dx, double dy, int32_t ix, int32_t iy)
 {

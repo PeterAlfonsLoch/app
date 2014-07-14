@@ -150,6 +150,9 @@ public:
    void ScaleRect(double dx, double dy, int32_t ix, int32_t iy);
    void ExtendOnCenter(LPCRECT lpcrect);
    void FitOnCenterOf(LPCRECT lpcrect);
+   void FitOnCenterOf(LPCRECT lpcrect, SIZE size);
+   void CenterOf(LPCRECT lpcrect);
+   void CenterOf(LPCRECT lpcrect,SIZE size);
    void DeflateBottomRightSizeByRate(double dRate);
    void SetBottomRightSize(int32_t iWidth, int32_t iHeight);
    inline point top_right();
