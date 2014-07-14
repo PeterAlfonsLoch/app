@@ -1228,7 +1228,7 @@ namespace install
 
 #endif
 
-      if (!file_exists_dup("C:\\ca2\\config\\do_not_download_file_list.txt") && bPrivileged)
+      if (!file_exists_dup("C:\\ca2\\config\\plugin\\do_not_download_file_list.txt") && bPrivileged)
       {
 
          trace().rich_trace("***Verifying installer");

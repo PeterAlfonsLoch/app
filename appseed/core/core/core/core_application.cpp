@@ -1640,7 +1640,7 @@ bool application::on_run_exception(::exception::exception & e)
 
       not_installed & notinstalled = dynamic_cast <not_installed &> (e);
 
-      if (::is_debugger_attached() && !file_exists_dup("C:\\ca2\\config\\disable_manual_install_warning.txt"))
+      if (::is_debugger_attached() && !file_exists_dup("C:\\ca2\\config\\plugin\\disable_manual_install_warning.txt"))
       {
 
          try

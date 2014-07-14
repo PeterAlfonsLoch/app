@@ -142,10 +142,10 @@ void command_line::_001ParseCommandLine(const char * pszCommandLine)
       || m_varQuery["build_number"].is_empty())
    {
 
-      if (file_exists_dup("C:\\ca2\\config\\build_number.txt"))
+      if (file_exists_dup("C:\\ca2\\config\\plugin\\build_number.txt"))
       {
 
-         string str = file_as_string_dup("C:\\ca2\\config\\build_number.txt");
+         string str = file_as_string_dup("C:\\ca2\\config\\plugin\\build_number.txt");
 
          m_varQuery["build_number"] = str;
 

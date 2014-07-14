@@ -455,10 +455,10 @@ namespace windows
 
       string str;
 
-      if (file_exists_dup("C:\\ca2\\config\\draw2d.txt"))
+      if (file_exists_dup("C:\\ca2\\config\\system\\draw2d.txt"))
       {
 
-         str = file_as_string_dup("C:\\ca2\\config\\draw2d.txt");
+         str = file_as_string_dup("C:\\ca2\\config\\system\\draw2d.txt");
 
       }
       else
