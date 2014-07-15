@@ -18529,6 +18529,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <None Include="primitive\str\str.inl" />
     <None Include="base.def" />
   </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="base.rc" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

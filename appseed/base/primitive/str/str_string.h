@@ -339,10 +339,16 @@ public:
    // look for a specific sub-string
 
    // find the first occurrence of string 'pszSub', starting at index 'iStart'
-   strsize find(const char * pszSub, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
-   strsize find_w(const char * pszSub, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
-   strsize find_ci(const char * pszSub, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
-   strsize find_wci(const char * pszSub, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize find(const char * pszSub,strsize start = 0,strsize count = -1,const char ** pszTail = NULL) const RELEASENOTHROW;
+   strsize find_w(const char * pszSub,strsize start = 0,strsize count = -1,const char ** pszTail = NULL) const RELEASENOTHROW;
+   strsize find_ci(const char * pszSub,strsize start = 0,strsize count = -1,const char ** pszTail = NULL) const RELEASENOTHROW;
+   strsize find_wci(const char * pszSub, strsize start = 0, strsize count = -1, const char ** pszTail = NULL) const RELEASENOTHROW;
+
+   // find the first occurrence of string 'pszSub', starting at index 'iStart', if found returns the index of first character after the end of the found string
+   strsize find_tail(const char * pszSub,strsize start = 0,strsize count = -1) const RELEASENOTHROW;
+   strsize find_w_tail(const char * pszSub,strsize start = 0,strsize count = -1) const RELEASENOTHROW;
+   strsize find_ci_tail(const char * pszSub,strsize start = 0,strsize count = -1) const RELEASENOTHROW;
+   strsize find_wci_tail(const char * pszSub,strsize start = 0,strsize count = -1) const RELEASENOTHROW;
 
    // find the first occurrence of any of the characters in string 'pszCharSet'
    strsize FindOneOf(const char * pszCharSet, strsize iStart = 0, strsize n = -1 ) const RELEASENOTHROW;

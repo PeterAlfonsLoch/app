@@ -1571,7 +1571,7 @@ strsize string::find_first_of(char ch,strsize iStart) const RELEASENOTHROW
 // look for a specific sub-string
 
 // find the first occurrence of string 'pszSub', starting at strsize 'iStart'
-strsize string::find(const char * pszSub,strsize iStart, strsize nCount) const RELEASENOTHROW
+strsize string::find(const char * pszSub,strsize iStart, strsize nCount, const char ** pszTail) const RELEASENOTHROW
 {
    // iStart is in XCHARs
    ASSERT( iStart >= 0 );
@@ -1613,14 +1613,18 @@ strsize string::find(const char * pszSub,strsize iStart, strsize nCount) const R
          }
       }
       if(bFound && j == nLength2)
+      {
+         if(pszTail)
+            *pszTail = &psz[j];
          return i + iStart;
+      }
       psz++;
    }
    return -1;
 }
 
 // find the first occurrence of string 'pszSub', starting at strsize 'iStart'
-strsize string::find_ci(const char * pszSub,strsize iStart, strsize nCount) const RELEASENOTHROW
+strsize string::find_ci(const char * pszSub,strsize iStart,strsize nCount,const char ** pszTail) const RELEASENOTHROW
 {
    // iStart is in XCHARs
    ASSERT( iStart >= 0 );
@@ -1648,11 +1652,13 @@ strsize string::find_ci(const char * pszSub,strsize iStart, strsize nCount) cons
    if(nCount < 0)
       return -1;
 
+   int32_t j;
+
    const char * psz = GetString() + iStart;
    for(int32_t i = 0; i <= nCount; i++)
    {
       bool bFound = true;
-      for(int32_t j = 0; j < nLength2; j++)
+      for(j = 0; j < nLength2; j++)
       {
          if(tolower(psz[j]) != tolower(pszSub[j]))
          {
@@ -1661,14 +1667,18 @@ strsize string::find_ci(const char * pszSub,strsize iStart, strsize nCount) cons
          }
       }
       if(bFound)
+      {
+         if(pszTail)
+            *pszTail = &psz[j];
          return i + iStart;
+      }
       psz++;
    }
    return -1;
 }
 
 // find the first occurrence of string 'pszSub', starting at strsize 'iStart'
-strsize string::find_w(const char * pszSub,strsize iStart, strsize nCount) const RELEASENOTHROW
+strsize string::find_w(const char * pszSub,strsize iStart,strsize nCount,const char ** pszTail) const RELEASENOTHROW
 {
    // iStart is in XCHARs
    ASSERT( iStart >= 0 );
@@ -1705,6 +1715,8 @@ strsize string::find_w(const char * pszSub,strsize iStart, strsize nCount) const
       {
          if(*pszSub2 == '\0')
          {
+            if(pszTail)
+               *pszTail = psz2;
             return psz - GetString();
          }
          else
@@ -1718,7 +1730,7 @@ strsize string::find_w(const char * pszSub,strsize iStart, strsize nCount) const
 }
 
 // find the first occurrence of string 'pszSub', starting at strsize 'iStart'
-strsize string::find_wci(const char * pszSub,strsize iStart, strsize nCount) const RELEASENOTHROW
+strsize string::find_wci(const char * pszSub,strsize iStart,strsize nCount,const char ** pszTail) const RELEASENOTHROW
 {
    // iStart is in XCHARs
    ASSERT( iStart >= 0 );
@@ -1755,6 +1767,8 @@ strsize string::find_wci(const char * pszSub,strsize iStart, strsize nCount) con
       {
          if(*pszSub2 == '\0')
          {
+            if(pszTail)
+               *pszTail = psz2;
             return psz - GetString();
          }
          else
@@ -1766,6 +1780,59 @@ strsize string::find_wci(const char * pszSub,strsize iStart, strsize nCount) con
    }
    return -1;
 }
+
+
+strsize string::find_tail(const char * pszSub,strsize start,strsize count) const RELEASENOTHROW
+{
+
+   const char * pszTail = NULL;
+
+   if(find(pszSub,start,count,&pszTail) < 0)
+      return -1;
+
+   return pszTail - m_pszData;
+
+}
+
+
+strsize string::find_w_tail(const char * pszSub,strsize start,strsize count) const RELEASENOTHROW
+{
+
+   const char * pszTail = NULL;
+
+   if(find_w(pszSub,start,count,&pszTail) < 0)
+      return -1;
+
+   return pszTail - m_pszData;
+
+}
+
+
+strsize string::find_ci_tail(const char * pszSub,strsize start,strsize count) const RELEASENOTHROW
+{
+
+   const char * pszTail = NULL;
+
+   if(find_ci(pszSub,start,count,&pszTail) < 0)
+      return -1;
+
+   return pszTail - m_pszData;
+
+}
+
+
+strsize string::find_wci_tail(const char * pszSub,strsize start,strsize count) const RELEASENOTHROW
+{
+
+   const char * pszTail = NULL;
+
+   if(find_wci(pszSub,start,count,&pszTail) < 0)
+      return -1;
+
+   return pszTail - m_pszData;
+
+}
+
 
 // find the first occurrence of any of the characters in string 'pszCharSet'
 strsize string::FindOneOf(const char * pszCharSet, strsize iStart, strsize n) const RELEASENOTHROW
