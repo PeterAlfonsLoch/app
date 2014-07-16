@@ -977,7 +977,6 @@ namespace user
       GetWindowRect(rectWindow);
       get_wnd()->viewport_screen_to_client(rectWindow);
       pgraphics->SetViewportOrg(rectWindow.top_left());
-      pgraphics->SelectClipRgn(NULL);
 
    }
 
@@ -1093,6 +1092,13 @@ namespace user
 
          GetParent()->ClientToScreen(lprect);
 
+         point ptScroll = m_pui->get_parent_scroll_position();
+
+         lprect->left   -= (LONG)ptScroll.x;
+         lprect->right  -= (LONG)ptScroll.x;
+         lprect->top    -= (LONG)ptScroll.y;
+         lprect->bottom -= (LONG)ptScroll.y;
+
       }
 
    }
@@ -1109,23 +1115,45 @@ namespace user
 
       if(GetParent() != NULL)
       {
+
          GetParent()->ClientToScreen(lprect);
+
+         point ptScroll = m_pui->get_parent_scroll_position();
+
+         lprect->left   -= (LONG)ptScroll.x;
+         lprect->right  -= (LONG)ptScroll.x;
+         lprect->top    -= (LONG)ptScroll.y;
+         lprect->bottom -= (LONG)ptScroll.y;
+
       }
+
    }
 
+   
    void interaction_child::ClientToScreen(LPPOINT lppoint)
    {
+      
       lppoint->x     += (LONG)m_rectParentClient.left;
       lppoint->y     += (LONG)m_rectParentClient.top;
+      
       if(GetParent() != NULL)
       {
+         
          GetParent()->ClientToScreen(lppoint);
+
+         point ptScroll = m_pui->get_parent_scroll_position();
+
+         lppoint->x  -= (LONG)ptScroll.x;
+         lppoint->y  -= (LONG)ptScroll.y;
+
       }
+
    }
 
 
    void interaction_child::ClientToScreen(__rect64 * lprect)
    {
+   
       lprect->left   += m_rectParentClient.left;
       lprect->right  += m_rectParentClient.left;
       lprect->top    += m_rectParentClient.top;
@@ -1133,23 +1161,45 @@ namespace user
 
       if(GetParent() != NULL)
       {
+         
          GetParent()->ClientToScreen(lprect);
+
+         point ptScroll = m_pui->get_parent_scroll_position();
+
+         lprect->left   -= (LONG)ptScroll.x;
+         lprect->right  -= (LONG)ptScroll.x;
+         lprect->top    -= (LONG)ptScroll.y;
+         lprect->bottom -= (LONG)ptScroll.y;
+
       }
+
    }
+
 
    void interaction_child::ClientToScreen(__point64 * lppoint)
    {
+      
       lppoint->x     += m_rectParentClient.left;
       lppoint->y     += m_rectParentClient.top;
+      
       if(GetParent() != NULL)
       {
+      
          GetParent()->ClientToScreen(lppoint);
+
+         point ptScroll = m_pui->get_parent_scroll_position();
+
+         lppoint->x  -= (LONG)ptScroll.x;
+         lppoint->y  -= (LONG)ptScroll.y;
+
       }
+
    }
 
 
    void interaction_child::ScreenToClient(LPRECT lprect)
    {
+
       lprect->left   -= (LONG)m_rectParentClient.left;
       lprect->right  -= (LONG)m_rectParentClient.left;
       lprect->top    -= (LONG)m_rectParentClient.top;
@@ -1157,23 +1207,44 @@ namespace user
 
       if(GetParent() != NULL)
       {
+
          GetParent()->ScreenToClient(lprect);
+
+         point ptScroll = m_pui->get_parent_scroll_position();
+
+         lprect->left   += (LONG)ptScroll.x;
+         lprect->right  += (LONG)ptScroll.x;
+         lprect->top    += (LONG)ptScroll.y;
+         lprect->bottom += (LONG)ptScroll.y;
+
       }
+
    }
+
 
    void interaction_child::ScreenToClient(LPPOINT lppoint)
    {
+
       lppoint->x     -= (LONG)m_rectParentClient.left;
       lppoint->y     -= (LONG)m_rectParentClient.top;
+
       if(GetParent() != NULL)
       {
          GetParent()->ScreenToClient(lppoint);
+
+         point ptScroll = m_pui->get_parent_scroll_position();
+
+         lppoint->x  += (LONG)ptScroll.x;
+         lppoint->y  += (LONG)ptScroll.y;
+
       }
+
    }
 
 
    void interaction_child::ScreenToClient(__rect64 * lprect)
    {
+
       lprect->left   -= m_rectParentClient.left;
       lprect->right  -= m_rectParentClient.left;
       lprect->top    -= m_rectParentClient.top;
@@ -1181,18 +1252,39 @@ namespace user
 
       if(GetParent() != NULL)
       {
+
          GetParent()->ScreenToClient(lprect);
+
+         point ptScroll = m_pui->get_parent_scroll_position();
+
+         lprect->left   += (LONG)ptScroll.x;
+         lprect->right  += (LONG)ptScroll.x;
+         lprect->top    += (LONG)ptScroll.y;
+         lprect->bottom += (LONG)ptScroll.y;
+
       }
+
    }
+
 
    void interaction_child::ScreenToClient(__point64 * lppoint)
    {
+      
       lppoint->x     -= m_rectParentClient.left;
       lppoint->y     -= m_rectParentClient.top;
+
       if(GetParent() != NULL)
       {
+
          GetParent()->ScreenToClient(lppoint);
+
+         point ptScroll = m_pui->get_parent_scroll_position();
+
+         lppoint->x  += (LONG)ptScroll.x;
+         lppoint->y  += (LONG)ptScroll.y;
+
       }
+
    }
 
 

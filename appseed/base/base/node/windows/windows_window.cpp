@@ -5452,7 +5452,6 @@ namespace windows
       // graphics will be already set its view port to the interaction_impl for linux - cairo with xlib
 
       pgraphics->SetViewportOrg(point(0,0));
-      pgraphics->SelectClipRgn(NULL);
 
    }
 

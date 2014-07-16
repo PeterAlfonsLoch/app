@@ -66,6 +66,7 @@ void simple_scroll_bar::_001OnMouseMove(signal_details * pobj)
       send_scroll_message(SB_THUMBPOSITION);
       pmouse->set_lresult(1);
       pmouse->m_bRet = true;
+
    }
    else
    {

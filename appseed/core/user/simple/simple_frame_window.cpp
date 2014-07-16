@@ -858,6 +858,8 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
    if (m_bFrameMoveEnable)
    {
 
+
+
       WindowDataLoadWindowRect(bForceRestore,true);
 
       WindowDataEnableSaveWindowRect(true);
@@ -992,7 +994,6 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics * pdc)
          }
 #endif
       }
-      pdc->SelectClipRgn(NULL);
    }
 
    _011OnDraw(pdc);

@@ -85,6 +85,9 @@ namespace user
       DECL_GEN_SIGNAL(_001OnMouseWheel);
       DECL_GEN_SIGNAL(_001OnUser9654);
 
+      
+      virtual point get_scroll_position();
+
 
    };
 

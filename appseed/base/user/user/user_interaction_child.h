@@ -143,6 +143,7 @@ namespace user
       virtual void ScreenToClient(LPPOINT lppoint);
       virtual void ScreenToClient(__point64 * lppoint);
 
+
    };
 
 

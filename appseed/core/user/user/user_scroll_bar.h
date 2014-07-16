@@ -45,6 +45,10 @@ namespace user
 
       virtual void send_scroll_message(UINT nSBCode);
 
+      virtual point get_parent_scroll_position();
+      virtual point get_ascendant_scroll_position();
+
+
    };
 
 } // namespace user

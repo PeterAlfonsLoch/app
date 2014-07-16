@@ -211,11 +211,15 @@ namespace user
       SCAST_PTR(::message::scroll, pscroll, pobj);
 
 
-      keep < bool > keepVScroll(&m_scrollinfo.m_bVScroll, true, false, true);
+      keep < bool > keepVScroll(&m_scrollinfo.m_bVScroll,true,false,true);
 
+      {
 
-      m_scrollinfo.m_ptScroll.y = pscroll->m_nPos;
+         synch_lock slUser(&user_mutex());
 
+         m_scrollinfo.m_ptScroll.y = pscroll->m_nPos;
+
+      }
 
       _001OnUpdateScrollPosition();
 
@@ -233,11 +237,16 @@ namespace user
       SCAST_PTR(::message::scroll, pscroll, pobj);
 
 
-      keep < bool > keepHScroll(&m_scrollinfo.m_bHScroll, true, false, true);
+      keep < bool > keepHScroll(&m_scrollinfo.m_bHScroll,true,false,true);
 
 
-      m_scrollinfo.m_ptScroll.x = pscroll->m_nPos;
+      {
 
+         synch_lock slUser(&user_mutex());
+
+         m_scrollinfo.m_ptScroll.x = pscroll->m_nPos;
+
+      }
 
       _001OnUpdateScrollPosition();
 
@@ -516,6 +525,14 @@ namespace user
       {
          m_scrollinfo.m_ptScroll.y = (m_scrollinfo.m_sizeTotal.cy - m_scrollinfo.m_sizePage.cy);
       }
+
+   }
+
+
+   point scroll_view::get_scroll_position()
+   {
+
+      return m_scrollinfo.m_ptScroll;
 
    }
 

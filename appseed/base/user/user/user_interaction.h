@@ -602,6 +602,10 @@ namespace user
 
       virtual interaction_base::ETranslucency _001GetTranslucency();
 
+      virtual point get_scroll_position();
+      virtual point get_parent_scroll_position();
+      virtual point get_ascendant_scroll_position();
+
    };
 
 

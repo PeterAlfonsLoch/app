@@ -319,6 +319,8 @@ namespace user
          return;
 
       m_pimpl->GetWindowRect(lprect);
+
+
       
    }
 
@@ -668,6 +670,52 @@ namespace user
 
          }
 
+         try
+         {
+
+            ::draw2d::region_sp rgnClip(allocer());
+
+            rect rectClient;
+
+            sp(::user::interaction) pui = this;
+
+            bool bFirst = true;
+
+            while(pui.is_set())
+            {
+
+               pui->GetWindowRect(rectClient);
+
+               ScreenToClient(rectClient);
+
+               rgnClip->create_rect(rectClient);
+
+               if(bFirst)
+               {
+
+                  bFirst = false;
+
+                  pgraphics->SelectClipRgn(rgnClip);
+
+               }
+               else
+               {
+
+                  pgraphics->SelectClipRgn(rgnClip,RGN_AND);
+
+               }
+
+               pui = pui->GetParent();
+
+            }
+
+
+         }
+         catch(...)
+         {
+
+         }
+
          {
 
             synch_lock sl(m_spmutex);
@@ -834,8 +882,6 @@ namespace user
 
          GetClientRect(rectClient);
 
-         pdc->SelectClipRgn(NULL);
-
          pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
          pdc->FillSolidRect(rectClient,get_background_color());
@@ -847,8 +893,6 @@ namespace user
          rect rectClient;
 
          GetClientRect(rectClient);
-
-         pdc->SelectClipRgn(NULL);
 
          pdc->set_alpha_mode(::draw2d::alpha_mode_set);
 
@@ -4283,7 +4327,7 @@ namespace user
          synch_lock slUserMutex(&user_mutex());
 
          {
-
+            
             keep < bool > keepLockWindowUpdate(&m_bLockWindowUpdate,true,false,true);
 
             keep < bool > keepIgnoreSizeEvent(&m_pimpl->m_bIgnoreSizeEvent,true,false,true);
@@ -4294,9 +4338,13 @@ namespace user
 
             ::ShowWindow(get_handle(),SW_MAXIMIZE);
 
+            SetWindowPos(iZOrder,rectWkspace,uiSwpFlags);
+
          }
 
-         SetWindowPos(iZOrder,rectWkspace,uiSwpFlags);
+         send_message(WM_SIZE);
+
+         send_message(WM_MOVE);
 
 #elif defined WINDOWSEX
 
@@ -4395,9 +4443,13 @@ namespace user
 
             ::ShowWindow(get_handle(),SW_RESTORE);
 
+            SetWindowPos(iZOrder,rect,uiSwpFlags);
+
          }
 
-         SetWindowPos(iZOrder,rect,uiSwpFlags);
+         send_message(WM_SIZE);
+
+         send_message(WM_MOVE);
 
 
 #elif defined WINDOWSEX
@@ -4811,6 +4863,46 @@ namespace user
    {
 
       return m_etranslucency;
+
+   }
+
+   point interaction::get_scroll_position()
+   {
+
+      return point(0, 0);
+
+   }
+
+   point interaction::get_ascendant_scroll_position()
+   {
+
+      sp(::user::interaction) puser = GetParent();
+
+      point pt(0,0);
+
+      while(puser.is_set())
+      {
+
+         pt += puser->get_scroll_position();
+
+         puser = puser->GetParent();
+
+      }
+
+      return pt;
+
+   }
+
+
+   point interaction::get_parent_scroll_position()
+   {
+
+      sp(::user::interaction) puser = GetParent();
+
+      if(puser.is_null())
+         return point(0,0);
+
+      return puser->get_scroll_position();
 
    }
 

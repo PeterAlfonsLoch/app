@@ -71,6 +71,25 @@ namespace user
    }
 
 
+   point scroll_bar::get_ascendant_scroll_position()
+   {
+
+      if(GetParent() == NULL)
+         return point(0,0);
+
+      return GetParent()->get_ascendant_scroll_position();
+
+   }
+
+
+   point scroll_bar::get_parent_scroll_position()
+   {
+
+      return point(0,0);
+
+   }
+
+
 } // namespace user
 
 
