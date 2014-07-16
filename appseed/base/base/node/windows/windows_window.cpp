@@ -4063,7 +4063,7 @@ namespace windows
       ASSERT(::IsWindow(get_handle()));
 
 
-      return interaction_impl::GetDescendantWindow((::windows::interaction_impl *) this,id);
+      return interaction_impl::GetDescendantWindow(m_pui,id);
    }
 
 
