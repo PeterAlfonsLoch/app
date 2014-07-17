@@ -3405,10 +3405,22 @@ namespace user
 
    void interaction::mouse_hover_add(sp(::user::interaction) pinterface)
    {
+
+      if(m_pimpl == NULL)
+         return;
+
+      m_pimpl->mouse_hover_add(pinterface);
+
    }
 
    void interaction::mouse_hover_remove(sp(::user::interaction) pinterface)
    {
+
+      if(m_pimpl == NULL)
+         return;
+
+      m_pimpl->mouse_hover_remove(pinterface);
+
    }
 
 

@@ -15,6 +15,10 @@ namespace user
 
       m_crText = ARGB(255, 0, 0, 0);
 
+      m_crHover = ARGB(255,84,84,84);
+
+      m_bHover = false;
+
    }
 
 
@@ -113,7 +117,41 @@ namespace user
    void static_control::_001OnDraw(::draw2d::graphics * pdc)
    {
 
-      pdc->set_text_color(m_crText);
+      COLORREF crText;
+
+      if(m_bHover)
+      {
+
+         point pt;
+         
+         BaseSession.get_cursor_pos(&pt);
+
+         ::rect rectWindow;
+
+         GetWindowRect(rectWindow);
+
+         if(rectWindow.contains(pt))
+         {
+
+            crText = m_crHover;
+
+         }
+         else
+         {
+
+            crText = m_crText;
+
+         }
+
+      }
+      else
+      {
+
+         crText = m_crText;
+
+      }
+
+      pdc->set_text_color(crText);
 
       pdc->SelectObject(GetFont());
 
