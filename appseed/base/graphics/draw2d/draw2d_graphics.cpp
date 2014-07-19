@@ -5,7 +5,7 @@
 namespace draw2d
 {
 
-   void word_break(::draw2d::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, string &str1, string & str2);
+   void word_break(::draw2d::graphics * pdc, const string & strSource, LPCRECT lpcrect, string &str1, string & str2);
 
    strsize _EncodeV033(string & str);
 
@@ -3564,70 +3564,86 @@ namespace draw2d
 
 
 
-   void word_break(::draw2d::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, string &str1, string & str2)
+   void word_break(::draw2d::graphics * pdc, const string & strSource, LPCRECT lpcrect, string &str1, string & str2)
    {
 
       string str;
 
       rect rectClip(*lpcrect);
 
-      wstring wstr = ::str::international::utf8_to_unicode(lpcsz);
+      const char * lpszSource = strSource;
 
-      const wchar_t * lpwsz = wstr;
+      strsize len = strSource.get_length();
+
+      const char * lpszEnd = lpszSource + len;
 
 //      index iFind = str.find(L' ');
 
-      strsize i = 1;
-      strsize iEnd = -1;
+      const char * lpszStart = ::str::utf8_inc(lpszSource);
 
       size sz;
 
-      int iLastSpaceStart = -1;
-      int iLastSpaceEnd = -1;
+      const char * lpszSpaceStart = NULL;
+      const char * lpszSpaceEnd = NULL;
 
-      while (i <= (strsize) wcslen(wstr))
+      const char * lpsz = lpszStart;
+
+      const char * lpszPrevious = lpszSource;
+
+      string strChar;
+
+      while(lpsz <= lpszEnd)
       {
 
-         sz = pdc->GetTextExtent(string(lpwsz, i));
+         sz = pdc->GetTextExtent(lpszSource, lpsz - lpszSource);
 
-         if (::str::ch::is_space_char(lpwsz[i - 1]))
+         if(::str::ch::is_space_char(lpszPrevious))
          {
-            iLastSpaceStart = i - 1;
-            while (::str::ch::is_space_char(lpwsz[i - 1]))
+            lpszSpaceStart       = lpszPrevious;
+            do
             {
-               iLastSpaceEnd = i - 1;
-               i++;
-            }
+               lpszSpaceEnd      = lpsz;
+               if(!::str::ch::is_space_char(lpsz))
+               {
+                  break;
+               }
+               lpszPrevious      = lpsz;
+               lpsz              = ::str::utf8_inc(lpsz);
+            } while(lpsz != NULL);
          }
 
          if (sz.cx > rectClip.width())
          {
 
-            if (i == 1)
-               break;
-
-            if (iLastSpaceStart > 0)
+            if(lpsz == lpszStart)
             {
-               i = iLastSpaceStart;
-               iEnd = iLastSpaceEnd + 1;
+               lpszEnd = lpszStart;
                break;
             }
 
-            i--;
+            if(lpszSpaceStart != NULL)
+            {
+               // "legit" word break, i.meaning., found mid space in text and split there, instead of slicing a full word in a single-character (above) or the maximum-unclipped (below).
+               lpsz = lpszSpaceStart;
+               lpszEnd = lpszSpaceEnd;
+               break;
+            }
+
+            lpsz = ::str::utf8_dec(lpszSource, lpsz);
+            lpszEnd = lpsz;
 
             break;
 
          }
 
-         i++;
+         lpszPrevious = lpsz;
+         lpsz = ::str::utf8_inc(lpsz);
 
       }
-      if (iEnd < 0)
-         iEnd = i;
 
-      ::str::international::unicode_to_utf8(str1, lpwsz, i);
+      str1 = string(lpszSource, lpsz - lpszSource);
 
-      ::str::international::unicode_to_utf8(str2, &lpwsz[iEnd]);
+      str2 = string(lpszEnd);
 
    }
 

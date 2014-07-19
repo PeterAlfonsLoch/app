@@ -23,7 +23,7 @@ namespace user
       m_scrollinfo.m_sizePage.cy = 0;
       m_scrollinfo.m_sizeLine.cx = 0;
       m_scrollinfo.m_sizeLine.cy = 0;
-      m_scrollinfo.m_bVScrollBarEnable = true;
+      m_scrollinfo.m_bHScrollBarEnable = true;
       m_scrollinfo.m_bVScrollBarEnable = true;
 
    }

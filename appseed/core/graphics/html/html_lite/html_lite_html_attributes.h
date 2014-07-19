@@ -461,8 +461,8 @@ public:
    {
       if (!(nIndex >= 0 && nIndex < getCount()))
          return (false);
-      LiteHTMLElemAttr   *pItem = NULL;
-      VERIFY(((*m_parrAttrib)[nIndex]) != NULL);
+      LiteHTMLElemAttr   *pItem = (*m_parrAttrib)[nIndex];
+      ASSERT(pItem != NULL);
       SAFE_DELETE_POINTER(pItem);
       return (true);
    }
@@ -478,7 +478,8 @@ public:
       LiteHTMLElemAttr   *pItem = NULL;
       for (int32_t iElem = 0; iElem < getCount(); iElem++)
       {
-         VERIFY((pItem = (*m_parrAttrib)[iElem]) != NULL);
+         pItem = (*m_parrAttrib)[iElem];
+         ASSERT(pItem != NULL);
          SAFE_DELETE_POINTER(pItem);
       }
       SAFE_DELETE_POINTER(m_parrAttrib);

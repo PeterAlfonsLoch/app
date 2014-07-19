@@ -534,9 +534,6 @@ CLASS_DECL_BASE bool  __check_memory()
 
 }
 
-#endif
-
-
 void __cdecl __crt_dump_client(void * pvData,size_t nBytes)
 {
    char sz[1024];
@@ -619,6 +616,9 @@ int32_t __cdecl __crt_report_hook(int32_t nRptType,__in char *szMsg,int32_t* pRe
    //Allow other report hooks to be called.
    return FALSE;
 }
+
+
+#endif
 
 
 

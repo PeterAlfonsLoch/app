@@ -19,14 +19,14 @@ numeric_parser_exception::~numeric_parser_exception()
 }
 
 
-CLASS_DECL_BASE bool get_avoid_numeric_parser_exception()
+CLASS_DECL_CORE bool get_avoid_numeric_parser_exception()
 {
 
    return t_iAvoidNumericParserException != FALSE;
 
 }
 
-CLASS_DECL_BASE bool throw_numeric_parser_exception(const string & strMessage)
+CLASS_DECL_CORE bool throw_numeric_parser_exception(const string & strMessage)
 {
 
    if(get_avoid_numeric_parser_exception())
