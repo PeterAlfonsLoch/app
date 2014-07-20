@@ -125,11 +125,11 @@ namespace user
       ::user::split_view * psplitview = dynamic_cast < ::user::split_view * > (impact::create_view(System.type_info < ::user::split_view > (), get_document(), this, 100).m_p);
       if(eposition == position_top || eposition == position_bottom)
       {
-         psplitview->SetSplitOrientation(::user::split_layout::orientation_horizontal);
+         psplitview->SetSplitOrientation(orientation_horizontal);
       }
       else
       {
-         psplitview->SetSplitOrientation(::user::split_layout::orientation_vertical);
+         psplitview->SetSplitOrientation(orientation_vertical);
       }
       psplitview->SetPaneCount(2);
       bool bSwap;

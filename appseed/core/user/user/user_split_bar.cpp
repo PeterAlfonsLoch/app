@@ -120,7 +120,7 @@ namespace user
       if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count() && !m_pparent->m_panea[m_iIndex].m_bFixedSize)
       {
 
-         if(m_pparent->GetSplitOrientation() == split_layout::orientation_horizontal)
+         if(m_pparent->GetSplitOrientation() == orientation_horizontal)
          {
 
             pmouse->m_ecursor = ::visual::cursor_size_vertical;

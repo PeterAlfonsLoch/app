@@ -8,14 +8,16 @@ public:
 
 
    //::draw2d::brush_sp       m_brushNull;
-   ::draw2d::pen_sp         m_penDraw;
+   ::draw2d::pen_sp           m_penDraw;
    ::draw2d::brush_sp         m_brushDraw;
-   point                m_ptTrackOffset;
-   point                m_ptaA[4]; // pontos da primeira seta
-   point                m_ptaB[4]; // pontos da segunda seta
-   ::draw2d::region_sp         m_rgnA; // região da primeira seta
-   ::draw2d::region_sp         m_rgnB; // região da segunda seta
-   UINT                 m_uiTimer;
+   point                      m_ptTrackOffset;
+   rect                       m_rectA;
+   rect                       m_rectB;
+   point                      m_ptaA[4]; // pontos da primeira seta
+   point                      m_ptaB[4]; // pontos da segunda seta
+   ::draw2d::region_sp        m_rgnA; // região da primeira seta
+   ::draw2d::region_sp        m_rgnB; // região da segunda seta
+   UINT                       m_uiTimer;
 
 
    simple_scroll_bar(sp(::base::application) papp);

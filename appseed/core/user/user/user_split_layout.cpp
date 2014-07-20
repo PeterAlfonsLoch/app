@@ -661,7 +661,7 @@ namespace user
 
    }
 
-   split_layout::e_orientation split_layout::GetSplitOrientation()
+   e_orientation split_layout::GetSplitOrientation()
    {
       return m_eorientationSplit;
    }

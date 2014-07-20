@@ -20,11 +20,6 @@ namespace user
       virtual public ::user::interaction
    {
    public:
-      enum e_orientation
-      {
-         orientation_horizontal = 1,
-         orientation_vertical = 2
-      };
 
       e_orientation  m_eorientation;
       scroll_info    m_scrollinfo;

@@ -56,6 +56,18 @@ public:
    POINT &        pt() throw() { return (POINT &)*this; }
    const POINT &  pt() const throw() { return (const POINT &)*this; }
 
+   inline LONG get_dimension(e_orientation eorientation) const throw();
+   inline LONG get_orthogonal_dimension(e_orientation eorientation) const throw();
+   inline LONG get_orthogonal(e_orientation eorientation)const throw() { return get_orthogonal_dimension(eorientation); } 
+   inline LONG get_normal_dimension(e_orientation eorientation) const throw(){ return get_orthogonal_dimension(eorientation); } 
+   inline LONG get_normal(e_orientation eorientation) const throw(){ return get_orthogonal_dimension(eorientation); } 
+
+   inline LONG set_dimension(e_orientation eorientation, LONG l) throw();
+   inline LONG set_orthogonal_dimension(e_orientation eorientation, LONG l) throw();
+   inline LONG set_orthogonal(e_orientation eorientation,LONG l)  throw(){ return set_orthogonal_dimension(eorientation,l); }
+   inline LONG set_normal_dimension(e_orientation eorientation,LONG l)  throw(){ return set_orthogonal_dimension(eorientation,l); }
+   inline LONG set_normal(e_orientation eorientation,LONG l) throw() { return set_orthogonal_dimension(eorientation,l); } 
+
 };
 
 
@@ -182,4 +194,73 @@ public:
 inline bool sized::is_empty() const throw()
 {
    return cx <= 0 || cy <= 0;
+}
+
+
+
+inline LONG size::get_dimension(e_orientation eorientation) const throw()
+{
+   if(eorientation == orientation_horizontal)
+   {
+      return cx;
+   }
+   else if(eorientation == orientation_vertical)
+   {
+      return cy;
+   }
+   else
+   {
+      return 0;
+   }
+}
+
+
+inline LONG size::get_orthogonal_dimension(e_orientation eorientation) const throw()
+{
+   if(eorientation == orientation_horizontal)
+   {
+      return cy;
+   }
+   else if(eorientation == orientation_vertical)
+   {
+      return cx;
+   }
+   else
+   {
+      return 0;
+   }
+}
+
+
+inline LONG size::set_dimension(e_orientation eorientation, LONG l) throw()
+{
+   if(eorientation == orientation_horizontal)
+   {
+      return cx = l;
+   }
+   else if(eorientation == orientation_vertical)
+   {
+      return cy = l;
+   }
+   else
+   {
+      return 0;
+   }
+}
+
+
+inline LONG size::set_orthogonal_dimension(e_orientation eorientation, LONG l) throw()
+{
+   if(eorientation == orientation_horizontal)
+   {
+      return cy = l;
+   }
+   else if(eorientation == orientation_vertical)
+   {
+      return cx = l;
+   }
+   else
+   {
+      return 0;
+   }
 }

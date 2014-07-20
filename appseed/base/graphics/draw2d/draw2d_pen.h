@@ -20,11 +20,11 @@ namespace draw2d
       };
 
       
-      enum e_end_cap
+      enum e_line_cap
       {
          
-         end_cap_flat,
-         end_cap_round
+         line_cap_flat,
+         line_cap_round
             
       };
 
@@ -41,7 +41,8 @@ namespace draw2d
       
 
       e_type            m_etype;
-      e_end_cap         m_eendcap;
+      e_line_cap        m_elinecapBeg;
+      e_line_cap        m_elinecapEnd;
       e_line_join       m_elinejoin;
       double            m_dWidth;
       COLORREF          m_cr;
@@ -54,8 +55,11 @@ namespace draw2d
       virtual bool create_null();
       virtual bool create_solid(double dWidth, COLORREF crColor);
 
-      virtual e_end_cap get_end_cap();
-      virtual bool set_end_cap(e_end_cap eendcap);
+      virtual e_line_cap get_beg_cap();
+      virtual bool set_beg_cap(e_line_cap ebegcap);
+
+      virtual e_line_cap get_end_cap();
+      virtual bool set_end_cap(e_line_cap eendcap);
 
       virtual e_line_join get_line_join();
       virtual bool set_line_join(e_line_join elinejoin);

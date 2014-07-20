@@ -115,14 +115,14 @@ namespace user
       if(m_scrollinfo.m_bHScroll)
       {
          if(m_pscrollbarHorz == NULL)
-            create_scroll_bar(scroll_bar::orientation_horizontal);
+            create_scroll_bar(orientation_horizontal);
 
       }
 
       if(m_scrollinfo.m_bVScroll)
       {
          if(m_pscrollbarVert == NULL)
-            create_scroll_bar(scroll_bar::orientation_vertical);
+            create_scroll_bar(orientation_vertical);
       }
 
    }
@@ -396,10 +396,10 @@ namespace user
    }
 
 
-   void scroll_view::create_scroll_bar(scroll_bar::e_orientation eorientation)
+   void scroll_view::create_scroll_bar(e_orientation eorientation)
    {
 
-      if(eorientation == scroll_bar::orientation_horizontal)
+      if(eorientation == orientation_horizontal)
       {
          if(m_pscrollbarHorz != NULL)
             return;
@@ -422,7 +422,7 @@ namespace user
          return;
       }
 
-      if(eorientation == scroll_bar::orientation_horizontal)
+      if(eorientation == orientation_horizontal)
       {
          m_pscrollbarHorz = pbar;
       }

@@ -17,14 +17,6 @@ namespace user
       friend class split_bar;
 
 
-      enum e_orientation
-      {
-
-         orientation_none        = 0,
-         orientation_horizontal  = 1,
-         orientation_vertical    = 2,
-
-      };
 
 
       enum

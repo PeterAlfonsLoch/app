@@ -224,7 +224,7 @@ bool simple_scroll_bar::GetTrackRect(LPRECT lpRect)
    if(m_eorientation == orientation_horizontal)
    {
       int32_t iWidth = rectClient.width() - GetSystemMetrics(SM_CXHSCROLL) * 2 - sizeTrack.cx - 1;
-      lpRect->top = rectClient.top + 2;
+      lpRect->top = rectClient.top;
       lpRect->bottom = rectClient.top + sizeTrack.cy;
       if(m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage == 0)
          lpRect->left = 0;
@@ -240,7 +240,7 @@ bool simple_scroll_bar::GetTrackRect(LPRECT lpRect)
       else
          lpRect->top = GetSystemMetrics(SM_CYVSCROLL) + 1 + (iPos - m_scrollinfo.nMin) * iHeight / (m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage);
       lpRect->bottom = lpRect->top + sizeTrack.cy;
-      lpRect->left = rectClient.left + 1;
+      lpRect->left = rectClient.left;
       lpRect->right = lpRect->left + sizeTrack.cx;
    }
 #endif
@@ -359,7 +359,7 @@ int32_t simple_scroll_bar::GetTrackSize(size &size)
    else if(m_eorientation == orientation_vertical)
    {
       int32_t iHeight = rectClient.height() - GetSystemMetrics(SM_CYVSCROLL) * 2;
-      size.cx = rectClient.width() - 1;
+      size.cx = rectClient.width();
       int32_t cy = 5;
       int32_t iRange = (m_scrollinfo.nMax - m_scrollinfo.nMin);
       if( iHeight > 0)
@@ -441,6 +441,8 @@ int32_t simple_scroll_bar::_001GetScrollPos()
       return m_scrollinfo.nPos;
 }
 
+
+
 void simple_scroll_bar::_001OnSize(signal_details * pobj)
 {
 
@@ -452,8 +454,18 @@ void simple_scroll_bar::_001OnSize(signal_details * pobj)
    GetClientRect(rectClient);
    class size size = rectClient.size();
 
+   int iArrowForce = 4;
+   int iArrowStability = size.get_orthogonal_dimension(m_eorientation) - 2 - 3 * 2;
+
    if(m_eorientation == orientation_horizontal)
    {
+
+      m_rectA.left   = 0;
+      m_rectA.top    = 0;
+      m_rectA.right  = min(GetSystemMetrics(SM_CXHSCROLL),size.cx / 2);
+      m_rectA.bottom = size.cy;
+
+      /*
       m_ptaA[0].x = 0;
       m_ptaA[0].y = size.cy / 2;
       m_ptaA[1].x = min(GetSystemMetrics(SM_CXHSCROLL), size.cx / 2);
@@ -462,19 +474,48 @@ void simple_scroll_bar::_001OnSize(signal_details * pobj)
       m_ptaA[2].y = 1;
       m_ptaA[3].x = m_ptaA[0].x;
       m_ptaA[3].y = m_ptaA[0].y;
+      */
 
+      m_ptaA[0].x = m_rectA.left + (m_rectA.width() + iArrowForce) / 2;
+      m_ptaA[0].y = m_rectA.top + (m_rectA.height() - iArrowStability) / 2;
+      m_ptaA[1].x = m_rectA.left + (m_rectA.width() - iArrowForce) / 2;
+      m_ptaA[1].y = m_rectA.top + m_rectA.height() / 2;
+      m_ptaA[2].x = m_rectA.left + (m_rectA.width() + iArrowForce) / 2;
+      m_ptaA[2].y = m_rectA.top + (m_rectA.height() + iArrowStability) / 2;;
 
+      m_rectB.left   = max(size.cx - GetSystemMetrics(SM_CXHSCROLL),size.cx / 2);
+      m_rectB.top    = 0;
+      m_rectB.right  = size.cx;
+      m_rectB.bottom = size.cy;
+
+      /*
       m_ptaB[0].x = size.cx;
       m_ptaB[0].y = size.cy / 2;
-      m_ptaB[1].x = max(size.cx - GetSystemMetrics(SM_CXHSCROLL), size.cx / 2);
+      m_ptaB[1].x = ;
       m_ptaB[1].y = 1;
       m_ptaB[2].x = m_ptaB[1].x;
       m_ptaB[2].y = size.cy - 1;
       m_ptaB[3].x = m_ptaB[0].x;
       m_ptaB[3].y = m_ptaA[0].y;
+      */
+
+      m_ptaB[0].x = m_rectB.left + (m_rectB.width() - iArrowForce) / 2;
+      m_ptaB[0].y = m_rectB.top + (m_rectB.height() - iArrowStability) / 2;
+      m_ptaB[1].x = m_rectB.left + (m_rectB.width() + iArrowForce) / 2;
+      m_ptaB[1].y = m_rectB.top + m_rectB.height() / 2;
+      m_ptaB[2].x = m_rectB.left + (m_rectB.width() - iArrowForce) / 2;
+      m_ptaB[2].y = m_rectB.top + (m_rectB.height() + iArrowStability) / 2;;
+
    }
    else if(m_eorientation == orientation_vertical)
    {
+
+      m_rectA.left   = 0;
+      m_rectA.top    = 0;
+      m_rectA.right  = size.cx;
+      m_rectA.bottom = min(GetSystemMetrics(SM_CYVSCROLL),size.cy / 2);
+
+      /*
       m_ptaA[0].x = size.cx / 2;
       m_ptaA[0].y = 0;
       m_ptaA[1].x = 1;
@@ -483,7 +524,21 @@ void simple_scroll_bar::_001OnSize(signal_details * pobj)
       m_ptaA[2].y = m_ptaA[1].y;
       m_ptaA[3].x = m_ptaA[0].x;
       m_ptaA[3].y = m_ptaA[0].y;
+      */
 
+      m_ptaA[0].x = m_rectA.left + (m_rectA.width() - iArrowStability) / 2;
+      m_ptaA[0].y = m_rectA.top + (m_rectA.height() + iArrowForce) / 2;
+      m_ptaA[1].x = m_rectA.left + m_rectA.width() / 2;
+      m_ptaA[1].y = m_rectA.top +( m_rectA.height() - iArrowForce) / 2;
+      m_ptaA[2].x = m_rectA.left + (m_rectA.width() + iArrowStability) / 2;
+      m_ptaA[2].y = m_rectA.top + (m_rectA.height() + iArrowForce) / 2;;
+
+      m_rectB.left   = 0;
+      m_rectB.top    = max(size.cy - GetSystemMetrics(SM_CYVSCROLL),size.cy / 2);
+      m_rectB.right  = size.cx;
+      m_rectB.bottom = size.cy;
+
+      /*
       m_ptaB[0].x = size.cx / 2;
       m_ptaB[0].y = size.cy;
       m_ptaB[1].x = size.cx - 1;
@@ -492,14 +547,21 @@ void simple_scroll_bar::_001OnSize(signal_details * pobj)
       m_ptaB[2].y = m_ptaB[1].y;
       m_ptaB[3].x = m_ptaA[0].x;
       m_ptaB[3].y = m_ptaB[0].y;
+      */
+      m_ptaB[0].x = m_rectB.left + (m_rectB.width() - iArrowStability) / 2;
+      m_ptaB[0].y = m_rectB.top + (m_rectB.height() - iArrowForce) / 2;
+      m_ptaB[1].x = m_rectB.left + m_rectB.width() / 2;
+      m_ptaB[1].y = m_rectB.top + (m_rectB.height() + iArrowForce) / 2;
+      m_ptaB[2].x = m_rectB.left + (m_rectB.width() + iArrowStability) / 2;
+      m_ptaB[2].y = m_rectB.top + (m_rectB.height() - iArrowForce) / 2;;
    }
    else
    {
       ASSERT(FALSE);
    }
 
-   m_rgnA->create_polygon(m_ptaA, 4, ::draw2d::fill_mode_winding);
-   m_rgnB->create_polygon(m_ptaB, 4, ::draw2d::fill_mode_winding);
+   m_rgnA->create_rect(m_rectA);
+   m_rgnB->create_rect(m_rectB);
 
 
 //   psize->m_bRet = false;
@@ -812,9 +874,6 @@ void simple_scroll_bar::update_drawing_objects()
 void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
 {
 
-   m_penDraw->create_solid(1, ARGB(255, 0, 0, 0));
-
-   m_brushDraw->m_etype = ::draw2d::brush::type_null;
 
    pdc->SelectClipRgn(NULL);
 
@@ -839,8 +898,6 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
          127);
    }
 
-   pdc->SelectObject(m_penDraw);
-
    rect rectTrack;
 
    GetTrackRect(rectTrack);
@@ -849,11 +906,70 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
 
    GetWindowRect(rectWindow);
 
-   pdc->DrawRectangle(rectTrack);
+   m_penDraw->create_solid(1,ARGB(184,84 - 49,84 - 49,77 - 49));
+
+   m_brushDraw->create_solid(ARGB(77 + 49, 184, 184, 177));
+
+   pdc->SelectObject(m_penDraw);
+
 
    pdc->SelectObject(m_brushDraw);
-   pdc->Polygon(m_ptaA, 4);
-   pdc->Polygon(m_ptaB, 4);
+
+   pdc->Rectangle(rectTrack);
+
+   ::draw2d::pen_sp penGrip(allocer());
+
+   penGrip->create_solid(2.0,ARGB(184,84 + 23,84 + 23,77 + 23));
+
+   pdc->SelectObject(penGrip);
+
+   point ptCenter = rectTrack.center();
+
+   if(m_eorientation == orientation_horizontal)
+   {
+
+      
+      pdc->MoveTo(ptCenter.x - 5,ptCenter.y - 5);
+      pdc->LineTo(ptCenter.x - 5,ptCenter.y + 5);
+      pdc->MoveTo(ptCenter.x,ptCenter.y - 5);
+      pdc->LineTo(ptCenter.x,ptCenter.y + 5);
+      pdc->MoveTo(ptCenter.x + 5,ptCenter.y - 5);
+      pdc->LineTo(ptCenter.x + 5,ptCenter.y + 5);
+
+
+   }
+   else
+   {
+      pdc->MoveTo(ptCenter.x - 5,ptCenter.y - 5);
+      pdc->LineTo(ptCenter.x + 5,ptCenter.y - 5);
+      pdc->MoveTo(ptCenter.x - 5,ptCenter.y);
+      pdc->LineTo(ptCenter.x + 5,ptCenter.y);
+      pdc->MoveTo(ptCenter.x - 5,ptCenter.y + 5);
+      pdc->LineTo(ptCenter.x + 5,ptCenter.y + 5);
+
+   }
+
+
+   ::draw2d::pen_sp penArrow(allocer());
+
+   penArrow->create_solid(1.0,ARGB(184,84 + 23,84 + 23,77 + 23));
+
+   pdc->SelectObject(penArrow);
+
+   pdc->DrawRectangle(m_rectA);
+   pdc->DrawRectangle(m_rectB);
+
+   penArrow->create_solid(2.0,ARGB(184,84 + 23,84 + 23,77 + 23));
+
+   pdc->SelectObject(penArrow);
+
+
+   penArrow->m_elinecapBeg = ::draw2d::pen::line_cap_round;
+   penArrow->m_elinecapEnd = ::draw2d::pen::line_cap_round;
+   penArrow->m_elinejoin = ::draw2d::pen::line_join_round;
+
+   pdc->Polyline(m_ptaA, 3);
+   pdc->Polyline(m_ptaB, 3);
 
 
 

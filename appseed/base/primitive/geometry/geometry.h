@@ -1,6 +1,16 @@
 #pragma once
 
 
+enum e_orientation
+{
+
+   orientation_none        = 0,
+   orientation_horizontal  = 1,
+   orientation_vertical    = 2,
+
+};
+
+
 #include "geometry_align.h"
 
 
@@ -230,5 +240,7 @@ CLASS_DECL_BASE bool deflate(LPRECT prect, LPCRECT lpcrect);
 
 
 #include "geometry_types.h"
+
+
 
 

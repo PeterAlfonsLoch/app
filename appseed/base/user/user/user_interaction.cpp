@@ -2994,11 +2994,11 @@ namespace user
       if(m_pimpl != NULL)
       {
 
-         return m_pimpl->SetCapture(pinterface);
+         return m_pimpl->SetCapture(pinterface.is_null() ? this : pinterface);
 
       }
 
-      return GetWindow()->SetCapture(pinterface);
+      return GetWindow()->SetCapture(pinterface.is_null() ? this : pinterface);
 
    }
 
