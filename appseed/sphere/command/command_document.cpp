@@ -65,7 +65,7 @@ namespace command
 
    bool document::on_open_document(var varFile)
    {
-      string str = Session.file().as_string(varFile);
+      string str = session().file().as_string(varFile);
    //  m_document.load(str);
       
       update_all_views(NULL, 123);

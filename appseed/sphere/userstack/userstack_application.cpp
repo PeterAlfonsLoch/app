@@ -226,7 +226,7 @@ namespace userstack
          {
             if(::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca2"))
             {
-               string strCommand = Session.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
+               string strCommand = session().file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
                if(::str::begins_eat(strCommand, "ca2prompt\r")
                || ::str::begins_eat(strCommand, "ca2prompt\n"))
                {
@@ -291,7 +291,7 @@ namespace userstack
             return NULL;
          }
          m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
-         Session.m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
+         session().m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
          return papp;
       }
    }
@@ -350,7 +350,7 @@ namespace userstack
 
 /*      if(pui == NULL && m_bShowPlatform && m_pbergedge->get_document() != NULL)
       {
-         pui = Session.get_document()->get_bergedge_view();
+         pui = session().get_document()->get_bergedge_view();
       }
 
       return pui;

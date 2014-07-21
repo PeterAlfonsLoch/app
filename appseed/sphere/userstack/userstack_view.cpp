@@ -139,12 +139,12 @@ namespace userstack
       pframe->m_pdocument = get_document();
 
 
-      string strImageDir = Session.dir().userdata("image");
-      Session.dir().rls(strImageDir, &m_straImagePath);
+      string strImageDir = session().dir().userdata("image");
+      session().dir().rls(strImageDir, &m_straImagePath);
 
       for(int32_t i = 0; i < m_straImagePath.get_size();)
       {
-         if(Session.dir().is(m_straImagePath[i]))
+         if(session().dir().is(m_straImagePath[i]))
          {
             m_straImagePath.remove_at(i);
          }

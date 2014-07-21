@@ -129,7 +129,7 @@ namespace userstack
       if(::str::begins_eat(strId, "app:"))
       {
          sp(::base::application) pappTab;
-         if(Session.m_mapApplication.Lookup("application:" + strId, pappTab))
+         if(session().m_mapApplication.Lookup("application:" + strId, pappTab))
          {
             PlaneSession.m_pappCurrent = pappTab;
             //PlaneSession.m_pappCurrent = pappTab;
@@ -144,7 +144,7 @@ namespace userstack
       {
          /*bergedge::menu_view * pview = dynamic_cast < bergedge::menu_view *  > (get_view());
          sp(::filemanager::document) pdoc = (pview->get_document());
-         pdoc->FileManagerBrowse(Session.dir().userappdata("bergedge\\menu"), ::action::source::system_default());*/
+         pdoc->FileManagerBrowse(session().dir().userappdata("bergedge\\menu"), ::action::source::system_default());*/
       }
       else if(get_view_id() == ::bergedge::PaneViewConfiguration)
       {
@@ -163,7 +163,7 @@ namespace userstack
       {
          string strDirName;
          strDirName.Format("desktop-%d", m_iDisplay);
-         string strDir = Session.dir().userfolder(strDirName);
+         string strDir = session().dir().userfolder(strDirName);
          if(m_iDisplay <= 0)
          {
             check_desktop_dir(strDir);
@@ -202,7 +202,7 @@ namespace userstack
       if(::str::begins_eat(strId, "app:"))
       {
          sp(::base::application) pappTab;
-         if(!Session.m_mapApplication.Lookup("application:" + strId, pappTab))
+         if(!session().m_mapApplication.Lookup("application:" + strId, pappTab))
          {
 
             application_bias * pbiasCreate = new application_bias;
@@ -233,7 +233,7 @@ namespace userstack
 
             createcontext->m_spCommandLine->m_eventReady.ResetEvent();
 
-            Session.on_request(createcontext);
+            session().on_request(createcontext);
 
             createcontext->m_spCommandLine->m_eventReady.wait();
 
@@ -313,33 +313,33 @@ namespace userstack
       stringa straPath;
       stringa straRelative;
       straPath.remove_all();
-      Session.dir().rls(System.dir().commonprograms(), &straPath, NULL, &straRelative);
+      session().dir().rls(System.dir().commonprograms(), &straPath, NULL, &straRelative);
       for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
-         Session.dir().mk(System.dir().name(str));
-         Session.file().copy(str, straPath[i], true);
+         session().dir().mk(System.dir().name(str));
+         session().file().copy(str, straPath[i], true);
       }
       straRelative.remove_all();
       straPath.remove_all();
-      Session.dir().rls(System.dir().userprograms(NULL), &straPath, NULL, &straRelative);
+      session().dir().rls(System.dir().userprograms(NULL), &straPath, NULL, &straRelative);
       for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
-         Session.dir().mk(System.dir().name(str));
-         Session.file().copy(str, straPath[i], true);
+         session().dir().mk(System.dir().name(str));
+         session().file().copy(str, straPath[i], true);
       }
    }
 
    void pane_view::check_3click_dir(const char * psz)
    {
 
-      if(Session.dir().is(psz))
+      if(session().dir().is(psz))
       {
          return;
       }
 
-      Session.dir().mk(psz);
+      session().dir().mk(psz);
       string strDir(psz);
 
 
@@ -353,19 +353,19 @@ namespace userstack
          System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
          if(::str::begins_eat(strApp, "application:"))
          {
-            Session.file().put_contents(System.dir().path(strDir, strApp + ".ca2"), "ca2prompt\r\n"+ strApp);
+            session().file().put_contents(System.dir().path(strDir, strApp + ".ca2"), "ca2prompt\r\n"+ strApp);
          }
       }
 
-      //Session.file().put_contents(System.dir().path(strDir, "veriwell Musical Player.ca2"), "ca2prompt\r\nmplite");
+      //session().file().put_contents(System.dir().path(strDir, "veriwell Musical Player.ca2"), "ca2prompt\r\nmplite");
 /*      stringa straPath;
       stringa straRelative;
       straPath.remove_all();
-      System.dir().rls(Session.dir().userquicklaunch(), &straPath, NULL, &straRelative);
+      System.dir().rls(session().dir().userquicklaunch(), &straPath, NULL, &straRelative);
       for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
-         Session.dir().mk(System.dir().name(str));
+         session().dir().mk(System.dir().name(str));
          ::CopyFile(straPath[i], str, TRUE);
       }*/
    }
@@ -388,11 +388,11 @@ namespace userstack
          {
             straPath.remove_all();
             straRelative.remove_all();
-            Session.dir().rls(buf, &straPath, NULL, &straRelative);
+            session().dir().rls(buf, &straPath, NULL, &straRelative);
             for(int32_t i = 0; i < straPath.get_size(); i++)
             {
                string str = System.dir().path(psz, straRelative[i]);
-               Session.dir().mk(System.dir().name(str));
+               session().dir().mk(System.dir().name(str));
                ::CopyFile(straPath[i], str, TRUE);
             }
          }
@@ -409,11 +409,11 @@ namespace userstack
          {
             straPath.remove_all();
             straRelative.remove_all();
-            Session.dir().rls(buf, &straPath, NULL, &straRelative);
+            session().dir().rls(buf, &straPath, NULL, &straRelative);
             for(int32_t i = 0; i < straPath.get_size(); i++)
             {
                string str = System.dir().path(psz, straRelative[i]);
-               Session.dir().mk(System.dir().name(str));
+               session().dir().mk(System.dir().name(str));
                ::CopyFile(straPath[i], str, TRUE);
             }
          }
