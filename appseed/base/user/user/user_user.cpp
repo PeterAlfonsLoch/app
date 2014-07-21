@@ -458,7 +458,7 @@ retry_license:
       {
          if(pchange->m_key.m_idIndex  == "savings")
          {
-            pchange->data_get(Application.savings().m_eresourceflagsShouldSave);
+            pchange->data_get(session().savings().m_eresourceflagsShouldSave);
          }
       }
    }

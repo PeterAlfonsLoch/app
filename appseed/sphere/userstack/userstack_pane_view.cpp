@@ -150,7 +150,7 @@ namespace userstack
       {
    /*      sp(::user::interaction) pui = m_pformOptions->ve_display_bandwidth");
          check_interface * pcheck = dynamic_cast < check_interface * > (puie);
-         if(System.savings().save().is_signalized(::ca2::save_display_bandwidth))
+         if(session().savings().save().is_signalized(::ca2::save_display_bandwidth))
          {
             pcheck->_001SetCheck(check::checked, false);
          }
@@ -245,12 +245,12 @@ namespace userstack
 
          string strTypeId = typeid(*pappCurrent).name();
 
-     		string strIcon = planeApp(pappCurrent).dir().matter("mainframe/icon48.png");
+         string strIcon = sess(pappCurrent).dir().matter("mainframe/icon48.png");
          pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
 
          pappCurrent = PlaneSession.m_pappCurrent;
 
-	   	if(planeApp(pappCurrent).file().exists(strIcon))
+         if(sess(pappCurrent).file().exists(strIcon))
          {
             ppane->m_dib.create(allocer());
             ppane->m_dib.load_from_file(strIcon);
