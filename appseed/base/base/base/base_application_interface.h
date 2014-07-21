@@ -16,13 +16,16 @@ namespace base
    public:
 
 
+      ::base::system *                                m_pbasesystem;
+      ::base::session *                               m_pbasesession;
+      ::application *                                 m_pplaneapp; // can be used only from core and upper
+      ::plane::system *                               m_pplanesystem; // can be used only from core and upper
+
+
       application_interface();
       virtual ~application_interface();
 
 
-      ::base::system *                                m_pbasesystem;
-      ::base::session *                               m_pbasesession;
-      ::application *                                 m_pplaneapp; // can be used only from core and upper
 
 
    };

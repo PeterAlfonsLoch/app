@@ -794,16 +794,16 @@ namespace user
 
       set_viewport_org(pgraphics);
 
-      if(&BaseSession != NULL && BaseSession.m_bDrawCursor)
+      if(&session() != NULL && session().m_bDrawCursor)
       {
 
          point ptCursor;
 
-         BaseSession.get_cursor_pos(&ptCursor);
+         session().get_cursor_pos(&ptCursor);
 
          ScreenToClient(&ptCursor);
 
-         ::visual::cursor * pcursor = BaseSession.get_cursor();
+         ::visual::cursor * pcursor = session().get_cursor();
 
          if(pcursor != NULL && pgraphics != NULL)
          {
@@ -818,12 +818,12 @@ namespace user
 
       /*
       
-      if(&BaseSession != NULL )
+      if(&session() != NULL )
       {
          string strText;
          point ptCursor;
 
-         BaseSession.get_cursor_pos(&ptCursor);
+         session().get_cursor_pos(&ptCursor);
 
          ScreenToClient(&ptCursor);
          strText += ":[" + ::str::from(ptCursor.x) + ", " + ::str::from(ptCursor.y) + ":]";
@@ -1030,7 +1030,7 @@ namespace user
    void interaction::_000OnKey(::message::key * pkey)
    {
       point ptCursor;
-      BaseSession.get_cursor_pos(&ptCursor);
+      session().get_cursor_pos(&ptCursor);
       if(!pkey->m_bRet)
       {
          // these try catchs are needed for multi threading : multi threaded windows: the hell
@@ -1146,28 +1146,28 @@ namespace user
 
    void interaction::_001OnKeyDown(signal_details * pobj)
    {
-      if(Application.user()->get_keyboard_focus() != this
-         && Application.user()->get_keyboard_focus() != NULL)
+      if(session().user()->get_keyboard_focus() != this
+         && session().user()->get_keyboard_focus() != NULL)
       {
-         Application.user()->get_keyboard_focus()->keyboard_focus_OnKeyDown(pobj);
+         session().user()->get_keyboard_focus()->keyboard_focus_OnKeyDown(pobj);
       }
    }
 
    void interaction::_001OnKeyUp(signal_details * pobj)
    {
-      if(Application.user()->get_keyboard_focus() != this
-         && Application.user()->get_keyboard_focus() != NULL)
+      if(session().user()->get_keyboard_focus() != this
+         && session().user()->get_keyboard_focus() != NULL)
       {
-         Application.user()->get_keyboard_focus()->keyboard_focus_OnKeyUp(pobj);
+         session().user()->get_keyboard_focus()->keyboard_focus_OnKeyUp(pobj);
       }
    }
 
    void interaction::_001OnChar(signal_details * pobj)
    {
-      if(Application.user()->get_keyboard_focus() != this
-         && Application.user()->get_keyboard_focus() != NULL)
+      if(session().user()->get_keyboard_focus() != this
+         && session().user()->get_keyboard_focus() != NULL)
       {
-         Application.user()->get_keyboard_focus()->keyboard_focus_OnChar(pobj);
+         session().user()->get_keyboard_focus()->keyboard_focus_OnChar(pobj);
       }
    }
 
@@ -3815,7 +3815,7 @@ namespace user
 
       point pt;
 
-      BaseSession.get_cursor_pos(&pt);
+      session().get_cursor_pos(&pt);
 
       return track_popup_menu(pitem,iFlags,pt.x,pt.y);
 
@@ -3827,7 +3827,7 @@ namespace user
 
       point pt;
 
-      BaseSession.get_cursor_pos(&pt);
+      session().get_cursor_pos(&pt);
 
       return track_popup_menu(lpnode,iFlags,pt.x,pt.y);
 
@@ -3839,7 +3839,7 @@ namespace user
 
       point pt;
 
-      BaseSession.get_cursor_pos(&pt);
+      session().get_cursor_pos(&pt);
 
       return track_popup_xml_matter_menu(pszMatter,iFlags,pt.x,pt.y);
 
@@ -4233,7 +4233,7 @@ namespace user
 
       ::rect rect;
 
-      index iMatchingMonitor = BaseSession.get_best_monitor(rect,rectWindow);
+      index iMatchingMonitor = session().get_best_monitor(rect,rectWindow);
 
       if(bSet && (lpcrect != NULL || iMatchingMonitor >= 0))
       {
@@ -4279,7 +4279,7 @@ namespace user
 
          wp.flags = 0;
 
-         BaseSession.monitor_to_wkspace(rect);
+         session().monitor_to_wkspace(rect);
 
          wp.rcNormalPosition = rect;
 
@@ -4326,7 +4326,7 @@ namespace user
 
       ::rect rect;
 
-      index iMatchingMonitor = BaseSession.get_best_monitor(rect,rectWindow);
+      index iMatchingMonitor = session().get_best_monitor(rect,rectWindow);
 
       if(bSet && (lpcrect != NULL || iMatchingMonitor >= 0))
       {
@@ -4334,7 +4334,7 @@ namespace user
 
          ::rect rectWkspace;
 
-         BaseSession.get_wkspace_rect(iMatchingMonitor,rectWkspace);
+         session().get_wkspace_rect(iMatchingMonitor,rectWkspace);
 
          synch_lock slUserMutex(&user_mutex());
 
@@ -4362,7 +4362,7 @@ namespace user
 
          ::rect rectWkspace;
 
-         BaseSession.get_wkspace_rect(iMatchingMonitor,rectWkspace);
+         session().get_wkspace_rect(iMatchingMonitor,rectWkspace);
 
          if(lpcrect != NULL)
          {
@@ -4386,7 +4386,7 @@ namespace user
 
          wp.flags = 0;
 
-         BaseSession.monitor_to_wkspace(rect);
+         session().monitor_to_wkspace(rect);
 
          wp.rcNormalPosition = rectWkspace;
 
@@ -4435,7 +4435,7 @@ namespace user
 
       ::rect rect;
 
-      index iMatchingMonitor = BaseSession.get_good_restore(rect,rectWindow);
+      index iMatchingMonitor = session().get_good_restore(rect,rectWindow);
 
       if(bSet && (lpcrect != NULL || iMatchingMonitor >= 0))
       {
@@ -4485,7 +4485,7 @@ namespace user
 
          wp.flags = 0;
 
-         BaseSession.monitor_to_wkspace(rect);
+         session().monitor_to_wkspace(rect);
 
          wp.rcNormalPosition = rect;
 
@@ -4532,7 +4532,7 @@ namespace user
 
       ::rect rect;
 
-      index iMatchingMonitor = BaseSession.get_good_iconify(rect,rectWindow);
+      index iMatchingMonitor = session().get_good_iconify(rect,rectWindow);
 
       if(bSet && (lpcrect != NULL || iMatchingMonitor >= 0))
       {
@@ -4568,7 +4568,7 @@ namespace user
 
          wp.flags = WPF_SETMINPOSITION;
 
-         BaseSession.monitor_to_wkspace(rect);
+         session().monitor_to_wkspace(rect);
 
          //wp.rcNormalPosition = rect;
 
@@ -4617,7 +4617,7 @@ namespace user
 
       ::rect rect;
 
-      index iMatchingMonitor = BaseSession.get_good_move(rect,rectWindow);
+      index iMatchingMonitor = session().get_good_move(rect,rectWindow);
 
       if(lpcrect != NULL || iMatchingMonitor >= 0)
       {

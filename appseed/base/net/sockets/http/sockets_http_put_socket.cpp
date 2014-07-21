@@ -46,12 +46,12 @@ namespace sockets
    void http_put_socket::SetFile(const string & file)
    {
 
-      if(Application.file().exists(file))
+      if(session().file().exists(file))
       {
          
          m_filename = file;
          
-         m_content_length = Application.file().length(file);
+         m_content_length = session().file().length(file);
 
       }
       else

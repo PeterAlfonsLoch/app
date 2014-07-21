@@ -53,8 +53,6 @@ m_simpledb(this)
 
    m_bService = false;
 
-   m_psystem = NULL;
-
    m_iResourceId = 8001;
 
    ::core::profiler::initialize();
@@ -66,11 +64,8 @@ m_simpledb(this)
    m_pplaneapp = this;
 
    m_pwndMain = NULL;
-   m_puserstrcontext = NULL;
 
    m_pdocmanager = NULL;
-
-   m_nCmdShow = -1;
 
    m_strInstallType = "application";
 
@@ -83,13 +78,14 @@ m_simpledb(this)
 
    m_pcalculator = NULL;
    m_pcolorertake5 = NULL;
-   m_psockets = NULL;
 
 
 }
 
+
 application::~application()
 {
+
 }
 
 
@@ -245,14 +241,6 @@ bool application::process_initialize()
 
    m_spuserfs->construct(this);
 
-   m_phtml = create_html();
-
-   m_phtml->add_ref();
-
-   if (m_phtml == NULL)
-      return false;
-
-   m_phtml->construct(this);
 
    return true;
 
@@ -3461,7 +3449,7 @@ sp(::user::printer) application::get_printer(const char * pszDeviceName)
 bool application::set_keyboard_layout(const char * pszPath, ::action::context actioncontext)
 {
 
-   return Application.user()->keyboard().load_layout(pszPath, actioncontext);
+   return session().user()->keyboard().load_layout(pszPath, actioncontext);
 
 }
 
@@ -3739,7 +3727,7 @@ if(bCreate)
 
 sp(::create_context) spcreatecontext(allocer());
 
-papp = BaseSession.start_application("application", pszAppId, spcreatecontext);
+papp = session().start_application("application", pszAppId, spcreatecontext);
 
 }
 
@@ -3907,7 +3895,7 @@ sp(::base::application) application::instantiate_application(const char * pszTyp
 
    }
 
-   papp->m_pplaneapp->m_psystem = m_psystem;
+   papp->m_pplaneapp->m_pplanesystem = m_pplanesystem;
 
    papp->m_pbasesystem = m_pbasesystem;
 

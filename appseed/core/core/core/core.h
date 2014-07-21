@@ -46,11 +46,9 @@ namespace user
 #define App(pbaseapp) planeApp(pbaseapp)
 #define Application (App(m_pbaseapp))
 #undef CaSys
-#define CaSys(pca) (*pca->m_pbaseapp->m_pplaneapp->m_psystem)
+#define CaSys(pca) (*pca->m_pbaseapp->m_pplanesystem)
 #undef Sys
-#define Sys(pbaseapp) (*pbaseapp->m_pplaneapp->m_psystem)
-#define Mathematics(papp) (Sys(papp).math())
-#define Math (Mathematics(this->m_pbaseapp))
+#define Sys(pbaseapp) (*pbaseapp->m_pplanesystem)
 
 #undef PlaneSess
 #define PlaneSess(pbaseapp) (*pbaseapp->m_pplaneapp->m_pbasesession->m_pplanesession)

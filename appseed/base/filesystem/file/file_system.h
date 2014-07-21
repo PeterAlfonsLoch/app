@@ -66,57 +66,20 @@ namespace file
       void  get_ascendants_name(const char * lpcsz, stringa & stra);
 
       template < class T >
-      bool output(sp(::base::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, const char *), const char * lpszSource)
-#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
-         ;
-#else
-      {
-         System.dir().mk(System.dir().name(pszOutput), papp);
-         ::file::binary_buffer_sp fileOut = App(papp).file().get_file(pszOutput, ::file::mode_create | ::file::type_binary | ::file::mode_write);
-         if(fileOut.is_null())
-            return false;
-         ::file::output_stream ostream(fileOut);
-         return (p->*lpfnOuput)(ostream, lpszSource);
-      }
-#endif
+      bool output(sp(::base::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,const char *),const char * lpszSource);
 
       template < class T >
-      bool output(sp(::base::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, ::file::input_stream &), const char * lpszInput)
-#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
-         ;
-#else
-      {
-
-         App(papp).dir().mk(System.dir().name(pszOutput));
-
-         ::file::binary_buffer_sp fileOut = App(papp).file().get_file(pszOutput, ::file::mode_create | ::file::type_binary | ::file::mode_write);
-
-         if(fileOut.is_null())
-            return false;
-
-         ::file::binary_buffer_sp fileIn = App(papp).file().get_file(lpszInput, ::file::type_binary | ::file::mode_read);
-
-         if(fileIn.is_null())
-            return false;
-
-         ::file::output_stream ostream(fileOut);
-
-         ::file::input_stream istream(fileIn);
-
-         return (p->*lpfnOuput)(ostream, istream);
-
-      }
-#endif
+      bool output(sp(::base::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),const char * lpszInput);
 
       template < class T >
-      bool output(sp(::base::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, ::file::input_stream &), ::file::input_stream & istream)
-      {
+      bool output(sp(::base::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),::file::input_stream & istream);
 
-         ::file::output_stream ostream(get(pszOutput, papp));
 
-         return (p->*lpfnOuput)(ostream, istream);
 
-      }
+
+
+
+
 
       string time(sp(::base::application) papp, const char * pszBasePath, int32_t iDepth, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
       string time_square(sp(::base::application) papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
@@ -134,6 +97,8 @@ namespace file
                return "";
          return strTime;
       }
+
+
 
       int32_t filterex_time_square(const char * pszPrefix, stringa & stra);
       bool mk_time(const char * lpcszCandidate);

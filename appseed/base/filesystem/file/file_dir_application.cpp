@@ -85,21 +85,21 @@ namespace file
             strFile.replace(":", "_");
             strFile = m_pbaseapp->m_pbasesystem->m_spdir->appdata("cache/" + strFile + ".local_copy");
             strFile.replace("\\\\", "\\", 2);
-            if(Application.file().exists(strFileExists))
+            if(session().file().exists(strFileExists))
             {
-               if(Application.file().as_string(strFileExists) == "yes")
+               if(session().file().as_string(strFileExists) == "yes")
                   return strFile;
                else
                   return "";
             }
             if (System.file().output(get_app(), strFile, &System.compress(), &::base::compress::null, strPath))
             {
-               Application.file().put_contents(strFileExists, "yes");
+               session().file().put_contents(strFileExists, "yes");
                return strFile;
             }
             else
             {
-               Application.file().put_contents(strFileExists, "no");
+               session().file().put_contents(strFileExists, "no");
                return "";
             }
          }

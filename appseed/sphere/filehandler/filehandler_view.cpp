@@ -235,7 +235,7 @@ namespace filehandler
 
          varRequest = "app://" + m_list[iItem].m_strApp + "/" + m_strName;
 
-         BaseSession.request(varRequest);
+         Session.request(varRequest);
          */
 
          sp(::create_context) createcontext(allocer());
@@ -244,7 +244,7 @@ namespace filehandler
 
          createcontext->m_spCommandLine->m_varFile                = m_strName;
 
-         BaseSession.request_create(createcontext);
+         Session.request_create(createcontext);
 
          //varFile = createcontext->m_spCommandLine->m_varFile;
 

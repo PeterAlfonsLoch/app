@@ -118,7 +118,7 @@ namespace bergedge
          {
             OnHoverAction();
          }
-         BaseSession.get_cursor_pos(&pt);
+         session().get_cursor_pos(&pt);
          if(!m_bHoverMouse && pt.x == 0 && pt.y == 0)
          {
             m_dwLastHover = ::get_tick_count();
@@ -176,7 +176,7 @@ namespace bergedge
 
    void frame::_000OnMouse(::message::mouse * pmouse)
    {
-      BaseSession.m_ptCursor = pmouse->m_pt;
+      session().m_ptCursor = pmouse->m_pt;
 //      sp(::application) pappParent = &App(Application.m_pbaseapp);
 //      sp(::application) papp = &Application;
       if(pmouse->m_uiMessage == WM_MOUSEMOVE

@@ -1153,7 +1153,7 @@ namespace android
 
       xml::document doc(get_app());
 
-      doc.load(Application.file().as_string(appdata("configuration\\directory.xml")));
+      doc.load(session().file().as_string(appdata("configuration\\directory.xml")));
 
       if(doc.get_root()->get_name() == "directory_configuration")
       {

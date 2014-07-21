@@ -23,7 +23,7 @@ namespace simpledb
 
       sp(::base::application) pbaseapp = get_app();
 
-      ::set_thread(&Sys(pbaseapp->m_pplaneapp->m_psystem));
+      ::set_thread(&Sys(pbaseapp));
 
 
       m_pmanager = new ::simpledb::manager(pbaseapp);

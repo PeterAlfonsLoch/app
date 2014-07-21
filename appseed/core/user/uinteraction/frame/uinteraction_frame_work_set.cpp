@@ -621,7 +621,7 @@ namespace uinteraction
                sp(::user::interaction) pwnd = GetWndRegion();
                pwnd->GetWindowRect(rectWindow);
                point ptCursor;
-               BaseSession.get_cursor_pos(&ptCursor);
+               session().get_cursor_pos(&ptCursor);
                if (rectWindow.contains(ptCursor))
                {
                   if (!IsHoverActive())
@@ -900,7 +900,7 @@ namespace uinteraction
                sp(::user::interaction) pwnd = GetWndRegion();
                pwnd->GetWindowRect(rectWindow);
                point ptCursor;
-               BaseSession.get_cursor_pos(&ptCursor);
+               session().get_cursor_pos(&ptCursor);
                if (rectWindow.contains(ptCursor))
                {
                   if (!IsHoverActive())

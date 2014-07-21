@@ -825,7 +825,7 @@ int dtls1_client_hello(SSL *s)
 		memcpy(p,s->s3->client_random,SSL3_RANDOM_SIZE);
 		p+=SSL3_RANDOM_SIZE;
 
-		/* BaseSession ID */
+		/* Session ID */
 		if (s->new_session)
 			i=0;
 		else

@@ -125,7 +125,7 @@ bool html_form::open_document(const char * lpszPathName)
    string strPathName(lpszPathName);
    if(strPathName.Mid(3) == "wb:")
       return FALSE;
-   string str = Application.file().as_string(lpszPathName);
+   string str = session().file().as_string(lpszPathName);
    if(str.is_empty())
    {
       System.sync_load_url(str, lpszPathName, &ApplicationUser, mm_pcookies);
@@ -360,7 +360,7 @@ void html_form::_001GetText(string & str) const
 void html_form::_001SetText(const string & str, ::action::context actioncontext)
 {
 
-   bool bFocus = Application.user()->get_keyboard_focus() == this || is_descendant(Application.user()->get_keyboard_focus());
+   bool bFocus = session().user()->get_keyboard_focus() == this || is_descendant(session().user()->get_keyboard_focus());
 
    sp(::html::data) sphtmldata;
 
@@ -379,7 +379,7 @@ void html_form::_001SetText(const string & str, ::action::context actioncontext)
 	   sp(::user::keyboard_focus) pfocus = get_focusable_descendant();
       if(pfocus != NULL)
       {
-         Application.user()->set_keyboard_focus(pfocus);
+         session().user()->set_keyboard_focus(pfocus);
       }
    }
 }

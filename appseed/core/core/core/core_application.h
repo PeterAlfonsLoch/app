@@ -39,7 +39,6 @@ public:
 
 
    bool                                m_bService;
-   ::plane::system *                   m_psystem;
 
    class signal                        m_signalAppLanguageChange;
    string                              m_strHelpFilePath;
@@ -182,7 +181,6 @@ public:
    inline ::calculator::calculator           & calculator() { return *m_pcalculator; }
    inline ::colorertake5::colorertake5       & colorertake5() { return *m_pcolorertake5; }
 
-   inline sp(::html::html)                   html()         { return m_phtml; }
    inline class ::simpledb::simpledb         & simpledb()   { return m_simpledb; }
    inline sp(::userex::userex)               userex()       { return m_spuserex; }
 
@@ -558,7 +556,7 @@ public:
 
 
    //////////////////////////////////////////////////////////////////////////////////////////////////
-   // BaseSession/BaseSession
+   // Session/Session
    //
    //         virtual sp(::bergedge::view) get_view();
    //       virtual sp(::bergedge::document) get_document();

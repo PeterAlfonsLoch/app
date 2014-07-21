@@ -176,7 +176,7 @@ namespace filemanager
       stringa straPath;
       stringa straTitle;
 
-      Application.dir().ls(strParent, &straPath, &straTitle);
+      session().dir().ls(strParent, &straPath, &straTitle);
 
       for (int32_t i = 0; i < straPath.get_count(); i++)
       {
@@ -210,7 +210,7 @@ namespace filemanager
          stringa straPath;
          stringa straTitle;
 
-         Application.dir().root_ones(straPath, straTitle);
+         session().dir().root_ones(straPath, straTitle);
 
          Folder folder;
 

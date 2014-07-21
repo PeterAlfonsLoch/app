@@ -96,7 +96,7 @@ namespace userpresence
 	  
 	  // it may not be initialized, due
       // licensing for example
-      if(!BaseSession.is_licensed("user_presence", m_bUserPresenceFeatureRequired))
+      if(!session().is_licensed("user_presence", m_bUserPresenceFeatureRequired))
       {
          TRACE("user presence not licensed for this user");
          return false;

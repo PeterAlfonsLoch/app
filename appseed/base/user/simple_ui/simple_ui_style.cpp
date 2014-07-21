@@ -163,7 +163,7 @@ namespace simple_ui
 
       }
 
-      return Application.http().get_locale_schema(pszUrl,m_strLocale,m_strSchema);
+      return session().http().get_locale_schema(pszUrl,m_strLocale,m_strSchema);
 
    }
 

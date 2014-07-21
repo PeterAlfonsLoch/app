@@ -94,13 +94,13 @@ bool file_operation::set_delete(stringa & stra)
 bool file_operation::open_src_dst(const char * pszSrc, const char * pszDst)
 {
    
-   if(Application.dir().is(pszSrc) && !::str::ends_ci(pszSrc, ".zip"))
+   if(session().dir().is(pszSrc) && !::str::ends_ci(pszSrc, ".zip"))
    {
-      Application.dir().mk(System.dir().name(pszDst));
+      session().dir().mk(System.dir().name(pszDst));
       return false;
    }
    
-   m_fileSrc = Application.file().get_file(pszSrc, ::file::mode_read | ::file::type_binary | ::file::share_deny_write);
+   m_fileSrc = session().file().get_file(pszSrc, ::file::mode_read | ::file::type_binary | ::file::share_deny_write);
 
    if(m_fileSrc.is_null())
    {
@@ -123,9 +123,9 @@ bool file_operation::open_src_dst(const char * pszSrc, const char * pszDst)
       }*/
    }
    
-   Application.dir().mk(System.dir().name(pszDst));
+   session().dir().mk(System.dir().name(pszDst));
 
-   m_fileDst = Application.file().get_file(pszDst, ::file::mode_write | ::file::type_binary | ::file::mode_create);
+   m_fileDst = session().file().get_file(pszDst, ::file::mode_write | ::file::type_binary | ::file::mode_create);
 
 
    if (m_fileDst.is_null())
@@ -265,7 +265,7 @@ bool file_operation::step()
 
             }
             m_iFile++;
-            while(m_iFile < m_stra.get_size() && Application.dir().is(m_stra[m_iFile]) && !::str::ends_ci(m_stra[m_iFile], ".zip"))
+            while(m_iFile < m_stra.get_size() && session().dir().is(m_stra[m_iFile]) && !::str::ends_ci(m_stra[m_iFile], ".zip"))
             {
                m_iFile++;
             }
@@ -363,7 +363,7 @@ bool file_operation::initialize()
    for(int32_t i = 0; i < m_stra.get_size(); i++)
    {
       
-      if(Application.dir().is(m_stra[i]) && !::str::ends_ci(m_stra[i], ".zip"))
+      if(session().dir().is(m_stra[i]) && !::str::ends_ci(m_stra[i], ".zip"))
       {
          
          m_daSize.add(0.0);
@@ -374,7 +374,7 @@ bool file_operation::initialize()
       else
       {
 
-         varLen = Application.file().length(m_stra[i]);
+         varLen = session().file().length(m_stra[i]);
 
          if (varLen.is_null())
          {
@@ -474,7 +474,7 @@ void file_operation::make_duplicate_name(string & str, const char * psz)
    {
       strFormat.Format("-Copy-%03d", i);
       str = System.dir().path(strDir, strName + strFormat + strExtension);
-      if(!Application.file().exists(str))
+      if(!session().file().exists(str))
          return;
    }
 }
@@ -483,9 +483,9 @@ void file_operation::expand(stringa & straExpanded, stringa & straExpand)
 {
    for(int32_t i = 0; i < straExpand.get_size(); i++)
    {
-      if(Application.dir().is(straExpand[i]) && !::str::ends_ci(m_stra[i], ".zip"))
+      if(session().dir().is(straExpand[i]) && !::str::ends_ci(m_stra[i], ".zip"))
       {
-         Application.dir().rls(straExpand[i], &straExpanded);
+         session().dir().rls(straExpand[i], &straExpanded);
       }
       else
       {

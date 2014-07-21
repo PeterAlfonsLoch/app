@@ -59,7 +59,7 @@ namespace filemanager
       }
 
 
-      string str = Application.file().as_string(Application.dir().matter(strToolBar));
+      string str = session().file().as_string(session().dir().matter(strToolBar));
 
 
       if (!m_toolbar.CreateEx(this) ||

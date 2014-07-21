@@ -87,7 +87,7 @@ namespace user
       {
          if(m_scrollinfo.m_bHScroll)
          {
-            m_pscrollbarHorz->SetWindowPos(ZORDER_TOP, 0, rectClient.bottom - m_scrollinfo.m_iScrollHeight, rectClient.width() - m_scrollinfo.m_iScrollWidth, m_scrollinfo.m_iScrollHeight, ifswp);
+            m_pscrollbarHorz->SetWindowPos(ZORDER_TOP,0,rectClient.bottom - m_scrollinfo.m_iScrollHeight,rectClient.width() - (m_scrollinfo.m_bVScroll ? m_scrollinfo.m_iScrollWidth : 0),m_scrollinfo.m_iScrollHeight,ifswp);
          }
          else
          {
@@ -99,7 +99,7 @@ namespace user
       {
          if(m_scrollinfo.m_bVScroll)
          {
-            m_pscrollbarVert->SetWindowPos(ZORDER_TOP, rectClient.right - m_scrollinfo.m_iScrollWidth, rectClient.top, m_scrollinfo.m_iScrollWidth, rectClient.height() - m_scrollinfo.m_iScrollHeight - rectClient.top, ifswp);
+            m_pscrollbarVert->SetWindowPos(ZORDER_TOP,rectClient.right - m_scrollinfo.m_iScrollWidth,rectClient.top,m_scrollinfo.m_iScrollWidth,rectClient.height() - (m_scrollinfo.m_bHScroll ? m_scrollinfo.m_iScrollHeight : 0) - rectClient.top,ifswp);
          }
          else
          {

@@ -376,7 +376,7 @@ namespace filemanager
 
          stringa stra;
 
-         App(papp).dir().ls(::str::international::unicode_to_utf8(szPath), &stra);
+         Sess(papp).dir().ls(::str::international::unicode_to_utf8(szPath), &stra);
 
          for(int32_t i = 0; i < stra.get_size(); i++)
          {
@@ -1280,7 +1280,7 @@ namespace filemanager
             }
          }
       }
-         if(Application.dir().is(::str::international::unicode_to_utf8(szFilePath)))
+         if(session().dir().is(::str::international::unicode_to_utf8(szFilePath)))
          {
             if(imagekey.m_iIcon == 0x80000000)
             {
@@ -1486,13 +1486,13 @@ namespace filemanager
 
       if(::str::ends_ci(strPath, ".core"))
       {
-         string str = Application.file().as_string(strPath);
+         string str = session().file().as_string(strPath);
          if(::str::begins_eat_ci(str, "ca2prompt\r\n"))
          {
             str.trim();
 #ifdef WINDOWSEX
-            HICON hicon16 = (HICON) ::LoadImage(NULL, Application.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-            HICON hicon48 = (HICON) ::LoadImage(NULL, Application.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+            HICON hicon16 = (HICON) ::LoadImage(NULL, session().dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+            HICON hicon48 = (HICON) ::LoadImage(NULL, session().dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
             iImage = m_pil16->add_icon_os_data(hicon16);
             m_pil48Hover->add_icon_os_data(hicon48);
             System.visual().imaging().Createcolor_blend_ImageList(

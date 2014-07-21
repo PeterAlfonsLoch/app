@@ -51,7 +51,7 @@ namespace simple_ui
 
       m_stra.add_smallest_tokens(pszMessage, stra);
 
-      BaseSession.get_main_monitor(rectDesktop);
+      session().get_main_monitor(rectDesktop);
 
       SetWindowText( "fontopus Auth Windows");
 

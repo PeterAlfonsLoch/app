@@ -67,7 +67,7 @@ namespace user
             {
 
 
-               BaseSession.m_puiLastLButtonDown      = NULL;
+               session().m_puiLastLButtonDown      = NULL;
 
                ::user::control_event ev;
                ev.m_puie                  = pcontrol;

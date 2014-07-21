@@ -42,14 +42,14 @@ namespace usernet // ca8 + cube
 
    void network_configuration::on_show()
    {
-      if(!m_pdoc->on_open_document(Application.dir().matter("system/network/configuration/proxy.xhtml")))
+      if(!m_pdoc->on_open_document(session().dir().matter("system/network/configuration/proxy.xhtml")))
       {
          return;
       }
 
       xml::document doc(get_app());
 
-      if(doc.load(Application.file_as_string(System.dir().appdata("proxy.xml"))))
+      if(doc.load(session().file_as_string(System.dir().appdata("proxy.xml"))))
       {
          string strProxy = doc.get_root()->attr("server");
          int32_t iProxyPort = doc.get_root()->attr("port");
@@ -89,7 +89,7 @@ namespace usernet // ca8 + cube
                string strPort;
                ptext->_001GetText(strPort);
                doc.get_root()->add_attr("port", strPort);
-               Application.file().put_contents(System.dir().appdata("proxy.xml"), doc.get_xml());
+               session().file().put_contents(System.dir().appdata("proxy.xml"), doc.get_xml());
             }
          }
       }

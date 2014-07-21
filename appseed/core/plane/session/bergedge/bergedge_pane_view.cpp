@@ -110,7 +110,7 @@ namespace bergedge
       if(::str::begins_eat(strId, "app:"))
       {
          sp(::base::application) pappTab;
-         if(BaseSession.m_mapApplication.Lookup("application:" + strId, pappTab))
+         if(session().m_mapApplication.Lookup("application:" + strId, pappTab))
          {
             PlaneSession.m_pappCurrent = pappTab;
             PlaneSession.m_pappCurrent = pappTab;
@@ -125,7 +125,7 @@ namespace bergedge
       {
          string strDirName;
          strDirName.Format("application-%d", 0);
-         string strDir = Application.dir().userappdata("bergedge", strDirName);
+         string strDir = session().dir().userappdata("bergedge", strDirName);
          sp(::filemanager::document) pdoc =  (m_pviewdata->m_pdoc);
          pdoc->FileManagerBrowse(strDir, ::action::source::system_default());
       }
@@ -138,13 +138,13 @@ namespace bergedge
       {
          /*bergedge::menu_view * pview = dynamic_cast < bergedge::menu_view *  > (get_view());
          sp(::filemanager::document) pdoc = (pview->get_document());
-         pdoc->FileManagerBrowse(Application.dir().userappdata("bergedge\\menu"), ::action::source::system_default());*/
+         pdoc->FileManagerBrowse(session().dir().userappdata("bergedge\\menu"), ::action::source::system_default());*/
       }
       else if(get_view_id() == ::bergedge::PaneViewConfiguration)
       {
    /*      sp(::user::interaction) pui = m_pformOptions->ve_display_bandwidth");
          check_interface * pcheck = dynamic_cast < check_interface * > (puie);
-         if(System.savings().save().is_signalized(::core::save_display_bandwidth))
+         if(session().savings().save().is_signalized(::core::save_display_bandwidth))
          {
             pcheck->_001SetCheck(check::checked, false);
          }
@@ -157,7 +157,7 @@ namespace bergedge
       {
          string strDirName;
          strDirName.Format("desktop-%d", m_iDisplay);
-         string strDir = Application.dir().userfolder(strDirName);
+         string strDir = session().dir().userfolder(strDirName);
          if(m_iDisplay <= 0)
          {
             check_desktop_dir(strDir);
@@ -194,7 +194,7 @@ namespace bergedge
       if(::str::begins_eat(strId, "app:"))
       {
          sp(::base::application) pappTab;
-         if(!BaseSession.m_mapApplication.Lookup("application:" + strId, pappTab))
+         if(!session().m_mapApplication.Lookup("application:" + strId, pappTab))
          {
 
             application_bias * pbiasCreate = new application_bias;
@@ -207,13 +207,13 @@ namespace bergedge
             string str;
             str = ::str::from((int_ptr) createcontext->m_spApplicationBias->m_puiParent);
             //simple_message_box(NULL, str, str, MB_ICONEXCLAMATION);
-            BaseSession.request_create(createcontext);
+            session().request_create(createcontext);
 
          }
 
-         string strIcon = App(PlaneSession.m_pappCurrent).dir().matter("mainframe/icon48.png");
+         string strIcon = Sess(PlaneSession.m_pappCurrent).dir().matter("mainframe/icon48.png");
          pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
-         if(App(PlaneSession.m_pappCurrent).file().exists(strIcon))
+         if(Sess(PlaneSession.m_pappCurrent).file().exists(strIcon))
          {
             ppane->m_dib.create(allocer());
             ppane->m_dib.load_from_file(strIcon);
@@ -243,7 +243,7 @@ namespace bergedge
             sp(::user::impact) pview = pdoc->get_view();
             string strDirName;
             strDirName.Format("application-%d", 0);
-            string strDir = Application.dir().userappdata("bergedge", strDirName);
+            string strDir = session().dir().userappdata("bergedge", strDirName);
             POSITION pos = System.m_mapAppLibrary.get_start_position();
             string strApp;
             string strLibrary;
@@ -252,7 +252,7 @@ namespace bergedge
                System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
                if(::str::begins_eat(strApp, "application:"))
                {
-                  Application.file().put_contents(System.dir().path(strDir, strApp + ".core"), "ca2prompt\n" + strApp);
+                  session().file().put_contents(System.dir().path(strDir, strApp + ".core"), "ca2prompt\n" + strApp);
                }
             }
             pdoc->FileManagerBrowse(strDir, ::action::source::system_default());
@@ -303,7 +303,7 @@ namespace bergedge
                   sp(::user::impact) pview = pdoc->get_view();
                   string strDirName;
                   strDirName.Format("desktop-%d", m_iDisplay);
-                  string strDir = Application.dir().userfolder(strDirName);
+                  string strDir = session().dir().userfolder(strDirName);
                   if(m_iDisplay <= 0)
                   {
                      check_desktop_dir(strDir);
@@ -336,7 +336,7 @@ namespace bergedge
                   //pdoc->update_all_views(NULL, 123458);
                   pdoc->update_all_views(NULL, 1234525);
                   sp(::user::impact) pview = pdoc->get_view();
-                  string strDir = Application.dir().userappdata("bergedge\\3-action-launch");
+                  string strDir = session().dir().userappdata("bergedge\\3-action-launch");
                   check_3click_dir(strDir);
                   pdoc->FileManagerBrowse(strDir, ::action::source::system_default());
                   if(pview != NULL)
@@ -443,33 +443,33 @@ namespace bergedge
       stringa straPath;
       stringa straRelative;
       straPath.remove_all();
-      Application.dir().rls(System.dir().commonprograms(), &straPath, NULL, &straRelative);
+      session().dir().rls(System.dir().commonprograms(), &straPath, NULL, &straRelative);
       for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
-         Application.dir().mk(System.dir().name(str));
-         Application.file().copy(str, straPath[i], true);
+         session().dir().mk(System.dir().name(str));
+         session().file().copy(str, straPath[i], true);
       }
       straRelative.remove_all();
       straPath.remove_all();
-      Application.dir().rls(System.dir().userprograms(NULL), &straPath, NULL, &straRelative);
+      session().dir().rls(System.dir().userprograms(NULL), &straPath, NULL, &straRelative);
       for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
-         Application.dir().mk(System.dir().name(str));
-         Application.file().copy(str, straPath[i], true);
+         session().dir().mk(System.dir().name(str));
+         session().file().copy(str, straPath[i], true);
       }
    }
 
    void pane_view::check_3click_dir(const char * psz)
    {
 
-      if(Application.dir().is(psz))
+      if(session().dir().is(psz))
       {
          return;
       }
 
-      Application.dir().mk(psz);
+      session().dir().mk(psz);
       string strDir(psz);
 
 
@@ -483,19 +483,19 @@ namespace bergedge
          System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
          if(::str::begins_eat(strApp, "application:"))
          {
-            Application.file().put_contents(System.dir().path(strDir, strApp + ".core"), "ca2prompt\r\n"+ strApp);
+            session().file().put_contents(System.dir().path(strDir, strApp + ".core"), "ca2prompt\r\n"+ strApp);
          }
       }
 
-      //Application.file().put_contents(System.dir().path(strDir, "veriwell Musical Player.core"), "ca2prompt\r\nmplite");
+      //session().file().put_contents(System.dir().path(strDir, "veriwell Musical Player.core"), "ca2prompt\r\nmplite");
 /*      stringa straPath;
       stringa straRelative;
       straPath.remove_all();
-      System.dir().rls(Application.dir().userquicklaunch(), &straPath, NULL, &straRelative);
+      System.dir().rls(session().dir().userquicklaunch(), &straPath, NULL, &straRelative);
       for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
-         Application.dir().mk(System.dir().name(str));
+         session().dir().mk(System.dir().name(str));
          ::CopyFile(straPath[i], str, TRUE);
       }*/
    }
@@ -518,12 +518,12 @@ namespace bergedge
          {
             straPath.remove_all();
             straRelative.remove_all();
-            Application.dir().rls(buf, &straPath, NULL, &straRelative);
+            session().dir().rls(buf, &straPath, NULL, &straRelative);
             for(int32_t i = 0; i < straPath.get_size(); i++)
             {
                string str = System.dir().path(psz, straRelative[i]);
-               Application.dir().mk(System.dir().name(str));
-               Application.file().copy(str, straPath[i], true);
+               session().dir().mk(System.dir().name(str));
+               session().file().copy(str, straPath[i], true);
             }
          }
       }
@@ -539,11 +539,11 @@ namespace bergedge
          {
             straPath.remove_all();
             straRelative.remove_all();
-            Application.dir().rls(buf, &straPath, NULL, &straRelative);
+            session().dir().rls(buf, &straPath, NULL, &straRelative);
             for(int32_t i = 0; i < straPath.get_size(); i++)
             {
                string str = System.dir().path(psz, straRelative[i]);
-               Application.dir().mk(System.dir().name(str));
+               session().dir().mk(System.dir().name(str));
                ::CopyFile(straPath[i], str, TRUE);
             }
          }

@@ -320,6 +320,10 @@ namespace windows
 
    bool application::win_init(main_init_data * pdata)
    {
+
+      if(!is_system())
+         return false;
+
          ASSERT(pdata->m_hPrevInstance == NULL);
 
          HINSTANCE hInstance        = pdata->m_hInstance;
@@ -334,8 +338,8 @@ namespace windows
          m_pbaseapp->m_hinstance = hInstance;
          m_pimpl->m_hinstance = hInstance;
          //hPrevInstance; // Obsolete.
-         m_strCmdLine = strCmdLine;
-         m_nCmdShow = nCmdShow;
+         System.m_strCmdLine = strCmdLine;
+         System.m_nCmdShow = nCmdShow;
          //pApp->SetCurrentHandles();
          m_pimpl->SetCurrentHandles();
 
@@ -360,17 +364,17 @@ namespace windows
 
    bool application::update_module_paths()
    {
-
+      ASSERT(is_system());
       {
 
          wchar_t lpszModuleFilePath[MAX_PATH + 1];
          GetModuleFileNameW(NULL, lpszModuleFilePath, MAX_PATH + 1);
-         m_strModulePath = lpszModuleFilePath;
+         System.m_strModulePath = lpszModuleFilePath;
          wchar_t lpszModuleFolder[MAX_PATH + 1];
          LPWSTR lpszModuleFileName;
          GetFullPathNameW(lpszModuleFilePath, MAX_PATH + 1, lpszModuleFolder, &lpszModuleFileName);
          string strModuleFolder(lpszModuleFolder, lpszModuleFileName - lpszModuleFolder);
-         m_strModuleFolder = strModuleFolder;
+         System.m_strModuleFolder = strModuleFolder;
 
       }
 
@@ -378,13 +382,13 @@ namespace windows
 
          wchar_t lpszModuleFilePath[MAX_PATH + 1];
          GetModuleFileNameW(::GetModuleHandleA("core.dll"), lpszModuleFilePath, MAX_PATH + 1);
-         m_strCa2ModulePath = lpszModuleFilePath;
+         System.m_strCa2ModulePath = lpszModuleFilePath;
 
          wchar_t lpszModuleFolder[MAX_PATH + 1];
          LPWSTR lpszModuleFileName;
          GetFullPathNameW(lpszModuleFilePath, MAX_PATH + 1, lpszModuleFolder, &lpszModuleFileName);
          string strModuleFolder(lpszModuleFolder, lpszModuleFileName - lpszModuleFolder);
-         m_strCa2ModuleFolder = strModuleFolder;
+         System.m_strCa2ModuleFolder = strModuleFolder;
 
       }
 

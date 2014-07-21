@@ -161,7 +161,7 @@ void MetaButton::_001OnTimer(signal_details * pobj)
          /*if(m_bFocus)
          {
             point ptCursor;
-            BaseSession.get_cursor_pos(&ptCursor);
+            session().get_cursor_pos(&ptCursor);
             rect rectClient;
             ::user::interaction::GetClientRect(rectClient);
             ::user::interaction::ClientToScreen(rectClient);

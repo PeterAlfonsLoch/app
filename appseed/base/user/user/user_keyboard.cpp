@@ -94,14 +94,14 @@ namespace user
          string strPath;
 
 #ifdef LINUX
-      strPath = Application.dir().matter("keyboard/linux/default.xml");
+      strPath = session().dir().matter("keyboard/linux/default.xml");
 #elif defined(APPLEOS)
-      strPath = Application.dir().matter("keyboard/macos/default.xml");
+      strPath = session().dir().matter("keyboard/macos/default.xml");
 #else
-      strPath = Application.dir().matter("keyboard/windows/default.xml");
+      strPath = session().dir().matter("keyboard/windows/default.xml");
 #endif
 
-      if(!Application.file().exists(strPath))
+      if(!session().file().exists(strPath))
          return false;
 
       if(!load_os_layout(strPath))
@@ -122,7 +122,7 @@ namespace user
 
       sp(type) typeinfoKey = System.type_info < ::user::e_key > ();
 
-      string str = Application.file().as_string(pszPath);
+      string str = session().file().as_string(pszPath);
 
       if(str.is_empty())
       {
@@ -222,7 +222,7 @@ namespace user
 
       int iCode = (int) (ekey);
 
-      if(Application.is_key_pressed(::user::key_shift))
+      if(session().is_key_pressed(::user::key_shift))
       {
          iCode |= 0x80000000;
       }
@@ -254,7 +254,7 @@ namespace user
    {
       keyboard_layout_ida layoutida;
       stringa straPath;
-      Application.dir().matter_ls_file("keyboard layout", straPath);
+      session().dir().matter_ls_file("keyboard layout", straPath);
       for(int32_t i = 0; i < straPath.get_count(); i++)
       {
          keyboard_layout_id layoutid;
@@ -295,9 +295,9 @@ namespace user
 
 #endif
 
-      string strPath = Application.dir().matter("keyboard layout/en_us_international.xml");
+      string strPath = session().dir().matter("keyboard layout/en_us_international.xml");
 
-      if(Application.file().exists(strPath))
+      if(session().file().exists(strPath))
       {
 
          return strPath;
@@ -312,10 +312,10 @@ namespace user
    bool keyboard::initialize(keyboard_layout_id * playoutid, const char * pszPath)
    {
 
-      if(!Application.file().exists(pszPath))
+      if(!session().file().exists(pszPath))
          return false;
 
-      string str = Application.file().as_string(pszPath);
+      string str = session().file().as_string(pszPath);
 
       if(str.is_empty())
          return false;

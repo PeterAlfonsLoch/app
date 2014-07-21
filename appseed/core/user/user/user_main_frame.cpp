@@ -49,7 +49,7 @@ namespace user
       //if(!m_bPlacing)
       //{
       //   keep < bool > keepPlacing(&m_bPlacing, true, false, true);
-      //   BaseSession.place(this);
+      //   session().place(this);
       //}
 
    }

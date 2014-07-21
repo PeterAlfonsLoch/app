@@ -165,7 +165,7 @@ namespace fs
       {
          try
          {
-            Application.file().copy(pszDst, pszSrc);
+            session().file().copy(pszDst, pszSrc);
          }
          catch(...)
          {

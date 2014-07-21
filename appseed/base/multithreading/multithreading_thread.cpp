@@ -965,15 +965,15 @@ void thread::register_dependencies()
 
       Application.register_dependant_thread(this);
 
-      if(psystem == NULL && &BaseSession != NULL)
+      if(psystem == NULL && &session() != NULL)
       {
 
-         BaseSession.register_dependant_thread(this);
+         session().register_dependant_thread(this);
 
-         if(BaseSession.m_pplanecomposite != NULL)
+         if(session().m_pplanecomposite != NULL)
          {
 
-            BaseSession.m_pplanecomposite->register_dependant_thread(this);
+            session().m_pplanecomposite->register_dependant_thread(this);
 
          }
 

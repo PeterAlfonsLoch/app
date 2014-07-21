@@ -64,7 +64,7 @@ namespace nature
 
    bool document::on_open_document(var varFile)
    {
-      string str = Application.file().as_string(varFile);
+      string str = session().file().as_string(varFile);
       if(str.is_empty())
       {
          System.sync_load_url(str, varFile, &ApplicationUser);

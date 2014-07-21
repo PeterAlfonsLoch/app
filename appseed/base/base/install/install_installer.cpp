@@ -334,7 +334,7 @@ RetryHost:
 
          set1["raw_http"] = true;
 
-         string strInstallFilterList = Application.http().get(strUrl, set1);
+         string strInstallFilterList = session().http().get(strUrl, set1);
          ::xml::document nodeInstallFilter(get_app());
          nodeInstallFilter.load(strInstallFilterList);
          strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
@@ -348,7 +348,7 @@ RetryHost:
 
          set2["raw_http"] = true;
 
-         string strInstallFilter = Application.http().get(strUrl, set2);
+         string strInstallFilter = session().http().get(strUrl, set2);
          for(int32_t ui = 0; ui < nodeInstallFilter.get_root()->get_children_count(); ui++)
          {
             ::xml::node * lpchild = nodeInstallFilter.get_root()->child_at(ui);
@@ -442,7 +442,7 @@ RetryHost:
 
          set["raw_http"] = true;
 
-         string strIndexMd5 = Application.http().get(strUrl, set);
+         string strIndexMd5 = session().http().get(strUrl, set);
          if(strIndexMd5.length() != 32
             || stricmp_dup(get_file_md5(strIndexPath), strIndexMd5) != 0)
          {
@@ -1216,7 +1216,7 @@ RetryHost:
 
       set["raw_http"] = true;
 
-      return Application.http().download(strUrl, (dir + file), set);
+      return session().http().download(strUrl, (dir + file), set);
 
    }
 
@@ -1403,7 +1403,7 @@ RetryHost:
 
             set["raw_http"] = true;
 
-            bOk = Application.http().download(strUrl, strBsPatch, set);
+            bOk = session().http().download(strUrl, strBsPatch, set);
 
 //            if(iStatus == 404)
   //             break;
@@ -1559,7 +1559,7 @@ RetryHost:
 
             set["raw_http"] = true;
 
-            bOk = Application.http().download((url_in + "." + pszMd5), (dir + file + "." + pszMd5), set);
+            bOk = session().http().download((url_in + "." + pszMd5), (dir + file + "." + pszMd5), set);
 //            if(iStatus == 404)
   //             break;
             if (!bOk)
@@ -2496,7 +2496,7 @@ RetryHost:
 
       set["raw_http"] = true;
 
-      string strCount = Application.http().get(strUrl, set);
+      string strCount = session().http().get(strUrl, set);
       int32_t iCount = atoi_dup(strCount);
       //set_progress(0.2);
       for(int32_t i = 0; i < iCount; i++)
@@ -2513,7 +2513,7 @@ RetryHost:
 
          set["raw_http"] = true;
 
-         string strExec = Application.http().get(strUrl, set);
+         string strExec = session().http().get(strUrl, set);
 
          if(!spa_exec(strExec))
          {
@@ -2769,7 +2769,7 @@ RetryHost:
 
       m_strInstall               = "http://ca2os.com/stage/";
 
-      m_strInstallStatusTemplate = Application.http().get_locale_schema("http://account.ca2.cc/defer_ls_get?sessid=noauth&id=spa::InstallStatusTemplate", m_strInstallLocale, m_strInstallSchema);
+      m_strInstallStatusTemplate = session().http().get_locale_schema("http://account.ca2.cc/defer_ls_get?sessid=noauth&id=spa::InstallStatusTemplate", m_strInstallLocale, m_strInstallSchema);
 
       m_bForceUpdatedBuild       = true;
 
@@ -2795,7 +2795,7 @@ RetryHost:
       int32_t iRetry = 0;
       while(true)
       {
-         strName = Application.http().get_locale_schema(strUrl, m_strInstallLocale, m_strInstallSchema);
+         strName = session().http().get_locale_schema(strUrl, m_strInstallLocale, m_strInstallSchema);
          if(strName.length() > 0)
             break;
          else if(iRetry < 84)
@@ -2863,7 +2863,7 @@ RetryHost:
 
          set["raw_http"] = true;
 
-         str = Application.http().get(strUrl, set);
+         str = session().http().get(strUrl, set);
 
          if(str.length() > 0)
             break;
@@ -2906,7 +2906,7 @@ RetryBuildNumber:
             return -1;
          }
          iRetry++;
-//         m_strBuild = Application.http().get(m_strSpaIgnitionBaseUrl + "/query?node=build", false, &::ms_get_callback, (void *) this);
+//         m_strBuild = session().http().get(m_strSpaIgnitionBaseUrl + "/query?node=build", false, &::ms_get_callback, (void *) this);
 
          ::property_set set;
 
@@ -2916,7 +2916,7 @@ RetryBuildNumber:
 
          set["raw_http"] = true;
 
-         Application.http().get(m_strSpaIgnitionBaseUrl + "/query?node=build&sessid=noauth", m_strBuild, set);
+         session().http().get(m_strSpaIgnitionBaseUrl + "/query?node=build&sessid=noauth", m_strBuild, set);
 
          m_strBuild.trim();
          if(m_strBuild.length() != 19)
@@ -2974,7 +2974,7 @@ RetryBuildNumber:
 
          set["raw_http"] = true;
 
-         strSpaHost = Application.http().get(strUrl, set);
+         strSpaHost = session().http().get(strUrl, set);
 
          if(strSpaHost.is_empty())
          {
@@ -3793,18 +3793,18 @@ RetryBuildNumber:
 //      {
 //         //       uint32_t dwBufferLen = 1024 + 256;
 //         //         simple_http_status * pstatus = (simple_http_status *) reinterpret_cast < void * > (dwLen);
-//         //       System.install().trace().rich_trace("Application.http().get failed : status : " + itoa_dup(pstatus->m_dwStatusCode) + " - " + pstatus->m_pszStatus);
+//         //       System.install().trace().rich_trace("session().http().get failed : status : " + itoa_dup(pstatus->m_dwStatusCode) + " - " + pstatus->m_pszStatus);
 //      }
 //      else if (i == -2)
 //      {
-//         System.install().trace().rich_trace("Application.http().get failed");
+//         System.install().trace().rich_trace("session().http().get failed");
 //#ifdef WINDOWS
 //         uint32_t dw = ::GetLastError();
 //         wchar_t lastErrorTxt[1024];
 //         memset_dup(lastErrorTxt, 0, sizeof(lastErrorTxt));
 //         FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, dw, 0, lastErrorTxt, 1024, NULL);
 //         System.install().trace().rich_trace().print_ln(string(lastErrorTxt));
-//         System.install().trace().rich_trace().print_ln("Application.http().get failed : GetLastErrorCode : " + itoa_dup(dw));
+//         System.install().trace().rich_trace().print_ln("session().http().get failed : GetLastErrorCode : " + itoa_dup(dw));
 //#endif
 //      }
 //      else

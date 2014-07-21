@@ -191,12 +191,12 @@ namespace file
 
          }*/
 
-         return App(papp).http().exists(strPath, pvarQuery, set);
+         return Sess(papp).http().exists(strPath, pvarQuery, set);
 
       }
 
 
-      if (papp->m_bZipIsDir)
+      if (papp->m_pbasesession->m_bZipIsDir)
       {
 
          strsize iFind = ::str::find_ci(".zip:", strPath);
@@ -269,7 +269,7 @@ namespace file
 
          property_set set(papp);
 
-         return Application.http().length(strPath, set);
+         return session().http().length(strPath, set);
 
       }
 
@@ -471,7 +471,7 @@ restart:
       else
       {
          string strFilePath(varFile);
-         if(papp->m_bZipIsDir && (::str::find_ci(".zip:", strFilePath) >= 0))
+         if(papp->m_pbasesession->m_bZipIsDir && (::str::find_ci(".zip:", strFilePath) >= 0))
          {
             if(!exists(strFilePath, papp))
                return "";
@@ -508,7 +508,7 @@ restart:
             {
                try
                {
-                  ::file::byte_input_stream is(App(papp).file().get_file(strFilePath, ::file::type_binary | ::file::mode_read));
+                  ::file::byte_input_stream is(Sess(papp).file().get_file(strFilePath, ::file::type_binary | ::file::mode_read));
                   is >> storage;
                }
                catch(...)
@@ -519,7 +519,7 @@ restart:
             {
                varQuery["user"] = &AppUser(papp);
 
-               App(papp).http().get(strFilePath, storage, varQuery.propset());
+               Sess(papp).http().get(strFilePath, storage, varQuery.propset());
 
             }
          }
@@ -585,7 +585,7 @@ restart:
 
             set["user"] = &AppUser(papp);
 
-            App(papp).http().get(strPath, mem, set);
+            Sess(papp).http().get(strPath, mem, set);
 
             return;
 
@@ -598,7 +598,7 @@ restart:
       try
       {
 
-         spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_none);
+         spfile = Sess(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_none);
 
          if(spfile.is_null())
             return;
@@ -645,7 +645,7 @@ restart:
 
       ::file::binary_buffer_sp spfile;
 
-      spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
+      spfile = Sess(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
 
       if(spfile.is_null())
          return false;
@@ -671,7 +671,7 @@ restart:
    bool system::put_contents(var varFile, ::file::reader & reader, sp(::base::application) papp)
    {
       ::file::binary_buffer_sp spfile;
-      spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
+      spfile = Sess(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
       if(spfile.is_null())
          return false;
       primitive::memory mem;
@@ -692,7 +692,7 @@ restart:
    bool system::put_contents_utf8(var varFile, const char * lpcszContents, sp(::base::application) papp)
    {
       ::file::binary_buffer_sp spfile;
-      spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
+      spfile = Sess(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
       if(spfile.is_null())
          return false;
       spfile->write("\xef\xbb\xbf", 3);
@@ -829,7 +829,7 @@ restart:
          string strSrc;
          string strDirSrc(psz);
          string strDirDst(pszNew);
-         if(papp->m_bZipIsDir && (::str::ends(strDirSrc, ".zip")))
+         if(papp->m_pbasesession->m_bZipIsDir && (::str::ends(strDirSrc, ".zip")))
          {
             strDirSrc += ":";
          }
@@ -874,7 +874,7 @@ restart:
          }
 
          ::file::binary_buffer_sp ofile;
-         ofile = App(papp).file().get_file(strNew, ::file::mode_write | ::file::type_binary | ::file::mode_create | ::file::defer_create_directory | ::file::share_deny_write);
+         ofile = Sess(papp).file().get_file(strNew, ::file::mode_write | ::file::type_binary | ::file::mode_create | ::file::defer_create_directory | ::file::share_deny_write);
          if(ofile.is_null())
          {
             string strError;
@@ -883,7 +883,7 @@ restart:
          }
 
          ::file::binary_buffer_sp ifile;
-         ifile = App(papp).file().get_file(psz, ::file::mode_read | ::file::type_binary | ::file::share_deny_none);
+         ifile = Sess(papp).file().get_file(psz, ::file::mode_read | ::file::type_binary | ::file::share_deny_none);
          if(ifile.is_null())
          {
             string strError;
@@ -1308,7 +1308,7 @@ restart:
 
       System.dir().mk(System.dir().name(name), papp);
 
-      ::file::binary_buffer_sp fileOut = App(papp).file().get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
+      ::file::binary_buffer_sp fileOut = Sess(papp).file().get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
       if(fileOut.is_null())
          throw ::file::exception(papp, -1, ::file::exception::none, name);
@@ -1426,7 +1426,7 @@ restart:
    void system::dtf(const char * pszFile, stringa & stra, stringa & straRelative, sp(::base::application) papp)
    {
 
-      ::file::binary_buffer_sp spfile = App(papp).file().get_file(pszFile, ::file::mode_create | ::file::mode_write  | ::file::type_binary);
+      ::file::binary_buffer_sp spfile = Sess(papp).file().get_file(pszFile, ::file::mode_create | ::file::mode_write  | ::file::type_binary);
 
       if(spfile.is_null())
          throw "failed";
@@ -1486,7 +1486,7 @@ restart:
    void system::ftd(const char * pszDir, const char * pszFile, sp(::base::application) papp)
    {
       string strVersion;
-      ::file::binary_buffer_sp spfile = App(papp).file().get_file(pszFile, ::file::mode_read  | ::file::type_binary);
+      ::file::binary_buffer_sp spfile = Sess(papp).file().get_file(pszFile, ::file::mode_read  | ::file::type_binary);
       if(spfile.is_null())
          throw "failed";
       read_gen_string(spfile, NULL, strVersion);
@@ -1512,7 +1512,7 @@ restart:
             md5.initialize();
             read_gen_string(spfile, &md5, strRelative);
             string strPath = System.dir().path(pszDir, strRelative);
-            App(papp).dir().mk(System.dir().name(strPath));
+            Sess(papp).dir().mk(System.dir().name(strPath));
             if(!file2->open(strPath, ::file::mode_create | ::file::type_binary | ::file::mode_write))
                throw "failed";
             read_n_number(spfile, &md5, iLen);

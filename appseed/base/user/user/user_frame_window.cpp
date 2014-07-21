@@ -1617,8 +1617,8 @@ namespace user
 #ifdef WINDOWSEX
 
       WORD keyState = 0;
-      keyState |= Application.is_key_pressed(::user::key_control) ? MK_CONTROL : 0;
-      keyState |= Application.is_key_pressed(::user::key_shift) ? MK_SHIFT : 0;
+      keyState |= session().is_key_pressed(::user::key_control) ? MK_CONTROL : 0;
+      keyState |= session().is_key_pressed(::user::key_shift) ? MK_SHIFT : 0;
 
       oswindow hwFocus = ::GetFocus();
       const oswindow hwDesktop = ::GetDesktopWindow();

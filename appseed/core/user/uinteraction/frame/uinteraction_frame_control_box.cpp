@@ -158,7 +158,7 @@ namespace user
 
             point ptCursor;
 
-            BaseSession.get_cursor_pos(&ptCursor);
+            session().get_cursor_pos(&ptCursor);
 
             if (IsWindowVisible())
             {
@@ -246,7 +246,7 @@ namespace user
                   try
                   {
 
-                     pt = BaseSession.m_ptCursor;
+                     pt = session().m_ptCursor;
 
                   }
                   catch (...)

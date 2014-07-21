@@ -388,7 +388,7 @@ namespace file
       {
          UNREFERENCED_PARAMETER(pstraRelative);
          UNREFERENCED_PARAMETER(pszPattern);
-         if(eextract != extract_none && papp->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
+         if(eextract != extract_none && papp->m_pbasesession->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
          {
             throw "should implement recursive zip";
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize, eextract == extract_all ? extract_all : extract_none);
@@ -407,7 +407,7 @@ namespace file
 
             property_set set(get_app());
 
-            string str = App(papp).http().get(lpcsz, set);
+            string str = Sess(papp).http().get(lpcsz, set);
 
             if(pstraPath != NULL)
             {
@@ -419,7 +419,7 @@ namespace file
             return;
 
          }
-         if(papp->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
+         if(papp->m_pbasesession->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
          {
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize);
             return;
@@ -440,7 +440,7 @@ namespace file
 
       void system::rls(sp(::base::application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
       {
-         if(eextract != extract_none && papp->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
+         if(eextract != extract_none && papp->m_pbasesession->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
          {
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, pstraRelative, NULL, NULL, eextract == extract_all ? extract_all : extract_none);
             return;
@@ -462,7 +462,7 @@ namespace file
 
       void system::ls_dir(sp(::base::application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
       {
-         if(papp->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
+         if(papp->m_pbasesession->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
          {
             m_pziputil->ls_dir(papp, lpcsz, pstraPath, pstraTitle);
             return;
@@ -497,13 +497,13 @@ namespace file
 
             property_set set(get_app());
 
-            bIs = App(papp).http().exists(lpcszPath, set);
+            bIs = Sess(papp).http().exists(lpcszPath, set);
 
             return true;
 
          }
 
-         if (papp->m_bZipIsDir && (::str::ends_ci(lpcszPath, ".zip")))
+         if (papp->m_pbasesession->m_bZipIsDir && (::str::ends_ci(lpcszPath, ".zip")))
          {
 
             bIs = true;
@@ -511,7 +511,7 @@ namespace file
             return true;
          }
 
-         if (papp->m_bZipIsDir && (::str::find_ci(".zip:", lpcszPath) >= 0))
+         if (papp->m_pbasesession->m_bZipIsDir && (::str::find_ci(".zip:", lpcszPath) >= 0))
          {
 
             bool bHasSubFolder;
@@ -584,17 +584,17 @@ namespace file
 
             property_set set(get_app());
 
-            return App(papp).http().exists(strPath, set);
+            return Sess(papp).http().exists(strPath, set);
 
          }
 
 
-         if(papp->m_bZipIsDir && (::str::ends_ci(strPath, ".zip")))
+         if(papp->m_pbasesession->m_bZipIsDir && (::str::ends_ci(strPath, ".zip")))
          {
             m_isdirmap.set(strPath, true, 0);
             return true;
          }
-         if(papp->m_bZipIsDir && (::str::find_ci(".zip:", strPath) >= 0))
+         if(papp->m_pbasesession->m_bZipIsDir && (::str::find_ci(".zip:", strPath) >= 0))
          {
             bool bHasSubFolder;
             uint32_t dwLastError;
@@ -620,12 +620,12 @@ namespace file
       bool system::name_is(const string & strPath, sp(::base::application) papp)
       {
          //OutputDebugString(strPath);
-         if(papp->m_bZipIsDir && (::str::ends_ci(strPath, ".zip")))
+         if(papp->m_pbasesession->m_bZipIsDir && (::str::ends_ci(strPath, ".zip")))
          {
             m_isdirmap.set(strPath, true, 0);
             return true;
          }
-         if(papp->m_bZipIsDir && (::str::find_ci(".zip:", strPath) >= 0))
+         if(papp->m_pbasesession->m_bZipIsDir && (::str::find_ci(".zip:", strPath) >= 0))
          {
             bool bHasSubFolder;
             uint32_t dwLastError;
@@ -887,7 +887,7 @@ namespace file
       string system::locale_schema(sp(::base::application) papp, const string & strLocale, const string & strSchema)
       {
 
-         return papp->get_locale_schema_dir(strLocale, strSchema);
+         return papp->m_pbasesession->get_locale_schema_dir(strLocale, strSchema);
 
       }
 
@@ -902,14 +902,14 @@ namespace file
 
             string strDomain(pszApp);
 
-            if(BaseSession.m_bMatterFromHttpCache)
+            if(session().m_bMatterFromHttpCache)
             {
 
-               return path(simple_path(strRoot,"appmatter",strDomain),papp->get_locale_schema_dir(strLocale,strSchema));
+               return path(simple_path(strRoot,"appmatter",strDomain),papp->m_pbasesession->get_locale_schema_dir(strLocale,strSchema));
             }
             else
             {
-               return path(element(simple_path(strRoot,"appmatter",strDomain)),papp->get_locale_schema_dir(strLocale,strSchema));
+               return path(element(simple_path(strRoot,"appmatter",strDomain)),papp->m_pbasesession->get_locale_schema_dir(strLocale,strSchema));
 
             }
 
@@ -922,7 +922,7 @@ namespace file
             for (index i = 0; i < papp->m_straMatterLocator.get_count(); i++)
             {
 
-               stra.add_unique(path(papp->m_straMatterLocator[i], papp->get_locale_schema_dir(strLocale, strSchema)));
+               stra.add_unique(path(papp->m_straMatterLocator[i], papp->m_pbasesession->get_locale_schema_dir(strLocale, strSchema)));
 
             }
 
@@ -954,14 +954,14 @@ namespace file
 
          string strDir = matter(papp, str, true);
 
-         if(BaseSess(papp).m_bMatterFromHttpCache)
+         if(Sess(papp).m_bMatterFromHttpCache)
          {
 
             property_set set(get_app());
 
             set["raw_http"] = true;
 
-            string strLs = App(papp).http().get("http://" + get_api_cc() + "/api/matter/list_dir?dir=" + System.url().url_encode(strDir),set);
+            string strLs = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/list_dir?dir=" + System.url().url_encode(strDir),set);
 
             stringa straLs;
 
@@ -998,7 +998,7 @@ namespace file
       string system::matter(sp(::base::application) papp, const stringa & stra, bool bDir, const char * pszRoot, const char * pszApp)
       {
 
-         ::user::str_context * pcontext = App(papp).str_context();
+         ::user::str_context * pcontext = Sess(papp).str_context();
 
          ::index j;
 
@@ -1030,11 +1030,11 @@ namespace file
             if (ca <= 0)
                return "";
 
-            ::user::str_context * pcontext = App(papp).str_context();
+            ::user::str_context * pcontext = Sess(papp).str_context();
 
             string strFile;
 
-            if(BaseSession.m_bMatterFromHttpCache)
+            if(session().m_bMatterFromHttpCache)
             {
 
 
@@ -1049,7 +1049,7 @@ namespace file
 
                   strLs = straLs[l];
 
-                  strFile = System.dir().commonappdata(path("cache", papp->get_locale_schema_dir(strLocale, strSchema), stra.implode(",") + ".map_question"));
+                  strFile = System.dir().commonappdata(path("cache", papp->m_pbasesession->get_locale_schema_dir(strLocale, strSchema), stra.implode(",") + ".map_question"));
 
                   strsize iFind = strFile.find(DIR_SEPARATOR);
 
@@ -1060,7 +1060,7 @@ namespace file
 
                   }
 
-                  strPath = Application.file().as_string(strFile);
+                  strPath = session().file().as_string(strFile);
 
                   if (strPath.has_char())
                   {
@@ -1112,11 +1112,11 @@ namespace file
 
                   if (bDir)
                   {
-                     strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                     strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
                   }
                   else
                   {
-                     strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                     strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")),set);
                   }
 
                   if (strPath.has_char())
@@ -1231,7 +1231,7 @@ namespace file
          }
 
 
-         if(BaseSession.m_bMatterFromHttpCache)
+         if(session().m_bMatterFromHttpCache)
 
          {
 
@@ -1246,7 +1246,7 @@ namespace file
             {
                strLs = straLs[l];
 
-               strFile = System.dir().commonappdata(path("cache", papp->get_locale_schema_dir(strLocale, strSchema), stra.implode(",") + ".map_question"));
+               strFile = System.dir().commonappdata(path("cache", papp->m_pbasesession->get_locale_schema_dir(strLocale, strSchema), stra.implode(",") + ".map_question"));
 
                strsize iFind = strFile.find(DIR_SEPARATOR);
 
@@ -1257,7 +1257,7 @@ namespace file
 
                }
 
-               strPath = Application.file().as_string(strFile);
+               strPath = session().file().as_string(strFile);
 
                if(strPath.has_char())
                {
@@ -1306,11 +1306,11 @@ namespace file
 
                if(bDir)
                {
-                  strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                  strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
                }
                else
                {
-                  strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                  strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")),set);
                }
 
                if(strPath.has_char())
@@ -1457,9 +1457,9 @@ else
 
          ret:
 
-            if(BaseSession.m_bMatterFromHttpCache)
+            if(session().m_bMatterFromHttpCache)
             {
-               Application.file().put_contents(strFile,strPath);
+               session().file().put_contents(strFile,strPath);
             }
 
             return strPath;
@@ -1485,7 +1485,7 @@ else
       string system::matter(sp(::base::application) papp, const string & str, const string & str2, bool bDir, const char * pszRoot, const char * pszApp)
       {
 
-         ::user::str_context * pcontext = App(papp).str_context();
+         ::user::str_context * pcontext = Sess(papp).str_context();
 
          string strLocale;
 
@@ -1509,7 +1509,7 @@ else
             string strApp(pszApp);
 
 
-            if(BaseSession.m_bMatterFromHttpCache)
+            if(session().m_bMatterFromHttpCache)
 
             {
 
@@ -1520,7 +1520,7 @@ else
                strSchema = pcontext->m_plocaleschema->m_idSchema;
                straLs = locale_schema_matter(papp, strLocale, strSchema, pszRoot, pszApp);
 
-               strFile = System.dir().commonappdata(path("cache", papp->get_locale_schema_dir(strLocale, strSchema), str + ::str::has_char(str2, ",") + ".map_question"));
+               strFile = System.dir().commonappdata(path("cache", papp->m_pbasesession->get_locale_schema_dir(strLocale, strSchema), str + ::str::has_char(str2, ",") + ".map_question"));
 
                strsize iFind = strFile.find(DIR_SEPARATOR);
 
@@ -1531,7 +1531,7 @@ else
 
                }
 
-               strPath = Application.file().as_string(strFile);
+               strPath = session().file().as_string(strFile);
 
                if (strPath.has_char())
                {
@@ -1577,11 +1577,11 @@ else
 
                if (bDir)
                {
-                  strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                  strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
                }
                else
                {
-                  strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                  strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
                }
 
                strPath.trim();
@@ -1672,7 +1672,7 @@ else
          }
 
 
-         if(BaseSession.m_bMatterFromHttpCache)
+         if(session().m_bMatterFromHttpCache)
          {
 
 
@@ -1682,7 +1682,7 @@ else
             strSchema  = pcontext->m_plocaleschema->m_idSchema;
             straLs      = locale_schema_matter(papp, strLocale, strSchema);
 
-            strFile = System.dir().commonappdata(path("cache", papp->get_locale_schema_dir(strLocale, strSchema), str + ::str::has_char(str2, ",") + ".map_question"));
+            strFile = System.dir().commonappdata(path("cache", papp->m_pbasesession->get_locale_schema_dir(strLocale, strSchema), str + ::str::has_char(str2, ",") + ".map_question"));
 
             strsize iFind = strFile.find(DIR_SEPARATOR);
 
@@ -1693,7 +1693,7 @@ else
 
             }
 
-            strPath = Application.file().as_string(strFile);
+            strPath = session().file().as_string(strFile);
 
             if(strPath.has_char())
             {
@@ -1740,11 +1740,11 @@ else
 
             if(bDir)
             {
-               strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+               strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
             }
             else
             {
-               strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+               strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
             }
 
             strPath.trim();
@@ -1873,10 +1873,10 @@ else
 
 ret:
 
-         if(BaseSession.m_bMatterFromHttpCache)
+         if(session().m_bMatterFromHttpCache)
 
          {
-            Application.file().put_contents(strFile,strPath);
+            session().file().put_contents(strFile,strPath);
 
             strFile = strPath;
 
@@ -1885,7 +1885,7 @@ ret:
             strFile.replace("?","%19");
             strFile = System.dir().appdata("cache/" + strFile + ".exists_question");
 
-            Application.file().put_contents(strFile, "yes");
+            session().file().put_contents(strFile, "yes");
 
 
          }
@@ -2226,7 +2226,7 @@ ret:
 
          appmatter_locators(strRoot,strDomain,papp);
 
-         if(BaseSession.m_bMatterFromHttpCache)
+         if(session().m_bMatterFromHttpCache)
          {
             return simple_path(strRoot, "appmatter", strDomain);
 
@@ -2442,7 +2442,7 @@ ret:
 
             strCandidate = path(stra[i], pszTopic);
 
-            if(App(papp).file().exists(strCandidate))
+            if(Sess(papp).file().exists(strCandidate))
             {
                return strCandidate;
             }
@@ -2461,14 +2461,14 @@ ret:
 
          synch_lock sl(&m_mutex);
 
-         if(&BaseSession == NULL || BaseSession.fontopus().is_null())
+         if(&session() == NULL || session().fontopus().is_null())
             return "api.ca2.cc";
 
          string strApiServer;
 
          string strGetFontopus("http://api.ca2.cc/get_fontopus");
 
-         string strFontopusServer = BaseSession.fontopus()->get_server(strGetFontopus,8);
+         string strFontopusServer = session().fontopus()->get_server(strGetFontopus,8);
 
          strApiServer = strFontopusServer;
 

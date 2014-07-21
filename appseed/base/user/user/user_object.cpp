@@ -410,7 +410,7 @@ namespace user
       try
       {
 
-         spfile = Application.file().get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary);
+         spfile = session().file().get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary);
 
          /*if(::str::begins_ci(varFile, "uifs://"))
          {
@@ -465,7 +465,7 @@ namespace user
       try
       {
 
-         spfile = Application.file().get_file(varFile, ::file::defer_create_directory | ::file::mode_create | ::file::mode_write | ::file::share_exclusive);
+         spfile = session().file().get_file(varFile, ::file::defer_create_directory | ::file::mode_create | ::file::mode_write | ::file::share_exclusive);
 
       }
       catch (::exception::base & e)
@@ -823,7 +823,7 @@ namespace user
    bool object::do_file_save()
    {
 
-      if (is_new_document() || System.file_is_read_only(m_strPathName))
+      if (is_new_document() || session().file_is_read_only(m_strPathName))
       {
 
          // we do not have read-write access or the file does not (now) exist

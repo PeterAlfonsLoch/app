@@ -4287,6 +4287,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="multithreading\multithreading_set_event_on_exit.h" />
     <ClInclude Include="multithreading\multithreading_signal_thread.h" />
     <ClInclude Include="multithreading\multithreading_simple_thread.h" />
+    <ClInclude Include="multithreading\multithreading_synch_index_iterator.h" />
+    <ClInclude Include="multithreading\multithreading_synch_index_ptr_array.h" />
+    <ClInclude Include="multithreading\multithreading_synch_ptr_array.h" />
     <ClInclude Include="multithreading\multithreading_thread_impl.h" />
     <ClInclude Include="net\http\http.h" />
     <ClInclude Include="net\http\http_application.h" />
@@ -18525,6 +18528,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <None Include="base\base\base_system_xml.inl" />
     <None Include="base\message\message.inl" />
     <None Include="multithreading\multithreading.inl" />
+    <None Include="primitive\collection\collection.inl" />
     <None Include="primitive\primitive_factory_impl.inl" />
     <None Include="primitive\str\str.inl" />
     <None Include="base.def" />

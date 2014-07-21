@@ -94,7 +94,7 @@ namespace command
    /*      rect rectWindow;
          GetWindowRect(rectWindow);
          point pt;
-         BaseSession.get_cursor_pos(&pt);
+         Session.get_cursor_pos(&pt);
          if(!rectWindow.contains(pt) && !m_bTimerHide)
          {
             m_bTimerHide = true;
@@ -110,7 +110,7 @@ namespace command
          {
             OnHoverAction();
          }
-         if(BaseSession.get_cursor_pos(&pt))
+         if(Session.get_cursor_pos(&pt))
          {
             if(!m_bHoverMouse && pt.x == 0 && pt.y == 0)
             {
@@ -258,8 +258,8 @@ namespace command
       m_pimagelist->add_matter_icon("system/language_change.ico");
 
 
-      string str = Application.file().as_string(
-         Application.dir().matter("command\\toolbar.xml"));
+      string str = Session.file().as_string(
+         Session.dir().matter("command\\toolbar.xml"));
 
 	   if (!m_toolbar.CreateEx(this) ||
 		    !m_toolbar.LoadXmlToolBar(str))

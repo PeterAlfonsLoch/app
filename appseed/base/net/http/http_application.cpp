@@ -39,7 +39,7 @@ namespace http
 
       if ((bool)set["optional_ca2_sessid"])
       {
-         if (BaseSession.fontopus()->m_puser != NULL)
+         if (session().fontopus()->m_puser != NULL)
             set["user"] = &ApplicationUser;
       }
       else
@@ -154,7 +154,7 @@ namespace http
       strFile.replace("?", "%19");
       strFile = System.dir().appdata("cache/" + strFile + ".exists_question");
 
-      string strCache = Application.file().as_string(strFile);
+      string strCache = session().file().as_string(strFile);
 
       if(strCache.has_char())
       {
@@ -179,7 +179,7 @@ namespace http
          strCache = "yes";
       else
          strCache = "no";
-      Application.file().put_contents(strFile, strCache);
+      session().file().put_contents(strFile, strCache);
       return bExists;
    }
 
@@ -204,7 +204,7 @@ namespace http
       strFile.replace("?", "%19");
       strFile = System.dir().appdata("cache/" + strFile + ".length_question");
 
-      string strCache = Application.file().as_string(strFile);
+      string strCache = session().file().as_string(strFile);
 
       if (strCache.has_char())
       {
@@ -225,7 +225,7 @@ namespace http
       else
          strCache = ::str::from(len.int64());
 
-      Application.file().put_contents(strFile, strCache);
+      session().file().put_contents(strFile, strCache);
 
       return len;
 
@@ -294,9 +294,9 @@ namespace http
 
       int iAttempt = 0;
 
-      string strFontopusServer = BaseSession.fontopus()->get_fontopus_server(pszUrl);
+      string strFontopusServer = session().fontopus()->get_fontopus_server(pszUrl);
 
-      sp(::sockets::http_session) psession = BaseSession.fontopus()->m_mapFontopusSession[strFontopusServer];
+      sp(::sockets::http_session) psession = session().fontopus()->m_mapFontopusSession[strFontopusServer];
 
       while(true)
       {
@@ -312,7 +312,7 @@ namespace http
             if(psession.is_set())
             {
 
-               BaseSession.fontopus()->m_mapFontopusSession.set_at(strFontopusServer,psession);
+               session().fontopus()->m_mapFontopusSession.set_at(strFontopusServer,psession);
 
             }
 

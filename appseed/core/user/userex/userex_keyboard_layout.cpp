@@ -48,23 +48,23 @@ namespace userex // ca8 + cube
 
 
       stringa straPath;
-      Application.dir().ls(System.dir().element("app/appmatter/main/_std/_std/keyboard layout"), &straPath);
+      session().dir().ls(System.dir().element("app/appmatter/main/_std/_std/keyboard layout"), &straPath);
       for(int32_t i = 0; i < straPath.get_count(); i++)
       {
          ::user::keyboard_layout_id layoutid;
-         if(System.user()->keyboard().initialize(&layoutid, straPath[i]))
+         if(session().user()->keyboard().initialize(&layoutid, straPath[i]))
          {
             m_layoutida.add(layoutid);
          }
       }
 
       m_layoutida.quick_sort(true);
-      if(&System.user()->keyboard().layout() != NULL)
+      if(&session().user()->keyboard().layout() != NULL)
       {
          int32_t iFind = -1;
          for(int32_t i = 0; i < m_layoutida.get_count(); i++)
          {
-            if(m_layoutida[i].m_strPath.CompareNoCase(System.user()->keyboard().layout().m_strPath) == 0)
+            if(m_layoutida[i].m_strPath.CompareNoCase(session().user()->keyboard().layout().m_strPath) == 0)
             {
                iFind = i;
                break;
@@ -103,7 +103,7 @@ namespace userex // ca8 + cube
 
    void keyboard_layout::on_show()
    {
-      if(!m_pdoc->on_open_document(Application.dir().matter("keyboard layout configuration/form.html")))
+      if(!m_pdoc->on_open_document(session().dir().matter("keyboard layout configuration/form.html")))
       {
          return;
       }
@@ -135,7 +135,7 @@ namespace userex // ca8 + cube
                index iItem = range.ItemAt(0).get_lower_bound();
                if(iItem >= 0 && iItem < m_layoutida.get_count())
                {
-                  System.user()->set_keyboard_layout(m_layoutida[iItem].m_strPath, ::action::source::user());
+                  session().user()->set_keyboard_layout(m_layoutida[iItem].m_strPath, ::action::source::user());
                }
             }
          }
@@ -163,7 +163,7 @@ namespace userex // ca8 + cube
                string strPort;
                ptext->_001GetText(strPort);
                doc.add_attr("port", strPort);
-               Application.file().put_contents(System.dir().appdata("proxy.xml"), doc.get_xml());
+               session().file().put_contents(System.dir().appdata("proxy.xml"), doc.get_xml());
             }
          }
       }

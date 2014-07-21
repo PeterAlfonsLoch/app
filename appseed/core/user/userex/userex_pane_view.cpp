@@ -69,7 +69,7 @@ namespace userex
             {
 //               sp(::user::menu_list_view) pmenuview = (sp(::user::menu_list_view)) pview;
    /* xxx           xml::node node(get_app());
-               node.load(Application.file().as_string(Application.dir().matter(
+               node.load(session().file().as_string(session().dir().matter(
                   "mplite_popup_lyricview.xml")));
                pmenuview->LoadMenu(&node);*/
                pcreatordata->m_pwnd = pview;

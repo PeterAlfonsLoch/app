@@ -231,7 +231,7 @@ namespace visual
    {
       return set_cursor_set_from_dir(
          System.dir().name(
-            Application.dir().matter(
+            session().dir().matter(
                System.dir().path(pszMatter, "arrow.png"))));
    }
 

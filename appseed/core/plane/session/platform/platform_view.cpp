@@ -146,7 +146,7 @@ namespace platform
 
       //      string strFile = System.file().time_square();
 
-      //    Application.file().put_contents(strFile, str);
+      //    session().file().put_contents(strFile, str);
 
       //  get_document()->open_document(strFile);
 
@@ -199,7 +199,7 @@ namespace platform
       m_dibBkImage.load_from_matter("casweden1.png");
 
       m_dibBk->create(1280, 1024);
-      //::base::savings & savings = System.savings();
+      //::base::savings & savings = session().savings();
       //if(
 
       const char * pszSessionName = NULL;
@@ -297,7 +297,7 @@ namespace platform
                cc->m_spCommandLine->m_strApp   = strApp;
                cc->m_spCommandLine->m_varFile  = PlaneSession.m_varTopicFile;
 
-               BaseSession.command()->request_create(cc);
+               session().command()->request_create(cc);
             }
          }
       }
@@ -345,7 +345,7 @@ namespace platform
       rectDesktop.top = 0;
       rectDesktop.bottom = ::GetSystemMetrics(SM_CYSCREEN);
       }*/
-      if(System.savings().is_trying_to_save(::base::resource_processing))
+      if(session().savings().is_trying_to_save(::base::resource_processing))
       {
          pdc->FillRect(&rectClient, m_brushBk);
       }
@@ -371,7 +371,7 @@ namespace platform
 
 
       class rect rectThumb;
-      if(&BaseSession != NULL)
+      if(&session() != NULL)
       {
          PlaneSession.get_document()->get_bergedge_view()->GetWindowRect(rectThumb);
          if(rectThumb.area() > 0)
@@ -891,7 +891,7 @@ namespace platform
       m_linka.remove_all();
 
 
-      string str = Application.file().as_string(Application.dir().matter("platform\\main_link.xml"));
+      string str = session().file().as_string(session().dir().matter("platform\\main_link.xml"));
 
       xml::document doc(get_app());
 

@@ -331,7 +331,7 @@ namespace file
 
             single_lock sl(&System.http().m_mutexDownload, true);
 
-            if (m_pbaseapp->m_file.exists(strFile) && !(System.http().m_straDownloading.contains(strPath) || System.http().m_straExists.contains(strPath)))
+            if (session().file().exists(strFile) && !(System.http().m_straDownloading.contains(strPath) || System.http().m_straExists.contains(strPath)))
             {
 
                sl.unlock();
@@ -385,7 +385,7 @@ namespace file
                sl.lock();
             }
 
-            if (!System.http().m_straDownloading.contains(strPath) && m_pbaseapp->m_http.exists(strPath, &varQuery, set))
+            if (!Sys(m_pbaseapp).http().m_straDownloading.contains(strPath) && Sess(m_pbaseapp).m_http.exists(strPath, &varQuery, set))
             {
 
                System.http().m_straDownloading.add(strPath);
@@ -469,7 +469,7 @@ namespace file
 /* xxx      else if(::str::begins(strPath, "fs://"))
       {
 
-         if(&BaseSession == NULL)
+         if(&session() == NULL)
          {
 
             spfile = NULL;
@@ -478,7 +478,7 @@ namespace file
          else
          {
 
-            spfile = BaseSession.m_prfs->get_file(varFile, nOpenFlags);
+            spfile = session().m_prfs->get_file(varFile, nOpenFlags);
 
          }
 
@@ -495,7 +495,7 @@ namespace file
 
             spfile = Application.alloc(System.type_info < ::file::binary_buffer > ());
 
-            if(!spfile->open(App(m_pbaseapp).dir().matter(strPath), nOpenFlags))
+            if(!spfile->open(Sess(m_pbaseapp).dir().matter(strPath), nOpenFlags))
             {
 
                spfile.release();
@@ -503,16 +503,16 @@ namespace file
             }
 
          }
-         else if(&BaseSession != NULL && BaseSession.m_mapApplication.Lookup(System.url().get_server("matter://" + strPath), papp) && App(m_pbaseapp).m_strAppName.has_char())
+         else if(&session() != NULL && session().m_mapApplication.Lookup(System.url().get_server("matter://" + strPath), papp) && App(m_pbaseapp).m_strAppName.has_char())
          {
 
-            spfile = App(papp).file().get_file("matter://" + strPath, nOpenFlags);
+            spfile = Sess(papp).file().get_file("matter://" + strPath, nOpenFlags);
 
          }
          else
          {
 
-            spfile = get_file(App(m_pbaseapp).dir().matter(strPath), nOpenFlags);
+            spfile = get_file(Sess(m_pbaseapp).dir().matter(strPath), nOpenFlags);
 
          }
 

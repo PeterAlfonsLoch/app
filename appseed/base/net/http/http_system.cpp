@@ -35,9 +35,9 @@ namespace http
          string str = System.file().as_string(System.dir().appdata("machine/proxy.xml"), &System);
          if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
          {
-            Application.file().copy(System.dir().appdata("proxy_original.xml"), System.dir().element("proxy.xml"), false);
+            session().file().copy(System.dir().appdata("proxy_original.xml"), System.dir().element("proxy.xml"), false);
          }
-         if(Application.file().exists(System.dir().appdata("proxy.xml")))
+         if(session().file().exists(System.dir().appdata("proxy.xml")))
          {
             try
             {
@@ -51,9 +51,9 @@ namespace http
       else if(i == 2)
       {
          // telmico: original proxy configuration
-         if(Application.file().exists(System.dir().appdata("proxy_original.xml")))
+         if(session().file().exists(System.dir().appdata("proxy_original.xml")))
          {
-            Application.file().copy(System.dir().appdata("proxy.xml"), System.dir().appdata("proxy_original.xml"), false);
+            session().file().copy(System.dir().appdata("proxy.xml"), System.dir().appdata("proxy_original.xml"), false);
          }
       }
       else
@@ -62,9 +62,9 @@ namespace http
          string str = System.file().as_string(System.dir().appdata("proxy.xml"), &System);
          if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
          {
-            Application.file().copy(System.dir().appdata("proxy_original.xml"), System.dir().appdata("proxy.xml"), false);
+            session().file().copy(System.dir().appdata("proxy_original.xml"), System.dir().appdata("proxy.xml"), false);
          }
-         Application.file().put_contents(System.dir().appdata("proxy.xml"), "proxy");
+         session().file().put_contents(System.dir().appdata("proxy.xml"), "proxy");
       }
    }
 
@@ -96,7 +96,7 @@ namespace http
       */
 
 
-      string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
+      string strHost = session().file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
       stringa straRequestingServer;
       straRequestingServer.add("account.ca2.cc");
       //straRequestingServer.add("eu-account.ca2.cc");
@@ -164,7 +164,7 @@ namespace http
          varQuery["disable_ca2_sessid"] = true;
          varQuery["no_proxy_config"] = true;
 
-         ppac->m_strAutoConfigScript = Application.file().as_string(ppac->m_strUrl, varQuery);
+         ppac->m_strAutoConfigScript = session().file().as_string(ppac->m_strUrl, varQuery);
 
 
          m_mapPac.set_at(pszUrl, ppac);
@@ -501,7 +501,7 @@ namespace http
             if(papp != NULL)
             {
 
-               string strFontopusServer = BaseSession.fontopus()->get_server(strUrl, 8);
+               string strFontopusServer = session().fontopus()->get_server(strUrl, 8);
 
                url_domain domainFontopus;
 
@@ -526,7 +526,7 @@ namespace http
 
             System.url().string_set(strUrl, "sessid", strSessId);
 
-            string strFontopus = BaseSession.fontopus()->get_server(string("http://") + pszHost, 8);
+            string strFontopus = session().fontopus()->get_server(string("http://") + pszHost, 8);
 
             ::net::address ad(strFontopus);
 
@@ -723,7 +723,7 @@ retry:
             if(papp != NULL)
             {
 
-               string strFontopusServer = BaseSession.fontopus()->get_server(strUrl, 8);
+               string strFontopusServer = session().fontopus()->get_server(strUrl, 8);
 
                url_domain domainFontopus;
 
@@ -825,7 +825,7 @@ retry:
          if(papp != NULL)
          {
             keeplive.keep(papp);
-            keeplive.keep(&BaseSess(papp));
+            keeplive.keep(&Sess(papp));
             keeplive.keep(&Sys(papp));
          }
          oprop("dw").get_value().set_type(var::type_uint32);
@@ -880,7 +880,7 @@ retry:
             strSessId = psession->m_response.m_cookies["sessid"];
             if(strSessId.has_char())
             {
-               System.sockets().m_clientcontextmap[System.url().get_server(strUrl) + "?sessid=" + strSessId] = psession->m_spsslclientcontext;
+               session().sockets().m_clientcontextmap[System.url().get_server(strUrl) + "?sessid=" + strSessId] = psession->m_spsslclientcontext;
             }
          }
 
@@ -1151,7 +1151,7 @@ retry:
                if (papp != NULL)
                {
 
-                  string strFontopusServer = BaseSession.fontopus()->get_server(strUrl, 8);
+                  string strFontopusServer = session().fontopus()->get_server(strUrl, 8);
 
                   url_domain domainFontopus;
 
@@ -1178,13 +1178,13 @@ retry:
                System.url().string_set(strUrl, "sessid", strSessId);
                if (strUrl.find_ci("://api.ca2.cc/") > 0)
                {
-                  string strApi(BaseSession.fontopus()->get_server(strUrl, 8));
+                  string strApi(session().fontopus()->get_server(strUrl, 8));
                   strApi.replace("account", "api");
                   strUrl.replace("://api.ca2.cc/", "://" + strApi + "/");
 //                  set["user"].cast < ::fontopus::user >()->set_sessid(set["user"].cast < ::fontopus::user >()->get_sessid(strApi), "api.ca2.cc");
                }
 
-               string strFontopus = BaseSession.fontopus()->get_server(pszUrl, 8);
+               string strFontopus = session().fontopus()->get_server(pszUrl, 8);
 
                ::net::address ad(strFontopus);
 
@@ -1346,7 +1346,7 @@ retry:
       if(papp != NULL)
       {
          keeplive.keep(papp);
-         keeplive.keep(&BaseSess(papp));
+         keeplive.keep(&Sess(papp));
          keeplive.keep(&Sys(papp));
       }
 
@@ -1384,7 +1384,7 @@ retry:
          strSessId = psocket->m_response.m_cookies["sessid"];
          if(strSessId.has_char())
          {
-            System.sockets().m_clientcontextmap[System.url().get_server(strUrl) + "?sessid=" + strSessId] = psocket->m_spsslclientcontext;
+            session().sockets().m_clientcontextmap[System.url().get_server(strUrl) + "?sessid=" + strSessId] = psocket->m_spsslclientcontext;
          }
       }
 #endif
@@ -1587,7 +1587,7 @@ retry:
       
       ::sockets::socket_handler handler(get_app());
 
-      ::file::buffer_sp spfile = App(set.cast < ::base::application >("app", get_app())).file().get_file(pszFile,
+      ::file::buffer_sp spfile = set.cast < ::base::application >("app", get_app())->m_pbasesession->file().get_file(pszFile,
          ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
 
       set["file"] = spfile;
@@ -1763,7 +1763,7 @@ retry:
       else
       {
          //SPECIFY AUTHENTICATION USERNAME
-         if(BaseSession.get_auth("system\\::fontopus::user\\proxy_authenticate.xhtml", strUserName, strPassword))
+         if(session().get_auth("system\\::fontopus::user\\proxy_authenticate.xhtml", strUserName, strPassword))
          {
             System.crypto().file_set(strUserNameFile, strUserName, NULL, get_app());
             System.crypto().file_set(strPasswordFile, strPassword, NULL, get_app());

@@ -57,7 +57,7 @@ namespace simpledb
       {
          data_set("locale", lpcsz);
       }
-      m_pbaseapp->m_pplaneapp->on_set_locale(lpcsz, actioncontext);
+      m_pbaseapp->m_pbasesession->on_set_locale(lpcsz, actioncontext);
    }
 
    void simpledb::on_set_schema(const char * lpcsz, ::action::context actioncontext)
@@ -66,7 +66,7 @@ namespace simpledb
       {
          data_set("schema", lpcsz);
       }
-      m_pbaseapp->m_pplaneapp->on_set_schema(lpcsz, actioncontext);
+      m_pbaseapp->m_pbasesession->on_set_schema(lpcsz,actioncontext);
    }
 
    bool simpledb::FinalizeDataCentral()
@@ -112,13 +112,13 @@ namespace simpledb
       if(m_pbaseapp->m_pplaneapp->command()->m_varTopicQuery["locale"].get_count() > 0)
       {
          string str = m_pbaseapp->m_pplaneapp->command()->m_varTopicQuery["locale"].stra()[0];
-         m_pbaseapp->m_pplaneapp->set_locale(str, ::action::source::database());
+         m_pbaseapp->m_pbasesession->set_locale(str,::action::source::database());
       }
 
       if(m_pbaseapp->m_pplaneapp->command()->m_varTopicQuery["schema"].get_count() > 0)
       {
          string str = m_pbaseapp->m_pplaneapp->command()->m_varTopicQuery["schema"].stra()[0];
-         m_pbaseapp->m_pplaneapp->set_schema(str, ::action::source::database());
+         m_pbaseapp->m_pbasesession->set_schema(str,::action::source::database());
       }
 
 //      if(&AppUser(this) == NULL)
@@ -143,7 +143,7 @@ namespace simpledb
 //      ::core::application_request * prequest = System.get_application_request();
 
 
-      m_pbaseapp->m_pplaneapp->fill_locale_schema(*m_pbaseapp->m_pplaneapp->str_context()->m_plocaleschema);
+      m_pbaseapp->m_pbasesession->fill_locale_schema(*m_pbaseapp->m_pbasesession->str_context()->m_plocaleschema);
 
 
       if(!m_pbaseapp->m_pplaneapp->is_installing() && !m_pbaseapp->m_pplaneapp->is_uninstalling() && !m_pbaseapp->m_pplaneapp->is_system())
@@ -222,7 +222,7 @@ namespace simpledb
    bool simpledb::set_keyboard_layout(const char * pszPath, ::action::context actioncontext)
    {
 
-      return Application.user()->set_keyboard_layout(pszPath, actioncontext);
+      return session().user()->set_keyboard_layout(pszPath, actioncontext);
 
    }
 
@@ -233,7 +233,7 @@ namespace simpledb
       if(actioncontext.is_user_source())
       {
 
-         if(BaseSess(m_pbaseapp).safe_get_user() != NULL)
+         if(Sess(m_pbaseapp).safe_get_user() != NULL)
          {
 
             data_set("keyboard_layout", pszPath);

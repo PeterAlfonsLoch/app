@@ -614,7 +614,7 @@ namespace zip
 
       ::file::binary_buffer_sp file;
 
-      file = Application.file().get_file(strPath, ::file::mode_read | ::file::type_binary);
+      file = session().file().get_file(strPath, ::file::mode_read | ::file::type_binary);
 
       if(file.is_null())
          throw "failed to open file for compressing";

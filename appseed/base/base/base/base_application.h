@@ -1,191 +1,5 @@
 #pragma once
 
-class CLASS_DECL_BASE index_ptr_array:
-   virtual protected ptr_array < index >
-{
-public:
-
-   ::mutex * m_pmutex;
-
-
-   index_ptr_array(mutex * pmutex) { m_pmutex = pmutex; }
-   virtual ~index_ptr_array() {}
-
-   void reg(index *pi)
-   {
-      synch_lock sl(m_pmutex);
-      add(pi);
-   }
-
-   void on_removed(index i)
-   {
-
-      synch_lock sl(m_pmutex);
-
-      for(index iPointer = 0; iPointer < get_count(); iPointer++)
-      {
-         if(*element_at(iPointer) > i)
-         {
-
-            (*element_at(iPointer))--;
-
-         }
-      }
-
-   }
-
-   void unreg(index *pi)
-   {
-      synch_lock sl(m_pmutex);
-      remove(pi);
-   }
-#undef new
-   DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
-#define new BASE_NEW
-
-};
-
-
-template < class T >
-class mutex_ptr_array;
-
-class  CLASS_DECL_BASE index_iterator :
-   public single_lock
-{
-public:
-
-   index m_i;
-   index_ptr_array * m_pindexptra;
-   ::mutex * m_pmutex;
-
-   index_iterator(index_ptr_array * pindexptra,mutex * pmutex,bool bInitialLock = true) :
-      single_lock(pmutex, true)
-   {
-      init(pindexptra,bInitialLock);
-   }
-
-   template < class T >
-   index_iterator(mutex_ptr_array < T > & ptra, bool bInitialLock = true);
-
-
-   void init(index_ptr_array * pindexptra, bool bInitialLock)
-   {
-      try
-      {
-         m_pindexptra = pindexptra;
-         m_pindexptra->reg(&m_i);
-
-      }
-      catch(...)
-      {
-
-      }
-
-      if(!bInitialLock)
-      {
-       
-         unlock();
-
-      }
-
-   }
-
-   ~index_iterator()
-   {
-      try
-      {
-
-         lock();
-         m_pindexptra->unreg(&m_i);
-
-      }
-      catch(...)
-      {
-
-      }
-
-   }
-
-};
-
-template < class T >
-class mutex_ptr_array :
-   virtual protected ptr_array < T >
-{
-public:
-
-   mutex m_mutex;
-   index_ptr_array m_indexptra;
-
-   mutex_ptr_array(sp(::base::application) papp): element(papp),m_mutex(papp),m_indexptra(&m_mutex){}
-   virtual ~mutex_ptr_array() {}
-
-   bool add(T * p)
-   {
-      synch_lock sl(&m_mutex);
-      return add_unique(p);
-   }
-
-   ::count remove(T * p)
-   {
-      
-      synch_lock sl(&m_mutex);
-      
-      index  iRemove;
-
-
-      ::count c = 0;
-
-      while((iRemove = remove_first(p)) >= 0)
-      {
-
-         m_indexptra.on_removed(iRemove);
-
-         c++;
-
-      }
-
-      return c;
-
-   }
-
-   void preg(index * pi)
-   {
-
-      m_indexptra.reg(pi);
-
-   }
-
-   void punreg(index * pi)
-   {
-
-      m_indexptra.unreg(pi);
-
-   }
-
-
-   ptr_array < T > base_ptra()
-   {
-      synch_lock sl(&m_mutex);
-      return *dynamic_cast < ptr_array < T > * > (this);
-
-   }
-
-
-
-#undef new
-   DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
-#define new BASE_NEW
-
-   
-};
-
-template <class T >
-inline index_iterator::index_iterator(mutex_ptr_array < T > & ptra,bool bInitialLock):
-single_lock(&ptra.m_mutex,true)
-{
-   init(&ptra.m_indexptra,bInitialLock);
-}
 
 namespace base
 {
@@ -220,7 +34,6 @@ namespace base
       sp(::command_thread)                            m_pcommandthread;
       sp(class signal)                                m_psignal;
 
-      ::html::html *                                  m_phtml; // only defined  in core;
       ::base::main_init_data *            m_pinitmaindata;
 
 
@@ -233,24 +46,14 @@ namespace base
 
 
 
-      class ::http::application                       m_http;
-      class ::file::dir::application                  m_dir;
-      class ::file::application                       m_file;
-      sp(math::math)                                  m_pmath;
-      sp(geometry::geometry)                          m_pgeometry;
-      sp(::sockets::sockets)                          m_psockets;
-      bool                                            m_bZipIsDir;
       stringa                                         m_straMatterLocator;
-      sp(::user::str_context)                         m_puserstrcontext;
       string                                          m_strLibraryName;
       string                                          m_strAppId;
-      mutex_ptr_array < ::user::interaction >         m_framea;
-      sp(::user::user)                                m_spuser;
+      synch_ptr_array < ::user::interaction >         m_framea;
       sp(::database::server)                          m_spdataserver;
 #ifdef WINDOWS
       HINSTANCE                                       m_hinstance;
 #endif
-      map < ::user::e_key,::user::e_key,bool,bool > *                            m_pmapKeyPressed;
 
 
       bool                                            m_bUpdateMatterOnInstall;
@@ -267,22 +70,11 @@ namespace base
       string                                          m_strLocale;
       string                                          m_strSchema;
 
-      sp(::base::savings)                               m_psavings;
-
-      string                                          m_strCa2ModulePath;
-      string                                          m_strCa2ModuleFolder;
-      string                                          m_strModulePath;
-      string                                          m_strModuleFolder;
-
-      string                                          m_strCmdLine;
       // Initial state of the application's interaction_impl; normally,
       // this is an argument to ShowWindow().
-      int32_t                                         m_nCmdShow;
-      size_t                                          m_nSafetyPoolSize;      // ideal size
       manual_reset_event *                            m_peventReady;
       string                                          m_strInstallToken;
       string                                          m_strInstallType;
-      bool                                            m_bIfs;
       mutex                                           m_mutexMatterLocator;
 
 
@@ -295,14 +87,10 @@ namespace base
       static UINT                                     APPM_LANGUAGE;
       static WPARAM                                   WPARAM_LANGUAGE_UPDATE;
 
+      bool                                            m_bShouldInitializeGTwf;
+      sp(::user::interaction)                         m_pwndMain;
+      bool                                            m_bInitializeProDevianMode;
 
-
-      //int64_t                                         m_iProgressInstallStart;
-      //int64_t                                         m_iProgressInstallStep;
-      //int64_t                                         m_iProgressInstallEnd;
-      bool                             m_bShouldInitializeGTwf;
-      sp(::user::interaction)          m_pwndMain;
-      bool                                m_bInitializeProDevianMode;
 
       application();
       virtual ~application();
@@ -337,20 +125,8 @@ namespace base
       virtual ::user::user * create_user();
 
 
-      ::base::savings &                         savings();
-      inline class ::http::application &        http()         { return m_http; }
-      inline class ::file::dir::application &   dir()          { return m_dir; }
-      inline class ::file::application &        file()         { return m_file; }
-      inline ::sockets::sockets &               sockets()      { return *m_psockets; }
-      inline sp(class ::user::user)             user()         { return m_spuser; }
-      math::math &                              math();
-      geometry::geometry &                      geometry();
       inline class ::fontopus::license &        license()      { return *m_splicense; }
       inline ::database::server &               dataserver()   { return *m_spdataserver; }
-
-
-      ::user::str_context *                     str_context();
-
 
 
       virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::user::impact_system) ptemplate,sp(::user::object) pdocument);
@@ -382,34 +158,9 @@ namespace base
 #endif
 
 
-      virtual string get_locale();
-      virtual string get_schema();
-      virtual string get_locale_schema_dir(const string & strLocale,const string & strSchema);
-      virtual string get_locale_schema_dir(const string & strLocale);
-      virtual string get_locale_schema_dir();
 
 
 
-      virtual void set_locale(const string & lpcsz,::action::context actioncontext);
-      virtual void set_schema(const string & lpcsz,::action::context actioncontext);
-      virtual void on_set_locale(const string & lpcsz,::action::context actioncontext);
-      virtual void on_set_schema(const string & lpcsz,::action::context actioncontext);
-
-
-
-
-      virtual string matter_as_string(const char * pszMatter, const char * pszMatter2 = NULL);
-      virtual string dir_matter(const char * pszMatter, const char * pszMatter2 = NULL);
-      virtual bool is_inside_time_dir(const char * pszPath);
-      virtual bool file_is_read_only(const char * pszPath);
-      virtual string file_as_string(var varFile);
-      virtual string dir_path(const char * psz1,const char * psz2,const char * psz3 = NULL);
-      virtual string dir_name(const char * psz);
-      virtual bool dir_mk(const char * psz);
-      virtual string file_title(const char * psz);
-      virtual string file_name(const char * psz);
-
-      ::file::binary_buffer_sp file_get_file(var varFile,uint32_t uiFlags);
 
 
       // Wall-eeeeee aliases
@@ -471,11 +222,6 @@ namespace base
       virtual sp(::user::interaction) get_focus_guie();
 
 
-      virtual bool is_key_pressed(::user::e_key ekey);
-
-      virtual void set_key_pressed(::user::e_key ekey,bool bPressed);
-
-
       virtual sp(::user::interaction) window_from_os_data(void * pdata);
 
 
@@ -523,9 +269,6 @@ namespace base
       virtual bool system_add_app_install(const char * pszId);
 
 
-      virtual void fill_locale_schema(::str::international::locale_schema & localeschema);
-      virtual void fill_locale_schema(::str::international::locale_schema & localeschema,const char * pszLocale,const char * pszSchema);
-
 
       virtual bool update_appmatter(::sockets::http_session * & psession,const char * pszRoot,const char * pszRelative);
       virtual bool update_appmatter(::sockets::http_session * & psession,const char * pszRoot,const char * pszRelative,const char * pszLocale,const char * pszStyle);
@@ -572,12 +315,6 @@ namespace base
 
       virtual void Ex1OnFactoryExchange();
 
-      virtual string get_ca2_module_folder();
-      virtual string get_ca2_module_file_path();
-      virtual string get_module_folder();
-      virtual string get_module_file_path();
-      virtual string get_module_title();
-      virtual string get_module_name();
 
 
 

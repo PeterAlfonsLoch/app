@@ -239,7 +239,7 @@ namespace simple_ui
 
          GetWindowText(strText);
 
-         string strChar = Application.user()->keyboard().process_key(pkey->m_ekey);
+         string strChar = session().user()->keyboard().process_key(pkey->m_ekey);
 
          SetWindowText(strText.substr(0,m_iPos) + strChar + strText.substr(m_iPos + 1));
 

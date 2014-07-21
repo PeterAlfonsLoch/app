@@ -67,7 +67,7 @@ namespace install
 
       property_set set(get_app());
 
-      return file_exists_dup(path1) && !stricmp_dup(get_file_md5(path1), Application.http().get(strUrl, set));
+      return file_exists_dup(path1) && !stricmp_dup(get_file_md5(path1), session().http().get(strUrl, set));
 
    }
 
@@ -415,7 +415,7 @@ namespace install
 
       property_set set(get_app());
 
-      strBuildNumber = Application.http().get(strSpaIgnitionBaseUrl + "/query?node=build", set);
+      strBuildNumber = session().http().get(strSpaIgnitionBaseUrl + "/query?node=build", set);
 
       strBuildNumber.trim();
 
@@ -692,7 +692,7 @@ namespace install
 
       property_set set(get_app());
 
-      m_strCa2Build = Application.http().get("http://spaignition.api.server.ca2.cc/ca2_get_build?authnone", set);
+      m_strCa2Build = session().http().get("http://spaignition.api.server.ca2.cc/ca2_get_build?authnone", set);
 
    }
 
@@ -728,7 +728,7 @@ namespace install
 
       string strContents;
 
-      strContents = Application.file().as_string(strPath);
+      strContents = session().file().as_string(strPath);
 
       ::xml::document doc(get_app());
 
@@ -756,7 +756,7 @@ namespace install
 
          lpnode->add_attr("id", pszId);
 
-         Application.file().put_contents(strPath, doc.get_xml());
+         session().file().put_contents(strPath, doc.get_xml());
 
       }
 
@@ -771,7 +771,7 @@ namespace install
 
       string strContents;
 
-      strContents = Application.file().as_string(strPath);
+      strContents = session().file().as_string(strPath);
 
       ::xml::document doc(get_app());
 
@@ -795,7 +795,7 @@ namespace install
 
          doc.get_root()->remove_child(lpnode);
 
-         Application.file().put_contents(strPath, doc.get_xml());
+         session().file().put_contents(strPath, doc.get_xml());
 
       }
 
@@ -814,7 +814,7 @@ namespace install
 
       ::xml::document doc(get_app());
 
-      doc.load(Application.file().as_string(strPath));
+      doc.load(session().file().as_string(strPath));
 
       if (doc.get_root()->get_name().is_empty())
       {
@@ -908,7 +908,7 @@ namespace install
 
       opt.newline = true;
 
-      Application.file().put_contents(strPath, doc.get_xml(&opt));
+      session().file().put_contents(strPath, doc.get_xml(&opt));
 
    }
 
@@ -923,7 +923,7 @@ namespace install
 
       string strContents;
 
-      strContents = Application.file().as_string(strPath);
+      strContents = session().file().as_string(strPath);
 
       ::xml::document doc(get_app());
 
@@ -1325,7 +1325,7 @@ namespace install
 
                   }
 
-                  if (Application.http().download(strUrl, strDownload + ".bz", set))
+                  if (session().http().download(strUrl, strDownload + ".bz", set))
                   {
 
                      System.compress().unbz(get_app(), strDownload, strDownload + ".bz");
@@ -1439,7 +1439,7 @@ namespace install
 
       set["raw_http"] = true;
 
-      bool bOk = file_exists_dup(path1) && !stricmp_dup(System.file().md5(path1), Application.http().get(strUrl, set));
+      bool bOk = file_exists_dup(path1) && !stricmp_dup(System.file().md5(path1), session().http().get(strUrl, set));
 
       return bOk;
 

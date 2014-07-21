@@ -134,7 +134,7 @@ namespace fontopus
    string simple_ui::do_fontopus(LPCRECT lprect)
    {
 
-      ::user::interaction * puiParent = BaseSession.oprop("plugin_parent").cast < ::user::interaction >();
+      ::user::interaction * puiParent = session().oprop("plugin_parent").cast < ::user::interaction >();
 
       if(!CreateEx(WS_EX_LAYERED, NULL, NULL, 0, null_rect(), puiParent, "fontopus"))
          return "";
@@ -150,7 +150,7 @@ namespace fontopus
       else if (lprect == NULL)
       {
 
-         BaseSession.get_main_monitor(rectDesktop);
+         session().get_main_monitor(rectDesktop);
 
       }
       else
@@ -310,7 +310,7 @@ namespace fontopus
             else
             {
 
-               BaseSession.get_main_monitor(rectDesktop);
+               session().get_main_monitor(rectDesktop);
 
             }
 

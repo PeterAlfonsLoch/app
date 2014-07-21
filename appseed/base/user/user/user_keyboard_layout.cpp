@@ -109,7 +109,7 @@ namespace user
 
       int32_t iMap;
       int32_t iCode;
-      string str = Application.file().as_string(pszPath);
+      string str = session().file().as_string(pszPath);
       if(str.is_empty())
          return false;
       ::xml::document doc(get_app());

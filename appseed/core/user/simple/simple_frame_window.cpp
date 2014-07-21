@@ -113,9 +113,9 @@ void simple_frame_window::_001OnDestroy(signal_details * pobj)
 
    try
    {
-      if (&BaseSession != NULL)
+      if (&session() != NULL)
       {
-         BaseSession.remove_frame(this);
+         session().remove_frame(this);
       }
    }
    catch (...)
@@ -124,7 +124,7 @@ void simple_frame_window::_001OnDestroy(signal_details * pobj)
 
    try
    {
-      if (m_pbaseapp != NULL && m_pbaseapp->m_pplaneapp->m_psystem != NULL && &System != NULL)
+      if (m_pbaseapp != NULL && m_pbaseapp->m_pplanesystem != NULL && &System != NULL)
       {
          System.remove_frame(this);
       }
@@ -784,8 +784,8 @@ void simple_frame_window::pre_translate_message(signal_details * pobj)
       }
       else if (pkey->m_ekey == ::user::key_return)
       {
-         if (Application.is_key_pressed(::user::key_control)
-            && Application.is_key_pressed(::user::key_alt))
+         if (session().is_key_pressed(::user::key_control)
+            && session().is_key_pressed(::user::key_alt))
          {
             m_bFullScreenAlt = true;
             if (!IsFullScreen())
@@ -807,7 +807,7 @@ void simple_frame_window::pre_translate_message(signal_details * pobj)
       if (pkey->m_ekey == ::user::key_alt)
       {
          if (IsFullScreen()
-            && Application.is_key_pressed(::user::key_control)
+            && session().is_key_pressed(::user::key_control)
             && !m_bFullScreenAlt)
          {
             if (DeferFullScreen(false, true))
@@ -889,8 +889,8 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
 void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
 {
-   if (System.savings().is_trying_to_save(::base::resource_processing)
-      || System.savings().is_trying_to_save(::base::resource_translucent_background))
+   if (session().savings().is_trying_to_save(::base::resource_processing)
+      || session().savings().is_trying_to_save(::base::resource_translucent_background))
    {
       rect rectClient;
       GetClientRect(rectClient);
@@ -912,9 +912,9 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pdc)
       _001DrawThis(pdc);
       _001DrawChildren(pdc);
    }
-   else if(!BaseSession.savings().is_trying_to_save(::base::resource_processing)
-      && !BaseSession.savings().is_trying_to_save(::base::resource_display_bandwidth)
-      && !BaseSession.savings().is_trying_to_save(::base::resource_memory))
+   else if(!session().savings().is_trying_to_save(::base::resource_processing)
+      && !session().savings().is_trying_to_save(::base::resource_display_bandwidth)
+      && !session().savings().is_trying_to_save(::base::resource_memory))
       //&& (GetParent() != NULL || (this->GetExStyle() & WS_EX_LAYERED) != 0))
    {
 #if TEST
@@ -955,12 +955,12 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics * pdc)
       rect rectClient;
       GetClientRect(rectClient);
       //rectClient.offset(rectClient.top_left());
-      if (System.savings().is_trying_to_save(::base::resource_translucent_background))
+      if (session().savings().is_trying_to_save(::base::resource_translucent_background))
       {
          //pdc->FillSolidRect(rectClient, RGB(150, 220, 140));
       }
-      else if (System.savings().is_trying_to_save(::base::resource_processing)
-         || System.savings().is_trying_to_save(::base::resource_blur_background))
+      else if (session().savings().is_trying_to_save(::base::resource_processing)
+         || session().savings().is_trying_to_save(::base::resource_blur_background))
       {
          imaging.color_blend(pdc, rectClient, RGB(150, 180, 140), 150);
       }
@@ -1115,7 +1115,7 @@ void simple_frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, uin
    }
    if (ptoolbar != NULL)
    {
-      ptoolbar->LoadXmlToolBar(Application.file().as_string(Application.dir().matter(pszToolBar)));
+      ptoolbar->LoadXmlToolBar(session().file().as_string(session().dir().matter(pszToolBar)));
       layout();
    }
 }
@@ -1212,7 +1212,7 @@ bool simple_frame_window::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
    if (pApp != NULL && pApp->_001OnCmdMsg(pcmdmsg))
       return TRUE;
 
-   sp(command_target_interface) pcommandtargetinterface = Application.user()->get_keyboard_focus();
+   sp(command_target_interface) pcommandtargetinterface = session().user()->get_keyboard_focus();
 
    if (pcommandtargetinterface != NULL)
    {
@@ -1632,7 +1632,7 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
 void simple_frame_window::_011OnDraw(::draw2d::graphics *pdc)
 {
 
-   if ((m_bWindowFrame || m_etranslucency == TranslucencyTotal || m_etranslucency == TranslucencyPresent) && !BaseSession.savings().is_trying_to_save(::base::resource_display_bandwidth))
+   if ((m_bWindowFrame || m_etranslucency == TranslucencyTotal || m_etranslucency == TranslucencyPresent) && !session().savings().is_trying_to_save(::base::resource_display_bandwidth))
    {
 
       ::user::uinteraction::frame::WorkSetClientInterface::_001OnDraw(pdc);
@@ -1781,8 +1781,8 @@ bool simple_frame_window::calc_layered()
 {
    if (m_bLayered && m_etranslucency != TranslucencyNone)
    {
-      return !BaseSession.savings().is_trying_to_save(::base::resource_processing)
-         && !BaseSession.savings().is_trying_to_save(::base::resource_display_bandwidth);
+      return !session().savings().is_trying_to_save(::base::resource_processing)
+         && !session().savings().is_trying_to_save(::base::resource_display_bandwidth);
    }
    else
    {

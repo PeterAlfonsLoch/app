@@ -29,7 +29,7 @@ namespace user
    bool network_configuration::initialize_child(sp(::user::interaction) puiParent)
    {
       /*
-      m_pdoc = System.user()->create_child_form(this, puiParent);
+      m_pdoc = session().user()->create_child_form(this, puiParent);
       if(m_pdoc != NULL)
       {
          m_pview = m_pdoc->get_typed_view < form_view > ();
@@ -42,7 +42,7 @@ namespace user
    void network_configuration::on_show()
    {
       /*
-      if(!m_pdoc->on_open_document(Application.dir().matter("system/network/configuration/proxy.xhtml")))
+      if(!m_pdoc->on_open_document(session().dir().matter("system/network/configuration/proxy.xhtml")))
       {
          return;
       }
@@ -87,7 +87,7 @@ namespace user
                string strPort;
                ptext->_001GetText(strPort);
                node.add_attr("port", strPort);
-               Application.file().put_contents(System.dir().appdata("proxy.xml"), node.get_xml());
+               session().file().put_contents(System.dir().appdata("proxy.xml"), node.get_xml());
             }
          }
       }*/

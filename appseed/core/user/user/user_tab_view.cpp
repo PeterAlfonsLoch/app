@@ -486,7 +486,7 @@ namespace user
       COLORREF crBorderSel = RGB(40, 40, 20);
 
       point ptCursor;
-      BaseSession.get_cursor_pos(&ptCursor);
+      session().get_cursor_pos(&ptCursor);
       ScreenToClient(&ptCursor);
       e_position epositionDrag = m_ptab->DragHitTest(ptCursor);
       rect rectTop;

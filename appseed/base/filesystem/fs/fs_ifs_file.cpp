@@ -86,7 +86,7 @@ void ifs_file::set_file_data()
 
       setRequest["get_response"] = "";  // touch/create property to get_response
 
-      Application.http().put(strUrl, m_varFile["xmledit"].cast < ::file::memory_buffer >(), setRequest);
+      session().http().put(strUrl, m_varFile["xmledit"].cast < ::file::memory_buffer >(), setRequest);
 
       string strResponse(setRequest["get_response"]);
 
@@ -112,7 +112,7 @@ void ifs_file::set_file_data()
 
       property_set setPut(get_app());
 
-      Application.http().put(strUrl, m_varFile["xml"].cast < ::file::memory_buffer >(), setPut);
+      session().http().put(strUrl, m_varFile["xml"].cast < ::file::memory_buffer >(), setPut);
 
       return;
 
@@ -122,7 +122,7 @@ void ifs_file::set_file_data()
 
    property_set setPut(get_app());
 
-   Application.http().put(strUrl, &m_memfile, setPut);
+   session().http().put(strUrl, &m_memfile, setPut);
 
 
 }

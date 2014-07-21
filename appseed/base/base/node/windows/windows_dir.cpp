@@ -626,7 +626,7 @@ namespace windows
       }
 
 
-      if(papp->m_bZipIsDir && iLast >= 3  && !strnicmp_dup(&((const char *) str)[iLast - 3], ".zip", 4))
+      if(papp->m_pbasesession->m_bZipIsDir && iLast >= 3  && !strnicmp_dup(&((const char *) str)[iLast - 3], ".zip", 4))
       {
          m_isdirmap.set(str.Left(iLast + 1), true, 0);
          return true;
@@ -634,7 +634,7 @@ namespace windows
       
       strsize iFind = ::str::find_ci(".zip:", str);
 
-      if(papp->m_bZipIsDir && iFind >= 0 && iFind < iLast)
+      if(papp->m_pbasesession->m_bZipIsDir && iFind >= 0 && iFind < iLast)
       {
          bool bHasSubFolder;
          if(m_isdirmap.lookup(str, bHasSubFolder, uiLastError))
@@ -1010,7 +1010,7 @@ namespace windows
 
       xml::document doc(get_app());
       
-      doc.load(Application.file().as_string(appdata("configuration\\directory.xml")));
+      doc.load(session().file().as_string(appdata("configuration\\directory.xml")));
       
       xxdebug_box("win_dir::initialize (configuration)", "win_dir::initialize", 0);
       if(doc.get_root()->get_name() == "directory_configuration")

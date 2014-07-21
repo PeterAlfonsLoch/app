@@ -497,7 +497,7 @@ static int ssl23_client_hello(SSL *s)
          memcpy(p, s->s3->client_random, SSL3_RANDOM_SIZE);
          p += SSL3_RANDOM_SIZE;
 
-         /* BaseSession ID (zero since there is no reuse) */
+         /* Session ID (zero since there is no reuse) */
          *(p++) = 0;
 
          /* Ciphers supported (using SSL 3.0/TLS 1.0 format) */

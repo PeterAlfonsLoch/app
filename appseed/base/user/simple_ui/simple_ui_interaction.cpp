@@ -306,7 +306,7 @@ namespace simple_ui
 
       int32_t iStyle = 1;
 
-      if(Application.user()->get_keyboard_focus() == this)
+      if(session().user()->get_keyboard_focus() == this)
       {
 
          if (iStyle == 1)

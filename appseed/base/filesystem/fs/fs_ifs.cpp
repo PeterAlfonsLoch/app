@@ -181,7 +181,7 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int
 
    property_set set(get_app());
 
-   strSource = Application.http().get(strUrl, set);
+   strSource = session().http().get(strUrl, set);
 
    if(strSource.is_empty())
    {

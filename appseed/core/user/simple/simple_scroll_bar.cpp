@@ -871,6 +871,35 @@ void simple_scroll_bar::update_drawing_objects()
 }
 
 
+class trw:
+   virtual public ::user::interaction
+{
+public:
+
+   point pt1;
+   point pt2;
+
+   trw(sp(::base::application) papp): element(papp),::user::interaction(papp)
+   {
+      if(CreateEx(WS_EX_LAYERED,NULL,"",WS_VISIBLE,rect(0,0,0,0),NULL, /*nIDResource*/ 0,NULL))
+      {
+         TRACE("created trw");
+      }
+      best_monitor(NULL,NULL,true);
+   }
+   virtual ~trw()
+   {
+
+   }
+
+
+   virtual void _001OnDraw(::draw2d::graphics * pdc)
+   {
+      pdc->MoveTo(pt1);
+      pdc->LineTo(pt2);
+   }
+};
+
 void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
 {
 
@@ -881,7 +910,7 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
 
    GetClientRect(rectClient);
 
-   if(System.savings().is_trying_to_save(::base::resource_processing))
+   if(session().savings().is_trying_to_save(::base::resource_processing))
    {
 
       pdc->FillSolidRect(rectClient, RGB(255,255,255));
@@ -901,6 +930,110 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
    rect rectTrack;
 
    GetTrackRect(rectTrack);
+
+   /*
+   if(m_bTracking || (bool)oprop("tracking_on"))
+   {
+      DWORD dwFadeIn = 840;
+      DWORD dwFadeOut = 840;
+
+      byte uchAlpha = max(0, min(255, oprop("tracking_alpha").uint32()));
+
+      if(m_bTracking)
+      {
+         if(!(bool)oprop("tracking_on"))
+         {
+            oprop("tracking_on") = true;
+            oprop("tracking_start") = (uint32_t) (get_tick_count() + uchAlpha * dwFadeIn / 255) ;
+            oprop("tracking_fade_in") = true;
+            oprop("tracking_fade_out") = false;
+            oprop("tracking_window") = canew(trw(get_app()));
+         }
+      }
+      else
+      {
+         if(!(bool)oprop("tracking_fade_out"))
+         {
+            oprop("tracking_fade_in") = false;
+            oprop("tracking_fade_out") = true;
+            oprop("tracking_start") = (uint32_t)(get_tick_count() + (255 - uchAlpha) * dwFadeOut / 255 );
+         }
+
+      }
+
+      point pt1 = rectTrack.top_left() + m_ptTrackOffset;
+
+      ClientToScreen(pt1);
+
+      point pt2;
+
+      session().get_cursor_pos(&pt2);
+
+      ClientToScreen(pt1);
+
+      oprop("tracking_window").cast < trw >()->pt1 = pt1;
+
+      oprop("tracking_window").cast < trw >()->pt2 = pt2;
+
+      if((bool)oprop("tracking_fade_in"))
+      {
+         DWORD dwFade = get_tick_count() - oprop("tracking_start").uint32();
+         if(dwFade < dwFadeIn)
+         {
+            uchAlpha = dwFade * 255 / dwFadeIn;
+         }
+         else
+         {
+            uchAlpha = 255;
+            oprop("tracking_fade_in") = false;
+         }
+         
+      }
+      else if((bool)oprop("tracking_fade_out"))
+      {
+         DWORD dwFade = get_tick_count() - oprop("tracking_start").uint32();
+         if(dwFade < dwFadeOut)
+         {
+            uchAlpha = 255 - (dwFade * 255 / dwFadeOut);
+         }
+         else
+         {
+            uchAlpha = 0;
+            oprop("tracking_on") = false;
+            oprop("tracking_fade_out") = false;
+         }
+
+      }
+      else
+      {
+         uchAlpha = 255;
+      }
+
+      ::rect rectMachineThumb;
+
+      int iSize = rectTrack.size().get_normal(m_eorientation) * 6 / 8;
+
+      rectMachineThumb.top_left() = rectTrack.top_left() + m_ptTrackOffset - size(iSize /2, iSize /2);
+
+
+
+      rectMachineThumb.bottom_right() = rectMachineThumb.top_left() + size(iSize, iSize);
+
+      ::rect rectIntersect;
+
+      rectIntersect.intersect(rectMachineThumb,rectTrack);
+      
+      int iArea = max(1, rectIntersect.area());
+
+      rectMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5),1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
+
+      draw_mac_thumb(pdc, rectMachineThumb, rectTrack,uchAlpha);
+
+      oprop("tracking_alpha") = uchAlpha;
+
+   }
+   */
+
 
    class ::rect rectWindow;
 
@@ -988,3 +1121,200 @@ void simple_scroll_bar::_001OnDestroy(signal_details * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 }
+
+
+
+void simple_scroll_bar::draw_mac_thumb(::draw2d::graphics * pdc,LPCRECT lpcrectDraw,LPCRECT lpcrectClip,byte uchAlpha)
+{
+
+   rect rectDraw(lpcrectDraw);
+
+   rectDraw.deflate(1,1);
+
+   ::draw2d::pen_sp pen(allocer());
+
+   pen->create_solid(2.0,ARGB(149 * uchAlpha / 255,84+23,84+23,77+23));
+
+   pdc->SelectObject(pen);
+
+   pdc->DrawEllipse(rectDraw);
+
+   ::draw2d::brush_sp brush(allocer());
+
+   ::rect rectDotto(0,0,5,5);
+
+   brush->create_solid(ARGB(149 * uchAlpha / 255,84 + 23,84 + 23,77 + 23));
+
+   pdc->SelectObject(brush);
+
+   rectDotto.CenterOf(rectDraw);
+
+   pdc->FillEllipse(rectDotto);
+
+   /*
+
+   ::draw2d::brush_sp brushGrip(allocer());
+
+   ::draw2d::dib_sp dib(allocer());
+
+   dib->create(1,1);
+
+   COLORREF cr = ARGB((84 * uchAlpha / 255),84 - 23,84 - 23,77 - 23);
+
+   dib->Fill(184 * uchAlpha / 255,84 - 23 - 22,84 - 23,77 - 23 - 22);
+
+   brushGrip->create_solid(cr);
+
+   pdc->SelectObject(brushGrip);
+
+   rect rectDraw(lpcrectDraw);
+
+   int iSize = 1;
+
+   rect rectBound(lpcrectDraw);
+
+   rectBound.deflate(iSize,iSize);
+
+   rectDraw = rectBound;
+
+   ::rect rect(0,0,1,1);
+
+   rect.Align(AlignLeft | AlignTop,rectDraw);
+
+   pdc->from(size(1, 1), dib->get_graphics(), SRCCOPY);
+
+   rect.Align(AlignRight | AlignTop,rectDraw);
+
+   pdc->from(size(1,1),dib->get_graphics(),SRCCOPY);
+
+   rect.Align(AlignLeft | AlignBottom,rectDraw);
+
+   pdc->from(size(1,1),dib->get_graphics(),SRCCOPY);
+
+   rect.Align(AlignRight | AlignBottom,rectDraw);
+
+   pdc->from(size(1,1),dib->get_graphics(),SRCCOPY);
+
+   int iSize2 = (rectDraw.width() - iSize) / 4;
+
+   rectDraw = rectBound;
+
+   rectDraw.deflate(iSize2,0);
+
+   rect.Align(AlignLeft | AlignTop,rectDraw);
+
+   pdc->from(size(1,1),dib->get_graphics(),SRCCOPY);
+
+   rect.Align(AlignRight | AlignTop,rectDraw);
+
+   pdc->from(size(1,1),dib->get_graphics(),SRCCOPY);
+
+   rect.Align(AlignLeft | AlignBottom,rectDraw);
+
+   pdc->from(size(1,1),dib->get_graphics(),SRCCOPY);
+
+   rect.Align(AlignRight | AlignBottom,rectDraw);
+
+   pdc->from(size(1,1),dib->get_graphics(),SRCCOPY);
+
+   rectDraw = rectBound;
+
+   rectDraw.deflate(0,iSize2);
+
+   rect.Align(AlignLeft | AlignTop,rectDraw);
+
+   pdc->FillEllipse(rect);
+
+   rect.Align(AlignRight | AlignTop,rectDraw);
+
+   pdc->FillEllipse(rect);
+
+   rect.Align(AlignLeft | AlignBottom,rectDraw);
+
+   pdc->FillEllipse(rect);
+
+   rect.Align(AlignRight | AlignBottom,rectDraw);
+
+   pdc->FillEllipse(rect);
+
+   iSize += 1;
+
+   rectDraw.deflate(iSize,iSize);
+
+   rect = ::rect(0,0,iSize,iSize);
+
+   brushGrip->create_solid(ARGB(184  * uchAlpha / 255,84 - 23 - 22,84 - 23 - 22,77 - 23 - 22));
+
+   pdc->SelectObject(brushGrip);
+
+   rect.Align(AlignLeft | AlignTop,rectDraw);
+
+   pdc->FillEllipse(rect);
+
+   rect.Align(AlignHorizontalCenter | AlignTop,rectDraw);
+
+   pdc->FillEllipse(rect);
+
+   rect.Align(AlignRight | AlignTop,rectDraw);
+
+   pdc->FillEllipse(rect);
+
+   rect.Align(AlignLeft | AlignVerticalCenter,rectDraw);
+
+   pdc->FillEllipse(rect);
+
+   rect.Align(AlignRight | AlignVerticalCenter,rectDraw);
+
+   pdc->FillEllipse(rect);
+
+   rect.Align(AlignLeft | AlignBottom,rectDraw);
+
+   pdc->FillEllipse(rect);
+
+   rect.Align(AlignHorizontalCenter | AlignBottom,rectDraw);
+
+   pdc->FillEllipse(rect);
+
+   rect.Align(AlignRight | AlignBottom,rectDraw);
+
+   pdc->FillEllipse(rect);
+
+   iSize += 1;
+
+   rectDraw.deflate(iSize,iSize);
+
+   brushGrip->create_solid(ARGB(184  * uchAlpha / 255,84 - 23 - 22 - 23,84 - 23 - 22 - 23,77 - 23 - 22 - 23));
+
+   pdc->SelectObject(brushGrip);
+
+   rect = ::rect(0,0,iSize,iSize);
+
+   rect.Align(AlignLeft | AlignTop,rectDraw);
+
+   pdc->FillEllipse(rect);
+
+   rect.Align(AlignRight | AlignTop,rectDraw);
+
+   pdc->FillEllipse(rect);
+
+   rect.Align(AlignLeft | AlignBottom,rectDraw);
+
+   pdc->FillEllipse(rect);
+
+   rect.Align(AlignRight | AlignBottom,rectDraw);
+
+   pdc->FillEllipse(rect);
+
+   iSize += 1;
+
+   rect = ::rect(0,0,iSize,iSize);
+
+   rect.CenterOf(rectDraw);
+
+   pdc->FillEllipse(rect);
+
+   */
+
+}
+
+

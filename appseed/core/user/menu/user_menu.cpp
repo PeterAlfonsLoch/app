@@ -245,7 +245,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-         pdc->FillSolidRect(rectClient, BaseSession.get_default_color(COLOR_WINDOW));
+         pdc->FillSolidRect(rectClient, session().get_default_color(COLOR_WINDOW));
 
 #else
 

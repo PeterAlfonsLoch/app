@@ -158,8 +158,6 @@ public:
 
 #include "collection_typed_pointer_map.h"
 
-// inline
-#include "collection.inl"
 
 
 

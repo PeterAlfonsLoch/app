@@ -4,6 +4,7 @@
 namespace base
 {
 
+
    class CLASS_DECL_BASE session:
       virtual public ::base::application,
       virtual public ::base::session_interface
@@ -46,6 +47,21 @@ namespace base
       sp(::fontopus::fontopus)                                 m_pfontopus;
       application_ptra                                         m_appptra;
       sp(::user::interaction)                                  m_spuiFocus;
+      sp(::user::str_context)                                  m_puserstrcontext;
+      ::http::application                                      m_http;
+      ::file::dir::application                                 m_dir;
+      ::file::application                                      m_file;
+      sp(::sockets::sockets)                                   m_psockets;
+      bool                                                     m_bZipIsDir;
+      map < ::user::e_key,::user::e_key,bool,bool > *          m_pmapKeyPressed;
+      sp(::base::savings)                                      m_psavings;
+      bool                                                     m_bIfs;
+      sp(::user::user)                                         m_spuser;
+
+
+
+
+
 
 
 
@@ -60,9 +76,13 @@ namespace base
 
       virtual bool is_session();
 
-      virtual bool initialize_instance();
+      virtual bool process_initialize();
 
       virtual bool initialize1();
+
+      virtual bool initialize2();
+
+      virtual bool initialize_instance();
 
       virtual bool initialize();
 
@@ -73,6 +93,35 @@ namespace base
 
       ::base::copydesk & copydesk();
       inline sp(class ::fs::data)               fs()           { return m_spfsdata; }
+      inline class ::http::application &        http()         { return m_http; }
+      inline class ::file::dir::application &   dir()          { return m_dir; }
+      inline class ::file::application &        file()         { return m_file; }
+      inline ::sockets::sockets &               sockets()      { return *m_psockets; }
+      inline sp(class ::user::user)             user()         { return m_spuser; }
+      inline ::base::savings &                  savings()      { return *m_psavings; }
+
+      ::user::str_context *                     str_context();
+
+
+
+      virtual string get_locale();
+      virtual string get_schema();
+      virtual string get_locale_schema_dir(const string & strLocale,const string & strSchema);
+      virtual string get_locale_schema_dir(const string & strLocale);
+      virtual string get_locale_schema_dir();
+
+
+
+      virtual void set_locale(const string & lpcsz,::action::context actioncontext);
+      virtual void set_schema(const string & lpcsz,::action::context actioncontext);
+      virtual void on_set_locale(const string & lpcsz,::action::context actioncontext);
+      virtual void on_set_schema(const string & lpcsz,::action::context actioncontext);
+
+
+      virtual void fill_locale_schema(::str::international::locale_schema & localeschema);
+      virtual void fill_locale_schema(::str::international::locale_schema & localeschema,const char * pszLocale,const char * pszSchema);
+
+
 
 
       virtual sp(::base::application) start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext);
@@ -97,6 +146,13 @@ namespace base
 
 
       virtual bool get_auth(const string & pszForm,string & strUsername,string & strPassword);
+
+
+      virtual bool is_key_pressed(::user::e_key ekey);
+
+      virtual void set_key_pressed(::user::e_key ekey,bool bPressed);
+
+
 
 
 
@@ -141,6 +197,24 @@ namespace base
       virtual sp(::user::interaction) get_focus_guie();
 
 
+
+
+
+
+      virtual string matter_as_string(const char * pszMatter,const char * pszMatter2 = NULL);
+      virtual string dir_matter(const char * pszMatter,const char * pszMatter2 = NULL);
+      virtual bool is_inside_time_dir(const char * pszPath);
+      virtual bool file_is_read_only(const char * pszPath);
+      virtual string file_as_string(var varFile);
+      virtual string dir_path(const char * psz1,const char * psz2,const char * psz3 = NULL);
+      virtual string dir_name(const char * psz);
+      virtual bool dir_mk(const char * psz);
+      virtual string file_title(const char * psz);
+      virtual string file_name(const char * psz);
+
+      ::file::binary_buffer_sp file_get_file(var varFile,uint32_t uiFlags);
+
+
    };
 
 
@@ -155,4 +229,11 @@ namespace base
 
 
 
+
+::base::session & Sess(::base::application * papp)
+{
+   
+   return *papp->m_pbasesession;
+
+}
 

@@ -260,7 +260,7 @@ namespace fs
 
 #endif
 
-      Application.dir().ls(m_strPath,&m_straPath);
+      session().dir().ls(m_strPath,&m_straPath);
 
 
    }
@@ -284,7 +284,7 @@ namespace fs
 
 #endif
 
-      Application.dir().ls(strSourceFolder,&m_straPath);
+      session().dir().ls(strSourceFolder,&m_straPath);
 
 
    }

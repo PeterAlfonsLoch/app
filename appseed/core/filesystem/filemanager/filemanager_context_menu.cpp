@@ -68,7 +68,7 @@ namespace filemanager
       info.fMask = CMIC_MASK_ASYNCOK;
       info.lpParameters = NULL;
       info.lpDirectory = NULL;
-      info.hwnd = BaseSession.get_active_ui()->get_handle();
+      info.hwnd = session().get_active_ui()->get_handle();
       info.lpVerb = MAKEINTRESOURCE(uiId - 0x1000);
       info.nShow = SW_SHOWNORMAL;
 

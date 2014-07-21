@@ -1227,7 +1227,7 @@ void ssl_sigpipe_handle( int x );
       /* create our context*/
       if(m_spsslclientcontext.is_null())
       {
-         string_map < sp(ssl_client_context) > & clientcontextmap = System.sockets().m_clientcontextmap;
+         string_map < sp(ssl_client_context) > & clientcontextmap = session().sockets().m_clientcontextmap;
          if(clientcontextmap.PLookup(context) == NULL)
          {
             m_spsslclientcontext = new ssl_client_context(get_app(), pmethod);

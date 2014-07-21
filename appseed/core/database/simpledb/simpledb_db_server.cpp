@@ -58,15 +58,15 @@ bool db_server::initialize_user(mysql::database * pmysqldbUser, const char * psz
 //   m_pdb = new ::sqlite::base(get_app());
 
 /*   string str;
-   str = Application.dir().userappdata("prop.db");
-   Application.dir().mk(System.dir().name(str));
+   str = session().dir().userappdata("prop.db");
+   session().dir().mk(System.dir().name(str));
    m_pdb->setDatabase(str);
    m_pdb->connect();
 
    m_pdatabaseImpl = new ::sqlite::base(get_app());
 
-   str = Application.dir().userappdata("_prop002.db");
-   Application.dir().mk(System.dir().name(str));
+   str = session().dir().userappdata("_prop002.db");
+   session().dir().mk(System.dir().name(str));
    m_pdatabaseImpl->setDatabase(str);
    m_pdatabaseImpl->connect();*/
 
@@ -101,15 +101,15 @@ bool db_server::initialize()
    m_pdb = new ::sqlite::base(get_app());
 
    string str;
-   str = Application.dir().userappdata("prop.db");
-   Application.dir().mk(System.dir().name(str));
+   str = session().dir().userappdata("prop.db");
+   session().dir().mk(System.dir().name(str));
    m_pdb->setDatabase(str);
    m_pdb->connect();
 
    m_pdatabaseImpl = new ::sqlite::base(get_app());
 
-   str = Application.dir().userappdata("_prop002.db");
-   Application.dir().mk(System.dir().name(str));
+   str = session().dir().userappdata("_prop002.db");
+   session().dir().mk(System.dir().name(str));
    m_pdatabaseImpl->setDatabase(str);
    m_pdatabaseImpl->connect();
 

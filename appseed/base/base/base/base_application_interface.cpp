@@ -11,6 +11,7 @@ namespace base
       m_pbasesystem     = NULL;
       m_pbasesession    = NULL;
       m_pplaneapp       = NULL;
+      m_pplanesystem    = NULL;
 
    }
 

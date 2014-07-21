@@ -367,6 +367,7 @@ typedef smart_pointer < thread_impl > thread_impl_sp;
 #define App(pbaseapp) (*pbaseapp)
 #define Application (App(m_pbaseapp))
 
+
 // return - result - if not ok
 #ifndef RINOK
 #define RINOK(x) { int32_t __result__ = (x); if (__result__ != 0) return __result__; }
@@ -884,6 +885,8 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 #include "base/base/base.inl"
 
+#include "primitive/collection/collection.inl"
+
 
 namespace numeric_info
 {
@@ -1043,8 +1046,6 @@ namespace numeric_info
 
 #define AppUser(pbaseapp) (*pbaseapp->m_pbasesession->fontopus()->get_user())
 #define ApplicationUser (AppUser(m_pbaseapp))
-#define BaseSess(pbaseapp) (*pbaseapp->m_pbasesession)
-#define BaseSession (BaseSess(this->m_pbaseapp))
 
 
 
@@ -1174,7 +1175,7 @@ bool ::file::system::output(sp(::base::application) papp, const char * pszOutput
 
    App(papp).dir().mk(System.dir().name(pszOutput));
 
-   ::file::binary_buffer_sp fileOut = App(papp).file().get_file(pszOutput, ::file::mode_create | ::file::type_binary | ::file::mode_write);
+   ::file::binary_buffer_sp fileOut = Sess(papp).file().get_file(pszOutput, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
    if(fileOut.is_null())
       return false;
@@ -1196,12 +1197,12 @@ bool ::file::system::output(sp(::base::application) papp, const char * pszOutput
 
    strDownloading += ".downloading";
 
-   ::file::binary_buffer_sp fileOut = App(papp).file().get_file(strDownloading, ::file::mode_create | ::file::type_binary | ::file::mode_write);
+   ::file::binary_buffer_sp fileOut = Sess(papp).file().get_file(strDownloading, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
    if(fileOut.is_null())
       return false;
 
-   ::file::binary_buffer_sp fileIn = App(papp).file().get_file(lpszInput, ::file::type_binary | ::file::mode_read);
+   ::file::binary_buffer_sp fileIn = Sess(papp).file().get_file(lpszInput, ::file::type_binary | ::file::mode_read);
 
    if(fileIn.is_null())
       return false;

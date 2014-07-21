@@ -707,14 +707,14 @@ namespace crypto
    {
       primitive::memory memoryEncrypt;
       encrypt(memoryEncrypt, pszData, pszSalt);
-      App(papp).file().put_contents(varFile, memoryEncrypt);
+      Sess(papp).file().put_contents(varFile, memoryEncrypt);
       return true;
    }
 
    bool crypto::file_get(var varFile, string & str, const char * pszSalt, sp(::base::application) papp)
    {
       primitive::memory memoryEncrypt;
-      App(papp).file().as_memory(varFile, memoryEncrypt);
+      Sess(papp).file().as_memory(varFile, memoryEncrypt);
       decrypt(str, memoryEncrypt, pszSalt);
       return true;
    }
@@ -837,7 +837,7 @@ namespace crypto
 
       string strPath = get_crypt_key_file_path();
 
-      string str = Application.file().as_string(strPath);
+      string str = session().file().as_string(strPath);
 
       if (str.has_char())
          return str;
@@ -845,7 +845,7 @@ namespace crypto
       for (int32_t i = 0; i < 256; i++)
       {
 
-         char ch = Application.math().rnd() % (10 + 26 + 26);
+         char ch = System.math().rnd() % (10 + 26 + 26);
 
          if (ch < 10)
             ch += '0';
@@ -858,7 +858,7 @@ namespace crypto
 
       }
 
-      Application.file().put_contents(strPath, str);
+      session().file().put_contents(strPath, str);
 
       return str;
 
@@ -1344,7 +1344,7 @@ namespace crypto
 
       X509 * signer = NULL;
       {
-         string strSigner = Application.file().as_string(strSignerPath);
+         string strSigner = session().file().as_string(strSignerPath);
          BIO * pbio = BIO_new_mem_buf((void *)(LPCTSTR)strSigner, (int32_t)strSigner.get_length());
          //signer = PEM_read_bio_X509_AUX(pbio, NULL, 0, NULL);
          signer = PEM_read_bio_X509(pbio, NULL, 0, NULL);
@@ -1353,7 +1353,7 @@ namespace crypto
 
       EVP_PKEY * pkey;
       {
-         string strKey = Application.file().as_string(strKeyPath);
+         string strKey = session().file().as_string(strKeyPath);
          BIO * pbio = BIO_new_mem_buf((void *)(LPCTSTR)strKey, (int32_t)strKey.get_length());
          pkey = PEM_read_bio_PrivateKey(pbio, NULL, NULL, NULL);
          BIO_free(pbio);
@@ -1362,7 +1362,7 @@ namespace crypto
 
       stack_st_X509 * pstack509 = NULL;
       {
-         string strOthers = Application.file().as_string(strOthersPath);
+         string strOthers = session().file().as_string(strOthersPath);
          array < X509 * > xptra;
          strsize iStart = 0;
          strsize iFind;
@@ -1414,7 +1414,7 @@ namespace crypto
       char * pchData = NULL;
       long count = BIO_get_mem_data(output, &pchData);
 
-      Application.file().put_contents(System.dir().path(strDir, "META-INF/zigbert.rsa"), pchData, count);
+      session().file().put_contents(System.dir().path(strDir, "META-INF/zigbert.rsa"), pchData, count);
 
       BIO_free(output);
       PKCS7_free(pkcs7);

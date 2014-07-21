@@ -234,7 +234,7 @@ namespace filemanager
             {
                if(!pmanageruh->m_strFind.is_empty())
                {
-                  Application.file().replace(m_strPath, pmanageruh->m_strFind, pmanageruh->m_strReplace);
+                  session().file().replace(m_strPath, pmanageruh->m_strFind, pmanageruh->m_strReplace);
                   _017UpdateList(puh->m_actioncontext);
                }
             }
@@ -556,7 +556,7 @@ namespace filemanager
          
          point ptCursor;
          
-         BaseSession.get_cursor_pos(&ptCursor);
+         session().get_cursor_pos(&ptCursor);
       
          if(m_spmenuPopup->create_menu(straCommand, straCommandTitle))
          {
@@ -675,14 +675,14 @@ namespace filemanager
    */
 
 
-      BaseSession.copydesk().set_filea(stra);
+      session().copydesk().set_filea(stra);
 
    }
 
    void file_list::_001OnUpdateEditPaste(signal_details * pobj)
    {
       SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
-      pcmdui->m_pcmdui->Enable(BaseSession.copydesk().get_file_count() > 0);
+      pcmdui->m_pcmdui->Enable(session().copydesk().get_file_count() > 0);
       pobj->m_bRet = true;
    }
 
@@ -692,7 +692,7 @@ namespace filemanager
       UNREFERENCED_PARAMETER(pobj);
       stringa stra;
 
-      BaseSession.copydesk().get_filea(stra);
+      session().copydesk().get_filea(stra);
       string strDir;
       strDir = GetFileManagerItem().m_strPath;
 
@@ -736,7 +736,7 @@ namespace filemanager
       {
          stra.add(itema[i].m_strPath);
       }
-      Application.file().trash_that_is_not_trash(stra);
+      session().file().trash_that_is_not_trash(stra);
       _017UpdateList(::action::source_user);
    }
 
@@ -882,18 +882,18 @@ namespace filemanager
       string strFileCheck;
       for(int32_t i = 0; i < itema.get_size(); i++)
       {
-         if(Application.dir().is(itema[i].m_strPath)
+         if(session().dir().is(itema[i].m_strPath)
             && System.file().name_(itema[i].m_strPath) != ".svn")
          {
-            Application.dir().rls(itema[i].m_strPath, &straSub);
+            session().dir().rls(itema[i].m_strPath, &straSub);
             for(int32_t j = 0; j < straSub.get_size(); j++)
             {
-               if(!Application.dir().is(straSub[j])
+               if(!session().dir().is(straSub[j])
                 && straSub[j].find(".svn") < 0)
                {
                   strFileList += straSub[j] + "\n";
                   strFileCheck += straSub[j] + ",";
-                  strFileCheck += Application.file().length(straSub[j]).get_string() + ",";
+                  strFileCheck += session().file().length(straSub[j]).get_string() + ",";
                   strFileCheck += System.file().md5(straSub[j]) +"\n";
                }
             }
@@ -902,7 +902,7 @@ namespace filemanager
          {
             strFileList += itema[i].m_strPath + "\n";
             strFileCheck += itema[i].m_strPath + ",";
-            strFileCheck += Application.file().length(itema[i].m_strPath).get_string() + ",";
+            strFileCheck += session().file().length(itema[i].m_strPath).get_string() + ",";
             strFileCheck += System.file().md5(itema[i].m_strPath) +"\n";
          }
       }
@@ -921,8 +921,8 @@ namespace filemanager
       string strCheck = strBase + "check_" + strTime + ".txt";
 
 
-      Application.file().put_contents(strList, strFileList);
-      Application.file().put_contents(strCheck, strFileCheck);
+      session().file().put_contents(strList, strFileList);
+      session().file().put_contents(strCheck, strFileCheck);
 
    }
 
@@ -947,18 +947,18 @@ namespace filemanager
          if(::userfs::list::get_document()->set().is_dir(pdata->m_itema.get_item(i).m_strPath)
             && ::userfs::list::get_document()->set().file_name(pdata->m_itema.get_item(i).m_strPath) != ".svn")
          {
-            Application.dir().rls(pdata->m_itema.get_item(i).m_strPath, &straSub);
+            session().dir().rls(pdata->m_itema.get_item(i).m_strPath, &straSub);
             for(int32_t j = 0; j < straSub.get_size(); j++)
             {
              string strExtension = System.file().extension(straSub[j]);
 
-               if(!Application.dir().is(straSub[j])
+               if(!session().dir().is(straSub[j])
          && (strExtension == "exe" || strExtension == "dll" || strExtension == "dll.manifest"
              || strExtension == "exe.manifest"))
                {
                   strFileList += straSub[j] + "\n";
                   strFileCheck += straSub[j] + ",";
-                  strFileCheck += Application.file().length(straSub[j]).get_string() + ",";
+                  strFileCheck += session().file().length(straSub[j]).get_string() + ",";
                   strFileCheck += System.file().md5(straSub[j]) +"\n";
                }
             }
@@ -972,7 +972,7 @@ namespace filemanager
 
             strFileList += pdata->m_itema.get_item(i).m_strPath + "\n";
             strFileCheck += pdata->m_itema.get_item(i).m_strPath + ",";
-            strFileCheck += Application.file().length(pdata->m_itema.get_item(i).m_strPath).get_string() + ",";
+            strFileCheck += session().file().length(pdata->m_itema.get_item(i).m_strPath).get_string() + ",";
             strFileCheck += System.file().md5(pdata->m_itema.get_item(i).m_strPath) +"\n";
          }
          }
@@ -992,8 +992,8 @@ namespace filemanager
       string strCheck = strBase + "check_" + strTime + ".txt";
 
 
-      Application.file().put_contents(strList, strFileList);
-      Application.file().put_contents(strCheck, strFileCheck);
+      session().file().put_contents(strList, strFileList);
+      session().file().put_contents(strCheck, strFileCheck);
 
    }
 
@@ -1571,7 +1571,7 @@ namespace filemanager
 
             item.m_flags.unsignalize_all();
 
-            if (Application.dir().is(stra[i]))
+            if (session().dir().is(stra[i]))
             {
                item.m_flags.signalize(::fs::FlagFolder);
             }
@@ -1955,7 +1955,7 @@ namespace filemanager
 
       item.m_strName = pszTitle;
 
-      if (Application.dir().is(pszPath))
+      if (session().dir().is(pszPath))
       {
 
          item.m_flags.signalize(::fs::FlagFolder);

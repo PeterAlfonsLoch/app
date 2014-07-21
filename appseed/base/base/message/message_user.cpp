@@ -137,7 +137,7 @@ namespace message
          if(m_ecursor != ::visual::cursor_unmodified && m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL)
          {
 
-            BaseSession.set_cursor(m_ecursor);
+            session().set_cursor(m_ecursor);
 
          }
 

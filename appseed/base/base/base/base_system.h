@@ -65,6 +65,8 @@ namespace base
       sp(class ::xml::departament)                 m_pxml;
       const id_pool                                m_cidpool;
       sp(class ::base::log)                        m_plog;
+      sp(math::math)                               m_pmath;
+      sp(geometry::geometry)                       m_pgeometry;
 
 
       ::exception::engine *                        m_peengine;
@@ -112,6 +114,17 @@ namespace base
       bool                                         m_bSystemSynchronizedScreen;
       bool                                         m_bGudoNetCache;
 
+      string                                       m_strCa2ModulePath;
+      string                                       m_strCa2ModuleFolder;
+      string                                       m_strModulePath;
+      string                                       m_strModuleFolder;
+
+      string                                       m_strCmdLine;
+      int32_t                                      m_nCmdShow;
+      size_t                                       m_nSafetyPoolSize;      // ideal size
+      ::html::html *                               m_phtml; // only defined  in core;
+
+
 #ifdef WINDOWSEX
 
       class interaction_impl:
@@ -141,6 +154,10 @@ namespace base
 
       system(sp(::base::application) papp);
       virtual ~system();
+
+
+
+
 
 
       virtual void construct();
@@ -174,11 +191,17 @@ namespace base
       class ::crypto::crypto                       & crypto();
       ::datetime::departament                      & datetime();
       ::user::str                                  & str();
-      ::install::install                           & install()  { return *m_spinstall; }
+      ::install::install                           & install() { return *m_spinstall; }
+
+      geometry::geometry                           & geometry() { return *m_pgeometry; }
+
 
 
 //      application_ptra           get_appptra();
 
+
+
+      math::math & math() { return *m_pmath; }
 
 
 
@@ -372,6 +395,15 @@ namespace base
 
 
       virtual ::count get_application_count();
+
+
+      virtual string get_ca2_module_folder();
+      virtual string get_ca2_module_file_path();
+      virtual string get_module_folder();
+      virtual string get_module_file_path();
+      virtual string get_module_title();
+      virtual string get_module_name();
+
 
 
    };

@@ -490,10 +490,10 @@ void EmbossedTextOut(
    RECT                    rcText;
 
    if (crShadow == (COLORREF)-1)
-      crShadow = BaseSess(pdc->m_pbaseapp).get_default_color (COLOR_BTNSHADOW);
+      crShadow = Sess(pdc->m_pbaseapp).get_default_color (COLOR_BTNSHADOW);
 
    if (crText == (COLORREF)-1)
-      crText = BaseSess(pdc->m_pbaseapp).get_default_color (COLOR_BTNTEXT);
+      crText = Sess(pdc->m_pbaseapp).get_default_color (COLOR_BTNTEXT);
 
    /* setup the DC, saving off the old values
    */
@@ -944,11 +944,11 @@ bool imaging::GrayVRCP(
    COLORREF crAlpha)
 {
    UNREFERENCED_PARAMETER(crAlpha);
-   //COLORREF cr3dface = BaseSession.get_default_color(COLOR_3DFACE);
+   //COLORREF cr3dface = session().get_default_color(COLOR_3DFACE);
 
 #ifdef WINDOWSEX
 
-   COLORREF cr3dshadow = BaseSession.get_default_color(COLOR_3DSHADOW);
+   COLORREF cr3dshadow = session().get_default_color(COLOR_3DSHADOW);
 
 #else
 
@@ -966,7 +966,7 @@ bool imaging::GrayVRCP(
 
 #ifdef WINDOWSEX
 
-   COLORREF cr3dhighlight = BaseSession.get_default_color(COLOR_3DHILIGHT);
+   COLORREF cr3dhighlight = session().get_default_color(COLOR_3DHILIGHT);
 
 #else
 
@@ -1072,9 +1072,9 @@ bool imaging::GrayVRCP(
 
    BYTE br, bg, bb;
 
-   //   COLORREF crBtnFace = BaseSession.get_default_color(COLOR_BTNFACE);
-   //   COLORREF crBtnShad = BaseSession.get_default_color(COLOR_BTNSHADOW);
-   //   COLORREF crWndBack = BaseSession.get_default_color(COLOR_WINDOW);
+   //   COLORREF crBtnFace = session().get_default_color(COLOR_BTNFACE);
+   //   COLORREF crBtnShad = session().get_default_color(COLOR_BTNSHADOW);
+   //   COLORREF crWndBack = session().get_default_color(COLOR_WINDOW);
 
    //   BYTE bRBtnFace = rgba_get_r(crBtnFace);
    //   BYTE bGBtnFace = rgba_get_g(crBtnFace);
@@ -6629,11 +6629,11 @@ bool imaging::load_from_file(::draw2d::dib * pdib, var varFile, bool bCache, ::b
       strFile.replace("/", "\\");
       strFile = System.dir().time("cache", strFile);
       strFile += ".dib";
-      if (false && App(papp).file().exists(strFile))
+      if (false && Sess(papp).file().exists(strFile))
       {
          try
          {
-            ::file::byte_input_stream istream(App(papp).file().get_file(strFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary));
+            ::file::byte_input_stream istream(Sess(papp).file().get_file(strFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary));
             istream >> *pdib;
             return true;
          }
@@ -6647,7 +6647,7 @@ bool imaging::load_from_file(::draw2d::dib * pdib, var varFile, bool bCache, ::b
    try
    {
 
-      if (!read_from_file(pdib, App(papp).file().get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary), papp))
+      if (!read_from_file(pdib, Sess(papp).file().get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary), papp))
          return false;
 
    }
@@ -6664,7 +6664,7 @@ bool imaging::load_from_file(::draw2d::dib * pdib, var varFile, bool bCache, ::b
    {
       try
       {
-         ::file::byte_output_stream ostream(App(papp).file().get_file(strFile, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory));
+         ::file::byte_output_stream ostream(Sess(papp).file().get_file(strFile, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory));
          ostream << *pdib;
       }
       catch (...)
@@ -6734,7 +6734,7 @@ bool imaging::load_from_file(::visual::cursor * pcursor, var varFile, ::base::ap
       papp = get_app();
 
    str += ".xml";
-   string strNode = App(papp).file().as_string(str);
+   string strNode = Sess(papp).file().as_string(str);
    ::xml::document doc(get_app());
    if (doc.load(strNode))
    {

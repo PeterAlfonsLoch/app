@@ -79,7 +79,7 @@ namespace filemanager
 
             property_set set(get_app());
 
-            Application.http().get("http://file.veriwell.net/", set);
+            session().http().get("http://file.veriwell.net/", set);
 
             open_folder(1000); // user ::music folder
 
@@ -91,7 +91,7 @@ namespace filemanager
 
             property_set set(get_app());
 
-            Application.http().get("http://file.veriwell.net/", set);
+            session().http().get("http://file.veriwell.net/", set);
 
             open_folder(1); // user root folder
 
@@ -129,7 +129,7 @@ namespace filemanager
 
             psignal->m_puser = &ApplicationUser;
 
-            ::emit(get_app(), this, &view::on_request_response, &Application.http(), &::http::application::get, psignal);
+            ::emit(get_app(), this, &view::on_request_response, &session().http(), &::http::application::get, psignal);
 
          }
 

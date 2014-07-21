@@ -1247,7 +1247,7 @@ namespace hi5
       set.merge(m_setHttp);
 
       /* Send http request */
-      return Application.http().get(getUrl, m_strResponse, set);
+      return session().http().get(getUrl, m_strResponse, set);
 
    }
 
@@ -1275,7 +1275,7 @@ namespace hi5
       set["headers"] = headers;
 
       /* Send http request */
-      return Application.http().get(getUrl, m_strResponse, set);
+      return session().http().get(getUrl, m_strResponse, set);
 
    }
 
@@ -1298,7 +1298,7 @@ namespace hi5
       set["http_method"] = "POST";
 
       /* Send http request */
-      /*bool bOk = Application.http().get(getUrl, m_strResponse, set);
+      /*bool bOk = session().http().get(getUrl, m_strResponse, set);
 
       headers = set["get_headers"].propset();
 
@@ -1332,7 +1332,7 @@ namespace hi5
       set["http_method"] = "DELETE";
 
       /* Send http request */
-      return Application.http().get(deleteUrl, m_strResponse, set);
+      return session().http().get(deleteUrl, m_strResponse, set);
 
    }
 
@@ -1365,7 +1365,7 @@ namespace hi5
 
          }
 
-         return Application.http().get(postUrl, m_strResponse, set);
+         return session().http().get(postUrl, m_strResponse, set);
 
       }
       else
@@ -1382,7 +1382,7 @@ namespace hi5
 
          setHttp["http_method"] = "POST";
 
-         return Application.http().get(postUrl, m_strResponse, setHttp) && setHttp["get_status"].int32() == ::http::status_ok;
+         return session().http().get(postUrl, m_strResponse, setHttp) && setHttp["get_status"].int32() == ::http::status_ok;
 
       }
 

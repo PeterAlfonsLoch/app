@@ -241,7 +241,7 @@ namespace simpledb
       }
       else
       {
-         int32_t iLen = Application.file().length(lpcsz);
+         int32_t iLen = session().file().length(lpcsz);
          if(prangea->get_count() > 1)
          {
             primitive::memory_size uiTotal = 0;

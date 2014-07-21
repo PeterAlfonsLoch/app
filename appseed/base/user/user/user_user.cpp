@@ -34,13 +34,13 @@ namespace user
    bool user::initialize1()
    {
 
-      if(m_pbaseapp->is_system())
+      if(m_pbaseapp->is_session())
       {
          m_pwindowmap = new class ::user::window_map(get_app());
       }
       else
       {
-         m_pwindowmap = System.user()->m_pwindowmap;
+         m_pwindowmap = session().user()->m_pwindowmap;
       }
 
       m_pkeyboard = new ::user::keyboard(m_pbaseapp);
@@ -81,7 +81,7 @@ namespace user
       TRACE("::user::application::initialize");
 
       xml::document docUser(get_app());
-      string strUser = Application.file().as_string(Application.dir().userappdata("langstyle_settings.xml"));
+      string strUser = session().file().as_string(session().dir().userappdata("langstyle_settings.xml"));
       string strLangUser;
       string strStyleUser;
       if(docUser.load(strUser))
@@ -97,9 +97,9 @@ namespace user
       }
 
       if(strLangUser.has_char())
-         Application.set_locale(strLangUser, ::action::source_database);
+         session().set_locale(strLangUser, ::action::source_database);
       if(strStyleUser.has_char())
-         Application.set_schema(strStyleUser, ::action::source_database);
+         session().set_schema(strStyleUser,::action::source_database);
 
       string strLicense = Application.get_license_id();
 
@@ -132,7 +132,7 @@ retry_license:
 
          iRetry--;
 
-         if(!BaseSession.is_licensed(strLicense))
+         if(!session().is_licensed(strLicense))
          {
 
             Application.license().m_mapInfo.remove_key(strLicense);
@@ -486,11 +486,11 @@ retry_license:
       }
       else if(Application.m_pbasesession != NULL)
       {
-         return BaseSess(get_app()).user()->get_keyboard_focus();
+         return Sess(get_app()).user()->get_keyboard_focus();
       }
       else if(Application.m_pbasesystem != NULL)
       {
-         return Sys(get_app()).user()->get_keyboard_focus();
+         return Sess(get_app()).user()->get_keyboard_focus();
       }
       else
       {
@@ -500,45 +500,24 @@ retry_license:
 
    void user::set_keyboard_focus(sp(::user::keyboard_focus) pkeyboardfocus)
    {
-      if(Application.is_session())
+      if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
       {
-         if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
-         {
-            m_pkeyboardfocus = pkeyboardfocus;
+         m_pkeyboardfocus = pkeyboardfocus;
             
-            if(m_pkeyboardfocus != NULL)
+         if(m_pkeyboardfocus != NULL)
+         {
+
+            if(m_pkeyboardfocus->GetWindow() != NULL)
             {
 
-               if(m_pkeyboardfocus->GetWindow() != NULL)
-               {
-
-                  m_pkeyboardfocus->GetWindow()->on_keyboard_focus(m_pkeyboardfocus);
-
-               }
+               m_pkeyboardfocus->GetWindow()->on_keyboard_focus(m_pkeyboardfocus);
 
             }
+
+         }
             
-         }
-         if(Application.m_pbasesystem != NULL)
-         {
-            return Sys(get_app()).user()->set_keyboard_focus(pkeyboardfocus);
-         }
       }
-      else if(Application.is_system())
-      {
-         if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
-         {
-            m_pkeyboardfocus = pkeyboardfocus;
-         }
-      }
-      else if(Application.m_pbasesession != NULL)
-      {
-         return BaseSess(get_app()).user()->set_keyboard_focus(pkeyboardfocus);
-      }
-      else if(Application.m_pbasesystem != NULL)
-      {
-         return Sys(get_app()).user()->set_keyboard_focus(pkeyboardfocus);
-      }
+
    }
 
    ::user::mouse_focus * user::get_mouse_focus_LButtonDown()
@@ -574,8 +553,8 @@ retry_license:
          if(&keyboard().layout() != NULL)
          {
 
-            if(BaseSession.fontopus()->m_puser != NULL
-               && BaseSession.fontopus()->m_puser->m_strFontopusServerSessId.has_char())
+            if(session().fontopus()->m_puser != NULL
+               && session().fontopus()->m_puser->m_strFontopusServerSessId.has_char())
             {
 
                // xxx data_set("keyboard_layout", keyboard().layout().m_strPath);
@@ -591,8 +570,8 @@ retry_license:
          if(!set_keyboard_layout(keyboard().get_current_system_layout(), ::action::source_database))
             return false;
 
-         if(BaseSession.fontopus()->m_puser != NULL
-            && BaseSession.fontopus()->m_puser->m_strFontopusServerSessId.has_char())
+         if(session().fontopus()->m_puser != NULL
+            && session().fontopus()->m_puser->m_strFontopusServerSessId.has_char())
          {
 
 // xxx            data_set("keyboard_layout", keyboard().layout().m_strPath);
@@ -602,7 +581,7 @@ retry_license:
          return true;
       }
 
-      if(!BaseSession.user()->keyboard().load_layout(pszPath, actioncontext))
+      if(!session().user()->keyboard().load_layout(pszPath, actioncontext))
          return false;
 
       // xxx Application.simpledb().on_set_keyboard_layout(pszPath, actioncontext);
@@ -615,7 +594,7 @@ retry_license:
    {
       if(!Application.is_session())
       {
-         return BaseSession.user()->keyboard();
+         return session().user()->keyboard();
       }
       return *m_pkeyboard;
    }

@@ -289,7 +289,7 @@ namespace zip
       if(lpszExtractFileName == NULL)
          return true;
 
-      ::file::binary_buffer_sp spfile = App(papp).file().get_file(lpszExtractFileName, ::file::mode_create | ::file::mode_write | ::file::defer_create_directory);
+      ::file::binary_buffer_sp spfile = Sess(papp).file().get_file(lpszExtractFileName, ::file::mode_create | ::file::mode_write | ::file::defer_create_directory);
 
       if(spfile.is_set())
       {
@@ -342,7 +342,7 @@ namespace zip
             else if(infile.locate(strTitle))
             {
 
-               ::file::binary_buffer_sp spfile = App(pfile->get_app()).file().get_file(
+               ::file::binary_buffer_sp spfile = Sess(pfile->get_app()).file().get_file(
                   Sys(pfile->get_app()).dir().path(pszDir, strTitle),
                   ::file::mode_create | ::file::mode_write | ::file::defer_create_directory);
 

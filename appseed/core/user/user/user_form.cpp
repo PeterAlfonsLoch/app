@@ -1059,7 +1059,7 @@ namespace user
          sp(::user::keyboard_focus) pfocus = pevent->m_puie->keyboard_get_next_focusable();
          if(pfocus != NULL)
          {
-            Application.user()->set_keyboard_focus(pfocus);
+            session().user()->set_keyboard_focus(pfocus);
          }
       }
       else if(pevent->m_eevent == ::user::event_button_clicked)

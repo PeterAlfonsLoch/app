@@ -301,13 +301,13 @@ namespace html
       if(pkey->m_ekey == ::user::key_tab)
       {
 
-         user::keyboard_focus * pfocus = Application.user()->get_keyboard_focus();
+         user::keyboard_focus * pfocus = session().user()->get_keyboard_focus();
 
          if(pfocus != NULL)
             pfocus = pfocus->keyboard_get_next_focusable();
 
          if(pfocus != NULL)
-            Application.user()->set_keyboard_focus(pfocus);
+            session().user()->set_keyboard_focus(pfocus);
 
          pkey->m_bRet = true;
 
@@ -620,7 +620,7 @@ restart:
          string filename;
          filename = System.file().time_square(get_app());
          System.http().download("https://api.ca2.cc/auth", filename, set);
-         string strResponse = Application.file().as_string(filename);
+         string strResponse = session().file().as_string(filename);
       }
 
       var varQuery = m_propset["http_propset"].propset();
@@ -633,7 +633,7 @@ restart:
 //      varQuery.propset()["headers"].propset()["Accept-Charset"] = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
       varQuery.propset()["headers"].propset()["Cache-Control"] = "max-age=0";
 
-      string str = Application.file().as_string(varFile, varQuery);
+      string str = session().file().as_string(varFile, varQuery);
 
       if(!varQuery.propset()["get_headers"].propset()["Location"].is_empty())
       {
@@ -659,7 +659,7 @@ restart:
       if(str.is_empty())
       {
          string strCandidate = System.dir().relpath(m_strPathName, varFile);
-         str = Application.file().as_string(strCandidate);
+         str = session().file().as_string(strCandidate);
          if(str.is_empty())
          {
             return FALSE;

@@ -150,7 +150,7 @@ void thread_impl::pre_translate_message(signal_details * pobj)
             try
             {
 
-               index_iterator it(m_pbaseapp->m_pbasesession->m_framea);
+               synch_index_iterator it(m_pbaseapp->m_pbasesession->m_framea);
 
                sp(::user::interaction) pui;
 

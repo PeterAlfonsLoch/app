@@ -102,7 +102,7 @@ namespace filemanager
       }
 
       if (!m_toolbar.CreateEx(this) ||
-         !m_toolbar.LoadXmlToolBar(Application.file().as_string(Application.dir().matter(strToolBar))))
+         !m_toolbar.LoadXmlToolBar(session().file().as_string(session().dir().matter(strToolBar))))
       {
          TRACE0("Failed to create toolbar\n");
          return false;      // fail to create

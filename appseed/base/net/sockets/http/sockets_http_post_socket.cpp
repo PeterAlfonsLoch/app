@@ -38,17 +38,17 @@ namespace sockets
 
       m_emethod = http_method_post;
 
-      single_lock lock(&System.sockets().m_mutexHttpPostBoundary, true);
+      single_lock lock(&session().sockets().m_mutexHttpPostBoundary, true);
 
       m_boundary = "----";
       for (int i = 0; i < 12; i++)
       {
-         char c = System.sockets().m_countHttpPostBoundary++ % 128;
+         char c = session().sockets().m_countHttpPostBoundary++ % 128;
          while (!isalnum((unsigned char) c))
-            c = System.sockets().m_countHttpPostBoundary++ % 128;
+            c = session().sockets().m_countHttpPostBoundary++ % 128;
          m_boundary += c;
       }
-      m_boundary += "__" + ::str::from(System.sockets().m_countHttpPostBoundary++);
+      m_boundary += "__" + ::str::from(session().sockets().m_countHttpPostBoundary++);
    }
 
 
@@ -71,10 +71,10 @@ namespace sockets
 
    void http_post_socket::AddFile(const string & name,const string & filename,const string & type)
    {
-      if (Application.file().exists(filename))
+      if (session().file().exists(filename))
       {
          m_mapFiles[name]              = filename;
-         m_mapContentLength[filename]  = Application.file().length(filename);
+         m_mapContentLength[filename]  = session().file().length(filename);
          m_mapContentType[filename]    = type;
          m_bMultipart                  = true;
       }

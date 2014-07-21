@@ -86,6 +86,12 @@ namespace base
 #endif
 
       set_app(this);
+      m_nSafetyPoolSize          = 512;        // default size
+
+      m_pmath                    = canew(math::math(this));
+      m_pgeometry                = canew(geometry::geometry(this));
+      m_phtml = NULL;
+
 
       m_pbasesystem = this;
 
@@ -402,6 +408,35 @@ namespace base
    {
 
       __wait_threading_count(::millis((5000) * 8));
+
+      try
+      {
+
+
+         /*      try
+         {
+         if(m_plemonarray != NULL)
+         {
+         delete m_plemonarray;
+         }
+         }
+         catch(...)
+         {
+         }
+         m_plemonarray = NULL;
+         */
+
+
+         m_pmath.release();
+
+         m_pgeometry.release();
+
+      }
+      catch(...)
+      {
+         m_iReturnCode = -86;
+      }
+
 
       try
       {
@@ -1561,6 +1596,155 @@ namespace base
    }
 
 
+   string system::get_ca2_module_folder()
+   {
+
+      single_lock sl(m_pmutex,true);
+
+      return m_strCa2ModuleFolder;
+
+   }
+
+
+   string system::get_ca2_module_file_path()
+   {
+
+      string strModuleFileName;
+
+#ifdef WINDOWSEX
+
+      wchar_t lpszModuleFilePath[MAX_PATH + 1];
+
+      if(GetModuleFileNameW(::GetModuleHandleA("core.dll"),lpszModuleFilePath,MAX_PATH + 1))
+      {
+
+         strModuleFileName = lpszModuleFilePath;
+
+      }
+
+#elif defined(METROWIN)
+
+      throw todo(this);
+
+#else
+
+#ifdef LINUX
+
+      {
+
+         void * handle = dlopen("core.so",0);
+
+         if(handle == NULL)
+            return "";
+
+         link_map * plm;
+
+         dlinfo(handle,RTLD_DI_LINKMAP,&plm);
+
+         strModuleFileName = plm->l_name;
+
+         dlclose(handle);
+
+         //         m_strCa2ModuleFolder = dir::name(strModuleFileName);
+
+      }
+
+#else
+
+      {
+
+         char * pszCurDir = getcwd(NULL,0);
+
+         string strCurDir = pszCurDir;
+
+         free(pszCurDir);
+
+         if(App(this).file().exists(System.dir().path(strCurDir,"core.dylib")))
+         {
+            m_strCa2ModuleFolder = strCurDir;
+            goto finishedCa2Module;
+         }
+
+
+         if(App(this).file().exists(System.dir().path(m_strModuleFolder,"core.dylib")))
+         {
+            m_strCa2ModuleFolder = m_strModuleFolder;
+            goto finishedCa2Module;
+         }
+
+         strModuleFileName = App(this).dir().pathfind(getenv("LD_LIBRARY_PATH"),"core.dylib","rfs"); // readable - normal file - non zero sized
+
+      }
+
+   finishedCa2Module:;
+
+#endif
+
+#endif
+
+      return strModuleFileName;
+
+
+   }
+
+
+   string system::get_module_folder()
+   {
+
+      return m_strModuleFolder;
+
+   }
+
+
+   string system::get_module_file_path()
+   {
+
+#ifdef WINDOWSEX
+
+      wchar_t lpszModuleFilePath[MAX_PATH + 1];
+
+      GetModuleFileNameW(NULL,lpszModuleFilePath,MAX_PATH + 1);
+
+      string strModuleFileName(lpszModuleFilePath);
+
+      return strModuleFileName;
+
+#elif defined(METROWIN)
+
+      return "m_app.exe";
+
+#else
+
+      char * lpszModuleFilePath = br_find_exe_dir("app");
+
+      if(lpszModuleFilePath == NULL)
+         return "";
+
+      string strModuleFileName(lpszModuleFilePath);
+
+      free(lpszModuleFilePath);
+
+      return strModuleFileName;
+
+#endif
+
+   }
+
+
+   string system::get_module_title()
+   {
+
+      return session().file_title(get_module_file_path());
+
+   }
+
+
+   string system::get_module_name()
+   {
+
+      return session().file_name(get_module_file_path());
+
+   }
 
 } // namespace base
 

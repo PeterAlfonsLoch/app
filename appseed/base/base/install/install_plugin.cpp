@@ -340,7 +340,7 @@ namespace install
          if(m_phost->m_pbasecomposer->m_strPluginUrl.has_char())
          {
 
-            m_bLogged = BaseSession.fontopus()->get_user(false,m_phost->m_pbasecomposer->m_strPluginUrl) != NULL;
+            m_bLogged = ::root::session().fontopus()->get_user(false,m_phost->m_pbasecomposer->m_strPluginUrl) != NULL;
 
          }
 
@@ -377,7 +377,7 @@ namespace install
          if(strUrl.is_empty())
          {
           
-            strUrl = "http://" + BaseSession.fontopus()->get_server(m_phost->m_pbasecomposer->m_strPluginUrl) + "/";
+            strUrl = "http://" + ::root::session().fontopus()->get_server(m_phost->m_pbasecomposer->m_strPluginUrl) + "/";
 
          }
 
@@ -980,7 +980,7 @@ namespace install
 
             property_set set(get_app());
 
-            strPrompt = Application.http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set);
+            strPrompt = ::root::session().http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set);
 
             if (strPrompt.is_empty())
             {
@@ -1080,7 +1080,7 @@ restart:
 
       property_set set(get_app());
 
-      while((str = Application.http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set)).is_empty())
+      while((str = ::root::session().http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set)).is_empty())
       {
          if(!m_phost->m_bStream)
          {

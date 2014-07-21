@@ -97,7 +97,7 @@ namespace fontopus
          || strApp == "app-gtech/sensible_netnode"
          || strApp == "app-gtech/sensible_service")
       {
-         m_puser = BaseSession.fontopus()->allocate_user();
+         m_puser = session().fontopus()->allocate_user();
          m_puser->m_strPathPrefix = "system" + ::str::has_char(Application.command()->m_varTopicQuery["systemid"],"-");
          m_puser->m_strLogin = system_user_1;
          return m_puser;
@@ -106,7 +106,7 @@ namespace fontopus
          || command_thread()->has_property("install")
          || command_thread()->has_property("uninstall"))
       {
-         m_puser = BaseSession.fontopus()->allocate_user();
+         m_puser = session().fontopus()->allocate_user();
          m_puser->m_strPathPrefix = "system" + ::str::has_char(Application.command()->m_varTopicQuery["systemid"],"-");
          m_puser->m_strLogin = system_user_1;
          return m_puser;
@@ -119,7 +119,7 @@ namespace fontopus
       else if(command_thread()->property("app") == "backup"
          || command_thread()->property("app") == "winservice_filesystemsize")
       {
-         m_puser = BaseSession.fontopus()->allocate_user();
+         m_puser = session().fontopus()->allocate_user();
          m_puser->m_strPathPrefix = "system" + ::str::has_char(Application.command()->m_varTopicQuery["systemid"],"-");
          m_puser->m_strLogin = system_user_2;
          return m_puser;
@@ -141,7 +141,7 @@ namespace fontopus
          }
          else
          {
-            strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
+            strHost = session().file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
             if(!straRequestingServer.contains_ci(strHost))
             {
                strHost = "https://account.ca2.cc/";
@@ -156,7 +156,7 @@ namespace fontopus
       if(straRequestingServer.contains(Application.command_thread()->m_varTopicQuery["fontopus"].get_string())
          && Application.command_thread()->m_varTopicQuery["sessid"].get_string().get_length() > 16)
       {
-         m_loginthread.m_puser = BaseSession.fontopus()->allocate_user();
+         m_loginthread.m_puser = session().fontopus()->allocate_user();
          m_loginthread.m_puser->m_sessionidmap[Application.command_thread()->m_varTopicQuery["fontopus"].get_string()] = Application.command_thread()->m_varTopicQuery["sessid"].get_string();
          m_loginthread.m_puser->m_sessionidmap[strHost] = Application.command_thread()->m_varTopicQuery["sessid"].get_string();
          m_loginthread.m_puser->m_strFontopusServerSessId = Application.command_thread()->m_varTopicQuery["sessid"].get_string();
@@ -173,7 +173,7 @@ namespace fontopus
 
          set["user"] = m_loginthread.m_puser;
 
-         if(documentBasicInfo.load(Application.http().get("https://" + strApiServer + "/account/get_basic_info",set)))
+         if(documentBasicInfo.load(session().http().get("https://" + strApiServer + "/account/get_basic_info",set)))
          {
             string strLogin;
             if(documentBasicInfo.get_root()->get_attr("login",strLogin) && strLogin.find("@") > 0)
@@ -184,7 +184,7 @@ namespace fontopus
          }
       }
 
-      m_loginthread.m_puser = BaseSession.fontopus()->allocate_user();
+      m_loginthread.m_puser = session().fontopus()->allocate_user();
 
       if(pszSessId != NULL && string(pszSessId).get_length() > 16)
       {
@@ -294,7 +294,7 @@ namespace fontopus
       }
       m_strLicense = psz;
       m_loginthread.m_strLicense = m_strLicense;
-      string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
+      string strHost = session().file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
       stringa straRequestingServer;
       straRequestingServer.add("account.ca2.cc");
       //straRequestingServer.add("eu-account.ca2.cc");
@@ -308,7 +308,7 @@ namespace fontopus
          strHost = "account.ca2.cc";
       }
 
-      strHost = BaseSession.fontopus()->get_server(strHost);
+      strHost = session().fontopus()->get_server(strHost);
 
       if(straRequestingServer.contains(Application.command_thread()->m_varTopicQuery["fontopus"].get_string())
          && Application.command_thread()->m_varTopicQuery["sessid"].get_string().get_length() > 16)
@@ -333,7 +333,7 @@ namespace fontopus
 
       set["post"]["entered_license"] = m_strLicense;
 
-      Application.http().get(strAuthUrl,strAuth,set);
+      session().http().get(strAuthUrl,strAuth,set);
 
       m_loginthread.m_strFontopusServer = strHost;
 
@@ -456,7 +456,7 @@ namespace fontopus
       set["post"]["source"] = straHash.implode(";");
       for(int32_t i = 0; i < 3; i++)
       {
-         if(Application.http().get(strUrl,strResponse,set))
+         if(session().http().get(strUrl,strResponse,set))
             break;
       }
       if(strResponse == "OK")
@@ -515,8 +515,8 @@ namespace fontopus
       {
          if(doc.get_root()->attr("id") == "auth" && doc.get_root()->attr("passhash").has_char() && doc.get_root()->attr("secureuserid").has_char())
          {
-            BaseSession.fontopus()->m_authmap[m_strUsername].m_mapServer[m_strRequestingServer] = strResponse;
-            BaseSession.fontopus()->m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer] = strResponse;
+            session().fontopus()->m_authmap[m_strUsername].m_mapServer[m_strRequestingServer] = strResponse;
+            session().fontopus()->m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer] = strResponse;
             m_puser->m_strLogin = m_strUsername;
             m_puser->m_strFontopusServerSessId = doc.get_root()->attr("sessid");
             m_puser->set_sessid(m_puser->m_strFontopusServerSessId,m_strLoginUrl);
@@ -526,7 +526,7 @@ namespace fontopus
             iAuth = result_auth;
             if(m_bFontopusServer)
             {
-               Application.file().put_contents(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"),m_strFontopusServer);
+               session().file().put_contents(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"),m_strFontopusServer);
             }
             execute();
             if(m_strLicense.has_char())
@@ -646,28 +646,28 @@ namespace fontopus
    string login_thread::NetLogin(::http::e_status * pestatus)
    {
 
-      if(BaseSession.fontopus()->m_authmap[m_strUsername].m_mapServer[m_strRequestingServer].get_length() > 32)
+      if(session().fontopus()->m_authmap[m_strUsername].m_mapServer[m_strRequestingServer].get_length() > 32)
       {
-         return BaseSession.fontopus()->m_authmap[m_strUsername].m_mapServer[m_strRequestingServer];
+         return session().fontopus()->m_authmap[m_strUsername].m_mapServer[m_strRequestingServer];
       }
 
-      string strFontopusServer = BaseSession.fontopus()->get_fontopus_server(m_strRequestingServer);
+      string strFontopusServer = session().fontopus()->get_fontopus_server(m_strRequestingServer);
 
       if(strFontopusServer.is_empty())
          return "";
 
       m_strFontopusServer = strFontopusServer;
 
-      if(BaseSession.fontopus()->m_strFirstFontopusServer.is_empty())
+      if(session().fontopus()->m_strFirstFontopusServer.is_empty())
       {
 
-         BaseSession.fontopus()->m_strFirstFontopusServer = m_strFontopusServer;
+         session().fontopus()->m_strFirstFontopusServer = m_strFontopusServer;
 
       }
 
-      if(BaseSession.fontopus()->m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer].get_length() > 32)
+      if(session().fontopus()->m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer].get_length() > 32)
       {
-         return BaseSession.fontopus()->m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer];
+         return session().fontopus()->m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer];
       }
 
 
@@ -694,7 +694,7 @@ namespace fontopus
 
       set["app"] = get_app();
 
-      sp(::sockets::http_session) psession = BaseSession.fontopus()->m_mapFontopusSession[m_strFontopusServer];
+      sp(::sockets::http_session) psession = session().fontopus()->m_mapFontopusSession[m_strFontopusServer];
 
       for(int32_t iRetry = 0; iRetry <= 8; iRetry++)
       {
@@ -713,7 +713,7 @@ namespace fontopus
 
             psession = System.http().request(psession,m_strLoginUrl,set);
 
-            BaseSession.fontopus()->m_mapFontopusSession.set_at(m_strFontopusServer,psession);
+            session().fontopus()->m_mapFontopusSession.set_at(m_strFontopusServer,psession);
 
             strLogin = set["get_response"];
 
@@ -812,7 +812,7 @@ namespace fontopus
          *pestatus = (::http::e_status) set["get_status"].int64();
          uint32_t dwTimeProfile2 = get_tick_count();
 
-         TRACE0("login_thread::NetLogin Total time Application.http().get(\"" + strAuthUrl + "\") : " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
+         TRACE0("login_thread::NetLogin Total time session().http().get(\"" + strAuthUrl + "\") : " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
 
       }
       DWORD dwAuthEnd = ::get_tick_count();
@@ -841,7 +841,7 @@ namespace fontopus
 
          System.http().download(m_httpexecutea[i].m_strUrl,strFilename,set);
 
-         strResponse = Application.file().as_string(strFilename);
+         strResponse = session().file().as_string(strFilename);
          TRACE0(strResponse);
          m_httpexecutea[i].m_strResponse = strResponse;
       }
@@ -921,12 +921,12 @@ namespace fontopus
 
             property_set set(get_app());
 
-            string strName = Application.http().get(strUrl,set);
+            string strName = session().http().get(strUrl,set);
 
             if(strName.is_empty())
                strName = m_strLicense;
             propertyset["project"] = strName;
-            strUrl = "ext://https://" + m_loginthread.m_strFontopusServer + "/license?id=" + m_strLicense + "&lang=" + System.get_locale() + "&sessid=" + ApplicationUser.get_sessid(m_loginthread.m_strFontopusServer);
+            strUrl = "ext://https://" + m_loginthread.m_strFontopusServer + "/license?id=" + m_strLicense + "&lang=" + session().get_locale() + "&sessid=" + ApplicationUser.get_sessid(m_loginthread.m_strFontopusServer);
             propertyset["contribute_link"] = strUrl;
             pageMessage("err\\user\\authentication\\not_licensed.xhtml",propertyset);
          }

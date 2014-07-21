@@ -60,9 +60,9 @@ namespace http
       };
 
       mutex                                  m_mutexPac;
-      string_map < pac *  >    m_mapPac;
+      string_map < pac *  >                  m_mapPac;
       mutex                                  m_mutexProxy;
-      string_map < proxy *  >  m_mapProxy;
+      string_map < proxy *  >                m_mapProxy;
 
       mutex                                  m_mutexDownload;
       stringa                                m_straDownloading;
@@ -75,7 +75,6 @@ namespace http
 
       virtual void set_proxy_auth(::fontopus::user * puser, ::sockets::http_client_socket * pfile);
       virtual void clean_proxy_auth(::fontopus::user * puser);
-
 
       ::sockets::http_session * open(
          const char * pszHost,
@@ -123,6 +122,7 @@ namespace http
 
       pac * get_pac(const char * pszUrl);
       proxy * get_proxy(const char * pszUrl);
+
 
    };
 

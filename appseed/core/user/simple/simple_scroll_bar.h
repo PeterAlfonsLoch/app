@@ -67,6 +67,7 @@ public:
    DECL_GEN_SIGNAL(_001OnDestroy);
    LRESULT OnEconoModeChange(WPARAM wParam, LPARAM lParam);
 
+   void draw_mac_thumb(::draw2d::graphics * pdc,LPCRECT lpcrectDraw,LPCRECT lpcrectClip,byte uchAlpha);
 
 };
 

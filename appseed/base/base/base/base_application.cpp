@@ -111,26 +111,12 @@ namespace base
 
       m_pplaneapp                = NULL;
 
-      m_nSafetyPoolSize          = 512;        // default size
-
-      m_bIfs                     = true;
-
-      m_dir.set_app(this);
-      m_file.set_app(this);
-      m_http.set_app(this);
 
 
       m_psignal                  = canew(class signal());
 
       m_pcommandthread           = canew(::command_thread(this));
 
-      m_psavings                 = canew(class ::base::savings(this));
-      m_pmath                    = canew(math::math(this));
-      m_pgeometry                = canew(geometry::geometry(this));
-
-      m_bZipIsDir                = true;
-
-      m_pmapKeyPressed           = NULL;
 
       m_bLicense                 = true;
 
@@ -149,8 +135,6 @@ namespace base
       m_bBaseInitializeInstance        = false;
       m_bBaseInitializeInstanceResult  = false;
 
-
-      m_phtml = NULL;
 
       m_bShouldInitializeGTwf = true;
       m_bInitializeProDevianMode = true;
@@ -184,8 +168,8 @@ namespace base
 
 #endif
 
-      dumpcontext << "\nm_strCmdLine = " << m_strCmdLine;
-      dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
+      //dumpcontext << "\nm_strCmdLine = " << m_strCmdLine;
+      //dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
       dumpcontext << "\nm_bHelpMode = " << m_strAppName;
 
       dumpcontext << "\n";
@@ -389,7 +373,7 @@ namespace base
       }
 
       ::xml::document doc(get_app());
-      string strFilePath = System.dir().matter_from_locator(App(this).str_context(),strLocator,strMatter);
+      string strFilePath = System.dir().matter_from_locator(Sess(this).str_context(),strLocator,strMatter);
       if(!System.file().exists(strFilePath,this))
       {
          try
@@ -403,7 +387,7 @@ namespace base
          m_stringtable.set_at(pszId,new string_to_string);
          return;
       }
-      string strFile = Application.file().as_string(strFilePath);
+      string strFile = session().file().as_string(strFilePath);
       if(!doc.load(strFile))
          return;
       string_to_string * pmapNew = new string_to_string;
@@ -480,87 +464,6 @@ namespace base
    }
 
    
-   string application::matter_as_string(const char * pszMatter,const char * pszMatter2)
-   {
-      
-      var varQuery;
-
-      varQuery["disable_ca2_sessid"] = true;
-
-      return file().as_string(dir_matter(pszMatter,pszMatter2),varQuery);
-
-   }
-
-   string application::dir_matter(const char * pszMatter,const char * pszMatter2)
-   {
-
-      return dir().matter(pszMatter,pszMatter2);
-
-   }
-
-   bool application::is_inside_time_dir(const char * pszPath)
-   {
-      throw not_implemented(this);
-      return false;
-   }
-
-   bool application::file_is_read_only(const char * pszPath)
-   {
-      throw not_implemented(this);
-      return false;
-   }
-
-   string application::file_as_string(var varFile)
-   {
-
-      if(::str::begins_ci(varFile.get_string(),"http://")
-         || ::str::begins_ci(varFile.get_string(),"https://"))
-      {
-
-         ::property_set set(get_app());
-
-         return Application.http().get(varFile.get_string(),set);
-
-      }
-      else if(::str::begins_ci(varFile["url"].get_string(),"http://")
-         || ::str::begins_ci(varFile["url"].get_string(),"https://"))
-      {
-
-         ::property_set set(get_app());
-
-         return Application.http().get(varFile["url"].get_string(),set);
-
-      }
-      else
-      {
-         return file_as_string_dup(varFile.get_string());
-      }
-
-   }
-
-   string application::dir_path(const char * psz1,const char * psz2,const char * psz3)
-   {
-      return ::dir::path(psz1,psz2,psz3);
-   }
-
-   string application::dir_name(const char * psz)
-   {
-      return ::dir::name(psz);
-   }
-
-   bool application::dir_mk(const char * psz)
-   {
-      return ::dir::mk(psz);
-   }
-
-   string application::file_title(const char * psz)
-   {
-      return ::file_title_dup(psz);
-   }
-   string application::file_name(const char * psz)
-   {
-      return ::file_name_dup(psz);
-   }
 
    bool application::app_map_lookup(const char * psz,void * & p)
    {
@@ -615,12 +518,6 @@ namespace base
    }
 
 
-   ::file::binary_buffer_sp application::file_get_file(var varFile,uint32_t uiFlags)
-   {
-
-      return file().get_file(varFile,uiFlags);
-
-   }
 
 
 
@@ -710,112 +607,6 @@ namespace base
 
    }
 
-
-   bool application::is_key_pressed(::user::e_key ekey)
-   {
-
-      if(is_session())
-      {
-         if(m_pmapKeyPressed == NULL)
-         {
-            m_pmapKeyPressed = new ::map < ::user::e_key,::user::e_key,bool,bool >;
-         }
-         bool bPressed = false;
-         if(ekey == ::user::key_shift)
-         {
-            m_pmapKeyPressed->Lookup(::user::key_shift,bPressed);
-            if(bPressed)
-               goto ret;
-            m_pmapKeyPressed->Lookup(::user::key_lshift,bPressed);
-            if(bPressed)
-               goto ret;
-            m_pmapKeyPressed->Lookup(::user::key_rshift,bPressed);
-            if(bPressed)
-               goto ret;
-         }
-         else if(ekey == ::user::key_control)
-         {
-            m_pmapKeyPressed->Lookup(::user::key_control,bPressed);
-            if(bPressed)
-               goto ret;
-            m_pmapKeyPressed->Lookup(::user::key_lcontrol,bPressed);
-            if(bPressed)
-               goto ret;
-            m_pmapKeyPressed->Lookup(::user::key_rcontrol,bPressed);
-            if(bPressed)
-               goto ret;
-         }
-         else if(ekey == ::user::key_alt)
-         {
-            m_pmapKeyPressed->Lookup(::user::key_alt,bPressed);
-            if(bPressed)
-               goto ret;
-            m_pmapKeyPressed->Lookup(::user::key_lalt,bPressed);
-            if(bPressed)
-               goto ret;
-            m_pmapKeyPressed->Lookup(::user::key_ralt,bPressed);
-            if(bPressed)
-               goto ret;
-         }
-         else
-         {
-            m_pmapKeyPressed->Lookup(ekey,bPressed);
-         }
-      ret:
-         return bPressed;
-      }
-      else if(m_pbasesession != NULL)
-      {
-         return BaseSess(this).is_key_pressed(ekey);
-      }
-      else if(m_pbasesystem != NULL)
-      {
-         if(m_pbasesystem == this)
-         {
-            throw "not expected";
-            return false;
-         }
-         return Sys(this).is_key_pressed(ekey);
-      }
-      else
-      {
-         throw "not expected";
-      }
-
-   }
-
-   void application::set_key_pressed(::user::e_key ekey,bool bPressed)
-   {
-      if(is_session())
-      {
-         if(m_pmapKeyPressed == NULL)
-         {
-            m_pmapKeyPressed = new ::map < ::user::e_key,::user::e_key,bool,bool >;
-         }
-         (*m_pmapKeyPressed)[ekey] = bPressed;
-      }
-      else if(m_pbasesession != NULL)
-      {
-         return BaseSess(this).set_key_pressed(ekey,bPressed);
-      }
-      else if(m_pbasesystem != NULL)
-      {
-
-         if(m_pbasesystem == this)
-         {
-
-            return;
-
-         }
-
-         return Sys(this).set_key_pressed(ekey,bPressed);
-
-      }
-      else
-      {
-         throw "not expected";
-      }
-   }
 
 
 
@@ -1052,20 +843,6 @@ namespace base
          if(!m_pimpl->update_module_paths())
             return false;
 
-         if(m_pimpl->m_strCa2ModuleFolder.is_empty())
-            m_pimpl->m_strCa2ModuleFolder = m_pimpl->m_strModuleFolder;
-
-         m_strModulePath = m_pimpl->m_strModulePath;
-         m_strModuleFolder = m_pimpl->m_strModuleFolder;
-         m_strCa2ModulePath = m_pimpl->m_strCa2ModulePath;
-         m_strCa2ModuleFolder = m_pimpl->m_strCa2ModuleFolder;
-
-      }
-      else
-      {
-
-         m_strModulePath = System.m_strModulePath;
-         m_strModuleFolder = System.m_strModuleFolder;
 
       }
 
@@ -1128,35 +905,6 @@ namespace base
 
 
 
-   void application::set_locale(const string & lpcsz,::action::context actioncontext)
-   {
-      string strLocale(lpcsz);
-      strLocale.trim();
-      m_strLocale = strLocale;
-      on_set_locale(m_strLocale,actioncontext);
-   }
-
-   void application::set_schema(const string & lpcsz,::action::context actioncontext)
-   {
-      string strSchema(lpcsz);
-      strSchema.trim();
-      m_strSchema = strSchema;
-      on_set_schema(m_strSchema,actioncontext);
-   }
-
-   void application::on_set_locale(const string & lpcsz,::action::context actioncontext)
-   {
-      UNREFERENCED_PARAMETER(actioncontext);
-      UNREFERENCED_PARAMETER(lpcsz);
-      //System.appa_load_string_table();
-   }
-
-   void application::on_set_schema(const string & lpcsz,::action::context actioncontext)
-   {
-      UNREFERENCED_PARAMETER(actioncontext);
-      UNREFERENCED_PARAMETER(lpcsz);
-      //System.appa_load_string_table();
-   }
 
 
 
@@ -1261,102 +1009,6 @@ namespace base
 
 
 
-   math::math & application::math()
-   {
-      return *m_pmath;
-   }
-
-
-
-
-
-
-   string application::get_locale()
-   {
-      return m_strLocale;
-   }
-
-   string application::get_schema()
-   {
-      return m_strSchema;
-   }
-
-
-   ::user::str_context * application::str_context()
-   {
-
-      return m_puserstrcontext;
-
-   }
-
-
-   string application::get_locale_schema_dir()
-   {
-
-      return System.dir().simple_path(get_locale(),get_schema());
-
-   }
-
-
-   string application::get_locale_schema_dir(const string & strLocale)
-   {
-
-      if(strLocale.is_empty())
-      {
-
-         return System.dir().simple_path(get_locale(),get_schema());
-
-      }
-      else
-      {
-
-         return System.dir().simple_path(strLocale,get_schema());
-
-      }
-
-   }
-
-
-   string application::get_locale_schema_dir(const string & strLocale,const string & strSchema)
-   {
-
-      if(strLocale.is_empty())
-      {
-
-         if(strSchema.is_empty())
-         {
-
-            return System.dir().simple_path(get_locale(),get_schema());
-
-         }
-         else
-         {
-
-            return System.dir().simple_path(get_locale(),strSchema);
-
-         }
-
-      }
-      else
-      {
-
-         if(strSchema.is_empty())
-         {
-
-            return System.dir().simple_path(strLocale,get_schema());
-
-         }
-         else
-         {
-
-            return System.dir().simple_path(strLocale,strSchema);
-
-         }
-
-      }
-
-   }
-
 
 
 
@@ -1368,14 +1020,6 @@ namespace base
 
 
 
-
-
-   geometry::geometry & application::geometry()
-   {
-
-      return *m_pgeometry;
-
-   }
 
 
 #ifndef METROWIN
@@ -1526,151 +1170,6 @@ namespace base
 
    }
 
-
-   ::base::savings & application::savings()
-   {
-
-      return *m_psavings;
-
-   }
-
-
-   string application::get_ca2_module_folder()
-   {
-      single_lock sl(m_pmutex,true);
-      return m_strCa2ModuleFolder;
-   }
-
-   string application::get_ca2_module_file_path()
-   {
-
-      string strModuleFileName;
-
-#ifdef WINDOWSEX
-
-      wchar_t lpszModuleFilePath[MAX_PATH + 1];
-
-      if(GetModuleFileNameW(::GetModuleHandleA("core.dll"),lpszModuleFilePath,MAX_PATH + 1))
-      {
-
-         strModuleFileName = lpszModuleFilePath;
-
-      }
-
-#elif defined(METROWIN)
-
-      throw todo(this);
-
-#else
-
-#ifdef LINUX
-
-      {
-
-         void * handle = dlopen("core.so", 0);
-
-         if (handle == NULL)
-            return "";
-
-         link_map * plm;
-
-         dlinfo(handle, RTLD_DI_LINKMAP, &plm);
-
-         strModuleFileName = plm->l_name;
-
-         dlclose(handle);
-
-         //         m_strCa2ModuleFolder = dir::name(strModuleFileName);
-
-      }
-
-#else
-
-      {
-
-         char * pszCurDir = getcwd(NULL, 0);
-
-         string strCurDir = pszCurDir;
-
-         free(pszCurDir);
-
-         if (App(this).file().exists(System.dir().path(strCurDir, "core.dylib")))
-         {
-            m_strCa2ModuleFolder = strCurDir;
-            goto finishedCa2Module;
-         }
-
-
-         if (App(this).file().exists(System.dir().path(m_strModuleFolder, "core.dylib")))
-         {
-            m_strCa2ModuleFolder = m_strModuleFolder;
-            goto finishedCa2Module;
-         }
-
-         strModuleFileName = App(this).dir().pathfind(getenv("LD_LIBRARY_PATH"), "core.dylib", "rfs"); // readable - normal file - non zero sized
-
-      }
-
-   finishedCa2Module:;
-
-#endif
-
-#endif
-
-      return strModuleFileName;
-
-
-   }
-
-   string application::get_module_folder()
-   {
-      return m_strModuleFolder;
-   }
-
-   string application::get_module_file_path()
-   {
-
-#ifdef WINDOWSEX
-
-      wchar_t lpszModuleFilePath[MAX_PATH + 1];
-
-      GetModuleFileNameW(NULL,lpszModuleFilePath,MAX_PATH + 1);
-
-      string strModuleFileName(lpszModuleFilePath);
-
-      return strModuleFileName;
-
-#elif defined(METROWIN)
-
-      return "m_app.exe";
-
-#else
-
-      char * lpszModuleFilePath = br_find_exe_dir("app");
-
-      if (lpszModuleFilePath == NULL)
-         return "";
-
-      string strModuleFileName(lpszModuleFilePath);
-
-      free(lpszModuleFilePath);
-
-      return strModuleFileName;
-
-#endif
-
-   }
-
-
-   string application::get_module_title()
-   {
-      return file_title(get_module_file_path());
-   }
-
-   string application::get_module_name()
-   {
-      return file_name(get_module_file_path());
-   }
 
 
    ::visual::icon * application::set_icon(object * pobject,::visual::icon * picon,bool bBigIcon)
@@ -2590,14 +2089,14 @@ namespace base
 
       sp(application) papp;
 
-      papp = BaseSession.m_appptra.find_running_defer_try_quit_damaged(pszAppId);
+      papp = session().m_appptra.find_running_defer_try_quit_damaged(pszAppId);
 
       if(papp.is_null())
       {
 
          sp(::create_context) spcreatecontext(allocer());
 
-         papp = BaseSession.start_application("application",pszAppId,spcreatecontext);
+         papp = session().start_application("application",pszAppId,spcreatecontext);
 
       }
 
@@ -2731,108 +2230,6 @@ namespace base
 
 
 
-   void application::fill_locale_schema(::str::international::locale_schema & localeschema,const char * pszLocale,const char * pszSchema)
-   {
-
-
-      localeschema.m_idaLocale.remove_all();
-      localeschema.m_idaSchema.remove_all();
-
-
-      string strLocale(pszLocale);
-      string strSchema(pszSchema);
-
-
-      localeschema.m_idLocale = pszLocale;
-      localeschema.m_idSchema = pszSchema;
-
-
-      localeschema.add_locale_variant(strLocale,strSchema);
-      localeschema.add_locale_variant(get_locale(),strSchema);
-      localeschema.add_locale_variant(__id(std),strSchema);
-      localeschema.add_locale_variant(__id(en),strSchema);
-
-
-      localeschema.finalize();
-
-
-   }
-
-
-   void application::fill_locale_schema(::str::international::locale_schema & localeschema)
-   {
-
-
-      localeschema.m_idaLocale.remove_all();
-      localeschema.m_idaSchema.remove_all();
-
-
-      //localeschema.m_bAddAlternateStyle = true;
-
-
-      stringa straLocale;
-      stringa straSchema;
-
-      straLocale.add(get_locale());
-      straSchema.add(get_schema());
-
-
-      stringa stra;
-
-      stra = Application.directrix()->m_varTopicQuery["locale"].stra();
-
-      stra.remove_ci("_std");
-
-      straLocale.add_unique(Application.directrix()->m_varTopicQuery["locale"].stra());
-
-      stra = Application.directrix()->m_varTopicQuery["schema"].stra();
-
-      stra.remove_ci("_std");
-
-      straSchema.add_unique(Application.directrix()->m_varTopicQuery["schema"].stra());
-
-
-      localeschema.m_idLocale = straLocale[0];
-      localeschema.m_idSchema = straSchema[0];
-
-      for(index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-      {
-
-         for(index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
-         {
-
-            localeschema.add_locale_variant(straLocale[iLocale],straSchema[iSchema]);
-
-         }
-
-      }
-
-      for(index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
-      {
-
-         localeschema.add_locale_variant(get_locale(),straSchema[iSchema]);
-
-      }
-
-      for(index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
-      {
-
-         localeschema.add_locale_variant(__id(std),straSchema[iSchema]);
-
-      }
-
-
-      for(index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
-      {
-
-         localeschema.add_locale_variant(__id(en),straSchema[iSchema]);
-
-      }
-
-      localeschema.finalize();
-
-
-   }
 
 
 
@@ -2881,8 +2278,13 @@ namespace base
          set_thread(dynamic_cast <thread *> (this));
       }
 
-      if(!update_module_paths())
-         return false;
+      if(is_system())
+      {
+
+         if(!update_module_paths())
+            return false;
+
+      }
 
 
       if(!ca_process_initialize())
@@ -2898,22 +2300,6 @@ namespace base
       if(!m_pimpl->process_initialize())
          return false;
 
-      m_spuser = create_user();
-
-      if(m_spuser == NULL)
-         return false;
-
-      m_spuser->construct(this);
-
-      m_psockets = canew(::sockets::sockets(this));
-
-      m_psockets->construct(this);
-
-      if(!m_psockets->initialize1())
-         throw simple_exception(this,"could not initialize (1) sockets for application (application::construct)");
-
-      if(!m_psockets->initialize())
-         throw simple_exception(this,"could not initialize sockets for application (application::construct)");
 
       m_bBaseProcessInitializeResult = true;
 
@@ -3041,6 +2427,7 @@ namespace base
          return m_bBaseInitialize1Result;
 
       m_bBaseInitialize1 = true;
+
       m_bBaseInitialize1Result = false;
 
       m_splicense = new class ::fontopus::license(this);
@@ -3049,152 +2436,14 @@ namespace base
 
       m_straMatterLocator.add_unique(System.dir().appmatter_locator(this));
 
-      m_puserstrcontext = canew(::user::str_context(this));
-
-      if(m_puserstrcontext == NULL)
-         return false;
-
       if(!ca_initialize1())
          return false;
 
 
-      string strLocaleSystem;
-      string strSchemaSystem;
 
-
-      string strPath = System.dir().appdata("langstyle_settings.xml");
-
-      if(Application.file().exists(strPath))
-      {
-
-         string strSystem = Application.file().as_string(strPath);
-
-         ::xml::document docSystem(get_app());
-
-         if(docSystem.load(strSystem))
-         {
-
-            if(docSystem.get_child("lang") != NULL)
-            {
-
-               strLocaleSystem = docSystem.get_child("lang")->get_value();
-
-            }
-
-            if(docSystem.get_child("style") != NULL)
-            {
-
-               strSchemaSystem = docSystem.get_child("style")->get_value();
-
-            }
-
-         }
-
-      }
-
-
-      string strLocale;
-      string strSchema;
-
-#ifdef METROWIN
-
-      stringa stra;
-
-      try
-      {
-
-         stra.explode("-", ::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
-
-      }
-      catch (long)
-      {
-
-
-      }
-
-      strLocale = stra[0];
-
-      strSchema = stra[0];
-
-#elif defined(WINDOWS)
-
-      LANGID langid = ::GetUserDefaultLangID();
-
-#define SPR_DEUTSCH LANG_GERMAN
-
-      if(langid == LANG_SWEDISH)
-      {
-         strLocale = "se";
-         strSchema = "se";
-      }
-      else if(langid == MAKELANGID(LANG_PORTUGUESE,SUBLANG_PORTUGUESE_BRAZILIAN))
-      {
-         strLocale = "pt-br";
-         strSchema = "pt-br";
-      }
-      else if(PRIMARYLANGID(langid) == SPR_DEUTSCH)
-      {
-         strLocale = "de";
-         strSchema = "de";
-      }
-      else if(PRIMARYLANGID(langid) == LANG_ENGLISH)
-      {
-         strLocale = "en";
-         strSchema = "en";
-      }
-      else if(PRIMARYLANGID(langid) == LANG_JAPANESE)
-      {
-         strLocale = "jp";
-         strSchema = "jp";
-      }
-      else if(PRIMARYLANGID(langid) == LANG_POLISH)
-      {
-         strLocale = "pl";
-         strSchema = "pl";
-      }
-
-#endif
-
-      if(strLocale.is_empty())
-         strLocale = "se";
-
-      if(strSchema.is_empty())
-         strSchema = "se";
-
-      if(strLocaleSystem.has_char())
-         strLocale = strLocaleSystem;
-
-      if(strSchemaSystem.has_char())
-         strSchema = strSchemaSystem;
-
-      if(Sys(this).directrix()->m_varTopicQuery["locale"].get_count() > 0)
-         strLocale = Sys(this).directrix()->m_varTopicQuery["locale"].stra()[0];
-
-      if(Sys(this).directrix()->m_varTopicQuery["schema"].get_count() > 0)
-         strSchema = Sys(this).directrix()->m_varTopicQuery["schema"].stra()[0];
-
-      if(App(this).directrix()->m_varTopicQuery["locale"].get_count() > 0)
-         strLocale = App(this).directrix()->m_varTopicQuery["locale"].stra()[0];
-
-      if(App(this).directrix()->m_varTopicQuery["schema"].get_count() > 0)
-         strSchema = App(this).directrix()->m_varTopicQuery["schema"].stra()[0];
-
-
-      set_locale(strLocale,::action::source::database());
-      set_schema(strSchema,::action::source::database());
-
-
-      str_context()->localeschema().m_idaLocale.add(strLocale);
-      str_context()->localeschema().m_idaSchema.add(strSchema);
 
 
       if(!m_pimpl->initialize1())
-         return false;
-
-      if(!m_spuser->initialize1())
-         return false;
-
-      if(!m_spuser->initialize2())
          return false;
 
       m_bBaseInitialize1Result = true;
@@ -3212,8 +2461,6 @@ namespace base
 
       if(!ca_initialize2())
          return false;
-
-      fill_locale_schema(*str_context()->m_plocaleschema);
 
       return true;
 
@@ -3256,15 +2503,15 @@ namespace base
       {
          if(guideline()->m_varTopicQuery.propset().has_property("save_processing"))
          {
-            System.savings().save(::base::resource_processing);
+            session().savings().save(::base::resource_processing);
          }
          if(guideline()->m_varTopicQuery.propset().has_property("save_blur_back"))
          {
-            System.savings().save(::base::resource_blur_background);
+            session().savings().save(::base::resource_blur_background);
          }
          if(guideline()->m_varTopicQuery.propset().has_property("save_transparent_back"))
          {
-            System.savings().save(::base::resource_translucent_background);
+            session().savings().save(::base::resource_translucent_background);
          }
       }
 
@@ -3318,21 +2565,6 @@ namespace base
 
       m_dwAlive = ::get_tick_count();
 
-      if(!is_installing() && !is_uninstalling() && !is_system() && m_pbasesession != NULL)
-      {
-
-         if(!user()->keyboard().initialize())
-            return false;
-
-      }
-
-      m_dwAlive = ::get_tick_count();
-
-      if(!m_spuser->initialize())
-         return false;
-
-      user()->set_keyboard_layout(NULL,::action::source::database());
-
       m_bBaseInitializeResult = true;
 
       dappy(string(typeid(*this).name()) + " : initialize ok : " + ::str::from(m_iReturnCode));
@@ -3379,12 +2611,6 @@ namespace base
          m_plemonarray = NULL;
          */
 
-
-         m_pmath.release();
-
-         m_pgeometry.release();
-
-         m_psavings.release();
 
          m_pcommandthread.release();
 
@@ -3547,7 +2773,7 @@ namespace base
       try
       {
 
-         if(BaseSession.appptra().get_count() <= 1)
+         if(session().appptra().get_count() <= 1)
          {
 
             if(System.thread::get_os_data() != NULL)
@@ -4028,7 +3254,7 @@ namespace base
 
       ::str::international::locale_schema localeschema(this);
 
-      fill_locale_schema(localeschema);
+      session().fill_locale_schema(localeschema);
 
       bool bIgnoreStdStd = string(pszRoot) == "app" && (string(pszRelative) == "main" || string(pszRelative) == "bergedge");
 
@@ -4055,7 +3281,7 @@ namespace base
       string strLocale;
       string strSchema;
       TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)",pszRoot,pszRelative,pszLocale,pszStyle);
-      string strRelative = System.dir().path(System.dir().path(pszRoot,"appmatter",pszRelative),App(this).get_locale_schema_dir(pszLocale,pszStyle)) + ".zip";
+      string strRelative = System.dir().path(System.dir().path(pszRoot,"appmatter",pszRelative),Sess(this).get_locale_schema_dir(pszLocale,pszStyle)) + ".zip";
       string strFile = System.dir().element(strRelative);
       string strUrl;
       if(_ca_is_basis())
@@ -4414,7 +3640,7 @@ namespace base
 
       {
 
-         ::file::binary_buffer_sp file = Application.file_get_file(Application.dir().userappdata(strPath),::file::mode_read);
+         ::file::binary_buffer_sp file = session().file_get_file(session().dir().userappdata(strPath),::file::mode_read);
 
          if(file.is_null())
          {
@@ -4455,7 +3681,7 @@ namespace base
 
       {
 
-         ::file::binary_buffer_sp file = Application.file_get_file(Application.dir().userappdata(strPath),::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
+         ::file::binary_buffer_sp file = session().file_get_file(session().dir().userappdata(strPath),::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
 
          if(file.is_null())
          {
@@ -4514,7 +3740,7 @@ namespace base
    sp(::user::interaction) application::get_active_guie()
    {
 
-      return BaseSession.get_active_guie();
+      return session().get_active_guie();
 
    }
 
@@ -4522,7 +3748,7 @@ namespace base
    sp(::user::interaction) application::get_focus_guie()
    {
 
-      return BaseSession.get_focus_guie();
+      return session().get_focus_guie();
 
    }
 

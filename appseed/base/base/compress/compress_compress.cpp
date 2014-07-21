@@ -185,7 +185,7 @@ namespace base
 
    bool compress::bz(::file::output_stream & ostreamBzFileCompressed, const char * lpcszUncompressed)
    {
-      ::file::binary_buffer_sp file = Application.file().get_file(lpcszUncompressed, ::file::mode_read | ::file::type_binary);
+      ::file::binary_buffer_sp file = session().file().get_file(lpcszUncompressed, ::file::mode_read | ::file::type_binary);
       if (file.is_null())
       {
          return false;
@@ -240,7 +240,7 @@ namespace base
    {
       string strDir = pszFile;
       ::str::ends_eat_ci(strDir, ".zip");
-      App(papp).file().copy(strDir, pszFile, false);
+      Sess(papp).file().copy(strDir, pszFile, false);
    }
 
    void compress::zip(const char * pszZip, const char * psz, sp(::base::application) papp)

@@ -50,7 +50,7 @@ namespace colorertake5
 
             if (logLocation.has_char())
             {
-               string str = Application.file().as_string(logLocation);
+               string str = session().file().as_string(logLocation);
                colorer_logger_set_target(str);
             }
             if (fileErrorHandler == NULL)
@@ -109,7 +109,7 @@ namespace colorertake5
 
    string ParserFactory::searchPath()
    {
-      return Application.dir().matter("colorer.zip:catalog.xml");
+      return session().dir().matter("colorer.zip:catalog.xml");
    };
 
    ParserFactory::ParserFactory(sp(::base::application) papp) :
@@ -118,7 +118,7 @@ namespace colorertake5
 
       fileErrorHandler = NULL;
 
-      keep < bool > keepZipAsDir(&papp->m_bZipIsDir, true, papp->m_bZipIsDir, true);
+      keep < bool > keepZipAsDir(&papp->m_pbasesession->m_bZipIsDir,true,papp->m_pbasesession->m_bZipIsDir,true);
 
       catalogPath = searchPath();
 
@@ -188,7 +188,7 @@ namespace colorertake5
          {
             path = relPath;
          }
-         if(Application.dir().is(path))
+         if(session().dir().is(path))
          {
             //if(path == "v:\\ca2os\\basis\\app\\appmatter\\main\\_std\\_std\\colorer\\hrc\\auto")
             {
@@ -199,9 +199,9 @@ namespace colorertake5
             ::file::binary_buffer_sp spfile(allocer());
             for(int32_t i = 0; i < straPath.get_count(); i++)
             {
-               if(!Application.dir().is(straPath[i]))
+               if(!session().dir().is(straPath[i]))
                {
-                  string str = Application.file().as_string(straPath[i]);
+                  string str = session().file().as_string(straPath[i]);
                   try
                   {
                      hrcParser->loadSource(straPath[i], str);
@@ -217,7 +217,7 @@ namespace colorertake5
          }
          else
          {
-            string strSource = Application.file().as_string(path);
+            string strSource = session().file().as_string(path);
             if(strSource.has_char())
             {
                try
@@ -285,7 +285,7 @@ namespace colorertake5
 
                strPath = System.dir().path(strDir, hrdLocV->element_at(idx));
 
-               ::file::byte_input_stream spfile(Application.file().get_file(strPath, ::file::mode_read | ::file::type_binary));
+               ::file::byte_input_stream spfile(session().file().get_file(strPath, ::file::mode_read | ::file::type_binary));
 
                if(spfile.is_reader_set())
                {
@@ -327,7 +327,7 @@ namespace colorertake5
          {
             try
             {
-               ::file::byte_input_stream stream(Application.file().get_file(hrdLocV->element_at(idx), ::file::mode_read |::file::type_binary));
+               ::file::byte_input_stream stream(session().file().get_file(hrdLocV->element_at(idx), ::file::mode_read |::file::type_binary));
                if(stream.is_reader_set())
                {
                   mapper->loadRegionMappings(stream);

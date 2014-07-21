@@ -45,7 +45,7 @@ namespace fs
 
       property_set set(get_app());
 
-      strSource = Application.http().get(strUrl, set);
+      strSource = session().http().get(strUrl, set);
 
       if(strSource.is_empty())
          return false;
@@ -103,7 +103,7 @@ namespace fs
 
       property_set set(get_app());
 
-      strSource = Application.http().get(strUrl, set);
+      strSource = session().http().get(strUrl, set);
 
       if(strSource.is_empty())
          return false;
@@ -251,7 +251,7 @@ namespace fs
 
       string strSource;
 
-      strSource = Application.http().get(strUrl);
+      strSource = session().http().get(strUrl);
 
       if(strSource.is_empty())
       return false;
@@ -320,7 +320,7 @@ namespace fs
 
       if(!m_bInitialized)
       {
-         //Application.http().get("http://file.veriwell.net/");
+         //session().http().get("http://file.veriwell.net/");
          m_bInitialized = true;
       }
 

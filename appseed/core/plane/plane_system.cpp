@@ -27,7 +27,7 @@ namespace plane
       m_window                                  = nullptr;
 #endif
 
-      m_psystem                                 = this;
+      m_pplanesystem                            = this;
       set_app(this);
 
 
@@ -40,15 +40,12 @@ namespace plane
       else
       {
 
-         oprop("parent_system") = papp->m_pplaneapp->m_psystem;
+         oprop("parent_system") = papp->m_pplanesystem;
 
       }
 
       m_ftlibrary = NULL;
 
-
-      ::application::m_file.set_app(this);
-      ::application::m_dir.set_app(this);
 
       m_bDoNotExitIfNoApplications              = true;
 
@@ -181,6 +178,17 @@ namespace plane
 
       m_spportforward.create(allocer());
 
+
+      m_phtml = create_html();
+
+      m_phtml->add_ref();
+
+      if(m_phtml == NULL)
+         return false;
+
+      m_phtml->construct(this);
+
+
       m_bProcessInitializeResult = true;
       return true;
    }
@@ -241,7 +249,7 @@ namespace plane
          return false;
 
 
-      //if(BaseSession.fontopus()->create_system_user("system") == NULL)
+      //if(session().fontopus()->create_system_user("system") == NULL)
         // return false;
 
 
@@ -279,7 +287,7 @@ namespace plane
       if(directrix()->m_varTopicQuery.has_property("install"))
          return true;
 
-      ::file::binary_buffer_sp file = m_file.get_file(System.dir().appdata("applibcache.bin"), ::file::type_binary | ::file::mode_read);
+      ::file::binary_buffer_sp file = session().m_file.get_file(System.dir().appdata("applibcache.bin"), ::file::type_binary | ::file::mode_read);
 
       if(file.is_null())
          return false;
@@ -329,7 +337,7 @@ namespace plane
       string strLibraryId;
       stringa straTitle;
 
-      Application.dir().ls_pattern(System.dir().ca2module(), "*.*", NULL,& straTitle);
+      session().dir().ls_pattern(System.dir().ca2module(), "*.*", NULL,& straTitle);
 
       for(int32_t i = 0; i < straTitle.get_count(); i++)
       {
@@ -358,7 +366,7 @@ namespace plane
       try
       {
 
-         file = m_file.get_file(System.dir().appdata("applibcache.bin"), ::file::defer_create_directory | ::file::type_binary | ::file::mode_create  | ::file::mode_write);
+         file = session().m_file.get_file(System.dir().appdata("applibcache.bin"), ::file::defer_create_directory | ::file::type_binary | ::file::mode_create  | ::file::mode_write);
 
       }
       catch(::exception::base &)
@@ -1000,7 +1008,7 @@ namespace plane
 
       }
 
-      str = Application.file().as_string(filename);
+      str = session().file().as_string(filename);
 
       return true;
 

@@ -395,7 +395,7 @@ namespace plugin
 
       while(puser == NULL)
       {
-         puser = BaseSession.fontopus()->login(setLogin);
+         puser = session().fontopus()->login(setLogin);
       }
 
       if(strSessId == puser->m_strFontopusServerSessId || puser->m_strFontopusServerSessId.get_length() < 16)
@@ -420,7 +420,7 @@ namespace plugin
    void plugin::ca2_logout()
    {
 
-      BaseSession.fontopus()->logout();
+      session().fontopus()->logout();
 
       property_set set(get_app());
 
@@ -489,7 +489,7 @@ namespace plugin
          {
             // remark alarm
             // STRESS : http_get_dup
-            // in core library normally System or Application.http() is used
+            // in core library normally System or session().http() is used
             string strPluginData;
 
 //            ::http::e_status estatus = ::http::status_fail;
@@ -505,7 +505,7 @@ namespace plugin
 
                //strPluginData = http_get_dup(strPluginUrl, false, &ms_get_dup_status_callback, (void *) &iStatusCode, false);
 
-               Application.http().get(strUrl, strPluginData, set);
+               session().http().get(strUrl, strPluginData, set);
 
                if(::http::status_succeeded(set["get_status"]))
                   break;
@@ -737,7 +737,7 @@ namespace plugin
                      }
                      if(!m_bApp)
                      {
-                        printf("BaseSession application is not initialized. Cannot start mplite.");
+                        printf("Session application is not initialized. Cannot start mplite.");
                         return;
                      }
                   }

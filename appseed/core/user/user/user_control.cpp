@@ -447,7 +447,7 @@ namespace user
       POINT pt;
       // netshare
       // System.get_cursor_position(&pt);
-      BaseSession.get_cursor_pos(&pt);
+      session().get_cursor_pos(&pt);
       ScreenToClient(&pt);
       rect rect;
       GetWindowRect(rect);
@@ -690,7 +690,7 @@ namespace user
       sp(::user::interaction) pwnd = ControlExGetWnd();
 
       class point ptCursor;
-      BaseSession.get_cursor_pos(&ptCursor);
+      session().get_cursor_pos(&ptCursor);
 
       e_element eelement;
 

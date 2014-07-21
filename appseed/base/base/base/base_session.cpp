@@ -71,7 +71,18 @@ namespace base
 
       m_puiMouseMoveCapture = NULL;
       m_puiLastLButtonDown = NULL;
+      m_bIfs                     = true;
 
+      m_dir.set_app(this);
+      m_file.set_app(this);
+      m_http.set_app(this);
+      m_psavings                 = canew(class ::base::savings(this));
+
+      m_bZipIsDir                = true;
+
+
+      m_pmapKeyPressed           = NULL;
+      m_puserstrcontext = NULL;
 
 
       m_pbasesystem->m_basesessionptra.add_unique(this);
@@ -546,14 +557,14 @@ namespace base
 
       ::rect rectWkspace;
 
-      if(!BaseSession.get_wkspace_rect(iWkspace,rectWkspace))
+      if(!get_wkspace_rect(iWkspace,rectWkspace))
          return false;
 
       rect -= rectWkspace.top_left();
 
       ::rect rectMonitor;
 
-      if(!BaseSession.get_monitor_rect(iMonitor,rectMonitor))
+      if(!get_monitor_rect(iMonitor,rectMonitor))
          return false;
 
       rect += rectMonitor.top_left();
@@ -592,14 +603,14 @@ namespace base
 
       ::rect rectMonitor;
 
-      if(!BaseSession.get_monitor_rect(iMonitor,rectMonitor))
+      if(!get_monitor_rect(iMonitor,rectMonitor))
          return false;
 
       rect -= rectMonitor.top_left();
 
       ::rect rectWkspace;
 
-      if(!BaseSession.get_wkspace_rect(iWkspace,rectWkspace))
+      if(!get_wkspace_rect(iWkspace,rectWkspace))
          return false;
 
       rect += rectWkspace.top_left();
@@ -953,26 +964,30 @@ namespace base
    }
 
 
-   bool session::initialize_instance()
+
+
+   bool session::process_initialize()
    {
 
-      if(m_pfontopus->m_puser == NULL &&
-         (Application.directrix()->m_varTopicQuery.has_property("install")
-         || Application.directrix()->m_varTopicQuery.has_property("uninstall")))
-      {
-
-         if(m_pfontopus->create_system_user("system") == NULL)
-            return false;
-
-      }
-
-      if(!m_pfontopus->initialize_instance())
+      if(!::base::application::process_initialize())
          return false;
 
+      m_spuser = create_user();
 
-      if(!::base::application::initialize_instance())
+      if(m_spuser == NULL)
          return false;
 
+      m_spuser->construct(this);
+
+      m_psockets = canew(::sockets::sockets(this));
+
+      m_psockets->construct(this);
+
+      if(!m_psockets->initialize1())
+         throw simple_exception(this,"could not initialize (1) sockets for application (application::construct)");
+
+      if(!m_psockets->initialize())
+         throw simple_exception(this,"could not initialize sockets for application (application::construct)");
 
       return true;
 
@@ -1004,8 +1019,11 @@ namespace base
 
       if(m_puserpresence.is_null())
       {
+
          TRACE("Failed to create new User Presence");
+
          return false;
+
       }
 
       try
@@ -1033,6 +1051,188 @@ namespace base
 
       }
 
+      m_puserstrcontext = canew(::user::str_context(this));
+
+      if(m_puserstrcontext == NULL)
+         return false;
+
+      if(!m_spuser->initialize1())
+         return false;
+
+      if(!m_spuser->initialize2())
+         return false;
+
+
+      string strLocaleSystem;
+
+      string strSchemaSystem;
+
+      string strPath = System.dir().appdata("langstyle_settings.xml");
+
+      if(file().exists(strPath))
+      {
+
+         string strSystem = file().as_string(strPath);
+
+         ::xml::document docSystem(get_app());
+
+         if(docSystem.load(strSystem))
+         {
+
+            if(docSystem.get_child("lang") != NULL)
+            {
+
+               strLocaleSystem = docSystem.get_child("lang")->get_value();
+
+            }
+
+            if(docSystem.get_child("style") != NULL)
+            {
+
+               strSchemaSystem = docSystem.get_child("style")->get_value();
+
+            }
+
+         }
+
+      }
+
+      string strLocale;
+
+      string strSchema;
+
+#ifdef METROWIN
+
+      stringa stra;
+
+      try
+      {
+
+         stra.explode("-",::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
+
+      }
+      catch(long)
+      {
+
+
+      }
+
+      strLocale = stra[0];
+
+      strSchema = stra[0];
+
+#elif defined(WINDOWS)
+
+      LANGID langid = ::GetUserDefaultLangID();
+
+#define SPR_DEUTSCH LANG_GERMAN
+
+      if(langid == LANG_SWEDISH)
+      {
+         strLocale = "se";
+         strSchema = "se";
+      }
+      else if(langid == MAKELANGID(LANG_PORTUGUESE,SUBLANG_PORTUGUESE_BRAZILIAN))
+      {
+         strLocale = "pt-br";
+         strSchema = "pt-br";
+      }
+      else if(PRIMARYLANGID(langid) == SPR_DEUTSCH)
+      {
+         strLocale = "de";
+         strSchema = "de";
+      }
+      else if(PRIMARYLANGID(langid) == LANG_ENGLISH)
+      {
+         strLocale = "en";
+         strSchema = "en";
+      }
+      else if(PRIMARYLANGID(langid) == LANG_JAPANESE)
+      {
+         strLocale = "jp";
+         strSchema = "jp";
+      }
+      else if(PRIMARYLANGID(langid) == LANG_POLISH)
+      {
+         strLocale = "pl";
+         strSchema = "pl";
+      }
+
+#endif
+
+      if(strLocale.is_empty())
+         strLocale = "se";
+
+      if(strSchema.is_empty())
+         strSchema = "se";
+
+      if(strLocaleSystem.has_char())
+         strLocale = strLocaleSystem;
+
+      if(strSchemaSystem.has_char())
+         strSchema = strSchemaSystem;
+
+      if(Sys(this).directrix()->m_varTopicQuery["locale"].get_count() > 0)
+         strLocale = Sys(this).directrix()->m_varTopicQuery["locale"].stra()[0];
+
+      if(Sys(this).directrix()->m_varTopicQuery["schema"].get_count() > 0)
+         strSchema = Sys(this).directrix()->m_varTopicQuery["schema"].stra()[0];
+
+      if(App(this).directrix()->m_varTopicQuery["locale"].get_count() > 0)
+         strLocale = App(this).directrix()->m_varTopicQuery["locale"].stra()[0];
+
+      if(App(this).directrix()->m_varTopicQuery["schema"].get_count() > 0)
+         strSchema = App(this).directrix()->m_varTopicQuery["schema"].stra()[0];
+
+
+      set_locale(strLocale,::action::source::database());
+      set_schema(strSchema,::action::source::database());
+
+
+      str_context()->localeschema().m_idaLocale.add(strLocale);
+      str_context()->localeschema().m_idaSchema.add(strSchema);
+
+
+      return true;
+
+   }
+
+
+   bool session::initialize2()
+   {
+
+      if(!::base::application::initialize2())
+         return false;
+
+      fill_locale_schema(*str_context()->m_plocaleschema);
+
+      return true;
+
+   }
+
+
+
+   bool session::initialize_instance()
+   {
+
+      if(m_pfontopus->m_puser == NULL &&
+         (Application.directrix()->m_varTopicQuery.has_property("install")
+         || Application.directrix()->m_varTopicQuery.has_property("uninstall")))
+      {
+
+         if(m_pfontopus->create_system_user("system") == NULL)
+            return false;
+
+      }
+
+      if(!m_pfontopus->initialize_instance())
+         return false;
+
+
+      if(!::base::application::initialize_instance())
+         return false;
+
+
       return true;
 
    }
@@ -1044,6 +1244,20 @@ namespace base
       if(!::base::application::initialize())
          return false;
 
+      if(!is_installing() && !is_uninstalling())
+      {
+
+         if(!user()->keyboard().initialize())
+            return false;
+
+      }
+
+      if(!m_spuser->initialize())
+         return false;
+
+      user()->set_keyboard_layout(NULL,::action::source::database());
+
+
       if(m_bIfs)
       {
 
@@ -1051,8 +1265,8 @@ namespace base
             m_spfsdata = new ::fs::set(this);
 
          ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
-         pset->m_spafsdata.add(BaseSession.m_pifs);
-         pset->m_spafsdata.add(BaseSession.m_prfs);
+         pset->m_spafsdata.add(m_pifs);
+         pset->m_spafsdata.add(m_prfs);
 
       }
 
@@ -1286,6 +1500,393 @@ namespace base
    {
 
       return m_appptra;
+
+   }
+
+
+   string session::matter_as_string(const char * pszMatter,const char * pszMatter2)
+   {
+
+      var varQuery;
+
+      varQuery["disable_ca2_sessid"] = true;
+
+      return file().as_string(dir_matter(pszMatter,pszMatter2),varQuery);
+
+   }
+
+   string session::dir_matter(const char * pszMatter,const char * pszMatter2)
+   {
+
+      return dir().matter(pszMatter,pszMatter2);
+
+   }
+
+   bool session::is_inside_time_dir(const char * pszPath)
+   {
+      throw not_implemented(this);
+      return false;
+   }
+
+   bool session::file_is_read_only(const char * pszPath)
+   {
+      throw not_implemented(this);
+      return false;
+   }
+
+   string session::file_as_string(var varFile)
+   {
+
+      if(::str::begins_ci(varFile.get_string(),"http://")
+         || ::str::begins_ci(varFile.get_string(),"https://"))
+      {
+
+         ::property_set set(get_app());
+
+         return http().get(varFile.get_string(),set);
+
+      }
+      else if(::str::begins_ci(varFile["url"].get_string(),"http://")
+         || ::str::begins_ci(varFile["url"].get_string(),"https://"))
+      {
+
+         ::property_set set(get_app());
+
+         return http().get(varFile["url"].get_string(),set);
+
+      }
+      else
+      {
+         return file_as_string_dup(varFile.get_string());
+      }
+
+   }
+
+   string session::dir_path(const char * psz1,const char * psz2,const char * psz3)
+   {
+      return ::dir::path(psz1,psz2,psz3);
+   }
+
+   string session::dir_name(const char * psz)
+   {
+      return ::dir::name(psz);
+   }
+
+   bool session::dir_mk(const char * psz)
+   {
+      return ::dir::mk(psz);
+   }
+
+   string session::file_title(const char * psz)
+   {
+      return ::file_title_dup(psz);
+   }
+   string session::file_name(const char * psz)
+   {
+      return ::file_name_dup(psz);
+   }
+
+
+   bool session::is_key_pressed(::user::e_key ekey)
+   {
+
+      if(m_pmapKeyPressed == NULL)
+      {
+
+         m_pmapKeyPressed = new ::map < ::user::e_key,::user::e_key,bool,bool >;
+
+      }
+         
+      bool bPressed = false;
+      if(ekey == ::user::key_shift)
+      {
+         m_pmapKeyPressed->Lookup(::user::key_shift,bPressed);
+         if(bPressed)
+            goto ret;
+         m_pmapKeyPressed->Lookup(::user::key_lshift,bPressed);
+         if(bPressed)
+            goto ret;
+         m_pmapKeyPressed->Lookup(::user::key_rshift,bPressed);
+         if(bPressed)
+            goto ret;
+      }
+      else if(ekey == ::user::key_control)
+      {
+         m_pmapKeyPressed->Lookup(::user::key_control,bPressed);
+         if(bPressed)
+            goto ret;
+         m_pmapKeyPressed->Lookup(::user::key_lcontrol,bPressed);
+         if(bPressed)
+            goto ret;
+         m_pmapKeyPressed->Lookup(::user::key_rcontrol,bPressed);
+         if(bPressed)
+            goto ret;
+      }
+      else if(ekey == ::user::key_alt)
+      {
+         m_pmapKeyPressed->Lookup(::user::key_alt,bPressed);
+         if(bPressed)
+            goto ret;
+         m_pmapKeyPressed->Lookup(::user::key_lalt,bPressed);
+         if(bPressed)
+            goto ret;
+         m_pmapKeyPressed->Lookup(::user::key_ralt,bPressed);
+         if(bPressed)
+            goto ret;
+      }
+      else
+      {
+
+         m_pmapKeyPressed->Lookup(ekey,bPressed);
+
+      }
+
+   ret:
+
+      return bPressed;
+
+   }
+
+   void session::set_key_pressed(::user::e_key ekey,bool bPressed)
+   {
+
+      if(m_pmapKeyPressed == NULL)
+      {
+
+         m_pmapKeyPressed = new ::map < ::user::e_key,::user::e_key,bool,bool >;
+
+      }
+
+      (*m_pmapKeyPressed)[ekey] = bPressed;
+
+   }
+
+   ::user::str_context * session::str_context()
+   {
+
+      return m_puserstrcontext;
+
+   }
+
+
+   void session::set_locale(const string & lpcsz,::action::context actioncontext)
+   {
+      string strLocale(lpcsz);
+      strLocale.trim();
+      m_strLocale = strLocale;
+      on_set_locale(m_strLocale,actioncontext);
+   }
+
+   void session::set_schema(const string & lpcsz,::action::context actioncontext)
+   {
+      string strSchema(lpcsz);
+      strSchema.trim();
+      m_strSchema = strSchema;
+      on_set_schema(m_strSchema,actioncontext);
+   }
+
+   void session::on_set_locale(const string & lpcsz,::action::context actioncontext)
+   {
+      UNREFERENCED_PARAMETER(actioncontext);
+      UNREFERENCED_PARAMETER(lpcsz);
+      //System.appa_load_string_table();
+   }
+
+   void session::on_set_schema(const string & lpcsz,::action::context actioncontext)
+   {
+      UNREFERENCED_PARAMETER(actioncontext);
+      UNREFERENCED_PARAMETER(lpcsz);
+      //System.appa_load_string_table();
+   }
+
+
+   string session::get_locale()
+   {
+      return m_strLocale;
+   }
+
+   string session::get_schema()
+   {
+      return m_strSchema;
+   }
+
+
+   string session::get_locale_schema_dir()
+   {
+
+      return System.dir().simple_path(get_locale(),get_schema());
+
+   }
+
+
+   string session::get_locale_schema_dir(const string & strLocale)
+   {
+
+      if(strLocale.is_empty())
+      {
+
+         return System.dir().simple_path(get_locale(),get_schema());
+
+      }
+      else
+      {
+
+         return System.dir().simple_path(strLocale,get_schema());
+
+      }
+
+   }
+
+
+   string session::get_locale_schema_dir(const string & strLocale,const string & strSchema)
+   {
+
+      if(strLocale.is_empty())
+      {
+
+         if(strSchema.is_empty())
+         {
+
+            return System.dir().simple_path(get_locale(),get_schema());
+
+         }
+         else
+         {
+
+            return System.dir().simple_path(get_locale(),strSchema);
+
+         }
+
+      }
+      else
+      {
+
+         if(strSchema.is_empty())
+         {
+
+            return System.dir().simple_path(strLocale,get_schema());
+
+         }
+         else
+         {
+
+            return System.dir().simple_path(strLocale,strSchema);
+
+         }
+
+      }
+
+   }
+
+
+   void session::fill_locale_schema(::str::international::locale_schema & localeschema,const char * pszLocale,const char * pszSchema)
+   {
+
+
+      localeschema.m_idaLocale.remove_all();
+      localeschema.m_idaSchema.remove_all();
+
+
+      string strLocale(pszLocale);
+      string strSchema(pszSchema);
+
+
+      localeschema.m_idLocale = pszLocale;
+      localeschema.m_idSchema = pszSchema;
+
+
+      localeschema.add_locale_variant(strLocale,strSchema);
+      localeschema.add_locale_variant(get_locale(),strSchema);
+      localeschema.add_locale_variant(__id(std),strSchema);
+      localeschema.add_locale_variant(__id(en),strSchema);
+
+
+      localeschema.finalize();
+
+
+   }
+
+
+   void session::fill_locale_schema(::str::international::locale_schema & localeschema)
+   {
+
+
+      localeschema.m_idaLocale.remove_all();
+      localeschema.m_idaSchema.remove_all();
+
+
+      //localeschema.m_bAddAlternateStyle = true;
+
+
+      stringa straLocale;
+      stringa straSchema;
+
+      straLocale.add(get_locale());
+      straSchema.add(get_schema());
+
+
+      stringa stra;
+
+      stra = Application.directrix()->m_varTopicQuery["locale"].stra();
+
+      stra.remove_ci("_std");
+
+      straLocale.add_unique(Application.directrix()->m_varTopicQuery["locale"].stra());
+
+      stra = Application.directrix()->m_varTopicQuery["schema"].stra();
+
+      stra.remove_ci("_std");
+
+      straSchema.add_unique(Application.directrix()->m_varTopicQuery["schema"].stra());
+
+
+      localeschema.m_idLocale = straLocale[0];
+      localeschema.m_idSchema = straSchema[0];
+
+      for(index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+      {
+
+         for(index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
+         {
+
+            localeschema.add_locale_variant(straLocale[iLocale],straSchema[iSchema]);
+
+         }
+
+      }
+
+      for(index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
+      {
+
+         localeschema.add_locale_variant(get_locale(),straSchema[iSchema]);
+
+      }
+
+      for(index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
+      {
+
+         localeschema.add_locale_variant(__id(std),straSchema[iSchema]);
+
+      }
+
+
+      for(index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
+      {
+
+         localeschema.add_locale_variant(__id(en),straSchema[iSchema]);
+
+      }
+
+      localeschema.finalize();
+
+
+   }
+
+
+   ::file::binary_buffer_sp session::file_get_file(var varFile,uint32_t uiFlags)
+   {
+
+      return file().get_file(varFile,uiFlags);
 
    }
 

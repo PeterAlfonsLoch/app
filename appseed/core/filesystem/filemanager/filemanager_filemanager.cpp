@@ -201,9 +201,9 @@ namespace filemanager
       if(data_get(dataid, "InitialBrowsePath", ::base::system::idEmpty, strPath))
       {
 
-         App(get_app()).dir().mk(strPath);
+         Sess(get_app()).dir().mk(strPath);
 
-         if(App(get_app()).dir().is(strPath))
+         if(Sess(get_app()).dir().is(strPath))
          {
 
             return strPath;
@@ -221,7 +221,7 @@ namespace filemanager
       else
       {
 
-         strPath = Application.dir().userdata();
+         strPath = session().dir().userdata();
 
       }
 

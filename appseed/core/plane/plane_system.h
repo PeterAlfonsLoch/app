@@ -107,6 +107,7 @@ namespace plane
       virtual index get_new_bergedge(application_bias * pbiasCreation = NULL);
 
       spa(::plane::session) &    planesessionptra();
+      inline sp(::html::html)                   html()         { return m_phtml; }
 
 
       virtual bool base_support();

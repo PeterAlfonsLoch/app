@@ -448,14 +448,14 @@ struct ssl_method_st
  *	version 		INTEGER,	-- structure version number
  *	SSLversion 		INTEGER,	-- SSL version number
  *	Cipher 			OCTET STRING,	-- the 3 byte cipher ID
- *	Session_ID 		OCTET STRING,	-- the BaseSession ID
+ *	Session_ID 		OCTET STRING,	-- the Session ID
  *	Master_key 		OCTET STRING,	-- the master key
  *	KRB5_principal		OCTET STRING	-- optional Kerberos principal
  *	Key_Arg [ 0 ] IMPLICIT	OCTET STRING,	-- the optional Key argument
  *	Time [ 1 ] EXPLICIT	INTEGER,	-- optional Start Time
  *	Timeout [ 2 ] EXPLICIT	INTEGER,	-- optional Timeout ins seconds
  *	Peer [ 3 ] EXPLICIT	X509,		-- optional Peer Certificate
- *	Session_ID_context [ 4 ] EXPLICIT OCTET STRING,   -- the BaseSession ID context
+ *	Session_ID_context [ 4 ] EXPLICIT OCTET STRING,   -- the Session ID context
  *	Verify_result [ 5 ] EXPLICIT INTEGER,   -- X509_V_... code for `Peer'
  *	HostName [ 6 ] EXPLICIT OCTET STRING,   -- optional HostName from servername TLS extension
  *	PSK_identity_hint [ 7 ] EXPLICIT OCTET STRING, -- optional PSK identity hint
@@ -539,9 +539,9 @@ struct ssl_session_st
 	unsigned char *tlsext_ellipticcurvelist; /* peer's list */
 #endif /* OPENSSL_NO_EC */
 	/* RFC4507 info */
-	unsigned char *tlsext_tick;	/* BaseSession ticket */
-	size_t tlsext_ticklen;		/* BaseSession ticket length */
-	long tlsext_tick_lifetime_hint;	/* BaseSession lifetime hint in seconds */
+	unsigned char *tlsext_tick;	/* Session ticket */
+	size_t tlsext_ticklen;		/* Session ticket length */
+	long tlsext_tick_lifetime_hint;	/* Session lifetime hint in seconds */
 #endif
 #ifndef OPENSSL_NO_SRP
 	char *srp_username;
@@ -1315,10 +1315,10 @@ struct ssl_st
 	void *tlsext_opaque_prf_input;
 	size_t tlsext_opaque_prf_input_len;
 
-	/* TLS BaseSession Ticket extension override */
+	/* TLS Session Ticket extension override */
 	TLS_SESSION_TICKET_EXT *tlsext_session_ticket;
 
-	/* TLS BaseSession Ticket extension callback */
+	/* TLS Session Ticket extension callback */
 	tls_session_ticket_ext_cb_fn tls_session_ticket_ext_cb;
 	void *tls_session_ticket_ext_cb_arg;
 

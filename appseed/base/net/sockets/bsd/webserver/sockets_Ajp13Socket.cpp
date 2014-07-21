@@ -126,7 +126,7 @@ namespace sockets
       bool      is_ssl        = get_boolean(buf, ptr);
 
       string method_str = ::str::from( method );
-      Application.sockets().m_pajpbasesocketinit->Method.Lookup(method, method_str);
+      session().sockets().m_pajpbasesocketinit->Method.Lookup(method, method_str);
       m_request.attr("http_method") = method_str;
       m_request.attr("http_protocol") = protocol;
       m_request.attr("request_uri") = req_uri;
@@ -146,7 +146,7 @@ namespace sockets
          case 0xa0:
             {
                uint16_t x = (uint16_t)get_integer(buf, ptr);
-               if (!Application.sockets().m_pajpbasesocketinit->header.Lookup(x, key))
+               if (!session().sockets().m_pajpbasesocketinit->header.Lookup(x, key))
                {
                   TRACE("Unknown header key value: %x\n", x);
                   SetCloseAndDelete();
@@ -179,7 +179,7 @@ namespace sockets
             break;
          default:
             {
-               if(!Application.sockets().m_pajpbasesocketinit->Attribute.Lookup(code, key))
+               if(!session().sockets().m_pajpbasesocketinit->Attribute.Lookup(code, key))
                {
                   TRACE("Unknown attribute key: 0x%02x\n", buf[ptr]);
                   SetCloseAndDelete();
@@ -271,7 +271,7 @@ namespace sockets
             string strNameLower(m_response.headers().m_propertya[i].name());
             strNameLower;
             int32_t iValue;
-            if(Application.sockets().m_pajpbasesocketinit->ResponseHeader.Lookup(strNameLower, iValue))
+            if(session().sockets().m_pajpbasesocketinit->ResponseHeader.Lookup(strNameLower, iValue))
             {
                put_integer(msg, ptr, (int16_t) iValue);
             }

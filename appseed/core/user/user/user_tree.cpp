@@ -98,7 +98,7 @@ namespace user
 
       pdc->FillSolidRect(rectClient, get_background_color());
 
-      //      ::base::savings & savings = System.savings();
+      //      ::base::savings & savings = session().savings();
       /*rect rectClientOffset = rectClient;
 
       rect rectClipBox;
@@ -114,18 +114,18 @@ namespace user
 
       class imaging & imaging = System.visual().imaging();
 
-      if(System.savings().is_trying_to_save(::base::resource_processing))
+      if(session().savings().is_trying_to_save(::base::resource_processing))
       {
          pdc->FillSolidRect(
             rectClipBox,
-            BaseSession.get_default_color(COLOR_WINDOW));
+            session().get_default_color(COLOR_WINDOW));
       }
       else
       {
          imaging.color_blend(
             pdc,
             rectClipBox,
-            BaseSession.get_default_color(COLOR_WINDOW),
+            session().get_default_color(COLOR_WINDOW),
             196);
       }*/
    }
@@ -148,7 +148,7 @@ namespace user
 
       point ptCursor;
 
-      BaseSession.get_cursor_pos(&ptCursor);
+      session().get_cursor_pos(&ptCursor);
       DWORD dwHoverIn = 384;
       DWORD dwHoverOut = 1284;
       ScreenToClient(&ptCursor);
@@ -196,7 +196,7 @@ namespace user
                m_uchHoverAlpha = (BYTE) (m_uchHoverAlphaInit - dwCurve);
          }
       }
-      //      ::base::savings & savings = System.savings();
+      //      ::base::savings & savings = session().savings();
 
       ///      ::draw2d::graphics * pDCBuffer = pdc;
 
@@ -322,10 +322,10 @@ namespace user
       }
 
 
-      //      ::base::savings & savings = System.savings();
+      //      ::base::savings & savings = session().savings();
       if(bSelected) // selected
       {
-         if(System.savings().is_trying_to_save(::base::resource_processing))
+         if(session().savings().is_trying_to_save(::base::resource_processing))
          {
             data.m_pdc->FillSolidRect(
                data.m_rect,
@@ -1063,7 +1063,7 @@ namespace user
    void tree::UpdateHover()
    {
       point pt;
-      BaseSession.get_cursor_pos(&pt);
+      session().get_cursor_pos(&pt);
       ScreenToClient(&pt);
       ::user::e_tree_element eelement;
       sp(::data::tree_item) pitem = _001HitTest(pt, eelement);

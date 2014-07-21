@@ -166,12 +166,12 @@ namespace bergedge
       pframe->m_pdocument = get_document();
 
 
-      string strImageDir = Application.dir().userdata("image");
-      Application.dir().rls(strImageDir, &m_straImagePath);
+      string strImageDir = session().dir().userdata("image");
+      session().dir().rls(strImageDir, &m_straImagePath);
 
       for(int32_t i = 0; i < m_straImagePath.get_size();)
       {
-         if(Application.dir().is(m_straImagePath[i]))
+         if(session().dir().is(m_straImagePath[i]))
          {
             m_straImagePath.remove_at(i);
          }

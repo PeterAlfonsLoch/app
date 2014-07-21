@@ -123,13 +123,13 @@ namespace android
             if(bRecursive)
             {
 
-               Application.dir().rls_pattern(m_straSearch.element_at(i), strFilter, &m_straFile);
+               session().dir().rls_pattern(m_straSearch.element_at(i), strFilter, &m_straFile);
 
             }
             else
             {
 
-               Application.dir().ls_pattern(m_straSearch.element_at(i), strFilter, &m_straFile);
+               session().dir().ls_pattern(m_straSearch.element_at(i), strFilter, &m_straFile);
 
             }
 

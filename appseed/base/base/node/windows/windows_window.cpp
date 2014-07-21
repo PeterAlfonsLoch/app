@@ -109,10 +109,10 @@ namespace windows
       if(m_pbaseapp != NULL &&  m_pbaseapp->m_pbasesession != NULL &&  m_pbaseapp->m_pbasesession->m_spuser.is_set())
       {
 
-         if(BaseSession.user()->m_pwindowmap != NULL)
+         if(session().user()->m_pwindowmap != NULL)
          {
 
-            BaseSession.user()->m_pwindowmap->m_map.remove_key((int_ptr)get_handle());
+            session().user()->m_pwindowmap->m_map.remove_key((int_ptr)get_handle());
 
          }
 
@@ -403,7 +403,7 @@ namespace windows
    string interaction_impl::calc_icon_window_class(uint32_t dwDefaultStyle,const char * pszMatter)
    {
 
-      string strPath = Application.dir().matter(pszMatter,"icon.ico");
+      string strPath = session().dir().matter(pszMatter,"icon.ico");
 
       HICON hIcon = (HICON) ::LoadImage(NULL,strPath,IMAGE_ICON,256,256,LR_LOADFROMFILE);
 
@@ -1150,13 +1150,13 @@ namespace windows
 
          SCAST_PTR(::message::key,pkey,pobj);
 
-         Application.user()->keyboard().translate_os_key_message(pkey);
+         session().user()->keyboard().translate_os_key_message(pkey);
 
          if(pbase->m_uiMessage == WM_KEYDOWN)
          {
             try
             {
-               Application.set_key_pressed(pkey->m_ekey,true);
+               session().set_key_pressed(pkey->m_ekey,true);
             }
             catch(...)
             {
@@ -1166,7 +1166,7 @@ namespace windows
          {
             try
             {
-               Application.set_key_pressed(pkey->m_ekey,false);
+               session().set_key_pressed(pkey->m_ekey,false);
             }
             catch(...)
             {
@@ -1213,7 +1213,7 @@ namespace windows
          ::GetWindowPlacement(get_handle(),&wp);
          bool bZoomed = ::IsZoomed(get_handle()) != FALSE;
          bool bIconic = ::IsIconic(get_handle()) != FALSE;
-         BaseSession.m_puiLastLButtonDown = m_pui;
+         session().m_puiLastLButtonDown = m_pui;
       }
       /*      else if(pbase->m_uiMessage == CA2M_BERGEDGE)
       {
@@ -1257,7 +1257,7 @@ namespace windows
             || pbase->m_uiMessage == WM_MOUSEMOVE)
          {
 
-            if(&BaseSession != NULL && BaseSession.fontopus() != NULL && BaseSession.fontopus()->m_puser != NULL)
+            if(&session() != NULL && session().fontopus() != NULL && session().fontopus()->m_puser != NULL)
             {
 
                if(ApplicationUser.m_ppresence != NULL)
@@ -1282,7 +1282,7 @@ namespace windows
 
          message::mouse * pmouse = (::message::mouse *) pbase;
 
-         BaseSession.m_ptCursor = pmouse->m_pt;
+         session().m_ptCursor = pmouse->m_pt;
 
          if(m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
          {
@@ -1405,7 +1405,7 @@ namespace windows
 
          message::key * pkey = (::message::key *) pbase;
 
-         sp(::user::interaction) puiFocus = Application.user()->get_keyboard_focus();
+         sp(::user::interaction) puiFocus = session().user()->get_keyboard_focus();
          if(puiFocus != NULL
             && puiFocus->IsWindow())
          {
@@ -2673,7 +2673,7 @@ namespace windows
       VERIFY(::GetObject(hbrGray,sizeof(LOGBRUSH),(LPVOID)&logbrush));
       ::SetBkColor(hDC,logbrush.lbColor);
       if(clrText == (COLORREF)-1)
-         clrText = BaseSession.get_default_color(COLOR_WINDOWTEXT);  // normal text
+         clrText = session().get_default_color(COLOR_WINDOWTEXT);  // normal text
       ::SetTextColor(hDC,clrText);
       return TRUE;
    }
@@ -4769,7 +4769,7 @@ namespace windows
    void interaction_impl::_001OnSetCursor(signal_details * pobj)
    {
       SCAST_PTR(::message::base,pbase,pobj);
-      if(BaseSession.get_cursor() != NULL && BaseSession.get_cursor()->m_ecursor != ::visual::cursor_system)
+      if(session().get_cursor() != NULL && session().get_cursor()->m_ecursor != ::visual::cursor_system)
       {
          //::SetCursor(NULL);
       }
@@ -5429,7 +5429,7 @@ namespace windows
 
    void interaction_impl::_001BaseWndInterfaceMap()
    {
-      System.user()->window_map().set((int_ptr)get_handle(),this);
+      session().user()->window_map().set((int_ptr)get_handle(),this);
    }
 
 

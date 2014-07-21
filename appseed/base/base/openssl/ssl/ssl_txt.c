@@ -110,7 +110,7 @@ int SSL_SESSION_print(BIO *bp, const SSL_SESSION *x)
 	const char *s;
 
 	if (x == NULL) goto err;
-	if (BIO_puts(bp,"SSL-BaseSession:\n") <= 0) goto err;
+	if (BIO_puts(bp,"SSL-Session:\n") <= 0) goto err;
 	if (x->ssl_version == SSL2_VERSION)
 		s="SSLv2";
 	else if (x->ssl_version == SSL3_VERSION)
@@ -147,12 +147,12 @@ int SSL_SESSION_print(BIO *bp, const SSL_SESSION *x)
 		if (BIO_printf(bp,"    Cipher    : %s\n",((x->cipher == NULL)?"unknown":x->cipher->name)) <= 0)
 			goto err;
 		}
-	if (BIO_puts(bp,"    BaseSession-ID: ") <= 0) goto err;
+	if (BIO_puts(bp,"    Session-ID: ") <= 0) goto err;
 	for (i=0; i<x->session_id_length; i++)
 		{
 		if (BIO_printf(bp,"%02X",x->session_id[i]) <= 0) goto err;
 		}
-	if (BIO_puts(bp,"\n    BaseSession-ID-ctx: ") <= 0) goto err;
+	if (BIO_puts(bp,"\n    Session-ID-ctx: ") <= 0) goto err;
 	for (i=0; i<x->sid_ctx_length; i++)
 		{
 		if (BIO_printf(bp,"%02X",x->sid_ctx[i]) <= 0)

@@ -69,7 +69,7 @@ namespace fontopus
             //string strSection;
             //strSection.Format("license_auth");
             //string strDir;
-            //strDir = Application.dir().usersystemappdata(puser->m_strPathPrefix, strSection);
+            //strDir = session().dir().usersystemappdata(puser->m_strPathPrefix, strSection);
             //::DeleteFile(System.dir().path(strDir, "00001"));
             //::DeleteFile(System.dir().path(strDir, "00002"));
             iRetry--;
@@ -195,14 +195,14 @@ namespace fontopus
    {
       if(puser->m_strPathPrefix.is_empty())
       {
-         puser->m_strPathPrefix = Application.dir().default_os_user_path_prefix();
+         puser->m_strPathPrefix = session().dir().default_os_user_path_prefix();
       }
-      puser->m_strPath = Application.dir().default_userfolder(puser->m_strPathPrefix, puser->m_strLogin);
-      App(m_pbaseapp).dir().mk(puser->m_strPath);
-      puser->m_strDataPath = Application.dir().default_userdata(puser->m_strPathPrefix, puser->m_strLogin);
-      App(m_pbaseapp).dir().mk(puser->m_strDataPath);
-      puser->m_strAppDataPath = Application.dir().default_userappdata(puser->m_strPathPrefix, puser->m_strLogin);
-      App(m_pbaseapp).dir().mk(puser->m_strAppDataPath);
+      puser->m_strPath = session().dir().default_userfolder(puser->m_strPathPrefix, puser->m_strLogin);
+      Sess(m_pbaseapp).dir().mk(puser->m_strPath);
+      puser->m_strDataPath = session().dir().default_userdata(puser->m_strPathPrefix, puser->m_strLogin);
+      Sess(m_pbaseapp).dir().mk(puser->m_strDataPath);
+      puser->m_strAppDataPath = session().dir().default_userappdata(puser->m_strPathPrefix, puser->m_strLogin);
+      Sess(m_pbaseapp).dir().mk(puser->m_strAppDataPath);
       puser->create_ifs();
       return puser;
    }
@@ -340,7 +340,7 @@ namespace fontopus
 
          sp(::create_context) spcreatecontext(allocer());
 
-         sp(::base::application) papp = BaseSession.start_application("application", "app-core/deepfish", spcreatecontext);
+         sp(::base::application) papp = session().start_application("application", "app-core/deepfish", spcreatecontext);
 
          if(papp == NULL)
          {
@@ -462,7 +462,7 @@ namespace fontopus
 
       url_domain domainFontopus;
 
-      string strFontopusServer = BaseSession.fontopus()->get_server(strGetFontopus,8);
+      string strFontopusServer = session().fontopus()->get_server(strGetFontopus,8);
 
       domainFontopus.create(strFontopusServer);
 
@@ -505,7 +505,7 @@ namespace fontopus
 
 #endif
 
-      ::fontopus::user * puser = BaseSession.fontopus()->create_current_user(m_strRequestUrl);
+      ::fontopus::user * puser = session().fontopus()->create_current_user(m_strRequestUrl);
 
       if(puser != NULL)
       {
@@ -515,13 +515,13 @@ namespace fontopus
 
             delete puser;
 
-            BaseSession.fontopus()->m_puser = NULL;
+            session().fontopus()->m_puser = NULL;
 
          }
          else
          {
 
-            BaseSession.fontopus()->m_puser = puser;
+            session().fontopus()->m_puser = puser;
 
          }
 
@@ -529,13 +529,13 @@ namespace fontopus
       else
       {
 
-         BaseSession.fontopus()->m_puser = NULL;
+         session().fontopus()->m_puser = NULL;
 
       }
 
       m_evReady.SetEvent();
 
-      BaseSession.fontopus()->m_pthreadCreatingUser = NULL;
+      session().fontopus()->m_pthreadCreatingUser = NULL;
 
       return 0;
 

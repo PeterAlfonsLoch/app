@@ -51,19 +51,19 @@ namespace user
       for(int32_t i = 0; i < straPath.get_count(); i++)
       {
          ::user::keyboard_layout_cfg_id layoutid;
-         if(System.user()->keyboard().initialize(&layoutid, straPath[i]))
+         if(session().user()->keyboard().initialize(&layoutid, straPath[i]))
          {
             m_layoutida.add(layoutid);
          }
       }
 
       m_layoutida.quick_sort(true);
-      if(&System.user()->keyboard().layout() != NULL)
+      if(&session().user()->keyboard().layout() != NULL)
       {
          int32_t iFind = -1;
          for(int32_t i = 0; i < m_layoutida.get_count(); i++)
          {
-            if(m_layoutida[i].m_strPath.CompareNoCase(System.user()->keyboard().layout().m_strPath) == 0)
+            if(m_layoutida[i].m_strPath.CompareNoCase(session().user()->keyboard().layout().m_strPath) == 0)
             {
                iFind = i;
                break;
@@ -102,7 +102,7 @@ namespace user
 
    void keyboard_layout_cfg::on_show()
    {
-/*      if(!m_pdoc->on_open_document(Application.dir().matter("keyboard layout configuration/form.html")))
+/*      if(!m_pdoc->on_open_document(session().dir().matter("keyboard layout configuration/form.html")))
       {
          return;
       }*/
@@ -162,7 +162,7 @@ namespace user
                string strPort;
                ptext->_001GetText(strPort);
                node.add_attr("port", strPort);
-               Application.file().put_contents(System.dir().appdata("proxy.xml"), node.get_xml());
+               session().file().put_contents(System.dir().appdata("proxy.xml"), node.get_xml());
             }
          }
       }

@@ -67,7 +67,7 @@ namespace userex
       TRACE("::userex::application::initialize");
 
       xml::document docUser(get_app());
-      string strUser = Application.file().as_string(Application.dir().userappdata("langstyle_settings.xml"));
+      string strUser = session().file().as_string(session().dir().userappdata("langstyle_settings.xml"));
       string strLangUser;
       string strStyleUser;
       if(docUser.load(strUser))
@@ -83,9 +83,9 @@ namespace userex
       }
 
       if(strLangUser.has_char())
-         Application.set_locale(strLangUser,::action::source::database());
+         session().set_locale(strLangUser,::action::source::database());
       if(strStyleUser.has_char())
-         Application.set_schema(strStyleUser,::action::source::database());
+         session().set_schema(strStyleUser,::action::source::database());
 
       string strLicense = Application.get_license_id();
 
@@ -118,7 +118,7 @@ namespace userex
 
          iRetry--;
 
-         if(!BaseSession.is_licensed(strLicense))
+         if(!session().is_licensed(strLicense))
          {
 
             Application.license().m_mapInfo.remove_key(strLicense);
@@ -455,7 +455,7 @@ namespace userex
       {
          if(pchange->m_key.m_idIndex == "savings")
          {
-            pchange->data_get(Application.savings().m_eresourceflagsShouldSave);
+            pchange->data_get(session().savings().m_eresourceflagsShouldSave);
          }
       }
    }

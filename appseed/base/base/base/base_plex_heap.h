@@ -1,6 +1,6 @@
 #pragma once
 
-
+#undef new 
 class CLASS_DECL_BASE plex_heap     // warning var length structure
 {
 public:

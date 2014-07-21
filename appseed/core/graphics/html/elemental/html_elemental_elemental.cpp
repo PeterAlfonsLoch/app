@@ -89,7 +89,7 @@ namespace html
 
       }
 
-      m_etag = m_pbaseapp->m_phtml->tag_name_to_id(m_idTagName);
+      m_etag = m_pbaseapp->m_pplanesystem->m_phtml->tag_name_to_id(m_idTagName);
 
       if (m_etag == tag_initial)
       {
@@ -799,7 +799,7 @@ namespace html
          if (m_idTagName == __id(html_link) && get_tag()->get_attr_value("rel").CompareNoCase("stylesheet") == 0)
          {
             sp(style_sheet) pstylesheet(new style_sheet(m_pbaseapp));
-            pstylesheet->parse(pdata, App(pdata->get_app()).file().as_string(get_tag()->get_attr_value("href")));
+            pstylesheet->parse(pdata, Sess(pdata->get_app()).file().as_string(get_tag()->get_attr_value("href")));
             pdata->m_stylesheeta.add(pstylesheet);
          }
          for (int32_t i = 0; i < ptag->baseptra().get_size(); i++)
@@ -828,7 +828,7 @@ namespace html
             && m_pparent->get_tag()->get_attr_value("rel").CompareNoCase("stylesheet") == 0)
          {
             sp(style_sheet) pstylesheet(new style_sheet(m_pbaseapp));
-            pstylesheet->parse(pdata, App(pdata->get_app()).file().as_string(m_pparent->get_tag()->get_attr_value("href")));
+            pstylesheet->parse(pdata, Sess(pdata->get_app()).file().as_string(m_pparent->get_tag()->get_attr_value("href")));
             pdata->m_stylesheeta.add(pstylesheet);
          }
       }

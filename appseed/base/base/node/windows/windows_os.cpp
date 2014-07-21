@@ -332,7 +332,7 @@ namespace windows
             keyPlugin.SetValue("Path", System.dir().ca2module("npca2.dll"));
             keyPlugin.SetValue("ProductName", "core plugin for NPAPI");
             keyPlugin.SetValue("Vendor", "core Desenvolvimento de Software Ltda.");
-            keyPlugin.SetValue("Version", Application.file().as_string(System.dir().element("appdata/x86/ca2_build.txt")));
+            keyPlugin.SetValue("Version", session().file().as_string(System.dir().element("appdata/x86/ca2_build.txt")));
 
             registry::Key keyApplicationCa2;
 
@@ -525,7 +525,7 @@ namespace windows
 
       SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_CREATE_SERVICE);
 
-      string strCalling = papp->m_strModulePath + " : app=" + papp->m_strAppId + " build_number=\"" + System.command()->m_varTopicQuery["build_number"] + "\" service usehostlogin";
+      string strCalling = Sys(papp).m_strModulePath + " : app=" + papp->m_strAppId + " build_number=\"" + System.command()->m_varTopicQuery["build_number"] + "\" service usehostlogin";
 
       if(hdlSCM == 0)
       {

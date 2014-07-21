@@ -119,10 +119,10 @@ namespace plane
 
       if(PlaneSession.is_remote_session())
       {
-         /*BaseSession.savings().save(::base::resource_display_bandwidth);
-         BaseSession.savings().save(::base::resource_blur_background);
-         BaseSession.savings().save(::base::resource_blurred_text_embossing);
-         BaseSession.savings().save(::base::resource_translucent_background);*/
+         /*session().savings().save(::base::resource_display_bandwidth);
+         session().savings().save(::base::resource_blur_background);
+         session().savings().save(::base::resource_blurred_text_embossing);
+         session().savings().save(::base::resource_translucent_background);*/
       }
 
       /*      if(System.directrix()->m_varTopicQuery.has_property("install")
@@ -619,7 +619,7 @@ namespace plane
       if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
          || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
       {
-         BaseSession.appptra().remove(papp);
+         session().appptra().remove(papp);
          return NULL;
       }
 
@@ -848,7 +848,7 @@ alt1:
             {
                if(::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".core"))
                {
-                  string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
+                  string strCommand = session().file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
                   if(::str::begins_eat(strCommand, "ca2prompt\r")
                      || ::str::begins_eat(strCommand, "ca2prompt\n"))
                   {
@@ -891,7 +891,7 @@ alt1:
       {
          if(::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".core"))
          {
-            string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
+            string strCommand = session().file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
             if(::str::begins_eat(strCommand, "ca2prompt\r")
                || ::str::begins_eat(strCommand, "ca2prompt\n"))
             {
@@ -1050,7 +1050,7 @@ alt1:
    //
    ///*      if(pui == NULL && m_bShowPlatform && m_pbergedge->get_document() != NULL)
    //      {
-   //         pui = BaseSession.get_document()->get_bergedge_view();
+   //         pui = session().get_document()->get_bergedge_view();
    //      }
    //
    //      return pui;
@@ -1523,7 +1523,7 @@ alt1:
 
       /*      if(pui == NULL && m_bShowPlatform && m_pbergedge->get_document() != NULL)
       {
-      pui = BaseSession.get_document()->get_bergedge_view();
+      pui = session().get_document()->get_bergedge_view();
       }
 
       return pui;
@@ -1826,7 +1826,7 @@ alt1:
       if(papp.is_null() || papp->m_pplaneapp == NULL)
          return;
 
-      BaseSession.m_appptra.add_unique(papp.m_p);
+      session().m_appptra.add_unique(papp.m_p);
 
       if(System.is_installing() || System.is_uninstalling())
          System.m_bDoNotExitIfNoApplications = false;
@@ -1846,7 +1846,7 @@ alt1:
 
       retry_single_lock rsl(&m_mutex,millis(84),millis(84));
 
-      BaseSession.m_appptra.remove(papp);
+      session().m_appptra.remove(papp);
 
    }
 
@@ -1944,7 +1944,7 @@ alt1:
 
       pgenapp->m_pbasesystem = m_pbasesystem;
 
-      pgenapp->m_pplaneapp->m_psystem = &System;
+      pgenapp->m_pplanesystem = &System;
 
 #ifdef WINDOWS
 

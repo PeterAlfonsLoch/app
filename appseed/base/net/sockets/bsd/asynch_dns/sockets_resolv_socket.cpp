@@ -114,21 +114,33 @@ namespace sockets
 
    void resolv_socket::OnLine(const string & line)
    {
+      
       ::str::parse pa(line, ":");
+
       if (m_bServer)
       {
+         
          m_query = pa.getword();
+         
          m_data = pa.getrest();
-   TRACE(" *** resolv_socket server; query=%s, data=%s\n", m_query.c_str(), m_data.c_str());
+         
+         TRACE(" *** resolv_socket server; query=%s, data=%s\n", m_query.c_str(), m_data.c_str());
+
          // %! check cache
+
          {
-            single_lock lock(&System.sockets().m_mutexResolvCache, true);
+
+            single_lock lock(&session().sockets().m_mutexResolvCache, true);
+
             string result;
-            if(System.sockets().m_resolvcache[m_query].Lookup(m_data, result))
+
+            if(session().sockets().m_resolvcache[m_query].Lookup(m_data, result))
             {
-               if (time(NULL) - System.sockets().m_resolvtimeout[m_query][m_data] < 3600) // ttl
+
+               if (time(NULL) - session().sockets().m_resolvtimeout[m_query][m_data] < 3600) // ttl
                {
-   TRACE(" *** Returning cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), result.c_str());
+
+                  TRACE(" *** Returning cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), result.c_str());
                   write("Cached\n");
                   if (result.is_empty()) /* failed */
                   {
@@ -182,10 +194,11 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&System.sockets().m_mutexResolvCache, true);
-   TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), value.c_str());
-            System.sockets().m_resolvcache[m_query][m_data] = value;
-            System.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
+
+            single_lock lock(&session().sockets().m_mutexResolvCache, true);
+            TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), value.c_str());
+            session().sockets().m_resolvcache[m_query][m_data] = value;
+            session().sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
          m_parent = NULL;
       }
@@ -199,10 +212,10 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&System.sockets().m_mutexResolvCache, true);
+            single_lock lock(&session().sockets().m_mutexResolvCache, true);
    TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), value.c_str());
-            System.sockets().m_resolvcache[m_query][m_data] = value;
-            System.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
+            session().sockets().m_resolvcache[m_query][m_data] = value;
+            session().sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
          m_parent = NULL;
       }
@@ -218,10 +231,10 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&System.sockets().m_mutexResolvCache, true);
-   TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), value.c_str());
-            System.sockets().m_resolvcache[m_query][m_data] = value;
-            System.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
+            single_lock lock(&session().sockets().m_mutexResolvCache, true);
+            TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), value.c_str());
+            session().sockets().m_resolvcache[m_query][m_data] = value;
+            session().sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
          m_parent = NULL; // always use first ip in case there are several
       }
@@ -236,10 +249,10 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&System.sockets().m_mutexResolvCache, true);
-   TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), value.c_str());
-            System.sockets().m_resolvcache[m_query][m_data] = value;
-            System.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
+            single_lock lock(&session().sockets().m_mutexResolvCache, true);
+            TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), value.c_str());
+            session().sockets().m_resolvcache[m_query][m_data] = value;
+            session().sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
          m_parent = NULL;
       }
@@ -377,11 +390,11 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&System.sockets().m_mutexResolvCache, true);
+            single_lock lock(&session().sockets().m_mutexResolvCache, true);
             string value;
    TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), value.c_str());
-            System.sockets().m_resolvcache[m_query][m_data] = value;
-            System.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
+   session().sockets().m_resolvcache[m_query][m_data] = value;
+   session().sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
          m_parent = NULL;
       }

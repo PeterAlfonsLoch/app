@@ -109,7 +109,7 @@ void FileManagerSaveAsView::_001OnAfterChangeText(::action::context actioncontex
 
    _001GetText(str);
 
-   if(Application.dir().is(str))
+   if(session().dir().is(str))
    {
       GetFileManager()->FileManagerBrowse(str, ::action::source::sync(actioncontext));
    }
@@ -119,7 +119,7 @@ void FileManagerSaveAsView::_001OnAfterChangeText(::action::context actioncontex
       while(true)
       {
          strName = System.dir().name(strName);
-         if(Application.dir().is(strName))
+         if(session().dir().is(strName))
          {
             if(!System.file().path().is_equal(GetFileManager()->get_item().m_strPath, strName))
             {

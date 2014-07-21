@@ -135,7 +135,7 @@ namespace dynamic_source
       stringa straPath;
       stringa straTitle;
 
-      Application.dir().ls_dir(m_strNetnodePath, &straPath, &straTitle);
+      session().dir().ls_dir(m_strNetnodePath, &straPath, &straTitle);
 
       for(int32_t i = 0; i < straPath.get_count(); i++)
       {
@@ -468,7 +468,7 @@ namespace dynamic_source
          return ppair->m_element2;
       else
       {
-         bool bFileExists = Application.file().exists(strPath);
+         bool bFileExists = session().file().exists(strPath);
          m_mapIncludeMatchesFileExists.set_at(strPath, bFileExists);
          return bFileExists;
       }
@@ -491,7 +491,7 @@ namespace dynamic_source
          return ppair->m_element2;
       else
       {
-         bool bIsDir = Application.dir().is(strPath);
+         bool bIsDir = session().dir().is(strPath);
          m_mapIncludeMatchesIsDir.set_at(strPath, bIsDir);
          return bIsDir;
       }
@@ -512,7 +512,7 @@ namespace dynamic_source
 
          // roughly detect this way: by finding the <?
 
-         bool bHasScript = Application.file().as_string(strPath).find("<?") >= 0;
+         bool bHasScript = session().file().as_string(strPath).find("<?") >= 0;
 
          m_mapIncludeHasScript.set_at(strPath, bHasScript);
 
@@ -940,7 +940,7 @@ namespace dynamic_source
 
       try
       {
-         f = Application.file().get_file(strFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_write);
+         f = session().file().get_file(strFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_write);
       }
       catch(...)
       {

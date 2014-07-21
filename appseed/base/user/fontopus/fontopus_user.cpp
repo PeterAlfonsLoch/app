@@ -42,10 +42,10 @@ namespace fontopus
    bool user::initialize()
    {
 
-      if(&BaseSession == NULL)
+      if(&session() == NULL)
          return true;
 
-      BaseSession.userpresence().defer_initialize_user_presence();
+      session().userpresence().defer_initialize_user_presence();
 
       return true;
 
@@ -69,7 +69,7 @@ namespace fontopus
          return true;
       }
 
-      m_pifs = BaseSession.m_pifs;
+      m_pifs = session().m_pifs;
 
       return true;
 
@@ -93,7 +93,7 @@ restart:
       property_set set(get_app());
       set["interactive_user"] = true;
       string str;
-      Application.http().get(strPath, str, post, headers, set);
+      session().http().get(strPath, str, post, headers, set);
       str.trim();
       if(str.has_char())
       {

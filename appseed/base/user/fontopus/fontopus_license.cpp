@@ -36,11 +36,11 @@ namespace fontopus
 
       //if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL)
       //{
-        // bLicensed = BaseSession.m_pfontopus->check_license(pszId, bInteractive);
+        // bLicensed = session().m_pfontopus->check_license(pszId, bInteractive);
       //}
       //else
       {
-         bLicensed = BaseSession.m_pfontopus->check_license(pszId, bInteractive);
+         bLicensed = session().m_pfontopus->check_license(pszId, bInteractive);
       }
 
       info.m_bLicensed = bLicensed;
