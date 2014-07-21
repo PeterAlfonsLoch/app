@@ -34,7 +34,7 @@ mutex::mutex(sp(::base::application) papp, bool bInitiallyOwn, const char * pstr
    if(m_object == NULL)
    {
 
-      throw simple_exception(papp, "failed to create exception");
+      throw resource_exception(papp);
 
    }
 

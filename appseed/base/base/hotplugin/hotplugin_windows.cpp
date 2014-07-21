@@ -112,7 +112,20 @@ namespace hotplugin
 
       }
 
+      string str = "ca2 plugin for Browsers (Internet Explorer compatible, Mozilla Firefox compatible)";
 
+      ::SetBkMode(hdc,TRANSPARENT);
+
+      ::SetTextColor(hdc,RGB(84,84,77));
+
+      HFONT hStockFont = (HFONT)::GetStockObject(SYSTEM_FONT);
+
+      HFONT hfontOld = (HFONT) ::SelectObject(hdc,hStockFont);
+
+      ::TextOut(hdc,rectBar.left - 1,rectBar.bottom + 2,str,str.get_length());
+
+
+      ::SelectObject(hdc,hfontOld);
 
       ::SelectObject(hdc,hpenOld);
 
