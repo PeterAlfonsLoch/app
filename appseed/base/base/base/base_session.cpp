@@ -15,27 +15,7 @@ namespace base
 
       m_pbasesession    = this;
 
-      if(papp->is_system())
-      {
-
-         m_pbasesystem = papp.cast < ::base::system >();
-
-         m_pfontopus = create_fontopus();
-
-         if(m_pfontopus == NULL)
-            throw simple_exception(this,"could not create fontopus for ::base::session (::base::session::construct)");
-
-         m_pfontopus->construct(this);
-
-      }
-      else
-      {
-
-         m_pbasesystem  = papp->m_pbasesystem;
-
-         m_pfontopus    = m_pbaseapp->m_pbasesession->m_pfontopus;
-
-      }
+      m_pplanesession   = NULL;
 
       m_bMatterFromHttpCache = m_pbasesystem->m_bMatterFromHttpCache;
 
@@ -54,15 +34,6 @@ namespace base
 
 #endif
 
-      m_pifs                     = new ifs(this,"");
-      m_prfs                     = new ::fs::remote_native(this,"");
-
-      ::fs::set * pset = new class ::fs::set(this);
-      ::fs::link * plink = new ::fs::link(this);
-      plink->fill_os_user();
-      pset->m_spafsdata.add(plink);
-      pset->m_spafsdata.add(new ::fs::native(this));
-      m_spfsdata = pset;
 
       m_bDrawCursor              = false;
       m_ecursorDefault  = ::visual::cursor_arrow;
@@ -86,6 +57,38 @@ namespace base
 
 
       m_pbasesystem->m_basesessionptra.add_unique(this);
+
+   }
+
+
+   void session::construct(sp(::base::application) papp, int iPhase)
+   {
+
+      if(iPhase == 0)
+      {
+         
+         if(papp->is_system())
+         {
+
+            m_pfontopus = create_fontopus();
+
+            if(m_pfontopus == NULL)
+               throw simple_exception(this,"could not create fontopus for ::base::session (::base::session::construct)");
+
+            m_pfontopus->construct(this);
+
+         }
+         m_pifs                     = new ifs(this,"");
+         m_prfs                     = new ::fs::remote_native(this,"");
+
+         ::fs::set * pset = new class ::fs::set(this);
+         ::fs::link * plink = new ::fs::link(this);
+         plink->fill_os_user();
+         pset->m_spafsdata.add(plink);
+         pset->m_spafsdata.add(new ::fs::native(this));
+         m_spfsdata = pset;
+
+      }
 
    }
 

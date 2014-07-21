@@ -373,7 +373,7 @@ namespace base
       }
 
       ::xml::document doc(get_app());
-      string strFilePath = System.dir().matter_from_locator(Sess(this).str_context(),strLocator,strMatter);
+      string strFilePath = System.dir().matter_from_locator(sess(this).str_context(),strLocator,strMatter);
       if(!System.file().exists(strFilePath,this))
       {
          try
@@ -1162,13 +1162,6 @@ namespace base
 
 
 
-
-   void application::Ex1OnFactoryExchange()
-   {
-
-      __node_factory_exchange(this);
-
-   }
 
 
 
@@ -2242,21 +2235,8 @@ namespace base
       m_bBaseProcessInitialize = true;
       m_bBaseProcessInitializeResult = false;
 
-      if(is_system())
-      {
-         System.factory().cloneable_large < stringa >();
-         System.factory().cloneable_large < ::primitive::memory >();
-         System.factory().cloneable_large < int_array >();
-      }
 
-      if(is_system())
-      {
-
-         Ex1OnFactoryExchange();
-
-      }
-
-      thread::s_bAllocReady = true;
+      
 
       if(m_pthreadimpl == NULL)
       {
@@ -3281,7 +3261,7 @@ namespace base
       string strLocale;
       string strSchema;
       TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)",pszRoot,pszRelative,pszLocale,pszStyle);
-      string strRelative = System.dir().path(System.dir().path(pszRoot,"appmatter",pszRelative),Sess(this).get_locale_schema_dir(pszLocale,pszStyle)) + ".zip";
+      string strRelative = System.dir().path(System.dir().path(pszRoot,"appmatter",pszRelative),sess(this).get_locale_schema_dir(pszLocale,pszStyle)) + ".zip";
       string strFile = System.dir().element(strRelative);
       string strUrl;
       if(_ca_is_basis())

@@ -273,6 +273,10 @@ namespace plane
       }
 #endif
 
+      if(!m_phtml->initialize())
+         return false;
+
+
 
       return true;
 
@@ -1239,12 +1243,12 @@ namespace plane
 
       if(command()->m_varTopicQuery["locale"].array_get_count() > 0 && command()->m_varTopicQuery["locale"].stra().get_count_except_ci("_std") > 0)
       {
-         set_locale(command()->m_varTopicQuery["locale"].stra()[0], ::action::source::user());
+         ::root::session().set_locale(command()->m_varTopicQuery["locale"].stra()[0], ::action::source::user());
       }
 
       if(command()->m_varTopicQuery["schema"].array_get_count() > 0)
       {
-         set_schema(command()->m_varTopicQuery["schema"].stra()[0], ::action::source::user());
+         ::root::session().set_schema(command()->m_varTopicQuery["schema"].stra()[0], ::action::source::user());
       }
 
    }

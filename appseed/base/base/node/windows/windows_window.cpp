@@ -5711,7 +5711,7 @@ CLASS_DECL_BASE const char * __register_window_class(sp(::base::application) pap
 
    // see if the class already exists
    WNDCLASS wndcls;
-   if(::GetClassInfo(papp->m_hinstance,lpszName,&wndcls))
+   if(::GetClassInfo(papp->m_pbasesystem->m_hinstance,lpszName,&wndcls))
    {
       // already registered, assert everything is good
       ASSERT(wndcls.style == nClassStyle);
@@ -5727,7 +5727,7 @@ CLASS_DECL_BASE const char * __register_window_class(sp(::base::application) pap
    wndcls.style = nClassStyle;
    wndcls.lpfnWndProc = DefWindowProc;
    wndcls.cbClsExtra = wndcls.cbWndExtra = 0;
-   wndcls.hInstance = papp->m_hinstance;
+   wndcls.hInstance = papp->m_pbasesystem->m_hinstance;
    wndcls.hIcon = hIcon;
    //wndcls.hCursor = hCursor;
    wndcls.hCursor = NULL;

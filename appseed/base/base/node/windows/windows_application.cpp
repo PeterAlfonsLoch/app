@@ -18,7 +18,7 @@ namespace windows
 
       m_atomApp = m_atomSystemTopic    = NULL;
 
-      shell::theWindowsShell.Initialize();
+      
 
    }
 
@@ -233,8 +233,8 @@ namespace windows
    void application::SetCurrentHandles()
    {
 
-      string strExeName;
-      strExeName = System.get_module_title();
+      //string strExeName;
+      //strExeName = System.get_module_title();
       dappy(string(typeid(*this).name()) + " : got module title windows application : " + ::str::from(m_iReturnCode));
 
       __init_thread();
@@ -321,7 +321,7 @@ namespace windows
    bool application::win_init(main_init_data * pdata)
    {
 
-      if(!is_system())
+      if(!m_pimpl->is_system())
          return false;
 
          ASSERT(pdata->m_hPrevInstance == NULL);
@@ -364,7 +364,7 @@ namespace windows
 
    bool application::update_module_paths()
    {
-      ASSERT(is_system());
+      ASSERT(m_pimpl->is_system());
       {
 
          wchar_t lpszModuleFilePath[MAX_PATH + 1];

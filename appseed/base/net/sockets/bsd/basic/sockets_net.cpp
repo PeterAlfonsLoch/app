@@ -57,8 +57,7 @@ namespace sockets
 
    }
 
-
-   bool net::finalize()
+   bool net::gudo_set()
    {
 
       if(!m_bInitialized)
@@ -67,6 +66,17 @@ namespace sockets
       m_mapCache.gudo_set();
 
       m_mapReverseCache.gudo_set();
+
+      return true;
+
+   }
+
+
+   bool net::finalize()
+   {
+
+      if(!m_bInitialized)
+         return false;
 
       return true;
 

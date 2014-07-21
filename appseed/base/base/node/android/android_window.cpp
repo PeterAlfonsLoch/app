@@ -1611,7 +1611,7 @@ d.unlock();
          }
          if(m_pguie != NULL && m_pguie != this && m_pguie->m_papp->m_psession != NULL && m_pguie->m_papp->m_psession != m_papp->m_psession)
          {
-            Sess(m_pguie->m_papp->m_psession).m_ptCursor = pmouse->m_pt;
+            sess(m_pguie->m_papp->m_psession).m_ptCursor = pmouse->m_pt;
          }
 
          ::plane::session * psession = NULL;

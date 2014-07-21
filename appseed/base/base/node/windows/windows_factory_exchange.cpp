@@ -28,6 +28,8 @@ namespace windows
 //      System.factory().creatable          < printer            >  (System.type_info < ::user::printer             > ()  , 1   );
       System.factory().creatable_large          < print_job            >  (System.type_info < ::user::print_job             > ());
 
+      shell::theWindowsShell.Initialize();
+
    }
 
 

@@ -660,8 +660,6 @@ uint32_t __thread_entry(void * pparam)
 
             ::multithreading::__node_on_term_thread(pthreadimpl->m_hthread,pthread,-1);
 
-            ASSERT(FALSE);  // unreachable
-
             return -1; // anyway...
 
          }
@@ -823,7 +821,7 @@ void thread_impl::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
 
    single_lock sl(::multithreading::s_pmutex);
 
-   for(index i = 0; i < ::multithreading::s_phaThread->get_size();)
+   for(index i = ::multithreading::s_phaThread->get_size(); i >= 0; i--)
    {
 
       bOk = true;
@@ -831,33 +829,8 @@ void thread_impl::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
       try
       {
 
-      repeat:
-
          if(::PostThreadMessage(::GetThreadId(::multithreading::s_phaThread->element_at(i)),message,wparam,lparam))
          {
-
-            if(message == WM_QUIT)
-            {
-
-               if(::get_thread() == NULL
-                  || ::get_thread()->m_pthreadimpl == NULL
-                  || ::multithreading::s_phaThread->element_at(i) != ::get_thread()->m_pthreadimpl->m_hthread)
-               {
-DWORD dwRet = 0;
-                  sl.unlock();
-#ifdef WINDOWSEX
-                  dwRet = ::WaitForSingleObject(::multithreading::s_phaThread->element_at(i),(5000) * 2);
-#endif
-                  sl.lock();
-
-                  if((dwRet != WAIT_OBJECT_0) && (dwRet != WAIT_FAILED) && i < ::multithreading::s_phaThread->get_size())
-                     goto repeat;
-
-
-
-               }
-
-            }
 
          }
 
@@ -871,29 +844,6 @@ DWORD dwRet = 0;
 
       sl.lock();
 
-      try
-      {
-         if(bOk)
-         {
-
-            if(ca == ::multithreading::s_phaThread->get_size())
-               i++;
-            else
-               ca = ::multithreading::s_phaThread->get_size();
-
-         }
-         else
-         {
-
-            ca = ::multithreading::s_phaThread->get_size();
-
-         }
-
-      }
-      catch(...)
-      {
-         break;
-      }
 
    }
 

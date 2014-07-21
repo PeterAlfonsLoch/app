@@ -211,9 +211,9 @@ namespace bergedge
 
          }
 
-         string strIcon = Sess(PlaneSession.m_pappCurrent).dir().matter("mainframe/icon48.png");
+         string strIcon = sess(PlaneSession.m_pappCurrent).dir().matter("mainframe/icon48.png");
          pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
-         if(Sess(PlaneSession.m_pappCurrent).file().exists(strIcon))
+         if(sess(PlaneSession.m_pappCurrent).file().exists(strIcon))
          {
             ppane->m_dib.create(allocer());
             ppane->m_dib.load_from_file(strIcon);

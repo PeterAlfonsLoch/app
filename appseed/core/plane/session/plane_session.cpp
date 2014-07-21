@@ -619,7 +619,7 @@ namespace plane
       if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
          || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
       {
-         session().appptra().remove(papp);
+         ::root::session().appptra().remove(papp);
          return NULL;
       }
 
@@ -848,7 +848,7 @@ alt1:
             {
                if(::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".core"))
                {
-                  string strCommand = session().file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
+                  string strCommand = ::root::session().file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
                   if(::str::begins_eat(strCommand, "ca2prompt\r")
                      || ::str::begins_eat(strCommand, "ca2prompt\n"))
                   {
@@ -891,7 +891,7 @@ alt1:
       {
          if(::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".core"))
          {
-            string strCommand = session().file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
+            string strCommand = ::root::session().file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
             if(::str::begins_eat(strCommand, "ca2prompt\r")
                || ::str::begins_eat(strCommand, "ca2prompt\n"))
             {
@@ -1186,15 +1186,15 @@ alt1:
 
       if(emouse == ::user::mouse_left_button)
       {
-         return System.is_key_pressed(::user::key_lbutton);
+         return ::root::session().is_key_pressed(::user::key_lbutton);
       }
       else if(emouse == ::user::mouse_right_button)
       {
-         return System.is_key_pressed(::user::key_rbutton);
+         return ::root::session().is_key_pressed(::user::key_rbutton);
       }
       else if(emouse == ::user::mouse_middle_button)
       {
-         return System.is_key_pressed(::user::key_mbutton);
+         return ::root::session().is_key_pressed(::user::key_mbutton);
       }
       else
       {
@@ -1826,7 +1826,7 @@ alt1:
       if(papp.is_null() || papp->m_pplaneapp == NULL)
          return;
 
-      session().m_appptra.add_unique(papp.m_p);
+      ::root::session().m_appptra.add_unique(papp.m_p);
 
       if(System.is_installing() || System.is_uninstalling())
          System.m_bDoNotExitIfNoApplications = false;
@@ -1846,7 +1846,7 @@ alt1:
 
       retry_single_lock rsl(&m_mutex,millis(84),millis(84));
 
-      session().m_appptra.remove(papp);
+      ::root::session().m_appptra.remove(papp);
 
    }
 

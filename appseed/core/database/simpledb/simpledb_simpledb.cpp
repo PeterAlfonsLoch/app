@@ -233,7 +233,7 @@ namespace simpledb
       if(actioncontext.is_user_source())
       {
 
-         if(Sess(m_pbaseapp).safe_get_user() != NULL)
+         if(sess(m_pbaseapp).safe_get_user() != NULL)
          {
 
             data_set("keyboard_layout", pszPath);

@@ -26,7 +26,7 @@ assert_exception::assert_exception(const assert_exception & e) :
    ::exception::base(e),
    simple_exception(e)
 {
-      printf(":assert(copy)");
+      printf(":assert(copy)"); 
 }
 
 assert_exception::assert_exception(sp(::base::application) papp, const char * pszFile, long lLine) :

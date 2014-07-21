@@ -407,7 +407,7 @@ namespace file
 
             property_set set(get_app());
 
-            string str = Sess(papp).http().get(lpcsz, set);
+            string str = sess(papp).http().get(lpcsz, set);
 
             if(pstraPath != NULL)
             {
@@ -497,7 +497,7 @@ namespace file
 
             property_set set(get_app());
 
-            bIs = Sess(papp).http().exists(lpcszPath, set);
+            bIs = sess(papp).http().exists(lpcszPath, set);
 
             return true;
 
@@ -584,7 +584,7 @@ namespace file
 
             property_set set(get_app());
 
-            return Sess(papp).http().exists(strPath, set);
+            return sess(papp).http().exists(strPath, set);
 
          }
 
@@ -954,14 +954,14 @@ namespace file
 
          string strDir = matter(papp, str, true);
 
-         if(Sess(papp).m_bMatterFromHttpCache)
+         if(sess(papp).m_bMatterFromHttpCache)
          {
 
             property_set set(get_app());
 
             set["raw_http"] = true;
 
-            string strLs = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/list_dir?dir=" + System.url().url_encode(strDir),set);
+            string strLs = sess(papp).http().get("http://" + get_api_cc() + "/api/matter/list_dir?dir=" + System.url().url_encode(strDir),set);
 
             stringa straLs;
 
@@ -998,7 +998,7 @@ namespace file
       string system::matter(sp(::base::application) papp, const stringa & stra, bool bDir, const char * pszRoot, const char * pszApp)
       {
 
-         ::user::str_context * pcontext = Sess(papp).str_context();
+         ::user::str_context * pcontext = sess(papp).str_context();
 
          ::index j;
 
@@ -1030,7 +1030,7 @@ namespace file
             if (ca <= 0)
                return "";
 
-            ::user::str_context * pcontext = Sess(papp).str_context();
+            ::user::str_context * pcontext = sess(papp).str_context();
 
             string strFile;
 
@@ -1112,11 +1112,11 @@ namespace file
 
                   if (bDir)
                   {
-                     strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                     strPath = sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
                   }
                   else
                   {
-                     strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")),set);
+                     strPath = sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")),set);
                   }
 
                   if (strPath.has_char())
@@ -1306,11 +1306,11 @@ namespace file
 
                if(bDir)
                {
-                  strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                  strPath = sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
                }
                else
                {
-                  strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")),set);
+                  strPath = sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")),set);
                }
 
                if(strPath.has_char())
@@ -1485,7 +1485,7 @@ else
       string system::matter(sp(::base::application) papp, const string & str, const string & str2, bool bDir, const char * pszRoot, const char * pszApp)
       {
 
-         ::user::str_context * pcontext = Sess(papp).str_context();
+         ::user::str_context * pcontext = sess(papp).str_context();
 
          string strLocale;
 
@@ -1577,11 +1577,11 @@ else
 
                if (bDir)
                {
-                  strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                  strPath = sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
                }
                else
                {
-                  strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                  strPath = sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
                }
 
                strPath.trim();
@@ -1740,11 +1740,11 @@ else
 
             if(bDir)
             {
-               strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+               strPath = sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
             }
             else
             {
-               strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+               strPath = sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
             }
 
             strPath.trim();
@@ -2442,7 +2442,7 @@ ret:
 
             strCandidate = path(stra[i], pszTopic);
 
-            if(Sess(papp).file().exists(strCandidate))
+            if(sess(papp).file().exists(strCandidate))
             {
                return strCandidate;
             }

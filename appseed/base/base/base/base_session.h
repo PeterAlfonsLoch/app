@@ -76,6 +76,9 @@ namespace base
 
       virtual bool is_session();
 
+
+      void construct(sp(::base::application) papp, int iPhase);
+
       virtual bool process_initialize();
 
       virtual bool initialize1();
@@ -227,13 +230,32 @@ namespace base
 
 
 
+inline ::base::session & sess(::base::application * papp);
 
 
 
-::base::session & Sess(::base::application * papp)
-{
-   
-   return *papp->m_pbasesession;
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

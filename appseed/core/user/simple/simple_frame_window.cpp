@@ -1535,8 +1535,8 @@ void simple_frame_window::guserbaseOnInitialUpdate(signal_details * pobj)
          application* pApp = &System;
          if (pApp != NULL && pApp->m_puiMain == pframe)
          {
-            nCmdShow = pApp->m_nCmdShow; // use the parameter from WinMain
-            pApp->m_nCmdShow = -1; // set to default after first time
+            nCmdShow = System.m_nCmdShow; // use the parameter from WinMain
+            System.m_nCmdShow = -1; // set to default after first time
          }
          bool bFullScreen;
          data_get("FullScreen", ::base::system::idEmpty, bFullScreen);

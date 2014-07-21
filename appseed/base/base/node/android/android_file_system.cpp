@@ -376,7 +376,7 @@ namespace android
             {
                try
                {
-                  storage.FullLoad(Sess(papp).file().get_file(strFilePath, ::file::type_binary | ::file::mode_read));
+                  storage.FullLoad(sess(papp).file().get_file(strFilePath, ::file::type_binary | ::file::mode_read));
                }
                catch(...)
                {
@@ -452,7 +452,7 @@ namespace android
       try
       {
 
-         spfile = Sess(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::buffer::shareDenyNone);
+         spfile = sess(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::buffer::shareDenyNone);
 
          mem.FullLoad(spfile);
 
@@ -494,7 +494,7 @@ namespace android
 
       ::file::buffer_sp spfile;
 
-      spfile = Sess(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::buffer::shareDenyNone | ::file::buffer::defer_create_directory);
+      spfile = sess(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::buffer::shareDenyNone | ::file::buffer::defer_create_directory);
 
       if(spfile.is_null())
          return false;
@@ -520,7 +520,7 @@ namespace android
    bool file_system::put_contents(var varFile, ::file::buffer & file, sp(::base::application) papp)
    {
       ::file::buffer_sp spfile;
-      spfile = Sess(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::buffer::shareDenyNone | ::file::buffer::defer_create_directory);
+      spfile = sess(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::buffer::shareDenyNone | ::file::buffer::defer_create_directory);
       if(spfile.is_null())
          return false;
       primitive::memory mem;
@@ -541,7 +541,7 @@ namespace android
    bool file_system::put_contents_utf8(var varFile, const char * lpcszContents, sp(::base::application) papp)
    {
       ::file::buffer_sp spfile;
-      spfile = Sess(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::buffer::shareDenyNone | ::file::buffer::defer_create_directory);
+      spfile = sess(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::buffer::shareDenyNone | ::file::buffer::defer_create_directory);
       if(spfile.is_null())
          return false;
       ::ca2::byte_output_stream(spfile) << "\xef\xbb\xbf";
@@ -717,7 +717,7 @@ namespace android
          }
 
          ::file::buffer_sp ofile;
-         ofile = Sess(papp).file().get_file(strNew, ::file::mode_write | ::file::type_binary | ::file::mode_create | ::file::buffer::defer_create_directory | ::file::buffer::shareDenyWrite);
+         ofile = sess(papp).file().get_file(strNew, ::file::mode_write | ::file::type_binary | ::file::mode_create | ::file::buffer::defer_create_directory | ::file::buffer::shareDenyWrite);
          if(ofile.is_null())
          {
             string strError;
@@ -726,7 +726,7 @@ namespace android
          }
 
          ::file::buffer_sp ifile;
-         ifile = Sess(papp).file().get_file(psz, ::file::mode_read | ::file::type_binary | ::file::buffer::shareDenyNone);
+         ifile = sess(papp).file().get_file(psz, ::file::mode_read | ::file::type_binary | ::file::buffer::shareDenyNone);
          if(ifile.is_null())
          {
             string strError;
@@ -1183,7 +1183,7 @@ namespace android
 
       System.dir().mk(System.dir().name(name), papp);
 
-      ::file::buffer_sp fileOut = Sess(papp).file().get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
+      ::file::buffer_sp fileOut = sess(papp).file().get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
       if(fileOut.is_null())
          throw ::ca2::file_exception(papp, -1, ::ca2::file_exception::none, name);

@@ -486,11 +486,11 @@ retry_license:
       }
       else if(Application.m_pbasesession != NULL)
       {
-         return Sess(get_app()).user()->get_keyboard_focus();
+         return sess(get_app()).user()->get_keyboard_focus();
       }
       else if(Application.m_pbasesystem != NULL)
       {
-         return Sess(get_app()).user()->get_keyboard_focus();
+         return sess(get_app()).user()->get_keyboard_focus();
       }
       else
       {

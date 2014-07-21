@@ -240,7 +240,7 @@ namespace base
    {
       string strDir = pszFile;
       ::str::ends_eat_ci(strDir, ".zip");
-      Sess(papp).file().copy(strDir, pszFile, false);
+      sess(papp).file().copy(strDir, pszFile, false);
    }
 
    void compress::zip(const char * pszZip, const char * psz, sp(::base::application) papp)

@@ -385,7 +385,7 @@ namespace file
                sl.lock();
             }
 
-            if (!Sys(m_pbaseapp).http().m_straDownloading.contains(strPath) && Sess(m_pbaseapp).m_http.exists(strPath, &varQuery, set))
+            if (!Sys(m_pbaseapp).http().m_straDownloading.contains(strPath) && sess(m_pbaseapp).m_http.exists(strPath, &varQuery, set))
             {
 
                System.http().m_straDownloading.add(strPath);
@@ -495,7 +495,7 @@ namespace file
 
             spfile = Application.alloc(System.type_info < ::file::binary_buffer > ());
 
-            if(!spfile->open(Sess(m_pbaseapp).dir().matter(strPath), nOpenFlags))
+            if(!spfile->open(sess(m_pbaseapp).dir().matter(strPath), nOpenFlags))
             {
 
                spfile.release();
@@ -506,13 +506,13 @@ namespace file
          else if(&session() != NULL && session().m_mapApplication.Lookup(System.url().get_server("matter://" + strPath), papp) && App(m_pbaseapp).m_strAppName.has_char())
          {
 
-            spfile = Sess(papp).file().get_file("matter://" + strPath, nOpenFlags);
+            spfile = sess(papp).file().get_file("matter://" + strPath, nOpenFlags);
 
          }
          else
          {
 
-            spfile = get_file(Sess(m_pbaseapp).dir().matter(strPath), nOpenFlags);
+            spfile = get_file(sess(m_pbaseapp).dir().matter(strPath), nOpenFlags);
 
          }
 

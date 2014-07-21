@@ -8,6 +8,8 @@ namespace exception
    exception::exception()
    {
       printf("log:exception");
+      //::MessageBox(NULL,"abc123","abc123",MB_OK);
+
    }
 
 

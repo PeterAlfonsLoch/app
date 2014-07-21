@@ -1010,7 +1010,7 @@ namespace windows
 
       xml::document doc(get_app());
       
-      doc.load(session().file().as_string(appdata("configuration\\directory.xml")));
+      doc.load(System.file().as_string(appdata("configuration\\directory.xml"),get_app()));
       
       xxdebug_box("win_dir::initialize (configuration)", "win_dir::initialize", 0);
       if(doc.get_root()->get_name() == "directory_configuration")

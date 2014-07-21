@@ -1175,7 +1175,7 @@ bool ::file::system::output(sp(::base::application) papp, const char * pszOutput
 
    App(papp).dir().mk(System.dir().name(pszOutput));
 
-   ::file::binary_buffer_sp fileOut = Sess(papp).file().get_file(pszOutput, ::file::mode_create | ::file::type_binary | ::file::mode_write);
+   ::file::binary_buffer_sp fileOut = sess(papp).file().get_file(pszOutput, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
    if(fileOut.is_null())
       return false;
@@ -1197,12 +1197,12 @@ bool ::file::system::output(sp(::base::application) papp, const char * pszOutput
 
    strDownloading += ".downloading";
 
-   ::file::binary_buffer_sp fileOut = Sess(papp).file().get_file(strDownloading, ::file::mode_create | ::file::type_binary | ::file::mode_write);
+   ::file::binary_buffer_sp fileOut = sess(papp).file().get_file(strDownloading, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
    if(fileOut.is_null())
       return false;
 
-   ::file::binary_buffer_sp fileIn = Sess(papp).file().get_file(lpszInput, ::file::type_binary | ::file::mode_read);
+   ::file::binary_buffer_sp fileIn = sess(papp).file().get_file(lpszInput, ::file::type_binary | ::file::mode_read);
 
    if(fileIn.is_null())
       return false;

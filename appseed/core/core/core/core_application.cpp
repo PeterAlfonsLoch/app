@@ -302,9 +302,6 @@ bool application::initialize1()
    if (!m_spuserex->initialize())
       return false;
 
-   if (!m_phtml->initialize())
-      return false;
-
    if (!is_system() && !is_session() && !is_installing() && !is_uninstalling())
    {
 
@@ -315,12 +312,12 @@ bool application::initialize1()
       {
          if (str.has_char())
          {
-            if (str != get_locale())
+            if (str != ::root::session().get_locale())
             {
                try
                {
-                  data_set("system_locale", get_locale());
-                  data_set("locale", get_locale());
+                  data_set("system_locale",::root::session().get_locale());
+                  data_set("locale",::root::session().get_locale());
                }
                catch (...)
                {
@@ -330,7 +327,7 @@ bool application::initialize1()
       }
       else
       {
-         data_set("system_locale", get_locale());
+         data_set("system_locale",::root::session().get_locale());
       }
 
       if (command()->m_varTopicQuery["locale"].get_count() > 0)
@@ -338,20 +335,20 @@ bool application::initialize1()
          str = command()->m_varTopicQuery["locale"].stra()[0];
          data_set("system_locale", str);
          data_set("locale", str);
-         set_locale(str, ::action::source::database());
+         ::root::session().set_locale(str,::action::source::database());
       }
       else if (command()->m_varTopicQuery["lang"].get_count() > 0)
       {
          str = command()->m_varTopicQuery["lang"].stra()[0];
          data_set("system_locale", str);
          data_set("locale", str);
-         set_locale(str, ::action::source::database());
+         ::root::session().set_locale(str,::action::source::database());
       }
       else if (data_get("locale", str))
       {
          if (str.has_char())
          {
-            set_locale(str, ::action::source::database());
+            ::root::session().set_locale(str,::action::source::database());
          }
       }
       // if system schema has changed (compared to last recorded one by core)
@@ -360,12 +357,12 @@ bool application::initialize1()
       {
          if (str.has_char())
          {
-            if (str != get_schema())
+            if(str != ::root::session().get_schema())
             {
                try
                {
-                  data_set("system_schema", get_schema());
-                  data_set("schema", get_schema());
+                  data_set("system_schema",::root::session().get_schema());
+                  data_set("schema",::root::session().get_schema());
                }
                catch (...)
                {
@@ -375,7 +372,7 @@ bool application::initialize1()
       }
       else
       {
-         data_set("system_schema", get_schema());
+         data_set("system_schema",::root::session().get_schema());
       }
 
       if (command()->m_varTopicQuery["schema"].get_count() > 0)
@@ -383,30 +380,30 @@ bool application::initialize1()
          str = command()->m_varTopicQuery["schema"].stra()[0];
          data_set("system_schema", str);
          data_set("schema", str);
-         set_schema(str, ::action::source::database());
+         ::root::session().set_schema(str,::action::source::database());
       }
       else if (data_get("schema", str))
       {
          if (str.has_char())
          {
-            set_schema(str, ::action::source::database());
+            ::root::session().set_schema(str,::action::source::database());
          }
       }
 
       // keyboard layout
       if (data_get("keyboard_layout", str) && str.has_char())
       {
-         user()->set_keyboard_layout(str, ::action::source::database());
+         ::root::session().user()->set_keyboard_layout(str,::action::source::database());
       }
       else
       {
-         user()->set_keyboard_layout(NULL, ::action::source::database());
+         ::root::session().user()->set_keyboard_layout(NULL,::action::source::database());
       }
 
       data_pulse_change("ca2", "savings", NULL);
 
 
-      App(this).fill_locale_schema(*str_context()->m_plocaleschema);
+      sess(this).fill_locale_schema(*::root::session().str_context()->m_plocaleschema);
 
 
       Sys(this).appa_load_string_table();
@@ -3231,7 +3228,7 @@ void application::EnableShellOpen()
    // Win95 & Win98 sends a WM_DDE_INITIATE with an atom that points to the
    // int16_t file name so we need to use the int16_t file name.
    string strShortName;
-   strShortName = get_module_file_path();
+   strShortName = System.get_module_file_path();
 
    // strip out path
    //string strFileName = ::PathFindFileName(strShortName);
@@ -3773,7 +3770,7 @@ return papp;
    try
    {
 
-      return m_file.get_file(varFile, nOpenFlags);
+      return ::root::session().m_file.get_file(varFile, nOpenFlags);
 
    }
    catch (::file::exception & e)
@@ -3928,8 +3925,8 @@ sp(::base::application) application::instantiate_application(const char * pszTyp
       string strCommandLine;
 
       strCommandLine = " : app=" + strId;
-      strCommandLine += " locale=" + string(Application.str_context()->m_plocaleschema->m_idLocale);
-      strCommandLine += " style=" + string(Application.str_context()->m_plocaleschema->m_idSchema);
+      strCommandLine += " locale=" + string(session().str_context()->m_plocaleschema->m_idLocale);
+      strCommandLine += " style=" + string(session().str_context()->m_plocaleschema->m_idSchema);
       strCommandLine += " install";
 
       System.install().start(strCommandLine, Application.command()->m_varTopicQuery["build_number"]);
@@ -4001,7 +3998,7 @@ void application::data_on_after_change(signal_details * pobj)
    {
       if (pchange->m_key.m_idIndex == "savings")
       {
-         pchange->data_get(savings().m_eresourceflagsShouldSave);
+         pchange->data_get(::root::session().savings().m_eresourceflagsShouldSave);
       }
    }
 }
@@ -4010,7 +4007,7 @@ void application::data_on_after_change(signal_details * pobj)
 int32_t application::simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle)
 {
 
-   if (!user().is_set())
+   if (!::root::session().user().is_set())
       return ::base::application::simple_message_box(puiOwner, pszMessage, fuStyle);
 
    return userex()->simple_message_box(puiOwner, pszMessage, fuStyle);
@@ -4021,7 +4018,7 @@ int32_t application::simple_message_box(sp(::user::interaction) puiOwner, const 
 int32_t application::simple_message_box_timeout(sp(::user::interaction) pwndOwner, const char * pszMessage, ::duration durationTimeOut, UINT fuStyle)
 {
 
-   if (!user().is_set())
+   if (!::root::session().user().is_set())
       return ::base::application::simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle);
 
    return userex()->simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle);

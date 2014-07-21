@@ -646,8 +646,8 @@ namespace dynamic_source
       single_lock sl(&m_mutexSession, TRUE);
       ::datetime::time time;
       time = ::datetime::time::get_current_time();
-      strsp(session)::assoc * passoc = m_mapSession.PGetFirstAssoc();
-      strsp(session)::assoc * passocNext;
+      strsp(::dynamic_source::session)::assoc * passoc = m_mapSession.PGetFirstAssoc();
+      strsp(::dynamic_source::session)::assoc * passocNext;
       while(passoc != NULL)
       {
          passocNext = passoc->m_pnext;

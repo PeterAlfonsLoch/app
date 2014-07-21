@@ -395,7 +395,7 @@ namespace plugin
 
       while(puser == NULL)
       {
-         puser = session().fontopus()->login(setLogin);
+         puser = ::root::session().fontopus()->login(setLogin);
       }
 
       if(strSessId == puser->m_strFontopusServerSessId || puser->m_strFontopusServerSessId.get_length() < 16)
@@ -420,7 +420,7 @@ namespace plugin
    void plugin::ca2_logout()
    {
 
-      session().fontopus()->logout();
+      ::root::session().fontopus()->logout();
 
       property_set set(get_app());
 
@@ -489,7 +489,7 @@ namespace plugin
          {
             // remark alarm
             // STRESS : http_get_dup
-            // in core library normally System or session().http() is used
+            // in core library normally System or ::root::session().http() is used
             string strPluginData;
 
 //            ::http::e_status estatus = ::http::status_fail;
@@ -505,7 +505,7 @@ namespace plugin
 
                //strPluginData = http_get_dup(strPluginUrl, false, &ms_get_dup_status_callback, (void *) &iStatusCode, false);
 
-               session().http().get(strUrl, strPluginData, set);
+               ::root::session().http().get(strUrl, strPluginData, set);
 
                if(::http::status_succeeded(set["get_status"]))
                   break;

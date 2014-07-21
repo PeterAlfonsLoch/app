@@ -380,6 +380,12 @@ namespace file
 
 
 
+inline ::base::session & sess(::base::application * papp)
+{
+
+   return *papp->m_pbasesession;
+
+}
 
 
 inline ::base::session & root::session()
@@ -388,6 +394,9 @@ inline ::base::session & root::session()
    return *m_pbaseapp->m_pbasesession;
 
 }
+
+
+
 
 
 

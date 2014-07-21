@@ -825,7 +825,7 @@ retry:
          if(papp != NULL)
          {
             keeplive.keep(papp);
-            keeplive.keep(&Sess(papp));
+            keeplive.keep(&sess(papp));
             keeplive.keep(&Sys(papp));
          }
          oprop("dw").get_value().set_type(var::type_uint32);
@@ -1346,7 +1346,7 @@ retry:
       if(papp != NULL)
       {
          keeplive.keep(papp);
-         keeplive.keep(&Sess(papp));
+         keeplive.keep(&sess(papp));
          keeplive.keep(&Sys(papp));
       }
 

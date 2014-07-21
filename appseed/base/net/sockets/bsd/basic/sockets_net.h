@@ -149,6 +149,8 @@ namespace sockets
       virtual bool initialize();
       virtual bool finalize();
 
+      virtual bool gudo_set();
+
 
       /*
       * Encode string per RFC1738 URL encoding rules

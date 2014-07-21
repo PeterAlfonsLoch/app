@@ -78,6 +78,15 @@ namespace base
       m_libraryDraw2d(this)
    {
 
+#ifdef MATTER_CACHE_FROM_HTTP_SERVER
+
+      m_bMatterFromHttpCache = true;
+
+#else
+
+      m_bMatterFromHttpCache = false;
+
+#endif
 
       m_psimpleui = NULL;
 
@@ -169,6 +178,14 @@ namespace base
 #endif
 
 
+      factory().cloneable_large < stringa >();
+      factory().cloneable_large < ::primitive::memory >();
+      factory().cloneable_large < int_array >();
+
+      __node_factory_exchange(this);
+
+      thread::s_bAllocReady = true;
+
       //Ex1OnFactoryExchange();
 
       //m_spfilesystem.create(allocer());
@@ -180,29 +197,24 @@ namespace base
 
             }*/
 
+
+
       m_pxml = canew(::xml::departament(this));
 
       m_pxml->construct(this);
 
       if(!m_pxml->initialize1())
-         throw simple_exception(this,"failed to construct system");
+         throw simple_exception(this,"failed to construct system m_pxml->initialize1()");
 
       if(!m_pxml->initialize())
-         throw simple_exception(this,"failed to construct system");
+         throw simple_exception(this,"failed to construct system m_pxml->initialize()");
 
+
+
+      
 
       m_compress.set_app(this);
 
-
-#ifdef MATTER_CACHE_FROM_HTTP_SERVER
-
-      m_bMatterFromHttpCache = true;
-
-#else
-
-      m_bMatterFromHttpCache = false;
-
-#endif
 
       m_bSystemSynchronizedCursor = true;
 
@@ -254,6 +266,9 @@ namespace base
    bool system::process_initialize()
    {
 
+
+
+
       enum_display_monitors();
 
       m_peengine = new ::exception::engine(this);
@@ -278,33 +293,11 @@ namespace base
 
       m_spos.create(allocer());
 
-      m_spfile.create(allocer());
-
-      m_spdir.create(allocer());
-
-      if(!m_spdir->initialize())
-         return false;
-
       m_spcrypto.create(allocer());
 
       if(!m_spcrypto.is_set())
          return false;
 
-      m_spnet = canew(::sockets::net(this));
-      //m_spnet.create(allocer());
-
-      if(m_spnet.is_null())
-      {
-         
-         m_iReturnCode = -1986;
-
-         return false;
-
-      }
-       
-
-      if(!m_spnet->initialize())
-         return false;
 
       if(!set_main_init_data(m_pinitmaindata))
          return false;
@@ -337,10 +330,37 @@ namespace base
 #endif
 
       dappy(string(typeid(*this).name()) + " : Going to ::base::session " + ::str::from(m_iReturnCode));
+      m_spfile.create(allocer());
+
+
+      m_spdir.create(allocer());
+
 
       m_pbasesession = new ::base::session(this);
 
       if(m_pbasesession == NULL)
+         return false;
+
+      if(!m_spdir->initialize())
+         throw simple_exception(this,"failed to construct system m_spdir->initialize");
+
+      m_pbasesession->construct(this,0);
+
+
+      m_spnet = canew(::sockets::net(this));
+      //m_spnet.create(allocer());
+
+      if(m_spnet.is_null())
+      {
+
+         m_iReturnCode = -1986;
+
+         return false;
+
+      }
+
+
+      if(!m_spnet->initialize())
          return false;
 
       if(!m_pbasesession->begin_synch(&m_iReturnCode))
@@ -382,6 +402,25 @@ namespace base
    bool system::finalize()
    {
 
+      try
+      {
+
+         if(!m_spnet->gudo_set())
+         {
+
+            m_iReturnCode = -87;
+
+         }
+
+      }
+      catch(...)
+      {
+
+         m_iReturnCode = -87;
+
+      }
+
+
       __wait_threading_count_except(this,::millis((5000) * 77));
 
       bool bOk = false;
@@ -406,6 +445,32 @@ namespace base
 
    int32_t system::exit_instance()
    {
+      try
+      {
+
+         if(m_ptwf != NULL)
+         {
+
+            m_ptwf->m_bRun = false;
+
+         }
+
+      }
+      catch(...)
+      {
+      }
+
+      try
+      {
+         if(m_ptwf != NULL)
+         {
+            m_ptwf->twf_stop();
+            m_ptwf.release();
+         }
+      }
+      catch(...)
+      {
+      }
 
       __wait_threading_count(::millis((5000) * 8));
 
@@ -457,21 +522,6 @@ namespace base
       }
 
 
-      try
-      {
-
-         if(m_ptwf != NULL)
-         {
-
-            m_ptwf->m_bRun = false;
-
-         }
-
-      }
-      catch(...)
-      {
-      }
-
 
       for(int i = 0; i < m_serviceptra.get_size(); i++)
       {
@@ -484,17 +534,6 @@ namespace base
          }
       }
 
-      try
-      {
-         if(m_ptwf != NULL)
-         {
-            m_ptwf->twf_stop();
-            m_ptwf = NULL;
-         }
-      }
-      catch(...)
-      {
-      }
 
       for(int i = 0; i < m_serviceptra.get_size(); i++)
       {
@@ -1131,7 +1170,7 @@ namespace base
       if(m_ptwf != NULL)
          return true;
 
-      m_ptwf = alloc(this,System.type_info < ::user::window_draw >());
+      m_ptwf.create(allocer());
 
       if(m_ptwf->twf_start())
          return false;
@@ -1734,7 +1773,7 @@ namespace base
    string system::get_module_title()
    {
 
-      return session().file_title(get_module_file_path());
+      return file().title_(get_module_file_path());
 
    }
 
@@ -1742,7 +1781,7 @@ namespace base
    string system::get_module_name()
    {
 
-      return session().file_name(get_module_file_path());
+      return file().name_(get_module_file_path());
 
    }
 

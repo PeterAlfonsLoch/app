@@ -376,7 +376,7 @@ namespace filemanager
 
          stringa stra;
 
-         Sess(papp).dir().ls(::str::international::unicode_to_utf8(szPath), &stra);
+         sess(papp).dir().ls(::str::international::unicode_to_utf8(szPath), &stra);
 
          for(int32_t i = 0; i < stra.get_size(); i++)
          {

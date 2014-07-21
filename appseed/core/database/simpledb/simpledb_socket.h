@@ -15,9 +15,10 @@ namespace simpledb
    public:
 
 
-      string            m_strLocale;
-      session *         m_psession;
-      socket_thread *   m_pthreadParent;
+      string                        m_strLocale;
+      ::simpledb::session *         m_psession;
+      socket_thread *               m_pthreadParent;
+
 
       socket(::sockets::base_socket_handler & h);
       virtual ~socket();
