@@ -8773,9 +8773,6 @@
     <ClCompile Include="base\os\windows\windows_base_crypto.cpp">
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple_ui\simple_ui_message_box.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="base\base\base_session_interface.cpp">
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
@@ -8808,6 +8805,9 @@
     </ClCompile>
     <ClCompile Include="base\hotplugin\hotplugin_windows.cpp">
       <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple_ui\simple_ui_message_box.cpp">
+      <Filter>Source Files\user\simple_ui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -9068,6 +9068,9 @@
     </None>
     <None Include="primitive\collection\collection.inl">
       <Filter>Header Files\primitive\collection</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

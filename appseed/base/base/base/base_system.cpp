@@ -766,6 +766,92 @@ namespace base
 
 
 
+   int32_t system::_001OnDebugReport(int32_t i1,const char * psz1,int32_t i2,const char * psz2,const char * psz3,va_list args)
+   {
+
+      return _debug_logging_report(i1,psz1,i2,psz2,psz3,args);
+
+   }
+
+
+
+   int32_t system::_debug_logging_report(int32_t iReportType, const char * pszFileName, int32_t iLineNumber, const char * pszModuleName, const char * pszFormat,va_list list)
+   {
+
+      if(m_plog == NULL || !m_plog->m_bExtendedLog)
+      {
+
+         return ::base::SimpleDebugReport(iReportType,pszFileName,iLineNumber,pszModuleName,pszFormat,list);
+
+      }
+
+      string str;
+
+      if(pszFileName != NULL || pszModuleName != NULL)
+      {
+
+         stringa stra;
+
+         if(pszFileName != NULL)
+            stra.add(pszFileName);
+
+         if(pszModuleName != NULL)
+            stra.add(pszFileName);
+
+         str += stra.implode(", ");
+
+         str += ": ";
+
+      }
+
+      string str2;
+
+      if(pszFormat != NULL)
+      {
+
+         if(list != NULL)
+         {
+
+            str2.FormatV(pszFormat,list);
+
+         }
+         else
+         {
+
+            str2 = pszFormat;
+
+         }
+
+      }
+
+      str = str + str2;
+
+      string strPrint(str);
+
+      strPrint.replace("%","%%");
+
+      if(m_plog != NULL)
+      {
+
+         m_plog->print(strPrint);
+
+      }
+
+      if(iReportType == _CRT_ASSERT)
+      {
+
+         return 1;
+
+      }
+      else
+      {
+
+         return 0;
+
+      }
+
+   }
+
 
 
 
@@ -1784,6 +1870,9 @@ namespace base
       return file().name_(get_module_file_path());
 
    }
+
+
+
 
 } // namespace base
 

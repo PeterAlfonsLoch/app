@@ -824,107 +824,6 @@ namespace plane
 
 
 
-   int32_t system::__ca2_logging_report(
-      int32_t iReportType,
-      const char * pszFileName,
-      int32_t iLineNumber,
-      const char * pszModuleName,
-      const char * pszFormat, va_list list)
-   {
-
-      if(m_plog == NULL || !m_plog->m_bExtendedLog)
-      {
-
-         return ::base::SimpleDebugReport(iReportType, pszFileName, iLineNumber, pszModuleName, pszFormat, list);
-
-      }
-
-      string str;
-      if(pszFileName != NULL || pszModuleName != NULL)
-      {
-         stringa stra;
-         if(pszFileName != NULL)
-            stra.add(pszFileName);
-         if(pszModuleName != NULL)
-            stra.add(pszFileName);
-         str += stra.implode(", ");
-         str += ": ";
-      }
-      string str2;
-      if(pszFormat != NULL)
-      {
-         if(list != NULL)
-         {
-            str2.FormatV(pszFormat, list);
-         }
-         else
-         {
-            str2 = pszFormat;
-         }
-      }
-
-      str = str + str2;
-      string strPrint(str);
-      strPrint.replace("%", "%%");
-      if(m_plog != NULL)
-      {
-         m_plog->print(strPrint);
-      }
-      if(iReportType == _CRT_ASSERT && is_debugger_attached())
-      {
-#ifdef DEBUG
-         property_set propertyset;
-         propertyset["filepath"] = pszFileName;
-         propertyset["linenumber"] = iLineNumber;
-         message_box("system\\debug\\assert.xhtml", propertyset);
-#endif
-      }
-      if(iReportType == _CRT_ASSERT)
-      {
-         return 1;
-      }
-      else
-      {
-         return 0;
-      }
-   }
-
-   bool system::assert_failed_line(const char * lpszFileName, int32_t iLine)
-   {
-      if(!on_assert_failed_line(lpszFileName, iLine))
-         return false;
-
-      // may be in another thread than application thread
-#ifdef DEBUG
-#ifndef ___NO_DEBUG_CRT
-      // we remove WM_QUIT because if it is in the queue then the message box
-      // won't display
-#ifdef WINDOWSEX
-      MESSAGE msg;
-      bool bQuit = PeekMessage(&msg, NULL, WM_QUIT, WM_QUIT, PM_REMOVE) != FALSE;
-      va_list list = NULL;
-#elif defined(METROWIN)
-      va_list list = NULL;
-      //throw todo(get_app());
-#else
-      va_list list = {};
-#endif
-      bool bResult = __ca2_logging_report(_CRT_ASSERT, lpszFileName, iLine, NULL, NULL, list) != 0;
-#ifdef WINDOWSEX
-      if (bQuit)
-         PostQuitMessage((int32_t)msg.wParam);
-#endif
-      return bResult;
-#else
-      // Not supported.
-#error ___NO_DEBUG_CRT is not supported.
-#endif // ___NO_DEBUG_CRT
-#else
-      TRACE("__assert_failed_line %s %d", lpszFileName, iLine);
-      return true;
-#endif
-   }
-
    void system::on_allocation_error(sp(::base::application) papp, sp(type) info)
    {
 
@@ -954,12 +853,6 @@ namespace plane
          return true;
       }
    }
-
-   int32_t system::_001OnDebugReport(int32_t i1, const char * psz1, int32_t i2, const char * psz2, const char * psz3, va_list args)
-   {
-      return __ca2_logging_report(i1, psz1, i2, psz2, psz3, args);
-   }
-
 
    void system::on_request(sp(::create_context) pcreatecontext)
    {

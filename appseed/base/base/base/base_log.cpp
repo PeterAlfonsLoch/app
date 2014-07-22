@@ -146,17 +146,6 @@ namespace base
       return 0;
    }
 
-   /*int32_t ca2_logging_report(
-                                 int32_t iReportType,
-                                 const char * pszFileName,
-                                 int32_t iLineNumber,
-                                 const char * pszModuleName,
-                                 const char * pszFormat,
-                                 va_list list)
-   {
-      return System.__ca2_logging_report(iReportType, pszFileName, iLineNumber, pszModuleName, pszFormat, list);
-   }*/
-
    void log::set_extended_log(bool bSet)
    {
       m_bExtendedLog = bSet;

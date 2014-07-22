@@ -254,7 +254,7 @@ inline void c_cdecl __trace(...) { }
 #ifdef DEBUG
 
 //#define ASSERT(f)          DEBUG_ONLY(() ((f) || !::__assert_failed_line(THIS_FILE, __LINE__) || (__debug_break(), 0)))
-#define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && (!::__assert_failed_line(__FILE__, __LINE__) || (__debug_break(), 0))) || (!is_debugger_attached() && (throw assert_exception(get_thread_app(), __FILE__, __LINE__), 0))))
+#define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && (!::__assert_failed_line(__FILE__, __LINE__) || (__debug_break, 0))) || (!is_debugger_attached() && (throw assert_exception(get_thread_app(), __FILE__, __LINE__), 0))))
 /* see core headers for commentary on this */
 /* We use the name _ASSUME to avoid name clashes */
 #define _ASSUME(cond)       do { bool _gen__condVal=!!(cond); ASSERT(_gen__condVal); __analysis_assume(_gen__condVal); } while(0)

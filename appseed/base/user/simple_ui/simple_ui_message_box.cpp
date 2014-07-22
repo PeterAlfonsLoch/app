@@ -25,6 +25,33 @@ namespace simple_ui
    }
 
 
+   void message_box::create_a_button(id id,const char * pszText)
+   {
+
+      create_button(m_tapaA,id,pszText);
+
+   }
+
+
+   void message_box::create_b_button(id id,const char * pszText)
+   {
+
+      create_button(m_tapaB,id,pszText);
+
+   }
+
+
+   void message_box::create_button(spa(tap) & tapa,id id,const char * pszText)
+   {
+
+      sp(::simple_ui::tap) ptap = canew(::simple_ui::tap(get_app()));
+      ptap->create(this,id);
+      ptap->SetWindowText(pszText);
+
+      tapa.add(ptap);
+
+   }
+   
    int32_t message_box::show(const char * pszMessage, uint32_t uiFlags)
    {
 
@@ -33,11 +60,41 @@ namespace simple_ui
       if(!CreateEx(WS_EX_LAYERED, NULL, NULL, 0, null_rect(), NULL, "fontopus"))
          throw simple_exception(get_app(), "not excepted! Failing Message box!!");
 
-      m_ptapOk = new ::simple_ui::tap(get_app());
+      uint32_t uiType = uiFlags & MB_TYPEMASK;
 
-      m_ptapOk->create(this, "ok");
-
-      m_ptapOk->SetWindowText("OK");
+      switch(uiType)
+      {
+      case MB_OKCANCEL:
+         create_a_button("ok","OK");
+         create_a_button("cancel","Cancel");
+         break;
+      case MB_ABORTRETRYIGNORE:
+         create_a_button("abort","Abort");
+         create_a_button("retry","Retry");
+         create_a_button("ignore","Ignore");
+         break;
+      case MB_YESNOCANCEL:
+         create_a_button("yes","Yes");
+         create_a_button("no","No");
+         create_a_button("cancel","Cancel");
+         break;
+      case MB_YESNO:
+         create_a_button("yes","Yes");
+         create_a_button("no","No");
+         break;
+      case MB_RETRYCANCEL:
+         create_a_button("retry","Retry");
+         create_a_button("cancel","Cancel");
+         break;
+      case MB_CANCELTRYCONTINUE:
+         create_a_button("cancel","Cancel");
+         create_a_button("try","Try");
+         create_a_button("continue","Continue");
+         break;
+      default:
+         create_a_button("ok","OK");
+         break;
+      }
 
       ::rect rectDesktop;
 
@@ -97,6 +154,8 @@ namespace simple_ui
 
       RunModalLoop();
 
+      post_message(WM_CLOSE);
+
       return m_iResult;
 
    }
@@ -145,12 +204,37 @@ namespace simple_ui
 
       GetClientRect(rectClient);
 
-      if(m_ptapOk.is_set())
+      int cx = 184;
+      int cy = 84;
+      int margin = 10;
+      int x = rectClient.left + margin;
+      int y = rectClient.bottom - cy - margin;
+
+
+      for(index i = 0; i < m_tapaA.get_count(); i++)
       {
 
-         m_ptapOk->SetWindowPos(ZORDER_TOP, rectClient.left + 10, rectClient.bottom - 94, 200, 84, SWP_SHOWWINDOW);
+         sp(tap) ptap = m_tapaA(i);
+
+         ptap->SetWindowPos(ZORDER_TOP,x,y,cx,cy,SWP_SHOWWINDOW);
+
+         x += cx + margin;
 
       }
+
+      x = rectClient.right - margin - cx;
+      
+      for(index i = m_tapaB.get_upper_bound(); i >= 0; i--)
+      {
+
+         sp(tap) ptap = m_tapaB(i);
+
+         ptap->SetWindowPos(ZORDER_TOP,x,y,cx,cy,SWP_SHOWWINDOW);
+
+         x -= cx + margin;
+
+      }
+
 
    }
 
@@ -198,6 +282,57 @@ namespace simple_ui
          return true;
 
       }
+      else if(stricmp_dup(pszId,"abort") == 0)
+      {
+
+         m_iResult = IDABORT;
+
+         EndModalLoop(IDOK);
+
+         return true;
+
+      }
+      else if(stricmp_dup(pszId,"retry") == 0)
+      {
+
+         m_iResult = IDRETRY;
+
+         EndModalLoop(IDOK);
+
+         return true;
+
+      }
+      else if(stricmp_dup(pszId,"ignore") == 0)
+      {
+
+         m_iResult = IDIGNORE;
+
+         EndModalLoop(IDOK);
+
+         return true;
+
+      }
+      else if(stricmp_dup(pszId,"try") == 0)
+      {
+
+         m_iResult = IDTRYAGAIN;
+
+         EndModalLoop(IDOK);
+
+         return true;
+
+      }
+      else if(stricmp_dup(pszId,"continue") == 0)
+      {
+
+         m_iResult = IDCONTINUE;
+
+         EndModalLoop(IDOK);
+
+         return true;
+
+      }
+
 
       return false;
 
@@ -207,25 +342,52 @@ namespace simple_ui
 } // namespace simple_ui
 
 
+extern "C"
+CLASS_DECL_BASE int32_t system_message_box(oswindow interaction_impl,const char * lpText,const char * lpCaption,uint32_t uiFlags)
+{
+
+   return MessageBox(interaction_impl,lpText,lpCaption,uiFlags);
+
+}
+
+
+
 int32_t simple_ui_message_box(oswindow interaction_impl, const char * lpText,const char * lpCaption, uint32_t uiFlags)
 {
+
+   // may be in another thread than application thread
+
+   // we remove WM_QUIT because if it is in the queue then the message box won't display
+
+   MESSAGE msg;
+
+   bool bQuit = PeekMessage(&msg,NULL,WM_QUIT,WM_QUIT,PM_REMOVE) != FALSE;
 
    if(::get_thread_app() == NULL || ::get_thread_app()->m_pbasesession == NULL)
    {
 
-      return MessageBox(interaction_impl,lpText,lpCaption,uiFlags);
+      return system_message_box(interaction_impl,lpText,lpCaption,uiFlags);
 
    }
 
-   sp(::simple_ui::message_box) pmessagebox = canew(::simple_ui::message_box(::get_thread_app()));
+   int32_t iResult = 0;
 
-   int32_t iResult = pmessagebox->show(lpText, uiFlags);
+   {
 
-   //pmessagebox->DestroyWindow();
+      sp(::simple_ui::message_box) pmessagebox = canew(::simple_ui::message_box(::get_thread_app()));
+
+      iResult = pmessagebox->show(lpText,uiFlags);
+
+   }
+
+   if(bQuit)
+      PostQuitMessage((int32_t)msg.wParam);
 
    return iResult;
 
 }
+
+
 
 
 extern "C"
@@ -235,3 +397,5 @@ CLASS_DECL_BASE int32_t simple_message_box(oswindow interaction_impl,const char 
    return simple_ui_message_box(interaction_impl,lpText,lpCaption,uiFlags);
 
 }
+
+

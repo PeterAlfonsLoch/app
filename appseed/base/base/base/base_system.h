@@ -273,8 +273,11 @@ namespace base
       inline class id id(const property & prop);
 
 
+      virtual int32_t _001OnDebugReport(int32_t i1,const char * psz1,int32_t i2,const char * psz2,const char * psz3,va_list args);
+      virtual int32_t _debug_logging_report(int32_t iReportType, const char * pszFilename, int32_t iLinenumber, const char * iModuleName, const char * pszFormat, va_list list);
       virtual bool assert_failed_line(const char * lpszFileName,int32_t iLine);
       virtual bool on_assert_failed_line(const char * pszFileName,int32_t iLine);
+
 
 
 
@@ -405,6 +408,7 @@ namespace base
       virtual string get_module_name();
 
 
+      
 
    };
 

@@ -12,10 +12,8 @@ namespace simple_ui
 
    
       stringa        m_stra;
-      sp(tap)        m_ptapOk;
-      sp(tap)        m_ptapYes;
-      sp(tap)        m_ptapNo;
-      sp(tap)        m_ptapCancel;
+      spa(tap)       m_tapaA;
+      spa(tap)       m_tapaB;
       int32_t        m_iResult;
       uint32_t       m_uiFlags;
       
@@ -31,6 +29,10 @@ namespace simple_ui
       virtual void layout();
 
       bool on_action(const char * pszId);
+
+      virtual void create_a_button(id id,const char * pszText);
+      virtual void create_b_button(id id,const char * pszText);
+      virtual void create_button(spa(tap) & tapa, id id,const char * pszText);
       
 
    };
