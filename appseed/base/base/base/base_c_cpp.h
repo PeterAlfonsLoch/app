@@ -124,6 +124,7 @@ namespace user
 {
 
    class interaction_impl;
+   class view_creator_data;
 
 }
 
@@ -476,8 +477,6 @@ namespace file
 
 #include "base_core.h"
 
-#include "base_library.h"
-
 #include "base/primitive/primitive_request_interface.h"
 
 #include "base/multithreading/multithreading_wait_result.h"
@@ -517,6 +516,8 @@ namespace file
 #include "base/exception/exception.h"
 #include "base_common.h"
 
+
+#include "base_library.h"
 
 
 
