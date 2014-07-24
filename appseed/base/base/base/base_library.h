@@ -1,19 +1,19 @@
 #pragma once
 
+
 namespace base
 {
 
 
-   typedef class library * (* PFN_GET_NEW_LIBRARY)(sp(::base::application) papp);
-
    class CLASS_DECL_BASE library:
-      virtual public ::element
+      virtual public ::object
    {
    public:
 
 
-      void *                        m_plibrary;
-      bool                          m_bAutoClose;
+      void *            m_plibrary;
+      sp(library)       m_pca2library;
+      bool              m_bAutoClose;
       string            m_strCa2Name;
       string            m_strRoot;
 
@@ -21,10 +21,12 @@ namespace base
 
 
       library(sp(::base::application) papp);
-      library(sp(::base::application) papp,const char * pszOpen);
+      library(sp(::base::application) papp,int iDesmabi, const char * pszRoot);
       virtual ~library();
 
-      virtual bool open(const char * pszPath,bool bAutoClose = true);
+      virtual bool open(const char * pszPath, bool bCa2Path = false, bool bAutoClose = true);
+
+
       virtual bool close();
 
 
@@ -32,12 +34,12 @@ namespace base
       virtual bool is_closed();
 
       template < typename TARGET >
-      TARGET get(const char * pszElement)
+      TARGET get(const char * pszEntryName)
       {
-         return reinterpret_cast <TARGET>(raw_get(pszElement));
+         return reinterpret_cast <TARGET>(raw_get(pszEntryName));
       }
 
-      void * raw_get(const char * pszElement);
+      void * raw_get(const char * pszEntryName);
 
 
 
@@ -58,7 +60,7 @@ namespace base
       virtual void get_app_list(stringa & stra);
 
 
-      virtual sp(::object) create_object(sp(::base::application) papp, char * pszClass);
+      virtual sp(::object) create_object(sp(::base::application) papp, const char * pszClass);
       virtual bool has_object_class(const char * pszClass);
 
 
@@ -100,21 +102,20 @@ namespace base
 
 
 
+   typedef class library * (* PFN_GET_NEW_LIBRARY)(sp(::base::application) papp);
+
+
 } // namespace base
 
 
 
 
-class CLASS_DECL_BASE ca2_library:
-   virtual public ::base::library
-{
-public:
 
-   ca2_library(sp(::base::application) papp);
-   ca2_library(sp(::base::application) papp,const char * pszOpen);
-   virtual ~ca2_library();
 
-   virtual bool open(const char * pszPath,bool bAutoClose = true);
 
-};
+CLASS_DECL_BASE void * __node_library_open(const char * pszPath);
+CLASS_DECL_BASE void * __node_library_open_ca2(const char * pszPath);
+CLASS_DECL_BASE bool __node_library_close(void * plibrary);
+CLASS_DECL_BASE void * __node_library_raw_get(void * plibrary,const char * pszEntryName);
+
 

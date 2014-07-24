@@ -50,6 +50,36 @@ namespace filemanager
 } // namespace filemanager
 
 
+namespace user
+{
+
+
+   class view_creator_data;
+
+
+   namespace uinteraction
+   {
+
+
+      class interaction;
+
+
+   } // namespace uinteraction
+
+} // namespace user
+
+
+
+namespace dynamic_source
+{
+
+
+   class script;
+   class script_manager;
+
+
+} // namespace dynamic_source
+
 
 #undef App
 #undef Application
@@ -949,9 +979,6 @@ class Ex1FactoryImpl;
 
 
 #include "core_service.h"
-
-
-#include "core_library.h"
 
 
 #include "core/filesystem/filehandler/filehandler.h"

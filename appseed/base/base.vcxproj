@@ -2980,6 +2980,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\base\base_application_interface.cpp" />
     <ClCompile Include="base\base\base_gudo.cpp" />
     <ClCompile Include="base\base\base_id_pool.cpp" />
+    <ClCompile Include="base\base\base_library.cpp" />
     <ClCompile Include="base\base\base_print_job.cpp" />
     <ClCompile Include="base\base\base_session_interface.cpp" />
     <ClCompile Include="base\base\base_static_start.cpp" />

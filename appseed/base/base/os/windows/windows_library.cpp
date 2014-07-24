@@ -1,91 +1,46 @@
 #include "framework.h"
 
 
-
-namespace base
+void * __node_library_open(const char * pszPath)
 {
 
+   void * plibrary = NULL;
 
-   library::library(sp(::base::application) papp):
-      element(papp)
+   string strPath(pszPath);
+
+   if(str_ends_ci_dup(strPath,".ilk"))
+      return false;
+
+   if(str_ends_ci_dup(strPath,".pdb"))
+      return false;
+
+   if(str_ends_ci_dup(strPath,".lib"))
+      return false;
+
+   if(str_ends_ci_dup(strPath,".exp"))
+      return false;
+
+   if(strstr_dup(file_title_dup(strPath),".") == NULL)
+      strPath += ".dll";
+
+   try
    {
-      m_bAutoClose = true;
-      m_plibrary = NULL;
+
+      plibrary = ::LoadLibraryW(gen_utf8_to_16(strPath));
+
+   }
+   catch(...)
+   {
+
    }
 
-   library::library(sp(::base::application) papp,const char * pszOpen):
-      element(papp)
+   if(plibrary == NULL)
    {
-      m_bAutoClose = true;
-      m_plibrary = NULL;
-      open(pszOpen);
-   }
-
-   library::~library()
-   {
-      if(m_bAutoClose)
-      {
-         close();
-      }
-   }
-
-   bool library::is_opened()
-   {
-      return m_plibrary != NULL;
-   }
-
-   bool library::is_closed()
-   {
-      return !is_opened();
-   }
-
-
-   bool library::open(const char * pszPath,bool bAutoClose)
-   {
-
-      m_bAutoClose = bAutoClose;
-
-      if(stricmp_dup(pszPath,"app_c") == 0)
-      {
-         pszPath = "c";
-      }
-      else if(stricmp_dup(pszPath,"app_ca") == 0)
-      {
-         pszPath = "ca";
-      }
-      else if(stricmp_dup(pszPath,"app_ca2") == 0)
-      {
-         pszPath = "ca2";
-      }
-
-      string strPath(pszPath);
-
-      if(str_ends_ci_dup(strPath,".ilk"))
-         return false;
-
-      if(str_ends_ci_dup(strPath,".pdb"))
-         return false;
-
-      if(str_ends_ci_dup(strPath,".lib"))
-         return false;
-
-      if(str_ends_ci_dup(strPath,".exp"))
-         return false;
-
-      if(strstr_dup(file_title_dup(strPath),".") == NULL)
-         strPath += ".dll";
-
-#ifdef _M_X64
-      //::SetDllDirectory(dir::element("stage\\x64") + "\\");
-#else
-      //::SetDllDirectory(dir::element("stage\\x86") + "\\");
-#endif
-
 
       try
       {
 
-         m_plibrary = ::LoadLibraryW(gen_utf8_to_16(strPath));
+         plibrary = ::LoadLibraryW(gen_utf8_to_16("\\\\?\\" + strPath));
 
       }
       catch(...)
@@ -93,181 +48,128 @@ namespace base
 
       }
 
-      if(m_plibrary == NULL)
-      {
-
-         try
-         {
-
-            m_plibrary = ::LoadLibraryW(gen_utf8_to_16("\\\\?\\" + strPath));
-
-         }
-         catch(...)
-         {
-
-         }
-
-      }
-
-      if(m_plibrary == NULL)
-      {
-
-         try
-         {
-
-            m_plibrary = ::LoadLibraryW(gen_utf8_to_16(::dir::path(::dir::get_ca2_module_folder(),strPath)));
-
-         }
-         catch(...)
-         {
-
-         }
-
-      }
-
-      if(m_plibrary == NULL)
-      {
-
-         try
-         {
-
-            m_plibrary = ::LoadLibraryW(gen_utf8_to_16("\\\\?\\" + ::dir::path(::dir::get_ca2_module_folder(),strPath)));
-
-         }
-         catch(...)
-         {
-
-         }
-
-      }
-
-      if(m_plibrary == NULL)
-      {
-
-         try
-         {
-
-            m_plibrary = ::LoadLibraryW(gen_utf8_to_16(::dir::path(::dir::get_base_module_folder(),strPath)));
-
-         }
-         catch(...)
-         {
-
-         }
-
-      }
-
-      if(m_plibrary == NULL)
-      {
-
-         try
-         {
-
-            m_plibrary = ::LoadLibraryW(gen_utf8_to_16("\\\\?\\" + ::dir::path(::dir::get_base_module_folder(),strPath)));
-
-         }
-         catch(...)
-         {
-
-         }
-
-      }
-
-      return m_plibrary != NULL;
-
    }
 
-   bool library::close()
+   if(plibrary == NULL)
    {
-      if(m_plibrary != NULL)
+
+      try
       {
-         bool bOk = false;
-         try
-         {
-            bOk = ::FreeLibrary((HINSTANCE)m_plibrary) != FALSE;
-         }
-         catch(...)
-         {
-         }
-         m_plibrary = NULL;
-         return bOk;
+
+         plibrary = ::LoadLibraryW(gen_utf8_to_16(::dir::path(::dir::get_ca2_module_folder(),strPath)));
+
       }
-      return true;
+      catch(...)
+      {
+
+      }
+
    }
 
-
-   void * library::raw_get(const char * pszElement)
+   if(plibrary == NULL)
    {
-      return ::GetProcAddress((HINSTANCE)m_plibrary,pszElement);
+
+      try
+      {
+
+         plibrary = ::LoadLibraryW(gen_utf8_to_16("\\\\?\\" + ::dir::path(::dir::get_ca2_module_folder(),strPath)));
+
+      }
+      catch(...)
+      {
+
+      }
+
    }
 
-
-   void * open_ca2_library(const char * psz)
+   if(plibrary == NULL)
    {
-      /*      string str(psz);
-      if(str.find("..") >= 0)
-      return FALSE;
-      if(str.find(":") >= 0)
-      return FALSE;
-      if(str.find("\\\\") >= 0)
-      return FALSE;
-      if(str[0] == '\\')
-      return FALSE;
-      if(str[0] == '/')
-      return FALSE;
-      #ifdef _M_X64
-      //::SetDllDirectory(dir::element("stage\\x64") + "\\");
-      #else
-      //::SetDllDirectory(dir::element("stage\\x86") + "\\");
-      #endif*/
 
-      return LoadLibrary(psz);
+      try
+      {
+
+         plibrary = ::LoadLibraryW(gen_utf8_to_16(::dir::path(::dir::get_base_module_folder(),strPath)));
+
+      }
+      catch(...)
+      {
+
+      }
 
    }
 
-} // namespace base
+   if(plibrary == NULL)
+   {
 
+      try
+      {
 
+         plibrary = ::LoadLibraryW(gen_utf8_to_16("\\\\?\\" + ::dir::path(::dir::get_base_module_folder(),strPath)));
 
+      }
+      catch(...)
+      {
 
+      }
 
-ca2_library::ca2_library(sp(::base::application) papp):
-element(papp),
-library(papp)
-{
-}
+   }
 
-
-
-ca2_library::ca2_library(sp(::base::application) papp,const char * pszOpen):
-element(papp),
-library(papp,pszOpen)
-{
+   return plibrary;
 
 }
 
 
-ca2_library::~ca2_library()
+bool __node_library_close(void * plibrary)
 {
+
+   if(plibrary == NULL)
+      return false;
+
+   bool bOk = false;
+
+   try
+   {
+
+      bOk = ::FreeLibrary((HINSTANCE)plibrary) != FALSE;
+
+   }
+   catch(...)
+   {
+
+   }
+
+   return bOk;
 
 }
 
 
-bool ca2_library::open(const char * pszPath,bool bAutoClose)
+void * __node_library_open_ca2(const char * psz)
+{
+   /*      string str(psz);
+   if(str.find("..") >= 0)
+   return FALSE;
+   if(str.find(":") >= 0)
+   return FALSE;
+   if(str.find("\\\\") >= 0)
+   return FALSE;
+   if(str[0] == '\\')
+   return FALSE;
+   if(str[0] == '/')
+   return FALSE;
+   #ifdef _M_X64
+   //::SetDllDirectory(dir::element("stage\\x64") + "\\");
+   #else
+   //::SetDllDirectory(dir::element("stage\\x86") + "\\");
+   #endif*/
+
+   return LoadLibrary(psz);
+
+}
+
+void * __node_library_raw_get(void * plibrary,const char * pszEntryName)
 {
 
-   if(m_bAutoClose)
-   {
-
-      close();
-
-   }
-
-   m_bAutoClose = bAutoClose;
-
-   m_plibrary = ::base::open_ca2_library(pszPath);
-
-   return m_plibrary != NULL;
+   return ::GetProcAddress((HINSTANCE)plibrary,pszEntryName);
 
 }
 

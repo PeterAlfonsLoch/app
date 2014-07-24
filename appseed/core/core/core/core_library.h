@@ -1,48 +1,12 @@
 #pragma once
 
 
-namespace user
-{
-
-
-   class view_creator_data;
-
-
-   namespace uinteraction
-   {
-
-
-      class interaction;
-
-
-   } // namespace uinteraction
-
-} // namespace user
-
-
-
-namespace dynamic_source
-{
-
-
-   class script;
-   class script_manager;
-
-
-} // namespace dynamic_source
-
-
-
-
-
 namespace core
 {
 
 
-
-
    class CLASS_DECL_CORE library:
-      virtual public ::bas::single_application_library < application >,
+      virtual public ::base::single_application_library < application >,
       virtual public ::filehandler::menu_library
    {
    public:
