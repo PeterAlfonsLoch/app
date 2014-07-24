@@ -48,10 +48,10 @@ namespace filemanager
 
    bool  frame::CreateBars()
    {
-      sp(document) pdoc = (GetActiveDocument());
+      sp(manager) pdoc = (GetActiveDocument());
 
       ASSERT(pdoc != NULL);
-      ASSERT(base_class <  document > ::bases(pdoc));
+      ASSERT(base_class <  manager > ::bases(pdoc));
 
       DestroyBars();
 
@@ -65,7 +65,7 @@ namespace filemanager
 
       //m_menuhook.Install(this);
 
-      //UINT uiMenuBar = pdoc->get_filemanager_data()->m_pschema->m_uiMenuBar;
+      //UINT uiMenuBar = pdoc->get_filemanager_template()->m_uiMenuBar;
 
       //  SetMenu(NULL);
 
@@ -86,7 +86,7 @@ namespace filemanager
          return false;      // fail to create
          }
          */
-      string strToolBar = pdoc->get_filemanager_data()->m_pschema->m_strToolBar;
+      string strToolBar = pdoc->get_filemanager_template()->m_strToolBar;
 
 
       if (strToolBar.is_empty())

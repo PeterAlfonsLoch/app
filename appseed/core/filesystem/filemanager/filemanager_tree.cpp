@@ -8,7 +8,7 @@ namespace filemanager
    tree::tree(sp(::base::application) papp) :
       element(papp),
       ::data::data(papp),
-      ::filemanager::data_interface(papp),
+      ::filemanager::impact(papp),
       ::userfs::tree(papp),
       m_mutexMissinUpdate(papp)
    {
@@ -350,10 +350,10 @@ namespace filemanager
 
       pitemParent = pitem;
 
-      if(GetFileManager() != NULL && GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge != NULL
-         && !(dynamic_cast < ::user::tree * > (GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge.m_p))->m_treeptra.contains(this))
+      if(get_filemanager_template() != NULL && get_filemanager_data()->m_ptreeFileTreeMerge != NULL
+         && !(dynamic_cast < ::user::tree * > (get_filemanager_data()->m_ptreeFileTreeMerge.m_p))->m_treeptra.contains(this))
       {
-         GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge->merge(this);
+         get_filemanager_data()->m_ptreeFileTreeMerge->merge(this);
       }
 
       sp(::userfs::item) pitemFolder = NULL;
@@ -431,7 +431,7 @@ namespace filemanager
 
          strPathOld.trim_right("/\\");
 
-         if(!straNew.contains(strPathOld) || !GetFileManager()->get_fs_data()->is_dir(strPathOld))
+         if(!straNew.contains(strPathOld) || !get_filemanager_template()->get_fs_data()->is_dir(strPathOld))
          {
             ptraRemove.add(pitem);
          }
@@ -725,7 +725,7 @@ namespace filemanager
    /*
    ::fs::item & tree::GetFileManagerItem()
    {
-   return GetFileManager()->get_item();
+   return get_filemanager_template()->get_item();
    }
    */
 
@@ -874,7 +874,7 @@ namespace filemanager
 
    bool tree::_001IsTranslucent()
    {
-      return GetFileManager()->get_filemanager_data()->m_bTransparentBackground;
+      return get_filemanager_data()->m_bTransparentBackground;
    }
 
    void tree::_001OnOpenItem(::data::tree_item * pitem, ::action::context actioncontext)
@@ -896,13 +896,13 @@ namespace filemanager
 
          System.os().resolve_link(strTarget, item->m_strPath);
 
-         GetFileManager()->FileManagerBrowse(strTarget,actioncontext);
+         get_filemanager_template()->FileManagerBrowse(strTarget,actioncontext);
 
       }
       else
       {
 
-         GetFileManager()->FileManagerBrowse(item,actioncontext);
+         get_filemanager_template()->FileManagerBrowse(item,actioncontext);
 
       }
 
@@ -1074,7 +1074,7 @@ namespace filemanager
 
       void tree::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
       {
-         data_interface::on_update(pSender, lHint, phint);
+         impact::on_update(pSender, lHint, phint);
          if (phint != NULL)
          {
             if (base_class < update_hint > ::bases(phint))
@@ -1084,24 +1084,24 @@ namespace filemanager
                {
                   /* xxx _001SetExpandImage(
                   System.LoadIcon(
-                  GetFileManager()->get_filemanager_data()->m_pschema->m_uiExpandBox));
+                  get_filemanager_template()->get_filemanager_template()->m_uiExpandBox));
                   _001SetCollapseImage(
                   System.LoadIcon(
-                  GetFileManager()->get_filemanager_data()->m_pschema->m_uiCollapseBox));*/
+                  get_filemanager_template()->get_filemanager_template()->m_uiCollapseBox));*/
 
 
                   //            VmsDataInitialize(this);
                   //          SetDataInterface(&m_datainterface);
                   //        AddClient(&m_datainterface);
                   string str;
-                  str.Format("tree(%s)", GetFileManager()->get_filemanager_data()->m_strDISection);
+                  str.Format("tree(%s)", get_filemanager_data()->m_strDISection);
 //                  m_dataid = str;
                   //            _001UpdateColumns();
 
                   if(m_treeptra.get_count() == 1)
                   {
 
-                     m_treeptra[0].m_etranslucency = GetFileManager()->get_filemanager_data()->m_bTransparentBackground ? ::user::interaction::TranslucencyPresent : ::user::interaction::TranslucencyNone;
+                     m_treeptra[0].m_etranslucency = get_filemanager_data()->m_bTransparentBackground ? ::user::interaction::TranslucencyPresent : ::user::interaction::TranslucencyNone;
                      m_treeptra[0].m_crDefaultBackgroundColor = get_background_color();
 
                   }
@@ -1155,7 +1155,7 @@ namespace filemanager
          ::fs::item_array itema;
          itema.add(item);
 
-         GetFileManager()->get_filemanager_data()->OnFileManagerOpenFile(itema);
+         get_filemanager_data()->OnFileManagerOpenFile(itema);
          }
          }*/
       }
@@ -1214,7 +1214,7 @@ namespace filemanager
          /*     if(_001HitTest_(ptClient, iItem))
          {
          CSimpleMenu menu(CBaseMenuCentral::GetMenuCentral());
-         if (menu.LoadMenu(GetFileManager()->get_filemanager_data()->m_pschema->m_uiFilePopup))
+         if (menu.LoadMenu(get_filemanager_template()->get_filemanager_template()->m_uiFilePopup))
          {
          CSimpleMenu* pPopup = (CSimpleMenu *) menu.GetSubMenu(0);
          ASSERT(pPopup != NULL);
@@ -1253,7 +1253,7 @@ namespace filemanager
          else
          {
          ::user::menu menu;
-         if (menu.LoadMenu(GetFileManager()->get_filemanager_data()->m_pschema->m_uiPopup))
+         if (menu.LoadMenu(get_filemanager_template()->get_filemanager_template()->m_uiPopup))
          {
          ::user::menu* pPopup = menu.GetSubMenu(0);
          ASSERT(pPopup != NULL);

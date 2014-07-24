@@ -2254,24 +2254,6 @@ namespace user
    }
 
 
-   COLORREF interaction_base::get_background_color()
-   {
-
-      throw interface_only_exception(get_app());
-
-      return 0;
-
-   }
-
-
-   void interaction_base::set_default_background_color(COLORREF crDefaultBackgroundColor)
-   {
-
-      throw interface_only_exception(get_app());
-
-   }
-
-
    void interaction_base::_001OnTriggerMouseInside()
    {
 

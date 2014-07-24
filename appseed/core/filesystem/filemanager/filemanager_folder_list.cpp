@@ -7,7 +7,7 @@ namespace filemanager
 
    folder_list::folder_list(sp(::base::application) papp) :
       element(papp),
-      ::filemanager::data_interface(papp),
+      ::filemanager::impact(papp),
       ::user::scroll_view(papp),
       ::user::list(papp),
       m_headerctrl(papp)
@@ -70,7 +70,7 @@ namespace filemanager
 
    void folder_list::on_update(sp(::user::impact) pSender, LPARAM lHint, object * phint) 
    {
-      data_interface::on_update(pSender, lHint, phint);  
+      impact::on_update(pSender, lHint, phint);  
       if(phint != NULL)
       {
          if(base_class < update_hint > :: bases(phint))
@@ -79,13 +79,13 @@ namespace filemanager
             if(puh->is_type_of(update_hint::TypeInitialize))
             {
                string str;
-               str.Format("folder_list(%s)", GetFileManager()->get_filemanager_data()->m_strDISection);
+               str.Format("folder_list(%s)", get_filemanager_data()->m_strDISection);
                m_dataid = str;
-               if(GetFileManager()->get_filemanager_data()->m_bPassBk)
+               if(get_filemanager_data()->m_bPassBk)
                {
                   ::user::list::m_bBackgroundBypass = true;
                }
-               else if(GetFileManager()->get_filemanager_data()->m_bTransparentBackground)
+               else if(get_filemanager_data()->m_bTransparentBackground)
                {
                   ::user::list::m_etranslucency = ::user::list::TranslucencyPresent;
                }
@@ -105,7 +105,7 @@ namespace filemanager
          index iItem;
       if(_001HitTest_(pmouse->m_pt, iItem))
       {
-         GetFileManager()->get_filemanager_data()->OnFileManagerOpenFolder(new::fs::item(m_foldera.GetFolder(iItem).m_strPath), ::action::source_user);
+         get_filemanager_data()->OnFileManagerOpenFolder(new::fs::item(m_foldera.GetFolder(iItem).m_strPath), ::action::source_user);
       }
    }
 
@@ -401,7 +401,7 @@ namespace filemanager
 
    ::fs::item & folder_list::GetFileManagerItem()
    {
-      return GetFileManager()->get_item();
+      return get_filemanager_template()->get_item();
    }
 
    ::count folder_list::_001GetItemCount()
@@ -412,7 +412,7 @@ namespace filemanager
    
    COLORREF folder_list::get_background_color()
    {
-      if (GetFileManager()->get_filemanager_data()->is_saving())
+      if (get_filemanager_data()->is_saving())
       {
          return RGB(255, 177, 84);
       }

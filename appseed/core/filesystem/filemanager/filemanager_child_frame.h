@@ -21,7 +21,7 @@ namespace filemanager
 
       void OnChangeEditSearch();
 
-      sp(manager) GetFileManager();
+      sp(manager) get_filemanager_template();
 
 
       void GetSelected(::fs::item_array &itema);

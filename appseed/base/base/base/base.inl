@@ -396,6 +396,13 @@ inline ::base::session & root::session()
 }
 
 
+inline ::core::platform & root::platform()
+{
+
+   return *m_pbaseapp->m_pcoreplatform;
+
+}
+
 
 
 

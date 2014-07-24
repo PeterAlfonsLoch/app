@@ -1,24 +1,36 @@
 #pragma once
 
 
-
-
-
 namespace filemanager
 {
-
-
-   class document;
 
 
    class CLASS_DECL_CORE file_list :
       virtual public ::user::impact,
       virtual public ::userfs::list,
-      virtual public data_interface
-
+      virtual public ::filemanager::impact
    {
    public:
-      class create_image_list_thread :
+
+
+      enum e_message
+      {
+
+         MessageMainPost = WM_USER + 23,
+
+      };
+
+
+      enum EMessageMainPost
+      {
+
+         MessageMainPostCreateImageListItemStepSetRedraw,
+         MessageMainPostCreateImageListItemRedraw,
+
+      };
+
+
+      class create_image_list_thread:
          public thread
       {
       public:
@@ -35,16 +47,6 @@ namespace filemanager
       };
 
 
-      enum e_message
-      {
-         MessageMainPost = WM_USER + 23,
-      };
-      enum EMessageMainPost
-      {
-         MessageMainPostCreateImageListItemStepSetRedraw,
-         MessageMainPostCreateImageListItemRedraw,
-      };
-
       class file_size
       {
       public:
@@ -59,12 +61,8 @@ namespace filemanager
       bool                             m_bShow;
       uint32_t                         m_dwLastFileSize;
 
-      
-
 
       file_list(sp(::base::application) papp);
-
-
 
       void schedule_file_size(const char * psz);
 

@@ -6,7 +6,7 @@ namespace filemanager
 
    preview::preview(sp(::base::application) papp) :
       element(papp),
-      ::filemanager::data_interface(papp)
+      ::filemanager::impact(papp)
    {
 
       }
@@ -23,7 +23,7 @@ namespace filemanager
 
    void preview::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
    {
-      data_interface::on_update(pSender, lHint, phint);
+      impact::on_update(pSender, lHint, phint);
       if (phint != NULL)
       {
          if (base_class < update_hint > ::bases(phint))
@@ -37,8 +37,8 @@ namespace filemanager
                            SetDataInterface(&m_datainterface);
                            AddClient(&m_datainterface);
                            string str;
-                           str.Format("file_list(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
-                           if(GetFileManager()->get_filemanager_data()->m_bTransparentBackground)
+                           str.Format("file_list(%d,%d)", get_filemanager_data()->m_iTemplate, get_filemanager_data()->m_iDocument);
+                           if(get_filemanager_data()->m_bTransparentBackground)
                            {
                            ::user::list::m_etranslucency = ::user::list::TranslucencyPresent;
                            }
@@ -52,7 +52,7 @@ namespace filemanager
                m_straPath.remove_all();
                m_straTitle.remove_all();
                m_iCurFile = 0;
-               GetFileManager()->get_fs_data()->ls(GetFileManagerItem().m_strPath, &m_straPath, &m_straTitle, &m_iaSize);
+               get_filemanager_template()->get_fs_data()->ls(GetFileManagerItem().m_strPath, &m_straPath, &m_straTitle, &m_iaSize);
             }
             else if (puh->is_type_of(update_hint::TypeFilter))
             {

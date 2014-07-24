@@ -20,6 +20,7 @@ namespace base
       ::base::session *                               m_pbasesession;
       ::application *                                 m_pplaneapp; // can be used only from core and upper
       ::plane::system *                               m_pplanesystem; // can be used only from core and upper
+      ::core::platform *                              m_pcoreplatform; // can be used only from core and upper
 
 
       application_interface();

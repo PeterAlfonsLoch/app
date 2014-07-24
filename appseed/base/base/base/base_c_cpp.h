@@ -199,6 +199,13 @@ namespace base
 } // namespace base
 
 
+// only usable from core and core dependants
+namespace core
+{
+
+   class platform;
+
+}
 
 
 namespace data

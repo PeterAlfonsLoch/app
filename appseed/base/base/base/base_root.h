@@ -37,7 +37,8 @@ public:
    virtual int64_t dec_ref();
    virtual int64_t release();
 
-   inline ::base::session & session();
+   inline ::base::session     & session();
+   inline ::core::platform    & platform();
 
 };
 

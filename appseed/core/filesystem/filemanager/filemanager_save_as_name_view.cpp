@@ -3,7 +3,7 @@
 
 FileManagerSaveAsView::FileManagerSaveAsView(sp(::base::application) papp) :
    element(papp),
-   ::filemanager::data_interface(papp),
+   ::filemanager::impact(papp),
    data::data_listener(papp),
    colorertake5::base_editor(papp),
    ::user::edit_plain_text_view(papp),
@@ -17,7 +17,7 @@ FileManagerSaveAsView::FileManagerSaveAsView(sp(::base::application) papp) :
 
 void FileManagerSaveAsView::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
 {
-   ::filemanager::data_interface::on_update(pSender, lHint, phint);
+   ::filemanager::impact::on_update(pSender, lHint, phint);
    if(phint != NULL)
    {
       if(base_class < filemanager::update_hint >::bases(phint))
@@ -26,14 +26,14 @@ void FileManagerSaveAsView::on_update(sp(::user::impact) pSender, LPARAM lHint, 
          if(puh->m_pview == this &&
             puh->is_type_of(filemanager::update_hint::TypeInitialize))
          {
-//            GetFileManager() = puh->GetFileManager();
+//            get_filemanager_manager() = puh->get_filemanager_manager();
 /*            m_pserverNext = simpledb::AppGet()->GetDataServer();
             AddClient(this);
             SetDataInterface(&m_datainterface);
             AddClient(&m_datainterface);
             string str;
-            str.Format("::filemanager::file_list(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
-            if(GetFileManager()->get_filemanager_data()->m_bTransparentBackground)
+            str.Format("::filemanager::file_list(%d,%d)", get_filemanager_data()->m_iTemplate, get_filemanager_data()->m_iDocument);
+            if(get_filemanager_data()->m_bTransparentBackground)
             {
                ::user::list::m_etranslucency = ::user::list::TranslucencyPresent;
             }
@@ -96,9 +96,9 @@ void FileManagerSaveAsView::_017Synchronize(::action::context actioncontext)
       return;
    string strText;
    _001GetText(strText);
-   if(strText != System.file().title_(GetFileManager()->get_filemanager_data()->m_pmanager->m_strTopic))
+   if(strText != System.file().title_(get_filemanager_data()->m_pmanager->m_strTopic))
    {
-      _001SetText(System.file().title_(GetFileManager()->get_filemanager_data()->m_pmanager->m_strTopic), actioncontext);
+      _001SetText(System.file().title_(get_filemanager_data()->m_pmanager->m_strTopic), actioncontext);
    }
 }
 
@@ -111,7 +111,7 @@ void FileManagerSaveAsView::_001OnAfterChangeText(::action::context actioncontex
 
    if(session().dir().is(str))
    {
-      GetFileManager()->FileManagerBrowse(str, ::action::source::sync(actioncontext));
+      get_filemanager_manager()->FileManagerBrowse(str, ::action::source::sync(actioncontext));
    }
    else if(str.find("/") >= 0 || str.find("\\") >= 0)
    {
@@ -121,9 +121,9 @@ void FileManagerSaveAsView::_001OnAfterChangeText(::action::context actioncontex
          strName = System.dir().name(strName);
          if(session().dir().is(strName))
          {
-            if(!System.file().path().is_equal(GetFileManager()->get_item().m_strPath, strName))
+            if(!System.file().path().is_equal(get_filemanager_manager()->get_item().m_strPath, strName))
             {
-               GetFileManager()->FileManagerBrowse(strName, ::action::source::sync(actioncontext));
+               get_filemanager_manager()->FileManagerBrowse(strName, ::action::source::sync(actioncontext));
             }
             break;
          }
@@ -132,10 +132,10 @@ void FileManagerSaveAsView::_001OnAfterChangeText(::action::context actioncontex
       }
    }
 
-   if(GetFileManager().is_set())
+   if(get_filemanager_manager().is_set())
    {
 
-      GetFileManager()->m_strTopic = str;
+      get_filemanager_manager()->m_strTopic = str;
 
    }
 

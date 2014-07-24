@@ -7,7 +7,7 @@ namespace filemanager
 
    tab_view::tab_view(sp(::base::application) papp) :
       element(papp),
-      ::filemanager::data_interface(papp),
+      ::filemanager::impact(papp),
       ::user::tab(papp),
       ::user::tab_view(papp),
       ::userex::pane_tab_view(papp),
@@ -47,7 +47,7 @@ namespace filemanager
    void tab_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
    {
 
-      data_interface::on_update(pSender, lHint, phint);
+      impact::on_update(pSender, lHint, phint);
 
       ::user::tab_view::on_update(pSender, lHint, phint);
 
@@ -82,7 +82,7 @@ namespace filemanager
 
                string str;
 
-               str.Format("frame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
+               str.Format("frame(%d,%d)", get_filemanager_data()->m_iTemplate, get_filemanager_data()->m_iDocument);
 
                sp(frame) pframe = ((::window_sp) GetParentFrame());
 
@@ -142,7 +142,7 @@ namespace filemanager
          sp(::create_context) createcontext(allocer());
          createcontext->m_bMakeVisible = false;
          createcontext->m_puiParent = pcreatordata->m_pholder;
-         sp(file_manager_form_document) pdoc = PlaneSession.filemanager().m_ptemplateForm->open_document_file(createcontext);
+         sp(file_manager_form_document) pdoc = Platform.filemanager().m_ptemplateForm->open_document_file(createcontext);
          if (pdoc == NULL)
             return;
          file_manager_form_view * pformview = pdoc->get_typed_view < file_manager_form_view >();
@@ -178,7 +178,7 @@ namespace filemanager
          createcontext->m_bMakeVisible = false;
          createcontext->m_puiParent = this;
          //throw not_implemented(get_app());
-         sp(file_manager_operation_document) pdoc = (PlaneSession.filemanager().m_ptemplateOperation->open_document_file(createcontext));
+         sp(file_manager_operation_document) pdoc = (Platform.filemanager().m_ptemplateOperation->open_document_file(createcontext));
          if (pdoc == NULL)
             return;
          sp(::user::impact) pview = pdoc->get_view(0);
@@ -193,7 +193,7 @@ namespace filemanager
          sp(::create_context) createcontext(allocer());
          createcontext->m_bMakeVisible = true;
          createcontext->m_puiParent = pcreatordata->m_pholder;
-         sp(document) pdoc = (PlaneSession.filemanager().std().m_pdoctemplateChild->open_document_file(createcontext));
+         sp(manager) pdoc = (Platform.filemanager().std().m_pdoctemplateChild->open_document_file(createcontext));
          sp(simple_frame_window) pwndTopLevel = NULL;
          if (pdoc != NULL)
             //if(false)
@@ -212,18 +212,18 @@ namespace filemanager
             pdoc->set_filemanager_data(pfilemanagerdata);
 
             pdoc->get_filemanager_data()->m_pmanager = pdoc;
-            pdoc->get_filemanager_data()->m_pmanagerMain = GetFileManager();
-            pdoc->get_filemanager_data()->m_pschema = &PlaneSession.filemanager().std();
-            pdoc->get_filemanager_data()->m_iTemplate = PlaneSession.filemanager().std().m_iTemplate;
-            pdoc->get_filemanager_data()->m_iDocument = PlaneSession.filemanager().std().m_iNextDocument++;
-            pdoc->get_filemanager_data()->m_pschema->m_strDISection.Format("filemanager(%d)", pdoc->get_filemanager_data()->m_iDocument);
+            pdoc->get_filemanager_data()->m_pmanagerMain = get_filemanager_template();
+            pdoc->get_filemanager_template() = &Platform.filemanager().std();
+            pdoc->get_filemanager_data()->m_iTemplate = Platform.filemanager().std().m_iTemplate;
+            pdoc->get_filemanager_data()->m_iDocument = Platform.filemanager().std().m_iNextDocument++;
+            pdoc->get_filemanager_template()->m_strDISection.Format("filemanager(%d)", pdoc->get_filemanager_data()->m_iDocument);
             pdoc->get_filemanager_data()->m_bFileSize = true;
 
-            if (GetFileManager()->get_filemanager_data() != NULL)
+            if (get_filemanager_data() != NULL)
             {
 
-               pdoc->get_filemanager_data()->m_pcallback = GetFileManager()->get_filemanager_data()->m_pcallback;
-               pdoc->get_filemanager_data()->m_bTransparentBackground = GetFileManager()->get_filemanager_data()->m_bTransparentBackground;
+               pdoc->get_filemanager_data()->m_pcallback = get_filemanager_data()->m_pcallback;
+               pdoc->get_filemanager_data()->m_bTransparentBackground = get_filemanager_data()->m_bTransparentBackground;
 
             }
 
@@ -256,7 +256,7 @@ namespace filemanager
 
             uh.set_type(update_hint::TypeSetManager);
             uh.m_pview = NULL;
-            uh.GetFileManager() = get_document();
+            uh.get_filemanager_template() = get_document();
             */
 
             ///pdoc->update_all_views(NULL, 0, &uh);

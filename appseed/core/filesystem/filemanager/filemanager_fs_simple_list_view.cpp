@@ -626,7 +626,7 @@ namespace filemanager
             _001OnUpdateItemCount(0);
 
             string str;
-            xml::document doc(get_app());
+            xml::manager doc(get_app());
             if(doc.load(lpszSource))
             {
                str  = doc.get_xml();

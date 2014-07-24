@@ -3,7 +3,7 @@
 
 class CLASS_DECL_CORE FileManagerSaveAsView :
    virtual public ::user::edit_plain_text_view,
-   virtual public ::filemanager::data_interface
+   virtual public ::filemanager::impact
 {
 public:
 

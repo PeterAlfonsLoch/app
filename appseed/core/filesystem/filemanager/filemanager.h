@@ -32,7 +32,7 @@ namespace filemanager
 
    class callback;
    class manager;
-   class document_manager;
+   class manager_template;
    class file_list;
    class folder_list;
    class document;
@@ -65,10 +65,9 @@ namespace filemanager
 #include "filemanager_item_action.h"
 #include "filemanager_manager.h"
 #include "filemanager_update_hint.h"
-#include "filemanager_data_interface.h"
+#include "filemanager_impact.h"
 #include "filemanager_file_list_callback.h"
-#include "filemanager_schema.h"
-#include "filemanager_document.h"
+#include "filemanager_manager_template.h"
 #include "filemanager_frame.h"
 #include "filemanager_main_frame.h"
 #include "filemanager_path_view.h"

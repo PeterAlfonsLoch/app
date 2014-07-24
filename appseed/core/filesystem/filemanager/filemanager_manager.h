@@ -11,9 +11,10 @@ namespace filemanager
    public:
 
 
-      ::critical_section      m_csItemIdListAbsolute;
-      sp(::fs::item)          m_item;
-      string                  m_strTopic;
+      sp(::filemanager::data)       m_spfilemanagerdata;
+      sp(::fs::item)                m_item;
+      ::critical_section            m_csItemIdListAbsolute;
+      string                        m_strTopic;
 
 
       manager(sp(::base::application) papp);
@@ -21,7 +22,10 @@ namespace filemanager
 
 
 
-      virtual data * get_filemanager_data() = 0;
+      virtual sp(::filemanager::data)              get_filemanager_data();
+      virtual sp(::filemanager::manager_template)  get_filemanager_template();
+
+
       ::critical_section * GetItemIdListCriticalSection();
       ::fs::item & get_item();
 
@@ -45,12 +49,6 @@ namespace filemanager
 
       string calc_key(::database::id & idSection, ::database::id & id, ::database::id & idIndex);
 
-      sp(::filemanager::data)       m_spfilemanagerdata;
-
-
-
-
-
       virtual void on_create(sp(::create_context) pcreatecontext);
 
 
@@ -60,15 +58,9 @@ namespace filemanager
       virtual bool on_simple_action(id id);
       virtual bool on_simple_update(cmd_ui * pcmdui);
 
-      virtual ::filemanager::data * get_filemanager_data();
-
-      virtual ::fs::data * get_fs_data();
-
       virtual bool on_new_document();
 
       virtual bool HandleDefaultFileManagerItemCmdMsg(::base::cmd_msg * pcmdmsg,::fs::item_array & itema);
-
-      virtual void GetActiveViewSelection(::fs::item_array & itema);
 
       void PopViews();
       void CreateViews();
@@ -84,18 +76,14 @@ namespace filemanager
       DECL_GEN_SIGNAL(_001OnUpdateEditPaste);
       DECL_GEN_SIGNAL(_001OnFileSaveAs);
       DECL_GEN_SIGNAL(_001OnUpdateFileSaveAs);
-      virtual void OnFileManagerBrowse(::action::context actioncontext);
-      virtual void OpenSelectionProperties();
 #ifdef DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
 #endif
 
-      virtual void FileManagerSaveAs(sp(::user::document) pdocument);
-
       bool set_filemanager_data(::filemanager::data * pdata);
 
-
+      virtual manager_template * get_manager_template();
 
    };
 

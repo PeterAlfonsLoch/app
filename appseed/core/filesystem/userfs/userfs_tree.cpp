@@ -58,23 +58,23 @@ namespace userfs
             filemanager::update_hint * puh = (filemanager::update_hint *)phint;
             if (puh->is_type_of(filemanager::update_hint::TypeInitialize))
             {
-               //if (GetFileManager()->get_filemanager_data()->m_bTransparentBackground)
+               //if (get_filemanager_template()->get_filemanager_data()->m_bTransparentBackground)
                //{
                //   ::user::tree::m_etranslucency = ::user::tree::TranslucencyPresent;
                //}
                /* xxx _001SetExpandImage(
                   System.LoadIcon(
-                  GetFileManager()->get_filemanager_data()->m_pschema->m_uiExpandBox));
+                  get_filemanager_template()->get_filemanager_data()->m_pschema->m_uiExpandBox));
                   _001SetCollapseImage(
                   System.LoadIcon(
-                  GetFileManager()->get_filemanager_data()->m_pschema->m_uiCollapseBox));*/
+                  get_filemanager_template()->get_filemanager_data()->m_pschema->m_uiCollapseBox));*/
 
 
                //            VmsDataInitialize(this);
                //          SetDataInterface(&m_datainterface);
                //        AddClient(&m_datainterface);
                /*               string str;
-                              str.Format("tree(%s)", GetFileManager()->get_filemanager_data()->m_strDISection);
+                              str.Format("tree(%s)", get_filemanager_template()->get_filemanager_data()->m_strDISection);
                               m_dataid = str;*/
                //            _001UpdateColumns();
             }
@@ -126,7 +126,7 @@ namespace userfs
          ::fs::item_array itema;
          itema.add(item);
 
-         GetFileManager()->get_filemanager_data()->OnFileManagerOpenFile(itema);
+         get_filemanager_template()->get_filemanager_data()->OnFileManagerOpenFile(itema);
          }
          }*/
    }
@@ -187,7 +187,7 @@ namespace userfs
       /*     if(_001HitTest_(ptClient, iItem))
          {
          CSimpleMenu menu(CBaseMenuCentral::GetMenuCentral());
-         if (menu.LoadMenu(GetFileManager()->get_filemanager_data()->m_pschema->m_uiFilePopup))
+         if (menu.LoadMenu(get_filemanager_template()->get_filemanager_data()->m_pschema->m_uiFilePopup))
          {
          CSimpleMenu* pPopup = (CSimpleMenu *) menu.GetSubMenu(0);
          ASSERT(pPopup != NULL);
@@ -226,7 +226,7 @@ namespace userfs
          else
          {
          ::user::menu menu;
-         if (menu.LoadMenu(GetFileManager()->get_filemanager_data()->m_pschema->m_uiPopup))
+         if (menu.LoadMenu(get_filemanager_template()->get_filemanager_data()->m_pschema->m_uiPopup))
          {
          ::user::menu* pPopup = menu.GetSubMenu(0);
          ASSERT(pPopup != NULL);
@@ -325,10 +325,10 @@ namespace userfs
       get_document()->set().root_ones(straRootPath, straRootTitle);
 
 
-      /*if(GetFileManager() != NULL && GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge != NULL
-      && !(dynamic_cast < usersp(::tree) > (GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge))->m_treeptra.contains(this))
+      /*if(get_filemanager_template() != NULL && get_filemanager_template()->get_filemanager_data()->m_ptreeFileTreeMerge != NULL
+      && !(dynamic_cast < usersp(::tree) > (get_filemanager_template()->get_filemanager_data()->m_ptreeFileTreeMerge))->m_treeptra.contains(this))
       {
-      GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge->merge(this);
+      get_filemanager_template()->get_filemanager_data()->m_ptreeFileTreeMerge->merge(this);
       }*/
 
       sp(::userfs::item) pitemFolder = NULL;
@@ -972,7 +972,7 @@ namespace userfs
       {
          return RGB(200, 255, 255);
       }
-      /*      else if(GetFileManager()->get_filemanager_data()->is_saving())
+      /*      else if(get_filemanager_template()->get_filemanager_data()->is_saving())
       {
       return RGB(255, 177, 84);
       }*/

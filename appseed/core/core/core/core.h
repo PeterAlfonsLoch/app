@@ -36,7 +36,19 @@ namespace user
 
    }
 
+
 } // namespace user
+
+
+namespace filemanager
+{
+
+
+   class manager;
+
+
+} // namespace filemanager
+
 
 
 #undef App
@@ -50,9 +62,15 @@ namespace user
 #undef Sys
 #define Sys(pbaseapp) (*pbaseapp->m_pplanesystem)
 
-#undef PlaneSess
-#define PlaneSess(pbaseapp) (*pbaseapp->m_pplaneapp->m_pbasesession->m_pplanesession)
-#define PlaneSession (PlaneSess(this->m_pbaseapp))
+
+inline ::core::platform & (::base::application * papp)
+{
+   
+   return *papp->m_coreplatform;
+
+}
+
+
 
 
 #if defined(WIN32) && !defined(VC6) && ! defined(VC71)

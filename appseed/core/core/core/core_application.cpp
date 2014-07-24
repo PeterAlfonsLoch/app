@@ -281,7 +281,7 @@ bool application::initialize1()
 
    if (!is_system())
    {
-      PlaneSession.register_bergedge_application(this);
+      Platform.register_bergedge_application(this);
    }
 
 
@@ -498,7 +498,7 @@ int32_t application::exit_instance()
    {
       if (!is_system())
       {
-         PlaneSession.unregister_bergedge_application(this);
+         Platform.unregister_bergedge_application(this);
       }
    }
    catch (...)
@@ -1728,9 +1728,9 @@ void application::on_file_open()
 bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::impact_system) ptemplate, sp(::user::document) pdocument)
 // if ptemplate==NULL => all document templates
 {
-   if (PlaneSession.m_pfilemanager != NULL)
+   if (Platform.m_pfilemanager != NULL)
    {
-      return PlaneSession.m_pfilemanager->do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
+      return Platform.m_pfilemanager->do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
    }
    ENSURE(m_pdocmanager != NULL);
    /*      return m_pdocmanager->do_prompt_file_name(fileName, nIDSTitle, lFlags,
@@ -3137,7 +3137,7 @@ bool application::initialize()
 
    if (!is_system())
    {
-      PlaneSession.register_bergedge_application(this);
+      Platform.register_bergedge_application(this);
    }
 
    xxdebug_box("register_bergedge_application ok", "register_bergedge_application ok", MB_ICONINFORMATION);
@@ -3518,7 +3518,7 @@ bool application::get_fs_size(int64_t & i64Size, const char * pszPath, bool & bP
 void application::set_title(const char * pszTitle)
 {
 
-   PlaneSession.set_app_title(m_strInstallType,m_strAppName,pszTitle);
+   Platform.set_app_title(m_strInstallType,m_strAppName,pszTitle);
 
 }
 
@@ -3864,7 +3864,7 @@ sp(::base::application) application::instantiate_application(const char * pszTyp
 
       }
 
-      papp = PlaneSession.get_new_app(this, pszType, strNewId);
+      papp = Platform.get_new_app(this, pszType, strNewId);
 
       if (papp == NULL)
          return NULL;

@@ -15,8 +15,8 @@ namespace filemanager
    public:
 
 
-      ::filemanager::schema *                        m_ptemplateStd;
-      ::filemanager::schema *                        m_ptemplateFs;
+      ::filemanager::manager_template *                        m_ptemplateStd;
+      ::filemanager::manager_template *                        m_ptemplateFs;
       sp(::user::multiple_document_template)     m_ptemplateForm;
       sp(::user::single_document_template)       m_ptemplateOperation;
 
@@ -33,8 +33,8 @@ namespace filemanager
       virtual void InitializeFileManager(const char * pszMatter);
       
       
-      inline ::filemanager::schema & std()     { return *m_ptemplateStd   ; }
-      inline ::filemanager::schema & fs()      { return *m_ptemplateFs    ; }
+      inline ::filemanager::manager_template & std()     { return *m_ptemplateStd   ; }
+      inline ::filemanager::manager_template & fs()      { return *m_ptemplateFs    ; }
 
 
       void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);

@@ -8,7 +8,7 @@ namespace filemanager
 
    path_view::path_view(sp(::base::application) papp) :
       element(papp),
-      ::filemanager::data_interface(papp),
+      ::filemanager::impact(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
       ::data::data_listener(papp),
@@ -24,7 +24,7 @@ namespace filemanager
    void path_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
    {
 
-      data_interface::on_update(pSender, lHint, phint);
+      impact::on_update(pSender, lHint, phint);
 
       if (phint != NULL)
       {
@@ -34,14 +34,14 @@ namespace filemanager
             if (puh->m_pview == this &&
                puh->is_type_of(update_hint::TypeInitialize))
             {
-               //            GetFileManager() = puh->GetFileManager();
+               //            get_filemanager_manager() = puh->get_filemanager_manager();
                /*            m_pserverNext = simpledb::AppGet()->GetDataServer();
                            AddClient(this);
                            SetDataInterface(&m_datainterface);
                            AddClient(&m_datainterface);
                            string str;
-                           str.Format("::filemanager::file_list(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
-                           if(GetFileManager()->get_filemanager_data()->m_bTransparentBackground)
+                           str.Format("::filemanager::file_list(%d,%d)", get_filemanager_data()->m_iTemplate, get_filemanager_data()->m_iDocument);
+                           if(get_filemanager_data()->m_bTransparentBackground)
                            {
                            ::user::list::m_etranslucency = ::user::list::TranslucencyPresent;
                            }
@@ -105,17 +105,17 @@ namespace filemanager
       if (m_bVoidSync)
          return;
 
-      if (GetFileManager() == NULL)
+      if (get_filemanager_manager() == NULL)
          return;
 
       string strOld;
 
       _001GetText(strOld);
 
-      if (strOld == GetFileManager()->get_item().m_strPath)
+      if (strOld == get_filemanager_manager()->get_item().m_strPath)
          return;
 
-      _001SetText(GetFileManager()->get_item().m_strPath, actioncontext);
+      _001SetText(get_filemanager_manager()->get_item().m_strPath, actioncontext);
 
    }
 
@@ -128,7 +128,7 @@ namespace filemanager
       string str;
       _001GetText(str);
 
-      sp(manager) pmanager = GetFileManager();
+      sp(manager) pmanager = get_filemanager_manager();
 
       if (pmanager == NULL)
          return;
@@ -138,11 +138,11 @@ namespace filemanager
       if (pfsdata->is_dir(str))
       {
 
-         string strPreviousPath = GetFileManager()->m_item->m_strPath;
+         string strPreviousPath = get_filemanager_manager()->m_item->m_strPath;
          if (strPreviousPath != str)
          {
 
-            GetFileManager()->FileManagerBrowse(str, ::action::source::sync(actioncontext));
+            get_filemanager_manager()->FileManagerBrowse(str, ::action::source::sync(actioncontext));
 
          }
 
@@ -153,12 +153,12 @@ namespace filemanager
          while (true)
          {
             strName = System.dir().name(strName);
-            if (GetFileManager()->get_fs_data()->is_dir(strName))
+            if (get_filemanager_manager()->get_fs_data()->is_dir(strName))
             {
-               if (!System.file().path().is_equal(GetFileManager()->get_item().m_strPath, strName))
+               if (!System.file().path().is_equal(get_filemanager_manager()->get_item().m_strPath, strName))
                {
                   keep < bool > keepVoidSync(&m_bVoidSync, true, false, true);
-                  GetFileManager()->FileManagerBrowse(strName, ::action::source::sync(actioncontext));
+                  get_filemanager_manager()->FileManagerBrowse(strName, ::action::source::sync(actioncontext));
                }
                break;
             }
@@ -167,8 +167,8 @@ namespace filemanager
          }
       }
 
-      GetFileManager()->get_filemanager_data()->m_pmanager->m_strTopic = str;
-      GetFileManager()->get_filemanager_data()->m_pmanagerMain->m_strTopic = str;
+      get_filemanager_data()->m_pmanager->m_strTopic = str;
+      get_filemanager_data()->m_pmanagerMain->m_strTopic = str;
 
 
    }

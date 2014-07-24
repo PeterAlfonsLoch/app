@@ -115,9 +115,9 @@ namespace plane
 
       initialize_bergedge_application_interface();
 
-      PlaneSession.filemanager().std().m_strLevelUp = "levelup";
+      Platform.filemanager().std().m_strLevelUp = "levelup";
 
-      if(PlaneSession.is_remote_session())
+      if(Platform.is_remote_session())
       {
          /*session().savings().save(::base::resource_display_bandwidth);
          session().savings().save(::base::resource_blur_background);
@@ -477,7 +477,7 @@ namespace plane
 
                   m_pappCurrent = papp;
 
-                  PlaneSession.m_pappCurrent = papp;
+                  Platform.m_pappCurrent = papp;
 
                   //pcreatecontext->m_spCommandLine->m_eventReady.wait();
 

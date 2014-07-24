@@ -6,13 +6,11 @@ namespace filemanager
 {
 
 
-   class CLASS_DECL_CORE document_manager :
+   class CLASS_DECL_CORE manager_template :
       virtual public ::object
    {
    public:
 
-
-      filemanager *              m_pfilemanager;
 
       int32_t                    m_iTemplate;
       int32_t                    m_iNextDocument;
@@ -45,15 +43,15 @@ namespace filemanager
       sp(::user::multiple_document_template) m_pdoctemplateChildList;
 
 
-      document_manager(filemanager * pfilemanager);
-      virtual ~document_manager();
+      manager_template(sp(::base::application) papp);
+      virtual ~manager_template();
 
 
-      sp(document) open(sp(::create_context) pcreatecontext = NULL, ::fs::data * pdata = NULL, data * pfilemanagerdata = NULL);
-      sp(document) open_child(bool bMakeVisible = true, bool bTransparentBackground = false, sp(::user::interaction) pwndParent = NULL, data * pfilemanagerdata = NULL);
-      sp(document) open_child_list(bool bMakeVisible = true, bool bTransparentBackground = false, sp(::user::interaction) pwndParent = NULL, data * pfilemanagerdata = NULL);
+      sp(manager) open(sp(::create_context) pcreatecontext = NULL, ::fs::data * pdata = NULL, data * pfilemanagerdata = NULL);
+      sp(manager) open_child(bool bMakeVisible = true,bool bTransparentBackground = false,sp(::user::interaction) pwndParent = NULL,data * pfilemanagerdata = NULL);
+      sp(manager) open_child_list(bool bMakeVisible = true,bool bTransparentBackground = false,sp(::user::interaction) pwndParent = NULL,data * pfilemanagerdata = NULL);
 
-      sp(document) create_new_document(callback * pinterface, sp(::create_context) pcreatecontext);
+      sp(manager) create_new_document(callback * pinterface,sp(::create_context) pcreatecontext);
 
 
 

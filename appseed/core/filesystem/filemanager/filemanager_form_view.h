@@ -3,7 +3,7 @@
 
 class CLASS_DECL_CORE file_manager_form_view :
    virtual public form_view,
-   virtual public ::filemanager::data_interface
+   virtual public ::filemanager::impact
 {
 public:
    file_manager_form_view(sp(::base::application) papp);

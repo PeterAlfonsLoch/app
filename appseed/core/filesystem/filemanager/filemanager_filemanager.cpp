@@ -71,14 +71,14 @@ namespace filemanager
    void filemanager::InitializeFileManager(const char * pszMatter)
    {
 
-      System.factory().creatable_small < document > ();
+      System.factory().creatable_small < manager > ();
       System.factory().creatable_small < child_frame > ();
       System.factory().creatable_small < a_view > ();
       System.factory().creatable_small < path_view > ();
       System.factory().creatable_small < FileManagerSaveAsView > ();
       System.factory().creatable_small < left_view > ();
       System.factory().creatable_small < main_view > ();
-      System.factory().creatable_small < document > ();
+      System.factory().creatable_small < manager > ();
       System.factory().creatable_small < file_list > ();
       System.factory().creatable_small < preview > ();
       System.factory().creatable_small < main_frame > ();
@@ -99,11 +99,11 @@ namespace filemanager
       System.factory().creatable_small < fs::simple::list_view > ();
 
 
-      m_ptemplateStd = new schema(this);
+      m_ptemplateStd = new manager_template(get_app());
       Application.userex()->shellimageset().initialize();
       m_ptemplateStd->Initialize(0, pszMatter);
 
-      m_ptemplateFs = new schema(this);
+      m_ptemplateFs = new manager_template(get_app());
       m_ptemplateFs->Initialize(0, string("fs.") + string(pszMatter));
 
       m_ptemplateForm = new ::user::multiple_document_template(
@@ -152,10 +152,10 @@ namespace filemanager
          ppanetabview->set_cur_tab_by_id("file_manager");
          ppanetabview->get_pane_by_id("file_manager")->m_bPermanent = false;
          ppanetabview->layout();
-         ppanetabview->get_filemanager_document()->FileManagerSaveAs(pdocument);
+         ppanetabview->get_filemanager_manager()->FileManagerSaveAs(pdocument);
          if(ppanetabview->GetParentFrame()->RunModalLoop() != "yes")
             return FALSE;
-         varFile = ppanetabview->get_filemanager_document()->get_filemanager_data()->m_pmanager->m_strTopic;
+         varFile = ppanetabview->get_filemanager_manager()->get_filemanager_data()->m_pmanager->m_strTopic;
          return TRUE;
       }
 
@@ -163,7 +163,7 @@ namespace filemanager
       UNREFERENCED_PARAMETER(lFlags);
       UNREFERENCED_PARAMETER(ptemplate);
       ASSERT(bOpenFileDialog == FALSE);
-      sp(document) pdoc =  (m_ptemplateStd->open());
+      sp(manager) pdoc =  (m_ptemplateStd->open());
       tab_view * pview = pdoc->get_typed_view < tab_view >();
 
 #ifdef WINDOWSEX
@@ -192,7 +192,7 @@ namespace filemanager
 
       string strId;
 
-      strId.Format("document(%s)", m_ptemplateStd->m_strDISection);
+      strId.Format("manager(%s)", m_ptemplateStd->m_strDISection);
 
       database::id dataid = strId;
 

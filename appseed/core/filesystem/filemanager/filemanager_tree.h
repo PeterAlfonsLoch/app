@@ -7,7 +7,7 @@ namespace filemanager
 
    class CLASS_DECL_CORE tree :
       virtual public ::userfs::tree,
-      virtual public ::filemanager::data_interface
+      virtual public ::filemanager::impact
    {
    public:
 

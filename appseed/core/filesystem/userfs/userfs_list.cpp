@@ -161,7 +161,7 @@ namespace userfs
       {
          ::fs::item item;
          item.m_strPath         = pdata->m_foldera.GetFolder(iItem).m_strPath;
-         GetFileManager()->get_filemanager_data()->OnFileManagerOpenFolder(item);
+         get_filemanager_template()->get_filemanager_data()->OnFileManagerOpenFolder(item);
       }*/
    }
 
@@ -646,7 +646,7 @@ namespace userfs
          return;
 
       /*      filemanager::file_list_callback * pcallback =
-      GetFileManager()->get_filemanager_data()->m_pschema->m_pfilelistcallback;
+      get_filemanager_template()->get_filemanager_data()->m_pschema->m_pfilelistcallback;
 
       sp(BaseButtonControl) pbutton =  (pcontrol);
       if(pcallback != NULL && pbutton != NULL)
@@ -660,7 +660,7 @@ namespace userfs
       UNREFERENCED_PARAMETER(pcontrol);
       //      list_data * pdata = get_fs_list_data();
       /* filemanager::file_list_callback * pcallback =
-      GetFileManager()->get_filemanager_data()->m_pschema->m_pfilelistcallback;
+      get_filemanager_template()->get_filemanager_data()->m_pschema->m_pfilelistcallback;
 
       if(pcallback != NULL)
       {
@@ -810,7 +810,7 @@ namespace userfs
 
    void list::_001InitializeFormPreData()
    {
-      /*      ::filemanager::data * pdata = GetFileManager()->get_filemanager_data();
+      /*      ::filemanager::data * pdata = get_filemanager_template()->get_filemanager_data();
       pdata->m_pcallback->OnFileManagerInitializeFormPreData(
       pdata,
       GetDlgCtrlId(),
@@ -877,7 +877,7 @@ namespace userfs
 
    COLORREF list::get_background_color()
    {
-      //if(GetFileManager() != NULL && GetFileManager()->get_filemanager_data()->is_saving())
+      //if(get_filemanager_template() != NULL && get_filemanager_template()->get_filemanager_data()->is_saving())
       {
          return RGB(255, 177, 84);
       }

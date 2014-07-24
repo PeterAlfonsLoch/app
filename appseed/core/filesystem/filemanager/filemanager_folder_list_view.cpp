@@ -3,14 +3,13 @@
 
 folder_list_view::folder_list_view(sp(::base::application) papp) :
    element(papp),
-   ::filemanager::data_interface(papp),
+   ::filemanager::impact(papp),
    ::user::scroll_view(papp),
    ::user::list(papp),
    ::user::form(papp),
    ::user::form_list(papp),
    simple_list_view(papp)
 {
-   ::user::list::m_etranslucency = ::user::list::TranslucencyPresent;
    m_bRecursive = true;
 }
 

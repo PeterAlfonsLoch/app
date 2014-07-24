@@ -9,6 +9,7 @@ namespace filemanager
       element(papp),
       ::data::data(papp)
    {
+
       m_iIconSize                = 16;
       m_bListText                = true;
       m_bListSelection           = true;
@@ -18,10 +19,12 @@ namespace filemanager
       m_pholderFileList          = NULL;
       m_ptreeFileTreeMerge       = NULL;
       m_pdocumentSave            = NULL;
-      m_pschema                  = NULL;
+      m_pmanagertemplate         = NULL;
       m_bSetBergedgeTopicFile    = false;
       m_bTransparentBackground   = true;
+
    }
+
 
    data::~data()
    {
@@ -81,7 +84,7 @@ namespace filemanager
       if(is_saving() && itema.get_count() == 1)
       {
 
-         sp(document) pdoc =  (m_pmanager);
+         sp(manager) pdoc =  (m_pmanager);
          update_hint uh;
          uh.m_pmanager = m_pmanager;
          uh.m_strPath = itema[0].m_strPath;
@@ -298,6 +301,18 @@ namespace filemanager
 
    }
 
+
+   sp(::filemanager::manager_template) data::get_filemanager_template()
+   {
+
+      return m_pmanagertemplate;
+
+   }
+
+
 } // namespace filemanager
+
+
+
 
 

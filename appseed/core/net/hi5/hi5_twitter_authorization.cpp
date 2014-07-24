@@ -160,10 +160,10 @@ namespace hi5
 
          }
 
-         if(&PlaneSession != NULL && PlaneSession.get_document() != NULL && PlaneSession.get_document()->get_bergedge_view() != NULL)
+         if(&Platform != NULL && Platform.get_document() != NULL && Platform.get_document()->get_bergedge_view() != NULL)
          {
 
-            PlaneSession.get_document()->get_bergedge_view()->ShowWindow(SW_SHOW);
+            Platform.get_document()->get_bergedge_view()->ShowWindow(SW_SHOW);
 
          }
          else

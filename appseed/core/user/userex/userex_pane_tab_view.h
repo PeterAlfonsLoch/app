@@ -1,16 +1,6 @@
 #pragma once
 
 
-namespace filemanager
-{
-
-
-   class document;
-
-
-} // namespace filemanager
-
-
 namespace userex
 {
 
@@ -46,9 +36,9 @@ namespace userex
 
       virtual void on_create_view(::user::view_creator_data * pcreatordata);
 
-      virtual sp(::filemanager::document) get_filemanager_document();
+      virtual sp(::filemanager::manager) get_filemanager_manager();
 
-      virtual sp(::filemanager::document) get_tabbed_filemanager_document();
+      virtual sp(::filemanager::manager) get_tabbed_filemanager_document();
 
       virtual void _001OnTabClose(int32_t iTab);
 

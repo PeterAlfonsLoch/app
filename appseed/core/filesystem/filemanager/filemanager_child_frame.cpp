@@ -26,12 +26,12 @@ namespace filemanager
 
    bool child_frame::CreateBars()
    {
-      sp(document) pdoc = (GetActiveDocument());
+      sp(manager) pdoc = (GetActiveDocument());
       if (pdoc == NULL)
          return false;
 
       ASSERT(pdoc != NULL);
-      ASSERT(base_class < document >::bases(pdoc));
+      ASSERT(base_class < manager >::bases(pdoc));
 
       DestroyBars();
 
@@ -39,31 +39,16 @@ namespace filemanager
 
       if (pdoc->get_filemanager_data()->is_saving())
       {
-         strToolBar = pdoc->get_filemanager_data()->m_pschema->m_strToolBarSave;
+         strToolBar = pdoc->get_filemanager_template()->m_strToolBarSave;
       }
       else
       {
-         strToolBar = pdoc->get_filemanager_data()->m_pschema->m_strToolBar;
+         strToolBar = pdoc->get_filemanager_template()->m_strToolBar;
       }
-
-      if (strToolBar.is_empty())
-      {
-         if (pdoc->get_filemanager_data()->is_saving())
-         {
-            strToolBar = pdoc->get_filemanager_data()->m_strToolBarSave;
-         }
-         else
-         {
-            strToolBar = pdoc->get_filemanager_data()->m_strToolBar;
-         }
-      }
-
 
       string str = session().file().as_string(session().dir().matter(strToolBar));
 
-
-      if (!m_toolbar.CreateEx(this) ||
-         !m_toolbar.LoadXmlToolBar(str))
+      if (!m_toolbar.CreateEx(this) || !m_toolbar.LoadXmlToolBar(str))
       {
          TRACE0("Failed to create toolbar\n");
          return false;      // fail to create
@@ -85,7 +70,7 @@ namespace filemanager
    bool child_frame::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
    {
 
-      //file_list_callback * pcallback = GetFileManager()->get_filemanager_data()->m_pschema->m_pfilelistcallback;
+      //file_list_callback * pcallback = get_filemanager_template()->get_filemanager_template()->m_pfilelistcallback;
       return simple_child_frame::_001OnCmdMsg(pcmdmsg);
    }
 
@@ -104,7 +89,7 @@ namespace filemanager
 
    }
 
-   sp(manager) child_frame::GetFileManager()
+   sp(manager) child_frame::get_filemanager_template()
    {
       return  GetActiveDocument();
    }

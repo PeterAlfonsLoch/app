@@ -17,7 +17,7 @@ namespace filemanager
       sp(manager)                         m_pmanager;
       sp(manager)                         m_pmanagerMain;
       callback *                          m_pcallback;
-      ::filemanager::document_manager *   m_pdocumentmanager;
+      ::filemanager::manager_template *   m_pmanagertemplate;
       bool                                m_bTransparentBackground;
       string                              m_strDISection;
       sp(::user::place_holder)            m_pholderFileList;
@@ -61,6 +61,8 @@ namespace filemanager
       virtual ::draw2d::font_sp        get_font();
       virtual ::user::ETranslucency    _001GetTranslucency();
 
+
+      virtual sp(::filemanager::manager_template) get_filemanager_template();
 
    };
 

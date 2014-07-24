@@ -7,7 +7,7 @@ namespace filemanager
 
    a_view::a_view(sp(::base::application) papp) :
       element(papp),
-      ::filemanager::data_interface(papp),
+      ::filemanager::impact(papp),
       ::user::split_layout(papp),
       ::user::split_view(papp),
       place_holder_container(papp)
@@ -34,28 +34,24 @@ namespace filemanager
 
    void a_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
    {
-      data_interface::on_update(pSender, lHint, phint);
+      impact::on_update(pSender, lHint, phint);
       ::user::split_view::on_update(pSender, lHint, phint);
       if (phint != NULL)
       {
          if (base_class < update_hint >::bases(phint))
          {
             update_hint * puh = (update_hint *)phint;
-            if (GetFileManager() == puh->m_pmanager)
+            if (get_filemanager_template() == puh->m_pmanager)
             {
                if (puh->is_type_of(update_hint::TypeInitialize))
                {
                   string str;
-                  str.Format("::frame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
+                  str.Format("::frame(%d,%d)", get_filemanager_data()->m_iTemplate, get_filemanager_data()->m_iDocument);
                   sp(frame) pframe = ((::window_sp) GetParentFrame());
                   if (pframe != NULL)
                   {
                      pframe->m_dataid = str;
                   }
-
-                  m_etranslucency = GetFileManager()->get_filemanager_data()->m_bTransparentBackground ? ::user::interaction::TranslucencyPresent : ::user::interaction::TranslucencyNone;
-
-                  set_default_background_color(ARGB(184,184,184,177));
 
                }
                else if (puh->is_type_of(update_hint::TypePop))
@@ -117,16 +113,16 @@ namespace filemanager
                      {
                         System.simple_message_box(NULL, "Could not create folder tree ::user::impact");
                      }
-                     ptopview->m_pfilemanagerinterface = GetFileManager();
+                     ptopview->m_pfilemanagerinterface = get_filemanager_template();
                      InsertPaneAt(0, ptopview, true);
                      string strName =
-                        System.file().title_(GetFileManager()->get_filemanager_data()->m_pdocumentSave->get_path_name())
+                        System.file().title_(get_filemanager_data()->m_pdocumentSave->get_path_name())
                         + " - " + System.datetime().international().get_gmt_date_time()
-                        + "." + System.file().extension(GetFileManager()->get_filemanager_data()->m_pdocumentSave->get_path_name());
+                        + "." + System.file().extension(get_filemanager_data()->m_pdocumentSave->get_path_name());
                      strName.replace(":", "-");
-                     strName = System.dir().path(GetFileManager()->get_item().m_strPath, strName);
+                     strName = System.dir().path(get_filemanager_template()->get_item().m_strPath, strName);
                      ptopview->_001SetText(strName, puh->m_actioncontext);
-                     GetFileManager()->get_filemanager_data()->m_pmanager->m_strTopic = strName;
+                     get_filemanager_data()->m_pmanager->m_strTopic = strName;
                      set_position(0, 49);
                      set_position(1, 49 + 49);
                      layout();
@@ -143,7 +139,7 @@ namespace filemanager
                }
                else if (puh->is_type_of(update_hint::TypeSaveAsOK))
                {
-                  ASSERT(GetFileManager()->get_filemanager_data()->m_pdocumentSave != NULL);
+                  ASSERT(get_filemanager_data()->m_pdocumentSave != NULL);
 
                   string strPath = puh->m_strPath;
                   if (strPath.is_empty())
@@ -154,17 +150,17 @@ namespace filemanager
                      {
                         strPath = strTitle;
                      }
-                     else if (GetFileManagerDoc()->get_fs_data()->is_dir(GetFileManager()->get_item().m_strPath))
+                     else if (GetFileManagerDoc()->get_fs_data()->is_dir(get_filemanager_template()->get_item().m_strPath))
                      {
-                        strPath = System.dir().path(GetFileManager()->get_item().m_strPath, strTitle);
+                        strPath = System.dir().path(get_filemanager_template()->get_item().m_strPath, strTitle);
                      }
                      else if (strTitle.has_char())
                      {
-                        strPath = System.dir().path(GetFileManager()->get_item().m_strPath, strTitle);
+                        strPath = System.dir().path(get_filemanager_template()->get_item().m_strPath, strTitle);
                      }
                      else
                      {
-                        strPath = GetFileManager()->get_item().m_strPath;
+                        strPath = get_filemanager_template()->get_item().m_strPath;
                      }
                   }
 
@@ -172,7 +168,7 @@ namespace filemanager
 
                   if (bSave && GetFileManagerDoc()->get_fs_data()->file_exists(strPath))
                   {
-                     if (System.simple_message_box(PlaneSession.get_view(), "Do you want to replace the existing file " + strPath + "?", MB_YESNO) == IDNO)
+                     if (System.simple_message_box(Platform.get_view(), "Do you want to replace the existing file " + strPath + "?", MB_YESNO) == IDNO)
                      {
                         bSave = false;
                      }
@@ -182,7 +178,7 @@ namespace filemanager
 
                   if (bSave)
                   {
-                     if (GetFileManager()->get_filemanager_data()->m_pdocumentSave->do_save(strPath))
+                     if (get_filemanager_data()->m_pdocumentSave->do_save(strPath))
                      {
                         uh.set_type(update_hint::TypeSaveAsSaved);
                         uh.m_strPath = strPath;
@@ -198,7 +194,7 @@ namespace filemanager
                   }
                   get_document()->update_all_views(NULL, 0, &uh);
 
-                  GetFileManager()->get_filemanager_data()->m_pdocumentSave = NULL;
+                  get_filemanager_data()->m_pdocumentSave = NULL;
 
                   if (base_class < FileManagerSaveAsView >::bases(get_pane_window(0)))
                   {
@@ -261,7 +257,7 @@ namespace filemanager
 
    main_view::main_view(sp(::base::application) papp) :
       element(papp),
-      ::filemanager::data_interface(papp),
+      ::filemanager::impact(papp),
       ::user::split_layout(papp),
       ::user::split_view(papp),
       place_holder_container(papp)
@@ -303,26 +299,26 @@ namespace filemanager
 
    void main_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
    {
-      data_interface::on_update(pSender, lHint, phint);
+      impact::on_update(pSender, lHint, phint);
       ::user::split_view::on_update(pSender, lHint, phint);
       if (phint != NULL)
       {
          if (base_class < update_hint >::bases(phint))
          {
             update_hint * puh = (update_hint *)phint;
-            if (GetFileManager() == puh->m_pmanager)
+            if (get_filemanager_template() == puh->m_pmanager)
             {
                if (puh->is_type_of(update_hint::TypeInitialize))
                {
                   string str;
-                  str.Format("::frame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
+                  str.Format("::frame(%d,%d)", get_filemanager_data()->m_iTemplate, get_filemanager_data()->m_iDocument);
                   sp(frame) pframe = ((::window_sp) GetParentFrame());
                   if (pframe != NULL)
                   {
                      pframe->m_dataid = str;
                   }
 
-                  m_etranslucency = GetFileManager()->get_filemanager_data()->m_bTransparentBackground ? ::user::interaction::TranslucencyPresent : ::user::interaction::TranslucencyNone;
+                  m_etranslucency = get_filemanager_data()->m_bTransparentBackground ? ::user::interaction::TranslucencyPresent : ::user::interaction::TranslucencyNone;
 
                   set_default_background_color(ARGB(184,184,184,177));
 

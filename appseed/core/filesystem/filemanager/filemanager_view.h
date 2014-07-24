@@ -13,7 +13,7 @@ namespace filemanager
 
    class CLASS_DECL_CORE a_view :
       virtual public ::user::split_view,
-      virtual public data_interface
+      virtual public impact
    {
    public:
 
@@ -37,7 +37,7 @@ namespace filemanager
 
    class CLASS_DECL_CORE main_view :
       virtual public ::user::split_view,
-      virtual public data_interface
+      virtual public impact
    {
    public:
 

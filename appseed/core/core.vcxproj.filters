@@ -929,9 +929,6 @@
     <ClInclude Include="filesystem\filemanager\filemanager_const.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\filemanager_document.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_filemanager.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
@@ -1859,9 +1856,6 @@
     <ClInclude Include="filesystem\filemanager\filemanager_tree.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\filemanager_data_interface.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_update_hint.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
@@ -2456,7 +2450,10 @@
     <ClInclude Include="math\calculator\datetime_parser_exception.h">
       <Filter>Header Files\math\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\filemanager_document_manager.h">
+    <ClInclude Include="filesystem\filemanager\filemanager_manager_template.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
   </ItemGroup>
@@ -2862,9 +2859,6 @@
     </ClCompile>
     <ClCompile Include="graphics\visual\visual_api.cpp">
       <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_document.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_filemanager.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
@@ -3571,9 +3565,6 @@
     <ClCompile Include="filesystem\filemanager\filemanager_tab_view.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_data_interface.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_update_hint.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
@@ -4027,7 +4018,10 @@
     <ClCompile Include="math\calculator\numeric_parser_exception.cpp">
       <Filter>Source Files\math\calculator</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_document_manager.cpp">
+    <ClCompile Include="filesystem\filemanager\filemanager_manager_template.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
   </ItemGroup>

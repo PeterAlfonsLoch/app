@@ -7,7 +7,7 @@ namespace filemanager
 
    class CLASS_DECL_CORE path_view :
       virtual public ::user::edit_plain_text_view,
-      virtual public  data_interface
+      virtual public  impact
    {
    public:
 

@@ -32,20 +32,20 @@ namespace filemanager
    bool main_frame::CreateBars()
    {
       
-      sp(document) pdoc = (GetActiveDocument());
+      sp(manager) pdoc = (GetActiveDocument());
 
       ASSERT(pdoc != NULL);
-      ASSERT(base_class < document >::bases(pdoc));
+      ASSERT(base_class < manager >::bases(pdoc));
 
       string strToolBar;
 
       if (pdoc->get_filemanager_data()->is_saving())
       {
-         strToolBar = pdoc->get_filemanager_data()->m_pschema->m_strToolBarSave;
+         strToolBar = pdoc->get_filemanager_template()->m_strToolBarSave;
       }
       else
       {
-         strToolBar = pdoc->get_filemanager_data()->m_pschema->m_strToolBar;
+         strToolBar = pdoc->get_filemanager_template()->m_strToolBar;
       }
 
       if (strToolBar.is_empty())

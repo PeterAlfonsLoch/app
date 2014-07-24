@@ -7,7 +7,7 @@ namespace filemanager
 
    file_list::file_list(sp(::base::application) papp) :
       element(papp),
-      ::filemanager::data_interface(papp),
+      ::filemanager::impact(papp),
       ::user::interaction(papp),
       ::user::form(papp),
       ::user::form_list(papp),
@@ -85,7 +85,7 @@ namespace filemanager
    void file_list::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
    {
 
-      ::filemanager::data_interface::on_update(pSender, lHint, phint);
+      ::filemanager::impact::on_update(pSender, lHint, phint);
 
       ::userfs::list::on_update(pSender, lHint, phint);
 
@@ -94,21 +94,21 @@ namespace filemanager
 
          stringa stra;
 
-         GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_pschema->m_dataidStatic, ::base::system::idEmpty, stra);
+         get_filemanager_template()->data_get(get_filemanager_template()->get_filemanager_template()->m_dataidStatic, ::base::system::idEmpty, stra);
 
-         string strPath = GetFileManager()->get_item().m_strPath;
+         string strPath = get_filemanager_template()->get_item().m_strPath;
 
          strPath.trim();
 
-         if(strPath.has_char() && GetFileManager()->get_fs_data()->is_dir(strPath))
+         if(strPath.has_char() && get_filemanager_template()->get_fs_data()->is_dir(strPath))
          {
 
             if(stra.add_unique(strPath) >= 0)
             {
 
-               GetFileManager()->data_set(GetFileManager()->get_filemanager_data()->m_pschema->m_dataidStatic, ::base::system::idEmpty, stra);
+               get_filemanager_template()->data_set(get_filemanager_template()->get_filemanager_template()->m_dataidStatic, ::base::system::idEmpty, stra);
 
-               add_item(GetFileManager()->get_item().m_strPath, System.file().name_(GetFileManager()->get_item().m_strPath));
+               add_item(get_filemanager_template()->get_item().m_strPath, System.file().name_(get_filemanager_template()->get_item().m_strPath));
             
                _001OnUpdateItemCount();
 
@@ -143,12 +143,12 @@ namespace filemanager
                if(pcentral == NULL)
                   return;
                string str;
-               str.Format("file_list(%s)", GetFileManager()->get_filemanager_data()->m_strDISection);
-               if(GetFileManager()->get_filemanager_data()->m_bPassBk)
+               str.Format("file_list(%s)", get_filemanager_data()->m_strDISection);
+               if(get_filemanager_data()->m_bPassBk)
                {
                   ::user::list::m_bBackgroundBypass = true;
                }
-               else if(GetFileManager()->get_filemanager_data()->m_bTransparentBackground)
+               else if(get_filemanager_data()->m_bTransparentBackground)
                {
                   ::user::list::m_etranslucency = ::user::list::TranslucencyPresent;
                }
@@ -159,21 +159,21 @@ namespace filemanager
             }
             else if(!m_bStatic && puh->is_type_of(update_hint::TypeSynchronizePath))
             {
-               if(GetFileManager()->get_filemanager_data()->m_pholderFileList != NULL)
+               if(get_filemanager_data()->m_pholderFileList != NULL)
                {
-                  if(GetFileManager()->get_filemanager_data()->m_pholderFileList->m_uiptraHold.get_size() > 0)
+                  if(get_filemanager_data()->m_pholderFileList->m_uiptraHold.get_size() > 0)
                   {
-                     GetFileManager()->get_filemanager_data()->m_pholderFileList->m_uiptraHold[0].ShowWindow(SW_HIDE);
+                     get_filemanager_data()->m_pholderFileList->m_uiptraHold[0].ShowWindow(SW_HIDE);
                   }
-                  GetFileManager()->get_filemanager_data()->m_pholderFileList->hold(this);
-                  GetFileManager()->get_filemanager_data()->m_pholderFileList->layout();
+                  get_filemanager_data()->m_pholderFileList->hold(this);
+                  get_filemanager_data()->m_pholderFileList->layout();
                }
                _017PreSynchronize(::action::source::sync(puh->m_actioncontext));
                _017Synchronize(::action::source::sync(puh->m_actioncontext));
                data_get_DisplayToStrict();
                _001OnUpdateItemCount();
                /*string str;
-               if(data_get("sort-" + GetFileManager()->get_item().m_strPath, ::base::system::idEmpty, str))
+               if(data_get("sort-" + get_filemanager_template()->get_item().m_strPath, ::base::system::idEmpty, str))
                {
                   stringa stra;
                   stra.add_tokens(str, ";", true);
@@ -336,7 +336,7 @@ namespace filemanager
          if(get_fs_list_data()->m_itema.get_item(iItem).IsFolder())
          {
             _017OpenContextMenuFolder(new ::fs::item(get_fs_list_data()->m_itema.get_item(iItem)), ::action::source_user);
-            /*if (menu.LoadXmlMenu(GetFileManager()->get_filemanager_data()->m_pschema->m_strFolderPopup))
+            /*if (menu.LoadXmlMenu(get_filemanager_template()->get_filemanager_template()->m_strFolderPopup))
             {
                ::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
                //SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
@@ -352,7 +352,7 @@ namespace filemanager
          else
          {
 
-            track_popup_xml_matter_menu(GetFileManager()->get_filemanager_data()->m_pschema->m_strFilePopup, 0, pobj);
+            track_popup_xml_matter_menu(get_filemanager_template()->get_filemanager_template()->m_strFilePopup, 0, pobj);
 
          }
 
@@ -360,7 +360,7 @@ namespace filemanager
       else
       {
 
-         track_popup_xml_matter_menu(GetFileManager()->get_filemanager_data()->m_pschema->m_strPopup, 0, pobj);
+         track_popup_xml_matter_menu(get_filemanager_template()->get_filemanager_template()->m_strPopup, 0, pobj);
 
       }
 
@@ -447,21 +447,21 @@ namespace filemanager
 
       if(ptimer->m_nIDEvent == 888888)
       {
-         if(GetFileManager()->get_filemanager_data()->m_bSetBergedgeTopicFile)
+         if(get_filemanager_data()->m_bSetBergedgeTopicFile)
          {
             stringa stra;
             GetSelectedFilePath(stra);
             if(stra.get_count() <= 0)
             {
-               PlaneSession.m_varTopicFile.unset();
+               Platform.m_varTopicFile.unset();
             }
             else if(stra.get_count() == 1)
             {
-               PlaneSession.m_varTopicFile = stra[0];
+               Platform.m_varTopicFile = stra[0];
             }
             else
             {
-               PlaneSession.m_varTopicFile = stra;
+               Platform.m_varTopicFile = stra;
             }
 
          }
@@ -512,7 +512,7 @@ namespace filemanager
             itema.add(new  ::fs::item  (get_fs_list_data()->m_itema.get_item(iItem)));
          }
       }
-      GetFileManager()->get_filemanager_data()->OnFileManagerItemCommand(
+      get_filemanager_data()->OnFileManagerItemCommand(
          pcommand->m_id,
          itema);
    }
@@ -534,7 +534,7 @@ namespace filemanager
             itema.add(new  ::fs::item  (get_fs_list_data()->m_itema.get_item(iItem)));
          }
       }
-      GetFileManager()->get_filemanager_data()->OnFileManagerItemUpdate(
+      get_filemanager_data()->OnFileManagerItemUpdate(
          pupdatecmdui->m_pcmdui,
          itema);
       pobj->m_bRet = true;
@@ -547,7 +547,7 @@ namespace filemanager
       
       stringa straCommandTitle;
       
-      GetFileManager()->get_filemanager_data()->OnFileManagerOpenContextMenuFolder(item, straCommand, straCommandTitle, actioncontext);
+      get_filemanager_data()->OnFileManagerOpenContextMenuFolder(item, straCommand, straCommandTitle, actioncontext);
       
       if(straCommand.get_size() > 0)
       {
@@ -572,7 +572,7 @@ namespace filemanager
    void file_list::_017OpenContextMenuFile(const ::fs::item_array & itema, ::action::context actioncontext)
    {
 
-      GetFileManager()->get_filemanager_data()->OnFileManagerOpenContextMenuFile(itema, actioncontext);
+      get_filemanager_data()->OnFileManagerOpenContextMenuFile(itema, actioncontext);
 
    }
 
@@ -580,7 +580,7 @@ namespace filemanager
    void file_list::_017OpenContextMenu(::action::context actioncontext)
    {
 
-      GetFileManager()->get_filemanager_data()->OnFileManagerOpenContextMenu(actioncontext);
+      get_filemanager_data()->OnFileManagerOpenContextMenu(actioncontext);
 
    }
 
@@ -588,7 +588,7 @@ namespace filemanager
    void file_list::_017OpenFolder(sp(::fs::item) item, ::action::context actioncontext)
    {
 
-      GetFileManager()->FileManagerBrowse(item, actioncontext);
+      get_filemanager_template()->FileManagerBrowse(item, actioncontext);
 
    }
 
@@ -596,7 +596,7 @@ namespace filemanager
    void file_list::_017OpenFile(const ::fs::item_array &itema, ::action::context actioncontext)
    {
 
-      GetFileManager()->get_filemanager_data()->OnFileManagerOpenFile(itema, actioncontext);
+      get_filemanager_data()->OnFileManagerOpenFile(itema, actioncontext);
 
    }
 
@@ -1049,7 +1049,7 @@ namespace filemanager
 
    id file_list::data_get_current_list_layout_id()
    {
-      return GetFileManager()->get_item().m_strPath;
+      return get_filemanager_template()->get_item().m_strPath;
    }
 
 
@@ -1296,7 +1296,7 @@ namespace filemanager
       class user::control::descriptor control;
 
 
-      if (GetFileManager()->get_filemanager_data()->m_bIconView)
+      if (get_filemanager_data()->m_bIconView)
       {
          m_eview = ViewIcon;
       }
@@ -1306,7 +1306,7 @@ namespace filemanager
       int32_t iCount = 0;
 
       file_list_callback * pcallback =
-         GetFileManager()->get_filemanager_data()->m_pschema->m_pfilelistcallback;
+         get_filemanager_template()->get_filemanager_template()->m_pfilelistcallback;
 
       if (pcallback != NULL)
       {
@@ -1333,17 +1333,17 @@ namespace filemanager
       }
 
 
-      if (GetFileManager()->get_filemanager_data()->m_bListSelection)
+      if (get_filemanager_data()->m_bListSelection)
       {
-         column.m_iWidth = GetFileManager()->get_filemanager_data()->m_iIconSize;
+         column.m_iWidth = get_filemanager_data()->m_iIconSize;
          column.m_iSubItem = i;
          //column.m_bIcon                = true;
-         column.m_sizeIcon.cx = GetFileManager()->get_filemanager_data()->m_iIconSize;
-         column.m_sizeIcon.cy = GetFileManager()->get_filemanager_data()->m_iIconSize;
+         column.m_sizeIcon.cx = get_filemanager_data()->m_iIconSize;
+         column.m_sizeIcon.cy = get_filemanager_data()->m_iIconSize;
          column.m_iControl = -1;
          column.m_datakey = "FILE_MANAGER_ID_FILE_NAME";
          column.m_bEditOnSecondClick = false;
-         if (GetFileManager()->get_filemanager_data()->m_iIconSize >= 48)
+         if (get_filemanager_data()->m_iIconSize >= 48)
          {
             column.m_pil = System.userex()->shellimageset().GetImageList48();
          }
@@ -1376,7 +1376,7 @@ namespace filemanager
 
       column.m_iSubItem = i;
       m_iNameSubItem = i;
-      if (GetFileManager()->get_filemanager_data()->m_bListText)
+      if (get_filemanager_data()->m_bListText)
       {
          m_iNameSubItemText = i;
          column.m_iWidth = 500;
@@ -1384,16 +1384,16 @@ namespace filemanager
       else
       {
          m_iNameSubItemText = -1;
-         column.m_iWidth = GetFileManager()->get_filemanager_data()->m_iIconSize;
+         column.m_iWidth = get_filemanager_data()->m_iIconSize;
       }
       get_fs_list_data()->m_iNameSubItemText = m_iNameSubItemText;
       //column.m_bIcon                = true;
-      column.m_sizeIcon.cx = GetFileManager()->get_filemanager_data()->m_iIconSize;
-      column.m_sizeIcon.cy = GetFileManager()->get_filemanager_data()->m_iIconSize;
+      column.m_sizeIcon.cx = get_filemanager_data()->m_iIconSize;
+      column.m_sizeIcon.cy = get_filemanager_data()->m_iIconSize;
       column.m_iControl = iControl;
       column.m_datakey = "FILE_MANAGER_ID_FILE_NAME";
       column.m_bEditOnSecondClick = true;
-      if (GetFileManager()->get_filemanager_data()->m_iIconSize >= 48)
+      if (get_filemanager_data()->m_iIconSize >= 48)
       {
          column.m_pilHover = System.userex()->shellimageset().GetImageList48Hover();
          column.m_pil = System.userex()->shellimageset().GetImageList48();
@@ -1406,7 +1406,7 @@ namespace filemanager
 
       i++;
 
-      if (GetFileManager()->get_filemanager_data()->m_bFileSize)
+      if (get_filemanager_data()->m_bFileSize)
       {
          // file/directory size
          column.m_iWidth = 100;
@@ -1564,7 +1564,7 @@ namespace filemanager
 
          stringa stra;
 
-         GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_pschema->m_dataidStatic, ::base::system::idEmpty, stra);
+         get_filemanager_template()->data_get(get_filemanager_template()->get_filemanager_template()->m_dataidStatic, ::base::system::idEmpty, stra);
 
          for (int32_t i = 0; i < stra.get_size(); i++)
          {
@@ -1597,7 +1597,7 @@ namespace filemanager
 
       }
 
-      if (GetFileManager()->get_filemanager_data()->m_bSetBergedgeTopicFile)
+      if (get_filemanager_data()->m_bSetBergedgeTopicFile)
       {
          SetTimer(888888, 230, NULL);
       }
@@ -1667,7 +1667,7 @@ namespace filemanager
 
    ::fs::item & file_list::GetFileManagerItem()
    {
-      return GetFileManager()->get_item();
+      return get_filemanager_template()->get_item();
    }
 
    void file_list::_017Synchronize(::action::context actioncontext)
@@ -1843,7 +1843,7 @@ namespace filemanager
          return;
 
       file_list_callback * pcallback =
-         GetFileManager()->get_filemanager_data()->m_pschema->m_pfilelistcallback;
+         get_filemanager_template()->get_filemanager_template()->m_pfilelistcallback;
 
       sp(BaseButtonControl) pbutton = (pcontrol);
       if (pcallback != NULL && pbutton != NULL)
@@ -1856,7 +1856,7 @@ namespace filemanager
       sp(::user::control) pcontrol)
    {
       file_list_callback * pcallback =
-         GetFileManager()->get_filemanager_data()->m_pschema->m_pfilelistcallback;
+         get_filemanager_template()->get_filemanager_template()->m_pfilelistcallback;
 
       if (pcallback != NULL)
       {
@@ -2002,7 +2002,7 @@ namespace filemanager
 
    void file_list::_001InitializeFormPreData()
    {
-      ::filemanager::data * pdata = GetFileManager()->get_filemanager_data();
+      ::filemanager::data * pdata = get_filemanager_data();
       pdata->m_pcallback->OnFileManagerInitializeFormPreData(pdata, GetDlgCtrlId(), this);
    }
 
@@ -2066,7 +2066,7 @@ namespace filemanager
 
    COLORREF file_list::get_background_color()
    {
-      if (GetFileManager() != NULL && GetFileManager()->get_filemanager_data()->is_saving())
+      if (get_filemanager_template() != NULL && get_filemanager_data()->is_saving())
       {
          return ARGB(255, 255, 210, 180);
       }

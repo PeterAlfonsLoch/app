@@ -7,7 +7,7 @@ namespace filemanager
 
    left_view::left_view(sp(::base::application) papp) :
       element(papp),
-      ::filemanager::data_interface(papp),
+      ::filemanager::impact(papp),
       ::user::split_layout(papp),
 
       ::user::split_view(papp),
@@ -40,7 +40,7 @@ namespace filemanager
    void left_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
    {
       
-      data_interface::on_update(pSender, lHint, phint);
+      impact::on_update(pSender, lHint, phint);
       
       ::user::split_view::on_update(pSender, lHint, phint);
 
@@ -49,12 +49,12 @@ namespace filemanager
          if (base_class < update_hint > ::bases(phint))
          {
             update_hint * puh = (update_hint *) phint;
-            if (GetFileManager() == puh->m_pmanager)
+            if (get_filemanager_template() == puh->m_pmanager)
             {
                if (puh->is_type_of(update_hint::TypeInitialize))
                {
                   string str;
-                  str.Format("frame(%d,%d)", GetFileManager()->get_filemanager_data()->m_iTemplate, GetFileManager()->get_filemanager_data()->m_iDocument);
+                  str.Format("frame(%d,%d)", get_filemanager_data()->m_iTemplate, get_filemanager_data()->m_iDocument);
                   sp(frame) pframe = GetParentFrame();
                   if (pframe != NULL)
                   {

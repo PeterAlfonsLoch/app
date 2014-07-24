@@ -146,7 +146,7 @@ namespace platform
          break;
       case platform::PaneViewFileManager:
          {
-                                           sp(::filemanager::document) pdoc = PlaneSession.filemanager().std().open_child(false,true);
+                                           sp(::filemanager::document) pdoc = Platform.filemanager().std().open_child(false,true);
             if(pdoc != NULL)
             {
                sp(::user::impact) pview = pdoc->get_view();

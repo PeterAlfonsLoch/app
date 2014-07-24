@@ -2,7 +2,7 @@
 
 class  CLASS_DECL_CORE folder_list_view :
    virtual public simple_list_view,
-   virtual public ::filemanager::data_interface
+   virtual public ::filemanager::impact
 {
 public:
 

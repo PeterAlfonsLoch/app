@@ -4,16 +4,19 @@
 folder_selection_list_view::folder_selection_list_view(sp(::base::application) papp) :
    element(papp),
    ::user::split_layout(papp),
-   
    ::user::split_view(papp),
    place_holder_container(papp),
-   m_pdata(new ::filemanager::data(papp))
+   filemanager::impact(papp)
 {
+
 }
+
 
 folder_selection_list_view::~folder_selection_list_view()
 {
+
 }
+
 
 void folder_selection_list_view::install_message_handling(::message::dispatch * pinterface)
 {
@@ -22,32 +25,32 @@ void folder_selection_list_view::install_message_handling(::message::dispatch * 
 
 
 
-void folder_selection_list_view::Initialize(::filemanager::schema * ptemplate, const char * lpcszSection, ::database::id datakey, bool bRecursive)
+void folder_selection_list_view::Initialize(::filemanager::manager_template * ptemplate, const char * lpcszSection, ::database::id datakey, bool bRecursive)
 {
-   get_filemanager_data()->m_pmanager  = this;
-   get_filemanager_data()->m_pschema = ptemplate;
+
+   get_filemanager_data()->m_pmanagertemplate = ptemplate;
    get_filemanager_data()->m_iTemplate = ptemplate->m_iTemplate;
    get_filemanager_data()->m_iDocument = 0;
 
    string str;
-   str.Format("folder_selection_list_view(%s,%s)", get_filemanager_data()->m_pschema->m_strDISection, lpcszSection);
+   str.Format("folder_selection_list_view(%s,%s)", get_filemanager_template()->m_strDISection, lpcszSection);
    m_dataid = str;
 
    CreateViews();
    
    m_plistview->Initialize(datakey, bRecursive);
-   str.Format("folder_selection_list_view.ListView(%s,%s)", get_filemanager_data()->m_pschema->m_strDISection, lpcszSection);
+   str.Format("folder_selection_list_view.ListView(%s,%s)", get_filemanager_template()->m_strDISection, lpcszSection);
    m_plistview->m_dataid = str;
 
    m_plistview->_001UpdateColumns();
 
    if(data_get("InitialBrowsePath", ::base::system::idEmpty, str))
    {
-      FileManagerBrowse(str, ::action::source::database_default());
+      get_filemanager_manager()->FileManagerBrowse(str, ::action::source::database_default());
    }
    else
    {
-      FileManagerBrowse("", ::action::source::system_default());
+      get_filemanager_manager()->FileManagerBrowse("",::action::source::system_default());
    }
 
    m_plistview->_001OnUpdateItemCount();
@@ -68,7 +71,7 @@ void folder_selection_list_view::CreateViews()
       System.simple_message_box(NULL, "Could not create folder tree ::user::impact");
    }
 
-   m_ptreeview->m_pfilemanagerinterface = this;
+   m_ptreeview->m_pmanager = get_filemanager_manager();
 
    SetPane(0, m_ptreeview, false);
 
@@ -79,7 +82,7 @@ void folder_selection_list_view::CreateViews()
       System.simple_message_box(NULL, "Could not create file list ::user::impact");
    }
 
-   m_plistview->m_pfilemanagerinterface = this;
+   m_plistview->m_pmanager = get_filemanager_manager();
 
    SetPane(1, m_plistview, false);
 
