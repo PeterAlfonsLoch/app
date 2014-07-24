@@ -17,7 +17,7 @@ namespace nature
       m_pdoctemplateAppearance = new ::user::single_document_template(
          get_app(),
          "nature/appearance",
-         System.type_info < ::user::object > (),
+         System.type_info < ::user::document > (),
          System.type_info < simple_child_frame > (),
          System.type_info < appearance_view > ());
 
@@ -123,7 +123,7 @@ namespace nature
          break;
       case PaneViewAppearance:
          {
-            sp(::user::object) pdoc = (m_pdoctemplateAppearance->open_new_document());
+            sp(::user::document) pdoc = (m_pdoctemplateAppearance->open_new_document());
             if(pdoc != NULL)
             {
                sp(::user::impact) pview = pdoc->get_view();

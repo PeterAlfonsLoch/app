@@ -127,6 +127,19 @@ public:
    uint64_t    ui64() const throw();
    LPARAM    lparam() const throw();
 
+
+   inline int64_t get_dimension(e_orientation eorientation) const throw();
+   inline int64_t get_orthogonal_dimension(e_orientation eorientation) const throw();
+   inline int64_t get_orthogonal(e_orientation eorientation)const throw() { return get_orthogonal_dimension(eorientation); }
+   inline int64_t get_normal_dimension(e_orientation eorientation) const throw(){ return get_orthogonal_dimension(eorientation); }
+   inline int64_t get_normal(e_orientation eorientation) const throw(){ return get_orthogonal_dimension(eorientation); }
+
+   inline int64_t set_dimension(e_orientation eorientation,int64_t l) throw();
+   inline int64_t set_orthogonal_dimension(e_orientation eorientation,int64_t l) throw();
+   inline int64_t set_orthogonal(e_orientation eorientation,int64_t l)  throw(){ return set_orthogonal_dimension(eorientation,l); }
+   inline int64_t set_normal_dimension(e_orientation eorientation,int64_t l)  throw(){ return set_orthogonal_dimension(eorientation,l); }
+   inline int64_t set_normal(e_orientation eorientation,int64_t l) throw() { return set_orthogonal_dimension(eorientation,l); }
+
 };
 
 
@@ -187,6 +200,19 @@ public:
    uint32_t    ui32() const throw();
    uint64_t    ui64() const throw();
    LPARAM    lparam() const throw();
+
+
+   inline double get_dimension(e_orientation eorientation) const throw();
+   inline double get_orthogonal_dimension(e_orientation eorientation) const throw();
+   inline double get_orthogonal(e_orientation eorientation)const throw() { return get_orthogonal_dimension(eorientation); }
+   inline double get_normal_dimension(e_orientation eorientation) const throw(){ return get_orthogonal_dimension(eorientation); }
+   inline double get_normal(e_orientation eorientation) const throw(){ return get_orthogonal_dimension(eorientation); }
+
+   inline double set_dimension(e_orientation eorientation,double l) throw();
+   inline double set_orthogonal_dimension(e_orientation eorientation,double l) throw();
+   inline double set_orthogonal(e_orientation eorientation,double l)  throw(){ return set_orthogonal_dimension(eorientation,l); }
+   inline double set_normal_dimension(e_orientation eorientation,double l)  throw(){ return set_orthogonal_dimension(eorientation,l); }
+   inline double set_normal(e_orientation eorientation,double l) throw() { return set_orthogonal_dimension(eorientation,l); }
 
 };
 
@@ -250,6 +276,143 @@ inline LONG size::set_dimension(e_orientation eorientation, LONG l) throw()
 
 
 inline LONG size::set_orthogonal_dimension(e_orientation eorientation, LONG l) throw()
+{
+   if(eorientation == orientation_horizontal)
+   {
+      return cy = l;
+   }
+   else if(eorientation == orientation_vertical)
+   {
+      return cx = l;
+   }
+   else
+   {
+      return 0;
+   }
+}
+
+
+
+inline int64_t size64::get_dimension(e_orientation eorientation) const throw()
+{
+   if(eorientation == orientation_horizontal)
+   {
+      return cx;
+   }
+   else if(eorientation == orientation_vertical)
+   {
+      return cy;
+   }
+   else
+   {
+      return 0;
+   }
+}
+
+
+inline int64_t size64::get_orthogonal_dimension(e_orientation eorientation) const throw()
+{
+   if(eorientation == orientation_horizontal)
+   {
+      return cy;
+   }
+   else if(eorientation == orientation_vertical)
+   {
+      return cx;
+   }
+   else
+   {
+      return 0;
+   }
+}
+
+
+inline int64_t size64::set_dimension(e_orientation eorientation,int64_t l) throw()
+{
+   if(eorientation == orientation_horizontal)
+   {
+      return cx = l;
+   }
+   else if(eorientation == orientation_vertical)
+   {
+      return cy = l;
+   }
+   else
+   {
+      return 0;
+   }
+}
+
+
+inline int64_t size64::set_orthogonal_dimension(e_orientation eorientation,int64_t l) throw()
+{
+   if(eorientation == orientation_horizontal)
+   {
+      return cy = l;
+   }
+   else if(eorientation == orientation_vertical)
+   {
+      return cx = l;
+   }
+   else
+   {
+      return 0;
+   }
+}
+
+
+inline double sized::get_dimension(e_orientation eorientation) const throw()
+{
+   if(eorientation == orientation_horizontal)
+   {
+      return cx;
+   }
+   else if(eorientation == orientation_vertical)
+   {
+      return cy;
+   }
+   else
+   {
+      return 0;
+   }
+}
+
+
+inline double sized::get_orthogonal_dimension(e_orientation eorientation) const throw()
+{
+   if(eorientation == orientation_horizontal)
+   {
+      return cy;
+   }
+   else if(eorientation == orientation_vertical)
+   {
+      return cx;
+   }
+   else
+   {
+      return 0;
+   }
+}
+
+
+inline double sized::set_dimension(e_orientation eorientation,double l) throw()
+{
+   if(eorientation == orientation_horizontal)
+   {
+      return cx = l;
+   }
+   else if(eorientation == orientation_vertical)
+   {
+      return cy = l;
+   }
+   else
+   {
+      return 0;
+   }
+}
+
+
+inline double sized::set_orthogonal_dimension(e_orientation eorientation,double l) throw()
 {
    if(eorientation == orientation_horizontal)
    {

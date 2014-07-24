@@ -59,7 +59,7 @@ inline void plex_heap_alloc_sync::Free(void * p)
             if(is_debugger_attached())
             {
 
-               __debug_break();
+               debug_break();
 
             }
 

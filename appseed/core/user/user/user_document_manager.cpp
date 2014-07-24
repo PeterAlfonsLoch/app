@@ -536,7 +536,7 @@ namespace user
       }
    }
 
-   bool document_manager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::impact_system) ptemplate, sp(::user::object) pdocument)
+   bool document_manager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::impact_system) ptemplate, sp(::user::document) pdocument)
    {
       return System.do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
    }
@@ -558,7 +558,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(lpszCommand);
       /*string strCommand = lpszCommand;
-      sp(::user::object) pDoc = NULL;
+      sp(::user::document) pDoc = NULL;
 
       // open format is "[open("%s")]" - no whitespace allowed, one per line
       // print format is "[print("%s")]" - no whitespace allowed, one per line
@@ -798,7 +798,7 @@ namespace user
       ::count count = m_templateptra.get_count();
       impact_system::Confidence bestMatch = impact_system::noAttempt;
       sp(impact_system) pBestTemplate = NULL;
-      sp(::user::object) pOpenDocument = NULL;
+      sp(::user::document) pOpenDocument = NULL;
 
       /*char szPath[_MAX_PATH];
       ASSERT(lstrlen(varFileName) < _countof(szPath));

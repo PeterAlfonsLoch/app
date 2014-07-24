@@ -40,7 +40,7 @@ namespace user
       return false;
    }
 
-   void impact_system::add_document(sp(::user::object) pdocument)
+   void impact_system::add_document(sp(::user::document) pdocument)
    {
       ASSERT(pdocument->m_pdocumentemplate == NULL);   // no template attached yet
 //      Application.defer_add_document_template(this);
@@ -48,14 +48,14 @@ namespace user
       pdocument->install_message_handling(pdocument);
    }
 
-   void impact_system::remove_document(sp(::user::object) pdocument)
+   void impact_system::remove_document(sp(::user::document) pdocument)
    {
       ASSERT(pdocument->m_pdocumentemplate == this);   // must be attached to us
       pdocument->m_pdocumentemplate = NULL;
    }
 
    impact_system::Confidence impact_system::MatchDocType(const char * lpszPathName,
-      sp(::user::object)& rpDocMatch)
+      sp(::user::document)& rpDocMatch)
    {
       ASSERT(lpszPathName != NULL);
       rpDocMatch = NULL;
@@ -64,7 +64,7 @@ namespace user
       ::count count = get_document_count();
       for (index index = 0; index < count; index++)
       {
-         sp(::user::object) pdocument = get_document(index);
+         sp(::user::document) pdocument = get_document(index);
          if (System.file().path().is_equal(pdocument->get_path_name(), lpszPathName))
          {
             // already open
@@ -94,7 +94,7 @@ namespace user
       return yesAttemptForeign;
    }
 
-   sp(::user::object) impact_system::create_new_document(sp(::create_context) pcreatecontext)
+   sp(::user::document) impact_system::create_new_document(sp(::create_context) pcreatecontext)
    {
       // default implementation constructs one from sp(type)
       if (!m_typeinfoDocument)
@@ -103,15 +103,15 @@ namespace user
          ASSERT(FALSE);
          return NULL;
       }
-      sp(::user::object) pdocument = Application.alloc(m_typeinfoDocument);
+      sp(::user::document) pdocument = Application.alloc(m_typeinfoDocument);
       if (pdocument == NULL)
       {
-         TRACE(::base::trace::category_AppMsg, 0, "Warning: Dynamic create of ::user::object type %hs failed.\n",
+         TRACE(::base::trace::category_AppMsg, 0, "Warning: Dynamic create of ::user::document type %hs failed.\n",
             m_typeinfoDocument->name());
          return NULL;
       }
       pdocument->on_create(pcreatecontext);
-      ASSERT_KINDOF(::user::object, pdocument);
+      ASSERT_KINDOF(::user::document, pdocument);
       add_document(pdocument);
       return pdocument;
    }
@@ -119,10 +119,10 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Default frame creation
 
-   sp(::user::frame_window) impact_system::create_new_frame(sp(::user::object) pdocument, sp(::user::frame_window) pOther, sp(::create_context) pcreatecontext)
+   sp(::user::frame_window) impact_system::create_new_frame(sp(::user::document) pdocument, sp(::user::frame_window) pOther, sp(::create_context) pcreatecontext)
    {
 
-      // create a frame wired to the specified ::user::object
+      // create a frame wired to the specified ::user::document
 
       ASSERT(m_strMatter.get_length() > 0); // must have a resource ID to load from
       stacker < ::user::create_context > context(pcreatecontext->m_user);
@@ -172,7 +172,7 @@ namespace user
    }
 
    /*
-   sp(::user::frame_window) impact_system::CreateOleFrame(::window_sp pParentWnd, sp(::user::object) pdocument,
+   sp(::user::frame_window) impact_system::CreateOleFrame(::window_sp pParentWnd, sp(::user::document) pdocument,
    bool bCreateView)
    {
    create_context context;
@@ -210,7 +210,7 @@ namespace user
    }
    */
 
-   void impact_system::InitialUpdateFrame(sp(::user::frame_window) pFrame, sp(::user::object) pdocument,
+   void impact_system::InitialUpdateFrame(sp(::user::frame_window) pFrame, sp(::user::document) pdocument,
       bool bMakeVisible)
    {
       // just delagate to implementation in frame_window
@@ -225,7 +225,7 @@ namespace user
       ::count count = get_document_count();
       for (index index = 0; index < count; index++)
       {
-         sp(::user::object) pdocument = get_document(index);
+         sp(::user::document) pdocument = get_document(index);
          if (!pdocument->save_modified())
             return FALSE;
       }
@@ -239,7 +239,7 @@ namespace user
       {
          try
          {
-            sp(::user::object) pdocument = get_document(index);
+            sp(::user::document) pdocument = get_document(index);
             pdocument->on_close_document();
             remove_document(pdocument);
             pdocument.release();
@@ -255,8 +255,8 @@ namespace user
       ::count count = get_document_count();
       for (index index = 0; index < count; index++)
       {
-         sp(::user::object) pdocument = get_document(index);
-         ASSERT_KINDOF(::user::object, pdocument);
+         sp(::user::document) pdocument = get_document(index);
+         ASSERT_KINDOF(::user::document, pdocument);
          pdocument->on_idle();
       }
    }
@@ -285,7 +285,7 @@ namespace user
          ::count count = get_document_count();
          for (index index = 0; index < count; index++)
          {
-            sp(::user::object) pdocument = get_document(index);
+            sp(::user::document) pdocument = get_document(index);
             dumpcontext << (int_ptr)pdocument.m_p;
          }
          dumpcontext << "\n}";
@@ -301,7 +301,7 @@ namespace user
       ::count count = get_document_count();
       for (index index = 0; index < count; index++)
       {
-         sp(::user::object) pdocument = get_document(index);
+         sp(::user::document) pdocument = get_document(index);
          pdocument->assert_valid();
       }
    }
@@ -313,12 +313,12 @@ namespace user
       ::count count = get_document_count();
       for (index index = 0; index < count; index++)
       {
-         sp(::user::object) pdoc = get_document(index);
+         sp(::user::document) pdoc = get_document(index);
          pdoc->update_all_views(pviewSender, lhint, puh);
       }
    }
 
-   bool impact_system::on_open_document(sp(::user::object) pdocument, var varFile)
+   bool impact_system::on_open_document(sp(::user::document) pdocument, var varFile)
    {
 
       if (m_bQueueDocumentOpening)
@@ -346,7 +346,7 @@ namespace user
 
    }
 
-   bool impact_system::do_open_document(sp(::user::object) pdocument, var varFile)
+   bool impact_system::do_open_document(sp(::user::document) pdocument, var varFile)
    {
 
       if (!pdocument->on_open_document(varFile))

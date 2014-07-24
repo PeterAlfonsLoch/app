@@ -1824,7 +1824,7 @@ synch_lock ml(&user_mutex());
 
 /*
 
-   // ::user::object handling functions
+   // ::user::document handling functions
    int32_t graphics::StartDoc(LPDOCINFO lpDocInfo)
    {
 

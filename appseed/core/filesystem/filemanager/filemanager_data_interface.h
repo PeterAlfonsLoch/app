@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE data_interface :
-      virtual public ::object
+      virtual public object
    {
    public:
       

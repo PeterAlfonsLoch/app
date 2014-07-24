@@ -1023,3 +1023,28 @@ void thread::unregister_dependencies()
 
 }
 
+
+void thread::do_events()
+{
+
+   if(m_pthreadimpl.is_null())
+      return;
+
+   m_pthreadimpl->do_events();
+
+}
+
+
+void thread::do_events(const duration & duration)
+{
+
+   DWORD dwEnd = (DWORD) (::get_tick_count() + duration.get_total_milliseconds());
+
+   do
+   {
+    
+      do_events();
+
+   } while(::get_tick_count() < dwEnd);
+
+}

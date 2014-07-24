@@ -24,15 +24,6 @@ namespace user
 
       };
 
-      enum ETranslucency
-      {
-
-         TranslucencyNone,
-         TranslucencyPresent,
-         TranslucencyTotal
-
-      };
-
 
       enum e_message
       {
@@ -40,8 +31,8 @@ namespace user
          MessageBaseWndGetProperty = WM_USER + 96,
          MessageProperty,
          MessageGeneralEvent,
-         message_simple_command = WM_APP + 1985
-
+         message_simple_command = WM_APP + 1985,
+         message_set_schema = WM_APP + 1984 + 23 + 49,
 
       };
 
@@ -196,12 +187,6 @@ namespace user
 
       virtual bool RedrawOptimize(LPRECT lprectOut,LPCRECT lpcrect1,LPCRECT lpcrect2);
       virtual void RedrawOptimize(rect_array & array);
-      virtual bool _001IsBackgroundBypass();
-      virtual bool _001IsTransparent();
-      virtual bool _001IsTranslucent();
-      virtual bool _001HasTranslucency();
-
-      virtual ETranslucency _001GetTranslucency();
 
 
 

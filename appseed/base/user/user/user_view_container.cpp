@@ -22,7 +22,7 @@ namespace user
 //      return ::base::system::idEmpty;
    }
 
-   sp(::user::object) view_container::get_view_document()
+   sp(::user::document) view_container::get_view_document()
    {
       return impact::get_document(get_view());
    }

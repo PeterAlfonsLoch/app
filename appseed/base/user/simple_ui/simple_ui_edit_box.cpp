@@ -108,8 +108,6 @@ namespace simple_ui
 
       pgraphics->FillRect(rectClient, br);
 
-      simple_ui_draw_focus_rect(pgraphics);
-
       br->create_solid(ARGB(223, 49, 49, 23));
 
       ::draw2d::font_sp f(allocer());

@@ -1842,3 +1842,18 @@ int thread_impl::get_x_window_count() const
 
 }
 
+void thread_impl::do_events()
+{
+
+   MESSAGE msg;
+
+   while(m_pthread->m_bRun && ::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
+   {
+
+      if(!m_pthread->pump_message())
+         break;
+
+   }
+
+
+}

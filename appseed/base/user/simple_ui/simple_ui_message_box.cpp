@@ -154,8 +154,6 @@ namespace simple_ui
 
       RunModalLoop();
 
-      post_message(WM_CLOSE);
-
       return m_iResult;
 
    }
@@ -204,8 +202,9 @@ namespace simple_ui
 
       GetClientRect(rectClient);
 
-      int cx = 184;
-      int cy = 84;
+      // DESKTOP sizing
+      int cx = (84+77) * 2 / 3;
+      int cy = 49 / 2;
       int margin = 10;
       int x = rectClient.left + margin;
       int y = rectClient.bottom - cy - margin;
@@ -374,9 +373,41 @@ int32_t simple_ui_message_box(oswindow interaction_impl, const char * lpText,con
 
    {
 
-      sp(::simple_ui::message_box) pmessagebox = canew(::simple_ui::message_box(::get_thread_app()));
+      ::simple_ui::message_box * pmessagebox = new ::simple_ui::message_box(::get_thread_app());
 
-      iResult = pmessagebox->show(lpText,uiFlags);
+      try
+      {
+
+         iResult = pmessagebox->show(lpText,uiFlags);
+
+      }
+      catch(...)
+      {
+
+      }
+
+
+      try
+      {
+
+         pmessagebox->DestroyWindow();
+
+      }
+      catch(...)
+      {
+
+      }
+
+      try
+      {
+
+         delete pmessagebox;
+
+      }
+      catch(...)
+      {
+
+      }
 
    }
 

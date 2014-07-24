@@ -258,7 +258,7 @@ namespace platform
 
    }
 
-   sp(::user::object) view::get_document()
+   sp(::user::document) view::get_document()
    {
       return  (form_view::get_document());
    }
@@ -322,7 +322,7 @@ namespace platform
    void view:: _001OnDraw(::draw2d::graphics * pdc)
    {
       form_view::_001OnDraw(pdc);
-      //      sp(::user::object) pdoc = get_document();
+      //      sp(::user::document) pdoc = get_document();
       class imaging & imaging = System.visual().imaging();
 
 

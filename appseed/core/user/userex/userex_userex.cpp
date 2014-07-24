@@ -506,7 +506,7 @@ namespace userex
 
    }
 
-   sp(::user::object) userex::_vmsguserbaseOpenDocumentFile(const char * lpszFileName)
+   sp(::user::document) userex::_vmsguserbaseOpenDocumentFile(const char * lpszFileName)
    {
       ASSERT(Application.m_pdocmanager != NULL);
       sp(::create_context) cc(allocer());
@@ -719,7 +719,7 @@ namespace userex
    }
 
 
-   sp(::user::object) userex::hold(sp(::user::interaction) pui)
+   sp(::user::document) userex::hold(sp(::user::interaction) pui)
    {
 
       sp(::create_context) createcontext(allocer());

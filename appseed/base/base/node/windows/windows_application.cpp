@@ -35,7 +35,7 @@ namespace windows
    }
 
 
-   sp(::user::object) application::_001OpenDocumentFile(var varFile)
+   sp(::user::document) application::_001OpenDocumentFile(var varFile)
    {
 
       return NULL;

@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_CORE file_manager_operation_document :
-   public ::user::object
+   public ::user::document
 {
 public:
 

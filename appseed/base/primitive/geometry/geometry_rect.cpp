@@ -71,8 +71,8 @@ void rect::CenterOf(LPCRECT lpcrect,SIZE size)
    int32_t cx = size.cx;
    int32_t cy = size.cy;
 
-   double dx = ::width(lpcrect);
-   double dy = ::height(lpcrect);
+   LONG dx = ::width(lpcrect);
+   LONG dy = ::height(lpcrect);
 
    left     = lpcrect->left   + (dx - cx) / 2;
    top      = lpcrect->top    + (dy - cy) / 2;
@@ -143,7 +143,7 @@ void rect::Align(int32_t align, LPCRECT lpcrect)
 
 }
 
-void rect::ConstraintV5(LPCRECT lpcrect, const class size sizeMin)
+void rect::constraint_v5(LPCRECT lpcrect, const class size sizeMin)
 {
    if(left < lpcrect->left)
       left = lpcrect->left;
@@ -158,6 +158,61 @@ void rect::ConstraintV5(LPCRECT lpcrect, const class size sizeMin)
       right = left + sizeMin.cx;
    if(height() < sizeMin.cy)
       bottom = top + sizeMin.cy;
+
+}
+
+void rect::constraint_v7(LPCRECT lpcrect)
+{
+
+   ::size size = this->size();
+
+   if(size.cx > ::width(lpcrect))
+   {
+
+      intersect_x(this,lpcrect);
+
+   }
+   else if(intersect_x(this, lpcrect))
+   {
+
+      if(left == lpcrect->left)
+      {
+
+         right = left + size.cx;
+
+      }
+      else
+      {
+
+         left = right - size.cx;
+
+      }
+
+   }
+
+   if(size.cy > ::height(lpcrect))
+   {
+
+      intersect_y(this,lpcrect);
+
+   }
+   else if(intersect_y(this,lpcrect))
+   {
+
+      if(top == lpcrect->top)
+      {
+
+         bottom = top + size.cy;
+
+      }
+      else
+      {
+
+         top = bottom - size.cy;
+
+      }
+
+   }
 
 }
 
@@ -579,7 +634,15 @@ void rect::move_to(int32_t x, int32_t y) throw()
    { move_to_x(x); move_to_y(y); }
 void rect::move_to(POINT pt) throw()
    { move_to_x(pt.x); move_to_y(pt.y); }
-bool rect::intersect(LPCRECT lpRect1, LPCRECT lpRect2) throw()
+bool rect::intersect_x(LPCRECT lpRect1,LPCRECT lpRect2) throw()
+{
+   return ::x_intersect_rect(this,lpRect1,lpRect2) != FALSE;
+}
+bool rect::intersect_y(LPCRECT lpRect1,LPCRECT lpRect2) throw()
+{
+   return ::y_intersect_rect(this,lpRect1,lpRect2) != FALSE;
+}
+bool rect::intersect(LPCRECT lpRect1,LPCRECT lpRect2) throw()
    { return ::IntersectRect(this, lpRect1, lpRect2) != FALSE;}
 bool rect::null_intersect(LPCRECT lpRect1,LPCRECT lpRect2) throw()
 {

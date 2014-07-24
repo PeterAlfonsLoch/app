@@ -57,7 +57,7 @@ namespace android
       //::ca2::application_base::m_p->_001OnFileNew(NULL);
    }
 
-   sp(::user::object) application::_001OpenDocumentFile(var varFile)
+   sp(::user::document) application::_001OpenDocumentFile(var varFile)
    {
      // return ::ca2::application_base::m_p->_001OpenDocumentFile(varFile);
    }

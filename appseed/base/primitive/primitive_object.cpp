@@ -131,14 +131,14 @@ void assert_valid_object(const object * pOb, const char * lpszFileName, int32_t 
    {
 //      TRACE(::base::trace::category_AppMsg, 0, "ASSERT_VALID fails with NULL pointer.\n");
       if (__assert_failed_line(lpszFileName, nLine))
-         __debug_break();
+         debug_break();
       return;     // quick escape
    }
    if (!__is_valid_address(pOb, sizeof(object)))
    {
       ///TRACE(::base::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
       if (__assert_failed_line(lpszFileName, nLine))
-         __debug_break();
+         debug_break();
       return;     // quick escape
    }
 
@@ -149,7 +149,7 @@ void assert_valid_object(const object * pOb, const char * lpszFileName, int32_t 
    {
 //      TRACE(::base::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal vtable pointer.\n");
       if (__assert_failed_line(lpszFileName, nLine))
-         __debug_break();
+         debug_break();
       return;     // quick escape
    }
 
@@ -157,7 +157,7 @@ void assert_valid_object(const object * pOb, const char * lpszFileName, int32_t 
    {
    TRACE(::base::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
    if (__assert_failed_line(lpszFileName, nLine))
-   __debug_break();
+   debug_break();
    return;     // quick escape
    }*/
    pOb->assert_valid();

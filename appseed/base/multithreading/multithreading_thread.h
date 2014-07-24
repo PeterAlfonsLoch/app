@@ -173,5 +173,8 @@ public:
    virtual void register_dependencies();
    virtual void unregister_dependencies();
 
+   virtual void do_events();
+   virtual void do_events(const duration & duration);
+
 };
 

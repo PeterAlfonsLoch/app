@@ -221,7 +221,7 @@ namespace user
 
 
    template < class VIEW >
-   inline sp(VIEW) impact::create_view(::user::object * pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
+   inline sp(VIEW) impact::create_view(::user::document * pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
    {
       return create_view(System.type_info < VIEW >(), pdoc, pwndParent, id, pviewLast);
    }

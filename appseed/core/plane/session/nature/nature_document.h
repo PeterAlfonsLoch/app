@@ -10,7 +10,7 @@ namespace nature
 
 
    class CLASS_DECL_CORE document :
-      public ::user::object
+      public ::user::document
    {
    public:
 

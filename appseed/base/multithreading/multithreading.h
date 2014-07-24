@@ -20,7 +20,8 @@ CLASS_DECL_BASE void __post_quit_message(int32_t nExitCode);
 typedef UINT(c_cdecl *__THREADPROC)(LPVOID);
 
 
-
+CLASS_DECL_BASE void do_events();
+CLASS_DECL_BASE void do_events(const duration & duration);
 
 
 

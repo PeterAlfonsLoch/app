@@ -1,27 +1,11 @@
 #pragma once
 
 
-namespace data
-{
-   class data;
-}
-
 namespace user
 {
 
 
-   class object;
-
-
-   class CLASS_DECL_BASE object_data :
-      virtual public map < void *, void *, ::data::data *, ::data::data * >
-   {
-   public:
-      
-   };
-
-
-   class CLASS_DECL_BASE object :
+   class CLASS_DECL_BASE document :
       virtual public command_target,
       virtual public ::data::data_container_base,
       virtual public ::file::serializable,
@@ -32,7 +16,7 @@ namespace user
 
 
       mutex                            m_mutex;
-      spa(object)                      m_documentptra;
+      spa(document)                    m_documentptra;
       string                           m_strTitle;
       string                           m_strPathName;
       sp(impact_system)                m_pdocumentemplate;
@@ -41,11 +25,11 @@ namespace user
       bool                             m_bNew;
       bool                             m_bAutoDelete;     // TRUE => delete document when no more views
       bool                             m_bEmbedded;       // TRUE => document is being created by OLE
-      object_data                      m_datamap;
+      document_data_map                m_datamap;
 
 
-      object(sp(::base::application) papp);
-      virtual ~object();
+      document(sp(::base::application) papp);
+      virtual ~document();
 
 
 

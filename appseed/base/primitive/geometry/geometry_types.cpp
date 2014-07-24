@@ -21,6 +21,35 @@ bool null(LPRECT prectDest)
 
 }
 
+bool x_intersect_rect(LPRECT prect,LPCRECT prect1,LPCRECT prect2)
+{
+   prect->left    = max(prect1->left,prect2->left);
+   prect->right   = min(prect1->right,prect2->right);
+   if(prect->right > prect->left)
+   {
+      return true;
+   }
+   else
+   {
+      return false;
+   }
+}
+
+
+bool y_intersect_rect(LPRECT prect,LPCRECT prect1,LPCRECT prect2)
+{
+   prect->top     = max(prect1->top,prect2->top);
+   prect->bottom  = min(prect1->bottom,prect2->bottom);
+   if(prect->top < prect->bottom)
+   {
+      return true;
+   }
+   else
+   {
+      null(prect);
+      return false;
+   }
+}
 
 bool x_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
 {

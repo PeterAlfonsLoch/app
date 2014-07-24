@@ -1725,7 +1725,7 @@ void application::on_file_open()
 }
 
 // prompt for file name - used for open and save as
-bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::impact_system) ptemplate, sp(::user::object) pdocument)
+bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::impact_system) ptemplate, sp(::user::document) pdocument)
 // if ptemplate==NULL => all document templates
 {
    if (PlaneSession.m_pfilemanager != NULL)
@@ -2795,7 +2795,7 @@ void application::_001OnFileNew(signal_details * pobj)
 }
 
 
-sp(::user::object) application::_001OpenDocumentFile(var varFile)
+sp(::user::document) application::_001OpenDocumentFile(var varFile)
 {
    string strId = m_strId;
    char chFirst = '\0';
@@ -3970,7 +3970,7 @@ sp(::base::application) application::create_application(const char * pszType, co
 }
 
 
-sp(::user::object) application::place_hold(sp(::user::interaction) pui)
+sp(::user::document) application::place_hold(sp(::user::interaction) pui)
 {
 
    return NULL;

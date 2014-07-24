@@ -6,7 +6,7 @@ namespace userfs
 
 
    class CLASS_DECL_CORE document :
-      virtual public ::user::object
+      virtual public ::user::document
    {
    public:
 
@@ -18,7 +18,7 @@ namespace userfs
       document(sp(::base::application) papp);
       virtual ~document();
 
-      sp(::user::object)                                get_document();
+      sp(::user::document)                                get_document();
 
 
    //#ifdef DEBUG

@@ -34,14 +34,14 @@ namespace user
       return m_docptra.get_count();
    }
 
-   sp(::user::object) multiple_document_template::get_document(index index) const
+   sp(::user::document) multiple_document_template::get_document(index index) const
    {
       if(index < 0 || index >= m_docptra.get_count())
          return NULL;
       return m_docptra.element_at(index);
    }
 
-   void multiple_document_template::add_document(sp(::user::object) pdocument)
+   void multiple_document_template::add_document(sp(::user::document) pdocument)
    {
       if(m_docptra.add_unique(pdocument))
       {
@@ -50,7 +50,7 @@ namespace user
    }
 
 
-   void multiple_document_template::remove_document(sp(::user::object) pdocument)
+   void multiple_document_template::remove_document(sp(::user::document) pdocument)
    {
       if(m_docptra.remove(pdocument) > 0)
       {
@@ -66,12 +66,12 @@ namespace user
       bool bMakeVisible = pcreatecontext->m_bMakeVisible;
       //   sp(::user::interaction) pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].cast < ::user::interaction > ();
       //   sp(::user::impact) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].cast < ::user::impact > ();
-      sp(::user::object) pdocument = create_new_document(pcreatecontext);
+      sp(::user::document) pdocument = create_new_document(pcreatecontext);
       if (pdocument == NULL)
       {
          TRACE(::base::trace::category_AppMsg, 0, "impact_system::create_new_document returned NULL.\n");
          // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
-         System.simple_message_box(NULL, "failed to create ::user::object");
+         System.simple_message_box(NULL, "failed to create ::user::document");
          return;
       }
 
@@ -82,7 +82,7 @@ namespace user
       if (pFrame == NULL)
       {
          // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
-         System.simple_message_box(NULL, "Failed to create ::user::object");
+         System.simple_message_box(NULL, "Failed to create ::user::document");
          pdocument.release();       // explicit delete on error
          return;
       }
@@ -90,7 +90,7 @@ namespace user
 
       if(pcreatecontext->m_spCommandLine->m_varFile.is_empty())
       {
-         // create a new ::user::object - with default ::user::object name
+         // create a new ::user::document - with default ::user::document name
          set_default_title(pdocument);
 
          // avoid creating temporary compound file when starting up invisible
@@ -100,7 +100,7 @@ namespace user
          if (!pdocument->on_new_document())
          {
             // ::fontopus::user has be alerted to what failed in on_new_document
-            TRACE(::base::trace::category_AppMsg, 0, "::user::object::on_new_document returned FALSE.\n");
+            TRACE(::base::trace::category_AppMsg, 0, "::user::document::on_new_document returned FALSE.\n");
             pFrame->DestroyWindow();
             return;
          }
@@ -110,14 +110,14 @@ namespace user
       }
       else
       {
-         // open an existing ::user::object
+         // open an existing ::user::document
          if(!on_open_document(pdocument, pcreatecontext->m_spCommandLine->m_varFile))
          {
             // failed to open or just failed to queue to open
             // if m_bQueueDocumentOpening flag is set, document opening is queued, and failure would be reported in a unknown way
             // prepare core for async operations and also async failures
             // ::fontopus::user has be alerted to what failed in on_open_document
-            TRACE(::base::trace::category_AppMsg, 0, "::user::object::on_open_document returned FALSE.\n");
+            TRACE(::base::trace::category_AppMsg, 0, "::user::document::on_open_document returned FALSE.\n");
             pFrame->DestroyWindow();
             return;
          }
@@ -139,7 +139,7 @@ namespace user
 
    }
 
-   void multiple_document_template::set_default_title(sp(::user::object) pdocument)
+   void multiple_document_template::set_default_title(sp(::user::document) pdocument)
    {
       string strDocName;
       if (GetDocString(strDocName, impact_system::docName) &&
@@ -173,8 +173,8 @@ namespace user
       ::count count = get_document_count();
       for(index index = 0; index < count; index++)
       {
-         sp(::user::object) pdocument = get_document(index);
-         dumpcontext << "\nwith ::user::object " << (void *)pdocument;
+         sp(::user::document) pdocument = get_document(index);
+         dumpcontext << "\nwith ::user::document " << (void *)pdocument;
       }
 
       dumpcontext << "\n";
@@ -187,7 +187,7 @@ namespace user
       ::count count = get_document_count();
       for(index index = 0; index < count; index++)
       {
-         sp(::user::object) pdocument = get_document(index);
+         sp(::user::document) pdocument = get_document(index);
          pdocument->assert_valid();
       }
 

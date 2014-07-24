@@ -743,6 +743,7 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
 
       m_iHover = -1;
+      m_eelementHover = element_none;
 
    }
 

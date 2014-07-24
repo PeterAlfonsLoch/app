@@ -19,7 +19,7 @@ namespace userfs
       DECL_GEN_SIGNAL(_001OnTimer);
 
 
-      sp(::user::object) get_document();
+      sp(::user::document) get_document();
 
    };
 

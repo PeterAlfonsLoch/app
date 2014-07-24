@@ -52,6 +52,11 @@ namespace filemanager
                   {
                      pframe->m_dataid = str;
                   }
+
+                  m_etranslucency = GetFileManager()->get_filemanager_data()->m_bTransparentBackground ? ::user::interaction::TranslucencyPresent : ::user::interaction::TranslucencyNone;
+
+                  set_default_background_color(ARGB(184,184,184,177));
+
                }
                else if (puh->is_type_of(update_hint::TypePop))
                {
@@ -316,6 +321,11 @@ namespace filemanager
                   {
                      pframe->m_dataid = str;
                   }
+
+                  m_etranslucency = GetFileManager()->get_filemanager_data()->m_bTransparentBackground ? ::user::interaction::TranslucencyPresent : ::user::interaction::TranslucencyNone;
+
+                  set_default_background_color(ARGB(184,184,184,177));
+
                }
                else if (puh->is_type_of(update_hint::TypeOpenSelectionProperties))
                {

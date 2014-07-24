@@ -25,7 +25,7 @@ namespace user
 
       draw_interface *                    m_pdrawinterfaceBackground;
       bool                                m_bBackgroundBypass;
-      ETranslucency                       m_etranslucency;
+      
 
       ::user::interaction *               m_pparent;
 
@@ -59,13 +59,10 @@ namespace user
 #endif
 
       id                                  m_idModalResult; // for return values from interaction_impl::RunModalLoop
-      COLORREF                            m_crDefaultBackgroundColor;
 
       sp(::user::menu_base)               m_spmenuPopup;
 
-      COLORREF                            m_crText;
       int32_t                             m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
-      ::draw2d::font_sp                   m_pfont;
 
 
       interaction();
@@ -290,6 +287,7 @@ namespace user
       virtual void _000OnDraw(::draw2d::graphics *pdc);
       virtual void _001DrawThis(::draw2d::graphics *pdc);
       virtual void _001DrawChildren(::draw2d::graphics *pdc);
+      virtual void _001OnNcDraw(::draw2d::graphics *pdc);
       virtual void _001OnDraw(::draw2d::graphics *pdc);
       virtual void draw_control_background(::draw2d::graphics *pdc);
 
@@ -319,10 +317,6 @@ namespace user
       virtual string get_window_text();
       virtual void GetWindowText(string & rString);
       virtual strsize GetWindowTextLength();
-      virtual void SetFont(::draw2d::font* pFont,bool bRedraw = TRUE);
-      virtual ::draw2d::font* GetFont();
-
-      virtual void set_text_color(COLORREF crText);
 
       virtual void install_message_handling(::message::dispatch * pinterface);
       virtual bool IsWindowVisible();
@@ -345,6 +339,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnClose);
       DECL_GEN_SIGNAL(_001OnCommand);
       DECL_GEN_SIGNAL(_001OnSimpleCommand);
+      //DECL_GEN_SIGNAL(_001OnSetSchema);
 
 
 
@@ -491,8 +486,24 @@ namespace user
       virtual bool merge(sp(::user::interaction) pui);
 
 
-      virtual COLORREF get_background_color();
-      virtual void set_default_background_color(COLORREF crDefaultBackgroundColor);
+      virtual ::user::schema *      get_user_schema();
+
+      //virtual bool _001SetSchema(::user::schema * pschema);
+      //virtual bool _008SetSchema(::user::schema * pschema); // _008 - Descendants
+      //virtual bool _009SetSchema(::user::schema * pschema); // _009 - Own and Descendants
+
+      virtual COLORREF              get_background_color();
+      virtual COLORREF              get_color();
+      virtual ::draw2d::font_sp     get_font();
+      virtual ETranslucency         _001GetTranslucency();
+      virtual bool                  _001IsBackgroundBypass();
+      virtual bool                  _001IsTransparent();
+      virtual bool                  _001IsTranslucent();
+      virtual bool                  _001HasTranslucency();
+
+
+
+
 
       virtual void _001OnTriggerMouseInside();
 
@@ -600,11 +611,12 @@ namespace user
 
       virtual bool get_rect_normal(LPRECT lprect);
 
-      virtual interaction_base::ETranslucency _001GetTranslucency();
-
       virtual point get_scroll_position();
       virtual point get_parent_scroll_position();
       virtual point get_ascendant_scroll_position();
+
+
+
 
    };
 

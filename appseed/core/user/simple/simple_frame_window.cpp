@@ -626,7 +626,7 @@ void simple_frame_window::_001OnClose(signal_details * pobj)
 
    pobj->m_bRet = true;
    // Note: only queries the active document
-   sp(::user::object) pdocument = GetActiveDocument();
+   sp(::user::document) pdocument = GetActiveDocument();
    if (pdocument != NULL && !pdocument->can_close_frame(this))
    {
       // document can't close right now -- don't close it
@@ -1553,7 +1553,7 @@ void simple_frame_window::guserbaseOnInitialUpdate(signal_details * pobj)
 
       }
 
-      sp(::user::object) pdoc = pfiu->m_pdoc;
+      sp(::user::document) pdoc = pfiu->m_pdoc;
       // update frame counts and frame title (may already have been visible)
       if (pdoc != NULL)
          pdoc->update_frame_counts();

@@ -8,7 +8,7 @@ namespace filemanager
    document::document(sp(::base::application) papp) :
       element(papp),
       ::data::data_container_base(papp),
-      ::user::object(papp),
+      ::user::document(papp),
       ::userfs::document(papp)
    {
 
@@ -37,7 +37,7 @@ namespace filemanager
    bool document::on_new_document()
    {
 
-      if (!::user::object::on_new_document())
+      if (!::user::document::on_new_document())
          return FALSE;
 
 
@@ -62,12 +62,12 @@ namespace filemanager
    #ifdef DEBUG
    void document::assert_valid() const
    {
-      ::user::object::assert_valid();
+      ::user::document::assert_valid();
    }
 
    void document::dump(dump_context & dumpcontext) const
    {
-      ::user::object::dump(dumpcontext);
+      ::user::document::dump(dumpcontext);
    }
    #endif //DEBUG
 
@@ -128,7 +128,7 @@ namespace filemanager
             return true;
          }
       }
-      return ::user::object::on_simple_action(id);
+      return ::user::document::on_simple_action(id);
    }
 
    bool document::on_simple_update(cmd_ui * pcmdui)
@@ -138,7 +138,7 @@ namespace filemanager
       FileManagerOnUpdateLevelUp(pcmdui);
       return true;
       }*/
-      return ::user::object::on_simple_update(pcmdui);
+      return ::user::document::on_simple_update(pcmdui);
    }
 
 
@@ -171,7 +171,7 @@ namespace filemanager
    }
    }
    }*/
-   /*   return ::user::object::_001OnCmdMsg(pcmdmsg);
+   /*   return ::user::document::_001OnCmdMsg(pcmdmsg);
    }
    */
 
@@ -332,6 +332,7 @@ namespace filemanager
 
    }
 
+
    void document::OpenFolder(sp(::fs::item) item, ::action::context actioncontext)
    {
       FileManagerBrowse(item, actioncontext);
@@ -437,7 +438,7 @@ namespace filemanager
    }
 
 
-   void document::FileManagerSaveAs(sp(::user::object) pdocument)
+   void document::FileManagerSaveAs(sp(::user::document) pdocument)
    {
       
       manager::FileManagerSaveAs(pdocument);

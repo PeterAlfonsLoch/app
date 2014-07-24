@@ -18,8 +18,9 @@ namespace filemanager
       m_pholderFileList          = NULL;
       m_ptreeFileTreeMerge       = NULL;
       m_pdocumentSave            = NULL;
-      m_pschema                = NULL;
+      m_pschema                  = NULL;
       m_bSetBergedgeTopicFile    = false;
+      m_bTransparentBackground   = true;
    }
 
    data::~data()
@@ -223,6 +224,79 @@ namespace filemanager
 
    }
 
+   COLORREF data::get_background_color()
+   {
+
+      if(m_bTransparentBackground)
+      {
+         
+         if(is_saving())
+         {
+
+            return ARGB(184,255,210,180);
+
+         }
+         else
+         {
+
+            return ARGB(184,255,255,255);
+
+         }
+
+      }
+      else
+      {
+
+         if(is_saving())
+         {
+
+            return ARGB(255,255,210,180);
+
+         }
+         else
+         {
+
+            return ARGB(255,255,255,255);
+
+         }
+
+      }
+
+   }
+
+
+   COLORREF data::get_color()
+   {
+
+      return ARGB(255,0,0,0);
+
+   }
+
+
+   ::draw2d::font_sp data::get_font()
+   {
+      return m_spfont;
+
+   }
+
+
+   ::user::ETranslucency data::_001GetTranslucency()
+   {
+
+      if(m_bTransparentBackground)
+      {
+
+         return ::user::TranslucencyPresent;
+
+      }
+      else
+      {
+
+         return ::user::TranslucencyNone;
+
+      }
+
+   }
 
 } // namespace filemanager
 

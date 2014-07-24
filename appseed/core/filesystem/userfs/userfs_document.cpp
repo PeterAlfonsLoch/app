@@ -8,7 +8,7 @@ namespace userfs
    document::document(sp(::base::application) papp) :
       element(papp),
       ::data::data_container_base(papp),
-      ::user::object(papp),
+      ::user::document(papp),
       m_fsset(papp)
    {
    }
@@ -19,12 +19,12 @@ namespace userfs
 
    void document::assert_valid() const
    {
-      ::user::object::assert_valid();
+      ::user::document::assert_valid();
    }
 
    void document::dump(dump_context & dumpcontext) const
    {
-      ::user::object::dump(dumpcontext);
+      ::user::document::dump(dumpcontext);
    }
 
    bool document::file_manager_browse(const char * pszFolder, ::action::context actioncontext)

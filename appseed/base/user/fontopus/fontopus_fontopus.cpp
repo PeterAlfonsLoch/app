@@ -250,7 +250,9 @@ namespace fontopus
             while(m_pthreadCreatingUser != NULL && m_pthreadCreatingUser->m_bRun)
             {
 
-               m_pthreadCreatingUser->m_evReady.wait(millis(84));
+               do_events(millis(84));
+
+               m_pthreadCreatingUser->m_evReady.wait(millis(0));
 
             }
 
@@ -280,7 +282,23 @@ namespace fontopus
          while(m_pthreadCreatingUser != NULL && m_pthreadCreatingUser->m_bRun)
          {
 
-            m_pthreadCreatingUser->m_evReady.wait(millis(84));
+            do_events(millis(84));
+
+            if(m_pthreadCreatingUser == NULL)
+               break;
+
+            try
+            {
+
+               m_pthreadCreatingUser->m_evReady.wait(millis(0));
+
+            }
+            catch(...)
+            {
+
+               break;
+
+            }
 
          }
 

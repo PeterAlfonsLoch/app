@@ -262,7 +262,7 @@ namespace fontopus
 
          crBorderOut = ARGB(255, 90, 20, 90);
 
-         crBorderIn = ARGB(255, 255, 240, 255);
+         crBorderIn = ARGB(255, 255, 255, 255);
 
 #else
 
@@ -330,7 +330,7 @@ namespace fontopus
       else
       {
 
-         draw_ca2_with_border2(pgraphics, (int)(49 * rx), (int)(49 * ry) - 11, (int)((91 + 2 + 2) * ry), 1, 1, crBk, cr, crBorderOut, crBorderIn);
+         draw_ca2_with_border2(pgraphics, (int)(49 * rx), (int)(49 * ry) - 23, (int)((91 + 2 + 2) * ry), 1, 1, crBk, cr, crBorderOut, crBorderIn);
 
       }
 

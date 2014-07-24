@@ -17,6 +17,15 @@ simple_scroll_bar::simple_scroll_bar(sp(::base::application) papp) :
    m_scrollinfo.nPage   = 10;
    m_scrollinfo.nPos    = 0;
    m_etranslucency      = TranslucencyPresent;
+   
+   m_cr = ARGB(77 + 49,184,184,177);
+   m_crBorder = ARGB(184,84 - 49,84 - 49,77 - 49);
+   m_crLiteBorder = ARGB(184,84 + 23,84 + 23,77 + 23);
+
+   m_crHover = ARGB(77 + 49 - 23,184,184,255);
+   m_crHoverBorder = ARGB(184,84 - 49 - 23,84 - 49,77 + 84);
+   m_crHoverLiteBorder = ARGB(184,84 + 23 - 23,84 + 23,77 + 23 + 84);
+
 }
 
 simple_scroll_bar::~simple_scroll_bar()
@@ -26,12 +35,11 @@ simple_scroll_bar::~simple_scroll_bar()
 
 void simple_scroll_bar::install_message_handling(::message::dispatch * pinterface)
 {
-   ::user::interaction::install_message_handling(pinterface);
+   ::user::control::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &simple_scroll_bar::_001OnMouseMove);
    IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &simple_scroll_bar::_001OnLButtonDown);
    IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &simple_scroll_bar::_001OnLButtonUp);
    IGUI_WIN_MSG_LINK(WM_HSCROLL, pinterface, this, &simple_scroll_bar::_001OnHScroll);
-   IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &simple_scroll_bar::_001OnSize);
    IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &simple_scroll_bar::_001OnTimer);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &simple_scroll_bar::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &simple_scroll_bar::_001OnShowWindow);
@@ -66,148 +74,139 @@ void simple_scroll_bar::_001OnMouseMove(signal_details * pobj)
       send_scroll_message(SB_THUMBPOSITION);
       pmouse->set_lresult(1);
       pmouse->m_bRet = true;
+      pmouse->m_ecursor = ::visual::cursor_arrow;
 
    }
    else
    {
-      rect rectTrack;
-      GetTrackRect(rectTrack);
-      rect rectPageA;
-      rect rectClient;
-      GetClientRect(rectClient);
-      GetPageARect(rectClient, rectTrack, rectPageA);
-      rect rectPageB;
-      GetPageBRect(rectClient, rectTrack, rectPageB);
-      pmouse->m_bRet = false;
-      if(rectTrack.contains(pt))
+
+      e_element eelement;
+
+      if(hit_test(pmouse->m_pt,eelement) >= 0)
       {
-         pmouse->m_bRet = true;
-      }
-      else if(m_rgnA->contains(pt))
-      {
-         pmouse->m_bRet = true;
-      }
-      else if(m_rgnB->contains(pt))
-      {
-         pmouse->m_bRet = true;
-      }
-      else if(rectPageA.contains(pt))
-      {
-         pmouse->m_bRet = true;
-      }
-      else if(rectPageB.contains(pt))
-      {
-         pmouse->m_bRet = true;
+
+         pmouse->m_ecursor = ::visual::cursor_arrow;
+
       }
 
    }
 
-   if(pmouse->m_bRet)
+
+}
+
+
+bool simple_scroll_bar::scrollbar_action(e_element eelement, point pt)
+{
+
+   switch(m_eelement)
    {
-
-      pmouse->m_ecursor = ::visual::cursor_arrow;
-
+   case element_scrollbar_rectA:
+      return scrollbar_lineA();
+   case element_scrollbar_rectB:
+      return scrollbar_lineB();
+   case element_scrollbar_pageA:
+      return scrollbar_pageA(pt);
+   case element_scrollbar_pageB:
+      return scrollbar_pageB(pt);
+   default:
+      return false;
    }
 
 }
 
 void simple_scroll_bar::_001OnLButtonDown(signal_details * pobj)
 {
+
    SCAST_PTR(::message::mouse, pmouse, pobj)
-      point pt = pmouse->m_pt;
+
+   point pt = pmouse->m_pt;
+
    ScreenToClient(&pt);
-   rect rectTrack;
-   GetTrackRect(rectTrack);
-   rect rectPageA;
-   rect rectClient;
-   GetClientRect(rectClient);
-   GetPageARect(rectClient, rectTrack, rectPageA);
-   rect rectPageB;
-   GetPageBRect(rectClient, rectTrack, rectPageB);
-   pmouse->m_bRet = false;
-   if(rectTrack.contains(pt))
+
+   m_eelement = element_none;
+
+   if(hit_test(pmouse->m_pt,m_eelement) < 0)
    {
-      SetCapture();
+
+      pmouse->m_bRet = false;
+
+      return;
+
+   }
+
+   pmouse->m_bRet = true;
+
+   pmouse->set_lresult(1);
+
+   SetCapture();
+
+   if(m_eelement == element_scrollbar_rect)
+   {
       m_bTracking = true;
       point ptTrackOffset;
       ptTrackOffset = pt;
+      rect rectTrack;
+      GetTrackRect(rectTrack);
       ptTrackOffset -= rectTrack.top_left();
       m_ptTrackOffset = ptTrackOffset;
-      pmouse->m_bRet = true;
-      pmouse->set_lresult(1);
    }
-   else if(m_rgnA->contains(pt))
+   else
    {
-      SetCapture();
-      ScrollLineA();
-      SetTimer(100, 300, NULL);
-      pmouse->m_bRet = true;
-      pmouse->set_lresult(1);
-   }
-   else if(m_rgnB->contains(pt))
-   {
-      SetCapture();
-      ScrollLineB();
-      SetTimer(200, 300, NULL);
-      pmouse->m_bRet = true;
-      pmouse->set_lresult(1);
-   }
-   else if(rectPageA.contains(pt))
-   {
-      if(!rectTrack.contains(pt))
+      
+      if(scrollbar_action(m_eelement, pt))
       {
-         SetCapture();
-         ScrollPageA();
-         SetTimer(300, 300, NULL);
-         pmouse->m_bRet = true;
-         pmouse->set_lresult(1);
+         
+         SetTimer((uint_ptr) this,300,NULL);
+
       }
+
    }
-   else if(rectPageB.contains(pt))
-   {
-      if(!rectTrack.contains(pt))
-      {
-         SetCapture();
-         ScrollPageB();
-         SetTimer(400, 300, NULL);
-         pmouse->m_bRet = true;
-         pmouse->set_lresult(1);
-      }
-   }
+
 }
 
 void simple_scroll_bar::_001OnLButtonUp(signal_details * pobj)
 {
-   SCAST_PTR(::message::mouse, pmouse, pobj)
-      point pt = pmouse->m_pt;
-   ScreenToClient(&pt);
-   simple_scroll_bar * pcandidate =
-      dynamic_cast < simple_scroll_bar * > (
-      System.get_capture_uie().m_p);
-   KillTimer(100);
-   KillTimer(110);
-   KillTimer(200);
-   KillTimer(210);
-   KillTimer(300);
-   KillTimer(310);
-   KillTimer(400);
-   KillTimer(410);
+
+   SCAST_PTR(::message::mouse,pmouse,pobj)
+
+   m_eelement = element_none;
+   
+   KillTimer(((uint_ptr)this));
+   
+   KillTimer(((uint_ptr)this)+1);
+   
    pmouse->m_bRet = false;
 
-   if((pcandidate != NULL && pcandidate == this) || m_bTracking)
+   simple_scroll_bar * pcapture = System.get_capture_uie().cast < simple_scroll_bar >();
+
+   if((pcapture != NULL && pcapture == this) || m_bTracking)
    {
+      
       System.release_capture_uie();
+      
       bool bWasTracking = m_bTracking;
+      
       m_bTracking = false;
-//      sp(::user::interaction) pParentWnd = GetParent();
+      
       if(bWasTracking)
+      {
+
+         point pt = pmouse->m_pt;
+
+         ScreenToClient(&pt);
+
          SetTrackingPos(pt);
+
+      }
+      
       send_scroll_message(SB_THUMBPOSITION);
+   
       Redraw();
-      pmouse->m_bRet = true;
-      pmouse->set_lresult(1);
+      
    }
+
 }
+
 
 bool simple_scroll_bar::GetTrackRect(LPRECT lpRect)
 {
@@ -443,12 +442,8 @@ int32_t simple_scroll_bar::_001GetScrollPos()
 
 
 
-void simple_scroll_bar::_001OnSize(signal_details * pobj)
+void simple_scroll_bar::layout()
 {
-
-   //SCAST_PTR(::message::size, psize, pobj)
-   pobj->previous();
-   // trans   ::user::interaction::OnSize(psize->m_wparam, size.cx, size.cy);
 
    rect rectClient;
    GetClientRect(rectClient);
@@ -569,90 +564,52 @@ void simple_scroll_bar::_001OnSize(signal_details * pobj)
 
 void simple_scroll_bar::_001OnTimer(signal_details * pobj)
 {
-//   return; //xxxtimer
+
    SCAST_PTR(::message::timer, ptimer, pobj)
 
-      point point;
-   rect rect;
-   class rect rectTrack;
-   class rect rectClient;
-   switch(ptimer->m_nIDEvent)
+   point pt;
+
+   session().get_cursor_pos(&pt);
+
+   ScreenToClient(&pt);
+
+   if(ptimer->m_nIDEvent == (uint_ptr) this)
    {
-   case 100:
+      
       KillTimer(ptimer->m_nIDEvent);
-      SetTimer(110, 10, NULL);
-   case 110:
-      ScrollLineA();
-      if(m_scrollinfo.nPos == m_scrollinfo.nMin)
+      
+      SetTimer(((uint_ptr) this) + 1,10,NULL);
+
+      ptimer->m_bRet = true;
+
+   }
+   else if(ptimer->m_nIDEvent == ((uint_ptr) this) + 1)
+   {
+
+      if(!scrollbar_action(m_eelement, pt))
       {
-         KillTimer(110);
-      }
-      break;
-   case 200:
-      KillTimer(ptimer->m_nIDEvent);
-      SetTimer(210, 10, NULL);
-   case 210:
-      ScrollLineB();
-      if(m_scrollinfo.nPos == m_scrollinfo.nMax - m_scrollinfo.nPage)
-      {
-         KillTimer(210);
-      }
-      break;
-   case 300:
-      KillTimer(ptimer->m_nIDEvent);
-      SetTimer(310, 10, NULL);
-   case 310:
-      GetCursorPos(&point);
-      ScreenToClient(&point);
-      GetClientRect(rectClient);
-      GetTrackRect(rectTrack);
-      GetPageARect(rectClient, rectTrack, rect);
-      if(!rect.contains(point))
-      {
-         KillTimer(310);
-         break;
-      }
-      if(m_scrollinfo.nPos == m_scrollinfo.nMin)
-      {
+
          KillTimer(ptimer->m_nIDEvent);
-         break;
+
       }
-      ScrollPageA();
-      break;
-   case 400:
-      KillTimer(ptimer->m_nIDEvent);
-      SetTimer(410, 10, NULL);
-   case 410:
-      GetCursorPos(&point);
-      ScreenToClient(&point);
-      GetClientRect(rectClient);
-      GetTrackRect(rectTrack);
-      GetPageBRect(rectClient, rectTrack, rect);
-      if(!rect.contains(point))
-      {
-         KillTimer(410);
-         break;
-      }
-      if(m_scrollinfo.nPos == m_scrollinfo.nMax - m_scrollinfo.nPage)
-      {
-         KillTimer(410);
-         break;
-      }
-      ScrollPageB();
-      break;
-   default:
-      KillTimer(ptimer->m_nIDEvent);
-      break;
+
+      ptimer->m_bRet = true;
+
    }
-   ptimer->m_bRet = false;
+
 }
 
-int32_t simple_scroll_bar::ScrollLineA()
+
+bool simple_scroll_bar::scrollbar_lineA()
 {
+   
    int32_t nPos = m_scrollinfo.nPos;
+   
    nPos-=3;
+   
    if(nPos < m_scrollinfo.nMin)
       nPos = m_scrollinfo.nMin;
+   
    m_scrollinfo.nPos = nPos;
 
    if(m_eorientation == orientation_horizontal)
@@ -663,15 +620,25 @@ int32_t simple_scroll_bar::ScrollLineA()
    {
       send_scroll_message(SB_LINEUP);
    }
+   
+   if(m_scrollinfo.nPos == m_scrollinfo.nMin)
+      return false;
+
    return true;
+
 }
 
-int32_t simple_scroll_bar::ScrollLineB()
+
+bool simple_scroll_bar::scrollbar_lineB()
 {
+
    int32_t nPos = m_scrollinfo.nPos;
+
    nPos+=3;
+
    if(nPos > m_scrollinfo.nMax - m_scrollinfo.nPage)
       nPos = m_scrollinfo.nMax - m_scrollinfo.nPage;
+
    m_scrollinfo.nPos = nPos;
 
    if(m_eorientation == orientation_horizontal)
@@ -682,17 +649,27 @@ int32_t simple_scroll_bar::ScrollLineB()
    {
       send_scroll_message(SB_LINEDOWN);
    }
+
+   if(m_scrollinfo.nPos == m_scrollinfo.nMax - m_scrollinfo.nPage)
+      return false;
+
    return true;
+
 }
 
-int32_t simple_scroll_bar::ScrollPageA()
+
+bool simple_scroll_bar::scrollbar_pageA(point pt)
 {
-//   sp(::user::interaction) pParentWnd = GetParent();
+
    int32_t nPos = m_scrollinfo.nPos;
+
    nPos-=m_scrollinfo.nPage ;
+
    if(nPos < m_scrollinfo.nMin)
       nPos = m_scrollinfo.nMin;
+
    m_scrollinfo.nPos = nPos;
+
    if(m_eorientation == orientation_horizontal)
    {
       send_scroll_message(SB_LINELEFT);
@@ -701,17 +678,40 @@ int32_t simple_scroll_bar::ScrollPageA()
    {
       send_scroll_message(SB_LINEUP);
    }
+
+   rect rectClient;
+
+   rect rectTrack;
+
+   rect rect;
+
+   GetClientRect(rectClient);
+
+   GetTrackRect(rectTrack);
+
+   GetPageARect(rectClient,rectTrack,rect);
+
+   if(!rect.contains(pt))
+      return false;
+
+   if(m_scrollinfo.nPos == m_scrollinfo.nMin)
+      return false;
+
    return true;
 
 }
 
-int32_t simple_scroll_bar::ScrollPageB()
+
+bool simple_scroll_bar::scrollbar_pageB(point pt)
 {
-//   sp(::user::interaction) pParentWnd = GetParent();
+
    int32_t nPos = m_scrollinfo.nPos;
+
    nPos+=m_scrollinfo.nPage ;
+
    if(nPos > m_scrollinfo.nMax - m_scrollinfo.nPage)
       nPos = m_scrollinfo.nMax - m_scrollinfo.nPage;
+
    m_scrollinfo.nPos = nPos;
 
    if(m_eorientation == orientation_horizontal)
@@ -722,8 +722,29 @@ int32_t simple_scroll_bar::ScrollPageB()
    {
       send_scroll_message(SB_LINEDOWN);
    }
+
+   rect rectClient;
+
+   rect rectTrack;
+
+   rect rect;
+
+   GetClientRect(rectClient);
+
+   GetTrackRect(rectTrack);
+
+   GetPageBRect(rectClient,rectTrack,rect);
+
+   if(!rect.contains(pt))
+      return false;
+
+   if(m_scrollinfo.nPos == m_scrollinfo.nMax - m_scrollinfo.nPage)
+      return false;
+
    return true;
+
 }
+
 
 //void simple_scroll_bar::OnDraw(::draw2d::graphics * pgraphics)
 //{
@@ -900,9 +921,9 @@ public:
    }
 };
 
+
 void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
 {
-
 
    pdc->SelectClipRgn(NULL);
 
@@ -931,11 +952,29 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
 
    GetTrackRect(rectTrack);
 
-   /*
+
+   class ::rect rectWindow;
+
+   GetWindowRect(rectWindow);
+
+   m_penDraw->create_solid(1,scrollbar_border_color(element_scrollbar_rect));
+
+   m_brushDraw->create_solid(scrollbar_color(element_scrollbar_rect));
+
+   pdc->SelectObject(m_penDraw);
+
+
+   pdc->SelectObject(m_brushDraw);
+
+   pdc->Rectangle(rectTrack);
+
+
    if(m_bTracking || (bool)oprop("tracking_on"))
    {
-      DWORD dwFadeIn = 840;
-      DWORD dwFadeOut = 840;
+
+      DWORD dwFadeIn = 490;
+
+      DWORD dwFadeOut = 490;
 
       byte uchAlpha = max(0, min(255, oprop("tracking_alpha").uint32()));
 
@@ -947,7 +986,8 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
             oprop("tracking_start") = (uint32_t) (get_tick_count() + uchAlpha * dwFadeIn / 255) ;
             oprop("tracking_fade_in") = true;
             oprop("tracking_fade_out") = false;
-            oprop("tracking_window") = canew(trw(get_app()));
+            oprop("tracking_simple") = System.math().RandRange(1,2) == 1;
+            //oprop("tracking_window") = canew(trw(get_app()));
          }
       }
       else
@@ -971,9 +1011,9 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
 
       ClientToScreen(pt1);
 
-      oprop("tracking_window").cast < trw >()->pt1 = pt1;
+//      oprop("tracking_window").cast < trw >()->pt1 = pt1;
 
-      oprop("tracking_window").cast < trw >()->pt2 = pt2;
+  //    oprop("tracking_window").cast < trw >()->pt2 = pt2;
 
       if((bool)oprop("tracking_fade_in"))
       {
@@ -1011,48 +1051,56 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
 
       ::rect rectMachineThumb;
 
-      int iSize = rectTrack.size().get_normal(m_eorientation) * 6 / 8;
+      bool bSimple = (bool) oprop("tracking_simple");
 
-      rectMachineThumb.top_left() = rectTrack.top_left() + m_ptTrackOffset - size(iSize /2, iSize /2);
+      if(bSimple)
+      {
 
+         int iSize = rectTrack.size().get_normal(m_eorientation) * 6 / 8;
 
+         rectMachineThumb.top_left() = rectTrack.top_left() + m_ptTrackOffset - size(iSize / 2,iSize / 2);
 
-      rectMachineThumb.bottom_right() = rectMachineThumb.top_left() + size(iSize, iSize);
+         rectMachineThumb.bottom_right() = rectMachineThumb.top_left() + size(iSize,iSize);
 
-      ::rect rectIntersect;
+         ::rect rectIntersect;
 
-      rectIntersect.intersect(rectMachineThumb,rectTrack);
-      
-      int iArea = max(1, rectIntersect.area());
+         rectIntersect.intersect(rectMachineThumb,rectTrack);
 
-      rectMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5),1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
+         int iArea = max(1,rectIntersect.area());
 
-      draw_mac_thumb(pdc, rectMachineThumb, rectTrack,uchAlpha);
+         rectMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5),1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
+
+         draw_mac_thumb_simple(pdc,rectMachineThumb,rectTrack,uchAlpha);
+
+      }
+      else
+      {
+
+         int iSize = rectTrack.size().get_normal(m_eorientation);
+
+         rectMachineThumb.top_left() = rectTrack.top_left() + m_ptTrackOffset - size(iSize / 2,iSize / 2);
+
+         rectMachineThumb.bottom_right() = rectMachineThumb.top_left() + size(iSize,iSize);
+
+         rectMachineThumb.assign_normal(rectTrack, m_eorientation);
+
+         rectMachineThumb.constraint_v7(rectTrack);
+
+         rectMachineThumb.deflate(1,1);
+
+         draw_mac_thumb_dots(pdc,rectMachineThumb,rectTrack,uchAlpha);
+
+      }
 
       oprop("tracking_alpha") = uchAlpha;
 
    }
-   */
 
 
-   class ::rect rectWindow;
-
-   GetWindowRect(rectWindow);
-
-   m_penDraw->create_solid(1,ARGB(184,84 - 49,84 - 49,77 - 49));
-
-   m_brushDraw->create_solid(ARGB(77 + 49, 184, 184, 177));
-
-   pdc->SelectObject(m_penDraw);
-
-
-   pdc->SelectObject(m_brushDraw);
-
-   pdc->Rectangle(rectTrack);
 
    ::draw2d::pen_sp penGrip(allocer());
 
-   penGrip->create_solid(2.0,ARGB(184,84 + 23,84 + 23,77 + 23));
+   penGrip->create_solid(2.0,scrollbar_lite_border_color(element_scrollbar_rect));
 
    pdc->SelectObject(penGrip);
 
@@ -1085,24 +1133,70 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
 
    ::draw2d::pen_sp penArrow(allocer());
 
-   penArrow->create_solid(1.0,ARGB(184,84 + 23,84 + 23,77 + 23));
+   penArrow->create_solid(1.0,scrollbar_lite_border_color(element_scrollbar_rectA));
 
    pdc->SelectObject(penArrow);
 
-   pdc->DrawRectangle(m_rectA);
-   pdc->DrawRectangle(m_rectB);
+   m_brushDraw->create_solid(scrollbar_color(element_scrollbar_rectA));
 
-   penArrow->create_solid(2.0,ARGB(184,84 + 23,84 + 23,77 + 23));
+   pdc->SelectObject(m_brushDraw);
+
+   pdc->Rectangle(m_rectA);
+
+   penArrow->create_solid(1.0,scrollbar_lite_border_color(element_scrollbar_rectB));
 
    pdc->SelectObject(penArrow);
+
+   m_brushDraw->create_solid(scrollbar_color(element_scrollbar_rectB));
+
+   pdc->SelectObject(m_brushDraw);
+
+   pdc->Rectangle(m_rectB);
+
+   ::rect rect;
+
+   if(m_eelement == element_scrollbar_pageA || m_eelementHover == element_scrollbar_pageA)
+   {
+
+      GetPageARect(rectClient,rectTrack,rect);
+
+      m_brushDraw->create_solid(scrollbar_color(element_scrollbar_pageA));
+
+      pdc->SelectObject(m_brushDraw);
+
+      pdc->FillRectangle(rect);
+
+   }
+   else if(m_eelement == element_scrollbar_pageB || m_eelementHover == element_scrollbar_pageB)
+   {
+
+      GetPageBRect(rectClient,rectTrack,rect);
+
+      m_brushDraw->create_solid(scrollbar_color(element_scrollbar_pageB));
+
+      pdc->SelectObject(m_brushDraw);
+
+      pdc->FillRectangle(rect);
+
+
+   }
 
 
    penArrow->m_elinecapBeg = ::draw2d::pen::line_cap_round;
    penArrow->m_elinecapEnd = ::draw2d::pen::line_cap_round;
    penArrow->m_elinejoin = ::draw2d::pen::line_join_round;
 
-   pdc->Polyline(m_ptaA, 3);
-   pdc->Polyline(m_ptaB, 3);
+   penArrow->create_solid(1.0,scrollbar_lite_border_color(element_scrollbar_rectA));
+
+   pdc->SelectObject(penArrow);
+
+   pdc->Polyline(m_ptaA,3);
+
+   penArrow->create_solid(1.0,scrollbar_lite_border_color(element_scrollbar_rectB));
+
+   pdc->SelectObject(penArrow);
+
+   pdc->Polyline(m_ptaB,3);
 
 
 
@@ -1122,9 +1216,7 @@ void simple_scroll_bar::_001OnDestroy(signal_details * pobj)
    UNREFERENCED_PARAMETER(pobj);
 }
 
-
-
-void simple_scroll_bar::draw_mac_thumb(::draw2d::graphics * pdc,LPCRECT lpcrectDraw,LPCRECT lpcrectClip,byte uchAlpha)
+void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics * pdc,LPCRECT lpcrectDraw,LPCRECT lpcrectClip,byte uchAlpha)
 {
 
    rect rectDraw(lpcrectDraw);
@@ -1133,7 +1225,7 @@ void simple_scroll_bar::draw_mac_thumb(::draw2d::graphics * pdc,LPCRECT lpcrectD
 
    ::draw2d::pen_sp pen(allocer());
 
-   pen->create_solid(2.0,ARGB(149 * uchAlpha / 255,84+23,84+23,77+23));
+   pen->create_solid(2.0,ARGB(149 * uchAlpha / 255,84 + 23,84 + 23,77 + 23));
 
    pdc->SelectObject(pen);
 
@@ -1151,99 +1243,77 @@ void simple_scroll_bar::draw_mac_thumb(::draw2d::graphics * pdc,LPCRECT lpcrectD
 
    pdc->FillEllipse(rectDotto);
 
-   /*
+}
 
-   ::draw2d::brush_sp brushGrip(allocer());
+
+
+void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics * pdc,LPCRECT lpcrectDraw,LPCRECT lpcrectClip,byte uchAlpha)
+{
 
    ::draw2d::dib_sp dib(allocer());
 
    dib->create(1,1);
 
-   COLORREF cr = ARGB((84 * uchAlpha / 255),84 - 23,84 - 23,77 - 23);
+   //   int iDarkLevel = 11;
 
-   dib->Fill(184 * uchAlpha / 255,84 - 23 - 22,84 - 23,77 - 23 - 22);
+   int iDarkLevel = 23 + 10 + 23;
 
-   brushGrip->create_solid(cr);
+   int iSmoothing = 23 + 8;
 
-   pdc->SelectObject(brushGrip);
+   dib->Fill(184 * uchAlpha / 255,84 - iDarkLevel,84 - iDarkLevel,77 - iDarkLevel);
 
    rect rectDraw(lpcrectDraw);
 
+   int iModelSize = min(rectDraw.width(), rectDraw.height());
+
+   iModelSize = (iModelSize / 4) * 4;
+
    int iSize = 1;
 
-   rect rectBound(lpcrectDraw);
+   rect rectSource;
 
-   rectBound.deflate(iSize,iSize);
+   rectSource.CenterOf(rectDraw,size(iModelSize+1,iModelSize+1));
 
-   rectDraw = rectBound;
-
-   ::rect rect(0,0,1,1);
-
-   rect.Align(AlignLeft | AlignTop,rectDraw);
-
-   pdc->from(size(1, 1), dib->get_graphics(), SRCCOPY);
-
-   rect.Align(AlignRight | AlignTop,rectDraw);
-
-   pdc->from(size(1,1),dib->get_graphics(),SRCCOPY);
-
-   rect.Align(AlignLeft | AlignBottom,rectDraw);
-
-   pdc->from(size(1,1),dib->get_graphics(),SRCCOPY);
-
-   rect.Align(AlignRight | AlignBottom,rectDraw);
-
-   pdc->from(size(1,1),dib->get_graphics(),SRCCOPY);
-
-   int iSize2 = (rectDraw.width() - iSize) / 4;
+   rect rectBound(rectSource);
 
    rectDraw = rectBound;
 
-   rectDraw.deflate(iSize2,0);
+   pdc->from(rectDraw.top_left(),size(1,1),dib->get_graphics(), null_point(),SRCCOPY);
+   pdc->from(rectDraw.top_right(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
+   pdc->from(rectDraw.bottom_left(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
+   pdc->from(rectDraw.bottom_right(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
 
-   rect.Align(AlignLeft | AlignTop,rectDraw);
-
-   pdc->from(size(1,1),dib->get_graphics(),SRCCOPY);
-
-   rect.Align(AlignRight | AlignTop,rectDraw);
-
-   pdc->from(size(1,1),dib->get_graphics(),SRCCOPY);
-
-   rect.Align(AlignLeft | AlignBottom,rectDraw);
-
-   pdc->from(size(1,1),dib->get_graphics(),SRCCOPY);
-
-   rect.Align(AlignRight | AlignBottom,rectDraw);
-
-   pdc->from(size(1,1),dib->get_graphics(),SRCCOPY);
+   int iSize2 = iModelSize / 4;
 
    rectDraw = rectBound;
 
-   rectDraw.deflate(0,iSize2);
+   rectDraw.deflate(iSize2+1,0);
 
-   rect.Align(AlignLeft | AlignTop,rectDraw);
+   pdc->from(rectDraw.top_left(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
+   pdc->from(rectDraw.top_right(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
+   pdc->from(rectDraw.bottom_left(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
+   pdc->from(rectDraw.bottom_right(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
 
-   pdc->FillEllipse(rect);
+   rectDraw = rectBound;
 
-   rect.Align(AlignRight | AlignTop,rectDraw);
+   rectDraw.deflate(0,iSize2+1);
 
-   pdc->FillEllipse(rect);
+   pdc->from(rectDraw.top_left(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
+   pdc->from(rectDraw.top_right(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
+   pdc->from(rectDraw.bottom_left(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
+   pdc->from(rectDraw.bottom_right(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
 
-   rect.Align(AlignLeft | AlignBottom,rectDraw);
-
-   pdc->FillEllipse(rect);
-
-   rect.Align(AlignRight | AlignBottom,rectDraw);
-
-   pdc->FillEllipse(rect);
-
-   iSize += 1;
+   rectDraw = rectBound;
 
    rectDraw.deflate(iSize,iSize);
 
-   rect = ::rect(0,0,iSize,iSize);
+   iSize += 1;
 
-   brushGrip->create_solid(ARGB(184  * uchAlpha / 255,84 - 23 - 22,84 - 23 - 22,77 - 23 - 22));
+   ::rect rect = ::rect(0,0,iSize,iSize);
+
+   ::draw2d::brush_sp brushGrip(allocer());
+
+   brushGrip->create_solid(ARGB(184 * uchAlpha / 255,84 - iDarkLevel + iSmoothing,84 - iDarkLevel + iSmoothing,77 - iDarkLevel + iSmoothing));
 
    pdc->SelectObject(brushGrip);
 
@@ -1279,11 +1349,11 @@ void simple_scroll_bar::draw_mac_thumb(::draw2d::graphics * pdc,LPCRECT lpcrectD
 
    pdc->FillEllipse(rect);
 
-   iSize += 1;
-
    rectDraw.deflate(iSize,iSize);
 
-   brushGrip->create_solid(ARGB(184  * uchAlpha / 255,84 - 23 - 22 - 23,84 - 23 - 22 - 23,77 - 23 - 22 - 23));
+   iSize += 1;
+
+   brushGrip->create_solid(ARGB(184 * uchAlpha / 255,84 - iDarkLevel + iSmoothing * 2,84 - iDarkLevel + iSmoothing * 2,77 - iDarkLevel + iSmoothing * 2));
 
    pdc->SelectObject(brushGrip);
 
@@ -1305,7 +1375,7 @@ void simple_scroll_bar::draw_mac_thumb(::draw2d::graphics * pdc,LPCRECT lpcrectD
 
    pdc->FillEllipse(rect);
 
-   iSize += 1;
+   //iSize += 2;
 
    rect = ::rect(0,0,iSize,iSize);
 
@@ -1313,8 +1383,137 @@ void simple_scroll_bar::draw_mac_thumb(::draw2d::graphics * pdc,LPCRECT lpcrectD
 
    pdc->FillEllipse(rect);
 
-   */
+}
+
+
+
+index simple_scroll_bar::hit_test(point pt,e_element & eelement)
+{
+
+   ScreenToClient(&pt);
+
+   rect rectTrack;
+
+   GetTrackRect(rectTrack);
+
+   if(rectTrack.contains(pt))
+   {
+
+      eelement = element_scrollbar_rect;
+
+      return 0;
+
+   }
+
+   ::rect rect;
+
+   ::rect rectClient;
+
+   GetClientRect(rectClient);
+
+   GetPageARect(rectClient,rectTrack,rect);
+
+   if(rect.contains(pt))
+   {
+
+      eelement = element_scrollbar_pageA;
+
+      return 0;
+
+   }
+
+
+   GetPageBRect(rectClient,rectTrack,rect);
+
+   if(rect.contains(pt))
+   {
+
+      eelement = element_scrollbar_pageB;
+
+      return 0;
+
+   }
+
+   if(m_rectA.contains(pt))
+   {
+
+      eelement = element_scrollbar_rectA;
+
+      return 0;
+
+   }
+   
+   if(m_rectB.contains(pt))
+   {
+
+      eelement = element_scrollbar_rectB;
+
+      return 0;
+
+   }
+
+   return -1;
 
 }
+
+
+COLORREF simple_scroll_bar::scrollbar_color(e_element eelement)
+{
+
+   if(m_eelement == eelement || m_eelementHover == eelement)
+   {
+
+      return m_crHover;
+
+   }
+   else
+   {
+
+      return m_cr;
+
+   }
+
+}
+
+
+COLORREF simple_scroll_bar::scrollbar_border_color(e_element eelement)
+{
+
+   if(m_eelement == eelement || m_eelementHover == eelement)
+   {
+
+      return m_crHoverBorder;
+
+   }
+   else
+   {
+
+      return m_crBorder;
+
+   }
+
+}
+
+
+
+COLORREF simple_scroll_bar::scrollbar_lite_border_color(e_element eelement)
+{
+
+   if(m_eelement == eelement || m_eelementHover == eelement)
+   {
+
+      return m_crHoverLiteBorder;
+
+   }
+   else
+   {
+
+      return m_crLiteBorder;
+
+   }
+
+}
+
+
 
 

@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_CORE simple_document :
-   virtual public ::user::object
+   virtual public ::user::document
 {
 public:
 

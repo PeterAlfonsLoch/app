@@ -4,7 +4,7 @@
 simple_document::simple_document(sp(::base::application) papp) : 
    element(papp),
    ::data::data_container_base(papp),
-   ::user::object(papp),
+   ::user::document(papp),
    m_set(papp)
 {
 }

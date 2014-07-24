@@ -49,14 +49,14 @@ namespace user
 
 
 
-      sp(::user::object)         m_spdocument;
+      sp(::user::document)         m_spdocument;
 
 
 
       impact();
       virtual ~impact();
 
-      sp(::user::object) get_document() const;
+      sp(::user::document) get_document() const;
 
       template < class DATA >
       DATA * get_typed_data();
@@ -104,12 +104,12 @@ namespace user
 
 
 
-      sp(::user::interaction) create_view(type * info, sp(::user::object) pdoc = NULL, sp(::user::interaction) pwndParent = NULL, ::id id = ::id(), sp(::user::interaction) pviewLast = NULL);
-      static sp(::user::interaction) s_create_view(type * info, sp(::user::object) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast = NULL);
+      sp(::user::interaction) create_view(type * info, sp(::user::document) pdoc = NULL, sp(::user::interaction) pwndParent = NULL, ::id id = ::id(), sp(::user::interaction) pviewLast = NULL);
+      static sp(::user::interaction) s_create_view(type * info, sp(::user::document) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast = NULL);
       static sp(::user::interaction) s_create_view(::create_context * pContext, sp(::user::interaction) pwndParent, id id);
 
       template < class VIEW >
-      sp(VIEW) create_view(::user::object * pdoc = NULL, sp(::user::interaction) pwndParent = NULL, ::id id = ::id(), sp(::user::interaction) pviewLast = NULL);
+      sp(VIEW) create_view(::user::document * pdoc = NULL, sp(::user::interaction) pwndParent = NULL, ::id id = ::id(), sp(::user::interaction) pviewLast = NULL);
 
       template < class VIEW >
       sp(VIEW) create_view(::user::interaction * pwndParent, ::id id = ::id(), sp(::user::interaction) pviewLast = NULL);
@@ -118,7 +118,7 @@ namespace user
       sp(VIEW) create_view(::user::view_creator_data * pcreatordata, sp(::user::interaction) pviewLast = NULL);
 
 
-      static sp(::user::object) get_document(sp(::user::interaction) pui);
+      static sp(::user::document) get_document(sp(::user::interaction) pui);
 
       virtual void dump(dump_context &) const;
       virtual void assert_valid() const;
@@ -174,7 +174,7 @@ namespace user
       virtual void on_select();
 
       // each view can display one or more documents but has only one document interface
-      //sp(::user::object) get_document() const;
+      //sp(::user::document) get_document() const;
 
       //      virtual bool IsSelected(const object* pDocItem) const; // support for OLE
 

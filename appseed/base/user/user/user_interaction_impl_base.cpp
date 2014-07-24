@@ -943,13 +943,6 @@ namespace user
 
    }
 
-   interaction_base::ETranslucency interaction_impl_base::_001GetTranslucency()
-   {
-
-      return m_pui->_001GetTranslucency();
-
-   }
-
 
 } // namespace user
 

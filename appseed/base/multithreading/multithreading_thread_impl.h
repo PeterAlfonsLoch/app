@@ -158,6 +158,7 @@ public:
 
    virtual int get_x_window_count() const;
 
+   virtual void do_events();
 
 };
 

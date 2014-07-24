@@ -419,7 +419,7 @@ namespace user
       return NULL;
    }
 
-   sp(::user::object) tab_view::get_view_document()
+   sp(::user::document) tab_view::get_view_document()
    {
       if(m_pviewdata == NULL)
          return NULL;

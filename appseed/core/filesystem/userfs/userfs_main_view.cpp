@@ -57,7 +57,7 @@ namespace userfs
 
    }
 
-   sp(::user::object) main_view::get_document()
+   sp(::user::document) main_view::get_document()
    {
       return  (::user::split_view::get_document());
    }

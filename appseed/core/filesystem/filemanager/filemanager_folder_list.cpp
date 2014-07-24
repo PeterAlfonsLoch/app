@@ -49,7 +49,7 @@ namespace filemanager
    void folder_list::OnDraw(::draw2d::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
-      //sp(::user::object) pDoc = get_document();
+      //sp(::user::document) pDoc = get_document();
       // TODO: add draw code here
    }
 

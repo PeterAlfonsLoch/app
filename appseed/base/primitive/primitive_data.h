@@ -89,7 +89,7 @@ namespace data
 
       mutex  *                               m_pmutex;
 
-      sp(::user::object)              m_pdocument;
+      sp(::user::document)              m_pdocument;
 
 
       data(sp(::base::application) papp);
@@ -106,7 +106,7 @@ namespace data
 
       inline mutex * data_mutex() { if(m_pmutex != NULL) return m_pmutex; m_pmutex = new ::mutex(get_app()); return m_pmutex; }
 
-      inline ::user::object * get_document() { return m_pdocument; }
+      inline ::user::document * get_document() { return m_pdocument; }
 
    };
 

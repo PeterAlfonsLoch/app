@@ -398,7 +398,7 @@ public:
    // registered with the doc manager.
    int32_t get_open_document_count();
 
-   bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::impact_system) ptemplate, sp(::user::object) pdocument);
+   bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::impact_system) ptemplate, sp(::user::document) pdocument);
 
    void EnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
@@ -457,7 +457,7 @@ public:
    //      virtual ::core::file_system & file_system();
    virtual bool _001OnDDECommand(const char * lpcsz);
    virtual void _001EnableShellOpen();
-   virtual sp(::user::object) _001OpenDocumentFile(var varFile);
+   virtual sp(::user::document) _001OpenDocumentFile(var varFile);
    DECL_GEN_SIGNAL(_001OnFileNew);
 
 
@@ -545,7 +545,7 @@ public:
    //////////////////////////////////////////////////////////////////////////////////////////////////
    // System/System
    //
-   sp(::user::object) place_hold(sp(::user::interaction) pui);
+   sp(::user::document) place_hold(sp(::user::interaction) pui);
 
    /*
    virtual ::count get_monitor_count();
@@ -582,7 +582,7 @@ public:
 
    //virtual void on_request(sp(::create_context) pcreatecontext);
 
-   //sp(::user::object) _001OpenDocumentFile(var varFile);
+   //sp(::user::document) _001OpenDocumentFile(var varFile);
 
    //sp(::base::application) get_system();
 

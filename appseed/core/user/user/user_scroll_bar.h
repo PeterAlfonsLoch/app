@@ -17,7 +17,7 @@ namespace user
    };
 
    class CLASS_DECL_CORE scroll_bar :
-      virtual public ::user::interaction
+      virtual public ::user::control
    {
    public:
 

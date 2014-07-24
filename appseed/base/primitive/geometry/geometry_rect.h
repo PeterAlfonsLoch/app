@@ -105,6 +105,8 @@ public:
    void move_to(POINT point) throw();
 
    // set this rectangle to intersection of two others
+   bool intersect_x(LPCRECT lpRect1,LPCRECT lpRect2) throw();
+   bool intersect_y(LPCRECT lpRect1,LPCRECT lpRect2) throw();
    bool intersect(LPCRECT lpRect1, LPCRECT lpRect2) throw();
 
    bool null_intersect(LPCRECT lpRect1,LPCRECT lpRect2) throw();
@@ -144,8 +146,9 @@ public:
    int64_t area();
 
    bool contains(LPCRECT lpcrect) const;
-   void ConstraintV5(LPCRECT lpcrect, const class size sizeMin);
-   void Align(int32_t align, LPCRECT lpcrect);
+   void constraint_v5(LPCRECT lpcrect, const class size sizeMin);
+   void constraint_v7(LPCRECT lpcrect);
+   void Align(int32_t align,LPCRECT lpcrect);
    void ScaleHeightAspect(int32_t iNewHeight, int32_t iCenterX, int32_t iCenterY);
    void ScaleRect(double dx, double dy, int32_t ix, int32_t iy);
    void ExtendOnCenter(LPCRECT lpcrect);
@@ -164,6 +167,9 @@ public:
 
    void get_bounding_rect(const POINT * lppoint, ::count count);
    void get_bounding_rect(const point_array & pointa);
+
+   void assign(LPCRECT lpcrect,e_orientation eorientation) throw();
+   void assign_normal(LPCRECT lpcrect,e_orientation eorientation) throw();
 
 };
 
@@ -320,6 +326,10 @@ public:
 
    void SubtractRectMajor(const __rect64 * lpcrectMajor, const __rect64 * lpcrectMinor);
    void SubtractRectMinor(const __rect64 * lpcrectMajor, const __rect64 * lpcrectMinor);
+
+
+   void assign(const __rect64 * lpcrect,e_orientation eorientation) throw();
+   void assign_normal(const __rect64 * lpcrect,e_orientation eorientation) throw();
 
 };
 
@@ -557,8 +567,135 @@ public:
    void get_bounding_rect(const POINTD * lppoint, ::count count);
    void get_bounding_rect(const pointd_array & pointa);
 
+   void assign(const tagRECTD * lpcrect,e_orientation eorientation) throw();
+   void assign_normal(const tagRECTD * lpcrect,e_orientation eorientation) throw();
+
 };
 
 
 inline CLASS_DECL_BASE ::rect null_rect() { return ::rect(0, 0, 0, 0); }
 inline CLASS_DECL_BASE ::rect64 null_rect64() { return ::rect64(0, 0, 0, 0); }
+
+
+inline void rect::assign(LPCRECT lpcrect,e_orientation eorientation) throw()
+{
+
+   if(eorientation == orientation_horizontal)
+   {
+
+      left = lpcrect->left;
+      right = lpcrect->right;
+
+   }
+   else if(eorientation == orientation_vertical)
+   {
+
+      top = lpcrect->top;
+      bottom = lpcrect->bottom;
+
+   }
+
+}
+
+
+inline void rect::assign_normal(LPCRECT lpcrect,e_orientation eorientation) throw()
+{
+
+   if(eorientation == orientation_horizontal)
+   {
+
+      top = lpcrect->top;
+      bottom = lpcrect->bottom;
+
+   }
+   else if(eorientation == orientation_vertical)
+   {
+
+      left = lpcrect->left;
+      right = lpcrect->right;
+
+   }
+
+}
+
+inline void rect64::assign(const __rect64 * lpcrect,e_orientation eorientation) throw()
+{
+
+   if(eorientation == orientation_horizontal)
+   {
+
+      left = lpcrect->left;
+      right = lpcrect->right;
+
+   }
+   else if(eorientation == orientation_vertical)
+   {
+
+      top = lpcrect->top;
+      bottom = lpcrect->bottom;
+
+   }
+
+}
+
+
+inline void rect64::assign_normal(const __rect64 * lpcrect,e_orientation eorientation) throw()
+{
+
+   if(eorientation == orientation_horizontal)
+   {
+
+      top = lpcrect->top;
+      bottom = lpcrect->bottom;
+
+   }
+   else if(eorientation == orientation_vertical)
+   {
+
+      left = lpcrect->left;
+      right = lpcrect->right;
+
+   }
+
+}
+
+inline void rectd::assign(const tagRECTD * lpcrect,e_orientation eorientation) throw()
+{
+
+   if(eorientation == orientation_horizontal)
+   {
+
+      left = lpcrect->left;
+      right = lpcrect->right;
+
+   }
+   else if(eorientation == orientation_vertical)
+   {
+      
+      top = lpcrect->top;
+      bottom = lpcrect->bottom;
+
+   }
+
+}
+
+
+inline void rectd::assign_normal(const tagRECTD * lpcrect,e_orientation eorientation) throw()
+{
+
+   if(eorientation == orientation_horizontal)
+   {
+
+      top = lpcrect->top;
+      bottom = lpcrect->bottom;
+
+   }
+   else if(eorientation == orientation_vertical)
+   {
+
+      left = lpcrect->left;
+      right = lpcrect->right;
+
+   }
+
+}

@@ -6,7 +6,7 @@ namespace filemanager
 {
 
 
-   class CLASS_DECL_CORE schema :
+   class CLASS_DECL_CORE document_manager :
       virtual public ::object
    {
    public:
@@ -44,7 +44,9 @@ namespace filemanager
       sp(::user::multiple_document_template) m_pdoctemplateChild;
       sp(::user::multiple_document_template) m_pdoctemplateChildList;
 
-      //SimpleDialogBar *    m_pdialogbar;
+
+      document_manager(filemanager * pfilemanager);
+      virtual ~document_manager();
 
 
       sp(document) open(sp(::create_context) pcreatecontext = NULL, ::fs::data * pdata = NULL, data * pfilemanagerdata = NULL);
@@ -54,8 +56,6 @@ namespace filemanager
       sp(document) create_new_document(callback * pinterface, sp(::create_context) pcreatecontext);
 
 
-      schema(filemanager * pfilemanager);
-      virtual ~schema();
 
 
       virtual void Initialize(int32_t iTemplate, const char * pszMatter);

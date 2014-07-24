@@ -136,7 +136,7 @@ namespace fontopus
 
       ::user::interaction * puiParent = session().oprop("plugin_parent").cast < ::user::interaction >();
 
-      if(!CreateEx(WS_EX_LAYERED, NULL, NULL, 0, null_rect(), puiParent, "fontopus"))
+      if(!CreateEx(0, NULL, NULL, 0, null_rect(), puiParent, "fontopus"))
          return "";
 
       ::rect rectDesktop;
@@ -210,9 +210,9 @@ namespace fontopus
       
       SetForegroundWindow();
 
-      BringWindowToTop();
+      ShowWindow(SW_NORMAL);
 
-      BringToTop(SW_NORMAL);
+      BringWindowToTop();
 
       SetTimer(1984,284,NULL);
 
@@ -524,7 +524,7 @@ CLASS_DECL_BASE void draw_ca2_border2(::draw2d::graphics * pdc, int x, int y, in
 {
 
 
-   rect r(x + bIn + bOut, y + bIn + bOut, x + bIn + bOut + z - 1, y + bIn + bOut + z - 1);
+   rect r(x + bIn + bOut, y + bIn + bOut, x + bIn + bOut + z, y + bIn + bOut + z);
 
    ::draw2d::pen_sp p(pdc->allocer());
 
@@ -643,6 +643,8 @@ CLASS_DECL_BASE void draw_ca2(::draw2d::graphics * pdc, int x, int y, int z, COL
    r.right = r.left + w * 5;
 
    rect c = r;
+
+   // c vertical
 
    c.right = c.left + w;
 

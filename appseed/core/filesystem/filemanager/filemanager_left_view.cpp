@@ -60,6 +60,7 @@ namespace filemanager
                   {
                      pframe->m_dataid = str;
                   }
+
                }
             }
          }
@@ -98,20 +99,20 @@ namespace filemanager
 
       */
 
-      ::user::tree * pusertree = create_view < ::user::tree >();
+      m_pusertree = create_view < ::user::tree >();
 
-      if (pusertree == NULL)
+      if(m_pusertree == NULL)
       {
          System.simple_message_box(NULL, "Could not create file list ::user::impact");
       }
 
-      tree * ptree = new tree(get_app());
+      m_ptree = new tree(get_app());
 
-      pusertree->merge(ptree, true);
+      m_pusertree->merge(m_ptree, true);
 
       //SetPane(1, pusertree, false);
 
-      SetPane(0,pusertree,false);
+      SetPane(0,m_pusertree,false);
 
 
    }

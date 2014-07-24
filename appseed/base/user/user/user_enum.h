@@ -22,6 +22,18 @@ namespace user
    };
 
 
+   enum ETranslucency
+   {
+
+      TranslucencyNone,
+      TranslucencyPresent,
+      TranslucencyTotal
+
+   };
+
+
+
+
 } // namespace user
 
 

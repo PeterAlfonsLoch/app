@@ -42,7 +42,7 @@ namespace str
       string str = ccs;
       if(str == "(%back;?#1[\\.\\:]|\\^)\\M[^%nname;]+")
       {
-         //__debug_break();
+         //debug_break();
       }
       ch_class *cc = new ch_class();
       ch_class cc_temp;

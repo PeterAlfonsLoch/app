@@ -91,7 +91,7 @@ void base_factory::discard(sp(element) pobject)
    if(pallocator == NULL)
    {
       if(::is_debugger_attached())
-         __debug_break();
+         debug_break();
       return;
    }
    pallocator->discard(pobject);

@@ -78,7 +78,7 @@ namespace user
 
 
       bool                          m_bMakeVisible;
-      sp(::user::object)     m_pdoc;
+      sp(::user::document)     m_pdoc;
 
 
    };
@@ -112,8 +112,8 @@ namespace user
 
 
       int32_t m_nWindow;  // general purpose interaction_impl number - display as ":n"
-      // -1 => unknown, 0 => only interaction_impl viewing ::user::object
-      // 1 => first of many windows viewing ::user::object, 2=> second
+      // -1 => unknown, 0 => only interaction_impl viewing ::user::document
+      // 1 => first of many windows viewing ::user::document, 2=> second
 
       HMENU m_hMenuDefault;       // default menu resource for this frame
       HACCEL m_hAccelTable;       // accelerator table
@@ -199,7 +199,7 @@ namespace user
 
 
       // Attributes
-      virtual sp(::user::object) GetActiveDocument();
+      virtual sp(::user::document) GetActiveDocument();
 
       // Active child ::user::impact maintenance
       sp(::user::impact) GetActiveView() const;           // active ::user::impact or NULL
@@ -220,7 +220,7 @@ namespace user
       // Operations
       virtual void layout();
       virtual void ActivateFrame(int32_t nCmdShow = -1);
-      virtual void InitialUpdateFrame(sp(::user::object) pDoc, bool bMakeVisible);
+      virtual void InitialUpdateFrame(sp(::user::document) pDoc, bool bMakeVisible);
       virtual void InitialFramePosition(bool bForceRestore = false);
       void set_title(const char * lpszTitle);
       string get_title() const;

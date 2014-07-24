@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   object::object(sp(::base::application) papp) :
+   document::document(sp(::base::application) papp) :
       element(papp),
       ::data::data_container_base(papp),
       m_mutex(NULL)
@@ -13,20 +13,20 @@ namespace user
 
          m_pdocumentemplate = NULL;
          m_bModified = FALSE;
-         m_bAutoDelete = TRUE;       // default to auto delete object
-         m_bEmbedded = FALSE;        // default to file-based object
+         m_bAutoDelete = TRUE;       // default to auto delete document
+         m_bEmbedded = FALSE;        // default to file-based document
          ASSERT(m_viewptra.is_empty());
 
          m_documentptra.add(this);
 
    }
 
-   object::~object()
+   document::~document()
    {
       // do not call delete_contents here !
 #ifdef DEBUG
       if (is_modified())
-         TRACE(::base::trace::category_AppMsg, 0, "Warning: destroying an unsaved object.\n");
+         TRACE(::base::trace::category_AppMsg, 0, "Warning: destroying an unsaved document.\n");
 #endif
 
       // there should be no views left!
@@ -40,7 +40,7 @@ namespace user
 
 
 
-   bool object::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
+   bool document::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
    {
       if (command_target::_001OnCmdMsg(pcmdmsg))
          return TRUE;
@@ -54,7 +54,7 @@ namespace user
    }
 
 
-   void object::dump(dump_context & dumpcontext) const
+   void document::dump(dump_context & dumpcontext) const
    {
       ::object::dump(dumpcontext);
 
@@ -78,7 +78,7 @@ namespace user
 
    }
 
-   void object::assert_valid() const
+   void document::assert_valid() const
    {
       ::object::assert_valid();
 
@@ -91,16 +91,16 @@ namespace user
    }
 
 
-   void object::on_create(sp(::create_context) pcreatecontext)
+   void document::on_create(sp(::create_context) pcreatecontext)
    {
 
-      //::user::object::on_alloc(papp);
+      //::user::document::on_alloc(papp);
       ::database::client::initialize_data_client(&Application.dataserver());
 
    }
 
 
-   void object::update_title()
+   void document::update_title()
    {
 
    }
@@ -109,12 +109,12 @@ namespace user
 
 
 
-   void object::on_final_release()
+   void document::on_final_release()
    {
       on_close_document();  // may 'delete this'
    }
 
-   void object::disconnect_views()
+   void document::disconnect_views()
    {
       single_lock sl(&m_mutex, true);
       for (index index = 0; index < m_viewptra.get_count(); index++)
@@ -127,30 +127,30 @@ namespace user
       m_viewptra.remove_all();
    }
 
-   /*void object::on_alloc(sp(::base::application) papp)
+   /*void document::on_alloc(sp(::base::application) papp)
    {
       set_app(papp);
    }*/
 
    /////////////////////////////////////////////////////////////////////////////
-   // object attributes, general services
+   // document attributes, general services
 
 
 
-   void object::set_title(const char * lpszTitle)
+   void document::set_title(const char * lpszTitle)
    {
       m_strTitle = lpszTitle;
       update_frame_counts();        // will cause name change in views
    }
 
-   void object::delete_contents()
+   void document::delete_contents()
    {
    }
 
 
-   sp(::user::impact) object::get_view(index index) const
+   sp(::user::impact) document::get_view(index index) const
    {
-      single_lock sl(&((object *) this)->m_mutex, true);
+      single_lock sl(&((document *) this)->m_mutex, true);
       if (index < 0 || index >= m_viewptra.get_count())
          return NULL;
       sp(::user::impact) pview = m_viewptra(index);
@@ -158,7 +158,7 @@ namespace user
       return pview;
    }
 
-   void object::update_all_views(sp(::user::impact) pSender, LPARAM lHint, ::object* pHint)
+   void document::update_all_views(sp(::user::impact) pSender, LPARAM lHint, ::object * pHint)
       // walk through all views
    {
       ASSERT(pSender == NULL || !m_viewptra.is_empty());
@@ -174,7 +174,7 @@ namespace user
       }
    }
 
-   void object::send_update(sp(::user::impact) pSender, LPARAM lHint, ::object* pHint)
+   void document::send_update(sp(::user::impact) pSender, LPARAM lHint, ::object * pHint)
       // walk through all views
    {
       ASSERT(pSender == NULL || !m_viewptra.is_empty());
@@ -195,7 +195,7 @@ namespace user
       }
    }
 
-   void object::send_initial_update()
+   void document::send_initial_update()
       // walk through all views and call OnInitialUpdate
    {
       ::count count = get_view_count();
@@ -207,23 +207,23 @@ namespace user
       }
    }
 
-   bool object::is_new_document()
+   bool document::is_new_document()
    {
       return m_bNew;
    }
 
-   void object::write(::file::output_stream & ostream)
+   void document::write(::file::output_stream & ostream)
    {
       UNREFERENCED_PARAMETER(ostream);
    }
 
-   void object::read(::file::input_stream & istream)
+   void document::read(::file::input_stream & istream)
    {
       UNREFERENCED_PARAMETER(istream);
    }
 
 
-   sp(::user::impact) object::get_typed_view(sp(type) info, index indexFind)
+   sp(::user::impact) document::get_typed_view(sp(type) info, index indexFind)
    {
       single_lock sl(&m_mutex, true);
       ::count countView = get_view_count();
@@ -244,7 +244,7 @@ namespace user
    }
 
 
-   void object::show_all_frames(UINT nCmdShow)
+   void document::show_all_frames(UINT nCmdShow)
    {
       ::count count = get_view_count();
       for (index index = 0; index < count; index++)
@@ -255,28 +255,28 @@ namespace user
    }
 
 
-   // object
-   const string & object::get_title() const
+   // document
+   const string & document::get_title() const
    {
       ASSERT(this != NULL); return m_strTitle;
    }
-   const string & object::get_path_name() const
+   const string & document::get_path_name() const
    {
       ASSERT(this != NULL); return m_strPathName;
    }
-   sp(impact_system) object::get_document_template() const
+   sp(impact_system) document::get_document_template() const
    {
       ASSERT(this != NULL); return m_pdocumentemplate;
    }
-   bool object::is_modified()
+   bool document::is_modified()
    {
       ASSERT(this != NULL); return m_bModified;
    }
-   void object::set_modified_flag(bool bModified)
+   void document::set_modified_flag(bool bModified)
    {
       ASSERT(this != NULL); m_bModified = bModified;
    }
-   void object::set_new(bool bNew)
+   void document::set_new(bool bNew)
    {
       ASSERT(this != NULL);
       m_bNew = bNew;
@@ -285,7 +285,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // File/Path commands
 
-   void object::set_path_name(var varFile, bool bAddToMRU)
+   void document::set_path_name(var varFile, bool bAddToMRU)
    {
       UNREFERENCED_PARAMETER(bAddToMRU);
       string strPathName;
@@ -357,7 +357,7 @@ namespace user
       m_bNew = false;*/
    }
 
-   ::count object::get_view_count() const
+   ::count document::get_view_count() const
    {
       return m_viewptra.get_count();
    }
@@ -365,7 +365,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Closing documents or views
 
-   void object::on_changed_view_list(single_lock * psl)
+   void document::on_changed_view_list(single_lock * psl)
    {
       single_lock sl(&m_mutex, false);
       if (psl == NULL || psl->m_psyncobject != &m_mutex)
@@ -384,7 +384,7 @@ namespace user
    }
 
 
-   bool object::on_new_document()
+   bool document::on_new_document()
    {
 #ifdef DEBUG
       if (is_modified())
@@ -398,7 +398,7 @@ namespace user
       return true;
    }
 
-   bool object::on_open_document(var varFile)
+   bool document::on_open_document(var varFile)
    {
 #ifdef DEBUG
       if (is_modified())
@@ -457,7 +457,7 @@ namespace user
    }
 
 
-   bool object::on_save_document(var varFile)
+   bool document::on_save_document(var varFile)
    {
 
       ::file::buffer_sp spfile;
@@ -532,7 +532,7 @@ namespace user
    }
 
 
-   void object::on_close_document(single_lock * psl)
+   void document::on_close_document(single_lock * psl)
       // must close all views now (no prompting) - usually destroys this
    {
       single_lock sl(&m_mutex, false);
@@ -568,7 +568,7 @@ namespace user
       release();
    }
 
-   void object::report_save_load_exception(const char * lpszPathName, ::exception::base* e, bool bSaving, const char * nIDPDefault)
+   void document::report_save_load_exception(const char * lpszPathName, ::exception::base* e, bool bSaving, const char * nIDPDefault)
    {
 
       try
@@ -662,7 +662,7 @@ namespace user
    }
 
 
-   bool object::can_close_frame(sp(::user::frame_window) pFrameArg)
+   bool document::can_close_frame(sp(::user::frame_window) pFrameArg)
       // permission to close all views using this frame
       //  (at least one of our views must be in this frame)
    {
@@ -691,7 +691,7 @@ namespace user
    }
 
 
-   bool object::save_modified()
+   bool document::save_modified()
    {
       if (!is_modified())
          return TRUE;        // ok to continue
@@ -738,12 +738,12 @@ namespace user
    }
 
 
-   void object::pre_close_frame(sp(::user::frame_window) /*pFrameArg*/)
+   void document::pre_close_frame(sp(::user::frame_window) /*pFrameArg*/)
    {
       // default does nothing
    }
 
-   bool object::do_save(var varFile, bool bReplace)
+   bool document::do_save(var varFile, bool bReplace)
       // Save the document_interface data to a file
       // lpszPathName = path name where to save document_interface file
       // if lpszPathName is NULL then the ::fontopus::user will be prompted (SaveAs)
@@ -820,7 +820,7 @@ namespace user
    }
 
 
-   bool object::do_file_save()
+   bool document::do_file_save()
    {
 
       if (is_new_document() || session().file_is_read_only(m_strPathName))
@@ -856,7 +856,7 @@ namespace user
 
    }
 
-   void object::update_frame_counts(single_lock * psl)
+   void document::update_frame_counts(single_lock * psl)
       // assumes 1 doc per frame
    {
       single_lock sl(&m_mutex, false);
@@ -923,17 +923,17 @@ namespace user
       }
    }
 
-   HMENU object::GetDefaultMenu()
+   HMENU document::GetDefaultMenu()
    {
       return NULL;    // just use original default
    }
 
-   HACCEL object::GetDefaultAccelerator()
+   HACCEL document::GetDefaultAccelerator()
    {
       return NULL;    // just use original default
    }
 
-   void object::on_idle()
+   void document::on_idle()
    {
       // default does nothing
    }
@@ -941,7 +941,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // ::user::impact operations
 
-   void object::add_view(sp(::user::impact) pview)
+   void document::add_view(sp(::user::impact) pview)
    {
       single_lock sl(&m_mutex, true);
       ASSERT_VALID(pview);
@@ -953,7 +953,7 @@ namespace user
       }
    }
 
-   void object::remove_view(sp(::user::impact) pview)
+   void document::remove_view(sp(::user::impact) pview)
    {
       single_lock sl(&m_mutex, true);
       ASSERT_VALID(pview);
@@ -966,7 +966,7 @@ namespace user
    }
 
 
-   void object::on_file_save()
+   void document::on_file_save()
    {
       do_file_save();
    }

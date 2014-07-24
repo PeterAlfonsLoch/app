@@ -11,12 +11,13 @@ namespace filemanager
    public:
 
 
-      sp(::user::object)      m_pdocumentSave;
+      ::draw2d::font_sp                   m_spfont;
+      sp(::user::document)                m_pdocumentSave;
       callback   *                        m_pfilemanager;
       sp(manager)                         m_pmanager;
       sp(manager)                         m_pmanagerMain;
       callback *                          m_pcallback;
-      schema *                            m_pschema;
+      ::filemanager::document_manager *   m_pdocumentmanager;
       bool                                m_bTransparentBackground;
       string                              m_strDISection;
       sp(::user::place_holder)            m_pholderFileList;
@@ -54,6 +55,11 @@ namespace filemanager
 
       void OnFileManagerItemUpdate(cmd_ui * pcmdui, const ::fs::item_array & itema);
       void OnFileManagerItemCommand(const char * pszId, const ::fs::item_array & itema);
+
+      virtual COLORREF                 get_background_color();
+      virtual COLORREF                 get_color();
+      virtual ::draw2d::font_sp        get_font();
+      virtual ::user::ETranslucency    _001GetTranslucency();
 
 
    };

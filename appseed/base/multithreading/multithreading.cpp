@@ -163,3 +163,32 @@ mutex & message_dispatch_mutex()
 
 }
 
+
+
+
+void do_events()
+{
+
+   ::thread * pthread = ::get_thread();
+
+   if(pthread == NULL)
+      return;
+
+   pthread->do_events();
+
+}
+
+
+void do_events(const duration & duration)
+{
+
+   ::thread * pthread = ::get_thread();
+
+   if(pthread == NULL)
+      return;
+
+   pthread->do_events(duration);
+
+}
+
+

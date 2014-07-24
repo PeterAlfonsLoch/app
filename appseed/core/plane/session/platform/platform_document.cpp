@@ -8,7 +8,7 @@ namespace platform
    document::document(sp(::base::application) papp) :
       element(papp),
       ::data::data_container_base(papp),
-      ::user::object(papp),
+      ::user::document(papp),
       html_document(papp),
       form_document(papp)
    {
@@ -19,7 +19,7 @@ namespace platform
 
    bool document::on_new_document()
    {
-      if (!::user::object::on_new_document())
+      if (!::user::document::on_new_document())
          return FALSE;
 
       update_all_views(NULL, 0);
@@ -37,12 +37,12 @@ namespace platform
    #ifdef DEBUG
    void document::assert_valid() const
    {
-      ::user::object::assert_valid();
+      ::user::document::assert_valid();
    }
 
    void document::dump(dump_context & dumpcontext) const
    {
-      ::user::object::dump(dumpcontext);
+      ::user::document::dump(dumpcontext);
    }
    #endif //DEBUG
 

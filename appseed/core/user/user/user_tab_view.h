@@ -30,7 +30,7 @@ namespace user
 
       virtual sp(::user::interaction) get_view_uie();
       virtual ::user::view_creator_data * get_view_creator_data();
-      virtual sp(::user::object) get_view_document();
+      virtual sp(::user::document) get_view_document();
 
 
       void _000OnDraw(::draw2d::graphics * pdc);

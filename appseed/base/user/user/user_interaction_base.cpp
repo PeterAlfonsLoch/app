@@ -93,45 +93,6 @@ namespace user
 
 
 
-   interaction_base::ETranslucency interaction_base::_001GetTranslucency()
-   {
-
-      return TranslucencyNone;
-
-   }
-
-
-   bool interaction_base::_001IsTranslucent()
-   {
-
-      return _001GetTranslucency() == TranslucencyPresent || _001GetTranslucency() == TranslucencyTotal;
-
-   }
-
-
-   bool interaction_base::_001IsBackgroundBypass()
-   {
-
-      return false;
-
-   }
-
-
-   bool interaction_base::_001HasTranslucency()
-   {
-
-      return _001GetTranslucency() == TranslucencyPresent || _001GetTranslucency() == TranslucencyTotal;
-
-   }
-
-
-   bool interaction_base::_001IsTransparent()
-   {
-
-      return _001GetTranslucency() == TranslucencyTotal;
-
-   }
-
 
    void interaction_base::RedrawOptimize(rect_array &array)
    {

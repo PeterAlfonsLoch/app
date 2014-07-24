@@ -1053,18 +1053,6 @@ namespace filemanager
    COLORREF tree::get_background_color()
    {
 
-      if(GetFileManager() == NULL)
-      {
-         return ARGB(255, 255, 255, 255);
-      }
-      else if(GetFileManager()->get_filemanager_data()->is_saving())
-      {
-         return ARGB(255, 255, 210, 180);
-      }
-      else
-      {
-         return ARGB(255, 255, 255, 255);
-      }
 
    }
 
@@ -1109,6 +1097,15 @@ namespace filemanager
                   str.Format("tree(%s)", GetFileManager()->get_filemanager_data()->m_strDISection);
 //                  m_dataid = str;
                   //            _001UpdateColumns();
+
+                  if(m_treeptra.get_count() == 1)
+                  {
+
+                     m_treeptra[0].m_etranslucency = GetFileManager()->get_filemanager_data()->m_bTransparentBackground ? ::user::interaction::TranslucencyPresent : ::user::interaction::TranslucencyNone;
+                     m_treeptra[0].m_crDefaultBackgroundColor = get_background_color();
+
+                  }
+
                }
                if (puh->is_type_of(update_hint::TypeSynchronizePath))
                {

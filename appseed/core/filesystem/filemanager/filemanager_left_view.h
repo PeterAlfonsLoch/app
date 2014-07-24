@@ -5,11 +5,18 @@ namespace filemanager
 {
 
 
+   class tree;
+
+
    class CLASS_DECL_CORE left_view :
       virtual public ::user::split_view,
       virtual public data_interface
    {
    public:
+
+
+      sp(::user::tree)           m_pusertree;
+      sp(::filemanager::tree)    m_ptree;
 
 
       left_view(sp(::base::application) papp);

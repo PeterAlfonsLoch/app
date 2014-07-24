@@ -32,7 +32,7 @@ namespace filemanager
 
    class callback;
    class manager;
-   class schema;
+   class document_manager;
    class file_list;
    class folder_list;
    class document;

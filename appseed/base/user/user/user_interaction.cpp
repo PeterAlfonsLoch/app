@@ -47,14 +47,11 @@ namespace user
       m_bVisible                 = true;
 
 
-      m_crDefaultBackgroundColor = ARGB(255,255,255,255);
-
       m_psession                 = NULL;
       m_bMessageWindow           = false;
 
       m_bVoidPaint                  = false;
       m_pparent                     = NULL;
-      m_etranslucency               = TranslucencyNone;
       m_bBackgroundBypass           = false;
       m_bEnableSaveWindowRect       = false;
 
@@ -458,6 +455,7 @@ namespace user
       }
       IGUI_WIN_MSG_LINK(WM_COMMAND,pinterface,this,&interaction::_001OnCommand);
       IGUI_WIN_MSG_LINK(message_simple_command,pinterface,this,&interaction::_001OnSimpleCommand);
+//      IGUI_WIN_MSG_LINK(message_set_schema,pinterface,this,&interaction::_001OnSetSchema);
    }
 
    void interaction::_001OnNcCalcSize(signal_details * pobj)
@@ -673,6 +671,26 @@ namespace user
          try
          {
 
+            pgraphics->SelectClipRgn(NULL);
+
+         }
+         catch(...)
+         {
+
+         }
+
+         {
+
+            synch_lock sl(m_spmutex);
+
+            _001OnNcDraw(pgraphics);
+
+         }
+
+
+         try
+         {
+
             ::draw2d::region_sp rgnClip(allocer());
 
             rect rectClient;
@@ -861,10 +879,17 @@ namespace user
    }
 
 
-   void interaction::_001OnDraw(::draw2d::graphics *pdc)
+   void interaction::_001OnNcDraw(::draw2d::graphics *pgraphics)
    {
 
-      draw_control_background(pdc);
+
+   }
+
+
+   void interaction::_001OnDraw(::draw2d::graphics *pgraphics)
+   {
+
+      draw_control_background(pgraphics);
 
    }
 
@@ -3036,21 +3061,7 @@ namespace user
    void interaction::track_mouse_leave()
    {
 
-      ASSERT(GetTopLevel() != NULL);
-      
-      if(GetTopLevel() == NULL)
-         return;
-
-      ASSERT(GetTopLevel()->GetWindow() != NULL);
-
-      if(GetTopLevel()->GetWindow() == NULL)
-         return;
-
-#if !defined(METROWIN) && !defined(APPLE_IOS)
-
-      GetTopLevel()->GetWindow()->mouse_hover_remove(this);
-
-#endif
+      track_mouse_hover();
 
    }
 
@@ -3597,17 +3608,123 @@ namespace user
       return puiFocusable;
    }
 
-   COLORREF interaction::get_background_color()
+   
+   ::user::schema * interaction::get_user_schema()
    {
 
-      return m_crDefaultBackgroundColor;
+      ::user::interaction * puiParent = GetParent();
+
+      if(puiParent == NULL)
+         return NULL;
+
+      return puiParent->get_user_schema();
 
    }
 
-   void interaction::set_default_background_color(COLORREF crDefaultBackgroundColor)
+   
+   COLORREF interaction::get_background_color()
    {
 
-      m_crDefaultBackgroundColor = crDefaultBackgroundColor;
+      if(get_user_schema() == NULL)
+      {
+
+         return ARGB(255,255,255,255);
+
+      }
+      else
+      {
+
+         return get_user_schema()->get_background_color();
+
+      }
+
+   }
+
+
+   COLORREF interaction::get_color()
+   {
+
+      if(get_user_schema() == NULL)
+      {
+
+         return ARGB(255,0,0,0);
+
+      }
+      else
+      {
+
+         return get_user_schema()->get_color();
+
+      }
+
+   }
+
+   ::draw2d::font_sp interaction::get_font()
+   {
+
+      if(get_user_schema() == NULL)
+      {
+
+         return NULL;
+
+      }
+      else
+      {
+
+         return get_user_schema()->get_font();
+
+      }
+
+   }
+
+
+   bool interaction::_001IsTranslucent()
+   {
+
+      return _001GetTranslucency() == TranslucencyPresent || _001GetTranslucency() == TranslucencyTotal;
+
+   }
+
+
+   bool interaction::_001IsBackgroundBypass()
+   {
+
+      return false;
+
+   }
+
+
+   bool interaction::_001HasTranslucency()
+   {
+
+      return _001GetTranslucency() == TranslucencyPresent || _001GetTranslucency() == TranslucencyTotal;
+
+   }
+
+
+   bool interaction::_001IsTransparent()
+   {
+
+      return _001GetTranslucency() == TranslucencyTotal;
+
+   }
+
+
+   ::user::ETranslucency interaction::_001GetTranslucency()
+   {
+
+      if(get_user_schema() == NULL)
+      {
+
+         return ::user::TranslucencyNone;
+
+      }
+      else
+      {
+
+         return get_user_schema()->_001GetTranslucency();
+
+      }
 
    }
 
@@ -3724,6 +3841,61 @@ namespace user
       pbase->set_lresult(lresult);
 
    }
+
+
+/*
+
+   bool interaction::_001SetSchema(::user::schema * pschema)
+   {
+
+      m_pschema = pschema;
+
+      return true ;
+
+   }
+
+
+   bool interaction::_008SetSchema(::user::schema * pschema)
+   {
+      
+      SendMessageToDescendants(message_set_schema,0,pschema,true,true);
+
+      return true;
+
+   }
+
+
+   bool interaction::_009SetSchema(::user::schema * pschema)
+   {
+
+      _001SetSchema(pschema);
+
+      _008SetSchema(pschema);
+
+      return true;
+
+   }
+
+
+*/
+
+
+/*
+
+   void interaction::_001OnSetSchema(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::base,pbase,pobj);
+
+      LRESULT lresult = 0;
+
+      _001SetSchema((::user::schema *) pbase->m_lparam);
+
+      pbase->set_lresult(lresult);
+
+   }
+
+*/
 
 
    bool interaction::OnCommand(::message::base * pbase)
@@ -3963,13 +4135,6 @@ namespace user
 
    }
 
-
-   void interaction::set_text_color(COLORREF crText)
-   {
-
-      m_crText = crText;
-
-   }
 
    void interaction::WfiEnableFullScreen(bool bEnable)
    {
@@ -4841,28 +5006,6 @@ namespace user
    }
 
 
-   void interaction::SetFont(::draw2d::font* pfont,bool bRedraw)
-   {
-
-      UNREFERENCED_PARAMETER(bRedraw);
-
-      if(m_pfont.is_null())
-         m_pfont.create(allocer());
-
-      *m_pfont = *pfont;
-
-   }
-
-
-   ::draw2d::font* interaction::GetFont()
-   {
-
-      if(m_pfont.is_null())
-         m_pfont.create(allocer());
-
-      return m_pfont;
-
-   }
 
    bool interaction::get_rect_normal(LPRECT lprect)
    {
@@ -4871,12 +5014,8 @@ namespace user
 
    }
 
-   interaction_base::ETranslucency interaction::_001GetTranslucency()
-   {
 
-      return m_etranslucency;
 
-   }
 
    point interaction::get_scroll_position()
    {
@@ -4920,6 +5059,9 @@ namespace user
 
 
 } // namespace user
+
+
+
 
 
 

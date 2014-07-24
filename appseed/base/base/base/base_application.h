@@ -129,7 +129,7 @@ namespace base
       inline ::database::server &               dataserver()   { return *m_spdataserver; }
 
 
-      virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::user::impact_system) ptemplate,sp(::user::object) pdocument);
+      virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::user::impact_system) ptemplate,sp(::user::document) pdocument);
 
 
       virtual sp(::user::interaction) release_capture_uie();
@@ -291,7 +291,7 @@ namespace base
 
       virtual bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
-      virtual sp(::user::object) _001OpenDocumentFile(var varFile);
+      virtual sp(::user::document) _001OpenDocumentFile(var varFile);
       virtual void _001OnFileNew(signal_details * pobj);
 
       virtual sp(::user::printer) get_printer(const char * pszDeviceName);

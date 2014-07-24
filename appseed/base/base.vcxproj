@@ -4925,6 +4925,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user\user_control_bar.h" />
     <ClInclude Include="user\user\user_control_event.h" />
     <ClInclude Include="user\user\user_create_context.h" />
+    <ClInclude Include="user\user\user_document_data_map.h" />
     <ClInclude Include="user\user\user_draw_context.h" />
     <ClInclude Include="user\user\user_draw_interface.h" />
     <ClInclude Include="user\user\user_elemental.h" />
@@ -4945,11 +4946,13 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user\user_menu_base_item.h" />
     <ClInclude Include="user\user\user_message.h" />
     <ClInclude Include="user\user\user_mouse_focus.h" />
-    <ClInclude Include="user\user\user_object.h" />
+    <ClInclude Include="user\user\user_document.h" />
     <ClInclude Include="user\user\user_place_holder.h" />
     <ClInclude Include="user\user\user_place_holder_container.h" />
     <ClInclude Include="user\user\user_printer.h" />
     <ClInclude Include="user\user\user_print_job.h" />
+    <ClInclude Include="user\user\user_schema.h" />
+    <ClInclude Include="user\user\user_schema_simple_impl.h" />
     <ClInclude Include="user\user\user_server.h" />
     <ClInclude Include="user\user\user_str.h" />
     <ClInclude Include="user\user\user_text_interface.h" />
@@ -18358,11 +18361,13 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\user\user_menu_base_item.cpp" />
     <ClCompile Include="user\user\user_message.cpp" />
     <ClCompile Include="user\user\user_mouse_focus.cpp" />
-    <ClCompile Include="user\user\user_object.cpp" />
+    <ClCompile Include="user\user\user_document.cpp" />
     <ClCompile Include="user\user\user_place_holder.cpp" />
     <ClCompile Include="user\user\user_place_holder_container.cpp" />
     <ClCompile Include="user\user\user_printer.cpp" />
     <ClCompile Include="user\user\user_print_job.cpp" />
+    <ClCompile Include="user\user\user_schema.cpp" />
+    <ClCompile Include="user\user\user_schema_simple_impl.cpp" />
     <ClCompile Include="user\user\user_server.cpp" />
     <ClCompile Include="user\user\user_str.cpp" />
     <ClCompile Include="user\user\user_text_interface.cpp" />

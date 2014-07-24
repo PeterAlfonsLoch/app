@@ -7,7 +7,6 @@ class CLASS_DECL_CORE simple_scroll_bar :
 public:
 
 
-   //::draw2d::brush_sp       m_brushNull;
    ::draw2d::pen_sp           m_penDraw;
    ::draw2d::brush_sp         m_brushDraw;
    point                      m_ptTrackOffset;
@@ -18,6 +17,14 @@ public:
    ::draw2d::region_sp        m_rgnA; // região da primeira seta
    ::draw2d::region_sp        m_rgnB; // região da segunda seta
    UINT                       m_uiTimer;
+   e_element                  m_eelement;
+
+   COLORREF                   m_cr;
+   COLORREF                   m_crBorder;
+   COLORREF                   m_crLiteBorder;
+   COLORREF                   m_crHover;
+   COLORREF                   m_crHoverBorder;
+   COLORREF                   m_crHoverLiteBorder;
 
 
    simple_scroll_bar(sp(::base::application) papp);
@@ -36,10 +43,6 @@ public:
 
 
 
-   int32_t ScrollLineA();
-   int32_t ScrollLineB();
-   int32_t ScrollPageB();
-   int32_t ScrollPageA();
    bool GetPageARect(LPRECT lpRectClient, LPRECT lpRectTrack,  LPRECT lpRect);
    bool GetPageBRect(LPRECT lpRectClient, LPRECT lpRectTrack,  LPRECT lpRect);
    void UpdateBitmaps();
@@ -60,14 +63,30 @@ public:
    DECL_GEN_SIGNAL(_001OnLButtonDown);
    DECL_GEN_SIGNAL(_001OnLButtonUp);
    DECL_GEN_SIGNAL(_001OnHScroll);
-   DECL_GEN_SIGNAL(_001OnSize);
    DECL_GEN_SIGNAL(_001OnTimer);
    DECL_GEN_SIGNAL(_001OnCreate);
    DECL_GEN_SIGNAL(_001OnShowWindow);
    DECL_GEN_SIGNAL(_001OnDestroy);
    LRESULT OnEconoModeChange(WPARAM wParam, LPARAM lParam);
 
-   void draw_mac_thumb(::draw2d::graphics * pdc,LPCRECT lpcrectDraw,LPCRECT lpcrectClip,byte uchAlpha);
+   void draw_mac_thumb_simple(::draw2d::graphics * pdc,LPCRECT lpcrectDraw,LPCRECT lpcrectClip,byte uchAlpha);
+   void draw_mac_thumb_dots(::draw2d::graphics * pdc,LPCRECT lpcrectDraw,LPCRECT lpcrectClip,byte uchAlpha);
+
+
+   virtual void layout();
+
+   virtual index hit_test(point point,e_element & eelement);
+
+   virtual bool scrollbar_action(e_element eelement, point pt);
+
+   virtual bool scrollbar_lineA();
+   virtual bool scrollbar_lineB();
+   virtual bool scrollbar_pageB(point pt);
+   virtual bool scrollbar_pageA(point pt);
+
+   virtual COLORREF scrollbar_color(e_element eelement);
+   virtual COLORREF scrollbar_border_color(e_element eelement);
+   virtual COLORREF scrollbar_lite_border_color(e_element eelement);
 
 };
 

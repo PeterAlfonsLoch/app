@@ -192,7 +192,7 @@ namespace colorertake5
          {
             //if(path == "v:\\ca2os\\basis\\app\\appmatter\\main\\_std\\_std\\colorer\\hrc\\auto")
             {
-               // __debug_break();
+               // debug_break();
             }
             stringa straPath;
             System.dir().rls(get_app(), path, &straPath);

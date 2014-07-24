@@ -355,7 +355,7 @@ namespace base
          return get_enum_name(System.type_info < TYPE >(),(int32_t)e);
       }
 
-      virtual sp(::user::object) place_hold(sp(::user::interaction) pui);
+      virtual sp(::user::document) place_hold(sp(::user::interaction) pui);
 
       virtual sp(::base::session) query_session(index iEdge);
 

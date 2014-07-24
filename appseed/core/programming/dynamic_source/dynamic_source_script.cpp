@@ -308,7 +308,7 @@ namespace dynamic_source
 
          //if(m_strScriptPath.find("transactions") >= 0)
          //{
-           // __debug_break();
+           // debug_break();
          //}
          //::SetDllDirectory("C:\\netnode\\stage\\x64");
          string strStagePath = get_stage_path();
@@ -336,7 +336,7 @@ namespace dynamic_source
             uint32_t dwMessageId = GetLastError();
             if(dwMessageId == 0x139)
             {
-               __debug_break();
+               debug_break();
             }
             TRACE("Error Message Id: %d\n", dwMessageId);
             string strError = get_system_error_message(::GetLastError());

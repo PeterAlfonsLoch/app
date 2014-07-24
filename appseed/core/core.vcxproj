@@ -1766,7 +1766,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="filesystem\filemanager\filemanager_path_view.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_save_as_name_view.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_tab_view.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_schema.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_document_manager.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_view.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_data_interface.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_update_hint.h" />
@@ -1794,7 +1794,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="filesystem\filemanager\filemanager_operation_thread.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_operation_view.h" />
     <ClInclude Include="filesystem\filemanager\file_operation.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_file_list.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_file_properties_form.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_folder_list.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_tree.h" />
@@ -2509,7 +2508,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="filesystem\filemanager\filemanager_path_view.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_save_as_name_view.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_tab_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_schema.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_document_manager.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_view.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_data_interface.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_update_hint.cpp" />

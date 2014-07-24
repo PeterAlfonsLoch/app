@@ -285,6 +285,19 @@ namespace simple_ui
    }
 
 
+   void interaction::_001OnNcDraw(::draw2d::graphics *pgraphics)
+   {
+      
+      if(keyboard_focus_is_focusable())
+      {
+
+         simple_ui_draw_focus_rect(pgraphics);
+
+      }
+
+   }
+
+
 
 
    void interaction::_001OnDraw(::draw2d::graphics * pgraphics)
@@ -504,6 +517,8 @@ namespace simple_ui
       rect rectClient;
 
       GetClientRect(rectClient);
+
+      rectClient.deflate(0,0,1,1);
 
       ::draw2d::brush_sp b(allocer());
 

@@ -51,13 +51,13 @@ namespace simpledb
          string strScript = System.url().object_get_script(strUri);
          if(strUri.find("thesecret") >= 0)
          {
-      //      __debug_break();
+      //      debug_break();
          }
          if(strHost == "core.am")
          {
             TRACE("simpledb::socket::send_response core.am");
 //            uint32_t dw = ::get_tick_count();
-          //  __debug_break();
+          //  debug_break();
          }
          if(strScript == "songs")
          {

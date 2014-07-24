@@ -182,6 +182,8 @@ CLASS_DECL_BASE bool copy(LPPOINT lpptDest,const __point64 * lpptSrc);
 
 
 CLASS_DECL_BASE bool null(LPRECT prectDest);
+CLASS_DECL_BASE bool x_intersect_rect(LPRECT prect,LPCRECT prect1,LPCRECT prect2);
+CLASS_DECL_BASE bool y_intersect_rect(LPRECT prect,LPCRECT prect1,LPCRECT prect2);
 CLASS_DECL_BASE bool x_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2);
 CLASS_DECL_BASE bool y_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2);
 CLASS_DECL_BASE bool null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2);

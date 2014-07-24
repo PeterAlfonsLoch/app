@@ -139,7 +139,7 @@ namespace user
    class impact;
    class printer;
    class user;
-   class object;
+   class document;
    class frame_window;
 
 
@@ -653,6 +653,8 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "user/user/user_buffer.h"
 #include "base_keep.h"
 #include "base/filesystem/file/file_stream2.h"
+#include "user/user/user_schema.h"
+#include "user/user/user_schema_simple_impl.h"
 #include "user/user/user_interaction.h"
 #include "user/user/user_interaction_impl_base.h"
 #include "user/user/user_interaction_child.h"
@@ -673,7 +675,8 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base/xml/xml.h"
 #include "base/user/simple_ui/simple_ui.h"
 #include "base/database/database.h"
-#include "user/user/user_object.h"
+#include "user/user/user_document_data_map.h"
+#include "user/user/user_document.h"
 #include "user/user/user_impact.h"
 #include "base_live_object.h"
 #include "base_live_signal.h"

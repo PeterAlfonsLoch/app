@@ -30,7 +30,6 @@ namespace simple_ui
    END_IMH
 
 
-
    void tap::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
@@ -160,9 +159,6 @@ namespace simple_ui
 
          pgraphics->FillRect(rectClient, br);
 
-         simple_ui_draw_focus_rect(pgraphics);
-
-
       }
 
      simple_ui_draw_text(pgraphics);
@@ -251,17 +247,15 @@ namespace simple_ui
 
          br->CreateLinearGradientBrush(point(rectClient.left, rectClient.top - 1), point(rectClient.left, rectClient.top + iBorderH + 2), crOut, crIn);
 
-         pgraphics->FillRect(rect(rectClient.left, rectClient.top, (int32_t)width(&rectClient), iBorderH), br);
+         pgraphics->FillRect(rect(rectClient.left + 1, rectClient.top + 1, (int32_t)width(&rectClient), iBorderH), br);
 
          br->CreateLinearGradientBrush(point(rectClient.left, rectClient.top + iBorderH - 1), point(rectClient.left, rectClient.top + iBorderH * 2 + 2), crIn, crOut);
 
-         pgraphics->FillRect(rect(rectClient.left, rectClient.top + iBorderH, rectClient.left + (int32_t)width(&rectClient), rectClient.top + iBorderH + iBorderH), br);
+         pgraphics->FillRect(rect(rectClient.left + 1, rectClient.top + iBorderH, rectClient.left + (int32_t)width(&rectClient), rectClient.top + iBorderH + iBorderH), br);
 
          /*Gdiplus::Pen pen1(crBorderOut);
 
          graphics2.DrawRectangle(&pen1, rectClient.left, rectClient.top, width(&rectClient), iBorderH * 2);*/
-
-         simple_ui_draw_focus_rect(pgraphics);
 
          ::draw2d::pen_sp pen(pgraphics, 1.0, crBorderIn);
 

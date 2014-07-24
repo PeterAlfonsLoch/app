@@ -75,9 +75,6 @@ namespace filemanager
 
       virtual void _017OpenFolder(sp(::fs::item)  item, ::action::context actioncontext);
 
-      virtual COLORREF get_background_color();
-
-
 #ifdef WINDOWSEX
 
       int32_t MapToCSIDL(EFolder efolder);

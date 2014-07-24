@@ -28,7 +28,12 @@ namespace simple_ui
          element_drop_down,
          element_item,
          element_search_edit,
-         element_search_ok
+         element_search_ok,
+         element_scrollbar_rect,
+         element_scrollbar_rectA,
+         element_scrollbar_rectB,
+         element_scrollbar_pageA,
+         element_scrollbar_pageB,
       };
 
 
@@ -52,6 +57,7 @@ namespace simple_ui
 
       //virtual void set_parent(interaction * puiParent);
 
+      virtual void _001OnNcDraw(::draw2d::graphics * pgraphics);
 
       virtual void _001OnDraw(::draw2d::graphics * pgraphics);
       //virtual void _001OnDraw(::draw2d::graphics * pgraphics);

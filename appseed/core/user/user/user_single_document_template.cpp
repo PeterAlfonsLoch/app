@@ -16,7 +16,7 @@ namespace user
    {
 #ifdef DEBUG
       if (m_pdocument != NULL)
-         TRACE(::base::trace::category_AppMsg, 0, "Warning: destroying single_document_template with live ::user::object.\n");
+         TRACE(::base::trace::category_AppMsg, 0, "Warning: destroying single_document_template with live ::user::document.\n");
 #endif
    }
 
@@ -25,7 +25,7 @@ namespace user
       return (m_pdocument == NULL) ? 0 : 1;
    }
 
-   sp(::user::object) single_document_template::get_document(index index) const
+   sp(::user::document) single_document_template::get_document(index index) const
    {
       if(index == 0)
          return m_pdocument;
@@ -33,7 +33,7 @@ namespace user
          return NULL;
    }
 
-   void single_document_template::add_document(sp(::user::object) pdocument)
+   void single_document_template::add_document(sp(::user::document) pdocument)
    {
       if(m_pdocument == NULL)
       {
@@ -42,7 +42,7 @@ namespace user
       }
    }
 
-   void single_document_template::remove_document(sp(::user::object) pdocument)
+   void single_document_template::remove_document(sp(::user::document) pdocument)
    {
       if(m_pdocument == pdocument)
       {
@@ -62,14 +62,14 @@ namespace user
       //   sp(::user::interaction) pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].cast < ::user::interaction > ();
       //   sp(::user::impact) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].cast < ::user::impact > ();
 
-      sp(::user::object) pdocument = NULL;
+      sp(::user::document) pdocument = NULL;
       sp(::user::frame_window) pFrame = NULL;
       bool bCreated = FALSE;      // => doc and frame created
       bool bWasModified = FALSE;
 
       if (m_pdocument != NULL)
       {
-         // already have a ::user::object - reinit it
+         // already have a ::user::document - reinit it
          pdocument = m_pdocument;
          if (!pdocument->save_modified())
             return;        // leave the original one
@@ -81,7 +81,7 @@ namespace user
       }
       else
       {
-         // create a new ::user::object
+         // create a new ::user::document
          pdocument = create_new_document(pcreatecontext);
          ASSERT(pFrame == NULL);     // will be created below
          bCreated = TRUE;
@@ -99,7 +99,7 @@ namespace user
       {
          ASSERT(bCreated);
 
-         // create frame - set as main ::user::object frame
+         // create frame - set as main ::user::document frame
          bool bAutoDelete = pdocument->m_bAutoDelete;
          pdocument->m_bAutoDelete = FALSE;
          // don't destroy if something goes wrong
@@ -108,7 +108,7 @@ namespace user
          if (pFrame == NULL)
          {
             // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
-            // System.simple_message_box(NULL, "Failed to create ::user::object");
+            // System.simple_message_box(NULL, "Failed to create ::user::document");
             pdocument.release();       // explicit delete on error
             return;
          }
@@ -116,7 +116,7 @@ namespace user
 
       if (pcreatecontext->m_spCommandLine->m_varFile.is_empty())
       {
-         // create a new ::user::object
+         // create a new ::user::document
          set_default_title(pdocument);
 
          // avoid creating temporary compound file when starting up invisible
@@ -126,9 +126,9 @@ namespace user
          if (!pdocument->on_new_document())
          {
             // user has been alerted to what failed in on_new_document
-            TRACE(::base::trace::category_AppMsg, 0, "::user::object::on_new_document returned FALSE.\n");
+            TRACE(::base::trace::category_AppMsg, 0, "::user::document::on_new_document returned FALSE.\n");
             if (bCreated)
-               pFrame->DestroyWindow();    // will destroy ::user::object
+               pFrame->DestroyWindow();    // will destroy ::user::document
             return;
          }
       }
@@ -136,32 +136,32 @@ namespace user
       {
          wait_cursor wait(get_app());
 
-         // open an existing ::user::object
+         // open an existing ::user::document
          bWasModified = pdocument->is_modified();
          pdocument->set_modified_flag(FALSE);  // not dirty for open
 
          if (!pdocument->on_open_document(pcreatecontext->m_spCommandLine->m_varFile))
          {
             // user has been alerted to what failed in on_open_document
-            TRACE(::base::trace::category_AppMsg, 0, "::user::object::on_open_document returned FALSE.\n");
+            TRACE(::base::trace::category_AppMsg, 0, "::user::document::on_open_document returned FALSE.\n");
             if (bCreated)
             {
-               pFrame->DestroyWindow();    // will destroy ::user::object
+               pFrame->DestroyWindow();    // will destroy ::user::document
             }
             else if (!pdocument->is_modified())
             {
-               // original ::user::object is untouched
+               // original ::user::document is untouched
                pdocument->set_modified_flag(bWasModified);
             }
             else
             {
-               // we corrupted the original ::user::object
+               // we corrupted the original ::user::document
                set_default_title(pdocument);
 
                if (!pdocument->on_new_document())
                {
                   TRACE(::base::trace::category_AppMsg, 0, "Error: on_new_document failed after trying "
-                     "to open a ::user::object - trying to continue.\n");
+                     "to open a ::user::document - trying to continue.\n");
                   // assume we can continue
                }
             }
@@ -187,7 +187,7 @@ if(!pcreatecontext->m_bHold)
 
    }
 
-   void single_document_template::set_default_title(sp(::user::object) pdocument)
+   void single_document_template::set_default_title(sp(::user::document) pdocument)
    {
       string strDocName;
       if (!GetDocString(strDocName, impact_system::docName) ||
@@ -207,9 +207,9 @@ if(!pcreatecontext->m_bHold)
       impact_system::dump(dumpcontext);
 
       if (m_pdocument)
-         dumpcontext << "with ::user::object: " << (void *)m_pdocument;
+         dumpcontext << "with ::user::document: " << (void *)m_pdocument;
       else
-         dumpcontext << "with no ::user::object";
+         dumpcontext << "with no ::user::document";
 
       dumpcontext << "\n";
    }

@@ -4,7 +4,7 @@
 file_manager_operation_document::file_manager_operation_document(sp(::base::application) papp) :
    element(papp),
    ::data::data_container_base(papp),
-   ::user::object(papp),
+   ::user::document(papp),
    m_thread(papp)
 {
    

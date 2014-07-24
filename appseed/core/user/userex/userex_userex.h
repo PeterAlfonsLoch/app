@@ -85,7 +85,7 @@ namespace userex
 
       virtual void _001CloseAllDocuments(bool bEndSession);
       void add_document_template(sp(::user::impact_system) ptemplate);
-      virtual sp(::user::object) _vmsguserbaseOpenDocumentFile(const char * lpszFileName);
+      virtual sp(::user::document) _vmsguserbaseOpenDocumentFile(const char * lpszFileName);
 
       virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
 
@@ -120,7 +120,7 @@ namespace userex
       sp(::form_document)   create_form(sp(form_view) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
       sp(::form_document)   create_child_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
       sp(::form_document)   create_child_form(sp(form_view) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
-      sp(::user::object) hold(sp(::user::interaction) pui);
+      sp(::user::document) hold(sp(::user::interaction) pui);
 
    };
 

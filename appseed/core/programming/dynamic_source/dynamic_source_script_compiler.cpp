@@ -1286,7 +1286,7 @@ namespace dynamic_source
          chNext = str[i + 1];
          if(::str::begins(str.Mid(i), "bk_filter_active1"))
          {
-            //__debug_break();
+            //debug_break();
          }
          if(bInSpec1)
          {

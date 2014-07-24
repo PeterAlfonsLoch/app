@@ -310,10 +310,10 @@ namespace user
 
    HACCEL frame_window::GetDefaultAccelerator()
    {
-      // use ::user::object specific accelerator table over m_hAccelTable
+      // use ::user::document specific accelerator table over m_hAccelTable
       HACCEL hAccelTable = m_hAccelTable;
       HACCEL hAccel;
-      sp(::user::object) pDoc = GetActiveDocument();
+      sp(::user::document) pDoc = GetActiveDocument();
       if (pDoc != NULL && (hAccel = pDoc->GetDefaultAccelerator()) != NULL)
          hAccelTable = hAccel;
 
@@ -773,11 +773,11 @@ namespace user
    {
       if (hMenuAlt == NULL)
       {
-         // attempt to get default menu from ::user::object
-         sp(::user::object) pDoc = GetActiveDocument();
+         // attempt to get default menu from ::user::document
+         sp(::user::document) pDoc = GetActiveDocument();
          if (pDoc != NULL)
             hMenuAlt = pDoc->GetDefaultMenu();
-         // use default menu stored in frame if none from ::user::object
+         // use default menu stored in frame if none from ::user::document
          if (hMenuAlt == NULL)
             hMenuAlt = m_hMenuDefault;
       }
@@ -785,7 +785,7 @@ namespace user
       // trans ::SetMenu(get_handle(), hMenuAlt);
    }
 
-   void frame_window::InitialUpdateFrame(sp(::user::object) pDoc, bool bMakeVisible)
+   void frame_window::InitialUpdateFrame(sp(::user::document) pDoc, bool bMakeVisible)
    {
       // if the frame does not have an active ::user::impact, set to first pane
       sp(::user::impact) pview = NULL;
@@ -870,11 +870,11 @@ namespace user
       /*if (m_lpfnCloseProc != NULL)
       (*m_lpfnCloseProc)(this);
 
-      // Note: only queries the active ::user::object
-      sp(::user::object) pdocument = GetActiveDocument();
+      // Note: only queries the active ::user::document
+      sp(::user::document) pdocument = GetActiveDocument();
       if (pdocument != NULL && !pdocument->can_close_frame(this))
       {
-      // ::user::object can't close right now -- don't close it
+      // ::user::document can't close right now -- don't close it
       return;
       }
       application* pApp = &System;
@@ -900,7 +900,7 @@ namespace user
       }
       }
 
-      // detect the case that this is the last frame on the ::user::object and
+      // detect the case that this is the last frame on the ::user::document and
       // shut down with on_close_document instead.
       if (pdocument != NULL && pdocument->m_bAutoDelete)
       {
@@ -922,7 +922,7 @@ namespace user
       return;
       }
 
-      // allow the ::user::object to cleanup before the interaction_impl is destroyed
+      // allow the ::user::document to cleanup before the interaction_impl is destroyed
       pdocument->pre_close_frame(this);
       }
 
@@ -1227,7 +1227,7 @@ namespace user
       */
    }
 
-   sp(::user::object) frame_window::GetActiveDocument()
+   sp(::user::document) frame_window::GetActiveDocument()
    {
       ASSERT_VALID(this);
       sp(::user::impact) pview = GetActiveView();
@@ -1361,7 +1361,7 @@ namespace user
          return;     // leave it alone!
 
 
-      sp(::user::object) pdocument = GetActiveDocument();
+      sp(::user::document) pdocument = GetActiveDocument();
       if (bAddToTitle && pdocument != NULL)
          UpdateFrameTitleForDocument(pdocument->get_title());
       else

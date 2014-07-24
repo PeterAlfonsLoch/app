@@ -1038,7 +1038,7 @@ namespace plane
 
 
 
-   sp(::user::object) system::place_hold(sp(::user::interaction) pui)
+   sp(::user::document) system::place_hold(sp(::user::interaction) pui)
    {
 
 

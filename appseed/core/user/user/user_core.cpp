@@ -46,7 +46,7 @@ namespace user
          System.factory().creatable_small < simple_button >();
 
 
-         System.factory().cloneable_small < ::user::object >();
+         System.factory().cloneable_small < ::user::document >();
          System.factory().cloneable_small < split_view >();
          System.factory().cloneable_small < edit_plain_text_view >();
 

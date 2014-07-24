@@ -194,7 +194,7 @@ namespace plane
       virtual bool map_application_library(const char * pszLibrary);
 
 
-      sp(::user::object) place_hold(sp(::user::interaction) pui);
+      sp(::user::document) place_hold(sp(::user::interaction) pui);
 
 
 

@@ -20,7 +20,7 @@ namespace user
    public:
       // for creating new views
       sp(type)                               m_typeinfoNewView; // runtime class of ::user::impact to create or NULL
-      sp(::user::object)              m_pCurrentDoc;
+      sp(::user::document)              m_pCurrentDoc;
       sp(::user::interaction)           m_puiNew;
 
       // for creating MDI children (CMDIChildWnd::LoadFrame)
