@@ -6,7 +6,7 @@ namespace filehandler
 
 
    class CLASS_DECL_CORE library :
-      virtual public ::core::library
+      virtual public ::base::library
    {
    public:
 

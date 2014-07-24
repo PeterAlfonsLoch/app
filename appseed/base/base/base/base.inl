@@ -409,3 +409,59 @@ inline ::core::platform & root::platform()
 
 
 
+
+
+namespace base
+{
+
+   // impl
+   template < class APP >
+   sp(::base::application) single_application_library < APP > ::get_new_app(const char * pszAppId)
+   {
+
+      if(!contains_app(pszAppId))
+         return NULL;
+
+      sp(::base::application) papp = canew(APP());
+
+      if(papp == NULL)
+         return NULL;
+
+      try
+      {
+
+         papp->construct(pszAppId);
+
+      }
+      catch(...)
+      {
+
+         try
+         {
+
+            papp.release();
+
+         }
+         catch(...)
+         {
+
+         }
+
+         return NULL;
+
+      }
+
+      return papp;
+
+   }
+
+
+} // namespace base
+
+
+
+
+
+
+
+

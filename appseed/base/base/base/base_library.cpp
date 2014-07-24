@@ -4,152 +4,165 @@
 namespace base
 {
 
+
    const char * psz_empty_app_id = "";
+
 
    library::library(sp(::base::application) papp):
       element(papp)
    {
+
       m_bAutoClose = true;
+
       m_plibrary = NULL;
+
    }
 
 
-   library::library(sp(::base::application) papp,int iDesambig, const char * pszRoot):
+   library::library(sp(::base::application) papp,int iDesambig,const char * pszRoot):
       element(papp)
    {
 
       m_bAutoClose = true;
+
       if(pszRoot != NULL)
-         {
+      {
 
-            m_strRoot = pszRoot;
-
-         }
+         m_strRoot = pszRoot;
 
       }
+
+   }
+
 
    library::~library()
    {
 
       if(m_bAutoClose)
       {
+
          close();
+
       }
 
    }
 
-   bool library::open(const char * pszPath,bool bCa2Path, bool bAutoClose)
+
+   bool library::open(const char * pszPath,bool bCa2Path,bool bAutoClose)
    {
-      
+
       m_bAutoClose = bAutoClose;
+
+#ifndef CUBE
 
       try
       {
 
-         string strCa2Name = pszPath;
-
-#ifndef CUBE
-
-         try
+         if(bCa2Path)
          {
 
-            if(bCa2Path)
-            {
-
-               m_plibrary = __node_library_open_ca2(pszPath);
-
-            }
-            else
-            {
-
-               m_plibrary = __node_library_open(pszPath);
-
-            }
-
-            if(m_plibrary == NULL)
-               return false;
+            m_plibrary = __node_library_open_ca2(pszPath);
 
          }
-         catch(...)
+         else
          {
 
+            m_plibrary = __node_library_open(pszPath);
+
+         }
+
+         if(m_plibrary == NULL)
             return false;
 
-         }
-
-#endif
-
-         System.eengine().reset();
-
-         PFN_GET_NEW_LIBRARY pfn_get_new_library = NULL;
-
-         try
-
-         {
-#ifdef CUBE
-            pfn_get_new_library = (PFN_GET_NEW_LIBRARY)(INT_PTR)__library()[strCa2Name + "_get_new_library"];
-#else
-            pfn_get_new_library = get < PFN_GET_NEW_LIBRARY >("get_new_library");
-#endif
-
-         }
-         catch(...)
-         {
-
-            close();
-
-            return false;
-
-         }
-
-         if(pfn_get_new_library == NULL)
-         {
-
-            close();
-
-            return false;
-
-         }
-
-         m_pca2library = pfn_get_new_library(get_app());
-
-         if(m_pca2library == NULL)
-         {
-
-            close();
-
-
-            return false;
-
-         }
-
-         m_pca2library->set_app(get_app());
-
-         m_pca2library->m_strCa2Name = strCa2Name;
-
-         m_strCa2Name = strCa2Name;
-
-         return true;
+         m_strPath = pszPath;
 
       }
       catch(...)
       {
+
+         return false;
+
       }
 
+#endif
+
+      return true;
+
+   }
+
+
+   bool library::open_ca2_library()
+   {
+
+      if(m_pca2library != NULL)
+         return true;
+
+      System.eengine().reset();
+
+      PFN_GET_NEW_LIBRARY pfn_get_new_library = NULL;
+
       try
+
+      {
+#ifdef CUBE
+         pfn_get_new_library = (PFN_GET_NEW_LIBRARY)(INT_PTR)__library()[strCa2Name + "_get_new_library"];
+#else
+         pfn_get_new_library = get < PFN_GET_NEW_LIBRARY >("get_new_library");
+#endif
+
+      }
+      catch(...)
       {
 
          close();
 
-         //System.file().del(pszPath);
+         return false;
 
       }
-      catch(...)
+
+      if(pfn_get_new_library == NULL)
       {
+
+         close();
+
+         return false;
+
       }
 
+      m_pca2library = pfn_get_new_library(get_app());
 
-      return false;
+      if(m_pca2library == NULL)
+      {
+
+         close();
+
+
+         return false;
+
+      }
+
+      m_pca2library->set_app(get_app());
+
+      m_pca2library->m_strCa2Name = m_strPath;
+
+      m_strCa2Name = m_strPath;
+
+      return true;
+
+   }
+
+
+   library * library::get_ca2_library()
+   {
+
+      if(m_pca2library == NULL)
+      {
+
+         open_ca2_library();
+
+      }
+
+      return m_pca2library;
 
    }
 
@@ -438,7 +451,10 @@ namespace base
    sp(::object) library::create_object(sp(::base::application) papp,const char * pszClassId)
    {
 
-      return NULL;
+      if(get_ca2_library() == NULL)
+         return NULL;
+
+      return get_ca2_library()->create_object(papp, pszClassId);
 
    }
 
@@ -446,7 +462,10 @@ namespace base
    bool library::has_object_class(const char * pszClassId)
    {
 
-      return NULL;
+      if(get_ca2_library() == NULL)
+         return NULL;
+
+      return get_ca2_library()->has_object_class(pszClassId);
 
    }
 
@@ -509,10 +528,10 @@ namespace base
 
    }
 
-   
+
    void * library::raw_get(const char * pszEntryName)
    {
-      
+
       return __node_library_raw_get(m_plibrary,pszEntryName);
 
    }

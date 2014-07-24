@@ -38,8 +38,8 @@ namespace filehandler
       index get_image(sp(::data::tree) ptree);
 
 
-      void defer_add_library(::core::library * plibrary);
-      void add_library(library * plibrary);
+      void defer_add_library(::base::library * plibrary);
+      void add_library(::base::library * plibrary);
       void add_menu_library(menu_library * plibrary);
 
 

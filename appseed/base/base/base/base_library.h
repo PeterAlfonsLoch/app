@@ -16,6 +16,7 @@ namespace base
       bool              m_bAutoClose;
       string            m_strCa2Name;
       string            m_strRoot;
+      string            m_strPath;
 
 
 
@@ -25,6 +26,10 @@ namespace base
       virtual ~library();
 
       virtual bool open(const char * pszPath, bool bCa2Path = false, bool bAutoClose = true);
+
+      virtual bool open_ca2_library();
+
+      library * get_ca2_library();
 
 
       virtual bool close();

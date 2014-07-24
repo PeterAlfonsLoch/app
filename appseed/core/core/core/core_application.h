@@ -562,7 +562,7 @@ public:
    //       virtual sp(::bergedge::document) get_document();
 
 
-   virtual bool add_library(::core::library * plibrary);
+   virtual bool add_library(::base::library * plibrary);
 
    virtual ::userex::userex * create_userex();
    virtual ::userfs::userfs * create_userfs();
@@ -627,51 +627,5 @@ CLASS_DECL_CORE UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 typedef sp(::base::application) (*LPFN_instantiate_application)(sp(::base::application) pappParent, const char * pszId);
 
 extern CLASS_DECL_CORE LPFN_instantiate_application g_lpfn_instantiate_application;
-
-
-namespace core
-{
-
-   // impl
-   template < class APP >
-   sp(::base::application) single_application_library < APP > ::get_new_app(const char * pszAppId)
-   {
-
-      if (!contains_app(pszAppId))
-         return NULL;
-
-      sp(application) papp = canew(APP());
-
-      if (papp == NULL)
-         return NULL;
-
-      try
-      {
-         papp->m_pplaneapp->construct(pszAppId);
-      }
-      catch (...)
-      {
-         try
-         {
-            papp.release();
-         }
-         catch (...)
-         {
-         }
-         return NULL;
-      }
-
-      return papp;
-
-   }
-
-
-} // namespace core
-
-
-
-
-
-
 
 
