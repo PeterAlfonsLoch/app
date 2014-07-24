@@ -637,7 +637,7 @@ namespace plane
       if(!::application::initialize_instance())
          return false;
 
-      m_pbergedgemap = new ::plane::session::map;
+      m_pbergedgemap = new ::core::platform::map;
 
 
 
@@ -834,7 +834,7 @@ namespace plane
 
    sp(::base::session) system::query_session(index iEdge)
    {
-      sp(::plane::session) pbergedge = NULL;
+      sp(::core::platform) pbergedge = NULL;
       if(m_pbergedgemap == NULL)
          return NULL;
       if(!m_pbergedgemap->Lookup(iEdge,pbergedge))
@@ -845,9 +845,9 @@ namespace plane
    }
 
 
-   sp(::plane::session) system::get_session(index iEdge,application_bias * pbiasCreation)
+   sp(::core::platform) system::get_session(index iEdge,application_bias * pbiasCreation)
    {
-      sp(::plane::session) pbergedge = NULL;
+      sp(::core::platform) pbergedge = NULL;
       if(m_pbergedgemap == NULL)
          return NULL;
       if(!m_pbergedgemap->Lookup(iEdge,pbergedge))
@@ -991,7 +991,7 @@ namespace plane
    void system::on_request(sp(::create_context) pcreatecontext)
    {
 
-      sp(::plane::session) psession = get_session(pcreatecontext->m_spCommandLine->m_iEdge,pcreatecontext->m_spCommandLine->m_pbiasCreate);
+      sp(::core::platform) psession = get_session(pcreatecontext->m_spCommandLine->m_iEdge,pcreatecontext->m_spCommandLine->m_pbiasCreate);
 
       if(psession == NULL)
       {
@@ -1147,7 +1147,7 @@ namespace plane
    index system::get_new_bergedge(application_bias * pbiasCreation)
    {
       index iNewEdge = m_iNewEdge;
-      sp(::plane::session) pbergedge;
+      sp(::core::platform) pbergedge;
       while(m_pbergedgemap->Lookup(iNewEdge,pbergedge))
       {
          iNewEdge++;
@@ -1380,9 +1380,9 @@ namespace plane
    */
 
 
-   /*   sp(::plane::session) system::get_session(index iEdge, application_bias * pbiasCreation)
+   /*   sp(::core::platform) system::get_session(index iEdge, application_bias * pbiasCreation)
    {
-   sp(::plane::session) psession = NULL;
+   sp(::core::platform) psession = NULL;
    if(m_pbergedgemap == NULL)
    return NULL;
    if(!m_pbergedgemap->Lookup(iEdge, psession))
@@ -1399,19 +1399,19 @@ namespace plane
 
    sp(platform::document) system::get_platform(index iEdge, application_bias * pbiasCreation)
    {
-   sp(::plane::session) pbergedge = get_session(iEdge, pbiasCreation);
+   sp(::core::platform) pbergedge = get_session(iEdge, pbiasCreation);
    return pbergedge->get_platform();
    }
 
    sp(nature::document) system::get_nature(index iEdge, application_bias * pbiasCreation)
    {
-   sp(::plane::session) pbergedge = get_session(iEdge, pbiasCreation);
+   sp(::core::platform) pbergedge = get_session(iEdge, pbiasCreation);
    return pbergedge->get_nature();
    }
 
    sp(::base::application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
-   sp(::plane::session) pbergedge = get_session(iEdge, pbiasCreate);
+   sp(::core::platform) pbergedge = get_session(iEdge, pbiasCreate);
    return pbergedge->application_get(pszType, pszId, bCreate, bSynch, pbiasCreate);
    }
    */
@@ -1446,7 +1446,7 @@ namespace plane
    }
 
 
-   spa(::plane::session) & system::planesessionptra()
+   spa(::core::platform) & system::planesessionptra()
    {
 
       return m_planesessionptra;

@@ -28,7 +28,7 @@ namespace base
 
 
 
-      ::plane::session *                                       m_pplanesession;
+      ::core::platform *                                       m_pplanesession;
       string_map < sp(::base::application) >                   m_mapApplication;
       sp(::userpresence::userpresence)                         m_puserpresence;
       sp(::ifs)                                                m_pifs;

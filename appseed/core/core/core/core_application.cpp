@@ -3195,7 +3195,7 @@ void application::_001OnApplicationRequest(signal_details * pobj)
       catch (...)
       {
       }
-      sp(::plane::session) pbergedge = pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"].cast < ::plane::session >();
+      sp(::core::platform) pbergedge = pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"].cast < ::core::platform >();
       // todobergedge
       /*if(pbergedge != NULL)
       {
@@ -3831,7 +3831,7 @@ sp(::base::application) application::instantiate_application(const char * pszTyp
    if (strId.CompareNoCase("session") == 0)
    {
 
-      ::plane::session * psession = new ::plane::session(m_pbaseapp->m_pbasesession);
+      ::core::platform * psession = new ::core::platform(m_pbaseapp->m_pbasesession);
 
       papp = psession;
 

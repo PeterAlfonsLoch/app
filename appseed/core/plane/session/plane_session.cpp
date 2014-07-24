@@ -291,7 +291,7 @@ namespace plane
 
       sp(::base::application) pbaseapp = application_get("application", strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
 
-      sp(::plane::session) papp = pbaseapp;
+      sp(::core::platform) papp = pbaseapp;
 
       if(papp == NULL)
       {
@@ -326,7 +326,7 @@ namespace plane
    void session::on_request(sp(::create_context) pcreatecontext)
    {
 
-      TRACE("::plane::session::on_request(sp(::create_context))");
+      TRACE("::core::platform::on_request(sp(::create_context))");
 
 
       if(pcreatecontext->m_spCommandLine->m_varQuery["app"].array_get_count() > 1)
@@ -471,7 +471,7 @@ namespace plane
 
                   uint32_t dw = WM_APP + 2043;
 
-                  pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"] = (sp(::plane::session) ) this;
+                  pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"] = (sp(::core::platform) ) this;
 
                   papp->m_pplaneapp->post_thread_message(dw, 2, pcreatecontext);
 
@@ -1703,7 +1703,7 @@ alt1:
 
 
 
-   sp(::plane::session) session::get_session()
+   sp(::core::platform) session::get_session()
    {
 
       return this;
@@ -1961,10 +1961,10 @@ alt1:
    }
 
 
-   sp(::plane::session) session::query_bergedge()
+   sp(::core::platform) session::query_bergedge()
    {
 
-      sp(::plane::session) psession = NULL;
+      sp(::core::platform) psession = NULL;
 
       if(System.m_pbergedgemap == NULL)
          return NULL;

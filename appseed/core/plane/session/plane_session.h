@@ -23,7 +23,7 @@ namespace plane
          index                   m_iEdge;
          string                  m_strApp;
          string                  m_strQuery;
-         sp(::plane::session)      m_pbergedgeParent;
+         sp(::core::platform)      m_pbergedgeParent;
          sp(::base::application)   m_pbaseapp;
          bool                    m_bMakeVisible;
          sp(::user::interaction) m_puiParent;
@@ -39,7 +39,7 @@ namespace plane
       };
 
       class CLASS_DECL_CORE map :
-         virtual public ::map < index, index, sp(::plane::session), sp(::plane::session) >
+         virtual public ::map < index, index, sp(::core::platform), sp(::core::platform) >
       {
       };
 
@@ -160,7 +160,7 @@ namespace plane
 
       virtual void set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle);
 
-      virtual sp(::plane::session) get_session();
+      virtual sp(::core::platform) get_session();
 
       virtual bool finalize();
 
@@ -192,7 +192,7 @@ namespace plane
       virtual sp(::base::application) get_new_app(sp(::base::application) pappNewApplicationParent,const char * pszType,const char * pszId);
 //      virtual void open_by_file_extension(const char * pszPathName);
 
-      virtual sp(::plane::session)             query_bergedge();
+      virtual sp(::core::platform)             query_bergedge();
 
 
    };

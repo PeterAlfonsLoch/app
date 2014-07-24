@@ -73,8 +73,8 @@ namespace plane
    public:
 
 
-      //plane::session::run_start_installer *        m_prunstartinstaller;
-      //plane::session::map *                        m_pbergedgemap;
+      //core::platform::run_start_installer *        m_prunstartinstaller;
+      //core::platform::map *                        m_pbergedgemap;
       index                                        m_iNewEdge;
 
       mutex                                        m_mutex;
@@ -93,9 +93,9 @@ namespace plane
       ::net::email_departament                        m_emaildepartament;
       sp(colorertake5::ParserFactory)              m_pparserfactory;
 
-      sp(::plane::session::run_start_installer)      m_prunstartinstaller;
-      sp(::plane::session::map)                      m_pbergedgemap;
-      spa(::plane::session)                           m_planesessionptra;
+      sp(::core::platform::run_start_installer)      m_prunstartinstaller;
+      sp(::core::platform::map)                      m_pbergedgemap;
+      spa(::core::platform)                           m_planesessionptra;
 
 
       sp(class ::core::history)                      m_phistory;
@@ -154,7 +154,7 @@ namespace plane
 
       virtual index get_new_bergedge(application_bias * pbiasCreation = NULL);
 
-      spa(::plane::session) &    planesessionptra();
+      spa(::core::platform) &    planesessionptra();
       inline sp(::html::html)                   html()         { return m_phtml; }
 
 
@@ -168,7 +168,7 @@ namespace plane
       bool set_history(::core::history * phistory);
 
 
-      virtual sp(::plane::session)             get_session(index iEdge,application_bias * pbiasCreation = NULL);
+      virtual sp(::core::platform)             get_session(index iEdge,application_bias * pbiasCreation = NULL);
 
 
       virtual void on_request(sp(::create_context) pcreatecontext);

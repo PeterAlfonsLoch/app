@@ -1614,7 +1614,7 @@ d.unlock();
             sess(m_pguie->m_papp->m_psession).m_ptCursor = pmouse->m_pt;
          }
 
-         ::plane::session * psession = NULL;
+         ::core::platform * psession = NULL;
          if(m_papp->is_system())
          {
             psession = System.query_session(0);
