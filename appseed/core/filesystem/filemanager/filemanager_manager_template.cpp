@@ -41,7 +41,7 @@ namespace filemanager
       {
 
          pfilemanagerdata = canew(::filemanager::data(get_app()));
-         pfilemanagerdata->m_pcallback = &Platform.filemanager();
+         pfilemanagerdata->m_pcallback = &platform().filemanager();
          pfilemanagerdata->m_pmanager = this;
          pfilemanagerdata->m_iTemplate = m_iTemplate;
          pfilemanagerdata->m_iDocument = m_iNextDocument++;
@@ -114,7 +114,7 @@ namespace filemanager
          pdoc->get_filemanager_data()->m_iDocument = m_iNextDocument++;
          pdoc->get_filemanager_data()->m_bTransparentBackground = bTransparentBackground;
          string strId;
-         strId.Format("%s::(%d)",Platform.filemanager().m_idFileManager.str(),pdoc->get_filemanager_data()->m_iDocument);
+         strId.Format("%s::(%d)",platform().filemanager().m_idFileManager.str(),pdoc->get_filemanager_data()->m_iDocument);
          pdoc->get_filemanager_data()->m_strDISection = strId;
          pdoc->Initialize(bMakeVisible);
          return pdoc;

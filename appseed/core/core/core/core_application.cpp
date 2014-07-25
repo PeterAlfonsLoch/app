@@ -61,7 +61,7 @@ m_simpledb(this)
    m_pszHelpFilePath = NULL;
    m_pszProfileName = NULL;
 
-   m_pplaneapp = this;
+   m_pcoreapp = this;
 
    m_pwndMain = NULL;
 
@@ -281,7 +281,7 @@ bool application::initialize1()
 
    if (!is_system())
    {
-      Platform.register_bergedge_application(this);
+      platform().register_bergedge_application(this);
    }
 
 
@@ -498,7 +498,7 @@ int32_t application::exit_instance()
    {
       if (!is_system())
       {
-         Platform.unregister_bergedge_application(this);
+         platform().unregister_bergedge_application(this);
       }
    }
    catch (...)
@@ -1728,9 +1728,9 @@ void application::on_file_open()
 bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::impact_system) ptemplate, sp(::user::document) pdocument)
 // if ptemplate==NULL => all document templates
 {
-   if (Platform.m_pfilemanager != NULL)
+   if (platform().m_pfilemanager != NULL)
    {
-      return Platform.m_pfilemanager->do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
+      return platform().m_pfilemanager->do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
    }
    ENSURE(m_pdocmanager != NULL);
    /*      return m_pdocmanager->do_prompt_file_name(fileName, nIDSTitle, lFlags,
@@ -2753,7 +2753,7 @@ sp(::user::interaction) application::get_request_parent_ui(sp(::user::interactio
    if (puiParent == NULL && m_pbasesession != NULL && m_pbasesession->m_pplanesession != NULL && !pcreatecontext->m_bClientOnly
       && !pcreatecontext->m_bOuterPopupAlertLike && m_pbasesession->m_pplanesession != this)
    {
-      puiParent = PlaneSess(this).get_request_parent_ui(pinteraction, pcreatecontext);
+      puiParent = plat(this).get_request_parent_ui(pinteraction, pcreatecontext);
    }
 
    return puiParent;
@@ -3137,7 +3137,7 @@ bool application::initialize()
 
    if (!is_system())
    {
-      Platform.register_bergedge_application(this);
+      platform().register_bergedge_application(this);
    }
 
    xxdebug_box("register_bergedge_application ok", "register_bergedge_application ok", MB_ICONINFORMATION);
@@ -3518,7 +3518,7 @@ bool application::get_fs_size(int64_t & i64Size, const char * pszPath, bool & bP
 void application::set_title(const char * pszTitle)
 {
 
-   Platform.set_app_title(m_strInstallType,m_strAppName,pszTitle);
+   platform().set_app_title(m_strInstallType,m_strAppName,pszTitle);
 
 }
 
@@ -3864,7 +3864,7 @@ sp(::base::application) application::instantiate_application(const char * pszTyp
 
       }
 
-      papp = Platform.get_new_app(this, pszType, strNewId);
+      papp = platform().get_new_app(this, pszType, strNewId);
 
       if (papp == NULL)
          return NULL;

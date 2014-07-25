@@ -102,7 +102,7 @@ namespace user
       //      const char * lpcsz = NULL;
 
       LPVOID lpvoid = NULL;
-      if(!CreateEx(WS_EX_LAYERED | WS_EX_TOOLWINDOW,NULL,NULL,0,rect(0,0,0,0),Platform.get_view(),id(),lpvoid))
+      if(!CreateEx(WS_EX_LAYERED | WS_EX_TOOLWINDOW,NULL,NULL,0,rect(0,0,0,0),platform().get_view(),id(),lpvoid))
          return false;
 
       SetOwner(oswindowParent);

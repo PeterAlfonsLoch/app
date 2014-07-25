@@ -125,6 +125,7 @@ namespace user
 
    class interaction_impl;
    class view_creator_data;
+   class schema;
 
 }
 
@@ -205,6 +206,7 @@ namespace core
 {
 
    class platform;
+   class system;
 
 }
 
@@ -654,6 +656,8 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "user/user/user_key_enum.h"
 #include "base/base/message/message.h"
 #include "base_command_target.h"
+#include "user/user/user_schema.h"
+#include "user/user/user_schema_simple_impl.h"
 #include "user/user/user_text_interface.h"
 #include "user/user/user_draw_interface.h"
 #include "user/user/user_window_util.h"
@@ -661,8 +665,6 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "user/user/user_buffer.h"
 #include "base_keep.h"
 #include "base/filesystem/file/file_stream2.h"
-#include "user/user/user_schema.h"
-#include "user/user/user_schema_simple_impl.h"
 #include "user/user/user_interaction.h"
 #include "user/user/user_interaction_impl_base.h"
 #include "user/user/user_interaction_child.h"

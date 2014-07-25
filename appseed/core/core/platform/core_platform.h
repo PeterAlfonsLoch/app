@@ -1,17 +1,17 @@
 #pragma once
 
 
-namespace plane
+namespace core
 {
 
 
    class view;
 
 
-   class CLASS_DECL_CORE session :
+   class CLASS_DECL_CORE platform :
       virtual public ::platform::application,
       virtual public ::filemanager::item_action,
-      virtual public ::core::session
+      virtual public ::base::session_interface
    {
    public:
 
@@ -72,8 +72,8 @@ namespace plane
       string_map < sp(::user::uinteraction::interaction) >     m_mapUinteraction;
 
 
-      session(::base::application * papp);
-      virtual ~session();
+      platform(::base::application * papp);
+      virtual ~platform();
       virtual void construct();
 
       bool initialize_instance();
@@ -198,7 +198,7 @@ namespace plane
    };
 
 
-} // namespace plane
+} // namespace core
 
 
 

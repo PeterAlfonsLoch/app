@@ -10,7 +10,8 @@ namespace user
       virtual public command_target,
       virtual public text_interface,
       virtual public check_interface,
-      virtual public draw_interface
+      virtual public draw_interface,
+      virtual public ::user::schema
    {
    public:
 
@@ -445,14 +446,9 @@ namespace user
       virtual string get_window_text();
       virtual void GetWindowText(string & rString);
       virtual strsize GetWindowTextLength();
-      virtual void SetFont(::draw2d::font* pFont,bool bRedraw = TRUE);
-      virtual ::draw2d::font* GetFont();
 
-      virtual void set_text_color(COLORREF crText);
 
-//      virtual void install_message_handling(::message::dispatch * pinterface);
       virtual bool IsWindowVisible();
-
 
 
 
@@ -604,6 +600,16 @@ namespace user
 #endif
       virtual bool _001HasCommandHandler(id id);
 
+      virtual ::user::schema *      get_user_schema();
+
+      virtual COLORREF              get_background_color();
+      virtual COLORREF              get_color();
+      virtual ::draw2d::font_sp     get_font();
+      virtual ETranslucency         _001GetTranslucency();
+      virtual bool                  _001IsBackgroundBypass();
+      virtual bool                  _001IsTransparent();
+      virtual bool                  _001IsTranslucent();
+      virtual bool                  _001HasTranslucency();
 
 
       virtual bool track_popup_menu(sp(::user::menu_base_item) pitem,int32_t iFlags,int32_t x,int32_t y);

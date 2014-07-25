@@ -453,15 +453,15 @@ namespace filemanager
             GetSelectedFilePath(stra);
             if(stra.get_count() <= 0)
             {
-               Platform.m_varTopicFile.unset();
+               platform().m_varTopicFile.unset();
             }
             else if(stra.get_count() == 1)
             {
-               Platform.m_varTopicFile = stra[0];
+               platform().m_varTopicFile = stra[0];
             }
             else
             {
-               Platform.m_varTopicFile = stra;
+               platform().m_varTopicFile = stra;
             }
 
          }

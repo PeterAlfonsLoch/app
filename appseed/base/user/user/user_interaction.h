@@ -486,20 +486,6 @@ namespace user
       virtual bool merge(sp(::user::interaction) pui);
 
 
-      virtual ::user::schema *      get_user_schema();
-
-      //virtual bool _001SetSchema(::user::schema * pschema);
-      //virtual bool _008SetSchema(::user::schema * pschema); // _008 - Descendants
-      //virtual bool _009SetSchema(::user::schema * pschema); // _009 - Own and Descendants
-
-      virtual COLORREF              get_background_color();
-      virtual COLORREF              get_color();
-      virtual ::draw2d::font_sp     get_font();
-      virtual ETranslucency         _001GetTranslucency();
-      virtual bool                  _001IsBackgroundBypass();
-      virtual bool                  _001IsTransparent();
-      virtual bool                  _001IsTranslucent();
-      virtual bool                  _001HasTranslucency();
 
 
 

@@ -655,22 +655,6 @@ namespace user
          try
          {
 
-            if(GetFont() != NULL)
-            {
-
-               pgraphics->selectFont(GetFont());
-
-            }
-
-         }
-         catch(...)
-         {
-
-         }
-
-         try
-         {
-
             pgraphics->SelectClipRgn(NULL);
 
          }
@@ -971,19 +955,6 @@ namespace user
          }
 
       }
-
-      GetFont();
-
-      /*
-
-      if(GetFont() != NULL)
-      {
-         GetFont()->m_dFontSize = 12.0;
-         GetFont()->m_eunitFontSize = ::draw2d::unit_point;
-         GetFont()->m_strFontFamilyName = "Times New Roman";
-      }
-
-      */
 
       m_spmutex = canew(::mutex(get_app()));
 
@@ -3609,126 +3580,6 @@ namespace user
    }
 
    
-   ::user::schema * interaction::get_user_schema()
-   {
-
-      ::user::interaction * puiParent = GetParent();
-
-      if(puiParent == NULL)
-         return NULL;
-
-      return puiParent->get_user_schema();
-
-   }
-
-   
-   COLORREF interaction::get_background_color()
-   {
-
-      if(get_user_schema() == NULL)
-      {
-
-         return ARGB(255,255,255,255);
-
-      }
-      else
-      {
-
-         return get_user_schema()->get_background_color();
-
-      }
-
-   }
-
-
-   COLORREF interaction::get_color()
-   {
-
-      if(get_user_schema() == NULL)
-      {
-
-         return ARGB(255,0,0,0);
-
-      }
-      else
-      {
-
-         return get_user_schema()->get_color();
-
-      }
-
-   }
-
-   ::draw2d::font_sp interaction::get_font()
-   {
-
-      if(get_user_schema() == NULL)
-      {
-
-         return NULL;
-
-      }
-      else
-      {
-
-         return get_user_schema()->get_font();
-
-      }
-
-   }
-
-
-   bool interaction::_001IsTranslucent()
-   {
-
-      return _001GetTranslucency() == TranslucencyPresent || _001GetTranslucency() == TranslucencyTotal;
-
-   }
-
-
-   bool interaction::_001IsBackgroundBypass()
-   {
-
-      return false;
-
-   }
-
-
-   bool interaction::_001HasTranslucency()
-   {
-
-      return _001GetTranslucency() == TranslucencyPresent || _001GetTranslucency() == TranslucencyTotal;
-
-   }
-
-
-   bool interaction::_001IsTransparent()
-   {
-
-      return _001GetTranslucency() == TranslucencyTotal;
-
-   }
-
-
-   ::user::ETranslucency interaction::_001GetTranslucency()
-   {
-
-      if(get_user_schema() == NULL)
-      {
-
-         return ::user::TranslucencyNone;
-
-      }
-      else
-      {
-
-         return get_user_schema()->_001GetTranslucency();
-
-      }
-
-   }
-
-
    void interaction::_001OnTriggerMouseInside()
    {
 

@@ -160,10 +160,10 @@ namespace hi5
 
          }
 
-         if(&Platform != NULL && Platform.get_document() != NULL && Platform.get_document()->get_bergedge_view() != NULL)
+         if(&Platform != NULL && platform().get_document() != NULL && platform().get_document()->get_bergedge_view() != NULL)
          {
 
-            Platform.get_document()->get_bergedge_view()->ShowWindow(SW_SHOW);
+            platform().get_document()->get_bergedge_view()->ShowWindow(SW_SHOW);
 
          }
          else

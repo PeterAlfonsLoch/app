@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "core/plane/session/platform/platform.h"
+#include "core/platform/platform/platform.h"
 #include "core/graphics/gcom/gcom.h"
 #include "core/graphics/backview/backview.h"
 

@@ -225,7 +225,7 @@ namespace base
       virtual sp(::user::interaction) window_from_os_data(void * pdata);
 
 
-      virtual void construct();
+      virtual void construct(const char * pszAppId);
 
 
       virtual bool process_initialize();

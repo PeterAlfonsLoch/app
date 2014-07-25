@@ -42,12 +42,6 @@
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{5326a98e-bced-419b-82df-366e7e75a9c6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\plane">
-      <UniqueIdentifier>{cbccad39-efc9-4c37-ab9b-c84b3620a496}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\plane">
-      <UniqueIdentifier>{99e9d965-4967-46db-a999-0ddfab7545f3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\database">
       <UniqueIdentifier>{ee06166a-e342-48b6-88d2-26b9ce17f079}</UniqueIdentifier>
     </Filter>
@@ -158,33 +152,6 @@
     </Filter>
     <Filter Include="Source Files\net">
       <UniqueIdentifier>{d00ab034-f21f-4108-9212-58cf93f9db93}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\plane\session">
-      <UniqueIdentifier>{e49db3c3-e8db-4483-8860-552140abd1bb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\plane\session\bergedge">
-      <UniqueIdentifier>{d908a405-97dc-4efa-82a4-c19f831ae246}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\plane\session\nature">
-      <UniqueIdentifier>{02345b3a-8867-4d24-9869-0a185803da4a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\plane\session\platform">
-      <UniqueIdentifier>{091671e0-27a5-4746-b77e-cbcbc1100a4f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\plane\session">
-      <UniqueIdentifier>{a2c3f075-11b9-422c-b4c9-20bd303821ab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\plane\session\nature">
-      <UniqueIdentifier>{5e2726a9-38a8-4755-8cc5-6523dbf22b6e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\plane\session\bergedge">
-      <UniqueIdentifier>{60167d82-2fe9-4ade-86a3-39b7cf6b41df}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\plane\session\platform">
-      <UniqueIdentifier>{c7ddf572-a1fe-47dc-be4e-a7d03e932627}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\plane\session\platform\NewFilter1">
-      <UniqueIdentifier>{64241a18-b0f2-4524-aa99-e205b37b14d5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\net\usermail">
       <UniqueIdentifier>{500e317b-ba38-45a5-9cbf-40d7c3effa13}</UniqueIdentifier>
@@ -363,6 +330,30 @@
     <Filter Include="Header Files\core\core">
       <UniqueIdentifier>{7bd92b89-bd56-4942-84cc-0cf6c5b11793}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\core\platform">
+      <UniqueIdentifier>{ebdf0424-9e5c-4951-9063-561e2af1ddad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\platform\platform">
+      <UniqueIdentifier>{62b80cd5-7882-4a8f-92ce-3180024248a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\platform\bergedge">
+      <UniqueIdentifier>{98707b66-f36f-4a78-969d-51b180e67642}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\platform\nature">
+      <UniqueIdentifier>{2a8b164a-8a9d-4515-8763-27eba1fa1677}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\platform">
+      <UniqueIdentifier>{041c7c08-f2e9-42d2-89dc-09df3bdae550}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\platform\bergedge">
+      <UniqueIdentifier>{097944df-6a9b-49bc-a257-819d8a7983af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\platform\nature">
+      <UniqueIdentifier>{582d0eea-2636-4c25-8fbe-78a5a61238a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\platform\platform">
+      <UniqueIdentifier>{3512c41c-c826-4d7d-b3b5-d9062c889088}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive.h">
@@ -446,15 +437,6 @@
     <ClInclude Include="compress\rar\rar3_vm.h">
       <Filter>Header Files\compress\rar</Filter>
     </ClInclude>
-    <ClInclude Include="plane\plane.h">
-      <Filter>Header Files\plane</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\plane_system.h">
-      <Filter>Header Files\plane</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\plane_system_allocate.h">
-      <Filter>Header Files\plane</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\datetime\datetime.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
@@ -469,9 +451,6 @@
     </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_clock_interface.h">
       <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\plane_system_primitive_var.h">
-      <Filter>Header Files\plane</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_windows_file_time.h">
       <Filter>Header Files\primitive\datetime</Filter>
@@ -917,9 +896,6 @@
     <ClInclude Include="graphics\visual\visual_water_routine.h">
       <Filter>Header Files\graphics\visual</Filter>
     </ClInclude>
-    <ClInclude Include="plane\plane_library.h">
-      <Filter>Header Files\plane</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filemanager\file_operation.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
@@ -1069,81 +1045,6 @@
     </ClInclude>
     <ClInclude Include="graphics\html\html2.h">
       <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\plane_session.h">
-      <Filter>Header Files\plane\session</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\bergedge\bergedge.h">
-      <Filter>Header Files\plane\session\bergedge</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\bergedge\bergedge_document.h">
-      <Filter>Header Files\plane\session\bergedge</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\bergedge\bergedge_form_callback.h">
-      <Filter>Header Files\plane\session\bergedge</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\bergedge\bergedge_frame.h">
-      <Filter>Header Files\plane\session\bergedge</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\bergedge\bergedge_pane_view.h">
-      <Filter>Header Files\plane\session\bergedge</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\bergedge\bergedge_pane_view_update_hint.h">
-      <Filter>Header Files\plane\session\bergedge</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\bergedge\bergedge_view.h">
-      <Filter>Header Files\plane\session\bergedge</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\nature\nature.h">
-      <Filter>Header Files\plane\session\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\nature\nature_appearance_view.h">
-      <Filter>Header Files\plane\session\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\nature\nature_application.h">
-      <Filter>Header Files\plane\session\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\nature\nature_database.h">
-      <Filter>Header Files\plane\session\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\nature\nature_document.h">
-      <Filter>Header Files\plane\session\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\nature\nature_frame.h">
-      <Filter>Header Files\plane\session\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\nature\nature_pane_view.h">
-      <Filter>Header Files\plane\session\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\nature\nature_pane_view_update_hint.h">
-      <Filter>Header Files\plane\session\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\nature\nature_view.h">
-      <Filter>Header Files\plane\session\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\platform\platform.h">
-      <Filter>Header Files\plane\session\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\platform\platform_application.h">
-      <Filter>Header Files\plane\session\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\platform\platform_document.h">
-      <Filter>Header Files\plane\session\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\platform\platform_frame.h">
-      <Filter>Header Files\plane\session\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\platform\platform_pane_view.h">
-      <Filter>Header Files\plane\session\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\platform\platform_pane_view_update_hint.h">
-      <Filter>Header Files\plane\session\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\platform\platform_resource.h">
-      <Filter>Header Files\plane\session\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\session\platform\platform_view.h">
-      <Filter>Header Files\plane\session\platform</Filter>
     </ClInclude>
     <ClInclude Include="math\calculator\calculator.h">
       <Filter>Header Files\math\calculator</Filter>
@@ -1633,15 +1534,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\userfs\userfs_tree.h">
       <Filter>Header Files\filesystem\userfs</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\plane_system_ca2_factory.h">
-      <Filter>Header Files\plane</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\plane_system_ca2_str.h">
-      <Filter>Header Files\plane</Filter>
-    </ClInclude>
-    <ClInclude Include="plane\plane_system_ca2_template.h">
-      <Filter>Header Files\plane</Filter>
     </ClInclude>
     <ClInclude Include="core\plugin\plugin_system.h">
       <Filter>Header Files\core\plugin</Filter>
@@ -2405,9 +2297,6 @@
     <ClInclude Include="core\core\core_service.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core\core_session.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core\core_smart_pointer_query.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
@@ -2455,6 +2344,57 @@
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\core_platform.h">
+      <Filter>Header Files\core\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\bergedge\bergedge.h">
+      <Filter>Header Files\core\platform\bergedge</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\bergedge\bergedge_document.h">
+      <Filter>Header Files\core\platform\bergedge</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\bergedge\bergedge_form_callback.h">
+      <Filter>Header Files\core\platform\bergedge</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\bergedge\bergedge_frame.h">
+      <Filter>Header Files\core\platform\bergedge</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\bergedge\bergedge_pane_view.h">
+      <Filter>Header Files\core\platform\bergedge</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\bergedge\bergedge_pane_view_update_hint.h">
+      <Filter>Header Files\core\platform\bergedge</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\bergedge\bergedge_view.h">
+      <Filter>Header Files\core\platform\bergedge</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\nature\nature.h">
+      <Filter>Header Files\core\platform\nature</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\nature\nature_appearance_view.h">
+      <Filter>Header Files\core\platform\nature</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\nature\nature_application.h">
+      <Filter>Header Files\core\platform\nature</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\nature\nature_database.h">
+      <Filter>Header Files\core\platform\nature</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\nature\nature_document.h">
+      <Filter>Header Files\core\platform\nature</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\nature\nature_frame.h">
+      <Filter>Header Files\core\platform\nature</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\nature\nature_pane_view.h">
+      <Filter>Header Files\core\platform\nature</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\nature\nature_pane_view_update_hint.h">
+      <Filter>Header Files\core\platform\nature</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\nature\nature_view.h">
+      <Filter>Header Files\core\platform\nature</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2589,12 +2529,6 @@
     </ClCompile>
     <ClCompile Include="compress\rar\rar3_vm.cpp">
       <Filter>Source Files\compress\rar</Filter>
-    </ClCompile>
-    <ClCompile Include="plane\plane_system.cpp">
-      <Filter>Source Files\plane</Filter>
-    </ClCompile>
-    <ClCompile Include="plane\plane_library.cpp">
-      <Filter>Source Files\plane</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_calendar.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
@@ -2967,69 +2901,6 @@
     </ClCompile>
     <ClCompile Include="graphics\html\html_value.cpp">
       <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="plane\session\plane_session.cpp">
-      <Filter>Source Files\plane\session</Filter>
-    </ClCompile>
-    <ClCompile Include="plane\session\platform\platform_application.cpp">
-      <Filter>Source Files\plane\session\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="plane\session\platform\platform_document.cpp">
-      <Filter>Source Files\plane\session\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="plane\session\platform\platform_frame.cpp">
-      <Filter>Source Files\plane\session\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="plane\session\platform\platform_pane_view.cpp">
-      <Filter>Source Files\plane\session\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="plane\session\platform\platform_pane_view_update_hint.cpp">
-      <Filter>Source Files\plane\session\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="plane\session\platform\platform_view.cpp">
-      <Filter>Source Files\plane\session\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="plane\session\bergedge\bergedge_document.cpp">
-      <Filter>Source Files\plane\session\bergedge</Filter>
-    </ClCompile>
-    <ClCompile Include="plane\session\bergedge\bergedge_form_callback.cpp">
-      <Filter>Source Files\plane\session\bergedge</Filter>
-    </ClCompile>
-    <ClCompile Include="plane\session\bergedge\bergedge_frame.cpp">
-      <Filter>Source Files\plane\session\bergedge</Filter>
-    </ClCompile>
-    <ClCompile Include="plane\session\bergedge\bergedge_pane_view.cpp">
-      <Filter>Source Files\plane\session\bergedge</Filter>
-    </ClCompile>
-    <ClCompile Include="plane\session\bergedge\bergedge_pane_view_update_hint.cpp">
-      <Filter>Source Files\plane\session\bergedge</Filter>
-    </ClCompile>
-    <ClCompile Include="plane\session\bergedge\bergedge_view.cpp">
-      <Filter>Source Files\plane\session\bergedge</Filter>
-    </ClCompile>
-    <ClCompile Include="plane\session\nature\nature_appearance_view.cpp">
-      <Filter>Source Files\plane\session\nature</Filter>
-    </ClCompile>
-    <ClCompile Include="plane\session\nature\nature_application.cpp">
-      <Filter>Source Files\plane\session\nature</Filter>
-    </ClCompile>
-    <ClCompile Include="plane\session\nature\nature_database.cpp">
-      <Filter>Source Files\plane\session\nature</Filter>
-    </ClCompile>
-    <ClCompile Include="plane\session\nature\nature_document.cpp">
-      <Filter>Source Files\plane\session\nature</Filter>
-    </ClCompile>
-    <ClCompile Include="plane\session\nature\nature_frame.cpp">
-      <Filter>Source Files\plane\session\nature</Filter>
-    </ClCompile>
-    <ClCompile Include="plane\session\nature\nature_pane_view.cpp">
-      <Filter>Source Files\plane\session\nature</Filter>
-    </ClCompile>
-    <ClCompile Include="plane\session\nature\nature_pane_view_update_hint.cpp">
-      <Filter>Source Files\plane\session\nature</Filter>
-    </ClCompile>
-    <ClCompile Include="plane\session\nature\nature_view.cpp">
-      <Filter>Source Files\plane\session\nature</Filter>
     </ClCompile>
     <ClCompile Include="user\colorertake5\colorertake5_base_editor.cpp">
       <Filter>Source Files\user\colorertake5</Filter>
@@ -3988,9 +3859,6 @@
     <ClCompile Include="core\core\core_service.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core\core_session.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core\core_str_format.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
@@ -4023,6 +3891,69 @@
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="core\platform\core_platform.cpp">
+      <Filter>Source Files\core\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="core\platform\platform\platform_application.cpp">
+      <Filter>Source Files\core\platform\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="core\platform\platform\platform_document.cpp">
+      <Filter>Source Files\core\platform\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="core\platform\platform\platform_frame.cpp">
+      <Filter>Source Files\core\platform\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="core\platform\platform\platform_pane_view.cpp">
+      <Filter>Source Files\core\platform\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="core\platform\platform\platform_pane_view_update_hint.cpp">
+      <Filter>Source Files\core\platform\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="core\platform\platform\platform_view.cpp">
+      <Filter>Source Files\core\platform\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="core\platform\nature\nature_appearance_view.cpp">
+      <Filter>Source Files\core\platform\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="core\platform\nature\nature_application.cpp">
+      <Filter>Source Files\core\platform\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="core\platform\nature\nature_database.cpp">
+      <Filter>Source Files\core\platform\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="core\platform\nature\nature_document.cpp">
+      <Filter>Source Files\core\platform\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="core\platform\nature\nature_frame.cpp">
+      <Filter>Source Files\core\platform\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="core\platform\nature\nature_pane_view.cpp">
+      <Filter>Source Files\core\platform\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="core\platform\nature\nature_pane_view_update_hint.cpp">
+      <Filter>Source Files\core\platform\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="core\platform\nature\nature_view.cpp">
+      <Filter>Source Files\core\platform\nature</Filter>
+    </ClCompile>
+    <ClCompile Include="core\platform\bergedge\bergedge_document.cpp">
+      <Filter>Source Files\core\platform\bergedge</Filter>
+    </ClCompile>
+    <ClCompile Include="core\platform\bergedge\bergedge_form_callback.cpp">
+      <Filter>Source Files\core\platform\bergedge</Filter>
+    </ClCompile>
+    <ClCompile Include="core\platform\bergedge\bergedge_frame.cpp">
+      <Filter>Source Files\core\platform\bergedge</Filter>
+    </ClCompile>
+    <ClCompile Include="core\platform\bergedge\bergedge_pane_view.cpp">
+      <Filter>Source Files\core\platform\bergedge</Filter>
+    </ClCompile>
+    <ClCompile Include="core\platform\bergedge\bergedge_pane_view_update_hint.cpp">
+      <Filter>Source Files\core\platform\bergedge</Filter>
+    </ClCompile>
+    <ClCompile Include="core\platform\bergedge\bergedge_view.cpp">
+      <Filter>Source Files\core\platform\bergedge</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

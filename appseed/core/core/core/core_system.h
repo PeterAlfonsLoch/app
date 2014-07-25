@@ -14,65 +14,6 @@ namespace core
    {
    public:
 
-
-      system();
-      virtual ~system();
-
-
-      virtual void construct();
-
-      virtual sp(element) clone(sp(element) pobj);
-
-      virtual void discard_to_factory(sp(element) pca);
-
-      virtual bool is_system();
-
-      virtual bool process_initialize();
-
-      virtual bool initialize2();
-
-      virtual bool initialize_instance();
-
-      virtual bool finalize();
-
-      virtual int32_t exit_instance();
-
-   };
-
-
-} // namespace core
-
-
-
-
-
-#pragma once
-
-
-#ifdef WINDOWS
-
-interface ID2D1DeviceContext;
-
-#endif
-
-#ifdef METROWIN
-
-#include <agile.h>
-
-#endif
-
-class id;
-
-namespace plane
-{
-
-
-   class CLASS_DECL_CORE system:
-      virtual public ::core::system
-   {
-   public:
-
-
       //core::platform::run_start_installer *        m_prunstartinstaller;
       //core::platform::map *                        m_pbergedgemap;
       index                                        m_iNewEdge;
@@ -128,28 +69,39 @@ namespace plane
 
       ::visual::visual                    m_visual;
 
+
       system(sp(::base::application) papp = NULL);
       virtual ~system();
 
 
       virtual void construct();
 
+      virtual sp(element) clone(sp(element) pobj);
+
+      virtual void discard_to_factory(sp(element) pca);
+
+      virtual bool is_system();
+
+      virtual bool process_initialize();
+
+      virtual bool initialize2();
+
+      virtual bool initialize_instance();
+
+      virtual bool finalize();
+
+      virtual int32_t exit_instance();
+
+
 
       //virtual int32_t main();
       virtual bool InitApplication();
-
-      virtual bool process_initialize();
 
       virtual bool initialize();
       virtual bool initialize1();
       virtual bool initialize3();
 
-      virtual bool initialize_instance();
-
       virtual bool bergedge_start();
-
-      virtual bool finalize();
-      virtual int32_t exit_instance();
 
 
       virtual index get_new_bergedge(application_bias * pbiasCreation = NULL);
@@ -172,7 +124,6 @@ namespace plane
 
 
       virtual void on_request(sp(::create_context) pcreatecontext);
-      virtual bool is_system();
 
       //      virtual sp(::command_thread) command_thread();
 
@@ -268,29 +219,7 @@ namespace plane
    };
 
 
-} // namespace plane
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+} // namespace core
 
 
 

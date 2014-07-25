@@ -5,16 +5,106 @@ namespace core
 {
 
 
-
-   system::system() :
-      ::base::system(this)
+   system::system(sp(::base::application) papp):
+      ::element(papp.is_null() ? this : papp),
+      ::base::system(papp.is_null() ? this : papp),
+      m_mutexDelete(this),
+      m_mutex(this),
+#ifndef METROWIN
+      m_processsection(this),
+#endif
+      m_visual(this),
+      m_emaildepartament(this)
    {
 
-      idEmpty = "";
+#ifdef METROWIN
+         m_window                                  = nullptr;
+#endif
 
-      ::draw2d::dib::static_initialize();
+         m_pcoresystem                            = this;
+         set_app(this);
 
-   }
+
+         if(papp == NULL)
+         {
+
+            oprop("parent_system") = (sp(element)) NULL;
+
+         }
+         else
+         {
+
+            oprop("parent_system") = papp->m_pplanesystem;
+
+         }
+
+         m_ftlibrary = NULL;
+
+
+         m_bDoNotExitIfNoApplications              = true;
+
+         string strId;
+         //strId = m_strAppName;
+         //strId += ::str::has_char(m_strAppId, ".");
+         //strId += ::str::has_char(m_strBaseSupportId, ".");
+
+
+
+
+         /*
+         if(psystemParent == NULL)
+         {
+
+         m_peengine                                = new ::exception::engine(this);
+
+         }
+         else
+         {
+
+         m_peengine                                = psystemParent->m_peengine;
+
+         }
+         */
+
+
+
+
+
+
+         m_stra.set_app(this);
+         //      m_url.set_app(this);
+         m_userset.set_app(this);
+         m_service.set_app(this);
+#ifndef METROWIN
+         m_processsection.set_app(this);
+#endif
+         m_pdatetime = new class ::datetime::departament(this);
+         //      m_email.set_app(this);
+
+
+
+
+
+
+         m_bInitApplication         = false;
+         m_bInitApplicationResult   = FALSE;
+         m_bProcessInitialize       = false;
+         m_bProcessInitializeResult = false;
+
+         m_bLibCharGuess            = false;
+         m_puserstr                 = NULL;
+
+         m_pparserfactory           = NULL;
+
+         m_bLicense                 = false;
+
+         m_prunstartinstaller       = NULL;
+         m_bLicense                 = false;
+         m_strAppName               = "system";
+         m_strInstallToken          = "system";
+
+
+      }
 
 
    system::~system()
@@ -22,6 +112,7 @@ namespace core
 
    }
 
+   
 
    void system::construct()
    {
@@ -146,111 +237,6 @@ namespace plane
 {
 
 
-   system::system(sp(::base::application) papp):
-      m_mutexDelete(this),
-      m_mutex(this),
-#ifndef METROWIN
-      m_processsection(this),
-#endif
-      m_visual(this),
-      ::base::system(papp),
-      m_emaildepartament(this)
-   {
-
-#ifdef METROWIN
-         m_window                                  = nullptr;
-#endif
-
-         m_pplanesystem                            = this;
-         set_app(this);
-
-
-         if(papp == NULL)
-         {
-
-            oprop("parent_system") = (sp(element)) NULL;
-
-         }
-         else
-         {
-
-            oprop("parent_system") = papp->m_pplanesystem;
-
-         }
-
-         m_ftlibrary = NULL;
-
-
-         m_bDoNotExitIfNoApplications              = true;
-
-         string strId;
-         //strId = m_strAppName;
-         //strId += ::str::has_char(m_strAppId, ".");
-         //strId += ::str::has_char(m_strBaseSupportId, ".");
-
-
-
-
-         /*
-         if(psystemParent == NULL)
-         {
-
-         m_peengine                                = new ::exception::engine(this);
-
-         }
-         else
-         {
-
-         m_peengine                                = psystemParent->m_peengine;
-
-         }
-         */
-
-
-
-
-
-
-         m_stra.set_app(this);
-         //      m_url.set_app(this);
-         m_userset.set_app(this);
-         m_service.set_app(this);
-#ifndef METROWIN
-         m_processsection.set_app(this);
-#endif
-         m_pdatetime = new class ::datetime::departament(this);
-         //      m_email.set_app(this);
-
-
-
-
-
-
-         m_bInitApplication         = false;
-         m_bInitApplicationResult   = FALSE;
-         m_bProcessInitialize       = false;
-         m_bProcessInitializeResult = false;
-
-         m_bLibCharGuess            = false;
-         m_puserstr                 = NULL;
-
-         m_pparserfactory           = NULL;
-
-         m_bLicense                 = false;
-
-         m_prunstartinstaller       = NULL;
-         m_bLicense                 = false;
-         m_strAppName               = "system";
-         m_strInstallToken          = "system";
-
-
-      }
-
-
-   system::~system()
-   {
-
-   }
 
 
    void system::construct()

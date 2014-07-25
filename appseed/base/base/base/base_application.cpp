@@ -109,7 +109,7 @@ namespace base
 
       }
 
-      m_pplaneapp                = NULL;
+      m_pcoreapp                 = NULL;
 
 
 
@@ -691,7 +691,7 @@ namespace base
 
 
 
-   void application::construct()
+   void application::construct(const char * pszAppId)
    {
 
    }
@@ -2249,7 +2249,7 @@ namespace base
 
       m_pimpl.create(allocer());
 
-      m_pimpl->construct();
+      m_pimpl->construct(NULL);
 
       m_pimpl->m_pimpl = this;
 

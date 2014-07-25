@@ -22,20 +22,19 @@ extern "C"
 ::core::library * get_new_library(sp(::base::application) papp);
 
 
-namespace plane
+namespace core
 {
 
 
    library::library(sp(::base::application) papp):
       element(papp),
-      ::base::library(papp),
-      ::core::library(papp,"app"),
-      ::core::single_application_library < application >(papp,"app"),
+      ::base::library(papp,0,"app"),
+      ::base::single_application_library < application >(papp,"app"),
       ::filehandler::library(papp),
       ::filehandler::menu_library(papp)
    {
 
-      }
+   }
 
 
    void library::get_app_list(stringa & stra)
@@ -88,5 +87,7 @@ extern "C"
 #endif
 ::core::library * get_new_library(sp(::base::application) papp)
 {
-   return canew(::plane::library(papp));
+
+   return canew(::core::library(papp));
+
 }

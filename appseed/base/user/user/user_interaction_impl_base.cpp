@@ -526,23 +526,6 @@ namespace user
    }
 
 
-
-   void interaction_impl_base::SetFont(::draw2d::font* pFont,bool bRedraw)
-   {
-
-      m_pui->SetFont(pFont,bRedraw);
-
-   }
-
-
-   ::draw2d::font* interaction_impl_base::GetFont()
-   {
-
-      return m_pui->GetFont();
-
-   }
-
-
    uint32_t interaction_impl_base::GetStyle() const
    {
       

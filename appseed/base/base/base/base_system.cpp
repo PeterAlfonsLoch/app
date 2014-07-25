@@ -228,7 +228,7 @@ namespace base
 
       m_bGudoNetCache = true;
 
-
+      ::draw2d::dib::static_initialize();
 
    }
 
@@ -236,7 +236,7 @@ namespace base
    void system::construct()
    {
 
-      ::base::application::construct();
+      ::base::application::construct(NULL);
 
    }
 

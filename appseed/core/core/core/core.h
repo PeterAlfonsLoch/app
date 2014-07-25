@@ -21,6 +21,17 @@
 
 class image_list;
 
+#ifdef WINDOWS
+
+interface ID2D1DeviceContext;
+
+#endif
+
+#ifdef METROWIN
+
+#include <agile.h>
+
+#endif
 
 
 namespace user
@@ -82,16 +93,16 @@ namespace dynamic_source
 
 
 #undef App
-#undef Application
-#define planeApp(pbaseapp) (*pbaseapp->m_pplaneapp)
-#define planeApplication (planeApp(m_pbaseapp))
-#define App(pbaseapp) planeApp(pbaseapp)
-#define Application (App(m_pbaseapp))
-#undef CaSys
-#define CaSys(pca) (*pca->m_pbaseapp->m_pplanesystem)
-#undef Sys
-#define Sys(pbaseapp) (*pbaseapp->m_pplanesystem)
+#define App(pbaseapp) CoreApp(pbaseapp)
 
+#undef CaSys
+#define CaSys(pca) (*pca->m_pbaseapp->m_pcoreystem)
+
+#undef Sys
+#define Sys(pbaseapp) (*pbaseapp->m_pcoresystem)
+
+#define CoreApp(pbaseapp) (*pbaseapp->m_pcoreapp)
+#define CoreApplication (CoreApp(m_pbaseapp))
 
 inline ::core::platform & plat(::base::application * papp)
 {
@@ -1050,8 +1061,6 @@ class Ex1FactoryImpl;
 
 
 
-#include "core_session.h"
-#include "core_system.h"
 
 
 #endif
@@ -1126,24 +1135,24 @@ class form_view;
 
 
 
-#include "plane_library.h"
+#include "core_library.h"
 
 
-#include "session/bergedge/bergedge.h"
+#include "core/platform/bergedge/bergedge.h"
 
 
-#include "core/plane/session/plane_session.h"
-#include "plane_system.h"
+#include "core/platform/core_platform.h"
+#include "core_system.h"
 
 
-#include "plane_system_ca2_str.h"
-#include "plane_system_primitive_var.h"
+//#include "plane_system_ca2_str.h"
+//#include "plane_system_primitive_var.h"
 
 
-#include "plane_system_ca2_template.h"
-#include "plane_system_allocate.h"
-#include "plane_system_ca2_factory.h"
-#include "plane_system_primitive_string_format_spec.h"
+//#include "plane_system_ca2_template.h"
+//#include "plane_system_allocate.h"
+//#include "plane_system_ca2_factory.h"
+//#include "plane_system_primitive_string_format_spec.h"
 
 
 #include "core/core/plugin/plugin.h"

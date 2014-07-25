@@ -20,7 +20,6 @@ namespace bergedge
       m_dataidWindow = "WindowData";
 
       m_bLayered = true;
-      m_etranslucency = TranslucencyPresent;
 
       m_ppaneview = NULL;
 
@@ -261,7 +260,7 @@ namespace bergedge
             ::file::memory_buffer file(get_app(), pstruct->lpData, pstruct->cbData);
             string strPath;
             file.to_string(strPath);
-            Platform.open_by_file_extension(strPath);
+            platform().open_by_file_extension(strPath);
          }
       }
 
@@ -471,6 +470,19 @@ namespace bergedge
       }
 
       delete pmsg;
+
+   }
+
+
+   ::user::schema * frame::get_user_schema()
+   {
+   }
+
+
+   ::user::ETranslucency frame::_001GetTranslucency()
+   {
+
+      return TranslucencyPresent;
 
    }
 

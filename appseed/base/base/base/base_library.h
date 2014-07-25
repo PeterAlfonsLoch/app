@@ -97,7 +97,7 @@ namespace base
    {
    public:
 
-      single_application_library(sp(::base::application) papp,const char * pszRoot): element(papp),::base::library(papp),::core::library(papp,pszRoot) {}
+      single_application_library(sp(::base::application) papp,const char * pszRoot): element(papp),::base::library(papp,0, pszRoot) {}
 
       // impl
       virtual sp(::base::application) get_new_app(const char * pszAppId);
