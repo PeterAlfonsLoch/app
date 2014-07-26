@@ -182,8 +182,6 @@ namespace user
       virtual strsize GetWindowText(char * lpszStringBuf,int32_t nMaxCount);
       virtual void GetWindowText(string & rString);
       virtual strsize GetWindowTextLength();
-//      virtual void SetFont(::draw2d::font* pFont,bool bRedraw = TRUE);
-//      virtual ::draw2d::font* GetFont();
 
 
       // Window size and position Functions

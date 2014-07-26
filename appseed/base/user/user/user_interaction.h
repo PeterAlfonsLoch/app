@@ -13,10 +13,10 @@ namespace user
 
 
    class CLASS_DECL_BASE interaction:
-      virtual public interaction_base
+      virtual public interaction_base,
+      virtual public ::user::schema
    {
    public:
-
 
       bool                                m_bVisible;
       bool                                m_bVoidPaint;
@@ -602,6 +602,8 @@ namespace user
       virtual point get_ascendant_scroll_position();
 
 
+
+      virtual ::user::schema * get_parent_user_schema();
 
 
    };

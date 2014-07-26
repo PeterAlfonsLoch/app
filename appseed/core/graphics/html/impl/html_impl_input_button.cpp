@@ -34,7 +34,7 @@ namespace html
          elemental::implement_phase1(pdata, pelemental);
          m_pbutton->_001SetButtonText(pelemental->m_pbase->get_tag()->get_attr_value("value"));
          m_pbutton->m_id = pelemental->m_pbase->get_tag()->get_attr_value("id");
-         m_pbutton->SetFont(pdata->get_font(pelemental)->m_font);
+         m_pbutton->m_puserschema = pelemental;
          if(m_pbutton->m_id.is_empty())
          {
             m_pbutton->m_id = pelemental->m_pbase->get_tag()->get_attr_value("name");
@@ -42,6 +42,7 @@ namespace html
          m_cxMax = 200;
          m_cxMin = 200;
       }
+
 
       void input_button::layout_phase1(data * pdata)
       {

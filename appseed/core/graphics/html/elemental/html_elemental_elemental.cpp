@@ -89,7 +89,7 @@ namespace html
 
       }
 
-      m_etag = m_pbaseapp->m_pplanesystem->m_phtml->tag_name_to_id(m_idTagName);
+      m_etag = m_pbaseapp->m_pcoresystem->m_phtml->tag_name_to_id(m_idTagName);
 
       if (m_etag == tag_initial)
       {

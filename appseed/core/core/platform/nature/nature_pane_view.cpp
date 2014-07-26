@@ -1,7 +1,9 @@
 #include "framework.h"
 
+
 namespace nature
 {
+
 
    pane_view::pane_view(sp(::base::application) papp) :
       element(papp),
@@ -11,8 +13,6 @@ namespace nature
       pane_tab_view(papp),
       place_holder_container(papp)
    {
-
-      m_etranslucency      = TranslucencyPresent;
 
       m_pdoctemplateAppearance = new ::user::single_document_template(
          get_app(),

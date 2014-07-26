@@ -1,5 +1,10 @@
 #include "framework.h"
 
+#ifdef WINDOWS
+#undef new
+#include <GdiPlus.h>
+#define new BASE_NEW
+#endif
 
 namespace core
 {
@@ -34,7 +39,7 @@ namespace core
          else
          {
 
-            oprop("parent_system") = papp->m_pplanesystem;
+            oprop("parent_system") = papp->m_pcoresystem;
 
          }
 
@@ -114,14 +119,15 @@ namespace core
 
    
 
-   void system::construct()
+   void system::construct(const char * pszAppId)
    {
 
-      ::application::construct();
+      ::application::construct(pszAppId);
 
-      ::base::system::construct();
+      ::base::system::construct(pszAppId);
 
    }
+
 
 
 
@@ -217,36 +223,7 @@ namespace core
    }
 
 
-} // namespace core
 
-
-
-
-
-#include "framework.h"
-
-
-#ifdef WINDOWS
-#undef new
-#include <GdiPlus.h>
-#define new BASE_NEW
-#endif
-
-
-namespace plane
-{
-
-
-
-
-   void system::construct()
-   {
-
-      ::application::construct();
-
-      ::core::system::construct();
-
-   }
 
 
    bool system::InitApplication()

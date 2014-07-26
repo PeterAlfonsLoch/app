@@ -5,7 +5,9 @@ namespace html
 {
 
 
-   class CLASS_DECL_CORE elemental : public text_interface
+   class CLASS_DECL_CORE elemental : 
+      virtual public text_interface,
+      virtual public ::user::schema
    {
    public:
 
@@ -59,8 +61,9 @@ namespace html
       virtual void _001OnDraw(data * pdoc);
       virtual void load(data * pdoc, base * pbase);
 
-      bool get_background_color(COLORREF & cr);
-      bool get_color(COLORREF & cr);
+      virtual bool get_background_color(COLORREF & cr);
+      virtual bool get_color(COLORREF & cr);
+      virtual bool get_font(::draw2d::font_sp & spfont);
 
       static bool tag_visible(e_tag etag);
 

@@ -1043,6 +1043,11 @@ namespace html
 
       }
 
+      ::draw2d::font_sp elemental::get_font()
+      {
+         return m_pdata->get_font(this)->m_font
+      }
+
       size elemental::get_content_size()
       {
 

@@ -19,7 +19,7 @@ namespace user
 
 
       //::core::user * papp = dynamic_cast <::core::user *>(::get_thread()->m_pAppThread);
-      //::core::connect(papp->m_pplaneapp->m_signalAppLanguageChange, this, &user::VmsGuiiOnAppLanguage);
+      //::core::connect(papp->m_pcoreapp->m_signalAppLanguageChange, this, &user::VmsGuiiOnAppLanguage);
 
       m_pkeyboard = NULL;
       //m_pwindowmap = NULL;
@@ -287,9 +287,9 @@ retry_license:
    int32_t user::simple_message_box(sp(::user::interaction) pwndOwner, const char * pszMessage, UINT fuStyle)
    {
 
-      //if(m_pbaseapp->m_pplaneapp->m_psession != NULL)
+      //if(m_pbaseapp->m_pcoreapp->m_psession != NULL)
       //{
-        // return m_pbaseapp->m_pplaneapp->m_psession->m_pplanesession->m_pplanesession->simple_message_box(pwndOwner, pszMessage, fuStyle);
+        // return m_pbaseapp->m_pcoreapp->m_psession->m_pplanesession->m_pplanesession->simple_message_box(pwndOwner, pszMessage, fuStyle);
       //}
 
       class ::userex::message_box box(get_app());

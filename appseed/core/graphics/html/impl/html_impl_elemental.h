@@ -13,6 +13,8 @@ namespace html
       {
       public:
 
+         ::html::elemental * m_pelemental;
+          
 
          box               m_box;
          box               m_bound;
@@ -84,7 +86,6 @@ namespace html
          virtual void set_cxy(data * pdoc, float cx, float cy);
          virtual void set_pos(data * pdoc, float x, float y, float cx, float cy);
 
-         ::html::elemental * m_pelemental;
          virtual void _001OnDraw(data * pdoc);
 
 
@@ -123,6 +124,8 @@ namespace html
          DECL_GEN_VSIGNAL(OnLButtonDown);
          DECL_GEN_VSIGNAL(OnMouseMove);
          DECL_GEN_VSIGNAL(OnLButtonUp);
+
+         
 
 
       };

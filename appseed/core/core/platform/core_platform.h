@@ -166,7 +166,7 @@ namespace core
 
 
       virtual bool open_by_file_extension(const char * pszPathName, application_bias * pbiasCreate = NULL);
-      virtual bool open_by_file_extension(create_context * pcc);
+      virtual bool open_by_file_extension(::create_context * pcc);
 
       virtual bool is_session();
 

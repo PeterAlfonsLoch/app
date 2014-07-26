@@ -70,8 +70,6 @@ namespace user
 #endif
 
 
-      virtual void SetFont(::draw2d::font* pFont,bool bRedraw = true);
-      virtual ::draw2d::font* GetFont();
 
 
       virtual void _001Print(::draw2d::graphics * pdc);

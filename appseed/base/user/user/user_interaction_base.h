@@ -600,16 +600,6 @@ namespace user
 #endif
       virtual bool _001HasCommandHandler(id id);
 
-      virtual ::user::schema *      get_user_schema();
-
-      virtual COLORREF              get_background_color();
-      virtual COLORREF              get_color();
-      virtual ::draw2d::font_sp     get_font();
-      virtual ETranslucency         _001GetTranslucency();
-      virtual bool                  _001IsBackgroundBypass();
-      virtual bool                  _001IsTransparent();
-      virtual bool                  _001IsTranslucent();
-      virtual bool                  _001HasTranslucency();
 
 
       virtual bool track_popup_menu(sp(::user::menu_base_item) pitem,int32_t iFlags,int32_t x,int32_t y);

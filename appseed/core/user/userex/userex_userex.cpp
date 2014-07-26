@@ -18,7 +18,7 @@ namespace userex
 
 
          //::core::user * papp = dynamic_cast <::core::user *>(::get_thread()->m_pAppThread);
-         //::core::connect(papp->m_pplaneapp->m_signalAppLanguageChange, this, &userex::VmsGuiiOnAppLanguage);
+         //::core::connect(papp->m_pcoreapp->m_signalAppLanguageChange, this, &userex::VmsGuiiOnAppLanguage);
 
          //m_pwindowmap = NULL;
 

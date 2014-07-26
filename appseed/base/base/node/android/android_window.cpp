@@ -4889,25 +4889,6 @@ throw not_implemented(get_app());
    }
 
 
-   void interaction_impl::SetFont(::draw2d::font* pfont, bool bRedraw)
-   {
-
-      UNREFERENCED_PARAMETER(bRedraw);
-
-      ASSERT(::IsWindow((oswindow) get_handle())); m_pfont = new ::draw2d::font(*pfont);
-
-   }
-
-
-   ::draw2d::font* interaction_impl::GetFont()
-   {
-
-      ASSERT(::IsWindow((oswindow) get_handle()));
-
-      return m_pfont;
-
-   }
-
 
    void interaction_impl::DragAcceptFiles(bool bAccept)
    {

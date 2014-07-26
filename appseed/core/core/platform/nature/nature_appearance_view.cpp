@@ -12,7 +12,6 @@ namespace nature
       ::userex::pane_tab_view(papp),
       place_holder_container(papp)
    {
-      m_etranslucency      = TranslucencyPresent;
       _001SetVertical();
    }
 

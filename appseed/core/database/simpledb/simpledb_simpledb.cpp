@@ -109,15 +109,15 @@ namespace simpledb
    bool simpledb::initialize2()
    {
 
-      if(m_pbaseapp->m_pplaneapp->command()->m_varTopicQuery["locale"].get_count() > 0)
+      if(m_pbaseapp->m_pcoreapp->command()->m_varTopicQuery["locale"].get_count() > 0)
       {
-         string str = m_pbaseapp->m_pplaneapp->command()->m_varTopicQuery["locale"].stra()[0];
+         string str = m_pbaseapp->m_pcoreapp->command()->m_varTopicQuery["locale"].stra()[0];
          m_pbaseapp->m_pbasesession->set_locale(str,::action::source::database());
       }
 
-      if(m_pbaseapp->m_pplaneapp->command()->m_varTopicQuery["schema"].get_count() > 0)
+      if(m_pbaseapp->m_pcoreapp->command()->m_varTopicQuery["schema"].get_count() > 0)
       {
-         string str = m_pbaseapp->m_pplaneapp->command()->m_varTopicQuery["schema"].stra()[0];
+         string str = m_pbaseapp->m_pcoreapp->command()->m_varTopicQuery["schema"].stra()[0];
          m_pbaseapp->m_pbasesession->set_schema(str,::action::source::database());
       }
 
@@ -126,7 +126,7 @@ namespace simpledb
 
       if(!InitializeDataCentral())
       {
-         m_pbaseapp->m_pplaneapp->simple_message_box(NULL, "Could not initialize data central");
+         m_pbaseapp->m_pcoreapp->simple_message_box(NULL, "Could not initialize data central");
          return false;
       }
 
@@ -146,7 +146,7 @@ namespace simpledb
       m_pbaseapp->m_pbasesession->fill_locale_schema(*m_pbaseapp->m_pbasesession->str_context()->m_plocaleschema);
 
 
-      if(!m_pbaseapp->m_pplaneapp->is_installing() && !m_pbaseapp->m_pplaneapp->is_uninstalling() && !m_pbaseapp->m_pplaneapp->is_system())
+      if(!m_pbaseapp->m_pcoreapp->is_installing() && !m_pbaseapp->m_pcoreapp->is_uninstalling() && !m_pbaseapp->m_pcoreapp->is_system())
       {
 
          set_keyboard_layout(NULL, ::action::source::system());

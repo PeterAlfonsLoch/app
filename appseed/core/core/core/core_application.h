@@ -122,7 +122,6 @@ public:
 
 
    virtual void construct(const char * pszId);
-   virtual void construct();
 
    virtual bool process_initialize();
 

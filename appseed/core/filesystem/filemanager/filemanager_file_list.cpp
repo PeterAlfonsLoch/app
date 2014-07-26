@@ -138,7 +138,7 @@ namespace filemanager
             {
 
 
-               m_pbaseapp = get_app()->m_pplaneapp;
+               m_pbaseapp = get_app()->m_pcoreapp;
                db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
                if(pcentral == NULL)
                   return;

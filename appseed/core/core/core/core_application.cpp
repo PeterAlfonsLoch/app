@@ -92,49 +92,37 @@ application::~application()
 
 void application::construct(const char * pszId)
 {
-   //if(m_strAppName.has_char())
-   //   return;
-   //m_strAppName.Empty();
-   //m_strId.Empty();
+   
    if (pszId == NULL)
    {
-#ifdef WINDOWSEX
-      wstring wstr = ::GetCommandLineW();
-      string str = ::str::international::unicode_to_utf8(wstr);
-      strsize iFind = str.find(" : ");
-      if (iFind >= 0)
-      {
-         iFind = str.find("app=", iFind);
-         if (iFind >= 0)
-         {
-            strsize iEnd = str.find(" ", iFind);
-            if (iEnd < 0)
-            {
-               m_strId = str.Mid(iFind + 4);
-            }
-            else
-            {
-               m_strId = str.Mid(iFind + 4, iEnd - iFind - 4);
-            }
-            ::str::begins_eat(m_strId, "\"");
-            ::str::ends_eat(m_strId, "\"");
-         }
-      }
-#endif
+
+      m_strId = "mplite";
+
    }
    else
    {
+
       m_strId = pszId;
+
    }
-   if (m_strId.is_empty())
-      m_strId = "mplite";
-   construct();
+
+   ::base::application::construct(m_strId);
+
    if (m_strAppName.is_empty())
    {
-      if (m_strAppId.has_char())
+
+      if(m_strAppId.has_char())
+      {
+
          m_strAppName = m_strAppId;
-      else if (m_strInstallToken.has_char())
+
+      }
+      else if(m_strInstallToken.has_char())
+      {
+
          m_strAppName = m_strInstallToken;
+      }
+
    }
 
 }
@@ -2042,7 +2030,7 @@ int32_t application::ShowAppMessageBox(sp(application)pApp, const char * lpszPro
 application* papp = &System;
 if (papp != NULL)
 {
-return papp->m_pplaneapp->DoMessageBox(lpszText, nType, nIDHelp);
+return papp->m_pcoreapp->DoMessageBox(lpszText, nType, nIDHelp);
 }
 else
 {
@@ -2764,19 +2752,6 @@ sp(::user::interaction) application::get_request_parent_ui(sp(::user::interactio
 
 
 
-void application::construct()
-{
-   string strId = m_strId;
-   char chFirst = '\0';
-   if (strId.get_length() > 0)
-   {
-      chFirst = strId[0];
-   }
-
-
-   ::base::application::construct();
-
-}
 
 
 void application::_001OnFileNew(signal_details * pobj)
@@ -3349,7 +3324,7 @@ bool application::start_application(bool bSynch, application_bias * pbias)
    {
    if(pbias != NULL)
    {
-   papp->m_pplaneapp->m_puiInitialPlaceHolderContainer = pbias->m_puiParent;
+   papp->m_pcoreapp->m_puiInitialPlaceHolderContainer = pbias->m_puiParent;
    }
    }
    catch(...)
@@ -3543,7 +3518,7 @@ bool application::_001CloseApplicationByUser(sp(::user::interaction) pwndExcept)
    // there are cases where destroying the documents may destroy the
    //  main window of the application.
    //bool b::core::ContextIsDll = afxContextIsDLL;
-   //if (!b::core::ContextIsDll && papp->m_pplaneapp->GetVisibleFrameCount() <= 0)
+   //if (!b::core::ContextIsDll && papp->m_pcoreapp->GetVisibleFrameCount() <= 0)
    if (Application.userex()->GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
    {
 
@@ -3663,7 +3638,7 @@ try
 
 papp = System.m_appptra(i);
 
-if(papp->m_pplaneapp->m_strAppName == pszAppId)
+if(papp->m_pcoreapp->m_strAppName == pszAppId)
 {
 bFound = true;
 break;
@@ -3685,7 +3660,7 @@ bool bRunning = false;
 
 try
 {
-if(papp->m_pplaneapp->is_running())
+if(papp->m_pcoreapp->is_running())
 {
 bRunning = true;
 }
@@ -3699,7 +3674,7 @@ if(!bRunning)
 
 try
 {
-papp->m_pplaneapp->post_thread_message(WM_QUIT);
+papp->m_pcoreapp->post_thread_message(WM_QUIT);
 }
 catch(...)
 {
@@ -3869,7 +3844,7 @@ sp(::base::application) application::instantiate_application(const char * pszTyp
       if (papp == NULL)
          return NULL;
 
-      papp->m_pplaneapp->m_pbasesession = m_pbasesession;
+      papp->m_pcoreapp->m_pbasesession = m_pbasesession;
 
       if (papp != NULL)
       {
@@ -3877,14 +3852,14 @@ sp(::base::application) application::instantiate_application(const char * pszTyp
          if (strId == "bergedge" || strId == "cube")
          {
 
-            papp->m_pplaneapp->m_strAppId = strId;
+            papp->m_pcoreapp->m_strAppId = strId;
 
          }
 
-         if (papp->m_pplaneapp->m_strInstallToken.is_empty())
+         if (papp->m_pcoreapp->m_strInstallToken.is_empty())
          {
 
-            papp->m_pplaneapp->m_strInstallToken = papp->m_pplaneapp->m_strAppId;
+            papp->m_pcoreapp->m_strInstallToken = papp->m_pcoreapp->m_strAppId;
 
          }
 
@@ -3892,29 +3867,29 @@ sp(::base::application) application::instantiate_application(const char * pszTyp
 
    }
 
-   papp->m_pplaneapp->m_pplanesystem = m_pplanesystem;
+   papp->m_pcoreapp->m_pcoresystem = m_pcoresystem;
 
    papp->m_pbasesystem = m_pbasesystem;
 
-   papp->m_pplaneapp->command_central()->consolidate(command_central());
+   papp->m_pcoreapp->command_central()->consolidate(command_central());
 
-//   papp->m_pplaneapp->m_bSystemSynchronizedCursor = m_bSystemSynchronizedCursor;
+//   papp->m_pcoreapp->m_bSystemSynchronizedCursor = m_bSystemSynchronizedCursor;
 
    if (pbias != NULL)
    {
 
-      papp->m_pplaneapp->propset().merge(pbias->m_set);
+      papp->m_pcoreapp->propset().merge(pbias->m_set);
 
    }
    else
    {
 
-      papp->m_pplaneapp->oprop("SessionSynchronizedInput") = true;
-      papp->m_pplaneapp->oprop("NativeWindowFocus") = true;
+      papp->m_pcoreapp->oprop("SessionSynchronizedInput") = true;
+      papp->m_pcoreapp->oprop("NativeWindowFocus") = true;
 
    }
 
-   if ((papp == NULL || papp->m_pplaneapp->m_strAppId != strId)
+   if ((papp == NULL || papp->m_pcoreapp->m_strAppId != strId)
       &&
       (!Application.command()->m_varTopicQuery.has_property("install")
       && !Application.command()->m_varTopicQuery.has_property("uninstall")))
@@ -3952,7 +3927,7 @@ sp(::base::application) application::create_application(const char * pszType, co
 
    sp(::base::application) papp = (pbaseapp);
 
-   if (!papp->m_pplaneapp->start_application(bSynch, pbias))
+   if (!papp->m_pcoreapp->start_application(bSynch, pbias))
    {
       try
       {
@@ -3979,7 +3954,7 @@ sp(::user::document) application::place_hold(sp(::user::interaction) pui)
 
 
 
-bool application::add_library(::core::library * plibrary)
+bool application::add_library(::base::library * plibrary)
 {
 
    plibrary->set_app(this);

@@ -574,7 +574,7 @@ namespace user
       sp(::base::application) papp = ::core::get_app();
 
       string strModuleFolder;
-      strModuleFolder = papp->m_pplaneapp->get_module_folder();
+      strModuleFolder = papp->m_pcoreapp->get_module_folder();
 
       if(!spfile->open(::core::dir().path(strModuleFolder, "devedge_contextmenu.xml"), ::file::type_text | ::file::mode_read))
          return;

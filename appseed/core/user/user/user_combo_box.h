@@ -81,8 +81,6 @@ namespace user
 
       void defer_create_combo_list();
 
-      virtual void SetFont(::draw2d::font* pFont, bool bRedraw = true);
-      virtual void set_text_color(COLORREF crText);
 
 
       virtual void layout();

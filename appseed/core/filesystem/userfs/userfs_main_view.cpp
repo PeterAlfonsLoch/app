@@ -27,7 +27,7 @@ namespace userfs
          return;
 
 //      sp(application) papp =  (get_app());
-      //papp->m_pplaneapp->m_pmainview = this;
+      //papp->m_pcoreapp->m_pmainview = this;
       SetPaneCount(2);
       SetSplitOrientation(orientation_vertical);
       set_position_rate(0, 0.2);

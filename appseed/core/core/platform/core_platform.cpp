@@ -22,7 +22,7 @@ namespace core
 
       m_pbaseapp                          = this;
       
-      m_pplaneapp                         = this;
+      m_pcoreapp                         = this;
       
       m_pnaturedocument          = NULL;
       m_pplatformdocument        = NULL;
@@ -114,9 +114,9 @@ namespace core
 
       initialize_bergedge_application_interface();
 
-      platform().filemanager().std().m_strLevelUp = "levelup";
+      filemanager().std().m_strLevelUp = "levelup";
 
-      if(platform().is_remote_session())
+      if(is_remote_session())
       {
          /*session().savings().save(::base::resource_display_bandwidth);
          session().savings().save(::base::resource_blur_background);
@@ -304,7 +304,7 @@ namespace core
 
       UINT uiMessage = WM_APP + 2043;
 
-      papp->m_pplaneapp->post_thread_message(uiMessage, 2, pcreatecontext);
+      papp->m_pcoreapp->post_thread_message(uiMessage, 2, pcreatecontext);
 
       pcreatecontext->m_spCommandLine->m_eventReady.wait();
 
@@ -472,11 +472,11 @@ namespace core
 
                   pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"] = (sp(::core::platform) ) this;
 
-                  papp->m_pplaneapp->post_thread_message(dw, 2, pcreatecontext);
+                  papp->m_pcoreapp->post_thread_message(dw, 2, pcreatecontext);
 
                   m_pappCurrent = papp;
 
-                  platform().m_pappCurrent = papp;
+                  m_pappCurrent = papp;
 
                   //pcreatecontext->m_spCommandLine->m_eventReady.wait();
 
@@ -631,7 +631,7 @@ namespace core
 
          UINT uiMessage = WM_APP + 2043;
 
-         papp->m_pplaneapp->post_thread_message(uiMessage, 2, pcreatecontext);
+         papp->m_pcoreapp->post_thread_message(uiMessage, 2, pcreatecontext);
 
          while(get_run())
          {
@@ -767,7 +767,7 @@ namespace core
       if(papp == NULL)
          return false;
 
-      papp->m_pplaneapp->::request_interface::create(pcreatecontext);
+      papp->m_pcoreapp->::request_interface::create(pcreatecontext);
 
       return true;
 
@@ -1822,7 +1822,7 @@ alt1:
 
       retry_single_lock rsl(&m_mutex,millis(84),millis(84));
 
-      if(papp.is_null() || papp->m_pplaneapp == NULL)
+      if(papp.is_null() || papp->m_pcoreapp == NULL)
          return;
 
       ::root::session().m_appptra.add_unique(papp.m_p);
@@ -1939,11 +1939,11 @@ alt1:
 
       sp(::base::application) pgenapp = (papp);
 
-      pgenapp->m_pplaneapp->m_strAppId = pszAppId;
+      pgenapp->m_pcoreapp->m_strAppId = pszAppId;
 
       pgenapp->m_pbasesystem = m_pbasesystem;
 
-      pgenapp->m_pplanesystem = &System;
+      pgenapp->m_pcoresystem = &System;
 
 #ifdef WINDOWS
 

@@ -55,6 +55,8 @@ namespace user
       m_bBackgroundBypass           = false;
       m_bEnableSaveWindowRect       = false;
 
+      m_puserschema              = NULL;
+
    }
 
 
@@ -893,7 +895,11 @@ namespace user
 
          pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         pdc->FillSolidRect(rectClient,get_background_color());
+         COLORREF cr = ARGB(184,255,255,255);
+
+         get_background_color(cr);
+
+         pdc->FillSolidRect(rectClient, cr);
 
       }
       else
@@ -905,7 +911,13 @@ namespace user
 
          pdc->set_alpha_mode(::draw2d::alpha_mode_set);
 
-         pdc->FillSolidRect(rectClient,(255 << 24) | (get_background_color() & 0xffffff));
+         COLORREF cr = ARGB(255,255,255,255);
+
+         get_background_color(cr);
+
+         cr |= (255 << 24);
+
+         pdc->FillSolidRect(rectClient,cr);
 
       }
 
@@ -4905,6 +4917,22 @@ namespace user
          return point(0,0);
 
       return puser->get_scroll_position();
+
+   }
+
+
+
+
+
+   ::user::schema * interaction::get_parent_user_schema()
+   {
+
+      ::user::interaction * puiParent = GetParent();
+
+      if(puiParent == NULL)
+         return NULL;
+
+      return puiParent;
 
    }
 

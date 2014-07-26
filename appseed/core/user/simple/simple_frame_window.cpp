@@ -124,7 +124,7 @@ void simple_frame_window::_001OnDestroy(signal_details * pobj)
 
    try
    {
-      if (m_pbaseapp != NULL && m_pbaseapp->m_pplanesystem != NULL && &System != NULL)
+      if (m_pbaseapp != NULL && m_pbaseapp->m_pcoresystem != NULL && &System != NULL)
       {
          System.remove_frame(this);
       }
@@ -635,7 +635,7 @@ void simple_frame_window::_001OnClose(signal_details * pobj)
 
    sp(::application) papp = &Application;
 
-   if (papp->m_pplaneapp->is_system() || papp->m_pplaneapp->is_session())
+   if (papp->m_pcoreapp->is_system() || papp->m_pcoreapp->is_session())
    {
 
       // TODO: instead of closing all applications in process System.m_apptra, should close application that make part of
@@ -654,10 +654,10 @@ void simple_frame_window::_001OnClose(signal_details * pobj)
       }
 
    }
-   else if (papp->m_pplaneapp->userex()->GetVisibleTopLevelFrameCountExcept(this) <= 0)
+   else if (papp->m_pcoreapp->userex()->GetVisibleTopLevelFrameCountExcept(this) <= 0)
    {
 
-      if (!papp->m_pplaneapp->_001CloseApplicationByUser(this))
+      if (!papp->m_pcoreapp->_001CloseApplicationByUser(this))
          return;
 
    }
@@ -1208,7 +1208,7 @@ bool simple_frame_window::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
       return TRUE;
 
    // last but not least, pump through cast
-   application* pApp = get_app()->m_pplaneapp;
+   application* pApp = get_app()->m_pcoreapp;
    if (pApp != NULL && pApp->_001OnCmdMsg(pcmdmsg))
       return TRUE;
 
