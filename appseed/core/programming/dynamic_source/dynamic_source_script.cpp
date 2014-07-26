@@ -150,8 +150,9 @@ namespace dynamic_source
    bool ds_script::ShouldBuild()
    {
       single_lock sl(&m_mutex, TRUE);
-      return  m_bShouldBuild || (HasTempError() &&
-         HasTimedOutLastBuild())
+      return  m_lpfnCreateInstance == NULL || m_bShouldBuild || (HasTempError() 
+         // && HasTimedOutLastBuild()
+         )
           || !DoesMatchVersion();
 
    }

@@ -474,6 +474,15 @@ namespace str
                      defer_add_locale(__id(cn), idSchema);
                   }
                }
+               else if(ch1 == 'u')
+               {
+                  if(ch2 == 'k')
+                  {
+                     defer_add_locale(__id(en_uk),idSchema);
+                     defer_add_locale(__id(en_us),idSchema);
+                  }
+               }
+
             }
          }
 

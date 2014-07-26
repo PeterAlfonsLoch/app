@@ -118,7 +118,7 @@ namespace colorertake5
 
       fileErrorHandler = NULL;
 
-      keep < bool > keepZipAsDir(&papp->m_pbasesession->m_bZipIsDir,true,papp->m_pbasesession->m_bZipIsDir,true);
+      keep < bool > keepZipAsDir(&::get_thread()->m_bZipIsDir,true,::get_thread()->m_bZipIsDir,true);
 
       catalogPath = searchPath();
 

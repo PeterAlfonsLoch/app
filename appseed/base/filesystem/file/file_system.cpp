@@ -196,7 +196,7 @@ namespace file
       }
 
 
-      if (papp->m_pbasesession->m_bZipIsDir)
+      if (::get_thread() != NULL && ::get_thread()->m_bZipIsDir)
       {
 
          strsize iFind = ::str::find_ci(".zip:", strPath);
@@ -471,7 +471,7 @@ restart:
       else
       {
          string strFilePath(varFile);
-         if((papp->m_pbasesession == NULL || papp->m_pbasesession->m_bZipIsDir) && (::str::find_ci(".zip:",strFilePath) >= 0))
+         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::find_ci(".zip:",strFilePath) >= 0))
          {
             if(!exists(strFilePath, papp))
                return "";
@@ -829,7 +829,7 @@ restart:
          string strSrc;
          string strDirSrc(psz);
          string strDirDst(pszNew);
-         if(papp->m_pbasesession->m_bZipIsDir && (::str::ends(strDirSrc, ".zip")))
+         if(::get_thread()->m_bZipIsDir && (::str::ends(strDirSrc, ".zip")))
          {
             strDirSrc += ":";
          }

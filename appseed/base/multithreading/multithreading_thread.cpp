@@ -33,7 +33,15 @@ m_set(papp)
    m_pthreadimpl->m_pthread = this;
    m_pthreadimpl->construct();
 
+   if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL)
+   {
+
+      m_bZipIsDir = m_pbaseapp->m_pbasesession->m_bZipIsDir;
+
+   }
+
 }
+
 
 thread::thread(sp(::base::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
 element(papp)
@@ -45,11 +53,14 @@ element(papp)
    m_pthreadimpl->m_pthread = this;
    m_pthreadimpl->construct(pfnThreadProc, pParam);
 
+   if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL)
+   {
+
+      m_bZipIsDir = m_pbaseapp->m_pbasesession->m_bZipIsDir;
+
+   }
+
 }
-
-
-
-
 
 
 void thread::CommonConstruct()
@@ -68,6 +79,8 @@ void thread::CommonConstruct()
    m_puiMain = NULL;
 
    m_iReturnCode = 0;
+
+   m_bZipIsDir = true;
 
 }
 

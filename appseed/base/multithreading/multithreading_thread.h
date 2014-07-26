@@ -36,6 +36,9 @@ public:
    ptr_array < thread >                   m_threadptraDependency;
 
 
+   bool                                   m_bZipIsDir;
+
+
    thread();
    thread(sp(::base::application) papp);
    thread(sp(::base::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam);

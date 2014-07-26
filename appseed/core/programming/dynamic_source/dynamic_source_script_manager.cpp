@@ -72,7 +72,7 @@ namespace dynamic_source
       m_pcompiler                = new script_compiler(papp);
       m_pcompiler->m_pmanager    = this;
       m_dwBuildTimeWindow        = 84;
-      m_dwBuildTimeRandomWindow  = 77 * 5;
+      m_dwBuildTimeRandomWindow  = 77;
       m_iDatabaseWaitTimeOut     = 15 * 1000 * 1000 * 60;
 
 

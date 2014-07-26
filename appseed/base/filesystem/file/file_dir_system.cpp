@@ -388,7 +388,7 @@ namespace file
       {
          UNREFERENCED_PARAMETER(pstraRelative);
          UNREFERENCED_PARAMETER(pszPattern);
-         if(eextract != extract_none && papp->m_pbasesession->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
+         if(eextract != extract_none && ::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_ci(".zip:",lpcsz) >= 0))
          {
             throw "should implement recursive zip";
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize, eextract == extract_all ? extract_all : extract_none);
@@ -419,7 +419,7 @@ namespace file
             return;
 
          }
-         if(papp->m_pbasesession->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
+         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_ci(".zip:",lpcsz) >= 0))
          {
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize);
             return;
@@ -440,7 +440,7 @@ namespace file
 
       void system::rls(sp(::base::application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
       {
-         if(eextract != extract_none && papp->m_pbasesession->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
+         if(eextract != extract_none && ::get_thread() != NULL && get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_ci(".zip:",lpcsz) >= 0))
          {
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, pstraRelative, NULL, NULL, eextract == extract_all ? extract_all : extract_none);
             return;
@@ -462,7 +462,7 @@ namespace file
 
       void system::ls_dir(sp(::base::application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
       {
-         if(papp->m_pbasesession->m_bZipIsDir && (::str::ends_ci(lpcsz, ".zip") || ::str::find_ci(".zip:", lpcsz) >= 0))
+         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_ci(".zip:",lpcsz) >= 0))
          {
             m_pziputil->ls_dir(papp, lpcsz, pstraPath, pstraTitle);
             return;
@@ -503,7 +503,7 @@ namespace file
 
          }
 
-         if (papp->m_pbasesession->m_bZipIsDir && (::str::ends_ci(lpcszPath, ".zip")))
+         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(lpcszPath,".zip")))
          {
 
             bIs = true;
@@ -511,7 +511,7 @@ namespace file
             return true;
          }
 
-         if (papp->m_pbasesession->m_bZipIsDir && (::str::find_ci(".zip:", lpcszPath) >= 0))
+         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::find_ci(".zip:",lpcszPath) >= 0))
          {
 
             bool bHasSubFolder;
@@ -589,12 +589,12 @@ namespace file
          }
 
 
-         if(papp->m_pbasesession->m_bZipIsDir && (::str::ends_ci(strPath, ".zip")))
+         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(strPath, ".zip")))
          {
             m_isdirmap.set(strPath, true, 0);
             return true;
          }
-         if(papp->m_pbasesession->m_bZipIsDir && (::str::find_ci(".zip:", strPath) >= 0))
+         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::find_ci(".zip:",strPath) >= 0))
          {
             bool bHasSubFolder;
             uint32_t dwLastError;
@@ -620,12 +620,12 @@ namespace file
       bool system::name_is(const string & strPath, sp(::base::application) papp)
       {
          //OutputDebugString(strPath);
-         if(papp->m_pbasesession->m_bZipIsDir && (::str::ends_ci(strPath, ".zip")))
+         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(strPath,".zip")))
          {
             m_isdirmap.set(strPath, true, 0);
             return true;
          }
-         if(papp->m_pbasesession->m_bZipIsDir && (::str::find_ci(".zip:", strPath) >= 0))
+         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::find_ci(".zip:",strPath) >= 0))
          {
             bool bHasSubFolder;
             uint32_t dwLastError;
