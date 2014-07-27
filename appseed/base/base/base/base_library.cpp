@@ -155,13 +155,6 @@ namespace base
    library * library::get_ca2_library()
    {
 
-      if(m_pca2library == NULL)
-      {
-
-         open_ca2_library();
-
-      }
-
       return m_pca2library;
 
    }
@@ -373,7 +366,7 @@ namespace base
       try
       {
 
-         if(m_pca2library != NULL)
+         if(get_ca2_library() != NULL)
          {
 
             string strAppName = get_app_name(pszAppId);
@@ -381,7 +374,7 @@ namespace base
             if(strAppName.is_empty())
                return NULL;
 
-            sp(::base::application) papp = m_pca2library->get_new_app(strAppName);
+            sp(::base::application) papp = get_ca2_library()->get_new_app(strAppName);
 
             if(papp == NULL)
                return NULL;
@@ -405,11 +398,11 @@ namespace base
    void library::get_app_list(stringa & stra)
    {
 
-      if(m_pca2library != NULL)
+      if(get_ca2_library() != NULL)
       {
          try
          {
-            m_pca2library->get_app_list(stra);
+            get_ca2_library()->get_app_list(stra);
          }
          catch(...)
          {

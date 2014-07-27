@@ -1,6 +1,18 @@
 #pragma once
 
 
+#ifndef TBSTYLE_TOOLTIPS
+#define TBSTYLE_TOOLTIPS        0x0100
+#define TBSTYLE_WRAPABLE        0x0200
+#define TBSTYLE_ALTDRAG         0x0400
+#define TBSTYLE_FLAT            0x0800
+#define TBSTYLE_LIST            0x1000
+#define TBSTYLE_CUSTOMERASE     0x2000
+#define TBSTYLE_REGISTERDROP    0x4000
+#define TBSTYLE_TRANSPARENT     0x8000
+#endif
+
+
 #include "user_windowing.h"
 
 

@@ -59,7 +59,7 @@ bool simple_child_frame::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
 bool simple_child_frame::get_translucency(::user::ETranslucency & etranslucency)
 {
 
-   etranslucency = TranslucencyTotal;
+   etranslucency = ::user::TranslucencyTotal;
 
    return true;
 

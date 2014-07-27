@@ -104,12 +104,14 @@ namespace filemanager
          {
             pfilemanagerdata = new ::filemanager::data(get_app());
          }
+
+         pfilemanagerdata->m_pmanagertemplate = this;
+
          pdoc->set_filemanager_data(pfilemanagerdata);
          pdoc->get_filemanager_data()->m_pcallback = &platform().filemanager();
          pdoc->get_filemanager_data()->m_pfilemanager = &platform().filemanager();
          pdoc->get_filemanager_data()->m_pmanager = pdoc;
          pdoc->get_filemanager_data()->m_pmanagerMain = pdoc;
-         pdoc->get_filemanager_template() = this;
          pdoc->get_filemanager_data()->m_iTemplate = m_iTemplate;
          pdoc->get_filemanager_data()->m_iDocument = m_iNextDocument++;
          pdoc->get_filemanager_data()->m_bTransparentBackground = bTransparentBackground;
@@ -170,14 +172,14 @@ namespace filemanager
          pszMatter,
          System.type_info < manager >(),
          System.type_info < frame >(),
-         System.type_info < a_view >());
+         System.type_info < view >());
 
       m_pdoctemplateChild = new ::user::multiple_document_template(
          get_app(),
          pszMatter,
          System.type_info < manager >(),
          System.type_info < child_frame >(),
-         System.type_info < a_view >());
+         System.type_info < view >());
 
       m_pdoctemplateChildList = new ::user::multiple_document_template(
          get_app(),

@@ -356,15 +356,20 @@ namespace user
          {
             pitem->m_button.create(this, pitem->m_id);
             pitem->m_button.m_id = pitem->m_id;
-            pitem->m_button.m_etranslucency = TranslucencyPresent;
+            
             if(pitem->m_bPopup)
             {
+
                pitem->m_button.m_pschema = m_pschema->m_pschemaPopupButton;
+
             }
             else
             {
+
                pitem->m_button.m_pschema = m_pschema->m_pschemaItemButton;
+
             }
+
             pitem->m_button.m_pitem = pitem;
             pitem->m_pbase = this;
          }

@@ -610,18 +610,30 @@ namespace user
 
    }
 
+
    bool menu::get_color(COLORREF & cr,e_color ecolor)
    {
 
-      if(e_color == color_background)
+      if(ecolor == color_background)
       {
+
          cr = ARGB(255,185,184,177);
+
          return true;
+
       }
       else
       {
+
          return ::user::control::get_color(cr,ecolor);
+
       }
+
    }
 
+
 } // namespace user
+
+
+
+

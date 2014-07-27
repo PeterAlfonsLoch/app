@@ -60,7 +60,7 @@ namespace command
    bool application::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
 
    {
-      return ::application::_001OnCmdMsg(pcmdmsg);
+      return ::core::application::_001OnCmdMsg(pcmdmsg);
    }
 
    void application::OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema)

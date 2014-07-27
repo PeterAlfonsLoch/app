@@ -741,38 +741,31 @@ namespace user
    void interaction::_001DrawChildren(::draw2d::graphics *pdc)
    {
 
-      bool bVisible;
-      bool bFatalError;
-      sp(::user::interaction) puiBefore = NULL;
-      sp(::user::interaction) pui = get_bottom_child();
-      while(pui != NULL)
+      single_lock sl(m_pbaseapp->m_pmutex, true);
+      
+      ptr_array < interaction > ptraChild(m_uiptraChild);
+
+      sl.unlock();
+
+      for(index i = ptraChild.get_upper_bound(); i >= 0; i--)
       {
-         bFatalError = false;
-         bVisible = false;
+
          try
          {
-            bVisible = pui->m_bVisible;
+
+            if(ptraChild[i]->m_bVisible)
+            {
+
+               ptraChild[i]->_000OnDraw(pdc);
+
+            }
+
          }
          catch(...)
          {
-            bFatalError = true;
-            puiBefore = pui;
+
          }
-         if(bVisible && !bFatalError)
-         {
-            try
-            {
-               pui->_000OnDraw(pdc);
-            }
-            catch(...)
-            {
-            }
-         }
-         pui = above_sibling(pui);
-         if(bFatalError)
-         {
-            m_uiptraChild.remove(puiBefore);
-         }
+
       }
 
    }

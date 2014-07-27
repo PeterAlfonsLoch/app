@@ -108,7 +108,7 @@ namespace userstack
    bool application::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
 
    {
-      return ::application::_001OnCmdMsg(pcmdmsg);
+      return ::core::application::_001OnCmdMsg(pcmdmsg);
    }
 
    ::application * application::get_app() const
@@ -213,7 +213,7 @@ namespace userstack
             get_document()->get_typed_view < pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
          }
          App(m_pappCurrent).request(pcreatecontext);
-         if(pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::user::object > () == NULL)
+         if(pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::user::document > () == NULL)
          {
             goto alt1;
          }
@@ -382,18 +382,18 @@ namespace userstack
          if(get_document() != NULL)
          {
 
-            if(get_document()->get_typed_view < ::application::pane_view >() != NULL)
+            if(get_document()->get_typed_view < ::core::application::pane_view >() != NULL)
             {
 
-               get_document()->get_typed_view < ::application::pane_view >()->set_cur_tab_by_id("app:" + strAppName);
+               get_document()->get_typed_view < ::core::application::pane_view >()->set_cur_tab_by_id("app:" + strAppName);
 
-               puiParent = get_document()->get_typed_view < ::application::pane_view >()->get_tab_holder(get_document()->get_typed_view < ::application::pane_view >()->get_tab_by_id("app:" + strAppName));
+               puiParent = get_document()->get_typed_view < ::core::application::pane_view >()->get_tab_holder(get_document()->get_typed_view < ::core::application::pane_view >()->get_tab_by_id("app:" + strAppName));
 
             }
             else
             {
 
-               puiParent = get_document()->get_typed_view < ::application::view >();
+               puiParent = get_document()->get_typed_view < ::core::application::view >();
 
             }
 
@@ -417,18 +417,18 @@ namespace userstack
 
       string strAppName = app.m_strAppName;
 
-      if(get_document()->get_typed_view < ::application::pane_view >() != NULL)
+      if(get_document()->get_typed_view < ::core::application::pane_view >() != NULL)
       {
 
-         get_document()->get_typed_view < ::application::pane_view >()->set_cur_tab_by_id("app:" + strAppName);
+         get_document()->get_typed_view < ::core::application::pane_view >()->set_cur_tab_by_id("app:" + strAppName);
 
-         holderptra.add(get_document()->get_typed_view < ::application::pane_view >()->get_tab_holder(get_document()->get_typed_view < ::application::pane_view >()->get_tab_by_id("app:" + strAppName)));
+         holderptra.add(get_document()->get_typed_view < ::core::application::pane_view >()->get_tab_holder(get_document()->get_typed_view < ::core::application::pane_view >()->get_tab_by_id("app:" + strAppName)));
 
       }
       else
       {
 
-         holderptra.add(get_document()->get_typed_view < ::application::view >());
+         holderptra.add(get_document()->get_typed_view < ::core::application::view >());
 
       }
 

@@ -1,6 +1,7 @@
 #pragma once
 
 
+
 namespace frame
 {
 
@@ -108,11 +109,7 @@ public:
 
 
 
-#ifdef WINDOWSEX
-   void LoadToolBar(id idToolBar, const char * pszToolBar, uint32_t dwCtrlStyle = TBSTYLE_FLAT, uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
-#else
-   void LoadToolBar(id idToolBar, const char * pszToolBar, uint32_t dwCtrlStyle = 0, uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
-#endif
+   bool LoadToolBar(id idToolBar, const char * pszToolBar, uint32_t dwCtrlStyle = TBSTYLE_FLAT, uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 
    virtual void InitialFramePosition(bool bForceRestore = false);
 

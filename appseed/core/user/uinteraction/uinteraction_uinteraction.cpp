@@ -57,7 +57,7 @@ namespace user
 
 #endif
 
-         ::core::library library(get_app(), NULL);
+         ::base::library library(get_app(), 0, NULL);
 
          string strLibrary(strId);
 
@@ -79,6 +79,9 @@ namespace user
          if(!library.open(strLibrary, false))
             return NULL;
 
+         if(!library.open_ca2_library())
+            return NULL;
+
          stringa stra;
 
          library.get_app_list(stra);
@@ -91,7 +94,7 @@ namespace user
          if(strAppId.is_empty()) // trivial validity check
             return NULL;
 
-         sp(::user::uinteraction::interaction) pinteraction = library.get_new_uinteraction();
+         sp(::user::uinteraction::interaction) pinteraction = library.create_object(get_app(), "uinteraction");
 
          if(pinteraction == NULL)
             return NULL;

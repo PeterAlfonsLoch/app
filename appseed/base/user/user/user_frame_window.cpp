@@ -1782,12 +1782,15 @@ namespace user
 
 
 
-   void frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, uint32_t dwCtrlStyle, uint32_t dwStyle)
+   bool frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, uint32_t dwCtrlStyle, uint32_t dwStyle)
    {
 
       throw interface_only_exception(get_app());
 
+      return false;
+
    }
+
 
    void frame_window::CommonConstruct()
    {

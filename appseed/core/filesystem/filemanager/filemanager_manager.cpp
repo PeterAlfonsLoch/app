@@ -118,6 +118,48 @@ namespace filemanager
    }
 
 
+   sp(manager_template) manager::get_filemanager_template()
+   {
+
+      return get_filemanager_data()->get_filemanager_template();
+
+   }
+
+
+   sp(::filemanager::data) manager::get_filemanager_data()
+   {
+
+
+      return m_spfilemanagerdata;
+
+
+   }
+
+
+   sp(::fs::data) manager::get_fs_data()
+   {
+
+
+      return m_fsset;
+
+
+   }
+
+
+   bool manager::set_filemanager_data(::filemanager::data * pdata)
+   {
+
+
+      m_spfilemanagerdata = pdata;
+
+
+      return true;
+
+
+   }
+
+
+
    critical_section * manager::GetItemIdListCriticalSection()
    {
       return &m_csItemIdListAbsolute;
@@ -590,51 +632,11 @@ namespace filemanager
 
 
 
-   sp(::filemanager::data) manager::get_filemanager_data()
-   {
-
-
-      return m_spfilemanagerdata;
-
-
-   }
-
-
-   sp(::fs::data) manager::get_fs_data()
-   {
-
-
-      return &m_fsset;
-
-
-   }
-
-
-   bool manager::set_filemanager_data(::filemanager::data * pdata)
-   {
-
-
-      m_spfilemanagerdata = pdata;
-
-
-      return true;
-
-
-   }
-
 
    void manager::on_create(sp(::create_context) pcreatecontext)
    {
 
       m_spfilemanagerdata = pcreatecontext->oprop("filemanager::data").cast < ::filemanager::data >();
-
-   }
-
-
-   manager_template * manager::get_manager_template()
-   {
-
-      return get_filemanager_data()->get_filemanager_template();
 
    }
 

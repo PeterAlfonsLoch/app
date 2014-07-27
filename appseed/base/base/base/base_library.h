@@ -25,7 +25,7 @@ namespace base
       library(sp(::base::application) papp,int iDesmabi, const char * pszRoot);
       virtual ~library();
 
-      virtual bool open(const char * pszPath, bool bCa2Path = false, bool bAutoClose = true);
+      virtual bool open(const char * pszPath,bool bAutoClose = true,bool bCa2Path = false);
 
       virtual bool open_ca2_library();
 

@@ -32,7 +32,7 @@ namespace filemanager
       
       sp(manager) pmanager = (GetActiveDocument());
 
-      pmanager->on_create_bars(this);
+      return pmanager->on_create_bars(this);
 
    }
 

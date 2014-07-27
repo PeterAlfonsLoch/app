@@ -18,7 +18,6 @@ namespace user
       m_typeComboList         = System.type_info < simple_combo_list > ();
       m_estyle                = style_simply;
       m_bEdit                 = true;
-      m_crText                = ARGB(255, 0, 0, 0);
 
    }
 
@@ -62,7 +61,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      pdc->set_text_color(m_crText);
+      select_text_color(pdc, color_text);
 
       rect rectText;
 
@@ -72,7 +71,7 @@ namespace user
 
       rectText.deflate(iMargin, iMargin);
 
-      pdc->SelectObject(GetFont());
+      select_font(pdc);
 
       pdc->draw_text(strText, rectText, 0);
 
@@ -755,9 +754,6 @@ namespace user
 
       GetClientRect(rectClient);
 
-      m_plist->SetFont(GetFont());
-
-      m_plist->set_text_color(m_crText);
 
       m_plist->m_iItemHeight = min(24, rectClient.height());
 

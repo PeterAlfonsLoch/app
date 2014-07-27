@@ -9,7 +9,7 @@ namespace userstack
 
 
    class CLASS_DECL_sphere document :
-      public ::user::object
+      public ::user::document
    {
    public:
 

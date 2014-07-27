@@ -38,7 +38,7 @@ namespace filemanager
    void left_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
    {
       
-      impact::on_update(pSender, lHint, phint);
+      ::filemanager::impact::on_update(pSender, lHint, phint);
       
       ::user::split_view::on_update(pSender, lHint, phint);
 
@@ -47,7 +47,7 @@ namespace filemanager
          if (base_class < update_hint > ::bases(phint))
          {
             update_hint * puh = (update_hint *) phint;
-            if (get_filemanager_template() == puh->m_pmanager)
+            if (get_filemanager_manager() == puh->m_pmanager)
             {
                if (puh->is_type_of(update_hint::TypeInitialize))
                {

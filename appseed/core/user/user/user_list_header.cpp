@@ -339,8 +339,9 @@ namespace user
       return true;
    }
 
-   void list_header::AddMessageHandling(::message::dispatch *pinterface)
+   void list_header::install_message_handling(::message::dispatch *pinterface)
    {
+      ::database::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &list_header::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &list_header::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &list_header::_001OnLButtonDblClk);

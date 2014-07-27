@@ -248,13 +248,13 @@ namespace filemanager
             if(is_saving())
             {
 
-               cr = ARGB(184,255,210,180);
+               cr = ARGB(49,255,210,180);
 
             }
             else
             {
 
-               cr = ARGB(184,255,255,255);
+               cr = ARGB(49,255,255,250);
 
             }
 
@@ -271,7 +271,7 @@ namespace filemanager
             else
             {
 
-               cr = ARGB(255,255,255,255);
+               cr = ARGB(255,255,255,250);
 
             }
 

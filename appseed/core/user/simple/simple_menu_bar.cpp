@@ -18,7 +18,7 @@ simple_menu_bar::simple_menu_bar(sp(::base::application) papp) :
    m_iTopMenuCount = 0;
    m_iTracking = -1;
 
-   IGUI_WIN_MSG_LINK(application::APPM_LANGUAGE, this, this, &simple_menu_bar::_001OnAppLanguage);
+   IGUI_WIN_MSG_LINK(::base::application::APPM_LANGUAGE, this, this, &simple_menu_bar::_001OnAppLanguage);
 
 }
 
@@ -201,10 +201,12 @@ void simple_menu_bar::_001OnCreate(signal_details * pobj)
 
    //m_menuhook.Install((sp(::user::frame_window)) (sp(::user::interaction))this);
 
-   SetFont(System.visual().font_central().GetMenuFont());
+//   SetFont(System.visual().font_central().GetMenuFont());
 
    UpdateWindow();
+
 }
+
 
 LRESULT CALLBACK simple_menu_bar::MessageProc(
   int32_t code,       // hook code

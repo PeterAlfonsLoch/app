@@ -111,7 +111,7 @@ namespace user
     //  GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
 //      GetFont()->m_bUpdated = false;
 
-      pdc->selectFont(GetFont());
+      select_font(pdc);
 
       pdc->SelectObject(br);
 
@@ -210,7 +210,7 @@ namespace user
       //GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
       //GetFont()->m_bUpdated = false;
 
-      pdc->selectFont(GetFont());
+      select_font(pdc);
 
       pdc->SelectObject(br);
 
@@ -280,7 +280,7 @@ namespace user
 //
 //      ((combo_list *) this)->GetFont()->m_bUpdated = false;
 //
-      pdc->selectFont(((combo_list *) this)->GetFont());
+      ((combo_list *)this)->select_font(pdc);
 
       string strItem;
 

@@ -36,7 +36,7 @@ namespace filemanager
         _017UpdateList(lpcsz,1,actioncontext);
       }
 
-/*      get_document()->set().get_ascendants_path(lpcsz, stra);
+/*      get_document()->get_fs_data()->get_ascendants_path(lpcsz, stra);
 
       m_straUpdatePtrFilter = stra;
 
@@ -55,7 +55,7 @@ namespace filemanager
             }
             else
             {
-               get_document()->set().eat_end_level(str, 1);
+               get_document()->get_fs_data()->eat_end_level(str, 1);
                _017UpdateList(str, NULL, 1, actioncontext);
             }
          }
@@ -267,7 +267,7 @@ namespace filemanager
 
       stringa straRootTitle;
 
-      get_document()->set().root_ones(straRootPath, straRootTitle);
+      get_document()->get_fs_data()->root_ones(straRootPath, straRootTitle);
 
       ::userfs::item * pitemChild;
 
@@ -321,8 +321,8 @@ namespace filemanager
 
             pitem = insert_item(pitemChild,::data::RelativeLastChild,pitemParent);
 
-            if(get_document()->set().has_subdir(pitemChild->m_strPath)
-               && get_document()->set().tree_show_subdir(pitemChild->m_strPath))
+            if(get_document()->get_fs_data()->has_subdir(pitemChild->m_strPath)
+               && get_document()->get_fs_data()->tree_show_subdir(pitemChild->m_strPath))
             {
                pitemChild->m_flags.signalize(::fs::FlagHasSubFolder);
             }
@@ -361,8 +361,8 @@ namespace filemanager
 
       if(pitemFolder != NULL && pitemFolder->m_flags.is_signalized(::fs::FlagHasSubFolderUnknown))
       {
-         if(get_document()->set().has_subdir(pitemFolder->m_strPath)
-            && (get_document()->set().tree_show_subdir(pitemFolder->m_strPath)))
+         if(get_document()->get_fs_data()->has_subdir(pitemFolder->m_strPath)
+            && (get_document()->get_fs_data()->tree_show_subdir(pitemFolder->m_strPath)))
          {
             pitemFolder->m_flags.signalize(::fs::FlagHasSubFolder);
          }
@@ -392,7 +392,7 @@ namespace filemanager
       int64_array iaSize;
 
 
-      bool bTreeShowSubdir = get_document()->set().tree_show_subdir(lpcsz);
+      bool bTreeShowSubdir = get_document()->get_fs_data()->tree_show_subdir(lpcsz);
 
 
       if(strlen(lpcsz) == 0)
@@ -409,7 +409,7 @@ namespace filemanager
          if(bTreeShowSubdir)
          {
 
-            get_document()->set().ls(lpcsz,&straPath,& straTitle,&iaSize);
+            get_document()->get_fs_data()->ls(lpcsz,&straPath,& straTitle,&iaSize);
 
          }
 
@@ -480,14 +480,14 @@ namespace filemanager
 
          iChildCount++;
 
-         pitemChild->m_strPath =get_document()->set().dir_path(straPath[i],"");
+         pitemChild->m_strPath =get_document()->get_fs_data()->dir_path(straPath[i],"");
 
          //if(m_straUpdatePtrFilter.find_first(straPath[i]) >= 0)
          //{
          //   continue;
          //}
          pitemChild->m_strName = straTitle[i];
-         if(!get_document()->set().is_dir(straPath[i]))
+         if(!get_document()->get_fs_data()->is_dir(straPath[i]))
          {
             if(zip::Util().IsUnzipable(get_app(), pitemChild->m_strPath))
             {
@@ -536,9 +536,9 @@ namespace filemanager
             }
          }
 
-         if(get_document()->set().fast_has_subdir(pitemChild->m_strPath) 
-            && (get_document()->set().node_path_data(lpcsz) == NULL
-            || get_document()->set().node_path_data(lpcsz)->tree_show_subdir(pitemChild->m_strPath)))
+         if(get_document()->get_fs_data()->fast_has_subdir(pitemChild->m_strPath) 
+            && (get_document()->get_fs_data()->node_path_data(lpcsz) == NULL
+            || get_document()->get_fs_data()->node_path_data(lpcsz)->tree_show_subdir(pitemChild->m_strPath)))
          {
             pitemChild->m_flags.signalize(::fs::FlagHasSubFolder);
          }
@@ -837,7 +837,7 @@ namespace filemanager
       if(typeid(*pitem->m_pitem) == System.type_info < ::userfs::item > ())
       {
 
-         if(get_document()->set().is_link(pitem->m_pitem.cast < ::userfs::item >()->m_strPath))
+         if(get_document()->get_fs_data()->is_link(pitem->m_pitem.cast < ::userfs::item >()->m_strPath))
          {
 
             string strTarget;
@@ -888,7 +888,7 @@ namespace filemanager
    void tree::_017OpenFolder(sp(::fs::item)  item, ::action::context actioncontext)
    {
 
-      if(get_document()->set().is_link(item->m_strPath))
+      if(get_document()->get_fs_data()->is_link(item->m_strPath))
       {
 
          string strTarget;
@@ -1049,16 +1049,8 @@ namespace filemanager
 
    }
 
-   COLORREF tree::get_background_color()
-   {
 
 
-   }
-
-
-
-
-#ifdef DEBUG
       void tree::assert_valid() const
       {
          ::data::tree::assert_valid();
@@ -1068,7 +1060,6 @@ namespace filemanager
       {
          ::data::tree::dump(dumpcontext);
       }
-#endif //DEBUG
 
 
       void tree::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
@@ -1081,29 +1072,7 @@ namespace filemanager
                update_hint * puh = (update_hint *)phint;
                if (puh->is_type_of(update_hint::TypeInitialize))
                {
-                  /* xxx _001SetExpandImage(
-                  System.LoadIcon(
-                  get_filemanager_template()->m_uiExpandBox));
-                  _001SetCollapseImage(
-                  System.LoadIcon(
-                  get_filemanager_template()->m_uiCollapseBox));*/
 
-
-                  //            VmsDataInitialize(this);
-                  //          SetDataInterface(&m_datainterface);
-                  //        AddClient(&m_datainterface);
-                  string str;
-                  str.Format("tree(%s)", get_filemanager_data()->m_strDISection);
-//                  m_dataid = str;
-                  //            _001UpdateColumns();
-
-                  if(m_treeptra.get_count() == 1)
-                  {
-
-                     m_treeptra[0].m_etranslucency = get_filemanager_data()->m_bTransparentBackground ? ::user::interaction::TranslucencyPresent : ::user::interaction::TranslucencyNone;
-                     m_treeptra[0].m_crDefaultBackgroundColor = get_background_color();
-
-                  }
 
                }
                if (puh->is_type_of(update_hint::TypeSynchronizePath))

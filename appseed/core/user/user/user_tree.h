@@ -85,7 +85,6 @@ namespace user
       tree(sp(::base::application) papp);
       virtual ~tree();
 
-      virtual void _001OnDrawBackground(::draw2d::graphics * pdc);
       virtual void _001OnDraw(::draw2d::graphics * pdc);
       virtual void _001DrawItem(tree_draw_item & data);
 

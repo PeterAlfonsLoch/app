@@ -59,20 +59,7 @@ namespace filemanager
 
       if (phint != NULL)
       {
-         if (base_class < ::user::view_update_hint > ::bases(phint))
-         {
-            sp(::user::view_update_hint) puh = phint;
-            if (puh->is_type_of(::user::view_update_hint::hint_create_views))
-            {
-               if (m_pmanager == NULL
-                  && (puh->oprop("data").cast < impact > () == NULL ||
-                  puh->oprop("data").cast < impact >() == (this)))
-               {
-                  m_pmanager = puh->oprop("manager").cast < manager >();
-               }
-            }
-         }
-         else if (base_class < update_hint > ::bases(phint))
+         if (base_class < update_hint > ::bases(phint))
          {
             update_hint * puh = (update_hint *)phint;
             if (puh->is_type_of(update_hint::TypeInitialize))
@@ -87,6 +74,19 @@ namespace filemanager
                }
             }
          }
+      else if(base_class < ::user::view_update_hint > ::bases(phint))
+      {
+         sp(::user::view_update_hint) puh = phint;
+         if(puh->is_type_of(::user::view_update_hint::hint_create_views))
+         {
+            if(m_pmanager == NULL
+               && (puh->oprop("data").cast < impact >() == NULL ||
+               puh->oprop("data").cast < impact >() == (this)))
+            {
+               m_pmanager = puh->oprop("manager").cast <manager>();
+            }
+         }
+      }
       }
    }
 

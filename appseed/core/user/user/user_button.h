@@ -51,8 +51,6 @@ namespace user
       virtual void ResizeToFit();
 
 
-      virtual ::draw2d::font * _001GetFont();
-
 
       virtual void install_message_handling(::message::dispatch * pinterface);
 

@@ -52,18 +52,6 @@ namespace bergedge
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &view::_001OnTimer);
 
    }
-   /////////////////////////////////////////////////////////////////////////////
-   // ::user::impact drawing
-
-   void view::OnDraw(::draw2d::graphics * pdcScreen)
-   {
-      UNREFERENCED_PARAMETER(pdcScreen);
-   }
-
-   /////////////////////////////////////////////////////////////////////////////
-   // ::user::impact diagnostics
-
-   #ifdef DEBUG
    void view::assert_valid() const
    {
       ::user::impact::assert_valid();
@@ -73,17 +61,6 @@ namespace bergedge
    {
       ::user::impact::dump(dumpcontext);
    }
-   #endif //DEBUG
-
-   /////////////////////////////////////////////////////////////////////////////
-   // ::user::impact message handlers
-
-   // vmpLightView.cpp : implementation of the ::user::impact class
-   //
-
-
-   /////////////////////////////////////////////////////////////////////////////
-   // ::user::impact
 
 
    bool view::pre_create_window(CREATESTRUCT& cs)
@@ -119,6 +96,13 @@ namespace bergedge
    {
 
       UNREFERENCED_PARAMETER(pobj);
+
+   }
+
+   void view:: _001OnNcDraw(::draw2d::graphics * pdc)
+   {
+
+      UNREFERENCED_PARAMETER(pdc);
 
    }
 

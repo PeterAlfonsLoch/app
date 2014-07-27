@@ -192,73 +192,45 @@ namespace filemanager
          sp(::create_context) createcontext(allocer());
          createcontext->m_bMakeVisible = true;
          createcontext->m_puiParent = pcreatordata->m_pholder;
-         sp(manager) pdoc = (platform().filemanager().std().m_pdoctemplateChild->open_document_file(createcontext));
+         sp(manager) pmanager = (platform().filemanager().std().m_pdoctemplateChild->open_document_file(createcontext));
          sp(simple_frame_window) pwndTopLevel = NULL;
-         if (pdoc != NULL)
-            //if(false)
+         if(pmanager != NULL)
          {
-            //      pdoc->get_filemanager_data()->m_uiMenuBar = m_uiMenuBar;
-            //      pdoc->get_filemanager_data()->m_uiToolBar = m_uiToolBar;
 
-            if (m_pmanager == NULL )
-               m_pmanager = get_document().cast< ::filemanager::manager >();
-
-            pdoc->set().m_spafsdata = get_filemanager_manager()->set().m_spafsdata;
-            pdoc->set().m_fsdatamap = get_filemanager_manager()->set().m_fsdatamap;
+            m_pmanager = pmanager;
 
             ::filemanager::data * pfilemanagerdata = new ::filemanager::data(get_app());
 
-            pdoc->set_filemanager_data(pfilemanagerdata);
+            pmanager->set_filemanager_data(pfilemanagerdata);
 
-            pdoc->get_filemanager_data()->m_pmanager = pdoc;
-            pdoc->get_filemanager_data()->m_pmanagerMain = get_filemanager_template();
-            pdoc->get_filemanager_template() = &platform().filemanager().std();
-            pdoc->get_filemanager_data()->m_iTemplate = platform().filemanager().std().m_iTemplate;
-            pdoc->get_filemanager_data()->m_iDocument = platform().filemanager().std().m_iNextDocument++;
-            pdoc->get_filemanager_template()->m_strDISection.Format("filemanager(%d)", pdoc->get_filemanager_data()->m_iDocument);
-            pdoc->get_filemanager_data()->m_bFileSize = true;
-
-            if (get_filemanager_data() != NULL)
-            {
-
-               pdoc->get_filemanager_data()->m_pcallback = get_filemanager_data()->m_pcallback;
-               pdoc->get_filemanager_data()->m_bTransparentBackground = get_filemanager_data()->m_bTransparentBackground;
-
-            }
+            pmanager->get_filemanager_data()->m_pmanager = pmanager;
+            pmanager->get_filemanager_data()->m_pmanagerMain = get_filemanager_template();
+            pmanager->get_filemanager_data()->m_iTemplate = platform().filemanager().std().m_iTemplate;
+            pmanager->get_filemanager_data()->m_iDocument = platform().filemanager().std().m_iNextDocument++;
+            pmanager->get_filemanager_template()->m_strDISection.Format("filemanager(%d)",pmanager->get_filemanager_data()->m_iDocument);
+            pmanager->get_filemanager_data()->m_bFileSize = true;
+            pmanager->get_filemanager_data()->m_pcallback = &platform().filemanager();
+            pmanager->get_filemanager_data()->m_bTransparentBackground = true;
 
 
 
-
-            sp(::user::impact) pview = pdoc->get_view(0);
+            sp(::user::impact) pview = pmanager->get_view(0);
 
             sp(simple_frame_window) pwnd = (pview->GetParentFrame());
 
             pwndTopLevel = (pview->GetTopLevelFrame());
 
 
-            //pdoc->CreateViews();
 
-            // O m_panager desse file explorer não pode ser o Manager deste
-            // documento. Cada file explorer, tem que ter seu próprio
-            // m_manager.
-            /*update_hint uh;
-
-            uh.set_type(update_hint::TypeSetManager);
-            uh.m_pview = NULL;
-            uh.get_filemanager_template() = get_document();
-            */
-
-            ///pdoc->update_all_views(NULL, 0, &uh);
-
-            pdoc->Initialize(true);
+            pmanager->Initialize(true);
          }
-         if (pdoc == NULL)
+         if (pmanager == NULL)
             return;
          //      sp(::user::impact) pview = pdoc->get_view(0);
          //pcreatordata->m_pwnd = (pview->GetParentFrame());
          //      sp(child_frame) pframe = (pcreatordata->m_pwnd);
          //pframe->m_iTabId = iId;
-         pcreatordata->m_pdoc = pdoc;
+         pcreatordata->m_pdoc = pmanager;
          if (pwndTopLevel != NULL)
          {
             pwndTopLevel->layout();

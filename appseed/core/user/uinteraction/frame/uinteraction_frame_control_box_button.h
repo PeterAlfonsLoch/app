@@ -25,6 +25,8 @@ namespace user
             virtual void UpdateWndRgn();
 
 
+
+
          };
 
 

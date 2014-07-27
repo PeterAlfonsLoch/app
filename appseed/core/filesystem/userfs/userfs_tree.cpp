@@ -322,7 +322,7 @@ namespace userfs
 
       stringa straRootTitle;
 
-      get_document()->set().root_ones(straRootPath, straRootTitle);
+      get_document()->get_fs_data()->root_ones(straRootPath, straRootTitle);
 
 
       /*if(get_filemanager_template() != NULL && get_filemanager_template()->get_filemanager_data()->m_ptreeFileTreeMerge != NULL
@@ -347,7 +347,7 @@ namespace userfs
 
       if (pitemFolder != NULL && pitemFolder->m_flags.is_signalized(::fs::FlagHasSubFolderUnknown))
       {
-         if (get_document()->set().has_subdir(pitemFolder->m_strPath))
+         if (get_document()->get_fs_data()->has_subdir(pitemFolder->m_strPath))
          {
             pitemFolder->m_flags.signalize(::fs::FlagHasSubFolder);
          }
@@ -377,7 +377,7 @@ namespace userfs
       }
       else
       {
-         get_document()->set().ls(lpcsz, &straPath, &straTitle, &iaSize);
+         get_document()->get_fs_data()->ls(lpcsz,&straPath,&straTitle,&iaSize);
       }
 
       int32_t i;
@@ -394,7 +394,7 @@ namespace userfs
          //   continue;
          //}
          pitemChild->m_strName = straTitle[i];
-         if (!get_document()->set().is_dir(straPath[i]))
+         if (!get_document()->get_fs_data()->is_dir(straPath[i]))
          {
             if (zip::Util().IsUnzipable(get_app(), pitemChild->m_strPath))
             {
@@ -501,7 +501,7 @@ namespace userfs
    {
       stringa stra;
 
-      get_document()->set().get_ascendants_path(lpcsz, stra);
+      get_document()->get_fs_data()->get_ascendants_path(lpcsz, stra);
 
       m_straUpdatePtrFilter = stra;
 
@@ -516,7 +516,7 @@ namespace userfs
          {
             string str;
             str = strAscendant;
-            get_document()->set().eat_end_level(str, 1);
+            get_document()->get_fs_data()->eat_end_level(str, 1);
             _017UpdateList(str, 1, actioncontext);
          }
          pitem = find_item(strAscendant);

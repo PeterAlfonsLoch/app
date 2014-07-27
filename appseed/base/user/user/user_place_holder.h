@@ -32,6 +32,9 @@ namespace user
       virtual bool unhold(sp(::user::interaction) pui);
       virtual bool is_holding(sp(::user::interaction) pui);
 
+      virtual void _001OnDraw(::draw2d::graphics * pdc);
+      virtual void _001OnNcDraw(::draw2d::graphics * pdc);
+
 
       virtual void layout();
 

@@ -279,7 +279,7 @@ namespace sphere
    }
 
 
-   sp(::user::object) application::_001OpenDocumentFile(var varFile)
+   sp(::user::document) application::_001OpenDocumentFile(var varFile)
    {
       string strId = m_strId;
       char chFirst = '\0';

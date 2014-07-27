@@ -195,7 +195,6 @@ namespace user
 
 
       virtual void _001RedrawWindow();
-      virtual void _001DrawBackground(::draw2d::graphics * pdc,LPRECT lprect);
 
 
 

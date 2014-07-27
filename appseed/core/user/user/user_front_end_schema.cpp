@@ -148,8 +148,7 @@ namespace user
 
    }
 
-   front_end_schema::button::button(sp(::base::application) papp) :
-      m_font(papp->m_pcoreapp->allocer())
+   front_end_schema::button::button(sp(::base::application) papp)
    {
       m_bBorder = true;
    }

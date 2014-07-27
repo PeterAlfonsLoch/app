@@ -104,6 +104,7 @@ namespace user
             sp(control_box_button) get_button(e_button ebutton);
             virtual sp(control_box_button) get_box_button(e_button ebutton);
 
+            virtual bool get_font(::draw2d::font_sp & font);
 
          };
 

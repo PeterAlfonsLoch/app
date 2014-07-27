@@ -19,6 +19,10 @@ namespace filemanager
 
    }
 
+   operation::~operation()
+   {
+   }
+
 
    e_operation operation::get_operation()
    {

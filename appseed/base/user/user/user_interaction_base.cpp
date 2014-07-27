@@ -49,16 +49,6 @@ namespace user
    }
 
 
-   void interaction_base::_001DrawBackground(::draw2d::graphics *pdc, LPRECT lprect)
-   {
-
-      UNREFERENCED_PARAMETER(pdc);
-
-      UNREFERENCED_PARAMETER(lprect);
-
-   }
-
-
    void interaction_base::TwfGetWndArray(::user::interaction_ptr_array & wndpa)
    {
 

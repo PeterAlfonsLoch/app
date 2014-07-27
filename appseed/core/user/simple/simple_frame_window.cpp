@@ -635,7 +635,7 @@ void simple_frame_window::_001OnClose(signal_details * pobj)
       return;
    }
 
-   sp(::application) papp = &Application;
+   sp(::base::application) papp = &Application;
 
    if (papp->m_pcoreapp->is_system() || papp->m_pcoreapp->is_session())
    {
@@ -648,9 +648,9 @@ void simple_frame_window::_001OnClose(signal_details * pobj)
       for (int32_t i = 0; i <  appptra.get_count(); i++)
       {
 
-         sp(::application) pappChild = &appptra[i];
+         sp(::base::application) pappChild = &appptra[i];
 
-         if (!pappChild->_001CloseApplicationByUser(this))
+         if (!pappChild->m_pcoreapp->_001CloseApplicationByUser(this))
             return;
 
       }
@@ -1096,30 +1096,61 @@ void simple_frame_window::GetClientRect(LPRECT lprect)
 
 bool simple_frame_window::is_application_main_window()
 {
+
    return Application.m_puiMain == this;
+
 }
 
 
-void simple_frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, uint32_t dwCtrlStyle, uint32_t dwStyle)
+bool simple_frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, uint32_t dwCtrlStyle, uint32_t dwStyle)
 {
+   
    sp(::user::interaction) pui = m_toolbarmap[idToolBar];
+
    simple_toolbar * ptoolbar;
+
    if (pui != NULL)
    {
+
       ptoolbar = dynamic_cast <simple_toolbar *> (pui.m_p);
+
    }
    else
    {
+
       ptoolbar = new simple_toolbar(get_app());
-      ptoolbar->CreateEx(this, dwCtrlStyle, dwStyle);
+
+      if(ptoolbar == NULL)
+         return false;
+
+      ptoolbar->CreateEx(this,dwCtrlStyle,dwStyle);
+
       pui = ptoolbar;
-      m_toolbarmap.set_at(idToolBar, pui);
+
    }
-   if (ptoolbar != NULL)
+
+   if(ptoolbar == NULL)
+      return false;
+
+   if(!ptoolbar->LoadXmlToolBar(session().file().as_string(session().dir().matter(pszToolBar))))
    {
-      ptoolbar->LoadXmlToolBar(session().file().as_string(session().dir().matter(pszToolBar)));
-      layout();
+      try
+      {
+         delete ptoolbar;
+
+      }
+      catch(...)
+      {
+      }
+      return false;
    }
+      
+   m_toolbarmap.set_at(idToolBar,pui);
+
+   layout();
+
+   return true;
+
 }
 
 
@@ -1210,7 +1241,7 @@ bool simple_frame_window::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
       return TRUE;
 
    // last but not least, pump through cast
-   application* pApp = get_app()->m_pcoreapp;
+   ::core::application* pApp = get_app()->m_pcoreapp;
    if (pApp != NULL && pApp->_001OnCmdMsg(pcmdmsg))
       return TRUE;
 
@@ -1272,9 +1303,9 @@ void simple_frame_window::OnDropFiles(HDROP hDropInfo)
 // query end session for main frame will attempt to close it all down
 bool simple_frame_window::OnQueryEndSession()
 {
-   application* pApp = &System;
+   ::base::application* pApp = &System;
    if (pApp != NULL && pApp->m_puiMain == this)
-      return pApp->save_all_modified();
+      return pApp->m_pcoreapp->save_all_modified();
 
    return TRUE;
 }
@@ -1286,11 +1317,11 @@ void simple_frame_window::OnEndSession(bool bEnding)
    if (!bEnding)
       return;
 
-   application* pApp = &System;
+   ::base::application* pApp = &System;
    if (pApp != NULL && pApp->m_puiMain == this)
    {
 
-      pApp->close_all_documents(TRUE);
+      pApp->m_pcoreapp->close_all_documents(TRUE);
 
       pApp->exit_instance();
 
@@ -1305,7 +1336,7 @@ LRESULT simple_frame_window::OnDDEInitiate(WPARAM wParam, LPARAM lParam)
 
 #ifdef WINDOWSEX
 
-   application* pApp = &System;
+   ::core::application* pApp = &System;
    if (pApp != NULL &&
       LOWORD(lParam) != 0 && HIWORD(lParam) != 0 &&
       (ATOM)LOWORD(lParam) == pApp->m_atomApp &&
@@ -1534,7 +1565,7 @@ void simple_frame_window::guserbaseOnInitialUpdate(signal_details * pobj)
          // finally, activate the frame
          // (send the default show command unless the main desktop window)
          int32_t nCmdShow = -1;      // default
-         application* pApp = &System;
+         ::core::application* pApp = &System;
          if (pApp != NULL && pApp->m_puiMain == pframe)
          {
             nCmdShow = System.m_nCmdShow; // use the parameter from WinMain
@@ -1573,7 +1604,7 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
    if (!m_bVisible)
       return;
 
-   if (GetExStyle() & WS_EX_LAYERED || m_etranslucency == TranslucencyTotal || m_etranslucency == TranslucencyPresent)
+   if(GetExStyle() & WS_EX_LAYERED)
    {
 
       sp(::user::interaction) pui = get_bottom_child();
@@ -1634,7 +1665,7 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
 void simple_frame_window::_011OnDraw(::draw2d::graphics *pdc)
 {
 
-   if ((m_bWindowFrame || m_etranslucency == TranslucencyTotal || m_etranslucency == TranslucencyPresent) && !session().savings().is_trying_to_save(::base::resource_display_bandwidth))
+   if ((m_bWindowFrame || _001IsTranslucent()) && !session().savings().is_trying_to_save(::base::resource_display_bandwidth))
    {
 
       ::user::uinteraction::frame::WorkSetClientInterface::_001OnDraw(pdc);
@@ -1647,7 +1678,7 @@ void simple_frame_window::_011OnDraw(::draw2d::graphics *pdc)
 
       GetClientRect(rect);
 
-      pdc->FillSolidRect(rect, get_background_color());
+      pdc->FillSolidRect(rect, _001GetColor(::user::color_background));
 
    }
 
@@ -1781,7 +1812,8 @@ bool simple_frame_window::DeferFullScreen(bool bFullScreen, bool bRestore)
 
 bool simple_frame_window::calc_layered()
 {
-   if (m_bLayered && _001GetTranslucency() != TranslucencyNone)
+
+   if (m_bLayered && _001GetTranslucency() != ::user::TranslucencyNone)
    {
       return !session().savings().is_trying_to_save(::base::resource_processing)
          && !session().savings().is_trying_to_save(::base::resource_display_bandwidth);

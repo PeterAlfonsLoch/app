@@ -8,13 +8,13 @@ namespace userstack
    document::document(sp(::base::application) papp) :
       element(papp),
       ::data::data_container_base(papp),
-      ::user::object(papp)
+      ::user::document(papp)
    {
    }
 
    bool document::on_new_document()
    {
-      if (!::user::object::on_new_document())
+      if (!::user::document::on_new_document())
          return FALSE;
 
    
@@ -31,12 +31,12 @@ namespace userstack
    #ifdef DEBUG
    void document::assert_valid() const
    {
-      ::user::object::assert_valid();
+      ::user::document::assert_valid();
    }
 
    void document::dump(dump_context & dumpcontext) const
    {
-      ::user::object::dump(dumpcontext);
+      ::user::document::dump(dumpcontext);
    }
    #endif //DEBUG
 

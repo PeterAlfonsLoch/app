@@ -277,11 +277,14 @@ namespace user
       }
    }
 
+   
    void form_list::_001OnDraw(::draw2d::graphics *pdc)
    {
+
       list::_001OnDraw(pdc);
-      form::_001OnDraw(pdc);
+
    }
+
 
    void form_list::_001HideEditingControls()
    {

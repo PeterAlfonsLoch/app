@@ -80,31 +80,31 @@ namespace user
          if(m_iHover == 0 || m_bLButtonDown)
          {
 
-            pdc->Draw3dRect(rectClient, m_pschema->m_crBorderNormal, m_pschema->m_crBorderNormal);
+            pdc->Draw3dRect(rectClient,m_pschema->_001GetColor(color_border_hover),m_pschema->_001GetColor(color_border_hover));
 
             rectClient.deflate(1, 1);
 
-            pdc->FillSolidRect(rectClient, m_pschema->m_crBkHover);
+            pdc->FillSolidRect(rectClient,m_pschema->_001GetColor(color_background_hover));
 
-            pdc->set_text_color(m_pschema->m_crTextHover);
+            pdc->set_text_color(m_pschema->_001GetColor(color_text_hover));
 
          }
          else
          {
 
-            pdc->Draw3dRect(rectClient, m_pschema->m_crBorderNormal, m_pschema->m_crBorderNormal);
+            pdc->Draw3dRect(rectClient,m_pschema->_001GetColor(color_border_normal),m_pschema->_001GetColor(color_border_normal));
 
             rectClient.deflate(1, 1);
 
-            pdc->FillSolidRect(rectClient, m_pschema->m_crBkNormal);
+            pdc->FillSolidRect(rectClient,m_pschema->_001GetColor(color_background_normal));
 
-            pdc->set_text_color(m_pschema->m_crTextNormal);
+            pdc->set_text_color(m_pschema->_001GetColor(color_text_normal));
 
          }
 
       }
 
-      pdc->selectFont(GetFont());
+      select_font(pdc);
 
       pdc->TextOut(m_rectText.left, m_rectText.top, strText);
 
@@ -246,7 +246,7 @@ namespace user
       if(pdc.is_null())
          return size(0, 0);
 
-      pdc->SelectObject(GetFont());
+      select_font(pdc);
 
       string strText(m_istrButtonText);
 
@@ -379,15 +379,11 @@ namespace user
             
             m_pschema = &Application.userex()->GetUfeSchema()->m_button;
             
-            SetFont(m_pschema->m_font);
-
          }
          else
          {
             
             m_pschema = &pframewindow->m_workset.m_pframeschema->get_user_front_end_schema()->m_button;
-
-            SetFont(m_pschema->m_font);
 
          }
 
@@ -467,13 +463,6 @@ namespace user
    }
 
 
-   ::draw2d::font * button::_001GetFont()
-   {
-      if(m_pschema == NULL)
-         return GetFont();
-      return m_pschema->m_font;
-   }
-
    void button::_002OnDraw(::draw2d::graphics * pdc)
    {
 
@@ -488,19 +477,19 @@ namespace user
       COLORREF crBk;
       if(!is_window_enabled())
       {
-         crBk = m_pschema->m_crBkDisabled;
+         crBk = m_pschema->_001GetColor(color_background_disabled);
       }
       else if(_001IsPressed())
       {
-         crBk = m_pschema->m_crBkPress;
+         crBk = m_pschema->_001GetColor(color_background_press);
       }
       else if(m_iHover >= 0)
       {
-         crBk = m_pschema->m_crBkHover;
+         crBk = m_pschema->_001GetColor(color_background_hover);
       }
       else
       {
-         crBk = m_pschema->m_crBkNormal;
+         crBk = m_pschema->_001GetColor(color_background_normal);
       }
 
 
@@ -569,29 +558,29 @@ namespace user
       if(!is_window_enabled())
       {
 //         pdc->set_text_color(m_pschema->m_crTextDisabled);
-         brushText->create_solid(m_pschema->m_crTextDisabled);
+         brushText->create_solid(m_pschema->_001GetColor(color_text_disabled));
       }
       else if(_001IsPressed())
       {
 //         pdc->set_text_color(m_pschema->m_crTextPress);
-         brushText->create_solid(m_pschema->m_crTextPress);
+         brushText->create_solid(m_pschema->_001GetColor(color_text_press));
       }
       else if(m_iHover >= 0)
       {
 //         pdc->set_text_color(m_pschema->m_crTextHover);
-         brushText->create_solid(m_pschema->m_crTextHover);
+         brushText->create_solid(m_pschema->_001GetColor(color_text_hover));
       }
       else
       {
 //         pdc->set_text_color(m_pschema->m_crTextNormal);
-         brushText->create_solid(m_pschema->m_crTextNormal);
+         brushText->create_solid(m_pschema->_001GetColor(color_text_normal));
       }
 
       pdc->SelectObject(brushText);
 
       string strText(m_istrButtonText);
 
-      pdc->SelectObject(GetFont());
+      select_font(pdc);
 
       pdc->draw_text(strText, rectText, DT_LEFT | DT_TOP);
 

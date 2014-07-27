@@ -300,7 +300,7 @@ namespace userfs
 
          stringa straRootTitle;
 
-         get_document()->set().root_ones(straRootPath,straRootTitle);
+         get_document()->get_fs_data()->root_ones(straRootPath,straRootTitle);
 
          straPath = straRootPath;
 
@@ -310,7 +310,7 @@ namespace userfs
       else
       {
 
-         get_document()->set().ls(lpcsz, &straPath, &straTitle, &iaSize);
+         get_document()->get_fs_data()->ls(lpcsz,&straPath,&straTitle,&iaSize);
 
       }
 
@@ -318,7 +318,7 @@ namespace userfs
       {
          item.m_flags.unsignalize_all();
          string strPath = straPath[i];
-         if (get_document()->set().is_dir(strPath))
+         if (get_document()->get_fs_data()->is_dir(strPath))
          {
             item.m_flags.signalize(::fs::FlagFolder);
          }
@@ -736,15 +736,24 @@ namespace userfs
 
    void list::add_item(const char * pszPath, const char * pszTitle)
    {
+      
       list_item item(get_app());
+      
       item.m_strPath = pszPath;
+      
       item.m_strName = pszTitle;
-      if (get_document()->set().is_dir(pszPath))
+      
+      if (get_document()->get_fs_data()->is_dir(pszPath))
       {
+
          item.m_flags.signalize(::fs::FlagFolder);
+
       }
+
       get_fs_list_data()->m_itema.add_item(item);
+
       _001OnUpdateItemCount();
+
    }
 
 
@@ -840,38 +849,61 @@ namespace userfs
             return pdata->m_itema.get_item(strict).IsFolder();
          }
       }
+
       return false;
+
    }
 
 
    bool list::do_drop(index iDisplayDrop, index iDisplayDrag)
    {
+
       list_data * pdata = get_fs_list_data();
+
       index strict;
+
       index strictDrag;
+
       if (m_eview == ViewIcon)
       {
+
          strict = m_iconlayout.m_iaDisplayToStrict[iDisplayDrop];
+
          strictDrag = m_iconlayout.m_iaDisplayToStrict[iDisplayDrag];
+
       }
       else
       {
+
          strict = m_listlayout.m_iaDisplayToStrict[iDisplayDrop];
+
          strictDrag = m_listlayout.m_iaDisplayToStrict[iDisplayDrag];
+
       }
+
       if (strict >= 0 && pdata->m_itema.get_item(strict).IsFolder())
       {
+
          string strPath = pdata->m_itema.get_item(strictDrag).m_strPath;
-         string strName = get_document()->set().file_name(strPath);
-         get_document()->set().file_move(pdata->m_itema.get_item(strict).m_strPath, strPath);
+
+         string strName = get_document()->get_fs_data()->file_name(strPath);
+
+         get_document()->get_fs_data()->file_move(pdata->m_itema.get_item(strict).m_strPath, strPath);
+
          _017Synchronize(::action::source::add(::action::source_paste, ::action::source_user));
+
       }
       else
       {
+
          ::user::list::do_drop(iDisplayDrop, iDisplayDrag);
+
       }
+
       return true;
+
    }
+
 
    COLORREF list::get_background_color()
    {

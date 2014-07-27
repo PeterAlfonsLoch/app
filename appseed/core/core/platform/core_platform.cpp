@@ -22,8 +22,12 @@ namespace core
 
       m_pbaseapp                          = this;
       
-      m_pcoreapp                         = this;
-      
+      m_pcoreapp                          = this;
+
+      m_pcoreplatform                     = this;
+
+      m_pbasesession->m_pcoreplatform     = this;
+
       m_pnaturedocument          = NULL;
       m_pplatformdocument        = NULL;
       m_pbergedgedocument        = NULL;
@@ -1718,9 +1722,6 @@ alt1:
    bool platform::initialize1()
    {
 
-      if(!::core::platform::initialize1())
-         return false;
-
       if(!::platform::application::initialize1())
          return false;
 
@@ -1934,7 +1935,10 @@ alt1:
 
       sp(::base::application) papp = NULL;
 
-      if(!library.open(strLibrary,false))
+      if(!library.open(strLibrary,false,false))
+         return NULL;
+
+      if(!library.open_ca2_library())
          return NULL;
 
       papp = library.get_new_app(pszAppId);
@@ -1949,6 +1953,8 @@ alt1:
       pgenapp->m_pbasesystem = m_pbasesystem;
 
       pgenapp->m_pcoresystem = &System;
+
+      pgenapp->m_pcoreplatform = m_pcoreplatform;
 
 #ifdef WINDOWS
 

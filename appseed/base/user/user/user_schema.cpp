@@ -8,6 +8,8 @@ namespace user
    schema::schema()
    {
 
+      m_puserschema = NULL;
+
    }
 
    schema::~schema()

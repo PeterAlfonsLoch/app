@@ -90,47 +90,6 @@ namespace user
 
    //}
 
-   void tree::_001OnDrawBackground(::draw2d::graphics *pdc)
-   {
-
-      rect rectClient;
-      GetClientRect(rectClient);
-
-      pdc->FillSolidRect(rectClient, _001GetColor(color_background));
-
-      //      ::base::savings & savings = session().savings();
-      /*rect rectClientOffset = rectClient;
-
-      rect rectClipBox;
-      pdc->GetClipBox(rectClipBox);
-      if(rectClipBox.is_null())
-      {
-         rectClipBox = rectClientOffset;
-      }
-      else
-      {
-         rectClipBox.intersect(rectClipBox, rectClientOffset);
-      }
-
-      class imaging & imaging = System.visual().imaging();
-
-      if(session().savings().is_trying_to_save(::base::resource_processing))
-      {
-         pdc->FillSolidRect(
-            rectClipBox,
-            session().get_default_color(COLOR_WINDOW));
-      }
-      else
-      {
-         imaging.color_blend(
-            pdc,
-            rectClipBox,
-            session().get_default_color(COLOR_WINDOW),
-            196);
-      }*/
-
-   }
-
 
    void tree::_001OnDraw(::draw2d::graphics *pdc)
    {
@@ -214,8 +173,6 @@ namespace user
       drawitemdata.m_iItemHeight = 18;
       GetClientRect(drawitemdata.m_rectClient);
 
-
-      //   _001OnDrawBackground(pdc);
 
       sp(::data::tree_item) pitem = m_pitemFirstVisible;
 

@@ -142,6 +142,21 @@ namespace user
    }
 
 
+   void place_holder::_001OnDraw(::draw2d::graphics * pgraphics)
+   {
+
+      UNREFERENCED_PARAMETER(pgraphics);
+
+   }
+
+   void place_holder::_001OnNcDraw(::draw2d::graphics * pgraphics)
+   {
+
+      UNREFERENCED_PARAMETER(pgraphics);
+
+   }
+
+
    int32_t place_holder_ptra::hold(sp(::user::interaction) pui)
    {
 
@@ -164,6 +179,8 @@ namespace user
       return count;
 
    }
+
+
 
 
    int32_t place_holder_ptra::unhold(sp(::user::interaction) pui)

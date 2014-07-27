@@ -30,7 +30,7 @@ void simple_static::_001OnDraw(::draw2d::graphics *pdc)
    else if(get_type() == type_text)
    {
 
-      pdc->SelectFont(GetFont());
+      select_font(pdc);
 
       ::draw2d::brush_sp brush(allocer(), Application.userex()->GetUfeSchema()->m_crTextNormal);
 

@@ -626,7 +626,7 @@ namespace userex
 
    void userex::VmsGuiiOnAppLanguage(signal_details * pobject)
    {
-      SendMessageToWindows(application::APPM_LANGUAGE,0,(LPARAM)pobject);
+      SendMessageToWindows(::base::application::APPM_LANGUAGE,0,(LPARAM)pobject);
    }
 
 

@@ -22,7 +22,7 @@ namespace asphere
    bool application::initialize1()
    {
 
-      if(!::application::initialize1())
+      if(!::core::application::initialize1())
          return false;
 
       return true;
@@ -32,7 +32,7 @@ namespace asphere
    bool application::initialize()
    {
 
-      if(!::application::initialize())
+      if(!::core::application::initialize())
          return false;
 
 

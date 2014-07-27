@@ -1358,7 +1358,7 @@ namespace core
    int32_t system::main()
    {
 
-      int iRet = ::core::system::main();
+      int iRet = ::base::system::main();
 
       return iRet;
 

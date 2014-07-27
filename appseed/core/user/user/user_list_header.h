@@ -60,7 +60,7 @@ namespace user
       list_header(sp(::base::application) papp);
       virtual ~list_header();
 
-      void AddMessageHandling(::message::dispatch * pinterface);
+      void install_message_handling(::message::dispatch * pinterface);
       void SetBaseListCtrlInterface(list * pinterface);
 
       virtual void _001OnDraw(::draw2d::graphics * pdc);

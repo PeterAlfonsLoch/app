@@ -452,8 +452,6 @@ namespace user
 
                pbutton->SetWindowText(strCaption);
 
-               pbutton->SetFont(m_fontMarlett);
-
                pbutton->m_pcontrolbox = this;
 
             }
@@ -766,6 +764,15 @@ namespace user
             m_pworkset->m_pframeschema->m_bControlBoxAlignRight = rect.center().x > (rectWindow.width() / 2);
 
             *m_pworkset->m_pframeschema->get_control_box_rect() = rect;
+
+         }
+
+         bool control_box::get_font(::draw2d::font_sp & font)
+         {
+
+            font = m_fontMarlett;
+
+            return true;
 
          }
 

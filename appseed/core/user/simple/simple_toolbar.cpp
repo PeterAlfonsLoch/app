@@ -47,8 +47,6 @@ element(papp),
 
 
 
-   m_etranslucency = TranslucencyPresent;
-
    m_iButtonPressItem      = -1;
    //m_pimagelist            = NULL;
    //m_pimagelistHue         = NULL;

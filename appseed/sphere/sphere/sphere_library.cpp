@@ -9,7 +9,7 @@ namespace sphere
       element(papp),
       ::base::library(papp),
       ::core::library(papp, "app"),
-      ::core::single_application_library < application > (papp, "app"),
+      ::base::single_application_library < application > (papp, "app"),
       ::filehandler::library(papp),
       ::filehandler::menu_library(papp)
    {
@@ -74,7 +74,7 @@ namespace sphere
          return new ::filehandler::application();
       }
 
-      return ::core::single_application_library < application >::get_new_app(pszAppId);
+      return ::base::single_application_library < application >::get_new_app(pszAppId);
 
    }*/
 
@@ -85,7 +85,7 @@ namespace sphere
 #ifndef _WIN32
 extern "C"
 #endif
-::core::library * get_new_library(sp(::base::application) papp)
+::base::library * get_new_library(sp(::base::application) papp)
 {
 
    return new ::sphere::library(papp);

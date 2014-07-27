@@ -939,8 +939,8 @@ namespace filemanager
       string strFileCheck;
       for(int32_t i = 0; i < pdata->m_itema.get_count(); i++)
       {
-         if(::userfs::list::get_document()->set().is_dir(pdata->m_itema.get_item(i).m_strPath)
-            && ::userfs::list::get_document()->set().file_name(pdata->m_itema.get_item(i).m_strPath) != ".svn")
+         if(::userfs::list::get_document()->get_fs_data()->is_dir(pdata->m_itema.get_item(i).m_strPath)
+            && ::userfs::list::get_document()->get_fs_data()->file_name(pdata->m_itema.get_item(i).m_strPath) != ".svn")
          {
             session().dir().rls(pdata->m_itema.get_item(i).m_strPath, &straSub);
             for(int32_t j = 0; j < straSub.get_size(); j++)
@@ -1273,7 +1273,7 @@ namespace filemanager
             item.m_strPath,
             NULL,
             _shell::IconNormal,
-            get_document()->set().is_dir(item.m_strPath));
+            get_document()->get_fs_data()->is_dir(item.m_strPath));
 
          m_iCreateImageListStep++;
 
@@ -1661,13 +1661,6 @@ namespace filemanager
    }
 
 
-   ::fs::item & file_list::get_filemanager_item()
-   {
-
-      return get_filemanager_manager()->get_filemanager_item();
-
-   }
-
 
    void file_list::_017Synchronize(::action::context actioncontext)
    {
@@ -1692,18 +1685,20 @@ namespace filemanager
 
    void file_list::_001OnDraw(::draw2d::graphics *pdc)
    {
+
       if (m_iAnimate <= 0)
       {
-         // Normal Drawing
+
          ::user::form_list::_001OnDraw(pdc);
+
       }
       else
       {
+
          // Animation Drawing
          rect rectClipBox;
          pdc->GetClipBox(rectClipBox);
          class imaging & imaging = System.visual().imaging();
-         //      ::user::list::_001DrawBackground(pdc, rectClipBox);
          imaging.color_blend(
             pdc,
             rectClipBox,
@@ -1717,9 +1712,11 @@ namespace filemanager
             m_gdibuffer.GetBuffer(),
             null_point(),
             (byte)(255 - m_iAnimate * 25));
+
       }
 
    }
+
 
    void file_list::TakeAnimationSnapshot()
    {

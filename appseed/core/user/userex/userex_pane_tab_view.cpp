@@ -150,11 +150,15 @@ namespace userex
    void pane_tab_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
 
-      ::core::library * plibrary = NULL;
+      ::base::library * plibrary = NULL;
+
       if(System.m_idmapCreateViewLibrary.Lookup(pcreatordata->m_id, plibrary) && plibrary != NULL)
       {
+
          plibrary->on_create_view(pcreatordata);
+
       }
+
       else if(pcreatordata->m_id == "file_manager"
          || pcreatordata->m_id == "left_file"
          || pcreatordata->m_id == "right_file"

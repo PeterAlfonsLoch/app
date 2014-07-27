@@ -86,9 +86,6 @@ namespace filemanager
 
       bool set_filemanager_data(::filemanager::data * pdata);
 
-      virtual manager_template * get_manager_template();
-
-
       virtual bool on_create_bars(simple_frame_window * pframe);
 
    };

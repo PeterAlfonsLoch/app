@@ -12,6 +12,7 @@ namespace filemanager
       ::user::scroll_view(papp),
       ::data::data_listener(papp),
       ::colorertake5::base_editor(papp),
+      ::user::edit_plain_text(papp),
       ::user::edit_plain_text_view(papp)
    {
 
@@ -23,7 +24,7 @@ namespace filemanager
    void path_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
    {
 
-      impact::on_update(pSender, lHint, phint);
+      ::filemanager::impact::on_update(pSender, lHint, phint);
 
       if (phint != NULL)
       {
@@ -176,12 +177,7 @@ namespace filemanager
    void path_view::_001OnDraw(::draw2d::graphics * pdc)
    {
 
-      if (false)
-      {
-
-         ::user::edit_plain_text_view::_001OnDraw(pdc);
-
-      }
+      ::user::edit_plain_text_view::_001OnDraw(pdc);
 
    }
 

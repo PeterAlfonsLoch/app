@@ -114,7 +114,7 @@ namespace filemanager
    void folder_selection_list_view::FolderAdd()
    {
       stringa straSel;
-      m_ptreeview->GetSelectedFilePath(straSel);
+      m_ptree->GetSelectedFilePath(straSel);
       if(m_plistview->m_bRecursive)
       {
          bool_array ba;
@@ -146,7 +146,7 @@ namespace filemanager
       FolderRemove();
    }
 
-   sp(::data) folder_selection_list_view::get_filemanager_data()
+   sp(::filemanager::data) folder_selection_list_view::get_filemanager_data()
    {
       return m_pdata;
    }

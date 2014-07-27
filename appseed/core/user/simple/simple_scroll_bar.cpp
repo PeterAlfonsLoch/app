@@ -16,7 +16,7 @@ simple_scroll_bar::simple_scroll_bar(sp(::base::application) papp) :
    m_scrollinfo.nMax    = 100;
    m_scrollinfo.nPage   = 10;
    m_scrollinfo.nPos    = 0;
-   m_etranslucency      = TranslucencyPresent;
+
    
    m_cr = ARGB(77 + 49,184,184,177);
    m_crBorder = ARGB(184,84 - 49,84 - 49,77 - 49);

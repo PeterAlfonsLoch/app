@@ -6,8 +6,9 @@ simple_list_header_control::simple_list_header_control(sp(::base::application) p
    element(papp),
    ::user::list_header(papp)
 {
-   AddMessageHandling(this);
-   m_etranslucency      = TranslucencyPresent;
+   
+      
+   
 }
 
 simple_list_header_control::~simple_list_header_control()
@@ -18,7 +19,6 @@ simple_list_header_control::~simple_list_header_control()
 
 void simple_list_header_control::install_message_handling(::message::dispatch * pinterface)
 {
-   ::user::interaction::install_message_handling(pinterface);
    ::user::list_header::install_message_handling(pinterface);
 #ifdef WINDOWSEX
    IGUI_WIN_MSG_LINK(HDN_ENDTRACK, pinterface, this, &simple_list_header_control::_001OnEndTrack);

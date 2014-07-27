@@ -229,23 +229,11 @@ namespace user
 
       if (pprintjob == NULL)
       {
-         if (_001IsBackgroundBypass())
-         {
-         }
-         else if (_001IsTranslucent())
-         {
-            class imaging & imaging = System.visual().imaging();
-            imaging.color_blend(
-               pdc,
-               rectClient,
-               RGB(200, 255, 255),
-               127);
-         }
-         else
-         {
-            pdc->FillSolidRect(rectClient, _001GetColor(color_background));
-         }
+         
+         ::user::interaction::_001OnDraw(pdc);
+
       }
+
       /*else if(!session().savings().is_trying_to_save(::base::resource_processing)
       && !session().savings().is_trying_to_save(::base::resource_blur_background))
       {
@@ -993,10 +981,14 @@ namespace user
 
    void edit_plain_text::_001OnCalcLayoutProc(::user::elemental * pview, ::draw2d::graphics * pdc)
    {
+      
       ::data::simple_lock lockRoot(m_ptree);
 
       UNREFERENCED_PARAMETER(pview);
-      pdc->SelectObject(GetFont());
+      
+      select_font(pdc);
+
+
       int32_t y = 0;
 ///      int32_t i = 1;
       pdc->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);

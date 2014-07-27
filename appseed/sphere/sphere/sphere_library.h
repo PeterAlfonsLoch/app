@@ -6,7 +6,7 @@ namespace sphere
 
 
    class CLASS_DECL_sphere library :
-      virtual public ::core::single_application_library < application >,
+      virtual public ::base::single_application_library < application >,
       virtual public ::filehandler::menu_library
    {
    public:

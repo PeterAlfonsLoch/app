@@ -27,10 +27,6 @@ namespace user
 
 
 
-   /////////////////////////////////////////////////////////////////////////////
-   // split_view diagnostics
-
-   #ifdef DEBUG
    void split_view::assert_valid() const
    {
       impact::assert_valid();
@@ -40,7 +36,6 @@ namespace user
    {
       impact::dump(dumpcontext);
    }
-   #endif //DEBUG
 
    void split_view::_001OnCreate(signal_details * pobj)
    {
@@ -134,23 +129,29 @@ namespace user
 
    }
 
-   void split_view::_001OnDraw(::draw2d::graphics *pdc)
+   void split_view::_001OnNcDraw(::draw2d::graphics *pgraphics)
+   {
+
+      UNREFERENCED_PARAMETER(pgraphics);
+
+   }
+
+   void split_view::_001OnDraw(::draw2d::graphics *pgraphics)
    {
 
       int32_t i;
+      
       rect rect;
+      
       COLORREF cr = ARGB(184, 92, 92, 80);
-      //COLORREF crBack = ARGB(77, 230, 230, 210);
-      //pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+
       for(i = 0; i < get_pane_count(); i++)
       {
+        
          CalcPaneRect(i, &rect);
 
-        // pdc->FillSolidRect(rect, crBack);
-
-
          // Top
-         pdc->FillSolidRect(
+         pgraphics->FillSolidRect(
             rect.left,
             rect.top,
             rect.width(),
@@ -158,7 +159,7 @@ namespace user
             cr);
 
          // Right
-         pdc->FillSolidRect(
+         pgraphics->FillSolidRect(
             rect.right - m_cxBorder,
             rect.top,
             m_cxBorder,
@@ -166,7 +167,7 @@ namespace user
             cr);
 
          // Bottom
-         pdc->FillSolidRect(
+         pgraphics->FillSolidRect(
             rect.left,
             rect.bottom - m_cyBorder,
             rect.width(),
@@ -174,13 +175,15 @@ namespace user
             cr);
 
          // Left
-         pdc->FillSolidRect(
+         pgraphics->FillSolidRect(
             rect.left,
             rect.top,
             m_cxBorder,
             rect.height(),
             cr);
+
       }
+
    }
 
 

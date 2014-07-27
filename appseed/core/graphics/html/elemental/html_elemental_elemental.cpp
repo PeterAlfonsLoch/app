@@ -1030,26 +1030,7 @@ namespace html
    }
 
 
-   bool elemental::get_background_color(COLORREF & cr)
-   {
 
-      if (m_style.get_color("background-color", "", m_pdata, this, cr))
-         return true;
-
-      if (m_pparent != NULL && m_pparent->get_background_color(cr))
-         return true;
-
-      cr = ARGB(127, 255, 255, 247);
-
-      return true;
-
-   }
-
-
-   bool elemental::get_color(COLORREF & cr)
-   {
-      return m_pimpl->get_color(cr);
-   }
 
    elemental * elemental::get_element_by_name(id id)
    {
@@ -1269,11 +1250,12 @@ namespace html
       {
 
          if(!m_style.get_color("color","",m_pdata,this,cr))
-         {
+            return true;
 
-            cr = ARGB(255,0,0,0);
+         if(m_pparent != NULL && m_pparent->get_color(cr,ecolor))
+            return true;
 
-         }
+         cr = ARGB(255,0,0,0);
 
          return true;
 
@@ -1281,12 +1263,13 @@ namespace html
       else if(ecolor == ::user::color_background)
       {
 
-         if(!m_style.get_color("background-color","",m_pdata,this,cr))
-         {
+         if(m_style.get_color("background-color","",m_pdata,this,cr))
+            return true;
 
-            cr = ARGB(255,255,255,255);
+         if(m_pparent != NULL && m_pparent->get_color(cr, ecolor))
+            return true;
 
-         }
+         cr = ARGB(127,255,255,247);
 
          return true;
 
