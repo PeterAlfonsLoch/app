@@ -14,11 +14,11 @@ namespace filemanager
       ::filemanager::manager *      m_pmanager;
 
 
-      impact(sp(::base::application) papp);
+      impact();
       virtual ~impact();
 
 
-      ::fs::item & GetFileManagerItem();
+      ::fs::item & get_filemanager_item();
 
       virtual sp(::filemanager::manager)              get_filemanager_manager();
       virtual sp(::filemanager::manager_template)     get_filemanager_template();

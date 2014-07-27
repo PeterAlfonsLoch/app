@@ -11,21 +11,21 @@ namespace user
    public:
 
 
-      COLORREF                      m_crBackground;
-      COLORREF                      m_crText;
-      ::draw2d::font_sp             m_pfont;
-      ETranslucency                 m_etranslucency;
+      map < e_color,e_color,COLORREF,COLORREF >       m_mapColor;
+      ::draw2d::font_sp                               m_pfont;
+      ETranslucency                                   m_etranslucency;
 
 
       simple_schema();
       virtual ~simple_schema();
 
 
-      virtual COLORREF              get_background_color();
-      virtual COLORREF              get_color();
-      virtual ::draw2d::font_sp     get_font();
-      virtual ETranslucency         _001GetTranslucency();
+      virtual bool get_color(COLORREF & cr, e_color ecolor);
+      virtual bool get_font(::draw2d::font_sp & font);
+      virtual bool get_translucency(ETranslucency & etranslucency);
 
+
+      virtual bool set_color(e_color ecolor, COLORREF cr);
 
    };
 

@@ -4,11 +4,14 @@
 namespace filemanager
 {
    
+
    namespace fs
    {
 
+
       namespace simple
       {
+
 
          view::view(sp(::base::application) papp) :
             element(papp),

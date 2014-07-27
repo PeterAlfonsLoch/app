@@ -1,27 +1,47 @@
 #pragma once
 
-class CLASS_DECL_CORE file_manager_operation_info_view :
-   virtual public ::user::impact
-   
+
+namespace filemanager
 {
-public:
 
-   double m_dAnime;
 
-   file_manager_operation_info_view(sp(::base::application) papp);
+   class CLASS_DECL_CORE operation_info_view:
+      virtual public ::user::impact
 
-   virtual void OnDraw(::draw2d::graphics * pdc);
+   {
+   public:
 
-   virtual void _001OnDraw(::draw2d::graphics * pdc);
+      double m_dAnime;
 
-   sp(file_manager_operation_document) get_document();
+      operation_info_view(sp(::base::application) papp);
 
-   void OnFileOperationStep(int32_t iOperation, bool bFinal);
+      void assert_valid() const;
+      void dump(dump_context & context) const;
 
-   DECL_GEN_SIGNAL(_001OnCreate);
-   DECL_GEN_SIGNAL(_001OnTimer);
-   virtual void install_message_handling(::message::dispatch * pdispatch);
+      virtual void _001OnDraw(::draw2d::graphics * pdc);
 
-   void assert_valid() const;
-   void dump(dump_context & context) const;
-};
+      sp(operation_document) get_document();
+
+      void OnFileOperationStep(int32_t iOperation,bool bFinal);
+
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnTimer);
+      virtual void install_message_handling(::message::dispatch * pdispatch);
+
+   };
+
+
+} // namespace filemanager
+
+
+
+
+
+
+
+
+
+
+
+
+

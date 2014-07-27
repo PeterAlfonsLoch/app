@@ -25,6 +25,7 @@ namespace user
    enum ETranslucency
    {
 
+      TranslucencyUndefined,
       TranslucencyNone,
       TranslucencyPresent,
       TranslucencyTotal

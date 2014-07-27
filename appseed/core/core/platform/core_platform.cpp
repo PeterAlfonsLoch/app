@@ -1218,7 +1218,7 @@ alt1:
       m_ptemplate_html->open_document_file(itema[0].m_strPath);
    }
 
-   bool platform::file_manager_open_file(
+   bool platform::open_file(
       ::filemanager::data * pdata,
       ::fs::item_array & itema)
    {
@@ -1909,7 +1909,7 @@ alt1:
 
 #endif
 
-      ::core::library library(pappNewApplicationParent,NULL);
+      ::base::library library(pappNewApplicationParent,0,NULL);
 
 #ifdef CUBE
 
@@ -1956,9 +1956,7 @@ alt1:
 
 #endif
 
-      pgenapp->::base::application::construct();
-
-      pgenapp->construct();
+      pgenapp->construct(NULL);
 
       return papp;
 

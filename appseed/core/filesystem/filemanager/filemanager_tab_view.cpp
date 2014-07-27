@@ -7,7 +7,6 @@ namespace filemanager
 
    tab_view::tab_view(sp(::base::application) papp) :
       element(papp),
-      ::filemanager::impact(papp),
       ::user::tab(papp),
       ::user::tab_view(papp),
       ::userex::pane_tab_view(papp),
@@ -142,12 +141,12 @@ namespace filemanager
          sp(::create_context) createcontext(allocer());
          createcontext->m_bMakeVisible = false;
          createcontext->m_puiParent = pcreatordata->m_pholder;
-         sp(file_manager_form_document) pdoc = platform().filemanager().m_ptemplateForm->open_document_file(createcontext);
+         sp(form_document) pdoc = platform().filemanager().m_ptemplateForm->open_document_file(createcontext);
          if (pdoc == NULL)
             return;
-         file_manager_form_view * pformview = pdoc->get_typed_view < file_manager_form_view >();
-         file_manager_form_update_hint uh;
-         uh.m_etype = file_manager_form_update_hint::type_browse;
+         form_view * pformview = pdoc->get_typed_view < form_view >();
+         form_update_hint uh;
+         uh.m_etype = form_update_hint::type_browse;
          if (pcreatordata->m_id == "replace_name")
          {
             uh.m_strForm = "filemanager\\replace_name_in_file_system.xhtml";
@@ -158,17 +157,17 @@ namespace filemanager
          }
          pdoc->update_all_views(NULL, 0, &uh);
 
-         uh.m_etype = file_manager_form_update_hint::type_get_form_view;
+         uh.m_etype = form_update_hint::type_get_form_view;
          pdoc->update_all_views(NULL, 0, &uh);
 
-         uh.m_etype = file_manager_form_update_hint::type_after_browse;
+         uh.m_etype = form_update_hint::type_after_browse;
          pdoc->update_all_views(NULL, 0, &uh);
 
 
-         pformview->m_pfilemanagerinterface = (m_pviewdata->m_pdoc);
+         pformview->m_pmanager = m_pviewdata->m_pdoc.cast < ::filemanager::manager > ();
          //pformview->VmsDataInitialize(simpledb::get(get_app())->GetDataServer());
          //pcreatordata->m_pwnd = (pformview->GetParentFrame());
-         //      file_manager_form_child_frame * pframe = dynamic_cast < file_manager_form_child_frame * >(pcreatordata->m_pwnd);
+         //      form_child_frame * pframe = dynamic_cast < form_child_frame * >(pcreatordata->m_pwnd);
          //pframe->m_iTabId = iId;
          pcreatordata->m_pdoc = pdoc;
       }
@@ -178,13 +177,13 @@ namespace filemanager
          createcontext->m_bMakeVisible = false;
          createcontext->m_puiParent = this;
          //throw not_implemented(get_app());
-         sp(file_manager_operation_document) pdoc = (platform().filemanager().m_ptemplateOperation->open_document_file(createcontext));
+         sp(operation_document) pdoc = (platform().filemanager().m_ptemplateOperation->open_document_file(createcontext));
          if (pdoc == NULL)
             return;
          sp(::user::impact) pview = pdoc->get_view(0);
-         //file_manager_form_view * poperationview = dynamic_cast < file_manager_form_view * > (pview);
+         //form_view * poperationview = dynamic_cast < form_view * > (pview);
          pcreatordata->m_pwnd = (pview->GetParentFrame());
-         //      file_manager_operation_child_frame * pframe = dynamic_cast < file_manager_operation_child_frame * >(pcreatordata->m_pwnd);
+         //      operation_child_frame * pframe = dynamic_cast < operation_child_frame * >(pcreatordata->m_pwnd);
          //pframe->m_iTabId = iId;
          pcreatordata->m_pdoc = pdoc;
       }
@@ -201,11 +200,11 @@ namespace filemanager
             //      pdoc->get_filemanager_data()->m_uiMenuBar = m_uiMenuBar;
             //      pdoc->get_filemanager_data()->m_uiToolBar = m_uiToolBar;
 
-            if (m_pfilemanagerinterface.is_null())
-               m_pfilemanagerinterface = get_document();
+            if (m_pmanager == NULL )
+               m_pmanager = get_document().cast< ::filemanager::manager >();
 
-            pdoc->set().m_spafsdata = GetFileManagerDoc()->set().m_spafsdata;
-            pdoc->set().m_fsdatamap = GetFileManagerDoc()->set().m_fsdatamap;
+            pdoc->set().m_spafsdata = get_filemanager_manager()->set().m_spafsdata;
+            pdoc->set().m_fsdatamap = get_filemanager_manager()->set().m_fsdatamap;
 
             ::filemanager::data * pfilemanagerdata = new ::filemanager::data(get_app());
 
@@ -234,18 +233,8 @@ namespace filemanager
 
             sp(simple_frame_window) pwnd = (pview->GetParentFrame());
 
-            if (pwnd != NULL)
-            {
-               //pwnd->m_workset.SetAppearanceTransparency(frame::Transparent);
-               pwnd->m_etranslucency = ::user::interaction_base::TranslucencyTotal;
-            }
             pwndTopLevel = (pview->GetTopLevelFrame());
 
-            if (pwndTopLevel != NULL)
-            {
-               //pwndTopLevel->m_workset.SetAppearanceTransparency(frame::Transparent);
-               pwndTopLevel->m_etranslucency = ::user::interaction_base::TranslucencyPresent;
-            }
 
             //pdoc->CreateViews();
 

@@ -8,9 +8,7 @@ namespace user
    simple_schema::simple_schema()
    {
 
-      m_crBackground       = ARGB(255,255,255,255);
-      m_crText             = ARGB(255,0,0,0);
-      m_etranslucency      = TranslucencyNone;
+      m_etranslucency      = TranslucencyUndefined;
 
    }
 
@@ -21,32 +19,45 @@ namespace user
    }
 
 
-   COLORREF simple_schema::get_background_color()
+   bool simple_schema::set_color(e_color ecolor,COLORREF cr)
    {
 
-      return m_crBackground;
+      m_mapColor[ecolor] = cr;
 
-   }
-
-   COLORREF simple_schema::get_color()
-   {
-
-      return m_crText;
-
-   }
-
-   ::draw2d::font_sp simple_schema::get_font()
-   {
-
-      return m_pfont;
+      return true;
 
    }
 
 
-   ::user::ETranslucency simple_schema::_001GetTranslucency()
+   bool simple_schema::get_color(COLORREF & cr, e_color ecolor)
    {
 
-      return m_etranslucency;
+      return m_mapColor.Lookup(ecolor,cr);
+
+   }
+
+   bool simple_schema::get_font(::draw2d::font_sp & font)
+   {
+
+      if(m_pfont.is_null())
+         return false;
+
+      font = m_pfont;
+
+      return true;
+
+   }
+
+
+   bool simple_schema::get_translucency(ETranslucency & etranslucency)
+   {
+
+      if(m_etranslucency == TranslucencyUndefined)
+         return false;
+
+      etranslucency = m_etranslucency;
+
+      return true;
 
    }
 

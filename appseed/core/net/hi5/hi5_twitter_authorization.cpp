@@ -154,13 +154,15 @@ namespace hi5
          if(pframe != NULL)
          {
 
-            pframe->m_etranslucency = ::user::interaction::TranslucencyPresent;
+            pframe->m_puserschema = this;
+            
+            m_etranslucency = ::user::TranslucencyPresent;
 
             pframe->m_bblur_Background = true;
 
          }
 
-         if(&Platform != NULL && platform().get_document() != NULL && platform().get_document()->get_bergedge_view() != NULL)
+         if(&platform() != NULL && platform().get_document() != NULL && platform().get_document()->get_bergedge_view() != NULL)
          {
 
             platform().get_document()->get_bergedge_view()->ShowWindow(SW_SHOW);

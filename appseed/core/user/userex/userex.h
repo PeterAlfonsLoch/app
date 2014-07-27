@@ -4,6 +4,15 @@
 #include "core/user/userhtml/userhtml.h"
 
 
+namespace filemanager
+{
+
+   class manager_template;
+   class data;
+
+}
+
+
 
 #include "userex_form_frame.h"
 #include "userex_form_child_frame.h"
@@ -16,6 +25,8 @@
 #include "userex_menu_view.h"
 
 #include "userex_dialog.h"
+
+#include "filesystem/filemanager/filemanager_impact.h"
 
 #include "userex_pane_tab_view.h"
 #include "userex_pane_split_view.h"

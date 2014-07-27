@@ -21,13 +21,30 @@ namespace filemanager
       virtual ~manager();
 
 
+      virtual void assert_valid() const;
+      virtual void dump(dump_context & dumpcontext) const;
 
+
+      virtual sp(::fs::data)                       get_fs_data();
+      virtual ::fs::item &                         get_filemanager_item();
       virtual sp(::filemanager::data)              get_filemanager_data();
       virtual sp(::filemanager::manager_template)  get_filemanager_template();
 
 
+
+      DECL_GEN_SIGNAL(_001OnLevelUp);
+      DECL_GEN_SIGNAL(_001OnUpdateLevelUp);
+      DECL_GEN_SIGNAL(_001OnAddLocation);
+      DECL_GEN_SIGNAL(_001OnUpdateAddLocation);
+      DECL_GEN_SIGNAL(_001OnReplaceText);
+      DECL_GEN_SIGNAL(_001OnUpdateReplaceText);
+      DECL_GEN_SIGNAL(_001OnEditPaste);
+      DECL_GEN_SIGNAL(_001OnUpdateEditPaste);
+      DECL_GEN_SIGNAL(_001OnFileSaveAs);
+      DECL_GEN_SIGNAL(_001OnUpdateFileSaveAs);
+
+
       ::critical_section * GetItemIdListCriticalSection();
-      ::fs::item & get_item();
 
       virtual bool FileManagerBrowse(sp(::fs::item) item, ::action::context actioncontext);
       virtual bool FileManagerBrowse(const char * lpcsz, ::action::context actioncontext);
@@ -44,7 +61,7 @@ namespace filemanager
       virtual void FileManagerSaveCancel();
 
 
-      virtual ::fs::data * get_fs_data();
+      
 
 
       string calc_key(::database::id & idSection, ::database::id & id, ::database::id & idIndex);
@@ -52,7 +69,7 @@ namespace filemanager
       virtual void on_create(sp(::create_context) pcreatecontext);
 
 
-      sp(file_manager_operation_document) get_operation_doc(bool bSwitch);
+      sp(operation_document) get_operation_doc(bool bSwitch);
 
 
       virtual bool on_simple_action(id id);
@@ -66,24 +83,13 @@ namespace filemanager
       void CreateViews();
       void OpenFolder(sp(::fs::item) item,::action::context actioncontext);
       void Initialize(bool bMakeVisible);
-      DECL_GEN_SIGNAL(_001OnLevelUp);
-      DECL_GEN_SIGNAL(_001OnUpdateLevelUp);
-      DECL_GEN_SIGNAL(_001OnAddLocation);
-      DECL_GEN_SIGNAL(_001OnUpdateAddLocation);
-      DECL_GEN_SIGNAL(_001OnReplaceText);
-      DECL_GEN_SIGNAL(_001OnUpdateReplaceText);
-      DECL_GEN_SIGNAL(_001OnEditPaste);
-      DECL_GEN_SIGNAL(_001OnUpdateEditPaste);
-      DECL_GEN_SIGNAL(_001OnFileSaveAs);
-      DECL_GEN_SIGNAL(_001OnUpdateFileSaveAs);
-#ifdef DEBUG
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
-#endif
 
       bool set_filemanager_data(::filemanager::data * pdata);
 
       virtual manager_template * get_manager_template();
+
+
+      virtual bool on_create_bars(simple_frame_window * pframe);
 
    };
 

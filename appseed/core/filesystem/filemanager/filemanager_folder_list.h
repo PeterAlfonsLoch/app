@@ -68,7 +68,7 @@ namespace filemanager
 
       virtual void _017Synchronize(::action::context actioncontext);
 
-      ::fs::item & GetFileManagerItem();
+      ::fs::item & get_filemanager_item();
 
       virtual void _001GetItemImage(::user::list_item * pitem);
       void _017UpdateList(const char * lpcszParent, ::action::context actioncontext);

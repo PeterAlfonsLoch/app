@@ -1,22 +1,39 @@
 #pragma once
 
 
-class CLASS_DECL_CORE file_manager_operation_document :
-   public ::user::document
+namespace filemanager
 {
-public:
 
 
-   file_manager_operation_thread  m_thread;
-   
-   
-   file_manager_operation_document(sp(::base::application) papp);
-
-   
-   virtual bool on_new_document();
-
-   
-   
+   class CLASS_DECL_CORE operation_document:
+      public ::user::document
+   {
+   public:
 
 
-};
+      operation_thread  m_thread;
+
+
+      operation_document(sp(::base::application) papp);
+
+
+      virtual bool on_new_document();
+
+
+   };
+
+
+} // namespace filemanager
+
+
+
+
+
+
+
+
+
+
+
+
+

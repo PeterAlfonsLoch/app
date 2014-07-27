@@ -70,7 +70,7 @@ namespace filemanager
    bool child_frame::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
    {
 
-      //file_list_callback * pcallback = get_filemanager_template()->get_filemanager_template()->m_pfilelistcallback;
+      //file_list_callback * pcallback = get_filemanager_template()->m_pfilelistcallback;
       return simple_child_frame::_001OnCmdMsg(pcmdmsg);
    }
 
@@ -126,6 +126,8 @@ namespace filemanager
    {
       UNREFERENCED_PARAMETER(pobj);
    }
+
+
 
 
 } // namespace filemanager

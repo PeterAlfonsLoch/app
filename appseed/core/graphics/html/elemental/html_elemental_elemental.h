@@ -61,8 +61,7 @@ namespace html
       virtual void _001OnDraw(data * pdoc);
       virtual void load(data * pdoc, base * pbase);
 
-      virtual bool get_background_color(COLORREF & cr);
-      virtual bool get_color(COLORREF & cr);
+      virtual bool get_color(COLORREF & cr, ::user::e_color ecolor);
       virtual bool get_font(::draw2d::font_sp & spfont);
 
       static bool tag_visible(e_tag etag);

@@ -6,7 +6,6 @@ simple_child_frame::simple_child_frame(sp(::base::application) papp) :
    simple_frame_window(papp)
 {
 
-   m_etranslucency      = TranslucencyTotal;
    m_bWindowFrame       = false;
 
 }
@@ -57,3 +56,11 @@ bool simple_child_frame::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
 
 
 
+bool simple_child_frame::get_translucency(::user::ETranslucency & etranslucency)
+{
+
+   etranslucency = TranslucencyTotal;
+
+   return true;
+
+}

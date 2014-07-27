@@ -4,10 +4,13 @@
 namespace filemanager
 {
 
+
    class CLASS_DECL_CORE iconoverlayer :
       virtual public ::object
    {
    public:
+
+
       iconoverlayer(sp(::base::application) papp);
       virtual ~iconoverlayer();
 
@@ -22,4 +25,5 @@ namespace filemanager
 
    };
 
-}
+
+} // namespace filemanager

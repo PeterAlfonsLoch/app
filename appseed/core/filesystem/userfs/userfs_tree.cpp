@@ -279,7 +279,7 @@ namespace userfs
    void tree::_017OpenFolder(sp(::fs::item) item, ::action::context actioncontext)
    {
 
-      get_document()->file_manager_browse(item->m_strPath, actioncontext);
+      get_document()->browse(item->m_strPath, actioncontext);
 
    }
 

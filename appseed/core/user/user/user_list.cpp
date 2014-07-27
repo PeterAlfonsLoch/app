@@ -198,7 +198,7 @@ namespace user
 
          ::draw2d::brush_sp brushText(allocer());
 
-         brushText->create_solid(m_crText);
+         brushText->create_solid(_001GetColor(color_text));
 
          point ptViewportOrg = pdc->GetViewportOrg();
          pdc->SelectObject(brushText);
@@ -5347,27 +5347,22 @@ namespace user
          {
             if(m_bListItemHover)
             {
-               m_cr = m_plist->m_crTextSelectedHighlight;
+               m_plist->get_color(m_cr,::user::color_text_selected_highlight);
             }
             else
             {
-               m_cr = m_plist->m_crTextSelected;
+               m_plist->get_color(m_cr,::user::color_text_selected);
             }
          }
          else
          {
             if(m_bListItemHover)
             {
-               m_cr = m_plist->m_crTextHighlight;
+               m_plist->get_color(m_cr,::user::color_text_highlight);
             }
             else
             {
-
-               COLORREF cr;
-
-               get_color(cr);
-
-               m_cr = cr;
+               m_plist->get_color(m_cr,::user::color_text);
             }
          }
       }

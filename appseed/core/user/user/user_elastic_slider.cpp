@@ -1,19 +1,21 @@
 #include "framework.h"
 
+
 namespace user
 {
+
 
    elastic_slider::elastic_slider(sp(::base::application) papp) :
       element(papp),
       ::user::interaction(papp)
    {
+
       m_daScalar.allocate(100);
       m_daScalar.set(0.0);
 
-      m_etranslucency = TranslucencyPresent;
-
       m_bSlide = false;
       m_iScalar = 0;
+
    }
 
    elastic_slider::~elastic_slider()

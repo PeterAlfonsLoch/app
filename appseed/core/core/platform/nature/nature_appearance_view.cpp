@@ -115,9 +115,9 @@ namespace nature
    void appearance_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
       ::filemanager::filemanager & filemanager = platform().filemanager();
-      sp(folder_selection_list_view) pview;
+      sp(::filemanager::folder_selection_list_view) pview;
       pview =  (::user::impact::create_view(
-         System.type_info < folder_selection_list_view > (),
+         System.type_info < ::filemanager::folder_selection_list_view > (),
          get_document(),
          this,
          pcreatordata->m_id).m_p);
@@ -127,8 +127,8 @@ namespace nature
          pview->Initialize(&filemanager.std(), "Image", "core.nature.ImageDirectorySet", true);
          break;
       }
-      pview->connect_command("edit_add", &folder_selection_list_view::_001OnAdd);
-      pview->connect_command("edit_remove", &folder_selection_list_view::_001OnRemove);
+      pview->connect_command("edit_add",&::filemanager::folder_selection_list_view::_001OnAdd);
+      pview->connect_command("edit_remove",&::filemanager::folder_selection_list_view::_001OnRemove);
       pcreatordata->m_pdoc = pview->get_document();
       pcreatordata->m_pwnd = pview;
       pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
@@ -136,14 +136,14 @@ namespace nature
 
    void appearance_view::_001OnEditAdd(signal_details * pobj)
    {
-      sp(folder_selection_list_view) pview =  (get_view_uie().m_p);
+      sp(::filemanager::folder_selection_list_view) pview =  (get_view_uie().m_p);
       pview->FolderAdd();
       pobj->m_bRet = true;
    }
 
    void appearance_view::_001OnEditRemove(signal_details * pobj)
    {
-      sp(folder_selection_list_view) pview =  (get_view_uie().m_p);
+      sp(::filemanager::folder_selection_list_view) pview =  (get_view_uie().m_p);
       pview->FolderRemove();
       pobj->m_bRet = true;
    }

@@ -52,8 +52,10 @@ namespace filemanager
       virtual ~tree();
 
 
+      virtual void assert_valid() const;
+      virtual void dump(dump_context & dumpcontext) const;
+
       virtual void _001InsertColumns();
-      //virtual void _001CreateImageList(CColumn & column);
       virtual void _001UpdateImageList(sp(::data::tree_item) pitem);
 
       DECL_GEN_VSIGNAL(_001OnTimer);
@@ -108,22 +110,15 @@ namespace filemanager
       void _DelayedListUpdate();
 
 
-
-
-
       void RenameFile(int32_t iLine, string & str, ::action::context actioncontext);
 
       virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
 
-#ifdef DEBUG
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
-#endif
 
       DECL_GEN_SIGNAL(_001OnLButtonDblClk);
-         DECL_GEN_SIGNAL(_001OnContextMenu);
-         DECL_GEN_SIGNAL(_001OnCreate);
-         DECL_GEN_SIGNAL(_001OnShellCommand);
+      DECL_GEN_SIGNAL(_001OnContextMenu);
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnShellCommand);
 
    };
 

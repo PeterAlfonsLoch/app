@@ -896,9 +896,6 @@
     <ClInclude Include="graphics\visual\visual_water_routine.h">
       <Filter>Header Files\graphics\visual</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\file_operation.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
@@ -2395,6 +2392,12 @@
     </ClInclude>
     <ClInclude Include="core\platform\nature\nature_view.h">
       <Filter>Header Files\core\platform\nature</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_main_view.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_operation.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3954,6 +3957,9 @@
     </ClCompile>
     <ClCompile Include="core\platform\bergedge\bergedge_view.cpp">
       <Filter>Source Files\core\platform\bergedge</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_main_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -7,7 +7,6 @@ namespace filemanager
 
    folder_list::folder_list(sp(::base::application) papp) :
       element(papp),
-      ::filemanager::impact(papp),
       ::user::scroll_view(papp),
       ::user::list(papp),
       m_headerctrl(papp)
@@ -84,10 +83,6 @@ namespace filemanager
                if(get_filemanager_data()->m_bPassBk)
                {
                   ::user::list::m_bBackgroundBypass = true;
-               }
-               else if(get_filemanager_data()->m_bTransparentBackground)
-               {
-                  ::user::list::m_etranslucency = ::user::list::TranslucencyPresent;
                }
                _001UpdateColumns();
             }
@@ -200,7 +195,7 @@ namespace filemanager
       Folder folder;
 
       //   HRESULT hr;
-      string strParent = GetFileManagerItem().m_strPath;
+      string strParent = get_filemanager_item().m_strPath;
 
       if (strParent.is_empty())
       {
@@ -396,13 +391,17 @@ namespace filemanager
 
    void folder_list::_017Synchronize(::action::context actioncontext)
    {
-      _017Browse(GetFileManagerItem().m_strPath, actioncontext);
+      _017Browse(get_filemanager_item().m_strPath, actioncontext);
    }
 
-   ::fs::item & folder_list::GetFileManagerItem()
+
+   ::fs::item & folder_list::get_filemanager_item()
    {
-      return get_filemanager_template()->get_item();
+
+      return get_filemanager_manager()->get_filemanager_item();
+
    }
+
 
    ::count folder_list::_001GetItemCount()
    {

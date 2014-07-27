@@ -1,20 +1,22 @@
 #include "framework.h"
 
+
 namespace user
 {
 
+
    const int32_t BaseWndMenuTimer = 500;
    const int32_t BaseWndMenuCmdUi = 117;
-//   const int32_t BaseWndMenuTiming = 200;
+
 
    menu::menu(sp(::base::application) papp) :
       element(papp),
       menu_base(papp),
       m_buttonClose(papp)
    {
+
       m_bAutoDelete        = true;
       m_pschema            = NULL;
-      m_etranslucency      = TranslucencyNone;
       m_pitem              = new menu_item(papp);
       m_bOwnItem           = true;
       m_oswindowParent         = NULL;
@@ -22,45 +24,31 @@ namespace user
       m_psubmenu           = NULL;
       m_iHoverSubMenu      = -1;
 
-      set_default_background_color(ARGB(255, 185, 184, 177));
-
    }
+
 
    menu::menu(sp(::base::application) papp, sp(menu_item) pitem) :
       element(papp),
       menu_base(papp),
       m_buttonClose(papp)
    {
+
       m_iHoverSubMenu      = -1;
       m_oswindowParent         = NULL;
       m_pmenuParent        = NULL;
       m_psubmenu           = NULL;
       m_bAutoDelete        = true;
-      m_etranslucency      = TranslucencyNone;
       m_pschema            = NULL;
       m_pitem              = pitem;
       m_bOwnItem           = false;
 
-      set_default_background_color(ARGB(255, 185, 184, 177));
-
    }
+
 
    menu::~menu()
    {
+
    }
-
-
-   /* // BEGIN_MESSAGE_MAP(menu, ::user::interaction)
-      ON_MESSAGE(MessageDestroyWindow, OnMessageDestroyWindow)
-   //   ON_BN_CLICKED(ChildIdClose, OnBnClickedClose)
-    // END_MESSAGE_MAP()
-   */
-
-
-
-   // CBaseWndMenu message handlers
-
-
 
 
    menu_item * menu::GetSubMenu(int32_t i)
@@ -113,7 +101,7 @@ namespace user
 
       m_buttonClose._001SetButtonText("r");
       m_buttonClose.m_pschema = m_pschema->m_pschemaSysMenuButton;
-      m_buttonClose.SetFont(m_buttonClose.m_pschema->m_font);
+      //m_buttonClose.SetFont(m_buttonClose.m_pschema->m_font);
 
       //System.add_frame(this);
 
@@ -189,9 +177,7 @@ namespace user
          }
          pitem->m_button.create(this, pitem->m_id);
          pitem->m_button.SetWindowPos(0, rect.left, rect.top, rect.width(), rect.height(), 0);
-         pitem->m_button.m_etranslucency = TranslucencyPresent;
          pitem->m_button.m_pschema = m_pschema->m_pschemaItemButton;
-         pitem->m_button.SetFont(pitem->m_button.m_pschema->m_font);
          pitem->m_button.m_pitem = pitem;
          pitem->m_pbase = this;
    /*      if(pitem->IsPopup())
@@ -622,6 +608,20 @@ namespace user
 
       return m_pitem;
 
+   }
+
+   bool menu::get_color(COLORREF & cr,e_color ecolor)
+   {
+
+      if(e_color == color_background)
+      {
+         cr = ARGB(255,185,184,177);
+         return true;
+      }
+      else
+      {
+         return ::user::control::get_color(cr,ecolor);
+      }
    }
 
 } // namespace user

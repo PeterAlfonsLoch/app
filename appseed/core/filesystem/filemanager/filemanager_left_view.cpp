@@ -7,9 +7,7 @@ namespace filemanager
 
    left_view::left_view(sp(::base::application) papp) :
       element(papp),
-      ::filemanager::impact(papp),
       ::user::split_layout(papp),
-
       ::user::split_view(papp),
       place_holder_container(papp)
    {

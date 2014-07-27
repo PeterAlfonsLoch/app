@@ -8,7 +8,6 @@ namespace filemanager
 
    path_view::path_view(sp(::base::application) papp) :
       element(papp),
-      ::filemanager::impact(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
       ::data::data_listener(papp),
@@ -84,7 +83,7 @@ namespace filemanager
             }
             }
             }
-            file_manager_form_update_hint * pmanageruh = dynamic_cast<file_manager_form_update_hint * > (phint);
+            form_update_hint * pmanageruh = dynamic_cast<form_update_hint * > (phint);
             if(pmanageruh != NULL)
             {
             if(!pmanageruh->m_strFind.is_empty())
@@ -112,10 +111,10 @@ namespace filemanager
 
       _001GetText(strOld);
 
-      if (strOld == get_filemanager_manager()->get_item().m_strPath)
+      if (strOld == get_filemanager_item().m_strPath)
          return;
 
-      _001SetText(get_filemanager_manager()->get_item().m_strPath, actioncontext);
+      _001SetText(get_filemanager_item().m_strPath, actioncontext);
 
    }
 
@@ -155,7 +154,7 @@ namespace filemanager
             strName = System.dir().name(strName);
             if (get_filemanager_manager()->get_fs_data()->is_dir(strName))
             {
-               if (!System.file().path().is_equal(get_filemanager_manager()->get_item().m_strPath, strName))
+               if (!System.file().path().is_equal(get_filemanager_item().m_strPath, strName))
                {
                   keep < bool > keepVoidSync(&m_bVoidSync, true, false, true);
                   get_filemanager_manager()->FileManagerBrowse(strName, ::action::source::sync(actioncontext));

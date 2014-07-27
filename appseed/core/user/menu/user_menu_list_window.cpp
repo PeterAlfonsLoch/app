@@ -1,7 +1,9 @@
 #include "framework.h"
 
+
 namespace user
 {
+
 
    const int32_t BaseWndMenuCmdUi = 117;
    const int32_t g_base_menu_indent = 11;
@@ -18,7 +20,6 @@ namespace user
       m_bOwnItem           = false;
       m_pwndNotify         = NULL;
       m_pitem              = new menu_item(papp);
-      m_etranslucency      = TranslucencyPresent;
       m_pschema            = NULL;
       m_bAutoClose         = true;
 
@@ -31,44 +32,51 @@ namespace user
       menu(papp),
       m_buttonClose(papp)
    {
+
       m_pwndNotify         = NULL;
       m_bAutoClose         = true;
       m_bAutoDelete        = true;
-      m_etranslucency      = TranslucencyPresent;
       m_pschema            = NULL;
       m_pitem              = pitem;
       m_bOwnItem           = false;
+
    }
 
 
    menu_list_window::~menu_list_window()
    {
+
    }
+
 
    void menu_list_window::install_message_handling(::message::dispatch * pinterface)
    {
+
       control::install_message_handling(pinterface);
+
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &menu_list_window::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &menu_list_window::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &menu_list_window::_001OnTimer);
+
    }
 
-   // // BEGIN_MESSAGE_MAP(menu_list_window, ::user::interaction)
-   // // END_MESSAGE_MAP()
-
+   
    void menu_list_window::_001OnCreate(signal_details * pobj)
    {
+
       UNREFERENCED_PARAMETER(pobj);
+
       m_pschema            = &::userex::GetUfeSchema(get_app())->m_menu;
+
    }
+
 
    void menu_list_window::_001OnDestroy(signal_details * pobj)
    {
+
       pobj->m_bRet = false;
+
    }
-
-
-
 
    bool menu_list_window::TrackPopupMenu(sp(::user::interaction) pwndParent, sp(::user::interaction) pwndNotify)
    {

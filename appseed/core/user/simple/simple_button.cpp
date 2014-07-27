@@ -56,9 +56,10 @@ void simple_button::_001OnCtlColor(signal_details * pobj)
 
 void simple_button::ResizeToFit()
 {
+
    ::draw2d::memory_graphics pdc(allocer());
 
-   pdc->SelectObject(GetFont());
+   select_font(pdc);
 
    string str;
    GetWindowText(str);

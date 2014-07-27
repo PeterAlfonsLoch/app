@@ -12,7 +12,7 @@ namespace userfs
 
 
       string                                    m_strFolder;
-      ::fs::set                                 m_fsset;
+      sp(::fs::set)                             m_fsset;
 
 
       document(sp(::base::application) papp);
@@ -21,14 +21,12 @@ namespace userfs
       sp(::user::document)                                get_document();
 
 
-   //#ifdef DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
-   //#endif
 
-      bool file_manager_browse(const char * pszFolder, ::action::context actioncontext);
+      bool browse(const char * pszFolder, ::action::context actioncontext);
 
-      inline ::fs::set & set()
+      inline sp(::fs::set) get_fs_data()
       {
 
 

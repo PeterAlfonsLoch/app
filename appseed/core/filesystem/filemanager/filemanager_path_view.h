@@ -29,8 +29,6 @@ namespace filemanager
    };
 
 
-
-
 } // namespace filemanager
 
 

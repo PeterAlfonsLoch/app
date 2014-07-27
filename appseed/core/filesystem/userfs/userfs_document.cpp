@@ -8,9 +8,11 @@ namespace userfs
    document::document(sp(::base::application) papp) :
       element(papp),
       ::data::data_container_base(papp),
-      ::user::document(papp),
-      m_fsset(papp)
+      ::user::document(papp)
    {
+
+      m_fsset = canew(::fs::set(papp));
+
    }
 
    document::~document()
@@ -27,7 +29,7 @@ namespace userfs
       ::user::document::dump(dumpcontext);
    }
 
-   bool document::file_manager_browse(const char * pszFolder, ::action::context actioncontext)
+   bool document::browse(const char * pszFolder, ::action::context actioncontext)
    {
       
       m_strFolder = pszFolder;

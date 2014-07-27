@@ -69,7 +69,8 @@ public:
             uint32_t dwExStyle = 0,
             sp(::create_context) pContext = NULL);
 
-
+   virtual bool create_bars();
+   virtual bool on_create_bars();
 
    virtual void install_message_handling(::message::dispatch * pinterface);
 

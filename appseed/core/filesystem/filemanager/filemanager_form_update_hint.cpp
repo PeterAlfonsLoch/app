@@ -1,4 +1,10 @@
 #include "framework.h"
 
+namespace filemanager
+{
 
-// IMPLEMENT_DYNAMIC(file_manager_form_update_hint, form_update_hint)
+
+
+
+
+} // namespace filemanager

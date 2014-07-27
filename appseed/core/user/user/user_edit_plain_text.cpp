@@ -199,10 +199,11 @@ namespace user
       COLORREF cr;
 
 
-      cr          = m_crText;
-      crBk        = ARGB(255, 255, 255, 255);
-      crBkSel     = ARGB(255, 0, 0, 127);
-      crSel       = ARGB(255, 255, 255, 255);
+      get_color(cr, color_text);
+      get_color(crBk,color_background);
+      get_color(crSel,color_text_selected);
+      get_color(crBkSel,color_background_selected);
+      
 
       ::job * pjob = pdc->m_pjob;
 
@@ -242,7 +243,7 @@ namespace user
          }
          else
          {
-            pdc->FillSolidRect(rectClient, get_background_color());
+            pdc->FillSolidRect(rectClient, _001GetColor(color_background));
          }
       }
       /*else if(!session().savings().is_trying_to_save(::base::resource_processing)
@@ -351,7 +352,7 @@ namespace user
       _001GetViewSel(iSelStart, iSelEnd);
       strsize iCursor = iSelEnd;
       sort::sort(iSelStart, iSelEnd);
-      pdc->SelectObject(GetFont());
+      select_font(pdc);
       size size3;
       visual::graphics_extension(get_app()).GetTextExtent(pdc, unitext("gGYIﾍ"), size3);
       int32_t iLineHeight = size3.cy;
@@ -1020,7 +1021,8 @@ namespace user
    void edit_plain_text::_001OnCalcLayout(::draw2d::graphics * pdc)
    {
 
-      pdc->SelectObject(GetFont());
+      select_font(pdc);
+
       stringa & straLines = m_lines.lines;
       strsize iSelStart;
       strsize iSelEnd;
@@ -1090,7 +1092,7 @@ namespace user
          {
             ::draw2d::memory_graphics pgraphics(allocer());
 
-            pgraphics->SelectObject(GetFont());
+            select_font(pgraphics);
             pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
             size size1 = pgraphics->GetTextExtent(straLines[i], (int32_t) straLines[i].length(), (int32_t) (iSel - i1));
             size size2 = pgraphics->GetTextExtent(straLines[i], (int32_t) iSel - i1);
@@ -1154,7 +1156,8 @@ namespace user
 
       ::draw2d::memory_graphics pgraphics(allocer());
 
-      pgraphics->SelectObject(GetFont());
+      select_font(pgraphics);
+
       pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
       size size3 = pgraphics->GetTextExtent(unitext("gqYALﾍWM"));
 
@@ -1227,9 +1230,13 @@ namespace user
 
    strsize edit_plain_text::char_hit_test(::draw2d::graphics * pdc, int32_t px, int32_t py)
    {
-      pdc->SelectObject(GetFont());
+      
+      select_font(pdc);
+
       rect rectClient;
+
       GetClientRect(rectClient);
+
       px -= rectClient.left;
       py -= rectClient.top;
       if(m_iLineHeight == 0)

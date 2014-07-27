@@ -152,6 +152,27 @@ namespace user
          }
 
       }
+      else if(ecolor == color_background_selected)
+      {
+
+         if(get_color(cr,ecolor))
+            return cr;
+
+         if(_001IsTranslucent())
+         {
+
+            return ARGB(184,0,0,127);
+
+         }
+         else
+         {
+
+            return ARGB(255,0,0,127);
+
+         }
+
+      }
+      
 
 
 

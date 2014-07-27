@@ -8,7 +8,6 @@ namespace filemanager
    tree::tree(sp(::base::application) papp) :
       element(papp),
       ::data::data(papp),
-      ::filemanager::impact(papp),
       ::userfs::tree(papp),
       m_mutexMissinUpdate(papp)
    {
@@ -431,7 +430,7 @@ namespace filemanager
 
          strPathOld.trim_right("/\\");
 
-         if(!straNew.contains(strPathOld) || !get_filemanager_template()->get_fs_data()->is_dir(strPathOld))
+         if(!straNew.contains(strPathOld) || !get_filemanager_manager()->get_fs_data()->is_dir(strPathOld))
          {
             ptraRemove.add(pitem);
          }
@@ -723,15 +722,15 @@ namespace filemanager
    }
 
    /*
-   ::fs::item & tree::GetFileManagerItem()
+   ::fs::item & tree::get_filemanager_item()
    {
-   return get_filemanager_template()->get_item();
+   return get_filemanager_item;
    }
    */
 
    void tree::_017Synchronize(::action::context actioncontext)
    {
-      _017Browse(GetFileManagerItem().m_strPath, actioncontext);
+      _017Browse(get_filemanager_item().m_strPath, actioncontext);
    }
 
    void tree::install_message_handling(::message::dispatch *pinterface)
@@ -896,13 +895,13 @@ namespace filemanager
 
          System.os().resolve_link(strTarget, item->m_strPath);
 
-         get_filemanager_template()->FileManagerBrowse(strTarget,actioncontext);
+         get_filemanager_manager()->FileManagerBrowse(strTarget,actioncontext);
 
       }
       else
       {
 
-         get_filemanager_template()->FileManagerBrowse(item,actioncontext);
+         get_filemanager_manager()->FileManagerBrowse(item,actioncontext);
 
       }
 
@@ -1084,10 +1083,10 @@ namespace filemanager
                {
                   /* xxx _001SetExpandImage(
                   System.LoadIcon(
-                  get_filemanager_template()->get_filemanager_template()->m_uiExpandBox));
+                  get_filemanager_template()->m_uiExpandBox));
                   _001SetCollapseImage(
                   System.LoadIcon(
-                  get_filemanager_template()->get_filemanager_template()->m_uiCollapseBox));*/
+                  get_filemanager_template()->m_uiCollapseBox));*/
 
 
                   //            VmsDataInitialize(this);
@@ -1214,7 +1213,7 @@ namespace filemanager
          /*     if(_001HitTest_(ptClient, iItem))
          {
          CSimpleMenu menu(CBaseMenuCentral::GetMenuCentral());
-         if (menu.LoadMenu(get_filemanager_template()->get_filemanager_template()->m_uiFilePopup))
+         if (menu.LoadMenu(get_filemanager_template()->m_uiFilePopup))
          {
          CSimpleMenu* pPopup = (CSimpleMenu *) menu.GetSubMenu(0);
          ASSERT(pPopup != NULL);
@@ -1253,7 +1252,7 @@ namespace filemanager
          else
          {
          ::user::menu menu;
-         if (menu.LoadMenu(get_filemanager_template()->get_filemanager_template()->m_uiPopup))
+         if (menu.LoadMenu(get_filemanager_template()->m_uiPopup))
          {
          ::user::menu* pPopup = menu.GetSubMenu(0);
          ASSERT(pPopup != NULL);

@@ -161,7 +161,7 @@ namespace userex
          || pcreatordata->m_id == "pick_file")
       {
 
-         ::filemanager::data * pfilemanagerdata = oprop("file_manager_data." + *pcreatordata->m_id.m_pstr).cast < ::filemanager::data >();
+         ::filemanager::data * pfilemanagerdata = oprop("data." + *pcreatordata->m_id.m_pstr).cast < ::filemanager::data >();
 
          if (pfilemanagerdata == NULL)
             pfilemanagerdata = new ::filemanager::data(get_app());
@@ -171,15 +171,15 @@ namespace userex
 
          pfilemanagerdata->m_id = pcreatordata->m_id;
 
-         if(oprop("file_manager_toolbar").is_set())
-            pfilemanagerdata->m_strToolBar = oprop("file_manager_toolbar");
+         if(oprop("toolbar").is_set())
+            pfilemanagerdata->m_strToolBar = oprop("toolbar");
          else
-            pfilemanagerdata->m_strToolBar = "file_manager_toolbar.xml";
+            pfilemanagerdata->m_strToolBar = "toolbar.xml";
 
-         if(oprop("file_manager_toolbar_save").is_set())
-            pfilemanagerdata->m_strToolBarSave = oprop("file_manager_toolbar_save");
+         if(oprop("toolbar_save").is_set())
+            pfilemanagerdata->m_strToolBarSave = oprop("toolbar_save");
          else
-            pfilemanagerdata->m_strToolBarSave = "file_manager_toolbar_save.xml";
+            pfilemanagerdata->m_strToolBarSave = "toolbar_save.xml";
 
          sp(::filemanager::manager) pdoc = platform().filemanager().std().open_child(true,pfilemanagerdata->m_bTransparentBackground,pcreatordata->m_pholder,pfilemanagerdata);
          if(pdoc != NULL)

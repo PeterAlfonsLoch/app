@@ -1,39 +1,61 @@
 #pragma once
 
 
-
-class CLASS_DECL_CORE file_manager_operation_list_view :
-   virtual public ::user::impact,
-   virtual public ::user::list
+namespace filemanager
 {
-public:
 
-   file_manager_operation_list_view(sp(::base::application) papp);
 
-   virtual void install_message_handling(::message::dispatch * pinterface);
+   class CLASS_DECL_CORE operation_list_view:
+      virtual public ::user::impact,
+      virtual public ::user::list
+   {
+   public:
 
-   void _001InsertColumns();
 
-   virtual void OnDraw(::draw2d::graphics * pdc);
+      ::user::list_cache               m_listcache;
+      simple_list_header_control       m_headerctrl;
+      uint32_t                         m_dwLast123Update;
 
-   DECL_GEN_SIGNAL(_001OnCreate);
-   DECL_GEN_SIGNAL(_001OnTimer);
 
-   virtual count _001GetItemCount();
-   virtual void _001GetItemText(::user::list_item * pitem);
+      operation_list_view(sp(::base::application) papp);
 
-   void OnFileOperationStep(int32_t iOperation, bool bFinal);
+      virtual void install_message_handling(::message::dispatch * pinterface);
 
-   ::user::list_cache               m_listcache;
-   simple_list_header_control       m_headerctrl;
+      void _001InsertColumns();
 
-   DECL_GEN_SIGNAL(_001OnInitialUpdate);
+      virtual void OnDraw(::draw2d::graphics * pdc);
 
-   uint32_t                            m_dwLast123Update;
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnTimer);
 
-   
+      virtual count _001GetItemCount();
+      virtual void _001GetItemText(::user::list_item * pitem);
 
-   void on_update(sp(::user::impact) pSender, LPARAM lHint, object * pHint);
-   sp(file_manager_operation_document) get_document();
-};
+      void OnFileOperationStep(int32_t iOperation,bool bFinal);
+
+
+      DECL_GEN_SIGNAL(_001OnInitialUpdate);
+
       
+      void on_update(sp(::user::impact) pSender,LPARAM lHint,object * pHint);
+      sp(operation_document) get_document();
+
+
+   };
+
+
+} // namespace filemanager
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1354,34 +1354,7 @@ namespace user
    }
 
 
-   void combo_box::SetFont(::draw2d::font* pFont, bool bRedraw)
-   {
 
-      edit_plain_text::SetFont(pFont, bRedraw);
-
-      if (m_plist != NULL)
-      {
-
-         m_plist->SetFont(pFont, bRedraw);
-
-      }
-
-   }
-
-
-   void combo_box::set_text_color(COLORREF crText)
-   {
-
-      edit_plain_text::set_text_color(crText);
-
-      if (m_plist != NULL)
-      {
-
-         m_plist->m_crText = crText;
-
-      }
-
-   }
 
 
 } // namespace user

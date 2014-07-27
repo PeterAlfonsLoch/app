@@ -5,26 +5,25 @@ namespace filemanager
 {
 
 
-   a_view::a_view(sp(::base::application) papp) :
+   view::view(sp(::base::application) papp) :
       element(papp),
-      ::filemanager::impact(papp),
       ::user::split_layout(papp),
       ::user::split_view(papp),
       place_holder_container(papp)
    {
    }
 
-   a_view::~a_view()
+   view::~view()
    {
    }
 
 #ifdef DEBUG
-   void a_view::assert_valid() const
+   void view::assert_valid() const
    {
       ::user::split_view::assert_valid();
    }
 
-   void a_view::dump(dump_context & dumpcontext) const
+   void view::dump(dump_context & dumpcontext) const
    {
       ::user::split_view::dump(dumpcontext);
    }
@@ -32,7 +31,7 @@ namespace filemanager
 #endif //DEBUG
 
 
-   void a_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
+   void view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
    {
       impact::on_update(pSender, lHint, phint);
       ::user::split_view::on_update(pSender, lHint, phint);
@@ -73,54 +72,41 @@ namespace filemanager
                   RedrawWindow();
 
                }
-               else if (puh->is_type_of(update_hint::TypeCreateBars))
+               else if(puh->is_type_of(update_hint::TypeCreateBars))
                {
-                  sp(frame) pframe = (GetParentFrame());
-                  if (pframe != NULL)
-                  {
-                     ASSERT(pframe != NULL);
-                     ASSERT(base_class < frame > ::bases(pframe));
-                     pframe->SetActiveView(this);
-                     pframe->CreateBars();
-                  }
-                  sp(main_frame) pmainframe = (GetTopLevelFrame());
-                  if (pmainframe != NULL)
-                  {
-                     pmainframe->SetActiveView(this);
-                     pmainframe->CreateBars();
-                  }
-                  sp(child_frame) pchildframe = (GetParentFrame());
-                  if (pchildframe != NULL)
-                  {
-                     ASSERT(pchildframe != NULL);
-                     ASSERT(base_class < child_frame > ::bases(pchildframe));
 
-                     pchildframe->SetActiveView(this);
-                     pchildframe->CreateBars();
+                  sp(simple_frame_window) pframe = (GetParentFrame());
+
+                  if(pframe != NULL)
+                  {
+
+                     pframe->create_bars();
+
                   }
+
                }
-               else if (puh->is_type_of(update_hint::TypeSaveAsStart))
+               else if(puh->is_type_of(update_hint::TypeSaveAsStart))
                {
-                  if (!base_class < FileManagerSaveAsView >::bases(get_pane_window(0)))
+                  if (!base_class < ::filemanager::save_as_view >::bases(get_pane_window(0)))
                   {
                      //create_context cc;
                      //cc.m_usercreatecontext.m_pCurrentDoc = get_document();
-                     //cc.m_usercreatecontext.m_typeinfoNewView =  System.type_info < FileManagerSaveAsView > ();
+                     //cc.m_usercreatecontext.m_typeinfoNewView =  System.type_info < ::filemanager::save_as_view > ();
                      //cc.m_usercreatecontext.m_pCurrentFrame = this;
 
-                     FileManagerSaveAsView * ptopview = create_view < FileManagerSaveAsView >();
+                     ::filemanager::save_as_view * ptopview = create_view < ::filemanager::save_as_view >();
                      if (ptopview == NULL)
                      {
                         System.simple_message_box(NULL, "Could not create folder tree ::user::impact");
                      }
-                     ptopview->m_pfilemanagerinterface = get_filemanager_template();
+                     ptopview->m_pmanager = get_filemanager_manager();
                      InsertPaneAt(0, ptopview, true);
                      string strName =
                         System.file().title_(get_filemanager_data()->m_pdocumentSave->get_path_name())
                         + " - " + System.datetime().international().get_gmt_date_time()
                         + "." + System.file().extension(get_filemanager_data()->m_pdocumentSave->get_path_name());
                      strName.replace(":", "-");
-                     strName = System.dir().path(get_filemanager_template()->get_item().m_strPath, strName);
+                     strName = System.dir().path(get_filemanager_item().m_strPath, strName);
                      ptopview->_001SetText(strName, puh->m_actioncontext);
                      get_filemanager_data()->m_pmanager->m_strTopic = strName;
                      set_position(0, 49);
@@ -130,7 +116,7 @@ namespace filemanager
                }
                else if (puh->is_type_of(update_hint::TypeSaveAsCancel))
                {
-                  if (base_class < FileManagerSaveAsView >::bases(get_pane_window(0)))
+                  if (base_class < ::filemanager::save_as_view >::bases(get_pane_window(0)))
                   {
                      RemovePaneAt(0);
                      set_position(0, 49);
@@ -145,28 +131,28 @@ namespace filemanager
                   if (strPath.is_empty())
                   {
                      string strTitle;
-                     dynamic_cast <FileManagerSaveAsView *>(get_pane_window(0).m_p)->_001GetText(strTitle);
-                     if (System.dir().name(strTitle).has_char() && GetFileManagerDoc()->get_fs_data()->is_dir(System.dir().name(strTitle)))
+                     dynamic_cast <::filemanager::save_as_view *>(get_pane_window(0).m_p)->_001GetText(strTitle);
+                     if (System.dir().name(strTitle).has_char() && get_filemanager_manager()->get_fs_data()->is_dir(System.dir().name(strTitle)))
                      {
                         strPath = strTitle;
                      }
-                     else if (GetFileManagerDoc()->get_fs_data()->is_dir(get_filemanager_template()->get_item().m_strPath))
+                     else if (get_filemanager_manager()->get_fs_data()->is_dir(get_filemanager_item().m_strPath))
                      {
-                        strPath = System.dir().path(get_filemanager_template()->get_item().m_strPath, strTitle);
+                        strPath = System.dir().path(get_filemanager_item().m_strPath, strTitle);
                      }
                      else if (strTitle.has_char())
                      {
-                        strPath = System.dir().path(get_filemanager_template()->get_item().m_strPath, strTitle);
+                        strPath = System.dir().path(get_filemanager_item().m_strPath, strTitle);
                      }
                      else
                      {
-                        strPath = get_filemanager_template()->get_item().m_strPath;
+                        strPath = get_filemanager_item().m_strPath;
                      }
                   }
 
                   bool bSave = !session().dir().is(strPath);
 
-                  if (bSave && GetFileManagerDoc()->get_fs_data()->file_exists(strPath))
+                  if (bSave && get_filemanager_manager()->get_fs_data()->file_exists(strPath))
                   {
                      if (System.simple_message_box(platform().get_view(), "Do you want to replace the existing file " + strPath + "?", MB_YESNO) == IDNO)
                      {
@@ -196,7 +182,7 @@ namespace filemanager
 
                   get_filemanager_data()->m_pdocumentSave = NULL;
 
-                  if (base_class < FileManagerSaveAsView >::bases(get_pane_window(0)))
+                  if (base_class < ::filemanager::save_as_view >::bases(get_pane_window(0)))
                   {
                      RemovePaneAt(0);
                      set_position(0, 49);
@@ -215,7 +201,7 @@ namespace filemanager
 
    }
 
-   void a_view::on_create_views()
+   void view::on_create_views()
    {
 
       if (get_pane_count() > 0)
@@ -252,206 +238,6 @@ namespace filemanager
       pmainview->create_views();
 
    }
-
-
-
-   main_view::main_view(sp(::base::application) papp) :
-      element(papp),
-      ::filemanager::impact(papp),
-      ::user::split_layout(papp),
-      ::user::split_view(papp),
-      place_holder_container(papp)
-   {
-
-      m_ppropform = NULL;
-
-   }
-
-
-   main_view::~main_view()
-   {
-
-   }
-
-
-#ifdef DEBUG
-
-
-   void main_view::assert_valid() const
-   {
-
-      ::user::split_view::assert_valid();
-
-   }
-
-
-   void main_view::dump(dump_context & dumpcontext) const
-   {
-
-      ::user::split_view::dump(dumpcontext);
-
-   }
-
-
-#endif //DEBUG
-
-
-
-   void main_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
-   {
-      impact::on_update(pSender, lHint, phint);
-      ::user::split_view::on_update(pSender, lHint, phint);
-      if (phint != NULL)
-      {
-         if (base_class < update_hint >::bases(phint))
-         {
-            update_hint * puh = (update_hint *)phint;
-            if (get_filemanager_template() == puh->m_pmanager)
-            {
-               if (puh->is_type_of(update_hint::TypeInitialize))
-               {
-                  string str;
-                  str.Format("::frame(%d,%d)", get_filemanager_data()->m_iTemplate, get_filemanager_data()->m_iDocument);
-                  sp(frame) pframe = ((::window_sp) GetParentFrame());
-                  if (pframe != NULL)
-                  {
-                     pframe->m_dataid = str;
-                  }
-
-                  m_etranslucency = get_filemanager_data()->m_bTransparentBackground ? ::user::interaction::TranslucencyPresent : ::user::interaction::TranslucencyNone;
-
-                  set_default_background_color(ARGB(184,184,184,177));
-
-               }
-               else if (puh->is_type_of(update_hint::TypeOpenSelectionProperties))
-               {
-                  OpenSelectionProperties();
-               }
-               else if (puh->is_type_of(update_hint::TypePop))
-               {
-                  OnActivateFrame(WA_INACTIVE, ((GetParentFrame())));
-                  GetParentFrame()->ActivateFrame(SW_SHOW);
-                  OnActivateView(TRUE, this, this);
-                  RedrawWindow();
-                  sp(frame) pframe = ((::window_sp) GetParentFrame());
-                  if (pframe != NULL)
-                  {
-                     //xxx               pframe->WindowDataLoadWindowRect();
-                     //xxx          pframe->WindowDataEnableSaveWindowRect(true);
-                  }
-               }
-               else if (puh->is_type_of(update_hint::TypeCreateBars))
-               {
-                  sp(frame) pframe = ((::window_sp) GetParentFrame());
-                  if (pframe != NULL)
-                  {
-                     ASSERT(pframe != NULL);
-                     ASSERT(base_class < frame > ::bases(pframe));
-
-                     pframe->CreateBars();
-                  }
-                  sp(main_frame) pmainframe = (GetTopLevelFrame());
-                  if (pmainframe != NULL)
-                  {
-                     pmainframe->CreateBars();
-                  }
-                  sp(child_frame) pchildframe = ((::window_sp) GetParentFrame());
-                  if (pchildframe != NULL)
-                  {
-                     ASSERT(pchildframe != NULL);
-                     ASSERT(base_class < child_frame > ::bases(pchildframe));
-
-
-                     pchildframe->CreateBars();
-                  }
-               }
-            }
-         }
-      }
-
-
-   }
-
-   void main_view::on_create_views()
-   {
-
-      if (get_pane_count() > 0)
-         return;
-
-      SetPaneCount(2);
-
-      SetSplitOrientation(orientation_vertical);
-
-      set_position_rate(0, 0.3);
-
-      left_view * pleftview = create_view < left_view >();
-
-      if (pleftview == NULL)
-      {
-
-         System.simple_message_box(NULL, "Could not create folder tree ::user::impact");
-
-      }
-      
-      SetPane(0, pleftview, false);
-      
-      pleftview->create_views();
-
-      m_pfilelist = create_view < file_list >();
-
-      if (m_pfilelist == NULL)
-      {
-
-         System.simple_message_box(NULL, "Could not create file list ::user::impact");
-
-      }
-      
-      SetPane(1, m_pfilelist, false);
-
-      m_ppreview = create_view < preview >();
-
-      m_ppreview->ShowWindow(SW_HIDE);
-
-   }
-
-
-   void main_view::OpenSelectionProperties()
-   {
-      ::fs::item_array itema;
-      m_pfilelist->GetSelected(itema);
-      if (m_ppropform == NULL)
-      {
-         m_ppropform = new file_properties_form(get_app());
-      }
-      sp(::user::interaction) puie = m_ppropform->open(this, itema);
-      if (puie == NULL)
-         return;
-      SetPane(1, puie, false);
-      layout();
-   }
-
-   bool main_view::on_simple_action(id id)
-   {
-      //  int32_t iPos = -1;
-      if (id == "change_view")
-      {
-         if (m_ppreview->IsWindowVisible())
-         {
-            SetPane(1, m_pfilelist, false);
-            layout();
-            m_ppreview->ShowWindow(SW_HIDE);
-         }
-         else
-         {
-            SetPane(1, m_ppreview, false);
-            layout();
-            m_pfilelist->ShowWindow(SW_HIDE);
-         }
-         return true;
-      }
-      return false;
-   }
-
 
 
 } // namespace filemanager

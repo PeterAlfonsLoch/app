@@ -96,7 +96,7 @@ namespace core
 
       void load_string_table();
 
-      virtual bool file_manager_open_file(::filemanager::data * pdata, ::fs::item_array & itema);
+      virtual bool open_file(::filemanager::data * pdata, ::fs::item_array & itema);
 
       void initialize_bergedge_application_interface();
 

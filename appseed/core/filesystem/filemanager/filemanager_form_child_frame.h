@@ -1,10 +1,33 @@
 #pragma once
 
 
-class CLASS_DECL_CORE file_manager_form_child_frame : 
-   virtual public form_child_frame
+namespace filemanager
 {
-public:
-   // // DECLARE_DYNCREATE(file_manager_form_child_frame)
-   file_manager_form_child_frame(sp(::base::application) papp);
-};
+
+
+   class CLASS_DECL_CORE form_child_frame:
+      virtual public ::form_child_frame
+   {
+   public:
+      
+      
+      form_child_frame(sp(::base::application) papp);
+
+
+   };
+
+
+} // namespace filemanager
+
+
+
+
+
+
+
+
+
+
+
+
+

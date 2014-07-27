@@ -39,6 +39,14 @@ namespace filemanager
    class callback;
    class filemanager;
    class file_list_callback;
+   class preview;
+   class file_properties_form;
+   class folder_list_view;
+   class tree;
+   class operation_thread;
+   class operation_view;
+   class operation_list_view;
+   class operation_info_view;
 
 
 } // namespace filemanager
@@ -49,7 +57,7 @@ namespace filemanager
 #include "filemanager_icon.h"
 #include "filemanager_iconoverlayer.h"
 
-#include "file_operation.h"
+#include "filemanager_operation.h"
 #include "filemanager_operation_thread.h"
 #include "filemanager_operation_child_frame.h"
 #include "filemanager_operation_document.h"
@@ -74,6 +82,7 @@ namespace filemanager
 #include "filemanager_tab_view.h"
 #include "filemanager_left_view.h"
 #include "filemanager_view.h"
+#include "filemanager_main_view.h"
 #include "filemanager_child_frame.h"
 
 

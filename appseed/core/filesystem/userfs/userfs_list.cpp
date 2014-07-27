@@ -17,8 +17,6 @@ namespace userfs
       m_headerctrl.m_dataid = "veiev::list::header_ctrl";
 
 
-      m_etranslucency = TranslucencyPresent;
-
       m_dataid = "mail::list";
       m_pdata = new list_data(papp);
       //m_pdata->m_plist  = this;

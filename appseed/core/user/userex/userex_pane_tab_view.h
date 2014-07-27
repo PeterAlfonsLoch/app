@@ -4,11 +4,13 @@
 namespace userex
 {
 
+
    class pane_view;
 
    class CLASS_DECL_CORE pane_tab_view :
       virtual public ::user::tab_view,
-      virtual public ::user::view_creator
+      virtual public ::user::view_creator,
+      virtual public ::filemanager::impact
    {
    public:
 

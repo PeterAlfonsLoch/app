@@ -1231,11 +1231,6 @@ namespace core
 #endif
 
 
-   bool system::is_system()
-   {
-      return true;
-   }
-
    bool system::set_main_init_data(::base::main_init_data * pdata)
    {
 

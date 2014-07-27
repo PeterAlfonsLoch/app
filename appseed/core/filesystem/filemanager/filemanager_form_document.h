@@ -1,10 +1,27 @@
 #pragma once
 
 
-class CLASS_DECL_CORE file_manager_form_document :
-   virtual public form_document
+namespace filemanager
 {
-public:
-   file_manager_form_document(sp(::base::application) papp);
-   // // DECLARE_DYNCREATE(file_manager_form_document)
-};
+
+
+   class CLASS_DECL_CORE form_document:
+      virtual public ::form_document
+   {
+   public:
+      
+      
+      form_document(sp(::base::application) papp);
+
+      
+   };
+
+
+
+} // namespace filemanager
+
+
+
+
+
+

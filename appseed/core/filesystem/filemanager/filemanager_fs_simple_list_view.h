@@ -1,12 +1,13 @@
 #pragma once
 
-class image_list;
 
 namespace filemanager
 {
 
+
    namespace fs
    {
+
 
       namespace simple
       {

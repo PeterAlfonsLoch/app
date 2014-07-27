@@ -13,10 +13,6 @@ namespace user
 
       m_bLButtonDown = false;
 
-      m_crText = ARGB(255, 0, 0, 0);
-
-      m_crHover = ARGB(255,84,84,84);
-
       m_bHover = false;
 
    }
@@ -133,13 +129,13 @@ namespace user
          if(rectWindow.contains(pt))
          {
 
-            crText = m_crHover;
+            crText = _001GetColor(color_text_hover);
 
          }
          else
          {
 
-            get_color(crText);
+            crText = _001GetColor(color_text);
 
          }
 
@@ -147,22 +143,13 @@ namespace user
       else
       {
 
-         get_color(crText);
+         crText = _001GetColor(color_text);
 
       }
 
       pdc->set_text_color(crText);
 
-      ::draw2d::font_sp spfont;
-
-      get_font(spfont);
-
-      if(spfont.is_set())
-      {
-
-         pdc->SelectObject(spfont);
-
-      }
+      select_font(pdc);
 
       pdc->TextOut(0, 0, get_window_text());
 

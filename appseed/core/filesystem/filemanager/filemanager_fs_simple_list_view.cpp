@@ -4,11 +4,14 @@
 namespace filemanager
 {
 
+
    namespace fs
    {
 
+
       namespace simple
       {
+
 
          list_view::list_view(sp(::base::application) papp) :
          element(papp),
@@ -23,8 +26,6 @@ namespace filemanager
 
             SetCacheInterface(&m_cache);
 
-
-            m_etranslucency = TranslucencyPresent;
 
             m_dataid = "AlbumView";
 
@@ -626,7 +627,7 @@ namespace filemanager
             _001OnUpdateItemCount(0);
 
             string str;
-            xml::manager doc(get_app());
+            xml::document doc(get_app());
             if(doc.load(lpszSource))
             {
                str  = doc.get_xml();

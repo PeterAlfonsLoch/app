@@ -4,6 +4,7 @@
 namespace filemanager
 {
 
+
    class CLASS_DECL_CORE file_list_callback :
       virtual public ::object
    {

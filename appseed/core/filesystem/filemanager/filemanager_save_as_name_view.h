@@ -1,23 +1,36 @@
 #pragma once
 
 
-class CLASS_DECL_CORE FileManagerSaveAsView :
-   virtual public ::user::edit_plain_text_view,
-   virtual public ::filemanager::impact
+namespace filemanager
 {
-public:
 
 
-   FileManagerSaveAsView(sp(::base::application) papp);
+   class CLASS_DECL_CORE save_as_view:
+      virtual public ::user::edit_plain_text_view,
+      virtual public ::filemanager::impact
+   {
+   public:
+
+      
+      bool m_bVoidSync;
 
 
-   virtual void _001OnAfterChangeText(::action::context actioncontext);
+      save_as_view(sp(::base::application) papp);
 
 
-   bool m_bVoidSync;
-
-   void _017Synchronize(::action::context actioncontext);
-   void on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint);
+      virtual void _001OnAfterChangeText(::action::context actioncontext);
 
 
-};
+      void _017Synchronize(::action::context actioncontext);
+      void on_update(sp(::user::impact) pSender,LPARAM lHint,object* phint);
+
+
+   };
+
+
+} // namespace filemanager
+
+
+
+
+

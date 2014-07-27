@@ -14,6 +14,19 @@ namespace user
       color_text_selected_highlight,
       color_text_focused,
       color_background,
+      color_background_selected,
+      color_border_normal,
+      color_border_hover,
+      color_border_press,
+      color_border_disabled,
+      color_background_normal,
+      color_background_hover,
+      color_background_press,
+      color_background_disabled,
+      color_text_normal,
+      color_text_hover,
+      color_text_press,
+      color_text_disabled,
 
    };
 

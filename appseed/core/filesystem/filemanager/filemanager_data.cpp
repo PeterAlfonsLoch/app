@@ -104,13 +104,13 @@ namespace filemanager
          {
             {
                varFile = itema[0].m_strPath;
-               varQuery["file_manager_id"] = "left_file";
+               varQuery["id"] = "left_file";
                m_pcallback->request_file_query(varFile, varQuery);
             }
 
             {
                varFile = itema[1].m_strPath;
-               varQuery["file_manager_id"] = "right_file";
+               varQuery["id"] = "right_file";
                m_pcallback->request_file_query(varFile, varQuery);
             }
          }
@@ -118,13 +118,13 @@ namespace filemanager
          {
             {
                varFile = itema[0].m_strPath;
-               varQuery["file_manager_id"] = "right_file";
+               varQuery["id"] = "right_file";
                m_pcallback->request_file_query(varFile, varQuery);
             }
 
             {
                varFile = itema[1].m_strPath;
-               varQuery["file_manager_id"] = "left_file";
+               varQuery["id"] = "left_file";
                m_pcallback->request_file_query(varFile, varQuery);
             }
          }
@@ -135,7 +135,7 @@ namespace filemanager
 
             varQuery = itema.get_var_query();
 
-            varQuery["file_manager_id"] = m_id;
+            varQuery["id"] = m_id;
 
             m_pcallback->request_file_query(varFile, varQuery);
 
@@ -227,77 +227,96 @@ namespace filemanager
 
    }
 
-   COLORREF data::get_background_color()
+
+   bool data::get_color(COLORREF & cr,::user::e_color ecolor)
    {
 
-      if(m_bTransparentBackground)
+      if(ecolor == ::user::color_text)
       {
-         
-         if(is_saving())
+
+         cr = ARGB(255,0,0,0);
+
+         return true;
+
+      }
+      else if(ecolor == ::user::color_background)
+      {
+
+         if(m_bTransparentBackground)
          {
 
-            return ARGB(184,255,210,180);
+            if(is_saving())
+            {
+
+               cr = ARGB(184,255,210,180);
+
+            }
+            else
+            {
+
+               cr = ARGB(184,255,255,255);
+
+            }
 
          }
          else
          {
 
-            return ARGB(184,255,255,255);
+            if(is_saving())
+            {
+
+               cr = ARGB(255,255,210,180);
+
+            }
+            else
+            {
+
+               cr = ARGB(255,255,255,255);
+
+            }
 
          }
+
+         return true;
 
       }
       else
       {
 
-         if(is_saving())
-         {
-
-            return ARGB(255,255,210,180);
-
-         }
-         else
-         {
-
-            return ARGB(255,255,255,255);
-
-         }
+         return ::user::schema::get_color(cr,ecolor);
 
       }
 
    }
 
 
-   COLORREF data::get_color()
+   bool data::get_font(::draw2d::font_sp & font)
    {
+      
+      font = m_spfont;
 
-      return ARGB(255,0,0,0);
+      return true;
 
    }
 
 
-   ::draw2d::font_sp data::get_font()
-   {
-      return m_spfont;
-
-   }
-
-
-   ::user::ETranslucency data::_001GetTranslucency()
+   bool data::get_translucency(::user::ETranslucency & etranslucency)
    {
 
       if(m_bTransparentBackground)
       {
 
-         return ::user::TranslucencyPresent;
+         etranslucency = ::user::TranslucencyPresent;
 
       }
       else
       {
 
-         return ::user::TranslucencyNone;
+         etranslucency = ::user::TranslucencyNone;
 
       }
+
+      return true;
 
    }
 

@@ -16,8 +16,6 @@ m_fastblur(allocer())
    m_bCustomFrameBefore = true;
    m_bWindowFrame = true;
    m_bLayered = true;
-   //   m_hdcOpenGL             = NULL;
-   //   m_hglrc                 = NULL;
    m_pframeschema = NULL;
 
 }
@@ -275,8 +273,12 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
    defer_synch_layered();
 
 
+   create_bars();
+
 
    pcreate->m_bRet = false;
+
+   
 
 }
 
@@ -1779,7 +1781,7 @@ bool simple_frame_window::DeferFullScreen(bool bFullScreen, bool bRestore)
 
 bool simple_frame_window::calc_layered()
 {
-   if (m_bLayered && m_etranslucency != TranslucencyNone)
+   if (m_bLayered && _001GetTranslucency() != TranslucencyNone)
    {
       return !session().savings().is_trying_to_save(::base::resource_processing)
          && !session().savings().is_trying_to_save(::base::resource_display_bandwidth);
@@ -1850,6 +1852,23 @@ bool simple_frame_window::set_appearance(::user::EAppearance eappearance)
 }
 
 
+bool simple_frame_window::create_bars()
+{
+
+   if(!on_create_bars())
+      return false;
+
+   return true;
+
+}
+
+
+bool simple_frame_window::on_create_bars()
+{
+
+   return true;
+
+}
 
 
 

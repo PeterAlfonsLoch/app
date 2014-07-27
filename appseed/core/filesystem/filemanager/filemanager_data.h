@@ -6,7 +6,8 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE data :
-      virtual public ::data::data
+      virtual public ::data::data,
+      virtual public ::user::schema
    {
    public:
 
@@ -56,10 +57,9 @@ namespace filemanager
       void OnFileManagerItemUpdate(cmd_ui * pcmdui, const ::fs::item_array & itema);
       void OnFileManagerItemCommand(const char * pszId, const ::fs::item_array & itema);
 
-      virtual COLORREF                 get_background_color();
-      virtual COLORREF                 get_color();
-      virtual ::draw2d::font_sp        get_font();
-      virtual ::user::ETranslucency    _001GetTranslucency();
+      virtual bool get_color(COLORREF & cr, ::user::e_color ecolor);
+      virtual bool get_font(::draw2d::font_sp & font);
+      virtual bool get_translucency(::user::ETranslucency & etranslucency);
 
 
       virtual sp(::filemanager::manager_template) get_filemanager_template();

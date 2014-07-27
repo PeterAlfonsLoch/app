@@ -664,7 +664,7 @@ struct __system_policies
    __system_policy_data *pData;
 };
 
-//#include "core_file_manager_interface.h"
+//#include "core_interface.h"
 
 
 namespace user

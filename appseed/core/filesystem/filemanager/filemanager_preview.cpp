@@ -4,12 +4,12 @@
 namespace filemanager
 {
 
+
    preview::preview(sp(::base::application) papp) :
-      element(papp),
-      ::filemanager::impact(papp)
+      element(papp)
    {
 
-      }
+   }
 
    preview::~preview()
    {
@@ -48,11 +48,11 @@ namespace filemanager
             else if (puh->is_type_of(update_hint::TypeSynchronizePath))
             {
                //_017Synchronize(::action::context actioncontext);
-               m_strPath = GetFileManagerItem().m_strPath;
+               m_strPath = get_filemanager_item().m_strPath;
                m_straPath.remove_all();
                m_straTitle.remove_all();
                m_iCurFile = 0;
-               get_filemanager_template()->get_fs_data()->ls(GetFileManagerItem().m_strPath, &m_straPath, &m_straTitle, &m_iaSize);
+               get_filemanager_manager()->get_fs_data()->ls(get_filemanager_item().m_strPath, &m_straPath, &m_straTitle, &m_iaSize);
             }
             else if (puh->is_type_of(update_hint::TypeFilter))
             {
@@ -86,7 +86,7 @@ namespace filemanager
             }
             }
             }
-            file_manager_form_update_hint * pmanageruh = dynamic_cast<file_manager_form_update_hint * > (phint);
+            form_update_hint * pmanageruh = dynamic_cast<form_update_hint * > (phint);
             if(pmanageruh != NULL)
             {
             if(!pmanageruh->m_strFind.is_empty())

@@ -4,11 +4,14 @@
 namespace filemanager
 {
    
+
    namespace fs
    {
 
+
       namespace simple
       {
+
 
          class view;
 

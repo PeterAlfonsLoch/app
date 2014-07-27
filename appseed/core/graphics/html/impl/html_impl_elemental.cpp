@@ -640,7 +640,7 @@ namespace html
             if (m_pelemental->m_style.get_alpha("", pdata, m_pelemental, d))
             {
 
-               if (m_pelemental->get_background_color(cr))
+               if (m_pelemental->get_color(cr, ::user::color_background))
                {
 
                   Sys(pdata->get_app()).visual().imaging().color_blend(
@@ -655,7 +655,7 @@ namespace html
             else
             {
 
-               if (m_pelemental->get_background_color(cr))
+               if(m_pelemental->get_color(cr,::user::color_background))
                {
 
                   pdata->m_pdc->FillSolidRect(rect, cr);
@@ -1043,10 +1043,9 @@ namespace html
 
       }
 
-      ::draw2d::font_sp elemental::get_font()
-      {
-         return m_pdata->get_font(this)->m_font
-      }
+
+
+
 
       size elemental::get_content_size()
       {

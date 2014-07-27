@@ -24,22 +24,22 @@ namespace core
 
       FT_Library                                   m_ftlibrary;
       mutex                                        m_mutexDelete;
-      class ::core::stra                             m_stra;
-      class ::core::service                          m_service;
+      class ::core::stra                           m_stra;
+      class ::core::service                        m_service;
 #ifndef METROWIN
-      class ::core::process_departament              m_processsection;
+      class ::core::process_departament            m_processsection;
 #endif
 
-      class ::core::patch                            m_patch;
-      ::net::email_departament                        m_emaildepartament;
+      class ::core::patch                          m_patch;
+      ::net::email_departament                     m_emaildepartament;
       sp(colorertake5::ParserFactory)              m_pparserfactory;
 
-      sp(::core::platform::run_start_installer)      m_prunstartinstaller;
-      sp(::core::platform::map)                      m_pbergedgemap;
-      spa(::core::platform)                           m_planesessionptra;
+      sp(::core::platform::run_start_installer)    m_prunstartinstaller;
+      sp(::core::platform::map)                    m_pbergedgemap;
+      spa(::core::platform)                        m_planesessionptra;
 
 
-      sp(class ::core::history)                      m_phistory;
+      sp(class ::core::history)                    m_phistory;
       //      ::sockets::net                               m_net;
       //      sp(::core::filehandler::handler)  m_spfilehandler;
 
@@ -57,11 +57,11 @@ namespace core
 
 
 
-      bool                                          m_bDoNotExitIfNoApplications;
+      bool                                         m_bDoNotExitIfNoApplications;
 
-      strid_map < ::core::library * >  m_idmapCreateViewLibrary;
+      strid_map < ::base::library * >              m_idmapCreateViewLibrary;
 
-      comparable_array < ::core::library * >         m_libraryptra;
+      comparable_array < ::base::library * >       m_libraryptra;
 
 #ifdef METROWIN
       Platform::Agile < Windows::UI::Core::CoreWindow > m_window;

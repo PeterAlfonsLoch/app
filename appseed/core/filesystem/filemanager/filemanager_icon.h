@@ -1,27 +1,65 @@
 #pragma once
 
 
-class icon_key
+namespace filemanager
 {
-public:
-   icon_key();
-   icon_key(const icon_key & key);
-   string      m_strPath;
-   int32_t         m_iIcon;
-   string      m_strExtension;
 
-   operator uint32_t () const
+
+   class CLASS_DECL_CORE icon_key
    {
-      return m_iIcon;
-   }
-   bool operator == (const icon_key & key) const;
-};
+   public:
 
 
-class icon
-{
-public:
-   icon();
-   ::visual::icon *         m_hicon;
-   int32_t         m_iImage;
-};
+      int32_t     m_iIcon;
+      string      m_strPath;
+      string      m_strExtension;
+
+
+      icon_key();
+      icon_key(const icon_key & key);
+
+
+      operator uint32_t () const
+      {
+         return m_iIcon;
+      }
+
+      bool operator == (const icon_key & key) const;
+
+
+   };
+
+
+   class CLASS_DECL_CORE icon
+   {
+   public:
+
+      
+      int32_t                 m_iImage;
+      ::visual::icon *        m_picon;
+
+      icon();
+
+
+   };
+
+
+
+} // namespace filemanager
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

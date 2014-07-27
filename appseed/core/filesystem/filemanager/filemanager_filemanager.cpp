@@ -73,9 +73,9 @@ namespace filemanager
 
       System.factory().creatable_small < manager > ();
       System.factory().creatable_small < child_frame > ();
-      System.factory().creatable_small < a_view > ();
+      System.factory().creatable_small < view > ();
       System.factory().creatable_small < path_view > ();
-      System.factory().creatable_small < FileManagerSaveAsView > ();
+      System.factory().creatable_small <save_as_view > ();
       System.factory().creatable_small < left_view > ();
       System.factory().creatable_small < main_view > ();
       System.factory().creatable_small < manager > ();
@@ -83,16 +83,16 @@ namespace filemanager
       System.factory().creatable_small < preview > ();
       System.factory().creatable_small < main_frame > ();
       System.factory().creatable_small < tab_view > ();
-      System.factory().creatable_small < file_manager_form_document > ();
-      System.factory().creatable_small < file_manager_form_child_frame > ();
-      System.factory().creatable_small < file_manager_form_view > ();
+      System.factory().creatable_small < form_document > ();
+      System.factory().creatable_small < form_child_frame > ();
+      System.factory().creatable_small < form_view > ();
       System.factory().creatable_small < folder_selection_list_view > ();
       System.factory().creatable_small < folder_list_view > ();
-      System.factory().creatable_small < file_manager_operation_document > ();
-      System.factory().creatable_small < file_manager_operation_child_frame > ();
-      System.factory().creatable_small < file_manager_operation_view > ();
-      System.factory().creatable_small < file_manager_operation_info_view > ();
-      System.factory().creatable_small < file_manager_operation_list_view > ();
+      System.factory().creatable_small < operation_document > ();
+      System.factory().creatable_small < operation_child_frame > ();
+      System.factory().creatable_small < operation_view > ();
+      System.factory().creatable_small < operation_info_view > ();
+      System.factory().creatable_small < operation_list_view > ();
 
 
       System.factory().creatable_small < fs::simple::view > ();
@@ -109,16 +109,16 @@ namespace filemanager
       m_ptemplateForm = new ::user::multiple_document_template(
          get_app(),
          pszMatter,
-         System.type_info < file_manager_form_document > (),
-         System.type_info < file_manager_form_child_frame > (),
-         System.type_info < file_manager_form_view > ());
+         System.type_info < form_document > (),
+         System.type_info < form_child_frame > (),
+         System.type_info < form_view > ());
 
       m_ptemplateOperation = new ::user::single_document_template(
          get_app(),
          pszMatter,
-         System.type_info < file_manager_operation_document > (),
-         System.type_info < file_manager_operation_child_frame > (),
-         System.type_info < file_manager_operation_view > ());
+         System.type_info < operation_document > (),
+         System.type_info < operation_child_frame > (),
+         System.type_info < operation_view > ());
    }
 
 
@@ -129,7 +129,7 @@ namespace filemanager
       item_action * pitemaction = dynamic_cast < item_action * > (this);
       if(pitemaction != NULL)
       {
-         if(pitemaction->file_manager_open_file(pdata, itema))
+         if(pitemaction->open_file(pdata, itema))
             return;
       }
 

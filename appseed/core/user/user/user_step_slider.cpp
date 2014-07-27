@@ -1,15 +1,18 @@
 #include "framework.h"
 
+
 namespace user
 {
+
 
    step_slider::step_slider(sp(::base::application) papp) :
       element(papp),
       ::user::interaction(papp)
    {
-      m_etranslucency = TranslucencyPresent;
+
       m_iHover = 0x80000000;
       m_bHover = false;
+
    }
 
    step_slider::~step_slider()

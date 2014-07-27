@@ -680,7 +680,7 @@ namespace user
 //      IGUI_WIN_MSG_LINK(WM_COMMAND, pinterface, this, &form::_001OnCommand);
   //    IGUI_WIN_MSG_LINK(WM_NOTIFY, pinterface, this, &form::_001OnNotify);
       // revamp IGUI_WIN_MSG_LINK(user::MessageNotify, pinterface, this, &form::_001OnMessageNotify);
-      IGUI_WIN_MSG_LINK(application::APPM_LANGUAGE, pinterface, this, &form::_001OnAppLanguage);
+      IGUI_WIN_MSG_LINK(::base::application::APPM_LANGUAGE, pinterface, this, &form::_001OnAppLanguage);
 
    //   IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &::user::interaction::_001OnLButtonDown);
    //   IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &::user::interaction::_001OnLButtonUp);

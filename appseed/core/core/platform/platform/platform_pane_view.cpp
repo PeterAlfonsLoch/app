@@ -105,7 +105,7 @@ namespace platform
   //          cc.m_pCurrentDoc = get_document();
     //        cc.m_typeinfoNewView =  System.type_info < ::user::menu_list_view > ();
 
-            sp(::user::impact) pview = (impact::create_view(System.type_info < ::user::menu_list_view > (), get_document(), this, 101).m_p);
+            sp(::user::impact) pview = (::user::impact::create_view(System.type_info < ::user::menu_list_view > (), get_document(), this, 101).m_p);
             if(pview != NULL)
             {
                sp(::user::menu_list_view) pmenuview = (sp(::user::menu_list_view)) pview;

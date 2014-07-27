@@ -34,6 +34,24 @@ namespace filemanager
    };
 
 
+   enum e_operation
+   {
+      operation_none,
+      operation_copy,
+      operation_delete,
+      operation_move,
+   };
+
+
+   enum e_state
+   {
+      state_initial,
+      state_start,
+      state_step,
+      state_finish,
+   };
+
+
 } // namespace filenamager
 
 

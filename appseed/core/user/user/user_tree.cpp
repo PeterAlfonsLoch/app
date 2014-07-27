@@ -19,10 +19,10 @@ namespace user
       m_pitemHover               = NULL;
       m_iClick                   = 0;
       m_iItemCount               = 0;
-      m_crText                   = ARGB(255, 0, 0, 0);
-      m_crTextSelected           = ARGB(255, 255, 255, 255);
-      m_crTextHighlight          = ARGB(255, 102, 153, 255);
-      m_crTextSelectedHighlight  = ARGB(255, 172, 213, 255);
+//      m_crText                   = ARGB(255, 0, 0, 0);
+  //    m_crTextSelected           = ARGB(255, 255, 255, 255);
+    //  m_crTextHighlight          = ARGB(255, 102, 153, 255);
+      //m_crTextSelectedHighlight  = ARGB(255, 172, 213, 255);
       m_iItemHeight              = 18;
       m_iImageExpand             = -1;
       m_iImageCollapse           = -1;
@@ -96,7 +96,7 @@ namespace user
       rect rectClient;
       GetClientRect(rectClient);
 
-      pdc->FillSolidRect(rectClient, get_background_color());
+      pdc->FillSolidRect(rectClient, _001GetColor(color_background));
 
       //      ::base::savings & savings = session().savings();
       /*rect rectClientOffset = rectClient;
@@ -378,28 +378,28 @@ namespace user
 
          COLORREF crText = ARGB(255, 0, 0, 0);
 
-         get_color(crText);
+         get_color(crText, color_text);
 
          if(bSelected) // selected
          {
             if(bHover)
             {
-               brushText->create_solid(m_crTextSelectedHighlight);
+               brushText->create_solid(_001GetColor(color_text_selected_highlight));
             }
             else
             {
-               brushText->create_solid(m_crTextSelected);
+               brushText->create_solid(_001GetColor(color_text_selected));
             }
          }
          else
          {
             if(bHover)
             {
-               brushText->create_solid(m_crTextHighlight);
+               brushText->create_solid(_001GetColor(color_text_highlight));
             }
             else
             {
-               brushText->create_solid(crText);
+               brushText->create_solid(_001GetColor(color_text));
             }
          }
 

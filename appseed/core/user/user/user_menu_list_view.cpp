@@ -11,18 +11,23 @@ namespace user
       menu(papp),
       menu_list_window(papp)
    {
-      m_etranslucency      = TranslucencyPresent;
+
       m_puiNotify        = NULL;
       m_bAutoClose         = false;
+
    }
+
 
    void menu_list_view::install_message_handling(::message::dispatch * pinterface)
    {
+
       menu_list_window::install_message_handling(pinterface);
+
    }
 
    menu_list_view::~menu_list_view()
    {
+
    }
 
 #ifdef DEBUG

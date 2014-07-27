@@ -49,21 +49,22 @@ namespace platform
       m_brushProgress2(allocer()),
       m_brushProgress1(allocer())
    {
-      m_buttonschema.m_crBkDisabled = ARGB(255, 126, 127, 128);
-      m_buttonschema.m_crBkPress = ARGB(255, 200, 127, 200);
-      m_buttonschema.m_crBkHover = ARGB(255, 220, 255, 220);
-      m_buttonschema.m_crBkNormal = ARGB(255, 120, 220, 255);
+      m_buttonschema.set_color(::user::color_background_disabled, ARGB(255, 126, 127, 128));
+      m_buttonschema.set_color(::user::color_background_press,ARGB(255,200,127,200));
+      m_buttonschema.set_color(::user::color_background_hover, ARGB(255,220,255,220));
+      m_buttonschema.set_color(::user::color_background_normal,ARGB(255,120,220,255));
       m_buttonschema.m_bBorder = false;
-      m_buttonschema.m_crTextDisabled = ARGB(255, 0, 0, 0);
-      m_buttonschema.m_crTextPress = ARGB(255, 255, 255, 0);
-      m_buttonschema.m_crTextHover = ARGB(255, 100, 180, 110);
-      m_buttonschema.m_crTextNormal = ARGB(255, 100, 100, 20);
+      m_buttonschema.set_color(::user::color_text_disabled,ARGB(255,0,0,0));
+      m_buttonschema.set_color(::user::color_text_press,ARGB(255,255,255,0));
+      m_buttonschema.set_color(::user::color_text_hover,ARGB(255,100,180,110));
+      m_buttonschema.set_color(::user::color_text_normal,ARGB(255,100,100,20));
       m_brushBk->create_solid(ARGB(255, 255, 250, 245));
       m_brushProgress1->create_solid(ARGB(255, 120, 180, 255));
       m_brushProgress2->create_solid(ARGB(255, 255, 240, 200));
       m_brushProgress3->create_solid(ARGB(255, 128, 128, 128));
 
-      m_buttonschema.m_font->create_point_font("Geneva", 16);
+      m_buttonschema.m_pfont.create(allocer());
+      m_buttonschema.m_pfont->create_point_font("Geneva", 16);
 
       m_font1->create_point_font("Geneva", 16);
 
@@ -914,7 +915,7 @@ namespace platform
 
             plink->m_button.create(this, plink->m_strBrief);
 
-            plink->m_button.m_etranslucency  = TranslucencyPresent;
+            m_buttonschema.m_etranslucency = ::user::TranslucencyPresent;
             plink->m_button.m_pschema        = &m_buttonschema;
 
             plink->m_button._001SetButtonText(plink->m_strName);

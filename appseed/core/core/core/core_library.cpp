@@ -19,7 +19,7 @@ namespace core
 #ifndef _WIN32
 extern "C"
 #endif
-::core::library * get_new_library(sp(::base::application) papp);
+::base::library * get_new_library(sp(::base::application) papp);
 
 
 namespace core
@@ -85,7 +85,7 @@ namespace core
 #ifndef _WIN32
 extern "C"
 #endif
-::core::library * get_new_library(sp(::base::application) papp)
+::base::library * get_new_library(sp(::base::application) papp)
 {
 
    return canew(::core::library(papp));

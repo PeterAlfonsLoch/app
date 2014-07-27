@@ -31,7 +31,6 @@ namespace user
 
       bool                                m_bLButtonDown;
       bool                                m_bHover;
-      COLORREF                            m_crHover;
 
 
       static_control(sp(::base::application) papp);

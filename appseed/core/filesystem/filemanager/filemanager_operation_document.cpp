@@ -1,19 +1,50 @@
 #include "framework.h"
 
 
-file_manager_operation_document::file_manager_operation_document(sp(::base::application) papp) :
-   element(papp),
-   ::data::data_container_base(papp),
-   ::user::document(papp),
-   m_thread(papp)
+namespace filemanager
 {
-   
-}
 
-bool file_manager_operation_document::on_new_document()
-{
-   return TRUE;
-}
+
+   operation_document::operation_document(sp(::base::application) papp):
+      element(papp),
+      ::data::data_container_base(papp),
+      ::user::document(papp),
+      m_thread(papp)
+   {
+
+      }
+
+   bool operation_document::on_new_document()
+   {
+      return TRUE;
+   }
+
+
+} // namespace filemanager
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1262,6 +1262,55 @@ namespace html
 
    }
 
+   bool elemental::get_color(COLORREF & cr,::user::e_color ecolor)
+   {
+
+      if(ecolor == ::user::color_text)
+      {
+
+         if(!m_style.get_color("color","",m_pdata,this,cr))
+         {
+
+            cr = ARGB(255,0,0,0);
+
+         }
+
+         return true;
+
+      }
+      else if(ecolor == ::user::color_background)
+      {
+
+         if(!m_style.get_color("background-color","",m_pdata,this,cr))
+         {
+
+            cr = ARGB(255,255,255,255);
+
+         }
+
+         return true;
+
+      }
+      else
+      {
+
+         return false;
+
+      }
+
+
+   }
+
+   bool elemental::get_font(::draw2d::font_sp & font)
+   {
+
+
+      font = m_pdata->get_font(this)->m_font;
+
+      return true;
+
+   }
+
 } // namespace html
 
 

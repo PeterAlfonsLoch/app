@@ -100,17 +100,17 @@ namespace filemanager
    void manager::FileManagerOneLevelUp(::action::context actioncontext)
    {
 
-      if (get_item().m_strPath.is_empty())
+      if (get_filemanager_item().m_strPath.is_empty())
          return;
 
-      string strParent = get_fs_data()->eat_end_level(get_item().m_strPath, 1);
+      string strParent = get_fs_data()->eat_end_level(get_filemanager_item().m_strPath, 1);
 
       FileManagerBrowse(strParent, ::action::source::sync(actioncontext));
 
    }
 
 
-   ::fs::item & manager::get_item()
+   ::fs::item & manager::get_filemanager_item()
    {
 
       return *m_item;
@@ -153,17 +153,17 @@ namespace filemanager
 
 
 
-      m_fsset.m_spafsdata.remove_all();
+      m_fsset->m_spafsdata.remove_all();
 
 
-      m_fsset.m_spafsdata.add(session().fs());
+      m_fsset->m_spafsdata.add(session().fs());
 
 
       stringa straPath;
 
       stringa straTitle;
 
-      m_fsset.root_ones(straPath,straTitle);
+      m_fsset->root_ones(straPath,straTitle);
 
 
       return TRUE;
@@ -382,7 +382,7 @@ namespace filemanager
    void manager::_001OnEditPaste(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //System.file().paste(get_filemanager_data()->get_filemanager_template()->get_item().m_strPath, System.m_strCopy);
+      //System.file().paste(get_filemanager_data()->get_filemanager_item().m_strPath, System.m_strCopy);
       //update_all_views(NULL, 123, NULL);
       //pobj->m_bRet = true;
    }
@@ -541,7 +541,7 @@ namespace filemanager
    }
 
 
-   sp(file_manager_operation_document) manager::get_operation_doc(bool bSwitch)
+   sp(operation_document) manager::get_operation_doc(bool bSwitch)
    {
       ::filemanager::tab_view * ptabview = get_typed_view < ::filemanager::tab_view >();
       if(ptabview == NULL)
@@ -600,7 +600,7 @@ namespace filemanager
    }
 
 
-   ::fs::data * manager::get_fs_data()
+   sp(::fs::data) manager::get_fs_data()
    {
 
 
@@ -634,11 +634,41 @@ namespace filemanager
    manager_template * manager::get_manager_template()
    {
 
-      return m_ptemplate;
+      return get_filemanager_data()->get_filemanager_template();
 
    }
 
 
+   bool manager::on_create_bars(simple_frame_window * pframe)
+   {
+
+      string strToolBar;
+
+      if(get_filemanager_data()->is_saving())
+      {
+
+         strToolBar = get_filemanager_template()->m_strToolBarSave;
+
+      }
+      else
+      {
+
+         strToolBar = get_filemanager_template()->m_strToolBar;
+
+      }
+
+      if(!pframe->LoadToolBar("filemanager", strToolBar))
+      {
+         
+         TRACE0("Failed to create filemanager toolbar\n");
+
+         return false;      // fail to create
+
+      }
+
+      return true;
+
+   }
 
 
 

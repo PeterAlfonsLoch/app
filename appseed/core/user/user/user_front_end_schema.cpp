@@ -15,10 +15,7 @@ namespace user
       m_buttonBaseWndMenuItemPopup(papp)
    {
 
-      ::draw2d::graphics_sp spgraphics(papp->m_pcoreapp->allocer());
-      spgraphics->CreateCompatibleDC(NULL);
 
-      m_button.m_font->create_point_font("Arial", 11.0);
 
 
       color color;
@@ -30,63 +27,67 @@ namespace user
       class color colorPress(color);
       colorHover.hls_rate(0.0, 0.7, 0.0);
 
-
-      m_button.m_crTextNormal          = ARGB(255, 0, 0, 0);
-      m_button.m_crTextHover           = color | (0xff << 24);
-      m_button.m_crTextNormal          = ARGB(255, 0, 0, 0);
-      m_button.m_crBkNormal            = session().get_default_color(COLOR_3DFACE) | (0xff << 24);
-      m_button.m_crBkPress             = session().get_default_color(COLOR_3DFACE) | (0xff << 24);
-      m_button.m_crBkDisabled          = session().get_default_color(COLOR_3DFACE) | (0xff << 24);
-      m_button.m_crBkHover             = session().get_default_color(COLOR_3DFACE) | (0xff << 24);
-
-
-      m_buttonBaseWndMenuSysMenu.m_font->create_point_font("Marlett", 11.0);
-
-
-      m_buttonBaseWndMenuSysMenu.m_crTextNormal          = ARGB(255, 0, 0, 0);
-      m_buttonBaseWndMenuSysMenu.m_crTextHover           = color | (0xff << 24);
-      m_buttonBaseWndMenuSysMenu.m_crTextNormal          = ARGB(255, 0, 0, 0);
-      m_buttonBaseWndMenuSysMenu.m_crBkNormal            = session().get_default_color(COLOR_3DFACE) | (0xff << 24);
-      m_buttonBaseWndMenuSysMenu.m_crBkPress             = session().get_default_color(COLOR_3DFACE) | (0xff << 24);
-      m_buttonBaseWndMenuSysMenu.m_crBkDisabled          = session().get_default_color(COLOR_3DFACE) | (0xff << 24);
-      m_buttonBaseWndMenuSysMenu.m_crBkHover             = session().get_default_color(COLOR_3DFACE) | (0xff << 24);
+      m_button.m_pfont.create(allocer());
+      m_button.m_pfont->create_point_font("Arial",11.0);
+      m_button.set_color(color_text_normal,ARGB(255,0,0,0));
+      m_button.set_color(color_text_press,color | (0xff << 24));
+      m_button.set_color(color_text_disabled,ARGB(255,127,127,127));
+      m_button.set_color(color_text_hover,color | (0xff << 24));
+      m_button.set_color(color_background_normal,session().get_default_color(COLOR_3DFACE) | (0xff << 24));
+      m_button.set_color(color_background_press,session().get_default_color(COLOR_3DFACE) | (0xff << 24));
+      m_button.set_color(color_background_disabled,session().get_default_color(COLOR_3DFACE) | (0xff << 24));
+      m_button.set_color(color_background_hover,session().get_default_color(COLOR_3DFACE) | (0xff << 24));
+      m_button.m_bBorder      = false;
+      m_button.m_etranslucency = ::user::TranslucencyNone;
 
 
-      m_buttonBaseWndMenuItem.m_font->create_point_font("Lucida Sans Unicode", 9.0);
+      m_buttonBaseWndMenuSysMenu.m_pfont.create(allocer());
+      m_buttonBaseWndMenuSysMenu.m_pfont->create_point_font("Marlett", 11.0);
+      m_buttonBaseWndMenuSysMenu.set_color(color_text_normal,ARGB(255,0,0,0));
+      m_buttonBaseWndMenuSysMenu.set_color(color_text_press,color | (0xff << 24));
+      m_buttonBaseWndMenuSysMenu.set_color(color_text_disabled,ARGB(255,127,127,127));
+      m_buttonBaseWndMenuSysMenu.set_color(color_text_hover,color | (0xff << 24));
+      m_buttonBaseWndMenuSysMenu.set_color(color_background_normal,session().get_default_color(COLOR_3DFACE) | (0xff << 24));
+      m_buttonBaseWndMenuSysMenu.set_color(color_background_press,session().get_default_color(COLOR_3DFACE) | (0xff << 24));
+      m_buttonBaseWndMenuSysMenu.set_color(color_background_disabled,session().get_default_color(COLOR_3DFACE) | (0xff << 24));
+      m_buttonBaseWndMenuSysMenu.set_color(color_background_hover,session().get_default_color(COLOR_3DFACE) | (0xff << 24));
+      m_buttonBaseWndMenuSysMenu.m_bBorder      = false;
+      m_buttonBaseWndMenuSysMenu.m_etranslucency = ::user::TranslucencyNone;
 
-      m_buttonBaseWndMenuItem.m_crTextNormal             = ARGB(255, 0, 0, 0);
-      m_buttonBaseWndMenuItem.m_crTextPress              = color | (0xff << 24);
-      m_buttonBaseWndMenuItem.m_crTextDisabled           = ARGB(255, 108, 108, 108);
-      m_buttonBaseWndMenuItem.m_crTextHover              = color | (0xff << 24);
-      m_buttonBaseWndMenuItem.m_crBkNormal               = session().get_default_color(COLOR_3DFACE) | (0xff << 24);        
-      m_buttonBaseWndMenuItem.m_crBkPress                = session().get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24);           
-      m_buttonBaseWndMenuItem.m_crBkDisabled             = session().get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24);      
-      m_buttonBaseWndMenuItem.m_crBkHover                = session().get_default_color(COLOR_3DLIGHT) | (0xff << 24);        
 
-      //m_buttonBaseWndMenuItem.m_crBk         = session().get_default_color(COLOR_3DHIGHLIGHT);
-      m_buttonBaseWndMenuItem.m_crTextDisabled = RGB(127, 127, 127) | (0xff << 24);
+      m_buttonBaseWndMenuItem.m_pfont.create(allocer());
+      m_buttonBaseWndMenuItem.m_pfont->create_point_font("Lucida Sans Unicode", 9.0);
+      m_buttonBaseWndMenuItem.set_color(color_text_normal,ARGB(255,0,0,0));
+      m_buttonBaseWndMenuItem.set_color(color_text_press,color | (0xff << 24));
+      m_buttonBaseWndMenuItem.set_color(color_text_disabled,ARGB(255,127,127,127));
+      m_buttonBaseWndMenuItem.set_color(color_text_hover,color | (0xff << 24));
+      m_buttonBaseWndMenuItem.set_color(color_background_normal,session().get_default_color(COLOR_3DFACE) | (0xff << 24));
+      m_buttonBaseWndMenuItem.set_color(color_background_press,session().get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
+      m_buttonBaseWndMenuItem.set_color(color_background_disabled,session().get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
+      m_buttonBaseWndMenuItem.set_color(color_background_hover,session().get_default_color(COLOR_3DFACE) | (0xff << 24));
       m_buttonBaseWndMenuItem.m_bBorder      = false;
+      m_buttonBaseWndMenuItem.m_etranslucency = ::user::TranslucencyPresent;
+
+
+      
 
 
 
-      m_menu.m_font->create_point_font("Lucida Sans Unicode", 9.0);
-
-
-
-
-      m_buttonBaseWndMenuItemPopup.m_font->create_point_font( "Lucida Sans Unicode", 9.0, FW_BOLD);
-
-      m_buttonBaseWndMenuItemPopup.m_crTextNormal = ARGB(255, 0, 0, 0);
-      m_buttonBaseWndMenuItemPopup.m_crTextHover  = color | (0xff << 24);
-      m_buttonBaseWndMenuItemPopup.m_crTextNormal = ARGB(255, 0, 0, 0);
-      m_buttonBaseWndMenuItemPopup.m_crBkNormal    = session().get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24);        
-      m_buttonBaseWndMenuItemPopup.m_crBkPress  = session().get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24);           
-      m_buttonBaseWndMenuItemPopup.m_crBkDisabled    = session().get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24);      
-      m_buttonBaseWndMenuItemPopup.m_crBkHover     = session().get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24);        
-      m_buttonBaseWndMenuItemPopup.m_crTextDisabled = ARGB(255, 127, 127, 127);
+      m_buttonBaseWndMenuItemPopup.m_pfont.create(allocer());
+      m_buttonBaseWndMenuItemPopup.m_pfont->create_point_font( "Lucida Sans Unicode", 9.0, FW_BOLD);
+      m_buttonBaseWndMenuItemPopup.set_color(color_text_normal, ARGB(255, 0, 0, 0));
+      m_buttonBaseWndMenuItemPopup.set_color(color_text_press,color | (0xff << 24));
+      m_buttonBaseWndMenuItemPopup.set_color(color_text_disabled,ARGB(255,127,127,127));
+      m_buttonBaseWndMenuItemPopup.set_color(color_text_hover,color | (0xff << 24));
+      m_buttonBaseWndMenuItemPopup.set_color(color_background_normal, session().get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
+      m_buttonBaseWndMenuItemPopup.set_color(color_background_press,session().get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
+      m_buttonBaseWndMenuItemPopup.set_color(color_background_disabled, session().get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
+      m_buttonBaseWndMenuItemPopup.set_color(color_background_hover, session().get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
       m_buttonBaseWndMenuItemPopup.m_bBorder      = false;
+      m_buttonBaseWndMenuItemPopup.m_etranslucency = ::user::TranslucencyPresent;
 
 
+      m_menu.m_font->create_point_font("Lucida Sans Unicode",9.0);
 
       m_menu.m_pschemaSysMenuButton = &m_buttonBaseWndMenuSysMenu;
       m_menu.m_pschemaItemButton = &m_buttonBaseWndMenuItem;

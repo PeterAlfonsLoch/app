@@ -87,6 +87,9 @@ namespace user
 
       sp(menu_item) get_item();
 
+
+      virtual bool get_color(COLORREF & cr,e_color ecolor);
+
    };
 
 

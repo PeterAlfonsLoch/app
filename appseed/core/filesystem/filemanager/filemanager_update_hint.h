@@ -30,17 +30,17 @@ namespace filemanager
 
 
 
-      ::fs::item_array       m_itemaSelected;
-      string                     m_wstrFilter;
-      sp(::filemanager::manager)     m_pmanager;
-      sp(::filemanager::manager)     m_pmanagerMain;
-      sp(::user::impact)               m_pview;
-      UINT                       m_uiId;
-      string                     m_strPath;
+      ::fs::item_array              m_itemaSelected;
+      string                        m_wstrFilter;
+      sp(::filemanager::manager)    m_pmanager;
+      sp(::filemanager::manager)    m_pmanagerMain;
+      sp(::user::impact)            m_pview;
+      UINT                          m_uiId;
+      string                        m_strPath;
 
-      e_type    m_etype;
+      e_type                        m_etype;
 
-      ::action::context         m_actioncontext;
+      ::action::context             m_actioncontext;
 
 
       update_hint();
