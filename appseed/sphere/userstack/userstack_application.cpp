@@ -83,7 +83,7 @@ namespace userstack
 
          sp(::base::application) papp =  (pcaapp);
 
-         papp->m_pplaneapp->post_thread_message(WM_QUIT);
+         papp->m_pcoreapp->post_thread_message(WM_QUIT);
       }
 
       return 0;

@@ -3620,11 +3620,11 @@ namespace core
 
 
    /*
-   sp(::application) application::assert_running(const char * pszAppId)
+   sp(::core::application) application::assert_running(const char * pszAppId)
    {
 
 
-   sp(::application) papp = NULL;
+   sp(::core::application) papp = NULL;
 
 
    try

@@ -983,10 +983,10 @@ void thread::register_dependencies()
 
          session().register_dependant_thread(this);
 
-         if(session().m_pplanecomposite != NULL)
+         if(session().m_pplatformcomposite != NULL)
          {
 
-            session().m_pplanecomposite->register_dependant_thread(this);
+            session().m_pplatformcomposite->register_dependant_thread(this);
 
          }
 

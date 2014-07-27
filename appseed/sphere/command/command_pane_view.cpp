@@ -14,9 +14,6 @@ namespace command
       place_holder_container(papp)
    {
 
-      m_etranslucency      = TranslucencyPresent;
-
-
 
    }
 

@@ -257,6 +257,19 @@ namespace user
    }
 
 
+   bool schema::select_layered_frame()
+   {
+
+
+      
+      m_puserschema = System.m_pschemaLayeredFrame;
+
+      return true;
+
+   }
+
+
+
    bool schema::select_text_color(::draw2d::graphics * pgraphics,e_color ecolor)
    {
 

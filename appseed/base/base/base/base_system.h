@@ -124,6 +124,8 @@ namespace base
       size_t                                       m_nSafetyPoolSize;      // ideal size
       ::html::html *                               m_phtml; // only defined  in core;
 
+      ::user::schema *                             m_pschemaLayeredFrame;
+
 
 #ifdef WINDOWSEX
 

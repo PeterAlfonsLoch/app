@@ -17,7 +17,7 @@ namespace filehandler
       m_dataidWindow = "WindowData";
         
 
-      m_etranslucency = TranslucencyPresent;
+      select_layered_frame();
 
 
    }

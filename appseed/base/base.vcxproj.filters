@@ -4652,6 +4652,9 @@
     <ClInclude Include="user\user\user_document_data_map.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\user_schema_layered_frame.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -8827,6 +8830,9 @@
     <ClCompile Include="base\base\base_library.cpp">
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\user_schema_layered_frame.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -9086,6 +9092,9 @@
     </None>
     <None Include="primitive\collection\collection.inl">
       <Filter>Header Files\primitive\collection</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

@@ -11,7 +11,7 @@ namespace base
    public:
 
 
-      session_interface *     m_pplanecomposite;
+      session_interface *     m_pplatformcomposite;
 
 
       session_interface();

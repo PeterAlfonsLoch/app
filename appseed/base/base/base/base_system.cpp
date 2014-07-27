@@ -230,6 +230,8 @@ namespace base
 
       ::draw2d::dib::static_initialize();
 
+      m_pschemaLayeredFrame = new ::user::schema_layered_frame;
+
    }
 
 

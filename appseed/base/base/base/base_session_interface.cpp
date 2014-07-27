@@ -8,7 +8,7 @@ namespace base
    session_interface::session_interface()
    {
 
-      m_pplanecomposite = NULL;
+      m_pplatformcomposite = NULL;
 
    }
 
@@ -38,10 +38,10 @@ namespace base
    ::visual::cursor * session_interface::get_cursor()
    {
 
-      if(m_pplanecomposite == NULL)
+      if(m_pplatformcomposite == NULL)
          return NULL;
       
-      return m_pplanecomposite->get_cursor();
+      return m_pplatformcomposite->get_cursor();
 
    }
 
@@ -49,10 +49,10 @@ namespace base
    ::visual::cursor * session_interface::get_default_cursor()
    {
 
-      if(m_pplanecomposite == NULL)
+      if(m_pplatformcomposite == NULL)
          return NULL;
 
-      return m_pplanecomposite->get_default_cursor();
+      return m_pplatformcomposite->get_default_cursor();
 
    }
 

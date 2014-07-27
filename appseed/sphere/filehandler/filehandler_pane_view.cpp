@@ -19,7 +19,7 @@ namespace filehandler
       m_pviewdataOld = NULL;
 
 
-      m_etranslucency      = TranslucencyPresent;
+
 
       m_pviewdata              = NULL;
       m_pviewdataOld              = NULL;

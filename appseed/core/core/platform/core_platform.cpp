@@ -10,7 +10,7 @@ namespace core
       ::thread(papp)
    {
 
-      m_pplanecomposite                   = this;
+      m_pplatformcomposite                   = this;
          
       m_pbasesession                      = papp->m_pbasesession;
 
@@ -18,7 +18,7 @@ namespace core
 
       m_pbasesystem                       = papp->m_pbasesystem;
 
-      m_pbasesession->m_pplanecomposite   = this;
+      m_pbasesession->m_pplatformcomposite   = this;
 
       m_pbaseapp                          = this;
       

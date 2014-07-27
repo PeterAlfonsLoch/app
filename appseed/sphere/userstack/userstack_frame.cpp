@@ -20,7 +20,7 @@ namespace userstack
       m_dataidWindow = "WindowData";
 
       m_bLayered = true;
-      m_etranslucency = TranslucencyPresent;
+      select_layered_frame();
 
       m_ppaneview = NULL;
 
@@ -173,8 +173,8 @@ namespace userstack
    void frame::_000OnMouse(::message::mouse * pmouse)
    {
       session().m_ptCursor = pmouse->m_pt;
-//      ::aspheresp(::application) pappParent = &App(Application.m_pbaseapp->m_pplaneapp);
-//      ::aspheresp(::application) papp = &Application;
+//      ::aspheresp(::core::application) pappParent = &App(Application.m_pbaseapp->m_pcoreapp);
+//      ::aspheresp(::core::application) papp = &Application;
 /*      if(pmouse->m_uiMessage == WM_MOUSEMOVE
       && m_pdocument != NULL
       && m_pdocument->m_pplatformdocument != NULL
@@ -210,7 +210,7 @@ namespace userstack
 
 //      SCAST_PTR(::message::mouse, pmouse, pobj);
 //      m_bMouseOver = false;
-//      bergedgesp(::application) papp = dynamic_cast < bergedgesp(::application) > (get_app());
+//      bergedgesp(::core::application) papp = dynamic_cast < bergedgesp(::core::application) > (get_app());
    }
 
    void frame::pre_translate_message(signal_details * pobj)

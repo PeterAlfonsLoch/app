@@ -30,7 +30,8 @@ namespace user
 
    };
 
-   class CLASS_DECL_BASE schema 
+   class CLASS_DECL_BASE schema :
+      virtual public ::object
    {
    public:
 
@@ -57,6 +58,7 @@ namespace user
       virtual bool _001IsTranslucent();
       virtual bool _001HasTranslucency();
 
+      virtual bool select_layered_frame();
       virtual bool select_text_color(::draw2d::graphics * pgraphics, e_color ecolor = color_text);
       virtual bool select_font(::draw2d::graphics * pgraphics);
 

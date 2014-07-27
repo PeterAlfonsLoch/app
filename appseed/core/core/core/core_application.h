@@ -576,7 +576,7 @@ namespace core
 
       //sp(::base::application) get_system();
 
-      //virtual sp(::application) assert_running(const char * pszAppdId);
+      //virtual sp(::core::application) assert_running(const char * pszAppdId);
 
 
 

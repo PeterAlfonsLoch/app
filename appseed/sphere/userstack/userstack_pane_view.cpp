@@ -16,7 +16,7 @@ namespace userstack
       m_iArea           = -1;
       m_pviewdataOld    = NULL;
 
-      m_etranslucency   = TranslucencyTotal;
+      
 
       m_pviewdata       = NULL;
       m_pviewdataOld    = NULL;

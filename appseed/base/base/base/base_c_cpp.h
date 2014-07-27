@@ -658,6 +658,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base_command_target.h"
 #include "user/user/user_schema.h"
 #include "user/user/user_schema_simple_impl.h"
+#include "user/user/user_schema_layered_frame.h"
 #include "user/user/user_text_interface.h"
 #include "user/user/user_draw_interface.h"
 #include "user/user/user_window_util.h"

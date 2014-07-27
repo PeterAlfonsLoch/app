@@ -176,8 +176,8 @@ namespace bergedge
    void frame::_000OnMouse(::message::mouse * pmouse)
    {
       session().m_ptCursor = pmouse->m_pt;
-//      sp(::application) pappParent = &App(Application.m_pbaseapp);
-//      sp(::application) papp = &Application;
+//      sp(::core::application) pappParent = &App(Application.m_pbaseapp);
+//      sp(::core::application) papp = &Application;
       if(pmouse->m_uiMessage == WM_MOUSEMOVE
       && m_pdocument != NULL
       && m_pdocument->m_pplatformdocument != NULL
@@ -213,7 +213,7 @@ namespace bergedge
 
 //      SCAST_PTR(::message::mouse, pmouse, pobj);
 //      m_bMouseOver = false;
-//      bergedgesp(::application) papp = dynamic_cast < bergedgesp(::application) > (get_app());
+//      bergedgesp(::core::application) papp = dynamic_cast < bergedgesp(::core::application) > (get_app());
    }
 
    void frame::pre_translate_message(signal_details * pobj)
