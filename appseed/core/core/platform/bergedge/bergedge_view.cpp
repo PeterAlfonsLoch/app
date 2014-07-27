@@ -490,7 +490,7 @@ namespace bergedge
       {
          while(pui != NULL)
          {
-            sp(::application) papp = NULL;
+            sp(::base::application) papp = NULL;
             try
             {
                papp = &App(pui->get_app());

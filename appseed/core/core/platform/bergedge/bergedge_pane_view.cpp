@@ -127,7 +127,7 @@ namespace bergedge
          string strDirName;
          strDirName.Format("application-%d", 0);
          string strDir = session().dir().userappdata("bergedge", strDirName);
-         sp(::filemanager::document) pdoc =  (m_pviewdata->m_pdoc);
+         sp(::filemanager::manager) pdoc =  (m_pviewdata->m_pdoc);
          pdoc->FileManagerBrowse(strDir, ::action::source::system_default());
       }
       else if(strId == "file_manager")
@@ -138,7 +138,7 @@ namespace bergedge
       else if(get_view_id() == ::bergedge::PaneViewContextMenu)
       {
          /*bergedge::menu_view * pview = dynamic_cast < bergedge::menu_view *  > (get_view());
-         sp(::filemanager::document) pdoc = (pview->get_document());
+         sp(::filemanager::manager) pdoc = (pview->get_document());
          pdoc->FileManagerBrowse(session().dir().userappdata("bergedge\\menu"), ::action::source::system_default());*/
       }
       else if(get_view_id() == ::bergedge::PaneViewConfiguration)
@@ -163,7 +163,7 @@ namespace bergedge
          {
             check_desktop_dir(strDir);
          }
-         sp(::filemanager::document) pdoc =  (m_pviewdata->m_pdoc);
+         sp(::filemanager::manager) pdoc =  (m_pviewdata->m_pdoc);
          pdoc->FileManagerBrowse(strDir, ::action::source::system_default());
       }
       else
@@ -228,7 +228,7 @@ namespace bergedge
       else if(strId == "::bergedge::pane_view_application")
       {
          pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
-         sp(::filemanager::document) pdoc = platform().filemanager().std().open_child_list(false,true,this);
+         sp(::filemanager::manager) pdoc = platform().filemanager().std().open_child_list(false,true,this);
          if(pdoc != NULL)
          {
             pdoc->get_filemanager_data()->m_iIconSize = 48;
@@ -288,7 +288,7 @@ namespace bergedge
             {
                pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
                ::filemanager::manager_template * ptemplate = &platform().filemanager().std();
-               sp(::filemanager::document) pdoc = ptemplate->open_child_list(false, true, pcreatordata->m_pholder);
+               sp(::filemanager::manager) pdoc = ptemplate->open_child_list(false, true, pcreatordata->m_pholder);
                if(pdoc != NULL)
                {
                   pdoc->get_filemanager_data()->m_iIconSize = 48;
@@ -323,7 +323,7 @@ namespace bergedge
             break;
          case PaneViewThreeActionLaunch:
             {
-               sp(::filemanager::document) pdoc = platform().filemanager().std().open_child_list(false, true, pcreatordata->m_pholder);
+               sp(::filemanager::manager) pdoc = platform().filemanager().std().open_child_list(false, true, pcreatordata->m_pholder);
                if(pdoc != NULL)
                {
                   pdoc->get_filemanager_data()->m_iIconSize = 48;

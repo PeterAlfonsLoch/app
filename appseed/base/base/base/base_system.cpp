@@ -233,10 +233,10 @@ namespace base
    }
 
 
-   void system::construct()
+   void system::construct(const char * pszAppId)
    {
 
-      ::base::application::construct(NULL);
+      ::base::application::construct(pszAppId);
 
    }
 

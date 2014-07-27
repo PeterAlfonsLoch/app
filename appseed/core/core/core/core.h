@@ -714,7 +714,7 @@ namespace user
 namespace windows
 {
    template < class APP >
-   inline ::application & cast(APP * papp)
+   inline ::core::application & cast(APP * papp)
    {
       return *((papp));
    }

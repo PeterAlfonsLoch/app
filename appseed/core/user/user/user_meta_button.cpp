@@ -90,7 +90,7 @@ void MetaButton::_001OnDraw(::draw2d::graphics * pdc)
 
    GetWindowText(str);
 
-   pdc->set_font(GetFont());
+   select_font(pdc);
 
    pdc->set_text_color(crText);
    

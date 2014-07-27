@@ -18,7 +18,7 @@ namespace base
 
       ::base::system *                                m_pbasesystem;
       ::base::session *                               m_pbasesession;
-      ::application *                                 m_pcoreapp; // can be used only from core and upper
+      ::core::application *                           m_pcoreapp; // can be used only from core and upper
       ::core::system *                                m_pcoresystem; // can be used only from core and upper
       ::core::platform *                              m_pcoreplatform; // can be used only from core and upper
 

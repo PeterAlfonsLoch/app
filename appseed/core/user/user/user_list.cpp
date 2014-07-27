@@ -66,11 +66,7 @@ namespace user
       m_iClick = 0;
 
 
-      m_crText = ARGB(255, 0, 0, 0);
-      m_crTextSelected = ARGB(255, 255, 255, 255);
-      m_crTextHighlight = ARGB(255, 55, 105, 255);
-      m_crTextSelectedHighlight = ARGB(255, 102, 153, 255);
-
+      
       m_bLockViewUpdate = false;
 
 
@@ -5344,6 +5340,7 @@ namespace user
    void draw_list_item::update_item_color()
    {
       m_plist->_001GetItemColor(this);
+
       if(!m_bOk)
       {
          if(m_bListItemSelected)
@@ -5365,7 +5362,12 @@ namespace user
             }
             else
             {
-               m_cr = m_plist->m_crText;
+
+               COLORREF cr;
+
+               get_color(cr);
+
+               m_cr = cr;
             }
          }
       }

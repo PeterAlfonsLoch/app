@@ -1,9 +1,12 @@
 #include "framework.h"
 
+
 namespace user
 {
 
+
    const int32_t split_layout::m_iMarging = 5;
+
 
    split_layout::split_layout(sp(::base::application) papp) :
       element(papp),
@@ -11,17 +14,20 @@ namespace user
       m_panea(papp),
       place_holder_container(papp)
    {
+
       m_bInitialized    = true;
       m_iState          = stateInitial;
-      m_etranslucency   = TranslucencyPresent;
-
       m_cxBorder        = 1;
       m_cyBorder        = 1;
+
    }
+
 
    split_layout::~split_layout()
    {
+
    }
+
 
    bool split_layout::SetPaneCount(int32_t iPaneCount)
    {

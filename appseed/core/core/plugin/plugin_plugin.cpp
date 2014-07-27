@@ -99,7 +99,7 @@ namespace plugin
 
 #endif
 
-         ::plane::system * psystem = new ::plane::system();
+         ::core::system * psystem = new ::core::system();
 
          psystem->m_bDoNotExitIfNoApplications = true;
 
@@ -147,7 +147,7 @@ namespace plugin
       //      set_app(m_phost->get_system());
 //         m_bAppStarted = false;
 //
-//         m_psystem = new ::plugin::system((::plane::system *) m_phost->get_system());
+//         m_psystem = new ::plugin::system((::core::system *) m_phost->get_system());
 //
 //         System.m_pplugin = this;
 //

@@ -17,7 +17,7 @@ namespace filehandler
    {
    }
 
-   void handler::defer_add_library(::core::library * plibrary)
+   void handler::defer_add_library(::base::library * plibrary)
    {
 
       menu_library * pmenulibrary = dynamic_cast < menu_library * > (plibrary);

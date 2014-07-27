@@ -14,6 +14,10 @@ namespace userex
       hour_list_view(sp(::base::application) papp);   
       virtual ~hour_list_view();
 
+      
+      virtual void assert_valid() const;
+      virtual void dump(dump_context & dumpcontext) const;
+
 
       virtual void install_message_handling(::message::dispatch * pinterface);
 
@@ -33,11 +37,7 @@ namespace userex
 
       
    
-   #ifdef DEBUG
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
-   #endif
-
+   
    };
 
 

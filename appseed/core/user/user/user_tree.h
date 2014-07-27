@@ -133,8 +133,6 @@ namespace user
 
       sp(image_list) get_image_list();
 
-      virtual COLORREF get_background_color();
-
       // Overrides
       DECL_GEN_SIGNAL(_001OnMouseMove);
       DECL_GEN_SIGNAL(_001OnMouseLeave);

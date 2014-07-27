@@ -18,8 +18,6 @@ namespace userex
       
       m_scrollinfo.m_rectMargin.null();
 
-      m_etranslucency = TranslucencyPresent;
-
    }
    
    second_list_view::~second_list_view()

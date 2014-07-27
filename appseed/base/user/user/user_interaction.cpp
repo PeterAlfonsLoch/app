@@ -897,7 +897,7 @@ namespace user
 
          COLORREF cr = ARGB(184,255,255,255);
 
-         get_background_color(cr);
+         get_color(cr, ::user::color_background);
 
          pdc->FillSolidRect(rectClient, cr);
 
@@ -913,7 +913,7 @@ namespace user
 
          COLORREF cr = ARGB(255,255,255,255);
 
-         get_background_color(cr);
+         get_color(cr,::user::color_background);
 
          cr |= (255 << 24);
 

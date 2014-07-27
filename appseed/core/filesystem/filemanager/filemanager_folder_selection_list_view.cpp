@@ -134,7 +134,7 @@ void folder_selection_list_view::_001OnRemove(signal_details * pobj)
    FolderRemove();
 }
 
-::filemanager::data * folder_selection_list_view::get_filemanager_data()
+sp(::filemanager::data) folder_selection_list_view::get_filemanager_data()
 {
    return m_pdata;
 }

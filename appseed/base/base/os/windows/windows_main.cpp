@@ -31,7 +31,7 @@ void __cdecl _null_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers
 CLASS_DECL_BASE int32_t __win_main(sp(::base::system) psystem, ::windows::main_init_data * pmaininitdata)
 {
 
-   psystem->construct();
+   psystem->construct(NULL);
 
    if (pmaininitdata == NULL)
    {

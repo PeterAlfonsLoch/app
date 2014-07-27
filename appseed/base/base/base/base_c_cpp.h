@@ -51,7 +51,6 @@ class pair_set_interface;
 class str_str_interface;
 class command_thread;
 class thread;
-class application;
 class command_target;
 class cmd_ui;
 class critical_section;
@@ -205,6 +204,7 @@ namespace base
 namespace core
 {
 
+   class application;
    class platform;
    class system;
 

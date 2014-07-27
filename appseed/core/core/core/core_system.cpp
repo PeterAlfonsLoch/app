@@ -122,7 +122,7 @@ namespace core
    void system::construct(const char * pszAppId)
    {
 
-      ::application::construct(pszAppId);
+      ::core::application::construct(pszAppId);
 
       ::base::system::construct(pszAppId);
 
@@ -151,21 +151,10 @@ namespace core
 
    }
 
-   bool system::process_initialize()
-   {
-
-      if(!::base::system::process_initialize())
-         return false;
-
-      return true;
-
-   }
-
-
    bool system::initialize2()
    {
 
-      if(!::application::initialize2())
+      if(!::core::application::initialize2())
          return false;
 
       if(!::base::system::initialize2())
@@ -174,56 +163,6 @@ namespace core
       return true;
 
    }
-
-
-   bool system::initialize_instance()
-   {
-
-      if(!::base::system::initialize_instance())
-         return false;
-
-      //if(!::application::initialize_instance())
-        // return false;
-
-      return true;
-
-   }
-
-
-   bool system::finalize()
-   {
-
-      bool bOk = false;
-
-      try
-      {
-
-         bOk = ::base::system::finalize();
-
-      }
-      catch(...)
-      {
-
-         bOk = false;
-
-      }
-
-      return bOk;
-
-   }
-
-
-   int32_t system::exit_instance()
-   {
-
-      ::base::system::exit_instance();
-
-      return 0;
-
-   }
-
-
-
 
 
    bool system::InitApplication()
@@ -235,7 +174,7 @@ namespace core
       m_bInitApplicationResult      = FALSE;
       m_bInitApplication            = true;
 
-      m_bInitApplicationResult = ::application::InitApplication();
+      m_bInitApplicationResult = ::core::application::InitApplication();
 
       return m_bInitApplicationResult;
    }
@@ -252,10 +191,10 @@ namespace core
       m_bProcessInitializeResult    = false;
       m_bProcessInitialize          = true;
 
-      if(!::application::process_initialize())
+      if(!::core::application::process_initialize())
          return false;
 
-      if(!::core::system::process_initialize())
+      if(!::base::system::process_initialize())
          return false;
 
 
@@ -266,7 +205,7 @@ namespace core
 
       //      System.factory().creatable < ::base::log >(System.type_info < ::base::log > (), 1);
 
-      /*      if(!::application::process_initialize())
+      /*      if(!::core::application::process_initialize())
       {
       return false;
       }*/
@@ -317,7 +256,7 @@ namespace core
 #endif
 
 
-      if(!::application::initialize())
+      if(!::core::application::initialize())
          return false;
 
       return true;
@@ -342,7 +281,7 @@ namespace core
 
 
 
-      if(!::application::initialize1())
+      if(!::core::application::initialize1())
          return false;
 
 
@@ -490,7 +429,7 @@ namespace core
    bool system::map_application_library(const char * pszLibrary)
    {
 
-      ::core::library library(this,NULL);
+      ::base::library library(this,0, NULL);
 
       if(!strcmp(pszLibrary,"app_core_rdpclient.dll"))
       {
@@ -567,7 +506,7 @@ namespace core
    bool system::initialize3()
    {
 
-      if(!::application::initialize3())
+      if(!::core::application::initialize3())
          return false;
 
       if(m_phistory == NULL)
@@ -581,7 +520,7 @@ namespace core
    bool system::initialize_instance()
    {
 
-      if(!::core::system::initialize_instance())
+      if(!::base::system::initialize_instance())
       {
          return false;
       }
@@ -597,7 +536,7 @@ namespace core
 
 
 
-      if(!::application::initialize_instance())
+      if(!::core::application::initialize_instance())
          return false;
 
       m_pbergedgemap = new ::core::platform::map;
@@ -619,7 +558,7 @@ namespace core
 
       static uint32_t dwStart = ::get_tick_count();
 
-      ::application::verb();
+      ::core::application::verb();
 
       if(directrix()->m_varTopicQuery.has_property("install") && (get_tick_count() - dwStart) > (5 * 184 * 1000))
          return false;
@@ -709,7 +648,7 @@ namespace core
       try
       {
 
-         iRet = ::core::system::exit_instance();
+         iRet = ::base::system::exit_instance();
 
       }
       catch(...)
@@ -866,18 +805,32 @@ namespace core
 
       __wait_threading_count_except(this,::millis((5000) * 77));
 
+      bool bOk = true;
+
       try
       {
+
          if(m_spcrypto.is_set())
          {
+
             m_spcrypto.release();
+
          }
+
       }
       catch(...)
       {
+
+         bOk = false;
+
       }
 
-      ::application::finalize();
+      if(!::core::application::finalize())
+      {
+
+         bOk = false;
+
+      }
 
       try
       {
@@ -892,6 +845,8 @@ namespace core
       }
       catch(...)
       {
+
+         bOk = false;
 
       }
 
@@ -910,12 +865,18 @@ namespace core
       catch(...)
       {
 
+         bOk = false;
+
       }
 
+      if(!::base::system::finalize())
+      {
 
+         bOk = false;
 
+      }
 
-      return true;
+      return bOk;
 
    }
 
@@ -1158,7 +1119,7 @@ namespace core
       try
       {
          xxdebug_box("system::on_install","system::on_install",0);
-         if(!::application::on_install())
+         if(!::core::application::on_install())
             return false;
 
       }
@@ -1200,7 +1161,7 @@ namespace core
    }
 
 
-   bool system::add_library(::core::library * plibrary)
+   bool system::add_library(::base::library * plibrary)
    {
 
       m_libraryptra.add(plibrary);
@@ -1280,7 +1241,7 @@ namespace core
 
       if(pdata != NULL)
       {
-         if(!::application::set_main_init_data(pdata))
+         if(!::core::application::set_main_init_data(pdata))
             return false;
       }
 
@@ -1320,7 +1281,7 @@ namespace core
          command()->add_line(strCommandLine);
       }
 
-      //if(!::application::set_main_init_data(pdata))
+      //if(!::core::application::set_main_init_data(pdata))
       // return false;
 
       return true;
@@ -1432,7 +1393,7 @@ uint32_t _thread_proc_start_core_system(void * p)
 
    ::base::system * psystem = (::base::system *)p;
 
-   ::plane::system * pplanesystem = dynamic_cast < ::plane::system * > (psystem);
+   ::core::system * pplanesystem = dynamic_cast < ::core::system * > (psystem);
 
    ::set_thread(pplanesystem);
 

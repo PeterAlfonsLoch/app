@@ -36,7 +36,7 @@ namespace hotplugin
 
          g_pbasesystem->m_bShouldInitializeGTwf = false;
 
-         g_pbasesystem->construct();
+         g_pbasesystem->construct(NULL);
 
          g_pbasesystem->m_hinstance = (HINSTANCE)get_hinstance;
 

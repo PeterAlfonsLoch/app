@@ -117,7 +117,7 @@ namespace draw2d
             int32_t (CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData);
 
 
-      virtual void set_text_color(COLORREF clr);
+      virtual bool set_text_color(COLORREF clr);
 
    // Type-safe selection helpers
    public:

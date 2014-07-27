@@ -19,7 +19,7 @@ namespace filemanager
    void child_frame::install_message_handling(::message::dispatch * pinterface)
    {
       simple_child_frame::install_message_handling(pinterface);
-      IGUI_WIN_MSG_LINK(application::APPM_LANGUAGE, pinterface, this, &child_frame::_001OnAppLanguage);
+      IGUI_WIN_MSG_LINK(::core::application::APPM_LANGUAGE, pinterface, this, &child_frame::_001OnAppLanguage);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &child_frame::_001OnShowWindow);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &child_frame::_001OnCreate);
    }

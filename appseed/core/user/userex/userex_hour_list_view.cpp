@@ -18,18 +18,16 @@ namespace userex
       
       m_scrollinfo.m_rectMargin.null();
 
-      m_etranslucency = TranslucencyPresent;
-
    }
    
    hour_list_view::~hour_list_view()
    {
+
    }
 
 
 
 
-#ifdef DEBUG
    void hour_list_view::assert_valid() const
    {
       simple_list_view::assert_valid();
@@ -39,7 +37,6 @@ namespace userex
    {
       simple_list_view::dump(dumpcontext);
    }
-#endif //DEBUG
 
 
 

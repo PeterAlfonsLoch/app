@@ -181,7 +181,7 @@ namespace userex
          else
             pfilemanagerdata->m_strToolBarSave = "file_manager_toolbar_save.xml";
 
-         sp(::filemanager::document) pdoc = platform().filemanager().std().open_child(true,pfilemanagerdata->m_bTransparentBackground,pcreatordata->m_pholder,pfilemanagerdata);
+         sp(::filemanager::manager) pdoc = platform().filemanager().std().open_child(true,pfilemanagerdata->m_bTransparentBackground,pcreatordata->m_pholder,pfilemanagerdata);
          if(pdoc != NULL)
          {
             sp(::user::impact) pview = pdoc->get_view();
@@ -203,7 +203,7 @@ namespace userex
          cc->m_bMakeVisible               = true;
          cc->m_puiParent                  = pcreatordata->m_pholder;
 
-         sp(::filemanager::document) pdoc = platform().filemanager().std().open(cc);
+         sp(::filemanager::manager) pdoc = platform().filemanager().std().open(cc);
 
          if(pdoc != NULL)
          {
@@ -222,12 +222,12 @@ namespace userex
 
    }
 
-   sp(::filemanager::document) pane_tab_view::get_filemanager_manager()
+   sp(::filemanager::manager) pane_tab_view::get_filemanager_manager()
    {
       return  (get_view_creator()->get("file_manager")->m_pdoc);
    }
 
-   sp(::filemanager::document) pane_tab_view::get_tabbed_filemanager_document()
+   sp(::filemanager::manager) pane_tab_view::get_tabbed_filemanager_document()
    {
       return  (get_view_creator()->get("tabbed_file_manager")->m_pdoc);
    }

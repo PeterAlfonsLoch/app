@@ -474,15 +474,12 @@ namespace bergedge
    }
 
 
-   ::user::schema * frame::get_user_schema()
-   {
-   }
-
-
-   ::user::ETranslucency frame::_001GetTranslucency()
+   bool frame::_001GetTranslucency(::user::ETranslucency & etranslucency)
    {
 
-      return TranslucencyPresent;
+      etranslucency = ::user::TranslucencyPresent;
+
+      return true;
 
    }
 

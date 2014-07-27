@@ -8,7 +8,7 @@ namespace plugin
    system::system(sp(::base::application) papp) :
       element(papp),
       ::base::system(papp),
-      ::plane::system(papp)
+      ::core::system(papp)
       
    {
 
@@ -55,7 +55,7 @@ namespace plugin
    bool system::verb()
    {
 
-      return ::application::verb();
+      return ::core::application::verb();
 
    }
 

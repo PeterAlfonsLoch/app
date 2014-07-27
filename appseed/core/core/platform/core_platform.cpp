@@ -60,10 +60,11 @@ namespace core
 
    }
 
-   void platform::construct()
+
+   void platform::construct(const char * pszAppId)
    {
 
-      ::application::construct();
+      ::core::application::construct("session");
 
       m_strAppName         = "session";
       m_strBaseSupportId   = "ca2_bergedge";
@@ -73,10 +74,11 @@ namespace core
 
    }
 
+
    bool platform::initialize()
    {
 
-      if(!::application::initialize())
+      if(!::core::application::initialize())
          return false;
 
 
@@ -89,7 +91,7 @@ namespace core
    bool platform::initialize_instance()
    {
 
-      if(!::application::initialize_instance())
+      if(!::core::application::initialize_instance())
          return false;
 
       m_pfilemanager = canew(::filemanager::filemanager(this));
@@ -147,7 +149,7 @@ namespace core
       try
       {
 
-         bOk = ::application::finalize();
+         bOk = ::core::application::finalize();
 
       }
       catch(...)
@@ -167,7 +169,7 @@ namespace core
       try
       {
 
-         ::application::exit_instance();
+         ::core::application::exit_instance();
 
       }
       catch(...)
@@ -611,15 +613,18 @@ namespace core
 
       string strApp(pszAppId);
 
-      sp(::application) papp = application_get(pszType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
+      sp(::base::application) papp = application_get(pszType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
       if(papp == NULL)
          return NULL;
 
       if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
          || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
       {
+
          ::root::session().appptra().remove(papp);
+
          return NULL;
+
       }
 
       pcreatecontext->m_spCommandLine->m_eventReady.ResetEvent();
@@ -701,7 +706,7 @@ namespace core
    }
 
 
-   bool platform::open_by_file_extension(create_context * pcreatecontext)
+   bool platform::open_by_file_extension(::create_context * pcreatecontext)
    {
 
       string strId;
@@ -762,7 +767,7 @@ namespace core
 
       }
 
-      sp(::application) papp = application_get("application", strId, true, true, pcreatecontext->m_spApplicationBias);
+      sp(::base::application) papp = application_get("application", strId, true, true, pcreatecontext->m_spApplicationBias);
 
       if(papp == NULL)
          return false;
@@ -1071,7 +1076,7 @@ alt1:
    //
    //
    //
-   ///*      ::application & app = App(pinteraction->get_app());
+   ///*      ::core::application & app = App(pinteraction->get_app());
    //
    //      string strAppName = app.m_strAppName;
    //
@@ -1112,7 +1117,7 @@ alt1:
    ::user::place_holder_ptra holderptra;
 
 
-   ::application & app = App(pmainframe->get_app());
+   ::core::application & app = App(pmainframe->get_app());
 
    string strAppName = app.m_strAppName;
 
@@ -1164,7 +1169,7 @@ alt1:
 
 
 
-      return ::application::on_install();
+      return ::core::application::on_install();
    }
 
 
@@ -1233,31 +1238,31 @@ alt1:
       System.factory().creatable < ::bergedge::view > (iCount);
       System.factory().creatable < ::bergedge::pane_view > (iCount);
       System.factory().creatable < ::bergedge::frame > (iCount);
-      System.factory().creatable < platform::document > (iCount);
+      System.factory().creatable < ::platform::document > (iCount);
       System.factory().creatable < ::platform::view > (iCount);
-      System.factory().creatable < platform::pane_view > (iCount);
-      System.factory().creatable < platform::frame > (iCount);
-      System.factory().creatable < nature::document > (iCount);
+      System.factory().creatable < ::platform::pane_view > (iCount);
+      System.factory().creatable < ::platform::frame > (iCount);
+      System.factory().creatable < ::nature::document > (iCount);
       System.factory().creatable < ::nature::view > (iCount);
-      System.factory().creatable < nature::pane_view > (iCount);
-      System.factory().creatable < nature::frame > (iCount);
+      System.factory().creatable < ::nature::pane_view > (iCount);
+      System.factory().creatable < ::nature::frame > (iCount);
       m_ptemplate_bergedge    = new ::user::single_document_template(
          this,
          "bergedge/frame",
-         System.type_info < bergedge::document > (),
-         System.type_info < bergedge::frame > (),
-         System.type_info < bergedge::view > ());
+         System.type_info < ::bergedge::document > (),
+         System.type_info < ::bergedge::frame > (),
+         System.type_info < ::bergedge::view > ());
       m_ptemplate_platform    = new ::user::single_document_template(
          this,
          "bergedge/frame",
-         System.type_info < platform::document > (),
-         System.type_info < platform::frame > (),
-         System.type_info < platform::pane_view > ());
+         System.type_info < ::platform::document > (),
+         System.type_info < ::platform::frame > (),
+         System.type_info < ::platform::pane_view > ());
       m_ptemplate_nature      = new ::user::single_document_template(
          this,
          "bergedge/frame",
-         System.type_info < nature::document > (),
-         System.type_info < nature::frame > (),
+         System.type_info < ::nature::document > (),
+         System.type_info < ::nature::frame > (),
          System.type_info < ::nature::view > ());
       m_pnaturedocument = NULL;
    }
@@ -1554,7 +1559,7 @@ alt1:
 
 
 
-      ::application & app = App(pinteraction->get_app());
+      ::core::application & app = App(pinteraction->get_app());
 
       string strAppName = app.m_strAppName;
 
@@ -1595,7 +1600,7 @@ alt1:
       ::user::place_holder_ptra holderptra;
 
 
-      ::application & app = App(pmainframe->get_app());
+      ::core::application & app = App(pmainframe->get_app());
 
       string strAppName = app.m_strAppName;
 

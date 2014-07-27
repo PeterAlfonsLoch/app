@@ -128,12 +128,9 @@ namespace user
             session().get_default_color(COLOR_WINDOW),
             196);
       }*/
+
    }
 
-   COLORREF tree::get_background_color()
-   {
-      return ::user::scroll_view::get_background_color();
-   }
 
    void tree::_001OnDraw(::draw2d::graphics *pdc)
    {
@@ -379,6 +376,10 @@ namespace user
 
          ::draw2d::brush_sp brushText(allocer());
 
+         COLORREF crText = ARGB(255, 0, 0, 0);
+
+         get_color(crText);
+
          if(bSelected) // selected
          {
             if(bHover)
@@ -398,7 +399,7 @@ namespace user
             }
             else
             {
-               brushText->create_solid(m_crText);
+               brushText->create_solid(crText);
             }
          }
 

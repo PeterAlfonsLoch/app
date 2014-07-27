@@ -117,7 +117,7 @@ namespace user
    void static_control::_001OnDraw(::draw2d::graphics * pdc)
    {
 
-      COLORREF crText;
+      COLORREF crText = ARGB(255, 0, 0, 0);
 
       if(m_bHover)
       {
@@ -139,7 +139,7 @@ namespace user
          else
          {
 
-            crText = m_crText;
+            get_color(crText);
 
          }
 
@@ -147,13 +147,22 @@ namespace user
       else
       {
 
-         crText = m_crText;
+         get_color(crText);
 
       }
 
       pdc->set_text_color(crText);
 
-      pdc->SelectObject(GetFont());
+      ::draw2d::font_sp spfont;
+
+      get_font(spfont);
+
+      if(spfont.is_set())
+      {
+
+         pdc->SelectObject(spfont);
+
+      }
 
       pdc->TextOut(0, 0, get_window_text());
 

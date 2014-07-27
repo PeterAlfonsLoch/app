@@ -25,7 +25,7 @@ namespace nature
       System.factory().creatable_small < nature::frame > ();
       System.factory().creatable_small < nature::appearance_view > ();
 
-      if(!::application::initialize_instance())
+      if(!::core::application::initialize_instance())
          return false;
 
       platform().filemanager().std().m_strLevelUp = "levelup";
@@ -57,7 +57,7 @@ namespace nature
    {
       try
       {
-         ::application::exit_instance();
+         ::core::application::exit_instance();
       }
       catch(...)
       {
@@ -73,7 +73,7 @@ namespace nature
    bool application::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
    {
 
-      return ::application::_001OnCmdMsg(pcmdmsg);
+      return ::core::application::_001OnCmdMsg(pcmdmsg);
 
    }
 

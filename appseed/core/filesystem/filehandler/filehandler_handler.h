@@ -39,7 +39,7 @@ namespace filehandler
 
 
       void defer_add_library(::base::library * plibrary);
-      void add_library(::base::library * plibrary);
+      void add_library(::filehandler::library * plibrary);
       void add_menu_library(menu_library * plibrary);
 
 

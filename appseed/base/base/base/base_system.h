@@ -160,7 +160,7 @@ namespace base
 
 
 
-      virtual void construct();
+      virtual void construct(const char * pszAppId);
 
       virtual bool initialize_instance();
 

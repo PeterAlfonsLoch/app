@@ -139,8 +139,8 @@ namespace filemanager
             pfilemanagerdata = new ::filemanager::data(get_app());
          }
          pdoc->set_filemanager_data(pfilemanagerdata);
-         pdoc->get_filemanager_data()->m_pcallback = m_pfilemanager;
-         pdoc->get_filemanager_data()->m_pfilemanager = m_pfilemanager;
+         pdoc->get_filemanager_data()->m_pcallback = &platform().filemanager();
+         pdoc->get_filemanager_data()->m_pfilemanager = &platform().filemanager();
          pdoc->get_filemanager_data()->m_pmanager = pdoc;
          pdoc->get_filemanager_data()->m_pmanagerMain = pdoc;
          pdoc->get_filemanager_template() = this;

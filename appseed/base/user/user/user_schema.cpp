@@ -16,41 +16,20 @@ namespace user
    }
 
 
-   bool schema::get_background_color(COLORREF & cr)
+   bool schema::get_color(COLORREF & cr, e_color ecolor)
    {
 
       if(m_puserschema != NULL)
       {
 
-         return m_puserschema->get_background_color(cr);
+         return m_puserschema->get_color(cr, ecolor);
 
       }
 
       if(get_parent_user_schema() != NULL)
       {
 
-         return get_parent_user_schema()->get_background_color(cr);
-
-      }
-
-      return false;
-
-   }
-
-   bool schema::get_color(COLORREF & cr)
-   {
-
-      if(m_puserschema != NULL)
-      {
-
-         return m_puserschema->get_color(cr);
-
-      }
-
-      if(get_parent_user_schema() != NULL)
-      {
-
-         return get_parent_user_schema()->get_color(cr);
+         return get_parent_user_schema()->get_color(cr, ecolor);
 
       }
 
@@ -79,20 +58,20 @@ namespace user
 
    }
 
-   bool schema::_001GetTranslucency(::user::ETranslucency & etranslucency)
+   bool schema::get_translucency(ETranslucency & etranslucency)
    {
 
       if(m_puserschema != NULL)
       {
 
-         return m_puserschema->_001GetTranslucency(etranslucency);
+         return m_puserschema->get_translucency(etranslucency);
 
       }
 
       if(get_parent_user_schema() != NULL)
       {
 
-         return get_parent_user_schema()->_001GetTranslucency(etranslucency);
+         return get_parent_user_schema()->get_translucency(etranslucency);
 
       }
 
@@ -100,20 +79,108 @@ namespace user
 
    }
 
+   COLORREF schema::_001GetColor(e_color ecolor,COLORREF crDefault)
+   {
 
-   bool schema::_001IsTranslucent()
+      COLORREF cr;
+
+      if(get_color(cr,ecolor))
+         return cr;
+
+      return crDefault;
+
+   }
+
+   COLORREF schema::_001GetColor(e_color ecolor)
+   {
+
+      COLORREF cr;
+
+      if(ecolor == color_text)
+      {
+
+         if(get_color(cr,color_text))
+            return cr;
+
+         return ARGB(255,0,0,0);
+
+      }
+      else if(ecolor == color_text_selected)
+      {
+
+         if(get_color(cr,color_text_selected))
+            return cr;
+
+         return ARGB(255,255,255,255);
+
+      }
+      else if(ecolor == color_text_highlight)
+      {
+
+         if(get_color(cr,color_text_highlight))
+            return cr;
+
+         return ARGB(255,55,105,255);
+
+      }
+      else if(ecolor == color_text_selected_highlight)
+      {
+
+         if(get_color(cr,color_text_selected_highlight))
+            return cr;
+
+         return ARGB(255,102,153,255);
+
+      }
+      else if(ecolor == color_background)
+      {
+
+         if(get_color(cr,ecolor))
+            return cr;
+
+         if(_001IsTranslucent())
+         {
+
+            return ARGB(184,255,255,255);
+
+         }
+         else
+         {
+
+            return ARGB(255,255,255,255);
+
+         }
+
+      }
+
+
+
+      throw invalid_argument_exception(::get_thread_app());
+
+   }
+
+
+   ETranslucency schema::_001GetTranslucency(ETranslucency etranslucencyDefault)
    {
 
       ETranslucency etranslucency;
 
-      if(_001GetTranslucency(etranslucency))
-      {
+      if(get_translucency(etranslucency))
+         return etranslucency;
 
-         return etranslucency == TranslucencyPresent || etranslucency == TranslucencyTotal;
+      return etranslucencyDefault;
 
-      }
 
-      return false;
+   }
+
+
+
+   bool schema::_001IsTranslucent()
+   {
+
+      ETranslucency etranslucency = _001GetTranslucency();
+
+      return etranslucency == TranslucencyPresent || etranslucency == TranslucencyTotal;
 
    }
 
@@ -121,16 +188,7 @@ namespace user
    bool schema::_001IsBackgroundBypass()
    {
 
-      ETranslucency etranslucency;
-
-      if(_001GetTranslucency(etranslucency))
-      {
-
-         return etranslucency == TranslucencyTotal;
-
-      }
-
-      return false;
+      return _001GetTranslucency() == TranslucencyTotal;
 
    }
 
@@ -138,16 +196,9 @@ namespace user
    bool schema::_001HasTranslucency()
    {
 
-      ETranslucency etranslucency;
+      ETranslucency etranslucency = _001GetTranslucency();
 
-      if(_001GetTranslucency(etranslucency))
-      {
-
-         return etranslucency == TranslucencyPresent || etranslucency == TranslucencyTotal;
-
-      }
-
-      return false;
+      return etranslucency == TranslucencyPresent || etranslucency == TranslucencyTotal;
 
    }
 
@@ -155,16 +206,7 @@ namespace user
    bool schema::_001IsTransparent()
    {
 
-      ETranslucency etranslucency;
-
-      if(_001GetTranslucency(etranslucency))
-      {
-
-         return etranslucency == TranslucencyTotal;
-
-      }
-
-      return false;
+      return _001GetTranslucency() == TranslucencyTotal;
 
    }
 
@@ -188,6 +230,35 @@ namespace user
    {
 
       return NULL;
+
+   }
+
+
+   bool schema::select_text_color(::draw2d::graphics * pgraphics,e_color ecolor)
+   {
+
+      COLORREF crText;
+
+      if(!get_color(crText,ecolor))
+         return false;
+
+      return pgraphics->set_text_color(crText);
+
+   }
+
+   
+   bool schema::select_font(::draw2d::graphics * pgraphics)
+   {
+
+      ::draw2d::font_sp spfont;
+
+      if(!get_font(spfont))
+         return false;
+
+      if(spfont.is_null())
+         return false;
+
+      return pgraphics->set_font(spfont);
 
    }
 

@@ -1,19 +1,23 @@
 #include "framework.h"
 
+
 namespace user
 {
+
 
    tab_view::tab_view(sp(::base::application) papp) :
       element(papp),
       ::user::tab(papp),
       place_holder_container(papp)
    {
-      get_data()->m_pcallback   = this;
+
+      get_data()->m_pcallback       = this;
       m_pdroptargetwindow           = NULL;
       m_pviewdata                   = NULL;
       m_pviewdataOld                = NULL;
-      m_etranslucency               = TranslucencyPresent;
+
    }
+
 
    tab_view::~tab_view()
    {

@@ -25,7 +25,7 @@ int32_t CLASS_DECL_BASE __android_main(int32_t argc, char * argv[])
    if(!defer_base_init())
       return -1;
 
-   ::plane::system * psystem = new ::plane::system();
+   ::core::system * psystem = new ::core::system();
 
    int32_t nReturnCode = 0;
 
@@ -96,7 +96,7 @@ int32_t CLASS_DECL_BASE ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, c
 
 //      _set_purecall_handler(_ca2_purecall);
 
-      ::plane::system * psystem = new ::plane::system();
+      ::core::system * psystem = new ::core::system();
 
 
       //Sleep(30 * 1000);

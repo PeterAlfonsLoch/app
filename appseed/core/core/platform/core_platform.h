@@ -74,7 +74,10 @@ namespace core
 
       platform(::base::application * papp);
       virtual ~platform();
-      virtual void construct();
+
+
+      virtual void construct(const char * pszAppId);
+
 
       bool initialize_instance();
       virtual int32_t exit_instance();
@@ -174,7 +177,7 @@ namespace core
 
       virtual bool is_remote_session();
 
-      using ::application::start_application;
+      using ::core::application::start_application;
       sp(::base::application) start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext);
 
 

@@ -1902,7 +1902,7 @@ namespace base
    //      chFirst = strId[0];
    //   }
 
-   //   ::application::construct();
+   //   ::core::application::construct();
 
    //}
 
@@ -1917,7 +1917,7 @@ namespace base
    //   {
    //      chFirst = strId[0];
    //   }
-   //   ::application::_001OnFileNew(NULL);
+   //   ::core::application::_001OnFileNew(NULL);
    //}
 
 
@@ -1929,7 +1929,7 @@ namespace base
    //   {
    //      chFirst = strId[0];
    //   }
-   //   return ::application::bergedge_start();
+   //   return ::core::application::bergedge_start();
    //}
 
 
@@ -1942,7 +1942,7 @@ namespace base
    //   {
    //      chFirst = strId[0];
    //   }
-   //   return ::application::on_install();
+   //   return ::core::application::on_install();
    //}
 
    //bool application::on_uninstall()
@@ -1953,7 +1953,7 @@ namespace base
    //   {
    //      chFirst = strId[0];
    //   }
-   //   return ::application::on_uninstall();
+   //   return ::core::application::on_uninstall();
    //}
 
 
@@ -1976,7 +1976,7 @@ namespace base
    //   {
    //      chFirst = strId[0];
    //   }
-   //   return ::application::is_serviceable();
+   //   return ::core::application::is_serviceable();
    //}
 
    //service_base * application::allocate_new_service()
@@ -1995,7 +1995,7 @@ namespace base
    //   {
    //      chFirst = strId[0];
    //   }
-   //   return ::application::_001OpenDocumentFile(varFile);
+   //   return ::core::application::_001OpenDocumentFile(varFile);
 
    //}
 

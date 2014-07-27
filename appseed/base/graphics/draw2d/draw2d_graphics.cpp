@@ -169,12 +169,15 @@ namespace draw2d
       
    }
 
-   void graphics::set_text_color(COLORREF clr)
+   bool graphics::set_text_color(COLORREF clr)
    {
 
       ::draw2d::brush_sp brush(allocer(), clr);
 
-      SelectObject(brush);
+      if(brush.is_null())
+         return false;
+
+      return SelectObject(brush);
 
    }
 

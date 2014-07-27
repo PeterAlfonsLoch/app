@@ -18,7 +18,7 @@ namespace platform
    bool application::initialize_instance()
    {
 
-      if(!::application::initialize_instance())
+      if(!::core::application::initialize_instance())
          return false;
 
       platform().filemanager().std().m_strLevelUp = "levelup";
@@ -69,7 +69,7 @@ namespace platform
    bool application::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
    {
 
-      return ::application::_001OnCmdMsg(pcmdmsg);
+      return ::core::application::_001OnCmdMsg(pcmdmsg);
 
    }
 

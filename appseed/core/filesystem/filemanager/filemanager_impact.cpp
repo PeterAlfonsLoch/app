@@ -74,30 +74,6 @@ namespace filemanager
       }
    }
 
-   sp(::filemanager::manager) impact::get_filemanager_manager()
-   {
-      
-      return m_pmanager;
-
-   }
-   
-   sp(::filemanager::manager_template)     impact::get_filemanager_template()
-   {
-      
-      if(get_filemanager_manager() == NULL)
-         return NULL;
-
-      get_filemanager_manager()->
-
-
-   }
-
-
-   sp(::filemanager::data)                 impact::get_filemanager_data();
-   {
-   }
-
-
 
 } // namespace filemanager
 

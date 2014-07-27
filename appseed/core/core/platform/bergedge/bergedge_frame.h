@@ -60,8 +60,7 @@ namespace bergedge
 
       virtual void message_queue_message_handler(signal_details * pobj);
 
-      virtual ::user::schema * get_user_schema();
-      virtual ::user::ETranslucency _001GetTranslucency();
+      virtual bool _001GetTranslucency(::user::ETranslucency & etranslucency);
 
 
    };

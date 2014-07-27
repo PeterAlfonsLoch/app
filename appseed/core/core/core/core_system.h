@@ -6,7 +6,7 @@ namespace core
 
 
    class CLASS_DECL_CORE system :
-      virtual public ::application,
+      virtual public ::core::application,
       virtual public ::base::system
       #ifdef LINUX
       , virtual public ::exception::translator
@@ -74,7 +74,7 @@ namespace core
       virtual ~system();
 
 
-      virtual void construct();
+      virtual void construct(const char * pszAppId);
 
       virtual sp(element) clone(sp(element) pobj);
 
@@ -116,7 +116,7 @@ namespace core
       DECL_GEN_SIGNAL(on_application_signal);
 
 
-      using ::application::process;
+      using ::core::application::process;
       bool set_history(::core::history * phistory);
 
 
@@ -201,7 +201,7 @@ namespace core
 
       virtual string get_host_location_url();
 
-      virtual bool add_library(::core::library * plibrary);
+      virtual bool add_library(::base::library * plibrary);
 
       //virtual void get_cursor_pos(LPPOINT lppoint);
 

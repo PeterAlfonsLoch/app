@@ -35,7 +35,6 @@ namespace filemanager
    class manager_template;
    class file_list;
    class folder_list;
-   class document;
    class data;
    class callback;
    class filemanager;
