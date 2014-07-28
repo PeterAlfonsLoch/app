@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE simple_schema:
+   class CLASS_DECL_BASE schema_simple_impl:
       virtual public ::user::schema
    {
    public:
@@ -16,8 +16,8 @@ namespace user
       ETranslucency                                   m_etranslucency;
 
 
-      simple_schema();
-      virtual ~simple_schema();
+      schema_simple_impl();
+      virtual ~schema_simple_impl();
 
 
       virtual bool get_color(COLORREF & cr, e_color ecolor);

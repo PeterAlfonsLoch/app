@@ -31,7 +31,7 @@ namespace user
       };
 
       class CLASS_DECL_CORE button :
-         public ::user::simple_schema
+         public ::user::schema_simple_impl
       {
       public:
 

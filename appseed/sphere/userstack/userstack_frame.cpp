@@ -256,7 +256,7 @@ namespace userstack
             ::file::memory_buffer file(get_app(), pstruct->lpData, pstruct->cbData);
             string strPath;
             file.to_string(strPath);
-            PlaneSession.open_by_file_extension(strPath);
+            platform().open_by_file_extension(strPath);
          }
 #else
          throw todo(get_app());

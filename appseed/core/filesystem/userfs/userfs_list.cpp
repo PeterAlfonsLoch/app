@@ -644,7 +644,7 @@ namespace userfs
          return;
 
       /*      filemanager::file_list_callback * pcallback =
-      get_filemanager_template()->get_filemanager_data()->m_pschema->m_pfilelistcallback;
+      get_filemanager_template()->get_filemanager_template()->m_pfilelistcallback;
 
       sp(BaseButtonControl) pbutton =  (pcontrol);
       if(pcallback != NULL && pbutton != NULL)
@@ -658,7 +658,7 @@ namespace userfs
       UNREFERENCED_PARAMETER(pcontrol);
       //      list_data * pdata = get_fs_list_data();
       /* filemanager::file_list_callback * pcallback =
-      get_filemanager_template()->get_filemanager_data()->m_pschema->m_pfilelistcallback;
+      get_filemanager_template()->get_filemanager_template()->m_pfilelistcallback;
 
       if(pcallback != NULL)
       {

@@ -47,7 +47,7 @@ namespace userstack
       initialize_bergedge_application_interface();
 
 
-      PlaneSession.filemanager().std().m_strLevelUp = "levelup";
+      platform().filemanager().std().m_strLevelUp = "levelup";
 
 
       SetRegistryKey("ca2core");
@@ -111,11 +111,6 @@ namespace userstack
       return ::core::application::_001OnCmdMsg(pcmdmsg);
    }
 
-   ::application * application::get_app() const
-   {
-      return ::asphere::application::get_app();
-   }
-
    void application::OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);
@@ -127,7 +122,7 @@ namespace userstack
       ::asphere::application::load_string_table("platform", "");
    }
 
-   bool application::file_manager_open_file(
+   bool application::::filemanager::open_file(
             ::filemanager::data * pdata,
             ::fs::item_array & itema)
    {

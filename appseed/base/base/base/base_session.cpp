@@ -15,7 +15,7 @@ namespace base
 
       m_pbasesession    = this;
 
-      m_pplanesession   = NULL;
+      m_pcoreplatform   = NULL;
 
       m_bMatterFromHttpCache = m_pbasesystem->m_bMatterFromHttpCache;
 

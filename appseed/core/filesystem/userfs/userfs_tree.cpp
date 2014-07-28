@@ -64,10 +64,10 @@ namespace userfs
                //}
                /* xxx _001SetExpandImage(
                   System.LoadIcon(
-                  get_filemanager_template()->get_filemanager_data()->m_pschema->m_uiExpandBox));
+                  get_filemanager_template()->get_filemanager_template()->m_uiExpandBox));
                   _001SetCollapseImage(
                   System.LoadIcon(
-                  get_filemanager_template()->get_filemanager_data()->m_pschema->m_uiCollapseBox));*/
+                  get_filemanager_template()->get_filemanager_template()->m_uiCollapseBox));*/
 
 
                //            VmsDataInitialize(this);
@@ -187,7 +187,7 @@ namespace userfs
       /*     if(_001HitTest_(ptClient, iItem))
          {
          CSimpleMenu menu(CBaseMenuCentral::GetMenuCentral());
-         if (menu.LoadMenu(get_filemanager_template()->get_filemanager_data()->m_pschema->m_uiFilePopup))
+         if (menu.LoadMenu(get_filemanager_template()->get_filemanager_template()->m_uiFilePopup))
          {
          CSimpleMenu* pPopup = (CSimpleMenu *) menu.GetSubMenu(0);
          ASSERT(pPopup != NULL);
@@ -226,7 +226,7 @@ namespace userfs
          else
          {
          ::user::menu menu;
-         if (menu.LoadMenu(get_filemanager_template()->get_filemanager_data()->m_pschema->m_uiPopup))
+         if (menu.LoadMenu(get_filemanager_template()->get_filemanager_template()->m_uiPopup))
          {
          ::user::menu* pPopup = menu.GetSubMenu(0);
          ASSERT(pPopup != NULL);

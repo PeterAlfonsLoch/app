@@ -131,8 +131,8 @@ namespace userstack
          sp(::base::application) pappTab;
          if(session().m_mapApplication.Lookup("application:" + strId, pappTab))
          {
-            PlaneSession.m_pappCurrent = pappTab;
-            //PlaneSession.m_pappCurrent = pappTab;
+            platform().m_pappCurrent = pappTab;
+            //platform().m_pappCurrent = pappTab;
          }
 /*            sp(::simple_frame_window) pframeApp = dynamic_cast < sp(::simple_frame_window) > (m_pviewdata->m_pwnd);
          if(pframeApp != NULL)
@@ -143,7 +143,7 @@ namespace userstack
       else if(get_view_id() == ::bergedge::PaneViewContextMenu)
       {
          /*bergedge::menu_view * pview = dynamic_cast < bergedge::menu_view *  > (get_view());
-         sp(::filemanager::document) pdoc = (pview->get_document());
+         sp(::filemanager::manager) pdoc = (pview->get_document());
          pdoc->FileManagerBrowse(session().dir().userappdata("bergedge\\menu"), ::action::source::system_default());*/
       }
       else if(get_view_id() == ::bergedge::PaneViewConfiguration)
@@ -168,7 +168,7 @@ namespace userstack
          {
             check_desktop_dir(strDir);
          }
-         sp(::filemanager::document) pdoc =  (m_pviewdata->m_pdoc);
+         sp(::filemanager::manager) pdoc =  (m_pviewdata->m_pdoc);
          pdoc->FileManagerBrowse(strDir, ::action::source::system_default());
       }
       else
@@ -239,7 +239,7 @@ namespace userstack
 
          }
 
-         sp(::base::application) pappCurrent = PlaneSession.m_pappCurrent;
+         sp(::base::application) pappCurrent = platform().m_pappCurrent;
 
          Application.m_mapApplication[strId] = pappCurrent;
 
@@ -248,7 +248,7 @@ namespace userstack
          string strIcon = sess(pappCurrent).dir().matter("mainframe/icon48.png");
          pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
 
-         pappCurrent = PlaneSession.m_pappCurrent;
+         pappCurrent = platform().m_pappCurrent;
 
          if(sess(pappCurrent).file().exists(strIcon))
          {

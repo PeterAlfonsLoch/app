@@ -12,7 +12,7 @@ namespace hi5
          virtual public ::user::form_callback,
          virtual public ::user::view_creator,
          virtual public ::user::tab_callback,
-         virtual public ::user::simple_schema
+         virtual public ::user::schema_simple_impl
       {
       public:
 

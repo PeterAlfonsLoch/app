@@ -250,7 +250,7 @@ namespace plugin
       }
       else
       {
-         if(m_uiptraChild.get_size() > 0 && m_uiptraChild[0]->m_pbaseapp != NULL && m_uiptraChild[0]->m_pbaseapp->m_pbasesession->m_pplanesession != NULL)
+         if(m_uiptraChild.get_size() > 0 && m_uiptraChild[0]->m_pbaseapp != NULL && m_uiptraChild[0]->m_pbaseapp->m_pbasesession->m_pcoreplatform != NULL)
          {
             set_app(m_uiptraChild[0]->m_pbaseapp);
          }

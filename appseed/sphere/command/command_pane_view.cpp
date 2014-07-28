@@ -105,7 +105,7 @@ namespace command
       }
       else if(get_view_id() == command::PaneViewContextMenu)
       {
-         sp(::filemanager::document) pdoc =  (get_view_uie());
+         sp(::filemanager::manager) pdoc =  (get_view_uie());
          pdoc->FileManagerBrowse(session().dir().userappdata("command\\menu"), ::action::source::system_default());
       }
       else
@@ -137,13 +137,13 @@ namespace command
       {
       case PaneViewContextMenu:
          {
-                                 sp(::filemanager::document) pdoc = PlaneSession.filemanager().std().open_child_list(false, true);
+                                 sp(::filemanager::manager) pdoc = platform().filemanager().std().open_child_list(false, true);
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_iIconSize = 16;
                pdoc->get_filemanager_data()->m_bListText = true;
                pdoc->get_filemanager_data()->m_bListSelection = false;
-               pdoc->get_filemanager_data()->m_pschema->m_strFilePopup = "filemanager\\file_popup.xml";
+               pdoc->get_filemanager_template()->m_strFilePopup = "filemanager\\file_popup.xml";
                pdoc->get_filemanager_data()->m_strDISection = "winactionarea_menu";
                pdoc->get_filemanager_data()->m_pcallback = this;
                pdoc->Initialize(true);
@@ -180,7 +180,7 @@ namespace command
          break;
       case PaneViewFileManager:
          {
-                                 sp(::filemanager::document) pdoc = PlaneSession.filemanager().std().open_child(false, true);
+                                 sp(::filemanager::manager) pdoc = platform().filemanager().std().open_child(false, true);
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_strDISection = "winactionarea_filemanager";
@@ -208,7 +208,7 @@ namespace command
          break;
       case PaneViewThreeActionLaunch:
          {
-                                       sp(::filemanager::document) pdoc = PlaneSession.filemanager().std().open_child_list(false, true);
+                                       sp(::filemanager::manager) pdoc = platform().filemanager().std().open_child_list(false, true);
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_iIconSize = 48;

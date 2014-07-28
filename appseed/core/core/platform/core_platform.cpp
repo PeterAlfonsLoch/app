@@ -14,7 +14,7 @@ namespace core
          
       m_pbasesession                      = papp->m_pbasesession;
 
-      m_pbasesession->m_pplanesession     = this;
+      m_pbasesession->m_pcoreplatform     = this;
 
       m_pbasesystem                       = papp->m_pbasesystem;
 
@@ -237,7 +237,7 @@ namespace core
 
          m_pbergedgedocument =  (m_ptemplate_bergedge->open_document_file(createcontextBergedge).m_p);
 
-         //m_pbergedgedocument->m_pbaseapp->m_pbasesession->m_pplanesession = this;
+         //m_pbergedgedocument->m_pbaseapp->m_pbasesession->m_pcoreplatform = this;
 
       }
 

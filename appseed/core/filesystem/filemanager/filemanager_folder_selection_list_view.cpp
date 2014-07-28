@@ -31,7 +31,7 @@ namespace filemanager
    void folder_selection_list_view::Initialize(manager_template * ptemplate,const char * lpcszSection,::database::id datakey,bool bRecursive)
    {
 
-      get_filemanager_data()->m_pmanagertemplate = ptemplate;
+      get_filemanager_template() = ptemplate;
       get_filemanager_data()->m_iTemplate = ptemplate->m_iTemplate;
       get_filemanager_data()->m_iDocument = 0;
 
@@ -146,7 +146,7 @@ namespace filemanager
       FolderRemove();
    }
 
-   sp(::filemanager::data) folder_selection_list_view::get_filemanager_data()
+   sp(data) folder_selection_list_view::get_filemanager_data()
    {
       return m_pdata;
    }

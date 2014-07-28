@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   simple_schema::simple_schema()
+   schema_simple_impl::schema_simple_impl()
    {
 
       m_etranslucency      = TranslucencyUndefined;
@@ -13,13 +13,13 @@ namespace user
    }
 
 
-   simple_schema::~simple_schema()
+   schema_simple_impl::~schema_simple_impl()
    {
 
    }
 
 
-   bool simple_schema::set_color(e_color ecolor,COLORREF cr)
+   bool schema_simple_impl::set_color(e_color ecolor,COLORREF cr)
    {
 
       m_mapColor[ecolor] = cr;
@@ -29,14 +29,14 @@ namespace user
    }
 
 
-   bool simple_schema::get_color(COLORREF & cr, e_color ecolor)
+   bool schema_simple_impl::get_color(COLORREF & cr, e_color ecolor)
    {
 
       return m_mapColor.Lookup(ecolor,cr);
 
    }
 
-   bool simple_schema::get_font(::draw2d::font_sp & font)
+   bool schema_simple_impl::get_font(::draw2d::font_sp & font)
    {
 
       if(m_pfont.is_null())
@@ -49,7 +49,7 @@ namespace user
    }
 
 
-   bool simple_schema::get_translucency(ETranslucency & etranslucency)
+   bool schema_simple_impl::get_translucency(ETranslucency & etranslucency)
    {
 
       if(m_etranslucency == TranslucencyUndefined)

@@ -289,7 +289,7 @@ retry_license:
 
       //if(m_pbaseapp->m_pcoreapp->m_psession != NULL)
       //{
-        // return m_pbaseapp->m_pcoreapp->m_psession->m_pplanesession->m_pplanesession->simple_message_box(pwndOwner, pszMessage, fuStyle);
+        // return m_pbaseapp->m_pcoreapp->m_psession->m_pcoreplatform->m_pcoreplatform->simple_message_box(pwndOwner, pszMessage, fuStyle);
       //}
 
       class ::userex::message_box box(get_app());

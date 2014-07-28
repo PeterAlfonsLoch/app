@@ -7,8 +7,7 @@ namespace sphere
 
    library::library(sp(::base::application) papp) :
       element(papp),
-      ::base::library(papp),
-      ::core::library(papp, "app"),
+      ::base::library(papp,0, "app"),
       ::base::single_application_library < application > (papp, "app"),
       ::filehandler::library(papp),
       ::filehandler::menu_library(papp)

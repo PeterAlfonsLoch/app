@@ -96,7 +96,7 @@ namespace dynamic_source
 #define App(pbaseapp) CoreApp(pbaseapp)
 
 #undef CaSys
-#define CaSys(pca) (*pca->m_pbaseapp->m_pcoreystem)
+#define CaSys(pca) (*pca->m_pbaseapp->m_pcoresystem)
 
 #undef Sys
 #define Sys(pbaseapp) (*pbaseapp->m_pcoresystem)

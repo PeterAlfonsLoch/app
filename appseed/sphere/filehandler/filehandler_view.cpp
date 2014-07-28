@@ -13,14 +13,11 @@ namespace filehandler
       html_form(papp),
       html_form_view(papp),
       form_view(papp),
-      m_document(papp)
+      m_document(papp),
+      m_spfont(allocer())
    {
 
-      ::draw2d::font_sp font(allocer());
-
-      font->create_point_font("Geneva", 14.0);
-
-      SetFont(font);
+      m_spfont->create_point_font("Geneva",14.0);
 
    }
 
@@ -203,15 +200,15 @@ namespace filehandler
    }
 
 
-   void view::_001OnDraw(::draw2d::graphics * pdc)
+   void view::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
       if (m_plist.is_null())
          return;
 
-      pdc->set_font(GetFont());
+      select_font(pgraphics);
 
-      m_plist->draw(this, pdc);
+      m_plist->draw(this,pgraphics);
 
 
    }
@@ -277,9 +274,23 @@ namespace filehandler
             eelement = element_area;
             return i;
          }
+
       }
+
       eelement = element_none;
+
       return -1;
+
+   }
+
+
+   bool view::get_font(::draw2d::font_sp & font)
+   {
+      
+      font = m_spfont;
+
+      return true;
+
    }
 
 } // namespace filehandler

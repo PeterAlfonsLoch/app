@@ -69,12 +69,6 @@ namespace base
       virtual bool has_object_class(const char * pszClass);
 
 
-//      virtual ::dynamic_source::script_manager * create_script_manager(sp(::base::application) papp);
-
-  //    virtual void get_script_list(stringa & stra);
-  //    virtual ::dynamic_source::script * create_script(sp(::base::application) papp,const char * pszScript);
-//      virtual void do_default_script_registration(::dynamic_source::script_manager * pmanager);
-
       virtual string get_library_name();
 
       virtual string get_app_id(const char * pszAppName);

@@ -58,6 +58,8 @@ namespace filehandler
       sp(list)                m_plistWorking;
       sp(list)                m_plist;
 
+      ::draw2d::font_sp       m_spfont;
+
 
       view(sp(::base::application) papp);
 
@@ -80,6 +82,7 @@ namespace filehandler
 
       void layout_list(list * plist);
 
+      virtual bool get_font(::draw2d::font_sp & font);
 
    };
 
