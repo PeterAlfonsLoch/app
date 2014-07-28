@@ -122,7 +122,7 @@ namespace userstack
       ::asphere::application::load_string_table("platform", "");
    }
 
-   bool application::::filemanager::open_file(
+   bool application::file_manager_open_file(
             ::filemanager::data * pdata,
             ::fs::item_array & itema)
    {
