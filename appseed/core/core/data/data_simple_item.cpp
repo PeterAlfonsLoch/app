@@ -3,19 +3,12 @@
 namespace data
 {
 
-   /*#define ROUND(x,y) (((x)+(y-1))&~(y-1))
-   #define ROUND4(x) ROUND(x, 4)
-   __STATIC fixed_alloc_no_sync _alloc001SimpleTreeItem(ROUND4(sizeof(::data::simple_item)));*/
-
    simple_item::simple_item(::data::tree * pdatatree) :
       m_pdatatree(pdatatree)
    {
       m_iImage          = -1;
       m_iImageSelected  = -1;
 
-   /*#undef new
-      new(&m_str) string;
-   #define new BASE_NEW*/
    }
 
    simple_item::~simple_item()

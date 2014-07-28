@@ -5,31 +5,6 @@ namespace data
 {
 
 
-   /*   #define ROUND(x,y) (((x)+(y-1))&~(y-1))
-   #define ROUND4(x) ROUND(x, 4)
-   __STATIC fixed_alloc_no_sync _alloc001TreeDataItem(ROUND4(sizeof(tree_item)));
-
-   #undef new
-   void * tree_item::operator new(size_t, const char *, int32_t)
-   {
-   return _alloc001TreeDataItem.Alloc();
-   }
-
-   void * tree_item::operator new(size_t)
-   {
-   return _alloc001TreeDataItem.Alloc();
-   }
-   #define new BASE_NEW
-
-   void tree_item::operator delete(void * p)
-   {
-   return _alloc001TreeDataItem.Free(p);
-   }
-
-   void tree_item::operator delete(void * p, const char *, int32_t)
-   {
-   return _alloc001TreeDataItem.Free(p);
-   }*/
 
    tree_item::tree_item()
    {

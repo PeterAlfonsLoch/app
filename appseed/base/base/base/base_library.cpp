@@ -25,6 +25,8 @@ namespace base
 
       m_bAutoClose = true;
 
+      m_plibrary = NULL;
+
       if(pszRoot != NULL)
       {
 

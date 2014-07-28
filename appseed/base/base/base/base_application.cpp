@@ -1258,7 +1258,7 @@ namespace base
 
          dappy(string(typeid(*this).name()) + " : on_run exit_exception");
 
-         post_to_all_threads(WM_QUIT,0,0);
+         System.post_thread_message(WM_QUIT,0,0);
 
          goto exit_application;
 
@@ -1280,9 +1280,9 @@ namespace base
 
             dappy(string(typeid(*this).name()) + " : quiting main");
 
-            post_to_all_threads(WM_QUIT,0,0);
+            //post_to_all_threads(WM_QUIT,0,0);
 
-            Sleep(5000);
+            //Sleep(5000);
 
          }
 

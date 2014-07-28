@@ -3,10 +3,6 @@
 
 CLASS_DECL_BASE int32_t ca2_main();
 
-//CLASS_DECL_BASE extern fixed_alloc_array * g_pfixedallocaWstring;
-
-//CLASS_DECL_BASE fixed_alloc_array * new_wstring_manager();
-
 void CLASS_DECL_BASE __cdecl _ca2_purecall()
 {
     throw simple_exception(::get_thread_app());

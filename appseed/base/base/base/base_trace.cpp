@@ -18,9 +18,6 @@ category traceSocket("socket");
 */
 
 
-//extern CLASS_DECL_BASE fixed_alloc_array * g_pfixedallocaWstring;
-
-
 namespace base
 {
 

@@ -436,7 +436,20 @@ namespace core
          TRACE("reach");
       }
 
+      if(!stricmp(pszLibrary,"app_core_hellomultiverse.dll"))
+      {
+         TRACE("reach app_core_hellomultiverse.dll");
+      }
+
+      if(!stricmp(pszLibrary,"app_core_hellomultiverse"))
+      {
+         TRACE("reach app_core_hellomultiverse");
+      }
+
       if(!library.open(pszLibrary,true))
+         return false;
+
+      if(!library.open_ca2_library())
          return false;
 
       m_spfilehandler->defer_add_library(library.m_pca2library);
@@ -803,71 +816,7 @@ namespace core
    bool system::finalize()
    {
 
-      __wait_threading_count_except(this,::millis((5000) * 77));
-
       bool bOk = true;
-
-      try
-      {
-
-         if(m_spcrypto.is_set())
-         {
-
-            m_spcrypto.release();
-
-         }
-
-      }
-      catch(...)
-      {
-
-         bOk = false;
-
-      }
-
-      if(!::core::application::finalize())
-      {
-
-         bOk = false;
-
-      }
-
-      try
-      {
-
-         if(m_spportforward.is_set())
-         {
-
-            m_spportforward.release();
-
-         }
-
-      }
-      catch(...)
-      {
-
-         bOk = false;
-
-      }
-
-
-      try
-      {
-
-         if(m_spfile.is_set())
-         {
-
-            m_spfile.release();
-
-         }
-
-      }
-      catch(...)
-      {
-
-         bOk = false;
-
-      }
 
       if(!::base::system::finalize())
       {

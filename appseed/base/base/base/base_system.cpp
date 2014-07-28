@@ -427,6 +427,26 @@ namespace base
 
       bool bOk = false;
 
+
+
+      try
+      {
+
+         if(m_spcrypto.is_set())
+         {
+
+            m_spcrypto.release();
+
+         }
+
+      }
+      catch(...)
+      {
+
+         bOk = false;
+
+      }
+
       try
       {
 
@@ -439,6 +459,44 @@ namespace base
          bOk = false;
 
       }
+
+      try
+      {
+
+         if(m_spportforward.is_set())
+         {
+
+            m_spportforward.release();
+
+         }
+
+      }
+      catch(...)
+      {
+
+         bOk = false;
+
+      }
+
+
+      try
+      {
+
+         if(m_spfile.is_set())
+         {
+
+            m_spfile.release();
+
+         }
+
+      }
+      catch(...)
+      {
+
+         bOk = false;
+
+      }
+
 
       return bOk;
 

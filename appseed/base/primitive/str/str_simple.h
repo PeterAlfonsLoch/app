@@ -73,8 +73,6 @@ class string_manager
 protected:
 
 
-   //   fixed_alloc_array * m_palloca;
-
    nil_string_data  m_nil;
 
 

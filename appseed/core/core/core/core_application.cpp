@@ -2710,7 +2710,7 @@ namespace core
 
       try
       {
-         thread::finalize();
+         ::base::application::finalize();
       }
       catch(...)
       {
