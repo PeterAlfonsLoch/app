@@ -125,6 +125,7 @@ namespace user
    class interaction_impl;
    class view_creator_data;
    class schema;
+   class tree;
 
 }
 
@@ -682,9 +683,15 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 #include "primitive/primitive_interlocked_long.h"
 #include "primitive/primitive_interlocked_long_pulse.h"
-#include "primitive/primitive_data.h"
-#include "primitive/primitive_data_listener.h"
-#include "primitive/primitive_data_container.h"
+
+#include "primitive/data/data_data.h"
+#include "primitive/data/data_data_listener.h"
+#include "primitive/data/data_data_container.h"
+#include "primitive/data/data_item.h"
+#include "primitive/data/data_tree_item.h"
+#include "primitive/data/data_tree.h"
+#include "primitive/data/data_simple_item.h"
+
 #include "base/primitive/primitive_edit.h"
 #include "base_departament.h"
 #include "base_departament_container.h"

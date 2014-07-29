@@ -4467,6 +4467,13 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\comparison\comparison_less.h" />
     <ClInclude Include="primitive\comparison\comparison_md5.h" />
     <ClInclude Include="primitive\comparison\comparison_var_strict.h" />
+    <ClInclude Include="primitive\data\data_data.h" />
+    <ClInclude Include="primitive\data\data_data_container.h" />
+    <ClInclude Include="primitive\data\data_data_listener.h" />
+    <ClInclude Include="primitive\data\data_item.h" />
+    <ClInclude Include="primitive\data\data_simple_item.h" />
+    <ClInclude Include="primitive\data\data_tree.h" />
+    <ClInclude Include="primitive\data\data_tree_item.h" />
     <ClInclude Include="primitive\datetime\datetime_c.h" />
     <ClInclude Include="primitive\datetime\datetime_departament.h" />
     <ClInclude Include="primitive\datetime\datetime_duration.h" />
@@ -4502,9 +4509,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\primitive_edit.h" />
     <ClInclude Include="primitive\primitive_interlocked_long.h" />
     <ClInclude Include="primitive\primitive_interlocked_long_pulse.h" />
-    <ClInclude Include="primitive\primitive_data.h" />
-    <ClInclude Include="primitive\primitive_data_container.h" />
-    <ClInclude Include="primitive\primitive_data_listener.h" />
     <ClInclude Include="primitive\primitive_factory.h" />
     <ClInclude Include="primitive\primitive_job.h" />
     <ClInclude Include="primitive\primitive_memory_c.h" />
@@ -17817,6 +17821,13 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="primitive\collection\collection_var_array.cpp" />
     <ClCompile Include="primitive\comparison\comparison_md5.cpp" />
     <ClCompile Include="primitive\comparison\comparison_var_strict.cpp" />
+    <ClCompile Include="primitive\data\data_data.cpp" />
+    <ClCompile Include="primitive\data\data_data_container.cpp" />
+    <ClCompile Include="primitive\data\data_data_listener.cpp" />
+    <ClCompile Include="primitive\data\data_item.cpp" />
+    <ClCompile Include="primitive\data\data_simple_item.cpp" />
+    <ClCompile Include="primitive\data\data_tree.cpp" />
+    <ClCompile Include="primitive\data\data_tree_item.cpp" />
     <ClCompile Include="primitive\datetime\datetime_departament.cpp" />
     <ClCompile Include="primitive\datetime\datetime_duration.cpp" />
     <ClCompile Include="primitive\datetime\datetime_time.cpp" />
@@ -17843,9 +17854,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="primitive\primitive_id_space.cpp" />
     <ClCompile Include="primitive\primitive_interlocked_long.cpp" />
     <ClCompile Include="primitive\primitive_interlocked_long_pulse.cpp" />
-    <ClCompile Include="primitive\primitive_data.cpp" />
-    <ClCompile Include="primitive\primitive_data_container.cpp" />
-    <ClCompile Include="primitive\primitive_data_listener.cpp" />
     <ClCompile Include="primitive\primitive_factory.cpp" />
     <ClCompile Include="primitive\primitive_job.cpp" />
     <ClCompile Include="primitive\primitive_memory.cpp" />

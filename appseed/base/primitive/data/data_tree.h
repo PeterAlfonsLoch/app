@@ -5,15 +5,15 @@ namespace data
 {
 
 
-   class CLASS_DECL_CORE tree :
+   class CLASS_DECL_BASE tree :
       virtual public ::data::data,
       virtual public ::signalizable
    {
    public:
 
 
-      spa(::user::tree)                   m_treeptra;
-      spa(::user::tree)                   m_treeptraBound;
+      ptr_array < ::user::tree >          m_treeptra; // valid (usable) only core (core.dll, core.so, core.dylib...)
+      ptr_array < ::user::tree >          m_treeptraBound; // valid only at core
       sp(tree_item)                       m_proot;
       sp(image_list)                      m_pimagelist;
       mutex                               m_mutex;

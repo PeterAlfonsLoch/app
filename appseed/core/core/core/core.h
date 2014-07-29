@@ -773,9 +773,6 @@ namespace core
 #include "core_process_data.h"
 
 
-#include "core/core/data/data_item.h"
-#include "core/core/data/data_tree_item.h"
-#include "core/core/data/data_tree.h"
 
 #include "core_fs_interface.h"
 
@@ -836,7 +833,7 @@ namespace core
 //#include "core_file_system.h"
 #include "core_resource.h"
 
-#include "core/core/data/data_simple_item.h"
+
 
 
 
