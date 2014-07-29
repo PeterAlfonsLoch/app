@@ -14,7 +14,7 @@ namespace colorertake5
    or lower line's numbers. This makes sequential tokens processing.
    @ingroup colorer
    */
-   class CLASS_DECL_CORE RegionHandler
+   class CLASS_DECL_BASE RegionHandler
    {
    protected:
 

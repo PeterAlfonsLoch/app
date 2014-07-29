@@ -708,9 +708,6 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "primitive/primitive_job.h"
 
 
-#include "user/user/user_control.h"
-#include "user/user/user_scroll_view.h"
-#include "user/user/user_edit_plain_text.h"
 
 
 #include "base_log.h"
@@ -1082,6 +1079,10 @@ namespace numeric_info
 #include "base_cregexp.h"
 #include "base_cregexp_util.h"
 
+#include "user/user/user_control.h"
+#include "user/user/user_scroll_view.h"
+#include "user/colorertake5/colorertake5.h"
+#include "user/user/user_edit_plain_text.h"
 
 
 

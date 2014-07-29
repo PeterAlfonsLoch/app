@@ -26,10 +26,10 @@ namespace user
       bool                          m_bKeyPressed;
       bool                          m_bColorerTake5;
       int32_t                       m_iLineCount;
-      visual::dib_sp                m_dibBk;
+      //visual::dib_sp                m_dibBk;
       bool                          m_bCustomFrameBefore;
       rect                          m_FullScreenWindowRect;
-      visual::fastblur              m_fastblur;
+      //visual::fastblur              m_fastblur;
 
       bool                          m_bPassword;
 
