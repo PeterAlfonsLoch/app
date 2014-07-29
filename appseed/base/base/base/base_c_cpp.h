@@ -1082,6 +1082,7 @@ namespace numeric_info
 #include "user/user/user_control.h"
 #include "user/user/user_scroll_view.h"
 #include "user/colorertake5/colorertake5.h"
+#include "user/user/user_plain_text_data.h"
 #include "user/user/user_edit_plain_text.h"
 
 

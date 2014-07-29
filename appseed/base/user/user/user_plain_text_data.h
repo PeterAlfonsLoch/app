@@ -15,7 +15,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_CORE plain_text_tree :
+   class CLASS_DECL_BASE plain_text_tree :
       public ::data::tree
    {
    public:

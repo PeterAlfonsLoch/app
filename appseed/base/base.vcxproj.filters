@@ -4817,6 +4817,9 @@
     <ClInclude Include="user\colorertake5\colorertake5_xmldom.h">
       <Filter>Header Files\user\colorertake5</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\user_plain_text_data.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -9069,6 +9072,9 @@
     </ClCompile>
     <ClCompile Include="user\colorertake5\TextConsoleViewer.cpp">
       <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_plain_text_data.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
