@@ -118,7 +118,7 @@ void MetaButton::_001OnLButtonUp(signal_details * pobj)
 
    UNREFERENCED_PARAMETER(pobj);
 
-   //_001RedrawWindow();
+   //RedrawWindow();
 
 }
 
@@ -134,11 +134,11 @@ LRESULT MetaButton::OnAppForwardSyncMessage(WPARAM wParam, LPARAM lParam)
 
       if(rectClient.contains(ptCursor))
       {
-         _001RedrawWindow();
+         RedrawWindow();
       }
       else
       {
-         _001RedrawWindow();
+         RedrawWindow();
       }
    }
    return 0;
@@ -170,7 +170,7 @@ void MetaButton::_001OnTimer(signal_details * pobj)
             {
                KillTimer(ptimer->m_nIDEvent);
                m_bFocus = false;
-               _001RedrawWindow();
+               RedrawWindow();
             }
          }
          else

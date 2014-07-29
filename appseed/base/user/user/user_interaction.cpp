@@ -1819,9 +1819,19 @@ namespace user
          if(pParentWnd == NULL)
             pParentWnd = System.m_posdata->m_pui;
 #endif
+
+         ::rect rectFrame(rect);
+
+         if(rectFrame.is_null() && pParentWnd->is_place_holder())
+         {
+
+            pParentWnd->GetClientRect(rectFrame);
+
+         }
+
          m_pimpl = new ::user::interaction_child(get_app());
          m_pimpl->m_pui = this;
-         if(!m_pimpl->CreateEx(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,id,lpParam))
+         if(!m_pimpl->CreateEx(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rectFrame,pParentWnd,id,lpParam))
          {
             m_pimpl.release();
             

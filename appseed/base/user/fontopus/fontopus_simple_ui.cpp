@@ -17,10 +17,13 @@ namespace fontopus
       m_login(papp, 0, 0)
    {
 
+      m_bMayProDevian = false;
       m_eschema = schema_normal;
       m_login.m_pstyle = this;
       m_bLButtonDown = false;
       m_bFontopusSimpleUiLayout = false;
+      
+
    }
 
 
@@ -107,9 +110,9 @@ namespace fontopus
             string strUsername;
             string strPassword;
 
-            ::fontopus::get_cred(get_app(),strUsername,strPassword,"ca2");
+            string str = ::fontopus::get_cred(get_app(),strUsername,strPassword,"ca2");
 
-            if(strUsername.has_char() && strPassword.has_char())
+            if(strUsername.has_char() && strPassword.has_char() && str == "ok")
             {
                KillTimer(1984);
 

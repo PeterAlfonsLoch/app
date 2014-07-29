@@ -98,8 +98,6 @@ namespace userex
 
       ::index iTab = get_tab_by_id(pcreatordata->m_id);
 
-      pcreatordata->m_pholder = get_new_place_holder();
-
       if(iTab < 0)
          return;
 
@@ -107,6 +105,8 @@ namespace userex
 
       if(ppane == NULL)
          return;
+
+      pcreatordata->m_pholder = get_new_place_holder(get_data()->m_rectTabClient);
 
       ppane->m_pholder = pcreatordata->m_pholder;
 
@@ -127,7 +127,7 @@ namespace userex
       {
          if(panea[iTab].m_pholder == pholder)
          {
-            ::user::view_creator_data * pcreatordata = ensure(panea[iTab].m_id);
+            ::user::view_creator_data * pcreatordata = ensure(panea[iTab].m_id, get_data()->m_rectTabClient);
             if(pcreatordata != NULL)
             {
                if(pcreatordata->m_pwnd == NULL)
@@ -141,9 +141,12 @@ namespace userex
       return true;
    }
 
-   ::user::view_creator_data * pane_tab_view::ensure(id id)
+
+   void pane_tab_view::ensure_tab_by_id(id id)
    {
-      return ::user::tab_view::ensure(id);
+
+      ensure(id,get_data()->m_rectTabClient);
+
    }
 
 
@@ -228,12 +231,12 @@ namespace userex
 
    sp(::filemanager::manager) pane_tab_view::get_filemanager_manager()
    {
-      return  (get_view_creator()->get("file_manager")->m_pdoc);
+      return  m_pmanager;
    }
 
    sp(::filemanager::manager) pane_tab_view::get_tabbed_filemanager_document()
    {
-      return  (get_view_creator()->get("tabbed_file_manager")->m_pdoc);
+      return  m_pmanager;
    }
 
    void pane_tab_view::_001OnTabClose(int32_t iTab)

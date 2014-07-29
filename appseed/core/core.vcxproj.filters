@@ -1835,9 +1835,6 @@
     <ClInclude Include="user\user\user_document_manager.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_edit_plain_text.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_edit_plain_text_view.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -3485,9 +3482,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_document_manager.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_edit_plain_text.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_edit_plain_text_view.cpp">

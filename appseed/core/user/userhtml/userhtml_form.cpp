@@ -94,7 +94,7 @@ void html_form::_001OnImageLoaded(signal_details * pobj)
          get_html_data()->delete_implementation();
          get_html_data()->layout(pdc);
 
-         _001RedrawWindow();
+         RedrawWindow();
       }
    }
 }
@@ -444,7 +444,7 @@ void html_form::defer_layout()
    get_html_data()->m_pform = this;
    get_html_data()->layout(pdc);
 
-   _001RedrawWindow();
+   RedrawWindow();
 
 }
 

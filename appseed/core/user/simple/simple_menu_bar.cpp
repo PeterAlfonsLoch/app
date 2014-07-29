@@ -144,7 +144,7 @@ bool simple_menu_bar::_TrackPopupMenu(int32_t iItem)
     TRACE("simple_menu_bar::_TrackPopupMenu % d\n", iItem);
     m_iTracking = iItem;
     m_iButtonPressItem = iItem;
-    _001RedrawWindow();
+    RedrawWindow();
     rect rect;
     _001GetItemRect(iItem, rect, ElementItem);
     ClientToScreen(rect);
@@ -718,7 +718,7 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
       {
          SetTimer(TIMER_HOVER, 50, NULL);
       }
-      _001RedrawWindow();
+      RedrawWindow();
    }
 }
 
@@ -789,6 +789,6 @@ void simple_menu_bar::_001OnAppLanguage(signal_details * pobj)
    SCAST_PTR(::message::base, pbase, pobj)
    send_message(WM_CANCELMODE);
    LoadMenuBar(m_uiResourceID);
-   _001RedrawWindow();
+   RedrawWindow();
    pbase->m_bRet = false;
 }

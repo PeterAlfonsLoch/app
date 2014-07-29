@@ -993,7 +993,7 @@ namespace filemanager
       }
       else if (ptimer->m_nIDEvent == 123)
       {
-         ptimer->m_pwnd->_001RedrawWindow();
+         ptimer->m_pwnd->RedrawWindow();
          m_bTimer123 = false;
          ptimer->m_pwnd->KillTimer(123);
       }

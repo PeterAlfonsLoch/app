@@ -278,7 +278,7 @@ namespace platform
       {
       m_buttonKaraoke._001SetVisible(false);
       }*/
-      _001RedrawWindow();
+      RedrawWindow();
    }
 
    bool view::BaseOnControlEvent(::user::control_event * pevent)
@@ -740,7 +740,7 @@ namespace platform
       /*      else if(iHitArea == m_iShutDown)
       {
       m_bShutDown = !m_bShutDown;
-      _001RedrawWindow();
+      RedrawWindow();
       }
       else if(iHitArea == m_iClockOffset)
       {
@@ -789,19 +789,19 @@ namespace platform
       {
       case calendar::ElementPreviousMonth:
       m_calendar.previous_month();
-      _001RedrawWindow();
+      RedrawWindow();
       break;
       case calendar::ElementNextMonth:
       m_calendar.next_month();
-      _001RedrawWindow();
+      RedrawWindow();
       break;
       case calendar::ElementNextYear:
       m_calendar.next_year();
-      _001RedrawWindow();
+      RedrawWindow();
       break;
       case calendar::ElementPreviousYear:
       m_calendar.previous_year();
-      _001RedrawWindow();
+      RedrawWindow();
       break;
       default:
       {
@@ -809,7 +809,7 @@ namespace platform
       if(m_calendar.time_hit_test(time, pt))
       {
       m_calendar.set_time(time);
-      _001RedrawWindow();
+      RedrawWindow();
       }
       }
       break;

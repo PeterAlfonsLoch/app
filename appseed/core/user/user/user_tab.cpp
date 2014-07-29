@@ -1215,7 +1215,7 @@ namespace user
       if(iHover != m_iHover)
       {
          m_iHover = iHover;
-         _001RedrawWindow();
+         RedrawWindow();
       }*/
 
    }
@@ -1225,7 +1225,7 @@ namespace user
    {
       SCAST_PTR(::message::base, pbase, pobj);
       m_iHover = -1;
-      //GetParent()->_001RedrawWindow();
+      //GetParent()->RedrawWindow();
       pbase->set_lresult(0);
       pobj->m_bRet = true;
    }

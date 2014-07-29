@@ -124,8 +124,6 @@ namespace user
 
    void tab_view::_001OnDropTab(int32_t iPane, e_position eposition)
    {
-      sp(::user::interaction) pwnd1 = ensure(::user::tab::get_id_by_tab(::user::tab::_001GetSel()))->m_pwnd;
-      sp(::user::interaction) pwnd2 = ensure(::user::tab::get_id_by_tab(iPane))->m_pwnd;
       ::user::split_view * psplitview = dynamic_cast < ::user::split_view * > (impact::create_view(System.type_info < ::user::split_view > (), get_document(), this, 100).m_p);
       if(eposition == position_top || eposition == position_bottom)
       {
@@ -136,20 +134,30 @@ namespace user
          psplitview->SetSplitOrientation(orientation_vertical);
       }
       psplitview->SetPaneCount(2);
+      psplitview->set_position_rate(0,0.5);
       bool bSwap;
+      rect rect0;
+      rect rect1;
+      psplitview->m_panea[0].m_pholder->GetClientRect(rect0);
+      psplitview->m_panea[1].m_pholder->GetClientRect(rect1);
+      sp(::user::interaction) pwnd1;
+      sp(::user::interaction) pwnd2;
       if(eposition == position_top || eposition == position_left)
       {
-         psplitview->SetPane(0, pwnd2, false);
+         pwnd1 = ensure(::user::tab::get_id_by_tab(::user::tab::_001GetSel()), rect1)->m_pwnd;
+         pwnd2 = ensure(::user::tab::get_id_by_tab(iPane), rect0)->m_pwnd;
+         psplitview->SetPane(0,pwnd2,false);
          psplitview->SetPane(1, pwnd1, false);
          bSwap = true;
       }
       else
       {
-         psplitview->SetPane(0, pwnd1, false);
+         pwnd1 = ensure(::user::tab::get_id_by_tab(::user::tab::_001GetSel()),rect0)->m_pwnd;
+         pwnd2 = ensure(::user::tab::get_id_by_tab(iPane),rect1)->m_pwnd;
+         psplitview->SetPane(0,pwnd1,false);
          psplitview->SetPane(1, pwnd2, false);
          bSwap = false;
       }
-      psplitview->set_position_rate(0, 0.5);
 
       id id1 = ::user::tab::get_id_by_tab(::user::tab::_001GetSel());
       id id2 = ::user::tab::get_id_by_tab(iPane);
@@ -243,7 +251,7 @@ namespace user
 
       id id = get_id_by_tab(_001GetSel(), false);
       class id idSplit;
-      ::user::view_creator_data * pcreatordata = ensure(id);
+      ::user::view_creator_data * pcreatordata = ensure(id,get_data()->m_rectTabClient);
 
       index iTab = ::user::tab::get_tab_by_id(id);
 
@@ -259,7 +267,7 @@ namespace user
             {
                if(get_tab_holder(iTab) == NULL)
                {
-                  get_data()->m_panea[iTab].m_pholder = place(pcreatordata->m_pwnd);
+                  get_data()->m_panea[iTab].m_pholder = place(pcreatordata->m_pwnd,get_data()->m_rectTabClient);
                }
                else
                {
@@ -269,7 +277,7 @@ namespace user
             }
             else
             {
-               get_data()->m_panea[iTab].m_pholder = get_new_place_holder();
+               get_data()->m_panea[iTab].m_pholder = get_new_place_holder(get_data()->m_rectTabClient);
             }
          }
          if(pcreatordata->m_strTitle.has_char())
@@ -334,7 +342,7 @@ namespace user
       GetClientRect(rectClient);
       if(!rectClient.is_null())
       {
-         layout();
+         //layout();
       }
       if(m_pviewdata != NULL)
       {
@@ -361,12 +369,16 @@ namespace user
 
    }
 
+
    void tab_view::ensure_tab_by_id(id id)
    {
-      ensure(id);
+
+      ensure(id, get_data()->m_rectTabClient);
+
    }
 
-   ::user::view_creator_data * tab_view::ensure(id id)
+
+   ::user::view_creator_data * tab_view::ensure(id id, LPCRECT lpcrectCreate)
    {
       if(m_pviewcreator == NULL)
          return NULL;
@@ -374,7 +386,7 @@ namespace user
       {
          ::user::tab::add_tab("", id);
       }
-      ::user::view_creator_data * pcreatordata = m_pviewcreator->::user::view_creator::ensure(id);
+      ::user::view_creator_data * pcreatordata = m_pviewcreator->::user::view_creator::ensure(id,lpcrectCreate);
       if(pcreatordata != NULL)
       {
          /*if(pcreatordata->m_pwnd != NULL)

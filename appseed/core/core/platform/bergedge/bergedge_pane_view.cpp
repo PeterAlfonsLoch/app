@@ -590,7 +590,7 @@ namespace bergedge
          m_dibBk.From((HDC)pdc->get_os_data(), pfi, true);
 
          */
-         //_001RedrawWindow();
+         //RedrawWindow();
       }
 
       //m_dibBk.to(pdc, 0, 0, rectClient.right, rectClient.bottom);

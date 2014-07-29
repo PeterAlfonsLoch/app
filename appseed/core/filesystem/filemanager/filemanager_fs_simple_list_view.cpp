@@ -553,7 +553,7 @@ namespace filemanager
             {
 
                m_cache._001Invalidate();
-               _001RedrawWindow();
+               RedrawWindow();
             }
             else if(pbase->m_wparam == 2)
             {

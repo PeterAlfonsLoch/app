@@ -59,9 +59,9 @@ namespace user
       virtual ::user::view_creator_data * allocate(id id);
 
       using ::request_interface::create;
-      virtual ::user::view_creator_data * create(id id);
+      virtual ::user::view_creator_data * create(id id,LPCRECT lpcrectCreate);
 
-      virtual ::user::view_creator_data * ensure(id id);
+      virtual ::user::view_creator_data * ensure(id id, LPCRECT lpcrectCreate);
 
       virtual void hide_all_except(id id);
 

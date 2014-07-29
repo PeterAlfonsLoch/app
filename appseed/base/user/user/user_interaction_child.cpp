@@ -161,9 +161,16 @@ namespace user
 
       send_message(WM_CREATE,0,(LPARAM)&cs);
 
-      m_pui->SetWindowPos(0,rect.left,rect.top,cs.cx,cs.cy,0);
+      ::rect rectChild(rect);
 
-      send_message(WM_SIZE);
+      if(rectChild.area() > 0)
+      {
+
+         m_pui->SetWindowPos(0,rect.left,rect.top,cs.cx,cs.cy,0);
+
+         send_message(WM_SIZE);
+
+      }
 
       m_pui->on_set_parent(pparent);
 
@@ -281,7 +288,9 @@ namespace user
 
       send_message(WM_CREATE,0,(LPARAM)&cs);
 
-      if(rect.bottom != 0 && rect.left != 0 && rect.right != 0 && rect.top != 0)
+      ::rect rectChild(rect);
+
+      if(rectChild.area() > 0)
       {
 
          m_pui->SetWindowPos(0,rect.left,rect.top,cs.cx,cs.cy,SWP_SHOWWINDOW);
@@ -388,9 +397,16 @@ namespace user
 
       send_message(WM_CREATE,0,(LPARAM)&cs);
 
-      m_pui->SetWindowPos(0,0,0,cs.cx,cs.cy,0);
+      ::rect rectChild(0, 0, cs.cx, cs.cy);
 
-      send_message(WM_SIZE);
+      if(rectChild.area() > 0)
+      {
+       
+         m_pui->SetWindowPos(0,0,0,cs.cx,cs.cy,0);
+
+         send_message(WM_SIZE);
+
+      }
 
       m_pui->on_set_parent(pparent);
 

@@ -2199,7 +2199,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user\user_dock_context.h" />
     <ClInclude Include="user\user\user_dock_state.h" />
     <ClInclude Include="user\user\user_document_manager.h" />
-    <ClInclude Include="user\user\user_edit_plain_text.h" />
     <ClInclude Include="user\user\user_edit_plain_text_view.h" />
     <ClInclude Include="user\user\user_elastic_slider.h" />
     <ClInclude Include="user\user\user_form.h" />
@@ -2769,7 +2768,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\user\user_core.cpp" />
     <ClCompile Include="user\user\user_data_exchange.cpp" />
     <ClCompile Include="user\user\user_document_manager.cpp" />
-    <ClCompile Include="user\user\user_edit_plain_text.cpp" />
     <ClCompile Include="user\user\user_edit_plain_text_view.cpp" />
     <ClCompile Include="user\user\user_elastic_slider.cpp" />
     <ClCompile Include="user\user\user_form.cpp" />

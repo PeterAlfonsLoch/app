@@ -10,14 +10,15 @@ namespace user
       virtual public ::user::impact,
       virtual public ::user::tab,
       virtual public ::user::tab_callback,
-      virtual public ::user::view_container
+      virtual public ::user::view_container,
+      virtual public ::user::view_creator
    {
    public:
       
       
       tab_drop_target_window *               m_pdroptargetwindow;
-      ::user::view_creator_data *      m_pviewdata;
-      ::user::view_creator_data *      m_pviewdataOld;
+      ::user::view_creator_data *            m_pviewdata;
+      ::user::view_creator_data *            m_pviewdataOld;
       ::user::view_creator *                 m_pviewcreator;
 
 
@@ -52,7 +53,7 @@ namespace user
 
       virtual void rotate();
 
-      virtual ::user::view_creator_data * ensure(id id);
+      virtual ::user::view_creator_data * ensure(id id, LPCRECT lpcrectCreate);
       virtual void ensure_tab_by_id(id id);
 
       virtual void _001OnShowTab(::user::tab * ptab);

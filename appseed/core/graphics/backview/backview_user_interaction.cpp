@@ -37,19 +37,19 @@ namespace backview
       {
          UNREFERENCED_PARAMETER(recta);
          UNREFERENCED_PARAMETER(uiRedraw);
-         _001RedrawWindow();
+         RedrawWindow();
       }
 
       void interaction::BackViewUpdateScreen()
       {
-         _001RedrawWindow();
+         RedrawWindow();
       }
 
       void interaction::BackViewUpdateScreen(LPCRECT lpcrect, UINT uiRedraw)
       {
          UNREFERENCED_PARAMETER(lpcrect);
          UNREFERENCED_PARAMETER(uiRedraw);
-         _001RedrawWindow();
+         RedrawWindow();
       }
 
 

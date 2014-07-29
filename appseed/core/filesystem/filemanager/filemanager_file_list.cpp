@@ -386,7 +386,7 @@ namespace filemanager
          if(!bPendingSize)
             break;
       }
-      //psize->m_pview->_001RedrawWindow();
+      //psize->m_pview->RedrawWindow();
       delete psize;
       //file_list * pview = (file_list *) lpparam;
       //pview->FileSize();
@@ -1646,13 +1646,13 @@ namespace filemanager
                                                                 if (dwNow - m_dwLastRedraw > 784)
                                                                 {
                                                                    m_dwLastRedraw = dwNow;
-                                                                   _001RedrawWindow();
+                                                                   RedrawWindow();
                                                                 }
          }
             break;
          case MessageMainPostCreateImageListItemRedraw:
          {
-                                                         _001RedrawWindow();
+                                                         RedrawWindow();
          }
             break;
       }

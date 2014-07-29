@@ -269,7 +269,7 @@ namespace bergedge
          return 0;
       }
       m_dwLastUpdate = dwNow;
-      _001RedrawWindow();
+      RedrawWindow();
       m_rectaUpdate.remove_all();
       return 0;
    }

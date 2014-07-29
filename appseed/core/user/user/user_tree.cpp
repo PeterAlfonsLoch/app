@@ -396,7 +396,7 @@ namespace user
    void tree::_001OnMouseLeave(signal_details * pobj)
    {
       m_pitemHover = NULL;
-      _001RedrawWindow();
+      RedrawWindow();
       pobj->m_bRet = true;
    }
 
@@ -828,7 +828,7 @@ namespace user
       layout();
       if(bRedraw)
       {
-         _001RedrawWindow();
+         RedrawWindow();
       }
 
    }
@@ -980,6 +980,12 @@ namespace user
    void tree::layout()
    {
 
+      ::rect rectClient;
+
+      GetClientRect(rectClient);
+
+      if(rectClient.area() <= 0)
+         return;
 
       SetScrollSizes();
 
@@ -1033,7 +1039,7 @@ namespace user
       if(pitem != m_pitemHover)
       {
          m_pitemHover = pitem;
-         _001RedrawWindow();
+         RedrawWindow();
       }
       /*if(pitem != NULL)
       {
@@ -1104,7 +1110,7 @@ namespace user
 
    if(bRedraw)
    {
-   _001RedrawWindow();
+   RedrawWindow();
    }
    }
    */

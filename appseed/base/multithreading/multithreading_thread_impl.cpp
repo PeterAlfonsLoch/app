@@ -1283,6 +1283,9 @@ void thread_impl::set_timer(sp(::user::interaction) pui,uint_ptr nIDEvent,UINT n
 void thread_impl::unset_timer(sp(::user::interaction) pui,uint_ptr nIDEvent)
 {
    
+   if(m_sptimera.is_null())
+      return;
+
    m_sptimera->unset(pui,nIDEvent);
 
 }

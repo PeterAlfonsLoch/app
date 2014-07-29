@@ -95,12 +95,12 @@ namespace filemanager
             }
             else if (puh->is_type_of(update_hint::TypePop))
             {
-               OnActivateFrame(WA_INACTIVE, ((GetParentFrame())));
+               //OnActivateFrame(WA_INACTIVE, ((GetParentFrame())));
                if (GetTypedParent < main_frame >() != NULL)
                {
-                  GetTypedParent < main_frame >()->InitialUpdateFrame(NULL, TRUE);
-                  GetTypedParent < main_frame >()->ShowWindow(SW_SHOW);
-                  GetTypedParent < main_frame >()->ActivateFrame(SW_SHOW);
+                  //GetTypedParent < main_frame >()->InitialUpdateFrame(NULL, TRUE);
+                  //GetTypedParent < main_frame >()->ShowWindow(SW_SHOW);
+                  //GetTypedParent < main_frame >()->ActivateFrame(SW_SHOW);
                }
                else
                {
@@ -115,7 +115,7 @@ namespace filemanager
                   }
 
                }
-               OnActivateView(TRUE, this, this);
+               //OnActivateView(TRUE, this, this);
                RedrawWindow();
             }
          }
@@ -171,7 +171,7 @@ namespace filemanager
          //pframe->m_iTabId = iId;
          pcreatordata->m_pdoc = pdoc;
       }
-      else if (pcreatordata->m_id == 200000)
+      else if(pcreatordata->m_id == "filemanager::operation")
       {
          sp(::create_context) createcontext(allocer());
          createcontext->m_bMakeVisible = false;
@@ -204,7 +204,8 @@ namespace filemanager
             pmanager->set_filemanager_data(pfilemanagerdata);
 
             pmanager->get_filemanager_data()->m_pmanager = pmanager;
-            pmanager->get_filemanager_data()->m_pmanagerMain = get_filemanager_template();
+            pmanager->get_filemanager_data()->m_pmanagertemplate = &platform().filemanager().std();
+            pmanager->get_filemanager_data()->m_pmanagerMain = get_filemanager_manager();
             pmanager->get_filemanager_data()->m_iTemplate = platform().filemanager().std().m_iTemplate;
             pmanager->get_filemanager_data()->m_iDocument = platform().filemanager().std().m_iNextDocument++;
             pmanager->get_filemanager_template()->m_strDISection.Format("filemanager(%d)",pmanager->get_filemanager_data()->m_iDocument);

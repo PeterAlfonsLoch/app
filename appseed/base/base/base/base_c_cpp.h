@@ -675,6 +675,14 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "user/user/user_frame_window.h"
 #include "user/user/user_server.h"
 #include "user/user/user_impact_system.h"
+
+
+#include "user/user/user_control.h"
+#include "user/user/user_scroll_view.h"
+#include "user/user/user_edit_plain_text.h"
+
+
+
 #include "primitive/primitive_interlocked_long.h"
 #include "primitive/primitive_interlocked_long_pulse.h"
 #include "primitive/primitive_data.h"

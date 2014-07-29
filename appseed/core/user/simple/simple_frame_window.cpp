@@ -322,7 +322,7 @@ void simple_frame_window::_001OnMove(signal_details * pobj)
    //   m_workset.GetSizingManager() == NULL) || (!m_workset.GetMovingManager()->IsMoving()
    //   && !m_workset.GetSizingManager()->IsSizing()))
    //{
-   //   _001RedrawWindow();
+   //   RedrawWindow();
    //}
 
 
@@ -587,7 +587,7 @@ void simple_frame_window::SetCustomFrame(bool bCustom)
    m_bWindowFrame = bCustom;
    m_workset.Enable(bCustom);
    layout();
-   _001RedrawWindow();
+   RedrawWindow();
 
 }
 
@@ -740,7 +740,9 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultSt
 
    dwDefaultStyle &= ~WS_VISIBLE;
 
-   if (!CreateEx(0L, NULL, lpszTitle, dwDefaultStyle, rect(0, 0, 0, 0), pParentWnd, /*nIDResource*/ 0, pContext))
+   ::rect rectFrame(0,0,0,0);
+
+   if (!CreateEx(0L, NULL, lpszTitle, dwDefaultStyle, rectFrame, pParentWnd, /*nIDResource*/ 0, pContext))
    {
       return FALSE;   // will self destruct on failure normally
    }
@@ -1592,7 +1594,7 @@ void simple_frame_window::guserbaseOnInitialUpdate(signal_details * pobj)
          pdoc->update_frame_counts();
       pframe->on_update_frame_title(TRUE);
 
-      _001RedrawWindow();
+      RedrawWindow();
    }
    pbase->set_lresult(0);
 }

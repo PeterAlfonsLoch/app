@@ -83,6 +83,8 @@ namespace user
          pui->SetParent(this);
       }
 
+      layout();
+
       return true;
 
    }

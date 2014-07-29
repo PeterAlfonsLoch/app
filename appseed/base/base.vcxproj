@@ -4929,6 +4929,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user\user_document_data_map.h" />
     <ClInclude Include="user\user\user_draw_context.h" />
     <ClInclude Include="user\user\user_draw_interface.h" />
+    <ClInclude Include="user\user\user_edit_plain_text.h" />
     <ClInclude Include="user\user\user_elemental.h" />
     <ClInclude Include="user\user\user_enum.h" />
     <ClInclude Include="user\user\user_frame_window.h" />
@@ -4955,6 +4956,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user\user_schema.h" />
     <ClInclude Include="user\user\user_schema_layered_frame.h" />
     <ClInclude Include="user\user\user_schema_simple_impl.h" />
+    <ClInclude Include="user\user\user_scroll_view.h" />
     <ClInclude Include="user\user\user_server.h" />
     <ClInclude Include="user\user\user_str.h" />
     <ClInclude Include="user\user\user_text_interface.h" />
@@ -18348,6 +18350,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\user\user_create_context.cpp" />
     <ClCompile Include="user\user\user_draw_context.cpp" />
     <ClCompile Include="user\user\user_draw_interface.cpp" />
+    <ClCompile Include="user\user\user_edit_plain_text.cpp" />
     <ClCompile Include="user\user\user_elemental.cpp" />
     <ClCompile Include="user\user\user_frame_window.cpp" />
     <ClCompile Include="user\user\user_impact.cpp" />
@@ -18371,6 +18374,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\user\user_schema.cpp" />
     <ClCompile Include="user\user\user_schema_layered_frame.cpp" />
     <ClCompile Include="user\user\user_schema_simple_impl.cpp" />
+    <ClCompile Include="user\user\user_scroll_view.cpp" />
     <ClCompile Include="user\user\user_server.cpp" />
     <ClCompile Include="user\user\user_str.cpp" />
     <ClCompile Include="user\user\user_text_interface.cpp" />

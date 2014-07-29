@@ -23,14 +23,14 @@ namespace userex
    void split_view::on_new_view_creator_data(::user::view_creator_data * pcreatordata)
    {
 
-      pcreatordata->m_pholder = get_new_place_holder();
-
       ::index iPane = get_pane_by_id(pcreatordata->m_id);
 
       if(iPane < 0)
          return;
 
       Pane * ppane = (Pane *) m_panea.element_at(iPane);
+
+      pcreatordata->m_pholder = get_new_place_holder(ppane->m_rect);
 
       ppane->m_pholder = pcreatordata->m_pholder;
 
@@ -54,7 +54,11 @@ namespace userex
 
       pane.m_id = id;
 
-      return ::user::view_creator::create(id) != FALSE;
+      ::rect rectClient;
+
+      pane.m_pholder->GetClientRect(rectClient);
+
+      return ::user::view_creator::create(id, rectClient) != FALSE;
 
    }
 

@@ -59,7 +59,18 @@ namespace user
       {
          m_panea(i) = canew(::user::split_layout::Pane(get_app()));
          m_panea[i].m_bFixedSize =  false;
-         m_panea[i].m_pholder = get_new_place_holder();
+      }
+
+      layout();
+
+      rect rectPane;
+
+      for(i = iOldSize; i < get_pane_count(); i++)
+      {
+         if(m_panea[i].m_pholder.is_null())
+         {
+            m_panea[i].m_pholder = get_new_place_holder(m_panea[i].m_rect);
+         }
       }
 
       for(i = 0; i < iSplitBarCount; i++)
@@ -548,7 +559,9 @@ namespace user
       }
       else
       {
-         pcomponent->m_pholder = place(pwnd);
+         rect rectPane;
+         pcomponent->m_pholder->GetClientRect(rectPane);
+         pcomponent->m_pholder = place(pwnd,rectPane);
          if(pcomponent->m_pholder == NULL)
             return false;
       }
@@ -600,7 +613,9 @@ namespace user
       }
       else
       {
-         pcomponent->m_pholder = place(pwnd);
+         rect rectPane;
+         pcomponent->m_pholder->GetClientRect(rectPane);
+         pcomponent->m_pholder = place(pwnd, rectPane);
          if(pcomponent->m_pholder == NULL)
             return false;
       }

@@ -103,7 +103,7 @@ void html_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phin
 
             layout();
 
-            _001RedrawWindow();
+            RedrawWindow();
 
             on_document_complete(puh->m_strUrl);
 

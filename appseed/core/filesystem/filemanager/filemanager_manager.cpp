@@ -585,26 +585,38 @@ namespace filemanager
 
    sp(operation_document) manager::get_operation_doc(bool bSwitch)
    {
+
       ::filemanager::tab_view * ptabview = get_typed_view < ::filemanager::tab_view >();
+
       if(ptabview == NULL)
          return NULL;
 
       ASSERT(ptabview != NULL);
+
       if(ptabview != NULL)
       {
+
          if(bSwitch)
          {
-            ptabview->set_cur_tab_by_id(200000);
+
+            ptabview->set_cur_tab_by_id("filemanager::operation");
+
          }
          else
          {
-            ptabview->ensure(200000);
+
+            ptabview->ensure_tab_by_id("filemanager::operation");
+
          }
-         return
-            (ptabview->get(200000)->m_pdoc);
+
+         return ptabview->get("filemanager::operation")->m_pdoc;
+
       }
+
       return NULL;
+
    }
+
 
    void manager::GetActiveViewSelection(::fs::item_array & itema)
    {

@@ -206,22 +206,26 @@ size simple_toolbar::CalcSimpleLayout()
    return sizeResult;
 }
 
-void simple_toolbar::_001OnDraw(::draw2d::graphics *pdc)
+
+void simple_toolbar::_001OnDraw(::draw2d::graphics *pgraphics)
 {
 
    if(m_bDelayedButtonLayout)
       layout();
 
-   //DoPaint(pdc);
+   ::user::interaction::_001OnDraw(pgraphics);
 
-   pdc->SelectObject(System.visual().font_central().GetMenuFont());
-//   pdc->SetBkMode(TRANSPARENT);
+   pgraphics->SelectObject(System.visual().font_central().GetMenuFont());
+
    for(int32_t iItem = 0; iItem < m_itema.get_size(); iItem++)
    {
-      _001DrawItem(pdc, iItem);
+
+      _001DrawItem(pgraphics,iItem);
+
    }
 
 }
+
 
 /*
 bool simple_toolbar::OnEraseBkgnd(::draw2d::graphics * pgraphics)
@@ -1388,7 +1392,7 @@ void simple_toolbar::_001OnLButtonDown(signal_details * pobj)
       pmouse->set_lresult(1);
    }
 
-   _001RedrawWindow();
+   RedrawWindow();
 
    pobj->previous();
 }
@@ -1417,7 +1421,7 @@ void simple_toolbar::_001OnLButtonUp(signal_details * pobj)
       if (pTarget != NULL)
          pTarget->SendMessageToDescendants(WM_IDLEUPDATECMDUI);
       m_iButtonPressItem = -1;
-      _001RedrawWindow();
+      RedrawWindow();
       pobj->previous();
    }
 }
@@ -1461,7 +1465,7 @@ void simple_toolbar::_001Hover(point pt, bool bRedraw)
 
       if(bRedraw)
       {
-         _001RedrawWindow();
+         RedrawWindow();
       }
    }
 }
@@ -2136,7 +2140,7 @@ void simple_toolbar::_001OnMouseLeave(signal_details * pobj)
    SCAST_PTR(::message::base, pbase, pobj)
       m_iHover = 0x80000000;
    OnUpdateHover();
-   _001RedrawWindow();
+   RedrawWindow();
    pbase->set_lresult(0);
 }
 

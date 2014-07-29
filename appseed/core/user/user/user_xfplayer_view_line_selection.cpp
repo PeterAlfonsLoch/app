@@ -54,12 +54,12 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, signal_
                ptCursor.x < rectPlacement.left))
             {
                SetSelBefore(viewline);
-               //                   viewline.get_interaction()->_001RedrawWindow();
+               //                   viewline.get_interaction()->RedrawWindow();
             }
             else
             {
                SetSelAfter(viewline);
-               //                viewline.get_interaction()->_001RedrawWindow();
+               //                viewline.get_interaction()->RedrawWindow();
             }
             if(message == WM_LBUTTONUP)
             {
@@ -89,7 +89,7 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, signal_
                m_item.SetLineEnd(-1);
                m_item.SetCharEnd(-1);
             }
-            //                viewline.get_interaction()->_001RedrawWindow();
+            //                viewline.get_interaction()->RedrawWindow();
             OnSelEvent(viewline, EventStart);
             pbase->m_bRet = true;
             return;
@@ -106,7 +106,7 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, signal_
                m_item.SetCharEnd(iChar);
                //                m_item.NormalizeSel();
                //                m_etype |= TypeMaskEndHere;
-               //viewline.get_interaction()->_001RedrawWindow();
+               //viewline.get_interaction()->RedrawWindow();
             }
             else
             {
@@ -117,7 +117,7 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, signal_
                {
                   SetSelAfter(viewline);
                }
-               //viewline.get_interaction()->_001RedrawWindow();
+               //viewline.get_interaction()->RedrawWindow();
 
             }
             if(message == WM_LBUTTONUP)
@@ -458,7 +458,7 @@ bool XfplayerViewLineSelection::OnLButtonDown(XfplayerViewLine & viewline, UINT 
          m_item.SetLineEnd(-1);
          m_item.SetCharEnd(-1);
       }
-      //               viewline.get_interaction()->_001RedrawWindow();
+      //               viewline.get_interaction()->RedrawWindow();
       OnSelEvent(viewline, EventStart);
       return true;
    }
@@ -490,12 +490,12 @@ bool XfplayerViewLineSelection::OnMouseMove(XfplayerViewLine & viewline, UINT us
          pt1.x < rectPlacement.left))
       {
          SetSelBefore(viewline);
-         //             viewline.get_interaction()->_001RedrawWindow();
+         //             viewline.get_interaction()->RedrawWindow();
       }
       else
       {
          SetSelAfter(viewline);
-         //          viewline.get_interaction()->_001RedrawWindow();
+         //          viewline.get_interaction()->RedrawWindow();
       }
       return false;
    }
@@ -513,7 +513,7 @@ bool XfplayerViewLineSelection::OnMouseMove(XfplayerViewLine & viewline, UINT us
             m_item.SetCharEnd(iChar);
             //m_item.NormalizeSel();
             //             m_etype |= TypeMaskEndHere;
-            //               viewline.get_interaction()->_001RedrawWindow();
+            //               viewline.get_interaction()->RedrawWindow();
          }
          else
          {
@@ -524,7 +524,7 @@ bool XfplayerViewLineSelection::OnMouseMove(XfplayerViewLine & viewline, UINT us
             {
                SetSelAfter(viewline);
             }
-            //                viewline.get_interaction()->_001RedrawWindow();
+            //                viewline.get_interaction()->RedrawWindow();
 
          }
          //OnSelEvent(viewline, EventEnd);
@@ -571,12 +571,12 @@ bool XfplayerViewLineSelection::OnLButtonUp(XfplayerViewLine & viewline, UINT us
          pt1.x < rectPlacement.left))
       {
          SetSelBefore(viewline);
-         //             viewline.get_interaction()->_001RedrawWindow();
+         //             viewline.get_interaction()->RedrawWindow();
       }
       else
       {
          SetSelAfter(viewline);
-         //          viewline.get_interaction()->_001RedrawWindow();
+         //          viewline.get_interaction()->RedrawWindow();
       }
       return false;
    }
@@ -594,7 +594,7 @@ bool XfplayerViewLineSelection::OnLButtonUp(XfplayerViewLine & viewline, UINT us
             m_item.SetCharEnd(iChar);
 
             //             m_etype |= TypeMaskEndHere;
-            //               viewline.get_interaction()->_001RedrawWindow();
+            //               viewline.get_interaction()->RedrawWindow();
          }
          else
          {
@@ -605,7 +605,7 @@ bool XfplayerViewLineSelection::OnLButtonUp(XfplayerViewLine & viewline, UINT us
             {
                SetSelAfter(viewline);
             }
-            //                viewline.get_interaction()->_001RedrawWindow();
+            //                viewline.get_interaction()->RedrawWindow();
 
          }
          OnSelEvent(viewline, EventEnd);
@@ -644,7 +644,7 @@ bool XfplayerViewLineSelection::OnTimer(XfplayerViewLine & viewline, UINT user)
          {
             rect rectPlacement;
             viewline.GetPlacement(rectPlacement);
-            viewline.get_interaction()->_001RedrawWindow();
+            viewline.get_interaction()->RedrawWindow();
          }
       }
    }

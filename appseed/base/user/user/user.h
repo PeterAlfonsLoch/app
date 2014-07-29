@@ -388,8 +388,6 @@ CLASS_DECL_BASE char * ::core::TaskStringW2A(const wchar_t * lpw);
 
 
 
-
-
 #include "user_inline.h"
 
 

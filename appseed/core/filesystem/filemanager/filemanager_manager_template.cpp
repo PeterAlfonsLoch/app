@@ -53,6 +53,8 @@ namespace filemanager
 
       }
 
+      pfilemanagerdata->m_pmanagertemplate = this;
+
       pcreatecontext->oprop("filemanager::data") = pfilemanagerdata;
 
       sp(manager) pdoc = (m_pdoctemplateMain->open_document_file(pcreatecontext));

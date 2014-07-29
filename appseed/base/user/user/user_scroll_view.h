@@ -8,7 +8,7 @@ namespace user
    class scroll_bar;
 
 
-   class CLASS_DECL_CORE scroll_view :
+   class CLASS_DECL_BASE scroll_view :
       virtual public control
    {
    public:

@@ -20,9 +20,9 @@ namespace user
    void split_view::install_message_handling(::message::dispatch * pinterface)
    {
       impact::install_message_handling(pinterface);
-      USER_MESSAGE_LINK(message_create, pinterface, this, &split_view::_001OnCreate);
-      IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &split_view::_001OnSize);
-      IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &split_view::_001OnShowWindow);
+      //USER_MESSAGE_LINK(message_create, pinterface, this, &split_view::_001OnCreate);
+      //IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &split_view::_001OnSize);
+      //IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &split_view::_001OnShowWindow);
    }
 
 
@@ -191,7 +191,7 @@ namespace user
    {
       SCAST_PTR(::message::show_window, pshowwindow, pobj)
       pshowwindow->previous();
-      layout();
+      //layout();
    }
 
 

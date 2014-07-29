@@ -9,7 +9,6 @@ namespace userex
 
    class CLASS_DECL_CORE pane_tab_view :
       virtual public ::user::tab_view,
-      virtual public ::user::view_creator,
       virtual public ::filemanager::impact
    {
    public:
@@ -34,7 +33,7 @@ namespace userex
 
       virtual bool on_hold(sp(::user::interaction) pui, sp(::user::place_holder) pholder);
 
-      virtual ::user::view_creator_data * ensure(id id);
+      virtual void ensure_tab_by_id(id id);
 
       virtual void on_create_view(::user::view_creator_data * pcreatordata);
 

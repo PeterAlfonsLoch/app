@@ -19,18 +19,28 @@ namespace user
       ::user::interaction::install_message_handling(pdispatch);
    }
 
-   sp(place_holder)place_holder_container::get_new_place_holder()
+
+   sp(place_holder)place_holder_container::get_new_place_holder(LPCRECT lpcrectCreate)
    {
+      
       m_holdera.add(new place_holder(get_app()));
+      
       if(m_holdera.last_element().is_null())
          return NULL;
-      if(!m_holdera.last_element()->create((sp(::user::place_holder_container))this, m_holdera.get_upper_bound()))
+
+      if(!m_holdera.last_element()->::user::interaction::create(NULL,NULL,WS_VISIBLE | WS_CHILD /*__WS_DEFAULT_VIEW*/,*lpcrectCreate,(sp(::user::place_holder_container))this,m_holdera.get_upper_bound()))
       {
+
          m_holdera.remove_last();
+
          return NULL;
+
       }
+
       return m_holdera.last_element();
+
    }
+
 
    bool place_holder_container::remove_place_holder(sp(place_holder) pholder)
    {
@@ -38,9 +48,9 @@ namespace user
       return bRemove;
    }
 
-   sp(place_holder) place_holder_container::place(sp(::user::interaction) pui)
+   sp(place_holder) place_holder_container::place(sp(::user::interaction) pui,LPCRECT lpcrectCreate)
    {
-      sp(place_holder) pholder = get_new_place_holder();
+      sp(place_holder) pholder = get_new_place_holder(lpcrectCreate);
       if(!on_hold(pui, pholder))
       {
          remove_place_holder(pholder);
@@ -90,13 +100,13 @@ namespace user
       return ::user::interaction::create(NULL, NULL, 0 /*__WS_DEFAULT_VIEW*/, rect(0,0,0,0), puiParent, id) != FALSE;
    }
 
-   place_holder_ptra place_holder_container_ptra::place(sp(::user::interaction) pui)
+   place_holder_ptra place_holder_container_ptra::place(sp(::user::interaction) pui,LPCRECT lpcrectCreate)
    {
       place_holder_ptra holderptra;
       sp(place_holder) pholder;
       for(int32_t i = 0; i < this->get_count(); i++)
       {
-         pholder = this->element_at(i)->place(pui);
+         pholder = this->element_at(i)->place(pui,lpcrectCreate);
          if(pholder != NULL)
          {
             holderptra.add(pholder);

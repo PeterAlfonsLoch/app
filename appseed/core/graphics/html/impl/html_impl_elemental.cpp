@@ -148,7 +148,7 @@ namespace html
 
          //   m_bHover = bHover;
 
-         //   phtml->m_pui->_001RedrawWindow();
+         //   phtml->m_pui->RedrawWindow();
 
          //}
 

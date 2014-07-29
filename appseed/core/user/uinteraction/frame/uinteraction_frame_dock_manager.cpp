@@ -158,7 +158,7 @@ namespace user
                class rect rectUnion;
                rectUnion.unite(rectBefore, rectAfter);
                pwnd->ScreenToClient(rectUnion);
-               ptwi->_001RedrawWindow();
+               ptwi->RedrawWindow();
             }
             /*else
             {
