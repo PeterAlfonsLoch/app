@@ -2243,6 +2243,9 @@
     <ClInclude Include="filesystem\filemanager\filemanager_operation.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\user_tree_data.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="compress\compress_archive.cpp">

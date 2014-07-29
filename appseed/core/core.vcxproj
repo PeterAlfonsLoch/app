@@ -2204,6 +2204,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user\user_tool_tip_tool.h" />
     <ClInclude Include="user\user\user_tool_tip_window.h" />
     <ClInclude Include="user\user\user_tree.h" />
+    <ClInclude Include="user\user\user_tree_data.h" />
     <ClInclude Include="user\user\user_view_update_hint.h" />
     <ClInclude Include="user\user\user_virtual_user_interface.h" />
     <ClInclude Include="user\user\user_window_draw.h" />

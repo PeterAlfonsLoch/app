@@ -2934,6 +2934,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="filesystem\file\file_dir.h" />
     <ClInclude Include="filesystem\file\file_dir_application.h" />
     <ClInclude Include="filesystem\file\file_dir_system.h" />
+    <ClInclude Include="filesystem\file\file_edit_buffer.h" />
     <ClInclude Include="filesystem\file\file_exception.h" />
     <ClInclude Include="filesystem\file\file_input_stream.h" />
     <ClInclude Include="filesystem\file\file_memory_buffer.h" />
@@ -4834,6 +4835,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\os\windows\windows_util.cpp" />
     <ClCompile Include="base\os\windows\windows_utils.cpp" />
     <ClCompile Include="base\os\windows\windows_window_gdi.cpp" />
+    <ClCompile Include="filesystem\file\file_edit_buffer.cpp" />
     <ClCompile Include="filesystem\fs\fs_link.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
