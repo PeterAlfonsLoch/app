@@ -554,6 +554,9 @@ namespace user
          case VK_SPACE:
             pkey->m_ekey = ::user::key_space;
             break;
+         default:
+            pkey->m_ekey = m_mapKey[(int32_t)pkey->m_nChar];
+            break;
          }
 
          return;

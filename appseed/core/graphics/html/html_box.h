@@ -243,10 +243,10 @@ namespace html
 
    }
 
-   inline float box::area() const
+   inline float box::area() const throw()
    {
 
-      return get_cx() * get_cy();
+      return (get_cx() < 0.f && get_cy() < 0.f ? -1.0f : 1.0f) * get_cx() * get_cy();
 
    }
 

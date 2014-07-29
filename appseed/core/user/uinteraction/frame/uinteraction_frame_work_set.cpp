@@ -496,7 +496,7 @@ namespace uinteraction
             }
             if (get_draw_window() != NULL)
             {
-               get_draw_window()->_001RedrawWindow();
+               get_draw_window()->RedrawWindow();
             }
          }
       }

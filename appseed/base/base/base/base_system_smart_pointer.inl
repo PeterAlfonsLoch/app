@@ -25,6 +25,6 @@ sp(T) smart_pointer <T>::clone() const
       return NULL;
    if(m_p->get_app() == NULL)
       return NULL;
-   return CaSys(m_p).clone(m_p);
+   return CaSys(m_p).clone(*this);
 }
 

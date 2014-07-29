@@ -199,10 +199,10 @@ namespace user
       COLORREF cr;
 
 
-      get_color(cr, color_text);
-      get_color(crBk,color_background);
-      get_color(crSel,color_text_selected);
-      get_color(crBkSel,color_background_selected);
+      cr          = _001GetColor(color_text);
+      crBk        = _001GetColor(color_background);
+      crSel       = _001GetColor(color_text_selected);
+      crBkSel     = _001GetColor(color_background_selected);
       
 
       ::job * pjob = pdc->m_pjob;
@@ -482,6 +482,7 @@ namespace user
          }
          y += iLineHeight;
          lim += straLines[i].get_length();
+         //ASSERT(FALSE);
       }
 
    }
@@ -899,14 +900,14 @@ namespace user
       m_ptree->m_editfile.seek(m_ptree->m_iSelStart, ::file::seek_begin);
       m_ptree->m_editfile.Insert(psz, strlen(psz));
       _001OnUpdate(actioncontext);
-      _001RedrawWindow();
+      RedrawWindow();
    }
 
    void edit_plain_text::_001SetSel(strsize iSelStart, strsize iSelEnd)
    {
       m_ptree->m_iSelStart = iSelStart;
       m_ptree->m_iSelEnd = iSelEnd;
-      _001RedrawWindow();
+      RedrawWindow();
    }
 
    void edit_plain_text::_002OnLButtonDown(signal_details * pobj)
@@ -921,7 +922,7 @@ namespace user
       m_ptree->m_iSelStart = char_hit_test(pdc, pt.x, pt.y);
       m_ptree->m_iSelEnd = m_ptree->m_iSelStart;
 
-      _001RedrawWindow();
+      RedrawWindow();
       session().user()->set_keyboard_focus(this);
       session().user()->set_mouse_focus_LButtonDown(this);
       pmouse->m_bRet = true;
@@ -937,7 +938,7 @@ namespace user
       m_ptree->m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
       m_iColumn = SelToColumn(m_ptree->m_iSelEnd);
 
-      _001RedrawWindow();
+      RedrawWindow();
       m_bMouseDown = false;
       pmouse->m_bRet = true;
       pmouse->set_lresult(1);
@@ -954,7 +955,7 @@ namespace user
       m_ptree->m_iSelStart = char_hit_test(pdc, pt.x, pt.y);
       m_ptree->m_iSelEnd = m_ptree->m_iSelStart;
 
-      _001RedrawWindow();
+      RedrawWindow();
       session().user()->set_keyboard_focus(this);
       session().user()->set_mouse_focus_RButtonDown(this);
       pmouse->m_bRet = true;
@@ -970,7 +971,7 @@ namespace user
       m_ptree->m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
       m_iColumn = SelToColumn(m_ptree->m_iSelEnd);
 
-      _001RedrawWindow();
+      RedrawWindow();
       m_bMouseDown = false;
 
       track_popup_xml_matter_menu("ystem/edit_focus_popup.xml", 0, pobj);
@@ -1329,7 +1330,7 @@ namespace user
          ::draw2d::memory_graphics pdc(allocer());
          m_ptree->m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
 
-       //  _001RedrawWindow();
+       //  RedrawWindow();
       }
 
    }
@@ -1519,7 +1520,6 @@ namespace user
                MacroRecord(new plain_text_file_command());
                MacroEnd();
                _001OnUpdate(::action::source_user);
-               _001OnAfterChangeText(::action::source_user);
             }
             else if(m_ptree->m_iSelEnd >= 0 && m_ptree->m_editfile.get_length() > 0)
             {
@@ -1546,7 +1546,51 @@ namespace user
                MacroRecord(new plain_text_file_command());
                MacroEnd();
                _001OnUpdate(::action::source_user);
-               _001OnAfterChangeText(::action::source_user);
+            }
+         }
+      }
+      else if(pkey->m_ekey == ::user::key_delete)
+      {
+         if(!m_bReadOnly)
+         {
+            strsize i1 = m_ptree->m_iSelStart;
+            strsize i2 = m_ptree->m_iSelEnd;
+            if(i1 != i2)
+            {
+               plain_text_set_sel_command * psetsel = new plain_text_set_sel_command;
+               psetsel->m_iPreviousSelStart = m_ptree->m_iSelStart;
+               psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
+               ::sort::sort(i1,i2);
+               m_ptree->m_editfile.seek(i1,::file::seek_begin);
+               m_ptree->m_editfile.Delete((primitive::memory_size) (i2 - i1));
+               m_ptree->m_iSelEnd = i1;
+               m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
+               psetsel->m_iSelStart = m_ptree->m_iSelStart;
+               psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
+               MacroBegin();
+               MacroRecord(psetsel);
+               MacroRecord(new plain_text_file_command());
+               MacroEnd();
+               _001OnUpdate(::action::source_user);
+            }
+            else if(natural(m_ptree->m_iSelEnd) < m_ptree->m_editfile.get_length())
+            {
+               char buf[512];
+               memset(buf,0,sizeof(buf));
+               strsize iBegin = max(0,m_ptree->m_iSelEnd - 256);
+               strsize iCur = m_ptree->m_iSelEnd - iBegin;
+               m_ptree->m_editfile.seek(iBegin,::file::seek_begin);
+               m_ptree->m_editfile.read(buf,sizeof(buf));
+               const char * psz = ::str::utf8_dec(buf,&buf[iCur]);
+               strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
+               m_ptree->m_editfile.seek(m_ptree->m_iSelEnd,::file::seek_begin);
+               m_ptree->m_editfile.Delete((primitive::memory_size) (iMultiByteUtf8DeleteCount));
+               IndexRegisterDelete(m_ptree->m_iSelEnd,iMultiByteUtf8DeleteCount);
+               m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
+               MacroBegin();
+               MacroRecord(new plain_text_file_command());
+               MacroEnd();
+               _001OnUpdate(::action::source_user);
             }
          }
       }
@@ -1560,7 +1604,7 @@ namespace user
          {
             m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
          }
-         _001RedrawWindow();
+         RedrawWindow();
       }
       else if(pkey->m_ekey == ::user::key_down)
       {
@@ -1572,7 +1616,7 @@ namespace user
          {
             m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
          }
-         _001RedrawWindow();
+         RedrawWindow();
       }
       else if(pkey->m_ekey == ::user::key_right)
       {
@@ -1604,7 +1648,7 @@ namespace user
                m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
             }
          }
-         _001RedrawWindow();
+         RedrawWindow();
       }
       else if(pkey->m_ekey == ::user::key_left)
       {
@@ -1645,7 +1689,7 @@ namespace user
                m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
             }
          }
-         _001RedrawWindow();
+         RedrawWindow();
       }
       else if(pkey->m_ekey == ::user::key_home)
       {
@@ -1655,7 +1699,7 @@ namespace user
          {
             m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
          }
-         _001RedrawWindow();
+         RedrawWindow();
       }
       else if(pkey->m_ekey == ::user::key_end)
       {
@@ -1665,7 +1709,7 @@ namespace user
          {
             m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
          }
-         _001RedrawWindow();
+         RedrawWindow();
       }
       else
       {
@@ -1718,7 +1762,7 @@ namespace user
             MacroRecord(new plain_text_file_command());
             MacroEnd();
             _001OnUpdate(::action::source_user);
-            _001OnAfterChangeText(::action::source_user);
+            //_001OnAfterChangeText(::action::source_user);
          }
       }
       if(pkey->m_ekey != ::user::key_up
@@ -1729,7 +1773,7 @@ namespace user
       m_dwLastCaret = ::get_tick_count();
       m_bCaretOn = true;
       }
-      _001RedrawWindow();
+      RedrawWindow();
 
 
    }
@@ -1785,7 +1829,7 @@ namespace user
             m_dwLastCaret = get_tick_count();
             m_bCaretOn = !m_bCaretOn;
             //RedrawWindow();
-            _001RedrawWindow();
+            RedrawWindow();
          }
       }
    }
@@ -2055,7 +2099,7 @@ namespace user
       m_ptree->m_editfile.Insert(str, str.get_length());
       _001OnUpdate(actioncontext);
       _001OnSetText(actioncontext);
-      _001RedrawWindow();
+      RedrawWindow();
    }
 
 
@@ -2257,7 +2301,7 @@ namespace user
       m_bCaretOn = true;
       m_dwLastCaret = get_tick_count();
       SetTimer(100, 100, NULL);
-      _001RedrawWindow();
+      RedrawWindow();
       return true;
    }
 

@@ -235,12 +235,18 @@ public:
    virtual sp(element) create(sp(::base::application) papp, sp(type) info);
    
    virtual sp(element) base_clone(sp(element) pobject);
+
+   virtual sp(element) typed_clone(id idType, sp(element) pobject);
    
    using ::object::clone;
    template < class T >
    sp(T) clone(sp(T) pobject)
    {
-      return base_clone(pobject);
+#ifdef WINDOWSEX
+      return typed_clone(typeid(T).raw_name(), pobject);
+#else
+      return typed_clone(typeid(T).name(),pobject);
+#endif
    }
 
    template < class T >

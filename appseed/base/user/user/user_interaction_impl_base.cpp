@@ -117,6 +117,9 @@ namespace user
          m_pui->GetClientRect(&layout.rect);    // starting rect comes from client rect
       }
 
+      if(::IsRectEmpty(&layout.rect))
+         return;
+
       if((nFlags & ~reposNoPosLeftOver) != reposQuery)
          layout.hDWP = ::BeginDeferWindowPos(8); // reasonable guess
       else

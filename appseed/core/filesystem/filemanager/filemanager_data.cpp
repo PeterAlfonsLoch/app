@@ -23,6 +23,11 @@ namespace filemanager
       m_bSetBergedgeTopicFile    = false;
       m_bTransparentBackground   = true;
 
+      m_spfont.create(allocer());
+
+      m_spfont->create_pixel_font("Verdana",14);
+
+
    }
 
 
@@ -248,13 +253,13 @@ namespace filemanager
             if(is_saving())
             {
 
-               cr = ARGB(49,255,210,180);
+               cr = ARGB(184,255,210,180);
 
             }
             else
             {
 
-               cr = ARGB(49,255,255,250);
+               cr = ARGB(184,255,255,250);
 
             }
 
@@ -292,6 +297,9 @@ namespace filemanager
 
    bool data::get_font(::draw2d::font_sp & font)
    {
+
+      if(m_spfont.is_null())
+         return false;
       
       font = m_spfont;
 

@@ -1001,12 +1001,23 @@ bool thread_impl::post_thread_message(UINT message,WPARAM wParam,lparam lParam)
 
 void thread_impl::set_os_data(void * pvoidOsData)
 {
+#ifdef WINDOWSEX
+   if(!::DuplicateHandle(::GetCurrentProcess(),(HANDLE)pvoidOsData,GetCurrentProcess(),&m_hthread,THREAD_ALL_ACCESS,TRUE,0))
+   {
+      TRACE("thread_impl::set_os_data failed to duplicate handle");
+   }
+#else
    m_hthread = (HTHREAD)pvoidOsData;
+#endif
 }
 
 void thread_impl::set_os_int(int_ptr iData)
 {
+#ifdef WINDOWSEX
    m_uiThread = (DWORD)iData;
+#else
+   m_uiThread = (DWORD)iData;
+#endif
 }
 
 void thread_impl::message_queue_message_handler(signal_details * pobj)
@@ -1391,14 +1402,7 @@ int32_t thread_impl::run()
          // pump message, but quit on WM_QUIT
          if(!m_pthread->m_bRun || !pump_message())
          {
-            try
-            {
-               return m_pthread->exit();
-            }
-            catch(...)
-            {
-               return -1;
-            }
+            goto stop_run;
          }
 
          // reset "no idle" state after pumping "normal" message
@@ -1849,6 +1853,9 @@ void thread_impl::do_events()
 
    while(m_pthread->m_bRun && ::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
    {
+      
+      if(msg.message == WM_QUIT) // do not pump, otherwise main loop will not process the message
+         break;
 
       if(!m_pthread->pump_message())
          break;

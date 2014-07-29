@@ -51,6 +51,7 @@ namespace draw2d
 
 
       font();
+      font(const font & font);
       virtual ~font();
 
 

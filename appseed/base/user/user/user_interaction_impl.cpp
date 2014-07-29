@@ -2321,7 +2321,7 @@ namespace user
 
       single_lock sl(m_pui->m_spmutex,false);
 
-      if(!sl.lock(millis(0)))
+      if(!sl.lock())
       {
          m_bUpdateGraphics = true;
          return;
@@ -2329,7 +2329,7 @@ namespace user
 
       single_lock sl2(mutex_display(),false);
 
-      if(!sl2.lock(millis(0)))
+      if(!sl2.lock())
       {
          m_bUpdateGraphics = true;
          return;

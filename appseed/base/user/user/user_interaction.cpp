@@ -34,6 +34,7 @@ namespace user
    void interaction::user_interaction_common_construct()
    {
 
+      m_bMayProDevian            = true;
       m_pmutex                   = NULL;
       m_eappearance              = AppearanceNormal;
       m_bCursorInside            = false;
@@ -204,13 +205,11 @@ namespace user
                   {
                   }
                }
-               m_pparent = puiParent;
                on_set_parent(puiParent);
             }
          }
          else
          {
-            m_pparent = puiParent;
             on_set_parent(puiParent);
          }
       }
@@ -264,7 +263,6 @@ namespace user
                }
                //if(m_pimpl == NULL || m_pimpl->set_parent(puiParent) == NULL)
                // return NULL;
-               m_pparent = puiParent;
                on_set_parent(puiParent);
             }
          }
@@ -448,7 +446,7 @@ namespace user
       else
       {
          IGUI_WIN_MSG_LINK(WM_CLOSE,pinterface,this,&interaction::_001OnClose);
-         //IGUI_WIN_MSG_LINK(WM_TIMER                , pinterface, this, &interaction::_001OnTimer);
+         IGUI_WIN_MSG_LINK(WM_TIMER                , pinterface, this, &interaction::_001OnTimer);
          IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction::_001OnDestroy);
          IGUI_WIN_MSG_LINK(WM_SIZE,pinterface,this,&interaction::_001OnSize);
          IGUI_WIN_MSG_LINK(WM_MOVE,pinterface,this,&interaction::_001OnMove);
@@ -917,13 +915,45 @@ namespace user
    }
 
 
+   bool interaction::set_may_pro_devian(bool bSet)
+   {
+
+      m_bMayProDevian = bSet;
+
+      return true;
+
+   }
+
+
+   void interaction::on_set_may_pro_devian()
+   {
+
+      if(!m_bMayProDevian && GetParent() == NULL)
+      {
+
+         SetTimer(1984 + 77 + 3,25,NULL);
+
+      }
+      else
+      {
+
+         KillTimer(1984 + 77 + 3);
+
+      }
+
+   }
+
+
    void interaction::_001OnCreate(signal_details * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
 
+
       if(m_pbaseapp == NULL)
          throw simple_exception(get_app(), "m_pbaseapp cannot be null");
+
+      on_set_may_pro_devian();
 
       {
 
@@ -1175,8 +1205,19 @@ namespace user
    void interaction::_001OnTimer(signal_details * pobj)
    {
 
-      UNREFERENCED_PARAMETER(pobj);
-      //      SCAST_PTR(::message::timer, ptimer, pobj)
+      SCAST_PTR(::message::timer, ptimer, pobj)
+
+      if(ptimer->m_nIDEvent == 1984 + 77 + 3)
+      {
+
+         if(!m_bMayProDevian && GetParent() == NULL)
+         {
+
+            _001RedrawWindow();
+
+         }
+
+      }
 
    }
 
@@ -3064,6 +3105,9 @@ namespace user
       if(m_bLockWindowUpdate)
          return;
 
+
+      synch_lock slUserMutex(m_bMayProDevian ? &user_mutex() : NULL);
+
       m_pimpl->_001UpdateWindow();
 
    }
@@ -3137,6 +3181,25 @@ namespace user
 
    void interaction::on_set_parent(sp(interaction) puiParent)
    {
+
+      try
+      {
+         if(m_pparent != NULL)
+         {
+
+            single_lock sl(m_pparent->m_pbaseapp->m_pmutex,TRUE);
+
+            single_lock sl2(m_pbaseapp->m_pmutex,TRUE);
+
+            m_pparent->m_uiptraChild.remove(this);
+
+         }
+      }
+      catch(...)
+      {
+      }
+
+      m_pparent = puiParent;
 
       try
       {
@@ -4144,7 +4207,7 @@ namespace user
       catch(::exit_exception &)
       {
 
-         get_thread()->post_to_all_threads(WM_QUIT,0,0);
+         System.post_thread_message(WM_QUIT,0,0);
 
          return -1;
 
@@ -4155,7 +4218,7 @@ namespace user
          if(!Application.on_run_exception((::exception::exception &) e))
          {
 
-            get_thread()->post_to_all_threads(WM_QUIT,0,0);
+            System.post_thread_message(WM_QUIT,0,0);
 
             return -1;
 
@@ -4711,7 +4774,7 @@ namespace user
       if(!(nFlags & SWP_NOREDRAW) && IsWindowVisible() && !(GetExStyle() & WS_EX_LAYERED))
       {
 
-         _001RedrawWindow();
+         RedrawWindow();
 
       }
 

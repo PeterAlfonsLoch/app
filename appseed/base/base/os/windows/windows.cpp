@@ -1,6 +1,8 @@
 #include "framework.h"
 #include <VersionHelpers.h>
+#undef new
 #include <Gdiplus.h>
+#define new BASE_NEW
 #include <ddeml.h>
 
 void __term_threading();

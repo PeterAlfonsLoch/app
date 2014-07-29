@@ -214,7 +214,7 @@ namespace user
    void tab_view::_001DropTargetWindowRelay(::user::tab * pinterface)
    {
       UNREFERENCED_PARAMETER(pinterface);
-      _001RedrawWindow();
+      RedrawWindow();
    }
 
    void tab_view::_001DropTargetWindowFinalize(::user::tab * pinterface)
@@ -355,7 +355,7 @@ namespace user
          m_pviewdata->m_pwnd->SetFocus();
       }
 
-      ((GetParentFrame()))->_001RedrawWindow();
+      ((GetParentFrame()))->RedrawWindow();
 
       GetParentFrame()->SetActiveView(this);
 

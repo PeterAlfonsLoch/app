@@ -125,8 +125,8 @@ int32_t CLASS_DECL_BASE __windows_main(sp(::base::system) psystem, ::windows::ma
 
 
 #undef new
-#include <GdiPlus.h>
-#include <Gdipluseffects.h>
+//#include <GdiPlus.h>
+//#include <Gdipluseffects.h>
 
 #define new BASE_NEW
 

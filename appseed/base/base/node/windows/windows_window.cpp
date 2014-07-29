@@ -464,7 +464,7 @@ namespace windows
 
       single_lock sl(m_pui->m_spmutex,false);
 
-      if(!sl.lock(millis(0)))
+      if(!sl.lock())
       {
          m_bUpdateGraphics = true;
          return;
@@ -2478,7 +2478,7 @@ namespace windows
       single_lock sl(m_pui->m_spmutex,false);
 
 
-      if(!sl.lock(millis(84)))
+      if(!sl.lock())
          return;
 
       SCAST_PTR(::message::base,pbase,pobj);
@@ -5476,14 +5476,12 @@ namespace windows
       return;
       }*/
 
-      synch_lock slUserMutex(&user_mutex());
-
       //if(m_pui->m_bLockWindowUpdate)
         // return;
 
       single_lock sl(m_pui->m_spmutex,false);
 
-      if(!sl.lock(millis(84)))
+      if(!sl.lock())
          return;
 
       win_update_graphics();

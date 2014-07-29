@@ -75,7 +75,7 @@ namespace user
 
       }
 
-      layout();
+      //layout();
 
       return bOk;
 

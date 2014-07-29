@@ -53,6 +53,22 @@ namespace draw2d
 
       };
 
+      class CLASS_DECL_BASE string_path
+      {
+      public:
+
+         double   m_x;
+         double   m_y;
+         string   m_strText;
+         ::draw2d::font_sp m_spfont;
+
+         string_path();
+         string_path(const string_path & stringpath);
+         ~string_path();
+
+         string_path & operator = (const string_path & stringpath);
+
+      };
 
       class CLASS_DECL_BASE element
       {
@@ -61,11 +77,12 @@ namespace draw2d
 
             enum e_type
             {
-               
+               type_none,
                type_begin,
                type_arc,
                type_line,
                type_move,
+               type_string,
                type_end
                   
             };
@@ -80,10 +97,17 @@ namespace draw2d
                line     m_line;
                end      m_end;
 
-            };
+            } u;
+
+            string_path m_stringpath;
 
             e_type m_etype;
 
+            element();
+            element(const element & e);
+            ~element();
+
+            element & operator = (const element & e);
 
       };
 
@@ -129,6 +153,9 @@ namespace draw2d
 
       virtual bool add_rect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool add_rect(LPCRECT lpcrect);
+
+
+      virtual bool add_string(int32_t x,int32_t y,const string & strText,::draw2d::font_sp spfont);
 
       virtual void * detach();
 

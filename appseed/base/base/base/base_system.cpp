@@ -791,10 +791,6 @@ namespace base
       return NULL;
    }
 
-   sp(element) system::clone(sp(element) pobj)
-   {
-      return System.factory().base_clone(pobj);
-   }
 
 
    void system::discard_to_factory(sp(element) pca)

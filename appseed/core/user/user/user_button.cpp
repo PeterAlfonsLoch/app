@@ -173,7 +173,7 @@ namespace user
          {
             index iOldHover = m_iHover;
             m_iHover = iHover;
-            _001RedrawWindow();
+            RedrawWindow();
             if(iOldHover == -1)
             {
                ::user::control_event ev;
@@ -207,7 +207,7 @@ namespace user
          m_iHover = -1;
          if(iOldHover >= 0)
          {
-            _001RedrawWindow();
+            RedrawWindow();
             ::user::control_event ev;
             ev.m_puie = this;
             ev.m_eevent = ::user::event_mouse_leave;

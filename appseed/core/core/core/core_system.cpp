@@ -136,13 +136,6 @@ namespace core
       UNREFERENCED_PARAMETER(pca);
    }
 
-   sp(element) system::clone(sp(element) pca)
-   {
-      UNREFERENCED_PARAMETER(pca);
-      return NULL;
-   }
-
-
 
    bool system::is_system()
    {

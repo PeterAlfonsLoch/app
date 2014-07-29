@@ -7,7 +7,8 @@ namespace base
 
    class CLASS_DECL_BASE session:
       virtual public ::base::application,
-      virtual public ::base::session_interface
+      virtual public ::base::session_interface,
+      virtual public ::user::schema
    {
    public:
 
@@ -61,7 +62,7 @@ namespace base
 
 
 
-
+      ::user::schema_simple_impl                               m_schemasimple;
 
 
 
@@ -216,6 +217,7 @@ namespace base
       virtual string file_name(const char * psz);
 
       ::file::binary_buffer_sp file_get_file(var varFile,uint32_t uiFlags);
+
 
 
    };

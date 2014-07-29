@@ -5,6 +5,19 @@
 
 single_lock::single_lock(waitable* psyncobject, bool bInitialLock)
 {
+
+   /*
+   if(psyncobject != NULL && psyncobject == (waitable *)&user_mutex())
+   {
+      if(::get_thread() != NULL)
+      {
+         if(::get_thread()->m_pslUser == NULL)
+         {
+            ::get_thread()->m_pslUser = this;
+         }
+      }
+   }*/
+
    //ASSERT(pObject != NULL);
    //ASSERT(base_class < waitable >::bases(pObject));
 
@@ -77,6 +90,17 @@ bool single_lock::unlock(LONG lCount, LPLONG lpPrevCount /* = NULL */)
 single_lock::~single_lock()
 {
    unlock();
+
+   /*if(::get_thread() != NULL)
+   {
+
+      if(::get_thread()->m_pslUser == this)
+      {
+         ::get_thread()->m_pslUser = NULL;
+      }
+
+   }*/
+
 }
 
 bool single_lock::IsLocked()

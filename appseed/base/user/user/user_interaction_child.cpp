@@ -1036,11 +1036,12 @@ namespace user
    bool interaction_child::RedrawWindow(LPCRECT lpRectUpdate,::draw2d::region* prgnUpdate,UINT flags)
    {
 
-      UNREFERENCED_PARAMETER(lpRectUpdate);
-      UNREFERENCED_PARAMETER(prgnUpdate);
-      UNREFERENCED_PARAMETER(flags);
+      if(System.get_twf() != NULL && System.get_twf()->m_bProDevianMode && GetWindow()->m_bMayProDevian)
+         return true;
 
-      return false;
+      _001RedrawWindow();
+
+      return true;
 
    }
 

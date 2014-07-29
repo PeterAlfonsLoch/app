@@ -15,7 +15,7 @@ class CLASS_DECL_BASE thread :
 {
 public:
 
-
+   single_lock *                          m_pslUser;
    static bool                            s_bAllocReady;
    mutex *                                m_pmutex;
    bool                                   m_bRun;

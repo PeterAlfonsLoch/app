@@ -748,7 +748,7 @@ rect rect::MulDiv(int32_t nMultiplier, int32_t nDivisor) const throw()
    }
 
 int64_t rect::area()
-   { return width() * height(); }
+   { return size().area(); }
 
 
 void rect::get_bounding_rect(const POINT * lppoint, ::count count)
@@ -1010,7 +1010,7 @@ rect64 rect64::MulDiv(int64_t nMultiplier, int64_t nDivisor) const throw()
    }
 
 int64_t rect64::area()
-   { return width() * height(); }
+   { return size().area(); }
 
 
 
@@ -1233,7 +1233,7 @@ rectd rectd::MulDiv(double nMultiplier, double nDivisor) const throw()
    }
 
 double rectd::area()
-   { return width() * height(); }
+   { return size().area(); }
 
 
 void rectd::get_bounding_rect(const POINTD * lppoint, ::count count)

@@ -210,6 +210,42 @@ namespace windows
    }
 
 
+   void window_draw::do_events()
+   {
+
+      ::thread::do_events();
+      try
+      {
+         if(m_bProDevianMode)
+         {
+            uint32_t ui1 = ::get_tick_count();
+            _synch_redraw();
+            uint32_t ui2 = ::get_tick_count();
+            m_dwLastDelay = ui2 - ui1;
+         }
+      }
+      catch(...)
+      {
+      }
+
+      int32_t iUiDataWriteWindowTimeForTheApplicationInThisMachine = 8;
+      if(m_iFramesPerSecond == 0)
+      {
+         Sleep(1000);
+      }
+      else if((1000 / m_iFramesPerSecond) > m_dwLastDelay)
+      {
+         Sleep(max((DWORD)max(0,iUiDataWriteWindowTimeForTheApplicationInThisMachine),(1000 / m_iFramesPerSecond) - m_dwLastDelay));
+      }
+      else
+      {
+         Sleep(iUiDataWriteWindowTimeForTheApplicationInThisMachine);
+      }
+
+
+   }
+
+
    UINT window_draw::RedrawProc()
    {
 
@@ -303,7 +339,7 @@ namespace windows
          try
          {
 
-            if(wndpa[l].m_psession.is_null())
+            if(wndpa[l].m_bMayProDevian && wndpa[l].m_psession.is_null())
             {
 
                try

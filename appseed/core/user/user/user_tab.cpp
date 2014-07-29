@@ -1107,7 +1107,7 @@ namespace user
 
       layout_pane(_001GetSel());
 
-      _001RedrawWindow();
+      RedrawWindow();
 
    }
 
@@ -1131,7 +1131,7 @@ namespace user
 
          pholder->SetWindowPos(ZORDER_TOP, rectChild.left, rectChild.top, rectChild.width(), rectChild.height(), _001GetSel() == iPane ? SWP_SHOWWINDOW : 0);
 
-         pholder->layout();
+         //pholder->layout();
 
       }
 

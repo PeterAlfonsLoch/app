@@ -5,6 +5,82 @@ namespace draw2d
 {
 
 
+   path::string_path::string_path()
+   {
+      m_x = 0;
+      m_y = 0;
+   }
+
+   path::string_path::string_path(const string_path & stringpath)
+   {
+      
+      operator = (stringpath);
+
+   }
+
+   path::string_path::~string_path()
+   {
+   }
+
+   path::string_path & path::string_path::operator = (const string_path & stringpath)
+   {
+
+      if(this == &stringpath)
+         return *this;
+
+      m_x            = stringpath.m_x;
+      m_y            = stringpath.m_y;
+      m_strText      = stringpath.m_strText;
+      m_spfont       = stringpath.m_spfont;
+
+      return *this;
+
+   }
+
+   
+   path::element::element()
+   {
+
+      m_etype = type_none;
+   
+   }
+
+   path::element::element(const element & e)
+   {
+      
+      operator = (e);
+
+   }
+
+   path::element::~element()
+   {
+
+
+
+   }
+
+   path::element & path::element::operator = (const element & e)
+   {
+
+      if(this == &e)
+         return *this;
+
+      m_etype = e.m_etype;
+
+      if(m_etype == type_string)
+      {
+         m_stringpath = e.m_stringpath;
+      }
+      else
+      {
+         u = e.u;
+      }
+
+      return *this;
+
+   }
+
+
    path::path()
    {
 
@@ -60,18 +136,18 @@ namespace draw2d
       element e;
 
       e.m_etype               = element::type_arc;
-      e.m_arc.m_xCenter       = ((double) rect.right + (double) rect.left) / 2.0;
-      e.m_arc.m_yCenter       = ((double) rect.bottom + (double) rect.top) / 2.0;
-      e.m_arc.m_dRadiusX      = (double) rect.right - e.m_arc.m_xCenter;
-      e.m_arc.m_dRadiusY      = (double) rect.bottom - e.m_arc.m_yCenter;
-      e.m_arc.m_dAngle1        = iStart * 3.1415 / 180.0;
-      e.m_arc.m_dAngle2        = e.m_arc.m_dAngle1 + iAngle * 3.1415 / 180.0;
+      e.u.m_arc.m_xCenter     = ((double) rect.right + (double) rect.left) / 2.0;
+      e.u.m_arc.m_yCenter     = ((double) rect.bottom + (double) rect.top) / 2.0;
+      e.u.m_arc.m_dRadiusX    = (double) rect.right - e.u.m_arc.m_xCenter;
+      e.u.m_arc.m_dRadiusY    = (double) rect.bottom - e.u.m_arc.m_yCenter;
+      e.u.m_arc.m_dAngle1     = iStart * 3.1415 / 180.0;
+      e.u.m_arc.m_dAngle2     = e.u.m_arc.m_dAngle1 + iAngle * 3.1415 / 180.0;
 
       m_elementa.add(e);
 
       m_bHasPoint = true;
-      m_pt.x = (LONG) (e.m_arc.m_xCenter + e.m_arc.m_dRadiusX * cos(e.m_arc.m_dAngle2));
-      m_pt.y = (LONG) (e.m_arc.m_yCenter + e.m_arc.m_dRadiusY * sin(e.m_arc.m_dAngle2));
+      m_pt.x = (LONG) (e.u.m_arc.m_xCenter + e.u.m_arc.m_dRadiusX * cos(e.u.m_arc.m_dAngle2));
+      m_pt.y = (LONG) (e.u.m_arc.m_yCenter + e.u.m_arc.m_dRadiusY * sin(e.u.m_arc.m_dAngle2));
 
       m_bUpdated = false;
 
@@ -85,8 +161,8 @@ namespace draw2d
       element e;
 
       e.m_etype               = element::type_move;
-      e.m_move.m_x            = x;
-      e.m_move.m_y            = y;
+      e.u.m_move.m_x          = x;
+      e.u.m_move.m_y          = y;
 
       m_elementa.add(e);
 
@@ -112,8 +188,8 @@ namespace draw2d
       element e;
 
       e.m_etype               = element::type_line;
-      e.m_line.m_x            = x;
-      e.m_line.m_y            = y;
+      e.u.m_line.m_x          = x;
+      e.u.m_line.m_y          = y;
 
       m_elementa.add(e);
 
@@ -162,7 +238,7 @@ namespace draw2d
 
       e.m_etype               = element::type_end;
 
-      e.m_end.m_bClose        = bClose;
+      e.u.m_end.m_bClose      = bClose;
 
       m_elementa.add(e);
 
@@ -174,7 +250,23 @@ namespace draw2d
 
 
 
+   bool path::add_string(int32_t x,int32_t y,const string & strText,::draw2d::font_sp spfont)
+   {
 
+      element e;
+
+
+      e.m_etype                     = element::type_string;
+      e.m_stringpath.m_x            = x;
+      e.m_stringpath.m_y            = y;
+      e.m_stringpath.m_strText      = strText;
+      e.m_stringpath.m_spfont       = spfont.clone();
+
+      m_elementa.add(e);
+
+      return true;
+
+   }
 
 
 
@@ -266,13 +358,16 @@ namespace draw2d
       switch(e.m_etype)
       {
       case ::draw2d::path::element::type_arc:
-         get_bounding_rect(lprect, e.m_arc);
+         get_bounding_rect(lprect, e.u.m_arc);
          break;
       case ::draw2d::path::element::type_line:
-         get_bounding_rect(lprect, e.m_line);
+         get_bounding_rect(lprect,e.u.m_line);
          break;
       case ::draw2d::path::element::type_move:
-         get_bounding_rect(lprect, e.m_move);
+         get_bounding_rect(lprect, e.u.m_move);
+         break;
+      case ::draw2d::path::element::type_string:
+         //get_bounding_rect(lprect,e.m_stringpath);
          break;
       case ::draw2d::path::element::type_end:
          {

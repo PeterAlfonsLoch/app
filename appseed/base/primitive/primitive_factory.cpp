@@ -204,14 +204,22 @@ sp(element) base_factory::create(sp(::base::application) papp, sp(type) info)
 sp(element) base_factory::base_clone(sp(element) pobject)
 {
 
-   single_lock sl(m_pmutex, TRUE);
+   return typed_clone((id) typeid(*pobject).name(), pobject);
+
+}
+
+
+sp(element) base_factory::typed_clone(id idType, sp(element) pobject)
+{
+
+   single_lock sl(m_pmutex,TRUE);
 
    if(pobject == NULL)
       return NULL;
 
    index iFind;
 
-   if(!m_pstrida->find((id) typeid(*pobject).name(), iFind))
+   if(!m_pstrida->find(idType, iFind))
       return NULL;
 
    factory_item_base * pitem = m_itemptra.element_at(iFind);

@@ -55,8 +55,14 @@ namespace base
       m_pmapKeyPressed           = NULL;
       m_puserstrcontext = NULL;
 
-
       m_pbasesystem->m_basesessionptra.add_unique(this);
+
+      m_puserschema = &m_schemasimple;
+
+      m_schemasimple.m_pfont.create(allocer());
+
+      m_schemasimple.m_pfont->create_pixel_font("Verdana",16);
+
 
    }
 

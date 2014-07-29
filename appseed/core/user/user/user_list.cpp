@@ -2383,7 +2383,7 @@ namespace user
 
             range.add_item(itemrange);
 
-            _001RedrawWindow();
+            RedrawWindow();
 
             _001OnSelectionChange();
          }
@@ -2455,7 +2455,7 @@ namespace user
          }
       }
 
-      _001RedrawWindow();
+      RedrawWindow();
       if(!has_focus())
       {
          SetFocus();
@@ -2540,7 +2540,7 @@ namespace user
                item_range itemrange;
                itemrange.set(iItem, iItem, 0, m_columna.get_count() - 1, - 1, -1);
                m_rangeSelection.add_item(itemrange);
-               _001RedrawWindow();
+               RedrawWindow();
             }
          }
          m_uiRButtonUpFlags = (UINT) pmouse->m_nFlags;
@@ -3556,7 +3556,7 @@ namespace user
 
          if(IsWindowVisible())
          {
-            _001RedrawWindow();
+            RedrawWindow();
          }
 
          pobj->m_bRet = false;
@@ -4150,7 +4150,7 @@ namespace user
          _001UpdateScrollBars();
          if(bRedraw)
          {
-            _001RedrawWindow();
+            RedrawWindow();
          }
       }
    }
@@ -4163,7 +4163,7 @@ namespace user
          _001UpdateScrollBars();
          if(bRedraw)
          {
-            _001RedrawWindow();
+            RedrawWindow();
          }
       }
    }
@@ -4791,7 +4791,7 @@ namespace user
    {
       m_iItemHover = -1;
       m_iSubItemHover = -1;
-      _001RedrawWindow();
+      RedrawWindow();
       pobj->m_bRet = true;
    }
 
@@ -4818,7 +4818,7 @@ namespace user
          }
          if(iItemOld != m_iItemDrop)
          {
-            _001RedrawWindow();
+            RedrawWindow();
          }
       }
 
@@ -4870,7 +4870,7 @@ namespace user
          {
             m_iItemHover = iItemHover;
             m_iSubItemHover = iSubItemHover;
-            _001RedrawWindow();
+            RedrawWindow();
          }
       }
 

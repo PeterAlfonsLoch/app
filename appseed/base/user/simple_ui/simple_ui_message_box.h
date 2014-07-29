@@ -11,18 +11,20 @@ namespace simple_ui
    public:
 
    
-      stringa        m_stra;
-      spa(tap)       m_tapaA;
-      spa(tap)       m_tapaB;
-      int32_t        m_iResult;
-      uint32_t       m_uiFlags;
+      stringa                 m_stra;
+      spa(tap)                m_tapaA;
+      spa(tap)                m_tapaB;
+      int32_t                 m_iResult;
+      uint32_t                m_uiFlags;
+      string                  m_strMessage;
+      manual_reset_event      m_evReady;
       
 
-      message_box(sp(::base::application) papp);
+      message_box(sp(::base::application) papp,const char * pszMessage,uint32_t uiFlags);
       virtual ~message_box();
 
 
-      int32_t show(const char * pszMessage, uint32_t uiFlags);
+      int32_t show();
 
       DRAWDD();
 

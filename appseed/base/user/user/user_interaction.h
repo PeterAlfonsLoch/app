@@ -18,6 +18,8 @@ namespace user
    {
    public:
 
+
+      bool                                m_bMayProDevian;
       bool                                m_bVisible;
       bool                                m_bVoidPaint;
       bool                                m_bLockWindowUpdate;
@@ -89,6 +91,8 @@ namespace user
 
       void set_timer(spa(timer_item) timera);
 
+      virtual bool set_may_pro_devian(bool bSet = true);
+      virtual void on_set_may_pro_devian();
 
       virtual bool IsWindow() const;
 

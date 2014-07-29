@@ -95,8 +95,8 @@ rect size::operator+(LPCRECT lpRect) const throw()
 rect size::operator-(LPCRECT lpRect) const throw()
    { return rect(lpRect) - *this; }
 
-int64_t size::area()
-   { return cx * cy; }
+int64_t size::area() const throw()
+   { return (cx < 0 && cy < 0 ? -1 : 1) * cx * cy; }
 
 uint32_t  size::  ui32() const throw()
 {
@@ -206,7 +206,9 @@ rect64 size64::operator-(const __rect64 * lpRect) const throw()
    { return rect64(lpRect) - *this; }
 
 int64_t size64::area() const throw()
-   { return cx * cy; }
+{
+   return (cx < 0 && cy < 0 ? -1 : 1) * cx * cy;
+}
 
 
 
@@ -359,8 +361,10 @@ rectd sized::operator+(LPCRECTD lpRect) const throw()
 rectd sized::operator-(LPCRECTD lpRect) const throw()
    { return rectd(lpRect) - *this; }
 
-double sized::area()
-   { return cx * cy; }
+double sized::area() const throw()
+{
+   return (cx < 0.0 && cy < 0.0 ? -1.0 : 1.0) * cx * cy;
+}
 
 
 uint32_t  sized::  ui32() const throw()

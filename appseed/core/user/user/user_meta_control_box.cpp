@@ -52,7 +52,7 @@ void MetaControlBox::_001OnLButtonUp(signal_details * pobj)
 
    UNREFERENCED_PARAMETER(pobj);
 
-   _001RedrawWindow();
+   RedrawWindow();
 
 }
 

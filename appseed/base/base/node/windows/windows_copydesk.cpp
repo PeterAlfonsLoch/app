@@ -205,7 +205,7 @@ namespace windows
       try
       {
          ::draw2d::bitmap_sp bitmap(allocer());
-         bitmap->attach(new Gdiplus::Bitmap(hbitmap, NULL));
+         //bitmap->attach(new Gdiplus::Bitmap(hbitmap, NULL));
          //HDC hdc = ::CreateCompatibleDC(NULL);
          //::draw2d::graphics_sp g(allocer());
          //g->attach(hdc);

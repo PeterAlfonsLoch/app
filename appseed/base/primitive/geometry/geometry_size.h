@@ -47,7 +47,7 @@ public:
    rect operator+(LPCRECT lpRect) const throw();
    rect operator-(LPCRECT lpRect) const throw();
 
-   int64_t area();
+   int64_t area() const throw();
    inline bool is_empty() const throw();
 
    uint32_t    ui32() const throw();
@@ -194,7 +194,7 @@ public:
    rectd operator+(LPCRECTD lpRect) const throw();
    rectd operator-(LPCRECTD lpRect) const throw();
 
-   double area();
+   double area() const throw();
    inline bool is_empty() const throw();
 
    uint32_t    ui32() const throw();

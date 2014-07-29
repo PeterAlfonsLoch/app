@@ -217,7 +217,11 @@ namespace base
 
       virtual sp(element) on_alloc(sp(::base::application) papp,sp(type) info);
       virtual sp(element) clone();
-      virtual sp(element) clone(sp(element) pobj);
+      template < class T >
+      sp(T) clone(sp(T) p)
+      {
+         return System.factory().clone(p);
+      }
       template < typename T >
       inline T * cast_clone(T * pt)
       {

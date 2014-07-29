@@ -736,9 +736,16 @@ namespace base
 
       dappy(string(typeid(*this).name()) + " : SetCurrentHandles 1 : " + ::str::from(m_iReturnCode));
       m_pimpl->set_os_data(::get_current_thread());
+      if(m_pthreadimpl->get_os_data() == NULL)
+      {
+         m_pthreadimpl->set_os_data(m_pimpl->get_os_data());
+      }
       dappy(string(typeid(*this).name()) + " : SetCurrentHandles 2 : " + ::str::from(m_iReturnCode));
-
       m_pimpl->set_os_int(::get_current_thread_id());
+      if(m_pthreadimpl->get_os_int() == NULL)
+      {
+         m_pthreadimpl->set_os_int(m_pimpl->get_os_int());
+      }
 
       m_pimpl->SetCurrentHandles();
       dappy(string(typeid(*this).name()) + " : SetCurrentHandles impled : " + ::str::from(m_iReturnCode));
@@ -3224,6 +3231,7 @@ namespace base
       pfn_ca2_factory_exchange(this);
 
 #endif
+
 
    }
 

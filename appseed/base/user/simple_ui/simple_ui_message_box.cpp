@@ -9,12 +9,16 @@ namespace simple_ui
 {
 
 
-   message_box::message_box(sp(::base::application) papp) :
-      element(papp)
+   message_box::message_box(sp(::base::application) papp, const char * pszMessage, uint32_t uiFlags) :
+      element(papp),
+      m_evReady(papp)
    {
 
-      m_uiFlags      = 0;
-      m_iResult      = 0;
+      m_evReady.ResetEvent();
+      m_bMayProDevian   = false;
+      m_strMessage      = pszMessage;
+      m_uiFlags         = uiFlags;
+      m_iResult         = 0;
 
    }
 
@@ -52,15 +56,15 @@ namespace simple_ui
 
    }
    
-   int32_t message_box::show(const char * pszMessage, uint32_t uiFlags)
+   int32_t message_box::show()
    {
 
-      m_uiFlags = uiFlags;
+      
 
       if(!CreateEx(WS_EX_LAYERED, NULL, NULL, 0, null_rect(), NULL, "fontopus"))
          throw simple_exception(get_app(), "not excepted! Failing Message box!!");
 
-      uint32_t uiType = uiFlags & MB_TYPEMASK;
+      uint32_t uiType = m_uiFlags & MB_TYPEMASK;
 
       switch(uiType)
       {
@@ -106,7 +110,7 @@ namespace simple_ui
 
       stra.add("\r\n");
 
-      m_stra.add_smallest_tokens(pszMessage, stra);
+      m_stra.add_smallest_tokens(m_strMessage, stra);
 
       session().get_main_monitor(rectDesktop);
 
@@ -349,7 +353,16 @@ CLASS_DECL_BASE int32_t system_message_box(oswindow interaction_impl,const char 
 
 }
 
+UINT c_cdecl thread_proc_simple_ui_message_box(LPVOID lpvoid)
+{
 
+   ::simple_ui::message_box * pmessagebox = (::simple_ui::message_box *) lpvoid;
+
+   pmessagebox->show();
+
+   return 0;
+
+}
 
 int32_t simple_ui_message_box(oswindow interaction_impl, const char * lpText,const char * lpCaption, uint32_t uiFlags)
 {
@@ -357,6 +370,8 @@ int32_t simple_ui_message_box(oswindow interaction_impl, const char * lpText,con
    // may be in another thread than application thread
 
    // we remove WM_QUIT because if it is in the queue then the message box won't display
+
+   //::MessageBox(NULL, "", "", MB_OK);
 
    MESSAGE msg;
 
@@ -373,12 +388,37 @@ int32_t simple_ui_message_box(oswindow interaction_impl, const char * lpText,con
 
    {
 
-      ::simple_ui::message_box * pmessagebox = new ::simple_ui::message_box(::get_thread_app());
+      ::simple_ui::message_box * pmessagebox = new ::simple_ui::message_box(::get_thread_app(), lpText, uiFlags);
 
       try
       {
+/*         bool bWasLocked = false;
+         if(::get_thread()->m_pslUser != NULL)
+         {
+            bWasLocked = ::get_thread()->m_pslUser->IsLocked();
 
-         iResult = pmessagebox->show(lpText,uiFlags);
+            if(bWasLocked)
+            {
+               ::get_thread()->m_pslUser->unlock();
+            }
+         }*/
+
+         //__begin_thread(::get_thread_app(),&thread_proc_simple_ui_message_box,pmessagebox);
+         pmessagebox->show();
+         
+/*         while(!pmessagebox->m_evReady.wait(millis(0)).signaled())
+         {
+
+            ::do_events();
+
+         }*/
+
+/*         if(bWasLocked)
+         {
+            ::get_thread()->m_pslUser->lock();
+         }*/
+
+         iResult = pmessagebox->m_iResult;
 
       }
       catch(...)

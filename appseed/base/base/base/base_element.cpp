@@ -112,8 +112,8 @@ sp(element) element::clone()
 
    if(m_pfactoryitembase != NULL)
       return m_pfactoryitembase->clone(this);
-   else
-      return m_pbaseapp->m_pbasesystem->clone(this);
+
+   return NULL;
 
 }
 

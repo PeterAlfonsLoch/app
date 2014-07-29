@@ -21,17 +21,27 @@ namespace user
    bool schema::get_color(COLORREF & cr, e_color ecolor)
    {
 
-      if(m_puserschema != NULL)
+      if(m_puserschema != NULL && m_puserschema != this)
       {
 
-         return m_puserschema->get_color(cr, ecolor);
+         if(m_puserschema->get_color(cr,ecolor))
+            return true;
 
       }
 
       if(get_parent_user_schema() != NULL)
       {
 
-         return get_parent_user_schema()->get_color(cr, ecolor);
+         if(get_parent_user_schema()->get_color(cr,ecolor))
+            return true;
+
+      }
+
+      if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL && m_pbaseapp->m_pbasesession != m_puserschema && m_pbaseapp->m_pbasesession->m_puserschema != m_puserschema)
+      {
+
+         if(m_pbaseapp->m_pbasesession->get_color(cr,ecolor))
+            return true;
 
       }
 
@@ -42,17 +52,27 @@ namespace user
    bool schema::get_font(::draw2d::font_sp & spfont)
    {
 
-      if(m_puserschema != NULL)
+      if(m_puserschema != NULL && m_puserschema != this)
       {
 
-         return m_puserschema->get_font(spfont);
+         if(m_puserschema->get_font(spfont))
+            return true;
 
       }
 
       if(get_parent_user_schema() != NULL)
       {
 
-         return get_parent_user_schema()->get_font(spfont);
+         if(get_parent_user_schema()->get_font(spfont))
+            return true;
+
+      }
+
+      if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL && m_pbaseapp->m_pbasesession != m_puserschema && m_pbaseapp->m_pbasesession->m_puserschema != m_puserschema)
+      {
+
+         if(m_pbaseapp->m_pbasesession->get_font(spfont))
+            return true;
 
       }
 
@@ -63,17 +83,27 @@ namespace user
    bool schema::get_translucency(ETranslucency & etranslucency)
    {
 
-      if(m_puserschema != NULL)
+      if(m_puserschema != NULL && m_puserschema != this)
       {
 
-         return m_puserschema->get_translucency(etranslucency);
+         if(m_puserschema->get_translucency(etranslucency))
+            return true;
 
       }
 
       if(get_parent_user_schema() != NULL)
       {
 
-         return get_parent_user_schema()->get_translucency(etranslucency);
+         if(get_parent_user_schema()->get_translucency(etranslucency))
+            return true;
+
+      }
+
+      if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL && m_pbaseapp->m_pbasesession != m_puserschema && m_pbaseapp->m_pbasesession->m_puserschema != m_puserschema)
+      {
+
+         if(m_pbaseapp->m_pbasesession->get_translucency(etranslucency))
+            return true;
 
       }
 

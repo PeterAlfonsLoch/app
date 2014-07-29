@@ -157,7 +157,7 @@ namespace user
          {
             ModifyStyleEx(WS_EX_LAYERED, 0);
          }
-         _001RedrawWindow();
+         RedrawWindow();
       }
    }
 
@@ -1053,7 +1053,7 @@ namespace user
       }
       if (pactivate->m_nState == WA_ACTIVE)
       {
-         _001RedrawWindow();
+         RedrawWindow();
       }
    }
 

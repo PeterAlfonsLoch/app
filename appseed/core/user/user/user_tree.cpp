@@ -1482,7 +1482,7 @@ namespace user
       }
 
       layout();
-      _001RedrawWindow();
+      RedrawWindow();
 
    }
 

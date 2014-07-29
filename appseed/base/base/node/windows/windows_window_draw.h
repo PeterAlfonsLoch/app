@@ -42,6 +42,9 @@ namespace windows
       virtual ~window_draw();
 
 
+      virtual void do_events();
+
+
       bool UpdateBuffer(LPCRECT lpcrect);
 
       virtual bool UpdateBuffer();

@@ -19,6 +19,11 @@ namespace draw2d
 
    }
 
+   font::font(const font & font)
+   {
+
+      operator = (font);
+   }
 
    font::~font()
    {

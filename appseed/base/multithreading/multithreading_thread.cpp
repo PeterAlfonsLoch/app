@@ -82,6 +82,8 @@ void thread::CommonConstruct()
 
    m_bZipIsDir = true;
 
+   m_pslUser = NULL;
+
 }
 
 
