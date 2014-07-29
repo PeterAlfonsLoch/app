@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_CORE Ex1FormInterfaceComboBox :
+class CLASS_DECL_BASE Ex1FormInterfaceComboBox :
    virtual public ::object
 {
 public:
@@ -22,7 +22,7 @@ namespace user
   // class form_list;
    class form_callback;
 
-   class CLASS_DECL_CORE control :
+   class CLASS_DECL_BASE control :
       virtual public impact
    {
    public:
@@ -70,7 +70,7 @@ namespace user
       };
 
    // sort_array < INT_PR, int_ptr >
-      class CLASS_DECL_CORE ddx_dbflags
+      class CLASS_DECL_BASE ddx_dbflags
       {
       public:
 
@@ -84,7 +84,7 @@ namespace user
 
       };
 
-      class CLASS_DECL_CORE descriptor :
+      class CLASS_DECL_BASE descriptor :
          virtual public element
       {
       public:
@@ -139,7 +139,7 @@ namespace user
 
       };
 
-      class CLASS_DECL_CORE descriptor_set :
+      class CLASS_DECL_BASE descriptor_set :
          public smart_pointer_array < descriptor >
       {
       public:

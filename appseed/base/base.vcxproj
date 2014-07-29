@@ -4923,6 +4923,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user\user.h" />
     <ClInclude Include="user\user\user_buffer.h" />
     <ClInclude Include="user\user\user_check_interface.h" />
+    <ClInclude Include="user\user\user_control.h" />
     <ClInclude Include="user\user\user_control_bar.h" />
     <ClInclude Include="user\user\user_control_event.h" />
     <ClInclude Include="user\user\user_create_context.h" />
@@ -18345,6 +18346,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="user\user\user_buffer.cpp" />
     <ClCompile Include="user\user\user_check_interface.cpp" />
+    <ClCompile Include="user\user\user_control.cpp" />
     <ClCompile Include="user\user\user_control_bar.cpp" />
     <ClCompile Include="user\user\user_control_event.cpp" />
     <ClCompile Include="user\user\user_create_context.cpp" />
