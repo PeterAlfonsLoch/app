@@ -6,7 +6,7 @@ namespace simple_ui
 
 
    class CLASS_DECL_BASE edit_box :
-      virtual public interaction
+      virtual public ::user::edit_plain_text
    {
    public:
 

@@ -334,7 +334,7 @@ namespace data
 
    }
 
-   sp(image_list) tree_item::get_image_list() const
+   image_list * tree_item::get_image_list() const
    {
 
       if(m_ptree != NULL)

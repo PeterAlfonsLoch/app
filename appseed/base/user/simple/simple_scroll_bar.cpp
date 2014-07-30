@@ -939,13 +939,9 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
    }
    else
    {
-      class imaging & imaging = System.visual().imaging();
-      imaging.color_blend(
-         pdc,
-         rectClient.left, rectClient.top,
-         rectClient.width(), rectClient.height(),
-         RGB(255,255,255),
-         127);
+
+      pdc->FillSolidRect(rectClient,ARGB(127, 255,255,255));
+
    }
 
    rect rectTrack;

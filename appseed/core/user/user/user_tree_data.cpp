@@ -8,12 +8,12 @@ namespace user
    tree_data::tree_data(sp(::base::application) papp):
       element(papp),
       ::data::data(papp),
-      m_mutex(papp)
+      ::data::tree(papp)
    {
 
          m_bFill = false;
 
-         m_proot = new tree_item;
+         m_proot = new ::data::tree_item;
 
          if(m_proot == NULL)
             throw memory_exception(get_app());
@@ -34,7 +34,7 @@ namespace user
    }
 
 
-   sp(tree_item) tree_data::find(item * pitemdata,index * piIndex)
+   sp(::data::tree_item) tree_data::find(::data::item * pitemdata,index * piIndex)
    {
 
       index iIndex;
@@ -49,7 +49,7 @@ namespace user
 
 
       sp(::data::tree_item) pitem = m_proot;
-      for(; pitem != NULL; pitem = pitem->get_item(TreeNavigationExpandedForward))
+      for(; pitem != NULL; pitem = pitem->get_item(::data::TreeNavigationExpandedForward))
       {
          if(pitem->m_pitem == pitemdata)
          {
@@ -66,15 +66,15 @@ namespace user
 
    }
 
-   bool tree_data::contains(item * pitemdata)
+   bool tree_data::contains(::data::item * pitemdata)
    {
       return find(pitemdata) != NULL;
    }
 
-   bool tree_data::contains(tree_item * pitemParam)
+   bool tree_data::contains(::data::tree_item * pitemParam)
    {
       sp(::data::tree_item) pitem = m_proot;
-      for(; pitem != NULL; pitem = pitem->get_item(TreeNavigationExpandedForward))
+      for(; pitem != NULL; pitem = pitem->get_item(::data::TreeNavigationExpandedForward))
       {
          if(pitem == pitemParam)
             return true;
@@ -88,15 +88,15 @@ namespace user
    }
 
 
-   ::count tree_data::remove(item * pitemdata,index i)
+   ::count tree_data::remove(::data::item * pitemdata,index i)
    {
-      sp(tree_item) pitem = find(pitemdata,&i);
+      sp(::data::tree_item) pitem = find(pitemdata,&i);
       if(pitem == NULL)
          return false;
       return remove(pitem);
    }
 
-   ::count tree_data::remove(tree_item_ptr_array & itemptra)
+   ::count tree_data::remove(::data::tree_item_ptr_array & itemptra)
    {
 
       ::count ca = 0;
@@ -112,7 +112,7 @@ namespace user
 
    }
 
-   ::count tree_data::remove(tree_item * pitem)
+   ::count tree_data::remove(::data::tree_item * pitem)
    {
 
       if(pitem->m_ptree == this)
@@ -136,7 +136,7 @@ namespace user
 
       while(pitem != NULL && iIndex >= 0)
       {
-         pitem = pitem->get_item(TreeNavigationProperForward,piLevel);
+         pitem = pitem->get_item(::data::TreeNavigationProperForward,piLevel);
          iIndex--;
          iCount++;
       }
@@ -167,7 +167,7 @@ namespace user
 
       while(pitem != NULL)
       {
-         pitem = pitem->get_item(TreeNavigationProperForward,piLevel);
+         pitem = pitem->get_item(::data::TreeNavigationProperForward,piLevel);
          if(pitem == pitemParam)
          {
             if(piCount != NULL)
@@ -196,9 +196,9 @@ namespace user
       return m_proot;
    }
 
-   sp(::data::tree_item) tree_data::insert_item(::data::item * pitemdataNew,ERelative erelativeNewItem,::data::tree_item *pitemRelative)
+   sp(::data::tree_item) tree_data::insert_item(::data::item * pitemdataNew,::data::ERelative erelativeNewItem,::data::tree_item *pitemRelative)
    {
-      if(erelativeNewItem == RelativeReplace)
+      if(erelativeNewItem == ::data::RelativeReplace)
       {
 
          if(!contains(pitemRelative))
@@ -209,7 +209,7 @@ namespace user
          return pitemRelative;
 
       }
-      sp(::data::tree_item) pitemNew = new tree_item;
+      sp(::data::tree_item) pitemNew = new ::data::tree_item;
       if(pitemNew == NULL)
          return NULL;
       if(!insert_item(pitemNew,erelativeNewItem,pitemRelative))
@@ -221,40 +221,40 @@ namespace user
    }
 
 
-   bool tree_data::insert_item(::data::tree_item *pitemNew,ERelative erelativeNewItem,::data::tree_item *pitemRelative)
+   bool tree_data::insert_item(::data::tree_item *pitemNew,::data::ERelative erelativeNewItem,::data::tree_item *pitemRelative)
    {
       if(pitemNew == NULL)
          return false;
       if(!contains(pitemRelative))
          return false;
-      if(erelativeNewItem == RelativeParent)
+      if(erelativeNewItem == ::data::RelativeParent)
          return false;
 
-      if(erelativeNewItem == RelativeLastSibling)
+      if(erelativeNewItem == ::data::RelativeLastSibling)
       {
          if(pitemRelative == m_proot)
          {
-            erelativeNewItem = RelativeFirstChild;
+            erelativeNewItem = ::data::RelativeFirstChild;
          }
       }
 
       switch(erelativeNewItem)
       {
-      case RelativeFirstChild:
+      case ::data::RelativeFirstChild:
       {
                                 pitemRelative->m_children.insert_at(0,pitemNew);
                                 pitemNew->m_pparent = pitemRelative;
       }
          break;
-      case RelativeLastChild:
+      case ::data::RelativeLastChild:
       {
                                pitemRelative->m_children.add(pitemNew);
                                pitemNew->m_pparent = pitemRelative;
       }
          break;
-      case RelativePreviousSibling:
+      case ::data::RelativePreviousSibling:
       {
-                                     // all tree_data items that have siblings have a parent (at least the base item)
+                                     // all tree_data items that have siblings have a parent (at least the base ::data::item)
                                      ASSERT(pitemRelative->m_pparent != NULL);
                                      // Is pitemRelative a first child ?
                                      index iFind = pitemRelative->m_pparent->m_children.find_first(pitemRelative);
@@ -264,9 +264,9 @@ namespace user
                                      pitemNew->m_pparent = pitemRelative->m_pparent;
       }
          break;
-      case RelativeNextSibling:
+      case ::data::RelativeNextSibling:
       {
-                                 // all tree_data items that have siblings have a parent (at least the base item)
+                                 // all tree_data items that have siblings have a parent (at least the base ::data::item)
                                  ASSERT(pitemRelative->m_pparent != NULL);
                                  // Is pitemRelative a first child ?
                                  index iFind = pitemRelative->m_pparent->m_children.find_first(pitemRelative);
@@ -278,15 +278,15 @@ namespace user
                                  pitemNew->m_pparent = pitemRelative->m_pparent;
       }
          break;
-      case RelativeLastSibling:
+      case ::data::RelativeLastSibling:
       {
-                                 // all tree_data items that have siblings have a parent (at least the base item)
+                                 // all tree_data items that have siblings have a parent (at least the base ::data::item)
                                  ASSERT(pitemRelative->m_pparent != NULL);
                                  pitemRelative->m_pparent->m_children.add(pitemNew);
                                  pitemNew->m_pparent = pitemRelative->m_pparent;
       }
          break;
-      case RelativeReplace:
+      case ::data::RelativeReplace:
       {
                              pitemNew->m_dwUser      = pitemRelative->m_dwUser;
                              pitemNew->m_dwMetaData  = pitemRelative->m_dwMetaData;
@@ -301,7 +301,7 @@ namespace user
                              }
       }
          break;
-      case RelativeMacroRecord:
+      case ::data::RelativeMacroRecord:
       {
                                  if(pitemRelative->get_next(false,false) != NULL)
                                  {
@@ -329,13 +329,13 @@ namespace user
 
    }
 
-   void tree_data::sort(index(* lpfnCompare)(sp(tree_item) *,sp(tree_item) *))
+   void tree_data::sort(index(* lpfnCompare)(sp(::data::tree_item) *,sp(::data::tree_item) *))
    {
-      sp(tree_item) pitem = get_base_item();
+      sp(::data::tree_item) pitem = get_base_item();
       while(pitem != NULL)
       {
          pitem->sort_children(lpfnCompare);
-         pitem = (sp(tree_item)) pitem->get_next();
+         pitem = (sp(::data::tree_item)) pitem->get_next();
       }
    }
 
@@ -346,7 +346,7 @@ namespace user
       for(index i = 0; i < m_treeptra.get_count(); i++)
       {
 
-         m_treeptra[i]._001ExpandItem(pitem,actioncontext,bExpand,bRedraw,bLayout);
+         m_treeptra[i]->_001ExpandItem(pitem,actioncontext,bExpand,bRedraw,bLayout);
 
       }
 
@@ -358,7 +358,7 @@ namespace user
       for(index i = 0; i < m_treeptra.get_count(); i++)
       {
 
-         m_treeptra[i]._001EnsureVisible(pitem);
+         m_treeptra[i]->_001EnsureVisible(pitem);
 
       }
 
@@ -371,7 +371,7 @@ namespace user
       for(index i = 0; i < m_treeptra.get_count(); i++)
       {
 
-         m_treeptra[i]._001SelectItem(pitem);
+         m_treeptra[i]->_001SelectItem(pitem);
 
       }
 
@@ -383,7 +383,7 @@ namespace user
       for(index i = 0; i < m_treeptra.get_count(); i++)
       {
 
-         itemptraSelected.add_unique(m_treeptra[i].m_itemptraSelected);
+         itemptraSelected.add_unique(m_treeptra[i]->m_itemptraSelected);
 
       }
 
@@ -396,7 +396,7 @@ namespace user
       for(index i = 0; i < m_treeptra.get_count(); i++)
       {
 
-         if(m_treeptra[i].is_selected(pitem))
+         if(m_treeptra[i]->is_selected(pitem))
             return true;
 
       }
@@ -412,7 +412,7 @@ namespace user
       for(index i = 0; i < m_treeptra.get_count(); i++)
       {
 
-         if(m_treeptra[i].is_selected(pitem))
+         if(m_treeptra[i]->is_selected(pitem))
             return true;
 
       }
@@ -439,7 +439,7 @@ namespace user
       /*      for (index i = 0; i < m_treeptra.get_count(); i++)
       {
 
-      m_treeptra[i]._001OnItemExpand(pitem, actioncontext);
+      m_treeptra[i]->_001OnItemExpand(pitem, actioncontext);
 
       }*/
 
@@ -462,7 +462,7 @@ namespace user
       /*for (index i = 0; i < m_treeptra.get_count(); i++)
       {
 
-      m_treeptra[i]._001OnItemCollapse(pitem);
+      m_treeptra[i]->_001OnItemCollapse(pitem);
 
       }*/
 
@@ -475,20 +475,20 @@ namespace user
       for(index i = 0; i < m_treeptra.get_count(); i++)
       {
 
-         m_treeptra[i]._001OnOpenItem(pitem,actioncontext);
+         m_treeptra[i]->_001OnOpenItem(pitem,actioncontext);
 
       }
 
    }
 
 
-   void tree_data::_001OnItemContextMenu(::data::tree_item * pitem,::action::context actioncontext,::user::tree_data * ptree,point pt)
+   void tree_data::_001OnItemContextMenu(::data::tree_item * pitem,::action::context actioncontext,::user::tree * ptree,point pt)
    {
 
       for(index i = 0; i < m_treeptra.get_count(); i++)
       {
 
-         m_treeptra[i]._001OnItemContextMenu(pitem,actioncontext,ptree,pt);
+         m_treeptra[i]->_001OnItemContextMenu(pitem,actioncontext,ptree,pt);
 
       }
 
@@ -503,7 +503,7 @@ namespace user
       for(index iTree = 0; iTree < m_treeptra.get_count(); iTree++)
       {
 
-         c += m_treeptra[iTree].selection_set(itemptra);
+         c += m_treeptra[iTree]->selection_set(itemptra);
 
       }
 
@@ -520,7 +520,7 @@ namespace user
       for(index iTree = 0; iTree < m_treeptra.get_count(); iTree++)
       {
 
-         if(!m_treeptra[iTree].selection_set(pitem))
+         if(!m_treeptra[iTree]->selection_set(pitem))
             bAllOk = false;
 
       }
@@ -539,7 +539,7 @@ namespace user
       for(index iTree = 0; iTree < m_treeptra.get_count(); iTree++)
       {
 
-         if(!m_treeptra[iTree].selection_set(pitem,bIfNotInSelection,bIfParentInSelection))
+         if(!m_treeptra[iTree]->selection_set(pitem,bIfNotInSelection,bIfParentInSelection))
             bAllOk = false;
 
       }
@@ -557,7 +557,7 @@ namespace user
       for(index iTree = 0; iTree < m_treeptra.get_count(); iTree++)
       {
 
-         if(!m_treeptra[iTree].selection_set(iIndex,pitem,bIfNotInSelection,bIfParentInSelection))
+         if(!m_treeptra[iTree]->selection_set(iIndex,pitem,bIfNotInSelection,bIfParentInSelection))
             bAllOk = false;
 
       }
@@ -589,7 +589,7 @@ namespace user
 
 
 
-   void tree::tree_layout()
+   void tree_data::tree_layout()
    {
 
       for(index i = 0; i < m_treeptra.get_count(); i++)
@@ -597,7 +597,7 @@ namespace user
          try
          {
 
-            m_treeptra[i].layout();
+            m_treeptra[i]->layout();
 
          }
          catch(...)

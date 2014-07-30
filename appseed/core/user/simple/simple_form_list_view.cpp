@@ -3,7 +3,8 @@
 
 simple_form_list_view::simple_form_list_view(sp(::base::application) papp) :
    element(papp),
-   ::user::interaction(papp), 
+   ::user::interaction(papp),
+   ::user::form_interface(papp),
    ::user::form(papp), 
    ::user::form_list(papp),
    m_headerctrl(papp),

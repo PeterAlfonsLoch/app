@@ -16,7 +16,8 @@ namespace filemanager
          tree::tree(sp(::base::application) papp) :
             element(papp),
             ::data::data(papp),
-            ::data::tree(papp)
+            ::data::tree(papp),
+            ::user::tree_data(papp)
          {
 
             m_iIconFolderNormal     = m_pimagelist->add_matter_icon("mplite/vmskarlib_folder_normal.ico");

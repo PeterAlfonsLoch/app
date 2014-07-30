@@ -258,7 +258,8 @@ namespace user
          break;
       case type_combo_box:
          {
-            m_data.m_pcombobox = new Ex1FormInterfaceComboBox;
+                            throw todo(get_app());
+//            m_data.m_pcombobox = new Ex1FormInterfaceComboBox;
          }
          break;
          default:
@@ -365,7 +366,7 @@ namespace user
    }
 
 
-   sp(Ex1FormInterfaceComboBox) control::GetComboBox()
+   Ex1FormInterfaceComboBox * control::GetComboBox()
    {
       return descriptor().m_data.m_pcombobox;
    }
@@ -389,7 +390,7 @@ namespace user
       }
    }
 
-   form * control::get_form()
+   form_interface * control::get_form()
    {
       if(m_pdescriptor == NULL)
          return NULL;

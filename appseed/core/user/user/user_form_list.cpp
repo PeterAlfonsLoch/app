@@ -8,6 +8,7 @@ namespace user
    form_list::form_list(sp(::base::application) papp) :
       element(papp),
       ::user::interaction(papp),
+      ::user::form_interface(papp),
       ::user::form(papp),
       ::user::scroll_view(papp),
       ::user::list(papp)

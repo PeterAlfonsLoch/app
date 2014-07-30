@@ -10,6 +10,7 @@ namespace userfs
       ::user::scroll_view(papp),
       m_headerctrl(papp),
       user::list(papp),
+      ::user::form_interface(papp),
       user::form(papp),
       user::form_list(papp)
    {

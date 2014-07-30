@@ -30,7 +30,7 @@ namespace platform
       element(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
-
+      ::user::form_interface(papp),
       ::user::form(papp),
       html_form(papp),
       html_form_view(papp),

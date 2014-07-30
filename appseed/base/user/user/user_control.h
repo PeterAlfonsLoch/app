@@ -1,26 +1,8 @@
 #pragma once
 
 
-class CLASS_DECL_BASE Ex1FormInterfaceComboBox :
-   virtual public ::object
-{
-public:
-
-
-   ::database::id       m_datakeyFill;
-   stringa              m_wstra;
-   uint_array          m_dwaData;
-
-
-};
-
-
 namespace user
 {
-
-   class form;
-  // class form_list;
-   class form_callback;
 
    class CLASS_DECL_BASE control :
       virtual public impact
@@ -102,7 +84,7 @@ namespace user
             Ex1FormInterfaceComboBox   * m_pcombobox;
          } m_data;
 
-         form *                  m_pform;
+         form_interface *        m_pform;
          sp(control)             m_pcontrol;
          id                      m_id;
          id                      m_uiText;
@@ -157,15 +139,15 @@ namespace user
       };
 
 #ifdef WINDOWSEX
-      static const uint32_t  g_uiMessage;
+      static const uint32_t      g_uiMessage;
 #endif
       index                      m_iHover;
       e_element                  m_eelementHover;
       descriptor *               m_pdescriptor;
-      sp(::user::interaction)      m_pwndCustomWindowProc;
+      sp(::user::interaction)    m_pwndCustomWindowProc;
       bool                       m_bCustomWindowProc;
       index                      m_iEditItem;
-      form *                     m_pform;
+      form_interface *           m_pform;
       form_callback *            m_pformcallback;
       bool                       m_bControlExCommandEnabled;
 
@@ -193,11 +175,12 @@ namespace user
       virtual void _003OnCustomDraw(::draw2d::graphics * pdc, ::user::draw_context * pitem);
       virtual void _003CustomWindowProc(signal_details * pobj);
 
-      virtual form * get_form();
+      virtual form_interface * get_form();
+
       //virtual form_list * get_form_list();
       virtual bool _001IsPointInside(point64 pt);
 
-      sp(Ex1FormInterfaceComboBox) GetComboBox();
+      Ex1FormInterfaceComboBox * GetComboBox();
       control null() { return control(); }
       bool Validate(string & str);
       bool get_data(sp(::user::interaction) pwnd, var & var);

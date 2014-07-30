@@ -39,7 +39,7 @@ namespace filemanager
          };
 
          class CLASS_DECL_CORE tree :
-            virtual public ::data::tree
+            virtual public ::user::tree_data
          {
          public:
 

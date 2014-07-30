@@ -23,7 +23,7 @@ namespace usermail
 
       string data_item_get_text(object * pobject) const;
       index data_item_get_image(object * pobject) const;
-      sp(image_list) data_item_get_image_list(object * pobject) const;
+      image_list * data_item_get_image_list(object * pobject) const;
 
 
 

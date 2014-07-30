@@ -134,7 +134,6 @@ typedef sp(::user::interaction_impl) window_sp;
 namespace user
 {
 
-
    class interaction;
    class control_event;
    class create_context;
@@ -144,11 +143,40 @@ namespace user
    class document;
    class frame_window;
 
-
-
+   class form_interface;
+   class form_list;
+   class form_callback;
 
 
 } // namespace user
+
+
+namespace simple_ui
+{
+
+   class label;
+   class edit_box;
+   class password;
+   class tap;
+
+}
+
+namespace base
+{
+
+   template < typename T > 
+   inline void del(T * & p)
+   {
+      if(p != NULL)
+      {
+         delete p;
+         p = NULL;
+      }
+   }
+
+} // namespace base
+
+
 
 class message_queue_listener;
 class image_list;
@@ -696,7 +724,8 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "base_departament.h"
 #include "base_departament_container.h"
 #include "base/xml/xml.h"
-#include "base/user/simple_ui/simple_ui.h"
+#include "base/user/simple_ui/simple_ui_style.h"
+#include "base/user/simple_ui/simple_ui_interaction.h"
 #include "base/database/database.h"
 #include "user/user/user_document_data_map.h"
 #include "user/user/user_document.h"
@@ -874,6 +903,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "user/user/user_control.h"
 #include "user/user/user_scroll_bar.h"
 #include "user/user/user_scroll_view.h"
+#include "user/user/user_form_interface.h"
 
 #include "user/colorertake5/colorertake5.h"
 #include "filesystem/file/file_edit_buffer.h"
@@ -1301,3 +1331,8 @@ bool ::file::system::output(sp(::base::application) papp, const char * pszOutput
 
 
 #include "app/appseed/base/base/node/node.h"
+
+
+
+#include "base/user/simple/simple.h"
+#include "base/user/simple_ui/simple_ui.h"

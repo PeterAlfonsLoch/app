@@ -28,7 +28,7 @@ namespace userfs
 
       string data_item_get_text(object * pobject) const;
       index data_item_get_image(object * pobject) const;
-      sp(image_list) data_item_get_image_list(object * pobject) const;
+      image_list * data_item_get_image_list(object * pobject) const;
 
       static index CompareArrangeByName(sp(::data::tree_item) * pitema, sp(::data::tree_item) * pitemb);
       int32_t get_index() const;

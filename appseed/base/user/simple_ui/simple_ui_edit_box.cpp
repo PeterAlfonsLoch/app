@@ -6,7 +6,12 @@ namespace simple_ui
 
 
    edit_box::edit_box(sp(::base::application) papp) :
-      element(papp)
+      element(papp),
+      ::user::interaction(papp),
+      ::user::scroll_view(papp),
+      ::colorertake5::base_editor(papp),
+      ::data::data_listener(papp),
+      ::user::edit_plain_text(papp)
    {
 
       m_iPos = 0;
@@ -37,9 +42,9 @@ namespace simple_ui
 
       SCAST_PTR(::message::mouse,pmouse,pobj);
 
-      keyboard_set_focus();
+  //    keyboard_set_focus();
 
-      pmouse->m_bRet = true;
+//      pmouse->m_bRet = true;
 
    }
 
@@ -49,7 +54,7 @@ namespace simple_ui
 
       SCAST_PTR(::message::mouse,pmouse,pobj);
 
-      pmouse->m_bRet = true;
+      //pmouse->m_bRet = true;
 
    }
 
@@ -96,6 +101,12 @@ namespace simple_ui
    void edit_box::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
+
+      ::user::edit_plain_text::_001OnDraw(pgraphics);
+
+      return;
+
+
       rect rectClient;
 
       GetClientRect(rectClient);
@@ -140,6 +151,8 @@ namespace simple_ui
 
    void edit_box::_001OnKeyDown(signal_details * pobj)
    {
+
+      return;
 
       SCAST_PTR(::message::key,pkey,pobj);
 

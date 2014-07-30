@@ -1587,10 +1587,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core\core_types.h" />
     <ClInclude Include="core\core\core_util.h" />
     <ClInclude Include="core\core\core_util1.h" />
-    <ClInclude Include="core\data\data_simple_item.h" />
-    <ClInclude Include="core\data\data_tree.h" />
-    <ClInclude Include="core\data\data_tree_item.h" />
-    <ClInclude Include="core\data\data_item.h" />
     <ClInclude Include="core\libcharguess\big5Prober.h" />
     <ClInclude Include="core\libcharguess\charDistribution.h" />
     <ClInclude Include="core\libcharguess\charguess.h" />
@@ -1823,7 +1819,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="filesystem\file\file_clustered_input_stream.h" />
     <ClInclude Include="filesystem\file\file_dynamic_buffer.h" />
     <ClInclude Include="filesystem\file\file_dynamic_buffered_writer.h" />
-    <ClInclude Include="filesystem\file\file_edit_buffer.h" />
     <ClInclude Include="filesystem\file\file_in_buffer.h" />
     <ClInclude Include="filesystem\file\file_io_temp_buffer.h" />
     <ClInclude Include="filesystem\file\file_limited_input_stream.h" />
@@ -2101,7 +2096,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\simple\simple_menu_bar.h" />
     <ClInclude Include="user\simple\simple_printer_list_view.h" />
     <ClInclude Include="user\simple\simple_push_button.h" />
-    <ClInclude Include="user\simple\simple_scroll_bar.h" />
     <ClInclude Include="user\simple\simple_static.h" />
     <ClInclude Include="user\simple\simple_status_bar.h" />
     <ClInclude Include="user\simple\simple_tab_control.h" />
@@ -2142,7 +2136,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user\user_check_box.h" />
     <ClInclude Include="user\user\user_combo_box.h" />
     <ClInclude Include="user\user\user_combo_list.h" />
-    <ClInclude Include="user\user\user_control.h" />
     <ClInclude Include="user\user\user_control_event.h" />
     <ClInclude Include="user\user\user_control_property.h" />
     <ClInclude Include="user\user\user_core.h" />
@@ -2178,9 +2171,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user\user_notification_area.h" />
     <ClInclude Include="user\user\user_notify_icon.h" />
     <ClInclude Include="user\user\user_notify_icon_listener.h" />
-    <ClInclude Include="user\user\user_plain_text_data.h" />
-    <ClInclude Include="user\user\user_scroll_bar.h" />
-    <ClInclude Include="user\user\user_scroll_view.h" />
     <ClInclude Include="user\user\user_shell.h" />
     <ClInclude Include="user\user\user_simple_list_data.h" />
     <ClInclude Include="user\user\user_single_document_template.h" />
@@ -2287,10 +2277,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="core\data\data_simple_item.cpp" />
-    <ClCompile Include="core\data\data_tree.cpp" />
-    <ClCompile Include="core\data\data_tree_item.cpp" />
-    <ClCompile Include="core\data\data_item.cpp" />
     <ClCompile Include="core\libcharguess\libcharguess.cpp" />
     <ClCompile Include="core\libcharguess\libcharguess_big5Prober.cpp" />
     <ClCompile Include="core\libcharguess\libcharguess_charDistribution.cpp" />
@@ -2495,7 +2481,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="filesystem\filemanager\filemanager_folder_list.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_tree.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_preview.cpp" />
-    <ClCompile Include="filesystem\file\file_edit_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_clustered_input_stream.cpp" />
     <ClCompile Include="filesystem\file\file_dynamic_buffered_writer.cpp" />
     <ClCompile Include="filesystem\file\file_in_buffer.cpp" />
@@ -2662,7 +2647,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\simple\simple_menu_bar.cpp" />
     <ClCompile Include="user\simple\simple_printer_list_view.cpp" />
     <ClCompile Include="user\simple\simple_push_button.cpp" />
-    <ClCompile Include="user\simple\simple_scroll_bar.cpp" />
     <ClCompile Include="user\simple\simple_static.cpp" />
     <ClCompile Include="user\simple\simple_status_bar.cpp" />
     <ClCompile Include="user\simple\simple_tab_ctrl.cpp" />
@@ -2694,7 +2678,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\user\user_check_box.cpp" />
     <ClCompile Include="user\user\user_combo_box.cpp" />
     <ClCompile Include="user\user\user_combo_list.cpp" />
-    <ClCompile Include="user\user\user_control.cpp" />
     <ClCompile Include="user\user\user_control_property.cpp" />
     <ClCompile Include="user\user\user_core.cpp" />
     <ClCompile Include="user\user\user_data_exchange.cpp" />
@@ -2723,9 +2706,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\user\user_notification_area.cpp" />
     <ClCompile Include="user\user\user_notify_icon.cpp" />
     <ClCompile Include="user\user\user_notify_icon_listener.cpp" />
-    <ClCompile Include="user\user\user_plain_text_data.cpp" />
-    <ClCompile Include="user\user\user_scroll_bar.cpp" />
-    <ClCompile Include="user\user\user_scroll_view.cpp" />
     <ClCompile Include="user\user\user_shell.cpp" />
     <ClCompile Include="user\user\user_single_document_template.cpp" />
     <ClCompile Include="user\user\user_split_bar.cpp" />

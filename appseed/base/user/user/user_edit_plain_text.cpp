@@ -1,24 +1,6 @@
 ﻿#include "framework.h"
 
-string str_block(char ch, int32_t iSize);
-void str_fill(string & str, char ch);
-
-
-   string str_block(char ch, int32_t iSize)
-   {
-      string str;
-      for(int32_t i = 0; i < iSize; i++)
-      {
-         str += ch;
-      }
-      return str;
-   }
-
-
-   void str_fill(string & str, char ch)
-   {
-      str = str_block(ch, (int32_t) str.get_length());
-   }
+void str_fill(string & str,char ch);
 
 namespace user
 {
@@ -342,7 +324,7 @@ namespace user
       sort::sort(iSelStart, iSelEnd);
       select_font(pdc);
       size size3;
-      visual::graphics_extension(get_app()).GetTextExtent(pdc, unitext("gGYIﾍ"), size3);
+      size3 = pdc->GetTextExtent(unitext("gGYIﾍ"));
       int32_t iLineHeight = size3.cy;
       stringa & straLines = m_lines.lines;
       stringa straLineFeed;
@@ -394,7 +376,7 @@ namespace user
                string strExtent2;
                strExtent2 = strLine.Mid(x, len);
                class size size1;
-               visual::graphics_extension(get_app()).GetTextExtent(pdc, strExtent1, size1);
+               size1 = pdc->GetTextExtent(strExtent1);
                if(pregion->styled()->bback)
                {
                   pdc->FillSolidRect((int32_t) (left + size1.cx), (int32_t) y, size1.cx, size1.cy, pregion->styled()->back);
@@ -1251,7 +1233,7 @@ namespace user
       string strLine;
       string strExtent;
       size size3;
-      visual::graphics_extension(get_app()).GetTextExtent(pdc, unitext("gqYALﾍ"), size3);
+      size3 = pdc->GetTextExtent(unitext("gqYALﾍ"));
 
       iLineHeight = size3.cy;
 
@@ -1272,7 +1254,7 @@ namespace user
          strExtent = strLine;
          strExtent.replace("\t", "   ");
          size size;
-         visual::graphics_extension(get_app()).GetTextExtent(pdc, strExtent, size);
+         size = pdc->GetTextExtent(strExtent);
          //iLineHeight = max(size.cy, size3.cy);
          if(py >= y && py < y + iLineHeight)
          {

@@ -5,6 +5,7 @@ menu_view::menu_view(sp(::base::application) papp) :
    element(papp),
    ::user::interaction(papp),
    ::user::scroll_view(papp),
+   ::user::form_interface(papp),
    ::user::form(papp),
    html_form(papp),
    html_form_view(papp),

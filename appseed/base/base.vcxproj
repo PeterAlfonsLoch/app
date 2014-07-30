@@ -4964,6 +4964,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\fontopus\fontopus_user_authentication.h" />
     <ClInclude Include="user\fontopus\fontopus_user_set.h" />
     <ClInclude Include="user\fontopus\fontopus_validate.h" />
+    <ClInclude Include="user\simple\simple.h" />
+    <ClInclude Include="user\simple\simple_scroll_bar.h" />
     <ClInclude Include="user\simple_ui\simple_ui.h" />
     <ClInclude Include="user\simple_ui\simple_ui_edit_box.h" />
     <ClInclude Include="user\simple_ui\simple_ui_interaction.h" />
@@ -4988,6 +4990,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user\user_edit_plain_text.h" />
     <ClInclude Include="user\user\user_elemental.h" />
     <ClInclude Include="user\user\user_enum.h" />
+    <ClInclude Include="user\user\user_form_interface.h" />
     <ClInclude Include="user\user\user_frame_window.h" />
     <ClInclude Include="user\user\user_impact.h" />
     <ClInclude Include="user\user\user_impact_system.h" />
@@ -18416,6 +18419,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\fontopus\fontopus_user_authentication.cpp" />
     <ClCompile Include="user\fontopus\fontopus_user_set.cpp" />
     <ClCompile Include="user\fontopus\fontopus_validate.cpp" />
+    <ClCompile Include="user\simple\simple_scroll_bar.cpp" />
     <ClCompile Include="user\simple_ui\simple_ui_edit_box.cpp" />
     <ClCompile Include="user\simple_ui\simple_ui_interaction.cpp" />
     <ClCompile Include="user\simple_ui\simple_ui_label.cpp" />
@@ -18436,6 +18440,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\user\user_draw_interface.cpp" />
     <ClCompile Include="user\user\user_edit_plain_text.cpp" />
     <ClCompile Include="user\user\user_elemental.cpp" />
+    <ClCompile Include="user\user\user_form_interface.cpp" />
     <ClCompile Include="user\user\user_frame_window.cpp" />
     <ClCompile Include="user\user\user_impact.cpp" />
     <ClCompile Include="user\user\user_impact_system.cpp" />
@@ -18459,6 +18464,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\user\user_schema.cpp" />
     <ClCompile Include="user\user\user_schema_layered_frame.cpp" />
     <ClCompile Include="user\user\user_schema_simple_impl.cpp" />
+    <ClCompile Include="user\user\user_scroll_bar.cpp" />
     <ClCompile Include="user\user\user_scroll_view.cpp" />
     <ClCompile Include="user\user\user_server.cpp" />
     <ClCompile Include="user\user\user_str.cpp" />

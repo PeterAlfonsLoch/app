@@ -12,13 +12,15 @@ namespace fontopus
 
 
    login::login(sp(::base::application) papp, int left, int top) :
-      element(papp),
-      m_labelUser(papp),
-      m_editUser(papp),
-      m_labelPassword(papp),
-      m_password(papp),
-      m_tap(papp)
+      element(papp)
    {
+
+
+      m_plabelUser         = new ::simple_ui::label(papp);
+      m_peditUser          = new ::simple_ui::edit_box(papp);
+      m_plabelPassword     = new ::simple_ui::label(papp);
+      m_ppassword          = new ::simple_ui::password(papp);
+      m_ptap               = new ::simple_ui::tap(papp);
 
       m_bSelfLayout = false;
 
@@ -42,6 +44,17 @@ namespace fontopus
 #endif
       m_bCred = false;
 
+
+   }
+
+   login::~login()
+   {
+
+      ::base::del(m_plabelUser);
+      ::base::del(m_peditUser);
+      ::base::del(m_plabelPassword);
+      ::base::del(m_ppassword);
+      ::base::del(m_ptap);
 
    }
 
@@ -80,24 +93,21 @@ namespace fontopus
       str = node.attr("email");
 
       if (str.has_char())
-         m_labelUser.SetWindowText(str);
+         m_plabelUser->SetWindowText(str);
 
       str = node.attr("senha");
 
       if (str.has_char())
-         m_labelPassword.SetWindowText(str);
+         m_plabelPassword->SetWindowText(str);
 
       str = node.attr("abrir");
 
       if (str.has_char())
-         m_tap.SetWindowText(str);
+         m_ptap->SetWindowText(str);
 
    }
 
 
-   login::~login()
-   {
-   }
 
 
    void login::initialize()
@@ -194,16 +204,16 @@ namespace fontopus
       int32_t pad = (int) (5 * ry);
 
       int32_t y = (int) ((49 + 86) * ry);
-      m_labelUser.RepositionWindow(x1,y,w2,h1);
+      m_plabelUser->RepositionWindow(x1,y,w2,h1);
       y += h1 + pad;
-      m_editUser.RepositionWindow(x1,y,w2, h1);
+      m_peditUser->RepositionWindow(x1,y,w2, h1);
       y += h1 + pad;
-      m_labelPassword.RepositionWindow(x1,y,w2, h1);
+      m_plabelPassword->RepositionWindow(x1,y,w2, h1);
       y += h1 + pad;
-      m_password.RepositionWindow(x1,y,w2,h1);
+      m_ppassword->RepositionWindow(x1,y,w2,h1);
       y += h1 + pad;
       y += pad + h1 + pad;
-      m_tap.RepositionWindow(x1,y,w2,h1 * 3);;
+      m_ptap->RepositionWindow(x1,y,w2,h1 * 3);;
 
 
    }
@@ -343,7 +353,7 @@ namespace fontopus
 
       if (!strcmp(pszId, "submit"))
       {
-
+         m_ppassword->m_pimpl.cast < ::user::interaction_child >()->m_strWindowText = System.crypto().nessie(m_ppassword->m_pimpl.cast < ::user::interaction_child >()->m_strWindowText);
          GetParent()->EndModalLoop("ok");
 
          return true;
@@ -352,6 +362,7 @@ namespace fontopus
       else if (!strcmp(pszId, "escape"))
       {
 
+         m_ppassword->m_pimpl.cast < ::user::interaction_child >()->m_strWindowText.Empty();
          GetParent()->EndModalLoop("cancel");
 
          return true;
@@ -373,11 +384,11 @@ namespace fontopus
       if(pcreate->previous())
          return;
 
-      if(!m_labelUser.create(this,"label_user")
-         || !m_editUser.create(this, "edit_user")
-         || !m_labelPassword.create(this, "label_password")
-         || !m_password.create(this, "password")
-         || !m_tap.create(this, "submit"))
+      if(!m_plabelUser->create(this,"label_user")
+         || !m_peditUser->create(this, "edit_user")
+         || !m_plabelPassword->create(this, "label_password")
+         || !m_ppassword->create(this, "password")
+         || !m_ptap->create(this, "submit"))
       {
          pcreate->set_lresult(-1);
          pcreate->m_bRet = true;
@@ -385,16 +396,16 @@ namespace fontopus
       }
       
 
-      m_labelUser.SetWindowText("e-mail:");
-      m_labelPassword.SetWindowText("password:");
-      m_tap.SetWindowText("open");
+      m_plabelUser->SetWindowText("e-mail:");
+      m_plabelPassword->SetWindowText("password:");
+      m_ptap->SetWindowText("open");
 
       int stdw = 800;
       int stdh = 177 + 23 + 184 + 49;
 
       RepositionWindow(0,0,stdw,stdh);
 
-      m_editUser.keyboard_set_focus();
+      m_peditUser->keyboard_set_focus();
       
    }
 

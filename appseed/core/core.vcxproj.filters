@@ -270,17 +270,11 @@
     <Filter Include="Source Files\filesystem\file">
       <UniqueIdentifier>{e51c6660-f414-4fee-a338-a3e074eafd03}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\core\data">
-      <UniqueIdentifier>{7d3860be-3de6-4106-8af1-292bf77af63d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\net\hi5">
       <UniqueIdentifier>{3728a81f-1e66-4661-8f29-af1e5a81f3e7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\filesystem\folder_watch">
       <UniqueIdentifier>{0836171c-654e-4702-8512-85ed485fb89e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\core\data">
-      <UniqueIdentifier>{02ea13d1-b468-4618-a812-9cb07e01c7f3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\core\service">
       <UniqueIdentifier>{3116622e-722d-4408-b2b6-bc6a41544f03}</UniqueIdentifier>
@@ -699,9 +693,6 @@
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\simple_push_button.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple\simple_scroll_bar.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\simple_static.h">
@@ -1478,15 +1469,6 @@
     <ClInclude Include="filesystem\file\file_dynamic_buffered_writer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\file_edit_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="core\data\data_tree.h">
-      <Filter>Header Files\core\data</Filter>
-    </ClInclude>
-    <ClInclude Include="core\data\data_tree_item.h">
-      <Filter>Header Files\core\data</Filter>
-    </ClInclude>
     <ClInclude Include="net\hi5\hi5_oauth.h">
       <Filter>Header Files\net\hi5</Filter>
     </ClInclude>
@@ -1571,12 +1553,6 @@
     <ClInclude Include="graphics\gcom\gcom_util.h">
       <Filter>Header Files\graphics\gcom</Filter>
     </ClInclude>
-    <ClInclude Include="core\data\data_simple_item.h">
-      <Filter>Header Files\core\data</Filter>
-    </ClInclude>
-    <ClInclude Include="core\data\data_item.h">
-      <Filter>Header Files\core\data</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filehandler\filehandler_item.h">
       <Filter>Header Files\filesystem\filehandler</Filter>
     </ClInclude>
@@ -1659,9 +1635,6 @@
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_combo_list.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_control.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_control_event.h">
@@ -1761,15 +1734,6 @@
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_notify_icon_listener.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_plain_text_data.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_scroll_bar.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_scroll_view.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_shell.h">
@@ -2497,9 +2461,6 @@
     <ClCompile Include="user\simple\simple_push_button.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\simple_scroll_bar.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
     <ClCompile Include="user\simple\simple_static.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
@@ -3079,9 +3040,6 @@
     <ClCompile Include="net\hi5\hi5_oauth.cpp">
       <Filter>Source Files\net\hi5</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_edit_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="net\hi5\hi5_twit.cpp">
       <Filter>Source Files\net\hi5</Filter>
     </ClCompile>
@@ -3108,12 +3066,6 @@
     </ClCompile>
     <ClCompile Include="net\hi5\hi5_twitter_authorization.cpp">
       <Filter>Source Files\net\hi5</Filter>
-    </ClCompile>
-    <ClCompile Include="core\data\data_tree.cpp">
-      <Filter>Source Files\core\data</Filter>
-    </ClCompile>
-    <ClCompile Include="core\data\data_tree_item.cpp">
-      <Filter>Source Files\core\data</Filter>
     </ClCompile>
     <ClCompile Include="core\service\service_plain_service.cpp">
       <Filter>Source Files\core\service</Filter>
@@ -3168,12 +3120,6 @@
     </ClCompile>
     <ClCompile Include="graphics\gcom\gcom_util.cpp">
       <Filter>Source Files\graphics\gcom</Filter>
-    </ClCompile>
-    <ClCompile Include="core\data\data_simple_item.cpp">
-      <Filter>Source Files\core\data</Filter>
-    </ClCompile>
-    <ClCompile Include="core\data\data_item.cpp">
-      <Filter>Source Files\core\data</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filehandler\filehandler_item.cpp">
       <Filter>Source Files\filesystem\filehandler</Filter>
@@ -3259,9 +3205,6 @@
     <ClCompile Include="user\user\user_combo_list.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_control.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_control_property.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -3338,15 +3281,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_notify_icon_listener.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_plain_text_data.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_scroll_bar.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_scroll_view.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_shell.cpp">

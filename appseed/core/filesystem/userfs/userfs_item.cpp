@@ -68,7 +68,7 @@ namespace userfs
 
    }
 
-   sp(image_list) item::data_item_get_image_list(object * pobject) const
+   image_list * item::data_item_get_image_list(object * pobject) const
    {
 
       return m_ptree->m_pimagelist;

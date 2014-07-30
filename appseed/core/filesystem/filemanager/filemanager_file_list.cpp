@@ -8,6 +8,7 @@ namespace filemanager
    file_list::file_list(sp(::base::application) papp) :
       element(papp),
       ::user::interaction(papp),
+      ::user::form_interface(papp),
       ::user::form(papp),
       ::user::form_list(papp),
       ::user::scroll_view(papp),

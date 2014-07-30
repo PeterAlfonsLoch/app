@@ -8,6 +8,8 @@ namespace filemanager
    tree::tree(sp(::base::application) papp) :
       element(papp),
       ::data::data(papp),
+      ::data::tree(papp),
+      ::user::tree_data(papp),
       ::userfs::tree(papp),
       m_mutexMissinUpdate(papp)
    {
@@ -125,10 +127,10 @@ namespace filemanager
 
       _001SelectItem(find_item(lpcsz));
 
-      if (m_treeptra.has_elements())
+      if(m_treeptra.has_elements())
       {
 
-         _StartCreateImageList(m_treeptra(0));
+         _StartCreateImageList(m_treeptra[0]);
 
       }
 
@@ -751,7 +753,7 @@ namespace filemanager
    void tree::StartAnimation()
    {
       m_iAnimate = 1;
-      m_treeptra(0)->SetTimer(1234567, 50, NULL);
+      m_treeptra[0]->SetTimer(1234567, 50, NULL);
 
    }
 
@@ -947,7 +949,7 @@ namespace filemanager
          if (m_treeptra.has_elements())
          {
 
-            _StopCreateImageList(m_treeptra(0));
+            _StopCreateImageList(m_treeptra[0]);
 
          }
          return;
@@ -1004,7 +1006,7 @@ namespace filemanager
    void tree::_StartDelayedListUpdate()
    {
 
-      m_treeptra(0)->SetTimer(TimerDelayedListUpdate, 500, NULL);
+      m_treeptra[0]->SetTimer(TimerDelayedListUpdate, 500, NULL);
 
    }
 
@@ -1012,7 +1014,7 @@ namespace filemanager
    void tree::_StopDelayedListUpdate()
    {
 
-      m_treeptra(0)->KillTimer(TimerDelayedListUpdate);
+      m_treeptra[0]->KillTimer(TimerDelayedListUpdate);
 
    }
 

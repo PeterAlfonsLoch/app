@@ -8,7 +8,8 @@ namespace user
    form::form(sp(::base::application) papp) :
       element(papp),
       ::user::interaction(papp),
-      ::user::scroll_view(papp)
+      ::user::scroll_view(papp),
+      ::user::form_interface(papp)
    {
 
       m_bOnEditUpdate         = false;

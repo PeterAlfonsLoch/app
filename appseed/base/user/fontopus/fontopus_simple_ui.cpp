@@ -165,7 +165,7 @@ namespace fontopus
 
       SetWindowText( "fontopus Auth Windows");
 
-      m_login.m_editUser.SetFocus();
+      m_login.m_peditUser->SetFocus();
 
       rect rectFontopus;
 
@@ -251,9 +251,9 @@ namespace fontopus
       if(idResult == "ok")
       {
 
-         m_login.m_editUser.GetWindowText(strUsername);
+         m_login.m_peditUser->GetWindowText(strUsername);
 
-         m_login.m_password.GetWindowText(strPassword);
+         m_login.m_ppassword->GetWindowText(strPassword);
 
          return "ok";
 
@@ -457,9 +457,9 @@ namespace fontopus
       if(!bInteractive)
          return "failed";
 
-      ui.m_login.m_editUser.SetWindowText(strUsername);
+      ui.m_login.m_peditUser->SetWindowText(strUsername);
 
-      ui.m_login.m_password.SetWindowText(strPassword);
+      ui.m_login.m_ppassword->SetWindowText("");
 
       string strResult = ui.get_cred(lprect, strUsername, strPassword, strToken, strTitle);
 

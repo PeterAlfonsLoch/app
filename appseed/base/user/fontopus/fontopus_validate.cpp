@@ -755,7 +755,7 @@ namespace fontopus
       string strPass;
       if(m_strPasshash.is_empty())
       {
-         strPass = System.crypto().nessie(m_strPassword);
+         strPass = m_strPassword;
       }
       else
       {

@@ -6,6 +6,7 @@ html_form_view::html_form_view(sp(::base::application) papp) :
    html_form(papp),
    ::user::interaction(papp),
    ::user::scroll_view(papp),
+   ::user::form_interface(papp),
    ::user::form(papp)
 {
 

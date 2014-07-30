@@ -18,8 +18,6 @@
 
 
 
-#include "simple_scroll_bar.h"
-
 #include "simple_tool_bar.h"
 #include "simple_menu_bar.h"
 #include "simple_status_bar.h"

@@ -11,11 +11,11 @@ namespace fontopus
    public:
 
 
-      ::simple_ui::label            m_labelUser;
-      ::simple_ui::edit_box         m_editUser;
-      ::simple_ui::label            m_labelPassword;
-      ::simple_ui::password         m_password;
-      ::simple_ui::tap              m_tap;
+      ::simple_ui::label *          m_plabelUser;
+      ::simple_ui::edit_box *       m_peditUser;
+      ::simple_ui::label *          m_plabelPassword;
+      ::simple_ui::password *       m_ppassword;
+      ::simple_ui::tap *            m_ptap;
 
       string                        m_strUsername;
       string                        m_strPassword;

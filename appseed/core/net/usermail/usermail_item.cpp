@@ -45,7 +45,7 @@ namespace usermail
 
    }
 
-   sp(image_list) item::data_item_get_image_list(object * pobject) const
+   image_list * item::data_item_get_image_list(object * pobject) const
    {
 
       /*return m_ptree->get_image_list();*/

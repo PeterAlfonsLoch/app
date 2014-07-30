@@ -23,6 +23,24 @@
 #define CY_BORDER   1
 
 
+class Ex1FormInterfaceComboBox;
+
+/*
+class CLASS_DECL_BASE Ex1FormInterfaceComboBox:
+   virtual public ::object
+{
+public:
+
+
+   ::database::id       m_datakeyFill;
+   stringa              m_wstra;
+   uint_array          m_dwaData;
+
+
+};
+
+*/
+
 
 // Implementation structures
 struct __SIZEPARENTPARAMS;    // control bar implementationproperca2_property.h

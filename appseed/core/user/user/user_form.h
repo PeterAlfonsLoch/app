@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_CORE form : 
-      virtual public scroll_view
+      virtual public ::user::form_interface
    {
    public:
 

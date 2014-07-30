@@ -70,12 +70,6 @@ namespace user
 
 
 #include "user_list_header.h"
-#include "user_scroll_bar.h"
-#include "user_scroll_view.h"
-
-
-#include "user_plain_text_data.h"
-#include "user_edit_plain_text.h"
 
 
 #include "user_combo_box.h"
@@ -97,6 +91,7 @@ namespace user
 #include "user_list_data.h"
 #include "user_simple_list_data.h"
 
+#include "user_tree_data.h"
 
 #include "user_tree.h"
 
@@ -291,7 +286,6 @@ namespace user
 #include "user_edit_plain_text_view.h"
 
 
-#include "user_scroll_view.h"
 #include "user_form.h"
 #include "user_tab_view.h"
 

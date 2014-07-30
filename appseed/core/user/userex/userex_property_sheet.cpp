@@ -8,6 +8,7 @@ namespace userex
    property_sheet::property_sheet(sp(::base::application) papp) :
       element(papp),
       ::user::scroll_view(papp),
+      ::user::form_interface(papp),
       ::user::form(papp),
       html_form(papp),
       html_form_view(papp),

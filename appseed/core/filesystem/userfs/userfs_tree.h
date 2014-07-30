@@ -9,7 +9,7 @@ namespace userfs
 
 
    class CLASS_DECL_CORE tree :
-      public ::data::tree
+      virtual public ::user::tree_data
    {
    public:
 

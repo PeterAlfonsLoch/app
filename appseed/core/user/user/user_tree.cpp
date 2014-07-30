@@ -1354,8 +1354,13 @@ namespace user
    }
 
 
-   bool tree::merge(::data::tree * ptree, bool bBind)
+   bool tree::merge(::data::tree * pdatatree, bool bBind)
    {
+
+      if(pdatatree == NULL)
+         return false;
+
+      ::user::tree_data * ptree = dynamic_cast <::user::tree_data *>  (pdatatree);
 
       if (ptree == NULL)
          return false;

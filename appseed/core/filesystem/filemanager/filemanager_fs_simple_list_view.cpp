@@ -17,6 +17,7 @@ namespace filemanager
          element(papp),
             ::user::scroll_view(papp),
             ::user::list(papp),
+            ::user::form_interface(papp),
             ::user::form(papp),
             ::user::form_list(papp),
             

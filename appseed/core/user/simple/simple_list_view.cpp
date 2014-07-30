@@ -2,9 +2,9 @@
 
 simple_list_view::simple_list_view(sp(::base::application) papp) :
    element(papp),
-   
    ::user::scroll_view(papp),
    ::user::list(papp),
+   ::user::form_interface(papp),
    ::user::form(papp),
    ::user::form_list(papp),
    m_headerctrl(papp)
