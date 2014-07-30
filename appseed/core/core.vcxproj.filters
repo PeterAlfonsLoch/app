@@ -3742,6 +3742,9 @@
     <ClCompile Include="filesystem\filemanager\filemanager_main_view.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\user_tree_data.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="core.def">

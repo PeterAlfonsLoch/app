@@ -77,9 +77,12 @@ namespace user
 
 
       virtual void on_fill_children();
-      virtual void start_fill_children();
+      //virtual void start_fill_children();
 
-      static UINT c_cdecl thread_proc_fill_children(LPVOID lpParameter);
+      //static UINT c_cdecl thread_proc_fill_children(LPVOID lpParameter);
+
+
+      virtual void tree_layout();
 
    };
 

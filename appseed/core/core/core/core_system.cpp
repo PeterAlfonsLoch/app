@@ -344,20 +344,6 @@ namespace core
    }
 
 
-   colorertake5::ParserFactory & system::parser_factory()
-   {
-
-      if(m_pparserfactory == NULL)
-      {
-
-         m_pparserfactory = new colorertake5::ParserFactory(this);
-
-      }
-
-      return *m_pparserfactory;
-
-   }
-
 
 
    bool system::find_applications_to_cache()

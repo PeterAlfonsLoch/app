@@ -866,6 +866,21 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #endif
 
 
+#include "base/user/user/user.h"
+#include "user/user/user_control_event.h"
+#include "base_cregexp.h"
+#include "base_cregexp_util.h"
+
+#include "user/user/user_control.h"
+#include "user/user/user_scroll_bar.h"
+#include "user/user/user_scroll_view.h"
+
+#include "user/colorertake5/colorertake5.h"
+#include "filesystem/file/file_edit_buffer.h"
+
+#include "user/user/user_plain_text_data.h"
+#include "user/user/user_edit_plain_text.h"
+
 
 
 
@@ -1080,20 +1095,6 @@ namespace numeric_info
 #include "base/net/http/http.h"
 #include "base_microtimer.h"
 
-
-#include "base/user/user/user.h"
-#include "user/user/user_control_event.h"
-#include "base_cregexp.h"
-#include "base_cregexp_util.h"
-
-#include "user/user/user_control.h"
-#include "user/user/user_scroll_view.h"
-
-#include "user/colorertake5/colorertake5.h"
-#include "filesystem/file/file_edit_buffer.h"
-
-#include "user/user/user_plain_text_data.h"
-#include "user/user/user_edit_plain_text.h"
 
 
 

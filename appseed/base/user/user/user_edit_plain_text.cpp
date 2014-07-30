@@ -29,8 +29,8 @@ namespace user
       ::user::interaction(papp),
       scroll_view(papp),
       colorertake5::base_editor(papp),
-      m_fastblur(allocer()),
-      m_dibBk(allocer()),
+//      m_fastblur(allocer()),
+  //    m_dibBk(allocer()),
       ::data::data_listener(papp),
       m_keymessageLast(papp)
    {

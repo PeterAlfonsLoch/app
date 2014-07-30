@@ -4841,6 +4841,9 @@
     <ClInclude Include="filesystem\file\file_edit_buffer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\user_scroll_bar.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -9080,9 +9083,6 @@
       <Filter>Source Files\user\colorertake5</Filter>
     </ClCompile>
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_impl.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\TextConsoleViewer.cpp">
       <Filter>Source Files\user\colorertake5</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_plain_text_data.cpp">

@@ -94,6 +94,8 @@ namespace base
       sp(::install::install)                       m_spinstall;
       ::base::os_sp                                m_spos;
       spa(::base::session)                         m_basesessionptra;
+      sp(colorertake5::ParserFactory)              m_pparserfactory;
+
 
       sp(mutex)                                    m_spmutexUserAppData;
       sp(mutex)                                    m_spmutexSystemAppData;
@@ -196,6 +198,8 @@ namespace base
       ::install::install                           & install() { return *m_spinstall; }
 
       geometry::geometry                           & geometry() { return *m_pgeometry; }
+      ::colorertake5::ParserFactory                & parser_factory();
+
 
 
 
@@ -414,7 +418,6 @@ namespace base
       virtual string get_module_name();
 
 
-      
 
    };
 

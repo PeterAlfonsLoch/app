@@ -87,7 +87,7 @@ namespace data
 
       virtual string get_text() const;
       virtual index get_image() const;
-      virtual sp(image_list) get_image_list() const;
+      virtual image_list * get_image_list() const;
 
 
       void SetParent(sp(tree_item) pparent);

@@ -32,7 +32,6 @@ namespace core
 
       class ::core::patch                          m_patch;
       ::net::email_departament                     m_emaildepartament;
-      sp(colorertake5::ParserFactory)              m_pparserfactory;
 
       sp(::core::platform::run_start_installer)    m_prunstartinstaller;
       sp(::core::platform::map)                    m_pbergedgemap;
@@ -153,7 +152,7 @@ namespace core
 
       ::filehandler::handler                 & filehandler();
 
-      ::colorertake5::ParserFactory          & parser_factory();
+      
 
       inline class ::visual::visual          & visual()     { return m_visual       ; }
 

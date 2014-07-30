@@ -826,11 +826,6 @@ namespace core
 #include "core/filesystem/file/file_dynamic_buffered_writer.h"
 
 
-//#include "core/filesystem/file/file_buffered_buffer.h"
-//#include "core/filesystem/file/file_timeout_buffer.h"
-#include "core/filesystem/file/file_edit_buffer.h"
-//#include "core/filesystem/file/file_text_buffer.h"
-//#include "core_file_system.h"
 #include "core_resource.h"
 
 
@@ -966,8 +961,6 @@ class Ex1FactoryImpl;
 
 
 
-#include "core/user/colorertake5/colorertake5.h"
-
 #include "core/graphics/html/html.h"
 
 
@@ -977,11 +970,6 @@ class Ex1FactoryImpl;
 
 
 
-//#include "core/filesystem/file/file_application.h"
-//#include "core/filesystem/file/file_system.h"
-//#include "core/filesystem/file/file_dir_application.h"
-//#include "core/filesystem/file/file_dir_system.h"
-#include "core/filesystem/file/file_edit_buffer.h"
 #include "core_stra.h"
 #include "net/net_url_domain.h"
 

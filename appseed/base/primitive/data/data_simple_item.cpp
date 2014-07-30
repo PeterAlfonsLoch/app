@@ -39,7 +39,7 @@ namespace data
 
    }
 
-   sp(image_list) simple_item::data_item_get_image_list(object * pobject) const
+   image_list * simple_item::data_item_get_image_list(object * pobject) const
    {
 
       return m_pdatatree->get_image_list();

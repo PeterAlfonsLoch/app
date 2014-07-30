@@ -5013,6 +5013,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user\user_schema.h" />
     <ClInclude Include="user\user\user_schema_layered_frame.h" />
     <ClInclude Include="user\user\user_schema_simple_impl.h" />
+    <ClInclude Include="user\user\user_scroll_bar.h" />
     <ClInclude Include="user\user\user_scroll_view.h" />
     <ClInclude Include="user\user\user_server.h" />
     <ClInclude Include="user\user\user_str.h" />
@@ -18403,7 +18404,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\colorertake5\colorertake5_text_lines.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_helpers.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_impl.cpp" />
-    <ClCompile Include="user\colorertake5\TextConsoleViewer.cpp" />
     <ClCompile Include="user\fontopus\fontopus.cpp" />
     <ClCompile Include="user\fontopus\fontopus_authentication_map.cpp" />
     <ClCompile Include="user\fontopus\fontopus_contact_list.cpp" />

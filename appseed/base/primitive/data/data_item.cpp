@@ -25,7 +25,7 @@ namespace data
       return -1;
    }
 
-   sp(image_list) item::data_item_get_image_list(object * pobject) const
+   image_list * item::data_item_get_image_list(object * pobject) const
    {
       UNREFERENCED_PARAMETER(pobject);
       return NULL;

@@ -343,24 +343,12 @@ namespace data
    void tree::_001ExpandItem(::data::tree_item * pitem, ::action::context actioncontext, bool bExpand, bool bRedraw, bool bLayout)
    {
 
-      for (index i = 0; i < m_treeptra.get_count(); i++)
-      {
-
-         m_treeptra[i]._001ExpandItem(pitem, actioncontext, bExpand, bRedraw, bLayout);
-
-      }
 
    }
 
    void tree::_001EnsureVisible(::data::tree_item * pitem)
    {
 
-      for (index i = 0; i < m_treeptra.get_count(); i++)
-      {
-
-         m_treeptra[i]._001EnsureVisible(pitem);
-
-      }
 
    }
 
@@ -368,24 +356,12 @@ namespace data
    void tree::_001SelectItem(::data::tree_item * pitem)
    {
 
-      for (index i = 0; i < m_treeptra.get_count(); i++)
-      {
-
-         m_treeptra[i]._001SelectItem(pitem);
-
-      }
 
    }
 
    void tree::get_selection(::data::tree_item_ptr_array & itemptraSelected) const
    {
 
-      for (index i = 0; i < m_treeptra.get_count(); i++)
-      {
-
-         itemptraSelected.add_unique(m_treeptra[i].m_itemptraSelected);
-
-      }
 
    }
 
@@ -393,13 +369,6 @@ namespace data
    bool tree::is_selected(const ::data::tree_item * pitem) const
    {
 
-      for (index i = 0; i < m_treeptra.get_count(); i++)
-      {
-
-         if (m_treeptra[i].is_selected(pitem))
-            return true;
-
-      }
 
       return false;
 
@@ -409,13 +378,6 @@ namespace data
    bool tree::is_selected(const ::data::item * pitem) const
    {
 
-      for (index i = 0; i < m_treeptra.get_count(); i++)
-      {
-
-         if (m_treeptra[i].is_selected(pitem))
-            return true;
-
-      }
 
       return false;
 
@@ -472,12 +434,6 @@ namespace data
    void tree::_001OnOpenItem(::data::tree_item * pitem, ::action::context actioncontext)
    {
 
-      for (index i = 0; i < m_treeptra.get_count(); i++)
-      {
-
-         m_treeptra[i]._001OnOpenItem(pitem, actioncontext);
-
-      }
 
    }
 
@@ -485,12 +441,6 @@ namespace data
    void tree::_001OnItemContextMenu(::data::tree_item * pitem, ::action::context actioncontext, ::user::tree * ptree, point pt)
    {
 
-      for (index i = 0; i < m_treeptra.get_count(); i++)
-      {
-
-         m_treeptra[i]._001OnItemContextMenu(pitem, actioncontext, ptree, pt);
-
-      }
 
    }
 
@@ -498,16 +448,7 @@ namespace data
    ::count   tree::selection_set(::data::tree_item_ptr_array & itemptra)
    {
 
-      ::count c = 0;
-
-      for (index iTree = 0; iTree < m_treeptra.get_count(); iTree++)
-      {
-
-         c += m_treeptra[iTree].selection_set(itemptra);
-
-      }
-
-      return c;
+      return 0;
 
    }
 
@@ -515,18 +456,7 @@ namespace data
    bool      tree::selection_set(::data::tree_item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
    {
 
-      bool bAllOk = true;
-
-      for (index iTree = 0; iTree < m_treeptra.get_count(); iTree++)
-      {
-
-         if (!m_treeptra[iTree].selection_set(pitem))
-            bAllOk = false;
-
-      }
-
-
-      return bAllOk;
+      return false;
 
    }
 
@@ -534,17 +464,7 @@ namespace data
    bool      tree::selection_set(::data::item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
    {
 
-      bool bAllOk = true;
-
-      for (index iTree = 0; iTree < m_treeptra.get_count(); iTree++)
-      {
-
-         if(!m_treeptra[iTree].selection_set(pitem, bIfNotInSelection, bIfParentInSelection))
-            bAllOk = false;
-
-      }
-
-      return bAllOk;
+      return false;
 
    }
 
@@ -552,25 +472,15 @@ namespace data
    bool      tree::selection_set(index iIndex, ::data::item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
    {
 
-      bool bAllOk = true;
-
-      for (index iTree = 0; iTree < m_treeptra.get_count(); iTree++)
-      {
-
-         if (!m_treeptra[iTree].selection_set(iIndex, pitem, bIfNotInSelection, bIfParentInSelection))
-            bAllOk = false;
-
-      }
-
-      return bAllOk;
+      return false;
 
    }
 
 
-   sp(image_list) tree::get_image_list() const
+   image_list * tree::get_image_list() const
    {
       
-      return m_pimagelist;
+      return NULL;
 
    }
 
@@ -621,21 +531,7 @@ namespace data
       {
 
 
-         for (index i = 0; i < ptree->m_treeptra.get_count(); i++)
-         {
-            try
-            {
-
-               ptree->m_treeptra[i].layout();
-
-            }
-            catch (...)
-            {
-            }
-            
-         }
-
-         
+         ptree->tree_layout();
 
       }
       catch (...)
@@ -647,6 +543,11 @@ namespace data
 
       return 0;
 
+
+   }
+
+   void tree::tree_layout()
+   {
 
    }
 

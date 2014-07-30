@@ -59,7 +59,7 @@ namespace data
       virtual sp(tree_item) insert_item(item * pitemdataNew, ERelative erelativeNewItem, tree_item * pitemRelative);
       virtual bool insert_item(tree_item * pitemNew, ERelative erelativeNewItem, tree_item * pitemRelative);
 
-      sp(image_list) get_image_list() const;
+      image_list * get_image_list() const;
 
       virtual void _001ExpandItem(tree_item * pitem, ::action::context actioncontext, bool bExpand = true, bool bRedraw = true, bool bLayout = true);
       virtual void _001EnsureVisible(::data::tree_item * pitem);
@@ -81,6 +81,8 @@ namespace data
       virtual void start_fill_children();
 
       static UINT c_cdecl thread_proc_fill_children(LPVOID lpParameter);
+
+      virtual void tree_layout();
 
    };
 
