@@ -353,7 +353,11 @@ namespace fontopus
 
       if (!strcmp(pszId, "submit"))
       {
-         m_ppassword->m_pimpl.cast < ::user::interaction_child >()->m_strWindowText = System.crypto().nessie(m_ppassword->m_pimpl.cast < ::user::interaction_child >()->m_strWindowText);
+         GetParent()->ShowWindow(SW_HIDE);
+         string strText;
+         m_ppassword->_001GetText(strText);
+         strText = System.crypto().nessie(strText);
+         m_ppassword->_001SetText(strText,::action::source::database());
          GetParent()->EndModalLoop("ok");
 
          return true;
@@ -362,7 +366,8 @@ namespace fontopus
       else if (!strcmp(pszId, "escape"))
       {
 
-         m_ppassword->m_pimpl.cast < ::user::interaction_child >()->m_strWindowText.Empty();
+         GetParent()->ShowWindow(SW_HIDE);
+         m_ppassword->_001SetText("",::action::source::database());
          GetParent()->EndModalLoop("cancel");
 
          return true;

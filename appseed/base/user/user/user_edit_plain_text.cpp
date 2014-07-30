@@ -17,10 +17,11 @@ namespace user
       m_keymessageLast(papp)
    {
 
-      m_ptree              = NULL;
+         m_bPassword = false;
+         m_ptree              = NULL;
       m_bOwnData           = false;
 
-      m_bMultiLine         = true;
+      m_bMultiLine         = false;
       m_bColorerTake5      = false;
       m_bReadOnly          = false;
       m_bSendEnterKey      = false;
@@ -512,7 +513,6 @@ namespace user
       //on_update_data(update_hint_set_file);
 
       m_bGetTextNeedUpdate = true;
-      m_bPassword = false;
 
 
       SetTimer(100, 100, NULL);
@@ -622,7 +622,10 @@ namespace user
             ev.m_puie         = this;
             ev.m_eevent       = ::user::event_enter_key;
             ev.m_actioncontext        = ::action::source_user;
-            BaseOnControlEvent(&ev);
+            if(!BaseOnControlEvent(&ev))
+            {
+               on_action("submit");
+            }
             pobj->m_bRet      = true;
             return;
          }
@@ -642,7 +645,16 @@ namespace user
             ev.m_eevent       = ::user::event_tab_key;
             ev.m_actioncontext        = ::action::source_user;
             //GetParent()->BaseOnControlEvent(&ev);
-            BaseOnControlEvent(&ev);
+            
+
+            if(!BaseOnControlEvent(&ev))
+            {
+               sp(::user::interaction) pui = keyboard_get_next_focusable();
+
+               if(pui != NULL)
+                  pui->keyboard_set_focus();
+
+            }
             pkey->m_bRet      = true;
             return;
          }
@@ -1044,7 +1056,7 @@ namespace user
          i1 = i2;
          i2 = i1 + straLines[i].get_length();
          if(iSel >= i1
-            && iSel < i2)
+            && iSel <= i2)
          {
             return i;
          }
@@ -2112,6 +2124,8 @@ namespace user
 
    void edit_plain_text::clipboard_copy()
    {
+      if(m_bPassword)
+         return;
       string str;
       _001GetSelText(str);
       session().copydesk().set_plain_text(str);

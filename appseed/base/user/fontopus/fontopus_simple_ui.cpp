@@ -251,9 +251,9 @@ namespace fontopus
       if(idResult == "ok")
       {
 
-         m_login.m_peditUser->GetWindowText(strUsername);
+         m_login.m_peditUser->_001GetText(strUsername);
 
-         m_login.m_ppassword->GetWindowText(strPassword);
+         m_login.m_ppassword->_001GetText(strPassword);
 
          return "ok";
 
