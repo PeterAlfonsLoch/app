@@ -135,6 +135,10 @@ namespace user
       }
       psplitview->SetPaneCount(2);
       psplitview->set_position_rate(0,0.5);
+
+      psplitview->initialize_split_layout();
+
+
       bool bSwap;
       rect rect0;
       rect rect1;

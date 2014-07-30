@@ -34,6 +34,7 @@ namespace user
 
          id                      m_id;
          rect                    m_rect;
+         rect                    m_rectClient;
          size                    m_sizeFixed;
          bool                    m_bFixedSize;
          sp(::user::place_holder)    m_pholder;
@@ -55,6 +56,8 @@ namespace user
       static const int32_t                         m_iMarging;
       int32_t                                      m_cxBorder;
       int32_t                                      m_cyBorder;
+
+      int                                          m_iPaneCount;
 
 
       split_layout(sp(::base::application) papp);
@@ -98,6 +101,8 @@ namespace user
       void SetSplitOrientation(e_orientation eorientation);
 
       bool SetPaneCount(int32_t iPaneCount);
+
+      virtual bool initialize_split_layout();
 
    };
 

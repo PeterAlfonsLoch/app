@@ -214,6 +214,8 @@ namespace filemanager
 
       set_position(0, 24);
 
+      initialize_split_layout();
+      
       path_view * ppathview = create_view < path_view >();
 
       if (ppathview == NULL)

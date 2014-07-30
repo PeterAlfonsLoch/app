@@ -32,6 +32,7 @@ namespace userex // ca8 + cube
 
       set_position_rate(0, 0.30);
 
+      initialize_split_layout();
 
       m_plistview = create_view < simple_list_view > ();
 

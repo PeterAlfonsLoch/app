@@ -28,9 +28,15 @@ namespace userfs
 
 //      sp(application) papp =  (get_app());
       //papp->m_pcoreapp->m_pmainview = this;
+      
       SetPaneCount(2);
+      
       SetSplitOrientation(orientation_vertical);
+      
       set_position_rate(0, 0.2);
+      
+      initialize_split_layout();
+      
       sp(::create_context) cc(allocer());
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();

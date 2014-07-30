@@ -113,6 +113,8 @@ namespace filemanager
 
       set_position_rate(0,0.3);
 
+      initialize_split_layout();
+
       left_view * pleftview = create_view < left_view >();
 
       if(pleftview == NULL)

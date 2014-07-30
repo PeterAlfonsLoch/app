@@ -50,11 +50,14 @@ namespace filemanager
 
          void view::CreateViews()
          {
+            
             SetPaneCount(2);
 
             SetSplitOrientation(orientation_vertical);
         
             set_position_rate(0, 0.2);
+
+            initialize_split_layout();
 
             m_ptree = new tree(get_app());
 

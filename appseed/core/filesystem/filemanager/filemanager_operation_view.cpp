@@ -33,6 +33,8 @@ namespace filemanager
 
       set_position_rate(0,0.3);
 
+      initialize_split_layout();
+
       m_plistview = create_view < operation_list_view >();
       if(m_plistview == NULL)
       {

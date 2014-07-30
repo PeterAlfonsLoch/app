@@ -19,6 +19,7 @@ namespace user
       m_iState          = stateInitial;
       m_cxBorder        = 1;
       m_cyBorder        = 1;
+      m_iPaneCount      = 0;
 
    }
 
@@ -28,60 +29,70 @@ namespace user
 
    }
 
-
    bool split_layout::SetPaneCount(int32_t iPaneCount)
    {
-      m_bInitialized = false;
 
-      ASSERT(iPaneCount > 0);
-
-      ::count iOldSize = m_panea.get_count();
+      m_iPaneCount = iPaneCount;
 
       m_panea.set_size(iPaneCount);
 
-      int32_t iSplitBarCount = get_pane_count() - 1;
+      m_splitbara.set_size(iPaneCount - 1);
 
-      m_splitbara.remove_all();
-
-      ::index i;
-      for(i = 0; i < iSplitBarCount; i++)
+      for(::index i = 0; i < m_splitbara.get_count(); i++)
       {
-         m_splitbara.add(canew(::user::split_bar(get_app())));
-         ::user::split_bar & splitbar = m_splitbara.last();
-         splitbar.m_iIndex = (int) i;
-         if(!splitbar.create(this))
-            return false;
+         if(m_splitbara(i).is_null())
+         {
+            m_splitbara(i) = canew(::user::split_bar(get_app()));
+            ::user::split_bar & splitbar = m_splitbara[i];
+            splitbar.m_iIndex = (int)i;
+            if(!splitbar.create(this))
+               return false;
+            splitbar.m_dwPosition = 0;
+            splitbar.m_dwPosition = 0;
+         }
       }
 
-      m_panea.set_size(get_pane_count());
-
-      for(i = iOldSize; i < get_pane_count(); i++)
+      for(::index i = 0; i < m_panea.get_count(); i++)
       {
-         m_panea(i) = canew(::user::split_layout::Pane(get_app()));
-         m_panea[i].m_bFixedSize =  false;
+         if(m_panea(i).is_null())
+         {
+            m_panea(i) = canew(::user::split_layout::Pane(get_app()));
+            m_panea[i].m_bFixedSize =  false;
+         }
       }
+
+      return true;
+
+   }
+
+   bool split_layout::initialize_split_layout()
+   {
+
+      int iPaneCount = m_iPaneCount;
+
+      m_bInitialized = false;
+
+      ASSERT(iPaneCount > 0);
 
       layout();
 
       rect rectPane;
 
-      for(i = iOldSize; i < get_pane_count(); i++)
+      for(::index i = 0; i < m_panea.get_count(); i++)
       {
          if(m_panea[i].m_pholder.is_null())
          {
-            m_panea[i].m_pholder = get_new_place_holder(m_panea[i].m_rect);
+            m_panea[i].m_pholder = get_new_place_holder(m_panea[i].m_rectClient);
          }
       }
 
-      for(i = 0; i < iSplitBarCount; i++)
-      {
-         m_splitbara[i].m_dwPosition = 0;
-         m_splitbara[i].m_dwPosition = 0;
-      }
 
       m_bInitialized = true;
+
       return true;
+
    }
+
 
    void split_layout::SetSplitOrientation(e_orientation eorientationSplit)
    {
@@ -282,11 +293,22 @@ namespace user
             uiFlags);
       }
       bool bVisible;
+      
       for(i = 0; i < get_pane_count(); i++)
       {
-         CalcPaneRect(i, &rectA);
-         if(rectA.height() <= 0 ||
-            rectA.width() <= 0)
+
+         rect & rectPane = m_panea[i].m_rect;
+
+         rect & rectClient = m_panea[i].m_rectClient;
+
+         CalcPaneRect(i,&rectPane);
+
+         rectClient = rectPane;
+
+         rectClient.deflate(m_cxBorder,m_cyBorder);
+
+         if(rectPane.height() <= 0 ||
+            rectPane.width() <= 0)
             bVisible = false;
          else
             bVisible = true;
@@ -303,10 +325,10 @@ namespace user
             int32_t iCYHSCROLL = 16;
             int32_t iCXVSCROLL = 16;
 #endif
-            if(rectA.width() < m_panea[i].m_sizeFixed.cx)
+            if(rectPane.width() < m_panea[i].m_sizeFixed.cx)
             {
                bHSVisible = true;
-               if(rectA.height() < m_panea[i].m_sizeFixed.cy - iCYHSCROLL)
+               if(rectPane.height() < m_panea[i].m_sizeFixed.cy - iCYHSCROLL)
                {
                   bVSVisible = true;
                }
@@ -318,10 +340,10 @@ namespace user
             else
             {
                bHSVisible = false;
-               if(rectA.height() < m_panea[i].m_sizeFixed.cy)
+               if(rectPane.height() < m_panea[i].m_sizeFixed.cy)
                {
                   bVSVisible = true;
-                  if(rectA.width() < m_panea[i].m_sizeFixed.cx - iCXVSCROLL)
+                  if(rectPane.width() < m_panea[i].m_sizeFixed.cx - iCXVSCROLL)
                   {
                      bHSVisible = true;
                   }
@@ -339,12 +361,7 @@ namespace user
 
          if(pwnd != NULL)
          {
-            pwnd->SetWindowPos(ZORDER_TOP,
-               rectA.left     + m_cxBorder,
-               rectA.top      + m_cyBorder,
-               rectA.width()  - m_cxBorder * 2,
-               rectA.height() - m_cyBorder * 2,
-               uiFlags);
+            pwnd->SetWindowPos(ZORDER_TOP, rectClient, uiFlags);
          }
       }
    }

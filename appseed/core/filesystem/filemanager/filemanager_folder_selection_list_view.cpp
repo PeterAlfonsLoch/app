@@ -61,11 +61,14 @@ namespace filemanager
 
    void folder_selection_list_view::CreateViews()
    {
+
       SetPaneCount(2);
 
       SetSplitOrientation(orientation_vertical);
 
       set_position_rate(0,0.30);
+
+      initialize_split_layout();
 
       m_pusertree = create_view  < ::user::tree >();
 

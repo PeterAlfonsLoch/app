@@ -76,6 +76,8 @@ namespace filemanager
 
       SetSplitOrientation(orientation_horizontal);
 
+      initialize_split_layout();
+
       /*
       
       set_position_rate(0, 0.30);
