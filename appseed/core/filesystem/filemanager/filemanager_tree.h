@@ -14,11 +14,16 @@ namespace filemanager
 
       enum e_message
       {
+
          MessageMainPost,
+
       };
+
       enum EMessageMainPost
       {
+
          MessageMainPostCreateImageListItemRedraw,
+
       };
 
       enum ETimer
@@ -27,25 +32,23 @@ namespace filemanager
          TimerCreateImageList
       };
 
-      context_menu                   m_contextmenu;
 
-      critical_section        m_csBrowse;
-      bool                    m_bCreateImageList;
-      bool                    m_bCreateImageListRedraw;
-      int32_t                     m_iAnimate;
-      bool                    m_bTimer123;
-      stringa                 m_straUpdatePtrFilter;
-      mutex                   m_mutexMissinUpdate;
-      stringa                 m_straMissingUpdate;
-      bool                    m_bDelayedListUpdate;
+      enum e_step
+      {
+         step_start,
+         step_image_visible,
+         step_has_subdir_visible,
+         step_image_hidden,
+         step_has_subdir_hidden,
+         step_end,
+      };
+
+      e_step                  m_estep;
+      context_menu            m_contextmenu;
+
 #ifdef WINDOWSEX
       map < EFolder, EFolder, IShellFolder *, IShellFolder *> m_mapFolder;
 #endif
-      sp(::data::tree_item)        m_pdataitemCreateImageListStep;
-      string                  m_strPath;
-      //sp(image_list)            m_pimagelistFs;
-      int32_t   m_iDefaultImage;
-      int32_t   m_iDefaultImageSelected;
 
 
       tree(sp(::base::application) papp);
@@ -61,7 +64,6 @@ namespace filemanager
       DECL_GEN_VSIGNAL(_001OnTimer);
 
 
-      virtual void _017Synchronize(::action::context actioncontext);
       void install_message_handling(::message::dispatch * pinterface);
 
 
@@ -86,17 +88,16 @@ namespace filemanager
 #endif
 
 
-      void _017PreSynchronize(::action::context actioncontext);
       void TakeAnimationSnapshot();
       virtual void StartAnimation();
       DECL_GEN_SIGNAL(_001OnMainPostMessage);
       void GetSelectedFilePath(stringa & stra);
       virtual bool _001IsTranslucent();
 
-      void _017Browse(const char * lpcsz, ::action::context actioncontext, bool bForceUpdate = false);
-      void _017UpdateList(::action::context actioncontext);
-      void _017UpdateList(const char * lpcsz, int32_t iLevel, ::action::context actioncontext);
-      void _017UpdateZipList(const char * lpcsz, int32_t iLevel, ::action::context actioncontext);
+      
+      virtual void browse_sync(::action::context actioncontext);
+      virtual void filemanager_tree_insert(const char * lpcszDir, ::action::context actioncontext);
+      virtual void filemanager_tree_insert(const char * lpcszDir, stringa & straPath,stringa & straTitle,int64_array & iaSize,bool_array & ba,::action::context actioncontext);
       void _017EnsureVisible(const char * lpcsz, ::action::context actioncontext);
 
       sp(::data::tree_item) find_item(const char * lpcsz, ::data::tree_item * pitemStart = NULL);
@@ -105,9 +106,6 @@ namespace filemanager
 
 
 
-      void _StartDelayedListUpdate();
-      void _StopDelayedListUpdate();
-      void _DelayedListUpdate();
 
 
       void RenameFile(int32_t iLine, string & str, ::action::context actioncontext);
@@ -119,6 +117,11 @@ namespace filemanager
       DECL_GEN_SIGNAL(_001OnContextMenu);
       DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnShellCommand);
+
+
+      virtual void on_merge_user_tree(::user::tree * pusertree);
+      virtual void on_bind_user_tree(::user::tree * pusertree);
+
 
    };
 

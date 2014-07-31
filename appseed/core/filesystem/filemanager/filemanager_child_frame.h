@@ -11,8 +11,6 @@ namespace filemanager
    public:
 
 
-      simple_toolbar           m_toolbar;
-
 
       child_frame(sp(::base::application) papp);
       virtual ~child_frame();
@@ -26,7 +24,7 @@ namespace filemanager
 
       void GetSelected(::fs::item_array &itema);
 
-      bool CreateBars();
+      bool on_create_bars();
       bool DestroyBars();
       virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
 

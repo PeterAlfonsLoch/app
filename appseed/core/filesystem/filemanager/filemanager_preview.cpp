@@ -45,15 +45,6 @@ namespace filemanager
                            DISetSection(str);
                            _001UpdateColumns();*/
             }
-            else if (puh->is_type_of(update_hint::TypeSynchronizePath))
-            {
-               //_017Synchronize(::action::context actioncontext);
-               m_strPath = get_filemanager_item().m_strPath;
-               m_straPath.remove_all();
-               m_straTitle.remove_all();
-               m_iCurFile = 0;
-               get_filemanager_manager()->get_fs_data()->ls(get_filemanager_item().m_strPath, &m_straPath, &m_straTitle, &m_iaSize);
-            }
             else if (puh->is_type_of(update_hint::TypeFilter))
             {
                /*if(puh->m_wstrFilter.is_empty())
@@ -70,31 +61,6 @@ namespace filemanager
          }
          else if (base_class < form_update_hint > ::bases(phint))
          {
-            /*form_update_hint * puh = dynamic_cast<form_update_hint * > (phint);
-            if(puh->m_etype == form_update_hint::type_after_browse)
-            {
-            if(puh->m_strForm == "filemanager\\replace_name_in_file_system.xhtml")
-            {
-            html::elemental * pelemental = dynamic_cast < html::elemental * > (puh->m_pformview->get_document()->m_document.get_element_by_name("encontrar"));
-            html::impl::input_text * pinput = dynamic_cast < html::impl::input_text * > (pelemental->m_pimpl);
-            sp(text_interface) ptext =  (pinput->m_pedit);
-            range range;
-            _001GetSelection(range);
-            if(range.get_item_count() > 0)
-            {
-            ptext->_001SetText(m_itema.get_item(range.ItemAt(0).get_lower_bound()).m_strName, false);
-            }
-            }
-            }
-            form_update_hint * pmanageruh = dynamic_cast<form_update_hint * > (phint);
-            if(pmanageruh != NULL)
-            {
-            if(!pmanageruh->m_strFind.is_empty())
-            {
-            System.file().replace(m_strPath, pmanageruh->m_strFind, pmanageruh->m_strReplace);
-            _017UpdateList();
-            }
-            }*/
          }
 
       }
@@ -112,13 +78,13 @@ namespace filemanager
       if (m_iCurFile < 0)
       {
       }
-      else if (m_iCurFile == 0 && m_straPath.get_size() == 0)
+      else if (m_iCurFile == 0 && get_filemanager_manager()->m_straPath.get_size() == 0)
       {
          pdc->TextOut(10, 10, "No files in this directory");
       }
-      else if (m_iCurFile < m_straPath.get_size())
+      else if(m_iCurFile < get_filemanager_manager()->m_straPath.get_size())
       {
-         pdc->TextOut(10, 10, m_straTitle[m_iCurFile]);
+         pdc->TextOut(10,10,get_filemanager_manager()->m_straTitle[m_iCurFile]);
       }
 
    }

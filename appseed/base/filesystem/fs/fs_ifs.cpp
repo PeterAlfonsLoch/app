@@ -58,7 +58,7 @@ bool ifs::has_subdir(const char * pszPath)
 
    }
 
-   ls(pszPath, NULL, NULL, NULL);
+   ls(pszPath, NULL, NULL, NULL, NULL);
 
 
    if(m_maplsTimeout.Lookup(strDir, dwTimeout))
@@ -86,7 +86,7 @@ void ifs::root_ones(stringa & straPath, stringa & straTitle)
 
 
 
-bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int64_array * piaSize)
+bool ifs::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_array * piaSize,bool_array * pbaDir)
 {
 
    uint32_t dwTimeout;
@@ -115,6 +115,11 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int
             piaSize->add(*m_mapdirFolderSize[strDir]);
             piaSize->add(*m_mapdirFileSize[strDir]);
          }
+         if(pbaDir != NULL)
+         {
+            pbaDir->add(*m_mapdirFolderDir[strDir]);
+            pbaDir->add(*m_mapdirFileDir[strDir]);
+         }
          return true;
       }
    }
@@ -136,6 +141,10 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int
       m_mapdirFileSize[strDir] = canew(int64_array);
    if (m_mapdirFolderSize[strDir].is_null())
       m_mapdirFolderSize[strDir] = canew(int64_array);
+   if(m_mapdirFileDir[strDir].is_null())
+      m_mapdirFileDir[strDir] = canew(bool_array);
+   if(m_mapdirFolderDir[strDir].is_null())
+      m_mapdirFolderDir[strDir] = canew(bool_array);
 
 
    stringa        & straDir         = *m_mapdirFolder[strDir];
@@ -144,6 +153,8 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int
    stringa        & straFileName    = *m_mapdirFileName[strDir];
    int64_array    & iaFileSize      = *m_mapdirFileSize[strDir];
    int64_array    & iaFolderSize    = *m_mapdirFolderSize[strDir];
+   bool_array     & baFileDir       = *m_mapdirFileDir[strDir];
+   bool_array     & baFolderDir     = *m_mapdirFolderDir[strDir];
 
 
    straDir.remove_all();
@@ -152,13 +163,17 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int
    straFileName.remove_all();
    iaFileSize.remove_all();
    iaFolderSize.remove_all();
+   baFileDir.remove_all();
+   baFolderDir.remove_all();
 
 
 
 
    try
    {
+      
       defer_initialize();
+
    }
    catch(string & str)
    {
@@ -174,7 +189,6 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int
 
    string strUrl;
 
-
    strUrl = "http://file.veriwell.net/ifs/ls?path=" + System.url().url_encode(pszDir);
 
    string strSource;
@@ -185,37 +199,51 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int
 
    if(strSource.is_empty())
    {
+      
       m_maplsTimeout.set_at(strDir, get_tick_count() + ((5000) * 4));
+
       return false;
+
    }
 
    if(!doc.load(strSource))
    {
+      
       m_maplsTimeout.set_at(strDir, get_tick_count() + ((5000) * 4));
+
       return false;
+
    }
 
    if(doc.get_root()->get_name() != "folder")
    {
+
       m_maplsTimeout.set_at(strDir, get_tick_count() + ((5000) * 4));
+
       return false;
+
    }
 
    sp(::xml::node) pnode = doc.get_root()->get_child("folder");
 
    if(pnode != NULL)
    {
+
       for(int32_t i = 0; i < pnode->get_children_count(); i++)
       {
+
          string strName = pnode->child_at(i)->attr("name");
+
          if(pnode->child_at(i)->get_name() != "folder")
             continue;
+
          string strPath = dir_path(pszDir, strName);
          m_mapdirTimeout[strPath] = ::get_tick_count() + (4 * 1000);
          m_mapfileTimeout.remove_key(strPath);
          straDir.add(strPath);
          straDirName.add(strName);
          iaFolderSize.add(0);
+         baFolderDir.add(true);
       }
    }
 
@@ -236,6 +264,7 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int
          straFile.add(strPath);
          straFileName.add(strName);
          iaFileSize.add(::str::to_int64(strSize));
+         baFileDir.add(false);
       }
    }
    if(pstraPath != NULL)
@@ -252,6 +281,11 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int
    {
       piaSize->add(iaFolderSize);
       piaSize->add(iaFileSize);
+   }
+   if(pbaDir != NULL)
+   {
+      pbaDir->add(baFolderDir);
+      pbaDir->add(baFileDir);
    }
 
    m_maplsTimeout.set_at(strDir, get_tick_count() + ((5000) * 4));
@@ -293,7 +327,9 @@ bool ifs::is_dir(const char * pszPath)
       {
          stringa straPath;
          stringa straTitle;
-         ls(System.dir().name(strPath), &straPath, &straTitle, NULL);
+         int64_array iaSize;
+         bool_array baDir;
+         ls(System.dir().name(strPath), &straPath, &straTitle, &iaSize, &baDir);
       }
       else
       {
@@ -307,7 +343,9 @@ bool ifs::is_dir(const char * pszPath)
       {
          stringa straPath;
          stringa straTitle;
-         ls(System.dir().name(strPath), &straPath, &straTitle, NULL);
+         int64_array iaSize;
+         bool_array baDir;
+         ls(System.dir().name(strPath),&straPath,&straTitle,&iaSize, &baDir);
          if(m_mapdirTimeout.Lookup(strPath, dwTimeout))
          {
             return true;

@@ -45,7 +45,7 @@ namespace fs
    }
 
 
-   bool link::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_array * piaSize)
+   bool link::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_array * piaSize,bool_array * pbaDir)
    {
 
       string strDir(pszDir);
@@ -79,6 +79,11 @@ namespace fs
 
                piaSize->add(0);
 
+            }
+
+            if(pbaDir != NULL)
+            {
+               pbaDir->add(is_dir(m_straPath[i]));
             }
 
          }

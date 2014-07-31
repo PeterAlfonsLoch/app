@@ -24,7 +24,7 @@ namespace fs
 
       // optional if ls_dir is implemented
       virtual bool has_subdir(const char * pszPath);
-      virtual bool ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_array * piaSize);
+      virtual bool ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_array * piaSize,bool_array * pbaDir);
       virtual bool is_dir(const char * pszPath);
       virtual void root_ones(stringa & straPath, stringa & straTitle);
       //virtual void get_ascendants_path(const char * pszPath,stringa & stra);

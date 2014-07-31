@@ -76,7 +76,7 @@ namespace fs
 
 
 
-   bool remote_native::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int64_array * piaSize)
+   bool remote_native::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_array * piaSize,bool_array * pbaDir)
    {
 
       try
@@ -134,6 +134,14 @@ namespace fs
             {
                pstraTitle->add(strName);
             }
+            if(piaSize != NULL)
+            {
+               piaSize->add(-1);
+            }
+            if(pbaDir != NULL)
+            {
+               pbaDir->add(true);
+            }
          }
       }
 
@@ -163,6 +171,11 @@ namespace fs
             {
                piaSize->add(::str::to_int64(strSize));
             }
+            if(pbaDir != NULL)
+            {
+               pbaDir->add(false);
+            }
+
          }
       }
 
@@ -204,7 +217,8 @@ namespace fs
             stringa straPath;
             stringa straTitle;
             int64_array iaSize;
-            ls(System.dir().name(pszPath), &straPath, &straTitle, &iaSize);
+            bool_array baDir;
+            ls(System.dir().name(pszPath), &straPath, &straTitle, &iaSize, &baDir);
          }
          else
          {
@@ -219,7 +233,8 @@ namespace fs
             stringa straPath;
             stringa straTitle;
             int64_array iaSize;
-            ls(System.dir().name(pszPath), &straPath, &straTitle, &iaSize);
+            bool_array baDir;
+            ls(System.dir().name(pszPath), &straPath, &straTitle, &iaSize, &baDir);
          }
          else
          {

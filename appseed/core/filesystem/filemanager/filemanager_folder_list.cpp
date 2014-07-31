@@ -86,10 +86,6 @@ namespace filemanager
                }
                _001UpdateColumns();
             }
-            else if(puh->is_type_of(update_hint::TypeSynchronizePath))
-            {
-               _017Synchronize(puh->m_actioncontext + ::action::source_sync);
-            }
          }
       }
    }
@@ -142,24 +138,10 @@ namespace filemanager
    }
 
 
-   void folder_list::_017Browse(const wchar_t * lpcsz, ::action::context actioncontext)
+
+   void folder_list::browse_sync(::action::context actioncontext)
    {
-      UNREFERENCED_PARAMETER(lpcsz);
-      _017UpdateList(actioncontext);
-   }
-
-   void folder_list::_017Browse(const char * lpcsz, ::action::context actioncontext)
-   {
-
-      _017UpdateList(lpcsz, actioncontext);
-
-      _017UpdateList(actioncontext);
-
-   }
-
-   void folder_list::_017UpdateList(const char * lpcsz, ::action::context actioncontext)
-   {
-      string strParent = lpcsz;
+      string strParent = get_filemanager_item().m_strPath;
 
       m_foldera.clear();
 
@@ -189,39 +171,6 @@ namespace filemanager
 
    }
 
-   void folder_list::_017UpdateList(::action::context actioncontext)
-   {
-
-      Folder folder;
-
-      //   HRESULT hr;
-      string strParent = get_filemanager_item().m_strPath;
-
-      if (strParent.is_empty())
-      {
-
-         m_foldera.clear();
-
-         stringa straPath;
-         stringa straTitle;
-
-         session().dir().root_ones(straPath, straTitle);
-
-         Folder folder;
-
-         for (int32_t i = 0; i < straPath.get_size(); i++)
-         {
-            folder.m_strPath = straPath[i];
-            folder.m_wstrName = straTitle[i];
-            m_foldera.AddFolder(folder);
-         }
-
-      }
-      else
-      {
-         _017UpdateList(strParent, actioncontext);
-      }
-   }
 
 
    void folder_list::_001CreateImageList(::user::list_column * pcolumn)
@@ -387,11 +336,6 @@ namespace filemanager
       {
          ::user::list::_001GetItemImage(pitem);
       }
-   }
-
-   void folder_list::_017Synchronize(::action::context actioncontext)
-   {
-      _017Browse(get_filemanager_item().m_strPath, actioncontext);
    }
 
 

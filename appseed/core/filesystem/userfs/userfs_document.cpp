@@ -34,6 +34,48 @@ namespace userfs
       
       m_strFolder = pszFolder;
 
+      m_straPath.remove_all();
+      m_straTitle.remove_all();
+      m_iaSize.remove_all();
+      m_baDir.remove_all();
+
+      if(m_straRootPath.is_empty())
+      {
+         
+         get_fs_data()->root_ones(m_straRootPath,m_straRootTitle);
+
+      }
+
+      if(strlen(pszFolder) == 0)
+      {
+
+         m_straPath = m_straRootPath;
+
+         m_straTitle = m_straRootTitle;
+
+         m_iaSize.set_size(m_straPath.get_count());
+
+         for(index i = 0; i < m_straPath.get_count(); i++)
+         {
+            m_baDir.add(true);
+         }
+
+      }
+      else
+      {
+
+         get_fs_data()->ls(pszFolder,&m_straPath,&m_straTitle,&m_iaSize, &m_baDir);
+
+      }
+
+
+
+
+      //m_straPath.trim_right("/\\");
+      //m_straTitle.trim_right("/\\");
+
+
+
       update_hint uh;
 
       uh.set_type(update_hint::type_synchronize_path);

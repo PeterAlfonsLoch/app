@@ -245,6 +245,10 @@ namespace filemanager
    void manager::OnFileManagerBrowse(::action::context actioncontext)
    {
 
+
+      browse(m_item->m_strPath,actioncontext);
+
+
       {
          update_hint uh;
          uh.set_type(update_hint::TypeSynchronizePath);
@@ -280,6 +284,7 @@ namespace filemanager
       }
 
    }
+
 
    void manager::OpenSelectionProperties()
    {
@@ -649,6 +654,9 @@ namespace filemanager
    {
 
       m_spfilemanagerdata = pcreatecontext->oprop("filemanager::data").cast < ::filemanager::data >();
+      m_spfilemanagerdata->m_pmanager = this;
+      m_spfilemanagerdata->m_pmanagerMain = this;
+
 
    }
 

@@ -165,14 +165,6 @@ namespace user
    void list::_001OnDraw(::draw2d::graphics *pdc)
    {
 
-      if(m_pdata != NULL)
-      {
-         if(m_pdata->is_locked())
-         {
-            return;
-         }
-      }
-
       single_lock sl(&m_mutex, true);
 
       m_penFocused->create_solid(2, ARGB(255, 0, 255, 255));
@@ -243,6 +235,16 @@ namespace user
          }
          pdc->SetViewportOrg(ptViewportOrg);
       }
+
+
+      if(m_pdata != NULL)
+      {
+         if(m_pdata->is_locked())
+         {
+            return;
+         }
+      }
+
 
 
 

@@ -12,9 +12,9 @@ namespace filemanager
    public:
 
       string         m_strPath;
-      stringa        m_straPath;
-      stringa        m_straTitle;
-      int64_array    m_iaSize;
+      //stringa        m_straPath;
+      //stringa        m_straTitle;
+      //int64_array    m_iaSize;
       int32_t        m_iCurFile;
 
       preview(sp(::base::application) papp);

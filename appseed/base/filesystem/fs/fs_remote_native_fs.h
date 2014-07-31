@@ -28,7 +28,7 @@ namespace fs
    
       virtual bool has_subdir(const char * pszPath);
       virtual bool fast_has_subdir(const char * pszPath);
-      virtual bool ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int64_array * piaSize);
+      virtual bool ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_array * piaSize,bool_array * pbaDir);
       virtual bool is_dir(const char * pszPath);
       virtual void root_ones(stringa & straPath, stringa & straTitle);
 

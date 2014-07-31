@@ -14,15 +14,12 @@ namespace userfs
    public:
 
       string                        m_strPath;
-      critical_section              m_csBrowse;
       bool                          m_bCreateImageList;
       bool                          m_bCreateImageListRedraw;
       int32_t                       m_iAnimate;
       bool                          m_bTimer123;
       stringa                       m_straUpdatePtrFilter;
-      stringa                       m_straMissingUpdate;
-      bool                          m_bDelayedListUpdate;
-      sp(::data::tree_item)           m_pdataitemCreateImageListStep;
+      sp(::data::tree_item)         m_pdataitemCreateImageListStep;
       int32_t                       m_iDefaultImage;
       int32_t                       m_iDefaultImageSelected;
 
@@ -34,7 +31,6 @@ namespace userfs
       void update_list();
 
       void _001OnItemExpand(::data::tree_item * pitem, ::action::context actioncontext);
-      void _017UpdateList(const char * lpcsz, int32_t iLevel, ::action::context actioncontext);
 
       sp(::userfs::document) get_document();
 
@@ -43,7 +39,6 @@ namespace userfs
 
 
 
-      virtual void _017Synchronize(::action::context actioncontext);
       void install_message_handling(::message::dispatch * pinterface);
 
 
@@ -60,15 +55,12 @@ namespace userfs
 
       virtual COLORREF get_background_color();
 
-      void _017PreSynchronize(::action::context actioncontext);
       void TakeAnimationSnapshot();
       virtual void StartAnimation(::user::interaction * pui);
       void GetSelectedFilePath(stringa & stra);
       virtual bool _001IsTranslucent();
 
-      void _017Browse(const char * lpcsz, ::action::context actioncontext, bool bForceUpdate = false);
-      void _017UpdateList(::action::context actioncontext);
-      void _017UpdateZipList(const char * lpcsz, ::data::tree_item * pitemParent, int32_t iLevel, ::action::context actioncontext);
+      virtual void browse_sync(::action::context actioncontext);
       void _017EnsureVisible(const char * lpcsz, ::action::context actioncontext);
 
       sp(::data::tree_item) find_item(const char * lpcsz, ::data::tree_item * pitemStart = NULL);
@@ -78,11 +70,6 @@ namespace userfs
       void arrange(::fs::e_arrange earrange);
 
       DECL_GEN_SIGNAL(_001OnTimer);
-
-
-      void _StartDelayedListUpdate();
-      void _StopDelayedListUpdate();
-      void _DelayedListUpdate();
 
 
       void RenameFile(int32_t iLine, string & str, ::action::context actioncontext);

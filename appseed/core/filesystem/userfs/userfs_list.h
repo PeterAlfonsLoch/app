@@ -32,7 +32,6 @@ namespace userfs
       virtual COLORREF get_background_color();
       void add_item(const char * pszPath, const char * pszTitle);
       //virtual void schedule_file_size(const char * psz) = 0;
-      virtual void _017Synchronize(::action::context actioncontext);
       virtual void install_message_handling(::message::dispatch * pinterface);
 
       sp(image_list) GetActionButtonImageList(index i);
@@ -52,19 +51,13 @@ namespace userfs
       virtual void _017OpenContextMenuFolder(sp(::fs::item)  item, ::action::context actioncontext);
       virtual void _017OpenContextMenuFile(const ::fs::item_array &itema, ::action::context actioncontext);
       virtual void _017OpenContextMenu(::action::context actioncontext);
-      void _017PreSynchronize(::action::context actioncontext);
       void TakeAnimationSnapshot();
       virtual void StartAnimation();
       virtual void _001OnDraw(::draw2d::graphics * pdc);
-      void _017UpdateList(::action::context actioncontext);
       void GetSelectedFilePath(stringa & array);
-      virtual void _001CreateImageList();
-      bool _001CreateImageListStep();
       virtual void _001GetItemImage(::user::list_item * pitem);
       virtual void _001GetItemText(::user::list_item * pitem);
       virtual count _001GetItemCount();
-      void _017UpdateList(const char * lpcsz, ::action::context actioncontext);
-      void _017UpdateZipList(const char * lpcsz, ::action::context actioncontext);
 
       DECL_GEN_SIGNAL(_001OnHScroll);
          DECL_GEN_SIGNAL(_001OnVScroll);

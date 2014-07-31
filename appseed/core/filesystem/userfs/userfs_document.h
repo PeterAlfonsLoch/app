@@ -14,6 +14,14 @@ namespace userfs
       string                                    m_strFolder;
       sp(::fs::set)                             m_fsset;
 
+      stringa                                   m_straRootPath;
+      stringa                                   m_straRootTitle;
+
+      stringa                                   m_straPath;
+      stringa                                   m_straTitle;
+      int64_array                               m_iaSize;
+      bool_array                                m_baDir;
+
 
       document(sp(::base::application) papp);
       virtual ~document();
@@ -24,7 +32,7 @@ namespace userfs
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
 
-      bool browse(const char * pszFolder, ::action::context actioncontext);
+      virtual bool browse(const char * pszDir, ::action::context actioncontext);
 
       inline sp(::fs::set) get_fs_data()
       {

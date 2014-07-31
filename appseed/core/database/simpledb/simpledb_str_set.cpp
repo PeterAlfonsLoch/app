@@ -225,6 +225,13 @@ bool db_str_set::load(const char * lpKey, string & strValue)
       
       Application.assert_user_logged_in();
 
+      if(m_phttpsession == NULL)
+      {
+
+         m_phttpsession = session().fontopus()->m_mapFontopusSession[session().fontopus()->m_strFirstFontopusServer];
+
+      }
+
       item stritem;
 
       if(m_map.Lookup(lpKey, stritem) && stritem.m_dwTimeout > get_tick_count())

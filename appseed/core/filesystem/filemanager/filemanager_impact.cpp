@@ -73,6 +73,11 @@ namespace filemanager
 
                }
             }
+            else if(puh->is_type_of(update_hint::TypeSynchronizePath))
+            {
+               browse_sync(puh->m_actioncontext + ::action::source_sync);
+            }
+
          }
       else if(base_class < ::user::view_update_hint > ::bases(phint))
       {
@@ -88,6 +93,14 @@ namespace filemanager
          }
       }
       }
+   }
+
+
+   void impact::browse_sync(::action::context actioncontext)
+   {
+      
+      UNREFERENCED_PARAMETER(actioncontext);
+
    }
 
 

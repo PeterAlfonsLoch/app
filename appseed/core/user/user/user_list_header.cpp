@@ -318,14 +318,14 @@ namespace user
                iaWidth.add(-1);
             }
          }
-         if(!data_set(str, ::base::system::idEmpty, iaWidth))
+         if(!data_set(str, m_plistctrlinterface->m_dataid, iaWidth))
             return false;
       }
       else
       {
          if(data_get(
             str,
-            ::base::system::idEmpty,
+            m_plistctrlinterface->m_dataid,
             iaWidth))
          {
             for (index iColumn = 0; iColumn < m_plistctrlinterface->_001GetColumnCount(); iColumn++)

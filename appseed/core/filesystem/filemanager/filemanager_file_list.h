@@ -231,7 +231,7 @@ namespace filemanager
       bool add_item(const char * pszPath, const char * pszTitle);
       //virtual void schedule_file_size(const char * psz) = 0;
       // Attributes
-      virtual void _017Synchronize(::action::context actioncontext);
+      virtual void browse_sync(::action::context actioncontext);
 
       sp(image_list) GetActionButtonImageList(index i);
 

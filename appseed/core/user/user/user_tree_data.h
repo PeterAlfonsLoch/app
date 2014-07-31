@@ -84,6 +84,10 @@ namespace user
 
       virtual void tree_layout();
 
+      virtual void on_merge_user_tree(::user::tree * pusertree);
+      virtual void on_bind_user_tree(::user::tree * pusertree);
+
+
    };
 
 

@@ -66,16 +66,11 @@ namespace filemanager
 #endif
 
 
-      virtual void _017Synchronize(::action::context actioncontext);
-
       ::fs::item & get_filemanager_item();
 
       virtual void _001GetItemImage(::user::list_item * pitem);
-      void _017UpdateList(const char * lpcszParent, ::action::context actioncontext);
       virtual void _001CreateImageList(::user::list_column * column);
-      void _017UpdateList(::action::context actioncontext);
-      void _017Browse(const char * lpcsz, ::action::context actioncontext);
-      void _017Browse(const wchar_t * lpcsz, ::action::context actioncontext);
+      virtual void browse_sync(::action::context actioncontext);
       virtual void _001GetItemText(::user::list_item * pitem);
       virtual count _001GetItemCount();
       virtual void _001InsertColumns();

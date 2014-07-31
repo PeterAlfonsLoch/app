@@ -106,13 +106,16 @@ namespace filemanager
 #ifdef WINDOWSEX
          int32_t GetImage(oswindow oswindow, IShellFolder * lpsf, const char * pszPath, LPITEMIDLIST lpiidlChild, const wchar_t * lpcszExtra, EIcon eicon);
 #endif
-         int32_t GetImage(const char * lpcsz, EFileAttribute eattribute, EIcon eicon) ;
+         int32_t GetImage(oswindow oswindow, const char * lpcsz,EFileAttribute eattribute,EIcon eicon) ;
          int32_t GetImage(oswindow oswindow, const char * lpcsz, const wchar_t * lpcszExtra, EIcon eicon, bool bFolder);
          int32_t GetImageByExtension(oswindow oswindow, const char * lpcsz, EIcon eicon, bool bFolder);
 #ifdef WINDOWSEX
          int32_t GetImage(oswindow oswindow, IShellFolder * lpsf, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const wchar_t * lpcszExtra, EIcon eicon);
          int32_t GetImage(oswindow oswindow, LPITEMIDLIST lpiidlAbsolute, const wchar_t * lpcszExtra, EIcon eicon);
+         int32_t GetFooImage(oswindow oswindow,EIcon eicon, bool bFolder, const string & strExtension);
 #endif
+
+         
 
 
          inline sp(image_list) GetImageList16()

@@ -40,7 +40,7 @@ namespace user
       m_penBorder->create_solid(1.0, ARGB(163, 84, 84, 77));
 
       m_bEnableCloseAll = false;
-
+      m_rectTabClient.set(0,0,0,0);
 
 
    }

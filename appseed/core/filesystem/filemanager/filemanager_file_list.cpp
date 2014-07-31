@@ -143,7 +143,7 @@ namespace filemanager
                if(pcentral == NULL)
                   return;
                string str;
-               str.Format("file_list(%s)", get_filemanager_data()->m_strDISection);
+               str.Format(".local://file_list(%s)", get_filemanager_data()->m_strDISection);
                if(get_filemanager_data()->m_bPassBk)
                {
                   ::user::list::m_bBackgroundBypass = true;
@@ -164,8 +164,7 @@ namespace filemanager
                   get_filemanager_data()->m_pholderFileList->hold(this);
                   get_filemanager_data()->m_pholderFileList->layout();
                }
-               _017PreSynchronize(::action::source::sync(puh->m_actioncontext));
-               _017Synchronize(::action::source::sync(puh->m_actioncontext));
+               
                data_get_DisplayToStrict();
                _001OnUpdateItemCount();
                /*string str;
@@ -181,10 +180,6 @@ namespace filemanager
                      }
                   }
                }*/
-            }
-            else if(m_bStatic && puh->is_type_of(update_hint::TypeSynchronizeLocations))
-            {
-               _017UpdateList(puh->m_actioncontext);
             }
             else if(puh->is_type_of(update_hint::TypeFilter))
             {
@@ -231,7 +226,6 @@ namespace filemanager
                if(!pmanageruh->m_strFind.is_empty())
                {
                   session().file().replace(m_strPath, pmanageruh->m_strFind, pmanageruh->m_strReplace);
-                  _017UpdateList(puh->m_actioncontext);
                }
             }
          }
@@ -268,39 +262,6 @@ namespace filemanager
       }
    }
 
-   /*bool file_list::OnSetData(
-      const ::database::id & key,
-      int32_t iLine,
-      int32_t iColumn,
-      var & var, ::database::update_hint * puh)
-   {
-      if(key.get_value() == _vms::FILE_MANAGER_ID_FILE_NAME)
-      {
-         ASSERT(var.get_type() == var::type_string || var.is_empty());
-         string str;
-         str = var.m_str;
-         RenameFile(iLine, str);
-         return true;
-      }
-      return data_server_interface::OnSetData(key, iLine, iColumn, var, puh);
-   }
-
-   bool file_list::get_data(
-      const ::database::id & key,
-      int32_t iLine,
-      int32_t iColumn,
-      var & var)
-   {
-      if(key.get_value() == _vms::FILE_MANAGER_ID_FILE_NAME)
-      {
-         string str;
-         str = m_itema.get_item(iLine).m_strName;
-         var.set_type(var::type_string);
-         var.m_str = str;
-         return true;
-      }
-      return data_server_interface::OnSetData(key, iLine, iColumn, var);
-   }*/
 
    void file_list::RenameFile(int32_t iLine, string &wstrNameNew, ::action::context actioncontext)
    {
@@ -313,7 +274,7 @@ namespace filemanager
 
       System.file().path().rename(wstrNew, str, get_app());
 
-      _017UpdateList(actioncontext);
+      browse_sync(actioncontext);
 
    }
 
@@ -733,7 +694,7 @@ namespace filemanager
          stra.add(itema[i].m_strPath);
       }
       session().file().trash_that_is_not_trash(stra);
-      _017UpdateList(::action::source_user);
+      browse_sync(::action::source_user);
    }
 
    void file_list::_001OnUpdateOpenWith(signal_details * pobj)
@@ -1051,138 +1012,197 @@ namespace filemanager
 
 
 
-   void file_list::_017Browse(const char * lpcsz, ::action::context actioncontext)
+   void file_list::browse_sync(::action::context actioncontext)
    {
+
+      ::data::lock lock(get_fs_list_data());
+
+
+      if(m_bStatic)
+      {
+
+         ::userfs::list_item item(get_app());
+
+         stringa stra;
+
+         get_filemanager_manager()->data_get(get_filemanager_template()->m_dataidStatic,::base::system::idEmpty,stra);
+
+         for(int32_t i = 0; i < stra.get_size(); i++)
+         {
+
+            item.m_flags.unsignalize_all();
+
+            if(session().dir().is(stra[i]))
+            {
+               item.m_flags.signalize(::fs::FlagFolder);
+            }
+            else
+            {
+            }
+
+            string strPath = stra[i];
+            string strName = System.file().title_(strPath);
+
+
+            item.m_iImage = -1;
+            item.m_strPath = strPath;
+            item.m_strName = strName;
+
+            get_fs_list_data()->m_itema.add_item(item);
+
+         }
+
+         _001OnUpdateItemCount();
+
+         return;
+
+      }
+
+      if(get_filemanager_data()->m_bSetBergedgeTopicFile)
+      {
+         SetTimer(888888,230,NULL);
+      }
+
+
+
+
+      stringa straStrictOrder;
+
+      data_get(
+         data_get_current_sort_id(),
+         string(data_get_current_list_layout_id()) + ".straStrictOrder",
+         straStrictOrder);
+      index_biunique iaDisplayToStrict;
+      icon_layout iconlayout;
+      data_get(data_get_current_sort_id(),data_get_current_list_layout_id(),
+         iconlayout);
+      iaDisplayToStrict = iconlayout.m_iaDisplayToStrict;
+      index_biunique iaDisplayToStrictNew;
+
+      ::userfs::list_item item(get_app());
+
+      string strParent = get_filemanager_item().m_strPath;
+
+      int32_t iMaxSize;
+      iMaxSize = 1000;
+
+      int32_t iSize;
+      iSize = 0;
+
+      get_fs_list_data()->m_itema.m_itema.remove_all();
+
+      m_straStrictOrder.remove_all();
+
+      _001OnUpdateItemCount();
+
+
+      stringa & straPath = get_document()->m_straPath;
+      stringa & straTitle = get_document()->m_straTitle;
+      int64_array & iaSize = get_document()->m_iaSize;
+      bool_array & baDir = get_document()->m_baDir;
+
+
+      for(int32_t i = 0; i < straPath.get_size(); i++)
+      {
+         item.m_flags.unsignalize_all();
+         string strPath = straPath[i];
+         if(baDir[i])
+         {
+            item.m_flags.signalize(::fs::FlagFolder);
+         }
+         else
+         {
+         }
+         item.m_iImage = -1;
+         item.m_strPath = strPath;
+         item.m_strName = straTitle[i];
+         m_straStrictOrder.add(strPath);
+
+         get_fs_list_data()->m_itema.add_item(item);
+
+         iSize++;
+         if(iSize >= iMaxSize)
+         {
+            iMaxSize += 1000;
+         }
+      }
+
+
+
+      _001OnUpdateItemCount();
+
+      if(m_eview == ViewIcon)
+      {
+         /*   // primeiro, todos System arquivos que foram removidos
+         // ou seja, que existem no array antigo,
+         // mas não existe no novo.
+         for(index strictOld = 0; strictOld < straStrictOrder.get_count(); strictOld++)
+         {
+         string str = straStrictOrder[strictOld];
+         index find = m_straStrictOrder.find_first(str);
+         if(find < 0)
+         {
+         iaDisplayToStrictNew.remove_b(strictOld);
+         }
+         }*/
+         // segundo, reordena conforme a
+         // ordem que a listagem de arquivos fornecida pelo
+         // sistema operacional pode ser fornecida.
+         for(index strictNew = 0; strictNew < m_straStrictOrder.get_count(); strictNew++)
+         {
+            string str = m_straStrictOrder[strictNew];
+            index strictOld = straStrictOrder.find_first(str);
+            if(strictOld >= 0)
+            {
+               index iDisplay = iaDisplayToStrict.get_a(strictOld);
+               iaDisplayToStrictNew.set(iDisplay,strictNew);
+            }
+         }
+         // terceiro, adiciona System novos arquivos nos primeiros espaços
+         // vazios
+         for(index strictNew = 0; strictNew < m_straStrictOrder.get_count(); strictNew++)
+         {
+            string str = m_straStrictOrder[strictNew];
+            index strictOld = straStrictOrder.find_first(str);
+            if(strictOld < 0)
+            {
+               iaDisplayToStrictNew.add_b_in_first_free_a(strictNew);
+            }
+         }
+         m_iconlayout.m_iaDisplayToStrict = iaDisplayToStrictNew;
+      }
+      else
+      {
+         get_fs_list_data()->m_itema.arrange(::fs::arrange_by_name);
+      }
+
+      _001CreateImageList();
+
+      _001RedrawWindow();
+
+      //file_size_add_request(true);
+      /*   for(int32_t i = 0; i < m_itema.get_item_count(); i++)
+      {
+      pset->m_table.add_request(m_itema.get_item(i).m_strPath);
+      }*/
+      if(m_eview == ViewIcon)
+      {
+         data_set(
+            data_get_current_sort_id(),
+            string(data_get_current_list_layout_id()) + ".straStrictOrder",
+            m_straStrictOrder);
+         m_iconlayout.m_iaDisplayToStrict = iaDisplayToStrictNew;
+         data_set_DisplayToStrict();
+      }
       _001ClearSelection();
 
       m_scrollinfo.m_ptScroll = m_scrollinfo.m_rectMargin.top_left();
 
-      m_strPath = lpcsz;
-
-      if (get_filemanager_item().m_strPath.is_empty())
-      {
-         m_strPath.Empty();
-         _017UpdateList(m_strPath, actioncontext);
-      }
-      else
-      {
-         string str(lpcsz);
-         /*if(str.Right(4) == ".zip")
-         {
-         _017UpdateZipList(str, lpszExtra);
-         goto zipDone;
-         }*/
-         _017UpdateList(str, actioncontext);
-      }
-      //   zipDone:;
-   }
-
-   void file_list::_017UpdateList(const char * lpcsz, ::action::context actioncontext)
-   {
-
-      return ::userfs::list::_017UpdateList(lpcsz, actioncontext);
-
-   }
-
-
-   void file_list::_017UpdateZipList(const char * lpcsz, ::action::context actioncontext)
-   {
-      /*      ::fs::list_item item;
-
-      get_fs_list_data()->m_itema.clear(NULL, NULL);
-      _001OnUpdateItemCount();
-
-      string szPath(lpcsz);
-      string wstrExtra(lpszExtra);
-      string wstrExtraPath;
-      string wstrItemExtra;
-
-      int32_t iFind;
-      ::file::binary_buffer_sp spfile(allocer());
-
-      //spfile->open(szPath, ::file::mode_read | ::file::type_binary);
-
-      array < ::file::memory_buffer, ::file::memory_buffer & > filea;
-      _vmszipFile zipfile;
-
-      zipfile.m_pfile = &file;
-
-      unzFile pf = _vmszipApi::unzipOpen(&zipfile);
-
-      array < ::file::memory_buffer, ::file::memory_buffer & > filea;
-      int32_t iStart = 0;
-      int32_t iFind;
-      while((iFind  = wstrExtra.find(L".zip:", iStart)) >= 0)
-      {
-      filea.add(::file::memory_buffer());
-      pf->dump(filea.last_element(), wstrExtra.Mid(iStart + 5, iFind - iStart + 5));
-      iStart = iFind + 1;
-      }*/
-
-
-      /*    stringa wstraItem;
-
-      string str;
-
-      str = szPath;
-      str += L":" + wstrExtra;
-      str = str.Mid(0, str.reverse_find(".zip:") + 4);
-
-      zip::Util(get_app()).ls(str, false, &wstraItem);
-
-      string wstrFolder;
-      stringa wstraFolder;
-      string wstrItem;
-      for(int32_t i = 0; i < wstraItem.get_size(); i++)
-      {
-      wstrItem = wstraItem[i];
 
 
 
-      wstrExtraPath = wstrItem;
-
-      // ignore this file if its not in the Extra sub folder
-      if(wstrExtraPath.Left(wstrExtra.get_length()) != wstrExtra ||
-      wstrExtraPath == wstrExtra)
-      continue;
-
-      wstrItemExtra = wstrExtraPath.Mid(wstrExtra.get_length());
-
-      item.m_flags.unsignalize_all();
-
-      iFind = wstrItemExtra.find("/");
-      if(iFind > 0)
-      {
-      wstrFolder = wstrItemExtra.Left(iFind);
-      if(wstraFolder.contains(wstrFolder))
-      continue;
-      wstraFolder.add(wstrFolder);
-      item.m_flags.signalize(FlagFolder);
-      item.m_strPath    = szPath;
-      item.m_iImage     = -1;
-      item.m_strName    = wstrFolder;
-      item.m_strExtra   = wstrExtra + wstrFolder + "/";
-      }
-      else
-      {
-      item.m_strPath    = szPath;
-      item.m_iImage     = -1;
-      item.m_strName    = wstrItemExtra;
-      item.m_strExtra   = wstrExtraPath;
-      if(!item.m_strExtra.Right(4).CompareNoCase(".zip"))
-      {
-      item.m_strExtra += ":";
-      }
-      }
-
-      item.m_flags.signalize(FlagInZip);
-      m_itema.add_item(item);
-      }
-      _001OnUpdateItemCount();
-      _001CreateImageList();*/
 
 
-      return ::userfs::list::_017UpdateZipList(lpcsz, actioncontext);
 
    }
 
@@ -1272,9 +1292,8 @@ namespace filemanager
          item.m_iImage = System.userex()->shellimageset().GetImage(
             get_handle(),
             item.m_strPath,
-            NULL,
-            _shell::IconNormal,
-            get_document()->get_fs_data()->is_dir(item.m_strPath));
+            get_document()->get_fs_data()->is_dir(item.m_strPath) ? _shell::FileAttributeDirectory : _shell::FileAttributeNormal,
+            _shell::IconNormal);
 
          m_iCreateImageListStep++;
 
@@ -1487,29 +1506,6 @@ namespace filemanager
 
    }
 
-   /*UINT c_cdecl file_list::_017ThreadProcCreateImageList(LPVOID lpParameter)
-   {
-   try
-   {
-   ::SetThreadPriority(
-   ::get_current_thread(),
-   THREAD_PRIORITY_ABOVE_NORMAL);
-
-   file_list * plist =
-   (file_list *) lpParameter;
-   plist->m_bCreateImageList = true;
-   ::user::list_column & column = plist->m_columna.GetBySubItem(1);
-   //      if(column.m_pil->GetSafeHandle() != NULL)
-   //         column.m_pil->DeleteImageList();
-   plist->_001CreateImageList(column);
-   return 0;
-   }
-   catch(...)
-   {
-   return 1;
-   }
-   }*/
-
 
    bool file_list::TwiHasTranslucency()
    {
@@ -1550,92 +1546,6 @@ namespace filemanager
    }
 
 
-   void file_list::_017UpdateList(::action::context actioncontext)
-   {
-
-      if (m_bStatic)
-      {
-
-         ::userfs::list_item item(get_app());
-
-         stringa stra;
-
-         get_filemanager_manager()->data_get(get_filemanager_template()->m_dataidStatic, ::base::system::idEmpty, stra);
-
-         for (int32_t i = 0; i < stra.get_size(); i++)
-         {
-
-            item.m_flags.unsignalize_all();
-
-            if (session().dir().is(stra[i]))
-            {
-               item.m_flags.signalize(::fs::FlagFolder);
-            }
-            else
-            {
-            }
-
-            string strPath = stra[i];
-            string strName = System.file().title_(strPath);
-
-
-            item.m_iImage = -1;
-            item.m_strPath = strPath;
-            item.m_strName = strName;
-
-            get_fs_list_data()->m_itema.add_item(item);
-
-         }
-
-         _001OnUpdateItemCount();
-
-         return;
-
-      }
-
-      if (get_filemanager_data()->m_bSetBergedgeTopicFile)
-      {
-         SetTimer(888888, 230, NULL);
-      }
-
-
-      ::userfs::list_item folder(get_app());
-
-      //      HRESULT hr;
-      string strPath = get_filemanager_item().m_strPath;
-      //      LPMALLOC lpmalloc = NULL;
-      //      IShellFolder * lpsfDesktop;
-
-
-      _017UpdateList(strPath, actioncontext);
-
-
-
-   }
-
-   /*void file_list::_017OneLevelUp()
-   {
-   if(m_lpiidlAbsolute == NULL)
-   return;
-
-   single_lock slBrowse(&m_csBrowse, TRUE);
-   LPMALLOC lpmalloc = NULL;
-   IShellFolder * lpsfDesktop;
-   HRESULT hr;
-
-   hr = SHGetMalloc(&lpmalloc);
-
-   hr = SHGetDesktopFolder(&lpsfDesktop);
-
-   LPITEMIDLIST lpiidl = _shell::_017ItemIDListGetFolderParent(m_lpiidlAbsolute);
-
-   _017Browse(lpiidl);
-
-   lpsfDesktop->Release();
-   lpmalloc->Release();
-
-   }*/
-
    void file_list::_001OnMainPostMessage(signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj)
@@ -1663,25 +1573,6 @@ namespace filemanager
 
 
 
-   void file_list::_017Synchronize(::action::context actioncontext)
-   {
-
-      if (m_bStatic)
-      {
-
-         _017UpdateList(actioncontext);
-
-         return;
-
-      }
-
-      ::data::lock lock(m_pdata);
-
-      _001HideEditingControls();
-
-      _017Browse(get_filemanager_item().m_strPath, ::action::source::sync(actioncontext));
-
-   }
 
 
    void file_list::_001OnDraw(::draw2d::graphics *pdc)
@@ -1724,16 +1615,6 @@ namespace filemanager
       m_iAnimate = 1;
       ::user::list::_001OnDraw(m_gdibuffer.GetBuffer());
    }
-
-   void file_list::_017PreSynchronize(::action::context actioncontext)
-   {
-      UNREFERENCED_PARAMETER(actioncontext);
-      //TakeAnimationSnapshot();
-   }
-
-
-
-
 
    void file_list::_017OpenSelected(bool bOpenFile, ::action::context actioncontext)
    {
@@ -2052,7 +1933,6 @@ namespace filemanager
          System.file().move(
             System.dir().path(get_fs_list_data()->m_itema.get_item(strict).m_strPath, strName),
             strPath);
-         _017Synchronize(::action::source::user(::action::source_drop));
       }
       else
       {

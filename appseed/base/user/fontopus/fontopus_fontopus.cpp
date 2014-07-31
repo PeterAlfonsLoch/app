@@ -252,6 +252,9 @@ namespace fontopus
 
                do_events(millis(84));
 
+               if(m_pthreadCreatingUser == NULL)
+                  break;
+
                m_pthreadCreatingUser->m_evReady.wait(millis(0));
 
             }

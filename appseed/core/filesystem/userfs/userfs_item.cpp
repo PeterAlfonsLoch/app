@@ -9,7 +9,7 @@ namespace userfs
       m_ptree(ptree)
    {
       m_iImage = -1;
-      m_iImageSelected = 1;
+      m_iImageSelected = -1;
    }
 
    item::~item()
@@ -59,10 +59,18 @@ namespace userfs
    {
       if(m_ptree->is_selected(this))
       {
+         if(m_iImageSelected < 0)
+         {
+            return m_ptree->m_iDefaultImageSelected;
+         }
          return m_iImageSelected;
       }
       else
       {
+         if(m_iImage < 0)
+         {
+            return m_ptree->m_iDefaultImage;
+         }
          return m_iImage;
       }
 

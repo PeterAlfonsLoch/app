@@ -90,7 +90,7 @@ namespace fs
       return strPath.Left(iFind);
    }
 
-   bool data::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle, int64_array * piaSize)
+   bool data::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_array * piaSize,bool_array * pbaDir)
    {
       UNREFERENCED_PARAMETER(pszDir);
       UNREFERENCED_PARAMETER(pstraPath);
@@ -159,7 +159,7 @@ namespace fs
    bool data::file_exists(const char * pszPath)
    {
       stringa straTitle;
-      ls(eat_end_level(pszPath, 1), NULL, &straTitle, NULL);
+      ls(eat_end_level(pszPath, 1), NULL, &straTitle, NULL, NULL);
       return straTitle.contains_ci(file_name(pszPath));
    }
 
@@ -170,7 +170,7 @@ namespace fs
 
       int64_array iaFileSize;
       
-      ls(eat_end_level(pszPath, 1), NULL, &straTitle, &iaFileSize);
+      ls(eat_end_level(pszPath, 1), NULL, &straTitle, &iaFileSize, NULL);
       
       index iFind = straTitle.find_first_ci(file_name(pszPath));
 

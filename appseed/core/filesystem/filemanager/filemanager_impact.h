@@ -26,6 +26,8 @@ namespace filemanager
 
       void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
 
+      virtual void browse_sync(::action::context actioncontext);
+
 
    };
 

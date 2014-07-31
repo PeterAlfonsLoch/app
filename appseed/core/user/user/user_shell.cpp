@@ -530,7 +530,7 @@ namespace filemanager
 
    }
 
-   int32_t ImageSet::GetImage(const char * lpcsz, EFileAttribute eattribute, EIcon eicon)
+   int32_t ImageSet::GetImage(oswindow oswindow, const char * lpcsz, EFileAttribute eattribute, EIcon eicon)
    {
 
       single_lock sl(&m_mutex, true);
@@ -543,43 +543,18 @@ namespace filemanager
 
       string str(lpcsz);
 
-      SHFILEINFO shfi16;
-
       imagekey.m_strPath.Format(":%s:%d:%d", lpcsz, eattribute, eicon);
+
       imagekey.m_strExtension = str.Mid(str.reverse_find('.'));
+
       imagekey.m_iIcon = 0;
-      if(!m_imagemap.Lookup(imagekey, iImage))
-      {
-         int32_t iFileAttr = FILE_ATTRIBUTE_NORMAL;
-         if(eattribute == FileAttributeDirectory)
-         {
-            iFileAttr = FILE_ATTRIBUTE_DIRECTORY;
-         }
 
-         int32_t iFlags = SHGFI_USEFILEATTRIBUTES | SHGFI_ICON | SHGFI_SMALLICON;
+      if(m_imagemap.Lookup(imagekey,iImage))
+         return iImage;
 
-         if(eicon == IconOpen)
-         {
-            iFlags |= SHGFI_OPENICON;
-         }
+      iImage = GetImage(oswindow,lpcsz,NULL,eicon,eattribute == FileAttributeDirectory);
 
-         SHGetFileInfo(
-            lpcsz,
-            iFileAttr,
-            &shfi16,
-            sizeof(shfi16),
-            iFlags);
-         iImage = m_pil16->add_icon_os_data(shfi16.hIcon);
-         m_pil48Hover->add_icon_os_data(shfi16.hIcon);
-         System.visual().imaging().Createcolor_blend_ImageList(
-            m_pil48,
-            m_pil48Hover,
-            RGB(255, 255, 240),
-            64);
-
-         m_imagemap.set_at(imagekey, iImage);
-
-      }
+      m_imagemap.set_at(imagekey,iImage);
 
 #endif
 
@@ -770,73 +745,7 @@ namespace filemanager
 
          if(imagekey.m_iIcon == 0x80000000)
          {
-            if(imagekey.m_strExtension == "folder")
-            {
-               SHGetFileInfo(
-                  "foo",
-                  FILE_ATTRIBUTE_DIRECTORY,
-                  &shfi16,
-                  sizeof(shfi16),
-                  SHGFI_USEFILEATTRIBUTES
-                  | SHGFI_ICON
-                  | SHGFI_SMALLICON);
-               SHGetFileInfo(
-                  "foo",
-                  FILE_ATTRIBUTE_DIRECTORY,
-                  &shfi48,
-                  sizeof(shfi48),
-                  SHGFI_USEFILEATTRIBUTES
-                  | SHGFI_ICON
-                  | SHGFI_LARGEICON);
-            }
-            else
-            {
-               strPath = "foo" + imagekey.m_strExtension;
-               SHGetFileInfo(
-                  strPath,
-                  FILE_ATTRIBUTE_NORMAL,
-                  &shfi16,
-                  sizeof(shfi16),
-                  SHGFI_USEFILEATTRIBUTES
-                  | SHGFI_ICON
-                  | SHGFI_SMALLICON);
-               SHGetFileInfo(
-                  strPath,
-                  FILE_ATTRIBUTE_NORMAL,
-                  &shfi48,
-                  sizeof(shfi48),
-                  SHGFI_USEFILEATTRIBUTES
-                  | SHGFI_ICON
-                  | SHGFI_LARGEICON);
-            }
-            iImage = m_pil16->add_icon_os_data(shfi16.hIcon);
-            IImageList * pil = NULL;
-            SHGetImageList(SHIL_EXTRALARGE, IID_IImageList, (void **) &pil);
-            if(pil != NULL)
-            {
-               HICON hicon48;
-               pil->GetIcon(shfi48.iIcon, ILD_TRANSPARENT, &hicon48);
-               if(hicon48 == NULL)
-               {
-                  m_pil48Hover->add_icon_os_data(shfi48.hIcon);
-               }
-               else
-               {
-                  m_pil48Hover->add_icon_os_data(hicon48);
-               }
-               pil->Release();
-            }
-            else
-            {
-               m_pil48Hover->add_icon_os_data(shfi48.hIcon);
-            }
-            System.visual().imaging().Createcolor_blend_ImageList(
-               m_pil48,
-               m_pil48Hover,
-               RGB(255, 255, 240),
-               64);
-
-            m_imagemap.set_at(imagekey, iImage);
+            iImage = GetFooImage(oswindow,eicon, imagekey.m_strPath=="folder", imagekey.m_strExtension);
          }
          else
          {
@@ -1022,10 +931,115 @@ namespace filemanager
       return iImage;
    }
 
+   int32_t ImageSet::GetFooImage(oswindow oswindow,EIcon eicon,bool bFolder, const string & strExtension)
+   {
+
+      int32_t iImage;
+
+      SHFILEINFO shfi16;
+
+      SHFILEINFO shfi48;
+
+      ImageKey imagekey;
+
+      imagekey.m_iIcon         = 0x80000000;
+
+      imagekey.m_strPath = "*foo";
+
+      if(bFolder && !strExtension.has_char())
+      {
+         imagekey.m_strExtension  = "folder";
+      }
+      else
+      {
+         imagekey.m_strExtension  = strExtension;
+      }
+
+      imagekey.m_strPath.Empty();
+
+      if(m_imagemap.Lookup(imagekey,iImage))
+         return iImage;
+
+      if(imagekey.m_strExtension == "folder")
+      {
+         SHGetFileInfo(
+            "foo",
+            FILE_ATTRIBUTE_DIRECTORY,
+            &shfi16,
+            sizeof(shfi16),
+            SHGFI_USEFILEATTRIBUTES
+            | SHGFI_ICON
+            | SHGFI_SMALLICON);
+         SHGetFileInfo(
+            "foo",
+            FILE_ATTRIBUTE_DIRECTORY,
+            &shfi48,
+            sizeof(shfi48),
+            SHGFI_USEFILEATTRIBUTES
+            | SHGFI_ICON
+            | SHGFI_LARGEICON);
+      }
+      else
+      {
+         string strPath = "foo." + imagekey.m_strExtension;
+         SHGetFileInfo(
+            strPath,
+            FILE_ATTRIBUTE_NORMAL,
+            &shfi16,
+            sizeof(shfi16),
+            SHGFI_USEFILEATTRIBUTES
+            | SHGFI_ICON
+            | SHGFI_SMALLICON);
+         SHGetFileInfo(
+            strPath,
+            FILE_ATTRIBUTE_NORMAL,
+            &shfi48,
+            sizeof(shfi48),
+            SHGFI_USEFILEATTRIBUTES
+            | SHGFI_ICON
+            | SHGFI_LARGEICON);
+      }
+      iImage = m_pil16->add_icon_os_data(shfi16.hIcon);
+      IImageList * pil = NULL;
+      SHGetImageList(SHIL_EXTRALARGE,IID_IImageList,(void **)&pil);
+      if(pil != NULL)
+      {
+         HICON hicon48;
+         pil->GetIcon(shfi48.iIcon,ILD_TRANSPARENT,&hicon48);
+         if(hicon48 == NULL)
+         {
+            m_pil48Hover->add_icon_os_data(shfi48.hIcon);
+         }
+         else
+         {
+            m_pil48Hover->add_icon_os_data(hicon48);
+         }
+         pil->Release();
+      }
+      else
+      {
+         m_pil48Hover->add_icon_os_data(shfi48.hIcon);
+      }
+      System.visual().imaging().Createcolor_blend_ImageList(
+         m_pil48,
+         m_pil48Hover,
+         RGB(255,255,240),
+         64);
+
+      m_imagemap.set_at(imagekey,iImage);
+
+      return iImage;
+
+   }
+
+
 #endif
 
    int32_t ImageSet::GetImageByExtension(oswindow oswindow, const char * pszPath, EIcon eicon, bool bFolder)
    {
+
+      return GetFooImage(oswindow,eicon,bFolder,System.file().extension(pszPath));
+      /*
 
       single_lock sl(&m_mutex, true);
 
@@ -1148,7 +1162,9 @@ namespace filemanager
 
 #endif
 
-      return iImage;
+      */
+
+      //return iImage;
 
    }
 
@@ -1528,13 +1544,38 @@ namespace filemanager
 
 #ifdef WINDOWSEX
 
-      LPITEMIDLIST lpiidlAbsolute;
 
-      _017ItemIDListParsePath(&lpiidlAbsolute, psz);
+      string str(psz);
 
-      iImage = GetImage(oswindow, lpiidlAbsolute, lpcszExtra, eicon);
+      if(str == "foo")
+      {
 
-      _017ItemIDListFree(lpiidlAbsolute);
+         iImage = GetFooImage(oswindow,eicon,bFolder,"");
+
+      }
+      else
+      {
+
+         if(::str::begins_eat(str,"foo."))
+         {
+
+            iImage = GetFooImage(oswindow,eicon,bFolder,str);
+
+         }
+         else
+         {
+
+            LPITEMIDLIST lpiidlAbsolute;
+
+            _017ItemIDListParsePath(&lpiidlAbsolute,psz);
+
+            iImage = GetImage(oswindow,lpiidlAbsolute,lpcszExtra,eicon);
+
+            _017ItemIDListFree(lpiidlAbsolute);
+
+         }
+
+      }
 
 #endif
 

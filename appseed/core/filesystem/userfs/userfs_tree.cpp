@@ -15,7 +15,9 @@ namespace userfs
       m_pdataitemCreateImageListStep = NULL;
 
       m_iAnimate = 0;
-      m_bDelayedListUpdate = false;
+
+      m_iDefaultImage = -1;
+      m_iDefaultImageSelected = -1;
 
    }
 
@@ -78,11 +80,6 @@ namespace userfs
                               str.Format("tree(%s)", get_filemanager_template()->get_filemanager_data()->m_strDISection);
                               m_dataid = str;*/
                //            _001UpdateColumns();
-            }
-            if (puh->is_type_of(filemanager::update_hint::TypeSynchronizePath))
-            {
-               _017PreSynchronize(::action::source::sync(puh->m_actioncontext));
-               _017Synchronize(::action::source::sync(puh->m_actioncontext));
             }
             if (puh->is_type_of(filemanager::update_hint::TypeFilter))
             {
@@ -301,198 +298,8 @@ namespace userfs
    }
 
 
-   void tree::_017UpdateList(const char * lpcsz, int32_t iLevel, ::action::context actioncontext)
+   void tree::browse_sync(::action::context actioncontext)
    {
-      if (lpcsz == NULL)
-         lpcsz = "";
-
-      m_strPath = lpcsz;
-
-      //if (pitemParent == NULL)
-      //{
-        // pitemParent = get_base_item();
-      //}
-      //else if (get_base_item() == NULL)
-      //{
-        // m_proot = pitemParent;
-      //}
-
-      sp(::data::tree_item) pitemParent;
-
-      stringa straRootPath;
-
-      stringa straRootTitle;
-
-      get_document()->get_fs_data()->root_ones(straRootPath, straRootTitle);
-
-
-      /*if(get_filemanager_template() != NULL && get_filemanager_template()->get_filemanager_data()->m_ptreeFileTreeMerge != NULL
-      && !(dynamic_cast < usersp(::tree) > (get_filemanager_template()->get_filemanager_data()->m_ptreeFileTreeMerge))->m_treeptra.contains(this))
-      {
-      get_filemanager_template()->get_filemanager_data()->m_ptreeFileTreeMerge->merge(this);
-      }*/
-
-      sp(::userfs::item) pitemFolder = NULL;
-
-      string strRawName1 = typeid(*pitemParent->m_pitem.m_p).name();
-      string strRawName2 = typeid(::userfs::item).name();
-      if (strRawName1 == strRawName2)
-      {
-         pitemFolder = pitemParent->m_pitem;
-      }
-
-
-      sp(::userfs::item) pitemChild;
-      sp(::data::tree_item) pitem;
-      ::data::tree_item_ptr_array ptraRemove;
-
-      if (pitemFolder != NULL && pitemFolder->m_flags.is_signalized(::fs::FlagHasSubFolderUnknown))
-      {
-         if (get_document()->get_fs_data()->has_subdir(pitemFolder->m_strPath))
-         {
-            pitemFolder->m_flags.signalize(::fs::FlagHasSubFolder);
-         }
-         pitemFolder->m_flags.unsignalize(::fs::FlagHasSubFolderUnknown);
-      }
-
-      stringa straChildItem;
-      string str;
-
-      int32_t iMaxSize;
-      iMaxSize = 1000;
-
-      int32_t iSize;
-      iSize = 0;
-
-      int32_t iChildCount;
-
-      iChildCount = 0;
-
-      stringa straPath;
-      stringa straTitle;
-      int64_array iaSize;
-      if (strlen(lpcsz) == 0)
-      {
-         straPath = straRootPath;
-         straTitle = straRootTitle;
-      }
-      else
-      {
-         get_document()->get_fs_data()->ls(lpcsz,&straPath,&straTitle,&iaSize);
-      }
-
-      int32_t i;
-
-      for (i = 0; i < straPath.get_size(); i++)
-      {
-
-         pitemChild = canew(::userfs::item(this));
-
-         pitemChild->m_strPath = straPath[i];
-
-         //if(m_straUpdatePtrFilter.find_first(straPath[i]) >= 0)
-         //{
-         //   continue;
-         //}
-         pitemChild->m_strName = straTitle[i];
-         if (!get_document()->get_fs_data()->is_dir(straPath[i]))
-         {
-            if (zip::Util().IsUnzipable(get_app(), pitemChild->m_strPath))
-            {
-               pitemChild->m_flags.signalize(::fs::FlagFolder);
-
-
-               pitemChild->m_iImage = m_iDefaultImage;
-               pitemChild->m_iImageSelected = m_iDefaultImageSelected;
-               pitemChild->m_flags.signalize(::fs::FlagInZip);
-
-               pitem = find_item(pitemChild->m_strPath);
-               if (pitem != NULL)
-               {
-                  pitem = insert_item(pitemChild, ::data::RelativeReplace, pitem);
-               }
-               else
-               {
-                  pitem = insert_item(pitemChild, ::data::RelativeLastChild, pitemParent);
-               }
-
-               if (zip::Util().HasSubFolder(get_app(), pitemChild->m_strPath))
-               {
-                  pitem->m_dwState |= ::data::tree_item_state_expandable;
-               }
-
-               if (iLevel > 1)
-               {
-                  _017UpdateZipList(pitemChild->m_strPath, pitem, iLevel - 1, actioncontext);
-               }
-
-            }
-            else
-            {
-               continue;
-            }
-         }
-
-         /*      if(File::has_subfolder(straPath[i]))
-         {
-         item.m_flags.signalize(filemanager::FlagHasSubFolder);
-         }*/
-
-         pitemChild->m_flags.signalize(::fs::FlagFolder);
-
-         pitemChild->m_iImage = m_iDefaultImage;
-
-         pitemChild->m_iImageSelected = m_iDefaultImageSelected;
-
-         pitem = find_item(pitemChild->m_strPath);
-
-         if (pitem != NULL)
-         {
-
-            pitem = insert_item(pitemChild, ::data::RelativeReplace, pitem);
-
-            // a refresh or a file monitoring event for folder deletion or creation should
-            // the most precisely possible way reset this flag
-            pitemChild->m_flags.signalize(::fs::FlagHasSubFolderUnknown);
-
-         }
-         else
-         {
-
-            pitem = insert_item(pitemChild, ::data::RelativeLastChild, pitemParent);
-
-         }
-
-         if (pitemChild->m_flags.is_signalized(::fs::FlagHasSubFolder))
-         {
-
-            pitem->m_dwState |= ::data::tree_item_state_expandable;
-
-         }
-
-         if (iLevel > 1)
-         {
-
-            _017UpdateList(pitemChild->m_strPath, iLevel - 1, actioncontext);
-
-         }
-
-      }
-
-      for (int32_t j = 0; j < ptraRemove.get_size(); j++)
-      {
-
-         ptraRemove(j).release();
-
-      }
-
-      arrange(::fs::arrange_by_name);
-
-      if (iChildCount == 0)
-      {
-         pitemParent->m_dwState &= ~::data::tree_item_state_expandable;
-      }
-
 
 
    }
@@ -500,47 +307,6 @@ namespace userfs
 
    void tree::_017EnsureVisible(const char * lpcsz, ::action::context actioncontext)
    {
-      stringa stra;
-
-      get_document()->get_fs_data()->get_ascendants_path(lpcsz, stra);
-
-      m_straUpdatePtrFilter = stra;
-
-
-
-      //for(int32_t i = stra.get_size() - 1; i >= 0; i--)
-      for (index i = 0; i < stra.get_size(); i++)
-      {
-         string strAscendant = stra[i];
-         sp(::data::tree_item) pitem = find_item(strAscendant);
-         if (pitem == NULL)
-         {
-            string str;
-            str = strAscendant;
-            get_document()->get_fs_data()->eat_end_level(str, 1);
-            _017UpdateList(str, 1, actioncontext);
-         }
-         pitem = find_item(strAscendant);
-         if (pitem == NULL)
-            break;
-
-         if (!(pitem->m_dwState & ::data::tree_item_state_expanded))
-         {
-            _001ExpandItem(pitem, actioncontext, true, false, false);
-         }
-      }
-
-
-      m_straUpdatePtrFilter.remove_all();
-
-      m_straMissingUpdate = stra;
-
-
-      _StartDelayedListUpdate();
-
-      sp(::data::tree_item) pitem = find_item(lpcsz);
-
-      _001EnsureVisible(pitem);
 
    }
 
@@ -553,188 +319,11 @@ namespace userfs
    }
 
 
-   void tree::_017Browse(const char * lpcsz, ::action::context actioncontext, bool bForceUpdate)
-   {
-
-      if (!bForceUpdate)
-      {
-         
-         selection_set(find_item(lpcsz), true, true);
-         
-         return;
-
-      }
-
-      single_lock slBrowse(&m_csBrowse, TRUE);
-
-      if (strlen(lpcsz) == 0)
-      {
-
-         _017UpdateList("",  1, actioncontext);
-
-      }
-
-      _017EnsureVisible(lpcsz, actioncontext);
-
-      _001SelectItem(find_item(lpcsz));
-
-      _StartCreateImageList();
-
-   }
-
-   void tree::_017UpdateZipList(const char * lpcsz, ::data::tree_item * pitemParent, int32_t iLevel, ::action::context actioncontext)
-   {
-
-      string szPath(lpcsz);
-
-      string wstrExtraPath;
-      string wstrItemExtra;
-
-      index iFind;
-      ::file::binary_buffer_sp spfile(allocer());
-
-      //spfile->open(szPath, ::file::mode_read | ::file::type_binary);
-
-      /*array < ::file::memory_buffer, ::file::memory_buffer & > filea;
-      _vmszipFile zipfile;
-
-      zipfile.m_pfile = &file;
-
-      unzFile pf = _vmszipApi::unzipOpen(&zipfile);
-
-      array < ::file::memory_buffer, ::file::memory_buffer & > filea;
-      int32_t iStart = 0;
-      int32_t iFind;
-      while((iFind  = wstrExtra.find(L".zip:", iStart)) >= 0)
-      {
-      filea.add(::file::memory_buffer());
-      pf->dump(filea.last_element(), wstrExtra.Mid(iStart + 5, iFind - iStart + 5));
-      iStart = iFind + 1;
-      }*/
-
-
-      stringa wstraItem;
-      stringa wstraChildItem;
-
-      string str;
-
-      str = szPath;
-      str = str.Mid(0, str.reverse_find(".zip:") + 4);
-
-      zip::Util().ls(get_app(), str, false, &wstraItem);
-
-      string wstrFolder;
-      stringa wstraFolder;
-      string wstrItem;
-      ::data::tree_item_ptr_array ptraRemove;
-      pitemParent->get_children(ptraRemove);
-
-      for (int32_t i = 0; i < wstraItem.get_size(); i++)
-      {
-         wstrItem = wstraItem[i];
-
-         sp(::userfs::item) pitemNew = canew(::userfs::item(this));
-
-         pitemNew->m_strPath = lpcsz;
-         pitemNew->m_flags.signalize(::fs::FlagInZip);
-
-         wstrExtraPath = wstrItem;
-
-         // ignore this file if its not in the Extra sub folder
-         /*         if(wstrExtraPath.Left(wstrExtra.get_length()) != wstrExtra ||
-         wstrExtraPath == wstrExtra)
-         continue;*/
-
-         //         wstrItemExtra = wstrExtraPath.Mid(wstrExtra.get_length());
-
-         pitemNew->m_flags.unsignalize_all();
-
-         iFind = wstrItemExtra.find("/");
-         if (iFind > 0)
-         {
-            wstrFolder = wstrItemExtra.Left(iFind);
-            if (wstraFolder.find_first(wstrFolder) >= 0)
-               continue;
-            wstraFolder.add(wstrFolder);
-            pitemNew->m_flags.signalize(::fs::FlagFolder);
-            pitemNew->m_strPath = szPath;
-            pitemNew->m_iImage = -1;
-            pitemNew->m_strName = wstrFolder;
-            //               pitemNew->m_strExtra  = wstrExtra + wstrFolder + "/";
-         }
-         else
-         {
-            pitemNew->m_strPath = szPath;
-            pitemNew->m_iImage = -1;
-            pitemNew->m_strName = wstrItemExtra;
-            //             pitemNew->m_strExtra  = wstrExtraPath;
-            string str;
-            str = szPath + wstrExtraPath;
-            if (zip::Util().IsUnzipable(get_app(), str))
-            {
-               pitemNew->m_flags.signalize(::fs::FlagFolder);
-            }
-         }
-         if (pitemNew->m_flags.is_signalized(::fs::FlagFolder))
-         {
-            pitemNew->m_iImage = m_iDefaultImage;
-            pitemNew->m_iImageSelected = m_iDefaultImageSelected;
-            //         item.m_flags.signalize(FlagInZip);
-            ::data::tree_item  * pitem = find_item(pitemNew->m_strPath);
-            if (pitem == NULL)
-            {
-               pitem = insert_item(pitemNew, ::data::RelativeLastChild, pitemParent);
-            }
-            else
-            {
-               pitem = insert_item(pitemNew, ::data::RelativeReplace, pitem);
-            }
-            str = szPath;
-            wstraChildItem.remove_all();
-            if (zip::Util().HasSubFolder(get_app(), str))
-            {
-               pitem->m_dwState |= ::data::tree_item_state_expandable;
-            }
-            if (iLevel > 1)
-            {
-               _017UpdateZipList(pitemNew->m_strPath, pitem, iLevel - 1, actioncontext);
-            }
-         }
-      }
-
-
-      remove(ptraRemove);
-
-   }
 
 
    void tree::_001UpdateImageList(::data::tree_item * pitem)
    {
       UNREFERENCED_PARAMETER(pitem);
-      //         Item & item = m_itema.get_item(pitem->m_dwUser);
-
-      //oswindow oswindow = get_handle();
-
-      /*   IShellFolder * lpsf = item.m_spshellfolder;
-
-      item.m_iImage =
-      _shell::g_imageset.GetImage(
-      oswindow,
-      lpsf,
-      item.m_lpiidlAbsolute,
-      item.m_lpiidlRelative,
-      ::str::international::utf8_to_unicode(item.m_strExtra),
-      _shell::IconNormal);
-
-      item.m_iImageSelected =
-      _shell::g_imageset.GetImage(
-      oswindow,
-      lpsf,
-      item.m_lpiidlAbsolute,
-      item.m_lpiidlRelative,
-      ::str::international::utf8_to_unicode(item.m_strExtra),
-      _shell::IconOpen);*/
-
 
    }
 
@@ -781,33 +370,12 @@ namespace userfs
    }
 
 
-   void tree::_017UpdateList(::action::context actioncontext)
-   {
-
-      UNREFERENCED_PARAMETER(actioncontext);
-
-   }
-
-
-
-   void tree::_017Synchronize(::action::context actioncontext)
-   {
-      _017Browse(get_document()->m_strFolder, actioncontext);
-   }
-
-
-
    void tree::TakeAnimationSnapshot()
    {
       m_iAnimate = 1;
       //   ::user::tree::_001OnDraw(m_gdibuffer.GetBuffer());
    }
 
-   void tree::_017PreSynchronize(::action::context actioncontext)
-   {
-      UNREFERENCED_PARAMETER(actioncontext);
-      TakeAnimationSnapshot();
-   }
 
    /*   IShellFolder * tree::_001GetFolder(EFolder efolder)
    {
@@ -869,14 +437,6 @@ namespace userfs
 
    void tree::_001OnItemExpand(::data::tree_item * pitem, ::action::context actioncontext)
    {
-      if (typeid(*pitem->m_pitem) == System.type_info < ::userfs::item >())
-      {
-         _017UpdateList(pitem->m_pitem.cast < ::userfs::item >()->m_strPath, 1, actioncontext);
-      }
-      else
-      {
-         _017UpdateList("", 1, actioncontext);
-      }
    }
 
    void tree::_001OnItemCollapse(::data::tree_item * pitem, ::action::context actioncontext)
@@ -925,48 +485,6 @@ namespace userfs
    }
 
 
-   void tree::_StartDelayedListUpdate()
-   {
-      //SetTimer(TimerDelayedListUpdate, 500, NULL);
-   }
-
-   void tree::_StopDelayedListUpdate()
-   {
-      //KillTimer(TimerDelayedListUpdate);
-   }
-
-   void tree::_DelayedListUpdate()
-   {
-
-      if (m_straMissingUpdate.get_size() == 0)
-      {
-
-         _StopDelayedListUpdate();
-
-         return;
-
-      }
-
-      if (m_bDelayedListUpdate)
-         return;
-
-      m_bDelayedListUpdate = true;
-
-      sp(::data::tree_item) pitem = find_item(m_straMissingUpdate[0]);
-      
-      if (pitem != NULL)
-      {
-
-         _017UpdateList(m_straMissingUpdate[0], 1, ::action::source_system);
-
-      }
-
-      m_straMissingUpdate.remove_at(0);
-
-      m_bDelayedListUpdate = false;
-
-   }
-
    COLORREF tree::get_background_color()
    {
       if (get_document() == NULL)
@@ -994,6 +512,7 @@ namespace userfs
 
       if (lpcszPath == NULL || strlen(lpcszPath) == 0)
          return pitem;
+
       string strPath(lpcszPath);
       strPath.trim_right("\\/");
       while (pitem != NULL)

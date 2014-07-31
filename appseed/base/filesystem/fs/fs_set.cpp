@@ -84,7 +84,7 @@ namespace fs
 
    }
 
-   bool set::ls(const char * psz, stringa * pstraPath, stringa * pstraTitle, int64_array * piaSize)
+   bool set::ls(const char * psz,stringa * pstraPath,stringa * pstraTitle,int64_array * piaSize,bool_array * pbaDir)
    {
 
       if(psz == NULL || strlen(psz) == 0)
@@ -106,6 +106,10 @@ namespace fs
             {
                piaSize->add(0); // don't tell size of root folders
             }
+            if(pbaDir != NULL)
+            {
+               pbaDir->add(true); // don't tell size of root folders
+            }
          }
          return true;
       }
@@ -114,7 +118,7 @@ namespace fs
 
       if(pdata != NULL)
       {
-         return pdata->ls(psz, pstraPath, pstraTitle, piaSize);
+         return pdata->ls(psz,pstraPath,pstraTitle,piaSize, pbaDir);
       }
       
       return false;

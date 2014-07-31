@@ -337,8 +337,8 @@ namespace data
    image_list * tree_item::get_image_list() const
    {
 
-      if(m_ptree != NULL)
-         return m_ptree->get_image_list();
+      if(m_pitem != NULL)
+         return m_pitem->data_item_get_image_list(m_ptree);
 
       return NULL;
 

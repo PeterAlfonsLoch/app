@@ -481,14 +481,11 @@ namespace user
       pitem = _001HitTest(point, eelement);
       if(pitem != NULL)
       {
-         if(eelement == tree_element_expand_box ||
-            eelement == tree_element_image ||
-            eelement == tree_element_text)
+         if(eelement == tree_element_expand_box)
          {
             _001ExpandItem(pitem, ::action::source_user, !(pitem->m_dwState & ::data::tree_item_state_expanded));
          }
-         if(eelement == tree_element_image ||
-            eelement == tree_element_text)
+         else if(eelement == tree_element_image || eelement == tree_element_text)
          {
             _001OnOpenItem(pitem, ::action::source_user);
          }
@@ -1372,12 +1369,16 @@ namespace user
 
       ptree->m_treeptra.add(this);
 
+      ptree->on_merge_user_tree(this);
+
       if (bBind)
       {
 
          m_treeptraBound.add(ptree);
 
          ptree->m_treeptraBound.add(this);
+
+         ptree->on_bind_user_tree(this);
 
       }
 

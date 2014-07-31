@@ -117,8 +117,9 @@ namespace user
 
    void tab_view::_001OnTabClick(int32_t iTab)
    {
+
       _001SetSel(iTab);
-      layout();
+
    }
 
 
@@ -363,6 +364,23 @@ namespace user
 
       if(m_pviewdata != NULL && m_pviewdata->m_pwnd != NULL)
       {
+         rect rectClient;
+         m_pviewdata->m_pholder->GetClientRect(rectClient);
+         rect rectTabClient = get_data()->m_rectTabClient;
+         if(rectTabClient.area() > 0)
+         {
+            
+            rectTabClient -= rectTabClient.top_left();
+            if(rectClient != rectTabClient)
+            {
+            m_pviewdata->m_pholder->SetWindowPos(ZORDER_TOP,get_data()->m_rectTabClient,SWP_SHOWWINDOW);
+            }
+            else
+            {
+            m_pviewdata->m_pholder->SetWindowPos(ZORDER_TOP,get_data()->m_rectTabClient,SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE);
+            }
+
+         }
          m_pviewdata->m_pwnd->UpdateWindow();
          m_pviewdata->m_pwnd->SetFocus();
       }

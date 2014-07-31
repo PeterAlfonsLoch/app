@@ -99,21 +99,19 @@ namespace filemanager
       sp(::create_context) createcontext(allocer());
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = pwndParent;
+      createcontext->oprop("filemanager::data") = pfilemanagerdata;
+      if(pfilemanagerdata == NULL)
+      {
+         pfilemanagerdata = new ::filemanager::data(get_app());
+      }
+      pfilemanagerdata->m_pmanagertemplate = this;
+      pfilemanagerdata->m_pcallback = &platform().filemanager();
+      pfilemanagerdata->m_pfilemanager = &platform().filemanager();
+
       sp(manager) pdoc = (m_pdoctemplateChild->open_document_file(createcontext));
       if (pdoc != NULL)
       {
-         if (pfilemanagerdata == NULL)
-         {
-            pfilemanagerdata = new ::filemanager::data(get_app());
-         }
 
-         pfilemanagerdata->m_pmanagertemplate = this;
-
-         pdoc->set_filemanager_data(pfilemanagerdata);
-         pdoc->get_filemanager_data()->m_pcallback = &platform().filemanager();
-         pdoc->get_filemanager_data()->m_pfilemanager = &platform().filemanager();
-         pdoc->get_filemanager_data()->m_pmanager = pdoc;
-         pdoc->get_filemanager_data()->m_pmanagerMain = pdoc;
          pdoc->get_filemanager_data()->m_iTemplate = m_iTemplate;
          pdoc->get_filemanager_data()->m_iDocument = m_iNextDocument++;
          pdoc->get_filemanager_data()->m_bTransparentBackground = bTransparentBackground;

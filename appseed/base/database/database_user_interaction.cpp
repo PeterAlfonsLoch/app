@@ -100,7 +100,7 @@ namespace database
 
             ::database::id idWindow    = m_dataidWindow;
 
-            ::id idKey                 = "WindowRect." + m_strDisplay;
+            ::id idKey                 = ".local://WindowRect." + m_strDisplay;
 
             sl.unlock();
 
@@ -128,7 +128,7 @@ namespace database
 
          ::database::id idWindow       = m_dataidWindow;
 
-         ::id idKey                    = "WindowRect." + m_strDisplay;
+         ::id idKey                    = ".local://WindowRect." + m_strDisplay;
 
          sl.unlock();
 

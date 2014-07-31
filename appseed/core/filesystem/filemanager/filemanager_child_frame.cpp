@@ -7,8 +7,7 @@ namespace filemanager
 
    child_frame::child_frame(sp(::base::application) papp) :
       element(papp),
-      simple_child_frame(papp),
-      m_toolbar(papp)
+      simple_child_frame(papp)
    {
    }
 
@@ -24,46 +23,17 @@ namespace filemanager
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &child_frame::_001OnCreate);
    }
 
-   bool child_frame::CreateBars()
+   bool child_frame::on_create_bars()
    {
-      sp(manager) pdoc = (GetActiveDocument());
-      if (pdoc == NULL)
-         return false;
 
-      ASSERT(pdoc != NULL);
-      ASSERT(base_class < manager >::bases(pdoc));
+      sp(manager) pmanager = m_pdocumenttemplate->get_document();
 
-      DestroyBars();
-
-      string strToolBar;
-
-      if (pdoc->get_filemanager_data()->is_saving())
-      {
-         strToolBar = pdoc->get_filemanager_template()->m_strToolBarSave;
-      }
-      else
-      {
-         strToolBar = pdoc->get_filemanager_template()->m_strToolBar;
-      }
-
-      string str = session().file().as_string(session().dir().matter(strToolBar));
-
-      if (!m_toolbar.CreateEx(this) || !m_toolbar.LoadXmlToolBar(str))
-      {
-         TRACE0("Failed to create toolbar\n");
-         return false;      // fail to create
-      }
-
-      layout();
-
-      return true;
+      return pmanager->on_create_bars(this);
 
    }
 
    bool child_frame::DestroyBars()
    {
-      m_toolbar.DestroyWindow();
-      m_toolbar.RemoveAllTools();
       return true;
    }
 
@@ -109,7 +79,7 @@ namespace filemanager
 
    void child_frame::_001OnAppLanguage(signal_details * pobj)
    {
-      CreateBars();
+//      CreateBars();
       pobj->m_bRet = false;
    }
 

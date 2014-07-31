@@ -108,6 +108,9 @@ namespace user
       rect rectClient;
       GetClientRect(rectClient);
 
+      if(rectClient.area() <= 0)
+         return;
+
       rect rectWindow;
       puiHold->GetWindowRect(rectWindow);
       ScreenToClient(rectWindow);

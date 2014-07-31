@@ -242,75 +242,75 @@ namespace user
       {
       case ::data::RelativeFirstChild:
       {
-                                pitemRelative->m_children.insert_at(0,pitemNew);
-                                pitemNew->m_pparent = pitemRelative;
+                                        pitemRelative->m_children.insert_at(0,pitemNew);
+                                        pitemNew->m_pparent = pitemRelative;
       }
          break;
       case ::data::RelativeLastChild:
       {
-                               pitemRelative->m_children.add(pitemNew);
-                               pitemNew->m_pparent = pitemRelative;
+                                       pitemRelative->m_children.add(pitemNew);
+                                       pitemNew->m_pparent = pitemRelative;
       }
          break;
       case ::data::RelativePreviousSibling:
       {
-                                     // all tree_data items that have siblings have a parent (at least the base ::data::item)
-                                     ASSERT(pitemRelative->m_pparent != NULL);
-                                     // Is pitemRelative a first child ?
-                                     index iFind = pitemRelative->m_pparent->m_children.find_first(pitemRelative);
-                                     if(iFind > 0)
-                                        iFind--;
-                                     pitemRelative->m_pparent->m_children.insert_at(0,pitemNew);
-                                     pitemNew->m_pparent = pitemRelative->m_pparent;
+                                             // all tree_data items that have siblings have a parent (at least the base ::data::item)
+                                             ASSERT(pitemRelative->m_pparent != NULL);
+                                             // Is pitemRelative a first child ?
+                                             index iFind = pitemRelative->m_pparent->m_children.find_first(pitemRelative);
+                                             if(iFind > 0)
+                                                iFind--;
+                                             pitemRelative->m_pparent->m_children.insert_at(0,pitemNew);
+                                             pitemNew->m_pparent = pitemRelative->m_pparent;
       }
          break;
       case ::data::RelativeNextSibling:
       {
-                                 // all tree_data items that have siblings have a parent (at least the base ::data::item)
-                                 ASSERT(pitemRelative->m_pparent != NULL);
-                                 // Is pitemRelative a first child ?
-                                 index iFind = pitemRelative->m_pparent->m_children.find_first(pitemRelative);
-                                 if(iFind < 0)
-                                    iFind = 0;
-                                 else
-                                    iFind++;
-                                 pitemRelative->m_pparent->m_children.insert_at(0,pitemNew);
-                                 pitemNew->m_pparent = pitemRelative->m_pparent;
+                                         // all tree_data items that have siblings have a parent (at least the base ::data::item)
+                                         ASSERT(pitemRelative->m_pparent != NULL);
+                                         // Is pitemRelative a first child ?
+                                         index iFind = pitemRelative->m_pparent->m_children.find_first(pitemRelative);
+                                         if(iFind < 0)
+                                            iFind = 0;
+                                         else
+                                            iFind++;
+                                         pitemRelative->m_pparent->m_children.insert_at(0,pitemNew);
+                                         pitemNew->m_pparent = pitemRelative->m_pparent;
       }
          break;
       case ::data::RelativeLastSibling:
       {
-                                 // all tree_data items that have siblings have a parent (at least the base ::data::item)
-                                 ASSERT(pitemRelative->m_pparent != NULL);
-                                 pitemRelative->m_pparent->m_children.add(pitemNew);
-                                 pitemNew->m_pparent = pitemRelative->m_pparent;
+                                         // all tree_data items that have siblings have a parent (at least the base ::data::item)
+                                         ASSERT(pitemRelative->m_pparent != NULL);
+                                         pitemRelative->m_pparent->m_children.add(pitemNew);
+                                         pitemNew->m_pparent = pitemRelative->m_pparent;
       }
          break;
       case ::data::RelativeReplace:
       {
-                             pitemNew->m_dwUser      = pitemRelative->m_dwUser;
-                             pitemNew->m_dwMetaData  = pitemRelative->m_dwMetaData;
-                             pitemNew->m_pparent     = pitemRelative->m_pparent;
-                             pitemNew->m_children    = pitemRelative->m_children;
-                             pitemNew->m_dwState     = pitemRelative->m_dwState;
-                             pitemNew->m_pitem       = pitemRelative->m_pitem;
-                             index iFind = pitemRelative->m_pparent->m_children.find_first(pitemRelative);
-                             if(iFind >= 0)
-                             {
-                                pitemRelative->m_pparent->m_children.element_at(iFind) = pitemNew;
-                             }
+                                     pitemNew->m_dwUser      = pitemRelative->m_dwUser;
+                                     pitemNew->m_dwMetaData  = pitemRelative->m_dwMetaData;
+                                     pitemNew->m_pparent     = pitemRelative->m_pparent;
+                                     pitemNew->m_children    = pitemRelative->m_children;
+                                     pitemNew->m_dwState     = pitemRelative->m_dwState;
+                                     pitemNew->m_pitem       = pitemRelative->m_pitem;
+                                     index iFind = pitemRelative->m_pparent->m_children.find_first(pitemRelative);
+                                     if(iFind >= 0)
+                                     {
+                                        pitemRelative->m_pparent->m_children.element_at(iFind) = pitemNew;
+                                     }
       }
          break;
       case ::data::RelativeMacroRecord:
       {
-                                 if(pitemRelative->get_next(false,false) != NULL)
-                                 {
-                                    insert_item(pitemNew,::data::RelativeFirstChild,pitemRelative);
-                                 }
-                                 else
-                                 {
-                                    insert_item(pitemNew,::data::RelativeLastSibling,pitemRelative);
-                                 }
+                                         if(pitemRelative->get_next(false,false) != NULL)
+                                         {
+                                            insert_item(pitemNew,::data::RelativeFirstChild,pitemRelative);
+                                         }
+                                         else
+                                         {
+                                            insert_item(pitemNew,::data::RelativeLastSibling,pitemRelative);
+                                         }
 
       }
          break;
@@ -605,6 +605,22 @@ namespace user
          }
 
       }
+
+   }
+
+
+   void tree_data::on_merge_user_tree(::user::tree * pusertree)
+   {
+
+      UNREFERENCED_PARAMETER(pusertree);
+
+   }
+
+
+   void tree_data::on_bind_user_tree(::user::tree * pusertree)
+   {
+
+      UNREFERENCED_PARAMETER(pusertree);
 
    }
 

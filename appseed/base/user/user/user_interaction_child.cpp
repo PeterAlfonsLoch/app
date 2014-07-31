@@ -1033,9 +1033,19 @@ namespace user
          }
       }
 
-      send_message(WM_SIZE,0,MAKELONG(max(0,cx),max(0,cy)));
+      if(!(nFlags & SWP_NOSIZE))
+      {
 
-      send_message(WM_MOVE);
+         send_message(WM_SIZE,0,MAKELONG(max(0,cx),max(0,cy)));
+
+      }
+
+      if(!(nFlags & SWP_NOMOVE))
+      {
+
+         send_message(WM_MOVE);
+
+      }
 
       if(nFlags & SWP_SHOWWINDOW)
       {
