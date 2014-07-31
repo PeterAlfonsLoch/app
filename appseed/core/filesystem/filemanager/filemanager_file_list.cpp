@@ -225,7 +225,7 @@ namespace filemanager
             {
                if(!pmanageruh->m_strFind.is_empty())
                {
-                  session().file().replace(m_strPath, pmanageruh->m_strFind, pmanageruh->m_strReplace);
+                  Application.file().replace(m_strPath, pmanageruh->m_strFind, pmanageruh->m_strReplace);
                }
             }
          }
@@ -693,7 +693,7 @@ namespace filemanager
       {
          stra.add(itema[i].m_strPath);
       }
-      session().file().trash_that_is_not_trash(stra);
+      Application.file().trash_that_is_not_trash(stra);
       browse_sync(::action::source_user);
    }
 
@@ -850,7 +850,7 @@ namespace filemanager
                {
                   strFileList += straSub[j] + "\n";
                   strFileCheck += straSub[j] + ",";
-                  strFileCheck += session().file().length(straSub[j]).get_string() + ",";
+                  strFileCheck += Application.file().length(straSub[j]).get_string() + ",";
                   strFileCheck += System.file().md5(straSub[j]) +"\n";
                }
             }
@@ -859,7 +859,7 @@ namespace filemanager
          {
             strFileList += itema[i].m_strPath + "\n";
             strFileCheck += itema[i].m_strPath + ",";
-            strFileCheck += session().file().length(itema[i].m_strPath).get_string() + ",";
+            strFileCheck += Application.file().length(itema[i].m_strPath).get_string() + ",";
             strFileCheck += System.file().md5(itema[i].m_strPath) +"\n";
          }
       }
@@ -878,8 +878,8 @@ namespace filemanager
       string strCheck = strBase + "check_" + strTime + ".txt";
 
 
-      session().file().put_contents(strList, strFileList);
-      session().file().put_contents(strCheck, strFileCheck);
+      Application.file().put_contents(strList, strFileList);
+      Application.file().put_contents(strCheck, strFileCheck);
 
    }
 
@@ -915,7 +915,7 @@ namespace filemanager
                {
                   strFileList += straSub[j] + "\n";
                   strFileCheck += straSub[j] + ",";
-                  strFileCheck += session().file().length(straSub[j]).get_string() + ",";
+                  strFileCheck += Application.file().length(straSub[j]).get_string() + ",";
                   strFileCheck += System.file().md5(straSub[j]) +"\n";
                }
             }
@@ -929,7 +929,7 @@ namespace filemanager
 
             strFileList += pdata->m_itema.get_item(i).m_strPath + "\n";
             strFileCheck += pdata->m_itema.get_item(i).m_strPath + ",";
-            strFileCheck += session().file().length(pdata->m_itema.get_item(i).m_strPath).get_string() + ",";
+            strFileCheck += Application.file().length(pdata->m_itema.get_item(i).m_strPath).get_string() + ",";
             strFileCheck += System.file().md5(pdata->m_itema.get_item(i).m_strPath) +"\n";
          }
          }
@@ -949,8 +949,8 @@ namespace filemanager
       string strCheck = strBase + "check_" + strTime + ".txt";
 
 
-      session().file().put_contents(strList, strFileList);
-      session().file().put_contents(strCheck, strFileCheck);
+      Application.file().put_contents(strList, strFileList);
+      Application.file().put_contents(strCheck, strFileCheck);
 
    }
 

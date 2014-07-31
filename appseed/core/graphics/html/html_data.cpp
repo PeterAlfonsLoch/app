@@ -620,7 +620,7 @@ restart:
          string filename;
          filename = System.file().time_square(get_app());
          System.http().download("https://api.ca2.cc/auth", filename, set);
-         string strResponse = session().file().as_string(filename);
+         string strResponse = Application.file().as_string(filename);
       }
 
       var varQuery = m_propset["http_propset"].propset();
@@ -633,7 +633,7 @@ restart:
 //      varQuery.propset()["headers"].propset()["Accept-Charset"] = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
       varQuery.propset()["headers"].propset()["Cache-Control"] = "max-age=0";
 
-      string str = session().file().as_string(varFile, varQuery);
+      string str = Application.file().as_string(varFile, varQuery);
 
       if(!varQuery.propset()["get_headers"].propset()["Location"].is_empty())
       {
@@ -659,7 +659,7 @@ restart:
       if(str.is_empty())
       {
          string strCandidate = System.dir().relpath(m_strPathName, varFile);
-         str = session().file().as_string(strCandidate);
+         str = Application.file().as_string(strCandidate);
          if(str.is_empty())
          {
             return FALSE;

@@ -108,7 +108,7 @@ namespace filemanager
          return false;
       }
 
-      m_fileSrc = session().file().get_file(pszSrc,::file::mode_read | ::file::type_binary | ::file::share_deny_write);
+      m_fileSrc = Application.file().get_file(pszSrc,::file::mode_read | ::file::type_binary | ::file::share_deny_write);
 
       if(m_fileSrc.is_null())
       {
@@ -133,7 +133,7 @@ namespace filemanager
 
       session().dir().mk(System.dir().name(pszDst));
 
-      m_fileDst = session().file().get_file(pszDst,::file::mode_write | ::file::type_binary | ::file::mode_create);
+      m_fileDst = Application.file().get_file(pszDst,::file::mode_write | ::file::type_binary | ::file::mode_create);
 
 
       if(m_fileDst.is_null())
@@ -382,7 +382,7 @@ namespace filemanager
          else
          {
 
-            varLen = session().file().length(m_stra[i]);
+            varLen = Application.file().length(m_stra[i]);
 
             if(varLen.is_null())
             {
@@ -482,7 +482,7 @@ namespace filemanager
       {
          strFormat.Format("-Copy-%03d",i);
          str = System.dir().path(strDir,strName + strFormat + strExtension);
-         if(!session().file().exists(str))
+         if(!Application.file().exists(str))
             return;
       }
    }

@@ -281,6 +281,12 @@ namespace draw2d
       virtual bool Arc(LPCRECT lpRect, double start, double extends);
       virtual bool Polyline(const POINT* lpPoints, int32_t nCount);
 
+
+      virtual bool Arc(double x1,double y1,double x2,double y2,double x3,double y3,double x4,double y4);
+      virtual bool Arc(LPCRECTD lpRect,POINTD ptStart,POINTD ptEnd);
+      virtual bool Arc(double x1,double y1,double x2,double y2,double start,double extends);
+      virtual bool Arc(LPCRECTD lpRect,double start,double extends);
+
       virtual bool AngleArc(int32_t x, int32_t y, int32_t nRadius, float fStartAngle, float fSweepAngle);
       virtual bool ArcTo(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t x4, int32_t y4);
       virtual bool ArcTo(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
@@ -332,6 +338,15 @@ namespace draw2d
       virtual bool DrawEllipse(LPCRECT lpRect);
       virtual bool FillEllipse(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool FillEllipse(LPCRECT lpRect);
+
+
+      virtual bool Ellipse(double x1,double y1,double x2,double y2);
+      virtual bool Ellipse(LPCRECTD lpRect);
+      virtual bool DrawEllipse(double x1,double y1,double x2,double y2);
+      virtual bool DrawEllipse(LPCRECTD lpRect);
+      virtual bool FillEllipse(double x1,double y1,double x2,double y2);
+      virtual bool FillEllipse(LPCRECTD lpRect);
+
       virtual bool Pie(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t x4, int32_t y4);
       virtual bool Pie(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
       virtual bool fill_polygon(const POINTD * lpPoints, int32_t nCount);

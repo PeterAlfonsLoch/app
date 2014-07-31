@@ -555,6 +555,8 @@ public:
    void ScaleRect(double dx, double dy, double ix, double iy);
    void ExtendOnCenter(LPCRECTD lpcrect);
    void FitOnCenterOf(LPCRECTD lpcrect);
+   void CenterOf(LPCRECTD lpcrect);
+   void CenterOf(LPCRECTD lpcrect,SIZED size);
    void DeflateBottomRightSizeByRate(double dRate);
    void SetBottomRightSize(double iWidth, double iHeight);
    inline pointd top_right();

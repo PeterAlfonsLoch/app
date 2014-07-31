@@ -91,6 +91,11 @@ namespace base
       sp(::user::interaction)                         m_pwndMain;
       bool                                            m_bInitializeProDevianMode;
 
+      ::http::application                             m_http;
+      ::file::dir::application                        m_dir;
+      ::file::application                             m_file;
+
+
 
       application();
       virtual ~application();
@@ -127,6 +132,10 @@ namespace base
 
       inline class ::fontopus::license &        license()      { return *m_splicense; }
       inline ::database::server &               dataserver()   { return *m_spdataserver; }
+      inline class ::http::application &        http()         { return m_http; }
+      inline class ::file::dir::application &   dir()          { return m_dir; }
+      inline class ::file::application &        file()         { return m_file; }
+
 
 
       virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::user::impact_system) ptemplate,sp(::user::document) pdocument);

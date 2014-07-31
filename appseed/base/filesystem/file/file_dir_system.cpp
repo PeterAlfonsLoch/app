@@ -1060,7 +1060,7 @@ namespace file
 
                   }
 
-                  strPath = session().file().as_string(strFile);
+                  strPath = Application.file().as_string(strFile);
 
                   if (strPath.has_char())
                   {
@@ -1257,7 +1257,7 @@ namespace file
 
                }
 
-               strPath = session().file().as_string(strFile);
+               strPath = Application.file().as_string(strFile);
 
                if(strPath.has_char())
                {
@@ -1459,7 +1459,7 @@ else
 
             if(session().m_bMatterFromHttpCache)
             {
-               session().file().put_contents(strFile,strPath);
+               Application.file().put_contents(strFile,strPath);
             }
 
             return strPath;
@@ -1531,7 +1531,7 @@ else
 
                }
 
-               strPath = session().file().as_string(strFile);
+               strPath = Application.file().as_string(strFile);
 
                if (strPath.has_char())
                {
@@ -1693,7 +1693,7 @@ else
 
             }
 
-            strPath = session().file().as_string(strFile);
+            strPath = Application.file().as_string(strFile);
 
             if(strPath.has_char())
             {
@@ -1876,7 +1876,7 @@ ret:
          if(session().m_bMatterFromHttpCache)
 
          {
-            session().file().put_contents(strFile,strPath);
+            Application.file().put_contents(strFile,strPath);
 
             strFile = strPath;
 
@@ -1885,7 +1885,7 @@ ret:
             strFile.replace("?","%19");
             strFile = System.dir().appdata("cache/" + strFile + ".exists_question");
 
-            session().file().put_contents(strFile, "yes");
+            Application.file().put_contents(strFile, "yes");
 
 
          }

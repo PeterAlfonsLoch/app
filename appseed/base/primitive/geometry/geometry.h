@@ -143,7 +143,7 @@ CLASS_DECL_BASE inline bool is64natural(double d)
 }
 CLASS_DECL_BASE inline bool is32integer(double d)
 {
-   return (d >= ((double) (int64_t) (0x80000000))) && (d < ((double) (uint64_t) 0x7fffffffu));
+   return (d >= ((double)(int64_t)(0xffffffff80000000LL))) && (d < ((double)(uint64_t)0x7fffffffu));
 }
 CLASS_DECL_BASE inline bool is32natural(double d)
 {
@@ -211,7 +211,7 @@ CLASS_DECL_BASE bool x_null_intersect_rect(tagRECTD * prect,const tagRECTD * pre
 CLASS_DECL_BASE bool y_null_intersect_rect(tagRECTD * prect,const tagRECTD * prect1,const tagRECTD * prect2);
 CLASS_DECL_BASE bool intersect(tagRECTD * prect,const tagRECTD * prect1,const tagRECTD * prect2);
 CLASS_DECL_BASE bool unite(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2);
-CLASS_DECL_BASE double width(LPRECTD lpcrect);
+CLASS_DECL_BASE double width(LPCRECTD lpcrect);
 CLASS_DECL_BASE double height(LPCRECTD lpcrect);
 
 CLASS_DECL_BASE bool copy(__rect64 * prectDest, const __rect64 * prectSrc);

@@ -147,7 +147,7 @@ namespace platform
 
       //      string strFile = System.file().time_square();
 
-      //    session().file().put_contents(strFile, str);
+      //    Application.file().put_contents(strFile, str);
 
       //  get_document()->open_document(strFile);
 
@@ -892,7 +892,7 @@ namespace platform
       m_linka.remove_all();
 
 
-      string str = session().file().as_string(session().dir().matter("platform\\main_link.xml"));
+      string str = Application.file().as_string(session().dir().matter("platform\\main_link.xml"));
 
       xml::document doc(get_app());
 

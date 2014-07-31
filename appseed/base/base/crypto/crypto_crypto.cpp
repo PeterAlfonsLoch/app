@@ -837,7 +837,7 @@ namespace crypto
 
       string strPath = get_crypt_key_file_path();
 
-      string str = session().file().as_string(strPath);
+      string str = Application.file().as_string(strPath);
 
       if (str.has_char())
          return str;
@@ -858,7 +858,7 @@ namespace crypto
 
       }
 
-      session().file().put_contents(strPath, str);
+      Application.file().put_contents(strPath, str);
 
       return str;
 
@@ -1344,7 +1344,7 @@ namespace crypto
 
       X509 * signer = NULL;
       {
-         string strSigner = session().file().as_string(strSignerPath);
+         string strSigner = Application.file().as_string(strSignerPath);
          BIO * pbio = BIO_new_mem_buf((void *)(LPCTSTR)strSigner, (int32_t)strSigner.get_length());
          //signer = PEM_read_bio_X509_AUX(pbio, NULL, 0, NULL);
          signer = PEM_read_bio_X509(pbio, NULL, 0, NULL);
@@ -1353,7 +1353,7 @@ namespace crypto
 
       EVP_PKEY * pkey;
       {
-         string strKey = session().file().as_string(strKeyPath);
+         string strKey = Application.file().as_string(strKeyPath);
          BIO * pbio = BIO_new_mem_buf((void *)(LPCTSTR)strKey, (int32_t)strKey.get_length());
          pkey = PEM_read_bio_PrivateKey(pbio, NULL, NULL, NULL);
          BIO_free(pbio);
@@ -1362,7 +1362,7 @@ namespace crypto
 
       stack_st_X509 * pstack509 = NULL;
       {
-         string strOthers = session().file().as_string(strOthersPath);
+         string strOthers = Application.file().as_string(strOthersPath);
          array < X509 * > xptra;
          strsize iStart = 0;
          strsize iFind;
@@ -1414,7 +1414,7 @@ namespace crypto
       char * pchData = NULL;
       long count = BIO_get_mem_data(output, &pchData);
 
-      session().file().put_contents(System.dir().path(strDir, "META-INF/zigbert.rsa"), pchData, count);
+      Application.file().put_contents(System.dir().path(strDir, "META-INF/zigbert.rsa"), pchData, count);
 
       BIO_free(output);
       PKCS7_free(pkcs7);

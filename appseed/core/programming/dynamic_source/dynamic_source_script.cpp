@@ -283,7 +283,7 @@ namespace dynamic_source
       m_strScriptPath.replace("/", "\\");
       #else
       /*int iRetry = 5;
-      while(!session().file().exists(m_strScriptPath) && iRetry > 0)
+      while(!Application.file().exists(m_strScriptPath) && iRetry > 0)
       {
 
           Sleep(584);
@@ -291,7 +291,7 @@ namespace dynamic_source
       }*/
       #endif
       //::OutputDebugString(m_strScriptPath);
-      if(!session().file().exists(m_strScriptPath))
+      if(!Application.file().exists(m_strScriptPath))
       {
          if(HasTempError(false))
          {

@@ -1502,7 +1502,7 @@ namespace filemanager
 
       if(::str::ends_ci(strPath, ".core"))
       {
-         string str = session().file().as_string(strPath);
+         string str = Application.file().as_string(strPath);
          if(::str::begins_eat_ci(str, "ca2prompt\r\n"))
          {
             str.trim();

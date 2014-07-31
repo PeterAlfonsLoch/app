@@ -154,7 +154,7 @@ namespace http
       strFile.replace("?", "%19");
       strFile = System.dir().appdata("cache/" + strFile + ".exists_question");
 
-      string strCache = session().file().as_string(strFile);
+      string strCache = Application.file().as_string(strFile);
 
       if(strCache.has_char())
       {
@@ -179,7 +179,7 @@ namespace http
          strCache = "yes";
       else
          strCache = "no";
-      session().file().put_contents(strFile, strCache);
+      Application.file().put_contents(strFile, strCache);
       return bExists;
    }
 
@@ -204,7 +204,7 @@ namespace http
       strFile.replace("?", "%19");
       strFile = System.dir().appdata("cache/" + strFile + ".length_question");
 
-      string strCache = session().file().as_string(strFile);
+      string strCache = Application.file().as_string(strFile);
 
       if (strCache.has_char())
       {
@@ -225,7 +225,7 @@ namespace http
       else
          strCache = ::str::from(len.int64());
 
-      session().file().put_contents(strFile, strCache);
+      Application.file().put_contents(strFile, strCache);
 
       return len;
 

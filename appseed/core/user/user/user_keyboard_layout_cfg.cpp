@@ -162,7 +162,7 @@ namespace user
                string strPort;
                ptext->_001GetText(strPort);
                node.add_attr("port", strPort);
-               session().file().put_contents(System.dir().appdata("proxy.xml"), node.get_xml());
+               Application.file().put_contents(System.dir().appdata("proxy.xml"), node.get_xml());
             }
          }
       }

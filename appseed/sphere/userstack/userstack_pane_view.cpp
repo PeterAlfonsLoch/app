@@ -318,7 +318,7 @@ namespace userstack
       {
          string str = System.dir().path(psz, straRelative[i]);
          session().dir().mk(System.dir().name(str));
-         session().file().copy(str, straPath[i], true);
+         Application.file().copy(str, straPath[i], true);
       }
       straRelative.remove_all();
       straPath.remove_all();
@@ -327,7 +327,7 @@ namespace userstack
       {
          string str = System.dir().path(psz, straRelative[i]);
          session().dir().mk(System.dir().name(str));
-         session().file().copy(str, straPath[i], true);
+         Application.file().copy(str, straPath[i], true);
       }
    }
 
@@ -353,11 +353,11 @@ namespace userstack
          System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
          if(::str::begins_eat(strApp, "application:"))
          {
-            session().file().put_contents(System.dir().path(strDir, strApp + ".ca2"), "ca2prompt\r\n"+ strApp);
+            Application.file().put_contents(System.dir().path(strDir, strApp + ".ca2"), "ca2prompt\r\n"+ strApp);
          }
       }
 
-      //session().file().put_contents(System.dir().path(strDir, "veriwell Musical Player.ca2"), "ca2prompt\r\nmplite");
+      //Application.file().put_contents(System.dir().path(strDir, "veriwell Musical Player.ca2"), "ca2prompt\r\nmplite");
 /*      stringa straPath;
       stringa straRelative;
       straPath.remove_all();

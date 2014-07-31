@@ -50,7 +50,7 @@ namespace colorertake5
 
             if (logLocation.has_char())
             {
-               string str = session().file().as_string(logLocation);
+               string str = Application.file().as_string(logLocation);
                colorer_logger_set_target(str);
             }
             if (fileErrorHandler == NULL)
@@ -201,7 +201,7 @@ namespace colorertake5
             {
                if(!session().dir().is(straPath[i]))
                {
-                  string str = session().file().as_string(straPath[i]);
+                  string str = Application.file().as_string(straPath[i]);
                   try
                   {
                      hrcParser->loadSource(straPath[i], str);
@@ -217,7 +217,7 @@ namespace colorertake5
          }
          else
          {
-            string strSource = session().file().as_string(path);
+            string strSource = Application.file().as_string(path);
             if(strSource.has_char())
             {
                try
@@ -285,7 +285,7 @@ namespace colorertake5
 
                strPath = System.dir().path(strDir, hrdLocV->element_at(idx));
 
-               ::file::byte_input_stream spfile(session().file().get_file(strPath, ::file::mode_read | ::file::type_binary));
+               ::file::byte_input_stream spfile(Application.file().get_file(strPath, ::file::mode_read | ::file::type_binary));
 
                if(spfile.is_reader_set())
                {
@@ -327,7 +327,7 @@ namespace colorertake5
          {
             try
             {
-               ::file::byte_input_stream stream(session().file().get_file(hrdLocV->element_at(idx), ::file::mode_read |::file::type_binary));
+               ::file::byte_input_stream stream(Application.file().get_file(hrdLocV->element_at(idx), ::file::mode_read |::file::type_binary));
                if(stream.is_reader_set())
                {
                   mapper->loadRegionMappings(stream);

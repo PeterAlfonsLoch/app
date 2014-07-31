@@ -141,7 +141,7 @@ namespace fontopus
          }
          else
          {
-            strHost = session().file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
+            strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
             if(!straRequestingServer.contains_ci(strHost))
             {
                strHost = "https://account.ca2.cc/";
@@ -294,7 +294,7 @@ namespace fontopus
       }
       m_strLicense = psz;
       m_loginthread.m_strLicense = m_strLicense;
-      string strHost = session().file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
+      string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
       stringa straRequestingServer;
       straRequestingServer.add("account.ca2.cc");
       //straRequestingServer.add("eu-account.ca2.cc");
@@ -526,7 +526,7 @@ namespace fontopus
             iAuth = result_auth;
             if(m_bFontopusServer)
             {
-               session().file().put_contents(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"),m_strFontopusServer);
+               Application.file().put_contents(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"),m_strFontopusServer);
             }
             execute();
             if(m_strLicense.has_char())
@@ -841,7 +841,7 @@ namespace fontopus
 
          System.http().download(m_httpexecutea[i].m_strUrl,strFilename,set);
 
-         strResponse = session().file().as_string(strFilename);
+         strResponse = Application.file().as_string(strFilename);
          TRACE0(strResponse);
          m_httpexecutea[i].m_strResponse = strResponse;
       }

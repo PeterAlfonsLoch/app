@@ -371,7 +371,7 @@ namespace android
             keyPlugin.SetValue("Path", System.dir().ca2module("npca2.dll"));
             keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
             keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-            keyPlugin.SetValue("Version", session().file().as_string(System.dir().ca2("appdata/x86/ca2_build.txt")));
+            keyPlugin.SetValue("Version", Application.file().as_string(System.dir().ca2("appdata/x86/ca2_build.txt")));
 
             registry::Key keyApplicationca2;
 

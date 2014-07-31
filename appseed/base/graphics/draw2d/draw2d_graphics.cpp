@@ -534,16 +534,15 @@ namespace draw2d
       throw interface_only_exception(get_app());
       
       return false;
+
    }
+
 
    bool graphics::Arc(LPCRECT lpRect, POINT ptStart, POINT ptEnd)
    {
-      UNREFERENCED_PARAMETER(lpRect);
-      UNREFERENCED_PARAMETER(ptStart);
-      UNREFERENCED_PARAMETER(ptEnd);
-      throw interface_only_exception(get_app());
-      
-      return false;
+
+      return Arc(lpRect->left,lpRect->top,width(lpRect),height(lpRect),ptStart.x,ptStart.y,ptEnd.x,ptEnd.y);
+
    }
 
 
@@ -552,17 +551,17 @@ namespace draw2d
 
       point ptCenter;
 
-      ptCenter.x = (x1 + w) / 2;
-      ptCenter.y = (y1 + h) / 2;
+      ptCenter.x = x1 + w / 2;
+      ptCenter.y = y1 + h / 2;
 
-      double dx = max(2.0, (w) / 2.0);
-      double dy = max(2.0, (h) / 2.0);
+      double dx = w / 2.0;
+      double dy = h / 2.0;
 
-      double startx = (cos(start) * dx) + ptCenter.x;
-      double starty = (cos(start) * dy) + ptCenter.x;
+      double startx = (cos(start * System.math().GetPi() / 180.0) * dx) + ptCenter.x;
+      double starty = (sin(start * System.math().GetPi() / 180.0) * dy) + ptCenter.y;
 
-      double endx = (cos(start + extends) * dx) + ptCenter.x;
-      double endy = (cos(start + extends) * dy) + ptCenter.x;
+      double endx = (cos((start + extends) * System.math().GetPi() / 180.0) * dx) + ptCenter.x;
+      double endy = (sin((start + extends) * System.math().GetPi() / 180.0) * dy) + ptCenter.y;
 
       return Arc(x1, y1, x1 + w, y1 + h, (int32_t) startx, (int32_t) starty, (int32_t) endx, (int32_t) endy);
 
@@ -572,6 +571,62 @@ namespace draw2d
    {
       return Arc(lpRect->left, lpRect->top, lpRect->right, lpRect->bottom, start, extends);
    }
+
+
+
+   bool graphics::Arc(double x1,double y1,double x2,double y2,double x3,double y3,double x4,double y4)
+   {
+      UNREFERENCED_PARAMETER(x1);
+      UNREFERENCED_PARAMETER(y1);
+      UNREFERENCED_PARAMETER(x2);
+      UNREFERENCED_PARAMETER(y2);
+      UNREFERENCED_PARAMETER(x3);
+      UNREFERENCED_PARAMETER(y3);
+      UNREFERENCED_PARAMETER(x4);
+      UNREFERENCED_PARAMETER(y4);
+      throw interface_only_exception(get_app());
+
+      return false;
+   }
+
+
+   bool graphics::Arc(LPCRECTD lpRect,POINTD ptStart,POINTD ptEnd)
+   {
+
+      return Arc(lpRect->left,lpRect->top,width(lpRect), height(lpRect),ptStart.x, ptStart.y, ptEnd.x, ptEnd.y);
+
+   }
+
+
+   bool graphics::Arc(double x1,double y1,double w,double h,double start,double extends)
+   {
+
+      pointd ptCenter;
+
+      ptCenter.x = x1 + w / 2.0;
+      ptCenter.y = y1 + h / 2.0;
+
+      double dx = w / 2.0;
+      double dy = h / 2.0;
+
+      double startx = (cos(start * System.math().GetPi() / 180.0) * dx) + ptCenter.x;
+      double starty = (sin(start * System.math().GetPi() / 180.0) * dy) + ptCenter.y;
+
+      double endx = (cos((start + extends) * System.math().GetPi() / 180.0) * dx) + ptCenter.x;
+      double endy = (sin((start + extends) * System.math().GetPi() / 180.0) * dy) + ptCenter.y;
+
+      return Arc(x1,y1,x1 + w,y1 + h,(double)startx,(double)starty,(double)endx,(double)endy);
+
+   }
+
+
+   bool graphics::Arc(LPCRECTD lpRect,double start,double extends)
+   {
+
+      return Arc(lpRect->left,lpRect->top,lpRect->right,lpRect->bottom,start,extends);
+
+   }
+
 
    bool graphics::Polyline(const POINT* lpPoints, int32_t nCount)
    {
@@ -854,6 +909,64 @@ namespace draw2d
    }
 
    bool graphics::FillEllipse(LPCRECT lpRect)
+   {
+      UNREFERENCED_PARAMETER(lpRect);
+      throw interface_only_exception(get_app());
+      return false;
+   }
+
+
+   bool graphics::Ellipse(double x1,double y1,double x2,double y2)
+   {
+
+      bool bFill = FillEllipse(x1,y1,x2,y2);
+
+      bool bDraw = DrawEllipse(x1,y1,x2,y2);
+
+      return bFill && bDraw;
+
+   }
+
+   bool graphics::Ellipse(LPCRECTD lpRect)
+   {
+
+      bool bFill = FillEllipse(lpRect);
+
+      bool bDraw = DrawEllipse(lpRect);
+
+      return bFill && bDraw;
+
+   }
+
+
+   bool graphics::DrawEllipse(double x1,double y1,double x2,double y2)
+   {
+      UNREFERENCED_PARAMETER(x1);
+      UNREFERENCED_PARAMETER(y1);
+      UNREFERENCED_PARAMETER(x2);
+      UNREFERENCED_PARAMETER(y2);
+      throw interface_only_exception(get_app());
+      return false;
+   }
+
+   bool graphics::DrawEllipse(LPCRECTD lpRect)
+   {
+      UNREFERENCED_PARAMETER(lpRect);
+      throw interface_only_exception(get_app());
+      return false;
+   }
+
+   bool graphics::FillEllipse(double x1,double y1,double x2,double y2)
+   {
+
+      ::rectd rect(x1,y1,x2,y2);
+
+      return FillEllipse(rect);
+
+
+   }
+
+   bool graphics::FillEllipse(LPCRECTD lpRect)
    {
       UNREFERENCED_PARAMETER(lpRect);
       throw interface_only_exception(get_app());

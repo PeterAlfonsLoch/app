@@ -44,9 +44,6 @@ namespace base
       m_puiLastLButtonDown = NULL;
       m_bIfs                     = true;
 
-      m_dir.set_app(this);
-      m_file.set_app(this);
-      m_http.set_app(this);
       m_psavings                 = canew(class ::base::savings(this));
 
       m_bZipIsDir                = true;

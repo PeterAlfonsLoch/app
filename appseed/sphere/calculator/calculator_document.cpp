@@ -67,7 +67,7 @@ namespace calculator
    {
 
 
-      string str = session().file().as_string(varFile);
+      string str = Application.file().as_string(varFile);
       update_all_views(NULL, 123);
       return TRUE;
 

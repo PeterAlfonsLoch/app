@@ -111,6 +111,11 @@ namespace base
 
       m_pcoreapp                 = NULL;
 
+      
+      m_dir.set_app(this);
+      m_file.set_app(this);
+      m_http.set_app(this);
+
 
 
       m_psignal                  = canew(class signal());
@@ -387,7 +392,7 @@ namespace base
          m_stringtable.set_at(pszId,new string_to_string);
          return;
       }
-      string strFile = session().file().as_string(strFilePath);
+      string strFile = Application.file().as_string(strFilePath);
       if(!doc.load(strFile))
          return;
       string_to_string * pmapNew = new string_to_string;

@@ -856,7 +856,7 @@ alt1:
             {
                if(::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".core"))
                {
-                  string strCommand = ::root::session().file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
+                  string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
                   if(::str::begins_eat(strCommand, "ca2prompt\r")
                      || ::str::begins_eat(strCommand, "ca2prompt\n"))
                   {
@@ -899,7 +899,7 @@ alt1:
       {
          if(::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".core"))
          {
-            string strCommand = ::root::session().file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
+            string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
             if(::str::begins_eat(strCommand, "ca2prompt\r")
                || ::str::begins_eat(strCommand, "ca2prompt\n"))
             {

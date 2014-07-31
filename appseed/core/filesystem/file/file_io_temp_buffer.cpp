@@ -45,8 +45,8 @@ namespace file
          return true;
       if (!_tempFileCreated)
       {
-         _tempFileName = session().file().time_square(kTempFilePrefixString);
-         _tempFile = session().file().get(_tempFileName);
+         _tempFileName = Application.file().time_square(kTempFilePrefixString);
+         _tempFile = Application.file().get(_tempFileName);
          _tempFileCreated = _tempFile.is_set();
       }
       primitive::memory_size processed = size;

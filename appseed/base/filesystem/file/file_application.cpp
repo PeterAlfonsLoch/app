@@ -331,7 +331,7 @@ namespace file
 
             single_lock sl(&System.http().m_mutexDownload, true);
 
-            if (session().file().exists(strFile) && !(System.http().m_straDownloading.contains(strPath) || System.http().m_straExists.contains(strPath)))
+            if (Application.file().exists(strFile) && !(System.http().m_straDownloading.contains(strPath) || System.http().m_straExists.contains(strPath)))
             {
 
                sl.unlock();

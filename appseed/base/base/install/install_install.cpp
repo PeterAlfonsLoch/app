@@ -728,7 +728,7 @@ namespace install
 
       string strContents;
 
-      strContents = session().file().as_string(strPath);
+      strContents = Application.file().as_string(strPath);
 
       ::xml::document doc(get_app());
 
@@ -756,7 +756,7 @@ namespace install
 
          lpnode->add_attr("id", pszId);
 
-         session().file().put_contents(strPath, doc.get_xml());
+         Application.file().put_contents(strPath, doc.get_xml());
 
       }
 
@@ -771,7 +771,7 @@ namespace install
 
       string strContents;
 
-      strContents = session().file().as_string(strPath);
+      strContents = Application.file().as_string(strPath);
 
       ::xml::document doc(get_app());
 
@@ -795,7 +795,7 @@ namespace install
 
          doc.get_root()->remove_child(lpnode);
 
-         session().file().put_contents(strPath, doc.get_xml());
+         Application.file().put_contents(strPath, doc.get_xml());
 
       }
 
@@ -814,7 +814,7 @@ namespace install
 
       ::xml::document doc(get_app());
 
-      doc.load(session().file().as_string(strPath));
+      doc.load(Application.file().as_string(strPath));
 
       if (doc.get_root()->get_name().is_empty())
       {
@@ -908,7 +908,7 @@ namespace install
 
       opt.newline = true;
 
-      session().file().put_contents(strPath, doc.get_xml(&opt));
+      Application.file().put_contents(strPath, doc.get_xml(&opt));
 
    }
 
@@ -923,7 +923,7 @@ namespace install
 
       string strContents;
 
-      strContents = session().file().as_string(strPath);
+      strContents = Application.file().as_string(strPath);
 
       ::xml::document doc(get_app());
 

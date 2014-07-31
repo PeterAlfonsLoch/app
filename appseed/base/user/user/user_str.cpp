@@ -417,7 +417,7 @@ namespace user
       straSep.add("\r");
       straSep.add("\n");
       straSep.add("\n\r");
-      straLines.add_smallest_tokens(session().file().as_string(pszFile), straSep, false);
+      straLines.add_smallest_tokens(Application.file().as_string(pszFile), straSep, false);
 
       string str;
       string strLine;

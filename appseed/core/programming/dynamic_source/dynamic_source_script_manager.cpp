@@ -468,7 +468,7 @@ namespace dynamic_source
          return ppair->m_element2;
       else
       {
-         bool bFileExists = session().file().exists(strPath);
+         bool bFileExists = Application.file().exists(strPath);
          m_mapIncludeMatchesFileExists.set_at(strPath, bFileExists);
          return bFileExists;
       }
@@ -512,7 +512,7 @@ namespace dynamic_source
 
          // roughly detect this way: by finding the <?
 
-         bool bHasScript = session().file().as_string(strPath).find("<?") >= 0;
+         bool bHasScript = Application.file().as_string(strPath).find("<?") >= 0;
 
          m_mapIncludeHasScript.set_at(strPath, bHasScript);
 
@@ -940,7 +940,7 @@ namespace dynamic_source
 
       try
       {
-         f = session().file().get_file(strFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_write);
+         f = Application.file().get_file(strFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_write);
       }
       catch(...)
       {

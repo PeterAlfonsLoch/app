@@ -89,7 +89,7 @@ namespace usernet // ca8 + cube
                string strPort;
                ptext->_001GetText(strPort);
                doc.get_root()->add_attr("port", strPort);
-               session().file().put_contents(System.dir().appdata("proxy.xml"), doc.get_xml());
+               Application.file().put_contents(System.dir().appdata("proxy.xml"), doc.get_xml());
             }
          }
       }

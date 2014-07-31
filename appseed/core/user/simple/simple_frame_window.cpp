@@ -1134,7 +1134,7 @@ bool simple_frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, uin
    if(ptoolbar == NULL)
       return false;
 
-   if(!ptoolbar->LoadXmlToolBar(session().file().as_string(session().dir().matter(pszToolBar))))
+   if(!ptoolbar->LoadXmlToolBar(Application.file().as_string(session().dir().matter(pszToolBar))))
    {
       try
       {

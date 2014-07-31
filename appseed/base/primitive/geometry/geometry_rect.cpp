@@ -1251,3 +1251,27 @@ void rectd::get_bounding_rect(const pointd_array & pointa)
 }
 
 
+
+
+
+void rectd::CenterOf(LPCRECTD lpcrect,SIZED size)
+{
+   double cx = size.cx;
+   double cy = size.cy;
+
+   double dx = ::width(lpcrect);
+   double dy = ::height(lpcrect);
+
+   left     = lpcrect->left + (dx - cx) / 2;
+   top      = lpcrect->top + (dy - cy) / 2;
+   right    = left + cx;
+   bottom   = top + cy;
+
+}
+
+void rectd::CenterOf(LPCRECTD lpcrect)
+{
+
+   CenterOf(lpcrect,size());
+
+}

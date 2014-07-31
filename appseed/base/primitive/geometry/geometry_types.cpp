@@ -167,7 +167,7 @@ bool copy(tagRECTD * prectDest, const RECT * prectSrc)
 
 bool copy(RECT * prectDest, const tagRECTD * prectSrc)
 {
-   if(is64integer(prectSrc->left) || is64integer(prectSrc->top) || is64integer(prectSrc->right) || is64integer(prectSrc->bottom))
+   if(!is32integer(prectSrc->left) || !is32integer(prectSrc->top) || !is32integer(prectSrc->right) || !is32integer(prectSrc->bottom))
       return FALSE;
    prectDest->left      = (LONG) prectSrc->left;
    prectDest->top       = (LONG) prectSrc->top;
@@ -388,7 +388,7 @@ bool unite(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2)
 
 
 
-CLASS_DECL_BASE double width(LPRECTD lpcrect)
+CLASS_DECL_BASE double width(LPCRECTD lpcrect)
 {
    return lpcrect->right - lpcrect->left;
 }

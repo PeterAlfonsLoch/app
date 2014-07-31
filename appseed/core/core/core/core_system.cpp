@@ -891,7 +891,7 @@ namespace core
 
       }
 
-      str = session().file().as_string(filename);
+      str = Application.file().as_string(filename);
 
       return true;
 

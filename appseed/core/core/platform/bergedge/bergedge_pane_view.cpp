@@ -253,7 +253,7 @@ namespace bergedge
                System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
                if(::str::begins_eat(strApp, "application:"))
                {
-                  session().file().put_contents(System.dir().path(strDir, strApp + ".core"), "ca2prompt\n" + strApp);
+                  Application.file().put_contents(System.dir().path(strDir, strApp + ".core"), "ca2prompt\n" + strApp);
                }
             }
             pdoc->FileManagerBrowse(strDir, ::action::source::system_default());
@@ -449,7 +449,7 @@ namespace bergedge
       {
          string str = System.dir().path(psz, straRelative[i]);
          session().dir().mk(System.dir().name(str));
-         session().file().copy(str, straPath[i], true);
+         Application.file().copy(str, straPath[i], true);
       }
       straRelative.remove_all();
       straPath.remove_all();
@@ -458,7 +458,7 @@ namespace bergedge
       {
          string str = System.dir().path(psz, straRelative[i]);
          session().dir().mk(System.dir().name(str));
-         session().file().copy(str, straPath[i], true);
+         Application.file().copy(str, straPath[i], true);
       }
    }
 
@@ -484,11 +484,11 @@ namespace bergedge
          System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
          if(::str::begins_eat(strApp, "application:"))
          {
-            session().file().put_contents(System.dir().path(strDir, strApp + ".core"), "ca2prompt\r\n"+ strApp);
+            Application.file().put_contents(System.dir().path(strDir, strApp + ".core"), "ca2prompt\r\n"+ strApp);
          }
       }
 
-      //session().file().put_contents(System.dir().path(strDir, "veriwell Musical Player.core"), "ca2prompt\r\nmplite");
+      //Application.file().put_contents(System.dir().path(strDir, "veriwell Musical Player.core"), "ca2prompt\r\nmplite");
 /*      stringa straPath;
       stringa straRelative;
       straPath.remove_all();
@@ -524,7 +524,7 @@ namespace bergedge
             {
                string str = System.dir().path(psz, straRelative[i]);
                session().dir().mk(System.dir().name(str));
-               session().file().copy(str, straPath[i], true);
+               Application.file().copy(str, straPath[i], true);
             }
          }
       }

@@ -258,7 +258,7 @@ namespace command
       m_pimagelist->add_matter_icon("system/language_change.ico");
 
 
-      string str = session().file().as_string(
+      string str = Application.file().as_string(
          session().dir().matter("command\\toolbar.xml"));
 
 	   if (!m_toolbar.CreateEx(this) ||

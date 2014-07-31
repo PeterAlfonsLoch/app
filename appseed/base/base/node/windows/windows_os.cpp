@@ -332,7 +332,7 @@ namespace windows
             keyPlugin.SetValue("Path", System.dir().ca2module("npca2.dll"));
             keyPlugin.SetValue("ProductName", "core plugin for NPAPI");
             keyPlugin.SetValue("Vendor", "core Desenvolvimento de Software Ltda.");
-            keyPlugin.SetValue("Version", session().file().as_string(System.dir().element("appdata/x86/ca2_build.txt")));
+            keyPlugin.SetValue("Version", Application.file().as_string(System.dir().element("appdata/x86/ca2_build.txt")));
 
             registry::Key keyApplicationCa2;
 

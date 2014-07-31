@@ -35,9 +35,9 @@ namespace http
          string str = System.file().as_string(System.dir().appdata("machine/proxy.xml"), &System);
          if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
          {
-            session().file().copy(System.dir().appdata("proxy_original.xml"), System.dir().element("proxy.xml"), false);
+            Application.file().copy(System.dir().appdata("proxy_original.xml"), System.dir().element("proxy.xml"), false);
          }
-         if(session().file().exists(System.dir().appdata("proxy.xml")))
+         if(Application.file().exists(System.dir().appdata("proxy.xml")))
          {
             try
             {
@@ -51,9 +51,9 @@ namespace http
       else if(i == 2)
       {
          // telmico: original proxy configuration
-         if(session().file().exists(System.dir().appdata("proxy_original.xml")))
+         if(Application.file().exists(System.dir().appdata("proxy_original.xml")))
          {
-            session().file().copy(System.dir().appdata("proxy.xml"), System.dir().appdata("proxy_original.xml"), false);
+            Application.file().copy(System.dir().appdata("proxy.xml"), System.dir().appdata("proxy_original.xml"), false);
          }
       }
       else
@@ -62,9 +62,9 @@ namespace http
          string str = System.file().as_string(System.dir().appdata("proxy.xml"), &System);
          if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
          {
-            session().file().copy(System.dir().appdata("proxy_original.xml"), System.dir().appdata("proxy.xml"), false);
+            Application.file().copy(System.dir().appdata("proxy_original.xml"), System.dir().appdata("proxy.xml"), false);
          }
-         session().file().put_contents(System.dir().appdata("proxy.xml"), "proxy");
+         Application.file().put_contents(System.dir().appdata("proxy.xml"), "proxy");
       }
    }
 
@@ -96,7 +96,7 @@ namespace http
       */
 
 
-      string strHost = session().file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
+      string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
       stringa straRequestingServer;
       straRequestingServer.add("account.ca2.cc");
       //straRequestingServer.add("eu-account.ca2.cc");
@@ -164,7 +164,7 @@ namespace http
          varQuery["disable_ca2_sessid"] = true;
          varQuery["no_proxy_config"] = true;
 
-         ppac->m_strAutoConfigScript = session().file().as_string(ppac->m_strUrl, varQuery);
+         ppac->m_strAutoConfigScript = Application.file().as_string(ppac->m_strUrl, varQuery);
 
 
          m_mapPac.set_at(pszUrl, ppac);

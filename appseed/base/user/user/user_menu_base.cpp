@@ -61,7 +61,7 @@ namespace user
 
       xml::document doc(get_app());
 
-      doc.load(session().file().as_string(session().dir().matter(pszMatter)));
+      doc.load(Application.file().as_string(session().dir().matter(pszMatter)));
 
       return LoadMenu(doc.get_root());
 

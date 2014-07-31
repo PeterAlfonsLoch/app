@@ -49,9 +49,6 @@ namespace base
       application_ptra                                         m_appptra;
       sp(::user::interaction)                                  m_spuiFocus;
       sp(::user::str_context)                                  m_puserstrcontext;
-      ::http::application                                      m_http;
-      ::file::dir::application                                 m_dir;
-      ::file::application                                      m_file;
       sp(::sockets::sockets)                                   m_psockets;
       bool                                                     m_bZipIsDir;
       map < ::user::e_key,::user::e_key,bool,bool > *          m_pmapKeyPressed;
@@ -97,9 +94,6 @@ namespace base
 
       ::base::copydesk & copydesk();
       inline sp(class ::fs::data)               fs()           { return m_spfsdata; }
-      inline class ::http::application &        http()         { return m_http; }
-      inline class ::file::dir::application &   dir()          { return m_dir; }
-      inline class ::file::application &        file()         { return m_file; }
       inline ::sockets::sockets &               sockets()      { return *m_psockets; }
       inline sp(class ::user::user)             user()         { return m_spuser; }
       inline ::base::savings &                  savings()      { return *m_psavings; }

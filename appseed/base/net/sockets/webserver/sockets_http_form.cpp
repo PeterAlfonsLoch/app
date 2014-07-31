@@ -170,12 +170,12 @@ namespace http
                         strTime = t.FormatGmt("%Y\\%m\\%d\\%H\\%M\\%S\\");
                         strIndex.Format("%08x\\", i);
                         strTempFile = "C:\\upload\\" + strTime + strIndex + current_filename;
-                        if (!session().file().exists(strTempFile))
+                        if (!Application.file().exists(strTempFile))
                            break;
 
                      }
                      
-                     ::file::binary_buffer_sp spfile(session().file().get_file(strTempFile, ::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write));
+                     ::file::binary_buffer_sp spfile(Application.file().get_file(strTempFile, ::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write));
                      sl.unlock();
                      if(spfile.is_set())
                      {

@@ -126,7 +126,7 @@ bool html_form::open_document(const char * lpszPathName)
    string strPathName(lpszPathName);
    if(strPathName.Mid(3) == "wb:")
       return FALSE;
-   string str = session().file().as_string(lpszPathName);
+   string str = Application.file().as_string(lpszPathName);
    if(str.is_empty())
    {
       System.sync_load_url(str, lpszPathName, &ApplicationUser, mm_pcookies);

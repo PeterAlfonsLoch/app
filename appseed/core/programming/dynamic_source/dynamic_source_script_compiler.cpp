@@ -114,14 +114,14 @@ namespace dynamic_source
       vars2batDst = System.dir().element("stage/front", "vc_vars_query_registry.bat");
       try
       {
-         session().file().copy(vars1batDst, vars1batSrc, false);
+         Application.file().copy(vars1batDst, vars1batSrc, false);
       }
       catch(...)
       {
       }
       try
       {
-         session().file().copy(vars2batDst, vars2batSrc, false);
+         Application.file().copy(vars2batDst, vars2batSrc, false);
       }
       catch(...)
       {
@@ -217,7 +217,7 @@ namespace dynamic_source
       string strScript;
       strScript = System.file().title_(strName);
       string strTransformName = strName;
-      if(session().file().exists(strName))
+      if(Application.file().exists(strName))
       {
          pscript->m_strSourcePath = strName;
          strTransformName.replace(":", "");
@@ -228,7 +228,7 @@ namespace dynamic_source
       }
       pscript->m_strSourceDir = System.dir().name(pscript->m_strSourcePath);
 
-      if(!session().file().exists(pscript->m_strSourcePath))
+      if(!Application.file().exists(pscript->m_strSourcePath))
       {
          pscript->m_memfileError<< "<pre>";
          str.Format("Source File : \"%s\" does not exist", pscript->m_strSourcePath);
@@ -267,7 +267,7 @@ namespace dynamic_source
 
       try
       {
-         if(session().file().exists(strO))
+         if(Application.file().exists(strO))
          {
             System.file().del(strO);
          }
@@ -278,7 +278,7 @@ namespace dynamic_source
 #ifndef LINUX
       try
       {
-         if(session().file().exists(strP))
+         if(Application.file().exists(strP))
          {
             System.file().del(strP);
          }
@@ -288,7 +288,7 @@ namespace dynamic_source
       }
       try
       {
-         if(session().file().exists(strL))
+         if(Application.file().exists(strL))
          {
             System.file().del(strL);
          }
@@ -298,7 +298,7 @@ namespace dynamic_source
       }
       try
       {
-         if(session().file().exists(strE))
+         if(Application.file().exists(strE))
          {
             System.file().del(strE);
          }
@@ -308,7 +308,7 @@ namespace dynamic_source
       }
       try
       {
-         if(session().file().exists(strDPCH))
+         if(Application.file().exists(strDPCH))
          {
             System.file().del(strDPCH);
          }
@@ -318,7 +318,7 @@ namespace dynamic_source
       }
       try
       {
-         if(session().file().exists(strDVP))
+         if(Application.file().exists(strDVP))
          {
             System.file().del(strDVP);
          }
@@ -328,7 +328,7 @@ namespace dynamic_source
       }
       try
       {
-         if(session().file().exists(strDVI))
+         if(Application.file().exists(strDVI))
          {
             System.file().del(strDVI);
          }
@@ -340,7 +340,7 @@ namespace dynamic_source
       //::DeleteFile(pscript->m_strBuildBat);
       try
       {
-         if(session().file().exists(pscript->m_strScriptPath + ".old"))
+         if(Application.file().exists(pscript->m_strScriptPath + ".old"))
          {
             System.file().del(pscript->m_strScriptPath + ".old");
          }
@@ -351,7 +351,7 @@ namespace dynamic_source
       }
       try
       {
-         if(session().file().exists(pscript->m_strScriptPath))
+         if(Application.file().exists(pscript->m_strScriptPath))
          {
             System.file().move(pscript->m_strScriptPath + ".old", pscript->m_strScriptPath);
          }
@@ -362,7 +362,7 @@ namespace dynamic_source
       }
       try
       {
-         if(session().file().exists(pscript->m_strScriptPath + ".old"))
+         if(Application.file().exists(pscript->m_strScriptPath + ".old"))
          {
             System.file().del(pscript->m_strScriptPath + ".old");
          }
@@ -377,21 +377,21 @@ namespace dynamic_source
       session().dir().mk(System.dir().name(pscript->m_strBuildBat));
       try
       {
-         //         session().file().copy(strDVI, strSVI, false);
+         //         Application.file().copy(strDVI, strSVI, false);
       }
       catch(...)
       {
       }
       try
       {
-         session().file().copy(strDVP, strSVP, false);
+         Application.file().copy(strDVP, strSVP, false);
       }
       catch(...)
       {
       }
       try
       {
-         session().file().copy(strDPCH, strSPCH, false);
+         Application.file().copy(strDPCH, strSPCH, false);
       }
       catch(...)
       {
@@ -414,14 +414,14 @@ namespace dynamic_source
       vars2batDst = System.dir().path(System.dir().name(pscript->m_strBuildBat), "vc_vars_query_registry.bat", false);
       try
       {
-         session().file().copy(vars1batDst, vars1batSrc, false);
+         Application.file().copy(vars1batDst, vars1batSrc, false);
       }
       catch(...)
       {
       }
       try
       {
-         session().file().copy(vars2batDst, vars2batSrc, false);
+         Application.file().copy(vars2batDst, vars2batSrc, false);
       }
       catch(...)
       {
@@ -453,7 +453,7 @@ namespace dynamic_source
       // strBuildCmd.Format(System.dir().stage("front\\dynamic_source_cl.bat"));
       //#endif
 #endif
-      str = session().file().as_string(strBuildCmd);
+      str = Application.file().as_string(strBuildCmd);
       str.replace("%ITEM_NAME%", strTransformName);
       str.replace("%ITEM_TITLE%", System.file().name_(strTransformName));
       str.replace("%ITEM_DIR%", System.dir().name(strTransformName));
@@ -483,9 +483,9 @@ namespace dynamic_source
 #endif
       str.replace("%TARGET_PATH%", strTargetPath);
       strBuildCmd = pscript->m_strBuildBat;
-      //session().file().put_contents_utf8(strBuildCmd, str);
+      //Application.file().put_contents_utf8(strBuildCmd, str);
 
-      session().file().put_contents(strBuildCmd, str);
+      Application.file().put_contents(strBuildCmd, str);
 
       bool bTimeout = false;
 
@@ -541,13 +541,13 @@ namespace dynamic_source
          pscript->m_memfileError << "error: Timeout during compilation (If there are the compilation or link errors about the file \"" + pscript->m_strCppPath +"\" following this message, they may be out-of-date)";
       }
       str.Format(System.dir().path(m_strTime, "dynamic_source\\%s-compile-log.txt", false), strTransformName);
-      str = session().file().as_string(str);
+      str = Application.file().as_string(str);
       str.replace("\r\n", "\n");
       pscript->m_memfileError << str;
 
       pscript->m_memfileError<< "Linking...\n";
       str.Format(System.dir().path(m_strTime, "dynamic_source\\%s-link-log.txt", false), strTransformName);
-      str = session().file().as_string(str);
+      str = Application.file().as_string(str);
       str.replace("\r\n", "\n");
       pscript->m_memfileError << str;
       pscript->m_memfileError << "</pre>";
@@ -661,7 +661,7 @@ namespace dynamic_source
       memstorage.allocate(spfile->get_length() + 1);
       memstorage.get_data()[memstorage.get_size() - 1] = '\0';
       memstorage.read(file);*/
-      string strSource = session().file().as_string(pscript->m_strSourcePath);
+      string strSource = Application.file().as_string(pscript->m_strSourcePath);
       strsize iPosId = -1;
       stringa straId;
       string strDest;
@@ -779,8 +779,8 @@ namespace dynamic_source
 
       strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
 
-      //session().file().put_contents_utf8(pscript->m_strCppPath, strDest);
-      session().file().put_contents(pscript->m_strCppPath, strDest);
+      //Application.file().put_contents_utf8(pscript->m_strCppPath, strDest);
+      Application.file().put_contents(pscript->m_strCppPath, strDest);
 
    }
 
@@ -802,7 +802,7 @@ namespace dynamic_source
       // strTemplate = System.dir().path(strFolder, "app\\stage\\core\\fontopus\\app\\main\\matter\\dynamic_source_cl.bat", false);
       //#endif
       string str;
-      str = session().file().as_string(strTemplate);
+      str = Application.file().as_string(strTemplate);
       /*string strVars = getenv("VS100COMNTOOLS");
       System.file().path().eat_end_level(strVars, 2, "\\");
       strVars += "vc\\bin\\vcvars32.bat";*/
@@ -829,8 +829,8 @@ namespace dynamic_source
       // strCmd = System.dir().path(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false);
       //#endif
       session().dir().mk(System.dir().name(strCmd));
-      //session().file().put_contents_utf8(strCmd, str);
-      session().file().put_contents(strCmd, str);
+      //Application.file().put_contents_utf8(strCmd, str);
+      Application.file().put_contents(strCmd, str);
       session().dir().mk(System.dir().path(m_strTime, "dynamic_source\\", false));
    }
 
@@ -986,14 +986,14 @@ namespace dynamic_source
       vars2batDst = System.dir().stage("stage\\front","vc_vars_query_registry.bat");
       try
       {
-         session().file().copy(vars1batDst,vars1batSrc,false);
+         Application.file().copy(vars1batDst,vars1batSrc,false);
       }
       catch(...)
       {
       }
       try
       {
-         session().file().copy(vars2batDst,vars2batSrc,false);
+         Application.file().copy(vars2batDst,vars2batSrc,false);
       }
       catch(...)
       {
@@ -1019,7 +1019,7 @@ namespace dynamic_source
          //#else
          //    strCmd.Format(System.dir().path(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false));
          //#endif
-         string str = session().file().as_string(strCmd);
+         string str = Application.file().as_string(strCmd);
          str.replace("%ITEM_NAME%", str1);
          str.replace("%ITEM_DIR%", System.dir().name(str1));
          str.replace("%PLATFORM%", m_strPlatform);
@@ -1043,8 +1043,8 @@ namespace dynamic_source
 #endif
          strCmd = System.dir().element("stage\\front", strFormat);
 
-         //session().file().put_contents_utf8(strCmd, str);
-         session().file().put_contents(strCmd, str);
+         //Application.file().put_contents_utf8(strCmd, str);
+         Application.file().put_contents(strCmd, str);
 
 #ifndef METROWIN
          ::core::process process;
@@ -1067,7 +1067,7 @@ namespace dynamic_source
 #endif
          m_memfileLibError << "<html><head></head><body><pre>";
          str.Format(System.dir().path(m_strTime, "dynamic_source\\library\\%s-compile-log.txt"), str1);
-         str = session().file().as_string(str);
+         str = Application.file().as_string(str);
          str.replace("\r\n", "</pre><pre>");
          m_memfileLibError << str;
          //system(strCmd);
@@ -1099,7 +1099,7 @@ namespace dynamic_source
       //#else
       // strCmd.Format(System.dir().path(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\dynamic_source_libl.bat", false));
       //#endif
-      string str = session().file().as_string(strCmd);
+      string str = Application.file().as_string(strCmd);
       str.replace("%ITEM_NAME%", "library" PATH_SEPARATOR + strName);
       str.replace("%ITEM_DIR%", "library");
       str.replace("%OBJS%", strObjs);
@@ -1119,8 +1119,8 @@ namespace dynamic_source
 #else
       strCmd = System.dir().element("stage\\front\\libl1.bat");
 #endif
-      //session().file().put_contents_utf8(strCmd, str);
-      session().file().put_contents(strCmd, str);
+      //Application.file().put_contents_utf8(strCmd, str);
+      Application.file().put_contents(strCmd, str);
 
 #ifndef METROWIN
 
@@ -1142,7 +1142,7 @@ namespace dynamic_source
 
       str.Format(System.dir().path(m_strTime, "dynamic_source\\library\\%s-link-log.txt"), strName);
       //str.Format("V:\\time\\core\\fontopus\\net\\dynamic_source\\%s-build-log.txt", lpcszName);
-      str = session().file().as_string(str);
+      str = Application.file().as_string(str);
       str.replace("\r\n", "</pre><pre>");
       m_memfileLibError << str;
       m_memfileLibError << "</pre></body></html>";
@@ -1160,7 +1160,7 @@ namespace dynamic_source
    void script_compiler::cppize1(const char * lpcszSource, const char * lpcszDest, ecpptype e_type)
    {
 
-      string strSource = session().file().as_string(lpcszSource);
+      string strSource = Application.file().as_string(lpcszSource);
 
       bool bCode = false;
 
@@ -1221,8 +1221,8 @@ namespace dynamic_source
 
       strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
 
-      //session().file().put_contents_utf8(lpcszDest, strDest);
-      session().file().put_contents(lpcszDest, strDest);
+      //Application.file().put_contents_utf8(lpcszDest, strDest);
+      Application.file().put_contents(lpcszDest, strDest);
 
 
    }
@@ -1924,11 +1924,11 @@ ch_else:
          if(::str::begins_ci(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "core\\persistent", false))
             && ::str::ends_ci(str, ".ds"))
          {
-            strBody += session().file().as_string(str);
+            strBody += Application.file().as_string(str);
          }
       }
-      //session().file().put_contents_utf8(strCat, strBody);
-      session().file().put_contents(strCat, strBody);
+      //Application.file().put_contents_utf8(strCat, strBody);
+      Application.file().put_contents(strCat, strBody);
       string strInclude = strCat;
       //   defer_run_persistent(str);
       ::str::begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);

@@ -101,7 +101,7 @@ namespace user
       strPath = session().dir().matter("keyboard/windows/default.xml");
 #endif
 
-      if(!session().file().exists(strPath))
+      if(!Application.file().exists(strPath))
          return false;
 
       if(!load_os_layout(strPath))
@@ -122,7 +122,7 @@ namespace user
 
       sp(type) typeinfoKey = System.type_info < ::user::e_key > ();
 
-      string str = session().file().as_string(pszPath);
+      string str = Application.file().as_string(pszPath);
 
       if(str.is_empty())
       {
@@ -297,7 +297,7 @@ namespace user
 
       string strPath = session().dir().matter("keyboard layout/en_us_international.xml");
 
-      if(session().file().exists(strPath))
+      if(Application.file().exists(strPath))
       {
 
          return strPath;
@@ -312,10 +312,10 @@ namespace user
    bool keyboard::initialize(keyboard_layout_id * playoutid, const char * pszPath)
    {
 
-      if(!session().file().exists(pszPath))
+      if(!Application.file().exists(pszPath))
          return false;
 
-      string str = session().file().as_string(pszPath);
+      string str = Application.file().as_string(pszPath);
 
       if(str.is_empty())
          return false;
