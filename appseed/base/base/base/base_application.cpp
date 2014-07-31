@@ -517,44 +517,73 @@ namespace base
       return m_pcommandthread;
    }
 
+   class open_url
+   {
+   public:
+      string m_strLink;
+      string m_strTarget;
+      open_url(const string & strLink,const string & pszTarget);
+      bool open();
+   };
 
 
+   open_url::open_url(const string & strLink,const string & pszTarget)
+   {
+      m_strLink = strLink;
+      m_strTarget = pszTarget;
+   }
 
 
+   uint32_t c_cdecl thread_proc_open_url(void * p)
+   {
 
+      open_url * popenurl = (open_url *) p;
 
+      if(!popenurl->open())
+         return -1;
+
+      return 0;
+   }
+
+   bool open_url::open()
+   {
+      string strLink = m_strLink;
+      string pszTarget = m_strTarget;
+#ifdef WINDOWSEX
+      string strUrl = strLink;
+      if(!::str::begins_ci(strUrl,"http://")
+         && !::str::begins_ci(strUrl,"https://"))
+      {
+         strUrl = "http://" + strUrl;
+      }
+      ::ShellExecuteA(NULL,"open",strUrl,NULL,NULL,SW_SHOW);
+      return true;
+#elif defined METROWIN
+#pragma push_macro("System")
+#undef System
+      ::Windows::Foundation::Uri ^ uri = ref new ::Windows::Foundation::Uri(strLink);
+      ::Windows::System::LauncherOptions ^ options = ref new ::Windows::System::LauncherOptions();
+      options->TreatAsUntrusted = false;
+      bool success = ::wait(::Windows::System::Launcher::LaunchUriAsync(uri,options));
+#pragma pop_macro("System")
+#elif defined(LINUX)
+      ::system("xdg-open " + strLink);
+      return true;
+#elif defined(APPLEOS)
+      openURL(strLink);
+      return true;
+#else
+      throw not_implemented(get_app());
+#endif
+
+   }
 
 
    bool application::open_link(const string & strLink,const string & pszTarget)
    {
       if(is_system())
       {
-#ifdef WINDOWSEX
-         string strUrl = strLink;
-         if(!::str::begins_ci(strUrl,"http://")
-            && !::str::begins_ci(strUrl,"https://"))
-         {
-            strUrl = "http://" + strUrl;
-         }
-         ::ShellExecuteA(NULL,"open",strUrl,NULL,NULL,SW_SHOW);
-         return true;
-#elif defined METROWIN
-#pragma push_macro("System")
-#undef System
-         ::Windows::Foundation::Uri ^ uri = ref new ::Windows::Foundation::Uri(strLink);
-         ::Windows::System::LauncherOptions ^ options = ref new ::Windows::System::LauncherOptions();
-         options->TreatAsUntrusted = false;
-         bool success = ::wait(::Windows::System::Launcher::LaunchUriAsync(uri, options));
-#pragma pop_macro("System")
-#elif defined(LINUX)
-         ::system("xdg-open " + strLink);
-         return true;
-#elif defined(APPLEOS)
-         openURL(strLink);
-         return true;
-#else
-         throw not_implemented(get_app());
-#endif
+         return __begin_thread(this,thread_proc_open_url,new open_url(strLink, pszTarget)) != FALSE;
       }
       else
       {
