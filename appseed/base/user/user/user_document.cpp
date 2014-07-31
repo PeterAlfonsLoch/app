@@ -103,6 +103,21 @@ namespace user
    void document::update_title()
    {
 
+      string str = Application.m_strAppName;
+
+      str += " : ";
+
+      str+= m_strPathName;
+
+      sp(frame_window) pframe = get_view(0)->GetParentFrame();
+
+      while(pframe.is_set())
+      {
+         pframe->SetWindowText(str);
+         pframe = pframe->GetParentFrame();
+         
+      }
+
    }
 
 

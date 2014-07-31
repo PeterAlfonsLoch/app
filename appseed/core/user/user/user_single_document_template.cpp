@@ -168,6 +168,7 @@ namespace user
             return;        // open failed
          }
          pdocument->set_path_name(pcreatecontext->m_spCommandLine->m_varFile);
+         pdocument->update_title();
       }
 
       thread* pThread = ::get_thread();
