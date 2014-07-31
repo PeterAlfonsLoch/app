@@ -84,7 +84,7 @@ namespace filemanager
 
       _001GetText(str);
 
-      if(session().dir().is(str))
+      if(Application.dir().is(str))
       {
          get_filemanager_manager()->FileManagerBrowse(str,::action::source::sync(actioncontext));
       }
@@ -94,7 +94,7 @@ namespace filemanager
          while(true)
          {
             strName = System.dir().name(strName);
-            if(session().dir().is(strName))
+            if(Application.dir().is(strName))
             {
                if(!System.file().path().is_equal(get_filemanager_item().m_strPath,strName))
                {

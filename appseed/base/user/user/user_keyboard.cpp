@@ -94,11 +94,11 @@ namespace user
          string strPath;
 
 #ifdef LINUX
-      strPath = session().dir().matter("keyboard/linux/default.xml");
+      strPath = Application.dir().matter("keyboard/linux/default.xml");
 #elif defined(APPLEOS)
-      strPath = session().dir().matter("keyboard/macos/default.xml");
+      strPath = Application.dir().matter("keyboard/macos/default.xml");
 #else
-      strPath = session().dir().matter("keyboard/windows/default.xml");
+      strPath = Application.dir().matter("keyboard/windows/default.xml");
 #endif
 
       if(!Application.file().exists(strPath))
@@ -254,7 +254,7 @@ namespace user
    {
       keyboard_layout_ida layoutida;
       stringa straPath;
-      session().dir().matter_ls_file("keyboard layout", straPath);
+      Application.dir().matter_ls_file("keyboard layout", straPath);
       for(int32_t i = 0; i < straPath.get_count(); i++)
       {
          keyboard_layout_id layoutid;
@@ -295,7 +295,7 @@ namespace user
 
 #endif
 
-      string strPath = session().dir().matter("keyboard layout/en_us_international.xml");
+      string strPath = Application.dir().matter("keyboard layout/en_us_international.xml");
 
       if(Application.file().exists(strPath))
       {

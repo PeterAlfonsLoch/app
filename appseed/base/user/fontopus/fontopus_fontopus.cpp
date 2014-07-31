@@ -69,7 +69,7 @@ namespace fontopus
             //string strSection;
             //strSection.Format("license_auth");
             //string strDir;
-            //strDir = session().dir().usersystemappdata(puser->m_strPathPrefix, strSection);
+            //strDir = Application.dir().usersystemappdata(puser->m_strPathPrefix, strSection);
             //::DeleteFile(System.dir().path(strDir, "00001"));
             //::DeleteFile(System.dir().path(strDir, "00002"));
             iRetry--;
@@ -195,13 +195,13 @@ namespace fontopus
    {
       if(puser->m_strPathPrefix.is_empty())
       {
-         puser->m_strPathPrefix = session().dir().default_os_user_path_prefix();
+         puser->m_strPathPrefix = Application.dir().default_os_user_path_prefix();
       }
-      puser->m_strPath = session().dir().default_userfolder(puser->m_strPathPrefix, puser->m_strLogin);
+      puser->m_strPath = Application.dir().default_userfolder(puser->m_strPathPrefix, puser->m_strLogin);
       sess(m_pbaseapp).dir().mk(puser->m_strPath);
-      puser->m_strDataPath = session().dir().default_userdata(puser->m_strPathPrefix, puser->m_strLogin);
+      puser->m_strDataPath = Application.dir().default_userdata(puser->m_strPathPrefix, puser->m_strLogin);
       sess(m_pbaseapp).dir().mk(puser->m_strDataPath);
-      puser->m_strAppDataPath = session().dir().default_userappdata(puser->m_strPathPrefix, puser->m_strLogin);
+      puser->m_strAppDataPath = Application.dir().default_userappdata(puser->m_strPathPrefix, puser->m_strLogin);
       sess(m_pbaseapp).dir().mk(puser->m_strAppDataPath);
       puser->create_ifs();
       return puser;

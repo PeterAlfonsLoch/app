@@ -102,9 +102,9 @@ namespace filemanager
    bool operation::open_src_dst(const char * pszSrc,const char * pszDst)
    {
 
-      if(session().dir().is(pszSrc) && !::str::ends_ci(pszSrc,".zip"))
+      if(Application.dir().is(pszSrc) && !::str::ends_ci(pszSrc,".zip"))
       {
-         session().dir().mk(System.dir().name(pszDst));
+         Application.dir().mk(System.dir().name(pszDst));
          return false;
       }
 
@@ -131,7 +131,7 @@ namespace filemanager
                }*/
       }
 
-      session().dir().mk(System.dir().name(pszDst));
+      Application.dir().mk(System.dir().name(pszDst));
 
       m_fileDst = Application.file().get_file(pszDst,::file::mode_write | ::file::type_binary | ::file::mode_create);
 
@@ -273,7 +273,7 @@ namespace filemanager
 
                                             }
                                             m_iFile++;
-                                            while(m_iFile < m_stra.get_size() && session().dir().is(m_stra[m_iFile]) && !::str::ends_ci(m_stra[m_iFile],".zip"))
+                                            while(m_iFile < m_stra.get_size() && Application.dir().is(m_stra[m_iFile]) && !::str::ends_ci(m_stra[m_iFile],".zip"))
                                             {
                                                m_iFile++;
                                             }
@@ -371,7 +371,7 @@ namespace filemanager
       for(int32_t i = 0; i < m_stra.get_size(); i++)
       {
 
-         if(session().dir().is(m_stra[i]) && !::str::ends_ci(m_stra[i],".zip"))
+         if(Application.dir().is(m_stra[i]) && !::str::ends_ci(m_stra[i],".zip"))
          {
 
             m_daSize.add(0.0);
@@ -491,9 +491,9 @@ namespace filemanager
    {
       for(int32_t i = 0; i < straExpand.get_size(); i++)
       {
-         if(session().dir().is(straExpand[i]) && !::str::ends_ci(m_stra[i],".zip"))
+         if(Application.dir().is(straExpand[i]) && !::str::ends_ci(m_stra[i],".zip"))
          {
-            session().dir().rls(straExpand[i],&straExpanded);
+            Application.dir().rls(straExpand[i],&straExpanded);
          }
          else
          {

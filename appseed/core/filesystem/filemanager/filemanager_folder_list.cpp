@@ -153,7 +153,7 @@ namespace filemanager
       stringa straPath;
       stringa straTitle;
 
-      session().dir().ls(strParent, &straPath, &straTitle);
+      Application.dir().ls(strParent, &straPath, &straTitle);
 
       for (int32_t i = 0; i < straPath.get_count(); i++)
       {

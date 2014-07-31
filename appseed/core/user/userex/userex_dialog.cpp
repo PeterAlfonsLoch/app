@@ -75,7 +75,7 @@ bool dialog::show(const char * pszMatter, property_set  * ppropertyset)
 
    }
 
-   m_pdocument->on_open_document(session().dir().matter(m_strMatter));
+   m_pdocument->on_open_document(Application.dir().matter(m_strMatter));
 
    m_pframe =  (m_pdocument->get_view()->GetParentFrame());
    m_pframe->m_bWindowFrame         = true;

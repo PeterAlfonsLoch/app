@@ -126,7 +126,7 @@ namespace bergedge
       {
          string strDirName;
          strDirName.Format("application-%d", 0);
-         string strDir = session().dir().userappdata("bergedge", strDirName);
+         string strDir = Application.dir().userappdata("bergedge", strDirName);
          sp(::filemanager::manager) pdoc =  (m_pviewdata->m_pdoc);
          pdoc->FileManagerBrowse(strDir, ::action::source::system_default());
       }
@@ -139,7 +139,7 @@ namespace bergedge
       {
          /*bergedge::menu_view * pview = dynamic_cast < bergedge::menu_view *  > (get_view());
          sp(::filemanager::manager) pdoc = (pview->get_document());
-         pdoc->FileManagerBrowse(session().dir().userappdata("bergedge\\menu"), ::action::source::system_default());*/
+         pdoc->FileManagerBrowse(Application.dir().userappdata("bergedge\\menu"), ::action::source::system_default());*/
       }
       else if(get_view_id() == ::bergedge::PaneViewConfiguration)
       {
@@ -158,7 +158,7 @@ namespace bergedge
       {
          string strDirName;
          strDirName.Format("desktop-%d", m_iDisplay);
-         string strDir = session().dir().userfolder(strDirName);
+         string strDir = Application.dir().userfolder(strDirName);
          if(m_iDisplay <= 0)
          {
             check_desktop_dir(strDir);
@@ -244,7 +244,7 @@ namespace bergedge
             sp(::user::impact) pview = pdoc->get_view();
             string strDirName;
             strDirName.Format("application-%d", 0);
-            string strDir = session().dir().userappdata("bergedge", strDirName);
+            string strDir = Application.dir().userappdata("bergedge", strDirName);
             POSITION pos = System.m_mapAppLibrary.get_start_position();
             string strApp;
             string strLibrary;
@@ -304,7 +304,7 @@ namespace bergedge
                   sp(::user::impact) pview = pdoc->get_view();
                   string strDirName;
                   strDirName.Format("desktop-%d", m_iDisplay);
-                  string strDir = session().dir().userfolder(strDirName);
+                  string strDir = Application.dir().userfolder(strDirName);
                   if(m_iDisplay <= 0)
                   {
                      check_desktop_dir(strDir);
@@ -337,7 +337,7 @@ namespace bergedge
                   //pdoc->update_all_views(NULL, 123458);
                   pdoc->update_all_views(NULL, 1234525);
                   sp(::user::impact) pview = pdoc->get_view();
-                  string strDir = session().dir().userappdata("bergedge\\3-action-launch");
+                  string strDir = Application.dir().userappdata("bergedge\\3-action-launch");
                   check_3click_dir(strDir);
                   pdoc->FileManagerBrowse(strDir, ::action::source::system_default());
                   if(pview != NULL)
@@ -444,20 +444,20 @@ namespace bergedge
       stringa straPath;
       stringa straRelative;
       straPath.remove_all();
-      session().dir().rls(System.dir().commonprograms(), &straPath, NULL, &straRelative);
+      Application.dir().rls(System.dir().commonprograms(), &straPath, NULL, &straRelative);
       for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
-         session().dir().mk(System.dir().name(str));
+         Application.dir().mk(System.dir().name(str));
          Application.file().copy(str, straPath[i], true);
       }
       straRelative.remove_all();
       straPath.remove_all();
-      session().dir().rls(System.dir().userprograms(NULL), &straPath, NULL, &straRelative);
+      Application.dir().rls(System.dir().userprograms(NULL), &straPath, NULL, &straRelative);
       for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
-         session().dir().mk(System.dir().name(str));
+         Application.dir().mk(System.dir().name(str));
          Application.file().copy(str, straPath[i], true);
       }
    }
@@ -465,12 +465,12 @@ namespace bergedge
    void pane_view::check_3click_dir(const char * psz)
    {
 
-      if(session().dir().is(psz))
+      if(Application.dir().is(psz))
       {
          return;
       }
 
-      session().dir().mk(psz);
+      Application.dir().mk(psz);
       string strDir(psz);
 
 
@@ -492,11 +492,11 @@ namespace bergedge
 /*      stringa straPath;
       stringa straRelative;
       straPath.remove_all();
-      System.dir().rls(session().dir().userquicklaunch(), &straPath, NULL, &straRelative);
+      System.dir().rls(Application.dir().userquicklaunch(), &straPath, NULL, &straRelative);
       for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
-         session().dir().mk(System.dir().name(str));
+         Application.dir().mk(System.dir().name(str));
          ::CopyFile(straPath[i], str, TRUE);
       }*/
    }
@@ -519,11 +519,11 @@ namespace bergedge
          {
             straPath.remove_all();
             straRelative.remove_all();
-            session().dir().rls(buf, &straPath, NULL, &straRelative);
+            Application.dir().rls(buf, &straPath, NULL, &straRelative);
             for(int32_t i = 0; i < straPath.get_size(); i++)
             {
                string str = System.dir().path(psz, straRelative[i]);
-               session().dir().mk(System.dir().name(str));
+               Application.dir().mk(System.dir().name(str));
                Application.file().copy(str, straPath[i], true);
             }
          }
@@ -540,11 +540,11 @@ namespace bergedge
          {
             straPath.remove_all();
             straRelative.remove_all();
-            session().dir().rls(buf, &straPath, NULL, &straRelative);
+            Application.dir().rls(buf, &straPath, NULL, &straRelative);
             for(int32_t i = 0; i < straPath.get_size(); i++)
             {
                string str = System.dir().path(psz, straRelative[i]);
-               session().dir().mk(System.dir().name(str));
+               Application.dir().mk(System.dir().name(str));
                ::CopyFile(straPath[i], str, TRUE);
             }
          }

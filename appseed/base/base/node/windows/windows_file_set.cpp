@@ -125,13 +125,13 @@ namespace windows
             if(bRecursive)
             {
 
-               session().dir().rls_pattern(m_straSearch.element_at(i), strFilter, &m_straFile);
+               Application.dir().rls_pattern(m_straSearch.element_at(i), strFilter, &m_straFile);
 
             }
             else
             {
 
-               session().dir().ls_pattern(m_straSearch.element_at(i), strFilter, &m_straFile);
+               Application.dir().ls_pattern(m_straSearch.element_at(i), strFilter, &m_straFile);
 
             }
 

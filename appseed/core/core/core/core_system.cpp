@@ -356,7 +356,7 @@ namespace core
       string strLibraryId;
       stringa straTitle;
 
-      session().dir().ls_pattern(System.dir().ca2module(),"*.*",NULL,& straTitle);
+      Application.dir().ls_pattern(System.dir().ca2module(),"*.*",NULL,& straTitle);
 
       for(int32_t i = 0; i < straTitle.get_count(); i++)
       {

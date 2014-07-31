@@ -259,7 +259,7 @@ namespace command
 
 
       string str = Application.file().as_string(
-         session().dir().matter("command\\toolbar.xml"));
+         Application.dir().matter("command\\toolbar.xml"));
 
 	   if (!m_toolbar.CreateEx(this) ||
 		    !m_toolbar.LoadXmlToolBar(str))

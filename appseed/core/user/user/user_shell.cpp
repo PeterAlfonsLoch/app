@@ -1296,7 +1296,7 @@ namespace filemanager
             }
          }
       }
-         if(session().dir().is(::str::international::unicode_to_utf8(szFilePath)))
+         if(Application.dir().is(::str::international::unicode_to_utf8(szFilePath)))
          {
             if(imagekey.m_iIcon == 0x80000000)
             {
@@ -1507,8 +1507,8 @@ namespace filemanager
          {
             str.trim();
 #ifdef WINDOWSEX
-            HICON hicon16 = (HICON) ::LoadImage(NULL, session().dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-            HICON hicon48 = (HICON) ::LoadImage(NULL, session().dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+            HICON hicon16 = (HICON) ::LoadImage(NULL, Application.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+            HICON hicon48 = (HICON) ::LoadImage(NULL, Application.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
             iImage = m_pil16->add_icon_os_data(hicon16);
             m_pil48Hover->add_icon_os_data(hicon48);
             System.visual().imaging().Createcolor_blend_ImageList(

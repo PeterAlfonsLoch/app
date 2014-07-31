@@ -839,13 +839,13 @@ namespace filemanager
       string strFileCheck;
       for(int32_t i = 0; i < itema.get_size(); i++)
       {
-         if(session().dir().is(itema[i].m_strPath)
+         if(Application.dir().is(itema[i].m_strPath)
             && System.file().name_(itema[i].m_strPath) != ".svn")
          {
-            session().dir().rls(itema[i].m_strPath, &straSub);
+            Application.dir().rls(itema[i].m_strPath, &straSub);
             for(int32_t j = 0; j < straSub.get_size(); j++)
             {
-               if(!session().dir().is(straSub[j])
+               if(!Application.dir().is(straSub[j])
                 && straSub[j].find(".svn") < 0)
                {
                   strFileList += straSub[j] + "\n";
@@ -904,12 +904,12 @@ namespace filemanager
          if(::userfs::list::get_document()->get_fs_data()->is_dir(pdata->m_itema.get_item(i).m_strPath)
             && ::userfs::list::get_document()->get_fs_data()->file_name(pdata->m_itema.get_item(i).m_strPath) != ".svn")
          {
-            session().dir().rls(pdata->m_itema.get_item(i).m_strPath, &straSub);
+            Application.dir().rls(pdata->m_itema.get_item(i).m_strPath, &straSub);
             for(int32_t j = 0; j < straSub.get_size(); j++)
             {
              string strExtension = System.file().extension(straSub[j]);
 
-               if(!session().dir().is(straSub[j])
+               if(!Application.dir().is(straSub[j])
          && (strExtension == "exe" || strExtension == "dll" || strExtension == "dll.manifest"
              || strExtension == "exe.manifest"))
                {
@@ -1032,7 +1032,7 @@ namespace filemanager
 
             item.m_flags.unsignalize_all();
 
-            if(session().dir().is(stra[i]))
+            if(Application.dir().is(stra[i]))
             {
                item.m_flags.signalize(::fs::FlagFolder);
             }
@@ -1833,7 +1833,7 @@ namespace filemanager
 
       item.m_strName = pszTitle;
 
-      if (session().dir().is(pszPath))
+      if (Application.dir().is(pszPath))
       {
 
          item.m_flags.signalize(::fs::FlagFolder);

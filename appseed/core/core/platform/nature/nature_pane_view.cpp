@@ -52,8 +52,8 @@ namespace nature
       add_tab("DevEdge", nature::PaneViewDevEdge);
       add_tab("FileManager", nature::PaneViewFileManager);
       add_tab("Appearance", nature::PaneViewAppearance);
-      add_image_tab("", session().dir().matter("image/keyboard-h21.png"), nature::PaneViewKeyboardLayout);
-      add_image_tab("", session().dir().matter("earth.png"), nature::PaneViewIdioma);
+      add_image_tab("", Application.dir().matter("image/keyboard-h21.png"), nature::PaneViewKeyboardLayout);
+      add_image_tab("", Application.dir().matter("earth.png"), nature::PaneViewIdioma);
 
 
       set_cur_tab_by_id(nature::PaneViewDevEdge);

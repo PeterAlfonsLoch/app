@@ -102,7 +102,7 @@ namespace user
 
    void keyboard_layout_cfg::on_show()
    {
-/*      if(!m_pdoc->on_open_document(session().dir().matter("keyboard layout configuration/form.html")))
+/*      if(!m_pdoc->on_open_document(Application.dir().matter("keyboard layout configuration/form.html")))
       {
          return;
       }*/

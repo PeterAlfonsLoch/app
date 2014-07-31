@@ -44,7 +44,7 @@ namespace filemanager
 
    void file_properties_form::page1()
    {
-      if(!m_pdocGeneral->on_open_document(session().dir().matter("filemanager/file_properties.html")))
+      if(!m_pdocGeneral->on_open_document(Application.dir().matter("filemanager/file_properties.html")))
       {
          return;
       }

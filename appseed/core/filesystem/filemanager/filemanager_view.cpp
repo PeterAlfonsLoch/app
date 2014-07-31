@@ -151,7 +151,7 @@ namespace filemanager
                      }
                   }
 
-                  bool bSave = !session().dir().is(strPath);
+                  bool bSave = !Application.dir().is(strPath);
 
                   if (bSave && get_filemanager_manager()->get_fs_data()->file_exists(strPath))
                   {

@@ -50,7 +50,7 @@ namespace usermail
 
    UINT db_pop3::run()
    {
-      session().dir().mk(System.dir().name(m_paccount->m_strMailDb));
+      Application.dir().mk(System.dir().name(m_paccount->m_strMailDb));
       m_pdatabase->setDatabase(m_paccount->m_strMailDb);
       m_pdatabase->connect();
       //create string Table if necessary

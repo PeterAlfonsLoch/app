@@ -242,7 +242,7 @@ int32_t image_list::add_icon(const char * psz)
 int32_t image_list::add_matter_icon(const char * pszMatter)
 {
 
-   return add_icon(session().dir().matter(pszMatter));
+   return add_icon(Application.dir().matter(pszMatter));
 
 }
 
@@ -275,7 +275,7 @@ int32_t image_list::add_matter(const char * lpcsz, sp(::base::application) papp)
 {
    if(papp == NULL)
    {
-      return add_file(session().dir().matter(lpcsz));
+      return add_file(Application.dir().matter(lpcsz));
    }
    else
    {
@@ -285,7 +285,7 @@ int32_t image_list::add_matter(const char * lpcsz, sp(::base::application) papp)
 
 int32_t image_list::add_std_matter(const char * lpcsz)
 {
-   return add_file(session().dir().matter(lpcsz));
+   return add_file(Application.dir().matter(lpcsz));
 }
 
 int32_t image_list::_get_alloc_count()

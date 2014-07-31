@@ -173,7 +173,7 @@ namespace user
       string strMain = pszBaseDir;
       stringa straLangPath;
       stringa straLang;
-      session().dir().ls_dir(strMain, &straLangPath, &straLang);
+      Application.dir().ls_dir(strMain, &straLangPath, &straLang);
       for(int32_t iLang = 0; iLang < straLang.get_count(); iLang++)
       {
          string strLang = straLang[iLang];
@@ -181,14 +181,14 @@ namespace user
             continue;
          stringa straStylePath;
          stringa straStyle;
-         session().dir().ls_dir(straLangPath[iLang], &straStylePath, &straStyle);
+         Application.dir().ls_dir(straLangPath[iLang], &straStylePath, &straStyle);
          for(int32_t iStyle = 0; iStyle < straStyle.get_count(); iStyle++)
          {
             string idStyle = straStyle[iStyle];
             if(idStyle.CompareNoCase(".svn") == 0)
                continue;
             stringa straPath;
-            session().dir().rls(
+            Application.dir().rls(
                System.dir().path(straStylePath[iStyle], "uistr"),
                &straPath);
             for(int32_t iPath = 0; iPath < straPath.get_count(); iPath++)
@@ -198,7 +198,7 @@ namespace user
                   continue;
                if(::str::find_ci("\\.svn\\", strPath) >= 0)
                   continue;
-               if(session().dir().is(strPath))
+               if(Application.dir().is(strPath))
                   continue;
                load_uistr_file(strLang, idStyle, strPath);
             }

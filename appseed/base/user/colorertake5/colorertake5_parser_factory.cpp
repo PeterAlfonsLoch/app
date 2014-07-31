@@ -109,7 +109,7 @@ namespace colorertake5
 
    string ParserFactory::searchPath()
    {
-      return session().dir().matter("colorer.zip:catalog.xml");
+      return Application.dir().matter("colorer.zip:catalog.xml");
    };
 
    ParserFactory::ParserFactory(sp(::base::application) papp) :
@@ -188,7 +188,7 @@ namespace colorertake5
          {
             path = relPath;
          }
-         if(session().dir().is(path))
+         if(Application.dir().is(path))
          {
             //if(path == "v:\\ca2os\\basis\\app\\appmatter\\main\\_std\\_std\\colorer\\hrc\\auto")
             {
@@ -199,7 +199,7 @@ namespace colorertake5
             ::file::binary_buffer_sp spfile(allocer());
             for(int32_t i = 0; i < straPath.get_count(); i++)
             {
-               if(!session().dir().is(straPath[i]))
+               if(!Application.dir().is(straPath[i]))
                {
                   string str = Application.file().as_string(straPath[i]);
                   try

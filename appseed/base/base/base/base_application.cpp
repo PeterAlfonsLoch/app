@@ -3662,7 +3662,7 @@ namespace base
 
       {
 
-         ::file::binary_buffer_sp file = session().file_get_file(session().dir().userappdata(strPath),::file::mode_read);
+         ::file::binary_buffer_sp file = session().file_get_file(Application.dir().userappdata(strPath),::file::mode_read);
 
          if(file.is_null())
          {
@@ -3703,7 +3703,7 @@ namespace base
 
       {
 
-         ::file::binary_buffer_sp file = session().file_get_file(session().dir().userappdata(strPath),::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
+         ::file::binary_buffer_sp file = session().file_get_file(Application.dir().userappdata(strPath),::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
 
          if(file.is_null())
          {

@@ -42,7 +42,7 @@ namespace usernet // ca8 + cube
 
    void network_configuration::on_show()
    {
-      if(!m_pdoc->on_open_document(session().dir().matter("system/network/configuration/proxy.xhtml")))
+      if(!m_pdoc->on_open_document(Application.dir().matter("system/network/configuration/proxy.xhtml")))
       {
          return;
       }

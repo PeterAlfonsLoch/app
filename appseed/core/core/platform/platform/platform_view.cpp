@@ -892,7 +892,7 @@ namespace platform
       m_linka.remove_all();
 
 
-      string str = Application.file().as_string(session().dir().matter("platform\\main_link.xml"));
+      string str = Application.file().as_string(Application.dir().matter("platform\\main_link.xml"));
 
       xml::document doc(get_app());
 

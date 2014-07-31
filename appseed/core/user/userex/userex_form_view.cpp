@@ -27,7 +27,7 @@ void form_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phin
             if(!puh->m_strForm.is_empty())
             {
                string str;
-               str = session().dir().matter(puh->m_strForm);
+               str = Application.dir().matter(puh->m_strForm);
                if(get_document()->on_open_document(str))
                {
                   m_strPath = puh->m_strForm;

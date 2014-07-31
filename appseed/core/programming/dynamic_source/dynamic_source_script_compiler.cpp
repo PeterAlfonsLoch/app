@@ -373,8 +373,8 @@ namespace dynamic_source
       }
 #ifndef LINUX
 
-      session().dir().mk(System.dir().name(strDVI));
-      session().dir().mk(System.dir().name(pscript->m_strBuildBat));
+      Application.dir().mk(System.dir().name(strDVI));
+      Application.dir().mk(System.dir().name(pscript->m_strBuildBat));
       try
       {
          //         Application.file().copy(strDVI, strSVI, false);
@@ -430,9 +430,9 @@ namespace dynamic_source
 
 #endif
 
-      session().dir().mk(System.dir().name(pscript->m_strScriptPath));
-      session().dir().mk(System.dir().name(strL));
-      session().dir().mk(System.dir().path(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script", false), strTransformName));
+      Application.dir().mk(System.dir().name(pscript->m_strScriptPath));
+      Application.dir().mk(System.dir().name(strL));
+      Application.dir().mk(System.dir().path(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script", false), strTransformName));
 
       cppize(pscript);
 
@@ -635,7 +635,7 @@ namespace dynamic_source
 
    void script_compiler::cppize(ds_script * pscript)
    {
-      session().dir().mk(System.dir().name(pscript->m_strCppPath));
+      Application.dir().mk(System.dir().name(pscript->m_strCppPath));
       cppize1(pscript);
    }
 
@@ -828,10 +828,10 @@ namespace dynamic_source
       //#else
       // strCmd = System.dir().path(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false);
       //#endif
-      session().dir().mk(System.dir().name(strCmd));
+      Application.dir().mk(System.dir().name(strCmd));
       //Application.file().put_contents_utf8(strCmd, str);
       Application.file().put_contents(strCmd, str);
-      session().dir().mk(System.dir().path(m_strTime, "dynamic_source\\", false));
+      Application.dir().mk(System.dir().path(m_strTime, "dynamic_source\\", false));
    }
 
 
@@ -904,7 +904,7 @@ namespace dynamic_source
       strFolder = System.dir().element();
       m_straLibSourcePath.remove_all();
       m_straLibSourceRelPath.remove_all();
-      session().dir().rls(System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "library\\source", false),  &m_straLibSourcePath, NULL, &m_straLibSourceRelPath);
+      Application.dir().rls(System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "library\\source", false),  &m_straLibSourcePath, NULL, &m_straLibSourceRelPath);
       for(int32_t i = 0; i < m_straLibSourcePath.get_size(); )
       {
          if(System.file().extension(m_straLibSourcePath[i]) != "ds")
@@ -927,12 +927,12 @@ namespace dynamic_source
       }
       m_straLibIncludePath.remove_all();
       m_straLibIncludeRelPath.remove_all();
-      session().dir().rls(System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "library\\include", false),  &m_straLibIncludePath, NULL, &m_straLibIncludeRelPath);
+      Application.dir().rls(System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "library\\include", false),  &m_straLibIncludePath, NULL, &m_straLibIncludeRelPath);
       for(int32_t i = 0; i < m_straLibIncludePath.get_size(); )
       {
          if(System.file().extension(m_straLibIncludePath[i]) != "ds"
             || ::str::find_ci(m_straLibIncludePath[i], "\\.svn\\") >= 0
-            || session().dir().is(m_straLibIncludePath[i]))
+            || Application.dir().is(m_straLibIncludePath[i]))
          {
             m_straLibIncludePath.remove_at(i);
             m_straLibIncludeRelPath.remove_at(i);
@@ -964,8 +964,8 @@ namespace dynamic_source
       // plib->m_strLibraryPath.Format(System.dir().path(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\Release\\%s.dll", false), strName);
       //#endif
 
-      session().dir().mk(System.dir().name(m_strLibraryPath));
-      session().dir().mk(System.dir().path(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_library\\library", false), System.dir().name(strName), false));
+      Application.dir().mk(System.dir().name(m_strLibraryPath));
+      Application.dir().mk(System.dir().path(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_library\\library", false), System.dir().name(strName), false));
 
       for(int32_t i = 0; i < m_straLibIncludePath.get_size(); i++)
       {
@@ -1028,8 +1028,8 @@ namespace dynamic_source
          str.replace("%CONFIGURATION_NAME%", m_strDynamicSourceConfiguration);
          str.replace("%CONFIGURATION%", m_strDynamicSourceConfiguration);
          str.replace("%SDK1%", m_strSdk1);
-         session().dir().mk(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_library\\" + System.dir().name(str1)));
-         session().dir().mk(System.dir().path(m_strTime, "library\\" + m_strPlatform + "\\" + System.dir().name(str1), false));
+         Application.dir().mk(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_library\\" + System.dir().name(str1)));
+         Application.dir().mk(System.dir().path(m_strTime, "library\\" + m_strPlatform + "\\" + System.dir().name(str1), false));
          
          string strFormat = "libc-" + str1;
 
@@ -1112,7 +1112,7 @@ namespace dynamic_source
       string strTargetName = m_strLibraryPath;
       ::str::ends_eat_ci(strTargetName, ".dll");
       str.replace("%TARGET_NAME%", strTargetName);
-      session().dir().mk(System.dir().element("stage\\" + m_strPlatform + "\\library"));
+      Application.dir().mk(System.dir().element("stage\\" + m_strPlatform + "\\library"));
 #ifdef LINUX
       Sleep(1984);
       strCmd = System.dir().element("stage\\front\\libl1.bash");
@@ -1153,7 +1153,7 @@ namespace dynamic_source
 
    void script_compiler::cppize(const char * lpcszSource, const char * lpcszDest, ecpptype e_type)
    {
-      session().dir().mk(System.dir().name(lpcszDest));
+      Application.dir().mk(System.dir().name(lpcszDest));
       cppize1(lpcszSource, lpcszDest, e_type);
    }
 
@@ -1905,7 +1905,7 @@ ch_else:
    {
       string strPath = System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "core\\persistent", false);
       stringa stra;
-      session().dir().rls(strPath, &stra);
+      Application.dir().rls(strPath, &stra);
 
       string strCat;
       strCat = System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "core\\netnode_persistent_ui_str.ds", false);

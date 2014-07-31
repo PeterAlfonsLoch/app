@@ -221,7 +221,7 @@ namespace filemanager
       else
       {
 
-         strPath = session().dir().userdata();
+         strPath = Application.dir().userdata();
 
       }
 

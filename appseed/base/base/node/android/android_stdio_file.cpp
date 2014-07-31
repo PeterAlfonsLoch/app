@@ -32,7 +32,7 @@ bool stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
 
    if(nOpenFlags  & ::file::buffer::defer_create_directory)
    {
-      session().dir().mk(System.dir().name(lpszFileName));
+      Application.dir().mk(System.dir().name(lpszFileName));
    }
 
    m_pStream = NULL;

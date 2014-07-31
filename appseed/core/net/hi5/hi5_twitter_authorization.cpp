@@ -114,7 +114,7 @@ namespace hi5
 
          }
          
-         if(!m_pdocAuth->on_open_document(session().dir().matter(m_strForm)))
+         if(!m_pdocAuth->on_open_document(Application.dir().matter(m_strForm)))
          {
 
             return;
@@ -191,7 +191,7 @@ namespace hi5
       {
          ensure_main_document();
          m_pdocAuth->get_html_data()->m_propertyset = set;
-         m_pdocAuth->on_open_document(session().dir().matter(pszMatter));
+         m_pdocAuth->on_open_document(Application.dir().matter(pszMatter));
          display_main_frame();
          m_ptabview->GetWindow()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
          m_ptabview->GetWindow()->EndAllModalLoops(IDOK);

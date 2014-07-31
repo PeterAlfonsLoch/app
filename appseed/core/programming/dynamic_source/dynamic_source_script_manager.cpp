@@ -135,7 +135,7 @@ namespace dynamic_source
       stringa straPath;
       stringa straTitle;
 
-      session().dir().ls_dir(m_strNetnodePath, &straPath, &straTitle);
+      Application.dir().ls_dir(m_strNetnodePath, &straPath, &straTitle);
 
       for(int32_t i = 0; i < straPath.get_count(); i++)
       {
@@ -491,7 +491,7 @@ namespace dynamic_source
          return ppair->m_element2;
       else
       {
-         bool bIsDir = session().dir().is(strPath);
+         bool bIsDir = Application.dir().is(strPath);
          m_mapIncludeMatchesIsDir.set_at(strPath, bIsDir);
          return bIsDir;
       }

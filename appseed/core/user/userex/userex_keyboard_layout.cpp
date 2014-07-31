@@ -49,7 +49,7 @@ namespace userex // ca8 + cube
 
 
       stringa straPath;
-      session().dir().ls(System.dir().element("app/appmatter/main/_std/_std/keyboard layout"), &straPath);
+      Application.dir().ls(System.dir().element("app/appmatter/main/_std/_std/keyboard layout"), &straPath);
       for(int32_t i = 0; i < straPath.get_count(); i++)
       {
          ::user::keyboard_layout_id layoutid;
@@ -104,7 +104,7 @@ namespace userex // ca8 + cube
 
    void keyboard_layout::on_show()
    {
-      if(!m_pdoc->on_open_document(session().dir().matter("keyboard layout configuration/form.html")))
+      if(!m_pdoc->on_open_document(Application.dir().matter("keyboard layout configuration/form.html")))
       {
          return;
       }
