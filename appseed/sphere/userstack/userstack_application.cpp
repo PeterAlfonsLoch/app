@@ -97,19 +97,6 @@ namespace userstack
 
 
 
-   void application::_001OnFileNew()
-   {
-
-      m_pdocmanager->_001OnFileNew();
-
-   }
-
-
-   bool application::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
-
-   {
-      return ::core::application::_001OnCmdMsg(pcmdmsg);
-   }
 
    void application::OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema)
    {

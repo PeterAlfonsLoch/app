@@ -1962,7 +1962,7 @@ alt1:
 
 #endif
 
-      pgenapp->construct(NULL);
+      //pgenapp->construct(NULL);
 
       return papp;
 

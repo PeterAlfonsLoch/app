@@ -62,5 +62,7 @@ public:
    __inline index add(double x, double y) {return array < pointd >::add(pointd(x, y)); }
    __inline index add(pointd point) {return add(point.x, point.y); }
    __inline pointd_array & operator =(const pointd_array & pointset) { copy(pointset); return *this; }
+   void rotate(double dAngle);
+
 
 };

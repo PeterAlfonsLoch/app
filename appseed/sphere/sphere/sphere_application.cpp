@@ -28,9 +28,10 @@ namespace sphere
       return new application();
    }
 
-   void application::construct()
+   void application::construct(const char * pszAppId)
    {
-      string strId = m_strId;
+      string strId = pszAppId;
+      m_strId = pszAppId;
       char chFirst = '\0';
       if(strId.get_length() > 0)
       {

@@ -233,7 +233,7 @@ namespace userstack
 
             createcontext->m_spCommandLine->m_eventReady.ResetEvent();
 
-            session().on_request(createcontext);
+            platform().on_request(createcontext);
 
             createcontext->m_spCommandLine->m_eventReady.wait();
 

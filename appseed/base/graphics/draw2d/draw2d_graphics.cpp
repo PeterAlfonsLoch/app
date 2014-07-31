@@ -177,7 +177,7 @@ namespace draw2d
       if(brush.is_null())
          return false;
 
-      return SelectObject(brush);
+      return SelectObject(brush) != FALSE;
 
    }
 
@@ -891,6 +891,14 @@ namespace draw2d
       return false;
    }
 
+   bool graphics::draw_polygon(const POINTD * lpPoints,int32_t nCount)
+   {
+      UNREFERENCED_PARAMETER(lpPoints);
+      UNREFERENCED_PARAMETER(nCount);
+      throw interface_only_exception(get_app());
+      return false;
+   }
+
    bool graphics::fill_polygon(const POINT* lpPoints, int32_t nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);
@@ -915,6 +923,14 @@ namespace draw2d
       return false;
    }
 
+   bool graphics::Polygon(const POINTD* lpPoints,int32_t nCount)
+   {
+      UNREFERENCED_PARAMETER(lpPoints);
+      UNREFERENCED_PARAMETER(nCount);
+      throw interface_only_exception(get_app());
+      return false;
+   }
+
    bool graphics::PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int32_t nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);
@@ -927,6 +943,37 @@ namespace draw2d
    bool graphics::Polygon(point_array & pta)
    {
       return Polygon(pta.get_data(), (int32_t) pta.get_count());
+   }
+
+
+   bool graphics::Polygon(pointd_array & pta)
+   {
+      return Polygon(pta.get_data(),(int32_t)pta.get_count());
+   }
+
+
+
+   bool graphics::draw_polygon(point_array & pta)
+   {
+      return draw_polygon(pta.get_data(),(int32_t)pta.get_count());
+   }
+
+
+   bool graphics::draw_polygon(pointd_array & pta)
+   {
+      return draw_polygon(pta.get_data(),(int32_t)pta.get_count());
+   }
+
+
+   bool graphics::fill_polygon(point_array & pta)
+   {
+      return fill_polygon(pta.get_data(),(int32_t)pta.get_count());
+   }
+
+
+   bool graphics::fill_polygon(pointd_array & pta)
+   {
+      return fill_polygon(pta.get_data(),(int32_t)pta.get_count());
    }
 
    bool graphics::Rectangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
@@ -2687,6 +2734,57 @@ namespace draw2d
    }
 
 
+   int32_t graphics::draw_text(const char * lpszString,strsize nCount,LPRECTD lpRect,UINT nFormat)
+   {
+
+      return draw_text(string(lpszString,nCount),lpRect,nFormat);
+
+   }
+
+
+   int32_t graphics::draw_text(const string & str,LPRECTD lpRect,UINT nFormat)
+   {
+
+      synch_lock ml(&user_mutex());
+
+      size sz = GetTextExtent(str);
+
+      double dx;
+
+      double dy;
+
+      if(nFormat & DT_RIGHT)
+      {
+         dx = lpRect->right - lpRect->left - sz.cx;
+      }
+      else if(nFormat & DT_CENTER)
+      {
+         dx = ((lpRect->right - lpRect->left) - (sz.cx)) / 2.0;
+      }
+      else
+      {
+         dx = 0.;
+      }
+
+      if(nFormat & DT_BOTTOM)
+      {
+         dy = lpRect->bottom - lpRect->top - sz.cy;
+      }
+      else if(nFormat & DT_VCENTER)
+      {
+         dy = ((lpRect->bottom - lpRect->top) - (sz.cy)) / 2.0;
+      }
+      else
+      {
+         dy = 0.;
+      }
+
+      TextOut(lpRect->left + dx,lpRect->top + dy,str);
+
+      return 1;
+
+   }
+
 #ifndef METROWIN
 
    int32_t graphics::draw_text_ex(const char * lpszString, strsize nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
@@ -2709,7 +2807,26 @@ namespace draw2d
       throw interface_only_exception(get_app());
       return -1;
    }
+   int32_t graphics::draw_text_ex(const char * lpszString,strsize nCount,LPRECTD lpRect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams)
+   {
+      UNREFERENCED_PARAMETER(lpszString);
+      UNREFERENCED_PARAMETER(nCount);
+      UNREFERENCED_PARAMETER(lpRect);
+      UNREFERENCED_PARAMETER(nFormat);
+      UNREFERENCED_PARAMETER(lpDTParams);
+      throw interface_only_exception(get_app());
+      return -1;
+   }
 
+   int32_t graphics::draw_text_ex(const string & str,LPRECTD lpRect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams)
+   {
+      UNREFERENCED_PARAMETER(str);
+      UNREFERENCED_PARAMETER(lpRect);
+      UNREFERENCED_PARAMETER(nFormat);
+      UNREFERENCED_PARAMETER(lpDTParams);
+      throw interface_only_exception(get_app());
+      return -1;
+   }
 
 #endif
 

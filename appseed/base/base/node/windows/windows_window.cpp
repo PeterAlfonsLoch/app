@@ -3795,7 +3795,11 @@ namespace windows
       m_strWindowText = lpszString;
       wstring wstr(m_strWindowText);
       wstr = wstr;
-      ::SetWindowTextW(get_handle(),wstr);
+      //single_lock sl(&user_mutex(), true);
+      //if(!sl.lock(millis(0)))
+        // return;
+      DWORD_PTR lresult = 0;
+      ::SendMessageTimeout(get_handle(),WM_SETTEXT,0,(LPARAM)(const char *)m_strWindowText,SMTO_ABORTIFHUNG,84,&lresult);
    }
 
    strsize interaction_impl::GetWindowText(LPTSTR lpszString,strsize nMaxCount)

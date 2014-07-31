@@ -217,3 +217,23 @@ void pointd_array::get_bounding_rect(LPRECTD lprect, const POINTD * lppoint, ::c
    }
 
 }
+
+
+void pointd_array::rotate(double dAngle)
+{
+
+   double x;
+   double y;
+   double dCos = cos(dAngle);
+   double dSin = sin(dAngle);
+
+   for(int32_t i = 0; i < get_count(); i++)
+   {
+      x = element_at(i).x;
+      y = element_at(i).y;
+      element_at(i).x = (x * dCos - y * dSin);
+      element_at(i).y = (x * dSin + y * dCos);
+   }
+
+}
+

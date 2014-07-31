@@ -336,10 +336,17 @@ namespace draw2d
       virtual bool Pie(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
       virtual bool fill_polygon(const POINTD * lpPoints, int32_t nCount);
       virtual bool fill_polygon(const POINT* lpPoints, int32_t nCount);
+      virtual bool fill_polygon(point_array & pta);
+      virtual bool fill_polygon(pointd_array & pta);
       virtual bool draw_polygon(const POINT* lpPoints, int32_t nCount);
+      virtual bool draw_polygon(const POINTD* lpPoints,int32_t nCount);
+      virtual bool draw_polygon(point_array & pta);
+      virtual bool draw_polygon(pointd_array & pta);
       virtual bool Polygon(point_array & pta);
+      virtual bool Polygon(pointd_array & pta);
       virtual bool Polygon(const POINT* lpPoints, int32_t nCount);
-      virtual bool PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int32_t nCount);
+      virtual bool Polygon(const POINTD* lpPoints,int32_t nCount);
+      virtual bool PolyPolygon(const POINT* lpPoints,const INT* lpPolyCounts,int32_t nCount);
       virtual bool Rectangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool Rectangle(LPCRECT lpRect);
       virtual bool DrawRectangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
@@ -413,10 +420,14 @@ namespace draw2d
 
       virtual int32_t draw_text(const char * lpszString, strsize nCount, LPRECT lpRect, UINT nFormat);
       virtual int32_t draw_text(const string & str, LPRECT lpRect, UINT nFormat);
+      virtual int32_t draw_text(const char * lpszString,strsize nCount,LPRECTD lpRect,UINT nFormat);
+      virtual int32_t draw_text(const string & str,LPRECTD lpRect,UINT nFormat);
 
 #ifndef METROWIN
       virtual int32_t draw_text_ex(const char * lpszString, strsize nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
       virtual int32_t draw_text_ex(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
+      virtual int32_t draw_text_ex(const char * lpszString,strsize nCount,LPRECTD lpRect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams);
+      virtual int32_t draw_text_ex(const string & str,LPRECTD lpRect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams);
 #endif
 
       virtual size GetTextExtent(const char * lpszString, strsize nCount, int32_t iIndex) const;

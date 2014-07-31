@@ -97,7 +97,7 @@ namespace core
       if(pszId == NULL)
       {
 
-         m_strId = "mplite";
+         m_strId = "";
 
       }
       else

@@ -19,7 +19,7 @@ namespace sphere
 
 
       using ::asphere::application::construct;
-      virtual void construct();
+      virtual void construct(const char * pszId);
       
       virtual bool initialize_instance();
       virtual int32_t  exit_instance();

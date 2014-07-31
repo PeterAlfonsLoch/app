@@ -45,10 +45,6 @@ namespace userstack
 
       virtual bool bergedge_start();
 
-      void _001OnFileNew();
-
-      virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
-
       void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);
 
       void load_string_table();
