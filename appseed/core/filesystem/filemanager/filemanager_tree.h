@@ -69,7 +69,7 @@ namespace filemanager
 
       void _StartCreateImageList(::user::interaction * pui);
       void _StopCreateImageList(::user::interaction * pui);
-      void _CreateImageListStep();
+      bool _CreateImageListStep();
 
       // user::tree
       virtual void _001OnOpenItem(::data::tree_item * pitem, ::action::context actioncontext);

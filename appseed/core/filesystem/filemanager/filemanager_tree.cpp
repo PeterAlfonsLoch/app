@@ -76,6 +76,13 @@ namespace filemanager
 
       arrange(::fs::arrange_by_name);
 
+      if(m_treeptra.has_elements())
+      {
+
+         _StartCreateImageList(m_treeptra[0]);
+
+      }
+
    }
 
 
@@ -282,14 +289,6 @@ namespace filemanager
 
       }
 
-      if(m_treeptra.has_elements())
-      {
-
-         _StartCreateImageList(m_treeptra[0]);
-
-      }
-
-
    }
 
 
@@ -393,8 +392,15 @@ namespace filemanager
 
       arrange(::fs::arrange_by_name);
 
+      if(m_treeptra.has_elements())
+      {
+
+         _StartCreateImageList(m_treeptra[0]);
+
+      }
 
    }
+
 
    void tree::_001InsertColumns()
    {
@@ -655,7 +661,7 @@ namespace filemanager
    }
 
 
-   void tree::_CreateImageListStep()
+   bool tree::_CreateImageListStep()
    {
 
       if(m_pdataitemCreateImageListStep == NULL)
@@ -663,17 +669,10 @@ namespace filemanager
 
          m_estep = (e_step)(((int)m_estep) + 1);
 
-         if(m_estep == step_end)
+         if(m_estep >= step_end)
          {
 
-            if(m_treeptra.has_elements())
-            {
-
-               _StopCreateImageList(m_treeptra[0]);
-
-            }
-
-            return;
+            return false;
 
          }
 
@@ -681,7 +680,7 @@ namespace filemanager
 
 
          if(m_pdataitemCreateImageListStep == NULL)
-            return;
+            return false;
 
 
       }
@@ -690,6 +689,7 @@ namespace filemanager
 
       m_pdataitemCreateImageListStep = m_pdataitemCreateImageListStep->get_item(::data::TreeNavigationExpandedForward);
 
+      return true;
 
    }
 
@@ -768,10 +768,25 @@ namespace filemanager
       {
          case TimerCreateImageList:
             {
+                                     
                                      for(index i = 0; i < 5 ;i++)
                                      {
-                                        _CreateImageListStep();
+                                        
+                                        if(!_CreateImageListStep())
+                                        {
+
+                                           if(m_treeptra.has_elements())
+                                           {
+
+                                              _StopCreateImageList(m_treeptra[0]);
+
+                                           }
+
+                                           break;
+                                        }
+
                                      }
+
             }
             break;
       }
