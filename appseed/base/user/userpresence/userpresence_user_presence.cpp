@@ -71,7 +71,7 @@ namespace userpresence
 
       property_set set(get_app());
 
-      session().http().get(strUrl, set);
+      Application.http().get(strUrl, set);
 
    }
 

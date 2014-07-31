@@ -489,7 +489,7 @@ namespace plugin
          {
             // remark alarm
             // STRESS : http_get_dup
-            // in core library normally System or ::root::session().http() is used
+            // in core library normally System or ::root::Application.http() is used
             string strPluginData;
 
 //            ::http::e_status estatus = ::http::status_fail;
@@ -505,7 +505,7 @@ namespace plugin
 
                //strPluginData = http_get_dup(strPluginUrl, false, &ms_get_dup_status_callback, (void *) &iStatusCode, false);
 
-               ::root::session().http().get(strUrl, strPluginData, set);
+               ::root::Application.http().get(strUrl, strPluginData, set);
 
                if(::http::status_succeeded(set["get_status"]))
                   break;

@@ -269,7 +269,7 @@ namespace file
 
          property_set set(papp);
 
-         return session().http().length(strPath, set);
+         return Application.http().length(strPath, set);
 
       }
 

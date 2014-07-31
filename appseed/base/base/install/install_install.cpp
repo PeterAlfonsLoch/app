@@ -67,7 +67,7 @@ namespace install
 
       property_set set(get_app());
 
-      return file_exists_dup(path1) && !stricmp_dup(get_file_md5(path1), session().http().get(strUrl, set));
+      return file_exists_dup(path1) && !stricmp_dup(get_file_md5(path1), Application.http().get(strUrl, set));
 
    }
 
@@ -415,7 +415,7 @@ namespace install
 
       property_set set(get_app());
 
-      strBuildNumber = session().http().get(strSpaIgnitionBaseUrl + "/query?node=build", set);
+      strBuildNumber = Application.http().get(strSpaIgnitionBaseUrl + "/query?node=build", set);
 
       strBuildNumber.trim();
 
@@ -692,7 +692,7 @@ namespace install
 
       property_set set(get_app());
 
-      m_strCa2Build = session().http().get("http://spaignition.api.server.ca2.cc/ca2_get_build?authnone", set);
+      m_strCa2Build = Application.http().get("http://spaignition.api.server.ca2.cc/ca2_get_build?authnone", set);
 
    }
 
@@ -1325,7 +1325,7 @@ namespace install
 
                   }
 
-                  if (session().http().download(strUrl, strDownload + ".bz", set))
+                  if (Application.http().download(strUrl, strDownload + ".bz", set))
                   {
 
                      System.compress().unbz(get_app(), strDownload, strDownload + ".bz");
@@ -1439,7 +1439,7 @@ namespace install
 
       set["raw_http"] = true;
 
-      bool bOk = file_exists_dup(path1) && !stricmp_dup(System.file().md5(path1), session().http().get(strUrl, set));
+      bool bOk = file_exists_dup(path1) && !stricmp_dup(System.file().md5(path1), Application.http().get(strUrl, set));
 
       return bOk;
 

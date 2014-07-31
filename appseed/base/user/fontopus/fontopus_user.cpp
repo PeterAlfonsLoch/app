@@ -93,7 +93,7 @@ restart:
       property_set set(get_app());
       set["interactive_user"] = true;
       string str;
-      session().http().get(strPath, str, post, headers, set);
+      Application.http().get(strPath, str, post, headers, set);
       str.trim();
       if(str.has_char())
       {

@@ -92,7 +92,7 @@ namespace fs
 
          setRequest["get_response"] = ""; // touch/create property to get_response
 
-         session().http().put(strUrl, m_varFile["xmledit"].cast < ::file::memory_buffer >(), setRequest);
+         Application.http().put(strUrl, m_varFile["xmledit"].cast < ::file::memory_buffer >(), setRequest);
 
          string strResponse(setRequest["get_response"]);
 
@@ -119,7 +119,7 @@ namespace fs
 
          property_set setPut(get_app());
 
-         session().http().put(strUrl, m_varFile["xml"].cast < ::file::memory_buffer >(), setPut);
+         Application.http().put(strUrl, m_varFile["xml"].cast < ::file::memory_buffer >(), setPut);
 
          return;
       }
@@ -130,7 +130,7 @@ namespace fs
 
       property_set set(get_app());
 
-      session().http().put(strUrl, &m_memfile, set);
+      Application.http().put(strUrl, &m_memfile, set);
 
 
    }

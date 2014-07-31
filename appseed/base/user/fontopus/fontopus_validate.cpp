@@ -173,7 +173,7 @@ namespace fontopus
 
          set["user"] = m_loginthread.m_puser;
 
-         if(documentBasicInfo.load(session().http().get("https://" + strApiServer + "/account/get_basic_info",set)))
+         if(documentBasicInfo.load(Application.http().get("https://" + strApiServer + "/account/get_basic_info",set)))
          {
             string strLogin;
             if(documentBasicInfo.get_root()->get_attr("login",strLogin) && strLogin.find("@") > 0)
@@ -333,7 +333,7 @@ namespace fontopus
 
       set["post"]["entered_license"] = m_strLicense;
 
-      session().http().get(strAuthUrl,strAuth,set);
+      Application.http().get(strAuthUrl,strAuth,set);
 
       m_loginthread.m_strFontopusServer = strHost;
 
@@ -456,7 +456,7 @@ namespace fontopus
       set["post"]["source"] = straHash.implode(";");
       for(int32_t i = 0; i < 3; i++)
       {
-         if(session().http().get(strUrl,strResponse,set))
+         if(Application.http().get(strUrl,strResponse,set))
             break;
       }
       if(strResponse == "OK")
@@ -812,7 +812,7 @@ namespace fontopus
          *pestatus = (::http::e_status) set["get_status"].int64();
          uint32_t dwTimeProfile2 = get_tick_count();
 
-         TRACE0("login_thread::NetLogin Total time session().http().get(\"" + strAuthUrl + "\") : " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
+         TRACE0("login_thread::NetLogin Total time Application.http().get(\"" + strAuthUrl + "\") : " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
 
       }
       DWORD dwAuthEnd = ::get_tick_count();
@@ -921,7 +921,7 @@ namespace fontopus
 
             property_set set(get_app());
 
-            string strName = session().http().get(strUrl,set);
+            string strName = Application.http().get(strUrl,set);
 
             if(strName.is_empty())
                strName = m_strLicense;

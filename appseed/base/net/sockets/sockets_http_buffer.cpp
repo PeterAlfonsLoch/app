@@ -53,7 +53,7 @@ namespace sockets
          m_ptimeoutfile->m_uiExpectedSize = (uint64_t) -1;
       }
 
-      ::emit(get_app(), this, &http_buffer::on_http_request_response, &session().http(), &::http::application::get, psignal);
+      ::emit(get_app(), this, &http_buffer::on_http_request_response, &Application.http(), &::http::application::get, psignal);
 
       return TRUE;
 
