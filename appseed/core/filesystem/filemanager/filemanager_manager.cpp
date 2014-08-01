@@ -245,14 +245,15 @@ namespace filemanager
    void manager::OnFileManagerBrowse(::action::context actioncontext)
    {
 
+      string strPath = m_item->m_strPath;
 
-      browse(m_item->m_strPath,actioncontext);
-
+      browse(strPath,actioncontext);
 
       {
          update_hint uh;
          uh.set_type(update_hint::TypeSynchronizePath);
          uh.m_actioncontext = ::action::source::sync(actioncontext);
+         uh.m_strPath = strPath;
          update_all_views(NULL,0,&uh);
       }
 

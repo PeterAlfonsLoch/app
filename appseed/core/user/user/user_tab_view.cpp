@@ -134,7 +134,9 @@ namespace user
       {
          psplitview->SetSplitOrientation(orientation_vertical);
       }
+      
       psplitview->SetPaneCount(2);
+      
       psplitview->set_position_rate(0,0.5);
 
       psplitview->initialize_split_layout();
@@ -396,6 +398,14 @@ namespace user
    {
 
       ensure(id, get_data()->m_rectTabClient);
+
+   }
+
+
+   ::user::view_creator_data * tab_view::ensure(id id)
+   {
+
+      return ensure(id,get_data()->m_rectTabClient);
 
    }
 

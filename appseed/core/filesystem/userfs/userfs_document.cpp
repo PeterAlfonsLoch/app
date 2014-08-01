@@ -63,9 +63,16 @@ namespace userfs
       }
       else
       {
-
-         get_fs_data()->ls(pszFolder,&m_straPath,&m_straTitle,&m_iaSize, &m_baDir);
-
+         stringa straPath;
+         stringa straTitle;
+         int64_array iaSize;
+         bool_array baDir;
+         //get_fs_data()->ls(pszFolder,&m_straPath,&m_straTitle,&m_iaSize, &m_baDir);
+         get_fs_data()->ls(pszFolder,&straPath,&straTitle,&iaSize,&baDir);
+         m_straPath = straPath;
+         m_straTitle = straTitle;
+         m_iaSize = iaSize;
+         m_baDir = baDir;
       }
 
 

@@ -38,6 +38,8 @@ namespace fs
       virtual string eat_end_level(const char * psz, int32_t iLevel);
       virtual string dir_path(const char * pszPath1, const char * pszPath2);
 
+      virtual bool is_zero_latency(const char * psz);
+
    };
 
 

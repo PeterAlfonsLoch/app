@@ -42,6 +42,7 @@ public:
    sp(ptr_array < ::user::interaction >)     m_spuiptra;
    sp(::user::interaction::timer_array)      m_sptimera;
    
+   bool                                      m_bDupHandle;
    HTHREAD                                   m_hthread;
    uint32_t                                  m_uiThread;
 
@@ -80,9 +81,9 @@ public:
    virtual void process_message_filter(int32_t code,signal_details * pobj);
 
    virtual int32_t thread_startup(::thread_startup * pstartup);
-   virtual bool thread_entry(int32_t * piReturnCode);
+   virtual bool thread_entry();
    virtual int32_t main();
-   virtual int32_t thread_term(int32_t nResult);
+   virtual int32_t thread_term();
 
 
    virtual int32_t exit_instance();
@@ -137,7 +138,7 @@ public:
    virtual bool create_thread_synch(int32_t *piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs);
    virtual bool begin_thread(bool bSynchStartup,int32_t *piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlagsParam,LPSECURITY_ATTRIBUTES lpSecurityAttrs);
 
-   virtual void Delete();
+   virtual void thread_impl_delete();
 
    virtual void dispatch_thread_message(signal_details * pobj);
 

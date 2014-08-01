@@ -19,7 +19,6 @@ namespace userfs
       int32_t                       m_iAnimate;
       bool                          m_bTimer123;
       stringa                       m_straUpdatePtrFilter;
-      sp(::data::tree_item)         m_pdataitemCreateImageListStep;
       int32_t                       m_iDefaultImage;
       int32_t                       m_iDefaultImageSelected;
 
@@ -35,18 +34,12 @@ namespace userfs
       sp(::userfs::document) get_document();
 
       virtual void _001InsertColumns();
-      virtual void _001UpdateImageList(::data::tree_item * pitem);
-
+      
 
 
       void install_message_handling(::message::dispatch * pinterface);
 
 
-      void _StartCreateImageList();
-      void _StopCreateImageList();
-      void _CreateImageListStep();
-
-      // user::tree
       virtual void _001OnOpenItem(::data::tree_item * pitem, ::action::context actioncontext);
       virtual void _001OnItemCollapse(::data::tree_item * pitem, ::action::context actioncontext);
 

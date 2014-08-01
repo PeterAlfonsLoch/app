@@ -10,15 +10,15 @@ namespace filemanager
       ::data::data(papp),
       ::data::tree(papp),
       ::user::tree_data(papp),
-      ::userfs::tree(papp)
+      ::userfs::tree(papp),
+      m_mutexData(papp),
+      m_threadPolishing(m_mutexData),
+      m_threadPolishingLowLatency(m_mutexData)
    {
-
-      m_pdataitemCreateImageListStep = NULL;
 
       m_iAnimate = 0;
 
       m_pimagelist = System.userex()->shellimageset().GetImageList16();
-
 
    }
 
@@ -60,37 +60,51 @@ namespace filemanager
    }
 
 
-   void tree::filemanager_tree_insert(const char * lpcszDir,::action::context actioncontext)
+   void tree::knowledge(const string & strPath,::action::context actioncontext)
    {
-
-      sp(::data::tree_item) pitem = find_item(lpcszDir);
 
       stringa straPath;
       stringa straTitle;
       int64_array iaSize;
       bool_array baDir;
 
-      get_document()->get_fs_data()->ls(lpcszDir,&straPath,&straTitle,&iaSize,&baDir);
+      get_document()->get_fs_data()->ls(strPath,&straPath,&straTitle,&iaSize,&baDir);
       
-      filemanager_tree_insert(lpcszDir,straPath,straTitle,iaSize,baDir,actioncontext);
+      single_lock sl(&m_mutexData,true);
+
+      filemanager_tree_insert(strPath,straPath,straTitle,iaSize,baDir,actioncontext);
+
+      ::data::tree_item * pitem = find_item(strPath);
+
+      if(pitem != NULL)
+      {
+         if(straPath.get_count() > 0)
+         {
+
+            pitem->m_dwState |= ::data::tree_item_state_expanded;
+            pitem->m_dwState |= ::data::tree_item_state_expandable;
+
+         }
+      }
+
 
       arrange(::fs::arrange_by_name);
 
       if(m_treeptra.has_elements())
       {
 
-         _StartCreateImageList(m_treeptra[0]);
+         _polishing_start(m_treeptra[0]);
 
       }
 
    }
 
 
-   void tree::filemanager_tree_insert(const char * lpcszDir,stringa & straPath,stringa & straTitle,int64_array & iaSize,bool_array & baDir,::action::context actioncontext)
+   void tree::filemanager_tree_insert(const string & strPath, stringa & straPath,stringa & straTitle,int64_array & iaSize,bool_array & baDir,::action::context actioncontext)
    {  
-      
-      string strPath(lpcszDir);
 
+      single_lock sl(&m_mutexData,true);
+      
       stringa & straRootPath = get_document()->m_straRootPath;
 
       stringa & straRootTitle = get_document()->m_straRootTitle;
@@ -295,6 +309,8 @@ namespace filemanager
    void tree::browse_sync(::action::context actioncontext)
    {
 
+      single_lock sl(&m_mutexData,true);
+
       stringa & straRootPath = get_document()->m_straRootPath;
 
       stringa & straRootTitle = get_document()->m_straRootTitle;
@@ -382,8 +398,6 @@ namespace filemanager
 
       bool_array & baDir = get_document()->m_baDir;
 
-      pitem = find_item(strPath);
-
       filemanager_tree_insert(strPath, straPath,straTitle,iaSize,baDir,actioncontext);
 
       _017EnsureVisible(strPath,actioncontext);
@@ -395,7 +409,7 @@ namespace filemanager
       if(m_treeptra.has_elements())
       {
 
-         _StartCreateImageList(m_treeptra[0]);
+         _polishing_start(m_treeptra[0]);
 
       }
 
@@ -578,13 +592,13 @@ namespace filemanager
 
             pitem = find_item(strTarget);
 
-            filemanager_tree_insert(strTarget,actioncontext);
+            knowledge(strTarget,actioncontext);
 
          }
          else
          {
 
-            filemanager_tree_insert(pitem->m_pitem.cast < ::userfs::item >()->m_strPath,actioncontext);
+            knowledge(pitem->m_pitem.cast < ::userfs::item >()->m_strPath,actioncontext);
 
          }
 
@@ -592,7 +606,7 @@ namespace filemanager
       else
       {
 
-         filemanager_tree_insert("",actioncontext);
+         knowledge("",actioncontext);
 
       }
 
@@ -640,31 +654,68 @@ namespace filemanager
    }
 
 
-   void tree::_StartCreateImageList(::user::interaction * pui)
+   tree::polishing::polishing(sp(::base::application) papp, ::filemanager::tree * ptree,::user::tree * pusertree, bool bLowLatency) :
+      element(papp),
+      thread(papp)
    {
 
-      m_pdataitemCreateImageListStep = (sp(::data::tree_item)) get_base_item()->first_child();
+      m_ptree        = ptree;
+      m_pusertree    = pusertree;
+      m_bLowLatency  = bLowLatency;
+      m_pdataitem    = NULL;
 
-      m_estep = (e_step) (((int) step_start) + 1);
 
-      pui->SetTimer(TimerCreateImageList, 80, NULL);
-      
 
    }
 
 
-   void tree::_StopCreateImageList(::user::interaction * pui)
+   int32_t tree::polishing::run()
    {
 
-      pui->KillTimer(TimerCreateImageList);
+      single_lock sl(&m_ptree->m_mutexData,true);
+
+      int iBatchSize = 5;
+
+      m_pdataitem = (::data::tree_item *) m_ptree->get_base_item()->first_child();
+
+      m_estep = (e_step)(((int)step_start) + 1);
+
+      while(m_bRun)
+      {
+
+         for(index i = 0; i < iBatchSize; i++)
+         {
+            if(!m_bRun || !step(sl))
+               goto finish;
+         }
+
+         sl.unlock();
+
+         sl.lock();
+
+
+      }
+
+   finish:
+
+      return 0;
 
    }
 
 
-   bool tree::_CreateImageListStep()
+   void tree::_polishing_start(::user::tree * pusertree)
    {
 
-      if(m_pdataitemCreateImageListStep == NULL)
+      m_threadPolishing.replace(canew(polishing(get_app(),this,pusertree, false)));
+      m_threadPolishingLowLatency.replace(canew(polishing(get_app(),this,pusertree,true)));
+
+   }
+
+
+   bool tree::polishing::step(single_lock & sl)
+   {
+
+      if(m_pdataitem == NULL)
       {
 
          m_estep = (e_step)(((int)m_estep) + 1);
@@ -676,53 +727,86 @@ namespace filemanager
 
          }
 
-         m_pdataitemCreateImageListStep = (sp(::data::tree_item)) get_base_item()->first_child();
+         m_pdataitem = (sp(::data::tree_item)) m_ptree->get_base_item()->first_child();
 
 
-         if(m_pdataitemCreateImageListStep == NULL)
+         if(m_pdataitem == NULL)
             return false;
 
 
       }
 
-      _001UpdateImageList(m_pdataitemCreateImageListStep);
+      m_ptree->_polishing_step(sl, m_pdataitem, m_bLowLatency, m_estep);
 
-      m_pdataitemCreateImageListStep = m_pdataitemCreateImageListStep->get_item(::data::TreeNavigationExpandedForward);
+      m_pdataitem = m_pdataitem->get_item(::data::TreeNavigationExpandedForward);
 
       return true;
 
    }
 
-   void tree::_001UpdateImageList(sp(::data::tree_item) pitem)
+
+   void tree::_polishing_step(single_lock & sl, ::data::tree_item * pitem, bool bLowLatency, e_step estep)
    {
 
-      if(pitem.is_null())
+      if(pitem == NULL)
          return;
+
 
       sp(::userfs::item) item = pitem->m_pitem.cast < ::userfs::item >();
 
-      if(m_estep == step_has_subdir_visible)
+      if(bLowLatency)
       {
-         if(pitem->m_pparent.is_set() && ((m_estep == step_has_subdir_visible && pitem->m_pparent->is_expanded())
-            || (m_estep == step_has_subdir_hidden && !pitem->m_pparent->is_expanded())))
+         if(get_document()->get_fs_data()->is_zero_latency(item->m_strPath))
+            return;
+      }
+      else
+      {
+         if(!get_document()->get_fs_data()->is_zero_latency(item->m_strPath))
+            return;
+      }
+
+      if(estep == step_has_subdir_visible)
+      {
+         if(pitem->m_pparent.is_set() && ((estep == step_has_subdir_visible && pitem->m_pparent->is_expanded())
+            || (estep == step_has_subdir_hidden && !pitem->m_pparent->is_expanded())))
          {
-            if(!(pitem->m_dwState & ::data::tree_item_state_expandable)
-               && get_document()->get_fs_data()->has_subdir(item->m_strPath)
-               && get_document()->get_fs_data()->tree_show_subdir(item->m_strPath))
+            if(!(pitem->m_dwState & ::data::tree_item_state_expandable))
             {
-               item->m_flags.signalize(::fs::FlagHasSubFolder);
-               pitem->m_dwState |= ::data::tree_item_state_expandable;
+               string strPath = item->m_strPath;
+               if(bLowLatency)
+               {
+                  //sl.unlock();
+                  //if(get_document()->get_fs_data()->tree_show_subdir(strPath)
+                    // && get_document()->get_fs_data()->has_subdir(strPath))
+                  {
+                    // sl.lock();
+                     //item->m_flags.signalize(::fs::FlagHasSubFolder);
+                     pitem->m_dwState |= ::data::tree_item_state_expandable;
+                     item->m_flags.signalize(::fs::FlagHasSubFolderUnknown);
+                  }
+                  //else
+                  //{
+                    // sl.lock();
+                  //}
+               }
+               else
+               {
+                  if(get_document()->get_fs_data()->tree_show_subdir(strPath)
+                     && get_document()->get_fs_data()->has_subdir(strPath))
+                  {
+                     item->m_flags.signalize(::fs::FlagHasSubFolder);
+                     pitem->m_dwState |= ::data::tree_item_state_expandable;
+                  }
+               }
             }
-
-
          }
       }
-      else if(m_estep == step_image_visible || m_estep == step_image_hidden)
+      else if(estep == step_image_visible || estep == step_image_hidden)
       {
 
          if((item->m_iImage < 0 ||
-            item->m_iImageSelected < 0) && pitem->m_pparent.is_set() && ((m_estep == step_image_visible && pitem->m_pparent->is_expanded())
-            || (m_estep == step_image_hidden && !pitem->m_pparent->is_expanded())))
+            item->m_iImageSelected < 0) && pitem->m_pparent.is_set() && ((estep == step_image_visible && pitem->m_pparent->is_expanded())
+            || (estep == step_image_hidden && !pitem->m_pparent->is_expanded())))
          {
 
 #ifdef WINDOWSEX
@@ -764,32 +848,7 @@ namespace filemanager
 
       SCAST_PTR(::message::timer, ptimer, pobj);
 
-      switch(ptimer->m_nIDEvent)
-      {
-         case TimerCreateImageList:
-            {
-                                     
-                                     for(index i = 0; i < 5 ;i++)
-                                     {
-                                        
-                                        if(!_CreateImageListStep())
-                                        {
 
-                                           if(m_treeptra.has_elements())
-                                           {
-
-                                              _StopCreateImageList(m_treeptra[0]);
-
-                                           }
-
-                                           break;
-                                        }
-
-                                     }
-
-            }
-            break;
-      }
 
       ptimer->m_bRet = false;
       if (ptimer->m_nIDEvent == 1234567)

@@ -24,7 +24,6 @@ CLASS_DECL_BASE void do_events();
 CLASS_DECL_BASE void do_events(const duration & duration);
 
 
-
 #include "multithreading_sync_object.h"
 #include "multithreading_event_base.h"
 #include "multithreading_event_collection.h"
@@ -62,4 +61,5 @@ CLASS_DECL_BASE void do_events(const duration & duration);
 #include "multithreading_service_status.h"
 #include "multithreading_service_base.h"
 #include "multithreading_thread_os.h"
+
 

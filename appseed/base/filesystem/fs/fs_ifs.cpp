@@ -451,3 +451,10 @@ void ifs::defer_initialize()
    }
 
 }
+
+bool ifs::is_zero_latency(const char * psz)
+{
+
+   return false;
+
+}

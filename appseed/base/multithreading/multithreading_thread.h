@@ -1,6 +1,7 @@
 #pragma once
 
 
+class replace_thread;
 
 
 
@@ -26,17 +27,18 @@ public:
    uint_ptr                               m_dwAlive;
    bool                                   m_bReady;
    int32_t                                m_iReturnCode;
-   sp(::base::application)                m_pappDelete;
    ::user::interaction *                  m_puiMain;           // main interaction_impl (usually same System.m_puiMain)
    ::user::interaction *                  m_puiActive;         // active main interaction_impl (may not be m_puiMain)
    bool *                                 m_pbReady;
    property_set                           m_set;
    string                                 m_strWorkUrl;
-   ptr_array < thread >                   m_threadptraDependant;
-   ptr_array < thread >                   m_threadptraDependency;
+   ptr_array < thread >                   m_threadptraDependent;
+   ptr_array < thread >                   m_threadptraRequired;
 
 
    bool                                   m_bZipIsDir;
+
+   replace_thread *                       m_preplacethread;
 
 
    thread();
@@ -169,15 +171,32 @@ public:
    virtual void post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam);
 
 
-   virtual void register_dependant_thread(::thread * pthread);
-   virtual void unregister_dependant_thread(::thread * pthread);
-   virtual void signal_close_dependant_threads();
-   virtual void wait_dependant_threads(duration & duration);
-   virtual void register_dependencies();
-   virtual void unregister_dependencies();
+   virtual void register_dependent_thread(::thread * pthread);
+   virtual void unregister_dependent_thread(::thread * pthread);
+   virtual void signal_close_dependent_threads();
+   virtual void wait_close_dependent_threads(duration & duration);
+   virtual void register_at_required_threads();
+   virtual void unregister_from_required_threads();
 
    virtual void do_events();
    virtual void do_events(const duration & duration);
 
 };
 
+
+
+class CLASS_DECL_BASE replace_thread
+{
+public:
+
+   smart_pointer < ::thread >    m_spthread;
+   ::thread *                    m_pthreadNew;
+   mutex &                       m_mutex;
+
+   replace_thread(mutex & m): m_mutex(m) {  }
+
+   void replace(::thread * pcanew);
+
+   bool do_replace(::thread * pthread);
+
+};

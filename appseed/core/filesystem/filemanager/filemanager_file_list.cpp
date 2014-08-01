@@ -155,6 +155,8 @@ namespace filemanager
             }
             else if(!m_bStatic && puh->is_type_of(update_hint::TypeSynchronizePath))
             {
+               if(puh->m_strPath != get_filemanager_item().m_strPath)
+                  return;
                if(get_filemanager_data()->m_pholderFileList != NULL)
                {
                   if(get_filemanager_data()->m_pholderFileList->m_uiptraHold.get_size() > 0)

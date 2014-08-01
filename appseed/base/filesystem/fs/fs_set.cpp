@@ -281,5 +281,20 @@ namespace fs
    }
 
 
+   bool set::is_zero_latency(const char * psz)
+   {
+
+      ::fs::data * pdata = path_data(psz);
+
+      if(pdata != NULL)
+      {
+         return pdata->is_zero_latency(psz);
+      }
+
+      return ::fs::data::is_zero_latency(psz);
+
+   }
+
+
 } // namespace fs
 

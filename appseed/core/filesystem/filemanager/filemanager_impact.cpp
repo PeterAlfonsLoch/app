@@ -75,7 +75,14 @@ namespace filemanager
             }
             else if(puh->is_type_of(update_hint::TypeSynchronizePath))
             {
-               browse_sync(puh->m_actioncontext + ::action::source_sync);
+               if(puh->m_strPath == get_filemanager_item().m_strPath)
+               {
+                  browse_sync(puh->m_actioncontext + ::action::source_sync);
+               }
+               else
+               {
+                  knowledge(puh->m_strPath, puh->m_actioncontext + ::action::source_sync);
+               }
             }
 
          }
@@ -99,6 +106,14 @@ namespace filemanager
    void impact::browse_sync(::action::context actioncontext)
    {
       
+      UNREFERENCED_PARAMETER(actioncontext);
+
+   }
+
+   void impact::knowledge(const string & strPath, ::action::context actioncontext)
+   {
+
+      UNREFERENCED_PARAMETER(strPath);
       UNREFERENCED_PARAMETER(actioncontext);
 
    }

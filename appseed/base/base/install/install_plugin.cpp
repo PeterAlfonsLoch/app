@@ -980,7 +980,7 @@ namespace install
 
             property_set set(get_app());
 
-            strPrompt = ::root::Application.http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set);
+            strPrompt = Application.http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set);
 
             if (strPrompt.is_empty())
             {
@@ -1080,7 +1080,7 @@ restart:
 
       property_set set(get_app());
 
-      while((str = ::root::Application.http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set)).is_empty())
+      while((str = Application.http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set)).is_empty())
       {
          if(!m_phost->m_bStream)
          {

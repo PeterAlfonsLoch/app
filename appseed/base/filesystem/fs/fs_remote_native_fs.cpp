@@ -341,6 +341,12 @@ namespace fs
 
    }
 
+   bool remote_native::is_zero_latency(const char * psz)
+   {
+
+      return false;
+
+   }
 
 } // namespace fs
 

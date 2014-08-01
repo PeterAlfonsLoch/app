@@ -771,7 +771,7 @@ namespace user
    void tree::_001ExpandItem(::data::tree_item * pitem, ::action::context actioncontext, bool bExpand, /* = true */ bool bRedraw, /*=true*/ bool bLayout /*=true*/)
    {
       
-      ::data::simple_lock lock(pitem->m_pitem);
+      //::data::simple_lock lock(pitem->m_pitem);
 
       UNREFERENCED_PARAMETER(bLayout);
 

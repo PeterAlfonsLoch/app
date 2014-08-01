@@ -203,4 +203,12 @@ namespace fs
 
    }
 
+
+   bool data::is_zero_latency(const char * psz)
+   {
+
+      return true;
+
+   }
+
 } // namespace fs

@@ -37,7 +37,7 @@ namespace multithreading
 
    }
 
-   CLASS_DECL_BASE void __node_on_init_thread(HTHREAD hthread,thread * pthread)
+   CLASS_DECL_BASE void __node_on_init_thread(thread * pthread)
    {
 
       synch_lock sl(s_pmutex);
@@ -46,34 +46,45 @@ namespace multithreading
 
       __init_thread();
       
-      s_phaThread->add(hthread);
+      s_phaThread->add((HTHREAD) pthread->m_pthreadimpl->get_os_data());
 
       s_pthreadptra->add(pthread);
 
    }
 
 
-   CLASS_DECL_BASE void __node_on_term_thread(HTHREAD hthread,thread * pthread,int nExitCode,bool bDelete)
+   CLASS_DECL_BASE void __node_on_term_thread(thread * pthread)
    {
 
       synch_lock sl(s_pmutex);
 
-      s_phaThread->remove(hthread);
+      s_phaThread->remove(pthread->m_pthreadimpl->get_os_data());
 
       s_pthreadptra->remove(pthread);
 
       __term_thread();
 
-      if(pthread != NULL)
-      {
-
-         __end_thread(pthread->m_pbaseapp,(UINT)nExitCode,bDelete);
-
-      }
-
-
    }
 
+   
+   CLASS_DECL_BASE uint32_t __on_thread_finally(thread * pthread)
+   {
+
+      __node_term_thread(pthread);
+
+      ::multithreading::__node_on_term_thread(pthread);
+
+      sp(::base::application) papp = pthread->get_app();
+
+      int nExitCode = pthread->m_iReturnCode;
+
+      pthread->m_pthreadimpl->thread_term();
+
+      __end_thread(papp);
+
+      return nExitCode;
+
+   }
 
 
 } // namespace multithreading

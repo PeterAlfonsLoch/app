@@ -2741,7 +2741,7 @@ namespace base
 
          }
 
-         try
+         /*try
          {
 
             m_pthreadimpl.release();
@@ -2751,6 +2751,7 @@ namespace base
          {
 
          }
+         */
 
 
          try

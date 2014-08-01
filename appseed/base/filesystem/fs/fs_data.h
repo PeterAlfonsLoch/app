@@ -49,6 +49,8 @@ namespace fs
 
       virtual bool is_link(const char * psz);
 
+      virtual bool is_zero_latency(const char * psz);
+
 
    };
 

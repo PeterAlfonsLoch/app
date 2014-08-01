@@ -12,8 +12,6 @@ namespace userfs
       ::user::tree_data(papp)
    {
 
-      m_pdataitemCreateImageListStep = NULL;
-
       m_iAnimate = 0;
 
       m_iDefaultImage = -1;
@@ -321,12 +319,6 @@ namespace userfs
 
 
 
-   void tree::_001UpdateImageList(::data::tree_item * pitem)
-   {
-      UNREFERENCED_PARAMETER(pitem);
-
-   }
-
    void tree::_001InsertColumns()
    {
 
@@ -458,31 +450,6 @@ namespace userfs
 
 
 
-   void tree::_StartCreateImageList()
-   {
-      m_pdataitemCreateImageListStep = (sp(::data::tree_item)) get_base_item()->m_children.first_element();
-      //         SetTimer(TimerCreateImageList, 80, NULL);
-   }
-
-   void tree::_StopCreateImageList()
-   {
-      //       KillTimer(TimerCreateImageList);
-   }
-
-   void tree::_CreateImageListStep()
-   {
-      if (m_pdataitemCreateImageListStep == NULL)
-      {
-         _StopCreateImageList();
-         return;
-      }
-
-      _001UpdateImageList(m_pdataitemCreateImageListStep);
-
-      m_pdataitemCreateImageListStep = m_pdataitemCreateImageListStep->get_item(::data::TreeNavigationProperForward);
-
-
-   }
 
 
    COLORREF tree::get_background_color()

@@ -237,9 +237,10 @@ namespace multithreading
    CLASS_DECL_BASE void init_multithreading();
    CLASS_DECL_BASE void term_multithreading();
 
-   CLASS_DECL_BASE void __node_on_init_thread(HTHREAD hthread,thread * pthread);
-   CLASS_DECL_BASE void __node_on_term_thread(HTHREAD hthread,thread * pthread,int nExitCode,bool bDelete = true);
+   CLASS_DECL_BASE void __node_on_init_thread(thread * pthread);
+   CLASS_DECL_BASE void __node_on_term_thread(thread * pthread);
 
+   CLASS_DECL_BASE uint32_t __on_thread_finally(thread * pthread);
 
    CLASS_DECL_BASE extern comparable_array < HTHREAD > * s_phaThread;
    CLASS_DECL_BASE extern comparable_array < thread * > * s_pthreadptra;
@@ -250,9 +251,9 @@ namespace multithreading
 
 
 
-CLASS_DECL_BASE void __end_thread(sp(::base::application) papp,UINT nExitCode,bool bDelete = TRUE);
+CLASS_DECL_BASE void __end_thread(sp(::base::application) papp);
 
-CLASS_DECL_BASE void __term_thread(sp(::base::application) papp,HINSTANCE hInstTerm = NULL);
+CLASS_DECL_BASE void __term_thread(sp(::base::application) papp);
 
 
 

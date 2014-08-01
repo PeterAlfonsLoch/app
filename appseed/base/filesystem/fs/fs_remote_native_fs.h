@@ -43,6 +43,8 @@ namespace fs
 
       virtual void defer_initialize();
 
+      virtual bool is_zero_latency(const char * psz);
+
    };
 
 

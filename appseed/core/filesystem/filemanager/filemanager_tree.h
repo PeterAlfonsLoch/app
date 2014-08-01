@@ -26,13 +26,6 @@ namespace filemanager
 
       };
 
-      enum ETimer
-      {
-         TimerDelayedListUpdate = 100,
-         TimerCreateImageList
-      };
-
-
       enum e_step
       {
          step_start,
@@ -43,8 +36,29 @@ namespace filemanager
          step_end,
       };
 
-      e_step                  m_estep;
+      class polishing :
+         virtual public ::thread
+      {
+      public:
+
+         ::filemanager::tree *      m_ptree;
+         ::user::tree *             m_pusertree;
+         bool                       m_bLowLatency;
+         ::data::tree_item *        m_pdataitem;
+         e_step                     m_estep;
+
+         polishing(sp(::base::application) papp,::filemanager::tree * ptree,::user::tree * pusertree, bool bLowLatency);
+
+         int32_t run();
+         bool step(::single_lock & sl);
+
+      };
+
       context_menu            m_contextmenu;
+      mutex                   m_mutexData;
+      replace_thread          m_threadPolishing;
+      replace_thread          m_threadPolishingLowLatency;
+      
 
 #ifdef WINDOWSEX
       map < EFolder, EFolder, IShellFolder *, IShellFolder *> m_mapFolder;
@@ -59,17 +73,17 @@ namespace filemanager
       virtual void dump(dump_context & dumpcontext) const;
 
       virtual void _001InsertColumns();
-      virtual void _001UpdateImageList(sp(::data::tree_item) pitem);
+      virtual void _polishing_step(::single_lock & sl, ::data::tree_item * pitem, bool bLowLatency, e_step estep);
 
       DECL_GEN_VSIGNAL(_001OnTimer);
 
 
       void install_message_handling(::message::dispatch * pinterface);
 
-
-      void _StartCreateImageList(::user::interaction * pui);
-      void _StopCreateImageList(::user::interaction * pui);
-      bool _CreateImageListStep();
+      // tree_polishing
+      void _polishing_start(::user::tree * pusertree);
+      UINT _polishing_run(::user::tree * pusertree, bool bLowLatency);
+      bool _polishing_step(::data::tree_item * pitem, bool bLowLatency);
 
       // user::tree
       virtual void _001OnOpenItem(::data::tree_item * pitem, ::action::context actioncontext);
@@ -96,8 +110,8 @@ namespace filemanager
 
       
       virtual void browse_sync(::action::context actioncontext);
-      virtual void filemanager_tree_insert(const char * lpcszDir, ::action::context actioncontext);
-      virtual void filemanager_tree_insert(const char * lpcszDir, stringa & straPath,stringa & straTitle,int64_array & iaSize,bool_array & ba,::action::context actioncontext);
+      virtual void knowledge(const string & strPath,::action::context actioncontext);
+      virtual void filemanager_tree_insert(const string & strPath, stringa & straPath,stringa & straTitle,int64_array & iaSize,bool_array & ba,::action::context actioncontext);
       void _017EnsureVisible(const char * lpcsz, ::action::context actioncontext);
 
       sp(::data::tree_item) find_item(const char * lpcsz, ::data::tree_item * pitemStart = NULL);

@@ -247,7 +247,7 @@ namespace fontopus
             if(!bSynch)
                return m_puser;
 
-            while(m_pthreadCreatingUser != NULL && m_pthreadCreatingUser->m_bRun)
+            while(m_pthreadCreatingUser != NULL && m_pthreadCreatingUser->m_bRun && ::get_thread()->m_bRun)
             {
 
                do_events(millis(84));
@@ -282,7 +282,7 @@ namespace fontopus
          if(!bSynch)
             return m_puser;
 
-         while(m_pthreadCreatingUser != NULL && m_pthreadCreatingUser->m_bRun)
+         while(m_pthreadCreatingUser != NULL && m_pthreadCreatingUser->m_bRun && ::get_thread()->m_bRun)
          {
 
             do_events(millis(84));
