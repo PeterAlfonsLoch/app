@@ -97,32 +97,45 @@ namespace filemanager
 
    sp(manager) manager_template::open_child(bool bMakeVisible, bool bTransparentBackground, sp(::user::interaction) pwndParent, ::filemanager::data * pfilemanagerdata)
    {
+
+      if(pfilemanagerdata == NULL)
+      {
+
+         pfilemanagerdata = new ::filemanager::data(get_app());
+
+      }
+
       sp(::create_context) createcontext(allocer());
+      
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = pwndParent;
       createcontext->oprop("filemanager::data") = pfilemanagerdata;
-      if(pfilemanagerdata == NULL)
-      {
-         pfilemanagerdata = new ::filemanager::data(get_app());
-      }
+
       pfilemanagerdata->m_pmanagertemplate = this;
       pfilemanagerdata->m_pcallback = &platform().filemanager();
       pfilemanagerdata->m_pfilemanager = &platform().filemanager();
+      pfilemanagerdata->m_iTemplate = m_iTemplate;
+      pfilemanagerdata->m_iDocument = m_iNextDocument++;
+      pfilemanagerdata->m_bTransparentBackground = bTransparentBackground;
 
       sp(manager) pdoc = (m_pdoctemplateChild->open_document_file(createcontext));
-      if (pdoc != NULL)
+
+      if(pdoc == NULL)
+         return NULL;
+
+      if(pdoc->get_filemanager_data()->m_strDISection.is_empty())
       {
 
-         pdoc->get_filemanager_data()->m_iTemplate = m_iTemplate;
-         pdoc->get_filemanager_data()->m_iDocument = m_iNextDocument++;
-         pdoc->get_filemanager_data()->m_bTransparentBackground = bTransparentBackground;
          string strId;
          strId.Format("%s::(%d)",platform().filemanager().m_idFileManager.str(),pdoc->get_filemanager_data()->m_iDocument);
          pdoc->get_filemanager_data()->m_strDISection = strId;
-         pdoc->Initialize(bMakeVisible);
-         return pdoc;
+
       }
-      return NULL;
+
+      pdoc->Initialize(bMakeVisible);
+
+      return pdoc;
+      
    }
 
 

@@ -188,6 +188,8 @@ namespace userex
          else
             pfilemanagerdata->m_strToolBarSave = "toolbar_save.xml";
 
+         pfilemanagerdata->m_strDISection = Application.m_strAppName;
+
          sp(::filemanager::manager) pdoc = platform().filemanager().std().open_child(true,pfilemanagerdata->m_bTransparentBackground,pcreatordata->m_pholder,pfilemanagerdata);
          if(pdoc != NULL)
          {
