@@ -178,7 +178,12 @@ if(!pcreatecontext->m_bHold)
          pFrame->oprop("should_not_be_automatically_holded_on_initial_update_frame") = true;
       }
 
-      InitialUpdateFrame(pFrame, pdocument, bMakeVisible);
+if(bCreated)
+{
+
+   InitialUpdateFrame(pFrame,pdocument,bMakeVisible);
+
+}
 
       ::user::view_update_hint uh(get_app());
       uh.m_ehint = ::user::view_update_hint::hint_open_document;
