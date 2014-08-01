@@ -140,7 +140,7 @@ namespace user
          bWasModified = pdocument->is_modified();
          pdocument->set_modified_flag(FALSE);  // not dirty for open
 
-         if (!pdocument->on_open_document(pcreatecontext->m_spCommandLine->m_varFile))
+         if (!on_open_document(pdocument, pcreatecontext->m_spCommandLine->m_varFile))
          {
             // user has been alerted to what failed in on_open_document
             TRACE(::base::trace::category_AppMsg, 0, "::user::document::on_open_document returned FALSE.\n");
