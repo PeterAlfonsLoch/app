@@ -93,7 +93,7 @@ namespace filemanager
    void path_view::_001OnAfterChangeText(::action::context actioncontext)
    {
 
-      if (actioncontext.is_source(::action::source_sync))
+      if (!actioncontext.is_user_source())
          return;
 
       string str;

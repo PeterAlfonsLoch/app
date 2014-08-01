@@ -264,7 +264,7 @@ namespace filemanager
          if(::str::begins(m_item->m_strPath,"uifs://")
             || ::str::begins(m_item->m_strPath,"fs://"))
          {
-            data_set("InitialBrowsePath",::base::system::idEmpty,m_item->m_strPath);
+            data_set(".local://InitialBrowsePath",::base::system::idEmpty,m_item->m_strPath);
          }
          else
          {
@@ -277,8 +277,8 @@ namespace filemanager
             idMachine = "Windows Desktop";
 #endif
 
-            data_set("InitialBrowsePath",::base::system::idEmpty,"machinefs://");
-            data_set("InitialBrowsePath",idMachine,m_item->m_strPath);
+            data_set(".local://InitialBrowsePath",::base::system::idEmpty,"machinefs://");
+            data_set(".local://InitialBrowsePath",idMachine,m_item->m_strPath);
 
          }
 
@@ -471,7 +471,7 @@ namespace filemanager
 
       uh.m_pmanager = this;
 
-      if(data_get("InitialBrowsePath",::base::system::idEmpty,str))
+      if(data_get(".local://InitialBrowsePath",::base::system::idEmpty,str))
       {
 
          if(str == "machinefs://")
@@ -485,7 +485,7 @@ namespace filemanager
             idMachine = "Windows Desktop";
 #endif
 
-            if(data_get("InitialBrowsePath",idMachine,str))
+            if(data_get(".local://InitialBrowsePath",idMachine,str))
             {
                FileManagerBrowse(str,::action::source::database_default());
             }
@@ -653,6 +653,8 @@ namespace filemanager
 
    void manager::on_create(sp(::create_context) pcreatecontext)
    {
+
+      ::user::document::on_create(pcreatecontext);
 
       m_spfilemanagerdata = pcreatecontext->oprop("filemanager::data").cast < ::filemanager::data >();
       m_spfilemanagerdata->m_pmanager = this;

@@ -51,6 +51,7 @@ namespace filemanager
          pfilemanagerdata->m_strDISection = m_strDISection + "." + strId;
          pfilemanagerdata->m_bFileSize = true;
 
+
       }
 
       pfilemanagerdata->m_pmanagertemplate = this;

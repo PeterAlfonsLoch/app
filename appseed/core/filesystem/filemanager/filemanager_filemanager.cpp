@@ -198,7 +198,7 @@ namespace filemanager
 
       string strPath;
 
-      if(data_get(dataid, "InitialBrowsePath", ::base::system::idEmpty, strPath))
+      if(data_get(dataid, ".local://InitialBrowsePath", ::base::system::idEmpty, strPath))
       {
 
          sess(get_app()).dir().mk(strPath);
@@ -225,7 +225,7 @@ namespace filemanager
 
       }
 
-      if(data_set(dataid, "InitialBrowsePath", ::base::system::idEmpty, strPath))
+      if(data_set(dataid, ".local://InitialBrowsePath", ::base::system::idEmpty, strPath))
       {
 
          return strPath;
