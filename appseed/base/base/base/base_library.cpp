@@ -109,7 +109,10 @@ namespace base
 #ifdef CUBE
          pfn_get_new_library = (PFN_GET_NEW_LIBRARY)(INT_PTR)__library()[strCa2Name + "_get_new_library"];
 #else
-         pfn_get_new_library = get < PFN_GET_NEW_LIBRARY >("get_new_library");
+         if((pfn_get_new_library = get < PFN_GET_NEW_LIBRARY >(m_strPath + "_get_new_library")) == NULL)
+         {
+            pfn_get_new_library = get < PFN_GET_NEW_LIBRARY >("get_new_library");
+         }
 #endif
 
       }

@@ -512,7 +512,7 @@ namespace file
          else
          {
 
-            spfile = get_file(sess(m_pbaseapp).dir().matter(strPath), nOpenFlags);
+            spfile = get_file(App(m_pbaseapp).dir().matter(strPath), nOpenFlags);
 
          }
 

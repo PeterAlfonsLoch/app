@@ -6647,7 +6647,7 @@ bool imaging::load_from_file(::draw2d::dib * pdib, var varFile, bool bCache, ::b
    try
    {
 
-      if (!read_from_file(pdib, sess(papp).file().get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary), papp))
+      if (!read_from_file(pdib, App(papp).file().get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary), papp))
          return false;
 
    }
@@ -6664,7 +6664,7 @@ bool imaging::load_from_file(::draw2d::dib * pdib, var varFile, bool bCache, ::b
    {
       try
       {
-         ::file::byte_output_stream ostream(sess(papp).file().get_file(strFile, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory));
+         ::file::byte_output_stream ostream(App(papp).file().get_file(strFile, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory));
          ostream << *pdib;
       }
       catch (...)
