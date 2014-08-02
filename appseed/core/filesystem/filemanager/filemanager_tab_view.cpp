@@ -81,7 +81,7 @@ namespace filemanager
 
                string str;
 
-               str.Format("frame(%d,%d)", get_filemanager_data()->m_iTemplate, get_filemanager_data()->m_iDocument);
+               str.Format("frame(%d,%d)",get_filemanager_manager()->get_filemanager_data()->m_iTemplate,get_filemanager_manager()->get_filemanager_data()->m_iDocument);
 
                sp(frame) pframe = ((::window_sp) GetParentFrame());
 
@@ -207,7 +207,7 @@ namespace filemanager
          if(pmanager != NULL)
          {
 
-            m_pmanager = pmanager;
+            m_pfilemanager = pmanager;
 
             pmanager->get_filemanager_data()->m_iTemplate = platform().filemanager().std().m_iTemplate;
             pmanager->get_filemanager_data()->m_iDocument = platform().filemanager().std().m_iNextDocument++;

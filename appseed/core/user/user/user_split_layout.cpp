@@ -576,9 +576,9 @@ namespace user
       }
       else
       {
-         rect rectPane;
-         pcomponent->m_pholder->GetClientRect(rectPane);
-         pcomponent->m_pholder = place(pwnd,rectPane);
+         //rect rectPane;
+         //pcomponent->m_pholder->GetClientRect(rectPane);
+         pcomponent->m_pholder = place(pwnd,pcomponent->m_rectClient);
          if(pcomponent->m_pholder == NULL)
             return false;
       }

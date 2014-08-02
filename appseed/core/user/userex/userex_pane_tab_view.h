@@ -8,13 +8,14 @@ namespace userex
    class pane_view;
 
    class CLASS_DECL_CORE pane_tab_view :
-      virtual public ::user::tab_view,
-      virtual public ::filemanager::impact
+      virtual public ::user::tab_view
    {
    public:
 
 
-      sp(pane_view) m_ppaneview;
+      sp(pane_view)                 m_ppaneview;
+      sp(filemanager::manager)      m_pfilemanager;
+      sp(filemanager::manager)      m_pfilemanagerTabbed;
 
 
       pane_tab_view(sp(::base::application) papp);

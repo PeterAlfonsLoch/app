@@ -190,19 +190,31 @@ namespace userex
 
          pfilemanagerdata->m_strDISection = Application.m_strAppName;
 
-         sp(::filemanager::manager) pdoc = platform().filemanager().std().open_child(true,pfilemanagerdata->m_bTransparentBackground,pcreatordata->m_pholder,pfilemanagerdata);
-         if(pdoc != NULL)
+         sp(::filemanager::manager) pmanager = platform().filemanager().std().open_child(true,pfilemanagerdata->m_bTransparentBackground,pcreatordata->m_pholder,pfilemanagerdata);
+
+         if(pmanager != NULL)
          {
-            sp(::user::impact) pview = pdoc->get_view();
+            
+            m_pfilemanager = pmanager;
+
+            sp(::user::impact) pview = pmanager->get_view();
+
             if(pview != NULL)
             {
+
                sp(::user::frame_window) pframe = (sp(::user::frame_window)) pview->GetParentFrame();
+
                if(pframe != NULL)
                {
-                  pcreatordata->m_pdoc = pdoc;
+
+                  pcreatordata->m_pdoc = pmanager;
+
                }
+
             }
+
          }
+
       }
       else if(pcreatordata->m_id == "tabbed_file_manager")
       {
@@ -212,34 +224,52 @@ namespace userex
          cc->m_bMakeVisible               = true;
          cc->m_puiParent                  = pcreatordata->m_pholder;
 
-         sp(::filemanager::manager) pdoc = platform().filemanager().std().open(cc);
+         sp(::filemanager::manager) pmanager = platform().filemanager().std().open(cc);
 
-         if(pdoc != NULL)
+         if(pmanager != NULL)
          {
-            sp(::user::impact) pview = pdoc->get_view();
+
+            m_pfilemanagerTabbed = pmanager;
+
+            sp(::user::impact) pview = pmanager->get_view();
+
             if(pview != NULL)
             {
+
                sp(::user::frame_window) pframe = (sp(::user::frame_window)) pview->GetParentFrame();
+
                if(pframe != NULL)
                {
-                  pcreatordata->m_pdoc = pdoc;
+
+                  pcreatordata->m_pdoc = pmanager;
+
                   pcreatordata->m_pwnd = pframe;
+
                }
+
             }
+
          }
+
       }
 
    }
 
+
    sp(::filemanager::manager) pane_tab_view::get_filemanager_manager()
    {
-      return  m_pmanager;
+
+      return  m_pfilemanager;
+
    }
 
    sp(::filemanager::manager) pane_tab_view::get_tabbed_filemanager_document()
    {
-      return  m_pmanager;
+
+      return  m_pfilemanagerTabbed;
+
    }
+
 
    void pane_tab_view::_001OnTabClose(int32_t iTab)
    {

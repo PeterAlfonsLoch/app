@@ -56,6 +56,10 @@ namespace draw2d
       }
    }
 
+   void graphics::release_os_data_ex(int i, void * p) 
+   {
+   }
+
    /*
 
    /*

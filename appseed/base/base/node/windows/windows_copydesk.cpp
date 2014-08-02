@@ -204,7 +204,36 @@ namespace windows
       HBITMAP hbitmap = (HBITMAP) ::GetClipboardData(CF_BITMAP);
       try
       {
-         ::draw2d::bitmap_sp bitmap(allocer());
+         
+         BITMAP bm;
+
+         ZERO(bm);
+         
+         ::GetObject(hbitmap, sizeof(bm), &bm);
+
+         pdib->create(bm.bmWidth, bm.bmHeight);
+
+         if(pdib->m_size.area() <= 0)
+         {
+            ::DeleteObject((HGDIOBJ)hbitmap);
+            //::DeleteDC(hdc);
+            ::CloseClipboard();
+
+            return false;
+         }
+
+         HDC hdc = (HDC) pdib->get_graphics()->get_os_data_ex(1);
+
+         HDC hdcMem = ::CreateCompatibleDC(NULL);
+
+         HGDIOBJ hbitmapOld = ::SelectObject(hdcMem,hbitmap);
+
+         ::BitBlt(hdc,0,0,pdib->m_size.cx,pdib->m_size.cy,hdcMem,0,0,SRCCOPY);
+
+         pdib->get_graphics()->release_os_data_ex(1, hdc);
+
+         ::SelectObject(hdcMem,hbitmapOld);
+
          //bitmap->attach(new Gdiplus::Bitmap(hbitmap, NULL));
          //HDC hdc = ::CreateCompatibleDC(NULL);
          //::draw2d::graphics_sp g(allocer());
@@ -215,13 +244,13 @@ namespace windows
          //::GetObjectA(hbitmap, sizeof(bm), &bm);
          //if(!pdib->create(bm.bmWidth, bm.bmHeight))
            // return false;
-         ::draw2d::graphics_sp g(allocer());
-         g->SelectObject(bitmap);
-         size sz = bitmap->GetBitmapDimension();
-         if(pdib->create(sz))
-         {
-            bOk = pdib->get_graphics()->BitBlt(0, 0, sz.cx, sz.cy, g, 0, 0, SRCCOPY) != FALSE;
-         }
+         //::draw2d::graphics_sp g(allocer());
+         //g->SelectObject(bitmap);
+         //size sz = bitmap->GetBitmapDimension();
+         //if(pdib->create(sz))
+         //{
+           // bOk = pdib->get_graphics()->BitBlt(0, 0, sz.cx, sz.cy, g, 0, 0, SRCCOPY) != FALSE;
+         //}
       }
       catch(...)
       {
