@@ -2754,7 +2754,7 @@ namespace user
 
       //bool bAttach = AttachThreadInput(GetWindow()->get_os_int(), ::GetCurrentThreadId(), TRUE);
 
-      m_iaModalThread.add(::get_thread()->get_os_int());
+      m_iaModalThread.add(::get_current_thread_id());
       sp(::base::application) pappThis1 = (m_pimpl);
       sp(::base::application) pappThis2 = (::get_thread());
       // acquire and dispatch messages until the modal state is done
@@ -2816,7 +2816,7 @@ namespace user
                goto ExitModal;
 
             // pump message, but quit on WM_QUIT
-            if(!::get_thread()->pump_message())
+            if(::get_thread() != NULL && !::get_thread()->pump_message())
             {
                __post_quit_message(0);
                return -1;
@@ -2870,7 +2870,7 @@ namespace user
 
    bool interaction::ContinueModal(int32_t iLevel)
    {
-      return iLevel < m_iModalCount && ::get_thread()->m_bRun && m_pbaseapp->m_bRun;
+      return iLevel < m_iModalCount && (::get_thread() == NULL || ::get_thread()->m_bRun) && m_pbaseapp->m_bRun;
    }
 
    void interaction::EndModalLoop(id nResult)
@@ -4272,7 +4272,12 @@ namespace user
 
       m_pbaseapp->keep_alive();
 
-      ::get_thread()->keep_alive();
+      if(::get_thread() != NULL)
+      {
+
+         ::get_thread()->keep_alive();
+
+      }
 
       if(pliveobject != NULL)
       {

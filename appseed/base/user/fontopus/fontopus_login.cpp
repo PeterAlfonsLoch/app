@@ -354,10 +354,14 @@ namespace fontopus
       if (!strcmp(pszId, "submit"))
       {
          GetParent()->ShowWindow(SW_HIDE);
-         string strText;
-         m_ppassword->_001GetText(strText);
-         strText = System.crypto().nessie(strText);
-         m_ppassword->_001SetText(strText,::action::source::database());
+
+         if(!m_bCred)
+         {
+            string strText;
+            m_ppassword->_001GetText(strText);
+            strText = System.crypto().nessie(strText);
+            m_ppassword->_001SetText(strText,::action::source::database());
+         }
          GetParent()->EndModalLoop("ok");
 
          return true;

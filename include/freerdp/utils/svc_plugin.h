@@ -38,6 +38,8 @@
 
 typedef struct rdp_svc_plugin rdpSvcPlugin;
 
+struct wf_client_thread;
+
 struct rdp_svc_plugin
 {
 	CHANNEL_ENTRY_POINTS_EX channel_entry_points;
@@ -48,7 +50,7 @@ struct rdp_svc_plugin
 	void (*event_callback)(rdpSvcPlugin* plugin, wMessage* event);
 	void (*terminate_callback)(rdpSvcPlugin* plugin);
 
-	HANDLE thread;
+   struct wf_client_thread * thread;
 	wStream* data_in;
 	void* init_handle;
 	UINT32 open_handle;

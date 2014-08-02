@@ -101,7 +101,7 @@ namespace fontopus
 
       SCAST_PTR(::message::timer,ptimer,pobj);
 
-      if(ptimer->m_nIDEvent == 1984)
+      if(ptimer->m_nIDEvent == 1984 && !m_login.m_bCred)
       {
 
          try
