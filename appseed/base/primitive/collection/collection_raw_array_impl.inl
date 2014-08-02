@@ -304,7 +304,24 @@ element(a.get_app())
    operator = (a);
 }
 
+#ifdef MOVE_SEMANTICS
+template<class TYPE,class ARG_TYPE>
+raw_array<TYPE,ARG_TYPE>::raw_array(raw_array <TYPE,ARG_TYPE> && a):
+element(a.get_app())
+{
 
+   m_nGrowBy = a.m_nGrowBy;
+   m_pData = a.m_pData;
+   m_nSize = a.m_nSize;
+   m_nMaxSize = a.m_nMaxSize;
+
+   //a.m_nGrowBy = 0;
+   a.m_pData = NULL;
+   //a.m_nSize = 0;
+   //a.m_nMaxSize = 0;
+
+}
+#endif
 
 template<class TYPE, class ARG_TYPE>
 raw_array<TYPE, ARG_TYPE>:: raw_array(::count n)
@@ -351,8 +368,6 @@ raw_array<TYPE, ARG_TYPE>::~raw_array()
 template<class TYPE, class ARG_TYPE>
 void raw_array<TYPE, ARG_TYPE>::destroy()
 {
-   ASSERT_VALID(this);
-
    if (m_pData != NULL)
    {
       for( int32_t i = 0; i < m_nSize; i++ )
@@ -828,3 +843,25 @@ raw_array<TYPE, ARG_TYPE> raw_array<TYPE, ARG_TYPE>::operator + (const raw_array
 
 
 
+#ifdef MOVE_SEMANTICS
+template <class TYPE,class ARG_TYPE>
+inline raw_array<TYPE,ARG_TYPE> & raw_array<TYPE,ARG_TYPE>::operator = (raw_array && a)
+{
+
+   if(&a != this)
+   {
+      destroy();
+
+      m_nGrowBy      = a.m_nGrowBy;
+      m_pData        = a.m_pData;
+      m_nSize        = a.m_nSize;
+      m_nMaxSize     = a.m_nMaxSize;
+
+      a.m_pData      = NULL;
+
+   }
+
+   return *this;
+}
+
+#endif

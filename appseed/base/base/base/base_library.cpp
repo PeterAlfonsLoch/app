@@ -58,7 +58,9 @@ namespace base
 
       m_bAutoClose = bAutoClose;
 
-#ifndef CUBE
+#ifdef CUBE
+      m_strPath = pszPath;
+#else
 
       try
       {

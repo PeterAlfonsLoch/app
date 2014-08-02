@@ -8,6 +8,7 @@ class comparable_eq_array :
 public:
    comparable_eq_array();
    comparable_eq_array(const comparable_eq_array & array);
+   comparable_eq_array(comparable_eq_array && array);
 
    index find_first(ARG_TYPE t, index find = 0, index last = -1) const;
    ::count get_count() const;
@@ -58,6 +59,12 @@ ARRAY_TYPE(a)
    this->operator = (a);
 }
 
+template < class TYPE,class ARG_TYPE,class ARRAY_TYPE>
+comparable_eq_array<  TYPE,ARG_TYPE,ARRAY_TYPE>::
+comparable_eq_array( comparable_eq_array<  TYPE,ARG_TYPE,ARRAY_TYPE> && a):
+ARRAY_TYPE(a)
+{
+}
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::

@@ -35,6 +35,9 @@ public:
    numeric_array();
    numeric_array(sp(::base::application) papp);
    numeric_array(const numeric_array & array);
+#ifdef MOVE_SEMANTICS
+   numeric_array(numeric_array && array);
+#endif
 
    index find_first_maximum_value();
    TYPE & get_maximum_value();
@@ -158,21 +161,7 @@ public:
 
 
 #if defined(MOVE_SEMANTICS)
-      numeric_array(numeric_array && a) :
-         raw_array < TYPE, const TYPE & > (a)
-      {
-
-      }
-
-      inline numeric_array & operator = (numeric_array && a)
-      {
-
-         raw_array < TYPE, const TYPE & >::operator = (a);
-
-         return *this;
-
-      }
-
+      inline numeric_array & operator = (numeric_array && a);
 #endif
 
    void implode(string & rwstr, const char * lpcszSeparator = NULL, index iStart = 0, ::count iCount = -1) const;
@@ -312,6 +301,16 @@ numeric_array < TYPE >::
 {
    this->operator = (a);
 }
+
+#ifdef MOVE_SEMANTICS
+template < class TYPE >
+numeric_array < TYPE >::
+numeric_array(numeric_array < TYPE > && a)
+: raw_array < TYPE,const TYPE & >((raw_array < TYPE,const TYPE & > &&) a)
+{
+   
+}
+#endif
 
 namespace numeric_info
 {
@@ -639,7 +638,7 @@ numeric_array < TYPE >  numeric_array < TYPE >::operator + (const numeric_array 
 
    aRet.add(a);
 
-   return *this;
+   return aRet;
 
 }
 
@@ -2087,3 +2086,15 @@ namespace lemon
 
 
 
+#ifdef MOVE_SEMANTICS
+template <class TYPE>
+inline numeric_array<TYPE> & numeric_array<TYPE>::operator = (numeric_array && a)
+{
+
+   raw_array < TYPE,const TYPE & >::operator = (a);
+
+   return *this;
+
+}
+
+#endif

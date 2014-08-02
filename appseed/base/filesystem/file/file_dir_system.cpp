@@ -1740,11 +1740,11 @@ else
 
             if(bDir)
             {
-               strPath = sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+               strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")),set);
             }
             else
             {
-               strPath = sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+               strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
             }
 
             strPath.trim();

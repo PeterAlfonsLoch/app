@@ -508,7 +508,7 @@ restart:
             {
                try
                {
-                  ::file::byte_input_stream is(sess(papp).file().get_file(strFilePath, ::file::type_binary | ::file::mode_read));
+                  ::file::byte_input_stream is(App(papp).file().get_file(strFilePath, ::file::type_binary | ::file::mode_read));
                   is >> storage;
                }
                catch(...)
@@ -519,7 +519,7 @@ restart:
             {
                varQuery["user"] = &AppUser(papp);
 
-               sess(papp).http().get(strFilePath, storage, varQuery.propset());
+               App(papp).http().get(strFilePath, storage, varQuery.propset());
 
             }
          }
@@ -598,7 +598,7 @@ restart:
       try
       {
 
-         spfile = sess(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_none);
+         spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_none);
 
          if(spfile.is_null())
             return;

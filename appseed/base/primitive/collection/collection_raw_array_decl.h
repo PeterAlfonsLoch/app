@@ -299,6 +299,9 @@ public:
 
    raw_array(sp(::base::application) papp = NULL, ::count nGrowBy = 32);
    raw_array(const raw_array <TYPE, ARG_TYPE> & a);
+#ifdef MOVE_SEMANTICS
+   raw_array(raw_array <TYPE,ARG_TYPE> && a);
+#endif
    raw_array(::count n);
    raw_array(ARG_TYPE t, ::count n = 1);
    raw_array(TYPE * ptypea, ::count n);
@@ -456,40 +459,9 @@ public:
    void dump(dump_context &) const;
    void assert_valid() const;
 
-#if defined(MOVE_SEMANTICS)
-    raw_array(raw_array && a) :
-   element(a.get_app())
-   {
 
-   m_nGrowBy      = a.m_nGrowBy;
-   m_pData        = a.m_pData;
-   m_nSize        = a.m_nSize;
-   m_nMaxSize     = a.m_nMaxSize;
-
-   a.m_pData      = NULL;
-
-   }
-
-
-   inline raw_array & operator = (raw_array && a)
-   {
-
-      if(&a != this)
-      {
-         destroy();
-
-         m_nGrowBy      = a.m_nGrowBy;
-         m_pData        = a.m_pData;
-         m_nSize        = a.m_nSize;
-         m_nMaxSize     = a.m_nMaxSize;
-
-         a.m_pData      = NULL;
-
-      }
-
-   return *this;
-   }
-
+#ifdef MOVE_SEMANTICS
+   inline raw_array & operator = (raw_array && a);
 #endif
 
 };

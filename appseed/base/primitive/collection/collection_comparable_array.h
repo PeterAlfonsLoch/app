@@ -10,6 +10,7 @@ public:
 
    comparable_array();
    comparable_array(const comparable_array & array);
+   comparable_array(comparable_array && array);
 
    void quick_sort(bool bAsc = true);
 
@@ -38,6 +39,14 @@ ARRAY_TYPE(a)
 
 }
 
+template < class TYPE,class ARG_TYPE,class ARRAY_TYPE>
+comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE>::
+comparable_array(comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE> && a):
+ARRAY_TYPE(a)
+{
+
+
+}
 
 
 template < class TYPE,class ARG_TYPE = TYPE const &,class ARRAY_TYPE = comparable_array < TYPE,ARG_TYPE >,class COMPARE = ::comparison::compare_type_arg_type < TYPE,ARG_TYPE >  >
