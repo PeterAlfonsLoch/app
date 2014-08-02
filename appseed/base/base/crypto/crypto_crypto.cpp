@@ -946,30 +946,33 @@ namespace crypto
 #else
 
 
-   ::Windows::Security::Cryptography::Core::CryptographicKey ^ crypto::get_new_rsa_key()
+   sp(::crypto::rsa) crypto::generate_rsa_key()
    {
 
       ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider ^ provider =
          ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider::OpenAlgorithm(
          ::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
 
-      return provider->CreateKeyPair(1024);
+      
+      return canew(::crypto::rsa(get_app(), provider->CreateKeyPair(1024)));
 
    }
 
-   void crypto::free_rsa_key(::Windows::Security::Cryptography::Core::CryptographicKey ^ prsa)
+   /*void crypto::free_rsa_key(sp(::crypto::rsa) prsa)
    {
 
       UNREFERENCED_PARAMETER(prsa);
 
-   }
+   }*/
 
 #endif
 
    void crypto::err_load_rsa_strings()
    {
-
+#if defined(BSD_STYLE_SOCKETS)
       ERR_load_RSA_strings();
+
+#endif
 
    }
 
@@ -977,7 +980,9 @@ namespace crypto
    void crypto::err_load_crypto_strings()
    {
 
+#if defined(BSD_STYLE_SOCKETS)
       ERR_load_crypto_strings();
+#endif
 
    }
 
@@ -1064,6 +1069,8 @@ namespace crypto
 
       primitive::memory memMod(get_app());
 
+      string strRsaModulus(nParam);
+
       memMod.from_hex(strRsaModulus);
 
       //memMod.reverse();
@@ -1149,6 +1156,7 @@ namespace crypto
 
    }
 
+#endif
 
    rsa::~rsa()
    {
@@ -1262,7 +1270,9 @@ namespace crypto
 
 
 
-      memory.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Encrypt(m_prsa, memIn.get_os_crypt_buffer(), nullptr));
+      out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Encrypt(m_prsa, in.get_os_crypt_buffer(), nullptr));
+
+
 
 
 #else
@@ -1273,15 +1283,29 @@ namespace crypto
 
       out.allocate(i);
 
+
+
 #endif
 
+      return out.get_size();
 
-      return i;
 
    }
 
    int rsa::private_decrypt(::primitive::memory & out, const ::primitive::memory & in, string & strError)
    {
+
+
+#if defined(METROWIN)
+
+
+
+out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Decrypt(m_prsa, in.get_os_crypt_buffer(), nullptr));
+
+
+
+
+#else
 
       single_lock sl(&m_mutex, true);
       
@@ -1302,7 +1326,9 @@ namespace crypto
 
       out.allocate(i);
 
-      return (int)i;
+#endif
+
+      return out.get_size();
 
    }
 
@@ -1341,7 +1367,7 @@ namespace crypto
 
    void crypto::np_make_zigbert_rsa(const string & strDir, const string & strSignerPath, const string & strKeyPath, const string & strOthersPath, const string & strSignature)
    {
-
+#ifndef METROWIN
       X509 * signer = NULL;
       {
          string strSigner = Application.file().as_string(strSignerPath);
@@ -1418,7 +1444,7 @@ namespace crypto
 
       BIO_free(output);
       PKCS7_free(pkcs7);
-
+#endif
    }
 
 } // namespace crypto
@@ -1430,6 +1456,8 @@ void
 stunCalculateIntegrity_longterm(char* hmac, const char* input, int32_t length,
 const char *username, const char *realm, const char *password)
 {
+
+#ifndef METROWIN
    uint32_t resultSize = 0;
    uchar HA1[16];
    char HA1_text[1024];
@@ -1441,25 +1469,30 @@ const char *username, const char *realm, const char *password)
       HA1, 16,
       (const uchar*)input, length,
       (uchar*)hmac, &resultSize);
+#endif
 }
 
 void
 stunCalculateIntegrity_shortterm(char* hmac, const char* input, int32_t length, const char* key)
 {
+#ifndef METROWIN
    uint32_t resultSize = 0;
    HMAC(EVP_sha1(),
       key, (int)strlen(key),
       (const uchar*)input, length,
       (uchar*)hmac, &resultSize);
+#endif
 }
 
 void hmac_evp_sha1_1234(unsigned char * hmac, unsigned int * hmacSize, const unsigned char * buf, size_t bufLen)
 {
+#ifndef METROWIN
    
    HMAC(EVP_sha1(),
       "1234", 4,
       (const uchar*)buf, bufLen - 20 - 4,
       hmac, hmacSize);
+#endif
 
 }
 

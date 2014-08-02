@@ -6,7 +6,7 @@ namespace sockets
 
 
    class CLASS_DECL_BASE sockets :
-      virtual public base_departament
+      virtual public ::base::departament
    {
    public:
 

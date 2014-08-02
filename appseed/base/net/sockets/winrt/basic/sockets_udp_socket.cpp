@@ -786,7 +786,7 @@ namespace sockets
    ::net::address udp_socket::GetRemoteAddress()
    {
 
-      return ::net::address(m_posdata->m_datagramsocket->Information->RemoteAddress->CanonicalName, m_posdata->m_datagramsocket->Information->RemotePort);
+      return ::net::address(get_app(), m_posdata->m_datagramsocket->Information->RemoteAddress->CanonicalName, m_posdata->m_datagramsocket->Information->RemotePort);
 
    }
 
@@ -802,7 +802,7 @@ namespace sockets
    ::net::address udp_socket::GetLocalAddress()
    {
 
-      return ::net::address(m_posdata->m_datagramsocket->Information->LocalAddress->CanonicalName, m_posdata->m_datagramsocket->Information->LocalPort);
+      return ::net::address(get_app(), m_posdata->m_datagramsocket->Information->LocalAddress->CanonicalName, m_posdata->m_datagramsocket->Information->LocalPort);
 
    }
 

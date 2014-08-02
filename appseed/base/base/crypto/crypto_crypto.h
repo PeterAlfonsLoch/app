@@ -101,6 +101,7 @@ namespace crypto
 
    typedef smart_pointer < crypto > crypto_sp;
 
+#if !defined(METROWIN) || defined(__cplusplus_winrt)
 
    class CLASS_DECL_BASE rsa :
       virtual public element
@@ -135,6 +136,10 @@ namespace crypto
       int private_decrypt(::primitive::memory & out, const ::primitive::memory & in, string & strError);
 
    };
+
+
+#endif
+
 
    typedef spa(rsa) rsaptra;
 

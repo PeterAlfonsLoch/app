@@ -52,7 +52,11 @@ namespace base
 
 #endif
 
+#ifdef BSD_STYLE_SOCKETS
+
       ::sockets::SSLInitializer *                    m_psslinit;
+
+#endif
 
       ::user::interaction *                      m_psimpleui;
       os_data *                                    m_posdata;

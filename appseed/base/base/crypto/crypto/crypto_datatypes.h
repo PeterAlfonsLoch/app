@@ -419,7 +419,15 @@ static inline uint32_t be32_to_cpu(uint32_t v) {
 #  define be32_to_cpu(x)   ntohl((x))
 # endif /* HAVE_X86 */
 
+#ifdef METROWIN
+
+#define CRYPTO_INLINE static
+
+#else
+
 #define CRYPTO_INLINE inline
+
+#endif
 
 CRYPTO_INLINE uint64_t be64_to_cpu(uint64_t v) {
 # ifdef NO_64BIT_MATH

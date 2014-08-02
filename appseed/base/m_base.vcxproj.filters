@@ -325,12 +325,6 @@
     <Filter Include="Source Files\base\os\cross\windows">
       <UniqueIdentifier>{47268ea3-b103-4d63-a1fb-b14c50e124d4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\framework">
-      <UniqueIdentifier>{bdb08dff-7c96-4ccd-b518-7b6faf142d63}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\framework">
-      <UniqueIdentifier>{b4ee8f8a-40a6-4255-9000-900b0a5e03d2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\database">
       <UniqueIdentifier>{8f79a158-d148-4f87-a5e7-68a765d90df2}</UniqueIdentifier>
     </Filter>
@@ -339,6 +333,12 @@
     </Filter>
     <Filter Include="Source Files\primitive\NewFilter1">
       <UniqueIdentifier>{c926cc4b-83fe-4012-86ae-b9a9fc73a53f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\user">
+      <UniqueIdentifier>{7ad84b6e-551b-4abb-bf8f-f29b06e3ccfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\idn">
+      <UniqueIdentifier>{c68c8670-b370-4d4d-8892-288fd975f3f4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -2334,15 +2334,6 @@
     <ClInclude Include="base\os\metrowin\metrowin_user_impl.h">
       <Filter>Header Files\base\os\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="framework\crypto_framework.h">
-      <Filter>Header Files\framework</Filter>
-    </ClInclude>
-    <ClInclude Include="framework\framework.h">
-      <Filter>Header Files\framework</Filter>
-    </ClInclude>
-    <ClInclude Include="framework\framework_c.h">
-      <Filter>Header Files\framework</Filter>
-    </ClInclude>
     <ClInclude Include="base\base\base_action_source.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
@@ -2381,6 +2372,12 @@
     </ClInclude>
     <ClInclude Include="net\sockets\http\sockets_http_listener.h">
       <Filter>Header Files\net\sockets\http</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework_c.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2870,9 +2867,6 @@
     <ClCompile Include="base\base\base_application.cpp">
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
-    <ClCompile Include="base\base\base_argcargv.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
     <ClCompile Include="base\base\base_assert.cpp">
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
@@ -2997,9 +2991,6 @@
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
     <ClCompile Include="base\base\base_template.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base_thread.cpp">
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
     <ClCompile Include="base\base\base_trace.cpp">
@@ -3647,111 +3638,6 @@
     <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp">
       <Filter>Source Files\programming\javascript</Filter>
     </ClCompile>
-    <ClCompile Include="user\user.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_control_bar.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_impact_system.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_impact_update_hint.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_job.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_object.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_frame_window.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_buffer.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_check_interface.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_control_event.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_create_context.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_draw_context.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_draw_interface.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_elemental.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_interaction.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_keyboard.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_keyboard_focus.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_keyboard_layout.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_mouse_focus.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_place_holder.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_place_holder_container.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_server.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_str.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_text_interface.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_user.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_impact.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_view_container.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_view_creator.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_virtual_user_interface.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_wait_cursor.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_window.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_window_draw.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_window_interface.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_window_map.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_window_util.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\fontopus\fontopus.cpp">
       <Filter>Source Files\user\fontopus</Filter>
     </ClCompile>
@@ -3968,41 +3854,8 @@
     <ClCompile Include="net\sockets\winrt\sockets_sockets.cpp">
       <Filter>Source Files\net\sockets\winrt</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\cross\windows\windows.cpp">
-      <Filter>Source Files\base\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\cross\windows\windows_crt.cpp">
-      <Filter>Source Files\base\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\cross\windows\windows_error.cpp">
-      <Filter>Source Files\base\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\cross\windows\windows_locale.cpp">
-      <Filter>Source Files\base\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\cross\windows\windows_shared_memory.cpp">
-      <Filter>Source Files\base\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\cross\windows\windows_thread.cpp">
-      <Filter>Source Files\base\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\cross\windows\windows_time.cpp">
-      <Filter>Source Files\base\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\cross\windows\windows_user.cpp">
-      <Filter>Source Files\base\os\cross\windows</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\metrowin\metrowin_user.cpp">
       <Filter>Source Files\base\os\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="framework\crypto_framework.c">
-      <Filter>Source Files\framework</Filter>
-    </ClCompile>
-    <ClCompile Include="framework\framework.cpp">
-      <Filter>Source Files\framework</Filter>
-    </ClCompile>
-    <ClCompile Include="framework\framework_c.c">
-      <Filter>Source Files\framework</Filter>
     </ClCompile>
     <ClCompile Include="base\base\base_action_context.cpp">
       <Filter>Source Files\base\base</Filter>
@@ -4088,8 +3941,221 @@
     <ClCompile Include="net\sockets\http\sockets_http_listener.cpp">
       <Filter>Source Files\net\sockets\http</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_message.cpp">
-      <Filter>Source Files\user</Filter>
+    <ClCompile Include="multithreading\multithreading_thread.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\cross\windows\windows_crt.cpp">
+      <Filter>Source Files\base\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\cross\windows\windows_datetime.cpp">
+      <Filter>Source Files\base\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\cross\windows\windows_error.cpp">
+      <Filter>Source Files\base\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\cross\windows\windows_locale.cpp">
+      <Filter>Source Files\base\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\cross\windows\windows_shared_memory.cpp">
+      <Filter>Source Files\base\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\cross\windows\windows_threading.cpp">
+      <Filter>Source Files\base\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\cross\windows\windows_user.cpp">
+      <Filter>Source Files\base\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\cross\windows\windows_windows.cpp">
+      <Filter>Source Files\base\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_buffer.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_check_interface.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_control_bar.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_control_event.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_create_context.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_draw_context.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_draw_interface.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_elemental.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_frame_window.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_impact.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_impact_system.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_impact_update_hint.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_interaction.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_job.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_keyboard.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_keyboard_focus.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_keyboard_layout.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_menu_base.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_menu_base_item.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_message.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_mouse_focus.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_object.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_place_holder.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_place_holder_container.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_print_job.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_printer.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_server.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_str.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_text_interface.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_user.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_view_container.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_view_creator.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_virtual_user_interface.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_wait_cursor.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_window.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_window_draw.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_window_interface.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_window_map.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_window_util.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_plugin_bare_paint_discreet.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_plugin_bare_paint_full_screen.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_id_pool.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_print_job.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\idna.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\idn-free.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\nfkc.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\pr29.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\profiles.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\punycode.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\rfc3454.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\strerror-idna.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\strerror-pr29.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\strerror-punycode.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\strerror-stringprep.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\strerror-tld.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\stringprep.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\tld.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\tlds.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="net\idn\toutf8.c">
+      <Filter>Source Files\net\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_argcargv.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework_c.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

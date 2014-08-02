@@ -5,7 +5,7 @@
 #pragma once
 
 
-#if !defined(WINDOWSEX)
+#if !defined(WINDOWS)
 
 
 namespace file {

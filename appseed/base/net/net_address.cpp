@@ -342,7 +342,7 @@ namespace net
    {
 #ifdef METROWIN
 
-      if (m_family == AF_INET || m_family == AF_INET6)
+      if (u.s.m_family == AF_INET || u.s.m_family == AF_INET6)
       {
          m_posdata->m_hostname = ref new ::Windows::Networking::HostName(get_display_number());
       }
@@ -353,17 +353,17 @@ namespace net
 
          if (::sockets::net::isipv4(strDisplayNumber))
          {
-            ::sockets::net::convert(m_addr.sin_addr, strDisplayNumber);
-            m_family = AF_INET;
+            ::sockets::net::convert(u.m_addr.sin_addr, strDisplayNumber);
+            u.s.m_family = AF_INET;
          }
          else if (::sockets::net::isipv6(strDisplayNumber))
          {
-            ::sockets::net::convert(m_addr6.sin6_addr, strDisplayNumber);
-            m_family = AF_INET;
+            ::sockets::net::convert(u.m_addr6.sin6_addr, strDisplayNumber);
+            u.s.m_family = AF_INET;
          }
          else
          {
-            m_family = AF_UNSPEC;
+            u.s.m_family = AF_UNSPEC;
          }
 
       }

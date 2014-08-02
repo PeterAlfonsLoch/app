@@ -6,20 +6,6 @@
 
 
 
-/*
- * Message structure
- */
-typedef struct tagMESSAGE {
-    oswindow    oswindow;
-    UINT        message;
-    WPARAM      wParam;
-    LPARAM      lParam;
-    DWORD       time;
-    POINT       pt;
-#ifdef _MAC
-    DWORD       lPrivate;
-#endif
-} MESSAGE, *PMESSAGE, NEAR *NPMESSAGE, FAR *LPMESSAGE;
 
 
 

@@ -1494,7 +1494,20 @@ CLASS_DECL_BASE int_bool UnionRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 CLASS_DECL_BASE int_bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
 
 
-
+/*
+* Message structure
+*/
+typedef struct tagMESSAGE {
+oswindow    oswindow;
+UINT        message;
+WPARAM      wParam;
+LPARAM      lParam;
+DWORD       time;
+POINT       pt;
+#ifdef _MAC
+DWORD       lPrivate;
+#endif
+} MESSAGE, *PMESSAGE, NEAR *NPMESSAGE, FAR *LPMESSAGE;
 
 CLASS_DECL_BASE int_bool TranslateMessage(const MESSAGE * pmsg);
 CLASS_DECL_BASE int_bool DispatchMessage(const MESSAGE * pmsg);

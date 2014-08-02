@@ -5,9 +5,9 @@ namespace sockets
 {
 
 
-   sockets::sockets(sp(base_application) papp) :
+   sockets::sockets(sp(::base::application) papp) :
       element(papp),
-      base_departament(papp),
+      ::base::departament(papp),
       m_mutexHttpPostBoundary(papp),
       m_mutexResolvCache(papp)
    {

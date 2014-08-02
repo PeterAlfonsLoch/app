@@ -183,7 +183,7 @@ class image_list;
 
 
 
-#ifndef WINDOWS
+#ifndef WINDOWSEX
 typedef void * HDWP;
 #endif // WINDOWS
 

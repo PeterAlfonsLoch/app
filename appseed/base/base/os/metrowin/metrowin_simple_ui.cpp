@@ -6,7 +6,7 @@ namespace os
 {
 
 
-   simple_ui::simple_ui(sp(base_application) papp) :
+   simple_ui::simple_ui(sp(::base::application) papp) :
       element(papp),
       simple_ui::interaction(papp),
       m_eventReady(papp)
@@ -121,7 +121,7 @@ namespace os
    }
 
 
-   void simple_ui::destroy_window()
+   bool simple_ui::destroy_window()
    {
 
       m_bVisible = false;
@@ -130,6 +130,8 @@ namespace os
          System.m_psimpleui = NULL;
 
       m_eventReady.set_event();
+
+      return true;
 
    }
 

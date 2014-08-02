@@ -36,7 +36,7 @@ namespace os
       point                      m_ptCursor;
 
 
-      simple_ui(sp(base_application) papp);
+      simple_ui(sp(::base::application) papp);
       virtual ~simple_ui();
 
 
@@ -58,7 +58,7 @@ namespace os
       virtual bool show_window(bool bShow = true);
 
 
-      virtual void destroy_window();
+      virtual bool destroy_window();
 
       virtual bool run_loop();
 

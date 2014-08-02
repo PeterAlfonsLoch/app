@@ -168,7 +168,7 @@ namespace sockets
    ::net::address stream_socket::GetRemoteAddress()
    {
 
-      return ::net::address(m_posdata->m_streamsocket->Information->RemoteAddress->CanonicalName, m_posdata->m_streamsocket->Information->RemotePort);
+      return ::net::address(get_app(), m_posdata->m_streamsocket->Information->RemoteAddress->CanonicalName, m_posdata->m_streamsocket->Information->RemotePort);
 
    }
 
@@ -184,7 +184,7 @@ namespace sockets
    ::net::address stream_socket::GetLocalAddress()
    {
 
-      return ::net::address(m_posdata->m_streamsocket->Information->LocalAddress->CanonicalName, m_posdata->m_streamsocket->Information->LocalPort);
+      return ::net::address(get_app(), m_posdata->m_streamsocket->Information->LocalAddress->CanonicalName, m_posdata->m_streamsocket->Information->LocalPort);
 
    }
 

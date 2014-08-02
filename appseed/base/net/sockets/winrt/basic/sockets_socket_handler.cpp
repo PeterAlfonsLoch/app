@@ -35,7 +35,7 @@ namespace sockets
 {
 
 
-   socket_handler::socket_handler(base_application * papp, logger * plogger) :
+   socket_handler::socket_handler(::base::application * papp, logger * plogger) :
    element(papp),
    base_socket_handler(papp, plogger),
    m_mutex(m_mutex),
@@ -61,7 +61,7 @@ namespace sockets
    }
 
 
-   socket_handler::socket_handler(base_application * papp, mutex& mutex, logger *plogger) :
+   socket_handler::socket_handler(::base::application * papp, mutex& mutex, logger *plogger) :
    element(papp),
    base_socket_handler(papp, plogger)
    ,m_mutex(mutex)
