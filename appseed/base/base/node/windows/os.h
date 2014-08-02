@@ -71,7 +71,7 @@ CLASS_DECL_BASE void reset_message_cache();
 #include "windows_window_draw.h"
 #include "windows_uac_tools.h"
 #include "windows_thread.h"
-#include "windows_window.h"
+#include "windows_interaction_impl.h"
 #include "windows_port_forward.h"
 #include "windows_file.h"
 //#include "windows_printer.h"
