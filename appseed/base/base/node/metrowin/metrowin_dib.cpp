@@ -49,7 +49,7 @@ namespace metrowin
    }
 
 
-   CLASS_DECL_metrowin void dib::s_initialize()
+   CLASS_DECL_BASE void dib::s_initialize()
    {
       double dCos;
       double dSin;

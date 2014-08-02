@@ -3,7 +3,7 @@
 namespace metrowin
 {
 
-   class CLASS_DECL_metrowin folder_watch :
+   class CLASS_DECL_BASE folder_watch :
       virtual public ::file::folder_watch,
       virtual public ::thread
    {

@@ -119,6 +119,13 @@ namespace sockets
       net(::base::application * papp);
       virtual ~net();
 
+
+      virtual bool initialize();
+
+      virtual bool gudo_set();
+
+      virtual bool gudo_get();
+
       /*
       * Encode string per RFC1738 URL encoding rules
       * tnx rstaveley

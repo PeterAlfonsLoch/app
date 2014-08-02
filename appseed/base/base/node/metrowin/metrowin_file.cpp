@@ -422,7 +422,7 @@ namespace metrowin
    */
 
 
-   string CLASS_DECL_metrowin vfxStringFromCLSID(REFCLSID rclsid)
+   string CLASS_DECL_BASE vfxStringFromCLSID(REFCLSID rclsid)
    {
       CHAR szCLSID[256];
       sprintf(szCLSID, "{%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X}",
@@ -432,7 +432,7 @@ namespace metrowin
       return szCLSID;
    }
 
-   bool CLASS_DECL_metrowin vfxGetInProcServer(const char * lpszCLSID, string & str)
+   bool CLASS_DECL_BASE vfxGetInProcServer(const char * lpszCLSID, string & str)
    {
       bool b = FALSE;
 #ifdef WINDOWSEX
@@ -468,7 +468,7 @@ namespace metrowin
 
 
    // turn a file, relative path or other into an absolute path
-   bool CLASS_DECL_metrowin vfxFullPath(wchar_t * lpszPathOut, const wchar_t * lpszFileIn)
+   bool CLASS_DECL_BASE vfxFullPath(wchar_t * lpszPathOut, const wchar_t * lpszFileIn)
       // lpszPathOut = buffer of _MAX_PATH
       // lpszFileIn = file, relative path or absolute path
       // (both in ANSI character set)
@@ -524,7 +524,7 @@ namespace metrowin
 
 
 
-   /*void CLASS_DECL_metrowin __get_root_path(const char * lpszPath, string & strRoot)
+   /*void CLASS_DECL_BASE __get_root_path(const char * lpszPath, string & strRoot)
    {
    ASSERT(lpszPath != NULL);
    // determine the root name of the volume
@@ -567,7 +567,7 @@ namespace metrowin
    strRoot.ReleaseBuffer();
    }*/
 
-   /*bool CLASS_DECL_metrowin ::ca2::ComparePath(const char * lpszPath1, const char * lpszPath2)
+   /*bool CLASS_DECL_BASE ::ca2::ComparePath(const char * lpszPath1, const char * lpszPath2)
    {
    // use case insensitive compare as a starter
    if (lstrcmpi(lpszPath1, lpszPath2) != 0)
@@ -620,7 +620,7 @@ namespace metrowin
    return TRUE; // otherwise file name is truly the same
    }*/
 
-   /*UINT CLASS_DECL_metrowin __get_file_title(const char * lpszPathName, LPTSTR lpszTitle, UINT nMax)
+   /*UINT CLASS_DECL_BASE __get_file_title(const char * lpszPathName, LPTSTR lpszTitle, UINT nMax)
    {
    ASSERT(lpszTitle == NULL ||
    __is_valid_address(lpszTitle, _MAX_FNAME));
@@ -642,7 +642,7 @@ namespace metrowin
    return lpszTitle == NULL ? lstrlen(lpszTemp)+1 : 0;
    }*/
 
-   void CLASS_DECL_metrowin vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
+   void CLASS_DECL_BASE vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
    {
 #ifdef WINDOWSEX
       WCHAR szLongPathName[_MAX_PATH];
@@ -692,7 +692,7 @@ namespace metrowin
 
 #define _wcsinc(_pc)    ((_pc)+1)
 
-   void CLASS_DECL_metrowin vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath)
+   void CLASS_DECL_BASE vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath)
    {
       //   ASSERT(lpszPath != NULL);
       // determine the root name of the volume
@@ -735,7 +735,7 @@ namespace metrowin
    }
 
 
-   void CLASS_DECL_metrowin vfxGetRoot(const wchar_t * lpszPath, string& strRoot)
+   void CLASS_DECL_BASE vfxGetRoot(const wchar_t * lpszPath, string& strRoot)
    {
       ASSERT(lpszPath != NULL);
       wstring wstrRoot;
@@ -780,7 +780,7 @@ namespace metrowin
    }
 
 
-   /*bool CLASS_DECL_metrowin vfxFullPath(char * lpszPathOut, const char * lpszFileIn)
+   /*bool CLASS_DECL_BASE vfxFullPath(char * lpszPathOut, const char * lpszFileIn)
    // lpszPathOut = buffer of _MAX_PATH
    // lpszFileIn = file, relative path or absolute path
    // (both in ANSI character set)
@@ -940,7 +940,7 @@ namespace metrowin
    }
 
 
-   UINT CLASS_DECL_metrowin vfxGetFileName(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax)
+   UINT CLASS_DECL_BASE vfxGetFileName(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax)
    {
       ASSERT(lpszTitle == NULL ||
          __is_valid_address(lpszTitle, _MAX_FNAME));
@@ -988,7 +988,7 @@ namespace metrowin
    /////////////////////////////////////////////////////////////////////////////
    // WinFileException helpers
 
-   void CLASS_DECL_metrowin vfxThrowFileException(::base::application * papp, int cause, LONG lOsError, const char * lpszFileName /* == NULL */)
+   void CLASS_DECL_BASE vfxThrowFileException(::base::application * papp, int cause, LONG lOsError, const char * lpszFileName /* == NULL */)
    {
 #ifdef DEBUG
       const char * lpsz;
@@ -1306,7 +1306,7 @@ namespace metrowin
 
 
    /*
-   UINT CLASS_DECL_metrowin vfxGetFileTitle(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax)
+   UINT CLASS_DECL_BASE vfxGetFileTitle(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax)
    {
    ASSERT(lpszTitle == NULL ||
    __is_valid_address(lpszTitle, _MAX_FNAME));
@@ -1483,7 +1483,7 @@ namespace metrowin
 
 
    // turn a file, relative path or other into an absolute path
-   bool CLASS_DECL_metrowin vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
+   bool CLASS_DECL_BASE vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
       // lpszPathOut = buffer of _MAX_PATH
       // lpszFileIn = file, relative path or absolute path
       // (both in ANSI character set)
@@ -1580,7 +1580,7 @@ namespace metrowin
 
 
 
-   bool CLASS_DECL_metrowin vfxResolveShortcut(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional)
+   bool CLASS_DECL_BASE vfxResolveShortcut(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional)
    {
 
 #ifdef WINDOWSEX
@@ -1678,7 +1678,7 @@ namespace metrowin
 
 
 
-void CLASS_DECL_metrowin vfxThrowFileException(::base::application * papp, int cause, LONG lOsError,   const char * lpszFileName /* == NULL */)
+void CLASS_DECL_BASE vfxThrowFileException(::base::application * papp, int cause, LONG lOsError,   const char * lpszFileName /* == NULL */)
 {
    throw ::file::exception(papp, cause, lOsError, lpszFileName);
 #ifdef WINDOWSEX

@@ -5,7 +5,7 @@ namespace metrowin
 {
 
 
-   class CLASS_DECL_metrowin path :
+   class CLASS_DECL_BASE path :
       virtual public ::file::path
    {
    public:
@@ -19,7 +19,7 @@ namespace metrowin
 
    };
 
-   class CLASS_DECL_metrowin dir :
+   class CLASS_DECL_BASE dir :
       virtual public ::file::dir::system
    {
    public:

@@ -20,7 +20,7 @@
 // Standard cleanup called by WinMain and __abort
 
 /*
-void CLASS_DECL_metrowin __gen_unregister_window_classes()
+void CLASS_DECL_BASE __gen_unregister_window_classes()
 {
    
    // unregister Window classes
@@ -44,13 +44,13 @@ void CLASS_DECL_metrowin __gen_unregister_window_classes()
 }
 */
 
-void CLASS_DECL_metrowin __win_term()
+void CLASS_DECL_BASE __win_term()
 {   
    //__gen_unregister_window_classes();
    // cleanup OLE if required
 //   thread* pThread = &System;
 
-   // cleanup thread local tooltip ::user::window
+   // cleanup thread local tooltip ::user::interaction_impl
 //   __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
 /*   if (pModuleThreadState->m_pToolTip != NULL)
    {

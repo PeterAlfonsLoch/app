@@ -8,7 +8,7 @@ namespace metrowin
 {
 
 
-   class CLASS_DECL_metrowin shell  
+   class CLASS_DECL_BASE shell  
    {
    public:
       shell();

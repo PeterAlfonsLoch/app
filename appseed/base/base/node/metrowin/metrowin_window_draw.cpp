@@ -357,8 +357,8 @@ namespace metrowin
       return &m_semaphoreBuffer;
    }
 
-   // The first ::user::window handle in the array must belong
-   // to the higher z order ::user::window.
+   // The first ::user::interaction_impl handle in the array must belong
+   // to the higher z order ::user::interaction_impl.
    // The rectangle must contain all update region.
    // It must be in screen coordinates.
 
@@ -366,7 +366,7 @@ namespace metrowin
 
    // Remark: this optimization eliminates top level windows
    // that are lower z order siblings of a higher z order
-   // top level ::user::window that contains all
+   // top level ::user::interaction_impl that contains all
    // the update region in a opaque area.
    // It doesn´t eliminates from the update parent windows
    // obscured by opaque children.
@@ -434,7 +434,7 @@ namespace metrowin
 
       oswindow hwnd = hwndtree.m_oswindow;
 
-      ::user::window_interface * ptwi = System.user()->window_map().get((int_ptr) (void *) hwnd);
+      ::user::interaction_base * ptwi = System.user()->window_map().get((int_ptr) (void *) hwnd);
 
 #ifdef WINDOWSEX
       if(!::IsWindowVisible(hwnd))
@@ -470,13 +470,13 @@ namespace metrowin
          return OptimizeNone;
       }
 
-   //    ::user::window * pwnd = window::FromHandlePermanent(hwnd);
+   //    ::user::interaction_impl * pwnd = window::FromHandlePermanent(hwnd);
        
       
       if(ptwi == NULL)
       {
 
-   //      ::user::window_interface::GetProperty getp;
+   //      ::user::interaction_base::GetProperty getp;
    //      getp.m_eproperty = CTransparentWndInterface::PropertyInterface;
    //      ::SendMessage(hwnd, CTransparentWndInterface::MessageGetProperty, 0, (LPARAM) &getp);
    //      ptwi = getp.m_pinterface;
@@ -561,7 +561,7 @@ namespace metrowin
       ::GetWindowRect(hwnd, rectWindow);
 
 
-   //   ::user::window * pwnd = ::metrowin::window::from_handle(hwnd);
+   //   ::user::interaction_impl * pwnd = ::metrowin::window::from_handle(hwnd);
 
       if(!TwfGetTopWindow(
             hwndParam,
@@ -585,14 +585,14 @@ namespace metrowin
          return true;
       }
 
-      ::user::window_interface * pwndi = System.window_map().get((int_ptr)(void *) hwnd);
+      ::user::interaction_base * pwndi = System.window_map().get((int_ptr)(void *) hwnd);
 
       if(pwndi == NULL)
       {
          ::SendMessage(
             hwnd,
-            ::user::window_interface::MessageBaseWndGetProperty, 
-            ::user::window_interface::PropertyDrawBaseWndInterface, 
+            ::user::interaction_base::MessageBaseWndGetProperty, 
+            ::user::interaction_base::PropertyDrawBaseWndInterface, 
             (LPARAM) &pwndi);
       }
 
@@ -674,7 +674,7 @@ namespace metrowin
 #ifdef WINDOWSEX
       rect rectWindow;
 
-   //   ::user::window * pwndOpaque = window::FromHandlePermanent(hwndOpaque);
+   //   ::user::interaction_impl * pwndOpaque = window::FromHandlePermanent(hwndOpaque);
 
       ::GetWindowRect(hwndOpaque, rectWindow);
 
@@ -764,7 +764,7 @@ namespace metrowin
       // pdc is the source primitive::memory device context
       // from which bitmap the screen is updated.
       user::buffer * pbuffer,
-      // hwndParam ::user::window device context
+      // hwndParam ::user::interaction_impl device context
       // is used from screen output
       ::user::interaction* pwnd)
    {
@@ -799,7 +799,7 @@ namespace metrowin
 
       if(hdcScreen == NULL)
       {
-         // If it has failed to get ::user::window
+         // If it has failed to get ::user::interaction_impl
          // owned device context, try to get
          // a device context from the cache.
          hdcScreen = ::GetDCEx(hwndParam, NULL, DCX_CACHE | DCX_CLIPSIBLINGS | DCX_WINDOW);
@@ -827,13 +827,13 @@ namespace metrowin
       // rect rectUpdate;
       // rgnUpdate.GetRgnBox(rectUpdate);
 
-      // get the ::user::window client area box
+      // get the ::user::interaction_impl client area box
       // in screen coordinates.
       rect64 rectWindow;
       rectWindow = pwnd->m_rectParentClient;
 
       // Output rectangle receive the intersection
-      // of ::user::window box and update box.
+      // of ::user::interaction_impl box and update box.
       //rect rectOutput;
       //rectOutput.intersect(rectWnd, rectUpdate);
 
@@ -847,9 +847,9 @@ namespace metrowin
       rect64 rectOutputClient(rectWindow);
       rectOutputClient -= rectWindow.top_left();
 
-      // The ::user::window owned device context is clipped
+      // The ::user::interaction_impl owned device context is clipped
       // with the update region in screen coordinates
-      // translated to ::user::window client coordinates.
+      // translated to ::user::interaction_impl client coordinates.
       //::draw2d::region_sp rgnClip(get_app());
       //rgnClip->CreateRectRgn(0, 0, 0, 0);
       //rgnClip->CopyRgn(&rgnUpdate);
@@ -998,8 +998,8 @@ throw todo(get_app());
 
 
 
-   // The first ::user::window handle in the array must belong
-   // to the higher z order ::user::window.
+   // The first ::user::interaction_impl handle in the array must belong
+   // to the higher z order ::user::interaction_impl.
    // The rectangle must contain all update region.
    // It must be in screen coordinates.
 
@@ -1007,7 +1007,7 @@ throw todo(get_app());
 
    // Remark: this optimization eliminates top level windows
    // that are lower z order siblings of a higher z order
-   // top level ::user::window that contains all
+   // top level ::user::interaction_impl that contains all
    // the update region in a opaque area.
    // It doesn´t eliminates from the update parent windows
    // obscured by opaque children.

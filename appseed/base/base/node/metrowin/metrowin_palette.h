@@ -3,7 +3,7 @@
 namespace metrowin
 {
 
-   class CLASS_DECL_metrowin palette : 
+   class CLASS_DECL_BASE palette : 
       virtual public ::metrowin::graphics_object,
       virtual public ::ca2::palette
    {

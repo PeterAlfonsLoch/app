@@ -1,9 +1,13 @@
 #pragma once
 
+
 namespace user
 {
-   class ::user::window_interface;
+
+   class interaction_base;
+
 } // namespace user
+
 
 namespace metrowin
 {
@@ -11,7 +15,7 @@ namespace metrowin
 
    ref class directx_application;
 
-   class CLASS_DECL_metrowin window_draw : 
+   class CLASS_DECL_BASE window_draw : 
       virtual public ::user::window_draw,
       virtual public ::message_queue
    {

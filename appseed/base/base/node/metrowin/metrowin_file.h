@@ -7,8 +7,8 @@
 class FileException;
 struct FileStatus;
 
-void CLASS_DECL_metrowin vfxGetRoot(const wchar_t * lpszPath, string& wstrRoot);
-void CLASS_DECL_metrowin vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
+void CLASS_DECL_BASE vfxGetRoot(const wchar_t * lpszPath, string& wstrRoot);
+void CLASS_DECL_BASE vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
 
 namespace metrowin
 {
@@ -16,7 +16,7 @@ namespace metrowin
    /////////////////////////////////////////////////////////////////////////////
    // File - raw unbuffered disk file I/O
 
-   class CLASS_DECL_metrowin file :
+   class CLASS_DECL_BASE file :
       virtual public ::file::stream_buffer
    {
    public:

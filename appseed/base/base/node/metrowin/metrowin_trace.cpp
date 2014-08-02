@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // Build data tables by including data file three times
 
-struct CLASS_DECL_metrowin __MAP_MESSAGE
+struct CLASS_DECL_BASE __MAP_MESSAGE
 {
    UINT    nMsg;
    const char *  lpszMsg;

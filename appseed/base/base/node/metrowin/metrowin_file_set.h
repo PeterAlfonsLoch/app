@@ -5,7 +5,7 @@ namespace metrowin
 {
 
 
-   class CLASS_DECL_metrowin file_set : 
+   class CLASS_DECL_BASE file_set : 
       public ::file::set
    {
    public:

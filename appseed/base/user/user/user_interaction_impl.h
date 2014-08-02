@@ -9,7 +9,7 @@ class CLASS_DECL_BASE native_window
 public:
 
 
-   ::core::system_window ^ m_pwindow;
+   ::base::system_window ^ m_pwindow;
 
 
 };

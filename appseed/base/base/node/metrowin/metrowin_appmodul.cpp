@@ -3,7 +3,7 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // export WinMain to force linkage to this module
-/*extern int CLASS_DECL_metrowin __win_main(HINSTANCE hInstance, HINSTANCE hPrevInstance,
+/*extern int CLASS_DECL_BASE __win_main(HINSTANCE hInstance, HINSTANCE hPrevInstance,
    __in LPTSTR lpCmdLine, int nCmdShow);*/
 
 /*extern "C" int WINAPI
@@ -17,7 +17,7 @@ _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 /////////////////////////////////////////////////////////////////////////////
 // initialize cast state such that it points to this module's core state
 
-CLASS_DECL_metrowin bool __initialize(bool bDLL, DWORD dwVersion)
+CLASS_DECL_BASE bool __initialize(bool bDLL, DWORD dwVersion)
 {
    __MODULE_STATE* pModuleState = __get_module_state();
    pModuleState->m_bDLL = (BYTE)bDLL;

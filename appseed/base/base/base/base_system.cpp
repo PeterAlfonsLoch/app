@@ -290,7 +290,11 @@ namespace base
 
       m_peengine = new ::exception::engine(this);
 
+#ifdef BSD_STYLE_SOCKETS
+
       m_psslinit = new ::sockets::SSLInitializer(this);
+
+#endif
 
       m_pfactory->cloneable_large < create_context >();
       m_pfactory->cloneable_large < application_bias >();
@@ -302,7 +306,7 @@ namespace base
       if(!::base::application::process_initialize())
          return false;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       m_spwindow = canew(interaction_impl(this));
 
@@ -767,6 +771,8 @@ namespace base
 
       }
 
+#ifdef BSD_STYLE_SOCKETS
+
       if(m_psslinit != NULL)
       {
 
@@ -775,6 +781,8 @@ namespace base
          m_psslinit = NULL;
 
       }
+
+#endif
 
       if(m_peengine != NULL)
       {
@@ -1403,7 +1411,9 @@ namespace base
 
 #elif defined(METROWIN)
 
-      return System.GetWindowRect(lprect);
+
+      get_window_rect(m_pwindow,lprect);
+
 
 #elif defined(LINUX)
 
@@ -1979,5 +1989,35 @@ CLASS_DECL_BASE void __start_system(::base::system * psystem)
 {
 
    ::create_thread(NULL,0,&_thread_proc_start_system,(LPVOID)psystem,0,0);
+
+}
+
+
+
+CLASS_DECL_BASE bool get_window_rect(system_window ^ pwindow,RECTD * lprect)
+{
+
+   Windows::Foundation::Rect rect =  m_pwindow->get_window_rect();
+
+   lprect->left = rect.X;
+   lprect->top = rect.Y;
+   lprect->right = lprect->left + rect.Width;
+   lprect->bottom = lprect->top + rect.Height;
+
+   return true;
+}
+
+CLASS_DECL_BASE bool get_window_rect(system_window ^ pwindow,LPRECT * lprect)
+{
+
+   rectd r;
+
+   if(!get_window_rect(pwindow,r))
+      return false;
+
+   if(!::copy(lprect,r))
+      return false;
+
+   return true;
 
 }

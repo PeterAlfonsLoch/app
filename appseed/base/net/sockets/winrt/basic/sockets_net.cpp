@@ -29,6 +29,30 @@ namespace sockets
    }
 
 
+   bool net::initialize()
+   {
+
+      return true;
+
+   }
+
+
+   bool net::gudo_set()
+   {
+
+      return true;
+
+   }
+
+
+   bool net::gudo_get()
+   {
+
+      return true;
+
+   }
+
+
    /*
    * Encode string per RFC1738 URL encoding rules
    * tnx rstaveley
@@ -717,6 +741,8 @@ namespace sockets
       return address.m_posdata->m_hostname->CanonicalName;
 
    }
+
+
 
 
 } // namespace sockets

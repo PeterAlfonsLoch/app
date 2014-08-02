@@ -31,7 +31,7 @@ namespace base
       public:
 
          sp(::user::interaction)                      m_pui;
-         ::core::system_window ^                      m_pwindow;
+         ::base::system_window ^                      m_pwindow;
 
 
       };

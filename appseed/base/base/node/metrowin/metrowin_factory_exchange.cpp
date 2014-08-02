@@ -18,7 +18,7 @@ namespace metrowin
       System.factory().cloneable_small < folder_watch          >  (System.template type_info < ::file::folder_watch        > ()     );
       System.factory().creatable       < window_draw           >  (System.template type_info < ::user::window_draw         > ()  , 1);
       System.factory().creatable_large < thread                >  (System.template type_info < ::thread                    > ()     );
-      System.factory().creatable_large < window                >  (System.template type_info < ::user::window              > ()     );
+      System.factory().creatable_large < window                >  (System.template type_info < ::user::interaction_impl              > ()     );
       System.factory().creatable       < os                    >  (System.template type_info < ::core::os                  > ()  , 1);
       System.factory().creatable       < port_forward          >  (System.template type_info < ::net::port_forward         > ()  , 1);
       System.factory().creatable_small < copydesk              >  (System.template type_info < ::core::copydesk            > ()  , 1);

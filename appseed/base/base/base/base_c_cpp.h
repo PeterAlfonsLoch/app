@@ -1,5 +1,6 @@
 #pragma once
 
+#pragma warning(disable: 4251)
 
 #include "nodeapp/operational_system/operational_system.h"
 
@@ -198,6 +199,10 @@ struct __SIZEPARENTPARAMS
 
 };
 
+
+typedef struct tagRECTD RECTD;
+
+
 namespace base
 {
 
@@ -207,9 +212,16 @@ namespace base
 
    interface class system_window
    {
+      
       virtual Windows::Foundation::Rect get_window_rect() = 0;
       virtual Windows::Foundation::Point get_cursor_pos() = 0;
+
+
+    
    };
+
+   CLASS_DECL_BASE bool get_window_rect(system_window ^ pwindow,RECTD * lprect);
+   CLASS_DECL_BASE bool get_window_rect(system_window ^ pwindow,LPRECT * lprect);
 
 #endif
 
@@ -272,7 +284,7 @@ namespace user
 
 
       Platform::Agile<Windows::UI::Core::CoreWindow> interaction_impl;
-      ::core::system_window ^ pwindow;
+      ::base::system_window ^ pwindow;
 
 
    };

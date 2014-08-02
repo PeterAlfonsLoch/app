@@ -148,13 +148,13 @@ process_local_object::~process_local_object()
 /////////////////////////////////////////////////////////////////////////////
 // Init/Term for thread/process local data
 
-/*void CLASS_DECL_metrowin ::ca2::InitLocalData(HINSTANCE hInst)
+/*void CLASS_DECL_BASE ::ca2::InitLocalData(HINSTANCE hInst)
 {
    if (gen_ThreadData != NULL)
       gen_ThreadData->AssignInstance(hInst);
 }
 
-void CLASS_DECL_metrowin __term_local_data(HINSTANCE hInst, bool bAll)
+void CLASS_DECL_BASE __term_local_data(HINSTANCE hInst, bool bAll)
 {
    if (gen_ThreadData != NULL)
       gen_ThreadData->DeleteValues(hInst, bAll);
@@ -167,12 +167,12 @@ void CLASS_DECL_metrowin __term_local_data(HINSTANCE hInst, bool bAll)
 
 __STATIC_DATA long gen_TlsRef = 0;
 
-void CLASS_DECL_metrowin __tls_add_ref()
+void CLASS_DECL_BASE __tls_add_ref()
 {
    ++gen_TlsRef;
 }
 
-void CLASS_DECL_metrowin __tls_release()
+void CLASS_DECL_BASE __tls_release()
 {
    if (gen_TlsRef == 0 || --gen_TlsRef == 0)
    {

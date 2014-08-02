@@ -1,14 +1,14 @@
 #pragma once
 
 
-bool CLASS_DECL_metrowin vfxResolveShortcut(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional = NULL);
+bool CLASS_DECL_BASE vfxResolveShortcut(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional = NULL);
 
 
 namespace metrowin
 {
 
 
-   class CLASS_DECL_metrowin os :
+   class CLASS_DECL_BASE os :
       public ::core::os
    {
    public:

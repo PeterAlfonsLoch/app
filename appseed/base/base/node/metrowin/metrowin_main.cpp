@@ -2,14 +2,14 @@
 #include "sal.h"
 
 
-CLASS_DECL_metrowin int ca2_main();
+CLASS_DECL_BASE int ca2_main();
 
 
 //CLASS_DECL_BOOT extern fixed_alloc_array * g_pfixedallocaWstring;
 
 //CLASS_DECL_BOOT fixed_alloc_array * new_wstring_manager();
 
-void CLASS_DECL_metrowin __cdecl _ca2_purecall()
+void CLASS_DECL_BASE __cdecl _ca2_purecall()
 {
     throw simple_exception(::get_thread_app());
 }
@@ -27,7 +27,7 @@ void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppoin
 //  Can be replaced as long as '::ca2::WinInit' is called first
 
 
-int CLASS_DECL_metrowin win_main(::Platform::Array < ::Platform::String ^ > ^ args)
+int CLASS_DECL_BASE win_main(::Platform::Array < ::Platform::String ^ > ^ args)
 {
 
    //UNREFERENCED_PARAMETER(lpCmdLine);
@@ -153,7 +153,7 @@ int CLASS_DECL_metrowin win_main(::Platform::Array < ::Platform::String ^ > ^ ar
 }
 
 
-int CLASS_DECL_metrowin ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, int nCmdShow)
+int CLASS_DECL_BASE ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, int nCmdShow)
 {
    try
    {

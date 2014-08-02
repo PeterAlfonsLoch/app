@@ -15,7 +15,7 @@ namespace metrowin
 {
 
 
-   class CLASS_DECL_metrowin main_init_data :
+   class CLASS_DECL_BASE main_init_data :
       public ::core::main_init_data
    {
    public:
@@ -29,7 +29,7 @@ namespace metrowin
    };
 
 
-   class CLASS_DECL_metrowin application :
+   class CLASS_DECL_BASE application :
       virtual public ::application
    {
    public:
@@ -199,8 +199,8 @@ namespace metrowin
       virtual ::thread * GetThread();
       virtual void set_thread(::thread * pthread);
 
-      virtual sp(::user::window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
-      virtual sp(::user::window) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+      virtual sp(::user::interaction_impl) FindWindow(const char * lpszClassName, const char * lpszWindowName);
+      virtual sp(::user::interaction_impl) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 
       virtual void get_time(struct timeval *p);
       virtual void set_env_var(const string & var,const string & value);

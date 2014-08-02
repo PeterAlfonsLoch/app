@@ -1012,7 +1012,7 @@ namespace base
       if (oswindowCapture == NULL)
          return NULL;
 
-      ::user::interaction * pui = oswindowCapture->interaction_impl();
+      ::user::interaction * pui = oswindowCapture->window();
 
       if (pui == NULL)
          return NULL;

@@ -2,7 +2,6 @@
 
 #define SECURITY_WIN32
 
-#include "core.h"
 #include <shlobj.h>
 #include <Security.h>
 #include <shlobj.h>
@@ -13,59 +12,47 @@
 
 
 
-#ifdef _METROWIN_DLL
-    #define CLASS_DECL_metrowin  _declspec(dllexport)
-#else
-    #define CLASS_DECL_metrowin  _declspec(dllimport)
-#endif
-
 string get_error_message(DWORD dwError);
 
-//::base::application *     win_instantiate_application(::base::application * pappSystem, const char * pszId);
-
-/////////////////////////////////////////////////////////////////////////////
-// explicit initialization for general purpose classes
-
-CLASS_DECL_metrowin bool __initialize(bool bDLL = FALSE, DWORD dwVersion = _MFC_VER);
+CLASS_DECL_BASE bool __initialize(bool bDLL = FALSE, DWORD dwVersion = _MFC_VER);
 
 /////////////////////////////////////////////////////////////////////////////
 // stop on a specific primitive::memory request
 
 // Debugger hook on specified allocation request - Obsolete
-CLASS_DECL_metrowin void __set_alloc_stop(LONG lRequestNumber);
+CLASS_DECL_BASE void __set_alloc_stop(LONG lRequestNumber);
 
 
 
 #ifdef DEBUG
 
 // Return TRUE if primitive::memory is sane or print out what is wrong
-CLASS_DECL_metrowin bool __check_memory();
+CLASS_DECL_BASE bool __check_memory();
 
 // Return TRUE if valid primitive::memory block of nBytes
-CLASS_DECL_metrowin bool __is_memory_block(const void * p, UINT nBytes, LONG* plRequestNumber = NULL);
+//CLASS_DECL_BASE bool __is_memory_block(const void * p, UINT nBytes, LONG* plRequestNumber = NULL);
 
 #endif
 
 // helper routines for non-C++ EH implementations
 // for THROW_LAST auto-delete backward compatiblity
-CLASS_DECL_metrowin void __throw_last_cleanup();
+CLASS_DECL_BASE void __throw_last_cleanup();
 
 // other out-of-line helper functions
-CLASS_DECL_metrowin void __try_cleanup();
+CLASS_DECL_BASE void __try_cleanup();
 
 
 /////////////////////////////////////////////////////////////////////////////
 // Global implementation helpers
 
 // window creation hooking
-//CLASS_DECL_metrowin void hook_window_create(::user::interaction * pWnd);
-//CLASS_DECL_metrowin bool unhook_window_create();
-//CLASS_DECL_metrowin void reset_message_cache();
+//CLASS_DECL_BASE void hook_window_create(::user::interaction * pWnd);
+//CLASS_DECL_BASE bool unhook_window_create();
+//CLASS_DECL_BASE void reset_message_cache();
 
 
 #include "metrowin1.h"
 #include "metrowin_implementation.h"
-#include "metrowin_state.h"
 #include "metrowin_handle.h"
 #include "metrowin_dir.h"
 #include "metrowin_folder_watch.h"
@@ -77,11 +64,11 @@ CLASS_DECL_metrowin void __try_cleanup();
 #include "metrowin_port_forward.h"
 
 #define NULL_REF(class) (*((class *) NULL))
-//CLASS_DECL_metrowin WNDPROC __get_window_procedure();
+//CLASS_DECL_BASE WNDPROC __get_window_procedure();
 #define __window_procedure (*__get_window_procedure())
 
 #define WIN_THREAD(pthread) (dynamic_cast < ::metrowin::thread * > (dynamic_cast < ::thread * >(pthread)))
-#define WIN_WINDOW(pwnd) (dynamic_cast < ::metrowin::window * > (dynamic_cast < ::user::window * >(pwnd)))
+#define WIN_WINDOW(pwnd) (dynamic_cast < ::metrowin::window * > (dynamic_cast < ::user::interaction_impl * >(pwnd)))
 #define METROWIN_DC(pgraphics) (dynamic_cast < ::metrowin::graphics * > (pgraphics))
 #define METROWIN_BITMAP(pbitmap) (dynamic_cast < ::metrowin::bitmap * > (pbitmap))
 #define METROWIN_PEN(ppen) (dynamic_cast < ::metrowin::pen * > (ppen))
@@ -107,15 +94,15 @@ CLASS_DECL_metrowin void __try_cleanup();
 #pragma comment(lib, "Msimg32.lib") 
 #pragma comment(lib, "Psapi.lib") 
 
-CLASS_DECL_metrowin void __trace_message(const char * lpszPrefix, signal_details * pobj);
-CLASS_DECL_metrowin void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
+CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, signal_details * pobj);
+CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
-CLASS_DECL_metrowin bool __cdecl __is_idle_message(signal_details * pobj);
-CLASS_DECL_metrowin bool __cdecl __is_idle_message(MESSAGE * pMsg);
+CLASS_DECL_BASE bool __cdecl __is_idle_message(signal_details * pobj);
+CLASS_DECL_BASE bool __cdecl __is_idle_message(MESSAGE * pMsg);
 
 
-CLASS_DECL_metrowin void __process_window_procedure_exception(::exception::base*, signal_details * pobj);
-CLASS_DECL_metrowin void __cdecl __pre_translate_message(signal_details * pobj);
+CLASS_DECL_BASE void __process_window_procedure_exception(::exception::base*, signal_details * pobj);
+CLASS_DECL_BASE void __cdecl __pre_translate_message(signal_details * pobj);
 
 #include "metrowin_printer.h"
 

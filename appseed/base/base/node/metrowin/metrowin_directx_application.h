@@ -7,7 +7,7 @@ namespace metrowin
 
    ref class directx_application : 
       public Windows::ApplicationModel::Core::IFrameworkView,
-      public ::core::system_window
+      public ::base::system_window
    {
    internal:
 
@@ -122,7 +122,7 @@ namespace metrowin
    };
 
 
-   CLASS_DECL_metrowin directx_application_source ^ new_directx_application_source(Platform::String ^ id);
+   CLASS_DECL_BASE directx_application_source ^ new_directx_application_source(Platform::String ^ id);
 
 
 } // namespace metrowin

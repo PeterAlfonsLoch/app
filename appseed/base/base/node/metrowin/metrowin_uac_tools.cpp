@@ -452,7 +452,7 @@ RunNonElevated(
    // running without its shell?), we will try to inject our code into the shell process.
    //
    // To inject the code, we will install a global hook, and send a message to 
-   // a ::user::window created by the shell. This will cause our hook callback procedure to be executed
+   // a ::user::interaction_impl created by the shell. This will cause our hook callback procedure to be executed
    // in the context of the shell proces. 
    //
    // Because this trick uses a global hook, the hook procedure must be in a DLL.
@@ -465,7 +465,7 @@ RunNonElevated(
       uVEMsg = ::RegisterWindowMessage( "VistaElevatorMsg" );
 
    //////////////////////////////////////
-   // find the shell ::user::window (the desktop)
+   // find the shell ::user::interaction_impl (the desktop)
 
    oswindow hwndShell = ::FindWindow( "Progman", NULL);
 

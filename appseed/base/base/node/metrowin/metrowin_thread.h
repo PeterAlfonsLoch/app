@@ -30,7 +30,7 @@ namespace metrowin
 {
 
 
-   class CLASS_DECL_metrowin thread :
+   class CLASS_DECL_BASE thread :
       virtual public ::thread,
       virtual public ::message_queue
    {
@@ -200,8 +200,8 @@ namespace metrowin
    };
 
 
-   CLASS_DECL_metrowin ::thread * get_thread();
-   CLASS_DECL_metrowin ::thread_state * get_thread_state();
+   CLASS_DECL_BASE ::thread * get_thread();
+   CLASS_DECL_BASE ::thread_state * get_thread_state();
 
 
 } // namespace metrowin

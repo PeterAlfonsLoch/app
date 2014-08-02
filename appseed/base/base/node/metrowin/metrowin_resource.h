@@ -2,7 +2,7 @@
 
 #if FALSE
 
-class CLASS_DECL_metrowin WinResource :
+class CLASS_DECL_BASE WinResource :
    virtual public ::ca2::resource
 {
 public:

@@ -7,12 +7,12 @@ namespace metrowin
    class thread;
 } // namespace metrowin
 
-bool CLASS_DECL_metrowin __internal_pump_message();
-LRESULT CLASS_DECL_metrowin __internal_process_wnd_proc_exception(::exception::base*, const MSG* pMsg);
+bool CLASS_DECL_BASE __internal_pump_message();
+LRESULT CLASS_DECL_BASE __internal_process_wnd_proc_exception(::exception::base*, const MSG* pMsg);
 bool __internal_pre_translate_message(MSG* pMsg);
 bool __internal_is_idle_message(MSG* pMsg);
-//__STATIC void CLASS_DECL_metrowin __pre_init_dialog(sp(::user::interaction) pWnd, LPRECT lpRectOld, uint32_t* pdwStyleOld);
-//__STATIC void CLASS_DECL_metrowin __post_init_dialog(sp(::user::interaction) pWnd, const RECT& rectOld, uint32_t dwStyleOld);
+//__STATIC void CLASS_DECL_BASE __pre_init_dialog(sp(::user::interaction) pWnd, LPRECT lpRectOld, uint32_t* pdwStyleOld);
+//__STATIC void CLASS_DECL_BASE __post_init_dialog(sp(::user::interaction) pWnd, const RECT& rectOld, uint32_t dwStyleOld);
 
 namespace core
 {
@@ -92,7 +92,7 @@ uint32_t __thread_entry(void * pParam)
          // forced initialization of the thread
          __init_thread();
 
-         // thread inherits cast's main ::user::window if not already set
+         // thread inherits cast's main ::user::interaction_impl if not already set
          //if (papp != NULL && GetMainWnd() == NULL)
          {
             // just attach the oswindow
@@ -153,7 +153,7 @@ uint32_t __thread_entry(void * pParam)
 
 #endif //_MT
 
-CLASS_DECL_metrowin ::metrowin::thread * __get_thread()
+CLASS_DECL_BASE ::metrowin::thread * __get_thread()
 {
    // check for current thread in module thread state
    //__MODULE_THREAD_STATE* pState = __get_module_thread_state();
@@ -163,7 +163,7 @@ CLASS_DECL_metrowin ::metrowin::thread * __get_thread()
 }
 
 
-CLASS_DECL_metrowin void __set_thread(::thread * pthread)
+CLASS_DECL_BASE void __set_thread(::thread * pthread)
 {
    // check for current thread in module thread state
    //__MODULE_THREAD_STATE* pState = __get_module_thread_state();
@@ -174,7 +174,7 @@ CLASS_DECL_metrowin void __set_thread(::thread * pthread)
 
 
 
-CLASS_DECL_metrowin MSG * __get_current_message()
+CLASS_DECL_BASE MSG * __get_current_message()
 {
    ___THREAD_STATE* pState = __get_thread_state();
    ASSERT(pState);
@@ -183,7 +183,7 @@ CLASS_DECL_metrowin MSG * __get_current_message()
 
 
 
-CLASS_DECL_metrowin void __internal_process_wnd_proc_exception(::exception::base*, signal_details * pobj)
+CLASS_DECL_BASE void __internal_process_wnd_proc_exception(::exception::base*, signal_details * pobj)
 {
    SCAST_PTR(::message::base, pbase, pobj);
    if (pbase->m_uiMessage == WM_CREATE)
@@ -193,7 +193,7 @@ CLASS_DECL_metrowin void __internal_process_wnd_proc_exception(::exception::base
    }
    else if (pbase->m_uiMessage == WM_PAINT)
    {
-      // force validation of ::user::window to prevent getting WM_PAINT again
+      // force validation of ::user::interaction_impl to prevent getting WM_PAINT again
       //      ValidateRect(pbase->m_pwnd->get_safe_handle(), NULL);
       pbase->set_lresult(0);
       return;
@@ -201,7 +201,7 @@ CLASS_DECL_metrowin void __internal_process_wnd_proc_exception(::exception::base
    return;   // sensible default for rest of commands
 }
 
-CLASS_DECL_metrowin void __process_window_procedure_exception(::exception::base* e, signal_details * pobj)
+CLASS_DECL_BASE void __process_window_procedure_exception(::exception::base* e, signal_details * pobj)
 {
    ::thread *pThread = App(pobj->get_app()).GetThread();
    if( pThread )
@@ -367,7 +367,7 @@ bool __cdecl __is_idle_message(MESSAGE* pMsg)
 }
 
 
-/*thread* CLASS_DECL_metrowin __begin_thread(::base::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam,
+/*thread* CLASS_DECL_BASE __begin_thread(::base::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam,
 int nPriority, UINT nStackSize, uint32_t dwCreateFlags,
 LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
@@ -388,7 +388,7 @@ VERIFY(pThread->ResumeThread() != (uint32_t)-1);
 
 return pThread;
 }*/
-void CLASS_DECL_metrowin __end_thread(::base::application * papp, UINT nExitCode, bool bDelete)
+void CLASS_DECL_BASE __end_thread(::base::application * papp, UINT nExitCode, bool bDelete)
 {
    // remove current thread object from primitive::memory
    __MODULE_THREAD_STATE* pState = __get_module_thread_state();
@@ -421,7 +421,7 @@ void CLASS_DECL_metrowin __end_thread(::base::application * papp, UINT nExitCode
 
 extern thread_local_storage * gen_ThreadData;
 
-void CLASS_DECL_metrowin __term_thread(::base::application * papp, HINSTANCE hInstTerm)
+void CLASS_DECL_BASE __term_thread(::base::application * papp, HINSTANCE hInstTerm)
 {
    UNREFERENCED_PARAMETER(papp);
    try
@@ -455,7 +455,7 @@ void CLASS_DECL_metrowin __term_thread(::base::application * papp, HINSTANCE hIn
 
 LRESULT CALLBACK __message_filter_hook(int code, WPARAM wParam, LPARAM lParam);
 
-void CLASS_DECL_metrowin __init_thread()
+void CLASS_DECL_BASE __init_thread()
 {
    if (!afxContextIsDLL)
    {
@@ -1777,7 +1777,7 @@ run:
    }
 
 
-   CLASS_DECL_metrowin ::thread * get_thread()
+   CLASS_DECL_BASE ::thread * get_thread()
    {
       ::metrowin::thread * pwinthread = __get_thread();
       if(pwinthread == NULL)
@@ -1785,7 +1785,7 @@ run:
       return pwinthread->m_p;
    }
 
-   CLASS_DECL_metrowin ::thread_state * get_thread_state()
+   CLASS_DECL_BASE ::thread_state * get_thread_state()
    {
       return __get_thread_state();
    }
@@ -1875,7 +1875,7 @@ run:
       install_message_handling(pThread);
       m_p->install_message_handling(pThread);
 
-//      ::user::window threadWnd;
+//      ::user::interaction_impl threadWnd;
 
 //      m_ptimera            = new ::user::interaction::timer_array(get_app());
   //    m_puiptra            = new user::interaction_ptr_array(get_app());
@@ -2046,14 +2046,14 @@ run:
 
 
 
-bool CLASS_DECL_metrowin __internal_pump_message();
-LRESULT CLASS_DECL_metrowin __internal_process_wnd_proc_exception(::exception::base*, const MSG* pMsg);
+bool CLASS_DECL_BASE __internal_pump_message();
+LRESULT CLASS_DECL_BASE __internal_process_wnd_proc_exception(::exception::base*, const MSG* pMsg);
 void __internal_pre_translate_message(signal_details * pobj);
 bool __internal_is_idle_message(signal_details * pobj);
 bool __internal_is_idle_message(LPMSG lpmsg);
 
 
-/*thread* CLASS_DECL_metrowin System.GetThread()
+/*thread* CLASS_DECL_BASE System.GetThread()
 {
 // check for current thread in module thread state
 __MODULE_THREAD_STATE* pState = __get_module_thread_state();
@@ -2061,14 +2061,14 @@ __MODULE_THREAD_STATE* pState = __get_module_thread_state();
 return pThread;
 }
 
-MSG* CLASS_DECL_metrowin __get_current_message()
+MSG* CLASS_DECL_BASE __get_current_message()
 {
 ___THREAD_STATE* pState = __get_thread_state();
 ASSERT(pState);
 return &(pState->m_msgCur);
 }
 
-bool CLASS_DECL_metrowin __internal_pump_message()
+bool CLASS_DECL_BASE __internal_pump_message()
 {
 ___THREAD_STATE *pState = __get_thread_state();
 
@@ -2105,7 +2105,7 @@ if (pState->m_msgCur.message != WM_KICKIDLE && !__pre_translate_message(&(pState
 return TRUE;
 }
 
-bool CLASS_DECL_metrowin ::ca2::PumpMessage()
+bool CLASS_DECL_BASE ::ca2::PumpMessage()
 {
 thread *pThread = System.GetThread();
 if( pThread )
@@ -2114,7 +2114,7 @@ else
 return __internal_pump_message();
 }
 
-LRESULT CLASS_DECL_metrowin __internal_process_wnd_proc_exception(::exception::base*, const MSG* pMsg)
+LRESULT CLASS_DECL_BASE __internal_process_wnd_proc_exception(::exception::base*, const MSG* pMsg)
 {
 if (pMsg->message == WM_CREATE)
 {
@@ -2122,14 +2122,14 @@ return -1;  // just fail
 }
 else if (pMsg->message == WM_PAINT)
 {
-// force validation of ::user::window to prevent getting WM_PAINT again
+// force validation of ::user::interaction_impl to prevent getting WM_PAINT again
 ValidateRect(pMsg->hwnd, NULL);
 return 0;
 }
 return 0;   // sensible default for rest of commands
 }
 
-LRESULT CLASS_DECL_metrowin __process_window_procedure_exception(::exception::base* e, const MSG* pMsg)
+LRESULT CLASS_DECL_BASE __process_window_procedure_exception(::exception::base* e, const MSG* pMsg)
 {
 thread *pThread = System.GetThread();
 if( pThread )
@@ -2149,16 +2149,16 @@ if (pMsg->hwnd == NULL && pThread->DispatchThreadMessageEx(pMsg))
 return TRUE;
 }
 
-// walk from target to main ::user::window
+// walk from target to main ::user::interaction_impl
 ::user::interaction* pMainWnd = System.GetMainWnd();
-/* trans   if (::user::window::WalkPreTranslateTree(pMainWnd->GetSafeHwnd(), pMsg))
+/* trans   if (::user::interaction_impl::WalkPreTranslateTree(pMainWnd->GetSafeHwnd(), pMsg))
 return TRUE; */
 
 // in case of modeless dialogs, last chance route through main
-//   ::user::window's accelerator table
+//   ::user::interaction_impl's accelerator table
 /*   if (pMainWnd != NULL)
 {
-::user::window * pWnd = ::metrowin::window::from_handle(pMsg->hwnd);
+::user::interaction_impl * pWnd = ::metrowin::window::from_handle(pMsg->hwnd);
 if (pWnd != NULL && WIN_WINDOW(pWnd)->GetTopLevelParent() != pMainWnd)
 return pMainWnd->pre_translate_message(pMsg);
 }
@@ -2209,7 +2209,7 @@ return __internal_is_idle_message( pMsg );
 }
 
 /*
-thread* CLASS_DECL_metrowin __begin_thread(::ca2::type_info pThreadClass,
+thread* CLASS_DECL_BASE __begin_thread(::ca2::type_info pThreadClass,
 int nPriority, UINT nStackSize, uint32_t dwCreateFlags,
 LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
@@ -2243,7 +2243,7 @@ return NULL;
 }*/
 
 /*
-void CLASS_DECL_metrowin __end_thread(UINT nExitCode, bool bDelete)
+void CLASS_DECL_BASE __end_thread(UINT nExitCode, bool bDelete)
 {
 #ifndef _MT
 nExitCode;
@@ -2275,7 +2275,7 @@ _endthreadex(nExitCode);
 
 LRESULT CALLBACK __message_filter_hook(int code, WPARAM wParam, LPARAM lParam);
 
-void CLASS_DECL_metrowin __init_thread()
+void CLASS_DECL_BASE __init_thread()
 {
 if (!afxContextIsDLL)
 {
@@ -2475,7 +2475,7 @@ ASSERT(__check_memory());
 
 if (lCount <= 0)
 {
-// send WM_IDLEUPDATECMDUI to the main ::user::window
+// send WM_IDLEUPDATECMDUI to the main ::user::interaction_impl
 ::user::interaction* pMainWnd = GetMainWnd();
 if (pMainWnd != NULL && pMainWnd->IsWindowVisible())
 {
@@ -2555,7 +2555,7 @@ pMessageMap = (*pMessageMap->pfnGetBaseMap)())
 ASSERT(pMessageMap != (*pMessageMap->pfnGetBaseMap)());
 if (pMsg->message < 0xC000)
 {
-// constant ::user::window message
+// constant ::user::interaction_impl message
 if ((lpEntry = ::ca2::FindMessageEntry(pMessageMap->lpEntries,
 pMsg->message, 0, 0)) != NULL)
 goto LDispatch;
@@ -2641,7 +2641,7 @@ LRESULT CALLBACK __message_filter_hook(int code, WPARAM wParam, LPARAM lParam)
 }
 
 
-__STATIC bool CLASS_DECL_metrowin IsHelpKey(LPMSG lpMsg)
+__STATIC bool CLASS_DECL_BASE IsHelpKey(LPMSG lpMsg)
    // return TRUE only for non-repeat F1 keydowns.
 {
    return lpMsg->message == WM_KEYDOWN &&
@@ -2730,7 +2730,7 @@ return FALSE;   // default to not handled
 if (m_pActiveWnd != NULL)
 return m_pActiveWnd;    // probably in-place active
 
-// when not inplace active, just return main ::user::window
+// when not inplace active, just return main ::user::interaction_impl
 if (GetMainWnd() != NULL)
 return GetMainWnd();
 

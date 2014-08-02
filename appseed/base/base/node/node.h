@@ -28,4 +28,8 @@ void __node_factory_exchange(sp(::base::application) papp);
 #include "ansios/ansios.h"
 #include "android/android.h"
 
+#elif defined(METROWIN)
+
+#include "metrowin/metrowin.h"
+
 #endif

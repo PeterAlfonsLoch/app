@@ -184,13 +184,13 @@ public:
    friend class ::thread;
 };
 
-/*class CLASS_DECL_metrowin hwnd_map :
+/*class CLASS_DECL_BASE hwnd_map :
    public handle_map < ::metrowin::hwnd_handle, ::metrowin::window >
 {
 public:
 };*/
 
-/*class CLASS_DECL_metrowin hdc_map :
+/*class CLASS_DECL_BASE hdc_map :
    public handle_map < ::metrowin::hdc_handle, ::metrowin::graphics >
 {
 public:
@@ -203,7 +203,7 @@ public:
 };*/
 
 /*
-class CLASS_DECL_metrowin hdc_map :
+class CLASS_DECL_BASE hdc_map :
    public handle_map < ::metrowin::hmenu_handle, ::metrowin::menu >
 {
 public:
@@ -441,9 +441,4 @@ inline CT* handle_map <HT, CT>::lookup_temporary(HANDLE h)
 }
 
 
-CLASS_DECL_metrowin hwnd_map * afxMapHWND(bool bCreate = FALSE);
-CLASS_DECL_metrowin mutex * afxMutexHwnd();
-CLASS_DECL_metrowin himagelist_map * afxMapHIMAGELIST(bool bCreate = FALSE);
-//CLASS_DECL_metrowin hdc_map * afxMapHDC(bool bCreate = FALSE);
-//CLASS_DECL_metrowin hgdiobj_map * afxMapHGDIOBJ(bool bCreate = FALSE);
-//CLASS_DECL_metrowin hmenu_map * afx_map_HMENU(bool bCreate = FALSE);
+CLASS_DECL_BASE mutex * afxMutexHwnd();

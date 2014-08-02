@@ -5,13 +5,13 @@ namespace metrowin
 {
 
 #if FALSE
-   class CLASS_DECL_metrowin registry :
+   class CLASS_DECL_BASE registry :
       virtual public ::object
    {
    public:
 
 
-      class CLASS_DECL_metrowin Key
+      class CLASS_DECL_BASE Key
       {
       public:
 

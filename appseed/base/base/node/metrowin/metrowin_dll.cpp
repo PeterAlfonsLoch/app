@@ -16,9 +16,6 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
       ::OutputDebugString(L"::ca2:: metrowin.dll :: initializing!\n");
       
 
-      ::g_pfn_get_thread = &::metrowin::get_thread;
-      ::g_pfn_get_thread_state = &::metrowin::get_thread_state;
-
       __abi___threading_model = 0; // avoid further changes
 
    }

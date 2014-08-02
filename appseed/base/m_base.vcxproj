@@ -79,7 +79,6 @@
     <ClInclude Include="base\base\base_machine_event_data.h" />
     <ClInclude Include="base\base\base_main_init_data.h" />
     <ClInclude Include="base\base\base_math.h" />
-    <ClInclude Include="base\base\base_message.h" />
     <ClInclude Include="base\base\base_message_loop.h" />
     <ClInclude Include="base\base\base_message_queue.h" />
     <ClInclude Include="base\base\base_message_queue_listener.h" />
@@ -242,6 +241,7 @@
     <ClInclude Include="base\node\metrowin\metrowin.h" />
     <ClInclude Include="base\node\metrowin\metrowin1.h" />
     <ClInclude Include="base\node\metrowin\metrowin_application.h" />
+    <ClInclude Include="base\node\metrowin\metrowin_base_crypto.h" />
     <ClInclude Include="base\node\metrowin\metrowin_copydesk.h" />
     <ClInclude Include="base\node\metrowin\metrowin_crypto.h" />
     <ClInclude Include="base\node\metrowin\metrowin_dir.h" />
@@ -266,15 +266,12 @@
     <ClInclude Include="base\node\metrowin\metrowin_registry.h" />
     <ClInclude Include="base\node\metrowin\metrowin_resource.h" />
     <ClInclude Include="base\node\metrowin\metrowin_shell.h" />
-    <ClInclude Include="base\node\metrowin\metrowin_state.h" />
     <ClInclude Include="base\node\metrowin\metrowin_stdio_file.h" />
     <ClInclude Include="base\node\metrowin\metrowin_thread.h" />
-    <ClInclude Include="base\node\metrowin\metrowin_thread_slots.h" />
     <ClInclude Include="base\node\metrowin\metrowin_uac_tools.h" />
-    <ClInclude Include="base\node\metrowin\metrowin_window.h" />
+    <ClInclude Include="base\node\metrowin\metrowin_interaction_impl.h" />
     <ClInclude Include="base\node\metrowin\metrowin_window_draw.h" />
-    <ClInclude Include="base\os\android\android.h" />
-    <ClInclude Include="base\os\android\android_window_impl.h" />
+    <ClInclude Include="base\node\node.h" />
     <ClInclude Include="base\os\cross.h" />
     <ClInclude Include="base\os\cross\cross.h" />
     <ClInclude Include="base\os\metrowin\ca_os.h" />
@@ -775,61 +772,168 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="base\base\base.cpp" />
-    <ClCompile Include="base\base\base_action_context.cpp" />
-    <ClCompile Include="base\base\base_allocate_mid_big.cpp" />
-    <ClCompile Include="base\base\base_allocate_system_heap.cpp" />
-    <ClCompile Include="base\base\base_application.cpp" />
-    <ClCompile Include="base\base\base_argcargv.cpp" />
-    <ClCompile Include="base\base\base_assert.cpp" />
-    <ClCompile Include="base\base\base_checked.cpp" />
-    <ClCompile Include="base\base\base_cmdtarg.cpp" />
-    <ClCompile Include="base\base\base_command_target.cpp" />
-    <ClCompile Include="base\base\base_conv.cpp" />
-    <ClCompile Include="base\base\base_core_copydesk.cpp" />
-    <ClCompile Include="base\base\base_core_os.cpp" />
-    <ClCompile Include="base\base\base_cpu_architecture.cpp" />
-    <ClCompile Include="base\base\base_cregexp.cpp" />
-    <ClCompile Include="base\base\base_cregexp_util.cpp" />
-    <ClCompile Include="base\base\base_debug.cpp" />
-    <ClCompile Include="base\base\base_departament.cpp" />
-    <ClCompile Include="base\base\base_departament_container.cpp" />
-    <ClCompile Include="base\base\base_element.cpp" />
-    <ClCompile Include="base\base\base_file_watcher.cpp" />
-    <ClCompile Include="base\base\base_file_watcher_impl.cpp" />
-    <ClCompile Include="base\base\base_file_watcher_listener_thread.cpp" />
-    <ClCompile Include="base\base\base_file_watcher_thread.cpp" />
-    <ClCompile Include="base\base\base_fixed_alloc.cpp" />
-    <ClCompile Include="base\base\base_flags.cpp" />
-    <ClCompile Include="base\base\base_geometry.cpp" />
-    <ClCompile Include="base\base\base_heap.cpp" />
-    <ClCompile Include="base\base\base_id_pool.cpp" />
-    <ClCompile Include="base\base\base_international.cpp" />
-    <ClCompile Include="base\base\base_live_object.cpp" />
-    <ClCompile Include="base\base\base_live_signal.cpp" />
-    <ClCompile Include="base\base\base_log.cpp" />
-    <ClCompile Include="base\base\base_machine_event.cpp" />
-    <ClCompile Include="base\base\base_machine_event_central.cpp" />
-    <ClCompile Include="base\base\base_machine_event_data.cpp" />
-    <ClCompile Include="base\base\base_math.cpp" />
-    <ClCompile Include="base\base\base_message.cpp" />
-    <ClCompile Include="base\base\base_message_queue.cpp" />
-    <ClCompile Include="base\base\base_microtimer.cpp" />
-    <ClCompile Include="base\base\base_mktime.cpp" />
-    <ClCompile Include="base\base\base_muldiv64.cpp" />
-    <ClCompile Include="base\base\base_plex.cpp" />
-    <ClCompile Include="base\base\base_plex_heap.cpp" />
-    <ClCompile Include="base\base\base_printf.cpp" />
-    <ClCompile Include="base\base\base_print_job.cpp" />
-    <ClCompile Include="base\base\base_progress.cpp" />
-    <ClCompile Include="base\base\base_root.cpp" />
-    <ClCompile Include="base\base\base_savings.cpp" />
-    <ClCompile Include="base\base\base_session.cpp" />
-    <ClCompile Include="base\base\base_simple_shell_launcher.cpp" />
-    <ClCompile Include="base\base\base_sprintf.cpp" />
-    <ClCompile Include="base\base\base_system.cpp" />
-    <ClCompile Include="base\base\base_template.cpp" />
-    <ClCompile Include="base\base\base_trace.cpp" />
+    <ClCompile Include="base\base\base.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_action_context.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_allocate_mid_big.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_allocate_system_heap.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_application.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_argcargv.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_assert.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_checked.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_cmdtarg.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_command_target.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_conv.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_core_copydesk.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_core_os.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_cpu_architecture.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_cregexp.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_cregexp_util.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_debug.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_departament.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_departament_container.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_element.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_file_watcher.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_file_watcher_impl.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_file_watcher_listener_thread.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_file_watcher_thread.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_fixed_alloc.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_flags.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_geometry.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_heap.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_id_pool.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_international.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_live_object.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_live_signal.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_log.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_machine_event.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_machine_event_central.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_machine_event_data.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_math.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_message_queue.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_microtimer.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_mktime.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_muldiv64.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_plex.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_plex_heap.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_printf.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_print_job.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_progress.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_root.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_savings.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_session.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_simple_shell_launcher.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_sprintf.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_system.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_template.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
+    <ClCompile Include="base\base\base_trace.cpp">
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</CompileAsWinRT>
+    </ClCompile>
     <ClCompile Include="base\compress\bsdiff\bsdiff_blocksort.cpp" />
     <ClCompile Include="base\compress\bsdiff\bsdiff_bsdiff.cpp" />
     <ClCompile Include="base\compress\bsdiff\bsdiff_bspatch.cpp" />
@@ -1107,17 +1211,11 @@
     <ClCompile Include="base\install\windows\install_windows_boot.cpp" />
     <ClCompile Include="base\install\windows\install_windows_service.cpp" />
     <ClCompile Include="base\install\windows\install_windows_win.cpp" />
-    <ClCompile Include="base\node\metrowin\metrowin.cpp" />
-    <ClCompile Include="base\node\metrowin\metrowin1.cpp" />
-    <ClCompile Include="base\node\metrowin\metrowin2.cpp" />
-    <ClCompile Include="base\node\metrowin\metrowin_afxabort.cpp" />
-    <ClCompile Include="base\node\metrowin\metrowin_afxmem.cpp" />
-    <ClCompile Include="base\node\metrowin\metrowin_afxstate.cpp" />
-    <ClCompile Include="base\node\metrowin\metrowin_appcore.cpp" />
-    <ClCompile Include="base\node\metrowin\metrowin_appinit.cpp" />
+    <ClCompile Include="base\node\metrowin\metrowin_dll.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_application.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_appmodul.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_appterm.cpp" />
+    <ClCompile Include="base\node\metrowin\metrowin_base_crypto.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_copydesk.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_crypto.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_dib.cpp" />
@@ -1149,8 +1247,9 @@
     <ClCompile Include="base\node\metrowin\metrowin_trace.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_uac_tools.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_util.cpp" />
-    <ClCompile Include="base\node\metrowin\metrowin_window.cpp" />
+    <ClCompile Include="base\node\metrowin\metrowin_interaction_impl.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_window_draw.cpp" />
+    <ClCompile Include="base\node\node.cpp" />
     <ClCompile Include="base\os\cross\windows\windows_crt.cpp" />
     <ClCompile Include="base\os\cross\windows\windows_datetime.cpp" />
     <ClCompile Include="base\os\cross\windows\windows_error.cpp" />
@@ -1159,7 +1258,6 @@
     <ClCompile Include="base\os\cross\windows\windows_threading.cpp" />
     <ClCompile Include="base\os\cross\windows\windows_user.cpp" />
     <ClCompile Include="base\os\cross\windows\windows_windows.cpp" />
-    <ClCompile Include="base\os\metrowin\crypt\metrowin_crypto.cpp" />
     <ClCompile Include="base\os\metrowin\metrowin_direct2d_tls.cpp" />
     <ClCompile Include="base\os\metrowin\metrowin_file_std.cpp" />
     <ClCompile Include="base\os\metrowin\metrowin_file_watcher.cpp" />
@@ -1272,11 +1370,6 @@
     <ClCompile Include="filesystem\fs\fs_set.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="framework_c.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">framework_c.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)$(TargetName)_c.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_brush.cpp" />
@@ -1801,9 +1894,12 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|arm'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsWinRT>true</CompileAsWinRT>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PreprocessorDefinitions>_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
