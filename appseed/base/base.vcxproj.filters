@@ -4403,9 +4403,6 @@
     <ClInclude Include="base\node\node.h">
       <Filter>Header Files\base\node</Filter>
     </ClInclude>
-    <ClInclude Include="base\node\windows\factory_exchange.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="base\node\windows\os.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
@@ -9395,6 +9392,9 @@
     </None>
     <None Include="primitive\collection\collection.inl">
       <Filter>Header Files\primitive\collection</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
