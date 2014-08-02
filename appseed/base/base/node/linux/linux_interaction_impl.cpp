@@ -859,7 +859,7 @@ d.unlock();
       rect rect;
       ((::user::interaction_impl *) this)->GetWindowRect(&rect);
       dumpcontext << "\nrect = " << rect;
-      dumpcontext << "\nparent sp(::interaction_impl) = " << (void *)((::user::interaction_impl *) this)->get_parent();
+      dumpcontext << "\nparent sp(::interaction_impl) = " << (void *)((::user::interaction_impl *) this)->GetParent();
 
 //      dumpcontext << "\nstyle = " << (void *)(dword_ptr)::GetWindowLong(get_handle(), GWL_STYLE);
   //    if (::GetWindowLong(get_handle(), GWL_STYLE) & WS_CHILD)
@@ -2049,7 +2049,7 @@ restart_mouse_hover_check:
 
       ASSERT_VALID(this);
 
-      sp(::user::interaction) pParentWnd = get_parent();  // start with one parent up
+      sp(::user::interaction) pParentWnd = GetParent();  // start with one parent up
 
       while (pParentWnd != NULL)
       {
@@ -2057,7 +2057,7 @@ restart_mouse_hover_check:
          {
             return  (pParentWnd);
          }
-         pParentWnd = pParentWnd->get_parent();
+         pParentWnd = pParentWnd->GetParent();
       }
 
       return NULL;
@@ -4167,7 +4167,7 @@ throw not_implemented(get_app());
       {
          ::ShowWindow((oswindow) get_handle(), nCmdShow);
          m_pui->m_bVisible = ::IsWindowVisible((oswindow) get_handle()) != FALSE;
-         return m_bVisible;
+         return m_pui->m_bVisible;
       }
    }
 
@@ -4192,7 +4192,7 @@ throw not_implemented(get_app());
    }
 
 
-   ::user::interaction * interaction_impl::get_parent()
+   /*::user::interaction * interaction_impl::GetParent()
    {
       if(!::IsWindow((oswindow) get_handle()))
          return NULL;
@@ -4200,7 +4200,7 @@ throw not_implemented(get_app());
          return NULL;
       //return ::linux::interaction_impl::from_handle(::GetParent(get_handle()));
       return NULL;
-   }
+   }*/
 
    LONG interaction_impl::GetWindowLong(int32_t nIndex)
    {
@@ -4254,9 +4254,9 @@ throw not_implemented(get_app());
          {
             if(m_pui != NULL)
             {
-               if(m_pui->get_wnd() != NULL && LNX_WINDOW(m_pui->get_wnd())->m_puicapture != NULL)
+               if(m_pui->m_pimpl != NULL && LNX_WINDOW(m_pui->m_pimpl)->m_puicapture != NULL)
                {
-                  return LNX_WINDOW(m_pui->get_wnd())->m_puicapture;
+                  return LNX_WINDOW(m_pui->m_pimpl)->m_puicapture;
                }
                else
                {
@@ -4271,7 +4271,7 @@ throw not_implemented(get_app());
       }
       else
       {
-         return interaction_impl::GetCapture()->get_capture();
+         return interaction_impl::GetCapture()->GetCapture();
       }
    }
 
@@ -4316,7 +4316,8 @@ throw not_implemented(get_app());
 
    void interaction_impl::set_owner(sp(::user::interaction) pOwnerWnd)
    {
-      m_puiOwner = pOwnerWnd;
+//      m_puiOwner = pOwnerWnd;
+m_pui->SetOwner((pOwnerWnd));
    }
 
    LRESULT interaction_impl::send_message(UINT message, WPARAM wparam, lparam lparam)
@@ -4331,7 +4332,7 @@ throw not_implemented(get_app());
 
          sp(::user::interaction) pui = m_pui;
 
-         while(pui != NULL && pui->get_parent() != NULL)
+         while(pui != NULL && pui->GetParent() != NULL)
          {
 
             try
@@ -4353,7 +4354,7 @@ throw not_implemented(get_app());
             try
             {
 
-               pui = pui->get_parent();
+               pui = pui->GetParent();
 
             }
             catch(...)
@@ -4431,7 +4432,7 @@ throw not_implemented(get_app());
 
       UNREFERENCED_PARAMETER(bRedraw);
 
-      ASSERT(::IsWindow((oswindow) get_handle())); m_pfont = new ::draw2d::font(*pfont);
+      //ASSERT(::IsWindow((oswindow) get_handle())); m_pfont = new ::draw2d::font(*pfont);
 
    }
 
@@ -4439,9 +4440,10 @@ throw not_implemented(get_app());
    ::draw2d::font* interaction_impl::GetFont()
    {
 
-      ASSERT(::IsWindow((oswindow) get_handle()));
+      //ASSERT(::IsWindow((oswindow) get_handle()));
 
-      return m_pfont;
+      //return m_pfont;
+      return NULL;
 
    }
 
@@ -4456,7 +4458,7 @@ throw not_implemented(get_app());
 
    }
 
-
+/*
    sp(::user::frame_window) interaction_impl::EnsureParentFrame()
    {
 
@@ -4480,7 +4482,7 @@ throw not_implemented(get_app());
 
    }
 
-
+*/
    void interaction_impl::MoveWindow(LPCRECT lpRect, bool bRepaint)
    {
 
@@ -4531,7 +4533,7 @@ throw not_implemented(get_app());
    }
 
 
-   void interaction_impl::MapWindowPoints(::interaction_impl * pwndTo, LPPOINT lpPoint, UINT nCount)
+   void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, LPPOINT lpPoint, UINT nCount)
    {
 
       throw not_implemented(get_app());
@@ -4542,7 +4544,7 @@ throw not_implemented(get_app());
    }
 
 
-   void interaction_impl::MapWindowPoints(::interaction_impl * pwndTo, LPRECT lpRect)
+   void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, LPRECT lpRect)
    {
 
       throw not_implemented(get_app());
@@ -4706,7 +4708,7 @@ if(psurface == g_cairosurface)
          if(!m_pui->m_bVisible)
             return false;
 
-         if(m_pui->get_parent() != NULL && !m_pui->get_parent()->IsWindowVisible())
+         if(m_pui->GetParent() != NULL && !m_pui->GetParent()->IsWindowVisible())
             return false;
 
       }
@@ -4855,7 +4857,7 @@ if(psurface == g_cairosurface)
 
         UNREFERENCED_PARAMETER(lpfnTimer);
 
-        m_pui->m_pthread->set_timer(m_pui, nIDEvent, nElapse);
+        m_pui->m_pbaseapp->set_timer(m_pui, nIDEvent, nElapse);
 
         return nIDEvent;
 
@@ -4869,7 +4871,7 @@ if(psurface == g_cairosurface)
    bool interaction_impl::KillTimer(uint_ptr nIDEvent)
    {
 
-       m_pui->m_pthread->unset_timer(m_pui, nIDEvent);
+       m_pui->m_pbaseapp->unset_timer(m_pui, nIDEvent);
 
        return TRUE;
 
@@ -4921,7 +4923,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) PASCAL interaction_impl::GetCapture()
+   /*sp(::user::interaction) interaction_impl::GetCapture()
    {
 
       if(::GetCapture() == NULL)
@@ -4929,14 +4931,14 @@ if(psurface == g_cairosurface)
 
       return  (::GetCapture()->get_user_interaction()->m_pimpl.m_p);
 
-   }
+   }*/
 
    sp(::user::interaction) interaction_impl::set_capture(sp(::user::interaction) pinterface)
    {
 
       ASSERT(::IsWindow((oswindow) get_handle()));
 
-      oswindow w = SetCapture(get_handle());
+      oswindow w = SetCapture(get_handle())->get_handle();
 
       if(GetCapture() != NULL)
       {
@@ -4950,7 +4952,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) PASCAL interaction_impl::GetFocus()
+   sp(::user::interaction) PASCAL interaction_impl::GetFocus()
    {
 
       oswindow w = ::GetFocus();
@@ -4976,7 +4978,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) PASCAL interaction_impl::GetDesktopWindow()
+   sp(::user::interaction) PASCAL interaction_impl::GetDesktopWindow()
    {
 /*
       return ::linux::interaction_impl::from_handle(::GetDesktopWindow());
@@ -5078,7 +5080,7 @@ if(psurface == g_cairosurface)
 //      throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle())); return ::GetDlgItemText(get_handle(), nID, lpStr, nMaxCount);}
 
-   sp(::interaction_impl) interaction_impl::GetNextDlgGroupItem(::interaction_impl * pWndCtl, bool bPrevious) const
+   sp(::user::interaction) interaction_impl::GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious) const
    {
 
       throw not_implemented(get_app());
@@ -5087,7 +5089,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) interaction_impl::GetNextDlgTabItem(::interaction_impl * pWndCtl, bool bPrevious) const
+   sp(::user::interaction) interaction_impl::GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious) const
    {
 
       throw not_implemented(get_app());
@@ -5169,7 +5171,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) PASCAL interaction_impl::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+   sp(::user::interaction) PASCAL interaction_impl::FindWindow(const char * lpszClassName, const char * lpszWindowName)
    {
 
 //      throw not_implemented(get_app());
@@ -5178,7 +5180,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) interaction_impl::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
+   sp(::user::interaction) interaction_impl::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
    {
 
       throw not_implemented(::get_thread_app());
@@ -5201,7 +5203,7 @@ if(psurface == g_cairosurface)
       if(m_pui->m_uiptraChild.get_size() <= 0)
          return NULL;
 
-      return m_pui->m_uiptraChild(0);
+      return m_pui->m_uiptraChild[0];
     //  throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
 //      return ::linux::interaction_impl::from_handle(::GetTopWindow(get_handle()));
@@ -5227,7 +5229,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) interaction_impl::set_parent(::interaction_impl * pWndNewParent)
+   sp(::user::interaction) interaction_impl::set_parent(::user::interaction * pWndNewParent)
    {
 
       ASSERT(::IsWindow((oswindow) get_handle()));
@@ -5235,7 +5237,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) PASCAL interaction_impl::oswindowFromPoint(POINT point)
+   sp(::user::interaction) PASCAL interaction_impl::oswindowFromPoint(POINT point)
    {
 
 
@@ -5281,7 +5283,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) PASCAL interaction_impl::GetOpenClipboardWindow()
+   sp(::user::interaction) PASCAL interaction_impl::GetOpenClipboardWindow()
    {
 
       throw not_implemented(::get_thread_app());
@@ -5289,7 +5291,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) PASCAL interaction_impl::GetClipboardOwner()
+   sp(::user::interaction) PASCAL interaction_impl::GetClipboardOwner()
    {
 
       throw not_implemented(::get_thread_app());
@@ -5297,7 +5299,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) PASCAL interaction_impl::GetClipboardViewer()
+   sp(::user::interaction) PASCAL interaction_impl::GetClipboardViewer()
    {
 
       throw not_implemented(::get_thread_app());
@@ -5373,7 +5375,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) PASCAL interaction_impl::GetForegroundWindow()
+   sp(::user::interaction) PASCAL interaction_impl::GetForegroundWindow()
    {
 
       return NULL;
@@ -5431,7 +5433,7 @@ if(psurface == g_cairosurface)
    // Default message ::collection::map implementations
    void interaction_impl::OnActivateApp(bool, DWORD)
    { Default(); }
-   void interaction_impl::OnActivate(UINT, sp(::interaction_impl), bool)
+   void interaction_impl::OnActivate(UINT, sp(::user::interaction), bool)
    { Default(); }
    void interaction_impl::OncancelMode()
    { Default(); }
@@ -5439,10 +5441,10 @@ if(psurface == g_cairosurface)
    { Default(); }
    void interaction_impl::OnClose()
    { Default(); }
-   void interaction_impl::OnContextMenu(::interaction_impl *, point)
+   void interaction_impl::OnContextMenu(::user::interaction *, point)
    { Default(); }
 
-   bool interaction_impl::OnCopyData(::interaction_impl *, COPYDATASTRUCT*)
+   bool interaction_impl::OnCopyData(::user::interaction *, COPYDATASTRUCT*)
    {
 
       return Default() != FALSE;
@@ -5465,7 +5467,7 @@ if(psurface == g_cairosurface)
    { Default(); }
    void interaction_impl::OnIconEraseBkgnd(::draw2d::graphics *)
    { Default(); }
-   void interaction_impl::OnKillFocus(::interaction_impl *)
+   void interaction_impl::OnKillFocus(::user::interaction *)
    { Default(); }
    LRESULT interaction_impl::OnMenuChar(UINT, UINT, ::user::menu*)
    { return Default(); }
@@ -5521,7 +5523,7 @@ if(psurface == g_cairosurface)
    { Default(); }
    void interaction_impl::OnDropFiles(HDROP)
    { Default(); }
-   void interaction_impl::OnPaletteIsChanging(::interaction_impl *)
+   void interaction_impl::OnPaletteIsChanging(::user::interaction *)
    { Default(); }
 
    bool interaction_impl::OnNcActivate(bool)
@@ -5579,7 +5581,7 @@ if(psurface == g_cairosurface)
    { Default(); }
    void interaction_impl::OnFontChange()
    { Default(); }
-   void interaction_impl::OnPaletteChanged(::interaction_impl *)
+   void interaction_impl::OnPaletteChanged(::user::interaction *)
    { Default(); }
    void interaction_impl::OnSpoolerStatus(UINT, UINT)
    { Default(); }
@@ -5605,7 +5607,7 @@ if(psurface == g_cairosurface)
    { Default(); }
    void interaction_impl::OnMButtonUp(UINT, point)
    { Default(); }
-   int32_t interaction_impl::OnMouseActivate(::interaction_impl *, UINT, UINT)
+   int32_t interaction_impl::OnMouseActivate(::user::interaction *, UINT, UINT)
    { return (int32_t)Default(); }
    void interaction_impl::OnMouseMove(UINT, point)
    { Default(); }
@@ -5647,21 +5649,21 @@ if(psurface == g_cairosurface)
    { Default(); }
    void interaction_impl::OnDrawClipboard()
    { Default(); }
-   void interaction_impl::OnHScrollClipboard(::interaction_impl *, UINT, UINT)
+   void interaction_impl::OnHScrollClipboard(::user::interaction *, UINT, UINT)
    { Default(); }
-   void interaction_impl::OnPaintClipboard(::interaction_impl *, HGLOBAL)
+   void interaction_impl::OnPaintClipboard(::user::interaction *, HGLOBAL)
    { Default(); }
    void interaction_impl::OnRenderAllFormats()
    { Default(); }
    void interaction_impl::OnRenderFormat(UINT)
    { Default(); }
-   void interaction_impl::OnSizeClipboard(::interaction_impl *, HGLOBAL)
+   void interaction_impl::OnSizeClipboard(::user::interaction *, HGLOBAL)
    { Default(); }
-   void interaction_impl::OnVScrollClipboard(::interaction_impl *, UINT, UINT)
+   void interaction_impl::OnVScrollClipboard(::user::interaction *, UINT, UINT)
    { Default(); }
    UINT interaction_impl::OnGetDlgCode()
    { return (UINT)Default(); }
-   void interaction_impl::OnMDIActivate(bool, sp(::interaction_impl), sp(::interaction_impl))
+   void interaction_impl::OnMDIActivate(bool, sp(::user::interaction), sp(::user::interaction))
    { Default(); }
    void interaction_impl::OnEnterMenuLoop(bool)
    { Default(); }
@@ -5676,7 +5678,7 @@ if(psurface == g_cairosurface)
    { Default(); }
    void interaction_impl::OnMoving(UINT, LPRECT)
    { Default(); }
-   void interaction_impl::OncaptureChanged(::interaction_impl *)
+   void interaction_impl::OncaptureChanged(::user::interaction *)
    { Default(); }
 
    bool interaction_impl::OnDeviceChange(UINT, dword_ptr)
@@ -5825,7 +5827,7 @@ if(psurface == g_cairosurface)
 
    void interaction_impl::_001BaseWndInterfaceMap()
    {
-      System.user()->window_map().set((int_ptr)get_handle(), this);
+      session().user()->window_map().set((int_ptr)get_handle(), this);
    }
 
 
