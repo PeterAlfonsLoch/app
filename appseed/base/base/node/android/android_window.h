@@ -12,7 +12,7 @@ namespace android
 
 
    class CLASS_DECL_BASE interaction_impl :
-      virtual public ::interaction_impl
+      virtual public ::user::interaction_impl
    {
    public:
 
@@ -44,8 +44,8 @@ namespace android
 
       virtual void install_message_handling(::message::dispatch * pinterface);
 
-      bool operator==(const ::interaction_impl& wnd) const;
-      bool operator!=(const ::interaction_impl& wnd) const;
+      //bool operator==(const ::interaction_impl& wnd) const;
+      //bool operator!=(const ::interaction_impl& wnd) const;
 
       DWORD GetStyle();
       DWORD GetExStyle();
@@ -70,7 +70,7 @@ namespace android
       DECL_GEN_SIGNAL(_001OnProdevianSynch);
 
 
-      virtual sp(::interaction_impl) from_os_data(void * pdata);
+      virtual sp(::user::interaction ) from_os_data(void * pdata);
       virtual void * get_os_data() const;
 
 
@@ -84,7 +84,7 @@ namespace android
       bool ExecuteDlgInit(const char * lpszResourceName);
       bool ExecuteDlgInit(LPVOID lpResource);
 
-      using ::user::interaction::create;
+      using ::user::interaction_impl::create;
       // for child windows, views, panes etc
       virtual bool create(const char * lpszClassName,
          const char * lpszWindowName, DWORD dwStyle,
@@ -106,7 +106,7 @@ namespace android
 
       virtual bool DestroyWindow();
 
-      // special pre-creation and ::interaction_impl rect adjustment hooks
+      // special pre-creation and ::user::interaction rect adjustment hooks
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
       // Advanced: virtual AdjustWindowRect
@@ -115,14 +115,14 @@ namespace android
 
 
          // get immediate child with given ID
-      using ::user::interaction::get_child_by_id;
+      using ::user::interaction_impl::get_child_by_id;
       void get_child_by_id(id id, oswindow* phWnd) const;
          // as above, but returns oswindow
-      using ::user::interaction::GetDescendantWindow;
+      using ::user::interaction_impl::GetDescendantWindow;
       sp(::user::interaction) GetDescendantWindow(id id);
          // like get_child_by_id but recursive
       void SendMessageToDescendants(UINT message, WPARAM wParam = 0, lparam lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
-      static sp(::interaction_impl) PASCAL GetSafeOwner(::interaction_impl * pParent = NULL, oswindow* pWndTop = NULL);
+      static sp(::user::interaction) PASCAL GetSafeOwner(::user::interaction * pParent = NULL, oswindow* pWndTop = NULL);
 
       virtual bool IsWindow();
 
@@ -168,9 +168,9 @@ namespace android
       virtual bool SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
       virtual UINT ArrangeIconicWindows();
       virtual bool BringWindowToTop();
-      using interaction::GetWindowRect;
+      using ::user::interaction_impl::GetWindowRect;
       virtual void GetWindowRect(__rect64 * lpRect);
-      using interaction::GetClientRect;
+      using ::user::interaction_impl::GetClientRect;
       virtual void GetClientRect(__rect64 * lpRect);
 
       void ClientToScreen(LPRECT lprect);
@@ -186,8 +186,8 @@ namespace android
       virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl);
 
    // Coordinate Mapping Functions
-      virtual void MapWindowPoints(::interaction_impl * pwndTo, LPPOINT lpPoint, UINT nCount);
-      virtual void MapWindowPoints(::interaction_impl * pwndTo, LPRECT lpRect);
+      virtual void MapWindowPoints(::user::interaction * pwndTo, LPPOINT lpPoint, UINT nCount);
+      virtual void MapWindowPoints(::user::interaction * pwndTo, LPRECT lpRect);
 
    // Update/Painting Functions
       virtual ::draw2d::graphics * GetDC();
@@ -263,13 +263,13 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       virtual bool IsWindowEnabled();
       virtual bool EnableWindow(bool bEnable = TRUE);
 
-      // the active ::interaction_impl applies only to top-level (frame windows)
+      // the active ::user::interaction applies only to top-level (frame windows)
       virtual sp(::user::interaction) GetActiveWindow();
       virtual sp(::user::interaction) SetActiveWindow();
 
-      // the foreground ::interaction_impl applies only to top-level windows (frame windows)
+      // the foreground ::user::interaction applies only to top-level windows (frame windows)
       virtual bool SetForegroundWindow();
-      static sp(::interaction_impl) PASCAL GetForegroundWindow();
+      static sp(::user::interaction) PASCAL GetForegroundWindow();
 
       virtual id SetDlgCtrlId(id id);
       virtual id GetDlgCtrlId();
@@ -277,14 +277,14 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
 
 
       // capture and focus apply to all windows
-      static sp(::interaction_impl) PASCAL GetCapture();
+      virtual sp(::user::interaction) GetCapture();
       virtual sp(::user::interaction) set_capture(sp(::user::interaction) pinterface = NULL);
       virtual sp(::user::interaction) release_capture();
       virtual sp(::user::interaction) get_capture();
-      static sp(::interaction_impl) PASCAL GetFocus();
+      static sp(::user::interaction) PASCAL GetFocus();
       sp(::user::interaction) SetFocus();
 
-      static sp(::interaction_impl) PASCAL GetDesktopWindow();
+      static sp(::user::interaction) PASCAL GetDesktopWindow();
 
    // Obsolete and non-portable APIs - not recommended for new code
       virtual void CloseWindow();
@@ -306,8 +306,8 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       //virtual UINT GetChildByIdInt(int32_t nID, bool * lpTrans = NULL, bool bSigned = TRUE) const;
       //virtual int32_t GetChildByIdText(int32_t nID, LPTSTR lpStr, int32_t nMaxCount) const;
       //virtual int32_t GetChildByIdText(int32_t nID, string & rString) const;
-      virtual sp(::interaction_impl) GetNextDlgGroupItem(::interaction_impl * pWndCtl, bool bPrevious = FALSE) const;
-      virtual sp(::interaction_impl) GetNextDlgTabItem(::interaction_impl * pWndCtl, bool bPrevious = FALSE) const;
+      virtual sp(::user::interaction) GetNextDlgGroupItem(::user::interaction * pWndCtl,bool bPrevious = FALSE) const;
+      virtual sp(::user::interaction) GetNextDlgTabItem(::user::interaction * pWndCtl,bool bPrevious = FALSE) const;
       virtual UINT IsDlgButtonChecked(int32_t nIDButton) const;
       virtual LRESULT SendDlgItemMessage(int32_t nID, UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
       virtual void SetDlgItemInt(int32_t nID, UINT nValue, bool bSigned = TRUE);
@@ -332,8 +332,8 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
 
       virtual sp(::user::interaction) ChildWindowFromPoint(POINT point);
       virtual sp(::user::interaction) ChildWindowFromPoint(POINT point, UINT nFlags);
-      static sp(::interaction_impl) PASCAL FindWindow(const char * lpszClassName, const char * lpszWindowName);
-      static sp(::interaction_impl) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+      static sp(::user::interaction) PASCAL FindWindow(const char * lpszClassName, const char * lpszWindowName);
+      static sp(::user::interaction) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 
       virtual sp(::user::interaction) GetNextWindow(UINT nFlag = GW_HWNDNEXT);
       virtual sp(::user::interaction) GetTopWindow();
@@ -344,7 +344,7 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       virtual bool IsChild(sp(::user::interaction)  pWnd);
       virtual ::user::interaction * get_parent() const;
       ::user::interaction * set_parent(::user::interaction * pWndNewParent);
-      static sp(::interaction_impl) PASCAL oswindowFromPoint(POINT point);
+      static sp(::user::interaction) PASCAL oswindowFromPoint(POINT point);
 
    // Alert Functions
 
@@ -363,9 +363,9 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       virtual bool ChangeClipboardChain(oswindow hWndNext);
       virtual oswindow  SetClipboardViewer();
       virtual bool OpenClipboard();
-      static sp(::interaction_impl) PASCAL GetClipboardOwner();
-      static sp(::interaction_impl) PASCAL GetClipboardViewer();
-      static sp(::interaction_impl) PASCAL GetOpenClipboardWindow();
+      static sp(::user::interaction) PASCAL GetClipboardOwner();
+      static sp(::user::interaction) PASCAL GetClipboardViewer();
+      static sp(::user::interaction) PASCAL GetOpenClipboardWindow();
 
    // caret Functions
       virtual void Createcaret(::draw2d::bitmap* pBitmap);
@@ -419,28 +419,28 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
       virtual bool OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 
-      void OnActivate(UINT nState, sp(::interaction_impl) pWndOther, bool bMinimized);
+      void OnActivate(UINT nState,sp(::user::interaction) pWndOther,bool bMinimized);
       void OnActivateApp(bool bActive, DWORD dwThreadID);
       LRESULT OnActivateTopLevel(WPARAM, LPARAM);
       void OncancelMode();
       void OnChildActivate();
       void OnClose();
-      void OnContextMenu(::interaction_impl * pWnd, point pos);
-      bool OnCopyData(::interaction_impl * pWnd, COPYDATASTRUCT* pCopyDataStruct);
+      void OnContextMenu(::user::interaction * pWnd,point pos);
+      bool OnCopyData(::user::interaction * pWnd,COPYDATASTRUCT* pCopyDataStruct);
       DECL_GEN_SIGNAL(_001OnCreate);
 
 
-      HBRUSH OnCtlColor(::draw2d::graphics * pgraphics, sp(::interaction_impl) pWnd, UINT nCtlColor);
+      HBRUSH OnCtlColor(::draw2d::graphics * pgraphics,sp(::user::interaction) pWnd,UINT nCtlColor);
 
       DECL_GEN_SIGNAL(_001OnDestroy);
       void OnEnable(bool bEnable);
       void OnEndSession(bool bEnding);
-      void OnEnterIdle(UINT nWhy, sp(::interaction_impl) pWho);
+      void OnEnterIdle(UINT nWhy,sp(::user::interaction) pWho);
       bool OnEraseBkgnd(::draw2d::graphics * pgraphics);
       void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
       //xxx bool OnHelpInfo(HELPINFO* lpHelpInfo);
       void OnIconEraseBkgnd(::draw2d::graphics * pgraphics);
-      void OnKillFocus(::interaction_impl * pNewWnd);
+      void OnKillFocus(::user::interaction * pNewWnd);
       LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::user::menu* pMenu);
       void OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu);
       void OnMove(int32_t x, int32_t y);
@@ -452,7 +452,7 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       bool OnQueryEndSession();
       bool OnQueryNewPalette();
       bool OnQueryOpen();
-      void OnSetFocus(::interaction_impl * pOldWnd);
+      void OnSetFocus(::user::interaction * pOldWnd);
       void OnShowWindow(bool bShow, UINT nStatus);
       void OnSize(UINT nType, int32_t cx, int32_t cy);
       void OnTcard(UINT idAction, DWORD dwActionData);
@@ -483,7 +483,7 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
 
    // System message handler member functions
       void OnDropFiles(HDROP hDropInfo);
-      void OnPaletteIsChanging(::interaction_impl * pRealizeWnd);
+      void OnPaletteIsChanging(::user::interaction * pRealizeWnd);
       void OnSysChar(UINT nChar, UINT nRepCnt, UINT nFlags);
       void OnSysCommand(UINT nID, LPARAM lParam);
       void OnSysDeadChar(UINT nChar, UINT nRepCnt, UINT nFlags);
@@ -492,7 +492,7 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       void OnCompacting(UINT nCpuTime);
       void OnDevModeChange(LPTSTR lpDeviceName);
       void OnFontChange();
-      void OnPaletteChanged(::interaction_impl * pFocusWnd);
+      void OnPaletteChanged(::user::interaction * pFocusWnd);
       void OnSpoolerStatus(UINT nStatus, UINT nJobs);
       void OnSysColorChange();
       void OnTimeChange();
@@ -510,7 +510,7 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       void OnMButtonDblClk(UINT nFlags, point point);
       void OnMButtonDown(UINT nFlags, point point);
       void OnMButtonUp(UINT nFlags, point point);
-      int32_t OnMouseActivate(::interaction_impl * pDesktopWnd, UINT nHitTest, UINT message);
+      int32_t OnMouseActivate(::user::interaction * pDesktopWnd,UINT nHitTest,UINT message);
       void OnMouseMove(UINT nFlags, point point);
       bool OnMouseWheel(UINT nFlags, short zDelta, point pt);
       LRESULT OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam);
@@ -529,12 +529,12 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       void OnChangeCbChain(oswindow hWndRemove, oswindow hWndAfter);
       void OnDestroyClipboard();
       void OnDrawClipboard();
-      void OnHScrollClipboard(::interaction_impl * pClipAppWnd, UINT nSBCode, UINT nPos);
-      void OnPaintClipboard(::interaction_impl * pClipAppWnd, HGLOBAL hPaintStruct);
+      void OnHScrollClipboard(::user::interaction * pClipAppWnd,UINT nSBCode,UINT nPos);
+      void OnPaintClipboard(::user::interaction * pClipAppWnd,HGLOBAL hPaintStruct);
       void OnRenderAllFormats();
       void OnRenderFormat(UINT nFormat);
-      void OnSizeClipboard(::interaction_impl * pClipAppWnd, HGLOBAL hRect);
-      void OnVScrollClipboard(::interaction_impl * pClipAppWnd, UINT nSBCode, UINT nPos);
+      void OnSizeClipboard(::user::interaction * pClipAppWnd,HGLOBAL hRect);
+      void OnVScrollClipboard(::user::interaction * pClipAppWnd,UINT nSBCode,UINT nPos);
 
    // control message handler member functions
 //xxx      int32_t OnCompareItem(int32_t nIDCtl, LPCOMPAREITEMSTRUCT lpCompareItemStruct);
@@ -544,8 +544,7 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
 //xxx      void OnMeasureItem(int32_t nIDCtl, LPMEASUREITEMSTRUCT lpMeasureItemStruct);
 
    // MDI message handler member functions
-      void OnMDIActivate(bool bActivate,
-         sp(::interaction_impl) pActivateWnd, sp(::interaction_impl) pDeactivateWnd);
+      void OnMDIActivate(bool bActivate, sp(::user::interaction) pActivateWnd,sp(::user::interaction) pDeactivateWnd);
 
    // menu loop notification messages
       void OnEnterMenuLoop(bool bIsTrackPopupMenu);
@@ -556,7 +555,7 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
 //xxx      void OnStyleChanging(int32_t nStyleType, LPSTYLESTRUCT lpStyleStruct);
       void OnSizing(UINT nSide, LPRECT lpRect);
       void OnMoving(UINT nSide, LPRECT lpRect);
-      void OncaptureChanged(::interaction_impl * pWnd);
+      void OncaptureChanged(::user::interaction * pWnd);
       bool OnDeviceChange(UINT nEventType, dword_ptr dwData);
 
    // Overridables and other helpers (for implementation of derived classes)
@@ -610,7 +609,7 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       virtual void on_final_release();
       static bool PASCAL ModifyStyle(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags);
       static bool PASCAL ModifyStyleEx(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags);
-      static void PASCAL _FilterToolTipMessage(MESSAGE* pMsg, sp(::interaction_impl) pWnd);
+      static void PASCAL _FilterToolTipMessage(MESSAGE* pMsg,sp(::user::interaction) pWnd);
       bool _EnableToolTips(bool bEnable, UINT nFlag);
       static oswindow PASCAL GetSafeOwner_(oswindow hWnd, oswindow* pWndTop);
       void PrepareForHelp();
@@ -618,8 +617,8 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       friend class frame_window;
 
       // for creating dialogs and dialog-like windows
-      bool CreateDlg(const char * lpszTemplateName, sp(::interaction_impl) pParentWnd);
-      //bool CreateDlgIndirect(LPCDLGTEMPLATE lpDialogTemplate, sp(::interaction_impl) pParentWnd,
+      bool CreateDlg(const char * lpszTemplateName,sp(::user::interaction) pParentWnd);
+      //bool CreateDlgIndirect(LPCDLGTEMPLATE lpDialogTemplate, sp(::user::interaction) pParentWnd,
         // HINSTANCE hInst);
 
 

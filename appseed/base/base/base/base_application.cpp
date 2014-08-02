@@ -578,7 +578,7 @@ namespace base
       openURL(strLink);
       return true;
 #else
-      throw not_implemented(get_app());
+      throw not_implemented(get_thread_app());
 #endif
 
    }
@@ -776,7 +776,7 @@ namespace base
       }
       dappy(string(typeid(*this).name()) + " : SetCurrentHandles 2 : " + ::str::from(m_iReturnCode));
       m_pimpl->set_os_int(::get_current_thread_id());
-      if(m_pthreadimpl->get_os_int() == NULL)
+      if(m_pthreadimpl->get_os_int() == 0)
       {
          m_pthreadimpl->set_os_int(m_pimpl->get_os_int());
       }

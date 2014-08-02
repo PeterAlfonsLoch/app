@@ -25,11 +25,6 @@ namespace user
 
 typedef comparable_array < oswindow_data * > oswindow_dataptra;
 
-class simple_event;
-
-
-class simple_mutex;
-
 
 
 struct CLASS_DECL_BASE oswindow_data

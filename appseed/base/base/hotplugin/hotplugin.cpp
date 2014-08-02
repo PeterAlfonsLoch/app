@@ -38,13 +38,21 @@ namespace hotplugin
 
          g_pbasesystem->construct(NULL);
 
+#ifdef WINDOWS
+
          g_pbasesystem->m_hinstance = (HINSTANCE)get_hinstance;
 
+#endif
+
          xxdebug_box("box1","box1",MB_ICONINFORMATION);
+
+#ifdef WINDOWS
 
          set_main_thread(GetCurrentThread());
 
          set_main_thread_id(GetCurrentThreadId());
+
+#endif
 
          g_pbasesystem->m_bReady = false;
 

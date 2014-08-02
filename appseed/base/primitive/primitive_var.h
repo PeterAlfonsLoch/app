@@ -356,9 +356,8 @@ public:
 
    }
 
-
    template < class T >
-   sp(T) cast(T * pDefault = NULL)
+   sp(T) cast(T * pDefault)
    {
       
       if(m_etype == type_pvar && m_pvar != NULL)
@@ -378,11 +377,36 @@ public:
 
 
    template < class T >
-   sp(T) cast(T * pDefault = NULL) const
+   sp(T) cast(T * pDefault) const
+   {
+      return ((var *) this)->cast < T >(pDefault);
+   }
+
+
+   template < class T >
+   sp(T) cast()
    {
 
-      return ((var *) this)->cast < T > (pDefault);
+      if(m_etype == type_pvar && m_pvar != NULL)
+         return m_pvar->cast < T >();
 
+      if(m_etype != type_element)
+         return NULL;
+
+      sp(T) p = m_sp;
+
+      if(p.is_null())
+         return NULL;
+
+      return p;
+
+   }
+
+
+   template < class T >
+   sp(T) cast() const
+   {
+      return ((var *) this)->cast < T >();
    }
 
 

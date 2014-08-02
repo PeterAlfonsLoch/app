@@ -888,16 +888,16 @@ namespace base
       if(pszFormat != NULL)
       {
 
-         if(list != NULL)
+//         if(list != NULL)
          {
 
             str2.FormatV(pszFormat,list);
 
          }
-         else
+    //     else
          {
 
-            str2 = pszFormat;
+  //          str2 = pszFormat;
 
          }
 
@@ -1679,7 +1679,7 @@ namespace base
       if(frames().get_size() <= 0)
          return NULL;
 
-      return frames()(0);
+      return frames()[0];
 
 #endif
 
