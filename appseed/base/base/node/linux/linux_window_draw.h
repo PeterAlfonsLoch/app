@@ -30,7 +30,7 @@ namespace linux
       typed_pointer_map <
          map_ptr_to_ptr,
          void *,
-         ::user::window_interface *>
+         ::user::interaction_base *>
                                              m_wndinterfacemap;
       DWORD                                  m_dwLastUpdate;
       DWORD                                  m_dwLastDelay;

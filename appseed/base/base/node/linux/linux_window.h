@@ -21,7 +21,7 @@ namespace linux
       ::message_queue_listener *    m_pcallback;
       string                        m_strWindowText;
       //oswindow                      m_oswindow;
-      ::user::window_interface *    m_pbasewnd;
+      ::user::interaction_base *    m_pbasewnd;
       sp(::user::interaction)       m_puicapture;
       bool                          m_bExposing;
       XWindowAttributes             m_attr;

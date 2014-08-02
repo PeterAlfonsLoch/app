@@ -164,7 +164,7 @@ namespace simple_ui
 namespace base
 {
 
-   template < typename T > 
+   template < typename T >
    inline void del(T * & p)
    {
       if(p != NULL)
@@ -1233,7 +1233,7 @@ namespace numeric_info
 
 
 
-#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
+/*#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
 
 template < class T >
@@ -1322,7 +1322,7 @@ bool ::file::system::output(sp(::base::application) papp, const char * pszOutput
 
 
 
-
+*/
 
 
 

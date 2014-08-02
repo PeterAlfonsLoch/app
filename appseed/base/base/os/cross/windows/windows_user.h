@@ -1488,8 +1488,8 @@ CLASS_DECL_BASE int_bool EqualRect(LPCRECT prect1, LPCRECT prect2);
 CLASS_DECL_BASE int_bool InflateRect(LPRECT prect, int32_t x, int32_t y);
 CLASS_DECL_BASE int_bool OffsetRect(LPRECT prect, int32_t x, int32_t y);
 CLASS_DECL_BASE int_bool IntersectRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
-CLASS_DECL_BASE int_bool x_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
-CLASS_DECL_BASE int_bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
+//CLASS_DECL_BASE int_bool x_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
+//CLASS_DECL_BASE int_bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
 CLASS_DECL_BASE int_bool UnionRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
 CLASS_DECL_BASE int_bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
 

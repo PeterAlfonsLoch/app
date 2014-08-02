@@ -266,7 +266,7 @@ namespace linux
       }
       else
       {
-         ::user::window_interface * ptwi = System.user()->window_map().get((int_ptr) hwndParam);
+         ::user::interaction_base * ptwi = System.user()->window_map().get((int_ptr) hwndParam);
          sp(::user::interaction) pguie =  (ptwi);
          rect rectWindow;
          ::GetWindowRect((oswindow) hwndParam, rectWindow);
@@ -783,7 +783,7 @@ namespace linux
 
       ::oswindow oswindow = hwndtree.m_oswindow;
 
-      ::user::window_interface * ptwi = oswindow->get_user_interaction();
+      ::user::interaction_base * ptwi = oswindow->get_user_interaction();
 
       if(!::IsWindowVisible(oswindow))
       {
