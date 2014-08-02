@@ -1,6 +1,9 @@
 #include "framework.h"
 
 
+string_map < INT_PTR,INT_PTR > & __library();
+
+
 namespace base
 {
 
@@ -107,7 +110,7 @@ namespace base
 
       {
 #ifdef CUBE
-         pfn_get_new_library = (PFN_GET_NEW_LIBRARY)(INT_PTR)__library()[strCa2Name + "_get_new_library"];
+         pfn_get_new_library = (PFN_GET_NEW_LIBRARY)(INT_PTR)__library()[m_strPath + "_get_new_library"];
 #else
          if((pfn_get_new_library = get < PFN_GET_NEW_LIBRARY >(m_strPath + "_get_new_library")) == NULL)
          {

@@ -1129,6 +1129,7 @@ namespace crypto
 
    }
 
+#ifdef BSD_STYLE_SOCKETS
 
    rsa::rsa(sp(::base::application) papp,
       const string & n,

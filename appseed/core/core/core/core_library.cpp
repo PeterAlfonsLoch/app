@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-string_map < INT_PTR, INT_PTR > & __library();
+
 
 
 namespace core
