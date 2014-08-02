@@ -16,7 +16,6 @@ namespace ansios
    thread_impl::thread_impl(sp(::base::application) papp) :
    element(papp),
    message_queue(papp),
-   ::thread(NULL),
    ::thread_impl(papp)
    {
 
@@ -80,7 +79,7 @@ void __term_thread_impl(base::application*, HINSTANCE__*)
 
 void CLASS_DECL_BASE __init_thread()
 {
-   
+
 }
 
 
@@ -90,7 +89,7 @@ void CLASS_DECL_BASE __init_thread()
 
 void CLASS_DECL_BASE __term_thread()
 {
-   
+
 }
 
 

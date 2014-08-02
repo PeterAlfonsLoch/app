@@ -1,5 +1,20 @@
 #include "framework.h"
 
+
+#ifdef LINUX
+
+#include <fcntl.h>
+#include <unistd.h>
+
+
+#define __USE_GNU
+#include <link.h>
+
+
+#include <ctype.h>
+#include <sys/stat.h>
+#endif
+
 void dappy(const char * psz);
 
 #ifdef WINDOWSEX
@@ -211,7 +226,7 @@ namespace base
 
 
 
-      
+
 
       m_compress.set_app(this);
 
@@ -702,7 +717,7 @@ namespace base
       m_plog.release();
 
 
-      
+
       {
 
          synch_lock sl(m_spmutexFactory);
@@ -723,7 +738,6 @@ namespace base
 
       m_pmutexDc.release();
 
-#endif
 
 
       try
@@ -738,6 +752,7 @@ namespace base
          m_iReturnCode = -2;
 
       }
+#endif
 
       try
       {

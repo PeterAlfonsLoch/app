@@ -289,7 +289,7 @@ void stdio_file::close()
       nErr = fclose(m_pStream);
 
 //   m_hFile = (UINT) hFileNull;
-   m_bCloseOnDelete = FALSE;
+   //m_bCloseOnDelete = FALSE;
    m_pStream = NULL;
 
    if (nErr != 0)
@@ -301,11 +301,12 @@ void stdio_file::Abort()
 {
    ASSERT_VALID(this);
 
-   if (m_pStream != NULL && m_bCloseOnDelete)
+//   if (m_pStream != NULL && m_bCloseOnDelete)
+   if (m_pStream != NULL)
       fclose(m_pStream);  // close but ignore errors
 //   m_hFile = (UINT) hFileNull;
    m_pStream = NULL;
-   m_bCloseOnDelete = FALSE;
+   //m_bCloseOnDelete = FALSE;
 }
 
 

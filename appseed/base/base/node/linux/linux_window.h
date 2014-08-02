@@ -11,7 +11,7 @@ namespace linux
    CLASS_DECL_LINUX LRESULT __call_window_procedure(sp(::user::interaction) pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
 
 
-   class CLASS_DECL_LINUX window :
+   class CLASS_DECL_LINUX interaction_impl :
       virtual public ::user::interaction_impl
    {
    public:
@@ -34,8 +34,8 @@ namespace linux
       //visual::dib_sp                m_spdibMultAlphaWork;
 
 
-      window();
-      window(sp(::base::application) papp);
+      interaction_impl();
+      interaction_impl(sp(::base::application) papp);
       virtual void construct(oswindow hwnd);
 
       virtual void on_delete(element * poc);
@@ -94,7 +94,7 @@ namespace linux
       // subclassing/unsubclassing functions
       virtual void pre_subclass_window();
       bool SubclassWindow(oswindow hWnd);
-      //bool SubclassDlgItem(UINT nID, sp(::window) pParent);
+      //bool SubclassDlgItem(UINT nID, sp(::interaction_impl) pParent);
       oswindow UnsubclassWindow();
 
       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
@@ -604,7 +604,7 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       static bool PASCAL ReflectLastMsg(oswindow hWndChild, LRESULT* pResult = NULL);
 
    // Implementation
-      virtual ~window();
+      virtual ~interaction_impl();
       virtual bool CheckAutoCenter();
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
@@ -633,7 +633,7 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
 
       // for creating dialogs and dialog-like windows
       bool CreateDlg(const char * lpszTemplateName, sp(::user::interaction) pParentWnd);
-      //bool CreateDlgIndirect(LPCDLGTEMPLATE lpDialogTemplate, sp(::window) pParentWnd,
+      //bool CreateDlgIndirect(LPCDLGTEMPLATE lpDialogTemplate, sp(::interaction_impl) pParentWnd,
         // HINSTANCE hInst);
 
 

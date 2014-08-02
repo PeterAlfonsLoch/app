@@ -12,10 +12,10 @@ namespace linux
       element(papp)
    {
 
-      ::thread::m_pimpl.create(allocer());
-      ::thread::m_pimpl->m_puser = this;
+      m_pthreadimpl.create(allocer());
+      m_pthreadimpl->m_pthread = this;
 
-  m_nSafetyPoolSize = 512;        // default size
+  //m_nSafetyPoolSize = 512;        // default size
 
       shell::theLinuxShell.Initialize();
    }
@@ -31,7 +31,7 @@ namespace linux
       m_pimpl->_001OnFileNew(NULL);
    }
 
-   sp(::user::object) application::_001OpenDocumentFile(var varFile)
+   sp(::user::document) application::_001OpenDocumentFile(var varFile)
    {
       return m_pimpl->_001OpenDocumentFile(varFile);
    }
@@ -157,7 +157,7 @@ namespace linux
    bool application::initialize1()
    {
 
-      ::thread::m_pimpl->set_run();
+
 
       return true;
 
@@ -180,7 +180,7 @@ namespace linux
 
       // avoid calling CloseHandle() on our own thread handle
       // during the thread destructor
-      ::thread::m_pimpl->set_os_data(NULL);
+      m_pthreadimpl->set_os_data(NULL);
 
       m_pimpl->m_bRun = false;
       //LNX_THREAD(m_pimpl->::thread_sp::m_p)->m_bRun = false;
@@ -289,14 +289,14 @@ namespace linux
 
    }
 
-   sp(::window) application::window_from_os_data(void * pdata)
+   sp(::user::interaction) application::window_from_os_data(void * pdata)
    {
-      return ::linux::user::interaction_impl::from_handle((oswindow) pdata);
+      return ::linux::interaction_impl::from_handle((oswindow) pdata);
    }
 
-   sp(::window) application::window_from_os_data_permanent(void * pdata)
+   sp(::user::interaction) application::window_from_os_data_permanent(void * pdata)
    {
-      sp(::window) pwnd = ::linux::user::interaction_impl::FromHandlePermanent((oswindow) pdata);
+      sp(::user::interaction) pwnd = ::linux::interaction_impl::FromHandlePermanent((oswindow) pdata);
       if(pwnd != NULL)
          return pwnd;
       user::interaction_ptr_array wndptra = System.frames();
@@ -304,7 +304,7 @@ namespace linux
       {
          if(wndptra[i].get_safe_handle() == (oswindow) pdata)
          {
-            return wndptra[i].get_wnd();
+            return wndptra(i);
          }
       }
       return NULL;
@@ -364,18 +364,18 @@ namespace linux
       // get the exe title from the full path name [no extension]
       strExeName = System.get_module_title();
 
-      ::thread::m_pimpl->m_hthread      =  ::GetCurrentThread();
+      m_pthreadimpl->m_hthread      =  ::GetCurrentThread();
 
    }
 
-   sp(::window) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+   sp(::user::interaction) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
    {
-      return window::FindWindow(lpszClassName, lpszWindowName);
+      return ::linux::interaction_impl::FindWindow(lpszClassName, lpszWindowName);
    }
 
-   sp(::window) application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
+   sp(::user::interaction) application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
    {
-      return window::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow);
+      return ::linux::interaction_impl::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow);
    }
 
 
@@ -454,8 +454,8 @@ namespace linux
 // xxx         m_hInstance = hInstance;
 // xxx          (dynamic_cast < sp(::base::application) >(m_papp))->m_hInstance = hInstance;
          //hPrevInstance; // Obsolete.
-         m_strCmdLine = strCmdLine;
-         m_nCmdShow = nCmdShow;
+//         m_strCmdLine = strCmdLine;
+  //       m_nCmdShow = nCmdShow;
          //pApp->SetCurrentHandles();
          SetCurrentHandles();
 
@@ -477,7 +477,7 @@ namespace linux
             if(lpszModuleFolder == NULL)
                return false;
 
-            m_strModuleFolder = lpszModuleFolder;
+            System.m_strModuleFolder = lpszModuleFolder;
 
             free(lpszModuleFolder);
 
@@ -490,7 +490,7 @@ namespace linux
             if(handle == NULL)
             {
 
-               m_strCa2ModuleFolder = m_strModuleFolder;
+               System.m_strCa2ModuleFolder = System.m_strModuleFolder;
 
             }
             else
@@ -500,12 +500,12 @@ namespace linux
 
                 dlinfo(handle, RTLD_DI_LINKMAP, &plm);
 
-                m_strCa2ModuleFolder = ::dir::name(plm->l_name);
+                System.m_strCa2ModuleFolder = ::dir::name(plm->l_name);
 
-                if(m_strCa2ModuleFolder.is_empty() || m_strCa2ModuleFolder[0] != '/')
+                if(System.m_strCa2ModuleFolder.is_empty() || System.m_strCa2ModuleFolder[0] != '/')
                 {
 
-                    m_strCa2ModuleFolder = m_strModuleFolder;
+                    System.m_strCa2ModuleFolder = System.m_strModuleFolder;
 
                 }
 

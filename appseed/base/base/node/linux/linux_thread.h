@@ -6,7 +6,7 @@ namespace linux
 
 
    class CLASS_DECL_LINUX thread :
-      virtual public ::thread_impl
+      virtual public ::ansios::thread_impl
    {
    public:
 

@@ -12,7 +12,7 @@ namespace linux
    thread::thread(sp(::base::application) papp) :
       element(papp),
       message_queue(papp),
-      ::thread(NULL),
+      ::ansios::thread_impl(papp),
       ::thread_impl(papp)
    {
 
