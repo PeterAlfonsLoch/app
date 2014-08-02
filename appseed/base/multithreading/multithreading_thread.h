@@ -174,7 +174,7 @@ public:
    virtual void register_dependent_thread(::thread * pthread);
    virtual void unregister_dependent_thread(::thread * pthread);
    virtual void signal_close_dependent_threads();
-   virtual void wait_close_dependent_threads(duration & duration);
+   virtual void wait_close_dependent_threads(const duration & duration);
    virtual void register_at_required_threads();
    virtual void unregister_from_required_threads();
 

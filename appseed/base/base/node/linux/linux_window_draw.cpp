@@ -1047,7 +1047,7 @@ throw not_implemented(get_app());
 
    }
 
-
+/*
    user::oswindow_array window_draw::get_hwnda()
    {
 
@@ -1056,7 +1056,7 @@ throw not_implemented(get_app());
       return System.frames().get_hwnda();
 
    }
-
+*/
    /*
 
    // Both the device context and clip region

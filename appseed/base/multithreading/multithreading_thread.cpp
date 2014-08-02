@@ -923,7 +923,7 @@ void thread::signal_close_dependent_threads()
       }
       catch(...)
       {
-         
+
          m_threadptraDependent.remove_at(i);
 
       }
@@ -938,7 +938,7 @@ void thread::signal_close_dependent_threads()
 }
 
 
-void thread::wait_close_dependent_threads(duration & duration)
+void thread::wait_close_dependent_threads(const duration & duration)
 {
 
    DWORD dwStart = ::get_tick_count();
@@ -956,8 +956,8 @@ void thread::wait_close_dependent_threads(duration & duration)
          for(index i = 0; i < m_threadptraDependent.get_count(); i++)
          {
             TRACE(string("---"));
-            TRACE(string("supporter : ") + typeid(*this).raw_name() + string(" (") + ::str::from(this) + ")");
-            TRACE(string("dependent : ") + typeid(*m_threadptraDependent[i]).raw_name() + string(" (") + ::str::from(m_threadptraDependent[i]) + ")");
+            TRACE(string("supporter : ") + typeid(*this).name() + string(" (") + ::str::from(this) + ")");
+            TRACE(string("dependent : ") + typeid(*m_threadptraDependent[i]).name() + string(" (") + ::str::from(m_threadptraDependent[i]) + ")");
 
          }
 
@@ -1062,7 +1062,7 @@ void thread::do_events(const duration & duration)
 
    do
    {
-    
+
       do_events();
 
    } while(::get_tick_count() < dwEnd);

@@ -390,9 +390,9 @@ void oswindow_data::set_user_interaction(::user::interaction * pui)
 
    m_pui = pui;
 
-   m_hthread = pui->m_pthread->get_os_handle();
+   m_hthread = pui->m_pbaseapp->get_os_handle();
 
-   oswindow_assign(this, pui->m_pimpl);
+   oswindow_assign(this, pui);
 
 }
 

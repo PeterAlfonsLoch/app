@@ -14,7 +14,7 @@ element(papp)
 }
 
 
-library::library(sp(::base::application) papp, const char * pszOpen) :
+library::library(sp(::base::application) papp, int iDesambig, const char * pszOpen) :
 element(papp)
 {
 
@@ -40,7 +40,7 @@ library::~library()
 }
 
 
-bool library::open(const char * pszPath, bool bAutoClose)
+bool library::open(const char * pszPath, bool bAutoClose, bool bCa2)
 {
 
    if(m_bAutoClose)
@@ -137,28 +137,3 @@ bool library::is_closed()
 
 
 
-ca2_library::ca2_library(sp(::base::application) papp) :
-element(papp),
-::base::library(papp)
-{
-}
-
-ca2_library::ca2_library(sp(::base::application) papp, const char * pszOpen) :
-   element(papp),
-   ::base::library(papp, pszOpen)
-{
-
-}
-
-ca2_library::~ca2_library()
-{
-
-}
-
-
-bool ca2_library::open(const char * pszPath, bool bAutoClose)
-{
-
-   return ::base::library::open(pszPath, bAutoClose);
-
-}

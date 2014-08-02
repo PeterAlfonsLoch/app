@@ -931,7 +931,7 @@ void * os_thread_thread_proc(LPVOID lpparameter)
 
    if(!on_init_thread())
    {
-      
+
       return (void *) (int_ptr) 34;
 
    }
@@ -1337,7 +1337,7 @@ CLASS_DECL_BASE int_bool WINAPI PostThreadMessageW(DWORD idThread,UINT Msg,WPARA
 CLASS_DECL_BASE int_bool WINAPI PostMessageW(oswindow oswindow,UINT Msg,WPARAM wParam,LPARAM lParam)
 {
 
-   HTHREAD  h = oswindow->get_user_interaction()->m_pthread->get_os_handle();
+   HTHREAD  h = oswindow->get_user_interaction()->m_pbaseapp->get_os_handle();
 
    if(h == NULL)
       return FALSE;
@@ -1431,9 +1431,9 @@ int32_t thread_layer::run()
       if(msg.message == WM_QUIT)
          break;
 
-      
+
       TranslateMessage(&msg);
-      
+
       DispatchMessage(&msg);
 
    }

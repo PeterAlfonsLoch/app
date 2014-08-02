@@ -15,15 +15,15 @@ namespace multithreading
       s_pmutex = new mutex(NULL);
       s_phaThread = new comparable_array < HTHREAD >;
       s_pthreadptra = new comparable_array < thread * >;
-      
+
       __node_init_multithreading();
-      
+
    }
 
 
    CLASS_DECL_BASE void term_multithreading()
    {
-      
+
       __node_term_multithreading();
 
       delete s_pthreadptra;
@@ -45,7 +45,7 @@ namespace multithreading
       ::set_thread(pthread);
 
       __init_thread();
-      
+
       s_phaThread->add((HTHREAD) pthread->m_pthreadimpl->get_os_data());
 
       s_pthreadptra->add(pthread);
@@ -58,7 +58,7 @@ namespace multithreading
 
       synch_lock sl(s_pmutex);
 
-      s_phaThread->remove(pthread->m_pthreadimpl->get_os_data());
+      s_phaThread->remove((HTHREAD)pthread->m_pthreadimpl->get_os_data());
 
       s_pthreadptra->remove(pthread);
 
@@ -66,7 +66,7 @@ namespace multithreading
 
    }
 
-   
+
    CLASS_DECL_BASE uint32_t __on_thread_finally(thread * pthread)
    {
 

@@ -33,6 +33,8 @@ namespace linux
       //visual::dib_sp                m_spdib;
       //visual::dib_sp                m_spdibMultAlphaWork;
 
+      rect64 m_rectParentClient;
+
 
       interaction_impl();
       interaction_impl(sp(::base::application) papp);

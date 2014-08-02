@@ -114,14 +114,14 @@ CLASS_DECL_BASE int_bool OffsetRect(LPRECT prect, int32_t x, int32_t y)
       return true;
 }
 
-CLASS_DECL_BASE int_bool x_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
+CLASS_DECL_BASE bool x_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 {
    prect->left = max(prect1->left, prect2->left);
    prect->right = min(prect1->right, prect2->right);
    return prect->right >= prect->left;
 }
 
-CLASS_DECL_BASE int_bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
+CLASS_DECL_BASE bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 {
    prect->top = max(prect1->top, prect2->top);
    prect->bottom = min(prect1->bottom, prect2->bottom);
@@ -424,7 +424,7 @@ CLASS_DECL_BASE int_bool DispatchMessage(const MESSAGE * pmsg)
 
    if(pmsg == NULL)
       return FALSE;
-   
+
    if(pmsg->hwnd == NULL)
       return FALSE;
 
@@ -435,7 +435,7 @@ CLASS_DECL_BASE int_bool DispatchMessage(const MESSAGE * pmsg)
    pmsg->hwnd->get_user_interaction()->send_message(pmsg->message,pmsg->wParam,pmsg->lParam);
 
     return TRUE;
-    
+
 }
 
 

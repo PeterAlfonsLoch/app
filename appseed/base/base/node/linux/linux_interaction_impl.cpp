@@ -4938,7 +4938,7 @@ if(psurface == g_cairosurface)
 
       ASSERT(::IsWindow((oswindow) get_handle()));
 
-      oswindow w = SetCapture(get_handle())->get_handle();
+      oswindow w = SetCapture(get_handle()->get_user_interaction())->get_handle();
 
       if(GetCapture() != NULL)
       {
@@ -5910,7 +5910,7 @@ namespace linux
       if(m_bExposing)
          return;
 
-      keeper < bool > keepExposing(&m_bExposing, true, false, true);
+      keep < bool > keepExposing(&m_bExposing, true, false, true);
 
       bool bMove;
 
@@ -5965,17 +5965,10 @@ namespace linux
 
       }
 
-      if(!m_bVisible || (m_pui != this && m_pui != NULL && !m_pui->m_bVisible))
-      {
+      if(m_pui != NULL && !m_pui->m_bVisible)
+            {
 
-         m_bVisible = true;
-
-         if(m_pui != this && m_pui != NULL)
-         {
-
-            m_pui->m_bVisible = true;
-
-         }
+         m_pui->m_bVisible = true;
 
          send_message(WM_SHOWWINDOW, TRUE);
 
@@ -5984,13 +5977,6 @@ namespace linux
 
       if(bSize || bMove)
       {
-
-         if(m_pui != this && m_pui != NULL)
-         {
-
-            m_pui->m_rectParentClient = m_rectParentClient;
-
-         }
 
 
          if(bSize)
@@ -6021,7 +6007,7 @@ namespace linux
    void interaction_impl::_001UpdateWindow()
    {
 
-     single_lock sl(mutex_graphics(), false);
+     single_lock sl(&user_mutex(), false);
 
      if(!sl.lock(millis(84)))
         return;
