@@ -522,7 +522,7 @@ namespace linux
          {
             if(wndpa[l].oprop("session").is_new())
             {
-               wndpa[l].m_pimpl.cast < ::window >()->_001UpdateWindow();
+               wndpa[l].m_pimpl.cast < ::user::interaction_impl >()->_001UpdateWindow();
             }
             l++;
          }
@@ -679,8 +679,8 @@ namespace linux
       return &m_semaphoreBuffer;
    }
 
-   // The first ::window handle in the array must belong
-   // to the higher z order ::window.
+   // The first ::user::interaction_impl handle in the array must belong
+   // to the higher z order ::user::interaction_impl.
    // The rectangle must contain all update region.
    // It must be in screen coordinates.
 
@@ -688,7 +688,7 @@ namespace linux
 
    // Remark: this optimization eliminates top level lnxdows
    // that are lower z order siblings of a higher z order
-   // top level ::window that contains all
+   // top level ::user::interaction_impl that contains all
    // the update region in a opaque area.
    // It doesn´t eliminates from the update parent lnxdows
    // obscured by opaque children.
@@ -905,7 +905,7 @@ namespace linux
       ::GetWindowRect((::oswindow) oswindow, rectWindow);
 
 
-   //   sp(::window) pwnd = ::linux::window::from_handle(oswindow);
+   //   sp(::window) pwnd = ::linux::user::interaction_impl::from_handle(oswindow);
 
       if(!TwfGetTopWindow(
             hwndParam,
@@ -1114,7 +1114,7 @@ throw not_implemented(get_app());
       // pdc is the source primitive::memory device context
       // from which bitmap the screen is updated.
       user::buffer * pbuffer,
-      // hwndParam ::window device context
+      // hwndParam ::user::interaction_impl device context
       // is used from screen output
       sp(::user::interaction) pwnd)
    {
@@ -1149,7 +1149,7 @@ throw not_implemented(get_app());
 //
 //      if(hdcScreen == NULL)
 //      {
-//         // If it has failed to get ::window
+//         // If it has failed to get ::user::interaction_impl
 //         // owned device context, try to get
 //         // a device context from the cache.
 //         hdcScreen = ::GetDCEx((oswindow) hwndParam, NULL, DCX_caCHE | DCX_CLIPSIBLINGS | DCX_WINDOW);
@@ -1177,13 +1177,13 @@ throw not_implemented(get_app());
 //      // rect rectUpdate;
 //      // rgnUpdate.get_bounding_box(rectUpdate);
 //
-//      // get the ::window client area box
+//      // get the ::user::interaction_impl client area box
 //      // in screen coordinates.
 //      rect64 rectWindow;
 //      rectWindow = pwnd->m_rectParentClient;
 //
 //      // Output rectangle receive the intersection
-//      // of ::window box and update box.
+//      // of ::user::interaction_impl box and update box.
 //      //rect rectOutput;
 //      //rectOutput.intersect(rectWnd, rectUpdate);
 //
@@ -1197,9 +1197,9 @@ throw not_implemented(get_app());
 //      rect64 rectOutputClient(rectWindow);
 //      rectOutputClient -= rectWindow.top_left();
 //
-//      // The ::window owned device context is clipped
+//      // The ::user::interaction_impl owned device context is clipped
 //      // with the update region in screen coordinates
-//      // translated to ::window client coordinates.
+//      // translated to ::user::interaction_impl client coordinates.
 //      //_sp rgnClip(get_app());
 //      //rgnClip->create_rect(0, 0, 0, 0);
 //      //rgnClip->CopyRgn(&rgnUpdate);
@@ -1346,8 +1346,8 @@ throw not_implemented(get_app());
 
 
 
-   // The first ::window handle in the array must belong
-   // to the higher z order ::window.
+   // The first ::user::interaction_impl handle in the array must belong
+   // to the higher z order ::user::interaction_impl.
    // The rectangle must contain all update region.
    // It must be in screen coordinates.
 
@@ -1355,7 +1355,7 @@ throw not_implemented(get_app());
 
    // Remark: this optimization eliminates top level lnxdows
    // that are lower z order siblings of a higher z order
-   // top level ::window that contains all
+   // top level ::user::interaction_impl that contains all
    // the update region in a opaque area.
    // It doesn´t eliminates from the update parent lnxdows
    // obscured by opaque children.

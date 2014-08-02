@@ -12,8 +12,11 @@ public:
 
    bool add(T * p)
    {
+
       synch_lock sl(&m_mutex);
-      return add_unique(p);
+
+      return this->add_unique(p);
+
    }
 
    ::count remove(T * p)
@@ -23,10 +26,9 @@ public:
 
       index  iRemove;
 
-
       ::count c = 0;
 
-      while((iRemove = remove_first(p)) >= 0)
+      while((iRemove = this->remove_first(p)) >= 0)
       {
 
          m_indexptra.on_removed(iRemove);

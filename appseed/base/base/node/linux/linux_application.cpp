@@ -291,12 +291,12 @@ namespace linux
 
    sp(::window) application::window_from_os_data(void * pdata)
    {
-      return ::linux::window::from_handle((oswindow) pdata);
+      return ::linux::user::interaction_impl::from_handle((oswindow) pdata);
    }
 
    sp(::window) application::window_from_os_data_permanent(void * pdata)
    {
-      sp(::window) pwnd = ::linux::window::FromHandlePermanent((oswindow) pdata);
+      sp(::window) pwnd = ::linux::user::interaction_impl::FromHandlePermanent((oswindow) pdata);
       if(pwnd != NULL)
          return pwnd;
       user::interaction_ptr_array wndptra = System.frames();

@@ -67,7 +67,7 @@ namespace linux
       m_guieptraMouseHover.remove(pinterface);
    }
 
-   window::window()
+   window::user::interaction_impl()
    {
       m_pcallback = NULL;
       m_pui = this;
@@ -113,7 +113,7 @@ namespace linux
 
    }
 
-   window::window(sp(::base::application) papp) :
+   window::user::interaction_impl(sp(::base::application) papp) :
       element(papp),
       ::user::interaction(papp)
    {
@@ -232,7 +232,7 @@ namespace linux
    }
 
 
-   ::linux::window * window::from_handle(oswindow oswindow)
+   ::linux::user::interaction_impl * window::from_handle(oswindow oswindow)
    {
 
       if(oswindow->get_user_interaction() == NULL)
@@ -240,7 +240,7 @@ namespace linux
 
       ::user::interaction * pui = oswindow->get_user_interaction()->m_pimpl.m_p;
 
-      return dynamic_cast < ::linux::window * > (pui);
+      return dynamic_cast < ::linux::user::interaction_impl * > (pui);
 
    }
 
@@ -251,7 +251,7 @@ namespace linux
       if(oswindow->get_user_interaction() == NULL)
          return NULL;
 
-      return dynamic_cast < ::linux::window * > (oswindow->get_user_interaction()->m_pimpl.m_p);
+      return dynamic_cast < ::linux::user::interaction_impl * > (oswindow->get_user_interaction()->m_pimpl.m_p);
 
    }
 
@@ -1080,7 +1080,7 @@ d.unlock();
    }*/
 
 /*   sp(::window) window::GetAncestor(UINT gaFlags) const
-   { ASSERT(::IsWindow((oswindow)get_handle())); return  ::linux::window::from_handle(::GetAncestor((oswindow)get_handle(), gaFlags)); }
+   { ASSERT(::IsWindow((oswindow)get_handle())); return  ::linux::user::interaction_impl::from_handle(::GetAncestor((oswindow)get_handle(), gaFlags)); }
 
 */
 
@@ -1542,7 +1542,7 @@ restart_mouse_hover_check:
 
    // special case for activation
    if (message == WM_ACTIVATE)
-   __handle_activate(this, wparam, ::linux::window::from_handle((oswindow)lparam));
+   __handle_activate(this, wparam, ::linux::user::interaction_impl::from_handle((oswindow)lparam));
 
    // special case for set cursor HTERROR
    if (message == WM_SETCURSOR &&
@@ -1666,7 +1666,7 @@ restart_mouse_hover_check:
 
    case ::ca2::Sig_v_u_W:
    (this->*mmf.pfn_v_u_W)(static_cast<UINT>(wparam),
-   ::linux::window::from_handle(reinterpret_cast<oswindow>(lparam)));
+   ::linux::user::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)));
    break;
 
    case ::ca2::Sig_u_u_v:
@@ -1678,13 +1678,13 @@ restart_mouse_hover_check:
    break;
 
    case ::ca2::Sig_b_W_uu:
-   lResult = (this->*mmf.pfn_b_W_u_u)(::linux::window::from_handle(reinterpret_cast<oswindow>(wparam)),
+   lResult = (this->*mmf.pfn_b_W_u_u)(::linux::user::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)),
    LOWORD(lparam), HIWORD(lparam));
    break;
 
    case ::ca2::Sig_b_W_COPYDATASTRUCT:
    lResult = (this->*mmf.pfn_b_W_COPYDATASTRUCT)(
-   ::linux::window::from_handle(reinterpret_cast<oswindow>(wparam)),
+   ::linux::user::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)),
    reinterpret_cast<COPYDATASTRUCT*>(lparam));
    break;
 
@@ -1703,7 +1703,7 @@ restart_mouse_hover_check:
    wndTemp.set_handle(pCtl->hWnd);
    UINT nCtlType = pCtl->nCtlType;
    // if not coming from a permanent window, use stack temporary
-   sp(::window) pWnd = ::linux::window::FromHandlePermanent(wndTemp.get_handle());
+   sp(::window) pWnd = ::linux::user::interaction_impl::FromHandlePermanent(wndTemp.get_handle());
    if (pWnd == NULL)
    {
    pWnd = &wndTemp;
@@ -1733,7 +1733,7 @@ restart_mouse_hover_check:
 
    case ::ca2::Sig_i_u_W_u:
    lResult = (this->*mmf.pfn_i_u_W_u)(LOWORD(wparam),
-   ::linux::window::from_handle(reinterpret_cast<oswindow>(lparam)), HIWORD(wparam));
+   ::linux::user::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)), HIWORD(wparam));
    break;
 
    case ::ca2::Sig_i_uu_v:
@@ -1741,7 +1741,7 @@ restart_mouse_hover_check:
    break;
 
    case ::ca2::Sig_i_W_uu:
-   lResult = (this->*mmf.pfn_i_W_u_u)(::linux::window::from_handle(reinterpret_cast<oswindow>(wparam)),
+   lResult = (this->*mmf.pfn_i_W_u_u)(::linux::user::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)),
    LOWORD(lparam), HIWORD(lparam));
    break;
 
@@ -1803,8 +1803,8 @@ restart_mouse_hover_check:
 
    case ::ca2::Sig_MDIACTIVATE:
    (this->*mmf.pfn_v_b_W_W)(get_handle() == reinterpret_cast<oswindow>(lparam),
-   ::linux::window::from_handle(reinterpret_cast<oswindow>(lparam)),
-   ::linux::window::from_handle(reinterpret_cast<oswindow>(wparam)));
+   ::linux::user::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)),
+   ::linux::user::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)));
    break;
 
    case ::ca2::Sig_v_D_v:
@@ -1813,33 +1813,33 @@ restart_mouse_hover_check:
 
 
    case ::ca2::Sig_v_W_v:
-   (this->*mmf.pfn_v_W)(::linux::window::from_handle(reinterpret_cast<oswindow>(wparam)));
+   (this->*mmf.pfn_v_W)(::linux::user::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)));
    break;
 
    case ::ca2::Sig_v_v_W:
-   (this->*mmf.pfn_v_W)(::linux::window::from_handle(reinterpret_cast<oswindow>(lparam)));
+   (this->*mmf.pfn_v_W)(::linux::user::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)));
    break;
 
    case ::ca2::Sig_v_W_uu:
-   (this->*mmf.pfn_v_W_u_u)(::linux::window::from_handle(reinterpret_cast<oswindow>(wparam)), LOWORD(lparam),
+   (this->*mmf.pfn_v_W_u_u)(::linux::user::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)), LOWORD(lparam),
    HIWORD(lparam));
    break;
 
    case ::ca2::Sig_v_W_p:
    {
    point point(lparam);
-   (this->*mmf.pfn_v_W_p)(::linux::window::from_handle(reinterpret_cast<oswindow>(wparam)), point);
+   (this->*mmf.pfn_v_W_p)(::linux::user::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)), point);
    }
    break;
 
    case ::ca2::Sig_v_W_h:
-   (this->*mmf.pfn_v_W_h)(::linux::window::from_handle(reinterpret_cast<oswindow>(wparam)),
+   (this->*mmf.pfn_v_W_h)(::linux::user::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)),
    reinterpret_cast<HANDLE>(lparam));
    break;
 
    case ::ca2::Sig_ACTIVATE:
    (this->*mmf.pfn_v_u_W_b)(LOWORD(wparam),
-   ::linux::window::from_handle(reinterpret_cast<oswindow>(lparam)), HIWORD(wparam));
+   ::linux::user::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)), HIWORD(wparam));
    break;
 
    case ::ca2::Sig_SCROLL:
@@ -1852,7 +1852,7 @@ restart_mouse_hover_check:
    int32_t nPos = (short)HIWORD(wparam);
    if (lpEntry->nSig == ::ca2::Sig_SCROLL)
    (this->*mmf.pfn_v_u_u_W)(nScrollCode, nPos,
-   ::linux::window::from_handle(reinterpret_cast<oswindow>(lparam)));
+   ::linux::user::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)));
    else
    (this->*mmf.pfn_v_u_u)(nScrollCode, nPos);
    }
@@ -2059,7 +2059,7 @@ restart_mouse_hover_check:
    /* trans oswindow CLASS_DECL_LINUX __get_parent_owner(sp(::user::interaction) hWnd)
    {
    // check for permanent-owned window first
-   sp(::window) pWnd = ::linux::window::FromHandlePermanent(hWnd);
+   sp(::window) pWnd = ::linux::user::interaction_impl::FromHandlePermanent(hWnd);
    if (pWnd != NULL)
    return LNX_WINDOW(pWnd)->GetOwner();
 
@@ -2096,7 +2096,7 @@ restart_mouse_hover_check:
     //  while ((hWndT = ::GetWindow(hWndOwner, GW_OWNER)) != NULL)
       //   hWndOwner = hWndT;
 
-//      return ::linux::window::from_handle(hWndOwner);
+//      return ::linux::user::interaction_impl::from_handle(hWndOwner);
         return NULL;
    }
 
@@ -2115,7 +2115,7 @@ restart_mouse_hover_check:
          hWndParent = hWndT;
       }
 
-      return ::linux::window::from_handle(hWndParent);*/
+      return ::linux::user::interaction_impl::from_handle(hWndParent);*/
 
       return NULL;
    }
@@ -2169,7 +2169,7 @@ restart_mouse_hover_check:
 /*   sp(::window) window::GetSafeOwner(::window * pParent, oswindow* pWndTop)
    {
       oswindow hWnd = GetSafeOwner_((oswindow) pParent->get_handle(), pWndTop);
-      return ::linux::window::from_handle(hWnd);
+      return ::linux::user::interaction_impl::from_handle(hWnd);
    }
 */
    int32_t window::message_box(const char * lpszText, const char * lpszcaption, UINT nType)
@@ -2218,7 +2218,7 @@ restart_mouse_hover_check:
          // if bOnlyPerm is TRUE, don't send to non-permanent windows
          /*if (bOnlyPerm)
          {
-            sp(::window) pWnd = ::linux::window::FromHandlePermanent(hWndChild);
+            sp(::window) pWnd = ::linux::user::interaction_impl::FromHandlePermanent(hWndChild);
             if (pWnd != NULL)
             {
                // call window proc directly since it is a C++ window
@@ -3627,7 +3627,7 @@ throw not_implemented(get_app());
       state.m_pOther = &wndTemp;
 
       // check for reflect handlers in the child window
-      sp(::window) pWnd = ::linux::window::FromHandlePermanent(hWndChild);
+      sp(::window) pWnd = ::linux::user::interaction_impl::FromHandlePermanent(hWndChild);
       if (pWnd != NULL)
       {
       // call it directly to disable any routing
@@ -4195,7 +4195,7 @@ throw not_implemented(get_app());
          return NULL;
       if(get_handle() == NULL)
          return NULL;
-      //return ::linux::window::from_handle(::GetParent(get_handle()));
+      //return ::linux::user::interaction_impl::from_handle(::GetParent(get_handle()));
       return NULL;
    }
 
@@ -4277,14 +4277,14 @@ throw not_implemented(get_app());
    // window
    /* window::operator oswindow() const
    { return this == NULL ? NULL : get_handle(); }*/
-   bool window::operator==(const ::window& wnd) const
+   bool window::operator==(const ::user::interaction_impl& wnd) const
    {
-      return LNX_WINDOW(const_cast < ::window * >  (&wnd))->get_handle() ==((window *)this)->get_handle();
+      return LNX_WINDOW(const_cast < ::user::interaction_impl * >  (&wnd))->get_handle() ==((window *)this)->get_handle();
    }
 
-   bool window::operator!=(const ::window& wnd) const
+   bool window::operator!=(const ::user::interaction_impl& wnd) const
    {
-      return LNX_WINDOW(const_cast < ::window * >  (&wnd))->get_handle() != ((window *)this)->get_handle();
+      return LNX_WINDOW(const_cast < ::user::interaction_impl * >  (&wnd))->get_handle() != ((window *)this)->get_handle();
    }
 
    DWORD window::GetStyle() const
@@ -4905,7 +4905,7 @@ if(psurface == g_cairosurface)
    {
 
       throw not_implemented(get_app());
-      //return ::linux::window::from_handle(::GetActiveWindow());
+      //return ::linux::user::interaction_impl::from_handle(::GetActiveWindow());
 
    }
 
@@ -4914,7 +4914,7 @@ if(psurface == g_cairosurface)
 
       throw not_implemented(get_app());
       //ASSERT(::IsWindow((oswindow) get_handle()));
-      //return ::linux::window::from_handle(::SetActiveWindow(get_handle()));
+      //return ::linux::user::interaction_impl::from_handle(::SetActiveWindow(get_handle()));
 
    }
 
@@ -4976,7 +4976,7 @@ if(psurface == g_cairosurface)
    sp(::window) PASCAL window::GetDesktopWindow()
    {
 /*
-      return ::linux::window::from_handle(::GetDesktopWindow());
+      return ::linux::user::interaction_impl::from_handle(::GetDesktopWindow());
 */
       return NULL;
    }
@@ -5080,7 +5080,7 @@ if(psurface == g_cairosurface)
 
       throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::linux::window::from_handle(::GetNextDlgGroupItem(get_handle(), (oswindow) pWndCtl->get_handle(), bPrevious));
+//      return ::linux::user::interaction_impl::from_handle(::GetNextDlgGroupItem(get_handle(), (oswindow) pWndCtl->get_handle(), bPrevious));
 
    }
 
@@ -5089,7 +5089,7 @@ if(psurface == g_cairosurface)
 
       throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::linux::window::from_handle(::GetNextDlgTabItem(get_handle(), (oswindow) pWndCtl->get_handle(), bPrevious));
+//      return ::linux::user::interaction_impl::from_handle(::GetNextDlgTabItem(get_handle(), (oswindow) pWndCtl->get_handle(), bPrevious));
 
    }
 
@@ -5153,7 +5153,7 @@ if(psurface == g_cairosurface)
 
       throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::linux::window::from_handle(::ChildWindowFromPoint(get_handle(), point));
+//      return ::linux::user::interaction_impl::from_handle(::ChildWindowFromPoint(get_handle(), point));
 
    }
 
@@ -5162,7 +5162,7 @@ if(psurface == g_cairosurface)
 
       throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::linux::window::from_handle(::ChildWindowFromPointEx(get_handle(), point, nFlags));
+//      return ::linux::user::interaction_impl::from_handle(::ChildWindowFromPointEx(get_handle(), point, nFlags));
 
    }
 
@@ -5170,7 +5170,7 @@ if(psurface == g_cairosurface)
    {
 
 //      throw not_implemented(get_app());
-//      return ::linux::window::from_handle(::FindWindow(lpszClassName, lpszWindowName));
+//      return ::linux::user::interaction_impl::from_handle(::FindWindow(lpszClassName, lpszWindowName));
       return NULL;
 
    }
@@ -5179,7 +5179,7 @@ if(psurface == g_cairosurface)
    {
 
       throw not_implemented(::get_thread_app());
-//      return ::linux::window::from_handle(::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow));
+//      return ::linux::user::interaction_impl::from_handle(::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow));
 
    }
 
@@ -5188,7 +5188,7 @@ if(psurface == g_cairosurface)
 
       throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::linux::window::from_handle(::GetNextWindow(get_handle(), nFlag));
+//      return ::linux::user::interaction_impl::from_handle(::GetNextWindow(get_handle(), nFlag));
 
    }
 
@@ -5201,7 +5201,7 @@ if(psurface == g_cairosurface)
       return m_pui->m_uiptraChild(0);
     //  throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::linux::window::from_handle(::GetTopWindow(get_handle()));
+//      return ::linux::user::interaction_impl::from_handle(::GetTopWindow(get_handle()));
 
    }
 
@@ -5209,7 +5209,7 @@ if(psurface == g_cairosurface)
    {
 
       ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::linux::window::from_handle(::GetWindow(get_handle(), nCmd));
+//      return ::linux::user::interaction_impl::from_handle(::GetWindow(get_handle(), nCmd));
       return NULL;
 
    }
@@ -5220,7 +5220,7 @@ if(psurface == g_cairosurface)
 
       throw todo(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::linux::window::from_handle(::GetLastActivePopup(get_handle()));
+//      return ::linux::user::interaction_impl::from_handle(::GetLastActivePopup(get_handle()));
 
    }
 
@@ -5228,7 +5228,7 @@ if(psurface == g_cairosurface)
    {
 
       ASSERT(::IsWindow((oswindow) get_handle()));
-      return ::linux::window::from_handle(::SetParent(get_handle(), (oswindow) pWndNewParent->get_handle()));
+      return ::linux::user::interaction_impl::from_handle(::SetParent(get_handle(), (oswindow) pWndNewParent->get_handle()));
 
    }
 
@@ -5237,7 +5237,7 @@ if(psurface == g_cairosurface)
 
 
       throw not_implemented(::get_thread_app());
-//      return ::linux::window::from_handle(::oswindowFromPoint(point));
+//      return ::linux::user::interaction_impl::from_handle(::oswindowFromPoint(point));
 
    }
 
@@ -5282,7 +5282,7 @@ if(psurface == g_cairosurface)
    {
 
       throw not_implemented(::get_thread_app());
-//      return ::linux::window::from_handle(::GetOpenClipboardWindow());
+//      return ::linux::user::interaction_impl::from_handle(::GetOpenClipboardWindow());
 
    }
 
@@ -5290,7 +5290,7 @@ if(psurface == g_cairosurface)
    {
 
       throw not_implemented(::get_thread_app());
-//      return ::linux::window::from_handle(::GetClipboardOwner());
+//      return ::linux::user::interaction_impl::from_handle(::GetClipboardOwner());
 
    }
 
@@ -5298,7 +5298,7 @@ if(psurface == g_cairosurface)
    {
 
       throw not_implemented(::get_thread_app());
-//      return ::linux::window::from_handle(::GetClipboardViewer());
+//      return ::linux::user::interaction_impl::from_handle(::GetClipboardViewer());
 
    }
 
@@ -5376,7 +5376,7 @@ if(psurface == g_cairosurface)
       return NULL;
 
          throw not_implemented(::get_thread_app());
-//      return ::linux::window::from_handle(::GetForegroundWindow());
+//      return ::linux::user::interaction_impl::from_handle(::GetForegroundWindow());
 
    }
 
@@ -5755,11 +5755,11 @@ if(psurface == g_cairosurface)
    }
 
    ////////////////////////////////////////////////////////////////////////////
-   // UI related ::window functions
+   // UI related ::user::interaction_impl functions
 
    oswindow PASCAL window::GetSafeOwner_(oswindow hParent, oswindow* pWndTop)
    {
-      // get ::window to start with
+      // get ::user::interaction_impl to start with
       oswindow hWnd = hParent;
       if (hWnd == NULL)
       {
@@ -5770,11 +5770,11 @@ if(psurface == g_cairosurface)
          hWnd = System.GetMainWnd()->get_handle();*/
       }
 
-      // a popup ::window cannot be owned by a child ::window
+      // a popup ::user::interaction_impl cannot be owned by a child ::user::interaction_impl
       while (hWnd != NULL && (::GetWindowLong(hWnd, GWL_STYLE) & WS_CHILD))
          hWnd = ::GetParent(hWnd);
 
-      // determine toplevel ::window to disable as well
+      // determine toplevel ::user::interaction_impl to disable as well
       oswindow hWndTop = hWnd, hWndTemp = hWnd;
       for (;;)
       {
@@ -5790,7 +5790,7 @@ if(psurface == g_cairosurface)
   //    if (hParent == NULL && hWnd != NULL)
   //       hWnd = ::GetLastActivePopup(hWnd);
 
-      // disable and store top level parent ::window if specified
+      // disable and store top level parent ::user::interaction_impl if specified
       if (pWndTop != NULL)
       {
 /*         if (hWndTop != NULL && ::IsWindowEnabled(hWndTop) && hWndTop != hWnd)
@@ -6007,7 +6007,7 @@ namespace linux
 
       }
 
-      ::window::_001UpdateWindow();
+      ::user::interaction_impl::_001UpdateWindow();
 
 }
 
