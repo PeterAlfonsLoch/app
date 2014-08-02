@@ -845,13 +845,13 @@ namespace core
             App(m_pappCurrent).request_create(pcreatecontext);
             if(pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::user::document > () == NULL)
             {
-               goto alt1;
+  //             goto alt1;
             }
 
          }
          else
          {
-alt1:
+//alt1:
             if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
             {
                if(::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".core"))

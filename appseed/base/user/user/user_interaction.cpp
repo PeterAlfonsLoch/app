@@ -3874,7 +3874,7 @@ namespace user
       }
          return true;
       default:
-         return true;
+         break;
       }
 
       return false;
