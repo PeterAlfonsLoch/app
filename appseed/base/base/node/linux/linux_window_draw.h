@@ -126,7 +126,7 @@ namespace linux
          LPCRECT lpcrect);
 
       ::user::interaction_ptr_array get_wnda();
-      ::user::oswindow_array get_hwnda();
+      //::user::oswindow_array get_hwnda();
 
       virtual int32_t run();
 

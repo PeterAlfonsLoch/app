@@ -60,7 +60,7 @@ CLASS_DECL_LINUX void AfxResetMsgcache();
 #include "linux_factory_exchange.h"
 #include "linux_window_draw.h"
 #include "linux_thread.h"
-#include "linux_window.h"
+#include "linux_interaction_impl.h"
 #include "linux_os.h"
 #include "linux_port_forward.h"
 #include "linux_copydesk.h"
@@ -72,7 +72,7 @@ CLASS_DECL_LINUX void AfxResetMsgcache();
 #define AfxWndProc (*AfxGetAfxWndProc())
 
 #define LNX_THREAD(pthread) (dynamic_cast < ::linux::thread * > (dynamic_cast < ::thread * >(pthread)))
-#define LNX_WINDOW(pwnd) (dynamic_cast < ::linux::user::interaction_impl * > (((sp(::window))(pwnd)).m_p))
+#define LNX_WINDOW(pwnd) (dynamic_cast < ::linux::interaction_impl * > (((sp(::user::interaction_impl))(pwnd)).m_p))
 #define LNX_DC(pgraphics) (dynamic_cast < ::linux::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics)))
 #define SP_DC(pgraphics) (dynamic_cast < ::linux::graphics * > (( ::draw2d::graphics * )(pgraphics)))
 #define LNX_HDC(pgraphics) ((HDC)*(dynamic_cast < ::linux::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics))))

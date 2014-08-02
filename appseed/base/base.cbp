@@ -631,6 +631,8 @@
 		<Unit filename="base/node/linux/linux_file_set.h" />
 		<Unit filename="base/node/linux/linux_file_system.cpp" />
 		<Unit filename="base/node/linux/linux_file_system.h" />
+		<Unit filename="base/node/linux/linux_interaction_impl.cpp" />
+		<Unit filename="base/node/linux/linux_interaction_impl.h" />
 		<Unit filename="base/node/linux/linux_internal.h" />
 		<Unit filename="base/node/linux/linux_ip_enum.cpp" />
 		<Unit filename="base/node/linux/linux_ip_enum.h" />
@@ -647,11 +649,8 @@
 		<Unit filename="base/node/linux/linux_stdio_file.h" />
 		<Unit filename="base/node/linux/linux_thread.cpp" />
 		<Unit filename="base/node/linux/linux_thread.h" />
-		<Unit filename="base/node/linux/linux_thread_slots.h" />
 		<Unit filename="base/node/linux/linux_trace.cpp" />
 		<Unit filename="base/node/linux/linux_util.cpp" />
-		<Unit filename="base/node/linux/linux_window.cpp" />
-		<Unit filename="base/node/linux/linux_window.h" />
 		<Unit filename="base/node/linux/linux_window_draw.cpp" />
 		<Unit filename="base/node/linux/linux_window_draw.h" />
 		<Unit filename="base/node/node.cpp" />
