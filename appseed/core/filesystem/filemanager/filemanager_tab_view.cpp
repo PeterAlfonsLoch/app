@@ -189,9 +189,19 @@ namespace filemanager
       }
       else
       {
+
+         ::filemanager::data * pfilemanagerdata = new ::filemanager::data(get_app());
+         pfilemanagerdata->m_pcallback = &platform().filemanager();
+         pfilemanagerdata->m_pmanagertemplate = &platform().filemanager().std();
+         pfilemanagerdata->m_bFileSize = true;
+         pfilemanagerdata->m_bTransparentBackground = true;
+
          sp(::create_context) createcontext(allocer());
+
          createcontext->m_bMakeVisible = true;
          createcontext->m_puiParent = pcreatordata->m_pholder;
+         createcontext->oprop("filemanager::data") = pfilemanagerdata;
+
          sp(manager) pmanager = (platform().filemanager().std().m_pdoctemplateChild->open_document_file(createcontext));
          sp(simple_frame_window) pwndTopLevel = NULL;
          if(pmanager != NULL)
@@ -199,19 +209,9 @@ namespace filemanager
 
             m_pmanager = pmanager;
 
-            ::filemanager::data * pfilemanagerdata = new ::filemanager::data(get_app());
-
-            pmanager->set_filemanager_data(pfilemanagerdata);
-
-            pmanager->get_filemanager_data()->m_pmanager = pmanager;
-            pmanager->get_filemanager_data()->m_pmanagertemplate = &platform().filemanager().std();
-            pmanager->get_filemanager_data()->m_pmanagerMain = get_filemanager_manager();
             pmanager->get_filemanager_data()->m_iTemplate = platform().filemanager().std().m_iTemplate;
             pmanager->get_filemanager_data()->m_iDocument = platform().filemanager().std().m_iNextDocument++;
             pmanager->get_filemanager_template()->m_strDISection.Format("filemanager(%d)",pmanager->get_filemanager_data()->m_iDocument);
-            pmanager->get_filemanager_data()->m_bFileSize = true;
-            pmanager->get_filemanager_data()->m_pcallback = &platform().filemanager();
-            pmanager->get_filemanager_data()->m_bTransparentBackground = true;
 
 
 
