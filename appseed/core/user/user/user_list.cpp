@@ -5351,22 +5351,22 @@ namespace user
          {
             if(m_bListItemHover)
             {
-               m_plist->get_color(m_cr,::user::color_text_selected_highlight);
+               m_cr =m_plist->_001GetColor(::user::color_text_selected_highlight);
             }
             else
             {
-               m_plist->get_color(m_cr,::user::color_text_selected);
+               m_cr =m_plist->_001GetColor(::user::color_text_selected);
             }
          }
          else
          {
             if(m_bListItemHover)
             {
-               m_plist->get_color(m_cr,::user::color_text_highlight);
+               m_cr =m_plist->_001GetColor(::user::color_text_highlight);
             }
             else
             {
-               m_plist->get_color(m_cr,::user::color_text);
+               m_cr =m_plist->_001GetColor(::user::color_text);
             }
          }
       }
