@@ -1992,7 +1992,7 @@ CLASS_DECL_BASE void __start_system(::base::system * psystem)
 
 }
 
-
+#ifdef METROWIN
 
 CLASS_DECL_BASE bool get_window_rect(system_window ^ pwindow,RECTD * lprect)
 {
@@ -2021,3 +2021,9 @@ CLASS_DECL_BASE bool get_window_rect(system_window ^ pwindow,LPRECT * lprect)
    return true;
 
 }
+
+
+#endif
+
+
+
