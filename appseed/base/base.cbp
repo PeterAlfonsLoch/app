@@ -3171,8 +3171,11 @@
 		<Unit filename="multithreading/multithreading_socket_event.h" />
 		<Unit filename="multithreading/multithreading_sync_object.cpp" />
 		<Unit filename="multithreading/multithreading_sync_object.h" />
+		<Unit filename="multithreading/multithreading_synch_index_iterator.h" />
+		<Unit filename="multithreading/multithreading_synch_index_ptr_array.h" />
 		<Unit filename="multithreading/multithreading_synch_lock.cpp" />
 		<Unit filename="multithreading/multithreading_synch_lock.h" />
+		<Unit filename="multithreading/multithreading_synch_ptr_array.h" />
 		<Unit filename="multithreading/multithreading_thread.cpp" />
 		<Unit filename="multithreading/multithreading_thread.h" />
 		<Unit filename="multithreading/multithreading_thread_impl.cpp" />

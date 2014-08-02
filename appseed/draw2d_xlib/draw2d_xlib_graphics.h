@@ -53,7 +53,7 @@ namespace draw2d_xlib
          return *m_pgraphics;
       }*/
 
-      //::user::window * GetWindow() const;
+      //::user::user::interaction_impl * GetWindow() const;
 
       //static ::draw2d::graphics * PASCAL from_handle(HDC hDC);
       //static void PASCAL DeleteTempMap();

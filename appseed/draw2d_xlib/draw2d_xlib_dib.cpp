@@ -2559,7 +2559,7 @@ namespace draw2d_xlib
 
 #if defined(WINDOWS)
 
-   bool dib::update_window(::user::window * pwnd, signal_details * pobj)
+   bool dib::update_window(::user::user::interaction_impl * pwnd, signal_details * pobj)
    {
 
 
@@ -2580,7 +2580,7 @@ namespace draw2d_xlib
    }
 
 
-   bool dib::print_window(::user::window * pwnd, signal_details * pobj)
+   bool dib::print_window(::user::user::interaction_impl * pwnd, signal_details * pobj)
    {
 
       SCAST_PTR(::message::base, pbase, pobj);
