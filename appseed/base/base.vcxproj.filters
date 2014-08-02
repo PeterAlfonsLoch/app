@@ -4472,9 +4472,6 @@
     <ClInclude Include="base\node\windows\windows_thread.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="base\node\windows\windows_window.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="base\node\windows\windows_window_draw.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
@@ -4858,6 +4855,9 @@
     </ClInclude>
     <ClInclude Include="user\user\user_form_interface.h">
       <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\windows\windows_interaction_impl.h">
+      <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -8779,9 +8779,6 @@
     <ClCompile Include="base\node\windows\windows_trace.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="base\node\windows\windows_window.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\windows\windows_window_draw.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
@@ -9136,6 +9133,9 @@
     <ClCompile Include="user\user\user_scroll_bar.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="base\node\windows\windows_interaction_impl.cpp">
+      <Filter>Source Files\base\node\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -9395,6 +9395,9 @@
     </None>
     <None Include="primitive\collection\collection.inl">
       <Filter>Header Files\primitive\collection</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

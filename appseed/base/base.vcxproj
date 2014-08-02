@@ -2187,6 +2187,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\node\windows\windows_file_system.h" />
     <ClInclude Include="base\node\windows\windows_folder_watch.h" />
     <ClInclude Include="base\node\windows\windows_implementation.h" />
+    <ClInclude Include="base\node\windows\windows_interaction_impl.h" />
     <ClInclude Include="base\node\windows\windows_ip_enum.h" />
     <ClInclude Include="base\node\windows\windows_os.h" />
     <ClInclude Include="base\node\windows\windows_port_forward.h" />
@@ -2196,7 +2197,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\node\windows\windows_stdio_file.h" />
     <ClInclude Include="base\node\windows\windows_thread.h" />
     <ClInclude Include="base\node\windows\windows_uac_tools.h" />
-    <ClInclude Include="base\node\windows\windows_window.h" />
     <ClInclude Include="base\node\windows\windows_window_draw.h" />
     <ClInclude Include="base\openssl\crypto\aes\aes.h" />
     <ClInclude Include="base\openssl\crypto\aes\aes_locl.h">
@@ -3390,6 +3390,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\node\windows\windows_file_set.cpp" />
     <ClCompile Include="base\node\windows\windows_file_system.cpp" />
     <ClCompile Include="base\node\windows\windows_folder_watch.cpp" />
+    <ClCompile Include="base\node\windows\windows_interaction_impl.cpp" />
     <ClCompile Include="base\node\windows\windows_ip_enum.cpp" />
     <ClCompile Include="base\node\windows\windows_os.cpp" />
     <ClCompile Include="base\node\windows\windows_port_forward.cpp" />
@@ -3400,7 +3401,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\node\windows\windows_thread.cpp" />
     <ClCompile Include="base\node\windows\windows_trace.cpp" />
     <ClCompile Include="base\node\windows\windows_uac_tools.cpp" />
-    <ClCompile Include="base\node\windows\windows_window.cpp" />
     <ClCompile Include="base\node\windows\windows_window_draw.cpp" />
     <ClCompile Include="base\openssl\crypto\evp\evp_cnf.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
