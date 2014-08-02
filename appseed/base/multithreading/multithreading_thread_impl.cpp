@@ -1789,6 +1789,12 @@ void thread_impl::thread_impl_delete()
        m_pthread->release();
 
    }
+   else
+   {
+      
+      m_pthread->set_os_data(NULL);
+
+   }
 
 }
 
