@@ -97,7 +97,7 @@ namespace sockets
       string         m_local_addr6; ///< local ip address in string format
       in6_addr       m_local_ip6; ///< local ipv6 address
       bool           m_local_resolved; ///< ResolveLocal has been called if true
-      
+
 
 
    public:
@@ -116,8 +116,14 @@ namespace sockets
          bool              r;
 
 
+         dns_cache_item();
+         dns_cache_item(const dns_cache_item & item);
+
+
          virtual void write(::file::output_stream & ostream);
          virtual void read(::file::input_stream & istream);
+
+         dns_cache_item & operator = (const dns_cache_item & item);
 
       };
 
@@ -133,8 +139,14 @@ namespace sockets
          bool              r;
 
 
+         reverse_cache_item();
+         reverse_cache_item(const reverse_cache_item & item);
+
+
          virtual void write(::file::output_stream & ostream);
          virtual void read(::file::input_stream & istream);
+
+         reverse_cache_item & operator = (const reverse_cache_item & item);
 
       };
 

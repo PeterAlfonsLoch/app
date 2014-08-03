@@ -1,79 +1,12 @@
 #include "framework.h"
 #include <dlfcn.h>
 
-namespace base
-{
-library::library(sp(::base::application) papp) :
-element(papp)
+
+CLASS_DECL_BASE void * __node_library_open(const char * pszPath)
 {
 
-   m_plibrary = NULL;
+   void * plibrary = dlopen(pszPath, RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
 
-   m_bAutoClose = false;
-
-}
-
-
-library::library(sp(::base::application) papp, int iDesambig, const char * pszOpen) :
-element(papp)
-{
-
-   m_plibrary = NULL;
-
-   m_bAutoClose = false;
-
-   open(pszOpen);
-
-}
-
-
-library::~library()
-{
-
-   if(m_bAutoClose)
-   {
-
-      close();
-
-   }
-
-}
-
-
-bool library::open(const char * pszPath, bool bAutoClose, bool bCa2)
-{
-
-   if(m_bAutoClose)
-   {
-
-      close();
-
-   }
-
-   m_bAutoClose = bAutoClose;
-
-   string strPath(pszPath);
-
-   if(strPath == "os")
-   {
-
-      strPath = "ca2os";
-
-   }
-   else if(strPath == "app_sphere")
-   {
-
-      strPath = "basesphere";
-
-   }
-
-   if(strstr_dup(strPath, ".") == NULL)
-      strPath += ".so";
-
-   if(strstr((const char *) strPath, "/") == NULL && !str_begins_dup(strPath, "lib"))
-      strPath = "lib" + strPath;
-
-   m_plibrary = dlopen(strPath, RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
    int iError = errno;
 
    const char * psz = strerror(iError);
@@ -94,46 +27,58 @@ bool library::open(const char * pszPath, bool bAutoClose, bool bCa2)
 
    }
 
-   return m_plibrary != NULL;
+   return plibrary;
 
 }
 
 
-bool library::close()
-{
-   if(m_plibrary != NULL)
-   {
-      dlclose(m_plibrary);
-   }
-}
-
-
-void * library::raw_get(const char * pszElement)
-{
-   return dlsym(m_plibrary, pszElement);
-}
-
-
-
-
-bool library::is_opened()
+CLASS_DECL_BASE void * __node_library_open_ca2(const char * pszPath)
 {
 
-   return m_plibrary != NULL;
+   return __node_library_open(pszPath);
 
 }
 
 
-bool library::is_closed()
+CLASS_DECL_BASE bool __node_library_close(void * plibrary)
 {
 
-   return !is_opened();
+   return dlclose(plibrary) == 0;
+
+}
+
+
+CLASS_DECL_BASE void * __node_library_raw_get(void * plibrary,const char * pszEntryName)
+{
+
+   return dlsym(plibrary, pszEntryName);
 
 }
 
 
 
-} // namespace base
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

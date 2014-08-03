@@ -1049,11 +1049,22 @@ namespace sockets
    }
 
 
+   net::dns_cache_item::dns_cache_item()
+   {
+
+      ZERO(m_ipaddr);
+      m_dwLastChecked = 0;
+      r = false;
+
+   }
 
 
-   in_addr           m_ipaddr;
-   uint32_t          m_dwLastChecked;
-   bool              r;
+   net::dns_cache_item::dns_cache_item(const dns_cache_item & item)
+   {
+
+      this->operator = (item);
+
+   }
 
 
    void net::dns_cache_item::write(::file::output_stream & ostream)
@@ -1072,6 +1083,39 @@ namespace sockets
       istream.read(&m_ipaddr,sizeof(m_ipaddr));
       istream.read(&m_dwLastChecked,sizeof(m_dwLastChecked));
       istream.read(&r,sizeof(r));
+
+   }
+
+
+   net::dns_cache_item & net::dns_cache_item::operator = (const dns_cache_item & item)
+   {
+
+      if(this==&item)
+         return *this;
+
+      memcpy(&m_ipaddr, &item.m_ipaddr, sizeof(item));
+      m_dwLastChecked = item.m_dwLastChecked;
+      r = item.r;
+
+      return *this;
+
+   }
+
+
+   net::reverse_cache_item::reverse_cache_item()
+   {
+
+      ZERO(m_ipaddr);
+      m_dwLastChecked = 0;
+      r = false;
+
+   }
+
+
+   net::reverse_cache_item::reverse_cache_item(const reverse_cache_item & item)
+   {
+
+      this->operator = (item);
 
    }
 
@@ -1096,6 +1140,28 @@ namespace sockets
 
    }
 
+
+   net::reverse_cache_item & net::reverse_cache_item::operator = (const reverse_cache_item & item)
+   {
+
+      if(this==&item)
+         return *this;
+
+      memcpy(&m_ipaddr, &item.m_ipaddr, sizeof(item));
+      m_dwLastChecked = item.m_dwLastChecked;
+      m_strReverse = item.m_strReverse;
+      r = item.r;
+
+      return *this;
+
+   }
+
+
 } // namespace sockets
+
+
+
+
+
 
 

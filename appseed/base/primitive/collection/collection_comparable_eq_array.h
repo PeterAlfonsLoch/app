@@ -44,6 +44,11 @@ public:
    bool operator != (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a);
 
 
+   comparable_eq_array< TYPE, ARG_TYPE, ARRAY_TYPE > & operator = (const comparable_eq_array & array);
+   comparable_eq_array< TYPE, ARG_TYPE, ARRAY_TYPE > & operator = (comparable_eq_array && array);
+
+
+
 };
 
 template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
@@ -53,17 +58,16 @@ comparable_eq_array()
 }
 template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 comparable_eq_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
-comparable_eq_array(const comparable_eq_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & a) :
-ARRAY_TYPE(a)
+comparable_eq_array(const comparable_eq_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & a)
 {
    this->operator = (a);
 }
 
 template < class TYPE,class ARG_TYPE,class ARRAY_TYPE>
 comparable_eq_array<  TYPE,ARG_TYPE,ARRAY_TYPE>::
-comparable_eq_array( comparable_eq_array<  TYPE,ARG_TYPE,ARRAY_TYPE> && a):
-ARRAY_TYPE(a)
+comparable_eq_array( comparable_eq_array<  TYPE,ARG_TYPE,ARRAY_TYPE> && a)
 {
+   this->operator = (a);
 }
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
@@ -315,3 +319,69 @@ bool comparable_eq_array < TYPE, ARG_TYPE , ARRAY_TYPE >::operator != (const com
 {
    return !operator==(a);
 }
+
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+inline comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE> & comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE>::
+operator = (const comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE> & a)
+{
+   this->ARRAY_TYPE::operator = (a);
+   return *this;
+}
+
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+inline comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE> & comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE>::
+operator = (comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE> && a)
+{
+   this->ARRAY_TYPE::operator = (a);
+   return *this;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

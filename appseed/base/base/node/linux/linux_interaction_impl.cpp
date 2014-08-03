@@ -4192,7 +4192,7 @@ throw not_implemented(get_app());
    }
 
 
-   /*::user::interaction * interaction_impl::GetParent()
+   ::user::interaction * interaction_impl::get_parent()
    {
       if(!::IsWindow((oswindow) get_handle()))
          return NULL;
@@ -4200,7 +4200,7 @@ throw not_implemented(get_app());
          return NULL;
       //return ::linux::interaction_impl::from_handle(::GetParent(get_handle()));
       return NULL;
-   }*/
+   }
 
    LONG interaction_impl::GetWindowLong(int32_t nIndex)
    {
@@ -4923,15 +4923,15 @@ if(psurface == g_cairosurface)
 
    }
 
-   /*sp(::user::interaction) interaction_impl::GetCapture()
+   sp(::user::interaction) interaction_impl::get_capture()
    {
 
       if(::GetCapture() == NULL)
          return NULL;
 
-      return  (::GetCapture()->get_user_interaction()->m_pimpl.m_p);
+      return ::GetCapture()->get_user_interaction();
 
-   }*/
+   }
 
    sp(::user::interaction) interaction_impl::set_capture(sp(::user::interaction) pinterface)
    {

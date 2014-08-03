@@ -15,6 +15,8 @@ public:
    void quick_sort(bool bAsc = true);
 
 
+   comparable_array & operator = (const comparable_array & array);
+   comparable_array & operator = (comparable_array && array);
 
 
 };
@@ -31,8 +33,7 @@ comparable_array()
 
 template < class TYPE,class ARG_TYPE,class ARRAY_TYPE>
 comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
-comparable_array(const comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & a) :
-ARRAY_TYPE(a)
+comparable_array(const comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & a)
 {
 
    this->operator = (a);
@@ -41,10 +42,31 @@ ARRAY_TYPE(a)
 
 template < class TYPE,class ARG_TYPE,class ARRAY_TYPE>
 comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE>::
-comparable_array(comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE> && a):
-ARRAY_TYPE(a)
+comparable_array(comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE> && a)
 {
 
+   this->operator = (a);
+
+}
+
+
+template < class TYPE,class ARG_TYPE,class ARRAY_TYPE>
+comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
+operator = (const comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & a)
+{
+
+   this->ARRAY_TYPE::operator = (a);
+   return *this;
+
+}
+
+template < class TYPE,class ARG_TYPE,class ARRAY_TYPE>
+comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE>::
+operator = (comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE> && a)
+{
+
+   this->ARRAY_TYPE::operator = (a);
+   return *this;
 
 }
 
@@ -154,6 +176,11 @@ public:
 
    ptr_array();
    ptr_array(const ptr_array & array);
+   ptr_array(ptr_array && array);
+
+
+   ptr_array & operator = (const ptr_array & array);
+   ptr_array & operator = (ptr_array && array);
 
 };
 
@@ -170,11 +197,38 @@ ptr_array()
 
 template < class TYPE, class ARRAY_TYPE >
 ptr_array<  TYPE,  ARRAY_TYPE>::
-ptr_array(const ptr_array<  TYPE, ARRAY_TYPE> & a) :
-ARRAY_TYPE(a)
+ptr_array(const ptr_array<  TYPE, ARRAY_TYPE> & a)
 {
    this->operator = (a);
 }
+
+template < class TYPE, class ARRAY_TYPE >
+ptr_array<  TYPE,  ARRAY_TYPE>::
+ptr_array(ptr_array<  TYPE, ARRAY_TYPE> && a)
+{
+   this->operator = (a);
+}
+
+template < class TYPE, class ARRAY_TYPE >
+ptr_array<  TYPE,  ARRAY_TYPE> & ptr_array<  TYPE,  ARRAY_TYPE>::
+operator = (const ptr_array<  TYPE, ARRAY_TYPE> & a)
+{
+   this->ARRAY_TYPE::operator = (a);
+   return *this;
+}
+
+
+template < class TYPE, class ARRAY_TYPE >
+ptr_array<  TYPE,  ARRAY_TYPE> & ptr_array<  TYPE,  ARRAY_TYPE>::
+operator = (ptr_array<  TYPE, ARRAY_TYPE> && a)
+{
+   this->ARRAY_TYPE::operator = (a);
+   return *this;
+}
+
+
+
+
 
 
 
