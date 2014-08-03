@@ -1038,7 +1038,17 @@ namespace filemanager
    int32_t ImageSet::GetImageByExtension(oswindow oswindow, const char * pszPath, EIcon eicon, bool bFolder)
    {
 
+#ifdef WINDOWSEX
+
       return GetFooImage(oswindow,eicon,bFolder,System.file().extension(pszPath));
+
+#else
+
+      return 0x80000000;
+
+#endif // WINDOWSEX
+
+
       /*
 
       single_lock sl(&m_mutex, true);
@@ -1583,7 +1593,7 @@ namespace filemanager
 
    }
 
-      
+
 #ifdef WINDOWSEX
 
    bool ImageSet::GetIcon(
@@ -1597,7 +1607,7 @@ namespace filemanager
 
       single_lock sl(&m_mutex, true);
 
-      
+
       LPITEMIDLIST lpiidlAbsolute;
       _017ItemIDListParsePath(&lpiidlAbsolute, psz);
       bool bGet = GetIcon(oswindow, lpiidlAbsolute, lpcszExtra, eicon, phicon16, phicon48);

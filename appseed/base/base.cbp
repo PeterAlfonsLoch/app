@@ -168,6 +168,7 @@
 		<Unit filename="base/base/base_keeper.h" />
 		<Unit filename="base/base/base_launcher.h" />
 		<Unit filename="base/base/base_libc.h" />
+		<Unit filename="base/base/base_library.cpp" />
 		<Unit filename="base/base/base_library.h" />
 		<Unit filename="base/base/base_live_object.cpp" />
 		<Unit filename="base/base/base_live_object.h" />
@@ -473,6 +474,7 @@
 		<Unit filename="base/crypto/crypto_sha1.cpp" />
 		<Unit filename="base/crypto/crypto_sha1.h" />
 		<Unit filename="base/crypto/crypto_whirpool.cpp" />
+		<Unit filename="base/exception/_exception.txt" />
 		<Unit filename="base/exception/exception.cpp" />
 		<Unit filename="base/exception/exception.h" />
 		<Unit filename="base/exception/exception2.h" />
@@ -520,6 +522,7 @@
 		<Unit filename="base/exception/exception_memory.h" />
 		<Unit filename="base/exception/exception_memory_state.h" />
 		<Unit filename="base/exception/exception_misc.h" />
+		<Unit filename="base/exception/exception_mm.mm" />
 		<Unit filename="base/exception/exception_not_implemented.cpp" />
 		<Unit filename="base/exception/exception_not_implemented.h" />
 		<Unit filename="base/exception/exception_not_installed.cpp" />
@@ -534,6 +537,8 @@
 		<Unit filename="base/exception/exception_os.h" />
 		<Unit filename="base/exception/exception_overflow_error.cpp" />
 		<Unit filename="base/exception/exception_overflow_error.h" />
+		<Unit filename="base/exception/exception_parsing.cpp" />
+		<Unit filename="base/exception/exception_parsing.h" />
 		<Unit filename="base/exception/exception_range_error.cpp" />
 		<Unit filename="base/exception/exception_range_error.h" />
 		<Unit filename="base/exception/exception_resource.cpp" />
@@ -2998,8 +3003,12 @@
 		<Unit filename="filesystem/file/file_dir_application.h" />
 		<Unit filename="filesystem/file/file_dir_system.cpp" />
 		<Unit filename="filesystem/file/file_dir_system.h" />
+		<Unit filename="filesystem/file/file_edit_buffer.cpp" />
+		<Unit filename="filesystem/file/file_edit_buffer.h" />
 		<Unit filename="filesystem/file/file_exception.cpp" />
 		<Unit filename="filesystem/file/file_exception.h" />
+		<Unit filename="filesystem/file/file_folder_watch.cpp" />
+		<Unit filename="filesystem/file/file_folder_watch.h" />
 		<Unit filename="filesystem/file/file_input_stream.cpp" />
 		<Unit filename="filesystem/file/file_input_stream.h" />
 		<Unit filename="filesystem/file/file_memory_buffer.cpp" />
@@ -3026,6 +3035,7 @@
 		<Unit filename="filesystem/file/file_reader.h" />
 		<Unit filename="filesystem/file/file_seekable.cpp" />
 		<Unit filename="filesystem/file/file_seekable.h" />
+		<Unit filename="filesystem/file/file_serializable.cpp" />
 		<Unit filename="filesystem/file/file_serializable.h" />
 		<Unit filename="filesystem/file/file_set.cpp" />
 		<Unit filename="filesystem/file/file_set.h" />

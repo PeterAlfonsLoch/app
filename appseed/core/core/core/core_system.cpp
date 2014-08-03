@@ -117,7 +117,7 @@ namespace core
 
    }
 
-   
+
 
    void system::construct(const char * pszAppId)
    {
@@ -415,12 +415,12 @@ namespace core
          TRACE("reach");
       }
 
-      if(!stricmp(pszLibrary,"app_core_hellomultiverse.dll"))
+      if(!stricmp_dup(pszLibrary,"app_core_hellomultiverse.dll"))
       {
          TRACE("reach app_core_hellomultiverse.dll");
       }
 
-      if(!stricmp(pszLibrary,"app_core_hellomultiverse"))
+      if(!stricmp_dup(pszLibrary,"app_core_hellomultiverse"))
       {
          TRACE("reach app_core_hellomultiverse");
       }
