@@ -53,7 +53,7 @@ namespace base
    }
 
 
-   bool library::open(const char * pszPath,bool bCa2Path,bool bAutoClose)
+   bool library::open(const char * pszPath,bool bAutoClose,bool bCa2Path)
    {
 
       m_bAutoClose = bAutoClose;
