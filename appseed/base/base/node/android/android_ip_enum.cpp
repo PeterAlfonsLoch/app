@@ -25,7 +25,7 @@ namespace android
 
    ip_enum::ip_enum(sp(::base::application) papp) :
       element(papp),
-      ::ca2::ip_enum(papp)
+      ::net::ip_enum(papp)
    {
 
    }

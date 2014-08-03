@@ -10,7 +10,7 @@ namespace android
 
    os::os(sp(::base::application) papp) :
       element(papp),
-      ::ca2::os(papp)
+      ::base::os(papp)
    {
    }
 
@@ -570,7 +570,7 @@ namespace android
 
    }
 
-   bool os::create_service(::plane::application * papp)
+   bool os::create_service(sp(::base::application) papp)
    {
 
       //throw not_implemented(get_app());
@@ -580,21 +580,21 @@ namespace android
    }
 
 
-   bool os::remove_service(::plane::application * papp)
+   bool os::remove_service(sp(::base::application) papp)
    {
 //      throw not_implemented(get_app());
       return false;
 
    }
 
-   bool os::start_service(::plane::application * papp)
+   bool os::start_service(sp(::base::application) papp)
    {
       //throw not_implemented(get_app());
       return false;
 
    }
 
-   bool os::stop_service(::plane::application * papp)
+   bool os::stop_service(sp(::base::application) papp)
    {
       throw not_implemented(get_app());
       return false;

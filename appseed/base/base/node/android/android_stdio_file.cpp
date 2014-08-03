@@ -30,7 +30,7 @@ bool stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
    ASSERT(lpszFileName != NULL);
    //ASSERT(AfxIsValidString(lpszFileName));
 
-   if(nOpenFlags  & ::file::buffer::defer_create_directory)
+   if(nOpenFlags  & ::file::defer_create_directory)
    {
       Application.dir().mk(System.dir().name(lpszFileName));
    }

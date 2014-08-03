@@ -325,9 +325,9 @@ namespace android
    string file_system::as_string(var varFile, var & varQuery, sp(::base::application) papp)
    {
       primitive::memory storage;
-      if(varFile.cast < ::file::buffer > () != NULL)
+      if(varFile.cast < ::file::stream_buffer > () != NULL)
       {
-         storage.FullLoad(*varFile.cast < ::file::buffer >());
+         storage.transfer_from(*varFile.cast < ::file::stream_buffer >());
       }
       else
       {
@@ -336,7 +336,7 @@ namespace android
             return "";
          if(papp->m_bZipIsDir && (::str::find_ci(".zip:", strFilePath) >= 0))
          {
-            ::primitive::memory_file memfile(papp, &storage);
+            ::file::memory_buffer memfile(papp, &storage);
             zip::InFile infile(get_app());
             if(!infile.unzip_open(strFilePath, 0))
                return "";
@@ -354,29 +354,11 @@ namespace android
          else if(::str::begins_ci(strFilePath, "http://")
          || ::str::begins_ci(strFilePath, "https://"))
          {
-            ::ca2::property_set post;
-            ::ca2::property_set headers;
-            if(varQuery.has_property("post"))
-            {
-               post = varQuery["post"].propset();
-            }
-            if(varQuery.has_property("in_headers"))
-            {
-               headers = varQuery["in_headers"].propset();
-            }
-            if(varQuery.propset()["disable_ca2_sessid"])
-            {
-               App(papp).http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, NULL);
-            }
-            else if(varQuery.propset()["optional_ca2_sessid"])
-            {
-               App(papp).http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, NULL);
-            }
-            else if(strFilePath.contains("/matter.ca2.cc/") || strFilePath.contains(".matter.ca2.cc/"))
+            if(strFilePath.contains("/matter.ca2.cc/") || strFilePath.contains(".matter.ca2.cc/"))
             {
                try
                {
-                  storage.FullLoad(sess(papp).file().get_file(strFilePath, ::file::type_binary | ::file::mode_read));
+                  storage.transfer_from(*App(papp).file().get_file(strFilePath, ::file::type_binary | ::file::mode_read));
                }
                catch(...)
                {
@@ -384,9 +366,8 @@ namespace android
             }
             else
             {
-               App(papp).http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, &AppUser(papp));
+               App(papp).http().get(strFilePath, storage, varQuery.propset());
             }
-            varQuery["out_headers"] = headers;
          }
          else
          {
@@ -428,7 +409,7 @@ namespace android
          if(strPath.is_empty())
          {
 
-            TRACE("::file::buffer::file_system::as_memory varFile is a empty file name!!");
+            TRACE("::file::stream_buffer::file_system::as_memory varFile is a empty file name!!");
 
             return;
 
@@ -439,7 +420,9 @@ namespace android
          if((::str::begins(strPath, "http://") || ::str::begins(strPath, "https://")))
          {
 
-            App(papp).http().get(strPath, mem, &AppUser(papp));
+            ::property_set set(papp);
+
+            App(papp).http().get(strPath, mem, set);
 
             return;
 
@@ -452,9 +435,9 @@ namespace android
       try
       {
 
-         spfile = sess(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::buffer::shareDenyNone);
+         spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_none);
 
-         mem.FullLoad(spfile);
+         mem.transfer_from(*spfile);
 
       }
       catch(...)
@@ -468,7 +451,7 @@ namespace android
    void file_system::lines(stringa & stra, var varFile, sp(::base::application) papp)
    {
       UNREFERENCED_PARAMETER(papp);
-      ::ca2::text_file_sp spfile(get_app());
+      ::file::text_buffer_sp spfile(get_app());
 
       try
       {
@@ -494,7 +477,7 @@ namespace android
 
       ::file::buffer_sp spfile;
 
-      spfile = sess(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::buffer::shareDenyNone | ::file::buffer::defer_create_directory);
+      spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
 
       if(spfile.is_null())
          return false;
@@ -517,10 +500,10 @@ namespace android
       }
    }
 
-   bool file_system::put_contents(var varFile, ::file::buffer & file, sp(::base::application) papp)
+   bool file_system::put_contents(var varFile, ::file::reader & file, sp(::base::application) papp)
    {
       ::file::buffer_sp spfile;
-      spfile = sess(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::buffer::shareDenyNone | ::file::buffer::defer_create_directory);
+      spfile = App(papp).file().get_file(varFile,::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
       if(spfile.is_null())
          return false;
       primitive::memory mem;
@@ -541,10 +524,10 @@ namespace android
    bool file_system::put_contents_utf8(var varFile, const char * lpcszContents, sp(::base::application) papp)
    {
       ::file::buffer_sp spfile;
-      spfile = sess(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::buffer::shareDenyNone | ::file::buffer::defer_create_directory);
+      spfile = App(papp).file().get_file(varFile,::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
       if(spfile.is_null())
          return false;
-      ::ca2::byte_output_stream(spfile) << "\xef\xbb\xbf";
+      ::file::byte_output_stream(spfile) << "\xef\xbb\xbf";
       spfile->write(lpcszContents, strlen(lpcszContents));
       return true;
    }
@@ -717,7 +700,7 @@ namespace android
          }
 
          ::file::buffer_sp ofile;
-         ofile = sess(papp).file().get_file(strNew, ::file::mode_write | ::file::type_binary | ::file::mode_create | ::file::buffer::defer_create_directory | ::file::buffer::shareDenyWrite);
+         ofile = App(papp).file().get_file(strNew,::file::mode_write | ::file::type_binary | ::file::mode_create | ::file::defer_create_directory | ::file::share_deny_write);
          if(ofile.is_null())
          {
             string strError;
@@ -726,7 +709,7 @@ namespace android
          }
 
          ::file::buffer_sp ifile;
-         ifile = sess(papp).file().get_file(psz, ::file::mode_read | ::file::type_binary | ::file::buffer::shareDenyNone);
+         ifile = App(papp).file().get_file(psz,::file::mode_read | ::file::type_binary | ::file::share_deny_none);
          if(ifile.is_null())
          {
             string strError;
@@ -734,7 +717,10 @@ namespace android
             throw strError;
          }
 
-         System.compress().null(ofile, ifile);
+         ::file::output_stream os(ofile);
+         ::file::input_stream is(ifile);
+
+         System.compress().null(os, is);
 
 
 
@@ -925,7 +911,8 @@ namespace android
       }
       else if(::str::begins_ci_iws(pszPath, "http://") || ::str::begins_ci_iws(pszPath, "https://"))
       {
-         return App(papp).http().exists(pszPath);
+         ::property_set set(papp);
+         return App(papp).http().exists(pszPath, set);
       }
 
       if(papp->m_bZipIsDir)
@@ -975,7 +962,8 @@ namespace android
       if(::str::begins_ci_iws(strPath, "http://")
       || ::str::begins_ci_iws(strPath, "https://"))
       {
-         return App(papp).http().exists(strPath);
+         ::property_set set(papp);
+         return App(papp).http().exists(strPath, set);
       }
 
 
