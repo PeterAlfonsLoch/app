@@ -34,7 +34,7 @@ namespace windows
 
       WNDPROC                                   m_pfnSuper;          // for subclassing of controls
       static const UINT                         m_nMsgDragList;
-      int32_t                                   m_nModalResult;      // for return values from interaction_impl::RunModalLoop
+      //int32_t                                   m_nModalResult;      // for return values from interaction_impl::RunModalLoop
 
       ::user::EAppearance                       m_eapperanceLayout;
 
@@ -425,7 +425,7 @@ namespace windows
       // dialog support
       void UpdateDialogControls(command_target* pTarget,bool bDisableIfNoHndler);
       void CenterWindow(sp(::user::interaction) pAlternateOwner = NULL);
-      virtual id   RunModalLoop(uint32_t dwFlags = 0,::base::live_object * pliveobject = NULL);
+      //virtual id   RunModalLoop(uint32_t dwFlags = 0,::base::live_object * pliveobject = NULL);
       virtual bool ContinueModal(int32_t iLevel);
       virtual void EndModalLoop(id nResult);
       virtual void EndAllModalLoops(id nResult);

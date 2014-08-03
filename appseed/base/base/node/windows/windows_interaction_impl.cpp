@@ -2890,7 +2890,7 @@ namespace windows
 
    }
 
-
+   /*
    id interaction_impl::RunModalLoop(uint32_t dwFlags,::base::live_object * pliveobject)
    {
       // for tracking the idle time state
@@ -2992,7 +2992,7 @@ namespace windows
 
       return m_pui->m_nModalResult;
 
-   }
+   }*/
 
 
    bool interaction_impl::ContinueModal(int32_t iLevel)
