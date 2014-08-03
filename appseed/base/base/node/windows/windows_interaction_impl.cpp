@@ -275,7 +275,7 @@ namespace windows
 
          //::simple_message_box(NULL,"h3","h3",MB_OK);
 
-         if(m_pbaseapp.is_null())
+         if(m_pbaseapp == NULL)
             return FALSE;
 
          uint32_t dwLastError = GetLastError();
