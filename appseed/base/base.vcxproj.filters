@@ -8920,9 +8920,6 @@
     <ClCompile Include="base\node\android\android_thread.cpp">
       <Filter>Source Files\base\node\android</Filter>
     </ClCompile>
-    <ClCompile Include="base\node\android\android_thread_local_storage.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\android\android_trace.cpp">
       <Filter>Source Files\base\node\android</Filter>
     </ClCompile>
@@ -9132,6 +9129,9 @@
     </ClCompile>
     <ClCompile Include="base\node\windows\windows_interaction_impl.cpp">
       <Filter>Source Files\base\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_serializable.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -9392,6 +9392,9 @@
     </None>
     <None Include="primitive\collection\collection.inl">
       <Filter>Header Files\primitive\collection</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

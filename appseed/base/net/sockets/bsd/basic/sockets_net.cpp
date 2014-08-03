@@ -1093,7 +1093,7 @@ namespace sockets
       if(this==&item)
          return *this;
 
-      memcpy(&m_ipaddr, &item.m_ipaddr, sizeof(item));
+      memcpy(&m_ipaddr,&item.m_ipaddr,sizeof(m_ipaddr));
       m_dwLastChecked = item.m_dwLastChecked;
       r = item.r;
 
@@ -1147,7 +1147,7 @@ namespace sockets
       if(this==&item)
          return *this;
 
-      memcpy(&m_ipaddr, &item.m_ipaddr, sizeof(item));
+      memcpy(&m_ipaddr, &item.m_ipaddr, sizeof(m_ipaddr));
       m_dwLastChecked = item.m_dwLastChecked;
       m_strReverse = item.m_strReverse;
       r = item.r;

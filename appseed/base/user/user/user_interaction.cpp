@@ -3240,9 +3240,9 @@ namespace user
             if(pholder.is_set())
             {
 
-               single_lock sl(puiParent->m_pbaseapp->m_pmutex,TRUE);
-
-               single_lock sl2(m_pbaseapp->m_pmutex,TRUE);
+               // A Copy Paste error (the commented out code below)?
+               //single_lock sl(puiParent->m_pbaseapp->m_pmutex,TRUE);
+               //single_lock sl2(m_pbaseapp->m_pmutex,TRUE);
 
                if(!pholder->is_holding(this))
                {

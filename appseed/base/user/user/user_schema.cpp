@@ -128,11 +128,11 @@ namespace user
 
       COLORREF cr;
 
+      if(get_color(cr, ecolor))
+         return cr;
+
       if(ecolor == color_text)
       {
-
-         if(get_color(cr,color_text))
-            return cr;
 
          return ARGB(255,0,0,0);
 
@@ -140,17 +140,11 @@ namespace user
       else if(ecolor == color_text_selected)
       {
 
-         if(get_color(cr,color_text_selected))
-            return cr;
-
          return ARGB(255,255,255,255);
 
       }
       else if(ecolor == color_text_highlight)
       {
-
-         if(get_color(cr,color_text_highlight))
-            return cr;
 
          return ARGB(255,55,105,255);
 
@@ -158,17 +152,11 @@ namespace user
       else if(ecolor == color_text_selected_highlight)
       {
 
-         if(get_color(cr,color_text_selected_highlight))
-            return cr;
-
          return ARGB(255,102,153,255);
 
       }
       else if(ecolor == color_background)
       {
-
-         if(get_color(cr,ecolor))
-            return cr;
 
          if(_001IsTranslucent())
          {
@@ -187,8 +175,22 @@ namespace user
       else if(ecolor == color_background_selected)
       {
 
-         if(get_color(cr,ecolor))
-            return cr;
+         if(_001IsTranslucent())
+         {
+
+            return ARGB(184,0,0,127);
+
+         }
+         else
+         {
+
+            return ARGB(255,0,0,127);
+
+         }
+
+      }
+      else if(ecolor == color_background_selected)
+      {
 
          if(_001IsTranslucent())
          {
@@ -204,7 +206,13 @@ namespace user
          }
 
       }
-      
+      else if(ecolor == color_border_normal)
+      {
+
+         return ARGB(255,84,84,77);
+
+      }
+
 
 
 

@@ -4822,6 +4822,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\os\windows\windows_utils.cpp" />
     <ClCompile Include="base\os\windows\windows_window_gdi.cpp" />
     <ClCompile Include="filesystem\file\file_edit_buffer.cpp" />
+    <ClCompile Include="filesystem\file\file_serializable.cpp" />
     <ClCompile Include="filesystem\fs\fs_link.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
