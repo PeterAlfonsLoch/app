@@ -7,9 +7,9 @@ class CLASS_DECL_BASE root
 public:
 
 
-   int64_t                    m_countReference;
-   bool                       m_bHeap;
-   sp(::base::application)       m_pbaseapp;
+   int64_t                       m_countReference;
+   bool                          m_bHeap;
+   ::base::application *         m_pbaseapp;
 
 
 

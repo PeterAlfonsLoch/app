@@ -43,21 +43,21 @@ bool stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
    int32_t nMode = 0;
 
    // determine read/write mode depending on ::file::buffer_sp mode
-   if (nOpenFlags & mode_create)
+   if (nOpenFlags & ::file::mode_create)
    {
-      if (nOpenFlags & modeNoTruncate)
+      if(nOpenFlags & ::file::mode_no_truncate)
          szMode[nMode++] = 'a';
       else
          szMode[nMode++] = 'w';
    }
-   else if (nOpenFlags & mode_write)
+   else if(nOpenFlags & ::file::mode_write)
       szMode[nMode++] = 'a';
    else
       szMode[nMode++] = 'r';
 
    // add '+' if necessary (when read/write modes mismatched)
-   if (szMode[0] == 'r' && (nOpenFlags & mode_read_write) ||
-      szMode[0] != 'r' && !(nOpenFlags & mode_write))
+   if(szMode[0] == 'r' && (nOpenFlags & ::file::mode_read_write) ||
+      szMode[0] != 'r' && !(nOpenFlags & ::file::mode_write))
    {
       // current szMode mismatched, need to add '+' to fix
       szMode[nMode++] = '+';
@@ -65,10 +65,10 @@ bool stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
 
    // will be inverted if not necessary
    int32_t nFlags = O_RDONLY;
-   if (nOpenFlags & (mode_write|mode_read_write))
+   if(nOpenFlags & (::file::mode_write | ::file::mode_read_write))
       nFlags ^= O_RDONLY;
 
-   if (nOpenFlags & type_binary)
+   if(nOpenFlags & ::file::type_binary)
       szMode[nMode++] = 'b'; // , nFlags ^= _O_TEXT;
    else
       szMode[nMode++] = 't';
@@ -140,25 +140,36 @@ void stdio_file::write_string(const char * lpsz)
 
    if (fputs(lpsz, m_pStream) == EOF)
       vfxThrowFileException(get_app(), ::file::exception::diskFull, errno, m_strFileName);
+
 }
+
 
 LPTSTR stdio_file::read_string(LPTSTR lpsz, UINT nMax)
 {
+
    ASSERT(lpsz != NULL);
-//   ASSERT(fx_is_valid_address(lpsz, nMax));
+
    ASSERT(m_pStream != NULL);
 
    LPTSTR lpszResult = fgets(lpsz, nMax, m_pStream);
+
    if (lpszResult == NULL && !feof(m_pStream))
    {
+
       clearerr(m_pStream);
+
       vfxThrowFileException(get_app(), ::file::exception::type_generic, errno, m_strFileName);
+
    }
+
    return lpszResult;
+
 }
 
-UINT stdio_file::read_string(string & rString)
+
+bool stdio_file::read_string(string & rString)
 {
+
    ASSERT_VALID(this);
 
    //rString = &afxWchNil;    // is_empty string without deallocating

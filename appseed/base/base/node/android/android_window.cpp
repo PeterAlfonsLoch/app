@@ -6,6 +6,20 @@
 //#include <X11/extensions/Xcomposite.h>
 
 
+CLASS_DECL_BASE int32_t oswindow_find_message_only_window(::user::interaction * puibaseMessageWindow);
+//CLASS_DECL_BASE int32_t oswindow_find(Display * pdisplay,Window window);
+//CLASS_DECL_BASE int32_t oswindow_find(Window window);
+CLASS_DECL_BASE oswindow_data * oswindow_get_message_only_window(::user::interaction * puibaseMessageWindow);
+//CLASS_DECL_BASE oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual = NULL);
+//CLASS_DECL_BASE oswindow_data * oswindow_get(Window window);
+//CLASS_DECL_BASE oswindow oswindow_defer_get(Window w);
+//CLASS_DECL_BASE bool oswindow_remove(Display * pdisplay,Window window);
+CLASS_DECL_BASE bool oswindow_remove_message_only_window(::user::interaction * puibaseMessageOnlyWindow);
+
+
+
+
+
 //#define COMPILE_MULTIMON_STUBS
 //#include <multimon.h>
 
@@ -68,70 +82,32 @@ namespace android
    interaction_impl::interaction_impl()
    {
       m_pcallback = NULL;
-//      m_pguie = this;
-////      set_handle(NULL);
-//      m_pguieOwner = NULL;
-      //m_pguie->m_nFlags = 0;
-//      m_pfnSuper = NULL;
       m_nModalResult = 0;
       m_bMouseHover = false;
-      m_pfont = NULL;
       m_pguiecapture = NULL;
-      m_pmutexGraphics = NULL;
-//      m_cairo = NULL;
-  //    m_cairosurface = NULL;
-    //  m_cairoSource = NULL;
-//      m_cairosurfaceSource = NULL;
-  //    m_cairoWork = NULL;
-//      m_cairosurfaceWork = NULL;
       m_bExposing = false;
       m_oswindow = NULL;
    }
 
    void interaction_impl::construct(oswindow hWnd)
    {
+
       m_pcallback = NULL;
-      //m_pguie = this;
       m_oswindow = hWnd;
-      //set_handle(hWnd);
-      //m_pguie->m_nFlags = 0;
-//      m_pfnSuper = NULL;
       m_nModalResult = 0;
       m_bMouseHover = false;
-      m_pfont = NULL;
       m_pguiecapture = NULL;
-      m_pmutexGraphics = NULL;
-//      m_cairo = NULL;
-  //    m_cairosurface = NULL;
-    //  m_cairoSource = NULL;
-      //m_cairosurfaceSource = NULL;
-//      m_cairoWork = NULL;
-  //    m_cairosurfaceWork = NULL;
       m_bExposing = false;
 
    }
 
    interaction_impl::interaction_impl(sp(::base::application) papp) :
-      element(papp),
-      ::user::interaction(papp)
+      element(papp)
    {
       m_pcallback = NULL;
-      m_pguie = this;
-//      set_handle(NULL);
-      m_pguieOwner = NULL;
-      m_pguie->m_nFlags = 0;
-//      m_pfnSuper = NULL;
       m_nModalResult = 0;
       m_bMouseHover = false;
-      m_pfont = NULL;
       m_pguiecapture = NULL;
-      m_pmutexGraphics = NULL;
-//      m_cairo = NULL;
-  //    m_cairosurface = NULL;
-    //  m_cairoSource = NULL;
-      //m_cairosurfaceSource = NULL;
-//      m_cairoWork = NULL;
-  //    m_cairosurfaceWork = NULL;
       m_bExposing = false;
       m_oswindow = NULL;
 
@@ -140,36 +116,29 @@ namespace android
    interaction_impl::~interaction_impl()
    {
 
-      if(m_papp != NULL && m_papp->m_psystem != NULL && Sys(m_papp).user().is_set() && Sys(m_papp).user()->m_pwindowmap != NULL)
+      if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL && m_pbaseapp->m_pbasesession->user().is_set() && m_pbaseapp->m_pbasesession->user()->m_pwindowmap != NULL)
       {
-         Sys(m_papp).user()->m_pwindowmap->m_map.remove_key((int_ptr) get_handle());
+         m_pbaseapp->m_pbasesession->user()->m_pwindowmap->m_map.remove_key((int_ptr) get_handle());
       }
 
-      //single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex, TRUE);
-      if(m_pfont != NULL)
-      {
-         delete m_pfont;
-      }
-      //sl.unlock();
-      if(m_oswindow != NULL)
-      {
-
-         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: calling DestroyWindow in interaction_impl::~interaction_impl; "
-            "OnDestroy or PostNcDestroy in derived class will not be called.\n");
-         m_pcallback = NULL;
-         DestroyWindow();
-      }
    }
 
 
    sp(::user::interaction) interaction_impl::from_os_data(void * pdata)
    {
-      return from_handle((oswindow) pdata);
+
+      if(pdata == NULL)
+         return NULL;
+
+      return ((oswindow) pdata)->get_user_interaction();
+
    }
 
    void * interaction_impl::get_os_data() const
    {
+
       return m_oswindow;
+
    }
 
 
@@ -236,7 +205,8 @@ namespace android
    }
 
 
-   ::android::interaction_impl * interaction_impl::from_handle(oswindow oswindow)
+   /*
+   sp(::user::interaction) interaction_impl::from_handle(oswindow oswindow)
    {
 
       if(oswindow->get_user_interaction() == NULL)
@@ -244,21 +214,26 @@ namespace android
 
       ::user::interaction * pui = oswindow->get_user_interaction()->m_pimpl.m_p;
 
-      return dynamic_cast < ::android::interaction_impl * > (pui);
+      return dynamic_cast < sp(::user::interaction) > (pui);
 
    }
 
+   */
 
-   interaction_impl * PASCAL interaction_impl::FromHandlePermanent(oswindow oswindow)
+   /*
+   sp(::user::interaction) interaction_impl::FromHandlePermanent(oswindow oswindow)
    {
 
       if(oswindow->get_user_interaction() == NULL)
          return NULL;
 
-      return dynamic_cast < ::android::interaction_impl * > (oswindow->get_user_interaction()->m_pimpl.m_p);
+      return dynamic_cast < sp(::user::interaction) > (oswindow->get_user_interaction()->m_pimpl.m_p);
 
    }
 
+   */
+
+   /*
    bool interaction_impl::Attach(oswindow hWndNew)
    {
 
@@ -273,9 +248,9 @@ namespace android
       //ASSERT(pMap != NULL);
 
       //pMap->set_permanent(set_handle(hWndNew), this);
-      //if(m_pguie == NULL)
+      //if(m_pui == NULL)
       {
-         //m_pguie = this;
+         //m_pui = this;
       }
 
       m_oswindow = hWndNew;
@@ -283,7 +258,9 @@ namespace android
       return TRUE;
 
    }
+   */
 
+   /*
    oswindow interaction_impl::Detach()
    {
 
@@ -303,7 +280,7 @@ namespace android
       return hWnd;
 
    }
-
+   */
 
    void interaction_impl::pre_subclass_window()
    {
@@ -439,9 +416,9 @@ xdisplay d(w->display());
       cs.lpCreateParams = lpParam;
 
 
-      if(m_pguie != NULL && m_pguie != this)
+      if(m_pui != NULL)
       {
-         if(!m_pguie->pre_create_window(cs))
+         if(!m_pui->pre_create_window(cs))
          {
             PostNcDestroy();
             return FALSE;
@@ -464,12 +441,9 @@ xdisplay d(w->display());
 //      hook_window_create(this);
 
 
-      m_pthread = ::ca2::get_thread();
-      m_pguie->m_pthread = ::ca2::get_thread();
-
       if(cs.hwndParent == (oswindow) HWND_MESSAGE)
       {
-         m_oswindow = oswindow_get_message_only_window(m_pguie.m_p);
+         m_oswindow = oswindow_get_message_only_window(m_pui);
 
          send_message(WM_CREATE, 0, (LPARAM) &cs);
 
@@ -477,7 +451,7 @@ xdisplay d(w->display());
       else
       {
 
-         mutex_lock ml(user_mutex());
+         synch_lock sl(&user_mutex());
 
          //Display *display;
          Window rootwin;
@@ -602,7 +576,7 @@ xdisplay d(w->display());
 
          m_oswindow = oswindow_get(display, interaction_impl, vis);
 
-         m_oswindow->set_user_interaction(m_pguie);
+         m_oswindow->set_user_interaction(m_pui);
 
          XGetWindowAttributes(m_oswindow->display(), m_oswindow->interaction_impl(), &m_attr);
 
@@ -643,11 +617,11 @@ d.unlock();
 
          send_message(WM_CREATE, 0, (LPARAM) &cs);
 
-   //      m_pguie->SetWindowPos(0, 256, 256, cs.cx, cs.cy, 0);
+   //      m_pui->SetWindowPos(0, 256, 256, cs.cx, cs.cy, 0);
 
          send_message(WM_SIZE);
 
-         ANDROID_THREAD(m_pthread->m_pthread->m_p.m_p)->m_oswindowa.add(m_oswindow);
+         ANDROID_THREAD(m_pbaseapp->m_p.m_p)->m_oswindowa.add(m_oswindow);
          */
       }
 
@@ -664,8 +638,8 @@ d.unlock();
          GetClassInfo(System.m_hInstance, lpszClassName, &wndcls) &&
          wndcls.hIcon != NULL)
       {
-         m_pguie->set_icon(new ::visual::icon(wndcls.hIcon), false);
-         m_pguie->set_icon(new ::visual::icon(wndcls.hIcon), true);
+         m_pui->set_icon(new ::visual::icon(wndcls.hIcon), false);
+         m_pui->set_icon(new ::visual::icon(wndcls.hIcon), true);
       }*/
       //      oswindow hwndHandle = get_handle();
 /*      if(android != get_handle())
@@ -693,7 +667,7 @@ d.unlock();
       const char * lpszWindowName, DWORD dwStyle,
       const RECT& rect,
       sp(::user::interaction) pParentWnd, id id,
-      ::ca2::create_context* pContext)
+      sp(::create_context) pContext)
    {
       // can't use for desktop or pop-up windows (use CreateEx instead)
       ASSERT(pParentWnd != NULL);
@@ -734,9 +708,9 @@ d.unlock();
       IGUI_WIN_MSG_LINK(WM_NCDESTROY         , pinterface, this, &interaction_impl::_001OnNcDestroy);
       IGUI_WIN_MSG_LINK(WM_PAINT             , pinterface, this, &interaction_impl::_001OnPaint);
       IGUI_WIN_MSG_LINK(WM_PRINT             , pinterface, this, &interaction_impl::_001OnPrint);
-      if(m_pguie != NULL && m_pguie != this)
+      if(m_pui != NULL)
       {
-         m_pguie->install_message_handling(pinterface);
+         m_pui->install_message_handling(pinterface);
       }
       IGUI_WIN_MSG_LINK(WM_CAPTURECHANGED    , pinterface, this, &interaction_impl::_001OncaptureChanged);
       IGUI_WIN_MSG_LINK(WM_CREATE            , pinterface, this, &interaction_impl::_001OnCreate);
@@ -755,7 +729,7 @@ d.unlock();
       {
          class rect rectWindow;
          ::GetWindowRect(get_handle(), rectWindow);
-         m_pguie->m_rectParentClient = rectWindow;
+         m_pui->m_rectParentClient = rectWindow;
          m_rectParentClient = rectWindow;
       }*/
    }
@@ -769,7 +743,7 @@ d.unlock();
       {
          class rect rectWindow;
          ::GetWindowRect(get_handle(), rectWindow);
-         m_pguie->m_rectParentClient = rectWindow;
+         m_pui->m_rectParentClient = rectWindow;
          m_rectParentClient = rectWindow;
       }*/
 
@@ -788,7 +762,7 @@ d.unlock();
       m_spdib->create(m_rectParentClient.size());
       }*/
 
-      m_pguie->layout();
+      m_pui->layout();
 
 
 
@@ -797,9 +771,9 @@ d.unlock();
    void interaction_impl::_001OnShowWindow(::signal_details * pobj)
    {
       SCAST_PTR(::message::show_window, pshowwindow, pobj);
-      m_bVisible = pshowwindow->m_bShow != FALSE;
-      if(m_pguie != NULL && m_pguie != this)
-         m_pguie->m_bVisible = m_bVisible;
+      
+      if(m_pui != NULL)
+         m_pui->m_bVisible = pshowwindow->m_bShow != FALSE;
    }
 
    void interaction_impl::_001OnDestroy(::signal_details * pobj)
@@ -810,10 +784,9 @@ d.unlock();
       if(pdraw != NULL)
       {
          retry_single_lock sl(&pdraw->m_eventFree, millis(84), millis(84));
-         pdraw->m_wndpaOut.remove(this);
-         pdraw->m_wndpaOut.remove(m_pguie);
+         pdraw->m_wndpaOut.remove(m_pui);
       }
-      ANDROID_THREAD(m_pthread)->m_oswindowa.remove(m_oswindow);
+      ANDROID_THREAD(m_pbaseapp)->m_oswindowa.remove(m_oswindow);
       //oswindow_remove(m_oswindow->display(), m_oswindow->interaction_impl());
    }
 
@@ -827,7 +800,7 @@ d.unlock();
    void interaction_impl::_001OnNcDestroy(::signal_details * pobj)
    {
 
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pbaseapp == NULL ? NULL : &m_pbaseapp->m_pthread->m_mutex, TRUE);
 
       pobj->m_bRet = true;
 
@@ -862,10 +835,10 @@ d.unlock();
 
       // cleanup tooltip support
 
-      if(m_pguie != NULL)
+      if(m_pui != NULL)
       {
 
-         if (m_pguie->m_nFlags & WF_TOOLTIPS)
+         if (m_pui->m_nFlags & WF_TOOLTIPS)
          {
 
          }
@@ -895,9 +868,9 @@ d.unlock();
 
       PostNcDestroy();
 
-      if(m_pguie != NULL && m_pguie != this)
+      if(m_pui != NULL)
       {
-         m_pguie->PostNcDestroy();
+         m_pui->PostNcDestroy();
       }
 
    }
@@ -962,7 +935,7 @@ d.unlock();
          //
          // In general, interaction_impl objects should be passed by oswindow from
          // one thread to another.  The receiving thread can wrap
-         // the oswindow with a interaction_impl object by using ::android::interaction_impl::from_handle.
+         // the oswindow with a interaction_impl object by using sp(::user::interaction)::from_handle.
          //
          // It is dangerous to pass C++ objects from one thread to
          // another, unless the objects are designed to be used in
@@ -991,7 +964,7 @@ d.unlock();
          return; // don't do anything more
       }*/
 
-      sp(::user::interaction) pWnd = (::interaction_impl *) this;
+      sp(::user::interaction) pWnd = (::sp(::user::interaction)) this;
       if (pWnd != this)
          dumpcontext << " (Detached or temporary interaction_impl)";
       else
@@ -999,8 +972,8 @@ d.unlock();
 
       // dump out interaction_impl specific statistics
       char szBuf [64];
-//      if (!const_cast < interaction_impl * > (this)->send_message(WM_QUERYAFXWNDPROC, 0, 0) && pWnd == this)
-  //       ((::interaction_impl *) this)->GetWindowText(szBuf, _countof(szBuf));
+//      if (!const_cast < sp(::user::interaction) > (this)->send_message(WM_QUERYAFXWNDPROC, 0, 0) && pWnd == this)
+  //       ((::sp(::user::interaction)) this)->GetWindowText(szBuf, _countof(szBuf));
   //    else
 //         ::DefWindowProc(get_handle(), WM_GETTEXT, _countof(szBuf), (LPARAM)&szBuf[0]);
     //  dumpcontext << "\ncaption = \"" << szBuf << "\"";
@@ -1009,9 +982,9 @@ d.unlock();
   //    dumpcontext << "\nclass name = \"" << szBuf << "\"";
 
       rect rect;
-      ((::interaction_impl *) this)->GetWindowRect(&rect);
+      ((::sp(::user::interaction)) this)->GetWindowRect(&rect);
       dumpcontext << "\nrect = " << rect;
-      dumpcontext << "\nparent sp(::user::interaction) = " << (void *)((::interaction_impl *) this)->get_parent();
+      dumpcontext << "\nparent sp(::user::interaction) = " << (void *)((::sp(::user::interaction)) this)->get_parent();
 
 //      dumpcontext << "\nstyle = " << (void *)(dword_ptr)::GetWindowLong(get_handle(), GWL_STYLE);
   //    if (::GetWindowLong(get_handle(), GWL_STYLE) & WS_CHILD)
@@ -1029,15 +1002,15 @@ d.unlock();
       if(m_oswindow->m_bMessageOnlyWindow)
       {
 
-         ::oswindow_remove_message_only_window(m_pguie);
+         ::oswindow_remove_message_only_window(m_pui);
 
-         m_pguie = NULL;
+         m_pui = NULL;
 
          return true;
 
       }
 
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pbaseapp == NULL ? NULL : &m_pbaseapp->m_mutex, TRUE);
       sp(::user::interaction) pWnd;
       hwnd_map * pMap;
       oswindow hWndOrig;
@@ -1241,7 +1214,7 @@ d.unlock();
    }*/
 
 /*   sp(::user::interaction) interaction_impl::GetAncestor(UINT gaFlags) const
-   { ASSERT(::IsWindow((oswindow)get_handle())); return  ::android::interaction_impl::from_handle(::GetAncestor((oswindow)get_handle(), gaFlags)); }
+   { ASSERT(::IsWindow((oswindow)get_handle())); return  sp(::user::interaction)::from_handle(::GetAncestor((oswindow)get_handle(), gaFlags)); }
 
 */
 
@@ -1477,9 +1450,9 @@ d.unlock();
    {
       SCAST_PTR(::message::base, pbase, pobj);
 
-      if(m_pguie != NULL)
+      if(m_pui != NULL)
       {
-         m_pguie->pre_translate_message(pobj);
+         m_pui->pre_translate_message(pobj);
          if(pobj->m_bRet)
             return;
       }
@@ -1492,7 +1465,7 @@ d.unlock();
       }
       if(pbase->m_uiMessage == WM_TIMER)
       {
-         //m_pthread->m_pthread->step_timer();
+         //m_pbaseapp->step_timer();
       }
       else if(pbase->m_uiMessage == WM_LBUTTONDOWN)
       {
@@ -1550,7 +1523,7 @@ d.unlock();
          {
             if(m_guieptraMouseHover[i] == this
                || m_guieptraMouseHover[i]->m_pimpl == this
-               || m_guieptraMouseHover[i]->m_pguie == this)
+               || m_guieptraMouseHover[i]->m_pui == this)
                continue;
             m_guieptraMouseHover[i]->send_message(WM_MOUSELEAVE);
          }
@@ -1601,21 +1574,21 @@ d.unlock();
          ::message::mouse * pmouse = (::message::mouse *) pbase;
 
          Application.m_ptCursor = pmouse->m_pt;
-         if(m_papp->m_psession != NULL)
+         if(m_pbaseapp->m_psession != NULL)
          {
             session().m_ptCursor = pmouse->m_pt;
-            if(m_papp->m_psession != NULL)
+            if(m_pbaseapp->m_psession != NULL)
             {
-               m_papp->m_psession->m_ptCursor = pmouse->m_pt;
+               m_pbaseapp->m_psession->m_ptCursor = pmouse->m_pt;
             }
          }
-         if(m_pguie != NULL && m_pguie != this && m_pguie->m_papp->m_psession != NULL && m_pguie->m_papp->m_psession != m_papp->m_psession)
+         if(m_pui != NULL && m_pui->m_pbaseapp->m_psession != NULL && m_pui->m_pbaseapp->m_psession != m_pbaseapp->m_psession)
          {
-            sess(m_pguie->m_papp->m_psession).m_ptCursor = pmouse->m_pt;
+            sess(m_pui->m_pbaseapp->m_psession).m_ptCursor = pmouse->m_pt;
          }
 
          ::core::platform * psession = NULL;
-         if(m_papp->is_system())
+         if(m_pbaseapp->is_system())
          {
             psession = System.query_session(0);
             if(psession != NULL && psession->m_bSystemSynchronizedCursor)
@@ -1632,12 +1605,12 @@ d.unlock();
             {
                class rect rectWindow32;
                ::GetWindowRect((oswindow) get_handle(), &rectWindow32);
-               //rectWindow32 = m_pguie->m_rectParentClient;
+               //rectWindow32 = m_pui->m_rectParentClient;
                ::copy(rectWindow, rectWindow32);
             }
             else
             {
-               m_pguie->GetWindowRect(rectWindow);
+               m_pui->GetWindowRect(rectWindow);
             }
             if(session().get_monitor_count() > 0)
             {
@@ -1679,7 +1652,7 @@ restart_mouse_hover_check:
          }
          if(!m_bMouseHover)
          {
-            m_pguie->_001OnTriggerMouseInside();
+            m_pui->_001OnTriggerMouseInside();
          }
          if(m_pguiecapture != NULL)
          {
@@ -1720,9 +1693,9 @@ restart_mouse_hover_check:
          for(int32_t i = 0; i < hwnda.get_size(); i++)
          {
             sp(::user::interaction) pguie = wnda.find_first(hwnda[i]);
-            if(pguie != NULL && pguie->m_pguie != NULL)
+            if(pguie != NULL && pguie->m_pui != NULL)
             {
-               pguie->m_pguie->_000OnMouse(pmouse);
+               pguie->m_pui->_000OnMouse(pmouse);
                if(pmouse->m_bRet)
                   return;
             }
@@ -1747,15 +1720,9 @@ restart_mouse_hover_check:
          }
          else if(!pkey->m_bRet)
          {
-            if(m_pguie != this && m_pguie != NULL)
+            if(m_pui != NULL)
             {
-               m_pguie->_000OnKey(pkey);
-               if(pbase->m_bRet)
-                  return;
-            }
-            else
-            {
-               _000OnKey(pkey);
+               m_pui->_000OnKey(pkey);
                if(pbase->m_bRet)
                   return;
             }
@@ -1763,11 +1730,11 @@ restart_mouse_hover_check:
          pbase->set_lresult(DefWindowProc(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
          return;
       }
-      if(pbase->m_uiMessage == ::ca2::message_event)
+      if(pbase->m_uiMessage == ::message::message_event)
       {
-         if(m_pguie != this && m_pguie != NULL)
+         if(m_pui != NULL)
          {
-            m_pguie->BaseOnControlEvent((::user::control_event *) pbase->m_lparam.m_lparam);
+            m_pui->BaseOnControlEvent((::user::control_event *) pbase->m_lparam.m_lparam);
          }
          else
          {
@@ -1779,9 +1746,9 @@ restart_mouse_hover_check:
       if(pobj->m_bRet)
          return;
       /*
-      if(m_pguie != NULL && m_pguie != this)
+      if(m_pui != NULL)
       {
-      m_pguie->_user_message_handler(pobj);
+      m_pui->_user_message_handler(pobj);
       if(pobj->m_bRet)
       return;
       }
@@ -1818,7 +1785,7 @@ restart_mouse_hover_check:
 
    // special case for activation
    if (message == WM_ACTIVATE)
-   __handle_activate(this, wparam, ::android::interaction_impl::from_handle((oswindow)lparam));
+   __handle_activate(this, wparam, sp(::user::interaction)::from_handle((oswindow)lparam));
 
    // special case for set cursor HTERROR
    if (message == WM_SETCURSOR &&
@@ -1942,7 +1909,7 @@ restart_mouse_hover_check:
 
    case ::ca2::Sig_v_u_W:
    (this->*mmf.pfn_v_u_W)(static_cast<UINT>(wparam),
-   ::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)));
+   sp(::user::interaction)::from_handle(reinterpret_cast<oswindow>(lparam)));
    break;
 
    case ::ca2::Sig_u_u_v:
@@ -1954,13 +1921,13 @@ restart_mouse_hover_check:
    break;
 
    case ::ca2::Sig_b_W_uu:
-   lResult = (this->*mmf.pfn_b_W_u_u)(::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)),
+   lResult = (this->*mmf.pfn_b_W_u_u)(sp(::user::interaction)::from_handle(reinterpret_cast<oswindow>(wparam)),
    LOWORD(lparam), HIWORD(lparam));
    break;
 
    case ::ca2::Sig_b_W_COPYDATASTRUCT:
    lResult = (this->*mmf.pfn_b_W_COPYDATASTRUCT)(
-   ::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)),
+   sp(::user::interaction)::from_handle(reinterpret_cast<oswindow>(wparam)),
    reinterpret_cast<COPYDATASTRUCT*>(lparam));
    break;
 
@@ -1979,7 +1946,7 @@ restart_mouse_hover_check:
    wndTemp.set_handle(pCtl->hWnd);
    UINT nCtlType = pCtl->nCtlType;
    // if not coming from a permanent interaction_impl, use stack temporary
-   sp(::user::interaction) pWnd = ::android::interaction_impl::FromHandlePermanent(wndTemp.get_handle());
+   sp(::user::interaction) pWnd = sp(::user::interaction)::FromHandlePermanent(wndTemp.get_handle());
    if (pWnd == NULL)
    {
    pWnd = &wndTemp;
@@ -2009,7 +1976,7 @@ restart_mouse_hover_check:
 
    case ::ca2::Sig_i_u_W_u:
    lResult = (this->*mmf.pfn_i_u_W_u)(LOWORD(wparam),
-   ::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)), HIWORD(wparam));
+   sp(::user::interaction)::from_handle(reinterpret_cast<oswindow>(lparam)), HIWORD(wparam));
    break;
 
    case ::ca2::Sig_i_uu_v:
@@ -2017,7 +1984,7 @@ restart_mouse_hover_check:
    break;
 
    case ::ca2::Sig_i_W_uu:
-   lResult = (this->*mmf.pfn_i_W_u_u)(::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)),
+   lResult = (this->*mmf.pfn_i_W_u_u)(sp(::user::interaction)::from_handle(reinterpret_cast<oswindow>(wparam)),
    LOWORD(lparam), HIWORD(lparam));
    break;
 
@@ -2079,8 +2046,8 @@ restart_mouse_hover_check:
 
    case ::ca2::Sig_MDIACTIVATE:
    (this->*mmf.pfn_v_b_W_W)(get_handle() == reinterpret_cast<oswindow>(lparam),
-   ::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)),
-   ::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)));
+   sp(::user::interaction)::from_handle(reinterpret_cast<oswindow>(lparam)),
+   sp(::user::interaction)::from_handle(reinterpret_cast<oswindow>(wparam)));
    break;
 
    case ::ca2::Sig_v_D_v:
@@ -2089,33 +2056,33 @@ restart_mouse_hover_check:
 
 
    case ::ca2::Sig_v_W_v:
-   (this->*mmf.pfn_v_W)(::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)));
+   (this->*mmf.pfn_v_W)(sp(::user::interaction)::from_handle(reinterpret_cast<oswindow>(wparam)));
    break;
 
    case ::ca2::Sig_v_v_W:
-   (this->*mmf.pfn_v_W)(::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)));
+   (this->*mmf.pfn_v_W)(sp(::user::interaction)::from_handle(reinterpret_cast<oswindow>(lparam)));
    break;
 
    case ::ca2::Sig_v_W_uu:
-   (this->*mmf.pfn_v_W_u_u)(::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)), LOWORD(lparam),
+   (this->*mmf.pfn_v_W_u_u)(sp(::user::interaction)::from_handle(reinterpret_cast<oswindow>(wparam)), LOWORD(lparam),
    HIWORD(lparam));
    break;
 
    case ::ca2::Sig_v_W_p:
    {
    point point(lparam);
-   (this->*mmf.pfn_v_W_p)(::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)), point);
+   (this->*mmf.pfn_v_W_p)(sp(::user::interaction)::from_handle(reinterpret_cast<oswindow>(wparam)), point);
    }
    break;
 
    case ::ca2::Sig_v_W_h:
-   (this->*mmf.pfn_v_W_h)(::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)),
+   (this->*mmf.pfn_v_W_h)(sp(::user::interaction)::from_handle(reinterpret_cast<oswindow>(wparam)),
    reinterpret_cast<HANDLE>(lparam));
    break;
 
    case ::ca2::Sig_ACTIVATE:
    (this->*mmf.pfn_v_u_W_b)(LOWORD(wparam),
-   ::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)), HIWORD(wparam));
+   sp(::user::interaction)::from_handle(reinterpret_cast<oswindow>(lparam)), HIWORD(wparam));
    break;
 
    case ::ca2::Sig_SCROLL:
@@ -2128,7 +2095,7 @@ restart_mouse_hover_check:
    int32_t nPos = (short)HIWORD(wparam);
    if (lpEntry->nSig == ::ca2::Sig_SCROLL)
    (this->*mmf.pfn_v_u_u_W)(nScrollCode, nPos,
-   ::android::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)));
+   sp(::user::interaction)::from_handle(reinterpret_cast<oswindow>(lparam)));
    else
    (this->*mmf.pfn_v_u_u)(nScrollCode, nPos);
    }
@@ -2336,7 +2303,7 @@ restart_mouse_hover_check:
    /* trans oswindow CLASS_DECL_BASE __get_parent_owner(sp(::user::interaction) hWnd)
    {
    // check for permanent-owned interaction_impl first
-   sp(::user::interaction) pWnd = ::android::interaction_impl::FromHandlePermanent(hWnd);
+   sp(::user::interaction) pWnd = sp(::user::interaction)::FromHandlePermanent(hWnd);
    if (pWnd != NULL)
    return ANDROID_WINDOW(pWnd)->GetOwner();
 
@@ -2373,7 +2340,7 @@ restart_mouse_hover_check:
     //  while ((hWndT = ::GetWindow(hWndOwner, GW_OWNER)) != NULL)
       //   hWndOwner = hWndT;
 
-//      return ::android::interaction_impl::from_handle(hWndOwner);
+//      return sp(::user::interaction)::from_handle(hWndOwner);
         return NULL;
    }
 
@@ -2392,7 +2359,7 @@ restart_mouse_hover_check:
          hWndParent = hWndT;
       }
 
-      return ::android::interaction_impl::from_handle(hWndParent);*/
+      return sp(::user::interaction)::from_handle(hWndParent);*/
 
       return NULL;
    }
@@ -2427,8 +2394,8 @@ restart_mouse_hover_check:
       ASSERT_VALID(this);
 
       sp(::user::frame_window) pFrameWnd = NULL;
-      if(m_pguie != this)
-         pFrameWnd =  (m_pguie);
+      if(m_pui != this)
+         pFrameWnd =  (m_pui);
       else
          pFrameWnd =  (this);
       if (pFrameWnd == NULL)
@@ -2443,10 +2410,10 @@ restart_mouse_hover_check:
       return pFrameWnd;
    }
 
-/*   sp(::user::interaction) interaction_impl::GetSafeOwner(::interaction_impl * pParent, oswindow* pWndTop)
+/*   sp(::user::interaction) interaction_impl::GetSafeOwner(::sp(::user::interaction) pParent, oswindow* pWndTop)
    {
       oswindow hWnd = GetSafeOwner_((oswindow) pParent->get_handle(), pWndTop);
-      return ::android::interaction_impl::from_handle(hWnd);
+      return sp(::user::interaction)::from_handle(hWnd);
    }
 */
    int32_t interaction_impl::message_box(const char * lpszText, const char * lpszcaption, UINT nType)
@@ -2460,7 +2427,7 @@ restart_mouse_hover_check:
    sp(::user::interaction) PASCAL interaction_impl::GetDescendantWindow(sp(::user::interaction) hWnd, id id)
    {
 
-      single_lock sl(&hWnd->m_pthread->m_pthread->m_mutex, TRUE);
+      single_lock sl(&hWnd->m_pbaseapp->m_mutex, TRUE);
 
       for(int32_t i = 0; i < hWnd->m_uiptraChild.get_count(); i++)
       {
@@ -2487,7 +2454,7 @@ restart_mouse_hover_check:
          // if bOnlyPerm is TRUE, don't send to non-permanent windows
          /*if (bOnlyPerm)
          {
-            sp(::user::interaction) pWnd = ::android::interaction_impl::FromHandlePermanent(hWndChild);
+            sp(::user::interaction) pWnd = sp(::user::interaction)::FromHandlePermanent(hWndChild);
             if (pWnd != NULL)
             {
                // call interaction_impl proc directly since it is a C++ interaction_impl
@@ -2654,8 +2621,8 @@ return 0;
    layout.rect = *lpRectClient;    // starting rect comes from parameter
    else
    {
-   if(m_pguie != this)
-   m_pguie->GetClientRect(&layout.rect);    // starting rect comes from client rect
+   if(m_pui != this)
+   m_pui->GetClientRect(&layout.rect);    // starting rect comes from client rect
    else
    GetClientRect(&layout.rect);    // starting rect comes from client rect
    }
@@ -2665,9 +2632,9 @@ return 0;
    else
    layout.hDWP = NULL; // not actually doing layout
 
-   if(m_pguie != this && m_pguie != NULL)
+   if(m_pui != NULL)
    {
-   for (sp(::user::interaction) hWndChild = m_pguie->GetTopWindow(); hWndChild != NULL;
+   for (sp(::user::interaction) hWndChild = m_pui->GetTopWindow(); hWndChild != NULL;
    hWndChild = hWndChild->GetNextWindow(GW_HWNDNEXT))
    {
    string strIdc = hWndChild->GetDlgCtrlId();
@@ -2677,9 +2644,9 @@ return 0;
    else if (::str::begins(strIdc, pszPrefix) && pWnd != NULL)
    hWndChild->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
    }
-   for (int32_t i = 0; i < m_pguie->m_uiptra.get_count();   i++)
+   for (int32_t i = 0; i < m_pui->m_uiptra.get_count();   i++)
    {
-   sp(::user::interaction) hWndChild = m_pguie->m_uiptra[i];
+   sp(::user::interaction) hWndChild = m_pui->m_uiptra[i];
    string strIdc = hWndChild->GetDlgCtrlId();
    sp(::user::interaction) pWnd = hWndChild;
    if (strIdc == pszIdLeftOver)
@@ -2778,8 +2745,8 @@ return 0;
          layout.rect = *lpRectClient;    // starting rect comes from parameter
       else
       {
-         if(m_pguie != this)
-            m_pguie->GetClientRect(&layout.rect);    // starting rect comes from client rect
+         if(m_pui != this)
+            m_pui->GetClientRect(&layout.rect);    // starting rect comes from client rect
          else
             GetClientRect(&layout.rect);    // starting rect comes from client rect
       }
@@ -2789,9 +2756,9 @@ return 0;
     //  else
          layout.hDWP = NULL; // not actually doing layout
 
-      if(m_pguie != this && m_pguie != NULL)
+      if(m_pui != NULL)
       {
-         for (sp(::user::interaction) hWndChild = m_pguie->GetTopWindow(); hWndChild != NULL;
+         for (sp(::user::interaction) hWndChild = m_pui->GetTopWindow(); hWndChild != NULL;
             hWndChild = hWndChild->GetNextWindow(GW_HWNDNEXT))
          {
             id id = hWndChild->GetDlgCtrlId();
@@ -2801,7 +2768,7 @@ return 0;
             else if (pWnd != NULL)
                hWndChild->send_message(WM_SIZEPARENT, 0, (LPARAM)&layout);
          }
-         for (sp(::user::interaction) hWndChild = m_pguie->get_top_child(); hWndChild != NULL;
+         for (sp(::user::interaction) hWndChild = m_pui->get_top_child(); hWndChild != NULL;
             hWndChild = hWndChild->under_sibling())
          {
             id id = hWndChild->GetDlgCtrlId();
@@ -2824,7 +2791,7 @@ return 0;
             else if (pWnd != NULL)
                hWndChild->send_message(WM_SIZEPARENT, 0, (LPARAM)&layout);
          }
-         for (sp(::user::interaction) hWndChild = m_pguie->get_top_child(); hWndChild != NULL;
+         for (sp(::user::interaction) hWndChild = m_pui->get_top_child(); hWndChild != NULL;
             hWndChild = hWndChild->under_sibling())
          {
             id id = hWndChild->GetDlgCtrlId();
@@ -3078,7 +3045,7 @@ return 0;
       Default();
    }
 
-   void interaction_impl::OnSetFocus(::interaction_impl *)
+   void interaction_impl::OnSetFocus(::sp(::user::interaction))
    {
       bool bHandled;
 
@@ -3382,7 +3349,7 @@ throw not_implemented(get_app());
 //               rect9.intersect(rect5, rectUpdate);
 //               if(rect9.width() >0 && rect9.height() > 0)
 //               {
-//                  /*::interaction_impl * pwnd =  (interaction_impl::FromHandlePermanent(hWnd));
+//                  /*::sp(::user::interaction) pwnd =  (interaction_impl::FromHandlePermanent(hWnd));
 //                  if(pwnd == NULL)
 //                  {
 //                  for(int32_t l = 0; l < wndpa.get_count(); l++)
@@ -3466,7 +3433,7 @@ throw not_implemented(get_app());
    void interaction_impl::_001OnProdevianSynch(::signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      System.get_event(m_pthread->m_pthread)->SetEvent();
+//      System.get_event(m_pbaseapp)->SetEvent();
   //    System.get_event(System.get_twf())->wait(millis(8400));
    }
 
@@ -3475,7 +3442,7 @@ throw not_implemented(get_app());
 
       _001Expose();
 
-      //lock lock(m_pguie, 1984);
+      //lock lock(m_pui, 1984);
 
 //throw not_implemented(get_app());
 
@@ -3518,9 +3485,9 @@ throw not_implemented(get_app());
 //            ClientToScreen(rectUpdate);
 //         }
 //         (dynamic_cast<::android::graphics * >(pdc))->SelectClipRgn(NULL);
-//         if(m_pguie != NULL && m_pguie != this)
+//         if(m_pui != NULL)
 //         {
-//            m_pguie->_001OnDeferPaintLayeredWindowBackground(pdc);
+//            m_pui->_001OnDeferPaintLayeredWindowBackground(pdc);
 //         }
 //         else
 //         {
@@ -3892,7 +3859,7 @@ throw not_implemented(get_app());
       state.m_pOther = &wndTemp;
 
       // check for reflect handlers in the child interaction_impl
-      sp(::user::interaction) pWnd = ::android::interaction_impl::FromHandlePermanent(hWndChild);
+      sp(::user::interaction) pWnd = sp(::user::interaction)::FromHandlePermanent(hWndChild);
       if (pWnd != NULL)
       {
       // call it directly to disable any routing
@@ -3949,8 +3916,8 @@ throw not_implemented(get_app());
       m_iModalCount++;
 
       m_iaModalThread.add(::GetCurrentThreadId());
-      sp(::base::application) pappThis1 =  (m_pthread->m_pthread->m_p);
-      sp(::base::application) pappThis2 =  (m_pthread->m_pthread);
+      sp(::base::application) pappThis1 =  (m_pbaseapp->m_p);
+      sp(::base::application) pappThis2 =  (m_pbaseapp);
 
             //Display * d = XOpenDisplay(NULL);
             //XEvent  e;
@@ -3966,7 +3933,7 @@ throw not_implemented(get_app());
          // phase1: check to see if we can do idle work
          while (bIdle && !::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE))
          {
-            ANDROID_THREAD(m_pthread->m_pthread->m_p.m_p)->defer_process_windows_messages();
+            ANDROID_THREAD(m_pbaseapp->m_p.m_p)->defer_process_windows_messages();
 //            if(XCheckTypedEvent(d, -1, &e))
             {
 
@@ -3996,14 +3963,14 @@ throw not_implemented(get_app());
 
             }
 
-            m_pthread->m_pthread->m_p->m_dwAlive = m_pthread->m_pthread->m_dwAlive = ::get_tick_count();
+            m_pbaseapp->m_p->m_dwAlive = m_pbaseapp->m_dwAlive = ::get_tick_count();
             if(pappThis1 != NULL)
             {
-               pappThis1->m_dwAlive = m_pthread->m_pthread->m_dwAlive;
+               pappThis1->m_dwAlive = m_pbaseapp->m_dwAlive;
             }
             if(pappThis2 != NULL)
             {
-               pappThis2->m_dwAlive = m_pthread->m_pthread->m_dwAlive;
+               pappThis2->m_dwAlive = m_pbaseapp->m_dwAlive;
             }
             if(pliveobject != NULL)
             {
@@ -4015,7 +3982,7 @@ throw not_implemented(get_app());
          // phase2: pump messages while available
          do
          {
-            ANDROID_THREAD(m_pthread->m_pthread->m_p.m_p)->defer_process_windows_messages();
+            ANDROID_THREAD(m_pbaseapp->m_p.m_p)->defer_process_windows_messages();
 //            if(XCheckTypedEvent(d, -1, &e))
             {
 
@@ -4025,7 +3992,7 @@ throw not_implemented(get_app());
                goto ExitModal;
 
             // pump message, but quit on WM_QUIT
-            if (!m_pthread->m_pthread->pump_message())
+            if (!m_pbaseapp->pump_message())
             {
                __post_quit_message(0);
                return -1;
@@ -4050,14 +4017,14 @@ throw not_implemented(get_app());
                lIdleCount = 0;
             }
 
-            m_pthread->m_pthread->m_p->m_dwAlive = m_pthread->m_pthread->m_dwAlive = ::get_tick_count();
+            m_pbaseapp->m_p->m_dwAlive = m_pbaseapp->m_dwAlive = ::get_tick_count();
             if(pappThis1 != NULL)
             {
-               pappThis1->m_dwAlive = m_pthread->m_pthread->m_dwAlive;
+               pappThis1->m_dwAlive = m_pbaseapp->m_dwAlive;
             }
             if(pappThis2 != NULL)
             {
-               pappThis2->m_dwAlive = m_pthread->m_pthread->m_dwAlive;
+               pappThis2->m_dwAlive = m_pbaseapp->m_dwAlive;
             }
             if(pliveobject != NULL)
             {
@@ -4073,9 +4040,9 @@ throw not_implemented(get_app());
          while (::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE) != FALSE);
 
 
-         if(m_pguie->m_pthread != NULL)
+         if(m_pui->m_pbaseapp != NULL)
          {
-            m_pguie->m_pthread->m_pthread->step_timer();
+            m_pui->m_pbaseapp->step_timer();
          }
          if (!ContinueModal(iLevel))
             goto ExitModal;
@@ -4287,8 +4254,8 @@ throw not_implemented(get_app());
 
       /*bool b;
       bool * pb = &b;
-      if(m_papp->s_ptwf != NULL)
-      pb = &m_papp->s_ptwf->m_bProDevianMode;
+      if(m_pbaseapp->s_ptwf != NULL)
+      pb = &m_pbaseapp->s_ptwf->m_bProDevianMode;
       keep < bool > keepOnDemandDraw(pb, false, *pb, true);
       */
       ASSERT(::IsWindow((oswindow) get_handle()));
@@ -4387,10 +4354,10 @@ throw not_implemented(get_app());
          {
             ::SetWindowPos(get_handle(), (oswindow) z, x, y, cx, cy, nFlags);
          }
-         /*if(m_pguie != NULL)
+         /*if(m_pui != NULL)
          {
-         m_pguie->oprop("pending_layout") = true;
-         m_pguie->oprop("pending_zorder") = z;
+         m_pui->oprop("pending_layout") = true;
+         m_pui->oprop("pending_zorder") = z;
          }*/
          /*if(&System != NULL && System.get_twf() != NULL)
          {
@@ -4512,7 +4479,7 @@ throw not_implemented(get_app());
       if(!::IsWindow((oswindow) get_handle()))
          throw simple_exception(get_app(), "no more a interaction_impl");
       // if it is temporary interaction_impl - probably not ca2 wrapped interaction_impl
-      //if(m_pguie == NULL || m_pguie == this)
+      //if(m_pui == NULL || m_pui == this)
       {
          rect rect32;
          ::GetWindowRect((oswindow) get_handle(), rect32);
@@ -4528,7 +4495,7 @@ throw not_implemented(get_app());
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
       // if it is temporary interaction_impl - probably not ca2 wrapped interaction_impl
-      //if(m_pguie == NULL || m_pguie == this)
+      //if(m_pui == NULL || m_pui == this)
       {
          rect rect32;
          ::GetClientRect((oswindow) get_handle(), rect32);
@@ -4577,8 +4544,8 @@ throw not_implemented(get_app());
    void interaction_impl::_001WindowRestore()
    {
       m_eappearance = appearance_normal;
-      if(m_pguie != NULL)
-         m_pguie->m_eappearance = appearance_normal;
+      if(m_pui != NULL)
+         m_pui->m_eappearance = appearance_normal;
       ::ShowWindow((oswindow) get_handle(), SW_RESTORE);
    }
 
@@ -4610,14 +4577,14 @@ throw not_implemented(get_app());
          {
             if(nCmdShow == SW_MINIMIZE)
             {
-               m_pguie->m_eappearance = appearance_iconic;
+               m_pui->m_eappearance = appearance_iconic;
                m_eappearance = appearance_iconic;
             }
             ::ShowWindow(get_handle(), nCmdShow);
          }
 //         m_bVisible = ::IsWindowVisible(get_handle()) != FALSE;
-         if(m_pguie!= NULL && m_pguie != this)
-//            m_pguie->m_bVisible = m_bVisible;
+         if(m_pui!= NULL)
+//            m_pui->m_bVisible = m_bVisible;
          if(!m_bVisible || IsIconic())
          {
             ::UpdateLayeredWindow(get_handle(), NULL, NULL, NULL, NULL, NULL, 0, NULL, 0);
@@ -4628,8 +4595,8 @@ throw not_implemented(get_app());
       {
          ::ShowWindow((oswindow) get_handle(), nCmdShow);
          m_bVisible = ::IsWindowVisible((oswindow) get_handle()) != FALSE;
-         if(m_pguie!= NULL && m_pguie != this)
-            m_pguie->m_bVisible = m_bVisible;
+         if(m_pui!= NULL)
+            m_pui->m_bVisible = m_bVisible;
          return m_bVisible;
       }
    }
@@ -4640,7 +4607,7 @@ throw not_implemented(get_app());
       ASSERT(::IsWindow((oswindow) get_handle()));
       if(GetExStyle() & WS_EX_LAYERED)
       {
-         return m_pguie->m_eappearance == appearance_iconic;
+         return m_pui->m_eappearance == appearance_iconic;
       }
       else
       {
@@ -4651,7 +4618,7 @@ throw not_implemented(get_app());
    bool interaction_impl::IsZoomed()
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
-      return m_pguie->m_eappearance == appearance_zoomed;
+      return m_pui->m_eappearance == appearance_zoomed;
    }
 
 
@@ -4661,7 +4628,7 @@ throw not_implemented(get_app());
          return NULL;
       if(get_handle() == NULL)
          return NULL;
-      //return ::android::interaction_impl::from_handle(::GetParent(get_handle()));
+      //return sp(::user::interaction)::from_handle(::GetParent(get_handle()));
       return NULL;
    }
 
@@ -4715,15 +4682,15 @@ throw not_implemented(get_app());
          }
          else
          {
-            if(m_pguie != NULL)
+            if(m_pui != NULL)
             {
-               if(m_pguie->get_wnd() != NULL && ANDROID_WINDOW(m_pguie->get_wnd())->m_pguiecapture != NULL)
+               if(m_pui->get_wnd() != NULL && ANDROID_WINDOW(m_pui->get_wnd())->m_pguiecapture != NULL)
                {
-                  return ANDROID_WINDOW(m_pguie->get_wnd())->m_pguiecapture;
+                  return ANDROID_WINDOW(m_pui->get_wnd())->m_pguiecapture;
                }
                else
                {
-                  return m_pguie;
+                  return m_pui;
                }
             }
             else
@@ -4745,12 +4712,12 @@ throw not_implemented(get_app());
    { return this == NULL ? NULL : get_handle(); }*/
    bool interaction_impl::operator==(const ::interaction_impl& wnd) const
    {
-      return ANDROID_WINDOW(const_cast < ::interaction_impl * >  (&wnd))->get_handle() == get_handle();
+      return ANDROID_WINDOW(const_cast < ::sp(::user::interaction) >  (&wnd))->get_handle() == get_handle();
    }
 
    bool interaction_impl::operator!=(const ::interaction_impl& wnd) const
    {
-      return ANDROID_WINDOW(const_cast < ::interaction_impl * >  (&wnd))->get_handle() != get_handle();
+      return ANDROID_WINDOW(const_cast < ::sp(::user::interaction) >  (&wnd))->get_handle() != get_handle();
    }
 
    DWORD interaction_impl::GetStyle()
@@ -4792,7 +4759,7 @@ throw not_implemented(get_app());
       try
       {
 
-         sp(::user::interaction) pui = m_pguie;
+         sp(::user::interaction) pui = m_pui;
 
          while(pui != NULL && pui->get_parent() != NULL)
          {
@@ -4972,7 +4939,7 @@ throw not_implemented(get_app());
    }
 
 
-   void interaction_impl::MapWindowPoints(::interaction_impl * pwndTo, LPPOINT lpPoint, UINT nCount)
+   void interaction_impl::MapWindowPoints(::sp(::user::interaction) pwndTo, LPPOINT lpPoint, UINT nCount)
    {
 
       throw not_implemented(get_app());
@@ -4983,7 +4950,7 @@ throw not_implemented(get_app());
    }
 
 
-   void interaction_impl::MapWindowPoints(::interaction_impl * pwndTo, LPRECT lpRect)
+   void interaction_impl::MapWindowPoints(::sp(::user::interaction) pwndTo, LPRECT lpRect)
    {
 
       throw not_implemented(get_app());
@@ -5144,13 +5111,13 @@ if(psurface == g_cairosurface)
       if(!::IsWindow((oswindow) get_handle()))
          return false;
 
-      if(m_pguie != NULL)
+      if(m_pui != NULL)
       {
 
-         if(!m_pguie->m_bVisible)
+         if(!m_pui->m_bVisible)
             return false;
 
-         if(m_pguie->get_parent() != NULL && !m_pguie->get_parent()->IsWindowVisible())
+         if(m_pui->get_parent() != NULL && !m_pui->get_parent()->IsWindowVisible())
             return false;
 
       }
@@ -5179,7 +5146,7 @@ if(psurface == g_cairosurface)
 
       // walk through oswindows to avoid creating temporary interaction_impl objects
       // unless we need to call this function recursively
-      user::interaction * pui = m_pguie->get_top_child();
+      user::interaction * pui = m_pui->get_top_child();
       while(pui != NULL)
       {
          try
@@ -5299,7 +5266,7 @@ if(psurface == g_cairosurface)
 
         UNREFERENCED_PARAMETER(lpfnTimer);
 
-        m_pguie->m_pthread->m_pthread->set_timer(m_pguie, nIDEvent, nElapse);
+        m_pui->m_pbaseapp->set_timer(m_pui, nIDEvent, nElapse);
 
         return nIDEvent;
 
@@ -5313,7 +5280,7 @@ if(psurface == g_cairosurface)
    bool interaction_impl::KillTimer(uint_ptr nIDEvent)
    {
 
-       m_pguie->m_pthread->m_pthread->unset_timer(m_pguie, nIDEvent);
+       m_pui->m_pbaseapp->unset_timer(m_pui, nIDEvent);
 
        return TRUE;
 
@@ -5352,7 +5319,7 @@ if(psurface == g_cairosurface)
    {
 
       throw not_implemented(get_app());
-      //return ::android::interaction_impl::from_handle(::GetActiveWindow());
+      //return sp(::user::interaction)::from_handle(::GetActiveWindow());
 
    }
 
@@ -5361,7 +5328,7 @@ if(psurface == g_cairosurface)
 
       throw not_implemented(get_app());
       //ASSERT(::IsWindow((oswindow) get_handle()));
-      //return ::android::interaction_impl::from_handle(::SetActiveWindow(get_handle()));
+      //return sp(::user::interaction)::from_handle(::SetActiveWindow(get_handle()));
 
    }
 
@@ -5423,7 +5390,7 @@ if(psurface == g_cairosurface)
    sp(::user::interaction) PASCAL interaction_impl::GetDesktopWindow()
    {
 /*
-      return ::android::interaction_impl::from_handle(::GetDesktopWindow());
+      return sp(::user::interaction)::from_handle(::GetDesktopWindow());
 */
       return NULL;
    }
@@ -5522,21 +5489,21 @@ if(psurface == g_cairosurface)
 //      throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle())); return ::GetDlgItemText(get_handle(), nID, lpStr, nMaxCount);}
 
-   sp(::user::interaction) interaction_impl::GetNextDlgGroupItem(::interaction_impl * pWndCtl, bool bPrevious) const
+   sp(::user::interaction) interaction_impl::GetNextDlgGroupItem(::sp(::user::interaction) pWndCtl, bool bPrevious) const
    {
 
       throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::android::interaction_impl::from_handle(::GetNextDlgGroupItem(get_handle(), (oswindow) pWndCtl->get_handle(), bPrevious));
+//      return sp(::user::interaction)::from_handle(::GetNextDlgGroupItem(get_handle(), (oswindow) pWndCtl->get_handle(), bPrevious));
 
    }
 
-   sp(::user::interaction) interaction_impl::GetNextDlgTabItem(::interaction_impl * pWndCtl, bool bPrevious) const
+   sp(::user::interaction) interaction_impl::GetNextDlgTabItem(::sp(::user::interaction) pWndCtl, bool bPrevious) const
    {
 
       throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::android::interaction_impl::from_handle(::GetNextDlgTabItem(get_handle(), (oswindow) pWndCtl->get_handle(), bPrevious));
+//      return sp(::user::interaction)::from_handle(::GetNextDlgTabItem(get_handle(), (oswindow) pWndCtl->get_handle(), bPrevious));
 
    }
 
@@ -5600,7 +5567,7 @@ if(psurface == g_cairosurface)
 
       throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::android::interaction_impl::from_handle(::ChildWindowFromPoint(get_handle(), point));
+//      return sp(::user::interaction)::from_handle(::ChildWindowFromPoint(get_handle(), point));
 
    }
 
@@ -5609,7 +5576,7 @@ if(psurface == g_cairosurface)
 
       throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::android::interaction_impl::from_handle(::ChildWindowFromPointEx(get_handle(), point, nFlags));
+//      return sp(::user::interaction)::from_handle(::ChildWindowFromPointEx(get_handle(), point, nFlags));
 
    }
 
@@ -5617,7 +5584,7 @@ if(psurface == g_cairosurface)
    {
 
 //      throw not_implemented(get_app());
-//      return ::android::interaction_impl::from_handle(::FindWindow(lpszClassName, lpszWindowName));
+//      return sp(::user::interaction)::from_handle(::FindWindow(lpszClassName, lpszWindowName));
       return NULL;
 
    }
@@ -5626,7 +5593,7 @@ if(psurface == g_cairosurface)
    {
 
       throw not_implemented(::get_thread_app());
-//      return ::android::interaction_impl::from_handle(::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow));
+//      return sp(::user::interaction)::from_handle(::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow));
 
    }
 
@@ -5635,20 +5602,20 @@ if(psurface == g_cairosurface)
 
       throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::android::interaction_impl::from_handle(::GetNextWindow(get_handle(), nFlag));
+//      return sp(::user::interaction)::from_handle(::GetNextWindow(get_handle(), nFlag));
 
    }
 
    sp(::user::interaction) interaction_impl::GetTopWindow()
    {
 
-      if(m_pguie->m_uiptraChild.get_size() <= 0)
+      if(m_pui->m_uiptraChild.get_size() <= 0)
          return NULL;
 
-      return m_pguie->m_uiptraChild(0);
+      return m_pui->m_uiptraChild(0);
     //  throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::android::interaction_impl::from_handle(::GetTopWindow(get_handle()));
+//      return sp(::user::interaction)::from_handle(::GetTopWindow(get_handle()));
 
    }
 
@@ -5656,7 +5623,7 @@ if(psurface == g_cairosurface)
    {
 
       ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::android::interaction_impl::from_handle(::GetWindow(get_handle(), nCmd));
+//      return sp(::user::interaction)::from_handle(::GetWindow(get_handle(), nCmd));
       return NULL;
 
    }
@@ -5667,15 +5634,15 @@ if(psurface == g_cairosurface)
 
       throw todo(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::android::interaction_impl::from_handle(::GetLastActivePopup(get_handle()));
+//      return sp(::user::interaction)::from_handle(::GetLastActivePopup(get_handle()));
 
    }
 
-   sp(::user::interaction) interaction_impl::set_parent(::interaction_impl * pWndNewParent)
+   sp(::user::interaction) interaction_impl::set_parent(::sp(::user::interaction) pWndNewParent)
    {
 
       ASSERT(::IsWindow((oswindow) get_handle()));
-      return ::android::interaction_impl::from_handle(::SetParent(get_handle(), (oswindow) pWndNewParent->get_handle()));
+      return sp(::user::interaction)::from_handle(::SetParent(get_handle(), (oswindow) pWndNewParent->get_handle()));
 
    }
 
@@ -5684,7 +5651,7 @@ if(psurface == g_cairosurface)
 
 
       throw not_implemented(::get_thread_app());
-//      return ::android::interaction_impl::from_handle(::oswindowFromPoint(point));
+//      return sp(::user::interaction)::from_handle(::oswindowFromPoint(point));
 
    }
 
@@ -5729,7 +5696,7 @@ if(psurface == g_cairosurface)
    {
 
       throw not_implemented(::get_thread_app());
-//      return ::android::interaction_impl::from_handle(::GetOpenClipboardWindow());
+//      return sp(::user::interaction)::from_handle(::GetOpenClipboardWindow());
 
    }
 
@@ -5737,7 +5704,7 @@ if(psurface == g_cairosurface)
    {
 
       throw not_implemented(::get_thread_app());
-//      return ::android::interaction_impl::from_handle(::GetClipboardOwner());
+//      return sp(::user::interaction)::from_handle(::GetClipboardOwner());
 
    }
 
@@ -5745,7 +5712,7 @@ if(psurface == g_cairosurface)
    {
 
       throw not_implemented(::get_thread_app());
-//      return ::android::interaction_impl::from_handle(::GetClipboardViewer());
+//      return sp(::user::interaction)::from_handle(::GetClipboardViewer());
 
    }
 
@@ -5823,7 +5790,7 @@ if(psurface == g_cairosurface)
       return NULL;
 
          throw not_implemented(::get_thread_app());
-//      return ::android::interaction_impl::from_handle(::GetForegroundWindow());
+//      return sp(::user::interaction)::from_handle(::GetForegroundWindow());
 
    }
 
@@ -5841,7 +5808,7 @@ if(psurface == g_cairosurface)
 
       throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      const_cast < interaction_impl * > (this)->send_message(WM_PRINT, (WPARAM)(dynamic_cast<::android::graphics * >(pgraphics))->get_handle(), dwFlags);
+//      const_cast < sp(::user::interaction) > (this)->send_message(WM_PRINT, (WPARAM)(dynamic_cast<::android::graphics * >(pgraphics))->get_handle(), dwFlags);
 
    }
 
@@ -5850,7 +5817,7 @@ if(psurface == g_cairosurface)
 
       throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle()));
-//      const_cast < interaction_impl * > (this)->send_message(WM_PRINTCLIENT, (WPARAM)(dynamic_cast<::android::graphics * >(pgraphics))->get_handle(), dwFlags);
+//      const_cast < sp(::user::interaction) > (this)->send_message(WM_PRINTCLIENT, (WPARAM)(dynamic_cast<::android::graphics * >(pgraphics))->get_handle(), dwFlags);
 
    }
 
@@ -5884,10 +5851,10 @@ if(psurface == g_cairosurface)
    { Default(); }
    void interaction_impl::OnClose()
    { Default(); }
-   void interaction_impl::OnContextMenu(::interaction_impl *, point)
+   void interaction_impl::OnContextMenu(::sp(::user::interaction), point)
    { Default(); }
 
-   bool interaction_impl::OnCopyData(::interaction_impl *, COPYDATASTRUCT*)
+   bool interaction_impl::OnCopyData(::sp(::user::interaction), COPYDATASTRUCT*)
    {
 
       return Default() != FALSE;
@@ -5910,7 +5877,7 @@ if(psurface == g_cairosurface)
    { Default(); }
    void interaction_impl::OnIconEraseBkgnd(::draw2d::graphics *)
    { Default(); }
-   void interaction_impl::OnKillFocus(::interaction_impl *)
+   void interaction_impl::OnKillFocus(::sp(::user::interaction))
    { Default(); }
    LRESULT interaction_impl::OnMenuChar(UINT, UINT, ::user::menu*)
    { return Default(); }
@@ -5968,7 +5935,7 @@ if(psurface == g_cairosurface)
    { Default(); }
    void interaction_impl::OnDropFiles(HDROP)
    { Default(); }
-   void interaction_impl::OnPaletteIsChanging(::interaction_impl *)
+   void interaction_impl::OnPaletteIsChanging(::sp(::user::interaction))
    { Default(); }
 
    bool interaction_impl::OnNcActivate(bool)
@@ -6026,7 +5993,7 @@ if(psurface == g_cairosurface)
    { Default(); }
    void interaction_impl::OnFontChange()
    { Default(); }
-   void interaction_impl::OnPaletteChanged(::interaction_impl *)
+   void interaction_impl::OnPaletteChanged(::sp(::user::interaction))
    { Default(); }
    void interaction_impl::OnSpoolerStatus(UINT, UINT)
    { Default(); }
@@ -6052,7 +6019,7 @@ if(psurface == g_cairosurface)
    { Default(); }
    void interaction_impl::OnMButtonUp(UINT, point)
    { Default(); }
-   int32_t interaction_impl::OnMouseActivate(::interaction_impl *, UINT, UINT)
+   int32_t interaction_impl::OnMouseActivate(::sp(::user::interaction), UINT, UINT)
    { return (int32_t)Default(); }
    void interaction_impl::OnMouseMove(UINT, point)
    { Default(); }
@@ -6094,17 +6061,17 @@ if(psurface == g_cairosurface)
    { Default(); }
    void interaction_impl::OnDrawClipboard()
    { Default(); }
-   void interaction_impl::OnHScrollClipboard(::interaction_impl *, UINT, UINT)
+   void interaction_impl::OnHScrollClipboard(::sp(::user::interaction), UINT, UINT)
    { Default(); }
-   void interaction_impl::OnPaintClipboard(::interaction_impl *, HGLOBAL)
+   void interaction_impl::OnPaintClipboard(::sp(::user::interaction), HGLOBAL)
    { Default(); }
    void interaction_impl::OnRenderAllFormats()
    { Default(); }
    void interaction_impl::OnRenderFormat(UINT)
    { Default(); }
-   void interaction_impl::OnSizeClipboard(::interaction_impl *, HGLOBAL)
+   void interaction_impl::OnSizeClipboard(::sp(::user::interaction), HGLOBAL)
    { Default(); }
-   void interaction_impl::OnVScrollClipboard(::interaction_impl *, UINT, UINT)
+   void interaction_impl::OnVScrollClipboard(::sp(::user::interaction), UINT, UINT)
    { Default(); }
    UINT interaction_impl::OnGetDlgCode()
    { return (UINT)Default(); }
@@ -6123,7 +6090,7 @@ if(psurface == g_cairosurface)
    { Default(); }
    void interaction_impl::OnMoving(UINT, LPRECT)
    { Default(); }
-   void interaction_impl::OncaptureChanged(::interaction_impl *)
+   void interaction_impl::OncaptureChanged(::sp(::user::interaction))
    { Default(); }
 
    bool interaction_impl::OnDeviceChange(UINT, dword_ptr)
@@ -6294,9 +6261,9 @@ if(psurface == g_cairosurface)
 //            __pre_init_dialog(pinteraction, &rectOld, &dwStyle);
 //
 //         // delegate to object's message_handler
-//         if(pinteraction->m_pguie != NULL && pinteraction->m_pguie != pinteraction)
+//         if(pinteraction->m_pui != NULL && pinteraction->m_pui != pinteraction)
 //         {
-//            pinteraction->m_pguie->message_handler(spbase);
+//            pinteraction->m_pui->message_handler(spbase);
 //         }
 //         else
 //         {
@@ -6310,7 +6277,7 @@ if(psurface == g_cairosurface)
 //      {
 //         try
 //         {
-//            if(App(pinteraction->m_papp).on_run_exception((::ca2::exception &) e))
+//            if(App(pinteraction->m_pbaseapp).on_run_exception((::ca2::exception &) e))
 //               goto run;
 //         }
 //         catch(...)
@@ -6341,7 +6308,7 @@ if(psurface == g_cairosurface)
    }
 
 
-   /*CDataExchange::CDataExchange(::interaction_impl * pDlgWnd, bool bSaveAndValidate)
+   /*CDataExchange::CDataExchange(::sp(::user::interaction) pDlgWnd, bool bSaveAndValidate)
    {
    ASSERT_VALID(pDlgWnd);
    m_bSaveAndValidate = bSaveAndValidate;
@@ -6405,13 +6372,13 @@ if(psurface == g_cairosurface)
 //         if (pWndInit != NULL)
 //         {
 //            // the interaction_impl should not be in the permanent ::collection::map at this time
-//            ASSERT(::android::interaction_impl::FromHandlePermanent(hWnd) == NULL);
+//            ASSERT(sp(::user::interaction)::FromHandlePermanent(hWnd) == NULL);
 //
-//            pWndInit->m_pthread = dynamic_cast < ::thread * > (::android::get_thread());
-//            pWndInit->m_pthread->add(pWndInit);
-//            pWndInit->m_pguie->m_pthread = pWndInit->m_pthread;
-//            pWndInit->m_pguie->m_pthread->add(pWndInit->m_pguie);
-//            pWndInit->m_pguie->m_pimpl = pWndInit;
+//            pWndInit->m_pbaseapp = dynamic_cast < ::thread * > (::android::get_thread());
+//            pWndInit->m_pbaseapp->add(pWndInit);
+//            pWndInit->m_pui->m_pbaseapp = pWndInit->m_pbaseapp;
+//            pWndInit->m_pui->m_pbaseapp->add(pWndInit->m_pui);
+//            pWndInit->m_pui->m_pimpl = pWndInit;
 //
 //            // connect the oswindow to pWndInit...
 //            pWndInit->Attach(hWnd);
@@ -6598,7 +6565,7 @@ LRESULT CALLBACK __window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPA
    throw not_implemented(::get_thread_app());
 
 //   // all other messages route through message ::collection::map
-//   sp(::user::interaction) pWnd = ::android::interaction_impl::FromHandlePermanent(hWnd);
+//   sp(::user::interaction) pWnd = sp(::user::interaction)::FromHandlePermanent(hWnd);
 //   //ASSERT(pWnd != NULL);
 //   //ASSERT(pWnd==NULL || ANDROID_WINDOW(pWnd)->get_handle() == hWnd);
 //   if (pWnd == NULL || ANDROID_WINDOW(pWnd)->get_handle() != hWnd)
@@ -6705,7 +6672,7 @@ CLASS_DECL_BASE const char * __register_window_class(UINT nClassStyle,
 //   LPTSTR lpszName = __get_thread_state()->m_szTempClassName;
 //
 //   // generate a synthetic name for this class
-//   HINSTANCE hInst = Sys(::android::get_thread()->m_papp).m_hInstance;
+//   HINSTANCE hInst = Sys(::android::get_thread()->m_pbaseapp).m_hInstance;
 //
 //   if (hCursor == NULL && hbrBackground == NULL && hIcon == NULL)
 //   {
@@ -6751,7 +6718,7 @@ CLASS_DECL_BASE const char * __register_window_class(UINT nClassStyle,
 
 
 __STATIC void CLASS_DECL_BASE
-   __handle_activate(::interaction_impl * pWnd, WPARAM nState, sp(::user::interaction) pWndOther)
+   __handle_activate(::sp(::user::interaction) pWnd, WPARAM nState, sp(::user::interaction) pWndOther)
 {
 
       throw not_implemented(::get_thread_app());
@@ -6782,7 +6749,7 @@ __STATIC void CLASS_DECL_BASE
 }
 
 __STATIC bool CLASS_DECL_BASE
-   __handle_set_cursor(::interaction_impl * pWnd, UINT nHitTest, UINT nMsg)
+   __handle_set_cursor(::sp(::user::interaction) pWnd, UINT nHitTest, UINT nMsg)
 {
 
       throw not_implemented(::get_thread_app());
@@ -6795,7 +6762,7 @@ __STATIC bool CLASS_DECL_BASE
 //      if (pLastActive != NULL)
 //         pLastActive = pLastActive->GetLastActivePopup();
 //      if (pLastActive != NULL &&
-//         pLastActive != ::android::interaction_impl::GetForegroundWindow() &&
+//         pLastActive != sp(::user::interaction)::GetForegroundWindow() &&
 //         pLastActive->IsWindowEnabled())
 //      {
 //         pLastActive->SetForegroundWindow();
@@ -6859,7 +6826,7 @@ __STATIC bool CLASS_DECL_BASE
 //   WNDCLASS wndcls;
 //   memset(&wndcls, 0, sizeof(WNDCLASS));   // start with NULL defaults
 //   wndcls.lpfnWndProc = DefWindowProc;
-//   wndcls.hInstance = Sys(::android::get_thread()->m_papp).m_hInstance;
+//   wndcls.hInstance = Sys(::android::get_thread()->m_pbaseapp).m_hInstance;
 //   //wndcls.hCursor = afxData.hcurArrow;
 //
 //   INITCOMMONCONTROLSEX init;
@@ -6976,7 +6943,7 @@ LRESULT CALLBACK
 //         {
 //            DWORD dwStyle;
 //            rect rectOld;
-//            sp(::user::interaction) pWnd = ::android::interaction_impl::from_handle(hWnd);
+//            sp(::user::interaction) pWnd = sp(::user::interaction)::from_handle(hWnd);
 //            __pre_init_dialog(pWnd, &rectOld, &dwStyle);
 //            bcallDefault = FALSE;
 //            lResult = callWindowProc(oldWndProc, hWnd, nMsg, wparam, lparam);
@@ -6985,12 +6952,12 @@ LRESULT CALLBACK
 //         break;
 //
 //      case WM_ACTIVATE:
-//         __handle_activate(::android::interaction_impl::from_handle(hWnd), wparam,
-//            ::android::interaction_impl::from_handle((oswindow)lparam));
+//         __handle_activate(sp(::user::interaction)::from_handle(hWnd), wparam,
+//            sp(::user::interaction)::from_handle((oswindow)lparam));
 //         break;
 //
 //      case WM_SETCURSOR:
-//         bcallDefault = !__handle_set_cursor(::android::interaction_impl::from_handle(hWnd),
+//         bcallDefault = !__handle_set_cursor(sp(::user::interaction)::from_handle(hWnd),
 //            (short)LOWORD(lparam), HIWORD(lparam));
 //         break;
 //
@@ -7148,15 +7115,15 @@ namespace android
 
       }
 
-      if(!m_bVisible || (m_pguie != this && m_pguie != NULL && !m_pguie->m_bVisible))
+      if(!m_bVisible || (m_pui != NULL && !m_pui->m_bVisible))
       {
 
          m_bVisible = true;
 
-         if(m_pguie != this && m_pguie != NULL)
+         if(m_pui != NULL)
          {
 
-            m_pguie->m_bVisible = true;
+            m_pui->m_bVisible = true;
 
          }
 
@@ -7168,10 +7135,10 @@ namespace android
       if(bSize || bMove)
       {
 
-         if(m_pguie != this && m_pguie != NULL)
+         if(m_pui != NULL)
          {
 
-            m_pguie->m_rectParentClient = m_rectParentClient;
+            m_pui->m_rectParentClient = m_rectParentClient;
 
          }
 
