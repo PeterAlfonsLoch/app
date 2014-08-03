@@ -92,7 +92,7 @@ namespace base
       sp(class ::datetime::departament)            m_pdatetime;
       string_map < int_to_string >                 m_mapEnumToName;
       string_map < string_to_int >                 m_mapNameToEnum;
-      sp(::user::window_draw)                      m_ptwf;
+      ::user::window_draw *                        m_ptwf;
       class ::base::compress                       m_compress;
       sp(::user::str)                              m_puserstr;
       sp(::install::install)                       m_spinstall;

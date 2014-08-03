@@ -228,7 +228,7 @@ namespace user
 
    void interaction_impl::install_message_handling(::message::dispatch * pinterface)
    {
-      
+
       IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&interaction_impl::_001OnCreate);
 
    }
@@ -491,7 +491,7 @@ namespace user
 
    void interaction_impl::GetScrollRange(int32_t nBar,LPINT lpMinPos,LPINT lpMaxPos) const
    {
-   
+
       UNREFERENCED_PARAMETER(nBar);
       UNREFERENCED_PARAMETER(lpMinPos);
       UNREFERENCED_PARAMETER(lpMaxPos);
@@ -2299,7 +2299,7 @@ namespace user
    {
 
 /*
-      
+
       if(m_pmutexGraphics == NULL)
       {
 
@@ -2329,7 +2329,7 @@ namespace user
 
       single_lock sl2(mutex_display(),false);
 
-      if(!sl2.lock())
+      if(mutex_display() != NULL && !sl2.lock())
       {
          m_bUpdateGraphics = true;
          return;
@@ -2495,12 +2495,12 @@ namespace user
 
    }
 
-   
-   sp(mutex) interaction_impl::mutex_display() 
+
+   sp(mutex) interaction_impl::mutex_display()
    {
-      
-      return m_spmutexDisplay; 
-   
+
+      return m_spmutexDisplay;
+
    }
 
 

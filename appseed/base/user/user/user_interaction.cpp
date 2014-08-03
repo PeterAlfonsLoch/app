@@ -57,6 +57,7 @@ namespace user
       m_bEnableSaveWindowRect       = false;
 
       m_puserschema              = NULL;
+      m_bLockWindowUpdate = false;
 
    }
 
@@ -2781,6 +2782,8 @@ namespace user
                UpdateWindow();
                bShowIdle = FALSE;
             }
+
+            ::get_thread()->step_timer();
 
             // call on_idle while in bIdle state
             if(!(dwFlags & MLF_NOIDLEMSG) && puieParent != NULL && lIdleCount == 0)

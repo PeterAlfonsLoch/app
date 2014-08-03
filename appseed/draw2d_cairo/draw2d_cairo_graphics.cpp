@@ -3999,7 +3999,7 @@ synch_lock ml(&user_mutex());
    int32_t graphics::SelectClipRgn(::draw2d::region* pRgn, int32_t nMode)
    {
 
-      throw not_implemented(get_app());
+      //throw not_implemented(get_app());
       return 0;
 
 /*      ASSERT(get_handle1() != NULL);

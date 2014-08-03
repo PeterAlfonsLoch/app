@@ -247,6 +247,13 @@ namespace base
 
       m_pschemaLayeredFrame = new ::user::schema_layered_frame;
 
+      m_pthreadimpl.create(allocer());
+
+      m_pthreadimpl->m_pthread = this;
+
+      m_pthreadimpl->initialize_message_queue();
+
+
    }
 
 
@@ -524,27 +531,14 @@ namespace base
 
    int32_t system::exit_instance()
    {
-      try
-      {
-
-         if(m_ptwf != NULL)
-         {
-
-            m_ptwf->m_bRun = false;
-
-         }
-
-      }
-      catch(...)
-      {
-      }
 
       try
       {
          if(m_ptwf != NULL)
          {
-            m_ptwf->twf_stop();
-            m_ptwf.release();
+         ::user::window_draw * p=m_ptwf;
+         m_ptwf = NULL;
+            p->twf_stop();
          }
       }
       catch(...)
