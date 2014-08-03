@@ -1412,7 +1412,7 @@ namespace base
 
          Windows::Foundation::Point p;
 
-         p = m_posdata->m_pwindow->get_cursor_pos();
+         p = System.m_posdata->m_pwindow->get_cursor_pos();
 
          lppoint->x = (LONG)p.X;
 
@@ -1449,7 +1449,7 @@ namespace base
 
 #if defined (METROWIN)
 
-      return GetFocus()->interaction_impl();
+      return GetFocus()->m_pui;
 
 #elif defined(WINDOWSEX) || defined(LINUX)
 

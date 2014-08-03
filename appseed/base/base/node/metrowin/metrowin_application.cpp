@@ -13,43 +13,14 @@ namespace metrowin
    {
 
       m_pthreadimpl.create(allocer());
-      m_pthreadimpl->m_p = this;
+      m_pthreadimpl->m_pthread = this;
 
       WIN_THREAD(m_pthreadimpl.m_p)->m_pAppThread = this;
 
-      m_pbasesystem = papp->m_pcoreapp->m_pbasesystem;
+      m_pbasesystem = papp->m_pbasesystem;
 
-      m_pfilemanager = NULL;
-
-
-
-      // in non-running state until WinMain
-//      m_hInstance = NULL;
-//      m_hLangResourceDLL = NULL;
-      m_pszHelpFilePath = NULL;
-      m_pszProfileName = NULL;
-      m_pszRegistryKey = NULL;
-//      m_pRecentFileList = NULL;
-//      m_pdocmanager = NULL;
       m_atomApp = m_atomSystemTopic = NULL;
-      //m_lpCmdLine = NULL;
-//      m_pCmdInfo = NULL;
 
-      // initialize wait cursor state
-//      m_nWaitCursorCount = 0;
-      m_hcurWaitCursorRestore = NULL;
-
-      // initialize current printer state
-      m_hDevMode = NULL;
-      m_hDevNames = NULL;
-      m_nNumPreviewPages = 0;     // not specified (defaults to 1)
-
-      // other initialization
-      m_bHelpMode = FALSE;
-//      m_eHelpType = afxWinHelp;
-      m_nSafetyPoolSize = 512;        // default size
-
-      shell::theWindowsShell.Initialize();
    }
 
    application::~application()
@@ -63,7 +34,7 @@ namespace metrowin
       m_pimpl->_001OnFileNew(NULL);
    }
 
-   sp(::user::object) application::_001OpenDocumentFile(var varFile)
+   sp(::user::document) application::_001OpenDocumentFile(var varFile)
    {
       return m_pimpl->_001OpenDocumentFile(varFile);
    }
@@ -249,16 +220,6 @@ namespace metrowin
          e->Delete();
       }
 
-      try
-      {
-         // cleanup the rest of the thread local data
-         if (gen_ThreadData != NULL)
-            gen_ThreadData->delete_data();
-      }
-      catch( ::exception::base* e )
-      {
-         e->Delete();
-      }
    }
 
    /*
@@ -436,27 +397,6 @@ namespace metrowin
 */
    bool application::process_initialize()
    {
-      if(m_pimpl->is_system())
-      {
-         if(__get_module_state()->m_pmapHWND == NULL)
-         {
-//            __get_module_state()->m_pmapHWND = new hwnd_map;
-            __get_module_state()->m_pmutexHwnd = new mutex(this);
-         }
-/*         if(__get_module_state()->m_pmapHDC == NULL)
-         {
-            __get_module_state()->m_pmapHDC = new hdc_map;
-         }
-         if(__get_module_state()->m_pmapHGDIOBJ == NULL)
-         {
-            __get_module_state()->m_pmapHGDIOBJ = new hgdiobj_map;
-         }*/
-/*         if(__get_module_state()->m_pmapHMENU == NULL)
-         {
-            __get_module_state()->m_pmapHMENU = new hmenu_map;
-         }*/
-      }
-
 
       return true;
    }
@@ -490,7 +430,7 @@ namespace metrowin
 
       WIN_THREAD(m_pthreadimpl.m_p)->m_bRun = false;
 
-      int32_t iRet = ::application::exit_instance();
+      int32_t iRet = ::base::application::exit_instance();
 
       //smart_pointer < application_base >::destroy();
 
@@ -583,96 +523,24 @@ namespace metrowin
    }
 #endif
 
-   ::thread * application::GetThread()
-   {
-      if(__get_thread() == NULL)
-         return NULL;
-      else
-         return dynamic_cast < ::thread * > (__get_thread()->m_p.m_p);
-   }
-
-   void application::set_thread(::thread * pthread)
-   {
-      __set_thread(pthread);
-   }
-
-   ///////////////////////////////////////////////////////////////////////////
-   // application Initialization
 
    void application::SetCurrentHandles()
    {
-      //ASSERT(this == afxCurrentWinApp);
-      //if(afxCurrentAppName != NULL)
-        // return;
-      //ASSERT(afxCurrentAppName == NULL);
 
-
-      // Note: there are a number of _tcsdup (aka _strdup) calls that are
-      // made here for the exe path, help file path, etc.  In previous
-      // versions of ca2 API, this primitive::memory was never freed.  In this and future
-      // versions this primitive::memory is automatically freed during application's
-      // destructor.  If you are freeing the primitive::memory yourself, you should
-      // either remove the code or set the pointers to NULL after freeing
-      // the primitive::memory.
-
-      // get path of executable
-   /*   char szBuff[_MAX_PATH];
-      DWORD dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
-      ASSERT( dwRet != 0 && dwRet != _MAX_PATH );
-      if( dwRet == 0 || dwRet == _MAX_PATH )
-         throw user_exception();*/
-
-      /*
-      LPTSTR lpszExt = ::PathFindExtension(szBuff);
-      ASSERT(lpszExt != NULL);
-      if( lpszExt == NULL )
-         throw user_exception();
-
-      ASSERT(*lpszExt == '.');
-      *lpszExt = 0;       // no suffix
-      */
-
-      string strExeName;
-      //string strTitle = System.load_string("System.title");
-      // get the exe title from the full path name [no extension]
-      strExeName = System.get_module_title();
-
-      __get_module_state()->m_lpszCurrentAppName = strdup(m_strAppName);
-
-      // initialize thread state
-      __MODULE_STATE* pModuleState = __get_module_state();
-      ENSURE(pModuleState);
-      if(pModuleState->m_pCurrentWinApp == NULL)
-      {
-         __MODULE_THREAD_STATE* pThreadState = pModuleState->m_thread;
-         ENSURE(pThreadState);
-//         ASSERT(System.GetThread() == NULL);
-         pThreadState->m_pCurrentWinThread = dynamic_cast < class ::metrowin::thread * > (m_pthreadimpl.m_p);
-  //       ASSERT(System.GetThread() == this);
-
-         // initialize application state
-         //ASSERT(afxCurrentWinApp == NULL); // only one application object please
-         pModuleState->m_pCurrentWinApp = dynamic_cast < application * > (this);
-         //ASSERT(&System == this);
-      }
-
-
-//      dynamic_cast < ::metrowin::thread * > ((smart_pointer < ::application >::m_p->::ca2::thread_sp::m_p))->m_hThread = __get_thread()->m_hThread;
-  //    dynamic_cast < ::metrowin::thread * > ((smart_pointer < ::application >::m_p->::ca2::thread_sp::m_p))->m_nThreadID = __get_thread()->m_nThreadID;
       dynamic_cast < class ::metrowin::thread * > (m_pthreadimpl.m_p)->m_hThread      =  ::get_current_thread();
       dynamic_cast < class ::metrowin::thread * > (m_pthreadimpl.m_p)->m_nThreadID    =  ::GetCurrentThreadId();
       
 
    }
 
-   sp(::user::interaction_impl) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+   sp(::user::interaction) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
    {
-      return window::FindWindow(lpszClassName, lpszWindowName);
+      return interaction_impl::FindWindow(lpszClassName, lpszWindowName);
    }
 
-   sp(::user::interaction_impl) application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
+   sp(::user::interaction) application::FindWindowEx(oswindow hwndParent,oswindow hwndChildAfter,const char * lpszClass,const char * lpszWindow)
    {
-      return window::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow);
+      return interaction_impl::FindWindowEx(hwndParent,hwndChildAfter,lpszClass,lpszWindow);
    }
 
 
@@ -717,14 +585,16 @@ namespace metrowin
    #endif
    }
 
+   
    uint32_t application::get_thread_id()
    {
+      
       return ::GetCurrentThreadId();
+
    }
 
 
-
-   bool application::set_main_init_data(::core::main_init_data * pdata)
+   bool application::set_main_init_data(::base::main_init_data * pdata)
    {
 
       m_pmaininitdata = (::metrowin::main_init_data *) pdata;
@@ -739,44 +609,19 @@ namespace metrowin
 
    }
 
+
    bool application::win_init(main_init_data * pdata)
    {
-         ASSERT(pdata->m_hPrevInstance == NULL);
 
-         HINSTANCE hInstance        = pdata->m_hInstance;
-//         HINSTANCE hPrevInstance    = pdata->m_hPrevInstance;
-         string strCmdLine          = pdata->m_vssCommandLine;
-         UINT nCmdShow              = pdata->m_nCmdShow;
+      ASSERT(pdata->m_hPrevInstance == NULL);
 
-         // handle critical errors and avoid Windows message boxes
-//         SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
+      HINSTANCE hInstance        = pdata->m_hInstance;
+      string strCmdLine          = pdata->m_vssCommandLine;
+      UINT nCmdShow              = pdata->m_nCmdShow;
 
-         // set resource handles
-         __MODULE_STATE* pModuleState = __get_module_state();
-         pModuleState->m_hCurrentInstanceHandle = hInstance;
-         pModuleState->m_hCurrentResourceHandle = hInstance;
-         pModuleState->CreateActivationContext();
+      SetCurrentHandles();
 
-         // fill in the initial state for the application
-         // Windows specific initialization (not done if no application)
-//         m_hInstance = hInstance;
-//         (dynamic_cast < ::application * >(m_pbaseapp.m_p))->m_hInstance = hInstance;
-         //hPrevInstance; // Obsolete.
-         m_strCmdLine = strCmdLine;
-         m_nCmdShow = nCmdShow;
-         //pApp->SetCurrentHandles();
-         SetCurrentHandles();
-
-         // initialize thread specific data (for main thread)
-         if (!afxContextIsDLL)
-            __init_thread();
-
-         // Initialize ::user::interaction_impl::m_pfnNotifyWinEvent
-      /*   HMODULE hModule = ::GetModuleHandle("user32.dll");
-         if (hModule != NULL)
-         {
-            ::user::interaction_impl::m_pfnNotifyWinEvent = (::user::interaction_impl::PFNNOTIFYWINEVENT)::GetProcAddress(hModule, "NotifyWinEvent");
-         }*/
+      __init_thread();
 
       return true;
 
@@ -786,14 +631,14 @@ namespace metrowin
    bool application::update_module_paths()
    {
 
-      m_strModuleFolder = "";
-      m_strCa2ModuleFolder = "";
+      System.m_strModuleFolder = "";
+      System.m_strCa2ModuleFolder = "";
 
       return true;
 
    }
 
-   ::user::printer * application::get_printer(const char * pszDeviceName)
+   sp(::user::printer) application::get_printer(const char * pszDeviceName)
    {
       ::metrowin::printer * pprinter = new ::metrowin::printer(get_app());
       if(!pprinter->open(pszDeviceName))

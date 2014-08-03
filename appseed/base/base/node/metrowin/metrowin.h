@@ -104,6 +104,7 @@ CLASS_DECL_BASE bool __cdecl __is_idle_message(MESSAGE * pMsg);
 CLASS_DECL_BASE void __process_window_procedure_exception(::exception::base*, signal_details * pobj);
 CLASS_DECL_BASE void __cdecl __pre_translate_message(signal_details * pobj);
 
+#include "metrowin_copydesk.h"
 #include "metrowin_crypto.h"
 
 #include "metrowin_printer.h"

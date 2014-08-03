@@ -44,7 +44,7 @@ int CLASS_DECL_BASE win_main(::Platform::Array < ::Platform::String ^ > ^ args)
 
    _set_purecall_handler(_ca2_purecall);
 
-   ::plane::system * psystem = new ::plane::system();
+   ::core::system * psystem = new ::core::system();
 
 //   ASSERT(hPrevInstance == NULL);
 
@@ -160,7 +160,7 @@ int CLASS_DECL_BASE ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const
 
       _set_purecall_handler(_ca2_purecall);
 
-      ::plane::system * psystem = new ::plane::system();
+      ::core::system * psystem = new ::core::system();
 
 
       //Sleep(30 * 1000);

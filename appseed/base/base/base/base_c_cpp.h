@@ -221,7 +221,7 @@ namespace base
    };
 
    CLASS_DECL_BASE bool get_window_rect(system_window ^ pwindow,RECTD * lprect);
-   CLASS_DECL_BASE bool get_window_rect(system_window ^ pwindow,LPRECT * lprect);
+   CLASS_DECL_BASE bool get_window_rect(system_window ^ pwindow,LPRECT lprect);
 
 #endif
 

@@ -1029,7 +1029,9 @@ namespace hotplugin
       msg.wParam     = pbase->m_wparam;
       msg.lParam     = pbase->m_lparam;
 
+#ifndef METROWIN
       ensure_tx(::hotplugin::message_message,&msg,sizeof(msg));
+#endif
 
    }
 

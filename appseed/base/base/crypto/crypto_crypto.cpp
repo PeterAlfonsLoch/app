@@ -991,8 +991,12 @@ namespace crypto
       element(papp),
       m_mutex(papp)
    {
+#ifdef METROWIN
 
+      m_prsa = nullptr;
+#else
       m_prsa = NULL;
+#endif
 
    }
 

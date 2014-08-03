@@ -23,7 +23,7 @@ namespace metrowin
 
       mutex m_mutex;
 
-      ::plane::system * m_psystem;
+      ::core::system * m_psystem;
       ::base::application * m_papp;
 
       bool        m_bLeftButton;

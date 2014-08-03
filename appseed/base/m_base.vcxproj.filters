@@ -4257,9 +4257,6 @@
     <ClCompile Include="base\node\metrowin\metrowin_dll.cpp">
       <Filter>Source Files\base\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="base\node\metrowin\metrowin_dumpinit.cpp">
-      <Filter>Source Files\base\node\metrowin</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\metrowin\metrowin_error.cpp">
       <Filter>Source Files\base\node\metrowin</Filter>
     </ClCompile>

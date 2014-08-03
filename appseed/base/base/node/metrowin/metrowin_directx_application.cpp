@@ -353,7 +353,7 @@ uint_ptr virtualkey_to_code(::Windows::System::VirtualKey e)
 
 UINT system_main(LPVOID lp)
 {
-   ::plane::system * m_psystem = (::plane::system *) lp;
+   ::core::system * m_psystem = (::core::system *) lp;
    try
    {
       m_psystem->set_thread(m_psystem);
@@ -414,7 +414,7 @@ namespace metrowin
 
       //_set_purecall_handler(_ca2_purecall);
 
-      m_psystem = new ::plane::system();
+      m_psystem = new ::core::system();
 
 
       m_psystem->m_posdata->m_pui = new ::user::interaction(m_psystem);

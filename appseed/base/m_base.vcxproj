@@ -1217,7 +1217,6 @@
     <ClCompile Include="base\node\metrowin\metrowin_directx.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_directx_application.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_dll.cpp" />
-    <ClCompile Include="base\node\metrowin\metrowin_dumpinit.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_error.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_except.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_factory_exchange.cpp" />

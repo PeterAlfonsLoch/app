@@ -6,8 +6,7 @@ namespace metrowin
 
 
    class CLASS_DECL_BASE copydesk : 
-      virtual public ::core::copydesk,
-      virtual public ::user::window_sp
+      virtual public ::base::copydesk
    {
    public:
 

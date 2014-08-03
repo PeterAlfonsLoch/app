@@ -717,11 +717,13 @@ namespace base
 
       ::base::application::exit_instance();
 
-#ifdef WINDOWS
-
+#ifdef METROWIN
       m_pdevicecontext = nullptr;
 
       m_pmutexDc.release();
+#endif
+
+#ifdef WINDOWSEX
 
 
 
@@ -1397,7 +1399,7 @@ namespace base
 #elif defined(METROWIN)
 
 
-      get_window_rect(m_pwindow,lprect);
+      get_window_rect(m_posdata->m_pwindow,lprect);
 
 
 #elif defined(LINUX)
@@ -1545,7 +1547,7 @@ namespace base
 
 #elif defined(METROWIN)
 
-      return System.GetWindowRect(lprect);
+      return get_monitor_rect(iWkspace,lprect);
 
 #elif defined(LINUX)
 
@@ -1594,7 +1596,7 @@ namespace base
 
    }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 
    system::interaction_impl::interaction_impl(sp(::base::application) papp):
@@ -1676,7 +1678,7 @@ namespace base
 
 #if defined (METROWIN)
 
-      return GetFocus()->interaction_impl();
+      return GetFocus();
 
 #elif defined(WINDOWSEX) || defined(LINUX)
 
@@ -1979,7 +1981,7 @@ CLASS_DECL_BASE void __start_system(::base::system * psystem)
 
 #ifdef METROWIN
 
-CLASS_DECL_BASE bool get_window_rect(system_window ^ pwindow,RECTD * lprect)
+CLASS_DECL_BASE bool get_window_rect(::base::system_window ^ pwindow,RECTD * lprect)
 {
 
    Windows::Foundation::Rect rect =  m_pwindow->get_window_rect();
@@ -1992,7 +1994,7 @@ CLASS_DECL_BASE bool get_window_rect(system_window ^ pwindow,RECTD * lprect)
    return true;
 }
 
-CLASS_DECL_BASE bool get_window_rect(system_window ^ pwindow,LPRECT * lprect)
+CLASS_DECL_BASE bool get_window_rect(::base::system_window ^ pwindow,LPRECT lprect)
 {
 
    rectd r;

@@ -7,8 +7,7 @@ namespace metrowin
 
    copydesk::copydesk(::base::application * papp) :
       element(papp),
-      ::core::copydesk(papp),
-      ::user::window_sp(papp)
+      ::base::copydesk(papp)
    {
    }
 
@@ -22,7 +21,7 @@ namespace metrowin
       int iFileCount = 0;
 
       ::wait(
-         System.m_window->Dispatcher->RunAsync(
+         Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(
          ::Windows::UI::Core::CoreDispatcherPriority::Normal,
          ref new Windows::UI::Core::DispatchedHandler([&iFileCount, this]()
       {
@@ -88,8 +87,8 @@ namespace metrowin
       int iCount = get_file_count();
       if(iCount <= 0)
          return;
-      if(!m_p->OpenClipboard())
-         return;
+//      if(!m_p->OpenClipboard())
+  //       return;
 #ifdef WINDOWSEX
 
       HDROP hdrop = (HDROP) ::GetClipboardData(CF_HDROP);
@@ -165,7 +164,7 @@ namespace metrowin
    bool copydesk::initialize()
    {
       
-      if(!::core::copydesk::initialize())
+      if(!::base::copydesk::initialize())
          return false;
 
       /*if(!m_p->CreateEx(0, System.RegisterWndClass(0), NULL, 0, rect(0, 0, 0, 0), NULL, id()))
@@ -181,16 +180,16 @@ namespace metrowin
 
       bool bOk;
       
-      bOk = ::core::copydesk::finalize();
+      bOk = ::base::copydesk::finalize();
 
-      if(::user::window_sp::is_set() && ::user::window_sp::m_p->IsWindow())
+/*      if(::user::window_sp::is_set() && ::user::window_sp::m_p->IsWindow())
       {
          bOk = ::user::window_sp::m_p->DestroyWindow() != FALSE;
       }
       else
       {
          bOk = false;
-      }
+      }*/
 
       return bOk;
 
