@@ -86,6 +86,9 @@ CLASS_DECL_BASE void * __node_library_open_ca2(const char * pszPath)
 CLASS_DECL_BASE bool __node_library_close(void * plibrary)
 {
 
+   if(plibrary == NULL)
+      return false;
+
    return dlclose(plibrary) == 0;
 
 }

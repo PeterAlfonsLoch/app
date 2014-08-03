@@ -2077,21 +2077,40 @@ restart_mouse_hover_check:
    }*/
 /*
 
-   sp(::user::interaction) interaction_impl::GetTopLevelParent()
+*/
+
+   sp(::user::interaction) interaction_impl::GetParent()
    {
-      if (get_handle() == NULL) // no oswindow attached
+
+      if(!::IsWindow((oswindow) get_handle()))
          return NULL;
 
-      ASSERT_VALID(this);
+      if(get_handle() == NULL)
+         return NULL;
 
-      sp(::user::interaction) hWndParent = this;
-      sp(::user::interaction) hWndT;
-      //while ((hWndT = __get_parent_owner(hWndParent)) != NULL)
-        // hWndParent = hWndT;
+      //return ::linux::interaction_impl::from_handle(::GetParent(get_handle()));
 
-      return hWndParent;
+      return NULL;
+
    }
 
+
+
+   sp(::user::interaction) interaction_impl::GetTopLevel()
+   {
+
+      if(!::IsWindow((oswindow) get_handle()))
+         return NULL;
+
+      if(get_handle() == NULL)
+         return NULL;
+
+      return m_pui;
+
+   }
+
+
+/*
    sp(::user::interaction) interaction_impl::GetTopLevelOwner()
    {
       if (get_handle() == NULL) // no oswindow attached
@@ -2491,6 +2510,8 @@ return 0;
 
    */
 
+   /*
+
    void interaction_impl::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIdLeftOver,
       UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, bool bStretch)
    {
@@ -2608,8 +2629,7 @@ return 0;
       // move and resize all the windows at once!
 //      if (layout.hDWP == NULL || !::EndDeferWindowPos(layout.hDWP))
   //       TRACE(::ca2::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");*/
-   }
-
+  // }
 
 
    void interaction_impl::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType)
@@ -4192,16 +4212,6 @@ throw not_implemented(get_app());
    }
 
 
-   ::user::interaction * interaction_impl::get_parent()
-   {
-      if(!::IsWindow((oswindow) get_handle()))
-         return NULL;
-      if(get_handle() == NULL)
-         return NULL;
-      //return ::linux::interaction_impl::from_handle(::GetParent(get_handle()));
-      return NULL;
-   }
-
    LONG interaction_impl::GetWindowLong(int32_t nIndex)
    {
       return ::GetWindowLong((oswindow) get_handle(), nIndex);
@@ -5188,16 +5198,16 @@ if(psurface == g_cairosurface)
 
    }
 
+
    sp(::user::interaction) interaction_impl::GetNextWindow(UINT nFlag)
    {
 
-      throw not_implemented(get_app());
-//      ASSERT(::IsWindow((oswindow) get_handle()));
-//      return ::linux::interaction_impl::from_handle(::GetNextWindow(get_handle(), nFlag));
+      return NULL;
 
    }
 
-   sp(::user::interaction) interaction_impl::GetTopWindow()
+
+   sp(::user::interaction) interaction_impl::GetTopWindow() const
    {
 
       if(m_pui->m_uiptraChild.get_size() <= 0)
@@ -5229,13 +5239,16 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::user::interaction) interaction_impl::set_parent(::user::interaction * pWndNewParent)
+
+   sp(::user::interaction) interaction_impl::SetParent(sp(::user::interaction) pWndNewParent)
    {
 
       ASSERT(::IsWindow((oswindow) get_handle()));
+
       return ::linux::interaction_impl::from_handle(::SetParent(get_handle(), (oswindow) pWndNewParent->get_handle()));
 
    }
+
 
    sp(::user::interaction) PASCAL interaction_impl::oswindowFromPoint(POINT point)
    {

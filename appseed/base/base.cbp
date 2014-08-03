@@ -610,8 +610,6 @@
 		<Unit filename="base/node/ansios/ansios.h" />
 		<Unit filename="base/node/ansios/ansios_thread_impl.cpp" />
 		<Unit filename="base/node/ansios/ansios_thread_impl.h" />
-		<Unit filename="base/node/linux/Kerr/LocalMemory.h" />
-		<Unit filename="base/node/linux/Kerr/kerr.h" />
 		<Unit filename="base/node/linux/implementation.h" />
 		<Unit filename="base/node/linux/linux.h" />
 		<Unit filename="base/node/linux/linux1.cpp" />

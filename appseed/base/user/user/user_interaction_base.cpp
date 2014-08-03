@@ -78,7 +78,7 @@ namespace user
          GetWindow()->_001UpdateWindow();
 
       }
-      
+
    }
 
 
@@ -361,7 +361,7 @@ namespace user
 
    rect interaction_base::GetWindowRect()
    {
-      
+
       rect rect;
 
       GetWindowRect(&rect);
@@ -373,7 +373,7 @@ namespace user
 
    rect64 interaction_base::GetWindowRect64()
    {
-      
+
       rect64 rect;
 
       GetWindowRect(&rect);
@@ -962,7 +962,7 @@ namespace user
 
    sp(interaction) interaction_base::_001FromPoint(point64 pt,bool bTestedIfParentVisible)
    {
-   
+
       throw interface_only_exception(get_app());
 
    }
@@ -1015,7 +1015,7 @@ namespace user
 
    LRESULT interaction_base::send_message(UINT uiMessage,WPARAM wparam,lparam lparam)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1119,10 +1119,10 @@ namespace user
 
 #if defined(METROWIN) || defined(APPLE_IOS)
 
-   
+
    bool interaction_base::initialize(::user::native_window_initialize * pinitialize)
    {
-      
+
       throw interface_only_exception(get_app());
 
       return true;
@@ -1159,11 +1159,11 @@ namespace user
       sp(interaction) pParentWnd,id id,
       sp(::create_context) pContext)
    {
-      
+
       throw interface_only_exception(get_app());
-      
+
       return false;
-      
+
    }
 
 
@@ -1173,7 +1173,7 @@ namespace user
       sp(interaction) pParentWnd,id id,
       LPVOID lpParam)
    {
-      
+
       throw interface_only_exception(get_app());
 
       return true;
@@ -1189,7 +1189,7 @@ namespace user
    {
 
       throw interface_only_exception(get_app());
-      
+
       return false;
 
    }
@@ -1237,7 +1237,7 @@ namespace user
 
    LONG_PTR interaction_base::get_window_long_ptr(int32_t nIndex) const
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1269,7 +1269,7 @@ namespace user
 
    sp(interaction) interaction_base::ChildWindowFromPoint(POINT point,UINT nFlags)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1277,8 +1277,19 @@ namespace user
 
    sp(interaction) interaction_base::GetNextWindow(UINT nFlag)
    {
-   
-      throw interface_only_exception(get_app());
+
+      if(nFlag == GW_HWNDNEXT)
+      {
+
+         return get_next(true, NULL);
+
+      }
+      else
+      {
+
+         throw interface_only_exception(get_app());
+
+      }
 
    }
 
@@ -1317,7 +1328,7 @@ namespace user
 
    sp(interaction) interaction_base::GetActiveWindow()
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1325,7 +1336,7 @@ namespace user
 
    sp(interaction) interaction_base::SetFocus()
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1333,7 +1344,7 @@ namespace user
 
    sp(interaction) interaction_base::SetActiveWindow()
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1341,7 +1352,7 @@ namespace user
 
    bool interaction_base::SetForegroundWindow()
    {
-      
+
       return true;
 
    }
@@ -1349,7 +1360,7 @@ namespace user
 
    sp(interaction) interaction_base::GetLastActivePopup()
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1357,7 +1368,7 @@ namespace user
 
    void interaction_base::SetWindowText(const char * lpszString)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1365,7 +1376,7 @@ namespace user
 
    strsize interaction_base::GetWindowText(LPTSTR lpszStringBuf,int32_t nMaxCount)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1373,7 +1384,7 @@ namespace user
 
    string interaction_base::get_window_text()
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1381,7 +1392,7 @@ namespace user
 
    void interaction_base::GetWindowText(string & rString)
    {
-   
+
       throw interface_only_exception(get_app());
 
    }
@@ -1389,7 +1400,7 @@ namespace user
 
    strsize interaction_base::GetWindowTextLength()
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1397,7 +1408,7 @@ namespace user
 
    sp(interaction) interaction_base::EnsureTopLevel()
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1437,7 +1448,7 @@ namespace user
 
    sp(::user::frame_window) interaction_base::EnsureParentFrame()
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1445,7 +1456,7 @@ namespace user
 
    LRESULT interaction_base::Default()
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1453,7 +1464,7 @@ namespace user
 
    uint32_t interaction_base::GetStyle() const
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1461,7 +1472,7 @@ namespace user
 
    uint32_t interaction_base::GetExStyle() const
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1469,7 +1480,7 @@ namespace user
 
    bool interaction_base::DestroyWindow()
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1483,7 +1494,7 @@ namespace user
 
    sp(::user::frame_window) interaction_base::GetParentFrame() const
    {
-      
+
       throw interface_only_exception(get_app());
 
       return NULL;
@@ -1493,7 +1504,7 @@ namespace user
 
    void interaction_base::CalcWindowRect(LPRECT lprect,UINT nAdjustType)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1503,7 +1514,7 @@ namespace user
       UINT nFlag,LPRECT lpRectParam,
       LPCRECT lpRectClient,bool bStretch)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1527,7 +1538,7 @@ namespace user
 
    sp(interaction) interaction_base::GetOwner() const
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1567,7 +1578,7 @@ namespace user
 
    sp(interaction) interaction_base::GetDescendantWindow(id iId) const
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1615,7 +1626,7 @@ namespace user
 
    int32_t interaction_base::SetWindowRgn(HRGN hRgn,bool bRedraw)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1623,7 +1634,7 @@ namespace user
 
    int32_t interaction_base::GetWindowRgn(HRGN hRgn)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1631,7 +1642,7 @@ namespace user
 
    bool interaction_base::WfiIsZoomed()
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1639,7 +1650,7 @@ namespace user
 
    bool interaction_base::WfiIsFullScreen()
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1655,7 +1666,7 @@ namespace user
 
    bool interaction_base::CheckAutoCenter()
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1663,7 +1674,7 @@ namespace user
 
    void interaction_base::CenterWindow(sp(interaction) pAlternateOwner)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1679,7 +1690,7 @@ namespace user
 
    void interaction_base::message_handler(signal_details * pobj)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1706,7 +1717,7 @@ namespace user
 
    bool interaction_base::SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1717,7 +1728,7 @@ namespace user
 
    bool interaction_base::pre_create_window(CREATESTRUCT& cs)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1725,7 +1736,7 @@ namespace user
 
    bool interaction_base::IsTopParentActive()
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1733,13 +1744,13 @@ namespace user
 
    void interaction_base::ActivateTopParent()
    {
-   
+
    }
 
 
    void interaction_base::UpdateDialogControls(command_target* pTarget,bool bDisableIfNoHandler)
    {
-      
+
       //throw interface_only_exception(get_app());
 
    }
@@ -1747,7 +1758,7 @@ namespace user
 
    void interaction_base::SetRedraw(bool bRedraw)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1755,7 +1766,7 @@ namespace user
 
    bool interaction_base::GetUpdateRect(LPRECT lpRect,bool bErase)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1771,7 +1782,7 @@ namespace user
 
    void interaction_base::InvalidateRect(LPCRECT lpRect,bool bErase)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1779,7 +1790,7 @@ namespace user
 
    void interaction_base::InvalidateRgn(::draw2d::region* pRgn,bool bErase)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1787,7 +1798,7 @@ namespace user
 
    void interaction_base::ValidateRect(LPCRECT lpRect)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1795,7 +1806,7 @@ namespace user
 
    void interaction_base::ValidateRgn(::draw2d::region* pRgn)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1811,7 +1822,7 @@ namespace user
 
    void interaction_base::ShowOwnedPopups(bool bShow)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1819,7 +1830,7 @@ namespace user
 
    bool interaction_base::attach(oswindow oswindow_New)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1827,7 +1838,7 @@ namespace user
 
    oswindow interaction_base::detach()
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1835,7 +1846,7 @@ namespace user
 
    void interaction_base::pre_subclass_window()
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -1877,7 +1888,7 @@ namespace user
 
    void interaction_base::EndModalLoop(id nResult)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -2013,7 +2024,7 @@ namespace user
 
    void interaction_base::GuieProc(signal_details * pobj)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -2061,7 +2072,7 @@ namespace user
 
    void interaction_base::WalkPreTranslateTree(sp(::user::interaction) puiStop,signal_details * pobj)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -2077,7 +2088,7 @@ namespace user
 
    bool interaction_base::is_place_holder()
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -2085,7 +2096,7 @@ namespace user
 
    ::visual::e_cursor interaction_base::get_cursor()
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -2093,7 +2104,7 @@ namespace user
 
    void interaction_base::set_cursor(::visual::e_cursor ecursor)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -2101,7 +2112,7 @@ namespace user
 
    bool interaction_base::can_merge(sp(::user::interaction) pui)
    {
-      
+
       throw interface_only_exception(get_app());
 
       return false;
@@ -2111,7 +2122,7 @@ namespace user
 
    bool interaction_base::merge(sp(::user::interaction) pui)
    {
-      
+
       throw interface_only_exception(get_app());
 
       return false;
@@ -2129,7 +2140,7 @@ namespace user
 
    sp(interaction) interaction_base::get_top_child()
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
@@ -2145,7 +2156,7 @@ namespace user
 
    sp(interaction) interaction_base::under_sibling(sp(interaction) pui)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }

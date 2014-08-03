@@ -369,18 +369,21 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       static sp(::user::interaction) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 
       virtual sp(::user::interaction) GetNextWindow(UINT nFlag = GW_HWNDNEXT);
-      virtual sp(::user::interaction) GetTopWindow();
+      virtual sp(::user::interaction) GetTopWindow() const;
 
       virtual sp(::user::interaction) GetWindow(UINT nCmd);
       virtual sp(::user::interaction) GetLastActivePopup();
 
       virtual bool IsChild(sp(::user::interaction)  pWnd);
-      virtual ::user::interaction * get_parent();
-      using ::user::interaction_impl::set_parent;
-      sp(::user::interaction) set_parent(::user::interaction * pWndNewParent);
+      virtual sp(::user::interaction) GetParent();
+      using ::user::interaction_impl::SetParent;
+      sp(::user::interaction) SetParent(sp(::user::interaction) pWndNewParent);
       static sp(::user::interaction) PASCAL oswindowFromPoint(POINT point);
 
    // Alert Functions
+
+
+      virtual sp(::user::interaction) GetTopLevel();
 
       bool FlashWindow(bool bInvert);
 
@@ -421,9 +424,9 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       void OnHelpFinder();    // ID_HELP_FINDER, ID_DEFAULT_HELP
       void OnHelpUsing();     // ID_HELP_USING
 
-      void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver,
-         UINT nFlags = reposDefault, LPRECT lpRectParam = NULL,
-         LPCRECT lpRectClient = NULL, bool bStretch = TRUE);
+      //void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver,
+        // UINT nFlags = reposDefault, LPRECT lpRectParam = NULL,
+         //LPCRECT lpRectClient = NULL, bool bStretch = TRUE);
 
 
       void UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHndler);

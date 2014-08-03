@@ -237,8 +237,23 @@ namespace base
          try
          {
 
-            if(!::__node_library_close(m_plibrary))
-               bOk = false;
+            if(m_plibrary != NULL)
+            {
+
+               if(::__node_library_close(m_plibrary))
+               {
+
+                  m_plibrary = NULL;
+
+               }
+               else
+               {
+
+                  bOk = false;
+
+               }
+
+            }
 
          }
          catch(...)
