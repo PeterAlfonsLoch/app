@@ -114,6 +114,7 @@ CLASS_DECL_BASE int_bool OffsetRect(LPRECT prect, int32_t x, int32_t y)
       return true;
 }
 
+/*
 CLASS_DECL_BASE bool x_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 {
    prect->left = max(prect1->left, prect2->left);
@@ -127,6 +128,7 @@ CLASS_DECL_BASE bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prec
    prect->bottom = min(prect1->bottom, prect2->bottom);
    return prect->bottom >= prect->top;
 }
+*/
 
 CLASS_DECL_BASE int_bool IntersectRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 {
@@ -440,3 +442,12 @@ CLASS_DECL_BASE int_bool DispatchMessage(const MESSAGE * pmsg)
 
 
 
+
+
+
+CLASS_DECL_BASE int_bool IsRectEmpty(LPCRECT lpcrect)
+{
+
+   return lpcrect->right <=lpcrect->left || lpcrect->bottom <= lpcrect->top;
+
+}

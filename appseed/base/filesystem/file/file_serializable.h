@@ -14,6 +14,12 @@ namespace file
    {
    public:
 
+      serializable();
+      serializable(const serializable & s);
+      #ifdef MOVE_SEMANTICS
+      serializable(serializable && s);
+      #endif
+
 
       virtual void write(output_stream & ostream) = 0;
       virtual void read(input_stream & istream) = 0;

@@ -241,9 +241,9 @@ namespace user
                {
                   System.frames().add(this);
                }
-               
+
                pimplNew.release();
-               
+
             }
             else
             {
@@ -311,14 +311,14 @@ namespace user
 
    void interaction::GetWindowRect(__rect64 * lprect)
    {
-      
+
       if(m_pimpl == NULL)
          return;
 
       m_pimpl->GetWindowRect(lprect);
 
 
-      
+
    }
 
 
@@ -433,7 +433,7 @@ namespace user
 
    }
 
-   
+
 
 
    void interaction::install_message_handling(::message::dispatch * pinterface)
@@ -642,6 +642,8 @@ namespace user
       */
    }
 
+
+
    void interaction::_001DrawThis(::draw2d::graphics * pgraphics)
    {
 
@@ -740,7 +742,7 @@ namespace user
    {
 
       single_lock sl(m_pbaseapp->m_pmutex, true);
-      
+
       ptr_array < interaction > ptraChild(m_uiptraChild);
 
       sl.unlock();
@@ -812,7 +814,7 @@ namespace user
       }
 
       /*
-      
+
       if(&session() != NULL )
       {
          string strText;
@@ -1439,7 +1441,7 @@ namespace user
    {
 
       UNREFERENCED_PARAMETER(pobj);
-         
+
    }
 
 
@@ -1806,7 +1808,7 @@ namespace user
          if(!m_pimpl->CreateEx(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,id,lpParam))
          {
             m_pimpl.release();
-            
+
             return false;
          }
          //install_message_handling(this);
@@ -1834,7 +1836,7 @@ namespace user
          if(!m_pimpl->CreateEx(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rectFrame,pParentWnd,id,lpParam))
          {
             m_pimpl.release();
-            
+
             return false;
          }
          //install_message_handling(this);
@@ -2253,7 +2255,7 @@ namespace user
 
    sp(::user::frame_window) interaction::EnsureParentFrame()
    {
-      
+
       sp(::user::frame_window) pFrameWnd = GetParentFrame();
 
       ENSURE_VALID(pFrameWnd);
@@ -2379,12 +2381,12 @@ namespace user
 
    sp(interaction) interaction::GetOwner() const
    {
-      
+
       if(m_pimpl == NULL)
          return NULL;
 
       return m_pimpl->GetOwner();
-      
+
    }
 
    sp(interaction) interaction::GetParentOwner() const
@@ -2472,7 +2474,7 @@ namespace user
 
    int32_t interaction::SetWindowRgn(HRGN hRgn,bool bRedraw)
    {
-   
+
       if(m_pimpl == NULL)
          return 0;
       else
@@ -2579,12 +2581,12 @@ namespace user
 
 #endif
 
-   
+
    bool interaction::pre_create_window(CREATESTRUCT& cs)
    {
 
       return true;
-      
+
    }
 
 
@@ -3046,11 +3048,11 @@ namespace user
       if(m_pimpl != NULL)
       {
 
-         return m_pimpl->SetCapture(pinterface.is_null() ? this : pinterface);
+         return m_pimpl->SetCapture(pinterface.is_null() ? this : pinterface.m_p);
 
       }
 
-      return GetWindow()->SetCapture(pinterface.is_null() ? this : pinterface);
+      return GetWindow()->SetCapture(pinterface.is_null() ? this : pinterface.m_p);
 
    }
 
@@ -3285,7 +3287,7 @@ namespace user
 
       if(!m_pimpl->create_message_queue(pszName,pcallback))
       {
-         
+
          m_pimpl.release();
 
          return false;
@@ -3657,7 +3659,7 @@ namespace user
       return puiFocusable;
    }
 
-   
+
    void interaction::_001OnTriggerMouseInside()
    {
 
@@ -3786,7 +3788,7 @@ namespace user
 
    bool interaction::_008SetSchema(::user::schema * pschema)
    {
-      
+
       SendMessageToDescendants(message_set_schema,0,pschema,true,true);
 
       return true;
@@ -4438,7 +4440,7 @@ namespace user
          synch_lock slUserMutex(&user_mutex());
 
          {
-            
+
             keep < bool > keepLockWindowUpdate(&m_bLockWindowUpdate,true,false,true);
 
             keep < bool > keepIgnoreSizeEvent(&m_pimpl->m_bIgnoreSizeEvent,true,false,true);
@@ -4811,7 +4813,7 @@ namespace user
 
    void interaction::ClientToScreen(LPPOINT lppoint)
    {
-      
+
       if(m_pimpl == NULL)
          return;
 
@@ -4822,7 +4824,7 @@ namespace user
 
    void interaction::ClientToScreen(__rect64 * lprect)
    {
-      
+
       if(m_pimpl == NULL)
          return;
 
@@ -4833,7 +4835,7 @@ namespace user
 
    void interaction::ClientToScreen(__point64 * lppoint)
    {
-      
+
       if(m_pimpl == NULL)
          return;
 
@@ -4844,7 +4846,7 @@ namespace user
 
    void interaction::ScreenToClient(LPRECT lprect)
    {
-      
+
       if(m_pimpl == NULL)
          return;
 
@@ -4866,7 +4868,7 @@ namespace user
 
    void interaction::ScreenToClient(__rect64 * lprect)
    {
-      
+
       if(m_pimpl == NULL)
          return;
 
@@ -4877,7 +4879,7 @@ namespace user
 
    void interaction::ScreenToClient(__point64 * lppoint)
    {
-      
+
       if(m_pimpl == NULL)
          return;
 
@@ -4893,7 +4895,7 @@ namespace user
          return;
 
       m_pimpl->GetClientRect(lprect);
-      
+
    }
 
 

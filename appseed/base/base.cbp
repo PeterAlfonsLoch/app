@@ -3620,12 +3620,6 @@
 		<Unit filename="primitive/primitive_command_thread.h" />
 		<Unit filename="primitive/primitive_create_context.cpp" />
 		<Unit filename="primitive/primitive_create_context.h" />
-		<Unit filename="primitive/primitive_data.cpp" />
-		<Unit filename="primitive/primitive_data.h" />
-		<Unit filename="primitive/primitive_data_container.cpp" />
-		<Unit filename="primitive/primitive_data_container.h" />
-		<Unit filename="primitive/primitive_data_listener.cpp" />
-		<Unit filename="primitive/primitive_data_listener.h" />
 		<Unit filename="primitive/primitive_edit.cpp" />
 		<Unit filename="primitive/primitive_edit.h" />
 		<Unit filename="primitive/primitive_factory.cpp" />
@@ -4231,7 +4225,6 @@
 		<Unit filename="user/user/user_message.h" />
 		<Unit filename="user/user/user_mouse_focus.cpp" />
 		<Unit filename="user/user/user_mouse_focus.h" />
-		<Unit filename="user/user/user_object.cpp" />
 		<Unit filename="user/user/user_object.h" />
 		<Unit filename="user/user/user_place_holder.cpp" />
 		<Unit filename="user/user/user_place_holder.h" />
@@ -4266,15 +4259,12 @@
 		<Unit filename="user/user/user_view_creator.cpp" />
 		<Unit filename="user/user/user_view_creator.h" />
 		<Unit filename="user/user/user_view_creator_data.h" />
-		<Unit filename="user/user/user_virtual_user_interface.cpp" />
 		<Unit filename="user/user/user_virtual_user_interface.h" />
 		<Unit filename="user/user/user_wait_cursor.cpp" />
 		<Unit filename="user/user/user_wait_cursor.h" />
-		<Unit filename="user/user/user_window.cpp" />
 		<Unit filename="user/user/user_window.h" />
 		<Unit filename="user/user/user_window_draw.cpp" />
 		<Unit filename="user/user/user_window_draw.h" />
-		<Unit filename="user/user/user_window_interface.cpp" />
 		<Unit filename="user/user/user_window_interface.h" />
 		<Unit filename="user/user/user_window_map.cpp" />
 		<Unit filename="user/user/user_window_map.h" />

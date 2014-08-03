@@ -401,7 +401,7 @@ namespace user
 
       if(rectChild.area() > 0)
       {
-       
+
          m_pui->SetWindowPos(0,0,0,cs.cx,cs.cy,0);
 
          send_message(WM_SIZE);
@@ -499,14 +499,14 @@ namespace user
    LRESULT interaction_child::send_message(XEvent * pevent)
    {
 
-      smart_pointer < message::base > spbase;
+      smart_pointer < ::message::base > spbase;
 
       spbase = get_base(pevent, m_pui);
 
       try
       {
          sp(interaction) pui = m_pui;
-         while(pui != NULL && pui->get_parent() != NULL)
+         while(pui != NULL && pui->GetParent() != NULL)
          {
             try
             {
@@ -520,7 +520,7 @@ namespace user
                return spbase->get_lresult();
             try
             {
-               pui = pui->get_parent();
+               pui = pui->GetParent();
             }
             catch(...)
             {
@@ -1095,8 +1095,8 @@ namespace user
       return GetParent();
 
    }
-   
-   
+
+
    void interaction_child::GetClientRect(__rect64 * lprect)
    {
 
@@ -1156,16 +1156,16 @@ namespace user
 
    }
 
-   
+
    void interaction_child::ClientToScreen(LPPOINT lppoint)
    {
-      
+
       lppoint->x     += (LONG)m_rectParentClient.left;
       lppoint->y     += (LONG)m_rectParentClient.top;
-      
+
       if(GetParent() != NULL)
       {
-         
+
          GetParent()->ClientToScreen(lppoint);
 
          point ptScroll = m_pui->get_parent_scroll_position();
@@ -1180,7 +1180,7 @@ namespace user
 
    void interaction_child::ClientToScreen(__rect64 * lprect)
    {
-   
+
       lprect->left   += m_rectParentClient.left;
       lprect->right  += m_rectParentClient.left;
       lprect->top    += m_rectParentClient.top;
@@ -1188,7 +1188,7 @@ namespace user
 
       if(GetParent() != NULL)
       {
-         
+
          GetParent()->ClientToScreen(lprect);
 
          point ptScroll = m_pui->get_parent_scroll_position();
@@ -1205,13 +1205,13 @@ namespace user
 
    void interaction_child::ClientToScreen(__point64 * lppoint)
    {
-      
+
       lppoint->x     += m_rectParentClient.left;
       lppoint->y     += m_rectParentClient.top;
-      
+
       if(GetParent() != NULL)
       {
-      
+
          GetParent()->ClientToScreen(lppoint);
 
          point ptScroll = m_pui->get_parent_scroll_position();
@@ -1296,7 +1296,7 @@ namespace user
 
    void interaction_child::ScreenToClient(__point64 * lppoint)
    {
-      
+
       lppoint->x     -= m_rectParentClient.left;
       lppoint->y     -= m_rectParentClient.top;
 

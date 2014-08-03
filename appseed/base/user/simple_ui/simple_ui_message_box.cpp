@@ -55,11 +55,11 @@ namespace simple_ui
       tapa.add(ptap);
 
    }
-   
+
    int32_t message_box::show()
    {
 
-      
+
 
       if(!CreateEx(WS_EX_LAYERED, NULL, NULL, 0, null_rect(), NULL, "fontopus"))
          throw simple_exception(get_app(), "not excepted! Failing Message box!!");
@@ -226,7 +226,7 @@ namespace simple_ui
       }
 
       x = rectClient.right - margin - cx;
-      
+
       for(index i = m_tapaB.get_upper_bound(); i >= 0; i--)
       {
 
@@ -405,7 +405,7 @@ int32_t simple_ui_message_box(oswindow interaction_impl, const char * lpText,con
 
          //__begin_thread(::get_thread_app(),&thread_proc_simple_ui_message_box,pmessagebox);
          pmessagebox->show();
-         
+
 /*         while(!pmessagebox->m_evReady.wait(millis(0)).signaled())
          {
 
@@ -451,9 +451,10 @@ int32_t simple_ui_message_box(oswindow interaction_impl, const char * lpText,con
 
    }
 
+#ifdef WINDOWS
    if(bQuit)
       PostQuitMessage((int32_t)msg.wParam);
-
+#endif // WINDOWS
    return iResult;
 
 }

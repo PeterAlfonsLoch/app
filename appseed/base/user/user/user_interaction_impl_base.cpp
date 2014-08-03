@@ -91,7 +91,7 @@ namespace user
 
    void interaction_impl_base::RepositionBars(UINT nIDFirst,UINT nIDLast,id nIdLeftOver, UINT nFlags,LPRECT lpRectParam,LPCRECT lpRectClient,bool bStretch)
    {
-      
+
       UNREFERENCED_PARAMETER(nIDFirst);
       UNREFERENCED_PARAMETER(nIDLast);
 
@@ -119,10 +119,11 @@ namespace user
 
       if(::IsRectEmpty(&layout.rect))
          return;
-
+#ifdef WINDOWS
       if((nFlags & ~reposNoPosLeftOver) != reposQuery)
          layout.hDWP = ::BeginDeferWindowPos(8); // reasonable guess
       else
+#endif
          layout.hDWP = NULL; // not actually doing layout
 
       if(m_pui != NULL)
@@ -188,7 +189,7 @@ namespace user
       }
 
       // the rest is the client size of the left-over pane
-      if(nIdLeftOver != NULL && oswindow_LeftOver != NULL)
+      if(!nIdLeftOver.is_null() && oswindow_LeftOver != NULL)
       {
          sp(::user::interaction) pLeftOver = oswindow_LeftOver;
          // allow extra space as specified by lpRectBorder
@@ -208,9 +209,11 @@ namespace user
          }
       }
 
+#ifdef WINDOWS
       // move and resize all the windows at once!
       if(layout.hDWP == NULL || !::EndDeferWindowPos(layout.hDWP))
          TRACE(::base::trace::category_AppMsg,0,"Warning: DeferWindowPos failed - low system resources.\n");
+#endif
    }
 
 
@@ -469,7 +472,7 @@ namespace user
 
    }
 
-   
+
    interaction * interaction_impl_base::get_wnd() const
    {
 
@@ -531,12 +534,12 @@ namespace user
 
    uint32_t interaction_impl_base::GetStyle() const
    {
-      
+
       return get_window_long(GWL_STYLE);
 
    }
-   
-   
+
+
    uint32_t interaction_impl_base::GetExStyle() const
    {
 
