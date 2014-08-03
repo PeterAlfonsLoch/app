@@ -2687,7 +2687,7 @@ synch_lock ml(&user_mutex());
 
 
 
-   bool dib::print_window(window * pwnd, signal_details * pobj)
+   bool dib::print_window(::user::interaction_impl * pwnd, signal_details * pobj)
    {
 
       return true;
@@ -2714,7 +2714,7 @@ synch_lock ml(&user_mutex());
 
       rect64 rectWindow;
 
-      rectWindow = pwnd->m_rectParentClient;
+      pwnd->GetWindowRect(rectWindow);
 
       m_spgraphics->SetViewportOrg(0, 0);
 

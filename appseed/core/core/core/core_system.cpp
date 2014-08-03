@@ -11,8 +11,8 @@ namespace core
 
 
    system::system(sp(::base::application) papp):
-      ::element(papp.is_null() ? this : papp),
-      ::base::system(papp.is_null() ? this : papp),
+      ::element(papp),
+      ::base::system(papp),
       m_mutexDelete(this),
       m_mutex(this),
 #ifndef METROWIN
