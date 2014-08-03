@@ -26,16 +26,7 @@ namespace plugin
 
    host_interaction::~host_interaction()
    {
-      if(m_pbaseapp != NULL)
-      {
-         try
-         {
-            m_pbaseapp.release();
-         }
-         catch(...)
-         {
-         }
-      }
+
    }
 
    void host_interaction::install_message_handling(::message::dispatch * pinterface)

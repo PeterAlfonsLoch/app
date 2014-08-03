@@ -6,16 +6,17 @@ root::root()
 
    m_countReference  = 1;
    m_bHeap           = false;
+   m_pbaseapp        = NULL;
 
 }
 
 
-root::root(sp(::base::application) papp) :
-   m_pbaseapp(papp)
+root::root(sp(::base::application) papp)
 {
 
-   m_countReference = 1;
-   m_bHeap = false;
+   m_countReference  = 1;
+   m_bHeap           = false;
+   m_pbaseapp        = papp.m_p;
 
 }
 

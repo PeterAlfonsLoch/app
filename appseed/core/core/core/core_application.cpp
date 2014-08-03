@@ -33,15 +33,9 @@ namespace core
       m_mutex(this),
       thread(NULL),
       m_simpledb(this)
-
-
    {
 
-
-
-
-
-      if(m_pbaseapp.is_null())
+      if(m_pbaseapp == NULL)
       {
          set_app(this);
       }
