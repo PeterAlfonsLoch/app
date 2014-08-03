@@ -42,23 +42,11 @@ namespace user
 
    bool window_draw::twf_stop()
    {
-      const uint32_t dwTimeOut = 184 * (5000);
+
       m_bRun = false;
-      uint32_t dwStart = ::get_tick_count();
-      while(m_bRunning && ((::get_tick_count() - dwStart) < dwTimeOut))
-      {
-#ifdef WINDOWSEX
-         if(!::SwitchToThread())
-#endif
-            Sleep(184);
-      }
-      bool bStopped = !m_bRunning;
-      if(!bStopped)
-      {
-         TRACE("Failed to stop with the timeout %d milliseconds", dwTimeOut);
-      }
-      Sleep(584);
-      return bStopped;
+
+      return true;
+
    }
 
    void window_draw::asynch_redraw()

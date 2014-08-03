@@ -532,19 +532,6 @@ namespace base
    int32_t system::exit_instance()
    {
 
-      try
-      {
-         if(m_ptwf != NULL)
-         {
-         ::user::window_draw * p=m_ptwf;
-         m_ptwf = NULL;
-            p->twf_stop();
-         }
-      }
-      catch(...)
-      {
-      }
-
       __wait_threading_count(::millis((5000) * 8));
 
       try
@@ -1329,7 +1316,11 @@ namespace base
       if(m_ptwf != NULL)
          return true;
 
-      m_ptwf.create(allocer());
+      sp(::user::window_draw) pwindow = alloc(System.type_info < ::user::window_draw >());
+
+      m_ptwf = pwindow;
+
+      m_ptwf->add_ref();
 
       if(m_ptwf->twf_start())
          return false;
