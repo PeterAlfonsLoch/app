@@ -1984,7 +1984,7 @@ CLASS_DECL_BASE void __start_system(::base::system * psystem)
 CLASS_DECL_BASE bool get_window_rect(::base::system_window ^ pwindow,RECTD * lprect)
 {
 
-   Windows::Foundation::Rect rect =  m_pwindow->get_window_rect();
+   Windows::Foundation::Rect rect =  pwindow->get_window_rect();
 
    lprect->left = rect.X;
    lprect->top = rect.Y;

@@ -1218,7 +1218,6 @@
     <ClCompile Include="base\node\metrowin\metrowin_directx_application.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_dll.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_error.cpp" />
-    <ClCompile Include="base\node\metrowin\metrowin_except.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_factory_exchange.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_file.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_file_find.cpp" />
@@ -1688,7 +1687,6 @@
     <ClCompile Include="user\user\user_menu_base_item.cpp" />
     <ClCompile Include="user\user\user_message.cpp" />
     <ClCompile Include="user\user\user_mouse_focus.cpp" />
-    <ClCompile Include="user\user\user_object.cpp" />
     <ClCompile Include="user\user\user_place_holder.cpp" />
     <ClCompile Include="user\user\user_place_holder_container.cpp" />
     <ClCompile Include="user\user\user_printer.cpp" />
@@ -1699,11 +1697,8 @@
     <ClCompile Include="user\user\user_user.cpp" />
     <ClCompile Include="user\user\user_view_container.cpp" />
     <ClCompile Include="user\user\user_view_creator.cpp" />
-    <ClCompile Include="user\user\user_virtual_user_interface.cpp" />
     <ClCompile Include="user\user\user_wait_cursor.cpp" />
-    <ClCompile Include="user\user\user_window.cpp" />
     <ClCompile Include="user\user\user_window_draw.cpp" />
-    <ClCompile Include="user\user\user_window_interface.cpp" />
     <ClCompile Include="user\user\user_window_map.cpp" />
     <ClCompile Include="user\user\user_window_util.cpp" />
     <ClCompile Include="version.cpp" />

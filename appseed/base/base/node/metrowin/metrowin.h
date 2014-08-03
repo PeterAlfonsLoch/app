@@ -62,6 +62,9 @@ CLASS_DECL_BASE void __try_cleanup();
 #include "metrowin_thread.h"
 #include "metrowin_interaction_impl.h"
 #include "metrowin_port_forward.h"
+#include "metrowin_file.h"
+#include "metrowin_stdio_file.h"
+#include "metrowin_file_set.h"
 
 #define NULL_REF(class) (*((class *) NULL))
 //CLASS_DECL_BASE WNDPROC __get_window_procedure();

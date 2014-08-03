@@ -4118,9 +4118,6 @@
     <ClCompile Include="user\user\user_mouse_focus.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_object.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_place_holder.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -4151,19 +4148,10 @@
     <ClCompile Include="user\user\user_view_creator.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_virtual_user_interface.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_wait_cursor.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_window.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_window_draw.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_window_interface.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_window_map.cpp">
@@ -4258,9 +4246,6 @@
       <Filter>Source Files\base\node\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="base\node\metrowin\metrowin_error.cpp">
-      <Filter>Source Files\base\node\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\metrowin\metrowin_except.cpp">
       <Filter>Source Files\base\node\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="base\node\metrowin\metrowin_factory_exchange.cpp">

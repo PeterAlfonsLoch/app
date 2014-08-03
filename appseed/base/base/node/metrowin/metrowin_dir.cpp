@@ -289,7 +289,7 @@ namespace metrowin
          }
          if(piaSize != NULL)
          {
-            piaSize->add(System.file().length(strPath));
+            piaSize->add(App(papp).file().length(strPath));
          }
       }
 
