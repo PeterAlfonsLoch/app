@@ -85,7 +85,7 @@ namespace metrowin
 
       if(nOpenFlags & ::file::defer_create_directory)
       {
-         System.dir_mk(System.dir_name(lpszFileName));
+         Application.dir().mk(System.dir().name(lpszFileName));
       }
 
       m_bCloseOnDelete = FALSE;

@@ -9,7 +9,7 @@ namespace metrowin
 
 
    class CLASS_DECL_BASE os :
-      public ::core::os
+      public ::base::os
    {
    public:
    

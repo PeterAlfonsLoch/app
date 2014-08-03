@@ -356,7 +356,7 @@ UINT system_main(LPVOID lp)
    ::core::system * m_psystem = (::core::system *) lp;
    try
    {
-      m_psystem->set_thread(m_psystem);
+      //m_psystem->set_thread(m_psystem);
       m_psystem->m_iReturnCode = 0;
       m_psystem->m_bReady = true;
       m_psystem->m_iReturnCode = m_psystem->on_run();

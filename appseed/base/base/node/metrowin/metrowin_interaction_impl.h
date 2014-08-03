@@ -437,9 +437,10 @@ namespace metrowin
       UINT nFlag = reposDefault, LPRECT lpRectParam = NULL,
       LPCRECT lpRectClient = NULL, bool bStretch = TRUE);*/
 
-      void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver,
-         UINT nFlags = reposDefault, LPRECT lpRectParam = NULL,
-         LPCRECT lpRectClient = NULL, bool bStretch = TRUE);
+      //
+      //void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver,
+        // UINT nFlags = reposDefault, LPRECT lpRectParam = NULL,
+         //LPCRECT lpRectClient = NULL, bool bStretch = TRUE);
 
 
       // dialog support

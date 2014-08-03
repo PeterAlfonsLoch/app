@@ -1999,7 +1999,7 @@ CLASS_DECL_BASE bool get_window_rect(::base::system_window ^ pwindow,LPRECT lpre
 
    rectd r;
 
-   if(!get_window_rect(pwindow,r))
+   if(!get_window_rect(pwindow,&r))
       return false;
 
    if(!::copy(lprect,r))
