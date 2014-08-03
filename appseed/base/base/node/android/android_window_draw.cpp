@@ -535,7 +535,7 @@ namespace android
       {
          oswindow hwndTopic = wndaApp[j];
 
-         sp(::interaction_impl) pwnd = NULL;
+         sp(::user::interaction) pwnd = NULL;
          //::interaction_impl * pwnd =  (System.window_map().get((int_ptr) hwndTopic));
          //if(pwnd == NULL)
          //{
@@ -799,7 +799,7 @@ namespace android
          return OptimizeNone;
       }
 
-   //    sp(::interaction_impl) pwnd = interaction_impl::FromHandlePermanent(hwnd);
+   //    sp(::user::interaction) pwnd = interaction_impl::FromHandlePermanent(hwnd);
 
 
       if(ptwi == NULL)
@@ -890,7 +890,7 @@ namespace android
       ::GetWindowRect((::oswindow) oswindow, rectWindow);
 
 
-   //   sp(::interaction_impl) pwnd = ::android::interaction_impl::from_handle(oswindow);
+   //   sp(::user::interaction) pwnd = ::android::interaction_impl::from_handle(oswindow);
 
       if(!TwfGetTopWindow(
             hwndParam,
@@ -996,7 +996,7 @@ throw not_implemented(get_app());
    {
       rect rectWindow;
 
-   //   sp(::interaction_impl) pwndOpaque = interaction_impl::FromHandlePermanent(hwndOpaque);
+   //   sp(::user::interaction) pwndOpaque = interaction_impl::FromHandlePermanent(hwndOpaque);
 
       ::GetWindowRect((oswindow) hwndOpaque, rectWindow);
 

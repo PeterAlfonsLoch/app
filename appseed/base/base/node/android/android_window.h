@@ -77,7 +77,7 @@ namespace android
       // subclassing/unsubclassing functions
       virtual void pre_subclass_window();
       bool SubclassWindow(oswindow hWnd);
-      //bool SubclassDlgItem(UINT nID, sp(::interaction_impl) pParent);
+      //bool SubclassDlgItem(UINT nID, sp(::user::interaction) pParent);
       oswindow UnsubclassWindow();
 
       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
@@ -128,7 +128,7 @@ namespace android
 
    #if(WINVER >= 0x0500)
 
-      sp(::interaction_impl) GetAncestor(UINT gaFlags) const;
+      sp(::user::interaction) GetAncestor(UINT gaFlags) const;
 
    #endif   // WINVER >= 0x0500
 

@@ -191,10 +191,10 @@ namespace android
 
    string file_system::time(sp(::base::application) papp, const char * psz, int32_t iMaxLevel, const char * pszPrefix, const char * pszSuffix)
    {
-      mutex_lock lockMachineEvent(
+      single_lock lockMachineEvent(
          (&System.machine_event_central() != NULL) ?
-            System.machine_event_central().m_machineevent.m_mutex
-            : *((simple_mutex *) NULL), true);
+            &System.machine_event_central().m_machineevent.m_mutex
+            : (mutex *) NULL, true);
       int32_t iIncLevel = -1;
       string str;
       string strPrefix(pszPrefix);
@@ -325,9 +325,9 @@ namespace android
    string file_system::as_string(var varFile, var & varQuery, sp(::base::application) papp)
    {
       primitive::memory storage;
-      if(varFile.ca2 < ::file::buffer > () != NULL)
+      if(varFile.cast < ::file::buffer > () != NULL)
       {
-         storage.FullLoad(*varFile.ca2 < ::file::buffer >());
+         storage.FullLoad(*varFile.cast < ::file::buffer >());
       }
       else
       {
@@ -1186,7 +1186,7 @@ namespace android
       ::file::buffer_sp fileOut = sess(papp).file().get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
       if(fileOut.is_null())
-         throw ::ca2::file_exception(papp, -1, ::ca2::file_exception::none, name);
+         throw ::file::exception(papp, -1, ::file::exception::none, name);
 
       return fileOut;
 

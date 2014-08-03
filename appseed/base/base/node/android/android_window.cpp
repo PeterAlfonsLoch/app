@@ -162,7 +162,7 @@ namespace android
    }
 
 
-   sp(::interaction_impl) interaction_impl::from_os_data(void * pdata)
+   sp(::user::interaction) interaction_impl::from_os_data(void * pdata)
    {
       return from_handle((oswindow) pdata);
    }
@@ -991,7 +991,7 @@ d.unlock();
          return; // don't do anything more
       }*/
 
-      sp(::interaction_impl) pWnd = (::interaction_impl *) this;
+      sp(::user::interaction) pWnd = (::interaction_impl *) this;
       if (pWnd != this)
          dumpcontext << " (Detached or temporary interaction_impl)";
       else
@@ -1011,7 +1011,7 @@ d.unlock();
       rect rect;
       ((::interaction_impl *) this)->GetWindowRect(&rect);
       dumpcontext << "\nrect = " << rect;
-      dumpcontext << "\nparent sp(::interaction_impl) = " << (void *)((::interaction_impl *) this)->get_parent();
+      dumpcontext << "\nparent sp(::user::interaction) = " << (void *)((::interaction_impl *) this)->get_parent();
 
 //      dumpcontext << "\nstyle = " << (void *)(dword_ptr)::GetWindowLong(get_handle(), GWL_STYLE);
   //    if (::GetWindowLong(get_handle(), GWL_STYLE) & WS_CHILD)
@@ -1038,7 +1038,7 @@ d.unlock();
       }
 
       single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex, TRUE);
-      sp(::interaction_impl) pWnd;
+      sp(::user::interaction) pWnd;
       hwnd_map * pMap;
       oswindow hWndOrig;
       bool bResult;
@@ -1072,7 +1072,7 @@ d.unlock();
          {
             // Should have been detached by OnNcDestroy
 #ifdef DEBUG
-//            sp(::interaction_impl) pWndPermanent =  (pMap->lookup_permanent(hWndOrig));;
+//            sp(::user::interaction) pWndPermanent =  (pMap->lookup_permanent(hWndOrig));;
   //          ASSERT(pWndPermanent == NULL);
             // It is important to call base class, including ca2 core
             // base classes implementation of install_message_handling
@@ -1240,7 +1240,7 @@ d.unlock();
       return ::GetWindowInfo((oswindow)get_handle(), pwi) != FALSE;
    }*/
 
-/*   sp(::interaction_impl) interaction_impl::GetAncestor(UINT gaFlags) const
+/*   sp(::user::interaction) interaction_impl::GetAncestor(UINT gaFlags) const
    { ASSERT(::IsWindow((oswindow)get_handle())); return  ::android::interaction_impl::from_handle(::GetAncestor((oswindow)get_handle(), gaFlags)); }
 
 */
@@ -1979,7 +1979,7 @@ restart_mouse_hover_check:
    wndTemp.set_handle(pCtl->hWnd);
    UINT nCtlType = pCtl->nCtlType;
    // if not coming from a permanent interaction_impl, use stack temporary
-   sp(::interaction_impl) pWnd = ::android::interaction_impl::FromHandlePermanent(wndTemp.get_handle());
+   sp(::user::interaction) pWnd = ::android::interaction_impl::FromHandlePermanent(wndTemp.get_handle());
    if (pWnd == NULL)
    {
    pWnd = &wndTemp;
@@ -2336,7 +2336,7 @@ restart_mouse_hover_check:
    /* trans oswindow CLASS_DECL_BASE __get_parent_owner(sp(::user::interaction) hWnd)
    {
    // check for permanent-owned interaction_impl first
-   sp(::interaction_impl) pWnd = ::android::interaction_impl::FromHandlePermanent(hWnd);
+   sp(::user::interaction) pWnd = ::android::interaction_impl::FromHandlePermanent(hWnd);
    if (pWnd != NULL)
    return ANDROID_WINDOW(pWnd)->GetOwner();
 
@@ -2410,7 +2410,7 @@ restart_mouse_hover_check:
    void interaction_impl::ActivateTopParent()
    {
       // special activate logic for floating toolbars and palettes
-      sp(::interaction_impl) pActiveWnd = GetForegroundWindow();
+      sp(::user::interaction) pActiveWnd = GetForegroundWindow();
 //      if (pActiveWnd == NULL || !(ANDROID_WINDOW(pActiveWnd)->get_handle() == get_handle() || ::IsChild(ANDROID_WINDOW(pActiveWnd)->get_handle(), get_handle())))
       {
          // clicking on floating frame when it does not have
@@ -2443,7 +2443,7 @@ restart_mouse_hover_check:
       return pFrameWnd;
    }
 
-/*   sp(::interaction_impl) interaction_impl::GetSafeOwner(::interaction_impl * pParent, oswindow* pWndTop)
+/*   sp(::user::interaction) interaction_impl::GetSafeOwner(::interaction_impl * pParent, oswindow* pWndTop)
    {
       oswindow hWnd = GetSafeOwner_((oswindow) pParent->get_handle(), pWndTop);
       return ::android::interaction_impl::from_handle(hWnd);
@@ -2487,7 +2487,7 @@ restart_mouse_hover_check:
          // if bOnlyPerm is TRUE, don't send to non-permanent windows
          /*if (bOnlyPerm)
          {
-            sp(::interaction_impl) pWnd = ::android::interaction_impl::FromHandlePermanent(hWndChild);
+            sp(::user::interaction) pWnd = ::android::interaction_impl::FromHandlePermanent(hWndChild);
             if (pWnd != NULL)
             {
                // call interaction_impl proc directly since it is a C++ interaction_impl
@@ -2975,8 +2975,8 @@ return 0;
          return FALSE;
 
       // check if in permanent ::collection::map, if it is reflect it (could be OLE control)
-      sp(::interaction_impl) pWnd =  (pMap->lookup_permanent(hWndChild)); */
-      sp(::interaction_impl) pWnd =  (FromHandlePermanent(hWndChild));
+      sp(::user::interaction) pWnd =  (pMap->lookup_permanent(hWndChild)); */
+      sp(::user::interaction) pWnd =  (FromHandlePermanent(hWndChild));
       ASSERT(pWnd == NULL || ANDROID_WINDOW(pWnd)->get_handle() == hWndChild);
       if (pWnd == NULL)
       {
@@ -3555,7 +3555,7 @@ throw not_implemented(get_app());
    }
 
 
-   void interaction_impl::OnEnterIdle(UINT /*nWhy*/, sp(::interaction_impl) /*pWho*/)
+   void interaction_impl::OnEnterIdle(UINT /*nWhy*/, sp(::user::interaction) /*pWho*/)
    {
       // In some OLE inplace active scenarios, OLE will post a
       // message instead of sending it.  This causes so many WM_ENTERIDLE
@@ -3574,7 +3574,7 @@ throw not_implemented(get_app());
       Default();
    }
 
-   HBRUSH interaction_impl::OnCtlColor(::draw2d::graphics *, sp(::interaction_impl) pWnd, UINT)
+   HBRUSH interaction_impl::OnCtlColor(::draw2d::graphics *, sp(::user::interaction) pWnd, UINT)
    {
       ASSERT(pWnd != NULL && ANDROID_WINDOW(pWnd)->get_handle() != NULL);
       LRESULT lResult;
@@ -3892,7 +3892,7 @@ throw not_implemented(get_app());
       state.m_pOther = &wndTemp;
 
       // check for reflect handlers in the child interaction_impl
-      sp(::interaction_impl) pWnd = ::android::interaction_impl::FromHandlePermanent(hWndChild);
+      sp(::user::interaction) pWnd = ::android::interaction_impl::FromHandlePermanent(hWndChild);
       if (pWnd != NULL)
       {
       // call it directly to disable any routing
@@ -4131,7 +4131,7 @@ ExitModal:
          System.GetThread()->post_thread_message(WM_NULL);
          for(int32_t i = iLevel; i >= 0; i--)
          {
-            ::thread * pthread = oprop(string("RunModalLoop.thread(") + ::str::from(i) + ")").ca2 < ::thread > ();
+            ::thread * pthread = oprop(string("RunModalLoop.thread(") + ::str::from(i) + ")").cast < ::thread > ();
             try
             {
                pthread->post_thread_message(WM_NULL);
@@ -4184,7 +4184,7 @@ throw not_implemented(get_app());
 //      return TRUE;
 //   }
 //
-//   bool interaction_impl::SubclassDlgItem(UINT nID, sp(::interaction_impl) pParent)
+//   bool interaction_impl::SubclassDlgItem(UINT nID, sp(::user::interaction) pParent)
 //   {
 //      ASSERT(pParent != NULL);
 //      ASSERT(::IsWindow(ANDROID_WINDOW(pParent)->get_handle()));
@@ -5365,7 +5365,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) PASCAL interaction_impl::GetCapture()
+   sp(::user::interaction) PASCAL interaction_impl::GetCapture()
    {
 
       if(::GetCapture() == NULL)
@@ -5394,7 +5394,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) PASCAL interaction_impl::GetFocus()
+   sp(::user::interaction) PASCAL interaction_impl::GetFocus()
    {
 
       oswindow w = ::GetFocus();
@@ -5420,7 +5420,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) PASCAL interaction_impl::GetDesktopWindow()
+   sp(::user::interaction) PASCAL interaction_impl::GetDesktopWindow()
    {
 /*
       return ::android::interaction_impl::from_handle(::GetDesktopWindow());
@@ -5522,7 +5522,7 @@ if(psurface == g_cairosurface)
 //      throw not_implemented(get_app());
 //      ASSERT(::IsWindow((oswindow) get_handle())); return ::GetDlgItemText(get_handle(), nID, lpStr, nMaxCount);}
 
-   sp(::interaction_impl) interaction_impl::GetNextDlgGroupItem(::interaction_impl * pWndCtl, bool bPrevious) const
+   sp(::user::interaction) interaction_impl::GetNextDlgGroupItem(::interaction_impl * pWndCtl, bool bPrevious) const
    {
 
       throw not_implemented(get_app());
@@ -5531,7 +5531,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) interaction_impl::GetNextDlgTabItem(::interaction_impl * pWndCtl, bool bPrevious) const
+   sp(::user::interaction) interaction_impl::GetNextDlgTabItem(::interaction_impl * pWndCtl, bool bPrevious) const
    {
 
       throw not_implemented(get_app());
@@ -5613,7 +5613,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) PASCAL interaction_impl::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+   sp(::user::interaction) PASCAL interaction_impl::FindWindow(const char * lpszClassName, const char * lpszWindowName)
    {
 
 //      throw not_implemented(get_app());
@@ -5622,7 +5622,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) interaction_impl::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
+   sp(::user::interaction) interaction_impl::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
    {
 
       throw not_implemented(::get_thread_app());
@@ -5671,7 +5671,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) interaction_impl::set_parent(::interaction_impl * pWndNewParent)
+   sp(::user::interaction) interaction_impl::set_parent(::interaction_impl * pWndNewParent)
    {
 
       ASSERT(::IsWindow((oswindow) get_handle()));
@@ -5679,7 +5679,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) PASCAL interaction_impl::oswindowFromPoint(POINT point)
+   sp(::user::interaction) PASCAL interaction_impl::oswindowFromPoint(POINT point)
    {
 
 
@@ -5725,7 +5725,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) PASCAL interaction_impl::GetOpenClipboardWindow()
+   sp(::user::interaction) PASCAL interaction_impl::GetOpenClipboardWindow()
    {
 
       throw not_implemented(::get_thread_app());
@@ -5733,7 +5733,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) PASCAL interaction_impl::GetClipboardOwner()
+   sp(::user::interaction) PASCAL interaction_impl::GetClipboardOwner()
    {
 
       throw not_implemented(::get_thread_app());
@@ -5741,7 +5741,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) PASCAL interaction_impl::GetClipboardViewer()
+   sp(::user::interaction) PASCAL interaction_impl::GetClipboardViewer()
    {
 
       throw not_implemented(::get_thread_app());
@@ -5817,7 +5817,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::interaction_impl) PASCAL interaction_impl::GetForegroundWindow()
+   sp(::user::interaction) PASCAL interaction_impl::GetForegroundWindow()
    {
 
       return NULL;
@@ -5876,7 +5876,7 @@ if(psurface == g_cairosurface)
    // Default message ::collection::map implementations
    void interaction_impl::OnActivateApp(bool, DWORD)
    { Default(); }
-   void interaction_impl::OnActivate(UINT, sp(::interaction_impl), bool)
+   void interaction_impl::OnActivate(UINT, sp(::user::interaction), bool)
    { Default(); }
    void interaction_impl::OncancelMode()
    { Default(); }
@@ -6108,7 +6108,7 @@ if(psurface == g_cairosurface)
    { Default(); }
    UINT interaction_impl::OnGetDlgCode()
    { return (UINT)Default(); }
-   void interaction_impl::OnMDIActivate(bool, sp(::interaction_impl), sp(::interaction_impl))
+   void interaction_impl::OnMDIActivate(bool, sp(::user::interaction), sp(::user::interaction))
    { Default(); }
    void interaction_impl::OnEnterMenuLoop(bool)
    { Default(); }
@@ -6550,7 +6550,7 @@ void CTestCmdUI::SetText(const char *)
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Map from oswindow to sp(::interaction_impl)
+// Map from oswindow to sp(::user::interaction)
 
 hwnd_map* PASCAL afxMapHWND(bool bCreate)
 {
@@ -6598,7 +6598,7 @@ LRESULT CALLBACK __window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPA
    throw not_implemented(::get_thread_app());
 
 //   // all other messages route through message ::collection::map
-//   sp(::interaction_impl) pWnd = ::android::interaction_impl::FromHandlePermanent(hWnd);
+//   sp(::user::interaction) pWnd = ::android::interaction_impl::FromHandlePermanent(hWnd);
 //   //ASSERT(pWnd != NULL);
 //   //ASSERT(pWnd==NULL || ANDROID_WINDOW(pWnd)->get_handle() == hWnd);
 //   if (pWnd == NULL || ANDROID_WINDOW(pWnd)->get_handle() != hWnd)
@@ -6751,7 +6751,7 @@ CLASS_DECL_BASE const char * __register_window_class(UINT nClassStyle,
 
 
 __STATIC void CLASS_DECL_BASE
-   __handle_activate(::interaction_impl * pWnd, WPARAM nState, sp(::interaction_impl) pWndOther)
+   __handle_activate(::interaction_impl * pWnd, WPARAM nState, sp(::user::interaction) pWndOther)
 {
 
       throw not_implemented(::get_thread_app());
@@ -6976,7 +6976,7 @@ LRESULT CALLBACK
 //         {
 //            DWORD dwStyle;
 //            rect rectOld;
-//            sp(::interaction_impl) pWnd = ::android::interaction_impl::from_handle(hWnd);
+//            sp(::user::interaction) pWnd = ::android::interaction_impl::from_handle(hWnd);
 //            __pre_init_dialog(pWnd, &rectOld, &dwStyle);
 //            bcallDefault = FALSE;
 //            lResult = callWindowProc(oldWndProc, hWnd, nMsg, wparam, lparam);

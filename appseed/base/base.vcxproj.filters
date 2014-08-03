@@ -8998,9 +8998,6 @@
     <ClCompile Include="base\hotplugin\hotplugin_composer.cpp">
       <Filter>Source Files\base\hotplugin</Filter>
     </ClCompile>
-    <ClCompile Include="base\hotplugin\hotplugin_windows.cpp">
-      <Filter>Source Files\base\hotplugin</Filter>
-    </ClCompile>
     <ClCompile Include="user\simple_ui\simple_ui_message_box.cpp">
       <Filter>Source Files\user\simple_ui</Filter>
     </ClCompile>
@@ -9129,6 +9126,9 @@
     </ClCompile>
     <ClCompile Include="base\node\windows\windows_interaction_impl.cpp">
       <Filter>Source Files\base\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_windows.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_serializable.cpp">
       <Filter>Source Files\filesystem\file</Filter>

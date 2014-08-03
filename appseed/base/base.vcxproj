@@ -2993,7 +2993,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\geoip\geoip_update.cpp" />
     <ClCompile Include="base\hotplugin\hotplugin.cpp" />
     <ClCompile Include="base\hotplugin\hotplugin_composer.cpp" />
-    <ClCompile Include="base\hotplugin\hotplugin_windows.cpp" />
+    <ClCompile Include="base\hotplugin\hotplugin_windows.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="base\install\install_plugin_bare_paint_discreet.cpp" />
     <ClCompile Include="base\install\install_plugin_bare_paint_full_screen.cpp" />
     <ClCompile Include="base\message\message.cpp" />

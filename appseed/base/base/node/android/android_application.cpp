@@ -11,8 +11,8 @@ namespace android
    application::application(sp(::base::application) papp) :
       element(papp)
    {
-      ::thread::m_pimpl.create(allocer());
-      ::thread::m_pimpl->m_puser = this;
+      m_pthreadimpl.create(allocer());
+      m_pthreadimpl->m_pthread = this;
 
       //ANDROID_THREAD(::thread::m_p.m_p)->m_pAppThread = this;
 
@@ -41,7 +41,7 @@ namespace android
       //// other initialization
       //m_bHelpMode = FALSE;
 //      m_eHelpType = afxWinHelp;
-      m_nSafetyPoolSize = 512;        // default size
+      //m_nSafetyPoolSize = 512;        // default size
 
       shell::theLinuxShell.Initialize();
    }
@@ -356,7 +356,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
    bool application::initialize1()
    {
 
-      ::thread::m_pimpl->set_run();
+      //m_pthreadimpl->set_run();
 
       return true;
 
@@ -379,9 +379,9 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
       // avoid calling CloseHandle() on our own thread handle
       // during the thread destructor
-      ::thread::m_pimpl->set_os_data(NULL);
+      m_pthreadimpl->set_os_data(NULL);
 
-      //ANDROID_THREAD(::thread::m_pimpl.m_p)->m_bRun = false;
+      //ANDROID_THREAD(m_pthreadimpl.m_p)->m_bRun = false;
       //ANDROID_THREAD(::ca2::application_base::m_p->::ca2::thread_sp::m_p)->m_bRun = false;
 
       int32_t iRet = ::base::application::exit_instance();
@@ -496,14 +496,14 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
    }
 
-   sp(::interaction_impl) application::window_from_os_data(void * pdata)
+   sp(::user::interaction) application::window_from_os_data(void * pdata)
    {
       return ::window_from_handle((oswindow) pdata);
    }
 
-   sp(::interaction_impl) application::window_from_os_data_permanent(void * pdata)
+   sp(::user::interaction) application::window_from_os_data_permanent(void * pdata)
    {
-      sp(::interaction_impl) pwnd = ::window_from_handle((oswindow) pdata);
+      sp(::user::interaction) pwnd = ::window_from_handle((oswindow) pdata);
       if(pwnd != NULL)
          return pwnd;
       user::interaction_ptr_array wndptra = System.frames();
@@ -511,7 +511,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
       {
          if(wndptra[i].get_safe_handle() == (oswindow) pdata)
          {
-            return wndptra[i].get_wnd();
+            return wndptra(i);
          }
       }
       return NULL;
@@ -564,12 +564,12 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
    }
 
-   sp(::interaction_impl) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+   sp(::user::interaction) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
    {
       return interaction_impl::FindWindow(lpszClassName, lpszWindowName);
    }
 
-   sp(::interaction_impl) application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
+   sp(::user::interaction) application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
    {
       return interaction_impl::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow);
    }
@@ -658,8 +658,8 @@ if(__get_module_state()->m_pmapHWND == NULL)
 // xxx         m_hInstance = hInstance;
 // xxx          (dynamic_cast < sp(::base::application) >(m_papp))->m_hInstance = hInstance;
          //hPrevInstance; // Obsolete.
-         m_strCmdLine = strCmdLine;
-         m_nCmdShow = nCmdShow;
+         //m_strCmdLine = strCmdLine;
+         //m_nCmdShow = nCmdShow;
          //pApp->SetCurrentHandles();
          SetCurrentHandles();
 
@@ -692,7 +692,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
             if(lpszModuleFolder == NULL)
                return false;
 
-            m_strModuleFolder = lpszModuleFolder;
+            System.m_strModuleFolder = lpszModuleFolder;
 
             free(lpszModuleFolder);
 
@@ -705,7 +705,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
             //if(handle == NULL)
             {
 
-               m_strCa2ModuleFolder = m_strModuleFolder;
+               System.m_strCa2ModuleFolder = System.m_strModuleFolder;
 
             }
             /*else
