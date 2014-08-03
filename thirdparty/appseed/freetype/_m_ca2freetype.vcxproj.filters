@@ -149,7 +149,7 @@
     <ClCompile Include="src\winfonts\winfnt.c">
       <Filter>Source Files\FT_MODULES</Filter>
     </ClCompile>
-    <ClCompile Include="dll_main.cpp">
+    <ClCompile Include="dll_main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

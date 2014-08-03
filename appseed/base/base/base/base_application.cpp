@@ -570,6 +570,9 @@ namespace base
       ::Windows::System::LauncherOptions ^ options = ref new ::Windows::System::LauncherOptions();
       options->TreatAsUntrusted = false;
       bool success = ::wait(::Windows::System::Launcher::LaunchUriAsync(uri,options));
+
+      return success;
+
 #pragma pop_macro("System")
 #elif defined(LINUX)
       ::system("xdg-open " + strLink);
@@ -1017,7 +1020,7 @@ namespace base
       if (pui == NULL)
          return NULL;
 
-      return pui->get_capture();
+      return pui->GetCapture();
 
 #elif defined(WINDOWS) || defined(APPLE_IOS)
 

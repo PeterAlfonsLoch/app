@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-extern thread_local_storage * gen_ThreadData;
+//extern thread_local_storage * gen_ThreadData;
 
 
 namespace metrowin
@@ -12,12 +12,12 @@ namespace metrowin
       element(papp)
    {
 
-      ::thread::m_p.create(allocer());
-      ::thread::m_p->m_p = this;
+      m_pthreadimpl.create(allocer());
+      m_pthreadimpl->m_p = this;
 
-      WIN_THREAD(::thread::m_p.m_p)->m_pAppThread = this;
+      WIN_THREAD(m_pthreadimpl.m_p)->m_pAppThread = this;
 
-      m_pbasesystem = papp->m_pplaneapp->m_pbasesystem;
+      m_pbasesystem = papp->m_pcoreapp->m_pbasesystem;
 
       m_pfilemanager = NULL;
 
@@ -207,12 +207,12 @@ namespace metrowin
 
    void application::LockTempMaps()
    {
-      WIN_THREAD(::thread::m_p.m_p)->LockTempMaps();
+      WIN_THREAD(m_pthreadimpl.m_p)->LockTempMaps();
    }
 
    bool application::UnlockTempMaps(bool bDeleteTemp)
    {
-      return WIN_THREAD(::thread::m_p.m_p)->UnlockTempMaps(bDeleteTemp);
+      return WIN_THREAD(m_pthreadimpl.m_p)->UnlockTempMaps(bDeleteTemp);
    }
 
 
@@ -464,7 +464,7 @@ namespace metrowin
    bool application::initialize1()
    {
 
-      WIN_THREAD(::thread::m_p.m_p)->set_run();
+      WIN_THREAD(m_pthreadimpl.m_p)->set_run();
 
       return true;
 
@@ -486,9 +486,9 @@ namespace metrowin
 
       // avoid calling CloseHandle() on our own thread handle
       // during the thread destructor
-      ::thread::m_p->set_os_data(NULL);
+      m_pthreadimpl->set_os_data(NULL);
 
-      WIN_THREAD(::thread::m_p.m_p)->m_bRun = false;
+      WIN_THREAD(m_pthreadimpl.m_p)->m_bRun = false;
 
       int32_t iRet = ::application::exit_instance();
 
@@ -647,7 +647,7 @@ namespace metrowin
          __MODULE_THREAD_STATE* pThreadState = pModuleState->m_thread;
          ENSURE(pThreadState);
 //         ASSERT(System.GetThread() == NULL);
-         pThreadState->m_pCurrentWinThread = dynamic_cast < class ::metrowin::thread * > (::thread::m_p.m_p);
+         pThreadState->m_pCurrentWinThread = dynamic_cast < class ::metrowin::thread * > (m_pthreadimpl.m_p);
   //       ASSERT(System.GetThread() == this);
 
          // initialize application state
@@ -659,8 +659,8 @@ namespace metrowin
 
 //      dynamic_cast < ::metrowin::thread * > ((smart_pointer < ::application >::m_p->::ca2::thread_sp::m_p))->m_hThread = __get_thread()->m_hThread;
   //    dynamic_cast < ::metrowin::thread * > ((smart_pointer < ::application >::m_p->::ca2::thread_sp::m_p))->m_nThreadID = __get_thread()->m_nThreadID;
-      dynamic_cast < class ::metrowin::thread * > (::thread::m_p.m_p)->m_hThread      =  ::get_current_thread();
-      dynamic_cast < class ::metrowin::thread * > (::thread::m_p.m_p)->m_nThreadID    =  ::GetCurrentThreadId();
+      dynamic_cast < class ::metrowin::thread * > (m_pthreadimpl.m_p)->m_hThread      =  ::get_current_thread();
+      dynamic_cast < class ::metrowin::thread * > (m_pthreadimpl.m_p)->m_nThreadID    =  ::GetCurrentThreadId();
       
 
    }

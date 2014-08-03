@@ -34,7 +34,7 @@ namespace metrowin
 
       //virtual oswindow get_handle() const;
 
-      virtual sp(::user::interaction) get_wnd() const;
+      virtual ::user::interaction * get_wnd() const;
 
       virtual void mouse_hover_add(sp(::user::interaction) pinterface);
       virtual void mouse_hover_remove(sp(::user::interaction) pinterface);
@@ -61,17 +61,17 @@ namespace metrowin
 
       virtual oswindow _get_handle();
 
-      virtual bool _001OnCmdMsg(base_cmd_msg * pcmdmsg);   
+      virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);   
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
       void _002OnDraw(::draw2d::graphics * pdc);
 
-      DECL_GEN_SIGNAL(_001OnEraseBkgnd)
-         DECL_GEN_SIGNAL(_001OnMove)
-         DECL_GEN_SIGNAL(_001OnSize)
-         DECL_GEN_SIGNAL(_001OnShowWindow)
-         DECL_GEN_SIGNAL(_001OnProdevianSynch)
+      DECL_GEN_SIGNAL(_001OnEraseBkgnd);
+      DECL_GEN_SIGNAL(_001OnMove);
+      DECL_GEN_SIGNAL(_001OnSize);
+      DECL_GEN_SIGNAL(_001OnShowWindow);
+      DECL_GEN_SIGNAL(_001OnProdevianSynch);
 
          ::user::interaction_base *      m_pbasewnd;
       ::user::interaction *        m_pguieCapture;
@@ -102,7 +102,7 @@ namespace metrowin
       bool ExecuteDlgInit(const char * lpszResourceName);
       bool ExecuteDlgInit(LPVOID lpResource);
 
-      using ::user::interaction::create;
+      using ::user::interaction_impl::create;
       // for child windows, views, panes etc
       virtual bool create(const char * lpszClassName,
          const char * lpszWindowName, uint32_t dwStyle,
@@ -191,9 +191,9 @@ namespace metrowin
       virtual bool SetWindowPos(int z, int x, int y, int cx, int cy, UINT nFlags);
       virtual UINT ArrangeIconicWindows();
       virtual bool BringWindowToTop();
-      using interaction::GetWindowRect;
+      using ::user::interaction_impl::GetWindowRect;
       virtual void GetWindowRect(__rect64 * lpRect);
-      using interaction::GetClientRect;
+      using ::user::interaction_impl::GetClientRect;
       virtual void GetClientRect(__rect64 * lpRect);
 
       void ClientToScreen(LPRECT lprect);
@@ -296,7 +296,7 @@ namespace metrowin
 
 
       // capture and focus apply to all windows
-      static sp(::user::interaction) GetCapture();
+      virtual sp(::user::interaction) GetCapture();
       virtual sp(::user::interaction) set_capture(sp(::user::interaction) pinterface = NULL);
       virtual sp(::user::interaction) release_capture();
       virtual sp(::user::interaction) get_capture();
@@ -343,7 +343,7 @@ namespace metrowin
          bool bRedraw = TRUE);
       virtual void ShowScrollBar(UINT nBar, bool bShow = TRUE);
       virtual void EnableScrollBarCtrl(int nBar, bool bEnable = TRUE);
-      virtual CScrollBar* GetScrollBarCtrl(int nBar) const;
+//      virtual CScrollBar* GetScrollBarCtrl(int nBar) const;
       // return sibling scrollbar control (or NULL if none)
 
       virtual int ScrollWindowEx(int dx, int dy,
@@ -374,8 +374,8 @@ namespace metrowin
 
       virtual bool IsChild(sp(::user::interaction)  pWnd);
       virtual sp(::user::interaction) GetParent();
-      using ::user::interaction::set_parent;
-      sp(::user::interaction) set_parent(sp(::user::interaction) pWndNewParent);
+      using ::user::interaction_impl::SetParent;
+      sp(::user::interaction) SetParent(sp(::user::interaction) pWndNewParent);
       static sp(::user::interaction_impl) WindowFromPoint(POINT point);
 
       // Alert Functions
@@ -445,7 +445,7 @@ namespace metrowin
       // dialog support
       void UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHndler);
       void CenterWindow(::user::interaction * pAlternateOwner = NULL);
-      virtual id   RunModalLoop(uint32_t dwFlags = 0, ::core::live_object * pliveobject = NULL);
+      virtual id   RunModalLoop(uint32_t dwFlags = 0, ::base::live_object * pliveobject = NULL);
       virtual bool ContinueModal(int iLevel);
       virtual void EndModalLoop(id nResult);
       virtual void EndAllModalLoops(id nResult);
@@ -479,9 +479,9 @@ namespace metrowin
       LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::user::menu* pMenu);
       void OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu);
       void OnMove(int x, int y);
-      DECL_GEN_SIGNAL(_001OnPaint)
-         DECL_GEN_SIGNAL(_001OnPrint)
-         DECL_GEN_SIGNAL(_001OnCaptureChanged)
+      DECL_GEN_SIGNAL(_001OnPaint);
+      DECL_GEN_SIGNAL(_001OnPrint);
+      DECL_GEN_SIGNAL(_001OnCaptureChanged);
          void OnParentNotify(UINT message, LPARAM lParam);
       HCURSOR OnQueryDragIcon();
       bool OnQueryEndSession();
@@ -502,7 +502,7 @@ namespace metrowin
       bool OnNcActivate(bool bActive);
       //      void OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS* lpncsp);
       bool OnNcCreate(LPCREATESTRUCT lpCreateStruct);
-      DECL_GEN_SIGNAL(_001OnNcDestroy)
+      DECL_GEN_SIGNAL(_001OnNcDestroy);
          LRESULT OnNcHitTest(point point);
       void OnNcLButtonDblClk(UINT nHitTest, point point);
       void OnNcLButtonDown(UINT nHitTest, point point);
@@ -537,8 +537,8 @@ namespace metrowin
       // Input message handler member functions
       void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
       void OnDeadChar(UINT nChar, UINT nRepCnt, UINT nFlags);
-      void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
-      void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+//      void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+  //    void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
       void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
       void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
       void OnLButtonDblClk(UINT nFlags, point point);
@@ -554,7 +554,7 @@ namespace metrowin
       void OnRButtonDblClk(UINT nFlags, point point);
       void OnRButtonDown(UINT nFlags, point point);
       void OnRButtonUp(UINT nFlags, point point);
-      DECL_GEN_SIGNAL(_001OnSetCursor)
+      DECL_GEN_SIGNAL(_001OnSetCursor);
          void OnTimer(uint_ptr nIDEvent);
 
       // Initialization message handler member functions

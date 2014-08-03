@@ -7,7 +7,7 @@ namespace user
    class interaction_base;
 
 } // namespace user
-
+#ifdef NON_CONVERGING_LANG_IS_TERMINAL_LANG
 
 namespace metrowin
 {
@@ -41,7 +41,7 @@ namespace metrowin
       typed_pointer_map <
          map_ptr_to_ptr,
          oswindow, 
-         ::user::window_interface *>
+         ::user::interaction_base *>
                                              m_wndinterfacemap;
       DWORD                                  m_dwLastUpdate;
       DWORD                                  m_dwLastDelay;
@@ -151,3 +151,5 @@ namespace metrowin
    };
 
 } // namespace metrowin
+
+#endif

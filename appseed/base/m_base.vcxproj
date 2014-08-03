@@ -256,6 +256,7 @@
     <ClInclude Include="base\node\metrowin\metrowin_folder_watch.h" />
     <ClInclude Include="base\node\metrowin\metrowin_handle.h" />
     <ClInclude Include="base\node\metrowin\metrowin_implementation.h" />
+    <ClInclude Include="base\node\metrowin\metrowin_interaction_impl.h" />
     <ClInclude Include="base\node\metrowin\metrowin_internal.h" />
     <ClInclude Include="base\node\metrowin\metrowin_ip_enum.h" />
     <ClInclude Include="base\node\metrowin\metrowin_os.h" />
@@ -269,7 +270,6 @@
     <ClInclude Include="base\node\metrowin\metrowin_stdio_file.h" />
     <ClInclude Include="base\node\metrowin\metrowin_thread.h" />
     <ClInclude Include="base\node\metrowin\metrowin_uac_tools.h" />
-    <ClInclude Include="base\node\metrowin\metrowin_interaction_impl.h" />
     <ClInclude Include="base\node\metrowin\metrowin_window_draw.h" />
     <ClInclude Include="base\node\node.h" />
     <ClInclude Include="base\os\cross.h" />
@@ -760,7 +760,6 @@
     <None Include="base\base\base_system_xml.inl">
       <FileType>Document</FileType>
     </None>
-    <None Include="metrowin_base.def" />
     <None Include="multithreading\multithreading.inl">
       <FileType>Document</FileType>
     </None>
@@ -1211,17 +1210,13 @@
     <ClCompile Include="base\install\windows\install_windows_boot.cpp" />
     <ClCompile Include="base\install\windows\install_windows_service.cpp" />
     <ClCompile Include="base\install\windows\install_windows_win.cpp" />
-    <ClCompile Include="base\node\metrowin\metrowin_dll.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_application.cpp" />
-    <ClCompile Include="base\node\metrowin\metrowin_appmodul.cpp" />
-    <ClCompile Include="base\node\metrowin\metrowin_appterm.cpp" />
-    <ClCompile Include="base\node\metrowin\metrowin_base_crypto.cpp" />
-    <ClCompile Include="base\node\metrowin\metrowin_copydesk.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_crypto.cpp" />
-    <ClCompile Include="base\node\metrowin\metrowin_dib.cpp" />
+    <ClCompile Include="base\node\metrowin\metrowin_copydesk.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_dir.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_directx.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_directx_application.cpp" />
+    <ClCompile Include="base\node\metrowin\metrowin_dll.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_dumpinit.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_error.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_except.cpp" />
@@ -1232,6 +1227,7 @@
     <ClCompile Include="base\node\metrowin\metrowin_file_system.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_folder_watch.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_handle.cpp" />
+    <ClCompile Include="base\node\metrowin\metrowin_interaction_impl.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_ip_enum.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_main.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_os.cpp" />
@@ -1247,7 +1243,6 @@
     <ClCompile Include="base\node\metrowin\metrowin_trace.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_uac_tools.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_util.cpp" />
-    <ClCompile Include="base\node\metrowin\metrowin_interaction_impl.cpp" />
     <ClCompile Include="base\node\metrowin\metrowin_window_draw.cpp" />
     <ClCompile Include="base\node\node.cpp" />
     <ClCompile Include="base\os\cross\windows\windows_crt.cpp" />
@@ -1258,6 +1253,7 @@
     <ClCompile Include="base\os\cross\windows\windows_threading.cpp" />
     <ClCompile Include="base\os\cross\windows\windows_user.cpp" />
     <ClCompile Include="base\os\cross\windows\windows_windows.cpp" />
+    <ClCompile Include="base\os\metrowin\metrowin_base_crypto.cpp" />
     <ClCompile Include="base\os\metrowin\metrowin_direct2d_tls.cpp" />
     <ClCompile Include="base\os\metrowin\metrowin_file_std.cpp" />
     <ClCompile Include="base\os\metrowin\metrowin_file_watcher.cpp" />
@@ -1266,13 +1262,11 @@
     <ClCompile Include="base\os\metrowin\metrowin_library.cpp" />
     <ClCompile Include="base\os\metrowin\metrowin_lock.cpp" />
     <ClCompile Include="base\os\metrowin\metrowin_message_loop.cpp" />
-    <ClCompile Include="base\os\metrowin\metrowin.cpp" />
     <ClCompile Include="base\os\metrowin\metrowin_process.cpp" />
     <ClCompile Include="base\os\metrowin\metrowin_simple_app.cpp" />
     <ClCompile Include="base\os\metrowin\metrowin_simple_shell_launcher.cpp" />
     <ClCompile Include="base\os\metrowin\metrowin_small_ipca_channel.cpp" />
     <ClCompile Include="base\os\metrowin\metrowin_sockets.cpp" />
-    <ClCompile Include="base\os\metrowin\metrowin_multithreading.cpp" />
     <ClCompile Include="base\os\metrowin\metrowin_time.cpp" />
     <ClCompile Include="base\os\metrowin\metrowin_user.cpp" />
     <ClCompile Include="base\os\metrowin\metrowin_window_impl.cpp" />
@@ -1900,6 +1894,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
       <PreprocessorDefinitions>_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
       <CompileAsManaged>false</CompileAsManaged>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

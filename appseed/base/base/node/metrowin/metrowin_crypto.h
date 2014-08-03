@@ -11,7 +11,7 @@ namespace metrowin
    public:
 
 
-      crypto(::base::application * papp);
+      crypto(sp(::base::application) papp);
       virtual ~crypto();
 
 

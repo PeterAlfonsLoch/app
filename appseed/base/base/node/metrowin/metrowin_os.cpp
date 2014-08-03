@@ -629,14 +629,14 @@ namespace metrowin
 
 #ifdef WINDOWSEX
 
-      if(papp->m_pplaneapp->m_strAppName.is_empty()
-      || papp->m_pplaneapp->m_strAppName.CompareNoCase("bergedge") == 0
-      || !papp->m_pplaneapp->is_serviceable())
+      if(papp->m_pcoreapp->m_strAppName.is_empty()
+      || papp->m_pcoreapp->m_strAppName.CompareNoCase("bergedge") == 0
+      || !papp->m_pcoreapp->is_serviceable())
          return false;
 
       SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_CREATE_SERVICE);
 
-      string strCalling = papp->m_pplaneapp->m_strModulePath + " : app=" + papp->m_pplaneapp->m_strAppId + " service usehostlogin";
+      string strCalling = papp->m_pcoreapp->m_strModulePath + " : app=" + papp->m_pcoreapp->m_strAppId + " service usehostlogin";
 
       if(hdlSCM == 0)
       {
@@ -646,8 +646,8 @@ namespace metrowin
     
       SC_HANDLE hdlServ = ::CreateService(
          hdlSCM,                    // SCManager database 
-         "CGCLCSTvotagusCa2FontopusMain-" + papp->m_pplaneapp->m_strAppName,               // name of service 
-         "ccvotagus ca2 fontopus " + papp->m_pplaneapp->m_strAppName,        // service name to display 
+         "CGCLCSTvotagusCa2FontopusMain-" + papp->m_pcoreapp->m_strAppName,               // name of service 
+         "ccvotagus ca2 fontopus " + papp->m_pcoreapp->m_strAppName,        // service name to display 
          STANDARD_RIGHTS_REQUIRED,  // desired access 
          SERVICE_WIN32_OWN_PROCESS | SERVICE_INTERACTIVE_PROCESS, // service type 
          SERVICE_AUTO_START,      // start type 
@@ -685,9 +685,9 @@ namespace metrowin
 
 #ifdef WINDOWSEX
 
-      if(papp->m_pplaneapp->m_strAppName.is_empty()
-      || papp->m_pplaneapp->m_strAppName.CompareNoCase("bergedge") == 0
-      || !papp->m_pplaneapp->is_serviceable())
+      if(papp->m_pcoreapp->m_strAppName.is_empty()
+      || papp->m_pcoreapp->m_strAppName.CompareNoCase("bergedge") == 0
+      || !papp->m_pcoreapp->is_serviceable())
          return false;
 
       SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
@@ -700,7 +700,7 @@ namespace metrowin
     
       SC_HANDLE hdlServ = ::OpenService(
          hdlSCM,                    // SCManager database 
-         "CGCLCSTvotagusCa2FontopusMain-" + papp->m_pplaneapp->m_strAppName,               // name of service 
+         "CGCLCSTvotagusCa2FontopusMain-" + papp->m_pcoreapp->m_strAppName,               // name of service 
          DELETE);                     // no password 
     
       if (!hdlServ)
@@ -733,9 +733,9 @@ namespace metrowin
 
 #ifdef WINDOWSEX
 
-      if(papp->m_pplaneapp->m_strAppName.is_empty()
-      || papp->m_pplaneapp->m_strAppName.CompareNoCase("bergedge") == 0
-      || !papp->m_pplaneapp->is_serviceable())
+      if(papp->m_pcoreapp->m_strAppName.is_empty()
+      || papp->m_pcoreapp->m_strAppName.CompareNoCase("bergedge") == 0
+      || !papp->m_pcoreapp->is_serviceable())
          return false;
 
       SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
@@ -748,7 +748,7 @@ namespace metrowin
     
       SC_HANDLE hdlServ = ::OpenService(
          hdlSCM,                    // SCManager database 
-         "CGCLCSTvotagusCa2FontopusMain-" + papp->m_pplaneapp->m_strAppName,               // name of service 
+         "CGCLCSTvotagusCa2FontopusMain-" + papp->m_pcoreapp->m_strAppName,               // name of service 
          SERVICE_START);                     // no password 
     
     
@@ -780,9 +780,9 @@ namespace metrowin
 
 #ifdef WINDOWSEX
 
-      if(papp->m_pplaneapp->m_strAppName.is_empty()
-      || papp->m_pplaneapp->m_strAppName.CompareNoCase("bergedge") == 0
-      || !papp->m_pplaneapp->is_serviceable())
+      if(papp->m_pcoreapp->m_strAppName.is_empty()
+      || papp->m_pcoreapp->m_strAppName.CompareNoCase("bergedge") == 0
+      || !papp->m_pcoreapp->is_serviceable())
          return false;
 
       SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
@@ -795,7 +795,7 @@ namespace metrowin
     
       SC_HANDLE hdlServ = ::OpenService(
          hdlSCM,                    // SCManager database 
-         "CGCLCSTvotagusCa2FontopusMain-" + papp->m_pplaneapp->m_strAppName,               // name of service 
+         "CGCLCSTvotagusCa2FontopusMain-" + papp->m_pcoreapp->m_strAppName,               // name of service 
          SERVICE_STOP);                     // no password 
     
       if (!hdlServ)

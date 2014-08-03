@@ -547,7 +547,7 @@ namespace metrowin
    interaction_impl::~interaction_impl()
    {
 
-      if(m_pbaseapp != NULL && m_pbaseapp->m_pplaneapp != NULL && m_pbaseapp->m_pplaneapp->m_psystem != NULL && Sys(m_pbaseapp).user()->m_pwindowmap != NULL)
+      if(m_pbaseapp != NULL && m_pbaseapp->m_pcoreapp != NULL && m_pbaseapp->m_pcoreapp->m_psystem != NULL && Sys(m_pbaseapp).user()->m_pwindowmap != NULL)
       {
          Sys(m_pbaseapp).user()->m_pwindowmap->m_map.remove_key((int_ptr) (void *) get_handle());
       }
@@ -1296,7 +1296,7 @@ namespace metrowin
 
 #endif
 
-   bool interaction_impl::_001OnCmdMsg(base_cmd_msg * pcmdmsg)
+   bool interaction_impl::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
    {
       if(command_target_interface::_001OnCmdMsg(pcmdmsg))
          return TRUE;
@@ -1393,7 +1393,7 @@ namespace metrowin
             || pbase->m_uiMessage == WM_MBUTTONDOWN
             || pbase->m_uiMessage == WM_MOUSEMOVE)
          {
-            if(Application.fontopus()->m_puser != NULL && m_pbaseapp->m_pplaneapp->m_psession != NULL)
+            if(Application.fontopus()->m_puser != NULL && m_pbaseapp->m_pcoreapp->m_psession != NULL)
             {
                try
                {
@@ -1422,17 +1422,17 @@ namespace metrowin
          ::message::mouse * pmouse = (::message::mouse *) pbase;
 
          Application.m_ptCursor = pmouse->m_pt;
-         if(m_pbaseapp->m_pplaneapp->m_psession != NULL)
+         if(m_pbaseapp->m_pcoreapp->m_psession != NULL)
          {
             Session.m_ptCursor = pmouse->m_pt;
          }
-         if(m_pguie != NULL && m_pguie != this && m_pguie->m_pbaseapp->m_pplaneapp->m_psession != NULL && m_pguie->m_pbaseapp->m_pplaneapp->m_psession != m_pbaseapp->m_pplaneapp->m_psession)
+         if(m_pguie != NULL && m_pguie != this && m_pguie->m_pbaseapp->m_pcoreapp->m_psession != NULL && m_pguie->m_pbaseapp->m_pcoreapp->m_psession != m_pbaseapp->m_pcoreapp->m_psession)
          {
-            Sess(m_pguie->m_pbaseapp->m_pplaneapp->m_psession).m_ptCursor = pmouse->m_pt;
+            Sess(m_pguie->m_pbaseapp->m_pcoreapp->m_psession).m_ptCursor = pmouse->m_pt;
          }
 
         sp(base_session) psession;
-         if(m_pbaseapp->m_pplaneapp->is_system())
+         if(m_pbaseapp->m_pcoreapp->is_system())
          {
             psession = System.query_session(0);
             if(psession != NULL && psession->m_bSessionSynchronizedCursor)
@@ -3974,11 +3974,11 @@ restart_mouse_hover_check:
             m_pthread.m_p->m_dwAlive = m_pthread->m_dwAlive = ::get_tick_count();
             if(pappThis1 != NULL)
             {
-               pappThis1->m_pplaneapp->m_dwAlive = m_pthread->m_dwAlive;
+               pappThis1->m_pcoreapp->m_dwAlive = m_pthread->m_dwAlive;
             }
             if(pappThis2 != NULL)
             {
-               pappThis2->m_pplaneapp->m_dwAlive = m_pthread->m_dwAlive;
+               pappThis2->m_pcoreapp->m_dwAlive = m_pthread->m_dwAlive;
             }
             if(pliveobject != NULL)
             {
@@ -4022,11 +4022,11 @@ restart_mouse_hover_check:
             m_pthread->m_p->m_dwAlive = m_pthread->m_dwAlive = ::get_tick_count();
             if(pappThis1 != NULL)
             {
-               pappThis1->m_pplaneapp->m_dwAlive = m_pthread->m_dwAlive;
+               pappThis1->m_pcoreapp->m_dwAlive = m_pthread->m_dwAlive;
             }
             if(pappThis2 != NULL)
             {
-               pappThis2->m_pplaneapp->m_dwAlive = m_pthread->m_dwAlive;
+               pappThis2->m_pcoreapp->m_dwAlive = m_pthread->m_dwAlive;
             }
             if(pliveobject != NULL)
             {
@@ -4239,8 +4239,8 @@ ExitModal:
    {
       /*bool b;
       bool * pb = &b;
-      if(m_pbaseapp->m_pplaneapp->s_ptwf != NULL)
-      pb = &m_pbaseapp->m_pplaneapp->s_ptwf->m_bProDevianMode;
+      if(m_pbaseapp->m_pcoreapp->s_ptwf != NULL)
+      pb = &m_pbaseapp->m_pcoreapp->s_ptwf->m_bProDevianMode;
       keeper < bool > keepOnDemandDraw(pb, false, *pb, true);
       */
       ASSERT(::IsWindow(get_handle())); 

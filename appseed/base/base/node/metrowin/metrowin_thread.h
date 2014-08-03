@@ -44,7 +44,6 @@ namespace metrowin
       static comparable_array < HTHREAD >          s_haThread;
       static comparable_array < ::thread * >   s_threadptra;
       // list of frame_window objects for thread
-      list < frame_window * >               m_frameList;
       // temporary/permanent ::map state
       uint32_t                                     m_nTempMapLock;           // if not 0, temp maps locked
       LPVOID                                       m_pThreadParams; // generic parameters passed to starting function
@@ -87,7 +86,7 @@ namespace metrowin
       virtual void add(sp(::user::interaction) pui);
       virtual void remove(::user::interaction * pui);
       virtual ::count get_ui_count();
-      virtual sp(::user::interaction) get_ui(::index iIndex);
+      virtual ::user::interaction * get_ui(::index iIndex);
       virtual void set_timer(sp(::user::interaction) pui, uint_ptr nIDEvent, UINT nEllapse);
       virtual void unset_timer(sp(::user::interaction) pui, uint_ptr nIDEvent);
       virtual void set_auto_delete(bool bAutoDelete = true);
@@ -194,14 +193,14 @@ namespace metrowin
       virtual bool has_message();
 
 
-      virtual HANDLE item() const;
+      virtual int_ptr item() const;
 
 
    };
 
 
    CLASS_DECL_BASE ::thread * get_thread();
-   CLASS_DECL_BASE ::thread_state * get_thread_state();
+//   CLASS_DECL_BASE ::thread_state * get_thread_state();
 
 
 } // namespace metrowin

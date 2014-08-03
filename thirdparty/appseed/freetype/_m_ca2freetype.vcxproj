@@ -24,7 +24,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="builds\win32\ftdebug.c" />
-    <ClCompile Include="dll_main.cpp" />
+    <ClCompile Include="dll_main.c" />
     <ClCompile Include="src\autofit\autofit.c" />
     <ClCompile Include="src\base\ftbase.c" />
     <ClCompile Include="src\base\ftbbox.c" />
@@ -160,6 +160,7 @@
       <PreprocessorDefinitions>CA2_FREETYPE_DLL;_USRDLL;OPJ_STATIC;FT2_BUILD_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
       <CompileAsManaged>false</CompileAsManaged>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

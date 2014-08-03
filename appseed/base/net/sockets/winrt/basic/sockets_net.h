@@ -126,6 +126,8 @@ namespace sockets
 
       virtual bool gudo_get();
 
+      virtual bool finalize();
+
       /*
       * Encode string per RFC1738 URL encoding rules
       * tnx rstaveley

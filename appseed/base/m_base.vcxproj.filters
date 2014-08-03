@@ -319,9 +319,6 @@
     <Filter Include="Source Files\base\os\metrowin">
       <UniqueIdentifier>{01e00590-db28-4752-adf6-8c0bb1a1ff5c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\base\os\metrowin\crypto">
-      <UniqueIdentifier>{f08a7ea6-3b50-40c6-9995-6ce2c7b39e27}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\base\os\cross\windows">
       <UniqueIdentifier>{47268ea3-b103-4d63-a1fb-b14c50e124d4}</UniqueIdentifier>
     </Filter>
@@ -339,6 +336,18 @@
     </Filter>
     <Filter Include="Source Files\net\idn">
       <UniqueIdentifier>{c68c8670-b370-4d4d-8892-288fd975f3f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\node">
+      <UniqueIdentifier>{4e54f336-d9d1-4b07-a912-2028ade2eb2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\node\metrowin">
+      <UniqueIdentifier>{522f369f-c560-49c5-a525-a7f3ce9b9b0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\node">
+      <UniqueIdentifier>{e09e3e3b-5f67-4e97-9a66-3f2e243ed28f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\node\metrowin">
+      <UniqueIdentifier>{923e0c52-073f-4a9f-bda7-98b00f70e6bf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1632,9 +1641,6 @@
     <ClInclude Include="base\base\base_math.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
-    <ClInclude Include="base\base\base_message.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
     <ClInclude Include="base\base\base_message_loop.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
@@ -1733,12 +1739,6 @@
     </ClInclude>
     <ClInclude Include="base\os\os_process.h">
       <Filter>Header Files\base\os</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\android\android.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\android\android_window_impl.h">
-      <Filter>Header Files\base\os\android</Filter>
     </ClInclude>
     <ClInclude Include="base\os\cross\cross.h">
       <Filter>Header Files\base\os\cross</Filter>
@@ -2379,6 +2379,106 @@
     <ClInclude Include="framework_c.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="base\node\node.h" />
+    <ClInclude Include="base\node\metrowin\metrowin.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_application.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_base_crypto.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_copydesk.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_dir.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_directx.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_directx_application.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_exception.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_factory_exchange.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_file.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_file_find.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_file_set.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_file_system.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_folder_watch.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_handle.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_implementation.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_interaction_impl.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_internal.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_ip_enum.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_os.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_palette.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_pen.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_port_forward.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_printer.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_registry.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_resource.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_shell.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_stdio_file.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_thread.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_uac_tools.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_window_draw.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin1.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_crypto.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\primitive_factory_impl.inl">
@@ -2411,7 +2511,6 @@
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
     </None>
-    <None Include="metrowin_base.def" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="version.cpp">
@@ -2949,9 +3048,6 @@
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
     <ClCompile Include="base\base\base_math.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base_message.cpp">
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
     <ClCompile Include="base\base\base_message_queue.cpp">
@@ -3794,9 +3890,6 @@
     <ClCompile Include="base\os\metrowin\metrowin_direct2d_tls.cpp">
       <Filter>Source Files\base\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\metrowin\metrowin_file.cpp">
-      <Filter>Source Files\base\os\metrowin</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\metrowin\metrowin_file_std.cpp">
       <Filter>Source Files\base\os\metrowin</Filter>
     </ClCompile>
@@ -3815,9 +3908,6 @@
     <ClCompile Include="base\os\metrowin\metrowin_message_loop.cpp">
       <Filter>Source Files\base\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\metrowin\metrowin_os.cpp">
-      <Filter>Source Files\base\os\metrowin</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\metrowin\metrowin_process.cpp">
       <Filter>Source Files\base\os\metrowin</Filter>
     </ClCompile>
@@ -3833,9 +3923,6 @@
     <ClCompile Include="base\os\metrowin\metrowin_sockets.cpp">
       <Filter>Source Files\base\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\metrowin\metrowin_thread.cpp">
-      <Filter>Source Files\base\os\metrowin</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\metrowin\metrowin_time.cpp">
       <Filter>Source Files\base\os\metrowin</Filter>
     </ClCompile>
@@ -3844,9 +3931,6 @@
     </ClCompile>
     <ClCompile Include="base\os\metrowin\metrowin_simple_ui.cpp">
       <Filter>Source Files\base\os\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\metrowin\crypt\metrowin_crypto.cpp">
-      <Filter>Source Files\base\os\metrowin\crypto</Filter>
     </ClCompile>
     <ClCompile Include="net\sockets\winrt\sockets_include.cpp">
       <Filter>Source Files\net\sockets\winrt</Filter>
@@ -4154,8 +4238,111 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework_c.c">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="base\node\node.cpp" />
+    <ClCompile Include="base\node\metrowin\metrowin_application.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_copydesk.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_dir.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_directx.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_directx_application.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_dll.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_dumpinit.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_error.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_except.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_factory_exchange.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_file.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_file_find.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_file_set.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_file_system.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_folder_watch.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_handle.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_interaction_impl.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_ip_enum.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_main.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_os.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_port_forward.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_preview_dc.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_printer.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_registry.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_resource.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_shell.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_stdio_file.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_thread.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_thread_local_storage.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_trace.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_uac_tools.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_util.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_window_draw.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_crypto.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\metrowin\metrowin_base_crypto.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

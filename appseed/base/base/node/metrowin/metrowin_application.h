@@ -16,7 +16,7 @@ namespace metrowin
 
 
    class CLASS_DECL_BASE main_init_data :
-      public ::core::main_init_data
+      public ::base::main_init_data
    {
    public:
 
@@ -30,7 +30,7 @@ namespace metrowin
 
 
    class CLASS_DECL_BASE application :
-      virtual public ::application
+      virtual public ::base::application
    {
    public:
 
@@ -48,7 +48,7 @@ namespace metrowin
       virtual HINSTANCE GetHinstance();
       bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
-      virtual sp(::user::object) _001OpenDocumentFile(var varFile);
+      virtual sp(::user::document) _001OpenDocumentFile(var varFile);
       virtual void _001OnFileNew();
 
       // Loads a cursor resource.
@@ -85,7 +85,7 @@ namespace metrowin
 
       virtual void SetCurrentHandles();
 
-      virtual bool set_main_init_data(::core::main_init_data * pdata);
+      virtual bool set_main_init_data(::base::main_init_data * pdata);
 
       virtual bool process_initialize();
       virtual bool initialize1();
@@ -199,14 +199,14 @@ namespace metrowin
       virtual ::thread * GetThread();
       virtual void set_thread(::thread * pthread);
 
-      virtual sp(::user::interaction_impl) FindWindow(const char * lpszClassName, const char * lpszWindowName);
-      virtual sp(::user::interaction_impl) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+      virtual sp(::user::interaction) FindWindow(const char * lpszClassName, const char * lpszWindowName);
+      virtual sp(::user::interaction) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 
       virtual void get_time(struct timeval *p);
       virtual void set_env_var(const string & var,const string & value);
       virtual uint32_t get_thread_id();
    
-      ::user::printer * get_printer(const char * pszDeviceName);
+      sp(::user::printer) get_printer(const char * pszDeviceName);
 
 
       void ShowWaitCursor(bool bShow);

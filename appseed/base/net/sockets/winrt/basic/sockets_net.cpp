@@ -53,6 +53,14 @@ namespace sockets
    }
 
 
+   bool net::finalize()
+   {
+
+      return true;
+
+   }
+
+
    /*
    * Encode string per RFC1738 URL encoding rules
    * tnx rstaveley
