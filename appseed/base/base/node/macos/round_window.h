@@ -37,6 +37,7 @@ bool m_bDirty;
    
    virtual void round_window_invalidate();
    virtual void round_window_show();
+   virtual void round_window_hide();
    virtual void round_window_redraw();
    
    

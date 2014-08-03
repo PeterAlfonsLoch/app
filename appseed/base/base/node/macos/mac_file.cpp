@@ -30,7 +30,7 @@ namespace mac
       
       m_iFile = (UINT) hFileNull;
       
-      m_bCloseOnDelete = TRUE;
+      //m_bCloseOnDelete = TRUE;
       
    }
    
@@ -40,7 +40,7 @@ namespace mac
       
       m_iFile = hFile;
       
-      m_bCloseOnDelete = TRUE;
+//      m_bCloseOnDelete = TRUE;
       
    }
    
@@ -58,7 +58,8 @@ namespace mac
    file::~file()
    {
       
-      if (m_iFile != (UINT)hFileNull && m_bCloseOnDelete)
+//      if (m_iFile != (UINT)hFileNull && m_bCloseOnDelete)
+             if (m_iFile != (UINT)hFileNull)
          close();
       
    }
@@ -76,7 +77,7 @@ namespace mac
       file* pFile = new file(get_app(), iNew);
       pFile->m_iFile = (UINT)iNew;
       ASSERT(pFile->m_iFile != (UINT)hFileNull);
-      pFile->m_bCloseOnDelete = m_bCloseOnDelete;
+//      pFile->m_bCloseOnDelete = m_bCloseOnDelete;
       return pFile;
    }
    
@@ -96,10 +97,10 @@ namespace mac
       
       if(nOpenFlags & ::file::defer_create_directory)
       {
-         System.dir_mk(System.dir_name(lpszFileName));
+         Application.dir().mk(System.dir().name(lpszFileName));
       }
       
-      m_bCloseOnDelete = FALSE;
+//      m_bCloseOnDelete = FALSE;
       m_iFile = (UINT)hFileNull;
       m_strFileName.Empty();
       
@@ -238,7 +239,7 @@ namespace mac
       
       m_iFile = (int32_t)hFile;
       
-      m_bCloseOnDelete = TRUE;
+//      m_bCloseOnDelete = TRUE;
       
       return TRUE;
    }
@@ -378,7 +379,7 @@ namespace mac
          bError = !::close(m_iFile);
       
       m_iFile = (UINT) hFileNull;
-      m_bCloseOnDelete = FALSE;
+//      m_bCloseOnDelete = FALSE;
       m_strFileName.Empty();
       
       if (bError)

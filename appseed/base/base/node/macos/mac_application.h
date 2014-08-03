@@ -46,7 +46,7 @@ namespace mac
       virtual HINSTANCE GetHinstance();
       bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
-      virtual sp(::user::object) _001OpenDocumentFile(var varFile);
+      virtual sp(::user::document) _001OpenDocumentFile(var varFile);
       virtual void _001OnFileNew();
       
 
@@ -74,14 +74,14 @@ namespace mac
       
       
             
-      sp(::window) window_from_os_data(void * pdata);
-      sp(::window) window_from_os_data_permanent(void * pdata);
+      sp(::user::interaction) window_from_os_data(void * pdata);
+      sp(::user::interaction) window_from_os_data_permanent(void * pdata);
       
       virtual ::thread * GetThread();
       virtual void set_thread(::thread * pthread);
       
-      virtual sp(::window) FindWindow(const char * lpszClassName, const char * lpszWindowName);
-      virtual sp(::window) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+      virtual sp(::user::interaction) FindWindow(const char * lpszClassName, const char * lpszWindowName);
+      virtual sp(::user::interaction) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
       
       virtual void get_time(struct timeval *p);
       virtual void set_env_var(const string & var,const string & value);

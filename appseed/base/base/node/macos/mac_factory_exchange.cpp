@@ -20,12 +20,12 @@ namespace mac
 //    System.factory().cloneable_small < folder_watch         >   (System.type_info < ::ca2::folder_watch     > ());
       System.factory().creatable < window_draw                >   (System.type_info < ::user::window_draw     > (), 1);
       System.factory().creatable_large < thread               >   (System.type_info < ::thread_impl                > ());
-      System.factory().creatable_large < window               >   (System.type_info < ::window          > ());
+      System.factory().creatable_large < interaction_impl     >   (System.type_info < ::user::interaction_impl > ());
       System.factory().creatable < os                         >   (System.type_info < ::base::os              > (), 1);
       System.factory().creatable < port_forward               >   (System.type_info < ::net::port_forward     > (), 1);
-      System.factory().creatable < crypto                      >   (System.type_info < ::crypto::crypto           > (), 1);
+      System.factory().creatable < crypto                     >   (System.type_info < ::crypto::crypto           > (), 1);
       System.factory().creatable < copydesk                   >   (System.type_info < ::base::copydesk        > (), 1);
-      System.factory().creatable < ::mac2::printer                   >   (System.type_info < ::user::printer        > (), 1);
+      System.factory().creatable < ::mac2::printer            >   (System.type_info < ::user::printer        > (), 1);
       
    }
 

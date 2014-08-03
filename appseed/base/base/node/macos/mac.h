@@ -57,7 +57,7 @@ CLASS_DECL_mac void AfxResetMsgCache();
 #include "mac_factory_exchange.h"
 #include "mac_window_draw.h"
 #include "mac_thread.h"
-#include "mac_window.h"
+#include "mac_interaction_impl.h"
 #include "mac_os.h"
 #include "mac_port_forward.h"
 #include "mac_copydesk.h"
@@ -69,7 +69,7 @@ CLASS_DECL_mac void AfxResetMsgCache();
 #define AfxWndProc (*AfxGetAfxWndProc())
 
 #define MAC_THREAD(pthread) (dynamic_cast < ::mac::thread * > (dynamic_cast < ::thread * >(pthread)))
-#define MAC_WINDOW(pwnd) (dynamic_cast < ::mac::window * > (dynamic_cast < ::window * >(pwnd)))
+#define MAC_WINDOW(pwnd) (dynamic_cast < ::mac::interaction_impl * > (dynamic_cast < ::user::interaction_impl * >(pwnd)))
 
 #include "mac_shell.h"
 

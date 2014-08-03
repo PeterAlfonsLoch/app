@@ -1493,7 +1493,7 @@ CLASS_DECL_BASE int_bool IntersectRect(LPRECT prect, LPCRECT prect1, LPCRECT pre
 CLASS_DECL_BASE int_bool UnionRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
 CLASS_DECL_BASE int_bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
 
-typedef struct oswindow_data *   oswindow;
+//typedef struct oswindow_data *   oswindow;
 
 /*
 * Message structure

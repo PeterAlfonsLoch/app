@@ -47,7 +47,17 @@ void round_window::round_window_show()
    
    [[m_proundwindow->m_controller dd_invokeOnMainThread] showWindow : m_proundwindow];
    
+
 }
+
+
+void round_window::round_window_show()
+{
+    
+    [[m_proundwindow->m_controller dd_invokeOnMainThread] hide : m_proundwindow];
+    
+}
+
 
 void round_window::round_window_redraw()
 {

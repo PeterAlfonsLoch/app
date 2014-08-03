@@ -1002,8 +1002,6 @@ namespace user
 
       synch_lock slUserMutex(&user_mutex());
 
-      bool bOk = false;
-
       if(nFlags & SWP_NOMOVE)
       {
 
