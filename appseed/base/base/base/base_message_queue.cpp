@@ -1,71 +1,55 @@
 #include "framework.h"
 
 
-message_queue::message_queue()
-{
-}
-
 message_queue::message_queue(sp(::base::application) papp) :
    element(papp)
 {
+
+   m_plistener          = NULL;
+
 }
 
 message_queue::~message_queue()
 {
-}
-
-bool message_queue::create_message_queue(sp(::base::application) papp, const char * pszName)
-{
-
-   set_app(papp);
-
-   return create_message_queue(pszName);
 
 }
 
 
-bool message_queue::create_message_queue(const char * pszName)
+bool message_queue::create_message_queue(const char * pszName, ::message_queue_listener * plistener)
 {
 
-   m_spuiMessage = canew(user::interaction(get_app()));
+   m_plistener = plistener;
 
-   return m_spuiMessage->create_message_queue(pszName, this);
+   return ::user::interaction::create_message_queue(pszName);
 
 }
 
 
-bool message_queue::destroy_message_queue()
+void message_queue::message_handler(signal_details * pobj)
+{
+   
+   message_queue_message_handler(pobj);
+
+   if(pobj->m_bRet)
+      return;
+
+   return ::user::interaction::message_handler(pobj);
+
+}
+
+
+void message_queue::message_queue_message_handler(signal_details * pobj)
 {
 
-   bool bOk = true;
-
-   if(m_spuiMessage.is_set())
+   if(m_plistener != NULL)
    {
 
-      try
-      {
-
-         if(m_spuiMessage->IsWindow())
-         {
-
-            bOk = m_spuiMessage->DestroyWindow();
-
-         }
-
-      }
-      catch(...)
-      {
-
-         bOk = false;
-
-      }
-
-      m_spuiMessage.release();
+      m_plistener->message_queue_message_handler(pobj);
 
    }
 
-   return bOk;
-
 }
+
+
 
 

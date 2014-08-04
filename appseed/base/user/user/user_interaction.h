@@ -71,10 +71,13 @@ namespace user
       interaction(sp(::base::application) papp);
       virtual ~interaction();
 
+
       void user_interaction_common_construct();
 
 
-      virtual bool create_message_queue(const char * pszName,::message_queue_listener * pcallback = NULL);
+      virtual bool create_message_queue(const char * pszName);
+
+
 #if defined(METROWIN) || defined(APPLE_IOS)
       virtual bool initialize(native_window_initialize * pinitialize);
 #endif

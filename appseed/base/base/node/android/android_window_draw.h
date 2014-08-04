@@ -128,7 +128,6 @@ namespace android
       virtual void synch_redraw();
       virtual void _synch_redraw();
 
-      virtual void message_queue_message_handler(::signal_details * pobj);
 
    };
 

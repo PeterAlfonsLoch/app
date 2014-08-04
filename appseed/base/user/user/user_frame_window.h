@@ -60,7 +60,6 @@ namespace user
    class frame_window;
    class mdi_child_window;
    class control_bar;
-   class object;
    class impact_system;
 
 

@@ -18,7 +18,6 @@ namespace windows
       bool                                      m_bRectParentClient;
       ::rect                                    m_rectParentClient;
       sp(ptr_array < ::user::interaction > )    m_guieptraMouseHover;
-      ::message_queue_listener *                m_pcallback;
       string                                    m_strWindowText;
       bool                                      m_bUpdateGraphics;
 
@@ -54,7 +53,7 @@ namespace windows
       virtual void mouse_hover_add(sp(::user::interaction) pinterface);
       virtual void mouse_hover_remove(sp(::user::interaction) pinterface);
 
-      bool create_message_queue(const char * pszName,::message_queue_listener * pcallback = NULL);
+      bool create_message_queue(const char * pszName);
 
       //static const MSG* GetCurrentMessage();
 

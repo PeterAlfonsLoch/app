@@ -3257,18 +3257,18 @@ namespace user
             }
 
          }
+
       }
       catch(...)
       {
+
       }
 
    }
 
 
-   bool interaction::create_message_queue(const char * pszName,::message_queue_listener * pcallback)
+   bool interaction::create_message_queue(const char * pszName)
    {
-
-      UNREFERENCED_PARAMETER(pcallback);
 
       if(IsWindow())
       {
@@ -3288,7 +3288,7 @@ namespace user
 
       m_pimpl->m_pui = this;
 
-      if(!m_pimpl->create_message_queue(pszName,pcallback))
+      if(!m_pimpl->create_message_queue(pszName))
       {
 
          m_pimpl.release();

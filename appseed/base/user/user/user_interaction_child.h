@@ -72,8 +72,6 @@ namespace user
       virtual void _002InstallMessageHandling(::message::dispatch * pinterface);
 
 
-      using ::user::interaction_base::create_message_queue;
-      bool create_message_queue();
       virtual bool create(sp(interaction)pparent,id id);
       using ::request_interface::create;
       virtual bool create(const char * lpszClassName,

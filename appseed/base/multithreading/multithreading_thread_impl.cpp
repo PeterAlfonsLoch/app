@@ -12,8 +12,8 @@ uint32_t __thread_entry(void * pparam);
 thread_impl::thread_impl(sp(::base::application) papp):
 element(papp),
 m_evFinish(papp),
-m_mutexUiPtra(papp)
-
+m_mutexUiPtra(papp),
+m_queue(papp)
 {
 
    
@@ -1014,10 +1014,6 @@ void thread_impl::set_os_int(int_ptr iData)
 #endif
 }
 
-void thread_impl::message_queue_message_handler(signal_details * pobj)
-{
-   UNREFERENCED_PARAMETER(pobj);
-}
 
 
 
@@ -1038,9 +1034,6 @@ int32_t thread_impl::thread_startup(::thread_startup * pstartup)
    install_message_handling(pthreadimpl);
 
    m_pthread->install_message_handling(pthreadimpl);
-
-   if(!initialize_message_queue())
-      return -1;
 
    return 0;
 
@@ -1161,7 +1154,7 @@ int32_t thread_impl::thread_term()
    try
    {
       
-      destroy_message_queue();
+//      destroy_message_queue();
 
    }
    catch(...)
@@ -1250,6 +1243,14 @@ void thread_impl::remove(::user::interaction * pui)
 void thread_impl::set_timer(sp(::user::interaction) pui,uint_ptr nIDEvent,UINT nEllapse)
 {
 
+   if(m_sptimera.is_null())
+   {
+
+      if(!initialize_message_queue())
+         return;
+
+   }
+
    m_sptimera->set(pui,nIDEvent,nEllapse);
 
 }
@@ -1296,49 +1297,59 @@ thread_impl::operator HTHREAD() const
 bool thread_impl::initialize_message_queue()
 {
 
-   if(m_spuiMessage.is_set() && m_spuiMessage->IsWindow())
-      return true;
-
-   m_sptimera = canew(::user::interaction::timer_array(get_app()));
-
-   m_spuiptra = canew(::user::interaction_ptr_array(get_app()));
-
-   try
+   if(m_sptimera.is_null())
    {
 
-      if(!create_message_queue(get_app(),""))
-         return false;
+      m_sptimera = canew(::user::interaction::timer_array(get_app()));
 
    }
-   catch(...)
+
+   if(m_spuiptra.is_null())
    {
-      return false;
+
+      m_spuiptra = canew(::user::interaction_ptr_array(get_app()));
+
    }
 
-   if(m_spuiMessage->IsWindow())
+   if(!m_queue.IsWindow())
    {
 
-      single_lock sl(&m_sptimera->m_mutex,TRUE);
-
-      int32_t iMin = 100;
-
-      for(int32_t i = 0; i < m_sptimera->m_timera.get_count(); i++)
+      try
       {
 
-         if(m_sptimera->m_timera.element_at(i)->m_uiElapse < natural(iMin))
-         {
+         if(!m_queue.create_message_queue("",this))
+            return false;
 
-            iMin = m_sptimera->m_timera.element_at(i)->m_uiElapse;
+      }
+      catch(...)
+      {
 
-         }
+         return false;
 
       }
 
-      sl.unlock();
+   }
 
-      m_spuiMessage->SetTimer((uint_ptr)-2,iMin,NULL);
+
+   single_lock sl(&m_sptimera->m_mutex,TRUE);
+
+   int32_t iMin = 100;
+
+   for(int32_t i = 0; i < m_sptimera->m_timera.get_count(); i++)
+   {
+
+      if(m_sptimera->m_timera.element_at(i)->m_uiElapse < natural(iMin))
+      {
+
+         iMin = m_sptimera->m_timera.element_at(i)->m_uiElapse;
+
+      }
 
    }
+
+   sl.unlock();
+
+   m_queue.SetTimer((uint_ptr)-2,iMin,NULL);
 
    return true;
 
@@ -1801,8 +1812,10 @@ void thread_impl::thread_impl_delete()
 
 bool thread_impl::finalize()
 {
+   
+   m_queue.DestroyWindow();
 
-   destroy_message_queue();
+//   destroy_message_queue();
 
    return true;
 

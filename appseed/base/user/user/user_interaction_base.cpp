@@ -2054,7 +2054,7 @@ namespace user
    }
 
 
-   bool interaction_base::create_message_queue(const char * pszName,::message_queue_listener * pcallback)
+   bool interaction_base::create_message_queue(const char * pszName)
    {
 
       throw interface_only_exception(get_app());

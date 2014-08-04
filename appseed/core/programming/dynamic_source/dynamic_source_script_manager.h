@@ -177,8 +177,6 @@ namespace dynamic_source
 
 
 
-      virtual void message_queue_message_handler(signal_details * pobj);
-
       void clear_include_matches();
       static UINT c_cdecl clear_include_matches_FolderWatchThread(LPVOID lpParam); // thread procedure
 

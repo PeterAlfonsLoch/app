@@ -93,6 +93,8 @@ namespace base
       m_libraryDraw2d(this)
    {
 
+      m_ptwf = NULL;
+
 #ifdef MATTER_CACHE_FROM_HTTP_SERVER
 
       m_bMatterFromHttpCache = true;

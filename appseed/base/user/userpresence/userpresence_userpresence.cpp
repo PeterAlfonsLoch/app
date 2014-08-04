@@ -8,7 +8,7 @@ namespace userpresence
    userpresence::userpresence(sp(::base::application) papp) :
       element(papp),
       ::base::departament(papp),
-      message_queue(papp)
+      m_queue(papp)
    {
 
       m_bUserPresenceFeatureRequired = false;
@@ -59,7 +59,7 @@ namespace userpresence
            // m_spuiMessage = canew(::user::interaction());
          }
 
-         if(!create_message_queue("ca5::user::userpresence::message_queue"))
+         if(!m_queue.create_message_queue("ca5::user::userpresence::message_queue"))
             return false;
 
       }
@@ -107,7 +107,7 @@ namespace userpresence
       }
 
 
-      m_spuiMessage->SetTimer(8888, 1000, NULL);
+      m_queue.SetTimer(8888, 1000, NULL);
 
       if(ApplicationUser.m_ppresence == NULL)
       {
@@ -140,14 +140,14 @@ namespace userpresence
          return true;
       }
 
-      if(m_spuiMessage.is_set() && m_spuiMessage->IsWindow())
+      if(m_queue.IsWindow())
       {
 
-         m_spuiMessage->KillTimer(1984);
+         m_queue.KillTimer(1984);
+
+         m_queue.DestroyWindow();
 
       }
-
-      destroy_message_queue();
 
       if(ApplicationUser.m_ppresence != NULL)
       {
@@ -166,11 +166,7 @@ namespace userpresence
    bool userpresence::is_initialized()
    {
 
-      if(m_spuiMessage.is_null())
-         return false;
-
-
-      if(!m_spuiMessage->IsWindow())
+      if(!m_queue.IsWindow())
          return false;
 
       return true;

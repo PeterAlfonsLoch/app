@@ -2370,6 +2370,7 @@ namespace base
 
       xxdebug_box("initialize1 ok","initialize1 ok",MB_ICONINFORMATION);
 
+      /*
       string strWindow;
 
       if(m_strAppName.has_char())
@@ -2387,6 +2388,7 @@ namespace base
       }
 
 #endif
+      */
 
       m_dwAlive = ::get_tick_count();
 
@@ -2605,7 +2607,8 @@ namespace base
       try
       {
 
-         destroy_message_queue();
+         
+         //destroy_message_queue();
 
       }
       catch(...)
@@ -2640,7 +2643,7 @@ namespace base
 
          release_exclusive();
 
-         if(m_spuiMessage.is_set())
+//         if(m_spuiMessage.is_set())
          {
 
             //if(!destroy_message_queue())
@@ -3528,20 +3531,6 @@ namespace base
 
 
 
-   void application::message_queue_message_handler(signal_details * pobj)
-   {
-      SCAST_PTR(::message::base,pbase,pobj);
-      if(pbase->m_uiMessage == WM_TIMER)
-      {
-         SCAST_PTR(::message::timer,ptimer,pobj);
-         if(ptimer->m_nIDEvent == 123)
-         {
-            m_spuiMessage->KillTimer(ptimer->m_nIDEvent);
-            ::user::interaction_ptr_array(frames()).send_message_to_descendants(application::APPM_LANGUAGE);
-            System.appa_load_string_table();
-         }
-      }
-   }
 
 
 

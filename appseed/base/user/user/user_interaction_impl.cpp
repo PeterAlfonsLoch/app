@@ -31,11 +31,10 @@ namespace user
    }
 
 
-   bool interaction_impl::create_message_queue(const char * pszName,::message_queue_listener * pcallback)
+   bool interaction_impl::create_message_queue(const char * pszName)
    {
 
       UNREFERENCED_PARAMETER(pszName);
-      UNREFERENCED_PARAMETER(pcallback);
       throw interface_only_exception(get_app());
 
    }

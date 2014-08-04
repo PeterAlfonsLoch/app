@@ -420,21 +420,6 @@ namespace dynamic_source
 
    }
 
-   void script_manager::message_queue_message_handler(signal_details * pobj)
-   {
-      SCAST_PTR(::message::base, pbase, pobj);
-      if(pbase->m_uiMessage == WM_APP + 13)
-      {
-         //if(wparam == 0)
-         // ((netnodeScript *) lparam)->Load(false);
-         //else if(wparam == 13)
-         // ((netnodeScript *) lparam)->Unload(false);
-         pbase->m_bRet = true;
-      }
-      else if(pbase->m_uiMessage == WM_APP + 14)
-      {
-      }
-   }
 
 
 

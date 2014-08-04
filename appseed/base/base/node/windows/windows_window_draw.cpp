@@ -61,15 +61,6 @@ namespace windows
    }
    */
 
-   void window_draw::message_queue_message_handler(signal_details * pobj)
-   {
-      SCAST_PTR(::message::base,pbase,pobj);
-      if(pbase->m_uiMessage == (WM_USER + 5000))
-      {
-         _synch_redraw();
-      }
-   }
-
    void window_draw::asynch_redraw()
    {
       DWORD dwTick = ::get_tick_count();
@@ -198,9 +189,13 @@ namespace windows
 
       if(!create_message_queue("::core::twf - core Transparent Window Framework"))
       {
+
          m_iReturnCode = -1000;
+
          TRACE("Could not initialize ::core::twf - core Transparent Window Framework!");
+
          return false;
+
       }
 
       ::AttachThreadInput(::GetCurrentThreadId(),get_os_int(),TRUE);

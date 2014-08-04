@@ -34,7 +34,6 @@ namespace windows
 
    thread::thread(sp(::base::application) papp):
       element(papp),
-      message_queue(papp),
       ::thread_impl(papp)
    {
 
@@ -84,24 +83,21 @@ namespace windows
       ASSERT_VALID(this);
 
       return true;   // by default enter run loop
+
    }
-
-
-
-
-
-
-   /////////////////////////////////////////////////////////////////////////////
-   // thread diagnostics
 
 
    void thread::assert_valid() const
    {
-      message_queue::assert_valid();
+
+      ::thread_impl::assert_valid();
+
    }
+
+
    void thread::dump(dump_context & dumpcontext) const
    {
-      message_queue::dump(dumpcontext);
+      ::thread_impl::dump(dumpcontext);
 
       dumpcontext << "m_pThreadParams = " << m_pThreadParams;
       dumpcontext << "\nm_pfnThreadProc = " << (void *)m_pfnThreadProc;

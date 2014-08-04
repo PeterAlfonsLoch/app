@@ -7,12 +7,13 @@ namespace userpresence
 
    class CLASS_DECL_BASE userpresence :
       virtual public ::base::departament,
-      virtual public message_queue
+      virtual public message_queue_listener
    {
    public:
 
 
       bool                    m_bUserPresenceFeatureRequired;
+      message_queue           m_queue;
 
 
       userpresence(sp(::base::application) papp);

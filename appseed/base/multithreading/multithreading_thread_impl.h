@@ -32,7 +32,7 @@ public:
 
 class CLASS_DECL_BASE thread_impl :
    virtual public command_target,
-   virtual public message_queue
+   virtual public message_queue_listener
 {
 public:
 
@@ -56,6 +56,7 @@ public:
    mutex                                     m_mutexUiPtra;
 
    UINT                                      m_dwFinishTimeout;
+   message_queue                             m_queue;
 
 
    thread_impl(sp(::base::application) papp);
@@ -117,7 +118,6 @@ public:
 
    virtual void set_os_data(void * pvoidOsData);
    virtual void set_os_int(int_ptr iData);
-   virtual void message_queue_message_handler(signal_details * pobj);
 
    virtual bool initialize_message_queue();
 

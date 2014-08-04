@@ -39,15 +39,6 @@ namespace user
    }
 
 
-
-   bool interaction_child::create_message_queue()
-   {
-      if(m_puiMessage == NULL)
-      {
-      }
-      return true;
-   }
-
    bool interaction_child::CreateEx(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(interaction) pparent,id id,LPVOID lpParam)
    {
 
@@ -72,9 +63,6 @@ namespace user
       //   if(m_pui->m_pthread == NULL)
 
       m_bCreate = true;
-
-      if(!create_message_queue())
-         return false;
 
       m_pui->m_bVisible = (dwStyle & WS_VISIBLE) != 0;
 
@@ -207,9 +195,6 @@ namespace user
 
       m_bCreate = true;
 
-      if(!create_message_queue())
-         return FALSE;
-
       m_pui->m_bVisible = (dwStyle & WS_VISIBLE) != 0;
 
       //m_pui = this;
@@ -316,9 +301,6 @@ namespace user
 
       }
 
-
-      if(!create_message_queue())
-         return false;
 
       m_bCreate = true;
 

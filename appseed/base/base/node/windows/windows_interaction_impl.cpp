@@ -42,7 +42,6 @@ namespace windows
 
       m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
       m_bRectParentClient  = false;
-      m_pcallback          = NULL;
       m_pfnSuper           = NULL;
       m_nModalResult       = 0;
       m_bMouseHover        = false;
@@ -63,7 +62,6 @@ namespace windows
 
       m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
       m_bRectParentClient  = false;
-      m_pcallback          = NULL;
       m_pfnSuper           = NULL;
       m_nModalResult       = 0;
       m_bMouseHover        = false;
@@ -85,7 +83,6 @@ namespace windows
 
       m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
       m_bRectParentClient  = false;
-      m_pcallback          = NULL;
       m_pfnSuper           = NULL;
       m_nModalResult       = 0;
       m_bMouseHover        = false;
@@ -359,23 +356,28 @@ namespace windows
          pParentWnd->get_handle(),id,(LPVOID)pContext);
    }
 
-   bool interaction_impl::create_message_queue(const char * pszName,::message_queue_listener * pcallback)
+
+   bool interaction_impl::create_message_queue(const char * pszName)
    {
-      m_pcallback = pcallback;
+
       if(IsWindow())
       {
-         SetWindowText(pszName);
+
+         DestroyWindow();
+
       }
-      else
+
+      if(!CreateEx(0,NULL,pszName,WS_CHILD,0,0,0,0,HWND_MESSAGE,0,NULL))
       {
-         string strName = "::core::fontopus::message_wnd::winservice_1";
-         if(!CreateEx(0,NULL,pszName,WS_CHILD,0,0,0,0,HWND_MESSAGE,0,NULL))
-         {
-            return false;
-         }
+
+         return false;
+
       }
+
       return true;
+
    }
+
 
    string interaction_impl:: calc_window_class()
    {
@@ -1183,12 +1185,6 @@ namespace windows
             return;
       }
 
-      if(m_pcallback != NULL)
-      {
-         m_pcallback->message_queue_message_handler(pobj);
-         if(pobj->m_bRet)
-            return;
-      }
       if(pbase->m_uiMessage == WM_TIMER)
       {
          m_pui->m_pbaseapp->step_timer();

@@ -9,7 +9,6 @@ namespace user
 {
 
 
-   class object;
    class impact_system;
    class interaction;
 

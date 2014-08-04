@@ -33,19 +33,13 @@ namespace bergedge
 
    void frame::_001OnCreate(signal_details * pobj)
    {
+
       SCAST_PTR(::message::create, pcreate, pobj);
 
       m_bWindowFrame = GetTypedParent < ::plugin::host_interaction >() == NULL;
 
       if(pobj->previous())
          return;
-
-      if(!message_queue::create_message_queue("::draw2d::fontopus::message_wnd::bergedge::" + System.get_local_mutex_id()))
-      {
-         pcreate->set_lresult(-1);
-         pcreate->m_bRet = true;
-         return;
-      }
 
       SetWindowText("bergedge");
 
