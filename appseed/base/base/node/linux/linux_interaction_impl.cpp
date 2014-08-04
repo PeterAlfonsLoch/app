@@ -652,7 +652,7 @@ d.unlock();
          retry_single_lock sl(&pdraw->m_eventFree, millis(84), millis(84));
          pdraw->m_wndpaOut.remove(m_pui);
       }
-//      LNX_THREAD(m_pthread.m_p)->m_oswindowa.remove(m_oswindow);
+      m_pbaseapp->remove(m_pui);
       oswindow_remove(m_oswindow->display(), m_oswindow->window());
    }
 
@@ -4139,7 +4139,7 @@ throw not_implemented(get_app());
    }
 
 
-   sp(::user::interaction) interaction_impl::release_capture()
+   sp(::user::interaction) interaction_impl::ReleaseCapture()
    {
       //throw not_implemented(get_app());
       oswindow hwndcapture = ::GetCapture();
@@ -4147,7 +4147,7 @@ throw not_implemented(get_app());
          return NULL;
       if(((void *) hwndcapture) == get_handle())
       {
-         sp(::user::interaction) puiecapture = get_capture();
+         sp(::user::interaction) puiecapture = GetCapture();
          if(::ReleaseCapture())
          {
             m_puicapture = NULL;
@@ -4798,22 +4798,13 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::user::interaction) interaction_impl::get_capture()
-   {
 
-      if(::GetCapture() == NULL)
-         return NULL;
-
-      return ::GetCapture()->get_user_interaction();
-
-   }
-
-   sp(::user::interaction) interaction_impl::set_capture(sp(::user::interaction) pinterface)
+   sp(::user::interaction) interaction_impl::SetCapture(sp(::user::interaction) pinterface)
    {
 
       ASSERT(::IsWindow((oswindow) get_handle()));
 
-      oswindow w = SetCapture(get_handle()->get_user_interaction())->get_handle();
+      oswindow w = ::SetCapture(get_handle());
 
       if(GetCapture() != NULL)
       {
@@ -6426,7 +6417,7 @@ namespace linux
 */
    }
 
-   void interaction_impl::set_view_port_org(::draw2d::graphics * pgraphics)
+   void interaction_impl::set_viewport_org(::draw2d::graphics * pgraphics)
    {
       // graphics will be already set its view port to the interaction_impl for linux - cairo with xlib
 

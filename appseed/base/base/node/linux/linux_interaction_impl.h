@@ -18,7 +18,6 @@ namespace linux
 
 
       spa(::user::interaction)      m_guieptraMouseHover;
-      ::message_queue_listener *    m_pcallback;
       string                        m_strWindowText;
       //oswindow                      m_oswindow;
       ::user::interaction_base *    m_pbasewnd;
@@ -299,9 +298,9 @@ namespace linux
 
       // capture and focus apply to all windows
       virtual sp(::user::interaction) GetCapture();
-      virtual sp(::user::interaction) set_capture(sp(::user::interaction) pinterface = NULL);
-      virtual sp(::user::interaction) release_capture();
-      virtual sp(::user::interaction) get_capture();
+      virtual sp(::user::interaction) SetCapture(sp(::user::interaction) pinterface = NULL);
+      virtual sp(::user::interaction) ReleaseCapture();
+      //virtual sp(::user::interaction) get_capture();
       static sp(::user::interaction) PASCAL GetFocus();
       sp(::user::interaction) SetFocus();
 

@@ -56,7 +56,7 @@ namespace draw2d
       }
    }
 
-   void graphics::release_os_data_ex(int i, void * p) 
+   void graphics::release_os_data_ex(int i, void * p)
    {
    }
 
@@ -81,73 +81,73 @@ namespace draw2d
 
    bool graphics::attach(void * pdata)
    {
-      
+
       throw interface_only_exception(get_app());
-       
+
       return false;
-      
+
    }
-   
+
 
    void * graphics::detach()
    {
-      
+
        throw interface_only_exception(get_app());
-       
+
        return NULL;
-      
+
    }
 
-   
+
    bool graphics::IsPrinting() const
    {
-   
+
        throw interface_only_exception(get_app());
-       
+
        return false;
-       
+
    }
 
-   
+
    bool graphics::CreateDC(const char * lpszDriverName,  const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData)
    {
-   
+
        UNREFERENCED_PARAMETER(lpszDriverName);
       UNREFERENCED_PARAMETER(lpszDeviceName);
       UNREFERENCED_PARAMETER(lpszOutput);
       UNREFERENCED_PARAMETER(lpInitData);
       throw interface_only_exception(get_app());
-      
+
       return false;
-      
+
    }
-   
+
 
    bool graphics::CreateIC(const char * lpszDriverName,  const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData)
    {
-      
+
        UNREFERENCED_PARAMETER(lpszDriverName);
       UNREFERENCED_PARAMETER(lpszDeviceName);
       UNREFERENCED_PARAMETER(lpszOutput);
       UNREFERENCED_PARAMETER(lpInitData);
       throw interface_only_exception(get_app());
-      
+
       return false;
-      
+
    }
 
-   
+
    bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
    {
-      
+
        UNREFERENCED_PARAMETER(pgraphics);
       throw interface_only_exception(get_app());
-      
+
       return false;
-      
+
    }
 
-   
+
 /*   int32_t graphics::ExcludeUpdateRgn(::window_sp pwindow)
    {
       UNREFERENCED_PARAMETER(pwindow);
@@ -159,18 +159,18 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(nIndex);
       throw interface_only_exception(get_app());
-      
+
       return -1;
-      
+
    }
 
    point graphics::GetBrushOrg() const
    {
-       
+
       throw interface_only_exception(get_app());
-      
+
       return null_point();
-      
+
    }
 
    bool graphics::set_text_color(COLORREF clr)
@@ -187,23 +187,23 @@ namespace draw2d
 
    point graphics::SetBrushOrg(int32_t x, int32_t y)
    {
-      
+
        UNREFERENCED_PARAMETER(x);
         UNREFERENCED_PARAMETER(y);
         throw interface_only_exception(get_app());
-      
+
       return null_point();
-      
+
    }
 
    point graphics::SetBrushOrg(POINT point)
    {
       UNREFERENCED_PARAMETER(point);
       throw interface_only_exception(get_app());
-      
-      
+
+
       return null_point();
-      
+
    }
 
    int32_t graphics::EnumObjects(int32_t nObjectType, int32_t (CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData)
@@ -212,18 +212,18 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpfn);
       UNREFERENCED_PARAMETER(lpData);
       throw interface_only_exception(get_app());
-      
+
       return -1;
-      
+
    }
 
    ::draw2d::bitmap* graphics::SelectObject(::draw2d::bitmap* pBitmap)
    {
       UNREFERENCED_PARAMETER(pBitmap);
       throw interface_only_exception(get_app());
-      
+
       return NULL;
-      
+
    }
 
 
@@ -268,25 +268,25 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(crColor);
       throw interface_only_exception(get_app());
-      
+
       return 0;
-      
+
    }
 
    UINT graphics::RealizePalette()
    {
       throw interface_only_exception(get_app());
-      
+
       return -1;
-      
+
    }
 
    void graphics::UpdateColors()
    {
       throw interface_only_exception(get_app());
-      
-      
-      
+
+
+
    }
 
 
@@ -294,7 +294,7 @@ namespace draw2d
    {
 
       throw interface_only_exception(get_app());
-      
+
       return -1;
 
    }
@@ -304,7 +304,7 @@ namespace draw2d
    {
 
       throw interface_only_exception(get_app());
-      
+
       return -1;
 
    }
@@ -314,7 +314,7 @@ namespace draw2d
    {
 
       throw interface_only_exception(get_app());
-      
+
       return -1;
 
    }
@@ -324,7 +324,7 @@ namespace draw2d
    {
 
       throw interface_only_exception(get_app());
-      
+
       return -1;
 
    }
@@ -334,7 +334,7 @@ namespace draw2d
    {
 
       throw interface_only_exception(get_app());
-      
+
       return -1;
 
    }
@@ -346,9 +346,9 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(pXform);
       throw interface_only_exception(get_app());
-      
+
       return false;
-      
+
    }
 
 #endif
@@ -356,32 +356,32 @@ namespace draw2d
    point graphics::GetViewportOrg() const
    {
       throw interface_only_exception(get_app());
-      
+
       return null_point();
-      
+
    }
 
    size graphics::GetViewportExt() const
    {
       throw interface_only_exception(get_app());
-      
+
       return size(0, 0);
-      
+
    }
 
    point graphics::GetWindowOrg() const
    {
       throw interface_only_exception(get_app());
-      
+
       return null_point();
    }
 
    size graphics::GetWindowExt() const
    {
       throw interface_only_exception(get_app());
-      
+
       return size(0, 0);
-      
+
    }
 
    // non-virtual helpers calling virtual mapping functions
@@ -389,7 +389,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(point);
       throw interface_only_exception(get_app());
-      
+
       return null_point();
    }
 
@@ -404,19 +404,19 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(point);
       throw interface_only_exception(get_app());
-      
-      
+
+
       return null_point();
-      
+
    }
 
    size graphics::SetWindowExt(SIZE size)
    {
       UNREFERENCED_PARAMETER(size);
       throw interface_only_exception(get_app());
-      
+
       return ::size(0, 0);
-      
+
    }
 
    void graphics::DPtoLP(LPPOINT lpPoints, int32_t nCount) const
@@ -450,7 +450,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(pRgn);
       UNREFERENCED_PARAMETER(pBrush);
       throw interface_only_exception(get_app());
-      
+
       return false;
    }
 
@@ -469,7 +469,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(pRgn);
       throw interface_only_exception(get_app());
       return false;
-      
+
    }
 
    bool graphics::PaintRgn(::draw2d::region* pRgn)
@@ -484,7 +484,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
       throw interface_only_exception(get_app());
-      
+
       return false;
    }
 
@@ -492,7 +492,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(point);
       throw interface_only_exception(get_app());
-      
+
       return false;
    }
 
@@ -500,14 +500,14 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(lpRect);
       throw interface_only_exception(get_app());
-      
+
       return false;
    }
 
    point graphics::GetCurrentPosition() const
    {
       throw interface_only_exception(get_app());
-      
+
       return null_point();
    }
 
@@ -536,7 +536,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(x4);
       UNREFERENCED_PARAMETER(y4);
       throw interface_only_exception(get_app());
-      
+
       return false;
 
    }
@@ -637,7 +637,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
       throw interface_only_exception(get_app());
-      
+
       return false;
    }
 
@@ -667,7 +667,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(y);
       UNREFERENCED_PARAMETER(picon);
       throw interface_only_exception(get_app());
-      
+
       return false;
    }
 
@@ -676,10 +676,10 @@ namespace draw2d
       UNREFERENCED_PARAMETER(point);
       UNREFERENCED_PARAMETER(picon);
       throw interface_only_exception(get_app());
-      
-      
+
+
       return false;
-      
+
    }
 
    bool graphics::DrawIcon(int32_t x, int32_t y, ::visual::icon * picon, int32_t cx, int32_t cy, UINT istepIfAniCur, HBRUSH hbrFlickerFreeDraw, UINT diFlags)
@@ -693,9 +693,9 @@ namespace draw2d
       UNREFERENCED_PARAMETER(hbrFlickerFreeDraw);
       UNREFERENCED_PARAMETER(diFlags);
       throw interface_only_exception(get_app());
-      
+
       return false;
-      
+
    }
 
    bool graphics::DrawState(point pt, size size, HBITMAP hBitmap, UINT nFlags, HBRUSH hBrush)
@@ -706,9 +706,9 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nFlags);
       UNREFERENCED_PARAMETER(hBrush);
       throw interface_only_exception(get_app());
-      
+
       return false;
-      
+
    }
 
    bool graphics::DrawState(point pt, size size, ::draw2d::bitmap* pBitmap, UINT nFlags, ::draw2d::brush* pBrush)
@@ -719,7 +719,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nFlags);
       UNREFERENCED_PARAMETER(pBrush);
       throw interface_only_exception(get_app());
-      
+
       return false;
    }
 
@@ -733,9 +733,9 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nFlags);
       UNREFERENCED_PARAMETER(hBrush);
       throw interface_only_exception(get_app());
-      
+
       return false;
-      
+
    }
 
    bool graphics::DrawState(point pt, size size, HICON hIcon, UINT nFlags, ::draw2d::brush* pBrush)
@@ -746,9 +746,9 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nFlags);
       UNREFERENCED_PARAMETER(pBrush);
       throw interface_only_exception(get_app());
-      
+
       return false;
-      
+
    }
 
 #endif
@@ -763,9 +763,9 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nTextLen);
       UNREFERENCED_PARAMETER(hBrush);
       throw interface_only_exception(get_app());
-      
+
       return false;
-      
+
    }
 
    bool graphics::DrawState(point pt, size size, const char * lpszText, UINT nFlags, bool bPrefixText, int32_t nTextLen, ::draw2d::brush* pBrush)
@@ -778,10 +778,10 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nTextLen);
       UNREFERENCED_PARAMETER(pBrush);
       throw interface_only_exception(get_app());
-      
+
       return false;
-      
-              
+
+
    }
 
 #ifdef WINDOWSEX
@@ -795,9 +795,9 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nFlags);
       UNREFERENCED_PARAMETER(hBrush);
       throw interface_only_exception(get_app());
-      
+
       return false;
-      
+
    }
 
    bool graphics::DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc, LPARAM lData, UINT nFlags, ::draw2d::brush* pBrush)
@@ -809,7 +809,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nFlags);
       UNREFERENCED_PARAMETER(pBrush);
       throw interface_only_exception(get_app());
-      
+
       return false;
    }
 
@@ -1032,13 +1032,18 @@ namespace draw2d
       return false;
    }
 
+
    bool graphics::Polygon(const POINT* lpPoints, int32_t nCount)
    {
-      UNREFERENCED_PARAMETER(lpPoints);
-      UNREFERENCED_PARAMETER(nCount);
-      throw interface_only_exception(get_app());
-      return false;
+
+      bool bOk1 = fill_polygon(lpPoints, nCount);
+
+      bool bOk2 = draw_polygon(lpPoints, nCount);
+
+      return bOk1 && bOk2;
+
    }
+
 
    bool graphics::Polygon(const POINTD* lpPoints,int32_t nCount)
    {
@@ -1316,7 +1321,7 @@ namespace draw2d
 
    bool graphics::TextOut(int32_t x, int32_t y, const char * lpszString, int32_t nCount)
    {
-      
+
       return TextOut((double)x, (double)y, lpszString, nCount);
 
    }
@@ -2467,7 +2472,7 @@ namespace draw2d
       throw interface_only_exception(get_app());
       return null_point();
    }
-   
+
    size graphics::SetWindowExt(int32_t x, int32_t y)
    {
       UNREFERENCED_PARAMETER(x);

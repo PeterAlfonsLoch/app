@@ -269,8 +269,14 @@ namespace draw2d_cairo
       bool FillEllipse(LPCRECT lpRect);
       bool Pie(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t x4, int32_t y4);
       bool Pie(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
+
       virtual bool fill_polygon(const POINTD * lpPoints, int32_t nCount);
       virtual bool fill_polygon(const POINT* lpPoints, int32_t nCount);
+
+      virtual bool draw_polygon(const POINTD * lpPoints, int32_t nCount);
+      virtual bool draw_polygon(const POINT* lpPoints, int32_t nCount);
+
+
       bool Polygon(const POINT* lpPoints, int32_t nCount);
       bool PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int32_t nCount);
       bool Rectangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2);

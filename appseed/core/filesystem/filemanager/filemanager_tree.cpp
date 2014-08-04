@@ -69,7 +69,7 @@ namespace filemanager
       bool_array baDir;
 
       get_document()->get_fs_data()->ls(strPath,&straPath,&straTitle,&iaSize,&baDir);
-      
+
       single_lock sl(&m_mutexData,true);
 
       filemanager_tree_insert(strPath,straPath,straTitle,iaSize,baDir,actioncontext);
@@ -101,10 +101,10 @@ namespace filemanager
 
 
    void tree::filemanager_tree_insert(const string & strPath, stringa & straPath,stringa & straTitle,int64_array & iaSize,bool_array & baDir,::action::context actioncontext)
-   {  
+   {
 
       single_lock sl(&m_mutexData,true);
-      
+
       stringa & straRootPath = get_document()->m_straRootPath;
 
       stringa & straRootTitle = get_document()->m_straRootTitle;
@@ -173,33 +173,45 @@ namespace filemanager
 
       int32_t i;
 
+      string strItem;
+
+      string strCheck;
+
       for(i = 0; i < straPath.get_size(); i++)
       {
 
-         pitem = find_item(straPath[i]);
+         strItem = straPath[i];
 
-         string strPath;
-         
+         if(strItem.is_empty())
+            continue;
+
+         pitem = find_item(strItem);
+
          if(pitem != NULL)
          {
 
-            strPath = pitem->m_pitem.cast < ::fs::item >()->m_strPath;
-
-            strPath.trim_right(":\\/");
-
-            if(!straRootPathTrim.contains_ci(strPath))
+            if(pitem->m_pitem.is_set())
             {
-      
-               // reparent
 
-               if(pitem->m_pparent != pitemParent)
+               strCheck = pitem->m_pitem.cast < ::fs::item >()->m_strPath;
+
+               strCheck.trim_right(":\\/");
+
+               if(!straRootPathTrim.contains_ci(strCheck))
                {
 
-                  pitem->SetParent(pitemParent);
+                  // reparent
+
+                  if(pitem->m_pparent != pitemParent)
+                  {
+
+                     pitem->SetParent(pitemParent);
+
+                  }
+
+                  continue;
 
                }
-
-               continue;
 
             }
 
@@ -209,10 +221,10 @@ namespace filemanager
 
          iChildCount++;
 
-         pitemChild->m_strPath = get_document()->get_fs_data()->dir_path(straPath[i],"");
+         pitemChild->m_strPath = get_document()->get_fs_data()->dir_path(strItem,"");
 
          pitemChild->m_strName = straTitle[i];
-         
+
          if(!baDir[i])
          {
 
@@ -272,9 +284,9 @@ namespace filemanager
 
          if(pitem != NULL)
          {
-            
+
             pitem = insert_item(pitemChild, ::data::RelativeReplace, pitem);
-            
+
             // a refresh or a file monitoring event for folder deletion or creation should
             // the most precisely possible way reset this flag
             pitemChild->m_flags.signalize(::fs::FlagHasSubFolderUnknown);
@@ -1063,7 +1075,7 @@ namespace filemanager
 
       void tree::_001OnCreate(signal_details * pobj)
       {
-      
+
          pobj->previous();
 
 

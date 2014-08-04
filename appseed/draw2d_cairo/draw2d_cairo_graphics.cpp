@@ -610,12 +610,7 @@ synch_lock ml(&cairo_mutex());
    bool graphics::Polyline(const POINT* lpPoints, int32_t nCount)
    {
 
-      /*ASSERT(get_handle1() != NULL);
-
-      return ::Polyline(get_handle1(), lpPoints, nCount) != FALSE;*/
-
-      throw not_implemented(get_app());
-      return false;
+      return draw_polygon(lpPoints, nCount);
 
    }
 
@@ -1009,8 +1004,11 @@ synch_lock ml(&cairo_mutex());
 
    }
 
+
    bool graphics::fill_polygon(const POINTD * pa, int32_t nCount)
-   {synch_lock ml(&cairo_mutex());
+   {
+
+      synch_lock ml(&cairo_mutex());
 
       if(nCount <= 0)
          return TRUE;
@@ -1030,7 +1028,9 @@ synch_lock ml(&cairo_mutex());
    }
 
    bool graphics::fill_polygon(const POINT* pa, int32_t nCount)
-   {synch_lock ml(&cairo_mutex());
+   {
+
+      synch_lock ml(&cairo_mutex());
 
       if(nCount <= 0)
          return TRUE;
@@ -1049,6 +1049,50 @@ synch_lock ml(&cairo_mutex());
 
    }
 
+
+   bool graphics::draw_polygon(const POINTD * pa, int32_t nCount)
+   {
+
+      synch_lock ml(&cairo_mutex());
+
+      if(nCount <= 0)
+         return TRUE;
+
+
+      cairo_move_to(m_pdc, pa[0].x, pa[0].y);
+
+      for(int32_t i = 1; i < nCount; i++)
+      {
+         cairo_line_to(m_pdc, pa[i].x, pa[i].y);
+      }
+
+      draw();
+
+      return true;
+
+   }
+
+   bool graphics::draw_polygon(const POINT* pa, int32_t nCount)
+   {
+
+      synch_lock ml(&cairo_mutex());
+
+      if(nCount <= 0)
+         return TRUE;
+
+
+      cairo_move_to(m_pdc, pa[0].x, pa[0].y);
+
+      for(int32_t i = 1; i < nCount; i++)
+      {
+         cairo_line_to(m_pdc, pa[i].x, pa[i].y);
+      }
+
+      draw();
+
+      return true;
+
+   }
 
    bool graphics::Polygon(const POINT* pa, int32_t nCount)
    {

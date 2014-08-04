@@ -37,7 +37,7 @@ namespace userfs
 
    void tree::install_message_handling(::message::dispatch * pinterface)
    {
-      
+
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tree::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &tree::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tree::_001OnTimer);
@@ -173,7 +173,7 @@ namespace userfs
 
    void tree::_001OnContextMenu(signal_details * pobj)
    {
-      
+
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
          //   int32_t iItem;
@@ -470,6 +470,7 @@ namespace userfs
 
    sp(::data::tree_item) tree::find_absolute(const char * lpcszPath, ::data::tree_item * pitemStart)
    {
+
       sp(::data::tree_item) pitem;
 
       if(pitemStart == NULL)
@@ -481,22 +482,43 @@ namespace userfs
          return pitem;
 
       string strPath(lpcszPath);
-      strPath.trim_right("\\/");
+
+      if(strPath != "/" && strPath != "\\")
+      {
+
+         strPath.trim_right("\\/");
+
+      }
+
       while (pitem != NULL)
       {
-         if (pitem->m_pitem != NULL
-            && typeid(*pitem->m_pitem) == System.type_info < ::userfs::item >())
+
+         if (pitem->m_pitem != NULL && typeid(*pitem->m_pitem) == System.type_info < ::userfs::item >())
          {
+
             string strTreeItem(pitem->m_pitem.cast < ::userfs::item >()->m_strPath);
-            strTreeItem.trim_right("\\/");
+
+            if(strTreeItem != "/" && strTreeItem != "\\")
+            {
+
+               strTreeItem.trim_right("\\/");
+
+            }
+
             if (strTreeItem.CompareNoCase(strPath) == 0)
                return pitem;
+
          }
+
          pitem = pitem->get_next();
+
          if(pitem == pitemStart)
             break;
+
       }
+
       return NULL;
+
    }
 
    void tree::arrange(::fs::e_arrange earrange)

@@ -192,9 +192,10 @@ namespace linux
       return strcmp(lpcsz1, lpcsz2) == 0;
    }
 
-   void dir::root_ones(stringa & stra, sp(::base::application) papp)
+   void dir::root_ones(stringa & straPath, stringa & straTitle, sp(::base::application) papp)
    {
-      stra.add("/");
+      straPath.add("/");
+      straTitle.add("");
 /*      DWORD dwSize = ::GetLogicalDriveStrings(0, NULL);
       LPTSTR lpszAlloc = (LPTSTR) malloc(dwSize + 1);
       LPTSTR lpsz = lpszAlloc;

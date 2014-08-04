@@ -31,7 +31,7 @@ namespace userfs
 
    bool document::browse(const char * pszFolder, ::action::context actioncontext)
    {
-      
+
       m_strFolder = pszFolder;
 
       m_straPath.remove_all();
@@ -41,7 +41,7 @@ namespace userfs
 
       if(m_straRootPath.is_empty())
       {
-         
+
          get_fs_data()->root_ones(m_straRootPath,m_straRootTitle);
 
       }
@@ -74,14 +74,6 @@ namespace userfs
          m_iaSize = iaSize;
          m_baDir = baDir;
       }
-
-
-
-
-      //m_straPath.trim_right("/\\");
-      //m_straTitle.trim_right("/\\");
-
-
 
       update_hint uh;
 
