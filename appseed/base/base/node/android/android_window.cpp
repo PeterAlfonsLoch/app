@@ -330,7 +330,7 @@ namespace android
     int set;
 
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
 xdisplay d(w->display());
     Display * dpy = w->display();
@@ -464,7 +464,7 @@ xdisplay d(w->display());
 
 
 
-         //mutex_lock sl(user_mutex(), true);
+         //single_lock sl(&user_mutex(), true);
 
 
          /*if(!(display=XOpenDisplay(NULL)))
@@ -786,7 +786,7 @@ d.unlock();
          retry_single_lock sl(&pdraw->m_eventFree, millis(84), millis(84));
          pdraw->m_wndpaOut.remove(m_pui);
       }
-      ANDROID_THREAD(m_pbaseapp)->m_oswindowa.remove(m_oswindow);
+      //ANDROID_THREAD(m_pbaseapp)->m_oswindowa.remove(m_oswindow);
       //oswindow_remove(m_oswindow->display(), m_oswindow->interaction_impl());
    }
 
@@ -800,31 +800,24 @@ d.unlock();
    void interaction_impl::_001OnNcDestroy(::signal_details * pobj)
    {
 
-      single_lock sl(m_pbaseapp == NULL ? NULL : &m_pbaseapp->m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pbaseapp == NULL ? NULL : m_pbaseapp->m_pmutex, TRUE);
 
       pobj->m_bRet = true;
 
       // cleanup main and active windows
 
-      ::thread* pThread = System.GetThread();
+      ::thread* pThread = ::get_thread();
 
       if (pThread != NULL)
       {
 
-         if (pThread->GetMainWnd() == this)
+         if (pThread->m_puiMain == m_pui)
          {
 
-            if (!afxContextIsDLL)
-            {
+            if (pThread != &System)
+               __post_quit_message(0);
 
-               // shut down current thread if possible
-
-               if (pThread != &System)
-                  __post_quit_message(0);
-
-            }
-
-            pThread->SetMainWnd(NULL);
+            pThread->m_puiMain;
 
          }
 
@@ -858,7 +851,7 @@ d.unlock();
       }
 */
 
-      Detach();
+      //Detach();
 
       ASSERT(get_handle() == NULL);
 
@@ -964,7 +957,7 @@ d.unlock();
          return; // don't do anything more
       }*/
 
-      sp(::user::interaction) pWnd = (::sp(::user::interaction)) this;
+      ::user::interaction_impl * pWnd = (::user::interaction_impl *) this;
       if (pWnd != this)
          dumpcontext << " (Detached or temporary interaction_impl)";
       else
@@ -982,9 +975,9 @@ d.unlock();
   //    dumpcontext << "\nclass name = \"" << szBuf << "\"";
 
       rect rect;
-      ((::sp(::user::interaction)) this)->GetWindowRect(&rect);
+      ((::user::interaction_impl *) this)->GetWindowRect(&rect);
       dumpcontext << "\nrect = " << rect;
-      dumpcontext << "\nparent sp(::user::interaction) = " << (void *)((::sp(::user::interaction)) this)->get_parent();
+      dumpcontext << "\nparent sp(::user::interaction) = " << (void *)((::user::interaction *) this)->GetParent();
 
 //      dumpcontext << "\nstyle = " << (void *)(dword_ptr)::GetWindowLong(get_handle(), GWL_STYLE);
   //    if (::GetWindowLong(get_handle(), GWL_STYLE) & WS_CHILD)
@@ -1010,29 +1003,15 @@ d.unlock();
 
       }
 
-      single_lock sl(m_pbaseapp == NULL ? NULL : &m_pbaseapp->m_mutex, TRUE);
+      single_lock sl(m_pbaseapp == NULL ? NULL : m_pbaseapp->m_pmutex, TRUE);
       sp(::user::interaction) pWnd;
-      hwnd_map * pMap;
       oswindow hWndOrig;
       bool bResult;
 
 
       bResult = FALSE;
-      pMap = NULL;
       pWnd = NULL;
       hWndOrig = NULL;
-      if (get_handle() != NULL)
-      {
-//         single_lock sl(afxMutexHwnd(), TRUE);
-  //       pMap = afxMapHWND();
-    //     if(pMap != NULL)
-         {
-      //      pWnd =  (pMap->lookup_permanent(get_handle()));
-#ifdef DEBUG
-        //    hWndOrig = get_handle();
-#endif
-         }
-      }
       sl.unlock();
       if (get_handle() != NULL)
          bResult = ::DestroyWindow((oswindow) get_handle()) != FALSE;
@@ -1058,7 +1037,6 @@ d.unlock();
             ASSERT(get_handle() == hWndOrig);
 #endif
             // Detach after DestroyWindow called just in case
-            Detach();
          }
       }
 
@@ -1459,7 +1437,7 @@ d.unlock();
 
       if(m_pcallback != NULL)
       {
-         m_pcallback->message_window_message_handler(pobj);
+         m_pcallback->message_queue_message_handler(pobj);
          if(pobj->m_bRet)
             return;
       }
@@ -1469,7 +1447,7 @@ d.unlock();
       }
       else if(pbase->m_uiMessage == WM_LBUTTONDOWN)
       {
-         session().m_puiLastLButtonDown = this;
+         //session().m_puiLastLButtonDown = this;
       }
       /*      else if(pbase->m_uiMessage == ca2M_BERGEDGE)
       {
@@ -1546,7 +1524,7 @@ d.unlock();
             || pbase->m_uiMessage == WM_MBUTTONDOWN
             || pbase->m_uiMessage == WM_MOUSEMOVE)
          {
-            if(Application.fontopus()->m_puser != NULL)
+            if(session().fontopus()->m_puser != NULL)
             {
                if(&ApplicationUser != NULL)
                {
@@ -1573,29 +1551,8 @@ d.unlock();
 
          ::message::mouse * pmouse = (::message::mouse *) pbase;
 
-         Application.m_ptCursor = pmouse->m_pt;
-         if(m_pbaseapp->m_psession != NULL)
-         {
-            session().m_ptCursor = pmouse->m_pt;
-            if(m_pbaseapp->m_psession != NULL)
-            {
-               m_pbaseapp->m_psession->m_ptCursor = pmouse->m_pt;
-            }
-         }
-         if(m_pui != NULL && m_pui->m_pbaseapp->m_psession != NULL && m_pui->m_pbaseapp->m_psession != m_pbaseapp->m_psession)
-         {
-            sess(m_pui->m_pbaseapp->m_psession).m_ptCursor = pmouse->m_pt;
-         }
+         session().m_ptCursor = pmouse->m_pt;
 
-         ::core::platform * psession = NULL;
-         if(m_pbaseapp->is_system())
-         {
-            psession = System.query_session(0);
-            if(psession != NULL && psession->m_bSystemSynchronizedCursor)
-            {
-               psession->m_ptCursor = pmouse->m_pt;
-            }
-         }
 
          if(m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
          {
@@ -1688,14 +1645,12 @@ restart_mouse_hover_check:
          user::oswindow_array hwnda;
          user::interaction_ptr_array wnda(get_app());
          wnda = System.frames();
-         wnda.get_wnda(hwnda);
-         user::window_util::SortByZOrder(hwnda);
          for(int32_t i = 0; i < hwnda.get_size(); i++)
          {
             sp(::user::interaction) pguie = wnda.find_first(hwnda[i]);
-            if(pguie != NULL && pguie->m_pui != NULL)
+            if(pguie != NULL)
             {
-               pguie->m_pui->_000OnMouse(pmouse);
+               pguie->_000OnMouse(pmouse);
                if(pmouse->m_bRet)
                   return;
             }
@@ -2269,6 +2224,8 @@ restart_mouse_hover_check:
       return false;
    }
 
+   /*
+
    /////////////////////////////////////////////////////////////////////////////
    // interaction_impl extensions
 
@@ -2299,6 +2256,7 @@ restart_mouse_hover_check:
       return NULL;
 
    }
+   */
 
    /* trans oswindow CLASS_DECL_BASE __get_parent_owner(sp(::user::interaction) hWnd)
    {
@@ -2312,6 +2270,7 @@ restart_mouse_hover_check:
    ::GetParent(hWnd) : ::GetWindow(hWnd, GW_OWNER);
    }*/
 
+   /*
 
    sp(::user::interaction) interaction_impl::GetTopLevel()
    {
@@ -2361,15 +2320,16 @@ restart_mouse_hover_check:
 
       return sp(::user::interaction)::from_handle(hWndParent);*/
 
-      return NULL;
-   }
+      //return NULL;
+   //}
+
 
    bool interaction_impl::IsTopParentActive()
    {
       ASSERT(get_handle() != NULL);
       ASSERT_VALID(this);
 
-      sp(::user::interaction)pWndTopLevel=EnsureTopLevelParent();
+      sp(::user::interaction)pWndTopLevel=EnsureTopLevel();
 
       return interaction_impl::GetForegroundWindow() == pWndTopLevel->GetLastActivePopup();
    }
@@ -2382,9 +2342,11 @@ restart_mouse_hover_check:
       {
          // clicking on floating frame when it does not have
          // focus itself -- activate the toplevel frame instead.
-         EnsureTopLevelParent()->SetForegroundWindow();
+         EnsureTopLevel()->SetForegroundWindow();
       }
    }
+
+   /*
 
    sp(::user::frame_window) interaction_impl::GetTopLevelFrame()
    {
@@ -2409,6 +2371,7 @@ restart_mouse_hover_check:
       }
       return pFrameWnd;
    }
+   */
 
 /*   sp(::user::interaction) interaction_impl::GetSafeOwner(::sp(::user::interaction) pParent, oswindow* pWndTop)
    {
@@ -2427,16 +2390,16 @@ restart_mouse_hover_check:
    sp(::user::interaction) PASCAL interaction_impl::GetDescendantWindow(sp(::user::interaction) hWnd, id id)
    {
 
-      single_lock sl(&hWnd->m_pbaseapp->m_mutex, TRUE);
+      single_lock sl(hWnd->m_pbaseapp->m_pmutex, TRUE);
 
       for(int32_t i = 0; i < hWnd->m_uiptraChild.get_count(); i++)
       {
-         if(hWnd->m_uiptraChild[i].GetDlgCtrlId() == id)
+         if(hWnd->m_uiptraChild[i]->GetDlgCtrlId() == id)
          {
-            if(hWnd->m_uiptraChild[i].GetDescendantWindow(id))
-               return hWnd->m_uiptraChild[i].GetDescendantWindow(id);
+            if(hWnd->m_uiptraChild[i]->GetDescendantWindow(id))
+               return hWnd->m_uiptraChild[i]->GetDescendantWindow(id);
             else
-               return hWnd->m_uiptraChild(i);
+               return hWnd->m_uiptraChild[i];
          }
       }
 
@@ -2488,17 +2451,17 @@ restart_mouse_hover_check:
 
    }
 
-   /////////////////////////////////////////////////////////////////////////////
-   // Scroll bar helpers
-   //  hook for interaction_impl functions
-   //    only works for derived class (eg: ::view) that override 'GetScrollBarCtrl'
-   // if the interaction_impl doesn't have a _visible_ windows scrollbar - then
-   //   look for a sibling with the appropriate ID
+   ///////////////////////////////////////////////////////////////////////////////
+   //// Scroll bar helpers
+   ////  hook for interaction_impl functions
+   ////    only works for derived class (eg: ::view) that override 'GetScrollBarCtrl'
+   //// if the interaction_impl doesn't have a _visible_ windows scrollbar - then
+   ////   look for a sibling with the appropriate ID
 
-   CScrollBar* interaction_impl::GetScrollBarCtrl(int32_t) const
-   {
-      return NULL;        // no special scrollers supported
-   }
+   //CScrollBar* interaction_impl::GetScrollBarCtrl(int32_t) const
+   //{
+   //   return NULL;        // no special scrollers supported
+   //}
 
    int32_t interaction_impl::SetScrollPos(int32_t nBar, int32_t nPos, bool bRedraw)
    {
@@ -2722,6 +2685,8 @@ return 0;
 
    */
 
+/*
+
    void interaction_impl::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIdLeftOver,
       UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, bool bStretch)
    {
@@ -2745,7 +2710,7 @@ return 0;
          layout.rect = *lpRectClient;    // starting rect comes from parameter
       else
       {
-         if(m_pui != this)
+         if(m_pui != NULL)
             m_pui->GetClientRect(&layout.rect);    // starting rect comes from client rect
          else
             GetClientRect(&layout.rect);    // starting rect comes from client rect
@@ -2842,7 +2807,7 @@ return 0;
       // move and resize all the windows at once!
 //      if (layout.hDWP == NULL || !::EndDeferWindowPos(layout.hDWP))
   //       TRACE(::ca2::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");*/
-   }
+  // }
 
 
 
@@ -2902,6 +2867,8 @@ return 0;
       return false;*/
    }
 
+   /*
+
    void interaction_impl::WalkPreTranslateTree(sp(::user::interaction) puiStop, ::signal_details * pobj)
    {
       ASSERT(puiStop == NULL || puiStop->IsWindow());
@@ -2911,7 +2878,7 @@ return 0;
       // walk from the target interaction_impl up to the hWndStop interaction_impl checking
       //  if any interaction_impl wants to translate this message
 
-      for (sp(::user::interaction) pui = pbase->m_pwnd; pui != NULL; pui->get_parent())
+      for (sp(::user::interaction) pui = pbase->m_pwnd; pui != NULL; pui->GetParent())
       {
 
          pui->pre_translate_message(pobj);
@@ -2927,10 +2894,12 @@ return 0;
       // no special processing
    }
 
+   */
+
+
    bool interaction_impl::SendChildNotifyLastMsg(LRESULT* pResult)
    {
-      ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
-      return OnChildNotify(pThreadState->m_lastSentMsg.message, pThreadState->m_lastSentMsg.wParam, pThreadState->m_lastSentMsg.lParam, pResult);
+      return false;
    }
 
    bool PASCAL interaction_impl::ReflectLastMsg(oswindow hWndChild, LRESULT* pResult)
@@ -2943,7 +2912,7 @@ return 0;
 
       // check if in permanent ::collection::map, if it is reflect it (could be OLE control)
       sp(::user::interaction) pWnd =  (pMap->lookup_permanent(hWndChild)); */
-      sp(::user::interaction) pWnd =  (FromHandlePermanent(hWndChild));
+      sp(::user::interaction) pWnd =  (window_from_handle(hWndChild));
       ASSERT(pWnd == NULL || ANDROID_WINDOW(pWnd)->get_handle() == hWndChild);
       if (pWnd == NULL)
       {
@@ -3045,7 +3014,7 @@ return 0;
       Default();
    }
 
-   void interaction_impl::OnSetFocus(::sp(::user::interaction))
+   void interaction_impl::OnSetFocus(::user::interaction *)
    {
       bool bHandled;
 
@@ -3136,14 +3105,6 @@ return 0;
 //
    LRESULT interaction_impl::OnDisplayChange(WPARAM, LPARAM)
    {
-      // update metrics if this interaction_impl is the main interaction_impl
-      if (System.GetMainWnd() == this)
-      {
-         // update any system metrics cache
-         //         afxData.UpdateSysMetrics();
-      }
-
-      // forward this message to all other child windows
       if (!(GetStyle() & WS_CHILD))
       {
          const MESSAGE* pMsg = GetCurrentMessage();
@@ -3175,6 +3136,7 @@ return 0;
       Default();
    }
 
+   /*
    void interaction_impl::OnHScroll(UINT, UINT, CScrollBar* pScrollBar)
    {
       UNREFERENCED_PARAMETER(pScrollBar);
@@ -3186,6 +3148,8 @@ return 0;
       UNREFERENCED_PARAMETER(pScrollBar);
       Default();
    }
+
+   */
 
    bool CALLBACK interaction_impl::GetAppsEnumWindowsProc(oswindow hwnd, LPARAM lparam)
    {
@@ -3225,7 +3189,7 @@ return 0;
          m_event.ResetEvent();
          m_hwnd = hwnd;
          m_hdc = hdc;
-         __begin_thread(papp, &print_window::s_print_window, (LPVOID) this, ::ca2::scheduling_priority_normal);
+         __begin_thread(papp, &print_window::s_print_window, (LPVOID) this, ::base::scheduling_priority_normal);
          if(m_event.wait(millis(dwTimeout)).timeout())
          {
             TRACE("print_window::time_out");
@@ -3901,224 +3865,223 @@ throw not_implemented(get_app());
    }
 
 
-
-
-   id interaction_impl::RunModalLoop(DWORD dwFlags, ::base::live_object * pliveobject)
-   {
-      // for tracking the idle time state
-      bool bIdle = TRUE;
-      LONG lIdleCount = 0;
-      bool bShowIdle = (dwFlags & MLF_SHOWONIDLE) && !(GetStyle() & WS_VISIBLE);
-      oswindow hWndParent = ::GetParent((oswindow)get_handle());
-      m_iModal = m_iModalCount;
-      int32_t iLevel = m_iModal;
-      oprop(string("RunModalLoop.thread(") + ::str::from(iLevel) + ")") = System.GetThread();
-      m_iModalCount++;
-
-      m_iaModalThread.add(::GetCurrentThreadId());
-      sp(::base::application) pappThis1 =  (m_pbaseapp->m_p);
-      sp(::base::application) pappThis2 =  (m_pbaseapp);
-
-            //Display * d = XOpenDisplay(NULL);
-            //XEvent  e;
-
-      // acquire and dispatch messages until the modal state is done
-      MESSAGE msg;
-      for (;;)
-      {
-         ASSERT(ContinueModal(iLevel));
-
-         bIdle = FALSE;
-
-         // phase1: check to see if we can do idle work
-         while (bIdle && !::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE))
-         {
-            ANDROID_THREAD(m_pbaseapp->m_p.m_p)->defer_process_windows_messages();
-//            if(XCheckTypedEvent(d, -1, &e))
-            {
-
-            }
-
-            ASSERT(ContinueModal(iLevel));
-
-            // show the dialog when the message queue goes idle
-            if (bShowIdle)
-            {
-               ShowWindow(SW_SHOWNORMAL);
-               UpdateWindow();
-               bShowIdle = FALSE;
-            }
-
-            // call on_idle while in bIdle state
-            if (!(dwFlags & MLF_NOIDLEMSG) && hWndParent != NULL && lIdleCount == 0)
-            {
-               // send WM_ENTERIDLE to the parent
-//               ::SendMessage(hWndParent, WM_ENTERIDLE, MESSAGEF_DIALOGBOX, (LPARAM)get_handle());
-            }
-            //if ((dwFlags & MLF_NOKICKIDLE) ||
-              // !__call_window_procedure(this, get_handle(), WM_KICKIDLE, MESSAGEF_DIALOGBOX, lIdleCount++))
-            {
-               // stop idle processing next time
-               //bIdle = FALSE;
-
-            }
-
-            m_pbaseapp->m_p->m_dwAlive = m_pbaseapp->m_dwAlive = ::get_tick_count();
-            if(pappThis1 != NULL)
-            {
-               pappThis1->m_dwAlive = m_pbaseapp->m_dwAlive;
-            }
-            if(pappThis2 != NULL)
-            {
-               pappThis2->m_dwAlive = m_pbaseapp->m_dwAlive;
-            }
-            if(pliveobject != NULL)
-            {
-               pliveobject->keep_alive();
-            }
-         }
-
-
-         // phase2: pump messages while available
-         do
-         {
-            ANDROID_THREAD(m_pbaseapp->m_p.m_p)->defer_process_windows_messages();
-//            if(XCheckTypedEvent(d, -1, &e))
-            {
-
-            }
-
-            if (!ContinueModal(iLevel))
-               goto ExitModal;
-
-            // pump message, but quit on WM_QUIT
-            if (!m_pbaseapp->pump_message())
-            {
-               __post_quit_message(0);
-               return -1;
-            }
-
-            // show the interaction_impl when certain special messages rec'd
-            if (bShowIdle &&
-               (msg.message == 0x118 || msg.message == WM_SYSKEYDOWN))
-            {
-               ShowWindow(SW_SHOWNORMAL);
-               UpdateWindow();
-               bShowIdle = FALSE;
-            }
-
-            if (!ContinueModal(iLevel))
-               goto ExitModal;
-
-            // reset "no idle" state after pumping "normal" message
-            if (__is_idle_message(&msg))
-            {
-               bIdle = TRUE;
-               lIdleCount = 0;
-            }
-
-            m_pbaseapp->m_p->m_dwAlive = m_pbaseapp->m_dwAlive = ::get_tick_count();
-            if(pappThis1 != NULL)
-            {
-               pappThis1->m_dwAlive = m_pbaseapp->m_dwAlive;
-            }
-            if(pappThis2 != NULL)
-            {
-               pappThis2->m_dwAlive = m_pbaseapp->m_dwAlive;
-            }
-            if(pliveobject != NULL)
-            {
-               pliveobject->keep_alive();
-            }
-
-            /*            if(pliveobject != NULL)
-            {
-            pliveobject->keep();
-            }*/
-
-         }
-         while (::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE) != FALSE);
-
-
-         if(m_pui->m_pbaseapp != NULL)
-         {
-            m_pui->m_pbaseapp->step_timer();
-         }
-         if (!ContinueModal(iLevel))
-            goto ExitModal;
-
-
-      }
-
-ExitModal:
-//XCloseDisplay(d);
-      m_iaModalThread.remove_first(::GetCurrentThreadId());
-      m_iModal = m_iModalCount;
-      return m_nModalResult;
-   }
-
-   bool interaction_impl::ContinueModal(int32_t iLevel)
-   {
-      return iLevel < m_iModalCount;
-   }
-
-   void interaction_impl::EndModalLoop(id nResult)
-   {
-      ASSERT(::IsWindow((oswindow) get_handle()));
-
-      // this result will be returned from interaction_impl::RunModalLoop
-      m_nModalResult = (int32_t) nResult;
-
-      // make sure a message goes through to exit the modal loop
-      if(m_iModalCount > 0)
-      {
-         m_iModalCount--;
-         for(index i = 0; i < m_iaModalThread.get_count(); i++)
-         {
-            //::post_thread_message((DWORD) m_iaModalThread[i], WM_NULL, 0, 0);
-         }
-         post_message(WM_NULL);
-         System.GetThread()->post_thread_message(WM_NULL);
-      }
-   }
-
-   void interaction_impl::EndAllModalLoops(id nResult)
-   {
-      ASSERT(::IsWindow((oswindow) get_handle()));
-
-      // this result will be returned from interaction_impl::RunModalLoop
-      m_idModalResult = nResult;
-
-      // make sure a message goes through to exit the modal loop
-      if(m_iModalCount > 0)
-      {
-         int32_t iLevel = m_iModalCount - 1;
-         m_iModalCount = 0;
-         post_message(WM_NULL);
-         System.GetThread()->post_thread_message(WM_NULL);
-         for(int32_t i = iLevel; i >= 0; i--)
-         {
-            ::thread * pthread = oprop(string("RunModalLoop.thread(") + ::str::from(i) + ")").cast < ::thread > ();
-            try
-            {
-               pthread->post_thread_message(WM_NULL);
-            }
-            catch(...)
-            {
-
-            }
-
-         }
-
-      }
-
-   }
+//
+//   id interaction_impl::RunModalLoop(DWORD dwFlags, ::base::live_object * pliveobject)
+//   {
+//      // for tracking the idle time state
+//      bool bIdle = TRUE;
+//      LONG lIdleCount = 0;
+//      bool bShowIdle = (dwFlags & MLF_SHOWONIDLE) && !(GetStyle() & WS_VISIBLE);
+//      oswindow hWndParent = ::GetParent((oswindow)get_handle());
+//      m_iModal = m_iModalCount;
+//      int32_t iLevel = m_iModal;
+//      oprop(string("RunModalLoop.thread(") + ::str::from(iLevel) + ")") = System.GetThread();
+//      m_iModalCount++;
+//
+//      m_iaModalThread.add(::GetCurrentThreadId());
+//      sp(::base::application) pappThis1 =  (m_pbaseapp->m_p);
+//      sp(::base::application) pappThis2 =  (m_pbaseapp);
+//
+//            //Display * d = XOpenDisplay(NULL);
+//            //XEvent  e;
+//
+//      // acquire and dispatch messages until the modal state is done
+//      MESSAGE msg;
+//      for (;;)
+//      {
+//         ASSERT(ContinueModal(iLevel));
+//
+//         bIdle = FALSE;
+//
+//         // phase1: check to see if we can do idle work
+//         while (bIdle && !::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE))
+//         {
+//            ANDROID_THREAD(m_pbaseapp->m_p.m_p)->defer_process_windows_messages();
+////            if(XCheckTypedEvent(d, -1, &e))
+//            {
+//
+//            }
+//
+//            ASSERT(ContinueModal(iLevel));
+//
+//            // show the dialog when the message queue goes idle
+//            if (bShowIdle)
+//            {
+//               ShowWindow(SW_SHOWNORMAL);
+//               UpdateWindow();
+//               bShowIdle = FALSE;
+//            }
+//
+//            // call on_idle while in bIdle state
+//            if (!(dwFlags & MLF_NOIDLEMSG) && hWndParent != NULL && lIdleCount == 0)
+//            {
+//               // send WM_ENTERIDLE to the parent
+////               ::SendMessage(hWndParent, WM_ENTERIDLE, MESSAGEF_DIALOGBOX, (LPARAM)get_handle());
+//            }
+//            //if ((dwFlags & MLF_NOKICKIDLE) ||
+//              // !__call_window_procedure(this, get_handle(), WM_KICKIDLE, MESSAGEF_DIALOGBOX, lIdleCount++))
+//            {
+//               // stop idle processing next time
+//               //bIdle = FALSE;
+//
+//            }
+//
+//            m_pbaseapp->m_p->m_dwAlive = m_pbaseapp->m_dwAlive = ::get_tick_count();
+//            if(pappThis1 != NULL)
+//            {
+//               pappThis1->m_dwAlive = m_pbaseapp->m_dwAlive;
+//            }
+//            if(pappThis2 != NULL)
+//            {
+//               pappThis2->m_dwAlive = m_pbaseapp->m_dwAlive;
+//            }
+//            if(pliveobject != NULL)
+//            {
+//               pliveobject->keep_alive();
+//            }
+//         }
+//
+//
+//         // phase2: pump messages while available
+//         do
+//         {
+//            ANDROID_THREAD(m_pbaseapp->m_p.m_p)->defer_process_windows_messages();
+////            if(XCheckTypedEvent(d, -1, &e))
+//            {
+//
+//            }
+//
+//            if (!ContinueModal(iLevel))
+//               goto ExitModal;
+//
+//            // pump message, but quit on WM_QUIT
+//            if (!m_pbaseapp->pump_message())
+//            {
+//               __post_quit_message(0);
+//               return -1;
+//            }
+//
+//            // show the interaction_impl when certain special messages rec'd
+//            if (bShowIdle &&
+//               (msg.message == 0x118 || msg.message == WM_SYSKEYDOWN))
+//            {
+//               ShowWindow(SW_SHOWNORMAL);
+//               UpdateWindow();
+//               bShowIdle = FALSE;
+//            }
+//
+//            if (!ContinueModal(iLevel))
+//               goto ExitModal;
+//
+//            // reset "no idle" state after pumping "normal" message
+//            if (__is_idle_message(&msg))
+//            {
+//               bIdle = TRUE;
+//               lIdleCount = 0;
+//            }
+//
+//            m_pbaseapp->m_p->m_dwAlive = m_pbaseapp->m_dwAlive = ::get_tick_count();
+//            if(pappThis1 != NULL)
+//            {
+//               pappThis1->m_dwAlive = m_pbaseapp->m_dwAlive;
+//            }
+//            if(pappThis2 != NULL)
+//            {
+//               pappThis2->m_dwAlive = m_pbaseapp->m_dwAlive;
+//            }
+//            if(pliveobject != NULL)
+//            {
+//               pliveobject->keep_alive();
+//            }
+//
+//            /*            if(pliveobject != NULL)
+//            {
+//            pliveobject->keep();
+//            }*/
+//
+//         }
+//         while (::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE) != FALSE);
+//
+//
+//         if(m_pui->m_pbaseapp != NULL)
+//         {
+//            m_pui->m_pbaseapp->step_timer();
+//         }
+//         if (!ContinueModal(iLevel))
+//            goto ExitModal;
+//
+//
+//      }
+//
+//ExitModal:
+////XCloseDisplay(d);
+//      m_iaModalThread.remove_first(::GetCurrentThreadId());
+//      m_iModal = m_iModalCount;
+//      return m_nModalResult;
+//   }
+//
+//   bool interaction_impl::ContinueModal(int32_t iLevel)
+//   {
+//      return iLevel < m_iModalCount;
+//   }
+//
+//   void interaction_impl::EndModalLoop(id nResult)
+//   {
+//      ASSERT(::IsWindow((oswindow) get_handle()));
+//
+//      // this result will be returned from interaction_impl::RunModalLoop
+//      m_nModalResult = (int32_t) nResult;
+//
+//      // make sure a message goes through to exit the modal loop
+//      if(m_iModalCount > 0)
+//      {
+//         m_iModalCount--;
+//         for(index i = 0; i < m_iaModalThread.get_count(); i++)
+//         {
+//            //::post_thread_message((DWORD) m_iaModalThread[i], WM_NULL, 0, 0);
+//         }
+//         post_message(WM_NULL);
+//         System.GetThread()->post_thread_message(WM_NULL);
+//      }
+//   }
+//
+//   void interaction_impl::EndAllModalLoops(id nResult)
+//   {
+//      ASSERT(::IsWindow((oswindow) get_handle()));
+//
+//      // this result will be returned from interaction_impl::RunModalLoop
+//      m_idModalResult = nResult;
+//
+//      // make sure a message goes through to exit the modal loop
+//      if(m_iModalCount > 0)
+//      {
+//         int32_t iLevel = m_iModalCount - 1;
+//         m_iModalCount = 0;
+//         post_message(WM_NULL);
+//         System.GetThread()->post_thread_message(WM_NULL);
+//         for(int32_t i = iLevel; i >= 0; i--)
+//         {
+//            ::thread * pthread = oprop(string("RunModalLoop.thread(") + ::str::from(i) + ")").cast < ::thread > ();
+//            try
+//            {
+//               pthread->post_thread_message(WM_NULL);
+//            }
+//            catch(...)
+//            {
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//   }
 
 
    bool interaction_impl::SubclassWindow(oswindow hWnd)
    {
-      if (!Attach(hWnd))
-         return FALSE;
+      //if (!Attach(hWnd))
+        // return FALSE;
 
       // allow any other subclassing to occur
       pre_subclass_window();
@@ -4190,16 +4153,24 @@ throw not_implemented(get_app());
 
    bool interaction_impl::IsChild(sp(::user::interaction) pWnd)
    {
+
       ASSERT(::IsWindow((oswindow) get_handle()));
+
       if(ANDROID_WINDOW(pWnd)->get_handle() == NULL)
       {
-         return ::user::interaction::IsChild(pWnd);
+
+         return ::user::interaction_impl::IsChild(pWnd);
+
       }
       else
       {
+
          return ::IsChild((oswindow) get_handle(), ANDROID_WINDOW(pWnd)->get_handle()) != FALSE;
+
       }
+
    }
+
 
    bool interaction_impl::IsWindow()
    {
@@ -4218,14 +4189,14 @@ throw not_implemented(get_app());
    {
 
 
-      mutex_lock sl(user_mutex(), true);
+      single_lock sl(&user_mutex(), true);
 
       /*
       xdisplay d(m_oswindow->display());
       */
       rect rectScreen;
 
-      best_monitor(rectScreen);
+      m_pui->best_monitor(rectScreen);
 
       int iPalaceGuard = 256;
 
@@ -4507,16 +4478,22 @@ throw not_implemented(get_app());
       }
    }
 
+
    id interaction_impl::SetDlgCtrlId(id id)
    {
-      m_id = id;
-      return m_id;
+
+      return m_pui->SetDlgCtrlId(id);
+
    }
+
 
    id interaction_impl::GetDlgCtrlId()
    {
-      return m_id;
+
+      return m_pui->GetDlgCtrlId();
+
    }
+
 
    /*   guie_message_wnd::guie_message_wnd(sp(::base::application) papp) :
    element(papp)
@@ -4538,14 +4515,14 @@ throw not_implemented(get_app());
 
    void interaction_impl::_001WindowMaximize()
    {
-      ::user::interaction::_001WindowMaximize();
+      ::user::interaction_impl::_001WindowMaximize();
    }
 
    void interaction_impl::_001WindowRestore()
    {
-      m_eappearance = appearance_normal;
+      //m_eappearance = appearance_normal;
       if(m_pui != NULL)
-         m_pui->m_eappearance = appearance_normal;
+         m_pui->m_eappearance = ::user::AppearanceNormal;
       ::ShowWindow((oswindow) get_handle(), SW_RESTORE);
    }
 
@@ -4594,10 +4571,10 @@ throw not_implemented(get_app());
       else*/
       {
          ::ShowWindow((oswindow) get_handle(), nCmdShow);
-         m_bVisible = ::IsWindowVisible((oswindow) get_handle()) != FALSE;
+         //m_bVisible = 
          if(m_pui!= NULL)
-            m_pui->m_bVisible = m_bVisible;
-         return m_bVisible;
+            m_pui->m_bVisible = ::IsWindowVisible((oswindow)get_handle()) != FALSE;
+         return m_pui->m_bVisible;
       }
    }
 
@@ -4607,7 +4584,7 @@ throw not_implemented(get_app());
       ASSERT(::IsWindow((oswindow) get_handle()));
       if(GetExStyle() & WS_EX_LAYERED)
       {
-         return m_pui->m_eappearance == appearance_iconic;
+         return m_pui->m_eappearance == ::user::AppearanceIconic;
       }
       else
       {
@@ -4618,11 +4595,11 @@ throw not_implemented(get_app());
    bool interaction_impl::IsZoomed()
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
-      return m_pui->m_eappearance == appearance_zoomed;
+      return m_pui->m_eappearance == ::user::AppearanceZoomed;
    }
 
 
-   sp(::user::interaction) interaction_impl::get_parent() const
+   sp(::user::interaction) interaction_impl::GetParent() const
    {
       if(!::IsWindow((oswindow) get_handle()))
          return NULL;
@@ -5106,7 +5083,7 @@ if(psurface == g_cairosurface)
    bool interaction_impl::IsWindowVisible()
    {
 
-   mutex_lock sl(user_mutex(), true);
+   single_lock sl(&user_mutex(), true);
 
       if(!::IsWindow((oswindow) get_handle()))
          return false;

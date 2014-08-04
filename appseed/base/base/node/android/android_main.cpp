@@ -15,13 +15,11 @@ void __cdecl _null_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers
 
 
 
-int32_t CLASS_DECL_BASE __android_main(int32_t argc, char * argv[])
+int32_t CLASS_DECL_BASE __android_main(::base::system * psystem, int32_t argc, char * argv[])
 {
 
    if(!defer_base_init())
       return -1;
-
-   ::core::system * psystem = new ::core::system();
 
    int32_t nReturnCode = 0;
 
@@ -71,26 +69,16 @@ int32_t CLASS_DECL_BASE __android_main(int32_t argc, char * argv[])
    psystem = NULL;
 
 
-   try
-   {
-      defer_core_term();
-   }
-   catch(...)
-   {
-
-   }
 
    return nReturnCode;
 
 }
 
 
-int32_t CLASS_DECL_BASE ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, int32_t nCmdShow)
+int32_t CLASS_DECL_BASE ca2_main(::base::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, int32_t nCmdShow)
 {
    try
    {
-
-      ::core::system * psystem = new ::core::system();
 
       ASSERT(hPrevInstance == NULL);
 

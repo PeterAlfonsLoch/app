@@ -33,7 +33,11 @@ namespace android
 
       interaction_impl();
       interaction_impl(sp(::base::application) papp);
+      virtual ~interaction_impl();
+
+
       virtual void construct(oswindow hwnd);
+
 
       virtual void mouse_hover_add(sp(::user::interaction) pinterface);
       virtual void mouse_hover_remove(sp(::user::interaction) pinterface);
@@ -342,8 +346,8 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       virtual sp(::user::interaction) GetLastActivePopup();
 
       virtual bool IsChild(sp(::user::interaction)  pWnd);
-      virtual ::user::interaction * get_parent() const;
-      ::user::interaction * set_parent(::user::interaction * pWndNewParent);
+      virtual sp(::user::interaction) GetParent() const;
+      virtual sp(::user::interaction) SetParent(sp(::user::interaction) pWndNewParent);
       static sp(::user::interaction) PASCAL oswindowFromPoint(POINT point);
 
    // Alert Functions
@@ -402,18 +406,18 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
          UINT nFlag = reposDefault, LPRECT lpRectParam = NULL,
          LPCRECT lpRectClient = NULL, bool bStretch = TRUE);*/
 
-      void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver,
-         UINT nFlags = reposDefault, LPRECT lpRectParam = NULL,
-         LPCRECT lpRectClient = NULL, bool bStretch = TRUE);
+      //void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver,
+        // UINT nFlags = reposDefault, LPRECT lpRectParam = NULL,
+         //LPCRECT lpRectClient = NULL, bool bStretch = TRUE);
 
 
       // dialog support
       void UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHndler);
       void CenterWindow(sp(::user::interaction) pAlternateOwner = NULL);
-      virtual id   RunModalLoop(DWORD dwFlags = 0, ::base::live_object * pliveobject = NULL);
-      virtual bool ContinueModal(int32_t iLevel);
-      virtual void EndModalLoop(id nResult);
-      virtual void EndAllModalLoops(id nResult);
+      //virtual id   RunModalLoop(DWORD dwFlags = 0, ::base::live_object * pliveobject = NULL);
+      //virtual bool ContinueModal(int32_t iLevel);
+      //virtual void EndModalLoop(id nResult);
+      //virtual void EndAllModalLoops(id nResult);
 
    // oswindow-Management message handler member functions
       virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
@@ -590,8 +594,6 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       bool ReflectChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
       static bool PASCAL ReflectLastMsg(oswindow hWndChild, LRESULT* pResult = NULL);
 
-   // Implementation
-      virtual ~interaction_impl();
       virtual bool CheckAutoCenter();
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
@@ -603,7 +605,7 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       bool HandleFloatingSysCommand(UINT nID, LPARAM lParam);
       bool IsTopParentActive();
       void ActivateTopParent();
-      virtual void WalkPreTranslateTree(sp(::user::interaction) puiStop, ::signal_details * pobj);
+      //virtual void WalkPreTranslateTree(sp(::user::interaction) puiStop, ::signal_details * pobj);
       static sp(::user::interaction) PASCAL GetDescendantWindow(sp(::user::interaction) hWnd, id id);
       static void PASCAL SendMessageToDescendants(void*  hWnd, UINT message, WPARAM wParam, lparam lParam, bool bDeep, bool bOnlyPerm);
       virtual void on_final_release();
