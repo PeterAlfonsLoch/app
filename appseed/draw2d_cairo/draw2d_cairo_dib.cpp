@@ -43,7 +43,7 @@ namespace draw2d_cairo
 
    void dib::read(::file::input_stream & istream)
    {
-synch_lock ml(&user_mutex());
+synch_lock ml(&cairo_mutex());
       ::draw2d::dib::read(istream);
 
       cairo_surface_t * surface = dynamic_cast < ::draw2d_cairo::bitmap * > (m_spbitmap.m_p)->m_psurface;
@@ -377,7 +377,7 @@ synch_lock ml(&user_mutex());
 
    void dib::map(bool bApplyAlphaTransform)
    {
-synch_lock ml(&user_mutex());
+synch_lock ml(&cairo_mutex());
       if(m_bMapped)
          return;
 
@@ -431,7 +431,7 @@ synch_lock ml(&user_mutex());
 
    void dib::unmap()
    {
-synch_lock ml(&user_mutex());
+synch_lock ml(&cairo_mutex());
       if(!m_bMapped)
          return;
 

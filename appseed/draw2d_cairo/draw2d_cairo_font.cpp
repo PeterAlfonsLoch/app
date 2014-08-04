@@ -26,7 +26,7 @@ namespace draw2d_cairo
 
    bool font::destroy()
    {
-synch_lock ml(&user_mutex());
+synch_lock ml(&cairo_mutex());
       if(m_pfont != NULL)
       {
 

@@ -52,7 +52,7 @@ namespace draw2d_cairo
 
    bool region::mask(cairo_t * pdc)
    {
-synch_lock ml(&user_mutex());
+synch_lock ml(&cairo_mutex());
       if(m_pdc != NULL)
       {
 
@@ -135,7 +135,7 @@ synch_lock ml(&user_mutex());
 
    bool region::mask_rect(cairo_t * pdc)
    {
-synch_lock ml(&user_mutex());
+synch_lock ml(&cairo_mutex());
       cairo_rectangle(pdc, m_x1, m_y1, m_x2, m_y2);
 
       cairo_fill(pdc);
@@ -146,7 +146,7 @@ synch_lock ml(&user_mutex());
 
    bool region::mask_oval(cairo_t * pdc)
    {
-synch_lock ml(&user_mutex());
+synch_lock ml(&cairo_mutex());
       double centerx    = (m_x2 + m_x1) / 2.0;
       double centery    = (m_y2 + m_y1) / 2.0;
 
@@ -172,7 +172,7 @@ synch_lock ml(&user_mutex());
 
    bool region::mask_polygon(cairo_t * pdc)
    {
-synch_lock ml(&user_mutex());
+synch_lock ml(&cairo_mutex());
       if(m_nCount <= 0)
          return true;
 
@@ -193,7 +193,7 @@ synch_lock ml(&user_mutex());
 
    bool region::mask_poly_polygon(cairo_t * pdc)
    {
-synch_lock ml(&user_mutex());
+synch_lock ml(&cairo_mutex());
       int32_t n = 0;
 
       for(int32_t i = 0; i < m_nCount; i++)
@@ -219,7 +219,7 @@ synch_lock ml(&user_mutex());
 
    bool region::mask_combine(cairo_t * pdc)
    {
-synch_lock ml(&user_mutex());
+synch_lock ml(&cairo_mutex());
       cairo_push_group(pdc);
 
       dynamic_cast < ::draw2d_cairo::region * >(m_pregion1)->mask(pdc);
@@ -259,7 +259,7 @@ synch_lock ml(&user_mutex());
 
    bool region::clip(cairo_t * pdc)
    {
-synch_lock ml(&user_mutex());
+synch_lock ml(&cairo_mutex());
       if(m_pdc != NULL)
       {
 
@@ -301,7 +301,7 @@ synch_lock ml(&user_mutex());
 
    bool region::clip_rect(cairo_t * pdc)
    {
-synch_lock ml(&user_mutex());
+synch_lock ml(&cairo_mutex());
       cairo_rectangle(pdc, m_x1, m_y1, m_x2, m_y2);
 
       cairo_clip(pdc);
@@ -312,7 +312,7 @@ synch_lock ml(&user_mutex());
 
    bool region::clip_oval(cairo_t * pdc)
    {
-synch_lock ml(&user_mutex());
+synch_lock ml(&cairo_mutex());
       double centerx    = (m_x2 + m_x1) / 2.0;
       double centery    = (m_y2 + m_y1) / 2.0;
 
@@ -341,7 +341,7 @@ synch_lock ml(&user_mutex());
 
    bool region::clip_polygon(cairo_t * pdc)
    {
-synch_lock ml(&user_mutex());
+synch_lock ml(&cairo_mutex());
       if(m_nCount <= 0)
          return true;
 

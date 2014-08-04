@@ -1233,7 +1233,9 @@ namespace user
 
    bool interaction_impl::is_window_enabled()
    {
-      throw interface_only_exception(get_app());
+
+      return true;
+
    }
 
    bool interaction_impl::enable_window(bool bEnable)
