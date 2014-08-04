@@ -2264,6 +2264,26 @@ synch_lock ml(&user_mutex());
 
    }
 
+   bool graphics::draw_path(::draw2d::path * ppath, ::draw2d::pen * ppen)
+   {
+
+      if(!set(ppath))
+         return false;
+
+      return draw(ppen);
+
+   }
+
+   bool graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
+   {
+
+      if(!set(ppath))
+         return false;
+
+      return fill(pbrush);
+
+   }
+
 
    bool graphics::AddMetaFileComment(UINT nDataSize, const BYTE* pCommentData)
    {
@@ -5096,6 +5116,11 @@ synch_lock ml(&user_mutex());
             }
          }
          break;
+      case ::draw2d::path::element::type_string:
+         {
+         set(e.m_stringpath);
+         }
+         break;
       default:
          throw "unexpected simple os graphics element type";
       }
@@ -5139,6 +5164,44 @@ synch_lock ml(&user_mutex());
 
    }
 
+   bool graphics::set(const ::draw2d_cairo::path::string_path & str)
+   {
+      cairo_keep keep(m_pdc);
+
+      ((graphics *) this)->set(str.m_spfont);
+
+      cairo_font_extents_t e;
+
+      cairo_font_extents(m_pdc, &e);
+
+      if (m_spbrush.is_null())
+      {
+         set_os_color(ARGB(255, 0, 0, 0));
+      }
+      else
+      {
+         set_os_color(m_spbrush->m_cr);
+      }
+
+      double x = str.m_x;
+      double y = str.m_y;
+
+      cairo_move_to(m_pdc, x, y + e.ascent);
+
+      cairo_matrix_t m;
+
+      cairo_get_matrix(m_pdc, &m);
+
+      cairo_matrix_scale(&m, m_spfont->m_dFontWidth, 1.0);
+
+      cairo_set_matrix(m_pdc, &m);
+
+      cairo_show_text(m_pdc, str.m_strText);
+
+
+      return true;
+
+   }
 
    bool graphics::set(const ::draw2d_cairo::path::move & p)
    {

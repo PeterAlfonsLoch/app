@@ -5199,12 +5199,6 @@ if(psurface == g_cairosurface)
    }
 
 
-   sp(::user::interaction) interaction_impl::GetNextWindow(UINT nFlag)
-   {
-
-      return NULL;
-
-   }
 
 
    sp(::user::interaction) interaction_impl::GetTopWindow() const
@@ -6581,6 +6575,35 @@ namespace linux
 */
 
    }
+
+
+   sp(::user::interaction) interaction_impl::GetNextWindow(UINT nFlag)
+   {
+
+      if(nFlag == GW_HWNDNEXT)
+      {
+
+         return get_next(true, NULL);
+
+      }
+      else
+      {
+
+         throw interface_only_exception(get_app());
+
+      }
+
+   }
+
+
+   sp(::user::interaction) interaction_impl::get_next(bool bIgnoreChildren,int32_t * piLevel)
+   {
+
+      return  m_pui->get_next(bIgnoreChildren, piLevel);
+
+   }
+
+
 
 
 }

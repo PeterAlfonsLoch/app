@@ -439,6 +439,8 @@ namespace draw2d_cairo
       bool draw_path(::draw2d::path * ppath);
       bool fill_path(::draw2d::path * ppath);
 
+      bool draw_path(::draw2d::path * ppath, ::draw2d::pen * ppen);
+      bool fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush);
 
       float GetMiterLimit() const;
       bool SetMiterLimit(float fMiterLimit);
@@ -498,6 +500,7 @@ namespace draw2d_cairo
       bool set(const ::draw2d::path::arc & arc);
       bool set(const ::draw2d::path::move & move);
       bool set(const ::draw2d::path::line & line);
+      bool set(const ::draw2d::path::string_path & str);
       bool fill_and_draw(::draw2d::brush * pbrush, ::draw2d::pen * ppen);
       bool fill(::draw2d::brush * pbrush);
       bool draw(::draw2d::pen * ppen);

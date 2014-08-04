@@ -673,6 +673,9 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       void _001OnTriggerMouseInside();
 
 
+      sp(::user::interaction) get_next(bool bIgnoreChildren,int32_t * piLevel);
+
+
    };
 
 

@@ -128,7 +128,7 @@ namespace user
 
       if(m_pui != NULL)
       {
-         for(sp(::user::interaction) oswindow_Child = m_pui->GetTopWindow(); oswindow_Child != NULL;
+/*         for(sp(::user::interaction) oswindow_Child = m_pui->GetTopWindow(); oswindow_Child != NULL;
             oswindow_Child = oswindow_Child->GetNextWindow(GW_HWNDNEXT))
          {
             id id = oswindow_Child->GetDlgCtrlId();
@@ -137,7 +137,7 @@ namespace user
                oswindow_LeftOver = oswindow_Child;
             else if(pwindow != NULL)
                oswindow_Child->send_message(WM_SIZEPARENT,0,(LPARAM)&layout);
-         }
+         }*/
          for(sp(::user::interaction) oswindow_Child = m_pui->get_top_child(); oswindow_Child != NULL;
             oswindow_Child = oswindow_Child->under_sibling())
          {
@@ -151,7 +151,7 @@ namespace user
       }
       else
       {
-         for(sp(::user::interaction) oswindow_Child = GetTopWindow(); oswindow_Child != NULL;
+/*         for(sp(::user::interaction) oswindow_Child = GetTopWindow(); oswindow_Child != NULL;
             oswindow_Child = oswindow_Child->GetNextWindow(GW_HWNDNEXT))
          {
             id id = oswindow_Child->GetDlgCtrlId();
@@ -160,7 +160,7 @@ namespace user
                oswindow_LeftOver = oswindow_Child;
             else if(pwindow != NULL)
                oswindow_Child->send_message(WM_SIZEPARENT,0,(LPARAM)&layout);
-         }
+         }*/
          for(sp(::user::interaction) oswindow_Child = m_pui->get_top_child(); oswindow_Child != NULL;
             oswindow_Child = oswindow_Child->under_sibling())
          {
