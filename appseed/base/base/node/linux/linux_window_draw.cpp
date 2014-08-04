@@ -515,7 +515,7 @@ namespace linux
          {
             if(wndpa[l].oprop("session").is_new())
             {
-               wndpa[l].m_pimpl.cast < ::user::interaction_impl >()->_001UpdateWindow();
+               wndpa[l]._001UpdateWindow();
             }
             l++;
          }

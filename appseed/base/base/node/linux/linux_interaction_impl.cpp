@@ -709,7 +709,7 @@ d.unlock();
       m_spdib->create(m_rectParentClient.size());
       }*/
 
-      m_pui->layout();
+      //m_pui->layout();
 
 
 
