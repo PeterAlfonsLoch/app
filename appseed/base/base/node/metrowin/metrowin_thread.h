@@ -1,42 +1,18 @@
 #pragma once
 
 
-bool __internal_pre_translate_message(MSG* pMsg);
-
-
-namespace core
-{
-
-
-   struct  thread_startup
-   {
-
-
-      ::thread *          m_pthread;    // thread for new thread
-      HANDLE hEvent;          // event triggered after success/non-success
-      HANDLE hEvent2;         // event triggered after thread is resumed
-
-
-      thread_startup();
-      ~thread_startup();
-
-   };
-
-
-} // namespace core
-
 
 namespace metrowin
 {
 
 
    class CLASS_DECL_BASE thread :
-      virtual public ::thread,
-      virtual public ::message_queue
+      virtual public ::thread_impl//,
+      //virtual public ::message_queue
    {
    public:
 
-
+      /*
       // only valid while running
       HTHREAD                                       m_hThread;       // this thread's HANDLE
       uint32_t                                     m_nThreadID;      // this thread's ID
@@ -54,35 +30,35 @@ namespace metrowin
       ::thread *                               m_pAppThread;
       UINT                                         m_dwFinishTimeout;
 
+      */
 
       thread(::base::application * papp);
 
 
-      operator HANDLE() const;
+      //operator HANDLE() const;
 
-      virtual void * get_os_data() const;
-      virtual int_ptr get_os_int() const;
+      //virtual void * get_os_data() const;
+      //virtual int_ptr get_os_int() const;
 
-      void set_os_data(void * pvoidOsData);
-      void set_os_int(int_ptr iData);
-
-      virtual void set_p(::thread * p);
+      //void set_os_data(void * pvoidOsData);
+      //void set_os_int(int_ptr iData);
 
 
-      virtual void construct(__THREADPROC pfnThreadProc, LPVOID pParam);
 
-      virtual bool begin(int32_t epriority = ::get_scheduling_priority_normal(), uint_ptr nStackSize = 0, uint32_t uiCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL) override;
+      //virtual void construct(__THREADPROC pfnThreadProc, LPVOID pParam);
 
-      virtual bool create_thread(int32_t epriority = ::get_scheduling_priority_normal(), uint32_t uiCreateFlags = 0, uint_ptr nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL) override;
+      //virtual bool begin(int32_t epriority = ::get_scheduling_priority_normal(), uint_ptr nStackSize = 0, uint32_t uiCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL) override;
 
-
-      virtual sp(::user::interaction) SetMainWnd(sp(::user::interaction) pui);
-
-      virtual int thread_entry(::core::thread_startup * pstartup);
-      virtual int main();
-      virtual int thread_term(int nResult);
+      //virtual bool create_thread(int32_t epriority = ::get_scheduling_priority_normal(), uint32_t uiCreateFlags = 0, uint_ptr nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL) override;
 
 
+      //virtual sp(::user::interaction) SetMainWnd(sp(::user::interaction) pui);
+
+      //virtual int thread_entry(::core::thread_startup * pstartup);
+      //virtual int main();
+      //virtual int thread_term(int nResult);
+
+      /*
       virtual void add(sp(::user::interaction) pui);
       virtual void remove(::user::interaction * pui);
       virtual ::count get_ui_count();
@@ -104,6 +80,8 @@ namespace metrowin
 * \brief	Platform independent threads and synchronization objects (linux version)
 * \author	Thomas Nass
 */
+
+      /*
 
       virtual void on_delete(element * poc);
 
@@ -194,12 +172,12 @@ namespace metrowin
 
 
       virtual int_ptr item() const;
-
+      */
 
    };
 
 
-   CLASS_DECL_BASE ::thread * get_thread();
+   //CLASS_DECL_BASE ::thread * get_thread();
 //   CLASS_DECL_BASE ::thread_state * get_thread_state();
 
 

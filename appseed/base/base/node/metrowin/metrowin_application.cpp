@@ -15,8 +15,6 @@ namespace metrowin
       m_pthreadimpl.create(allocer());
       m_pthreadimpl->m_pthread = this;
 
-      WIN_THREAD(m_pthreadimpl.m_p)->m_pAppThread = this;
-
       m_pbasesystem = papp->m_pbasesystem;
 
       m_atomApp = m_atomSystemTopic = NULL;
@@ -175,61 +173,6 @@ namespace metrowin
       return __end_defer_register_class(fToRegister, ppszClass);
    }
    */
-
-   void application::LockTempMaps()
-   {
-      WIN_THREAD(m_pthreadimpl.m_p)->LockTempMaps();
-   }
-
-   bool application::UnlockTempMaps(bool bDeleteTemp)
-   {
-      return WIN_THREAD(m_pthreadimpl.m_p)->UnlockTempMaps(bDeleteTemp);
-   }
-
-
-   void application::TermThread(HINSTANCE hInstTerm)
-   {
-/*      try
-      {
-   #ifdef DEBUG
-         // check for missing ::ca2::LockTempMap calls
-         if (__get_module_thread_state()->m_pCurrentWinThread->m_nTempMapLock != 0)
-         {
-            TRACE(::core::trace::category_AppMsg, 0, "Warning: Temp ::map lock count non-zero (%ld).\n",
-               __get_module_thread_state()->m_pCurrentWinThread->m_nTempMapLock);
-         }
-   #endif
-         ::ca2::LockTempMaps(m_pimpl);
-         ::ca2::UnlockTempMaps(m_pimpl, -1);
-      }
-      catch( ::exception::base* e )
-      {
-         e->Delete();
-      }*/
-
-      try
-      {
-         // cleanup thread local tooltip ::user::interaction_impl
-         if (hInstTerm == NULL)
-         {
-//            __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
-         }
-      }
-      catch( ::exception::base* e )
-      {
-         e->Delete();
-      }
-
-   }
-
-   /*
-   const char * application::RegisterWndClass(UINT nClassStyle, HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon)
-   {
-      return __register_window_class(nClassStyle, hCursor, hbrBackground, hIcon);
-   }
-   */
-
-
 
    // application
    HCURSOR application::LoadCursor(const char * lpszResourceName) const
@@ -404,8 +347,6 @@ namespace metrowin
    bool application::initialize1()
    {
 
-      WIN_THREAD(m_pthreadimpl.m_p)->set_run();
-
       return true;
 
    }
@@ -427,9 +368,6 @@ namespace metrowin
       // avoid calling CloseHandle() on our own thread handle
       // during the thread destructor
       m_pthreadimpl->set_os_data(NULL);
-
-      WIN_THREAD(m_pthreadimpl.m_p)->m_bRun = false;
-
       int32_t iRet = ::base::application::exit_instance();
 
       //smart_pointer < application_base >::destroy();
@@ -527,8 +465,8 @@ namespace metrowin
    void application::SetCurrentHandles()
    {
 
-      dynamic_cast < class ::metrowin::thread * > (m_pthreadimpl.m_p)->m_hThread      =  ::get_current_thread();
-      dynamic_cast < class ::metrowin::thread * > (m_pthreadimpl.m_p)->m_nThreadID    =  ::GetCurrentThreadId();
+      set_os_data(::get_current_thread());
+      set_os_int(::GetCurrentThreadId());
       
 
    }

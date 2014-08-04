@@ -283,7 +283,7 @@ namespace user
    public:
 
 
-      Platform::Agile<Windows::UI::Core::CoreWindow> interaction_impl;
+      Platform::Agile<Windows::UI::Core::CoreWindow> window;
       ::base::system_window ^ pwindow;
 
 

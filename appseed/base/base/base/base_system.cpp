@@ -1680,7 +1680,7 @@ namespace base
 
 #if defined (METROWIN)
 
-      return GetFocus();
+      return GetFocus()->m_pui;
 
 #elif defined(WINDOWSEX) || defined(LINUX)
 
@@ -1983,33 +1983,42 @@ CLASS_DECL_BASE void __start_system(::base::system * psystem)
 
 #ifdef METROWIN
 
-CLASS_DECL_BASE bool get_window_rect(::base::system_window ^ pwindow,RECTD * lprect)
+
+namespace base
 {
 
-   Windows::Foundation::Rect rect =  pwindow->get_window_rect();
 
-   lprect->left = rect.X;
-   lprect->top = rect.Y;
-   lprect->right = lprect->left + rect.Width;
-   lprect->bottom = lprect->top + rect.Height;
+   CLASS_DECL_BASE bool get_window_rect(::base::system_window ^ pwindow,RECTD * lprect)
+   {
 
-   return true;
-}
+      Windows::Foundation::Rect rect =  pwindow->get_window_rect();
 
-CLASS_DECL_BASE bool get_window_rect(::base::system_window ^ pwindow,LPRECT lprect)
-{
+      lprect->left = rect.X;
+      lprect->top = rect.Y;
+      lprect->right = lprect->left + rect.Width;
+      lprect->bottom = lprect->top + rect.Height;
 
-   rectd r;
+      return true;
+   }
 
-   if(!get_window_rect(pwindow,&r))
-      return false;
 
-   if(!::copy(lprect,r))
-      return false;
+   CLASS_DECL_BASE bool get_window_rect(::base::system_window ^ pwindow,LPRECT lprect)
+   {
 
-   return true;
+      rectd r;
 
-}
+      if(!get_window_rect(pwindow,&r))
+         return false;
+
+      if(!::copy(lprect,r))
+         return false;
+
+      return true;
+
+   }
+
+
+} // namespace base
 
 
 #endif

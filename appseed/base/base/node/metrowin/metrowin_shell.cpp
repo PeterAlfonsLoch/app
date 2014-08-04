@@ -238,6 +238,7 @@ return 1;
 namespace metrowin
 {
 
+   /*
    shell shell::theWindowsShell;
 
    //////////////////////////////////////////////////////////////////////
@@ -323,8 +324,8 @@ namespace metrowin
          theWindowsShell.m_pfnCreateWindowEx = _CreateWindowEx;
       }*/
 
-      return true;
-   }
+      //return true;
+   //}
 
 ///*   BOOL shell::_SHGetPathFromIDList(LPCITEMIDLIST pidl, wchar_t * pszPath)
 //   {

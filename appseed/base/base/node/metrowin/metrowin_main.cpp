@@ -27,7 +27,7 @@ void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppoin
 //  Can be replaced as long as '::ca2::WinInit' is called first
 
 
-int CLASS_DECL_BASE win_main(::Platform::Array < ::Platform::String ^ > ^ args)
+int CLASS_DECL_BASE win_main(::base::system * psystem, ::Platform::Array < ::Platform::String ^ > ^ args)
 {
 
    //UNREFERENCED_PARAMETER(lpCmdLine);
@@ -44,9 +44,6 @@ int CLASS_DECL_BASE win_main(::Platform::Array < ::Platform::String ^ > ^ args)
 
    _set_purecall_handler(_ca2_purecall);
 
-   ::core::system * psystem = new ::core::system();
-
-//   ASSERT(hPrevInstance == NULL);
 
    int nReturnCode = 0;
 

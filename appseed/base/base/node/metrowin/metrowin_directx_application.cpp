@@ -353,7 +353,7 @@ uint_ptr virtualkey_to_code(::Windows::System::VirtualKey e)
 
 UINT system_main(LPVOID lp)
 {
-   ::core::system * m_psystem = (::core::system *) lp;
+   ::base::system * m_psystem = (::base::system *) lp;
    try
    {
       //m_psystem->set_thread(m_psystem);
@@ -366,7 +366,7 @@ UINT system_main(LPVOID lp)
       }
       if(m_psystem->is_system())
       {
-         m_psystem->os().post_to_all_threads(WM_QUIT, 0, 0);
+         m_psystem->post_thread_message(WM_QUIT, 0, 0);
       }
       try
       {
@@ -381,7 +381,7 @@ UINT system_main(LPVOID lp)
    catch(::exit_exception &)
    {
 
-      m_psystem->os().post_to_all_threads(WM_QUIT, 0, 0);
+      m_psystem->post_thread_message(WM_QUIT, 0, 0);
 
    }
 
@@ -394,7 +394,7 @@ namespace metrowin
 {
 
 
-   directx_application::directx_application(::Platform::String ^ strId) :
+   directx_application::directx_application(::base::system * psystem, ::Platform::String ^ strId) :
       m_mutex(NULL)
    {
 
@@ -414,7 +414,7 @@ namespace metrowin
 
       //_set_purecall_handler(_ca2_purecall);
 
-      m_psystem = new ::core::system();
+      m_psystem = psystem;
 
 
       m_psystem->m_posdata->m_pui = new ::user::interaction(m_psystem);
@@ -465,11 +465,11 @@ namespace metrowin
    void directx_application::init_part_2ex()
    {
 
-      m_psystem->m_window = m_window;
+      m_psystem->m_posdata->m_pwindow = this;
 
       int nReturnCode = 0;
 
-      nReturnCode = m_psystem->main_start();
+      nReturnCode = m_psystem->pre_run();
 
       ::user::native_window_initialize initialize;
 

@@ -116,11 +116,11 @@ namespace metrowin
       primitive::memory_size nRead = 0;
 
       if ((nRead = fread(lpBuf, sizeof(BYTE), nCount, m_pStream)) == 0 && !feof(m_pStream))
-         vfxThrowFileException(get_app(), ::file::exception::type_generic, _doserrno, m_strFileName);
+         ::file::throw_exception(get_app(), ::file::exception::type_generic, _doserrno, m_strFileName);
       if (ferror(m_pStream))
       {
          clearerr(m_pStream);
-         vfxThrowFileException(get_app(), ::file::exception::type_generic, _doserrno, m_strFileName);
+         ::file::throw_exception(get_app(), ::file::exception::type_generic, _doserrno, m_strFileName);
       }
       return nRead;
    }
@@ -132,7 +132,7 @@ namespace metrowin
       ASSERT(__is_valid_address(lpBuf, nCount, FALSE));
 
       if (fwrite(lpBuf, sizeof(BYTE), nCount, m_pStream) != nCount)
-         vfxThrowFileException(get_app(), ::file::exception::type_generic, _doserrno, m_strFileName);
+         ::file::throw_exception(get_app(), ::file::exception::type_generic, _doserrno, m_strFileName);
    }
 
    void stdio_file::write_string(const char * lpsz)
@@ -141,7 +141,7 @@ namespace metrowin
       ASSERT(m_pStream != NULL);
 
       if (fputs(lpsz, m_pStream) == _TEOF)
-         vfxThrowFileException(get_app(), ::file::exception::diskFull, _doserrno, m_strFileName);
+         ::file::throw_exception(get_app(), ::file::exception::diskFull, _doserrno, m_strFileName);
    }
 
    char * stdio_file::read_string(char * lpsz, UINT nMax)
@@ -154,7 +154,7 @@ namespace metrowin
       if (lpszResult == NULL && !feof(m_pStream))
       {
          clearerr(m_pStream);
-         vfxThrowFileException(get_app(), ::file::exception::type_generic, _doserrno, m_strFileName);
+         ::file::throw_exception(get_app(), ::file::exception::type_generic, _doserrno, m_strFileName);
       }
       return lpszResult;
    }
@@ -178,7 +178,7 @@ namespace metrowin
          if (lpszResult == NULL && !feof(m_pStream))
          {
             clearerr(m_pStream);
-            vfxThrowFileException(get_app(), ::file::exception::type_generic, _doserrno,
+            ::file::throw_exception(get_app(), ::file::exception::type_generic, _doserrno,
                m_strFileName);
          }
 
@@ -207,7 +207,7 @@ namespace metrowin
    ASSERT(m_pStream != NULL);
 
    if (fputws(lpsz, m_pStream) == _TEOF)
-   vfxThrowFileException(get_app(), ::file::exception::diskFull, _doserrno, m_strFileName);
+   ::file::throw_exception(get_app(), ::file::exception::diskFull, _doserrno, m_strFileName);
    }*/
 
    /*wchar_t * stdio_file::read_string(wchar_t * lpsz, UINT nMax)
@@ -220,7 +220,7 @@ namespace metrowin
    if (lpszResult == NULL && !feof(m_pStream))
    {
    clearerr(m_pStream);
-   vfxThrowFileException(get_app(), ::file::exception::type_generic, _doserrno, m_strFileName);
+   ::file::throw_exception(get_app(), ::file::exception::type_generic, _doserrno, m_strFileName);
    }
    return lpszResult;
    }*/
@@ -232,7 +232,7 @@ namespace metrowin
       ASSERT(m_pStream != NULL);
 
       if (fseek(m_pStream, (long) lOff, nFrom) != 0)
-         vfxThrowFileException(get_app(), ::file::exception::badSeek, _doserrno,
+         ::file::throw_exception(get_app(), ::file::exception::badSeek, _doserrno,
          m_strFileName);
 
       long pos = ftell(m_pStream);
@@ -246,7 +246,7 @@ namespace metrowin
 
       long pos = ftell(m_pStream);
       if (pos == -1)
-         vfxThrowFileException(get_app(), ::file::exception::invalidFile, _doserrno,
+         ::file::throw_exception(get_app(), ::file::exception::invalidFile, _doserrno,
          m_strFileName);
       return pos;
    }
@@ -256,7 +256,7 @@ namespace metrowin
       ASSERT_VALID(this);
 
       if (m_pStream != NULL && fflush(m_pStream) != 0)
-         vfxThrowFileException(get_app(), ::file::exception::diskFull, _doserrno,
+         ::file::throw_exception(get_app(), ::file::exception::diskFull, _doserrno,
          m_strFileName);
    }
 
@@ -275,7 +275,7 @@ namespace metrowin
       m_pStream = NULL;
 
       if (nErr != 0)
-         vfxThrowFileException(get_app(), ::file::exception::diskFull, _doserrno,
+         ::file::throw_exception(get_app(), ::file::exception::diskFull, _doserrno,
          m_strFileName);
    }
 
@@ -337,21 +337,21 @@ namespace metrowin
 
       nCurrent = ftell(m_pStream);
       if (nCurrent == -1)
-         vfxThrowFileException(get_app(), ::file::exception::invalidFile, _doserrno,
+         ::file::throw_exception(get_app(), ::file::exception::invalidFile, _doserrno,
          m_strFileName);
 
       nResult = fseek(m_pStream, 0, SEEK_END);
       if (nResult != 0)
-         vfxThrowFileException(get_app(), ::file::exception::badSeek, _doserrno,
+         ::file::throw_exception(get_app(), ::file::exception::badSeek, _doserrno,
          m_strFileName);
 
       nLength = ftell(m_pStream);
       if (nLength == -1)
-         vfxThrowFileException(get_app(), ::file::exception::invalidFile, _doserrno,
+         ::file::throw_exception(get_app(), ::file::exception::invalidFile, _doserrno,
          m_strFileName);
       nResult = fseek(m_pStream, nCurrent, SEEK_SET);
       if (nResult != 0)
-         vfxThrowFileException(get_app(), ::file::exception::badSeek, _doserrno,
+         ::file::throw_exception(get_app(), ::file::exception::badSeek, _doserrno,
          m_strFileName);
 
       return nLength;

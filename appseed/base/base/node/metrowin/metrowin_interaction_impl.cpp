@@ -344,7 +344,7 @@ namespace metrowin
    bool interaction_impl::initialize(::user::native_window_initialize * pinitialize)
    {
 
-      m_window = pinitialize->interaction_impl;
+      m_window = pinitialize->window;
 
       m_pwindow->m_pwindow  = pinitialize->pwindow;
 
@@ -385,25 +385,15 @@ namespace metrowin
    interaction_impl::~interaction_impl()
    {
 
-      if(m_pbaseapp != NULL && m_pbaseapp->m_pcoreapp != NULL && m_pbaseapp->m_pcoreapp->m_psystem != NULL && Sys(m_pbaseapp).user()->m_pwindowmap != NULL)
+      if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL && m_pbaseapp->m_pbasesession->user().is_set() && m_pbaseapp->m_pbasesession->user()->m_pwindowmap != NULL)
       {
-         Sys(m_pbaseapp).user()->m_pwindowmap->m_map.remove_key((int_ptr)(void *)get_handle());
+
+         m_pbaseapp->m_pbasesession->user()->m_pwindowmap->m_map.remove_key((int_ptr)(void *)get_handle());
+
       }
 
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex,TRUE);
-      if(m_pfont != NULL)
-      {
-         delete m_pfont;
-      }
-      sl.unlock();
-      if(get_handle() != NULL)
-      {
-         TRACE(::core::trace::category_AppMsg,0,"Warning: calling DestroyWindow in interaction_impl::~interaction_impl; "
-            "OnDestroy or PostNcDestroy in derived class will not be called.\n");
-         m_plistener = NULL;
-         DestroyWindow();
-      }
    }
+
 
    void interaction_impl::install_message_handling(::message::dispatch * pinterface)
    {
@@ -412,7 +402,7 @@ namespace metrowin
       IGUI_WIN_MSG_LINK(WM_NCDESTROY,pinterface,this,&interaction_impl::_001OnNcDestroy);
       IGUI_WIN_MSG_LINK(WM_PAINT,pinterface,this,&interaction_impl::_001OnPaint);
       IGUI_WIN_MSG_LINK(WM_PRINT,pinterface,this,&interaction_impl::_001OnPrint);
-      if(m_pui != NULL && m_pui != this)
+      if(m_pui != NULL)
       {
          m_pui->install_message_handling(pinterface);
       }
@@ -476,13 +466,17 @@ namespace metrowin
 
    }
 
+   
    void interaction_impl::_001OnShowWindow(signal_details * pobj)
    {
+
       SCAST_PTR(::message::show_window,pshowwindow,pobj);
-      m_bVisible = pshowwindow->m_bShow != FALSE;
-      if(m_pui != NULL && m_pui != this)
-         m_pui->m_bVisible = m_bVisible;
+
+      if(m_pui != NULL)
+         m_pui->m_bVisible = pshowwindow->m_bShow != FALSE;
+
    }
+
 
    void interaction_impl::_001OnDestroy(signal_details * pobj)
    {
@@ -552,7 +546,7 @@ namespace metrowin
       m_pfnDispatchWindowProc = &interaction_impl::_start_user_message_handler;
       // call special post-cleanup routine
       PostNcDestroy();
-      if(m_pui != NULL && m_pui != this)
+      if(m_pui != NULL)
       {
          m_pui->PostNcDestroy();
       }
@@ -1264,7 +1258,7 @@ namespace metrowin
          {
             Session.m_ptCursor = pmouse->m_pt;
          }
-         if(m_pui != NULL && m_pui != this && m_pui->m_pbaseapp->m_pcoreapp->m_psession != NULL && m_pui->m_pbaseapp->m_pcoreapp->m_psession != m_pbaseapp->m_pcoreapp->m_psession)
+         if(m_pui != NULL && m_pui->m_pbaseapp->m_pcoreapp->m_psession != NULL && m_pui->m_pbaseapp->m_pcoreapp->m_psession != m_pbaseapp->m_pcoreapp->m_psession)
          {
             Sess(m_pui->m_pbaseapp->m_pcoreapp->m_psession).m_ptCursor = pmouse->m_pt;
          }
@@ -1412,7 +1406,7 @@ namespace metrowin
          ::user::interaction * puiFocus = dynamic_cast <::user::interaction *> (Application.user()->get_keyboard_focus().m_p);
          if(puiFocus != NULL
             && puiFocus->IsWindow()
-            && puiFocus->GetTopLevelParent() != NULL)
+            && puiFocus->GetTopLevel() != NULL)
          {
             puiFocus->send(pkey);
             if(pbase->m_bRet)
@@ -1420,15 +1414,9 @@ namespace metrowin
          }
          else if(!pkey->m_bRet)
          {
-            if(m_pui != this && m_pui != NULL)
+            if(m_pui != NULL)
             {
                m_pui->_000OnKey(pkey);
-               if(pbase->m_bRet)
-                  return;
-            }
-            else
-            {
-               _000OnKey(pkey);
                if(pbase->m_bRet)
                   return;
             }
@@ -1438,7 +1426,7 @@ namespace metrowin
       }
       if(pbase->m_uiMessage == ::message::message_event)
       {
-         if(m_pui != this && m_pui != NULL)
+         if(m_pui != NULL)
          {
             m_pui->BaseOnControlEvent((::user::control_event *) pbase->m_lparam);
          }
@@ -1452,7 +1440,7 @@ namespace metrowin
       if(pobj->m_bRet)
          return;
       /*
-      if(m_pui != NULL && m_pui != this)
+      if(m_pui != NULL)
       {
       m_pui->_user_message_handler(pobj);
       if(pobj->m_bRet)
@@ -2012,7 +2000,7 @@ namespace metrowin
    }*/
 
 
-   sp(::user::interaction) interaction_impl::GetTopLevelParent()
+   sp(::user::interaction) interaction_impl::GetTopLevel()
    {
       if(get_handle() == NULL) // no Window attached
          return NULL;
@@ -2393,7 +2381,7 @@ namespace metrowin
    else
    layout.hDWP = NULL; // not actually doing layout
 
-   if(m_pui != this && m_pui != NULL)
+   if(m_pui != NULL)
    {
    for (::user::interaction * hWndChild = m_pui->GetTopWindow(); hWndChild != NULL;
    hWndChild = hWndChild->GetNextWindow(GW_HWNDNEXT))
@@ -2521,7 +2509,7 @@ namespace metrowin
       //else
       //   layout.hDWP = NULL; // not actually doing layout
 
-      //if(m_pui != this && m_pui != NULL)
+      //if(m_pui != NULL)
       //{
       //   for (::user::interaction * hWndChild = m_pui->GetTopWindow(); hWndChild != NULL;
       //      hWndChild = hWndChild->GetNextWindow(GW_HWNDNEXT))
@@ -2633,7 +2621,7 @@ namespace metrowin
       throw todo(get_app());
 
 
-      //::user::interaction* pParent = GetTopLevelParent();
+      //::user::interaction* pParent = GetTopLevel();
       //switch (nID & 0xfff0)
       //{
       //case SC_PREVWINDOW:
@@ -3261,7 +3249,7 @@ namespace metrowin
       //      ClientToScreen(rectUpdate);
       //   }
       //   (dynamic_cast<::metrowin::graphics * >(pdc))->SelectClipRgn(NULL);
-      //   if(m_pui != NULL && m_pui != this)
+      //   if(m_pui != NULL)
       //   {
       //      m_pui->_001OnDeferPaintLayeredWindowBackground(pdc);
       //   }
@@ -3332,7 +3320,7 @@ namespace metrowin
       //   rectPaint = rectWindow;
       //   rectPaint.offset(-rectPaint.top_left());
       //   (dynamic_cast<::metrowin::graphics * >(pdc))->SelectClipRgn(NULL);
-      //   if(m_pui != NULL && m_pui != this)
+      //   if(m_pui != NULL)
       //   {
       //      m_pui->_001OnDeferPaintLayeredWindowBackground(pdc);
       //   }
@@ -4401,7 +4389,7 @@ namespace metrowin
       //      ::ShowWindow(get_handle(), nCmdShow);
       //   }
       //   m_bVisible = ::IsWindowVisible(get_handle()) != FALSE;
-      //   if(m_pui!= NULL && m_pui != this)
+      //   if(m_pui!= NULL)
       //      m_pui->m_bVisible = m_bVisible;
       //   if(!m_bVisible || IsIconic())
       //   {
@@ -4413,7 +4401,7 @@ namespace metrowin
       //{
       //   ::ShowWindow(get_handle(), nCmdShow);
       //   m_bVisible = ::IsWindowVisible(get_handle()) != FALSE;
-      //   if(m_pui!= NULL && m_pui != this)
+      //   if(m_pui!= NULL)
       //      m_pui->m_bVisible = m_bVisible;
       //   return m_bVisible;
       //}
@@ -4707,7 +4695,7 @@ namespace metrowin
 
    sp(::user::interaction) interaction_impl::EnsureTopLevelParent()
    {
-      ::user::interaction *pWnd=GetTopLevelParent();
+      ::user::interaction *pWnd=GetTopLevel();
       ENSURE_VALID(pWnd);
       return pWnd;
    }
@@ -6794,8 +6782,8 @@ __handle_activate(::user::interaction_impl * pWnd, WPARAM nState, ::user::intera
    // send WM_ACTIVATETOPLEVEL when top-level parents change
    if (!(WIN_WINDOW(pWnd)->GetStyle() & WS_CHILD))
    {
-      ::user::interaction * pTopLevel= WIN_WINDOW(pWnd)->GetTopLevelParent();
-      if (pTopLevel && (pWndOther == NULL || !::IsWindow(WIN_WINDOW(pWndOther)->get_handle()) || pTopLevel != WIN_WINDOW(pWndOther)->GetTopLevelParent()))
+      ::user::interaction * pTopLevel= WIN_WINDOW(pWnd)->GetTopLevel();
+      if (pTopLevel && (pWndOther == NULL || !::IsWindow(WIN_WINDOW(pWndOther)->get_handle()) || pTopLevel != WIN_WINDOW(pWndOther)->GetTopLevel()))
       {
          // lParam points to interaction_impl getting the WM_ACTIVATE message and
          //  hWndOther from the WM_ACTIVATE.
@@ -6823,7 +6811,7 @@ __handle_set_cursor(::user::interaction_impl * pWnd, UINT nHitTest, UINT nMsg)
       nMsg == WM_RBUTTONDOWN))
    {
       // activate the last active interaction_impl if not active
-      ::user::interaction * pLastActive = WIN_WINDOW(pWnd)->GetTopLevelParent();      
+      ::user::interaction * pLastActive = WIN_WINDOW(pWnd)->GetTopLevel();      
       if (pLastActive != NULL)
          pLastActive = pLastActive->GetLastActivePopup();
       if (pLastActive != NULL &&

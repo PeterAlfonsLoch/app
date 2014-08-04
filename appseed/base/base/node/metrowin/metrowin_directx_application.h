@@ -23,7 +23,7 @@ namespace metrowin
 
       mutex m_mutex;
 
-      ::core::system * m_psystem;
+      ::base::system * m_psystem;
       ::base::application * m_papp;
 
       bool        m_bLeftButton;
@@ -38,7 +38,7 @@ namespace metrowin
       }
 
 
-      directx_application(Platform::String ^ strId);
+      directx_application(::base::system * psystem, Platform::String ^ strId);
 
 
       void init_part_2ex();

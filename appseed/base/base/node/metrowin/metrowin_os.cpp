@@ -14,7 +14,7 @@ namespace metrowin
 
    os::os(::base::application * papp) :
       element(papp),
-      ::core::os(papp)
+      ::base::os(papp)
    {
    }
 
@@ -860,7 +860,7 @@ namespace metrowin
 
       ::thread * pthread;
 
-      ca = ::metrowin::thread::s_threadptra.get_size();
+//      ca = ::metrowin::thread::s_threadptra.get_size();
 
       bool bOk;
 
@@ -874,9 +874,8 @@ namespace metrowin
          
             try
             {
-               pthread = dynamic_cast < ::thread * >(::metrowin::thread::s_threadptra[i]);
+               //pthread = dynamic_cast < ::thread * >(::metrowin::thread::s_threadptra[i]);
                pthread->m_bRun = false;
-               pthread->m_p->m_bRun = false;
             }
             catch(...)
             {

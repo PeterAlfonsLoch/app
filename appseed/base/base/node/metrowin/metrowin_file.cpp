@@ -183,7 +183,7 @@ namespace metrowin
             {*/
 
 
-            vfxThrowFileException(get_app(), WinFileException::OsErrorToException(dwLastError), dwLastError, m_strFileName);
+            ::file::throw_exception(get_app(), WinFileException::OsErrorToException(dwLastError), dwLastError, m_strFileName);
 
             //}
 
@@ -221,7 +221,7 @@ namespace metrowin
 
 
             DWORD dwLastError = ::GetLastError();
-            vfxThrowFileException(get_app(), WinFileException::OsErrorToException(dwLastError), dwLastError, m_strFileName);
+            ::file::throw_exception(get_app(), WinFileException::OsErrorToException(dwLastError), dwLastError, m_strFileName);
 
 
             //}
@@ -272,7 +272,7 @@ namespace metrowin
 
       // Win32s will not return an error all the time (usually DISK_FULL)
       if (nWritten != nCount)
-         vfxThrowFileException(get_app(), ::file::exception::diskFull, -1, m_strFileName);
+         ::file::throw_exception(get_app(), ::file::exception::diskFull, -1, m_strFileName);
    }
 
    file_position file::seek(file_offset lOff, ::file::e_seek nFrom)
@@ -974,13 +974,13 @@ namespace metrowin
    void WinFileException::ThrowOsError(::base::application * papp, LONG lOsError, const char * lpszFileName /* = NULL */)
    {
       if (lOsError != 0)
-         vfxThrowFileException(papp, WinFileException::OsErrorToException(lOsError), lOsError, lpszFileName);
+         ::file::throw_exception(papp, WinFileException::OsErrorToException(lOsError), lOsError, lpszFileName);
    }
 
    void WinFileException::ThrowErrno(::base::application * papp, int nErrno, const char * lpszFileName /* = NULL */)
    {
       if (nErrno != 0)
-         vfxThrowFileException(papp, WinFileException::ErrnoToException(nErrno), _doserrno, lpszFileName);
+         ::file::throw_exception(papp, WinFileException::ErrnoToException(nErrno), _doserrno, lpszFileName);
    }
 
 
@@ -988,7 +988,7 @@ namespace metrowin
    /////////////////////////////////////////////////////////////////////////////
    // WinFileException helpers
 
-   void CLASS_DECL_BASE vfxThrowFileException(::base::application * papp, int cause, LONG lOsError, const char * lpszFileName /* == NULL */)
+   void CLASS_DECL_BASE ::file::throw_exception(::base::application * papp, int cause, LONG lOsError, const char * lpszFileName /* == NULL */)
    {
 #ifdef DEBUG
       const char * lpsz;
@@ -1678,7 +1678,7 @@ namespace metrowin
 
 
 
-void CLASS_DECL_BASE vfxThrowFileException(::base::application * papp, int cause, LONG lOsError,   const char * lpszFileName /* == NULL */)
+void CLASS_DECL_BASE ::file::throw_exception(::base::application * papp, int cause, LONG lOsError,   const char * lpszFileName /* == NULL */)
 {
    throw ::file::exception(papp, cause, lOsError, lpszFileName);
 #ifdef WINDOWSEX

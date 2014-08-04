@@ -353,7 +353,7 @@ namespace metrowin
          }
          if(piaSize != NULL)
          {
-            piaSize->add(System.file().length(strPath));
+            piaSize->add(App(papp).file().length(strPath));
          }
       }
    }
@@ -642,7 +642,7 @@ namespace metrowin
          return bIsDir;
 
 
-      if(papp->m_pcoreapp->m_bZipIsDir && iLast >= 3  && !strnicmp_dup(&((const char *) str)[iLast - 3], ".zip", 4))
+      if(papp->m_bZipIsDir && iLast >= 3  && !strnicmp_dup(&((const char *) str)[iLast - 3], ".zip", 4))
       {
          m_isdirmap.set(str.Left(iLast + 1), true, 0);
          return true;
@@ -650,7 +650,7 @@ namespace metrowin
       
       strsize iFind = ::str::find_ci(".zip:", str);
 
-      if(papp->m_pcoreapp->m_bZipIsDir && iFind >= 0 && iFind < iLast)
+      if(papp->m_bZipIsDir && iFind >= 0 && iFind < iLast)
       {
          bool bHasSubFolder;
          uint32_t dwLastError;
