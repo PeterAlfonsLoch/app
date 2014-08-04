@@ -69,7 +69,6 @@ namespace mac
       //m_pfnSuper         = NULL;
       m_nModalResult       = 0;
       m_bMouseHover        = false;
-      m_pfont              = NULL;
       m_pguieCapture       = NULL;
       m_oswindow           = NULL;
       
@@ -86,7 +85,6 @@ namespace mac
       //m_pfnSuper         = NULL;
       m_nModalResult       = 0;
       m_bMouseHover        = false;
-      m_pfont              = NULL;
       m_pguieCapture       = NULL;
       m_oswindow           = NULL;
       
@@ -103,7 +101,7 @@ namespace mac
         //m_pfnSuper         = NULL;
         m_nModalResult       = 0;
         m_bMouseHover        = false;
-        m_pfont              = NULL;
+//        m_pfont              = NULL;
         m_pguieCapture       = NULL;
         m_oswindow           = NULL;
       
@@ -2503,7 +2501,7 @@ namespace mac
     }
     
     */
-   
+   /*
    void interaction_impl::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIdLeftOver,
                                UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, bool bStretch)
    {
@@ -2647,7 +2645,7 @@ namespace mac
        // move and resize all the windows at once!
 //       if (layout.hDWP == NULL || !::EndDeferWindowPos(layout.hDWP))
   //     TRACE(::ca2::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");*/
-   }
+//   }
    
    
    
@@ -4346,6 +4344,8 @@ namespace mac
       
    }
    
+   /*
+   
    void interaction_impl::SetFont(::draw2d::font* pfont, bool bRedraw)
    {
       UNREFERENCED_PARAMETER(bRedraw);
@@ -4357,6 +4357,8 @@ namespace mac
       ASSERT(::IsWindow(get_handle()));
       return m_pfont;
    }
+    
+    */
    
    void interaction_impl::DragAcceptFiles(bool bAccept)
    {
@@ -4933,7 +4935,7 @@ namespace mac
    //      throw not_implemented(get_app());
    //      ASSERT(::IsWindow(get_handle())); return ::GetDlgItemText(get_handle(), nID, lpStr, nMaxCount);}
    
-   ::user::interaction interaction_impl::GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious) const
+   ::user::interaction * interaction_impl::GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious) const
    {
       
       throw not_implemented(get_app());

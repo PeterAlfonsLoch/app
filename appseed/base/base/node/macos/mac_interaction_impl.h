@@ -162,8 +162,8 @@ namespace mac
       strsize GetWindowText(LPTSTR lpszStringBuf, strsize nMaxCount);
       void GetWindowText(string & rString);
       strsize GetWindowTextLength();
-      void SetFont(::draw2d::font* pFont, bool bRedraw = TRUE);
-      ::draw2d::font* GetFont();
+//      void SetFont(::draw2d::font* pFont, bool bRedraw = TRUE);
+  //    ::draw2d::font* GetFont();
       
       
       // oswindow size and position Functions

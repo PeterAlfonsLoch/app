@@ -51,7 +51,6 @@ CLASS_DECL_mac void AfxResetMsgCache();
 #define _AfxHookWindowCreate    AfxHookWindowCreate
 #define _AfxUnhookWindowCreate  AfxUnhookWindowCreate
 
-#include "mac1.h"
 #include "mac_implementation.h"
 #include "mac_dir.h"
 #include "mac_factory_exchange.h"
