@@ -27,7 +27,7 @@ namespace user
 
       draw_interface *                    m_pdrawinterfaceBackground;
       bool                                m_bBackgroundBypass;
-      
+
 
       ::user::interaction *               m_pparent;
 
@@ -311,8 +311,7 @@ namespace user
       virtual sp(interaction) GetActiveWindow();
       virtual sp(interaction) SetActiveWindow();
 
-      virtual void WalkPreTranslateTree(signal_details * pobj);
-      virtual void WalkPreTranslateTree(sp(::user::interaction) puiStop,signal_details * pobj);
+      virtual void walk_pre_translate_tree(signal_details * pobj, sp(::user::interaction) puiStop = NULL);
 
       virtual sp(interaction) GetDescendantWindow(id id) const;
 

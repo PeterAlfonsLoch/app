@@ -110,6 +110,8 @@ namespace linux
 
       //keep_event_reset keepeventreset(&m_eventFree);
 
+      synch_lock sl(&user_mutex());
+
       static DWORD s_dwLastAnalysisFrame = 0;
       static DWORD s_dwLastFrameFrame = 0;
       static DWORD s_iAnalysisFrameFailureCount = 0;

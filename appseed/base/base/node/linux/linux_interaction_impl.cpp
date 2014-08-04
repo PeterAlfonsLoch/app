@@ -70,22 +70,9 @@ namespace linux
    interaction_impl::interaction_impl()
    {
       m_pcallback = NULL;
-//      m_pui = this;
-//      set_handle(NULL);
-//      m_puiOwner = NULL;
-  //    m_pui->m_nFlags = 0;
-//      m_pfnSuper = NULL;
       m_nModalResult = 0;
       m_bMouseHover = false;
-//      m_pfont = NULL;
       m_puicapture = NULL;
-      //m_pmutexGraphics = NULL;
-//      m_cairo = NULL;
-  //    m_cairosurface = NULL;
-    //  m_cairoSource = NULL;
-//      m_cairosurfaceSource = NULL;
-  //    m_cairoWork = NULL;
-//      m_cairosurfaceWork = NULL;
       m_bExposing = false;
       m_oswindow = NULL;
    }
@@ -93,22 +80,10 @@ namespace linux
    void interaction_impl::construct(oswindow hWnd)
    {
       m_pcallback = NULL;
-//      m_pui = this;
       m_oswindow = hWnd;
-      //set_handle(hWnd);
-  //    m_pui->m_nFlags = 0;
-//      m_pfnSuper = NULL;
       m_nModalResult = 0;
       m_bMouseHover = false;
-//      m_pfont = NULL;
       m_puicapture = NULL;
-  //    m_pmutexGraphics = NULL;
-//      m_cairo = NULL;
-  //    m_cairosurface = NULL;
-    //  m_cairoSource = NULL;
-      //m_cairosurfaceSource = NULL;
-//      m_cairoWork = NULL;
-  //    m_cairosurfaceWork = NULL;
       m_bExposing = false;
 
    }
@@ -117,22 +92,9 @@ namespace linux
       element(papp)
    {
       m_pcallback = NULL;
-//      m_pui = this;
-//      set_handle(NULL);
-//      m_puiOwner = NULL;
-      //m_pui->m_nFlags = 0;
-//      m_pfnSuper = NULL;
       m_nModalResult = 0;
       m_bMouseHover = false;
-//      m_pfont = NULL;
       m_puicapture = NULL;
-  //    m_pmutexGraphics = NULL;
-//      m_cairo = NULL;
-  //    m_cairosurface = NULL;
-    //  m_cairoSource = NULL;
-      //m_cairosurfaceSource = NULL;
-//      m_cairoWork = NULL;
-  //    m_cairosurfaceWork = NULL;
       m_bExposing = false;
       m_oswindow = NULL;
 
@@ -262,57 +224,40 @@ namespace linux
    bool interaction_impl::Attach(oswindow hWndNew)
    {
 
-      ASSERT(get_handle() == NULL);     // only attach once, detach on destroy
-    //  ASSERT(FromHandlePermanent(hWndNew) == NULL);
-      // must not already be in permanent ::collection::map
+      ASSERT(get_handle() == NULL);
 
       if (hWndNew == NULL)
-         return FALSE;
-      //single_lock sl(afxMutexHwnd(), TRUE);
-      //hwnd_map * pMap = afxMapHWND(TRUE); // create ::collection::map if not exist
-      //ASSERT(pMap != NULL);
-
-      //pMap->set_permanent(set_handle(hWndNew), this);
-      //if(m_pui == NULL)
-      {
-         //m_pui = this;
-      }
+         return false;
 
       m_oswindow = hWndNew;
 
-      return TRUE;
+      return true;
 
    }
 
    oswindow interaction_impl::Detach()
    {
 
-      oswindow hWnd = (oswindow) get_handle();
+      oswindow hwnd = (oswindow) get_handle();
 
-      if (hWnd != NULL)
+      if (hwnd != NULL)
       {
-//         single_lock sl(afxMutexHwnd(), TRUE);
-//  ;;       hwnd_map * pMap = afxMapHWND(); // don't create if not exist
-    //     if (pMap != NULL)
-      //      pMap->remove_handle(get_handle());
-//         set_handle(NULL);
+
          m_oswindow = NULL;
 
       }
 
-      return hWnd;
+      return hwnd;
 
    }
 
 
    void interaction_impl::pre_subclass_window()
    {
-      // no default processing
+
+
    }
 
-
-   /////////////////////////////////////////////////////////////////////////////
-   // interaction_impl creation
 
    bool interaction_impl::CreateEx(DWORD dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
@@ -560,51 +505,22 @@ d.unlock();
 
          send_message(WM_CREATE, 0, (LPARAM) &cs);
 
-   //      m_pui->SetWindowPos(0, 256, 256, cs.cx, cs.cy, 0);
-
          send_message(WM_SIZE);
-
-         //LNX_THREAD(m_pthread->m_p.m_p)->m_oswindowa.add(m_oswindow);
 
       }
 
+      return true;
 
-
-
-//      on_set_parent(pparent);
-
-
-  //    if (linux == NULL)
-         //return FALSE;
-///      WNDCLASS wndcls;
-/*      if(lpszClassName != NULL &&
-         GetClassInfo(System.m_hInstance, lpszClassName, &wndcls) &&
-         wndcls.hIcon != NULL)
-      {
-         m_pui->set_icon(new ::visual::icon(wndcls.hIcon), false);
-         m_pui->set_icon(new ::visual::icon(wndcls.hIcon), true);
-      }*/
-      //      oswindow hwndHandle = get_handle();
-/*      if(linux != get_handle())
-      {
-         ASSERT(FALSE); // should have been set in send msg hook
-      }*/
-      return TRUE;
    }
 
-   // for child windows
+
    bool interaction_impl::pre_create_window(CREATESTRUCT& cs)
    {
-/*      if (cs.lpszClass == NULL)
-      {
-         // make sure the default interaction_impl class is registered
-         VERIFY(__end_defer_register_class(__WND_REG, &cs.lpszClass));
 
-         // no WNDCLASS provided - use child interaction_impl default
-         ASSERT(cs.style & WS_CHILD);
-      }*/
-      return TRUE;
+      return true;
+
    }
+
 
    bool interaction_impl::create(const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
@@ -4333,58 +4249,7 @@ m_pui->SetOwner((pOwnerWnd));
    LRESULT interaction_impl::send_message(UINT message, WPARAM wparam, lparam lparam)
    {
 
-      ::smart_pointer < ::message::base > spbase;
-
-      spbase =get_base(this, message, wparam, lparam);
-
-      try
-      {
-
-         sp(::user::interaction) pui = m_pui;
-
-         while(pui != NULL && pui->GetParent() != NULL)
-         {
-
-            try
-            {
-
-               pui->pre_translate_message(spbase);
-
-            }
-            catch(...)
-            {
-
-               break;
-
-            }
-
-            if(spbase->m_bRet)
-               return spbase->get_lresult();
-
-            try
-            {
-
-               pui = pui->GetParent();
-
-            }
-            catch(...)
-            {
-
-               break;
-
-            }
-
-         }
-
-      }
-      catch(...)
-      {
-
-      }
-
-      message_handler(spbase);
-
-      return spbase->get_lresult();
+      return ::user::interaction_impl::send_message(message, wparam, lparam);
 
    }
 

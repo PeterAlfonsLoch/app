@@ -967,13 +967,30 @@ namespace user
       throw interface_only_exception(get_app());
    }
 
-   LRESULT interaction_impl::send_message(UINT message,WPARAM wParam,lparam lParam)
+
+   LRESULT interaction_impl::send_message(UINT message, WPARAM wparam, lparam lparam)
    {
-      UNREFERENCED_PARAMETER(message);
-      UNREFERENCED_PARAMETER(wParam);
-      UNREFERENCED_PARAMETER(lParam);
-      throw interface_only_exception(get_app());
+
+      ::smart_pointer < ::message::base > spbase;
+
+      spbase = get_base(this, message, wparam, lparam);
+
+      if(m_pui != NULL)
+      {
+
+         m_pui->walk_pre_translate_tree(spbase);
+
+         if(spbase->m_bRet)
+            return spbase->get_lresult();
+
+      }
+
+      message_handler(spbase);
+
+      return spbase->get_lresult();
+
    }
+
 
 #ifdef LINUX
 

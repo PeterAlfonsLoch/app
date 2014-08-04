@@ -3302,39 +3302,70 @@ namespace user
    }
 
 
-   void interaction::WalkPreTranslateTree(signal_details * pobj)
+
+   void interaction::walk_pre_translate_tree(signal_details * pobj, sp(::user::interaction) puiStop)
    {
 
-      WalkPreTranslateTree(this,pobj);
-
-   }
-
-
-   void interaction::WalkPreTranslateTree(sp(::user::interaction) puiStop,signal_details * pobj)
-   {
-      ASSERT(puiStop == NULL || puiStop->IsWindow());
-      ASSERT(pobj != NULL);
-
-      SCAST_PTR(::message::base,pbase,pobj);
-      // walk from the target interaction_impl up to the oswindow_Stop interaction_impl checking
-      //  if any interaction_impl wants to translate this message
-
-      for(sp(::user::interaction) pui = pbase->m_pwnd; pui != NULL; pui = pui->GetParent())
+      try
       {
 
-         pui->pre_translate_message(pobj);
+         sp(::user::interaction) pui = this;
 
-         if(pobj->m_bRet)
-            return; // trapped by target interaction_impl (eg: accelerators)
+         while(pui != NULL)
+         {
 
-         // got to oswindow_Stop interaction_impl without interest
-         if(pui == puiStop)
-            break;
+            try
+            {
+
+               pui->pre_translate_message(pobj);
+
+            }
+            catch(...)
+            {
+
+               break;
+
+            }
+
+            if(pobj->m_bRet)
+               break;
+
+            try
+            {
+
+               pui = pui->GetParent();
+
+            }
+            catch(...)
+            {
+
+               break;
+
+            }
+
+            try
+            {
+
+               if(pui == puiStop)
+                  break;
+
+            }
+            catch(...)
+            {
+
+               break;
+
+            }
+
+         }
 
       }
-      // no special processing
-   }
+      catch(...)
+      {
 
+      }
+
+   }
 
    void interaction::on_select()
    {
