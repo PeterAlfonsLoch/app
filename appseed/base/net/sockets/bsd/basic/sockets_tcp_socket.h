@@ -87,9 +87,7 @@ namespace sockets
       bool m_b_input_buffer_disabled;
       uint64_t m_bytes_sent;
       uint64_t m_bytes_received;
-#ifdef SOCKETS_DYNAMIC_TEMP
       char *m_buf; ///< temporary read buffer
-#endif
       output_list m_obuf; ///< output buffer
       OUTPUT *m_obuf_top; ///< output buffer on top
       size_t m_transfer_limit;

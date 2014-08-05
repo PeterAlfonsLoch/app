@@ -49,9 +49,7 @@ void ssl_sigpipe_handle( int x );
    ,m_b_input_buffer_disabled(false)
    ,m_bytes_sent(0)
    ,m_bytes_received(0)
-   #ifdef SOCKETS_DYNAMIC_TEMP
    ,m_buf(new char[TCP_BUFSIZE_READ + 1])
-   #endif
    ,m_obuf_top(NULL)
    ,m_transfer_limit(0)
    ,m_output_length(0)
@@ -84,9 +82,7 @@ void ssl_sigpipe_handle( int x );
    ,m_b_input_buffer_disabled(false)
    ,m_bytes_sent(0)
    ,m_bytes_received(0)
-   #ifdef SOCKETS_DYNAMIC_TEMP
    ,m_buf(new char[TCP_BUFSIZE_READ + 1])
-   #endif
    ,m_obuf_top(NULL)
    ,m_transfer_limit(0)
    ,m_output_length(0)
@@ -110,9 +106,7 @@ void ssl_sigpipe_handle( int x );
 
    tcp_socket::~tcp_socket()
    {
-   #ifdef SOCKETS_DYNAMIC_TEMP
       delete[] m_buf;
-   #endif
       // %! is_empty m_obuf
       POSITION pos = m_obuf.get_head_position();
       while(pos != NULL)
@@ -505,15 +499,8 @@ void ssl_sigpipe_handle( int x );
    void tcp_socket::OnRead()
    {
 
-#ifdef SOCKETS_DYNAMIC_TEMP
-
       char *buf = m_buf;
 
-#else
-
-      char buf[TCP_BUFSIZE_READ];
-
-#endif
 
       ::primitive::memory_size n = 0;
 
