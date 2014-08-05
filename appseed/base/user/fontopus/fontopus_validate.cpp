@@ -220,6 +220,11 @@ namespace fontopus
             ::fontopus::set_cred_ok(get_app(),"ca2",true);
 
          }
+         else
+         {
+            ::fontopus::set_cred(get_app(),"ca2","","");
+            ::fontopus::set_cred_ok(get_app(),"ca2",false);
+         }
 
          return m_puser;
 
