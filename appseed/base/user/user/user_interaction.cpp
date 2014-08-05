@@ -483,8 +483,6 @@ namespace user
       if(GetParent() == NULL && !is_message_only_window())
       {
 
-         synch_lock slUser(&user_mutex());
-
          synch_lock sl(m_spmutex);
 
          try
@@ -965,7 +963,7 @@ namespace user
          if(GetParent() == NULL && !is_message_only_window())
          {
 
-            synch_lock slUser(&user_mutex());
+//            synch_lock slUser(m_pbaseapp->m_pmutex);
 
             synch_lock sl(m_spmutex);
 
@@ -3121,8 +3119,6 @@ namespace user
          return;
 
 
-      synch_lock slUserMutex(m_bMayProDevian ? &user_mutex() : NULL);
-
       m_pimpl->_001UpdateWindow();
 
    }
@@ -4775,10 +4771,6 @@ namespace user
    bool interaction::SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
    {
 
-      synch_lock slUserMutex(&user_mutex());
-
-      synch_lock sl(m_spmutex);
-
       bool bOk = false;
 
       if(!(nFlags & SWP_NOZORDER))
@@ -4787,7 +4779,11 @@ namespace user
          {
             if(z == ZORDER_TOP || z == ZORDER_TOPMOST)
             {
+
                single_lock sl(m_pbaseapp->m_pmutex);
+
+               synch_lock slWindow(m_spmutex);
+
                if(sl.lock(millis(84)))
                {
                   index iFind = GetParent()->m_uiptraChild.find_first(this);

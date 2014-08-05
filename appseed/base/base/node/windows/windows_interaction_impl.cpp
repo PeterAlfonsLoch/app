@@ -2469,8 +2469,6 @@ namespace windows
    void interaction_impl::_001OnPaint(signal_details * pobj)
    {
 
-      synch_lock slUserMutex(&user_mutex());
-
       single_lock sl(m_pui->m_spmutex,false);
 
 
@@ -3184,7 +3182,7 @@ namespace windows
    bool interaction_impl::SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
    {
 
-      single_lock sl(m_pui->m_spmutex, true);
+      //single_lock sl(m_pui->m_spmutex, true);
 
       if(GetExStyle() & WS_EX_LAYERED)
       {
@@ -3215,7 +3213,7 @@ namespace windows
       else
       {
 
-         sl.unlock();
+         //sl.unlock();
 
          if(z == -3)
          {

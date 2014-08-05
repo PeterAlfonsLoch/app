@@ -911,6 +911,7 @@ bool thread_impl::on_idle(LONG lCount)
          }
          else
          {
+            sl.unlock();
             try
             {
                pui->send_message(WM_IDLEUPDATECMDUI,(WPARAM)TRUE);
@@ -919,6 +920,7 @@ bool thread_impl::on_idle(LONG lCount)
             {
 
             }
+            sl.lock();
             i++;
          }
       }

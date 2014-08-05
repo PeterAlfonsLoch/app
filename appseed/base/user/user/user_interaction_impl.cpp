@@ -235,19 +235,16 @@ namespace user
    void interaction_impl::_001OnDestroy(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      throw interface_only_exception(get_app());
    }
 
    void interaction_impl::_001OnCaptureChanged(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      throw interface_only_exception(get_app());
    }
 
    // WM_NCDESTROY is the absolute LAST message sent.
    void interaction_impl::PostNcDestroy()
    {
-      throw interface_only_exception(get_app());
    }
 
    void interaction_impl::on_final_release()

@@ -9,7 +9,7 @@ namespace simple_ui
 {
 
 
-   message_box::message_box(sp(::base::application) papp, const char * pszMessage, uint32_t uiFlags) :
+   message_box::message_box(sp(::base::application) papp,const char * pszMessage,uint32_t uiFlags):
       element(papp),
       m_evReady(papp)
    {
@@ -59,10 +59,8 @@ namespace simple_ui
    int32_t message_box::show()
    {
 
-
-
-      if(!CreateEx(WS_EX_LAYERED, NULL, NULL, 0, null_rect(), NULL, "fontopus"))
-         throw simple_exception(get_app(), "not excepted! Failing Message box!!");
+      if(!CreateEx(0,NULL,NULL,0,null_rect(),NULL,"fontopus"))
+         throw simple_exception(get_app(),"not excepted! Failing Message box!!");
 
       uint32_t uiType = m_uiFlags & MB_TYPEMASK;
 
@@ -110,11 +108,11 @@ namespace simple_ui
 
       stra.add("\r\n");
 
-      m_stra.add_smallest_tokens(m_strMessage, stra);
+      m_stra.add_smallest_tokens(m_strMessage,stra);
 
       session().get_main_monitor(rectDesktop);
 
-      SetWindowText( "fontopus Auth Windows");
+      SetWindowText("fontopus Auth Windows");
 
       rect rectFontopus;
 
@@ -148,7 +146,7 @@ namespace simple_ui
 
       rectFontopus.bottom = rectFontopus.top + h;
 
-      SetWindowPos(ZORDER_TOP, rectFontopus, SWP_SHOWWINDOW);
+      SetWindowPos(ZORDER_TOP,rectFontopus,SWP_SHOWWINDOW);
 
       SetForegroundWindow();
 
@@ -170,11 +168,11 @@ namespace simple_ui
 
       GetClientRect(rectClient);
 
-      pdc->FillSolidRect(rectClient, ARGB(255, 0xcc, 0xcc, 0xc5));
+      pdc->FillSolidRect(rectClient,ARGB(255,0xcc,0xcc,0xc5));
 
       sp(::draw2d::font) font(allocer());
 
-      font->create_point_font("Arial", 12);
+      font->create_point_font("Arial",12);
 
       pdc->selectFont(font);
 
@@ -189,7 +187,7 @@ namespace simple_ui
       for(int i = 0; i < m_stra.get_size(); i++)
       {
 
-         pdc->TextOut(10, y, m_stra[i]);
+         pdc->TextOut(10,y,m_stra[i]);
 
          y+= iHeight;
 
@@ -207,7 +205,7 @@ namespace simple_ui
       GetClientRect(rectClient);
 
       // DESKTOP sizing
-      int cx = (84+77) * 2 / 3;
+      int cx = (84 + 77) * 2 / 3;
       int cy = 49 / 2;
       int margin = 10;
       int x = rectClient.left + margin;
@@ -245,7 +243,7 @@ namespace simple_ui
    bool message_box::on_action(const char * pszId)
    {
 
-      if(stricmp_dup(pszId, "ok") == 0)
+      if(stricmp_dup(pszId,"ok") == 0)
       {
 
          m_iResult = IDOK;
@@ -255,7 +253,7 @@ namespace simple_ui
          return true;
 
       }
-      else if(stricmp_dup(pszId, "yes") == 0)
+      else if(stricmp_dup(pszId,"yes") == 0)
       {
 
          m_iResult = IDYES;
@@ -265,7 +263,7 @@ namespace simple_ui
          return true;
 
       }
-      else if(stricmp_dup(pszId, "no") == 0)
+      else if(stricmp_dup(pszId,"no") == 0)
       {
 
          m_iResult = IDNO;
@@ -275,7 +273,7 @@ namespace simple_ui
          return true;
 
       }
-      else if(stricmp_dup(pszId, "cancel") == 0)
+      else if(stricmp_dup(pszId,"cancel") == 0)
       {
 
          m_iResult = IDCANCEL;
@@ -358,13 +356,38 @@ UINT c_cdecl thread_proc_simple_ui_message_box(LPVOID lpvoid)
 
    ::simple_ui::message_box * pmessagebox = (::simple_ui::message_box *) lpvoid;
 
-   pmessagebox->show();
+   try
+   {
+
+      pmessagebox->show();
+
+   }
+   catch(...)
+   {
+
+   }
+
+   try
+   {
+
+      pmessagebox->DestroyWindow();
+
+   }
+   catch(...)
+   {
+
+   }
+
+
+   pmessagebox->m_evReady.SetEvent();
+
+
 
    return 0;
 
 }
 
-int32_t simple_ui_message_box(oswindow interaction_impl, const char * lpText,const char * lpCaption, uint32_t uiFlags)
+int32_t simple_ui_message_box(oswindow interaction_impl,const char * lpText,const char * lpCaption,uint32_t uiFlags)
 {
 
    // may be in another thread than application thread
@@ -388,35 +411,22 @@ int32_t simple_ui_message_box(oswindow interaction_impl, const char * lpText,con
 
    {
 
-      ::simple_ui::message_box * pmessagebox = new ::simple_ui::message_box(::get_thread_app(), lpText, uiFlags);
+      ::simple_ui::message_box * pmessagebox = new ::simple_ui::message_box(::get_thread_app(),lpText,uiFlags);
 
       try
       {
-/*         bool bWasLocked = false;
-         if(::get_thread()->m_pslUser != NULL)
-         {
-            bWasLocked = ::get_thread()->m_pslUser->IsLocked();
+         __begin_thread(::get_thread_app(),&thread_proc_simple_ui_message_box,pmessagebox);
+         //pmessagebox->show();
 
-            if(bWasLocked)
-            {
-               ::get_thread()->m_pslUser->unlock();
-            }
-         }*/
-
-         //__begin_thread(::get_thread_app(),&thread_proc_simple_ui_message_box,pmessagebox);
-         pmessagebox->show();
-
-/*         while(!pmessagebox->m_evReady.wait(millis(0)).signaled())
+         while(!pmessagebox->m_evReady.wait(millis(84)).signaled())
          {
 
-            ::do_events();
+         }
 
-         }*/
-
-/*         if(bWasLocked)
-         {
-            ::get_thread()->m_pslUser->lock();
-         }*/
+         /*         if(bWasLocked)
+                  {
+                  ::get_thread()->m_pslUser->lock();
+                  }*/
 
          iResult = pmessagebox->m_iResult;
 
@@ -426,17 +436,6 @@ int32_t simple_ui_message_box(oswindow interaction_impl, const char * lpText,con
 
       }
 
-
-      try
-      {
-
-         pmessagebox->DestroyWindow();
-
-      }
-      catch(...)
-      {
-
-      }
 
       try
       {

@@ -174,6 +174,8 @@ namespace user
 
       //return;
 
+
+
       pdc->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
       COLORREF crBk;
@@ -1008,6 +1010,8 @@ namespace user
    void edit_plain_text::_001OnCalcLayout(::draw2d::graphics * pdc)
    {
 
+      synch_lock sl(m_spmutex);
+
       select_font(pdc);
 
       stringa & straLines = m_lines.lines;
@@ -1047,6 +1051,7 @@ namespace user
 
    index edit_plain_text::SelToLine(strsize iSel)
    {
+      synch_lock sl(m_spmutex);
       iSel -= m_iViewOffset;
       stringa & straLines = m_lines.lines;
       strsize i1;
@@ -1066,6 +1071,7 @@ namespace user
 
    index edit_plain_text::SelToLineX(strsize iSel, int32_t & x)
    {
+      synch_lock sl(m_spmutex);
       iSel -= m_iViewOffset;
       stringa & straLines = m_lines.lines;
       strsize i1;
@@ -1097,6 +1103,7 @@ namespace user
 
    strsize edit_plain_text::LineColumnToSel(index iLine, index iColumn)
    {
+      synch_lock sl(m_spmutex);
       //int32_t i1;
 //      int32_t i2 = 0;
       while(iLine < 0)
@@ -1140,6 +1147,8 @@ namespace user
 
    strsize edit_plain_text::LineXToSel(index iLine, int32_t x)
    {
+
+      synch_lock sl(m_spmutex);
 
       ::draw2d::memory_graphics pgraphics(allocer());
 
@@ -1198,6 +1207,9 @@ namespace user
 
    index edit_plain_text::SelToColumn(strsize iSel)
    {
+
+      synch_lock sl(m_spmutex);
+
       iSel -= m_iViewOffset;
       stringa & straLines = m_lines.lines;
       strsize i1;
@@ -1217,6 +1229,8 @@ namespace user
 
    strsize edit_plain_text::char_hit_test(::draw2d::graphics * pdc, int32_t px, int32_t py)
    {
+
+      synch_lock sl(m_spmutex);
       
       select_font(pdc);
 
@@ -1925,26 +1939,32 @@ namespace user
    void edit_plain_text::_001OnUpdate(::action::context actioncontext)
    {
 
-      string str;
-      _001GetText(str);
+      {
 
-      if(m_ptree->m_iSelStart > str.get_length())
-         m_ptree->m_iSelStart = str.get_length();
-      else if(m_ptree->m_iSelStart < 0)
-         m_ptree->m_iSelStart = 0;
+         synch_lock sl(m_spmutex);
 
-      if(m_ptree->m_iSelEnd > str.get_length())
-         m_ptree->m_iSelEnd = str.get_length();
-      else if(m_ptree->m_iSelEnd < 0)
-         m_ptree->m_iSelEnd = 0;
+         string str;
+         _001GetText(str);
 
-      m_bGetTextNeedUpdate = 1;
-      CreateLineIndex();
-      m_y = -1;
-      ::draw2d::graphics_sp dc(allocer());
-      dc->CreateCompatibleDC(NULL);
-      _001OnCalcLayout(dc);
-      lineCountEvent(m_lines.lines.get_count());
+         if(m_ptree->m_iSelStart > str.get_length())
+            m_ptree->m_iSelStart = str.get_length();
+         else if(m_ptree->m_iSelStart < 0)
+            m_ptree->m_iSelStart = 0;
+
+         if(m_ptree->m_iSelEnd > str.get_length())
+            m_ptree->m_iSelEnd = str.get_length();
+         else if(m_ptree->m_iSelEnd < 0)
+            m_ptree->m_iSelEnd = 0;
+
+         m_bGetTextNeedUpdate = 1;
+         CreateLineIndex();
+         m_y = -1;
+         ::draw2d::graphics_sp dc(allocer());
+         dc->CreateCompatibleDC(NULL);
+         _001OnCalcLayout(dc);
+         lineCountEvent(m_lines.lines.get_count());
+
+      }
 
       try
       {
@@ -2150,6 +2170,10 @@ namespace user
 
    void edit_plain_text::_001OnSetText(::action::context actioncontext)
    {
+
+
+      synch_lock sl(m_spmutex);
+
       m_iViewOffset = 0;
       rect rectClient;
       GetClientRect(rectClient);
@@ -2222,6 +2246,8 @@ namespace user
 
    colorertake5::file_type *edit_plain_text::colorer_select_type()
    {
+
+      synch_lock sl(m_spmutex);
       colorertake5::file_type *type = NULL;
   /*if (typeDescription != NULL){
     type = hrcParser->getFileType(typeDescription);
