@@ -202,9 +202,6 @@ namespace fontopus
          puiParent->ScreenToClient(rectFontopus);
 
 
-      m_login.defer_translate(this);
-
-
       m_login.layout();
 
       SetWindowPos(ZORDER_TOP, rectFontopus, SWP_SHOWWINDOW);

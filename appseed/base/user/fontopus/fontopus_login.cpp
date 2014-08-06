@@ -10,6 +10,9 @@ CLASS_DECL_BASE void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int 
 namespace fontopus
 {
 
+   
+   UINT c_cdecl thread_proc_defer_translate_login(void * p);
+
 
    login::login(sp(::base::application) papp, int left, int top) :
       element(papp)
@@ -405,7 +408,7 @@ namespace fontopus
       }
       
 
-      m_plabelUser->SetWindowText("e-mail:");
+      m_plabelUser->SetWindowText(unitext("✉:"));
       m_plabelPassword->SetWindowText("password:");
       m_ptap->SetWindowText("open");
 
@@ -415,7 +418,22 @@ namespace fontopus
       RepositionWindow(0,0,stdw,stdh);
 
       m_peditUser->keyboard_set_focus();
+
+
+      __begin_thread(get_app(),thread_proc_defer_translate_login,this);
       
+   }
+
+
+   UINT c_cdecl thread_proc_defer_translate_login(void * p)
+   {
+
+      login * plogin = (login *)p;
+
+      plogin->defer_translate(plogin->GetParent().cast < simple_ui::style > ());
+
+      return 0;
+
    }
 
 
