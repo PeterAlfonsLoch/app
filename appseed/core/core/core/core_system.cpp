@@ -548,9 +548,11 @@ namespace core
    bool system::verb()
    {
 
-      /*static uint32_t dwStart = ::get_tick_count();
+      /*static uint32_t dwStart = ::get_tick_count();*/
 
-      ::core::application::verb();
+      return ::core::application::verb();
+
+      /*
 
       if(directrix()->m_varTopicQuery.has_property("install") && (get_tick_count() - dwStart) > (5 * 184 * 1000))
          return false;
@@ -616,9 +618,12 @@ namespace core
 
          }
 
-      }*/
+      }
 
       return true;
+
+      */
+
    }
 
 
