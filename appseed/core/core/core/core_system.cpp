@@ -548,7 +548,7 @@ namespace core
    bool system::verb()
    {
 
-      static uint32_t dwStart = ::get_tick_count();
+      /*static uint32_t dwStart = ::get_tick_count();
 
       ::core::application::verb();
 
@@ -616,7 +616,7 @@ namespace core
 
          }
 
-      }
+      }*/
 
       return true;
    }
