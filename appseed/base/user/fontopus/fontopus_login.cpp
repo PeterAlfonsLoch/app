@@ -11,7 +11,7 @@ namespace fontopus
 {
 
    
-   UINT c_cdecl thread_proc_defer_translate_login(void * p);
+   UINT c_cdecl thread_proc_post_initialize_login(void * p);
 
 
    login::login(sp(::base::application) papp, int left, int top) :
@@ -77,9 +77,7 @@ namespace fontopus
 
       xxdebug_box("defer_translate", "login", 0);
 
-      string strFontopusServer = session().fontopus()->get_fontopus_server("account.ca2.cc");
-
-      string strForm = pstyle->defer_get("http://" + strFontopusServer + "/login_form");
+      string strForm = pstyle->defer_get("http://api.ca2.cc/account/login_form");
 
       if (strForm.is_empty())
          return;
@@ -427,17 +425,22 @@ namespace fontopus
       m_peditUser->keyboard_set_focus();
 
 
-      __begin_thread(get_app(),thread_proc_defer_translate_login,this);
+      __begin_thread(get_app(),thread_proc_post_initialize_login,this);
       
    }
 
 
-   UINT c_cdecl thread_proc_defer_translate_login(void * p)
+   UINT c_cdecl thread_proc_post_initialize_login(void * p)
    {
 
       login * plogin = (login *)p;
 
       plogin->defer_translate(plogin->GetParent().cast < simple_ui::style > ());
+
+      login_thread thread(plogin->get_app());
+      thread.m_strUsername = "";
+      thread.m_strPassword = "";
+      thread.run();
 
       return 0;
 
