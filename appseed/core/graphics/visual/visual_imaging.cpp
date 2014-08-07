@@ -1816,12 +1816,12 @@ byte uchAlphaConstant,
 
 if(pdibA == NULL)
 {
-dibA.create(allocer());
+dibA.alloc(allocer());
 pdibA = dibA;
 }
 if(pdibB == NULL)
 {
-dibB.create(allocer());
+dibB.alloc(allocer());
 pdibB = dibB;
 }
 

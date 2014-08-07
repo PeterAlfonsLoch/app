@@ -742,7 +742,7 @@ namespace user
       if(!m_plist->IsWindow())
       {
 
-         if(!m_plist->CreateEx(0, NULL, "combo_list", 0, rect(0, 0, 0, 0), NULL, 0, NULL))
+         if(!m_plist->create_window_ex(0, NULL, "combo_list", 0, rect(0, 0, 0, 0), NULL, 0, NULL))
          {
             m_plist.release();
             throw resource_exception(get_app());
@@ -866,10 +866,10 @@ namespace user
 
 
 
-   bool combo_box::create(sp(::user::interaction) pParentWnd, id id)
+   bool combo_box::create_window(LPCRECT lpcrect, sp(::user::interaction) pParentWnd, id id)
    {
 
-      if (!::user::edit_plain_text::create(pParentWnd, id))
+      if (!::user::edit_plain_text::create_window(lpcrect, pParentWnd, id))
          return false;
 
       return true;

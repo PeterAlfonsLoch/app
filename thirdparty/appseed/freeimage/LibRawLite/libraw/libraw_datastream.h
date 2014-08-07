@@ -236,7 +236,7 @@ class LibRaw_file_datastream: public LibRaw_abstract_datastream
     {
         if (filename) {
             smart_pointer < ::file::binary_buffer > buf;
-            buf.create(get_thread_app()->allocer());
+            buf.alloc(get_thread_app()->allocer());
             buf->open(filename, ::file::mode_read | ::file::type_binary);
             if (buf->IsOpened())
             {
@@ -345,7 +345,7 @@ class LibRaw_file_datastream: public LibRaw_abstract_datastream
         if (saved_f.is_set()) return EBUSY;
         saved_f = f;
 
-        f.create(get_thread_app()->allocer());
+        f.alloc(get_thread_app()->allocer());
         if (!f.is_set()) {
             f = saved_f;
             return ENOMEM;

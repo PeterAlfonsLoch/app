@@ -3268,7 +3268,7 @@ namespace draw2d
 
       m_sppen.release();
 
-      m_sppen.create(allocer());
+      m_sppen.alloc(allocer());
 
       m_sppen->create_solid(dWidth, m_crColor);
 
@@ -3694,7 +3694,7 @@ namespace draw2d
       {
          if (pfontUnderline == NULL)
          {
-            fontUnderline.create(allocer());
+            fontUnderline.alloc(allocer());
             pfontUnderline = fontUnderline;
             fontUnderline ->operator=(*pdc->get_current_font());
             fontUnderline->set_bold();

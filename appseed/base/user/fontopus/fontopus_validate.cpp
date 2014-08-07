@@ -511,8 +511,14 @@ namespace fontopus
 
    int32_t login_thread::run()
    {
+      
       ::http::e_status estatus;
+      
       string strResponse = Login(&estatus);
+
+      if(m_pcallback == NULL)
+         return 2;
+
       e_result iAuth = result_fail;
       xml::document doc(get_app());
       doc.load(strResponse);
@@ -610,7 +616,9 @@ namespace fontopus
       //      char * psz = NULL;
       //    *psz = '2';
       m_pcallback->on_login_response(iAuth,strResponse);
-      return TRUE;
+      
+      return 0;
+
    }
 
    string login_thread::Login(::http::e_status * pestatus)
@@ -769,17 +777,22 @@ namespace fontopus
 
       string strHex = System.crypto().spa_login_crypt(strPass,strRsaModulus);
 
-      string strSec = System.crypto().spa_login_crypt(m_puser->m_strSessionSecret,strRsaModulus);
+      string strSec = System.crypto().spa_login_crypt(m_puser == NULL ? string() : m_puser->m_strSessionSecret,strRsaModulus);
 
-      m_puser->m_strLogin = m_strUsername;
+      if(m_puser != NULL)
+      {
+
+         m_puser->m_strLogin = m_strUsername;
+
+      }
 
       string strAuth;
 
       DWORD dwAuthBeg = ::get_tick_count();
       {
 
-         string strAuthUrl("https://" + strApiServer + "/account/auth?" + m_pcallback->oprop("defer_registration").get_string()
-            + "&ruri=" + System.url().url_encode((m_pcallback->oprop("ruri").get_string())));
+         string strAuthUrl("https://" + strApiServer + "/account/auth?" + (m_pcallback == NULL ? string() : m_pcallback->oprop("defer_registration").get_string())
+            + (m_pcallback == NULL ? string() : "&ruri=" + System.url().url_encode((m_pcallback->oprop("ruri").get_string()))));
 
          property_set set;
 
@@ -803,11 +816,20 @@ namespace fontopus
             set["post"]["entered_license"] = m_strLicense;
          }
 
-         m_puser->set_sessid(strSessId,strAuthUrl);
-         m_puser->set_sessid(strSessId,strFontopusServer);
+         if(m_puser != NULL)
+         {
+
+            m_puser->set_sessid(strSessId,strAuthUrl);
+            m_puser->set_sessid(strSessId,strFontopusServer);
+
+         }
+
          set["app"] = get_app();
          set["user"] = m_puser;
-         set["cookies"] = m_puser->m_phttpcookies;
+         if(m_puser != NULL)
+         {
+            set["cookies"] = m_puser->m_phttpcookies;
+         }
          set["get_response"] = "";
          uint32_t dwTimeProfile1 = get_tick_count();
          psession = System.http().request(psession,strAuthUrl,set);

@@ -222,7 +222,7 @@ namespace user
 
       ppane->m_id          = id;
       ppane->m_pholder     = NULL;
-      ppane->m_dib.create(allocer());
+      ppane->m_dib.alloc(allocer());
       ppane->m_dib.load_from_file(pszImage);
 
       get_data()->m_panea.add(ppane);

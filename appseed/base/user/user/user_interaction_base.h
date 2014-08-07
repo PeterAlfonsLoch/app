@@ -327,28 +327,9 @@ namespace user
       virtual oswindow unsubclass_window();
 
 
-      virtual bool create(sp(interaction)pparent,id id);
-      virtual bool create_window(const char * lpszClassName,
-         const char * lpszWindowName,uint32_t dwStyle,
-         const RECT& rect,
-         sp(interaction) pParentWnd,id id,
-         sp(::create_context) pContext = NULL);
-      using ::request_interface::create;
-      virtual bool create(const char * lpszClassName,
-         const char * lpszWindowName,uint32_t dwStyle,
-         const RECT& rect,
-         sp(interaction) pParentWnd,id id,
-         sp(::create_context) pContext = NULL);
-      virtual bool CreateEx(uint32_t dwExStyle,const char * lpszClassName,
-         const char * lpszWindowName,uint32_t dwStyle,
-         const RECT& rect,
-         sp(interaction) pParentWnd,id id,
-         LPVOID lpParam = NULL);
-      virtual bool create_window_ex(uint32_t dwExStyle,const char * lpszClassName,
-         const char * lpszWindowName,uint32_t dwStyle,
-         const RECT& rect,
-         sp(interaction) pParentWnd,id id,
-         LPVOID lpParam = NULL);
+      virtual bool create_window(LPCRECT lpcrect, sp(interaction)pparent,id id);
+      virtual bool create_window(const char * lpszClassName, const char * lpszWindowName,uint32_t dwStyle, LPCRECT lpcrect, sp(interaction) pParentWnd,id id, sp(::create_context) pContext = NULL);
+      virtual bool create_window_ex(uint32_t dwExStyle,const char * lpszClassName, const char * lpszWindowName,uint32_t dwStyle, LPCRECT lpcrect,  sp(interaction) pParentWnd,id id,LPVOID lpParam = NULL);
       enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
       virtual void CalcWindowRect(LPRECT lpClientRect,UINT nAdjustType = adjustBorder);
 

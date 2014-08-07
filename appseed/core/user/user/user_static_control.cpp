@@ -27,10 +27,10 @@ namespace user
 
 
    
-   bool static_control::create(sp(::user::interaction) pParentWnd, id id)
+   bool static_control::create_window(LPCRECT lpcrect, sp(::user::interaction) pParentWnd,id id)
    {
 
-      return ::user::control::create(pParentWnd, id);
+      return ::user::control::create_window(lpcrect, pParentWnd, id);
 
    }
 

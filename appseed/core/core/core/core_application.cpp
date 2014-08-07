@@ -3027,7 +3027,7 @@ namespace core
       //if(is_system())
       //{
 
-      //   System.m_spcopydesk.create(allocer());
+      //   System.m_spcopydesk.alloc(allocer());
 
       //   if(!System.m_spcopydesk->initialize())
       //      return false;
@@ -3348,7 +3348,7 @@ namespace core
          peventReady->ResetEvent();
       }
 
-      m_pthreadimpl.create(allocer());
+      m_pthreadimpl.alloc(allocer());
 
       m_pthreadimpl->m_pthread = this;
 

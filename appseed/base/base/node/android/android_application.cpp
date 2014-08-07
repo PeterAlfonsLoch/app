@@ -11,7 +11,7 @@ namespace android
    application::application(sp(::base::application) papp) :
       element(papp)
    {
-      m_pthreadimpl.create(allocer());
+      m_pthreadimpl.alloc(allocer());
       m_pthreadimpl->m_pthread = this;
 
       //ANDROID_THREAD(::thread::m_p.m_p)->m_pAppThread = this;

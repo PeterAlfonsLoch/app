@@ -75,25 +75,6 @@ namespace user
 
          if( (pdescriptor->m_pcontrol.m_p) != NULL)
          {
-            //window_id wndidTemp = pform->get_child_by_id(descriptor.m_id)->GetSafeoswindow_();
-            //if(wndidTemp != NULL)
-            {
-               /*xxx ::user::interaction_base * pwnd = dynamic_cast < ::user::interaction_base * > (pcontrol->m_typeinfo->CreateObject());
-               if(pwnd != NULL)
-               {
-                  if(pwnd->subclass_window(wndidTemp))
-                  {
-                     pcontrol->m_bSubclassed = true;
-                     pcontrol->m_pwnd = pwnd;
-                  }
-                  else
-                  {
-                     // Failed creation
-                     ASSERT(FALSE);
-                     delete pwnd;
-                  }
-               }*/
-            }
          }
          else
          {

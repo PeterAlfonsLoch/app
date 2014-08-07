@@ -127,7 +127,7 @@ namespace userex
       {
          if(panea[iTab].m_pholder == pholder)
          {
-            ::user::view_creator_data * pcreatordata = ensure(panea[iTab].m_id, get_data()->m_rectTabClient);
+            ::user::view_creator_data * pcreatordata = ensure_impact(panea[iTab].m_id, get_data()->m_rectTabClient);
             if(pcreatordata != NULL)
             {
                if(pcreatordata->m_pwnd == NULL)
@@ -145,7 +145,7 @@ namespace userex
    void pane_tab_view::ensure_tab_by_id(id id)
    {
 
-      ensure(id,get_data()->m_rectTabClient);
+      ensure_impact(id,get_data()->m_rectTabClient);
 
    }
 

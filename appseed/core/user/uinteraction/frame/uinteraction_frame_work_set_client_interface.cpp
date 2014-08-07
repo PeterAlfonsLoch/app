@@ -392,7 +392,9 @@ namespace user
 
          void WorkSetClientInterface::WfiOnAfterMaximize()
          {
+            
             WindowDataSaveWindowRect();
+
          }
 
          void WorkSetClientInterface::WfiOnAfterMinimize()

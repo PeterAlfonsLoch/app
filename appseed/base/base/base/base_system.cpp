@@ -205,7 +205,7 @@ namespace base
 
       //Ex1OnFactoryExchange();
 
-      //m_spfilesystem.create(allocer());
+      //m_spfilesystem.alloc(allocer());
 
 
       /*   {
@@ -249,7 +249,7 @@ namespace base
 
       m_pschemaLayeredFrame = new ::user::schema_layered_frame;
 
-      m_pthreadimpl.create(allocer());
+      m_pthreadimpl.alloc(allocer());
 
       m_pthreadimpl->m_pthread = this;
 
@@ -321,9 +321,9 @@ namespace base
 
 #endif
 
-      m_spos.create(allocer());
+      m_spos.alloc(allocer());
 
-      m_spcrypto.create(allocer());
+      m_spcrypto.alloc(allocer());
 
       if(!m_spcrypto.is_set())
          return false;
@@ -346,12 +346,12 @@ namespace base
 
 #ifdef WINDOWSEX
 
-      dappy(string(typeid(*this).name()) + " : Going to ::base::system::m_spwindow->CreateEx : " + ::str::from(m_iReturnCode));
+      dappy(string(typeid(*this).name()) + " : Going to ::base::system::m_spwindow->create_window_ex : " + ::str::from(m_iReturnCode));
 
-      if(!m_spwindow->CreateEx(0,NULL,NULL,0,null_rect(),NULL,"::base::system::interaction_impl::no_twf"))
+      if(!m_spwindow->create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"::base::system::interaction_impl::no_twf"))
       {
 
-         dappy(string(typeid(*this).name()) + " : ::base::system::m_spwindow->CreateEx failure : " + ::str::from(m_iReturnCode));
+         dappy(string(typeid(*this).name()) + " : ::base::system::m_spwindow->create_window_ex failure : " + ::str::from(m_iReturnCode));
 
          return false;
 
@@ -360,10 +360,10 @@ namespace base
 #endif
 
       dappy(string(typeid(*this).name()) + " : Going to ::base::session " + ::str::from(m_iReturnCode));
-      m_spfile.create(allocer());
+      m_spfile.alloc(allocer());
 
 
-      m_spdir.create(allocer());
+      m_spdir.alloc(allocer());
 
 
       m_pbasesession = new ::base::session(this);
@@ -378,7 +378,7 @@ namespace base
 
 
       m_spnet = canew(::sockets::net(this));
-      //m_spnet.create(allocer());
+      //m_spnet.alloc(allocer());
 
       if(m_spnet.is_null())
       {

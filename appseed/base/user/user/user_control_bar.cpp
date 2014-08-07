@@ -1058,10 +1058,28 @@ namespace user
       return FALSE;
    }
 
+
    uint32_t control_bar::GetBarStyle()
-      { return m_dwStyle; }
+   {
+      
+      return m_dwStyle;
+
+   }
+
+   
    void control_bar::SetBorders(LPCRECT lpRect)
-      { SetBorders(lpRect->left, lpRect->top, lpRect->right, lpRect->bottom); }
+   { 
+
+      ASSERT(lpRect != NULL);
+
+      if(lpRect == NULL)
+         return;
+      
+      SetBorders(lpRect->left, lpRect->top, lpRect->right, lpRect->bottom);
+   
+   }
+
+
    rect control_bar::GetBorders()
       { return rect(m_cxLeftBorder, m_cyTopBorder, m_cxRightBorder, m_cyBottomBorder); }
 

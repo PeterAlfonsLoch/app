@@ -532,18 +532,23 @@ int32_t simple_menu_bar::_001HitTest(const POINT *lppoint)
 }*/
 
 
-bool simple_menu_bar::create(sp(::user::interaction) pParentWnd, uint32_t dwStyle, UINT nID)
+bool simple_menu_bar::create_window(sp(::user::interaction) pParentWnd, uint32_t dwStyle, UINT nID)
 {
-   return CreateEx(pParentWnd, 0, dwStyle,
-      rect(m_cxLeftBorder, m_cyTopBorder, m_cxRightBorder, m_cyBottomBorder), nID);
+
+   rect rectBar(m_cxLeftBorder,m_cyTopBorder,m_cxRightBorder,m_cyBottomBorder);
+
+   return create_window_ex(pParentWnd,0,dwStyle,rectBar, nID);
+
 }
 
-bool simple_menu_bar::CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle, uint32_t dwStyle, rect rcBorders, UINT nID)
+
+bool simple_menu_bar::create_window_ex(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle, uint32_t dwStyle,LPCRECT lpcrect, UINT nID)
 {
+   
    ASSERT_VALID(pParentWnd);   // must have a parent
    ASSERT (!((dwStyle & CBRS_SIZE_FIXED) && (dwStyle & CBRS_SIZE_DYNAMIC)));
 
-   SetBorders(rcBorders);
+   SetBorders(lpcrect);
 
    // save the style
    m_dwStyle = (dwStyle & CBRS_ALL);
@@ -561,7 +566,7 @@ bool simple_menu_bar::CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCt
 //   ASSERT(gen_DropDownWidth != -1);
 
    // create the oswindow
-   if (!::user::interaction::create(NULL, NULL, dwStyle, ::null_rect(), pParentWnd, nID))
+   if (!::user::interaction::create_window(NULL, NULL, dwStyle, lpcrect, pParentWnd, nID))
       return FALSE;
 
    // sync up the sizes

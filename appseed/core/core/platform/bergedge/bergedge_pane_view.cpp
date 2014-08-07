@@ -216,7 +216,7 @@ namespace bergedge
          pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
          if(sess(platform().m_pappCurrent).file().exists(strIcon))
          {
-            ppane->m_dib.create(allocer());
+            ppane->m_dib.alloc(allocer());
             ppane->m_dib.load_from_file(strIcon);
          }
          else

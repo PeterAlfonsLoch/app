@@ -431,11 +431,11 @@ namespace user
    bool button::create_control(class control::descriptor * pdescriptor)
    {
       
-      if(!create(
+      if(!create_window(
          NULL,
          NULL,
          WS_VISIBLE | WS_CHILD, 
-         rect(0, 0, 0, 0), 
+         &pdescriptor->m_rect, 
          pdescriptor->m_pform, 
          pdescriptor->m_id))
       {

@@ -40,7 +40,7 @@ namespace android
       m_dwLastRedrawRequest = ::GetTickCount();
       m_bRender = false;
       m_pbuffer = new user::buffer(papp);
-      m_pbuffer->m_spdib.create(allocer());
+      m_pbuffer->m_spdib.alloc(allocer());
       m_dwLastUpdate = false;
       m_iFramesPerSecond = 20;
    }

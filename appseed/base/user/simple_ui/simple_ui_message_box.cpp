@@ -49,7 +49,7 @@ namespace simple_ui
    {
 
       sp(::simple_ui::tap) ptap = canew(::simple_ui::tap(get_app()));
-      ptap->create(this,id);
+      ptap->create_window(NULL, this,id);
       ptap->SetWindowText(pszText);
 
       tapa.add(ptap);
@@ -59,7 +59,7 @@ namespace simple_ui
    int32_t message_box::show()
    {
 
-      if(!CreateEx(0,NULL,NULL,0,null_rect(),NULL,"fontopus"))
+      if(!create_window_ex(0,NULL,NULL,0,NULL,NULL,"fontopus"))
          throw simple_exception(get_app(),"not excepted! Failing Message box!!");
 
       uint32_t uiType = m_uiFlags & MB_TYPEMASK;
@@ -340,6 +340,14 @@ namespace simple_ui
    }
 
 
+   void message_box::pre_translate_message(signal_details * pobj)
+   {
+
+      simple_ui::interaction::pre_translate_message(pobj);
+
+   }
+
+
 } // namespace simple_ui
 
 
@@ -353,6 +361,8 @@ CLASS_DECL_BASE int32_t system_message_box(oswindow interaction_impl,const char 
 
 UINT c_cdecl thread_proc_simple_ui_message_box(LPVOID lpvoid)
 {
+
+   attach_thread_input_to_main_thread(false);
 
    ::simple_ui::message_box * pmessagebox = (::simple_ui::message_box *) lpvoid;
 

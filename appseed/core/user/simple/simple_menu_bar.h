@@ -21,41 +21,25 @@ class CLASS_DECL_CORE simple_menu_bar :
 public:
 
 
-   int32_t                  m_iHover;
-/* smart_pointer_array < SimpleMenuBarButton , SimpleMenuBarButton &>
-                        m_buttona;*/
-
-   sp(image_list)         m_pimagelist;
-   sp(image_list)         m_pimagelistDisabled;
-   int_int_spreadset *  m_prel;
-
-   bool                 m_bTracking;
-   int32_t                  m_iTracking;
-   UINT                 m_uiResourceID;
-   int32_t                  m_iTopMenuCount;
-   ::user::menu     m_menu;
+   int32_t                       m_iHover;
+   sp(image_list)                m_pimagelist;
+   sp(image_list)                m_pimagelistDisabled;
+   int_int_spreadset *           m_prel;
+   bool                          m_bTracking;
+   int32_t                       m_iTracking;
+   UINT                          m_uiResourceID;
+   int32_t                       m_iTopMenuCount;
+   ::user::menu                  m_menu;
 
 
    simple_menu_bar(sp(::base::application) papp);
    virtual ~simple_menu_bar();
 
 
-   using ::simple_toolbar::create;
-   bool create(sp(::user::interaction) pParentWnd,
-      uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
-      UINT nID = __IDW_TOOLBAR);
-   using ::simple_toolbar::CreateEx;
-#ifdef WINDOWSEX
-   bool CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle = TBSTYLE_FLAT,
-      uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
-      rect rcBorders = rect(0, 0, 0, 0),
-      UINT nID = __IDW_TOOLBAR);
-#else
-   bool CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle = 0,
-      uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
-      rect rcBorders = rect(0, 0, 0, 0),
-      UINT nID = __IDW_TOOLBAR);
-#endif
+   using ::simple_toolbar::create_window;
+   bool create_window(sp(::user::interaction) pParentWnd,uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,UINT nID = __IDW_TOOLBAR);
+   using ::simple_toolbar::create_window_ex;
+   bool create_window_ex(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle = TBSTYLE_FLAT,uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,LPCRECT lpcrect = NULL,UINT nID = __IDW_TOOLBAR);
 
 
    LRESULT CALLBACK MessageProc(

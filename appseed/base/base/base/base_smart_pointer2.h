@@ -51,7 +51,7 @@
    smart_pointer < T > ::smart_pointer(const allocatorsp & a)
    {
       m_p = NULL;
-      create(a);
+      alloc(a);
    }
 
 #ifdef MOVE_SEMANTICS
@@ -59,7 +59,7 @@
    smart_pointer < T > ::smart_pointer(allocatorsp && a)
    {
       m_p = NULL;
-      create(a);
+      alloc(a);
    }
 #endif
 
@@ -231,7 +231,7 @@
          return;
       }
       if(is_null())
-         create(p->allocer());
+         alloc(p->allocer());
       *m_p = *p.m_p;
    }
 

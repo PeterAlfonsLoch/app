@@ -60,15 +60,8 @@ public:
    virtual ~simple_frame_window();
 
 
-   using ::user::frame_window::create;
-   virtual bool create(const char * lpszClassName,
-            const char * lpszWindowName,
-            uint32_t dwStyle = WS_OVERLAPPEDWINDOW,
-            const RECT & rectParam = rect(0, 0, 0, 0),
-            sp(::user::interaction) pParentWnd = NULL,        // != NULL for popups
-            const char * lpszMenuName = NULL,
-            uint32_t dwExStyle = 0,
-            sp(::create_context) pContext = NULL);
+   using ::user::frame_window::create_window;
+   virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle = WS_OVERLAPPEDWINDOW,LPCRECT lpcrect = NULL,sp(::user::interaction) pParentWnd = NULL,const char * lpszMenuName = NULL,uint32_t dwExStyle = 0,sp(::create_context) pContext = NULL);
 
    virtual bool create_bars();
    virtual bool on_create_bars();

@@ -98,8 +98,8 @@ synch_lock ml(&cairo_mutex());
       m_info.bmiHeader.biCompression   = BI_RGB;
       m_info.bmiHeader.biSizeImage     = width * height * 4;
 
-      m_spbitmap.create(allocer());
-      m_spgraphics.create(allocer());
+      m_spbitmap.alloc(allocer());
+      m_spgraphics.alloc(allocer());
 
       if(m_spbitmap.m_p == NULL)
       {

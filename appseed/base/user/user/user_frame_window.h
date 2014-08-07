@@ -178,11 +178,7 @@ namespace user
 
 
       bool LoadAccelTable(const char * lpszResourceName);
-      using ::user::interaction::create;
-      virtual bool create(const char * lpszClassName,
-         const char * lpszWindowName,
-         uint32_t dwStyle = WS_OVERLAPPEDWINDOW,
-         const RECT & rect = ::rect(0, 0, 0, 0),
+      virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle = WS_OVERLAPPEDWINDOW,LPCRECT lpcrect = NULL,
          sp(::user::interaction) pParentWnd = NULL,        // != NULL for popups
          const char * lpszMenuName = NULL,
          uint32_t dwExStyle = 0,

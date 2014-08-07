@@ -742,7 +742,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultSt
 
    ::rect rectFrame(0,0,0,0);
 
-   if (!CreateEx(0L, NULL, lpszTitle, dwDefaultStyle, rectFrame, pParentWnd, /*nIDResource*/ 0, pContext))
+   if (!create_window_ex(0L, NULL, lpszTitle, dwDefaultStyle, rectFrame, pParentWnd, /*nIDResource*/ 0, pContext))
    {
       return FALSE;   // will self destruct on failure normally
    }
@@ -977,7 +977,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics * pdc)
             m_dibBk->Fill(0, 184, 184, 170);
             //HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
             //::visual::fastblur *( *pfnNew )(sp(::base::application)) = (::visual::fastblur *(*)(sp(::base::application))) ::GetProcAddress(hmodule, "new_fastblur");
-            m_fastblur.create(allocer());
+            m_fastblur.alloc(allocer());
             m_fastblur.initialize(rectClient.size(), 2);
          }
          if (m_fastblur.is_set() && m_fastblur->area() > 0)
@@ -1125,7 +1125,7 @@ bool simple_frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, uin
       if(ptoolbar == NULL)
          return false;
 
-      ptoolbar->CreateEx(this,dwCtrlStyle,dwStyle);
+      ptoolbar->create_window_ex(this,dwCtrlStyle,dwStyle);
 
       pui = ptoolbar;
 
@@ -1201,16 +1201,9 @@ void simple_frame_window::WfiOnUp()
 }
 
 
-bool simple_frame_window::create(const char * lpszClassName,
-   const char * lpszWindowName,
-   uint32_t dwStyle,
-   const RECT& rect,
-   sp(::user::interaction) pParentWnd,        // != NULL for popups
-   const char * lpszMenuName,
-   uint32_t dwExStyle,
-   sp(::create_context) pContext)
+bool simple_frame_window::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(::user::interaction) pParentWnd,const char * lpszMenuName,uint32_t dwExStyle,sp(::create_context) pContext)
 {
-   return ::user::frame_window::create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, lpszMenuName, dwExStyle, pContext);
+   return ::user::frame_window::create_window(lpszClassName, lpszWindowName, dwStyle, lpcrect, pParentWnd, lpszMenuName, dwExStyle, pContext);
 
 }
 

@@ -20,8 +20,7 @@ namespace user
       void install_message_handling(::message::dispatch * pdispatch);
 
 
-      using ::user::interaction::create;
-      virtual bool create(sp(::user::interaction) puiParent, id id);
+      virtual bool create_window(LPCRECT lpcrect, sp(::user::interaction) puiParent,id id);
 
 
       virtual sp(place_holder) get_new_place_holder(LPCRECT lpcrectCreate);

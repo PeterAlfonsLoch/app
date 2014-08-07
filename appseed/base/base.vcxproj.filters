@@ -4595,9 +4595,6 @@
     <ClInclude Include="base\node\windows\windows_crypto.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui_message_box.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="base\base\base_session_interface.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
@@ -4855,6 +4852,9 @@
     </ClInclude>
     <ClInclude Include="base\node\windows\windows_interaction_impl.h">
       <Filter>Header Files\base\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui\simple_ui_message_box.h">
+      <Filter>Header Files\user\simple_ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -9392,6 +9392,9 @@
     </None>
     <None Include="primitive\collection\collection.inl">
       <Filter>Header Files\primitive\collection</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

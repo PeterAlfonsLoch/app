@@ -39,7 +39,7 @@ namespace user
    }
 
 
-   bool interaction_child::CreateEx(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(interaction) pparent,id id,LPVOID lpParam)
+   bool interaction_child::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(interaction) pparent,id id,LPVOID lpParam)
    {
 
       if(m_bCreate)
@@ -81,7 +81,7 @@ namespace user
 #endif
       //m_pimpl = new interaction_impl(get_app());
       //m_pimpl->m_pui = m_pui;
-      //m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pparent, iId, lpParam);
+      //m_pimpl->create_window_ex(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pparent, iId, lpParam);
       ASSERT_VALID(this);
 
       /*sp(interaction) oswindow_Parent = pparent;
@@ -109,10 +109,21 @@ namespace user
 
       cs.dwExStyle   = dwExStyle;
       cs.style       = dwStyle;
-      cs.x           = rect.left;
-      cs.y           = rect.top;
-      cs.cx          = rect.right - rect.left;
-      cs.cy          = rect.bottom - rect.top;
+
+      if(lpcrect == NULL)
+      {
+         cs.x           = 0;
+         cs.y           = 0;
+         cs.cx          = 0;
+         cs.cy          = 0;
+      }
+      else
+      {
+         cs.x           = lpcrect->left;
+         cs.y           = lpcrect->top;
+         cs.cx          = lpcrect->right - lpcrect->left;
+         cs.cy          = lpcrect->bottom - lpcrect->top;
+      }
 
 #ifdef WINDOWSEX
 
@@ -149,12 +160,19 @@ namespace user
 
       send_message(WM_CREATE,0,(LPARAM)&cs);
 
-      ::rect rectChild(rect);
+      ::rect rectChild(0, 0, 0, 0);
+
+      if(lpcrect != NULL)
+      {
+         
+         rectChild = lpcrect;
+
+      }
 
       if(rectChild.area() > 0)
       {
 
-         m_pui->SetWindowPos(0,rect.left,rect.top,cs.cx,cs.cy,0);
+         m_pui->SetWindowPos(0,rectChild,0);
 
          send_message(WM_SIZE);
 
@@ -168,7 +186,7 @@ namespace user
 
 
 
-   bool interaction_child::create(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT& rect,sp(interaction)  pparent,id id,sp(::create_context) pContext)
+   bool interaction_child::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(interaction)  pparent,id id,sp(::create_context) pContext)
    {
 
       if(m_bCreate)
@@ -233,10 +251,23 @@ namespace user
       CREATESTRUCT cs;
       cs.dwExStyle = 0;
       cs.style = dwStyle;
-      cs.x = rect.left;
-      cs.y = rect.top;
-      cs.cx = rect.right - rect.left;
-      cs.cy = rect.bottom - rect.top;
+
+      if(lpcrect == NULL)
+      {
+
+         cs.x = 0;
+         cs.y = 0;
+         cs.cx = 0;
+         cs.cy = 0;
+
+      }
+      else
+      {
+         cs.x = lpcrect->left;
+         cs.y = lpcrect->top;
+         cs.cx = lpcrect->right - lpcrect->left;
+         cs.cy = lpcrect->bottom - lpcrect->top;
+      }
 
 #ifdef WINDOWSEX
 
@@ -273,12 +304,19 @@ namespace user
 
       send_message(WM_CREATE,0,(LPARAM)&cs);
 
-      ::rect rectChild(rect);
+      ::rect rectChild(0, 0, 0, 0);
+
+      if(lpcrect != NULL)
+      {
+
+         rectChild = lpcrect;
+
+      }
 
       if(rectChild.area() > 0)
       {
 
-         m_pui->SetWindowPos(0,rect.left,rect.top,cs.cx,cs.cy,SWP_SHOWWINDOW);
+         m_pui->SetWindowPos(0,rectChild,SWP_SHOWWINDOW);
 
          send_message(WM_SIZE);
 
@@ -291,7 +329,7 @@ namespace user
    }
 
 
-   bool interaction_child::create(sp(interaction) pparent,id id)
+   bool interaction_child::create_window(LPCRECT lpcrect, sp(interaction) pparent,id id)
    {
 
       if(m_bCreate)
@@ -345,10 +383,24 @@ namespace user
       cs.lpszClass = NULL;
       cs.lpszName = NULL;
       cs.style = WS_CHILD | WS_VISIBLE;
-      cs.x = 0;
-      cs.y = 0;
-      cs.cx = 0;
-      cs.cy = 0;
+
+      if(lpcrect == NULL)
+      {
+         cs.x = 0;
+         cs.y = 0;
+         cs.cx = 0;
+         cs.cy = 0;
+         
+      }
+      else
+      {
+
+         cs.x           = lpcrect->left;
+         cs.y           = lpcrect->top;
+         cs.cx          = lpcrect->right - lpcrect->left;
+         cs.cy          = lpcrect->bottom - lpcrect->top;
+
+      }
 
 #ifdef WINDOWSEX
 
@@ -379,12 +431,17 @@ namespace user
 
       send_message(WM_CREATE,0,(LPARAM)&cs);
 
-      ::rect rectChild(0, 0, cs.cx, cs.cy);
+      ::rect rectChild(0, 0, 0, 0);
+
+      if(lpcrect != NULL)
+      {
+         rectChild = *lpcrect;
+      }
 
       if(rectChild.area() > 0)
       {
 
-         m_pui->SetWindowPos(0,0,0,cs.cx,cs.cy,0);
+         m_pui->SetWindowPos(0,rectChild,0);
 
          send_message(WM_SIZE);
 
@@ -431,8 +488,6 @@ namespace user
    }
 
 
-
-
    LRESULT interaction_child::send_message(UINT uiMessage,WPARAM wparam,lparam lparam)
    {
 
@@ -440,40 +495,22 @@ namespace user
 
       spbase = get_base(m_pui,uiMessage,wparam,lparam);
 
-      try
+      if(m_pui != NULL)
       {
-         sp(interaction) pui = m_pui;
-         while(pui != NULL)
-         {
-            try
-            {
-               pui->pre_translate_message(spbase);
-            }
-            catch(...)
-            {
-               break;
-            }
-            if(spbase->m_bRet)
-               return spbase->get_lresult();
-            try
-            {
-               pui = pui->GetParent();
-            }
-            catch(...)
-            {
-               break;
-            }
-         }
+
+         m_pui->walk_pre_translate_tree(spbase);
+
+         if(spbase->m_bRet)
+            return spbase->get_lresult();
+
       }
-      catch(...)
-      {
-      }
+
       message_handler(spbase);
+
       return spbase->get_lresult();
 
-
-
    }
+
 
 #ifdef LINUX
 

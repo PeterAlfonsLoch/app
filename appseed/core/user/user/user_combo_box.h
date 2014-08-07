@@ -91,7 +91,7 @@ namespace user
 
 
 
-      virtual bool create(sp(::user::interaction) puiParent, id id);
+      virtual bool create_window(LPCRECT lpcrect, sp(::user::interaction) puiParent, id id);
 
       //::count get_count();
       //index get_cur_sel();

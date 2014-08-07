@@ -20,7 +20,7 @@ namespace user
       step_slider(sp(::base::application) papp);
       virtual ~step_slider();
 
-      bool create(sp(::user::interaction) pwndParent, id id);
+      bool create_window(LPCRECT lpcrect, sp(::user::interaction) pwndParent, id id);
 
       virtual void install_message_handling(::message::dispatch * pdispatch);
 

@@ -251,7 +251,7 @@ namespace plugin
             return;
 
          if(m_dib.is_null())
-            m_dib.create(allocer());
+            m_dib.alloc(allocer());
 
          if(m_dib.is_null())
             return;

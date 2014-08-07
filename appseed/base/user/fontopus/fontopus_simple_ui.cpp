@@ -57,7 +57,7 @@ namespace fontopus
       if(pcreate->previous())
          return;
 
-      if(!m_login.create(this,"pane_first"))
+      if(!m_login.create_window(NULL, this,"pane_first"))
       {
 
          pcreate->set_lresult(-1);
@@ -139,7 +139,7 @@ namespace fontopus
 
       ::user::interaction * puiParent = session().oprop("plugin_parent").cast < ::user::interaction >();
 
-      if(!CreateEx(0, NULL, NULL, 0, null_rect(), puiParent, "fontopus"))
+      if(!create_window_ex(0, NULL, NULL, 0, NULL, puiParent, "fontopus"))
          return "";
 
       ::rect rectDesktop;

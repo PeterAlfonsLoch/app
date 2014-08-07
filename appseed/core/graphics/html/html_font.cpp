@@ -21,7 +21,7 @@ namespace html
       
       set_app(papp);
       
-      m_font.create(allocer());
+      m_font.alloc(allocer());
 
       int32_t iWeight;
       

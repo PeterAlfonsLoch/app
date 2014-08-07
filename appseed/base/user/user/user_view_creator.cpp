@@ -54,12 +54,12 @@ namespace user
       return m_viewmap.get_count();
    }
 
-   view_creator_data * view_creator::ensure(id id, LPCRECT lpcrectCreate)
+   view_creator_data * view_creator::ensure_impact(id id, LPCRECT lpcrectCreate)
    {
       view_creator_data * pcreatordata = get(id);
       if(pcreatordata != NULL)
          return pcreatordata;
-      return create(id,lpcrectCreate);
+      return create_impact(id,lpcrectCreate);
    }
 
    view_creator_data * view_creator::allocate(id id)
@@ -70,7 +70,7 @@ namespace user
       return pcreatordata;
    }
 
-   view_creator_data * view_creator::create(id id,LPCRECT lpcrectCreate)
+   view_creator_data * view_creator::create_impact(id id,LPCRECT lpcrectCreate)
    {
       view_creator_data * pcreatordata = allocate(id);
       pcreatordata->m_rectCreate = *lpcrectCreate;

@@ -10,7 +10,7 @@ namespace windows
       element(papp)
    {
 
-      m_pthreadimpl.create(allocer());
+      m_pthreadimpl.alloc(allocer());
 
       m_pthreadimpl->m_pthread = this;
 

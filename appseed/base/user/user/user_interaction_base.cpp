@@ -1133,7 +1133,7 @@ namespace user
 #endif
 
 
-   bool interaction_base::create(sp(interaction)pparent,id id)
+   bool interaction_base::create_window(LPCRECT lpcrect,sp(interaction)pparent,id id)
    {
 
       throw interface_only_exception(get_app());
@@ -1143,7 +1143,7 @@ namespace user
    }
 
 
-   bool interaction_base::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT& rect,sp(interaction) pParentWnd,id id,sp(::create_context) pContext)
+   bool interaction_base::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(interaction) pParentWnd,id id,sp(::create_context) pContext)
    {
 
       throw interface_only_exception(get_app());
@@ -1153,44 +1153,12 @@ namespace user
    }
 
 
-   bool interaction_base::create(const char * lpszClassName,
-      const char * lpszWindowName,uint32_t dwStyle,
-      const RECT& rect,
-      sp(interaction) pParentWnd,id id,
-      sp(::create_context) pContext)
-   {
-
-      throw interface_only_exception(get_app());
-
-      return false;
-
-   }
-
-
-   bool interaction_base::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,
-      const char * lpszWindowName,uint32_t dwStyle,
-      const RECT& rect,
-      sp(interaction) pParentWnd,id id,
-      LPVOID lpParam)
+   bool interaction_base::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(interaction) pParentWnd,id id,LPVOID lpParam)
    {
 
       throw interface_only_exception(get_app());
 
       return true;
-
-   }
-
-
-   bool interaction_base::CreateEx(uint32_t dwExStyle,const char * lpszClassName,
-      const char * lpszWindowName,uint32_t dwStyle,
-      const RECT& rect,
-      sp(interaction) pParentWnd,id id,
-      LPVOID lpParam)
-   {
-
-      throw interface_only_exception(get_app());
-
-      return false;
 
    }
 

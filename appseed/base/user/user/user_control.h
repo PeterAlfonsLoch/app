@@ -99,6 +99,7 @@ namespace user
          ::database::id          m_dataid;
          flags < efunction >     m_flagsfunction;
          edatatype               m_edatatype;
+         rect                    m_rect;
 
 
          descriptor();

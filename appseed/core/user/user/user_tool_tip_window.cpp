@@ -328,7 +328,7 @@ namespace user
          return false;
       }
       m_font->create_point_font("Arial", 10.0);
-      return CreateEx(WS_EX_TOOLWINDOW, NULL, NULL, WS_POPUP, null_rect(), NULL, id) != 0;
+      return create_window_ex(WS_EX_TOOLWINDOW, NULL, NULL, WS_POPUP, null_rect(), NULL, id) != 0;
    }
 
    ///////////////////////////////////////////////////////////

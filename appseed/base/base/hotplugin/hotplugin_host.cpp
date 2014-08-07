@@ -541,7 +541,7 @@ throw todo(get_thread_app());
       //pgraphics.blend_bitmap_data(lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref);
 
       if (m_dib.is_null())
-         m_dib.create(allocer());
+         m_dib.alloc(allocer());
 
       if(!m_dib->create(m_sizeBitmap))
          return;

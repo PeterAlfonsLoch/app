@@ -618,14 +618,14 @@ namespace user
 
    }
 
-   bool frame_window::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, const char * lpszMenuName, uint32_t dwExStyle, sp(::create_context) pContext)
+   bool frame_window::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(::user::interaction) pParentWnd,const char * lpszMenuName,uint32_t dwExStyle,sp(::create_context) pContext)
    {
 
       UNREFERENCED_PARAMETER(lpszMenuName);
 
       m_strTitle = lpszWindowName;    // save title for later
 
-      if (!::user::interaction::CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id(), pContext))
+      if (!::user::interaction::create_window_ex(dwExStyle, lpszClassName, lpszWindowName, dwStyle, lpcrect, pParentWnd, id(), pContext))
       {
 
          TRACE(::base::trace::category_AppMsg, 0, "Warning: failed to create frame_window.\n");
@@ -677,16 +677,18 @@ namespace user
 
    bool frame_window::OnCreateClient(LPCREATESTRUCT, sp(::create_context) pContext)
    {
-      // default create client will create a ::user::impact if asked for it
-      if (pContext != NULL &&
-         (pContext->m_user->m_typeinfoNewView ||
-         pContext->m_user->m_puiNew != NULL))
+      
+      if (pContext != NULL && (pContext->m_user->m_typeinfoNewView || pContext->m_user->m_puiNew != NULL))
       {
-         if (::user::impact::s_create_view(pContext, this, "pane_first") == NULL)
-            return FALSE;
+         
+         if (::user::impact::s_create_view(pContext, NULL, this, "pane_first") == NULL)
+            return false;
       }
-      return TRUE;
+
+      return true;
+
    }
+
 
    void frame_window::_001OnCreate(signal_details * pobj)
    {
@@ -749,7 +751,7 @@ namespace user
       // attempt to create the interaction_impl
       const char * lpszClass = GetIconWndClass(dwDefaultStyle, nIDResource);
       string strTitle = m_strTitle;
-      if (!CreateEx(0, lpszClass, strTitle, dwDefaultStyle, rectDefault,
+      if (!create_window_ex(0, lpszClass, strTitle, dwDefaultStyle, rectDefault,
       pParentWnd, nIDResource, (LPVOID) pContext))
       {
       return FALSE;   // will self destruct on failure normally

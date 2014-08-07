@@ -551,7 +551,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) impact::create_view(type * pinfo, sp(::user::document) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
+   sp(::user::interaction) impact::create_view(type * pinfo, sp(::user::document) pdoc,LPCRECT lpcrect, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
    {
 
       sp(type) info(pinfo);
@@ -585,12 +585,12 @@ namespace user
 
       }
 
-      return s_create_view(cacc, pwndParent, id);
+      return s_create_view(cacc, lpcrect, pwndParent, id);
 
    }
 
 
-   sp(::user::interaction) impact::s_create_view(type * pinfo, sp(::user::document) pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
+   sp(::user::interaction) impact::s_create_view(type * pinfo,sp(::user::document) pdoc,LPCRECT lpcrect,sp(::user::interaction) pwndParent,id id,sp(::user::interaction) pviewLast)
    {
 
       sp(type) info(pinfo);
@@ -605,11 +605,11 @@ namespace user
 
       cc->m_pCurrentDoc = pdoc;
 
-      return s_create_view(cacc, pwndParent, id);
+      return s_create_view(cacc, lpcrect, pwndParent, id);
 
    }
 
-   sp(::user::interaction) impact::s_create_view(::create_context * pContext, sp(::user::interaction) pwndParent, id id)
+   sp(::user::interaction) impact::s_create_view(::create_context * pContext,LPCRECT lpcrect,sp(::user::interaction) pwndParent,id id)
    {
 
       // trans   ASSERT(pwndParent->get_handle() != NULL);
@@ -645,8 +645,9 @@ namespace user
 
       ASSERT_KINDOF(::user::interaction, pui);
 
+      
       // views are always created with a border!
-      if (!pui->create(NULL, NULL, WS_VISIBLE | WS_CHILD, rect(0, 0, 0, 0), pwndParent, id, pContext))
+      if (!pui->create_window(NULL, NULL, WS_VISIBLE | WS_CHILD, lpcrect, pwndParent, id, pContext))
       {
 
          //TRACE0("Warning: could not create ::user::impact for frame.\n");

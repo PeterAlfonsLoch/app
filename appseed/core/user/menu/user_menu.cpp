@@ -90,12 +90,12 @@ namespace user
       //      const char * lpcsz = NULL;
 
       LPVOID lpvoid = NULL;
-      if(!CreateEx(WS_EX_LAYERED | WS_EX_TOOLWINDOW,NULL,NULL,0,rect(0,0,0,0),platform().get_view(),id(),lpvoid))
+      if(!create_window_ex(WS_EX_LAYERED | WS_EX_TOOLWINDOW,NULL,NULL,0,rect(0,0,0,0),platform().get_view(),id(),lpvoid))
          return false;
 
       SetOwner(oswindowParent);
 
-      if(!m_buttonClose.create(this, ChildIdClose))
+      if(!m_buttonClose.create_window(NULL, this, ChildIdClose))
          return false;
 
 
@@ -175,7 +175,7 @@ namespace user
          {
             rect.bottom = rect.top + m_iItemHeight;
          }
-         pitem->m_button.create(this, pitem->m_id);
+         pitem->m_button.create_window(NULL, this, pitem->m_id);
          pitem->m_button.SetWindowPos(0, rect.left, rect.top, rect.width(), rect.height(), 0);
          pitem->m_button.m_pschema = m_pschema->m_pschemaItemButton;
          pitem->m_button.m_pitem = pitem;

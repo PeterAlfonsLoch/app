@@ -10,7 +10,7 @@ namespace file
       element(papp.is_set() ? papp.m_p : get_thread_app())
    {
 
-      m_spstringbuffer.create(allocer());
+      m_spstringbuffer.alloc(allocer());
 
       if(m_spstringbuffer.is_set())
       {

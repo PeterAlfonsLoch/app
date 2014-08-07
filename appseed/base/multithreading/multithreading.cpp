@@ -147,7 +147,8 @@ mutex & user_mutex()
 
    static mutex * s_pmutexUser = new mutex();
 
-   return *s_pmutexUser;
+   //return *s_pmutexUser;
+   return *((mutex *)NULL);
 
 }
 

@@ -13,9 +13,9 @@ namespace backview
       m_mutex3Source(main.get_app()),
       m_mutex4Transfer(main.get_app())
    {
-//         m_spdrawdib.create(allocer());
+//         m_spdrawdib.alloc(allocer());
 //         m_spdrawdib->open();
-      m_dcScreen.create(allocer());
+      m_dcScreen.alloc(allocer());
    }
 
    Graphics::~Graphics()
@@ -521,7 +521,7 @@ namespace backview
       else
       {
 
-         spdib.create(allocer());
+         spdib.alloc(allocer());
 
          OnCreateDib(spdib, iIndex);
 

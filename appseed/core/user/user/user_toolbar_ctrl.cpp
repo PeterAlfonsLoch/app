@@ -8,16 +8,11 @@ namespace user
       DestroyWindow();
    }
 
-   bool tool_bar_control::create(uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd,
+   bool tool_bar_control::create_window(uint32_t dwStyle,LPCRECT lpcrect,sp(::user::interaction) pParentWnd,
       UINT nID)
    {
 
-#ifdef WINDOWSEX
-      sp(::user::interaction) pwindow = this;
-      return pwindow->create(TOOLBARCLASSNAME, NULL, dwStyle, rect, pParentWnd, nID);
-#else
-      throw todo(get_app());
-#endif
+      return create_window(TOOLBARCLASSNAME, NULL, dwStyle, lpcrect, pParentWnd, nID);
    }
 
    int32_t tool_bar_control::AddBitmap(int32_t nNumButtons, ::draw2d::bitmap* pBitmap)

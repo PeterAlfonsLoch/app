@@ -180,7 +180,7 @@ public:
 
 
    sp(T) clone() const;
-   void create(const allocatorsp & allocer);
+   void alloc(const allocatorsp & allocer);
 
 
 

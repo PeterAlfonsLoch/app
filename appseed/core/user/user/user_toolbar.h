@@ -1,5 +1,24 @@
 #pragma once
 
+#ifndef TBSTYLE_FLAT
+#define TBSTYLE_BUTTON          0x0000  // obsolete; use BTNS_BUTTON instead
+#define TBSTYLE_SEP             0x0001  // obsolete; use BTNS_SEP instead
+#define TBSTYLE_CHECK           0x0002  // obsolete; use BTNS_CHECK instead
+#define TBSTYLE_GROUP           0x0004  // obsolete; use BTNS_GROUP instead
+#define TBSTYLE_CHECKGROUP      (TBSTYLE_GROUP | TBSTYLE_CHECK)     // obsolete; use BTNS_CHECKGROUP instead
+#define TBSTYLE_DROPDOWN        0x0008  // obsolete; use BTNS_DROPDOWN instead
+#define TBSTYLE_AUTOSIZE        0x0010  // obsolete; use BTNS_AUTOSIZE instead
+#define TBSTYLE_NOPREFIX        0x0020  // obsolete; use BTNS_NOPREFIX instead
+
+#define TBSTYLE_TOOLTIPS        0x0100
+#define TBSTYLE_WRAPABLE        0x0200
+#define TBSTYLE_ALTDRAG         0x0400
+#define TBSTYLE_FLAT            0x0800
+#define TBSTYLE_LIST            0x1000
+#define TBSTYLE_CUSTOMERASE     0x2000
+#define TBSTYLE_REGISTERDROP    0x4000
+#define TBSTYLE_TRANSPARENT     0x8000
+#endif
 
 namespace user
 {
@@ -26,22 +45,10 @@ namespace user
       virtual ~tool_bar();
 
 
-      using ::user::control_bar::create;
-      bool create(sp(::user::interaction) pParentWnd,
-         uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
-         UINT nID = __IDW_TOOLBAR);
-      using ::user::control_bar::CreateEx;
-#ifdef WINDOWSEX
-      bool CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle = TBSTYLE_FLAT,
-         uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
-         rect rcBorders = rect(0, 0, 0, 0),
-         UINT nID = __IDW_TOOLBAR);
-#else
-      bool CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle = 0,
-         uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
-         rect rcBorders = rect(0, 0, 0, 0),
-         UINT nID = __IDW_TOOLBAR);
-#endif
+      using ::user::control_bar::create_window;
+      bool create_window(sp(::user::interaction) pParentWnd,uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,UINT nID = __IDW_TOOLBAR);
+      using ::user::control_bar::create_window_ex;
+      bool create_window_ex(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle = TBSTYLE_FLAT,uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,LPCRECT lpcrect =NULL, UINT nID = __IDW_TOOLBAR);
 
       void SetSizes(SIZE sizeButton, SIZE sizeImage);
          // button size should be bigger than image

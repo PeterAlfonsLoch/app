@@ -56,7 +56,7 @@ namespace base
 
       m_puserschema = &m_schemasimple;
 
-      m_schemasimple.m_pfont.create(allocer());
+      m_schemasimple.m_pfont.alloc(allocer());
 
       m_schemasimple.m_pfont->create_pixel_font("Helvetica",16);
 
@@ -1013,7 +1013,7 @@ namespace base
       if(!m_spfs->initialize())
          return false;
 
-      m_spcopydesk.create(allocer());
+      m_spcopydesk.alloc(allocer());
 
       if(!m_spcopydesk->initialize())
          return false;

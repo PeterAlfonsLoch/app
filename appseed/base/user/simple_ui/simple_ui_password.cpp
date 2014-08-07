@@ -109,7 +109,7 @@ namespace simple_ui
       m_dibBk->Fill(184, 184, 170);
       HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
       ::visual::fastblur *( *pfnNew )(sp(::base::application)) = (::visual::fastblur *(*)(sp(::base::application))) ::GetProcAddress(hmodule, "new_fastblur");*/
-      /*            m_fastblur.create(allocer());
+      /*            m_fastblur.alloc(allocer());
       m_fastblur.initialize(rectClient.size(), 2);
       }
       if(m_fastblur.is_set() && m_fastblur->get_graphics() != NULL)

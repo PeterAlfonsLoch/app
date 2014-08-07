@@ -94,12 +94,10 @@ namespace user
       if(!IsWindow())
       {
 
-         if(!create(NULL, NULL,
-            WS_VISIBLE | WS_CHILD,
-            rect(0, 0, 0, 0), pwndParent, 0))
+         if(!create_window(NULL, NULL, WS_VISIBLE | WS_CHILD, NULL, pwndParent, 0))
             return false;
 
-         if(!m_buttonClose.create(this, ChildIdClose))
+         if(!m_buttonClose.create_window(NULL, this, ChildIdClose))
             return false;
 
          m_buttonClose.install_message_handling(this);
@@ -137,9 +135,7 @@ namespace user
       if(!IsWindow())
       {
 
-         if(!create(NULL, NULL,
-            WS_VISIBLE | WS_CHILD,
-            rect(0, 0, 0, 0), pwndFill, 0))
+         if(!create_window(NULL, NULL, WS_VISIBLE | WS_CHILD,NULL, pwndFill, 0))
             return false;
 
       }
@@ -153,7 +149,7 @@ namespace user
 
       if(!m_buttonClose.IsWindow())
       {
-         if(!m_buttonClose.create(this, ChildIdClose))
+         if(!m_buttonClose.create_window(NULL, this, ChildIdClose))
             return false;
 
          m_buttonClose.install_message_handling(this);
@@ -354,7 +350,7 @@ namespace user
          menu_item * pitem = pitemParent->m_spitema->element_at(i);
          if(!pitem->m_button.IsWindow())
          {
-            pitem->m_button.create(this, pitem->m_id);
+            pitem->m_button.create_window(NULL, this, pitem->m_id);
             pitem->m_button.m_id = pitem->m_id;
             
             if(pitem->m_bPopup)

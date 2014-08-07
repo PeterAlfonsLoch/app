@@ -131,8 +131,7 @@ namespace user
       {
          if(!m_pheaderctrl->IsWindow())
          {
-#ifdef WINDOWSEX
-            return m_pheaderctrl->create(
+            return m_pheaderctrl->create_window(
                NULL,
                "",
                WS_CHILD
@@ -140,19 +139,9 @@ namespace user
                | HDS_FULLDRAG
                | HDS_HOTTRACK
                | HDS_DRAGDROP,
-               rect(0 , 0 , 0 , 0),
-               this,
-               1023) != 0;
-#else
-            return m_pheaderctrl->create(
                NULL,
-               "",
-               WS_CHILD
-               | WS_VISIBLE,
-               rect(0 , 0 , 0 , 0),
                this,
                1023) != 0;
-#endif
          }
          else
             return true;

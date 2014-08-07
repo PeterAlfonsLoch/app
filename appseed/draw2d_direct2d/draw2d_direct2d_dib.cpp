@@ -80,10 +80,10 @@ namespace draw2d_direct2d
       m_info.bmiHeader.biCompression = BI_RGB;
       m_info.bmiHeader.biSizeImage = width * height * 4;
 
-      m_spbitmap.create(allocer());
-      m_spbitmapMap.create(allocer());
-      m_spgraphics.create(allocer());
-      m_spgraphicsMap.create(allocer());
+      m_spbitmap.alloc(allocer());
+      m_spbitmapMap.alloc(allocer());
+      m_spgraphics.alloc(allocer());
+      m_spgraphicsMap.alloc(allocer());
 
       if (m_spbitmap.m_p == NULL || m_spbitmapMap.is_null() || m_spgraphics.is_null() || m_spgraphicsMap.is_null())
       {
@@ -2715,8 +2715,8 @@ namespace draw2d_direct2d
       if (is_realized())
          return false;
 
-      m_spbitmap.create(allocer());
-      m_spgraphics.create(allocer());
+      m_spbitmap.alloc(allocer());
+      m_spgraphics.alloc(allocer());
 
       if (m_spbitmap.is_null() || m_spbitmapMap.is_null() || m_spgraphics.is_null() || m_spgraphicsMap.is_null())
       {
@@ -2770,7 +2770,7 @@ namespace draw2d_direct2d
       }
 
       if (pgraphicsDst->m_spbitmap.is_null())
-         pgraphicsDst->m_spbitmap.create(allocer());
+         pgraphicsDst->m_spbitmap.alloc(allocer());
 
       pgraphicsDst->m_spbitmap->attach(pbitmap->m_pbitmap.Get());
 

@@ -153,7 +153,7 @@ public:
    virtual bool create(const char * lpClassName, const char * lpWindowName,
       uint32_t dwStyle, const RECT& rect,
       ::user::interaction_child* pParentWnd = NULL, UINT nID = 0);
-   virtual bool CreateEx(uint32_t dwExStyle, const char * lpClassName, const char * lpWindowName,
+   virtual bool create_window_ex(uint32_t dwExStyle, const char * lpClassName, const char * lpWindowName,
       uint32_t dwStyle, const RECT& rect,
       ::user::interaction_child* pParentWnd = NULL, UINT nID = 0);
 

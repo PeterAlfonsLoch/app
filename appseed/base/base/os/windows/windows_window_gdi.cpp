@@ -18,10 +18,10 @@ window_gdi::~window_gdi()
 }
 
 
-void window_gdi::create(oswindow interaction_impl, int64_t cxParam, int64_t cyParam, int iStrideParam)
+void window_gdi::create_window_graphics(oswindow interaction_impl, int64_t cxParam, int64_t cyParam, int iStrideParam)
 {
 
-   destroy();
+   destroy_window_graphics();
 
 
    ZERO(m_bitmapinfo);
@@ -43,14 +43,14 @@ void window_gdi::create(oswindow interaction_impl, int64_t cxParam, int64_t cyPa
 
    m_hbitmapOld = (HBITMAP) ::SelectObject(m_hdc, m_hbitmap);
 
-   window_graphics::create(interaction_impl, cxParam, cyParam, iStride);
+   window_graphics::create_window_graphics(interaction_impl, cxParam, cyParam, iStride);
 
 }
 
 
 
 
-void window_gdi::destroy()
+void window_gdi::destroy_window_graphics()
 {
 
    if(m_hdc != NULL)
@@ -77,7 +77,7 @@ void window_gdi::destroy()
 
    m_pcolorref = NULL;
 
-   window_graphics::destroy();
+   window_graphics::destroy_window_graphics();
 
 
 }

@@ -72,16 +72,15 @@ namespace user
       virtual void _002InstallMessageHandling(::message::dispatch * pinterface);
 
 
-      virtual bool create(sp(interaction)pparent,id id);
-      using ::request_interface::create;
-      virtual bool create(const char * lpszClassName,
+      virtual bool create_window(LPCRECT lpcrect, sp(interaction)pparent,id id);
+      virtual bool create_window(const char * lpszClassName,
          const char * lpszWindowName,uint32_t dwStyle,
-         const RECT& rect,
+         LPCRECT lpcrect,
          sp(interaction) pParentWnd,id id,
          sp(::create_context) pContext = NULL);
-      virtual bool CreateEx(uint32_t dwExStyle,const char * lpszClassName,
+      virtual bool create_window_ex(uint32_t dwExStyle,const char * lpszClassName,
          const char * lpszWindowName,uint32_t dwStyle,
-         const RECT& rect,
+         LPCRECT lpcrect,
          sp(interaction) pParentWnd,id id,
          LPVOID lpParam = NULL);
 

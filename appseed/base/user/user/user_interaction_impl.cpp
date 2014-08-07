@@ -173,34 +173,20 @@ namespace user
    }
 
 
-   bool interaction_impl::CreateEx(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,id id,LPVOID lpParam /* = NULL */)
+   bool interaction_impl::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(::user::interaction) pParentWnd,id id,LPVOID lpParam /* = NULL */)
    {
       UNREFERENCED_PARAMETER(dwExStyle);
       UNREFERENCED_PARAMETER(lpszClassName);
       UNREFERENCED_PARAMETER(lpszWindowName);
       UNREFERENCED_PARAMETER(dwStyle);
-      UNREFERENCED_PARAMETER(rect);
+      UNREFERENCED_PARAMETER(lpcrect);
       UNREFERENCED_PARAMETER(pParentWnd);
       UNREFERENCED_PARAMETER(id);
       UNREFERENCED_PARAMETER(lpParam);
       throw interface_only_exception(get_app());
    }
 
-   bool interaction_impl::CreateEx(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,int32_t x,int32_t y,int32_t nWidth,int32_t nHeight,oswindow oswindow_Parent,id id,LPVOID lpParam)
-   {
-      UNREFERENCED_PARAMETER(dwExStyle);
-      UNREFERENCED_PARAMETER(lpszClassName);
-      UNREFERENCED_PARAMETER(lpszWindowName);
-      UNREFERENCED_PARAMETER(dwStyle);
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(nWidth);
-      UNREFERENCED_PARAMETER(nHeight);
-      UNREFERENCED_PARAMETER(oswindow_Parent);
-      UNREFERENCED_PARAMETER(id);
-      UNREFERENCED_PARAMETER(lpParam);
-      throw interface_only_exception(get_app());
-   }
+
 
    // for child windows
    bool interaction_impl::pre_create_window(CREATESTRUCT & cs)
@@ -209,16 +195,12 @@ namespace user
       return true;
    }
 
-   bool interaction_impl::create(const char * lpszClassName,
-      const char * lpszWindowName,uint32_t dwStyle,
-      const RECT & rect,
-      sp(::user::interaction) pParentWnd,id id,
-      sp(::create_context) pContext)
+   bool interaction_impl::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(::user::interaction) pParentWnd,id id,sp(::create_context) pContext)
    {
       UNREFERENCED_PARAMETER(lpszClassName);
       UNREFERENCED_PARAMETER(lpszWindowName);
       UNREFERENCED_PARAMETER(dwStyle);
-      UNREFERENCED_PARAMETER(rect);
+      UNREFERENCED_PARAMETER(lpcrect);
       UNREFERENCED_PARAMETER(pParentWnd);
       UNREFERENCED_PARAMETER(id);
       UNREFERENCED_PARAMETER(pContext);
@@ -2291,7 +2273,7 @@ namespace user
       GetClientRect(rect);
 
       if(m_spdibFlip.is_null())
-         m_spdibFlip.create(allocer());
+         m_spdibFlip.alloc(allocer());
 
       if(m_spdibFlip.is_null())
          return;
@@ -2365,12 +2347,12 @@ namespace user
       {
 
          if(m_spdib.is_null())
-            m_spdib.create(allocer());
+            m_spdib.alloc(allocer());
 
          m_spdib->create(rectWindow.size());
 
          if(m_spdibFlip.is_null())
-            m_spdibFlip.create(allocer());
+            m_spdibFlip.alloc(allocer());
 
          m_spdibFlip->create(rectWindow.size());
 

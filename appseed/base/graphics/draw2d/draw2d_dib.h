@@ -318,7 +318,7 @@ namespace draw2d
          ::draw2d::dib_sp & dib = map < class size, class size, ::draw2d::dib_sp, ::draw2d::dib_sp >::operator [](key);
          if(dib.is_null())
          {
-            dib.create(allocer());
+            dib.alloc(allocer());
             dib->create(key);
          }
          return dib;
@@ -387,7 +387,7 @@ namespace draw2d
          ::draw2d::dib_sp & dib = map < ::draw2d::dib::descriptor, const ::draw2d::dib::descriptor &, ::draw2d::dib_sp, ::draw2d::dib_sp >::operator [](key);
          if(dib.is_null())
          {
-            dib.create(allocer());
+            dib.alloc(allocer());
             dib->create(key.m_size);
          }
          return dib;

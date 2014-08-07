@@ -288,19 +288,6 @@ namespace android
    }
 
 
-   /////////////////////////////////////////////////////////////////////////////
-   // interaction_impl creation
-
-   bool interaction_impl::CreateEx(DWORD dwExStyle, const char * lpszClassName,
-      const char * lpszWindowName, DWORD dwStyle,
-      const RECT& rect, sp(::user::interaction) pParentWnd, id id,
-      LPVOID lpParam /* = NULL */)
-   {
-      return CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle,
-         rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top,
-         pParentWnd->get_safe_handle(), id, lpParam);
-   }
-
 
  /* MWM decorations values */
    /*
@@ -389,10 +376,7 @@ xdisplay d(w->display());
  }
  */
 
-   bool interaction_impl::CreateEx(DWORD dwExStyle, const char * lpszClassName,
-      const char * lpszWindowName, DWORD dwStyle,
-      int32_t x, int32_t y, int32_t nWidth, int32_t nHeight,
-      oswindow hWndParent, id id, LPVOID lpParam)
+   bool interaction_impl::create_window_ex(DWORD dwExStyle, const char * lpszClassName,const char * lpszWindowName, DWORD dwStyle,LPCRECT lpcrect,oswindow hWndParent, id id, LPVOID lpParam)
    {
       UNREFERENCED_PARAMETER(id);
 //      ASSERT(lpszClassName == NULL || __is_valid_string(lpszClassName) ||
@@ -663,21 +647,13 @@ d.unlock();
       return TRUE;
    }
 
-   bool interaction_impl::create(const char * lpszClassName,
-      const char * lpszWindowName, DWORD dwStyle,
-      const RECT& rect,
-      sp(::user::interaction) pParentWnd, id id,
-      sp(::create_context) pContext)
+   bool interaction_impl::create_window(const char * lpszClassName,const char * lpszWindowName, DWORD dwStyle,LPCRECT lpcrect,sp(::user::interaction) pParentWnd, id id,sp(::create_context) pContext)
    {
-      // can't use for desktop or pop-up windows (use CreateEx instead)
+      // can't use for desktop or pop-up windows (use create_window_ex instead)
       ASSERT(pParentWnd != NULL);
       ASSERT((dwStyle & WS_POPUP) == 0);
 
-      return CreateEx(0, lpszClassName, lpszWindowName,
-         dwStyle | WS_CHILD,
-         rect.left, rect.top,
-         rect.right - rect.left, rect.bottom - rect.top,
-         pParentWnd->get_handle(), id, (LPVOID)pContext);
+      return create_window_ex(0, lpszClassName, lpszWindowName,dwStyle | WS_CHILD,lpcrect,pParentWnd->get_handle(), id, (LPVOID)pContext);
    }
 
    bool interaction_impl::create_message_window(const char * pszName, ::message_queue_listener * pcallback)
@@ -690,8 +666,7 @@ d.unlock();
       else
       {
          string strName = "ca2::fontopus::message_wnd::winservice_1";
-//         if(!CreateEx(0, NULL, pszName, WS_CHILD, 0, 0, 0, 0, oswindow_MESSAGE, NULL, NULL))
-         if(!CreateEx(0, NULL, pszName, WS_CHILD, 0, 0, 0, 0,HWND_MESSAGE, id(), NULL))
+         if(!create_window_ex(0, NULL, pszName, WS_CHILD, NULL,HWND_MESSAGE, id(), NULL))
          {
             return false;
          }

@@ -127,14 +127,12 @@ namespace user
 
 
 
-      using ::user::interaction_base::create;
+      using ::user::interaction_base::create_window;
+      using ::user::interaction_base::create_window_ex;
       // for child windows, views, panes etc
-      virtual bool create(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT& rect,sp(::user::interaction) pParentWnd,id id,sp(::create_context) pContext = NULL);
+      virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(::user::interaction) pParentWnd,id id,sp(::create_context) pContext = NULL);
 
-      // advanced creation (allows access to extended styles)
-      virtual bool CreateEx(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,int32_t x,int32_t y,int32_t nWidth,int32_t nHeight,oswindow oswindow_Parent,id id,LPVOID lpParam = NULL);
-
-      virtual bool CreateEx(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT& rect,sp(::user::interaction) pParentWnd,id id,LPVOID lpParam = NULL);
+      virtual bool create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(::user::interaction) pParentWnd,id id,LPVOID lpParam = NULL);
 
       virtual bool DestroyWindow();
 

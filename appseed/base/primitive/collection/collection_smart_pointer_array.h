@@ -58,7 +58,7 @@ public:
 
       sp(T) & sp = array < smart_pointer < T > >::add_new();
 
-      sp.create(this->allocer());
+      sp.alloc(this->allocer());
 
       return sp;
 
@@ -79,7 +79,7 @@ public:
       ::count ca = this->get_size();
       for(; i < ca; i++)
       {
-         this->element_at(i).create(this->allocer());
+         this->element_at(i).alloc(this->allocer());
       }
       return ca;
    }

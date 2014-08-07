@@ -25,9 +25,9 @@ namespace user
    }
 
 
-
-   bool split_bar::create(split_layout * pparent)
+   bool split_bar::create_window(LPCRECT lpcrect, split_layout * pparent)
    {
+      
       m_pparent = pparent;
 //      int32_t nClassStyle = 0;
 //      const char * lpClassName = System.RegisterWndClass(
@@ -36,13 +36,18 @@ namespace user
          //0,
          //0);
    //   rect rect(0, 0, 0, 0);
-      if(!::user::interaction::create(pparent, 0))
+
+      if(!::user::interaction::create_window(lpcrect, pparent, 0))
       {
+
          System.simple_message_box(NULL, "Could not create Split Bar");
+
          return FALSE;
+
       }
 
       return TRUE;
+
    }
 
 

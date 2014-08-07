@@ -27,7 +27,7 @@ namespace user
       class color colorPress(color);
       colorHover.hls_rate(0.0, 0.7, 0.0);
 
-      m_button.m_pfont.create(allocer());
+      m_button.m_pfont.alloc(allocer());
       m_button.m_pfont->create_point_font("Arial",11.0);
       m_button.set_color(color_text_normal,ARGB(255,0,0,0));
       m_button.set_color(color_text_press,color | (0xff << 24));
@@ -41,7 +41,7 @@ namespace user
       m_button.m_etranslucency = ::user::TranslucencyNone;
 
 
-      m_buttonBaseWndMenuSysMenu.m_pfont.create(allocer());
+      m_buttonBaseWndMenuSysMenu.m_pfont.alloc(allocer());
       m_buttonBaseWndMenuSysMenu.m_pfont->create_point_font("Marlett", 11.0);
       m_buttonBaseWndMenuSysMenu.set_color(color_text_normal,ARGB(255,0,0,0));
       m_buttonBaseWndMenuSysMenu.set_color(color_text_press,color | (0xff << 24));
@@ -55,7 +55,7 @@ namespace user
       m_buttonBaseWndMenuSysMenu.m_etranslucency = ::user::TranslucencyNone;
 
 
-      m_buttonBaseWndMenuItem.m_pfont.create(allocer());
+      m_buttonBaseWndMenuItem.m_pfont.alloc(allocer());
       m_buttonBaseWndMenuItem.m_pfont->create_point_font("Lucida Sans Unicode", 9.0);
       m_buttonBaseWndMenuItem.set_color(color_text_normal,ARGB(255,0,0,0));
       m_buttonBaseWndMenuItem.set_color(color_text_press,color | (0xff << 24));
@@ -73,7 +73,7 @@ namespace user
 
 
 
-      m_buttonBaseWndMenuItemPopup.m_pfont.create(allocer());
+      m_buttonBaseWndMenuItemPopup.m_pfont.alloc(allocer());
       m_buttonBaseWndMenuItemPopup.m_pfont->create_point_font( "Lucida Sans Unicode", 9.0, FW_BOLD);
       m_buttonBaseWndMenuItemPopup.set_color(color_text_normal, ARGB(255, 0, 0, 0));
       m_buttonBaseWndMenuItemPopup.set_color(color_text_press,color | (0xff << 24));

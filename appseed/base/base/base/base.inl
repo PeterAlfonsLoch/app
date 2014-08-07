@@ -221,16 +221,16 @@ namespace user
 
 
    template < class VIEW >
-   inline sp(VIEW) impact::create_view(::user::document * pdoc, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
+   inline sp(VIEW) impact::create_view(::user::document * pdoc,LPCRECT lpcrect, sp(::user::interaction) pwndParent,id id,sp(::user::interaction) pviewLast)
    {
-      return create_view(System.type_info < VIEW >(), pdoc, pwndParent, id, pviewLast);
+      return create_view(System.type_info < VIEW >(), pdoc, lpcrect, pwndParent, id, pviewLast);
    }
 
 
    template < class VIEW >
-   inline sp(VIEW) impact::create_view(::user::interaction * pwndParent, id id, sp(::user::interaction) pviewLast)
+   inline sp(VIEW) impact::create_view(LPCRECT lpcrect,::user::interaction * pwndParent,id id,sp(::user::interaction) pviewLast)
    {
-      return create_view < VIEW >(NULL, pwndParent, id, pviewLast);
+      return create_view < VIEW >(NULL, lpcrect, pwndParent, id, pviewLast);
    }
 
    template < class VIEW >

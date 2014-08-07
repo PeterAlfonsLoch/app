@@ -16,6 +16,7 @@ namespace fontopus
       ::simple_ui::label *          m_plabelPassword;
       ::simple_ui::password *       m_ppassword;
       ::simple_ui::tap *            m_ptap;
+      login **                      m_pploginDeferTranslate;
 
       string                        m_strUsername;
       string                        m_strPassword;
@@ -42,7 +43,7 @@ namespace fontopus
 
       void initialize();
 
-      void defer_translate(::simple_ui::style * pstyle);
+      void defer_translate(const string & strUser, const string & strPass, const string & strOpen);
 
       virtual void layout();
 

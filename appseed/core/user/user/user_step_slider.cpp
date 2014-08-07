@@ -18,9 +18,13 @@ namespace user
    step_slider::~step_slider()
    {
    }
-   bool step_slider::create(sp(::user::interaction) pwndParent, id id)
+
+
+   bool step_slider::create_window(LPCRECT lpcrect, sp(::user::interaction) pwndParent, id id)
    {
-      return ::user::interaction::create(NULL, NULL, WS_CHILD, rect(0, 0, 0, 0), pwndParent, id) != FALSE;
+
+      return ::user::interaction::create_window(NULL, NULL, WS_CHILD, lpcrect, pwndParent, id) != FALSE;
+
    }
 
 

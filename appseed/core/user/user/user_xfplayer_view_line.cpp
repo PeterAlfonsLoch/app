@@ -1566,7 +1566,7 @@ void XfplayerViewLine::SetFont(::draw2d::font * pfont)
    ASSERT(pfont != NULL);
    if(m_font.m_p == NULL)
    {
-      m_font.create(allocer());
+      m_font.alloc(allocer());
    }
    m_font->operator=(*pfont);
 }

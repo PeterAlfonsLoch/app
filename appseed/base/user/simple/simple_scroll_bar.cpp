@@ -46,14 +46,14 @@ void simple_scroll_bar::install_message_handling(::message::dispatch * pinterfac
    IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &simple_scroll_bar::_001OnDestroy);
 }
 
-bool simple_scroll_bar::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, sp(::user::interaction) pParentWnd, UINT nID, sp(::create_context) pContext)
+bool simple_scroll_bar::create_window(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle,LPCRECT lpcrect, sp(::user::interaction) pParentWnd, UINT nID, sp(::create_context) pContext)
 {
-   return ::user::interaction::create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
+   return ::user::interaction::create_window(lpszClassName, lpszWindowName, dwStyle, lpcrect, pParentWnd, nID, pContext);
 }
 
-bool simple_scroll_bar::create(e_orientation eorientation, uint32_t dwStyle, rect &rect, sp(::user::interaction)pParentWnd, UINT nID)
+bool simple_scroll_bar::create_window(e_orientation eorientation,uint32_t dwStyle,LPCRECT lpcrect,sp(::user::interaction)pParentWnd,UINT nID)
 {
-   if(!::user::scroll_bar::create(eorientation, dwStyle, rect, pParentWnd, nID))
+   if(!::user::scroll_bar::create_window(eorientation, dwStyle, lpcrect, pParentWnd, nID))
       return FALSE;
    return TRUE;
 }
@@ -902,7 +902,7 @@ public:
 
    trw(sp(::base::application) papp): element(papp),::user::interaction(papp)
    {
-      if(CreateEx(WS_EX_LAYERED,NULL,"",WS_VISIBLE,rect(0,0,0,0),NULL, /*nIDResource*/ 0,NULL))
+      if(create_window_ex(WS_EX_LAYERED,NULL,"",WS_VISIBLE,NULL,NULL, /*nIDResource*/ 0,NULL))
       {
          TRACE("created trw");
       }

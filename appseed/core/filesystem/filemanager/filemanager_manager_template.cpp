@@ -35,7 +35,7 @@ namespace filemanager
       sp(::filemanager::data) pfilemanagerdata(pfilemanagerdataParam);
 
       if (pcreatecontext.is_null())
-         pcreatecontext.create(allocer());
+         pcreatecontext.alloc(allocer());
 
       if (pfilemanagerdata.is_null())
       {

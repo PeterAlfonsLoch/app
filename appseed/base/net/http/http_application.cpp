@@ -294,16 +294,31 @@ namespace http
 
       int iAttempt = 0;
 
-      string strFontopusServer = session().fontopus()->get_fontopus_server(pszUrl);
+      property_set set(get_app());
 
-      sp(::sockets::http_session) psession = session().fontopus()->m_mapFontopusSession[strFontopusServer];
+      sp(::sockets::http_session) psession;
+
+      string strFontopusServer;
+
+      if(atoi(System.url().get_param(System.url().get_query(pszUrl), "authnone")) == 1)
+      {
+
+         strFontopusServer = pszUrl;
+
+      }
+      else
+      {
+
+         strFontopusServer = session().fontopus()->get_fontopus_server(pszUrl);
+
+         psession = session().fontopus()->m_mapFontopusSession[strFontopusServer];
+
+      }
 
       while(true)
       {
 
          {
-
-            property_set set(get_app());
 
             set["get_response"] = "";
 

@@ -483,7 +483,7 @@ namespace user
             if (m_buttonmap.Lookup(ebutton, pbutton))
             {
 
-               if (!pbutton->IsWindow() && !pbutton->create(this, id))
+               if (!pbutton->IsWindow() && !pbutton->create_window(NULL, this, id))
                   return false;
 
                update_control_box_button(ebutton);

@@ -63,7 +63,7 @@ namespace platform
       m_brushProgress2->create_solid(ARGB(255, 255, 240, 200));
       m_brushProgress3->create_solid(ARGB(255, 128, 128, 128));
 
-      m_buttonschema.m_pfont.create(allocer());
+      m_buttonschema.m_pfont.alloc(allocer());
       m_buttonschema.m_pfont->create_point_font("Geneva", 16);
 
       m_font1->create_point_font("Geneva", 16);
@@ -913,7 +913,7 @@ namespace platform
             plink->m_strDescription    = doc.get_root()->child_at(i)->attr("description");
             plink->m_strSrc            = doc.get_root()->child_at(i)->attr("src");
 
-            plink->m_button.create(this, plink->m_strBrief);
+            plink->m_button.create_window(NULL, this, plink->m_strBrief);
 
             m_buttonschema.m_etranslucency = ::user::TranslucencyPresent;
             plink->m_button.m_pschema        = &m_buttonschema;

@@ -190,24 +190,16 @@ namespace windows
       // no default processing
    }
 
-
-   /////////////////////////////////////////////////////////////////////////////
-   // interaction_impl creation
-
-   bool interaction_impl::CreateEx(uint32_t dwExStyle,const char * lpszClassName,
-      const char * lpszWindowName,uint32_t dwStyle,
-      const RECT& rect,sp(::user::interaction) pParentWnd,id id,
-      LPVOID lpParam /* = NULL */)
+   
+   bool interaction_impl::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(::user::interaction) puiParent,id id,LPVOID lpParam)
    {
-      return CreateEx(dwExStyle,lpszClassName,lpszWindowName,dwStyle,
-         rect.left,rect.top,rect.right - rect.left,rect.bottom - rect.top,
-         pParentWnd->get_safe_handle(),id,lpParam);
+
+      return windows_create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,lpcrect,(oswindow) (puiParent.is_null() ? NULL : puiParent->get_handle()),id,lpParam);
+
    }
 
-   bool interaction_impl::CreateEx(uint32_t dwExStyle,const char * lpszClassName,
-      const char * lpszWindowName,uint32_t dwStyle,
-      int32_t x,int32_t y,int32_t nWidth,int32_t nHeight,
-      oswindow oswindow_Parent,id id,LPVOID lpParam)
+
+   bool interaction_impl::windows_create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,oswindow oswindowParent,id id,LPVOID lpParam)
    {
 
       //::simple_message_box(NULL,"h1","h1",MB_OK);
@@ -225,11 +217,27 @@ namespace windows
       cs.lpszClass = strClass.is_empty() ? NULL : (const char *)strClass;
       cs.lpszName = lpszWindowName;
       cs.style = dwStyle;
-      cs.x = x;
-      cs.y = y;
-      cs.cx = nWidth;
-      cs.cy = nHeight;
-      cs.hwndParent = oswindow_Parent;
+
+      if(lpcrect == NULL)
+      {
+
+         cs.x = 0;
+         cs.y = 0;
+         cs.cx = 0;
+         cs.cy = 0;
+
+      }
+      else
+      {
+
+         cs.x = lpcrect->left;
+         cs.y = lpcrect->top;
+         cs.cx = width(lpcrect);
+         cs.cy = height(lpcrect);
+
+      }
+
+      cs.hwndParent = oswindowParent;
       //   cs.hMenu = oswindow_Parent == NULL ? NULL : nIDorHMenu;
       cs.hMenu = NULL;
       cs.hInstance = System.m_hinstance;
@@ -333,27 +341,23 @@ namespace windows
       return TRUE;
    }
 
+
    // for child windows
    bool interaction_impl::pre_create_window(CREATESTRUCT& cs)
    {
-      return TRUE;
+
+      return true;
+
    }
 
-   bool interaction_impl::create(const char * lpszClassName,
-      const char * lpszWindowName,uint32_t dwStyle,
-      const RECT& rect,
-      sp(::user::interaction) pParentWnd,id id,
-      sp(::create_context) pContext)
+
+   bool interaction_impl::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lprect,sp(::user::interaction) pParentWnd,id id,sp(::create_context) pContext)
    {
-      // can't use for desktop or pop-up windows (use CreateEx instead)
+      // can't use for desktop or pop-up windows (use create_window_ex instead)
       ASSERT(pParentWnd != NULL);
       ASSERT((dwStyle & WS_POPUP) == 0);
 
-      return CreateEx(0,lpszClassName,lpszWindowName,
-         dwStyle | WS_CHILD,
-         rect.left,rect.top,
-         rect.right - rect.left,rect.bottom - rect.top,
-         pParentWnd->get_handle(),id,(LPVOID)pContext);
+      return create_window_ex(0,lpszClassName,lpszWindowName,dwStyle | WS_CHILD,lprect,pParentWnd,id,(LPVOID)pContext);
    }
 
 
@@ -367,7 +371,7 @@ namespace windows
 
       }
 
-      if(!CreateEx(0,NULL,pszName,WS_CHILD,0,0,0,0,HWND_MESSAGE,0,NULL))
+      if(!windows_create_window_ex(0,NULL,pszName,WS_CHILD,NULL,HWND_MESSAGE,0,NULL))
       {
 
          return false;
@@ -487,7 +491,7 @@ namespace windows
       {
 
          if(m_spdib.is_null())
-            m_spdib.create(allocer());
+            m_spdib.alloc(allocer());
 
          m_spdib->create(rectWindow.size());
 
@@ -2600,7 +2604,7 @@ namespace windows
    {
 
       if(m_spdib.is_null())
-         m_spdib.create(allocer());
+         m_spdib.alloc(allocer());
 
       m_spdib->print_window(this,pobj);
 

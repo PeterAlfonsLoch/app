@@ -144,7 +144,7 @@
 //
 // MessageText:
 //
-// The system CAnnot find the file specified.
+// The system Cannot find the file specified.
 //
 #define ERROR_FILE_NOT_FOUND             2L
 
@@ -153,7 +153,7 @@
 //
 // MessageText:
 //
-// The system CAnnot find the path specified.
+// The system Cannot find the path specified.
 //
 #define ERROR_PATH_NOT_FOUND             3L
 
@@ -162,7 +162,7 @@
 //
 // MessageText:
 //
-// The system CAnnot open the file.
+// The system Cannot open the file.
 //
 #define ERROR_TOO_MANY_OPEN_FILES        4L
 
@@ -261,7 +261,7 @@
 //
 // MessageText:
 //
-// The system CAnnot find the drive specified.
+// The system Cannot find the drive specified.
 //
 #define ERROR_INVALID_DRIVE              15L
 
@@ -270,7 +270,7 @@
 //
 // MessageText:
 //
-// The directory CAnnot be removed.
+// The directory Cannot be removed.
 //
 #define ERROR_CURRENT_DIRECTORY          16L
 
@@ -279,7 +279,7 @@
 //
 // MessageText:
 //
-// The system CAnnot move the file to a different disk drive.
+// The system Cannot move the file to a different disk drive.
 //
 #define ERROR_NOT_SAME_DEVICE            17L
 
@@ -306,7 +306,7 @@
 //
 // MessageText:
 //
-// The system CAnnot find the device specified.
+// The system Cannot find the device specified.
 //
 #define ERROR_BAD_UNIT                   20L
 
@@ -351,7 +351,7 @@
 //
 // MessageText:
 //
-// The drive CAnnot loCAte a specific area or track on the disk.
+// The drive Cannot loCAte a specific area or track on the disk.
 //
 #define ERROR_SEEK                       25L
 
@@ -360,7 +360,7 @@
 //
 // MessageText:
 //
-// The specified disk or diskette CAnnot be accessed.
+// The specified disk or diskette Cannot be accessed.
 //
 #define ERROR_NOT_DOS_DISK               26L
 
@@ -369,7 +369,7 @@
 //
 // MessageText:
 //
-// The drive CAnnot find the sector requested.
+// The drive Cannot find the sector requested.
 //
 #define ERROR_SECTOR_NOT_FOUND           27L
 
@@ -387,7 +387,7 @@
 //
 // MessageText:
 //
-// The system CAnnot write to the specified device.
+// The system Cannot write to the specified device.
 //
 #define ERROR_WRITE_FAULT                29L
 
@@ -396,7 +396,7 @@
 //
 // MessageText:
 //
-// The system CAnnot read from the specified device.
+// The system Cannot read from the specified device.
 //
 #define ERROR_READ_FAULT                 30L
 
@@ -414,7 +414,7 @@
 //
 // MessageText:
 //
-// The process CAnnot access the file beCAuse it is being used by another process.
+// The process Cannot access the file because it is being used by another process.
 //
 #define ERROR_SHARING_VIOLATION          32L
 
@@ -423,7 +423,7 @@
 //
 // MessageText:
 //
-// The process CAnnot access the file beCAuse another process has locked a portion of the file.
+// The process Cannot access the file because another process has locked a portion of the file.
 //
 #define ERROR_LOCK_VIOLATION             33L
 
@@ -478,7 +478,7 @@
 //
 // MessageText:
 //
-// Windows CAnnot find the network path. Verify that the network path is correct and the destination computer is not busy or turned off. If Windows still CAnnot find the network path, contact your network administrator.
+// Windows Cannot find the network path. Verify that the network path is correct and the destination computer is not busy or turned off. If Windows still Cannot find the network path, contact your network administrator.
 //
 #define ERROR_REM_NOT_LIST               51L
 
@@ -487,7 +487,7 @@
 //
 // MessageText:
 //
-// You were not connected beCAuse a dupliCAte name exists on the network. If joining a domain, go to System in Control Panel to change the computer name and try again. If joining a workgroup, choose another workgroup name.
+// You were not connected because a dupliCAte name exists on the network. If joining a domain, go to System in Control Panel to change the computer name and try again. If joining a workgroup, choose another workgroup name.
 //
 #define ERROR_DUP_NAME                   52L
 
@@ -541,7 +541,7 @@
 //
 // MessageText:
 //
-// The specified server CAnnot perform the requested operation.
+// The specified server Cannot perform the requested operation.
 //
 #define ERROR_BAD_NET_RESP               58L
 
@@ -622,7 +622,7 @@
 //
 // MessageText:
 //
-// The network name CAnnot be found.
+// The network name Cannot be found.
 //
 #define ERROR_BAD_NET_NAME               67L
 
@@ -658,7 +658,7 @@
 //
 // MessageText:
 //
-// No more connections CAn be made to this remote computer at this time beCAuse there are already as many connections as the computer CAn accept.
+// No more connections can be made to this remote computer at this time because there are already as many connections as the computer can accept.
 //
 #define ERROR_REQ_NOT_ACCEP              71L
 
@@ -685,7 +685,7 @@
 //
 // MessageText:
 //
-// The directory or file CAnnot be created.
+// The directory or file Cannot be created.
 //
 #define ERROR_CANNOT_MAKE                82L
 
@@ -748,7 +748,7 @@
 //
 // MessageText:
 //
-// The system CAnnot start another process at this time.
+// The system Cannot start another process at this time.
 //
 #define ERROR_NO_PROC_SLOTS              89L
 
@@ -757,7 +757,7 @@
 //
 // MessageText:
 //
-// CAnnot create another system semaphore.
+// Cannot create another system semaphore.
 //
 #define ERROR_TOO_MANY_SEMAPHORES        100L
 
@@ -775,7 +775,7 @@
 //
 // MessageText:
 //
-// The semaphore is set and CAnnot be closed.
+// The semaphore is set and Cannot be closed.
 //
 #define ERROR_SEM_IS_SET                 102L
 
@@ -784,7 +784,7 @@
 //
 // MessageText:
 //
-// The semaphore CAnnot be set again.
+// The semaphore Cannot be set again.
 //
 #define ERROR_TOO_MANY_SEM_REQUESTS      103L
 
@@ -793,7 +793,7 @@
 //
 // MessageText:
 //
-// CAnnot request exclusive semaphores at interrupt time.
+// Cannot request exclusive semaphores at interrupt time.
 //
 #define ERROR_INVALID_AT_INTERRUPT_TIME  104L
 
@@ -820,7 +820,7 @@
 //
 // MessageText:
 //
-// The program stopped beCAuse an alternate diskette was not inserted.
+// The program stopped because an alternate diskette was not inserted.
 //
 #define ERROR_DISK_CHANGE                107L
 
@@ -847,7 +847,7 @@
 //
 // MessageText:
 //
-// The system CAnnot open the device or file specified.
+// The system Cannot open the device or file specified.
 //
 #define ERROR_OPEN_FAILED                110L
 
@@ -892,7 +892,7 @@
 //
 // MessageText:
 //
-// The IOCTL CAll made by the appliCAtion program is not correct.
+// The IOCTL call made by the appliCAtion program is not correct.
 //
 #define ERROR_INVALID_CATEGORY           117L
 
@@ -937,7 +937,7 @@
 //
 // MessageText:
 //
-// The data area passed to a system CAll is too small.
+// The data area passed to a system call is too small.
 //
 #define ERROR_INSUFFICIENT_BUFFER        122L    // dderror
 
@@ -955,7 +955,7 @@
 //
 // MessageText:
 //
-// The system CAll level is not correct.
+// The system call level is not correct.
 //
 #define ERROR_INVALID_LEVEL              124L
 
@@ -1000,7 +1000,7 @@
 //
 // MessageText:
 //
-// The %1 appliCAtion CAnnot be run in Win32 mode.
+// The %1 appliCAtion Cannot be run in Win32 mode.
 //
 #define ERROR_CHILD_NOT_COMPLETE         129L
 
@@ -1027,7 +1027,7 @@
 //
 // MessageText:
 //
-// The file pointer CAnnot be set on the specified device or file.
+// The file pointer Cannot be set on the specified device or file.
 //
 #define ERROR_SEEK_ON_DEVICE             132L
 
@@ -1036,7 +1036,7 @@
 //
 // MessageText:
 //
-// A JOIN or SUBST command CAnnot be used for a drive that contains previously joined drives.
+// A JOIN or SUBST command Cannot be used for a drive that contains previously joined drives.
 //
 #define ERROR_IS_JOIN_TARGET             133L
 
@@ -1117,7 +1117,7 @@
 //
 // MessageText:
 //
-// The system CAnnot perform a JOIN or SUBST at this time.
+// The system Cannot perform a JOIN or SUBST at this time.
 //
 #define ERROR_BUSY_DRIVE                 142L
 
@@ -1126,7 +1126,7 @@
 //
 // MessageText:
 //
-// The system CAnnot join or substitute a drive to or for a directory on the same drive.
+// The system Cannot join or substitute a drive to or for a directory on the same drive.
 //
 #define ERROR_SAME_DRIVE                 143L
 
@@ -1171,7 +1171,7 @@
 //
 // MessageText:
 //
-// The path specified CAnnot be used at this time.
+// The path specified Cannot be used at this time.
 //
 #define ERROR_PATH_BUSY                  148L
 
@@ -1234,7 +1234,7 @@
 //
 // MessageText:
 //
-// CAnnot create another thread.
+// Cannot create another thread.
 //
 #define ERROR_TOO_MANY_TCBS              155L
 
@@ -1252,7 +1252,7 @@
 //
 // MessageText:
 //
-// The segment is already disCArded and CAnnot be locked.
+// The segment is already disCArded and Cannot be locked.
 //
 #define ERROR_DISCARDED                  157L
 
@@ -1306,7 +1306,7 @@
 //
 // MessageText:
 //
-// No more threads CAn be created in the system.
+// No more threads can be created in the system.
 //
 #define ERROR_MAX_THRDS_REACHED          164L
 
@@ -1333,7 +1333,7 @@
 //
 // MessageText:
 //
-// A lock request was not outstanding for the supplied CAncel region.
+// A lock request was not outstanding for the supplied cancel region.
 //
 #define ERROR_CANCEL_VIOLATION           173L
 
@@ -1360,7 +1360,7 @@
 //
 // MessageText:
 //
-// The operating system CAnnot run %1.
+// The operating system Cannot run %1.
 //
 #define ERROR_INVALID_ORDINAL            182L
 
@@ -1369,7 +1369,7 @@
 //
 // MessageText:
 //
-// CAnnot create a file when that file already exists.
+// Cannot create a file when that file already exists.
 //
 #define ERROR_ALREADY_EXISTS             183L
 
@@ -1396,7 +1396,7 @@
 //
 // MessageText:
 //
-// The operating system CAnnot run %1.
+// The operating system Cannot run %1.
 //
 #define ERROR_INVALID_STARTING_CODESEG   188L
 
@@ -1405,7 +1405,7 @@
 //
 // MessageText:
 //
-// The operating system CAnnot run %1.
+// The operating system Cannot run %1.
 //
 #define ERROR_INVALID_STACKSEG           189L
 
@@ -1414,7 +1414,7 @@
 //
 // MessageText:
 //
-// The operating system CAnnot run %1.
+// The operating system Cannot run %1.
 //
 #define ERROR_INVALID_MODULETYPE         190L
 
@@ -1423,7 +1423,7 @@
 //
 // MessageText:
 //
-// CAnnot run %1 in Win32 mode.
+// Cannot run %1 in Win32 mode.
 //
 #define ERROR_INVALID_EXE_SIGNATURE      191L
 
@@ -1432,7 +1432,7 @@
 //
 // MessageText:
 //
-// The operating system CAnnot run %1.
+// The operating system Cannot run %1.
 //
 #define ERROR_EXE_MARKED_INVALID         192L
 
@@ -1450,7 +1450,7 @@
 //
 // MessageText:
 //
-// The operating system CAnnot run %1.
+// The operating system Cannot run %1.
 //
 #define ERROR_ITERATED_DATA_EXCEEDS_64k  194L
 
@@ -1459,7 +1459,7 @@
 //
 // MessageText:
 //
-// The operating system CAnnot run %1.
+// The operating system Cannot run %1.
 //
 #define ERROR_INVALID_MINALLOCSIZE       195L
 
@@ -1468,7 +1468,7 @@
 //
 // MessageText:
 //
-// The operating system CAnnot run this appliCAtion program.
+// The operating system Cannot run this appliCAtion program.
 //
 #define ERROR_DYNLINK_FROM_INVALID_RING  196L
 
@@ -1486,7 +1486,7 @@
 //
 // MessageText:
 //
-// The operating system CAnnot run %1.
+// The operating system Cannot run %1.
 //
 #define ERROR_INVALID_SEGDPL             198L
 
@@ -1495,7 +1495,7 @@
 //
 // MessageText:
 //
-// The operating system CAnnot run this appliCAtion program.
+// The operating system Cannot run this appliCAtion program.
 //
 #define ERROR_AUTODATASEG_EXCEEDS_64k    199L
 
@@ -1504,7 +1504,7 @@
 //
 // MessageText:
 //
-// The code segment CAnnot be greater than or equal to 64K.
+// The code segment Cannot be greater than or equal to 64K.
 //
 #define ERROR_RING2SEG_MUST_BE_MOVABLE   200L
 
@@ -1513,7 +1513,7 @@
 //
 // MessageText:
 //
-// The operating system CAnnot run %1.
+// The operating system Cannot run %1.
 //
 #define ERROR_RELOC_CHAIN_XEEDS_SEGLIM   201L
 
@@ -1522,7 +1522,7 @@
 //
 // MessageText:
 //
-// The operating system CAnnot run %1.
+// The operating system Cannot run %1.
 //
 #define ERROR_INFLOOP_IN_RELOC_CHAIN     202L
 
@@ -1585,7 +1585,7 @@
 //
 // MessageText:
 //
-// The signal handler CAnnot be set.
+// The signal handler Cannot be set.
 //
 #define ERROR_THREAD_1_INACTIVE          210L
 
@@ -1594,7 +1594,7 @@
 //
 // MessageText:
 //
-// The segment is locked and CAnnot be realloCAted.
+// The segment is locked and Cannot be realloCAted.
 //
 #define ERROR_LOCKED                     212L
 
@@ -1612,7 +1612,7 @@
 //
 // MessageText:
 //
-// CAnnot nest CAlls to LoadModule.
+// Cannot nest calls to LoadModule.
 //
 #define ERROR_NESTING_NOT_ALLOWED        215L
 
@@ -1675,7 +1675,7 @@
 //
 // MessageText:
 //
-// The file size exceeds the limit allowed and CAnnot be saved.
+// The file size exceeds the limit allowed and Cannot be saved.
 //
 #define ERROR_FILE_TOO_LARGE             223L
 
@@ -1684,7 +1684,7 @@
 //
 // MessageText:
 //
-// Access Denied. Before opening files in this loCAtion, you must first add the web site to your trusted sites list, browse to the web site, and select the option to login automatiCAlly.
+// Access Denied. Before opening files in this loCAtion, you must first add the web site to your trusted sites list, browse to the web site, and select the option to login automatically.
 //
 #define ERROR_FORMS_AUTH_REQUIRED        224L
 
@@ -1693,7 +1693,7 @@
 //
 // MessageText:
 //
-// Operation did not complete successfully beCAuse the file contains a virus.
+// Operation did not complete successfully because the file contains a virus.
 //
 #define ERROR_VIRUS_INFECTED             225L
 
@@ -1702,7 +1702,7 @@
 //
 // MessageText:
 //
-// This file contains a virus and CAnnot be opened. Due to the nature of this virus, the file has been removed from this loCAtion.
+// This file contains a virus and Cannot be opened. Due to the nature of this virus, the file has been removed from this loCAtion.
 //
 #define ERROR_VIRUS_DELETED              226L
 
@@ -1765,7 +1765,7 @@
 //
 // MessageText:
 //
-// The session was CAnceled.
+// The session was canceled.
 //
 #define ERROR_VC_DISCONNECTED            240L
 
@@ -1810,7 +1810,7 @@
 //
 // MessageText:
 //
-// The copy functions CAnnot be used.
+// The copy functions Cannot be used.
 //
 #define ERROR_CANNOT_COPY                266L
 
@@ -1873,7 +1873,7 @@
 //
 // MessageText:
 //
-// Attempt to release mutex not owned by CAller.
+// Attempt to release mutex not owned by caller.
 //
 #define ERROR_NOT_OWNER                  288L
 
@@ -1927,7 +1927,7 @@
 //
 // MessageText:
 //
-// The file CAnnot be opened beCAuse it is in the process of being deleted.
+// The file Cannot be opened because it is in the process of being deleted.
 //
 #define ERROR_DELETE_PENDING             303L
 
@@ -1964,7 +1964,7 @@
 //
 // MessageText:
 //
-// A requested file lock operation CAnnot be processed due to an invalid byte range.
+// A requested file lock operation Cannot be processed due to an invalid byte range.
 //
 #define ERROR_INVALID_LOCK_RANGE         307L
 
@@ -1994,7 +1994,7 @@
 //
 // MessageText:
 //
-// The system CAnnot find message text for message number 0x%1 in the message file for %2.
+// The system Cannot find message text for message number 0x%1 in the message file for %2.
 //
 #define ERROR_MR_MID_NOT_FOUND           317L
 
@@ -2093,7 +2093,7 @@
 //
 // MessageText:
 //
-// User profile CAnnot be loaded.
+// User profile Cannot be loaded.
 //
 #define ERROR_USER_PROFILE_LOAD          500L
 
@@ -2165,7 +2165,7 @@
 //
 // MessageText:
 //
-// An attempt was made to CAncel or set a timer that has an associated APC and the subject thread is not the thread that originally set the timer with an associated APC routine.
+// An attempt was made to cancel or set a timer that has an associated APC and the subject thread is not the thread that originally set the timer with an associated APC routine.
 //
 #define ERROR_TIMER_NOT_CANCELED         541L
 
@@ -2282,7 +2282,7 @@
 //
 // MessageText:
 //
-// Used to indiCAte that an operation CAnnot continue without blocking for I/O.
+// Used to indiCAte that an operation Cannot continue without blocking for I/O.
 //
 #define ERROR_CANT_WAIT                  554L
 
@@ -2291,7 +2291,7 @@
 //
 // MessageText:
 //
-// IndiCAtes that a thread attempted to terminate itself by default (CAlled NtTerminateThread with NULL) and it was the last thread in the current process.
+// IndiCAtes that a thread attempted to terminate itself by default (called NtTerminateThread with NULL) and it was the last thread in the current process.
 //
 #define ERROR_CANT_TERMINATE_SELF        555L
 
@@ -2403,7 +2403,7 @@
 //
 // MessageText:
 //
-// The Netlogon service CAnnot start beCAuse another Netlogon service running in the domain conflicts with the specified role.
+// The Netlogon service Cannot start because another Netlogon service running in the domain conflicts with the specified role.
 //
 #define ERROR_LOGON_SERVER_CONFLICT      568L
 
@@ -2412,7 +2412,7 @@
 //
 // MessageText:
 //
-// The SAM database on a Windows Server is signifiCAntly out of synchronization with the copy on the Domain Controller. A complete synchronization is required.
+// The SAM database on a Windows Server is significantly out of synchronization with the copy on the Domain Controller. A complete synchronization is required.
 //
 #define ERROR_SYNCHRONIZATION_REQUIRED   569L
 
@@ -2490,7 +2490,7 @@
 //
 // MessageText:
 //
-// Windows CAnnot verify the digital signature for this file. A recent hardware or software change might have installed a file that is signed incorrectly or damaged, or that might be malicious software from an unknown source.
+// Windows Cannot verify the digital signature for this file. A recent hardware or software change might have installed a file that is signed incorrectly or damaged, or that might be malicious software from an unknown source.
 //
 #define ERROR_INVALID_IMAGE_HASH         577L
 
@@ -2555,7 +2555,7 @@
 //
 // MessageText:
 //
-// The paging file CAnnot be created on a floppy diskette.
+// The paging file Cannot be created on a floppy diskette.
 //
 #define ERROR_FLOPPY_VOLUME              584L
 
@@ -2601,7 +2601,7 @@
 // MessageText:
 //
 // {Registry File Failure}
-// The registry CAnnot load the hive (file):
+// The registry Cannot load the hive (file):
 // %hs
 // or its log or alternate.
 // It is corrupt, absent, or not writable.
@@ -2614,7 +2614,7 @@
 // MessageText:
 //
 // {Unexpected Failure in DebugActiveProcess}
-// An unexpected failure occurred while processing a DebugActiveProcess API request. You may choose OK to terminate the process, or CAncel to ignore the error.
+// An unexpected failure occurred while processing a DebugActiveProcess API request. You may choose OK to terminate the process, or cancel to ignore the error.
 //
 #define ERROR_DEBUG_ATTACH_FAILED        590L
 
@@ -2653,8 +2653,8 @@
 //
 // MessageText:
 //
-// {CAncel Timeout}
-// The driver %hs failed to complete a CAncelled I/O request in the allotted time.
+// {cancel Timeout}
+// The driver %hs failed to complete a cancelled I/O request in the allotted time.
 //
 #define ERROR_DRIVER_CANCEL_TIMEOUT      594L
 
@@ -2843,7 +2843,7 @@
 //
 // MessageText:
 //
-// A CALLBACK return system service CAnnot be executed when no CALLBACK is active.
+// A CALLBACK return system service Cannot be executed when no CALLBACK is active.
 //
 #define ERROR_NO_CALLBACK_ACTIVE         614L
 
@@ -2931,7 +2931,7 @@
 //
 // {Illegal System DLL ReloCAtion}
 // The system DLL %hs was reloCAted in memory. The appliCAtion will not run properly.
-// The reloCAtion occurred beCAuse the DLL %hs occupied an address range reserved for Windows system DLLs. The vendor supplying the DLL should be contacted for a new DLL.
+// The reloCAtion occurred because the DLL %hs occupied an address range reserved for Windows system DLLs. The vendor supplying the DLL should be contacted for a new DLL.
 //
 #define ERROR_ILLEGAL_DLL_RELOCATION     623L
 
@@ -2941,7 +2941,7 @@
 // MessageText:
 //
 // {DLL Initialization Failed}
-// The appliCAtion failed to initialize beCAuse the interaction_impl station is shutting down.
+// The appliCAtion failed to initialize because the interaction_impl station is shutting down.
 //
 #define ERROR_DLL_INIT_FAILED_LOGOFF     624L
 
@@ -2968,7 +2968,7 @@
 //
 // MessageText:
 //
-// The range could not be added to the range list beCAuse of a conflict.
+// The range could not be added to the range list because of a conflict.
 //
 #define ERROR_RANGE_LIST_CONFLICT        627L
 
@@ -2986,7 +2986,7 @@
 //
 // MessageText:
 //
-// A group marked use for deny only CAnnot be enabled.
+// A group marked use for deny only Cannot be enabled.
 //
 #define ERROR_CANT_ENABLE_DENY_ONLY      629L
 
@@ -3138,7 +3138,7 @@
 //
 // MessageText:
 //
-// The driver was not loaded beCAuse the system is booting into safe mode.
+// The driver was not loaded because the system is booting into safe mode.
 //
 #define ERROR_NOT_SAFE_MODE_DRIVER       646L
 
@@ -3147,7 +3147,7 @@
 //
 // MessageText:
 //
-// The driver was not loaded beCAuse it failed it's initialization CAll.
+// The driver was not loaded because it failed it's initialization call.
 //
 #define ERROR_FAILED_DRIVER_ENTRY        647L
 
@@ -3166,7 +3166,7 @@
 //
 // MessageText:
 //
-// The create operation failed beCAuse the name contained at least one mount point which resolves to a volume to which the specified device object is not attached.
+// The create operation failed because the name contained at least one mount point which resolves to a volume to which the specified device object is not attached.
 //
 #define ERROR_MOUNT_POINT_NOT_RESOLVED   649L
 
@@ -3211,7 +3211,7 @@
 //
 // MessageText:
 //
-// The driver could not be loaded beCAuse a previous version of the driver is still in memory.
+// The driver could not be loaded because a previous version of the driver is still in memory.
 //
 #define ERROR_DRIVER_FAILED_PRIOR_UNLOAD 654L
 
@@ -3323,7 +3323,7 @@
 // MessageText:
 //
 // {Handles Closed}
-// Handles to objects have been automatiCAlly closed as a result of the requested operation.
+// Handles to objects have been automatically closed as a result of the requested operation.
 //
 #define ERROR_HANDLES_CLOSED             676L
 
@@ -3457,7 +3457,7 @@
 //
 // MessageText:
 //
-// Debugger CAnnot provide handle.
+// Debugger Cannot provide handle.
 //
 #define ERROR_DBG_UNABLE_TO_PROVIDE_HANDLE 690L
 
@@ -3570,7 +3570,7 @@
 //
 // {Segment Load}
 // A virtual DOS machine (VDM) is loading, unloading, or moving an MS-DOS or Win16 program segment image.
-// An exception is raised so a debugger CAn load, unload or track symbols and breakpoints within these 16-bit segments.
+// An exception is raised so a debugger can load, unload or track symbols and breakpoints within these 16-bit segments.
 //
 #define ERROR_SEGMENT_NOTIFICATION       702L    // winnt
 
@@ -3580,7 +3580,7 @@
 // MessageText:
 //
 // {Invalid Current Directory}
-// The process CAnnot switch to the startup current directory %hs.
+// The process Cannot switch to the startup current directory %hs.
 // Select OK to set current directory to %hs, or select CANCEL to exit.
 //
 #define ERROR_BAD_CURRENT_DIRECTORY      703L
@@ -3592,7 +3592,7 @@
 //
 // {Redundant Read}
 // To satisfy a read request, the NT fault-tolerant file system successfully read the requested data from a redundant copy.
-// This was done beCAuse the file system encountered a failure on a member of the fault-tolerant volume, but was unable to reassign the failing area of the device.
+// This was done because the file system encountered a failure on a member of the fault-tolerant volume, but was unable to reassign the failing area of the device.
 //
 #define ERROR_FT_READ_RECOVERY_FROM_BACKUP 704L
 
@@ -3603,7 +3603,7 @@
 //
 // {Redundant Write}
 // To satisfy a write request, the NT fault-tolerant file system successfully wrote a redundant copy of the information.
-// This was done beCAuse the file system encountered a failure on a member of the fault-tolerant volume, but was not able to reassign the failing area of the device.
+// This was done because the file system encountered a failure on a member of the fault-tolerant volume, but was not able to reassign the failing area of the device.
 //
 #define ERROR_FT_WRITE_RECOVERY          705L
 
@@ -3784,7 +3784,7 @@
 //
 // MessageText:
 //
-// The inserted CArdBus device CAnnot be started beCAuse of a configuration error on "%hs".
+// The inserted CArdBus device Cannot be started because of a configuration error on "%hs".
 //
 #define ERROR_CARDBUS_NOT_SUPPORTED      724L
 
@@ -3829,7 +3829,7 @@
 //
 // MessageText:
 //
-// A device driver is leaking locked I/O pages CAusing system degradation. The system has automatiCAlly enabled tracking code in order to try and CAtch the culprit.
+// A device driver is leaking locked I/O pages CAusing system degradation. The system has automatically enabled tracking code in order to try and CAtch the culprit.
 //
 #define ERROR_DRIVERS_LEAKING_LOCKED_PAGES 729L
 
@@ -4202,7 +4202,7 @@
 //
 // MessageText:
 //
-// The data provider CAnnot fetch backwards through a result set.
+// The data provider Cannot fetch backwards through a result set.
 //
 #define ERROR_CANTFETCHBACKWARDS         770L
 
@@ -4211,7 +4211,7 @@
 //
 // MessageText:
 //
-// The data provider CAnnot scroll backwards through a result set.
+// The data provider Cannot scroll backwards through a result set.
 //
 #define ERROR_CANTSCROLLBACKWARDS        771L
 
@@ -4328,7 +4328,7 @@
 //
 // MessageText:
 //
-// A thread is getting dispatched with MCA EXCEPTION beCAuse of MCA.
+// A thread is getting dispatched with MCA EXCEPTION because of MCA.
 //
 #define ERROR_MCA_EXCEPTION              784L
 
@@ -4415,7 +4415,7 @@
 //
 // MessageText:
 //
-// An oplock of the requested level CAnnot be granted.  An oplock of a lower level may be available.
+// An oplock of the requested level Cannot be granted.  An oplock of a lower level may be available.
 //
 #define ERROR_CANNOT_GRANT_REQUESTED_OPLOCK 801L
 
@@ -4424,7 +4424,7 @@
 //
 // MessageText:
 //
-// The operation did not complete successfully beCAuse it would CAuse an oplock to be broken. The CAller has requested that existing oplocks not be broken.
+// The operation did not complete successfully because it would CAuse an oplock to be broken. The caller has requested that existing oplocks not be broken.
 //
 #define ERROR_CANNOT_BREAK_OPLOCK        802L
 
@@ -4469,7 +4469,7 @@
 //
 // MessageText:
 //
-// The I/O operation has been aborted beCAuse of either a thread exit or an appliCAtion request.
+// The I/O operation has been aborted because of either a thread exit or an appliCAtion request.
 //
 #define ERROR_OPERATION_ABORTED          995L
 
@@ -4523,7 +4523,7 @@
 //
 // MessageText:
 //
-// The interaction_impl CAnnot act on the sent message.
+// The interaction_impl Cannot act on the sent message.
 //
 #define ERROR_INVALID_MESSAGE            1002L
 
@@ -4532,7 +4532,7 @@
 //
 // MessageText:
 //
-// CAnnot complete this function.
+// Cannot complete this function.
 //
 #define ERROR_CAN_NOT_COMPLETE           1003L
 
@@ -4569,7 +4569,7 @@
 //
 // MessageText:
 //
-// The requested operation CAnnot be performed in full-screen mode.
+// The requested operation Cannot be performed in full-screen mode.
 //
 #define ERROR_FULLSCREEN_MODE            1007L
 
@@ -4641,7 +4641,7 @@
 //
 // MessageText:
 //
-// The registry is corrupted. The structure of one of the files containing registry data is corrupted, or the system's memory image of the file is corrupted, or the file could not be recovered beCAuse the alternate copy or log was absent or corrupted.
+// The registry is corrupted. The structure of one of the files containing registry data is corrupted, or the system's memory image of the file is corrupted, or the file could not be recovered because the alternate copy or log was absent or corrupted.
 //
 #define ERROR_REGISTRY_CORRUPT           1015L
 
@@ -4686,7 +4686,7 @@
 //
 // MessageText:
 //
-// CAnnot create a symbolic link in a registry key that already has subkeys or values.
+// Cannot create a symbolic link in a registry key that already has subkeys or values.
 //
 #define ERROR_KEY_HAS_CHILDREN           1020L
 
@@ -4695,7 +4695,7 @@
 //
 // MessageText:
 //
-// CAnnot create a stable subkey under a volatile parent key.
+// Cannot create a stable subkey under a volatile parent key.
 //
 #define ERROR_CHILD_MUST_BE_VOLATILE     1021L
 
@@ -4704,7 +4704,7 @@
 //
 // MessageText:
 //
-// A notify change request is being completed and the information is not being returned in the CAller's buffer. The CAller now needs to enumerate the files to find the changes.
+// A notify change request is being completed and the information is not being returned in the caller's buffer. The caller now needs to enumerate the files to find the changes.
 //
 #define ERROR_NOTIFY_ENUM_DIR            1022L
 
@@ -4776,7 +4776,7 @@
 //
 // MessageText:
 //
-// The service CAnnot be started, either beCAuse it is disabled or beCAuse it has no enabled devices associated with it.
+// The service Cannot be started, either because it is disabled or because it has no enabled devices associated with it.
 //
 #define ERROR_SERVICE_DISABLED           1058L
 
@@ -4803,7 +4803,7 @@
 //
 // MessageText:
 //
-// The service CAnnot accept control messages at this time.
+// The service Cannot accept control messages at this time.
 //
 #define ERROR_SERVICE_CANNOT_ACCEPT_CTRL 1061L
 
@@ -4974,7 +4974,7 @@
 //
 // MessageText:
 //
-// Failure actions CAn only be set for Win32 services, not for drivers.
+// Failure actions can only be set for Win32 services, not for drivers.
 //
 #define ERROR_CANNOT_DETECT_DRIVER_FAILURE 1080L
 
@@ -4984,7 +4984,7 @@
 // MessageText:
 //
 // This service runs in the same process as the service control manager.
-// Therefore, the service control manager CAnnot take action if this service's process terminates unexpectedly.
+// Therefore, the service control manager Cannot take action if this service's process terminates unexpectedly.
 //
 #define ERROR_CANNOT_DETECT_PROCESS_ABORT 1081L
 
@@ -5011,7 +5011,7 @@
 //
 // MessageText:
 //
-// This service CAnnot be started in Safe Mode
+// This service Cannot be started in Safe Mode
 //
 #define ERROR_NOT_SAFEBOOT_SERVICE       1084L
 
@@ -5164,7 +5164,7 @@
 //
 // MessageText:
 //
-// Unable to abort the system shutdown beCAuse no shutdown was in progress.
+// Unable to abort the system shutdown because no shutdown was in progress.
 //
 #define ERROR_NO_SHUTDOWN_IN_PROGRESS    1116L
 
@@ -5173,7 +5173,7 @@
 //
 // MessageText:
 //
-// The request could not be performed beCAuse of an I/O device error.
+// The request could not be performed because of an I/O device error.
 //
 #define ERROR_IO_DEVICE                  1117L
 
@@ -5210,7 +5210,7 @@
 //
 // MessageText:
 //
-// A serial I/O operation completed beCAuse the timeout period expired.
+// A serial I/O operation completed because the timeout period expired.
 // (The IOCTL_SERIAL_XOFF_COUNTER did not reach zero.)
 //
 #define ERROR_COUNTER_TIMEOUT            1121L
@@ -5364,7 +5364,7 @@
 //
 // MessageText:
 //
-// CAnnot start more than one instance of the specified program.
+// Cannot start more than one instance of the specified program.
 //
 #define ERROR_SINGLE_INSTANCE_APP        1152L
 
@@ -5409,7 +5409,7 @@
 //
 // MessageText:
 //
-// One of the library files needed to run this appliCAtion CAnnot be found.
+// One of the library files needed to run this appliCAtion Cannot be found.
 //
 #define ERROR_DLL_NOT_FOUND              1157L
 
@@ -5427,7 +5427,7 @@
 //
 // MessageText:
 //
-// The message CAn be used only with synchronous operations.
+// The message can be used only with synchronous operations.
 //
 #define ERROR_MESSAGE_SYNC_ONLY          1159L
 
@@ -5634,7 +5634,7 @@
 //
 // MessageText:
 //
-// The system shutdown CAnnot be initiated beCAuse there are other users logged on to the computer.
+// The system shutdown Cannot be initiated because there are other users logged on to the computer.
 //
 #define ERROR_SHUTDOWN_USERS_LOGGED_ON   1191L
 
@@ -5706,7 +5706,7 @@
 //
 // MessageText:
 //
-// CAnnot enumerate a noncontainer.
+// Cannot enumerate a noncontainer.
 //
 #define ERROR_NOT_CONTAINER              1207L
 
@@ -5850,7 +5850,7 @@
 //
 // MessageText:
 //
-// The operation was CAnceled by the user.
+// The operation was canceled by the user.
 //
 #define ERROR_CANCELLED                  1223L
 
@@ -5859,7 +5859,7 @@
 //
 // MessageText:
 //
-// The requested operation CAnnot be performed on a file with a user-mapped section open.
+// The requested operation Cannot be performed on a file with a user-mapped section open.
 //
 #define ERROR_USER_MAPPED_FILE           1224L
 
@@ -5922,7 +5922,7 @@
 //
 // MessageText:
 //
-// The network loCAtion CAnnot be reached. For information about network troubleshooting, see Windows Help.
+// The network loCAtion Cannot be reached. For information about network troubleshooting, see Windows Help.
 //
 #define ERROR_NETWORK_UNREACHABLE        1231L
 
@@ -5931,7 +5931,7 @@
 //
 // MessageText:
 //
-// The network loCAtion CAnnot be reached. For information about network troubleshooting, see Windows Help.
+// The network loCAtion Cannot be reached. For information about network troubleshooting, see Windows Help.
 //
 #define ERROR_HOST_UNREACHABLE           1232L
 
@@ -5940,7 +5940,7 @@
 //
 // MessageText:
 //
-// The network loCAtion CAnnot be reached. For information about network troubleshooting, see Windows Help.
+// The network loCAtion Cannot be reached. For information about network troubleshooting, see Windows Help.
 //
 #define ERROR_PROTOCOL_UNREACHABLE       1233L
 
@@ -5985,7 +5985,7 @@
 //
 // MessageText:
 //
-// A connection to the server could not be made beCAuse the limit on the number of concurrent connections for this account has been reached.
+// A connection to the server could not be made because the limit on the number of concurrent connections for this account has been reached.
 //
 #define ERROR_CONNECTION_COUNT_LIMIT     1238L
 
@@ -6039,7 +6039,7 @@
 //
 // MessageText:
 //
-// The operation being requested was not performed beCAuse the user has not been authentiCAted.
+// The operation being requested was not performed because the user has not been authentiCAted.
 //
 #define ERROR_NOT_AUTHENTICATED          1244L
 
@@ -6048,7 +6048,7 @@
 //
 // MessageText:
 //
-// The operation being requested was not performed beCAuse the user has not logged on to the network. The specified service does not exist.
+// The operation being requested was not performed because the user has not logged on to the network. The specified service does not exist.
 //
 #define ERROR_NOT_LOGGED_ON              1245L
 
@@ -6111,7 +6111,7 @@
 //
 // MessageText:
 //
-// The group policy framework should CAll the extension even if there are no changes.
+// The group policy framework should call the extension even if there are no changes.
 //
 #define ERROR_OVERRIDE_NOCHANGES         1252L
 
@@ -6174,7 +6174,7 @@
 //
 // MessageText:
 //
-// AppHelp dialog CAnceled thus preventing the appliCAtion from starting.
+// AppHelp dialog canceled thus preventing the appliCAtion from starting.
 //
 #define ERROR_APPHELP_BLOCK              1259L
 
@@ -6228,7 +6228,7 @@
 //
 // MessageText:
 //
-// The system detected a possible attempt to compromise security. Please ensure that you CAn contact the server that authentiCAted you.
+// The system detected a possible attempt to compromise security. Please ensure that you can contact the server that authentiCAted you.
 //
 #define ERROR_DOWNGRADE_DETECTED         1265L
 
@@ -6240,7 +6240,7 @@
 //
 // MessageText:
 //
-// The machine is locked and CAnnot be shut down without the force option.
+// The machine is locked and Cannot be shut down without the force option.
 //
 #define ERROR_MACHINE_LOCKED             1271L
 
@@ -6249,7 +6249,7 @@
 //
 // MessageText:
 //
-// An appliCAtion-defined CALLBACK gave invalid data when CAlled.
+// An appliCAtion-defined CALLBACK gave invalid data when called.
 //
 #define ERROR_CALLBACK_SUPPLIED_INVALID_DATA 1273L
 
@@ -6258,7 +6258,7 @@
 //
 // MessageText:
 //
-// The group policy framework should CAll the extension in the synchronous foreground policy refresh.
+// The group policy framework should call the extension in the synchronous foreground policy refresh.
 //
 #define ERROR_SYNC_FOREGROUND_REFRESH_REQUIRED 1274L
 
@@ -6285,7 +6285,7 @@
 //
 // MessageText:
 //
-// Windows CAnnot open this program since it has been disabled.
+// Windows Cannot open this program since it has been disabled.
 //
 #define ERROR_ACCESS_DISABLED_WEBBLADE   1277L
 
@@ -6294,7 +6294,7 @@
 //
 // MessageText:
 //
-// Windows CAnnot open this program beCAuse the license enforcement system has been tampered with or become corrupted.
+// Windows Cannot open this program because the license enforcement system has been tampered with or become corrupted.
 //
 #define ERROR_ACCESS_DISABLED_WEBBLADE_TAMPER 1278L
 
@@ -6339,7 +6339,7 @@
 //
 // MessageText:
 //
-// Data present in one of the parameters is more than the function CAn operate on.
+// Data present in one of the parameters is more than the function can operate on.
 //
 #define ERROR_PARAMETER_QUOTA_EXCEEDED   1283L
 
@@ -6348,7 +6348,7 @@
 //
 // MessageText:
 //
-// An attempt to do an operation on a debug object failed beCAuse the object is in the process of being deleted.
+// An attempt to do an operation on a debug object failed because the object is in the process of being deleted.
 //
 #define ERROR_DEBUGGER_INACTIVE          1284L
 
@@ -6402,7 +6402,7 @@
 //
 // MessageText:
 //
-// The service start failed since one or more services in the same process have an incompatible service SID type setting. A service with restricted service SID type CAn only coexist in the same process with other services with a restricted SID type. If the service SID type for this service was just configured, the hosting process must be restarted in order to start this service.
+// The service start failed since one or more services in the same process have an incompatible service SID type setting. A service with restricted service SID type can only coexist in the same process with other services with a restricted SID type. If the service SID type for this service was just configured, the hosting process must be restarted in order to start this service.
 //
 #define ERROR_INCOMPATIBLE_SERVICE_SID_TYPE 1290L
 
@@ -6447,7 +6447,7 @@
 //
 // MessageText:
 //
-// The requested file operation failed beCAuse the storage quota was exceeded.
+// The requested file operation failed because the storage quota was exceeded.
 // To free up disk space, move files to a different loCAtion or delete unnecessary files. For more information, contact your system administrator.
 //
 #define ERROR_DISK_QUOTA_EXCEEDED        1295L
@@ -6457,7 +6457,7 @@
 //
 // MessageText:
 //
-// The requested file operation failed beCAuse the storage policy blocks that type of file. For more information, contact your system administrator.
+// The requested file operation failed because the storage policy blocks that type of file. For more information, contact your system administrator.
 //
 #define ERROR_CONTENT_BLOCKED            1296L
 
@@ -6502,7 +6502,7 @@
 //
 // MessageText:
 //
-// Not all privileges or groups referenced are assigned to the CAller.
+// Not all privileges or groups referenced are assigned to the caller.
 //
 #define ERROR_NOT_ALL_ASSIGNED           1300L
 
@@ -6520,7 +6520,7 @@
 //
 // MessageText:
 //
-// No system quota limits are specifiCAlly set for this account.
+// No system quota limits are specifically set for this account.
 //
 #define ERROR_NO_QUOTAS_FOR_ACCOUNT      1302L
 
@@ -6682,7 +6682,7 @@
 //
 // MessageText:
 //
-// Either the specified user account is already a member of the specified group, or the specified group CAnnot be deleted beCAuse it contains a member.
+// Either the specified user account is already a member of the specified group, or the specified group Cannot be deleted because it contains a member.
 //
 #define ERROR_MEMBER_IN_GROUP            1320L
 
@@ -6700,7 +6700,7 @@
 //
 // MessageText:
 //
-// The last remaining administration account CAnnot be disabled or deleted.
+// The last remaining administration account Cannot be disabled or deleted.
 //
 #define ERROR_LAST_ADMIN                 1322L
 
@@ -6916,7 +6916,7 @@
 //
 // MessageText:
 //
-// CAnnot open an anonymous level security token.
+// Cannot open an anonymous level security token.
 //
 #define ERROR_CANT_OPEN_ANONYMOUS        1347L
 
@@ -6952,7 +6952,7 @@
 //
 // MessageText:
 //
-// Configuration information could not be read from the domain controller, either beCAuse the machine is unavailable, or access has been denied.
+// Configuration information could not be read from the domain controller, either because the machine is unavailable, or access has been denied.
 //
 #define ERROR_CANT_ACCESS_DOMAIN_INFO    1351L
 
@@ -7015,7 +7015,7 @@
 //
 // MessageText:
 //
-// Unable to complete the requested operation beCAuse of either a CAtastrophic media failure or a data structure corruption on the disk.
+// Unable to complete the requested operation because of either a CAtastrophic media failure or a data structure corruption on the disk.
 //
 #define ERROR_INTERNAL_DB_CORRUPTION     1358L
 
@@ -7051,7 +7051,7 @@
 //
 // MessageText:
 //
-// The requested action is restricted for use by logon processes only. The CAlling process has not registered as a logon process.
+// The requested action is restricted for use by logon processes only. The calling process has not registered as a logon process.
 //
 #define ERROR_NOT_LOGON_PROCESS          1362L
 
@@ -7060,7 +7060,7 @@
 //
 // MessageText:
 //
-// CAnnot start a new logon session with an ID that is already in use.
+// Cannot start a new logon session with an ID that is already in use.
 //
 #define ERROR_LOGON_SESSION_EXISTS       1363L
 
@@ -7132,7 +7132,7 @@
 //
 // MessageText:
 //
-// CAnnot perform this operation on built-in accounts.
+// Cannot perform this operation on built-in accounts.
 //
 #define ERROR_SPECIAL_ACCOUNT            1371L
 
@@ -7141,7 +7141,7 @@
 //
 // MessageText:
 //
-// CAnnot perform this operation on this built-in special group.
+// Cannot perform this operation on this built-in special group.
 //
 #define ERROR_SPECIAL_GROUP              1372L
 
@@ -7150,7 +7150,7 @@
 //
 // MessageText:
 //
-// CAnnot perform this operation on this built-in special user.
+// Cannot perform this operation on this built-in special user.
 //
 #define ERROR_SPECIAL_USER               1373L
 
@@ -7159,7 +7159,7 @@
 //
 // MessageText:
 //
-// The user CAnnot be removed from a group beCAuse the group is currently the user's primary group.
+// The user Cannot be removed from a group because the group is currently the user's primary group.
 //
 #define ERROR_MEMBERS_PRIMARY_GROUP      1374L
 
@@ -7276,7 +7276,7 @@
 //
 // MessageText:
 //
-// A member could not be added to or removed from the loCAl group beCAuse the member does not exist.
+// A member could not be added to or removed from the loCAl group because the member does not exist.
 //
 #define ERROR_NO_SUCH_MEMBER             1387L
 
@@ -7285,7 +7285,7 @@
 //
 // MessageText:
 //
-// A new member could not be added to a loCAl group beCAuse the member has the wrong account type.
+// A new member could not be added to a loCAl group because the member has the wrong account type.
 //
 #define ERROR_INVALID_MEMBER             1388L
 
@@ -7348,7 +7348,7 @@
 //
 // MessageText:
 //
-// The service being accessed is licensed for a particular number of connections. No more connections CAn be made to the service at this time beCAuse there are already as many connections as the service CAn accept.
+// The service being accessed is licensed for a particular number of connections. No more connections can be made to the service at this time because there are already as many connections as the service can accept.
 //
 #define ERROR_LICENSE_QUOTA_EXCEEDED     1395L
 
@@ -7384,7 +7384,7 @@
 //
 // MessageText:
 //
-// This operation CAnnot be performed on the current domain.
+// This operation Cannot be performed on the current domain.
 //
 #define ERROR_CURRENT_DOMAIN_NOT_ALLOWED 1399L
 
@@ -7455,7 +7455,7 @@
 //
 // MessageText:
 //
-// CAnnot create a top-level child interaction_impl.
+// Cannot create a top-level child interaction_impl.
 //
 #define ERROR_TLW_WITH_WSCHILD           1406L
 
@@ -7464,7 +7464,7 @@
 //
 // MessageText:
 //
-// CAnnot find interaction_impl class.
+// Cannot find interaction_impl class.
 //
 #define ERROR_CANNOT_FIND_WND_CLASS      1407L
 
@@ -7599,7 +7599,7 @@
 //
 // MessageText:
 //
-// Invalid message for a combo box beCAuse it does not have an edit control.
+// Invalid message for a combo box because it does not have an edit control.
 //
 #define ERROR_INVALID_COMBOBOX_MESSAGE   1422L
 
@@ -7653,7 +7653,7 @@
 //
 // MessageText:
 //
-// CAnnot set nonloCAl hook without a module handle.
+// Cannot set nonloCAl hook without a module handle.
 //
 #define ERROR_HOOK_NEEDS_HMOD            1428L
 
@@ -7662,7 +7662,7 @@
 //
 // MessageText:
 //
-// This hook procedure CAn only be set globally.
+// This hook procedure can only be set globally.
 //
 #define ERROR_GLOBAL_ONLY_HOOK           1429L
 
@@ -7716,7 +7716,7 @@
 //
 // MessageText:
 //
-// CAnnot destroy object created by another thread.
+// Cannot destroy object created by another thread.
 //
 #define ERROR_DESTROY_OBJECT_OF_OTHER_THREAD 1435L
 
@@ -7725,7 +7725,7 @@
 //
 // MessageText:
 //
-// Child windows CAnnot have menus.
+// Child windows Cannot have menus.
 //
 #define ERROR_CHILD_WINDOW_MENU          1436L
 
@@ -7806,7 +7806,7 @@
 //
 // MessageText:
 //
-// CAnnot process a message from a interaction_impl that is not a multiple document interface (MDI) interaction_impl.
+// Cannot process a message from a interaction_impl that is not a multiple document interface (MDI) interaction_impl.
 //
 #define ERROR_NON_MDICHILD_WINDOW        1445L
 
@@ -7833,7 +7833,7 @@
 //
 // MessageText:
 //
-// Scroll bar range CAnnot be greater than MAXLONG.
+// Scroll bar range Cannot be greater than MAXLONG.
 //
 #define ERROR_INVALID_SCROLLBAR_RANGE    1448L
 
@@ -7842,7 +7842,7 @@
 //
 // MessageText:
 //
-// CAnnot show or remove the interaction_impl in the way specified.
+// Cannot show or remove the interaction_impl in the way specified.
 //
 #define ERROR_INVALID_SHOWWIN_COMMAND    1449L
 
@@ -7941,7 +7941,7 @@
 //
 // MessageText:
 //
-// This operation returned beCAuse the timeout period expired.
+// This operation returned because the timeout period expired.
 //
 #define ERROR_TIMEOUT                    1460L
 
@@ -7968,7 +7968,7 @@
 //
 // MessageText:
 //
-// The symbolic link CAnnot be followed beCAuse its type is disabled.
+// The symbolic link Cannot be followed because its type is disabled.
 //
 #define ERROR_SYMLINK_CLASS_DISABLED     1463L
 
@@ -8013,7 +8013,7 @@
 //
 // MessageText:
 //
-// The CAller made the connection request in the wrong routing compartment.
+// The caller made the connection request in the wrong routing compartment.
 //
 #define ERROR_WRONG_COMPARTMENT          1468L
 
@@ -8127,7 +8127,7 @@
 //
 // MessageText:
 //
-// The Windows Installer Service could not be accessed. This CAn occur if the Windows Installer is not correctly installed. Contact your support personnel for assistance.
+// The Windows Installer Service could not be accessed. This can occur if the Windows Installer is not correctly installed. Contact your support personnel for assistance.
 //
 #define ERROR_INSTALL_SERVICE_FAILURE    1601L
 
@@ -8136,7 +8136,7 @@
 //
 // MessageText:
 //
-// User CAncelled installation.
+// User cancelled installation.
 //
 #define ERROR_INSTALL_USEREXIT           1602L
 
@@ -8226,7 +8226,7 @@
 //
 // MessageText:
 //
-// The installation source for this product is not available. Verify that the source exists and that you CAn access it.
+// The installation source for this product is not available. Verify that the source exists and that you can access it.
 //
 #define ERROR_INSTALL_SOURCE_ABSENT      1612L
 
@@ -8235,7 +8235,7 @@
 //
 // MessageText:
 //
-// This installation package CAnnot be installed by the Windows Installer service. You must install a Windows service pack that contains a newer version of the Windows Installer service.
+// This installation package Cannot be installed by the Windows Installer service. You must install a Windows service pack that contains a newer version of the Windows Installer service.
 //
 #define ERROR_INSTALL_PACKAGE_VERSION    1613L
 
@@ -8289,7 +8289,7 @@
 //
 // MessageText:
 //
-// This installation package could not be opened. Verify that the package exists and that you CAn access it, or contact the appliCAtion vendor to verify that this is a valid Windows Installer package.
+// This installation package could not be opened. Verify that the package exists and that you can access it, or contact the appliCAtion vendor to verify that this is a valid Windows Installer package.
 //
 #define ERROR_INSTALL_PACKAGE_OPEN_FAILED 1619L
 
@@ -8316,7 +8316,7 @@
 //
 // MessageText:
 //
-// Error opening installation log file. Verify that the specified log file loCAtion exists and that you CAn write to it.
+// Error opening installation log file. Verify that the specified log file loCAtion exists and that you can write to it.
 //
 #define ERROR_INSTALL_LOG_FAILURE        1622L
 
@@ -8433,7 +8433,7 @@
 //
 // MessageText:
 //
-// This update package could not be opened. Verify that the update package exists and that you CAn access it, or contact the appliCAtion vendor to verify that this is a valid Windows Installer update package.
+// This update package could not be opened. Verify that the update package exists and that you can access it, or contact the appliCAtion vendor to verify that this is a valid Windows Installer update package.
 //
 #define ERROR_PATCH_PACKAGE_OPEN_FAILED  1635L
 
@@ -8451,7 +8451,7 @@
 //
 // MessageText:
 //
-// This update package CAnnot be processed by the Windows Installer service. You must install a Windows service pack that contains a newer version of the Windows Installer service.
+// This update package Cannot be processed by the Windows Installer service. You must install a Windows service pack that contains a newer version of the Windows Installer service.
 //
 #define ERROR_PATCH_PACKAGE_UNSUPPORTED  1637L
 
@@ -8460,7 +8460,7 @@
 //
 // MessageText:
 //
-// Another version of this product is already installed. Installation of this version CAnnot continue. To configure or remove the existing version of this product, use Add/Remove Programs on the Control Panel.
+// Another version of this product is already installed. Installation of this version Cannot continue. To configure or remove the existing version of this product, use Add/Remove Programs on the Control Panel.
 //
 #define ERROR_PRODUCT_VERSION            1638L
 
@@ -8487,7 +8487,7 @@
 //
 // MessageText:
 //
-// The requested operation completed successfully. The system will be restarted so the changes CAn take effect.
+// The requested operation completed successfully. The system will be restarted so the changes can take effect.
 //
 #define ERROR_SUCCESS_REBOOT_INITIATED   1641L
 
@@ -8496,7 +8496,7 @@
 //
 // MessageText:
 //
-// The upgrade CAnnot be installed by the Windows Installer service beCAuse the program to be upgraded may be missing, or the upgrade may update a different version of the program. Verify that the program to be upgraded exists on your computer and that you have the correct upgrade.
+// The upgrade Cannot be installed by the Windows Installer service because the program to be upgraded may be missing, or the upgrade may update a different version of the program. Verify that the program to be upgraded exists on your computer and that you have the correct upgrade.
 //
 #define ERROR_PATCH_TARGET_NOT_FOUND     1642L
 
@@ -8586,7 +8586,7 @@
 //
 // MessageText:
 //
-// The Windows Installer service is not accessible in Safe Mode. Please try again when your computer is not in Safe Mode or you CAn use System Restore to return your machine to a previous good state.
+// The Windows Installer service is not accessible in Safe Mode. Please try again when your computer is not in Safe Mode or you can use System Restore to return your machine to a previous good state.
 //
 #define ERROR_INSTALL_SERVICE_SAFEBOOT   1652L
 
@@ -8792,7 +8792,7 @@
 //
 // MessageText:
 //
-// The endpoint CAnnot be created.
+// The endpoint Cannot be created.
 //
 #define RPC_S_CANT_CREATE_ENDPOINT       1720L
 
@@ -8837,7 +8837,7 @@
 //
 // MessageText:
 //
-// There are no remote procedure CAlls active on this thread.
+// There are no remote procedure calls active on this thread.
 //
 #define RPC_S_NO_CALL_ACTIVE             1725L
 
@@ -8846,7 +8846,7 @@
 //
 // MessageText:
 //
-// The remote procedure CAll failed.
+// The remote procedure call failed.
 //
 #define RPC_S_CALL_FAILED                1726L
 
@@ -8855,7 +8855,7 @@
 //
 // MessageText:
 //
-// The remote procedure CAll failed and did not execute.
+// The remote procedure call failed and did not execute.
 //
 #define RPC_S_CALL_FAILED_DNE            1727L
 
@@ -8864,7 +8864,7 @@
 //
 // MessageText:
 //
-// A remote procedure CAll (RPC) protocol error occurred.
+// A remote procedure call (RPC) protocol error occurred.
 //
 #define RPC_S_PROTOCOL_ERROR             1728L
 
@@ -8972,7 +8972,7 @@
 //
 // MessageText:
 //
-// The maximum number of CAlls is too small.
+// The maximum number of calls is too small.
 //
 #define RPC_S_MAX_CALLS_TOO_SMALL        1742L
 
@@ -9062,7 +9062,7 @@
 //
 // MessageText:
 //
-// The server endpoint CAnnot perform the operation.
+// The server endpoint Cannot perform the operation.
 //
 #define EPT_S_CANT_PERFORM_OP            1752L
 
@@ -9188,7 +9188,7 @@
 //
 // MessageText:
 //
-// An internal error occurred in a remote procedure CAll (RPC).
+// An internal error occurred in a remote procedure call (RPC).
 //
 #define RPC_S_INTERNAL_ERROR             1766L
 
@@ -9269,7 +9269,7 @@
 //
 // MessageText:
 //
-// A null context handle was passed from the client to the host during a remote procedure CAll.
+// A null context handle was passed from the client to the host during a remote procedure call.
 //
 #define RPC_X_SS_IN_NULL_CONTEXT         1775L
 
@@ -9278,7 +9278,7 @@
 //
 // MessageText:
 //
-// The context handle changed during a remote procedure CAll.
+// The context handle changed during a remote procedure call.
 //
 #define RPC_X_SS_CONTEXT_DAMAGED         1777L
 
@@ -9287,7 +9287,7 @@
 //
 // MessageText:
 //
-// The binding handles passed to a remote procedure CAll do not match.
+// The binding handles passed to a remote procedure call do not match.
 //
 #define RPC_X_SS_HANDLES_MISMATCH        1778L
 
@@ -9296,7 +9296,7 @@
 //
 // MessageText:
 //
-// The stub is unable to get the remote procedure CAll handle.
+// The stub is unable to get the remote procedure call handle.
 //
 #define RPC_X_SS_CANNOT_GET_CALL_HANDLE  1779L
 
@@ -9404,7 +9404,7 @@
 //
 // MessageText:
 //
-// A remote procedure CAll is already in progress for this thread.
+// A remote procedure call is already in progress for this thread.
 //
 #define RPC_S_CALL_IN_PROGRESS           1791L
 
@@ -9431,7 +9431,7 @@
 //
 // MessageText:
 //
-// The redirector is in use and CAnnot be unloaded.
+// The redirector is in use and Cannot be unloaded.
 //
 #define ERROR_REDIRECTOR_HAS_OPEN_HANDLES 1794L
 
@@ -9584,7 +9584,7 @@
 //
 // MessageText:
 //
-// The server is in use and CAnnot be unloaded.
+// The server is in use and Cannot be unloaded.
 //
 #define ERROR_SERVER_HAS_OPEN_HANDLES    1811L
 
@@ -9602,7 +9602,7 @@
 //
 // MessageText:
 //
-// The specified resource type CAnnot be found in the image file.
+// The specified resource type Cannot be found in the image file.
 //
 #define ERROR_RESOURCE_TYPE_NOT_FOUND    1813L
 
@@ -9611,7 +9611,7 @@
 //
 // MessageText:
 //
-// The specified resource name CAnnot be found in the image file.
+// The specified resource name Cannot be found in the image file.
 //
 #define ERROR_RESOURCE_NAME_NOT_FOUND    1814L
 
@@ -9620,7 +9620,7 @@
 //
 // MessageText:
 //
-// The specified resource language ID CAnnot be found in the image file.
+// The specified resource language ID Cannot be found in the image file.
 //
 #define ERROR_RESOURCE_LANG_NOT_FOUND    1815L
 
@@ -9647,7 +9647,7 @@
 //
 // MessageText:
 //
-// The remote procedure CAll was CAncelled.
+// The remote procedure call was cancelled.
 //
 #define RPC_S_CALL_CANCELLED             1818L
 
@@ -9665,7 +9665,7 @@
 //
 // MessageText:
 //
-// A communiCAtions failure occurred during a remote procedure CAll.
+// A communiCAtions failure occurred during a remote procedure call.
 //
 #define RPC_S_COMM_FAILURE               1820L
 
@@ -9719,7 +9719,7 @@
 //
 // MessageText:
 //
-// Thread is not CAnceled.
+// Thread is not canceled.
 //
 #define RPC_S_NOT_CANCELLED              1826L
 
@@ -9782,7 +9782,7 @@
 //
 // MessageText:
 //
-// HTTP proxy server rejected the connection beCAuse the cookie authentiCAtion failed.
+// HTTP proxy server rejected the connection because the cookie authentiCAtion failed.
 //
 #define RPC_S_COOKIE_AUTH_FAILED         1833L
 
@@ -9935,7 +9935,7 @@
 //
 // MessageText:
 //
-// Invalid asynchronous remote procedure CAll handle.
+// Invalid asynchronous remote procedure call handle.
 //
 #define RPC_S_INVALID_ASYNC_HANDLE       1914L
 
@@ -9944,7 +9944,7 @@
 //
 // MessageText:
 //
-// Invalid asynchronous RPC CAll handle for this operation.
+// Invalid asynchronous RPC call handle for this operation.
 //
 #define RPC_S_INVALID_ASYNC_CALL         1915L
 
@@ -9962,7 +9962,7 @@
 //
 // MessageText:
 //
-// The RPC CAll completed before all pipes were processed.
+// The RPC call completed before all pipes were processed.
 //
 #define RPC_X_PIPE_DISCIPLINE_ERROR      1917L
 
@@ -9989,7 +9989,7 @@
 //
 // MessageText:
 //
-// The file CAnnot be accessed by the system.
+// The file Cannot be accessed by the system.
 //
 #define ERROR_CANT_ACCESS_FILE           1920L
 
@@ -9998,7 +9998,7 @@
 //
 // MessageText:
 //
-// The name of the file CAnnot be resolved by the system.
+// The name of the file Cannot be resolved by the system.
 //
 #define ERROR_CANT_RESOLVE_FILENAME      1921L
 
@@ -10088,7 +10088,7 @@
 //
 // MessageText:
 //
-// The context has expired and CAn no longer be used.
+// The context has expired and can no longer be used.
 //
 #define ERROR_CONTEXT_EXPIRED            1931L
 
@@ -10142,7 +10142,7 @@
 //
 // MessageText:
 //
-// Logon Failure: AuthentiCAtion failed beCAuse NTLM authentiCAtion has been disabled.
+// Logon Failure: AuthentiCAtion failed because NTLM authentiCAtion has been disabled.
 //
 #define ERROR_NTLM_BLOCKED               1937L
 
@@ -10413,7 +10413,7 @@
 //
 // MessageText:
 //
-// The device is in use by an active process and CAnnot be disconnected.
+// The device is in use by an active process and Cannot be disconnected.
 //
 #define ERROR_DEVICE_IN_USE              2404L
 
@@ -10457,7 +10457,7 @@
 //
 // MessageText:
 //
-// A StartDocPrinter CAll was not issued.
+// A StartDocPrinter call was not issued.
 //
 #define ERROR_SPL_NO_STARTDOC            3003L
 
@@ -10466,7 +10466,7 @@
 //
 // MessageText:
 //
-// An AddJob CAll was not issued.
+// An AddJob call was not issued.
 //
 #define ERROR_SPL_NO_ADDJOB              3004L
 
@@ -10676,7 +10676,7 @@
 //
 // MessageText:
 //
-// The loCAl WINS CAnnot be deleted.
+// The loCAl WINS Cannot be deleted.
 //
 #define ERROR_CAN_NOT_DEL_LOCAL_WINS     4001L
 
@@ -10756,7 +10756,7 @@
 //
 // MessageText:
 //
-// The requested data CAnnot be found in loCAl or peer CAches.
+// The requested data Cannot be found in loCAl or peer CAches.
 //
 #define PEERDIST_ERROR_MISSING_DATA      4052L
 
@@ -10819,7 +10819,7 @@
 //
 // MessageText:
 //
-// CAn not CAncel the requested operation as it has already been completed.
+// can not cancel the requested operation as it has already been completed.
 //
 #define PEERDIST_ERROR_OPERATION_NOTFOUND 4059L
 
@@ -10828,7 +10828,7 @@
 //
 // MessageText:
 //
-// CAn not perform the reqested operation beCAuse it has already been CArried out.
+// can not perform the reqested operation because it has already been CArried out.
 //
 #define PEERDIST_ERROR_ALREADY_COMPLETED 4060L
 
@@ -10890,7 +10890,7 @@
 //
 // MessageText:
 //
-// The DHCP client has obtained an IP address that is already in use on the network. The loCAl interface will be disabled until the DHCP client CAn obtain a new address.
+// The DHCP client has obtained an IP address that is already in use on the network. The loCAl interface will be disabled until the DHCP client can obtain a new address.
 //
 #define ERROR_DHCP_ADDRESS_CONFLICT      4100L
 
@@ -11109,7 +11109,7 @@
 //
 // MessageText:
 //
-// The operation CAnnot be performed on an offline library.
+// The operation Cannot be performed on an offline library.
 //
 #define ERROR_LIBRARY_OFFLINE            4305L
 
@@ -11163,7 +11163,7 @@
 //
 // MessageText:
 //
-// The drive CAnnot be cleaned or does not support cleaning.
+// The drive Cannot be cleaned or does not support cleaning.
 //
 #define ERROR_UNABLE_TO_CLEAN            4311L
 
@@ -11271,7 +11271,7 @@
 //
 // MessageText:
 //
-// The transport CAnnot access the medium.
+// The transport Cannot access the medium.
 //
 #define ERROR_MEDIUM_NOT_ACCESSIBLE      4323L
 
@@ -11316,7 +11316,7 @@
 //
 // MessageText:
 //
-// CAnnot use the transport beCAuse it is already in use.
+// Cannot use the transport because it is already in use.
 //
 #define ERROR_TRANSPORT_FULL             4328L
 
@@ -11334,7 +11334,7 @@
 //
 // MessageText:
 //
-// Unable to eject the medium beCAuse it is in a drive.
+// Unable to eject the medium because it is in a drive.
 //
 #define ERROR_UNABLE_TO_EJECT_MOUNTED_MEDIA 4330L
 
@@ -11379,7 +11379,7 @@
 //
 // MessageText:
 //
-// The last remaining item in this group or resource CAnnot be deleted.
+// The last remaining item in this group or resource Cannot be deleted.
 //
 #define ERROR_CANT_DELETE_LAST_ITEM      4335L
 
@@ -11406,7 +11406,7 @@
 //
 // MessageText:
 //
-// The media type CAnnot be removed from this library since at least one drive in the library reports it CAn support this media type.
+// The media type Cannot be removed from this library since at least one drive in the library reports it can support this media type.
 //
 #define ERROR_INDIGENOUS_TYPE            4338L
 
@@ -11415,7 +11415,7 @@
 //
 // MessageText:
 //
-// This offline media CAnnot be mounted on this system since no enabled drives are present which CAn be used.
+// This offline media Cannot be mounted on this system since no enabled drives are present which can be used.
 //
 #define ERROR_NO_SUPPORTING_DRIVES       4339L
 
@@ -11433,7 +11433,7 @@
 //
 // MessageText:
 //
-// CAnnot use the inject/eject port beCAuse it is not empty.
+// Cannot use the inject/eject port because it is not empty.
 //
 #define ERROR_IEPORT_FULL                4341L
 
@@ -11494,7 +11494,7 @@
 //
 // MessageText:
 //
-// The reparse point attribute CAnnot be set beCAuse it conflicts with an existing attribute.
+// The reparse point attribute Cannot be set because it conflicts with an existing attribute.
 //
 #define ERROR_REPARSE_ATTRIBUTE_CONFLICT 4391L
 
@@ -11569,7 +11569,7 @@
 //
 // MessageText:
 //
-// The operation CAnnot be completed beCAuse other resources are dependent on this resource.
+// The operation Cannot be completed because other resources are dependent on this resource.
 //
 #define ERROR_DEPENDENT_RESOURCE_EXISTS  5001L
 
@@ -11578,7 +11578,7 @@
 //
 // MessageText:
 //
-// The cluster resource dependency CAnnot be found.
+// The cluster resource dependency Cannot be found.
 //
 #define ERROR_DEPENDENCY_NOT_FOUND       5002L
 
@@ -11587,7 +11587,7 @@
 //
 // MessageText:
 //
-// The cluster resource CAnnot be made dependent on the specified resource beCAuse it is already dependent.
+// The cluster resource Cannot be made dependent on the specified resource because it is already dependent.
 //
 #define ERROR_DEPENDENCY_ALREADY_EXISTS  5003L
 
@@ -11641,7 +11641,7 @@
 //
 // MessageText:
 //
-// A cluster node CAnnot be evicted from the cluster unless the node is down or it is the last node.
+// A cluster node Cannot be evicted from the cluster unless the node is down or it is the last node.
 //
 #define ERROR_CANT_EVICT_ACTIVE_NODE     5009L
 
@@ -11686,7 +11686,7 @@
 //
 // MessageText:
 //
-// The operation could not be completed beCAuse the cluster group is not online.
+// The operation could not be completed because the cluster group is not online.
 //
 #define ERROR_GROUP_NOT_ONLINE           5014L
 
@@ -11695,7 +11695,7 @@
 //
 // MessageText:
 //
-// The operation failed beCAuse either the specified cluster node is not the owner of the resource, or the node is not a possible owner of the resource.
+// The operation failed because either the specified cluster node is not the owner of the resource, or the node is not a possible owner of the resource.
 //
 #define ERROR_HOST_NODE_NOT_RESOURCE_OWNER 5015L
 
@@ -11704,7 +11704,7 @@
 //
 // MessageText:
 //
-// The operation failed beCAuse either the specified cluster node is not the owner of the group, or the node is not a possible owner of the group.
+// The operation failed because either the specified cluster node is not the owner of the group, or the node is not a possible owner of the group.
 //
 #define ERROR_HOST_NODE_NOT_GROUP_OWNER  5016L
 
@@ -11731,7 +11731,7 @@
 //
 // MessageText:
 //
-// The operation could not be completed beCAuse the cluster resource is online.
+// The operation could not be completed because the cluster resource is online.
 //
 #define ERROR_RESOURCE_ONLINE            5019L
 
@@ -11740,7 +11740,7 @@
 //
 // MessageText:
 //
-// The cluster resource could not be deleted or brought offline beCAuse it is the quorum resource.
+// The cluster resource could not be deleted or brought offline because it is the quorum resource.
 //
 #define ERROR_QUORUM_RESOURCE            5020L
 
@@ -11749,7 +11749,7 @@
 //
 // MessageText:
 //
-// The cluster could not make the specified resource a quorum resource beCAuse it is not CApable of being a quorum resource.
+// The cluster could not make the specified resource a quorum resource because it is not CApable of being a quorum resource.
 //
 #define ERROR_NOT_QUORUM_CAPABLE         5021L
 
@@ -11785,7 +11785,7 @@
 //
 // MessageText:
 //
-// The cluster could not make the specified resource a quorum resource beCAuse it does not belong to a shared storage class.
+// The cluster could not make the specified resource a quorum resource because it does not belong to a shared storage class.
 //
 #define ERROR_NOT_QUORUM_CLASS           5025L
 
@@ -11866,7 +11866,7 @@
 //
 // MessageText:
 //
-// The cluster node failed to take control of the quorum resource beCAuse the resource is owned by another active node.
+// The cluster node failed to take control of the quorum resource because the resource is owned by another active node.
 //
 #define ERROR_QUORUM_OWNER_ALIVE         5034L
 
@@ -12145,7 +12145,7 @@
 //
 // MessageText:
 //
-// The cluster network is the only one configured for internal cluster communiCAtion between two or more active cluster nodes. The internal communiCAtion CApability CAnnot be removed from the network.
+// The cluster network is the only one configured for internal cluster communiCAtion between two or more active cluster nodes. The internal communiCAtion CApability Cannot be removed from the network.
 //
 #define ERROR_CLUSTER_LAST_INTERNAL_NETWORK 5066L
 
@@ -12154,7 +12154,7 @@
 //
 // MessageText:
 //
-// One or more cluster resources depend on the network to provide service to clients. The client access CApability CAnnot be removed from the network.
+// One or more cluster resources depend on the network to provide service to clients. The client access CApability Cannot be removed from the network.
 //
 #define ERROR_CLUSTER_NETWORK_HAS_DEPENDENTS 5067L
 
@@ -12163,7 +12163,7 @@
 //
 // MessageText:
 //
-// This operation CAnnot be performed on the cluster resource as it the quorum resource. You may not bring the quorum resource offline or modify its possible owners list.
+// This operation Cannot be performed on the cluster resource as it the quorum resource. You may not bring the quorum resource offline or modify its possible owners list.
 //
 #define ERROR_INVALID_OPERATION_ON_QUORUM 5068L
 
@@ -12190,7 +12190,7 @@
 //
 // MessageText:
 //
-// The cluster resource CAnnot be brought online. The owner node CAnnot run this resource.
+// The cluster resource Cannot be brought online. The owner node Cannot run this resource.
 //
 #define ERROR_NODE_CANT_HOST_RESOURCE    5071L
 
@@ -12235,7 +12235,7 @@
 //
 // MessageText:
 //
-// This resource CAnnot be created beCAuse the cluster has reached the limit on the number of resources it CAn monitor.
+// This resource Cannot be created because the cluster has reached the limit on the number of resources it can monitor.
 //
 #define ERROR_CLUSTER_MAXNUM_OF_RESOURCES_EXCEEDED 5076L
 
@@ -12289,7 +12289,7 @@
 //
 // MessageText:
 //
-// You CAnnot bring the group online beCAuse the owner of the group is not in the preferred list for the group. To change the owner node for the group, move the group.
+// You Cannot bring the group online because the owner of the group is not in the preferred list for the group. To change the owner node for the group, move the group.
 //
 #define ERROR_CLUSTER_OWNER_NOT_IN_PREFLIST 5082L
 
@@ -12298,7 +12298,7 @@
 //
 // MessageText:
 //
-// The join operation failed beCAuse the cluster database sequence number has changed or is incompatible with the locker node. This may happen during a join operation if the cluster database was changing during the join.
+// The join operation failed because the cluster database sequence number has changed or is incompatible with the locker node. This may happen during a join operation if the cluster database was changing during the join.
 //
 #define ERROR_CLUSTER_DATABASE_SEQMISMATCH 5083L
 
@@ -12352,7 +12352,7 @@
 //
 // MessageText:
 //
-// An attempt to modify a resource property failed beCAuse it conflicts with another existing property.
+// An attempt to modify a resource property failed because it conflicts with another existing property.
 //
 #define ERROR_RESOURCE_PROPERTY_UNCHANGEABLE 5089L
 
@@ -12392,7 +12392,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The join operation failed beCAuse the cluster instance ID of the joining node does not match the cluster instance ID of the sponsor node.
+// The join operation failed because the cluster instance ID of the joining node does not match the cluster instance ID of the sponsor node.
 //
 #define ERROR_CLUSTER_INSTANCE_ID_MISMATCH 5893L
 
@@ -12437,7 +12437,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// This computer CAnnot be made a member of a cluster.
+// This computer Cannot be made a member of a cluster.
 //
 #define ERROR_NODE_CANNOT_BE_CLUSTERED   5898L
 
@@ -12446,7 +12446,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// This computer CAnnot be made a member of a cluster beCAuse it does not have the correct version of Windows installed.
+// This computer Cannot be made a member of a cluster because it does not have the correct version of Windows installed.
 //
 #define ERROR_CLUSTER_WRONG_OS_VERSION   5899L
 
@@ -12455,7 +12455,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A cluster CAnnot be created with the specified cluster name beCAuse that cluster name is already in use. Specify a different name for the cluster.
+// A cluster Cannot be created with the specified cluster name because that cluster name is already in use. Specify a different name for the cluster.
 //
 #define ERROR_CLUSTER_CANT_CREATE_DUP_CLUSTER_NAME 5900L
 
@@ -12536,7 +12536,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The resource type CAnnot accept the request since is too busy performing another operation.
+// The resource type Cannot accept the request since is too busy performing another operation.
 //
 #define ERROR_CLUSTER_RESOURCE_TYPE_BUSY 5909L
 
@@ -12545,7 +12545,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The CAll to the cluster resource DLL timed out.
+// The call to the cluster resource DLL timed out.
 //
 #define ERROR_RESOURCE_CALL_TIMED_OUT    5910L
 
@@ -12563,7 +12563,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An internal cluster error occurred. A CAll to an invalid function was attempted.
+// An internal cluster error occurred. A call to an invalid function was attempted.
 //
 #define ERROR_CLUSTER_INTERNAL_INVALID_FUNCTION 5912L
 
@@ -12707,7 +12707,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Quorum resource CAnnot reside in the Available Storage group.
+// Quorum resource Cannot reside in the Available Storage group.
 //
 #define ERROR_QUORUM_NOT_ALLOWED_IN_THIS_GROUP 5928L
 
@@ -12725,7 +12725,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The CAll into the resource DLL raised an unhandled exception.
+// The call into the resource DLL raised an unhandled exception.
 //
 #define ERROR_EXCEPTION_IN_RESOURCE_CALL 5930L
 
@@ -12761,7 +12761,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A new node CAn not be added since this cluster is already at its maximum number of nodes.
+// A new node can not be added since this cluster is already at its maximum number of nodes.
 //
 #define ERROR_CLUSTER_MAX_NODES_IN_CLUSTER 5934L
 
@@ -12770,7 +12770,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// This cluster CAn not be created since the specified number of nodes exceeds the maximum allowed limit.
+// This cluster can not be created since the specified number of nodes exceeds the maximum allowed limit.
 //
 #define ERROR_CLUSTER_TOO_MANY_NODES     5935L
 
@@ -12779,7 +12779,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An attempt to use the specified cluster name failed beCAuse an enabled computer object with the given name already exists in the domain.
+// An attempt to use the specified cluster name failed because an enabled computer object with the given name already exists in the domain.
 //
 #define ERROR_CLUSTER_OBJECT_ALREADY_USED 5936L
 
@@ -12788,7 +12788,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// This cluster CAnnot be destroyed. It has non-core appliCAtion groups which must be deleted before the cluster CAn be destroyed.
+// This cluster Cannot be destroyed. It has non-core appliCAtion groups which must be deleted before the cluster can be destroyed.
 //
 #define ERROR_NONCORE_GROUPS_FOUND       5937L
 
@@ -12797,7 +12797,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// File share associated with file share witness resource CAnnot be hosted by this cluster or any of its nodes.
+// File share associated with file share witness resource Cannot be hosted by this cluster or any of its nodes.
 //
 #define ERROR_FILE_SHARE_RESOURCE_CONFLICT 5938L
 
@@ -12843,7 +12843,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The resource has indiCAted that it CAnnot come online on any node.
+// The resource has indiCAted that it Cannot come online on any node.
 //
 #define ERROR_CLUSTER_RESOURCE_CONFIGURATION_ERROR 5943L
 
@@ -12852,7 +12852,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The current operation CAnnot be performed on this group at this time.
+// The current operation Cannot be performed on this group at this time.
 //
 #define ERROR_CLUSTER_GROUP_BUSY         5944L
 
@@ -12889,7 +12889,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// This group or resource CAnnot be directly manipulated.
+// This group or resource Cannot be directly manipulated.
 // Use shared volume APIs to perform desired operation.
 //
 #define ERROR_CLUSTER_USE_SHARED_VOLUMES_API 5948L
@@ -12917,7 +12917,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The cluster shared volume is not loCAlly mounted on this node.
+// The cluster shared volume is not locally mounted on this node.
 //
 #define ERROR_CSV_VOLUME_NOT_LOCAL       5951L
 
@@ -13153,7 +13153,7 @@ Do not add any more error codes in that range.
 //                 6100 to 6199                  //
 ///////////////////////////////////////////////////
 
-// This message number is for historiCAl purposes and CAnnot be changed or re-used.
+// This message number is for historiCAl purposes and Cannot be changed or re-used.
 //
 // MessageId: ERROR_NO_BROWSER_SERVERS_FOUND
 //
@@ -13345,7 +13345,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Log service CAnnot delete log file or file system container.
+// Log service Cannot delete log file or file system container.
 //
 #define ERROR_LOG_CANT_DELETE            6616L
 
@@ -13372,7 +13372,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Log policy could not be installed beCAuse a policy of the same type is already present.
+// Log policy could not be installed because a policy of the same type is already present.
 //
 #define ERROR_LOG_POLICY_ALREADY_INSTALLED 6619L
 
@@ -13408,7 +13408,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Log space CAnnot be reclaimed beCAuse the log is pinned by the archive tail.
+// Log space Cannot be reclaimed because the log is pinned by the archive tail.
 //
 #define ERROR_LOG_PINNED_ARCHIVE_TAIL    6623L
 
@@ -13480,7 +13480,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The operation failed beCAuse the log is a dediCAted log.
+// The operation failed because the log is a dediCAted log.
 //
 #define ERROR_LOG_DEDICATED              6631L
 
@@ -13516,7 +13516,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The log must have at least two containers before it CAn be read from or written to.
+// The log must have at least two containers before it can be read from or written to.
 //
 #define ERROR_LOG_NOT_ENOUGH_CONTAINERS  6635L
 
@@ -13597,7 +13597,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Log space CAnnot be reclaimed beCAuse the log is pinned.
+// Log space Cannot be reclaimed because the log is pinned.
 //
 #define ERROR_LOG_PINNED                 6644L
 
@@ -13677,7 +13677,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The CAller has CAlled a response API, but the response is not expected beCAuse the TM did not issue the corresponding request to the CAller.
+// The caller has called a response API, but the response is not expected because the TM did not issue the corresponding request to the caller.
 //
 #define ERROR_TRANSACTION_NOT_REQUESTED  6703L
 
@@ -13731,7 +13731,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The Transaction object already has a superior enlistment, and the CAller attempted an operation that would have created a new superior. Only a single superior enlistment is allow.
+// The Transaction object already has a superior enlistment, and the caller attempted an operation that would have created a new superior. Only a single superior enlistment is allow.
 //
 #define ERROR_TRANSACTION_SUPERIOR_EXISTS 6709L
 
@@ -13785,7 +13785,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The specified Transaction object could not be opened, beCAuse it was not found.
+// The specified Transaction object could not be opened, because it was not found.
 //
 #define ERROR_TRANSACTION_NOT_FOUND      6715L
 
@@ -13794,7 +13794,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The specified ResourceManager object could not be opened, beCAuse it was not found.
+// The specified ResourceManager object could not be opened, because it was not found.
 //
 #define ERROR_RESOURCEMANAGER_NOT_FOUND  6716L
 
@@ -13803,7 +13803,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The specified Enlistment object could not be opened, beCAuse it was not found.
+// The specified Enlistment object could not be opened, because it was not found.
 //
 #define ERROR_ENLISTMENT_NOT_FOUND       6717L
 
@@ -13812,7 +13812,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The specified TransactionManager object could not be opened, beCAuse it was not found.
+// The specified TransactionManager object could not be opened, because it was not found.
 //
 #define ERROR_TRANSACTIONMANAGER_NOT_FOUND 6718L
 
@@ -13821,7 +13821,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The object specified could not be created or opened, beCAuse its associated TransactionManager is not online.  The TransactionManager must be brought fully Online by CAlling RecoverTransactionManager to recover to the end of its LogFile before objects in its Transaction or ResourceManager namespaces CAn be opened.  In addition, errors in writing records to its LogFile CAn CAuse a TransactionManager to go offline.
+// The object specified could not be created or opened, because its associated TransactionManager is not online.  The TransactionManager must be brought fully Online by calling RecoverTransactionManager to recover to the end of its LogFile before objects in its Transaction or ResourceManager namespaces can be opened.  In addition, errors in writing records to its LogFile can CAuse a TransactionManager to go offline.
 //
 #define ERROR_TRANSACTIONMANAGER_NOT_ONLINE 6719L
 
@@ -13839,7 +13839,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The CAll to create a superior Enlistment on this Transaction object could not be completed, beCAuse the Transaction object specified for the enlistment is a subordinate branch of the Transaction. Only the root of the Transaction CAn be enlisted on as a superior.
+// The call to create a superior Enlistment on this Transaction object could not be completed, because the Transaction object specified for the enlistment is a subordinate branch of the Transaction. Only the root of the Transaction can be enlisted on as a superior.
 //
 #define ERROR_TRANSACTION_NOT_ROOT       6721L
 
@@ -13857,7 +13857,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The specified operation could not be performed on this Superior enlistment, beCAuse the enlistment was not created with the corresponding completion response in the NotifiCAtionMask.
+// The specified operation could not be performed on this Superior enlistment, because the enlistment was not created with the corresponding completion response in the NotifiCAtionMask.
 //
 #define ERROR_TRANSACTION_RESPONSE_NOT_ENLISTED 6723L
 
@@ -13866,7 +13866,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The specified operation could not be performed, beCAuse the record that would be logged was too long. This CAn occur beCAuse of two conditions: either there are too many Enlistments on this Transaction, or the combined RecoveryInformation being logged on behalf of those Enlistments is too long.
+// The specified operation could not be performed, because the record that would be logged was too long. This can occur because of two conditions: either there are too many Enlistments on this Transaction, or the combined RecoveryInformation being logged on behalf of those Enlistments is too long.
 //
 #define ERROR_TRANSACTION_RECORD_TOO_LONG 6724L
 
@@ -13884,7 +13884,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The kernel transaction manager had to abort or forget the transaction beCAuse it blocked forward progress.
+// The kernel transaction manager had to abort or forget the transaction because it blocked forward progress.
 //
 #define ERROR_TRANSACTION_INTEGRITY_VIOLATED 6726L
 
@@ -13902,7 +13902,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// This snapshot operation CAnnot continue beCAuse a transactional resource manager CAnnot be frozen in its current state.  Please try again.
+// This snapshot operation Cannot continue because a transactional resource manager Cannot be frozen in its current state.  Please try again.
 //
 #define ERROR_RM_CANNOT_BE_FROZEN_FOR_SNAPSHOT 6728L
 
@@ -13911,7 +13911,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The transaction CAnnot be enlisted on with the specified EnlistmentMask, beCAuse the transaction has already completed the PrePrepare phase.  In order to ensure correctness, the ResourceManager must switch to a write-through mode and cease CAching data within this transaction.  Enlisting for only subsequent transaction phases may still succeed.
+// The transaction Cannot be enlisted on with the specified EnlistmentMask, because the transaction has already completed the PrePrepare phase.  In order to ensure correctness, the ResourceManager must switch to a write-through mode and cease CAching data within this transaction.  Enlisting for only subsequent transaction phases may still succeed.
 //
 #define ERROR_TRANSACTION_MUST_WRITETHROUGH 6729L
 
@@ -14091,7 +14091,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The file CAn't be recovered beCAuse there is a handle still open on it.
+// The file can't be recovered because there is a handle still open on it.
 //
 #define ERROR_CANT_RECOVER_WITH_HANDLE_OPEN 6818L
 
@@ -14100,7 +14100,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The transaction outcome is unavailable beCAuse the resource manager responsible for it has disconnected.
+// The transaction outcome is unavailable because the resource manager responsible for it has disconnected.
 //
 #define ERROR_RM_DISCONNECTED            6819L
 
@@ -14109,7 +14109,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The request was rejected beCAuse the enlistment in question is not a superior enlistment.
+// The request was rejected because the enlistment in question is not a superior enlistment.
 //
 #define ERROR_ENLISTMENT_NOT_SUPERIOR    6820L
 
@@ -14136,7 +14136,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The file CAnnot be opened transactionally, beCAuse its identity depends on the outcome of an unresolved transaction.
+// The file Cannot be opened transactionally, because its identity depends on the outcome of an unresolved transaction.
 //
 #define ERROR_FILE_IDENTITY_NOT_PERSISTENT 6823L
 
@@ -14145,7 +14145,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The operation CAnnot be performed beCAuse another transaction is depending on the fact that this property will not change.
+// The operation Cannot be performed because another transaction is depending on the fact that this property will not change.
 //
 #define ERROR_CANT_BREAK_TRANSACTIONAL_DEPENDENCY 6824L
 
@@ -14181,7 +14181,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The operation could not be completed beCAuse the transaction manager does not have a log.
+// The operation could not be completed because the transaction manager does not have a log.
 //
 #define ERROR_TM_VOLATILE                6828L
 
@@ -14190,7 +14190,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A rollback could not be scheduled beCAuse a previously scheduled rollback has already executed or been queued for execution.
+// A rollback could not be scheduled because a previously scheduled rollback has already executed or been queued for execution.
 //
 #define ERROR_ROLLBACK_TIMER_EXPIRED     6829L
 
@@ -14208,7 +14208,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The encryption operation could not be completed beCAuse a transaction is active.
+// The encryption operation could not be completed because a transaction is active.
 //
 #define ERROR_EFS_NOT_ALLOWED_IN_TRANSACTION 6831L
 
@@ -14244,7 +14244,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Transaction metadata is already present on this file and CAnnot be superseded.
+// Transaction metadata is already present on this file and Cannot be superseded.
 //
 #define ERROR_TXF_METADATA_ALREADY_PRESENT 6835L
 
@@ -14253,7 +14253,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A transaction scope could not be entered beCAuse the scope handler has not been initialized.
+// A transaction scope could not be entered because the scope handler has not been initialized.
 //
 #define ERROR_TRANSACTION_SCOPE_CALLBACKS_NOT_SET 6836L
 
@@ -14280,7 +14280,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The request to thaw frozen transactions was ignored beCAuse transactions had not previously been frozen.
+// The request to thaw frozen transactions was ignored because transactions had not previously been frozen.
 //
 #define ERROR_TRANSACTIONS_NOT_FROZEN    6839L
 
@@ -14289,7 +14289,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Transactions CAnnot be frozen beCAuse a freeze is already in progress.
+// Transactions Cannot be frozen because a freeze is already in progress.
 //
 #define ERROR_TRANSACTION_FREEZE_IN_PROGRESS 6840L
 
@@ -14307,7 +14307,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The savepoint operation failed beCAuse files are open on the transaction. This is not permitted.
+// The savepoint operation failed because files are open on the transaction. This is not permitted.
 //
 #define ERROR_NO_SAVEPOINT_WITH_OPEN_FILES 6842L
 
@@ -14325,7 +14325,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The sparse operation could not be completed beCAuse a transaction is active on the file.
+// The sparse operation could not be completed because a transaction is active on the file.
 //
 #define ERROR_SPARSE_NOT_ALLOWED_IN_TRANSACTION 6844L
 
@@ -14334,7 +14334,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The CAll to create a TransactionManager object failed beCAuse the Tm Identity stored in the logfile does not match the Tm Identity that was passed in as an argument.
+// The call to create a TransactionManager object failed because the Tm Identity stored in the logfile does not match the Tm Identity that was passed in as an argument.
 //
 #define ERROR_TM_IDENTITY_MISMATCH       6845L
 
@@ -14352,7 +14352,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The transactional resource manager CAnnot currently accept transacted work due to a transient condition such as low resources.
+// The transactional resource manager Cannot currently accept transacted work due to a transient condition such as low resources.
 //
 #define ERROR_CANNOT_ACCEPT_TRANSACTED_WORK 6847L
 
@@ -14379,7 +14379,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The compression operation could not be completed beCAuse a transaction is active on the file.
+// The compression operation could not be completed because a transaction is active on the file.
 //
 #define ERROR_COMPRESSION_NOT_ALLOWED_IN_TRANSACTION 6850L
 
@@ -14388,7 +14388,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The operation could not be completed beCAuse the volume is dirty. Please run chkdsk and try again.
+// The operation could not be completed because the volume is dirty. Please run chkdsk and try again.
 //
 #define ERROR_VOLUME_DIRTY               6851L
 
@@ -14397,7 +14397,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The link tracking operation could not be completed beCAuse a transaction is active.
+// The link tracking operation could not be completed because a transaction is active.
 //
 #define ERROR_NO_LINK_TRACKING_IN_TRANSACTION 6852L
 
@@ -14406,7 +14406,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// This operation CAnnot be performed in a transaction.
+// This operation Cannot be performed in a transaction.
 //
 #define ERROR_OPERATION_NOT_SUPPORTED_IN_TRANSACTION 6853L
 
@@ -14424,7 +14424,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The specified operation could not be performed beCAuse the resource manager is not enlisted in the transaction.
+// The specified operation could not be performed because the resource manager is not enlisted in the transaction.
 //
 #define ERROR_TRANSACTION_NOT_ENLISTED   6855L
 
@@ -14601,7 +14601,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The specified session CAnnot be found.
+// The specified session Cannot be found.
 //
 #define ERROR_CTX_WINSTATION_NOT_FOUND   7022L
 
@@ -14619,7 +14619,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The task you are trying to do CAn't be completed beCAuse Remote Desktop Services is currently busy. Please try again in a few minutes. Other users should still be able to log on.
+// The task you are trying to do can't be completed because Remote Desktop Services is currently busy. Please try again in a few minutes. Other users should still be able to log on.
 //
 #define ERROR_CTX_WINSTATION_BUSY        7024L
 
@@ -14655,7 +14655,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The requested operation CAn be performed only on the system console. This is most often the result of a driver or system DLL requiring direct console access.
+// The requested operation can be performed only on the system console. This is most often the result of a driver or system DLL requiring direct console access.
 //
 #define ERROR_CTX_NOT_CONSOLE            7038L
 
@@ -14718,8 +14718,8 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The requested session CAnnot be controlled remotely.
-// This may be beCAuse the session is disconnected or does not currently have a user logged on.
+// The requested session Cannot be controlled remotely.
+// This may be because the session is disconnected or does not currently have a user logged on.
 //
 #define ERROR_CTX_SHADOW_INVALID         7050L
 
@@ -14737,7 +14737,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Your request to connect to this Terminal Server has been rejected. Your Terminal Server client license number is currently being used by another user. Please CAll your system administrator to obtain a unique license number.
+// Your request to connect to this Terminal Server has been rejected. Your Terminal Server client license number is currently being used by another user. Please call your system administrator to obtain a unique license number.
 //
 #define ERROR_CTX_CLIENT_LICENSE_IN_USE  7052L
 
@@ -14782,7 +14782,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Remote control could not be terminated beCAuse the specified session is not currently being remotely controlled.
+// Remote control could not be terminated because the specified session is not currently being remotely controlled.
 //
 #define ERROR_CTX_SHADOW_NOT_RUNNING     7057L
 
@@ -14791,7 +14791,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The remote control of the console was terminated beCAuse the display mode was changed. Changing the display mode in a remote control session is not supported.
+// The remote control of the console was terminated because the display mode was changed. Changing the display mode in a remote control session is not supported.
 //
 #define ERROR_CTX_SHADOW_ENDED_BY_MODE_CHANGE 7058L
 
@@ -14827,7 +14827,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The user %s\\%s is currently logged on to this computer. Only the current user or an administrator CAn log on to this computer.
+// The user %s\\%s is currently logged on to this computer. Only the current user or an administrator can log on to this computer.
 //
 #define ERROR_CTX_SESSION_IN_USE         7062L
 
@@ -14845,7 +14845,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Unable to log you on beCAuse of an account restriction.
+// Unable to log you on because of an account restriction.
 //
 #define ERROR_CTX_ACCOUNT_RESTRICTION    7064L
 
@@ -14899,7 +14899,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Windows CAn't connect to your session beCAuse a problem occurred in the Windows video subsystem. Try connecting again later, or contact the server administrator for assistance.
+// Windows can't connect to your session because a problem occurred in the Windows video subsystem. Try connecting again later, or contact the server administrator for assistance.
 //
 #define ERROR_TS_VIDEO_SUBSYSTEM_ERROR   7070L
 
@@ -14936,7 +14936,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The file repliCAtion service API was CAlled incorrectly.
+// The file replication service API was called incorrectly.
 //
 #define FRS_ERR_INVALID_API_SEQUENCE     8001L
 
@@ -14945,7 +14945,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The file repliCAtion service CAnnot be started.
+// The file replication service Cannot be started.
 //
 #define FRS_ERR_STARTING_SERVICE         8002L
 
@@ -14954,7 +14954,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The file repliCAtion service CAnnot be stopped.
+// The file replication service Cannot be stopped.
 //
 #define FRS_ERR_STOPPING_SERVICE         8003L
 
@@ -14963,7 +14963,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The file repliCAtion service API terminated the request. The event log may have more information.
+// The file replication service API terminated the request. The event log may have more information.
 //
 #define FRS_ERR_INTERNAL_API             8004L
 
@@ -14972,7 +14972,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The file repliCAtion service terminated the request. The event log may have more information.
+// The file replication service terminated the request. The event log may have more information.
 //
 #define FRS_ERR_INTERNAL                 8005L
 
@@ -14981,7 +14981,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The file repliCAtion service CAnnot be contacted. The event log may have more information.
+// The file replication service Cannot be contacted. The event log may have more information.
 //
 #define FRS_ERR_SERVICE_COMM             8006L
 
@@ -14990,7 +14990,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The file repliCAtion service CAnnot satisfy the request beCAuse the user has insufficient privileges. The event log may have more information.
+// The file replication service Cannot satisfy the request because the user has insufficient privileges. The event log may have more information.
 //
 #define FRS_ERR_INSUFFICIENT_PRIV        8007L
 
@@ -14999,7 +14999,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The file repliCAtion service CAnnot satisfy the request beCAuse authentiCAted RPC is not available. The event log may have more information.
+// The file replication service Cannot satisfy the request because authentiCAted RPC is not available. The event log may have more information.
 //
 #define FRS_ERR_AUTHENTICATION           8008L
 
@@ -15008,7 +15008,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The file repliCAtion service CAnnot satisfy the request beCAuse the user has insufficient privileges on the domain controller. The event log may have more information.
+// The file replication service Cannot satisfy the request because the user has insufficient privileges on the domain controller. The event log may have more information.
 //
 #define FRS_ERR_PARENT_INSUFFICIENT_PRIV 8009L
 
@@ -15017,7 +15017,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The file repliCAtion service CAnnot satisfy the request beCAuse authentiCAted RPC is not available on the domain controller. The event log may have more information.
+// The file replication service Cannot satisfy the request because authentiCAted RPC is not available on the domain controller. The event log may have more information.
 //
 #define FRS_ERR_PARENT_AUTHENTICATION    8010L
 
@@ -15026,7 +15026,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The file repliCAtion service CAnnot communiCAte with the file repliCAtion service on the domain controller. The event log may have more information.
+// The file replication service Cannot communiCAte with the file replication service on the domain controller. The event log may have more information.
 //
 #define FRS_ERR_CHILD_TO_PARENT_COMM     8011L
 
@@ -15035,7 +15035,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The file repliCAtion service on the domain controller CAnnot communiCAte with the file repliCAtion service on this computer. The event log may have more information.
+// The file replication service on the domain controller Cannot communiCAte with the file replication service on this computer. The event log may have more information.
 //
 #define FRS_ERR_PARENT_TO_CHILD_COMM     8012L
 
@@ -15044,7 +15044,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The file repliCAtion service CAnnot populate the system volume beCAuse of an internal error. The event log may have more information.
+// The file replication service Cannot populate the system volume because of an internal error. The event log may have more information.
 //
 #define FRS_ERR_SYSVOL_POPULATE          8013L
 
@@ -15053,7 +15053,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The file repliCAtion service CAnnot populate the system volume beCAuse of an internal timeout. The event log may have more information.
+// The file replication service Cannot populate the system volume because of an internal timeout. The event log may have more information.
 //
 #define FRS_ERR_SYSVOL_POPULATE_TIMEOUT  8014L
 
@@ -15062,7 +15062,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The file repliCAtion service CAnnot process the request. The system volume is busy with a previous request.
+// The file replication service Cannot process the request. The system volume is busy with a previous request.
 //
 #define FRS_ERR_SYSVOL_IS_BUSY           8015L
 
@@ -15071,7 +15071,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The file repliCAtion service CAnnot stop repliCAting the system volume beCAuse of an internal error. The event log may have more information.
+// The file replication service Cannot stop replicating the system volume because of an internal error. The event log may have more information.
 //
 #define FRS_ERR_SYSVOL_DEMOTE            8016L
 
@@ -15080,7 +15080,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The file repliCAtion service detected an invalid parameter.
+// The file replication service detected an invalid parameter.
 //
 #define FRS_ERR_INVALID_SERVICE_PARAMETER 8017L
 
@@ -15102,7 +15102,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The directory service evaluated group memberships loCAlly.
+// The directory service evaluated group memberships locally.
 //
 #define ERROR_DS_MEMBERSHIP_EVALUATED_LOCALLY 8201L
 
@@ -15183,7 +15183,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The requested operation could not be performed beCAuse the directory service is not the master for that type of operation.
+// The requested operation could not be performed because the directory service is not the master for that type of operation.
 //
 #define ERROR_DS_INCORRECT_ROLE_OWNER    8210L
 
@@ -15210,7 +15210,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The directory service CAn perform the requested operation only on a leaf object.
+// The directory service can perform the requested operation only on a leaf object.
 //
 #define ERROR_DS_CANT_ON_NON_LEAF        8213L
 
@@ -15219,7 +15219,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The directory service CAnnot perform the requested operation on the RDN attribute of an object.
+// The directory service Cannot perform the requested operation on the RDN attribute of an object.
 //
 #define ERROR_DS_CANT_ON_RDN             8214L
 
@@ -15255,7 +15255,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The policy object is shared and CAn only be modified at the root.
+// The policy object is shared and can only be modified at the root.
 //
 #define ERROR_SHARED_POLICY              8218L
 
@@ -15571,7 +15571,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The search filter CAnnot be recognized.
+// The search filter Cannot be recognized.
 //
 #define ERROR_DS_FILTER_UNKNOWN          8254L
 
@@ -15652,7 +15652,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The root object must be the head of a naming context. The root object CAnnot have an instantiated parent.
+// The root object must be the head of a naming context. The root object Cannot have an instantiated parent.
 //
 #define ERROR_DS_ROOT_MUST_BE_NC         8301L
 
@@ -15661,7 +15661,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The add repliCA operation CAnnot be performed. The naming context must be writeable in order to create the repliCA.
+// The add replica operation Cannot be performed. The naming context must be writeable in order to create the replica.
 //
 #define ERROR_DS_ADD_REPLICA_INHIBITED   8302L
 
@@ -15824,7 +15824,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Multiple values were specified for an attribute that CAn have only one value.
+// Multiple values were specified for an attribute that can have only one value.
 //
 #define ERROR_DS_SINGLE_VALUE_CONSTRAINT 8321L
 
@@ -15851,7 +15851,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The attribute CAnnot be removed beCAuse it is not present on the object.
+// The attribute Cannot be removed because it is not present on the object.
 //
 #define ERROR_DS_CANT_REM_MISSING_ATT    8324L
 
@@ -15860,7 +15860,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The attribute value CAnnot be removed beCAuse it is not present on the object.
+// The attribute value Cannot be removed because it is not present on the object.
 //
 #define ERROR_DS_CANT_REM_MISSING_ATT_VAL 8325L
 
@@ -15869,7 +15869,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The specified root object CAnnot be a subref.
+// The specified root object Cannot be a subref.
 //
 #define ERROR_DS_ROOT_CANT_BE_SUBREF     8326L
 
@@ -15896,7 +15896,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The operation could not be performed beCAuse the object's parent is either uninstantiated or deleted.
+// The operation could not be performed because the object's parent is either uninstantiated or deleted.
 //
 #define ERROR_DS_NO_PARENT_OBJECT        8329L
 
@@ -15914,7 +15914,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The object and parent must be of the same type, either both masters or both repliCAs.
+// The object and parent must be of the same type, either both masters or both replicas.
 //
 #define ERROR_DS_CANT_MIX_MASTER_AND_REPS 8331L
 
@@ -15923,7 +15923,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The operation CAnnot be performed beCAuse child objects exist. This operation CAn only be performed on a leaf object.
+// The operation Cannot be performed because child objects exist. This operation can only be performed on a leaf object.
 //
 #define ERROR_DS_CHILDREN_EXIST          8332L
 
@@ -15968,7 +15968,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The alias CAnnot be dereferenced.
+// The alias Cannot be dereferenced.
 //
 #define ERROR_DS_CANT_DEREF_ALIAS        8337L
 
@@ -15986,7 +15986,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The operation CAnnot continue beCAuse the object is in the process of being removed.
+// The operation Cannot continue because the object is in the process of being removed.
 //
 #define ERROR_DS_OBJECT_BEING_REMOVED    8339L
 
@@ -15995,7 +15995,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The DSA object CAnnot be deleted.
+// The DSA object Cannot be deleted.
 //
 #define ERROR_DS_CANT_DELETE_DSA_OBJ     8340L
 
@@ -16013,7 +16013,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The operation CAn only be performed on an internal master DSA object.
+// The operation can only be performed on an internal master DSA object.
 //
 #define ERROR_DS_DSA_MUST_BE_INT_MASTER  8342L
 
@@ -16040,7 +16040,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The object CAnnot be added beCAuse the parent is not on the list of possible superiors.
+// The object Cannot be added because the parent is not on the list of possible superiors.
 //
 #define ERROR_DS_ILLEGAL_SUPERIOR        8345L
 
@@ -16049,7 +16049,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Access to the attribute is not permitted beCAuse the attribute is owned by the Security Accounts Manager (SAM).
+// Access to the attribute is not permitted because the attribute is owned by the Security Accounts Manager (SAM).
 //
 #define ERROR_DS_ATTRIBUTE_OWNED_BY_SAM  8346L
 
@@ -16094,7 +16094,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The directory service CAnnot get the attribute type for a name.
+// The directory service Cannot get the attribute type for a name.
 //
 #define ERROR_DS_NAME_TYPE_UNKNOWN       8351L
 
@@ -16166,7 +16166,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The class of the object must be structural; you CAnnot instantiate an abstract class.
+// The class of the object must be structural; you Cannot instantiate an abstract class.
 //
 #define ERROR_DS_CLASS_MUST_BE_CONCRETE  8359L
 
@@ -16193,7 +16193,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The operation CAnnot be performed on a back link.
+// The operation Cannot be performed on a back link.
 //
 #define ERROR_DS_NOT_ON_BACKLINK         8362L
 
@@ -16211,7 +16211,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The operation could not be performed beCAuse the directory service is shutting down.
+// The operation could not be performed because the directory service is shutting down.
 //
 #define ERROR_DS_SHUTTING_DOWN           8364L
 
@@ -16256,7 +16256,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The attribute CAnnot be modified beCAuse it is owned by the system.
+// The attribute Cannot be modified because it is owned by the system.
 //
 #define ERROR_DS_CANT_MOD_SYSTEM_ONLY    8369L
 
@@ -16265,7 +16265,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Only the repliCAtor CAn perform this function.
+// Only the replicator can perform this function.
 //
 #define ERROR_DS_REPLICATOR_ONLY         8370L
 
@@ -16526,7 +16526,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// CAnnot read the governs class identifier for the schema record.
+// Cannot read the governs class identifier for the schema record.
 //
 #define ERROR_DS_ATT_SCHEMA_REQ_ID       8399L
 
@@ -16697,7 +16697,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion operation failed beCAuse of a schema mismatch between the servers involved.
+// The replication operation failed because of a schema mismatch between the servers involved.
 //
 #define ERROR_DS_DRA_SCHEMA_MISMATCH     8418L
 
@@ -16751,7 +16751,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The operation CAnnot replace the hidden record.
+// The operation Cannot replace the hidden record.
 //
 #define ERROR_DS_CANT_REPLACE_HIDDEN_REC 8424L
 
@@ -16832,7 +16832,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// This directory server is shutting down, and CAnnot take ownership of new floating single-master operation roles.
+// This directory server is shutting down, and Cannot take ownership of new floating single-master operation roles.
 //
 #define ERROR_DS_REFUSING_FSMO_ROLES     8433L
 
@@ -16859,7 +16859,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion operation failed.
+// The replication operation failed.
 //
 #define ERROR_DS_DRA_GENERIC             8436L
 
@@ -16868,7 +16868,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An invalid parameter was specified for this repliCAtion operation.
+// An invalid parameter was specified for this replication operation.
 //
 #define ERROR_DS_DRA_INVALID_PARAMETER   8437L
 
@@ -16877,7 +16877,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The directory service is too busy to complete the repliCAtion operation at this time.
+// The directory service is too busy to complete the replication operation at this time.
 //
 #define ERROR_DS_DRA_BUSY                8438L
 
@@ -16886,7 +16886,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The distinguished name specified for this repliCAtion operation is invalid.
+// The distinguished name specified for this replication operation is invalid.
 //
 #define ERROR_DS_DRA_BAD_DN              8439L
 
@@ -16895,7 +16895,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The naming context specified for this repliCAtion operation is invalid.
+// The naming context specified for this replication operation is invalid.
 //
 #define ERROR_DS_DRA_BAD_NC              8440L
 
@@ -16904,7 +16904,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The distinguished name specified for this repliCAtion operation already exists.
+// The distinguished name specified for this replication operation already exists.
 //
 #define ERROR_DS_DRA_DN_EXISTS           8441L
 
@@ -16913,7 +16913,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion system encountered an internal error.
+// The replication system encountered an internal error.
 //
 #define ERROR_DS_DRA_INTERNAL_ERROR      8442L
 
@@ -16922,7 +16922,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion operation encountered a database inconsistency.
+// The replication operation encountered a database inconsistency.
 //
 #define ERROR_DS_DRA_INCONSISTENT_DIT    8443L
 
@@ -16931,7 +16931,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The server specified for this repliCAtion operation could not be contacted.
+// The server specified for this replication operation could not be contacted.
 //
 #define ERROR_DS_DRA_CONNECTION_FAILED   8444L
 
@@ -16940,7 +16940,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion operation encountered an object with an invalid instance type.
+// The replication operation encountered an object with an invalid instance type.
 //
 #define ERROR_DS_DRA_BAD_INSTANCE_TYPE   8445L
 
@@ -16949,7 +16949,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion operation failed to alloCAte memory.
+// The replication operation failed to alloCAte memory.
 //
 #define ERROR_DS_DRA_OUT_OF_MEM          8446L
 
@@ -16958,7 +16958,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion operation encountered an error with the mail system.
+// The replication operation encountered an error with the mail system.
 //
 #define ERROR_DS_DRA_MAIL_PROBLEM        8447L
 
@@ -16967,7 +16967,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion reference information for the target server already exists.
+// The replication reference information for the target server already exists.
 //
 #define ERROR_DS_DRA_REF_ALREADY_EXISTS  8448L
 
@@ -16976,7 +16976,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion reference information for the target server does not exist.
+// The replication reference information for the target server does not exist.
 //
 #define ERROR_DS_DRA_REF_NOT_FOUND       8449L
 
@@ -16985,7 +16985,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The naming context CAnnot be removed beCAuse it is repliCAted to another server.
+// The naming context Cannot be removed because it is replicated to another server.
 //
 #define ERROR_DS_DRA_OBJ_IS_REP_SOURCE   8450L
 
@@ -16994,7 +16994,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion operation encountered a database error.
+// The replication operation encountered a database error.
 //
 #define ERROR_DS_DRA_DB_ERROR            8451L
 
@@ -17003,7 +17003,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The naming context is in the process of being removed or is not repliCAted from the specified server.
+// The naming context is in the process of being removed or is not replicated from the specified server.
 //
 #define ERROR_DS_DRA_NO_REPLICA          8452L
 
@@ -17030,7 +17030,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion remote procedure CAll was CAncelled.
+// The replication remote procedure call was cancelled.
 //
 #define ERROR_DS_DRA_RPC_CANCELLED       8455L
 
@@ -17039,7 +17039,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The source server is currently rejecting repliCAtion requests.
+// The source server is currently rejecting replication requests.
 //
 #define ERROR_DS_DRA_SOURCE_DISABLED     8456L
 
@@ -17048,7 +17048,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The destination server is currently rejecting repliCAtion requests.
+// The destination server is currently rejecting replication requests.
 //
 #define ERROR_DS_DRA_SINK_DISABLED       8457L
 
@@ -17057,7 +17057,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion operation failed due to a collision of object names.
+// The replication operation failed due to a collision of object names.
 //
 #define ERROR_DS_DRA_NAME_COLLISION      8458L
 
@@ -17066,7 +17066,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion source has been reinstalled.
+// The replication source has been reinstalled.
 //
 #define ERROR_DS_DRA_SOURCE_REINSTALLED  8459L
 
@@ -17075,7 +17075,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion operation failed beCAuse a required parent object is missing.
+// The replication operation failed because a required parent object is missing.
 //
 #define ERROR_DS_DRA_MISSING_PARENT      8460L
 
@@ -17084,7 +17084,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion operation was preempted.
+// The replication operation was preempted.
 //
 #define ERROR_DS_DRA_PREEMPTED           8461L
 
@@ -17093,7 +17093,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion synchronization attempt was abandoned beCAuse of a lack of updates.
+// The replication synchronization attempt was abandoned because of a lack of updates.
 //
 #define ERROR_DS_DRA_ABANDON_SYNC        8462L
 
@@ -17102,7 +17102,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion operation was terminated beCAuse the system is shutting down.
+// The replication operation was terminated because the system is shutting down.
 //
 #define ERROR_DS_DRA_SHUTDOWN            8463L
 
@@ -17111,7 +17111,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Synchronization attempt failed beCAuse the destination DC is currently waiting to synchronize new partial attributes from source. This condition is normal if a recent schema change modified the partial attribute set. The destination partial attribute set is not a subset of source partial attribute set.
+// Synchronization attempt failed because the destination DC is currently waiting to synchronize new partial attributes from source. This condition is normal if a recent schema change modified the partial attribute set. The destination partial attribute set is not a subset of source partial attribute set.
 //
 #define ERROR_DS_DRA_INCOMPATIBLE_PARTIAL_SET 8464L
 
@@ -17120,7 +17120,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion synchronization attempt failed beCAuse a master repliCA attempted to sync from a partial repliCA.
+// The replication synchronization attempt failed because a master replica attempted to sync from a partial replica.
 //
 #define ERROR_DS_DRA_SOURCE_IS_PARTIAL_REPLICA 8465L
 
@@ -17129,7 +17129,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The server specified for this repliCAtion operation was contacted, but that server was unable to contact an additional server needed to complete the operation.
+// The server specified for this replication operation was contacted, but that server was unable to contact an additional server needed to complete the operation.
 //
 #define ERROR_DS_DRA_EXTN_CONNECTION_FAILED 8466L
 
@@ -17228,7 +17228,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion request has been posted; waiting for reply.
+// The replication request has been posted; waiting for reply.
 //
 #define ERROR_DS_DRA_REPL_PENDING        8477L
 
@@ -17300,7 +17300,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Source and destination for the cross-domain move operation are identiCAl. CAller should use loCAl move operation instead of cross-domain move operation.
+// Source and destination for the cross-domain move operation are identiCAl. caller should use loCAl move operation instead of cross-domain move operation.
 //
 #define ERROR_DS_SRC_AND_DST_NC_IDENTICAL 8485L
 
@@ -17363,7 +17363,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// This object may not be moved across domain boundaries either beCAuse cross-domain moves for this class are disallowed, or the object has some special characteristics, e.g.: trust account or restricted RID, which prevent its move.
+// This object may not be moved across domain boundaries either because cross-domain moves for this class are disallowed, or the object has some special characteristics, e.g.: trust account or restricted RID, which prevent its move.
 //
 #define ERROR_DS_ILLEGAL_XDOM_MOVE_OPERATION 8492L
 
@@ -17372,7 +17372,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// CAn't move objects with memberships across domain boundaries as once moved, this would violate the membership conditions of the account group. Remove the object from any account group memberships and retry.
+// can't move objects with memberships across domain boundaries as once moved, this would violate the membership conditions of the account group. Remove the object from any account group memberships and retry.
 //
 #define ERROR_DS_CANT_WITH_ACCT_GROUP_MEMBERSHPS 8493L
 
@@ -17390,7 +17390,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The directory CAnnot validate the proposed naming context name beCAuse it does not hold a repliCA of the naming context above the proposed naming context. Please ensure that the domain naming master role is held by a server that is configured as a global CAtalog server, and that the server is up to date with its repliCAtion partners. (Applies only to Windows 2000 Domain Naming masters)
+// The directory Cannot validate the proposed naming context name because it does not hold a replica of the naming context above the proposed naming context. Please ensure that the domain naming master role is held by a server that is configured as a global CAtalog server, and that the server is up to date with its replication partners. (Applies only to Windows 2000 Domain Naming masters)
 //
 #define ERROR_DS_CR_IMPOSSIBLE_TO_VALIDATE 8495L
 
@@ -17408,7 +17408,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The operation CAnnot be performed beCAuse the server does not have an infrastructure container in the domain of interest.
+// The operation Cannot be performed because the server does not have an infrastructure container in the domain of interest.
 //
 #define ERROR_DS_MISSING_INFRASTRUCTURE_CONTAINER 8497L
 
@@ -17453,7 +17453,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The directory service failed to lock a tree in preparation for a tree deletion beCAuse the tree was in use.
+// The directory service failed to lock a tree in preparation for a tree deletion because the tree was in use.
 //
 #define ERROR_DS_COULDNT_LOCK_TREE_FOR_DELETE 8502L
 
@@ -17471,7 +17471,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Security Accounts Manager initialization failed beCAuse of the following error: %1.
+// Security Accounts Manager initialization failed because of the following error: %1.
 // Error Status: 0x%2. Please shutdown this system and reboot into Directory Services Restore Mode, check the event log for more detailed information.
 //
 #define ERROR_DS_SAM_INIT_FAILURE        8504L
@@ -17481,7 +17481,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Only an administrator CAn modify the membership list of an administrative group.
+// Only an administrator can modify the membership list of an administrative group.
 //
 #define ERROR_DS_SENSITIVE_GROUP_VIOLATION 8505L
 
@@ -17490,7 +17490,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// CAnnot change the primary group ID of a domain controller account.
+// Cannot change the primary group ID of a domain controller account.
 //
 #define ERROR_DS_CANT_MOD_PRIMARYGROUPID 8506L
 
@@ -17517,7 +17517,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Schema update is not allowed on this DC beCAuse the DC is not the schema FSMO Role Owner.
+// Schema update is not allowed on this DC because the DC is not the schema FSMO Role Owner.
 //
 #define ERROR_DS_SCHEMA_UPDATE_DISALLOWED 8509L
 
@@ -17526,7 +17526,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An object of this class CAnnot be created under the schema container. You CAn only create attribute-schema and class-schema objects under the schema container.
+// An object of this class Cannot be created under the schema container. You can only create attribute-schema and class-schema objects under the schema container.
 //
 #define ERROR_DS_CANT_CREATE_UNDER_SCHEMA 8510L
 
@@ -17535,7 +17535,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCA/child install failed to get the objectVersion attribute on the schema container on the source DC. Either the attribute is missing on the schema container or the credentials supplied do not have permission to read it.
+// The replica/child install failed to get the objectVersion attribute on the schema container on the source DC. Either the attribute is missing on the schema container or the credentials supplied do not have permission to read it.
 //
 #define ERROR_DS_INSTALL_NO_SRC_SCH_VERSION 8511L
 
@@ -17544,7 +17544,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCA/child install failed to read the objectVersion attribute in the SCHEMA section of the file schema.ini in the system32 directory.
+// The replica/child install failed to read the objectVersion attribute in the SCHEMA section of the file schema.ini in the system32 directory.
 //
 #define ERROR_DS_INSTALL_NO_SCH_VERSION_IN_INIFILE 8512L
 
@@ -17562,7 +17562,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// You CAnnot nest global groups in a mixed domain if the group is security-enabled.
+// You Cannot nest global groups in a mixed domain if the group is security-enabled.
 //
 #define ERROR_DS_NO_NEST_GLOBALGROUP_IN_MIXEDDOMAIN 8514L
 
@@ -17571,7 +17571,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// You CAnnot nest loCAl groups in a mixed domain if the group is security-enabled.
+// You Cannot nest loCAl groups in a mixed domain if the group is security-enabled.
 //
 #define ERROR_DS_NO_NEST_LOCALGROUP_IN_MIXEDDOMAIN 8515L
 
@@ -17580,7 +17580,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A global group CAnnot have a loCAl group as a member.
+// A global group Cannot have a loCAl group as a member.
 //
 #define ERROR_DS_GLOBAL_CANT_HAVE_LOCAL_MEMBER 8516L
 
@@ -17589,7 +17589,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A global group CAnnot have a universal group as a member.
+// A global group Cannot have a universal group as a member.
 //
 #define ERROR_DS_GLOBAL_CANT_HAVE_UNIVERSAL_MEMBER 8517L
 
@@ -17598,7 +17598,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A universal group CAnnot have a loCAl group as a member.
+// A universal group Cannot have a loCAl group as a member.
 //
 #define ERROR_DS_UNIVERSAL_CANT_HAVE_LOCAL_MEMBER 8518L
 
@@ -17607,7 +17607,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A global group CAnnot have a cross-domain member.
+// A global group Cannot have a cross-domain member.
 //
 #define ERROR_DS_GLOBAL_CANT_HAVE_CROSSDOMAIN_MEMBER 8519L
 
@@ -17616,7 +17616,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A loCAl group CAnnot have another cross domain loCAl group as a member.
+// A loCAl group Cannot have another cross domain loCAl group as a member.
 //
 #define ERROR_DS_LOCAL_CANT_HAVE_CROSSDOMAIN_LOCAL_MEMBER 8520L
 
@@ -17625,7 +17625,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A group with primary members CAnnot change to a security-disabled group.
+// A group with primary members Cannot change to a security-disabled group.
 //
 #define ERROR_DS_HAVE_PRIMARY_MEMBERS    8521L
 
@@ -17652,7 +17652,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The DSA operation is unable to proceed beCAuse of a DNS lookup failure.
+// The DSA operation is unable to proceed because of a DNS lookup failure.
 //
 #define ERROR_DS_DNS_LOOKUP_FAILURE      8524L
 
@@ -17688,7 +17688,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The syntax of the linked attribute being added is incorrect. Forward links CAn only have syntax 2.5.5.1, 2.5.5.7, and 2.5.5.14, and backlinks CAn only have syntax 2.5.5.1
+// The syntax of the linked attribute being added is incorrect. Forward links can only have syntax 2.5.5.1, 2.5.5.7, and 2.5.5.14, and backlinks can only have syntax 2.5.5.1
 //
 #define ERROR_DS_WRONG_LINKED_ATT_SYNTAX 8528L
 
@@ -17715,7 +17715,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Directory Service CAnnot start.
+// Directory Service Cannot start.
 //
 #define ERROR_DS_CANT_START              8531L
 
@@ -17805,7 +17805,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Security Accounts Manager initialization failed beCAuse of the following error: %1.
+// Security Accounts Manager initialization failed because of the following error: %1.
 // Error Status: 0x%2. Click OK to shut down the system and reboot into Safe Mode. Check the event log for detailed information.
 //
 #define ERROR_SAM_INIT_FAILURE           8541L
@@ -17815,7 +17815,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Schema information could not be included in the repliCAtion request.
+// Schema information could not be included in the replication request.
 //
 #define ERROR_DS_DRA_SCHEMA_INFO_SHIP    8542L
 
@@ -17824,7 +17824,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion operation could not be completed due to a schema incompatibility.
+// The replication operation could not be completed due to a schema incompatibility.
 //
 #define ERROR_DS_DRA_SCHEMA_CONFLICT     8543L
 
@@ -17833,7 +17833,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion operation could not be completed due to a previous schema incompatibility.
+// The replication operation could not be completed due to a previous schema incompatibility.
 //
 #define ERROR_DS_DRA_EARLIER_SCHEMA_CONFLICT 8544L
 
@@ -17842,7 +17842,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion update could not be applied beCAuse either the source or the destination has not yet received information regarding a recent cross-domain move operation.
+// The replication update could not be applied because either the source or the destination has not yet received information regarding a recent cross-domain move operation.
 //
 #define ERROR_DS_DRA_OBJ_NC_MISMATCH     8545L
 
@@ -17851,7 +17851,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The requested domain could not be deleted beCAuse there exist domain controllers that still host this domain.
+// The requested domain could not be deleted because there exist domain controllers that still host this domain.
 //
 #define ERROR_DS_NC_STILL_HAS_DSAS       8546L
 
@@ -17860,7 +17860,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The requested operation CAn be performed only on a global CAtalog server.
+// The requested operation can be performed only on a global CAtalog server.
 //
 #define ERROR_DS_GC_REQUIRED             8547L
 
@@ -17869,7 +17869,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A loCAl group CAn only be a member of other loCAl groups in the same domain.
+// A loCAl group can only be a member of other loCAl groups in the same domain.
 //
 #define ERROR_DS_LOCAL_MEMBER_OF_LOCAL_ONLY 8548L
 
@@ -17878,7 +17878,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Foreign security principals CAnnot be members of universal groups.
+// Foreign security principals Cannot be members of universal groups.
 //
 #define ERROR_DS_NO_FPO_IN_UNIVERSAL_GROUPS 8549L
 
@@ -17887,7 +17887,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The attribute is not allowed to be repliCAted to the GC beCAuse of security reasons.
+// The attribute is not allowed to be replicated to the GC because of security reasons.
 //
 #define ERROR_DS_CANT_ADD_TO_GC          8550L
 
@@ -17896,7 +17896,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The checkpoint with the PDC could not be taken beCAuse there too many modifiCAtions being processed currently.
+// The checkpoint with the PDC could not be taken because there too many modifiCAtions being processed currently.
 //
 #define ERROR_DS_NO_CHECKPOINT_WITH_PDC  8551L
 
@@ -17914,7 +17914,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Security principal objects CAn only be created inside domain naming contexts.
+// Security principal objects can only be created inside domain naming contexts.
 //
 #define ERROR_DS_CANT_CREATE_IN_NONDOMAIN_NC 8553L
 
@@ -17923,7 +17923,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A Service Principal Name (SPN) could not be constructed beCAuse the provided hostname is not in the necessary format.
+// A Service Principal Name (SPN) could not be constructed because the provided hostname is not in the necessary format.
 //
 #define ERROR_DS_INVALID_NAME_FOR_SPN    8554L
 
@@ -17977,7 +17977,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// CritiCAl Directory Service System objects CAnnot be deleted during tree delete operations. The tree delete may have been partially performed.
+// CritiCAl Directory Service System objects Cannot be deleted during tree delete operations. The tree delete may have been partially performed.
 //
 #define ERROR_DS_CANT_TREE_DELETE_CRITICAL_OBJ 8560L
 
@@ -17986,8 +17986,8 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Directory Services could not start beCAuse of the following error: %1.
-// Error Status: 0x%2. Please click OK to shutdown the system. You CAn use the recovery console to diagnose the system further.
+// Directory Services could not start because of the following error: %1.
+// Error Status: 0x%2. Please click OK to shutdown the system. You can use the recovery console to diagnose the system further.
 //
 #define ERROR_DS_INIT_FAILURE_CONSOLE    8561L
 
@@ -17996,8 +17996,8 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Security Accounts Manager initialization failed beCAuse of the following error: %1.
-// Error Status: 0x%2. Please click OK to shutdown the system. You CAn use the recovery console to diagnose the system further.
+// Security Accounts Manager initialization failed because of the following error: %1.
+// Error Status: 0x%2. Please click OK to shutdown the system. You can use the recovery console to diagnose the system further.
 //
 #define ERROR_DS_SAM_INIT_FAILURE_CONSOLE 8562L
 
@@ -18006,7 +18006,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The version of the operating system is incompatible with the current AD DS forest functional level or AD LDS Configuration Set functional level. You must upgrade to a new version of the operating system before this server CAn become an AD DS Domain Controller or add an AD LDS Instance in this AD DS Forest or AD LDS Configuration Set.
+// The version of the operating system is incompatible with the current AD DS forest functional level or AD LDS Configuration Set functional level. You must upgrade to a new version of the operating system before this server can become an AD DS Domain Controller or add an AD LDS Instance in this AD DS Forest or AD LDS Configuration Set.
 //
 #define ERROR_DS_FOREST_VERSION_TOO_HIGH 8563L
 
@@ -18015,7 +18015,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The version of the operating system installed is incompatible with the current domain functional level. You must upgrade to a new version of the operating system before this server CAn become a domain controller in this domain.
+// The version of the operating system installed is incompatible with the current domain functional level. You must upgrade to a new version of the operating system before this server can become a domain controller in this domain.
 //
 #define ERROR_DS_DOMAIN_VERSION_TOO_HIGH 8564L
 
@@ -18024,7 +18024,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The version of the operating system installed on this server no longer supports the current AD DS Forest functional level or AD LDS Configuration Set functional level. You must raise the AD DS Forest functional level or AD LDS Configuration Set functional level before this server CAn become an AD DS Domain Controller or an AD LDS Instance in this Forest or Configuration Set.
+// The version of the operating system installed on this server no longer supports the current AD DS Forest functional level or AD LDS Configuration Set functional level. You must raise the AD DS Forest functional level or AD LDS Configuration Set functional level before this server can become an AD DS Domain Controller or an AD LDS Instance in this Forest or Configuration Set.
 //
 #define ERROR_DS_FOREST_VERSION_TOO_LOW  8565L
 
@@ -18033,7 +18033,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The version of the operating system installed on this server no longer supports the current domain functional level. You must raise the domain functional level before this server CAn become a domain controller in this domain.
+// The version of the operating system installed on this server no longer supports the current domain functional level. You must raise the domain functional level before this server can become a domain controller in this domain.
 //
 #define ERROR_DS_DOMAIN_VERSION_TOO_LOW  8566L
 
@@ -18051,7 +18051,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The functional level of the domain (or forest) CAnnot be raised to the requested value, beCAuse there exist one or more domain controllers in the domain (or forest) that are at a lower incompatible functional level.
+// The functional level of the domain (or forest) Cannot be raised to the requested value, because there exist one or more domain controllers in the domain (or forest) that are at a lower incompatible functional level.
 //
 #define ERROR_DS_LOW_DSA_VERSION         8568L
 
@@ -18060,7 +18060,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The forest functional level CAnnot be raised to the requested value since one or more domains are still in mixed domain mode. All domains in the forest must be in native mode, for you to raise the forest functional level.
+// The forest functional level Cannot be raised to the requested value since one or more domains are still in mixed domain mode. All domains in the forest must be in native mode, for you to raise the forest functional level.
 //
 #define ERROR_DS_NO_BEHAVIOR_VERSION_IN_MIXEDDOMAIN 8569L
 
@@ -18105,7 +18105,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Unable to continue operation beCAuse multiple conflicting controls were used.
+// Unable to continue operation because multiple conflicting controls were used.
 //
 #define ERROR_DS_INCOMPATIBLE_CONTROLS_USED 8574L
 
@@ -18141,7 +18141,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An account group CAnnot have a universal group as a member.
+// An account group Cannot have a universal group as a member.
 //
 #define ERROR_DS_AG_CANT_HAVE_UNIVERSAL_MEMBER 8578L
 
@@ -18213,7 +18213,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The directory CAnnot validate the proposed naming context (or partition) name beCAuse it does not hold a repliCA nor CAn it contact a repliCA of the naming context above the proposed naming context. Please ensure that the parent naming context is properly registered in DNS, and at least one repliCA of this naming context is reachable by the Domain Naming master.
+// The directory Cannot validate the proposed naming context (or partition) name because it does not hold a replica nor can it contact a replica of the naming context above the proposed naming context. Please ensure that the parent naming context is properly registered in DNS, and at least one replica of this naming context is reachable by the Domain Naming master.
 //
 #define ERROR_DS_CR_IMPOSSIBLE_TO_VALIDATE_V2 8586L
 
@@ -18240,7 +18240,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The DS CAnnot derive a service principal name (SPN) with which to mutually authentiCAte the target server beCAuse the corresponding server object in the loCAl DS database has no serverReference attribute.
+// The DS Cannot derive a service principal name (SPN) with which to mutually authentiCAte the target server because the corresponding server object in the loCAl DS database has no serverReference attribute.
 //
 #define ERROR_DS_CANT_DERIVE_SPN_WITHOUT_SERVER_REF 8589L
 
@@ -18258,7 +18258,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The Directory Service CAnnot parse the script beCAuse of a syntax error.
+// The Directory Service Cannot parse the script because of a syntax error.
 //
 #define ERROR_DS_NTDSCRIPT_SYNTAX_ERROR  8591L
 
@@ -18267,7 +18267,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The Directory Service CAnnot process the script beCAuse of an error.
+// The Directory Service Cannot process the script because of an error.
 //
 #define ERROR_DS_NTDSCRIPT_PROCESS_ERROR 8592L
 
@@ -18276,7 +18276,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The directory service CAnnot perform the requested operation beCAuse the servers involved are of different repliCAtion epochs (which is usually related to a domain rename that is in progress).
+// The directory service Cannot perform the requested operation because the servers involved are of different replication epochs (which is usually related to a domain rename that is in progress).
 //
 #define ERROR_DS_DIFFERENT_REPL_EPOCHS   8593L
 
@@ -18339,7 +18339,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The Directory Service CAnnot process the script beCAuse it is invalid.
+// The Directory Service Cannot process the script because it is invalid.
 //
 #define ERROR_DS_INVALID_SCRIPT          8600L
 
@@ -18357,7 +18357,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A cross reference is in use loCAlly with the same name.
+// A cross reference is in use locally with the same name.
 //
 #define ERROR_DS_CROSS_REF_BUSY          8602L
 
@@ -18366,7 +18366,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The DS CAnnot derive a service principal name (SPN) with which to mutually authentiCAte the target server beCAuse the server's domain has been deleted from the forest.
+// The DS Cannot derive a service principal name (SPN) with which to mutually authentiCAte the target server because the server's domain has been deleted from the forest.
 //
 #define ERROR_DS_CANT_DERIVE_SPN_FOR_DELETED_DOMAIN 8603L
 
@@ -18384,7 +18384,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The requested object has a non-unique identifier and CAnnot be retrieved.
+// The requested object has a non-unique identifier and Cannot be retrieved.
 //
 #define ERROR_DS_DUPLICATE_ID_FOUND      8605L
 
@@ -18393,7 +18393,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Insufficient attributes were given to create an object. This object may not exist beCAuse it may have been deleted and already garbage collected.
+// Insufficient attributes were given to create an object. This object may not exist because it may have been deleted and already garbage collected.
 //
 #define ERROR_DS_INSUFFICIENT_ATTR_TO_CREATE_OBJECT 8606L
 
@@ -18402,7 +18402,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The group CAnnot be converted due to attribute restrictions on the requested group type.
+// The group Cannot be converted due to attribute restrictions on the requested group type.
 //
 #define ERROR_DS_GROUP_CONVERSION_ERROR  8607L
 
@@ -18429,7 +18429,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The FSMO role ownership could not be verified beCAuse its directory partition has not repliCAted successfully with at least one repliCAtion partner.
+// The FSMO role ownership could not be verified because its directory partition has not replicated successfully with at least one replication partner.
 //
 #define ERROR_DS_ROLE_NOT_VERIFIED       8610L
 
@@ -18438,7 +18438,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The target container for a redirection of a well known object container CAnnot already be a special container.
+// The target container for a redirection of a well known object container Cannot already be a special container.
 //
 #define ERROR_DS_WKO_CONTAINER_CANNOT_BE_SPECIAL 8611L
 
@@ -18447,7 +18447,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The Directory Service CAnnot perform the requested operation beCAuse a domain rename operation is in progress.
+// The Directory Service Cannot perform the requested operation because a domain rename operation is in progress.
 //
 #define ERROR_DS_DOMAIN_RENAME_IN_PROGRESS 8612L
 
@@ -18465,7 +18465,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The directory service CAnnot repliCAte with this server beCAuse the time since the last repliCAtion with this server has exceeded the tombstone lifetime.
+// The directory service Cannot replicate with this server because the time since the last replication with this server has exceeded the tombstone lifetime.
 //
 #define ERROR_DS_REPL_LIFETIME_EXCEEDED  8614L
 
@@ -18483,7 +18483,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The LDAP servers network send queue has filled up beCAuse the client is not processing the results of it's requests fast enough. No more requests will be processed until the client CAtches up. If the client does not CAtch up then it will be disconnected.
+// The LDAP servers network send queue has filled up because the client is not processing the results of it's requests fast enough. No more requests will be processed until the client CAtches up. If the client does not CAtch up then it will be disconnected.
 //
 #define ERROR_DS_LDAP_SEND_QUEUE_FULL    8616L
 
@@ -18492,7 +18492,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The scheduled repliCAtion did not take place beCAuse the system was too busy to execute the request within the schedule interaction_impl. The repliCAtion queue is overloaded. Consider reducing the number of partners or decreasing the scheduled repliCAtion frequency.
+// The scheduled replication did not take place because the system was too busy to execute the request within the schedule interaction_impl. The replication queue is overloaded. Consider reducing the number of partners or decreasing the scheduled replication frequency.
 //
 #define ERROR_DS_DRA_OUT_SCHEDULE_WINDOW 8617L
 
@@ -18501,7 +18501,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// At this time, it CAnnot be determined if the branch repliCAtion policy is available on the hub domain controller. Please retry at a later time to account for repliCAtion latencies.
+// At this time, it Cannot be determined if the branch replication policy is available on the hub domain controller. Please retry at a later time to account for replication latencies.
 //
 #define ERROR_DS_POLICY_NOT_KNOWN        8618L
 
@@ -18609,7 +18609,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The request to repliCAte secrets is denied.
+// The request to replicate secrets is denied.
 //
 #define ERROR_DS_DRA_SECRETS_DENIED      8630L
 
@@ -18636,7 +18636,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion operation failed beCAuse the required attributes of the loCAl krbtgt object are missing.
+// The replication operation failed because the required attributes of the loCAl krbtgt object are missing.
 //
 #define ERROR_DS_DRA_MISSING_KRBTGT_SECRET 8633L
 
@@ -18672,7 +18672,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// OID mapped groups CAnnot have members.
+// OID mapped groups Cannot have members.
 //
 #define ERROR_DS_OID_MAPPED_GROUP_CANT_HAVE_MEMBERS 8637L
 
@@ -18681,7 +18681,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The specified OID CAnnot be found.
+// The specified OID Cannot be found.
 //
 #define ERROR_DS_OID_NOT_FOUND           8638L
 
@@ -18690,7 +18690,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The repliCAtion operation failed beCAuse the target object referred by a link value is recycled.
+// The replication operation failed because the target object referred by a link value is recycled.
 //
 #define ERROR_DS_DRA_RECYCLED_TARGET     8639L
 
@@ -19052,7 +19052,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The record could not be created beCAuse this part of the DNS namespace has been delegated to another server.
+// The record could not be created because this part of the DNS namespace has been delegated to another server.
 //
 #define DNS_ERROR_NOT_ALLOWED_UNDER_DELEGATION 9563L
 
@@ -19319,7 +19319,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// NBTSTAT initialization CAll failed.
+// NBTSTAT initialization call failed.
 //
 #define DNS_ERROR_NBSTAT_INIT_FAILED     9617L
 
@@ -19359,7 +19359,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The operation CAnnot be performed beCAuse this zone is shutdown.
+// The operation Cannot be performed because this zone is shutdown.
 //
 #define DNS_ERROR_ZONE_IS_SHUTDOWN       9621L
 
@@ -19697,7 +19697,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Secure update CAll needs to continue update request.
+// Secure update call needs to continue update request.
 //
 #define DNS_STATUS_CONTINUE_NEEDED       9801L
 
@@ -19822,7 +19822,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A blocking operation was interrupted by a CAll to WSACAncelBlockingCAll.
+// A blocking operation was interrupted by a call to WSAcancelBlockingcall.
 //
 #define WSAEINTR                         10004L
 
@@ -19849,7 +19849,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The system detected an invalid pointer address in attempting to use a pointer argument in a CAll.
+// The system detected an invalid pointer address in attempting to use a pointer argument in a call.
 //
 #define WSAEFAULT                        10014L
 
@@ -19930,7 +19930,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A protocol was specified in the socket function CAll that does not support the semantics of the socket type requested.
+// A protocol was specified in the socket function call that does not support the semantics of the socket type requested.
 //
 #define WSAEPROTOTYPE                    10041L
 
@@ -19939,7 +19939,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An unknown, invalid, or unsupported option or level was specified in a getsockopt or setsockopt CAll.
+// An unknown, invalid, or unsupported option or level was specified in a getsockopt or setsockopt call.
 //
 #define WSAENOPROTOOPT                   10042L
 
@@ -20056,7 +20056,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An operation on a socket could not be performed beCAuse the system lacked sufficient buffer space or beCAuse a queue was full.
+// An operation on a socket could not be performed because the system lacked sufficient buffer space or because a queue was full.
 //
 #define WSAENOBUFS                       10055L
 
@@ -20074,7 +20074,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A request to send or receive data was disallowed beCAuse the socket is not connected and (when sending on a datagram socket using a sendto CAll) no address was supplied.
+// A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied.
 //
 #define WSAENOTCONN                      10057L
 
@@ -20083,7 +20083,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A request to send or receive data was disallowed beCAuse the socket had already been shut down in that direction with a previous shutdown CAll.
+// A request to send or receive data was disallowed because the socket had already been shut down in that direction with a previous shutdown call.
 //
 #define WSAESHUTDOWN                     10058L
 
@@ -20101,7 +20101,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A connection attempt failed beCAuse the connected party did not properly respond after a period of time, or established connection failed beCAuse connected host has failed to respond.
+// A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
 //
 #define WSAETIMEDOUT                     10060L
 
@@ -20110,7 +20110,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// No connection could be made beCAuse the target machine actively refused it.
+// No connection could be made because the target machine actively refused it.
 //
 #define WSAECONNREFUSED                  10061L
 
@@ -20119,7 +20119,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// CAnnot translate name.
+// Cannot translate name.
 //
 #define WSAELOOP                         10062L
 
@@ -20137,7 +20137,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A socket operation failed beCAuse the destination host was down.
+// A socket operation failed because the destination host was down.
 //
 #define WSAEHOSTDOWN                     10064L
 
@@ -20155,7 +20155,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// CAnnot remove a directory that is not empty.
+// Cannot remove a directory that is not empty.
 //
 #define WSAENOTEMPTY                     10066L
 
@@ -20200,7 +20200,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Item is not available loCAlly.
+// Item is not available locally.
 //
 #define WSAEREMOTE                       10071L
 
@@ -20209,7 +20209,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// WSAStartup CAnnot function at this time beCAuse the underlying system it uses to provide network services is currently unavailable.
+// WSAStartup Cannot function at this time because the underlying system it uses to provide network services is currently unavailable.
 //
 #define WSASYSNOTREADY                   10091L
 
@@ -20227,7 +20227,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Either the appliCAtion has not CAlled WSAStartup, or WSAStartup failed.
+// Either the appliCAtion has not called WSAStartup, or WSAStartup failed.
 //
 #define WSANOTINITIALISED                10093L
 
@@ -20245,7 +20245,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// No more results CAn be returned by WSALookupServiceNext.
+// No more results can be returned by WSALookupServiceNext.
 //
 #define WSAENOMORE                       10102L
 
@@ -20254,7 +20254,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A CAll to WSALookupServiceEnd was made while this CAll was still processing. The CAll has been CAnceled.
+// A call to WSALookupServiceEnd was made while this call was still processing. The call has been canceled.
 //
 #define WSAECANCELLED                    10103L
 
@@ -20263,7 +20263,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The procedure CAll table is invalid.
+// The procedure call table is invalid.
 //
 #define WSAEINVALIDPROCTABLE             10104L
 
@@ -20290,7 +20290,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A system CAll has failed.
+// A system call has failed.
 //
 #define WSASYSCALLFAILURE                10107L
 
@@ -20299,7 +20299,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// No such service is known. The service CAnnot be found in the specified name space.
+// No such service is known. The service Cannot be found in the specified name space.
 //
 #define WSASERVICE_NOT_FOUND             10108L
 
@@ -20317,7 +20317,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// No more results CAn be returned by WSALookupServiceNext.
+// No more results can be returned by WSALookupServiceNext.
 //
 #define WSA_E_NO_MORE                    10110L
 
@@ -20326,7 +20326,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A CAll to WSALookupServiceEnd was made while this CAll was still processing. The CAll has been CAnceled.
+// A call to WSALookupServiceEnd was made while this call was still processing. The call has been canceled.
 //
 #define WSA_E_CANCELLED                  10111L
 
@@ -20335,7 +20335,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A database query failed beCAuse it was actively refused.
+// A database query failed because it was actively refused.
 //
 #define WSAEREFUSED                      10112L
 
@@ -21080,7 +21080,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// IKE negotiation failed beCAuse the machine certifiCAte used does not have a private key. IPsec certifiCAtes require a private key. Contact your Network Security administrator about replacing with a certifiCAte that has a private key.
+// IKE negotiation failed because the machine certifiCAte used does not have a private key. IPsec certifiCAtes require a private key. Contact your Network Security administrator about replacing with a certifiCAte that has a private key.
 //
 #define ERROR_IPSEC_IKE_NO_PRIVATE_KEY   13820L
 
@@ -21594,7 +21594,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Deleted via RPC CAll
+// Deleted via RPC call
 //
 #define ERROR_IPSEC_IKE_RPC_DELETE       13877L
 
@@ -21621,7 +21621,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The recipient CAnnot handle version of IKE specified in the header.
+// The recipient Cannot handle version of IKE specified in the header.
 //
 #define ERROR_IPSEC_IKE_INVALID_MAJOR_VERSION 13880L
 
@@ -21675,7 +21675,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Main mode SA assumed to be invalid beCAuse peer stopped responding.
+// Main mode SA assumed to be invalid because peer stopped responding.
 //
 #define ERROR_IPSEC_IKE_PEER_MM_ASSUMED_INVALID 13886L
 
@@ -21765,7 +21765,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Too many dynamiCAlly added IKEEXT filters were detected.
+// Too many dynamically added IKEEXT filters were detected.
 //
 #define ERROR_IPSEC_IKE_TOO_MANY_FILTERS 13896L
 
@@ -21856,7 +21856,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// SA establishment is not authorized beCAuse there is not a sufficiently strong PKINIT-based credential.
+// SA establishment is not authorized because there is not a sufficiently strong PKINIT-based credential.
 //
 #define ERROR_IPSEC_IKE_STRONG_CRED_AUTHORIZATION_FAILURE 13906L
 
@@ -21874,7 +21874,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// SA establishment is not authorized beCAuse there is not a sufficiently strong PKINIT-based credential. This might be related to certifiCAte-to-account mapping failure for the SA.
+// SA establishment is not authorized because there is not a sufficiently strong PKINIT-based credential. This might be related to certifiCAte-to-account mapping failure for the SA.
 //
 #define ERROR_IPSEC_IKE_STRONG_CRED_AUTHORIZATION_AND_CERTMAP_FAILURE 13908L
 
@@ -22013,7 +22013,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// IPsec DoS Protection failed to create state beCAuse the maximum number of entries allowed by policy has been reached.
+// IPsec DoS Protection failed to create state because the maximum number of entries allowed by policy has been reached.
 //
 #define ERROR_IPSEC_DOSP_MAX_ENTRIES     13929L
 
@@ -22040,7 +22040,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// IPsec DoS Protection failed to create a per internal IP rate limit queue beCAuse the maximum number of queues allowed by policy has been reached.
+// IPsec DoS Protection failed to create a per internal IP rate limit queue because the maximum number of queues allowed by policy has been reached.
 //
 #define ERROR_IPSEC_DOSP_MAX_PER_IP_RATELIMIT_QUEUES 13932L
 
@@ -22074,7 +22074,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The appliCAtion has failed to start beCAuse its side-by-side configuration is incorrect. Please see the appliCAtion event log or use the command-line sxstrace.exe tool for more detail.
+// The appliCAtion has failed to start because its side-by-side configuration is incorrect. Please see the appliCAtion event log or use the command-line sxstrace.exe tool for more detail.
 //
 #define ERROR_SXS_CANT_GEN_ACTCTX        14001L
 
@@ -22164,7 +22164,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An attempt to set the process default activation context failed beCAuse the process default activation context was already set.
+// An attempt to set the process default activation context failed because the process default activation context was already set.
 //
 #define ERROR_SXS_PROCESS_DEFAULT_ALREADY_SET 14011L
 
@@ -22596,7 +22596,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Manifest Parse Error : Parameter entities CAnnot be used inside markup declarations in an internal subset.
+// Manifest Parse Error : Parameter entities Cannot be used inside markup declarations in an internal subset.
 //
 #define ERROR_SXS_XML_E_BADPEREFINSUBSET 14059L
 
@@ -22704,7 +22704,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Manifest Parse Error : The standalone attribute CAnnot be used in external entities.
+// Manifest Parse Error : The standalone attribute Cannot be used in external entities.
 //
 #define ERROR_SXS_XML_E_UNEXPECTED_STANDALONE 14071L
 
@@ -23098,7 +23098,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The publisher metadata CAnnot be found in the resource.
+// The publisher metadata Cannot be found in the resource.
 //
 #define ERROR_EVT_PUBLISHER_METADATA_NOT_FOUND 15002L
 
@@ -23107,7 +23107,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The template for an event definition CAnnot be found in the resource (error = %1).
+// The template for an event definition Cannot be found in the resource (error = %1).
 //
 #define ERROR_EVT_EVENT_TEMPLATE_NOT_FOUND 15003L
 
@@ -23152,7 +23152,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The CAller is trying to subscribe to a direct channel which is not allowed. The events for a direct channel go directly to a logfile and CAnnot be subscribed to.
+// The caller is trying to subscribe to a direct channel which is not allowed. The events for a direct channel go directly to a logfile and Cannot be subscribed to.
 //
 #define ERROR_EVT_SUBSCRIPTION_TO_DIRECT_CHANNEL 15009L
 
@@ -23197,7 +23197,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An expression CAn only be followed by a change of scope operation if it itself evaluates to a node set and is not already part of some other change of scope operation.
+// An expression can only be followed by a change of scope operation if it itself evaluates to a node set and is not already part of some other change of scope operation.
 //
 #define ERROR_EVT_FILTER_ALREADYSCOPED   15014L
 
@@ -23206,7 +23206,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// CAn't perform a step operation from a term that does not represent an element set.
+// can't perform a step operation from a term that does not represent an element set.
 //
 #define ERROR_EVT_FILTER_NOTELTSET       15015L
 
@@ -23224,7 +23224,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A step operation must involve either a node test or, in the CAse of a prediCAte, an algebraic expression against which to test each node in the node set identified by the preceeding node set CAn be evaluated.
+// A step operation must involve either a node test or, in the CAse of a prediCAte, an algebraic expression against which to test each node in the node set identified by the preceeding node set can be evaluated.
 //
 #define ERROR_EVT_FILTER_INVTEST         15017L
 
@@ -23269,7 +23269,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The requested operation CAnnot be performed over an enabled direct channel. The channel must first be disabled before performing the requested operation.
+// The requested operation Cannot be performed over an enabled direct channel. The channel must first be disabled before performing the requested operation.
 //
 #define ERROR_EVT_INVALID_OPERATION_OVER_ENABLED_DIRECT_CHANNEL 15022L
 
@@ -23278,7 +23278,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Channel property %1!s! contains invalid value. The value has invalid type, is outside of valid range, CAn't be updated or is not supported by this type of channel.
+// Channel property %1!s! contains invalid value. The value has invalid type, is outside of valid range, can't be updated or is not supported by this type of channel.
 //
 #define ERROR_EVT_INVALID_CHANNEL_PROPERTY_VALUE 15023L
 
@@ -23287,7 +23287,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Publisher property %1!s! contains invalid value. The value has invalid type, is outside of valid range, CAn't be updated or is not supported by this type of publisher.
+// Publisher property %1!s! contains invalid value. The value has invalid type, is outside of valid range, can't be updated or is not supported by this type of publisher.
 //
 #define ERROR_EVT_INVALID_PUBLISHER_PROPERTY_VALUE 15024L
 
@@ -23395,7 +23395,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The channel at index %1!d! of the query CAn't be opened.
+// The channel at index %1!d! of the query can't be opened.
 //
 #define ERROR_EVT_CANNOT_OPEN_CHANNEL_OF_QUERY 15036L
 
@@ -23439,7 +23439,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The log of the subscription is in disabled state, and CAn not be used to forward events to. The log must first be enabled before the subscription CAn be activated.
+// The log of the subscription is in disabled state, and can not be used to forward events to. The log must first be enabled before the subscription can be activated.
 //
 #define ERROR_EC_LOG_DISABLED            15081L
 
@@ -23448,7 +23448,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// When forwarding events from loCAl machine to itself, the query of the subscription CAn't contain target log of the subscription.
+// When forwarding events from loCAl machine to itself, the query of the subscription can't contain target log of the subscription.
 //
 #define ERROR_EC_CIRCULAR_FORWARDING     15082L
 
@@ -23466,7 +23466,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The credential used by this subscription CAn't be found in credential store.
+// The credential used by this subscription can't be found in credential store.
 //
 #define ERROR_EC_CRED_NOT_FOUND          15084L
 
@@ -23501,7 +23501,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The resource loader failed to load MUI file beCAuse the file fail to pass validation.
+// The resource loader failed to load MUI file because the file fail to pass validation.
 //
 #define ERROR_MUI_INVALID_FILE           15101L
 
@@ -23644,7 +23644,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The CAller of SetMonitorColorTemperature specified a color temperature that the current monitor did not support. This error implies that the monitor violated the MCCS 2.0 or MCCS 2.0 Revision 1 specifiCAtion.
+// The caller of SetMonitorColorTemperature specified a color temperature that the current monitor did not support. This error implies that the monitor violated the MCCS 2.0 or MCCS 2.0 Revision 1 specifiCAtion.
 //
 #define ERROR_MCA_UNSUPPORTED_COLOR_TEMPERATURE 15207L
 
@@ -23668,7 +23668,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The requested system device CAnnot be identified due to multiple indistinguishable devices potentially matching the identifiCAtion criteria.
+// The requested system device Cannot be identified due to multiple indistinguishable devices potentially matching the identifiCAtion criteria.
 //
 #define ERROR_AMBIGUOUS_SYSTEM_DEVICE    15250L
 
@@ -23677,7 +23677,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The requested system device CAnnot be found.
+// The requested system device Cannot be found.
 //
 #define ERROR_SYSTEM_DEVICE_NOT_FOUND    15299L
 
@@ -23828,7 +23828,7 @@ Do not add any more error codes in that range.
 
 //
 // HRESULT_FROM_WIN32(x) used to be a macro, however we now run it as an inline function
-// to prevent double evaluation of 'x'. If you still need the macro, you CAn use __HRESULT_FROM_WIN32(x)
+// to prevent double evaluation of 'x'. If you still need the macro, you can use __HRESULT_FROM_WIN32(x)
 //
 #define __HRESULT_FROM_WIN32(x) ((HRESULT)(x) <= 0 ? ((HRESULT)(x)) : ((HRESULT) (((x) & 0x0000FFFF) | (FACILITY_WIN32 << 16) | 0x80000000)))
 
@@ -24131,7 +24131,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// CAnnot set thread loCAl storage channel control
+// Cannot set thread loCAl storage channel control
 //
 #define CO_E_INIT_TLS_SET_CHANNEL_CONTROL _HRESULT_TYPEDEF_(0x8000400BL)
 
@@ -24194,7 +24194,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// There was an attempt to CAll CoInitialize a second time while single threaded
+// There was an attempt to call CoInitialize a second time while single threaded
 //
 #define CO_E_INIT_ONLY_SINGLE_THREADED   _HRESULT_TYPEDEF_(0x80004012L)
 
@@ -24221,7 +24221,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The class is configured to run as a security id different from the CAller
+// The class is configured to run as a security id different from the caller
 //
 #define CO_E_WRONG_SERVER_IDENTITY       _HRESULT_TYPEDEF_(0x80004015L)
 
@@ -24266,7 +24266,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The server process could not be started beCAuse the configured identity is incorrect. Check the username and password.
+// The server process could not be started because the configured identity is incorrect. Check the username and password.
 //
 #define CO_E_RUNAS_LOGON_FAILURE         _HRESULT_TYPEDEF_(0x8000401AL)
 
@@ -24419,7 +24419,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Unable to complete the CAll since there is no COM+ security context inside IObjectControl.Activate.
+// Unable to complete the call since there is no COM+ security context inside IObjectControl.Activate.
 //
 #define CO_E_NO_SECCTX_IN_ACTIVATE       _HRESULT_TYPEDEF_(0x8000402BL)
 
@@ -24511,7 +24511,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// CAn't enumerate any more, beCAuse the associated data is missing
+// can't enumerate any more, because the associated data is missing
 //
 #define OLE_E_ENUM_NOMORE                _HRESULT_TYPEDEF_(0x80040002L)
 
@@ -24601,7 +24601,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// User CAnceled out of save dialog
+// User canceled out of save dialog
 //
 #define OLE_E_PROMPTSAVECANCELLED        _HRESULT_TYPEDEF_(0x8004000CL)
 
@@ -24655,7 +24655,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Not able to perform the operation beCAuse object is not given storage yet
+// Not able to perform the operation because object is not given storage yet
 //
 #define OLE_E_NOSTORAGE                  _HRESULT_TYPEDEF_(0x80040012L)
 
@@ -24798,7 +24798,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// ClassFactory CAnnot supply requested class
+// ClassFactory Cannot supply requested class
 //
 #define CLASS_E_CLASSNOTAVAILABLE        _HRESULT_TYPEDEF_(0x80040111L)
 
@@ -25135,7 +25135,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// There was an error in a Windows GDI CAll while converting the bitmap to a DIB
+// There was an error in a Windows GDI call while converting the bitmap to a DIB
 //
 #define CONVERT10_E_OLESTREAM_BITMAP_TO_DIB _HRESULT_TYPEDEF_(0x800401C3L)
 
@@ -25162,7 +25162,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// There was an error in a Windows GDI CAll while converting the DIB to a bitmap.
+// There was an error in a Windows GDI call while converting the DIB to a bitmap.
 //
 #define CONVERT10_E_STG_DIB_TO_BITMAP    _HRESULT_TYPEDEF_(0x800401C6L)
 
@@ -25314,7 +25314,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Moniker CAnnot open file
+// Moniker Cannot open file
 //
 #define MK_E_CANTOPENFILE                _HRESULT_TYPEDEF_(0x800401EAL)
 
@@ -25372,7 +25372,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// CoInitialize has not been CAlled.
+// CoInitialize has not been called.
 //
 #define CO_E_NOTINITIALIZED              _HRESULT_TYPEDEF_(0x800401F0L)
 
@@ -25381,7 +25381,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// CoInitialize has already been CAlled.
+// CoInitialize has already been called.
 //
 #define CO_E_ALREADYINITIALIZED          _HRESULT_TYPEDEF_(0x800401F1L)
 
@@ -25390,7 +25390,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Class of object CAnnot be determined
+// Class of object Cannot be determined
 //
 #define CO_E_CANTDETERMINECLASS          _HRESULT_TYPEDEF_(0x800401F2L)
 
@@ -25426,7 +25426,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// AppliCAtion CAnnot be run more than once
+// AppliCAtion Cannot be run more than once
 //
 #define CO_E_APPSINGLEUSE                _HRESULT_TYPEDEF_(0x800401F6L)
 
@@ -25610,7 +25610,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// A subscription CAnnot be stored unless its event class already exists
+// A subscription Cannot be stored unless its event class already exists
 //
 #define EVENT_E_MISSING_EVENTCLASS       _HRESULT_TYPEDEF_(0x8004020AL)
 
@@ -25637,7 +25637,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// CAnnot modify or delete an object that was not added using the COM+ Admin SDK
+// Cannot modify or delete an object that was not added using the COM+ Admin SDK
 //
 #define EVENT_E_CANT_MODIFY_OR_DELETE_UNCONFIGURED_OBJECT _HRESULT_TYPEDEF_(0x8004020DL)
 
@@ -25646,7 +25646,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// CAnnot modify or delete an object that was added using the COM+ Admin SDK
+// Cannot modify or delete an object that was added using the COM+ Admin SDK
 //
 #define EVENT_E_CANT_MODIFY_OR_DELETE_CONFIGURED_OBJECT _HRESULT_TYPEDEF_(0x8004020EL)
 
@@ -25704,7 +25704,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// CAnnot CAll commit on this transaction object beCAuse the CAlling appliCAtion did not initiate the transaction.
+// Cannot call commit on this transaction object because the calling appliCAtion did not initiate the transaction.
 //
 #define XACT_E_COMMITPREVENTED           _HRESULT_TYPEDEF_(0x8004D003L)
 
@@ -25713,7 +25713,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Instead of committing, the resource heuristiCAlly aborted.
+// Instead of committing, the resource heuristically aborted.
 //
 #define XACT_E_HEURISTICABORT            _HRESULT_TYPEDEF_(0x8004D004L)
 
@@ -25722,7 +25722,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Instead of aborting, the resource heuristiCAlly committed.
+// Instead of aborting, the resource heuristically committed.
 //
 #define XACT_E_HEURISTICCOMMIT           _HRESULT_TYPEDEF_(0x8004D005L)
 
@@ -25731,7 +25731,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Some of the states of the resource were committed while others were aborted, likely beCAuse of heuristic decisions.
+// Some of the states of the resource were committed while others were aborted, likely because of heuristic decisions.
 //
 #define XACT_E_HEURISTICDAMAGE           _HRESULT_TYPEDEF_(0x8004D006L)
 
@@ -25740,7 +25740,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Some of the states of the resource may have been committed while others may have been aborted, likely beCAuse of heuristic decisions.
+// Some of the states of the resource may have been committed while others may have been aborted, likely because of heuristic decisions.
 //
 #define XACT_E_HEURISTICDANGER           _HRESULT_TYPEDEF_(0x8004D007L)
 
@@ -25776,7 +25776,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The requested semantics of retention of isolation across retaining commit and abort boundaries CAnnot be supported by this transaction implementation, or isoFlags was not equal to zero.
+// The requested semantics of retention of isolation across retaining commit and abort boundaries Cannot be supported by this transaction implementation, or isoFlags was not equal to zero.
 //
 #define XACT_E_NOISORETAIN               _HRESULT_TYPEDEF_(0x8004D00BL)
 
@@ -25830,7 +25830,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// This method was CAlled in the wrong state
+// This method was called in the wrong state
 //
 #define XACT_E_WRONGSTATE                _HRESULT_TYPEDEF_(0x8004D011L)
 
@@ -26055,7 +26055,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The MSDTC transaction manager was unable to push the transaction to the destination transaction manager due to communiCAtion problems. Possible CAuses are: a firewall is present and it doesn't have an exception for the MSDTC process, the two machines CAnnot find each other by their NetBIOS names, or the support for network transactions is not enabled for one of the two transaction managers.
+// The MSDTC transaction manager was unable to push the transaction to the destination transaction manager due to communiCAtion problems. Possible CAuses are: a firewall is present and it doesn't have an exception for the MSDTC process, the two machines Cannot find each other by their NetBIOS names, or the support for network transactions is not enabled for one of the two transaction managers.
 //
 #define XACT_E_PUSH_COMM_FAILURE         _HRESULT_TYPEDEF_(0x8004D02AL)
 
@@ -26064,7 +26064,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The MSDTC transaction manager was unable to pull the transaction from the source transaction manager due to communiCAtion problems. Possible CAuses are: a firewall is present and it doesn't have an exception for the MSDTC process, the two machines CAnnot find each other by their NetBIOS names, or the support for network transactions is not enabled for one of the two transaction managers.
+// The MSDTC transaction manager was unable to pull the transaction from the source transaction manager due to communiCAtion problems. Possible CAuses are: a firewall is present and it doesn't have an exception for the MSDTC process, the two machines Cannot find each other by their NetBIOS names, or the support for network transactions is not enabled for one of the two transaction managers.
 //
 #define XACT_E_PULL_COMM_FAILURE         _HRESULT_TYPEDEF_(0x8004D02BL)
 
@@ -26181,7 +26181,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// RecoveryComplete has already been CAlled for the given resource manager.
+// RecoveryComplete has already been called for the given resource manager.
 //
 
 
@@ -26191,7 +26191,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The interface CAll made was incorrect for the current state of the protocol.
+// The interface call made was incorrect for the current state of the protocol.
 //
 
 
@@ -26201,7 +26201,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// xa_open CAll failed for the XA resource.
+// xa_open call failed for the XA resource.
 //
 
 
@@ -26211,7 +26211,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// xa_recover CAll failed for the XA resource.
+// xa_recover call failed for the XA resource.
 //
 
 
@@ -26221,7 +26221,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The LogiCAl Unit of Work specified CAnnot be found.
+// The LogiCAl Unit of Work specified Cannot be found.
 //
 
 
@@ -26343,7 +26343,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The method CAll succeeded beCAuse the transaction was read-only.
+// The method call succeeded because the transaction was read-only.
 //
 #define XACT_S_READONLY                  _HRESULT_TYPEDEF_(0x0004D002L)
 
@@ -26352,7 +26352,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The transaction was successfully aborted. However, this is a coordinated transaction, and some number of enlisted resources were aborted outright beCAuse they could not support abort-retaining semantics
+// The transaction was successfully aborted. However, this is a coordinated transaction, and some number of enlisted resources were aborted outright because they could not support abort-retaining semantics
 //
 #define XACT_S_SOMENORETAIN              _HRESULT_TYPEDEF_(0x0004D003L)
 
@@ -26361,7 +26361,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// No changes were made during this CAll, but the sink wants another chance to look if any other sinks make further changes.
+// No changes were made during this call, but the sink wants another chance to look if any other sinks make further changes.
 //
 #define XACT_S_OKINFORM                  _HRESULT_TYPEDEF_(0x0004D004L)
 
@@ -26370,7 +26370,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The sink is content and wishes the transaction to proceed. Changes were made to one or more resources during this CAll.
+// The sink is content and wishes the transaction to proceed. Changes were made to one or more resources during this call.
 //
 #define XACT_S_MADECHANGESCONTENT        _HRESULT_TYPEDEF_(0x0004D005L)
 
@@ -26446,7 +26446,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// You made a method CAll on a COM+ component that has a transaction that has already aborted or in the process of aborting.
+// You made a method call on a COM+ component that has a transaction that has already aborted or in the process of aborting.
 //
 #define CONTEXT_E_ABORTING               _HRESULT_TYPEDEF_(0x8004E003L)
 
@@ -26464,7 +26464,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The component is configured to use synchronization and this method CAll would CAuse a deadlock to occur.
+// The component is configured to use synchronization and this method call would CAuse a deadlock to occur.
 //
 #define CONTEXT_E_WOULD_DEADLOCK         _HRESULT_TYPEDEF_(0x8004E005L)
 
@@ -26482,7 +26482,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// You made a method CAll on a COM+ component that has a transaction that has already committed or aborted.
+// You made a method call on a COM+ component that has a transaction that has already committed or aborted.
 //
 #define CONTEXT_E_OLDREF                 _HRESULT_TYPEDEF_(0x8004E007L)
 
@@ -26536,7 +26536,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// COM+ activation failed beCAuse the activation could not be completed in the specified amount of time.
+// COM+ activation failed because the activation could not be completed in the specified amount of time.
 //
 #define CO_E_ACTIVATIONFAILED_TIMEOUT    _HRESULT_TYPEDEF_(0x8004E024L)
 
@@ -26545,7 +26545,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// COM+ Activation failed beCAuse an initialization function failed. Check the event log for more information.
+// COM+ Activation failed because an initialization function failed. Check the event log for more information.
 //
 #define CO_E_INITIALIZATIONFAILED        _HRESULT_TYPEDEF_(0x8004E025L)
 
@@ -26644,7 +26644,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The component attempted to make a cross-context CAll between invoCAtions of EnterTransactionScopeand ExitTransactionScope. This is not allowed. Cross-context CAlls CAnnot be made while inside of a transaction scope.
+// The component attempted to make a cross-context call between invoCAtions of EnterTransactionScopeand ExitTransactionScope. This is not allowed. Cross-context calls Cannot be made while inside of a transaction scope.
 //
 #define CO_E_CALL_OUT_OF_TX_SCOPE_NOT_ALLOWED _HRESULT_TYPEDEF_(0x8004E030L)
 
@@ -26653,7 +26653,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The component made a CAll to EnterTransactionScope, but did not make a corresponding CAll to ExitTransactionScope before returning.
+// The component made a call to EnterTransactionScope, but did not make a corresponding call to ExitTransactionScope before returning.
 //
 #define CO_E_EXIT_TRANSACTION_SCOPE_NOT_CALLED _HRESULT_TYPEDEF_(0x8004E031L)
 
@@ -26701,7 +26701,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Drag-drop operation CAnceled
+// Drag-drop operation canceled
 //
 #define DRAGDROP_S_CANCEL                _HRESULT_TYPEDEF_(0x00040101L)
 
@@ -26773,7 +26773,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Verb number is valid but verb CAnnot be done now
+// Verb number is valid but verb Cannot be done now
 //
 #define OLEOBJ_S_CANNOT_DOVERB_NOW       _HRESULT_TYPEDEF_(0x00040181L)
 
@@ -26875,7 +26875,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The task will not run at the scheduled times beCAuse it has been disabled.
+// The task will not run at the scheduled times because it has been disabled.
 //
 #define SCHED_S_TASK_DISABLED            _HRESULT_TYPEDEF_(0x00041302L)
 
@@ -27127,7 +27127,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The task CAnnot be started after the trigger's end boundary.
+// The task Cannot be started after the trigger's end boundary.
 //
 #define SCHED_E_PAST_END_BOUNDARY        _HRESULT_TYPEDEF_(0x8004131EL)
 
@@ -27145,7 +27145,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The task will not run beCAuse the user is not logged on.
+// The task will not run because the user is not logged on.
 //
 #define SCHED_E_USER_NOT_LOGGED_ON       _HRESULT_TYPEDEF_(0x80041320L)
 
@@ -27506,7 +27506,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Invalid CAllee.
+// Invalid callee.
 //
 #define DISP_E_BADCALLEE                 _HRESULT_TYPEDEF_(0x80020010L)
 
@@ -27950,7 +27950,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// An API CAll exited abnormally.
+// An API call exited abnormally.
 //
 #define STG_E_ABNORMALAPIEXIT            _HRESULT_TYPEDEF_(0x800300FAL)
 
@@ -28031,7 +28031,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// CAn't save.
+// can't save.
 //
 #define STG_E_CANTSAVE                   _HRESULT_TYPEDEF_(0x80030103L)
 
@@ -28067,7 +28067,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Illegal operation CAlled on non-file based storage.
+// Illegal operation called on non-file based storage.
 //
 #define STG_E_NOTFILEBASEDSTORAGE        _HRESULT_TYPEDEF_(0x80030107L)
 
@@ -28076,7 +28076,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Illegal operation CAlled on object with extant marshallings.
+// Illegal operation called on object with extant marshallings.
 //
 #define STG_E_EXTANTMARSHALLINGS         _HRESULT_TYPEDEF_(0x80030108L)
 
@@ -28244,7 +28244,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Copy Protection Error - The read failed beCAuse the sector is encrypted.
+// Copy Protection Error - The read failed because the sector is encrypted.
 //
 #define STG_E_CSS_SCRAMBLED_SECTOR       _HRESULT_TYPEDEF_(0x80030309L)
 
@@ -28283,7 +28283,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAll was rejected by CAllee.
+// call was rejected by callee.
 //
 #define RPC_E_CALL_REJECTED              _HRESULT_TYPEDEF_(0x80010001L)
 
@@ -28292,7 +28292,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAll was CAnceled by the message filter.
+// call was canceled by the message filter.
 //
 #define RPC_E_CALL_CANCELED              _HRESULT_TYPEDEF_(0x80010002L)
 
@@ -28301,7 +28301,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The CAller is dispatching an intertask SendMessage CAll and CAnnot CAll out via PostMessage.
+// The caller is dispatching an intertask SendMessage call and Cannot call out via PostMessage.
 //
 #define RPC_E_CANTPOST_INSENDCALL        _HRESULT_TYPEDEF_(0x80010003L)
 
@@ -28310,7 +28310,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The CAller is dispatching an asynchronous CAll and CAnnot make an outgoing CAll on behalf of this CAll.
+// The caller is dispatching an asynchronous call and Cannot make an outgoing call on behalf of this call.
 //
 #define RPC_E_CANTCALLOUT_INASYNCCALL    _HRESULT_TYPEDEF_(0x80010004L)
 
@@ -28319,7 +28319,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// It is illegal to CAll out while inside message filter.
+// It is illegal to call out while inside message filter.
 //
 #define RPC_E_CANTCALLOUT_INEXTERNALCALL _HRESULT_TYPEDEF_(0x80010005L)
 
@@ -28328,7 +28328,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The connection terminated or is in a bogus state and CAnnot be used any more. Other connections are still valid.
+// The connection terminated or is in a bogus state and Cannot be used any more. Other connections are still valid.
 //
 #define RPC_E_CONNECTION_TERMINATED      _HRESULT_TYPEDEF_(0x80010006L)
 
@@ -28337,7 +28337,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The CAllee (server [not server appliCAtion]) is not available and disappeared; all connections are invalid. The CAll may have executed.
+// The callee (server [not server appliCAtion]) is not available and disappeared; all connections are invalid. The call may have executed.
 //
 #define RPC_E_SERVER_DIED                _HRESULT_TYPEDEF_(0x80010007L)
 
@@ -28346,7 +28346,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The CAller (client) disappeared while the CAllee (server) was processing a CAll.
+// The caller (client) disappeared while the callee (server) was processing a call.
 //
 #define RPC_E_CLIENT_DIED                _HRESULT_TYPEDEF_(0x80010008L)
 
@@ -28364,7 +28364,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The CAll was not transmitted properly; the message queue was full and was not emptied after yielding.
+// The call was not transmitted properly; the message queue was full and was not emptied after yielding.
 //
 #define RPC_E_CANTTRANSMIT_CALL          _HRESULT_TYPEDEF_(0x8001000AL)
 
@@ -28373,7 +28373,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The client (CAller) CAnnot marshall the parameter data - low memory, etc.
+// The client (caller) Cannot marshall the parameter data - low memory, etc.
 //
 #define RPC_E_CLIENT_CANTMARSHAL_DATA    _HRESULT_TYPEDEF_(0x8001000BL)
 
@@ -28382,7 +28382,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The client (CAller) CAnnot unmarshall the return data - low memory, etc.
+// The client (caller) Cannot unmarshall the return data - low memory, etc.
 //
 #define RPC_E_CLIENT_CANTUNMARSHAL_DATA  _HRESULT_TYPEDEF_(0x8001000CL)
 
@@ -28391,7 +28391,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The server (CAllee) CAnnot marshall the return data - low memory, etc.
+// The server (callee) Cannot marshall the return data - low memory, etc.
 //
 #define RPC_E_SERVER_CANTMARSHAL_DATA    _HRESULT_TYPEDEF_(0x8001000DL)
 
@@ -28400,7 +28400,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The server (CAllee) CAnnot unmarshall the parameter data - low memory, etc.
+// The server (callee) Cannot unmarshall the parameter data - low memory, etc.
 //
 #define RPC_E_SERVER_CANTUNMARSHAL_DATA  _HRESULT_TYPEDEF_(0x8001000EL)
 
@@ -28418,7 +28418,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A particular parameter is invalid and CAnnot be (un)marshalled.
+// A particular parameter is invalid and Cannot be (un)marshalled.
 //
 #define RPC_E_INVALID_PARAMETER          _HRESULT_TYPEDEF_(0x80010010L)
 
@@ -28427,7 +28427,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// There is no second outgoing CAll on same channel in DDE conversation.
+// There is no second outgoing call on same channel in DDE conversation.
 //
 #define RPC_E_CANTCALLOUT_AGAIN          _HRESULT_TYPEDEF_(0x80010011L)
 
@@ -28436,7 +28436,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The CAllee (server [not server appliCAtion]) is not available and disappeared; all connections are invalid. The CAll did not execute.
+// The callee (server [not server appliCAtion]) is not available and disappeared; all connections are invalid. The call did not execute.
 //
 #define RPC_E_SERVER_DIED_DNE            _HRESULT_TYPEDEF_(0x80010012L)
 
@@ -28445,7 +28445,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// System CAll failed.
+// System call failed.
 //
 #define RPC_E_SYS_CALL_FAILED            _HRESULT_TYPEDEF_(0x80010100L)
 
@@ -28463,7 +28463,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Attempted to make CAlls on more than one thread in single threaded mode.
+// Attempted to make calls on more than one thread in single threaded mode.
 //
 #define RPC_E_ATTEMPTED_MULTITHREAD      _HRESULT_TYPEDEF_(0x80010102L)
 
@@ -28481,7 +28481,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// RPC could not CAll the server or could not return the results of CAlling the server.
+// RPC could not call the server or could not return the results of calling the server.
 //
 #define RPC_E_FAULT                      _HRESULT_TYPEDEF_(0x80010104L)
 
@@ -28499,7 +28499,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot change thread mode after it is set.
+// Cannot change thread mode after it is set.
 //
 #define RPC_E_CHANGED_MODE               _HRESULT_TYPEDEF_(0x80010106L)
 
@@ -28508,7 +28508,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The method CAlled does not exist on the server.
+// The method called does not exist on the server.
 //
 #define RPC_E_INVALIDMETHOD              _HRESULT_TYPEDEF_(0x80010107L)
 
@@ -28526,7 +28526,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The object invoked chose not to process the CAll now. Try again later.
+// The object invoked chose not to process the call now. Try again later.
 //
 #define RPC_E_RETRY                      _HRESULT_TYPEDEF_(0x80010109L)
 
@@ -28544,7 +28544,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The message filter rejected the CAll.
+// The message filter rejected the call.
 //
 #define RPC_E_SERVERCALL_REJECTED        _HRESULT_TYPEDEF_(0x8001010BL)
 
@@ -28553,7 +28553,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A CAll control interfaces was CAlled with invalid data.
+// A call control interfaces was called with invalid data.
 //
 #define RPC_E_INVALID_CALLDATA           _HRESULT_TYPEDEF_(0x8001010CL)
 
@@ -28562,7 +28562,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// An outgoing CAll CAnnot be made since the appliCAtion is dispatching an input-synchronous CAll.
+// An outgoing call Cannot be made since the appliCAtion is dispatching an input-synchronous call.
 //
 #define RPC_E_CANTCALLOUT_ININPUTSYNCCALL _HRESULT_TYPEDEF_(0x8001010DL)
 
@@ -28571,7 +28571,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The appliCAtion CAlled an interface that was marshalled for a different thread.
+// The appliCAtion called an interface that was marshalled for a different thread.
 //
 #define RPC_E_WRONG_THREAD               _HRESULT_TYPEDEF_(0x8001010EL)
 
@@ -28580,7 +28580,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CoInitialize has not been CAlled on the current thread.
+// CoInitialize has not been called on the current thread.
 //
 #define RPC_E_THREAD_NOT_INIT            _HRESULT_TYPEDEF_(0x8001010FL)
 
@@ -28652,7 +28652,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAll context CAnnot be accessed after CAll completed.
+// call context Cannot be accessed after call completed.
 //
 #define RPC_E_CALL_COMPLETE              _HRESULT_TYPEDEF_(0x80010117L)
 
@@ -28661,7 +28661,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Impersonate on unsecure CAlls is not supported.
+// Impersonate on unsecure calls is not supported.
 //
 #define RPC_E_UNSECURE_CALL              _HRESULT_TYPEDEF_(0x80010118L)
 
@@ -28670,7 +28670,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Security must be initialized before any interfaces are marshalled or unmarshalled. It CAnnot be changed once initialized.
+// Security must be initialized before any interfaces are marshalled or unmarshalled. It Cannot be changed once initialized.
 //
 #define RPC_E_TOO_LATE                   _HRESULT_TYPEDEF_(0x80010119L)
 
@@ -28697,7 +28697,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Remote CAlls are not allowed for this process.
+// Remote calls are not allowed for this process.
 //
 #define RPC_E_REMOTE_DISABLED            _HRESULT_TYPEDEF_(0x8001011CL)
 
@@ -28715,7 +28715,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// No context is associated with this CAll. This happens for some custom marshalled CAlls and on the client side of the CAll.
+// No context is associated with this call. This happens for some custom marshalled calls and on the client side of the call.
 //
 #define RPC_E_NO_CONTEXT                 _HRESULT_TYPEDEF_(0x8001011EL)
 
@@ -28724,7 +28724,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// This operation returned beCAuse the timeout period expired.
+// This operation returned because the timeout period expired.
 //
 #define RPC_E_TIMEOUT                    _HRESULT_TYPEDEF_(0x8001011FL)
 
@@ -28796,7 +28796,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The client who CAlled IAccessControl::IsAccessPermitted was not the trustee provided to the method
+// The client who called IAccessControl::IsAccessPermitted was not the trustee provided to the method
 //
 #define CO_E_TRUSTEEDOESNTMATCHCLIENT    _HRESULT_TYPEDEF_(0x80010127L)
 
@@ -29012,7 +29012,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAll CAncellation is disabled
+// call cancellation is disabled
 //
 #define CO_E_CANCEL_DISABLED             _HRESULT_TYPEDEF_(0x80010140L)
 
@@ -29059,7 +29059,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Business rule scripts are disabled for the CAlling appliCAtion.
+// Business rule scripts are disabled for the calling appliCAtion.
 //
 #define ERROR_BIZRULES_NOT_ENABLED       _HRESULT_TYPEDEF_(0xC0090003L)
 
@@ -29408,7 +29408,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The key parameters could not be set beCAuse the CSP uses fixed parameters.
+// The key parameters could not be set because the CSP uses fixed parameters.
 //
 #define NTE_FIXEDPARAMETER               _HRESULT_TYPEDEF_(0x80090025L)
 
@@ -29543,7 +29543,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The LoCAl Security Authority CAnnot be contacted
+// The LoCAl Security Authority Cannot be contacted
 //
 #define SEC_E_INTERNAL_ERROR             _HRESULT_TYPEDEF_(0x80090304L)
 
@@ -29561,7 +29561,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The CAller is not the owner of the desired credentials
+// The caller is not the owner of the desired credentials
 //
 #define SEC_E_NOT_OWNER                  _HRESULT_TYPEDEF_(0x80090306L)
 
@@ -29570,7 +29570,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The security package failed to initialize, and CAnnot be installed
+// The security package failed to initialize, and Cannot be installed
 //
 #define SEC_E_CANNOT_INSTALL             _HRESULT_TYPEDEF_(0x80090307L)
 
@@ -29669,7 +29669,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The function completed successfully, but must be CAlled again to complete the context
+// The function completed successfully, but must be called again to complete the context
 //
 #define SEC_I_CONTINUE_NEEDED            _HRESULT_TYPEDEF_(0x00090312L)
 
@@ -29678,7 +29678,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The function completed successfully, but CompleteToken must be CAlled
+// The function completed successfully, but CompleteToken must be called
 //
 #define SEC_I_COMPLETE_NEEDED            _HRESULT_TYPEDEF_(0x00090313L)
 
@@ -29687,7 +29687,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The function completed successfully, but both CompleteToken and this function must be CAlled to complete the context
+// The function completed successfully, but both CompleteToken and this function must be called to complete the context
 //
 #define SEC_I_COMPLETE_AND_CONTINUE      _HRESULT_TYPEDEF_(0x00090314L)
 
@@ -29696,7 +29696,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The logon was completed, but no network authority was available. The logon was made using loCAlly known information
+// The logon was completed, but no network authority was available. The logon was made using locally known information
 //
 #define SEC_I_LOCAL_LOGON                _HRESULT_TYPEDEF_(0x00090315L)
 
@@ -29714,7 +29714,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The context has expired and CAn no longer be used.
+// The context has expired and can no longer be used.
 //
 #define SEC_E_CONTEXT_EXPIRED            _HRESULT_TYPEDEF_(0x80090317L)
 
@@ -29723,7 +29723,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The context has expired and CAn no longer be used.
+// The context has expired and can no longer be used.
 //
 #define SEC_I_CONTEXT_EXPIRED            _HRESULT_TYPEDEF_(0x00090317L)
 
@@ -29759,7 +29759,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The credentials supplied were not complete, and could not be verified. Additional information CAn be returned from the context.
+// The credentials supplied were not complete, and could not be verified. Additional information can be returned from the context.
 //
 #define SEC_I_INCOMPLETE_CREDENTIALS     _HRESULT_TYPEDEF_(0x00090320L)
 
@@ -29859,7 +29859,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The client and server CAnnot communiCAte, beCAuse they do not possess a common algorithm.
+// The client and server Cannot communiCAte, because they do not possess a common algorithm.
 //
 #define SEC_E_ALGORITHM_MISMATCH         _HRESULT_TYPEDEF_(0x80090331L)
 
@@ -29895,7 +29895,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Unable to accomplish the requested task beCAuse the loCAl machine does not have any IP addresses.
+// Unable to accomplish the requested task because the loCAl machine does not have any IP addresses.
 //
 #define SEC_E_NO_IP_ADDRESSES            _HRESULT_TYPEDEF_(0x80090335L)
 
@@ -29913,7 +29913,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The crypto system or checksum function is invalid beCAuse a required function is unavailable.
+// The crypto system or checksum function is invalid because a required function is unavailable.
 //
 #define SEC_E_CRYPTO_SYSTEM_INVALID      _HRESULT_TYPEDEF_(0x80090337L)
 
@@ -30030,7 +30030,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The requested operation CAnnot be completed. The computer must be trusted for delegation and the current user account must be configured to allow delegation.
+// The requested operation Cannot be completed. The computer must be trusted for delegation and the current user account must be configured to allow delegation.
 //
 #define SEC_E_DELEGATION_REQUIRED        _HRESULT_TYPEDEF_(0x80090345L)
 
@@ -30075,7 +30075,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The system detected a possible attempt to compromise security. Please ensure that you CAn contact the server that authentiCAted you.
+// The system detected a possible attempt to compromise security. Please ensure that you can contact the server that authentiCAted you.
 //
 #define SEC_E_DOWNGRADE_DETECTED         _HRESULT_TYPEDEF_(0x80090350L)
 
@@ -30183,7 +30183,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A signature operation must be performed before the user CAn authentiCAte.
+// A signature operation must be performed before the user can authentiCAte.
 //
 #define SEC_I_SIGNATURE_NEEDED           _HRESULT_TYPEDEF_(0x0009035CL)
 
@@ -30379,7 +30379,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot find the original signer.
+// Cannot find the original signer.
 //
 #define CRYPT_E_SIGNER_NOT_FOUND         _HRESULT_TYPEDEF_(0x8009100EL)
 
@@ -30451,7 +30451,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot find object or property.
+// Cannot find object or property.
 //
 #define CRYPT_E_NOT_FOUND                _HRESULT_TYPEDEF_(0x80092004L)
 
@@ -30496,7 +30496,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot find the requested object.
+// Cannot find the requested object.
 //
 #define CRYPT_E_NO_MATCH                 _HRESULT_TYPEDEF_(0x80092009L)
 
@@ -30514,7 +30514,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot find the certifiCAte and private key for decryption.
+// Cannot find the certifiCAte and private key for decryption.
 //
 #define CRYPT_E_NO_KEY_PROPERTY          _HRESULT_TYPEDEF_(0x8009200BL)
 
@@ -30523,7 +30523,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot find the certifiCAte and private key to use for decryption.
+// Cannot find the certifiCAte and private key to use for decryption.
 //
 #define CRYPT_E_NO_DECRYPT_CERT          _HRESULT_TYPEDEF_(0x8009200CL)
 
@@ -30586,7 +30586,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The revoCAtion function was unable to check revoCAtion beCAuse the revoCAtion server was offline.
+// The revoCAtion function was unable to check revoCAtion because the revoCAtion server was offline.
 //
 #define CRYPT_E_REVOCATION_OFFLINE       _HRESULT_TYPEDEF_(0x80092013L)
 
@@ -30649,7 +30649,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The Put operation CAnnot continue. The file needs to be resized. However, there is already a signature present. A complete signing operation must be done.
+// The Put operation Cannot continue. The file needs to be resized. However, there is already a signature present. A complete signing operation must be done.
 //
 #define CRYPT_E_FILERESIZED              _HRESULT_TYPEDEF_(0x80092025L)
 
@@ -30676,7 +30676,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The CAlled function was unable to do a usage check on the subject.
+// The called function was unable to do a usage check on the subject.
 //
 #define CRYPT_E_NO_VERIFY_USAGE_CHECK    _HRESULT_TYPEDEF_(0x80092028L)
 
@@ -30685,7 +30685,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Since the server was offline, the CAlled function was unable to complete the usage check.
+// Since the server was offline, the called function was unable to complete the usage check.
 //
 #define CRYPT_E_VERIFY_USAGE_OFFLINE     _HRESULT_TYPEDEF_(0x80092029L)
 
@@ -31227,7 +31227,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// ASN1 bad arguments to function CAll.
+// ASN1 bad arguments to function call.
 //
 #define CRYPT_E_ASN1_BADARGS             _HRESULT_TYPEDEF_(0x80093109L)
 
@@ -31389,7 +31389,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The operation is denied. It CAn only be performed by a certifiCAte manager that is allowed to manage certifiCAtes for the current requester.
+// The operation is denied. It can only be performed by a certifiCAte manager that is allowed to manage certifiCAtes for the current requester.
 //
 #define CERTSRV_E_RESTRICTEDOFFICER      _HRESULT_TYPEDEF_(0x80094009L)
 
@@ -31398,7 +31398,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot archive private key. The certifiCAtion authority is not configured for key archival.
+// Cannot archive private key. The certifiCAtion authority is not configured for key archival.
 //
 #define CERTSRV_E_KEY_ARCHIVAL_NOT_CONFIGURED _HRESULT_TYPEDEF_(0x8009400AL)
 
@@ -31407,7 +31407,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot archive private key. The certifiCAtion authority could not verify one or more key recovery certifiCAtes.
+// Cannot archive private key. The certifiCAtion authority could not verify one or more key recovery certifiCAtes.
 //
 #define CERTSRV_E_NO_VALID_KRA           _HRESULT_TYPEDEF_(0x8009400BL)
 
@@ -31479,7 +31479,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The contacted domain controller CAnnot support signed LDAP traffic. Update the domain controller or configure CertifiCAte Services to use SSL for Active Directory access.
+// The contacted domain controller Cannot support signed LDAP traffic. Update the domain controller or configure CertifiCAte Services to use SSL for Active Directory access.
 //
 #define CERTSRV_E_DOWNLEVEL_DC_SSL_OR_UPGRADE _HRESULT_TYPEDEF_(0x80094013L)
 
@@ -31497,7 +31497,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// An enrollment policy server CAnnot be loCAted.
+// An enrollment policy server Cannot be loCAted.
 //
 #define CERTSRV_E_NO_POLICY_SERVER       _HRESULT_TYPEDEF_(0x80094015L)
 
@@ -31560,7 +31560,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The request was made on behalf of a subject other than the CAller. The certifiCAte template must be configured to require at least one signature to authorize the request.
+// The request was made on behalf of a subject other than the caller. The certifiCAte template must be configured to require at least one signature to authorize the request.
 //
 #define CERTSRV_E_BAD_RENEWAL_SUBJECT    _HRESULT_TYPEDEF_(0x80094806L)
 
@@ -31623,7 +31623,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The UPN is unavailable and CAnnot be added to the Subject Alternate name.
+// The UPN is unavailable and Cannot be added to the Subject Alternate name.
 //
 #define CERTSRV_E_SUBJECT_UPN_REQUIRED   _HRESULT_TYPEDEF_(0x8009480DL)
 
@@ -31632,7 +31632,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The Active Directory GUID is unavailable and CAnnot be added to the Subject Alternate name.
+// The Active Directory GUID is unavailable and Cannot be added to the Subject Alternate name.
 //
 #define CERTSRV_E_SUBJECT_DIRECTORY_GUID_REQUIRED _HRESULT_TYPEDEF_(0x8009480EL)
 
@@ -31641,7 +31641,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The DNS name is unavailable and CAnnot be added to the Subject Alternate name.
+// The DNS name is unavailable and Cannot be added to the Subject Alternate name.
 //
 #define CERTSRV_E_SUBJECT_DNS_REQUIRED   _HRESULT_TYPEDEF_(0x8009480FL)
 
@@ -31668,7 +31668,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The EMail name is unavailable and CAnnot be added to the Subject or Subject Alternate name.
+// The EMail name is unavailable and Cannot be added to the Subject or Subject Alternate name.
 //
 #define CERTSRV_E_SUBJECT_EMAIL_REQUIRED _HRESULT_TYPEDEF_(0x80094812L)
 
@@ -31716,7 +31716,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// You CAnnot add the root CA2 certifiCAte into your loCAl store.
+// You Cannot add the root CA2 certifiCAte into your loCAl store.
 //
 #define XENROLL_E_CANNOT_ADD_ROOT_CERT   _HRESULT_TYPEDEF_(0x80095001L)
 
@@ -31752,7 +31752,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Signing certifiCAte CAnnot include SMIME extension.
+// Signing certifiCAte Cannot include SMIME extension.
 //
 #define XENROLL_E_KEYSPEC_SMIME_MISMATCH _HRESULT_TYPEDEF_(0x80095005L)
 
@@ -31788,7 +31788,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The signature of the certifiCAte CAnnot be verified.
+// The signature of the certifiCAte Cannot be verified.
 //
 #define TRUST_E_CERT_SIGNATURE           _HRESULT_TYPEDEF_(0x80096004L)
 
@@ -31830,7 +31830,7 @@ copy protection errors.
 
 //
 // Error codes for mssipotf.dll
-// Most of the error codes CAn only occur when an error occurs
+// Most of the error codes can only occur when an error occurs
 //    during font file signing
 //
 //
@@ -31992,7 +31992,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A CAll to a CryptoAPI function failed.
+// A call to a CryptoAPI function failed.
 //
 #define MSSIPOTF_E_CRYPT                 _HRESULT_TYPEDEF_(0x80097014L)
 
@@ -32180,7 +32180,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A certifiCAte that CAn only be used as an end-entity is being used as a CA2 or visa versa.
+// A certifiCAte that can only be used as an end-entity is being used as a CA2 or visa versa.
 //
 #define CERT_E_ROLE                      _HRESULT_TYPEDEF_(0x800B0103L)
 
@@ -32487,7 +32487,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The device instance CAnnot be created beCAuse it already exists.
+// The device instance Cannot be created because it already exists.
 //
 #define SPAPI_E_DEVINST_ALREADY_EXISTS   _HRESULT_TYPEDEF_(0x800F0207L)
 
@@ -32496,7 +32496,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The operation CAnnot be performed on a device information element that has not been registered.
+// The operation Cannot be performed on a device information element that has not been registered.
 //
 #define SPAPI_E_DEVINFO_NOT_REGISTERED   _HRESULT_TYPEDEF_(0x800F0208L)
 
@@ -32532,7 +32532,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The icon representing this install class CAnnot be loaded.
+// The icon representing this install class Cannot be loaded.
 //
 #define SPAPI_E_CANT_LOAD_CLASS_ICON     _HRESULT_TYPEDEF_(0x800F020CL)
 
@@ -32586,7 +32586,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The operation CAnnot be performed beCAuse the device information set is locked.
+// The operation Cannot be performed because the device information set is locked.
 //
 #define SPAPI_E_DEVINFO_LIST_LOCKED      _HRESULT_TYPEDEF_(0x800F0212L)
 
@@ -32595,7 +32595,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The operation CAnnot be performed beCAuse the device information element is locked.
+// The operation Cannot be performed because the device information element is locked.
 //
 #define SPAPI_E_DEVINFO_DATA_LOCKED      _HRESULT_TYPEDEF_(0x800F0213L)
 
@@ -32622,7 +32622,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The operation CAnnot be performed beCAuse the file queue is locked.
+// The operation Cannot be performed because the file queue is locked.
 //
 #define SPAPI_E_FILEQUEUE_LOCKED         _HRESULT_TYPEDEF_(0x800F0216L)
 
@@ -32649,7 +32649,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The installation failed beCAuse a function driver was not specified for this device instance.
+// The installation failed because a function driver was not specified for this device instance.
 //
 #define SPAPI_E_NO_ASSOCIATED_SERVICE    _HRESULT_TYPEDEF_(0x800F0219L)
 
@@ -32667,7 +32667,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The operation CAnnot be performed beCAuse the device interface is currently active.
+// The operation Cannot be performed because the device interface is currently active.
 //
 #define SPAPI_E_DEVICE_INTERFACE_ACTIVE  _HRESULT_TYPEDEF_(0x800F021BL)
 
@@ -32676,7 +32676,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The operation CAnnot be performed beCAuse the device interface has been removed from the system.
+// The operation Cannot be performed because the device interface has been removed from the system.
 //
 #define SPAPI_E_DEVICE_INTERFACE_REMOVED _HRESULT_TYPEDEF_(0x800F021CL)
 
@@ -32865,7 +32865,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The device CAnnot be disabled.
+// The device Cannot be disabled.
 //
 #define SPAPI_E_NOT_DISABLEABLE          _HRESULT_TYPEDEF_(0x800F0231L)
 
@@ -32874,7 +32874,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The device could not be dynamiCAlly removed.
+// The device could not be dynamically removed.
 //
 #define SPAPI_E_CANT_REMOVE_DEVINST      _HRESULT_TYPEDEF_(0x800F0232L)
 
@@ -32883,7 +32883,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot copy to specified target.
+// Cannot copy to specified target.
 //
 #define SPAPI_E_INVALID_TARGET           _HRESULT_TYPEDEF_(0x800F0233L)
 
@@ -32991,7 +32991,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A file could not be verified beCAuse it does not have an associated CAtalog signed via Authenticode(tm).
+// A file could not be verified because it does not have an associated CAtalog signed via Authenticode(tm).
 //
 #define SPAPI_E_NO_AUTHENTICODE_CATALOG  _HRESULT_TYPEDEF_(0x800F023FL)
 
@@ -33054,7 +33054,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// One of the installers for this device CAnnot perform the installation at this time.
+// One of the installers for this device Cannot perform the installation at this time.
 //
 #define SPAPI_E_DEVICE_INSTALLER_NOT_READY _HRESULT_TYPEDEF_(0x800F0246L)
 
@@ -33153,7 +33153,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The action was CAncelled by an SCArdCAncel request.
+// The action was cancelled by an SCArdcancel request.
 //
 #define SCARD_E_CANCELLED                _HRESULT_TYPEDEF_(0x80100002L)
 
@@ -33234,7 +33234,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The smart CArd CAnnot be accessed beCAuse of other connections outstanding.
+// The smart CArd Cannot be accessed because of other connections outstanding.
 //
 #define SCARD_E_SHARING_VIOLATION        _HRESULT_TYPEDEF_(0x8010000BL)
 
@@ -33297,7 +33297,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The action was CAncelled by the system, presumably to log off or shut down.
+// The action was cancelled by the system, presumably to log off or shut down.
 //
 #define SCARD_E_SYSTEM_CANCELLED         _HRESULT_TYPEDEF_(0x80100012L)
 
@@ -33423,7 +33423,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// No Primary Provider CAn be found for the smart CArd.
+// No Primary Provider can be found for the smart CArd.
 //
 #define SCARD_E_ICC_INSTALLATION         _HRESULT_TYPEDEF_(0x80100020L)
 
@@ -33549,7 +33549,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot find a smart CArd reader.
+// Cannot find a smart CArd reader.
 //
 #define SCARD_E_NO_READERS_AVAILABLE     _HRESULT_TYPEDEF_(0x8010002EL)
 
@@ -33594,7 +33594,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The smart CArd PIN CAnnot be CAched.
+// The smart CArd PIN Cannot be CAched.
 //
 #define SCARD_E_NO_PIN_CACHE             _HRESULT_TYPEDEF_(0x80100033L)
 
@@ -33603,7 +33603,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The smart CArd is read only and CAnnot be written to.
+// The smart CArd is read only and Cannot be written to.
 //
 #define SCARD_E_READ_ONLY_CARD           _HRESULT_TYPEDEF_(0x80100034L)
 
@@ -33615,7 +33615,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The reader CAnnot communiCAte with the smart CArd, due to ATR configuration conflicts.
+// The reader Cannot communiCAte with the smart CArd, due to ATR configuration conflicts.
 //
 #define SCARD_W_UNSUPPORTED_CARD         _HRESULT_TYPEDEF_(0x80100065L)
 
@@ -33660,7 +33660,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Access was denied beCAuse of a security violation.
+// Access was denied because of a security violation.
 //
 #define SCARD_W_SECURITY_VIOLATION       _HRESULT_TYPEDEF_(0x8010006AL)
 
@@ -33669,7 +33669,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The CArd CAnnot be accessed beCAuse the wrong PIN was presented.
+// The CArd Cannot be accessed because the wrong PIN was presented.
 //
 #define SCARD_W_WRONG_CHV                _HRESULT_TYPEDEF_(0x8010006BL)
 
@@ -33678,7 +33678,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The CArd CAnnot be accessed beCAuse the maximum number of PIN entry attempts has been reached.
+// The CArd Cannot be accessed because the maximum number of PIN entry attempts has been reached.
 //
 #define SCARD_W_CHV_BLOCKED              _HRESULT_TYPEDEF_(0x8010006CL)
 
@@ -33696,7 +33696,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The action was CAncelled by the user.
+// The action was cancelled by the user.
 //
 #define SCARD_W_CANCELLED_BY_USER        _HRESULT_TYPEDEF_(0x8010006EL)
 
@@ -34064,7 +34064,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The component move was disallowed, beCAuse the source or destination appliCAtion is either a system appliCAtion or currently locked against changes
+// The component move was disallowed, because the source or destination appliCAtion is either a system appliCAtion or currently locked against changes
 //
 #define COMADMIN_E_COMP_MOVE_LOCKED      _HRESULT_TYPEDEF_(0x8011042DL)
 
@@ -34073,7 +34073,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The component move failed beCAuse the destination appliCAtion no longer exists
+// The component move failed because the destination appliCAtion no longer exists
 //
 #define COMADMIN_E_COMP_MOVE_BAD_DEST    _HRESULT_TYPEDEF_(0x8011042EL)
 
@@ -34091,7 +34091,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// This operation CAnnot be performed on the system appliCAtion
+// This operation Cannot be performed on the system appliCAtion
 //
 #define COMADMIN_E_SYSTEMAPP             _HRESULT_TYPEDEF_(0x80110433L)
 
@@ -34235,7 +34235,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Failed to start appliCAtion beCAuse it is either a library appliCAtion or an appliCAtion proxy
+// Failed to start appliCAtion because it is either a library appliCAtion or an appliCAtion proxy
 //
 #define COMADMIN_E_CAN_NOT_START_APP     _HRESULT_TYPEDEF_(0x8011044BL)
 
@@ -34253,7 +34253,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot subscribe to this component (the component may have been imported)
+// Cannot subscribe to this component (the component may have been imported)
 //
 #define COMADMIN_E_CANT_SUBSCRIBE_TO_COMPONENT _HRESULT_TYPEDEF_(0x8011044DL)
 
@@ -34262,7 +34262,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// An event class CAnnot also be a subscriber component
+// An event class Cannot also be a subscriber component
 //
 #define COMADMIN_E_EVENTCLASS_CANT_BE_SUBSCRIBER _HRESULT_TYPEDEF_(0x8011044EL)
 
@@ -34289,7 +34289,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// You CAnnot start an appliCAtion that has been disabled
+// You Cannot start an appliCAtion that has been disabled
 //
 #define COMADMIN_E_START_APP_DISABLED    _HRESULT_TYPEDEF_(0x80110451L)
 
@@ -34316,7 +34316,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The partition CAnnot be deleted beCAuse it is the default partition for one or more users
+// The partition Cannot be deleted because it is the default partition for one or more users
 //
 #define COMADMIN_E_CAT_PARTITION_IN_USE  _HRESULT_TYPEDEF_(0x80110459L)
 
@@ -34325,7 +34325,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The partition CAnnot be exported, beCAuse one or more components in the partition have the same file name
+// The partition Cannot be exported, because one or more components in the partition have the same file name
 //
 #define COMADMIN_E_FILE_PARTITION_DUPLICATE_FILES _HRESULT_TYPEDEF_(0x8011045AL)
 
@@ -34334,7 +34334,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// AppliCAtions that contain one or more imported components CAnnot be installed into a non-base partition
+// AppliCAtions that contain one or more imported components Cannot be installed into a non-base partition
 //
 #define COMADMIN_E_CAT_IMPORTED_COMPONENTS_NOT_ALLOWED _HRESULT_TYPEDEF_(0x8011045BL)
 
@@ -34343,7 +34343,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The appliCAtion name is not unique and CAnnot be resolved to an appliCAtion id
+// The appliCAtion name is not unique and Cannot be resolved to an appliCAtion id
 //
 #define COMADMIN_E_AMBIGUOUS_APPLICATION_NAME _HRESULT_TYPEDEF_(0x8011045CL)
 
@@ -34352,7 +34352,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The partition name is not unique and CAnnot be resolved to a partition id
+// The partition name is not unique and Cannot be resolved to a partition id
 //
 #define COMADMIN_E_AMBIGUOUS_PARTITION_NAME _HRESULT_TYPEDEF_(0x8011045DL)
 
@@ -34397,7 +34397,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// This version of the COM+ registry database CAnnot be migrated
+// This version of the COM+ registry database Cannot be migrated
 //
 #define COMADMIN_E_MIG_VERSIONNOTSUPPORTED _HRESULT_TYPEDEF_(0x80110480L)
 
@@ -34442,7 +34442,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The appliCAtion CAnnot be paused or resumed
+// The appliCAtion Cannot be paused or resumed
 //
 #define COMADMIN_E_CAT_PAUSE_RESUME_NOT_SUPPORTED _HRESULT_TYPEDEF_(0x80110485L)
 
@@ -34463,7 +34463,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Only COM+ AppliCAtions marked "queued" CAn be invoked using the "queue" moniker
+// Only COM+ AppliCAtions marked "queued" can be invoked using the "queue" moniker
 //
 #define COMQC_E_APPLICATION_NOT_QUEUED   _HRESULT_TYPEDEF_(0x80110600L)
 
@@ -34529,7 +34529,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot create a dupliCAte resource of type Distributed Transaction Coordinator
+// Cannot create a dupliCAte resource of type Distributed Transaction Coordinator
 //
 #define MSDTC_E_DUPLICATE_RESOURCE       _HRESULT_TYPEDEF_(0x80110701L)
 
@@ -34550,7 +34550,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// One of the specified objects CAnnot be found
+// One of the specified objects Cannot be found
 //
 #define COMADMIN_E_OBJECT_DOES_NOT_EXIST _HRESULT_TYPEDEF_(0x80110809L)
 
@@ -34676,7 +34676,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Only AppliCAtion Files (*.MSI files) CAn be installed into partitions.
+// Only AppliCAtion Files (*.MSI files) can be installed into partitions.
 //
 #define COMADMIN_E_PARTITION_MSI_ONLY    _HRESULT_TYPEDEF_(0x80110819L)
 
@@ -34703,7 +34703,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A component CAnnot be moved (or copied) from the System AppliCAtion, an appliCAtion proxy or a non-changeable appliCAtion
+// A component Cannot be moved (or copied) from the System AppliCAtion, an appliCAtion proxy or a non-changeable appliCAtion
 //
 #define COMADMIN_E_COMP_MOVE_SOURCE      _HRESULT_TYPEDEF_(0x8011081CL)
 
@@ -34712,7 +34712,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A component CAnnot be moved (or copied) to the System AppliCAtion, an appliCAtion proxy or a non-changeable appliCAtion
+// A component Cannot be moved (or copied) to the System AppliCAtion, an appliCAtion proxy or a non-changeable appliCAtion
 //
 #define COMADMIN_E_COMP_MOVE_DEST        _HRESULT_TYPEDEF_(0x8011081DL)
 
@@ -34721,7 +34721,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A private component CAnnot be moved (or copied) to a library appliCAtion or to the base partition
+// A private component Cannot be moved (or copied) to a library appliCAtion or to the base partition
 //
 #define COMADMIN_E_COMP_MOVE_PRIVATE     _HRESULT_TYPEDEF_(0x8011081EL)
 
@@ -34730,7 +34730,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The Base AppliCAtion Partition exists in all partition sets and CAnnot be removed.
+// The Base AppliCAtion Partition exists in all partition sets and Cannot be removed.
 //
 #define COMADMIN_E_BASEPARTITION_REQUIRED_IN_SET _HRESULT_TYPEDEF_(0x8011081FL)
 
@@ -34739,7 +34739,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Alas, Event Class components CAnnot be aliased.
+// Alas, Event Class components Cannot be aliased.
 //
 #define COMADMIN_E_CANNOT_ALIAS_EVENTCLASS _HRESULT_TYPEDEF_(0x80110820L)
 
@@ -34748,7 +34748,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Access is denied beCAuse the component is private.
+// Access is denied because the component is private.
 //
 #define COMADMIN_E_PRIVATE_ACCESSDENIED  _HRESULT_TYPEDEF_(0x80110821L)
 
@@ -34766,7 +34766,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The specified user CAnnot write to the system registry
+// The specified user Cannot write to the system registry
 //
 #define COMADMIN_E_REGISTRY_ACCESSDENIED _HRESULT_TYPEDEF_(0x80110823L)
 
@@ -34837,7 +34837,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// An invalid name request was made. The name requested CAnnot be retrieved at this time.
+// An invalid name request was made. The name requested Cannot be retrieved at this time.
 //
 #define ERROR_FLT_INVALID_NAME_REQUEST   _HRESULT_TYPEDEF_(0x801F0005L)
 
@@ -34846,7 +34846,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Posting this operation to a worker thread for further processing is not safe at this time beCAuse it could lead to a system deadlock.
+// Posting this operation to a worker thread for further processing is not safe at this time because it could lead to a system deadlock.
 //
 #define ERROR_FLT_NOT_SAFE_TO_POST_OPERATION _HRESULT_TYPEDEF_(0x801F0006L)
 
@@ -34864,7 +34864,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The filter is not ready for attachment to volumes beCAuse it has not finished initializing (FltStartFiltering has not been CAlled).
+// The filter is not ready for attachment to volumes because it has not finished initializing (FltStartFiltering has not been called).
 //
 #define ERROR_FLT_FILTER_NOT_READY       _HRESULT_TYPEDEF_(0x801F0008L)
 
@@ -34873,7 +34873,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The filter must cleanup any operation specific context at this time beCAuse it is being removed from the system before the operation is completed by the lower drivers.
+// The filter must cleanup any operation specific context at this time because it is being removed from the system before the operation is completed by the lower drivers.
 //
 #define ERROR_FLT_POST_OPERATION_CLEANUP _HRESULT_TYPEDEF_(0x801F0009L)
 
@@ -34882,7 +34882,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The Filter Manager had an internal error from which it CAnnot recover, therefore the operation has been failed. This is usually the result of a filter returning an invalid value from a pre-operation CALLBACK.
+// The Filter Manager had an internal error from which it Cannot recover, therefore the operation has been failed. This is usually the result of a filter returning an invalid value from a pre-operation CALLBACK.
 //
 #define ERROR_FLT_INTERNAL_ERROR         _HRESULT_TYPEDEF_(0x801F000AL)
 
@@ -34891,7 +34891,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The object specified for this action is in the process of being deleted, therefore the action requested CAnnot be completed at this time.
+// The object specified for this action is in the process of being deleted, therefore the action requested Cannot be completed at this time.
 //
 #define ERROR_FLT_DELETING_OBJECT        _HRESULT_TYPEDEF_(0x801F000BL)
 
@@ -35096,7 +35096,7 @@ copy protection errors.
 // MessageText:
 //
 // {Desktop composition is disabled}
-// The operation could not be completed beCAuse desktop composition is disabled.
+// The operation could not be completed because desktop composition is disabled.
 //
 #define DWM_E_COMPOSITIONDISABLED        _HRESULT_TYPEDEF_(0x80263001L)
 
@@ -35136,7 +35136,7 @@ copy protection errors.
 // MessageText:
 //
 // {The adapter specified by the LUID is not found}
-// DWM CAn not find the adapter specified by the LUID.
+// DWM can not find the adapter specified by the LUID.
 //
 #define DWM_E_ADAPTER_NOT_FOUND          _HRESULT_TYPEDEF_(0x80263005L)
 
@@ -35345,7 +35345,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Specified buffer is not big enough to contain entire requested dataset. Partial data populated up to the size of the buffer. CAller needs to provide buffer of size as specified in the partially populated buffer's content (interface specific).
+// Specified buffer is not big enough to contain entire requested dataset. Partial data populated up to the size of the buffer. caller needs to provide buffer of size as specified in the partially populated buffer's content (interface specific).
 //
 #define ERROR_GRAPHICS_PARTIAL_DATA_POPULATED _HRESULT_TYPEDEF_(0x4026200AL)
 
@@ -35402,7 +35402,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// An object being referenced has reach the maximum reference count already and CAn't be reference further.
+// An object being referenced has reach the maximum reference count already and can't be reference further.
 //
 #define ERROR_GRAPHICS_TOO_MANY_REFERENCES _HRESULT_TYPEDEF_(0xC0262103L)
 
@@ -35447,7 +35447,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The current alloCAtion CAn't be unswizzled by an aperture.
+// The current alloCAtion can't be unswizzled by an aperture.
 //
 #define ERROR_GRAPHICS_UNSWIZZLING_APERTURE_UNSUPPORTED _HRESULT_TYPEDEF_(0xC0262108L)
 
@@ -35456,7 +35456,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The request failed beCAuse a pinned alloCAtion CAn't be evicted.
+// The request failed because a pinned alloCAtion can't be evicted.
 //
 #define ERROR_GRAPHICS_CANT_EVICT_PINNED_ALLOCATION _HRESULT_TYPEDEF_(0xC0262109L)
 
@@ -35465,7 +35465,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The alloCAtion CAn't be used from it's current segment loCAtion for the specified operation.
+// The alloCAtion can't be used from it's current segment loCAtion for the specified operation.
 //
 #define ERROR_GRAPHICS_INVALID_ALLOCATION_USAGE _HRESULT_TYPEDEF_(0xC0262110L)
 
@@ -35474,7 +35474,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A locked alloCAtion CAn't be used in the current command buffer.
+// A locked alloCAtion can't be used in the current command buffer.
 //
 #define ERROR_GRAPHICS_CANT_RENDER_LOCKED_ALLOCATION _HRESULT_TYPEDEF_(0xC0262111L)
 
@@ -35975,7 +35975,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Specified VidPN source CAnnot be used beCAuse there is no available VidPN target to connect it to.
+// Specified VidPN source Cannot be used because there is no available VidPN target to connect it to.
 //
 #define ERROR_GRAPHICS_NO_AVAILABLE_VIDPN_TARGET _HRESULT_TYPEDEF_(0xC0262333L)
 
@@ -36110,7 +36110,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Specified VidPN source is already owned by a DMM client and CAnnot be used until that client releases it.
+// Specified VidPN source is already owned by a DMM client and Cannot be used until that client releases it.
 //
 #define ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE _HRESULT_TYPEDEF_(0xC0262342L)
 
@@ -36119,7 +36119,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Specified VidPN is active and CAnnot be accessed.
+// Specified VidPN is active and Cannot be accessed.
 //
 #define ERROR_GRAPHICS_CANT_ACCESS_ACTIVE_VIDPN _HRESULT_TYPEDEF_(0xC0262343L)
 
@@ -36236,7 +36236,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// No more than one unassigned mode set CAn exist at any given time for a given VidPN source/target.
+// No more than one unassigned mode set can exist at any given time for a given VidPN source/target.
 //
 #define ERROR_GRAPHICS_UNASSIGNED_MODESET_ALREADY_EXISTS _HRESULT_TYPEDEF_(0xC0262350L)
 
@@ -36254,7 +36254,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Specified sCAnline ordering type is invalid.
+// Specified scanline ordering type is invalid.
 //
 #define ERROR_GRAPHICS_INVALID_SCANLINE_ORDERING _HRESULT_TYPEDEF_(0xC0262352L)
 
@@ -36326,7 +36326,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Miniport requested that augmentation be CAncelled for the specified source of the specified VidPN's topology.
+// Miniport requested that augmentation be cancelled for the specified source of the specified VidPN's topology.
 //
 #define ERROR_GRAPHICS_CANCEL_VIDPN_TOPOLOGY_AUGMENTATION _HRESULT_TYPEDEF_(0xC026235AL)
 
@@ -36410,7 +36410,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The chain of linked adapters is not ready to start beCAuse of an unknown failure.
+// The chain of linked adapters is not ready to start because of an unknown failure.
 //
 #define ERROR_GRAPHICS_ADAPTER_CHAIN_NOT_READY _HRESULT_TYPEDEF_(0xC0262433L)
 
@@ -36548,7 +36548,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The function failed beCAuse the CAller passed in an invalid OPM user mode handle.
+// The function failed because the caller passed in an invalid OPM user mode handle.
 //
 #define ERROR_GRAPHICS_OPM_INVALID_HANDLE _HRESULT_TYPEDEF_(0xC026250CL)
 
@@ -36557,7 +36557,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A certifiCAte could not be returned beCAuse the certifiCAte buffer passed to the function was too small.
+// A certifiCAte could not be returned because the certifiCAte buffer passed to the function was too small.
 //
 #define ERROR_GRAPHICS_PVP_INVALID_CERTIFICATE_LENGTH _HRESULT_TYPEDEF_(0xC026250EL)
 
@@ -36566,7 +36566,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A video output could not be created beCAuse the frame buffer is in spanning mode.
+// A video output could not be created because the frame buffer is in spanning mode.
 //
 #define ERROR_GRAPHICS_OPM_SPANNING_MODE_ENABLED _HRESULT_TYPEDEF_(0xC026250FL)
 
@@ -36575,7 +36575,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A video output could not be created beCAuse the frame buffer is in theater mode.
+// A video output could not be created because the frame buffer is in theater mode.
 //
 #define ERROR_GRAPHICS_OPM_THEATER_MODE_ENABLED _HRESULT_TYPEDEF_(0xC0262510L)
 
@@ -36584,7 +36584,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The function failed beCAuse the display adapter's Hardware Functionality SCAn failed to validate the graphics hardware.
+// The function failed because the display adapter's Hardware Functionality Scan failed to validate the graphics hardware.
 //
 #define ERROR_GRAPHICS_PVP_HFS_FAILED    _HRESULT_TYPEDEF_(0xC0262511L)
 
@@ -36602,7 +36602,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The video output CAnnot enable the High-bandwidth Digital Content Protection (HDCP) System beCAuse it does not support HDCP.
+// The video output Cannot enable the High-bandwidth Digital Content Protection (HDCP) System because it does not support HDCP.
 //
 #define ERROR_GRAPHICS_OPM_OUTPUT_DOES_NOT_SUPPORT_HDCP _HRESULT_TYPEDEF_(0xC0262513L)
 
@@ -36611,7 +36611,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The video output CAnnot enable Analogue Copy Protection (ACP) beCAuse it does not support ACP.
+// The video output Cannot enable Analogue Copy Protection (ACP) because it does not support ACP.
 //
 #define ERROR_GRAPHICS_OPM_OUTPUT_DOES_NOT_SUPPORT_ACP _HRESULT_TYPEDEF_(0xC0262514L)
 
@@ -36620,7 +36620,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The video output CAnnot enable the Content Generation Management System Analogue (CGMS-A) protection technology beCAuse it does not support CGMS-A.
+// The video output Cannot enable the Content Generation Management System Analogue (CGMS-A) protection technology because it does not support CGMS-A.
 //
 #define ERROR_GRAPHICS_OPM_OUTPUT_DOES_NOT_SUPPORT_CGMSA _HRESULT_TYPEDEF_(0xC0262515L)
 
@@ -36629,7 +36629,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The IOPMVideoOutput::GetInformation method CAnnot return the version of the SRM being used beCAuse the appliCAtion never successfully passed an SRM to the video output.
+// The IOPMVideoOutput::GetInformation method Cannot return the version of the SRM being used because the appliCAtion never successfully passed an SRM to the video output.
 //
 #define ERROR_GRAPHICS_OPM_HDCP_SRM_NEVER_SET _HRESULT_TYPEDEF_(0xC0262516L)
 
@@ -36638,7 +36638,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The IOPMVideoOutput::Configure method CAnnot enable the specified output protection technology beCAuse the output's screen resolution is too high.
+// The IOPMVideoOutput::Configure method Cannot enable the specified output protection technology because the output's screen resolution is too high.
 //
 #define ERROR_GRAPHICS_OPM_RESOLUTION_TOO_HIGH _HRESULT_TYPEDEF_(0xC0262517L)
 
@@ -36647,7 +36647,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The IOPMVideoOutput::Configure method CAnnot enable HDCP beCAuse the display adapter's HDCP hardware is already being used by other physiCAl outputs.
+// The IOPMVideoOutput::Configure method Cannot enable HDCP because the display adapter's HDCP hardware is already being used by other physiCAl outputs.
 //
 #define ERROR_GRAPHICS_OPM_ALL_HDCP_HARDWARE_ALREADY_IN_USE _HRESULT_TYPEDEF_(0xC0262518L)
 
@@ -36656,7 +36656,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The operating system asynchronously destroyed this OPM video output beCAuse the operating system's state changed. This error typiCAlly occurs beCAuse the monitor PDO associated with this video output was removed, the monitor PDO associated with this video output was stopped, the video output's session beCAme a non-console session or the video output's desktop beCAme an inactive desktop.
+// The operating system asynchronously destroyed this OPM video output because the operating system's state changed. This error typically occurs because the monitor PDO associated with this video output was removed, the monitor PDO associated with this video output was stopped, the video output's session beCAme a non-console session or the video output's desktop beCAme an inactive desktop.
 //
 #define ERROR_GRAPHICS_OPM_VIDEO_OUTPUT_NO_LONGER_EXISTS _HRESULT_TYPEDEF_(0xC026251AL)
 
@@ -36665,7 +36665,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The method failed beCAuse the session is changing its type. No IOPMVideoOutput methods CAn be CAlled when a session is changing its type. There are currently three types of sessions: console, disconnected and remote.
+// The method failed because the session is changing its type. No IOPMVideoOutput methods can be called when a session is changing its type. There are currently three types of sessions: console, disconnected and remote.
 //
 #define ERROR_GRAPHICS_OPM_SESSION_TYPE_CHANGE_IN_PROGRESS _HRESULT_TYPEDEF_(0xC026251BL)
 
@@ -36674,7 +36674,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Either the IOPMVideoOutput::COPPCompatibleGetInformation, IOPMVideoOutput::GetInformation, or IOPMVideoOutput::Configure method failed. This error is returned when the CAller tries to use a COPP specific command while the video output has OPM semantics only.
+// Either the IOPMVideoOutput::COPPCompatibleGetInformation, IOPMVideoOutput::GetInformation, or IOPMVideoOutput::Configure method failed. This error is returned when the caller tries to use a COPP specific command while the video output has OPM semantics only.
 //
 #define ERROR_GRAPHICS_OPM_VIDEO_OUTPUT_DOES_NOT_HAVE_COPP_SEMANTICS _HRESULT_TYPEDEF_(0xC026251CL)
 
@@ -36692,7 +36692,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The method failed beCAuse an unexpected error occurred inside of a display driver.
+// The method failed because an unexpected error occurred inside of a display driver.
 //
 #define ERROR_GRAPHICS_OPM_DRIVER_INTERNAL_ERROR _HRESULT_TYPEDEF_(0xC026251EL)
 
@@ -36701,7 +36701,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Either the IOPMVideoOutput::COPPCompatibleGetInformation, IOPMVideoOutput::GetInformation, or IOPMVideoOutput::Configure method failed. This error is returned when the CAller tries to use an OPM specific command while the video output has COPP semantics only.
+// Either the IOPMVideoOutput::COPPCompatibleGetInformation, IOPMVideoOutput::GetInformation, or IOPMVideoOutput::Configure method failed. This error is returned when the caller tries to use an OPM specific command while the video output has COPP semantics only.
 //
 #define ERROR_GRAPHICS_OPM_VIDEO_OUTPUT_DOES_NOT_HAVE_OPM_SEMANTICS _HRESULT_TYPEDEF_(0xC026251FL)
 
@@ -36710,7 +36710,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The IOPMVideoOutput::COPPCompatibleGetInformation or IOPMVideoOutput::Configure method failed beCAuse the display driver does not support the OPM_GET_ACP_AND_CGMSA_SIGNALING and OPM_SET_ACP_AND_CGMSA_SIGNALING GUIDs.
+// The IOPMVideoOutput::COPPCompatibleGetInformation or IOPMVideoOutput::Configure method failed because the display driver does not support the OPM_GET_ACP_AND_CGMSA_SIGNALING and OPM_SET_ACP_AND_CGMSA_SIGNALING GUIDs.
 //
 #define ERROR_GRAPHICS_OPM_SIGNALING_NOT_SUPPORTED _HRESULT_TYPEDEF_(0xC0262520L)
 
@@ -36785,7 +36785,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The function failed beCAuse a monitor returned an invalid Timing Status byte when the operating system used the DDC/CI Get Timing Report & Timing Message command to get a timing report from a monitor.
+// The function failed because a monitor returned an invalid Timing Status byte when the operating system used the DDC/CI Get Timing Report & Timing Message command to get a timing report from a monitor.
 //
 #define ERROR_GRAPHICS_DDCCI_MONITOR_RETURNED_INVALID_TIMING_STATUS_BYTE _HRESULT_TYPEDEF_(0xC0262586L)
 
@@ -36812,7 +36812,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// An operation failed beCAuse a DDC/CI message had an invalid value in its command field.
+// An operation failed because a DDC/CI message had an invalid value in its command field.
 //
 #define ERROR_GRAPHICS_DDCCI_INVALID_MESSAGE_COMMAND _HRESULT_TYPEDEF_(0xC0262589L)
 
@@ -36821,7 +36821,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// An error occurred beCAuse the field length of a DDC/CI message contained an invalid value.
+// An error occurred because the field length of a DDC/CI message contained an invalid value.
 //
 #define ERROR_GRAPHICS_DDCCI_INVALID_MESSAGE_LENGTH _HRESULT_TYPEDEF_(0xC026258AL)
 
@@ -36830,7 +36830,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// An error occurred beCAuse the checksum field in a DDC/CI message did not match the message's computed checksum value. This error implies that the data was corrupted while it was being transmitted from a monitor to a computer.
+// An error occurred because the checksum field in a DDC/CI message did not match the message's computed checksum value. This error implies that the data was corrupted while it was being transmitted from a monitor to a computer.
 //
 #define ERROR_GRAPHICS_DDCCI_INVALID_MESSAGE_CHECKSUM _HRESULT_TYPEDEF_(0xC026258BL)
 
@@ -36839,7 +36839,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// This function failed beCAuse an invalid monitor handle was passed to it.
+// This function failed because an invalid monitor handle was passed to it.
 //
 #define ERROR_GRAPHICS_INVALID_PHYSICAL_MONITOR_HANDLE _HRESULT_TYPEDEF_(0xC026258CL)
 
@@ -36848,7 +36848,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The operating system asynchronously destroyed the monitor which corresponds to this handle beCAuse the operating system's state changed. This error typiCAlly occurs beCAuse the monitor PDO associated with this handle was removed, the monitor PDO associated with this handle was stopped, or a display mode change occurred. A display mode change occurs when windows sends a WM_DISPLAYCHANGE windows message to appliCAtions.
+// The operating system asynchronously destroyed the monitor which corresponds to this handle because the operating system's state changed. This error typically occurs because the monitor PDO associated with this handle was removed, the monitor PDO associated with this handle was stopped, or a display mode change occurred. A display mode change occurs when windows sends a WM_DISPLAYCHANGE windows message to appliCAtions.
 //
 #define ERROR_GRAPHICS_MONITOR_NO_LONGER_EXISTS _HRESULT_TYPEDEF_(0xC026258DL)
 
@@ -36911,7 +36911,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// SetMonitorColorTemperature()'s CAller passed a color temperature to it which the current monitor did not support. This error implies that the monitor violated the MCCS 2.0 or MCCS 2.0 Revision 1 specifiCAtion.
+// SetMonitorColorTemperature()'s caller passed a color temperature to it which the current monitor did not support. This error implies that the monitor violated the MCCS 2.0 or MCCS 2.0 Revision 1 specifiCAtion.
 //
 #define ERROR_GRAPHICS_MCA_UNSUPPORTED_COLOR_TEMPERATURE _HRESULT_TYPEDEF_(0xC02625DFL)
 
@@ -36923,7 +36923,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// This function CAn only be used if a program is running in the loCAl console session. It CAnnot be used if the program is running on a remote desktop session or on a terminal server session.
+// This function can only be used if a program is running in the loCAl console session. It Cannot be used if the program is running on a remote desktop session or on a terminal server session.
 //
 #define ERROR_GRAPHICS_ONLY_CONSOLE_SESSION_SUPPORTED _HRESULT_TYPEDEF_(0xC02625E0L)
 
@@ -36932,7 +36932,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// This function CAnnot find an actual GDI display device which corresponds to the specified GDI display device name.
+// This function Cannot find an actual GDI display device which corresponds to the specified GDI display device name.
 //
 #define ERROR_GRAPHICS_NO_DISPLAY_DEVICE_CORRESPONDS_TO_NAME _HRESULT_TYPEDEF_(0xC02625E1L)
 
@@ -36941,7 +36941,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The function failed beCAuse the specified GDI display device was not attached to the Windows desktop.
+// The function failed because the specified GDI display device was not attached to the Windows desktop.
 //
 #define ERROR_GRAPHICS_DISPLAY_DEVICE_NOT_ATTACHED_TO_DESKTOP _HRESULT_TYPEDEF_(0xC02625E2L)
 
@@ -36950,7 +36950,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// This function does not support GDI mirroring display devices beCAuse GDI mirroring display devices do not have any physiCAl monitors associated with them.
+// This function does not support GDI mirroring display devices because GDI mirroring display devices do not have any physiCAl monitors associated with them.
 //
 #define ERROR_GRAPHICS_MIRRORING_DEVICES_NOT_SUPPORTED _HRESULT_TYPEDEF_(0xC02625E3L)
 
@@ -36959,7 +36959,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The function failed beCAuse an invalid pointer parameter was passed to it. A pointer parameter is invalid if it is NULL, points to an invalid address, points to a kernel mode address, or is not correctly aligned.
+// The function failed because an invalid pointer parameter was passed to it. A pointer parameter is invalid if it is NULL, points to an invalid address, points to a kernel mode address, or is not correctly aligned.
 //
 #define ERROR_GRAPHICS_INVALID_POINTER   _HRESULT_TYPEDEF_(0xC02625E4L)
 
@@ -36968,7 +36968,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The function failed beCAuse the specified GDI device did not have any monitors associated with it.
+// The function failed because the specified GDI device did not have any monitors associated with it.
 //
 #define ERROR_GRAPHICS_NO_MONITORS_CORRESPOND_TO_DISPLAY_DEVICE _HRESULT_TYPEDEF_(0xC02625E5L)
 
@@ -36977,7 +36977,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// An array passed to the function CAnnot hold all of the data that the function must copy into the array.
+// An array passed to the function Cannot hold all of the data that the function must copy into the array.
 //
 #define ERROR_GRAPHICS_PARAMETER_ARRAY_TOO_SMALL _HRESULT_TYPEDEF_(0xC02625E6L)
 
@@ -36995,7 +36995,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The function failed beCAuse the current session is changing its type. This function CAnnot be CAlled when the current session is changing its type. There are currently three types of sessions: console, disconnected and remote.
+// The function failed because the current session is changing its type. This function Cannot be called when the current session is changing its type. There are currently three types of sessions: console, disconnected and remote.
 //
 #define ERROR_GRAPHICS_SESSION_TYPE_CHANGE_IN_PROGRESS _HRESULT_TYPEDEF_(0xC02605E8L)
 
@@ -37005,7 +37005,7 @@ copy protection errors.
 // ===============================
 //
 // The TPM services and TPM software facilities are used by the various
-// TPM software components. There are two facilities beCAuse the services
+// TPM software components. There are two facilities because the services
 // errors are within the TCG-defined error space and the software errors
 // are not.
 //
@@ -37018,7 +37018,7 @@ copy protection errors.
 // 0x4000 - 0x40ff     TPM Base Services errors (tbssvc.dll)
 //
 // The following are the subranges within the TPM Software facility. The TBS
-// has two classes of errors - those that CAn be returned (the public errors,
+// has two classes of errors - those that can be returned (the public errors,
 // defined in the TBS spec), which are in the TPM services facility,  and
 // those that are internal or implementation specific, which are here in the
 // TPM software facility.
@@ -37149,7 +37149,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The key handle CAnnot be interpreted.
+// The key handle Cannot be interpreted.
 //
 #define TPM_E_INVALID_KEYHANDLE          _HRESULT_TYPEDEF_(0x8028000CL)
 
@@ -37284,7 +37284,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The CAlculation is unable to proceed beCAuse the existing SHA-1 thread has already encountered an error.
+// The CAlculation is unable to proceed because the existing SHA-1 thread has already encountered an error.
 //
 #define TPM_E_SHA_ERROR                  _HRESULT_TYPEDEF_(0x8028001BL)
 
@@ -37392,7 +37392,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Signed data CAnnot include additional DER information.
+// Signed data Cannot include additional DER information.
 //
 #define TPM_E_INAPPROPRIATE_SIG          _HRESULT_TYPEDEF_(0x80280027L)
 
@@ -37455,7 +37455,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The TPM CAnnot perform this version of the CApability.
+// The TPM Cannot perform this version of the CApability.
 //
 #define TPM_E_BAD_VERSION                _HRESULT_TYPEDEF_(0x8028002EL)
 
@@ -37599,7 +37599,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The NV area is read only and CAn't be written to.
+// The NV area is read only and can't be written to.
 //
 #define TPM_E_READ_ONLY                  _HRESULT_TYPEDEF_(0x8028003EL)
 
@@ -37653,7 +37653,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The key is under control of the TPM Owner and CAn only be evicted by the TPM Owner.
+// The key is under control of the TPM Owner and can only be evicted by the TPM Owner.
 //
 #define TPM_E_KEY_OWNER_CONTROL          _HRESULT_TYPEDEF_(0x80280044L)
 
@@ -38094,7 +38094,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A new context could not be created beCAuse there are too many open contexts.
+// A new context could not be created because there are too many open contexts.
 //
 #define TBS_E_TOO_MANY_TBS_CONTEXTS      _HRESULT_TYPEDEF_(0x80284009L)
 
@@ -38103,7 +38103,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A new virtual resource could not be created beCAuse there are too many open virtual resources.
+// A new virtual resource could not be created because there are too many open virtual resources.
 //
 #define TBS_E_TOO_MANY_RESOURCES         _HRESULT_TYPEDEF_(0x8028400AL)
 
@@ -38130,7 +38130,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The command was CAnceled.
+// The command was canceled.
 //
 #define TBS_E_COMMAND_CANCELED           _HRESULT_TYPEDEF_(0x8028400DL)
 
@@ -38148,7 +38148,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A compatible Trusted Platform Module (TPM) Security Device CAnnot be found on this computer.
+// A compatible Trusted Platform Module (TPM) Security Device Cannot be found on this computer.
 //
 #define TBS_E_TPM_NOT_FOUND              _HRESULT_TYPEDEF_(0x8028400FL)
 
@@ -38196,7 +38196,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The command buffer CAnnot contain any more data.
+// The command buffer Cannot contain any more data.
 //
 #define TPMAPI_E_TOO_MUCH_DATA           _HRESULT_TYPEDEF_(0x80290102L)
 
@@ -38250,7 +38250,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The CAller does not have the appropriate rights to perform the requested operation.
+// The caller does not have the appropriate rights to perform the requested operation.
 //
 #define TPMAPI_E_ACCESS_DENIED           _HRESULT_TYPEDEF_(0x80290108L)
 
@@ -38550,7 +38550,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The command was CAnceled.
+// The command was canceled.
 //
 #define TBSIMP_E_COMMAND_CANCELED        _HRESULT_TYPEDEF_(0x8029020BL)
 
@@ -38640,7 +38640,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// No resources CAn be unloaded.
+// No resources can be unloaded.
 //
 #define TBSIMP_E_NOTHING_TO_UNLOAD       _HRESULT_TYPEDEF_(0x80290215L)
 
@@ -38649,7 +38649,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// No new entries CAn be added to the hash table.
+// No new entries can be added to the hash table.
 //
 #define TBSIMP_E_HASH_TABLE_FULL         _HRESULT_TYPEDEF_(0x80290216L)
 
@@ -38658,7 +38658,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A new TBS context could not be created beCAuse there are too many open contexts.
+// A new TBS context could not be created because there are too many open contexts.
 //
 #define TBSIMP_E_TOO_MANY_TBS_CONTEXTS   _HRESULT_TYPEDEF_(0x80290217L)
 
@@ -38667,7 +38667,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A new virtual resource could not be created beCAuse there are too many open virtual resources.
+// A new virtual resource could not be created because there are too many open virtual resources.
 //
 #define TBSIMP_E_TOO_MANY_RESOURCES      _HRESULT_TYPEDEF_(0x80290218L)
 
@@ -38765,7 +38765,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Unable to start Data Collector Set beCAuse there are too many folders.
+// Unable to start Data Collector Set because there are too many folders.
 //
 #define PLA_E_TOO_MANY_FOLDERS           _HRESULT_TYPEDEF_(0x80300045L)
 
@@ -39058,7 +39058,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// BitLocker Drive Encryption CAnnot perform the requested action. This condition may occur when two requests are issued at the same time. Wait a few moments and then try the action again.
+// BitLocker Drive Encryption Cannot perform the requested action. This condition may occur when two requests are issued at the same time. Wait a few moments and then try the action again.
 //
 #define FVE_E_ACTION_NOT_ALLOWED         _HRESULT_TYPEDEF_(0x80310009L)
 
@@ -39112,7 +39112,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The specified attribute CAnnot be found in Active Directory Domain Services. Contact your domain administrator to verify that any required BitLocker Active Directory schema extensions have been installed.
+// The specified attribute Cannot be found in Active Directory Domain Services. Contact your domain administrator to verify that any required BitLocker Active Directory schema extensions have been installed.
 //
 #define FVE_E_AD_GUID_NOT_FOUND          _HRESULT_TYPEDEF_(0x8031000FL)
 
@@ -39121,7 +39121,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The BitLocker metadata for the encrypted drive is not valid. You CAn attempt to repair the drive to restore access.
+// The BitLocker metadata for the encrypted drive is not valid. You can attempt to repair the drive to restore access.
 //
 #define FVE_E_BAD_INFORMATION            _HRESULT_TYPEDEF_(0x80310010L)
 
@@ -39130,7 +39130,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The drive CAnnot be encrypted beCAuse it does not have enough free space. Delete any unnecessary data on the drive to create additional free space and then try again.
+// The drive Cannot be encrypted because it does not have enough free space. Delete any unnecessary data on the drive to create additional free space and then try again.
 //
 #define FVE_E_TOO_SMALL                  _HRESULT_TYPEDEF_(0x80310011L)
 
@@ -39139,7 +39139,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The drive CAnnot be encrypted beCAuse it contains system boot information. Create a separate partition for use as the system drive that contains the boot information and a second partition for use as the operating system drive and then encrypt the operating system drive.
+// The drive Cannot be encrypted because it contains system boot information. Create a separate partition for use as the system drive that contains the boot information and a second partition for use as the operating system drive and then encrypt the operating system drive.
 //
 #define FVE_E_SYSTEM_VOLUME              _HRESULT_TYPEDEF_(0x80310012L)
 
@@ -39148,7 +39148,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The drive CAnnot be encrypted beCAuse the file system is not supported.
+// The drive Cannot be encrypted because the file system is not supported.
 //
 #define FVE_E_FAILED_WRONG_FS            _HRESULT_TYPEDEF_(0x80310013L)
 
@@ -39166,7 +39166,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// This drive CAnnot be encrypted.
+// This drive Cannot be encrypted.
 //
 #define FVE_E_NOT_SUPPORTED              _HRESULT_TYPEDEF_(0x80310015L)
 
@@ -39184,7 +39184,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The data drive specified is not set to automatiCAlly unlock on the current computer and CAnnot be unlocked automatiCAlly.
+// The data drive specified is not set to automatically unlock on the current computer and Cannot be unlocked automatically.
 //
 #define FVE_E_VOLUME_NOT_BOUND           _HRESULT_TYPEDEF_(0x80310017L)
 
@@ -39193,7 +39193,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// You must initialize the Trusted Platform Module (TPM) before you CAn use BitLocker Drive Encryption.
+// You must initialize the Trusted Platform Module (TPM) before you can use BitLocker Drive Encryption.
 //
 #define FVE_E_TPM_NOT_OWNED              _HRESULT_TYPEDEF_(0x80310018L)
 
@@ -39202,7 +39202,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The operation attempted CAnnot be performed on an operating system drive.
+// The operation attempted Cannot be performed on an operating system drive.
 //
 #define FVE_E_NOT_DATA_VOLUME            _HRESULT_TYPEDEF_(0x80310019L)
 
@@ -39238,7 +39238,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// One or more BitLocker key protectors are required. You CAnnot delete the last key on this drive.
+// One or more BitLocker key protectors are required. You Cannot delete the last key on this drive.
 //
 #define FVE_E_KEY_REQUIRED               _HRESULT_TYPEDEF_(0x8031001DL)
 
@@ -39256,7 +39256,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The drive specified is already configured to be automatiCAlly unlocked on the current computer.
+// The drive specified is already configured to be automatically unlocked on the current computer.
 //
 #define FVE_E_VOLUME_BOUND_ALREADY       _HRESULT_TYPEDEF_(0x8031001FL)
 
@@ -39274,7 +39274,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// BitLocker Drive Encryption has been suspended on this drive. All BitLocker key protectors configured for this drive are effectively disabled, and the drive will be automatiCAlly unlocked using an unencrypted (clear) key.
+// BitLocker Drive Encryption has been suspended on this drive. All BitLocker key protectors configured for this drive are effectively disabled, and the drive will be automatically unlocked using an unencrypted (clear) key.
 //
 #define FVE_E_PROTECTION_DISABLED        _HRESULT_TYPEDEF_(0x80310021L)
 
@@ -39283,7 +39283,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The drive you are attempting to lock does not have any key protectors available for encryption beCAuse BitLocker protection is currently suspended. Re-enable BitLocker to lock this drive.
+// The drive you are attempting to lock does not have any key protectors available for encryption because BitLocker protection is currently suspended. Re-enable BitLocker to lock this drive.
 //
 #define FVE_E_RECOVERY_KEY_REQUIRED      _HRESULT_TYPEDEF_(0x80310022L)
 
@@ -39292,7 +39292,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// BitLocker CAnnot use the Trusted Platform Module (TPM) to protect a data drive. TPM protection CAn only be used with the operating system drive.
+// BitLocker Cannot use the Trusted Platform Module (TPM) to protect a data drive. TPM protection can only be used with the operating system drive.
 //
 #define FVE_E_FOREIGN_VOLUME             _HRESULT_TYPEDEF_(0x80310023L)
 
@@ -39301,7 +39301,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The BitLocker metadata for the encrypted drive CAnnot be updated beCAuse it was locked for updating by another process. Please try this process again.
+// The BitLocker metadata for the encrypted drive Cannot be updated because it was locked for updating by another process. Please try this process again.
 //
 #define FVE_E_OVERLAPPED_UPDATE          _HRESULT_TYPEDEF_(0x80310024L)
 
@@ -39319,7 +39319,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The drive encryption algorithm CAnnot be used on this sector size.
+// The drive encryption algorithm Cannot be used on this sector size.
 //
 #define FVE_E_FAILED_SECTOR_SIZE         _HRESULT_TYPEDEF_(0x80310026L)
 
@@ -39328,7 +39328,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The drive CAnnot be unlocked with the key provided. Confirm that you have provided the correct key and try again.
+// The drive Cannot be unlocked with the key provided. Confirm that you have provided the correct key and try again.
 //
 #define FVE_E_FAILED_AUTHENTICATION      _HRESULT_TYPEDEF_(0x80310027L)
 
@@ -39346,7 +39346,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// BitLocker Drive Encryption CAnnot be turned off on the operating system drive until the auto unlock feature has been disabled for the fixed data drives and removable data drives associated with this computer.
+// BitLocker Drive Encryption Cannot be turned off on the operating system drive until the auto unlock feature has been disabled for the fixed data drives and removable data drives associated with this computer.
 //
 #define FVE_E_AUTOUNLOCK_ENABLED         _HRESULT_TYPEDEF_(0x80310029L)
 
@@ -39382,7 +39382,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The drive encryption algorithm and key CAnnot be set on a previously encrypted drive. To encrypt this drive with BitLocker Drive Encryption, remove the previous encryption and then turn on BitLocker.
+// The drive encryption algorithm and key Cannot be set on a previously encrypted drive. To encrypt this drive with BitLocker Drive Encryption, remove the previous encryption and then turn on BitLocker.
 //
 #define FVE_E_CANNOT_SET_FVEK_ENCRYPTED  _HRESULT_TYPEDEF_(0x8031002DL)
 
@@ -39391,7 +39391,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// BitLocker Drive Encryption CAnnot encrypt the specified drive beCAuse an encryption key is not available. Add a key protector to encrypt this drive.
+// BitLocker Drive Encryption Cannot encrypt the specified drive because an encryption key is not available. Add a key protector to encrypt this drive.
 //
 #define FVE_E_CANNOT_ENCRYPT_NO_KEY      _HRESULT_TYPEDEF_(0x8031002EL)
 
@@ -39409,7 +39409,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// This key protector CAnnot be added. Only one key protector of this type is allowed for this drive.
+// This key protector Cannot be added. Only one key protector of this type is allowed for this drive.
 //
 #define FVE_E_PROTECTOR_EXISTS           _HRESULT_TYPEDEF_(0x80310031L)
 
@@ -39418,7 +39418,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The recovery password file was not found beCAuse a relative path was specified. Recovery passwords must be saved to a fully qualified path. Environment variables configured on the computer CAn be used in the path.
+// The recovery password file was not found because a relative path was specified. Recovery passwords must be saved to a fully qualified path. Environment variables configured on the computer can be used in the path.
 //
 #define FVE_E_RELATIVE_PATH              _HRESULT_TYPEDEF_(0x80310032L)
 
@@ -39436,7 +39436,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The recovery key provided is corrupt and CAnnot be used to access the drive. An alternative recovery method, such as recovery password, a data recovery agent, or a backup version of the recovery key must be used to recover access to the drive.
+// The recovery key provided is corrupt and Cannot be used to access the drive. An alternative recovery method, such as recovery password, a data recovery agent, or a backup version of the recovery key must be used to recover access to the drive.
 //
 #define FVE_E_INVALID_KEY_FORMAT         _HRESULT_TYPEDEF_(0x80310034L)
 
@@ -39463,7 +39463,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The Group Policy setting requiring FIPS compliance prevents a loCAl recovery password from being generated or used by BitLocker Drive Encryption. When operating in FIPS-compliant mode, BitLocker recovery options CAn be either a recovery key stored on a USB drive or recovery through a data recovery agent.
+// The Group Policy setting requiring FIPS compliance prevents a loCAl recovery password from being generated or used by BitLocker Drive Encryption. When operating in FIPS-compliant mode, BitLocker recovery options can be either a recovery key stored on a USB drive or recovery through a data recovery agent.
 //
 #define FVE_E_FIPS_PREVENTS_RECOVERY_PASSWORD _HRESULT_TYPEDEF_(0x80310037L)
 
@@ -39472,7 +39472,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The Group Policy setting requiring FIPS compliance prevents the recovery password from being saved to Active Directory. When operating in FIPS-compliant mode, BitLocker recovery options CAn be either a recovery key stored on a USB drive or recovery through a data recovery agent. Check your Group Policy settings configuration.
+// The Group Policy setting requiring FIPS compliance prevents the recovery password from being saved to Active Directory. When operating in FIPS-compliant mode, BitLocker recovery options can be either a recovery key stored on a USB drive or recovery through a data recovery agent. Check your Group Policy settings configuration.
 //
 #define FVE_E_FIPS_PREVENTS_EXTERNAL_KEY_EXPORT _HRESULT_TYPEDEF_(0x80310038L)
 
@@ -39490,7 +39490,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The key protector specified CAnnot be used for this operation.
+// The key protector specified Cannot be used for this operation.
 //
 #define FVE_E_INVALID_PROTECTOR_TYPE     _HRESULT_TYPEDEF_(0x8031003AL)
 
@@ -39508,7 +39508,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The BitLocker startup key or recovery password CAnnot be found on the USB device. Verify that you have the correct USB device, that the USB device is plugged into the computer on an active USB port, restart the computer, and then try again. If the problem persists, contact the computer manufacturer for BIOS upgrade instructions.
+// The BitLocker startup key or recovery password Cannot be found on the USB device. Verify that you have the correct USB device, that the USB device is plugged into the computer on an active USB port, restart the computer, and then try again. If the problem persists, contact the computer manufacturer for BIOS upgrade instructions.
 //
 #define FVE_E_KEYFILE_NOT_FOUND          _HRESULT_TYPEDEF_(0x8031003CL)
 
@@ -39526,7 +39526,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The BitLocker encryption key CAnnot be obtained from the startup key or recovery password. Verify that you have the correct startup key or recovery password and try again.
+// The BitLocker encryption key Cannot be obtained from the startup key or recovery password. Verify that you have the correct startup key or recovery password and try again.
 //
 #define FVE_E_KEYFILE_NO_VMK             _HRESULT_TYPEDEF_(0x8031003EL)
 
@@ -39535,7 +39535,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The Trusted Platform Module (TPM) is disabled. The TPM must be enabled, initialized, and have valid ownership before it CAn be used with BitLocker Drive Encryption.
+// The Trusted Platform Module (TPM) is disabled. The TPM must be enabled, initialized, and have valid ownership before it can be used with BitLocker Drive Encryption.
 //
 #define FVE_E_TPM_DISABLED               _HRESULT_TYPEDEF_(0x8031003FL)
 
@@ -39544,7 +39544,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The BitLocker configuration of the specified drive CAnnot be managed beCAuse this computer is currently operating in Safe Mode. While in Safe Mode, BitLocker Drive Encryption CAn only be used for recovery purposes.
+// The BitLocker configuration of the specified drive Cannot be managed because this computer is currently operating in Safe Mode. While in Safe Mode, BitLocker Drive Encryption can only be used for recovery purposes.
 //
 #define FVE_E_NOT_ALLOWED_IN_SAFE_MODE   _HRESULT_TYPEDEF_(0x80310040L)
 
@@ -39553,7 +39553,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The Trusted Platform Module (TPM) was not able to unlock the drive beCAuse the system boot information has changed or a PIN was not provided correctly. Verify that the drive has not been tampered with and that changes to the system boot information were CAused by a trusted source. After verifying that the drive is safe to access, use the BitLocker recovery console to unlock the drive and then suspend and resume BitLocker to update system boot information that BitLocker associates with this drive.
+// The Trusted Platform Module (TPM) was not able to unlock the drive because the system boot information has changed or a PIN was not provided correctly. Verify that the drive has not been tampered with and that changes to the system boot information were CAused by a trusted source. After verifying that the drive is safe to access, use the BitLocker recovery console to unlock the drive and then suspend and resume BitLocker to update system boot information that BitLocker associates with this drive.
 //
 #define FVE_E_TPM_INVALID_PCR            _HRESULT_TYPEDEF_(0x80310041L)
 
@@ -39562,7 +39562,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The BitLocker encryption key CAnnot be obtained from the Trusted Platform Module (TPM).
+// The BitLocker encryption key Cannot be obtained from the Trusted Platform Module (TPM).
 //
 #define FVE_E_TPM_NO_VMK                 _HRESULT_TYPEDEF_(0x80310042L)
 
@@ -39571,7 +39571,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The BitLocker encryption key CAnnot be obtained from the Trusted Platform Module (TPM) and PIN.
+// The BitLocker encryption key Cannot be obtained from the Trusted Platform Module (TPM) and PIN.
 //
 #define FVE_E_PIN_INVALID                _HRESULT_TYPEDEF_(0x80310043L)
 
@@ -39607,7 +39607,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// This drive CAnnot be encrypted by BitLocker Drive Encryption beCAuse the file system does not extend to the end of the drive. Repartition this drive and then try again.
+// This drive Cannot be encrypted by BitLocker Drive Encryption because the file system does not extend to the end of the drive. Repartition this drive and then try again.
 //
 #define FVE_E_FS_NOT_EXTENDED            _HRESULT_TYPEDEF_(0x80310047L)
 
@@ -39616,7 +39616,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// BitLocker Drive Encryption CAnnot be enabled on the operating system drive. Contact the computer manufacturer for BIOS upgrade instructions.
+// BitLocker Drive Encryption Cannot be enabled on the operating system drive. Contact the computer manufacturer for BIOS upgrade instructions.
 //
 #define FVE_E_FIRMWARE_TYPE_NOT_SUPPORTED _HRESULT_TYPEDEF_(0x80310048L)
 
@@ -39634,7 +39634,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// BitLocker Drive Encryption CAnnot be used beCAuse critiCAl BitLocker system files are missing or corrupted. Use Windows Startup Repair to restore these files to your computer.
+// BitLocker Drive Encryption Cannot be used because critiCAl BitLocker system files are missing or corrupted. Use Windows Startup Repair to restore these files to your computer.
 //
 #define FVE_E_NOT_ON_STACK               _HRESULT_TYPEDEF_(0x8031004AL)
 
@@ -39643,7 +39643,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The drive CAnnot be locked when the drive is in use.
+// The drive Cannot be locked when the drive is in use.
 //
 #define FVE_E_FS_MOUNTED                 _HRESULT_TYPEDEF_(0x8031004BL)
 
@@ -39661,7 +39661,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The BitLocker encryption key CAnnot be obtained. Verify that the Trusted Platform Module (TPM) is enabled and ownership has been taken. If this computer does not have a TPM, verify that the USB drive is inserted and available.
+// The BitLocker encryption key Cannot be obtained. Verify that the Trusted Platform Module (TPM) is enabled and ownership has been taken. If this computer does not have a TPM, verify that the USB drive is inserted and available.
 //
 #define FVE_E_DRY_RUN_FAILED             _HRESULT_TYPEDEF_(0x8031004DL)
 
@@ -39679,7 +39679,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Drive encryption CAnnot occur while boot debugging is enabled. Use the bcdedit command-line tool to turn off boot debugging.
+// Drive encryption Cannot occur while boot debugging is enabled. Use the bcdedit command-line tool to turn off boot debugging.
 //
 #define FVE_E_DEBUGGER_ENABLED           _HRESULT_TYPEDEF_(0x8031004FL)
 
@@ -39697,7 +39697,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// BitLocker Drive Encryption CAnnot enter raw access mode for this drive beCAuse the drive is currently in use.
+// BitLocker Drive Encryption Cannot enter raw access mode for this drive because the drive is currently in use.
 //
 #define FVE_E_RAW_BLOCKED                _HRESULT_TYPEDEF_(0x80310051L)
 
@@ -39715,7 +39715,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// BitLocker Drive Encryption CAn only be used for recovery purposes when the computer is running Windows Recovery Environment.
+// BitLocker Drive Encryption can only be used for recovery purposes when the computer is running Windows Recovery Environment.
 //
 #define FVE_E_NOT_ALLOWED_IN_VERSION     _HRESULT_TYPEDEF_(0x80310053L)
 
@@ -39742,7 +39742,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The hidden drive CAnnot be encrypted.
+// The hidden drive Cannot be encrypted.
 //
 #define FVE_E_HIDDEN_VOLUME              _HRESULT_TYPEDEF_(0x80310056L)
 
@@ -39751,7 +39751,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// BitLocker encryption keys were ignored beCAuse the drive was in a transient state.
+// BitLocker encryption keys were ignored because the drive was in a transient state.
 //
 #define FVE_E_TRANSIENT_STATE            _HRESULT_TYPEDEF_(0x80310057L)
 
@@ -39787,7 +39787,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The Group Policy settings for BitLocker startup options are in conflict and CAnnot be applied. Contact your system administrator for more information.
+// The Group Policy settings for BitLocker startup options are in conflict and Cannot be applied. Contact your system administrator for more information.
 //
 #define FVE_E_INVALID_STARTUP_OPTIONS    _HRESULT_TYPEDEF_(0x8031005BL)
 
@@ -39949,7 +39949,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A password CAnnot be added to the operating system drive.
+// A password Cannot be added to the operating system drive.
 //
 #define FVE_E_OS_VOLUME_PASSPHRASE_NOT_ALLOWED _HRESULT_TYPEDEF_(0x8031006DL)
 
@@ -40021,7 +40021,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Group Policy settings do not permit BitLocker-protected fixed data drives to be automatiCAlly unlocked.
+// Group Policy settings do not permit BitLocker-protected fixed data drives to be automatically unlocked.
 //
 #define FVE_E_POLICY_USER_CONFIGURE_FDV_AUTOUNLOCK_NOT_ALLOWED _HRESULT_TYPEDEF_(0x80310075L)
 
@@ -40030,7 +40030,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Group Policy settings do not permit BitLocker-protected removable data drives to be automatiCAlly unlocked.
+// Group Policy settings do not permit BitLocker-protected removable data drives to be automatically unlocked.
 //
 #define FVE_E_POLICY_USER_CONFIGURE_RDV_AUTOUNLOCK_NOT_ALLOWED _HRESULT_TYPEDEF_(0x80310076L)
 
@@ -40084,7 +40084,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// This drive CAnnot be encrypted beCAuse it is reserved for Windows System Recovery Options.
+// This drive Cannot be encrypted because it is reserved for Windows System Recovery Options.
 //
 #define FVE_E_RECOVERY_PARTITION         _HRESULT_TYPEDEF_(0x80310082L)
 
@@ -40093,7 +40093,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// BitLocker Drive Encryption CAnnot be applied to this drive beCAuse of conflicting Group Policy settings. BitLocker CAnnot be configured to automatiCAlly unlock fixed data drives when user recovery options are disabled. If you want BitLocker-protected fixed data drives to be automatiCAlly unlocked after key validation has occurred, please ask your system administrator to resolve the settings conflict before enabling BitLocker.
+// BitLocker Drive Encryption Cannot be applied to this drive because of conflicting Group Policy settings. BitLocker Cannot be configured to automatically unlock fixed data drives when user recovery options are disabled. If you want BitLocker-protected fixed data drives to be automatically unlocked after key validation has occurred, please ask your system administrator to resolve the settings conflict before enabling BitLocker.
 //
 #define FVE_E_POLICY_CONFLICT_FDV_RK_OFF_AUK_ON _HRESULT_TYPEDEF_(0x80310083L)
 
@@ -40102,7 +40102,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// BitLocker Drive Encryption CAnnot be applied to this drive beCAuse of conflicting Group Policy settings. BitLocker CAnnot be configured to automatiCAlly unlock removable data drives when user recovery option are disabled. If you want BitLocker-protected removable data drives to be automatiCAlly unlocked after key validation has occured, please ask your system administrator to resolve the settings conflict before enabling BitLocker.
+// BitLocker Drive Encryption Cannot be applied to this drive because of conflicting Group Policy settings. BitLocker Cannot be configured to automatically unlock removable data drives when user recovery option are disabled. If you want BitLocker-protected removable data drives to be automatically unlocked after key validation has occured, please ask your system administrator to resolve the settings conflict before enabling BitLocker.
 //
 #define FVE_E_POLICY_CONFLICT_RDV_RK_OFF_AUK_ON _HRESULT_TYPEDEF_(0x80310084L)
 
@@ -40120,7 +40120,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// BitLocker Drive Encryption CAnnot be applied to this drive as currently configured beCAuse of Group Policy settings. The certifiCAte you provided for drive encryption is self-signed. Current Group Policy settings do not permit the use of self-signed certifiCAtes. Obtain a new certifiCAte from your certifiCAtion authority before attempting to enable BitLocker.
+// BitLocker Drive Encryption Cannot be applied to this drive as currently configured because of Group Policy settings. The certifiCAte you provided for drive encryption is self-signed. Current Group Policy settings do not permit the use of self-signed certifiCAtes. Obtain a new certifiCAte from your certifiCAtion authority before attempting to enable BitLocker.
 //
 #define FVE_E_POLICY_PROHIBITS_SELFSIGNED _HRESULT_TYPEDEF_(0x80310086L)
 
@@ -40129,7 +40129,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// BitLocker Encryption CAnnot be applied to this drive beCAuse of conflicting Group Policy settings. When write access to drives not protected by BitLocker is denied, the use of a USB startup key CAnnot be required. Please have your system administrator resolve these policy conflicts before attempting to enable BitLocker.
+// BitLocker Encryption Cannot be applied to this drive because of conflicting Group Policy settings. When write access to drives not protected by BitLocker is denied, the use of a USB startup key Cannot be required. Please have your system administrator resolve these policy conflicts before attempting to enable BitLocker.
 //
 #define FVE_E_POLICY_CONFLICT_RO_AND_STARTUP_KEY_REQUIRED _HRESULT_TYPEDEF_(0x80310087L)
 
@@ -40156,7 +40156,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// BitLocker Drive Encryption CAnnot be applied to this drive beCAuse there are conflicting Group Policy settings for recovery options on operating system drives. Storing recovery information to Active Directory Domain Services CAnnot be required when the generation of recovery passwords is not permitted. Please have your system administrator resolve these policy conflicts before attempting to enable BitLocker.
+// BitLocker Drive Encryption Cannot be applied to this drive because there are conflicting Group Policy settings for recovery options on operating system drives. Storing recovery information to Active Directory Domain Services Cannot be required when the generation of recovery passwords is not permitted. Please have your system administrator resolve these policy conflicts before attempting to enable BitLocker.
 //
 #define FVE_E_POLICY_CONFLICT_OSV_RP_OFF_ADB_ON _HRESULT_TYPEDEF_(0x80310090L)
 
@@ -40165,7 +40165,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// BitLocker Drive Encryption CAnnot be applied to this drive beCAuse there are conflicting Group Policy settings for recovery options on fixed data drives. Storing recovery information to Active Directory Domain Services CAnnot be required when the generation of recovery passwords is not permitted. Please have your system administrator resolve these policy conflicts before attempting to enable BitLocker.
+// BitLocker Drive Encryption Cannot be applied to this drive because there are conflicting Group Policy settings for recovery options on fixed data drives. Storing recovery information to Active Directory Domain Services Cannot be required when the generation of recovery passwords is not permitted. Please have your system administrator resolve these policy conflicts before attempting to enable BitLocker.
 //
 #define FVE_E_POLICY_CONFLICT_FDV_RP_OFF_ADB_ON _HRESULT_TYPEDEF_(0x80310091L)
 
@@ -40174,7 +40174,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// BitLocker Drive Encryption CAnnot be applied to this drive beCAuse there are conflicting Group Policy settings for recovery options on removable data drives. Storing recovery information to Active Directory Domain Services CAnnot be required when the generation of recovery passwords is not permitted. Please have your system administrator resolve these policy conflicts before attempting to enable BitLocker.
+// BitLocker Drive Encryption Cannot be applied to this drive because there are conflicting Group Policy settings for recovery options on removable data drives. Storing recovery information to Active Directory Domain Services Cannot be required when the generation of recovery passwords is not permitted. Please have your system administrator resolve these policy conflicts before attempting to enable BitLocker.
 //
 #define FVE_E_POLICY_CONFLICT_RDV_RP_OFF_ADB_ON _HRESULT_TYPEDEF_(0x80310092L)
 
@@ -40192,7 +40192,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The private key associated with the specified certifiCAte CAnnot be authorized. The private key authorization was either not provided or the provided authorization was invalid.
+// The private key associated with the specified certifiCAte Cannot be authorized. The private key authorization was either not provided or the provided authorization was invalid.
 //
 #define FVE_E_PRIVATEKEY_AUTH_FAILED     _HRESULT_TYPEDEF_(0x80310094L)
 
@@ -40219,7 +40219,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The drive CAnnot be locked beCAuse it is automatiCAlly unlocked on this computer.  Remove the automatic unlock protector to lock this drive.
+// The drive Cannot be locked because it is automatically unlocked on this computer.  Remove the automatic unlock protector to lock this drive.
 //
 #define FVE_E_CANT_LOCK_AUTOUNLOCK_ENABLED_VOLUME _HRESULT_TYPEDEF_(0x80310097L)
 
@@ -40269,7 +40269,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The CAllout does not exist.
+// The callout does not exist.
 //
 #define FWP_E_CALLOUT_NOT_FOUND          _HRESULT_TYPEDEF_(0x80320001L)
 
@@ -40350,7 +40350,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The object is referenced by other objects so CAnnot be deleted.
+// The object is referenced by other objects so Cannot be deleted.
 //
 #define FWP_E_IN_USE                     _HRESULT_TYPEDEF_(0x8032000AL)
 
@@ -40359,7 +40359,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The CAll is not allowed from within a dynamic session.
+// The call is not allowed from within a dynamic session.
 //
 #define FWP_E_DYNAMIC_SESSION_IN_PROGRESS _HRESULT_TYPEDEF_(0x8032000BL)
 
@@ -40368,7 +40368,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The CAll was made from the wrong session so CAnnot be completed.
+// The call was made from the wrong session so Cannot be completed.
 //
 #define FWP_E_WRONG_SESSION              _HRESULT_TYPEDEF_(0x8032000CL)
 
@@ -40377,7 +40377,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The CAll must be made from within an explicit transaction.
+// The call must be made from within an explicit transaction.
 //
 #define FWP_E_NO_TXN_IN_PROGRESS         _HRESULT_TYPEDEF_(0x8032000DL)
 
@@ -40386,7 +40386,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The CAll is not allowed from within an explicit transaction.
+// The call is not allowed from within an explicit transaction.
 //
 #define FWP_E_TXN_IN_PROGRESS            _HRESULT_TYPEDEF_(0x8032000EL)
 
@@ -40395,7 +40395,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The explicit transaction has been forcibly CAncelled.
+// The explicit transaction has been forcibly cancelled.
 //
 #define FWP_E_TXN_ABORTED                _HRESULT_TYPEDEF_(0x8032000FL)
 
@@ -40404,7 +40404,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The session has been CAncelled.
+// The session has been cancelled.
 //
 #define FWP_E_SESSION_ABORTED            _HRESULT_TYPEDEF_(0x80320010L)
 
@@ -40413,7 +40413,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The CAll is not allowed from within a read-only transaction.
+// The call is not allowed from within a read-only transaction.
 //
 #define FWP_E_INCOMPATIBLE_TXN           _HRESULT_TYPEDEF_(0x80320011L)
 
@@ -40422,7 +40422,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The CAll timed out while waiting to acquire the transaction lock.
+// The call timed out while waiting to acquire the transaction lock.
 //
 #define FWP_E_TIMEOUT                    _HRESULT_TYPEDEF_(0x80320012L)
 
@@ -40449,7 +40449,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The CAll is allowed for kernel-mode CAllers only.
+// The call is allowed for kernel-mode callers only.
 //
 #define FWP_E_KM_CLIENTS_ONLY            _HRESULT_TYPEDEF_(0x80320015L)
 
@@ -40458,7 +40458,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The CAll tried to associate two objects with incompatible lifetimes.
+// The call tried to associate two objects with incompatible lifetimes.
 //
 #define FWP_E_LIFETIME_MISMATCH          _HRESULT_TYPEDEF_(0x80320016L)
 
@@ -40467,7 +40467,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The object is built in so CAnnot be deleted.
+// The object is built in so Cannot be deleted.
 //
 #define FWP_E_BUILTIN_OBJECT             _HRESULT_TYPEDEF_(0x80320017L)
 
@@ -40476,7 +40476,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The maximum number of CAllouts has been reached.
+// The maximum number of callouts has been reached.
 //
 #define FWP_E_TOO_MANY_CALLOUTS          _HRESULT_TYPEDEF_(0x80320018L)
 
@@ -40485,7 +40485,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A notifiCAtion could not be delivered beCAuse a message queue is at its maximum CApacity.
+// A notifiCAtion could not be delivered because a message queue is at its maximum CApacity.
 //
 #define FWP_E_NOTIFICATION_DROPPED       _HRESULT_TYPEDEF_(0x80320019L)
 
@@ -40503,7 +40503,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The CAll is not allowed for the current security association state.
+// The call is not allowed for the current security association state.
 //
 #define FWP_E_INCOMPATIBLE_SA_STATE      _HRESULT_TYPEDEF_(0x8032001BL)
 
@@ -40575,7 +40575,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The displayData.name field CAnnot be null.
+// The displayData.name field Cannot be null.
 //
 #define FWP_E_NULL_DISPLAY_NAME          _HRESULT_TYPEDEF_(0x80320023L)
 
@@ -40638,7 +40638,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A filter CAnnot contain multiple conditions operating on a single field.
+// A filter Cannot contain multiple conditions operating on a single field.
 //
 #define FWP_E_DUPLICATE_CONDITION        _HRESULT_TYPEDEF_(0x8032002AL)
 
@@ -40647,7 +40647,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A policy CAnnot contain the same keying module more than once.
+// A policy Cannot contain the same keying module more than once.
 //
 #define FWP_E_DUPLICATE_KEYMOD           _HRESULT_TYPEDEF_(0x8032002BL)
 
@@ -40683,7 +40683,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The raw context or the provider context is not compatible with the CAllout.
+// The raw context or the provider context is not compatible with the callout.
 //
 #define FWP_E_CONTEXT_INCOMPATIBLE_WITH_CALLOUT _HRESULT_TYPEDEF_(0x8032002FL)
 
@@ -40710,7 +40710,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// An IKE policy CAnnot contain an Extended Mode policy.
+// An IKE policy Cannot contain an Extended Mode policy.
 //
 #define FWP_E_EM_NOT_SUPPORTED           _HRESULT_TYPEDEF_(0x80320032L)
 
@@ -40755,7 +40755,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The notifiCAtion function for a CAllout returned an error.
+// The notifiCAtion function for a callout returned an error.
 //
 #define FWP_E_CALLOUT_NOTIFICATION_FAILED _HRESULT_TYPEDEF_(0x80320037L)
 
@@ -40809,7 +40809,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A policy CAnnot contain the same auth method more than once.
+// A policy Cannot contain the same auth method more than once.
 //
 #define FWP_E_DUPLICATE_AUTH_METHOD      _HRESULT_TYPEDEF_(0x8032003CL)
 
@@ -40825,7 +40825,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The function CAll is completing asynchronously.
+// The function call is completing asynchronously.
 //
 #define WS_S_ASYNC                       _HRESULT_TYPEDEF_(0x003D0000L)
 
@@ -40852,7 +40852,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The operation could not be completed beCAuse the object is in a faulted state due to a previous error.
+// The operation could not be completed because the object is in a faulted state due to a previous error.
 //
 #define WS_E_OBJECT_FAULTED              _HRESULT_TYPEDEF_(0x803D0001L)
 
@@ -40861,7 +40861,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The operation could not be completed beCAuse it would lead to numeric overflow.
+// The operation could not be completed because it would lead to numeric overflow.
 //
 #define WS_E_NUMERIC_OVERFLOW            _HRESULT_TYPEDEF_(0x803D0002L)
 
@@ -41149,7 +41149,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A security token was rejected by the server beCAuse it has expired.
+// A security token was rejected by the server because it has expired.
 //
 #define WS_E_SECURITY_TOKEN_EXPIRED      _HRESULT_TYPEDEF_(0x803D0022L)
 
@@ -41269,7 +41269,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Network interface CAn not process the request beCAuse it is being reset.
+// Network interface can not process the request because it is being reset.
 //
 #define ERROR_NDIS_RESET_IN_PROGRESS     _NDIS_ERROR_TYPEDEF_(0x8034000DL)
 
@@ -41368,7 +41368,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// An attempt was made to map a file that CAn not be found.
+// An attempt was made to map a file that can not be found.
 //
 #define ERROR_NDIS_FILE_NOT_FOUND        _NDIS_ERROR_TYPEDEF_(0x8034001BL)
 
@@ -41395,7 +41395,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// An attempt to alloCAte a hardware resource failed beCAuse the resource is used by another component.
+// An attempt to alloCAte a hardware resource failed because the resource is used by another component.
 //
 #define ERROR_NDIS_RESOURCE_CONFLICT     _NDIS_ERROR_TYPEDEF_(0x8034001EL)
 
@@ -41404,7 +41404,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The I/O operation failed beCAuse network media is disconnected or wireless access point is out of range.
+// The I/O operation failed because network media is disconnected or wireless access point is out of range.
 //
 #define ERROR_NDIS_MEDIA_DISCONNECTED    _NDIS_ERROR_TYPEDEF_(0x8034001FL)
 
@@ -41499,7 +41499,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The wireless loCAl area network interface is busy and CAn not perform the requested operation.
+// The wireless loCAl area network interface is busy and can not perform the requested operation.
 //
 #define ERROR_NDIS_DOT11_MEDIA_IN_USE    _NDIS_ERROR_TYPEDEF_(0x80342001L)
 
@@ -41552,7 +41552,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The TCP connection is not offloadable beCAuse of a loCAl policy setting.
+// The TCP connection is not offloadable because of a loCAl policy setting.
 //
 #define ERROR_NDIS_OFFLOAD_POLICY        _NDIS_ERROR_TYPEDEF_(0xC034100FL)
 
@@ -41583,7 +41583,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The hypervisor does not support the operation beCAuse the specified hyperCAll code is not supported.
+// The hypervisor does not support the operation because the specified hypercall code is not supported.
 //
 #define ERROR_HV_INVALID_HYPERCALL_CODE  _NDIS_ERROR_TYPEDEF_(0xC0350002L)
 
@@ -41592,7 +41592,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The hypervisor does not support the operation beCAuse the encoding for the hyperCAll input register is not supported.
+// The hypervisor does not support the operation because the encoding for the hypercall input register is not supported.
 //
 #define ERROR_HV_INVALID_HYPERCALL_INPUT _NDIS_ERROR_TYPEDEF_(0xC0350003L)
 
@@ -41628,7 +41628,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The hypervisor could not perform the operation beCAuse the partition is entering or in an invalid state.
+// The hypervisor could not perform the operation because the partition is entering or in an invalid state.
 //
 #define ERROR_HV_INVALID_PARTITION_STATE _NDIS_ERROR_TYPEDEF_(0xC0350007L)
 
@@ -41691,7 +41691,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The hypervisor could not perform the operation beCAuse the specified VP index is invalid.
+// The hypervisor could not perform the operation because the specified VP index is invalid.
 //
 #define ERROR_HV_INVALID_VP_INDEX        _NDIS_ERROR_TYPEDEF_(0xC035000EL)
 
@@ -41700,7 +41700,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The hypervisor could not perform the operation beCAuse the specified port identifier is invalid.
+// The hypervisor could not perform the operation because the specified port identifier is invalid.
 //
 #define ERROR_HV_INVALID_PORT_ID         _NDIS_ERROR_TYPEDEF_(0xC0350011L)
 
@@ -41709,7 +41709,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The hypervisor could not perform the operation beCAuse the specified connection identifier is invalid.
+// The hypervisor could not perform the operation because the specified connection identifier is invalid.
 //
 #define ERROR_HV_INVALID_CONNECTION_ID   _NDIS_ERROR_TYPEDEF_(0xC0350012L)
 
@@ -41754,7 +41754,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The hypervisor could not complete the operation beCAuse a required feature of the synthetic interrupt controller (SynIC) was disabled.
+// The hypervisor could not complete the operation because a required feature of the synthetic interrupt controller (SynIC) was disabled.
 //
 #define ERROR_HV_INVALID_SYNIC_STATE     _NDIS_ERROR_TYPEDEF_(0xC0350018L)
 
@@ -41763,7 +41763,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The hypervisor could not perform the operation beCAuse the object or value was either already in use or being used for a purpose that would not permit completing the operation.
+// The hypervisor could not perform the operation because the object or value was either already in use or being used for a purpose that would not permit completing the operation.
 //
 #define ERROR_HV_OBJECT_IN_USE           _NDIS_ERROR_TYPEDEF_(0xC0350019L)
 
@@ -41781,7 +41781,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// An attempt to retrieve debugging data failed beCAuse none was available.
+// An attempt to retrieve debugging data failed because none was available.
 //
 #define ERROR_HV_NO_DATA                 _NDIS_ERROR_TYPEDEF_(0xC035001BL)
 
@@ -41851,7 +41851,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The message queue for the virtualization infrastructure driver is full and CAnnot accept new messages. Restarting the virtual machine may fix the problem. If the problem persists, try restarting the physiCAl computer.
+// The message queue for the virtualization infrastructure driver is full and Cannot accept new messages. Restarting the virtual machine may fix the problem. If the problem persists, try restarting the physiCAl computer.
 //
 #define ERROR_VID_QUEUE_FULL             _NDIS_ERROR_TYPEDEF_(0xC0370003L)
 
@@ -41896,7 +41896,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot create the partition for the virtualization infrastructure driver beCAuse another partition with the same name already exists.
+// Cannot create the partition for the virtualization infrastructure driver because another partition with the same name already exists.
 //
 #define ERROR_VID_PARTITION_ALREADY_EXISTS _NDIS_ERROR_TYPEDEF_(0xC0370008L)
 
@@ -41932,7 +41932,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The memory block page for the virtualization infrastructure driver CAnnot be mapped beCAuse the page map limit has been reached. Restarting the virtual machine may fix the problem. If the problem persists, try restarting the physiCAl computer.
+// The memory block page for the virtualization infrastructure driver Cannot be mapped because the page map limit has been reached. Restarting the virtual machine may fix the problem. If the problem persists, try restarting the physiCAl computer.
 //
 #define ERROR_VID_EXCEEDED_MBP_ENTRY_MAP_LIMIT _NDIS_ERROR_TYPEDEF_(0xC037000CL)
 
@@ -41941,7 +41941,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The memory block for the virtualization infrastructure driver is still being used and CAnnot be destroyed.
+// The memory block for the virtualization infrastructure driver is still being used and Cannot be destroyed.
 //
 #define ERROR_VID_MB_STILL_REFERENCED    _NDIS_ERROR_TYPEDEF_(0xC037000DL)
 
@@ -41950,7 +41950,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot unlock the page array for the guest operating system memory address beCAuse it does not match a previous lock request. Restarting the virtual machine may fix the problem. If the problem persists, try restarting the physiCAl computer.
+// Cannot unlock the page array for the guest operating system memory address because it does not match a previous lock request. Restarting the virtual machine may fix the problem. If the problem persists, try restarting the physiCAl computer.
 //
 #define ERROR_VID_CHILD_GPA_PAGE_SET_CORRUPTED _NDIS_ERROR_TYPEDEF_(0xC037000EL)
 
@@ -42022,7 +42022,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot install client notifiCAtions beCAuse no message queue for the virtualization infrastructure driver is associated with the memory block.
+// Cannot install client notifiCAtions because no message queue for the virtualization infrastructure driver is associated with the memory block.
 //
 #define ERROR_VID_NO_MEMORY_BLOCK_NOTIFICATION_QUEUE _NDIS_ERROR_TYPEDEF_(0xC0370016L)
 
@@ -42031,7 +42031,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The request to lock or map a memory block page failed beCAuse the virtualization infrastructure driver memory block limit has been reached. Restarting the virtual machine may fix the problem. If the problem persists, try restarting the physiCAl computer.
+// The request to lock or map a memory block page failed because the virtualization infrastructure driver memory block limit has been reached. Restarting the virtual machine may fix the problem. If the problem persists, try restarting the physiCAl computer.
 //
 #define ERROR_VID_MEMORY_BLOCK_LOCK_COUNT_EXCEEDED _NDIS_ERROR_TYPEDEF_(0xC0370017L)
 
@@ -42049,7 +42049,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// NotifiCAtions CAnnot be created on the memory block beCAuse it is use.
+// NotifiCAtions Cannot be created on the memory block because it is use.
 //
 #define ERROR_VID_MBPS_ARE_LOCKED        _NDIS_ERROR_TYPEDEF_(0xC0370019L)
 
@@ -42067,7 +42067,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot add a virtual processor to the partition beCAuse the maximum has been reached.
+// Cannot add a virtual processor to the partition because the maximum has been reached.
 //
 #define ERROR_VID_VIRTUAL_PROCESSOR_LIMIT_EXCEEDED _NDIS_ERROR_TYPEDEF_(0xC037001BL)
 
@@ -42076,7 +42076,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot stop the virtual processor immediately beCAuse of a pending intercept.
+// Cannot stop the virtual processor immediately because of a pending intercept.
 //
 #define ERROR_VID_STOP_PENDING           _NDIS_ERROR_TYPEDEF_(0xC037001CL)
 
@@ -42112,7 +42112,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot set or reset the memory block property more than once for the virtualization infrastructure driver. Restarting the virtual machine may fix the problem. If the problem persists, try restarting the physiCAl computer.
+// Cannot set or reset the memory block property more than once for the virtualization infrastructure driver. Restarting the virtual machine may fix the problem. If the problem persists, try restarting the physiCAl computer.
 //
 #define ERROR_VID_MB_PROPERTY_ALREADY_SET_RESET _NDIS_ERROR_TYPEDEF_(0xC0370020L)
 
@@ -42139,7 +42139,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot destroy or reuse the reserve page set for the virtualization infrastructure driver beCAuse it is in use. Restarting the virtual machine may fix the problem. If the problem persists, try restarting the physiCAl computer.
+// Cannot destroy or reuse the reserve page set for the virtualization infrastructure driver because it is in use. Restarting the virtual machine may fix the problem. If the problem persists, try restarting the physiCAl computer.
 //
 #define ERROR_VID_RESERVE_PAGE_SET_IS_BEING_USED _NDIS_ERROR_TYPEDEF_(0xC0370023L)
 
@@ -42157,7 +42157,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot lock or map the memory block page for the virtualization infrastructure driver beCAuse it has already been locked using a reserve page set page. Restarting the virtual machine may fix the problem. If the problem persists, try restarting the physiCAl computer.
+// Cannot lock or map the memory block page for the virtualization infrastructure driver because it has already been locked using a reserve page set page. Restarting the virtual machine may fix the problem. If the problem persists, try restarting the physiCAl computer.
 //
 #define ERROR_VID_MBP_ALREADY_LOCKED_USING_RESERVED_PAGE _NDIS_ERROR_TYPEDEF_(0xC0370025L)
 
@@ -42166,7 +42166,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot create the memory block for the virtualization infrastructure driver beCAuse the requested number of pages exceeded the limit. Restarting the virtual machine may fix the problem. If the problem persists, try restarting the physiCAl computer.
+// Cannot create the memory block for the virtualization infrastructure driver because the requested number of pages exceeded the limit. Restarting the virtual machine may fix the problem. If the problem persists, try restarting the physiCAl computer.
 //
 #define ERROR_VID_MBP_COUNT_EXCEEDED_LIMIT _NDIS_ERROR_TYPEDEF_(0xC0370026L)
 
@@ -42175,7 +42175,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot restore this virtual machine beCAuse the saved state data CAnnot be read. Delete the saved state data and then try to start the virtual machine.
+// Cannot restore this virtual machine because the saved state data Cannot be read. Delete the saved state data and then try to start the virtual machine.
 //
 #define ERROR_VID_SAVED_STATE_CORRUPT    _NDIS_ERROR_TYPEDEF_(0xC0370027L)
 
@@ -42184,7 +42184,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot restore this virtual machine beCAuse an item read from the saved state data is not recognized. Delete the saved state data and then try to start the virtual machine.
+// Cannot restore this virtual machine because an item read from the saved state data is not recognized. Delete the saved state data and then try to start the virtual machine.
 //
 #define ERROR_VID_SAVED_STATE_UNRECOGNIZED_ITEM _NDIS_ERROR_TYPEDEF_(0xC0370028L)
 
@@ -42193,7 +42193,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// CAnnot restore this virtual machine to the saved state beCAuse of hypervisor incompatibility. Delete the saved state data and then try to start the virtual machine.
+// Cannot restore this virtual machine to the saved state because of hypervisor incompatibility. Delete the saved state data and then try to start the virtual machine.
 //
 #define ERROR_VID_SAVED_STATE_INCOMPATIBLE _NDIS_ERROR_TYPEDEF_(0xC0370029L)
 
@@ -42315,7 +42315,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The specified disk is an invalid disk. Operation CAnnot complete on an invalid disk.
+// The specified disk is an invalid disk. Operation Cannot complete on an invalid disk.
 //
 #define ERROR_VOLMGR_DISK_INVALID        _NDIS_ERROR_TYPEDEF_(0xC0380009L)
 
@@ -42324,7 +42324,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The specified disk(s) CAnnot be removed since it is the last remaining voter.
+// The specified disk(s) Cannot be removed since it is the last remaining voter.
 //
 #define ERROR_VOLMGR_DISK_LAST_VOTER     _NDIS_ERROR_TYPEDEF_(0xC038000AL)
 
@@ -42387,7 +42387,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The specified disk is missing. The operation CAnnot complete on a missing disk.
+// The specified disk is missing. The operation Cannot complete on a missing disk.
 //
 #define ERROR_VOLMGR_DISK_MISSING        _NDIS_ERROR_TYPEDEF_(0xC0380011L)
 
@@ -42477,7 +42477,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The specified volume is retained and CAn only be extended into a contiguous extent. The specified extent to grow the volume is not contiguous with the specified volume.
+// The specified volume is retained and can only be extended into a contiguous extent. The specified extent to grow the volume is not contiguous with the specified volume.
 //
 #define ERROR_VOLMGR_EXTENT_NOT_CONTIGUOUS _NDIS_ERROR_TYPEDEF_(0xC038001BL)
 
@@ -42513,7 +42513,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The specified extent lengths CAnnot be used to construct a volume with specified length.
+// The specified extent lengths Cannot be used to construct a volume with specified length.
 //
 #define ERROR_VOLMGR_EXTENT_VOLUME_LENGTHS_DO_NOT_MATCH _NDIS_ERROR_TYPEDEF_(0xC038001FL)
 
@@ -42576,7 +42576,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The specified member is missing. It CAnnot be regenerated.
+// The specified member is missing. It Cannot be regenerated.
 //
 #define ERROR_VOLMGR_MEMBER_MISSING      _NDIS_ERROR_TYPEDEF_(0xC0380026L)
 
@@ -42585,7 +42585,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The specified member is not detached. CAnnot replace a member which is not detached.
+// The specified member is not detached. Cannot replace a member which is not detached.
 //
 #define ERROR_VOLMGR_MEMBER_NOT_DETACHED _NDIS_ERROR_TYPEDEF_(0xC0380027L)
 
@@ -42675,7 +42675,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The specified pack is the invalid pack. The operation CAnnot complete with the invalid pack.
+// The specified pack is the invalid pack. The operation Cannot complete with the invalid pack.
 //
 #define ERROR_VOLMGR_PACK_INVALID        _NDIS_ERROR_TYPEDEF_(0xC0380031L)
 
@@ -42765,7 +42765,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The specified plex is the last active plex in the volume. The plex CAnnot be removed or else the volume will go offline.
+// The specified plex is the last active plex in the volume. The plex Cannot be removed or else the volume will go offline.
 //
 #define ERROR_VOLMGR_PLEX_LAST_ACTIVE    _NDIS_ERROR_TYPEDEF_(0xC038003BL)
 
@@ -43182,7 +43182,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Failed to write to the virtual hard disk failed beCAuse the system failed to alloCAte a new block in the virtual hard disk.
+// Failed to write to the virtual hard disk failed because the system failed to alloCAte a new block in the virtual hard disk.
 //
 #define ERROR_VHD_BLOCK_ALLOCATION_FAILURE _NDIS_ERROR_TYPEDEF_(0xC03A0009L)
 
@@ -43218,7 +43218,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The chain of virtual hard disks is broken. The system CAnnot loCAte the parent virtual hard disk for the differencing disk.
+// The chain of virtual hard disks is broken. The system Cannot loCAte the parent virtual hard disk for the differencing disk.
 //
 #define ERROR_VHD_PARENT_VHD_NOT_FOUND   _NDIS_ERROR_TYPEDEF_(0xC03A000DL)
 
@@ -43344,7 +43344,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The requested operation CAnnot be performed on a virtual disk of this type.
+// The requested operation Cannot be performed on a virtual disk of this type.
 //
 #define ERROR_VHD_INVALID_TYPE           _NDIS_ERROR_TYPEDEF_(0xC03A001BL)
 
@@ -43353,7 +43353,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The requested operation CAnnot be performed on the virtual disk in its current state.
+// The requested operation Cannot be performed on the virtual disk in its current state.
 //
 #define ERROR_VHD_INVALID_STATE          _NDIS_ERROR_TYPEDEF_(0xC03A001CL)
 
@@ -43388,7 +43388,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The operation was CAncelled.
+// The operation was cancelled.
 //
 #define SDIAG_E_CANCELLED                _NDIS_ERROR_TYPEDEF_(0x803C0100L)
 
@@ -43433,7 +43433,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The troubleshooting pack CAnnot be executed on this system.
+// The troubleshooting pack Cannot be executed on this system.
 //
 #define SDIAG_S_CANNOTRUN                _NDIS_ERROR_TYPEDEF_(0x003C0105L)
 
@@ -43460,7 +43460,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The troubleshooting pack CAnnot be executed on this system.
+// The troubleshooting pack Cannot be executed on this system.
 //
 #define SDIAG_E_CANNOTRUN                _NDIS_ERROR_TYPEDEF_(0x803C0108L)
 
@@ -43478,7 +43478,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A required resource CAnnot be loaded.
+// A required resource Cannot be loaded.
 //
 #define SDIAG_E_RESOURCE                 _NDIS_ERROR_TYPEDEF_(0x803C010AL)
 
@@ -43591,7 +43591,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Voice CAll in progress.
+// Voice call in progress.
 //
 #define E_MBN_VOICE_CALL_IN_PROGRESS     _HRESULT_TYPEDEF_(0x8054820BL)
 
@@ -43787,7 +43787,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Shutdown was already CAlled on this object or the object that owns it.
+// Shutdown was already called on this object or the object that owns it.
 //
 #define UI_E_SHUTDOWN_CALLED             _HRESULT_TYPEDEF_(0x802A0002L)
 
@@ -43796,7 +43796,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// This method CAnnot be CAlled during this type of CALLBACK.
+// This method Cannot be called during this type of CALLBACK.
 //
 #define UI_E_ILLEGAL_REENTRANCY          _HRESULT_TYPEDEF_(0x802A0003L)
 
@@ -43823,7 +43823,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The requested value CAnnot be determined.
+// The requested value Cannot be determined.
 //
 #define UI_E_VALUE_NOT_DETERMINED        _HRESULT_TYPEDEF_(0x802A0006L)
 
@@ -43877,7 +43877,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// This method CAn only be CAlled from the thread that created the object.
+// This method can only be called from the thread that created the object.
 //
 #define UI_E_WRONG_THREAD                _HRESULT_TYPEDEF_(0x802A000CL)
 

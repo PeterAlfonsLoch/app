@@ -13,7 +13,7 @@ namespace draw2d_direct2d
       element(papp)
    {
 
-      m_sppen.create(allocer());
+      m_sppen.alloc(allocer());
 
       m_player    = NULL;
 
@@ -274,7 +274,7 @@ namespace draw2d_direct2d
 
 
       if(m_spbitmap.is_null())
-         m_spbitmap.create(allocer());
+         m_spbitmap.alloc(allocer());
 
 
       ID2D1Bitmap * pbitmap;
@@ -973,7 +973,7 @@ namespace draw2d_direct2d
       if(m_sppen.is_null())
       {
          
-         ((graphics *) this)->m_sppen.create(((graphics *) this)->allocer());
+         ((graphics *) this)->m_sppen.alloc(((graphics *) this)->allocer());
          ((graphics *) this)->m_sppen->m_powner = (void *) (graphics *) this;
 
       }
@@ -1007,7 +1007,7 @@ namespace draw2d_direct2d
       if(m_spbrush.is_null())
       {
          
-         ((graphics *) this)->m_spbrush.create(((graphics *) this)->allocer());
+         ((graphics *) this)->m_spbrush.alloc(((graphics *) this)->allocer());
          ((graphics *) this)->m_spbrush->m_powner = (void *) (graphics *) this;
 
       }
@@ -1560,7 +1560,7 @@ namespace draw2d_direct2d
 
 
       if(m_spfont.is_null())
-         ((graphics *) this)->m_spfont.create(((graphics *) this)->allocer());
+         ((graphics *) this)->m_spfont.alloc(((graphics *) this)->allocer());
 
       if(m_spfont.is_null())
          return false;
@@ -4243,7 +4243,7 @@ namespace draw2d_direct2d
       if(brPrevious.is_null() || brPrevious->m_powner != this)
       {
 
-         br.create(allocer());
+         br.alloc(allocer());
 
          br->m_powner = this;
 
@@ -4730,7 +4730,7 @@ namespace draw2d_direct2d
       if(m_spfont.is_null())
       {
        
-         ((graphics *) this)->m_spfont.create(((graphics *) this)->allocer());
+         ((graphics *) this)->m_spfont.alloc(((graphics *) this)->allocer());
          ((graphics *) this)->m_spfont->m_powner = (void *) (graphics *) this;
 
       }
@@ -4747,7 +4747,7 @@ namespace draw2d_direct2d
 
       if(m_spbrush.is_null())
       {
-         ((graphics *) this)->m_spbrush.create(((graphics *) this)->allocer());
+         ((graphics *) this)->m_spbrush.alloc(((graphics *) this)->allocer());
          ((graphics *) this)->m_spbrush->m_powner = (void *) (graphics *) this;
       }
 
@@ -4764,7 +4764,7 @@ namespace draw2d_direct2d
       if(m_sppen.is_null())
       {
          
-         ((graphics *) this)->m_sppen.create(((graphics *) this)->allocer());
+         ((graphics *) this)->m_sppen.alloc(((graphics *) this)->allocer());
          ((graphics *) this)->m_sppen->m_powner = (void *) (graphics *) this;
 
       }

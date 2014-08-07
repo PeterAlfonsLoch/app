@@ -45,7 +45,7 @@ namespace user
             m_splitbara(i) = canew(::user::split_bar(get_app()));
             ::user::split_bar & splitbar = m_splitbara[i];
             splitbar.m_iIndex = (int)i;
-            if(!splitbar.create(this))
+            if(!splitbar.create_window(NULL, this))
                return false;
             splitbar.m_dwPosition = 0;
             splitbar.m_dwPosition = 0;
@@ -556,7 +556,7 @@ namespace user
          m_splitbara.add_new();
          ::user::split_bar & splitbar = *m_splitbara.element_at(i);
          splitbar.m_iIndex = i;
-         if(!splitbar.create(this))
+         if(!splitbar.create_window(NULL, this))
             return false;
       }
 
@@ -610,7 +610,7 @@ namespace user
          m_splitbara.add_new();
          ::user::split_bar & splitbar = *m_splitbara.element_at(i);
          splitbar.m_iIndex = i;
-         if(!splitbar.create(this))
+         if(!splitbar.create_window(NULL, this))
             return false;
       }
 

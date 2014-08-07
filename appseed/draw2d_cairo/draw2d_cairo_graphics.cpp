@@ -21,7 +21,7 @@ namespace draw2d_cairo
       */
       m_etextrendering  = ::draw2d::text_rendering_anti_alias_grid_fit;
 
-      m_spfont.create(allocer());
+      m_spfont.alloc(allocer());
       m_spfont->m_strFontFamilyName = "Helvetica";
       m_spfont->m_dFontSize = 12.0;
 
@@ -2443,7 +2443,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          ::draw2d::dib_sp spdib;
          if(pdibWork == NULL)
          {
-            spdib.create(allocer());
+            spdib.alloc(allocer());
             pdibWork = spdib;
          }
          if(pdibWork == NULL)
@@ -2459,7 +2459,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          ::draw2d::dib_sp spdib2;
          if(pdibWork2 == NULL)
          {
-            spdib2.create(allocer());
+            spdib2.alloc(allocer());
             pdibWork2 = spdib2;
          }
 
@@ -2467,7 +2467,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          ::draw2d::dib_sp spdib4;
          if(pdibWork4 == NULL)
          {
-            spdib4.create(allocer());
+            spdib4.alloc(allocer());
             pdibWork4 = spdib4;
          }
          if(pdibWork4 == NULL)
@@ -3604,7 +3604,7 @@ synch_lock ml(&cairo_mutex());
       {
 
          if(m_spregion.is_null())
-            m_spregion.create(allocer());
+            m_spregion.alloc(allocer());
 
          *m_spregion.m_p = *pregion;
 

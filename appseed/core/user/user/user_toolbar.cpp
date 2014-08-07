@@ -96,18 +96,18 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_SYSCOLORCHANGE    , pinterface, this, &tool_bar::_001OnSysColorChange);
    }
 
-   bool tool_bar::create(sp(::user::interaction) pParentWnd, uint32_t dwStyle, UINT nID)
+   bool tool_bar::create_window(sp(::user::interaction) pParentWnd,uint32_t dwStyle,UINT nID)
    {
-      return CreateEx(pParentWnd, 0, dwStyle,
+      return create_window_ex(pParentWnd, 0, dwStyle,
          rect(m_cxLeftBorder, m_cyTopBorder, m_cxRightBorder, m_cyBottomBorder), nID);
    }
 
-   bool tool_bar::CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle, uint32_t dwStyle, rect rcBorders, UINT nID)
+   bool tool_bar::create_window_ex(sp(::user::interaction) pParentWnd,uint32_t dwCtrlStyle,uint32_t dwStyle,LPCRECT lpcrect,UINT nID)
    {
       ASSERT_VALID(pParentWnd);   // must have a parent
       ASSERT (!((dwStyle & CBRS_SIZE_FIXED) && (dwStyle & CBRS_SIZE_DYNAMIC)));
 
-      SetBorders(rcBorders);
+      SetBorders(lpcrect);
 
       // save the style
       m_dwStyle = (dwStyle & CBRS_ALL);
@@ -115,18 +115,11 @@ namespace user
          m_dwStyle |= CBRS_HIDE_INPLACE;
 
       dwStyle &= ~CBRS_ALL;
-#ifdef WINDOWSEX
       dwStyle |= CCS_NOPARENTALIGN|CCS_NOMOVEY|CCS_NODIVIDER|CCS_NORESIZE;
-#endif
-      dwStyle |= dwCtrlStyle;
 
 
-#ifdef WINDOWSEX
-      if (!::user::interaction::create(TOOLBARCLASSNAME, NULL, dwStyle, ::null_rect(), pParentWnd, nID))
+      if (!::user::interaction::create_window(TOOLBARCLASSNAME, NULL, dwStyle, lpcrect, pParentWnd, nID))
          return FALSE;
-#else
-      throw todo(get_app());
-#endif
 
       // sync up the sizes
       SetSizes(m_sizeButton, m_sizeImage);

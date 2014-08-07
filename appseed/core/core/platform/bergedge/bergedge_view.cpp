@@ -187,7 +187,11 @@ namespace bergedge
          return;
       }
 
-      m_ppaneview = create_view(System.type_info < ::bergedge::pane_view > (), get_document(), this, 102);
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      m_ppaneview = create_view(System.type_info < ::bergedge::pane_view > (), get_document(), rectClient, this, 102);
 
       hold(m_ppaneview);
 

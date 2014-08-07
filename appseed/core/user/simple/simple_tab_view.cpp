@@ -51,16 +51,20 @@ void simple_tab_view::GetClientRect(LPRECT lprect)
 
 void simple_tab_view::_001OnCreate(signal_details * pobj)
 {
+
    SCAST_PTR(::message::create, pcreate, pobj)
+
    if(pcreate->previous())
       return;
    
-   if(!::user::control::create(this, 1))
+   if(!::user::control::create_window(NULL, this, 1))
    {
       pcreate->set_lresult(-1);
       return;
    }
+
 }
+
 
 void simple_tab_view::_001OnDraw(::draw2d::graphics * pdc)
 {

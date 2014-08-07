@@ -43,13 +43,17 @@ namespace user
 #endif
    }
 
-   bool status_bar::create(sp(::user::interaction) pParentWnd, uint32_t dwStyle, id strId)
+
+   bool status_bar::create_window(sp(::user::interaction) pParentWnd, uint32_t dwStyle, id strId)
    {
-      return CreateEx(pParentWnd, 0, dwStyle, strId);
+
+      return create_window_ex(pParentWnd, 0, dwStyle, NULL, strId);
+
    }
 
-   bool status_bar::CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle, uint32_t dwStyle, id strId)
+   bool status_bar::create_window_ex(sp(::user::interaction) pParentWnd,uint32_t dwCtrlStyle,uint32_t dwStyle,LPCRECT lpcrect, id strId)
    {
+
       ASSERT_VALID(pParentWnd);   // must have a parent
 
       // save the style (some of these style bits are core API specific)
@@ -57,20 +61,12 @@ namespace user
 
       // translate core API style bits to windows style bits
       dwStyle &= ~CBRS_ALL;
-#ifdef WINDOWSEX
       dwStyle |= CCS_NOPARENTALIGN|CCS_NOMOVEY|CCS_NODIVIDER|CCS_NORESIZE;
       if (pParentWnd->GetStyle() & WS_THICKFRAME)
          dwStyle |= SBARS_SIZEGRIP;
-#endif
-      dwStyle |= dwCtrlStyle;
-
       
-      // create the oswindow
-#ifdef WINDOWSEX
-      return ::user::interaction::create(STATUSCLASSNAME, NULL, dwStyle, ::null_rect(), pParentWnd, strId);
-#else
-      throw todo(get_app());
-#endif
+      return ::user::interaction::create_window(STATUSCLASSNAME, NULL, dwStyle, lpcrect, pParentWnd, strId);
+
    }
 
    bool status_bar::pre_create_window(CREATESTRUCT& cs)

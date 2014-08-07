@@ -234,7 +234,7 @@ namespace user
             m_dibBk->Fill(184, 184, 170);
             HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
             ::visual::fastblur *( *pfnNew )(sp(::base::application)) = (::visual::fastblur *(*)(sp(::base::application))) ::GetProcAddress(hmodule, "new_fastblur");*/
-/*            m_fastblur.create(allocer());
+/*            m_fastblur.alloc(allocer());
             m_fastblur.initialize(rectClient.size(), 2);
          }
          if(m_fastblur.is_set() && m_fastblur->get_graphics() != NULL)
@@ -2302,7 +2302,7 @@ namespace user
    bool edit_plain_text::create_control(class control::descriptor * pdescriptor)
    {
       ASSERT(pdescriptor->get_type() == control::type_edit_plain_text);
-      if(!create(pdescriptor->m_pform, pdescriptor->m_id))
+      if(!create_window(pdescriptor->m_rect, pdescriptor->m_pform, pdescriptor->m_id))
       {
          TRACE("Failed to create control");
          return false;

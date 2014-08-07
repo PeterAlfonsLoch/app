@@ -1,5 +1,47 @@
 #pragma once
 
+#ifndef HDS_HORZ
+// begin_r_commctrl
+
+#define HDS_HORZ                0x0000
+#define HDS_BUTTONS             0x0002
+#define HDS_HOTTRACK            0x0004
+#define HDS_HIDDEN              0x0008
+
+#define HDS_DRAGDROP            0x0040
+#define HDS_FULLDRAG            0x0080
+#define HDS_FILTERBAR           0x0100
+
+#if (NTDDI_VERSION >= NTDDI_WINXP)
+#define HDS_FLAT                0x0200
+#endif
+
+#if (NTDDI_VERSION >= NTDDI_VISTA)
+#define HDS_CHECKBOXES          0x0400
+#define HDS_NOSIZING            0x0800
+#define HDS_OVERFLOW            0x1000
+#endif
+// end_r_commctrl
+
+#define HDFT_ISSTRING       0x0000      // HD_ITEM.pvFilter points to a HD_TEXTFILTER
+#define HDFT_ISNUMBER       0x0001      // HD_ITEM.pvFilter points to a INT
+#define HDFT_ISDATE         0x0002      // HD_ITEM.pvFilter points to a DWORD (dos date)
+
+#define HDFT_HASNOVALUE     0x8000      // clear the filter, by setting this bit
+
+#ifdef UNICODE
+#define HD_TEXTFILTER HD_TEXTFILTERW
+#define HDTEXTFILTER HD_TEXTFILTERW
+#define LPHD_TEXTFILTER LPHD_TEXTFILTERW
+#define LPHDTEXTFILTER LPHD_TEXTFILTERW
+#else
+#define HD_TEXTFILTER HD_TEXTFILTERA
+#define HDTEXTFILTER HD_TEXTFILTERA
+#define LPHD_TEXTFILTER LPHD_TEXTFILTERA
+#define LPHDTEXTFILTER LPHD_TEXTFILTERA
+#endif
+
+#endif
 
 namespace user
 {

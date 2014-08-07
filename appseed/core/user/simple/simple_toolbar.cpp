@@ -91,16 +91,23 @@ void simple_toolbar::install_message_handling(::message::dispatch * pdispatch)
 
 bool simple_toolbar::create(sp(::user::interaction) pParentWnd, uint32_t dwStyle, id nID)
 {
-   return CreateEx(pParentWnd, 0, dwStyle,
+   return create_window_ex(pParentWnd, 0, dwStyle,
       rect(m_cxLeftBorder, m_cyTopBorder, m_cxRightBorder, m_cyBottomBorder), nID);
 }
 
-bool simple_toolbar::CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle, uint32_t dwStyle, rect rcBorders, id nID)
+
+bool simple_toolbar::create_window_ex(sp(::user::interaction) pParentWnd,uint32_t dwCtrlStyle,uint32_t dwStyle,LPCRECT lpcrect, id nID)
 {
+
    ASSERT_VALID(pParentWnd);   // must have a parent
    ASSERT (!((dwStyle & CBRS_SIZE_FIXED) && (dwStyle & CBRS_SIZE_DYNAMIC)));
 
-   SetBorders(rcBorders);
+   //if(lpcrect != NULL)
+   {
+
+      SetBorders(lpcrect);
+
+   }
 
    // save the style
    m_dwStyle = (dwStyle & CBRS_ALL);
@@ -108,21 +115,12 @@ bool simple_toolbar::CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtr
       m_dwStyle |= CBRS_HIDE_INPLACE;
 
    dwStyle &= ~CBRS_ALL;
-#ifdef WINDOWSEX
    dwStyle |= CCS_NOPARENTALIGN|CCS_NOMOVEY|CCS_NODIVIDER|CCS_NORESIZE;
-#else
-//   throw todo(get_app());
-#endif
    dwStyle |= dwCtrlStyle & 0xffff;
-
-#ifdef WINDOWSEX
    m_dwCtrlStyle = dwCtrlStyle & (0xffff0000 | TBSTYLE_FLAT);
-#else
-  // throw todo(get_app());
-#endif
 
 
-   if (!::user::interaction::create(NULL, NULL, dwStyle, ::null_rect(), pParentWnd, nID))
+   if (!::user::interaction::create_window(NULL, NULL, dwStyle,lpcrect, pParentWnd, nID))
       return FALSE;
 
    // sync up the sizes
@@ -130,7 +128,8 @@ bool simple_toolbar::CreateEx(sp(::user::interaction) pParentWnd, uint32_t dwCtr
 
    // Note: Parent must resize itself for control bar to be resized
 
-   return TRUE;
+   return true;
+
 }
 
 
@@ -879,7 +878,7 @@ bool simple_toolbar::LoadXmlToolBar(const char * lpszXml)
          item.m_str = pchild->get_value();
          if(pchild->attr("image").get_string().has_char())
          {
-            item.m_spdib.create(allocer());
+            item.m_spdib.alloc(allocer());
             item.m_spdib.load_from_file(pchild->attr("image"));
          }
          if(pchild->attr("enable_if_has_command_handler").get_string().has_char())
@@ -1189,7 +1188,7 @@ void simple_toolbar::layout()
 {
    //ASSERT(m_bDelayedButtonLayout);
 
-   synch_lock ml(&user_mutex());
+   synch_lock ml(m_spmutex);
 
    m_bDelayedButtonLayout = false;
 

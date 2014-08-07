@@ -15,12 +15,12 @@ window_graphics::window_graphics()
 window_graphics::~window_graphics()
 {
 
-   destroy();
+   destroy_window_graphics();
 
 }
 
 
-void window_graphics::create(oswindow interaction_impl, int64_t cxParam, int64_t cyParam, int iStride)
+void window_graphics::create_window_graphics(oswindow interaction_impl, int64_t cxParam, int64_t cyParam, int iStride)
 {
 
    cx = (int32_t)cxParam;
@@ -30,7 +30,7 @@ void window_graphics::create(oswindow interaction_impl, int64_t cxParam, int64_t
 }
 
 
-void window_graphics::destroy()
+void window_graphics::destroy_window_graphics()
 {
 
    cx = 0;
@@ -63,7 +63,7 @@ void window_graphics::update_window(window_graphics * & pdata, oswindow interact
       if (pdata != NULL)
       {
 
-         pdata->create(interaction_impl, width(lpcrect), height(lpcrect), iStride);
+         pdata->create_window_graphics(interaction_impl, width(lpcrect), height(lpcrect), iStride);
 
       }
 

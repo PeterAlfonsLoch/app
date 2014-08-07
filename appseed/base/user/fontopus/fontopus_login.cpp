@@ -11,7 +11,8 @@ namespace fontopus
 {
 
    
-   UINT c_cdecl thread_proc_post_initialize_login(void * p);
+   UINT c_cdecl thread_proc_pre_login(void * p);
+   UINT c_cdecl thread_proc_defer_translate_login(void * p);
 
 
    login::login(sp(::base::application) papp, int left, int top) :
@@ -53,6 +54,24 @@ namespace fontopus
    login::~login()
    {
 
+      if(m_pploginDeferTranslate != NULL)
+      {
+
+         try
+         {
+
+            *m_pploginDeferTranslate = NULL;
+
+         }
+         catch(...)
+         {
+
+         }
+
+      }
+       
+      Sleep(49);
+
       ::base::del(m_plabelUser);
       ::base::del(m_peditUser);
       ::base::del(m_plabelPassword);
@@ -72,39 +91,17 @@ namespace fontopus
    }
 
 
-   void login::defer_translate(::simple_ui::style * pstyle)
+   void login::defer_translate(const string & strUser,const string & strPass,const string & strOpen)
    {
 
-      xxdebug_box("defer_translate", "login", 0);
+      if (strUser.has_char())
+         m_plabelUser->SetWindowText(strUser);
 
-      string strForm = pstyle->defer_get("http://api.ca2.cc/account/login_form");
+      if (strPass.has_char())
+         m_plabelPassword->SetWindowText(strPass);
 
-      if (strForm.is_empty())
-         return;
-
-      ::xml::document doc(get_app());
-
-      if (!doc.load(strForm))
-
-         return;
-      ::xml::node & node = *doc.get_root();
-
-      string str;
-
-      str = node.attr("email");
-
-      if (str.has_char())
-         m_plabelUser->SetWindowText(str);
-
-      str = node.attr("senha");
-
-      if (str.has_char())
-         m_plabelPassword->SetWindowText(str);
-
-      str = node.attr("abrir");
-
-      if (str.has_char())
-         m_ptap->SetWindowText(str);
+      if (strOpen.has_char())
+         m_ptap->SetWindowText(strOpen);
 
    }
 
@@ -394,11 +391,11 @@ namespace fontopus
       if(pcreate->previous())
          return;
 
-      if(!m_plabelUser->create(this,"label_user")
-         || !m_peditUser->create(this, "edit_user")
-         || !m_plabelPassword->create(this, "label_password")
-         || !m_ppassword->create(this, "password")
-         || !m_ptap->create(this, "submit"))
+      if(!m_plabelUser->create_window(NULL, this,"label_user")
+         || !m_peditUser->create_window(NULL, this, "edit_user")
+         || !m_plabelPassword->create_window(NULL, this, "label_password")
+         || !m_ppassword->create_window(NULL, this, "password")
+         || !m_ptap->create_window(NULL, this, "submit"))
       {
          pcreate->set_lresult(-1);
          pcreate->m_bRet = true;
@@ -425,19 +422,119 @@ namespace fontopus
       m_peditUser->keyboard_set_focus();
 
 
-      __begin_thread(get_app(),thread_proc_post_initialize_login,this);
+      m_pploginDeferTranslate = new login *;
+
+      *m_pploginDeferTranslate = this;
+
+      __begin_thread(get_app(),thread_proc_pre_login,get_app());
+      __begin_thread(get_app(),thread_proc_defer_translate_login,m_pploginDeferTranslate);
       
    }
 
 
-   UINT c_cdecl thread_proc_post_initialize_login(void * p)
+   UINT c_cdecl thread_proc_defer_translate_login(void * p)
    {
 
-      login * plogin = (login *)p;
+      int iRet = -1;
 
-      plogin->defer_translate(plogin->GetParent().cast < simple_ui::style > ());
+      login ** pplogin = (login **)p;
 
-      login_thread thread(plogin->get_app());
+      if(*pplogin == NULL)
+         goto end;
+
+      {
+
+         ::xml::document doc((*pplogin)->get_app());
+
+         if(*pplogin == NULL)
+            goto end;
+
+         ::simple_ui::style * pstyle = NULL;
+
+         {
+
+            pstyle = (*pplogin)->GetParent().cast < simple_ui::style >();
+
+         }
+
+         string strForm = pstyle->defer_get("http://api.ca2.cc/account/login_form?authnone=1");
+
+         if(*pplogin == NULL)
+            goto end;
+
+         if(!doc.load(strForm))
+            goto end;
+
+         ::xml::node & node = *doc.get_root();
+
+         string strUser = node.attr("email");
+
+         string strPass = node.attr("senha");
+
+         string strOpen = node.attr("abrir");
+
+         if(*pplogin == NULL)
+            goto end;
+
+         try
+         {
+
+            (*pplogin)->defer_translate(strUser,strPass,strOpen);
+
+            iRet = 0;
+
+         }
+         catch(...)
+         {
+
+         }
+
+         if(*pplogin == NULL)
+            goto end;
+
+
+      }
+
+
+
+  end:
+
+      try
+      {
+
+         (*pplogin) = NULL;
+
+      }
+      catch(...)
+      {
+
+      }
+
+      try
+      {
+
+         delete pplogin;
+
+      }
+      catch(...)
+      {
+
+      }
+
+      return iRet;
+
+
+   }
+
+   UINT c_cdecl thread_proc_pre_login(void * p)
+   {
+
+      ::base::application * papp = (::base::application *) p;
+
+      return 0;
+
+      login_thread thread(papp);
+      thread.m_strRequestingServer = "account.ca2.cc";
       thread.m_strUsername = "";
       thread.m_strPassword = "";
       thread.run();
@@ -445,7 +542,6 @@ namespace fontopus
       return 0;
 
    }
-
 
 } // namespace fontopus
 

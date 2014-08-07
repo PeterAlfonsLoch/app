@@ -10,7 +10,7 @@ namespace file
       element(papp)
    {
 
-      m_spbinarybuffer.create(papp);
+      m_spbinarybuffer.alloc(allocer());
 
       m_spbinarybuffer->open(pszFilePath, (((uiFlags & ~type_text) | type_binary) | mode_read) & ~(defer_create_directory | mode_create | mode_no_truncate));
 

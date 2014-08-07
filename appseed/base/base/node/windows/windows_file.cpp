@@ -191,7 +191,7 @@ retry:
          {
             /*         if (pException != NULL)
             {
-            pException->create(allocer());
+            pException->alloc(allocer());
             ::file::exception * pfe = dynamic_cast < ::file::exception * > (pException->m_p);
             if(pfe != NULL)
             {
@@ -240,7 +240,7 @@ retry:
          {
             /*if (pException != NULL)
             {
-            pException->create(allocer());
+            pException->alloc(allocer());
             ::file::exception * pfe = dynamic_cast < ::file::exception * > (pException->m_p);
             if(pfe != NULL)
             {

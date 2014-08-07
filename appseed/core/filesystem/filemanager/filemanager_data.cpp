@@ -23,7 +23,7 @@ namespace filemanager
       m_bSetBergedgeTopicFile    = false;
       m_bTransparentBackground   = true;
 
-      m_spfont.create(allocer());
+      m_spfont.alloc(allocer());
 
       m_spfont->create_pixel_font("Verdana",14);
 

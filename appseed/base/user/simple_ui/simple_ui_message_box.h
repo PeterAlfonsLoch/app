@@ -35,6 +35,9 @@ namespace simple_ui
       virtual void create_a_button(id id,const char * pszText);
       virtual void create_b_button(id id,const char * pszText);
       virtual void create_button(spa(tap) & tapa, id id,const char * pszText);
+
+
+      virtual void pre_translate_message(signal_details * pobj);
       
 
    };

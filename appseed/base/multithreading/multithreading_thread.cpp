@@ -29,7 +29,7 @@ m_set(papp)
    set_app(papp);
    if (!s_bAllocReady)
       return;
-   m_pthreadimpl.create(allocer());
+   m_pthreadimpl.alloc(allocer());
    m_pthreadimpl->m_pthread = this;
    m_pthreadimpl->construct();
 
@@ -49,7 +49,7 @@ element(papp)
 
    CommonConstruct();
 
-   m_pthreadimpl.create(allocer());
+   m_pthreadimpl.alloc(allocer());
    m_pthreadimpl->m_pthread = this;
    m_pthreadimpl->construct(pfnThreadProc, pParam);
 

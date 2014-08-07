@@ -88,25 +88,12 @@ namespace android
       bool ExecuteDlgInit(const char * lpszResourceName);
       bool ExecuteDlgInit(LPVOID lpResource);
 
-      using ::user::interaction_impl::create;
       // for child windows, views, panes etc
-      virtual bool create(const char * lpszClassName,
-         const char * lpszWindowName, DWORD dwStyle,
-         const RECT& rect,
-         sp(::user::interaction) pParentWnd, id id,
-         sp(::create_context) pContext = NULL);
+      virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,DWORD dwStyle,LPCRECT lpcrect,sp(::user::interaction) pParentWnd, id id,sp(::create_context) pContext = NULL);
 
       // advanced creation (allows access to extended styles)
-      virtual bool CreateEx(DWORD dwExStyle, const char * lpszClassName,
-         const char * lpszWindowName, DWORD dwStyle,
-         int32_t x, int32_t y, int32_t nWidth, int32_t nHeight,
-         oswindow hWndParent, id id, LPVOID lpParam = NULL);
+      virtual bool create_window_ex(DWORD dwExStyle, const char * lpszClassName,const char * lpszWindowName, DWORD dwStyle,LPCRECT lpcrect,oswindow hWndParent, id id, LPVOID lpParam = NULL);
 
-      virtual bool CreateEx(DWORD dwExStyle, const char * lpszClassName,
-         const char * lpszWindowName, DWORD dwStyle,
-         const RECT& rect,
-         sp(::user::interaction) pParentWnd, id id,
-         LPVOID lpParam = NULL);
 
       virtual bool DestroyWindow();
 

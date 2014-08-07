@@ -1,6 +1,6 @@
 template < class T >
 class synch_ptr_array:
-   virtual protected ptr_array < T >
+   virtual public ptr_array < T >
 {
 public:
 

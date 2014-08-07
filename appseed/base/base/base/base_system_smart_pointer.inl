@@ -2,7 +2,7 @@
 
 
 template < class T >
-void smart_pointer < T >::create(const allocatorsp & allocer)
+void smart_pointer < T >::alloc(const allocatorsp & allocer)
 {
    static class id idType = CaSys(allocer).type_info < T > ()->m_id;
    if(m_p != NULL)
