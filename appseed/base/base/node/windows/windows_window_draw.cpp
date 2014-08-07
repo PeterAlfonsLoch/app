@@ -323,7 +323,7 @@ namespace windows
 
       synch_lock slUser(&user_mutex());
 
-      user::interaction_ptr_array wndpa(get_wnda());
+      ptr_array < ::user::interaction > wndpa(get_wnda());
 
 
       rect rectWindow;
@@ -334,13 +334,13 @@ namespace windows
          try
          {
 
-            if(wndpa[l].m_bMayProDevian && wndpa[l].m_psession.is_null())
+            if(wndpa[l]->m_bMayProDevian && wndpa[l]->m_psession.is_null())
             {
 
                try
                {
 
-                  wndpa[l]._001UpdateWindow();
+                  wndpa[l]->_001UpdateWindow();
 
                }
                catch(...)
@@ -357,14 +357,14 @@ namespace windows
          {
             if(se.m_strMessage == "no more a interaction_impl")
             {
-               System.frames().remove(wndpa(l));
+               System.frames().remove(wndpa[l]);
                wndpa.remove_at(l);
 
             }
          }
          catch(...)
          {
-            System.frames().remove(wndpa(l));
+            System.frames().remove(wndpa[l]);
             wndpa.remove_at(l);
          }
       }

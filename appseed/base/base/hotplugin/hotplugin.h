@@ -59,7 +59,7 @@ namespace hotplugin
    // hotplugin plugin dll HINSTANCE
    CLASS_DECL_BASE HINSTANCE get_hinstance();
    CLASS_DECL_BASE void set_hinstance(HINSTANCE hinstance);
-   CLASS_DECL_BASE void entry_hall_windows_on_paint(HDC hdc,LPCRECT lpcrect);
+   CLASS_DECL_BASE void entry_hall_windows_on_paint(HDC hdc,LPCRECT lpcrect,const string & strEntryHallText);
 
 #endif
 

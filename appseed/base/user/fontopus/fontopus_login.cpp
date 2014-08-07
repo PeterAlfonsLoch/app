@@ -406,11 +406,18 @@ namespace fontopus
          pcreate->m_bRet = true;
          return;
       }
-      
 
-      m_plabelUser->SetWindowText(unitext("✉:"));
-      m_plabelPassword->SetWindowText("password:");
-      m_ptap->SetWindowText("open");
+      //m_plabelUser->SetWindowText("e-mail:");
+      //m_plabelPassword->SetWindowText("password:");
+      //m_ptap->SetWindowText("open");
+
+      //m_plabelUser->SetWindowText("@");
+      //m_plabelPassword->SetWindowText("********");
+      //m_ptap->SetWindowText("===>");
+
+      m_plabelUser->SetWindowText("");
+      m_plabelPassword->SetWindowText("");
+      m_ptap->SetWindowText("");
 
       int stdw = 800;
       int stdh = 177 + 23 + 184 + 49;

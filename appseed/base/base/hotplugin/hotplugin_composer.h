@@ -32,6 +32,7 @@ namespace hotplugin
       bool                                   m_bOk;
       rect                                   m_rect;
       bool                                   m_bResponsive;
+      string                                 m_strEntryHallText;
 
 
       ::hotplugin::host *                    m_pbasehost;

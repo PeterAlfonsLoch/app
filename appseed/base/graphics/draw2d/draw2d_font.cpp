@@ -40,8 +40,21 @@ namespace draw2d
 
    bool font::create_pixel_font(const char * lpszFacename, double dSize, int32_t iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
    {
-      
+
+#ifdef WINDOWS
+      if(stricmp(lpszFacename, "sans-serif") == 0)
+      {
+         m_strFontFamilyName = "Arial";
+      }
+      else
+      {
+         m_strFontFamilyName     = lpszFacename;
+      }
+#else
       m_strFontFamilyName     = lpszFacename;
+
+#endif
+      
       m_dFontSize             = dSize;
       m_dFontWidth            = 1.0;
       m_eunitFontSize         = ::draw2d::unit_pixel;

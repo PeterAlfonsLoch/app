@@ -266,10 +266,10 @@ namespace hotplugin
    bool composer::windows_on_paint(HDC hdc)
    {
 
-      if((!m_bOk || !m_bResponsive) || m_pbasehost == NULL || !m_pbasehost->hotplugin_host_is_initialized())
+      if((!m_bOk || !m_bResponsive) || m_pbasehost == NULL || !m_pbasehost->hotplugin_host_is_initialized() || m_strEntryHallText.has_char())
       {
 
-         ::hotplugin::entry_hall_windows_on_paint(hdc,m_rect);
+         ::hotplugin::entry_hall_windows_on_paint(hdc,m_rect,m_strEntryHallText);
 
          return true;
 

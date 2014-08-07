@@ -58,7 +58,7 @@ namespace base
 
       m_schemasimple.m_pfont.create(allocer());
 
-      m_schemasimple.m_pfont->create_pixel_font("Verdana",16);
+      m_schemasimple.m_pfont->create_pixel_font("Helvetica",16);
 
 
    }

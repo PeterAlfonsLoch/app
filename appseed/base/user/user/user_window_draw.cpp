@@ -60,7 +60,7 @@ namespace user
    }
 
 
-   ::user::interaction_ptr_array window_draw::get_wnda()
+   ptr_array < ::user::interaction > window_draw::get_wnda()
    {
 
       return System.frames();

@@ -5,7 +5,7 @@ namespace hotplugin
 {
 
 
-   void entry_hall_windows_on_paint(HDC hdc,LPCRECT lpcrect)
+   void entry_hall_windows_on_paint(HDC hdc,LPCRECT lpcrect,const string & strEntryHallText)
    {
 
       HBRUSH hbrushBack = ::CreateSolidBrush(RGB(184,184,177));
@@ -112,7 +112,15 @@ namespace hotplugin
 
       }
 
-      string str = "ca2 plugin for Browsers (Internet Explorer compatible, Mozilla Firefox compatible)";
+      string str(strEntryHallText);
+      
+
+      if(str.is_empty())
+      {
+
+         str = "ca2 plugin for Browsers : Internet Explorer compatible - ActiveX Tecnhology, Mozilla Firefox compatible - NPAPI : Netscape Plugin API";
+
+      }
 
       ::SetBkMode(hdc,TRANSPARENT);
 

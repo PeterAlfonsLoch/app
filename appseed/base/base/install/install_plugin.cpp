@@ -333,6 +333,8 @@ namespace install
       if(!m_bLogged)
       {
 
+         m_phost->m_pbasecomposer->m_strEntryHallText = "Checking credentials...";
+
          xxdebug_box("plugin::start_ca2 not logged", "not logged", 0);
 
          m_bLogin = true;
@@ -361,7 +363,7 @@ namespace install
 
       if(!m_bCa2Login && strScript == "/ca2login")
       {
-         
+
          m_bCa2Login = true;
          
          m_bOk = false;
@@ -393,6 +395,8 @@ namespace install
       else if(!m_bCa2Logout && strScript == "/ca2logout")
       {
          
+         m_phost->m_pbasecomposer->m_strEntryHallText = "Performing Log Out...";
+
          m_bCa2Logout = true;
 
          m_bOk = false;
@@ -410,6 +414,9 @@ namespace install
          return;
 
       }
+
+
+      m_phost->m_pbasecomposer->m_strEntryHallText = "";
 
 
 
