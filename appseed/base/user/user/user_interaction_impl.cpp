@@ -173,13 +173,13 @@ namespace user
    }
 
 
-   bool interaction_impl::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(::user::interaction) pParentWnd,id id,LPVOID lpParam /* = NULL */)
+   bool interaction_impl::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,id id,LPVOID lpParam /* = NULL */)
    {
       UNREFERENCED_PARAMETER(dwExStyle);
       UNREFERENCED_PARAMETER(lpszClassName);
       UNREFERENCED_PARAMETER(lpszWindowName);
       UNREFERENCED_PARAMETER(dwStyle);
-      UNREFERENCED_PARAMETER(lpcrect);
+      UNREFERENCED_PARAMETER(rect);
       UNREFERENCED_PARAMETER(pParentWnd);
       UNREFERENCED_PARAMETER(id);
       UNREFERENCED_PARAMETER(lpParam);
@@ -189,18 +189,18 @@ namespace user
 
 
    // for child windows
-   bool interaction_impl::pre_create_window(CREATESTRUCT & cs)
+   bool interaction_impl::pre_create_window(::user::create_struct & cs)
    {
       UNREFERENCED_PARAMETER(cs);
       return true;
    }
 
-   bool interaction_impl::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(::user::interaction) pParentWnd,id id,sp(::create_context) pContext)
+   bool interaction_impl::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,id id,sp(::create_context) pContext)
    {
       UNREFERENCED_PARAMETER(lpszClassName);
       UNREFERENCED_PARAMETER(lpszWindowName);
       UNREFERENCED_PARAMETER(dwStyle);
-      UNREFERENCED_PARAMETER(lpcrect);
+      UNREFERENCED_PARAMETER(rect);
       UNREFERENCED_PARAMETER(pParentWnd);
       UNREFERENCED_PARAMETER(id);
       UNREFERENCED_PARAMETER(pContext);

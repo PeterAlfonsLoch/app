@@ -142,7 +142,7 @@ namespace hotplugin
 
    //}
 
-   //void plugin::set_window_rect(LPCRECT lpcrect)
+   //void plugin::set_window_rect(const RECT & rect)
    //{
 
    //   m_rect = *lpcrect;
@@ -187,7 +187,7 @@ namespace hotplugin
    {
    }
 
-   void plugin::on_paint(::draw2d::graphics * pgraphics, LPCRECT lprect)
+   void plugin::on_paint(::draw2d::graphics * pgraphics,const RECT & lprect)
    {
 
       on_bare_paint(pgraphics, lprect);
@@ -484,7 +484,7 @@ namespace hotplugin
    }
 
 
-   void plugin::on_bare_paint(::draw2d::graphics * pgraphics, LPCRECT lprect)
+   void plugin::on_bare_paint(::draw2d::graphics * pgraphics,const RECT & lprect)
    {
 
       if(pgraphics == NULL)
@@ -562,13 +562,13 @@ namespace hotplugin
    }
 
 
-   void plugin::on_paint_progress(::draw2d::graphics * pgraphics, LPCRECT lprect)
+   void plugin::on_paint_progress(::draw2d::graphics * pgraphics,const RECT & lprect)
    {
 
       if(m_phost != NULL && !m_phost->m_bShowProgress)
          return;
 
-      RECT rectWindow = *lprect;
+      RECT rectWindow = lprect;
 
       int32_t cx = rectWindow.right - rectWindow.left;
 
@@ -614,7 +614,7 @@ namespace hotplugin
 
             rectP.right    = rectWindow.right;
 
-            pgraphics->FillSolidRect(&rectP, ARGB(84, 84, 84, 77));
+            pgraphics->FillSolidRect(rectP, ARGB(84, 84, 84, 77));
 
          }
 

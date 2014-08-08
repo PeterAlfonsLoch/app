@@ -680,7 +680,7 @@ namespace android
 
    window_draw::EOptimize window_draw::TwfOptimizeRender(
       user::oswindow_tree::Array & hwndtreea,
-      LPCRECT lpcrect)
+      const RECT & rect)
    {
       const rect rectUpdate(*lpcrect);
 
@@ -726,7 +726,7 @@ namespace android
    window_draw::EOptimize window_draw::TwfOptimizeRenderRemoveNextProper(
       user::oswindow_tree::Array & hwndtreea,
       int32_t iIndex,
-      LPCRECT lpcrect)
+      const RECT & rect)
    {
 
 
@@ -761,7 +761,7 @@ namespace android
 
    window_draw::EOptimize window_draw::TwfOptimizeRender(
       user::oswindow_tree & hwndtree,
-      LPCRECT lpcrect)
+      const RECT & rect)
    {
 
       hwndtree.m_dwUser = 0;
@@ -976,7 +976,7 @@ throw not_implemented(get_app());
       user::oswindow_array & hwnda,
       array < HRGN, HRGN > & hrgna,
       user::oswindow_tree::Array & hwndtreea,
-      LPCRECT lpcrect)
+      const RECT & rect)
    {
       throw not_implemented(get_app());
 //      HRGN hrgn = ::CreateRectRgnIndirect(lpcrect);

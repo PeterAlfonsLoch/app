@@ -15,7 +15,7 @@ MetaButton::~MetaButton()
 }
 
 
-bool MetaButton::pre_create_window(CREATESTRUCT& cs)
+bool MetaButton::pre_create_window(::user::create_struct& cs)
 {
 //   cs.style |= BS_OWNERDRAW;
    return ::user::button::pre_create_window(cs);

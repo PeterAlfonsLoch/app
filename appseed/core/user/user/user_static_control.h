@@ -40,7 +40,7 @@ namespace user
       virtual void install_message_handling(::message::dispatch * pdispatch);
 
 
-      virtual bool create_window(LPCRECT lpcrect, sp(::user::interaction) puiParent,id id);
+      virtual bool create_window(const RECT & rect, sp(::user::interaction) puiParent,id id);
 
 
       HENHMETAFILE SetEnhMetaFile(HENHMETAFILE hMetaFile);

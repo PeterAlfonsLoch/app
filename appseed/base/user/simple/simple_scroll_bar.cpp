@@ -44,19 +44,31 @@ void simple_scroll_bar::install_message_handling(::message::dispatch * pinterfac
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &simple_scroll_bar::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &simple_scroll_bar::_001OnShowWindow);
    IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &simple_scroll_bar::_001OnDestroy);
+
 }
 
-bool simple_scroll_bar::create_window(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle,LPCRECT lpcrect, sp(::user::interaction) pParentWnd, UINT nID, sp(::create_context) pContext)
+
+bool simple_scroll_bar::create_window(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle,const RECT & rect, sp(::user::interaction) pParentWnd, UINT nID, sp(::create_context) pContext)
 {
-   return ::user::interaction::create_window(lpszClassName, lpszWindowName, dwStyle, lpcrect, pParentWnd, nID, pContext);
+
+   if(!::user::interaction::create_window(lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,nID,pContext))
+      return false;
+
+   return true;
+
 }
 
-bool simple_scroll_bar::create_window(e_orientation eorientation,uint32_t dwStyle,LPCRECT lpcrect,sp(::user::interaction)pParentWnd,UINT nID)
+
+bool simple_scroll_bar::create_window(e_orientation eorientation,uint32_t dwStyle,const RECT & rect,sp(::user::interaction)pParentWnd,UINT nID)
 {
-   if(!::user::scroll_bar::create_window(eorientation, dwStyle, lpcrect, pParentWnd, nID))
-      return FALSE;
-   return TRUE;
+
+   if(!::user::scroll_bar::create_window(eorientation, dwStyle, rect, pParentWnd, nID))
+      return false;
+
+   return true;
+
 }
+
 
 void simple_scroll_bar::_001OnMouseMove(signal_details * pobj)
 {
@@ -900,14 +912,21 @@ public:
    point pt1;
    point pt2;
 
+   
    trw(sp(::base::application) papp): element(papp),::user::interaction(papp)
    {
-      if(create_window_ex(WS_EX_LAYERED,NULL,"",WS_VISIBLE,NULL,NULL, /*nIDResource*/ 0,NULL))
+
+      if(create_window_ex(WS_EX_LAYERED,NULL,"",WS_VISIBLE,null_rect(),NULL, /*nIDResource*/ 0,NULL))
       {
+
          TRACE("created trw");
+
       }
-      best_monitor(NULL,NULL,true);
+
+      best_monitor(NULL,null_rect(),true);
+
    }
+
    virtual ~trw()
    {
 

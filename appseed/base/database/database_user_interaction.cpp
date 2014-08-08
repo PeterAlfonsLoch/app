@@ -137,7 +137,7 @@ namespace database
          if(!bLoad && (bForceRestore || bInitialFramePosition))
          {
 
-            bool bRestore = good_restore(NULL,NULL,true) >= 0;
+            bool bRestore = good_restore(NULL,null_rect(),true) >= 0;
 
             return bRestore;
 

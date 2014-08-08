@@ -32,7 +32,7 @@ namespace backview
          virtual void BackViewUpdateScreen();
          virtual void BackViewGetData(InterfaceData & data);
          virtual void BackViewSetData(InterfaceData & data);
-         virtual void BackViewUpdateScreen(LPCRECT lpcrect, UINT uiRedraw);
+         virtual void BackViewUpdateScreen(const RECT & rect, UINT uiRedraw);
          virtual void BackViewUpdateScreen(rect_array & recta, UINT uiRedraw);
 
          virtual int32_t  BackViewGetBackgroundUpdateMillis();

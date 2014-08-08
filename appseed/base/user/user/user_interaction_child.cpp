@@ -39,7 +39,7 @@ namespace user
    }
 
 
-   bool interaction_child::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(interaction) pparent,id id,LPVOID lpParam)
+   bool interaction_child::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(interaction) pparent,id id,LPVOID lpParam)
    {
 
       if(m_bCreate)
@@ -105,25 +105,12 @@ namespace user
       }
       m_pui->m_id      = id;
 
-      CREATESTRUCT cs;
+      ::user::create_struct cs;
 
       cs.dwExStyle   = dwExStyle;
       cs.style       = dwStyle;
 
-      if(lpcrect == NULL)
-      {
-         cs.x           = 0;
-         cs.y           = 0;
-         cs.cx          = 0;
-         cs.cy          = 0;
-      }
-      else
-      {
-         cs.x           = lpcrect->left;
-         cs.y           = lpcrect->top;
-         cs.cx          = lpcrect->right - lpcrect->left;
-         cs.cy          = lpcrect->bottom - lpcrect->top;
-      }
+      cs = rect;
 
 #ifdef WINDOWSEX
 
@@ -160,14 +147,7 @@ namespace user
 
       send_message(WM_CREATE,0,(LPARAM)&cs);
 
-      ::rect rectChild(0, 0, 0, 0);
-
-      if(lpcrect != NULL)
-      {
-         
-         rectChild = lpcrect;
-
-      }
+      ::rect rectChild(rect);
 
       if(rectChild.area() > 0)
       {
@@ -186,7 +166,7 @@ namespace user
 
 
 
-   bool interaction_child::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(interaction)  pparent,id id,sp(::create_context) pContext)
+   bool interaction_child::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(interaction)  pparent,id id,sp(::create_context) pContext)
    {
 
       if(m_bCreate)
@@ -248,26 +228,11 @@ namespace user
       }
       m_pui->m_id      = id;
       //m_pui->install_message_handling(dynamic_cast < ::message::dispatch * > (this));
-      CREATESTRUCT cs;
+      ::user::create_struct cs;
       cs.dwExStyle = 0;
       cs.style = dwStyle;
 
-      if(lpcrect == NULL)
-      {
-
-         cs.x = 0;
-         cs.y = 0;
-         cs.cx = 0;
-         cs.cy = 0;
-
-      }
-      else
-      {
-         cs.x = lpcrect->left;
-         cs.y = lpcrect->top;
-         cs.cx = lpcrect->right - lpcrect->left;
-         cs.cy = lpcrect->bottom - lpcrect->top;
-      }
+      cs = rect;
 
 #ifdef WINDOWSEX
 
@@ -304,14 +269,8 @@ namespace user
 
       send_message(WM_CREATE,0,(LPARAM)&cs);
 
-      ::rect rectChild(0, 0, 0, 0);
+      ::rect rectChild(rect);
 
-      if(lpcrect != NULL)
-      {
-
-         rectChild = lpcrect;
-
-      }
 
       if(rectChild.area() > 0)
       {
@@ -329,7 +288,7 @@ namespace user
    }
 
 
-   bool interaction_child::create_window(LPCRECT lpcrect, sp(interaction) pparent,id id)
+   bool interaction_child::create_window(const RECT & rect, sp(interaction) pparent,id id)
    {
 
       if(m_bCreate)
@@ -378,29 +337,13 @@ namespace user
       m_pui->m_id = id;
       //install_message_handling(dynamic_cast < ::message::dispatch * > (pparent));
       //m_pui->install_message_handling(dynamic_cast < ::message::dispatch * > (this));
-      CREATESTRUCT cs;
+      ::user::create_struct cs;
       cs.dwExStyle = 0;
       cs.lpszClass = NULL;
       cs.lpszName = NULL;
       cs.style = WS_CHILD | WS_VISIBLE;
 
-      if(lpcrect == NULL)
-      {
-         cs.x = 0;
-         cs.y = 0;
-         cs.cx = 0;
-         cs.cy = 0;
-         
-      }
-      else
-      {
-
-         cs.x           = lpcrect->left;
-         cs.y           = lpcrect->top;
-         cs.cx          = lpcrect->right - lpcrect->left;
-         cs.cy          = lpcrect->bottom - lpcrect->top;
-
-      }
+      cs=rect;
 
 #ifdef WINDOWSEX
 
@@ -431,12 +374,7 @@ namespace user
 
       send_message(WM_CREATE,0,(LPARAM)&cs);
 
-      ::rect rectChild(0, 0, 0, 0);
-
-      if(lpcrect != NULL)
-      {
-         rectChild = *lpcrect;
-      }
+      ::rect rectChild(rect);
 
       if(rectChild.area() > 0)
       {

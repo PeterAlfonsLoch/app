@@ -1051,7 +1051,7 @@ namespace plugin
 
    }
 
-   void plugin::set_window_rect(LPCRECT lpcrect)
+   void plugin::set_window_rect(const RECT & rect)
    {
 
       SetPlacement(lpcrect);

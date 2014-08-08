@@ -284,10 +284,19 @@ namespace draw2d
 
    }
 
+
    bool path::add_rect(LPCRECT lpcrect)
    {
 
-      return add_rect(lpcrect->left, lpcrect->top, lpcrect->right, lpcrect->bottom);
+      return add_rect(lpcrect->left,lpcrect->top,lpcrect->right,lpcrect->bottom);
+
+   }
+
+
+   bool path::add_rect(const RECT & rect)
+   {
+
+      return add_rect(&rect);
 
    }
 

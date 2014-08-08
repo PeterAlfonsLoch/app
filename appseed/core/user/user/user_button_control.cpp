@@ -22,7 +22,7 @@ void BaseButtonControl::install_message_handling(::message::dispatch * pdispatch
 }
 
 
-bool BaseButtonControl::pre_create_window(CREATESTRUCT& cs)
+bool BaseButtonControl::pre_create_window(::user::create_struct& cs)
 {
 
    //cs.style |= BS_OWNERDRAW;

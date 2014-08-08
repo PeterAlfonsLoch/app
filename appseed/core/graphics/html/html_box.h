@@ -50,7 +50,7 @@ namespace html
       inline size get_cxy() const;
       inline float area() const;
 
-      inline box & operator = (LPCRECT lpcrect);
+      inline box & operator = (const RECT & rect);
 
    };
 
@@ -231,13 +231,13 @@ namespace html
 
    }
 
-   inline box & box::operator = (LPCRECT lpcrect)
+   inline box & box::operator = (const RECT & rect)
    {
 
-      left     = (float) lpcrect->left;
-      top      = (float) lpcrect->top;
-      right    = (float) lpcrect->right;
-      bottom   = (float) lpcrect->bottom;
+      left     = (float) rect.left;
+      top      = (float) rect.top;
+      right    = (float) rect.right;
+      bottom   = (float) rect.bottom;
 
       return *this;
 

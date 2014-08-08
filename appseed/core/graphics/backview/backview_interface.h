@@ -52,7 +52,7 @@ namespace backview
 
       virtual COLORREF GetBackgroundColor();
       void BackViewRender(::draw2d::graphics * pdc, int32_t x, int32_t y, int32_t w, int32_t h);
-      void BackViewRender(::draw2d::graphics * pdc, LPCRECT lpcrect);
+      void BackViewRender(::draw2d::graphics * pdc, const RECT & rect);
       void Enable(bool bEnable);
       bool IsEnabled();
       void GetCurrentImagePath(string & str);
@@ -78,7 +78,7 @@ namespace backview
       virtual void BackViewUpdateScreen();
       virtual void BackViewGetData(InterfaceData & data) = 0;
       virtual void BackViewSetData(InterfaceData & data) = 0;
-      virtual void BackViewUpdateScreen(LPCRECT lpcrect, UINT uiRedraw);
+      virtual void BackViewUpdateScreen(const RECT & rect, UINT uiRedraw);
       virtual void BackViewUpdateScreen(rect_array & recta, UINT uiRedraw);
 
       virtual string BackViewGetNextBackgroundImagePath();
@@ -90,7 +90,7 @@ namespace backview
       virtual HENHMETAFILE BackViewGetFillingMetaFile();
 
       virtual void ImageChangePostEvent(e_event eevent);
-      virtual bool UpdateBuffer(LPCRECT lpcrect);
+      virtual bool UpdateBuffer(const RECT & rect);
 
       virtual void OnAfterImageLoaded();
 

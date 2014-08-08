@@ -221,32 +221,38 @@ namespace user
 
 
    template < class VIEW >
-   inline sp(VIEW) impact::create_view(::user::document * pdoc,LPCRECT lpcrect, sp(::user::interaction) pwndParent,id id,sp(::user::interaction) pviewLast)
+   inline sp(VIEW) impact::create_view(::user::document * pdoc,const RECT & rect, sp(::user::interaction) pwndParent,id id,sp(::user::interaction) pviewLast)
    {
       return create_view(System.type_info < VIEW >(), pdoc, lpcrect, pwndParent, id, pviewLast);
    }
 
 
    template < class VIEW >
-   inline sp(VIEW) impact::create_view(LPCRECT lpcrect,::user::interaction * pwndParent,id id,sp(::user::interaction) pviewLast)
+   inline sp(VIEW) impact::create_view(const RECT & rect,::user::interaction * pwndParent,id id,sp(::user::interaction) pviewLast)
    {
+
       return create_view < VIEW >(NULL, lpcrect, pwndParent, id, pviewLast);
+
    }
+
 
    template < class VIEW >
    inline sp(VIEW) impact::create_view(::user::view_creator_data * pcreatordata, sp(::user::interaction) pviewLast)
    {
 
-      VIEW * pview = create_view < VIEW >(pcreatordata->m_pholder, pcreatordata->m_id, pviewLast);
+      VIEW * pview = create_view < VIEW >(pcreatordata->m_rectCreate, pcreatordata->m_pholder, pcreatordata->m_id, pviewLast);
 
       if (pview != NULL)
       {
+
          pcreatordata->m_pdoc = get_document();
+
       }
 
       return pview;
 
    }
+
 
    template < class DATA >
    DATA * impact::get_typed_data()

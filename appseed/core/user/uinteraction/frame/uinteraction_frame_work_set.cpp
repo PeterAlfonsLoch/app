@@ -1295,7 +1295,7 @@ namespace user
          }
 
 
-         void WorkSet::_000OnBeforeSize(LPCRECT lpcrect)
+         void WorkSet::_000OnBeforeSize(const RECT & rect)
          {
             ASSERT(m_pframeschema != NULL);
             m_pframeschema->_000OnBeforeSize(lpcrect);

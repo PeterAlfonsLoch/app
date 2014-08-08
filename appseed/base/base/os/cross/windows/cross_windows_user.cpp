@@ -445,7 +445,7 @@ CLASS_DECL_BASE int_bool DispatchMessage(const MESSAGE * pmsg)
 
 
 
-CLASS_DECL_BASE int_bool IsRectEmpty(LPCRECT lpcrect)
+CLASS_DECL_BASE int_bool IsRectEmpty(const RECT & rect)
 {
 
    return lpcrect->right <=lpcrect->left || lpcrect->bottom <= lpcrect->top;

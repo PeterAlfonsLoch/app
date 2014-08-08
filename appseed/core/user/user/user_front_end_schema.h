@@ -55,7 +55,7 @@ namespace user
       front_end_schema(sp(::base::application) app);
       ~front_end_schema();
 
-      virtual void DrawCheck(check::check echeck, LPCRECT lpcrect, ::draw2d::graphics * pdc);
+      virtual void DrawCheck(check::check echeck, const RECT & rect, ::draw2d::graphics * pdc);
 
       
 

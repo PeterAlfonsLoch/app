@@ -77,7 +77,7 @@ void html_view::dump(dump_context & dumpcontext) const
 #endif //DEBUG
 
 
-bool html_view::pre_create_window(CREATESTRUCT& cs)
+bool html_view::pre_create_window(::user::create_struct& cs)
 {
    cs.style &= ~WS_EX_CLIENTEDGE;
    return ::user::impact::pre_create_window(cs);

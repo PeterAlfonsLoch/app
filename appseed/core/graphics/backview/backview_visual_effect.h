@@ -127,7 +127,7 @@ namespace backview
 
 
 
-      static void Constraint001(point & pt, LPCRECT lpcrect, double & dDirection);
+      static void Constraint001(point & pt, const RECT & rect, double & dDirection);
       static void Constraint001(point & pt, LPCRECT lpcrectIn, LPCRECT lpcrectOut, double & dDirection);
       static void TrackDirection001(double &direction, double & directionAddUp, RandomGrow & randomgrow);
 

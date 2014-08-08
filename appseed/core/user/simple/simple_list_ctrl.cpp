@@ -22,7 +22,7 @@ sp(::user::interaction) simple_list_control::OnDrawInterfaceGetWnd()
    return this;
 }
 
-bool simple_list_control::pre_create_window(CREATESTRUCT& cs)
+bool simple_list_control::pre_create_window(::user::create_struct& cs)
 {
 
    cs.style |= WS_CLIPCHILDREN;

@@ -119,7 +119,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // ::user::impact second phase construction - bind to ::user::document
 
-   bool impact::pre_create_window(CREATESTRUCT & cs)
+   bool impact::pre_create_window(::user::create_struct & cs)
    {
 
       ASSERT(cs.style & WS_CHILD);
@@ -551,7 +551,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) impact::create_view(type * pinfo, sp(::user::document) pdoc,LPCRECT lpcrect, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
+   sp(::user::interaction) impact::create_view(type * pinfo, sp(::user::document) pdoc,const RECT & rect, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
    {
 
       sp(type) info(pinfo);
@@ -585,12 +585,12 @@ namespace user
 
       }
 
-      return s_create_view(cacc, lpcrect, pwndParent, id);
+      return s_create_view(cacc, rect, pwndParent, id);
 
    }
 
 
-   sp(::user::interaction) impact::s_create_view(type * pinfo,sp(::user::document) pdoc,LPCRECT lpcrect,sp(::user::interaction) pwndParent,id id,sp(::user::interaction) pviewLast)
+   sp(::user::interaction) impact::s_create_view(type * pinfo,sp(::user::document) pdoc,const RECT & rect,sp(::user::interaction) pwndParent,id id,sp(::user::interaction) pviewLast)
    {
 
       sp(type) info(pinfo);
@@ -605,11 +605,11 @@ namespace user
 
       cc->m_pCurrentDoc = pdoc;
 
-      return s_create_view(cacc, lpcrect, pwndParent, id);
+      return s_create_view(cacc, rect, pwndParent, id);
 
    }
 
-   sp(::user::interaction) impact::s_create_view(::create_context * pContext,LPCRECT lpcrect,sp(::user::interaction) pwndParent,id id)
+   sp(::user::interaction) impact::s_create_view(::create_context * pContext,const RECT & rect,sp(::user::interaction) pwndParent,id id)
    {
 
       // trans   ASSERT(pwndParent->get_handle() != NULL);
@@ -647,7 +647,7 @@ namespace user
 
       
       // views are always created with a border!
-      if (!pui->create_window(NULL, NULL, WS_VISIBLE | WS_CHILD, lpcrect, pwndParent, id, pContext))
+      if (!pui->create_window(NULL, NULL, WS_VISIBLE | WS_CHILD, rect, pwndParent, id, pContext))
       {
 
          //TRACE0("Warning: could not create ::user::impact for frame.\n");

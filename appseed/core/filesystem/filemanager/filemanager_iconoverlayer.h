@@ -21,7 +21,7 @@ namespace filemanager
       // give a chance to cache and optimize
       virtual void on_open_directory(const char * pszPath) = 0;
 
-      virtual void overlay(const char * pszPath, ::draw2d::graphics * pgraphics, LPCRECT lpcrect) = 0;
+      virtual void overlay(const char * pszPath, ::draw2d::graphics * pgraphics, const RECT & rect) = 0;
 
    };
 

@@ -148,7 +148,7 @@ namespace file
 
    }
 
-   void output_stream:: write (LPCRECT lpcrect)
+   void output_stream:: write (const RECT & rect)
    {
 
    }

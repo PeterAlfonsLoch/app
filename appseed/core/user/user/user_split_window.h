@@ -8,7 +8,7 @@ public:
 
    virtual void _001OnDraw(::draw2d::graphics * pdc);
 
-   virtual bool pre_create_window(CREATESTRUCT& cs);
+   virtual bool pre_create_window(::user::create_struct& cs);
 
    virtual ~BaseSplitWnd();
 

@@ -361,7 +361,7 @@ bool simple_frame_window::OnCreateClient(LPCREATESTRUCT lpcs, sp(::create_contex
    return ::user::frame_window::OnCreateClient(lpcs, pContext);
 }
 
-bool simple_frame_window::pre_create_window(CREATESTRUCT& cs)
+bool simple_frame_window::pre_create_window(::user::create_struct& cs)
 {
 
    if (!::user::frame_window::pre_create_window(cs))
@@ -596,7 +596,7 @@ void simple_frame_window::GetBorderRect(LPRECT lprect)
    *lprect = m_rectBorder;
 }
 
-void simple_frame_window::SetBorderRect(LPCRECT lpcrect)
+void simple_frame_window::SetBorderRect(const RECT & rect)
 {
    m_rectBorder = *lpcrect;
 }
@@ -1220,7 +1220,7 @@ void simple_frame_window::WfiOnUp()
 }
 
 
-bool simple_frame_window::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(::user::interaction) pParentWnd,const char * lpszMenuName,uint32_t dwExStyle,sp(::create_context) pContext)
+bool simple_frame_window::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,const char * lpszMenuName,uint32_t dwExStyle,sp(::create_context) pContext)
 {
    return ::user::frame_window::create_window(lpszClassName, lpszWindowName, dwStyle, lpcrect, pParentWnd, lpszMenuName, dwExStyle, pContext);
 

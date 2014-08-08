@@ -129,11 +129,11 @@ public:
 /*   void CalcCharsPositions(
       ::draw2d::graphics * pdcForeground,
       visual::font * pFont,
-      LPCRECT lpcrect);*/
+      const RECT & rect);*/
 
    void CalcCharsPositions(
       ::draw2d::graphics * pdcForeground,
-      LPCRECT lpcrect);
+      const RECT & rect);
 
    void SetColors(COLORREF cr, COLORREF crOutline);
 
@@ -172,11 +172,11 @@ public:
 
 
    bool IsVisible();
-   void Validate(LPCRECT lpcrect = NULL);
-   void Invalidate(LPCRECT lpcrect = NULL);
+   void Validate(const RECT & rect = ::null_rect());
+   void Invalidate(const RECT & rect = ::null_rect());
    //void AddVmsFont(visual::font * pfont);
    //int32_t GetVmsFontCount();
-   void SetPlacement(LPCRECT lpcrect);
+   void SetPlacement(const RECT & rect);
    int32_t SetLyricColors(COLORREF crLeft, COLORREF crRight);
    int32_t SetLyricPens(::draw2d::pen * ppenLeft, ::draw2d::pen * ppenRight);
    void SetRenderCriticalSection(::critical_section *pcs);

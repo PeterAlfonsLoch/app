@@ -146,17 +146,17 @@ public:
 
    int64_t area();
 
-   bool contains(LPCRECT lpcrect) const;
-   void constraint_v5(LPCRECT lpcrect, const class size sizeMin);
-   void constraint_v7(LPCRECT lpcrect);
-   void Align(int32_t align,LPCRECT lpcrect);
+   bool contains(const RECT & rect) const;
+   void constraint_v5(const RECT & rect, const class size sizeMin);
+   void constraint_v7(const RECT & rect);
+   void Align(int32_t align,const RECT & rect);
    void ScaleHeightAspect(int32_t iNewHeight, int32_t iCenterX, int32_t iCenterY);
    void ScaleRect(double dx, double dy, int32_t ix, int32_t iy);
-   void ExtendOnCenter(LPCRECT lpcrect);
-   void FitOnCenterOf(LPCRECT lpcrect);
-   void FitOnCenterOf(LPCRECT lpcrect, SIZE size);
-   void CenterOf(LPCRECT lpcrect);
-   void CenterOf(LPCRECT lpcrect,SIZE size);
+   void ExtendOnCenter(const RECT & rect);
+   void FitOnCenterOf(const RECT & rect);
+   void FitOnCenterOf(const RECT & rect, SIZE size);
+   void CenterOf(const RECT & rect);
+   void CenterOf(const RECT & rect,SIZE size);
    void DeflateBottomRightSizeByRate(double dRate);
    void SetBottomRightSize(int32_t iWidth, int32_t iHeight);
    inline point top_right();
@@ -169,8 +169,8 @@ public:
    void get_bounding_rect(const POINT * lppoint, ::count count);
    void get_bounding_rect(const point_array & pointa);
 
-   void assign(LPCRECT lpcrect,e_orientation eorientation) throw();
-   void assign_normal(LPCRECT lpcrect,e_orientation eorientation) throw();
+   void assign(const RECT & rect,e_orientation eorientation) throw();
+   void assign_normal(const RECT & rect,e_orientation eorientation) throw();
 
 };
 
@@ -580,42 +580,42 @@ inline CLASS_DECL_BASE ::rect null_rect() { return ::rect(0, 0, 0, 0); }
 inline CLASS_DECL_BASE ::rect64 null_rect64() { return ::rect64(0, 0, 0, 0); }
 
 
-inline void rect::assign(LPCRECT lpcrect,e_orientation eorientation) throw()
+inline void rect::assign(const RECT & rect,e_orientation eorientation) throw()
 {
 
    if(eorientation == orientation_horizontal)
    {
 
-      left = lpcrect->left;
-      right = lpcrect->right;
+      left = rect.left;
+      right = rect.right;
 
    }
    else if(eorientation == orientation_vertical)
    {
 
-      top = lpcrect->top;
-      bottom = lpcrect->bottom;
+      top = rect.top;
+      bottom = rect.bottom;
 
    }
 
 }
 
 
-inline void rect::assign_normal(LPCRECT lpcrect,e_orientation eorientation) throw()
+inline void rect::assign_normal(const RECT & rect,e_orientation eorientation) throw()
 {
 
    if(eorientation == orientation_horizontal)
    {
 
-      top = lpcrect->top;
-      bottom = lpcrect->bottom;
+      top = rect.top;
+      bottom = rect.bottom;
 
    }
    else if(eorientation == orientation_vertical)
    {
 
-      left = lpcrect->left;
-      right = lpcrect->right;
+      left = rect.left;
+      right = rect.right;
 
    }
 

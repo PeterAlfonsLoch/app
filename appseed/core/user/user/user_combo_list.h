@@ -34,7 +34,7 @@ namespace user
 
       virtual int32_t _001GetItemHeight() const;
 
-      bool pre_create_window(CREATESTRUCT & cs);
+      bool pre_create_window(::user::create_struct & cs);
 
 
       DECL_GEN_SIGNAL(_001OnKillFocus);

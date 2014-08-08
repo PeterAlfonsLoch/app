@@ -27,7 +27,7 @@ namespace user
 
 
    
-   bool static_control::create_window(LPCRECT lpcrect, sp(::user::interaction) pParentWnd,id id)
+   bool static_control::create_window(const RECT & rect, sp(::user::interaction) pParentWnd,id id)
    {
 
       return ::user::control::create_window(lpcrect, pParentWnd, id);

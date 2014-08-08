@@ -213,6 +213,8 @@ CLASS_DECL_BASE bool intersect(tagRECTD * prect,const tagRECTD * prect1,const ta
 CLASS_DECL_BASE bool unite(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2);
 CLASS_DECL_BASE double width(LPCRECTD lpcrect);
 CLASS_DECL_BASE double height(LPCRECTD lpcrect);
+CLASS_DECL_BASE double width(const RECTD & rect);
+CLASS_DECL_BASE double height(const RECTD & rect);
 
 CLASS_DECL_BASE bool copy(__rect64 * prectDest, const __rect64 * prectSrc);
 CLASS_DECL_BASE bool copy(__rect64 * prectDest, const RECT * prectSrc);
@@ -231,7 +233,7 @@ CLASS_DECL_BASE bool intersect(__rect64 * prect, const __rect64 * prect1, const 
 CLASS_DECL_BASE bool unite(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
 
 
-CLASS_DECL_BASE bool deflate(LPRECT prect, LPCRECT lpcrect);
+CLASS_DECL_BASE bool deflate(LPRECT prect, const RECT & rect);
 
 
 

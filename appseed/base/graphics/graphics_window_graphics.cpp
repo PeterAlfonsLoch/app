@@ -39,10 +39,10 @@ void window_graphics::destroy_window_graphics()
 }
 
 
-void window_graphics::update_window(window_graphics * & pdata, oswindow interaction_impl, COLORREF * pOsBitmapData, LPCRECT lpcrect, int iStride)
+void window_graphics::update_window(window_graphics * & pdata, oswindow interaction_impl, COLORREF * pOsBitmapData, const RECT & rect, int iStride)
 {
 
-   if (pdata == NULL || (pdata->cx != width(lpcrect) || pdata->cy != height(lpcrect)))
+   if (pdata == NULL || (pdata->cx != width(rect) || pdata->cy != height(rect)))
    {
 
       if (pdata == NULL)
@@ -63,7 +63,7 @@ void window_graphics::update_window(window_graphics * & pdata, oswindow interact
       if (pdata != NULL)
       {
 
-         pdata->create_window_graphics(interaction_impl, width(lpcrect), height(lpcrect), iStride);
+         pdata->create_window_graphics(interaction_impl, width(rect), height(rect), iStride);
 
       }
 
@@ -73,19 +73,19 @@ void window_graphics::update_window(window_graphics * & pdata, oswindow interact
    if (pdata != NULL)
    {
 
-      pdata->update_window(interaction_impl, pOsBitmapData, lpcrect, iStride);
+      pdata->update_window(interaction_impl, pOsBitmapData, rect, iStride);
 
    }
 
 }
 
 
-void window_graphics::update_window(oswindow interaction_impl, COLORREF * pOsBitmapData, LPCRECT lpcrect, int iStride)
+void window_graphics::update_window(oswindow interaction_impl, COLORREF * pOsBitmapData, const RECT & rect, int iStride)
 {
 
    UNREFERENCED_PARAMETER(interaction_impl);
    UNREFERENCED_PARAMETER(pOsBitmapData);
-   UNREFERENCED_PARAMETER(lpcrect);
+   UNREFERENCED_PARAMETER(rect);
    UNREFERENCED_PARAMETER(iStride);
 
 }

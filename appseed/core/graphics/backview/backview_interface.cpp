@@ -121,7 +121,7 @@ namespace backview
    }
 
 
-   bool Interface::UpdateBuffer(LPCRECT lpcrect)
+   bool Interface::UpdateBuffer(const RECT & rect)
    {
       GetMain().UpdateBuffer(lpcrect);
       return true;
@@ -222,7 +222,7 @@ namespace backview
       return GetMain().IsEnabled();
    }
 
-   void Interface::BackViewRender(::draw2d::graphics * pdc, LPCRECT lpcrect)
+   void Interface::BackViewRender(::draw2d::graphics * pdc, const RECT & rect)
    {
       class rect rect(lpcrect);
       BackViewRender(pdc, rect.left, rect.top, rect.width(), rect.height());
@@ -310,7 +310,7 @@ namespace backview
    {
    }
 
-   void Interface::BackViewUpdateScreen(LPCRECT lpcrect, UINT uiRedraw)
+   void Interface::BackViewUpdateScreen(const RECT & rect, UINT uiRedraw)
    {
       UNREFERENCED_PARAMETER(lpcrect);
       UNREFERENCED_PARAMETER(uiRedraw);

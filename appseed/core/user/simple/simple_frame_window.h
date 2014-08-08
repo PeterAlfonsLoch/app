@@ -61,7 +61,7 @@ public:
 
 
    using ::user::frame_window::create_window;
-   virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle = WS_OVERLAPPEDWINDOW,LPCRECT lpcrect = NULL,sp(::user::interaction) pParentWnd = NULL,const char * lpszMenuName = NULL,uint32_t dwExStyle = 0,sp(::create_context) pContext = NULL);
+   virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle = WS_OVERLAPPEDWINDOW,const RECT & rect = ::null_rect(),sp(::user::interaction) pParentWnd = NULL,const char * lpszMenuName = NULL,uint32_t dwExStyle = 0,sp(::create_context) pContext = NULL);
 
    virtual bool create_bars();
    virtual bool on_create_bars();
@@ -77,7 +77,7 @@ public:
 
    bool GetCustomFrame();
    void SetCustomFrame(bool bCustom);
-   void SetBorderRect(LPCRECT lpcrect);
+   void SetBorderRect(const RECT & rect);
    virtual void GetBorderRect(LPRECT lprect);
    void ViewOnActivateFrame(sp(::user::impact) pview, UINT user, sp(::user::interaction) pframe);
 
@@ -110,7 +110,7 @@ public:
    virtual void layout();
    virtual void ActivateFrame(int32_t nCmdShow = -1);
    virtual bool OnCreateClient(LPCREATESTRUCT lpcs, sp(::create_context) pContext);
-   virtual bool pre_create_window(CREATESTRUCT& cs);
+   virtual bool pre_create_window(::user::create_struct& cs);
    virtual void pre_translate_message(signal_details * pobj);
 
    virtual void _000OnDraw(::draw2d::graphics * pdc);

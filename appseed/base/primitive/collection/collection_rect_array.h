@@ -9,14 +9,14 @@ public:
    virtual ~rect_array();
 
    using array < rect >::add;
-   void add(LPCRECT lpcrect);
+   void add(const RECT & rect);
    void add(int left,int top,int right,int bottom);
    void add(POINT pt, SIZE sz);
-   void intersect(LPCRECT lpcrect);
+   void intersect(const RECT & rect);
 
    void add_dim(int x, int y, int cx, int cy);
 
-   index max_normal_intersect_area(LPCRECT lpcrect, LPCRECT lpcrectModel);
+   index max_normal_intersect_area(const RECT & rect, const RECT & rectModel);
 
    
    void get_box(LPRECT lprect);

@@ -15,7 +15,7 @@ namespace install
       canvas(sp(::base::application) papp);
       ~canvas();
 
-      void on_paint(::draw2d::graphics * pgraphics, LPCRECT lpcrect);
+      void on_paint(::draw2d::graphics * pgraphics, const RECT & rect);
 
 
       int32_t increment_mode();

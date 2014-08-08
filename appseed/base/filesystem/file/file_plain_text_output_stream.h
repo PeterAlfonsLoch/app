@@ -30,7 +30,7 @@ namespace file
       virtual void write (uint64_t ui);
       virtual void write (float f);
       virtual void write (double d);
-      virtual void write (LPCRECT lpcrect);
+      virtual void write (const RECT & rect);
       virtual void write (SIZE & size);
       virtual void write (sp(type) info);
       virtual void write (serializable & serializable);

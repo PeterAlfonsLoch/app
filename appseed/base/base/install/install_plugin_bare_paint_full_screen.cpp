@@ -5,7 +5,7 @@ namespace hotplugin
 {
 
 
-   void plugin::on_bare_paint_full_screen(::draw2d::graphics * pgraphics, LPCRECT lprect)
+   void plugin::on_bare_paint_full_screen(::draw2d::graphics * pgraphics,const RECT & lprect)
    {
 
       double dRate = get_progress_rate();
@@ -47,7 +47,7 @@ namespace hotplugin
          ::rect r;
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          br->create_solid(ARGB(255, uchR, uchG, uchB));
-         r = rect_dim(lprect->left, lprect->top, cx, cy);
+         r = rect_dim(lprect.left, lprect.top, cx, cy);
          pgraphics->FillRect(r, br);
 
       }
@@ -68,19 +68,19 @@ namespace hotplugin
 
       //on_paint_progress(pgraphics, m_rect);
 
-      pgraphics->TextOut(lprect->left + 84, lprect->top + 84, strStatus);
+      pgraphics->TextOut(lprect.left + 84, lprect.top + 84, strStatus);
 
       f->create_pixel_font("Tahoma", 84, true);
 
       pgraphics->SelectObject(f);
 
-      pgraphics->TextOut(lprect->left + 84, (int32_t)(lprect->top + 133 + 49 * 0.2), strProgress);
+      pgraphics->TextOut(lprect.left + 84, (int32_t)(lprect.top + 133 + 49 * 0.2), strProgress);
 
       f->create_pixel_font("Tahoma", 23);
 
       pgraphics->SelectObject(f);
 
-      pgraphics->TextOut(lprect->left + 84, (int32_t)(lprect->top + 133 + 49 * 0.2 + 133 * 0.2), m_strStatus2);
+      pgraphics->TextOut(lprect.left + 84, (int32_t)(lprect.top + 133 + 49 * 0.2 + 133 * 0.2), m_strStatus2);
 
    }
 

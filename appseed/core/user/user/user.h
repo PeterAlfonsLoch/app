@@ -170,7 +170,7 @@ public:
    static void CalcBorders(LPRECT lpClientRect, uint32_t dwStyle = 0, uint32_t dwExStyle = 0);
 
 protected:
-   virtual bool pre_create_window(CREATESTRUCT& cs);
+   virtual bool pre_create_window(::user::create_struct& cs);
 
 protected:
    bool m_bSysTracking;

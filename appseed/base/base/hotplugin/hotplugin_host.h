@@ -100,7 +100,7 @@ namespace hotplugin
 
       virtual int32_t  start_ca2_system();
 
-      virtual void on_paint(::draw2d::graphics * pgraphics, LPCRECT lprect);
+      virtual void on_paint(::draw2d::graphics * pgraphics, const RECT & lprect);
 
       virtual int32_t host_starter_start(const char * pszCommandLine);
 
@@ -122,11 +122,11 @@ namespace hotplugin
 
       virtual void set_status(const char * pszStatus);
 
-      virtual void set_bitmap(::draw2d::graphics * pgraphics, LPCRECT lprect);
+      virtual void set_bitmap(::draw2d::graphics * pgraphics, const RECT & lprect);
 
-      virtual void paint_bitmap(::draw2d::graphics * pgraphics, LPCRECT lprect);
+      virtual void paint_bitmap(::draw2d::graphics * pgraphics,const RECT & lprect);
 
-      virtual void blend_bitmap(::draw2d::graphics * pgraphics, LPCRECT lprect);
+      virtual void blend_bitmap(::draw2d::graphics * pgraphics,const RECT & lprect);
 
       virtual void translate_mouse_message(int * px, int * py);
 

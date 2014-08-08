@@ -33,6 +33,24 @@ size::size(SIZE initSize) throw()
    { *(SIZE*)this = initSize; }
 size::size(const SIZE * pinitSize) throw()
    { *(SIZE*)this = *pinitSize; }
+size::size(const RECT & rect) throw()
+{
+   cx = width(rect);
+   cy = height(rect);
+}
+size::size(LPCRECT lpcrect) throw()
+{
+   if(lpcrect == NULL)
+   {
+      cx = 0;
+      cy = 0;
+   }
+   else
+   {
+      cx = width(lpcrect);
+      cy = height(lpcrect);
+   }
+}
 size::size(__size64  initSize) throw()
    { cx = (int32_t) initSize.cx; cy = (int32_t) initSize.cy; }
 size::size(const __size64 *  pinitSize) throw()

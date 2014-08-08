@@ -174,18 +174,18 @@ namespace base
       virtual ::count get_desk_monitor_count();
       virtual bool  get_desk_monitor_rect(index iMonitor,LPRECT lprect);
 
-      virtual index initial_frame_position(LPRECT lprect,LPCRECT lpcrect, bool bMove);
+      virtual index initial_frame_position(LPRECT lprect,const RECT & rect, bool bMove);
 
-      virtual void  get_monitor(rect_array & rectaMonitor, rect_array & rectaIntersect, LPCRECT lpcrect);
+      virtual void  get_monitor(rect_array & rectaMonitor, rect_array & rectaIntersect, const RECT & rect);
 
-      virtual index get_zoneing(LPRECT lprect, LPCRECT lpcrect,::user::EAppearance eappearance);
-      virtual index get_best_zoneing(::user::EAppearance * peappearance, LPRECT lprect,LPCRECT lpcrect);
-      virtual index get_best_monitor(LPRECT lprect,LPCRECT lpcrect);
-      virtual index get_best_wkspace(LPRECT lprect,LPCRECT lpcrect);
-      virtual index get_good_restore(LPRECT lprect,LPCRECT lpcrect);
-      virtual index get_good_iconify(LPRECT lprect,LPCRECT lpcrect);
+      virtual index get_zoneing(LPRECT lprect, const RECT & rect,::user::EAppearance eappearance);
+      virtual index get_best_zoneing(::user::EAppearance * peappearance, LPRECT lprect,const RECT & rect);
+      virtual index get_best_monitor(LPRECT lprect,const RECT & rect);
+      virtual index get_best_wkspace(LPRECT lprect,const RECT & rect);
+      virtual index get_good_restore(LPRECT lprect,const RECT & rect);
+      virtual index get_good_iconify(LPRECT lprect,const RECT & rect);
 
-      virtual index get_good_move(LPRECT lprect,LPCRECT lpcrect);
+      virtual index get_good_move(LPRECT lprect,const RECT & rect);
 
       virtual bool  get_window_minimum_size(LPSIZE lpsize);
 

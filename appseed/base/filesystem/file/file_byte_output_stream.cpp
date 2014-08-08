@@ -243,12 +243,12 @@ namespace file
 
    }
 
-   void byte_output_stream:: write (LPCRECT lpcrect)
+   void byte_output_stream:: write (const RECT & rect)
    {
-      m_spbuffer->write(&lpcrect->left,     sizeof(lpcrect->left));
-      m_spbuffer->write(&lpcrect->top,      sizeof(lpcrect->top));
-      m_spbuffer->write(&lpcrect->right,    sizeof(lpcrect->right));
-      m_spbuffer->write(&lpcrect->bottom,   sizeof(lpcrect->bottom));
+      m_spbuffer->write(&rect.left,     sizeof(rect.left));
+      m_spbuffer->write(&rect.top,      sizeof(rect.top));
+      m_spbuffer->write(&rect.right,    sizeof(rect.right));
+      m_spbuffer->write(&rect.bottom,   sizeof(rect.bottom));
 
    }
 

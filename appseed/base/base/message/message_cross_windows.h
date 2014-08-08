@@ -33,10 +33,10 @@ typedef struct tagCREATESTRUCTW {
    uint32_t       dwExStyle;
 } CREATESTRUCTW,*LPCREATESTRUCTW;
 #ifdef UNICODE
-typedef CREATESTRUCTW CREATESTRUCT;
+typedef CREATESTRUCTW ::user::create_struct;
 typedef LPCREATESTRUCTW LPCREATESTRUCT;
 #else
-typedef CREATESTRUCTA CREATESTRUCT;
+typedef CREATESTRUCTA ::user::create_struct;
 typedef LPCREATESTRUCTA LPCREATESTRUCT;
 #endif // UNICODE
 

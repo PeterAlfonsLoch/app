@@ -45,7 +45,7 @@ namespace windows
       virtual void do_events();
 
 
-      bool UpdateBuffer(LPCRECT lpcrect);
+      bool UpdateBuffer(const RECT & rect);
 
       virtual bool UpdateBuffer();
 

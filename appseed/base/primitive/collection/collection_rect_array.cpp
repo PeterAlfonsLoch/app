@@ -43,11 +43,11 @@ void rect_array::get_box(LPRECT lprect)
 }
 
 
-void rect_array::intersect(LPCRECT lpcrect)
+void rect_array::intersect(const RECT & rect)
 {
    for(int32_t i = 0; i < this->get_size();)
    {
-      this->element_at(i).intersect(this->element_at(i), lpcrect);
+      this->element_at(i).intersect(this->element_at(i), &rect);
       if(this->element_at(i).is_null())
       {
          remove_at(i);
@@ -60,9 +60,9 @@ void rect_array::intersect(LPCRECT lpcrect)
 
 }
 
-void rect_array::add(LPCRECT lpcrect)
+void rect_array::add(const RECT & rect)
 {
-   array < rect >::add(rect(*lpcrect));
+   array < ::rect >::add(rect);
 }
 
 
@@ -84,14 +84,14 @@ void rect_array::add(POINT pt, SIZE sz)
 }
 
 
-index rect_array::max_normal_intersect_area(LPCRECT lpcrect,LPCRECT lpcrectModel)
+index rect_array::max_normal_intersect_area(const RECT & rectParam,const RECT & rectModel)
 {
 
    int64_t iArea;
    int64_t iAreaMax = 0;
    index iFound = -1;
    rect rect;
-   int64_t iModelArea = width(lpcrectModel) * height(lpcrectModel);
+   int64_t iModelArea = width(rectModel) * height(rectModel);
 
    if(iModelArea == 0)
       return -1;
@@ -99,7 +99,7 @@ index rect_array::max_normal_intersect_area(LPCRECT lpcrect,LPCRECT lpcrectModel
    for(index i = 0; i < get_count(); i++)
    {
 
-      if(rect.intersect(lpcrect,element_at(i)))
+      if(rect.intersect(&rectParam,element_at(i)))
       {
 
          iArea = rect.area() * iModelArea / element_at(i).area();

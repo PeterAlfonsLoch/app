@@ -332,14 +332,14 @@ namespace user
    }
 
 
-   bool interaction::SetPlacement(LPCRECT lpcrect,UINT nFlags)
+   bool interaction::SetPlacement(const RECT & lpcrect, UINT nFlags)
    {
 
-      return RepositionWindow(lpcrect->left,lpcrect->top,width(lpcrect),height(lpcrect),nFlags);
+      return RepositionWindow(lpcrect.left,lpcrect.top,width(lpcrect),height(lpcrect),nFlags);
 
    }
 
-   bool interaction::RepositionWindow(LPCRECT lpcrect,UINT nFlags)
+   bool interaction::RepositionWindow(const RECT & lpcrect,UINT nFlags)
    {
 
       return SetPlacement(lpcrect,nFlags);
@@ -395,10 +395,10 @@ namespace user
 
    }
 
-   bool interaction::SetWindowPos(int32_t z,LPCRECT lpcrect,UINT nFlags)
+   bool interaction::SetWindowPos(int32_t z,const RECT & rect,UINT nFlags)
    {
 
-      return SetWindowPos(z,lpcrect->left,lpcrect->top,width(lpcrect),height(lpcrect),nFlags);
+      return SetWindowPos(z,rect.left,rect.top,width(rect),height(rect),nFlags);
 
    }
 
@@ -1633,7 +1633,7 @@ namespace user
 #endif
 
 
-   bool interaction::create_window(LPCRECT lpcrect, sp(interaction)pparent,id id)
+   bool interaction::create_window(const RECT & rect, sp(interaction)pparent,id id)
    {
       if(IsWindow())
       {
@@ -1642,7 +1642,7 @@ namespace user
       m_signalptra.remove_all();
       m_pimpl = new ::user::interaction_child(get_app());
       m_pimpl->m_pui = this;
-      if(!m_pimpl->create_window(lpcrect, pparent,id))
+      if(!m_pimpl->create_window(rect, pparent,id))
       {
          m_pimpl.release();
          return false;
@@ -1652,7 +1652,7 @@ namespace user
    }
 
 
-   bool interaction::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(interaction) pParentWnd,id id,sp(::create_context) pContext)
+   bool interaction::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(interaction) pParentWnd,id id,sp(::create_context) pContext)
    {
       
       if(IsWindow())
@@ -1684,7 +1684,7 @@ namespace user
 
          m_pimpl = pimplNew;
 
-         if(!pimplNew->create_window(lpszClassName,lpszWindowName,dwStyle,lpcrect,pParentWnd,id,pContext))
+         if(!pimplNew->create_window(lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,id,pContext))
          {
 
             m_pimpl.release();
@@ -1701,7 +1701,7 @@ namespace user
 
          pimplNew->m_pui = this;
 
-         if(!pimplNew->create_window(lpszClassName,lpszWindowName,dwStyle,lpcrect,pParentWnd,id,pContext))
+         if(!pimplNew->create_window(lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,id,pContext))
          {
 
             pimplNew.release();
@@ -1757,7 +1757,7 @@ namespace user
    }
 
 
-   bool interaction::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(interaction) pParentWnd,id id,LPVOID lpParam)
+   bool interaction::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(interaction) pParentWnd,id id,LPVOID lpParam)
    {
       if(IsWindow())
       {
@@ -1774,7 +1774,7 @@ namespace user
          m_pimpl = Application.alloc(System.type_info < interaction_impl >());
          m_pimpl->m_pui = this;
          dwStyle &= ~WS_CHILD;
-         if(!m_pimpl->create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,lpcrect,pParentWnd,id,lpParam))
+         if(!m_pimpl->create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,id,lpParam))
          {
             m_pimpl.release();
 
@@ -1793,7 +1793,7 @@ namespace user
 
          ::rect rectFrame(0, 0, 0, 0);
 
-         if(lpcrect == NULL)
+         if(IsRectEmpty(&rect))
          {
 
             if(rectFrame.is_null() && pParentWnd->is_place_holder())
@@ -1807,7 +1807,7 @@ namespace user
          else
          {
 
-            rectFrame = *lpcrect;
+            rectFrame = rect;
 
          }
 
@@ -2563,7 +2563,7 @@ namespace user
 #endif
 
 
-   bool interaction::pre_create_window(CREATESTRUCT& cs)
+   bool interaction::pre_create_window(::user::create_struct& cs)
    {
 
       return true;
@@ -4334,15 +4334,15 @@ namespace user
    }
 
 
-   index interaction::best_monitor(LPRECT lprect,LPCRECT lpcrect,bool bSet,UINT uiSwpFlags,int_ptr iZOrder)
+   index interaction::best_monitor(LPRECT lprect,const RECT & rect,bool bSet,UINT uiSwpFlags,int_ptr iZOrder)
    {
 
       ::rect rectWindow;
 
-      if(lpcrect != NULL && !::IsRectEmpty(lpcrect))
+      if(!::IsRectEmpty(&rect))
       {
 
-         rectWindow = *lpcrect;
+         rectWindow = rect;
 
       }
       else
@@ -4352,11 +4352,11 @@ namespace user
 
       }
 
-      ::rect rect;
+      ::rect rectNew;
 
-      index iMatchingMonitor = session().get_best_monitor(rect,rectWindow);
+      index iMatchingMonitor = session().get_best_monitor(rectNew,rectWindow);
 
-      if(bSet && (lpcrect != NULL || iMatchingMonitor >= 0))
+      if(bSet && (!::IsRectEmpty(&rect) || iMatchingMonitor >= 0))
       {
 
 #ifdef WINDOWSEX
@@ -4377,7 +4377,7 @@ namespace user
 
          }
 
-         SetWindowPos(iZOrder,rect,uiSwpFlags);
+         SetWindowPos(iZOrder,rectNew,uiSwpFlags);
 
 #elif defined WINDOWSEX
 
@@ -4427,15 +4427,15 @@ namespace user
    }
 
 
-   index interaction::best_wkspace(LPRECT lprect,LPCRECT lpcrect,bool bSet,UINT uiSwpFlags,int_ptr iZOrder)
+   index interaction::best_wkspace(LPRECT lprect,const RECT & rect,bool bSet,UINT uiSwpFlags,int_ptr iZOrder)
    {
 
       ::rect rectWindow;
 
-      if(lpcrect != NULL && !::IsRectEmpty(lpcrect))
+      if(!::IsRectEmpty(&rect))
       {
 
-         rectWindow = *lpcrect;
+         rectWindow = rect;
 
       }
       else
@@ -4445,11 +4445,11 @@ namespace user
 
       }
 
-      ::rect rect;
+      ::rect rectNew;
 
-      index iMatchingMonitor = session().get_best_monitor(rect,rectWindow);
+      index iMatchingMonitor = session().get_best_monitor(rectNew,rectWindow);
 
-      if(bSet && (lpcrect != NULL || iMatchingMonitor >= 0))
+      if(bSet && (!::IsRectEmpty(&rect) || iMatchingMonitor >= 0))
       {
 #ifdef WINDOWSEX
 
@@ -4485,7 +4485,7 @@ namespace user
 
          session().get_wkspace_rect(iMatchingMonitor,rectWkspace);
 
-         if(lpcrect != NULL)
+         if(!::IsRectEmpty(&rect))
          {
 
             rect.intersect(lpcrect,rectWkspace);
@@ -4536,19 +4536,19 @@ namespace user
    }
 
 
-   index interaction::make_zoneing(LPRECT lprect,LPCRECT lpcrect,bool bSet,::user::EAppearance * peappearance,UINT uiSwpFlags,int_ptr iZOrder)
+   index interaction::make_zoneing(LPRECT lprect,const RECT & rect,bool bSet,::user::EAppearance * peappearance,UINT uiSwpFlags,int_ptr iZOrder)
    {
 
       if(peappearance == NULL || !::user::is_docking_appearance(*peappearance))
       {
 
-         return best_zoneing(lprect,lpcrect,bSet,peappearance,uiSwpFlags,iZOrder);
+         return best_zoneing(lprect,rect,bSet,peappearance,uiSwpFlags,iZOrder);
 
       }
 
       ::rect rectWindow;
 
-      if(lpcrect == NULL)
+      if(IsRectEmpty(&rect))
       {
 
          GetWindowRect(rectWindow);
@@ -4557,15 +4557,15 @@ namespace user
       else
       {
 
-         rectWindow = lpcrect;
+         rectWindow = rect;
 
       }
 
-      ::rect rect;
+      ::rect rectNew;
 
-      index iMatchingMonitor = session().get_zoneing(rect, rectWindow, *peappearance);
+      index iMatchingMonitor = session().get_zoneing(rectNew,rectWindow,*peappearance);
 
-      if(bSet & (lpcrect != NULL || iMatchingMonitor >= 0))
+      if(bSet & (!::IsRectEmpty(&rect) || iMatchingMonitor >= 0))
       {
 #ifdef WINDOWSEX
 
@@ -4586,7 +4586,7 @@ namespace user
 
             ::ShowWindow(get_handle(),SW_RESTORE);
 
-            SetWindowPos(iZOrder,rect,uiSwpFlags);
+            SetWindowPos(iZOrder,rectNew,uiSwpFlags);
 
          }
 
@@ -4600,7 +4600,7 @@ namespace user
 
          session().get_wkspace_rect(iMatchingMonitor,rectWkspace);
 
-         if(lpcrect != NULL)
+         if(!::IsRectEmpty(&rect))
          {
 
             rect.intersect(lpcrect,rectWkspace);
@@ -4650,7 +4650,7 @@ namespace user
 
    }
 
-   index interaction::best_zoneing(LPRECT lprect,LPCRECT lpcrect,bool bSet,::user::EAppearance * peappearance, UINT uiSwpFlags,int_ptr iZOrder)
+   index interaction::best_zoneing(LPRECT lprect,const RECT & rect,bool bSet,::user::EAppearance * peappearance, UINT uiSwpFlags,int_ptr iZOrder)
    {
 
       ::user::EAppearance eappearance;
@@ -4666,10 +4666,10 @@ namespace user
 
       ::rect rectWindow;
 
-      if(lpcrect != NULL && !::IsRectEmpty(lpcrect))
+      if(!::IsRectEmpty(&rect))
       {
 
-         rectWindow = *lpcrect;
+         rectWindow = rect;
 
       }
       else
@@ -4679,11 +4679,11 @@ namespace user
 
       }
 
-      ::rect rect;
+      ::rect rectNew;
 
-      index iMatchingMonitor = session().get_best_zoneing(peappearance, rect,rectWindow);
+      index iMatchingMonitor = session().get_best_zoneing(peappearance,rectNew,rectWindow);
 
-      if(bSet && (lpcrect != NULL || iMatchingMonitor >= 0))
+      if(bSet && (!::IsRectEmpty(&rect) || iMatchingMonitor >= 0))
       {
 #ifdef WINDOWSEX
 
@@ -4704,7 +4704,7 @@ namespace user
 
             ::ShowWindow(get_handle(),SW_RESTORE);
 
-            SetWindowPos(iZOrder,rect,uiSwpFlags);
+            SetWindowPos(iZOrder,rectNew,uiSwpFlags);
 
          }
 
@@ -4718,7 +4718,7 @@ namespace user
 
          session().get_wkspace_rect(iMatchingMonitor,rectWkspace);
 
-         if(lpcrect != NULL)
+         if(!::IsRectEmpty(&rect))
          {
 
             rect.intersect(lpcrect,rectWkspace);
@@ -4769,15 +4769,15 @@ namespace user
    }
 
 
-   index interaction::good_restore(LPRECT lprect,LPCRECT lpcrect,bool bSet,UINT uiSwpFlags,int_ptr iZOrder)
+   index interaction::good_restore(LPRECT lprect,const RECT & rect,bool bSet,UINT uiSwpFlags,int_ptr iZOrder)
    {
 
       ::rect rectWindow;
 
-      if(lpcrect != NULL && !::IsRectEmpty(lpcrect))
+      if(!::IsRectEmpty(&rect))
       {
 
-         rectWindow = *lpcrect;
+         rectWindow = rect;
 
       }
       else
@@ -4787,11 +4787,11 @@ namespace user
 
       }
 
-      ::rect rect;
+      ::rect rectNew;
 
-      index iMatchingMonitor = session().get_good_restore(rect,rectWindow);
+      index iMatchingMonitor = session().get_good_restore(rectNew,rectWindow);
 
-      if(bSet && (lpcrect != NULL || iMatchingMonitor >= 0))
+      if(bSet && (!::IsRectEmpty(&rect) || iMatchingMonitor >= 0))
       {
 #ifdef WINDOWSEX
 
@@ -4809,7 +4809,7 @@ namespace user
 
             ::ShowWindow(get_handle(),SW_RESTORE);
 
-            SetWindowPos(iZOrder,rect,uiSwpFlags);
+            SetWindowPos(iZOrder,rectNew,uiSwpFlags);
 
          }
 
@@ -4866,15 +4866,15 @@ namespace user
    }
 
 
-   index interaction::good_iconify(LPRECT lprect,LPCRECT lpcrect,bool bSet,UINT uiSwpFlags,int_ptr iZOrder)
+   index interaction::good_iconify(LPRECT lprect,const RECT & rect,bool bSet,UINT uiSwpFlags,int_ptr iZOrder)
    {
 
       ::rect rectWindow;
 
-      if(lpcrect != NULL && !::IsRectEmpty(lpcrect))
+      if(!::IsRectEmpty(&rect))
       {
 
-         rectWindow = *lpcrect;
+         rectWindow = rect;
 
       }
       else
@@ -4884,11 +4884,11 @@ namespace user
 
       }
 
-      ::rect rect;
+      ::rect rectNew;
 
-      index iMatchingMonitor = session().get_good_iconify(rect,rectWindow);
+      index iMatchingMonitor = session().get_good_iconify(&rectNew,rectWindow);
 
-      if(bSet && (lpcrect != NULL || iMatchingMonitor >= 0))
+      if(bSet && (!::IsRectEmpty(&rect) || iMatchingMonitor >= 0))
       {
 
 #ifdef WINDOWSEX
@@ -4909,7 +4909,7 @@ namespace user
 
          }
 
-         SetWindowPos(iZOrder,rect,uiSwpFlags);
+         SetWindowPos(iZOrder,rectNew,uiSwpFlags);
 
 
 #elif defined WINDOWSEX
@@ -4951,15 +4951,15 @@ namespace user
    }
 
 
-   index interaction::good_move(LPRECT lprect,LPCRECT lpcrect,UINT uiSwpFlags,int_ptr iZOrder)
+   index interaction::good_move(LPRECT lprect,const RECT & rect,UINT uiSwpFlags,int_ptr iZOrder)
    {
 
       ::rect rectWindow;
 
-      if(lpcrect != NULL && !::IsRectEmpty(lpcrect))
+      if(!::IsRectEmpty(&rect))
       {
 
-         rectWindow = *lpcrect;
+         rectWindow = rect;
 
       }
       else
@@ -4969,14 +4969,14 @@ namespace user
 
       }
 
-      ::rect rect;
+      ::rect rectNew;
 
-      index iMatchingMonitor = session().get_good_move(rect,rectWindow);
+      index iMatchingMonitor = session().get_good_move(rectNew,rectWindow);
 
-      if(lpcrect != NULL || iMatchingMonitor >= 0)
+      if(!::IsRectEmpty(&rect) || iMatchingMonitor >= 0)
       {
 
-         SetWindowPos(iZOrder,rect,uiSwpFlags);
+         SetWindowPos(iZOrder,rectNew,uiSwpFlags);
 
       }
 

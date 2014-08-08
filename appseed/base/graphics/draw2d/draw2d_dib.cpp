@@ -188,8 +188,7 @@ namespace draw2d
 
    bool dib::to(::draw2d::graphics * pgraphics, LPCRECT lpcrect)
    {
-      class rect rect(lpcrect);
-      return to(pgraphics, rect.top_left(), rect.size());
+      return to(pgraphics, ::top_left(lpcrect), ::size(lpcrect));
    }
 
    bool dib::to(::draw2d::graphics * pgraphics, point pt, class size size)
@@ -2747,7 +2746,7 @@ namespace draw2d
       }
    }
 
-   void dib::rotate(dib * pdib, LPCRECT lpcrect, double dAngle, double dScale)
+   void dib::rotate(dib * pdib,LPCRECT lpcrect,double dAngle,double dScale)
    {
       // ::draw2d::dib_sp spdib(allocer());
       //   spdib->Paste(this);

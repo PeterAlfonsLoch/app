@@ -49,7 +49,7 @@ namespace simple_ui
    {
 
       sp(::simple_ui::tap) ptap = canew(::simple_ui::tap(get_app()));
-      ptap->create_window(NULL, this,id);
+      ptap->create_window(null_rect(), this,id);
       ptap->SetWindowText(pszText);
 
       tapa.add(ptap);
@@ -59,7 +59,7 @@ namespace simple_ui
    int32_t message_box::show()
    {
 
-      if(!create_window_ex(0,NULL,NULL,0,NULL,NULL,"fontopus"))
+      if(!create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"fontopus"))
          throw simple_exception(get_app(),"not excepted! Failing Message box!!");
 
       uint32_t uiType = m_uiFlags & MB_TYPEMASK;

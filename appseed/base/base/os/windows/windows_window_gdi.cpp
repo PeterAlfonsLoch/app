@@ -83,10 +83,10 @@ void window_gdi::destroy_window_graphics()
 }
 
 
-void window_gdi::update_window(oswindow interaction_impl, COLORREF * pcolorref, LPCRECT lpcrect, int iStride)
+void window_gdi::update_window(oswindow interaction_impl, COLORREF * pcolorref, const RECT & rect, int iStride)
 {
 
-   if (width(lpcrect) <= 0 || height(lpcrect) <= 0)
+   if (width(rect) <= 0 || height(rect) <= 0)
       return;
 
    if (interaction_impl == NULL)
@@ -127,16 +127,16 @@ void window_gdi::update_window(oswindow interaction_impl, COLORREF * pcolorref, 
 
    RECT rectWindow;
    
-   rectWindow = *lpcrect;
+   rectWindow =rect;
 
    RECT rectOutputClient;
 
-   rectOutputClient = *lpcrect;
+   rectOutputClient = rect;
    
-   rectOutputClient.left   -= lpcrect->left;
-   rectOutputClient.right  -= lpcrect->left;
-   rectOutputClient.top    -= lpcrect->top;
-   rectOutputClient.bottom -= lpcrect->top;
+   rectOutputClient.left   -= rect.left;
+   rectOutputClient.right  -= rect.left;
+   rectOutputClient.top    -= rect.top;
+   rectOutputClient.bottom -= rect.top;
 
    bool bLayered = (::GetWindowLong(interaction_impl, GWL_EXSTYLE) & WS_EX_LAYERED) != 0;
 
@@ -165,9 +165,9 @@ void window_gdi::update_window(oswindow interaction_impl, COLORREF * pcolorref, 
 
       POINT pt;
 
-      pt.x = lpcrect->left;
+      pt.x = rect.left;
       
-      pt.y = lpcrect->top;
+      pt.y = rect.top;
 
       SIZE sz;
 

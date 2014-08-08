@@ -109,18 +109,18 @@ namespace windows
       bool ExecuteDlgInit(LPVOID lpResource);
 
       // for child windows, views, panes etc
-      virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(::user::interaction) puiParent,id id,sp(::create_context) pContext = NULL);
+      virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) puiParent,id id,sp(::create_context) pContext = NULL);
 
       // advanced creation (allows access to extended styles)
-      virtual bool create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(::user::interaction) puiParent,id id,LPVOID lpParam = NULL);
+      virtual bool create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) puiParent,id id,LPVOID lpParam = NULL);
 
       // advanced creation (allows access to extended styles)
-      virtual bool windows_create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,oswindow oswindowParent,id id,LPVOID lpParam = NULL);
+      virtual bool windows_create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,oswindow oswindowParent,id id,LPVOID lpParam = NULL);
 
       virtual bool DestroyWindow();
 
       // special pre-creation and interaction_impl rect adjustment hooks
-      virtual bool pre_create_window(CREATESTRUCT& cs);
+      virtual bool pre_create_window(::user::create_struct& cs);
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0,adjustOutside = 1 };

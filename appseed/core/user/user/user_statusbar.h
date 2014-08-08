@@ -110,7 +110,7 @@ namespace user
       using ::user::control_bar::create_window;
       using ::user::control_bar::create_window_ex;
       virtual bool create_window(sp(::user::interaction) pParentWnd,uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,id nID = "status_bar");
-      virtual bool create_window_ex(sp(::user::interaction) pParentWnd,uint32_t dwCtrlStyle = 0,uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,LPCRECT lpcrect = NULL,id nID = "status_bar");
+      virtual bool create_window_ex(sp(::user::interaction) pParentWnd,uint32_t dwCtrlStyle = 0,uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,const RECT & rect = ::null_rect(),id nID = "status_bar");
       bool SetIndicators(stringa & stra);
 
       void SetBorders(LPCRECT lpRect);
@@ -141,7 +141,7 @@ namespace user
 #endif
 
       virtual size CalcFixedLayout(bool bStretch, bool bHorz);
-      bool pre_create_window(CREATESTRUCT& cs);
+      bool pre_create_window(::user::create_struct& cs);
       //bool AllocElements(int32_t nElements, int32_t cbElement);
       void CalcInsideRect(rect& rect, bool bHorz);
       virtual void OnBarStyleChange(uint32_t dwOldStyle, uint32_t dwNewStyle);

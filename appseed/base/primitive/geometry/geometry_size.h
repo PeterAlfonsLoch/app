@@ -15,6 +15,8 @@ public:
    size(int64_t initCX, int64_t initCY) throw();
    // create from another size
    size(const SIZE * pinitSize) throw();
+   size(const RECT & rect) throw();
+   size(LPCRECT lpcrect) throw();
    size(SIZE initSize) throw();
    size(__size64 initSize) throw();
    size(const __size64 * pinitSize) throw();

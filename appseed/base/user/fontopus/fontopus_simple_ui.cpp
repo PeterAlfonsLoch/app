@@ -57,7 +57,7 @@ namespace fontopus
       if(pcreate->previous())
          return;
 
-      if(!m_login.create_window(NULL, this,"pane_first"))
+      if(!m_login.create_window(null_rect(), this,"pane_first"))
       {
 
          pcreate->set_lresult(-1);
@@ -134,13 +134,10 @@ namespace fontopus
 
 
 
-   string simple_ui::do_fontopus(LPCRECT lprect)
+   string simple_ui::do_fontopus(const RECT & rectParam)
    {
 
       ::user::interaction * puiParent = session().oprop("plugin_parent").cast < ::user::interaction >();
-
-      if(!create_window_ex(0, NULL, NULL, 0, NULL, puiParent, "fontopus"))
-         return "";
 
       ::rect rectDesktop;
 
@@ -150,7 +147,7 @@ namespace fontopus
          puiParent->GetWindowRect(rectDesktop);
 
       }
-      else if (lprect == NULL)
+      else if (IsRectEmpty(&rectParam))
       {
 
          session().get_main_monitor(rectDesktop);
@@ -159,13 +156,9 @@ namespace fontopus
       else
       {
 
-         rectDesktop = *lprect;
+         rectDesktop = rectParam;
 
       }
-
-      SetWindowText( "fontopus Auth Windows");
-
-      m_login.m_peditUser->SetFocus();
 
       rect rectFontopus;
 
@@ -174,23 +167,23 @@ namespace fontopus
       int stdw = 800;
 
       int stdh = 184 + 23 + 184;
-      
+
       int w = stdw;
 
       int h = stdh;
-      
+
       if(w > rectDesktop.width())
       {
-         
+
          w = rectDesktop.width();
-         
+
       }
-      
+
       if(h > rectDesktop.height())
       {
-         
+
          h = rectDesktop.height();
-         
+
       }
 
       rectFontopus.left = rectDesktop.left + (width(rectDesktop) - w) / 2;
@@ -201,10 +194,18 @@ namespace fontopus
       if(puiParent != NULL)
          puiParent->ScreenToClient(rectFontopus);
 
+      if(!create_window_ex(0,NULL,NULL,0,rectFontopus,puiParent,"fontopus"))
+         return "";
+
+      SetWindowText( "fontopus Auth Windows");
+
+      m_login.m_peditUser->SetFocus();
 
       m_login.layout();
 
-      SetWindowPos(ZORDER_TOP, rectFontopus, SWP_SHOWWINDOW);
+      //SetWindowPos(ZORDER_TOP,rectFontopus,SWP_SHOWWINDOW);
+
+
 
       m_login.ShowWindow(SW_NORMAL);
       
@@ -223,7 +224,7 @@ namespace fontopus
    }
 
 
-   string simple_ui::get_cred(LPCRECT lprect, string & strUsername, string & strPassword, string strToken, string strTitle)
+   string simple_ui::get_cred(const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle)
    {
 
       if(strTitle == "ca2")
@@ -243,7 +244,7 @@ namespace fontopus
 
       }
 
-      id idResult = do_fontopus(lprect);
+      id idResult = do_fontopus(rect);
 
       if(idResult == "ok")
       {
@@ -441,7 +442,7 @@ namespace fontopus
 
 
 
-   string CLASS_DECL_BASE get_cred(::base::application * papp, LPCRECT lprect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
+   string CLASS_DECL_BASE get_cred(::base::application * papp,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
 
       ::fontopus::simple_ui ui(papp);
@@ -458,7 +459,7 @@ namespace fontopus
 
       ui.m_login.m_ppassword->SetWindowText("");
 
-      string strResult = ui.get_cred(lprect, strUsername, strPassword, strToken, strTitle);
+      string strResult = ui.get_cred(rect, strUsername, strPassword, strToken, strTitle);
 
       ui.DestroyWindow();
 

@@ -61,12 +61,12 @@ namespace user
    }
 
 
-   bool scroll_bar::create_window(e_orientation eorientation,uint32_t dwStyle,LPCRECT lpcrect,sp(::user::interaction)pParentWnd,UINT nID)
+   bool scroll_bar::create_window(e_orientation eorientation,uint32_t dwStyle,const RECT & rect,sp(::user::interaction)pParentWnd,UINT nID)
    {
 
       m_eorientation = eorientation;
 
-      return ::user::interaction::create_window(NULL, NULL, dwStyle, lpcrect, pParentWnd, nID);
+      return ::user::interaction::create_window(NULL, NULL, dwStyle, rect, pParentWnd, nID);
 
    }
 

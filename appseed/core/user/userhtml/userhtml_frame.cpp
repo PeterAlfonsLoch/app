@@ -67,7 +67,7 @@ void html_frame::_001OnCreate(signal_details * pobj)
 }
 
 
-bool html_frame::pre_create_window(CREATESTRUCT& cs)
+bool html_frame::pre_create_window(::user::create_struct& cs)
 {
 
    if( !simple_frame_window::pre_create_window(cs) )

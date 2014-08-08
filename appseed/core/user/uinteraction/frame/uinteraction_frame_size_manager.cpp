@@ -376,7 +376,7 @@ namespace user
          }
 
 
-         void SizeManager::MoveWindow(sp(::user::interaction)pwnd, LPCRECT lpcrect)
+         void SizeManager::MoveWindow(sp(::user::interaction)pwnd, const RECT & rect)
          {
             m_dwLastSizingTime = get_tick_count();
 

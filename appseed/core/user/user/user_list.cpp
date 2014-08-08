@@ -706,7 +706,7 @@ namespace user
       return m_columna.VisibleGetCount();
    }
 
-   /*bool list::pre_create_window(CREATESTRUCT& cs)
+   /*bool list::pre_create_window(::user::create_struct& cs)
    {
 
    //cs.style |= LVS_NOSCROLL;

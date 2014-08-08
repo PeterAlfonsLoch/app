@@ -163,8 +163,8 @@ namespace user
       virtual rect GetWindowRect();
       virtual rect64 GetWindowRect64();
 
-      virtual bool SetPlacement(LPCRECT lprect,UINT nFlags = SWP_SHOWWINDOW);
-      virtual bool RepositionWindow(LPCRECT lpcrect,UINT nFlags = SWP_SHOWWINDOW);
+      virtual bool SetPlacement(const RECT & lprect,UINT nFlags = SWP_SHOWWINDOW);
+      virtual bool RepositionWindow(const RECT & rect,UINT nFlags = SWP_SHOWWINDOW);
       virtual bool RepositionWindow(int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
       virtual bool MoveWindow(int32_t x,int32_t y,UINT nFlags = SWP_SHOWWINDOW);
       virtual bool MoveWindow(POINT pt,UINT nFlags = SWP_SHOWWINDOW);
@@ -172,7 +172,7 @@ namespace user
       virtual bool SizeWindow(SIZE sz,UINT nFlags = SWP_SHOWWINDOW);
       virtual bool ResizeWindow(int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
       virtual bool ResizeWindow(SIZE sz,UINT nFlags = SWP_SHOWWINDOW);
-      virtual bool SetWindowPos(int32_t z,LPCRECT lpcrect,UINT nFlags = SWP_SHOWWINDOW);
+      virtual bool SetWindowPos(int32_t z,const RECT & rect,UINT nFlags = SWP_SHOWWINDOW);
       virtual bool SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
       virtual bool defer_set_window_pos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags); // only set_windows_pos if GetParent()->ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)      virtual bool set_placement(LPRECT lprect);
       virtual int32_t SetWindowRgn(HRGN hRgn,bool bRedraw);
@@ -212,7 +212,7 @@ namespace user
 
       void Optimize008(
          ::user::oswindow_tree::Array & oswindowtreea,
-         LPCRECT lpcrect);
+         const RECT & rect);
 
       EOptimize Optimize008(
          ::user::oswindow_tree::Array & oswindowtreea,
@@ -320,16 +320,16 @@ namespace user
       //virtual bool SendChildNotifyLastMsg(LRESULT* pResult = NULL);
 
 
-      virtual bool pre_create_window(CREATESTRUCT& cs);
+      virtual bool pre_create_window(::user::create_struct& cs);
 
 
       virtual bool subclass_window(oswindow posdata);
       virtual oswindow unsubclass_window();
 
 
-      virtual bool create_window(LPCRECT lpcrect, sp(interaction)pparent,id id);
-      virtual bool create_window(const char * lpszClassName, const char * lpszWindowName,uint32_t dwStyle, LPCRECT lpcrect, sp(interaction) pParentWnd,id id, sp(::create_context) pContext = NULL);
-      virtual bool create_window_ex(uint32_t dwExStyle,const char * lpszClassName, const char * lpszWindowName,uint32_t dwStyle, LPCRECT lpcrect,  sp(interaction) pParentWnd,id id,LPVOID lpParam = NULL);
+      virtual bool create_window(const RECT & rect, sp(interaction)pparent,id id);
+      virtual bool create_window(const char * lpszClassName, const char * lpszWindowName,uint32_t dwStyle, const RECT & rect, sp(interaction) pParentWnd,id id, sp(::create_context) pContext = NULL);
+      virtual bool create_window_ex(uint32_t dwExStyle,const char * lpszClassName, const char * lpszWindowName,uint32_t dwStyle, const RECT & rect,  sp(interaction) pParentWnd,id id,LPVOID lpParam = NULL);
       enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
       virtual void CalcWindowRect(LPRECT lpClientRect,UINT nAdjustType = adjustBorder);
 

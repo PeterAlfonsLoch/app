@@ -64,7 +64,7 @@ void window_android::destroy()
 }
 
 
-void window_android::update_window(oswindow interaction_impl, COLORREF * pOsBitmapData, LPCRECT lpcrect, int iStride)
+void window_android::update_window(oswindow interaction_impl, COLORREF * pOsBitmapData, const RECT & rect, int iStride)
 {
 
 

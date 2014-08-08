@@ -32,7 +32,7 @@ namespace user
 
                CTool001(sp(::base::application) papp);
 
-               void Update(::draw2d::graphics * pdc, LPCRECT lpcrect,
+               void Update(::draw2d::graphics * pdc, const RECT & rect,
                   COLORREF crHighlight,
                   COLORREF crLight,
                   COLORREF crBody,

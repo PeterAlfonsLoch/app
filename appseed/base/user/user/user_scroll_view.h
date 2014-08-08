@@ -55,7 +55,7 @@ namespace user
       virtual void GetClientRect(LPRECT lprect);
 
       
-      virtual void create_scroll_bar(LPCRECT lpcrect, e_orientation eorientation);
+      virtual void create_scroll_bar(const RECT & rect, e_orientation eorientation);
 
 
       virtual void install_message_handling(::message::dispatch * pinterface);

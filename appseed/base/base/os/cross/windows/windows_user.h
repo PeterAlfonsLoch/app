@@ -1514,8 +1514,127 @@ CLASS_DECL_BASE int_bool TranslateMessage(const MESSAGE * pmsg);
 CLASS_DECL_BASE int_bool DispatchMessage(const MESSAGE * pmsg);
 
 
-CLASS_DECL_BASE int_bool IsRectEmpty(LPCRECT lpcrect);
+CLASS_DECL_BASE int_bool IsRectEmpty(const RECT & rect);
 
 
 
 
+
+
+/*
+* Button Control Styles
+*/
+#define BS_PUSHBUTTON       0x00000000L
+#define BS_DEFPUSHBUTTON    0x00000001L
+#define BS_CHECKBOX         0x00000002L
+#define BS_AUTOCHECKBOX     0x00000003L
+#define BS_RADIOBUTTON      0x00000004L
+#define BS_3STATE           0x00000005L
+#define BS_AUTO3STATE       0x00000006L
+#define BS_GROUPBOX         0x00000007L
+#define BS_USERBUTTON       0x00000008L
+#define BS_AUTORADIOBUTTON  0x00000009L
+#define BS_PUSHBOX          0x0000000AL
+#define BS_OWNERDRAW        0x0000000BL
+#define BS_TYPEMASK         0x0000000FL
+#define BS_LEFTTEXT         0x00000020L
+#if(WINVER >= 0x0400)
+#define BS_TEXT             0x00000000L
+#define BS_ICON             0x00000040L
+#define BS_BITMAP           0x00000080L
+#define BS_LEFT             0x00000100L
+#define BS_RIGHT            0x00000200L
+#define BS_CENTER           0x00000300L
+#define BS_TOP              0x00000400L
+#define BS_BOTTOM           0x00000800L
+#define BS_VCENTER          0x00000C00L
+#define BS_PUSHLIKE         0x00001000L
+#define BS_MULTILINE        0x00002000L
+#define BS_NOTIFY           0x00004000L
+#define BS_FLAT             0x00008000L
+#define BS_RIGHTBUTTON      BS_LEFTTEXT
+#endif /* WINVER >= 0x0400 */
+
+/*
+* User Button Notification Codes
+*/
+#define BN_CLICKED          0
+#define BN_PAINT            1
+#define BN_HILITE           2
+#define BN_UNHILITE         3
+#define BN_DISABLE          4
+#define BN_DOUBLECLICKED    5
+#if(WINVER >= 0x0400)
+#define BN_PUSHED           BN_HILITE
+#define BN_UNPUSHED         BN_UNHILITE
+#define BN_DBLCLK           BN_DOUBLECLICKED
+#define BN_SETFOCUS         6
+#define BN_KILLFOCUS        7
+#endif /* WINVER >= 0x0400 */
+
+/*
+* Button Control Messages
+*/
+#define BM_GETCHECK        0x00F0
+#define BM_SETCHECK        0x00F1
+#define BM_GETSTATE        0x00F2
+#define BM_SETSTATE        0x00F3
+#define BM_SETSTYLE        0x00F4
+#if(WINVER >= 0x0400)
+#define BM_CLICK           0x00F5
+#define BM_GETIMAGE        0x00F6
+#define BM_SETIMAGE        0x00F7
+#endif /* WINVER >= 0x0400 */
+#if(WINVER >= 0x0600)
+#define BM_SETDONTCLICK    0x00F8
+#endif /* WINVER >= 0x0600 */
+
+#if(WINVER >= 0x0400)
+#define BST_UNCHECKED      0x0000
+#define BST_CHECKED        0x0001
+#define BST_INDETERMINATE  0x0002
+#define BST_PUSHED         0x0004
+#define BST_FOCUS          0x0008
+#endif /* WINVER >= 0x0400 */
+
+/*
+* Static Control Constants
+*/
+#define SS_LEFT             0x00000000L
+#define SS_CENTER           0x00000001L
+#define SS_RIGHT            0x00000002L
+#define SS_ICON             0x00000003L
+#define SS_BLACKRECT        0x00000004L
+#define SS_GRAYRECT         0x00000005L
+#define SS_WHITERECT        0x00000006L
+#define SS_BLACKFRAME       0x00000007L
+#define SS_GRAYFRAME        0x00000008L
+#define SS_WHITEFRAME       0x00000009L
+#define SS_USERITEM         0x0000000AL
+#define SS_SIMPLE           0x0000000BL
+#define SS_LEFTNOWORDWRAP   0x0000000CL
+#if(WINVER >= 0x0400)
+#define SS_OWNERDRAW        0x0000000DL
+#define SS_BITMAP           0x0000000EL
+#define SS_ENHMETAFILE      0x0000000FL
+#define SS_ETCHEDHORZ       0x00000010L
+#define SS_ETCHEDVERT       0x00000011L
+#define SS_ETCHEDFRAME      0x00000012L
+#define SS_TYPEMASK         0x0000001FL
+#endif /* WINVER >= 0x0400 */
+#if(WINVER >= 0x0501)
+#define SS_REALSIZECONTROL  0x00000040L
+#endif /* WINVER >= 0x0501 */
+#define SS_NOPREFIX         0x00000080L /* Don't do "&" character translation */
+#if(WINVER >= 0x0400)
+#define SS_NOTIFY           0x00000100L
+#define SS_CENTERIMAGE      0x00000200L
+#define SS_RIGHTJUST        0x00000400L
+#define SS_REALSIZEIMAGE    0x00000800L
+#define SS_SUNKEN           0x00001000L
+#define SS_EDITCONTROL      0x00002000L
+#define SS_ENDELLIPSIS      0x00004000L
+#define SS_PATHELLIPSIS     0x00008000L
+#define SS_WORDELLIPSIS     0x0000C000L
+#define SS_ELLIPSISMASK     0x0000C000L
+#endif /* WINVER >= 0x0400 */

@@ -53,7 +53,7 @@ namespace plugin
 
       virtual host_interaction * create_host_interaction() = 0;
 
-      virtual void set_window_rect(LPCRECT lpcrect);
+      virtual void set_window_rect(const RECT & rect);
 
       virtual bool hist(const char * pszUrl);
       virtual void run_start_install(const char * pszRun);
@@ -63,7 +63,7 @@ namespace plugin
 
       virtual bool os_native_bergedge_start();
 
-      virtual void on_paint(::draw2d::graphics * pgraphics, LPCRECT lprect);
+      virtual void on_paint(::draw2d::graphics * pgraphics,const RECT & lprect);
 
       virtual int32_t  start_ca2_system();
 

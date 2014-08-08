@@ -146,7 +146,7 @@ namespace user
       virtual ~frame_window();
 
 
-      virtual void SetBorderRect(LPCRECT lpcrect);
+      virtual void SetBorderRect(const RECT & rect);
       virtual void GetBorderRect(LPRECT lprect);
       virtual bool _001IsFrameWnd();
 
@@ -178,7 +178,7 @@ namespace user
 
 
       bool LoadAccelTable(const char * lpszResourceName);
-      virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle = WS_OVERLAPPEDWINDOW,LPCRECT lpcrect = NULL,
+      virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle = WS_OVERLAPPEDWINDOW,const RECT & rect = ::null_rect(),
          sp(::user::interaction) pParentWnd = NULL,        // != NULL for popups
          const char * lpszMenuName = NULL,
          uint32_t dwExStyle = 0,
@@ -281,7 +281,7 @@ namespace user
 
 
       void UpdateFrameTitleForDocument(const char * lpszDocName);
-      virtual bool pre_create_window(CREATESTRUCT& cs);
+      virtual bool pre_create_window(::user::create_struct& cs);
       //virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
       virtual void PostNcDestroy();   // default to delete this.
       int32_t OnCreateHelper(LPCREATESTRUCT lpcs, sp(::create_context) pContext);
@@ -375,7 +375,7 @@ namespace user
 
 
       sp(::user::interaction) WindowDataGetWnd();
-      //      virtual bool pre_create_window(CREATESTRUCT& cs);
+      //      virtual bool pre_create_window(::user::create_struct& cs);
 
 
       friend class ::user::interaction;  // for access to m_bModalDisable

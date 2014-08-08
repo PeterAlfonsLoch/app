@@ -115,14 +115,14 @@ namespace user
       if(m_scrollinfo.m_bHScroll)
       {
          if(m_pscrollbarHorz == NULL)
-            create_scroll_bar(NULL, orientation_horizontal);
+            create_scroll_bar(null_rect(), orientation_horizontal);
 
       }
 
       if(m_scrollinfo.m_bVScroll)
       {
          if(m_pscrollbarVert == NULL)
-            create_scroll_bar(NULL, orientation_vertical);
+            create_scroll_bar(null_rect(), orientation_vertical);
       }
 
    }
@@ -396,7 +396,7 @@ namespace user
    }
 
 
-   void scroll_view::create_scroll_bar(LPCRECT lpcrect, e_orientation eorientation)
+   void scroll_view::create_scroll_bar(const RECT & rect, e_orientation eorientation)
    {
 
       if(eorientation == orientation_horizontal)
@@ -412,11 +412,7 @@ namespace user
 
       scroll_bar * pbar = new simple_scroll_bar(get_app());
 
-      ::rect rect;
-
-      rect.null();
-
-      if(!pbar->create_window(eorientation, WS_CHILD | WS_VISIBLE, lpcrect, this, 7000 + eorientation))
+      if(!pbar->create_window(eorientation, WS_CHILD | WS_VISIBLE, null_rect(), this, 7000 + eorientation))
       {
          delete pbar;
          return;

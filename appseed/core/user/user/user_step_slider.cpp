@@ -20,7 +20,7 @@ namespace user
    }
 
 
-   bool step_slider::create_window(LPCRECT lpcrect, sp(::user::interaction) pwndParent, id id)
+   bool step_slider::create_window(const RECT & rect, sp(::user::interaction) pwndParent, id id)
    {
 
       return ::user::interaction::create_window(NULL, NULL, WS_CHILD, lpcrect, pwndParent, id) != FALSE;

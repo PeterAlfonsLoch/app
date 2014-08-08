@@ -39,7 +39,7 @@ public:
    using ::simple_toolbar::create_window;
    bool create_window(sp(::user::interaction) pParentWnd,uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,UINT nID = __IDW_TOOLBAR);
    using ::simple_toolbar::create_window_ex;
-   bool create_window_ex(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle = TBSTYLE_FLAT,uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,LPCRECT lpcrect = NULL,UINT nID = __IDW_TOOLBAR);
+   bool create_window_ex(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle = TBSTYLE_FLAT,uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,const RECT & rect = ::null_rect(),UINT nID = __IDW_TOOLBAR);
 
 
    LRESULT CALLBACK MessageProc(
@@ -51,7 +51,7 @@ public:
    virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
    virtual void pre_translate_message(signal_details * pobj);
    protected:
-   virtual bool pre_create_window(CREATESTRUCT& cs);
+   virtual bool pre_create_window(::user::create_struct& cs);
 
    virtual int32_t _001GetHoverItem();
    virtual void OnUpdateHover();

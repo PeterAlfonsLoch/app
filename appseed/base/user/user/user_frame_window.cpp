@@ -61,9 +61,9 @@ namespace user
    }
 
 
-   void frame_window::SetBorderRect(LPCRECT lpcrect)
+   void frame_window::SetBorderRect(const RECT & rect)
    {
-      UNREFERENCED_PARAMETER(lpcrect);
+      UNREFERENCED_PARAMETER(rect);
    }
 
    /*   ::user::OleFrameHook * frame_window::GetNotifyHook()
@@ -600,7 +600,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // frame_window second phase creation
 
-   bool frame_window::pre_create_window(CREATESTRUCT& cs)
+   bool frame_window::pre_create_window(::user::create_struct& cs)
    {
 
       if (cs.style & FWS_ADDTOTITLE)
@@ -618,14 +618,14 @@ namespace user
 
    }
 
-   bool frame_window::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(::user::interaction) pParentWnd,const char * lpszMenuName,uint32_t dwExStyle,sp(::create_context) pContext)
+   bool frame_window::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,const char * lpszMenuName,uint32_t dwExStyle,sp(::create_context) pContext)
    {
 
       UNREFERENCED_PARAMETER(lpszMenuName);
 
       m_strTitle = lpszWindowName;    // save title for later
 
-      if (!::user::interaction::create_window_ex(dwExStyle, lpszClassName, lpszWindowName, dwStyle, lpcrect, pParentWnd, id(), pContext))
+      if (!::user::interaction::create_window_ex(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id(), pContext))
       {
 
          TRACE(::base::trace::category_AppMsg, 0, "Warning: failed to create frame_window.\n");
@@ -681,8 +681,9 @@ namespace user
       if (pContext != NULL && (pContext->m_user->m_typeinfoNewView || pContext->m_user->m_puiNew != NULL))
       {
          
-         if (::user::impact::s_create_view(pContext, NULL, this, "pane_first") == NULL)
+         if (::user::impact::s_create_view(pContext, null_rect(), this, "pane_first") == NULL)
             return false;
+
       }
 
       return true;
@@ -1832,7 +1833,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // frame_window second phase creation
 
-   //bool frame_window::pre_create_window(CREATESTRUCT& cs)
+   //bool frame_window::pre_create_window(::user::create_struct& cs)
    //{
 
    //   if ((cs.style & FWS_ADDTOTITLE))

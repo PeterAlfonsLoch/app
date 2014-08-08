@@ -51,10 +51,10 @@ namespace geometry
    }
 
 
-   void geometry::RandomPoint(POINT & pt, LPCRECT lpcrect)
+   void geometry::RandomPoint(POINT & pt, const RECT & rect)
    {
-      pt.x = (LONG) System.math().RandRange(lpcrect->left, lpcrect->right);
-      pt.y = (LONG) System.math().RandRange(lpcrect->top, lpcrect->bottom);
+      pt.x = (LONG)System.math().RandRange(rect.left,rect.right);
+      pt.y = (LONG)System.math().RandRange(rect.top,rect.bottom);
    }
 
    //////////////////////////////////////////////////////////////////////

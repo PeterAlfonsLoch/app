@@ -1486,7 +1486,7 @@ namespace backview
       recta.add(rectClient);
    }
 
-   void VisualEffect::Constraint001(point & pt, LPCRECT lpcrect, double & direction)
+   void VisualEffect::Constraint001(point & pt, const RECT & rect, double & direction)
    {
       if(pt.x > lpcrect->right)
       {

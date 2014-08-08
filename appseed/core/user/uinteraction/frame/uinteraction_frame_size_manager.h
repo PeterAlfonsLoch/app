@@ -59,7 +59,7 @@ namespace user
 
 
             void SizeWindow(sp(::user::interaction) pwnd, point pt, bool bTracking);
-            void MoveWindow(sp(::user::interaction) pwnd, LPCRECT lpcrect);
+            void MoveWindow(sp(::user::interaction) pwnd, const RECT & rect);
 
             void message_handler(sp(::user::interaction) pwnd, signal_details * pobj);
          };

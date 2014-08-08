@@ -98,7 +98,7 @@ namespace backview
    GetTransitionEffect().RunStep_();
    }*/
 
-   bool Main::UpdateBuffer(LPCRECT lpcrect)
+   bool Main::UpdateBuffer(const RECT & rect)
    {
       UNREFERENCED_PARAMETER(lpcrect);
       //         GetTransitionEffect().RenderBuffer((rect &) *lpcrect);

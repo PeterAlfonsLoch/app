@@ -242,7 +242,7 @@ namespace user
          }
 
 
-         void appearance::CTool001::Update(::draw2d::graphics * pdc, LPCRECT lpcrect,
+         void appearance::CTool001::Update(::draw2d::graphics * pdc, const RECT & rect,
             COLORREF crHighlight,
             COLORREF crLight,
             COLORREF crBody,

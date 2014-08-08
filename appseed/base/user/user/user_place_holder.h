@@ -21,7 +21,7 @@ namespace user
       virtual ~place_holder();
 
 
-      virtual bool create_window(LPCRECT lpcrect, sp(::user::place_holder_container) pcontainer,id id);
+      virtual bool create_window(const RECT & rect, sp(::user::place_holder_container) pcontainer,id id);
 
       virtual void install_message_handling(::message::dispatch * pdispatch);
 

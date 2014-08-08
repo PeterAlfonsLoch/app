@@ -21,7 +21,7 @@ namespace user
 
 
       virtual void install_message_handling(::message::dispatch * pinterface);
-      virtual bool pre_create_window(CREATESTRUCT& cs);
+      virtual bool pre_create_window(::user::create_struct& cs);
 
       virtual void _001OnNcDraw(::draw2d::graphics * pgraphics);
       virtual void _001OnDraw(::draw2d::graphics * pgraphics);

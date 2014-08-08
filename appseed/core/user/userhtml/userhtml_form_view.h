@@ -23,7 +23,7 @@ public:
    virtual void on_document_complete(const char * pszUrl);
 
    virtual void install_message_handling(::message::dispatch * pinterface);
-   virtual bool pre_create_window(CREATESTRUCT& cs);
+   virtual bool pre_create_window(::user::create_struct& cs);
    virtual void OnDraw(::draw2d::graphics * pgraphics);      // overridden to draw this ::user::impact
    virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
 

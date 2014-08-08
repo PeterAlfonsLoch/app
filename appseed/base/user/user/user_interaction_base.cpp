@@ -830,7 +830,7 @@ namespace user
    }
 
 
-   bool interaction_base::SetPlacement(LPCRECT lpcrect,UINT nFlags)
+   bool interaction_base::SetPlacement(const RECT & rect,UINT nFlags)
    {
 
       throw interface_only_exception(get_app());
@@ -838,7 +838,7 @@ namespace user
    }
 
 
-   bool interaction_base::RepositionWindow(LPCRECT lpcrect,UINT nFlags)
+   bool interaction_base::RepositionWindow(const RECT & rect,UINT nFlags)
    {
 
       throw interface_only_exception(get_app());
@@ -902,7 +902,7 @@ namespace user
    }
 
 
-   bool interaction_base::SetWindowPos(int32_t z,LPCRECT lpcrect,UINT nFlags)
+   bool interaction_base::SetWindowPos(int32_t z,const RECT & rect,UINT nFlags)
    {
 
       throw interface_only_exception(get_app());
@@ -1133,7 +1133,7 @@ namespace user
 #endif
 
 
-   bool interaction_base::create_window(LPCRECT lpcrect,sp(interaction)pparent,id id)
+   bool interaction_base::create_window(const RECT & rect,sp(interaction)pparent,id id)
    {
 
       throw interface_only_exception(get_app());
@@ -1143,7 +1143,7 @@ namespace user
    }
 
 
-   bool interaction_base::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(interaction) pParentWnd,id id,sp(::create_context) pContext)
+   bool interaction_base::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(interaction) pParentWnd,id id,sp(::create_context) pContext)
    {
 
       throw interface_only_exception(get_app());
@@ -1153,7 +1153,7 @@ namespace user
    }
 
 
-   bool interaction_base::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(interaction) pParentWnd,id id,LPVOID lpParam)
+   bool interaction_base::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(interaction) pParentWnd,id id,LPVOID lpParam)
    {
 
       throw interface_only_exception(get_app());
@@ -1694,7 +1694,7 @@ namespace user
 #endif
 
 
-   bool interaction_base::pre_create_window(CREATESTRUCT& cs)
+   bool interaction_base::pre_create_window(::user::create_struct& cs)
    {
 
       throw interface_only_exception(get_app());

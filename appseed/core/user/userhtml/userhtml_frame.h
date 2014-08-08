@@ -17,7 +17,7 @@ public:
    sp(image_list)                m_pimagelist;
    bool m_bTimerOn;
 
-   virtual bool pre_create_window(CREATESTRUCT& cs);
+   virtual bool pre_create_window(::user::create_struct& cs);
    virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg); 
    void ShowControlBars(bool bShow);
    void AnimateStatusBar();

@@ -29,7 +29,7 @@ namespace usermail
       frame(sp(::base::application) papp);
 
 
-      virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+      virtual BOOL PreCreateWindow(::user::create_struct& cs);
       void ShowControlBars(bool bShow);
       void AnimateStatusBar();
       void SetAnimatedStatusBarText(const char * lpcsz);

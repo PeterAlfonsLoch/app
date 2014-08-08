@@ -8,7 +8,7 @@ namespace user
       DestroyWindow();
    }
 
-   bool tool_bar_control::create_window(uint32_t dwStyle,LPCRECT lpcrect,sp(::user::interaction) pParentWnd,
+   bool tool_bar_control::create_window(uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,
       UINT nID)
    {
 

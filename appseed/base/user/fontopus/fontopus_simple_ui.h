@@ -27,9 +27,9 @@ namespace fontopus
       virtual ~simple_ui();
 
 
-      virtual string get_cred(LPCRECT lprect, string & strUsername, string & strPassword, string strToken, string strTitle);
+      virtual string get_cred(const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle);
 
-      virtual string do_fontopus(LPCRECT lprect);
+      virtual string do_fontopus(const RECT & rect);
 
       void install_message_handling(::message::dispatch * pdispatch);
 

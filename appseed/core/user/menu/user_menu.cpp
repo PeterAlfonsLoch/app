@@ -581,7 +581,7 @@ namespace user
    }
 
 
-   bool menu::pre_create_window(CREATESTRUCT& cs)
+   bool menu::pre_create_window(::user::create_struct& cs)
    {
 
       cs.dwExStyle = WS_EX_LAYERED | WS_EX_TOPMOST | WS_EX_TOOLWINDOW;

@@ -166,7 +166,7 @@ namespace hotplugin
    }
 
 
-   void host::on_paint(::draw2d::graphics * pgraphics, LPCRECT lprect)
+   void host::on_paint(::draw2d::graphics * pgraphics,const RECT & lprect)
    {
 
       if(m_pplugin != NULL)
@@ -439,7 +439,7 @@ throw todo(get_thread_app());
    }
 
 
-   void host::set_bitmap(::draw2d::graphics * pgraphics, LPCRECT lprect)
+   void host::set_bitmap(::draw2d::graphics * pgraphics,const RECT & lprect)
    {
 
       ensure_bitmap_data((int32_t)width(lprect), (int32_t)height(lprect), false);
@@ -449,9 +449,9 @@ throw todo(get_thread_app());
 
       synch_lock ml(m_pmutexBitmap);
 
-      m_sizeBitmap.cx = abs(lprect->right - lprect->left);
+      m_sizeBitmap.cx = abs(lprect.right - lprect.left);
 
-      m_sizeBitmap.cy = abs(lprect->bottom - lprect->top);
+      m_sizeBitmap.cy = abs(lprect.bottom - lprect.top);
 
       try
       {
@@ -466,7 +466,7 @@ throw todo(get_thread_app());
 
          //g->create_from_bitmap(b);
 
-         //g.bit_blt(0, 0, m_sizeBitmap.cx, m_sizeBitmap.cy, pgraphics, lprect->left, lprect->top, SRCCOPY);
+         //g.bit_blt(0, 0, m_sizeBitmap.cx, m_sizeBitmap.cy, pgraphics, lprect.left, lprect.top, SRCCOPY);
 
       }
       catch(...)
@@ -479,7 +479,7 @@ throw todo(get_thread_app());
    }
 
 
-   void host::paint_bitmap(::draw2d::graphics * pgraphics, LPCRECT lprect)
+   void host::paint_bitmap(::draw2d::graphics * pgraphics,const RECT & lprect)
    {
 
       ensure_bitmap_data((int32_t)width(lprect), (int32_t)height(lprect), false);
@@ -489,9 +489,9 @@ throw todo(get_thread_app());
 
       synch_lock ml(m_pmutexBitmap);
 
-      m_sizeBitmap.cx = abs(lprect->right - lprect->left);
+      m_sizeBitmap.cx = abs(lprect.right - lprect.left);
 
-      m_sizeBitmap.cy = abs(lprect->bottom - lprect->top);
+      m_sizeBitmap.cy = abs(lprect.bottom - lprect.top);
 
       try
       {
@@ -506,7 +506,7 @@ throw todo(get_thread_app());
 
          //g.create_from_bitmap(b);
 
-         //pgraphics.bit_blt(lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy, g, 0, 0, SRCCOPY);
+         //pgraphics.bit_blt(lprect.left, lprect.top, m_sizeBitmap.cx, m_sizeBitmap.cy, g, 0, 0, SRCCOPY);
 
       }
       catch(...)
@@ -519,7 +519,7 @@ throw todo(get_thread_app());
    }
 
 
-   void host::blend_bitmap(::draw2d::graphics * pgraphics, LPCRECT lprectOut)
+   void host::blend_bitmap(::draw2d::graphics * pgraphics,const RECT & lprectOut)
    {
 
       ::rect rect;
@@ -538,7 +538,7 @@ throw todo(get_thread_app());
       synch_lock ml(m_pmutexBitmap);
 
       //throw todo(get_app());
-      //pgraphics.blend_bitmap_data(lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref);
+      //pgraphics.blend_bitmap_data(lprect.left, lprect.top, m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref);
 
       if (m_dib.is_null())
          m_dib.alloc(allocer());

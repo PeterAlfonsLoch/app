@@ -37,7 +37,7 @@ public:
 #ifdef WINDOWSEX
    virtual void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
 #endif
-   virtual bool pre_create_window(CREATESTRUCT& cs);
+   virtual bool pre_create_window(::user::create_struct& cs);
 
    void SetColorSchema(ColorSchema * pschema);
    void TransitionEffectStart();

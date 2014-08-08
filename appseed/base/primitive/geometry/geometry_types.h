@@ -190,4 +190,12 @@ inline CLASS_DECL_BASE const POINT & top_left(LPCRECT lpcrect)
    return *(const POINT *)lpcrect;
 }
 
+inline CLASS_DECL_BASE const POINT & top_left(const RECT & rect)
+{
+   return ::top_left(&rect);
+}
 
+
+
+
+CLASS_DECL_BASE bool deflate(LPRECT prect,LPCRECT lpcrect);

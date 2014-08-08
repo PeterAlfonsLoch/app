@@ -398,6 +398,15 @@ CLASS_DECL_BASE double height(LPCRECTD lpcrect)
    return lpcrect->bottom - lpcrect->top;
 }
 
+CLASS_DECL_BASE double width(const RECTD & rect)
+{
+   return ::width(&rect);
+}
+
+CLASS_DECL_BASE double height(const RECTD & rect)
+{
+   return ::height(&rect);
+}
 
 
 

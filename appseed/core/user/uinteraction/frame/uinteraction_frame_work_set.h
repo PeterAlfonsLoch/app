@@ -69,7 +69,7 @@ namespace user
             void OnNcCalcSize(LPRECT lprect);
             bool IsEnabled();
             void Enable(bool bEnable);
-            void _000OnBeforeSize(LPCRECT lpcrect);
+            void _000OnBeforeSize(const RECT & rect);
 
             sp(::user::interaction) GetEventWindow();
             sp(::user::interaction) GetRegionWindow();

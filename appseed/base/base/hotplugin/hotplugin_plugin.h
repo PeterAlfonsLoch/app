@@ -120,7 +120,7 @@ namespace hotplugin
 
       virtual int32_t  start_ca2_system();
 
-      virtual void on_paint(::draw2d::graphics * pgraphics, LPCRECT lprect);
+      virtual void on_paint(::draw2d::graphics * pgraphics,const RECT & lprect);
 
       virtual void deferred_prodevian_redraw();
 
@@ -134,11 +134,11 @@ namespace hotplugin
       virtual void message_handler(signal_details * pobj);
 
 
-      virtual void on_bare_paint(::draw2d::graphics * pgraphics, LPCRECT lprect);
+      virtual void on_bare_paint(::draw2d::graphics * pgraphics,const RECT & lprect);
 
-      virtual void on_bare_paint_full_screen(::draw2d::graphics * pgraphics, LPCRECT lprect);
+      virtual void on_bare_paint_full_screen(::draw2d::graphics * pgraphics,const RECT & lprect);
 
-      virtual void on_bare_paint_discreet(::draw2d::graphics * pgraphics, LPCRECT lprect);
+      virtual void on_bare_paint_discreet(::draw2d::graphics * pgraphics,const RECT & lprect);
 
       virtual void start_ca2();
 
@@ -148,7 +148,7 @@ namespace hotplugin
 
       virtual void on_update_progress();
 
-      virtual void on_paint_progress(::draw2d::graphics * pgraphics, LPCRECT lprect);
+      virtual void on_paint_progress(::draw2d::graphics * pgraphics,const RECT & lprect);
 
       virtual double extract_spa_progress_rate();
 

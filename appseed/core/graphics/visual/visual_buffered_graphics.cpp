@@ -13,7 +13,7 @@ namespace visual
 
    }
 
-   void buffered_graphics::Prepare(LPCRECT lpcrect)
+   void buffered_graphics::Prepare(const RECT & rect)
    {
       rect rect(lpcrect);
       m_p->SetViewportOrg(rect.top_left());

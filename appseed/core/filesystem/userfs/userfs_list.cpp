@@ -147,7 +147,7 @@ namespace userfs
 
    }
 
-   bool list::pre_create_window(CREATESTRUCT& cs)
+   bool list::pre_create_window(::user::create_struct& cs)
    {
 
       cs.style |= WS_CLIPCHILDREN;

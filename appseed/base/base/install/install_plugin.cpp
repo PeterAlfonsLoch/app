@@ -529,7 +529,7 @@ namespace install
 
 
 
-   void plugin::on_paint(::draw2d::graphics * pgraphics, LPCRECT lprect)
+   void plugin::on_paint(::draw2d::graphics * pgraphics,const RECT & lprect)
    {
 
 #ifdef METROWIN
@@ -541,7 +541,7 @@ namespace install
       if (!m_bLogin && m_bLogged && !m_bCa2Login && !m_bCa2Logout && !is_installing() && System.install().is_ca2_installed())
       {
 
-         if(ensure_tx(::hotplugin::message_paint, (void *) lprect, sizeof(*lprect)))
+         if(ensure_tx(::hotplugin::message_paint, (void *) &lprect, sizeof(lprect)))
          {
 
             m_phost->blend_bitmap(pgraphics, lprect);
@@ -595,7 +595,7 @@ namespace install
          
          bInstallingCa2 = true;
 
-         m_canvas.on_paint(pgraphics, &rect);
+         m_canvas.on_paint(pgraphics, rect);
 
       }
       else if (!System.install().is_ca2_installed())
@@ -725,7 +725,7 @@ namespace install
    //}
 
 
-   void plugin::on_paint_progress(::draw2d::graphics * pgraphics, LPCRECT lprect)
+   void plugin::on_paint_progress(::draw2d::graphics * pgraphics,const RECT & lprect)
    {
 
       ::hotplugin::plugin::on_paint_progress(pgraphics, lprect);

@@ -96,7 +96,7 @@ void simple_menu_bar::SetMenuID(UINT uiResourceID)
    m_uiResourceID = uiResourceID;
 }
 
-bool simple_menu_bar::pre_create_window(CREATESTRUCT& cs)
+bool simple_menu_bar::pre_create_window(::user::create_struct& cs)
 {
    return simple_toolbar::pre_create_window(cs);
 }
@@ -542,7 +542,7 @@ bool simple_menu_bar::create_window(sp(::user::interaction) pParentWnd, uint32_t
 }
 
 
-bool simple_menu_bar::create_window_ex(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle, uint32_t dwStyle,LPCRECT lpcrect, UINT nID)
+bool simple_menu_bar::create_window_ex(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle, uint32_t dwStyle,const RECT & rect, UINT nID)
 {
    
    ASSERT_VALID(pParentWnd);   // must have a parent

@@ -70,7 +70,7 @@ namespace user
    void buffer::BitBlt(LPRECT lprect, ::draw2d::graphics * pdc)
    {
 
-      pdc->BitBlt(lprect, GetBuffer(), top_left(lprect));
+      pdc->BitBlt(*lprect, GetBuffer(), top_left(lprect));
 
    }
 

@@ -376,7 +376,7 @@ xdisplay d(w->display());
  }
  */
 
-   bool interaction_impl::create_window_ex(DWORD dwExStyle, const char * lpszClassName,const char * lpszWindowName, DWORD dwStyle,LPCRECT lpcrect,oswindow hWndParent, id id, LPVOID lpParam)
+   bool interaction_impl::create_window_ex(DWORD dwExStyle, const char * lpszClassName,const char * lpszWindowName, DWORD dwStyle,const RECT & rect,oswindow hWndParent, id id, LPVOID lpParam)
    {
       UNREFERENCED_PARAMETER(id);
 //      ASSERT(lpszClassName == NULL || __is_valid_string(lpszClassName) ||
@@ -384,7 +384,7 @@ xdisplay d(w->display());
       ENSURE_ARG(lpszWindowName == NULL || __is_valid_string(lpszWindowName));
 
       // allow modification of several common create parameters
-      CREATESTRUCT cs;
+      ::user::create_struct cs;
       cs.dwExStyle = dwExStyle;
       cs.lpszClass = lpszClassName;
       cs.lpszName = lpszWindowName;
@@ -634,7 +634,7 @@ d.unlock();
    }
 
    // for child windows
-   bool interaction_impl::pre_create_window(CREATESTRUCT& cs)
+   bool interaction_impl::pre_create_window(::user::create_struct& cs)
    {
 /*      if (cs.lpszClass == NULL)
       {
@@ -647,7 +647,7 @@ d.unlock();
       return TRUE;
    }
 
-   bool interaction_impl::create_window(const char * lpszClassName,const char * lpszWindowName, DWORD dwStyle,LPCRECT lpcrect,sp(::user::interaction) pParentWnd, id id,sp(::create_context) pContext)
+   bool interaction_impl::create_window(const char * lpszClassName,const char * lpszWindowName, DWORD dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd, id id,sp(::create_context) pContext)
    {
       // can't use for desktop or pop-up windows (use create_window_ex instead)
       ASSERT(pParentWnd != NULL);

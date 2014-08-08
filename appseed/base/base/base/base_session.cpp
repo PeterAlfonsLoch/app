@@ -585,7 +585,7 @@ namespace base
    bool session::wkspace_to_monitor(LPRECT lprect)
    {
       
-      int iWkspace = get_best_wkspace(NULL,lprect);
+      int iWkspace = get_best_wkspace(NULL,rect(lprect));
 
       return wkspace_to_monitor(lprect,iWkspace,iWkspace);
 
@@ -595,7 +595,7 @@ namespace base
    bool session::monitor_to_wkspace(LPRECT lprect)
    {
 
-      int iMonitor = get_best_monitor(NULL, lprect);
+      int iMonitor = get_best_monitor(NULL, rect(lprect));
 
       return monitor_to_wkspace(lprect,iMonitor,iMonitor);
 
@@ -673,14 +673,14 @@ namespace base
    }
 
 
-   index session::initial_frame_position(LPRECT lprect,LPCRECT lpcrect, bool bMove)
+   index session::initial_frame_position(LPRECT lprect,const RECT & rectParam, bool bMove)
    {
 
-      rect rectRestore(lpcrect);
+      rect rectRestore(rectParam);
 
       rect rectMonitor;
 
-      index iMatchingMonitor = get_best_monitor(rectMonitor,lpcrect);
+      index iMatchingMonitor = get_best_monitor(rectMonitor,rectParam);
 
       ::size sizeMin;
 
@@ -695,7 +695,7 @@ namespace base
 
          rect_array rectaIntersect;
 
-         get_monitor(rectaMonitor,rectaIntersect,lpcrect);
+         get_monitor(rectaMonitor,rectaIntersect,rectParam);
 
          rectaIntersect.get_box(rectIntersect);
 
@@ -703,7 +703,7 @@ namespace base
       else
       {
 
-         rectIntersect.intersect(rectMonitor,lpcrect);
+         rectIntersect.intersect(rectMonitor,&rectParam);
 
       }
 
@@ -766,7 +766,7 @@ namespace base
 
    }
 
-   void session::get_monitor(rect_array & rectaMonitor,rect_array & rectaIntersect,LPCRECT lpcrect)
+   void session::get_monitor(rect_array & rectaMonitor,rect_array & rectaIntersect,const RECT & rectParam)
    {
 
       for(index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
@@ -779,7 +779,7 @@ namespace base
          if(get_monitor_rect(iMonitor,rectMonitor))
          {
 
-            if(rectIntersect.top_left_null_intersect(lpcrect,rectMonitor))
+            if(rectIntersect.top_left_null_intersect(&rectParam,rectMonitor))
             {
 
                if(rectIntersect.area() >= 0)
@@ -799,10 +799,10 @@ namespace base
 
    }
 
-   index session::get_zoneing(LPRECT lprect,LPCRECT lpcrect,::user::EAppearance eappearance)
+   index session::get_zoneing(LPRECT lprect,const RECT & rectParam,::user::EAppearance eappearance)
    {
 
-      index iMonitor = get_best_monitor(lprect,lpcrect);
+      index iMonitor = get_best_monitor(lprect,rectParam);
 
       int cx = width(lprect);
       int cy = height(lprect);
@@ -814,7 +814,7 @@ namespace base
 
       }
 
-      if(width(lpcrect) <= 0 || height(lpcrect) <= 0)
+      if(width(rectParam) <= 0 || height(rectParam) <= 0)
       {
 
          return -1;
@@ -866,10 +866,10 @@ namespace base
 
    }
 
-   index session::get_best_zoneing(::user::EAppearance * peappearance, LPRECT lprect,LPCRECT lpcrect)
+   index session::get_best_zoneing(::user::EAppearance * peappearance,LPRECT lprect,const RECT & rectParam)
    {
 
-      index iMonitor = get_best_monitor(lprect,lpcrect);
+      index iMonitor = get_best_monitor(lprect,rectParam);
 
       int cx = width(lprect);
       int cy = height(lprect);
@@ -883,7 +883,7 @@ namespace base
 
       }
 
-      if(width(lpcrect) <= 0 || height(lpcrect) <= 0)
+      if(width(rectParam) <= 0 || height(rectParam) <= 0)
       {
 
          *peappearance = ::user::AppearanceZoomed;
@@ -923,7 +923,7 @@ namespace base
       aa.add(::user::AppearanceBottomRight);
       recta.add_dim(midcx,midcy,midcx,midcy);
 
-      int iFoundAppearance = recta.max_normal_intersect_area(lpcrect,lprect);
+      int iFoundAppearance = recta.max_normal_intersect_area(rectParam,*lprect);
 
       if(iFoundAppearance < 0)
       {
@@ -947,7 +947,7 @@ namespace base
 
    }
 
-   index session::get_best_monitor(LPRECT lprect,LPCRECT lpcrect)
+   index session::get_best_monitor(LPRECT lprect,const RECT & rectParam)
    {
 
       index iMatchingMonitor = -1;
@@ -964,7 +964,7 @@ namespace base
          if(get_monitor_rect(iMonitor,rectMonitor))
          {
 
-            if(rectIntersect.top_left_null_intersect(lpcrect,rectMonitor))
+            if(rectIntersect.top_left_null_intersect(&rectParam,rectMonitor))
             {
 
                if(rectIntersect.area() > iBestArea)
@@ -1005,7 +1005,7 @@ namespace base
    }
 
 
-   index session::get_best_wkspace(LPRECT lprect,LPCRECT lpcrect)
+   index session::get_best_wkspace(LPRECT lprect,const RECT & rectParam)
    {
 
       index iMatchingWkspace = -1;
@@ -1022,7 +1022,7 @@ namespace base
          if(get_wkspace_rect(iWkspace,rectMonitor))
          {
 
-            if(rectIntersect.top_left_null_intersect(lpcrect,rectMonitor))
+            if(rectIntersect.top_left_null_intersect(&rectParam,rectMonitor))
             {
 
                if(rectIntersect.area() > iBestArea)
@@ -1058,20 +1058,20 @@ namespace base
    }
 
 
-   index session::get_good_restore(LPRECT lprect,LPCRECT lpcrect)
+   index session::get_good_restore(LPRECT lprect,const RECT & rectParam)
    {
 
-      return initial_frame_position(lprect,lpcrect, false);
+      return initial_frame_position(lprect,rectParam,false);
 
    }
 
 
-   index session::get_good_iconify(LPRECT lprect,LPCRECT lpcrect)
+   index session::get_good_iconify(LPRECT lprect,const RECT & rectParam)
    {
 
       rect rectMonitor;
 
-      index iMatchingMonitor = get_best_monitor(rectMonitor,lpcrect);
+      index iMatchingMonitor = get_best_monitor(rectMonitor,rectParam);
 
       lprect->left = rectMonitor.left;
       lprect->top = rectMonitor.top;
@@ -1083,12 +1083,12 @@ namespace base
    }
 
 
-   index session::get_good_move(LPRECT lprect,LPCRECT lpcrect)
+   index session::get_good_move(LPRECT lprect,const RECT & rectParam)
    {
 
-      index iMatchingMonitor = initial_frame_position(lprect,lpcrect, true);
+      index iMatchingMonitor = initial_frame_position(lprect,rectParam,true);
 
-      if(memcmp(lprect,lpcrect,sizeof(RECT)))
+      if(memcmp(lprect,&rectParam,sizeof(RECT)))
       {
 
          return iMatchingMonitor;

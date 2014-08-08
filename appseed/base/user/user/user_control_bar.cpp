@@ -71,7 +71,7 @@ namespace user
       m_cyBottomBorder = cyBottom;
    }
 
-   bool control_bar::pre_create_window(CREATESTRUCT& cs)
+   bool control_bar::pre_create_window(::user::create_struct& cs)
    {
       if (!::user::interaction::pre_create_window(cs))
          return FALSE;

@@ -35,7 +35,7 @@ namespace android
       virtual ~window_draw();
 
 
-      bool UpdateBuffer(LPCRECT lpcrect);
+      bool UpdateBuffer(const RECT & rect);
       //void OnPaint(void * hwnd, CPaintDC & spgraphics);
 
       semaphore * TwfGetBufferSemaphore();
@@ -69,27 +69,27 @@ namespace android
 
    /*     EOptimize TwfOptimizeRender2(
          user::oswindow_tree::Array & hwndtreea,
-         LPCRECT lpcrect);
+         const RECT & rect);
 
       EOptimize TwfOptimizeRender2(
          user::oswindow_tree & hwndtree,
-         LPCRECT lpcrect);*/
+         const RECT & rect);*/
 
 
       EOptimize TwfOptimizeRender(
          user::oswindow_tree::Array & hwndtreea,
-         LPCRECT lpcrect);
+         const RECT & rect);
 
       EOptimize TwfOptimizeRender(
          user::oswindow_tree & hwndtree,
-         LPCRECT lpcrect);
+         const RECT & rect);
 
       void TwfGetTopWindow(
          void * hwnd,
          user::oswindow_array & hwnda,
          array < HRGN, HRGN > & hrgna,
          user::oswindow_tree::Array & hwndtreea,
-         LPCRECT lpcrect);
+         const RECT & rect);
 
       bool TwfGetTopWindow(
          void * hwnd,
@@ -114,7 +114,7 @@ namespace android
       EOptimize TwfOptimizeRenderRemoveNextProper(
          user::oswindow_tree::Array & hwndtreea,
          int32_t iIndex,
-         LPCRECT lpcrect);
+         const RECT & rect);
 
       void get_wnda(user::interaction_ptr_array & wndpa);
       void get_wnda(user::oswindow_array & hwnda);

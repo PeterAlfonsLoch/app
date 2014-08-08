@@ -96,12 +96,12 @@ namespace file
       
    }
 
-   void plain_text_output_stream:: write (LPCRECT lpcrect)
+   void plain_text_output_stream:: write (const RECT & rect)
    {
-       write (lpcrect->left);
-       write (lpcrect->top);
-       write (lpcrect->right);
-       write (lpcrect->bottom);
+       write (rect.left);
+       write (rect.top);
+       write (rect.right);
+       write (rect.bottom);
       
    }
 

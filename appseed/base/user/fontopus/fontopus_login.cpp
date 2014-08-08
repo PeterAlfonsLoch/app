@@ -391,11 +391,11 @@ namespace fontopus
       if(pcreate->previous())
          return;
 
-      if(!m_plabelUser->create_window(NULL, this,"label_user")
-         || !m_peditUser->create_window(NULL, this, "edit_user")
-         || !m_plabelPassword->create_window(NULL, this, "label_password")
-         || !m_ppassword->create_window(NULL, this, "password")
-         || !m_ptap->create_window(NULL, this, "submit"))
+      if(!m_plabelUser->create_window(null_rect(), this,"label_user")
+         || !m_peditUser->create_window(null_rect(),this,"edit_user")
+         || !m_plabelPassword->create_window(null_rect(),this,"label_password")
+         || !m_ppassword->create_window(null_rect(),this,"password")
+         || !m_ptap->create_window(null_rect(),this,"submit"))
       {
          pcreate->set_lresult(-1);
          pcreate->m_bRet = true;

@@ -23,7 +23,7 @@ namespace user
 
 
       using ::user::interaction::create_window;
-      bool create_window(uint32_t dwStyle,LPCRECT lpcrect,sp(::user::interaction) pParentWnd,UINT nID);
+      bool create_window(uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,UINT nID);
 
 
       bool IsButtonEnabled(int32_t nID);

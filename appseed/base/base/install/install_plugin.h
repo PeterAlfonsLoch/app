@@ -77,7 +77,7 @@ namespace install
 
       virtual bool plugin_initialize();
 
-      virtual void on_paint(::draw2d::graphics * pgraphics, LPCRECT lprect);
+      virtual void on_paint(::draw2d::graphics * pgraphics, const RECT & lprect);
 
       virtual void on_prepare_memory();
 
@@ -88,7 +88,7 @@ namespace install
       using ::hotplugin::plugin::message_handler;
       virtual void message_handler(signal_details * pobj);
 
-      virtual void on_paint_progress(::draw2d::graphics * pgraphics, LPCRECT lprect);
+      virtual void on_paint_progress(::draw2d::graphics * pgraphics, const RECT & lprect);
 
       virtual double extract_spa_progress_rate();
 

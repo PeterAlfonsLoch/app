@@ -5,7 +5,7 @@ namespace hotplugin
 {
 
 
-   void entry_hall_windows_on_paint(HDC hdc,LPCRECT lpcrect,const string & strEntryHallText)
+   void entry_hall_windows_on_paint(HDC hdc,const RECT & rect,const string & strEntryHallText)
    {
 
       HBRUSH hbrushBack = ::CreateSolidBrush(RGB(184,184,177));
@@ -20,7 +20,7 @@ namespace hotplugin
 
       HPEN hpenOld = (HPEN) ::SelectObject(hdc,hpen);
 
-      ::Rectangle(hdc,lpcrect->left,lpcrect->top,lpcrect->right,lpcrect->bottom);
+      ::Rectangle(hdc,rect.left,rect.top,rect.right,rect.bottom);
 
       int h = 33;
       int m = 49 * 2;
@@ -30,31 +30,31 @@ namespace hotplugin
       int left;
       int right;
 
-      if(height(lpcrect) < h)
+      if(height(rect) < h)
       {
-         top = lpcrect->top;
-         bottom = lpcrect->bottom;
+         top = rect.top;
+         bottom = rect.bottom;
       }
       else
       {
-         top = lpcrect->top + height(lpcrect) / 2 - h / 2;
-         bottom = lpcrect->top + height(lpcrect) / 2 + h / 2;
+         top = rect.top + height(rect) / 2 - h / 2;
+         bottom = rect.top + height(rect) / 2 + h / 2;
       }
 
-      if(width(lpcrect) < m)
+      if(width(rect) < m)
       {
-         left = lpcrect->left;
-         right = lpcrect->right;
+         left = rect.left;
+         right = rect.right;
       }
       else
       {
 
-         left = lpcrect->left + min(m / 2,width(lpcrect) / 2);
-         right = lpcrect->right - min(m / 2,width(lpcrect) / 2);
+         left = rect.left + min(m / 2,width(rect) / 2);
+         right = rect.right - min(m / 2,width(rect) / 2);
 
       }
 
-      rect rectBar(left,top,right,bottom);
+      ::rect rectBar(left,top,right,bottom);
 
       ::SelectObject(hdc,hbrushDark);
 

@@ -48,7 +48,7 @@ namespace user
       using ::user::control_bar::create_window;
       bool create_window(sp(::user::interaction) pParentWnd,uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,UINT nID = __IDW_TOOLBAR);
       using ::user::control_bar::create_window_ex;
-      bool create_window_ex(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle = TBSTYLE_FLAT,uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,LPCRECT lpcrect =NULL, UINT nID = __IDW_TOOLBAR);
+      bool create_window_ex(sp(::user::interaction) pParentWnd, uint32_t dwCtrlStyle = TBSTYLE_FLAT,uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,const RECT & rect = null_rect(), UINT nID = __IDW_TOOLBAR);
 
       void SetSizes(SIZE sizeButton, SIZE sizeImage);
          // button size should be bigger than image

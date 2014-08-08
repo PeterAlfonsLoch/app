@@ -15,7 +15,7 @@ simple_child_frame::~simple_child_frame()
 }
 
 
-bool simple_child_frame::pre_create_window(CREATESTRUCT& cs) 
+bool simple_child_frame::pre_create_window(::user::create_struct& cs) 
 {
    
    cs.style |= WS_CHILD;

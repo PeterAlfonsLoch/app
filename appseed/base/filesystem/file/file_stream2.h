@@ -17,7 +17,7 @@ namespace file
       output_stream2 & operator << (uint16_t ui);
       output_stream2 & operator << (int32_t i);
       output_stream2 & operator << (uint32_t ui);
-      output_stream2 & operator << (LPCRECT lpcrect);
+      output_stream2 & operator << (const RECT & rect);
       output_stream2 & operator << (serializable & serializable);
       output_stream2 & operator << (const char * psz);
       output_stream2 & operator << (const string & str);

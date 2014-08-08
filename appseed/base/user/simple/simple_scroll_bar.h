@@ -33,7 +33,7 @@ public:
 
 
    virtual void pre_translate_message(signal_details * pobj);
-   virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(::user::interaction) pParentWnd,UINT nID,sp(::create_context) pContext = NULL);
+   virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,UINT nID,sp(::create_context) pContext = NULL);
    virtual void install_message_handling(::message::dispatch * pinterface);
 
    virtual void _001OnDraw(::draw2d::graphics * pdc);
@@ -52,7 +52,7 @@ public:
    virtual bool _001GetScrollInfo(::user::scroll_info * psi);
    virtual bool _001SetScrollInfo(::user::scroll_info * psi, bool bRedraw = true);
 
-   bool create_window(e_orientation eorientation,uint32_t dwStyle,LPCRECT lpcrect,sp(::user::interaction) pParentWnd,UINT nID);
+   bool create_window(e_orientation eorientation,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,UINT nID);
 
    int32_t SetTrackingPos(point point);
    int32_t GetTrackSize(size & size);

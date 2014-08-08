@@ -77,7 +77,7 @@ namespace user
 
       bool _TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, sp(::user::interaction) oswindowParent, menu * pmenuParent);
       /*DECL_GEN_SIGNAL(OnMouseProc);*/
-      bool pre_create_window(CREATESTRUCT& cs);
+      bool pre_create_window(::user::create_struct& cs);
       virtual void PostNcDestroy();
       ::user::front_end_schema::menu  * m_pschema;
       virtual void install_message_handling(::message::dispatch * pinterface);

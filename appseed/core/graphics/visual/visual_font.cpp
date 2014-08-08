@@ -27,7 +27,7 @@ namespace visual
       return m_spfont;
    }
 
-   void font::EmbossedTextOut(::draw2d::graphics * pdc, LPCRECT lpcrect, double dRateX, double dHeight, string & str)
+   void font::EmbossedTextOut(::draw2d::graphics * pdc, const RECT & rect, double dRateX, double dHeight, string & str)
    {
 
 
@@ -77,7 +77,7 @@ namespace visual
 
    }
 
-   void font::EmbossedTextOut(::draw2d::graphics * pdc, LPCRECT lpcrect, double dRateX, double dHeight, string & str, LPINT lpiCharsPositions, int32_t iCharsPositions, int32_t iOffset)
+   void font::EmbossedTextOut(::draw2d::graphics * pdc, const RECT & rect, double dRateX, double dHeight, string & str, LPINT lpiCharsPositions, int32_t iCharsPositions, int32_t iOffset)
    {
 
       System.visual().api().EmbossedTextOut(pdc, lpcrect, dRateX, dHeight, str, lpiCharsPositions, iCharsPositions, iOffset);

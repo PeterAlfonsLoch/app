@@ -110,7 +110,7 @@ namespace windows
       if(!::base::copydesk::initialize())
          return false;
 
-      if(!create_window_ex(0, NULL, NULL, 0,NULL, NULL, id()))
+      if(!create_window_ex())
          return false;
 
       return true;

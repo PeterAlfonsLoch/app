@@ -24,7 +24,7 @@ public:
    virtual void _003CustomWindowProc(signal_details * pobj);
 
 
-   virtual bool pre_create_window(CREATESTRUCT& cs);
+   virtual bool pre_create_window(::user::create_struct& cs);
    
 
    virtual void install_message_handling(::message::dispatch * pdispatch);

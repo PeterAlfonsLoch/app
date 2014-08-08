@@ -63,7 +63,7 @@ namespace bergedge
    }
 
 
-   bool view::pre_create_window(CREATESTRUCT& cs)
+   bool view::pre_create_window(::user::create_struct& cs)
    {
       cs.style &= ~WS_EX_CLIENTEDGE;
       return ::user::impact::pre_create_window(cs);
@@ -279,7 +279,7 @@ namespace bergedge
    }
 
 
-   void view::BackViewUpdateScreen(LPCRECT lpcrect, UINT uiRedraw)
+   void view::BackViewUpdateScreen(const RECT & rect, UINT uiRedraw)
    {
       rect rect(lpcrect);
       rect_array recta;

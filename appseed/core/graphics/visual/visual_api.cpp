@@ -236,7 +236,7 @@ namespace visual
    }
 
 
-   void api::EmbossedTextOut(::draw2d::graphics * pdc, LPCRECT lpcrect, double dHeight, double dRateX, const char * psz)
+   void api::EmbossedTextOut(::draw2d::graphics * pdc, const RECT & rect, double dHeight, double dRateX, const char * psz)
    {
          pdc->TextOut(lpcrect->left, lpcrect->top, psz);
          pdc->BeginPath();

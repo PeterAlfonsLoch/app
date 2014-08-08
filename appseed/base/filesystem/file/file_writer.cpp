@@ -191,7 +191,7 @@ namespace file
       throw interface_only_exception(get_app());
    }
 
-   void writer::write (LPCRECT lpcrect)
+   void writer::write (const RECT & rect)
    {
       UNREFERENCED_PARAMETER(lpcrect);
       throw interface_only_exception(get_app());

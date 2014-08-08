@@ -19,14 +19,14 @@ void rect::SetBottomRightSize(int32_t iWidth, int32_t iHeight)
     bottom = top + iHeight;
 }
 
-void rect::ExtendOnCenter(LPCRECT lpcrect)
+void rect::ExtendOnCenter(const RECT & rect)
 {
 
    int32_t cx = width();
    int32_t cy = height();
 
-   double dx = lpcrect->right - lpcrect->left;
-   double dy = lpcrect->bottom - lpcrect->top;
+   double dx = ::width(rect);
+   double dy = ::height(rect);
    double dr = max(dx / cx, dy / cy);
 
    int32_t cw = (int32_t) (cx * dr);
@@ -39,52 +39,52 @@ void rect::ExtendOnCenter(LPCRECT lpcrect)
    
 }
 
-void rect::FitOnCenterOf(LPCRECT lpcrect,SIZE size)
+void rect::FitOnCenterOf(const RECT & rect,SIZE size)
 {
    int32_t cx = size.cx;
    int32_t cy = size.cy;
 
-   double dx = lpcrect->right - lpcrect->left;
-   double dy = lpcrect->bottom - lpcrect->top;
+   double dx = ::width(rect);
+   double dy = ::height(rect);
    double dr = min(cx == 0 ? 1 : dx / cx,cy == 0 ? 1 : dy / cy);
 
    int32_t cw = cx == 0 ? (int32_t)dx : ((int32_t)(cx * dr));
    int32_t ch = cy == 0 ? (int32_t)dy : ((int32_t)(cy * dr));
 
-   left = (LONG)((lpcrect->left) + (dx - cw) / 2.0);
-   top = (LONG)((lpcrect->top) + (dy - ch) / 2.0);
+   left = (LONG)((rect.left) + (dx - cw) / 2.0);
+   top = (LONG)((rect.top) + (dy - ch) / 2.0);
    right = left + cw;
    bottom = top + ch;
 
 }
 
-void rect::FitOnCenterOf(LPCRECT lpcrect)
+void rect::FitOnCenterOf(const RECT & rect)
 {
    
-   FitOnCenterOf(lpcrect,size());
+   FitOnCenterOf(rect,size());
    
 }
 
 
-void rect::CenterOf(LPCRECT lpcrect,SIZE size)
+void rect::CenterOf(const RECT & rect,SIZE size)
 {
    int32_t cx = size.cx;
    int32_t cy = size.cy;
 
-   LONG dx = ::width(lpcrect);
-   LONG dy = ::height(lpcrect);
+   LONG dx = ::width(rect);
+   LONG dy = ::height(rect);
 
-   left     = lpcrect->left   + (dx - cx) / 2;
-   top      = lpcrect->top    + (dy - cy) / 2;
+   left     = rect.left   + (dx - cx) / 2;
+   top      = rect.top    + (dy - cy) / 2;
    right    = left            + cx;
    bottom   = top             + cy;
 
 }
 
-void rect::CenterOf(LPCRECT lpcrect)
+void rect::CenterOf(const RECT & rect)
 {
 
-   CenterOf(lpcrect,size());
+   CenterOf(rect,size());
 
 }
 
@@ -108,51 +108,51 @@ void rect::ScaleHeightAspect(int32_t iNewHeight, int32_t iCenterX, int32_t iCent
    }
 }
 
-void rect::Align(int32_t align, LPCRECT lpcrect)
+void rect::Align(int32_t align, const RECT & rect)
 {
 
    point pt(0, 0);
 
    if((align & AlignH) == AlignHorizontalCenter)
    {
-      pt.x = lpcrect->left + (lpcrect->right - lpcrect->left) / 2 - width() / 2 - left;
+      pt.x = rect.left + (rect.right - rect.left) / 2 - width() / 2 - left;
    }
    else if((align & AlignH) == AlignLeft)
    {
-      pt.x = lpcrect->left - left;
+      pt.x = rect.left - left;
    }
    else if((align & AlignH) == AlignRight)
    {
-      pt.x = lpcrect->right - right;
+      pt.x = rect.right - right;
    }
 
    if((align & AlignV) ==  AlignVerticalCenter)
    {
-      pt.y = lpcrect->top + (lpcrect->bottom - lpcrect->top) / 2 - height() / 2 - top;
+      pt.y = rect.top + (rect.bottom - rect.top) / 2 - height() / 2 - top;
    }
    else if((align & AlignV) == AlignTop)
    {
-      pt.y = lpcrect->top - top;
+      pt.y = rect.top - top;
    }
    else if((align & AlignV) == AlignBottom)
    {
-      pt.y = lpcrect->bottom - bottom;
+      pt.y = rect.bottom - bottom;
    }
 
    offset(pt);
 
 }
 
-void rect::constraint_v5(LPCRECT lpcrect, const class size sizeMin)
+void rect::constraint_v5(const RECT & rect, const class size sizeMin)
 {
-   if(left < lpcrect->left)
-      left = lpcrect->left;
-   if(right > lpcrect->right)
-      right = lpcrect->right;
-   if(top < lpcrect->top)
-      top = lpcrect->top;
-   if(bottom > lpcrect->bottom)
-      bottom = lpcrect->bottom;
+   if(left < rect.left)
+      left = rect.left;
+   if(right > rect.right)
+      right = rect.right;
+   if(top < rect.top)
+      top = rect.top;
+   if(bottom > rect.bottom)
+      bottom = rect.bottom;
 
    if(width() < sizeMin.cx)
       right = left + sizeMin.cx;
@@ -161,21 +161,21 @@ void rect::constraint_v5(LPCRECT lpcrect, const class size sizeMin)
 
 }
 
-void rect::constraint_v7(LPCRECT lpcrect)
+void rect::constraint_v7(const RECT & rect)
 {
 
    ::size size = this->size();
 
-   if(size.cx > ::width(lpcrect))
+   if(size.cx > ::width(rect))
    {
 
-      intersect_x(this,lpcrect);
+      intersect_x(this,&rect);
 
    }
-   else if(intersect_x(this, lpcrect))
+   else if(intersect_x(this, &rect))
    {
 
-      if(left == lpcrect->left)
+      if(left == rect.left)
       {
 
          right = left + size.cx;
@@ -190,16 +190,16 @@ void rect::constraint_v7(LPCRECT lpcrect)
 
    }
 
-   if(size.cy > ::height(lpcrect))
+   if(size.cy > ::height(rect))
    {
 
-      intersect_y(this,lpcrect);
+      intersect_y(this,&rect);
 
    }
-   else if(intersect_y(this,lpcrect))
+   else if(intersect_y(this,&rect))
    {
 
-      if(top == lpcrect->top)
+      if(top == rect.top)
       {
 
          bottom = top + size.cy;
@@ -216,12 +216,12 @@ void rect::constraint_v7(LPCRECT lpcrect)
 
 }
 
-bool rect::contains(LPCRECT lpcrect) const
+bool rect::contains(const RECT & rect) const
 {
-   return lpcrect->left >= left
-      && lpcrect->right <= right
-      && lpcrect->top >= top
-      && lpcrect->bottom <= bottom;
+   return rect.left >= left
+      && rect.right <= right
+      && rect.top >= top
+      && rect.bottom <= bottom;
 }
 
 // Subtract minor from major and return the greatest box around.

@@ -104,15 +104,15 @@ namespace user
 
 
 
-      sp(::user::interaction) create_view(type * info, sp(::user::document) pdoc = NULL, LPCRECT lpcrect = NULL, sp(::user::interaction) pwndParent = NULL, ::id id = ::id(), sp(::user::interaction) pviewLast = NULL);
-      static sp(::user::interaction) s_create_view(type * info,sp(::user::document) pdoc,LPCRECT lpcrect,sp(::user::interaction) pwndParent,id id,sp(::user::interaction) pviewLast = NULL);
-      static sp(::user::interaction) s_create_view(::create_context * pContext,LPCRECT lpcrect,sp(::user::interaction) pwndParent,id id);
+      sp(::user::interaction) create_view(type * info, sp(::user::document) pdoc = NULL, const RECT & rect = ::null_rect(), sp(::user::interaction) pwndParent = NULL, ::id id = ::id(), sp(::user::interaction) pviewLast = NULL);
+      static sp(::user::interaction) s_create_view(type * info,sp(::user::document) pdoc,const RECT & rect,sp(::user::interaction) pwndParent,id id,sp(::user::interaction) pviewLast = NULL);
+      static sp(::user::interaction) s_create_view(::create_context * pContext,const RECT & rect,sp(::user::interaction) pwndParent,id id);
 
       template < class VIEW >
-      sp(VIEW) create_view(::user::document * pdoc = NULL,LPCRECT lpcrect = NULL,sp(::user::interaction) pwndParent = NULL,::id id = ::id(),sp(::user::interaction) pviewLast = NULL);
+      sp(VIEW) create_view(::user::document * pdoc = NULL,const RECT & rect = ::null_rect(),sp(::user::interaction) pwndParent = NULL,::id id = ::id(),sp(::user::interaction) pviewLast = NULL);
 
       template < class VIEW >
-      sp(VIEW) create_view(LPCRECT lpcrect, ::user::interaction * pwndParent,::id id = ::id(),sp(::user::interaction) pviewLast = NULL);
+      sp(VIEW) create_view(const RECT & rect, ::user::interaction * pwndParent,::id id = ::id(),sp(::user::interaction) pviewLast = NULL);
 
       template < class VIEW >
       sp(VIEW) create_view(::user::view_creator_data * pcreatordata, sp(::user::interaction) pviewLast = NULL);
@@ -138,7 +138,7 @@ namespace user
 
       virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
 
-      virtual bool pre_create_window(CREATESTRUCT& cs);
+      virtual bool pre_create_window(::user::create_struct& cs);
       virtual void PostNcDestroy();
 
 
@@ -208,7 +208,7 @@ namespace user
 
       //      virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
 
-      //      virtual bool pre_create_window(CREATESTRUCT& cs);
+      //      virtual bool pre_create_window(::user::create_struct& cs);
 
       DECL_GEN_SIGNAL(_001OnMouseActivate);
          DECL_GEN_SIGNAL(_001OnUpdateSplitCmd);

@@ -41,7 +41,7 @@ void simple_form_list_view::dump(dump_context & dumpcontext) const
 }
 #endif //DEBUG
 
-bool simple_form_list_view::pre_create_window(CREATESTRUCT& cs) 
+bool simple_form_list_view::pre_create_window(::user::create_struct& cs) 
 {
    
    cs.style |= WS_CLIPCHILDREN;

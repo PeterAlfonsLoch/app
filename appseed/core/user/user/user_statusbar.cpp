@@ -51,7 +51,7 @@ namespace user
 
    }
 
-   bool status_bar::create_window_ex(sp(::user::interaction) pParentWnd,uint32_t dwCtrlStyle,uint32_t dwStyle,LPCRECT lpcrect, id strId)
+   bool status_bar::create_window_ex(sp(::user::interaction) pParentWnd,uint32_t dwCtrlStyle,uint32_t dwStyle,const RECT & rect, id strId)
    {
 
       ASSERT_VALID(pParentWnd);   // must have a parent
@@ -69,7 +69,7 @@ namespace user
 
    }
 
-   bool status_bar::pre_create_window(CREATESTRUCT& cs)
+   bool status_bar::pre_create_window(::user::create_struct& cs)
    {
       // in Win4, status bars do not have a border at all, since it is
       //  provided by the client area.

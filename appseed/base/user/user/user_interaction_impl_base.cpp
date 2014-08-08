@@ -54,7 +54,7 @@ namespace user
       if(is_docking_appearance(eappearance))
       {
 
-         m_pui->make_zoneing(NULL, NULL, true, &eappearance);
+         m_pui->make_zoneing(NULL, null_rect(), true, &eappearance);
 
       }
       /*else
@@ -375,18 +375,18 @@ namespace user
    }
 
 
-   bool interaction_impl_base::SetPlacement(LPCRECT lpcrect,UINT nFlags)
+   bool interaction_impl_base::SetPlacement(const RECT & rect,UINT nFlags)
    {
 
-      return m_pui->SetPlacement(lpcrect, nFlags);
+      return m_pui->SetPlacement(rect, nFlags);
 
    }
 
 
-   bool interaction_impl_base::RepositionWindow(LPCRECT lpcrect,UINT nFlags)
+   bool interaction_impl_base::RepositionWindow(const RECT & rect,UINT nFlags)
    {
 
-      return m_pui->RepositionWindow(lpcrect, nFlags);
+      return m_pui->RepositionWindow(rect, nFlags);
 
    }
 
@@ -447,10 +447,10 @@ namespace user
    }
 
 
-   bool interaction_impl_base::SetWindowPos(int32_t z,LPCRECT lpcrect,UINT nFlags)
+   bool interaction_impl_base::SetWindowPos(int32_t z,const RECT & rect,UINT nFlags)
    {
 
-      return m_pui->SetWindowPos(z, lpcrect, nFlags);
+      return m_pui->SetWindowPos(z, rect, nFlags);
 
    }
 

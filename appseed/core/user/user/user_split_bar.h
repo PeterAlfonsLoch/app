@@ -31,8 +31,8 @@ namespace user
       virtual void _001OnDraw(::draw2d::graphics * pdc);
 
       using ::user::interaction::create_window;
-      bool create_window(LPCRECT lpcrect, split_layout * pparent);
-      virtual bool pre_create_window(CREATESTRUCT& cs);
+      bool create_window(const RECT & rect, split_layout * pparent);
+      virtual bool pre_create_window(::user::create_struct& cs);
 
       
       DECL_GEN_SIGNAL(_001OnLButtonDown);

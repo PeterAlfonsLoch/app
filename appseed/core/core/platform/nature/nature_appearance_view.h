@@ -36,7 +36,7 @@ namespace nature
 
       void on_create_view(::user::view_creator_data * pcreatordata);
       virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
-      virtual bool pre_create_window(CREATESTRUCT& cs);
+      virtual bool pre_create_window(::user::create_struct& cs);
       virtual ~appearance_view();
    #ifdef DEBUG
       virtual void assert_valid() const;

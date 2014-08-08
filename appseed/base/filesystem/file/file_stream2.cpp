@@ -49,9 +49,9 @@ namespace file
       return *this;
    }
 
-   output_stream2 & output_stream2::operator << (LPCRECT lpcrect)
+   output_stream2 & output_stream2::operator << (const RECT & rect)
    {
-      output_stream::operator << (lpcrect);
+      output_stream::operator << (rect);
       return *this;
    }
 

@@ -73,7 +73,7 @@ namespace backview
 
       void DeferCheckLayout();
 
-      virtual bool UpdateBuffer(LPCRECT lpcrect);
+      virtual bool UpdateBuffer(const RECT & rect);
 
       virtual void OnAfterImageLoaded();
 

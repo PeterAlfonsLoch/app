@@ -30,7 +30,7 @@ void SimplePushButton::install_message_handling(::message::dispatch * pinterface
 /////////////////////////////////////////////////////////////////////////////
 // SimplePushButton message handlers
 
-bool SimplePushButton::pre_create_window(CREATESTRUCT& cs)
+bool SimplePushButton::pre_create_window(::user::create_struct& cs)
 {
 
 #ifdef WINDOWS

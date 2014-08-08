@@ -45,7 +45,7 @@ namespace backview
          RedrawWindow();
       }
 
-      void interaction::BackViewUpdateScreen(LPCRECT lpcrect, UINT uiRedraw)
+      void interaction::BackViewUpdateScreen(const RECT & rect, UINT uiRedraw)
       {
          UNREFERENCED_PARAMETER(lpcrect);
          UNREFERENCED_PARAMETER(uiRedraw);

@@ -326,7 +326,7 @@ namespace filemanager
    }
 
 
-   bool file_list::pre_create_window(CREATESTRUCT& cs)
+   bool file_list::pre_create_window(::user::create_struct& cs)
    {
 
       cs.style |= WS_CLIPCHILDREN;

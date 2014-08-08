@@ -195,7 +195,7 @@ namespace fontopus
 
       string strPassword;
 
-      if(Application.get_cred(NULL,strUsername,strPassword,"ca2","ca2",m_bInteractive) != "ok")
+      if(Application.get_cred(null_rect(),strUsername,strPassword,"ca2","ca2",m_bInteractive) != "ok")
       {
 
          delete m_puser;

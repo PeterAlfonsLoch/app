@@ -95,7 +95,7 @@ public:
       COLORREF cr);
 
 
-   bool true_blend(::draw2d::graphics * pdc, LPCRECT lpcrect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork = NULL, ::draw2d::dib * pdibWork2 = NULL, ::draw2d::dib * pdibWork3 = NULL);
+   bool true_blend(::draw2d::graphics * pdc, const RECT & rect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork = NULL, ::draw2d::dib * pdibWork2 = NULL, ::draw2d::dib * pdibWork3 = NULL);
 
    bool blur(::draw2d::graphics * pdcDst, point ptDst, size size, ::draw2d::graphics * pdcSrc, point ptSrc, int32_t iRadius);
 
@@ -113,22 +113,22 @@ public:
       int32_t w3);
 
 
-   bool color_blend(::draw2d::graphics * pdc, LPCRECT lpcrect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork = NULL);
+   bool color_blend(::draw2d::graphics * pdc, const RECT & rect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork = NULL);
 
-   bool color_blend(::draw2d::graphics * pdc, LPCRECT lpcrect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, double dBlend);
+   bool color_blend(::draw2d::graphics * pdc, const RECT & rect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, double dBlend);
    bool color_blend(::draw2d::graphics * pdc, point pt, size size, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, double dBlend);
 
    bool color_blend(::draw2d::graphics * pdc, int32_t x, int32_t y, int32_t cx, int32_t cy, COLORREF cr, BYTE bAlpha);
    bool color_blend(::draw2d::graphics * pdc, point pt, size size, COLORREF cr, BYTE alpha);
-   bool color_blend(::draw2d::graphics * pdc, LPCRECT lpcrect, COLORREF cr, BYTE alpha);
+   bool color_blend(::draw2d::graphics * pdc, const RECT & rect, COLORREF cr, BYTE alpha);
    bool color_blend(::draw2d::graphics * pdc,   const __rect64 * lpcrect, COLORREF cr,   BYTE alpha);
 
    bool clip_color_blend(::draw2d::graphics * pdc, point pt, size size, COLORREF cr, BYTE alpha);
-   bool clip_color_blend(::draw2d::graphics * pdc, LPCRECT lpcrect, COLORREF cr, BYTE alpha);
+   bool clip_color_blend(::draw2d::graphics * pdc, const RECT & rect, COLORREF cr, BYTE alpha);
 
 /*
    bool clip_color_blend(::draw2d::graphics * pdc, point pt, size size, COLORREF cr, BYTE alpha, ::draw2d::region * prgnClip);
-   bool clip_color_blend(::draw2d::graphics * pdc, LPCRECT lpcrect, COLORREF cr, BYTE alpha, ::draw2d::region * prgnClip);
+   bool clip_color_blend(::draw2d::graphics * pdc, const RECT & rect, COLORREF cr, BYTE alpha, ::draw2d::region * prgnClip);
 */
 
 
@@ -158,21 +158,21 @@ public:
       ::draw2d::bitmap * pbitmap,
       ::draw2d::bitmap * pbitmapOld,
       BITMAP * pbmp,
-      LPCRECT lpcrect);
+      const RECT & rect);
 
    bool ClipRestore(
       ::draw2d::graphics * pdc,
       ::draw2d::bitmap * pbitmap,
       ::draw2d::bitmap * pbitmapOld,
       BITMAP * pbmp,
-      LPCRECT lpcrect);
+      const RECT & rect);
 
    bool ClipSave(
       ::draw2d::graphics * pdc,
       ::draw2d::bitmap * pbitmap,
       ::draw2d::bitmap * pbitmapOld,
       BITMAP * pbmp,
-      LPCRECT lpcrect,
+      const RECT & rect,
       ::draw2d::region * prgnClip);
 
    bool ClipRestore(
@@ -180,7 +180,7 @@ public:
       ::draw2d::bitmap * pbitmap,
       ::draw2d::bitmap * pbitmapOld,
       BITMAP * pbmp,
-      LPCRECT lpcrect,
+      const RECT & rect,
       ::draw2d::region * prgnClip);
 
 */
@@ -191,7 +191,7 @@ public:
       BITMAPINFO & bmi,
       primitive::memory & memomrystorage,
       ::draw2d::bitmap * pbitmap,
-      LPCRECT lpcrect,
+      const RECT & rect,
       int32_t & iWidth,
       UINT & uiStartScanLine,
       UINT & uiScanLineCount,
@@ -218,7 +218,7 @@ public:
       ::draw2d::graphics * pgraphics,
       ::draw2d::bitmap * pbitmap,
       ::draw2d::bitmap * pbitmapMask,
-      LPCRECT lpcrect,
+      const RECT & rect,
       COLORREF crTransparent);
 
    bool GrayVRCP(
@@ -281,7 +281,7 @@ public:
       int32_t wSrc,
       BYTE bAlpha);
 
-   virtual bool color_blend_3dRect(::draw2d::graphics * pdc, LPCRECT lpcrect, COLORREF crTopLeft, BYTE bAlphaTopLeft, COLORREF crBottomRight, BYTE bAlphaBottomRight);
+   virtual bool color_blend_3dRect(::draw2d::graphics * pdc, const RECT & rect, COLORREF crTopLeft, BYTE bAlphaTopLeft, COLORREF crBottomRight, BYTE bAlphaBottomRight);
 
    virtual bool ColorInvert(::draw2d::graphics * pdc, int32_t x, int32_t y, int32_t cx, int32_t cy);
 

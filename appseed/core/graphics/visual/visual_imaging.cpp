@@ -750,7 +750,7 @@ bool imaging::GrayVRCP(
    ::draw2d::graphics * pdc,
    ::draw2d::bitmap * pbitmap,
    ::draw2d::bitmap * pbitmapMask,
-   LPCRECT lpcrect,
+   const RECT & rect,
    COLORREF crTransparent)
 {
 
@@ -1261,7 +1261,7 @@ bool imaging::GetDeviceContext24BitsCC(
    BITMAPINFO & bmi,
    primitive::memory & memorystorage,
    ::draw2d::bitmap * pbitmap,
-   LPCRECT lpcrect,
+   const RECT & rect,
    int32_t &iWidthParam,
    UINT & uiStartScanLineParam,
    UINT & uiScanLineCountParam,
@@ -2615,7 +2615,7 @@ bool imaging::LoadImageSync(::draw2d::dib * pdib, const char * lpcszImageFilePat
 }
 
 
-bool imaging::color_blend_3dRect(::draw2d::graphics *pdc, LPCRECT lpcrect, COLORREF crTopLeft, BYTE bAlphaTopLeft, COLORREF crBottomRight, BYTE bAlphaBottomRight)
+bool imaging::color_blend_3dRect(::draw2d::graphics *pdc, const RECT & rect, COLORREF crTopLeft, BYTE bAlphaTopLeft, COLORREF crBottomRight, BYTE bAlphaBottomRight)
 {
    rect rect(lpcrect);
    int32_t x = rect.left;
@@ -2631,7 +2631,7 @@ bool imaging::color_blend_3dRect(::draw2d::graphics *pdc, LPCRECT lpcrect, COLOR
 
 bool imaging::clip_color_blend(
    ::draw2d::graphics * pdc,
-   LPCRECT lpcrect,
+   const RECT & rect,
    COLORREF cr,
    BYTE alpha)
 {
@@ -2656,7 +2656,7 @@ bool imaging::clip_color_blend(::draw2d::graphics * pdc, point pt, size size, CO
 
 /*
 
-bool imaging::clip_color_blend(::draw2d::graphics * pdc, LPCRECT lpcrect, COLORREF cr, BYTE alpha, ::draw2d::region * prgnClip)
+bool imaging::clip_color_blend(::draw2d::graphics * pdc, const RECT & rect, COLORREF cr, BYTE alpha, ::draw2d::region * prgnClip)
 {
 
    class rect rect(lpcrect);
@@ -2717,7 +2717,7 @@ bool imaging::color_blend(
 
 bool imaging::color_blend(
    ::draw2d::graphics * pdc,
-   LPCRECT lpcrect,
+   const RECT & rect,
    COLORREF cr,
    BYTE alpha)
 {
@@ -2757,7 +2757,7 @@ bool imaging::ClipSave(
    ::draw2d::bitmap * pbitmap,
    ::draw2d::bitmap * pbitmapOld,
    BITMAP * pbmp,
-   LPCRECT lpcrect,
+   const RECT & rect,
    ::draw2d::region * prgnClip)
 {
 
@@ -2879,7 +2879,7 @@ bool imaging::ClipRestore(
    ::draw2d::bitmap * pbitmap,
    ::draw2d::bitmap * pbitmapOld,
    BITMAP * pbmp,
-   LPCRECT lpcrect,
+   const RECT & rect,
    ::draw2d::region * prgnClip)
 {
    UNREFERENCED_PARAMETER(pbitmapOld);
@@ -3007,7 +3007,7 @@ bool imaging::ClipSave(
    ::draw2d::bitmap * pbitmap,
    ::draw2d::bitmap * pbitmapOld,
    BITMAP * pbmp,
-   LPCRECT lpcrect)
+   const RECT & rect)
 {
 
    if(pdc == NULL)
@@ -3048,7 +3048,7 @@ bool imaging::ClipRestore(
    ::draw2d::bitmap * pbitmap,
    ::draw2d::bitmap * pbitmapOld,
    BITMAP * pbmp,
-   LPCRECT lpcrect)
+   const RECT & rect)
 {
    if(pdc == NULL)
       return false;
@@ -4324,7 +4324,7 @@ bool imaging::channel_gray_blur_32CC(::draw2d::dib * pdibDst, ::draw2d::dib * pd
 
 
 
-bool imaging::color_blend(::draw2d::graphics * pdc, LPCRECT lpcrect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork)
+bool imaging::color_blend(::draw2d::graphics * pdc, const RECT & rect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork)
 {
 
    return pdc->BitBlt(lpcrect->left, lpcrect->top, width(lpcrect), height(lpcrect), pdcColorAlpha, ptAlpha.x, ptAlpha.y, SRCCOPY);
@@ -4332,7 +4332,7 @@ bool imaging::color_blend(::draw2d::graphics * pdc, LPCRECT lpcrect, ::draw2d::g
 }
 
 
-bool imaging::true_blend(::draw2d::graphics * pdc, LPCRECT lpcrect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork, ::draw2d::dib * pdibWork2, ::draw2d::dib * pdibWork3)
+bool imaging::true_blend(::draw2d::graphics * pdc, const RECT & rect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork, ::draw2d::dib * pdibWork2, ::draw2d::dib * pdibWork3)
 {
 
    return pdc->BitBlt(lpcrect->left, lpcrect->top, width(lpcrect), height(lpcrect), pdcColorAlpha, ptAlpha.x, ptAlpha.y, SRCCOPY);
@@ -4394,7 +4394,7 @@ bool imaging::color_blend(::draw2d::graphics * pdc, point pt, size size, ::draw2
 }
 
 
-bool imaging::color_blend(::draw2d::graphics * pdc, LPCRECT lpcrect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, double dBlend)
+bool imaging::color_blend(::draw2d::graphics * pdc, const RECT & rect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, double dBlend)
 {
    class rect rect(lpcrect);
    return color_blend(pdc, rect.top_left(), rect.size(), pdcColorAlpha, ptAlpha, dBlend);

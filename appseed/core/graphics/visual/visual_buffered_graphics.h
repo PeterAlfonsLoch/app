@@ -19,7 +19,7 @@ namespace visual
       virtual ~buffered_graphics();
 
 
-      void Prepare(LPCRECT lpcrect);
+      void Prepare(const RECT & rect);
 
 
    };

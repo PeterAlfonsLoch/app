@@ -888,7 +888,7 @@ int32_t WINAPI MessageBoxA_x11(oswindow hWnd, const char * lpText, const char * 
 
 /*
 
-void message_box_show_dib_data(COLORREF * pcolorref, LPCRECT lpcrect, const char * lpText, const char * lpCaption)
+void message_box_show_dib_data(COLORREF * pcolorref, const RECT & rect, const char * lpText, const char * lpCaption)
 {
 
 	Window rootwin;

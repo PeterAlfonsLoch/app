@@ -12,7 +12,7 @@ public:
 
    
    virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg); 
-   virtual bool pre_create_window(CREATESTRUCT& cs);
+   virtual bool pre_create_window(::user::create_struct& cs);
 
 
    virtual bool get_translucency(::user::ETranslucency & etranslucency);

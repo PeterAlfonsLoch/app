@@ -191,15 +191,15 @@ namespace windows
    }
 
    
-   bool interaction_impl::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,sp(::user::interaction) puiParent,id id,LPVOID lpParam)
+   bool interaction_impl::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) puiParent,id id,LPVOID lpParam)
    {
 
-      return windows_create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,lpcrect,(oswindow) (puiParent.is_null() ? NULL : puiParent->get_handle()),id,lpParam);
+      return windows_create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rect,(oswindow) (puiParent.is_null() ? NULL : puiParent->get_handle()),id,lpParam);
 
    }
 
 
-   bool interaction_impl::windows_create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lpcrect,oswindow oswindowParent,id id,LPVOID lpParam)
+   bool interaction_impl::windows_create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,oswindow oswindowParent,id id,LPVOID lpParam)
    {
 
       //::simple_message_box(NULL,"h1","h1",MB_OK);
@@ -209,7 +209,7 @@ namespace windows
       ENSURE_ARG(lpszWindowName == NULL || __is_valid_string(lpszWindowName));
 
       // allow modification of several common create parameters
-      CREATESTRUCT cs;
+      ::user::create_struct cs;
       cs.dwExStyle = dwExStyle;
 
 
@@ -218,24 +218,10 @@ namespace windows
       cs.lpszName = lpszWindowName;
       cs.style = dwStyle;
 
-      if(lpcrect == NULL)
-      {
-
-         cs.x = 0;
-         cs.y = 0;
-         cs.cx = 0;
-         cs.cy = 0;
-
-      }
-      else
-      {
-
-         cs.x = lpcrect->left;
-         cs.y = lpcrect->top;
-         cs.cx = width(lpcrect);
-         cs.cy = height(lpcrect);
-
-      }
+      cs.x = rect.left;
+      cs.y = rect.top;
+      cs.cx = width(rect);
+      cs.cy = height(rect);
 
       cs.hwndParent = oswindowParent;
       //   cs.hMenu = oswindow_Parent == NULL ? NULL : nIDorHMenu;
@@ -343,7 +329,7 @@ namespace windows
 
 
    // for child windows
-   bool interaction_impl::pre_create_window(CREATESTRUCT& cs)
+   bool interaction_impl::pre_create_window(::user::create_struct& cs)
    {
 
       return true;
@@ -351,13 +337,15 @@ namespace windows
    }
 
 
-   bool interaction_impl::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,LPCRECT lprect,sp(::user::interaction) pParentWnd,id id,sp(::create_context) pContext)
+   bool interaction_impl::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,id id,sp(::create_context) pContext)
    {
+
       // can't use for desktop or pop-up windows (use create_window_ex instead)
       ASSERT(pParentWnd != NULL);
       ASSERT((dwStyle & WS_POPUP) == 0);
 
-      return create_window_ex(0,lpszClassName,lpszWindowName,dwStyle | WS_CHILD,lprect,pParentWnd,id,(LPVOID)pContext);
+      return create_window_ex(0,lpszClassName,lpszWindowName,dwStyle | WS_CHILD,rect,pParentWnd,id,(LPVOID)pContext);
+
    }
 
 
@@ -371,7 +359,7 @@ namespace windows
 
       }
 
-      if(!windows_create_window_ex(0,NULL,pszName,WS_CHILD,NULL,HWND_MESSAGE,0,NULL))
+      if(!windows_create_window_ex(0,NULL,pszName,WS_CHILD,null_rect(),HWND_MESSAGE,0,NULL))
       {
 
          return false;

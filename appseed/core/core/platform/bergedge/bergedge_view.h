@@ -68,7 +68,7 @@ namespace bergedge
       virtual void pre_translate_message(signal_details * pobj);
 
       virtual void install_message_handling(::message::dispatch * pinterface);
-      virtual bool pre_create_window(CREATESTRUCT& cs);
+      virtual bool pre_create_window(::user::create_struct& cs);
       virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
 
       sp(::user::document) get_document();
@@ -80,7 +80,7 @@ namespace bergedge
       DECL_GEN_SIGNAL(_001OnInitialUpdate);
 
       bool UpdateScreen(rect_array & recta, UINT uiRedraw);
-      void BackViewUpdateScreen(LPCRECT lpcrect, UINT uiRedraw);
+      void BackViewUpdateScreen(const RECT & rect, UINT uiRedraw);
       void BackViewUpdateScreen(rect_array & recta, UINT uiRedraw);
       void BackViewUpdateScreen();
       void BackViewGetData(::backview::InterfaceData & data);

@@ -52,8 +52,8 @@ public:
    COLORREF * m_pdata;
    COLORREF * m_pdataZero;
    canvas_zero();
-   void prepare(HDC hdc, LPCRECT lpcrect);
-   void on_paint(::draw2d::graphics * pgraphics, LPCRECT lpcrect);
+   void prepare(HDC hdc, const RECT & rect);
+   void on_paint(::draw2d::graphics * pgraphics, const RECT & rect);
    virtual void zero(HDC hdc, POINT pt, int32_t iSize, int32_t iStep);
 };
 
@@ -71,7 +71,7 @@ int32_t canvas::increment_mode()
 
 }
 
-void canvas::on_paint(::draw2d::graphics * pgraphics, LPCRECT lpcrect)
+void canvas::on_paint(::draw2d::graphics * pgraphics, const RECT & rectParam)
 {
    int32_t iMode = m_iMode;
 #ifdef SUPORTA_TELA_AVANCADA
@@ -79,7 +79,7 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, LPCRECT lpcrect)
    #endif
 
    static string s_strLastStatus;
-   RECT rect = *lpcrect;
+   RECT rect = rectParam;
 //   int32_t cx = lpcrect->right - lpcrect->left;
 //   int32_t cy = lpcrect->bottom - lpcrect->top;
 //   int32_t iThankYouHeight = 30;
@@ -118,7 +118,7 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, LPCRECT lpcrect)
 
       pgraphics->SelectObject(brush);
 
-      pgraphics->Rectangle(lpcrect);
+      pgraphics->Rectangle(rectParam);
 
    }
    SIZE size = pgraphics->GetTextExtent("CCpp");
@@ -418,7 +418,7 @@ canvas_zero::canvas_zero()
    m_iLast = 0;
 }
 
-void canvas_zero::prepare(HDC hdc, LPCRECT lpcrect)
+void canvas_zero::prepare(HDC hdc, const RECT & rect)
 {
    m_rect.left    = lpcrect->left;
    m_rect.top     = lpcrect->top;
@@ -461,7 +461,7 @@ void canvas_zero::prepare(HDC hdc, LPCRECT lpcrect)
 
 }
 
-void canvas_zero::on_paint(simple_graphics & gPaint, LPCRECT lpcrect)
+void canvas_zero::on_paint(simple_graphics & gPaint, const RECT & rect)
 {
    HDC hdc = m_hdc;
 

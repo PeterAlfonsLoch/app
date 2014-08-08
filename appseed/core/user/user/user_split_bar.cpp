@@ -25,7 +25,7 @@ namespace user
    }
 
 
-   bool split_bar::create_window(LPCRECT lpcrect, split_layout * pparent)
+   bool split_bar::create_window(const RECT & rect, split_layout * pparent)
    {
       
       m_pparent = pparent;
@@ -65,7 +65,7 @@ namespace user
    }
 
 
-   bool split_bar::pre_create_window(CREATESTRUCT& cs)
+   bool split_bar::pre_create_window(::user::create_struct& cs)
    {
       cs.style &= ~WS_BORDER;
 

@@ -89,16 +89,16 @@ namespace android
       bool ExecuteDlgInit(LPVOID lpResource);
 
       // for child windows, views, panes etc
-      virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,DWORD dwStyle,LPCRECT lpcrect,sp(::user::interaction) pParentWnd, id id,sp(::create_context) pContext = NULL);
+      virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,DWORD dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd, id id,sp(::create_context) pContext = NULL);
 
       // advanced creation (allows access to extended styles)
-      virtual bool create_window_ex(DWORD dwExStyle, const char * lpszClassName,const char * lpszWindowName, DWORD dwStyle,LPCRECT lpcrect,oswindow hWndParent, id id, LPVOID lpParam = NULL);
+      virtual bool create_window_ex(DWORD dwExStyle, const char * lpszClassName,const char * lpszWindowName, DWORD dwStyle,const RECT & rect,oswindow hWndParent, id id, LPVOID lpParam = NULL);
 
 
       virtual bool DestroyWindow();
 
       // special pre-creation and ::user::interaction rect adjustment hooks
-      virtual bool pre_create_window(CREATESTRUCT& cs);
+      virtual bool pre_create_window(::user::create_struct& cs);
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };

@@ -96,7 +96,7 @@ bool simple_toolbar::create(sp(::user::interaction) pParentWnd, uint32_t dwStyle
 }
 
 
-bool simple_toolbar::create_window_ex(sp(::user::interaction) pParentWnd,uint32_t dwCtrlStyle,uint32_t dwStyle,LPCRECT lpcrect, id nID)
+bool simple_toolbar::create_window_ex(sp(::user::interaction) pParentWnd,uint32_t dwCtrlStyle,uint32_t dwStyle,const RECT & rect, id nID)
 {
 
    ASSERT_VALID(pParentWnd);   // must have a parent

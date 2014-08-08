@@ -12,7 +12,7 @@ public:
 
    virtual sp(::user::interaction) OnDrawInterfaceGetWnd();
 
-   virtual bool pre_create_window(CREATESTRUCT& cs);
+   virtual bool pre_create_window(::user::create_struct& cs);
    virtual void pre_subclass_window();
 
    bool remove_item(int32_t iItem);

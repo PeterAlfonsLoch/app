@@ -589,7 +589,7 @@ bool XfplayerViewLine::to(
 /*void XfplayerViewLine::CalcCharsPositions(
 ::draw2d::graphics * pdcForeground,
    primitive_array < visual::font *> * pFonts,
-   LPCRECT lpcrect)
+   const RECT & rect)
 {
    m_bCacheEmboss = false;
    //visual::font * pFont;
@@ -1132,7 +1132,7 @@ int32_t XfplayerViewLine::SetLyricColors(COLORREF crLeft, COLORREF crRight)
 
 }
 
-void XfplayerViewLine::SetPlacement(LPCRECT lpcrect)
+void XfplayerViewLine::SetPlacement(const RECT & rect)
 {
    m_iLeft        = lpcrect->left;
    m_iTop         = lpcrect->top;
@@ -1151,7 +1151,7 @@ void XfplayerViewLine::AddVmsFont(visual::font * pfont)
    m_fonts.add(pfont);
 }*/
 
-void XfplayerViewLine::Invalidate(LPCRECT lpcrect)
+void XfplayerViewLine::Invalidate(const RECT & rect)
 {
    rect rectPlacement;
    GetPlacement(rectPlacement);
@@ -1169,7 +1169,7 @@ void XfplayerViewLine::Invalidate(LPCRECT lpcrect)
 
 }
 
-void XfplayerViewLine::Validate(LPCRECT lpcrect)
+void XfplayerViewLine::Validate(const RECT & rect)
 {
    rect rectPlacement;
    GetPlacement(rectPlacement);

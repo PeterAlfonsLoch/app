@@ -35,7 +35,7 @@ namespace user
       virtual bool _001SetScrollInfo(scroll_info * psi, bool bRedraw = true) = 0;
 
 
-      virtual bool create_window(e_orientation eorientation,uint32_t dwStyle,LPCRECT lpcrect,sp(::user::interaction) pParentWnd,UINT nID);
+      virtual bool create_window(e_orientation eorientation,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,UINT nID);
 
       virtual void send_scroll_message(UINT nSBCode);
 

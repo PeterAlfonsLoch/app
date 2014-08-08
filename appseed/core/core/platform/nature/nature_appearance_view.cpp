@@ -87,7 +87,7 @@ namespace nature
          return;
    }
 
-   bool appearance_view::pre_create_window(CREATESTRUCT& cs)
+   bool appearance_view::pre_create_window(::user::create_struct& cs)
    {
       cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 

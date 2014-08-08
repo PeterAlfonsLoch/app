@@ -128,10 +128,10 @@ namespace user
    }
 
 
-   bool place_holder::create_window(LPCRECT lpcrect, sp(::user::place_holder_container) pcontainer,id id)
+   bool place_holder::create_window(const RECT & rect, sp(::user::place_holder_container) pcontainer,id id)
    {
 
-      return ::user::interaction::create_window(NULL, NULL, WS_VISIBLE | WS_CHILD /*__WS_DEFAULT_VIEW*/, lpcrect, pcontainer, id) != FALSE;
+      return ::user::interaction::create_window(NULL, NULL, WS_VISIBLE | WS_CHILD /*__WS_DEFAULT_VIEW*/, rect, pcontainer, id) != FALSE;
 
    }
 

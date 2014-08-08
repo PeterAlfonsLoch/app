@@ -320,7 +320,7 @@ namespace user
 
 
 
-   bool combo_list::pre_create_window(CREATESTRUCT & cs)
+   bool combo_list::pre_create_window(::user::create_struct & cs)
    {
 
       if (cs.style & WS_BORDER)

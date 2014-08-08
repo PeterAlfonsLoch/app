@@ -187,7 +187,7 @@ namespace user
 
 
       virtual void pre_translate_message(signal_details * pobj);
-      virtual bool pre_create_window(CREATESTRUCT& cs);
+      virtual bool pre_create_window(::user::create_struct& cs);
       virtual void PostNcDestroy();
 
       virtual void DoPaint(::draw2d::graphics * pgraphics);
