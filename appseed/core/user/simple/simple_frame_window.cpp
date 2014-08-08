@@ -176,6 +176,25 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 #endif
    }
 
+#ifdef WINDOWSEX
+   if(GetParent() == NULL)
+   {
+      //http://www.cplusplus.com/forum/general/28470/
+      //blackcoder41 (1426)  Sep 12, 2010 at 2:43pm
+      //hIconSm = (HICON)LoadImage(NULL, "menu_two.ico", IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+      HICON hicon;
+      hicon = (HICON)LoadImage(NULL,Application.dir().matter(m_pdocumenttemplate->m_strMatter,"icon.ico"),IMAGE_ICON,16,16,LR_LOADFROMFILE);
+      if(hicon != NULL)
+      {
+         SendMessage(get_handle(),(UINT)WM_SETICON,ICON_SMALL,(LPARAM)hicon);
+      }
+      hicon = (HICON)LoadImage(NULL,Application.dir().matter(m_pdocumenttemplate->m_strMatter, "icon.ico"),IMAGE_ICON,48,48,LR_LOADFROMFILE);
+      if(hicon != NULL)
+      {
+         SendMessage(get_handle(),(UINT)WM_SETICON,ICON_BIG,(LPARAM)hicon);
+      }
+   }
+#endif
 
    if (m_bWindowFrame)
    {

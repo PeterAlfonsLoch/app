@@ -4,11 +4,34 @@
 namespace filemanager
 {
 
+   
+   class CLASS_DECL_CORE full_browse :
+      virtual public ::thread
+   {
+   public:
+
+
+      manager *            m_pmanager;
+      string               m_strPath;
+      ::action::context    m_actioncontext;
+
+
+      full_browse(sp(::base::application) papp);
+      virtual ~full_browse();
+
+      virtual int32_t run();
+
+
+   };
+
 
    class CLASS_DECL_CORE manager :
       virtual public ::userfs::document
    {
    public:
+
+
+
 
 
       sp(::filemanager::data)       m_spfilemanagerdata;
@@ -87,6 +110,10 @@ namespace filemanager
       bool set_filemanager_data(::filemanager::data * pdata);
 
       virtual bool on_create_bars(simple_frame_window * pframe);
+
+
+      virtual void start_full_browse(const string & strPath, ::action::context actioncontext);
+      virtual void full_browse(full_browse * pbrowse);
 
    };
 

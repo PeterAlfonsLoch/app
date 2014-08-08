@@ -242,29 +242,50 @@ namespace filemanager
    /////////////////////////////////////////////////////////////////////////////
    // manager commands
 
+
+   void manager::start_full_browse(const string & strPath, ::action::context actioncontext)
+   {
+
+      ::filemanager::full_browse * pbrowse = new ::filemanager::full_browse(get_app());
+
+      pbrowse->m_pmanager = this;
+
+      pbrowse->m_strPath = strPath;
+
+      pbrowse->m_actioncontext = actioncontext;
+
+      pbrowse->begin();
+
+   }
+
+
+   void manager::full_browse(::filemanager::full_browse * pbrowse)
+   {
+
+      browse(pbrowse->m_strPath,pbrowse->m_actioncontext);
+
+      update_hint uh;
+      uh.set_type(update_hint::TypeSynchronizePath);
+      uh.m_actioncontext = ::action::source::sync(pbrowse->m_actioncontext);
+      uh.m_strPath = pbrowse->m_strPath;
+      update_all_views(NULL,0,&uh);
+
+   }
+
    void manager::OnFileManagerBrowse(::action::context actioncontext)
    {
 
       string strPath = m_item->m_strPath;
 
-      browse(strPath,actioncontext);
-
-      {
-         update_hint uh;
-         uh.set_type(update_hint::TypeSynchronizePath);
-         uh.m_actioncontext = ::action::source::sync(actioncontext);
-         uh.m_strPath = strPath;
-         update_all_views(NULL,0,&uh);
-      }
-
+      start_full_browse(strPath, actioncontext);
 
       if(actioncontext.is_user_source())
       {
 
-         if(::str::begins(m_item->m_strPath,"uifs://")
-            || ::str::begins(m_item->m_strPath,"fs://"))
+         if(::str::begins(strPath,"uifs://")
+            || ::str::begins(strPath,"fs://"))
          {
-            data_set(".local://InitialBrowsePath",::base::system::idEmpty,m_item->m_strPath);
+            data_set(".local://InitialBrowsePath",::base::system::idEmpty,strPath);
          }
          else
          {
@@ -278,7 +299,7 @@ namespace filemanager
 #endif
 
             data_set(".local://InitialBrowsePath",::base::system::idEmpty,"machinefs://");
-            data_set(".local://InitialBrowsePath",idMachine,m_item->m_strPath);
+            data_set(".local://InitialBrowsePath",idMachine,strPath);
 
          }
 
@@ -695,6 +716,27 @@ namespace filemanager
 
    }
 
+   full_browse::full_browse(sp(::base::application) papp):
+      element(papp),
+      thread(papp)
+   {
+
+   }
+
+
+   full_browse::~full_browse()
+   {
+
+   }
+
+   int32_t full_browse::run()
+   {
+
+      m_pmanager->full_browse(this);
+
+      return 0;
+
+   }
 
 
 } // namespace filemanager
