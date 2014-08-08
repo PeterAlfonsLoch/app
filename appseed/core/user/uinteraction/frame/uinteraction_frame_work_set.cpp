@@ -176,13 +176,13 @@ namespace user
 
          bool WorkSet::IsDockingEnabled()
          {
-            return m_bDockingEnabled && !IsFullScreen() && GetAppearance() == ::user::AppearanceZoomed;
+            return m_bDockingEnabled && !IsFullScreen() && GetAppearance() != ::user::AppearanceZoomed;
          }
 
 
          bool WorkSet::IsMovingEnabled()
          {
-            return m_bMovingEnabled && !IsFullScreen() && GetAppearance() == ::user::AppearanceZoomed;
+            return m_bMovingEnabled && !IsFullScreen() && GetAppearance() != ::user::AppearanceZoomed;
          }
 
          bool WorkSet::IsSizingEnabled()
@@ -727,11 +727,6 @@ namespace user
 
          }
 
-
-         void WorkSet::EnableDock(bool bEnable)
-         {
-            m_bDockEnable = bEnable;
-         }
 
          void WorkSet::OnDock()
          {

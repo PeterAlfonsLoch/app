@@ -33,6 +33,7 @@ namespace user
             UINT                       m_uiSWPFlags;
             uint32_t                   m_dwPaintDelay;
             ::user::EAppearance        m_eappearanceOrigin;
+            size                       m_sizeOrigin;
 
 
             DockManager(WorkSet * pworkset);
