@@ -644,6 +644,12 @@ bool rect::intersect_y(LPCRECT lpRect1,LPCRECT lpRect2) throw()
 }
 bool rect::intersect(LPCRECT lpRect1,LPCRECT lpRect2) throw()
    { return ::IntersectRect(this, lpRect1, lpRect2) != FALSE;}
+rect rect::intersect(LPCRECT lpcrect) const throw()
+{
+   ::rect rect(*this);
+   rect.intersect(lpcrect);
+   return rect;
+}
 bool rect::null_intersect(LPCRECT lpRect1,LPCRECT lpRect2) throw()
 {
    return ::null_intersect_rect(this,lpRect1,lpRect2) != FALSE;

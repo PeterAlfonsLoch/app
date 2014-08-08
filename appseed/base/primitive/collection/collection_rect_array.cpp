@@ -64,3 +64,60 @@ void rect_array::add(LPCRECT lpcrect)
 {
    array < rect >::add(rect(*lpcrect));
 }
+
+
+void rect_array::add(int left,int top,int right,int bottom)
+{
+   array < rect >::add(rect(left, top, right, bottom));
+}
+
+
+void rect_array::add_dim(int x,int y,int cx,int cy)
+{
+   array < rect >::add(rect_dim(x, y, cx, cy));
+}
+
+
+void rect_array::add(POINT pt, SIZE sz)
+{
+   array < rect >::add(rect(pt, sz));
+}
+
+
+index rect_array::max_normal_intersect_area(LPCRECT lpcrect,LPCRECT lpcrectModel)
+{
+
+   int64_t iArea;
+   int64_t iAreaMax = 0;
+   index iFound = -1;
+   rect rect;
+   int64_t iModelArea = width(lpcrectModel) * height(lpcrectModel);
+
+   if(iModelArea == 0)
+      return -1;
+
+   for(index i = 0; i < get_count(); i++)
+   {
+
+      if(rect.intersect(lpcrect,element_at(i)))
+      {
+
+         iArea = rect.area() * element_at(i).area() / iModelArea;
+
+         if(iArea > iAreaMax)
+         {
+
+            iFound = i;
+
+            iAreaMax = iArea;
+
+         }
+
+
+      }
+
+   }
+
+   return iFound;
+
+}

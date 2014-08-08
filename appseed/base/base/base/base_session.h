@@ -178,6 +178,7 @@ namespace base
 
       virtual void  get_monitor(rect_array & rectaMonitor, rect_array & rectaIntersect, LPCRECT lpcrect);
 
+      virtual index get_best_zoneing(::user::EAppearance * peappearance, LPRECT lprect,LPCRECT lpcrect);
       virtual index get_best_monitor(LPRECT lprect,LPCRECT lpcrect);
       virtual index get_best_wkspace(LPRECT lprect,LPCRECT lpcrect);
       virtual index get_good_restore(LPRECT lprect,LPCRECT lpcrect);

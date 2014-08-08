@@ -800,6 +800,87 @@ namespace base
    }
 
 
+   index session::get_best_zoneing(::user::EAppearance * peappearance, LPRECT lprect,LPCRECT lpcrect)
+   {
+
+      index iMonitor = get_best_monitor(lprect,lpcrect);
+
+      int cx = width(lprect);
+      int cy = height(lprect);
+
+      if(cx <= 0 || cy <= 0)
+      {
+
+         *peappearance = ::user::AppearanceZoomed;
+
+         return iMonitor;
+
+      }
+
+      if(width(lpcrect) <= 0 || height(lpcrect) <= 0)
+      {
+
+         *peappearance = ::user::AppearanceZoomed;
+
+         return iMonitor;
+
+      }
+
+
+      int midcx = cx / 2;
+      int midcy = cy / 2;
+
+      rect_array recta;
+      array < ::user::EAppearance > aa;
+
+      aa.add(::user::AppearanceTop);
+      recta.add_dim(0,0,cx,midcy);
+
+      aa.add(::user::AppearanceLeft);
+      recta.add_dim(0,0,midcx,cy);
+
+      aa.add(::user::AppearanceRight);
+      recta.add_dim(midcx,0, midcx, cy);
+
+      aa.add(::user::AppearanceBottom);
+      recta.add_dim(0,midcy,cx,midcy);
+
+      aa.add(::user::AppearanceTopLeft);
+      recta.add_dim(0,0,midcx,midcy);
+
+      aa.add(::user::AppearanceTopRight);
+      recta.add_dim(midcx,0,midcx,midcy);
+
+      aa.add(::user::AppearanceBottomLeft);
+      recta.add_dim(0,midcy,midcx,midcy);
+
+      aa.add(::user::AppearanceBottomRight);
+      recta.add_dim(midcx,midcy,midcx,midcy);
+
+      int iFoundAppearance = recta.max_normal_intersect_area(lpcrect,lprect);
+
+      if(iFoundAppearance < 0)
+      {
+
+         *peappearance = ::user::AppearanceZoomed;
+
+         return iMonitor;
+
+      }
+
+      if(lprect != NULL)
+      {
+
+         *lprect = recta[iFoundAppearance];
+
+      }
+
+      *peappearance = aa[iFoundAppearance];
+
+      return iMonitor;
+
+   }
+
    index session::get_best_monitor(LPRECT lprect,LPCRECT lpcrect)
    {
 

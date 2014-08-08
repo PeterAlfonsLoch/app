@@ -4527,6 +4527,125 @@ namespace user
    }
 
 
+   index interaction::best_zoneing(LPRECT lprect,LPCRECT lpcrect,bool bSet,::user::EAppearance * peappearance, UINT uiSwpFlags,int_ptr iZOrder)
+   {
+
+      ::user::EAppearance eappearance;
+
+      if(peappearance == NULL)
+      {
+
+         peappearance = &eappearance;
+
+      }
+
+      *peappearance = get_appearance();
+
+      ::rect rectWindow;
+
+      if(lpcrect != NULL && !::IsRectEmpty(lpcrect))
+      {
+
+         rectWindow = *lpcrect;
+
+      }
+      else
+      {
+
+         GetWindowRect(rectWindow);
+
+      }
+
+      ::rect rect;
+
+      index iMatchingMonitor = session().get_best_zoneing(peappearance, rect,rectWindow);
+
+      if(bSet && (lpcrect != NULL || iMatchingMonitor >= 0))
+      {
+#ifdef WINDOWSEX
+
+
+         synch_lock slUserMutex(&user_mutex());
+
+         set_appearance(*peappearance);
+
+         {
+
+            keep < bool > keepLockWindowUpdate(&m_bLockWindowUpdate,true,false,true);
+
+            keep < bool > keepIgnoreSizeEvent(&m_pimpl->m_bIgnoreSizeEvent,true,false,true);
+
+            keep < bool > keepIgnoreMoveEvent(&m_pimpl->m_bIgnoreMoveEvent,true,false,true);
+
+            keep < bool > keepDisableSaveWindowRect(&m_bEnableSaveWindowRect,false,m_bEnableSaveWindowRect,true);
+
+            ::ShowWindow(get_handle(),SW_MAXIMIZE);
+
+            SetWindowPos(iZOrder,rect,uiSwpFlags);
+
+         }
+
+         send_message(WM_SIZE);
+
+         send_message(WM_MOVE);
+
+#elif defined WINDOWSEX
+
+         ::rect rectWkspace;
+
+         session().get_wkspace_rect(iMatchingMonitor,rectWkspace);
+
+         if(lpcrect != NULL)
+         {
+
+            rect.intersect(lpcrect,rectWkspace);
+
+         }
+         else
+         {
+
+            rect = rectWkspace;
+
+         }
+
+
+         WINDOWPLACEMENT wp;
+
+         GetWindowPlacement(&wp);
+
+         wp.showCmd = SW_MAXIMIZE;
+
+         wp.flags = 0;
+
+         session().monitor_to_wkspace(rect);
+
+         wp.rcNormalPosition = rectWkspace;
+
+         //wp.ptMaxPosition = rectWkspace.top_left();
+
+         SetWindowPlacement(&wp);
+
+#else
+
+
+         SetWindowPos(iZOrder,rect,uiSwpFlags);
+
+#endif
+
+      }
+
+      if(lprect != NULL)
+      {
+
+         *lprect = rect;
+
+      }
+
+      return iMatchingMonitor;
+
+   }
+
+
    index interaction::good_restore(LPRECT lprect,LPCRECT lpcrect,bool bSet,UINT uiSwpFlags,int_ptr iZOrder)
    {
 

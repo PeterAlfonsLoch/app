@@ -50,13 +50,36 @@ namespace user
    void interaction_impl_base::_001WindowMaximize()
    {
 
-      m_pui->set_appearance(AppearanceZoomed);
+      if(m_pui->get_appearance() == ::user::AppearanceLeft
+         || m_pui->get_appearance() == ::user::AppearanceTop
+         || m_pui->get_appearance() == ::user::AppearanceRight
+         || m_pui->get_appearance() == ::user::AppearanceBottom
+         || m_pui->get_appearance() == ::user::AppearanceTopLeft
+         || m_pui->get_appearance() == ::user::AppearanceTopRight
+         || m_pui->get_appearance() == ::user::AppearanceBottomRight
+         || m_pui->get_appearance() == ::user::AppearanceBottomLeft)
+      {
 
-      rect rectNormal;
+         m_pui->set_appearance(AppearanceZoomed);
+      
+         rect rectNormal;
 
-      m_pui->get_rect_normal(rectNormal);
+         m_pui->get_rect_normal(rectNormal);
 
-      m_pui->best_wkspace(NULL, rectNormal,true);
+         m_pui->best_wkspace(NULL,rectNormal,true);
+
+      }
+      else
+      {
+
+         rect rectNormal;
+
+         m_pui->get_rect_normal(rectNormal);
+
+         m_pui->best_zoneing(NULL,rectNormal,true);
+
+      }
+
 
    }
 

@@ -9,8 +9,16 @@ namespace user
    {
 
       AppearanceNone,
-      AppearanceNormal,
       AppearanceIconic,
+      AppearanceNormal,
+      AppearanceLeft,
+      AppearanceTop,
+      AppearanceRight,
+      AppearanceBottom,
+      AppearanceTopLeft,
+      AppearanceTopRight,
+      AppearanceBottomLeft,
+      AppearanceBottomRight,
       AppearanceZoomed,
       AppearanceFullScreen,
       AppearanceNotifyIcon,

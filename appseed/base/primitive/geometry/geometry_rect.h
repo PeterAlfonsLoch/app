@@ -108,6 +108,7 @@ public:
    bool intersect_x(LPCRECT lpRect1,LPCRECT lpRect2) throw();
    bool intersect_y(LPCRECT lpRect1,LPCRECT lpRect2) throw();
    bool intersect(LPCRECT lpRect1, LPCRECT lpRect2) throw();
+   rect intersect(LPCRECT lpRect2) const throw();
 
    bool null_intersect(LPCRECT lpRect1,LPCRECT lpRect2) throw();
 
