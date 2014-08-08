@@ -11,6 +11,8 @@ namespace user
 
    class interaction_impl_base;
 
+   CLASS_DECL_BASE bool is_docking_appearance(::user::EAppearance eappearance);
+
 
    class CLASS_DECL_BASE interaction:
       virtual public interaction_base,
@@ -156,6 +158,7 @@ namespace user
       virtual void _001WindowMaximize();
       virtual void _001WindowFullScreen();
       virtual void _001WindowRestore();
+      virtual void _001WindowDock(::user::EAppearance eappearance);
 
       using ::user::interaction_base::GetWindowRect;
       virtual void GetClientRect(LPRECT lprect);
@@ -575,6 +578,7 @@ namespace user
 
       virtual sp(::user::interaction) best_top_level_parent(LPRECT lprect);
 
+      virtual index make_zoneing(LPRECT lprect,LPCRECT lpcrect=NULL,bool bSet = false,::user::EAppearance * peappearance = NULL,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
       virtual index best_zoneing(LPRECT lprect,LPCRECT lpcrect=NULL,bool bSet = false,::user::EAppearance * peappearance = NULL,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
       virtual index best_monitor(LPRECT lprect,LPCRECT lpcrect=NULL,bool bSet = false,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
       virtual index best_wkspace(LPRECT lprect,LPCRECT lpcrect=NULL,bool bSet = false,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);

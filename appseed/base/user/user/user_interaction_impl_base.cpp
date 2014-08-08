@@ -46,7 +46,30 @@ namespace user
 
    }
 
+   void interaction_impl_base::_001WindowDock(::user::EAppearance eappearance)
+   {
 
+      ASSERT(is_docking_appearance(eappearance));
+
+      if(is_docking_appearance(eappearance))
+      {
+
+         m_pui->make_zoneing(NULL, NULL, true, &eappearance);
+
+      }
+      /*else
+      {
+
+      rect rectNormal;
+
+      m_pui->GetWindowRect(rectNormal);
+
+      m_pui->best_zoneing(NULL,rectNormal,true);
+
+      }*/
+
+
+   }
    void interaction_impl_base::_001WindowMaximize()
    {
 

@@ -390,7 +390,8 @@ namespace user
 
             if (pappearance->IsIconic()
                || pappearance->IsFullScreen()
-               || pappearance->IsZoomed())
+               || pappearance->IsZoomed()
+               || pappearance->IsDocked())
             {
                rect.right = rect.left - m_iButtonMargin;
                rect.left = rect.right - iButtonSize;

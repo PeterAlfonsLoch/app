@@ -141,6 +141,12 @@ namespace user
 
          }
 
+         bool appearance::IsDocked()
+         {
+
+            return ::user::is_docking_appearance(GetAppearance());
+
+         }
 
          bool appearance::IsFullScreen()
          {

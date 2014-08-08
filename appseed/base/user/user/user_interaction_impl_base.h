@@ -26,6 +26,7 @@ namespace user
       virtual void _001WindowMaximize();
       virtual void _001WindowFullScreen();
       virtual void _001WindowRestore();
+      virtual void _001WindowDock(::user::EAppearance eappearance);
 
       virtual void RepositionBars(UINT nIDFirst,UINT nIDLast,id nIdLeftOver,UINT nFlags,LPRECT lpRectParam,LPCRECT lpRectClient,bool bStretch);
 

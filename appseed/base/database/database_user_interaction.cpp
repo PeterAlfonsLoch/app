@@ -187,6 +187,12 @@ namespace database
 
             memstream >> bIconic;
 
+            int iAppearance = 0;
+
+            memstream >> iAppearance;
+
+            ::user::EAppearance eappearance = (::user::EAppearance) iAppearance;
+
             rect rectWindow;
 
             memstream >> rectWindow;
@@ -216,6 +222,12 @@ namespace database
                   pwindow->set_appearance(::user::AppearanceIconic);
 
                   pwindow->good_iconify(NULL,rectWindow,true);
+
+               }
+               else if(::user::is_docking_appearance(eappearance))
+               {
+
+                  pwindow->make_zoneing(NULL,rectWindow,true,&eappearance);
 
                }
                else
@@ -270,6 +282,7 @@ namespace database
          bool bZoomedOld = false;
          bool bFullScreenOld = false;
          bool bIconicOld = false;
+         int iAppearanceOld = 0;
          rect rectOld;
          if(bGet)
          {
@@ -279,6 +292,7 @@ namespace database
                memstreamGet >> bZoomedOld;
                memstreamGet >> bFullScreenOld;
                memstreamGet >> bIconicOld;
+               memstreamGet >> iAppearanceOld;
                memstreamGet >> rectOld;
             }
             catch (...)
@@ -294,7 +308,9 @@ namespace database
          memstream << bFullScreen;
          bool bIconic = pwindow->WfiIsIconic();
          memstream << bIconic;
-         if(bGet && (bZoomed || bFullScreen || bIconic))
+         int iAppearance = (int) pwindow->get_appearance();
+         memstream << iAppearance;
+         if(bGet && (bZoomed || bFullScreen || bIconic || ::user::is_docking_appearance((::user::EAppearance)iAppearance)))
          {
             memstream << &rectOld;
          }

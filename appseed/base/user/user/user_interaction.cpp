@@ -4,6 +4,7 @@
 namespace user
 {
 
+
 #ifdef METROWIN
 
 
@@ -3137,6 +3138,14 @@ namespace user
    }
 
 
+   void interaction::_001WindowDock(::user::EAppearance eappearance)
+   {
+
+      m_pimpl->_001WindowDock(eappearance);
+
+   }
+
+
    void interaction::GuieProc(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
@@ -4527,6 +4536,120 @@ namespace user
    }
 
 
+   index interaction::make_zoneing(LPRECT lprect,LPCRECT lpcrect,bool bSet,::user::EAppearance * peappearance,UINT uiSwpFlags,int_ptr iZOrder)
+   {
+
+      if(peappearance == NULL || !::user::is_docking_appearance(*peappearance))
+      {
+
+         return best_zoneing(lprect,lpcrect,bSet,peappearance,uiSwpFlags,iZOrder);
+
+      }
+
+      ::rect rectWindow;
+
+      if(lpcrect == NULL)
+      {
+
+         GetWindowRect(rectWindow);
+
+      }
+      else
+      {
+
+         rectWindow = lpcrect;
+
+      }
+
+      ::rect rect;
+
+      index iMatchingMonitor = session().get_zoneing(rect, rectWindow, *peappearance);
+
+      if(bSet & (lpcrect != NULL || iMatchingMonitor >= 0))
+      {
+#ifdef WINDOWSEX
+
+
+         synch_lock slUserMutex(&user_mutex());
+
+         set_appearance(*peappearance);
+
+         {
+
+            keep < bool > keepLockWindowUpdate(&m_bLockWindowUpdate,true,false,true);
+
+            keep < bool > keepIgnoreSizeEvent(&m_pimpl->m_bIgnoreSizeEvent,true,false,true);
+
+            keep < bool > keepIgnoreMoveEvent(&m_pimpl->m_bIgnoreMoveEvent,true,false,true);
+
+            keep < bool > keepDisableSaveWindowRect(&m_bEnableSaveWindowRect,false,m_bEnableSaveWindowRect,true);
+
+            ::ShowWindow(get_handle(),SW_RESTORE);
+
+            SetWindowPos(iZOrder,rect,uiSwpFlags);
+
+         }
+
+         send_message(WM_SIZE);
+
+         send_message(WM_MOVE);
+
+#elif defined WINDOWSEX
+
+         ::rect rectWkspace;
+
+         session().get_wkspace_rect(iMatchingMonitor,rectWkspace);
+
+         if(lpcrect != NULL)
+         {
+
+            rect.intersect(lpcrect,rectWkspace);
+
+         }
+         else
+         {
+
+            rect = rectWkspace;
+
+         }
+
+
+         WINDOWPLACEMENT wp;
+
+         GetWindowPlacement(&wp);
+
+         wp.showCmd = SW_MAXIMIZE;
+
+         wp.flags = 0;
+
+         session().monitor_to_wkspace(rect);
+
+         wp.rcNormalPosition = rectWkspace;
+
+         //wp.ptMaxPosition = rectWkspace.top_left();
+
+         SetWindowPlacement(&wp);
+
+#else
+
+
+         SetWindowPos(iZOrder,rect,uiSwpFlags);
+
+#endif
+
+      }
+
+      if(lprect != NULL)
+      {
+
+         *lprect = rect;
+
+      }
+
+      return iMatchingMonitor;
+
+   }
+
    index interaction::best_zoneing(LPRECT lprect,LPCRECT lpcrect,bool bSet,::user::EAppearance * peappearance, UINT uiSwpFlags,int_ptr iZOrder)
    {
 
@@ -4579,7 +4702,7 @@ namespace user
 
             keep < bool > keepDisableSaveWindowRect(&m_bEnableSaveWindowRect,false,m_bEnableSaveWindowRect,true);
 
-            ::ShowWindow(get_handle(),SW_MAXIMIZE);
+            ::ShowWindow(get_handle(),SW_RESTORE);
 
             SetWindowPos(iZOrder,rect,uiSwpFlags);
 
@@ -5142,6 +5265,21 @@ namespace user
       return puiParent;
 
    }
+
+
+   CLASS_DECL_BASE bool is_docking_appearance(::user::EAppearance eappearance)
+   {
+      return eappearance == ::user::AppearanceLeft
+         || eappearance == ::user::AppearanceTop
+         || eappearance == ::user::AppearanceRight
+         || eappearance == ::user::AppearanceBottom
+         || eappearance == ::user::AppearanceTopLeft
+         || eappearance == ::user::AppearanceTopRight
+         || eappearance == ::user::AppearanceBottomRight
+         || eappearance == ::user::AppearanceBottomLeft;
+   }
+
+
 
 
 } // namespace user

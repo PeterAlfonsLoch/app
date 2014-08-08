@@ -86,6 +86,7 @@ namespace user
             bool IsIconic();
             bool IsFullScreen();
             bool IsZoomed();
+            bool IsDocked();
             bool IsEnabled();
             void Enable(bool bEnable);
 

@@ -65,6 +65,13 @@ namespace user
 
             }
 
+            if(GetDockWindow().cast < ::database::user::interaction >() != NULL)
+            {
+
+               GetDockWindow().cast < ::database::user::interaction >()->WindowDataEnableSaveWindowRect(false);
+
+            }
+
             m_pworkset->get_draw_window()->GetWindowRect(rectWindow);
 
             m_ptWindowOrigin = rectWindow.top_left();
@@ -168,6 +175,17 @@ namespace user
                //GetEventWindow()->ClientToScreen(&ptCursor);
 
             }
+
+            if(pmouse->m_uiMessage == WM_LBUTTONUP)
+            {
+               if(GetDockWindow().cast < ::database::user::interaction >() != NULL)
+               {
+
+                  GetDockWindow().cast < ::database::user::interaction >()->WindowDataEnableSaveWindowRect(true);
+
+               }
+            }
+
 
             class point pt;
 
