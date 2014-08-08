@@ -223,7 +223,7 @@ namespace user
    template < class VIEW >
    inline sp(VIEW) impact::create_view(::user::document * pdoc,const RECT & rect, sp(::user::interaction) pwndParent,id id,sp(::user::interaction) pviewLast)
    {
-      return create_view(System.type_info < VIEW >(), pdoc, lpcrect, pwndParent, id, pviewLast);
+      return create_view(System.type_info < VIEW >(), pdoc, rect, pwndParent, id, pviewLast);
    }
 
 
@@ -231,7 +231,7 @@ namespace user
    inline sp(VIEW) impact::create_view(const RECT & rect,::user::interaction * pwndParent,id id,sp(::user::interaction) pviewLast)
    {
 
-      return create_view < VIEW >(NULL, lpcrect, pwndParent, id, pviewLast);
+      return create_view < VIEW >(NULL, rect, pwndParent, id, pviewLast);
 
    }
 

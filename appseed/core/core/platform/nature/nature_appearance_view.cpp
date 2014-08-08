@@ -116,7 +116,7 @@ namespace nature
    {
       ::filemanager::filemanager & filemanager = platform().filemanager();
       sp(::filemanager::folder_selection_list_view) pview;
-      pview =  (::user::impact::create_view(System.type_info < ::filemanager::folder_selection_list_view > (), get_document(), NULL,this,  pcreatordata->m_id).m_p);
+      pview =  (::user::impact::create_view(System.type_info < ::filemanager::folder_selection_list_view > (), get_document(), null_rect(),this,  pcreatordata->m_id).m_p);
       switch(pcreatordata->m_id)
       {
       case view_image_folder:

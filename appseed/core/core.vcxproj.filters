@@ -2198,6 +2198,30 @@
     <ClInclude Include="user\user\user_tree_data.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="core\platform\platform\platform.h">
+      <Filter>Header Files\core\platform\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\platform\platform_application.h">
+      <Filter>Header Files\core\platform\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\platform\platform_document.h">
+      <Filter>Header Files\core\platform\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\platform\platform_frame.h">
+      <Filter>Header Files\core\platform\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\platform\platform_pane_view.h">
+      <Filter>Header Files\core\platform\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\platform\platform_pane_view_update_hint.h">
+      <Filter>Header Files\core\platform\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\platform\platform_resource.h">
+      <Filter>Header Files\core\platform\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="core\platform\platform\platform_view.h">
+      <Filter>Header Files\core\platform\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="compress\compress_archive.cpp">

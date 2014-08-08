@@ -281,7 +281,6 @@ namespace bergedge
 
    void view::BackViewUpdateScreen(const RECT & rect, UINT uiRedraw)
    {
-      rect rect(lpcrect);
       rect_array recta;
       recta.add(rect);
       UpdateScreen(recta, uiRedraw);

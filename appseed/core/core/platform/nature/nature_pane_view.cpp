@@ -80,7 +80,7 @@ namespace nature
   //          cc.m_pCurrentDoc = get_document();
     //        cc.m_typeinfoNewView =  System.type_info < ::user::menu_list_view > ();
 
-            sp(::user::menu_list_view) pview =  (::user::impact::create_view(System.type_info < ::user::menu_list_view > (), get_document(),NULL, pcreatordata->m_pholder, 101).m_p);
+                                    sp(::user::menu_list_view) pview =  (::user::impact::create_view(System.type_info < ::user::menu_list_view >(),get_document(),null_rect(),pcreatordata->m_pholder,101).m_p);
             if(pview != NULL)
             {
                sp(::user::menu_list_view) pmenuview = (sp(::user::menu_list_view)) pview;
@@ -113,7 +113,7 @@ namespace nature
   //          cc.m_pCurrentDoc = get_document();
     //        cc.m_typeinfoNewView =  System.type_info < ::nature::view > ();
 
-            sp(::user::interaction) pview =  (::user::impact::create_view(System.type_info < ::nature::view > (), get_document(), NULL, pcreatordata->m_pholder, 101).m_p);
+                                     sp(::user::interaction) pview =  (::user::impact::create_view(System.type_info < ::nature::view >(),get_document(),null_rect(),pcreatordata->m_pholder,101).m_p);
             if(pview != NULL)
             {
                pcreatordata->m_pdoc = get_document();

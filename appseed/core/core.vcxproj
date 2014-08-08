@@ -1634,6 +1634,14 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\platform\nature\nature_pane_view.h" />
     <ClInclude Include="core\platform\nature\nature_pane_view_update_hint.h" />
     <ClInclude Include="core\platform\nature\nature_view.h" />
+    <ClInclude Include="core\platform\platform\platform.h" />
+    <ClInclude Include="core\platform\platform\platform_application.h" />
+    <ClInclude Include="core\platform\platform\platform_document.h" />
+    <ClInclude Include="core\platform\platform\platform_frame.h" />
+    <ClInclude Include="core\platform\platform\platform_pane_view.h" />
+    <ClInclude Include="core\platform\platform\platform_pane_view_update_hint.h" />
+    <ClInclude Include="core\platform\platform\platform_resource.h" />
+    <ClInclude Include="core\platform\platform\platform_view.h" />
     <ClInclude Include="core\plugin\plugin.h" />
     <ClInclude Include="core\plugin\plugin_gen.h" />
     <ClInclude Include="core\plugin\plugin_history.h" />
