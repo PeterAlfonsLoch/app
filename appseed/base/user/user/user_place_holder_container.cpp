@@ -28,7 +28,7 @@ namespace user
       if(m_holdera.last_element().is_null())
          return NULL;
 
-      if(!m_holdera.last_element()->::user::interaction::create_window(NULL,NULL,WS_VISIBLE | WS_CHILD /*__WS_DEFAULT_VIEW*/,rectCreate,(sp(::user::place_holder_container))this,m_holdera.get_upper_bound()))
+      if(!m_holdera.last_element()->::user::interaction::create_window(NULL, NULL,WS_VISIBLE | WS_CHILD /*__WS_DEFAULT_VIEW*/,rectCreate,(sp(::user::place_holder_container))this,m_holdera.get_upper_bound()))
       {
 
          m_holdera.remove_last();
@@ -97,7 +97,7 @@ namespace user
 
    bool place_holder_container::create_window(const RECT & rect, sp(::user::interaction) puiParent,id id)
    {
-      return ::user::interaction::create_window(NULL,NULL,0 /*__WS_DEFAULT_VIEW*/,rect,puiParent,id) != FALSE;
+      return ::user::interaction::create_window(NULL, NULL,0 /*__WS_DEFAULT_VIEW*/,rect,puiParent,id) != FALSE;
    }
 
    place_holder_ptra place_holder_container_ptra::place(sp(::user::interaction) pui,const RECT & rectCreate)

@@ -477,13 +477,19 @@ bool db_long_set::save(const char * lpKey, LPCRECT lpRect)
 
 }
 
+
 bool db_long_set::MoveWindow_(const char * lpKey, ::window_sp pwindow)
 {
+   
    rect rect;
+   
    if(!load(lpKey, &rect))
       return false;
-   pwindow->SetPlacement(&rect);
+   
+   pwindow->SetPlacement(rect);
+
    return true;
+
 }
 
 

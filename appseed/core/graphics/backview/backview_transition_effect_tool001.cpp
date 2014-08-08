@@ -1072,7 +1072,7 @@ namespace backview
 
    }
 
-   int32_t TransitionEffect::Tool001::FindRandomEnglobingEllipse(const RECT & rect, LPRECT lprectEllipse, int32_t iMaxRand)
+   int32_t TransitionEffect::Tool001::FindRandomEnglobingEllipse(LPCRECT lpcrect, LPRECT lprectEllipse, int32_t iMaxRand)
    {
 //         Main & viewinterface = HelperGetMain();
 
@@ -1105,7 +1105,7 @@ namespace backview
    }
 
 
-   int32_t TransitionEffect::Tool001::FindRandomEnglobingCircle(const RECT & rect, LPRECT lprectCircle, int32_t iMaxRand)
+   int32_t TransitionEffect::Tool001::FindRandomEnglobingCircle(LPCRECT lpcrect, LPRECT lprectCircle, int32_t iMaxRand)
    {
 //         Main & viewinterface = HelperGetMain();
 
@@ -1145,7 +1145,7 @@ namespace backview
       m_pointa2.remove_all();
 
    }
-   void TransitionEffect::Tool001::GetRect(LPPOINT lppoint, const RECT & rect)
+   void TransitionEffect::Tool001::GetRect(LPPOINT lppoint, LPCRECT lpcrect)
    {
       lppoint[0].x = (int32_t) lpcrect->left;
       lppoint[0].y = (int32_t) lpcrect->top;

@@ -195,7 +195,7 @@ namespace plugin
    }
 
 
-   bool host_interaction::RedrawWindow(LPCRECT lpRectUpdate, ::draw2d::region* prgnUpdate, UINT flags)
+   bool host_interaction::RedrawWindow(const RECT & lpRectUpdate, ::draw2d::region* prgnUpdate, UINT flags)
    {
 
       UNREFERENCED_PARAMETER(lpRectUpdate);

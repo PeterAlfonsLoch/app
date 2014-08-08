@@ -767,7 +767,7 @@ namespace user
                m_spcontrolbox = Application.alloc(m_typeinfoControlBox);
                m_spcontrolbox->m_pworkset = m_pworkset;
                sp(::user::interaction) pwnd = m_pworkset->get_draw_window();
-               m_spcontrolbox->create_window(NULL, pwnd, 1);
+               m_spcontrolbox->create_window(null_rect(), pwnd, 1);
             }
 
             m_spcontrolbox->update_control_box_buttons();

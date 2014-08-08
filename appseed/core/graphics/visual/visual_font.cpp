@@ -31,7 +31,7 @@ namespace visual
    {
 
 
-      System.visual().api().EmbossedTextOut(pdc, lpcrect, dRateX, dHeight, str);
+      System.visual().api().EmbossedTextOut(pdc, rect, dRateX, dHeight, str);
 
       return;
 
@@ -39,7 +39,7 @@ namespace visual
       SetDC(pdc);
       SelectFont();
 
-      rect rectOffset(lpcrect);
+      ::rect rectOffset(rect);
       point ptOffset(rectOffset.top_left());
 
       glyph * lpglyph;
@@ -80,14 +80,14 @@ namespace visual
    void font::EmbossedTextOut(::draw2d::graphics * pdc, const RECT & rect, double dRateX, double dHeight, string & str, LPINT lpiCharsPositions, int32_t iCharsPositions, int32_t iOffset)
    {
 
-      System.visual().api().EmbossedTextOut(pdc, lpcrect, dRateX, dHeight, str, lpiCharsPositions, iCharsPositions, iOffset);
+      System.visual().api().EmbossedTextOut(pdc, rect, dRateX, dHeight, str, lpiCharsPositions, iCharsPositions, iOffset);
 
       return;
 
       SetDC(pdc);
       SelectFont();
 
-      const rect rectOffset(lpcrect);
+      const ::rect rectOffset(rect);
       point ptOffset;
 
 
@@ -357,7 +357,7 @@ namespace visual
 
    void font::TextOutEx(
       ::draw2d::graphics                     * pgraphics,
-       LPCRECT               lpcrect,
+       const RECT &               rect,
       double               dRateX,
       double               dHeight,
       string                 &str,
@@ -369,12 +369,12 @@ namespace visual
        switch(iEffect)
        {
        case EffectSimple:
-           SimpleTextOut(pgraphics, lpcrect->left, lpcrect->top, str, lpiCharsPositions, iCharsPositions);
+           SimpleTextOut(pgraphics, rect.left, rect.top, str, lpiCharsPositions, iCharsPositions);
            break;
        case EffectEmbossed:
            EmbossedTextOut(
             pgraphics,
-            lpcrect,
+            rect,
             dRateX,
             dHeight,
             str,

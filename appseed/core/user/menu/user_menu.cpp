@@ -95,7 +95,7 @@ namespace user
 
       SetOwner(oswindowParent);
 
-      if(!m_buttonClose.create_window(NULL, this, ChildIdClose))
+      if(!m_buttonClose.create_window(null_rect(), this, ChildIdClose))
          return false;
 
 
@@ -175,7 +175,7 @@ namespace user
          {
             rect.bottom = rect.top + m_iItemHeight;
          }
-         pitem->m_button.create_window(NULL, this, pitem->m_id);
+         pitem->m_button.create_window(null_rect(), this, pitem->m_id);
          pitem->m_button.SetWindowPos(0, rect.left, rect.top, rect.width(), rect.height(), 0);
          pitem->m_button.m_pschema = m_pschema->m_pschemaItemButton;
          pitem->m_button.m_pitem = pitem;

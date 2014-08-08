@@ -13,9 +13,9 @@ namespace visual
 
    }
 
-   void buffered_graphics::Prepare(const RECT & rect)
+   void buffered_graphics::Prepare(const RECT & rectParam)
    {
-      rect rect(lpcrect);
+      ::rect rect(rectParam);
       m_p->SetViewportOrg(rect.top_left());
       m_spbitmap->CreateCompatibleBitmap(m_p, rect.width(), rect.height());
       m_spbitmapBlend->CreateBitmap(

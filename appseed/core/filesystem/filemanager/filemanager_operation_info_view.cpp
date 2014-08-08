@@ -78,7 +78,7 @@ namespace filemanager
          dProgressU = dProgressL + dProgressD;
          if(dProgress < dProgressU)
          {
-            pdc->FillSolidRect(&rectProgress,RGB(255,240,200));
+            pdc->FillSolidRect(rectProgress,RGB(255,240,200));
          }
          if(dProgress > dProgressL)
          {

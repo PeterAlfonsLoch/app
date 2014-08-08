@@ -342,6 +342,9 @@
     <Filter Include="Source Files\core\platform\platform">
       <UniqueIdentifier>{3512c41c-c826-4d7d-b3b5-d9062c889088}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\filesystem\filemanager\NewFilter1">
+      <UniqueIdentifier>{0e89a8f5-d88f-4edc-a840-9366d954f787}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive.h">
@@ -2221,6 +2224,9 @@
     </ClInclude>
     <ClInclude Include="core\platform\platform\platform_view.h">
       <Filter>Header Files\core\platform\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_file_list.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -41,14 +41,14 @@ namespace userfs
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();
   //    cc->m_usercreatecontext.m_typeinfoNewView = System.type_info < tree > ();
-      sp(::user::interaction) pwnd = create_view(System.type_info < tree >(),get_document(),NULL,get_pane_holder(0),100);
+      sp(::user::interaction) pwnd = create_view(System.type_info < tree >(),get_document(),null_rect(),get_pane_holder(0),100);
       SetPane(0, pwnd, false);
 //      sp(tree) ptree =  (pwnd);
 
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();
   //    cc->m_usercreatecontext.m_typeinfoNewView = System.type_info < list > ();
-      pwnd = create_view(System.type_info < list > (), get_document(), NULL, get_pane_holder(1), 101);
+      pwnd = create_view(System.type_info < list >(),get_document(),null_rect(),get_pane_holder(1),101);
 //      list * plist = dynamic_cast < list * > (pwnd);
       SetPane(1, pwnd, false);
       layout();

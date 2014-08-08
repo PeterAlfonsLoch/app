@@ -1778,6 +1778,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="filesystem\filemanager\filemanager.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_callback.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_child_frame.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_file_list.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_file_list_callback.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_frame.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_main_view.h" />

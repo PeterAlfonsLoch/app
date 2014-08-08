@@ -233,7 +233,7 @@ namespace plugin
    }
 
 
-   void plugin::on_paint(::draw2d::graphics * pgraphics, LPCRECT lprectOut)
+   void plugin::on_paint(::draw2d::graphics * pgraphics, const RECT & lprectOut)
    {
 
       UNREFERENCED_PARAMETER(lprectOut);
@@ -1054,14 +1054,14 @@ namespace plugin
    void plugin::set_window_rect(const RECT & rect)
    {
 
-      SetPlacement(lpcrect);
+      SetPlacement(rect);
 
       if(m_puiHost != NULL)
       {
 
          m_puiHost->m_bRectOk = true;
 
-         rect rectHost(lpcrect);
+         ::rect rectHost(rect);
 
          rectHost.offset(-rectHost.top_left());
 

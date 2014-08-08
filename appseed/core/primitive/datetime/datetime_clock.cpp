@@ -16,7 +16,7 @@ void clock::_001OnDraw(::draw2d::graphics * pdc)
    GetRect(&rect, ElementClock);
    ::draw2d::pen_sp pen(pdc, 1, ARGB(255, 0, 0, 0));
    pdc->SelectObject(pen);
-   pdc->DrawEllipse(&rect);
+   pdc->DrawEllipse(rect);
 
    point ptCenter(rect.center());
 

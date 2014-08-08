@@ -127,7 +127,7 @@ namespace backview
          void GetHorizontalHexagon(LPRECT lprect, LPPOINT lppointa);
          int32_t FindRandomEnglobingEllipse(LPCRECT lprect, LPRECT lprectCircle, int32_t iMaxRand);
          int32_t FindRandomEnglobingCircle(LPCRECT lprect, LPRECT lprectCircle, int32_t iMaxRand);
-         void GetRect(LPPOINT lppoint, const RECT & rect);
+         void GetRect(LPPOINT lppoint, LPCRECT rect);
          void GetRect(
             LPRECT   lprect);
          void GetRect(

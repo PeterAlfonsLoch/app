@@ -758,10 +758,10 @@ bool imaging::GrayVRCP(
       pdc,
       pbitmap,
       pbitmapMask,
-      lpcrect->left,
-      lpcrect->top,
-      lpcrect->right - lpcrect->left,
-      lpcrect->bottom - lpcrect->top,
+      rect.left,
+      rect.top,
+      rect.right - rect.left,
+      rect.bottom - rect.top,
       crTransparent);
 }
 
@@ -2848,20 +2848,20 @@ bool imaging::ClipSave(
    pbitmapOld,
    pbitmap,
    pbmp,
-   lpcrect->right,
-   lpcrect->bottom))
+   rect.right,
+   rect.bottom))
    {
    return false;
    }
    //      spgraphics->SelectClipRgn(&rgnUpdate);
    if(!spgraphics->BitBlt(
-   lpcrect->left,
-   lpcrect->top,
-   lpcrect->right - lpcrect->left,
-   lpcrect->bottom - lpcrect->top,
+   rect.left,
+   rect.top,
+   rect.right - rect.left,
+   rect.bottom - rect.top,
    pdc,
-   lpcrect->left,
-   lpcrect->top,
+   rect.left,
+   rect.top,
    SRCCOPY))
    {
    return false;
@@ -4327,7 +4327,7 @@ bool imaging::channel_gray_blur_32CC(::draw2d::dib * pdibDst, ::draw2d::dib * pd
 bool imaging::color_blend(::draw2d::graphics * pdc, const RECT & rect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork)
 {
 
-   return pdc->BitBlt(lpcrect->left, lpcrect->top, width(lpcrect), height(lpcrect), pdcColorAlpha, ptAlpha.x, ptAlpha.y, SRCCOPY);
+   return pdc->BitBlt(rect.left,rect.top,width(rect),height(rect),pdcColorAlpha,ptAlpha.x,ptAlpha.y,SRCCOPY);
 
 }
 
@@ -4335,7 +4335,7 @@ bool imaging::color_blend(::draw2d::graphics * pdc, const RECT & rect, ::draw2d:
 bool imaging::true_blend(::draw2d::graphics * pdc, const RECT & rect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork, ::draw2d::dib * pdibWork2, ::draw2d::dib * pdibWork3)
 {
 
-   return pdc->BitBlt(lpcrect->left, lpcrect->top, width(lpcrect), height(lpcrect), pdcColorAlpha, ptAlpha.x, ptAlpha.y, SRCCOPY);
+   return pdc->BitBlt(rect.left,rect.top,width(rect),height(rect),pdcColorAlpha,ptAlpha.x,ptAlpha.y,SRCCOPY);
 
 }
 

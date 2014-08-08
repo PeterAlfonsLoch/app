@@ -57,7 +57,7 @@ void simple_tab_view::_001OnCreate(signal_details * pobj)
    if(pcreate->previous())
       return;
    
-   if(!::user::control::create_window(NULL, this, 1))
+   if(!::user::control::create_window(null_rect(), this, 1))
    {
       pcreate->set_lresult(-1);
       return;

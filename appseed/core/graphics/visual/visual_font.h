@@ -63,14 +63,14 @@ namespace visual
       void SetDC(::draw2d::graphics * pgraphics);
       void EmbossedTextOut(
          ::draw2d::graphics                  * pgraphics,
-         LPCRECT               lpcrect,
+         const RECT &               lpcrect,
          double               dRateX,
          double               dHeight,
          string                 &str);
 
       void EmbossedTextOut(
          ::draw2d::graphics                     *pdc,
-         LPCRECT               lpcrect,
+         const RECT &               lpcrect,
          double               dRateX,
          double               dHeight,
          string                 &str,
@@ -88,7 +88,7 @@ namespace visual
 
       void TextOutEx(
          ::draw2d::graphics                  *pdc,
-         LPCRECT               lpcrect,
+         const RECT &               lpcrect,
          double               dRateX,
          double               dHeight,
          string              &str,

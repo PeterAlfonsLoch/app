@@ -107,7 +107,7 @@ namespace visual
 
    void api::EmbossedTextOut(
       ::draw2d::graphics *             pdc,
-      LPCRECT            lpcrect,
+      const RECT &            rect,
       double            dRateX,
       double            dHeight,
       const char *      psz,
@@ -115,7 +115,7 @@ namespace visual
       int32_t               iCharsPositions,
       int32_t               iOffset)
    {
-         rect clipRect;
+         ::rect clipRect;
 
    //      int32_t iOldMapMode = ::GetMapMode(pdc->m_hDC);
    //      point viewportOrg;
@@ -125,8 +125,8 @@ namespace visual
 
    //      VERIFY(::OffsetViewportOrgEx(
    //         pdc->m_hDC,
-   //         lpcrect->left,
-   //         lpcrect->top,
+   //         rect.left,
+   //         rect.top,
    //         NULL));
    //      VERIFY(::SetMapMode(pdc->m_hDC, MM_ANISOTROPIC));
    //      if(floatRateX == 0.0)
@@ -135,9 +135,9 @@ namespace visual
 
    //      VERIFY(::SelectObject(pdc->m_hDC, pfont->m_hObject));
 
-         pdc->TextOut(lpcrect->left, lpcrect->top, psz);
+         pdc->TextOut(rect.left, rect.top, psz);
          pdc->BeginPath();
-         pdc->TextOut(lpcrect->left, lpcrect->top, psz);
+         pdc->TextOut(rect.left, rect.top, psz);
          pdc->EndPath();
          pdc->StrokePath();
 
@@ -171,8 +171,8 @@ namespace visual
 
    //      VERIFY(::OffsetViewportOrgEx(
    //         pdc->m_hDC,
-   //         lpcrect->left,
-   //         lpcrect->top,
+   //         rect.left,
+   //         rect.top,
    //         NULL));
    //      VERIFY(::SetMapMode(pdc->m_hDC, MM_ANISOTROPIC));
    //      if(floatRateX == 0.0)
@@ -195,10 +195,10 @@ namespace visual
          ::TextOutU((HDC)pdc->get_os_data(), iLeft, iTop, str, iLen);
 #endif
 
-         //pdc->TextOut(lpcrect->left, lpcrect->top, str);
+         //pdc->TextOut(rect.left, rect.top, str);
    //      pdc->BeginPath();
-   //      ::TextOutW((HDC)pdc->get_os_data(), lpcrect->left, lpcrect->top, lpcsz, iLen);
-         //pdc->TextOut(lpcrect->left, lpcrect->top, str);
+   //      ::TextOutW((HDC)pdc->get_os_data(), rect.left, rect.top, lpcsz, iLen);
+         //pdc->TextOut(rect.left, rect.top, str);
    //      pdc->EndPath();
    //      pdc->StrokePath();
 
@@ -213,7 +213,7 @@ namespace visual
 
    void api::SimpleTextOut(
       ::draw2d::graphics *          pdc,
-      LPCRECT        lpcrect,
+      const RECT &        lpcrect,
       double         dRateX,
       double         dHeight,
       const char *   psz,
@@ -227,20 +227,20 @@ namespace visual
       UNREFERENCED_PARAMETER(iCharsPositions);
       UNREFERENCED_PARAMETER(lpiCharsPositions);
 
-      pdc->TextOut(lpcrect->left, lpcrect->top, psz);
+      pdc->TextOut(lpcrect.left, lpcrect.top, psz);
       return;
 
       string str;
       str = ::str::international::utf8_to_unicode(psz);
-      ::TextOutU((HDC)pdc->get_os_data(), lpcrect->left, lpcrect->top, str, (int32_t) str.get_length());
+      ::TextOutU((HDC)pdc->get_os_data(), lpcrect.left, lpcrect.top, str, (int32_t) str.get_length());
    }
 
 
    void api::EmbossedTextOut(::draw2d::graphics * pdc, const RECT & rect, double dHeight, double dRateX, const char * psz)
    {
-         pdc->TextOut(lpcrect->left, lpcrect->top, psz);
+         pdc->TextOut(rect.left, rect.top, psz);
          pdc->BeginPath();
-         pdc->TextOut(lpcrect->left, lpcrect->top, psz);
+         pdc->TextOut(rect.left, rect.top, psz);
          pdc->EndPath();
          pdc->StrokePath();
 

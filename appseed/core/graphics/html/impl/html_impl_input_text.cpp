@@ -45,7 +45,7 @@ namespace html
          if(!m_pedit->IsWindow())
          {
             m_pedit->oprop("parent_lock_data") = (::data::data *) pdata;
-            m_pedit->create_window(NULL, pdata->m_pui, 100);
+            m_pedit->create_window(null_rect(),pdata->m_pui,100);
             pdata->on_create_interaction(m_pedit);
             m_pedit->m_bPassword = pelemental->m_propertyset["type"].compare_value_ci("password") == 0;
             m_pedit->m_strName = pelemental->m_pbase->get_tag()->get_attr_value("name");

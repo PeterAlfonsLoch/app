@@ -100,7 +100,7 @@ namespace backview
 
    bool Main::UpdateBuffer(const RECT & rect)
    {
-      UNREFERENCED_PARAMETER(lpcrect);
+      UNREFERENCED_PARAMETER(rect);
       //         GetTransitionEffect().RenderBuffer((rect &) *lpcrect);
       return true;
    }

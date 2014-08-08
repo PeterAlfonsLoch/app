@@ -645,7 +645,7 @@ namespace html
 
                   Sys(pdata->get_app()).visual().imaging().color_blend(
                      pdata->m_pdc,
-                     &rect,
+                     rect,
                      cr,
                      max(0, min(255, (BYTE)(d * 255))));
 

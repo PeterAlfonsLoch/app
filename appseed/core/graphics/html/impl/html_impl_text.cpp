@@ -71,7 +71,7 @@ namespace html
          if(!IsWindow() && pdata->m_bEdit)
          {
 
-            create_window(NULL, pdata->m_pform, 1004);
+            create_window(null_rect(),pdata->m_pform,1004);
 
          }
 

@@ -348,7 +348,7 @@ namespace platform
       }*/
       if(session().savings().is_trying_to_save(::base::resource_processing))
       {
-         pdc->FillRect(&rectClient, m_brushBk);
+         pdc->FillRect(rectClient, m_brushBk);
       }
       else
       {
@@ -404,14 +404,14 @@ namespace platform
          rectProgress.right -= 10;
          rectProgress.top += 200;
          rectProgress.bottom = rectProgress.top + 20;
-         pdc->FillRect(&rectProgress, m_brushProgress3);
+         pdc->FillRect(rectProgress, m_brushProgress3);
          rectProgress.left++;
          rectProgress.right--;
          rectProgress.top++;
          rectProgress.bottom--;
-         pdc->FillRect(&rectProgress, m_brushProgress2);
+         pdc->FillRect(rectProgress, m_brushProgress2);
          rectProgress.right = ((int32_t) ((rectProgress.right - rectProgress.left) * m_dProgress)) + rectProgress.left;
-         pdc->FillRect(&rectProgress, m_brushProgress1);
+         pdc->FillRect(rectProgress, m_brushProgress1);
       }
 
       if(m_iScreen == 1)
@@ -913,7 +913,7 @@ namespace platform
             plink->m_strDescription    = doc.get_root()->child_at(i)->attr("description");
             plink->m_strSrc            = doc.get_root()->child_at(i)->attr("src");
 
-            plink->m_button.create_window(NULL, this, plink->m_strBrief);
+            plink->m_button.create_window(null_rect(), this, plink->m_strBrief);
 
             m_buttonschema.m_etranslucency = ::user::TranslucencyPresent;
             plink->m_button.m_pschema        = &m_buttonschema;

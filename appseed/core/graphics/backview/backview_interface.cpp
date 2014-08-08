@@ -57,7 +57,7 @@ namespace backview
          GetMain().PulseEvent((e_event) pbase->m_lparam.m_lparam);
          break;
       case BackViewWparamUpdateScreenRect:
-         BackViewUpdateScreen((LPCRECT) pbase->m_lparam.m_lparam, RDW_INVALIDATE);
+         BackViewUpdateScreen(*((LPCRECT) pbase->m_lparam.m_lparam), RDW_INVALIDATE);
          delete ((LPRECT) pbase->m_lparam.m_lparam);
          break;
       case BackViewWparamUpdateScreenBaseRectArray:
@@ -123,7 +123,7 @@ namespace backview
 
    bool Interface::UpdateBuffer(const RECT & rect)
    {
-      GetMain().UpdateBuffer(lpcrect);
+      GetMain().UpdateBuffer(rect);
       return true;
    }
 
@@ -222,9 +222,9 @@ namespace backview
       return GetMain().IsEnabled();
    }
 
-   void Interface::BackViewRender(::draw2d::graphics * pdc, const RECT & rect)
+   void Interface::BackViewRender(::draw2d::graphics * pdc, const RECT & rectParam)
    {
-      class rect rect(lpcrect);
+      class rect rect(rectParam);
       BackViewRender(pdc, rect.left, rect.top, rect.width(), rect.height());
    }
 
@@ -312,7 +312,7 @@ namespace backview
 
    void Interface::BackViewUpdateScreen(const RECT & rect, UINT uiRedraw)
    {
-      UNREFERENCED_PARAMETER(lpcrect);
+      UNREFERENCED_PARAMETER(rect);
       UNREFERENCED_PARAMETER(uiRedraw);
    }
 
