@@ -835,7 +835,7 @@ namespace user
 
       bool bProcessed = BaseOnControlEvent(&ev);
 
-      pobj->m_bRet = ev.m_bRet && ev.m_bProcessed && bProcessed;
+      pobj->m_bRet = ev.m_bRet;
 
       if(pobj->m_bRet)
       {

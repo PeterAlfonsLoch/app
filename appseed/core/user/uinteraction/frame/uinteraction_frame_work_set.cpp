@@ -176,7 +176,7 @@ namespace user
 
          bool WorkSet::IsDockingEnabled()
          {
-            return m_bDockingEnabled && !IsFullScreen() && GetAppearance() != ::user::AppearanceZoomed;
+            return m_bDockingEnabled;
          }
 
 
@@ -384,6 +384,12 @@ namespace user
                {
 
                   pinterface->m_workset.GetDockingManager()->_000OnLButtonDown(dynamic_cast <::message::mouse *> (pevent->m_pobj));
+
+                  rect rectWindow;
+
+                  pevent->m_puie->GetWindowRect(rectWindow);
+
+                  pinterface->m_workset.GetDockingManager()->m_ptCursorOrigin = rectWindow.center();
 
                   return true;
 

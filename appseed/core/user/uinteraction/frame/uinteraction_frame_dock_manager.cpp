@@ -58,9 +58,18 @@ namespace user
 
             rect rectWindow;
 
+            if(GetDockWindow()->get_appearance() != ::user::AppearanceNormal)
+            {
+
+               GetDockWindow()->_001WindowRestore();
+
+            }
+
             m_pworkset->get_draw_window()->GetWindowRect(rectWindow);
 
             m_ptWindowOrigin = rectWindow.top_left();
+
+            m_pworkset->get_draw_window()->GetWindowRect(rectWindow);
 
             m_sizeOrigin = rectWindow.size();
 
