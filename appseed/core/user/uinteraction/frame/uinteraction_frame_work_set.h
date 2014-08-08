@@ -41,9 +41,6 @@ namespace user
             sp(::user::interaction)         m_pwndEvent;
             sp(::user::interaction)         m_pwndCommand;
 
-            bool                          m_bDockEnable;
-            bool                          m_bNotifyIconEnable;
-            bool                          m_bFullScreenEnable;
 
             UINT                          m_uiSWPFlags;
 
@@ -54,9 +51,13 @@ namespace user
             SysMenuManager *              m_psystemmenumanager;
             DockManager *                 m_pdockmanager;
 
+            bool                          m_bDockingEnabled;
             bool                          m_bMovingEnabled;
             bool                          m_bSizingEnabled;
             bool                          m_bSysMenuEnabled;
+            bool                          m_bNotifyIconEnable;
+            bool                          m_bFullScreenEnable;
+
 
             appearance *                  m_pappearance;
 
@@ -77,7 +78,7 @@ namespace user
 
 
             appearance * get_appearance();
-            DockManager * GetDockManager();
+            DockManager * GetDockingManager();
             MoveManager * GetMovingManager();
             SizeManager * GetSizingManager();
 
@@ -86,15 +87,15 @@ namespace user
             void _001InstallEventHandling(::message::dispatch * pdispatch);
 
             DECL_GEN_SIGNAL(_001OnLButtonDown);
-               DECL_GEN_SIGNAL(_001OnMouseMove);
-               DECL_GEN_SIGNAL(_001OnLButtonUp);
-               DECL_GEN_SIGNAL(_001OnNcLButtonDown);
-               DECL_GEN_SIGNAL(_001OnNcMouseMove);
-               DECL_GEN_SIGNAL(_001OnNcLButtonUp);
-               DECL_GEN_SIGNAL(_001OnNcHitTest);
-               DECL_GEN_SIGNAL(_001OnTimer);
-               DECL_GEN_SIGNAL(_001OnSize);
-               DECL_GEN_SIGNAL(_001OnMove);
+            DECL_GEN_SIGNAL(_001OnMouseMove);
+            DECL_GEN_SIGNAL(_001OnLButtonUp);
+            DECL_GEN_SIGNAL(_001OnNcLButtonDown);
+            DECL_GEN_SIGNAL(_001OnNcMouseMove);
+            DECL_GEN_SIGNAL(_001OnNcLButtonUp);
+            DECL_GEN_SIGNAL(_001OnNcHitTest);
+            DECL_GEN_SIGNAL(_001OnTimer);
+            DECL_GEN_SIGNAL(_001OnSize);
+            DECL_GEN_SIGNAL(_001OnMove);
 
                // point should be in screen coordinates
                EHitTest hit_test(point ptCursor);
@@ -123,7 +124,6 @@ namespace user
             void SetDockMask(EDock emask);
 
             virtual void OnDock();
-            void EnableDock(bool bEnable = true);
             void layout();
             bool Hover(bool bHoverActive);
             void hover_relay_event(signal_details * pobj);
@@ -166,11 +166,13 @@ namespace user
             virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
 
+            void EnableDock(bool bEnable);
             void EnableMove(bool bEnable);
             void EnableSize(bool bEnable);
             void EnableSysMenu(bool bEnable);
             void EnableApperance(bool bEnable);
 
+            bool IsDockingEnabled();
             bool IsMovingEnabled();
             bool IsSizingEnabled();
             bool IsSysMenuEnabled();

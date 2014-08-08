@@ -20,6 +20,21 @@ namespace user
          class UpDownTarget;
          class WorkSetListener;
          class WorkSetListenerArray;
+         class appearance;
+
+
+         enum EBorder
+         {
+
+            BorderNone = 0,
+            BorderTop = 1,
+            BorderRight = 2,
+            BorderBottom = 4,
+            BorderLeft = 8,
+            BorderAll = BorderTop | BorderRight | BorderBottom | BorderLeft,
+
+         };
+
 
 
       } // namespace frame

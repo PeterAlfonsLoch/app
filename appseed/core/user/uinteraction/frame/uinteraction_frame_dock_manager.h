@@ -13,48 +13,58 @@ namespace user
       {
 
 
-         class WorkSet;
-
-
-         class CLASS_DECL_CORE DockManager
+         class CLASS_DECL_CORE DockManager:
+            virtual public signalizable
          {
          public:
 
 
-            bool IsDocked();
+            WorkSet *                  m_pworkset;
+            uint32_t                   m_dwLastMoveTime;
+            bool                       m_bPendingMove;
+            point                      m_ptPendingMove;
+            void *                     m_oswindowPendingMove;
+            EBorder                    m_eborderMask;
+            EDock                      m_edockState;
+            point                      m_ptCursorOrigin;
+            point                      m_ptWindowOrigin;
+            bool                       m_bDocking;
+            uint32_t                   m_dwLastMovingTime;
+            UINT                       m_uiSWPFlags;
+            uint32_t                   m_dwPaintDelay;
+            ::user::EAppearance        m_eappearanceOrigin;
 
-            bool MoveWindow(int32_t x, int32_t y);
-            bool OffsetWindowPos(int32_t cx, int32_t cy);
-            void layout();
-            void UpdateDocking();
-            void OnMoving();
-            void OnMove();
-            void OnSize();
 
-
-            EDock GetDockState();
-            bool Dock(EDock edock, bool bLayout = true);
-
-            EDock GetDockMask();
-            void SetDockMask(EDock emask);
-
-            EDock CalcDock(int32_t x, int32_t y);
-            bool update(WorkSet * pwf);
-            virtual bool relay_event(signal_details * pobj);
-            DockManager();
+            DockManager(WorkSet * pworkset);
             virtual ~DockManager();
 
-         protected:
-            WorkSet  *           m_pworkset;
 
-            EDock                  m_edock; // current dock state
-            EDock                  m_edockMask; // current dock mode
+            sp(::user::interaction) GetEventWindow();
+            sp(::user::interaction) GetDockWindow();
+
+            bool Relay(::message::mouse * pmouse);
+            bool _000OnLButtonDown(::message::mouse * pmouse);
+            bool _000OnMouseMove(::message::mouse * pmouse);
+            bool _000OnLButtonUp(::message::mouse * pmouse);
+            bool _000OnTimer(UINT nIDEvent);
 
 
+            void SetBorderMask(EBorder emask);
+            EBorder GetBorderMask();
+
+            void SetDockMask(EDock emask);
+            EDock GetDockState();
+
+            bool IsMoving();
+            void MoveWindow(void * oswindow,point pt);
+            void SetSWPFlags(UINT uiFlags);
+            bool relay_event(MESSAGE * lpMsg);
+            bool update(WorkSet * pwf);
+
+            static const uint32_t s_dwMoveTime;
+
+            void message_handler(sp(::user::interaction) pwnd,signal_details * pobj);
          };
-
-
-         EDock operator |=(EDock & edocki, const EDock  edockj);
 
 
       } // namespace frame
@@ -64,8 +74,6 @@ namespace user
 
 
 } // namespace user
-
-
 
 
 

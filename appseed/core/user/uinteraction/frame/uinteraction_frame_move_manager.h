@@ -12,40 +12,30 @@ namespace user
       namespace frame
       {
 
+
+
+
          
 
          class CLASS_DECL_CORE MoveManager :
             virtual public signalizable
          {
-            friend class WorkSet;
          public:
-            enum EBorder
-            {
-               BorderNone = 0,
-               BorderTop = 1,
-               BorderRight = 2,
-               BorderBottom = 4,
-               BorderLeft = 8,
-               BorderAll = BorderTop | BorderRight | BorderBottom | BorderLeft,
-            };
 
-         protected:
-            WorkSet *            m_pworkset;
+
+            WorkSet *               m_pworkset;
             uint32_t                m_dwLastMoveTime;
-            bool                 m_bPendingMove;
-            point                m_ptPendingMove;
-            void *                 m_oswindowPendingMove;
-            EBorder              m_eborderMask;
-            point                m_ptCursorOrigin;
-            point                m_ptWindowOrigin;
-            bool                 m_bMoving;
+            bool                    m_bPendingMove;
+            point                   m_ptPendingMove;
+            void *                  m_oswindowPendingMove;
+            EBorder                 m_eborderMask;
+            point                   m_ptCursorOrigin;
+            point                   m_ptWindowOrigin;
+            bool                    m_bMoving;
             uint32_t                m_dwLastMovingTime;
-            UINT                 m_uiSWPFlags;
+            UINT                    m_uiSWPFlags;
             uint32_t                m_dwPaintDelay;
-         public:
 
-            ::user::EAppearance     m_eappearanceOrigin;
-            bool                    m_bEnableDock;
 
             MoveManager(WorkSet * pworkset);
             virtual ~MoveManager();

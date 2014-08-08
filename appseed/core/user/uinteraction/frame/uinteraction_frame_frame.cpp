@@ -61,6 +61,7 @@ namespace user
          }
 
 
+
          void frame::_001OnDraw(::draw2d::graphics * pca)
          {
 
@@ -68,21 +69,58 @@ namespace user
 
          }
 
+         void frame::OnAttach()
+         {
+
+            if(m_pworkset->GetSizingManager() != NULL)
+            {
+
+               m_pworkset->GetSizingManager()->SetSWPFlags(0);
+
+            }
+
+         }
 
          size frame::GetMinSize()
          {
 
-            return size(100, 100);
+            ::size sizeMin;
+
+            session().get_window_minimum_size(sizeMin);
+
+            return sizeMin;
 
          }
 
-
+         /*
          void frame::OnNcCalcSize(LPRECT lprect)
          {
 
             UNREFERENCED_PARAMETER(lprect);
 
          }
+         */
+
+         void frame::OnNcCalcSize(LPRECT lprect)
+         {
+
+            if(get_appearance()->m_bUseNc)
+            {
+
+               calc_window_client_rect(lprect,lprect);
+
+            }
+
+         }
+
+         
+
+         appearance * frame::get_appearance()
+         {
+            ASSERT(m_pworkset != NULL);
+            return m_pworkset->get_appearance();
+         }
+
 
          void frame::_000OnBeforeSize(LPCRECT lpcrectWindow)
          {
@@ -95,10 +133,6 @@ namespace user
          {
          }
 
-
-         void frame::OnAttach()
-         {
-         }
 
          bool frame::_000OnCommand(WPARAM wparam, LPARAM lparam, LRESULT & lresult)
          {
@@ -200,7 +234,7 @@ namespace user
 
          }
 
-
+         /*
          bool frame::_000OnLButtonDown(::message::mouse * pmouse)
          {
 
@@ -264,6 +298,137 @@ namespace user
             return false;
 
          }
+         */
+
+         bool frame::_000OnLButtonDown(::message::mouse * pmouse)
+         {
+
+            if(m_pworkset->GetAppearance() != ::user::AppearanceZoomed && m_pworkset->GetAppearance() != ::user::AppearanceFullScreen)
+            {
+
+               //if(m_pworkset->GetDockingManager()->_000OnLButtonDown(pmouse))
+                 // return true;
+
+               if(m_pworkset->GetSizingManager()->_000OnLButtonDown(pmouse))
+                  return true;
+
+               if(m_pworkset->GetMovingManager()->_000OnLButtonDown(pmouse))
+                  return true;
+
+            }
+
+            return false;
+
+         }
+
+         bool frame::_000OnLButtonUp(::message::mouse * pmouse)
+         {
+
+            if(m_pworkset->GetAppearance() != ::user::AppearanceZoomed && m_pworkset->GetAppearance() != ::user::AppearanceFullScreen)
+            {
+
+               if(m_pworkset->GetDockingManager()->_000OnLButtonUp(pmouse))
+                  return true;
+
+               if(m_pworkset->GetSizingManager()->_000OnLButtonUp(pmouse))
+                  return true;
+
+               if(m_pworkset->GetMovingManager()->_000OnLButtonUp(pmouse))
+                  return true;
+
+            }
+
+            return false;
+         }
+
+         bool frame::_000OnMouseMove(::message::mouse * pmouse)
+         {
+
+            if(m_pworkset->GetAppearance() != ::user::AppearanceZoomed && m_pworkset->GetAppearance() != ::user::AppearanceFullScreen)
+            {
+
+               if(m_pworkset->GetDockingManager()->_000OnMouseMove(pmouse))
+                  return true;
+
+               if(m_pworkset->GetSizingManager()->_000OnMouseMove(pmouse))
+                  return true;
+
+               if(m_pworkset->GetMovingManager()->_000OnMouseMove(pmouse))
+                  return true;
+
+            }
+
+            return false;
+         }
+
+         bool frame::_000OnNcLButtonDown(::message::mouse * pmouse)
+         {
+
+            if(m_pworkset->GetAppearance() != ::user::AppearanceZoomed && m_pworkset->GetAppearance() != ::user::AppearanceFullScreen)
+            {
+
+               if(m_pworkset->GetDockingManager()->_000OnLButtonDown(pmouse))
+                  return true;
+
+               if(m_pworkset->GetSizingManager()->_000OnLButtonDown(pmouse))
+                  return true;
+
+               if(m_pworkset->GetMovingManager()->_000OnLButtonDown(pmouse))
+                  return true;
+
+            }
+
+            return false;
+         }
+
+         bool frame::_000OnNcLButtonUp(::message::mouse * pmouse)
+         {
+
+            if(m_pworkset->GetAppearance() != ::user::AppearanceZoomed && m_pworkset->GetAppearance() != ::user::AppearanceFullScreen)
+            {
+
+               if(m_pworkset->GetDockingManager()->Relay(pmouse))
+                  return true;
+
+               if(m_pworkset->GetSizingManager()->Relay(pmouse))
+                  return true;
+
+               if(m_pworkset->GetMovingManager()->Relay(pmouse))
+                  return true;
+
+            }
+
+            return false;
+         }
+
+         bool frame::_000OnNcMouseMove(::message::mouse * pmouse)
+         {
+
+            if(m_pworkset->GetAppearance() != ::user::AppearanceZoomed && m_pworkset->GetAppearance() != ::user::AppearanceFullScreen)
+            {
+
+               if(m_pworkset->GetDockingManager()->Relay(pmouse))
+                  return true;
+
+               if(m_pworkset->GetSizingManager()->Relay(pmouse))
+                  return true;
+
+               if(m_pworkset->GetMovingManager()->Relay(pmouse))
+                  return true;
+
+            }
+
+            return false;
+         }
+
+         bool frame::_000OnNcHitTest(point pt,LRESULT & nHitTest)
+         {
+            UNREFERENCED_PARAMETER(pt);
+            UNREFERENCED_PARAMETER(nHitTest);
+            return false;
+         }
+
+
 
          bool frame::_000OnTimer(UINT nIDEvent)
          {
@@ -273,7 +438,7 @@ namespace user
             return false;
 
          }
-
+         /*
          bool frame::_000OnSize(UINT nType, int32_t cx, int32_t cy)
          {
 
@@ -284,6 +449,26 @@ namespace user
             return false;
 
          }
+
+         */
+
+         bool frame::_000OnSize(uint32_t nType,int32_t cx,int32_t cy)
+         {
+
+            UNREFERENCED_PARAMETER(cx);
+            UNREFERENCED_PARAMETER(cy);
+
+            sp(::user::interaction) pwnd = get_window();
+
+            if(pwnd == NULL || pwnd->m_pimpl->m_bIgnoreSizeEvent)
+               return false;
+
+            layout();
+
+            return false;
+
+         }
+
 
          bool frame::_000OnMove(int32_t x, int32_t y)
          {
@@ -786,12 +971,20 @@ namespace user
 
          }
 
+         EHitTest frame::_000HitTest(point pt)
+         {
+
+            UNREFERENCED_PARAMETER(pt);
+
+            return HitTestClient;
+
+         }
+
 
       } // namespace frame
 
 
    } // namespace frame
-
 
 
 } // namespace user

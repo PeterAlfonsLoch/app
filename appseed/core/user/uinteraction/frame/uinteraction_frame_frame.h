@@ -65,6 +65,8 @@ namespace user
             virtual ~frame();
 
 
+            virtual appearance * get_appearance();
+
             virtual ::user::front_end_schema * get_user_front_end_schema();
 
             virtual void set_style(const char * pszStyle);
@@ -118,9 +120,11 @@ namespace user
             virtual void layout();
 
 
+            virtual EHitTest _000HitTest(point pt);
+
+
             virtual COLORREF get_border_main_body_color();
 
-            virtual EHitTest _000HitTest(point pt) = 0;
             virtual bool _000OnLButtonDown(::message::mouse * pmouse);
             virtual bool _000OnLButtonUp(::message::mouse * pmouse);
             virtual bool _000OnMouseMove(::message::mouse * pmouse);
@@ -132,6 +136,7 @@ namespace user
             virtual bool _000OnSize(UINT nType, int32_t cx, int32_t cy);
             virtual bool _000OnMove(int32_t x, int32_t y);
             virtual bool _000OnCommand(WPARAM wparam, LPARAM lparam, LRESULT & lresult);
+
 
             virtual void OnAttach();
 

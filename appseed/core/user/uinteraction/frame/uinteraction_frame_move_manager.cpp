@@ -28,7 +28,6 @@ namespace user
             SetSWPFlags(0);
             m_eborderMask = BorderAll;
             m_dwLastMoveTime = get_tick_count();
-            m_bEnableDock = false;
          }
 
          MoveManager::~MoveManager()
@@ -58,7 +57,6 @@ namespace user
             m_pworkset->get_draw_window()->GetWindowRect(rectWindow);
             m_ptWindowOrigin = rectWindow.top_left();
             GetEventWindow()->SetCapture();
-            m_eappearanceOrigin = GetMoveWindow()->get_appearance();
             m_bMoving = true;
             pmouse->m_bRet = true;
             return true;
@@ -152,167 +150,6 @@ namespace user
             rectEvent.move_to(pt);
 
 
-            if(m_bEnableDock)
-            {
-
-               rect rectCursor(ptCursor.x - 1,ptCursor.y - 1,ptCursor.x + 1,ptCursor.y + 1);
-
-               rect rectMonitor;
-
-               session().get_best_monitor(rectMonitor,rectCursor);
-
-               int cx2 =  rectMonitor.width() / 8;
-               int cy2 =  rectMonitor.height() / 8;
-
-               if((ptCursor.x >= rectMonitor.left && ptCursor.x - rectMonitor.left <= 24) || (ptCursor.x >= rectMonitor.center().x - cx2 && ptCursor.x <= rectMonitor.center().x + cx2) || (ptCursor.x >= rectMonitor.right - 24 && ptCursor.x <= rectMonitor.right))
-               {
-                  if((ptCursor.y >= rectMonitor.top && ptCursor.y - rectMonitor.top <= 24) || (ptCursor.y >= rectMonitor.center().y - cy2 && ptCursor.y <= rectMonitor.center().y + cy2) || (ptCursor.y >= rectMonitor.bottom - 24 && ptCursor.y <= rectMonitor.bottom))
-                  {
-                     if((ptCursor.x >= rectMonitor.center().x - cx2 && ptCursor.x <= rectMonitor.center().x + cx2))
-                     {
-                        if((ptCursor.y >= rectMonitor.center().y - cy2 && ptCursor.y <= rectMonitor.center().y + cy2))
-                        {
-                           // ignore
-                           if(bMove && rectWindow.top_left() != pt)
-                           {
-                              m_eappearanceOrigin = ::user::AppearanceNormal;
-
-                           }
-                        }
-                        else if(ptCursor.y >= rectMonitor.top && ptCursor.y - rectMonitor.top <= 24)
-                        {
-                           if(m_eappearanceOrigin != ::user::AppearanceTop)
-                           {
-                              m_bEnableDock = false;
-                              System.release_capture_uie();
-                              m_bMoving = false;
-                              GetMoveWindow()->set_appearance(::user::AppearanceTop);
-                              ::rect rectDock = rect_dim(rectMonitor.left,rectMonitor.top,rectMonitor.width(),rectMonitor.height() / 2);
-                              GetMoveWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
-                              return true;
-                           }
-                        }
-                        else
-                        {
-                           if(m_eappearanceOrigin != ::user::AppearanceBottom)
-                           {
-                              m_bEnableDock = false;
-                              System.release_capture_uie();
-                              m_bMoving = false;
-                              GetMoveWindow()->set_appearance(::user::AppearanceBottom);
-                              ::rect rectDock = rect_dim(rectMonitor.left,rectMonitor.top + rectMonitor.height() / 2,rectMonitor.width(),rectMonitor.height() / 2);
-                              GetMoveWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
-                              return true;
-                           }
-                        }
-                     }
-                     else if((ptCursor.y >= rectMonitor.center().y - cy2 && ptCursor.y <= rectMonitor.center().y + cy2))
-                     {
-                        if(ptCursor.x >= rectMonitor.left && ptCursor.x - rectMonitor.left <= 24)
-                        {
-                           if(m_eappearanceOrigin != ::user::AppearanceLeft)
-                           {
-                              m_bEnableDock = false;
-                              System.release_capture_uie();
-                              m_bMoving = false;
-                              GetMoveWindow()->set_appearance(::user::AppearanceLeft);
-                              ::rect rectDock = rect_dim(rectMonitor.left,rectMonitor.top,rectMonitor.width() / 2,rectMonitor.height());
-                              GetMoveWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
-                              return true;
-                           }
-                        }
-                        else
-                        {
-                           if(m_eappearanceOrigin != ::user::AppearanceRight)
-                           {
-                              m_bEnableDock = false;
-                              System.release_capture_uie();
-                              m_bMoving = false;
-                              GetMoveWindow()->set_appearance(::user::AppearanceRight);
-                              ::rect rectDock = rect_dim(rectMonitor.left + rectMonitor.width() / 2,rectMonitor.top,rectMonitor.width() / 2,rectMonitor.height());
-                              GetMoveWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
-                              return true;
-                           }
-                        }
-                     }
-                     else if(ptCursor.x >= rectMonitor.left && ptCursor.x - rectMonitor.left <= 24)
-                     {
-                        if(ptCursor.y >= rectMonitor.top && ptCursor.y - rectMonitor.top <= 24)
-                        {
-                           if(m_eappearanceOrigin != ::user::AppearanceTopLeft)
-                           {
-                              m_bEnableDock = false;
-                              System.release_capture_uie();
-                              m_bMoving = false;
-                              GetMoveWindow()->set_appearance(::user::AppearanceTopLeft);
-                              ::rect rectDock = rect_dim(rectMonitor.left,rectMonitor.top,rectMonitor.width() / 2,rectMonitor.height() / 2);
-                              GetMoveWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
-                              return true;
-                           }
-                        }
-                        else
-                        {
-                           if(m_eappearanceOrigin != ::user::AppearanceBottomLeft)
-                           {
-                              m_bEnableDock = false;
-                              System.release_capture_uie();
-                              m_bMoving = false;
-                              GetMoveWindow()->set_appearance(::user::AppearanceBottomLeft);
-                              ::rect rectDock = rect_dim(rectMonitor.left,rectMonitor.top + rectMonitor.height() / 2,rectMonitor.width() / 2,rectMonitor.height() / 2);
-                              GetMoveWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
-                              return true;
-                           }
-                        }
-                     }
-                     else
-                     {
-                        if(ptCursor.y >= rectMonitor.top && ptCursor.y - rectMonitor.top <= 24)
-                        {
-                           if(m_eappearanceOrigin != ::user::AppearanceTopRight)
-                           {
-                              m_bEnableDock = false;
-                              System.release_capture_uie();
-                              m_bMoving = false;
-                              GetMoveWindow()->set_appearance(::user::AppearanceTopRight);
-                              ::rect rectDock = rect_dim(rectMonitor.left + rectMonitor.width() / 2,rectMonitor.top,rectMonitor.width() / 2,rectMonitor.height() / 2);
-                              GetMoveWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
-                              return true;
-                           }
-                        }
-                        else
-                        {
-                           if(m_eappearanceOrigin != ::user::AppearanceBottomRight)
-                           {
-                              m_bEnableDock = false;
-                              System.release_capture_uie();
-                              m_bMoving = false;
-                              GetMoveWindow()->set_appearance(::user::AppearanceBottomRight);
-                              ::rect rectDock = rect_dim(rectMonitor.left + rectMonitor.width() / 2,rectMonitor.top + rectMonitor.height() / 2,rectMonitor.width() / 2,rectMonitor.height() / 2);
-                              GetMoveWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
-                              return true;
-                           }
-                        }
-                     }
-                  }
-                  else
-                  {
-                     if(bMove && rectWindow.top_left() != pt)
-                     {
-                        m_eappearanceOrigin = ::user::AppearanceNormal;
-
-                     }
-                  }
-               }
-               else
-               {
-                  if(bMove && rectWindow.top_left() != pt)
-                  {
-                     m_eappearanceOrigin = ::user::AppearanceNormal;
-
-                  }
-               }
-
-            }
 
 
             if(bMove && rectWindow.top_left() != pt)
@@ -334,7 +171,6 @@ namespace user
             pinterface->WfiOnMove(pmouse->m_uiMessage == WM_MOUSEMOVE || pmouse->m_uiMessage == WM_NCMOUSEMOVE);
             if(pmouse->m_uiMessage == WM_LBUTTONUP || pmouse->m_uiMessage == WM_NCLBUTTONUP)
             {
-               m_bEnableDock = false;
                TRACE("MoveManager::message_handler oswindow ReleaseCapture 2 %x\n", System.get_capture_uie().m_p);
                index iMatchingMonitor = m_pworkset->GetWndDraw()->good_move(rectEvent,NULL,true);
 
@@ -549,19 +385,21 @@ namespace user
 
             }*/
 
+/*
             ASSERT(GetEventWindow() != NULL);
             sp(::user::interaction) pwndParent = GetEventWindow()->GetParent();
             if(pwndParent != NULL)
             {
-               EDock edock = m_pworkset->GetDockManager()->GetDockState();
+               EDock edock = m_pworkset->GetDockingManager()->GetDockState();
                if(edock != DockNone)
                {
-                  m_pworkset->GetDockManager()->MoveWindow(
+                  m_pworkset->GetDockingManager()->MoveWindow(
                      pt.x,
                      pt.y);
                   return;
                }
             }
+*/
 
 
             rect rectWindow;
@@ -581,7 +419,7 @@ namespace user
             return m_bMoving;
          }
 
-         MoveManager::EBorder MoveManager::GetBorderMask()
+         EBorder MoveManager::GetBorderMask()
          {
             return m_eborderMask;
          }

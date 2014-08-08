@@ -5,405 +5,670 @@ namespace user
 {
 
 
+
    namespace uinteraction
    {
+
 
 
       namespace frame
       {
 
 
-         DockManager::DockManager()
-         {
+         const uint32_t DockManager::s_dwMoveTime = 150;
 
-            m_pworkset = NULL;
-            m_edock = DockNone;
-            m_edockMask = DockHalfSide;
+         DockManager::DockManager(WorkSet * pworkset) :
+            element(pworkset->get_app())
+         {
+            
+            ASSERT(pworkset != NULL);
+            m_pworkset = pworkset;
+            m_bDocking = false;
+            m_bPendingMove = false;
+            m_dwLastMovingTime = 0;
+            SetSWPFlags(0);
+            m_eborderMask = BorderAll;
+            m_dwLastMoveTime = get_tick_count();
 
          }
-
 
          DockManager::~DockManager()
          {
 
          }
 
-         bool DockManager::relay_event(signal_details * pobj)
+
+         bool DockManager::_000OnLButtonDown(::message::mouse * pmouse)
          {
-            UNREFERENCED_PARAMETER(pobj);
-            /*if(lpmsg->message == WM_SIZE
-               || lpmsg->message == WM_MOVE
-               || lpmsg->message == WM_MOVING)
-               {
-               }*/
-            return false;
+            
+            if(!m_pworkset->IsDockingEnabled() || m_pworkset->m_bSizingCapture)
+               return false;
+
+            class point ptCursor = pmouse->m_pt;
+
+            WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetEventWindow().m_p);
+
+            if(pinterface == NULL)
+               pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->get_draw_window().m_p);
+
+            if(pinterface->WfiOnBeginMoving(ptCursor))
+               return true;
+
+            m_ptCursorOrigin = ptCursor;
+
+            rect rectWindow;
+
+            m_pworkset->get_draw_window()->GetWindowRect(rectWindow);
+
+            m_ptWindowOrigin = rectWindow.top_left();
+
+            GetEventWindow()->SetCapture();
+
+            m_eappearanceOrigin = GetDockWindow()->get_appearance();
+
+            m_bDocking = true;
+
+            pmouse->m_bRet = true;
+
+            return true;
+
          }
 
-         bool DockManager::update(WorkSet  * pwf)
+
+         bool DockManager::_000OnMouseMove(::message::mouse * pmouse)
          {
-            ASSERT(pwf != NULL);
+
+            if(!m_pworkset->IsDockingEnabled() || m_pworkset->m_bSizingCapture)
+               return false;
+
+            if(get_tick_count() - m_dwLastMoveTime < 84)
+               return true;
+
+            m_dwLastMoveTime = get_tick_count();
+
+            return Relay(pmouse);
+
+         }
+
+
+         bool DockManager::_000OnLButtonUp(::message::mouse * pmouse)
+         {
+            
+            if(!m_pworkset->IsDockingEnabled() || m_pworkset->m_bSizingCapture)
+               return false;
+
+            return Relay(pmouse);
+
+         }
+
+
+         // process only WM_MOUSEMOVE and WM_LBUTTONUP messages
+         bool DockManager::Relay(::message::mouse * pmouse)
+         {
+
+            ASSERT(pmouse->m_uiMessage == WM_MOUSEMOVE || pmouse->m_uiMessage == WM_LBUTTONUP || pmouse->m_uiMessage == WM_NCMOUSEMOVE || pmouse->m_uiMessage == WM_NCLBUTTONUP);
+            
+            if(!m_bDocking)
+               return false;
+
+            pmouse->m_bRet = true;
+
+            sp(::user::interaction) puieCapture = System.get_capture_uie();
+
+            if(puieCapture == NULL)
+            {
+
+#ifdef LINUX
+
+               // for safety in Linux
+               ::ReleaseCapture();
+
+#endif
+
+               m_bDocking = false;
+
+               return false;
+
+            }
+
+            sp(::user::interaction) puieEventWindow = GetEventWindow();
+
+            if(puieCapture != puieEventWindow)
+            {
+
+               if(puieCapture != NULL && puieCapture == GetEventWindow())
+               {
+
+                  TRACE("DockManager::message_handler oswindow ReleaseCapture %x\n",System.get_capture_uie().m_p);
+
+                  System.release_capture_uie();
+
+               }
+
+               return false;
+
+            }
+
+            class point ptCursor = pmouse->m_pt;
+
+            if(pmouse->m_uiMessage == WM_MOUSEMOVE || pmouse->m_uiMessage == WM_LBUTTONUP)
+            {
+
+               //GetEventWindow()->ClientToScreen(&ptCursor);
+
+            }
+
+            class point pt;
+
+            pt = m_ptWindowOrigin + ptCursor - m_ptCursorOrigin;
+
+            //TRACE("m_ptWindowOrigin.x = %d m_ptWindowOrigin = %d\n", m_ptWindowOrigin.x, m_ptWindowOrigin.y);
+            //TRACE("ptCursor.x = %d ptCursor = %d\n", ptCursor.x, ptCursor.y);
+            //TRACE("m_ptCursorOrigin.x = %d m_ptCursorOrigin = %d\n", m_ptCursorOrigin.x, m_ptCursorOrigin.y);
+
+            rect rectWindow;
+
+            m_pworkset->GetWndDraw()->GetWindowRect(rectWindow);
+
+            bool bMove = true;
+
+            //      sp(::user::interaction) pWndParent = m_pworkset->GetWndDraw()->GetParent();
+            //::ReleaseCapture();
+            //::ShowWindow(m_pworkset->GetWndDraw()->GetWindow()->get_os_data(), SW_HIDE);
+
+            rect rectEvent = rectWindow;
+
+            rectEvent.move_to(pt);
+
+            rect rectCursor(ptCursor.x - 1,ptCursor.y - 1,ptCursor.x + 1,ptCursor.y + 1);
+
+            rect rectMonitor;
+
+            session().get_best_monitor(rectMonitor,rectCursor);
+
+            int cx2 =  rectMonitor.width() / 8;
+            int cy2 =  rectMonitor.height() / 8;
+
+            if((ptCursor.x >= rectMonitor.left && ptCursor.x - rectMonitor.left <= 24) || (ptCursor.x >= rectMonitor.center().x - cx2 && ptCursor.x <= rectMonitor.center().x + cx2) || (ptCursor.x >= rectMonitor.right - 24 && ptCursor.x <= rectMonitor.right))
+            {
+               if((ptCursor.y >= rectMonitor.top && ptCursor.y - rectMonitor.top <= 24) || (ptCursor.y >= rectMonitor.center().y - cy2 && ptCursor.y <= rectMonitor.center().y + cy2) || (ptCursor.y >= rectMonitor.bottom - 24 && ptCursor.y <= rectMonitor.bottom))
+               {
+                  if((ptCursor.x >= rectMonitor.center().x - cx2 && ptCursor.x <= rectMonitor.center().x + cx2))
+                  {
+                     if((ptCursor.y >= rectMonitor.center().y - cy2 && ptCursor.y <= rectMonitor.center().y + cy2))
+                     {
+                        // ignore
+                        if(bMove && rectWindow.top_left() != pt)
+                        {
+                           m_eappearanceOrigin = ::user::AppearanceNormal;
+                           GetDockWindow()->set_appearance(::user::AppearanceNormal);
+                        }
+                     }
+                     else if(ptCursor.y >= rectMonitor.top && ptCursor.y - rectMonitor.top <= 24)
+                     {
+                        if(m_eappearanceOrigin != ::user::AppearanceTop)
+                        {
+                           GetDockWindow()->set_appearance(::user::AppearanceTop);
+                           ::rect rectDock = rect_dim(rectMonitor.left,rectMonitor.top,rectMonitor.width(),rectMonitor.height() / 2);
+                           GetDockWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
+                        }
+                     }
+                     else
+                     {
+                        if(m_eappearanceOrigin != ::user::AppearanceBottom)
+                        {
+                           GetDockWindow()->set_appearance(::user::AppearanceBottom);
+                           ::rect rectDock = rect_dim(rectMonitor.left,rectMonitor.top + rectMonitor.height() / 2,rectMonitor.width(),rectMonitor.height() / 2);
+                           GetDockWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
+                        }
+                     }
+                  }
+                  else if((ptCursor.y >= rectMonitor.center().y - cy2 && ptCursor.y <= rectMonitor.center().y + cy2))
+                  {
+                     if(ptCursor.x >= rectMonitor.left && ptCursor.x - rectMonitor.left <= 24)
+                     {
+                        if(m_eappearanceOrigin != ::user::AppearanceLeft)
+                        {
+                           GetDockWindow()->set_appearance(::user::AppearanceLeft);
+                           ::rect rectDock = rect_dim(rectMonitor.left,rectMonitor.top,rectMonitor.width() / 2,rectMonitor.height());
+                           GetDockWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
+                        }
+                     }
+                     else
+                     {
+                        if(m_eappearanceOrigin != ::user::AppearanceRight)
+                        {
+                           GetDockWindow()->set_appearance(::user::AppearanceRight);
+                           ::rect rectDock = rect_dim(rectMonitor.left + rectMonitor.width() / 2,rectMonitor.top,rectMonitor.width() / 2,rectMonitor.height());
+                           GetDockWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
+                        }
+                     }
+                  }
+                  else if(ptCursor.x >= rectMonitor.left && ptCursor.x - rectMonitor.left <= 24)
+                  {
+                     if(ptCursor.y >= rectMonitor.top && ptCursor.y - rectMonitor.top <= 24)
+                     {
+                        if(m_eappearanceOrigin != ::user::AppearanceTopLeft)
+                        {
+                           GetDockWindow()->set_appearance(::user::AppearanceTopLeft);
+                           ::rect rectDock = rect_dim(rectMonitor.left,rectMonitor.top,rectMonitor.width() / 2,rectMonitor.height() / 2);
+                           GetDockWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
+                        }
+                     }
+                     else
+                     {
+                        if(m_eappearanceOrigin != ::user::AppearanceBottomLeft)
+                        {
+                           GetDockWindow()->set_appearance(::user::AppearanceBottomLeft);
+                           ::rect rectDock = rect_dim(rectMonitor.left,rectMonitor.top + rectMonitor.height() / 2,rectMonitor.width() / 2,rectMonitor.height() / 2);
+                           GetDockWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
+                        }
+                     }
+                  }
+                  else
+                  {
+                     if(ptCursor.y >= rectMonitor.top && ptCursor.y - rectMonitor.top <= 24)
+                     {
+                        if(m_eappearanceOrigin != ::user::AppearanceTopRight)
+                        {
+                           GetDockWindow()->set_appearance(::user::AppearanceTopRight);
+                           ::rect rectDock = rect_dim(rectMonitor.left + rectMonitor.width() / 2,rectMonitor.top,rectMonitor.width() / 2,rectMonitor.height() / 2);
+                           GetDockWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
+                        }
+                     }
+                     else
+                     {
+                        if(m_eappearanceOrigin != ::user::AppearanceBottomRight)
+                        {
+                           GetDockWindow()->set_appearance(::user::AppearanceBottomRight);
+                           ::rect rectDock = rect_dim(rectMonitor.left + rectMonitor.width() / 2,rectMonitor.top + rectMonitor.height() / 2,rectMonitor.width() / 2,rectMonitor.height() / 2);
+                           GetDockWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
+                        }
+                     }
+                  }
+               }
+               else
+               {
+                  if(bMove && rectWindow.top_left() != pt)
+                  {
+                     m_eappearanceOrigin = ::user::AppearanceNormal;
+                     GetDockWindow()->set_appearance(::user::AppearanceNormal);
+                  }
+               }
+            }
+            else
+            {
+               if(bMove && rectWindow.top_left() != pt)
+               {
+                  m_eappearanceOrigin = ::user::AppearanceNormal;
+                  GetDockWindow()->set_appearance(::user::AppearanceNormal);
+               }
+            }
+
+
+            if(bMove && rectWindow.top_left() != pt && GetDockWindow()->get_appearance() == ::user::AppearanceNormal)
+            {
+               class point ptMove = pt;
+               if(GetDockWindow()->GetParent() != NULL)
+               {
+                  GetDockWindow()->GetParent()->ScreenToClient(&ptMove);
+               }
+               GetDockWindow()->SetWindowPos(ZORDER_TOP,ptMove.x,ptMove.y,0,0,SWP_NOSIZE);
+            }
+
+
+
+            WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetEventWindow().m_p);
+            if(pinterface == NULL)
+               pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->get_draw_window().m_p);
+
+            pinterface->WfiOnMove(pmouse->m_uiMessage == WM_MOUSEMOVE || pmouse->m_uiMessage == WM_NCMOUSEMOVE);
+            if(pmouse->m_uiMessage == WM_LBUTTONUP || pmouse->m_uiMessage == WM_NCLBUTTONUP)
+            {
+               TRACE("DockManager::message_handler oswindow ReleaseCapture 2 %x\n",System.get_capture_uie().m_p);
+               index iMatchingMonitor = m_pworkset->GetWndDraw()->good_move(rectEvent,NULL,true);
+
+               if(iMatchingMonitor >= 0)
+               {
+
+                  bMove = false;
+
+                  m_pworkset->GetWndDraw()->GetWindowRect(rectEvent);
+
+                  ptCursor = -m_ptWindowOrigin + rectEvent.top_left() + m_ptCursorOrigin;
+
+                  if(session().m_bSystemSynchronizedCursor)
+                  {
+#ifdef WINDOWSEX
+                     ::SetCursorPos(ptCursor.x,ptCursor.y);
+#else
+                     throw todo(get_app());
+#endif
+                  }
+
+                  session().m_ptCursor = ptCursor;
+
+               }
+               System.release_capture_uie();
+               m_bDocking = false;
+            }
+            return true;
+         }
+
+         bool DockManager::update(WorkSet * pwf)
+         {
             m_pworkset = pwf;
             return true;
          }
 
-         void DockManager::SetDockMask(EDock emask)
+         bool DockManager::relay_event(MESSAGE *lpMsg)
          {
-            m_edockMask = emask;
-         }
-
-         EDock DockManager::GetDockMask()
-         {
-            return m_edockMask;
-         }
-
-         bool DockManager::Dock(EDock edock, bool bLayout)
-         {
-            m_edock = edock;
-            if (bLayout)
+            UNREFERENCED_PARAMETER(lpMsg);
+            ASSERT(FALSE);
+            return false;
+            /*
+            if(GetEventWindow() == NULL ||
+            lpMsg->oswindow != GetEventWindow()->get_handle())
+            return false;
+            if(lpMsg->message == WM_LBUTTONDOWN)
             {
-               layout();
+            point ptCursor = lpMsg->pt;
+            m_ptCursorOrigin = ptCursor;
+            rect rectWindow;
+            GetDockWindow()->GetWindowRect(rectWindow);
+            sp(::user::interaction) pWndParent = GetDockWindow()->GetParent();
+            if(pWndParent != NULL)
+            {
+            pWndParent->ScreenToClient(rectWindow);
             }
-            m_pworkset->OnDock();
+            m_ptWindowOrigin = rectWindow.top_left();
+            GetEventWindow()->SetCapture();
+            m_bDocking = true;
             return true;
+            }
+            else if(lpMsg->message == WM_MOUSEMOVE ||
+            lpMsg->message == WM_LBUTTONUP)
+            {
+            sp(::user::interaction) pWndCapture = uieApplication.get_capture_uie();
+            if(!m_bDocking ||
+            pWndCapture == NULL ||
+            pWndCapture->get_handle() != GetEventWindow()->get_handle())
+            return false;
+            if(lpMsg->message == WM_MOUSEMOVE &&
+            m_dwLastMovingTime + 10 > get_tick_count())
+            return true;
+            uint32_t fwKeys = lpMsg->wParam;        // key flags
+            point ptCursor = lpMsg->pt;
+            point pt;
+            pt = m_ptWindowOrigin + ptCursor - m_ptCursorOrigin;
+            //TRACE("m_ptWindowOrigin.x = %d m_ptWindowOrigin = %d\n", m_ptWindowOrigin.x, m_ptWindowOrigin.y);
+            //TRACE("ptCursor.x = %d ptCursor = %d\n", ptCursor.x, ptCursor.y);
+            //TRACE("m_ptCursorOrigin.x = %d m_ptCursorOrigin = %d\n", m_ptCursorOrigin.x, m_ptCursorOrigin.y);
+            rect rectWindow;
+            GetEventWindow()->GetWindowRect(rectWindow);
+            bool bMove = true;
+            sp(::user::interaction) pWndParent = GetDockWindow()->GetParent();
+            if(pWndParent != NULL)
+            {
+            pWndParent->ScreenToClient(rectWindow);
+            rect rectParentClient;
+            pWndParent->GetClientRect(rectParentClient);
+            rect rectEvent;
+            GetEventWindow()->GetWindowRect(rectEvent);
+            pWndParent->ScreenToClient(rectEvent);
+            rectEvent += pt - rectWindow.top_left();
+            rect rectIntersect;
+            rectIntersect.intersect(rectParentClient, rectEvent);
+            if(rectIntersect.width() <= 0 ||
+            rectIntersect.height() <= 0)
+            bMove = false;
+            }
+
+            if(bMove && rectWindow.top_left() != pt)
+            {
+            MoveWindow(GetDockWindow(), pt);
+
+            }
+            if(lpMsg->message == WM_LBUTTONUP)
+            {
+            System.release_capture_uie();
+            m_bDocking = false;
+            }
+            return true;
+            }
+            return false;
+            */
          }
+
+         void DockManager::SetSWPFlags(UINT uiFlags)
+         {
+            m_uiSWPFlags = uiFlags;
+            m_uiSWPFlags |= SWP_NOSIZE;
+            m_uiSWPFlags |= SWP_FRAMECHANGED;
+            m_uiSWPFlags &= ~SWP_NOMOVE;
+
+         }
+
+
+
+
+
+         void DockManager::MoveWindow(void * oswindow,point pt)
+         {
+            /*   if(get_tick_count() - m_dwLastMoveTime < s_dwMoveTime)
+            {
+            m_oswindowPendingMove = oswindow;
+            m_ptPendingMove = pt;
+            if(!m_bPendingMove)
+            {
+            m_bPendingMove = true;
+            GetEventWindow()->SetTimer(0x08000000 - 1, s_dwMoveTime, NULL);
+            }
+            return;
+            }*/
+            m_bPendingMove = false;
+            m_dwLastMoveTime = get_tick_count();
+            sp(::user::interaction) pwnd = System.window_from_os_data(oswindow);
+            //            if(base_class < CPlaylistInPlaceWnd >::bases(m_pWndMoving))
+            //          {
+            //            m_pWndMoving->GetWindowRect(((CPlaylistInPlaceWnd *) m_pWndMoving)->m_rectWindow);
+            //          ((CPlaylistInPlaceWnd *) m_pWndMoving)->m_rectWindow += pt - ((CPlaylistInPlaceWnd *) m_pWndMoving)->m_rectWindow.top_left();
+            //    }
+            //    TRACE("DockManager::relay_event\n");
+            //   TRACE("pt.x  : %d, ", pt.x);
+            //   TRACE("pt.y  : %d,\n ", pt.y);
+            //   TRACE("rectClipBox.right : %d, ", ((CPlaylistInPlaceWnd *) m_pWndMoving)->m_rectWindow.right);
+            //   TRACE("rectClipBox.bottom: %d\n", ((CPlaylistInPlaceWnd *) m_pWndMoving)->m_rectWindow.bottom);
+            /*sp(::user::interaction)  pParentWnd  = m_pWndMoving->GetParent();
+            rect rectWindow;
+            if(pParentWnd != NULL)
+            {
+            m_pWndMoving->GetWindowRect(rectWindow);
+            pParentWnd->ScreenToClient(rectWindow);
+
+            }*/
+
+            /*
+            ASSERT(GetEventWindow() != NULL);
+            sp(::user::interaction) pwndParent = GetEventWindow()->GetParent();
+            if(pwndParent != NULL)
+            {
+               EDock edock = m_pworkset->GetDockingManager()->GetDockState();
+               if(edock != DockNone)
+               {
+                  m_pworkset->GetDockingManager()->MoveWindow(
+                     pt.x,
+                     pt.y);
+                  return;
+               }
+            }
+            */
+
+            rect rectWindow;
+            pwnd->GetWindowRect(rectWindow);
+
+
+            pwnd->SetWindowPos(ZORDER_TOP,pt.x,pt.y,rectWindow.width(),rectWindow.height(),0);
+
+
+            m_dwLastMovingTime = get_tick_count();
+            m_pworkset->m_pframeschema->OnMove(GetDockWindow());
+
+         }
+
+
+         bool DockManager::IsMoving()
+         {
+
+            return m_bDocking;
+
+         }
+
+         
+         EBorder DockManager::GetBorderMask()
+         {
+
+            return m_eborderMask;
+
+         }
+
+
+         void DockManager::SetBorderMask(EBorder emask)
+         {
+            m_eborderMask = emask;
+         }
+
 
          EDock DockManager::GetDockState()
          {
-            return m_edock;
-         }
 
-         void DockManager::OnSize()
-         {
-            UpdateDocking();
-         }
+            return m_edockState;
 
-         void DockManager::OnMove()
-         {
-            UpdateDocking();
-         }
-
-         void DockManager::OnMoving()
-         {
-            UpdateDocking();
          }
 
 
-         void DockManager::layout()
+         void DockManager::SetDockMask(EDock edock)
          {
-            if (m_pworkset == NULL)
+            m_edockState= edock;
+         }
+
+         void DockManager::message_handler(sp(::user::interaction) pwnd,signal_details * pobj)
+         {
+            SCAST_PTR(::message::base,pbase,pobj);
+            if(m_bPendingMove
+               && get_tick_count() > m_dwLastMoveTime + s_dwMoveTime)
+            {
+               m_bPendingMove = false;
+               MoveWindow(
+                  m_oswindowPendingMove,
+                  m_ptPendingMove);
+            }
+
+            if(pbase->m_uiMessage == WM_LBUTTONDOWN)
+            {
+               point ptCursor((int16_t)LOWORD(pbase->m_lparam),(int16_t)HIWORD(pbase->m_lparam));
+               pwnd->ClientToScreen(&ptCursor);
+               m_ptCursorOrigin = ptCursor;
+               rect rectWindow;
+               GetDockWindow()->GetWindowRect(rectWindow);
+               sp(::user::interaction) pWndParent = GetDockWindow()->GetParent();
+               if(pWndParent != NULL)
+               {
+                  pWndParent->ScreenToClient(rectWindow);
+               }
+               m_ptWindowOrigin = rectWindow.top_left();
+               GetEventWindow()->SetCapture();
+               m_bDocking = true;
+               pbase->m_bRet = true;
                return;
-            sp(::user::interaction) pwndChild = m_pworkset->GetEventWindow();
-            if (pwndChild == NULL || pwndChild->m_pimpl->m_bIgnoreSizeEvent)
-               return;
-            sp(::user::interaction) pwndParent = pwndChild->GetParent();
-            if (pwndParent == NULL)
-               return;
-            rect rectParent;
-            pwndParent->GetClientRect(rectParent);
-            rect rectChild;
-            pwndChild->GetWindowRect(rectChild);
-            pwndParent->ScreenToClient(rectChild);
-            ASSERT(m_pworkset != NULL);
-            EDock edock = GetDockState();
-            if (edock & DockTop)
-            {
-               OffsetWindowPos(0, rectParent.top - rectChild.top);
             }
-            else if (edock & DockBottom)
+            else if(pbase->m_uiMessage == WM_MOUSEMOVE ||
+               pbase->m_uiMessage == WM_LBUTTONUP)
             {
-               OffsetWindowPos(0, rectParent.bottom - rectChild.bottom);
-            }
-            if (edock & DockLeft)
-            {
-               OffsetWindowPos(rectParent.left - rectChild.left, 0);
-            }
-            else if (edock & DockRight)
-            {
-               OffsetWindowPos(rectParent.right - rectChild.right, 0);
-            }
+               sp(::user::interaction) pWndCapture = System.get_capture_uie();
+               TRACE("DockManager::message_handler oswindow Capture %x\n",System.get_capture_uie().m_p);
+               if(!m_bDocking ||
+                  pWndCapture == NULL ||
+                  pWndCapture->get_handle() != GetEventWindow()->get_handle())
+               {
+                  if(pWndCapture != NULL
+                     && pWndCapture->get_handle() == GetEventWindow()->get_handle())
+                  {
+                     System.release_capture_uie();
+                  }
+                  return;
+               }
+               if(pbase->m_uiMessage == WM_MOUSEMOVE &&
+                  m_dwLastMovingTime + 10 > get_tick_count())
+               {
+                  pbase->m_bRet = true;
+                  return;
+               }
+               //           uint32_t fwKeys = pbase->m_wparam;        // key flags
+               point ptCursor((int16_t)LOWORD(pbase->m_lparam),(int16_t)HIWORD(pbase->m_lparam));
+               pwnd->ClientToScreen(&ptCursor);
+               point pt;
+               pt = m_ptWindowOrigin + ptCursor - m_ptCursorOrigin;
+               //TRACE("m_ptWindowOrigin.x = %d m_ptWindowOrigin = %d\n", m_ptWindowOrigin.x, m_ptWindowOrigin.y);
+               //TRACE("ptCursor.x = %d ptCursor = %d\n", ptCursor.x, ptCursor.y);
+               //TRACE("m_ptCursorOrigin.x = %d m_ptCursorOrigin = %d\n", m_ptCursorOrigin.x, m_ptCursorOrigin.y);
+               rect rectWindow;
+               GetEventWindow()->GetWindowRect(rectWindow);
+               bool bMove = true;
+               sp(::user::interaction) pWndParent = GetDockWindow()->GetParent();
+               if(pWndParent == NULL)
+                  pWndParent = System.get_desktop_window();
+               if(pWndParent != NULL)
+               {
+                  pWndParent->ScreenToClient(rectWindow);
+                  rect rectParentClient;
+                  pWndParent->GetClientRect(rectParentClient);
+                  rect rectEvent;
+                  GetEventWindow()->GetWindowRect(rectEvent);
+                  pWndParent->ScreenToClient(rectEvent);
+                  rectEvent += pt - rectWindow.top_left();
+                  rect rectIntersect;
+                  rectIntersect.intersect(rectParentClient,rectEvent);
+                  if(rectIntersect.width() <= 30 ||
+                     rectIntersect.height() <= 30)
+                     bMove = false;
+               }
 
+               if(bMove && rectWindow.top_left() != pt)
+               {
 
+                  MoveWindow(GetDockWindow()->get_handle(),pt);
+
+               }
+               if(pbase->m_uiMessage == WM_LBUTTONUP)
+               {
+                  System.release_capture_uie();
+                  m_bDocking = false;
+               }
+               pbase->m_bRet = true;
+               return;
+            }
          }
 
-         bool DockManager::OffsetWindowPos(int32_t cx, int32_t cy)
+         bool DockManager::_000OnTimer(UINT nIDEvent)
          {
-            if (cx == 0
-               && cy == 0)
+            if(nIDEvent == 0x08000000 - 1)
+            {
+               GetEventWindow()->KillTimer(nIDEvent);
+               MoveWindow(m_oswindowPendingMove,m_ptPendingMove);
                return true;
-            sp(::user::interaction) pwnd = m_pworkset->GetEventWindow();
-            sp(::user::interaction) pwndParent = pwnd->GetParent();
-            rect rectPos;
-            pwnd->GetWindowRect(rectPos);
-            if (pwndParent != NULL)
-            {
-               pwndParent->ScreenToClient(rectPos);
             }
-            sp(::user::interaction) ptwi = (pwnd.m_p);
-            //   CTransparentWndContainer * ptwc = dynamic_cast<CTransparentWndContainer *>(pwnd);
-            if (ptwi != NULL)
-               //if(ptwi != NULL &&
-               //   ptwc == NULL)
-            {
-               rect rectBefore;
-               pwnd->GetWindowRect(rectBefore);
-               pwnd->SetWindowPos(
-                  ZORDER_TOP,
-                  rectPos.left + cx,
-                  rectPos.top + cy,
-                  0, 0,
-                  SWP_NOSIZE
-                  | SWP_NOREDRAW);
-               rect rectAfter;
-               pwnd->GetWindowRect(rectAfter);
-               class rect rectUnion;
-               rectUnion.unite(rectBefore, rectAfter);
-               pwnd->ScreenToClient(rectUnion);
-               ptwi->RedrawWindow();
-            }
-            /*else
-            {
-            sp(::user::interaction) pwndTopLevel = pwnd->GetTopLevel();
-            if(pwndTopLevel != NULL &&
-            pwndTopLevel->get_handle() == pwnd->get_handle())
-            {
-            pwnd->SetWindowPos(
-            ZORDER_TOP,
-            rectPos.left + cx,
-            rectPos.top + cy,
-            0, 0,
-            SWP_NOSIZE
-            | SWP_SHOWWINDOW);
-            }
-            else if(pwndParent != NULL)
-            {
-            rect rectBefore;
-            pwnd->GetWindowRect(rectBefore);
-            pwndParent->ScreenToClient(rectBefore);
-            pwnd->SetWindowPos(
-            ZORDER_TOP,
-            rectPos.left + cx,
-            rectPos.top + cy,
-            0, 0,
-            SWP_NOSIZE
-            | SWP_NOREDRAW);
-            rect rectAfter;
-            pwnd->GetWindowRect(rectAfter);
-            pwndParent->ScreenToClient(rectAfter);
-            rect rectUnion;
-            rectUnion.union(rectBefore, rectAfter);
-            pwndParent->RedrawWindow(
-            rectUnion,
-            NULL,
-            RDW_NOERASE
-            | RDW_UPDATENOW
-            | RDW_INVALIDATE);
-            }
-            else
-            {
-            pwnd->SetWindowPos(
-            ZORDER_TOP,
-            rectPos.left + cx,
-            rectPos.top + cy,
-            0, 0,
-            SWP_NOSIZE
-            | SWP_NOREDRAW);
-            rect rectClient;
-            pwnd->GetClientRect(rectClient);
-            pwnd->RedrawWindow(
-            rectClient,
-            NULL,
-            RDW_NOERASE | RDW_UPDATENOW |RDW_INVALIDATE);
-            }
-            }*/
-            return true;
+            return false;
          }
 
-         bool DockManager::MoveWindow(int32_t x, int32_t y)
+         sp(::user::interaction) DockManager::GetEventWindow()
          {
-            ASSERT(m_pworkset->GetEventWindow() != NULL);
-            sp(::user::interaction) pwndParent = m_pworkset->GetEventWindow()->GetParent();
-            if (pwndParent == NULL)
-               return false;
-            rect rectParent;
-            pwndParent->GetClientRect(rectParent);
-            sp(::user::interaction) pwndChild = m_pworkset->GetEventWindow();
-            rect rectChild;
-            pwndChild->GetWindowRect(rectChild);
-            pwndParent->ScreenToClient(rectChild);
-            ASSERT(m_pworkset != NULL);
-
-            EDock edock = GetDockState();
-
-            EDock edockNew = CalcDock(x, y);
-
-            if (edockNew != edock)
-            {
-               Dock(edockNew, false);
-            }
-
-            if (edockNew == DockTop)
-            {
-               OffsetWindowPos(x - rectChild.left, rectParent.top - rectChild.top);
-            }
-            else if (edockNew == DockBottom)
-            {
-               OffsetWindowPos(x - rectChild.left, rectParent.bottom - rectChild.bottom);
-            }
-            else if (edockNew == DockLeft)
-            {
-               OffsetWindowPos(rectParent.left - rectChild.left, y - rectChild.top);
-            }
-            else if (edockNew == DockRight)
-            {
-               OffsetWindowPos(rectParent.right - rectChild.right, y - rectChild.top);
-            }
-            else
-            {
-               OffsetWindowPos(x - rectChild.left, y - rectChild.top);
-            }
-
-            return true;
-
+            return m_pworkset->GetEventWindow();
          }
 
-         EDock DockManager::CalcDock(int32_t x, int32_t y)
+         sp(::user::interaction) DockManager::GetDockWindow()
          {
-            ASSERT(m_pworkset->GetEventWindow() != NULL);
-            sp(::user::interaction) pwndParent = m_pworkset->GetEventWindow()->GetParent();
-            if (pwndParent == NULL)
-               return DockNone;
-            rect rectParent;
-            pwndParent->GetClientRect(rectParent);
-            sp(::user::interaction) pwndChild = m_pworkset->GetEventWindow();
-            rect rectChild;
-            pwndChild->GetWindowRect(rectChild);
-            pwndParent->ScreenToClient(rectChild);
-            ASSERT(m_pworkset != NULL);
-            EDock edockMask = GetDockMask();
-            EDock edock = GetDockState();
-
-            const int32_t iDockReason = 100;
-
-            bool bChangeDock = false;
-
-            if (edock & DockTop)
-            {
-               if (y >= rectParent.top + iDockReason)
-               {
-                  bChangeDock = true;
-               }
-            }
-            if (edock & DockBottom)
-            {
-               if (y + rectChild.height() <= rectParent.bottom - iDockReason)
-               {
-                  bChangeDock = true;
-               }
-            }
-            if (edock & DockLeft)
-            {
-               if (x >= rectParent.left + iDockReason)
-               {
-                  bChangeDock = true;
-               }
-            }
-            if (edock & DockRight)
-            {
-               if (x + rectChild.width() <= rectParent.right - iDockReason)
-               {
-                  bChangeDock = true;
-               }
-            }
-            else
-            {
-               bChangeDock = true;
-            }
-
-            EDock edockNew = DockNone;
-            if (edockMask & DockTop)
-            {
-               if (y <= rectParent.top)
-               {
-                  edockNew |= DockTop;
-               }
-            }
-            if (edockMask & DockBottom)
-            {
-               if (y + rectChild.height() >= rectParent.bottom)
-               {
-                  edockNew |= DockBottom;
-               }
-            }
-            if (edockMask & DockLeft)
-            {
-               if (x <= rectParent.left)
-               {
-                  edockNew |= DockLeft;
-               }
-            }
-            if (edockMask & DockRight)
-            {
-               if (x + rectChild.width() >= rectParent.right)
-               {
-                  edockNew |= DockRight;
-               }
-            }
-
-            if (bChangeDock)
-            {
-               return edockNew;
-            }
-            else
-            {
-               if (edockNew != DockNone)
-                  return edockNew;
-               else
-                  return edock;
-            }
-
-
-         }
-
-         void DockManager::UpdateDocking()
-         {
-            if (m_pworkset->GetEventWindow() == NULL)
-               return;
-            sp(::user::interaction) pwndParent = m_pworkset->GetEventWindow()->GetParent();
-            if (pwndParent == NULL)
-               return;
-            rect rectParent;
-            pwndParent->GetClientRect(rectParent);
-            sp(::user::interaction) pwndChild = m_pworkset->GetEventWindow();
-            rect rectChild;
-            pwndChild->GetWindowRect(rectChild);
-            pwndParent->ScreenToClient(rectChild);
-            ASSERT(m_pworkset != NULL);
-            //EDock edock = GetDockState();
-            //UNREFERENCED_PARAMETER(pobj);
-
-            EDock edockNew = CalcDock(rectChild.left, rectChild.top);
-
-            Dock(edockNew);
-
-
-         }
-
-
-         bool DockManager::IsDocked()
-         {
-
-            return GetDockState() != DockNone;
-
-         }
-
-
-         EDock operator |=(EDock & edocki, const EDock edockj)
-         {
-
-            edocki = (EDock)(edocki | edockj);
-
-            return edocki;
-
+            return m_pworkset->get_draw_window();
          }
 
 
@@ -418,6 +683,14 @@ namespace user
 
 
 } // namespace user
+
+
+
+
+
+
+
+
 
 
 
