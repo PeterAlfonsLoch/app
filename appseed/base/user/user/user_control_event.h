@@ -8,6 +8,7 @@ namespace user
    enum e_event
    {
       event_initialize_control,
+      event_button_down,
       event_button_clicked,
       event_list_clicked,
       event_mouse_enter,
@@ -31,9 +32,12 @@ namespace user
       e_event                       m_eevent;
       sp(::user::interaction)       m_puie;
       uint32_t                      m_uiEvent;
-      ::action::context            m_actioncontext;
+      ::action::context             m_actioncontext;
       uint32_t                      m_uiVKey;
       uint32_t                      m_uiFlags;
+      bool                          m_bRet;
+      bool                          m_bProcessed;
+      signal_details *              m_pobj;
       
       
       control_event();

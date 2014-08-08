@@ -102,7 +102,7 @@ index rect_array::max_normal_intersect_area(LPCRECT lpcrect,LPCRECT lpcrectModel
       if(rect.intersect(lpcrect,element_at(i)))
       {
 
-         iArea = rect.area() * element_at(i).area() / iModelArea;
+         iArea = rect.area() * iModelArea / element_at(i).area();
 
          if(iArea > iAreaMax)
          {

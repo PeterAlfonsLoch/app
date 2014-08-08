@@ -1309,9 +1309,9 @@ namespace windows
             }
             else*/
             {
-               if(rectWindow.left >= 0)
+               //if(rectWindow.left >= 0)
                   pmouse->m_pt.x += (LONG)rectWindow.left;
-               if(rectWindow.top >= 0)
+               //if(rectWindow.top >= 0)
                   pmouse->m_pt.y += (LONG)rectWindow.top;
             }
          }
@@ -1429,7 +1429,7 @@ namespace windows
       {
          if(m_pui != NULL)
          {
-            m_pui->BaseOnControlEvent((::user::control_event *) pbase->m_lparam.m_lparam);
+            ((::user::control_event *) pbase->m_lparam.m_lparam)->m_bRet = m_pui->BaseOnControlEvent((::user::control_event *) pbase->m_lparam.m_lparam);
          }
          return;
       }

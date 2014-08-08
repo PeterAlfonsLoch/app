@@ -44,6 +44,9 @@ namespace user
             uint32_t                m_dwPaintDelay;
          public:
 
+            ::user::EAppearance     m_eappearanceOrigin;
+            bool                    m_bEnableDock;
+
             MoveManager(WorkSet * pworkset);
             virtual ~MoveManager();
 

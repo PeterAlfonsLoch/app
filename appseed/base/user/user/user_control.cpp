@@ -792,5 +792,72 @@ namespace user
    }
 
 
+   bool control::BaseOnControlEvent(::user::control_event * pevent)
+   {
+
+      if(get_form() != NULL)
+      {
+
+         get_form()->send_message(::message::message_event,0,(LPARAM)pevent);
+
+      }
+
+      if(pevent->m_bProcessed)
+         return true;
+
+      if(GetParent() != NULL)
+      {
+      
+         GetParent()->send_message(::message::message_event,0,(LPARAM)pevent);
+
+      }
+
+      if(pevent->m_bProcessed)
+         return true;
+
+
+      return false;
+
+   }
+
+   bool control::simple_process_system_message(signal_details * pobj,::user::e_event eevent)
+   {
+
+      SCAST_PTR(::message::base,pbase,pobj);
+
+      ::user::control_event ev;
+
+      ev.m_puie      = this;
+
+      ev.m_eevent    = eevent;
+
+      ev.m_pobj      = pobj;
+
+      bool bProcessed = BaseOnControlEvent(&ev);
+
+      pobj->m_bRet = ev.m_bRet && ev.m_bProcessed && bProcessed;
+
+      if(pobj->m_bRet)
+      {
+
+         if(pbase != NULL)
+         {
+
+            pbase->set_lresult(1);
+
+         }
+
+      }
+
+      return pobj->m_bRet;
+
+   }
+
 
 } // namespace core
+
+
+
+
+
+

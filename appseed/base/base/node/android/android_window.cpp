@@ -1664,11 +1664,11 @@ restart_mouse_hover_check:
       {
          if(m_pui != NULL)
          {
-            m_pui->BaseOnControlEvent((::user::control_event *) pbase->m_lparam.m_lparam);
+            ((::user::control_event *) pbase->m_lparam.m_lparam)->m_bRet = m_pui->BaseOnControlEvent((::user::control_event *) pbase->m_lparam.m_lparam);
          }
          else
          {
-            BaseOnControlEvent((::user::control_event *) pbase->m_lparam.m_lparam);
+            ((::user::control_event *) pbase->m_lparam.m_lparam)->m_bRet = BaseOnControlEvent((::user::control_event *) pbase->m_lparam.m_lparam);
          }
          return;
       }

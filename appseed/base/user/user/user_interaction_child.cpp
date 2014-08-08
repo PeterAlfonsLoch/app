@@ -778,7 +778,7 @@ namespace user
       }
       if(pbase->m_uiMessage == ::message::message_event)
       {
-         m_pui->BaseOnControlEvent((control_event *)pbase->m_lparam.m_lparam);
+         ((::user::control_event *) pbase->m_lparam.m_lparam)->m_bProcessed = m_pui->BaseOnControlEvent((control_event *)pbase->m_lparam.m_lparam);
          return;
       }
       (this->*m_pfnDispatchWindowProc)(pobj);

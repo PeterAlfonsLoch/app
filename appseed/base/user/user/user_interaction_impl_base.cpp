@@ -40,7 +40,7 @@ namespace user
 
       rect rectNormal;
 
-      m_pui->get_rect_normal(rectNormal);
+      m_pui->GetWindowRect(rectNormal);
 
       m_pui->good_iconify(NULL,rectNormal,true);
 
@@ -64,7 +64,7 @@ namespace user
       
          rect rectNormal;
 
-         m_pui->get_rect_normal(rectNormal);
+         m_pui->GetWindowRect(rectNormal);
 
          m_pui->best_wkspace(NULL,rectNormal,true);
 
@@ -74,7 +74,7 @@ namespace user
 
          rect rectNormal;
 
-         m_pui->get_rect_normal(rectNormal);
+         m_pui->GetWindowRect(rectNormal);
 
          m_pui->best_zoneing(NULL,rectNormal,true);
 
@@ -91,7 +91,7 @@ namespace user
 
       rect rectNormal;
 
-      m_pui->get_rect_normal(rectNormal);
+      m_pui->GetWindowRect(rectNormal);
 
       m_pui->best_monitor(NULL,rectNormal,true);
 
@@ -105,7 +105,7 @@ namespace user
 
       rect rectNormal;
 
-      m_pui->get_rect_normal(rectNormal);
+      m_pui->GetWindowRect(rectNormal);
 
       m_pui->good_restore(NULL,rectNormal,true);
 

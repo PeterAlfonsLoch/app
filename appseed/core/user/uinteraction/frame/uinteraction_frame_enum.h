@@ -38,6 +38,7 @@ namespace user
             button_restore,
             button_maximize,
             button_notify_icon,
+            button_dock,
          };
 
 

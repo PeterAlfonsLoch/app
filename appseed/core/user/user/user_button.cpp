@@ -119,10 +119,16 @@ namespace user
 
       if(hit_test(pmouse->m_pt, eelement) >= 0)
       {
-         session().m_puiLastLButtonDown = this;
-         pmouse->set_lresult(1);
-         pobj->m_bRet = true;
+
+         if(simple_process_system_message(pobj,::user::event_button_down))
+         {
+            
+            session().m_puiLastLButtonDown = this;
+
+         }
+
       }
+
    }
 
    bool button::_001IsPressed()
@@ -132,9 +138,10 @@ namespace user
 
    void button::_001OnLButtonUp(signal_details * pobj)
    {
+
       SCAST_PTR(::message::mouse, pmouse, pobj)
 
-         e_element eelement;
+      e_element eelement;
 
       if(hit_test(pmouse->m_pt, eelement) >= 0 && session().m_puiLastLButtonDown == this)
       {
@@ -142,18 +149,12 @@ namespace user
          ::user::control_event ev;
          ev.m_puie = this;
          ev.m_eevent = ::user::event_button_clicked;
-         if(get_form() != NULL)
+         BaseOnControlEvent(&ev);
+         pobj->m_bRet = ev.m_bRet;
+         if(pobj->m_bRet)
          {
-            get_form()->send_message(
-               ::message::message_event, 0, (LPARAM)&ev);
+            pmouse->set_lresult(1);
          }
-         else
-         {
-            GetParent()->send_message(
-               ::message::message_event, 0, (LPARAM)&ev);
-         }
-         pobj->m_bRet = true;
-         pmouse->set_lresult(1);
       }
 
    }

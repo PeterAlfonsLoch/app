@@ -380,9 +380,33 @@ namespace uinteraction
       }
       }*/
 
+
       bool WorkSet::BaseOnControlEvent(::user::control_event * pevent)
       {
-         if (pevent->m_eevent == ::user::event_button_clicked)
+
+         if(pevent->m_eevent == ::user::event_button_down)
+         {
+
+            WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pwndCommand.m_p);
+
+            if(pinterface == NULL)
+               return false;
+
+            e_button ebutton = m_pframeschema->get_control_box()->get_control_box_button_type((pevent->m_puie.m_p)->GetDlgCtrlId());
+
+            if(ebutton == ::user::uinteraction::frame::button_dock)
+            {
+
+               pinterface->m_workset.GetMovingManager()->m_bEnableDock = true;
+
+               pinterface->m_workset.GetMovingManager()->_000OnLButtonDown(dynamic_cast <::message::mouse *> (pevent->m_pobj));
+
+               return true;
+
+            }
+
+         }
+         if(pevent->m_eevent == ::user::event_button_clicked)
          {
             WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pwndCommand.m_p);
             if (pinterface == NULL)
@@ -452,6 +476,9 @@ namespace uinteraction
             case ::user::uinteraction::frame::button_down:
                pinterface->WfiDown();
                return TRUE;
+            case ::user::uinteraction::frame::button_dock:
+               pinterface->m_workset.GetMovingManager()->m_bEnableDock = true;
+               return FALSE;
             default:
                break;
             }

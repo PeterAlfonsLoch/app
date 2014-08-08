@@ -34,6 +34,7 @@ namespace user
                set_control_box_button_id(button_maximize, "frame::button_maximize");
                set_control_box_button_id(button_restore, "frame::button_restore");
                set_control_box_button_id(button_notify_icon, "frame::button_notify_icon");
+               set_control_box_button_id(button_dock,"frame::button_dock");
                m_bDrag = false;
                m_iButtonMargin = 3;
 
@@ -431,6 +432,12 @@ namespace user
                get_box_button(button_notify_icon)->ShowWindow(SW_HIDE);
             }
 
+
+            rect.right = rect.left - m_iButtonMargin;
+            rect.left = rect.right - iButtonSize;
+            get_box_button(button_dock)->::user::interaction::SetWindowPos(ZORDER_TOP,rect.left,rect.top,rect.width(),rect.height(),SWP_SHOWWINDOW);
+            get_box_button(button_dock)->UpdateWndRgn();
+
          }
 
 
@@ -525,6 +532,7 @@ namespace user
             create_button(button_maximize);
             create_button(button_restore);
             create_button(button_notify_icon);
+            create_button(button_dock);
 
             return true;
 
@@ -555,6 +563,9 @@ namespace user
                break;
             case button_notify_icon:
                strCaption = (CHAR)0x69;
+               break;
+            case button_dock:
+               strCaption = (CHAR)0x6E;
                break;
 
             default:
