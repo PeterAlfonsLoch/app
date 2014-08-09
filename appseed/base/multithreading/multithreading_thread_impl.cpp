@@ -143,7 +143,7 @@ void thread_impl::pre_translate_message(signal_details * pobj)
             return;
       }
 
-      ::user::interaction * puiTopic = pbase->m_pwnd;
+//      ::user::interaction * puiTopic = pbase->m_pwnd;
 
       try
       {
@@ -1498,7 +1498,7 @@ void thread_impl::message_handler(signal_details * pobj)
 
       process_window_procedure_exception(pe,pbase);
 
-      TRACE(::base::trace::category_AppMsg,0,"Warning: Uncaught exception in message_handler (returning %ld).\n",pbase->get_lresult());
+      TRACE(::base::trace::category_AppMsg,0,"Warning: Uncaught exception in message_handler (returning %ld).\n",(int_ptr)pbase->get_lresult());
 
       pe->Delete();
 

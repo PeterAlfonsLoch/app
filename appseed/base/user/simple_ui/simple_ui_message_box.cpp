@@ -362,8 +362,12 @@ CLASS_DECL_BASE int32_t system_message_box(oswindow interaction_impl,const char 
 
 UINT c_cdecl thread_proc_simple_ui_message_box(LPVOID lpvoid)
 {
+   
+#ifdef WINDOWSEX
 
    attach_thread_input_to_main_thread(false);
+   
+#endif
 
    ::simple_ui::message_box * pmessagebox = (::simple_ui::message_box *) lpvoid;
 
@@ -407,9 +411,13 @@ int32_t simple_ui_message_box(oswindow interaction_impl,const char * lpText,cons
 
    //::MessageBox(NULL, "", "", MB_OK);
 
-   MESSAGE msg;
+//   MESSAGE msg;
+   
+#ifdef WINDOWSEX
 
    bool bQuit = PeekMessage(&msg,NULL,WM_QUIT,WM_QUIT,PM_REMOVE) != FALSE;
+   
+#endif
 
    if(::get_thread_app() == NULL || ::get_thread_app()->m_pbasesession == NULL)
    {

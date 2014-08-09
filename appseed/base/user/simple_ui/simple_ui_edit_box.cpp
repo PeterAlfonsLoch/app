@@ -39,8 +39,9 @@ namespace simple_ui
 
    void edit_box::_001OnLButtonDown(signal_details * pobj)
    {
+      UNREFERENCED_PARAMETER(pobj);
 
-      SCAST_PTR(::message::mouse,pmouse,pobj);
+//      SCAST_PTR(::message::mouse,pmouse,pobj);
 
   //    keyboard_set_focus();
 
@@ -51,8 +52,11 @@ namespace simple_ui
 
    void edit_box::_001OnLButtonUp(signal_details * pobj)
    {
+      
+      UNREFERENCED_PARAMETER(pobj);
 
-      SCAST_PTR(::message::mouse,pmouse,pobj);
+
+//      SCAST_PTR(::message::mouse,pmouse,pobj);
 
       //pmouse->m_bRet = true;
 

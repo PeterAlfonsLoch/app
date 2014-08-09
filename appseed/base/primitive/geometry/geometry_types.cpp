@@ -683,3 +683,27 @@ CLASS_DECL_BASE bool copy(LPPOINT lpptDst,const __point64 * lpptSrc)
 
 }
 
+
+
+#ifdef APPLEOS
+
+
+
+
+void copy(CGRect & rectDst, const RECT & rectSrc)
+{
+   rectDst.origin.x = rectSrc.left;
+   rectDst.origin.y = rectSrc.top;
+   rectDst.size.width = width(rectSrc);
+   rectDst.size.height = height(rectSrc);
+
+}
+void copy(LPRECT lprectDst, const CGRect & rectSrc)
+{
+   lprectDst->left = rectSrc.origin.x;
+   lprectDst->top = rectSrc.origin.y;
+   lprectDst->right = rectSrc.origin.x + rectSrc.size.width;
+   lprectDst->bottom = rectSrc.origin.y + rectSrc.size.height;
+}
+
+#endif

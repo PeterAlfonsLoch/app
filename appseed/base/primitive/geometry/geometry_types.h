@@ -199,3 +199,15 @@ inline CLASS_DECL_BASE const POINT & top_left(const RECT & rect)
 
 
 CLASS_DECL_BASE bool deflate(LPRECT prect,LPCRECT lpcrect);
+
+
+
+#ifdef APPLEOS
+
+
+
+
+void copy(CGRect & rectDst, const RECT & rectSrc);
+void copy(LPRECT lprectDst, const CGRect & rectSrc);
+
+#endif

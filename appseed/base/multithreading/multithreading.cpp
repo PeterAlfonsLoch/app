@@ -145,7 +145,7 @@ thread* __begin_thread(sp(::base::application) papp,__THREADPROC pfnThreadProc,L
 mutex & user_mutex()
 {
 
-   static mutex * s_pmutexUser = new mutex();
+//   static mutex * s_pmutexUser = new mutex();
 
    //return *s_pmutexUser;
    return *((mutex *)NULL);

@@ -2654,6 +2654,8 @@ DWORD       lPrivate;
 CLASS_DECL_BASE int_bool TranslateMessage(const MESSAGE * pmsg);
 CLASS_DECL_BASE int_bool DispatchMessage(const MESSAGE * pmsg);
 
+CLASS_DECL_BASE int_bool IsRectEmpty(LPCRECT lpcrect);
+
 
 #ifdef cplusplus
 

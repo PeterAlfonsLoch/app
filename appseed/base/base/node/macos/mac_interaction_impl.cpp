@@ -295,7 +295,7 @@ namespace mac
    
    bool interaction_impl::native_create_window_ex(DWORD dwExStyle, const char * lpszClassName,
                          const char * lpszWindowName, DWORD dwStyle,
-                         const RECT& rect,
+                         const RECT& rectParam,
                          oswindow hWndParent, id id, LPVOID lpParam)
    {
       
@@ -307,21 +307,17 @@ namespace mac
       }
 
       
-      UNREFERENCED_PARAMETER(id);
       //      ASSERT(lpszClassName == NULL || __is_valid_string(lpszClassName) ||
       //       __is_valid_atom(lpszClassName));
       ENSURE_ARG(lpszWindowName == NULL || __is_valid_string(lpszWindowName));
       
       // allow modification of several common create parameters
-      CREATESTRUCT cs;
+      ::user::create_struct cs;
       cs.dwExStyle = dwExStyle;
       cs.lpszClass = lpszClassName;
       cs.lpszName = lpszWindowName;
       cs.style = dwStyle;
-      cs.x = x;
-      cs.y = y;
-      cs.cx = nWidth;
-      cs.cy = nHeight;
+      cs = rectParam;
       //      cs.hwndParent = hWndParent;
       //   cs.hMenu = hWndParent == NULL ? NULL : nIDorHMenu;
       cs.hMenu = NULL;
@@ -366,10 +362,8 @@ namespace mac
       
       CGRect rect;
       
-      rect.origin.x = x;
-      rect.origin.y = y;
-      rect.size.width = nWidth;
-      rect.size.height = nHeight;
+      copy(rect, rectParam);
+      
       
 
       if(hWndParent == MESSAGE_WINDOW_PARENT)
@@ -476,7 +470,7 @@ namespace mac
    }
    
    // for child windows
-   bool interaction_impl::pre_create_window(CREATESTRUCT& cs)
+   bool interaction_impl::pre_create_window(::user::create_struct& cs)
    {
       /*      if (cs.lpszClass == NULL)
        {
@@ -486,10 +480,10 @@ namespace mac
        // no WNDCLASS provided - use child user::interaction default
        ASSERT(cs.style & WS_CHILD);
        }*/
-      return TRUE;
+      return true;
    }
    
-   bool interaction_impl::create(const char * lpszClassName,
+   bool interaction_impl::create_window(const char * lpszClassName,
                        const char * lpszWindowName, DWORD dwStyle,
                        const RECT& rect,
                        sp(::user::interaction) pParentWnd, id id,
@@ -499,24 +493,21 @@ namespace mac
       ASSERT(pParentWnd != NULL);
       ASSERT((dwStyle & WS_POPUP) == 0);
       
-      return CreateEx(0, lpszClassName, lpszWindowName,
+      return create_window_ex(0, lpszClassName, lpszWindowName,
                       dwStyle | WS_CHILD,
-                      rect.left, rect.top,
-                      rect.right - rect.left, rect.bottom - rect.top,
-                      pParentWnd->get_handle(), id, (LPVOID)pContext);
+                      rect,
+                      pParentWnd, id, (LPVOID)pContext);
    }
    
-   bool interaction_impl::create_message_queue(const char * pszName, ::message_queue_listener * pcallback)
+   bool interaction_impl::create_message_queue(const char * pszName)
    {
-      m_pcallback = pcallback;
       if(IsWindow())
       {
          SetWindowText(pszName);
       }
       else
       {
-         string strName = "ca2::fontopus::message_wnd::winservice_1";
-         if(!CreateEx(0, NULL, pszName, WS_CHILD, 0, 0, 0, 0, MESSAGE_WINDOW_PARENT, "", NULL))
+         if(!native_create_window_ex(0, NULL, pszName, WS_CHILD, null_rect(), MESSAGE_WINDOW_PARENT))
          {
             return false;
          }
@@ -1208,12 +1199,6 @@ namespace mac
             return;
       }
       
-      if(m_pcallback != NULL)
-      {
-         m_pcallback->message_queue_message_handler(pobj);
-         if(pobj->m_bRet)
-            return;
-      }
       if(pbase->m_uiMessage == WM_TIMER)
       {
 //         m_pbaseapp->m_pbaseapp->step_timer();
@@ -2207,7 +2192,7 @@ namespace mac
             if(hWnd->m_uiptraChild[i]->GetDescendantWindow(id))
                return hWnd->m_uiptraChild[i]->GetDescendantWindow(id);
             else
-               return &hWnd->m_uiptraChild[i];
+               return hWnd->m_uiptraChild[i];
          }
       }
 //      
@@ -5058,7 +5043,7 @@ namespace mac
       if(m_pui->m_uiptraChild.get_size() <= 0)
          return NULL;
       
-      return m_pui->m_uiptraChild(0);
+      return m_pui->m_uiptraChild[0];
       
    }
    
@@ -5356,8 +5341,8 @@ namespace mac
    void interaction_impl::_001OnSetCursor(signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
-      if(BaseSession.get_cursor() != NULL
-         && BaseSession.get_cursor()->m_ecursor != ::visual::cursor_system)
+      if(session().get_cursor() != NULL
+         && session().get_cursor()->m_ecursor != ::visual::cursor_system)
       {
          
          throw not_implemented(get_app());
@@ -5392,7 +5377,7 @@ namespace mac
    void interaction_impl::OnNcCalcSize(bool, NCCALCSIZE_PARAMS*)
    { Default(); }
    
-   bool interaction_impl::OnNcCreate(LPCREATESTRUCT)
+   bool interaction_impl::OnNcCreate(::user::create_struct *)
    {
       
       return Default() != FALSE;
@@ -5684,7 +5669,7 @@ namespace mac
    
    void interaction_impl::_001BaseWndInterfaceMap()
    {
-      System.user()->window_map().set((int_ptr)get_handle(), this);
+      session().user()->window_map().set((int_ptr)get_handle(), this);
    }
    
    
@@ -6108,7 +6093,7 @@ namespace mac
    void interaction_impl::_001UpdateWindow()
    {
       
-      ::interaction_impl::_001UpdateWindow();
+      ::user::interaction_impl::_001UpdateWindow();
       
    }
    
