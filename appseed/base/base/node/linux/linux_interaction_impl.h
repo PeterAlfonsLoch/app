@@ -38,7 +38,7 @@ namespace linux
       virtual void mouse_hover_add(sp(::user::interaction) pinterface);
       virtual void mouse_hover_remove(sp(::user::interaction) pinterface);
 
-      bool create_message_queue(const char * pszName, ::message_queue_listener * pcallback = NULL);
+      bool create_message_queue(const char * pszName);
 
       static const MESSAGE* PASCAL GetCurrentMessage();
 
@@ -96,21 +96,17 @@ namespace linux
       bool ExecuteDlgInit(const char * lpszResourceName);
       bool ExecuteDlgInit(LPVOID lpResource);
 
-      using ::user::interaction_impl::create;
+      using ::user::interaction_impl::create_window;
       // for child windows, views, panes etc
-      virtual bool create(const char * lpszClassName,
+      virtual bool create_window(const char * lpszClassName,
          const char * lpszWindowName, DWORD dwStyle,
          const RECT& rect,
          sp(::user::interaction) pParentWnd, id id,
          ::create_context* pContext = NULL);
 
       // advanced creation (allows access to extended styles)
-      virtual bool CreateEx(DWORD dwExStyle, const char * lpszClassName,
-         const char * lpszWindowName, DWORD dwStyle,
-         int32_t x, int32_t y, int32_t nWidth, int32_t nHeight,
-         oswindow hWndParent, id id, LPVOID lpParam = NULL);
 
-      virtual bool CreateEx(DWORD dwExStyle, const char * lpszClassName,
+      virtual bool create_window_ex(DWORD dwExStyle, const char * lpszClassName,
          const char * lpszWindowName, DWORD dwStyle,
          const RECT& rect,
          sp(::user::interaction) pParentWnd, id id,
@@ -119,7 +115,7 @@ namespace linux
       virtual bool DestroyWindow();
 
       // special pre-creation and ::user::interaction_impl rect adjustment hooks
-      virtual bool pre_create_window(CREATESTRUCT& cs);
+      virtual bool pre_create_window(::user::create_struct & cs);
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
@@ -474,7 +470,7 @@ namespace linux
    // Nonclient-Area message handler member functions
       bool OnNcActivate(bool bActive);
       void OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS* lpncsp);
-      bool OnNcCreate(LPCREATESTRUCT lpCreateStruct);
+      bool OnNcCreate(::user::create_struct *  lpCreateStruct);
       DECL_GEN_SIGNAL(_001OnNcDestroy);
       LRESULT OnNcHitTest(point point);
       void OnNcLButtonDblClk(UINT nHitTest, point point);

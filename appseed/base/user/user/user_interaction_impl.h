@@ -63,10 +63,9 @@ namespace user
       ::draw2d::dib_sp              m_spdib;
       ::draw2d::dib_sp              m_spdibFlip;
 
-      int32_t                       m_nModalResult;
       ::user::interaction *         m_puiCapture;
 
-      
+
       interaction_impl();
 
 
@@ -246,7 +245,7 @@ namespace user
 
 #endif
 
-      
+
       virtual bool DrawAnimatedRects(int32_t idAni,CONST RECT *lprcFrom,CONST RECT *lprcTo);
 
       virtual bool DrawCaption(::draw2d::graphics * pgraphics,LPCRECT lprc,UINT uFlags);

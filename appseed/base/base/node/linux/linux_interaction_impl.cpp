@@ -70,18 +70,18 @@ namespace linux
    interaction_impl::interaction_impl()
    {
 
-      m_nModalResult = 0;
+      m_oswindow = NULL;
       m_bMouseHover = false;
       m_puicapture = NULL;
       m_bExposing = false;
-      m_oswindow = NULL;
+
    }
+
 
    void interaction_impl::construct(oswindow hWnd)
    {
 
       m_oswindow = hWnd;
-      m_nModalResult = 0;
       m_bMouseHover = false;
       m_puicapture = NULL;
       m_bExposing = false;
@@ -92,11 +92,10 @@ namespace linux
       element(papp)
    {
 
-      m_nModalResult = 0;
+      m_oswindow = NULL;
       m_bMouseHover = false;
       m_puicapture = NULL;
       m_bExposing = false;
-      m_oswindow = NULL;
 
    }
 
@@ -283,7 +282,7 @@ namespace linux
       ENSURE_ARG(lpszWindowName == NULL || __is_valid_string(lpszWindowName));
 
       // allow modification of several common create parameters
-      CREATESTRUCT cs;
+      ::user::create_struct cs;
       cs.dwExStyle = dwExStyle;
       cs.lpszClass = lpszClassName;
       cs.lpszName = lpszWindowName;
@@ -539,9 +538,8 @@ d.unlock();
          pParentWnd->get_handle(), id, (LPVOID)pContext);
    }
 
-   bool interaction_impl::create_message_queue(const char * pszName, ::message_queue_listener * pcallback)
+   bool interaction_impl::create_message_queue(const char * pszName)
    {
-      m_pcallback = pcallback;
       if(IsWindow())
       {
          SetWindowText(pszName);
