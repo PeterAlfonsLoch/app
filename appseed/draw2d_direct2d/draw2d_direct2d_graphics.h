@@ -85,7 +85,7 @@ namespace draw2d_direct2d
       virtual int SaveDC();
       virtual bool RestoreDC(int nSavedDC);
       int GetDeviceCaps(int nIndex) const;
-      UINT SetBoundsRect(LPCRECT lpRectBounds, UINT flags);
+      UINT SetBoundsRect(const RECT & lpRectBounds, UINT flags);
       UINT GetBoundsRect(LPRECT lpRectBounds, UINT flags);
       bool ResetDC(const DEVMODE* lpDevMode);
 
@@ -199,13 +199,13 @@ namespace draw2d_direct2d
       virtual int GetClipBox(LPRECT lpRect) const;
       virtual bool PtVisible(int x, int y) const;
             bool PtVisible(POINT point) const;
-      virtual bool RectVisible(LPCRECT lpRect) const;
+      virtual bool RectVisible(const RECT & lpRect) const;
             int SelectClipRgn(::draw2d::region* pRgn);
             int ExcludeClipRect(int x1, int y1, int x2, int y2);
-            int ExcludeClipRect(LPCRECT lpRect);
+            int ExcludeClipRect(const RECT & lpRect);
             int ExcludeUpdateRgn(::user::interaction * pwindow);
             int IntersectClipRect(int x1, int y1, int x2, int y2);
-            int IntersectClipRect(LPCRECT lpRect);
+            int IntersectClipRect(const RECT & lpRect);
             int OffsetClipRgn(int x, int y);
             int OffsetClipRgn(SIZE size);
       int SelectClipRgn(::draw2d::region* pRgn, int nMode);
@@ -217,12 +217,12 @@ namespace draw2d_direct2d
       bool LineTo(double x, double y);
     //  bool LineTo(POINT point);
       bool Arc(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
-      bool Arc(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
+      bool Arc(const RECT & lpRect, POINT ptStart, POINT ptEnd);
       bool Polyline(const POINT* lpPoints, int nCount);
 
       bool AngleArc(int x, int y, int nRadius, float fStartAngle, float fSweepAngle);
       bool ArcTo(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
-      bool ArcTo(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
+      bool ArcTo(const RECT & lpRect, POINT ptStart, POINT ptEnd);
       int GetArcDirection() const;
       int SetArcDirection(int nArcDirection);
 
@@ -235,12 +235,12 @@ namespace draw2d_direct2d
       bool PolyBezierTo(const POINT* lpPoints, int nCount);
 
    // Simple Drawing Functions
-      virtual void FillRect(LPCRECT lpRect, ::draw2d::brush* pBrush);
-      virtual void FrameRect(LPCRECT lpRect, ::draw2d::brush* pBrush);
-      virtual bool DrawRect(LPCRECT lpRect, ::draw2d::pen* ppen);
+      virtual void FillRect(const RECT & lpRect, ::draw2d::brush* pBrush);
+      virtual void FrameRect(const RECT & lpRect, ::draw2d::brush* pBrush);
+      virtual bool DrawRect(const RECT & lpRect, ::draw2d::pen* ppen);
 
 
-      void InvertRect(LPCRECT lpRect);
+      void InvertRect(const RECT & lpRect);
       bool DrawIcon(int x, int y, ::visual::icon * picon);
       bool DrawIcon(POINT point, ::visual::icon * picon);
       bool DrawIcon(int x, int y, ::visual::icon * picon, int cx, int cy, UINT istepIfAniCur, HBRUSH hbrFlickerFreeDraw, UINT diFlags);
@@ -264,24 +264,24 @@ namespace draw2d_direct2d
    // Ellipse and Polygon Functions
       bool Chord(int x1, int y1, int x2, int y2, int x3, int y3,
          int x4, int y4);
-      bool Chord(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
-      void DrawFocusRect(LPCRECT lpRect);
+      bool Chord(const RECT & lpRect, POINT ptStart, POINT ptEnd);
+      void DrawFocusRect(const RECT & lpRect);
       bool DrawEllipse(int x1, int y1, int x2, int y2);
-      bool DrawEllipse(LPCRECT lpRect);
+      bool DrawEllipse(const RECT & lpRect);
       bool FillEllipse(int x1, int y1, int x2, int y2);
-      bool FillEllipse(LPCRECT lpRect);
+      bool FillEllipse(const RECT & lpRect);
       bool Pie(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
-      bool Pie(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
+      bool Pie(const RECT & lpRect, POINT ptStart, POINT ptEnd);
       bool Polygon(const POINT* lpPoints, int nCount);   
       bool PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int nCount);
       bool Rectangle(int x1, int y1, int x2, int y2);
-      bool Rectangle(LPCRECT lpRect);
+      bool Rectangle(const RECT & lpRect);
       virtual bool DrawRectangle(int x1, int y1, int x2, int y2);
-      virtual bool DrawRectangle(LPCRECT lpRect);
+      virtual bool DrawRectangle(const RECT & lpRect);
       virtual bool FillRectangle(int x1, int y1, int x2, int y2);
-      virtual bool FillRectangle(LPCRECT lpRect);
+      virtual bool FillRectangle(const RECT & lpRect);
       bool RoundRect(int x1, int y1, int x2, int y2, int x3, int y3);
-      bool RoundRect(LPCRECT lpRect, POINT point);
+      bool RoundRect(const RECT & lpRect, POINT point);
 
    // Bitmap Functions
       bool PatBlt(int x, int y, int nWidth, int nHeight, uint32_t dwRop);
@@ -319,9 +319,9 @@ namespace draw2d_direct2d
       virtual bool TextOut(int x, int y, const string & str);
       virtual bool TextOut(double x, double y, const char * lpszString, int nCount);
       virtual bool TextOut(double x, double y, const string & str);
-      virtual bool ExtTextOut(int x, int y, UINT nOptions, LPCRECT lpRect,
+      virtual bool ExtTextOut(int x, int y, UINT nOptions, const RECT & lpRect,
                const char * lpszString, UINT nCount, LPINT lpDxWidths);
-            bool ExtTextOut(int x, int y, UINT nOptions, LPCRECT lpRect,
+            bool ExtTextOut(int x, int y, UINT nOptions, const RECT & lpRect,
                const string & str, LPINT lpDxWidths);
       virtual size TabbedTextOut(int x, int y, const char * lpszString, int nCount,
                int nTabPositions, LPINT lpnTabStopPositions, int nTabOrigin);
@@ -376,7 +376,7 @@ namespace draw2d_direct2d
       bool DrawFrameControl(LPRECT lpRect, UINT nType, UINT nState);
 
    // Scrolling Functions
-      bool ScrollDC(int dx, int dy, LPCRECT lpRectScroll, LPCRECT lpRectClip,
+      bool ScrollDC(int dx, int dy, const RECT & lpRectScroll, const RECT & lpRectClip,
          ::draw2d::region* pRgnUpdate, LPRECT lpRectUpdate);
 
    // font Functions
@@ -424,7 +424,7 @@ namespace draw2d_direct2d
 
    // MetaFile Functions
       bool PlayMetaFile(HMETAFILE hMF);
-      bool PlayMetaFile(HENHMETAFILE hEnhMetaFile, LPCRECT lpBounds);
+      bool PlayMetaFile(HENHMETAFILE hEnhMetaFile, const RECT & lpBounds);
       bool AddMetaFileComment(UINT nDataSize, const BYTE* pCommentData);
          // can be used for enhanced metafiles only
 
@@ -445,13 +445,13 @@ namespace draw2d_direct2d
 
    // Misc Helper Functions
       static ::draw2d::brush* GetHalftoneBrush(::base::application * papp);
-      void DrawDragRect(LPCRECT lpRect, SIZE size,
-         LPCRECT lpRectLast, SIZE sizeLast,
+      void DrawDragRect(const RECT & lpRect, SIZE size,
+         const RECT & lpRectLast, SIZE sizeLast,
          ::draw2d::brush* pBrush = NULL, ::draw2d::brush* pBrushLast = NULL);
       void FillSolidRect(const __rect64 * lpRect, COLORREF clr);
-      void FillSolidRect(LPCRECT lpRect, COLORREF clr);
+      void FillSolidRect(const RECT & lpRect, COLORREF clr);
       void FillSolidRect(int x, int y, int cx, int cy, COLORREF clr);
-      void Draw3dRect(LPCRECT lpRect, COLORREF clrTopLeft, COLORREF clrBottomRight);
+      void Draw3dRect(const RECT & lpRect, COLORREF clrTopLeft, COLORREF clrBottomRight);
       void Draw3dRect(int x, int y, int cx, int cy,
          COLORREF clrTopLeft, COLORREF clrBottomRight);
 
@@ -481,7 +481,7 @@ namespace draw2d_direct2d
 
 //      virtual Gdiplus::FillMode direct2d_get_fill_mode();
 
-      bool blur(bool bExpand, double dRadius, LPCRECT lpcrect);
+      bool blur(bool bExpand, double dRadius, const RECT & lpcrect);
 
 
       virtual bool destroy();

@@ -592,7 +592,7 @@ synch_lock ml(&cairo_mutex());
 
    }
 
-   bool graphics::Arc(LPCRECT lpRect, POINT ptStart, POINT ptEnd)
+   bool graphics::Arc(const RECT & lpRect, POINT ptStart, POINT ptEnd)
    {
 
       return Arc(
@@ -614,7 +614,7 @@ synch_lock ml(&cairo_mutex());
 
    }
 
-   void graphics::FillRect(LPCRECT lpRect, ::draw2d::brush* pBrush)
+   void graphics::FillRect(const RECT & lpRect, ::draw2d::brush* pBrush)
    {
 
       synch_lock ml(&cairo_mutex());
@@ -635,7 +635,7 @@ synch_lock ml(&cairo_mutex());
 //      ASSERT(get_handle1() != NULL); ::FillRect(get_handle1(), lpRect, (HBRUSH)pBrush->get_os_data());
 
    }
-   void graphics::FrameRect(LPCRECT lpRect, ::draw2d::brush* pBrush)
+   void graphics::FrameRect(const RECT & lpRect, ::draw2d::brush* pBrush)
    {
 
       throw not_implemented(get_app());
@@ -645,7 +645,7 @@ synch_lock ml(&cairo_mutex());
 
    }
 
-   bool graphics::DrawRect(LPCRECT lpcrect, ::draw2d::pen * ppen)
+   bool graphics::DrawRect(const RECT & lpcrect, ::draw2d::pen * ppen)
    {
       synch_lock ml(&cairo_mutex());
 
@@ -667,7 +667,7 @@ synch_lock ml(&cairo_mutex());
    }
 
 
-   void graphics::InvertRect(LPCRECT lpRect)
+   void graphics::InvertRect(const RECT & lpRect)
    {
 
       throw not_implemented(get_app());
@@ -873,7 +873,7 @@ synch_lock ml(&cairo_mutex());
 //      return ::Chord(get_handle1(), x1, y1, x2, y2, x3, y3, x4, y4) != FALSE;
    }
 
-   bool graphics::Chord(LPCRECT lpRect, POINT ptStart, POINT ptEnd)
+   bool graphics::Chord(const RECT & lpRect, POINT ptStart, POINT ptEnd)
    {
 
       throw not_implemented(get_app());
@@ -884,7 +884,7 @@ synch_lock ml(&cairo_mutex());
 
    }
 
-   void graphics::DrawFocusRect(LPCRECT lpRect)
+   void graphics::DrawFocusRect(const RECT & lpRect)
    {
 
       throw not_implemented(get_app());
@@ -925,7 +925,7 @@ synch_lock ml(&cairo_mutex());
 
    }
 
-   bool graphics::DrawEllipse(LPCRECT lprect)
+   bool graphics::DrawEllipse(const RECT & lprect)
    {
 
       return DrawEllipse(lprect->left, lprect->top, lprect->right, lprect->bottom);
@@ -971,7 +971,7 @@ synch_lock ml(&cairo_mutex());
    }
 
 
-   bool graphics::FillEllipse(LPCRECT lpRect)
+   bool graphics::FillEllipse(const RECT & lpRect)
    {
 
       /*return ::Ellipse(get_handle1(), lpRect->left, lpRect->top,
@@ -992,7 +992,7 @@ synch_lock ml(&cairo_mutex());
 
    }
 
-   bool graphics::Pie(LPCRECT lpRect, POINT ptStart, POINT ptEnd)
+   bool graphics::Pie(const RECT & lpRect, POINT ptStart, POINT ptEnd)
    {
 
       throw not_implemented(get_app());
@@ -1149,7 +1149,7 @@ synch_lock ml(&cairo_mutex());
 
    }
 
-   bool graphics::Rectangle(LPCRECT lpRect)
+   bool graphics::Rectangle(const RECT & lpRect)
    {
 
       return Rectangle(lpRect->left, lpRect->top, lpRect->right, lpRect->bottom);
@@ -1165,7 +1165,7 @@ synch_lock ml(&cairo_mutex());
 
    }
 
-   bool graphics::DrawRectangle(LPCRECT lpRect)
+   bool graphics::DrawRectangle(const RECT & lpRect)
    {
 
       return DrawRectangle(lpRect->left, lpRect->top, lpRect->right, lpRect->bottom);
@@ -1181,7 +1181,7 @@ synch_lock ml(&cairo_mutex());
 
    }
 
-   bool graphics::FillRectangle(LPCRECT lpRect)
+   bool graphics::FillRectangle(const RECT & lpRect)
    {
 
       return FillRectangle(lpRect->left, lpRect->top, lpRect->right, lpRect->bottom);
@@ -1199,7 +1199,7 @@ synch_lock ml(&cairo_mutex());
 
    }
 
-   bool graphics::RoundRect(LPCRECT lpRect, POINT point)
+   bool graphics::RoundRect(const RECT & lpRect, POINT point)
    {
 
       //ASSERT(get_handle1() != NULL);
@@ -1480,7 +1480,7 @@ synch_lock ml(&cairo_mutex());
    }
 
 
-   bool graphics::ExtTextOut(int32_t x, int32_t y, UINT nOptions, LPCRECT lpRect, const char * lpszString, UINT nCount, LPINT lpDxWidths)
+   bool graphics::ExtTextOut(int32_t x, int32_t y, UINT nOptions, const RECT & lpRect, const char * lpszString, UINT nCount, LPINT lpDxWidths)
    {
 
       throw not_implemented(get_app());
@@ -1491,7 +1491,7 @@ synch_lock ml(&cairo_mutex());
 
    }
 
-   bool graphics::ExtTextOut(int32_t x, int32_t y, UINT nOptions, LPCRECT lpRect, const string & str, LPINT lpDxWidths)
+   bool graphics::ExtTextOut(int32_t x, int32_t y, UINT nOptions, const RECT & lpRect, const string & str, LPINT lpDxWidths)
    {
 
       throw not_implemented(get_app());
@@ -1746,7 +1746,7 @@ synch_lock ml(&cairo_mutex());
    }
 
 
-   bool graphics::ScrollDC(int32_t dx, int32_t dy, LPCRECT lpRectScroll, LPCRECT lpRectClip, ::draw2d::region* pRgnUpdate, LPRECT lpRectUpdate)
+   bool graphics::ScrollDC(int32_t dx, int32_t dy, const RECT & lpRectScroll, const RECT & lpRectClip, ::draw2d::region* pRgnUpdate, LPRECT lpRectUpdate)
    {
 
       throw not_implemented(get_app());
@@ -1770,7 +1770,7 @@ synch_lock ml(&cairo_mutex());
    }
 
    // graphics 3.1 Specific functions
-   UINT graphics::SetBoundsRect(LPCRECT lpRectBounds, UINT flags)
+   UINT graphics::SetBoundsRect(const RECT & lpRectBounds, UINT flags)
    {
 
       throw not_implemented(get_app());
@@ -1992,7 +1992,7 @@ synch_lock ml(&cairo_mutex());
 
    }
 
-   bool graphics::ArcTo(LPCRECT lpRect, POINT ptStart, POINT ptEnd)
+   bool graphics::ArcTo(const RECT & lpRect, POINT ptStart, POINT ptEnd)
    {
 
       throw not_implemented(get_app());
@@ -2380,7 +2380,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    delete pMeta;;
 }*/
 
-   bool graphics::PlayMetaFile(HENHMETAFILE hEnhMF, LPCRECT lpBounds)
+   bool graphics::PlayMetaFile(HENHMETAFILE hEnhMF, const RECT & lpBounds)
    {
 
       throw not_implemented(get_app());
@@ -2911,7 +2911,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       return NULL;
    }
 
-   void graphics::DrawDragRect(LPCRECT lpRect, SIZE size, LPCRECT lpRectLast, SIZE sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
+   void graphics::DrawDragRect(const RECT & lpRect, SIZE size, const RECT & lpRectLast, SIZE sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
    {
 
       throw not_implemented(get_app());
@@ -2990,7 +2990,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
    }
 
-   /*void graphics::FillSolidRect(LPCRECT lpRect, COLORREF clr)
+   /*void graphics::FillSolidRect(const RECT & lpRect, COLORREF clr)
    {
       ::SetBkColor(get_handle1(), clr);
       ::ExtTextOutTextOut(get_handle1(), 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
@@ -3015,7 +3015,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
    */
 
-   void graphics::Draw3dRect(LPCRECT lpRect,
+   void graphics::Draw3dRect(const RECT & lpRect,
       COLORREF clrTopLeft, COLORREF clrBottomRight)
    {
       Draw3dRect(lpRect->left, lpRect->top, lpRect->right - lpRect->left,
@@ -3647,7 +3647,7 @@ synch_lock ml(&cairo_mutex());
 
    }
 
-   int32_t graphics::ExcludeClipRect(LPCRECT lpRect)
+   int32_t graphics::ExcludeClipRect(const RECT & lpRect)
    {
 
       throw not_implemented(get_app());
@@ -3683,7 +3683,7 @@ synch_lock ml(&cairo_mutex());
 
    }
 
-   int32_t graphics::IntersectClipRect(LPCRECT lpRect)
+   int32_t graphics::IntersectClipRect(const RECT & lpRect)
    {
 
       throw not_implemented(get_app());
@@ -4509,7 +4509,7 @@ synch_lock ml(&cairo_mutex());
    // IMPLEMENT_DYNAMIC(::draw2d::region, object)
 
 
-   void graphics::FillSolidRect(LPCRECT lpRect, COLORREF clr)
+   void graphics::FillSolidRect(const RECT & lpRect, COLORREF clr)
    {
 
       synch_lock ml(&cairo_mutex());
@@ -4856,7 +4856,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 }
 
 
-   bool graphics::blur(bool bExpand, double dRadius, LPCRECT lpcrect)
+   bool graphics::blur(bool bExpand, double dRadius, const RECT & lpcrect)
    {synch_lock ml(&cairo_mutex());
 
       cairo_pattern_t * ppattern = cairo_get_source(m_pdc);

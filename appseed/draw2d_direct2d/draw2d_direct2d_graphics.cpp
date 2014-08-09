@@ -589,13 +589,17 @@ namespace draw2d_direct2d
 
    bool graphics::PtVisible(POINT point) const
    { 
+   
       ASSERT(get_handle1() != NULL);
+
       return PtVisible(point.x, point.y); 
 
    } // call virtual
 
-   bool graphics::RectVisible(LPCRECT lpRect) const
+
+   bool graphics::RectVisible(LPCRECT lpcrect) const
    {
+
       throw todo(get_app());
 
       //ASSERT(get_handle1() != NULL);
@@ -636,12 +640,12 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics::Arc(LPCRECT lpRect, POINT ptStart, POINT ptEnd)
+   bool graphics::Arc(const RECT & lpRect, POINT ptStart, POINT ptEnd)
    {
 
       ASSERT(get_handle1() != NULL);
 
-      return Arc(lpRect->left, lpRect->top, lpRect->right, lpRect->bottom, ptStart.x, ptStart.y, ptEnd.x, ptEnd.y)  != FALSE; 
+      return Arc(lpRect.left, lpRect.top, lpRect.right, lpRect.bottom, ptStart.x, ptStart.y, ptEnd.x, ptEnd.y)  != FALSE; 
 
    }
 
@@ -655,7 +659,7 @@ namespace draw2d_direct2d
 
    }
 
-   void graphics::FillRect(LPCRECT lpRect, ::draw2d::brush* pbrush)
+   void graphics::FillRect(const RECT & lpRect, ::draw2d::brush* pbrush)
    { 
       //g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       //g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
@@ -666,10 +670,10 @@ namespace draw2d_direct2d
 
       D2D1_RECT_F r;
 
-      r.left = (FLOAT)lpRect->left;
-      r.top = (FLOAT)lpRect->top;
-      r.right = (FLOAT)lpRect->right;
-      r.bottom = (FLOAT)lpRect->bottom;
+      r.left = (FLOAT)lpRect.left;
+      r.top = (FLOAT)lpRect.top;
+      r.right = (FLOAT)lpRect.right;
+      r.bottom = (FLOAT)lpRect.bottom;
 
       m_prendertarget->FillRectangle(&r, (dynamic_cast < ::draw2d_direct2d::brush * > (pbrush))->get_os_brush((graphics *) this));
 
@@ -677,7 +681,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::DrawRect(LPCRECT lpRect, ::draw2d::pen* ppen)
+   bool graphics::DrawRect(const RECT & lpRect, ::draw2d::pen* ppen)
    {
       //g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       //g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
@@ -690,10 +694,10 @@ namespace draw2d_direct2d
 
       D2D1_RECT_F r;
 
-      r.left = (FLOAT)lpRect->left;
-      r.top = (FLOAT)lpRect->top;
-      r.right = (FLOAT)lpRect->right;
-      r.bottom = (FLOAT)lpRect->bottom;
+      r.left = (FLOAT)lpRect.left;
+      r.top = (FLOAT)lpRect.top;
+      r.right = (FLOAT)lpRect.right;
+      r.bottom = (FLOAT)lpRect.bottom;
 
       m_prendertarget->DrawRectangle(&r, (dynamic_cast < ::draw2d_direct2d::pen * > (ppen))->get_os_pen_brush((graphics *) this), (FLOAT)ppen->m_dWidth);
 
@@ -702,14 +706,14 @@ namespace draw2d_direct2d
    }
 
 
-   void graphics::FrameRect(LPCRECT lpRect, ::draw2d::brush* pBrush)
+   void graphics::FrameRect(const RECT & lpRect, ::draw2d::brush* pBrush)
    { 
       throw todo(get_app());
       //ASSERT(get_handle1() != NULL); 
       //      ::FrameRect(get_handle1(), lpRect, (HBRUSH)pBrush->get_os_data()); 
 
    }
-   void graphics::InvertRect(LPCRECT lpRect)
+   void graphics::InvertRect(const RECT & lpRect)
    { 
       throw todo(get_app());
       //ASSERT(get_handle1() != NULL); ::InvertRect(get_handle1(), lpRect); 
@@ -944,19 +948,19 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics::Chord(LPCRECT lpRect, POINT ptStart, POINT ptEnd)
+   bool graphics::Chord(const RECT & lpRect, POINT ptStart, POINT ptEnd)
    {
 
       throw todo(get_app());
 
       ASSERT(get_handle1() != NULL);
 
-      //return ::Chord(get_handle1(), lpRect->left, lpRect->top, lpRect->right, lpRect->bottom, ptStart.x, ptStart.y, ptEnd.x, ptEnd.y) != FALSE; 
+      //return ::Chord(get_handle1(), lpRect.left, lpRect.top, lpRect.right, lpRect.bottom, ptStart.x, ptStart.y, ptEnd.x, ptEnd.y) != FALSE; 
 
    }
 
 
-   void graphics::DrawFocusRect(LPCRECT lpRect)
+   void graphics::DrawFocusRect(const RECT & lpRect)
    {
 
       throw todo(get_app());
@@ -994,10 +998,10 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics::DrawEllipse(LPCRECT lprect)
+   bool graphics::DrawEllipse(const RECT & lprect)
    { 
 
-      return DrawEllipse(lprect->left, lprect->top, lprect->right, lprect->bottom);
+      return DrawEllipse(lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
 
    }
 
@@ -1028,10 +1032,10 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics::FillEllipse(LPCRECT lprect)
+   bool graphics::FillEllipse(const RECT & lprect)
    { 
 
-      return FillEllipse(lprect->left, lprect->top, lprect->right, lprect->bottom);
+      return FillEllipse(lprect.left,lprect.top,lprect.right,lprect.bottom);
 
    }
 
@@ -1048,7 +1052,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::Pie(LPCRECT lpRect, POINT ptStart, POINT ptEnd)
+   bool graphics::Pie(const RECT & lpRect, POINT ptStart, POINT ptEnd)
    {
 
 
@@ -1056,7 +1060,7 @@ namespace draw2d_direct2d
 
       //ASSERT(get_handle1() != NULL); 
       //
-      //return ::Pie(get_handle1(), lpRect->left, lpRect->top, lpRect->right, lpRect->bottom, ptStart.x, ptStart.y,  ptEnd.x, ptEnd.y) != FALSE;
+      //return ::Pie(get_handle1(), lpRect.left, lpRect.top, lpRect.right, lpRect.bottom, ptStart.x, ptStart.y,  ptEnd.x, ptEnd.y) != FALSE;
 
    }
 
@@ -1113,10 +1117,10 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics::Rectangle(LPCRECT lpRect)
+   bool graphics::Rectangle(const RECT & lpRect)
    { 
 
-      return Rectangle(lpRect->left, lpRect->top, lpRect->right, lpRect->bottom);
+      return Rectangle(lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
 
    }
 
@@ -1139,10 +1143,10 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics::DrawRectangle(LPCRECT lpRect)
+   bool graphics::DrawRectangle(const RECT & lpRect)
    { 
 
-      return DrawRectangle(lpRect->left, lpRect->top, lpRect->right, lpRect->bottom);
+      return DrawRectangle(lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
 
    }
 
@@ -1165,10 +1169,10 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics::FillRectangle(LPCRECT lpRect)
+   bool graphics::FillRectangle(const RECT & lpRect)
    { 
 
-      return FillRectangle(lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top);
+      return FillRectangle(lpRect.left, lpRect.top, lpRect.right - lpRect.left, lpRect.bottom - lpRect.top);
 
    }
 
@@ -1183,14 +1187,14 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics::RoundRect(LPCRECT lpRect, POINT point)
+   bool graphics::RoundRect(const RECT & lpRect, POINT point)
    {
 
       throw todo(get_app());
 
       //ASSERT(get_handle1() != NULL); 
       //
-      //return ::RoundRect(get_handle1(), lpRect->left, lpRect->top, lpRect->right, lpRect->bottom, point.x, point.y) != FALSE; 
+      //return ::RoundRect(get_handle1(), lpRect.left, lpRect.top, lpRect.right, lpRect.bottom, point.x, point.y) != FALSE; 
 
    }
 
@@ -1419,7 +1423,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::ExtTextOut(int x, int y, UINT nOptions, LPCRECT lpRect, const char * lpszString, UINT nCount, LPINT lpDxWidths)
+   bool graphics::ExtTextOut(int x, int y, UINT nOptions, const RECT & lpRect, const char * lpszString, UINT nCount, LPINT lpDxWidths)
    { 
 
       throw todo(get_app());
@@ -1428,7 +1432,7 @@ namespace draw2d_direct2d
       //return ::ExtTextOut(get_handle1(), x, y, nOptions, lpRect, lpszString, nCount, lpDxWidths) != FALSE; 
    }
 
-   bool graphics::ExtTextOut(int x, int y, UINT nOptions, LPCRECT lpRect, const string & str, LPINT lpDxWidths)
+   bool graphics::ExtTextOut(int x, int y, UINT nOptions, const RECT & lpRect, const string & str, LPINT lpDxWidths)
    {
 
       throw todo(get_app());
@@ -1764,7 +1768,7 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics::ScrollDC(int dx, int dy, LPCRECT lpRectScroll, LPCRECT lpRectClip, ::draw2d::region* pRgnUpdate, LPRECT lpRectUpdate)
+   bool graphics::ScrollDC(int dx, int dy, const RECT & lpRectScroll, const RECT & lpRectClip, ::draw2d::region* pRgnUpdate, LPRECT lpRectUpdate)
    {
       
       throw todo(get_app());
@@ -1788,7 +1792,7 @@ namespace draw2d_direct2d
    }
 
    // graphics 3.1 Specific functions
-   UINT graphics::SetBoundsRect(LPCRECT lpRectBounds, UINT flags)
+   UINT graphics::SetBoundsRect(const RECT & lpRectBounds, UINT flags)
    {
       
       throw todo(get_app());
@@ -2015,14 +2019,14 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::ArcTo(LPCRECT lpRect, POINT ptStart, POINT ptEnd)
+   bool graphics::ArcTo(const RECT & lpRect, POINT ptStart, POINT ptEnd)
    {
       
       throw todo(get_app());
 
       //ASSERT(get_handle1() != NULL);
 
-      //return ArcTo(lpRect->left, lpRect->top, lpRect->right, lpRect->bottom, ptStart.x, ptStart.y, ptEnd.x, ptEnd.y);
+      //return ArcTo(lpRect.left, lpRect.top, lpRect.right, lpRect.bottom, ptStart.x, ptStart.y, ptEnd.x, ptEnd.y);
 
    }
 
@@ -2335,7 +2339,7 @@ namespace draw2d_direct2d
    graphics.DrawImage(pMeta, Point(0, 150));
    delete pMeta;;
    }*/
-   bool graphics::PlayMetaFile(HENHMETAFILE hEnhMF, LPCRECT lpBounds)
+   bool graphics::PlayMetaFile(HENHMETAFILE hEnhMF, const RECT & lpBounds)
    { 
       
       throw todo(get_app());
@@ -2772,7 +2776,7 @@ namespace draw2d_direct2d
    }
 
 
-   void graphics::DrawDragRect(LPCRECT lpRect, SIZE size, LPCRECT lpRectLast, SIZE sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
+   void graphics::DrawDragRect(const RECT & lpRect, SIZE size, const RECT & lpRectLast, SIZE sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
    {
 
       throw not_implemented(get_app());
@@ -2859,9 +2863,9 @@ namespace draw2d_direct2d
    }
 
 
-   void graphics::Draw3dRect(LPCRECT lpRect, COLORREF clrTopLeft, COLORREF clrBottomRight)
+   void graphics::Draw3dRect(const RECT & lpRect, COLORREF clrTopLeft, COLORREF clrBottomRight)
    {
-      Draw3dRect(lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top, clrTopLeft, clrBottomRight);
+      Draw3dRect(lpRect.left, lpRect.top, lpRect.right - lpRect.left, lpRect.bottom - lpRect.top, clrTopLeft, clrBottomRight);
    }
 
    void graphics::Draw3dRect(int x, int y, int cx, int cy,  COLORREF clrTopLeft, COLORREF clrBottomRight)
@@ -3419,18 +3423,18 @@ namespace draw2d_direct2d
       //return nRetVal;
    }
 
-   int graphics::ExcludeClipRect(LPCRECT lpRect)
+   int graphics::ExcludeClipRect(const RECT & lpRect)
    {
       
       throw todo(get_app());
 
       //int nRetVal = ERROR;
       //if(get_handle1() != NULL && get_handle1() != get_handle2())
-      //   nRetVal = ::ExcludeClipRect(get_handle1(), lpRect->left, lpRect->top,
-      //   lpRect->right, lpRect->bottom);
+      //   nRetVal = ::ExcludeClipRect(get_handle1(), lpRect.left, lpRect.top,
+      //   lpRect.right, lpRect.bottom);
       //if(get_handle2() != NULL)
-      //   nRetVal = ::ExcludeClipRect(get_handle2(), lpRect->left, lpRect->top,
-      //   lpRect->right, lpRect->bottom);
+      //   nRetVal = ::ExcludeClipRect(get_handle2(), lpRect.left, lpRect.top,
+      //   lpRect.right, lpRect.bottom);
       //return nRetVal;
    }
 
@@ -3447,16 +3451,16 @@ namespace draw2d_direct2d
       //return nRetVal;
    }
 
-   int graphics::IntersectClipRect(LPCRECT lpRect)
+   int graphics::IntersectClipRect(const RECT & lpRect)
    {
       
       throw todo(get_app());
 
       //int nRetVal = ERROR;
       //if(get_handle1() != NULL && get_handle1() != get_handle2())
-      //   nRetVal = ::IntersectClipRect(get_handle1(), lpRect->left, lpRect->top, lpRect->right, lpRect->bottom);
+      //   nRetVal = ::IntersectClipRect(get_handle1(), lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
       //if(get_handle2() != NULL)
-      //   nRetVal = ::IntersectClipRect(get_handle2(), lpRect->left, lpRect->top, lpRect->right, lpRect->bottom);
+      //   nRetVal = ::IntersectClipRect(get_handle2(), lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
       //return nRetVal;
    }
 
@@ -3994,11 +3998,11 @@ namespace draw2d_direct2d
 
       D2D1::Matrix3x2F mOriginal(m);
 
-      D2D1_RECT_F rectf = D2D1::RectF((FLOAT) 0, (FLOAT) 0, (FLOAT) lpRect->right, (FLOAT) lpRect->bottom);
+      D2D1_RECT_F rectf = D2D1::RectF((FLOAT) 0, (FLOAT) 0, (FLOAT) lpRect.right, (FLOAT) lpRect.bottom);
 
       wstring wstr(str);
 
-      m = m * D2D1::Matrix3x2F::Translation((FLOAT)lpRect->left, (FLOAT)lpRect->top);
+      m = m * D2D1::Matrix3x2F::Translation((FLOAT)lpRect.left, (FLOAT)lpRect.top);
 
       m = m * D2D1::Matrix3x2F::Scale((FLOAT)m_spfont->m_dFontWidth, 1.f);
 
@@ -4215,14 +4219,14 @@ namespace draw2d_direct2d
 namespace draw2d_direct2d
 {
 
-   void graphics::FillSolidRect(LPCRECT lpRect, COLORREF clr)
+   void graphics::FillSolidRect(const RECT & lpRect, COLORREF clr)
    {
 
       //g.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
       //g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       //g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
 
-      FillSolidRect(lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top, clr);
+      FillSolidRect(lpRect.left, lpRect.top, lpRect.right - lpRect.left, lpRect.bottom - lpRect.top, clr);
       //::SetBkColor(get_handle1(), clr);
       //::ExtTextOut(get_handle1(), 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
    }
@@ -4578,7 +4582,7 @@ namespace draw2d_direct2d
    }
    */
 
-   bool graphics::blur(bool bExpand, double dRadius, LPCRECT lpcrect)
+   bool graphics::blur(bool bExpand, double dRadius, const RECT & lpcrect)
    {
 
 /*
