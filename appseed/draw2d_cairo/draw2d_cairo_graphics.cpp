@@ -541,7 +541,7 @@ synch_lock ml(&cairo_mutex());
 
    }
 
-   bool graphics::RectVisible(LPCRECT lpRect) const
+   bool graphics::RectVisible(const RECT & lpRect) const
    {
 
 //      ASSERT(get_handle1() != NULL);
@@ -596,10 +596,10 @@ synch_lock ml(&cairo_mutex());
    {
 
       return Arc(
-                 lpRect->left,
-                 lpRect->top,
-                 lpRect->right,
-                 lpRect->bottom,
+                 lpRect.left,
+                 lpRect.top,
+                 lpRect.right,
+                 lpRect.bottom,
                  ptStart.x,
                  ptStart.y,
                  ptEnd.x,
@@ -623,12 +623,12 @@ synch_lock ml(&cairo_mutex());
       //g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       //g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
 
-      if(lpRect->right <= lpRect->left || lpRect->bottom <= lpRect->top)
+      if(lpRect.right <= lpRect.left || lpRect.bottom <= lpRect.top)
          return;
 
       set(pBrush);
 
-      cairo_rectangle(m_pdc, lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top);
+      cairo_rectangle(m_pdc, lpRect.left, lpRect.top, lpRect.right - lpRect.left, lpRect.bottom - lpRect.top);
 
       cairo_fill(m_pdc);
 
@@ -653,12 +653,12 @@ synch_lock ml(&cairo_mutex());
       //g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       //g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
 
-      if(lpcrect->right <= lpcrect->left || lpcrect->bottom <= lpcrect->top)
+      if(lpcrect.right <= lpcrect.left || lpcrect.bottom <= lpcrect.top)
          return false;
 
       set(ppen);
 
-      cairo_rectangle(m_pdc, lpcrect->left, lpcrect->top, lpcrect->right - lpcrect->left, lpcrect->bottom - lpcrect->top);
+      cairo_rectangle(m_pdc, lpcrect.left, lpcrect.top, lpcrect.right - lpcrect.left, lpcrect.bottom - lpcrect.top);
 
       cairo_stroke(m_pdc);
 
@@ -880,7 +880,7 @@ synch_lock ml(&cairo_mutex());
       return false;
 
       //ASSERT(get_handle1() != NULL);
-      //return ::Chord(get_handle1(), lpRect->left, lpRect->top, lpRect->right, lpRect->bottom, ptStart.x, ptStart.y, ptEnd.x, ptEnd.y) != FALSE;
+      //return ::Chord(get_handle1(), lpRect.left, lpRect.top, lpRect.right, lpRect.bottom, ptStart.x, ptStart.y, ptEnd.x, ptEnd.y) != FALSE;
 
    }
 
@@ -928,10 +928,10 @@ synch_lock ml(&cairo_mutex());
    bool graphics::DrawEllipse(const RECT & lprect)
    {
 
-      return DrawEllipse(lprect->left, lprect->top, lprect->right, lprect->bottom);
+      return DrawEllipse(lprect.left, lprect.top, lprect.right, lprect.bottom);
 
-      /*return ::Ellipse(get_handle1(), lpRect->left, lpRect->top,
-   lpRect->right, lpRect->bottom); */
+      /*return ::Ellipse(get_handle1(), lpRect.left, lpRect.top,
+   lpRect.right, lpRect.bottom); */
 
 
    }
@@ -974,10 +974,10 @@ synch_lock ml(&cairo_mutex());
    bool graphics::FillEllipse(const RECT & lpRect)
    {
 
-      /*return ::Ellipse(get_handle1(), lpRect->left, lpRect->top,
-   lpRect->right, lpRect->bottom); */
+      /*return ::Ellipse(get_handle1(), lpRect.left, lpRect.top,
+   lpRect.right, lpRect.bottom); */
 
-      return FillEllipse(lpRect->left, lpRect->top, lpRect->right, lpRect->bottom);
+      return FillEllipse(lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
 
    }
 
@@ -1000,7 +1000,7 @@ synch_lock ml(&cairo_mutex());
 
 
 /*      ASSERT(get_handle1() != NULL);
-      return ::Pie(get_handle1(), lpRect->left, lpRect->top, lpRect->right, lpRect->bottom, ptStart.x, ptStart.y, ptEnd.x, ptEnd.y) != FALSE;*/
+      return ::Pie(get_handle1(), lpRect.left, lpRect.top, lpRect.right, lpRect.bottom, ptStart.x, ptStart.y, ptEnd.x, ptEnd.y) != FALSE;*/
 
    }
 
@@ -1152,7 +1152,7 @@ synch_lock ml(&cairo_mutex());
    bool graphics::Rectangle(const RECT & lpRect)
    {
 
-      return Rectangle(lpRect->left, lpRect->top, lpRect->right, lpRect->bottom);
+      return Rectangle(lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
 
    }
 
@@ -1168,7 +1168,7 @@ synch_lock ml(&cairo_mutex());
    bool graphics::DrawRectangle(const RECT & lpRect)
    {
 
-      return DrawRectangle(lpRect->left, lpRect->top, lpRect->right, lpRect->bottom);
+      return DrawRectangle(lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
 
    }
 
@@ -1184,7 +1184,7 @@ synch_lock ml(&cairo_mutex());
    bool graphics::FillRectangle(const RECT & lpRect)
    {
 
-      return FillRectangle(lpRect->left, lpRect->top, lpRect->right, lpRect->bottom);
+      return FillRectangle(lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
 
    }
 
@@ -1203,7 +1203,7 @@ synch_lock ml(&cairo_mutex());
    {
 
       //ASSERT(get_handle1() != NULL);
-      //return ::RoundRect(get_handle1(), lpRect->left, lpRect->top, lpRect->right, lpRect->bottom, point.x, point.y) != FALSE;
+      //return ::RoundRect(get_handle1(), lpRect.left, lpRect.top, lpRect.right, lpRect.bottom, point.x, point.y) != FALSE;
       throw not_implemented(get_app());
       return false;
 
@@ -1999,7 +1999,7 @@ synch_lock ml(&cairo_mutex());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
-//      return ArcTo(lpRect->left, lpRect->top, lpRect->right, lpRect->bottom, ptStart.x, ptStart.y, ptEnd.x, ptEnd.y);
+//      return ArcTo(lpRect.left, lpRect.top, lpRect.right, lpRect.bottom, ptStart.x, ptStart.y, ptEnd.x, ptEnd.y);
 
    }
 
@@ -3018,8 +3018,8 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    void graphics::Draw3dRect(const RECT & lpRect,
       COLORREF clrTopLeft, COLORREF clrBottomRight)
    {
-      Draw3dRect(lpRect->left, lpRect->top, lpRect->right - lpRect->left,
-         lpRect->bottom - lpRect->top, clrTopLeft, clrBottomRight);
+      Draw3dRect(lpRect.left, lpRect.top, lpRect.right - lpRect.left,
+         lpRect.bottom - lpRect.top, clrTopLeft, clrBottomRight);
    }
 
    void graphics::Draw3dRect(int32_t x, int32_t y, int32_t cx, int32_t cy,
@@ -3656,11 +3656,11 @@ synch_lock ml(&cairo_mutex());
 /*
       int32_t nRetVal = ERROR;
       if(get_handle1() != NULL && get_handle1() != get_handle2())
-         nRetVal = ::ExcludeClipRect(get_handle1(), lpRect->left, lpRect->top,
-         lpRect->right, lpRect->bottom);
+         nRetVal = ::ExcludeClipRect(get_handle1(), lpRect.left, lpRect.top,
+         lpRect.right, lpRect.bottom);
       if(get_handle2() != NULL)
-         nRetVal = ::ExcludeClipRect(get_handle2(), lpRect->left, lpRect->top,
-         lpRect->right, lpRect->bottom);
+         nRetVal = ::ExcludeClipRect(get_handle2(), lpRect.left, lpRect.top,
+         lpRect.right, lpRect.bottom);
       return nRetVal;
 */
 
@@ -3691,9 +3691,9 @@ synch_lock ml(&cairo_mutex());
 
 /*      int32_t nRetVal = ERROR;
       if(get_handle1() != NULL && get_handle1() != get_handle2())
-         nRetVal = ::IntersectClipRect(get_handle1(), lpRect->left, lpRect->top, lpRect->right, lpRect->bottom);
+         nRetVal = ::IntersectClipRect(get_handle1(), lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
       if(get_handle2() != NULL)
-         nRetVal = ::IntersectClipRect(get_handle2(), lpRect->left, lpRect->top, lpRect->right, lpRect->bottom);
+         nRetVal = ::IntersectClipRect(get_handle2(), lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
       return nRetVal;
 */
 
@@ -4265,14 +4265,14 @@ synch_lock ml(&cairo_mutex());
 
 
 
-   int32_t graphics::draw_text(const char * lpszString, int32_t nCount, LPRECT lpRect, UINT nFormat)
+   int32_t graphics::draw_text(const char * lpszString,int32_t nCount,const RECT & lpRect,UINT nFormat)
    {
 
       return draw_text(string(lpszString, nCount), lpRect, nFormat);
 
    }
 
-   int32_t graphics::draw_text(const string & str, LPRECT lpRect, UINT nFormat)
+   int32_t graphics::draw_text(const string & str,const RECT & lpRect,UINT nFormat)
    {
 
       synch_lock ml(&cairo_mutex());
@@ -4293,11 +4293,11 @@ synch_lock ml(&cairo_mutex());
 
       if(nFormat & DT_RIGHT)
       {
-         dx = lpRect->right - lpRect->left - sz.cx;
+         dx = lpRect.right - lpRect.left - sz.cx;
       }
       else if(nFormat & DT_CENTER)
       {
-         dx = ((lpRect->right - lpRect->left) - (sz.cx)) / 2.0;
+         dx = ((lpRect.right - lpRect.left) - (sz.cx)) / 2.0;
       }
       else
       {
@@ -4306,18 +4306,18 @@ synch_lock ml(&cairo_mutex());
 
       if(nFormat & DT_BOTTOM)
       {
-         dy = lpRect->bottom - lpRect->top - e.ascent;
+         dy = lpRect.bottom - lpRect.top - e.ascent;
       }
       else if(nFormat & DT_VCENTER)
       {
-         dy = ((lpRect->bottom - lpRect->top) - (e.ascent)) / 2.0;
+         dy = ((lpRect.bottom - lpRect.top) - (e.ascent)) / 2.0;
       }
       else
       {
          dy = 0.;
       }
 
-      cairo_translate(m_pdc, lpRect->left + dx, lpRect->top + e.ascent + dy);
+      cairo_translate(m_pdc, lpRect.left + dx, lpRect.top + e.ascent + dy);
 
       cairo_scale(m_pdc, m_spfont->m_dFontWidth, 1.0);
 
@@ -4330,7 +4330,7 @@ synch_lock ml(&cairo_mutex());
    }
 
 
-   int32_t graphics::draw_text_ex(LPTSTR lpszString, int32_t nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
+   int32_t graphics::draw_text_ex(LPTSTR lpszString,int32_t nCount,const RECT & lpRect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams)
    {
 
       throw not_implemented(get_app());
@@ -4347,7 +4347,7 @@ synch_lock ml(&cairo_mutex());
 */
    }
 
-   int32_t graphics::draw_text_ex(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
+   int32_t graphics::draw_text_ex(const string & str,const RECT & lpRect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams)
    {
 
       throw not_implemented(get_app());
@@ -4518,16 +4518,16 @@ synch_lock ml(&cairo_mutex());
       //g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       //g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
 
-      if(lpRect->right <= lpRect->left || lpRect->bottom <= lpRect->top)
+      if(lpRect.right <= lpRect.left || lpRect.bottom <= lpRect.top)
          return;
 
       set_os_color(clr);
 
-      cairo_rectangle(m_pdc, lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top);
+      cairo_rectangle(m_pdc, lpRect.left, lpRect.top, lpRect.right - lpRect.left, lpRect.bottom - lpRect.top);
 
       cairo_fill(m_pdc);
 
-//      m_pgraphics->FillRectangle(gdiplus_brush(), lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top);
+//      m_pgraphics->FillRectangle(gdiplus_brush(), lpRect.left, lpRect.top, lpRect.right - lpRect.left, lpRect.bottom - lpRect.top);
 
       //::SetBkColor(get_handle1(), clr);
       //::ExtTextOut(get_handle1(), 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
@@ -4870,7 +4870,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
       /*
 
-      cairo_surface_t * psurface = cairo_surface_create_for_rectangle(psurfaceSrc, lpcrect->left, lpcrect->top, width(lpcrect), height(lpcrect));
+      cairo_surface_t * psurface = cairo_surface_create_for_rectangle(psurfaceSrc, lpcrect.left, lpcrect.top, width(lpcrect), height(lpcrect));
 
       cairo_image_surface_blur(psurface, dRadius);
 

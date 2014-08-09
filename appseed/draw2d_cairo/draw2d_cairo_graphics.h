@@ -333,11 +333,11 @@ namespace draw2d_cairo
             size TabbedTextOut(int32_t x, int32_t y, const string & str,
                int32_t nTabPositions, LPINT lpnTabStopPositions, int32_t nTabOrigin);
 
-      virtual int32_t draw_text(const char * lpszString, int32_t nCount, LPRECT lpRect, UINT nFormat);
-      virtual int32_t draw_text(const string & str, LPRECT lpRect, UINT nFormat);
+            virtual int32_t draw_text(const char * lpszString,int32_t nCount,const RECT & lpRect,UINT nFormat);
+            virtual int32_t draw_text(const string & str,const RECT & lpRect,UINT nFormat);
 
-      virtual int32_t draw_text_ex(LPTSTR lpszString, int32_t nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
-      virtual int32_t draw_text_ex(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
+            virtual int32_t draw_text_ex(LPTSTR lpszString,int32_t nCount,const RECT & lpRect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams);
+            virtual int32_t draw_text_ex(const string & str,const RECT & lpRect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams);
 
       size GetTextExtent(const char * lpszString, strsize nCount, int32_t iIndex) const;
       size GetTextExtent(const char * lpszString, strsize nCount) const;

@@ -597,7 +597,7 @@ namespace draw2d_direct2d
    } // call virtual
 
 
-   bool graphics::RectVisible(LPCRECT lpcrect) const
+   bool graphics::RectVisible(const RECT & lpcrect) const
    {
 
       throw todo(get_app());
@@ -998,7 +998,7 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics::DrawEllipse(const RECT & lprect)
+   bool graphics::DrawEllipse(const RECT & lpRect)
    { 
 
       return DrawEllipse(lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
@@ -3906,14 +3906,14 @@ namespace draw2d_direct2d
 
 
 
-   int graphics::draw_text(const char * lpszString, int nCount, LPRECT lpRect, UINT nFormat)
+   int graphics::draw_text(const char * lpszString, int nCount, const RECT & lpRect, UINT nFormat)
    { 
 
       return draw_text(string(lpszString, nCount), lpRect, nFormat);
 
    }
 
-   int graphics::draw_text(const string & str, LPRECT lpRect, UINT nFormat)
+   int graphics::draw_text(const string & str,const RECT & lpRect,UINT nFormat)
    { 
 
       try

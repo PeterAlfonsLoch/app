@@ -328,8 +328,8 @@ namespace draw2d_direct2d
             size TabbedTextOut(int x, int y, const string & str,
                int nTabPositions, LPINT lpnTabStopPositions, int nTabOrigin);
 
-      virtual int draw_text(const char * lpszString, int nCount, LPRECT lpRect, UINT nFormat);
-      virtual int draw_text(const string & str, LPRECT lpRect, UINT nFormat);
+      virtual int draw_text(const char * lpszString, int nCount, const RECT & lpRect, UINT nFormat);
+      virtual int draw_text(const string & str,const RECT & lpRect,UINT nFormat);
 
 //      virtual int draw_text_ex(LPTSTR lpszString, int nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
   //    virtual int draw_text_ex(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
