@@ -1035,11 +1035,11 @@ typedef struct tagCREATESTRUCTW {
    DWORD       dwExStyle;
 } CREATESTRUCTW,*LPCREATESTRUCTW;
 #ifdef UNICODE
-typedef CREATESTRUCTW ::user::create_struct;
-typedef LPCREATESTRUCTW ::user::create_struct *;
+typedef CREATESTRUCTW CREATESTRUCT;
+typedef LPCREATESTRUCTW LPCREATESTRUCT;
 #else
-typedef CREATESTRUCTA ::user::create_struct;
-typedef LPCREATESTRUCTA ::user::create_struct *;
+typedef CREATESTRUCTA CREATESTRUCT;
+typedef LPCREATESTRUCTA LPCREATESTRUCT;
 #endif // UNICODE
 
 typedef struct tagWINDOWPLACEMENT {
@@ -2663,9 +2663,11 @@ CLASS_DECL_BASE int_bool TranslateMessage(const MESSAGE * pmsg);
 CLASS_DECL_BASE int_bool DispatchMessage(const MESSAGE * pmsg);
 
 
+#ifdef cplusplus
+
 CLASS_DECL_BASE int_bool IsRectEmpty(const RECT & rect);
 
-
+#endif
 
 
 
