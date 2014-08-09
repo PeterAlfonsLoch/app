@@ -833,7 +833,7 @@ namespace user
 
       ev.m_pobj      = pobj;
 
-      bool bProcessed = BaseOnControlEvent(&ev);
+      BaseOnControlEvent(&ev);
 
       pobj->m_bRet = ev.m_bRet;
 

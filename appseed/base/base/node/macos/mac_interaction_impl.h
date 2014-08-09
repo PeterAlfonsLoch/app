@@ -106,12 +106,17 @@ namespace mac
                           ::create_context * pContext = NULL);
       
       // advanced creation (allows access to extended styles)
-      
-      virtual bool create_window_ex(DWORD dwExStyle, const char * lpszClassName,
-                            const char * lpszWindowName, DWORD dwStyle,
-                            const RECT& rect,
-                            sp(::user::interaction)  pParentWnd, id id,
+      virtual bool create_window_ex(DWORD dwExStyle = 0, const char * lpszClassName=0,
+                            const char * lpszWindowName= 0, DWORD dwStyle= 0,
+                            const RECT& rect= null_rect(),
+                                    sp(::user::interaction)  pParentWnd=NULL, id id=::id(),
                             LPVOID lpParam = NULL);
+       
+       virtual bool native_create_window_ex(DWORD dwExStyle= 0, const char * lpszClassName= NULL,
+                                     const char * lpszWindowName= 0, DWORD dwStyle= 0,
+                                            const RECT& rect = ::null_rect(),
+                                            oswindow hwndParent= NULL, id id=::id(),
+                                     LPVOID lpParam = NULL);
       
       virtual bool DestroyWindow();
       

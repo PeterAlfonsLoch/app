@@ -163,7 +163,7 @@ namespace user
          m_pui->GetClientRect(&layout.rect);    // starting rect comes from client rect
       }
 
-      if(::IsRectEmpty(&layout.rect))
+      if(::IsRectEmpty(layout.rect))
          return;
 #ifdef WINDOWS
       if((nFlags & ~reposNoPosLeftOver) != reposQuery)

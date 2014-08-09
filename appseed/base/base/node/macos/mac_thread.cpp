@@ -14,17 +14,12 @@ namespace mac
    
    thread::thread(::base::application * papp) :
    element(papp),
-   message_queue(papp),
    ::thread_impl(papp),
    ::ansios::thread_impl(papp)
    {
 
       
    }
-   
-   
-   
-   
    
    
    thread::~thread()

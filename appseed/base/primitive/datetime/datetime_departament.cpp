@@ -481,9 +481,9 @@ int32_t departament::ISO_WN(int32_t  y, int32_t m, int32_t d )
       bool bSolved = false;
       string strTime;
       string str;
-      __int64 iSecDiff = (timeNow - time).GetTotalSeconds();
-      __int64 iMinDiff = (timeNow - time).GetTotalMinutes();
-      __int64 iHouDiff = (timeNow - time).GetTotalHours();
+      int64_t iSecDiff = (timeNow - time).GetTotalSeconds();
+      int64_t iMinDiff = (timeNow - time).GetTotalMinutes();
+      int64_t iHouDiff = (timeNow - time).GetTotalHours();
       if (iSecDiff <= 59)
       {
          bSolved = true;

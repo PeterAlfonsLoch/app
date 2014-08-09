@@ -63,11 +63,9 @@ namespace mac
    interaction_impl::interaction_impl()
    {
       
-      m_pcallback          = NULL;
       //set_handle(NULL);
       m_pui->m_nFlags    = 0;
       //m_pfnSuper         = NULL;
-      m_nModalResult       = 0;
       m_bMouseHover        = false;
       m_pguieCapture       = NULL;
       m_oswindow           = NULL;
@@ -78,12 +76,10 @@ namespace mac
    void interaction_impl::construct(oswindow hWnd)
    {
       
-      m_pcallback          = NULL;
       m_oswindow           = hWnd;
       //set_handle(hWnd);
       m_pui->m_nFlags    = 0;
       //m_pfnSuper         = NULL;
-      m_nModalResult       = 0;
       m_bMouseHover        = false;
       m_pguieCapture       = NULL;
       m_oswindow           = NULL;
@@ -95,11 +91,9 @@ namespace mac
         element(papp)
     {
       
-        m_pcallback          = NULL;
         //set_handle(NULL);
         m_pui->m_nFlags    = 0;
         //m_pfnSuper         = NULL;
-        m_nModalResult       = 0;
         m_bMouseHover        = false;
 //        m_pfont              = NULL;
         m_pguieCapture       = NULL;
@@ -280,20 +274,28 @@ namespace mac
    /////////////////////////////////////////////////////////////////////////////
    // user::interaction creation
    
-   bool interaction_impl::CreateEx(DWORD dwExStyle, const char * lpszClassName,
+   bool interaction_impl::create_window_ex(DWORD dwExStyle, const char * lpszClassName,
                          const char * lpszWindowName, DWORD dwStyle,
                          const RECT& rect, sp(::user::interaction) pParentWnd, id id,
                          LPVOID lpParam /* = NULL */)
    {
-      return CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle,
-                      rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top,
-                      pParentWnd->get_safe_handle(), id, lpParam);
+      
+      if(!native_create_window_ex(dwExStyle, lpszClassName, lpszWindowName, dwStyle,
+                      rect,
+                      pParentWnd->get_safe_handle(), id, lpParam))
+      {
+         return false;
+      }
+      
+      
+      return true;
+      
    }
    
    
-   bool interaction_impl::CreateEx(DWORD dwExStyle, const char * lpszClassName,
+   bool interaction_impl::native_create_window_ex(DWORD dwExStyle, const char * lpszClassName,
                          const char * lpszWindowName, DWORD dwStyle,
-                         int32_t x, int32_t y, int32_t nWidth, int32_t nHeight,
+                         const RECT& rect,
                          oswindow hWndParent, id id, LPVOID lpParam)
    {
       
