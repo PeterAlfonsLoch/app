@@ -96,7 +96,7 @@ public:
 */
 
 //  virtual bool _001GetItemRect(int32_t iItem,LPRECT lprect)
-   virtual bool _001GetItemRect(int32_t iItem,LPRECT lprect,EElement eelement);
+   virtual bool _001GetElementRect(int32_t iItem,LPRECT lprect,EElement eelement);
 
 
 

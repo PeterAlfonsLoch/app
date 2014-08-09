@@ -146,17 +146,18 @@ bool simple_menu_bar::_TrackPopupMenu(int32_t iItem)
     m_iButtonPressItem = iItem;
     RedrawWindow();
     rect rect;
-    _001GetItemRect(iItem, rect, ElementItem);
+    _001GetElementRect(iItem, rect, ElementItem);
     ClientToScreen(rect);
 
-#ifdef WINDOWSEX
+/*#ifdef WINDOWSEX
     TPMPARAMS tpm;
     tpm.cbSize = sizeof(TPMPARAMS);
     tpm.rcExclude.top    = rect.top;
     tpm.rcExclude.left   = rect.left;
     tpm.rcExclude.bottom = rect.bottom;
     tpm.rcExclude.right  = rect.right;
-#endif
+#endif*/
+
     return true;
 
 }

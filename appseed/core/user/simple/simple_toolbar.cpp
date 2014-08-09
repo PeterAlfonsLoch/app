@@ -487,7 +487,7 @@ size.cx = 0;
 size.cy = 0;
 for(int32_t i = 0; i < _001GetItemCount(); i++)
 {
-_001GetItemRect(i, rectItem);
+_001GetElementRect(i, rectItem);
 if(bHorz)
 {
 size.cx += rectItem.width();
@@ -577,8 +577,8 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
    }
 
 
-   _001GetItemRect(iItem, rectItem, eelement);
-   _001GetItemRect(iItem, rectImage, eelementImage);
+   _001GetElementRect(iItem, rectItem, eelement);
+   _001GetElementRect(iItem, rectImage, eelementImage);
 
    if((nStyle & TBBS_SEPARATOR) != 0)
    {
@@ -595,8 +595,8 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
       {
          if((nStyle & TBBS_CHECKED) != 0)
          {
-            _001GetItemRect(iItem, rectItem, ElementItem);
-            _001GetItemRect(iItem, rectImage, ElementImage);
+            _001GetElementRect(iItem, rectItem, ElementItem);
+            _001GetElementRect(iItem, rectImage, ElementImage);
             if((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
                System.visual().imaging().color_blend(
@@ -630,7 +630,7 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
          else
          {
             rect rectShadow;
-            _001GetItemRect(iItem, rectShadow, ElementItem);
+            _001GetElementRect(iItem, rectShadow, ElementItem);
             if((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
 
@@ -652,13 +652,13 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
             if(item.m_spdib.is_set())
             {
                rect rect;
-               _001GetItemRect(iItem, rect, ElementImageHover);
+               _001GetElementRect(iItem, rect, ElementImageHover);
                System.visual().imaging().color_blend(pdc, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 0.84);
             }
             else if(uiImage != 0xffffffffu)
             {
                rect rect;
-               _001GetItemRect(iItem, rect, ElementImage);
+               _001GetElementRect(iItem, rect, ElementImage);
                pmenucentral->MenuV033GetImageListHue()->draw(
                   pdc, uiImage, rect.top_left(), 0);
 
@@ -684,12 +684,12 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
          }
 
          //      rect rect;
-         //    _001GetItemRect(iItem, rect, ElementImage);
+         //    _001GetElementRect(iItem, rect, ElementImage);
          //  m_pimagelistHue->draw(pdc, uiImage, rect.top_left(), 0);
          if(item.m_spdib.is_set())
          {
             rect rect;
-            _001GetItemRect(iItem, rect, ElementImagePress);
+            _001GetElementRect(iItem, rect, ElementImagePress);
             System.visual().imaging().color_blend(pdc, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 1.0);
          }
          else if(uiImage != 0xffffffff)
@@ -708,7 +708,7 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
          if(item.m_spdib.is_set())
          {
             rect rect;
-            _001GetItemRect(iItem, rect, ElementImage);
+            _001GetElementRect(iItem, rect, ElementImage);
             System.visual().imaging().color_blend(pdc, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 0.23);
          }
          else if(uiImage != 0xffffffff)
@@ -734,7 +734,7 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
          
          pdc->SelectObject(brushText);
 
-      if(_001GetItemRect(iItem, rectText, ElementText) && rectText.right > 0)
+      if(_001GetElementRect(iItem, rectText, ElementText) && rectText.right > 0)
       {
          pdc->_DrawText(item.m_str, item.m_str.get_length(), rectText, DT_BOTTOM | DT_LEFT);
       }
@@ -798,8 +798,9 @@ return bResult;
 }
 */
 
+/*
 
-bool simple_toolbar::_001GetItemRect(int32_t iItem, LPRECT lprect)
+bool simple_toolbar::_001GetElementRect(int32_t iItem, LPRECT lprect)
 {
    // handle any delayed layout
    if (m_bDelayedButtonLayout)
@@ -816,8 +817,9 @@ bool simple_toolbar::_001GetItemRect(int32_t iItem, LPRECT lprect)
       return false;
    }
 }
+*/
 
-bool simple_toolbar::_001GetItemRect(int32_t iItem, LPRECT lprect, EElement eelement)
+bool simple_toolbar::_001GetElementRect(int32_t iItem, LPRECT lprect, EElement eelement)
 {
    if(iItem < 0 ||
       iItem >= m_itema.get_size())
@@ -1887,7 +1889,7 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
                rect rect;
                pwindow->GetWindowRect(&rect);
                point pt = rect.top_left() - pControl[i].rectOldPos.top_left();
-               _001GetItemRect(pControl[i].nIndex, &rect);
+               _001GetElementRect(pControl[i].nIndex, &rect);
                pt = rect.top_left() + pt;
                pwindow->SetWindowPos(0, pt.x, pt.y, 0, 0, SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOZORDER);
                }*/
@@ -2057,61 +2059,3 @@ void simple_toolbar::RemoveAllTools()
 
 
 
-bool simple_toolbar::LoadXmlToolBar(const char * lpszXml)
-{
-
-   m_itema.remove_all();
-
-   xml::document doc(get_app());
-
-   if(!doc.load(lpszXml))
-      return FALSE;
-
-   xml::node::array childs(get_app());
-
-   childs = doc.get_root()->children();
-
-   //   sp(::base::application) papp = (get_app());
-
-#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(APPLEOS)
-
-   ::user::toolbar_item item;
-
-   for(int32_t i = 0; i < childs.get_size(); i++)
-   {
-      sp(::xml::node) pchild = childs(i);
-      if(pchild->get_name() == "button")
-      {
-         xml::attr * pattr = pchild->find_attr("id");
-         item.m_id = pattr->get_string();
-         item.m_str = pchild->get_value();
-         if(pchild->attr("image").get_string().has_char())
-         {
-            item.m_spdib.alloc(allocer());
-            item.m_spdib.load_from_file(pchild->attr("image"));
-         }
-         if(pchild->attr("enable_if_has_command_handler").get_string().has_char())
-         {
-            item.m_bEnableIfHasCommandHandler = pchild->attr("enable_if_has_command_handler").get_string().CompareNoCase("true") == 0;
-         }
-         item.m_fsStyle &= ~TBBS_SEPARATOR;
-         m_itema.add(new ::user::toolbar_item(item));
-      }
-      else if(pchild->get_name() == "separator")
-      {
-         item.m_id = "separator";
-         item.m_str = "";
-         item.m_fsStyle |= TBBS_SEPARATOR;
-         m_itema.add(new ::user::toolbar_item(item));
-      }
-   }
-
-#else
-
-   throw todo(get_app());
-
-#endif
-
-   return TRUE;
-
-}
