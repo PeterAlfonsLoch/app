@@ -284,3 +284,11 @@ _AFX_INLINE void dump_context::operator=(const dump_context& /* dcSrc */)
 /////////////////////////////////////////////////////////////////////////////
 #endif //AFX_INL_INCLUDE_GUARD
 #endif //_AFX_INLINE
+
+
+
+   template < class TOOLBAR >
+   bool simple_frame_window::LoadToolBar(id idToolBar,const char * pszToolBar,uint32_t dwCtrlStyle = TBSTYLE_FLAT,uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
+   {
+      return LoadToolBar(System.type_info < TOOLBAR >(),idToolBar,pszToolBar,dwCtrlStyle,dwStyle);
+   }
