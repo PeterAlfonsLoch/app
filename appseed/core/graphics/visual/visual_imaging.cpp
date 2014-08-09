@@ -1261,14 +1261,14 @@ bool imaging::GetDeviceContext24BitsCC(
    BITMAPINFO & bmi,
    primitive::memory & memorystorage,
    ::draw2d::bitmap * pbitmap,
-   const RECT & rect,
+   const RECT & rectParam,
    int32_t &iWidthParam,
    UINT & uiStartScanLineParam,
    UINT & uiScanLineCountParam,
    int32_t & iLimitYParam)
 {
    UNREFERENCED_PARAMETER(pbitmap);
-   rect rect(lpcrect);
+   rect rect(rectParam);
 
    //   int32_t x = rect.left;
    int32_t y = rect.top;
@@ -2615,9 +2615,9 @@ bool imaging::LoadImageSync(::draw2d::dib * pdib, const char * lpcszImageFilePat
 }
 
 
-bool imaging::color_blend_3dRect(::draw2d::graphics *pdc, const RECT & rect, COLORREF crTopLeft, BYTE bAlphaTopLeft, COLORREF crBottomRight, BYTE bAlphaBottomRight)
+bool imaging::color_blend_3dRect(::draw2d::graphics *pdc, const RECT & rectParam, COLORREF crTopLeft, BYTE bAlphaTopLeft, COLORREF crBottomRight, BYTE bAlphaBottomRight)
 {
-   rect rect(lpcrect);
+   ::rect rect(rectParam);
    int32_t x = rect.left;
    int32_t y = rect.top;
    int32_t cx = rect.width();
@@ -2631,11 +2631,11 @@ bool imaging::color_blend_3dRect(::draw2d::graphics *pdc, const RECT & rect, COL
 
 bool imaging::clip_color_blend(
    ::draw2d::graphics * pdc,
-   const RECT & rect,
+   const RECT & rectParam,
    COLORREF cr,
    BYTE alpha)
 {
-   class rect rect(lpcrect);
+   class ::rect rect(rectParam);
    return clip_color_blend(
       pdc,
       rect.top_left(),
@@ -2717,11 +2717,11 @@ bool imaging::color_blend(
 
 bool imaging::color_blend(
    ::draw2d::graphics * pdc,
-   const RECT & rect,
+   const RECT & rectParam,
    COLORREF cr,
    BYTE alpha)
 {
-   class rect rect(lpcrect);
+   class rect rect(rectParam);
    return color_blend(
       pdc,
       rect.top_left(),
@@ -4394,9 +4394,9 @@ bool imaging::color_blend(::draw2d::graphics * pdc, point pt, size size, ::draw2
 }
 
 
-bool imaging::color_blend(::draw2d::graphics * pdc, const RECT & rect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, double dBlend)
+bool imaging::color_blend(::draw2d::graphics * pdc,const RECT & rectParam,::draw2d::graphics * pdcColorAlpha,point ptAlpha,double dBlend)
 {
-   class rect rect(lpcrect);
+   class rect rect(rectParam);
    return color_blend(pdc, rect.top_left(), rect.size(), pdcColorAlpha, ptAlpha, dBlend);
 }
 

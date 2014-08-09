@@ -19,10 +19,10 @@ XfplayerViewLine::XfplayerViewLine(sp(::base::application) papp) :
    m_bAutoSizeX                  = false;
    m_bAutoSizeY                  = false;
    m_iAlign                      = AlignLeft;
-   m_iLeft                       = 0;
-   m_iTop                        = 0;
-   m_iRight                      = 0;
-   m_iBottom                     = 0;
+   m_rect.left                       = 0;
+   m_rect.top                        = 0;
+   m_rect.right                      = 0;
+   m_rect.bottom                     = 0;
    m_bVisible                    = false;
    m_iAnimateType                = AnimateNoAnimate;
    m_iTextEffect                 = EffectSimple;
@@ -47,10 +47,10 @@ XfplayerViewLine::XfplayerViewLine(XfplayerViewLines * pContainer) :
    m_bAutoSizeX                  = false;
    m_bAutoSizeY                  = false;
    m_iAlign                      = AlignLeft;
-   m_iLeft                       = 0;
-   m_iTop                        = 0;
-   m_iRight                      = 0;
-   m_iBottom                     = 0;
+   m_rect.left                       = 0;
+   m_rect.top                        = 0;
+   m_rect.right                      = 0;
+   m_rect.bottom                     = 0;
    m_bVisible                    = false;
    m_iAnimateType                = AnimateNoAnimate;
    m_iTextEffect                 = EffectSimple;
@@ -74,11 +74,7 @@ XfplayerViewLine::~XfplayerViewLine()
 }
 
 
-bool XfplayerViewLine::PrepareLine(
-   ::draw2d::graphics * pdc,
-   const char * lpcsz,
-   int32_t flags,
-   LPRECT pRect)
+bool XfplayerViewLine::PrepareLine(::draw2d::graphics * pdc, const string & str, int32_t flags, const RECT & rect)
 {
    UNREFERENCED_PARAMETER(flags);
    m_straLink.remove_all();
@@ -87,7 +83,6 @@ bool XfplayerViewLine::PrepareLine(
    strsize               iChars;
    strsize               iStr;
    strsize               iStrLen;
-   string str(lpcsz);
    ASSERT(pdc != NULL);
    iStrLen = str.get_length();
    iChars = -1;
@@ -98,7 +93,7 @@ bool XfplayerViewLine::PrepareLine(
       AddChar(str[iStr], iChars);
    }
 //   CalcCharsPositions(pdc, GetFonts(), pRect);
-   CalcCharsPositions(pdc, pRect);
+   CalcCharsPositions(pdc, rect);
    return true;
 }
 
@@ -161,19 +156,10 @@ void XfplayerViewLine::AddChar(WCHAR wch, strsize & index, visual::font * pFont)
 
 void XfplayerViewLine::GetPlacement(LPRECT lprect)
 {
-   lprect->left = m_iLeft;
-   lprect->top  = m_iTop;
-   lprect->right = m_iRight;
-   lprect->bottom = m_iBottom;
+   *lprect = m_rect;
 }
 
-bool XfplayerViewLine::to(
-   sp(::base::application) papp,
-   ::draw2d::graphics *               pdc,
-   bool               bDraw,
-   LPRECT            lpRect,
-   rect_array &   rectaModified,
-   bool               bRecalcLayout)
+bool XfplayerViewLine::to(::draw2d::graphics * pdc,bool bDraw,const RECT & rect,rect_array & rectaModified,bool bRecalcLayout)
 {
    string strFinal(m_str);
    double dBlend;
@@ -196,15 +182,15 @@ bool XfplayerViewLine::to(
    {
       return true;
    }
-   if(bRecalcLayout || m_rectClient != *lpRect)
+   if(bRecalcLayout || m_rectClient != rect)
    {
       m_bCacheEmboss = false;
       CalcCharsPositions(
          pdc,
-         lpRect);
+         rect);
    }
 
-   rect rectTextOut;
+   ::rect rectTextOut;
    GetPlacement(rectTextOut);
 
    switch(m_iAnimateType)
@@ -223,42 +209,18 @@ bool XfplayerViewLine::to(
                if(iLink >= m_iaLinkStart.get_size())
                {
                   size size = pdc->GetTextExtent(strFinal.Left(iChar));
-                  EmbossedTextOut(papp, pdc,
-                     strFinal.Mid(iChar),
-                     rectTextOut.left + size.cx,
-                     rectTextOut.top,
-                     0,
-                     m_cr,
-                     m_crOutline,
-                     strFinal.get_length() - iChar,
-                     dBlend);
+                  EmbossedTextOut(pdc, strFinal.Mid(iChar), rectTextOut.left + size.cx, rectTextOut.top, 0, m_cr, m_crOutline, strFinal.get_length() - iChar, dBlend);
                   break;
                }
                else if(m_iaLinkStart[iLink] > iChar)
                {
                   size size = pdc->GetTextExtent(strFinal.Left(iChar));
-                  EmbossedTextOut(papp, pdc,
-                     strFinal.Mid(iChar),
-                     rectTextOut.left + size.cx,
-                     rectTextOut.top,
-                     0,
-                     m_cr,
-                     m_crOutline,
-                     m_iaLinkStart[iLink],
-                     dBlend);
+                  EmbossedTextOut(pdc, strFinal.Mid(iChar), rectTextOut.left + size.cx, rectTextOut.top, 0,m_cr,m_crOutline,m_iaLinkStart[iLink],dBlend);
                }
                pdc->SelectObject(m_fontLink);
                size size = pdc->GetTextExtent(strFinal.Left(m_iaLinkStart[iLink]));
 
-               EmbossedTextOut(papp, pdc,
-                  strFinal.Mid(m_iaLinkStart[iLink]),
-                  rectTextOut.left + size.cx,
-                  rectTextOut.top,
-                  0,
-                  m_cr,
-                  m_crOutline,
-                  m_iaLinkEnd[iLink] - m_iaLinkStart[iLink] + 1,
-                  dBlend);
+               EmbossedTextOut(pdc,strFinal.Mid(m_iaLinkStart[iLink]),rectTextOut.left + size.cx,rectTextOut.top,0,m_cr,m_crOutline,m_iaLinkEnd[iLink] - m_iaLinkStart[iLink] + 1,dBlend);
                iChar = m_iaLinkEnd[iLink] + 1;
                iLink++;
             }
@@ -344,57 +306,46 @@ bool XfplayerViewLine::to(
          }
          ::draw2d::region rgn;
          string strFinal(m_str);
-         string wstrLeft = strFinal.Right(strFinal.get_length() - i);
+         string strLeft = strFinal.Right(strFinal.get_length() - i);
          int32_t iLeftOffset;
          iLeftOffset = iLastLeftDiff - (int32_t) m_dAnimateProgress;
-           rect rectTextOut;
+           ::rect rectTextOut;
            GetPlacement(rectTextOut);
            rectTextOut.left += iLeftOffset;
            if(bDraw)
            {
-              EmbossedTextOut(papp, pdc,
-               wstrLeft,
-               rectTextOut.left,
-               rectTextOut.top,
+              EmbossedTextOut(pdc,strLeft,rectTextOut.left,rectTextOut.top,
                0,
                m_cr,
                m_crOutline,
                strFinal.get_length(),
                dBlend);
            }
-           int32_t iMaxCounter = max((int32_t) m_iaPosition.element_at(m_str.get_length()) - m_iaPosition.element_at(0) + 100, m_iRight - m_iLeft);
+           int32_t iMaxCounter = max((int32_t) m_iaPosition.element_at(m_str.get_length()) - m_iaPosition.element_at(0) + 100, m_rect.right - m_rect.left);
            int32_t iRight = iMaxCounter - (int32_t) m_dAnimateProgress;
-           if(iRight < m_iRight)
+           if(iRight < m_rect.right)
            {
               int32_t iRightEnd;
               int32_t i;
               for(i = 0; i < m_iaPosition.get_size(); i++)
               {
                  iRightEnd = iRight + m_iaPosition.element_at(i) - iLeft;
-                 if(iRightEnd >= m_iRight)
+                 if(iRightEnd >= m_rect.right)
                  {
                     break;
                  }
               }
-              string wstrRight = strFinal.Left(i);
+              string strRight = strFinal.Left(i);
               rectTextOut.left = iRight;
               if(bDraw)
               {
-                 EmbossedTextOut(papp, pdc,
-                  wstrRight,
-                  rectTextOut.left,
-                  rectTextOut.top,
-                  0,
-                  m_cr,
-                  m_crOutline,
-                  strFinal.get_length(),
-                  dBlend);
+                 EmbossedTextOut(pdc,strRight,rectTextOut.left,rectTextOut.top,0,m_cr,m_crOutline,strFinal.get_length(),dBlend);
               }
            }
 
            if(&rectaModified != NULL)
            {
-              rect baserect;
+              ::rect baserect;
               rgn.get_bounding_box(baserect);
               rectaModified.add(baserect);
 
@@ -412,21 +363,11 @@ bool XfplayerViewLine::to(
 
 }
 
-bool XfplayerViewLine::to(
-   sp(::base::application)  papp,
-   ::draw2d::graphics *     pdc,
-   bool                 bDraw,
-   LPRECT               lpRect,
-   rect_array &         rectaModified,
-   ::count *                count,
-   bool                 bRecalcLayout,
-   COLORREF               crColor,
-   ::draw2d::pen &          pen)
+bool XfplayerViewLine::to(::draw2d::graphics * pdc,bool bDraw,const RECT & rect,rect_array & rectaModified,::count * count,bool bRecalcLayout,COLORREF crColor,::draw2d::pen_sp sppen)
 {
-   UNREFERENCED_PARAMETER(papp);
    UNREFERENCED_PARAMETER(count);
 
-   rect rectPlacement;
+   ::rect rectPlacement;
    GetPlacement(rectPlacement);
 
    pdc->set_font(m_font);
@@ -435,8 +376,8 @@ bool XfplayerViewLine::to(
 
    point iMargin;
    {
-      iMargin.x = (LONG) (pen.m_dWidth / 2.0);
-      iMargin.y = (LONG) (pen.m_dWidth / 2.0);
+      iMargin.x = (LONG) (sppen->m_dWidth / 2.0);
+      iMargin.y = (LONG) (sppen->m_dWidth / 2.0);
    }
 
    if(!IsVisible())
@@ -454,9 +395,7 @@ bool XfplayerViewLine::to(
    }
    if(bRecalcLayout)
    {
-      CalcCharsPositions(
-         pdc,
-         lpRect);
+      CalcCharsPositions(pdc, rect);
       pdc->SelectObject(m_font);
    }
 
@@ -467,7 +406,7 @@ bool XfplayerViewLine::to(
       {
          string strFinal;
          strFinal = m_str;
-         pdc->SelectObject(&pen);
+         pdc->SelectObject(sppen);
 
          ::draw2d::brush_sp brushText(allocer(), crColor);
          
@@ -475,7 +414,7 @@ bool XfplayerViewLine::to(
 
          //pdc->set_text_color(crColor);
 
-         rect rectTextOut;
+         ::rect rectTextOut;
          GetPlacement(rectTextOut);
          if(bDraw)
          {
@@ -505,23 +444,23 @@ bool XfplayerViewLine::to(
             }*/
 
             string strFinal(m_str);
-            string wstrLeft = strFinal.Right(strFinal.get_length() - i);
+            string strLeft = strFinal.Right(strFinal.get_length() - i);
             int32_t iLeftOffset;
             iLeftOffset = iLeftDiff - (int32_t) m_dAnimateProgress;
 
-           pdc->SelectObject(&pen);
+           pdc->SelectObject(sppen);
          ::draw2d::brush_sp brushText(allocer(), crColor);
          
          pdc->SelectObject(brushText);
 
            pdc->SelectObject(m_font);
-         rect rectTextOut;
+         ::rect rectTextOut;
          GetPlacement(rectTextOut);
          rectTextOut.left += iLeftOffset;
          if(bDraw)
          {
             pdc->_DrawText(
-               wstrLeft, wstrLeft.get_length(),
+               strLeft, strLeft.get_length(),
                rectTextOut,
                DT_LEFT | DT_BOTTOM);
          }
@@ -530,7 +469,7 @@ bool XfplayerViewLine::to(
               rectTextOut,
             1.0,
             rectTextOut.height(),
-              wstrLeft,
+              strLeft,
               m_iaPosition.get_data(),
                 m_iaPosition.get_size(),
               0,
@@ -538,27 +477,27 @@ bool XfplayerViewLine::to(
             int32_t iSpacing = 100;
             int32_t iMaxCounter = max(
                (int32_t) m_iaPosition.element_at(m_str.get_length())
-                  - m_iaPosition.element_at(0) + iSpacing, m_iRight - m_iLeft);
+                  - m_iaPosition.element_at(0) + iSpacing, m_rect.right - m_rect.left);
             int32_t iRight = iMaxCounter - (int32_t) m_dAnimateProgress;
-            if(iRight < m_iRight)
+            if(iRight < m_rect.right)
             {
             /*    int32_t iRightEnd;
                 for(int32_t i = 0; i < m_iaPosition.get_size(); i++)
                 {
                     iRightEnd = iRight + m_iaPosition.element_at(i) - iLeft;
-                    if(iRightEnd >= m_iRight)
+                    if(iRightEnd >= m_rect.right)
                     {
                         break;
                     }
                 }*/
-                //string wstrRight = strFinal.Left(i);
-                string wstrRight = strFinal;
+                //string strRight = strFinal.Left(i);
+                string strRight = strFinal;
             rectTextOut.left = iRight;
          if(bDraw)
          {
 
             pdc->_DrawText(
-               wstrRight, wstrRight.get_length(),
+               strRight, strRight.get_length(),
                rectTextOut,
                DT_LEFT | DT_BOTTOM);
          }
@@ -567,7 +506,7 @@ bool XfplayerViewLine::to(
                   rectTextOut,
                1.0,
                rectTextOut.height(),
-                  wstrRight,
+                  strRight,
                   m_iaPosition.get_data(),
                     m_iaPosition.get_size(),
                   0,
@@ -613,7 +552,7 @@ bool XfplayerViewLine::to(
             &size);
          if((m_iAlign & AlignLeft) > 0)
          {
-            if(size.cx + m_iLeft <= lpcrect->right)
+            if(size.cx + m_rect.left <= lpcrect->right)
             {
                iFontFound = nFont;
                break;
@@ -621,7 +560,7 @@ bool XfplayerViewLine::to(
          }
          else if((m_iAlign & AlignRight) > 0)
          {
-            if(m_iRight - size.cx >= 0)
+            if(m_rect.right - size.cx >= 0)
             {
                iFontFound = nFont;
                break;
@@ -639,7 +578,7 @@ bool XfplayerViewLine::to(
       pdcForeground->SelectObject(pFonts->get_at(m_nFont)->GetFont());
       if(m_iAlign == AlignLeft)
       {
-         m_iaPosition[0] = m_iLeft + m_iIndent;
+         m_iaPosition[0] = m_rect.left + m_iIndent;
          for(i = 1; i <= m_str.get_length(); i++)
          {
             GetTextExtentPoint32W(
@@ -647,15 +586,15 @@ bool XfplayerViewLine::to(
                m_str,
                i,
                &size);
-            m_iaPosition[i] = size.cx + m_iLeft  + m_iIndent;
+            m_iaPosition[i] = size.cx + m_rect.left  + m_iIndent;
          }
          if(m_bAutoSizeX)
          {
-            m_iRight = m_iLeft  + m_iIndent + size.cx;
+            m_rect.right = m_rect.left  + m_iIndent + size.cx;
             }
          if(m_bAutoSizeY)
          {
-            m_iBottom = m_iTop + size.cy;
+            m_rect.bottom = m_rect.top + size.cy;
          }
       }
       else if(m_iAlign == AlignRight)
@@ -666,7 +605,7 @@ bool XfplayerViewLine::to(
             m_str.get_length(),
             &size);
          iMaxExtent = size.cx;
-         iLeft = m_iRight - iMaxExtent;
+         iLeft = m_rect.right - iMaxExtent;
          m_iaPosition[0] = iLeft;
          for(i = 1; i <= m_str.get_length(); i++)
          {
@@ -679,11 +618,11 @@ bool XfplayerViewLine::to(
          }
          if(m_bAutoSizeX)
          {
-            m_iLeft = m_iRight - size.cx;
+            m_rect.left = m_rect.right - size.cx;
             }
             if(m_bAutoSizeY)
             {
-            m_iBottom = m_iTop + size.cy;
+            m_rect.bottom = m_rect.top + size.cy;
          }
       }
 
@@ -693,7 +632,7 @@ bool XfplayerViewLine::to(
    {
       int32_t i; //, width;
       size size;
-         m_iaPosition[0] = m_iLeft;
+         m_iaPosition[0] = m_rect.left;
          for(i = 1; i <= m_str.get_length(); i++)
          {
             GetTextExtentPoint32W(
@@ -701,24 +640,22 @@ bool XfplayerViewLine::to(
                m_str,
                i ,
                &size);
-            m_iaPosition[i] = m_iLeft + size.cx;
+            m_iaPosition[i] = m_rect.left + size.cx;
          }
       if(m_bAutoSizeX)
       {
-         m_iRight = m_iLeft + size.cx;
+         m_rect.right = m_rect.left + size.cx;
         }
       if(m_bAutoSizeY)
       {
-         m_iBottom = m_iTop + size.cy;
+         m_rect.bottom = m_rect.top + size.cy;
       }
    }
 //    m_ptwi->TwiReleaseDC(pdcForeground);
 
 }*/
 
-void XfplayerViewLine::CalcCharsPositions(
-   ::draw2d::graphics *             pdc,
-   LPCRECT           lpcrect)
+void XfplayerViewLine::CalcCharsPositions(::draw2d::graphics *             pdc,const RECT & rect)
 {
    m_bCacheEmboss = false;
    if(m_str.get_length() <= 0)
@@ -728,13 +665,13 @@ void XfplayerViewLine::CalcCharsPositions(
 
    int32_t i;
    size size;
-   rect rectClient(lpcrect);
+   ::rect rectClient(rect);
    m_rectClient = rectClient;
-   rect rectPlacement;
+   ::rect rectPlacement;
    GetPlacement(rectPlacement);
-   string wstrMain = m_str;
+   string strMain = m_str;
 //   pdc->SelectObject(fontOriginal);
-   size = pdc->GetTextExtent(wstrMain);
+   size = pdc->GetTextExtent(strMain);
    if(size.cx > rectClient.width())
    {
       m_floatRateX =
@@ -785,7 +722,7 @@ void XfplayerViewLine::CalcCharsPositions(
 
    /*if(m_iAlign == AlignLeft)
    {
-      m_iaPosition[0] = m_iLeft + m_iIndent;
+      m_iaPosition[0] = m_rect.left + m_iIndent;
       iRight = 0;
       for(i = 1; i <= m_str.get_length(); i++)
       {
@@ -794,15 +731,15 @@ void XfplayerViewLine::CalcCharsPositions(
             m_str,
             i,
             &size);
-         m_iaPosition[i] = iRight = size.cx + m_iLeft + m_iIndent;
+         m_iaPosition[i] = iRight = size.cx + m_rect.left + m_iIndent;
       }
       if(m_bAutoSizeX)
       {
-         m_iRight = iRight;
+         m_rect.right = iRight;
         }
       if(m_bAutoSizeY)
       {
-         m_iBottom = m_iTop + size.cy;
+         m_rect.bottom = m_rect.top + size.cy;
       }
    }
    else if(m_iAlign == AlignRight)
@@ -813,7 +750,7 @@ void XfplayerViewLine::CalcCharsPositions(
          m_str.get_length(),
          &size);
       iMaxExtent = size.cx;
-      iLeft = m_iRight - iMaxExtent;
+      iLeft = m_rect.right - iMaxExtent;
       m_iaPosition[0] = iLeft;
       for(i = 1; i <= m_str.get_length(); i++)
       {
@@ -826,11 +763,11 @@ void XfplayerViewLine::CalcCharsPositions(
       }
       if(m_bAutoSizeX)
       {
-         m_iLeft = iLeft;
+         m_rect.left = iLeft;
         }
       if(m_bAutoSizeY)
       {
-         m_iBottom = m_iTop + size.cy;
+         m_rect.bottom = m_rect.top + size.cy;
       }
    }
    pdc->SelectObject(pfontOld);*/
@@ -855,11 +792,11 @@ void XfplayerViewLine::CalcCharsPositions(
    ASSERT(pfont != NULL);
    rect rectPlacement;
    GetPlacement(rectPlacement);
-   string wstrMain = m_str;
+   string strMain = m_str;
    GetTextExtentPoint32W(
       (HDC)pdc->get_os_data(),
-      wstrMain,
-      wstrMain.get_length(),
+      strMain,
+      strMain.get_length(),
       &size);
    pdc->SelectObject(pfont->GetFont());
    if(size.cx > rectClient.width())
@@ -890,7 +827,7 @@ void XfplayerViewLine::CalcCharsPositions(
    pdc->SelectObject(m_font);
    if(m_iAlign == AlignLeft)
    {
-      m_iaPosition[0] = m_iLeft + m_iIndent;
+      m_iaPosition[0] = m_rect.left + m_iIndent;
       iRight = 0;
       for(i = 1; i <= m_str.get_length(); i++)
       {
@@ -899,15 +836,15 @@ void XfplayerViewLine::CalcCharsPositions(
             m_str,
             i,
             &size);
-         m_iaPosition[i] = iRight = size.cx + m_iLeft + m_iIndent;
+         m_iaPosition[i] = iRight = size.cx + m_rect.left + m_iIndent;
       }
       if(m_bAutoSizeX)
       {
-         m_iRight = iRight;
+         m_rect.right = iRight;
         }
       if(m_bAutoSizeY)
       {
-         m_iBottom = m_iTop + size.cy;
+         m_rect.bottom = m_rect.top + size.cy;
       }
    }
    else if(m_iAlign == AlignRight)
@@ -918,7 +855,7 @@ void XfplayerViewLine::CalcCharsPositions(
          m_str.get_length(),
          &size);
       iMaxExtent = size.cx;
-      iLeft = m_iRight - iMaxExtent;
+      iLeft = m_rect.right - iMaxExtent;
       m_iaPosition[0] = iLeft;
       for(i = 1; i <= m_str.get_length(); i++)
       {
@@ -931,11 +868,11 @@ void XfplayerViewLine::CalcCharsPositions(
       }
       if(m_bAutoSizeX)
       {
-         m_iLeft = iLeft;
+         m_rect.left = iLeft;
         }
       if(m_bAutoSizeY)
       {
-         m_iBottom = m_iTop + size.cy;
+         m_rect.bottom = m_rect.top + size.cy;
       }
    }
    pdcForeground->SelectObject(pfontOriginal);
@@ -952,22 +889,6 @@ void XfplayerViewLine::SetAlign(int32_t iAlign)
    m_iAlign = iAlign;
 }
 
-void XfplayerViewLine::set(LPRECT lpRect)
-{
-    m_iLeft     = lpRect->left;
-    m_iTop      = lpRect->top;
-    m_iRight    = lpRect->right;
-    m_iBottom   = lpRect->bottom;
-}
-
-void XfplayerViewLine::GetRect(LPRECT lpRect)
-{
-    lpRect->left    = m_iLeft;
-    lpRect->top     = m_iTop;
-    lpRect->right   = m_iRight;
-    lpRect->bottom  = m_iBottom;
-}
-
 XfplayerViewLine & XfplayerViewLine::operator = (const XfplayerViewLine & src)
 {
    m_pContainer                  = src.m_pContainer;
@@ -976,10 +897,10 @@ XfplayerViewLine & XfplayerViewLine::operator = (const XfplayerViewLine & src)
    m_str                         = src.m_str;
    m_iaPosition                  = src.m_iaPosition;
    m_iAlign                      = src.m_iAlign;
-   m_iBottom                     = src.m_iBottom;
-   m_iLeft                       = src.m_iLeft;
-   m_iRight                      = src.m_iRight;
-   m_iTop                        = src.m_iTop;
+   m_rect.bottom                     = src.m_rect.bottom;
+   m_rect.left                       = src.m_rect.left;
+   m_rect.right                      = src.m_rect.right;
+   m_rect.top                        = src.m_rect.top;
    m_lpBitmapData                = src.m_lpBitmapData;
    m_nFont                       = src.m_nFont;
    m_iAnimateType                = src.m_iAnimateType;
@@ -1035,10 +956,10 @@ void XfplayerViewLine::OnTimerAnimate(
                 m_dAnimateProgress+= m_dAnimateProgressIncrement;
                 if(m_iaPosition.get_size() > 0)
                 {
-                    if((int32_t)m_dAnimateProgress > max(m_iaPosition.element_at(m_str.get_length()) - m_iaPosition.element_at(0) + 100, m_iRight - m_iLeft))
+                    if((int32_t)m_dAnimateProgress > max(m_iaPosition.element_at(m_str.get_length()) - m_iaPosition.element_at(0) + 100, m_rect.right - m_rect.left))
                         m_dAnimateProgress = 0.0;
                     rect rect;
-                    GetRect(rect);
+                    GetPlacement(rect);
                     Invalidate();
                     rectaModified.add(rect);
                     /*to(
@@ -1132,14 +1053,16 @@ int32_t XfplayerViewLine::SetLyricColors(COLORREF crLeft, COLORREF crRight)
 
 }
 
+
 void XfplayerViewLine::SetPlacement(const RECT & rect)
 {
-   m_iLeft        = lpcrect->left;
-   m_iTop         = lpcrect->top;
-   m_iRight       = lpcrect->right;
-   m_iBottom      = lpcrect->bottom;
+   
+   m_rect = rect;
+   
    m_bPendingLayoutUpdate = true;
+
 }
+
 
 //int32_t XfplayerViewLine::GetVmsFontCount()
 /*{
@@ -1151,61 +1074,72 @@ void XfplayerViewLine::AddVmsFont(visual::font * pfont)
    m_fonts.add(pfont);
 }*/
 
-void XfplayerViewLine::Invalidate(const RECT & rect)
+void XfplayerViewLine::Invalidate(const RECT & rectParam)
 {
+
    rect rectPlacement;
+
    GetPlacement(rectPlacement);
-   rect rect;
-   if(lpcrect == NULL)
+
+   rect rectInvalidate;
+
+   if(IsRectEmpty(&rectParam))
    {
-      rect = rectPlacement;
+
+      rectInvalidate = rectPlacement;
+
    }
    else
    {
-      rect = *lpcrect;
+
+      rectInvalidate = rectParam;
+
    }
-   m_rectInvalidate.unite(m_rectInvalidate, rect);
+
+   m_rectInvalidate.unite(m_rectInvalidate,rectInvalidate);
+
    m_rectInvalidate.intersect(m_rectInvalidate, rectPlacement);
 
 }
 
-void XfplayerViewLine::Validate(const RECT & rect)
+
+void XfplayerViewLine::Validate(const RECT & rectParam)
 {
+   
    rect rectPlacement;
+
    GetPlacement(rectPlacement);
-   rect rect;
-   if(lpcrect == NULL)
+
+   rect rectValidate;
+
+   if(IsRectEmpty(&rectParam))
    {
-      rect = rectPlacement;
+
+      rectValidate = rectPlacement;
+
    }
    else
    {
-      rect = *lpcrect;
+
+      rectValidate = rectParam;
+
    }
-   m_rectInvalidate -= rect;
+
+   m_rectInvalidate -= rectValidate;
+
    m_rectInvalidate.intersect(m_rectInvalidate, rectPlacement);
 
 }
+
 
 bool XfplayerViewLine::IsVisible()
 {
    return m_bVisible;
 }
 
-void XfplayerViewLine::EmbossedTextOut(
-      sp(::base::application) papp,
-      ::draw2d::graphics * pdc,
-      const char * lpcsz,
-      int32_t iLeft,
-      int32_t iTop,
-      int32_t iWidth,
-      COLORREF cr,
-      COLORREF crOutline,
-      strsize iLen,
-      double dBlend)
+void XfplayerViewLine::EmbossedTextOut(::draw2d::graphics * pdc,const char * lpcsz,int32_t iLeft,int32_t iTop,int32_t iWidth,COLORREF cr,COLORREF crOutline,strsize iLen,double dBlend)
 {
    EmbossedTextOut(
-      papp,
       pdc,
       m_dibMain,
       lpcsz,
@@ -1415,18 +1349,7 @@ void XfplayerViewLine::EmbossedTextOut(
 
 }
 
-void XfplayerViewLine::EmbossedTextOut(
-      sp(::base::application) papp,
-      ::draw2d::graphics * pdc,
-      ::draw2d::dib * pdibCache,
-      const char * lpcsz,
-      int32_t iLeft,
-      int32_t iTop,
-      int32_t iWidth,
-      COLORREF cr,
-      COLORREF crOutline,
-      strsize iLen,
-      double dBlend)
+void XfplayerViewLine::EmbossedTextOut(::draw2d::graphics * pdc,::draw2d::dib * pdibCache,const char * lpcsz,int32_t iLeft,int32_t iTop,int32_t iWidth,COLORREF cr,COLORREF crOutline,strsize iLen,double dBlend)
 {
 
    UNREFERENCED_PARAMETER(pdibCache);
@@ -1471,10 +1394,10 @@ void XfplayerViewLine::EmbossedTextOut(
       if(m_bEnhancedEmboss)
       {
 
-         if(!m_bCacheEmboss || m_wstrCache != lpcsz)
+         if(!m_bCacheEmboss || m_strCache != lpcsz)
          {
 
-            CacheEmboss(papp, pdc, m_str, m_str.get_length(), m_dibMain);
+            CacheEmboss(pdc, m_str, m_str.get_length(), m_dibMain);
 
          }
 
@@ -1508,16 +1431,15 @@ void XfplayerViewLine::GetLogFont(LOGFONTW &lf)
 }
 
 
-void XfplayerViewLine::CacheEmboss(sp(::base::application) papp, ::draw2d::graphics * pdc, const char * lpcsz, strsize iLen, ::draw2d::dib * pdibCache)
+void XfplayerViewLine::CacheEmboss(::draw2d::graphics * pdc, const char * lpcsz, strsize iLen, ::draw2d::dib * pdibCache)
 {
-   UNREFERENCED_PARAMETER(papp);
    if(!m_bEnhancedEmboss)
       return;
 
-   if(m_bCacheEmboss && m_wstrCache == lpcsz)
+   if(m_bCacheEmboss && m_strCache == lpcsz)
       return;
 
-   m_wstrCache = lpcsz;
+   m_strCache = lpcsz;
    m_bCacheEmboss = true;
 
    TRACE("CLyricViewLine::CacheEmboss: %s\n", lpcsz);

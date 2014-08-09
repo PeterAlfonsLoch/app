@@ -36,11 +36,10 @@ public:
 
    string                           m_str;
    int_array                        m_iaPosition;
-   int32_t                              m_iTop;
-   int32_t                              m_iLeft;
+
+   rect                                m_rect;
+
    int32_t                              m_iIndent;
-   int32_t                              m_iRight;
-   int32_t                              m_iBottom;
    bool                             m_bPendingLayoutUpdate;
    bool                             m_bVisible;
    bool                             m_bAutoSizeX;
@@ -65,7 +64,7 @@ public:
    ::draw2d::dib_sp                     m_dibMain;
    bool                             m_bEnhancedEmboss;
    bool                             m_bCacheEmboss;
-   string                           m_wstrCache;
+   string                           m_strCache;
 
    // Link
    LOGFONTW                          m_logfontLink;
@@ -126,7 +125,6 @@ public:
    void SetColors(COLORREF cr, COLORREF crOutline);
 
    void EmbossedTextOut(
-      sp(::base::application) papp,
       ::draw2d::graphics * pdc,
       const char * lpcsz,
       int32_t left,
@@ -138,7 +136,6 @@ public:
       double dBlend);
 
    void EmbossedTextOut(
-      sp(::base::application) papp,
       ::draw2d::graphics * pdc,
       ::draw2d::dib * pdibCache,
       const char * lpcsz,
@@ -152,7 +149,6 @@ public:
 
 
    void CacheEmboss(
-      sp(::base::application) papp,
       ::draw2d::graphics * pdc,
       const char * lpcsz,
       strsize iLen,

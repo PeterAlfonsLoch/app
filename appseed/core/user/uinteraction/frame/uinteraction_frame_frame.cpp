@@ -107,7 +107,7 @@ namespace user
             if(get_appearance()->m_bUseNc)
             {
 
-               calc_window_client_rect(lprect,lprect);
+               calc_window_client_rect(lprect,rect(lprect));
 
             }
 
@@ -122,7 +122,7 @@ namespace user
          }
 
 
-         void frame::_000OnBeforeSize(LPCRECT lpcrectWindow)
+         void frame::_000OnBeforeSize(const RECT & lpcrectWindow)
          {
 
             UNREFERENCED_PARAMETER(lpcrectWindow);
@@ -865,7 +865,7 @@ namespace user
          }
 
 
-         void frame::update_window_region(LPCRECT lpcrect)
+         void frame::update_window_region(const RECT & rect)
          {
 
             sp(::user::interaction) pwnd = get_window();
@@ -883,10 +883,10 @@ namespace user
 
          }
 
-         void frame::calc_window_client_rect(LPRECT lprect, LPCRECT lprectWindow)
+         void frame::calc_window_client_rect(LPRECT lprect, const RECT &  rectWindow)
          {
 
-            rect rect(lprectWindow);
+            rect rect(rectWindow);
 
             ::rect * prectMargin = get_margin_rect();
 

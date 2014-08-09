@@ -631,6 +631,10 @@ CLASS_DECL_BASE bool deflate(LPRECT prect, LPCRECT lpcrect)
    return true;
 }
 
+CLASS_DECL_BASE bool deflate(LPRECT prect,const RECT & rect)
+{
+   return deflate(prect, &rect);
+}
 
 
 bool polygon_contains(LPPOINT lppt, LPPOINT lpptPolygon, int iCount)
