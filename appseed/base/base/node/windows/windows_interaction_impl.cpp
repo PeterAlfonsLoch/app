@@ -43,7 +43,6 @@ namespace windows
       m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
       m_bRectParentClient  = false;
       m_pfnSuper           = NULL;
-      m_nModalResult       = 0;
       m_bMouseHover        = false;
       m_puiCapture         = NULL;
       m_bUpdateGraphics    = false;
@@ -63,7 +62,6 @@ namespace windows
       m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
       m_bRectParentClient  = false;
       m_pfnSuper           = NULL;
-      m_nModalResult       = 0;
       m_bMouseHover        = false;
       m_puiCapture         = NULL;
       m_bUpdateGraphics    = false;
@@ -84,7 +82,6 @@ namespace windows
       m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
       m_bRectParentClient  = false;
       m_pfnSuper           = NULL;
-      m_nModalResult       = 0;
       m_bMouseHover        = false;
       m_puiCapture         = NULL;
       m_bUpdateGraphics    = false;
