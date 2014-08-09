@@ -12,52 +12,17 @@
 class image_list;
 
 
-class simple_toolbar_item :
-      virtual public element
-{
-public:
-
-
-   int32_t                  m_iIndex;
-   int32_t                  m_iImage;
-   ::visual::dib_sp     m_spdib;
-   id                   m_id;
-   BYTE                 m_fsState;
-   BYTE                 m_fsStyle;
-   string               m_str;
-   rect                 m_rect;
-   bool                 m_bEnableIfHasCommandHandler;
-
-
-   simple_toolbar_item();
-
-
-};
-
 
 class CLASS_DECL_CORE simple_toolbar :
-   public ::user::control_bar
+   public ::user::toolbar
 {
 
 public:
 
-   enum EElement
-   {
-      ElementItem,
-      ElementItemHover,
-      ElementItemPress,
-      ElementImage,
-      ElementImageHover,
-      ElementImagePress,
-      ElementText,
-      ElementTextHover,
-      ElementTextPress,
-   };
 
 
    bool                       m_bTransparentBackground;
    bool                       m_bSimpleLayout;
-   spa(simple_toolbar_item)   m_itema;
    int32_t                    m_iHover;
 
    size                       m_sizeButton;
@@ -122,13 +87,6 @@ public:
 
 
    void _001DrawItem(::draw2d::graphics * pdc, int32_t iItem);
-   bool _001GetItemRect(int32_t iItem, LPRECT lprect);
-   bool _001GetItemRect(int32_t iItem, LPRECT lprect, EElement eelement);
-   bool _001SetItem(int32_t iItem, simple_toolbar_item * pitem);
-   bool _001GetItem(int32_t iItem, simple_toolbar_item * pitem);
-   //bool _SetButton(int32_t nIndex, TBBUTTON * pbutton);
-   //bool _GetButton(int32_t nIndex, TBBUTTON * pbutton);
-   int32_t _001GetItemCount();
 
 /*
    bool LoadToolBar(const char * lpszResourceName);
@@ -137,7 +95,6 @@ public:
    bool LoadBitmap(UINT nIDResource);
 */
 
-   bool LoadXmlToolBar(const char * lpszFileName);
 
 
 
