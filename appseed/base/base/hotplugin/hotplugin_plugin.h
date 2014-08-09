@@ -63,7 +63,7 @@ namespace hotplugin
 
 
       // host should implement
-      virtual bool         open_url(const char * psz);
+      virtual bool         open_link(const string & strLink,const string & pszTarget);
       virtual bool         reload_plugin();
 
 

@@ -48,7 +48,7 @@ namespace hotplugin
       virtual void   redraw();
 
       // host should implement
-      virtual bool         open_url(const char * psz);
+      virtual bool         open_link(const string & strLink,const string & pszTarget);
       virtual bool         reload_plugin();
 
       // Host location is not the updated url - if there is a way to update the url and 

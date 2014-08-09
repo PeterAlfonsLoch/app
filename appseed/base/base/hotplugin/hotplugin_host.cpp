@@ -48,13 +48,13 @@ namespace hotplugin
    }
 
 
-   bool host::open_url(const char * psz)
+   bool host::open_link(const string & strLink,const string & strTarget)
    {
 
       if(m_pbasecomposer != NULL)
       {
 
-         return m_pbasecomposer->open_url(psz);
+         return m_pbasecomposer->open_link(strLink, strTarget);
 
       }
 

@@ -137,7 +137,7 @@ namespace fontopus
    string simple_ui::do_fontopus(const RECT & rectParam)
    {
 
-      ::user::interaction * puiParent = session().oprop("fontopus_parent").cast < ::user::interaction >();
+      ::user::interaction * puiParent = session().oprop("plugin_parent").cast < ::user::interaction >();
 
       ::rect rectDesktop;
 
@@ -193,6 +193,21 @@ namespace fontopus
 
       if(puiParent != NULL)
          puiParent->ScreenToClient(rectFontopus);
+
+      if((rectFontopus.width() < 300 || rectFontopus.height() < 300) && puiParent != NULL)
+      {
+         sp(::base::application) papp = puiParent;
+         if(papp != NULL)
+         {
+            papp->open_link("ca2account:this");
+            Sleep(1984 + 1977);
+         }
+         else
+         {
+            System.open_link("ca2account:this");
+         }
+         return "";
+      }
 
       if(!create_window_ex(0,NULL,NULL,0,rectFontopus,puiParent,"fontopus"))
          return "";

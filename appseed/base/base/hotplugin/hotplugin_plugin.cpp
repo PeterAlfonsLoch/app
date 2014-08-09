@@ -76,13 +76,13 @@ namespace hotplugin
       //delete m_pinfo;
    }
 
-   bool plugin::open_url(const char * psz)
+   bool plugin::open_link(const string & strLink,const string & strTarget)
    {
 
       if(m_phost != NULL)
       {
 
-         return m_phost->open_url(psz);
+         return m_phost->open_link(strLink, strTarget);
 
       }
 

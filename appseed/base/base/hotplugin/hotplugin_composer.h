@@ -40,6 +40,7 @@ namespace hotplugin
 
       bool                                   m_bOpenUrl;
       string                                 m_strOpenUrl;
+      string                                 m_strOpenTarget;
 
       string                                 m_strPluginUrl;
       string                                 m_strPluginHeaders;
@@ -73,9 +74,9 @@ namespace hotplugin
 #endif
 
 
-      virtual bool      open_url(const char * pszUrl);
+      virtual bool      open_link(const string & strLink,const string & pszTarget);
 
-      virtual bool      _open_url(const char * pszUrl);
+      virtual bool      _open_link(const string & strLink,const string & pszTarget);
 
 
    

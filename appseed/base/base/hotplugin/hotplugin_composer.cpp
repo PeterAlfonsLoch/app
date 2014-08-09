@@ -218,7 +218,7 @@ namespace hotplugin
 
          m_bOpenUrl = false;
 
-         if(!_open_url(m_strOpenUrl))
+         if(!_open_link(m_strOpenUrl, m_strOpenTarget))
          {
 
             m_bOpenUrl = true;
@@ -238,10 +238,12 @@ namespace hotplugin
    }
 
 
-   bool composer::open_url(const char * pszUrl)
+   bool composer::open_link(const string & strLink,const string & pszTarget)
    {
 
-      m_strOpenUrl = pszUrl;
+      m_strOpenUrl = strLink;
+
+      m_strOpenTarget = pszTarget;
 
       m_bOpenUrl = true;
 
@@ -250,7 +252,7 @@ namespace hotplugin
    }
 
 
-   bool composer::_open_url(const char * pszUrl)
+   bool composer::_open_url(const string & strLink,const string & pszTarget)
    {
 
       return true;
