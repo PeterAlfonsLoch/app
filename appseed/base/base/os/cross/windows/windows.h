@@ -20,6 +20,42 @@ CLASS_DECL_BASE BOOL WINAPI UnlockFile(HANDLE hfile, uint32_t dwLo, uint32_t dwH
 //#include "os_cross_windows_internals.h"
 #include "windows_winnt.h"
 #include "windows_error.h"
+#include "windows_errno.h"
+#include "windows_types.h"
+#include "windows_defs.h"
+
+
+
+
+struct win_handle;
+
+
+typedef struct win_handle * HANDLE;
+typedef HANDLE *PHANDLE, *LPHANDLE;
+
+
+#include "windows_base.h"
+#include "windows_crtdefs.h"
+#include "windows_nls.h"
+
+#include "windows_mmeapi.h"
+#include "windows_mmsystem.h"
+
+
+
+#define _T(psz) psz
+
+
+#define c_cdecl __cdecl
+
+//#define c_decl __cdecl
+
+
+
+#include "windows_ntstatus.h"
+
+
+
 //#include "os_cross_windows_shared_memory.h"
 //#include "os_cross_windows_time.h"
 //#include "os_cross_windows_crt.h"
@@ -292,10 +328,6 @@ struct win_handle
 
 #endif
 
-#include "windows_defs.h"
-
-#include "windows_types.h"
-
 #include "windows_gdi.h"
 
 
@@ -312,6 +344,8 @@ struct win_handle
 
 #include "windows_shared_memory.h"
 #include "windows_time.h"
+#include "windows_base_tsd.h"
+#include "windows_defs.h"
 #include "windows_crt.h"
 
 #include "windows_internals.h"
@@ -321,15 +355,6 @@ struct win_handle
 
 
 
-#pragma once
-
-
-
-struct win_handle;
-
-
-typedef struct win_handle * HANDLE;
-typedef HANDLE *PHANDLE, *LPHANDLE;
 
 
 
@@ -346,9 +371,6 @@ typedef HANDLE *PHANDLE, *LPHANDLE;
 
 
 
-#include "base_tsd.h"
-#include "win_def.h"
-#include "win_crt.h"
 
 
 #define MAX_PATH          260
@@ -565,39 +587,33 @@ MY_EXTERN_C DWORD SetLastError(DWORD dw);
 #define MAKELRESULT(l, h)     ((LRESULT)(DWORD)MAKELONG(l, h))
 
 
-#include "win_error.h"
-#include "win_base.h"
-#include "win_gdi.h"
-#include "win_user.h"
-
-
-#include "win_errno.h"
-#include "win_crtdefs.h"
-
-#include "win_nls.h"
-
-
-#include "win_file.h"
-
-#include "win_mmeapi.h"
-#include "win_mmsystem.h"
+#include "windows_common_controls.h"
 
 
 
 
 
 
-#define _T(psz) psz
-
-
-#define c_cdecl __cdecl
-
-//#define c_decl __cdecl
 
 
 
-#include "ntstatus.h"
 
 
 
-#include "win_common_controls.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -73,6 +73,8 @@
 
 #include "base_types.h"
 
+#include "base/base/os/os.h"
+
 #include "base/primitive/math/_math.h"
 
 #include "base_heap.h"
@@ -87,7 +89,6 @@
 
 #include "base_number.h"
 
-#include "base/base/os/os.h"
 
 
 #ifdef THE_LANGUAGE_OF_THE_LANGUAGE
