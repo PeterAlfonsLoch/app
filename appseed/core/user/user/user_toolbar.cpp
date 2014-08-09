@@ -1486,17 +1486,84 @@ throw todo(get_app());
    }
 
 
-   ::count toolbar::_001GetItemCount()
-   {
-      return -1;
-   }
-
    toolbar_control& toolbar::GetToolBarCtrl() const
       { return *(toolbar_control*)this; }
    /*bool toolbar::LoadToolBar(UINT nIDResource)
       { return LoadToolBar(MAKEINTRESOURCE(nIDResource)); }
    bool toolbar::LoadBitmap(UINT nIDResource)
       { return LoadBitmap(MAKEINTRESOURCE(nIDResource)); }*/
+   int32_t toolbar::_001GetItemCount()
+   {
+      return (int32_t)m_itema.get_size();
+   }
 
+   bool toolbar::_001GetItemRect(int32_t iItem,LPRECT lprect)
+   {
+      // handle any delayed layout
+      if(m_bDelayedButtonLayout)
+         layout();
+
+      if(iItem >= 0
+         && iItem < m_itema.get_size())
+      {
+         *lprect = m_itema[iItem].m_rect;
+         return true;
+      }
+      else
+      {
+         return false;
+      }
+   }
+
+   bool toolbar::_001GetItemRect(int32_t iItem,LPRECT lprect,EElement eelement)
+   {
+      return false;
+   }
+
+   bool toolbar::_001GetItem(int32_t iItem,::user::toolbar_item *pitem)
+   {
+      if(iItem >= 0
+         && iItem < m_itema.get_size())
+      {
+         *pitem = m_itema[iItem];
+         return true;
+      }
+      else
+      {
+         return false;
+      }
+   }
+
+   bool toolbar::_001SetItem(int32_t iItem,::user::toolbar_item *pitem)
+   {
+      if(iItem >= 0
+         && iItem < m_itema.get_size())
+      {
+         m_itema[iItem] = *pitem;
+         return true;
+      }
+      else
+      {
+         return false;
+      }
+
+   }
+
+
+   toolbar_item::toolbar_item()
+   {
+
+
+      m_iIndex                      = -1;
+      m_iImage                      = -1;
+      m_fsState                     = 0;
+      m_fsStyle                     = 0;
+      m_bEnableIfHasCommandHandler  = true;
+
+
+   }
 
 } // namespace user
+
+
+

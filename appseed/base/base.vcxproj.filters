@@ -4856,6 +4856,51 @@
     <ClInclude Include="user\simple_ui\simple_ui_message_box.h">
       <Filter>Header Files\user\simple_ui</Filter>
     </ClInclude>
+    <ClInclude Include="base\os\cross\windows\e.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_base.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_base_tsd.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_common_controls.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_crtdefs.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_errno.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_mmeapi.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_mmsystem.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_nls.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_nt.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_ntstatus.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_poppack.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_pshpack2.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_pshpack4.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows_pshpack8.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -9392,6 +9437,9 @@
     </None>
     <None Include="primitive\collection\collection.inl">
       <Filter>Header Files\primitive\collection</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

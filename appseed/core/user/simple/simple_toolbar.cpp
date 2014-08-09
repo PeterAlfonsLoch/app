@@ -401,7 +401,7 @@ size simple_toolbar::CalcSize(int32_t nCount)
       //  to the other versions which calculate it at 2/3 of that value.
       //  This is actually a bug which should be fixed in IE 4.01, so we
       //  only do the 100% calculation specifically for IE4.
-      simple_toolbar_item & item = m_itema[i];
+      ::user::toolbar_item & item = m_itema[i];
       int32_t cySep = item.m_iImage;
       //      ASSERT(gen_ComCtlVersion != -1);
       /*      if (!(GetStyle() & TBSTYLE_FLAT) && gen_ComCtlVersion != VERSION_IE4)
@@ -502,54 +502,10 @@ size.cy += rectItem.height();
 return true;
 }*/
 
-int32_t simple_toolbar::_001GetItemCount()
-{
-   return (int32_t) m_itema.get_size();
-}
 
 
-simple_toolbar_item::simple_toolbar_item()
-{
 
 
-   m_iIndex                      = -1;
-   m_iImage                      = -1;
-   m_fsState                     = 0;
-   m_fsStyle                     = 0;
-   m_bEnableIfHasCommandHandler  = true;
-
-
-}
-
-
-bool simple_toolbar::_001GetItem(int32_t iItem, simple_toolbar_item *pitem)
-{
-   if(iItem >= 0
-      && iItem < m_itema.get_size())
-   {
-      *pitem = m_itema[iItem];
-      return true;
-   }
-   else
-   {
-      return false;
-   }
-}
-
-bool simple_toolbar::_001SetItem(int32_t iItem, simple_toolbar_item *pitem)
-{
-   if(iItem >= 0
-      && iItem < m_itema.get_size())
-   {
-      m_itema[iItem] = *pitem;
-      return true;
-   }
-   else
-   {
-      return false;
-   }
-
-}
 
 
 void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
@@ -561,7 +517,7 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
 
 #if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(APPLEOS) || defined(SOLARIS)
 
-   simple_toolbar_item & item = m_itema[iItem];
+   ::user::toolbar_item & item = m_itema[iItem];
 
 
    UINT nStyle = GetButtonStyle(iItem);
@@ -871,7 +827,7 @@ bool simple_toolbar::_001GetItemRect(int32_t iItem, LPRECT lprect, EElement eele
 
 #if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(APPLEOS) || defined(SOLARIS)
 
-   simple_toolbar_item & item = m_itema[iItem];
+   ::user::toolbar_item & item = m_itema[iItem];
 
    BaseMenuCentral * pmenucentral = BaseMenuCentral::GetMenuCentral(get_app());
 
@@ -1164,7 +1120,7 @@ void simple_toolbar::layout()
    spgraphics->SelectObject(System.visual().font_central().GetMenuFont());
    for(int32_t iItem = 0; iItem < m_itema.get_size(); iItem++)
    {
-      simple_toolbar_item & item = m_itema[iItem];
+      ::user::toolbar_item & item = m_itema[iItem];
       item.m_rect.left = ix;
       if(item.m_str.is_empty())
       {
@@ -1286,7 +1242,7 @@ void simple_toolbar::layout()
       }
       for(int32_t iItem = 0; iItem < m_itema.get_size(); iItem++)
       {
-         simple_toolbar_item & item = m_itema[iItem];
+         ::user::toolbar_item & item = m_itema[iItem];
          item.m_rect.offset(ptOffset);
       }
    }
@@ -1574,7 +1530,7 @@ UINT simple_toolbar::GetButtonStyle(int32_t nIndex)
    ASSERT_VALID(this);
    ASSERT(IsWindow());
 
-   simple_toolbar_item & item = m_itema[nIndex];
+   ::user::toolbar_item & item = m_itema[nIndex];
    return MAKELONG(item.m_fsStyle, item.m_fsState);
 }
 
@@ -1583,7 +1539,7 @@ void simple_toolbar::SetButtonStyle(int32_t nIndex, UINT nStyle)
    ASSERT_VALID(this);
    ASSERT(IsWindow());
 
-   simple_toolbar_item & item = m_itema[nIndex];
+   ::user::toolbar_item & item = m_itema[nIndex];
    if (item.m_fsStyle != (BYTE)LOWORD(nStyle) || item.m_fsState != (BYTE)HIWORD(nStyle))
    {
       item.m_fsStyle = (BYTE)LOWORD(nStyle);
@@ -2119,7 +2075,7 @@ bool simple_toolbar::LoadXmlToolBar(const char * lpszXml)
 
 #if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(APPLEOS)
 
-   simple_toolbar_item item;
+   ::user::toolbar_item item;
 
    for(int32_t i = 0; i < childs.get_size(); i++)
    {
@@ -2139,14 +2095,14 @@ bool simple_toolbar::LoadXmlToolBar(const char * lpszXml)
             item.m_bEnableIfHasCommandHandler = pchild->attr("enable_if_has_command_handler").get_string().CompareNoCase("true") == 0;
          }
          item.m_fsStyle &= ~TBBS_SEPARATOR;
-         m_itema.add(new simple_toolbar_item(item));
+         m_itema.add(new ::user::toolbar_item(item));
       }
       else if(pchild->get_name() == "separator")
       {
          item.m_id = "separator";
          item.m_str = "";
          item.m_fsStyle |= TBBS_SEPARATOR;
-         m_itema.add(new simple_toolbar_item(item));
+         m_itema.add(new ::user::toolbar_item(item));
       }
    }
 
