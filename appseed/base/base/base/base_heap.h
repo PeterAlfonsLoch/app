@@ -37,10 +37,6 @@ CLASS_DECL_BASE void   system_heap_free(void * pvoid);
 
 
 
-extern HANDLE g_hmutexCa2Alloc;
-
-
-extern CLASS_DECL_BASE HANDLE g_hHeap;
 
 
 
