@@ -252,7 +252,7 @@ namespace hotplugin
    }
 
 
-   bool composer::_open_url(const string & strLink,const string & pszTarget)
+   bool composer::_open_link(const string & strLink,const string & pszTarget)
    {
 
       return true;

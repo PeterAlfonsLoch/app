@@ -385,7 +385,7 @@ namespace install
 
          System.url().set_param(strUrl,strUrl,"sessid",ApplicationUser.get_sessid(System.url().get_server(m_phost->m_pbasecomposer->m_strPluginUrl)));
 
-         m_phost->open_url(strUrl);
+         m_phost->open_link(strUrl, "");
 
          m_startca2.m_bRun = false;
 
@@ -466,7 +466,7 @@ namespace install
 
    bool plugin::hist(const char * pszUrl)
    {
-      return open_url(pszUrl);
+      return open_link(pszUrl, "");
    }
 
 
@@ -862,7 +862,7 @@ namespace install
 
             string strUrl((const char *) pdata, len);
 
-            open_url(strUrl);
+            open_link(strUrl, "");
 
          }
 
