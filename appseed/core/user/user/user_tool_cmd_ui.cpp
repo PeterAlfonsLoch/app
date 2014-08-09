@@ -2,7 +2,7 @@
 
 
 /////////////////////////////////////////////////////////////////////////////
-   // tool_bar idle update through tool_cmd_ui class
+   // toolbar idle update through tool_cmd_ui class
 
 
 
@@ -24,9 +24,9 @@ namespace user
    void tool_cmd_ui::Enable(bool bOn)
    {
       m_bEnableChanged = TRUE;
-      tool_bar* pToolBar = dynamic_cast < tool_bar * > (m_pOther.m_p);
+      toolbar* pToolBar = dynamic_cast < toolbar * > (m_pOther.m_p);
       ASSERT(pToolBar != NULL);
-      ASSERT_KINDOF(tool_bar, pToolBar);
+      ASSERT_KINDOF(toolbar, pToolBar);
       ASSERT(m_iIndex < m_iCount);
 
 #ifdef WINDOWSEX
@@ -50,9 +50,9 @@ namespace user
    void tool_cmd_ui::SetCheck(int32_t nCheck)
    {
       ASSERT(nCheck >= 0 && nCheck <= 2); // 0=>off, 1=>on, 2=>indeterminate
-      tool_bar* pToolBar = dynamic_cast < tool_bar * > (m_pOther.m_p);
+      toolbar* pToolBar = dynamic_cast < toolbar * > (m_pOther.m_p);
       ASSERT(pToolBar != NULL);
-      ASSERT_KINDOF(tool_bar, pToolBar);
+      ASSERT_KINDOF(toolbar, pToolBar);
       ASSERT(m_iIndex < m_iCount);
 
 #ifdef WINDOWSEX

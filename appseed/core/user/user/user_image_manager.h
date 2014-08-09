@@ -1,18 +1,18 @@
 #pragma once
 
-class simple_tool_bar;
+class simple_toolbar;
 
 namespace user
 {
 
-   class tool_bar;
+   class toolbar;
 
    class CLASS_DECL_CORE image_manager :
       virtual public ::object
    {
    public:
-      //void LoadToolbar(tool_bar & toolbar, UINT * user);
-      //void LoadToolbar(simple_tool_bar & toolbar, UINT * user);
+      //void LoadToolbar(toolbar & toolbar, UINT * user);
+      //void LoadToolbar(simple_toolbar & toolbar, UINT * user);
       image_list & GetImageList();
       image_list & GetImageListDisable();
       bool Initialize(sp(::base::application) papp, UINT uiaMenuV003Map [][2]);

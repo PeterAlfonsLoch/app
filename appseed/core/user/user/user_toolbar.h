@@ -24,25 +24,62 @@ namespace user
 {
 
 
-   class tool_bar_control; // forward reference (see afxcmn.h for definition)
-
-
-   class CLASS_DECL_CORE tool_bar :
-      public ::user::control_bar
+   class toolbar_item:
+      virtual public element
    {
    public:
 
 
-      bool m_bDelayedButtonLayout; // used to manage when button layout should be done
+      int32_t                 m_iIndex;
+      int32_t                 m_iImage;
+      ::visual::dib_sp        m_spdib;
+      id                      m_id;
+      BYTE                    m_fsState;
+      BYTE                    m_fsStyle;
+      string                  m_str;
+      rect                    m_rect;
+      bool                    m_bEnableIfHasCommandHandler;
 
-      size m_sizeImage;  // current image size
-      size m_sizeButton; // current button size
-      bool m_bSimpleLayout;
-      string_to_ptr * m_pStringMap;  // used as CMapStringToUInt
+
+      toolbar_item();
 
 
-      tool_bar();
-      virtual ~tool_bar();
+   };
+
+
+
+   class toolbar_control; // forward reference (see afxcmn.h for definition)
+
+
+   class CLASS_DECL_CORE toolbar :
+      public ::user::control_bar
+   {
+   public:
+      enum EElement
+      {
+         ElementItem,
+         ElementItemHover,
+         ElementItemPress,
+         ElementImage,
+         ElementImageHover,
+         ElementImagePress,
+         ElementText,
+         ElementTextHover,
+         ElementTextPress,
+      };
+
+      spa(toolbar_item)    m_itema;
+
+      bool                 m_bDelayedButtonLayout; // used to manage when button layout should be done
+
+      size                 m_sizeImage;  // current image size
+      size                 m_sizeButton; // current button size
+      bool                 m_bSimpleLayout;
+      string_to_ptr *      m_pStringMap;  // used as CMapStringToUInt
+
+
+      toolbar();
+      virtual ~toolbar();
 
 
       using ::user::control_bar::create_window;
@@ -78,7 +115,7 @@ namespace user
       void GetButtonText(int32_t nIndex, string & rString) const;
 
       // for direct access to the underlying common control
-      inline tool_bar_control& GetToolBarCtrl() const;
+      inline toolbar_control& GetToolBarCtrl() const;
 
       size CalcSimpleLayout();
       virtual size CalcFixedLayout(bool bStretch, bool bHorz);
@@ -92,6 +129,9 @@ namespace user
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
    #endif
+
+
+      virtual bool LoadXmlToolBar(const char * lpszFileName);
 
 
       ::count _001GetItemCount();
@@ -113,7 +153,7 @@ namespace user
 
       virtual void _001OnDraw(::draw2d::graphics * pdc);
 
-      //{{__MSG(tool_bar)
+      //{{__MSG(toolbar)
       DECL_GEN_SIGNAL(_001OnNcHitTest);
       //DECL_GEN_SIGNAL(OnNcPaint();
       //DECL_GEN_SIGNAL(OnPaint();

@@ -44,7 +44,7 @@ struct __COLORMAP
 namespace user
 {
 
-   tool_bar::tool_bar()
+   toolbar::toolbar()
    {
           m_bSimpleLayout = true;
 
@@ -66,7 +66,7 @@ namespace user
       m_cyBottomBorder = 3;
    }
 
-   tool_bar::~tool_bar()
+   toolbar::~toolbar()
    {
 //#ifdef WINDOWSEX
 //      ::DeleteObject((HGDIOBJ*)&m_hbmImageWell);
@@ -78,31 +78,31 @@ namespace user
       //m_nCount = 0;
    }
 
-   void tool_bar::install_message_handling(::message::dispatch * pinterface)
+   void toolbar::install_message_handling(::message::dispatch * pinterface)
    {
-      IGUI_WIN_MSG_LINK(WM_NCHITTEST         , pinterface, this, &tool_bar::_001OnNcHitTest);
-      //IGUI_WIN_MSG_LINK(WM_NCPAINT         , pinterface, this, &tool_bar::_001On);
-      //IGUI_WIN_MSG_LINK(WM_PAINT           , pinterface, this, &tool_bar::_001On);
-      //IGUI_WIN_MSG_LINK(WM_ERASEBKGND      , pinterface, this, &tool_bar::_001On);
-      IGUI_WIN_MSG_LINK(WM_NCCALCSIZE        , pinterface, this, &tool_bar::_001OnNcCalcSize);
-      IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGING , pinterface, this, &tool_bar::_001OnWindowPosChanging);
-      IGUI_WIN_MSG_LINK(WM_NCCREATE          , pinterface, this, &tool_bar::_001OnNcCreate);
+      IGUI_WIN_MSG_LINK(WM_NCHITTEST         , pinterface, this, &toolbar::_001OnNcHitTest);
+      //IGUI_WIN_MSG_LINK(WM_NCPAINT         , pinterface, this, &toolbar::_001On);
+      //IGUI_WIN_MSG_LINK(WM_PAINT           , pinterface, this, &toolbar::_001On);
+      //IGUI_WIN_MSG_LINK(WM_ERASEBKGND      , pinterface, this, &toolbar::_001On);
+      IGUI_WIN_MSG_LINK(WM_NCCALCSIZE        , pinterface, this, &toolbar::_001OnNcCalcSize);
+      IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGING , pinterface, this, &toolbar::_001OnWindowPosChanging);
+      IGUI_WIN_MSG_LINK(WM_NCCREATE          , pinterface, this, &toolbar::_001OnNcCreate);
 #ifdef WINDOWSEX
-      IGUI_WIN_MSG_LINK(TB_SETBITMAPSIZE     , pinterface, this, &tool_bar::_001OnSetBitmapSize);
-      IGUI_WIN_MSG_LINK(TB_SETBUTTONSIZE     , pinterface, this, &tool_bar::_001OnSetButtonSize);
+      IGUI_WIN_MSG_LINK(TB_SETBITMAPSIZE     , pinterface, this, &toolbar::_001OnSetBitmapSize);
+      IGUI_WIN_MSG_LINK(TB_SETBUTTONSIZE     , pinterface, this, &toolbar::_001OnSetButtonSize);
 #endif
-      IGUI_WIN_MSG_LINK(WM_SETTINGCHANGE     , pinterface, this, &tool_bar::_001OnPreserveZeroBorderHelper);
-      IGUI_WIN_MSG_LINK(WM_SETFONT           , pinterface, this, &tool_bar::_001OnPreserveZeroBorderHelper);
-      IGUI_WIN_MSG_LINK(WM_SYSCOLORCHANGE    , pinterface, this, &tool_bar::_001OnSysColorChange);
+      IGUI_WIN_MSG_LINK(WM_SETTINGCHANGE     , pinterface, this, &toolbar::_001OnPreserveZeroBorderHelper);
+      IGUI_WIN_MSG_LINK(WM_SETFONT           , pinterface, this, &toolbar::_001OnPreserveZeroBorderHelper);
+      IGUI_WIN_MSG_LINK(WM_SYSCOLORCHANGE    , pinterface, this, &toolbar::_001OnSysColorChange);
    }
 
-   bool tool_bar::create_window(sp(::user::interaction) pParentWnd,uint32_t dwStyle,UINT nID)
+   bool toolbar::create_window(sp(::user::interaction) pParentWnd,uint32_t dwStyle,UINT nID)
    {
       return create_window_ex(pParentWnd, 0, dwStyle,
          rect(m_cxLeftBorder, m_cyTopBorder, m_cxRightBorder, m_cyBottomBorder), nID);
    }
 
-   bool tool_bar::create_window_ex(sp(::user::interaction) pParentWnd,uint32_t dwCtrlStyle,uint32_t dwStyle,const RECT & rectBorders,UINT nID)
+   bool toolbar::create_window_ex(sp(::user::interaction) pParentWnd,uint32_t dwCtrlStyle,uint32_t dwStyle,const RECT & rectBorders,UINT nID)
    {
       ASSERT_VALID(pParentWnd);   // must have a parent
       ASSERT (!((dwStyle & CBRS_SIZE_FIXED) && (dwStyle & CBRS_SIZE_DYNAMIC)));
@@ -130,9 +130,9 @@ namespace user
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // tool_bar
+   // toolbar
 
-   void tool_bar::_001OnNcCreate(signal_details * pobj)
+   void toolbar::_001OnNcCreate(signal_details * pobj)
    {
       if(pobj->previous())
          return;
@@ -149,7 +149,7 @@ namespace user
 #endif
    }
 
-   sp(::user::interaction) tool_bar::SetOwner(sp(::user::interaction) pOwnerWnd)
+   sp(::user::interaction) toolbar::SetOwner(sp(::user::interaction) pOwnerWnd)
    {
 #ifdef WINDOWSEX
       ASSERT_VALID(this);
@@ -162,7 +162,7 @@ namespace user
       return ::user::control_bar::SetOwner(pOwnerWnd);
    }
 
-   void tool_bar::SetSizes(SIZE sizeButton, SIZE sizeImage)
+   void toolbar::SetSizes(SIZE sizeButton, SIZE sizeImage)
    {
       ASSERT_VALID(this);
 
@@ -195,7 +195,7 @@ namespace user
       }
    }
 
-   void tool_bar::SetHeight(int32_t cyHeight)
+   void toolbar::SetHeight(int32_t cyHeight)
    {
       ASSERT_VALID(this);
 
@@ -212,7 +212,7 @@ namespace user
       m_cyTopBorder = cyHeight - m_sizeButton.cy - m_cyBottomBorder;
       if (m_cyTopBorder < 0)
       {
-         TRACE1("Warning: tool_bar::SetHeight(%d) is smaller than button.\n",
+         TRACE1("Warning: toolbar::SetHeight(%d) is smaller than button.\n",
             nHeight);
          m_cyBottomBorder += m_cyTopBorder;
          m_cyTopBorder = 0;  // will clip at bottom
@@ -224,7 +224,7 @@ namespace user
    }
 
 
-   /*bool tool_bar::LoadToolBar(const char * lpszResourceName)
+   /*bool toolbar::LoadToolBar(const char * lpszResourceName)
    {
       ASSERT_VALID(this);
       ASSERT(lpszResourceName != NULL);
@@ -239,7 +239,7 @@ namespace user
       if (hGlobal == NULL)
          return FALSE;
 
-      tool_bar_data* pData = (tool_bar_data*)LockResource(hGlobal);
+      toolbar_data* pData = (toolbar_data*)LockResource(hGlobal);
       if (pData == NULL)
          return FALSE;
       ASSERT(pData->wVersion == 1);
@@ -269,7 +269,7 @@ namespace user
       return bResult;
    }*/
 
-   /*bool tool_bar::LoadBitmap(const char * lpszResourceName)
+   /*bool toolbar::LoadBitmap(const char * lpszResourceName)
    {
       ASSERT_VALID(this);
       ASSERT(lpszResourceName != NULL);
@@ -297,7 +297,7 @@ namespace user
       return TRUE;
    }*/
 
-   bool tool_bar::from(HBITMAP hbmImageWell)
+   bool toolbar::from(HBITMAP hbmImageWell)
    {
       ASSERT_VALID(this);
       ASSERT(hbmImageWell != NULL);
@@ -310,7 +310,7 @@ namespace user
       return AddReplaceBitmap(hbmImageWell);
    }
 
-   bool tool_bar::AddReplaceBitmap(HBITMAP hbmImageWell)
+   bool toolbar::AddReplaceBitmap(HBITMAP hbmImageWell)
    {
             bool bResult = false;
 
@@ -350,7 +350,7 @@ namespace user
       return bResult;
    }
 
-   bool tool_bar::SetButtons(const UINT* lpIDArray, int32_t nIDCount)
+   bool toolbar::SetButtons(const UINT* lpIDArray, int32_t nIDCount)
    {
 #ifdef WINDOWSEX
       ASSERT_VALID(this);
@@ -412,17 +412,17 @@ namespace user
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // tool_bar attribute access
+   // toolbar attribute access
 #ifdef WINDOWSEX
-   void tool_bar::_GetButton(::index nIndex, TBBUTTON* pButton) const
+   void toolbar::_GetButton(::index nIndex, TBBUTTON* pButton) const
    {
-      tool_bar* pBar = (tool_bar*)this;
+      toolbar* pBar = (toolbar*)this;
       VERIFY(pBar->DefWindowProc(TB_GETBUTTON, nIndex, (LPARAM)pButton));
       // TBSTATE_ENABLED == TBBS_DISABLED so invert it
       pButton->fsState ^= TBSTATE_ENABLED;
    }
 
-   void tool_bar::_SetButton(::index nIndex, TBBUTTON* pButton)
+   void toolbar::_SetButton(::index nIndex, TBBUTTON* pButton)
    {
       // get original button state
       TBBUTTON button;
@@ -465,20 +465,20 @@ namespace user
 
 #endif
 
-   int32_t tool_bar::CommandToIndex(UINT nIDFind)
+   int32_t toolbar::CommandToIndex(UINT nIDFind)
    {
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
 #ifdef WINDOWSEX
-      tool_bar* pBar = (tool_bar*)this;
+      toolbar* pBar = (toolbar*)this;
       return (int32_t)pBar->DefWindowProc(TB_COMMANDTOINDEX, nIDFind, 0);
 #else
       throw todo(get_app());
 #endif
    }
 
-   UINT tool_bar::GetItemID(int32_t nIndex)
+   UINT toolbar::GetItemID(int32_t nIndex)
    {
       ASSERT_VALID(this);
       ASSERT(IsWindow());
@@ -492,18 +492,18 @@ namespace user
 #endif
    }
 
-   void tool_bar::GetItemRect(int32_t nIndex, LPRECT lpRect)
+   void toolbar::GetItemRect(int32_t nIndex, LPRECT lpRect)
    {
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
       // handle any delayed layout
       if (m_bDelayedButtonLayout)
-         ((tool_bar*)this)->layout();
+         ((toolbar*)this)->layout();
 
       // now it is safe to get the item rectangle
 #ifdef WINDOWSEX
-      tool_bar* pBar = (tool_bar*)this;
+      toolbar* pBar = (toolbar*)this;
       if (!pBar->DefWindowProc(TB_GETITEMRECT, nIndex, (LPARAM)lpRect))
          ::SetRectEmpty(lpRect);
 #else
@@ -511,7 +511,7 @@ namespace user
 #endif
    }
 
-   void tool_bar::layout()
+   void toolbar::layout()
    {
       ASSERT(m_bDelayedButtonLayout);
 
@@ -521,14 +521,14 @@ namespace user
       if(m_bSimpleLayout)
          CalcSimpleLayout();
       else if ((m_dwStyle & CBRS_FLOATING) && (m_dwStyle & CBRS_SIZE_DYNAMIC))
-         ((tool_bar*)this)->CalcDynamicLayout(0, LM_HORZ | LM_MRUWIDTH | LM_COMMIT);
+         ((toolbar*)this)->CalcDynamicLayout(0, LM_HORZ | LM_MRUWIDTH | LM_COMMIT);
       else if (bHorz)
-         ((tool_bar*)this)->CalcDynamicLayout(0, LM_HORZ | LM_HORZDOCK | LM_COMMIT);
+         ((toolbar*)this)->CalcDynamicLayout(0, LM_HORZ | LM_HORZDOCK | LM_COMMIT);
       else
-         ((tool_bar*)this)->CalcDynamicLayout(0, LM_VERTDOCK | LM_COMMIT);
+         ((toolbar*)this)->CalcDynamicLayout(0, LM_VERTDOCK | LM_COMMIT);
    }
 
-   UINT tool_bar::GetButtonStyle(int32_t nIndex)
+   UINT toolbar::GetButtonStyle(int32_t nIndex)
    {
       ASSERT_VALID(this);
       ASSERT(IsWindow());
@@ -542,7 +542,7 @@ namespace user
 #endif
    }
 
-   void tool_bar::SetButtonStyle(int32_t nIndex, UINT nStyle)
+   void toolbar::SetButtonStyle(int32_t nIndex, UINT nStyle)
    {
       ASSERT_VALID(this);
       ASSERT(IsWindow());
@@ -565,7 +565,7 @@ namespace user
    #define CX_OVERLAP  0
 
 #ifdef WINDOWSEX
-   size tool_bar::CalcSize(TBBUTTON* pData, int32_t nCount)
+   size toolbar::CalcSize(TBBUTTON* pData, int32_t nCount)
    {
       ASSERT(pData != NULL && nCount > 0);
 
@@ -626,7 +626,7 @@ namespace user
       return sizeResult;
    }
 
-   int32_t tool_bar::WrapToolBar(TBBUTTON* pData, int32_t nCount, int32_t nWidth)
+   int32_t toolbar::WrapToolBar(TBBUTTON* pData, int32_t nCount, int32_t nWidth)
    {
 
       ASSERT(pData != NULL && nCount > 0);
@@ -715,7 +715,7 @@ namespace user
       return nResult + 1;
    }
 
-   void  tool_bar::SizeToolBar(TBBUTTON* pData, int32_t nCount, int32_t nLength, bool bVert)
+   void  toolbar::SizeToolBar(TBBUTTON* pData, int32_t nCount, int32_t nLength, bool bVert)
    {
       ASSERT(pData != NULL && nCount > 0);
 
@@ -795,7 +795,7 @@ namespace user
       rect rectOldPos;
    };
 
-   size tool_bar::CalcLayout(uint32_t dwMode, int32_t nLength)
+   size toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
    {
 #ifdef WINDOWSEX
       ASSERT_VALID(this);
@@ -971,7 +971,7 @@ throw todo(get_app());
 #endif
    }
 
-   size tool_bar::CalcFixedLayout(bool bStretch, bool bHorz)
+   size toolbar::CalcFixedLayout(bool bStretch, bool bHorz)
    {
       uint32_t dwMode = bStretch ? LM_STRETCH : 0;
       dwMode |= bHorz ? LM_HORZ : 0;
@@ -979,7 +979,7 @@ throw todo(get_app());
       return CalcLayout(dwMode);
    }
 
-   size tool_bar::CalcDynamicLayout(int32_t nLength, uint32_t dwMode)
+   size toolbar::CalcDynamicLayout(int32_t nLength, uint32_t dwMode)
    {
       if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&
          ((dwMode & LM_HORZDOCK) || (dwMode & LM_VERTDOCK)))
@@ -989,7 +989,7 @@ throw todo(get_app());
       return CalcLayout(dwMode, nLength);
    }
 
-   void tool_bar::GetButtonInfo(int32_t nIndex, UINT& nID, UINT& nStyle, int32_t& iImage)
+   void toolbar::GetButtonInfo(int32_t nIndex, UINT& nID, UINT& nStyle, int32_t& iImage)
    {
 #ifdef WINDOWSEX
       ASSERT_VALID(this);
@@ -1005,7 +1005,7 @@ throw todo(get_app());
 #endif
    }
 
-   void tool_bar::SetButtonInfo(int32_t nIndex, UINT nID, UINT nStyle, int32_t iImage)
+   void toolbar::SetButtonInfo(int32_t nIndex, UINT nID, UINT nStyle, int32_t iImage)
    {
       ASSERT_VALID(this);
 #ifdef WINDOWSEX
@@ -1029,7 +1029,7 @@ throw todo(get_app());
    }
 
 
-   bool tool_bar::SetButtonText(int32_t nIndex, const char * lpszText)
+   bool toolbar::SetButtonText(int32_t nIndex, const char * lpszText)
    {
       // attempt to lookup string index in map
       int_ptr nString = -1;
@@ -1086,14 +1086,14 @@ throw todo(get_app());
       return TRUE;
    }
 
-   string tool_bar::GetButtonText(int32_t nIndex) const
+   string toolbar::GetButtonText(int32_t nIndex) const
    {
       string strResult;
       GetButtonText(nIndex, strResult);
       return strResult;
    }
 
-   void tool_bar::GetButtonText(int32_t nIndex, string & rWString) const
+   void toolbar::GetButtonText(int32_t nIndex, string & rWString) const
    {
 #ifdef WINDOWSEX
       if (m_pStringMap != NULL)
@@ -1123,20 +1123,20 @@ throw todo(get_app());
 
 
    /*
-   bool tool_bar::OnEraseBkgnd(::draw2d::graphics *)
+   bool toolbar::OnEraseBkgnd(::draw2d::graphics *)
    {
       return (bool)Default();
    }
    */
 
-   void tool_bar::_001OnNcHitTest(signal_details * pobj)
+   void toolbar::_001OnNcHitTest(signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj)
       pbase->set_lresult(HTCLIENT);
       pbase->m_bRet = true;
    }
 
-   void tool_bar::_001OnNcCalcSize(signal_details * pobj)
+   void toolbar::_001OnNcCalcSize(signal_details * pobj)
    {
 #ifdef WINDOWSEX
       SCAST_PTR(::message::nc_calc_size, pnccalcsize, pobj)
@@ -1157,7 +1157,7 @@ throw todo(get_app());
 #endif
    }
 
-   void tool_bar::OnBarStyleChange(uint32_t dwOldStyle, uint32_t dwNewStyle)
+   void toolbar::OnBarStyleChange(uint32_t dwOldStyle, uint32_t dwNewStyle)
    {
       // a dynamically resizeable toolbar can not have the CBRS_FLOAT_MULTI
       ASSERT(!((dwNewStyle & CBRS_SIZE_DYNAMIC) &&
@@ -1180,14 +1180,14 @@ throw todo(get_app());
    }
 
    /*
-   void tool_bar::OnNcPaint()
+   void toolbar::OnNcPaint()
    {
       return;
       EraseNonClient();
    }
    */
 
-   void tool_bar::_001OnWindowPosChanging(signal_details * pobj)
+   void toolbar::_001OnWindowPosChanging(signal_details * pobj)
    {
 #ifdef WINDOWSEX
       SCAST_PTR(::message::window_pos, pwindowpos, pobj)
@@ -1214,7 +1214,7 @@ throw todo(get_app());
    }
 
    /*
-   void tool_bar::OnPaint()
+   void toolbar::OnPaint()
    {
       if (m_bDelayedButtonLayout)
          layout();
@@ -1224,7 +1224,7 @@ throw todo(get_app());
    */
 
 
-   void tool_bar::_001OnDraw(::draw2d::graphics * pdc)
+   void toolbar::_001OnDraw(::draw2d::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
       if (m_bDelayedButtonLayout)
@@ -1234,19 +1234,19 @@ throw todo(get_app());
    }
 
 
-   void tool_bar::_001OnSetButtonSize(signal_details * pobj)
+   void toolbar::_001OnSetButtonSize(signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj)
       pbase->set_lresult(OnSetSizeHelper(m_sizeButton, pbase->m_lparam));
    }
 
-   void tool_bar::_001OnSetBitmapSize(signal_details * pobj)
+   void toolbar::_001OnSetBitmapSize(signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj)
       pbase->set_lresult(OnSetSizeHelper(m_sizeImage, pbase->m_lparam));
    }
 
-   LRESULT tool_bar::OnSetSizeHelper(size& size, LPARAM lParam)
+   LRESULT toolbar::OnSetSizeHelper(size& size, LPARAM lParam)
    {
       //WINBUG: The IE4 version of COMCTL32.DLL supports a zero border, but
       //  only if TBSTYLE_TRANSPARENT is on during the the TB_SETBITMAPSIZE
@@ -1275,7 +1275,7 @@ throw todo(get_app());
       return lResult;
    }
 
-   void tool_bar::_001OnPreserveZeroBorderHelper(signal_details * pobj)
+   void toolbar::_001OnPreserveZeroBorderHelper(signal_details * pobj)
    {
       LRESULT lResult = 0;
       SCAST_PTR(::message::base, pbase, pobj)
@@ -1297,7 +1297,7 @@ throw todo(get_app());
       pbase->set_lresult(lResult);
    }
 
-   void tool_bar::_001OnSysColorChange(signal_details * pobj)
+   void toolbar::_001OnSysColorChange(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       // re-color bitmap for toolbar
@@ -1311,7 +1311,7 @@ throw todo(get_app());
    }
 
    /*
-   void tool_bar::OnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler)
+   void toolbar::OnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler)
    {
       tool_cmd_ui state;
       state.m_pOther = this;
@@ -1348,13 +1348,13 @@ throw todo(get_app());
    */
 
    /////////////////////////////////////////////////////////////////////////////
-   // tool_bar diagnostics
+   // toolbar diagnostics
 
    #ifdef DEBUG
-   void tool_bar::assert_valid() const
+   void toolbar::assert_valid() const
    {
       // Note: ::user::control_bar::assert_valid is not called because it checks for
-      //  m_nCount and m_pData to be in sync, which they are not in tool_bar.
+      //  m_nCount and m_pData to be in sync, which they are not in toolbar.
 
 /*      ASSERT(m_hbmImageWell == NULL ||
          (afxData.bWin95 || ::GetObjectType(m_hbmImageWell) == OBJ_BITMAP));
@@ -1363,7 +1363,7 @@ throw todo(get_app());
          ASSERT(m_hRsrcImageWell != NULL);*/
    }
 
-   void tool_bar::dump(dump_context & dumpcontext) const
+   void toolbar::dump(dump_context & dumpcontext) const
    {
       ::user::control_bar::dump(dumpcontext);
 
@@ -1376,7 +1376,7 @@ throw todo(get_app());
       if (dumpcontext.GetDepth() > 0)
       {
 #ifdef WINDOWSEX
-         tool_bar* pBar = (tool_bar*)this;
+         toolbar* pBar = (toolbar*)this;
          LRESULT nCount = pBar->DefWindowProc(TB_BUTTONCOUNT, 0, 0);
          for (index i = 0; i < nCount; i++)
          {
@@ -1401,11 +1401,11 @@ throw todo(get_app());
    }
    #endif
 
-   // IMPLEMENT_DYNAMIC(tool_bar, ::user::control_bar)
+   // IMPLEMENT_DYNAMIC(toolbar, ::user::control_bar)
 
    /////////////////////////////////////////////////////////////////////////////
 
-   size tool_bar::CalcSimpleLayout()
+   size toolbar::CalcSimpleLayout()
    {
       ASSERT_VALID(this);
       ASSERT(IsWindow());
@@ -1473,7 +1473,7 @@ throw todo(get_app());
 
    }
 
-   size tool_bar::SimpleLayout()
+   size toolbar::SimpleLayout()
    {
       size size = CalcSimpleLayout();
       SetWindowPos(
@@ -1486,16 +1486,16 @@ throw todo(get_app());
    }
 
 
-   ::count tool_bar::_001GetItemCount()
+   ::count toolbar::_001GetItemCount()
    {
       return -1;
    }
 
-   tool_bar_control& tool_bar::GetToolBarCtrl() const
-      { return *(tool_bar_control*)this; }
-   /*bool tool_bar::LoadToolBar(UINT nIDResource)
+   toolbar_control& toolbar::GetToolBarCtrl() const
+      { return *(toolbar_control*)this; }
+   /*bool toolbar::LoadToolBar(UINT nIDResource)
       { return LoadToolBar(MAKEINTRESOURCE(nIDResource)); }
-   bool tool_bar::LoadBitmap(UINT nIDResource)
+   bool toolbar::LoadBitmap(UINT nIDResource)
       { return LoadBitmap(MAKEINTRESOURCE(nIDResource)); }*/
 
 

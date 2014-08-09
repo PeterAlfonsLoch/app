@@ -62,7 +62,7 @@ namespace user
    }
 
 
-   /*void image_manager::LoadToolbar(tool_bar & toolbar, UINT * pui)
+   /*void image_manager::LoadToolbar(toolbar & toolbar, UINT * pui)
    {
 
       toolbar.GetToolBarCtrl().SetImageList(&GetImageList());

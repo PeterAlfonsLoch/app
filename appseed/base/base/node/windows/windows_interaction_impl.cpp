@@ -191,12 +191,15 @@ namespace windows
    bool interaction_impl::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) puiParent,id id,LPVOID lpParam)
    {
 
-      return windows_create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rect,(oswindow) (puiParent.is_null() ? NULL : puiParent->get_handle()),id,lpParam);
+      if(!native_create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rect,puiParent->get_safe_handle(),id,lpParam))
+         return false;
+
+      return true;
 
    }
 
 
-   bool interaction_impl::windows_create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,oswindow oswindowParent,id id,LPVOID lpParam)
+   bool interaction_impl::native_create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,oswindow oswindowParent,id id,LPVOID lpParam)
    {
 
       //::simple_message_box(NULL,"h1","h1",MB_OK);
@@ -356,7 +359,7 @@ namespace windows
 
       }
 
-      if(!windows_create_window_ex(0,NULL,pszName,WS_CHILD,null_rect(),HWND_MESSAGE,0,NULL))
+      if(!native_create_window_ex(0,NULL,pszName,WS_CHILD,null_rect(),HWND_MESSAGE,0,NULL))
       {
 
          return false;

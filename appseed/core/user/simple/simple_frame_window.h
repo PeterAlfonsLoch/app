@@ -46,14 +46,14 @@ public:
 //#ifdef WINDOWS
 //   HGLRC                         m_hglrc;
 //#endif
-   bool                          m_bFullScreenAlt;
-   bool                          m_bblur_Background;
-   visual::dib_sp                m_dibBk;
-   bool                          m_bCustomFrameBefore;
-   rect                          m_FullScreenWindowRect;
-   visual::fastblur              m_fastblur;
+   bool                                m_bFullScreenAlt;
+   bool                                m_bblur_Background;
+   visual::dib_sp                      m_dibBk;
+   bool                                m_bCustomFrameBefore;
+   rect                                m_FullScreenWindowRect;
+   visual::fastblur                    m_fastblur;
 
-   mapsp(id, id, ::user::interaction)    m_toolbarmap;
+   mapsp(id, id, ::user::toolbar)     m_toolbarmap;
 
 
    simple_frame_window(sp(::base::application) papp);
@@ -101,8 +101,19 @@ public:
 
 
 
+   virtual bool LoadToolBar(sp(::type) sptype,id idToolBar,const char * pszToolBar,uint32_t dwCtrlStyle = TBSTYLE_FLAT,uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 
-   bool LoadToolBar(id idToolBar, const char * pszToolBar, uint32_t dwCtrlStyle = TBSTYLE_FLAT, uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
+   template < class TOOLBAR >
+   bool LoadToolBar(id idToolBar,const char * pszToolBar,uint32_t dwCtrlStyle = TBSTYLE_FLAT,uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP)
+   {
+      return LoadToolBar(System.type_info < TOOLBAR >(),idToolBar,pszToolBar,dwCtrlStyle,dwStyle);
+   }
+
+   virtual bool LoadToolBar(id idToolBar,const char * pszToolBar,uint32_t dwCtrlStyle = TBSTYLE_FLAT,uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP)
+   {
+      return LoadToolBar < simple_toolbar >(idToolBar,pszToolBar,dwCtrlStyle,dwStyle);
+   }
+
 
    virtual void InitialFramePosition(bool bForceRestore = false);
 

@@ -437,7 +437,7 @@ void simple_frame_window::ShowControlBars(bool bShow)
    POSITION pos = m_toolbarmap.get_start_position();
 
    id idKey;
-   sp(::user::interaction) pbar;
+   sp(::user::toolbar) pbar;
    while (pos != NULL)
    {
       m_toolbarmap.get_next_assoc(pos, idKey, pbar);
@@ -1123,30 +1123,20 @@ bool simple_frame_window::is_application_main_window()
 }
 
 
-bool simple_frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, uint32_t dwCtrlStyle, uint32_t dwStyle)
+bool simple_frame_window::LoadToolBar(sp(::type) sptype, id idToolBar, const char * pszToolBar, uint32_t dwCtrlStyle, uint32_t dwStyle)
 {
    
-   sp(::user::interaction) pui = m_toolbarmap[idToolBar];
+   sp(::user::toolbar) ptoolbar = m_toolbarmap[idToolBar];
 
-   simple_toolbar * ptoolbar;
-
-   if (pui != NULL)
+   if(ptoolbar.is_null())
    {
 
-      ptoolbar = dynamic_cast <simple_toolbar *> (pui.m_p);
-
-   }
-   else
-   {
-
-      ptoolbar = new simple_toolbar(get_app());
+      ptoolbar = Application.alloc(sptype);
 
       if(ptoolbar == NULL)
          return false;
 
       ptoolbar->create_window_ex(this,dwCtrlStyle,dwStyle);
-
-      pui = ptoolbar;
 
    }
 
@@ -1157,7 +1147,7 @@ bool simple_frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, uin
    {
       try
       {
-         delete ptoolbar;
+         ptoolbar;
 
       }
       catch(...)
@@ -1166,7 +1156,7 @@ bool simple_frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, uin
       return false;
    }
       
-   m_toolbarmap.set_at(idToolBar,pui);
+   m_toolbarmap.set_at(idToolBar,ptoolbar);
 
    layout();
 

@@ -271,7 +271,7 @@ void simple_menu_bar::_001OnKeyDown(signal_details * pobj)
 
 
 
-/*bool simple_menu_bar::CalcSize(::user::tool_bar_control & tbc, size & size)
+/*bool simple_menu_bar::CalcSize(::user::toolbar_control & tbc, size & size)
 {
     rect rectItem;
     rect rectSize(0, 0, 0, 0);

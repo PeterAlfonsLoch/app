@@ -18,7 +18,7 @@ namespace user
       virtual void SetText(const char * lpszText);
    };
 
-   struct tool_bar_data
+   struct toolbar_data
    {
       WORD wVersion;
       WORD wWidth;

@@ -8,13 +8,13 @@ namespace user
 {
 
 
-   class CLASS_DECL_CORE tool_bar_control :
+   class CLASS_DECL_CORE toolbar_control :
       public ::user::interaction
    {
    public:
 
 
-      tool_bar_control();
+      toolbar_control();
 
       //bool LoadToolBar(const char * lpszResourceName);
       //bool LoadToolBar(UINT nIDResource);
@@ -115,7 +115,7 @@ namespace user
       void AutoSize();
 
       int32_t GetButtonText(UINT uiID, string &str);
-      virtual ~tool_bar_control();
+      virtual ~toolbar_control();
 
       DECL_GEN_SIGNAL(_001OnCreate);
 

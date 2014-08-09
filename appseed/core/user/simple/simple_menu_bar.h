@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class tool_bar_control;
+   class toolbar_control;
 
 
 } // namespace user
@@ -80,7 +80,7 @@ public:
    //size CalcFixedLayout(bool bStretch, bool bHorz);
 
    //size CalcDynamicLayout(int32_t nLength, uint32_t dwMode);
-   //static ::music::e_result CalcSize(::user::tool_bar_control & tbc, size & size);
+   //static ::music::e_result CalcSize(::user::toolbar_control & tbc, size & size);
    //static ::music::e_result CalcSize(CToolBarCtrl & tbc, size & size);
    bool _TrackPopupMenu(point point);
    bool _TrackPopupMenu(int32_t iItem);
