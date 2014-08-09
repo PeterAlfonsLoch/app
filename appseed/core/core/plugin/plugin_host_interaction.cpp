@@ -95,7 +95,7 @@ namespace plugin
          //{
             //System.url().string_set(strLink, "ruri", (const char *) m_pplugin->get_host_location_url());
          //}
-         m_pplugin->open_url(strLink);
+         m_pplugin->open_link(strLink, "");
          delete pstrLink;
       }
    }

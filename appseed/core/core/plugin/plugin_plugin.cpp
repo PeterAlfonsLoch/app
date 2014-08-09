@@ -59,7 +59,7 @@ namespace plugin
 
    bool plugin::hist(const char * pszUrl)
    {
-      return open_url(pszUrl);
+      return open_link(pszUrl, "");
    }
 
    void plugin::run_start_install(const char * pszInstall)
@@ -413,7 +413,7 @@ namespace plugin
 
       System.url().string_remove(strLocation, "action");
 
-      open_url(strLocation);
+      open_link(strLocation, "");
 
    }
 
@@ -438,7 +438,7 @@ namespace plugin
 
       System.url().string_set(strUrl, "ruri", strLocation);
 
-      open_url(strUrl);
+      open_link(strUrl, "");
 
    }
 

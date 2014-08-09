@@ -16,7 +16,7 @@ namespace plugin
    {
       if(m_pplugin != NULL)
       {
-         m_pplugin->open_url(pszUrl);
+         m_pplugin->open_link(pszUrl, "");
          return true;
       }
       return false;
