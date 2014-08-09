@@ -186,9 +186,9 @@ namespace draw2d
       return to(pgraphics, null_point(), size);
    }
 
-   bool dib::to(::draw2d::graphics * pgraphics, LPCRECT lpcrect)
+   bool dib::to(::draw2d::graphics * pgraphics, const RECT & rect)
    {
-      return to(pgraphics, ::top_left(lpcrect), ::size(lpcrect));
+      return to(pgraphics,::top_left(rect),::size(rect));
    }
 
    bool dib::to(::draw2d::graphics * pgraphics, point pt, class size size)
