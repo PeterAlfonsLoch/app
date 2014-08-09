@@ -272,7 +272,6 @@
 		<Unit filename="core/api/api.h" />
 		<Unit filename="core/api/mktime.cpp" />
 		<Unit filename="core/api/mktime.h" />
-		<Unit filename="core/core.inl" />
 		<Unit filename="core/core/core.cpp" />
 		<Unit filename="core/core/core.h" />
 		<Unit filename="core/core/core.inl" />
