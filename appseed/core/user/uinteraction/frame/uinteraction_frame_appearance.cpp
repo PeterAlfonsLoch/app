@@ -260,12 +260,12 @@ namespace user
             m_brushBody->create_solid(crBody);
 
             m_colorbezieraOutsideBorder.remove_all();
-            rect rectClient(lpcrect);
-            rect rectA(rectClient);
+            ::rect rectClient(rect);
+            ::rect rectA(rectClient);
             rectA.deflate(3, 3, 3, 3);
-            rect rectB(rectClient);
+            ::rect rectB(rectClient);
             rectB.deflate(18, 18, 18, 18);
-            rect rectC(rectClient);
+            ::rect rectC(rectClient);
             rectC.deflate(7, 7, 7, 7);
 
             const int32_t ciStart = 4;

@@ -20,7 +20,7 @@ namespace user
       UNREFERENCED_PARAMETER(hInstance);
       UNREFERENCED_PARAMETER(lpParam);
       sp(::user::interaction) pui = new ::user::interaction(papp);
-      if(pui->create_window(lpcrect, puiParent, id))
+      if(pui->create_window(rect, puiParent, id))
       {
          return pui;
       }

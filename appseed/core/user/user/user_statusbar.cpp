@@ -47,7 +47,7 @@ namespace user
    bool status_bar::create_window(sp(::user::interaction) pParentWnd, uint32_t dwStyle, id strId)
    {
 
-      return create_window_ex(pParentWnd, 0, dwStyle, NULL, strId);
+      return create_window_ex(pParentWnd, 0, dwStyle, null_rect(), strId);
 
    }
 
@@ -65,7 +65,7 @@ namespace user
       if (pParentWnd->GetStyle() & WS_THICKFRAME)
          dwStyle |= SBARS_SIZEGRIP;
       
-      return ::user::interaction::create_window(STATUSCLASSNAME, NULL, dwStyle, lpcrect, pParentWnd, strId);
+      return ::user::interaction::create_window(STATUSCLASSNAME, NULL, dwStyle, rect, pParentWnd, strId);
 
    }
 

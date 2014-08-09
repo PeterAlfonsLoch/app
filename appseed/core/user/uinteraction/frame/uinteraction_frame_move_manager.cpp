@@ -172,7 +172,7 @@ namespace user
             if(pmouse->m_uiMessage == WM_LBUTTONUP || pmouse->m_uiMessage == WM_NCLBUTTONUP)
             {
                TRACE("MoveManager::message_handler oswindow ReleaseCapture 2 %x\n", System.get_capture_uie().m_p);
-               index iMatchingMonitor = m_pworkset->GetWndDraw()->good_move(rectEvent,NULL,true);
+               index iMatchingMonitor = m_pworkset->GetWndDraw()->good_move(rectEvent,null_rect(),true);
 
                if(iMatchingMonitor >= 0)
                {

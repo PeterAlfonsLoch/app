@@ -515,10 +515,10 @@ void EmbossedTextOut(
    //ExtTextOut(hDC, x-cx, y-cy, NULL, &rcText, lpsz, cb, NULL);
    //ExtTextOut(hDC, x+cx, y-cy, NULL, &rcText, lpsz, cb, NULL);
    //ExtTextOut(hDC, x+cx, y+cy, NULL, &rcText, lpsz, cb, NULL);
-   pdc->ExtTextOut(x+cx, y+cy, 0, NULL, lpcsz, (int) cb, NULL);
+   pdc->ExtTextOut(x+cx, y+cy, 0, null_rect(), lpcsz, (int) cb, NULL);
    //pdc->SetBkMode(TRANSPARENT);
    //pdc->set_text_color(crText);
-   if(!pdc->ExtTextOut(x, y, 0, NULL, lpcsz, (int) cb, NULL))
+   if(!pdc->ExtTextOut(x, y, 0, null_rect(), lpcsz, (int) cb, NULL))
    {
       //      TRACE("Failed to ExtTextOut, GetLastError() -->%d\n", GetLastError());
    }

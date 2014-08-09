@@ -154,7 +154,7 @@ namespace user
       bool m_bAutoDelete;
 
       // getting and setting border space
-      void SetBorders(LPCRECT lpRect);
+      void SetBorders(const RECT & rect);
       void SetBorders(int32_t cxLeft = 0, int32_t cyTop = 0, int32_t cxRight = 0, int32_t cyBottom = 0);
       rect GetBorders();
 

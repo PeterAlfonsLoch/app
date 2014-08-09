@@ -140,7 +140,7 @@ namespace user
          pta.add(point(6, 12));
          pta.add(point(2, 8));
 
-         pta.offset(lpcrect->left, lpcrect->top);
+         pta.offset(rect.left, rect.top);
 
          pdc->Polygon(pta);
 

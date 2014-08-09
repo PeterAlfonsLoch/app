@@ -1488,39 +1488,39 @@ namespace backview
 
    void VisualEffect::Constraint001(point & pt, const RECT & rect, double & direction)
    {
-      if(pt.x > lpcrect->right)
+      if(pt.x > rect.right)
       {
          direction  += 180 + ((int32_t) direction  % 360);
       }
-      else if(pt.y > lpcrect->bottom)
+      else if(pt.y > rect.bottom)
       {
          direction  += 180 + ((int32_t) direction  % 360);
       }
-      else if(pt.x < lpcrect->left)
+      else if(pt.x < rect.left)
       {
          direction  += 180 + ((int32_t) direction  % 360);
       }
-      else if(pt.y < lpcrect->top)
+      else if(pt.y < rect.top)
       {
          direction  += 180 + ((int32_t) direction  % 360);
       }
 
-      if(pt.x > lpcrect->right)
+      if(pt.x > rect.right)
       {
-         pt.x = lpcrect->right;
+         pt.x = rect.right;
       }
-      else if(pt.x < lpcrect->left)
+      else if(pt.x < rect.left)
       {
-         pt.x = lpcrect->left;
+         pt.x = rect.left;
       }
 
-      if(pt.y > lpcrect->bottom)
+      if(pt.y > rect.bottom)
       {
-         pt.y = lpcrect->bottom;
+         pt.y = rect.bottom;
       }
-      else if(pt.y < lpcrect->top)
+      else if(pt.y < rect.top)
       {
-         pt.y = lpcrect->top;
+         pt.y = rect.top;
       }
 
    }

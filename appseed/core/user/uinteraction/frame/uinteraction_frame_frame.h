@@ -75,7 +75,7 @@ namespace user
 
             virtual void update_drawing_objects();
             virtual void update_window_client_rect();
-            virtual void update_window_region(LPCRECT lpcrectWindow);
+            virtual void update_window_region(const RECT & lpcrectWindow);
             virtual void update_window();
             virtual void update_window_style();
 
@@ -83,7 +83,7 @@ namespace user
             virtual void get_window_client_rect(LPRECT lprect);
             virtual void get_draw_client_rect(LPRECT lprect);
 
-            virtual void calc_window_client_rect(LPRECT lprect, LPCRECT lprectWindow);
+            virtual void calc_window_client_rect(LPRECT lprect, const RECT & lprectWindow);
 
 
             virtual sp(::user::interaction) get_draw_window();
@@ -116,7 +116,7 @@ namespace user
 
             virtual void OnActivate();
             virtual void OnNcCalcSize(LPRECT lprect);
-            virtual void _000OnBeforeSize(LPCRECT lpcrectWindow);
+            virtual void _000OnBeforeSize(const RECT & lpcrectWindow);
             virtual void layout();
 
 

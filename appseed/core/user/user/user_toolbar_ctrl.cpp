@@ -12,7 +12,7 @@ namespace user
       UINT nID)
    {
 
-      return create_window(TOOLBARCLASSNAME, NULL, dwStyle, lpcrect, pParentWnd, nID);
+      return create_window(TOOLBARCLASSNAME, NULL, dwStyle, rect, pParentWnd, nID);
    }
 
    int32_t tool_bar_control::AddBitmap(int32_t nNumButtons, ::draw2d::bitmap* pBitmap)

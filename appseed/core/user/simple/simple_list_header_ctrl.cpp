@@ -210,7 +210,7 @@ void simple_list_header_control::_001OnEndDrag(signal_details * pobj)
 
 bool simple_list_header_control::create_window(UINT nStyle, const RECT & rect, sp(::user::interaction)pwndParent, UINT nID)
 {
-   return ::user::interaction::create_window(NULL, NULL, nStyle, lpcrect, pwndParent, nID) != 0;
+   return ::user::interaction::create_window(NULL, NULL, nStyle, rect, pwndParent, nID) != 0;
 }
 
 

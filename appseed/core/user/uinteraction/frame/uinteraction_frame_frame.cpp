@@ -865,7 +865,7 @@ namespace user
          }
 
 
-         void frame::update_window_region(const RECT & rect)
+         void frame::update_window_region(LPCRECT lpcrect)
          {
 
             sp(::user::interaction) pwnd = get_window();

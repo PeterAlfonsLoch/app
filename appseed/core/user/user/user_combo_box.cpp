@@ -869,7 +869,7 @@ namespace user
    bool combo_box::create_window(const RECT & rect, sp(::user::interaction) pParentWnd, id id)
    {
 
-      if (!::user::edit_plain_text::create_window(lpcrect, pParentWnd, id))
+      if (!::user::edit_plain_text::create_window(rect, pParentWnd, id))
          return false;
 
       return true;

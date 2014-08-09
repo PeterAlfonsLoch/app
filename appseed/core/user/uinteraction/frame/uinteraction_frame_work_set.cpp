@@ -1298,7 +1298,7 @@ namespace user
          void WorkSet::_000OnBeforeSize(const RECT & rect)
          {
             ASSERT(m_pframeschema != NULL);
-            m_pframeschema->_000OnBeforeSize(lpcrect);
+            m_pframeschema->_000OnBeforeSize(rect);
          }
 
          void WorkSet::OnNcCalcSize(LPRECT lprect)

@@ -598,7 +598,7 @@ void simple_frame_window::GetBorderRect(LPRECT lprect)
 
 void simple_frame_window::SetBorderRect(const RECT & rect)
 {
-   m_rectBorder = *lpcrect;
+   m_rectBorder = rect;
 }
 
 void simple_frame_window::SetCustomFrame(bool bCustom)
@@ -1222,7 +1222,7 @@ void simple_frame_window::WfiOnUp()
 
 bool simple_frame_window::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,const char * lpszMenuName,uint32_t dwExStyle,sp(::create_context) pContext)
 {
-   return ::user::frame_window::create_window(lpszClassName, lpszWindowName, dwStyle, lpcrect, pParentWnd, lpszMenuName, dwExStyle, pContext);
+   return ::user::frame_window::create_window(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, lpszMenuName, dwExStyle, pContext);
 
 }
 

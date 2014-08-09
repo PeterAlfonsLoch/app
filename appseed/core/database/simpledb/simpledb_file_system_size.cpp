@@ -366,7 +366,7 @@ bool FileSystemSizeWnd::CreateServer()
 #ifdef WINDOWS
 
    m_bServer = true;
-   if(!m_p->create_window(null_rect(),"Local\\::draw2d::fontopus::FileSystemSizeWnd::Server",0,null_rect(),System.window_from_os_data(HWND_MESSAGE),id()))
+   if(!m_p->create_window(NULL,"Local\\::draw2d::fontopus::FileSystemSizeWnd::Server",0,null_rect(),System.window_from_os_data(HWND_MESSAGE),id()))
       return false;
    m_p->SetTimer(100, 100, NULL);
    return true;

@@ -436,7 +436,7 @@ namespace user
          NULL,
          NULL,
          WS_VISIBLE | WS_CHILD, 
-         &pdescriptor->m_rect, 
+         pdescriptor->m_rect, 
          pdescriptor->m_pform, 
          pdescriptor->m_id))
       {

@@ -380,14 +380,14 @@ namespace user
          {
             m_dwLastSizingTime = get_tick_count();
 
-            rect rectWindow = lpcrect;
+            ::rect rectWindow = rect;
 
             if(!(rectWindow.width() >= m_minSize.cx  &&
                rectWindow.height() >= m_minSize.cy))
                return;
 
 
-            rect rectWindowNow;
+            ::rect rectWindowNow;
             pwnd->GetWindowRect(rectWindowNow);
             if(rectWindowNow == rectWindow)
                return;
@@ -409,16 +409,16 @@ namespace user
 
                   }
 
-                  rect rectBefore;
+                  ::rect rectBefore;
                   pwnd->GetWindowRect(rectBefore);
-                  rect rectAfter = rectWindow;
-                  rect rectParentClient = rectAfter;
+                  ::rect rectAfter = rectWindow;
+                  ::rect rectParentClient = rectAfter;
                   if(m_pworkset->GetWndDraw()->GetParent() != NULL)
                   {
                      m_pworkset->GetWndDraw()->GetParent()->ScreenToClient(rectParentClient);
                   }
 
-                  rect rectTotal;
+                  ::rect rectTotal;
                   rectTotal.unite(rectBefore, rectAfter);
                   m_pworkset->m_rectPending.unite(rectBefore, rectAfter);
                   pwnd->SetWindowPos(
@@ -432,14 +432,14 @@ namespace user
                else
                {
 
-                  rect rectParentBefore;
+                  ::rect rectParentBefore;
                   pwnd->GetWindowRect(rectParentBefore);
                   pwnd->SetWindowPos(ZORDER_TOP, rectWindow.left, rectWindow.top, rectWindow.width(), rectWindow.height(), m_uiSWPFlags | SWP_NOREDRAW);
 
-                  rect rectParentAfter;
+                  ::rect rectParentAfter;
                   pwnd->GetWindowRect(rectParentAfter);
 
-                  rect rectParent;
+                  ::rect rectParent;
                   rectParent.unite(rectParentBefore, rectParentAfter);
                   pwnd->ScreenToClient(rectParent);
 

@@ -47,17 +47,7 @@ public:
    bool                             m_bAutoSizeY;
    int32_t                              m_iAlign;
    sp(::user::interaction)            m_oswindow;
-
-
-private:
-
-
-   friend class XfplayerViewLines;
    XfplayerViewLines *              m_pContainer;
-
-
-protected:
-   //int32_t
 
    // 08, May 2004 attributes
    ::draw2d::graphics_sp                m_dc1;
@@ -98,8 +88,6 @@ protected:
    size                             m_sizeLyricMargin;
    COLORREF                         m_crLyricLeft;
    COLORREF                         m_crLyricRight;
-
-public:
 
    XfplayerViewLine(sp(::base::application) papp);
    XfplayerViewLine(const XfplayerViewLine & line);
@@ -194,8 +182,8 @@ public:
 
    void Show(bool bShow = true);
    virtual XfplayerViewLine & operator = (const XfplayerViewLine & src);
-   void GetRect(LPRECT lpRect);
-   void set(LPRECT lpRect);
+   void GetPlacement(LPRECT lpRect);
+   void SetPlaement(const RECT & rect);
    void SetAlign(int32_t iAlign);
    static const int32_t AlignLeft;
    static const int32_t AlignRight;
@@ -204,22 +192,7 @@ public:
 
 
 
-// Operations
-
-   bool PrepareLine(
-      ::draw2d::graphics * pdc,
-      const char * lpcsz,
-      int32_t flags,
-      LPRECT pRect);
-
-   /*bool PrepareLine(
-      ::draw2d::graphics * pdcForeground,
-      const wchar_t * lpcsz,
-      int32_t flags,
-      visual::font *pFont,
-      LPRECT pRect);*/
-
-   void GetPlacement(LPRECT lprect);
+   bool PrepareLine(::draw2d::graphics * pdc, const string & str, int32_t flags, const RECT & rect);
 
    void AddChar(
       WCHAR wch,
@@ -230,24 +203,9 @@ public:
       strsize &index,
       visual::font * pFont);
 
-   bool to(
-      sp(::base::application) papp,
-      ::draw2d::graphics *                  pdc,
-      bool                  bDraw,
-      LPRECT               lpRect,
-      rect_array &      rectaModified,
-      bool                  bRecalcLayout);
+   bool to(::draw2d::graphics * pdc, bool bDraw, const RECT & rect, rect_array & rectaModified, bool bRecalcLayout);
 
-   bool to(
-      sp(::base::application) papp,
-      ::draw2d::graphics *                  pdcForeground,
-      bool                  bDraw,
-      LPRECT               lpRect,
-      rect_array &      rectaModified,
-      strsize   *               count,
-      bool                  bRecalcLayout,
-      COLORREF               crColor,
-      ::draw2d::pen      &            pen);
+   bool to(::draw2d::graphics * pdc, bool bDraw, const RECT & rect, rect_array & rectaModified, strsize * count, bool bRecalcLayout, COLORREF crColor, ::draw2d::pen_sp sppen);
 
 
    DECL_GEN_SIGNAL(OnMouseMove);

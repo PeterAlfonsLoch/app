@@ -37,7 +37,7 @@ namespace user
          //0);
    //   rect rect(0, 0, 0, 0);
 
-      if(!::user::interaction::create_window(lpcrect, pparent, 0))
+      if(!::user::interaction::create_window(rect, pparent, 0))
       {
 
          System.simple_message_box(NULL, "Could not create Split Bar");

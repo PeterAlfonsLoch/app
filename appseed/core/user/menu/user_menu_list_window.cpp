@@ -94,7 +94,7 @@ namespace user
       if(!IsWindow())
       {
 
-         if(!create_window(NULL, NULL, WS_VISIBLE | WS_CHILD, NULL, pwndParent, 0))
+         if(!create_window(NULL, NULL, WS_VISIBLE | WS_CHILD, null_rect(), pwndParent, 0))
             return false;
 
          if(!m_buttonClose.create_window(null_rect(), this, ChildIdClose))
@@ -135,7 +135,7 @@ namespace user
       if(!IsWindow())
       {
 
-         if(!create_window(NULL, NULL, WS_VISIBLE | WS_CHILD,NULL, pwndFill, 0))
+         if(!create_window(NULL,NULL,WS_VISIBLE | WS_CHILD,null_rect(),pwndFill,0))
             return false;
 
       }

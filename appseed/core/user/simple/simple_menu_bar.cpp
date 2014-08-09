@@ -548,7 +548,7 @@ bool simple_menu_bar::create_window_ex(sp(::user::interaction) pParentWnd, uint3
    ASSERT_VALID(pParentWnd);   // must have a parent
    ASSERT (!((dwStyle & CBRS_SIZE_FIXED) && (dwStyle & CBRS_SIZE_DYNAMIC)));
 
-   SetBorders(lpcrect);
+   SetBorders(rect);
 
    // save the style
    m_dwStyle = (dwStyle & CBRS_ALL);
@@ -566,7 +566,7 @@ bool simple_menu_bar::create_window_ex(sp(::user::interaction) pParentWnd, uint3
 //   ASSERT(gen_DropDownWidth != -1);
 
    // create the oswindow
-   if (!::user::interaction::create_window(NULL, NULL, dwStyle, lpcrect, pParentWnd, nID))
+   if (!::user::interaction::create_window(NULL, NULL, dwStyle, rect, pParentWnd, nID))
       return FALSE;
 
    // sync up the sizes

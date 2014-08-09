@@ -152,7 +152,7 @@ namespace user
 
       get_data()->m_panea[iTabNew].m_pholder = pholder;
 
-      sp(::user::split_view) psplitview = impact::create_view < ::user::split_view > (NULL,  pholder, id3);
+      sp(::user::split_view) psplitview = impact::create_view < ::user::split_view >(null_rect(),pholder,id3);
 
       pcreatordata->m_pwnd = psplitview;
 

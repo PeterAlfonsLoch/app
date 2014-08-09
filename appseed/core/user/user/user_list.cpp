@@ -139,7 +139,7 @@ namespace user
                | HDS_FULLDRAG
                | HDS_HOTTRACK
                | HDS_DRAGDROP,
-               NULL,
+               null_rect(),
                this,
                1023) != 0;
          }

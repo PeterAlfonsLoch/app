@@ -102,12 +102,12 @@ namespace user
          rect(m_cxLeftBorder, m_cyTopBorder, m_cxRightBorder, m_cyBottomBorder), nID);
    }
 
-   bool tool_bar::create_window_ex(sp(::user::interaction) pParentWnd,uint32_t dwCtrlStyle,uint32_t dwStyle,const RECT & rect,UINT nID)
+   bool tool_bar::create_window_ex(sp(::user::interaction) pParentWnd,uint32_t dwCtrlStyle,uint32_t dwStyle,const RECT & rectBorders,UINT nID)
    {
       ASSERT_VALID(pParentWnd);   // must have a parent
       ASSERT (!((dwStyle & CBRS_SIZE_FIXED) && (dwStyle & CBRS_SIZE_DYNAMIC)));
 
-      SetBorders(lpcrect);
+      SetBorders(rectBorders);
 
       // save the style
       m_dwStyle = (dwStyle & CBRS_ALL);
@@ -118,7 +118,7 @@ namespace user
       dwStyle |= CCS_NOPARENTALIGN|CCS_NOMOVEY|CCS_NODIVIDER|CCS_NORESIZE;
 
 
-      if (!::user::interaction::create_window(TOOLBARCLASSNAME, NULL, dwStyle, lpcrect, pParentWnd, nID))
+      if (!::user::interaction::create_window(TOOLBARCLASSNAME, NULL, dwStyle, null_rect(), pParentWnd, nID))
          return FALSE;
 
       // sync up the sizes
