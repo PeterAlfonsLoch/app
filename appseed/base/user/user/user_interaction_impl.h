@@ -504,7 +504,7 @@ namespace user
 #ifdef WINDOWSEX
       void OnNcCalcSize(bool bCalcValidRects,NCCALCSIZE_PARAMS* lpncsp);
 #endif
-      bool OnNcCreate(LPCREATESTRUCT lpCreateStruct);
+      bool OnNcCreate(::user::create_struct * lpCreateStruct);
       LRESULT OnNcHitTest(point point);
       void OnNcLButtonDblClk(UINT nHitTest,point point);
       void OnNcLButtonDown(UINT nHitTest,point point);

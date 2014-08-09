@@ -252,7 +252,7 @@ namespace user
       // border space negotiation
       enum BorderCmd { borderGet = 1, borderRequest = 2, borderSet = 3 };
       virtual bool NegotiateBorderSpace(UINT nBorderCmd, LPRECT lpRectBorder);
-      virtual bool OnCreateClient(LPCREATESTRUCT lpcs, sp(::create_context) pContext);
+      virtual bool on_create_client(::user::create_struct * lpcs, sp(::create_context) pContext);
       void OnContextHelp();   // for Shift+F1 help
       void OnUpdateControlBarMenu(cmd_ui* pCmdUI);
       bool OnBarCheck(UINT nID);
@@ -284,7 +284,7 @@ namespace user
       virtual bool pre_create_window(::user::create_struct& cs);
       //virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
       virtual void PostNcDestroy();   // default to delete this.
-      int32_t OnCreateHelper(LPCREATESTRUCT lpcs, sp(::create_context) pContext);
+      int32_t OnCreateHelper(::user::create_struct * lpcs, sp(::create_context) pContext);
       void BringToTop(int32_t nCmdShow);
       // bring interaction_impl to top for SW_ commands which affect z-order
 

@@ -5900,7 +5900,7 @@ if(psurface == g_cairosurface)
    void interaction_impl::OnNcCalcSize(bool, NCCALCSIZE_PARAMS*)
    { Default(); }
 
-   bool interaction_impl::OnNcCreate(LPCREATESTRUCT)
+   bool interaction_impl::OnNcCreate(::user::create_struct *)
    {
 
       return Default() != FALSE;
@@ -6285,7 +6285,7 @@ if(psurface == g_cairosurface)
 //      }
 //
 //      ASSERT(lparam != NULL);
-//      LPCREATESTRUCT lpcs = ((LPCBT_CREATEWND)lparam)->lpcs;
+//      ::user::create_struct * lpcs = ((LPCBT_CREATEWND)lparam)->lpcs;
 //      ASSERT(lpcs != NULL);
 //
 //      sp(::user::interaction) pWndInit = pThreadState->m_pWndInit;

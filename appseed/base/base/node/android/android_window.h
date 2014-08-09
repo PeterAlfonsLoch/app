@@ -457,7 +457,7 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
    // Nonclient-Area message handler member functions
       bool OnNcActivate(bool bActive);
       void OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS* lpncsp);
-      bool OnNcCreate(LPCREATESTRUCT lpCreateStruct);
+      bool OnNcCreate(::user::create_struct * lpCreateStruct);
       DECL_GEN_SIGNAL(_001OnNcDestroy);
       LRESULT OnNcHitTest(point point);
       void OnNcLButtonDblClk(UINT nHitTest, point point);

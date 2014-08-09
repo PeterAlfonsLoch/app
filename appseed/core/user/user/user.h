@@ -164,7 +164,7 @@ public:
    void OnGetMinMaxInfo(MINMAXINFO* pMMI);
    LRESULT OnFloatStatus(WPARAM wParam, LPARAM lParam);
    LRESULT OnQueryCenterWnd(WPARAM wParam, LPARAM lParam);
-   bool OnNcCreate(LPCREATESTRUCT lpcs);
+   bool OnNcCreate(::user::create_struct * lpcs);
 
 public:
    static void CalcBorders(LPRECT lpClientRect, uint32_t dwStyle = 0, uint32_t dwExStyle = 0);

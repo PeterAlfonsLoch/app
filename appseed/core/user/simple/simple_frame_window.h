@@ -109,7 +109,7 @@ public:
    sp(::user::interaction) WindowDataGetWnd();
    virtual void layout();
    virtual void ActivateFrame(int32_t nCmdShow = -1);
-   virtual bool OnCreateClient(LPCREATESTRUCT lpcs, sp(::create_context) pContext);
+   virtual bool on_create_client(::user::create_struct * lpcs, sp(::create_context) pContext);
    virtual bool pre_create_window(::user::create_struct& cs);
    virtual void pre_translate_message(signal_details * pobj);
 

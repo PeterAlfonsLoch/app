@@ -1036,10 +1036,10 @@ typedef struct tagCREATESTRUCTW {
 } CREATESTRUCTW,*LPCREATESTRUCTW;
 #ifdef UNICODE
 typedef CREATESTRUCTW ::user::create_struct;
-typedef LPCREATESTRUCTW LPCREATESTRUCT;
+typedef LPCREATESTRUCTW ::user::create_struct *;
 #else
 typedef CREATESTRUCTA ::user::create_struct;
-typedef LPCREATESTRUCTA LPCREATESTRUCT;
+typedef LPCREATESTRUCTA ::user::create_struct *;
 #endif // UNICODE
 
 typedef struct tagWINDOWPLACEMENT {

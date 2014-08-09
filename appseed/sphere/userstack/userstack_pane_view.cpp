@@ -252,7 +252,7 @@ namespace userstack
 
          if(sess(pappCurrent).file().exists(strIcon))
          {
-            ppane->m_dib.create(allocer());
+            ppane->m_dib.alloc(allocer());
             ppane->m_dib.load_from_file(strIcon);
          }
          else

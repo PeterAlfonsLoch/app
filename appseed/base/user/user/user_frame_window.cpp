@@ -675,7 +675,7 @@ namespace user
    }
    */
 
-   bool frame_window::OnCreateClient(LPCREATESTRUCT, sp(::create_context) pContext)
+   bool frame_window::on_create_client(::user::create_struct *, sp(::create_context) pContext)
    {
       
       if (pContext != NULL && (pContext->m_user->m_typeinfoNewView || pContext->m_user->m_puiNew != NULL))
@@ -709,11 +709,11 @@ namespace user
 
    }
 
-   int32_t frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, sp(::create_context) pContext)
+   int32_t frame_window::OnCreateHelper(::user::create_struct * lpcs, sp(::create_context) pContext)
    {
 
       // create special children first
-      if (!OnCreateClient(lpcs, pContext))
+      if (!on_create_client(lpcs, pContext))
       {
          TRACE(::base::trace::category_AppMsg, 0, "Failed to create client pane/::user::impact for frame.\n");
          return -1;

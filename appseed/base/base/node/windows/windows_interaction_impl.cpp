@@ -4929,7 +4929,7 @@ namespace windows
       Default();
    }
 
-   bool interaction_impl::OnNcCreate(LPCREATESTRUCT)
+   bool interaction_impl::OnNcCreate(::user::create_struct *)
    {
 
       return Default() != FALSE;
@@ -5331,7 +5331,7 @@ namespace windows
 
       ASSERT(lParam != NULL);
 
-      LPCREATESTRUCT lpcs = ((LPCBT_CREATEWND)lParam)->lpcs;
+      ::user::create_struct * lpcs = ((LPCBT_CREATEWND)lParam)->lpcs;
 
       ASSERT(lpcs != NULL);
 

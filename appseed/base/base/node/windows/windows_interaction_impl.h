@@ -467,7 +467,7 @@ namespace windows
       // Nonclient-Area message handler member functions
       bool OnNcActivate(bool bActive);
       void OnNcCalcSize(bool bCalcValidRects,NCCALCSIZE_PARAMS* lpncsp);
-      bool OnNcCreate(LPCREATESTRUCT lpCreateStruct);
+      bool OnNcCreate(::user::create_struct * lpCreateStruct);
       DECL_GEN_SIGNAL(_001OnNcDestroy);
       DECL_GEN_SIGNAL(_001OnNcCalcSize);
       LRESULT OnNcHitTest(point point);

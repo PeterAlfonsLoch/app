@@ -1750,7 +1750,7 @@ namespace user
 #endif
 
 
-   bool interaction_impl::OnNcCreate(LPCREATESTRUCT)
+   bool interaction_impl::OnNcCreate(::user::create_struct *)
    {
       throw interface_only_exception(get_app());
    }

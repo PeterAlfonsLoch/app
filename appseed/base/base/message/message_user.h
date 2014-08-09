@@ -10,7 +10,7 @@ namespace message
    public:
 
       create(sp(::base::application) papp): element(papp),message::base(papp) {}
-      LPCREATESTRUCT m_lpcreatestruct;
+      ::user::create_struct * m_lpcreatestruct;
 
       virtual void set_lresult(LRESULT lresult);
       using ::message::base::set;

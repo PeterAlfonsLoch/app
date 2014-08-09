@@ -355,10 +355,10 @@ void simple_frame_window::_001OnMove(signal_details * pobj)
 
 }
 
-bool simple_frame_window::OnCreateClient(LPCREATESTRUCT lpcs, sp(::create_context) pContext)
+bool simple_frame_window::on_create_client(::user::create_struct * lpcs, sp(::create_context) pContext)
 {
    // trans   HICON hicon = GetIcon(false);
-   return ::user::frame_window::OnCreateClient(lpcs, pContext);
+   return ::user::frame_window::on_create_client(lpcs, pContext);
 }
 
 bool simple_frame_window::pre_create_window(::user::create_struct& cs)
