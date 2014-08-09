@@ -17,6 +17,7 @@ namespace simple_ui
       int32_t                 m_iResult;
       uint32_t                m_uiFlags;
       string                  m_strMessage;
+      string                  m_strTitle;
       manual_reset_event      m_evReady;
       
 

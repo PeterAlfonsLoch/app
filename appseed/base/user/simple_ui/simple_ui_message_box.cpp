@@ -9,7 +9,7 @@ namespace simple_ui
 {
 
 
-   message_box::message_box(sp(::base::application) papp,const char * pszMessage,uint32_t uiFlags):
+   message_box::message_box(sp(::base::application) papp,const char * pszMessage,const char * pszCaption, uint32_t uiFlags):
       element(papp),
       m_evReady(papp)
    {
@@ -17,6 +17,7 @@ namespace simple_ui
       m_evReady.ResetEvent();
       m_bMayProDevian   = false;
       m_strMessage      = pszMessage;
+      m_strTitle        = pszCaption;
       m_uiFlags         = uiFlags;
       m_iResult         = 0;
 
@@ -112,7 +113,7 @@ namespace simple_ui
 
       session().get_main_monitor(rectDesktop);
 
-      SetWindowText("fontopus Auth Windows");
+      SetWindowText(m_strTitle);
 
       rect rectFontopus;
 
