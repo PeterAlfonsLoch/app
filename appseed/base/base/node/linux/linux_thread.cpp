@@ -1,8 +1,4 @@
 #include "framework.h"
-#include <fcntl.h>
-
-
-
 
 
 namespace linux
@@ -11,28 +7,22 @@ namespace linux
 
    thread::thread(sp(::base::application) papp) :
       element(papp),
-      message_queue(papp),
       ::ansios::thread_impl(papp),
       ::thread_impl(papp)
    {
 
+
    }
+
 
    thread::~thread()
    {
 
 
-
    }
 
 
-
 } // namespace linux
-
-
-
-
-
 
 
 void __node_init_app_thread(::thread * pthread)
@@ -41,10 +31,6 @@ void __node_init_app_thread(::thread * pthread)
    UNREFERENCED_PARAMETER(pthread);
 
 }
-
-
-
-
 
 
 bool __node_init_thread(::thread * pthread)
@@ -66,8 +52,6 @@ bool __node_init_thread(::thread * pthread)
    return true;
 
 }
-
-
 
 
 bool __node_term_thread(::thread * pthread)

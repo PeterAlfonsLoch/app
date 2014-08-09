@@ -257,25 +257,26 @@ namespace linux
 
    }
 
-
-   bool interaction_impl::CreateEx(DWORD dwExStyle, const char * lpszClassName,
+   bool interaction_impl::create_window_ex(DWORD dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
-      const RECT& rect, sp(::user::interaction) pParentWnd, id id,
+      const RECT& rect, sp(::user::interaction) puiParent, id id,
       LPVOID lpParam /* = NULL */)
    {
-      return CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle,
-         rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top,
-         pParentWnd->get_safe_handle(), id, lpParam);
+
+      if(!native_create_window_ex(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, puiParent->get_safe_handle(), id, lpParam))
+         return false;
+
+      return true;
+
    }
 
 
-
-
-   bool interaction_impl::CreateEx(DWORD dwExStyle, const char * lpszClassName,
+   bool interaction_impl::native_create_window_ex(DWORD dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
-      int32_t x, int32_t y, int32_t nWidth, int32_t nHeight,
-      oswindow hWndParent, id id, LPVOID lpParam)
+      const RECT& rect, oswindow hWndParent, id id,
+      LPVOID lpParam /* = NULL */)
    {
+
       UNREFERENCED_PARAMETER(id);
 //      ASSERT(lpszClassName == NULL || __is_valid_string(lpszClassName) ||
   //       __is_valid_atom(lpszClassName));
@@ -287,10 +288,7 @@ namespace linux
       cs.lpszClass = lpszClassName;
       cs.lpszName = lpszWindowName;
       cs.style = dwStyle;
-      cs.x = x;
-      cs.y = y;
-      cs.cx = nWidth;
-      cs.cy = nHeight;
+      cs = rect;
       cs.hwndParent = hWndParent;
       //   cs.hMenu = hWndParent == NULL ? NULL : nIDorHMenu;
       cs.hMenu = NULL;
@@ -326,6 +324,11 @@ namespace linux
       if(cs.hwndParent == (oswindow) HWND_MESSAGE)
       {
          m_oswindow = oswindow_get_message_only_window(m_pui);
+
+         if(m_oswindow != NULL)
+         {
+            m_pui->m_id = id;
+         }
 
          send_message(WM_CREATE, 0, (LPARAM) &cs);
 
@@ -501,7 +504,7 @@ d.unlock();
       //if (!unhook_window_create())
         // PostNcDestroy();        // cleanup if CreateWindowEx fails too soon
 
-
+   m_pui->m_id = id;
          send_message(WM_CREATE, 0, (LPARAM) &cs);
 
          send_message(WM_SIZE);
@@ -513,7 +516,7 @@ d.unlock();
    }
 
 
-   bool interaction_impl::pre_create_window(CREATESTRUCT& cs)
+   bool interaction_impl::pre_create_window(::user::create_struct & cs)
    {
 
       return true;
@@ -521,7 +524,7 @@ d.unlock();
    }
 
 
-   bool interaction_impl::create(const char * lpszClassName,
+   bool interaction_impl::create_window(const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
       const RECT& rect,
       sp(::user::interaction) pParentWnd, id id,
@@ -531,29 +534,37 @@ d.unlock();
       ASSERT(pParentWnd != NULL);
       ASSERT((dwStyle & WS_POPUP) == 0);
 
-      return CreateEx(0, lpszClassName, lpszWindowName,
-         dwStyle | WS_CHILD,
-         rect.left, rect.top,
-         rect.right - rect.left, rect.bottom - rect.top,
-         pParentWnd->get_handle(), id, (LPVOID)pContext);
+      if(!create_window_ex(0, lpszClassName, lpszWindowName,dwStyle | WS_CHILD, rect, pParentWnd, id, (LPVOID)pContext))
+        return false;
+
+      return true;
+
    }
+
 
    bool interaction_impl::create_message_queue(const char * pszName)
    {
+
       if(IsWindow())
       {
+
          SetWindowText(pszName);
+
       }
       else
       {
-         string strName = "ca2::fontopus::message_wnd::winservice_1";
-//         if(!CreateEx(0, NULL, pszName, WS_CHILD, 0, 0, 0, 0, oswindow_MESSAGE, NULL, NULL))
-         if(!CreateEx(0, NULL, pszName, WS_CHILD, 0, 0, 0, 0,HWND_MESSAGE, id(), NULL))
+
+         if(!native_create_window_ex(0, NULL, pszName, WS_CHILD,null_rect(),HWND_MESSAGE))
          {
+
             return false;
+
          }
+
       }
+
       return true;
+
    }
 
 
@@ -1115,6 +1126,7 @@ d.unlock();
 
    void interaction_impl::message_handler(::signal_details * pobj)
    {
+
       SCAST_PTR(::message::base, pbase, pobj);
 
       if(m_pui != NULL)
@@ -1122,17 +1134,6 @@ d.unlock();
          m_pui->pre_translate_message(pobj);
          if(pobj->m_bRet)
             return;
-      }
-
-
-      if(m_pcallback != NULL)
-      {
-
-         m_pcallback->message_queue_message_handler(pobj);
-
-         if(pobj->m_bRet)
-            return;
-
       }
 
 
@@ -5397,7 +5398,7 @@ if(psurface == g_cairosurface)
    void interaction_impl::OnNcCalcSize(bool, NCCALCSIZE_PARAMS*)
    { Default(); }
 
-   bool interaction_impl::OnNcCreate(LPCREATESTRUCT)
+   bool interaction_impl::OnNcCreate(::user::create_struct *)
    {
 
       return Default() != FALSE;
