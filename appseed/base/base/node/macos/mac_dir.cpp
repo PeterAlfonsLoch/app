@@ -1021,7 +1021,8 @@ namespace mac
                   }
                }
                char * pszError;
-               FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM, NULL, dwError, 0, (LPTSTR) &pszError, 8, NULL);
+//               FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM, NULL, dwError, 0, (LPTSTR) &pszError, 8, NULL);
+                              FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, NULL, dwError, 0, (LPTSTR) &pszError, 8, NULL);
                
                //TRACE("dir::mk CreateDirectoryW last error(%d)=%s", dwError, pszError);
                // xxx               ::LocalFree(pszError);

@@ -203,6 +203,61 @@ namespace mac
    }
    
    
+   bool window_draw::pre_run()
+   {
+      
+      if(!create_message_queue("ca2::twf - ca2 Transparent Window Framework"))
+      {
+         
+         TRACE("Could not initialize ca2::twf - ca2 Transparent Window Framework!");
+         
+         return 0;
+         
+      }
+      
+      return true;
+      
+   }
+   
+   
+   UINT window_draw::RedrawProc()
+   {
+      MESSAGE msg;
+      while(m_bRun && ::get_thread()->m_bRun)
+      {
+         try
+         {
+            if(m_bProDevianMode)
+            {
+               _synch_redraw();
+            }
+         }
+         catch(...)
+         {
+         }
+         //         while(::PeekMessage(&msg, ::caNULL, NULL, NULL, PM_NOREMOVE))
+         while(::PeekMessage(&msg, NULL, 0, 0, 0))
+         {
+            ::get_thread()->pump_message();
+         }
+         int32_t iUiDataWriteWindowTimeForTheApplicationInThisMachine = 8;
+         if(m_iFramesPerSecond == 0)
+         {
+            Sleep(1000);
+         }
+         else if((1000 / m_iFramesPerSecond) > m_dwLastDelay)
+         {
+            Sleep(max((DWORD) max(0, iUiDataWriteWindowTimeForTheApplicationInThisMachine), (1000 / m_iFramesPerSecond) - m_dwLastDelay));
+         }
+         else
+         {
+            Sleep(iUiDataWriteWindowTimeForTheApplicationInThisMachine);
+         }
+      }
+      //delete this;
+      return 0;
+   }
+   
    DWORD g_dwLastWindowDraw;
    // lprect should be in screen coordinates
    bool window_draw::UpdateBuffer()

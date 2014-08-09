@@ -498,7 +498,7 @@ bool string_format::parse(const char * & s)
       void format(string_format * pformat, lparam const & lparam)
       {
 
-          ::str::format(pformat, lparam.m_lparam);
+          ::str::format(pformat, (int_ptr)lparam.m_lparam);
 
       }
 

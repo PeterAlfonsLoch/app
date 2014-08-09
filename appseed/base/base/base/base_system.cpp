@@ -1854,20 +1854,20 @@ namespace base
 
          free(pszCurDir);
 
-         if(App(this).file().exists(System.dir().path(strCurDir,"core.dylib")))
+         if(Application.file().exists(System.dir().path(strCurDir,"core.dylib")))
          {
             m_strCa2ModuleFolder = strCurDir;
             goto finishedCa2Module;
          }
 
 
-         if(App(this).file().exists(System.dir().path(m_strModuleFolder,"core.dylib")))
+         if(Application.file().exists(System.dir().path(m_strModuleFolder,"core.dylib")))
          {
             m_strCa2ModuleFolder = m_strModuleFolder;
             goto finishedCa2Module;
          }
 
-         strModuleFileName = App(this).dir().pathfind(getenv("LD_LIBRARY_PATH"),"core.dylib","rfs"); // readable - normal file - non zero sized
+         strModuleFileName = Application.dir().pathfind(getenv("LD_LIBRARY_PATH"),"core.dylib","rfs"); // readable - normal file - non zero sized
 
       }
 

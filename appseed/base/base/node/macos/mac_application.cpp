@@ -10,10 +10,8 @@ namespace mac
    application::application(::base::application * papp) :
       element(papp)
    {
-      ::thread::m_pimpl.create(allocer());
-      ::thread::m_pimpl->m_puser = this;
-
-      m_nSafetyPoolSize = 512;        // default size
+      m_pthreadimpl.alloc(allocer());
+      m_pthreadimpl->m_pthread = this;
 
       shell::theLinuxShell.Initialize();
       
@@ -30,7 +28,7 @@ namespace mac
       //      ::ca2::smart_pointer < ::application_base > ::m_p->_001OnFileNew(NULL);
    }
 
-   sp(::user::object) application::_001OpenDocumentFile(var varFile)
+   sp(::user::document) application::_001OpenDocumentFile(var varFile)
    {
       //    return ::ca2::smart_pointer < ::application_base > ::m_p->_001OpenDocumentFile(varFile);
       return NULL;
@@ -86,7 +84,7 @@ namespace mac
    bool application::initialize1()
    {
 
-      MAC_THREAD(::thread::m_pimpl.m_p)->set_run();
+         set_run();
 
       return true;
 
@@ -109,9 +107,8 @@ namespace mac
 
       // avoid calling CloseHandle() on our own thread handle
       // during the thread destructor
-      ::thread::m_pimpl->set_os_data(NULL);
+      m_pthreadimpl->set_os_data(NULL);
 
-      ::thread::m_pimpl->m_bRun = false;
 
       int32_t iRet = ::base::application::exit_instance();
 
@@ -172,22 +169,22 @@ namespace mac
    return ::win::graphics::from_handle((HDC) pdata);
    }*/
 
-   sp(::window) application::window_from_os_data(void * pdata)
+   sp(::user::interaction) application::window_from_os_data(void * pdata)
    {
-      return ::mac::window::from_handle((oswindow) pdata);
+      return ::mac::interaction_impl::from_handle((oswindow) pdata);
    }
 
-   sp(::window) application::window_from_os_data_permanent(void * pdata)
+   sp(::user::interaction) application::window_from_os_data_permanent(void * pdata)
    {
-      ::window * pwnd = ::mac::window::FromHandlePermanent((oswindow) pdata);
+      sp(::user::interaction) pwnd = ::mac::interaction_impl::FromHandlePermanent((oswindow) pdata);
       if(pwnd != NULL)
          return pwnd;
-      user::interaction_ptr_array wndptra = System.frames();
+      ptr_array < ::user::interaction>  wndptra = System.frames();
       for(int32_t i = 0; i < wndptra.get_count(); i++)
       {
-         if(wndptra[i].get_safe_handle() == (oswindow) pdata)
+         if(wndptra[i]->get_safe_handle() == (oswindow) pdata)
          {
-            return wndptra[i].get_wnd();
+            return wndptra[i];
          }
       }
       return NULL;
@@ -258,14 +255,14 @@ namespace mac
 
    }
 
-   sp(::window) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+   sp(::user::interaction) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
    {
-      return window::FindWindow(lpszClassName, lpszWindowName);
+      return ::mac::interaction_impl::FindWindow(lpszClassName, lpszWindowName);
    }
 
-   sp(::window) application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
+   sp(::user::interaction) application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
    {
-      return window::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow);
+      return ::mac::interaction_impl::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow);
    }
 
 
@@ -334,13 +331,11 @@ namespace mac
       ASSERT(pdata->m_hPrevInstance == NULL);
 
       string strCmdLine          = pdata->m_strCommandLine;
-      UINT nCmdShow              = pdata->m_nCmdShow;
 
       // handle critical errors and avoid Windows message boxes
       // xxx         SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
 
-      m_strCmdLine = strCmdLine;
-      m_nCmdShow = nCmdShow;
+      System.m_strCmdLine = strCmdLine;
       //pApp->SetCurrentHandles();
       SetCurrentHandles();
 
@@ -384,7 +379,7 @@ namespace mac
 
       }
 
-      m_strModuleFolder = ::dir::name(str);
+      System.m_strModuleFolder = ::dir::name(str);
 
 
       {
@@ -398,19 +393,19 @@ namespace mac
          if(file_exists_dup(::dir::path(strCurDir, "libcore.dylib")))
          {
             
-            m_strCa2ModuleFolder = strCurDir;
+            System.m_strCa2ModuleFolder = strCurDir;
             
          }
-         else if(file_exists_dup(::dir::path(m_strModuleFolder, "libcore.dylib")))
+         else if(file_exists_dup(::dir::path(System.m_strModuleFolder, "libcore.dylib")))
          {
             
-            m_strCa2ModuleFolder = m_strModuleFolder;
+            System.m_strCa2ModuleFolder = System.m_strModuleFolder;
             
          }
          else
          {
 
-            m_strCa2ModuleFolder = ::dir::name(::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libcore.dylib", "rfs")); // readable - normal file - non zero sized
+            System.m_strCa2ModuleFolder = ::dir::name(::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libcore.dylib", "rfs")); // readable - normal file - non zero sized
             
          }
 

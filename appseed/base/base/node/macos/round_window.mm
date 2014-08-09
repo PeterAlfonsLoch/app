@@ -51,7 +51,7 @@ void round_window::round_window_show()
 }
 
 
-void round_window::round_window_show()
+void round_window::round_window_hide()
 {
     
     [[m_proundwindow->m_controller dd_invokeOnMainThread] hide : m_proundwindow];

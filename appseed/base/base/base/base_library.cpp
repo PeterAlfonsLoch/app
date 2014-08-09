@@ -218,8 +218,6 @@ namespace base
             if(m_pca2library != NULL)
             {
 
-               delete m_pca2library;
-
                m_pca2library = NULL;
 
             }

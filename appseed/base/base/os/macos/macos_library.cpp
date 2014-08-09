@@ -2,58 +2,10 @@
 #include <dlfcn.h>
 
 
-namespace base
-{
 
-   library::library(sp(::base::application) papp) :
-      element(papp)
-   {
-      
-      m_plibrary = NULL;
-      
-      m_bAutoClose = false;
-      
-   }
-
-   
-   library::library(sp(::base::application) papp, const char * pszOpen) :
-      element(papp)
-   {
-      
-      m_plibrary = NULL;
-      
-      m_bAutoClose = false;
-      
-      open(pszOpen);
-      
-   }
-   
-
-   library::~library()
-   {
-      
-      if(m_bAutoClose)
-      {
-      
-         close();
-         
-      }
-      
-   }
-   
-
-   bool library::open(const char * pszPath, bool bAutoClose)
+   void * __node_library_open(const char * pszPath)
    {
    
-      if(m_bAutoClose)
-      {
-         
-         close();
-      
-      }
-      
-      m_bAutoClose = bAutoClose;
-      
       string strPath(pszPath);
       
       if(strPath == "os")
@@ -71,20 +23,20 @@ namespace base
       if(!str_begins_dup(strPath, "lib"))
          strPath = "lib" + strPath;
       
-      m_plibrary = dlopen(strPath, RTLD_LOCAL | RTLD_LAZY);
+      void * plibrary = dlopen(strPath, RTLD_LOCAL | RTLD_LAZY);
       
-      return true;
+      return plibrary;
       
    }
    
 
-   bool library::close()
+   bool __node_library_close(void * plibrary)
    {
       
-      if(m_plibrary != NULL)
+      if(plibrary != NULL)
       {
-         
-         dlclose(m_plibrary);
+   
+         dlclose(plibrary);
          
       }
       
@@ -93,62 +45,25 @@ namespace base
    }
 
 
-   void * library::raw_get(const char * pszElement)
+   void * __node_library_raw_get(void * plibrary, const char * pszElement)
    {
       
-      return dlsym(m_plibrary, pszElement);
+      return dlsym(plibrary, pszElement);
       
    }
    
    
-   bool library::is_opened()
-   {
-      
-      return m_plibrary != NULL;
-      
-   }
-   
-   
-   bool library::is_closed()
-   {
-      
-      return m_plibrary == NULL;
-      
-   }
 
 
    
    
-} // namespace base
-
-
-
-
-ca2_library::ca2_library(sp(::base::application) papp) :
-element(papp),
-::base::library(papp)
+void * __node_library_open_ca2(const char * pszPath)
 {
    
-}
-
-
-ca2_library::ca2_library(sp(::base::application) papp, const char * pszOpen) :
-element(papp),
-::base::library(papp, pszOpen)
-{
+   string strPath(pszPath);
    
-}
-
-
-ca2_library::~ca2_library()
-{
+   void * plibrary = dlopen(strPath, RTLD_LOCAL | RTLD_LAZY);
    
-}
-
-
-bool ca2_library::open(const char * pszPath, bool bAutoClose)
-{
-   
-   return ::base::library::open(pszPath, bAutoClose);
+   return plibrary;
    
 }
