@@ -421,7 +421,7 @@ int32_t simple_ui_message_box(oswindow interaction_impl,const char * lpText,cons
 
    {
 
-      ::simple_ui::message_box * pmessagebox = new ::simple_ui::message_box(::get_thread_app(),lpText,uiFlags);
+      ::simple_ui::message_box * pmessagebox = new ::simple_ui::message_box(::get_thread_app(),lpText,lpCaption,uiFlags);
 
       try
       {
