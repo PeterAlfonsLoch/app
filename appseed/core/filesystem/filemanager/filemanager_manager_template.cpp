@@ -42,7 +42,6 @@ namespace filemanager
 
          pfilemanagerdata = canew(::filemanager::data(get_app()));
          pfilemanagerdata->m_pcallback = &platform().filemanager();
-         pfilemanagerdata->m_pmanager = this;
          pfilemanagerdata->m_iTemplate = m_iTemplate;
          pfilemanagerdata->m_iDocument = m_iNextDocument++;
          pfilemanagerdata->m_bTransparentBackground = pcreatecontext == NULL ? true : pcreatecontext->m_bTransparentBackground;
