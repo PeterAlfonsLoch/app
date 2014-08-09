@@ -189,7 +189,7 @@ namespace draw2d
       virtual bool to(::draw2d::graphics * pgraphics, point pt);
       virtual bool to(::draw2d::graphics * pgraphics, class size size);
       virtual bool to(::draw2d::graphics * pgraphics, point pt, class size size);
-      virtual bool to(::draw2d::graphics * pgraphics,LPCRECT lpcrect);
+      virtual bool to(::draw2d::graphics * pgraphics, const RECT & lpcrect);
       virtual bool to(::draw2d::graphics * pgraphics, point pt, class size size, point ptSrc);
 
 

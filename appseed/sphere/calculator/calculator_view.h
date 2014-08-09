@@ -25,7 +25,7 @@ namespace calculator
 
 
       virtual void install_message_handling(::message::dispatch * pinterface);
-      virtual bool pre_create_window(CREATESTRUCT& cs);
+      virtual bool pre_create_window(::user::create_struct& cs);
       DECL_GEN_SIGNAL(_001OnInitialUpdate);
          virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, ::object* pHint);
 

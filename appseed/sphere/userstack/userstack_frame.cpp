@@ -63,7 +63,7 @@ namespace userstack
    }
 
 
-   bool frame::pre_create_window(CREATESTRUCT& cs)
+   bool frame::pre_create_window(::user::create_struct& cs)
    {
 
       if( !simple_frame_window::pre_create_window(cs) )

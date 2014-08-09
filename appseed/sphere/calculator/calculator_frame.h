@@ -20,7 +20,7 @@ namespace calculator
       frame(sp(::base::application) papp);
       virtual ~frame();
 
-      virtual bool pre_create_window(CREATESTRUCT& cs);
+      virtual bool pre_create_window(::user::create_struct& cs);
 
       void ShowControlBars(bool bShow);
       void AnimateStatusBar();
