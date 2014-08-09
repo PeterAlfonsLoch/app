@@ -132,9 +132,13 @@ namespace user
 
 
       virtual bool LoadXmlToolBar(const char * lpszFileName);
+      bool _001GetItemRect(int32_t iItem,LPRECT lprect);
+      bool _001GetItemRect(int32_t iItem,LPRECT lprect,EElement eelement);
+      bool _001SetItem(int32_t iItem, toolbar_item * pitem);
+      bool _001GetItem(int32_t iItem, toolbar_item * pitem);
+      int32_t _001GetItemCount();
 
 
-      ::count _001GetItemCount();
       size SimpleLayout();
 
 
