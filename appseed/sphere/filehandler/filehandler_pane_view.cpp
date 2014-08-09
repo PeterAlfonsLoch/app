@@ -151,7 +151,7 @@ namespace filehandler
       if(::str::begins_eat_ci(strFile, "default_file_handler://"))
       {
 
-         sp(::filehandler::view) pview = create_view < ::filehandler::view > (get_document(), pcreatordata->m_pholder);
+         sp(::filehandler::view) pview = create_view < ::filehandler::view > (pcreatordata);
 
          pcreatordata->m_pwnd = pview;
 

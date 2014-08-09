@@ -5331,7 +5331,7 @@ namespace windows
 
       ASSERT(lParam != NULL);
 
-      ::user::create_struct * lpcs = ((LPCBT_CREATEWND)lParam)->lpcs;
+      ::user::create_struct * lpcs = (::user::create_struct *) ((LPCBT_CREATEWND)lParam)->lpcs;
 
       ASSERT(lpcs != NULL);
 

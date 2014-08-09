@@ -8,8 +8,7 @@ namespace command
    frame::frame(sp(::base::application) papp) :
       element(papp),
       simple_frame_window(papp),
-      ::message_queue(papp),
-      m_toolbar(papp)
+      ::message_queue(papp)
    {
       m_pimagelist = NULL;
       m_iFrameData = 10;
@@ -239,9 +238,16 @@ namespace command
 
       SCAST_PTR(::message::create, pcreate, pobj);
 
+      pobj->previous();
+
+      if(pobj->m_bRet)
+         return;
+
       if(!data_get("DockPosition", (int32_t &) m_eposition))
       {
+
          m_eposition = position_left;
+
       }
 
 
@@ -258,23 +264,22 @@ namespace command
       m_pimagelist->add_matter_icon("system/language_change.ico");
 
 
-      string str = Application.file().as_string(
-         Application.dir().matter("command\\toolbar.xml"));
 
-	   if (!m_toolbar.CreateEx(this) ||
-		    !m_toolbar.LoadXmlToolBar(str))
+	   if (!LoadToolBar(0,"command\\toolbar.xml") )
 	   {
 		   pcreate->failed("Failed to create toolbar\n");
-		   return;
-	   }
-      if(pobj->m_bRet)
+         pcreate->set_lresult(-1);
+         pcreate->m_bRet = true;
          return;
+	   }
+
       if(!message_queue::create_message_queue("::ca2::fontopus::message_wnd::command"))
       {
          pcreate->set_lresult(-1);
          pcreate->m_bRet = true;
          return;
       }
+
    }
 
    void frame::_001OnMove(signal_details * pobj)

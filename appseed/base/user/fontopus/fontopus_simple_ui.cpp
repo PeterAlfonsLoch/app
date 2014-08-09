@@ -137,7 +137,7 @@ namespace fontopus
    string simple_ui::do_fontopus(const RECT & rectParam)
    {
 
-      ::user::interaction * puiParent = session().oprop("plugin_parent").cast < ::user::interaction >();
+      ::user::interaction * puiParent = session().oprop("fontopus_parent").cast < ::user::interaction >();
 
       ::rect rectDesktop;
 

@@ -13,11 +13,10 @@ namespace command
 
       string                  m_strAnimatedStatusBarText;
       bool                    m_bAutoHideOnOutClick;
-      int32_t                     m_iAnimateStep;
-      sp(image_list)            m_pimagelist;
+      int32_t                 m_iAnimateStep;
+      sp(image_list)          m_pimagelist;
       bool                    m_bTimerHide;
       bool                    m_bTimerOn;
-      simple_toolbar          m_toolbar;
       e_position              m_eposition;
       bool                    m_bMoveDrag;
       bool                    m_bLControl;

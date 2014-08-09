@@ -173,7 +173,7 @@ namespace userstack
          return;
       }
 
-      m_ppaneview = (create_view(System.type_info < pane_view > (), get_document(), this, 102));
+      m_ppaneview = (create_view(System.type_info < pane_view > (), get_document(), null_rect(), this, 102));
 
 
    }
