@@ -69,7 +69,7 @@ namespace linux
 
    interaction_impl::interaction_impl()
    {
-      m_pcallback = NULL;
+
       m_nModalResult = 0;
       m_bMouseHover = false;
       m_puicapture = NULL;
@@ -79,7 +79,7 @@ namespace linux
 
    void interaction_impl::construct(oswindow hWnd)
    {
-      m_pcallback = NULL;
+
       m_oswindow = hWnd;
       m_nModalResult = 0;
       m_bMouseHover = false;
@@ -91,7 +91,7 @@ namespace linux
    interaction_impl::interaction_impl(sp(::base::application) papp) :
       element(papp)
    {
-      m_pcallback = NULL;
+
       m_nModalResult = 0;
       m_bMouseHover = false;
       m_puicapture = NULL;

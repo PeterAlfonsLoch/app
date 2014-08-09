@@ -15,7 +15,6 @@ namespace ansios
 
    thread_impl::thread_impl(sp(::base::application) papp) :
    element(papp),
-   message_queue(papp),
    ::thread_impl(papp)
    {
 

@@ -19,7 +19,6 @@ namespace linux
 
       spa(::user::interaction)      m_guieptraMouseHover;
       string                        m_strWindowText;
-      //oswindow                      m_oswindow;
       ::user::interaction_base *    m_pbasewnd;
       sp(::user::interaction)       m_puicapture;
       bool                          m_bExposing;
@@ -27,12 +26,7 @@ namespace linux
       int32_t                       m_iDepth;
       int32_t                       m_iScreen;
       XVisualInfo                   m_visualinfo;
-
-
-      //visual::dib_sp                m_spdib;
-      //visual::dib_sp                m_spdibMultAlphaWork;
-
-      rect64 m_rectParentClient;
+      rect64                        m_rectParentClient;
 
 
       interaction_impl();
