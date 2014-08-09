@@ -1,17 +1,6 @@
 #pragma once
 
 
-#ifdef WINDOWSEX
-
-typedef HANDLE HTHREAD;
-
-#else
-
-class event;
-
-typedef hthread * HTHREAD;
-
-#endif
 
 
 namespace base

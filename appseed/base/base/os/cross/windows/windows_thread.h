@@ -37,9 +37,9 @@
 
 
 
-#if !defined(LINUX) && !defined(SOLARIS)
-typedef struct hthread * HTHREAD;
-#endif
+//#if !defined(LINUX) && !defined(SOLARIS)
+//typedef struct hthread * HTHREAD;
+//#endif
 
 CLASS_DECL_BASE HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_ptr unusedStackSize, uint32_t (* lpStartAddress)(void *) , void * lpParameter, uint32_t uiCreationFlags, uint32_t * puiId);
 CLASS_DECL_BASE DWORD WINAPI ResumeThread(HTHREAD hThread);

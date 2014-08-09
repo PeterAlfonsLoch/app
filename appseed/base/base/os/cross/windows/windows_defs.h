@@ -160,7 +160,7 @@ typedef void far            *LPVOID;
 typedef CONST void far      *LPCVOID;
 
 typedef int32_t                 INT;
-//typedef uint32_t        UINT;
+typedef uint32_t        UINT;
 typedef uint32_t        *PUINT;
 
 
@@ -176,9 +176,9 @@ typedef HANDLE * LPHANDLE, * PHANDLE;
 // xxx #include <specstrings.h>
 
 /* Types use for passing & returning polymorphic values */
-//typedef uint_ptr            WPARAM;
-//typedef long_ptr            LPARAM;
-//typedef long_ptr            LRESULT;
+typedef uint_ptr            WPARAM;
+typedef long_ptr            LPARAM;
+typedef long_ptr            LRESULT;
 
 
 #define MAKEWORD(a, b)      ((WORD)(((BYTE)(((dword_ptr)(a)) & 0xff)) | ((WORD)((BYTE)(((dword_ptr)(b)) & 0xff))) << 8))
@@ -426,9 +426,9 @@ struct tagHandle
 //typedef struct tagHandle * HANDLE;
 
 
-typedef uint32_t       DWORD;
+///typedef uint32_t       DWORD;
 //typedef int32_t                 WINBOOL;
-typedef unsigned char       BYTE;
+//typedef unsigned char       BYTE;
 //typedef unsigned short      WORD;
 //typedef float               FLOAT;
 //typedef FLOAT               *PFLOAT;

@@ -974,14 +974,6 @@ typedef struct _hcursor
 typedef void * HDROP;
 
 
-/*
-* Defines for the fVirt field of the Accelerator table structure.
-*/
-#define FVIRTKEY  TRUE          /* Assumed to be == TRUE */
-#define FNOINVERT 0x02
-#define FSHIFT    0x04
-#define FCONTROL  0x08
-#define FALT      0x10
 
 typedef struct tagACCEL {
 #ifndef _MAC

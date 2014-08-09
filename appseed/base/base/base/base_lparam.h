@@ -33,16 +33,16 @@ public:
 
 #endif
    
-#ifdef APPLEOS
-#ifdef OS64BIT
+//#ifdef APPLEOS
+//#ifdef OS64BIT
    
-   lparam(long l)
-   {
-      m_lparam = (LPARAM) l;
-   }
+//   lparam(long l)
+  // {
+    //  m_lparam = (LPARAM) l;
+   //}
    
-#endif
-#endif
+//#endif
+//#endif
 
    lparam(const void * p)
    {

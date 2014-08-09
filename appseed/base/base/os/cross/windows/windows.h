@@ -5,6 +5,7 @@
 #include "windows_winnt.h"
 #include "windows_error.h"
 #include "windows_errno.h"
+#include "windows_base_tsd.h"
 #include "windows_defs.h"
 #include "windows_base.h"
 #include "windows_crtdefs.h"

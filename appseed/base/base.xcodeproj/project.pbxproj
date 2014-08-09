@@ -3866,6 +3866,21 @@
 		9AA6A75A1907B866000A1F4A /* stdio-write.c in Sources */ = {isa = PBXBuildFile; fileRef = 07884D301897EC9500DC6CEB /* stdio-write.c */; };
 		9AA6A7651907F26E000A1F4A /* exception_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9AA6A7641907F26E000A1F4A /* exception_mm.mm */; };
 		9AA6A7691907FF58000A1F4A /* base_c_objcpp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA6A7681907FF58000A1F4A /* base_c_objcpp.h */; };
+		9AAFD4CE1996765D00396D88 /* windows_base_tsd.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAFD4C01996765B00396D88 /* windows_base_tsd.h */; };
+		9AAFD4CF1996765D00396D88 /* windows_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAFD4C11996765C00396D88 /* windows_base.h */; };
+		9AAFD4D01996765D00396D88 /* windows_common_controls.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAFD4C21996765C00396D88 /* windows_common_controls.h */; };
+		9AAFD4D11996765D00396D88 /* windows_crtdefs.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAFD4C31996765C00396D88 /* windows_crtdefs.h */; };
+		9AAFD4D21996765D00396D88 /* windows_errno.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAFD4C41996765C00396D88 /* windows_errno.h */; };
+		9AAFD4D31996765D00396D88 /* windows_mmeapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAFD4C51996765C00396D88 /* windows_mmeapi.h */; };
+		9AAFD4D41996765D00396D88 /* windows_mmsystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAFD4C61996765C00396D88 /* windows_mmsystem.h */; };
+		9AAFD4D51996765D00396D88 /* windows_nls.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAFD4C71996765C00396D88 /* windows_nls.h */; };
+		9AAFD4D61996765D00396D88 /* windows_nt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAFD4C81996765C00396D88 /* windows_nt.h */; };
+		9AAFD4D71996765D00396D88 /* windows_ntstatus.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAFD4C91996765C00396D88 /* windows_ntstatus.h */; };
+		9AAFD4D81996765D00396D88 /* windows_poppack.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAFD4CA1996765C00396D88 /* windows_poppack.h */; };
+		9AAFD4D91996765D00396D88 /* windows_pshpack2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAFD4CB1996765C00396D88 /* windows_pshpack2.h */; };
+		9AAFD4DA1996765D00396D88 /* windows_pshpack4.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAFD4CC1996765C00396D88 /* windows_pshpack4.h */; };
+		9AAFD4DB1996765D00396D88 /* windows_pshpack8.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAFD4CD1996765C00396D88 /* windows_pshpack8.h */; };
+		9AAFD4DD199678FA00396D88 /* macos_oswindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAFD4DC199678FA00396D88 /* macos_oswindow.h */; };
 		9AC315AE198E4CB8008FB109 /* colorertake5.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC31567198E4CB8008FB109 /* colorertake5.h */; };
 		9AC315AF198E4CB8008FB109 /* colorertake5_base_editor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC31568198E4CB8008FB109 /* colorertake5_base_editor.cpp */; };
 		9AC315B0198E4CB8008FB109 /* colorertake5_base_editor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC31569198E4CB8008FB109 /* colorertake5_base_editor.h */; };
@@ -6718,6 +6733,21 @@
 		9A98A6151771D67E000AE16E /* libbase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA6A7641907F26E000A1F4A /* exception_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = exception_mm.mm; sourceTree = "<group>"; };
 		9AA6A7681907FF58000A1F4A /* base_c_objcpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_c_objcpp.h; sourceTree = "<group>"; };
+		9AAFD4C01996765B00396D88 /* windows_base_tsd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_base_tsd.h; sourceTree = "<group>"; };
+		9AAFD4C11996765C00396D88 /* windows_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_base.h; sourceTree = "<group>"; };
+		9AAFD4C21996765C00396D88 /* windows_common_controls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_common_controls.h; sourceTree = "<group>"; };
+		9AAFD4C31996765C00396D88 /* windows_crtdefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_crtdefs.h; sourceTree = "<group>"; };
+		9AAFD4C41996765C00396D88 /* windows_errno.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_errno.h; sourceTree = "<group>"; };
+		9AAFD4C51996765C00396D88 /* windows_mmeapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_mmeapi.h; sourceTree = "<group>"; };
+		9AAFD4C61996765C00396D88 /* windows_mmsystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_mmsystem.h; sourceTree = "<group>"; };
+		9AAFD4C71996765C00396D88 /* windows_nls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_nls.h; sourceTree = "<group>"; };
+		9AAFD4C81996765C00396D88 /* windows_nt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_nt.h; sourceTree = "<group>"; };
+		9AAFD4C91996765C00396D88 /* windows_ntstatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_ntstatus.h; sourceTree = "<group>"; };
+		9AAFD4CA1996765C00396D88 /* windows_poppack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_poppack.h; sourceTree = "<group>"; };
+		9AAFD4CB1996765C00396D88 /* windows_pshpack2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_pshpack2.h; sourceTree = "<group>"; };
+		9AAFD4CC1996765C00396D88 /* windows_pshpack4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_pshpack4.h; sourceTree = "<group>"; };
+		9AAFD4CD1996765C00396D88 /* windows_pshpack8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_pshpack8.h; sourceTree = "<group>"; };
+		9AAFD4DC199678FA00396D88 /* macos_oswindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_oswindow.h; sourceTree = "<group>"; };
 		9AC31567198E4CB8008FB109 /* colorertake5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colorertake5.h; sourceTree = "<group>"; };
 		9AC31568198E4CB8008FB109 /* colorertake5_base_editor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = colorertake5_base_editor.cpp; sourceTree = "<group>"; };
 		9AC31569198E4CB8008FB109 /* colorertake5_base_editor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colorertake5_base_editor.h; sourceTree = "<group>"; };
@@ -9485,6 +9515,20 @@
 		07B08A5318495B40007A0560 /* windows */ = {
 			isa = PBXGroup;
 			children = (
+				9AAFD4C01996765B00396D88 /* windows_base_tsd.h */,
+				9AAFD4C11996765C00396D88 /* windows_base.h */,
+				9AAFD4C21996765C00396D88 /* windows_common_controls.h */,
+				9AAFD4C31996765C00396D88 /* windows_crtdefs.h */,
+				9AAFD4C41996765C00396D88 /* windows_errno.h */,
+				9AAFD4C51996765C00396D88 /* windows_mmeapi.h */,
+				9AAFD4C61996765C00396D88 /* windows_mmsystem.h */,
+				9AAFD4C71996765C00396D88 /* windows_nls.h */,
+				9AAFD4C81996765C00396D88 /* windows_nt.h */,
+				9AAFD4C91996765C00396D88 /* windows_ntstatus.h */,
+				9AAFD4CA1996765C00396D88 /* windows_poppack.h */,
+				9AAFD4CB1996765C00396D88 /* windows_pshpack2.h */,
+				9AAFD4CC1996765C00396D88 /* windows_pshpack4.h */,
+				9AAFD4CD1996765C00396D88 /* windows_pshpack8.h */,
 				079B814619334E3F0035D870 /* cross_windows_crt.cpp */,
 				079B814719334E3F0035D870 /* cross_windows_datetime.cpp */,
 				079B814819334E3F0035D870 /* cross_windows_error.cpp */,
@@ -9516,6 +9560,7 @@
 		07B08A9D18495B40007A0560 /* macos */ = {
 			isa = PBXGroup;
 			children = (
+				9AAFD4DC199678FA00396D88 /* macos_oswindow.h */,
 				07B08A9F18495B40007A0560 /* os.h */,
 				07B08AA118495B40007A0560 /* DDInvocationGrabber.h */,
 				07B08AA218495B40007A0560 /* DDInvocationGrabber.mm */,
@@ -10942,6 +10987,7 @@
 				07B0952F18495C2B007A0560 /* str.h in Headers */,
 				9AC31613198E4CDF008FB109 /* user_document.h in Headers */,
 				07884E6B1897EC9600DC6CEB /* unitypes.h in Headers */,
+				9AAFD4D71996765D00396D88 /* windows_ntstatus.h in Headers */,
 				07884E731897EC9600DC6CEB /* utf32.h in Headers */,
 				07D1C93F19211FEA00B99496 /* ios_internal.h in Headers */,
 				07D1C93B19211FEA00B99496 /* ios_file_set.h in Headers */,
@@ -11159,6 +11205,7 @@
 				07B097AB18495CBE007A0560 /* sip_tcp_client_socket.h in Headers */,
 				0722ECAE192556D8003E99F4 /* mac_thread.h in Headers */,
 				079AE0CB188648D400635C39 /* database_selection_item.h in Headers */,
+				9AAFD4DB1996765D00396D88 /* windows_pshpack8.h in Headers */,
 				07884D7C1897EC9600DC6CEB /* binary-io.h in Headers */,
 				07B0952918495C2B007A0560 /* math_static_numeric_info.h in Headers */,
 				07B094E518495C2B007A0560 /* collection_sort.h in Headers */,
@@ -11182,9 +11229,11 @@
 				07A6C87A190C4D2500859288 /* cmac.h in Headers */,
 				07B08D7718495B41007A0560 /* install_small_bell.h in Headers */,
 				07884E0D1897EC9600DC6CEB /* iso8859_3.h in Headers */,
+				9AAFD4D81996765D00396D88 /* windows_poppack.h in Headers */,
 				07B08BC218495B40007A0560 /* base_cregexp_util.h in Headers */,
 				07884D871897EC9600DC6CEB /* canonical_local_syshpux.h in Headers */,
 				0715B92E189EE65700B3EBD9 /* global.h in Headers */,
+				9AAFD4D61996765D00396D88 /* windows_nt.h in Headers */,
 				07B08D5918495B41007A0560 /* hotplugin_host.h in Headers */,
 				079AE07B1886483600635C39 /* base_progress.h in Headers */,
 				07884DD11897EC9600DC6CEB /* cp950ext.h in Headers */,
@@ -11377,6 +11426,7 @@
 				07F5B1A6184A3B430092C3E1 /* file_buffered_buffer.h in Headers */,
 				07B0977718495CBE007A0560 /* simple_pop3.h in Headers */,
 				07884DCF1897EC9600DC6CEB /* cp949.h in Headers */,
+				9AAFD4CE1996765D00396D88 /* windows_base_tsd.h in Headers */,
 				07B097A518495CBE007A0560 /* sip_client.h in Headers */,
 				9AC315CF198E4CB8008FB109 /* colorertake5_memory_chunks.h in Headers */,
 				07B08BD818495B40007A0560 /* base_fixed_alloc_impl.h in Headers */,
@@ -11454,6 +11504,7 @@
 				9AC31615198E4CDF008FB109 /* user_edit_plain_text.h in Headers */,
 				07A6C8B7190C4D2500859288 /* x509.h in Headers */,
 				07B0950218495C2B007A0560 /* comparison_binary.h in Headers */,
+				9AAFD4D01996765D00396D88 /* windows_common_controls.h in Headers */,
 				07B08C0618495B40007A0560 /* base_plex_heap.h in Headers */,
 				07B094C818495C2A007A0560 /* collection_list.h in Headers */,
 				07884DB81897EC9600DC6CEB /* cp775.h in Headers */,
@@ -11654,6 +11705,7 @@
 				07A224AF18F7F766002C3B39 /* punycode.h in Headers */,
 				07884DE71897EC9600DC6CEB /* gbkext1.h in Headers */,
 				9AE7250017E83B69003E47F9 /* multithreading_critical_section.h in Headers */,
+				9AAFD4D41996765D00396D88 /* windows_mmsystem.h in Headers */,
 				07B0950118495C2B007A0560 /* comparison.h in Headers */,
 				07B0920718495B42007A0560 /* srtp.h in Headers */,
 				9AE7250217E83B69003E47F9 /* multithreading_event.h in Headers */,
@@ -11722,6 +11774,7 @@
 				07B094E018495C2B007A0560 /* collection_simple_pointer_array.h in Headers */,
 				07884E311897EC9600DC6CEB /* mac_turkish.h in Headers */,
 				9AE7251817E83B69003E47F9 /* multithreading_service_status.h in Headers */,
+				9AAFD4D11996765D00396D88 /* windows_crtdefs.h in Headers */,
 				07B0977B18495CBE007A0560 /* net_email_address.h in Headers */,
 				07B0929418495B43007A0560 /* windows.h in Headers */,
 				07884D831897EC9600DC6CEB /* canonical_dos.h in Headers */,
@@ -11836,6 +11889,7 @@
 				07B0951D18495C2B007A0560 /* geometry_types.h in Headers */,
 				07B08DEE18495B41007A0560 /* asn1_locl.h in Headers */,
 				07884E511897EC9600DC6CEB /* stdio.in.h in Headers */,
+				9AAFD4DD199678FA00396D88 /* macos_oswindow.h in Headers */,
 				07B0906418495B41007A0560 /* rand_lcl.h in Headers */,
 				07B0922018495B42007A0560 /* tls1.h in Headers */,
 				07884DC81897EC9600DC6CEB /* cp874.h in Headers */,
@@ -11931,6 +11985,7 @@
 				07B08BB018495B40007A0560 /* base_c.h in Headers */,
 				9AC315CC198E4CB8008FB109 /* colorertake5_line_source.h in Headers */,
 				9AE7255717E83B69003E47F9 /* primitive_data.h in Headers */,
+				9AAFD4D21996765D00396D88 /* windows_errno.h in Headers */,
 				07D1CA1C192121BF00B99496 /* message_base.h in Headers */,
 				07F5B1A3184A3B430092C3E1 /* file_binary_buffer.h in Headers */,
 				07884E1B1897EC9600DC6CEB /* johab.h in Headers */,
@@ -12057,6 +12112,7 @@
 				9AC315F9198E4CC2008FB109 /* simple.h in Headers */,
 				07884E531897EC9600DC6CEB /* streq.h in Headers */,
 				07B08D4418495B41007A0560 /* exception_runtime_error.h in Headers */,
+				9AAFD4D51996765D00396D88 /* windows_nls.h in Headers */,
 				07884BE31897E9A400DC6CEB /* user_check_interface.h in Headers */,
 				9AE7258017E83B69003E47F9 /* primitive_type.h in Headers */,
 				07F5B1E3184A3B430092C3E1 /* file_stream2.h in Headers */,
@@ -12112,6 +12168,7 @@
 				07B097A418495CBE007A0560 /* sip_callback.h in Headers */,
 				07884DD81897EC9600DC6CEB /* euc_cn.h in Headers */,
 				07884D8F1897EC9600DC6CEB /* canonical_syssolaris.h in Headers */,
+				9AAFD4DA1996765D00396D88 /* windows_pshpack4.h in Headers */,
 				07B090F418495B41007A0560 /* ui_locl.h in Headers */,
 				07B08E9118495B41007A0560 /* cast_s.h in Headers */,
 				07B095E518495C5F007A0560 /* fontopus_simple_ui.h in Headers */,
@@ -12153,6 +12210,7 @@
 				07884E111897EC9600DC6CEB /* iso8859_7.h in Headers */,
 				0722ECA3192556D8003E99F4 /* mac_os.h in Headers */,
 				0722EC9F192556D8003E99F4 /* mac_ip_enum.h in Headers */,
+				9AAFD4D91996765D00396D88 /* windows_pshpack2.h in Headers */,
 				07B0931918495B43007A0560 /* NSObject+DDExtensions.h in Headers */,
 				07884DA61897EC9600DC6CEB /* cp1125.h in Headers */,
 				07B08CCE18495B40007A0560 /* crypto_err.h in Headers */,
@@ -12207,6 +12265,7 @@
 				07B0979B18495CBE007A0560 /* sockets_tcp_socket.h in Headers */,
 				07B08BFC18495B40007A0560 /* base_microtimer.h in Headers */,
 				07A6C89B190C4D2500859288 /* ossl_typ.h in Headers */,
+				9AAFD4D31996765D00396D88 /* windows_mmeapi.h in Headers */,
 				07884C251897E9A500DC6CEB /* user_window_draw.h in Headers */,
 				07B0953518495C2B007A0560 /* str_ch.h in Headers */,
 				07B08E8018495B41007A0560 /* camellia.h in Headers */,
@@ -12248,6 +12307,7 @@
 				07B094D518495C2B007A0560 /* collection_point_array.h in Headers */,
 				07884BE51897E9A500DC6CEB /* user_control_bar.h in Headers */,
 				07B0920B18495B42007A0560 /* ssl3.h in Headers */,
+				9AAFD4CF1996765D00396D88 /* windows_base.h in Headers */,
 				07B094D318495C2B007A0560 /* collection_pair.h in Headers */,
 				07B0955118495C2B007A0560 /* str_str2.h in Headers */,
 				07884E411897EC9600DC6CEB /* relocatable.h in Headers */,

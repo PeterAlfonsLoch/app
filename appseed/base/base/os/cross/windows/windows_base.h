@@ -178,16 +178,16 @@ typedef struct _PROC_THREAD_ATTRIBUTE_LIST *PPROC_THREAD_ATTRIBUTE_LIST, *LPPROC
 
 //class event;
 
-HTHREAD
-WINAPI
-CreateThread(
-    LPSECURITY_ATTRIBUTES lpThreadAttributes,
-    SIZE_T dwStackSize,
-    LPTHREAD_START_ROUTINE lpStartAddress,
-    LPVOID lpParameter,
-    DWORD dwCreationFlags,
-    LPDWORD lpThreadId
-    );
+//HTHREAD
+//WINAPI
+//CreateThread(
+  //  LPSECURITY_ATTRIBUTES lpThreadAttributes,
+   // SIZE_T dwStackSize,
+   // LPTHREAD_START_ROUTINE lpStartAddress,
+   // LPVOID lpParameter,
+   // DWORD dwCreationFlags,
+   // LPDWORD lpThreadId
+   // );
 
 
 VOID
