@@ -22,13 +22,13 @@ window_xlib::~window_xlib()
 HDC GetDC(oswindow window);
 
 
-void window_xlib::create(oswindow window, int64_t cxParam, int64_t cyParam, int iStrideParam)
+void window_xlib::create_window_graphics(oswindow window, int64_t cxParam, int64_t cyParam, int iStrideParam)
 {
 
    if(cxParam <= 0 || cyParam <= 0)
       return;
 
-   destroy();
+   destroy_window_graphics();
 
    single_lock sl(&user_mutex(), true);
 
@@ -61,7 +61,7 @@ void window_xlib::create(oswindow window, int64_t cxParam, int64_t cyParam, int 
 
    m_pdc->m_gc = XCreateGC(window->display(), window->window(), 0, &gcvalues);
 
-   window_graphics::create(window, cxParam, cyParam, m_iScan);
+   window_graphics::create_window_graphics(window, cxParam, cyParam, m_iScan);
 
 }
 
@@ -70,10 +70,10 @@ void window_xlib::create(oswindow window, int64_t cxParam, int64_t cyParam, int 
 
 
 
-void window_xlib::destroy()
+void window_xlib::destroy_window_graphics()
 {
 
-   window_graphics::destroy();
+   window_graphics::destroy_window_graphics();
 
 
 }
