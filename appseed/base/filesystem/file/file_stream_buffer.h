@@ -33,7 +33,10 @@ public:
       set_sync_io_error(m_iGenerateBefore);
    }
 
-   bool none() { return get_sync_io_error() == 0; }
+   bool none() const { return get_sync_io_error() == 0; }
+
+
+   operator bool() const { return get_sync_io_error() == 0; }
 
 };
 

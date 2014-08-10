@@ -161,6 +161,8 @@ namespace database
 
          try
          {
+            
+            sync_io_error error;
 
             ::file::byte_stream_memory_buffer memstream(get_app());
 
@@ -196,6 +198,9 @@ namespace database
             rect rectWindow;
 
             memstream >> rectWindow;
+
+            if(error)
+               return false;
 
             if(!bForceRestore)
             {
