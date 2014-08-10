@@ -1197,16 +1197,18 @@ namespace user
 
    uint_ptr interaction_impl::SetTimer(uint_ptr nIDEvent,UINT nElapse,void (CALLBACK* lpfnTimer)(oswindow,UINT,uint_ptr,uint32_t))
    {
-      UNREFERENCED_PARAMETER(nIDEvent);
+      return ::user::interaction_impl_base::SetTimer(nIDEvent, nElapse, lpfnTimer);
+/*      UNREFERENCED_PARAMETER(nIDEvent);
       UNREFERENCED_PARAMETER(nElapse);
       UNREFERENCED_PARAMETER(lpfnTimer);
-      throw interface_only_exception(get_app());
+      throw interface_only_exception(get_app());*/
    }
 
    bool interaction_impl::KillTimer(uint_ptr nIDEvent)
    {
-      UNREFERENCED_PARAMETER(nIDEvent);
-      throw interface_only_exception(get_app());
+      return ::user::interaction_impl_base::KillTimer(nIDEvent);
+    /*  UNREFERENCED_PARAMETER(nIDEvent);
+      throw interface_only_exception(get_app());*/
    }
 
    bool interaction_impl::is_window_enabled()

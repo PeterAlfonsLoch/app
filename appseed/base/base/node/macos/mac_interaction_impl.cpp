@@ -4701,7 +4701,8 @@ namespace mac
    
    uint_ptr interaction_impl::SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, DWORD))
    {
-
+      return ::user::interaction_impl::SetTimer(nIDEvent, nElapse, lpfnTimer);
+/*
       UNREFERENCED_PARAMETER(lpfnTimer);
       
       m_pui->m_pbaseapp->set_timer(m_pui, nIDEvent, nElapse);
@@ -4711,13 +4712,15 @@ namespace mac
       //throw not_implemented(get_app());
       //ASSERT(::IsWindow(get_handle()));
       //return ::SetTimer(get_handle(), nIDEvent, nElapse, lpfnTimer);
-      //return true;
+      //return true;*/
       
    }
    
    bool interaction_impl::KillTimer(uint_ptr nIDEvent)
    {
+      return ::user::interaction_impl::KillTimer(nIDEvent);
       
+      /*
       //throw not_implemented(get_app());
       //ASSERT(::IsWindow(get_handle()));
       //return ::KillTimer(get_handle(), nIDEvent)  != FALSE;
@@ -4725,7 +4728,7 @@ namespace mac
       m_pui->m_pbaseapp->unset_timer(m_pui, nIDEvent);
       
 
-      return true;
+      return true;*/
       
    }
    
