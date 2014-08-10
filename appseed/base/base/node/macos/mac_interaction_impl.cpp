@@ -3978,33 +3978,18 @@ namespace mac
   //       throw simple_exception(get_app(), "no more a user::interaction");
       if(!::IsWindow(get_handle()))
          return;
-      // if it is temporary user::interaction - probably not ca2 wrapped user::interaction
-      if(m_pui == NULL)
-      {
-         rect rect32;
-         ::GetWindowRect(get_handle(), rect32);
-         ::copy(lprect, rect32);
-      }
-      else
-      {
-         ::user::interaction_impl::GetWindowRect(lprect);
-      }
+    // if it is temporary user::interaction - probably not ca2 wrapped user::interaction
+      rect rect32;
+      ::GetWindowRect(get_handle(), rect32);
+      ::copy(lprect, rect32);
    }
    
    void interaction_impl::GetClientRect(__rect64 * lprect)
    {
       ASSERT(::IsWindow(get_handle()));
-      // if it is temporary user::interaction - probably not ca2 wrapped user::interaction
-      if(m_pui == NULL)
-      {
          rect rect32;
          ::GetClientRect(get_handle(), rect32);
          ::copy(lprect, rect32);
-      }
-      else
-      {
-         ::user::interaction_impl::GetClientRect(lprect);
-      }
    }
    
    

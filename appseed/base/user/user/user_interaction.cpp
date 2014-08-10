@@ -2453,6 +2453,9 @@ namespace user
 
    void interaction::viewport_screen_to_client(POINT * ppt)
    {
+      
+      if(m_pimpl.is_null())
+         return;
 
       m_pimpl->viewport_screen_to_client(ppt);
 
