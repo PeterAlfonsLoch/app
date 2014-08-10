@@ -453,9 +453,3 @@ CLASS_DECL_BASE int_bool IsRectEmpty(LPCRECT lpcrect)
 }
 
 
-CLASS_DECL_BASE int_bool IsRectEmpty(const RECT & rect)
-{
-   
-   return IsRectEmpty((LPCRECT) &rect);
-   
-}

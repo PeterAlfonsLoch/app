@@ -211,3 +211,9 @@ void copy(CGRect & rectDst, const RECT & rectSrc);
 void copy(LPRECT lprectDst, const CGRect & rectSrc);
 
 #endif
+
+
+CLASS_DECL_BASE int_bool IsRectEmpty(const RECT & rect);
+
+
+

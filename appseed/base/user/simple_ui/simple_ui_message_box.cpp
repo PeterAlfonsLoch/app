@@ -411,9 +411,9 @@ int32_t simple_ui_message_box(oswindow interaction_impl,const char * lpText,cons
 
    //::MessageBox(NULL, "", "", MB_OK);
 
-//   MESSAGE msg;
-   
 #ifdef WINDOWSEX
+
+   MESSAGE msg;
 
    bool bQuit = PeekMessage(&msg,NULL,WM_QUIT,WM_QUIT,PM_REMOVE) != FALSE;
    

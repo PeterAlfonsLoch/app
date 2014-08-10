@@ -633,7 +633,7 @@ namespace user
    LONG_PTR interaction_impl_base::get_window_long_ptr(int32_t nIndex) const
    {
 
-      return oprop("window_long:" + ::str::from(nIndex)).int64();
+      return (LONG_PTR) oprop("window_long:" + ::str::from(nIndex)).int64();
 
    }
 
@@ -641,7 +641,7 @@ namespace user
    LONG_PTR interaction_impl_base::set_window_long_ptr(int32_t nIndex,LONG_PTR lValue)
    {
 
-      return (oprop("window_long:" + ::str::from(nIndex)) = var((int64_t) lValue)).int64();
+      return (LONG_PTR) (oprop("window_long:" + ::str::from(nIndex)) = var((int64_t) lValue)).int64();
 
    }
 
