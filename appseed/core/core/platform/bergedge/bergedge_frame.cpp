@@ -34,7 +34,7 @@ namespace bergedge
    void frame::_001OnCreate(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::create, pcreate, pobj);
+//      SCAST_PTR(::message::create, pcreate, pobj);
 
       m_bWindowFrame = GetTypedParent < ::plugin::host_interaction >() == NULL;
 

@@ -171,7 +171,7 @@ namespace user
          pdocument->update_title();
       }
 
-      thread* pThread = ::get_thread();
+//      thread* pThread = ::get_thread();
       
 if(!pcreatecontext->m_bHold)
       {

@@ -148,7 +148,7 @@ namespace user
 
       pcreatordata->m_pholder = pholder;
 
-      int iTabNew = get_tab_by_id(id3);
+      int iTabNew = (int) get_tab_by_id(id3);
 
       get_data()->m_panea[iTabNew].m_pholder = pholder;
 
@@ -553,7 +553,7 @@ namespace user
 
    void tab_drop_target_window::_001OnDraw(::draw2d::graphics * pdc)
    {
-      class imaging & imaging = System.visual().imaging();
+//      class imaging & imaging = System.visual().imaging();
 
       COLORREF crBorder = ARGB(84, 127, 127, 80);
       COLORREF crBorderSel = ARGB(84, 40, 40, 20);

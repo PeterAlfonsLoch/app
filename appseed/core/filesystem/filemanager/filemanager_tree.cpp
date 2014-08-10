@@ -107,9 +107,9 @@ namespace filemanager
 
       stringa & straRootPath = get_document()->m_straRootPath;
 
-      stringa & straRootTitle = get_document()->m_straRootTitle;
+//      stringa & straRootTitle = get_document()->m_straRootTitle;
 
-      bool bTreeShowSubdir = get_document()->get_fs_data()->tree_show_subdir(strPath);
+  //    bool bTreeShowSubdir = get_document()->get_fs_data()->tree_show_subdir(strPath);
 
       ::data::tree_item_ptr_array ptraRemove;
 
@@ -325,7 +325,7 @@ namespace filemanager
 
       stringa & straRootPath = get_document()->m_straRootPath;
 
-      stringa & straRootTitle = get_document()->m_straRootTitle;
+//      stringa & straRootTitle = get_document()->m_straRootTitle;
 
       string strPath = get_filemanager_item().m_strPath;
 

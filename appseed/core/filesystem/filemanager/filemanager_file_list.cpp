@@ -1100,7 +1100,7 @@ namespace filemanager
 
       stringa & straPath = get_document()->m_straPath;
       stringa & straTitle = get_document()->m_straTitle;
-      int64_array & iaSize = get_document()->m_iaSize;
+//      int64_array & iaSize = get_document()->m_iaSize;
       bool_array & baDir = get_document()->m_baDir;
 
 
