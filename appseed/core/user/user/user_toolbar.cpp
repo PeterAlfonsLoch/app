@@ -1569,6 +1569,8 @@ throw todo(get_app());
    bool toolbar::LoadXmlToolBar(const char * lpszXml)
    {
 
+      synch_lock sl(m_spmutex);
+
       m_itema.remove_all();
 
       xml::document doc(get_app());
