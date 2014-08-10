@@ -3307,9 +3307,13 @@ namespace user
       m_bMessageWindow = true;
 
       m_pimpl->m_pui = this;
+      
+      m_pthread = ::get_thread();
 
       if(!m_pimpl->create_message_queue(pszName))
       {
+         
+         m_pthread = NULL;
 
          m_pimpl.release();
 
