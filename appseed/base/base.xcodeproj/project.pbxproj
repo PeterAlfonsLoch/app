@@ -3259,6 +3259,7 @@
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
 		9A98A60B1771D67E000AE16E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073EDDE1164E968100818801 /* Security.framework */; };
+		9AA1007D19970FC5004F84BD /* macos_simple_app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA1007C19970FC5004F84BD /* macos_simple_app.cpp */; };
 		9AA6A49F1907B74C000A1F4A /* base_action_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 079AE0681886483600635C39 /* base_action_context.cpp */; };
 		9AA6A4A01907B84A000A1F4A /* version.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE7233C17E83B69003E47F9 /* version.cpp */; };
 		9AA6A4A11907B84A000A1F4A /* base_core_copydesk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 079AE06B1886483600635C39 /* base_core_copydesk.cpp */; };
@@ -6760,6 +6761,7 @@
 		9A24EE80193783BF00ECBAD3 /* simple_ui_message_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_ui_message_box.h; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A98A6151771D67E000AE16E /* libbase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AA1007C19970FC5004F84BD /* macos_simple_app.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_simple_app.cpp; sourceTree = "<group>"; };
 		9AA6A7641907F26E000A1F4A /* exception_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = exception_mm.mm; sourceTree = "<group>"; };
 		9AA6A7681907FF58000A1F4A /* base_c_objcpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_c_objcpp.h; sourceTree = "<group>"; };
 		9AAFD4C01996765B00396D88 /* windows_base_tsd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_base_tsd.h; sourceTree = "<group>"; };
@@ -9640,6 +9642,7 @@
 		07B08A9D18495B40007A0560 /* macos */ = {
 			isa = PBXGroup;
 			children = (
+				9AA1007C19970FC5004F84BD /* macos_simple_app.cpp */,
 				9AAFD4DC199678FA00396D88 /* macos_oswindow.h */,
 				07B08A9F18495B40007A0560 /* os.h */,
 				07B08AA118495B40007A0560 /* DDInvocationGrabber.h */,
@@ -13486,6 +13489,7 @@
 				07B0903718495B41007A0560 /* p12_add.c in Sources */,
 				07B0976E18495CBE007A0560 /* mail_pop3_socket.cpp in Sources */,
 				9AE7251417E83B69003E47F9 /* multithreading_semaphore.cpp in Sources */,
+				9AA1007D19970FC5004F84BD /* macos_simple_app.cpp in Sources */,
 				07B08FB018495B41007A0560 /* pmeth_fn.c in Sources */,
 				07B08EAD18495B41007A0560 /* c_zlib.c in Sources */,
 				0751A484192A99B700CFD2B0 /* zlib_gzwrite.c in Sources */,
