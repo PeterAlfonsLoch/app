@@ -104,6 +104,7 @@ namespace file
             if(get_generate_sync_io_error())
             {
                set_sync_io_error(1);
+               return;
             }
             else
             {
