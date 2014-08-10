@@ -1,6 +1,9 @@
 #pragma once
 
 
+
+
+
 //#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
 typedef VOID(CALLBACK* TIMERPROC)(oswindow,UINT,uint_ptr,DWORD);
@@ -1143,6 +1146,26 @@ int32_t nIndex);
 
 
 
+typedef struct tagNMHDR
+{
+   HWND      hwndFrom;
+   UINT_PTR  idFrom;
+   UINT      code;         // NM_ code
+}   NMHDR;
+
+#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP) */
+#pragma endregion
+
+#pragma region Desktop Family
+#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+
+typedef NMHDR FAR * LPNMHDR;
+
+typedef struct tagSTYLESTRUCT
+{
+   DWORD   styleOld;
+   DWORD   styleNew;
+} STYLESTRUCT,* LPSTYLESTRUCT;
 
 
 
