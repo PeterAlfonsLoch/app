@@ -319,13 +319,13 @@ namespace database
          memstream << iAppearance;
          if(bGet && (bZoomed || bFullScreen || bIconic || ::user::is_docking_appearance((::user::EAppearance)iAppearance)))
          {
-            memstream << &rectOld;
+            memstream << rectOld;
          }
          else
          {
             rect rect;
             pwindow->GetWindowRect(rect);
-            memstream << &rect;
+            memstream << rect;
          }
          return data_set(key, idIndex, memstream);
       }

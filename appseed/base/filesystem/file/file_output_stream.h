@@ -57,6 +57,7 @@ namespace file
       inline output_stream & operator << (float f                              ) { write(f               ); return *this;}
       inline output_stream & operator << (double d                             ) { write(d               ); return *this;}
       inline output_stream & operator << (const RECT & rect                    ) { write(rect            ); return *this;}
+      inline output_stream & operator << (LPCRECT lpcrect                      ) { write(lpcrect         ); return *this;}
       inline output_stream & operator << (SIZE & size                          ) { write(size            ); return *this;}
       inline output_stream & operator << (sp(type) info                        ) { write(info            ); return *this;}
       inline output_stream & operator << (serializable & serializable          ) { write(serializable    ); return *this;}
@@ -90,6 +91,7 @@ namespace file
       virtual void write (float f);
       virtual void write (double d);
       virtual void write (const RECT & rect);
+      virtual void write (LPCRECT lpcrect);
       virtual void write (SIZE & size);
       virtual void write (sp(type) info);
       virtual void write (serializable & serializable);

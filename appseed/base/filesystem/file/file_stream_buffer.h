@@ -30,13 +30,13 @@ public:
          *m_piError = get_sync_io_error();
       }
       set_generate_sync_io_error(m_iGenerateBefore);
-      set_sync_io_error(m_iGenerateBefore);
+      set_sync_io_error(m_iErrorBefore);
    }
 
    bool none() const { return get_sync_io_error() == 0; }
 
 
-   operator bool() const { return get_sync_io_error() == 0; }
+   operator bool() const { return get_sync_io_error() != 0; }
 
 };
 

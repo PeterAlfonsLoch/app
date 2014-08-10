@@ -16,13 +16,13 @@ CLASS_DECL_BASE void set_sync_io_error(int iError)
 
 CLASS_DECL_BASE int get_generate_sync_io_error()
 {
-   return g_iSyncIoError;
+   return g_iGenerateSyncIoError;
 }
 
 
 CLASS_DECL_BASE void set_generate_sync_io_error(int iError)
 {
-   g_iSyncIoError = iError;
+   g_iGenerateSyncIoError = iError;
 }
 
 namespace file

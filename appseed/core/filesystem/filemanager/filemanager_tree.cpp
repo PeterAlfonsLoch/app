@@ -60,21 +60,47 @@ namespace filemanager
    }
 
 
-   void tree::knowledge(const string & strPath,::action::context actioncontext)
+   void tree::knowledge(const string & strPath,::action::context actioncontext,bool bOnlyParent)
    {
+
+      if(bOnlyParent && strPath.has_char() && find_item(strPath))
+         return;
 
       stringa straPath;
       stringa straTitle;
       int64_array iaSize;
       bool_array baDir;
 
-      get_document()->get_fs_data()->ls(strPath,&straPath,&straTitle,&iaSize,&baDir);
+      string strDir;
+
+      if(bOnlyParent && strPath.has_char())
+      {
+
+         strDir = System.dir().name(strPath);
+
+         straPath.add(strPath);
+
+         straTitle.add(System.file().name_(strPath));
+
+         iaSize.add(-1);
+
+         baDir.add(true);
+
+      }
+      else
+      {
+
+         strDir = strPath;
+
+         get_document()->get_fs_data()->ls(strPath,&straPath,&straTitle,&iaSize,&baDir);
+
+      }
 
       single_lock sl(&m_mutexData,true);
 
-      filemanager_tree_insert(strPath,straPath,straTitle,iaSize,baDir,actioncontext);
+      filemanager_tree_insert(strDir,straPath,straTitle,iaSize,baDir,actioncontext, bOnlyParent);
 
-      ::data::tree_item * pitem = find_item(strPath);
+      ::data::tree_item * pitem = find_item(strDir);
 
       if(pitem != NULL)
       {
@@ -88,19 +114,24 @@ namespace filemanager
       }
 
 
-      arrange(::fs::arrange_by_name);
-
-      if(m_treeptra.has_elements())
+      if(!bOnlyParent)
       {
 
-         _polishing_start(m_treeptra[0]);
+         arrange(::fs::arrange_by_name);
+
+         if(m_treeptra.has_elements())
+         {
+
+            _polishing_start(m_treeptra[0]);
+
+         }
 
       }
 
    }
 
 
-   void tree::filemanager_tree_insert(const string & strPath, stringa & straPath,stringa & straTitle,int64_array & iaSize,bool_array & baDir,::action::context actioncontext)
+   void tree::filemanager_tree_insert(const string & strPath, stringa & straPath,stringa & straTitle,int64_array & iaSize,bool_array & baDir,::action::context actioncontext, bool bOnlyParent)
    {
 
       single_lock sl(&m_mutexData,true);
@@ -120,12 +151,12 @@ namespace filemanager
 
       sp(::data::tree_item) pitemParent = pitem;
 
-      if(strPath.has_char())
+      if(strPath.has_char() && !bOnlyParent)
       {
 
          pitem = pitemParent->first_child();
 
-         if(pitem.is_null())
+         if(pitem.is_set())
          {
 
             stringa straPathTrim;
@@ -331,6 +362,32 @@ namespace filemanager
 
       m_strPath = strPath;
 
+      if(actioncontext.m_spdata.is_set() && (actioncontext.m_spdata->m_esource &::action::source_system))
+      {
+
+         knowledge("",actioncontext,true);
+
+         if(strPath.has_char())
+         {
+            stringa stra;
+
+            get_filemanager_manager()->get_fs_data()->get_ascendants_path(strPath,stra);
+
+            for(index i = 0; i < stra.get_size(); i++)
+            {
+
+               string str = stra[i];
+
+               knowledge(str,actioncontext,true);
+
+            }
+
+         }
+
+      }
+
+
+
       ::userfs::item * pitemChild;
 
       string strDirParent = System.dir().name(m_strPath);
@@ -343,6 +400,9 @@ namespace filemanager
          pitemParent = get_base_item();
 
       }
+
+
+
 
       sp(::data::tree_item) pitem = find_item(strPath);
 
@@ -410,11 +470,16 @@ namespace filemanager
 
       bool_array & baDir = get_document()->m_baDir;
 
-      filemanager_tree_insert(strPath, straPath,straTitle,iaSize,baDir,actioncontext);
+      if(actioncontext.m_spdata.is_null() || !(actioncontext.m_spdata->m_esource &::action::source_system))
+      {
 
-      _017EnsureVisible(strPath,actioncontext);
+         filemanager_tree_insert(strPath,straPath,straTitle,iaSize,baDir,actioncontext);
 
-      _001SelectItem(find_item(strPath));
+         _017EnsureVisible(strPath,actioncontext);
+
+         _001SelectItem(find_item(strPath));
+
+      }
 
       arrange(::fs::arrange_by_name);
 

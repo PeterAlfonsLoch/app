@@ -246,6 +246,17 @@ namespace filemanager
    void manager::start_full_browse(const string & strPath, ::action::context actioncontext)
    {
 
+      if(!get_fs_data()->is_zero_latency(strPath))
+      {
+
+         update_hint uh;
+         uh.set_type(update_hint::TypeSynchronizePath);
+         uh.m_actioncontext = ::action::source::system(::action::source::sync(actioncontext));
+         uh.m_strPath = strPath;
+         update_all_views(NULL,0,&uh);
+
+      }
+
       ::filemanager::full_browse * pbrowse = new ::filemanager::full_browse(get_app());
 
       pbrowse->m_pmanager = this;
@@ -255,6 +266,7 @@ namespace filemanager
       pbrowse->m_actioncontext = actioncontext;
 
       pbrowse->begin();
+
 
    }
 

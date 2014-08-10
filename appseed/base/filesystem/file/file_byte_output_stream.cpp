@@ -252,6 +252,13 @@ namespace file
 
    }
 
+   void byte_output_stream:: write(LPCRECT lpcrect)
+   {
+
+      write(*lpcrect);
+
+   }
+
    void byte_output_stream:: write (SIZE & size)
    {
       m_spbuffer->write(&size.cx,     sizeof(size.cx));

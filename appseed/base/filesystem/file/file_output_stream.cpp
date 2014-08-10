@@ -153,7 +153,12 @@ namespace file
 
    }
 
-   void output_stream:: write (SIZE & size)
+   void output_stream:: write(LPCRECT lpcrect)
+   {
+      write(*lpcrect);
+   }
+
+   void output_stream:: write(SIZE & size)
    {
 
    }

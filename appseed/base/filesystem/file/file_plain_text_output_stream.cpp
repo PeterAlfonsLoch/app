@@ -105,6 +105,12 @@ namespace file
       
    }
 
+   void plain_text_output_stream:: write(LPCRECT lpcrect)
+   {
+      write(*lpcrect);
+   }
+
+
    void plain_text_output_stream:: write (SIZE & size)
    {
        write (size.cx);
