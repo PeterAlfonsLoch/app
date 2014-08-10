@@ -117,8 +117,11 @@ namespace user
       dwStyle &= ~CBRS_ALL;
       dwStyle |= CCS_NOPARENTALIGN|CCS_NOMOVEY|CCS_NODIVIDER|CCS_NORESIZE;
 
+      m_dwCtrlStyle = dwCtrlStyle & (0xffff0000 | TBSTYLE_FLAT);
 
-      if (!::user::interaction::create_window(TOOLBARCLASSNAME, NULL, dwStyle, null_rect(), pParentWnd, nID))
+
+
+      if (!::user::control_bar::create_window(TOOLBARCLASSNAME, NULL, dwStyle, null_rect(), pParentWnd, nID))
          return FALSE;
 
       // sync up the sizes
@@ -176,18 +179,18 @@ namespace user
       ASSERT(sizeButton.cx >= sizeImage.cx + 7);
       ASSERT(sizeButton.cy >= sizeImage.cy + 6);
 
-      if (IsWindow())
+      //if (IsWindow())
       {
          // set the sizes via TB_SETBITMAPSIZE and TB_SETBUTTONSIZE
 #ifdef WINDOWSEX
-         VERIFY(send_message(TB_SETBITMAPSIZE, 0, MAKELONG(sizeImage.cx, sizeImage.cy)));
-         VERIFY(send_message(TB_SETBUTTONSIZE, 0, MAKELONG(sizeButton.cx, sizeButton.cy)));
+         //VERIFY(send_message(TB_SETBITMAPSIZE, 0, MAKELONG(sizeImage.cx, sizeImage.cy)));
+         //VERIFY(send_message(TB_SETBUTTONSIZE, 0, MAKELONG(sizeButton.cx, sizeButton.cy)));
 #else
-         throw todo(get_app());
+         //throw todo(get_app());
 #endif
-         Invalidate();   // just to be nice if called when toolbar is visible
+        // Invalidate();   // just to be nice if called when toolbar is visible
       }
-      else
+      //else
       {
          // just set our internal values for later
          m_sizeButton = sizeButton;

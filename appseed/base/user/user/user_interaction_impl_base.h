@@ -165,6 +165,10 @@ namespace user
 
       virtual bool get_rect_normal(LPRECT lprect);
 
+      virtual uint_ptr SetTimer(uint_ptr nIDEvent,UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow,UINT,uint_ptr,uint32_t));
+      virtual bool KillTimer(uint_ptr nIDEvent);
+
+
 
    };
 

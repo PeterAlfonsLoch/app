@@ -288,12 +288,14 @@ namespace database
          {
             try
             {
+               sync_io_error error;
                memstreamGet >> iBeforeOld;
                memstreamGet >> bZoomedOld;
                memstreamGet >> bFullScreenOld;
                memstreamGet >> bIconicOld;
                memstreamGet >> iAppearanceOld;
                memstreamGet >> rectOld;
+               bGet = error.none();
             }
             catch (...)
             {

@@ -13,6 +13,8 @@ ifs::ifs(sp(::base::application) papp, const char * pszRoot) :
 bool ifs::fast_has_subdir(const char * pszPath)
 {
 
+   synch_lock sl(data_mutex());
+
    uint32_t dwTimeout;
 
    string strDir(pszPath);
@@ -38,7 +40,7 @@ bool ifs::fast_has_subdir(const char * pszPath)
 
 bool ifs::has_subdir(const char * pszPath)
 {
-
+   synch_lock sl(data_mutex());
    uint32_t dwTimeout;
 
    string strDir(pszPath);
@@ -88,7 +90,7 @@ void ifs::root_ones(stringa & straPath, stringa & straTitle)
 
 bool ifs::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_array * piaSize,bool_array * pbaDir)
 {
-
+   synch_lock sl(data_mutex());
    uint32_t dwTimeout;
 
    string strDir(pszDir);
@@ -295,7 +297,7 @@ bool ifs::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_
 
 bool ifs::is_dir(const char * pszPath)
 {
-
+   synch_lock sl(data_mutex());
 
    //xml::node node(get_app());
 

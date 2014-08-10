@@ -735,28 +735,6 @@ namespace user
 
 
 
-   uint_ptr interaction_child::SetTimer(uint_ptr nIDEvent,UINT nElapse,void (CALLBACK* lpfnTimer)(oswindow,UINT,uint_ptr,uint32_t))
-   {
-
-      UNREFERENCED_PARAMETER(lpfnTimer);
-
-      m_pui->m_pbaseapp->set_timer(m_pui,nIDEvent,nElapse);
-
-      return nIDEvent;
-
-   }
-
-
-   bool interaction_child::KillTimer(uint_ptr nIDEvent)
-   {
-
-      m_pui->m_pbaseapp->unset_timer(m_pui,nIDEvent);
-
-      return true;
-
-   }
-
-
    bool interaction_child::ShowWindow(int32_t nCmdShow)
    {
 

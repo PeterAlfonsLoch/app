@@ -1,5 +1,41 @@
 #pragma once
 
+CLASS_DECL_BASE int get_sync_io_error();
+CLASS_DECL_BASE void set_sync_io_error(int iError);
+CLASS_DECL_BASE int get_generate_sync_io_error();
+CLASS_DECL_BASE void set_generate_sync_io_error(int iError);
+
+
+class CLASS_DECL_BASE sync_io_error
+{
+public:
+
+   int   m_iGenerateBefore;
+   int   m_iErrorBefore;
+   int * m_piError;
+
+   sync_io_error(int * piError = NULL)
+   {
+      m_iGenerateBefore = get_generate_sync_io_error();
+      m_iErrorBefore = get_sync_io_error();
+      set_sync_io_error(0);
+      set_generate_sync_io_error(1);
+      m_piError = piError;
+   }
+
+   ~sync_io_error()
+   {
+      if(m_piError != NULL)
+      {
+         *m_piError = get_sync_io_error();
+      }
+      set_generate_sync_io_error(m_iGenerateBefore);
+      set_sync_io_error(m_iGenerateBefore);
+   }
+
+   bool none() { return get_sync_io_error() == 0; }
+
+};
 
 namespace file
 {

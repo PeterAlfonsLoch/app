@@ -1,5 +1,29 @@
 #include "framework.h"
 
+thread_int_ptr < int_ptr > g_iGenerateSyncIoError;
+thread_int_ptr < int_ptr > g_iSyncIoError;
+
+CLASS_DECL_BASE int get_sync_io_error()
+{
+   return g_iSyncIoError;
+}
+
+
+CLASS_DECL_BASE void set_sync_io_error(int iError)
+{
+   g_iSyncIoError = iError;
+}
+
+CLASS_DECL_BASE int get_generate_sync_io_error()
+{
+   return g_iSyncIoError;
+}
+
+
+CLASS_DECL_BASE void set_generate_sync_io_error(int iError)
+{
+   g_iSyncIoError = iError;
+}
 
 namespace file
 {
@@ -76,7 +100,16 @@ namespace file
          uiRead = read(&buf[uiPos], nCount);
 
          if(uiRead <= 0)
-            throw io_exception(get_app(), "stream_buffer::full_read");
+         {
+            if(get_generate_sync_io_error())
+            {
+               set_sync_io_error(1);
+            }
+            else
+            {
+               throw io_exception(get_app(),"stream_buffer::full_read");
+            }
+         }
 
          nCount   -= uiRead;
          uiPos    += uiRead;

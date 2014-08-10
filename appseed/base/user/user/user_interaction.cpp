@@ -35,6 +35,7 @@ namespace user
    void interaction::user_interaction_common_construct()
    {
 
+      m_pthread                  = NULL;
       m_bMayProDevian            = true;
       m_pmutex                   = NULL;
       m_eappearance              = AppearanceNormal;
@@ -564,6 +565,19 @@ namespace user
 
 
       }
+
+      try
+      {
+
+         m_pthread->remove(this);
+
+      }
+      catch(...)
+      {
+
+      }
+
+      
 
 
       array < ::user::interaction  * > uiptra;
@@ -1642,8 +1656,10 @@ namespace user
       m_signalptra.remove_all();
       m_pimpl = new ::user::interaction_child(get_app());
       m_pimpl->m_pui = this;
+      m_pthread = ::get_thread();
       if(!m_pimpl->create_window(rect, pparent,id))
       {
+         m_pthread = NULL;
          m_pimpl.release();
          return false;
       }
@@ -1667,6 +1683,8 @@ namespace user
       sp(interaction_impl_base) pimplOld = m_pimpl;
 
       sp(interaction_impl_base) pimplNew = NULL;
+
+      m_pthread = ::get_thread();
 
 #if defined(WINDOWSEX) || defined(LINUX)
       if(pParentWnd == NULL || pParentWnd->get_safe_handle() == (oswindow)HWND_MESSAGE)
@@ -1750,6 +1768,8 @@ namespace user
       else
       {
 
+         m_pthread = NULL;
+
          return false;
 
       }
@@ -1764,18 +1784,23 @@ namespace user
          DestroyWindow();
       }
       m_signalptra.remove_all();
+      m_pthread = ::get_thread();
 #if !defined(METROWIN) && !defined(APPLE_IOS)
       if(pParentWnd == NULL)
       {
 
          if(!Application.defer_initialize_twf())
+         {
+            m_pthread = NULL;
             return false;
+         }
 
          m_pimpl = Application.alloc(System.type_info < interaction_impl >());
          m_pimpl->m_pui = this;
          dwStyle &= ~WS_CHILD;
          if(!m_pimpl->create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,id,lpParam))
          {
+            m_pthread = NULL;
             m_pimpl.release();
 
             return false;
@@ -1816,6 +1841,7 @@ namespace user
          m_pimpl->m_pui = this;
          if(!m_pimpl->create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rectFrame,pParentWnd,id,lpParam))
          {
+            m_pthread = NULL;
             m_pimpl.release();
 
             return false;

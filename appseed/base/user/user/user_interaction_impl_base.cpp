@@ -978,6 +978,29 @@ namespace user
 
    }
 
+   uint_ptr interaction_impl_base::SetTimer(uint_ptr nIDEvent,UINT nElapse,void (CALLBACK* lpfnTimer)(oswindow,UINT,uint_ptr,uint32_t))
+   {
+
+      UNREFERENCED_PARAMETER(lpfnTimer);
+
+      m_pui->m_pthread->set_timer(m_pui,nIDEvent,nElapse);
+
+      return nIDEvent;
+
+   }
+
+
+   bool interaction_impl_base::KillTimer(uint_ptr nIDEvent)
+   {
+
+      m_pui->m_pthread->unset_timer(m_pui,nIDEvent);
+
+      return true;
+
+   }
+
+
+
 
 } // namespace user
 

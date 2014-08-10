@@ -32,23 +32,28 @@ namespace userfs
    bool document::browse(const char * pszFolder, ::action::context actioncontext)
    {
 
-      m_strFolder = pszFolder;
-
-      m_straPath.remove_all();
-      m_straTitle.remove_all();
-      m_iaSize.remove_all();
-      m_baDir.remove_all();
+      {
+         synch_lock sl(get_fs_data()->data_mutex());
+         m_strFolder = pszFolder;
+      }
 
       if(m_straRootPath.is_empty())
       {
 
-         get_fs_data()->root_ones(m_straRootPath,m_straRootTitle);
+         stringa straPath;
+         stringa straTitle;
+         get_fs_data()->root_ones(straPath,straTitle);
+         {
+            synch_lock sl(get_fs_data()->data_mutex());
+            m_straRootPath=straPath;
+            m_straRootTitle=straTitle;
+         }
 
       }
 
       if(strlen(pszFolder) == 0)
       {
-
+         synch_lock sl(get_fs_data()->data_mutex());
          m_straPath = m_straRootPath;
 
          m_straTitle = m_straRootTitle;
@@ -69,10 +74,14 @@ namespace userfs
          bool_array baDir;
          //get_fs_data()->ls(pszFolder,&m_straPath,&m_straTitle,&m_iaSize, &m_baDir);
          get_fs_data()->ls(pszFolder,&straPath,&straTitle,&iaSize,&baDir);
-         m_straPath = straPath;
-         m_straTitle = straTitle;
-         m_iaSize = iaSize;
-         m_baDir = baDir;
+         {
+            synch_lock sl(get_fs_data()->data_mutex());
+            m_straPath = straPath;
+            m_straTitle = straTitle;
+            m_iaSize = iaSize;
+            m_baDir = baDir;
+
+         }
       }
 
       update_hint uh;
