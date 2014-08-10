@@ -2891,6 +2891,7 @@
 		<Unit filename="base/os/linux/linux_process.cpp" />
 		<Unit filename="base/os/linux/linux_process.h" />
 		<Unit filename="base/os/linux/linux_process_pid.cpp" />
+		<Unit filename="base/os/linux/linux_simple_app.cpp" />
 		<Unit filename="base/os/linux/linux_simple_shell_launcher.cpp" />
 		<Unit filename="base/os/linux/linux_small_ipca_channel.cpp" />
 		<Unit filename="base/os/linux/linux_time.cpp" />

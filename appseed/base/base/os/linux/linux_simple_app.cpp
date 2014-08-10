@@ -21,11 +21,12 @@ namespace base
    int32_t simple_app::main()
    {
 
-      __argc = _init_args();
-      __targv = _argv;
-      _init_file();
+//      __argc = _init_args();
+  //    __targv = _argv;
+      //_init_file();
 
-      TCHAR *cmd = GetCommandLine();
+//      TCHAR *cmd = GetCommandLine();
+      TCHAR *cmd = NULL;
 
       // Skip program name
       if(*cmd == _T('"'))
@@ -47,7 +48,7 @@ namespace base
 
       body();
 
-      _term_args();
+//      _term_args();
 
       //::simple_message_box(NULL,"t3=" + ::str::from(m_iReturnCode),"t3",MB_OK);
 
@@ -82,9 +83,9 @@ namespace base
       try
       {
 
-         set_main_thread(GetCurrentThread());
+//         set_main_thread(GetCurrentThread());
 
-         set_main_thread_id(GetCurrentThreadId());
+  //       set_main_thread_id(GetCurrentThreadId());
 
          if(!pre_run())
          {
