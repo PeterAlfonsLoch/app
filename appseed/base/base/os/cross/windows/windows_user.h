@@ -1148,16 +1148,11 @@ int32_t nIndex);
 
 typedef struct tagNMHDR
 {
-   HWND      hwndFrom;
+   oswindow      hwndFrom;
    UINT_PTR  idFrom;
    UINT      code;         // NM_ code
 }   NMHDR;
 
-#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP) */
-#pragma endregion
-
-#pragma region Desktop Family
-#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
 typedef NMHDR FAR * LPNMHDR;
 

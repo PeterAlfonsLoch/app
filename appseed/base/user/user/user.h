@@ -203,20 +203,6 @@ namespace user
 #endif
 
 
-#if defined(LINUX) || defined(APPLEOS)
-struct NMHDR
-{
-
-   int32_t nId;
-};
-
-
-#endif
-
-
-
-#pragma once
-
 // General OLE features
 
 #if (!defined ___NO_OLE_SUPPORT) && (defined _OBJBASE_H_)

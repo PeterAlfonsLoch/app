@@ -40,7 +40,9 @@ typedef struct _COLORMAP {
    COLORREF to;
 } COLORMAP,*LPCOLORMAP;
 
-WINCOMMCTRLAPI HWND WINAPI CreateToolbarEx(HWND hwnd,DWORD ws,UINT wID,int nBitmaps,
+/*
+ 
+WINCOMMCTRLAPI oswindow WINAPI CreateToolbarEx(oswindow hwnd,DWORD ws,UINT wID,int nBitmaps,
    HINSTANCE hBMInst,UINT_PTR wBMID,LPCTBBUTTON lpButtons,
    int iNumButtons,int dxButton,int dyButton,
    int dxBitmap,int dyBitmap,UINT uStructSize);
@@ -48,6 +50,8 @@ WINCOMMCTRLAPI HWND WINAPI CreateToolbarEx(HWND hwnd,DWORD ws,UINT wID,int nBitm
 WINCOMMCTRLAPI HBITMAP WINAPI CreateMappedBitmap(HINSTANCE hInstance,INT_PTR idBitmap,
    UINT wFlags,_In_opt_ LPCOLORMAP lpColorMap,
    int iNumMaps);
+ 
+ */
 
 #define CMB_MASKED              0x02
 #define TBSTATE_CHECKED         0x01
@@ -109,6 +113,7 @@ WINCOMMCTRLAPI HBITMAP WINAPI CreateMappedBitmap(HINSTANCE hInstance,INT_PTR idB
 #define TBSTYLE_EX_DOUBLEBUFFER             0x00000080 // Double Buffer the toolbar
 #endif
 
+/*
 
 // Custom Draw Structure
 typedef struct _NMTBCUSTOMDRAW {
@@ -132,6 +137,8 @@ typedef struct _NMTBCUSTOMDRAW {
    int iListGap;
 #endif
 } NMTBCUSTOMDRAW,* LPNMTBCUSTOMDRAW;
+ 
+ */
 
 // Toolbar custom draw return flags
 #define TBCDRF_NOEDGES              0x00010000  // Don't draw button edges
@@ -709,11 +716,11 @@ typedef struct tagREBARINFO
 {
    UINT        cbSize;
    UINT        fMask;
-#ifndef NOIMAGEAPIS
-   HIMAGELIST  himl;
-#else
+//#ifndef NOIMAGEAPIS
+  // HIMAGELIST  himl;
+//#else
    HANDLE      himl;
-#endif
+//#endif
 }   REBARINFO,*LPREBARINFO;
 
 
@@ -761,7 +768,7 @@ typedef struct tagREBARBANDINFOA
    LPSTR       lpText;
    UINT        cch;
    int         iImage;
-   HWND        hwndChild;
+   oswindow        hwndChild;
    UINT        cxMinChild;
    UINT        cyMinChild;
    UINT        cx;
@@ -796,7 +803,7 @@ typedef struct tagREBARBANDINFOW
    LPWSTR      lpText;
    UINT        cch;
    int         iImage;
-   HWND        hwndChild;
+   oswindow        hwndChild;
    UINT        cxMinChild;
    UINT        cyMinChild;
    UINT        cx;
@@ -967,7 +974,7 @@ typedef struct tagNMREBAR
 typedef struct tagNMRBAUTOSIZE
 {
    NMHDR hdr;
-   BOOL fChanged;
+   WINBOOL fChanged;
    RECT rcTarget;
    RECT rcActual;
 } NMRBAUTOSIZE,*LPNMRBAUTOSIZE;
@@ -1002,7 +1009,7 @@ typedef struct tagNMREBARAUTOBREAK
    LPARAM lParam;
    UINT uMsg;
    UINT fStyleCurrent;
-   BOOL fAutoBreak;
+   WINBOOL fAutoBreak;
 } NMREBARAUTOBREAK,*LPNMREBARAUTOBREAK;
 #endif
 
@@ -1061,7 +1068,7 @@ typedef struct _RB_HITTESTINFO
 typedef struct tagTOOLINFOA {
    UINT cbSize;
    UINT uFlags;
-   HWND hwnd;
+   oswindow hwnd;
    UINT_PTR uId;
    RECT rect;
    HINSTANCE hinst;
@@ -1075,7 +1082,7 @@ typedef struct tagTOOLINFOA {
 typedef struct tagTOOLINFOW {
    UINT cbSize;
    UINT uFlags;
-   HWND hwnd;
+   oswindow hwnd;
    UINT_PTR uId;
    RECT rect;
    HINSTANCE hinst;
@@ -1243,13 +1250,13 @@ typedef struct _TTGETTITLE
 #define LPHITTESTINFO     LPTTHITTESTINFO
 
 typedef struct _TT_HITTESTINFOA {
-   HWND hwnd;
+   oswindow hwnd;
    POINT pt;
    TTTOOLINFOA ti;
 } TTHITTESTINFOA,*LPTTHITTESTINFOA;
 
 typedef struct _TT_HITTESTINFOW {
-   HWND hwnd;
+   oswindow hwnd;
    POINT pt;
    TTTOOLINFOW ti;
 } TTHITTESTINFOW,*LPTTHITTESTINFOW;
@@ -1339,8 +1346,8 @@ typedef struct tagNMTTDISPINFOW {
 //WINCOMMCTRLAPI void WINAPI DrawStatusTextA(HDC hDC,LPCRECT lprc,LPCSTR pszText,UINT uFlags);
 //WINCOMMCTRLAPI void WINAPI DrawStatusTextW(HDC hDC,LPCRECT lprc,LPCWSTR pszText,UINT uFlags);
 
-//WINCOMMCTRLAPI HWND WINAPI CreateStatusWindowA(LONG style,LPCSTR lpszText,HWND hwndParent,UINT wID);
-//WINCOMMCTRLAPI HWND WINAPI CreateStatusWindowW(LONG style,LPCWSTR lpszText,HWND hwndParent,UINT wID);
+//WINCOMMCTRLAPI oswindow WINAPI CreateStatusWindowA(LONG style,LPCSTR lpszText,oswindow hwndParent,UINT wID);
+//WINCOMMCTRLAPI oswindow WINAPI CreateStatusWindowW(LONG style,LPCWSTR lpszText,oswindow hwndParent,UINT wID);
 
 #ifdef UNICODE
 #define CreateStatusWindow      CreateStatusWindowW
@@ -1422,9 +1429,9 @@ typedef struct tagNMTTDISPINFOW {
 
 #ifndef NOMENUHELP
 
-//WINCOMMCTRLAPI void WINAPI MenuHelp(UINT uMsg,WPARAM wParam,LPARAM lParam,HMENU hMainMenu,HINSTANCE hInst,HWND hwndStatus,_In_reads_(_Inexpressible_(2 + 2n && n >= 1)) UINT *lpwIDs);
-//WINCOMMCTRLAPI BOOL WINAPI ShowHideMenuCtl(_In_ HWND hWnd,_In_ UINT_PTR uFlags,_In_z_ LPINT lpInfo);
-//WINCOMMCTRLAPI void WINAPI GetEffectiveClientRect(_In_ HWND hWnd,_Out_ LPRECT lprc,_In_z_ const INT *lpInfo);
+//WINCOMMCTRLAPI void WINAPI MenuHelp(UINT uMsg,WPARAM wParam,LPARAM lParam,HMENU hMainMenu,HINSTANCE hInst,oswindow hwndStatus,_In_reads_(_Inexpressible_(2 + 2n && n >= 1)) UINT *lpwIDs);
+//WINCOMMCTRLAPI WINBOOL WINAPI ShowHideMenuCtl(_In_ oswindow hWnd,_In_ UINT_PTR uFlags,_In_z_ LPINT lpInfo);
+//WINCOMMCTRLAPI void WINAPI GetEffectiveClientRect(_In_ oswindow hWnd,_Out_ LPRECT lprc,_In_z_ const INT *lpInfo);
 
 #define MINSYSCOMMAND   SC_SIZE
 
