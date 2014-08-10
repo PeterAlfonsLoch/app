@@ -93,10 +93,10 @@ namespace base
       m_libraryDraw2d(this)
    {
       
-      if(::get_thread() == NULL)
+//      if(::get_thread() == NULL)
       {
          
-         ::set_thread(this);
+//         ::set_thread(this);
          
       }
       
@@ -260,7 +260,7 @@ namespace base
 
       m_pthreadimpl->m_pthread = this;
 
-      m_pthreadimpl->initialize_message_queue();
+//      m_pthreadimpl->initialize_message_queue();
 
 
    }

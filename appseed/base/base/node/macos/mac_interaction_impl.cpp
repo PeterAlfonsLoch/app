@@ -6083,6 +6083,11 @@ namespace mac
       
       ::user::interaction_impl::_001UpdateWindow();
       
+      if(!m_pui->m_bMayProDevian)
+      {
+         round_window_redraw();
+      }
+      
    }
    
    void interaction_impl::offset_view_port_org(LPRECT lprectScreen)
