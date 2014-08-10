@@ -60,44 +60,7 @@ namespace simple_ui
    int32_t message_box::show()
    {
 
-      if(!create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"fontopus"))
-         throw simple_exception(get_app(),"not excepted! Failing Message box!!");
 
-      uint32_t uiType = m_uiFlags & MB_TYPEMASK;
-
-      switch(uiType)
-      {
-      case MB_OKCANCEL:
-         create_a_button("ok","OK");
-         create_a_button("cancel","Cancel");
-         break;
-      case MB_ABORTRETRYIGNORE:
-         create_a_button("abort","Abort");
-         create_a_button("retry","Retry");
-         create_a_button("ignore","Ignore");
-         break;
-      case MB_YESNOCANCEL:
-         create_a_button("yes","Yes");
-         create_a_button("no","No");
-         create_a_button("cancel","Cancel");
-         break;
-      case MB_YESNO:
-         create_a_button("yes","Yes");
-         create_a_button("no","No");
-         break;
-      case MB_RETRYCANCEL:
-         create_a_button("retry","Retry");
-         create_a_button("cancel","Cancel");
-         break;
-      case MB_CANCELTRYCONTINUE:
-         create_a_button("cancel","Cancel");
-         create_a_button("try","Try");
-         create_a_button("continue","Continue");
-         break;
-      default:
-         create_a_button("ok","OK");
-         break;
-      }
 
       ::rect rectDesktop;
 
@@ -147,6 +110,44 @@ namespace simple_ui
 
       rectFontopus.bottom = rectFontopus.top + h;
 
+      if(!create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"fontopus"))
+         throw simple_exception(get_app(),"not excepted! Failing Message box!!");
+
+      uint32_t uiType = m_uiFlags & MB_TYPEMASK;
+
+      switch(uiType)
+      {
+      case MB_OKCANCEL:
+         create_a_button("ok","OK");
+         create_a_button("cancel","Cancel");
+         break;
+      case MB_ABORTRETRYIGNORE:
+         create_a_button("abort","Abort");
+         create_a_button("retry","Retry");
+         create_a_button("ignore","Ignore");
+         break;
+      case MB_YESNOCANCEL:
+         create_a_button("yes","Yes");
+         create_a_button("no","No");
+         create_a_button("cancel","Cancel");
+         break;
+      case MB_YESNO:
+         create_a_button("yes","Yes");
+         create_a_button("no","No");
+         break;
+      case MB_RETRYCANCEL:
+         create_a_button("retry","Retry");
+         create_a_button("cancel","Cancel");
+         break;
+      case MB_CANCELTRYCONTINUE:
+         create_a_button("cancel","Cancel");
+         create_a_button("try","Try");
+         create_a_button("continue","Continue");
+         break;
+      default:
+         create_a_button("ok","OK");
+         break;
+      }
       SetWindowPos(ZORDER_TOP,rectFontopus,SWP_SHOWWINDOW);
 
       SetForegroundWindow();
@@ -362,11 +363,11 @@ CLASS_DECL_BASE int32_t system_message_box(oswindow interaction_impl,const char 
 
 UINT c_cdecl thread_proc_simple_ui_message_box(LPVOID lpvoid)
 {
-   
+
 #ifdef WINDOWSEX
 
    attach_thread_input_to_main_thread(false);
-   
+
 #endif
 
    ::simple_ui::message_box * pmessagebox = (::simple_ui::message_box *) lpvoid;
@@ -416,7 +417,7 @@ int32_t simple_ui_message_box(oswindow interaction_impl,const char * lpText,cons
    MESSAGE msg;
 
    bool bQuit = PeekMessage(&msg,NULL,WM_QUIT,WM_QUIT,PM_REMOVE) != FALSE;
-   
+
 #endif
 
    if(::get_thread_app() == NULL || ::get_thread_app()->m_pbasesession == NULL)

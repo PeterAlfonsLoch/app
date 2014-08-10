@@ -427,14 +427,14 @@ namespace linux
 
          attr.override_redirect = True;
 
-         Window interaction_impl = XCreateWindow( display, DefaultRootWindow(display), 256, 256, cs.cx, cs.cy, 0, m_iDepth, InputOutput, vis, CWColormap|CWEventMask|CWBackPixmap|CWBorderPixel, &attr);
+         Window window = XCreateWindow( display, DefaultRootWindow(display), cs.x, cs.cy, cs.cx, cs.cy, 0, m_iDepth, InputOutput, vis, CWColormap|CWEventMask|CWBackPixmap|CWBorderPixel, &attr);
 
          /*oswindow hWnd = ::CreateWindowEx(cs.dwExStyle, cs.lpszClass,
             cs.lpszName, cs.style, cs.x, cs.y, cs.cx, cs.cy,
             cs.hwndParent, cs.hMenu, cs.hInstance, cs.lpCreateParams);*/
 
    #ifdef DEBUG
-         if (interaction_impl == 0)
+         if (window == 0)
          {
             DWORD dwLastError = GetLastError();
             string strLastError = FormatMessageFromSystem(dwLastError);
@@ -461,7 +461,7 @@ namespace linux
          }
    #endif
 
-         m_oswindow = oswindow_get(display, interaction_impl, vis, m_iDepth, m_iScreen, attr.colormap);
+         m_oswindow = oswindow_get(display, window, vis, m_iDepth, m_iScreen, attr.colormap);
 
          m_oswindow->set_user_interaction(m_pui);
 
@@ -3736,25 +3736,30 @@ throw not_implemented(get_app());
       if(nFlags & SWP_IGNOREPALACEGUARD)
          iPalaceGuard = 1;
 
+      if(x > rectScreen.right - iPalaceGuard)
+         x = rectScreen.right - iPalaceGuard;
+
       if(x < 0)
          x = 0;
-      else if(x > rectScreen.right - iPalaceGuard)
-         x = rectScreen.right - iPalaceGuard;
+
+      if(y > rectScreen.bottom - iPalaceGuard)
+         y = rectScreen.bottom - iPalaceGuard;
 
       if(y < 0)
          y = 0;
-      else if(y > rectScreen.bottom - iPalaceGuard)
-         y = rectScreen.bottom - iPalaceGuard;
+
+      if(cx > rectScreen.width())
+         cx = rectScreen.width();
 
       if(cx < iPalaceGuard)
          cx = iPalaceGuard;
-      else if(cx > rectScreen.width())
-         cx = rectScreen.width();
+
+      if(cy > rectScreen.height())
+         cy = rectScreen.height();
 
       if(cy < iPalaceGuard)
          cy = iPalaceGuard;
-      else if(cy > rectScreen.height())
-         cy = rectScreen.height();
+
 
       /*bool b;
       bool * pb = &b;
@@ -5876,544 +5881,6 @@ namespace linux
 
       _001Expose();
 
-//      XClearWindow(m_oswindow->display(), m_oswindow->interaction_impl());
-
-      //cairo_surface_t * csSrc;
-
-      //cairo_t * cSrc;
-
-//      _001Expose();
-
-
-      //XEvent e;
-
-      //if(!XCheckTypedWindowEvent(m_oswindow->display(), m_oswindow->interaction_impl(), Expose, &e))
-        // return;
-
-      //if(e.type != Expose)
-        // return;
-
-
-/*      try
-      {
-
-//         csSrc = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, rectWindow.width(), rectWindow.height());
-
-  //       cSrc = cairo_create(csSrc);
-
-    //     ::draw2d::graphics_sp g(get_app());
-
-/*         cairo_set_operator(cSrc, CAIRO_OPERATOR_SOURCE);
-
-         cairo_rectangle(cSrc, 0, 0, rectWindow.width(), rectWindow.height());
-
-         cairo_set_source_rgba(cSrc, 0.0, 0.0, 0.0, 0.0);
-
-         cairo_fill(cSrc);
-
-         cairo_set_operator(cSrc, CAIRO_OPERATOR_OVER);
-
-         cairo_rectangle(cSrc, 10, 10, 200, 200);
-
-         cairo_set_source_rgba(cSrc, 0.5, 1.0, 0.5, 0.5);
-
-         cairo_fill(cSrc);*/
-
-//         g->attach(cSrc);
-
-  //       _000OnDraw(g);
-
-    //     g->detach();
-
-         //cairo_show_page(cSrc);
-
-
-
-  /*    }
-      catch(...)
-      {
-
-
-      }
-      XLockDisplay(m_oswindow->display());
-
-      try
-      {
-
-         cairo_surface_t * cs = cairo_xlib_surface_create(m_oswindow->display(), m_oswindow->interaction_impl(), m_oswindow->visual(), rectWindow.width(), rectWindow.height());
-
-         cairo_t * c = cairo_create(cs);
-
-
-
-         cairo_set_operator(c, CAIRO_OPERATOR_SOURCE);
-
-         cairo_rectangle(c, 0, 0, rectWindow.width(), rectWindow.height());
-
-         cairo_set_source_rgba(c, 0.0, 0.0, 0.0, 0.0);
-
-         cairo_fill(c);
-
-         cairo_set_operator(c, CAIRO_OPERATOR_OVER);
-
-         cairo_rectangle(c, 10, 10, 200, 200);
-
-         cairo_set_source_rgba(c, 0.5, 1.0, 0.5, 0.5);
-
-         cairo_fill(c);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-         ::draw2d::graphics_sp g(get_app());
-
-         g->attach(c);
-
-         _000OnDraw(g);
-
-         g->detach();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-         cairo_show_page(c);
-
-         cairo_destroy(c);
-
-         cairo_surface_destroy(cs);
-
-      }
-      catch(...)
-      {
-
-
-      }
-
-      try
-      {
-
-         //cairo_surface_destroy(csSrc);
-         //cairo_destroy(cSrc);
-
-      }
-      catch(...)
-      {
-
-      }
-
-      XUnlockDisplay(m_oswindow->display());
-
-      //throw not_implemented(get_app());
-
-//
-//
-//      rect rectWindow;
-//
-//      GetWindowRect(rectWindow);
-//
-//      if(rectWindow.area() <= 0)
-//         return;
-//
-//
-//      POINT pt;
-//      SIZE sz;
-//
-//      pt.x = rectWindow.left;
-//      pt.y = rectWindow.top;
-//      sz.cx = rectWindow.right - rectWindow.left;
-//      sz.cy = rectWindow.bottom - rectWindow.top;
-//
-//      int32_t cx = sz.cx;
-//      int32_t cy = sz.cy;
-//
-//      BITMAPINFO info;
-//      COLORREF * pcolorref;
-//
-//      zero_memory(&info, sizeof (BITMAPINFO));
-//
-//      info.bmiHeader.biSize          = sizeof (BITMAPINFOHEADER);
-//      info.bmiHeader.biWidth         = cx;
-//      info.bmiHeader.biHeight        = - cy;
-//      info.bmiHeader.biPlanes        = 1;
-//      info.bmiHeader.biBitCount      = 32;
-//      info.bmiHeader.biCompression   = BI_RGB;
-//      info.bmiHeader.biSizeImage     = cx * cy * 4;
-//
-//      HBITMAP hbitmap = CreateDIBSection(NULL, &info, DIB_RGB_COLORS, (void **) &pcolorref, NULL, NULL);
-//
-//      {
-//
-//         memset(pcolorref, 0, cx * cy * 4);
-//
-//         Gdiplus::Bitmap b(cx, cy, cx *4 , PixelFormat32bppARGB, (BYTE *) pcolorref);
-//
-//         ::draw2d::graphics_sp spg(get_app());
-//
-//         (dynamic_cast < ::linux::graphics * > (spg.m_p))->attach(new Gdiplus::Graphics(&b));
-//
-//         _001Print(spg);
-//
-//      }
-//
-//      if(GetExStyle() & WS_EX_LAYERED)
-//      {
-//         BYTE *dst=(BYTE*)pcolorref;
-//         int64_t size = cx * cy;
-//
-//
-//         // >> 8 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
-//
-//
-//         while (size >= 8)
-//         {
-//            dst[0] = LOBYTE(((int32_t)dst[0] * (int32_t)dst[3])>> 8);
-//            dst[1] = LOBYTE(((int32_t)dst[1] * (int32_t)dst[3])>> 8);
-//            dst[2] = LOBYTE(((int32_t)dst[2] * (int32_t)dst[3])>> 8);
-//
-//            dst[4+0] = LOBYTE(((int32_t)dst[4+0] * (int32_t)dst[4+3])>> 8);
-//            dst[4+1] = LOBYTE(((int32_t)dst[4+1] * (int32_t)dst[4+3])>> 8);
-//            dst[4+2] = LOBYTE(((int32_t)dst[4+2] * (int32_t)dst[4+3])>> 8);
-//
-//            dst[8+0] = LOBYTE(((int32_t)dst[8+0] * (int32_t)dst[8+3])>> 8);
-//            dst[8+1] = LOBYTE(((int32_t)dst[8+1] * (int32_t)dst[8+3])>> 8);
-//            dst[8+2] = LOBYTE(((int32_t)dst[8+2] * (int32_t)dst[8+3])>> 8);
-//
-//            dst[12+0] = LOBYTE(((int32_t)dst[12+0] * (int32_t)dst[12+3])>> 8);
-//            dst[12+1] = LOBYTE(((int32_t)dst[12+1] * (int32_t)dst[12+3])>> 8);
-//            dst[12+2] = LOBYTE(((int32_t)dst[12+2] * (int32_t)dst[12+3])>> 8);
-//
-//            dst[16+0] = LOBYTE(((int32_t)dst[16+0] * (int32_t)dst[16+3])>> 8);
-//            dst[16+1] = LOBYTE(((int32_t)dst[16+1] * (int32_t)dst[16+3])>> 8);
-//            dst[16+2] = LOBYTE(((int32_t)dst[16+2] * (int32_t)dst[16+3])>> 8);
-//
-//            dst[20+0] = LOBYTE(((int32_t)dst[20+0] * (int32_t)dst[20+3])>> 8);
-//            dst[20+1] = LOBYTE(((int32_t)dst[20+1] * (int32_t)dst[20+3])>> 8);
-//            dst[20+2] = LOBYTE(((int32_t)dst[20+2] * (int32_t)dst[20+3])>> 8);
-//
-//            dst[24+0] = LOBYTE(((int32_t)dst[24+0] * (int32_t)dst[24+3])>> 8);
-//            dst[24+1] = LOBYTE(((int32_t)dst[24+1] * (int32_t)dst[24+3])>> 8);
-//            dst[24+2] = LOBYTE(((int32_t)dst[24+2] * (int32_t)dst[24+3])>> 8);
-//
-//            dst[28+0] = LOBYTE(((int32_t)dst[28+0] * (int32_t)dst[28+3])>> 8);
-//            dst[28+1] = LOBYTE(((int32_t)dst[28+1] * (int32_t)dst[28+3])>> 8);
-//            dst[28+2] = LOBYTE(((int32_t)dst[28+2] * (int32_t)dst[28+3])>> 8);
-//
-//            dst += 4 * 8;
-//            size -= 8;
-//         }
-//         while(size--)
-//         {
-//            dst[0] = LOBYTE(((int32_t)dst[0] * (int32_t)dst[3])>> 8);
-//            dst[1] = LOBYTE(((int32_t)dst[1] * (int32_t)dst[3])>> 8);
-//            dst[2] = LOBYTE(((int32_t)dst[2] * (int32_t)dst[3])>> 8);
-//            dst += 4;
-//         }
-//
-//
-//         {
-//            HDC hdcScreen = ::1p.t5mL>1..(get_handle());
-//
-//            HDC hdcMem = ::CreateCompatibleDC(NULL);
-//
-//            HBITMAP hbitmapOld = (HBITMAP) ::SelectObject(hdcMem, hbitmap);
-//
-//            BLENDFUNCTION blendPixelFunction = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
-//
-//            POINT ptZero = { 0 };
-//
-//            point ptSrc(0, 0);
-//
-//            bool bOk = ::UpdateLayeredWindow(get_handle(), hdcScreen, &pt, &sz, hdcMem, &ptSrc, RGB(0, 0, 0), &blendPixelFunction, ULW_ALPHA) != FALSE;
-//
-//            ::SelectObject(hdcMem, hbitmapOld);
-//
-//            ::DeleteDC(hdcMem);
-//
-//            ::ReleaseDC(get_handle(), hdcScreen);
-//         }
-//
-//
-//      }
-//      else
-//      {
-//
-//         {
-//            HDC hdcScreen = ::GetDC(get_handle());
-//
-//            HDC hdcMem = ::CreateCompatibleDC(NULL);
-//
-//            HBITMAP hbitmapOld = (HBITMAP) ::SelectObject(hdcMem, hbitmap);
-//
-//            BLENDFUNCTION blendPixelFunction = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
-//
-//            POINT ptZero = { 0 };
-//
-//            point ptSrc(0, 0);
-//
-//            ::BitBlt(hdcScreen, 0, 0, sz.cx, sz.cy, hdcMem, 0, 0, SRCCOPY);
-//
-//            ::SelectObject(hdcMem, hbitmapOld);
-//
-//            ::DeleteDC(hdcMem);
-//
-//            ::ReleaseDC(get_handle(), hdcScreen);
-//         }
-//
-//      }
-//
-//      ::DeleteObject(hbitmap);
-   }
-
-   void interaction_impl::_001UpdateWindow()
-   {
-
-      rect rectWindow;
-
-      GetWindowRect(rectWindow);
-
-      if(rectWindow.area() <= 0)
-         return;
-
-
-      //cairo_surface_t * csSrc;
-
-      //cairo_t * cSrc;
-
-
-      XEvent e;
-
-/*      if(!XCheckTypedWindowEvent(m_oswindow->display(), m_oswindow->interaction_impl(), Expose, &e))
-         return;
-
-      if(e.type != Expose)
-         return;
-
-
-      try
-      {
-
-//         csSrc = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, rectWindow.width(), rectWindow.height());
-
-  //       cSrc = cairo_create(csSrc);
-
-    //     ::draw2d::graphics_sp g(get_app());
-
-/*         cairo_set_operator(cSrc, CAIRO_OPERATOR_SOURCE);
-
-         cairo_rectangle(cSrc, 0, 0, rectWindow.width(), rectWindow.height());
-
-         cairo_set_source_rgba(cSrc, 0.0, 0.0, 0.0, 0.0);
-
-         cairo_fill(cSrc);
-
-         cairo_set_operator(cSrc, CAIRO_OPERATOR_OVER);
-
-         cairo_rectangle(cSrc, 10, 10, 200, 200);
-
-         cairo_set_source_rgba(cSrc, 0.5, 1.0, 0.5, 0.5);
-
-         cairo_fill(cSrc);*/
-
-//         g->attach(cSrc);
-
-  //       _000OnDraw(g);
-
-    //     g->detach();
-
-         //cairo_show_page(cSrc);
-
-
-
-/*      }
-      catch(...)
-      {
-
-
-      }
-      //throw not_implemented(get_app());
-
-//
-//
-//      rect rectWindow;
-//
-//      GetWindowRect(rectWindow);
-//
-//      if(rectWindow.area() <= 0)
-//         return;
-//
-//
-//      POINT pt;
-//      SIZE sz;
-//
-//      pt.x = rectWindow.left;
-//      pt.y = rectWindow.top;
-//      sz.cx = rectWindow.right - rectWindow.left;
-//      sz.cy = rectWindow.bottom - rectWindow.top;
-//
-//      int32_t cx = sz.cx;
-//      int32_t cy = sz.cy;
-//
-//      BITMAPINFO info;
-//      COLORREF * pcolorref;
-//
-//      zero_memory(&info, sizeof (BITMAPINFO));
-//
-//      info.bmiHeader.biSize          = sizeof (BITMAPINFOHEADER);
-//      info.bmiHeader.biWidth         = cx;
-//      info.bmiHeader.biHeight        = - cy;
-//      info.bmiHeader.biPlanes        = 1;
-//      info.bmiHeader.biBitCount      = 32;
-//      info.bmiHeader.biCompression   = BI_RGB;
-//      info.bmiHeader.biSizeImage     = cx * cy * 4;
-//
-//      HBITMAP hbitmap = CreateDIBSection(NULL, &info, DIB_RGB_COLORS, (void **) &pcolorref, NULL, NULL);
-//
-//      {
-//
-//         memset(pcolorref, 0, cx * cy * 4);
-//
-//         Gdiplus::Bitmap b(cx, cy, cx *4 , PixelFormat32bppARGB, (BYTE *) pcolorref);
-//
-//         ::draw2d::graphics_sp spg(get_app());
-//
-//         (dynamic_cast < ::linux::graphics * > (spg.m_p))->attach(new Gdiplus::Graphics(&b));
-//
-//         _001Print(spg);
-//
-//      }
-//
-//      if(GetExStyle() & WS_EX_LAYERED)
-//      {
-//         BYTE *dst=(BYTE*)pcolorref;
-//         int64_t size = cx * cy;
-//
-//
-//         // >> 8 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
-//
-//
-//         while (size >= 8)
-//         {
-//            dst[0] = LOBYTE(((int32_t)dst[0] * (int32_t)dst[3])>> 8);
-//            dst[1] = LOBYTE(((int32_t)dst[1] * (int32_t)dst[3])>> 8);
-//            dst[2] = LOBYTE(((int32_t)dst[2] * (int32_t)dst[3])>> 8);
-//
-//            dst[4+0] = LOBYTE(((int32_t)dst[4+0] * (int32_t)dst[4+3])>> 8);
-//            dst[4+1] = LOBYTE(((int32_t)dst[4+1] * (int32_t)dst[4+3])>> 8);
-//            dst[4+2] = LOBYTE(((int32_t)dst[4+2] * (int32_t)dst[4+3])>> 8);
-//
-//            dst[8+0] = LOBYTE(((int32_t)dst[8+0] * (int32_t)dst[8+3])>> 8);
-//            dst[8+1] = LOBYTE(((int32_t)dst[8+1] * (int32_t)dst[8+3])>> 8);
-//            dst[8+2] = LOBYTE(((int32_t)dst[8+2] * (int32_t)dst[8+3])>> 8);
-//
-//            dst[12+0] = LOBYTE(((int32_t)dst[12+0] * (int32_t)dst[12+3])>> 8);
-//            dst[12+1] = LOBYTE(((int32_t)dst[12+1] * (int32_t)dst[12+3])>> 8);
-//            dst[12+2] = LOBYTE(((int32_t)dst[12+2] * (int32_t)dst[12+3])>> 8);
-//
-//            dst[16+0] = LOBYTE(((int32_t)dst[16+0] * (int32_t)dst[16+3])>> 8);
-//            dst[16+1] = LOBYTE(((int32_t)dst[16+1] * (int32_t)dst[16+3])>> 8);
-//            dst[16+2] = LOBYTE(((int32_t)dst[16+2] * (int32_t)dst[16+3])>> 8);
-//
-//            dst[20+0] = LOBYTE(((int32_t)dst[20+0] * (int32_t)dst[20+3])>> 8);
-//            dst[20+1] = LOBYTE(((int32_t)dst[20+1] * (int32_t)dst[20+3])>> 8);
-//            dst[20+2] = LOBYTE(((int32_t)dst[20+2] * (int32_t)dst[20+3])>> 8);
-//
-//            dst[24+0] = LOBYTE(((int32_t)dst[24+0] * (int32_t)dst[24+3])>> 8);
-//            dst[24+1] = LOBYTE(((int32_t)dst[24+1] * (int32_t)dst[24+3])>> 8);
-//            dst[24+2] = LOBYTE(((int32_t)dst[24+2] * (int32_t)dst[24+3])>> 8);
-//
-//            dst[28+0] = LOBYTE(((int32_t)dst[28+0] * (int32_t)dst[28+3])>> 8);
-//            dst[28+1] = LOBYTE(((int32_t)dst[28+1] * (int32_t)dst[28+3])>> 8);
-//            dst[28+2] = LOBYTE(((int32_t)dst[28+2] * (int32_t)dst[28+3])>> 8);
-//
-//            dst += 4 * 8;
-//            size -= 8;
-//         }
-//         while(size--)
-//         {
-//            dst[0] = LOBYTE(((int32_t)dst[0] * (int32_t)dst[3])>> 8);
-//            dst[1] = LOBYTE(((int32_t)dst[1] * (int32_t)dst[3])>> 8);
-//            dst[2] = LOBYTE(((int32_t)dst[2] * (int32_t)dst[3])>> 8);
-//            dst += 4;
-//         }
-//
-//
-//         {
-//            HDC hdcScreen = ::GetDC(get_handle());
-//
-//            HDC hdcMem = ::CreateCompatibleDC(NULL);
-//
-//            HBITMAP hbitmapOld = (HBITMAP) ::SelectObject(hdcMem, hbitmap);
-//
-//            BLENDFUNCTION blendPixelFunction = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
-//
-//            POINT ptZero = { 0 };
-//
-//            point ptSrc(0, 0);
-//
-//            bool bOk = ::UpdateLayeredWindow(get_handle(), hdcScreen, &pt, &sz, hdcMem, &ptSrc, RGB(0, 0, 0), &blendPixelFunction, ULW_ALPHA) != FALSE;
-//
-//            ::SelectObject(hdcMem, hbitmapOld);
-//
-//            ::DeleteDC(hdcMem);
-//
-//            ::ReleaseDC(get_handle(), hdcScreen);
-//         }
-//
-//
-//      }
-//      else
-//      {
-//
-//         {
-//            HDC hdcScreen = ::GetDC(get_handle());
-//
-//            HDC hdcMem = ::CreateCompatibleDC(NULL);
-//
-//            HBITMAP hbitmapOld = (HBITMAP) ::SelectObject(hdcMem, hbitmap);
-//
-//            BLENDFUNCTION blendPixelFunction = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
-//
-//            POINT ptZero = { 0 };
-//
-//            point ptSrc(0, 0);
-//
-//            ::BitBlt(hdcScreen, 0, 0, sz.cx, sz.cy, hdcMem, 0, 0, SRCCOPY);
-//
-//            ::SelectObject(hdcMem, hbitmapOld);
-//
-//            ::DeleteDC(hdcMem);
-//
-//            ::ReleaseDC(get_handle(), hdcScreen);
-//         }
-//
-//      }
-//
-//      ::DeleteObject(hbitmap);
-*/
    }
 
    void interaction_impl::set_viewport_org(::draw2d::graphics * pgraphics)

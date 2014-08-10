@@ -1,10 +1,6 @@
 #include "framework.h"
 
-static mutex * s_pmutex = NULL;
-mutex & cairo_mutex()
-{
-return *s_pmutex;
-}
+
 namespace draw2d_cairo
 {
 
@@ -13,7 +9,7 @@ namespace draw2d_cairo
       element(papp)
    {
 
-   s_pmutex = new mutex(papp);
+      init_cairo_mutex();
 
       System.factory().cloneable_large < dib                   >  (System.type_info < ::draw2d::dib                 > ());
       System.factory().cloneable_large < graphics              >  (System.type_info < ::draw2d::graphics            > ());

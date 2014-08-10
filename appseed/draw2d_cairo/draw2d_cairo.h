@@ -10,7 +10,8 @@
 #include "app/thirdparty/appseed/cairo/cairo.h"
 #include "app/thirdparty/appseed/cairo/cairo-ft.h"
 
-
+mutex & cairo_mutex();
+void init_cairo_mutex();
 
 
 #ifdef _DRAW2D_CAIRO_LIBRARY

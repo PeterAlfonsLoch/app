@@ -5,5 +5,5 @@
 
 #include "draw2d_cairo.h"
 
-mutex & cairo_mutex();
+
 
