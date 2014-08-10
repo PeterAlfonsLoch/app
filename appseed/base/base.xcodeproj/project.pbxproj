@@ -118,7 +118,6 @@
 		072C78AF192DE10000BA1FA1 /* ansios_base_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072C78AC192DE10000BA1FA1 /* ansios_base_file.cpp */; };
 		073DBD64192D0A44008EEB76 /* base_application_signal_details.h in Headers */ = {isa = PBXBuildFile; fileRef = 073DBD5F192D0A44008EEB76 /* base_application_signal_details.h */; };
 		073DBD65192D0A44008EEB76 /* base_class.h in Headers */ = {isa = PBXBuildFile; fileRef = 073DBD60192D0A44008EEB76 /* base_class.h */; };
-		073DBD66192D0A44008EEB76 /* base_keeper.h in Headers */ = {isa = PBXBuildFile; fileRef = 073DBD61192D0A44008EEB76 /* base_keeper.h */; };
 		073DBD67192D0A44008EEB76 /* base_static_start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 073DBD62192D0A44008EEB76 /* base_static_start.cpp */; };
 		073DBD68192D0A44008EEB76 /* base_static_start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 073DBD62192D0A44008EEB76 /* base_static_start.cpp */; };
 		073DBD69192D0A44008EEB76 /* base_static_start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 073DBD62192D0A44008EEB76 /* base_static_start.cpp */; };
@@ -4209,7 +4208,6 @@
 		072C78AC192DE10000BA1FA1 /* ansios_base_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ansios_base_file.cpp; sourceTree = "<group>"; };
 		073DBD5F192D0A44008EEB76 /* base_application_signal_details.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_application_signal_details.h; sourceTree = "<group>"; };
 		073DBD60192D0A44008EEB76 /* base_class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_class.h; sourceTree = "<group>"; };
-		073DBD61192D0A44008EEB76 /* base_keeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_keeper.h; sourceTree = "<group>"; };
 		073DBD62192D0A44008EEB76 /* base_static_start.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base_static_start.cpp; sourceTree = "<group>"; };
 		073DBD63192D0A44008EEB76 /* base_static_start.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_static_start.h; sourceTree = "<group>"; };
 		073DBD6C192D356D008EEB76 /* ansios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ansios.h; sourceTree = "<group>"; };
@@ -7804,7 +7802,6 @@
 				07B07E6818495B37007A0560 /* base_international.cpp */,
 				07B07E6918495B37007A0560 /* base_international.h */,
 				07B07E6A18495B37007A0560 /* base_keep_true.h */,
-				073DBD61192D0A44008EEB76 /* base_keeper.h */,
 				07B07E6B18495B37007A0560 /* base_launcher.h */,
 				07B07E6C18495B37007A0560 /* base_libc.h */,
 				07B07E6D18495B37007A0560 /* base_library.h */,
@@ -11102,7 +11099,6 @@
 				07A6C8A1190C4D2500859288 /* rand.h in Headers */,
 				07F5B1A4184A3B430092C3E1 /* file_buffer.h in Headers */,
 				07B094F518495C2B007A0560 /* collection_stringa.h in Headers */,
-				073DBD66192D0A44008EEB76 /* base_keeper.h in Headers */,
 				07B08C0718495B40007A0560 /* base_plex_heap_impl.h in Headers */,
 				07B093CD18495B43007A0560 /* xml_tree_base.h in Headers */,
 				07884DD31897EC9600DC6CEB /* dec_kanji.h in Headers */,

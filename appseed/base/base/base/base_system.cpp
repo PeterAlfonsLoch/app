@@ -92,7 +92,14 @@ namespace base
       //m_visual(this),
       m_libraryDraw2d(this)
    {
-
+      
+      if(::get_thread() == NULL)
+      {
+         
+         ::set_thread(this);
+         
+      }
+      
       m_ptwf = NULL;
 
 #ifdef MATTER_CACHE_FROM_HTTP_SERVER
