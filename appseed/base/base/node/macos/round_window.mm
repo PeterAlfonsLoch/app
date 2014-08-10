@@ -40,7 +40,15 @@ void ns_app_run()
    
 }
 
-
+void round_window::round_window_release()
+{
+   
+   [m_proundwindow release];
+   
+   m_proundwindow = NULL;
+   
+   
+}
 
 void round_window::round_window_show()
 {

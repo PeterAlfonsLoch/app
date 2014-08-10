@@ -40,6 +40,7 @@ bool m_bDirty;
    virtual void round_window_hide();
    virtual void round_window_redraw();
    
+   virtual void round_window_release();
    
    
 };

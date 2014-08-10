@@ -622,6 +622,9 @@ namespace mac
    
    void interaction_impl::_001OnDestroy(signal_details * pobj)
    {
+      
+      round_window_release();
+      
       UNREFERENCED_PARAMETER(pobj);
       Default();
       ::mac::window_draw * pdraw = dynamic_cast < ::mac::window_draw * > (System.get_twf().m_p);
