@@ -319,11 +319,27 @@ namespace simple_ui
 
       int32_t iStyle = 1;
 
+      rectClient.left--;
+      rectClient.top--;
+
       if(session().user()->get_keyboard_focus() == this)
       {
 
          if (iStyle == 1)
          {
+
+            {
+
+               //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 108, 149, 255));
+               ::draw2d::pen_sp pen(pgraphics,1.0,ARGB(184,84,84,77));
+
+               pgraphics->DrawRect(rectClient,pen);
+
+            }
+            rectClient.left--;
+            rectClient.right++;
+            rectClient.top--;
+            rectClient.bottom++;
 
             {
 
@@ -460,7 +476,7 @@ namespace simple_ui
 
 
 
-
+            /*
             rectClient.left--;
             rectClient.right++;
             rectClient.top--;
@@ -485,7 +501,7 @@ namespace simple_ui
                pgraphics->DrawRect(rectClient, pen);
 
             }
-
+            */
 
          }
          else

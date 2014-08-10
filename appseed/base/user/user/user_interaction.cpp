@@ -737,6 +737,9 @@ namespace user
 
                ScreenToClient(rectClient);
 
+               rectClient.bottom++;
+               rectClient.right++;
+
                rgnClip->create_rect(rectClient);
 
                if(bFirst)

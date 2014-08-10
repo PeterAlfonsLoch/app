@@ -269,7 +269,7 @@ namespace user
       ca.set_rgb(RGB(227, 227, 210));
       ca.hls_rate(0.0, -0.33, -0.23);
       COLORREF crBorder = ca.get_rgb() | (0xff << 24);
-      pdc->Draw3dRect(rectClient, crBorder, crBorder);
+      //pdc->Draw3dRect(rectClient, crBorder, crBorder);
 
       if(m_ptree == NULL)
          return;

@@ -123,7 +123,7 @@ namespace fontopus
 
 
       int stdw = 800;
-      int stdh = 184 + 23 + 184;
+      int stdh = 400;
 
       int h;
       int w;
@@ -132,6 +132,7 @@ namespace fontopus
 
       GetClientRect(rectClient);
 
+      /*
       if (m_bSelfLayout)
       {
          
@@ -181,7 +182,7 @@ namespace fontopus
          
          GetClientRect(rectClient);
 
-      }
+      }*/
 
       
       w = (int)(rectClient.width());

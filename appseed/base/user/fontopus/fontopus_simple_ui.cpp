@@ -166,7 +166,7 @@ namespace fontopus
 
       int stdw = 800;
 
-      int stdh = 184 + 23 + 184;
+      int stdh = 400;
 
       int w = stdw;
 
@@ -214,13 +214,13 @@ namespace fontopus
 
       SetWindowText( "fontopus Auth Windows");
 
+      SetWindowPos(ZORDER_TOP,rectFontopus,SWP_SHOWWINDOW);
+
+      layout();
+
       m_login.m_peditUser->SetFocus();
 
-      m_login.layout();
-
-      //SetWindowPos(ZORDER_TOP,rectFontopus,SWP_SHOWWINDOW);
-
-
+      //m_login.layout();
 
       m_login.ShowWindow(SW_NORMAL);
       
@@ -283,6 +283,8 @@ namespace fontopus
 
    void simple_ui::layout()
    {
+
+      /*
 
       if(!m_bFontopusSimpleUiLayout)
       {
@@ -371,6 +373,7 @@ namespace fontopus
          }
 
       }
+      */
 
 
       rect rectClient;
@@ -397,8 +400,9 @@ namespace fontopus
       m_bLButtonDown = true;
       m_bDrag = false;
 
-      m_ptLButtonDownPos = pmouse->m_pt;
-      ::GetCursorPos(&m_ptLButtonDown);
+      m_ptLButtonDown = pmouse->m_pt;
+      m_ptLButtonDownPos = m_ptLButtonDown;
+      ScreenToClient(&m_ptLButtonDownPos);
       SetCapture();
 
       pmouse->m_bRet = true;
@@ -437,8 +441,8 @@ namespace fontopus
             m_bDrag = true;
             POINT ptNow = pmouse->m_pt;
             point pt;
-            pt.x = ptNow.x - m_ptLButtonDown.x + m_ptLButtonDownPos.x;
-            pt.y = ptNow.y - m_ptLButtonDown.y + m_ptLButtonDownPos.y;
+            pt.x = ptNow.x - m_ptLButtonDown.x - m_ptLButtonDownPos.x;
+            pt.y = ptNow.y - m_ptLButtonDown.y - m_ptLButtonDownPos.y;
             MoveWindow(pt);
             m_bDrag = false;
          }
@@ -538,9 +542,15 @@ namespace fontopus
 
 CLASS_DECL_BASE void draw_ca2_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crOut, COLORREF crIn)
 {
+   int w = z / 19;
+
+   if(w < 1)
+      w = 1;
+
+   z = w * 19;
 
 
-   rect r(x + bIn + bOut, y + bIn + bOut, x + bIn + bOut + z, y + bIn + bOut + z);
+   rect r(x + bIn + bOut, y + bIn + bOut, x + bIn + bOut + z-1, y + bIn + bOut + z-1);
 
    ::draw2d::pen_sp p(pdc->allocer());
 
