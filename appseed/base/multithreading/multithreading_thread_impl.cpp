@@ -1203,9 +1203,12 @@ void thread_impl::remove(::user::interaction * pui)
 
    single_lock sl(&m_mutexUiPtra,TRUE);
 
-   ASSERT(pui->m_pthread == m_pthread);
+   if(pui->m_pthread == m_pthread)
+   {
 
-   pui->m_pthread = NULL;
+      pui->m_pthread = NULL;
+
+   }
 
    if(m_spuiptra.is_set())
    {

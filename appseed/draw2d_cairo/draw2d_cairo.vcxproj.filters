@@ -97,6 +97,9 @@
     <ClCompile Include="draw2d_cairo_keep.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="draw2d_cairo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="draw2d_cairo.def">

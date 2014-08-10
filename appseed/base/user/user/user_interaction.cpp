@@ -569,7 +569,12 @@ namespace user
       try
       {
 
-         m_pthread->remove(this);
+         if(m_pthread != NULL)
+         {
+
+            m_pthread->remove(this);
+
+         }
 
       }
       catch(...)
