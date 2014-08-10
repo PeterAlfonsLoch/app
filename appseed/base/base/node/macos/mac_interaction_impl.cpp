@@ -64,7 +64,7 @@ namespace mac
    {
       
       //set_handle(NULL);
-      m_pui->m_nFlags    = 0;
+//      m_pui->m_nFlags    = 0;
       //m_pfnSuper         = NULL;
       m_bMouseHover        = false;
       m_pguieCapture       = NULL;
@@ -78,7 +78,7 @@ namespace mac
       
       m_oswindow           = hWnd;
       //set_handle(hWnd);
-      m_pui->m_nFlags    = 0;
+//      m_pui->m_nFlags    = 0;
       //m_pfnSuper         = NULL;
       m_bMouseHover        = false;
       m_pguieCapture       = NULL;
@@ -92,7 +92,7 @@ namespace mac
     {
       
         //set_handle(NULL);
-        m_pui->m_nFlags    = 0;
+//        m_pui->m_nFlags    = 0;
         //m_pfnSuper         = NULL;
         m_bMouseHover        = false;
 //        m_pfont              = NULL;
