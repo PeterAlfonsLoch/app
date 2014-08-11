@@ -314,6 +314,7 @@ namespace user
 
       virtual void _000OnMouse(::message::mouse * pmouse);
       virtual void _000OnKey(::message::key * pkey);
+      DECL_GEN_SIGNAL(_001OnShowWindow);
       DECL_GEN_SIGNAL(_001OnMouseMove);
       DECL_GEN_SIGNAL(_001OnMouseEnter);
       DECL_GEN_SIGNAL(_001OnMouseLeave);

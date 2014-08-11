@@ -467,6 +467,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_COMMAND,pinterface,this,&interaction::_001OnCommand);
       IGUI_WIN_MSG_LINK(message_simple_command,pinterface,this,&interaction::_001OnSimpleCommand);
 //      IGUI_WIN_MSG_LINK(message_set_schema,pinterface,this,&interaction::_001OnSetSchema);
+      IGUI_WIN_MSG_LINK(WM_SHOWWINDOW,pinterface,this,&interaction::_001OnShowWindow);
    }
 
    void interaction::_001OnNcCalcSize(signal_details * pobj)
@@ -5321,7 +5322,24 @@ namespace user
          || eappearance == ::user::AppearanceBottomLeft;
    }
 
+   void interaction::_001OnShowWindow(signal_details * pobj)
+   {
 
+      SCAST_PTR(::message::show_window, pshowwindow, pobj);
+
+      if(!pshowwindow->m_bShow)
+      {
+
+         if(session().user()->m_pkeyboardfocus == this)
+         {
+
+            session().user()->set_keyboard_focus(NULL);
+
+         }
+
+      }
+
+   }
 
 
 } // namespace user

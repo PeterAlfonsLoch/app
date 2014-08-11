@@ -5,13 +5,7 @@ namespace user
 
    keyboard_focus::~keyboard_focus()
    {
-      if(m_pbaseapp != NULL && &System != NULL && session().user().is_set())
-      {
-         if(session().user()->m_pkeyboardfocus == this)
-         {
-            session().user()->set_keyboard_focus(NULL);
-         }
-      }
+
    }
 
    void keyboard_focus::keyboard_focus_OnTimer(int32_t iTimer)
@@ -36,15 +30,15 @@ namespace user
 
       if(pkey->m_ekey == ::user::key_tab)
       {
-         
+
          control_event ev;
-         
+
          ev.m_puie                  = (this);
          ev.m_eevent                = ::user::event_tab_key;
          ev.m_actioncontext         = ::action::source_user;
-         
+
          GetParent()->BaseOnControlEvent(&ev);
-         
+
          BaseOnControlEvent(&ev);
 
       }
