@@ -960,8 +960,37 @@ namespace file
             property_set set(get_app());
 
             set["raw_http"] = true;
+            
+            string strFile = System.dir().commonappdata(path("cache", strDir, "list_dir.list_dir"));
+            
+            strsize iFind = strFile.find(DIR_SEPARATOR);
+            
+            if (iFind > 0)
+            {
+               
+               strFile.replace(":", "_", iFind + 1);
+               
+            }
+            
+            string strLs;
+            
+            if(Application.file().exists(strFile))
+            {
+               
+               strFile = Application.file().as_string(strFile);
+            
+            }
+            else
+            {
+               
+               // todo: keep cache timeout information;
+               strLs = sess(papp).http().get("http://" + get_api_cc() + "/api/matter/list_dir?dir=" + System.url().url_encode(strDir),set);
+               
+               Application.file().put_contents(strFile, strLs);
+               
+            }
+            
 
-            string strLs = sess(papp).http().get("http://" + get_api_cc() + "/api/matter/list_dir?dir=" + System.url().url_encode(strDir),set);
 
             stringa straLs;
 

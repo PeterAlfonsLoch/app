@@ -5652,7 +5652,7 @@ namespace mac
 
    void interaction_impl::round_window_draw(CGContextRef cgc)
    {
-      
+        single_lock sl(m_pui->m_spmutex, true);
       if(m_bUpdateGraphics)
       {
          
@@ -5662,7 +5662,7 @@ namespace mac
          
       }
 
-      single_lock sl(mutex_display(), true);
+//      single_lock sl(mutex_display(), true);
       
       if(m_spdibFlip.is_null())
          return;
@@ -6065,12 +6065,12 @@ namespace mac
       
    }
    
-   void interaction_impl::offset_view_port_org(LPRECT lprectScreen)
+   void interaction_impl::offset_viewport_org(LPRECT lprectScreen)
    {
    }
 
    
-   void interaction_impl::set_view_port_org(::draw2d::graphics * pgraphics)
+   void interaction_impl::set_viewport_org(::draw2d::graphics * pgraphics)
    {
 
       // graphics will be already set its view port to the user::interaction for linux - cairo with xlib

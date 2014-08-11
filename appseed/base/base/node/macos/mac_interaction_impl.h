@@ -233,8 +233,8 @@ namespace mac
         virtual bool round_window_key_up(::user::e_key ekey);
       
       
-        void set_view_port_org(::draw2d::graphics * pgraphics);
-        void offset_view_port_org(LPRECT lprectScreen);
+        void set_viewport_org(::draw2d::graphics * pgraphics);
+        void offset_viewport_org(LPRECT lprectScreen);
       
       
         virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, DWORD flags);
