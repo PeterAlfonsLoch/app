@@ -4451,7 +4451,7 @@ namespace user
 #else
 
 
-         SetWindowPos(iZOrder,rect,uiSwpFlags);
+         SetWindowPos(iZOrder,rectNew,uiSwpFlags);
 
 #endif
 
@@ -4561,7 +4561,7 @@ namespace user
 #else
 
 
-         SetWindowPos(iZOrder,rect,uiSwpFlags);
+         SetWindowPos(iZOrder,rectWkspace,uiSwpFlags);
 
 #endif
 
@@ -4676,7 +4676,7 @@ namespace user
 #else
 
 
-         SetWindowPos(iZOrder,rect,uiSwpFlags);
+         SetWindowPos(iZOrder,rectNew,uiSwpFlags);
 
 #endif
 
@@ -4794,7 +4794,7 @@ namespace user
 #else
 
 
-         SetWindowPos(iZOrder,rect,uiSwpFlags);
+         SetWindowPos(iZOrder,rectNew,uiSwpFlags);
 
 #endif
 
@@ -4891,7 +4891,7 @@ namespace user
 #else
 
 
-         SetWindowPos(iZOrder,rect,uiSwpFlags);
+         SetWindowPos(iZOrder,rectNew,uiSwpFlags);
 
 #endif
 
@@ -4976,7 +4976,7 @@ namespace user
 #else
 
 
-         SetWindowPos(iZOrder,rect,uiSwpFlags);
+         SetWindowPos(iZOrder,rectNew,uiSwpFlags);
 
 #endif
 
