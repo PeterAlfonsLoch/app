@@ -186,9 +186,9 @@ namespace user
             {
                m_pbaseapp->m_pthreadimpl->m_sptimera->detach(timera,this);
             }
-            
+
             rect rectWindow;
-            
+
             GetWindowRect(rectWindow);
 
             if(!pimplNew->create_window_ex(0,NULL,strName,iStyle,rectWindow,NULL,GetDlgCtrlId()))
@@ -582,7 +582,7 @@ namespace user
 
       }
 
-      
+
 
 
       array < ::user::interaction  * > uiptra;
@@ -1678,10 +1678,10 @@ namespace user
 
    bool interaction::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(interaction) pParentWnd,id id,sp(::create_context) pContext)
    {
-      
+
       if(IsWindow())
       {
-      
+
          DestroyWindow();
 
       }
@@ -2461,7 +2461,7 @@ namespace user
 
    void interaction::viewport_screen_to_client(POINT * ppt)
    {
-      
+
       if(m_pimpl.is_null())
          return;
 
@@ -3310,12 +3310,12 @@ namespace user
       m_bMessageWindow = true;
 
       m_pimpl->m_pui = this;
-      
+
       m_pthread = ::get_thread();
 
       if(!m_pimpl->create_message_queue(pszName))
       {
-         
+
          m_pthread = NULL;
 
          m_pimpl.release();
@@ -4459,7 +4459,7 @@ namespace user
       if(lprect != NULL)
       {
 
-         *lprect = rect;
+         *lprect = rectNew;
 
       }
 
@@ -4490,13 +4490,14 @@ namespace user
 
       index iMatchingMonitor = session().get_best_monitor(rectNew,rectWindow);
 
+      ::rect rectWkspace;
+
+      session().get_wkspace_rect(iMatchingMonitor,rectWkspace);
+
       if(bSet && (!::IsRectEmpty(&rect) || iMatchingMonitor >= 0))
       {
 #ifdef WINDOWSEX
 
-         ::rect rectWkspace;
-
-         session().get_wkspace_rect(iMatchingMonitor,rectWkspace);
 
          synch_lock slUserMutex(&user_mutex());
 
@@ -4568,7 +4569,7 @@ namespace user
       if(lprect != NULL)
       {
 
-         *lprect = rect;
+         *lprect = rectWkspace;
 
       }
 
@@ -4683,7 +4684,7 @@ namespace user
       if(lprect != NULL)
       {
 
-         *lprect = rect;
+         *lprect = rectNew;
 
       }
 
@@ -4801,7 +4802,7 @@ namespace user
       if(lprect != NULL)
       {
 
-         *lprect = rect;
+         *lprect = rectNew;
 
       }
 
@@ -4898,7 +4899,7 @@ namespace user
       if(lprect != NULL)
       {
 
-         *lprect = rect;
+         *lprect = rectNew;
 
       }
 
@@ -4983,7 +4984,7 @@ namespace user
       if(lprect != NULL)
       {
 
-         *lprect = rect;
+         *lprect = rectNew;
 
       }
 
@@ -5024,7 +5025,7 @@ namespace user
       if(lprect != NULL)
       {
 
-         *lprect = rect;
+         *lprect = rectNew;
 
       }
 

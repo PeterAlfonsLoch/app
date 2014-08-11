@@ -79,7 +79,7 @@ void window_xlib::destroy_window_graphics()
 }
 
 
-void window_xlib::update_window(oswindow window, COLORREF * pOsBitmapData, LPCRECT lpcrect, int iStride)
+void window_xlib::update_window(oswindow window, COLORREF * pOsBitmapData, const RECT & lpcrect, int iStride)
 {
 
    single_lock sl(&user_mutex());

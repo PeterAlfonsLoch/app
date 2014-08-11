@@ -121,6 +121,8 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction * pui)
    if(pui == NULL)
       return NULL;
 
+   single_lock slUser(&user_mutex(), true);
+
    single_lock slOsWindow(::oswindow_data::s_pmutex, true);
 
    int_ptr iFind = oswindow_find_message_only_window(pui);
@@ -144,6 +146,8 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction * pui)
 
 oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual, int iDepth, int iScreen, Colormap colormap)
 {
+
+   single_lock slUser(&user_mutex(), true);
 
    single_lock slOsWindow(::oswindow_data::s_pmutex, true);
 

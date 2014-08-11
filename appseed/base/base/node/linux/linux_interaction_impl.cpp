@@ -102,6 +102,7 @@ namespace linux
    interaction_impl::~interaction_impl()
    {
 
+/*
       if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL && m_pbaseapp->m_pbasesession->m_spuser.is_set())
       {
 
@@ -112,7 +113,7 @@ namespace linux
 
          }
 
-      }
+      }*/
 
       //single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
       //if(m_pfont != NULL)
@@ -4733,6 +4734,8 @@ if(psurface == g_cairosurface)
    uint_ptr interaction_impl::SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, DWORD))
    {
 
+      return ::user::interaction_impl::SetTimer(nIDEvent, nElapse, lpfnTimer);
+
 
         UNREFERENCED_PARAMETER(lpfnTimer);
 
@@ -4749,6 +4752,8 @@ if(psurface == g_cairosurface)
 
    bool interaction_impl::KillTimer(uint_ptr nIDEvent)
    {
+
+   return ::user::interaction_impl::KillTimer(nIDEvent);
 
        m_pui->m_pbaseapp->unset_timer(m_pui, nIDEvent);
 
@@ -5874,10 +5879,10 @@ namespace linux
    void interaction_impl::_001UpdateWindow()
    {
 
-     single_lock sl(&user_mutex(), false);
+     //single_lock sl(&user_mutex(), false);
 
-     if(!sl.lock(millis(84)))
-        return;
+     //if(!sl.lock(millis(84)))
+       // return;
 
       _001Expose();
 
