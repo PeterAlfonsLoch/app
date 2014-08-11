@@ -57,7 +57,7 @@
 //
 - (void)dealloc
 {
-   
+   m_pwindow = NULL;
 //	[[NSNotificationCenter defaultCenter] removeObserver:self];
    
 	[super dealloc];

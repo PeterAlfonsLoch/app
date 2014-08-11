@@ -102,6 +102,19 @@ namespace mac
     }
    
    
+   interaction_impl::~interaction_impl()
+   {
+      
+      if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL && m_pbaseapp->m_pbasesession->user().m_p != NULL && m_pbaseapp->m_pbasesession->user()->m_pwindowmap != NULL)
+      {
+         session().user()->m_pwindowmap->m_map.remove_key((int_ptr) get_handle());
+      }
+      
+   }
+   
+
+   
+   
     sp(::user::interaction) interaction_impl::from_os_data(void * pdata)
     {
       
@@ -516,16 +529,6 @@ namespace mac
    }
    
    
-   interaction_impl::~interaction_impl()
-   {
-      
-      if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL && m_pbaseapp->m_pbasesession->user().m_p != NULL && m_pbaseapp->m_pbasesession->user()->m_pwindowmap != NULL)
-      {
-         session().user()->m_pwindowmap->m_map.remove_key((int_ptr) get_handle());
-      }
-      
-   }
-   
    void interaction_impl::install_message_handling(::message::dispatch * pinterface)
    {
       //m_pbuffer->InstallMessageHandling(pinterface);
@@ -613,9 +616,8 @@ namespace mac
       else
       {
 
-          round_window_hide();
-
-          
+         round_window_hide();
+ 
       }
       
    }
@@ -626,14 +628,22 @@ namespace mac
       round_window_release();
       
       UNREFERENCED_PARAMETER(pobj);
+      
       Default();
+      
       ::mac::window_draw * pdraw = dynamic_cast < ::mac::window_draw * > (System.get_twf().m_p);
+      
       if(pdraw != NULL)
       {
+         
          retry_single_lock sl(&pdraw->m_eventFree, millis(84), millis(84));
+         
          pdraw->m_wndpaOut.remove(m_pui);
+         
       }
+      
    }
+   
    
    void interaction_impl::_001OnCaptureChanged(signal_details * pobj)
    {
@@ -792,64 +802,20 @@ namespace mac
       dumpcontext << "\n";
    }
    
+
    bool interaction_impl::DestroyWindow()
    {
+
       single_lock sl(m_pbaseapp == NULL ? NULL : m_pbaseapp->m_pmutex, TRUE);
-      ::user::interaction * pWnd;
-      oswindow hWndOrig;
-      bool bResult;
-      
-      if ((get_handle() == NULL) )
-         return FALSE;
-      
-      bResult = FALSE;
-      hWndOrig = NULL;
-      if (get_handle() != NULL)
-      {
-         //         single_lock sl(afxMutexHwnd(), TRUE);
-         //       pMap = afxMapHWND();
-         //     if(pMap != NULL)
-         {
-            //      pWnd = dynamic_cast < ::user::interaction * > (pMap->lookup_permanent(get_handle()));
-#ifdef DEBUG
-            //    hWndOrig = get_handle();
-#endif
-         }
-      }
-      sl.unlock();
-      //    if (get_handle() != NULL)
-      //         bResult = ::DestroyWindow(get_handle()) != FALSE;
-      sl.lock();
-      if (hWndOrig != NULL)
-      {
-         // Note that 'this' may have been deleted at this point,
-         //  (but only if pWnd != NULL)
-         if (pWnd != NULL)
-         {
-            // Should have been detached by OnNcDestroy
-#ifdef DEBUG
-            //            ::user::interaction * pWndPermanent = dynamic_cast < ::user::interaction * > (pMap->lookup_permanent(hWndOrig));;
-            //          ASSERT(pWndPermanent == NULL);
-            // It is important to call base class, including ca2 core
-            // base classes implementation of install_message_handling
-            // inside derived class install_message_handling
-#endif
-         }
-         else
-         {
-#ifdef DEBUG
-            ASSERT(get_handle() == hWndOrig);
-#endif
-            // Detach after DestroyWindow called just in case
-            Detach();
-         }
-      }
+   
+      if(get_handle() == NULL)
+         return false;
+
+      bool bResult = ::user::interaction_impl::DestroyWindow();
       
       return bResult;
+      
    }
-   
-   /////////////////////////////////////////////////////////////////////////////
-   // Default user::interaction implementation
    
    
    LRESULT interaction_impl::DefWindowProc(UINT nMsg, WPARAM wparam, LPARAM lparam)

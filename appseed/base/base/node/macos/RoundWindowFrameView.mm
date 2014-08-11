@@ -273,6 +273,9 @@
   
    round_window * p = m_roundwindow->m_pwindow;
    
+   if(p == NULL)
+      return;
+   
    //   [m_roundwindow disableScreenUpdatesUntilFlush];
    
 //   [m_roundwindow disableFlushWindow];

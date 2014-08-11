@@ -977,6 +977,7 @@ namespace user
       return true;
 
    }
+   
 
    uint_ptr interaction_impl_base::SetTimer(uint_ptr nIDEvent,UINT nElapse,void (CALLBACK* lpfnTimer)(oswindow,UINT,uint_ptr,uint32_t))
    {
@@ -998,8 +999,77 @@ namespace user
       return true;
 
    }
+   
+   
+   bool interaction_impl_base::DestroyWindow()
+   {
+      
+      if(!IsWindow())
+         return false;
 
-
+      if(m_pui == NULL)
+         return false;
+   
+      {
+      
+         synch_lock sl(&m_pui->m_pbaseapp->m_pthreadimpl->m_mutexUiPtra);
+      
+         if(m_pui->m_pbaseapp->m_pthreadimpl->m_spuiptra.is_set())
+         {
+         
+            m_pui->m_pbaseapp->m_pthreadimpl->m_spuiptra->remove(m_pui);
+         
+         }
+      
+      }
+   
+      try
+      {
+      
+         send_message(WM_DESTROY);
+      
+      }
+      catch(...)
+      {
+      
+      }
+   
+      try
+      {
+      
+         single_lock sl(m_pui->m_pbaseapp->m_pmutex,TRUE);
+      
+         try
+         {
+         
+            m_pui->m_pbaseapp->remove(m_pui);
+         
+         }
+         catch(...)
+         {
+         
+         }
+      
+      }
+      catch(...)
+      {
+      
+      }
+   
+      try
+      {
+      
+         send_message(WM_NCDESTROY);
+      
+      }
+      catch(...)
+      {
+      
+      }
+      
+      return true;
+   
+   }
 
 
 } // namespace user

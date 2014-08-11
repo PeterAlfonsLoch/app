@@ -214,41 +214,61 @@ namespace user
 
    }
 
+   
    void interaction_impl::_001OnDestroy(signal_details * pobj)
    {
+      
       UNREFERENCED_PARAMETER(pobj);
+      
    }
+   
 
    void interaction_impl::_001OnCaptureChanged(signal_details * pobj)
    {
+      
       UNREFERENCED_PARAMETER(pobj);
+      
    }
 
+   
    // WM_NCDESTROY is the absolute LAST message sent.
    void interaction_impl::PostNcDestroy()
    {
+      
    }
+   
 
    void interaction_impl::on_final_release()
    {
-      throw interface_only_exception(get_app());
+      
    }
 
+   
    void interaction_impl::assert_valid() const
    {
-      throw interface_only_exception(get_app());
+      
+      ::user::interaction_impl_base::assert_valid();
+      
    }
 
+   
    void interaction_impl::dump(dump_context & dumpcontext) const
    {
-      UNREFERENCED_PARAMETER(dumpcontext);
-      throw interface_only_exception(get_app());
+      
+      ::user::interaction_impl_base::dump(dumpcontext);
+      
    }
+   
 
    bool interaction_impl::DestroyWindow()
    {
-      throw interface_only_exception(get_app());
+      
+      bool bResult = ::user::interaction_impl_base::DestroyWindow();
+      
+      return bResult;
+      
    }
+   
 
    /////////////////////////////////////////////////////////////////////////////
    // Default interaction_impl implementation
