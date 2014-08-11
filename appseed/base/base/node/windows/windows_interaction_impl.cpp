@@ -3125,7 +3125,10 @@ namespace windows
 
    oswindow interaction_impl::unsubclass_window()
    {
-      ASSERT(::IsWindow(get_handle()));
+      //ASSERT(::IsWindow(get_handle()));
+
+      if(!IsWindow())
+         return NULL;
 
       // set WNDPROC back to original value
       WNDPROC* lplpfn = GetSuperWndProcAddr();
