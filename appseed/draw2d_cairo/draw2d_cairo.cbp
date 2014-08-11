@@ -74,6 +74,7 @@
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
+		<Unit filename="draw2d_cairo.cpp" />
 		<Unit filename="draw2d_cairo.h" />
 		<Unit filename="draw2d_cairo_bitmap.cpp" />
 		<Unit filename="draw2d_cairo_bitmap.h" />
