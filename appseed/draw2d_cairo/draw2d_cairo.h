@@ -11,7 +11,7 @@
 #include "app/thirdparty/appseed/cairo/cairo-ft.h"
 
 mutex & cairo_mutex();
-void init_cairo_mutex();
+void init_cairo_mutex(sp(::base::application) papp);
 
 
 #ifdef _DRAW2D_CAIRO_LIBRARY

@@ -9,7 +9,7 @@ namespace draw2d_cairo
       element(papp)
    {
 
-      init_cairo_mutex();
+      init_cairo_mutex(papp);
 
       System.factory().cloneable_large < dib                   >  (System.type_info < ::draw2d::dib                 > ());
       System.factory().cloneable_large < graphics              >  (System.type_info < ::draw2d::graphics            > ());
