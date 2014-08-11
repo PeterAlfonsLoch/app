@@ -45,6 +45,9 @@
    
    round_window * p = m_roundwindow->m_pwindow;
    
+   if(p == NULL)
+      return;
+   
    NSPoint point = [[self window] convertBaseToScreen:[event locationInWindow]];
    
    NSRect e = [[NSScreen mainScreen] frame];
@@ -67,6 +70,9 @@
    
    round_window * p = m_roundwindow->m_pwindow;
    
+   if(p == NULL)
+      return;
+   
    NSPoint point = [[self window] convertBaseToScreen:[event locationInWindow]];
    
    NSRect e = [[NSScreen mainScreen] frame];
@@ -88,6 +94,9 @@
 {
    
    round_window * p = m_roundwindow->m_pwindow;
+   
+   if(p == NULL)
+      return;
    
    NSPoint point = [[self window] convertBaseToScreen:[event locationInWindow]];
    
@@ -118,6 +127,9 @@
 {
    
    round_window * p = m_roundwindow->m_pwindow;
+   
+   if(p == NULL)
+      return;
    
    NSPoint point = [[self window] convertBaseToScreen:[event locationInWindow]];
    
@@ -311,6 +323,9 @@
    
    round_window * p = m_roundwindow->m_pwindow;
    
+   if(p == NULL)
+      return;
+   
    if(p->round_window_key_down(ekey))
       return;
    
@@ -325,6 +340,9 @@
    
    round_window * p = m_roundwindow->m_pwindow;
    
+   if(p == NULL)
+      return;
+   
    if(p->round_window_key_up(ekey))
       return;
    
@@ -336,6 +354,9 @@
 {
 
    round_window * p = m_roundwindow->m_pwindow;
+   
+   if(p == NULL)
+      return;
    
    if([event modifierFlags] & NSShiftKeyMask)
    {
