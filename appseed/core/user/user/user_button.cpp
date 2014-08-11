@@ -18,8 +18,8 @@ namespace user
          m_pschema = NULL;
 
          m_bLButtonDown = false;
-
-      }
+      
+   }
 
    button::~button()
    {
@@ -103,7 +103,7 @@ namespace user
          }
 
       }
-
+      
       select_font(pdc);
 
       pdc->TextOut(m_rectText.left, m_rectText.top, strText);

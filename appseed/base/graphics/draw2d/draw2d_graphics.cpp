@@ -3965,6 +3965,103 @@ namespace draw2d
    }
 
 #endif
+   
+   bool graphics::draw_stock_icon(const RECT & rectParam, e_stock_icon eicon)
+   {
+      
+      ::draw2d::pen_sp pen(allocer());
+      ::draw2d::brush_sp brush(allocer());
+      
+      *pen = *m_sppen;
+      *brush = *m_spbrush;
+      
+      ::rect rect(rectParam);
+      
+      if(eicon == stock_icon_close)
+      {
+         
+         MoveTo(rect.top_left());
+         LineTo(rect.bottom_right());
+         MoveTo(rect.bottom_left());
+         LineTo(rect.top_right());
+         
+      }
+      else if(eicon == stock_icon_zoom)
+      {
+         
+         rect.deflate(0, rect.height() / 8);
+         
+         MoveTo(rect.top_left());
+         LineTo(rect.bottom_left());
+         LineTo(rect.bottom_right());
+         LineTo(rect.top_right());
+         m_sppen->m_dWidth *= 2.0;
+         m_sppen->m_bUpdated = false;
+         LineTo(rect.top_left());
+         
+      }
+      else if(eicon == stock_icon_restore)
+      {
+         
+         rect.deflate(0, rect.height() / 8);
+ 
+         ::rect rect1(rect);
+
+         rect1.deflate(0, 0, rect.width() / 8, rect.height() / 8);
+         
+         ::rect rect2(rect);
+         
+         rect2.Align(AlignBottom | AlignRight, rect);
+
+         MoveTo(rect2.top_left());
+         LineTo(rect2.bottom_left());
+         LineTo(rect2.bottom_right());
+         LineTo(rect2.top_right());
+         MoveTo(rect1.top_left());
+         LineTo(rect1.bottom_left());
+         LineTo(rect1.bottom, rect2.left);
+         MoveTo(rect1.top_right());
+         LineTo(rect2.top, rect1.right);
+         m_sppen->m_dWidth *= 2.0;
+         m_sppen->m_bUpdated = false;
+         MoveTo(rect2.top_right());
+         LineTo(rect2.top_left());
+         MoveTo(rect1.top_right());
+         LineTo(rect1.top_left());
+         
+      }
+      else if(eicon == stock_icon_iconify)
+      {
+         
+         rect.deflate(0, rect.height() / 8);
+         
+         m_sppen->m_dWidth *= 2.0;
+         m_sppen->m_bUpdated = false;
+         MoveTo(rect.bottom_left());
+         
+      }
+      else if(eicon == stock_icon_dock)
+      {
+         
+         rect.deflate(rect.height() / 8, rect.height() / 8);
+         
+         FillEllipse(rect);
+         
+      }
+      else
+      {
+         
+         throw not_implemented(get_app());
+         
+      }
+      
+      *m_sppen = *pen;
+      *m_spbrush = *brush;
+      
+      return true;
+      
+   }
+   
 
 
 } // namespace draw2d

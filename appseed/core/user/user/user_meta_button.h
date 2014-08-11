@@ -2,8 +2,7 @@
 
 
 class CLASS_DECL_CORE MetaButton :
-   public ::user::button,
-   public ::user::uinteraction::frame::control_box_button
+   virtual public ::user::uinteraction::frame::control_box_button
 {
 public:
 
@@ -14,10 +13,9 @@ public:
    };
 
 
-   oswindow             m_oswindowPreviousFocus;
-
-
-   ::draw2d::region_sp  m_spregion;
+   oswindow                            m_oswindowPreviousFocus;
+   e_stock_icon                        m_estockicon;
+   ::draw2d::region_sp                 m_spregion;
 
 
    MetaButton(sp(::base::application) papp);
@@ -58,6 +56,10 @@ public:
    DECL_GEN_SIGNAL(_001OnTimer);
    LRESULT OnAppForwardSyncMessage(WPARAM wParam, LPARAM lParam);
 
+   virtual void set_stock_icon(e_stock_icon eicon);
+   virtual e_stock_icon get_stock_icon();
+   
+   
 
 };
 

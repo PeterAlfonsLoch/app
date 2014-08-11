@@ -4,10 +4,12 @@
 MetaButton::MetaButton(sp(::base::application) papp) :
    element(papp),
    ::user::button(papp),
+   ::user::uinteraction::frame::control_box_button(papp),
    m_spregion(allocer())
 {
 
-      
+   m_estockicon = stock_icon_none;
+   
 }
 
 MetaButton::~MetaButton()
@@ -85,16 +87,32 @@ void MetaButton::_001OnDraw(::draw2d::graphics * pdc)
    pdc->FillEllipse(rectEllipse);
 
    pdc->DrawEllipse(rectEllipse);
-
-   string str;
-
-   GetWindowText(str);
-
-   select_font(pdc);
-
-   pdc->set_text_color(crText);
    
-   pdc->draw_text(str, rectClient, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+   if(m_estockicon == stock_icon_none)
+   {
+
+      string str;
+
+      GetWindowText(str);
+
+      select_font(pdc);
+
+      pdc->set_text_color(crText);
+   
+      pdc->draw_text(str, rectClient, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+      
+   }
+   else
+   {
+
+      class rect rectIcon(rectEllipse);
+      
+      rectIcon.deflate(rectIcon.width() /8, rectIcon.height()/ 8);
+      
+      pdc->draw_stock_icon(rectIcon, m_estockicon);
+      
+      
+   }
 
 }
 
@@ -248,3 +266,30 @@ index MetaButton::hit_test(point point, e_element & eelement)
    return 0;
 
 }
+
+
+void MetaButton::set_stock_icon(e_stock_icon eicon)
+{
+ 
+   m_estockicon = eicon;
+   
+}
+
+
+e_stock_icon MetaButton::get_stock_icon()
+{
+
+   return m_estockicon;
+   
+}
+
+
+
+
+
+
+
+
+
+
+

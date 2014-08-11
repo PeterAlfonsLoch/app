@@ -98,6 +98,7 @@ namespace user
             virtual void update_control_box_buttons();
             virtual bool create_button(e_button ebutton);
             virtual bool get_control_box_button_caption(e_button ebutton, string & str);
+            virtual e_stock_icon get_control_box_button_stock_icon(e_button ebutton);
             virtual void set_control_box_button_id(e_button ebutton, id id);
             virtual id get_control_box_button_id(e_button ebutton);
             virtual e_button get_control_box_button_type(id id);

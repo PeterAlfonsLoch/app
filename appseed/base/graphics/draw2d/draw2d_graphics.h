@@ -627,6 +627,10 @@ namespace draw2d
       bool draw_round_rect(const RECT & r, COLORREF color, int32_t radius, int32_t width);
       bool draw_round_top_left(const RECT & r, COLORREF color, int32_t radius, int32_t width);
       bool draw_round_bottom_right(const RECT & r, COLORREF color, int32_t radius, int32_t width);
+      
+      
+      bool draw_stock_icon(const RECT & rect, e_stock_icon eicon);
+      
 
       //=============================================================================
       //

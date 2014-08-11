@@ -3,6 +3,26 @@
 
 class job;
 
+enum e_stock_icon
+{
+   
+   stock_icon_none,
+   stock_icon_control_box_begin,
+   // TO Begin - TIGHTLY ORDERED Begin (relations : {ca2/app/core}::user::uinteraction::frame::e_button[button_close:stock_icon_close,...])
+   stock_icon_close =  stock_icon_control_box_begin,
+   stock_icon_level_up,
+   stock_icon_level_down,
+   stock_icon_iconify,
+   stock_icon_restore,
+   stock_icon_zoom,
+   stock_icon_notify,
+   stock_icon_dock,
+   // TO END - TIGHTLY ORDERED End
+   stock_icon_control_box_end = stock_icon_dock
+};
+
+
+
 
 namespace draw2d
 {

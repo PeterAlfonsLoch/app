@@ -455,6 +455,8 @@ namespace user
                string strCaption;
 
                get_control_box_button_caption(ebutton, strCaption);
+               
+               pbutton->set_stock_icon(get_control_box_button_stock_icon(ebutton));
 
                pbutton->SetParent(this);
 
@@ -575,6 +577,39 @@ namespace user
             return bOk;
 
          }
+         
+         
+         e_stock_icon control_box::get_control_box_button_stock_icon(e_button ebutton)
+         {
+            
+            return (e_stock_icon)((int) ebutton - (int)button_begin + (int) stock_icon_control_box_begin);
+            
+            
+            switch (ebutton)
+            {
+               case button_close:
+                  return stock_icon_close;
+/*               case button_up:
+                  return stock_icon_level_up;
+               case button_down:
+                  return stock_icon_level_up;
+               case button_minimize:
+                  return stock_icon_iconify;
+               case button_maximize:
+                  return stock_icon_maximize;
+               case button_restore:
+                  return stock_icon_restore;
+               case button_notify_icon:
+                  return stock_icon_notify;
+               case button_dock:
+                  return stock_icon_dock;
+                  */
+               default:
+                  return stock_icon_none;
+            }
+
+         }
+         
 
          void control_box::set_control_box_button_id(e_button ebutton, id id)
          {
