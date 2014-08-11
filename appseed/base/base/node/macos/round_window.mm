@@ -43,14 +43,18 @@ void ns_app_run()
 void round_window::round_window_release()
 {
    
-   m_proundwindow->m_pwindow = NULL;
+   if(m_proundwindow == NULL)
+      return;
    
-   [[m_proundwindow->m_controller dd_invokeOnMainThreadAndWaitUntilDone:TRUE] close : m_proundwindow];
-   
-   [m_proundwindow release];
+   RoundWindow * proundwindow = m_proundwindow;
    
    m_proundwindow = NULL;
    
+   proundwindow->m_pwindow = NULL;
+   
+   [[proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] close];
+   
+   [proundwindow release];
    
 }
 
@@ -66,7 +70,7 @@ void round_window::round_window_show()
 void round_window::round_window_hide()
 {
     
-   [[m_proundwindow->m_controller dd_invokeOnMainThreadAndWaitUntilDone:TRUE] hide : m_proundwindow];
+   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] orderOut : m_proundwindow];
     
 }
 

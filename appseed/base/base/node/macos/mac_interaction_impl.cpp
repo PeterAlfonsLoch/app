@@ -105,10 +105,16 @@ namespace mac
    interaction_impl::~interaction_impl()
    {
       
+      round_window_release();
+      
+      /*
+      
       if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL && m_pbaseapp->m_pbasesession->user().m_p != NULL && m_pbaseapp->m_pbasesession->user()->m_pwindowmap != NULL)
       {
          session().user()->m_pwindowmap->m_map.remove_key((int_ptr) get_handle());
       }
+       
+       */
       
    }
    
