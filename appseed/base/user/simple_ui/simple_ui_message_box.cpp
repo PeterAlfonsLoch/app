@@ -148,7 +148,10 @@ namespace simple_ui
          create_a_button("ok","OK");
          break;
       }
+      
       SetWindowPos(ZORDER_TOP,rectFontopus,SWP_SHOWWINDOW);
+
+      layout();
 
       SetForegroundWindow();
 

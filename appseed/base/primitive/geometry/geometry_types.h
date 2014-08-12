@@ -124,13 +124,13 @@ inline CLASS_DECL_BASE LPRECT rect_dim(LPRECT lprect, LONG x, LONG y, LONG cx, L
    return rect_by_dimension(lprect, x, y, cx, cy);
 }
 
-inline CLASS_DECL_BASE RECT rect_by_dimension(LONG x, LONG y, LONG cx, LONG cy)
+inline CLASS_DECL_BASE ::rect rect_by_dimension(LONG x, LONG y, LONG cx, LONG cy)
 {
-   RECT r;
+   ::rect r;
    return rect_by_dimension(r, x, y, cx, cy);
 }
 
-inline CLASS_DECL_BASE RECT rect_dim(LONG x, LONG y, LONG cx, LONG cy)
+inline CLASS_DECL_BASE ::rect rect_dim(LONG x, LONG y, LONG cx, LONG cy)
 {
    return rect_by_dimension(x, y, cx, cy);
 }

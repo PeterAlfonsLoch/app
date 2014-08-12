@@ -802,7 +802,7 @@ namespace base
    index session::get_zoneing(LPRECT lprect,const RECT & rectParam,::user::EAppearance eappearance)
    {
 
-      index iMonitor = get_best_monitor(lprect,rectParam);
+      index iMonitor = get_best_wkspace(lprect,rectParam);
 
       int cx = width(lprect);
       int cy = height(lprect);
@@ -827,35 +827,35 @@ namespace base
 
       if(eappearance == ::user::AppearanceTop)
       {
-         *lprect = rect_dim(0,0,cx,midcy);
+         *lprect = rect_dim(0,0,cx,midcy) + top_left(lprect);
       }
       else if(eappearance == ::user::AppearanceLeft)
       {
-         *lprect = rect_dim(0,0,midcx,cy);
+         *lprect = rect_dim(0,0,midcx,cy) + top_left(lprect);
       }
       else if(eappearance == ::user::AppearanceRight)
       {
-         *lprect = rect_dim(midcx,0,midcx,cy);
+         *lprect = rect_dim(midcx,0,midcx,cy) + top_left(lprect);
       }
       else if(eappearance == ::user::AppearanceBottom)
       {
-         *lprect = rect_dim(0,midcy,cx,midcy);
+         *lprect = rect_dim(0,midcy,cx,midcy) + top_left(lprect);
       }
       else if(eappearance == ::user::AppearanceTopLeft)
       {
-         *lprect = rect_dim(0,0,midcx,midcy);
+         *lprect = rect_dim(0,0,midcx,midcy) + top_left(lprect);
       }
       else if(eappearance == ::user::AppearanceTopRight)
       {
-         *lprect = rect_dim(midcx,0,midcx,midcy);
+         *lprect = rect_dim(midcx,0,midcx,midcy) + top_left(lprect);
       }
       else if(eappearance == ::user::AppearanceBottomLeft)
       {
-         *lprect = rect_dim(0,midcy,midcx,midcy);
+         *lprect = rect_dim(0,midcy,midcx,midcy) + top_left(lprect);
       }
       else if(eappearance == ::user::AppearanceBottomRight)
       {
-         *lprect = rect_dim(midcx,midcy,midcx,midcy);
+         *lprect = rect_dim(midcx,midcy,midcx,midcy) + top_left(lprect);
       }
       else
       {

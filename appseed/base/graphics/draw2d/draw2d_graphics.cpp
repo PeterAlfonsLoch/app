@@ -3202,7 +3202,7 @@ namespace draw2d
       // SIOOT - Should implemennt one of them
       // OASOWO - otherwise a stack overflow will occur
       // BTAIOM - because these are interface only methods
-      Draw3dRect(x1, y1, x2, y2, m_crColor, m_crColor);
+      DrawRect(rect(x1,y1,x2,y2),m_sppen);
 
       return true;
 
@@ -3979,6 +3979,8 @@ namespace draw2d
       
       if(eicon == stock_icon_close)
       {
+
+         rect.deflate(rect.width() / 7,rect.height() / 7);
          
          m_sppen->m_dWidth *= 2.0;
          m_sppen->m_bUpdated = false;
@@ -3991,23 +3993,14 @@ namespace draw2d
       else if(eicon == stock_icon_zoom)
       {
          
-         rect.deflate(0, rect.height() / 6);
+         rect.deflate(0, rect.height() / 7);
+
+         draw_rect(rect.left,rect.top, rect.right, rect.bottom);
          
-         m_sppen->m_bUpdated = false;
          m_sppen->m_elinecapBeg = ::draw2d::pen::line_cap_flat;
          m_sppen->m_elinecapEnd = ::draw2d::pen::line_cap_flat;
-         MoveTo(rect.top_left()-size(0, pen->m_dWidth * 2));
-         LineTo(rect.bottom_left()+size(0, pen->m_dWidth));
-         MoveTo(rect.bottom_left());
-         LineTo(rect.bottom_right());
-         LineTo(rect.bottom_right()+size(0, pen->m_dWidth));
-         LineTo(rect.top_right()-size(0, pen->m_dWidth * 2));
-         m_sppen->m_dWidth *= 2.0;
-         m_sppen->m_bUpdated = false;
-         m_sppen->m_elinecapBeg = ::draw2d::pen::line_cap_flat;
-         m_sppen->m_elinecapEnd = ::draw2d::pen::line_cap_flat;
-         MoveTo(rect.top_left());
-         LineTo(rect.top_right());
+         MoveTo(rect.top_left()+size(0, pen->m_dWidth));
+         LineTo(rect.top_right() + size(0,pen->m_dWidth));
          
       }
       else if(eicon == stock_icon_restore)
@@ -4043,7 +4036,7 @@ namespace draw2d
       else if(eicon == stock_icon_iconify)
       {
          
-         rect.deflate(0, rect.height() / 8);
+         rect.deflate(0, rect.height() / 7);
          
          m_sppen->m_dWidth *= 2.0;
          m_sppen->m_bUpdated = false;

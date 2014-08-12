@@ -211,20 +211,27 @@ namespace user
 
             rect rectCursor(ptCursor.x - 1,ptCursor.y - 1,ptCursor.x + 1,ptCursor.y + 1);
 
-            rect rectMonitor;
+            rect screen;
 
-            session().get_best_monitor(rectMonitor,rectCursor);
+            rect rectWork;
 
-            int cx2 =  rectMonitor.width() / 3;
-            int cy2 =  rectMonitor.height() / 3;
+            int iMonitor = session().get_best_monitor(screen,rectCursor);
 
-            if((ptCursor.x >= rectMonitor.left && ptCursor.x - rectMonitor.left <= cx2) || (ptCursor.x >= rectMonitor.center().x - cx2 && ptCursor.x <= rectMonitor.center().x + cx2) || (ptCursor.x >= rectMonitor.right - cx2 && ptCursor.x <= rectMonitor.right))
+            System.get_wkspace_rect(iMonitor, rectWork);
+
+            int cx2 =  screen.width() / 3;
+            int cy2 =  screen.height() / 3;
+
+            int cx =  rectWork.width() / 3;
+            int cy =  rectWork.height() / 3;
+
+            if((ptCursor.x >= screen.left && ptCursor.x - screen.left <= cx2) || (ptCursor.x >= screen.center().x - cx2 && ptCursor.x <= screen.center().x + cx2) || (ptCursor.x >= screen.right - cx2 && ptCursor.x <= screen.right))
             {
-               if((ptCursor.y >= rectMonitor.top && ptCursor.y - rectMonitor.top <= cx2) || (ptCursor.y >= rectMonitor.center().y - cy2 && ptCursor.y <= rectMonitor.center().y + cy2) || (ptCursor.y >= rectMonitor.bottom - cx2 && ptCursor.y <= rectMonitor.bottom))
+               if((ptCursor.y >= screen.top && ptCursor.y - screen.top <= cx2) || (ptCursor.y >= screen.center().y - cy2 && ptCursor.y <= screen.center().y + cy2) || (ptCursor.y >= screen.bottom - cx2 && ptCursor.y <= screen.bottom))
                {
-                  if((ptCursor.x >= rectMonitor.center().x - cx2 && ptCursor.x <= rectMonitor.center().x + cx2))
+                  if((ptCursor.x >= screen.center().x - cx2 && ptCursor.x <= screen.center().x + cx2))
                   {
-                     if((ptCursor.y >= rectMonitor.center().y - cy2 && ptCursor.y <= rectMonitor.center().y + cy2))
+                     if((ptCursor.y >= screen.center().y - cy2 && ptCursor.y <= screen.center().y + cy2))
                      {
                         // ignore
                         if(bMove && rectWindow.top_left() != pt)
@@ -233,12 +240,12 @@ namespace user
                            GetDockWindow()->set_appearance(::user::AppearanceNormal);
                         }
                      }
-                     else if(ptCursor.y >= rectMonitor.top && ptCursor.y - rectMonitor.top <= cx2)
+                     else if(ptCursor.y >= screen.top && ptCursor.y - screen.top <= cx2)
                      {
 //                        if(m_eappearanceOrigin != ::user::AppearanceTop)
                         {
                            GetDockWindow()->set_appearance(::user::AppearanceTop);
-                           ::rect rectDock = rect_dim(rectMonitor.left,rectMonitor.top,rectMonitor.width(),rectMonitor.height() / 2);
+                           ::rect rectDock = rect_dim(rectWork.left,rectWork.top,rectWork.width(),rectWork.height() / 2);
                            GetDockWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
                         }
                      }
@@ -247,19 +254,19 @@ namespace user
   //                      if(m_eappearanceOrigin != ::user::AppearanceBottom)
                         {
                            GetDockWindow()->set_appearance(::user::AppearanceBottom);
-                           ::rect rectDock = rect_dim(rectMonitor.left,rectMonitor.top + rectMonitor.height() / 2,rectMonitor.width(),rectMonitor.height() / 2);
+                           ::rect rectDock = rect_dim(rectWork.left,rectWork.top + rectWork.height() / 2,rectWork.width(),rectWork.height() / 2);
                            GetDockWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
                         }
                      }
                   }
-                  else if((ptCursor.y >= rectMonitor.center().y - cy2 && ptCursor.y <= rectMonitor.center().y + cy2))
+                  else if((ptCursor.y >= screen.center().y - cy2 && ptCursor.y <= screen.center().y + cy2))
                   {
-                     if(ptCursor.x >= rectMonitor.left && ptCursor.x - rectMonitor.left <= cx2)
+                     if(ptCursor.x >= screen.left && ptCursor.x - screen.left <= cx2)
                      {
                         //if(m_eappearanceOrigin != ::user::AppearanceLeft)
                         {
                            GetDockWindow()->set_appearance(::user::AppearanceLeft);
-                           ::rect rectDock = rect_dim(rectMonitor.left,rectMonitor.top,rectMonitor.width() / 2,rectMonitor.height());
+                           ::rect rectDock = rect_dim(rectWork.left,rectWork.top,rectWork.width() / 2,rectWork.height());
                            GetDockWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
                         }
                      }
@@ -268,19 +275,19 @@ namespace user
                         //if(m_eappearanceOrigin != ::user::AppearanceRight)
                         {
                            GetDockWindow()->set_appearance(::user::AppearanceRight);
-                           ::rect rectDock = rect_dim(rectMonitor.left + rectMonitor.width() / 2,rectMonitor.top,rectMonitor.width() / 2,rectMonitor.height());
+                           ::rect rectDock = rect_dim(rectWork.left + rectWork.width() / 2,rectWork.top,rectWork.width() / 2,rectWork.height());
                            GetDockWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
                         }
                      }
                   }
-                  else if(ptCursor.x >= rectMonitor.left && ptCursor.x - rectMonitor.left <= cx2)
+                  else if(ptCursor.x >= screen.left && ptCursor.x - screen.left <= cx2)
                   {
-                     if(ptCursor.y >= rectMonitor.top && ptCursor.y - rectMonitor.top <= cx2)
+                     if(ptCursor.y >= screen.top && ptCursor.y - screen.top <= cx2)
                      {
                         //if(m_eappearanceOrigin != ::user::AppearanceTopLeft)
                         {
                            GetDockWindow()->set_appearance(::user::AppearanceTopLeft);
-                           ::rect rectDock = rect_dim(rectMonitor.left,rectMonitor.top,rectMonitor.width() / 2,rectMonitor.height() / 2);
+                           ::rect rectDock = rect_dim(rectWork.left,rectWork.top,rectWork.width() / 2,rectWork.height() / 2);
                            GetDockWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
                         }
                      }
@@ -289,19 +296,19 @@ namespace user
                         //if(m_eappearanceOrigin != ::user::AppearanceBottomLeft)
                         {
                            GetDockWindow()->set_appearance(::user::AppearanceBottomLeft);
-                           ::rect rectDock = rect_dim(rectMonitor.left,rectMonitor.top + rectMonitor.height() / 2,rectMonitor.width() / 2,rectMonitor.height() / 2);
+                           ::rect rectDock = rect_dim(rectWork.left,rectWork.top + rectWork.height() / 2,rectWork.width() / 2,rectWork.height() / 2);
                            GetDockWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
                         }
                      }
                   }
                   else
                   {
-                     if(ptCursor.y >= rectMonitor.top && ptCursor.y - rectMonitor.top <= cx2)
+                     if(ptCursor.y >= screen.top && ptCursor.y - screen.top <= cx2)
                      {
                         //if(m_eappearanceOrigin != ::user::AppearanceTopRight)
                         {
                            GetDockWindow()->set_appearance(::user::AppearanceTopRight);
-                           ::rect rectDock = rect_dim(rectMonitor.left + rectMonitor.width() / 2,rectMonitor.top,rectMonitor.width() / 2,rectMonitor.height() / 2);
+                           ::rect rectDock = rect_dim(rectWork.left + rectWork.width() / 2,rectWork.top,rectWork.width() / 2,rectWork.height() / 2);
                            GetDockWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
                         }
                      }
@@ -310,7 +317,7 @@ namespace user
                         //if(m_eappearanceOrigin != ::user::AppearanceBottomRight)
                         {
                            GetDockWindow()->set_appearance(::user::AppearanceBottomRight);
-                           ::rect rectDock = rect_dim(rectMonitor.left + rectMonitor.width() / 2,rectMonitor.top + rectMonitor.height() / 2,rectMonitor.width() / 2,rectMonitor.height() / 2);
+                           ::rect rectDock = rect_dim(rectWork.left + rectWork.width() / 2,rectWork.top + rectWork.height() / 2,rectWork.width() / 2,rectWork.height() / 2);
                            GetDockWindow()->SetWindowPos(ZORDER_TOP,rectDock,SWP_SHOWWINDOW);
                         }
                      }

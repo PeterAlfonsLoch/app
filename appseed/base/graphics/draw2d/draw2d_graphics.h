@@ -32,7 +32,6 @@ namespace draw2d
       //::draw2d::font                m_fontxyz;
       //::draw2d::region              m_regionxyz;
 
-      COLORREF                      m_crColor;
       double                        m_x;
       double                        m_y;
 
