@@ -59,7 +59,22 @@ oswindow GetActiveWindow();
 oswindow SetActiveWindow(oswindow window);
 
 
-void GetMainScreenRect(LPRECT lprect);
+int GetMainScreenRect(LPRECT lprect);
+
+int GetScreenRect(LPRECT lprect, int iMonitor);
+
+int GetScreenCount();
+
+void GetWkspaceRect(LPRECT lprect, int iMonitor);
+
+int GetWkspaceCount();
+
+void copy(CGRect & rect, LPCRECT lpcrect);
+void copy(LPRECT lprect, const CGRect & rectSrc);
+#ifdef MM
+void copy(NSRect & rect, LPCRECT lpcrect);
+void copy(LPRECT lprect, const NSRect & rectSrc);
+#endif
 
 WINBOOL SetForegroundWindow(oswindow window);
 WINBOOL BringWindowToTop(oswindow window);

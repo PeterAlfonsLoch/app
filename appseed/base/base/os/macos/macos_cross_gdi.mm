@@ -22,17 +22,6 @@ CGContextRef get_nswindow_cgcontext(oswindow oswindow)
 }
 
 
-void GetMainScreenRect(LPRECT lprect)
-{
-
-   NSRect rect = [[NSScreen mainScreen] frame];
-
-   lprect->left        = rect.origin.x;
-   lprect->bottom      = rect.size.height - rect.origin.y;
-   lprect->right       = rect.origin.x  + rect.size.width;
-   lprect->top         = lprect->bottom - rect.size.height;
-   
-}
 
 
 

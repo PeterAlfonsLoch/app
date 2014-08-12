@@ -3993,10 +3993,15 @@ namespace draw2d
          
          rect.deflate(0, rect.height() / 6);
          
-         MoveTo(rect.top_left()-size(0, pen->m_dWidth));
-         LineTo(rect.bottom_left());
+         m_sppen->m_bUpdated = false;
+         m_sppen->m_elinecapBeg = ::draw2d::pen::line_cap_flat;
+         m_sppen->m_elinecapEnd = ::draw2d::pen::line_cap_flat;
+         MoveTo(rect.top_left()-size(0, pen->m_dWidth * 2));
+         LineTo(rect.bottom_left()+size(0, pen->m_dWidth));
+         MoveTo(rect.bottom_left());
          LineTo(rect.bottom_right());
-         LineTo(rect.top_right()-size(0, pen->m_dWidth));
+         LineTo(rect.bottom_right()+size(0, pen->m_dWidth));
+         LineTo(rect.top_right()-size(0, pen->m_dWidth * 2));
          m_sppen->m_dWidth *= 2.0;
          m_sppen->m_bUpdated = false;
          m_sppen->m_elinecapBeg = ::draw2d::pen::line_cap_flat;

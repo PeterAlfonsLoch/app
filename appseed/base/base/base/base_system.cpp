@@ -1386,6 +1386,10 @@ namespace base
 
       return m_monitorinfoa.get_count();
 
+#elif defined(MACOS)
+      
+      return GetScreenCount();
+      
 #else
 
       return 1;
@@ -1428,7 +1432,7 @@ namespace base
       if(iMonitor < 0 || iMonitor >= get_monitor_count())
          return false;
 
-      GetMainScreenRect(lprect);
+      GetScreenRect(lprect, iMonitor);
 
 #else
 
@@ -1575,7 +1579,10 @@ namespace base
       if(iWkspace < 0 || iWkspace >= get_wkspace_count())
          return false;
 
-      GetMainScreenRect(lprect);
+      GetWkspaceRect(lprect, iWkspace);
+      
+//      lprect->top += ::mac::get_system_main_menu_bar_height();
+  //    lprect->bottom -= ::mac::get_system_dock_height();
 
 #else
 

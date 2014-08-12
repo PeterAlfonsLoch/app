@@ -698,12 +698,25 @@ void copy(CGRect & rectDst, const RECT & rectSrc)
    rectDst.size.height = height(rectSrc);
 
 }
+
+
 void copy(LPRECT lprectDst, const CGRect & rectSrc)
 {
    lprectDst->left = rectSrc.origin.x;
    lprectDst->top = rectSrc.origin.y;
    lprectDst->right = rectSrc.origin.x + rectSrc.size.width;
    lprectDst->bottom = rectSrc.origin.y + rectSrc.size.height;
+}
+
+void copy(CGRect & rect, LPCRECT lpcrect)
+{
+   
+   rect.origin.x = lpcrect->left;
+   rect.origin.y = lpcrect->top;
+   rect.size.width = width(lpcrect);
+   rect.size.height = height(lpcrect);
+   
+   
 }
 
 #endif

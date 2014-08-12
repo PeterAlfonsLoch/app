@@ -10,6 +10,7 @@
 
 
 WINBOOL get_nswindow_rect(oswindow oswindow, LPRECT lprect);
+void copy(LPRECT lprectDst, const CGRect & rectSrc);
 
 
 bool oswindow_data::is_window_visible()
@@ -183,3 +184,89 @@ WINBOOL get_nswindow_rect(oswindow oswindow, LPRECT lprect)
 }
 
 
+namespace mac
+{
+
+   CGFloat get_system_main_menu_bar_height()
+   {
+      return [[[NSApplication sharedApplication] mainMenu] menuBarHeight];
+   }
+
+   CGFloat get_system_dock_height()
+   {
+      return [[[NSApplication sharedApplication] mainMenu] menuBarHeight];
+   }
+
+} // namespace mac
+
+
+
+
+
+/*
+ void copy(NSRect & rect, LPCRECT lpcrect)
+ {
+ 
+ rect.origin.x = lpcrect->left;
+ rect.origin.y = lpcrect->top;
+ rect.size.width = width(lpcrect);
+ rect.size.height = height(lpcrect->left);
+ 
+ }
+ 
+ void copy(LPRECT lprect, const NSRect & rectSrc)
+ {
+ 
+ lprect->left = rectSrc.origin.x;
+ lprect->top = rectSrc.origin.y;
+ lprect->right = lprect->left + rectSrc.size.width;
+ lprect->bottom = lprect->top + rectSrc.size.height;
+ 
+ }
+ */
+
+
+int GetMainScreenRect(LPRECT lprect)
+{
+   
+   copy(lprect, [[NSScreen mainScreen] frame]);
+   
+   return 0;
+   
+}
+
+int GetScreenRect(LPRECT lprect, int iMonitor)
+{
+   
+   copy(lprect, [[[NSScreen screens] objectAtIndex:iMonitor ] frame]);
+   
+   return iMonitor;
+   
+}
+
+
+int GetScreenCount()
+{
+   
+   return [[NSScreen screens] count];
+   
+}
+
+
+
+int GetWkspaceRect(LPRECT lprect, int iMonitor)
+{
+   
+   copy(lprect, [[[NSScreen screens] objectAtIndex:iMonitor ] visibleFrame]);
+   
+   return iMonitor;
+   
+}
+
+
+int GetWkspaceCount()
+{
+   
+   return [[NSScreen screens] count];
+   
+}
