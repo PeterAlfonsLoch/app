@@ -77,7 +77,7 @@ namespace draw2d
 
       virtual bool blur(bool bExpand, double dRadius, const RECT & rect);
 
-      void set_solid_pen(double dWidth);
+      void set_solid_pen(double dWidth, COLORREF cr);
 
       virtual bool IsPrinting() const;            // TRUE if being used for printing
 

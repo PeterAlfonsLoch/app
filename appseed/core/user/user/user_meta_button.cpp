@@ -109,6 +109,16 @@ void MetaButton::_001OnDraw(::draw2d::graphics * pdc)
       
       brush->create_solid(pdc->get_current_pen()->m_cr);
 
+      pdc->SelectObject(brush);
+
+      ::draw2d::pen_sp pen(allocer());
+
+      *pen = *pdc->get_current_pen();
+
+      pen->m_dWidth = 1.0;
+
+      pdc->SelectObject(pen);
+
       class rect rectIcon(rectEllipse);
       
       rectIcon.deflate(rectIcon.width() /4, rectIcon.height()/ 4);

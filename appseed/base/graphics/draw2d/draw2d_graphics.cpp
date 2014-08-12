@@ -18,7 +18,6 @@ namespace draw2d
       m_pdrawcontext          = NULL;
       m_pdibAlphaBlend        = NULL;
       m_pjob                  = NULL;
-      m_crColor               = RGB(0, 0, 0);
       m_dFontFactor           = 1.0;
       m_pdib                  = NULL;
    }
@@ -3263,14 +3262,17 @@ namespace draw2d
    }
 
 
-   void graphics::set_solid_pen(double dWidth)
+   void graphics::set_solid_pen(double dWidth, COLORREF cr)
    {
 
-      m_sppen.release();
+      if(m_sppen.is_null())
+      {
 
-      m_sppen.alloc(allocer());
+         m_sppen.alloc(allocer());
 
-      m_sppen->create_solid(dWidth, m_crColor);
+      }
+
+      m_sppen->create_solid(dWidth, cr);
 
    }
 
@@ -3999,38 +4001,57 @@ namespace draw2d
          
          m_sppen->m_elinecapBeg = ::draw2d::pen::line_cap_flat;
          m_sppen->m_elinecapEnd = ::draw2d::pen::line_cap_flat;
-         MoveTo(rect.top_left()+size(0, pen->m_dWidth));
+         MoveTo(rect.top_left() + size(0,pen->m_dWidth/2.0));
+         LineTo(rect.top_right() + size(0,pen->m_dWidth/2.0));
+         MoveTo(rect.top_left() + size(0,pen->m_dWidth));
          LineTo(rect.top_right() + size(0,pen->m_dWidth));
-         
+         MoveTo(rect.top_left() + size(0,pen->m_dWidth *3.0/ 2.0));
+         LineTo(rect.top_right() + size(0,pen->m_dWidth *3.0/ 2.0));
+         MoveTo(rect.top_left() + size(0,pen->m_dWidth*2.0));
+         LineTo(rect.top_right() + size(0,pen->m_dWidth*2.0));
+
       }
       else if(eicon == stock_icon_restore)
       {
          
-         rect.deflate(0, rect.height() / 8);
+         rect.deflate(0, rect.height() / 7);
  
          ::rect rect1(rect);
 
-         rect1.deflate(0, 0, rect.width() / 8, rect.height() / 8);
+         rect1.deflate(0, 0, rect.width() / 3, rect.height() / 3);
          
-         ::rect rect2(rect);
+         ::rect rect2(rect1);
          
          rect2.Align(AlignBottom | AlignRight, rect);
 
-         MoveTo(rect2.top_left());
-         LineTo(rect2.bottom_left());
-         LineTo(rect2.bottom_right());
-         LineTo(rect2.top_right());
+         draw_rect(rect2.left,rect2.top,rect2.right,rect2.bottom);
+
+         m_sppen->m_elinecapBeg = ::draw2d::pen::line_cap_flat;
+         m_sppen->m_elinecapEnd = ::draw2d::pen::line_cap_flat;
+         MoveTo(rect2.top_left() + size(0,pen->m_dWidth / 2.0));
+         LineTo(rect2.top_right() + size(0,pen->m_dWidth / 2.0));
+         MoveTo(rect2.top_left() + size(0,pen->m_dWidth));
+         LineTo(rect2.top_right() + size(0,pen->m_dWidth));
+
+
          MoveTo(rect1.top_left());
-         LineTo(rect1.bottom_left());
-         LineTo(rect1.bottom, rect2.left);
-         MoveTo(rect1.top_right());
-         LineTo(rect2.top, rect1.right);
-         m_sppen->m_dWidth *= 2.0;
+         LineTo(rect1.top_right());
+         MoveTo(rect1.top_left() + size(0,pen->m_dWidth / 2.0));
+         LineTo(rect1.top_right() + size(0,pen->m_dWidth / 2.0));
+         MoveTo(rect1.top_left() + size(0,pen->m_dWidth));
+         LineTo(rect1.top_right() + size(0,pen->m_dWidth));
+
+
+
+         m_sppen->m_elinecapBeg = ::draw2d::pen::line_cap_square;
+         m_sppen->m_elinecapEnd = ::draw2d::pen::line_cap_square;
          m_sppen->m_bUpdated = false;
-         MoveTo(rect2.top_right());
-         LineTo(rect2.top_left());
-         MoveTo(rect1.top_right());
-         LineTo(rect1.top_left());
+         MoveTo(rect1.top_left() + size(0,pen->m_dWidth));
+         LineTo(rect1.bottom_left());
+         LineTo(rect2.left, rect1.bottom);
+
+         MoveTo(rect1.top_right() + size(0,pen->m_dWidth));
+         LineTo(rect1.right, (int) (rect2.top - pen->m_dWidth));
          
       }
       else if(eicon == stock_icon_iconify)
@@ -4038,8 +4059,15 @@ namespace draw2d
          
          rect.deflate(0, rect.height() / 7);
          
-         m_sppen->m_dWidth *= 2.0;
-         m_sppen->m_bUpdated = false;
+         
+         MoveTo(rect.bottom_left() - size(0,pen->m_dWidth*2.0));
+         LineTo(rect.bottom_right() - size(0,pen->m_dWidth*2.0));
+         MoveTo(rect.bottom_left() - size(0,pen->m_dWidth*3.0/2.0));
+         LineTo(rect.bottom_right() - size(0,pen->m_dWidth*3.0/2.0));
+         MoveTo(rect.bottom_left() - size(0,pen->m_dWidth));
+         LineTo(rect.bottom_right() - size(0,pen->m_dWidth));
+         MoveTo(rect.bottom_left() - size(0,pen->m_dWidth/2.0));
+         LineTo(rect.bottom_right() - size(0,pen->m_dWidth/2.0));
          MoveTo(rect.bottom_left());
          LineTo(rect.bottom_right());
          
@@ -4049,8 +4077,20 @@ namespace draw2d
          
          rect.deflate(rect.height() / 8, rect.height() / 8);
          
-         FillEllipse(rect);
+         DrawEllipse(rect);
+
+         ::rect rect1(rect);
          
+         rect1.deflate(m_sppen->m_dWidth / 2.0,m_sppen->m_dWidth / 2.0);
+
+         DrawEllipse(rect1);
+
+         ::rect rect2(rect);
+
+         rect2.deflate(m_sppen->m_dWidth,m_sppen->m_dWidth);
+
+         DrawEllipse(rect2);
+
       }
       else
       {
