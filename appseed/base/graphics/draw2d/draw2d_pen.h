@@ -24,7 +24,8 @@ namespace draw2d
       {
          
          line_cap_flat,
-         line_cap_round
+         line_cap_round,
+         line_cap_square,
             
       };
 

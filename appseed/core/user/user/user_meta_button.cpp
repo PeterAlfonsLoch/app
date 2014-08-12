@@ -104,10 +104,14 @@ void MetaButton::_001OnDraw(::draw2d::graphics * pdc)
    }
    else
    {
+      
+      ::draw2d::brush_sp brush(allocer());
+      
+      brush->create_solid(pdc->get_current_pen()->m_cr);
 
       class rect rectIcon(rectEllipse);
       
-      rectIcon.deflate(rectIcon.width() /8, rectIcon.height()/ 8);
+      rectIcon.deflate(rectIcon.width() /4, rectIcon.height()/ 4);
       
       pdc->draw_stock_icon(rectIcon, m_estockicon);
       

@@ -3980,6 +3980,8 @@ namespace draw2d
       if(eicon == stock_icon_close)
       {
          
+         m_sppen->m_dWidth *= 2.0;
+         m_sppen->m_bUpdated = false;
          MoveTo(rect.top_left());
          LineTo(rect.bottom_right());
          MoveTo(rect.bottom_left());
@@ -3989,15 +3991,18 @@ namespace draw2d
       else if(eicon == stock_icon_zoom)
       {
          
-         rect.deflate(0, rect.height() / 8);
+         rect.deflate(0, rect.height() / 6);
          
-         MoveTo(rect.top_left());
+         MoveTo(rect.top_left()-size(0, pen->m_dWidth));
          LineTo(rect.bottom_left());
          LineTo(rect.bottom_right());
-         LineTo(rect.top_right());
+         LineTo(rect.top_right()-size(0, pen->m_dWidth));
          m_sppen->m_dWidth *= 2.0;
          m_sppen->m_bUpdated = false;
-         LineTo(rect.top_left());
+         m_sppen->m_elinecapBeg = ::draw2d::pen::line_cap_flat;
+         m_sppen->m_elinecapEnd = ::draw2d::pen::line_cap_flat;
+         MoveTo(rect.top_left());
+         LineTo(rect.top_right());
          
       }
       else if(eicon == stock_icon_restore)
@@ -4038,6 +4043,7 @@ namespace draw2d
          m_sppen->m_dWidth *= 2.0;
          m_sppen->m_bUpdated = false;
          MoveTo(rect.bottom_left());
+         LineTo(rect.bottom_right());
          
       }
       else if(eicon == stock_icon_dock)
