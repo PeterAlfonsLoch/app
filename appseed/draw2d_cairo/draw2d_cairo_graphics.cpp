@@ -911,7 +911,7 @@ synch_lock ml(&cairo_mutex());
 
       cairo_translate(m_pdc, centerx, centery);
 
-      cairo_scale(m_pdc, radiusx, radiusy);
+      cairo_scale(m_pdc, radiusx -m_sppen->m_dWidth /2.0, radiusy -m_sppen->m_dWidth /2.0);
 
       cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
 
@@ -4924,7 +4924,7 @@ synch_lock ml(&cairo_mutex());
 synch_lock ml(&cairo_mutex());
       cairo_set_source_rgba(m_pdc, argb_get_r_value(ppen->m_cr) / 255.0, argb_get_g_value(ppen->m_cr) / 255.0, argb_get_b_value(ppen->m_cr) / 255.0, argb_get_a_value(ppen->m_cr) / 255.0);
 
-      cairo_set_line_width(m_pdc, ppen->m_dWidth - 0.5);
+      cairo_set_line_width(m_pdc, ppen->m_dWidth);
 
       return true;
 
