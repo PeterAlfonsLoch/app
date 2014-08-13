@@ -63,7 +63,6 @@ void round_window::round_window_show()
    
    [[m_proundwindow->m_controller dd_invokeOnMainThreadAndWaitUntilDone:TRUE] showWindow : m_proundwindow];
    
-
 }
 
 
@@ -72,6 +71,37 @@ void round_window::round_window_hide()
     
    [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] orderOut : m_proundwindow];
     
+}
+
+void round_window::round_window_order_front()
+{
+   
+   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] orderFront : m_proundwindow];
+   
+}
+
+
+void round_window::round_window_make_key_window()
+{
+
+   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] makeKeyWindow];
+   
+}
+
+
+void round_window::round_window_make_key_window_and_order_front()
+{
+   
+   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] makeKeyAndOrderFront: m_proundwindow];
+   
+}
+
+
+void round_window::round_window_make_main_window()
+{
+   
+   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] makeMainWindow];
+   
 }
 
 

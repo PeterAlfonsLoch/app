@@ -182,6 +182,7 @@ namespace mac
       
         virtual bool SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
         virtual UINT ArrangeIconicWindows();
+        virtual void BringToTop(int nCmdShow);
         virtual bool BringWindowToTop();
         using ::user::interaction_impl::GetWindowRect;
         virtual void GetWindowRect(__rect64 * lpRect);

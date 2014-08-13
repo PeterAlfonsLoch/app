@@ -4365,12 +4365,25 @@ namespace mac
    }
    
    
+   void interaction_impl::BringToTop(int nCmdShow)
+   {
+      
+      if(nCmdShow != SW_HIDE)
+      {
+    
+         BringWindowToTop();
+      
+         round_window_show();
+         
+      }
+      
+   }
+   
+   
    bool interaction_impl::BringWindowToTop()
    {
       
       bool b = ::BringWindowToTop(get_handle()) != FALSE;
-      
-      round_window_show();
       
       return b;
       
@@ -5172,7 +5185,7 @@ namespace mac
       
       bool b = ::SetForegroundWindow(get_handle()) != FALSE;
       
-      round_window_show();
+//      round_window_show();
       
       return b;
       

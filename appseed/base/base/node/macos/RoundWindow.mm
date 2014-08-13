@@ -25,6 +25,8 @@
 - (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)windowStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)deferCreation
 {
    
+   m_bNoActivate = false;
+   
 	self = [super initWithContentRect:contentRect styleMask:NSBorderlessWindowMask backing:bufferingType defer:deferCreation];
 
 	if(self == NULL)
@@ -136,7 +138,10 @@
 //
 - (BOOL)canBecomeKeyWindow
 {
-	return YES;
+   if(m_bNoActivate)
+      return NO;
+   else
+      return YES;
 }
 
 //
@@ -146,8 +151,42 @@
 //
 - (BOOL)canBecomeMainWindow
 {
-	return YES;
+   if(m_bNoActivate)
+      return NO;
+   else
+      return YES;
 }
+
+
+- (BOOL) acceptsFirstResponder
+{
+   if(m_bNoActivate)
+      return NO;
+   else
+      return YES;
+}
+
+- (BOOL) becomeFirstResponder
+{
+   if(m_bNoActivate)
+      return NO;
+   else
+   {
+      
+//      m_pwindow->round_window_on_become_first_responder();
+      
+      return YES;
+      
+   }
+}
+
+- (BOOL) resignFirstResponder
+{
+   
+   return YES;
+   
+}
+
 
 //
 // contentRectForFrameRect:

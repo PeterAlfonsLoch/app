@@ -25,6 +25,7 @@ class round_window;
 @public
    
    
+   bool                 m_bNoActivate;
    round_window         * m_pwindow;
    
    
