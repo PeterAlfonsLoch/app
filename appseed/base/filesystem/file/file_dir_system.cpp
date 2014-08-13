@@ -971,13 +971,16 @@ namespace file
                strFile.replace(":", "_", iFind + 1);
                
             }
-            
+
+            strFile.replace("////", "//");
+            strFile.replace("\\\\","\\", 1);
+
             string strLs;
             
             if(Application.file().exists(strFile))
             {
                
-               strFile = Application.file().as_string(strFile);
+               strLs = Application.file().as_string(strFile);
             
             }
             else
