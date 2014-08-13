@@ -80,14 +80,14 @@ void MetaButton::_001OnDraw(::draw2d::graphics * pdc)
 
    class rect rectEllipse(rectClient);
 
-   rectEllipse.deflate(0, 0, 2, 2);
+   rectEllipse.deflate(0,0,2,2);
 
    pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
    pdc->FillEllipse(rectEllipse);
 
    pdc->DrawEllipse(rectEllipse);
-   
+
    if(m_estockicon == stock_icon_none)
    {
 
@@ -98,15 +98,15 @@ void MetaButton::_001OnDraw(::draw2d::graphics * pdc)
       select_font(pdc);
 
       pdc->set_text_color(crText);
-   
-      pdc->draw_text(str, rectClient, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
-      
+
+      pdc->draw_text(str,rectClient,DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+
    }
    else
    {
-      
+
       ::draw2d::brush_sp brush(allocer());
-      
+
       brush->create_solid(pdc->get_current_pen()->m_cr);
 
       pdc->SelectObject(brush);
@@ -120,12 +120,12 @@ void MetaButton::_001OnDraw(::draw2d::graphics * pdc)
       pdc->SelectObject(pen);
 
       class rect rectIcon(rectEllipse);
-      
-      rectIcon.deflate(rectIcon.width() /4, rectIcon.height()/ 4);
-      
-      pdc->draw_stock_icon(rectIcon, m_estockicon);
-      
-      
+
+      rectIcon.deflate(rectIcon.width() / 4,rectIcon.height() / 4);
+
+      pdc->draw_stock_icon(rectIcon,m_estockicon);
+
+
    }
 
 }

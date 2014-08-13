@@ -47,6 +47,9 @@ namespace user
             map < e_button, e_button, bool, bool >       m_buttonmapPresent;
 
 
+            COLORREF                      m_crBackground;
+
+
             map < e_button, e_button, sp(control_box_button), sp(control_box_button) >      m_buttonmap;
 
 

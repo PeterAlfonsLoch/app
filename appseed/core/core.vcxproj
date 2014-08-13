@@ -1513,6 +1513,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="user\user\user_orto_button.cpp" />
     <ClInclude Include="..\filesystem\file\file_transfer_stream.h" />
     <ClInclude Include="compress\crypto\crypto_aes_cbc_coder.h" />
     <ClInclude Include="core\android\os.h">
@@ -2180,6 +2181,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user\user_notification_area.h" />
     <ClInclude Include="user\user\user_notify_icon.h" />
     <ClInclude Include="user\user\user_notify_icon_listener.h" />
+    <ClInclude Include="user\user\user_orto_button.h" />
     <ClInclude Include="user\user\user_shell.h" />
     <ClInclude Include="user\user\user_simple_list_data.h" />
     <ClInclude Include="user\user\user_single_document_template.h" />

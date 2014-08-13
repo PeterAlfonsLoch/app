@@ -161,6 +161,7 @@ namespace userex
          System.factory().creatable_small < minute_list_view >();
          System.factory().creatable_small < second_list_view >();
          System.factory().creatable_small < simple_toolbar >();
+         System.factory().creatable_small < OrtoButton >();
 
       }
 
@@ -269,11 +270,15 @@ namespace userex
 
    filemanager::_shell::ImageSet & userex::shellimageset()
    {
+
       return *m_pshellimageset;
+
    }
+
 
    string userex::message_box(const char * pszMatter,property_set & propertyset)
    {
+
       class ::userex::message_box box(get_app());
 
       box.show(pszMatter,&propertyset);
@@ -282,12 +287,13 @@ namespace userex
 
    }
 
+
    int32_t userex::simple_message_box(sp(::user::interaction) pwndOwner,const char * pszMessage,UINT fuStyle)
    {
 
-   int iRet = ::simple_message_box(pwndOwner->get_handle(), pszMessage, "ca2", fuStyle);
+      int iRet = ::simple_message_box(pwndOwner->get_safe_handle(), pszMessage, "ca2", fuStyle);
 
-   return iRet;
+      return iRet;
 
       class ::userex::message_box box(get_app());
 

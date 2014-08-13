@@ -6,6 +6,8 @@ element(papp),
 ::user::interaction(papp),
 ::user::uinteraction::frame::control_box(papp)
 {
+   
+   m_crBackground = ARGB(204,84,208,77);
 
 }
 
@@ -28,7 +30,7 @@ void MetaControlBox::_001OnDraw(::draw2d::graphics * pdc)
 
    pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-   pdc->FillSolidRect(rectClient, ARGB(204, 84, 208, 77));
+   pdc->FillSolidRect(rectClient, m_crBackground);
 
 }
 
