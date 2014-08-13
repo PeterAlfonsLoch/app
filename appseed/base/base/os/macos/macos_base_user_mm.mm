@@ -203,33 +203,31 @@ namespace mac
 
 
 
-/*
- void copy(NSRect & rect, LPCRECT lpcrect)
+ void window_copy(NSRect & rect, LPCRECT lpcrect)
  {
  
- rect.origin.x = lpcrect->left;
- rect.origin.y = lpcrect->top;
- rect.size.width = width(lpcrect);
- rect.size.height = height(lpcrect->left);
+    rect.origin.x       = lpcrect->left;
+    rect.origin.y       = [[NSScreen mainScreen] frame].size.height - lpcrect->bottom;
+    rect.size.width     = lpcrect->right - lpcrect->left;
+    rect.size.height    = lpcrect->bottom - lpcrect->top;
  
  }
  
- void copy(LPRECT lprect, const NSRect & rectSrc)
+ void window_copy(LPRECT lprect, const NSRect & rectSrc)
  {
  
- lprect->left = rectSrc.origin.x;
- lprect->top = rectSrc.origin.y;
- lprect->right = lprect->left + rectSrc.size.width;
- lprect->bottom = lprect->top + rectSrc.size.height;
+    lprect->left        = rectSrc.origin.x;
+    lprect->bottom      = [[NSScreen mainScreen] frame].size.height - rectSrc.origin.y;
+    lprect->right       = lprect->left + rectSrc.size.width;
+    lprect->top         = lprect->bottom - rectSrc.size.height;
  
  }
- */
 
 
 int GetMainScreenRect(LPRECT lprect)
 {
    
-   copy(lprect, [[NSScreen mainScreen] frame]);
+   window_copy(lprect, [[NSScreen mainScreen] frame]);
    
    return 0;
    
@@ -238,7 +236,7 @@ int GetMainScreenRect(LPRECT lprect)
 int GetScreenRect(LPRECT lprect, int iMonitor)
 {
    
-   copy(lprect, [[[NSScreen screens] objectAtIndex:iMonitor ] frame]);
+   window_copy(lprect, [[[NSScreen screens] objectAtIndex:iMonitor ] frame]);
    
    return iMonitor;
    
@@ -257,7 +255,7 @@ int GetScreenCount()
 int GetWkspaceRect(LPRECT lprect, int iMonitor)
 {
    
-   copy(lprect, [[[NSScreen screens] objectAtIndex:iMonitor ] visibleFrame]);
+   window_copy(lprect, [[[NSScreen screens] objectAtIndex:iMonitor ] visibleFrame]);
    
    return iMonitor;
    
