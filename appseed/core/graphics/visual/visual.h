@@ -4,8 +4,6 @@
 #include "user/userpresence/userpresence.h"
 
 
-#include "ft2build.h"
-#include FT_FREETYPE_H
 
 
 CLASS_DECL_CORE bool TextOutU(HDC hdc, int32_t x, int32_t y, const char * lpString, int32_t ca);

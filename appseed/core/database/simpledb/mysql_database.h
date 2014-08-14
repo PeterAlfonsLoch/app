@@ -6,6 +6,7 @@
 
 
 typedef char **MYSQL_ROW;		/* return data as array of strings */
+typedef struct st_mysql MYSQL;
 
 
 namespace mysql
@@ -24,7 +25,7 @@ namespace mysql
 	  string m_strLastError;
       int64_t m_iLastUsedTime;
 
-      mysql_protocol_type       m_protocol;
+      int       m_protocol;
 
 
       database(sp(::base::application) papp);

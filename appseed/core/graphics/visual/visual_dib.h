@@ -3,10 +3,6 @@
 struct FIBITMAP;
 
 
-#include <ft2build.h>
-
-
-#include FT_FREETYPE_H
 
 namespace visual
 {
@@ -60,8 +56,7 @@ namespace visual
 
       virtual bool from(::draw2d::graphics * pgraphics, FIBITMAP * pfibitmap, bool bUnloadFI);
 
-      virtual void draw_bitmap(int32_t dx, int32_t dy, FT_Bitmap * bitmap, FT_Int x, FT_Int y);
-
+      
 
    };
 

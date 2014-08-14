@@ -1,10 +1,10 @@
 #include "framework.h"
 
-BEGIN_EXTERN_C
+/*BEGIN_EXTERN_C
 
 BOOL WINAPI openssl_DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved);
 
-END_EXTERN_C
+END_EXTERN_C*/
 
 #ifdef METROWIN
 [Platform::MTAThread]
@@ -22,7 +22,7 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
    UNREFERENCED_PARAMETER(lpReserved);
 
 
-   openssl_DllMain(hInstance, dwReason, lpReserved);
+   //openssl_DllMain(hInstance, dwReason, lpReserved);
 
 
    if (dwReason == DLL_PROCESS_ATTACH)

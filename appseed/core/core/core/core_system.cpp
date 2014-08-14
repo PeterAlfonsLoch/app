@@ -6,6 +6,10 @@
 #define new BASE_NEW
 #endif
 
+#include "ft2build.h"
+#include FT_FREETYPE_H
+
+
 namespace core
 {
 
@@ -229,7 +233,7 @@ namespace core
       if(!m_visual.initialize())
          return false;
 
-      int32_t error = FT_Init_FreeType(&m_ftlibrary);
+      int32_t error = FT_Init_FreeType((FT_Library *) &m_ftlibrary);
       if(error)
       {
          TRACE("an error occurred during Free Type library initialization");
@@ -1109,9 +1113,12 @@ namespace core
 
    }
 
-   FT_Library & system::ftlibrary()
+   
+   void * & system::ftlibrary()
    {
+
       return m_ftlibrary;
+
    }
 
 

@@ -4,6 +4,15 @@
 #endif
 
 
+#include <ft2build.h>
+
+
+#include FT_FREETYPE_H
+
+
+CLASS_DECL_CORE void draw_bitmap(::draw2d::dib * pdib,int32_t dx,int32_t dy,FT_Bitmap * bitmap,FT_Int x,FT_Int y);
+
+
 namespace visual
 {
 
@@ -182,30 +191,32 @@ namespace visual
    }
 
 
-   void dib_sp::draw_bitmap(int32_t dx, int32_t dy, FT_Bitmap * bitmap, FT_Int x, FT_Int y)
-   {
-
-      FT_Int  i, j, p, q;
-      FT_Int  x_max = x + bitmap->width;
-      FT_Int  y_max = y + bitmap->rows;
-
-      m_p->map();
-
-      for (i = x, p = 0; i < x_max; i++, p++)
-      {
-         for (j = y, q = 0; j < y_max; j++, q++)
-         {
-            if (i < 0 || j < 0 || i >= m_p->m_size.cx || j >= m_p->m_size.cy)
-               continue;
-
-            int32_t a = bitmap->buffer[q * bitmap->width + p];
-
-            *((COLORREF *)&((byte *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = ARGB(a, 0, 0, 0);
-
-         }
-      }
-
-   }
 
 
 } // namespace visual
+
+
+CLASS_DECL_CORE void draw_bitmap(::draw2d::dib * m_p, int32_t dx,int32_t dy,FT_Bitmap * bitmap,FT_Int x,FT_Int y)
+{
+
+   FT_Int  i,j,p,q;
+   FT_Int  x_max = x + bitmap->width;
+   FT_Int  y_max = y + bitmap->rows;
+
+   m_p->map();
+
+   for(i = x,p = 0; i < x_max; i++,p++)
+   {
+      for(j = y,q = 0; j < y_max; j++,q++)
+      {
+         if(i < 0 || j < 0 || i >= m_p->m_size.cx || j >= m_p->m_size.cy)
+            continue;
+
+         int32_t a = bitmap->buffer[q * bitmap->width + p];
+
+         *((COLORREF *)&((byte *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = ARGB(a,0,0,0);
+
+      }
+   }
+
+}

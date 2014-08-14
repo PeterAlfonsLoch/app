@@ -1,10 +1,10 @@
 #pragma once
 
 
+typedef struct st_mysql_res MYSQL_RES;
+typedef char **MYSQL_ROW;		/* return data as array of strings */
+
 #ifndef METROWIN
-
-
-#include "mysql/mysql.h"
 
 
 namespace mysql

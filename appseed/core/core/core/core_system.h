@@ -22,7 +22,7 @@ namespace core
       sp(::filehandler::handler)                   m_spfilehandler;
 
 
-      FT_Library                                   m_ftlibrary;
+      void *                                       m_ftlibrary;
       mutex                                        m_mutexDelete;
       class ::core::stra                           m_stra;
       class ::core::service                        m_service;
@@ -136,7 +136,7 @@ namespace core
       virtual void on_allocation_error(sp(::base::application) papp,sp(type) info);
 
 
-      FT_Library                             & ftlibrary();
+      void *                                 & ftlibrary();
 
       ::core::stra                           & stra();
       ::core::service                        & service();

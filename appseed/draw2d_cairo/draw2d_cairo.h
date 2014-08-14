@@ -7,8 +7,10 @@
 #include "ft2build.h"
 #include FT_FREETYPE_H
 
-#include "app/thirdparty/appseed/cairo/cairo.h"
-#include "app/thirdparty/appseed/cairo/cairo-ft.h"
+
+#include "app/base/cairo/cairo.h"
+#include "app/base/cairo/cairo-ft.h"
+
 
 mutex & cairo_mutex();
 void init_cairo_mutex(sp(::base::application) papp);
