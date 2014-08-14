@@ -108,7 +108,7 @@
  * Hudson (tjh@cryptsoft.com).
  *
  */
-
+#define __WINCRYPT_H__
 #include <stdio.h>
 #include <openssl/objects.h>
 #include <openssl/evp.h>

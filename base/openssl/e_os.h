@@ -278,8 +278,8 @@ extern "C" {
         * it's sufficient to check for specific Winsock2 API availability
         * at run-time [DSO_global_lookup is recommended]...
         */
-#      include <winsock2.h>
-#      include <ws2tcpip.h>
+//#      include <winsock2.h>
+//#      include <ws2tcpip.h>
        /* yes, they have to be #included prior to <windows.h> */
 #    endif
 #    include <windows.h>

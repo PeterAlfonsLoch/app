@@ -115,6 +115,7 @@
 
 #if defined(OPENSSL_SYS_WINDOWS) || defined(OPENSSL_SYS_WIN32)
 #include <windows.h>
+#include <VersionHelpers.h>
 #ifndef _WIN32_WINNT
 # define _WIN32_WINNT 0x0400
 #endif
@@ -199,9 +200,9 @@ int RAND_poll(void)
 	/* Determine the OS version we are on so we can turn off things 
 	 * that do not work properly.
 	 */
-        OSVERSIONINFO osverinfo ;
-        osverinfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFO) ;
-        GetVersionEx( &osverinfo ) ;
+        //OSVERSIONINFO osverinfo ;
+        //osverinfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFO) ;
+        //GetVersionEx( &osverinfo ) ;
 
 #if defined(OPENSSL_SYS_WINCE)
 # if defined(_WIN32_WCE) && _WIN32_WCE>=300
@@ -383,9 +384,11 @@ int RAND_poll(void)
         if (advapi)
 		FreeLibrary(advapi);
 
-	if ((osverinfo.dwPlatformId != VER_PLATFORM_WIN32_NT ||
-	     !OPENSSL_isservice()) &&
-	    (user = LoadLibrary(TEXT("USER32.DLL"))))
+//	if ((osverinfo.dwPlatformId != VER_PLATFORM_WIN32_NT ||
+//        if(!IsVersion ||
+	//     !OPENSSL_isservice()) &&
+	  //  (user = LoadLibrary(TEXT("USER32.DLL"))))
+        if((user = LoadLibrary(TEXT("USER32.DLL"))))
 		{
 		GETCURSORINFO cursor;
 		GETFOREGROUNDWINDOW win;
@@ -407,9 +410,10 @@ int RAND_poll(void)
 			 * on NT4 even though it exists in SP3 (or SP6) and
 			 * higher.
 			 */
-			if ( osverinfo.dwPlatformId == VER_PLATFORM_WIN32_NT &&
-				osverinfo.dwMajorVersion < 5)
-				cursor = 0;
+//			if ( osverinfo.dwPlatformId == VER_PLATFORM_WIN32_NT &&
+	//			osverinfo.dwMajorVersion < 5)
+				//cursor = 0;
+         //cursor =1;
 			}
 		if (cursor)
 			{
