@@ -19,14 +19,14 @@ datetime_parser_exception::~datetime_parser_exception()
 }
 
 
-CLASS_DECL_BASE bool get_avoid_datetime_parser_exception()
+CLASS_DECL_CORE bool get_avoid_datetime_parser_exception()
 {
 
    return t_iAvoidDatetimeParserException != FALSE;
 
 }
 
-CLASS_DECL_BASE bool throw_datetime_parser_exception(const string & strMessage)
+CLASS_DECL_CORE bool throw_datetime_parser_exception(const string & strMessage)
 {
 
    if(get_avoid_datetime_parser_exception())

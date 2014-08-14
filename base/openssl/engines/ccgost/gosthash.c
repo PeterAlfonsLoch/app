@@ -8,6 +8,12 @@
  **********************************************************************/
 #include <string.h>
 
+
+#pragma warning( disable: 4244 )  // initializers put in library initialization area
+#pragma warning( disable: 4267 )
+#pragma warning( disable: 4267 )
+
+
 #include "gost89.h"
 #include "gosthash.h"
 

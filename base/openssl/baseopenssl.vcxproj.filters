@@ -2822,6 +2822,18 @@
     <ClInclude Include="crypto\asn1\charmap.h">
       <Filter>Header Files\crypto\asn1</Filter>
     </ClInclude>
+    <ClInclude Include="e_os.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="e_os2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="e_os2_ca2specific.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="e_os2_original.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="baseopenssl.def">

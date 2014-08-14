@@ -79,8 +79,9 @@ typedef unsigned long long	u64;
 #undef ROTATE
 #if defined(_MSC_VER)
 #  if defined(_WIN64)	/* applies to both IA-64 and AMD64 */
-#    pragma intrinsic(_rotl64)
-#    define ROTATE(a,n)	_rotl64((a),n)
+#     include <stdlib.h>
+#     pragma intrinsic(_rotl64)
+#     define ROTATE(a,n)	_rotl64((a),n)
 #  endif
 #elif defined(__GNUC__) && __GNUC__>=2
 #  if defined(__x86_64) || defined(__x86_64__)
