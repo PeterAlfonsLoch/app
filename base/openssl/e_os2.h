@@ -256,10 +256,12 @@ extern "C" {
 # define OPENSSL_EXPORT globalref
 # define OPENSSL_IMPORT globalref
 # define OPENSSL_GLOBAL globaldef
+# define OPENSSL_IMPL_EXPORT globaldef
 #elif defined(OPENSSL_SYS_WINDOWS) && defined(OPENSSL_USING_WINDOWS_DEFINITION_FILE)
 # define OPENSSL_EXPORT extern
 # define OPENSSL_IMPORT extern
 # define OPENSSL_GLOBAL
+# define OPENSSL_IMPL_EXPORT
 #elif defined(OPENSSL_SYS_WINDOWS) && defined(OPENSSL_OPT_WINDLL)
 # define OPENSSL_EXPORT extern __declspec(dllexport)
 # define OPENSSL_IMPORT extern __declspec(dllimport)

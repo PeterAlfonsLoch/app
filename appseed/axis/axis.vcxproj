@@ -78,8 +78,8 @@
     <ProjectGuid>{73A245F9-C92F-4487-AEF7-CB0531F665BD}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
-    <RootNamespace>alma</RootNamespace>
-    <ProjectName>alma</ProjectName>
+    <RootNamespace>axis</RootNamespace>
+    <ProjectName>axis</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
@@ -8164,11 +8164,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="base.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\base\openssl\baseopenssl.vcxproj">
-      <Project>{29676444-4d0f-4dd0-9104-0499d94da2c9}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
