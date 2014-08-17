@@ -205,12 +205,12 @@ namespace message
 
 // simple implementation of install message handling
 
-#define IMPL_IMH(class, base_class) \
+#define IMPL_IMH(class, axis_class) \
    void class::install_message_handling(::message::dispatch * pdispatch) \
 { \
    \
    typedef class this_class; \
-   base_class::install_message_handling(pdispatch); \
+   axis_class::install_message_handling(pdispatch); \
    \
 
 

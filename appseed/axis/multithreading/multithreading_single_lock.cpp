@@ -19,7 +19,7 @@ single_lock::single_lock(waitable* psyncobject, bool bInitialLock)
    }*/
 
    //ASSERT(pObject != NULL);
-   //ASSERT(base_class < waitable >::bases(pObject));
+   //ASSERT(axis_class < waitable >::bases(pObject));
 
    //if(pObject == NULL)
       //throw invalid_argument_exception(get_app());

@@ -13,7 +13,7 @@ void itemswap(void * pswaparg, index i1, index i2)
 
 bool is_safe_set(void * p);
 
-base_factory::base_factory(sp(::base::application) papp) :
+axis_factory::axis_factory(sp(::base::application) papp) :
    element(papp)
 {
    m_pmutex = new mutex(papp);
@@ -22,7 +22,7 @@ base_factory::base_factory(sp(::base::application) papp) :
    m_bSimpleFactoryRequest = false;
 }
 
-base_factory::~base_factory()
+axis_factory::~axis_factory()
 {
 
    single_lock sl(m_pmutex, TRUE);
@@ -42,7 +42,7 @@ base_factory::~base_factory()
 
 
 
-void base_factory::set_at(const char * pszId, factory_item_base * pitem)
+void axis_factory::set_at(const char * pszId, factory_item_base * pitem)
 {
 
    single_lock sl(m_pmutex, TRUE);
@@ -65,7 +65,7 @@ void base_factory::set_at(const char * pszId, factory_item_base * pitem)
 
 
 
-void base_factory::set_at(const char * pszType, sp(factory_allocator) pallocator)
+void axis_factory::set_at(const char * pszType, sp(factory_allocator) pallocator)
 {
 
    single_lock sl(m_pmutex, TRUE);
@@ -83,7 +83,7 @@ void base_factory::set_at(const char * pszType, sp(factory_allocator) pallocator
 
 }
 
-void base_factory::discard(sp(element) pobject)
+void axis_factory::discard(sp(element) pobject)
 {
    single_lock sl(m_pmutex, TRUE);
    sp(factory_allocator) pallocator = get_allocator(typeid(*pobject).name());
@@ -103,7 +103,7 @@ bool is_safe_set(void * p)
 
 }
 
-void base_factory::enable_simple_factory_request(bool bEnable)
+void axis_factory::enable_simple_factory_request(bool bEnable)
 {
 
    m_bSimpleFactoryRequest = bEnable;
@@ -121,7 +121,7 @@ void base_factory::enable_simple_factory_request(bool bEnable)
 
 
 
-bool base_factory::is_set(const char * pszType)
+bool axis_factory::is_set(const char * pszType)
 {
 
    index iFind;
@@ -134,7 +134,7 @@ bool base_factory::is_set(const char * pszType)
 
 
 
-sp(factory_allocator) base_factory::get_allocator(const char * pszType)
+sp(factory_allocator) axis_factory::get_allocator(const char * pszType)
 {
 
    single_lock sl(m_pmutex, TRUE);
@@ -161,7 +161,7 @@ sp(factory_allocator) base_factory::get_allocator(const char * pszType)
 
 
 
-sp(element) base_factory::create(sp(::base::application) papp, sp(type) info)
+sp(element) axis_factory::create(sp(::base::application) papp, sp(type) info)
 {
 
    if(info->m_spmutex.is_null())
@@ -201,7 +201,7 @@ sp(element) base_factory::create(sp(::base::application) papp, sp(type) info)
 
 
 
-sp(element) base_factory::base_clone(sp(element) pobject)
+sp(element) axis_factory::axis_clone(sp(element) pobject)
 {
 
    return typed_clone((id) typeid(*pobject).name(), pobject);
@@ -209,7 +209,7 @@ sp(element) base_factory::base_clone(sp(element) pobject)
 }
 
 
-sp(element) base_factory::typed_clone(id idType, sp(element) pobject)
+sp(element) axis_factory::typed_clone(id idType, sp(element) pobject)
 {
 
    single_lock sl(m_pmutex,TRUE);

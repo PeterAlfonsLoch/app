@@ -606,7 +606,7 @@ namespace base
    ptr_array < ::user::interaction > application::frames()
    {
 
-      return m_framea.base_ptra();
+      return m_framea.axis_ptra();
 
    }
 

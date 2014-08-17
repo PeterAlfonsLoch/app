@@ -1091,7 +1091,7 @@ int32_t GeoIP_id_by_ipnum (GeoIP* gi, uint32_t ipnum) {
    return ret;
 }
 
-char *GeoIP_database_info (GeoIP* gi) {
+char *GeoIP_dataaxis_info (GeoIP* gi) {
    int32_t i;
    uchar buf[3];
    char *retval;
@@ -1562,7 +1562,7 @@ char *GeoIP_org_by_name_v6 (GeoIP* gi, const char *name) {
    return GeoIP_name_by_name_v6(gi, name);
 }
 
-uchar GeoIP_database_edition (GeoIP* gi) {
+uchar GeoIP_dataaxis_edition (GeoIP* gi) {
    return gi->databaseType;
 }
 

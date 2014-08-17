@@ -1,5 +1,5 @@
 //
-//  base_static_start.cpp
+//  axis_static_start.cpp
 //  base
 //
 //
@@ -70,13 +70,13 @@ extern mutex * g_pmutexThreadHandleLock;
 
 #if defined(APPLEOS)
 
-#include "base/os/macos/macos_window_impl.h"
+#include "axis/os/macos/macos_window_impl.h"
 
 extern oswindow_dataptra * g_poswindowdataptra;
 
 #elif defined(APPLE_IOS)
 
-#include "base/os/ios/ios_window_impl.h"
+#include "axis/os/ios/ios_window_impl.h"
 
 extern oswindow_dataptra * g_poswindowdataptra;
 
@@ -102,7 +102,7 @@ namespace base
       CLASS_DECL_BASE void init()
       {
    
-         xxdebug_box("base.dll base_static_start (0)", "box", MB_OK);
+         xxdebug_box("base.dll axis_static_start (0)", "box", MB_OK);
          
    
          /*
@@ -154,7 +154,7 @@ namespace base
    
 #ifdef BSD_STYLE_SOCKETS
    
-         ::sockets::base_socket::s_pmutex = new mutex();
+         ::sockets::axis_socket::s_pmutex = new mutex();
    
 #endif
    
@@ -358,9 +358,9 @@ namespace base
    
 #ifdef BSD_STYLE_SOCKETS
          
-         delete ::sockets::base_socket::s_pmutex;
+         delete ::sockets::axis_socket::s_pmutex;
    
-         ::sockets::base_socket::s_pmutex = NULL;
+         ::sockets::axis_socket::s_pmutex = NULL;
    
 #endif
    

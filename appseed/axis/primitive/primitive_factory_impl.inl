@@ -2,7 +2,7 @@
 
 
 template < class T >
-void base_factory::creatable(sp(type) info, int32_t iCount, bool bOverwrite, bool bAligned)
+void axis_factory::creatable(sp(type) info, int32_t iCount, bool bOverwrite, bool bAligned)
 {
    if(bOverwrite || !is_set(info->name()))
       set_at(info->name(), new creatable_factory_item<T>(get_app(), get_allocator<T>(iCount, bAligned)));
@@ -10,7 +10,7 @@ void base_factory::creatable(sp(type) info, int32_t iCount, bool bOverwrite, boo
 
 
 template < class T >
-void base_factory::cloneable(sp(type)  info, int32_t iCount, bool bOverwrite, bool bAligned)
+void axis_factory::cloneable(sp(type)  info, int32_t iCount, bool bOverwrite, bool bAligned)
 {
    if(bOverwrite || !is_set(info->name()))
       set_at(info->name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount, bAligned)));
@@ -18,7 +18,7 @@ void base_factory::cloneable(sp(type)  info, int32_t iCount, bool bOverwrite, bo
 
 
 template < class T >
-void base_factory::creatable(int32_t iCount, bool bOverwrite, bool bAligned)
+void axis_factory::creatable(int32_t iCount, bool bOverwrite, bool bAligned)
 {
    
    if(bOverwrite || !is_set(System.type_info <  T  > ()->name()))
@@ -28,7 +28,7 @@ void base_factory::creatable(int32_t iCount, bool bOverwrite, bool bAligned)
 
 
 template < class T >
-void base_factory::cloneable(int32_t iCount, bool bOverwrite, bool bAligned)
+void axis_factory::cloneable(int32_t iCount, bool bOverwrite, bool bAligned)
 {
    
    if(bOverwrite || !is_set(System.type_info <  T  > ()->name()))
@@ -37,7 +37,7 @@ void base_factory::cloneable(int32_t iCount, bool bOverwrite, bool bAligned)
 }
 
 template < class T >
-sp(factory_allocator) base_factory::get_allocator(int32_t iCount, bool bAligned)
+sp(factory_allocator) axis_factory::get_allocator(int32_t iCount, bool bAligned)
 {
    
    sp(factory_allocator) pallocator = get_allocator(System.type_info <  T  > ()->name());

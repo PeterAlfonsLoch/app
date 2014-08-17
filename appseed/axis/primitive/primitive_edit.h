@@ -1,14 +1,14 @@
 #pragma once
 
 
-class CLASS_DECL_BASE base_edit :
+class CLASS_DECL_BASE axis_edit :
    public ::data::data_container
 {
 public:
 
 
-   base_edit(sp(::base::application) papp);
-   virtual ~base_edit();
+   axis_edit(sp(::base::application) papp);
+   virtual ~axis_edit();
 
 
    template < class DATA >
@@ -35,7 +35,7 @@ namespace data
 {
 
    template < class EDIT >
-   EDIT * data::validate_edit(base_edit * pedit)
+   EDIT * data::validate_edit(axis_edit * pedit)
    {
 
       if(pedit->m_spdata == this)
@@ -52,7 +52,7 @@ namespace data
 
 template < class DATA >
 class edit :
-   public base_edit 
+   public axis_edit 
 {
 public:      
 
@@ -64,7 +64,7 @@ public:
    DATA * validate_data(::data::data * pdata)
    {
 
-      return base_edit::validate_data < DATA > (pdata);  
+      return axis_edit::validate_data < DATA > (pdata);  
 
    }
 
@@ -74,7 +74,7 @@ public:
 template < class DATA >
 edit < DATA >::edit(sp(::base::application) papp) :
    element(papp),
-   base_edit(papp)
+   axis_edit(papp)
 {
 }
 

@@ -155,7 +155,7 @@ public:
 
 
 
-class CLASS_DECL_BASE base_factory :
+class CLASS_DECL_BASE axis_factory :
    virtual public ::object
 {
 public:
@@ -166,8 +166,8 @@ public:
 
 
 
-   base_factory(sp(::base::application) papp);
-   virtual ~base_factory();
+   axis_factory(sp(::base::application) papp);
+   virtual ~axis_factory();
 
 
 
@@ -234,7 +234,7 @@ public:
    using ::object::create;
    virtual sp(element) create(sp(::base::application) papp, sp(type) info);
    
-   virtual sp(element) base_clone(sp(element) pobject);
+   virtual sp(element) axis_clone(sp(element) pobject);
 
    virtual sp(element) typed_clone(id idType, sp(element) pobject);
    

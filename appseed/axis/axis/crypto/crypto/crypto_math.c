@@ -651,7 +651,7 @@ v128_left_shift2(v128_t *x, int32_t num_bits) {
 
 void
 v128_right_shift(v128_t *x, int32_t index) {
-  const int32_t base_index = index >> 5;
+  const int32_t axis_index = index >> 5;
   const int32_t bit_index = index & 31;
   int32_t i, from;
   uint32_t b;
@@ -664,15 +664,15 @@ v128_right_shift(v128_t *x, int32_t index) {
   if (bit_index == 0) {
 
     /** copy each uint16_t from left size to right side */
-    x->v32[4-1] = x->v32[4-1-base_index];
-    for (i=4-1; i > base_index; i--)
-      x->v32[i-1] = x->v32[i-1-base_index];
+    x->v32[4-1] = x->v32[4-1-axis_index];
+    for (i=4-1; i > axis_index; i--)
+      x->v32[i-1] = x->v32[i-1-axis_index];
 
   } else {
 
     /** set each uint16_t to the "or" of the two bit-shifted words */
-    for (i = 4; i > base_index; i--) {
-      from = i-1 - base_index;
+    for (i = 4; i > axis_index; i--) {
+      from = i-1 - axis_index;
       b = x->v32[from] << bit_index;
       if (from > 0)
         b |= x->v32[from-1] >> (32-bit_index);
@@ -682,7 +682,7 @@ v128_right_shift(v128_t *x, int32_t index) {
   }
 
   /** now wrap up the final portion */
-  for (i=0; i < base_index; i++)
+  for (i=0; i < axis_index; i++)
     x->v32[i] = 0;
 
 }
@@ -690,7 +690,7 @@ v128_right_shift(v128_t *x, int32_t index) {
 void
 v128_left_shift(v128_t *x, int32_t index) {
   int32_t i;
-  const int32_t base_index = index >> 5;
+  const int32_t axis_index = index >> 5;
   const int32_t bit_index = index & 31;
 
   if (index > 127) {
@@ -699,17 +699,17 @@ v128_left_shift(v128_t *x, int32_t index) {
   }
 
   if (bit_index == 0) {
-    for (i=0; i < 4 - base_index; i++)
-      x->v32[i] = x->v32[i+base_index];
+    for (i=0; i < 4 - axis_index; i++)
+      x->v32[i] = x->v32[i+axis_index];
   } else {
-    for (i=0; i < 4 - base_index - 1; i++)
-      x->v32[i] = (x->v32[i+base_index] << bit_index) ^
-	(x->v32[i+base_index+1] >> (32 - bit_index));
-    x->v32[4 - base_index-1] = x->v32[4-1] << bit_index;
+    for (i=0; i < 4 - axis_index - 1; i++)
+      x->v32[i] = (x->v32[i+axis_index] << bit_index) ^
+	(x->v32[i+axis_index+1] >> (32 - bit_index));
+    x->v32[4 - axis_index-1] = x->v32[4-1] << bit_index;
   }
 
   /** now wrap up the final portion */
-  for (i = 4 - base_index; i < 4; i++)
+  for (i = 4 - axis_index; i < 4; i++)
     x->v32[i] = 0;
 
 }

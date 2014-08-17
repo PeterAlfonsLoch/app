@@ -7,7 +7,7 @@ namespace hotplugin
    ::base::system * g_pbasesystem = NULL;
 
 
-   uint32_t c_cdecl base_system_main(LPVOID lpVoid);
+   uint32_t c_cdecl axis_system_main(LPVOID lpVoid);
 
 
    CLASS_DECL_BASE ::base::system * get_base_system()
@@ -56,7 +56,7 @@ namespace hotplugin
 
          g_pbasesystem->m_bReady = false;
 
-         ::create_thread(NULL,0,&base_system_main,NULL,0,NULL);
+         ::create_thread(NULL,0,&axis_system_main,NULL,0,NULL);
          
       }
       catch(...)
@@ -73,7 +73,7 @@ namespace hotplugin
 
    }
 
-   uint32_t c_cdecl base_system_main(LPVOID lpVoid)
+   uint32_t c_cdecl axis_system_main(LPVOID lpVoid)
    {
 
       int32_t iReturnCode = 0;

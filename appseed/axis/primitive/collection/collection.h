@@ -131,22 +131,22 @@ public:
 //#include "collection_bit_array.h"
 #include "collection_string_array.h"
 
-//#include "base/datetime/datetime_time.h"
+//#include "axis/datetime/datetime_time.h"
 
-#include "base/primitive/primitive_var.h"
+#include "axis/primitive/primitive_var.h"
 
 #include "collection_stringa.h"
 
 
 #include "collection_var_array.h"
-#include "base/primitive/primitive_property.h"
+#include "axis/primitive/primitive_property.h"
 
 
 
 
-#include "base/primitive/primitive_signal.h"
-#include "base/primitive/primitive_property_set.h"
-#include "base/primitive/primitive_relation_set.h"
+#include "axis/primitive/primitive_signal.h"
+#include "axis/primitive/primitive_property_set.h"
+#include "axis/primitive/primitive_relation_set.h"
 
 
 #include "collection_point_array.h"

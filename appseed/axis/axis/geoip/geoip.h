@@ -185,8 +185,8 @@ GEOIP_API int32_t GeoIP_id_by_code(const char *country);
 /** return return number of known countries */
 GEOIP_API uint32_t GeoIP_num_countries();
 
-GEOIP_API char *GeoIP_database_info (GeoIP* gi);
-GEOIP_API uchar GeoIP_database_edition (GeoIP* gi);
+GEOIP_API char *GeoIP_dataaxis_info (GeoIP* gi);
+GEOIP_API uchar GeoIP_dataaxis_edition (GeoIP* gi);
 
 GEOIP_API int32_t GeoIP_charset (GeoIP* gi);
 GEOIP_API int32_t GeoIP_set_charset (GeoIP* gi, int32_t charset);

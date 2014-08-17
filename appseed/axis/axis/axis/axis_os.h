@@ -4,15 +4,15 @@
 #if defined(APPLEOS)
 
 
-#include "base/os/os_binreloc.h"
-#include "base/os/macos/os.h"
+#include "axis/os/os_binreloc.h"
+#include "axis/os/macos/os.h"
 
 
 #elif defined(LINUX)
 
 
-#include "base/os/os_binreloc.h"
-#include "base/os/linux/linux_linux.h"
+#include "axis/os/os_binreloc.h"
+#include "axis/os/linux/linux_linux.h"
 
 
 #define BSD_STYLE_SOCKETS
@@ -23,7 +23,7 @@
 #elif defined(METROWIN)
 
 
-#include "base/os/metrowin/ca_os.h"
+#include "axis/os/metrowin/ca_os.h"
 
 
 #define BYESHYTOULA_STYLE_SOCKS
@@ -32,7 +32,7 @@
 #elif defined(WINDOWSEX)
 
 
-#include "base/os/windows/windows_windows.h"
+#include "axis/os/windows/windows_windows.h"
 
 
 #define BSD_STYLE_SOCKETS
@@ -43,8 +43,8 @@
 #elif defined(ANDROID)
 
 
-#include "base/os/os_binreloc.h"
-#include "base/os/android/android_android.h"
+#include "axis/os/os_binreloc.h"
+#include "axis/os/android/android_android.h"
 
 
 #define HAVE_MYSQL
@@ -54,8 +54,8 @@
 #elif defined(SOLARIS)
 
 
-#include "base/os/os_binreloc.h"
-#include "base/os/solaris/solaris_solaris.h"
+#include "axis/os/os_binreloc.h"
+#include "axis/os/solaris/solaris_solaris.h"
 
 
 #define BSD_STYLE_SOCKETS
@@ -67,8 +67,8 @@
 
 
 #include "os/ansios/ansios.h"
-#include "base/os/os_binreloc.h"
-#include "base/os/ios/ca_os.h"
+#include "axis/os/os_binreloc.h"
+#include "axis/os/ios/ca_os.h"
 
 
 #else

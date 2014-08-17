@@ -1,7 +1,7 @@
 #pragma once
 
 class simple_pointer_array :
-   virtual public base_object
+   virtual public axis_object
 {
 public:
 

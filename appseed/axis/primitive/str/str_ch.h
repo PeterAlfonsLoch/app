@@ -1,8 +1,8 @@
 #pragma once
 
-#include "base/primitive/str/x/x_charcategory.h"
-#include "base/primitive/str/x/x_defines.h"
-#include "base/primitive/str/x/x_tables.h"
+#include "axis/primitive/str/x/x_charcategory.h"
+#include "axis/primitive/str/x/x_defines.h"
+#include "axis/primitive/str/x/x_tables.h"
 
 
 /** Character information class.

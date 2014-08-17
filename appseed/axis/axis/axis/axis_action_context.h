@@ -127,9 +127,9 @@ namespace action
 
 
       static inline context system_default(e_source esourceAdd = source_none, e_source esourceRemove = source_none) { return system(add(source_default, esourceAdd), esourceRemove); }
-      static inline context database_default(e_source esourceAdd = source_none, e_source esourceRemove = source_none) { return database(add(source_default, esourceAdd), esourceRemove); }
+      static inline context dataaxis_default(e_source esourceAdd = source_none, e_source esourceRemove = source_none) { return database(add(source_default, esourceAdd), esourceRemove); }
       static inline context system_default(context ctx, e_source esourceRemove = source_none) { return system(ctx + source_default, esourceRemove); }
-      static inline context database_default(context ctx, e_source esourceRemove = source_none) { return database(ctx + source_default, esourceRemove); }
+      static inline context dataaxis_default(context ctx, e_source esourceRemove = source_none) { return database(ctx + source_default, esourceRemove); }
 
    }
 

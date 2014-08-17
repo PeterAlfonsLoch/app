@@ -69,7 +69,7 @@ const char * GeoIP_get_error_message(int32_t i) {
   case GEOIP_SANITY_OPEN_ERR:
     return "Sanity check GeoIP_open error";
   case GEOIP_SANITY_INFO_FAIL:
-    return "Sanity check database_info string failed";
+    return "Sanity check dataaxis_info string failed";
   case GEOIP_SANITY_LOOKUP_FAIL:
     return "Sanity check ip address lookup failed";
   case GEOIP_RENAME_ERR:
@@ -446,8 +446,8 @@ int16_t GeoIP_update_database (char * license_key, int32_t verbose, void (*f)( c
    /* this checks to make sure the files is complete, since info is at the end */
    /* dependent on future databases having MaxMind in info */
    if (verbose == 1)
-      GeoIP_printf(f,"database_info  ");
-   db_info = GeoIP_database_info(gi);
+      GeoIP_printf(f,"dataaxis_info  ");
+   db_info = GeoIP_dataaxis_info(gi);
    if (db_info == NULL) {
       GeoIP_delete(gi);
       if (verbose == 1)
@@ -498,10 +498,10 @@ int16_t GeoIP_update_database (char * license_key, int32_t verbose, void (*f)( c
 
 }
 
-int16_t GeoIP_update_database_general (::base::application * papp, char * user_id,char * license_key,char *data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *));
+int16_t GeoIP_update_dataaxis_general (::base::application * papp, char * user_id,char * license_key,char *data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *));
 
 
-int16_t GeoIP_update_database_general (::base::application * papp, char * user_id,char * license_key,char *data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *)) {
+int16_t GeoIP_update_dataaxis_general (::base::application * papp, char * user_id,char * license_key,char *data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *)) {
 
 #ifdef BSD_STYLE_SOCKETS
    struct hostent *hostlist;
@@ -874,7 +874,7 @@ int16_t GeoIP_update_database_general (::base::application * papp, char * user_i
 
 
    /* get the database type */
-   dbtype = GeoIP_database_edition(gi);
+   dbtype = GeoIP_dataaxis_edition(gi);
    if (verbose == 1) {
       GeoIP_printf(f, "Database type is %d\n",dbtype);
    }
@@ -885,8 +885,8 @@ int16_t GeoIP_update_database_general (::base::application * papp, char * user_i
    if ((dbtype != GEOIP_ISP_EDITION)&&
          (dbtype != GEOIP_ORG_EDITION)) {
       if (verbose == 1)
-         GeoIP_printf(f,"database_info  ");
-      db_info = GeoIP_database_info(gi);
+         GeoIP_printf(f,"dataaxis_info  ");
+      db_info = GeoIP_dataaxis_info(gi);
       if (db_info == NULL) {
          GeoIP_delete(gi);
          if (verbose == 1)

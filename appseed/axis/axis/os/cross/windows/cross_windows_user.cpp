@@ -6,7 +6,7 @@
 //
 #include "framework.h"
 #define LIBICONV_PLUG
-#include "base/primitive/str/iconv/iconv.h"
+#include "axis/primitive/str/iconv/iconv.h"
 
 CLASS_DECL_BASE COLORREF GetSysColor(DWORD dw)
 {

@@ -39,10 +39,10 @@ namespace xml
       document & operator = (document & document);
 
 
-      virtual void edit(base_edit * pbaseedit);
+      virtual void edit(axis_edit * pbaseedit);
 
 
-      inline sp(::xml::edit) validate_edit(base_edit * pbaseedit)
+      inline sp(::xml::edit) validate_edit(axis_edit * pbaseedit)
       {
          return ::data::data::validate_edit < ::xml::edit > (pbaseedit);
       }

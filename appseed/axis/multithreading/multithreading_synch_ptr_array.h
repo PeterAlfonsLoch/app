@@ -56,7 +56,7 @@ public:
    }
 
 
-   ptr_array < T > base_ptra()
+   ptr_array < T > axis_ptra()
    {
       synch_lock sl(&m_mutex);
       return *dynamic_cast < ptr_array < T > * > (this);

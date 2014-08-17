@@ -28,7 +28,7 @@
 #ifndef FREEIMAGE_H
 #define FREEIMAGE_H
 
-#include "app/appseed/axis/axis.h"
+#include "app/appseed/axis/axis/axis/axis.h"
 
 #ifdef _MSC_VER 
 #pragma warning (disable : 4786) // identifier was truncated to 'number' characters

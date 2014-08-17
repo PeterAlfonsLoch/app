@@ -959,9 +959,9 @@ namespace str
 /// macro - number of elements in array
 #define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
 
-#include "base/primitive/str/x/x_charcategory.h"
-#include "base/primitive/primitive_bit.h"
-#include "base/primitive/collection/collection_bit_array.h"
+#include "axis/primitive/str/x/x_charcategory.h"
+#include "axis/primitive/primitive_bit.h"
+#include "axis/primitive/collection/collection_bit_array.h"
 
 
 inline bool id::operator == (const string & str) const

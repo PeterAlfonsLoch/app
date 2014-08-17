@@ -57,7 +57,7 @@ CLASS_DECL_BASE int_bool defer_base_init()
    if(g_iBaseRefCount > 1)
       return TRUE;
 
-   if(!base_init())
+   if(!axis_init())
       return FALSE;
 
    return TRUE;
@@ -73,7 +73,7 @@ CLASS_DECL_BASE int_bool defer_base_term()
    if(g_iBaseRefCount >= 1)
       return TRUE;
 
-   base_term();
+   axis_term();
 
    return TRUE;
 
@@ -81,7 +81,7 @@ CLASS_DECL_BASE int_bool defer_base_term()
 
 
 
-bool base_init()
+bool axis_init()
 {
 
    ::base::static_start::init();
@@ -110,7 +110,7 @@ bool base_init()
 }
 
 
-bool base_term()
+bool axis_term()
 {
 
    __wait_threading_count(::millis((5000) * 8));

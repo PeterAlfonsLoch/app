@@ -61,7 +61,6 @@ namespace base
 
       bool                                            m_bLicense;
       string                                          m_strBaseSupportId;
-      sp(class ::fontopus::license)                   m_splicense;
       int32_t                                         m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
 
 
@@ -91,7 +90,6 @@ namespace base
       sp(::user::interaction)                         m_pwndMain;
       bool                                            m_bInitializeProDevianMode;
 
-      ::http::application                             m_http;
       ::file::dir::application                        m_dir;
       ::file::application                             m_file;
 
@@ -130,9 +128,7 @@ namespace base
       virtual ::user::user * create_user();
 
 
-      inline class ::fontopus::license &        license()      { return *m_splicense; }
       inline ::database::server &               dataserver()   { return *m_spdataserver; }
-      inline class ::http::application &        http()         { return m_http; }
       inline class ::file::dir::application &   dir()          { return m_dir; }
       inline class ::file::application &        file()         { return m_file; }
 
@@ -279,8 +275,6 @@ namespace base
 
 
 
-      virtual bool update_appmatter(::sockets::http_session * & psession,const char * pszRoot,const char * pszRelative);
-      virtual bool update_appmatter(::sockets::http_session * & psession,const char * pszRoot,const char * pszRelative,const char * pszLocale,const char * pszStyle);
 
 
       virtual void TermThread(HINSTANCE hInstTerm);

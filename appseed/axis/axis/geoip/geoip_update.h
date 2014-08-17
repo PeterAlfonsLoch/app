@@ -14,7 +14,7 @@ typedef enum {
    GEOIP_OUT_OF_MEMORY_ERR       = -18, /* Out of primitive::memory error */
    GEOIP_SOCKET_READ_ERR         = -19, /* Error reading from socket, see errno */
    GEOIP_SANITY_OPEN_ERR         = -20, /* Sanity check GeoIP_open error */
-   GEOIP_SANITY_INFO_FAIL        = -21, /* Sanity check database_info string failed */
+   GEOIP_SANITY_INFO_FAIL        = -21, /* Sanity check dataaxis_info string failed */
    GEOIP_SANITY_LOOKUP_FAIL      = -22, /* Sanity check ip address lookup failed */
    GEOIP_RENAME_ERR              = -23, /* Rename error while installing db, check errno */
    GEOIP_USER_ID_INVALID_ERR     = -24, /* Invalid userID */
@@ -28,7 +28,7 @@ const char * GeoIP_get_error_message(int32_t i);
 int16_t GeoIP_update_database (char * license_key, int32_t verbose, void (*f)( char *));
 
 /* More generalized update function that works more databases */
-int16_t GeoIP_update_database_general (char * user_id, char * license_key,char * data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *));
+int16_t GeoIP_update_dataaxis_general (char * user_id, char * license_key,char * data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *));
 
    /* experimental export */
    int32_t  GeoIP_fprintf(int32_t (*f)(FILE *, char *),FILE *fp, const char *fmt, ...);

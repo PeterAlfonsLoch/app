@@ -45,7 +45,7 @@
 #pragma once
 
 
-#include "app/appseed/base/net/net_byte_order.h"
+#include "app/appseed/axis/net/net_byte_order.h"
 
 
 #ifndef _DATATYPES_H

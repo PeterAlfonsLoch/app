@@ -100,7 +100,7 @@ namespace data
       }
    }
 
-   void data::edit(base_edit * pbaseedit)
+   void data::edit(axis_edit * pbaseedit)
    {
 
       UNREFERENCED_PARAMETER(pbaseedit);

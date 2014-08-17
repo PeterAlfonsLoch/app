@@ -5,7 +5,7 @@
 #pragma once
 
 
-#include "base_a_basic_rid_off.h"
+#include "axis_a_basic_rid_off.h"
 
 
 #ifdef THE_LANGUAGE_OF_THE_LANGUAGE
@@ -65,29 +65,29 @@
    #define CLASS_DECL_BASE  CLASS_DECL_IMPORT
 #endif
 
-#include "app/appseed/base/version.h"
+#include "app/appseed/axis/version.h"
 
 #include "nodeapp/operational_system/_c.h"
 
 #include "nodeapp/operational_system/_ca.h"
 
-#include "base_types.h"
+#include "axis_types.h"
 
-#include "base/base/os/os.h"
+#include "axis/axis/os/os.h"
 
-#include "base/primitive/math/_math.h"
+#include "axis/primitive/math/_math.h"
 
-#include "base_heap.h"
+#include "axis_heap.h"
 
-#include "base/primitive/str/str_c.h"
+#include "axis/primitive/str/str_c.h"
 
-#include "base/filesystem/file/file_c.h"
+#include "axis/filesystem/file/file_c.h"
 
-#include "base/primitive/primitive_memory_c.h"
+#include "axis/primitive/primitive_memory_c.h"
 
-#include "base/primitive/datetime/datetime_c.h"
+#include "axis/primitive/datetime/datetime_c.h"
 
-#include "base_number.h"
+#include "axis_number.h"
 
 
 
@@ -97,8 +97,8 @@
 #ifdef cplusplus
 
 
-#include "base_c.h"
-#include "base_c_cpp.h"
+#include "axis_c.h"
+#include "axis_c_cpp.h"
 
 
 #else
@@ -107,7 +107,7 @@
 BEGIN_EXTERN_C
 
 
-#include "base_c.h"
+#include "axis_c.h"
 
 
 END_EXTERN_C
@@ -122,24 +122,24 @@ END_EXTERN_C
 #if defined(__M)
 
 
-#include "base_c.h"
-#include "base_c_objc.h"
+#include "axis_c.h"
+#include "axis_c_objc.h"
 
 
 #elif defined(__MM)
 
 
-#include "base_c.h"
-#include "base_c_objc.h"
-#include "base_c_objcpp.h"
+#include "axis_c.h"
+#include "axis_c_objc.h"
+#include "axis_c_objcpp.h"
 
 
 #elif defined(__cplusplus_winrt)
 
 
-#include "base_c.h"
-#include "base_c_cpp.h"
-#include "base_c_winrt.h"
+#include "axis_c.h"
+#include "axis_c_cpp.h"
+#include "axis_c_winrt.h"
 
 
 #else

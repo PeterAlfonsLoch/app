@@ -1,7 +1,7 @@
 #pragma once
 
 
-class base_edit;
+class axis_edit;
 
 
 namespace data
@@ -100,9 +100,9 @@ namespace data
 
       virtual void on_update_data(int32_t iHint);
 
-      virtual void edit(base_edit * pbaseedit);
+      virtual void edit(axis_edit * pbaseedit);
       template < class EDIT >
-      EDIT * validate_edit(base_edit * pedit);
+      EDIT * validate_edit(axis_edit * pedit);
 
       inline mutex * data_mutex() { if(m_pmutex != NULL) return m_pmutex; m_pmutex = new ::mutex(get_app()); return m_pmutex; }
 

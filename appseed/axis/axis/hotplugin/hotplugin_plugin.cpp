@@ -11,9 +11,9 @@
 
 
 #ifdef LINUX
-#include "base/os/linux/linux_cross_win_gdi_internal.h"
+#include "axis/os/linux/linux_cross_win_gdi_internal.h"
 #elif defined(ANDROID)
-#include "base/os/android/android_cross_win_gdi_internal.h"
+#include "axis/os/android/android_cross_win_gdi_internal.h"
 #endif
 
 

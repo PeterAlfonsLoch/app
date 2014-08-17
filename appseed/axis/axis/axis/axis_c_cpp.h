@@ -448,8 +448,8 @@ typedef  void(*PFN_ca2_factory_exchange)(sp(::base::application) papp);
 
 
 
-CLASS_DECL_BASE bool base_init();
-CLASS_DECL_BASE bool base_term();
+CLASS_DECL_BASE bool axis_init();
+CLASS_DECL_BASE bool axis_term();
 
 CLASS_DECL_BASE bool __node_pre_init();
 CLASS_DECL_BASE bool __node_pos_init();
@@ -460,23 +460,23 @@ CLASS_DECL_BASE bool __node_pos_term();
 
 CLASS_DECL_BASE ::base::application * get_thread_app();
 
-#include "base_definition.h"
+#include "axis_definition.h"
 
-#include "base_action_source.h"
+#include "axis_action_source.h"
 
-#include "base_new.h"
+#include "axis_new.h"
 
-#include "base_lparam.h"
-#include "base_muldiv64.h"
+#include "axis_lparam.h"
+#include "axis_muldiv64.h"
 
-#include "base_auto_pointer.h"
+#include "axis_auto_pointer.h"
 
-#include "base_smart_pointer1.h"
-#include "base_root.h"
-#include "base_smart_pointer2.h"
+#include "axis_smart_pointer1.h"
+#include "axis_root.h"
+#include "axis_smart_pointer2.h"
 
 
-#include "base_keep_true.h"
+#include "axis_keep_true.h"
 
 
 namespace file
@@ -489,179 +489,179 @@ namespace file
 } // namespace file
 
 
-#include "base/primitive/primitive_logic.h"
+#include "axis/primitive/primitive_logic.h"
 
 
 
-#include "base/primitive/math/math_static_numeric_info.h"
-#include "base/primitive/math/math_numeric_info.h"
-#include "base/primitive/math/math_number.h"
+#include "axis/primitive/math/math_static_numeric_info.h"
+#include "axis/primitive/math/math_numeric_info.h"
+#include "axis/primitive/math/math_number.h"
 
 
-#include "base/primitive/datetime/datetime_duration.h"
+#include "axis/primitive/datetime/datetime_duration.h"
 
 
-#include "base/base/base_element.h"
+#include "axis/axis/axis_element.h"
 
-#include "base_debug.h"
+#include "axis_debug.h"
 
 
 
 
 
 
-#include "base_class.h"
+#include "axis_class.h"
 
-#include "base/primitive/comparison/comparison_md5.h"
+#include "axis/primitive/comparison/comparison_md5.h"
 
-#include "base/net/net.h"
+#include "axis/net/net.h"
 
-#include "base_conv.h"
+#include "axis_conv.h"
 
-#include "base_core.h"
+#include "axis_core.h"
 
-#include "base/primitive/primitive_request_interface.h"
+#include "axis/primitive/primitive_request_interface.h"
 
-#include "base/multithreading/multithreading_wait_result.h"
+#include "axis/multithreading/multithreading_wait_result.h"
 
-#include "base/multithreading/multithreading_waitable.h"
+#include "axis/multithreading/multithreading_waitable.h"
 
-#include "base/primitive/primitive_object.h"
+#include "axis/primitive/primitive_object.h"
 
 
-#include "base/xml/xml_exportable.h"
-#include "base/xml/xml_importable.h"
+#include "axis/xml/xml_exportable.h"
+#include "axis/xml/xml_importable.h"
 
 
-#include "base/primitive/collection/collection_decl.h"
-#include "base/primitive/collection/collection_array_decl.h"
-#include "base/primitive/collection/collection_raw_array_decl.h"
-#include "base/primitive/collection/collection_lemon_array_decl.h"
-#include "base/primitive/collection/collection_smart_pointer_array.h"
+#include "axis/primitive/collection/collection_decl.h"
+#include "axis/primitive/collection/collection_array_decl.h"
+#include "axis/primitive/collection/collection_raw_array_decl.h"
+#include "axis/primitive/collection/collection_lemon_array_decl.h"
+#include "axis/primitive/collection/collection_smart_pointer_array.h"
 
 
-#include "base_action_context.h"
+#include "axis_action_context.h"
 
 
 
-#include "base_fixed_alloc.h"
+#include "axis_fixed_alloc.h"
 
 
 
-#include "base_allocate.h"
-#include "base_plex.h"
+#include "axis_allocate.h"
+#include "axis_plex.h"
 
 
-#include "base/primitive/primitive_id.h"
+#include "axis/primitive/primitive_id.h"
 
 
-#include "base/primitive/str/str.h"
-#include "base/exception/exception.h"
-#include "base_common.h"
+#include "axis/primitive/str/str.h"
+#include "axis/exception/exception.h"
+#include "axis_common.h"
 
 
-#include "base_library.h"
+#include "axis_library.h"
 
 
 
-#include "base/primitive/datetime/datetime_time.h"
+#include "axis/primitive/datetime/datetime_time.h"
 
 
 
 
-#include "base/filesystem/filesystem.h"
+#include "axis/filesystem/filesystem.h"
 
 
 
 
 
-#include "base/primitive/geometry/geometry.h"
+#include "axis/primitive/geometry/geometry.h"
 
 
-#include "base/primitive/comparison/comparison.h"
+#include "axis/primitive/comparison/comparison.h"
 
 
-#include "base/primitive/collection/collection.h"
+#include "axis/primitive/collection/collection.h"
 
 
-#include "base/filesystem/file/file_string_buffer.h"
+#include "axis/filesystem/file/file_string_buffer.h"
 
 
-#include "base/filesystem/file/file_set.h"
+#include "axis/filesystem/file/file_set.h"
 
 
-#include "base/primitive/primitive_var2.h"
+#include "axis/primitive/primitive_var2.h"
 
 
-#include "base/primitive/primitive_id_space.h"
+#include "axis/primitive/primitive_id_space.h"
 
 
-#include "base/primitive/math/math_scalar_enum.h"
+#include "axis/primitive/math/math_scalar_enum.h"
 
 
-#include "base/primitive/math/math_scalar.h"
+#include "axis/primitive/math/math_scalar.h"
 
 
-#include "base_progress.h"
+#include "axis_progress.h"
 
 
-#include "base_enum.h"
+#include "axis_enum.h"
 
 
-#include "base/multithreading/multithreading.h"
+#include "axis/multithreading/multithreading.h"
 
 
-#include "base/base/geoip/geoip.h"
+#include "axis/axis/geoip/geoip.h"
 
 
 
-#include "base_draw2d.h"
+#include "axis_draw2d.h"
 
 
-#include "base_gudo.h"
+#include "axis_gudo.h"
 
 
 
 
 
-//#include "base/user/user_create_context.h"
+//#include "axis/user/user_create_context.h"
 
 
 #if defined(LINUX)
 
-#include "base/os/ansios/ansios.h"
-#include "base/os/linux/linux_user_impl.h"
+#include "axis/os/ansios/ansios.h"
+#include "axis/os/linux/linux_user_impl.h"
 
 #elif defined(METROWIN)
 
-#include "base/os/metrowin/metrowin.h"
-#include "base/os/metrowin/metrowin_user_impl.h"
+#include "axis/os/metrowin/metrowin.h"
+#include "axis/os/metrowin/metrowin_user_impl.h"
 
 #elif defined(MACOS)
 
-#include "base/os/ansios/ansios.h"
-#include "base/os/macos/macos.h"
-#include "base/os/macos/macos_windowing.h"
+#include "axis/os/ansios/ansios.h"
+#include "axis/os/macos/macos.h"
+#include "axis/os/macos/macos_windowing.h"
 
 #elif defined(ANDROID)
 
-#include "base/os/ansios/ansios.h"
-#include "base/os/android/android.h"
+#include "axis/os/ansios/ansios.h"
+#include "axis/os/android/android.h"
 
 #elif defined(WINDOWS)
 
-#include "base/os/windows/windows.h"
+#include "axis/os/windows/windows.h"
 
 #elif defined(APPLE_IOS)
 
-#include "base/os/ansios/ansios.h"
-#include "base/os/ios/ios.h"
-#include "base/os/ios/ios_windowing.h"
+#include "axis/os/ansios/ansios.h"
+#include "axis/os/ios/ios.h"
+#include "axis/os/ios/ios_windowing.h"
 
 #elif defined(SOLARIS)
 
-#include "base/os/ansios/ansios.h"
-#include "base/os/solaris/solaris_user_impl.h"
+#include "axis/os/ansios/ansios.h"
+#include "axis/os/solaris/solaris_user_impl.h"
 
 #else
 
@@ -679,9 +679,9 @@ namespace file
 CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
-#include "base_plex_heap.h"
+#include "axis_plex_heap.h"
 
-#include "base/primitive/primitive_type.h"
+#include "axis/primitive/primitive_type.h"
 
 
 #include "graphics/graphics.h"
@@ -689,14 +689,14 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "user/user/user_keyboard_focus.h"
 #include "user/user/user_mouse_focus.h"
 #include "user/user/user_elemental.h"
-#include "base_flags.h"
+#include "axis_flags.h"
 #include "primitive/primitive_check.h"
 #include "user/user/user_check_interface.h"
-#include "base_command.h"
+#include "axis_command.h"
 #include "graphics/visual/visual_const.h"
 #include "user/user/user_key_enum.h"
-#include "base/base/message/message.h"
-#include "base_command_target.h"
+#include "axis/axis/message/message.h"
+#include "axis_command_target.h"
 #include "user/user/user_schema.h"
 #include "user/user/user_schema_simple_impl.h"
 #include "user/user/user_schema_layered_frame.h"
@@ -705,8 +705,8 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "user/user/user_window_util.h"
 #include "user/user/user_interaction_base.h"
 #include "user/user/user_buffer.h"
-#include "base_keep.h"
-#include "base/filesystem/file/file_stream2.h"
+#include "axis_keep.h"
+#include "axis/filesystem/file/file_stream2.h"
 #include "user/user/user_interaction.h"
 #include "user/user/user_interaction_impl_base.h"
 #include "user/user/user_interaction_child.h"
@@ -732,21 +732,21 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "primitive/data/data_tree.h"
 #include "primitive/data/data_simple_item.h"
 
-#include "base/primitive/primitive_edit.h"
-#include "base_departament.h"
-#include "base_departament_container.h"
-#include "base/xml/xml.h"
-#include "base/user/simple_ui/simple_ui_style.h"
-#include "base/user/simple_ui/simple_ui_interaction.h"
-#include "base/database/database.h"
+#include "axis/primitive/primitive_edit.h"
+#include "axis_departament.h"
+#include "axis_departament_container.h"
+#include "axis/xml/xml.h"
+#include "axis/user/simple_ui/simple_ui_style.h"
+#include "axis/user/simple_ui/simple_ui_interaction.h"
+#include "axis/database/database.h"
 #include "user/user/user_document_data_map.h"
 #include "user/user/user_document.h"
 #include "user/user/user_impact.h"
-#include "base_live_object.h"
-#include "base_live_signal.h"
+#include "axis_live_object.h"
+#include "axis_live_signal.h"
 #include "multithreading/multithreading_thread.h"
-#include "base_message_queue_listener.h"
-#include "base_message_queue.h"
+#include "axis_message_queue_listener.h"
+#include "axis_message_queue.h"
 #include "multithreading/multithreading_thread_impl.h"
 #include "multithreading/multithreading_simple_thread.h"
 #include "multithreading/multithreading_go_thread.h"
@@ -758,60 +758,50 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 
-#include "base_log.h"
-#include "base_trace.h"
+#include "axis_log.h"
+#include "axis_trace.h"
 
 
-#include "base/net/net.h"
+#include "axis/net/net.h"
 
 
-#include "base/primitive/primitive_memory_base.h"
-#include "base/primitive/primitive_memory.h"
-#include "base/primitive/primitive_shared_memory.h"
-#include "base/primitive/primitive_virtual_memory.h"
-#include "base/primitive/primitive_memory_container.h"
+#include "axis/primitive/primitive_memory_base.h"
+#include "axis/primitive/primitive_memory.h"
+#include "axis/primitive/primitive_shared_memory.h"
+#include "axis/primitive/primitive_virtual_memory.h"
+#include "axis/primitive/primitive_memory_container.h"
 
 
-#include "base/filesystem/file/file_memory_buffer.h"
-#include "base/filesystem/file/file_byte_stream_memory_buffer.h"
-#include "base/filesystem/file/file_plain_text_stream_memory_buffer.h"
-#include "base/filesystem/file/file_circular_buffer.h"
+#include "axis/filesystem/file/file_memory_buffer.h"
+#include "axis/filesystem/file/file_byte_stream_memory_buffer.h"
+#include "axis/filesystem/file/file_plain_text_stream_memory_buffer.h"
+#include "axis/filesystem/file/file_circular_buffer.h"
 
 
-#include "base/primitive/str/str_international2.h"
-
-#include "net/http/http_output_stream.h"
+#include "axis/primitive/str/str_international2.h"
 
 
 #if defined(METROWIN)
 
-#include "app/appseed/base/base/os/metrowin/metrowin_sockets.h"
+#include "app/appseed/axis/axis/os/metrowin/metrowin_sockets.h"
 
 #endif
 
 
-#include "base/net/sockets/sockets.h"
 
-#include "base/programming/javascript/javascript.h"
+#include "axis/programming/javascript/javascript.h"
 
-#include "net/http/http_http.h"
-#include "net/http/http_application.h"
-#include "net/http/http_system.h"
-#include "net/http/http_get_socket.h"
 
-//#include "base_message_queue_listener.h"
-//#include "base_message_queue.h"
-#include "base/user/userpresence/userpresence.h"
-#include "base/primitive/primitive_factory.h"
-#include "base/filesystem/fs/fs.h"
-#include "base/user/fontopus/fontopus.h"
+#include "axis/user/userpresence/userpresence.h"
+#include "axis/primitive/primitive_factory.h"
+#include "axis/filesystem/fs/fs.h"
 
-#include "base/filesystem/file/file_application.h"
-#include "base/filesystem/file/file_dir_application.h"
+#include "axis/filesystem/file/file_application.h"
+#include "axis/filesystem/file/file_dir_application.h"
 
-#include "base/primitive/math/math_math_rng.h"
-#include "base/primitive/math/math_math.h"
-#include "base/primitive/geometry/geometry_geometry.h"
+#include "axis/primitive/math/math_math_rng.h"
+#include "axis/primitive/math/math_math.h"
+#include "axis/primitive/geometry/geometry_geometry.h"
 
 
 
@@ -822,39 +812,39 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "user/user/user_keyboard.h"
 #include "user/user/user_user.h"
 
-#include "base_main_init_data.h"
+#include "axis_main_init_data.h"
 
-#include "base_savings.h"
-
-
-#include "base_application_interface.h"
-#include "base_application.h"
+#include "axis_savings.h"
 
 
-#include "base_gudo_application.h"
+#include "axis_application_interface.h"
+#include "axis_application.h"
 
 
-#include "base_application_signal_details.h"
-
-#include "base_session_interface.h"
-#include "base_session.h"
-
-#include "base/net/net_url_departament.h"
-#include "base/net/net_url_domain.h"
+#include "axis_gudo_application.h"
 
 
+#include "axis_application_signal_details.h"
+
+#include "axis_session_interface.h"
+#include "axis_session.h"
+
+#include "axis/net/net_url_departament.h"
+#include "axis/net/net_url_domain.h"
 
 
-#include "base/primitive/primitive_application_bias.h"
-#include "base/exception/exception_engine.h"
 
-#include "base_fixed_alloc_impl.h"
-#include "base_plex_heap_impl.h"
-#include "base/primitive/primitive_command_line.h"
-#include "base/primitive/primitive_command.h"
+
+#include "axis/primitive/primitive_application_bias.h"
+#include "axis/exception/exception_engine.h"
+
+#include "axis_fixed_alloc_impl.h"
+#include "axis_plex_heap_impl.h"
+#include "axis/primitive/primitive_command_line.h"
+#include "axis/primitive/primitive_command.h"
 #include "user/user/user_create_context.h"
-#include "base/primitive/primitive_create_context.h"
-#include "base/primitive/primitive_request_signal.h"
+#include "axis/primitive/primitive_create_context.h"
+#include "axis/primitive/primitive_request_signal.h"
 
 
 
@@ -863,29 +853,29 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 
-#include "base/primitive/primitive_command_thread.h"
+#include "axis/primitive/primitive_command_thread.h"
 
 
 
 
 
-//#include "base/graphics/visual/visual.h"
+//#include "axis/graphics/visual/visual.h"
 
 
-#include "base/filesystem/file/file_system.h"
-#include "base/filesystem/file/file_dir_system.h"
+#include "axis/filesystem/file/file_system.h"
+#include "axis/filesystem/file/file_dir_system.h"
 
-#include "base/filesystem/file/file_buffered_buffer.h"
-
-
-#include "base/compress/compress.h"
+#include "axis/filesystem/file/file_buffered_buffer.h"
 
 
-#include "base_machine_event_data.h"
-#include "base_machine_event.h"
-#include "base_machine_event_central.h"
+#include "axis/compress/compress.h"
 
-#include "base/crypto/crypto.h"
+
+#include "axis_machine_event_data.h"
+#include "axis_machine_event.h"
+#include "axis_machine_event_central.h"
+
+#include "axis/crypto/crypto.h"
 
 
 #include "primitive/datetime/datetime_value.h"
@@ -894,30 +884,29 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 #include "user/user/user_window_draw.h"
 
-#include "base/primitive/str/str_international_locale_schema.h"
+#include "axis/primitive/str/str_international_locale_schema.h"
 
 #include "user/user/user_str.h"
 
-#include "base_id_pool.h"
+#include "axis_id_pool.h"
 
 
-#include "base_launcher.h"
+#include "axis_launcher.h"
 #ifndef METROWIN
-#include "base_small_ipc_channel.h"
+#include "axis_small_ipc_channel.h"
 #endif
 
 
-#include "base/user/user/user.h"
+#include "axis/user/user/user.h"
 #include "user/user/user_control_event.h"
-#include "base_cregexp.h"
-#include "base_cregexp_util.h"
+#include "axis_cregexp.h"
+#include "axis_cregexp_util.h"
 
 #include "user/user/user_control.h"
 #include "user/user/user_scroll_bar.h"
 #include "user/user/user_scroll_view.h"
 #include "user/user/user_form_interface.h"
 
-#include "user/colorertake5/colorertake5.h"
 #include "filesystem/file/file_edit_buffer.h"
 
 #include "user/user/user_plain_text_data.h"
@@ -926,19 +915,17 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 
-#include "base_core_os.h"
+#include "axis_core_os.h"
 
-#include "base_system.h"
+#include "axis_system.h"
 
-#include "base/hotplugin/hotplugin.h"
+#include "axis/hotplugin/hotplugin.h"
 
-#include "base/install/install.h"
+#include "axis/install/install.h"
 
-#include "base_system_str.h"
+#include "axis_system_str.h"
 
-#include "base/os/os_process.h"
-
-
+#include "axis/os/os_process.h"
 
 
 
@@ -947,13 +934,15 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 
-//#include "base/install/install_trace.h"
+
+
+//#include "axis/install/install_trace.h"
 
 
 #define new BASE_NEW
 
 
-#include "base_system_trace.h"
+#include "axis_system_trace.h"
 
 
 #include "user/user/user_place_holder.h"
@@ -963,12 +952,12 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "user/user/user_view_creator.h"
 
 
-#include "base/multithreading/multithreading.inl"
+#include "axis/multithreading/multithreading.inl"
 
 
-#include "base/primitive/str/str.inl"
+#include "axis/primitive/str/str.inl"
 
-#include "base/base/base.inl"
+#include "axis/axis/base.inl"
 
 #include "primitive/collection/collection.inl"
 
@@ -1086,7 +1075,7 @@ namespace numeric_info
 
 #ifndef WINDOWSEX
 
-#include "base/os/cross/windows/windows_thread_impl.h"
+#include "axis/os/cross/windows/windows_thread_impl.h"
 
 #endif
 
@@ -1094,39 +1083,39 @@ namespace numeric_info
 
 
 
-#include "base/primitive/collection/collection_array_impl.inl"
-#include "base/primitive/collection/collection_raw_array_impl.inl"
-#include "base/primitive/collection/collection_sort_array_impl.inl"
-#include "base/primitive/collection/collection_lemon_array_impl.inl"
+#include "axis/primitive/collection/collection_array_impl.inl"
+#include "axis/primitive/collection/collection_raw_array_impl.inl"
+#include "axis/primitive/collection/collection_sort_array_impl.inl"
+#include "axis/primitive/collection/collection_lemon_array_impl.inl"
 
-#include "base/primitive/collection/collection_list_impl.inl"
-#include "base/primitive/collection/collection_map_impl.inl"
+#include "axis/primitive/collection/collection_list_impl.inl"
+#include "axis/primitive/collection/collection_map_impl.inl"
 
-#include "base/primitive/collection/collection_sort_map_impl.inl"
+#include "axis/primitive/collection/collection_sort_map_impl.inl"
 
-#include "base/primitive/collection/collection_fifo_map_impl.inl"
-
-
-
-#include "base/primitive/primitive_factory_impl.inl"
+#include "axis/primitive/collection/collection_fifo_map_impl.inl"
 
 
 
-
-
-#include "base_system_smart_pointer.inl"
-#include "base_system_object.inl"
-#include "base_system_id.inl"
-#include "base_system_factory.inl"
-#include "base_system_primitive_var.inl"
-#include "base_system_xml.inl"
+#include "axis/primitive/primitive_factory_impl.inl"
 
 
 
-#include "base_core_copydesk.h"
 
 
-#include "base_core_os.h"
+#include "axis_system_smart_pointer.inl"
+#include "axis_system_object.inl"
+#include "axis_system_id.inl"
+#include "axis_system_factory.inl"
+#include "axis_system_primitive_var.inl"
+#include "axis_system_xml.inl"
+
+
+
+#include "axis_core_copydesk.h"
+
+
+#include "axis_core_os.h"
 
 
 #define AppUser(pbaseapp) (*pbaseapp->m_pbasesession->fontopus()->get_user())
@@ -1134,8 +1123,8 @@ namespace numeric_info
 
 
 
-#include "base/net/http/http.h"
-#include "base_microtimer.h"
+#include "axis/net/http/http.h"
+#include "axis_microtimer.h"
 
 
 
@@ -1144,27 +1133,27 @@ namespace numeric_info
 
 
 
-#include "base/vms/vms.h"
+#include "axis/vms/vms.h"
 
 
-#include "base_cpu_architecture.h"
+#include "axis_cpu_architecture.h"
 
 
-#include "base_libc.h"
+#include "axis_libc.h"
 
 
-#include "base_number.h"
+#include "axis_number.h"
 
 
-#include "base_debug.h"
+#include "axis_debug.h"
 
 
-#include "base_printf.h"
-#include "base_sprintf.h"
+#include "axis_printf.h"
+#include "axis_sprintf.h"
 
 
 
-#include "base_math.h"
+#include "axis_math.h"
 
 
 
@@ -1181,42 +1170,42 @@ namespace numeric_info
 #ifndef BSD_STYLE_SOCKETS
 #define BSD_STYLE_SOCKETS 1
 #endif
-   //#include "base_small_ipc_channel.h"
+   //#include "axis_small_ipc_channel.h"
 
 #endif
 
 
 
-#include "base_file_watcher.h"
-#include "base_file_watcher_impl.h"
+#include "axis_file_watcher.h"
+#include "axis_file_watcher_impl.h"
 
 
-#include "base_os.h"
+#include "axis_os.h"
 
 
-#include "base/multithreading/multithreading_data.h"
+#include "axis/multithreading/multithreading_data.h"
 
 
-#include "base_simple_shell_launcher.h"
+#include "axis_simple_shell_launcher.h"
 
 
-#include "base_file_watcher_thread.h"
-#include "base_file_watcher_listener_thread.h"
-#include "base_async.h"
+#include "axis_file_watcher_thread.h"
+#include "axis_file_watcher_listener_thread.h"
+#include "axis_async.h"
 
 
-   //#include "base/hotplugin/hotplugin.h"
+   //#include "axis/hotplugin/hotplugin.h"
 
 
 
 
-#include "base_message_loop.h"
+#include "axis_message_loop.h"
 
-#include "base_url.h"
+#include "axis_url.h"
 
-#include "base_international.h"
+#include "axis_international.h"
 
-#include "base_static_start.h"
+#include "axis_static_start.h"
 
 
 
@@ -1240,7 +1229,7 @@ namespace numeric_info
    CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
-#include "base_simple_app.h"
+#include "axis_simple_app.h"
 
 
 
@@ -1342,9 +1331,9 @@ bool ::file::system::output(sp(::base::application) papp, const char * pszOutput
 
 
 
-#include "app/appseed/base/base/node/node.h"
+#include "app/appseed/axis/axis/node/node.h"
 
 
 
-#include "base/user/simple/simple.h"
-#include "base/user/simple_ui/simple_ui.h"
+#include "axis/user/simple/simple.h"
+#include "axis/user/simple_ui/simple_ui.h"

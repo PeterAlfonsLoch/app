@@ -187,7 +187,7 @@ namespace base
       //use_base_ca2_allocator();
 
 
-      m_pfactory = new class base_factory(this);
+      m_pfactory = new class axis_factory(this);
       m_pfactory->set_app(this);
 
       m_pfactory->creatable_large < ::file::simple_binary_buffer >(type_info < ::file::binary_buffer >());
@@ -280,7 +280,7 @@ namespace base
    }
 
 
-   base_factory & system::factory()
+   axis_factory & system::factory()
    {
 
       return *m_pfactory;

@@ -24,27 +24,27 @@
 #include "primitive/math/math_mkint_c.h"
 
 #if defined(ANDROID)
-#include "base/base/os/android/android.h"
+#include "axis/axis/os/android/android.h"
 #elif defined(MACOS)
-#include "base/base/os/macos/macos.h"
+#include "axis/axis/os/macos/macos.h"
 #elif defined(LINUX)
-#include "base/base/os/linux/linux.h"
+#include "axis/axis/os/linux/linux.h"
 #elif defined(METROWIN)
-#include "base/base/os/metrowin/metrowin.h"
+#include "axis/axis/os/metrowin/metrowin.h"
 #elif defined(WINDOWS)
-#include "base/base/os/windows/windows.h"
+#include "axis/axis/os/windows/windows.h"
 #elif defined(SOLARIS)
-#include "base/base/os/solaris/solaris.h"
+#include "axis/axis/os/solaris/solaris.h"
 #elif defined(APPLE_IOS)
-#include "base/base/os/ios/ios.h"
+#include "axis/axis/os/ios/ios.h"
 #else
 #error Not Supported Operational System
 #endif
 
 
-#include "base/base/crypto/crypto/crypto.h"
+#include "axis/axis/crypto/crypto/crypto.h"
 
-#include "base/net/idn/idna.h"
+#include "axis/net/idn/idna.h"
 
 
 CLASS_DECL_BASE int get_base_init();

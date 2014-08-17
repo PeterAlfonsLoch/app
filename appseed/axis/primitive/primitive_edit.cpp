@@ -1,16 +1,16 @@
 #include "framework.h"
 
 
-base_edit::base_edit(sp(::base::application) papp) :
+axis_edit::axis_edit(sp(::base::application) papp) :
    element(papp)
 {
 }
 
-base_edit::~base_edit()
+axis_edit::~axis_edit()
 {
 }
 
-void base_edit::apply()
+void axis_edit::apply()
 {
 
    m_spdata->edit(this);
@@ -18,7 +18,7 @@ void base_edit::apply()
 
 }
 
-void base_edit::on_apply()
+void axis_edit::on_apply()
 {
 }
 

@@ -64,7 +64,7 @@ namespace base
 
       stridsp(type)                                m_typemap;
       spa(service_base)                            m_serviceptra;
-      sp(base_factory)                             m_pfactory;
+      sp(axis_factory)                             m_pfactory;
       ::url::departament                           m_urldepartament;
       sp(class ::xml::departament)                 m_pxml;
       const id_pool                                m_cidpool;
@@ -181,7 +181,7 @@ namespace base
 
 
       class ::base::os                             & os();
-      class base_factory                           & factory();
+      class axis_factory                           & factory();
       inline ::url::departament                    & url()     { return m_urldepartament; }
       ::xml::departament                           & xml();
       class ::str::base64                          & base64();
@@ -307,13 +307,13 @@ namespace base
       }
 
       template < class E,E edefault>
-      void from_name(base_enum < E,edefault > & b,const char * psz,E iDefault = edefault)
+      void from_name(axis_enum < E,edefault > & b,const char * psz,E iDefault = edefault)
       {
          b = enum_from_name(System.type_info < E >(),psz,iDefault);
       }
 
       template < class E,E edefault>
-      string get_name(const base_enum < E,edefault > & b)
+      string get_name(const axis_enum < E,edefault > & b)
       {
          return get_enum_name(System.type_info < E >(),(int32_t)(E)b);
       }

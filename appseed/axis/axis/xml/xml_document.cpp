@@ -205,7 +205,7 @@ namespace xml
    }
 
 
-   void document::edit(base_edit * pbaseedit)
+   void document::edit(axis_edit * pbaseedit)
    {
 
       sp(::xml::edit) pedit = validate_edit(pbaseedit);

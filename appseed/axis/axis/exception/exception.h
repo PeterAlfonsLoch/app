@@ -399,7 +399,7 @@ inline void __cdecl __clearerr_s(FILE *stream)
 #include "exception_last_error.h"
 
 // mrs/src as of 2012-08-18
-// cybase/os/exception
+// cyaxis/os/exception
 #include "exception_os.h"
 #include "exception_invalid_index.h"
 #include "exception_invalid_handle.h"

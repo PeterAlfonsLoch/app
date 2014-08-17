@@ -68,7 +68,7 @@ public:
 
 };
 
-class CLASS_DECL_BASE base_signalizable_array :
+class CLASS_DECL_BASE axis_signalizable_array :
    virtual protected comparable_array < signalizable * >
 {
 public:
@@ -96,21 +96,21 @@ public:
 
 template < class SIGNALIZABLE >
 class signalizable_array :
-   virtual public base_signalizable_array
+   virtual public axis_signalizable_array
 {
 public:
 
    inline index add(SIGNALIZABLE * psignalizable)
    {
-      return base_signalizable_array::add(psignalizable);
+      return axis_signalizable_array::add(psignalizable);
    }
 
    inline index remove(SIGNALIZABLE * psignalizable)
    {
-      return base_signalizable_array::remove(psignalizable);
+      return axis_signalizable_array::remove(psignalizable);
    }
 
-   SIGNALIZABLE * element_at(index i) { return dynamic_cast < SIGNALIZABLE * > (base_signalizable_array::element_at(i)); }
+   SIGNALIZABLE * element_at(index i) { return dynamic_cast < SIGNALIZABLE * > (axis_signalizable_array::element_at(i)); }
 
 };
 

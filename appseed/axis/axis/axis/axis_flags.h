@@ -9,22 +9,22 @@ public:
 
 };
 
-class CLASS_DECL_BASE base_sort_serializable_int_ptr_array :
+class CLASS_DECL_BASE axis_sort_serializable_int_ptr_array :
    virtual public ::file::serializable_array < sort_int_ptr_array::type >
 {
 public:
 
-   base_sort_serializable_int_ptr_array() { }
+   axis_sort_serializable_int_ptr_array() { }
 
 #if defined(MOVE_SEMANTICS)
 
-   base_sort_serializable_int_ptr_array(base_sort_serializable_int_ptr_array && a) :
+   axis_sort_serializable_int_ptr_array(axis_sort_serializable_int_ptr_array && a) :
       array < int_ptr, int_ptr >(a)
    {
 
    }
 
-   inline base_sort_serializable_int_ptr_array & operator = (base_sort_serializable_int_ptr_array && a)
+   inline axis_sort_serializable_int_ptr_array & operator = (axis_sort_serializable_int_ptr_array && a)
    {
 
       array < int_ptr, int_ptr >::operator = (a);
@@ -43,7 +43,7 @@ public:
 
 template < class ENUM >
 class flags :
-   virtual public base_sort_serializable_int_ptr_array
+   virtual public axis_sort_serializable_int_ptr_array
 {
 public:
 

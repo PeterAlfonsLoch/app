@@ -32,8 +32,6 @@ namespace base
       ::core::platform *                                       m_pcoreplatform;
       string_map < sp(::base::application) >                   m_mapApplication;
       sp(::userpresence::userpresence)                         m_puserpresence;
-      sp(::ifs)                                                m_pifs;
-      sp(::fs::remote_native)                                  m_prfs;
       sp(::fs::fs)                                             m_spfs;
       sp(class ::fs::data)                                     m_spfsdata;
 
@@ -45,11 +43,9 @@ namespace base
       ::base::copydesk_sp                                      m_spcopydesk;
 
 
-      sp(::fontopus::fontopus)                                 m_pfontopus;
       application_ptra                                         m_appptra;
       sp(::user::interaction)                                  m_spuiFocus;
       sp(::user::str_context)                                  m_puserstrcontext;
-      sp(::sockets::sockets)                                   m_psockets;
       bool                                                     m_bZipIsDir;
       map < ::user::e_key,::user::e_key,bool,bool > *          m_pmapKeyPressed;
       sp(::base::savings)                                      m_psavings;
@@ -68,7 +64,6 @@ namespace base
       virtual ~session();
 
       inline ::userpresence::userpresence & userpresence() { return *m_puserpresence; }
-      inline sp(::fontopus::fontopus)           fontopus()     { return m_pfontopus; }
 
       application_ptra & appptra();
 
@@ -94,7 +89,6 @@ namespace base
 
       ::base::copydesk & copydesk();
       inline sp(class ::fs::data)               fs()           { return m_spfsdata; }
-      inline ::sockets::sockets &               sockets()      { return *m_psockets; }
       inline sp(class ::user::user)             user()         { return m_spuser; }
       inline ::base::savings &                  savings()      { return *m_psavings; }
 
@@ -130,14 +124,6 @@ namespace base
 
       
       virtual COLORREF get_default_color(uint64_t ui);
-      virtual ::fontopus::fontopus * create_fontopus();
-
-
-      virtual ::fontopus::user * safe_get_user();
-
-
-      virtual ::fontopus::user * get_user();
-      virtual ::fontopus::user * create_current_user();
 
 
       virtual bool is_licensed(const char * pszId,bool bInteractive = true);

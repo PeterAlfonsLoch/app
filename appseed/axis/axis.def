@@ -1399,7 +1399,7 @@ EXPORTS
     EVP_PKEY_asn1_set_private               
     EVP_PKEY_asn1_set_public                
     EVP_PKEY_assign                         
-    EVP_PKEY_base_id                        
+    EVP_PKEY_axis_id                        
     EVP_PKEY_bits                           
     EVP_PKEY_cmp                            
     EVP_PKEY_cmp_parameters                 
