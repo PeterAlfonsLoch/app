@@ -75,9 +75,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>baseopenssl</ProjectName>
+    <ProjectName>axisopenssl</ProjectName>
     <ProjectGuid>{29676444-4D0F-4DD0-9104-0499D94DA2C9}</ProjectGuid>
-    <RootNamespace>baseopenssl</RootNamespace>
+    <RootNamespace>axisopenssl</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
