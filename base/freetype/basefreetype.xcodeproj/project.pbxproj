@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0722ED02192576FE003E99F4 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 077C29FA190F10FD00A1F6B0 /* libbase.dylib */; };
 		07A4A929190C44A6005B6DE5 /* autofit.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B35B416A2D80800875A94 /* autofit.c */; };
 		07A4A92A190C44A6005B6DE5 /* ftbbox.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B398216A2F96000875A94 /* ftbbox.c */; };
 		07A4A92B190C44A6005B6DE5 /* ftsystem.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B398016A2F94200875A94 /* ftsystem.c */; };
@@ -37,7 +36,7 @@
 		07A4A943190C44A6005B6DE5 /* type1.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B373C16A2D80800875A94 /* type1.c */; };
 		07A4A944190C44A6005B6DE5 /* type42.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B396C16A2F49D00875A94 /* type42.c */; };
 		07A4A945190C44A6005B6DE5 /* winfnt.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B374F16A2D80800875A94 /* winfnt.c */; };
-		07B6540F190F2B4C002DAADE /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 077C29FC190F10FD00A1F6B0 /* libbase.dylib */; };
+		07B272A319A01B5B00E822E1 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0778A1FE199FEE6800206CA1 /* libbase.dylib */; };
 		9A1B375216A2D80800875A94 /* afangles.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B359B16A2D80800875A94 /* afangles.h */; };
 		9A1B375416A2D80800875A94 /* afcjk.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B359D16A2D80800875A94 /* afcjk.h */; };
 		9A1B375616A2D80800875A94 /* afdummy.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B359F16A2D80800875A94 /* afdummy.h */; };
@@ -208,40 +207,33 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0722ECFE192576EF003E99F4 /* PBXContainerItemProxy */ = {
+		0778A1FD199FEE6800206CA1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9AA6A2E1190732B0000A1F4A /* base.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
-			remoteInfo = base;
-		};
-		077C29F9190F10FD00A1F6B0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AA6A2E1190732B0000A1F4A /* base.xcodeproj */;
+			containerPortal = 0778A1F7199FEE6800206CA1 /* base.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
 			remoteInfo = base;
 		};
-		077C29FB190F10FD00A1F6B0 /* PBXContainerItemProxy */ = {
+		0778A1FF199FEE6800206CA1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9AA6A2E1190732B0000A1F4A /* base.xcodeproj */;
+			containerPortal = 0778A1F7199FEE6800206CA1 /* base.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24D341904CEFE001AEFFB;
 			remoteInfo = base_ios;
 		};
-		077C29FD190F10FD00A1F6B0 /* PBXContainerItemProxy */ = {
+		0778A201199FEE6800206CA1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9AA6A2E1190732B0000A1F4A /* base.xcodeproj */;
+			containerPortal = 0778A1F7199FEE6800206CA1 /* base.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
 			remoteInfo = base_iosTests;
 		};
-		07B6540A190F2B43002DAADE /* PBXContainerItemProxy */ = {
+		0778A254199FF37200206CA1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9AA6A2E1190732B0000A1F4A /* base.xcodeproj */;
+			containerPortal = 0778A1F7199FEE6800206CA1 /* base.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 9AE24D331904CEFE001AEFFB;
-			remoteInfo = base_ios;
+			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
+			remoteInfo = base;
 		};
 		9AE24D731904CF30001AEFFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -265,6 +257,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0778A1F7199FEE6800206CA1 /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = /ca2/nodeapp/seed/metaseed/../../../app/appseed/base/base.xcodeproj; sourceTree = "<absolute>"; };
 		9A1B358C16A2D7A500875A94 /* libbasefreetype.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbasefreetype.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1B359B16A2D80800875A94 /* afangles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afangles.h; sourceTree = "<group>"; };
 		9A1B359D16A2D80800875A94 /* afcjk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afcjk.h; sourceTree = "<group>"; };
@@ -428,7 +421,6 @@
 		9A86CA4B16E8076D008420D3 /* ftgzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ftgzip.c; path = src/gzip/ftgzip.c; sourceTree = "<group>"; };
 		9A8CCAD917EA05B000F87A02 /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libbase.dylib"; sourceTree = "<group>"; };
 		9AA6A2A619071125000A1F4A /* libbase_ios.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase_ios.dylib; path = "../../../appseed/base/build/Debug-iphoneos/libbase_ios.dylib"; sourceTree = "<group>"; };
-		9AA6A2E1190732B0000A1F4A /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../../../appseed/base/base.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9AE24D5E1904CF2F001AEFFB /* libbasefreetype.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbasefreetype.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24D601904CF2F001AEFFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9AE24D6D1904CF30001AEFFB /* basefreetype_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = basefreetype_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -444,7 +436,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0722ED02192576FE003E99F4 /* libbase.dylib in Frameworks */,
+				07B272A319A01B5B00E822E1 /* libbase.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,7 +445,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AE24D611904CF2F001AEFFB /* Foundation.framework in Frameworks */,
-				07B6540F190F2B4C002DAADE /* libbase.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,12 +462,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		077C29F4190F10FD00A1F6B0 /* Products */ = {
+		0778A1F8199FEE6800206CA1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				077C29FA190F10FD00A1F6B0 /* libbase.dylib */,
-				077C29FC190F10FD00A1F6B0 /* libbase.dylib */,
-				077C29FE190F10FD00A1F6B0 /* base_iosTests.xctest */,
+				0778A1FE199FEE6800206CA1 /* libbase.dylib */,
+				0778A200199FEE6800206CA1 /* libbase.dylib */,
+				0778A202199FEE6800206CA1 /* base_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -484,7 +475,7 @@
 		9A1B358116A2D7A500875A94 = {
 			isa = PBXGroup;
 			children = (
-				9AA6A2E1190732B0000A1F4A /* base.xcodeproj */,
+				0778A1F7199FEE6800206CA1 /* base.xcodeproj */,
 				9A1B359916A2D80800875A94 /* autofit */,
 				9A1B35B816A2D80800875A94 /* base */,
 				9A1B35E216A2D80800875A94 /* bdf */,
@@ -1052,7 +1043,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				0722ECFF192576EF003E99F4 /* PBXTargetDependency */,
+				0778A255199FF37200206CA1 /* PBXTargetDependency */,
 			);
 			name = basefreetype;
 			productName = freetype;
@@ -1070,7 +1061,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				07B6540B190F2B43002DAADE /* PBXTargetDependency */,
 			);
 			name = basefreetype_ios;
 			productName = basefreetype_ios;
@@ -1121,8 +1111,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 077C29F4190F10FD00A1F6B0 /* Products */;
-					ProjectRef = 9AA6A2E1190732B0000A1F4A /* base.xcodeproj */;
+					ProductGroup = 0778A1F8199FEE6800206CA1 /* Products */;
+					ProjectRef = 0778A1F7199FEE6800206CA1 /* base.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1135,25 +1125,25 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		077C29FA190F10FD00A1F6B0 /* libbase.dylib */ = {
+		0778A1FE199FEE6800206CA1 /* libbase.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libbase.dylib;
-			remoteRef = 077C29F9190F10FD00A1F6B0 /* PBXContainerItemProxy */;
+			remoteRef = 0778A1FD199FEE6800206CA1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		077C29FC190F10FD00A1F6B0 /* libbase.dylib */ = {
+		0778A200199FEE6800206CA1 /* libbase.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libbase.dylib;
-			remoteRef = 077C29FB190F10FD00A1F6B0 /* PBXContainerItemProxy */;
+			remoteRef = 0778A1FF199FEE6800206CA1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		077C29FE190F10FD00A1F6B0 /* base_iosTests.xctest */ = {
+		0778A202199FEE6800206CA1 /* base_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = base_iosTests.xctest;
-			remoteRef = 077C29FD190F10FD00A1F6B0 /* PBXContainerItemProxy */;
+			remoteRef = 0778A201199FEE6800206CA1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1253,15 +1243,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0722ECFF192576EF003E99F4 /* PBXTargetDependency */ = {
+		0778A255199FF37200206CA1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = base;
-			targetProxy = 0722ECFE192576EF003E99F4 /* PBXContainerItemProxy */;
-		};
-		07B6540B190F2B43002DAADE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = base_ios;
-			targetProxy = 07B6540A190F2B43002DAADE /* PBXContainerItemProxy */;
+			targetProxy = 0778A254199FF37200206CA1 /* PBXContainerItemProxy */;
 		};
 		9AE24D741904CF30001AEFFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1319,9 +1304,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(WorkspaceDir)/../../../app/thirdparty/include",
+					"$(WorkspaceDir)/../../../app/base/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(TARGET_BUILD_DIR)\"",
@@ -1330,8 +1316,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/zlib";
-				WorkspaceDir = "$(SRCROOT)/../../../../nodeapp/seed/metaseed";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/thirdparty/appseed/zlib";
+				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
 		};
@@ -1365,9 +1351,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(WorkspaceDir)/../../../app/thirdparty/include",
+					"$(WorkspaceDir)/../../../app/base/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(TARGET_BUILD_DIR)\"",
@@ -1375,9 +1362,9 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/zlib";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/thirdparty/appseed/zlib";
 				VALIDATE_PRODUCT = YES;
-				WorkspaceDir = "$(SRCROOT)/../../../../nodeapp/seed/metaseed";
+				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;
 		};

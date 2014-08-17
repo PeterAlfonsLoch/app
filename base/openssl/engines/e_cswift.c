@@ -807,7 +807,7 @@ static int cswift_mod_exp_mont(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
 #ifndef OPENSSL_NO_DSA
 static DSA_SIG *cswift_dsa_sign(const unsigned char *dgst, int dlen, DSA *dsa)
 	{
-	SW_CONTEXT_HANDLE hac;
+	SW_CONTEXT_HANDLE hac = 0;
 	SW_PARAM sw_param;
 	SW_STATUS sw_status;
 	SW_LARGENUMBER arg, res;
@@ -917,7 +917,7 @@ err:
 static int cswift_dsa_verify(const unsigned char *dgst, int dgst_len,
 				DSA_SIG *sig, DSA *dsa)
 	{
-	SW_CONTEXT_HANDLE hac;
+	SW_CONTEXT_HANDLE hac = 0;
 	SW_PARAM sw_param;
 	SW_STATUS sw_status;
 	SW_LARGENUMBER arg[2], res;

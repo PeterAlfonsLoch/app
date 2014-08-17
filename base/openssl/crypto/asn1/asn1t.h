@@ -83,7 +83,7 @@ extern "C" {
 /* Macros for start and end of ASN1_ITEM definition */
 
 #define ASN1_ITEM_start(itname) \
-   OPENSSL_EXPORT  const ASN1_ITEM itname##_it ={
+   OPENSSL_IMPL_EXPORT  const ASN1_ITEM itname##_it ={
 
 
    /*OPENSSL_GLOBAL const ASN1_ITEM itname##_it = {*/

@@ -215,15 +215,15 @@ namespace user
 
             rect rectWork;
 
-            int iMonitor = session().get_best_monitor(screen,rectCursor);
+            int iMonitor = (int) session().get_best_monitor(screen,rectCursor);
 
             System.get_wkspace_rect(iMonitor, rectWork);
 
             int cx2 =  screen.width() / 3;
             int cy2 =  screen.height() / 3;
 
-            int cx =  rectWork.width() / 3;
-            int cy =  rectWork.height() / 3;
+//            int cx =  rectWork.width() / 3;
+  //          int cy =  rectWork.height() / 3;
 
             if((ptCursor.x >= screen.left && ptCursor.x - screen.left <= cx2) || (ptCursor.x >= screen.center().x - cx2 && ptCursor.x <= screen.center().x + cx2) || (ptCursor.x >= screen.right - cx2 && ptCursor.x <= screen.right))
             {

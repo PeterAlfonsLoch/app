@@ -862,7 +862,7 @@ static void surewarehk_dh_ex_free(void *obj, void *item, CRYPTO_EX_DATA *ad,
 static int surewarehk_rsa_priv_dec(int flen,const unsigned char *from,unsigned char *to,
 			RSA *rsa,int padding)
 {
-	int ret=0,tlen;
+	int ret=0,tlen = 0;
 	char *buf=NULL,*hptr=NULL;
 	char msg[64]="ENGINE_rsa_priv_dec";
 	if (!p_surewarehk_Rsa_Priv_Dec)
@@ -933,7 +933,7 @@ err:
 static int surewarehk_rsa_sign(int flen,const unsigned char *from,unsigned char *to,
 			    RSA *rsa,int padding)
 {
-	int ret=0,tlen;
+	int ret=0,tlen = 0;
 	char *hptr=NULL;
 	char msg[64]="ENGINE_rsa_sign";
 	if (!p_surewarehk_Rsa_Sign)

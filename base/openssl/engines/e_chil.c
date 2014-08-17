@@ -1287,7 +1287,7 @@ static int hwcrhk_insert_card(const char *prompt_info,
 
 	if (ui)
 		{
-		char answer;
+		char answer = '\0';
 		char buf[BUFSIZ];
 		/* Despite what the documentation says wrong_info can be
 	 	 * an empty string.

@@ -1983,7 +1983,7 @@ int ssl_check_clienthello_tlsext_early(SSL *s)
 int ssl_check_clienthello_tlsext_late(SSL *s)
 	{
 	int ret = SSL_TLSEXT_ERR_OK;
-	int al;
+	int al = 0;
 
 	/* If status request then ask callback what to do.
  	 * Note: this must be called after servername callbacks in case 

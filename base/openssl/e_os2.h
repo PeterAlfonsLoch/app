@@ -264,10 +264,12 @@ extern "C" {
 # define OPENSSL_EXPORT extern __declspec(dllexport)
 # define OPENSSL_IMPORT extern __declspec(dllimport)
 # define OPENSSL_GLOBAL
+# define OPENSSL_IMPL_EXPORT __declspec(dllexport)
 #else
 # define OPENSSL_EXPORT extern
 # define OPENSSL_IMPORT extern
 # define OPENSSL_GLOBAL
+# define OPENSSL_IMPL_EXPORT
 #endif
 #define OPENSSL_EXTERN OPENSSL_IMPORT
 

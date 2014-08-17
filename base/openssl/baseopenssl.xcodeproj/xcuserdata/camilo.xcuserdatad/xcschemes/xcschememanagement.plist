@@ -3,31 +3,40 @@
 <plist version="1.0">
 <dict>
 	<key>SchemeUserState</key>
-	<dict>
-		<key>core.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>12</integer>
-		</dict>
-	</dict>
+	<dict/>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>9A8897B514C2C8DB006B4023</key>
+		<key>9A1B2F8716A2AF5C00875A94</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9ACA760716F7CAAC00AA1CEE</key>
+		<key>9AA5E2AD16F7C4F0005C45CE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9AE24DDB1904CF6E001AEFFB</key>
+		<key>9AA5E4C216F7C61B005C45CE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9AE24DEA1904CF6E001AEFFB</key>
+		<key>9AE24D871904CF46001AEFFB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9AE24D961904CF46001AEFFB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9AEB768F16F7BC9B0085103B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9AEB78A416F7BCB90085103B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

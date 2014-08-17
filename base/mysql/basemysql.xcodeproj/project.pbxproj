@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0722ED1819257779003E99F4 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07011FA4190CA31000C08335 /* libbase.dylib */; };
+		0778A304199FFE9A00206CA1 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0778A20A199FEE7A00206CA1 /* libbase.dylib */; };
 		07A4AA81190C452A005B6DE5 /* dbug.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72C0D17E90B86003E47F9 /* dbug.c */; };
 		07A4AA82190C452A005B6DE5 /* factorial.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72C1417E90B86003E47F9 /* factorial.c */; };
 		07A4AA83190C452A005B6DE5 /* errmsg.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72C3217E90B86003E47F9 /* errmsg.c */; };
@@ -174,7 +174,7 @@
 		07A4AB24190C4542005B6DE5 /* my_sha2.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72CF517E90B87003E47F9 /* my_sha2.cc */; };
 		07A4AB25190C4542005B6DE5 /* net_serv.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72D2217E90B87003E47F9 /* net_serv.cc */; };
 		07A4AB26190C4542005B6DE5 /* client_authentication.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72D4817E90B87003E47F9 /* client_authentication.cc */; };
-		07B65467190F2CF9002DAADE /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07011FA6190CA31000C08335 /* libbase.dylib */; };
+		07B272A019A01B3400E822E1 /* libbaseopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0778A2FD199FFE6D00206CA1 /* libbaseopenssl.dylib */; };
 		9AE24DB51904CF5B001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24DB41904CF5B001AEFFB /* Foundation.framework */; };
 		9AE24DC31904CF5B001AEFFB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24DC21904CF5B001AEFFB /* XCTest.framework */; };
 		9AE24DC41904CF5B001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24DB41904CF5B001AEFFB /* Foundation.framework */; };
@@ -453,40 +453,61 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		07011FA3190CA31000C08335 /* PBXContainerItemProxy */ = {
+		0778A209199FEE7A00206CA1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9AA6A2FD1907334C000A1F4A /* base.xcodeproj */;
+			containerPortal = 0778A203199FEE7A00206CA1 /* base.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
 			remoteInfo = base;
 		};
-		07011FA5190CA31000C08335 /* PBXContainerItemProxy */ = {
+		0778A20B199FEE7A00206CA1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9AA6A2FD1907334C000A1F4A /* base.xcodeproj */;
+			containerPortal = 0778A203199FEE7A00206CA1 /* base.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24D341904CEFE001AEFFB;
 			remoteInfo = base_ios;
 		};
-		07011FA7190CA31000C08335 /* PBXContainerItemProxy */ = {
+		0778A20D199FEE7A00206CA1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9AA6A2FD1907334C000A1F4A /* base.xcodeproj */;
+			containerPortal = 0778A203199FEE7A00206CA1 /* base.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
 			remoteInfo = base_iosTests;
 		};
-		0722ED141925776E003E99F4 /* PBXContainerItemProxy */ = {
+		0778A2FC199FFE6D00206CA1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9AA6A2FD1907334C000A1F4A /* base.xcodeproj */;
+			containerPortal = 0778A2F6199FFE6D00206CA1 /* baseopenssl.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0778A243199FEF0700206CA1;
+			remoteInfo = baseopenssl;
+		};
+		0778A2FE199FFE6D00206CA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0778A2F6199FFE6D00206CA1 /* baseopenssl.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0778A244199FEF0700206CA1;
+			remoteInfo = baseopenssl_ios;
+		};
+		0778A300199FFE6D00206CA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0778A2F6199FFE6D00206CA1 /* baseopenssl.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0778A245199FEF0700206CA1;
+			remoteInfo = basefreeimage_iosTests;
+		};
+		0778A302199FFE8100206CA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0778A2F6199FFE6D00206CA1 /* baseopenssl.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07B2729319A01A4600E822E1;
+			remoteInfo = baseopenssl;
+		};
+		0778A306199FFEB400206CA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0778A203199FEE7A00206CA1 /* base.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
 			remoteInfo = base;
-		};
-		07B65403190F2B11002DAADE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AA6A2FD1907334C000A1F4A /* base.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9AE24D331904CEFE001AEFFB;
-			remoteInfo = base_ios;
 		};
 		9AE24DC71904CF5B001AEFFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -510,11 +531,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0778A203199FEE7A00206CA1 /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = /ca2/nodeapp/seed/metaseed/../../../app/appseed/base/base.xcodeproj; sourceTree = "<absolute>"; };
+		0778A2F6199FFE6D00206CA1 /* baseopenssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = baseopenssl.xcodeproj; path = /ca2/nodeapp/seed/metaseed/../../../app/base/openssl/baseopenssl.xcodeproj; sourceTree = "<absolute>"; };
 		9AA5E6D616F7C61B005C45CE /* libbasemysql.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbasemysql.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA6A2AA19071155000A1F4A /* libbase_ios.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase_ios.dylib; path = "../../../appseed/base/build/Debug-iphoneos/libbase_ios.dylib"; sourceTree = "<group>"; };
 		9AA6A2AC1907115B000A1F4A /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = ../../../appseed/base/build/Debug/libbase.dylib; sourceTree = "<group>"; };
 		9AA6A2AE19071166000A1F4A /* libbase_ios.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase_ios.dylib; path = "../../../appseed/base/build/Debug-iphoneos/libbase_ios.dylib"; sourceTree = "<group>"; };
-		9AA6A2FD1907334C000A1F4A /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../../../appseed/base/base.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9AAE858917E91FFE00F0512E /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libbase.dylib"; sourceTree = "<group>"; };
 		9AE24DB21904CF5B001AEFFB /* libbasemysql.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbasemysql.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24DB41904CF5B001AEFFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -799,7 +821,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0722ED1819257779003E99F4 /* libbase.dylib in Frameworks */,
+				0778A304199FFE9A00206CA1 /* libbase.dylib in Frameworks */,
+				07B272A019A01B3400E822E1 /* libbaseopenssl.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -808,7 +831,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AE24DB51904CF5B001AEFFB /* Foundation.framework in Frameworks */,
-				07B65467190F2CF9002DAADE /* libbase.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -826,12 +848,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		07011F9A190CA30F00C08335 /* Products */ = {
+		0778A204199FEE7A00206CA1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				07011FA4190CA31000C08335 /* libbase.dylib */,
-				07011FA6190CA31000C08335 /* libbase.dylib */,
-				07011FA8190CA31000C08335 /* base_iosTests.xctest */,
+				0778A20A199FEE7A00206CA1 /* libbase.dylib */,
+				0778A20C199FEE7A00206CA1 /* libbase.dylib */,
+				0778A20E199FEE7A00206CA1 /* base_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0778A2F7199FFE6D00206CA1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0778A2FD199FFE6D00206CA1 /* libbaseopenssl.dylib */,
+				0778A2FF199FFE6D00206CA1 /* libbaseopenssl.dylib */,
+				0778A301199FFE6D00206CA1 /* baseopenssl_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -918,7 +950,8 @@
 		9A1B2F7D16A2AF5C00875A94 = {
 			isa = PBXGroup;
 			children = (
-				9AA6A2FD1907334C000A1F4A /* base.xcodeproj */,
+				0778A203199FEE7A00206CA1 /* base.xcodeproj */,
+				0778A2F6199FFE6D00206CA1 /* baseopenssl.xcodeproj */,
 				07B6586E190F3E2C002DAADE /* basemysql */,
 				9AE72BF717E90B86003E47F9 /* atomic */,
 				9AE72C0B17E90B86003E47F9 /* dbug */,
@@ -1386,7 +1419,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				0722ED151925776E003E99F4 /* PBXTargetDependency */,
+				0778A307199FFEB400206CA1 /* PBXTargetDependency */,
+				0778A303199FFE8100206CA1 /* PBXTargetDependency */,
 			);
 			name = basemysql;
 			productName = FreeImage;
@@ -1404,7 +1438,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				07B65404190F2B11002DAADE /* PBXTargetDependency */,
 			);
 			name = basemysql_ios;
 			productName = basemysql_ios;
@@ -1455,8 +1488,12 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 07011F9A190CA30F00C08335 /* Products */;
-					ProjectRef = 9AA6A2FD1907334C000A1F4A /* base.xcodeproj */;
+					ProductGroup = 0778A204199FEE7A00206CA1 /* Products */;
+					ProjectRef = 0778A203199FEE7A00206CA1 /* base.xcodeproj */;
+				},
+				{
+					ProductGroup = 0778A2F7199FFE6D00206CA1 /* Products */;
+					ProjectRef = 0778A2F6199FFE6D00206CA1 /* baseopenssl.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1469,25 +1506,46 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		07011FA4190CA31000C08335 /* libbase.dylib */ = {
+		0778A20A199FEE7A00206CA1 /* libbase.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libbase.dylib;
-			remoteRef = 07011FA3190CA31000C08335 /* PBXContainerItemProxy */;
+			remoteRef = 0778A209199FEE7A00206CA1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07011FA6190CA31000C08335 /* libbase.dylib */ = {
+		0778A20C199FEE7A00206CA1 /* libbase.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libbase.dylib;
-			remoteRef = 07011FA5190CA31000C08335 /* PBXContainerItemProxy */;
+			remoteRef = 0778A20B199FEE7A00206CA1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07011FA8190CA31000C08335 /* base_iosTests.xctest */ = {
+		0778A20E199FEE7A00206CA1 /* base_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = base_iosTests.xctest;
-			remoteRef = 07011FA7190CA31000C08335 /* PBXContainerItemProxy */;
+			remoteRef = 0778A20D199FEE7A00206CA1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0778A2FD199FFE6D00206CA1 /* libbaseopenssl.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libbaseopenssl.dylib;
+			remoteRef = 0778A2FC199FFE6D00206CA1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0778A2FF199FFE6D00206CA1 /* libbaseopenssl.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libbaseopenssl.dylib;
+			remoteRef = 0778A2FE199FFE6D00206CA1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0778A301199FFE6D00206CA1 /* baseopenssl_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = baseopenssl_iosTests.xctest;
+			remoteRef = 0778A300199FFE6D00206CA1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1861,15 +1919,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0722ED151925776E003E99F4 /* PBXTargetDependency */ = {
+		0778A303199FFE8100206CA1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = baseopenssl;
+			targetProxy = 0778A302199FFE8100206CA1 /* PBXContainerItemProxy */;
+		};
+		0778A307199FFEB400206CA1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = base;
-			targetProxy = 0722ED141925776E003E99F4 /* PBXContainerItemProxy */;
-		};
-		07B65404190F2B11002DAADE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = base_ios;
-			targetProxy = 07B65403190F2B11002DAADE /* PBXContainerItemProxy */;
+			targetProxy = 0778A306199FFEB400206CA1 /* PBXContainerItemProxy */;
 		};
 		9AE24DC81904CF5B001AEFFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1926,10 +1984,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(WorkspaceDir)/../../../app/thirdparty/include",
+					"$(WorkspaceDir)/../../../app/base/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
-					"$(WorkspaceDir)/../../../app/appseed/base/base/openssl/include",
 				);
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(TARGET_BUILD_DIR)\"",
@@ -1939,8 +1997,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/FreeImage/LibRawLite";
-				WorkspaceDir = "$(SRCROOT)/../../../../nodeapp/seed/metaseed";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/FreeImage/LibRawLite";
+				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
 		};
@@ -1974,10 +2032,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(WorkspaceDir)/../../../app/thirdparty/include",
+					"$(WorkspaceDir)/../../../app/base/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
-					"$(WorkspaceDir)/../../../app/appseed/base/base/openssl/include",
 				);
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(TARGET_BUILD_DIR)\"",
@@ -1986,9 +2044,9 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/FreeImage/LibRawLite";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/FreeImage/LibRawLite";
 				VALIDATE_PRODUCT = YES;
-				WorkspaceDir = "$(SRCROOT)/../../../../nodeapp/seed/metaseed";
+				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;
 		};
