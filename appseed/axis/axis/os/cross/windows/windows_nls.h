@@ -857,7 +857,7 @@ extern "C" {
 //
 #define MUI_LANGUAGE_ID                     0x4      // Use traditional language ID convention
 #define MUI_LANGUAGE_NAME                   0x8      // Use ISO language (culture) name convention
-#define MUI_MERGE_SYSTEM_FALLBACK           0x10     // GetThreadPreferredUILanguages merges in parent and base languages
+#define MUI_MERGE_SYSTEM_FALLBACK           0x10     // GetThreadPreferredUILanguages merges in parent and axis languages
 #define MUI_MERGE_USER_FALLBACK             0x20     // GetThreadPreferredUILanguages merges in user preferred languages
 #define MUI_UI_FALLBACK                     MUI_MERGE_SYSTEM_FALLBACK | MUI_MERGE_USER_FALLBACK
 #define MUI_THREAD_LANGUAGES                0x40     // GetThreadPreferredUILanguages merges in user preferred languages
@@ -1100,9 +1100,9 @@ enum SYSGEOCLASS {
 
 typedef enum _NORM_FORM {
     NormalizationOther  = 0,       // Not supported
-    NormalizationC      = 0x1,     // Each base plus combining characters to the canonical precomposed equivalent.
+    NormalizationC      = 0x1,     // Each axis plus combining characters to the canonical precomposed equivalent.
     NormalizationD      = 0x2,     // Each precomposed character to its canonical decomposed equivalent.
-    NormalizationKC     = 0x5,     // Each base plus combining characters to the canonical precomposed
+    NormalizationKC     = 0x5,     // Each axis plus combining characters to the canonical precomposed
                                    //   equivalents and all compatibility characters to their equivalents.
     NormalizationKD     = 0x6      // Each precomposed character to its canonical decomposed equivalent
                                    //   and all compatibility characters to their equivalents.
@@ -1288,37 +1288,37 @@ typedef struct _FILEMUIINFO {
 //  Code Page Dependent APIs.
 //
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 IsValidCodePage(
     UINT  CodePage);
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 UINT
 WINAPI
 GetACP(void);
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 UINT
 WINAPI
 GetOEMCP(void);
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 GetCPInfo(
     UINT       CodePage,
     LPCPINFO  lpCPInfo);
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 GetCPInfoExA(
     UINT          CodePage,
     DWORD         dwFlags,
     LPCPINFOEXA  lpCPInfoEx);
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 GetCPInfoExW(
@@ -1331,20 +1331,20 @@ GetCPInfoExW(
 #define GetCPInfoEx  GetCPInfoExA
 #endif // !UNICODE
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 IsDBCSLeadByte(
     BYTE  TestChar);
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 IsDBCSLeadByteEx(
     UINT  CodePage,
     BYTE  TestChar);
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 int32_t
 WINAPI
 MultiByteToWideChar(
@@ -1355,7 +1355,7 @@ MultiByteToWideChar(
     LPWSTR  lpWideCharStr,
     int32_t      cchWideChar);
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 int32_t
 WINAPI
 WideCharToMultiByte(
@@ -1374,7 +1374,7 @@ WideCharToMultiByte(
 //
 
 // For Windows Vista and above CompareStringEx is preferred
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 int32_t
 WINAPI
 CompareStringA(
@@ -1385,7 +1385,7 @@ CompareStringA(
     PCNZCH  lpString2,
     int32_t      cchCount2);
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 int32_t
 WINAPI
 CompareStringW(
@@ -1433,7 +1433,7 @@ CompareString(
 #if (WINVER >= 0x0600)
 
 // For Windows Vista and above FindNLSStringEx is preferred
-WINBASEAPI
+WINAXISAPI
 int32_t
 WINAPI
 FindNLSString(
@@ -1449,7 +1449,7 @@ FindNLSString(
 
 #if (WINVER >= _WIN32_WINNT_WIN7)
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 int32_t
 WINAPI
 FindStringOrdinal(
@@ -1463,7 +1463,7 @@ FindStringOrdinal(
 #endif //(WINVER >= _WIN32_WINNT_WIN7)
 
 // For Windows Vista and above LCMapStringEx is preferred
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 int32_t
 WINAPI
 LCMapStringA(
@@ -1474,7 +1474,7 @@ LCMapStringA(
     LPSTR  lpDestStr,
     int32_t      cchDest);
 // For Windows Vista and above LCMapStringEx is preferred
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 int32_t
 WINAPI
 LCMapStringW(
@@ -1491,7 +1491,7 @@ LCMapStringW(
 #endif // !UNICODE
 
 // For Windows Vista and above GetLocaleInfoEx is preferred
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 int32_t
 WINAPI
 GetLocaleInfoA(
@@ -1500,7 +1500,7 @@ GetLocaleInfoA(
     LPSTR  lpLCData,
     int32_t      cchData);
 // For Windows Vista and above GetLocaleInfoEx is preferred
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 int32_t
 WINAPI
 GetLocaleInfoW(
@@ -1514,14 +1514,14 @@ GetLocaleInfoW(
 #define GetLocaleInfo  GetLocaleInfoA
 #endif // !UNICODE
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 SetLocaleInfoA(
     LCID     Locale,
     LCTYPE   LCType,
     LPCSTR  lpLCData);
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 SetLocaleInfoW(
@@ -1536,7 +1536,7 @@ SetLocaleInfoW(
 
 #if (WINVER >= 0x040A)
 // For Windows Vista and above GetCalendarInfoEx is preferred
-WINBASEAPI
+WINAXISAPI
 int32_t
 WINAPI
 GetCalendarInfoA(
@@ -1547,7 +1547,7 @@ GetCalendarInfoA(
     int32_t      cchData,
     LPDWORD  lpValue);
 // For Windows Vista and above GetCalendarInfoEx is preferred
-WINBASEAPI
+WINAXISAPI
 int32_t
 WINAPI
 GetCalendarInfoW(
@@ -1563,7 +1563,7 @@ GetCalendarInfoW(
 #define GetCalendarInfo  GetCalendarInfoA
 #endif // !UNICODE
 
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 SetCalendarInfoA(
@@ -1571,7 +1571,7 @@ SetCalendarInfoA(
     CALID    Calendar,
     CALTYPE  CalType,
     LPCSTR  lpCalData);
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 SetCalendarInfoW(
@@ -1587,7 +1587,7 @@ SetCalendarInfoW(
 #endif
 
 #if (WINVER >= 0x0600)
-WINBASEAPI
+WINAXISAPI
 int32_t
 WINAPI
 LCIDToLocaleName(
@@ -1596,7 +1596,7 @@ LCIDToLocaleName(
     int32_t      cchName,
     DWORD    dwFlags);
 
-WINBASEAPI
+WINAXISAPI
 LCID
 WINAPI
 LocaleNameToLCID(
@@ -1606,7 +1606,7 @@ LocaleNameToLCID(
 #endif  // (WINVER >= 0x0600)
 
 // For Windows Vista and above GetTimeFormatEx is preferred
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 int32_t
 WINAPI
 GetTimeFormatA(
@@ -1617,7 +1617,7 @@ GetTimeFormatA(
     LPSTR          lpTimeStr,
     int32_t              cchTime);
 // For Windows Vista and above GetTimeFormatEx is preferred
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 int32_t
 WINAPI
 GetTimeFormatW(
@@ -1636,7 +1636,7 @@ GetTimeFormatW(
 
 // For Windows Vista and above GetDurationFormatEx is preferred
 #if (WINVER >= 0x0600)
-WINBASEAPI
+WINAXISAPI
 int32_t
 WINAPI
 GetDurationFormat(
@@ -1650,7 +1650,7 @@ GetDurationFormat(
 #endif //(WINVER >= 0x0600)
 
 // For Windows Vista and above GetDateFormatEx is preferred
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 int32_t
 WINAPI
 GetDateFormatA(
@@ -1661,7 +1661,7 @@ GetDateFormatA(
     LPSTR          lpDateStr,
     int32_t              cchDate);
 // For Windows Vista and above GetDateFormatEx is preferred
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 int32_t
 WINAPI
 GetDateFormatW(
@@ -1678,7 +1678,7 @@ GetDateFormatW(
 #endif // !UNICODE
 
 // For Windows Vista and above GetNumberFormatEx is preferred
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 int32_t
 WINAPI
 GetNumberFormatA(
@@ -1689,7 +1689,7 @@ GetNumberFormatA(
     LPSTR          lpNumberStr,
     int32_t              cchNumber);
 // For Windows Vista and above GetNumberFormatEx is preferred
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 int32_t
 WINAPI
 GetNumberFormatW(
@@ -1706,7 +1706,7 @@ GetNumberFormatW(
 #endif // !UNICODE
 
 // For Windows Vista and above GetCurrencyFormatEx is preferred
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 int32_t
 WINAPI
 GetCurrencyFormatA(
@@ -1717,7 +1717,7 @@ GetCurrencyFormatA(
     LPSTR            lpCurrencyStr,
     int32_t                cchCurrency);
 // For Windows Vista and above GetCurrencyFormatEx is preferred
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 int32_t
 WINAPI
 GetCurrencyFormatW(
@@ -1734,7 +1734,7 @@ GetCurrencyFormatW(
 #endif // !UNICODE
 
 // For Windows Vista and above EnumCalendarInfoExEx is preferred
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 EnumCalendarInfoA(
@@ -1743,7 +1743,7 @@ EnumCalendarInfoA(
     CALID             Calendar,
     CALTYPE           CalType);
 // For Windows Vista and above EnumCalendarInfoExEx is preferred
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 EnumCalendarInfoW(
@@ -1759,7 +1759,7 @@ EnumCalendarInfoW(
 
 #if(WINVER >= 0x0500)
 // For Windows Vista and above EnumCalendarInfoExEx is preferred
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 EnumCalendarInfoExA(
@@ -1768,7 +1768,7 @@ EnumCalendarInfoExA(
     CALID               Calendar,
     CALTYPE             CalType);
 // For Windows Vista and above EnumCalendarInfoExEx is preferred
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 EnumCalendarInfoExW(
@@ -1784,7 +1784,7 @@ EnumCalendarInfoExW(
 #endif /* WINVER >= 0x0500 */
 
 // For Windows Vista and above EnumTimeFormatsEx is preferred
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 EnumTimeFormatsA(
@@ -1792,7 +1792,7 @@ EnumTimeFormatsA(
     LCID              Locale,
     DWORD             dwFlags);
 // For Windows Vista and above EnumTimeFormatsEx is preferred
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 EnumTimeFormatsW(
@@ -1806,7 +1806,7 @@ EnumTimeFormatsW(
 #endif // !UNICODE
 
 // For Windows Vista and above EnumDateFormatsExEx is preferred
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 EnumDateFormatsA(
@@ -1814,7 +1814,7 @@ EnumDateFormatsA(
     LCID              Locale,
     DWORD             dwFlags);
 // For Windows Vista and above EnumDateFormatsExEx is preferred
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 EnumDateFormatsW(
@@ -1829,7 +1829,7 @@ EnumDateFormatsW(
 
 #if(WINVER >= 0x0500)
 // For Windows Vista and above EnumDateFormatsExEx is preferred
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 EnumDateFormatsExA(
@@ -1837,7 +1837,7 @@ EnumDateFormatsExA(
     LCID                Locale,
     DWORD               dwFlags);
 // For Windows Vista and above EnumDateFormatsExEx is preferred
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 EnumDateFormatsExW(
@@ -1852,7 +1852,7 @@ EnumDateFormatsExW(
 #endif /* WINVER >= 0x0500 */
 
 #if(WINVER >= 0x0500)
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 IsValidLanguageGroup(
@@ -1861,7 +1861,7 @@ IsValidLanguageGroup(
 #endif /* WINVER >= 0x0500 */
 
 // For Windows Vista and above GetNLSVersionEx is preferred
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 GetNLSVersion(
@@ -1869,7 +1869,7 @@ GetNLSVersion(
        LCID             Locale,
     LPNLSVERSIONINFO lpVersionInformation);
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 IsNLSDefinedString(
@@ -1880,14 +1880,14 @@ IsNLSDefinedString(
     INT              cchStr);
 
 // For Windows Vista and above IsValidLocaleName is preferred
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 IsValidLocale(
     LCID   Locale,
     DWORD  dwFlags);
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 int32_t
 WINAPI
 GetGeoInfoA(
@@ -1896,7 +1896,7 @@ GetGeoInfoA(
     LPSTR     lpGeoData,
     int32_t         cchData,
     LANGID      LangId);
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 int32_t
 WINAPI
 GetGeoInfoW(
@@ -1911,7 +1911,7 @@ GetGeoInfoW(
 #define GetGeoInfo  GetGeoInfoA
 #endif // !UNICODE
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 EnumSystemGeoID(
@@ -1919,30 +1919,30 @@ EnumSystemGeoID(
     GEOID           ParentGeoId,
     GEO_ENUMPROC    lpGeoEnumProc);
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 GEOID
 WINAPI
 GetUserGeoID(
     GEOCLASS    GeoClass);
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 SetUserGeoID(
     GEOID       GeoId);
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 LCID
 WINAPI
 ConvertDefaultLocale(
     LCID   Locale);
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 LCID
 WINAPI
 GetThreadLocale(void);
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 SetThreadLocale(
@@ -1950,40 +1950,40 @@ SetThreadLocale(
     );
 
 #if(WINVER >= 0x0500)
-WINBASEAPI
+WINAXISAPI
 LANGID
 WINAPI
 GetSystemDefaultUILanguage(void);
 
-WINBASEAPI
+WINAXISAPI
 LANGID
 WINAPI
 GetUserDefaultUILanguage(void);
 #endif /* WINVER >= 0x0500 */
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 LANGID
 WINAPI
 GetSystemDefaultLangID(void);
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 LANGID
 WINAPI
 GetUserDefaultLangID(void);
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 LCID
 WINAPI
 GetSystemDefaultLCID(void);
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 LCID
 WINAPI
 GetUserDefaultLCID(void);
 
 
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 LANGID
 WINAPI
 SetThreadUILanguage(LANGID LangId);
@@ -1991,12 +1991,12 @@ SetThreadUILanguage(LANGID LangId);
 
 #if (WINVER >= 0x0600)
 
-WINBASEAPI
+WINAXISAPI
 LANGID
 WINAPI
 GetThreadUILanguage(void);
 
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 GetProcessPreferredUILanguages(
@@ -2007,7 +2007,7 @@ GetProcessPreferredUILanguages(
 );
 
 
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 SetProcessPreferredUILanguages(
@@ -2017,7 +2017,7 @@ SetProcessPreferredUILanguages(
 );
 
 
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 GetUserPreferredUILanguages (
@@ -2028,7 +2028,7 @@ GetUserPreferredUILanguages (
 );
 
 
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 GetSystemPreferredUILanguages (
@@ -2039,7 +2039,7 @@ GetSystemPreferredUILanguages (
 );
 
 
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 GetThreadPreferredUILanguages(
@@ -2050,7 +2050,7 @@ GetThreadPreferredUILanguages(
 );
 
 
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 SetThreadPreferredUILanguages(
@@ -2059,7 +2059,7 @@ SetThreadPreferredUILanguages(
     PULONG pulNumLanguages
 );
 
-WINBASEAPI
+WINAXISAPI
 __success(return==1)
 WINBOOL
 WINAPI
@@ -2069,7 +2069,7 @@ GetFileMUIInfo(
     __inout_bcount_part_opt(*pcbFileMUIInfo,*pcbFileMUIInfo) PFILEMUIINFO    pFileMUIInfo,
                 DWORD*          pcbFileMUIInfo);
 
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 GetFileMUIPath(
@@ -2083,7 +2083,7 @@ GetFileMUIPath(
 );
 
 
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 GetUILanguageInfo(
@@ -2095,7 +2095,7 @@ GetUILanguageInfo(
 );
 
 
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 NotifyUILanguageChange(
@@ -2112,7 +2112,7 @@ NotifyUILanguageChange(
 //  Locale Independent APIs.
 //
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 GetStringTypeExA(
@@ -2121,7 +2121,7 @@ GetStringTypeExA(
      LPCSTR   lpSrcStr,
                     int32_t        cchSrc,
     LPWORD     lpCharType);
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 GetStringTypeExW(
@@ -2147,7 +2147,7 @@ GetStringTypeExW(
 //
 //        GetStringTypeEx (above) should be used instead.
 //
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 GetStringTypeA(
@@ -2157,7 +2157,7 @@ GetStringTypeA(
     int32_t      cchSrc,
     LPWORD  lpCharType);
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 GetStringTypeW(
@@ -2167,7 +2167,7 @@ GetStringTypeW(
     LPWORD  lpCharType);
 
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 int32_t
 WINAPI
 FoldStringA(
@@ -2176,7 +2176,7 @@ FoldStringA(
     int32_t      cchSrc,
     LPSTR  lpDestStr,
     int32_t      cchDest);
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 int32_t
 WINAPI
 FoldStringW(
@@ -2192,14 +2192,14 @@ FoldStringW(
 #endif // !UNICODE
 
 #if(WINVER >= 0x0500)
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 EnumSystemLanguageGroupsA(
     LANGUAGEGROUP_ENUMPROCA lpLanguageGroupEnumProc,
     DWORD                   dwFlags,
     long_ptr                lParam);
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 EnumSystemLanguageGroupsW(
@@ -2212,7 +2212,7 @@ EnumSystemLanguageGroupsW(
 #define EnumSystemLanguageGroups  EnumSystemLanguageGroupsA
 #endif // !UNICODE
 
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 EnumLanguageGroupLocalesA(
@@ -2220,7 +2220,7 @@ EnumLanguageGroupLocalesA(
     LGRPID                    LanguageGroup,
     DWORD                     dwFlags,
     long_ptr                  lParam);
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 EnumLanguageGroupLocalesW(
@@ -2234,14 +2234,14 @@ EnumLanguageGroupLocalesW(
 #define EnumLanguageGroupLocales  EnumLanguageGroupLocalesA
 #endif // !UNICODE
 
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 EnumUILanguagesA(
     UILANGUAGE_ENUMPROCA lpUILanguageEnumProc,
     DWORD                dwFlags,
     long_ptr             lParam);
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 EnumUILanguagesW(
@@ -2255,13 +2255,13 @@ EnumUILanguagesW(
 #endif // !UNICODE
 #endif /* WINVER >= 0x0500 */
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 EnumSystemLocalesA(
     LOCALE_ENUMPROCA lpLocaleEnumProc,
     DWORD            dwFlags);
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 EnumSystemLocalesW(
@@ -2273,13 +2273,13 @@ EnumSystemLocalesW(
 #define EnumSystemLocales  EnumSystemLocalesA
 #endif // !UNICODE
 
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 EnumSystemCodePagesA(
     CODEPAGE_ENUMPROCA lpCodePageEnumProc,
     DWORD              dwFlags);
-//xxx linux WINBASEAPI
+//xxx linux WINAXISAPI
 WINBOOL
 WINAPI
 EnumSystemCodePagesW(
@@ -2338,7 +2338,7 @@ WINAPI IdnToUnicode(                        	 DWORD   dwFlags,
                     __out_ecount_opt(cchUnicodeChar) LPWSTR  lpUnicodeCharStr,
                                             	 int32_t     cchUnicodeChar);
 
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI VerifyScripts(
        DWORD   dwFlags,            // optional behavior flags
@@ -2347,7 +2347,7 @@ WINAPI VerifyScripts(
        LPCWSTR lpTestScripts,      // test scripts string
        int32_t     cchTestScripts);    // size of test list string
 
-WINBASEAPI
+WINAXISAPI
 int32_t
 WINAPI GetStringScripts(
                                 DWORD   dwFlags,        // optional behavior flags
@@ -2367,7 +2367,7 @@ WINAPI GetStringScripts(
 #define LOCALE_NAME_INVARIANT               L""
 #define LOCALE_NAME_SYSTEM_DEFAULT          L"!x-sys-default-locale"
 
-WINBASEAPI
+WINAXISAPI
 int32_t
 WINAPI
 GetLocaleInfoEx(
@@ -2377,7 +2377,7 @@ GetLocaleInfoEx(
     int32_t cchData
 );
 
-WINBASEAPI
+WINAXISAPI
 int32_t
 WINAPI
 GetCalendarInfoEx(
@@ -2391,7 +2391,7 @@ GetCalendarInfoEx(
 );
 
 
-WINBASEAPI
+WINAXISAPI
 int32_t
 WINAPI
 GetTimeFormatEx(
@@ -2403,7 +2403,7 @@ GetTimeFormatEx(
     int32_t cchTime
 );
 
-WINBASEAPI
+WINAXISAPI
 int32_t
 WINAPI
 GetDateFormatEx(
@@ -2416,7 +2416,7 @@ GetDateFormatEx(
     LPCWSTR lpCalendar
 );
 
-WINBASEAPI
+WINAXISAPI
 int32_t
 WINAPI
 GetDurationFormatEx(
@@ -2429,7 +2429,7 @@ GetDurationFormatEx(
     int32_t cchDuration
 );
 
-WINBASEAPI
+WINAXISAPI
 int32_t
 WINAPI
 GetNumberFormatEx(
@@ -2441,7 +2441,7 @@ GetNumberFormatEx(
     int32_t cchNumber
 );
 
-WINBASEAPI
+WINAXISAPI
 int32_t
 WINAPI
 GetCurrencyFormatEx(
@@ -2453,7 +2453,7 @@ GetCurrencyFormatEx(
     int32_t cchCurrency
 );
 
-WINBASEAPI
+WINAXISAPI
 int32_t
 WINAPI
 GetUserDefaultLocaleName(
@@ -2461,7 +2461,7 @@ GetUserDefaultLocaleName(
     int32_t cchLocaleName
 );
 
-WINBASEAPI
+WINAXISAPI
 int32_t
 WINAPI
 GetSystemDefaultLocaleName(
@@ -2469,7 +2469,7 @@ GetSystemDefaultLocaleName(
     int32_t cchLocaleName
 );
 
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 GetNLSVersionEx(
@@ -2478,7 +2478,7 @@ GetNLSVersionEx(
     LPNLSVERSIONINFOEX lpVersionInformation
 );
 
-WINBASEAPI
+WINAXISAPI
 int32_t
 WINAPI
 CompareStringEx(
@@ -2493,7 +2493,7 @@ CompareStringEx(
     LPARAM lParam
 );
 
-WINBASEAPI
+WINAXISAPI
 int32_t
 WINAPI
 FindNLSStringEx(
@@ -2510,7 +2510,7 @@ FindNLSStringEx(
 );
 
 
-WINBASEAPI
+WINAXISAPI
 int32_t
 WINAPI
 LCMapStringEx(
@@ -2525,7 +2525,7 @@ LCMapStringEx(
     LPARAM lParam
 );
 
-WINBASEAPI
+WINAXISAPI
 int32_t
 WINAPI
 CompareStringOrdinal(
@@ -2536,7 +2536,7 @@ CompareStringOrdinal(
     WINBOOL    bIgnoreCase
 );
 
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 IsValidLocaleName(
@@ -2545,7 +2545,7 @@ IsValidLocaleName(
 
 typedef WINBOOL (CALLBACK* CALINFO_ENUMPROCEXEX)(LPWSTR, CALID, LPWSTR, LPARAM);
 
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 EnumCalendarInfoExEx(
@@ -2559,7 +2559,7 @@ EnumCalendarInfoExEx(
 
 typedef WINBOOL (CALLBACK* DATEFMT_ENUMPROCEXEX)(LPWSTR, CALID, LPARAM);
 
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 EnumDateFormatsExEx(
@@ -2571,7 +2571,7 @@ EnumDateFormatsExEx(
 
 typedef WINBOOL (CALLBACK* TIMEFMT_ENUMPROCEX)(LPWSTR, LPARAM);
 
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 EnumTimeFormatsEx(
@@ -2583,7 +2583,7 @@ EnumTimeFormatsEx(
 
 typedef WINBOOL (CALLBACK* LOCALE_ENUMPROCEX)(LPWSTR, DWORD, LPARAM);
 
-WINBASEAPI
+WINAXISAPI
 WINBOOL
 WINAPI
 EnumSystemLocalesEx(
@@ -2597,7 +2597,7 @@ EnumSystemLocalesEx(
 #endif //(WINVER >= 0x0600)
 
 #if (WINVER >= _WIN32_WINNT_WIN7)
-//xxx linux //xxx linux WINBASEAPI
+//xxx linux //xxx linux WINAXISAPI
 int32_t
 WINAPI
 ResolveLocaleName(

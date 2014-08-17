@@ -12,7 +12,7 @@ namespace database
    class update_hint;
 
 
-   class CLASS_DECL_BASE change_event :
+   class CLASS_DECL_AXIS change_event :
       public signal_details
    {
    public:

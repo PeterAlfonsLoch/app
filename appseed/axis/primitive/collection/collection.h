@@ -79,48 +79,48 @@
 #include "collection_string_list.h"
 
 
-class CLASS_DECL_BASE map_word_to_ptr :
+class CLASS_DECL_AXIS map_word_to_ptr :
    virtual public map < WORD, WORD, void *, void * >
 {
 public:
-   map_word_to_ptr(sp(::base::application) papp = NULL, ::count nBlockSize = 10);
+   map_word_to_ptr(sp(::axis::application) papp = NULL, ::count nBlockSize = 10);
 };
 
-class CLASS_DECL_BASE map_ptr_to_word :
+class CLASS_DECL_AXIS map_ptr_to_word :
    virtual public map < void *, void *, WORD, WORD >
 {
 public:
-   map_ptr_to_word(sp(::base::application) papp = NULL, ::count nBlockSize = 10);
+   map_ptr_to_word(sp(::axis::application) papp = NULL, ::count nBlockSize = 10);
 };
 
 
-class CLASS_DECL_BASE map_ptr_to_ptr :
+class CLASS_DECL_AXIS map_ptr_to_ptr :
    virtual public map < void *, void *, void *, void * >
 {
 public:
-   map_ptr_to_ptr(sp(::base::application) papp = NULL, ::count nBlockSize = 10);
+   map_ptr_to_ptr(sp(::axis::application) papp = NULL, ::count nBlockSize = 10);
 };
 
-class CLASS_DECL_BASE map_word_to_ob :
+class CLASS_DECL_AXIS map_word_to_ob :
    virtual public map < WORD, WORD, object *, object * >
 {
 public:
-   map_word_to_ob(sp(::base::application) papp = NULL, ::count nBlockSize = 10);
+   map_word_to_ob(sp(::axis::application) papp = NULL, ::count nBlockSize = 10);
 };
 
 
-class CLASS_DECL_BASE map_string_to_ptr :
+class CLASS_DECL_AXIS map_string_to_ptr :
    virtual public map < string, const string &, void *, void * >
 {
 public:
-   map_string_to_ptr(sp(::base::application) papp = NULL, ::count nBlockSize = 10);
+   map_string_to_ptr(sp(::axis::application) papp = NULL, ::count nBlockSize = 10);
 };
 
-class CLASS_DECL_BASE map_string_to_ob :
+class CLASS_DECL_AXIS map_string_to_ob :
    virtual public map < string, const string &, object *, object * >
 {
 public:
-   map_string_to_ob(sp(::base::application) papp = NULL, ::count nBlockSize = 10);
+   map_string_to_ob(sp(::axis::application) papp = NULL, ::count nBlockSize = 10);
 };
 
 
@@ -161,8 +161,8 @@ public:
 
 
 
-typedef CLASS_DECL_BASE spa(uint_array) dword_2darray;
-typedef CLASS_DECL_BASE spa(index_array) index_2darray;
+typedef CLASS_DECL_AXIS spa(uint_array) dword_2darray;
+typedef CLASS_DECL_AXIS spa(index_array) index_2darray;
 
 
 
@@ -182,7 +182,7 @@ typedef CLASS_DECL_BASE spa(index_array) index_2darray;
 
 #include "collection_priority_queue.h"
 
-class CLASS_DECL_BASE time_array :
+class CLASS_DECL_AXIS time_array :
    public array < ::datetime::time, ::datetime::time & >
 {
 };

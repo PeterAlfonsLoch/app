@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace base
+namespace axis
 {
 
 
-   class CLASS_DECL_BASE trace_add_file_and_line
+   class CLASS_DECL_AXIS trace_add_file_and_line
 #if defined(LINUX) || defined(APPLEOS)
       : public string_format_printer
 #endif
@@ -13,14 +13,14 @@ namespace base
    public:
 
 
-      sp(::base::application)     m_pbaseapp;
+      sp(::axis::application)     m_pbaseapp;
       const char * const      m_pszFileName;
       const int32_t               m_nLineNo;
       string                  m_str;
 
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
-      class CLASS_DECL_BASE category_level
+      class CLASS_DECL_AXIS category_level
       {
       public:
 
@@ -33,17 +33,17 @@ namespace base
 
 #endif
 
-      trace_add_file_and_line(sp(::base::application) papp, const char *pszFileName, int32_t nLineNo)
+      trace_add_file_and_line(sp(::axis::application) papp, const char *pszFileName, int32_t nLineNo)
          : m_pbaseapp(papp), m_pszFileName(pszFileName), m_nLineNo(nLineNo)
       {
       }
 
-      inline sp(::base::application) get_app() const
+      inline sp(::axis::application) get_app() const
       {
          return m_pbaseapp;
       }
 
-      inline sp(::base::application) get_app()
+      inline sp(::axis::application) get_app()
       {
          return m_pbaseapp;
       }
@@ -143,7 +143,7 @@ namespace base
    };
 
 
-} // namespace base
+} // namespace axis
 
 
 

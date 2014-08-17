@@ -3,7 +3,7 @@
 #include <float.h>
 
 
-CLASS_DECL_BASE void swab(const void *from, void*to, ssize_t n)
+CLASS_DECL_AXIS void swab(const void *from, void*to, ssize_t n)
 {
    ssize_t i;
 
@@ -15,10 +15,10 @@ CLASS_DECL_BASE void swab(const void *from, void*to, ssize_t n)
 }
 
 // used deep inside FreeImage
-void* lfind( const void * key, const void * base, size_t * num, size_t width, int (*fncomparison)(const void *, const void * ) )
+void* lfind( const void * key, const void * axis, size_t * num, size_t width, int (*fncomparison)(const void *, const void * ) )
 {
 
-   char * Ptr = (char *) base;
+   char * Ptr = (char *) axis;
 
    size_t i;
 
@@ -33,10 +33,10 @@ void* lfind( const void * key, const void * base, size_t * num, size_t width, in
 }
 
 
-void* lsearch( const void * key, const void * base, size_t * num, size_t width, int (*fncomparison)(const void *, const void * ) )
+void* lsearch( const void * key, const void * axis, size_t * num, size_t width, int (*fncomparison)(const void *, const void * ) )
 {
 
-   char * Ptr = (char *) base;
+   char * Ptr = (char *) axis;
 
    size_t i;
 

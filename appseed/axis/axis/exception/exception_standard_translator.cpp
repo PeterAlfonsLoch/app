@@ -78,7 +78,7 @@ namespace exception
       if(g_bExiting)
          return;
       UNREFERENCED_PARAMETER(uiCode);
-      sp(::base::application) papp = get_thread_app();
+      sp(::axis::application) papp = get_thread_app();
       switch (ppointers->ExceptionRecord->ExceptionCode)
       {
 #ifdef WINDOWSEX
@@ -417,7 +417,7 @@ namespace exception
 } // namespace exception
 
 
-CLASS_DECL_BASE bool g_bExiting;
+CLASS_DECL_AXIS bool g_bExiting;
 
 
 

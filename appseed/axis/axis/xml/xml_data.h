@@ -6,13 +6,13 @@ namespace xml
 {
 
 
-   class CLASS_DECL_BASE data :
+   class CLASS_DECL_AXIS data :
       public ::xml::document
    {
    public:
 
 
-      data(sp(::base::application) papp, ::xml::parse_info * pparseinfo = NULL);
+      data(sp(::axis::application) papp, ::xml::parse_info * pparseinfo = NULL);
       virtual ~data();
 
 

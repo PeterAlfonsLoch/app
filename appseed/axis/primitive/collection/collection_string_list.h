@@ -1,14 +1,14 @@
 #pragma once
 
 
-class CLASS_DECL_BASE string_list :
+class CLASS_DECL_AXIS string_list :
    virtual public ::object
 {
 public:
 
 
-   typedef string BASE_TYPE;
-   typedef const char * BASE_ARG_TYPE;
+   typedef string AXIS_TYPE;
+   typedef const char * AXIS_ARG_TYPE;
 
 
    struct node

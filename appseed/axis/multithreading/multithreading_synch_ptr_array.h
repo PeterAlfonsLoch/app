@@ -7,7 +7,7 @@ public:
    mutex m_mutex;
    synch_index_ptr_array m_indexptra;
 
-   synch_ptr_array(sp(::base::application) papp): element(papp),m_mutex(papp),m_indexptra(&m_mutex){}
+   synch_ptr_array(sp(::axis::application) papp): element(papp),m_mutex(papp),m_indexptra(&m_mutex){}
    virtual ~synch_ptr_array() {}
 
    bool add(T * p)
@@ -67,7 +67,7 @@ public:
 
 #undef new
    DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
-#define new BASE_NEW
+#define new AXIS_NEW
 
 
 };

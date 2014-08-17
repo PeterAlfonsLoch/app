@@ -3189,13 +3189,13 @@
 #define ERROR_MCA_OCCURED                651L
 
 //
-// MessageId: ERROR_DRIVER_DATABASE_ERROR
+// MessageId: ERROR_DRIVER_DATAAXIS_ERROR
 //
 // MessageText:
 //
 // There was error [%2] processing the driver database.
 //
-#define ERROR_DRIVER_DATABASE_ERROR      652L
+#define ERROR_DRIVER_DATAAXIS_ERROR      652L
 
 //
 // MessageId: ERROR_SYSTEM_HIVE_TOO_LARGE
@@ -3545,14 +3545,14 @@
 #define ERROR_THREAD_WAS_SUSPENDED       699L
 
 //
-// MessageId: ERROR_IMAGE_NOT_AT_BASE
+// MessageId: ERROR_IMAGE_NOT_AT_AXIS
 //
 // MessageText:
 //
 // {Image ReloCAted}
 // An image file could not be mapped at the address specified in the image file. LoCAl fixups must be performed on this image.
 //
-#define ERROR_IMAGE_NOT_AT_BASE          700L
+#define ERROR_IMAGE_NOT_AT_AXIS          700L
 
 //
 // MessageId: ERROR_RXACT_STATE_CREATED
@@ -4745,13 +4745,13 @@
 #define ERROR_SERVICE_NO_THREAD          1054L
 
 //
-// MessageId: ERROR_SERVICE_DATABASE_LOCKED
+// MessageId: ERROR_SERVICE_DATAAXIS_LOCKED
 //
 // MessageText:
 //
 // The service database is locked.
 //
-#define ERROR_SERVICE_DATABASE_LOCKED    1055L
+#define ERROR_SERVICE_DATAAXIS_LOCKED    1055L
 
 //
 // MessageId: ERROR_SERVICE_ALREADY_RUNNING
@@ -4835,13 +4835,13 @@
 #define ERROR_EXCEPTION_IN_SERVICE       1064L
 
 //
-// MessageId: ERROR_DATABASE_DOES_NOT_EXIST
+// MessageId: ERROR_DATAAXIS_DOES_NOT_EXIST
 //
 // MessageText:
 //
 // The database specified does not exist.
 //
-#define ERROR_DATABASE_DOES_NOT_EXIST    1065L
+#define ERROR_DATAAXIS_DOES_NOT_EXIST    1065L
 
 //
 // MessageId: ERROR_SERVICE_SPECIFIC_ERROR
@@ -5310,7 +5310,7 @@
 //
 // MessageText:
 //
-// The base address or the file offset specified does not have the proper alignment.
+// The axis address or the file offset specified does not have the proper alignment.
 //
 #define ERROR_MAPPED_ALIGNMENT           1132L
 
@@ -11177,22 +11177,22 @@
 #define ERROR_OBJECT_NOT_FOUND           4312L
 
 //
-// MessageId: ERROR_DATABASE_FAILURE
+// MessageId: ERROR_DATAAXIS_FAILURE
 //
 // MessageText:
 //
 // Unable to read from or write to the database.
 //
-#define ERROR_DATABASE_FAILURE           4313L
+#define ERROR_DATAAXIS_FAILURE           4313L
 
 //
-// MessageId: ERROR_DATABASE_FULL
+// MessageId: ERROR_DATAAXIS_FULL
 //
 // MessageText:
 //
 // The database is full.
 //
-#define ERROR_DATABASE_FULL              4314L
+#define ERROR_DATAAXIS_FULL              4314L
 
 //
 // MessageId: ERROR_MEDIA_INCOMPATIBLE
@@ -12294,13 +12294,13 @@
 #define ERROR_CLUSTER_OWNER_NOT_IN_PREFLIST 5082L
 
 //
-// MessageId: ERROR_CLUSTER_DATABASE_SEQMISMATCH
+// MessageId: ERROR_CLUSTER_DATAAXIS_SEQMISMATCH
 //
 // MessageText:
 //
 // The join operation failed because the cluster database sequence number has changed or is incompatible with the locker node. This may happen during a join operation if the cluster database was changing during the join.
 //
-#define ERROR_CLUSTER_DATABASE_SEQMISMATCH 5083L
+#define ERROR_CLUSTER_DATAAXIS_SEQMISMATCH 5083L
 
 //
 // MessageId: ERROR_RESMON_INVALID_STATE
@@ -12330,13 +12330,13 @@
 #define ERROR_QUORUM_DISK_NOT_FOUND      5086L
 
 //
-// MessageId: ERROR_DATABASE_BACKUP_CORRUPT
+// MessageId: ERROR_DATAAXIS_BACKUP_CORRUPT
 //
 // MessageText:
 //
 // The backed up cluster database is possibly corrupt.
 //
-#define ERROR_DATABASE_BACKUP_CORRUPT    5087L
+#define ERROR_DATAAXIS_BACKUP_CORRUPT    5087L
 
 //
 // MessageId: ERROR_CLUSTER_NODE_ALREADY_HAS_DFS_ROOT
@@ -12613,22 +12613,22 @@ Do not add any more error codes in that range.
 #define ERROR_CLUSTER_INVALID_STRING_FORMAT 5917L
 
 //
-// MessageId: ERROR_CLUSTER_DATABASE_TRANSACTION_IN_PROGRESS
+// MessageId: ERROR_CLUSTER_DATAAXIS_TRANSACTION_IN_PROGRESS
 //
 // MessageText:
 //
 // An internal cluster error occurred. A cluster database transaction was attempted while a transaction was already in progress.
 //
-#define ERROR_CLUSTER_DATABASE_TRANSACTION_IN_PROGRESS 5918L
+#define ERROR_CLUSTER_DATAAXIS_TRANSACTION_IN_PROGRESS 5918L
 
 //
-// MessageId: ERROR_CLUSTER_DATABASE_TRANSACTION_NOT_IN_PROGRESS
+// MessageId: ERROR_CLUSTER_DATAAXIS_TRANSACTION_NOT_IN_PROGRESS
 //
 // MessageText:
 //
 // An internal cluster error occurred. There was an attempt to commit a cluster database transaction while no transaction was in progress.
 //
-#define ERROR_CLUSTER_DATABASE_TRANSACTION_NOT_IN_PROGRESS 5919L
+#define ERROR_CLUSTER_DATAAXIS_TRANSACTION_NOT_IN_PROGRESS 5919L
 
 //
 // MessageId: ERROR_CLUSTER_NULL_DATA
@@ -13444,7 +13444,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An new or existing archive tail or base of the active log is invalid.
+// An new or existing archive tail or axis of the active log is invalid.
 //
 #define ERROR_LOG_TAIL_INVALID           6627L
 
@@ -16612,13 +16612,13 @@ Do not add any more error codes in that range.
 #define ERROR_DS_CODE_INCONSISTENCY      8408L
 
 //
-// MessageId: ERROR_DS_DATABASE_ERROR
+// MessageId: ERROR_DS_DATAAXIS_ERROR
 //
 // MessageText:
 //
 // A database error has occurred.
 //
-#define ERROR_DS_DATABASE_ERROR          8409L
+#define ERROR_DS_DATAAXIS_ERROR          8409L
 
 //
 // MessageId: ERROR_DS_GOVERNSID_MISSING
@@ -17251,13 +17251,13 @@ Do not add any more error codes in that range.
 #define ERROR_DS_INVALID_LDAP_DISPLAY_NAME 8479L
 
 //
-// MessageId: ERROR_DS_NON_BASE_SEARCH
+// MessageId: ERROR_DS_NON_AXIS_SEARCH
 //
 // MessageText:
 //
-// The requested search operation is only supported for base searches.
+// The requested search operation is only supported for axis searches.
 //
-#define ERROR_DS_NON_BASE_SEARCH         8480L
+#define ERROR_DS_NON_AXIS_SEARCH         8480L
 
 //
 // MessageId: ERROR_DS_CANT_RETRIEVE_ATTS
@@ -17495,13 +17495,13 @@ Do not add any more error codes in that range.
 #define ERROR_DS_CANT_MOD_PRIMARYGROUPID 8506L
 
 //
-// MessageId: ERROR_DS_ILLEGAL_BASE_SCHEMA_MOD
+// MessageId: ERROR_DS_ILLEGAL_AXIS_SCHEMA_MOD
 //
 // MessageText:
 //
-// An attempt is made to modify the base schema.
+// An attempt is made to modify the axis schema.
 //
-#define ERROR_DS_ILLEGAL_BASE_SCHEMA_MOD 8507L
+#define ERROR_DS_ILLEGAL_AXIS_SCHEMA_MOD 8507L
 
 //
 // MessageId: ERROR_DS_NONSAFE_SCHEMA_CHANGE
@@ -18718,11 +18718,11 @@ Do not add any more error codes in that range.
 //  DNS response codes.
 //
 
-#define DNS_ERROR_RESPONSE_CODES_BASE 9000
+#define DNS_ERROR_RESPONSE_CODES_AXIS 9000
 
 #define DNS_ERROR_RCODE_NO_ERROR NO_ERROR
 
-#define DNS_ERROR_MASK 0x00002328 // 9000 or DNS_ERROR_RESPONSE_CODES_BASE
+#define DNS_ERROR_MASK 0x00002328 // 9000 or DNS_ERROR_RESPONSE_CODES_AXIS
 
 // DNS_ERROR_RCODE_FORMAT_ERROR          0x00002329
 //
@@ -18861,7 +18861,7 @@ Do not add any more error codes in that range.
 // Packet format
 //
 
-#define DNS_ERROR_PACKET_FMT_BASE 9500
+#define DNS_ERROR_PACKET_FMT_AXIS 9500
 
 // DNS_INFO_NO_RECORDS                   0x0000251d
 //
@@ -18924,7 +18924,7 @@ Do not add any more error codes in that range.
 #define DNS_ERROR_INVALID_NAME         ERROR_INVALID_NAME
 #define DNS_ERROR_INVALID_DATA         ERROR_INVALID_DATA
 
-#define DNS_ERROR_GENERAL_API_BASE 9550
+#define DNS_ERROR_GENERAL_API_AXIS 9550
 
 // DNS_ERROR_INVALID_TYPE                0x0000254f
 //
@@ -19151,7 +19151,7 @@ Do not add any more error codes in that range.
 // Zone errors
 //
 
-#define DNS_ERROR_ZONE_BASE 9600
+#define DNS_ERROR_ZONE_AXIS 9600
 
 // DNS_ERROR_ZONE_DOES_NOT_EXIST         0x00002581
 //
@@ -19368,7 +19368,7 @@ Do not add any more error codes in that range.
 // Datafile errors
 //
 
-#define DNS_ERROR_DATAFILE_BASE 9650
+#define DNS_ERROR_DATAFILE_AXIS 9650
 
 // DNS                                   0x000025b3
 //
@@ -19425,7 +19425,7 @@ Do not add any more error codes in that range.
 // Database errors
 //
 
-#define DNS_ERROR_DATABASE_BASE 9700
+#define DNS_ERROR_DATAAXIS_AXIS 9700
 
 // DNS_ERROR_RECORD_DOES_NOT_EXIST       0x000025e5
 //
@@ -19652,7 +19652,7 @@ Do not add any more error codes in that range.
 // Operation errors
 //
 
-#define DNS_ERROR_OPERATION_BASE 9750
+#define DNS_ERROR_OPERATION_AXIS 9750
 
 // DNS_INFO_AXFR_COMPLETE                0x00002617
 //
@@ -19689,7 +19689,7 @@ Do not add any more error codes in that range.
 // Secure update
 //
 
-#define DNS_ERROR_SECURE_BASE 9800
+#define DNS_ERROR_SECURE_AXIS 9800
 
 // DNS_STATUS_CONTINUE_NEEDED            0x00002649
 //
@@ -19706,7 +19706,7 @@ Do not add any more error codes in that range.
 // Setup errors
 //
 
-#define DNS_ERROR_SETUP_BASE 9850
+#define DNS_ERROR_SETUP_AXIS 9850
 
 // DNS_ERROR_NO_TCPIP                    0x0000267b
 //
@@ -19733,7 +19733,7 @@ Do not add any more error codes in that range.
 // Directory partition (DP) errors
 //
 
-#define DNS_ERROR_DP_BASE 9900
+#define DNS_ERROR_DP_AXIS 9900
 
 // DNS_ERROR_DP_DOES_NOT_EXIST           0x000026ad
 //
@@ -19815,8 +19815,8 @@ Do not add any more error codes in that range.
 // WinSock error codes are also defined in WinSock.h
 // and WinSock2.h, hence the IFDEF
 //
-#ifndef WSABASEERR
-#define WSABASEERR 10000
+#ifndef WSAAXISERR
+#define WSAAXISERR 10000
 //
 // MessageId: WSAEINTR
 //
@@ -20636,7 +20636,7 @@ Do not add any more error codes in that range.
 //
 #define WSA_IPSEC_NAME_POLICY_ERROR      11033L
 
-#endif // defined(WSABASEERR)
+#endif // defined(WSAAXISERR)
 
 ///////////////////////////////////////////////////
 //                                               //
@@ -27006,13 +27006,13 @@ typedef __success(return >= 0) long HRESULT;
 #define SCHED_E_ACCOUNT_NAME_NOT_FOUND   _HRESULT_TYPEDEF_(0x80041310L)
 
 //
-// MessageId: SCHED_E_ACCOUNT_DBASE_CORRUPT
+// MessageId: SCHED_E_ACCOUNT_DAXIS_CORRUPT
 //
 // MessageText:
 //
 // Corruption was detected in the Task Scheduler security database; the database has been reset.
 //
-#define SCHED_E_ACCOUNT_DBASE_CORRUPT    _HRESULT_TYPEDEF_(0x80041311L)
+#define SCHED_E_ACCOUNT_DAXIS_CORRUPT    _HRESULT_TYPEDEF_(0x80041311L)
 
 //
 // MessageId: SCHED_E_NO_SECURITY_SERVICES
@@ -28063,13 +28063,13 @@ typedef __success(return >= 0) long HRESULT;
 #define STG_E_SHAREREQUIRED              _HRESULT_TYPEDEF_(0x80030106L)
 
 //
-// MessageId: STG_E_NOTFILEBASEDSTORAGE
+// MessageId: STG_E_NOTFILEAXISDSTORAGE
 //
 // MessageText:
 //
 // Illegal operation called on non-file based storage.
 //
-#define STG_E_NOTFILEBASEDSTORAGE        _HRESULT_TYPEDEF_(0x80030107L)
+#define STG_E_NOTFILEAXISDSTORAGE        _HRESULT_TYPEDEF_(0x80030107L)
 
 //
 // MessageId: STG_E_EXTANTMARSHALLINGS
@@ -28090,13 +28090,13 @@ typedef __success(return >= 0) long HRESULT;
 #define STG_E_DOCFILECORRUPT             _HRESULT_TYPEDEF_(0x80030109L)
 
 //
-// MessageId: STG_E_BADBASEADDRESS
+// MessageId: STG_E_BADAXISADDRESS
 //
 // MessageText:
 //
 // OLE32.DLL has been loaded at the wrong address.
 //
-#define STG_E_BADBASEADDRESS             _HRESULT_TYPEDEF_(0x80030110L)
+#define STG_E_BADAXISADDRESS             _HRESULT_TYPEDEF_(0x80030110L)
 
 //
 // MessageId: STG_E_DOCFILETOOLARGE
@@ -29372,7 +29372,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A base error occurred.
+// A axis error occurred.
 //
 #define NTE_SYS_ERR                      _HRESULT_TYPEDEF_(0x80090021L)
 
@@ -30591,13 +30591,13 @@ copy protection errors.
 #define CRYPT_E_REVOCATION_OFFLINE       _HRESULT_TYPEDEF_(0x80092013L)
 
 //
-// MessageId: CRYPT_E_NOT_IN_REVOCATION_DATABASE
+// MessageId: CRYPT_E_NOT_IN_REVOCATION_DATAAXIS
 //
 // MessageText:
 //
 // The certifiCAte is not in the revoCAtion server's database.
 //
-#define CRYPT_E_NOT_IN_REVOCATION_DATABASE _HRESULT_TYPEDEF_(0x80092014L)
+#define CRYPT_E_NOT_IN_REVOCATION_DATAAXIS _HRESULT_TYPEDEF_(0x80092014L)
 
 //
 // MessageId: CRYPT_E_INVALID_NUMERIC_STRING
@@ -30721,7 +30721,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// OSS CertifiCAte encode/decode error code base
+// OSS CertifiCAte encode/decode error code axis
 //
 // See asn1code.h for a definition of the OSS runtime errors. The OSS error values are offset by CRYPT_E_OSS_ERROR.
 //
@@ -31146,7 +31146,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// ASN1 CertifiCAte encode/decode error code base. The ASN1 error values are offset by CRYPT_E_ASN1_ERROR.
+// ASN1 CertifiCAte encode/decode error code axis. The ASN1 error values are offset by CRYPT_E_ASN1_ERROR.
 //
 #define CRYPT_E_ASN1_ERROR               _HRESULT_TYPEDEF_(0x80093100L)
 
@@ -34276,13 +34276,13 @@ copy protection errors.
 #define COMADMIN_E_LIB_APP_PROXY_INCOMPATIBLE _HRESULT_TYPEDEF_(0x8011044FL)
 
 //
-// MessageId: COMADMIN_E_BASE_PARTITION_ONLY
+// MessageId: COMADMIN_E_AXIS_PARTITION_ONLY
 //
 // MessageText:
 //
-// This function is valid for the base partition only
+// This function is valid for the axis partition only
 //
-#define COMADMIN_E_BASE_PARTITION_ONLY   _HRESULT_TYPEDEF_(0x80110450L)
+#define COMADMIN_E_AXIS_PARTITION_ONLY   _HRESULT_TYPEDEF_(0x80110450L)
 
 //
 // MessageId: COMADMIN_E_START_APP_DISABLED
@@ -34334,7 +34334,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// AppliCAtions that contain one or more imported components Cannot be installed into a non-base partition
+// AppliCAtions that contain one or more imported components Cannot be installed into a non-axis partition
 //
 #define COMADMIN_E_CAT_IMPORTED_COMPONENTS_NOT_ALLOWED _HRESULT_TYPEDEF_(0x8011045BL)
 
@@ -34690,13 +34690,13 @@ copy protection errors.
 #define COMADMIN_E_LEGACYCOMPS_NOT_ALLOWED_IN_1_0_FORMAT _HRESULT_TYPEDEF_(0x8011081AL)
 
 //
-// MessageId: COMADMIN_E_LEGACYCOMPS_NOT_ALLOWED_IN_NONBASE_PARTITIONS
+// MessageId: COMADMIN_E_LEGACYCOMPS_NOT_ALLOWED_IN_NONAXIS_PARTITIONS
 //
 // MessageText:
 //
-// Legacy components may not exist in non-base partitions.
+// Legacy components may not exist in non-axis partitions.
 //
-#define COMADMIN_E_LEGACYCOMPS_NOT_ALLOWED_IN_NONBASE_PARTITIONS _HRESULT_TYPEDEF_(0x8011081BL)
+#define COMADMIN_E_LEGACYCOMPS_NOT_ALLOWED_IN_NONAXIS_PARTITIONS _HRESULT_TYPEDEF_(0x8011081BL)
 
 //
 // MessageId: COMADMIN_E_COMP_MOVE_SOURCE
@@ -34721,18 +34721,18 @@ copy protection errors.
 //
 // MessageText:
 //
-// A private component Cannot be moved (or copied) to a library appliCAtion or to the base partition
+// A private component Cannot be moved (or copied) to a library appliCAtion or to the axis partition
 //
 #define COMADMIN_E_COMP_MOVE_PRIVATE     _HRESULT_TYPEDEF_(0x8011081EL)
 
 //
-// MessageId: COMADMIN_E_BASEPARTITION_REQUIRED_IN_SET
+// MessageId: COMADMIN_E_AXISPARTITION_REQUIRED_IN_SET
 //
 // MessageText:
 //
 // The Base AppliCAtion Partition exists in all partition sets and Cannot be removed.
 //
-#define COMADMIN_E_BASEPARTITION_REQUIRED_IN_SET _HRESULT_TYPEDEF_(0x8011081FL)
+#define COMADMIN_E_AXISPARTITION_REQUIRED_IN_SET _HRESULT_TYPEDEF_(0x8011081FL)
 
 //
 // MessageId: COMADMIN_E_CANNOT_ALIAS_EVENTCLASS
@@ -42239,13 +42239,13 @@ copy protection errors.
 // ERRORS
 //
 //
-// MessageId: ERROR_VOLMGR_DATABASE_FULL
+// MessageId: ERROR_VOLMGR_DATAAXIS_FULL
 //
 // MessageText:
 //
 // The configuration database is full.
 //
-#define ERROR_VOLMGR_DATABASE_FULL       _NDIS_ERROR_TYPEDEF_(0xC0380001L)
+#define ERROR_VOLMGR_DATAAXIS_FULL       _NDIS_ERROR_TYPEDEF_(0xC0380001L)
 
 //
 // MessageId: ERROR_VOLMGR_DISK_CONFIGURATION_CORRUPTED

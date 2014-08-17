@@ -13,8 +13,6 @@
 
 #include "database_client.h"
 
-#include "database_user_interaction.h"
-
 #include "database_field_definition.h"
 
 #include "database_set.h"

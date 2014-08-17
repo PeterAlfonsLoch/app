@@ -8,7 +8,7 @@ namespace database
    class client_array;
 
 
-   class CLASS_DECL_BASE client :
+   class CLASS_DECL_AXIS client :
       virtual public ::object
    {
    public:
@@ -87,7 +87,7 @@ namespace database
 
    };
 
-   class CLASS_DECL_BASE client_array :
+   class CLASS_DECL_AXIS client_array :
       public comparable_array < client * , client * >
    {
    public:

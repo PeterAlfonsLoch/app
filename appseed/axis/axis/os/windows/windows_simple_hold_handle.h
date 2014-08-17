@@ -3,7 +3,7 @@
 
 #ifdef WINDOWS
 
-class CLASS_DECL_BASE simple_hold_handle
+class CLASS_DECL_AXIS simple_hold_handle
 {
 public:
 

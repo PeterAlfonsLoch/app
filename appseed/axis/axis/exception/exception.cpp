@@ -70,7 +70,7 @@ void __set_thread_note(const char * pszNote)
    {
 #undef new
       t_pstrNote = ::new(t_pdataNote) string;
-#define new BASE_NEW
+#define new AXIS_NEW
    }
    *t_pstrNote = pszNote;
 }

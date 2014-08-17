@@ -283,7 +283,7 @@ protected:
 class tinyjs :
    virtual public ::object{
 public:
-    tinyjs(sp(::base::application) papp);
+    tinyjs(sp(::axis::application) papp);
     ~tinyjs();
 
     void execute(const string &code);
@@ -345,7 +345,7 @@ private:
     CScriptVarLink *condition(bool &execute);
     CScriptVarLink *logic(bool &execute);
     CScriptVarLink *ternary(bool &execute);
-    CScriptVarLink *base(bool &execute);
+    CScriptVarLink *axis(bool &execute);
     void block(bool &execute);
     void statement(bool &execute);
     // parsing utility functions

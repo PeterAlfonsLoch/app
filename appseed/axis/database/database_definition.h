@@ -1,5 +1,5 @@
-#ifndef CA2_APP_BASE_DATABASE_DEFINITION_H
-#define CA2_APP_BASE_DATABASE_DEFINITION_H
+#ifndef CA2_APP_AXIS_DATAAXIS_DEFINITION_H
+#define CA2_APP_AXIS_DATAAXIS_DEFINITION_H
 
 
 #include "database_stringhelper.h"
@@ -31,7 +31,7 @@ namespace database
                error handling
 
    ******************************************************************/
-   class CLASS_DECL_BASE DbErrors
+   class CLASS_DECL_AXIS DbErrors
    {
 
    public:
@@ -66,7 +66,7 @@ namespace database
 
 
 
-   class CLASS_DECL_BASE field_properties :
+   class CLASS_DECL_AXIS field_properties :
       virtual public ::file::serializable
    {
    public:
@@ -93,7 +93,7 @@ namespace database
 
    };
 
-   class CLASS_DECL_BASE field
+   class CLASS_DECL_AXIS field
    {
    public:
 
@@ -111,7 +111,7 @@ namespace database
 
    };
 
-   class CLASS_DECL_BASE record :
+   class CLASS_DECL_AXIS record :
       virtual public var_array
    {
    public:
@@ -125,7 +125,7 @@ namespace database
 
    };
 
-   class CLASS_DECL_BASE query_data :
+   class CLASS_DECL_AXIS query_data :
       public ::file::serializable_array < array < record, record & > >
    {
    };
@@ -133,7 +133,7 @@ namespace database
    typedef array <field, field &> CFields;
    typedef ::file::serializable_array < array < field_properties, field_properties & > > record_properties;
 
-   class CLASS_DECL_BASE result_set :
+   class CLASS_DECL_AXIS result_set :
       public object,
       public ::file::serializable
    {
@@ -145,7 +145,7 @@ namespace database
 
 
       result_set();
-      result_set(sp(::base::application) papp);
+      result_set(sp(::axis::application) papp);
       result_set(const result_set & set);
 
 
@@ -158,7 +158,7 @@ namespace database
 
    };
 
-   class CLASS_DECL_BASE parameter_list
+   class CLASS_DECL_AXIS parameter_list
    {
    public:
 
@@ -181,7 +181,7 @@ namespace database
 
 
 
-#endif // CA2_APP_BASE_DATABASE_DEFINITION_H
+#endif // CA2_APP_AXIS_DATAAXIS_DEFINITION_H
 
 
 

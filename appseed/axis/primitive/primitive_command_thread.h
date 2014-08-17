@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE command_thread :
+class CLASS_DECL_AXIS command_thread :
    virtual public ::object
 {
 public:
@@ -17,7 +17,7 @@ public:
    var                              m_varTopicQuery; // accumulatted, reset, set, or clear as command_thread history passes
 
 
-   command_thread(sp(::base::application) papp);
+   command_thread(sp(::axis::application) papp);
    virtual ~command_thread();
 
    virtual var run();

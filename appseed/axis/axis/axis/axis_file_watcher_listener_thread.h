@@ -5,7 +5,7 @@ namespace file_watcher
 {
 
 
-   class CLASS_DECL_BASE listener_thread :
+   class CLASS_DECL_AXIS listener_thread :
       public thread,
       public file_watch_listener
    {

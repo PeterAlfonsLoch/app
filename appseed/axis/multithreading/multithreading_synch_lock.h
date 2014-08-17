@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE synch_lock :
+class CLASS_DECL_AXIS synch_lock :
    public initial_single_lock
 {
 public:

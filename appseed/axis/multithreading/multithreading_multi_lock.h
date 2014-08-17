@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_BASE multi_lock
+class CLASS_DECL_AXIS multi_lock
 {
 public:
 

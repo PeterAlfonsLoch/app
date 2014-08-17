@@ -139,10 +139,10 @@ plex_heap_alloc_array * g_pheap = NULL;
 BEGIN_EXTERN_C
 
 
-#define BASE_MEMORY_MANAGEMENT TRUE
+#define AXIS_MEMORY_MANAGEMENT TRUE
 
 
-#if BASE_MEMORY_MANAGEMENT
+#if AXIS_MEMORY_MANAGEMENT
 
 void * aligned_memory_alloc(size_t size)
 {
@@ -621,16 +621,16 @@ END_EXTERN_C
 void create_id_space()
 {
 
-   ::base::system::s_pidspace = new id_space();
+   ::axis::system::s_pidspace = new id_space();
 
 }
 
 void destroy_id_space()
 {
 
-   delete ::base::system::s_pidspace;
+   delete ::axis::system::s_pidspace;
 
-   ::base::system::s_pidspace = NULL;
+   ::axis::system::s_pidspace = NULL;
 
 }
 

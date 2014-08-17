@@ -42,12 +42,6 @@
     <Filter Include="Binary Files\x86">
       <UniqueIdentifier>{8bedbbf7-bbee-4bec-b9ca-3e59352115ef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\graphics">
-      <UniqueIdentifier>{99770166-4760-4a1f-97fa-e3f6766a517c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\draw2d">
-      <UniqueIdentifier>{f63fcdc5-a231-426e-9b32-4429c5fee34d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\graphics">
       <UniqueIdentifier>{b8226273-efa2-4c5c-814e-29792dd05b58}</UniqueIdentifier>
     </Filter>
@@ -96,42 +90,6 @@
     <Filter Include="Header Files\programming\javascript">
       <UniqueIdentifier>{1523f2fe-95c5-4ef8-aeb6-44864f6d2cc6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\axis\compress">
-      <UniqueIdentifier>{81b4689d-269d-4f05-8d03-9fd0d7fb0783}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\compress\zip">
-      <UniqueIdentifier>{a8ba95fd-1ee1-4c54-885a-73221d29eba7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\filesystem">
-      <UniqueIdentifier>{e735cbc7-6be2-44c9-b19a-0c3d6ee00183}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\filesystem\fs">
-      <UniqueIdentifier>{ac8dd5af-8993-4120-b887-6a1e4eaaa29d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\filesystem\file">
-      <UniqueIdentifier>{3a2d58e0-3564-457f-ad53-2b26fdc8b2f0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\compress\bsdiff">
-      <UniqueIdentifier>{947fc611-80aa-4333-afb9-5718aa778672}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\crypto">
-      <UniqueIdentifier>{827d6b98-e29f-4ba3-9835-3a7b78877deb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\filesystem">
-      <UniqueIdentifier>{22c285dd-ad96-4ecc-8b5f-c3b809e98645}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\filesystem\fs">
-      <UniqueIdentifier>{b19eccb3-0ff3-4b9c-b6de-ab7724054f1c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\filesystem\file">
-      <UniqueIdentifier>{7164038b-3f76-4ce1-96d5-cc885cbf7871}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\visual">
-      <UniqueIdentifier>{279c4f0b-7469-485f-a720-40edf81d3278}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\crypto\crypto">
-      <UniqueIdentifier>{20c88a33-e98c-4710-a7c2-fbaf3e3b8766}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\primitive\str">
       <UniqueIdentifier>{d5ea5447-e463-4542-852d-3dad51cf8c42}</UniqueIdentifier>
     </Filter>
@@ -143,12 +101,6 @@
     </Filter>
     <Filter Include="Header Files\axis\xml">
       <UniqueIdentifier>{42770ef4-1efe-40e5-864d-38ad28249a78}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\install">
-      <UniqueIdentifier>{90021ec4-d01a-4f04-a062-a622ecf9d870}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\hotplugin">
-      <UniqueIdentifier>{4e7f61cf-cc47-428d-8f33-b8f921606eb1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\axis\exception">
       <UniqueIdentifier>{3057931a-c1e2-4b6c-9059-d0ece06cdca4}</UniqueIdentifier>
@@ -168,20 +120,11 @@
     <Filter Include="Header Files\axis\os\cross">
       <UniqueIdentifier>{e9b106f1-4ddd-4521-b7c1-6461c701be4f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\dataaxis">
-      <UniqueIdentifier>{bbfdffee-c80a-4e8a-af08-72aae226b215}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\dataaxis">
-      <UniqueIdentifier>{1d5d8dc4-0d8b-4334-b743-43678a161c7a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\axis\os\cross\windows">
       <UniqueIdentifier>{105dbf8b-8b00-4530-b1fa-ac561338c12e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\axis\os\ansios">
       <UniqueIdentifier>{d8fdcc30-b719-4944-8c43-76d53cfb6b94}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\geoip">
-      <UniqueIdentifier>{a1196ae1-643e-46d0-9f06-361c06e383d7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\net\idn">
       <UniqueIdentifier>{09524ebc-0318-4348-a462-4eee83de81bb}</UniqueIdentifier>
@@ -197,21 +140,6 @@
     </Filter>
     <Filter Include="Source Files\axis">
       <UniqueIdentifier>{225c8e24-bbc5-4bf4-9da8-92ec39a039ec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\compress">
-      <UniqueIdentifier>{75053c2a-c9d5-43d3-aa2e-3bd3da3bccac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\compress\zip">
-      <UniqueIdentifier>{487ab119-db2e-4fdd-b0b1-3d12dad9dd07}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\compress\bsdiff">
-      <UniqueIdentifier>{d36617c6-420d-494e-b90d-062e519f1bc5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\crypto">
-      <UniqueIdentifier>{3447641d-5c92-4366-adec-9adba60127e0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\crypto\crypto">
-      <UniqueIdentifier>{8a0af4d6-01ab-43f0-8402-9b330e6a65c2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\axis\xml">
       <UniqueIdentifier>{c4dba712-4a23-4904-b3c1-25fa6f1b24e8}</UniqueIdentifier>
@@ -237,59 +165,23 @@
     <Filter Include="Source Files\axis\os\ansios">
       <UniqueIdentifier>{68334ac9-3045-461a-9922-b6f49f0a803d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\axis\install">
-      <UniqueIdentifier>{3199e756-cf18-4f55-8ef4-e1ef783b0fda}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\install\windows">
-      <UniqueIdentifier>{754bf363-6d72-4e59-a58c-2692948bf105}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\hotplugin">
-      <UniqueIdentifier>{f616a747-70f4-495b-a334-8a945ffeca0d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\axis\exception">
       <UniqueIdentifier>{376f71e3-e41a-4d8d-8e53-daad53a7e29d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\axis\axis">
       <UniqueIdentifier>{b15f9423-6971-4587-b04f-ca13192a9bcf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\axis\geoip">
-      <UniqueIdentifier>{403c1ed8-0445-4993-8c2f-5ad393680969}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\node">
-      <UniqueIdentifier>{57540175-8b21-49ef-a8b9-0ccf5f3f4a56}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\node\windows">
-      <UniqueIdentifier>{bf60306d-2d73-4340-8890-4402c6ebccab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\node">
-      <UniqueIdentifier>{cbc7bdb2-868d-47ca-9594-7ff7e1135989}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\node\windows">
-      <UniqueIdentifier>{8a9f35dd-3924-4dfe-bc44-6a823f0200b7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\message">
-      <UniqueIdentifier>{6ea91d16-af59-4653-ad87-aaa3548a7437}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\message">
-      <UniqueIdentifier>{b9bf68d4-d81e-4040-a63c-b2b470c06acd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\node\android">
-      <UniqueIdentifier>{8e87a155-a76c-44a0-8114-25921d3dd914}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\node\android">
-      <UniqueIdentifier>{7e1d30ab-0995-45f2-b0b9-64e3a5d68c5a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\node\ansios">
-      <UniqueIdentifier>{69195050-6ed5-49b9-b26e-60f94ca26561}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\node\ansios">
-      <UniqueIdentifier>{a082445c-e80b-4002-8250-1fd29ecad1d1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\primitive\data">
       <UniqueIdentifier>{ddf01975-333f-459f-a6b4-f5e9fdffa7f6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\primitive\data">
       <UniqueIdentifier>{b47f1200-db28-45cf-88cd-eaf066d0e7a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database">
+      <UniqueIdentifier>{1d5d8dc4-0d8b-4334-b743-43678a161c7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database">
+      <UniqueIdentifier>{bbfdffee-c80a-4e8a-af08-72aae226b215}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -312,9 +204,6 @@
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_event.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_event_axis.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_event_collection.h">
@@ -380,13 +269,7 @@
     <ClInclude Include="multithreading\multithreading_initial_single_lock.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
-    <ClInclude Include="multithreading\multithreading_thread.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_memory.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive_memory_axis.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive_memory_container.h">
@@ -546,12 +429,6 @@
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\collection_attrib_map.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\collection_axis_2array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\collection_axis_enum.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\collection_bit_array.h">
@@ -833,228 +710,6 @@
     <ClInclude Include="primitive\math\math_math_rng.h">
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
-    <ClInclude Include="axis\compress\zip\zip_internal.h">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\api.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\crypt.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\File.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\InFile.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\ioapi.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\iowin32.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\memory_buffer.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\unzip.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\Util.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\zip.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\compress.h">
-      <Filter>Header Files\axis\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem.h">
-      <Filter>Header Files\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_data.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_fs.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_item.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_item_array.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_native_fs.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_set.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\compress_bzip_stream.h">
-      <Filter>Header Files\axis\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\compress_gzip_stream.h">
-      <Filter>Header Files\axis\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\compress_compress.h">
-      <Filter>Header Files\axis\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_application.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_binary_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_buffered_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_byte_input_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_byte_input_stream_binary_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_byte_output_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_byte_output_stream_binary_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_byte_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_byte_stream_memory_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_c.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_circular_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_composite.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_dir.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_dir_application.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_dir_system.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_exception.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_input_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_memory_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_opened.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_output_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_output_stream_flush.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_plain_text_input_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_plain_text_output_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_plain_text_output_stream_string_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_plain_text_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_plain_text_stream_axis.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_plain_text_stream_memory_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_plain_text_stream_string_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_reader.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_seekable.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_serializable.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_simple_binary_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_status.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_stream_axis.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_stream_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_stream_buffer_axis.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_stream2.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_string_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_system.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_text_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_timeout_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_transfer_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_writer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_writer_flush.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\bsdiff\bsdiff.h">
-      <Filter>Header Files\axis\compress\bsdiff</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\bsdiff\bsdiff_private.h">
-      <Filter>Header Files\axis\compress\bsdiff</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\bsdiff\bzlib.h">
-      <Filter>Header Files\axis\compress\bsdiff</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\bsdiff\bzlib_private.h">
-      <Filter>Header Files\axis\compress\bsdiff</Filter>
-    </ClInclude>
     <ClInclude Include="multithreading\multithreading_signal_thread.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
@@ -1067,121 +722,7 @@
     <ClInclude Include="primitive\datetime\datetime_value.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="axis\crypto\crypto.h">
-      <Filter>Header Files\axis\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto_crypto.h">
-      <Filter>Header Files\axis\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto_hmac_sha1.h">
-      <Filter>Header Files\axis\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto_md5.h">
-      <Filter>Header Files\axis\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto_nessie.h">
-      <Filter>Header Files\axis\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto_sha1.h">
-      <Filter>Header Files\axis\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_aes.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_aes_cbc.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_aes_icm.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_alg.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_alloc.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_auth.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_c_crypto.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_cipher.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_config.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_datatypes.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_err.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_gf2_8.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_hmac.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_integers.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_kernel.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_kernel_compat.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_key.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_math.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_null_auth.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_null_cipher.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_prng.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_rand_source.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_rdb.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_rdbx.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_stat.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_types.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_ut_sim.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_xfm.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_sha1_digest.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto\crypto_internal_data_types.h">
-      <Filter>Header Files\axis\crypto\crypto</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\str\str.h">
-      <Filter>Header Files\primitive\str</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\str\str_axis64.h">
       <Filter>Header Files\primitive\str</Filter>
     </ClInclude>
     <ClInclude Include="primitive\str\str_c.h">
@@ -1277,9 +818,6 @@
     <ClInclude Include="axis\xml\xml_attr.h">
       <Filter>Header Files\axis\xml</Filter>
     </ClInclude>
-    <ClInclude Include="axis\xml\xml_axis_array.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
     <ClInclude Include="axis\xml\xml_data.h">
       <Filter>Header Files\axis\xml</Filter>
     </ClInclude>
@@ -1322,9 +860,6 @@
     <ClInclude Include="axis\xml\xml_property_exchange.h">
       <Filter>Header Files\axis\xml</Filter>
     </ClInclude>
-    <ClInclude Include="axis\xml\xml_tree_axis.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
     <ClInclude Include="axis\xml\xml_tree_schema.h">
       <Filter>Header Files\axis\xml</Filter>
     </ClInclude>
@@ -1352,55 +887,10 @@
     <ClInclude Include="axis\os\android\android.h">
       <Filter>Header Files\axis\os\android</Filter>
     </ClInclude>
-    <ClInclude Include="axis\hotplugin\hotplugin.h">
-      <Filter>Header Files\axis\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\hotplugin\hotplugin_container_launcher.h">
-      <Filter>Header Files\axis\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\hotplugin\hotplugin_host.h">
-      <Filter>Header Files\axis\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\hotplugin\hotplugin_plugin.h">
-      <Filter>Header Files\axis\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_canvas.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_cube_run.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_focus.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_install.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_installer.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_plugin.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_small_bell.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_starter_start.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_trace.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
     <ClInclude Include="axis\exception\exception.h">
       <Filter>Header Files\axis\exception</Filter>
     </ClInclude>
     <ClInclude Include="axis\exception\exception_assert.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_axis.h">
       <Filter>Header Files\axis\exception</Filter>
     </ClInclude>
     <ClInclude Include="axis\exception\exception_call_stack.h">
@@ -1526,12 +1016,6 @@
     <ClInclude Include="axis\exception\exception2.h">
       <Filter>Header Files\axis\exception</Filter>
     </ClInclude>
-    <ClInclude Include="axis\install\aaa_want_to_remove_install_window.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\aaa_want_to_remove_install2.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
     <ClInclude Include="axis\axis\axis.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
@@ -1593,9 +1077,6 @@
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
     <ClInclude Include="axis\axis\axis_departament_container.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_draw2d.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
     <ClInclude Include="axis\axis\axis_element.h">
@@ -1694,9 +1175,6 @@
     <ClInclude Include="axis\axis\axis_number.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
-    <ClInclude Include="axis\axis\axis_os.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
     <ClInclude Include="axis\axis\axis_plex.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
@@ -1763,12 +1241,6 @@
     <ClInclude Include="net\net_port_forward.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\file_set.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_core_copydesk.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
     <ClInclude Include="axis\axis\axis_core_os.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
@@ -1783,57 +1255,6 @@
     </ClInclude>
     <ClInclude Include="primitive\math\math_scalar_enum.h">
       <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="dataaxis\dataaxis.h">
-      <Filter>Header Files\dataaxis</Filter>
-    </ClInclude>
-    <ClInclude Include="dataaxis\dataaxis_axis.h">
-      <Filter>Header Files\dataaxis</Filter>
-    </ClInclude>
-    <ClInclude Include="dataaxis\dataaxis_change_event.h">
-      <Filter>Header Files\dataaxis</Filter>
-    </ClInclude>
-    <ClInclude Include="dataaxis\dataaxis_client.h">
-      <Filter>Header Files\dataaxis</Filter>
-    </ClInclude>
-    <ClInclude Include="dataaxis\dataaxis_dataaxis.h">
-      <Filter>Header Files\dataaxis</Filter>
-    </ClInclude>
-    <ClInclude Include="dataaxis\dataaxis_definition.h">
-      <Filter>Header Files\dataaxis</Filter>
-    </ClInclude>
-    <ClInclude Include="dataaxis\dataaxis_field_definition.h">
-      <Filter>Header Files\dataaxis</Filter>
-    </ClInclude>
-    <ClInclude Include="dataaxis\dataaxis_id.h">
-      <Filter>Header Files\dataaxis</Filter>
-    </ClInclude>
-    <ClInclude Include="dataaxis\dataaxis_key.h">
-      <Filter>Header Files\dataaxis</Filter>
-    </ClInclude>
-    <ClInclude Include="dataaxis\dataaxis_selection.h">
-      <Filter>Header Files\dataaxis</Filter>
-    </ClInclude>
-    <ClInclude Include="dataaxis\dataaxis_selection_item.h">
-      <Filter>Header Files\dataaxis</Filter>
-    </ClInclude>
-    <ClInclude Include="dataaxis\dataaxis_server.h">
-      <Filter>Header Files\dataaxis</Filter>
-    </ClInclude>
-    <ClInclude Include="dataaxis\dataaxis_set.h">
-      <Filter>Header Files\dataaxis</Filter>
-    </ClInclude>
-    <ClInclude Include="dataaxis\dataaxis_stringhelper.h">
-      <Filter>Header Files\dataaxis</Filter>
-    </ClInclude>
-    <ClInclude Include="dataaxis\dataaxis_template.h">
-      <Filter>Header Files\dataaxis</Filter>
-    </ClInclude>
-    <ClInclude Include="dataaxis\dataaxis_update_hint.h">
-      <Filter>Header Files\dataaxis</Filter>
-    </ClInclude>
-    <ClInclude Include="dataaxis\dataaxis_user_interaction.h">
-      <Filter>Header Files\dataaxis</Filter>
     </ClInclude>
     <ClInclude Include="axis\axis\axis_action_context.h">
       <Filter>Header Files\axis\axis</Filter>
@@ -1945,21 +1366,6 @@
     </ClInclude>
     <ClInclude Include="axis\axis\axis_print_job.h">
       <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\geoip\geoip.h">
-      <Filter>Header Files\axis\geoip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\geoip\geoip_city.h">
-      <Filter>Header Files\axis\geoip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\geoip\geoip_internal.h">
-      <Filter>Header Files\axis\geoip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\geoip\geoip_update.h">
-      <Filter>Header Files\axis\geoip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\geoip\global.h">
-      <Filter>Header Files\axis\geoip</Filter>
     </ClInclude>
     <ClInclude Include="primitive\math\math_mkint_c.h">
       <Filter>Header Files\primitive\math</Filter>
@@ -2777,9 +2183,6 @@
     <ClInclude Include="framework_c.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_link.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
     <ClInclude Include="axis\os\windows\windows.h">
       <Filter>Header Files\axis\os\windows</Filter>
     </ClInclude>
@@ -2787,9 +2190,6 @@
       <Filter>Header Files\axis\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="axis\os\windows\windows_multithreading.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\windows_os.h">
       <Filter>Header Files\axis\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="axis\os\windows\windows_port_forward.h">
@@ -2813,179 +2213,11 @@
     <ClInclude Include="axis\os\windows\windows_windows.h">
       <Filter>Header Files\axis\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\node.h">
-      <Filter>Header Files\axis\node</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\os.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\win.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\win1.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_application.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_copydesk.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_dir.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_exception.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_factory_exchange.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_file.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_file_find.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_file_set.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_file_system.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_folder_watch.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_implementation.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_ip_enum.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_os.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_port_forward.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_registry.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_shell.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_simple_hold_handle.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_stdio_file.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_thread.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_window_draw.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\windows_axis_file.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\windows_axis_internal.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\windows_axis_registry.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
     <ClInclude Include="axis\os\windows\windows_file_watcher.h">
       <Filter>Header Files\axis\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_uac_tools.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="axis\axis\axis_application_signal_details.h">
       <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\message\message_dispatch.h">
-      <Filter>Header Files\axis\message</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\message\message_definition.h">
-      <Filter>Header Files\axis\message</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\message\message.h">
-      <Filter>Header Files\axis\message</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\message\message_cross_windows.h">
-      <Filter>Header Files\axis\message</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\message\message_axis.h">
-      <Filter>Header Files\axis\message</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\message\message_user.h">
-      <Filter>Header Files\axis\message</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_thread_impl.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_application.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_copydesk.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_dir.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_factory_exchange.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_file.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_file_set.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_file_system.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_implementation.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_internal.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_ip_enum.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_os.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_port_forward.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_shell.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_stdio_file.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_thread.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_window.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_window_draw.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android1.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\ansios\ansios.h">
-      <Filter>Header Files\axis\node\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\ansios\ansios_thread_impl.h">
-      <Filter>Header Files\axis\node\ansios</Filter>
     </ClInclude>
     <ClInclude Include="axis\axis\axis_heap_item.h">
       <Filter>Header Files\axis\axis</Filter>
@@ -2995,12 +2227,6 @@
     </ClInclude>
     <ClInclude Include="axis\axis\axis_static_start.h">
       <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_crypto.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_crypto.h">
-      <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="axis\axis\axis_session_interface.h">
       <Filter>Header Files\axis\axis</Filter>
@@ -3022,9 +2248,6 @@
     </ClInclude>
     <ClInclude Include="axis\exception\exception_parsing.h">
       <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\hotplugin\hotplugin_composer.h">
-      <Filter>Header Files\axis\hotplugin</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_synch_index_iterator.h">
       <Filter>Header Files\multithreading</Filter>
@@ -3055,12 +2278,6 @@
     </ClInclude>
     <ClInclude Include="primitive\data\data_tree_item.h">
       <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_edit_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_interaction_impl.h">
-      <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="axis\os\cross\windows\e.h">
       <Filter>Header Files\axis\os\cross\windows</Filter>
@@ -3107,6 +2324,90 @@
     <ClInclude Include="axis\os\cross\windows\windows_pshpack8.h">
       <Filter>Header Files\axis\os\cross\windows</Filter>
     </ClInclude>
+    <ClInclude Include="database\database.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_base.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_change_event.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_client.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_database.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_definition.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_field_definition.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_id.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_key.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_selection.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_selection_item.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_server.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_set.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_stringhelper.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_template.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_update_hint.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\exception\exception_base.h">
+      <Filter>Header Files\axis\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\windows\windows_base_file.h">
+      <Filter>Header Files\axis\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\windows\windows_base_internal.h">
+      <Filter>Header Files\axis\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\windows\windows_base_registry.h">
+      <Filter>Header Files\axis\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\str\str_base64.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\collection_base_2array.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\collection_base_enum.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_event_base.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_service_base.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\xml\xml_base_array.h">
+      <Filter>Header Files\axis\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\xml\xml_tree_base.h">
+      <Filter>Header Files\axis\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_memory_base.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3119,9 +2420,6 @@
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_event.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_event_axis.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_event_collection.cpp">
@@ -3148,9 +2446,6 @@
     <ClCompile Include="multithreading\multithreading_semaphore.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
-    <ClCompile Include="multithreading\multithreading_service_axis.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
     <ClCompile Include="multithreading\multithreading_single_lock.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
@@ -3170,9 +2465,6 @@
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_memory.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_memory_axis.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_memory_container.cpp">
@@ -3255,36 +2547,6 @@
     </ClCompile>
     <ClCompile Include="version.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_brush.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_dib.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_font.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_graphics.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_object.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_palette.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_path.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_pen.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_region.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_job.cpp">
       <Filter>Source Files\primitive</Filter>
@@ -3397,171 +2659,6 @@
     <ClCompile Include="primitive\math\math_math.cpp">
       <Filter>Source Files\primitive\math</Filter>
     </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_api.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_file.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_in_file.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_ioapi.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_memory_buffer.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_unzip.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_util.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_zip.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_application.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_binary_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_input_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_input_stream_binary_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_output_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_output_stream_binary_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_stream_memory_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_c.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_composite.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_dir.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_dir_application.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_dir_system.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_dir2.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_exception.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_input_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_memory_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_output_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_plain_text_input_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_plain_text_output_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_plain_text_output_stream_string_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_plain_text_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_plain_text_stream_axis.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_plain_text_stream_memory_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_plain_text_stream_string_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_reader.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_seekable.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_simple_binary_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_stream_axis.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_stream_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_stream_buffer_axis.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_stream2.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_string_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_system.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_timeout_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_transfer_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_writer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_writer_flush.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_data.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_fs.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_item.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_item_array.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_native_fs.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_set.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\compress_compress.cpp">
-      <Filter>Source Files\axis\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_text_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive_color.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
@@ -3577,155 +2674,14 @@
     <ClCompile Include="multithreading\multithreading_go_thread.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\visual\visual_icon.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\visual\visual_cursor.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_value.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\math\math_math_rng.cpp">
       <Filter>Source Files\primitive\math</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\graphics_window_graphics.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_circular_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_buffered_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="net\net_url_domain.cpp">
       <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_blocksort.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_bsdiff.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_bspatch.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_bzlib.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_compress.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_crctable.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_decompress.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_huffman.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_randtable.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\compress_bzip_stream.cpp">
-      <Filter>Source Files\axis\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\compress_gzip_stream.cpp">
-      <Filter>Source Files\axis\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto.cpp">
-      <Filter>Source Files\axis\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto_crypto.cpp">
-      <Filter>Source Files\axis\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto_hmac_sha1.cpp">
-      <Filter>Source Files\axis\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto_md5.cpp">
-      <Filter>Source Files\axis\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto_nessie.cpp">
-      <Filter>Source Files\axis\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto_sha1.cpp">
-      <Filter>Source Files\axis\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto_whirpool.cpp">
-      <Filter>Source Files\axis\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto\crypto_ae_xfm.c">
-      <Filter>Source Files\axis\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto\crypto_cipher_aes.c">
-      <Filter>Source Files\axis\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto\crypto_cipher_aes_cbc.c">
-      <Filter>Source Files\axis\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto\crypto_cipher_aes_icm.c">
-      <Filter>Source Files\axis\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto\crypto_cipher_cipher.c">
-      <Filter>Source Files\axis\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto\crypto_cipher_null_cipher.c">
-      <Filter>Source Files\axis\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto\crypto_gf2_8.c">
-      <Filter>Source Files\axis\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto\crypto_hash_auth.c">
-      <Filter>Source Files\axis\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto\crypto_hash_hmac.c">
-      <Filter>Source Files\axis\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto\crypto_hash_null_auth.c">
-      <Filter>Source Files\axis\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto\crypto_hash_sha1.c">
-      <Filter>Source Files\axis\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto\crypto_kernel_alloc.c">
-      <Filter>Source Files\axis\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto\crypto_kernel_err.c">
-      <Filter>Source Files\axis\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto\crypto_kernel_key.c">
-      <Filter>Source Files\axis\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto\crypto_math.c">
-      <Filter>Source Files\axis\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto\crypto_rng_rand_source.c">
-      <Filter>Source Files\axis\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto\crypto_rng_prng.c">
-      <Filter>Source Files\axis\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto\crypto_rng_ctr_prng.c">
-      <Filter>Source Files\axis\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto\crypto_replay_ut_sim.c">
-      <Filter>Source Files\axis\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto\crypto_replay_rdbx.c">
-      <Filter>Source Files\axis\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto\crypto_replay_rdb.c">
-      <Filter>Source Files\axis\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto\crypto_math_stat.c">
-      <Filter>Source Files\axis\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto\crypto_kernel_crypto_kernel.c">
-      <Filter>Source Files\axis\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_axis64.cpp">
-      <Filter>Source Files\primitive\str</Filter>
     </ClCompile>
     <ClCompile Include="primitive\str\str_c.cpp">
       <Filter>Source Files\primitive\str</Filter>
@@ -3799,9 +2755,6 @@
     <ClCompile Include="axis\xml\xml_attr.cpp">
       <Filter>Source Files\axis\xml</Filter>
     </ClCompile>
-    <ClCompile Include="axis\xml\xml_axis_array.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
     <ClCompile Include="axis\xml\xml_data.cpp">
       <Filter>Source Files\axis\xml</Filter>
     </ClCompile>
@@ -3838,9 +2791,6 @@
     <ClCompile Include="axis\xml\xml_property_exchange.cpp">
       <Filter>Source Files\axis\xml</Filter>
     </ClCompile>
-    <ClCompile Include="axis\xml\xml_tree_axis.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
     <ClCompile Include="axis\xml\xml_tree_schema.cpp">
       <Filter>Source Files\axis\xml</Filter>
     </ClCompile>
@@ -3870,57 +2820,6 @@
     </ClCompile>
     <ClCompile Include="axis\os\android\android_window_impl.cpp">
       <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\hotplugin\hotplugin_container_launcher.cpp">
-      <Filter>Source Files\axis\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\hotplugin\hotplugin_host.cpp">
-      <Filter>Source Files\axis\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\hotplugin\hotplugin_plugin.cpp">
-      <Filter>Source Files\axis\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\windows\install_windows_boot.cpp">
-      <Filter>Source Files\axis\install\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\windows\install_windows_service.cpp">
-      <Filter>Source Files\axis\install\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\windows\install_windows_win.cpp">
-      <Filter>Source Files\axis\install\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_boot.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_bz.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_canvas.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_focus.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_install.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_installer.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_plugin.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_small_bell.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_starter_start.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_trace.cpp">
-      <Filter>Source Files\axis\install</Filter>
     </ClCompile>
     <ClCompile Include="axis\exception\exception.cpp">
       <Filter>Source Files\axis\exception</Filter>
@@ -4038,9 +2937,6 @@
     </ClCompile>
     <ClCompile Include="axis\exception\exception_void_implementation.cpp">
       <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\aaa_want_to_remove_install_window.cpp">
-      <Filter>Source Files\axis\install</Filter>
     </ClCompile>
     <ClCompile Include="axis\axis\axis.cpp">
       <Filter>Source Files\axis\axis</Filter>
@@ -4189,20 +3085,11 @@
     <ClCompile Include="primitive\math\_math.cpp">
       <Filter>Source Files\primitive\math</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_folder_watch.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="net\net_ip_enum.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
     <ClCompile Include="net\net_port_forward.cpp">
       <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_set.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_core_copydesk.cpp">
-      <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
     <ClCompile Include="axis\axis\axis_core_os.cpp">
       <Filter>Source Files\axis\axis</Filter>
@@ -4215,51 +3102,6 @@
     </ClCompile>
     <ClCompile Include="primitive\math\math_scalar.cpp">
       <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
-    <ClCompile Include="dataaxis\dataaxis_application.cpp">
-      <Filter>Source Files\dataaxis</Filter>
-    </ClCompile>
-    <ClCompile Include="dataaxis\dataaxis_axis.cpp">
-      <Filter>Source Files\dataaxis</Filter>
-    </ClCompile>
-    <ClCompile Include="dataaxis\dataaxis_client.cpp">
-      <Filter>Source Files\dataaxis</Filter>
-    </ClCompile>
-    <ClCompile Include="dataaxis\dataaxis_definition.cpp">
-      <Filter>Source Files\dataaxis</Filter>
-    </ClCompile>
-    <ClCompile Include="dataaxis\dataaxis_event_change.cpp">
-      <Filter>Source Files\dataaxis</Filter>
-    </ClCompile>
-    <ClCompile Include="dataaxis\dataaxis_field_definition.cpp">
-      <Filter>Source Files\dataaxis</Filter>
-    </ClCompile>
-    <ClCompile Include="dataaxis\dataaxis_id.cpp">
-      <Filter>Source Files\dataaxis</Filter>
-    </ClCompile>
-    <ClCompile Include="dataaxis\dataaxis_key.cpp">
-      <Filter>Source Files\dataaxis</Filter>
-    </ClCompile>
-    <ClCompile Include="dataaxis\dataaxis_selection.cpp">
-      <Filter>Source Files\dataaxis</Filter>
-    </ClCompile>
-    <ClCompile Include="dataaxis\dataaxis_selection_item.cpp">
-      <Filter>Source Files\dataaxis</Filter>
-    </ClCompile>
-    <ClCompile Include="dataaxis\dataaxis_server.cpp">
-      <Filter>Source Files\dataaxis</Filter>
-    </ClCompile>
-    <ClCompile Include="dataaxis\dataaxis_set.cpp">
-      <Filter>Source Files\dataaxis</Filter>
-    </ClCompile>
-    <ClCompile Include="dataaxis\dataaxis_stringhelper.cpp">
-      <Filter>Source Files\dataaxis</Filter>
-    </ClCompile>
-    <ClCompile Include="dataaxis\dataaxis_update_hint.cpp">
-      <Filter>Source Files\dataaxis</Filter>
-    </ClCompile>
-    <ClCompile Include="dataaxis\dataaxis_user_interaction.cpp">
-      <Filter>Source Files\dataaxis</Filter>
     </ClCompile>
     <ClCompile Include="axis\axis\axis_action_context.cpp">
       <Filter>Source Files\axis\axis</Filter>
@@ -4333,24 +3175,6 @@
     <ClCompile Include="axis\os\android\android_c.c">
       <Filter>Source Files\axis\os\android</Filter>
     </ClCompile>
-    <ClCompile Include="axis\axis\axis_print_job.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\geoip\geoip.cpp">
-      <Filter>Source Files\axis\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\geoip\geoip_city.cpp">
-      <Filter>Source Files\axis\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\geoip\geoip_region_name.cpp">
-      <Filter>Source Files\axis\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\geoip\geoip_time_zone.cpp">
-      <Filter>Source Files\axis\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\geoip\geoip_update.cpp">
-      <Filter>Source Files\axis\geoip</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\math\math_natural.cpp">
       <Filter>Source Files\primitive\math</Filter>
     </ClCompile>
@@ -4407,15 +3231,6 @@
     </ClCompile>
     <ClCompile Include="axis\axis\axis_id_pool.cpp">
       <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_thread.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_plugin_bare_paint_full_screen.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_plugin_bare_paint_discreet.cpp">
-      <Filter>Source Files\axis\install</Filter>
     </ClCompile>
     <ClCompile Include="primitive\str\iconv\allocator.c">
       <Filter>Source Files\primitive\str\iconv</Filter>
@@ -4513,19 +3328,10 @@
     <ClCompile Include="framework_c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_link.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
     <ClCompile Include="axis\os\windows\win2.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="axis\os\windows\windows.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_axis_file.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_axis_registry.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="axis\os\windows\windows_dll.cpp">
@@ -4603,176 +3409,20 @@
     <ClCompile Include="axis\os\cross\metrowin\cross_metrowin_user.cpp">
       <Filter>Source Files\axis\os\cross\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_application.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_copydesk.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_dir.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_factory_exchange.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_file.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_file_find.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_file_set.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_file_system.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_folder_watch.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_ip_enum.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_os.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_port_forward.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_print_job.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_registry.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_shell.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_stdio_file.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_thread.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_trace.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_window_draw.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="axis\os\windows\windows_library.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="axis\os\windows\windows_file_watcher.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_uac_tools.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\win1.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="axis\os\windows\windows_process.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\node.cpp">
-      <Filter>Source Files\axis\node</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\message\message.cpp">
-      <Filter>Source Files\axis\message</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\message\message_axis.cpp">
-      <Filter>Source Files\axis\message</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\message\message_dispatch.cpp">
-      <Filter>Source Files\axis\message</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\message\message_user.cpp">
-      <Filter>Source Files\axis\message</Filter>
     </ClCompile>
     <ClCompile Include="axis\os\windows\windows_debug.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="multithreading\multithreading_thread_impl.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
     <ClCompile Include="multithreading\multithreading.cpp">
       <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_application.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_copydesk.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_dir.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_dumpinit.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_error.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_exception.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_factory_exchange.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_file.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_file_set.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_file_system.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_ip_enum.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_main.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_os.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_port_forward.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_shell.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_stdio_file.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_thread.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_trace.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_util.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_window.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_window_draw.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android1.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android2.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\ansios\ansios_thread_impl.cpp">
-      <Filter>Source Files\axis\node\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_android.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
     </ClCompile>
     <ClCompile Include="axis\os\ansios\ansios_axis_file.cpp">
       <Filter>Source Files\axis\os\ansios</Filter>
@@ -4789,15 +3439,6 @@
     <ClCompile Include="axis\axis\axis_static_start.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_crypto.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_crypto.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_axis_crypto.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="axis\axis\axis_session_interface.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
@@ -4809,12 +3450,6 @@
     </ClCompile>
     <ClCompile Include="axis\exception\exception_parsing.cpp">
       <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\hotplugin\hotplugin.cpp">
-      <Filter>Source Files\axis\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\hotplugin\hotplugin_composer.cpp">
-      <Filter>Source Files\axis\hotplugin</Filter>
     </ClCompile>
     <ClCompile Include="axis\axis\axis_library.cpp">
       <Filter>Source Files\axis\axis</Filter>
@@ -4840,17 +3475,74 @@
     <ClCompile Include="primitive\data\data_tree_item.cpp">
       <Filter>Source Files\primitive\data</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_edit_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
+    <ClCompile Include="database\database_application.cpp">
+      <Filter>Source Files\database</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_interaction_impl.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
+    <ClCompile Include="database\database_base.cpp">
+      <Filter>Source Files\database</Filter>
     </ClCompile>
-    <ClCompile Include="axis\hotplugin\hotplugin_windows.cpp">
-      <Filter>Source Files\axis\hotplugin</Filter>
+    <ClCompile Include="database\database_client.cpp">
+      <Filter>Source Files\database</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_serializable.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
+    <ClCompile Include="database\database_definition.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_event_change.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_field_definition.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_id.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_key.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_selection.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_selection_item.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_server.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_set.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_stringhelper.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_update_hint.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\windows\windows_base_crypto.cpp">
+      <Filter>Source Files\axis\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\windows\windows_base_file.cpp">
+      <Filter>Source Files\axis\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\windows\windows_base_registry.cpp">
+      <Filter>Source Files\axis\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_base64.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_event_base.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_service_base.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\xml\xml_base_array.cpp">
+      <Filter>Source Files\axis\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\xml\xml_tree_base.cpp">
+      <Filter>Source Files\axis\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_memory_base.cpp">
+      <Filter>Source Files\primitive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

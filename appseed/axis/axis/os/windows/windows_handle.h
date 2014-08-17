@@ -138,7 +138,7 @@ struct ConstructDestruct
    { 
 #undef new
       new (pObject) TYPE; 
-#define new BASE_NEW
+#define new AXIS_NEW
    }
    static void Destruct(TYPE * pObject)
    {

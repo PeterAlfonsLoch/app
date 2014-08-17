@@ -5,7 +5,7 @@ namespace math
 {
 
 
-   class CLASS_DECL_BASE math :
+   class CLASS_DECL_AXIS math :
       virtual public ::object
    {
    private:
@@ -30,7 +30,7 @@ namespace math
       mutex          m_mutex;
 
 
-      math(sp(::base::application) papp);
+      math(sp(::axis::application) papp);
       virtual ~math();
 
 

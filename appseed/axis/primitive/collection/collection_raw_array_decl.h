@@ -12,8 +12,8 @@ class raw_array :
 {
 public:
 
-   typedef TYPE BASE_TYPE;
-   typedef ARG_TYPE BASE_ARG_TYPE;
+   typedef TYPE AXIS_TYPE;
+   typedef ARG_TYPE AXIS_ARG_TYPE;
 
    /*
 
@@ -297,7 +297,7 @@ public:
 
 
 
-   raw_array(sp(::base::application) papp = NULL, ::count nGrowBy = 32);
+   raw_array(sp(::axis::application) papp = NULL, ::count nGrowBy = 32);
    raw_array(const raw_array <TYPE, ARG_TYPE> & a);
 #ifdef MOVE_SEMANTICS
    raw_array(raw_array <TYPE,ARG_TYPE> && a);

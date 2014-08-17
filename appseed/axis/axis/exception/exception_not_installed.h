@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE not_installed : 
+class CLASS_DECL_AXIS not_installed : 
    virtual public ::exception::base
 {
 public:
@@ -15,7 +15,7 @@ public:
    string      m_strSchema;
 
 
-   not_installed(sp(::base::application) papp, const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema);
+   not_installed(sp(::axis::application) papp, const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema);
    not_installed(const not_installed & e);
    virtual ~not_installed();
 

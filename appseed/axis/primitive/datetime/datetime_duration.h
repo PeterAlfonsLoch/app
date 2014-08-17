@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE duration
+class CLASS_DECL_AXIS duration
 {
 public:
 
@@ -208,7 +208,7 @@ bool duration::operator == (const duration & duration) const
       && m_iNanoseconds == duration.m_iNanoseconds;
 }
 
-class CLASS_DECL_BASE millis :
+class CLASS_DECL_AXIS millis :
    public duration
 {
 public:
@@ -222,7 +222,7 @@ public:
 };
 
 
-class CLASS_DECL_BASE seconds :
+class CLASS_DECL_AXIS seconds :
    public millis
 {
 public:
@@ -237,7 +237,7 @@ public:
 };
 
 
-class CLASS_DECL_BASE minutes :
+class CLASS_DECL_AXIS minutes :
    public seconds
 {
 public:
@@ -252,7 +252,7 @@ public:
 };
 
 
-class CLASS_DECL_BASE hours :
+class CLASS_DECL_AXIS hours :
    public minutes
 {
 public:
@@ -267,7 +267,7 @@ public:
 };
 
 
-class CLASS_DECL_BASE days :
+class CLASS_DECL_AXIS days :
    public hours
 {
 public:

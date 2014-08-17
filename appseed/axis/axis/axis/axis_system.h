@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_BASE ptra:
+class CLASS_DECL_AXIS ptra:
    virtual public spa(element)
 {
 public:
@@ -15,12 +15,12 @@ typedef ::map < sp(element),sp(element),sp(element),sp(element) > element_map;
 typedef ::map < sp(element),sp(element),ptra,ptra > map_many;
 
 
-namespace base
+namespace axis
 {
 
 
-   class CLASS_DECL_BASE system:
-      virtual public ::base::application
+   class CLASS_DECL_AXIS system:
+      virtual public ::axis::application
    {
    public:
 
@@ -31,7 +31,7 @@ namespace base
       public:
 
          sp(::user::interaction)                      m_pui;
-         ::base::system_window ^                      m_pwindow;
+         ::axis::system_window ^                      m_pwindow;
 
 
       };
@@ -52,13 +52,6 @@ namespace base
 
 #endif
 
-#ifdef BSD_STYLE_SOCKETS
-
-      ::sockets::SSLInitializer *                    m_psslinit;
-
-#endif
-
-      ::user::interaction *                      m_psimpleui;
       os_data *                                    m_posdata;
 
 
@@ -68,7 +61,7 @@ namespace base
       ::url::departament                           m_urldepartament;
       sp(class ::xml::departament)                 m_pxml;
       const id_pool                                m_cidpool;
-      sp(class ::base::log)                        m_plog;
+      sp(class ::axis::log)                        m_plog;
       sp(math::math)                               m_pmath;
       sp(geometry::geometry)                       m_pgeometry;
 
@@ -80,25 +73,13 @@ namespace base
       static class id                              idEmpty;
       class ::str::base64                          m_base64;
 
-      ::file::system_sp                            m_spfile;
-      ::file::dir::system_sp                       m_spdir;
-      sp(::sockets::net)                           m_spnet;
-      ::net::port_forward_sp                       m_spportforward;
-      ::http::system                               m_httpsystem;
       ::string_to_string                           m_mapAppLibrary;
       class machine_event_central *                m_pmachineeventcentral;
-      class ::fontopus::user_set                   m_userset;
-      ::crypto::crypto_sp                          m_spcrypto;
       sp(class ::datetime::departament)            m_pdatetime;
       string_map < int_to_string >                 m_mapEnumToName;
       string_map < string_to_int >                 m_mapNameToEnum;
-      ::user::window_draw *                        m_ptwf;
-      class ::base::compress                       m_compress;
-      sp(::user::str)                              m_puserstr;
-      sp(::install::install)                       m_spinstall;
-      ::base::os_sp                                m_spos;
-      spa(::base::session)                         m_basesessionptra;
-      sp(colorertake5::ParserFactory)              m_pparserfactory;
+      ::axis::os_sp                                m_spos;
+      spa(::axis::session)                         m_basesessionptra;
 
 
       sp(mutex)                                    m_spmutexUserAppData;
@@ -112,7 +93,7 @@ namespace base
 
       sp(mutex)                                    m_spmutexFactory;
 
-      ::base::library                              m_libraryDraw2d;
+      ::axis::library                              m_libraryDraw2d;
 
 
       bool                                         m_bMatterFromHttpCache;
@@ -130,26 +111,9 @@ namespace base
       size_t                                       m_nSafetyPoolSize;      // ideal size
       ::html::html *                               m_phtml; // only defined  in core;
 
-      ::user::schema *                             m_pschemaLayeredFrame;
-
 
 #ifdef WINDOWSEX
 
-      class interaction_impl:
-         virtual public ::user::interaction
-      {
-      public:
-
-         interaction_impl(sp(::base::application) papp);
-
-         void install_message_handling(::message::dispatch * pdispath);
-
-         DECL_GEN_SIGNAL(_001MessageHub);
-
-
-      };
-
-      sp(interaction_impl)                                   m_spwindow;
 
       raw_array < MONITORINFO >                    m_monitorinfoa;
       raw_array < HMONITOR >                       m_hmonitora;
@@ -160,7 +124,7 @@ namespace base
 #endif
 
 
-      system(sp(::base::application) papp);
+      system(sp(::axis::application) papp);
       virtual ~system();
 
 
@@ -175,39 +139,23 @@ namespace base
       virtual int32_t exit_instance();
       virtual bool finalize();
 
-      spa(::base::session)                         & basesessionptra();
+      spa(::axis::session)                         & basesessionptra();
       application_ptra                                get_appptra();
 
 
 
-      class ::base::os                             & os();
+      class ::axis::os                             & os();
       class axis_factory                           & factory();
       inline ::url::departament                    & url()     { return m_urldepartament; }
       ::xml::departament                           & xml();
       class ::str::base64                          & base64();
 
-      class ::base::log                            & log();
+      class ::axis::log                            & log();
 
-      inline class ::http::system                  & http()    { return m_httpsystem; }
-      inline ::file::system                        & file()    { return *m_spfile; }
-      inline ::file::dir::system                   & dir()     { return *m_spdir; }
-      class ::sockets::net                         & net();
-      class ::base::compress                       & compress();
-      class ::machine_event_central                & machine_event_central();
-      ::fontopus::user_set                         & userset();
 
-      class ::crypto::crypto                       & crypto();
       ::datetime::departament                      & datetime();
-      ::user::str                                  & str();
-      ::install::install                           & install() { return *m_spinstall; }
 
       geometry::geometry                           & geometry() { return *m_pgeometry; }
-      ::colorertake5::ParserFactory                & parser_factory();
-
-
-
-
-//      application_ptra           get_appptra();
 
 
 
@@ -219,11 +167,11 @@ namespace base
 
 
 
-      using ::base::application::alloc;
-      virtual sp(element) alloc(sp(::base::application) papp,sp(type) info);
-      virtual sp(element) alloc(sp(::base::application) papp,const class id & idType);
+      using ::axis::application::alloc;
+      virtual sp(element) alloc(sp(::axis::application) papp,sp(type) info);
+      virtual sp(element) alloc(sp(::axis::application) papp,const class id & idType);
 
-      virtual sp(element) on_alloc(sp(::base::application) papp,sp(type) info);
+      virtual sp(element) on_alloc(sp(::axis::application) papp,sp(type) info);
       virtual sp(element) clone();
       template < class T >
       sp(T) clone(sp(T) p)
@@ -269,13 +217,12 @@ namespace base
 
       virtual bool is_system();
 
-      sp(::user::window_draw)               get_twf();
 
 
-      virtual void on_allocation_error(sp(::base::application) papp,sp(type) info);
-      //   sp(element) alloc(sp(::base::application) papp, sp(type) info);
-      sp(element) alloc(sp(::base::application) papp,const std_type_info & info);
-      //   virtual sp(element) on_alloc(sp(::base::application) papp, sp(type) info);
+      virtual void on_allocation_error(sp(::axis::application) papp,sp(type) info);
+      //   sp(element) alloc(sp(::axis::application) papp, sp(type) info);
+      sp(element) alloc(sp(::axis::application) papp,const std_type_info & info);
+      //   virtual sp(element) on_alloc(sp(::axis::application) papp, sp(type) info);
 
 
       static inline class id id(const ::std_type_info & info);
@@ -369,9 +316,7 @@ namespace base
          return get_enum_name(System.type_info < TYPE >(),(int32_t)e);
       }
 
-      virtual sp(::user::document) place_hold(sp(::user::interaction) pui);
-
-      virtual sp(::base::session) query_session(index iEdge);
+      virtual sp(::axis::session) query_session(index iEdge);
 
       virtual bool initialize_log(const char * pszId);
 
@@ -400,15 +345,12 @@ namespace base
       virtual ::count get_desk_monitor_count();
       virtual bool  get_desk_monitor_rect(index iMonitor,LPRECT lprect);
 
-      virtual index get_ui_wkspace(::user::interaction * pui);
       virtual index get_main_wkspace(LPRECT lprect = NULL);
       virtual ::count get_wkspace_count();
       virtual bool  get_wkspace_rect(index iWkspace,LPRECT lprect);
       virtual ::count get_desk_wkspace_count();
       virtual bool  get_desk_wkspace_rect(index iWkspace,LPRECT lprect);
 
-      virtual sp(::user::interaction) get_active_guie();
-      virtual sp(::user::interaction) get_focus_guie();
 
 
       virtual ::count get_application_count();
@@ -426,7 +368,7 @@ namespace base
    };
 
 
-} // namespace base
+} // namespace axis
 
 
 
@@ -455,7 +397,7 @@ inline ::file::input_stream & operator >>(::file::input_stream &  _Istr,bitset<_
 
 
 
-void CLASS_DECL_BASE __start_system(::base::system * psystem);
+void CLASS_DECL_AXIS __start_system(::axis::system * psystem);
 
 
 

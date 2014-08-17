@@ -1,5 +1,5 @@
-#ifndef CA2_APP_BASE_BASE_BASE_BASE_H
-#define CA2_APP_BASE_BASE_BASE_BASE_H
+#ifndef CA2_APP_AXIS_AXIS_AXIS_AXIS_H
+#define CA2_APP_AXIS_AXIS_AXIS_AXIS_H
 
 
 #pragma once
@@ -56,13 +56,13 @@
 
 #include "nodeapp/operational_system/_.h"
 
-#ifdef _BASE_STATIC
-   #define CLASS_DECL_BASE
-#elif defined(_BASE_LIBRARY)
-   #define CLASS_DECL_BASE  CLASS_DECL_EXPORT
+#ifdef _AXIS_STATIC
+   #define CLASS_DECL_AXIS
+#elif defined(_AXIS_LIBRARY)
+   #define CLASS_DECL_AXIS  CLASS_DECL_EXPORT
    #define LIBIDN_BUILDING
 #else
-   #define CLASS_DECL_BASE  CLASS_DECL_IMPORT
+   #define CLASS_DECL_AXIS  CLASS_DECL_IMPORT
 #endif
 
 #include "app/appseed/axis/version.h"
@@ -154,7 +154,7 @@ END_EXTERN_C
 #endif
 
 
-#endif // CA2_APP_BASE_BASE_BASE_BASE_H
+#endif // CA2_APP_AXIS_AXIS_AXIS_AXIS_H
 
 
 

@@ -1,22 +1,20 @@
 #pragma once
 
 
-namespace base
+namespace axis
 {
 
 
-   class CLASS_DECL_BASE application_interface:
-      virtual public ::thread,
-      virtual public ::base::live_object,
-      virtual public command_target_interface,
+   class CLASS_DECL_AXIS application_interface:
+      virtual public ::axis::live_object,
       virtual public request_interface,
       virtual public int_scalar_source
    {
    public:
 
 
-      ::base::system *                                m_pbasesystem;
-      ::base::session *                               m_pbasesession;
+      ::axis::system *                                m_pbasesystem;
+      ::axis::session *                               m_pbasesession;
       ::core::application *                           m_pcoreapp; // can be used only from core and upper
       ::core::system *                                m_pcoresystem; // can be used only from core and upper
       ::core::platform *                              m_pcoreplatform; // can be used only from core and upper
@@ -31,7 +29,7 @@ namespace base
    };
 
 
-} // namespace base
+} // namespace axis
 
 
 

@@ -7,7 +7,7 @@ class deque :
 {
 public:
     
-    typedef T BASE_TYPE;
+    typedef T AXIS_TYPE;
     
 
 };

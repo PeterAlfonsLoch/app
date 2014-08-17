@@ -1,12 +1,12 @@
 #pragma once
 
 
-class CLASS_DECL_BASE istring
+class CLASS_DECL_AXIS istring
 {
 protected:
 
 
-   sp(::base::application)  m_pbaseapp;
+   sp(::axis::application)  m_pbaseapp;
    string               m_str;
    string               m_strTemplate;
 
@@ -14,7 +14,7 @@ protected:
 public:
 
 
-   istring(sp(::base::application) papp);
+   istring(sp(::axis::application) papp);
    ~istring();
 
 

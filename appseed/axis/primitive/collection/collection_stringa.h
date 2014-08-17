@@ -3,14 +3,14 @@
 
 
 
-class CLASS_DECL_BASE stringa :
+class CLASS_DECL_AXIS stringa :
    virtual public string_array,
    virtual public ::file::serializable
 {
 public:
 
 
-   stringa(sp(::base::application) papp = NULL);
+   stringa(sp(::axis::application) papp = NULL);
    stringa(const char * psz);
    stringa(const string & str);
    stringa(const var & var);

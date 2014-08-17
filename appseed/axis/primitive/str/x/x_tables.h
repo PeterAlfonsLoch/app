@@ -1,11 +1,11 @@
-#ifndef BASE_X_TABLES_H
-#define BASE_X_TABLES_H
+#ifndef AXIS_X_TABLES_H
+#define AXIS_X_TABLES_H
 
 #pragma once
 
 /*
     This file was automatically generated from
-    UNICODE 3.2.0 UnicodeData.txt base.
+    UNICODE 3.2.0 UnicodeData.txt axis.
     Do not edit it with hands.
 */
 
@@ -451,6 +451,6 @@ static float arr_CharInfo2[] = {
  *
  * ***** END LICENSE BLOCK ***** */
 
-#endif // BASE_X_TABLES_H
+#endif // AXIS_X_TABLES_H
 
 

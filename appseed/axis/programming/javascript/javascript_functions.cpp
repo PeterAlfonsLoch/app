@@ -27,7 +27,7 @@
 
 #ifdef DEBUG
 #	ifdef _MSC_VER
-#		define new BASE_NEW
+#		define new AXIS_NEW
 #	endif
 #endif
 

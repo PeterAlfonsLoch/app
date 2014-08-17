@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_BASE object_list :
+class CLASS_DECL_AXIS object_list :
    public object
 {
 public:
@@ -95,8 +95,8 @@ protected:
 	void dump(dump_context &) const;
 	void assert_valid() const;
 	// local typedefs for class templates
-	typedef object* BASE_TYPE;
-	typedef object* BASE_ARG_TYPE;
+	typedef object* AXIS_TYPE;
+	typedef object* AXIS_ARG_TYPE;
 };
 
 

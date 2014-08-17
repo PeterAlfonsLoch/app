@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE stringl :
+class CLASS_DECL_AXIS stringl :
    virtual public string_list,
    virtual public ::file::serializable
 {

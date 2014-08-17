@@ -33,7 +33,7 @@
 
    Macros that need to be set while compiling this file:
      - ENABLE_RELOCATABLE 1
-     - INSTALLPREFIX the base installation directory
+     - INSTALLPREFIX the axis installation directory
      - INSTALLDIR the directory into which this program is installed
      - LIBPATHVAR the platform dependent runtime library path variable
      - LIBDIRS a comma-terminated list of strings representing the list of

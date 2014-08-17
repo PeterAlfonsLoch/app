@@ -5,13 +5,13 @@ namespace net
 {
 
 
-   class CLASS_DECL_BASE address
+   class CLASS_DECL_AXIS address
    {
    public:
 
 #if defined METROWIN && defined(__cplusplus_winrt)
 
-      class CLASS_DECL_BASE os_data
+      class CLASS_DECL_AXIS os_data
       {
       public:
 
@@ -61,7 +61,7 @@ namespace net
       address();
       address(int32_t family, port_t port = 0);
       address(const string & strAddress, port_t port = 0);
-      address(sp(::base::application) papp, const string & strAddress, const string & strServiceName);
+      address(sp(::axis::application) papp, const string & strAddress, const string & strServiceName);
       address(const in_addr & a, port_t port = 0);
       address(const in6_addr & a, port_t port = 0);
       address(const sockaddr_in & a);

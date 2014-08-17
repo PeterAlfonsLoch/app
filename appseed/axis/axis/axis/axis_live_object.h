@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace base
+namespace axis
 {
 
 
-   class CLASS_DECL_BASE live_object :
+   class CLASS_DECL_AXIS live_object :
       virtual public element
    {
    public:
@@ -26,7 +26,7 @@ namespace base
    };
 
 
-} // namespace base
+} // namespace axis
 
 
 

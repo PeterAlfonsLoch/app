@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace base
+namespace axis
 {
 
 
-   class CLASS_DECL_BASE application :
+   class CLASS_DECL_AXIS application :
       virtual public application_interface
    {
    public:
@@ -34,7 +34,7 @@ namespace base
       sp(::command_thread)                            m_pcommandthread;
       sp(class signal)                                m_psignal;
 
-      ::base::main_init_data *            m_pinitmaindata;
+      ::axis::main_init_data *            m_pinitmaindata;
 
 
       EExclusiveInstance                              m_eexclusiveinstance;
@@ -49,7 +49,6 @@ namespace base
       stringa                                         m_straMatterLocator;
       string                                          m_strLibraryName;
       string                                          m_strAppId;
-      synch_ptr_array < ::user::interaction >         m_framea;
       sp(::database::server)                          m_spdataserver;
 #ifdef WINDOWS
       HINSTANCE                                       m_hinstance;
@@ -87,11 +86,8 @@ namespace base
       static WPARAM                                   WPARAM_LANGUAGE_UPDATE;
 
       bool                                            m_bShouldInitializeGTwf;
-      sp(::user::interaction)                         m_pwndMain;
       bool                                            m_bInitializeProDevianMode;
 
-      ::file::dir::application                        m_dir;
-      ::file::application                             m_file;
 
 
 
@@ -103,8 +99,6 @@ namespace base
       virtual sp(element) alloc(const id & idType);
 
 
-      virtual int32_t simple_message_box(sp(::user::interaction) puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);
-      virtual int32_t simple_message_box_timeout(sp(::user::interaction) pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle);
       int32_t simple_message_box(const char * pszMessage,UINT fuStyle);
       virtual string message_box(const string & pszMatter,property_set & propertyset);
 
@@ -125,22 +119,14 @@ namespace base
       virtual bool is_serviceable();
 
 
-      virtual ::user::user * create_user();
-
 
       inline ::database::server &               dataserver()   { return *m_spdataserver; }
-      inline class ::file::dir::application &   dir()          { return m_dir; }
-      inline class ::file::application &        file()         { return m_file; }
 
 
 
-      virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::user::impact_system) ptemplate,sp(::user::document) pdocument);
 
 
-      virtual sp(::user::interaction) release_capture_uie();
-      virtual sp(::user::interaction) get_capture_uie();
-
-
+      
       void process(machine_event_data * pdata);
 
 
@@ -150,9 +136,6 @@ namespace base
 
 
 
-      ptr_array < ::user::interaction > frames();
-      virtual void add_frame(sp(::user::interaction) pwnd);
-      virtual void remove_frame(sp(::user::interaction) pwnd);
 
       virtual void DoWaitCursor(int32_t nCode); // 0 => restore, 1=> begin, -1=> end
       virtual void ShowWaitCursor(bool bShow = true);
@@ -223,13 +206,7 @@ namespace base
       virtual string get_license_id();
 
 
-      virtual sp(::user::interaction) get_active_guie();
-      virtual sp(::user::interaction) get_focus_guie();
-
-
-      virtual sp(::user::interaction) window_from_os_data(void * pdata);
-
-
+      
       virtual void construct(const char * pszAppId);
 
 
@@ -281,8 +258,6 @@ namespace base
 
 
 
-      virtual sp(::user::interaction) FindWindow(const char * lpszClassName,const char * lpszWindowName);
-      virtual sp(::user::interaction) FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow);
 
       virtual string get_version();
 
@@ -294,10 +269,8 @@ namespace base
 
       virtual bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
-      virtual sp(::user::document) _001OpenDocumentFile(var varFile);
       virtual void _001OnFileNew(signal_details * pobj);
 
-      virtual sp(::user::printer) get_printer(const char * pszDeviceName);
 
 
       virtual bool update_module_paths();
@@ -320,8 +293,6 @@ namespace base
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
 
-      virtual ::visual::icon * set_icon(object * pobject,::visual::icon * picon,bool bBigIcon);
-      virtual ::visual::icon * get_icon(object * pobject,bool bBigIcon) const;
 
       virtual bool final_handle_exception(::exception::exception & e);
 
@@ -393,9 +364,9 @@ namespace base
 
       void assert_user_logged_in();
 
-      virtual bool init_main_data(::base::main_init_data * pdata);
+      virtual bool init_main_data(::axis::main_init_data * pdata);
 
-      virtual bool set_main_init_data(::base::main_init_data * pdata);
+      virtual bool set_main_init_data(::axis::main_init_data * pdata);
 
 
    };
@@ -405,7 +376,7 @@ namespace base
 
 
 
-   class CLASS_DECL_BASE application_ptra:
+   class CLASS_DECL_AXIS application_ptra:
       virtual public spa(application)
    {
    public:
@@ -459,7 +430,7 @@ namespace base
 
 
 
-} // namespace base
+} // namespace axis
 
 
 

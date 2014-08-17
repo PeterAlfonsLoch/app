@@ -1,6 +1,6 @@
 //
 //  axis_static_start.cpp
-//  base
+//  axis
 //
 //
 //
@@ -91,7 +91,7 @@ extern mutex * g_pmutexCvt;
 #undef new
 
 
-namespace base
+namespace axis
 {
    
    
@@ -99,10 +99,10 @@ namespace base
    {
 
       
-      CLASS_DECL_BASE void init()
+      CLASS_DECL_AXIS void init()
       {
    
-         xxdebug_box("base.dll axis_static_start (0)", "box", MB_OK);
+         xxdebug_box("axis.dll axis_static_start (0)", "box", MB_OK);
          
    
          /*
@@ -152,11 +152,7 @@ namespace base
    
          //g_pmutexTrace = new mutex();
    
-#ifdef BSD_STYLE_SOCKETS
-   
-         ::sockets::axis_socket::s_pmutex = new mutex();
-   
-#endif
+
    
 #if defined(WINDOWSEX)
    
@@ -210,8 +206,8 @@ namespace base
    
 #endif // defined(APPLEOS)
    
-         // IMPLEMENT_BASE_FIXED_ALLOC_CONSTRUCTOR(var, 1024)
-         // IMPLEMENT_BASE_FIXED_ALLOC_CONSTRUCTOR(property, 1024)
+         // IMPLEMENT_AXIS_FIXED_ALLOC_CONSTRUCTOR(var, 1024)
+         // IMPLEMENT_AXIS_FIXED_ALLOC_CONSTRUCTOR(property, 1024)
 
          ::str::international::g_pmapRTL = new ::map < ::id,const ::id &,::id,const ::id & >();
 
@@ -266,7 +262,7 @@ namespace base
       
 
       
-      CLASS_DECL_BASE void term()
+      CLASS_DECL_AXIS void term()
       {
 
          delete g_pmutexFactory;
@@ -281,8 +277,8 @@ namespace base
 
          ::str::international::g_pmapRTL = NULL;
    
-         // IMPLEMENT_BASE_FIXED_ALLOC_DESTRUCTOR(property)
-         // IMPLEMENT_BASE_FIXED_ALLOC_DESTRUCTOR(var)
+         // IMPLEMENT_AXIS_FIXED_ALLOC_DESTRUCTOR(property)
+         // IMPLEMENT_AXIS_FIXED_ALLOC_DESTRUCTOR(var)
 
 #if defined(LINUX) || defined(APPLEOS)
    
@@ -356,13 +352,6 @@ namespace base
    
 #endif // defined(APPLEOS)
    
-#ifdef BSD_STYLE_SOCKETS
-         
-         delete ::sockets::axis_socket::s_pmutex;
-   
-         ::sockets::axis_socket::s_pmutex = NULL;
-   
-#endif
    
          //delete g_pmutexTrace;
    
@@ -407,7 +396,7 @@ namespace base
    } // namespace static_start
 
    
-} // namespace base
+} // namespace axis
 
 
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE element :
+class CLASS_DECL_AXIS element :
    virtual public root
 {
 public:
@@ -26,7 +26,7 @@ public:
 
    element();
    element(const element & o);
-   element(sp(::base::application) papp);
+   element(sp(::axis::application) papp);
    virtual ~element();
 
    virtual void delete_this();
@@ -39,9 +39,9 @@ public:
 
    inline allocatorsp allocer();
 
-   inline ::base::application * get_app() const { return m_pbaseapp; }
+   inline ::axis::application * get_app() const { return m_pbaseapp; }
 
-   virtual void set_app(sp(::base::application) papp);
+   virtual void set_app(sp(::axis::application) papp);
 
    inline bool is_set_ca_flag(element::flag eflag)
    {
@@ -65,7 +65,7 @@ public:
 };
 
 
-class CLASS_DECL_BASE allocator :
+class CLASS_DECL_AXIS allocator :
    virtual public element
 {
 public:
@@ -77,13 +77,13 @@ public:
 };
 
 
-class CLASS_DECL_BASE allocatorsp :
+class CLASS_DECL_AXIS allocatorsp :
    public sp(allocator)
 {
 public:
 
 
-   allocatorsp(sp(::base::application) papp);
+   allocatorsp(sp(::axis::application) papp);
 
 
 };

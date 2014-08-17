@@ -5,7 +5,7 @@ namespace exception
 {
 
 
-   class CLASS_DECL_BASE exception :
+   class CLASS_DECL_AXIS exception :
       virtual public ::object
    {
    public:
@@ -25,7 +25,7 @@ namespace exception
    };
 
 
-   void CLASS_DECL_BASE rethrow(exception * pe);
+   void CLASS_DECL_AXIS rethrow(exception * pe);
 
 
 } // namespace exception

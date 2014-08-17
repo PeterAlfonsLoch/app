@@ -5,7 +5,7 @@
 #include <sys/sem.h>
 #endif
 
-class CLASS_DECL_BASE event :
+class CLASS_DECL_AXIS event :
    virtual public event_base
 {
 public:
@@ -19,7 +19,7 @@ public:
 #endif
 
 
-   event(sp(::base::application) papp, bool bInitiallyOwn = FALSE, bool bManualReset = FALSE, const char * lpszNAme = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
+   event(sp(::axis::application) papp, bool bInitiallyOwn = FALSE, bool bManualReset = FALSE, const char * lpszNAme = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
    virtual ~event()
 #ifdef METROWIN
        { }

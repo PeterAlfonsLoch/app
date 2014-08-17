@@ -41,7 +41,7 @@ string_map < INT_PTR, INT_PTR > & __library()
 int g_iBaseRefCount = 0;
 
 
-CLASS_DECL_BASE int get_base_init()
+CLASS_DECL_AXIS int get_base_init()
 {
 
    return g_iBaseRefCount;
@@ -49,7 +49,7 @@ CLASS_DECL_BASE int get_base_init()
 }
 
 
-CLASS_DECL_BASE int_bool defer_base_init()
+CLASS_DECL_AXIS int_bool defer_base_init()
 {
 
    g_iBaseRefCount++;
@@ -65,7 +65,7 @@ CLASS_DECL_BASE int_bool defer_base_init()
 }
 
 
-CLASS_DECL_BASE int_bool defer_base_term()
+CLASS_DECL_AXIS int_bool defer_base_term()
 {
 
    g_iBaseRefCount--;
@@ -84,12 +84,12 @@ CLASS_DECL_BASE int_bool defer_base_term()
 bool axis_init()
 {
 
-   ::base::static_start::init();
+   ::axis::static_start::init();
 
    if(!__node_pre_init())
       return false;
 
-   ::base::static_start::init();
+   ::axis::static_start::init();
 
    __init_threading_count();
 
@@ -125,7 +125,7 @@ bool axis_term()
 
    __node_pos_term();
 
-   ::base::static_start::term();
+   ::axis::static_start::term();
 
    return true;
 

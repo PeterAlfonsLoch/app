@@ -3,7 +3,7 @@
 
 // from 7-zip
 
-namespace base
+namespace axis
 {
 
    template <class T> inline T MyMin(T a, T b)
@@ -209,7 +209,7 @@ do {                                           \
 // constructor and destructor code are now smaller.
 ///////////////////////////////////////////////////////////////////////////////
 // This should only be used on a class that is not directly createable but is
-// rather only used as a base class.  Additionally, the constructor and
+// rather only used as a axis class.  Additionally, the constructor and
 // destructor (if provided by the ::fontopus::user) should not call anything that may cause
 // a virtual function call to occur back on the object.
 ///////////////////////////////////////////////////////////////////////////////
@@ -271,8 +271,8 @@ do {                                           \
 #endif
 #endif
 
-#define API CLASS_DECL_BASE __declspec(nothrow) HRESULT __stdcall
-#define API_(x)CLASS_DECL_BASE __declspec(nothrow) x __stdcall
+#define API CLASS_DECL_AXIS __declspec(nothrow) HRESULT __stdcall
+#define API_(x)CLASS_DECL_AXIS __declspec(nothrow) x __stdcall
 #define APIINL API
 #define APIINL_(x) API_(x)
 #define INLINE inline
@@ -387,7 +387,7 @@ this end
 #define TRY(x) TRYALLOC(x)
 #endif   //TRY
 
-#define offsetofclass(base, derived) ((uint_ptr)(static_cast<base*>((derived*)_PACKING))-_PACKING)
+#define offsetofclass(axis, derived) ((uint_ptr)(static_cast<axis*>((derived*)_PACKING))-_PACKING)
 
 /////////////////////////////////////////////////////////////////////////////
 // Master version numbers

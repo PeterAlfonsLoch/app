@@ -1,21 +1,17 @@
 #pragma once
 
 
-namespace base
+namespace axis
 {
 
 
-   class CLASS_DECL_BASE session:
-      virtual public ::base::application,
-      virtual public ::base::session_interface,
-      virtual public ::user::schema
+   class CLASS_DECL_AXIS session:
+      virtual public ::axis::application,
+      virtual public ::axis::session_interface
    {
    public:
 
       
-
-      ::user::interaction *                                    m_puiMouseMoveCapture;
-      ::user::interaction *                                    m_puiLastLButtonDown;
 
       bool                                                     m_bMatterFromHttpCache;
 
@@ -30,47 +26,33 @@ namespace base
 
 
       ::core::platform *                                       m_pcoreplatform;
-      string_map < sp(::base::application) >                   m_mapApplication;
-      sp(::userpresence::userpresence)                         m_puserpresence;
-      sp(::fs::fs)                                             m_spfs;
-      sp(class ::fs::data)                                     m_spfsdata;
+      string_map < sp(::axis::application) >                   m_mapApplication;
 
       bool                                                     m_bDrawCursor;
 
 
-      ::visual::e_cursor                                       m_ecursor;
-      ::visual::e_cursor                                       m_ecursorDefault;
-      ::base::copydesk_sp                                      m_spcopydesk;
-
-
       application_ptra                                         m_appptra;
-      sp(::user::interaction)                                  m_spuiFocus;
-      sp(::user::str_context)                                  m_puserstrcontext;
       bool                                                     m_bZipIsDir;
-      map < ::user::e_key,::user::e_key,bool,bool > *          m_pmapKeyPressed;
-      sp(::base::savings)                                      m_psavings;
+      sp(::axis::savings)                                      m_psavings;
       bool                                                     m_bIfs;
-      sp(::user::user)                                         m_spuser;
 
 
 
 
-      ::user::schema_simple_impl                               m_schemasimple;
 
 
 
 
-      session(sp(::base::application) papp);
+      session(sp(::axis::application) papp);
       virtual ~session();
 
-      inline ::userpresence::userpresence & userpresence() { return *m_puserpresence; }
 
       application_ptra & appptra();
 
       virtual bool is_session();
 
 
-      void construct(sp(::base::application) papp, int iPhase);
+      void construct(sp(::axis::application) papp, int iPhase);
 
       virtual bool process_initialize();
 
@@ -87,12 +69,8 @@ namespace base
       virtual int32_t exit_instance();
 
 
-      ::base::copydesk & copydesk();
-      inline sp(class ::fs::data)               fs()           { return m_spfsdata; }
-      inline sp(class ::user::user)             user()         { return m_spuser; }
-      inline ::base::savings &                  savings()      { return *m_psavings; }
+      inline ::axis::savings &                  savings()      { return *m_psavings; }
 
-      ::user::str_context *                     str_context();
 
 
 
@@ -116,11 +94,9 @@ namespace base
 
 
 
-      virtual sp(::base::application) start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext);
+      virtual sp(::axis::application) start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext);
 
       
-      virtual void set_cursor(::visual::e_cursor ecursor);
-      virtual void set_default_cursor(::visual::e_cursor ecursor);
 
       
       virtual COLORREF get_default_color(uint64_t ui);
@@ -132,10 +108,6 @@ namespace base
       virtual bool get_auth(const string & pszForm,string & strUsername,string & strPassword);
 
 
-      virtual bool is_key_pressed(::user::e_key ekey);
-
-      virtual void set_key_pressed(::user::e_key ekey,bool bPressed);
-
 
 
 
@@ -145,7 +117,6 @@ namespace base
       virtual ::count get_monitor_count();
       virtual bool  get_monitor_rect(index iMonitor,LPRECT lprect);
 
-      virtual index get_ui_wkspace(::user::interaction * pui);
       virtual index get_main_wkspace(LPRECT lprect = NULL);
       virtual bool set_main_wkspace(index iWkspace);
       virtual ::count get_wkspace_count();
@@ -164,8 +135,6 @@ namespace base
 
       virtual void  get_monitor(rect_array & rectaMonitor, rect_array & rectaIntersect, const RECT & rect);
 
-      virtual index get_zoneing(LPRECT lprect, const RECT & rect,::user::EAppearance eappearance);
-      virtual index get_best_zoneing(::user::EAppearance * peappearance, LPRECT lprect,const RECT & rect);
       virtual index get_best_monitor(LPRECT lprect,const RECT & rect);
       virtual index get_best_wkspace(LPRECT lprect,const RECT & rect);
       virtual index get_good_restore(LPRECT lprect,const RECT & rect);
@@ -179,9 +148,6 @@ namespace base
       virtual void  get_cursor_pos(LPPOINT lppoint);
 
       
-      virtual sp(::user::interaction) get_active_guie();
-      virtual sp(::user::interaction) get_focus_guie();
-
 
 
 
@@ -205,7 +171,7 @@ namespace base
    };
 
 
-} // namespace base
+} // namespace axis
 
 
 
@@ -214,7 +180,7 @@ namespace base
 
 
 
-inline ::base::session & sess(::base::application * papp);
+inline ::axis::session & sess(::axis::application * papp);
 
 
 

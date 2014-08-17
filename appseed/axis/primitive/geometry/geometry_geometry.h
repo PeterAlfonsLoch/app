@@ -5,7 +5,7 @@ namespace geometry
 {
 
 
-   class CLASS_DECL_BASE rotation
+   class CLASS_DECL_AXIS rotation
    {
    public:
       double   m_dCosPhi;
@@ -16,7 +16,7 @@ namespace geometry
       void rotate(LPPOINT lppoint, int32_t iCount);
    };
 
-   class CLASS_DECL_BASE geometry :
+   class CLASS_DECL_AXIS geometry :
       virtual public ::object
    {
    public:
@@ -30,7 +30,7 @@ namespace geometry
       void deflate(LPRECT lprect, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate);
 
 
-      geometry(sp(::base::application) papp);
+      geometry(sp(::axis::application) papp);
       virtual ~geometry();
 
    };

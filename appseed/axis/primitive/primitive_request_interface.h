@@ -7,7 +7,7 @@ class create_context;
 class command_line;
 
 
-class CLASS_DECL_BASE request_interface :
+class CLASS_DECL_AXIS request_interface :
    virtual public element
 {
 public:

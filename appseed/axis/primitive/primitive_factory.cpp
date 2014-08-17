@@ -13,7 +13,7 @@ void itemswap(void * pswaparg, index i1, index i2)
 
 bool is_safe_set(void * p);
 
-axis_factory::axis_factory(sp(::base::application) papp) :
+axis_factory::axis_factory(sp(::axis::application) papp) :
    element(papp)
 {
    m_pmutex = new mutex(papp);
@@ -161,7 +161,7 @@ sp(factory_allocator) axis_factory::get_allocator(const char * pszType)
 
 
 
-sp(element) axis_factory::create(sp(::base::application) papp, sp(type) info)
+sp(element) axis_factory::create(sp(::axis::application) papp, sp(type) info)
 {
 
    if(info->m_spmutex.is_null())
@@ -266,7 +266,7 @@ factory_item_base::~factory_item_base()
 
 
 
-CLASS_DECL_BASE mutex * g_pmutexFactory = NULL;
+CLASS_DECL_AXIS mutex * g_pmutexFactory = NULL;
 
 
 

@@ -79,7 +79,7 @@
 /*** Bootstring parameters for Punycode ***/
 
 enum
-{ base = 36, tmin = 1, tmax = 26, skew = 38, damp = 700,
+{ axis = 36, tmin = 1, tmax = 26, skew = 38, damp = 700,
   initial_bias = 72, initial_n = 0x80, delimiter = 0x2D
 };
 
@@ -91,18 +91,18 @@ enum
 
 /* decode_digit(cp) returns the numeric value of a basic code */
 /* point (for use in representing integers) in the range 0 to */
-/* base-1, or base if cp does not represent a value.          */
+/* axis-1, or axis if cp does not represent a value.          */
 
 static punycode_uint
 decode_digit (punycode_uint cp)
 {
   return cp - 48 < 10 ? cp - 22 : cp - 65 < 26 ? cp - 65 :
-    cp - 97 < 26 ? cp - 97 : base;
+    cp - 97 < 26 ? cp - 97 : axis;
 }
 
 /* encode_digit(d,flag) returns the basic code point whose value      */
 /* (when used for representing integers) is d, which needs to be in   */
-/* the range 0 to base-1.  The lowercase form is used unless flag is  */
+/* the range 0 to axis-1.  The lowercase form is used unless flag is  */
 /* nonzero, in which case the uppercase form is used.  The behavior   */
 /* is undefined if flag is nonzero and digit d has no uppercase form. */
 
@@ -150,12 +150,12 @@ adapt (punycode_uint delta, punycode_uint numpoints, int firsttime)
   /* delta >> 1 is a faster way of doing delta / 2 */
   delta += delta / numpoints;
 
-  for (k = 0; delta > ((base - tmin) * tmax) / 2; k += base)
+  for (k = 0; delta > ((axis - tmin) * tmax) / 2; k += axis)
     {
-      delta /= base - tmin;
+      delta /= axis - tmin;
     }
 
-  return k + (base - tmin + 1) * delta / (delta + skew);
+  return k + (axis - tmin + 1) * delta / (delta + skew);
 }
 
 /*** Main encode function ***/
@@ -283,7 +283,7 @@ punycode_encode (size_t input_length,
 	    {
 	      /* Represent delta as a generalized variable-length integer: */
 
-	      for (q = delta, k = base;; k += base)
+	      for (q = delta, k = axis;; k += axis)
 		{
 		  if (out >= max_out)
 		    return punycode_big_output;
@@ -291,8 +291,8 @@ punycode_encode (size_t input_length,
 		    k >= bias + tmax ? tmax : k - bias;
 		  if (q < t)
 		    break;
-		  output[out++] = encode_digit (t + (q - t) % (base - t), 0);
-		  q = (q - t) / (base - t);
+		  output[out++] = encode_digit (t + (q - t) % (axis - t), 0);
+		  q = (q - t) / (axis - t);
 		}
 
 	      output[out++] = encode_digit (q, case_flags && case_flags[j]);
@@ -396,12 +396,12 @@ punycode_decode (size_t input_length,
       /* if we increase i as we go, then subtract off its starting */
       /* value at the end to obtain delta.                         */
 
-      for (oldi = i, w = 1, k = base;; k += base)
+      for (oldi = i, w = 1, k = axis;; k += axis)
 	{
 	  if (in >= input_length)
 	    return punycode_bad_input;
 	  digit = decode_digit (input[in++]);
-	  if (digit >= base)
+	  if (digit >= axis)
 	    return punycode_bad_input;
 	  if (digit > (maxint - i) / w)
 	    return punycode_overflow;
@@ -410,9 +410,9 @@ punycode_decode (size_t input_length,
 	    k >= bias + tmax ? tmax : k - bias;
 	  if (digit < t)
 	    break;
-	  if (w > maxint / (base - t))
+	  if (w > maxint / (axis - t))
 	    return punycode_overflow;
-	  w *= (base - t);
+	  w *= (axis - t);
 	}
 
       bias = adapt (i - oldi, out + 1, oldi == 0);

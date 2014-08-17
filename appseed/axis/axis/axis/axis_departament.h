@@ -2,12 +2,12 @@
 
 
 
-namespace base
+namespace axis
 {
 
 
 
-   class CLASS_DECL_BASE departament :
+   class CLASS_DECL_AXIS departament :
    virtual public signalizable
    {
    public:
@@ -41,7 +41,7 @@ namespace base
 
 
 
-} // namespace base
+} // namespace axis
 
 
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-os_exception::os_exception(sp(::base::application) papp) :
+os_exception::os_exception(sp(::axis::application) papp) :
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),
@@ -11,7 +11,7 @@ os_exception::os_exception(sp(::base::application) papp) :
 }
 
 
-os_exception::os_exception(sp(::base::application) papp, const char * pszMessage) :
+os_exception::os_exception(sp(::axis::application) papp, const char * pszMessage) :
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),

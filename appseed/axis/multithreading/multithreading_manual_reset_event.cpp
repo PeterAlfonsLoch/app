@@ -17,7 +17,7 @@
 //                      manual_reset_event class with an initial state.
 //
 //*****************************************************************************
-manual_reset_event::manual_reset_event(sp(::base::application) papp, bool bInitiallyOwn) :
+manual_reset_event::manual_reset_event(sp(::axis::application) papp, bool bInitiallyOwn) :
    element(papp),
     ::event(papp, bInitiallyOwn, true)
 {

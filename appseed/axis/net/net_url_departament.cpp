@@ -11,9 +11,9 @@ namespace url
 {
 
 
-   departament::departament(sp(::base::application) papp) :
+   departament::departament(sp(::axis::application) papp) :
 	   element(papp),
-      ::base::departament(papp)
+      ::axis::departament(papp)
    {
 
    }
@@ -1638,7 +1638,7 @@ namespace url
 } // namespace url
 
 
-CLASS_DECL_BASE bool url_query_get_param_dup(string & strParam, const char * pszKey, const char * pszUrl)
+CLASS_DECL_AXIS bool url_query_get_param_dup(string & strParam, const char * pszKey, const char * pszUrl)
 {
 
    const char * pszBeg;

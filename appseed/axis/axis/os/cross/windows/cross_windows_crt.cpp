@@ -4,7 +4,7 @@
 #define EUNKNOWN        37               // Unknown error
 
 
-CLASS_DECL_BASE errno_t _ctime64_s(char * buf, int32_t iSize, const time_t * timer )
+CLASS_DECL_AXIS errno_t _ctime64_s(char * buf, int32_t iSize, const time_t * timer )
 {
 
    char * ret = NULL;

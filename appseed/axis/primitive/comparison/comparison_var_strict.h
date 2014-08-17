@@ -5,7 +5,7 @@ namespace comparison
 {
 
 
-   class CLASS_DECL_BASE var_strict
+   class CLASS_DECL_AXIS var_strict
    {
    public:
 
@@ -31,17 +31,17 @@ namespace comparison
       bool operator != (int32_t i) const;
       bool operator != (bool b) const;
 
-      friend bool CLASS_DECL_BASE operator == (const char * psz, const ::comparison::var_strict & var);
-      friend bool CLASS_DECL_BASE operator == (const string & str, const ::comparison::var_strict & var);
-      friend bool CLASS_DECL_BASE operator == (double d, const ::comparison::var_strict & var);
-      friend bool CLASS_DECL_BASE operator == (int32_t i, const ::comparison::var_strict & var);
-      friend bool CLASS_DECL_BASE operator == (bool b, const ::comparison::var_strict & var);
+      friend bool CLASS_DECL_AXIS operator == (const char * psz, const ::comparison::var_strict & var);
+      friend bool CLASS_DECL_AXIS operator == (const string & str, const ::comparison::var_strict & var);
+      friend bool CLASS_DECL_AXIS operator == (double d, const ::comparison::var_strict & var);
+      friend bool CLASS_DECL_AXIS operator == (int32_t i, const ::comparison::var_strict & var);
+      friend bool CLASS_DECL_AXIS operator == (bool b, const ::comparison::var_strict & var);
 
-      friend bool CLASS_DECL_BASE operator != (const char * psz, const ::comparison::var_strict & var);
-      friend bool CLASS_DECL_BASE operator != (const string & str, const ::comparison::var_strict & var);
-      friend bool CLASS_DECL_BASE operator != (double d, const ::comparison::var_strict & var);
-      friend bool CLASS_DECL_BASE operator != (int32_t i, const ::comparison::var_strict & var);
-      friend bool CLASS_DECL_BASE operator != (bool b, const ::comparison::var_strict & var);
+      friend bool CLASS_DECL_AXIS operator != (const char * psz, const ::comparison::var_strict & var);
+      friend bool CLASS_DECL_AXIS operator != (const string & str, const ::comparison::var_strict & var);
+      friend bool CLASS_DECL_AXIS operator != (double d, const ::comparison::var_strict & var);
+      friend bool CLASS_DECL_AXIS operator != (int32_t i, const ::comparison::var_strict & var);
+      friend bool CLASS_DECL_AXIS operator != (bool b, const ::comparison::var_strict & var);
 
       var_strict & operator = (const var_strict & var);
 

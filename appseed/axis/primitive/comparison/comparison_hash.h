@@ -29,7 +29,7 @@ namespace comparison
    };
 
    template < >
-   class CLASS_DECL_BASE hash < const string & >
+   class CLASS_DECL_AXIS hash < const string & >
    {
    public:
 
@@ -51,7 +51,7 @@ namespace comparison
    };
 
    template < >
-   class CLASS_DECL_BASE hash < const wstring & >
+   class CLASS_DECL_AXIS hash < const wstring & >
    {
    public:
 
@@ -77,7 +77,7 @@ namespace comparison
       }
 
    };
-   class CLASS_DECL_BASE strid_hash
+   class CLASS_DECL_AXIS strid_hash
    {
    public:
 
@@ -90,7 +90,7 @@ namespace comparison
    
    
    template < >
-   class CLASS_DECL_BASE hash < id >
+   class CLASS_DECL_AXIS hash < id >
    {
    public:
       
@@ -106,7 +106,7 @@ namespace comparison
 
 
 
-template<> CLASS_DECL_BASE UINT HashKey<const wchar_t *> (const wchar_t * key);
+template<> CLASS_DECL_AXIS UINT HashKey<const wchar_t *> (const wchar_t * key);
 
 
 template<> inline UINT HashKey<rect> (rect key)

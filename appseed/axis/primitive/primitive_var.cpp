@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-//IMPLEMENT_BASE_FIXED_ALLOC_STATIC(var);
+//IMPLEMENT_AXIS_FIXED_ALLOC_STATIC(var);
 
 
 var::var(const char * psz)
@@ -1994,7 +1994,7 @@ const ::duration & var::duration() const
 }
 
 
-property_set & var::propset(sp(::base::application) papp)
+property_set & var::propset(sp(::axis::application) papp)
 {
    sp(property_set) pset;
    if(m_etype == type_pvar)

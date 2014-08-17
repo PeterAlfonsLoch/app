@@ -22,20 +22,18 @@ class property_set;
 class object;
 class type;
 
-namespace base
+namespace axis
 {
 
    class application;
    class system;
    class application_signal_details;
-   class copydesk;
 
-   typedef smart_pointer < copydesk > copydesk_sp;
    class command;
 
 
 
-} // namespace base
+} // namespace axis
 
 
 class dump_context;
@@ -62,15 +60,6 @@ class id;
 
 
 
-namespace visual
-{
-
-
-   class icon;
-
-
-} // namespace visual
-
 namespace primitive
 {
 
@@ -91,14 +80,7 @@ namespace plane
 class cmd_ui;
 
 
-namespace draw2d
-{
 
-
-   class graphics;
-
-
-} // namespace draw2d
 
 
 namespace file
@@ -120,49 +102,9 @@ namespace html
 } // namespace html
 
 
-namespace user
-{
-
-   class interaction_impl;
-   class view_creator_data;
-   class schema;
-   class tree;
-
-}
-
-typedef sp(::user::interaction_impl) window_sp;
-
-namespace user
-{
-
-   class interaction;
-   class control_event;
-   class create_context;
-   class impact;
-   class printer;
-   class user;
-   class document;
-   class frame_window;
-
-   class form_interface;
-   class form_list;
-   class form_callback;
 
 
-} // namespace user
-
-
-namespace simple_ui
-{
-
-   class label;
-   class edit_box;
-   class password;
-   class tap;
-
-}
-
-namespace base
+namespace axis
 {
 
    template < typename T >
@@ -175,7 +117,7 @@ namespace base
       }
    }
 
-} // namespace base
+} // namespace axis
 
 
 
@@ -203,7 +145,7 @@ struct __SIZEPARENTPARAMS
 typedef struct tagRECTD RECTD;
 
 
-namespace base
+namespace axis
 {
 
    class live_object;
@@ -220,8 +162,8 @@ namespace base
     
    };
 
-   CLASS_DECL_BASE bool get_window_rect(system_window ^ pwindow,RECTD * lprect);
-   CLASS_DECL_BASE bool get_window_rect(system_window ^ pwindow,LPRECT lprect);
+   CLASS_DECL_AXIS bool get_window_rect(system_window ^ pwindow,RECTD * lprect);
+   CLASS_DECL_AXIS bool get_window_rect(system_window ^ pwindow,LPRECT lprect);
 
 #endif
 
@@ -238,7 +180,7 @@ namespace base
 
    class session;
 
-} // namespace base
+} // namespace axis
 
 
 // only usable from core and core dependants
@@ -270,64 +212,7 @@ namespace xml
 } // namespace xml
 
 
-namespace user
-{
 
-   class place_holder;
-   class menu_base_item;
-
-#if defined METROWIN && defined(__cplusplus_winrt)
-
-    class CLASS_DECL_BASE native_window_initialize
-   {
-   public:
-
-
-      Platform::Agile<Windows::UI::Core::CoreWindow> window;
-      ::base::system_window ^ pwindow;
-
-
-   };
-
-#elif defined(APPLE_IOS)
-
-    class CLASS_DECL_BASE native_window_initialize
-    {
-    public:
-
-        RECT   m_rect;
-
-    };
-
-#else
-
-   class native_window_initialize;
-
-#endif
-
-
-   class control_event;
-   class frame_window;
-   class menu_base;
-
-
-
-
-
-   CLASS_DECL_BASE bool is_descendant(::user::interaction * puiParent, ::user::interaction * puiChild);
-
-
-} // namespace user
-
-
-
-
-namespace install
-{
-
-   class install;
-
-} // namespace install
 
 enum e_extract
 {
@@ -442,23 +327,23 @@ typedef void * HDWP;
 #endif
 
 
-typedef  void(*PFN_ca2_factory_exchange)(sp(::base::application) papp);
+typedef  void(*PFN_ca2_factory_exchange)(sp(::axis::application) papp);
 
 
 
 
 
-CLASS_DECL_BASE bool axis_init();
-CLASS_DECL_BASE bool axis_term();
+CLASS_DECL_AXIS bool axis_init();
+CLASS_DECL_AXIS bool axis_term();
 
-CLASS_DECL_BASE bool __node_pre_init();
-CLASS_DECL_BASE bool __node_pos_init();
+CLASS_DECL_AXIS bool __node_pre_init();
+CLASS_DECL_AXIS bool __node_pos_init();
 
-CLASS_DECL_BASE bool __node_pre_term();
-CLASS_DECL_BASE bool __node_pos_term();
+CLASS_DECL_AXIS bool __node_pre_term();
+CLASS_DECL_AXIS bool __node_pos_term();
 
 
-CLASS_DECL_BASE ::base::application * get_thread_app();
+CLASS_DECL_AXIS ::axis::application * get_thread_app();
 
 #include "axis_definition.h"
 
@@ -587,9 +472,6 @@ namespace file
 #include "axis/filesystem/file/file_string_buffer.h"
 
 
-#include "axis/filesystem/file/file_set.h"
-
-
 #include "axis/primitive/primitive_var2.h"
 
 
@@ -610,12 +492,6 @@ namespace file
 
 #include "axis/multithreading/multithreading.h"
 
-
-#include "axis/axis/geoip/geoip.h"
-
-
-
-#include "axis_draw2d.h"
 
 
 #include "axis_gudo.h"
@@ -676,7 +552,7 @@ namespace file
 
 
 
-CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
+CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 
 
 #include "axis_plex_heap.h"
@@ -684,76 +560,26 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "axis/primitive/primitive_type.h"
 
 
-#include "graphics/graphics.h"
-#include "user/user/user_enum.h"
-#include "user/user/user_keyboard_focus.h"
-#include "user/user/user_mouse_focus.h"
-#include "user/user/user_elemental.h"
 #include "axis_flags.h"
 #include "primitive/primitive_check.h"
-#include "user/user/user_check_interface.h"
-#include "axis_command.h"
-#include "graphics/visual/visual_const.h"
-#include "user/user/user_key_enum.h"
-#include "axis/axis/message/message.h"
-#include "axis_command_target.h"
-#include "user/user/user_schema.h"
-#include "user/user/user_schema_simple_impl.h"
-#include "user/user/user_schema_layered_frame.h"
-#include "user/user/user_text_interface.h"
-#include "user/user/user_draw_interface.h"
-#include "user/user/user_window_util.h"
-#include "user/user/user_interaction_base.h"
-#include "user/user/user_buffer.h"
 #include "axis_keep.h"
 #include "axis/filesystem/file/file_stream2.h"
-#include "user/user/user_interaction.h"
-#include "user/user/user_interaction_impl_base.h"
-#include "user/user/user_interaction_child.h"
-#include "user/user/user_interaction_impl.h"
-#include "user/user/user_control_bar.h"
-#include "user/user/user_wait_cursor.h"
-#include "user/user/user_frame_window.h"
-#include "user/user/user_server.h"
-#include "user/user/user_impact_system.h"
-
-
 
 
 
 #include "primitive/primitive_interlocked_long.h"
 #include "primitive/primitive_interlocked_long_pulse.h"
 
-#include "primitive/data/data_data.h"
-#include "primitive/data/data_data_listener.h"
-#include "primitive/data/data_data_container.h"
-#include "primitive/data/data_item.h"
-#include "primitive/data/data_tree_item.h"
-#include "primitive/data/data_tree.h"
-#include "primitive/data/data_simple_item.h"
 
-#include "axis/primitive/primitive_edit.h"
 #include "axis_departament.h"
 #include "axis_departament_container.h"
 #include "axis/xml/xml.h"
-#include "axis/user/simple_ui/simple_ui_style.h"
-#include "axis/user/simple_ui/simple_ui_interaction.h"
 #include "axis/database/database.h"
-#include "user/user/user_document_data_map.h"
-#include "user/user/user_document.h"
-#include "user/user/user_impact.h"
 #include "axis_live_object.h"
 #include "axis_live_signal.h"
-#include "multithreading/multithreading_thread.h"
-#include "axis_message_queue_listener.h"
-#include "axis_message_queue.h"
-#include "multithreading/multithreading_thread_impl.h"
-#include "multithreading/multithreading_simple_thread.h"
-#include "multithreading/multithreading_go_thread.h"
-#include "multithreading/multithreading_signal_thread.h"
 
 
-#include "primitive/primitive_job.h"
+//#include "primitive/primitive_job.h"
 
 
 
@@ -792,12 +618,9 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "axis/programming/javascript/javascript.h"
 
 
-#include "axis/user/userpresence/userpresence.h"
+//#include "axis/user/userpresence/userpresence.h"
 #include "axis/primitive/primitive_factory.h"
-#include "axis/filesystem/fs/fs.h"
 
-#include "axis/filesystem/file/file_application.h"
-#include "axis/filesystem/file/file_dir_application.h"
 
 #include "axis/primitive/math/math_math_rng.h"
 #include "axis/primitive/math/math_math.h"
@@ -806,11 +629,11 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 
-#include "user/user/user_window_map.h"
+//#include "user/user/user_window_map.h"
 
-#include "user/user/user_keyboard_layout.h"
-#include "user/user/user_keyboard.h"
-#include "user/user/user_user.h"
+//#include "user/user/user_keyboard_layout.h"
+//#include "user/user/user_keyboard.h"
+//#include "user/user/user_user.h"
 
 #include "axis_main_init_data.h"
 
@@ -842,8 +665,6 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "axis_plex_heap_impl.h"
 #include "axis/primitive/primitive_command_line.h"
 #include "axis/primitive/primitive_command.h"
-#include "user/user/user_create_context.h"
-#include "axis/primitive/primitive_create_context.h"
 #include "axis/primitive/primitive_request_signal.h"
 
 
@@ -859,34 +680,16 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 
 
-//#include "axis/graphics/visual/visual.h"
-
-
-#include "axis/filesystem/file/file_system.h"
-#include "axis/filesystem/file/file_dir_system.h"
 
 #include "axis/filesystem/file/file_buffered_buffer.h"
 
-
-#include "axis/compress/compress.h"
-
-
-#include "axis_machine_event_data.h"
-#include "axis_machine_event.h"
-#include "axis_machine_event_central.h"
-
-#include "axis/crypto/crypto.h"
 
 
 #include "primitive/datetime/datetime_value.h"
 #include "primitive/datetime/datetime_departament.h"
 
 
-#include "user/user/user_window_draw.h"
-
 #include "axis/primitive/str/str_international_locale_schema.h"
-
-#include "user/user/user_str.h"
 
 #include "axis_id_pool.h"
 
@@ -897,20 +700,8 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #endif
 
 
-#include "axis/user/user/user.h"
-#include "user/user/user_control_event.h"
 #include "axis_cregexp.h"
 #include "axis_cregexp_util.h"
-
-#include "user/user/user_control.h"
-#include "user/user/user_scroll_bar.h"
-#include "user/user/user_scroll_view.h"
-#include "user/user/user_form_interface.h"
-
-#include "filesystem/file/file_edit_buffer.h"
-
-#include "user/user/user_plain_text_data.h"
-#include "user/user/user_edit_plain_text.h"
 
 
 
@@ -918,10 +709,6 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 #include "axis_core_os.h"
 
 #include "axis_system.h"
-
-#include "axis/hotplugin/hotplugin.h"
-
-#include "axis/install/install.h"
 
 #include "axis_system_str.h"
 
@@ -939,17 +726,11 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 //#include "axis/install/install_trace.h"
 
 
-#define new BASE_NEW
+#define new AXIS_NEW
 
 
 #include "axis_system_trace.h"
 
-
-#include "user/user/user_place_holder.h"
-#include "user/user/user_place_holder_container.h"
-#include "user/user/user_view_creator_data.h"
-#include "user/user/user_view_container.h"
-#include "user/user/user_view_creator.h"
 
 
 #include "axis/multithreading/multithreading.inl"
@@ -957,7 +738,7 @@ CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
 
 #include "axis/primitive/str/str.inl"
 
-#include "axis/axis/base.inl"
+#include "axis/axis/axis.inl"
 
 #include "primitive/collection/collection.inl"
 
@@ -1112,9 +893,6 @@ namespace numeric_info
 
 
 
-#include "axis_core_copydesk.h"
-
-
 #include "axis_core_os.h"
 
 
@@ -1123,7 +901,6 @@ namespace numeric_info
 
 
 
-#include "axis/net/http/http.h"
 #include "axis_microtimer.h"
 
 
@@ -1180,9 +957,6 @@ namespace numeric_info
 #include "axis_file_watcher_impl.h"
 
 
-#include "axis_os.h"
-
-
 #include "axis/multithreading/multithreading_data.h"
 
 
@@ -1224,9 +998,9 @@ namespace numeric_info
    }
 
 
-   CLASS_DECL_BASE string _ca_get_file_name(const char * psz, bool bCreate = false, int32_t * pfd = NULL);
+   CLASS_DECL_AXIS string _ca_get_file_name(const char * psz, bool bCreate = false, int32_t * pfd = NULL);
 
-   CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
+   CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 
 
 #include "axis_simple_app.h"
@@ -1238,7 +1012,7 @@ namespace numeric_info
 
 
 template < class T >
-bool ::file::system::output(sp(::base::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, const char *), const char * lpszSource)
+bool ::file::system::output(sp(::axis::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, const char *), const char * lpszSource)
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));
@@ -1256,7 +1030,7 @@ bool ::file::system::output(sp(::base::application) papp, const char * pszOutput
 
 
 template < class T >
-bool ::file::system::output(sp(::base::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, ::file::input_stream &), const char * lpszInput)
+bool ::file::system::output(sp(::axis::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, ::file::input_stream &), const char * lpszInput)
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));
@@ -1335,5 +1109,3 @@ bool ::file::system::output(sp(::base::application) papp, const char * pszOutput
 
 
 
-#include "axis/user/simple/simple.h"
-#include "axis/user/simple_ui/simple_ui.h"

@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE synch_index_ptr_array:
+class CLASS_DECL_AXIS synch_index_ptr_array:
    virtual protected ptr_array < index >
 {
 public:
@@ -43,7 +43,7 @@ public:
    }
 #undef new
    DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
-#define new BASE_NEW
+#define new AXIS_NEW
 
 };
 

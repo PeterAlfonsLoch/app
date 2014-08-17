@@ -1,20 +1,20 @@
-#ifndef BASE_BASE_CORE_OS_H
-#define BASE_BASE_CORE_OS_H
+#ifndef AXIS_AXIS_CORE_OS_H
+#define AXIS_AXIS_CORE_OS_H
 
 
 
 
-namespace base
+namespace axis
 {
 
 
-    class CLASS_DECL_BASE os :
+    class CLASS_DECL_AXIS os :
       virtual public object 
     {
     public:
 
 
-        os(sp(::base::application) papp);
+        os(sp(::axis::application) papp);
         virtual ~os();
 
 
@@ -57,14 +57,12 @@ namespace base
 #endif
 
 
-        virtual bool create_service(sp(::base::application) papp);
-        virtual bool remove_service(sp(::base::application) papp);
+        virtual bool create_service(sp(::axis::application) papp);
+        virtual bool remove_service(sp(::axis::application) papp);
 
-        virtual bool start_service(sp(::base::application) papp);
-        virtual bool stop_service(sp(::base::application) papp);
+        virtual bool start_service(sp(::axis::application) papp);
+        virtual bool stop_service(sp(::axis::application) papp);
 
-
-        virtual bool resolve_link(string & strTarget, const char * pszSource, sp(::user::interaction) puiMessageParentOptional = NULL);
 
         DECLSPEC_NO_RETURN void raise_exception(uint32_t dwExceptionCode, uint32_t dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
 
@@ -81,10 +79,10 @@ namespace base
     typedef smart_pointer < os > os_sp;
 
 
-} // namespace base
+} // namespace axis
 
 
-#endif // BASE_BASE_CORE_OS_H
+#endif // AXIS_AXIS_CORE_OS_H
 
 
 

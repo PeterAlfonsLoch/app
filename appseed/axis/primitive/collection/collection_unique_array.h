@@ -1,11 +1,11 @@
 #pragma once
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class BASE_ARRAY = array < TYPE, ARG_TYPE >, class COMPARE = ::comparison::less < TYPE, ARG_TYPE > >
+template < class TYPE, class ARG_TYPE = const TYPE &, class AXIS_ARRAY = array < TYPE, ARG_TYPE >, class COMPARE = ::comparison::less < TYPE, ARG_TYPE > >
 class unique_sort_array :
-   protected BASE_ARRAY
+   protected AXIS_ARRAY
 {
 public:
-   unique_sort_array(sp(::base::application) papp = NULL);
+   unique_sort_array(sp(::axis::application) papp = NULL);
    unique_sort_array(const unique_sort_array & array);
 
    virtual index add(ARG_TYPE newElement)
@@ -68,12 +68,12 @@ public:
 
    void clear()
    {
-      BASE_ARRAY::clear();
+      AXIS_ARRAY::clear();
    }
 
    void remove_all()
    {
-      BASE_ARRAY::remove_all();
+      AXIS_ARRAY::remove_all();
    }
 
 };
@@ -84,7 +84,7 @@ class unique_array :
    protected array < TYPE >
 {
 public:
-   unique_array(sp(::base::application) papp = NULL);
+   unique_array(sp(::axis::application) papp = NULL);
    unique_array(const unique_array & array);
 
    virtual index add(TYPE newElement)

@@ -2,7 +2,7 @@
 
 
 
-CLASS_DECL_BASE void registerJavascriptFunctions(tinyjs *tinyJS);
+CLASS_DECL_AXIS void registerJavascriptFunctions(tinyjs *tinyJS);
 
 
 

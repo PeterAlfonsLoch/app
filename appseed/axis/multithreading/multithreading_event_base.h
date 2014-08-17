@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE event_base :
+class CLASS_DECL_AXIS event_base :
    virtual public waitable
 {
 public:

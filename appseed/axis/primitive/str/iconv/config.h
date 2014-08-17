@@ -1,7 +1,7 @@
 #pragma once
 
 //ca2 configuration for iconv
-#include "app/appseed/axis/axis/axis/base.h"
+#include "app/appseed/axis/axis/axis/axis.h"
 #define LIBICONV_PLUG
 //end of ca2 configuration for iconv
 

@@ -113,10 +113,10 @@ typedef UINT        MMVERSION;  /* major (high byte), minor (low byte) */
 /*  MMRESULT error return values specific to the mixer API */
 /* */
 /* */
-#define MIXERR_INVALLINE            (MIXERR_BASE + 0)
-#define MIXERR_INVALCONTROL         (MIXERR_BASE + 1)
-#define MIXERR_INVALVALUE           (MIXERR_BASE + 2)
-#define MIXERR_LASTERROR            (MIXERR_BASE + 2)
+#define MIXERR_INVALLINE            (MIXERR_AXIS + 0)
+#define MIXERR_INVALCONTROL         (MIXERR_AXIS + 1)
+#define MIXERR_INVALVALUE           (MIXERR_AXIS + 2)
+#define MIXERR_LASTERROR            (MIXERR_AXIS + 2)
 
 
 #define MIXER_OBJECTF_HANDLE    0x80000000L

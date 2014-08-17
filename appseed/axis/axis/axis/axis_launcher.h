@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE launcher :
+class CLASS_DECL_AXIS launcher :
    virtual public object
 {
 public:

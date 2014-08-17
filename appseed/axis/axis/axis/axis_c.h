@@ -42,11 +42,9 @@
 #endif
 
 
-#include "axis/axis/crypto/crypto/crypto.h"
-
 #include "axis/net/idn/idna.h"
 
 
-CLASS_DECL_BASE int get_base_init();
-CLASS_DECL_BASE int_bool defer_base_init();
-CLASS_DECL_BASE int_bool defer_base_term();
+CLASS_DECL_AXIS int get_base_init();
+CLASS_DECL_AXIS int_bool defer_base_init();
+CLASS_DECL_AXIS int_bool defer_base_term();

@@ -14,13 +14,13 @@ namespace net
 {
 
 
-   class CLASS_DECL_BASE ip_enum :
+   class CLASS_DECL_AXIS ip_enum :
       virtual public ::object
    {
    public:
 
 
-      ip_enum(sp(::base::application) papp);
+      ip_enum(sp(::axis::application) papp);
       virtual ~ip_enum();
 
 

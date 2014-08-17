@@ -5,7 +5,7 @@ namespace net
 {
 
 
-   class CLASS_DECL_BASE email :
+   class CLASS_DECL_AXIS email :
       virtual public ::object
    {
    public:
@@ -20,7 +20,7 @@ namespace net
       string            m_strBody;
 
 
-      email(sp(::base::application) papp);
+      email(sp(::axis::application) papp);
 
 
       void prepare_headers();

@@ -8,9 +8,8 @@ namespace xml
    class edit;
 
 
-   class CLASS_DECL_BASE document :
-      public node,
-      public ::data::data
+   class CLASS_DECL_AXIS document :
+      public node
    {
    public:
 
@@ -20,10 +19,9 @@ namespace xml
       parse_info *               m_pparseinfo;
       string                     m_strLocation;
       string                     m_strData;
-      sp(::xml::edit)              m_pedit;
 
 
-      document(sp(::base::application) papp = NULL, parse_info * pparseinfo = NULL);
+      document(sp(::axis::application) papp = NULL, parse_info * pparseinfo = NULL);
       virtual ~document();
     
 
@@ -39,13 +37,6 @@ namespace xml
       document & operator = (document & document);
 
 
-      virtual void edit(axis_edit * pbaseedit);
-
-
-      inline sp(::xml::edit) validate_edit(axis_edit * pbaseedit)
-      {
-         return ::data::data::validate_edit < ::xml::edit > (pbaseedit);
-      }
 
 
    };

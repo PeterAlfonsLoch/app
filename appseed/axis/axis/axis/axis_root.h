@@ -2,19 +2,19 @@
 
 
 
-class CLASS_DECL_BASE root
+class CLASS_DECL_AXIS root
 {
 public:
 
 
    int64_t                       m_countReference;
    bool                          m_bHeap;
-   ::base::application *         m_pbaseapp;
+   ::axis::application *         m_pbaseapp;
 
 
 
    root();
-   root(sp(::base::application) papp);
+   root(sp(::axis::application) papp);
    virtual ~root();
 
 
@@ -37,7 +37,7 @@ public:
    virtual int64_t dec_ref();
    virtual int64_t release();
 
-   inline ::base::session     & session();
+   inline ::axis::session     & session();
    inline ::core::platform    & platform();
 
 };

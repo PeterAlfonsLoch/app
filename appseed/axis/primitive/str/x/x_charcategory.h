@@ -1,10 +1,10 @@
-#ifndef BASE_X_CHARCATEGORY_H
-#define BASE_X_CHARCATEGORY_H
+#ifndef AXIS_X_CHARCATEGORY_H
+#define AXIS_X_CHARCATEGORY_H
 
 #pragma once
 /*
     This file was automatically generated from
-    UNICODE 3.2.0 UnicodeData.txt base.
+    UNICODE 3.2.0 UnicodeData.txt axis.
     Do not edit it with hands.
 */
 
@@ -105,6 +105,6 @@ BIDI_CLASS_LAST
  *
  * ***** END LICENSE BLOCK ***** */
 
-#endif // BASE_X_CHARCATEGORY_H
+#endif // AXIS_X_CHARCATEGORY_H
 
 

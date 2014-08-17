@@ -4,7 +4,7 @@
 #if defined(VARIADIC_TEMPLATE)
 
 
-class CLASS_DECL_BASE string_format_printer
+class CLASS_DECL_AXIS string_format_printer
 {
 public:
 
@@ -79,7 +79,7 @@ Depending on the format string, the function may expect a sequence of additional
 */
 
 
-class CLASS_DECL_BASE string_format
+class CLASS_DECL_AXIS string_format
 {
 public:
 

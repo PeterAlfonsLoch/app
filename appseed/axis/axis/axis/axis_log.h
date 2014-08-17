@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace base
+namespace axis
 {
 
 
-   class CLASS_DECL_BASE log :
+   class CLASS_DECL_AXIS log :
       virtual public element
    {
    public:
@@ -26,7 +26,7 @@ namespace base
 
 
       bool                    m_bTrace;
-      ::base::trace::trace *     m_ptrace;
+      ::axis::trace::trace *     m_ptrace;
       critical_section *      m_pcsTrace;
       stringa *               m_pstraSeparator;
       FILE *                  m_pfile;
@@ -39,7 +39,7 @@ namespace base
       int32_t                     m_iDay;
 
 
-      log(sp(::base::application) papp);
+      log(sp(::axis::application) papp);
       virtual ~log();
 
       virtual void print(const char * psz, ...);
@@ -83,13 +83,13 @@ namespace base
    };
 
 
-   CLASS_DECL_BASE int32_t SimpleDebugReport(int32_t,const char *,int32_t,const char *,const char * pszFormat,va_list list);
+   CLASS_DECL_AXIS int32_t SimpleDebugReport(int32_t,const char *,int32_t,const char *,const char * pszFormat,va_list list);
 
 
-} // namespace base
+} // namespace axis
 
 
-inline ::base::log::e_level ca_get_level_warning() { return ::base::log::level_warning; }
+inline ::axis::log::e_level ca_get_level_warning() { return ::axis::log::level_warning; }
 
 
 

@@ -9,7 +9,7 @@ namespace xml
    class attribute_array;
 
 
-   class CLASS_DECL_BASE input_tree :
+   class CLASS_DECL_AXIS input_tree :
       public tree_base
    {
    public:
@@ -19,8 +19,8 @@ namespace xml
       sp(::xml::node)         m_pnode;
 
 
-      input_tree(sp(::base::application) papp);
-      input_tree(sp(::base::application) papp, tree_schema * pschema);
+      input_tree(sp(::axis::application) papp);
+      input_tree(sp(::axis::application) papp, tree_schema * pschema);
       virtual ~input_tree();
 
 

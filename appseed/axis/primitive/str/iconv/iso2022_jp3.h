@@ -215,7 +215,7 @@ iso2022_jp3_flushwc (conv_t conv, ucs4_t *pwc)
  */
 
 /* Composition tables for each of the relevant combining characters.  */
-static const struct { unsigned short base; unsigned short composed; } iso2022_jp3_comp_table_data[] = {
+static const struct { unsigned short axis; unsigned short composed; } iso2022_jp3_comp_table_data[] = {
 #define iso2022_jp3_comp_table02e5_idx 0
 #define iso2022_jp3_comp_table02e5_len 1
   { 0x2b64, 0x2b65 }, /* 0x12B65 = 0x12B64 U+02E5 */
@@ -294,7 +294,7 @@ iso2022_jp3_wctomb (conv_t conv, unsigned char *r, ucs4_t wc, int n)
       goto not_combining;
 
     do
-      if (iso2022_jp3_comp_table_data[idx].base == lasttwo)
+      if (iso2022_jp3_comp_table_data[idx].axis == lasttwo)
         break;
     while (++idx, --len > 0);
 

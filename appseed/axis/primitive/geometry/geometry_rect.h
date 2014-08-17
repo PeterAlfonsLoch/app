@@ -7,7 +7,7 @@ class point_array;
 /////////////////////////////////////////////////////////////////////////////
 // rect - A 2-D rectangle, similar to Windows RECT structure.
 
-class CLASS_DECL_BASE rect : public tagRECT
+class CLASS_DECL_AXIS rect : public tagRECT
 {
 // Constructors
 public:
@@ -177,7 +177,7 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // rect64 - A 2-D rect64angle, similar to Windows RECT structure.
 
-class CLASS_DECL_BASE rect64 : public __rect64
+class CLASS_DECL_AXIS rect64 : public __rect64
 {
 // Constructors
 public:
@@ -418,7 +418,7 @@ class pointd_array;
 /////////////////////////////////////////////////////////////////////////////
 // rect - A 2-D rectangle, similar to Windows RECT structure.
 
-class CLASS_DECL_BASE rectd : public tagRECTD
+class CLASS_DECL_AXIS rectd : public tagRECTD
 {
 // Constructors
 public:
@@ -576,8 +576,8 @@ public:
 };
 
 
-inline CLASS_DECL_BASE ::rect null_rect() { return ::rect(0, 0, 0, 0); }
-inline CLASS_DECL_BASE ::rect64 null_rect64() { return ::rect64(0, 0, 0, 0); }
+inline CLASS_DECL_AXIS ::rect null_rect() { return ::rect(0, 0, 0, 0); }
+inline CLASS_DECL_AXIS ::rect64 null_rect64() { return ::rect64(0, 0, 0, 0); }
 
 
 inline void rect::assign(const RECT & rect,e_orientation eorientation) throw()

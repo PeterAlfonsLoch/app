@@ -16,7 +16,7 @@ namespace xml
       var * m_pvar;
 
 
-      var_exchange(sp(::base::application) papp);
+      var_exchange(sp(::axis::application) papp);
       virtual ~var_exchange();
 
 

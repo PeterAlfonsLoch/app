@@ -8,7 +8,7 @@ namespace primitive
 {
 
 
-   class CLASS_DECL_BASE memory :
+   class CLASS_DECL_AXIS memory :
       public memory_base
    {
    public:
@@ -17,8 +17,8 @@ namespace primitive
       bool m_bAligned;
 
 
-      memory(sp(::base::application) papp);
-      memory(sp(::base::application) papp, bool bAligned);
+      memory(sp(::axis::application) papp);
+      memory(sp(::axis::application) papp, bool bAligned);
       memory(const void *, memory_size iCount);
       memory(const memory_base & memorybase);
       memory(const memory & memory);

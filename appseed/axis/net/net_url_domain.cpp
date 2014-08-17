@@ -283,7 +283,7 @@ void url_domain::create(const char * pszServerName)
 }
 
 
-bool CLASS_DECL_BASE server_is_top_domain(const char * pszTop1, strsize blen, const char * pszTop2, strsize alen)
+bool CLASS_DECL_AXIS server_is_top_domain(const char * pszTop1, strsize blen, const char * pszTop2, strsize alen)
 {
    char a1;
    char a2;

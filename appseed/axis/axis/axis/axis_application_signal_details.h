@@ -2,7 +2,7 @@
 
 
 
-namespace base
+namespace axis
 
 {
 
@@ -23,7 +23,7 @@ namespace base
 
    };
 
-   class CLASS_DECL_BASE application_signal_details:
+   class CLASS_DECL_AXIS application_signal_details:
       public signal_details
    {
    public:
@@ -40,4 +40,4 @@ namespace base
    };
 
 
-} // namespace base
+} // namespace axis

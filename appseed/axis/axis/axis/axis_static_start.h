@@ -1,6 +1,6 @@
 //
 //  axis_static_start.h
-//  base
+//  axis
 //
 //
 //
@@ -9,7 +9,7 @@
 #pragma once
 
 
-namespace base
+namespace axis
 {
 
    
@@ -17,13 +17,13 @@ namespace base
    {
 
       
-      CLASS_DECL_BASE void init();
-      CLASS_DECL_BASE void term();
+      CLASS_DECL_AXIS void init();
+      CLASS_DECL_AXIS void term();
 
    
    } // namespace static_start
 
 
-} // namespace base
+} // namespace axis
 
 

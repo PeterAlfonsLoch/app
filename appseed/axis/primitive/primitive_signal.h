@@ -12,7 +12,7 @@ class signal;
 class request_signal;
 
 
-class CLASS_DECL_BASE signal_details :
+class CLASS_DECL_AXIS signal_details :
    public object
 {
 public:
@@ -26,7 +26,7 @@ public:
 
 
 
-   signal_details(sp(::base::application) papp = NULL);
+   signal_details(sp(::axis::application) papp = NULL);
    signal_details(class signal * psignal);
    virtual ~signal_details();
 
@@ -43,7 +43,7 @@ public:
 };
 
 
-class CLASS_DECL_BASE signalizable :
+class CLASS_DECL_AXIS signalizable :
    virtual public ::object
 {
 public:
@@ -68,7 +68,7 @@ public:
 
 };
 
-class CLASS_DECL_BASE axis_signalizable_array :
+class CLASS_DECL_AXIS axis_signalizable_array :
    virtual protected comparable_array < signalizable * >
 {
 public:
@@ -114,7 +114,7 @@ public:
 
 };
 
-class CLASS_DECL_BASE signal :
+class CLASS_DECL_AXIS signal :
    virtual public root
 {
 protected:
@@ -213,7 +213,7 @@ bool signal::signal_delegate_instance<T>::operator == (const signal_delegate_ins
 }
 
 
-class CLASS_DECL_BASE signalid
+class CLASS_DECL_AXIS signalid
 {
 public:
 
@@ -226,7 +226,7 @@ public:
 
 };
 
-class CLASS_DECL_BASE signalid_array :
+class CLASS_DECL_AXIS signalid_array :
    virtual public array < signalid *, signalid * >
 {
 public:
@@ -239,12 +239,12 @@ public:
 };
 
 
-class CLASS_DECL_BASE dispatch
+class CLASS_DECL_AXIS dispatch
 {
 public:
 
 
-   class CLASS_DECL_BASE handler_item_base
+   class CLASS_DECL_AXIS handler_item_base
    {
    public:
 
@@ -266,7 +266,7 @@ public:
    };
 
 
-   class CLASS_DECL_BASE handler_item_array :
+   class CLASS_DECL_AXIS handler_item_array :
       public array < handler_item_base *, handler_item_base *>
    {
    public:
@@ -274,7 +274,7 @@ public:
    };
 
 
-   class CLASS_DECL_BASE signal_item :
+   class CLASS_DECL_AXIS signal_item :
       virtual public ::object
    {
    public:
@@ -292,7 +292,7 @@ public:
    };
 
 
-   class CLASS_DECL_BASE signal_item_ptr_array :
+   class CLASS_DECL_AXIS signal_item_ptr_array :
       public array < signal_item * , signal_item * >
    {
    public:
@@ -302,7 +302,7 @@ public:
    };
 
 
-   class CLASS_DECL_BASE signal_item_array :
+   class CLASS_DECL_AXIS signal_item_array :
       public spa(signal_item)
    {
    public:

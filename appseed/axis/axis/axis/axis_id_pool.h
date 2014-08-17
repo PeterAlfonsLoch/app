@@ -4,7 +4,7 @@
 
 
 
-class CLASS_DECL_BASE id_pool
+class CLASS_DECL_AXIS id_pool
 {
 public:
 

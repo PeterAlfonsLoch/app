@@ -33,7 +33,7 @@ class numeric_array :
 public:
 
    numeric_array();
-   numeric_array(sp(::base::application) papp);
+   numeric_array(sp(::axis::application) papp);
    numeric_array(const numeric_array & array);
 #ifdef MOVE_SEMANTICS
    numeric_array(numeric_array && array);
@@ -189,7 +189,7 @@ class unique_number_sort_array :
    public numeric_array < TYPE >
 {
 public:
-   unique_number_sort_array(sp(::base::application) papp = NULL);
+   unique_number_sort_array(sp(::axis::application) papp = NULL);
    unique_number_sort_array(const unique_number_sort_array & array);
 
    index add(const TYPE & newElement)
@@ -290,7 +290,7 @@ numeric_array < TYPE >::
 
 template < class TYPE >
 numeric_array < TYPE >::
-   numeric_array(sp(::base::application) papp) :
+   numeric_array(sp(::axis::application) papp) :
    element(papp)
 {
 }
@@ -732,7 +732,7 @@ inline TYPE numeric_array < TYPE > ::pop_to()
 
 template < class TYPE >
 unique_number_sort_array < TYPE >::
-   unique_number_sort_array(sp(::base::application) papp) :
+   unique_number_sort_array(sp(::axis::application) papp) :
    element(papp)
 {
 }
@@ -782,23 +782,23 @@ unique_number_sort_array < TYPE >::
 
 
 
-typedef CLASS_DECL_BASE numeric_array < index > index_array;
-typedef CLASS_DECL_BASE numeric_array < count > count_array;
-typedef CLASS_DECL_BASE numeric_array < int32_t > int_array;
-typedef CLASS_DECL_BASE numeric_array < int64_t > int64_array;
-typedef CLASS_DECL_BASE numeric_array < uint64_t > uint64_array;
-typedef CLASS_DECL_BASE numeric_array < float > float_array;
-typedef CLASS_DECL_BASE numeric_array < double > double_array;
-typedef CLASS_DECL_BASE numeric_array < byte > byte_array;
-typedef CLASS_DECL_BASE numeric_array < uint16_t > uint16_array;
-typedef CLASS_DECL_BASE numeric_array < uint32_t > uint_array;
-typedef CLASS_DECL_BASE numeric_array < uint_ptr > uint_ptr_array;
+typedef CLASS_DECL_AXIS numeric_array < index > index_array;
+typedef CLASS_DECL_AXIS numeric_array < count > count_array;
+typedef CLASS_DECL_AXIS numeric_array < int32_t > int_array;
+typedef CLASS_DECL_AXIS numeric_array < int64_t > int64_array;
+typedef CLASS_DECL_AXIS numeric_array < uint64_t > uint64_array;
+typedef CLASS_DECL_AXIS numeric_array < float > float_array;
+typedef CLASS_DECL_AXIS numeric_array < double > double_array;
+typedef CLASS_DECL_AXIS numeric_array < byte > byte_array;
+typedef CLASS_DECL_AXIS numeric_array < uint16_t > uint16_array;
+typedef CLASS_DECL_AXIS numeric_array < uint32_t > uint_array;
+typedef CLASS_DECL_AXIS numeric_array < uint_ptr > uint_ptr_array;
 
 
 
 
-typedef CLASS_DECL_BASE unique_number_sort_array < int32_t > unique_int_sort_array;
-typedef CLASS_DECL_BASE unique_number_sort_array < index > unique_index_sort_array;
+typedef CLASS_DECL_AXIS unique_number_sort_array < int32_t > unique_int_sort_array;
+typedef CLASS_DECL_AXIS unique_number_sort_array < index > unique_index_sort_array;
 
 
 
@@ -1970,13 +1970,13 @@ namespace lemon
    {
 
       template < class ARRAY >
-      typename ARRAY::BASE_TYPE big_average(const ARRAY & a)
+      typename ARRAY::AXIS_TYPE big_average(const ARRAY & a)
       {
          ::count c = a.get_count();
          if(c == 0)
             return 0.0;
-         typename ARRAY::BASE_TYPE f = 0.0;
-         typename ARRAY::BASE_TYPE fCount = (typename ARRAY::BASE_TYPE) c;
+         typename ARRAY::AXIS_TYPE f = 0.0;
+         typename ARRAY::AXIS_TYPE fCount = (typename ARRAY::AXIS_TYPE) c;
          for(index i = 0; i < c; i++)
          {
             f += a.element_at(i) / fCount;
@@ -1998,7 +1998,7 @@ namespace lemon
    {
 
       template<class ARRAY>
-      bool binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia)
+      bool binary_search(ARRAY & a, typename ARRAY::AXIS_ARG_TYPE t, index & iIndex, index ( * fCompare ) (typename ARRAY::AXIS_TYPE *, typename ARRAY::AXIS_TYPE *), index_array & ia)
       {
          if(a.get_size() == 0)
          {
@@ -2013,7 +2013,7 @@ namespace lemon
          iIndex = (iUpperBound + iLowerBound) / 2;
          while(iUpperBound - iLowerBound >= 8)
          {
-            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::BASE_TYPE *) &t);
+            iCompare = fCompare((typename ARRAY::AXIS_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::AXIS_TYPE *) &t);
             if(iCompare == 0)
             {
                return true;
@@ -2041,7 +2041,7 @@ namespace lemon
          // do sequential search
          while(iIndex < a.get_count())
          {
-            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::BASE_TYPE *) &t);
+            iCompare = fCompare((typename ARRAY::AXIS_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::AXIS_TYPE *) &t);
             if(iCompare == 0)
                return true;
             else if(iCompare < 0)
@@ -2053,7 +2053,7 @@ namespace lemon
             return false;
          while(iIndex >= 0)
          {
-            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::BASE_TYPE *)  &t);
+            iCompare = fCompare((typename ARRAY::AXIS_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::AXIS_TYPE *)  &t);
             if(iCompare == 0)
                return true;
             else if(iCompare > 0)
@@ -2068,7 +2068,7 @@ namespace lemon
 
 
       template<class ARRAY>
-      index sort_add(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia)
+      index sort_add(ARRAY & a, typename ARRAY::AXIS_ARG_TYPE t, index ( * fCompare ) (typename ARRAY::AXIS_TYPE *, typename ARRAY::AXIS_TYPE *), index_array & ia)
       {
          index iIndex = 0;
          binary_search(a, t, iIndex, fCompare, ia);

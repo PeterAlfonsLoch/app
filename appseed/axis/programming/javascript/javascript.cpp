@@ -28,7 +28,7 @@
 
 /* Version 0.1  :  (gw) First published on Google Code
    Version 0.11 :  Making sure the 'root' variable never changes
-                   'symbol_base' added for the current base of the sybmbol table
+                   'symbol_base' added for the current axis of the sybmbol table
    Version 0.12 :  Added findChildOrCreate, changed string passing to use references
                    Fixed broken string encoding in getJSString()
                    Removed getInitCode and added getJSON instead
@@ -1280,7 +1280,7 @@ int32_t CScriptVar::getRefs() {
 
 // ----------------------------------------------------------------------------------- CSCRIPT
 
-tinyjs::tinyjs(sp(::base::application) papp) :
+tinyjs::tinyjs(sp(::axis::application) papp) :
    element(papp)
 {
     l = 0;
@@ -1356,7 +1356,7 @@ CScriptVarLink tinyjs::evaluateComplex(const string &code) {
         bool execute = true;
         do {
           CLEAN(v);
-          v = base(execute);
+          v = axis(execute);
           if (l->tk!=LEX_EOF) l->match(';');
         } while (l->tk!=LEX_EOF);
     } catch (CScriptException *e) {
@@ -1403,7 +1403,7 @@ void tinyjs::addNative(const string &funcDesc, JSCallback ptr, void *userdata) {
     CScriptLex *oldLex = l;
     l = new CScriptLex(funcDesc);
 
-    CScriptVar *base = root;
+    CScriptVar *axis = root;
 
     l->match(LEX_R_FUNCTION);
     string funcName = l->tkStr;
@@ -1411,10 +1411,10 @@ void tinyjs::addNative(const string &funcDesc, JSCallback ptr, void *userdata) {
     /* Check for dots, we might want to do something like function String.substring ... */
     while (l->tk == '.') {
       l->match('.');
-      CScriptVarLink *link = base->findChild(funcName);
+      CScriptVarLink *link = axis->findChild(funcName);
       // if it doesn't exist, make an object class
-      if (!link) link = base->addChild(funcName, new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT));
-      base = link->var;
+      if (!link) link = axis->addChild(funcName, new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT));
+      axis = link->var;
       funcName = l->tkStr;
       l->match(LEX_ID);
     }
@@ -1425,7 +1425,7 @@ void tinyjs::addNative(const string &funcDesc, JSCallback ptr, void *userdata) {
     delete l;
     l = oldLex;
 
-    base->addChild(funcName, funcVar);
+    axis->addChild(funcName, funcVar);
 }
 
 CScriptVarLink *tinyjs::parseFunctionDefinition() {
@@ -1465,7 +1465,7 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
     // grab in all parameters
     CScriptVarLink *v = function->var->firstChild;
     while (v) {
-        CScriptVarLink *value = base(execute);
+        CScriptVarLink *value = axis(execute);
         if (execute) {
             if (value->var->isBasic()) {
               // pass by value
@@ -1530,7 +1530,7 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
     // function, but not executing - just parse args and be done
     l->match('(');
     while (l->tk != ')') {
-      CScriptVarLink *value = base(execute);
+      CScriptVarLink *value = axis(execute);
       CLEAN(value);
       if (l->tk!=')') l->match(',');
     }
@@ -1547,7 +1547,7 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
 CScriptVarLink *tinyjs::factor(bool &execute) {
     if (l->tk=='(') {
         l->match('(');
-        CScriptVarLink *a = base(execute);
+        CScriptVarLink *a = axis(execute);
         l->match(')');
         return a;
     }
@@ -1607,7 +1607,7 @@ CScriptVarLink *tinyjs::factor(bool &execute) {
                 l->match(LEX_ID);
             } else if (l->tk == '[') { // ------------------------------------- Array Access
                 l->match('[');
-                CScriptVarLink *index = base(execute);
+                CScriptVarLink *index = axis(execute);
                 l->match(']');
                 if (execute) {
                   CScriptVarLink *child = a->var->findChildOrCreate(index->var->getString());
@@ -1641,7 +1641,7 @@ CScriptVarLink *tinyjs::factor(bool &execute) {
           else l->match(LEX_ID);
           l->match(':');
           if (execute) {
-            CScriptVarLink *a = base(execute);
+            CScriptVarLink *a = axis(execute);
             contents->addChild(id, a->var);
             CLEAN(a);
           }
@@ -1662,7 +1662,7 @@ CScriptVarLink *tinyjs::factor(bool &execute) {
             char idx_str[16]; // big enough for 2^32
             sprintf_s(idx_str, sizeof(idx_str), "%d",idx);
 
-            CScriptVarLink *a = base(execute);
+            CScriptVarLink *a = axis(execute);
             contents->addChild(idx_str, a->var);
             CLEAN(a);
           }
@@ -1697,7 +1697,7 @@ CScriptVarLink *tinyjs::factor(bool &execute) {
           //else l->match(LEX_ID);
           //l->match(':');
           if (execute) {
-            CScriptVarLink *a = base(execute);
+            CScriptVarLink *a = axis(execute);
             contents->addChild(idx, a->var);
             CLEAN(a);
           }
@@ -1820,7 +1820,7 @@ CScriptVarLink *tinyjs::shift(bool &execute) {
   if (l->tk==LEX_LSHIFT || l->tk==LEX_RSHIFT || l->tk==LEX_RSHIFTUNSIGNED) {
     int32_t op = l->tk;
     l->match(op);
-    CScriptVarLink *b = base(execute);
+    CScriptVarLink *b = axis(execute);
     int32_t shift = execute ? b->var->getInt() : 0;
     CLEAN(b);
     if (execute) {
@@ -1895,20 +1895,20 @@ CScriptVarLink *tinyjs::ternary(bool &execute) {
     l->match('?');
     if (!execute) {
       CLEAN(lhs);
-      CLEAN(base(noexec));
+      CLEAN(axis(noexec));
       l->match(':');
-      CLEAN(base(noexec));
+      CLEAN(axis(noexec));
     } else {
       bool first = lhs->var->getBool();
       CLEAN(lhs);
       if (first) {
-        lhs = base(execute);
+        lhs = axis(execute);
         l->match(':');
-        CLEAN(base(noexec));
+        CLEAN(axis(noexec));
       } else {
-        CLEAN(base(noexec));
+        CLEAN(axis(noexec));
         l->match(':');
-        lhs = base(execute);
+        lhs = axis(execute);
       }
     }
   }
@@ -1916,7 +1916,7 @@ CScriptVarLink *tinyjs::ternary(bool &execute) {
   return lhs;
 }
 
-CScriptVarLink *tinyjs::base(bool &execute) {
+CScriptVarLink *tinyjs::axis(bool &execute) {
     CScriptVarLink *lhs = ternary(execute);
     if (l->tk=='=' || l->tk==LEX_PLUSEQUAL || l->tk==LEX_MINUSEQUAL) {
         /* If we're assigning to this and we don't have a parent,
@@ -1932,7 +1932,7 @@ CScriptVarLink *tinyjs::base(bool &execute) {
 
         int32_t op = l->tk;
         l->match(l->tk);
-        CScriptVarLink *rhs = base(execute);
+        CScriptVarLink *rhs = axis(execute);
         if (execute) {
             if (op=='=') {
                 lhs->replaceWith(rhs);
@@ -1974,7 +1974,7 @@ void tinyjs::statement(bool &execute) {
         l->tk==LEX_STR ||
         l->tk=='-') {
         /* Execute a simple statement that only contains basic arithmetic... */
-        CLEAN(base(execute));
+        CLEAN(axis(execute));
         l->match(';');
     } else if (l->tk=='{') {
         /* A block of code */
@@ -2004,7 +2004,7 @@ void tinyjs::statement(bool &execute) {
           // sort out initialiser
           if (l->tk == '=') {
               l->match('=');
-              CScriptVarLink *var = base(execute);
+              CScriptVarLink *var = axis(execute);
               if (execute)
                   a->replaceWith(var);
               CLEAN(var);
@@ -2016,7 +2016,7 @@ void tinyjs::statement(bool &execute) {
     } else if (l->tk==LEX_R_IF) {
         l->match(LEX_R_IF);
         l->match('(');
-        CScriptVarLink *var = base(execute);
+        CScriptVarLink *var = axis(execute);
         l->match(')');
         bool cond = execute && var->var->getBool();
         CLEAN(var);
@@ -2033,7 +2033,7 @@ void tinyjs::statement(bool &execute) {
         l->match('(');
         int32_t whileCondStart = l->tokenStart;
         bool noexecute = false;
-        CScriptVarLink *cond = base(execute);
+        CScriptVarLink *cond = axis(execute);
         bool loopCond = execute && cond->var->getBool();
         CLEAN(cond);
         CScriptLex *whileCond = l->getSubLex(whileCondStart);
@@ -2046,7 +2046,7 @@ void tinyjs::statement(bool &execute) {
         while (loopCond && loopCount-->0) {
             whileCond->reset();
             l = whileCond;
-            cond = base(execute);
+            cond = axis(execute);
             loopCond = execute && cond->var->getBool();
             CLEAN(cond);
             if (loopCond) {
@@ -2071,13 +2071,13 @@ void tinyjs::statement(bool &execute) {
         //l->match(';');
         int32_t forCondStart = l->tokenStart;
         bool noexecute = false;
-        CScriptVarLink *cond = base(execute); // condition
+        CScriptVarLink *cond = axis(execute); // condition
         bool loopCond = execute && cond->var->getBool();
         CLEAN(cond);
         CScriptLex *forCond = l->getSubLex(forCondStart);
         l->match(';');
         int32_t forIterStart = l->tokenStart;
-        CLEAN(base(noexecute)); // iterator
+        CLEAN(axis(noexecute)); // iterator
         CScriptLex *forIter = l->getSubLex(forIterStart);
         l->match(')');
         int32_t forBodyStart = l->tokenStart;
@@ -2087,13 +2087,13 @@ void tinyjs::statement(bool &execute) {
         if (loopCond) {
             forIter->reset();
             l = forIter;
-            CLEAN(base(execute));
+            CLEAN(axis(execute));
         }
         int32_t loopCount = TINYJS_LOOP_MAX_ITERATIONS;
         while (execute && loopCond && loopCount-->0) {
             forCond->reset();
             l = forCond;
-            cond = base(execute);
+            cond = axis(execute);
             loopCond = cond->var->getBool();
             CLEAN(cond);
             if (execute && loopCond) {
@@ -2104,7 +2104,7 @@ void tinyjs::statement(bool &execute) {
             if (execute && loopCond) {
                 forIter->reset();
                 l = forIter;
-                CLEAN(base(execute));
+                CLEAN(axis(execute));
             }
         }
         l = oldLex;
@@ -2120,7 +2120,7 @@ void tinyjs::statement(bool &execute) {
         l->match(LEX_R_RETURN);
         CScriptVarLink *result = 0;
         if (l->tk != ';')
-          result = base(execute);
+          result = axis(execute);
         if (execute) {
           CScriptVarLink *resultVar = scopes.back()->findChild(TINYJS_RETURN_VAR);
           if (resultVar)

@@ -286,7 +286,7 @@ inline raw_array<TYPE, ARG_TYPE> & raw_array<TYPE, ARG_TYPE>::operator = (const 
 // out-of-line functions
 
 template<class TYPE, class ARG_TYPE>
-raw_array<TYPE, ARG_TYPE>::raw_array(sp(::base::application) papp, ::count nGrowBy) :
+raw_array<TYPE, ARG_TYPE>::raw_array(sp(::axis::application) papp, ::count nGrowBy) :
 element(papp)
 {
    m_nGrowBy = max(0, nGrowBy);
@@ -448,7 +448,7 @@ template<class TYPE, class ARG_TYPE>
       //memset((void *)m_pData, 0, (size_t)nAllocSize * sizeof(TYPE));
 //      for( index i = 0; i < nNewSize; i++ )
   //       ::new( (void *)( m_pData + i ) ) TYPE;
-//#define new BASE_NEW
+//#define new AXIS_NEW
       m_nSize = nNewSize;
       m_nMaxSize = nAllocSize;
    }
@@ -462,7 +462,7 @@ template<class TYPE, class ARG_TYPE>
 //         for( int32_t i = 0; i < nNewSize-m_nSize; i++ )
 //#undef new
 //            ::new( (void *)( m_pData + m_nSize + i ) ) TYPE;
-//#define new BASE_NEW
+//#define new AXIS_NEW
       }
       else if (m_nSize > nNewSize)
       {
@@ -499,10 +499,10 @@ template<class TYPE, class ARG_TYPE>
 #endif
 #undef new
       TYPE* pNewData = (TYPE*) new BYTE[(size_t)nNewMax * sizeof(TYPE)];
-#define new BASE_NEW
+#define new AXIS_NEW
 
       // copy new data from old
-      ::base::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
+      ::axis::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
          m_pData, (size_t)m_nSize * sizeof(TYPE));
 
       // construct remaining elements
@@ -511,7 +511,7 @@ template<class TYPE, class ARG_TYPE>
 //      for( int32_t i = 0; i < nNewSize-m_nSize; i++ )
 //#undef new
 //         ::new( (void *)( pNewData + m_nSize + i ) ) TYPE;
-//#define new BASE_NEW
+//#define new AXIS_NEW
       // get rid of old stuff (note: no destructors called)
       delete[] (BYTE*)m_pData;
       m_pData = pNewData;
@@ -572,7 +572,7 @@ void raw_array<TYPE, ARG_TYPE>::free_extra()
       {
          pNewData = (TYPE*) new BYTE[m_nSize * sizeof(TYPE)];
          // copy new data from old
-         ::base::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
+         ::axis::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
             m_pData, m_nSize * sizeof(TYPE));
       }
 
@@ -643,7 +643,7 @@ index raw_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, ::
       allocate(m_nSize + nCount, -1);  // grow it to new size
       // destroy intial data before copying over it
       // shift old data up to fill gap
-      ::base::memmove_s(m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(TYPE),
+      ::axis::memmove_s(m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(TYPE),
          m_pData + nIndex, (nOldSize-nIndex) * sizeof(TYPE));
 
       // re-init slots we copied from
@@ -677,7 +677,7 @@ inline index raw_array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
    ::count nMoveCount = m_nSize - (nUpperBound);
    if (nMoveCount)
    {
-      ::base::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE),
+      ::axis::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE),
          m_pData + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
    }
    m_nSize -= nCount;

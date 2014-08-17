@@ -11,7 +11,7 @@
 /* initially set for achromatic colors */
 #define UNDEFINED_HUE (HLSMAX*2.0/3.0)
 
-class CLASS_DECL_BASE color
+class CLASS_DECL_AXIS color
 {
 public:
    double            m_dR;
@@ -23,7 +23,7 @@ public:
    uchar     m_uchB;
    uchar     m_uchA;
 
-   class CLASS_DECL_BASE hls
+   class CLASS_DECL_AXIS hls
    {
    public:
       double m_dH;

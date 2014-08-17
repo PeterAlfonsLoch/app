@@ -1,14 +1,14 @@
 #include "framework.h"
 
 
-namespace base
+namespace axis
 {
 
 
    uint32_t g_dwFirstTick = ::get_tick_count();
 
 
-   log::log(sp(::base::application) papp) :
+   log::log(sp(::axis::application) papp) :
       element(papp)
    {
 
@@ -26,7 +26,7 @@ namespace base
 
       m_pcsTrace        = new critical_section();
       m_pmutex          = new mutex(papp);
-      m_ptrace          = new ::base::trace::trace(papp);
+      m_ptrace          = new ::axis::trace::trace(papp);
       m_pstraSeparator  = new stringa;
       m_pstrLogPath     = new string;
       m_pid             = new id;
@@ -45,46 +45,46 @@ namespace base
       m_pstraSeparator->add("\r");
       m_pstraSeparator->add("\n");
 
-      set_trace_category(::base::trace::category_General, "category_General", 3000);
-      set_trace_category(::base::trace::category_COM, "category_COM", 0);
-      set_trace_category(::base::trace::category_QI, "category_QI", 0);
-      set_trace_category(::base::trace::category_Registrar, "category_Registrar", 0);
-      set_trace_category(::base::trace::category_Refcount, "category_Refcount", 0);
-      set_trace_category(::base::trace::category_Windowing, "category_Windowing", 0);
-      set_trace_category(::base::trace::category_Controls, "category_Controls", 0);
-      set_trace_category(::base::trace::category_Hosting, "category_Hosting", 0);
-      set_trace_category(::base::trace::category_DBClient, "category_DBClient", 0);
-      set_trace_category(::base::trace::category_DBProvider, "category_DBProvider", 0);
-      set_trace_category(::base::trace::category_Snapin, "category_Snapin", 0);
-      set_trace_category(::base::trace::category_NotImpl, "category_NotImpl", 0);
-      set_trace_category(::base::trace::category_Allocation, "category_Allocation", 0);
-      set_trace_category(::base::trace::category_Exception, "category_Exception", 0);
-      set_trace_category(::base::trace::category_Time, "category_Time", 0);
-      set_trace_category(::base::trace::category_Cache, "category_Cache", 0);
-      set_trace_category(::base::trace::category_Stencil, "category_Stencil", 0);
-      set_trace_category(::base::trace::category_String, "category_String", 0);
-      set_trace_category(::base::trace::category_Map, "category_Map", 0);
-      set_trace_category(::base::trace::category_Util, "category_Util", 0);
-      set_trace_category(::base::trace::category_Security, "category_Security", 0);
-      set_trace_category(::base::trace::category_Sync, "category_Sync", 0);
-      set_trace_category(::base::trace::category_ISAPI, "category_ISAPI", 0);
+      set_trace_category(::axis::trace::category_General, "category_General", 3000);
+      set_trace_category(::axis::trace::category_COM, "category_COM", 0);
+      set_trace_category(::axis::trace::category_QI, "category_QI", 0);
+      set_trace_category(::axis::trace::category_Registrar, "category_Registrar", 0);
+      set_trace_category(::axis::trace::category_Refcount, "category_Refcount", 0);
+      set_trace_category(::axis::trace::category_Windowing, "category_Windowing", 0);
+      set_trace_category(::axis::trace::category_Controls, "category_Controls", 0);
+      set_trace_category(::axis::trace::category_Hosting, "category_Hosting", 0);
+      set_trace_category(::axis::trace::category_DBClient, "category_DBClient", 0);
+      set_trace_category(::axis::trace::category_DBProvider, "category_DBProvider", 0);
+      set_trace_category(::axis::trace::category_Snapin, "category_Snapin", 0);
+      set_trace_category(::axis::trace::category_NotImpl, "category_NotImpl", 0);
+      set_trace_category(::axis::trace::category_Allocation, "category_Allocation", 0);
+      set_trace_category(::axis::trace::category_Exception, "category_Exception", 0);
+      set_trace_category(::axis::trace::category_Time, "category_Time", 0);
+      set_trace_category(::axis::trace::category_Cache, "category_Cache", 0);
+      set_trace_category(::axis::trace::category_Stencil, "category_Stencil", 0);
+      set_trace_category(::axis::trace::category_String, "category_String", 0);
+      set_trace_category(::axis::trace::category_Map, "category_Map", 0);
+      set_trace_category(::axis::trace::category_Util, "category_Util", 0);
+      set_trace_category(::axis::trace::category_Security, "category_Security", 0);
+      set_trace_category(::axis::trace::category_Sync, "category_Sync", 0);
+      set_trace_category(::axis::trace::category_ISAPI, "category_ISAPI", 0);
 
-      set_trace_category(::base::trace::category_User, "category_User", 0);
-      set_trace_category(::base::trace::category_User2, "category_User2", 0);
-      set_trace_category(::base::trace::category_User3, "category_User3", 0);
-      set_trace_category(::base::trace::category_User4, "category_User4", 0);
+      set_trace_category(::axis::trace::category_User, "category_User", 0);
+      set_trace_category(::axis::trace::category_User2, "category_User2", 0);
+      set_trace_category(::axis::trace::category_User3, "category_User3", 0);
+      set_trace_category(::axis::trace::category_User4, "category_User4", 0);
 
 
-      set_trace_category(::base::trace::category_AppMsg, "AppMsg", 0);        // main message pump trace (includes DDE)
-      set_trace_category(::base::trace::category_WinMsg , "category_WinMsg", 0);        // Windows message tracing
-      set_trace_category(::base::trace::category_CmdRouting , "category_CmdRouting", 0);    // Windows command routing trace
-      set_trace_category(::base::trace::category_Ole , "category_Ole", 0);          // special OLE callback trace
-      set_trace_category(::base::trace::category_Database , "category_Database", 0);     // special database trace
-      set_trace_category(::base::trace::category_Internet , "category_Internet", 0);     // special Internet client trace
-      set_trace_category(::base::trace::category_dumpContext , "category_dumpContext", 0);   // traces from dump_context
-      set_trace_category(::base::trace::category_Memory , "category_Memory", 0);      // generic non-kernel primitive::memory traces
-      set_trace_category(::base::trace::category_Html , "category_Html", 0);         // Html traces
-      set_trace_category(::base::trace::category_Socket , "category_Socket", 0);      // socket traces
+      set_trace_category(::axis::trace::category_AppMsg, "AppMsg", 0);        // main message pump trace (includes DDE)
+      set_trace_category(::axis::trace::category_WinMsg , "category_WinMsg", 0);        // Windows message tracing
+      set_trace_category(::axis::trace::category_CmdRouting , "category_CmdRouting", 0);    // Windows command routing trace
+      set_trace_category(::axis::trace::category_Ole , "category_Ole", 0);          // special OLE callback trace
+      set_trace_category(::axis::trace::category_Database , "category_Database", 0);     // special database trace
+      set_trace_category(::axis::trace::category_Internet , "category_Internet", 0);     // special Internet client trace
+      set_trace_category(::axis::trace::category_dumpContext , "category_dumpContext", 0);   // traces from dump_context
+      set_trace_category(::axis::trace::category_Memory , "category_Memory", 0);      // generic non-kernel primitive::memory traces
+      set_trace_category(::axis::trace::category_Html , "category_Html", 0);         // Html traces
+      set_trace_category(::axis::trace::category_Socket , "category_Socket", 0);      // socket traces
 
    }
 
@@ -93,9 +93,9 @@ namespace base
    }
 
 
-//   extern sp(::base::application) g_papp;
+//   extern sp(::axis::application) g_papp;
 
-   CLASS_DECL_BASE int32_t SimpleDebugReport(int32_t iReportType, const char * pszFileName,int32_t iLine,const char *,const char * pszFormat, va_list list)
+   CLASS_DECL_AXIS int32_t SimpleDebugReport(int32_t iReportType, const char * pszFileName,int32_t iLine,const char *,const char * pszFormat, va_list list)
    {
       #ifdef WIN32
 
@@ -193,8 +193,8 @@ namespace base
 
       sl.lock();
       log * plog = (log *) this;
-      ::base::trace::category & category = plog->m_ptrace->m_map[dwCategory];
-      if(category.m_estatus == ::base::trace::status_disabled || category.m_uiLevel > category.m_uiLevel)
+      ::axis::trace::category & category = plog->m_ptrace->m_map[dwCategory];
+      if(category.m_estatus == ::axis::trace::status_disabled || category.m_uiLevel > category.m_uiLevel)
          return;
       sl.unlock();
       stringa stra;
@@ -328,7 +328,7 @@ namespace base
    {
       va_list ptr;
       va_start(ptr, pszFormat);
-      trace_v(NULL, -1, ::base::trace::category_General, 0, pszFormat, ptr);
+      trace_v(NULL, -1, ::axis::trace::category_General, 0, pszFormat, ptr);
       va_end(ptr);
    }
 
@@ -342,7 +342,7 @@ namespace base
       single_lock sl(m_pmutex, TRUE);
       if(m_bInitialized)
          return false;
-      //if(!::base::log::initialize(id))
+      //if(!::axis::log::initialize(id))
         // return false;
       *m_pid = id;
       m_bInitialized = true;
@@ -372,7 +372,7 @@ namespace base
       single_lock sl(m_pmutex, TRUE);
       if(!m_bInitialized)
          return false;
-      bool bOk = ::base::log::finalize();
+      bool bOk = ::axis::log::finalize();
       fclose(m_pfile);
       m_pfile = NULL;
       m_bInitialized = false;
@@ -392,8 +392,8 @@ namespace base
       //((log * )this)->print(pszFormat, args);
       //m_trace.TraceV(pszFileName, nLine, dwCategory, nLevel, pszFmt, args);
       log * plog = (log *) this;
-      ::base::trace::category & category = plog->m_trace.m_map[dwCategory];
-      if(category.m_estatus == ::base::trace::status_disabled || category.m_uiLevel > category.m_uiLevel)
+      ::axis::trace::category & category = plog->m_trace.m_map[dwCategory];
+      if(category.m_estatus == ::axis::trace::status_disabled || category.m_uiLevel > category.m_uiLevel)
          return;
       string str;
       str.FormatV(pszFormat, args);
@@ -503,11 +503,11 @@ namespace base
 
    void log::set_trace_category(uint32_t dwCategory, const char * pszName, uint32_t uiLevel)
    {
-      ::base::trace::category & category = m_ptrace->operator[](dwCategory);
+      ::axis::trace::category & category = m_ptrace->operator[](dwCategory);
       category.m_strCategory = pszName;
       category.m_dwCategory = dwCategory;
       category.m_uiLevel = uiLevel;
-      category.m_estatus = uiLevel >= 1 ? ::base::trace::status_enabled : ::base::trace::status_disabled;
+      category.m_estatus = uiLevel >= 1 ? ::axis::trace::status_enabled : ::axis::trace::status_disabled;
    }
 
 
@@ -525,7 +525,7 @@ namespace base
          return;
       va_list ptr;
       va_start(ptr, pszFormat);
-      trace_v(NULL, -1, ::base::trace::category_General, 0, pszFormat, ptr);
+      trace_v(NULL, -1, ::axis::trace::category_General, 0, pszFormat, ptr);
       va_end(ptr);
    }
 

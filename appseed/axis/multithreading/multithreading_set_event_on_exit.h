@@ -1,12 +1,12 @@
 //
 //  multithreading_set_event_on_exit.h
-//  base
+//  axis
 //
 //
 //
 
 
-class CLASS_DECL_BASE set_event_on_exit
+class CLASS_DECL_AXIS set_event_on_exit
 {
 public:
    

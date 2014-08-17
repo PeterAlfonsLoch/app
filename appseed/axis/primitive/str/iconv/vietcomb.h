@@ -27,7 +27,7 @@
    0x0300, 0x0301, 0x0303, 0x0309, 0x0323. */
 
 /* Composition tables for each of the relevant combining characters. */
-static const struct { unsigned short base; unsigned short composed; } viet_comp_table_data[] = {
+static const struct { unsigned short axis; unsigned short composed; } viet_comp_table_data[] = {
 #define viet_comp_table0300_idx 0
 #define viet_comp_table0300_len 31
   { 0x0041, 0x00C0 },
@@ -258,7 +258,7 @@ static const struct { unsigned int len; unsigned int idx; } viet_comp_table[] = 
 };
 
 /* Decomposition table for the relevant Unicode characters. */
-struct viet_decomp { unsigned short composed; unsigned int base : 12; int comb1 : 4; };
+struct viet_decomp { unsigned short composed; unsigned int axis : 12; int comb1 : 4; };
 static const struct viet_decomp viet_decomp_table[] = {
   { 0x00B4, 0x0020, 1 }, /* compatibility decomposition - for TCVN only */
   { 0x00C0, 0x0041, 0 },

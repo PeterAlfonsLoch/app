@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE semaphore :
+class CLASS_DECL_AXIS semaphore :
    virtual public sync_object
 {
 public:
@@ -20,7 +20,7 @@ public:
 
 #endif
 
-   semaphore(sp(::base::application) papp, LONG lInitialCount = 1, LONG lMaxCount = 1, const char * pstrName=NULL, LPSECURITY_ATTRIBUTES lpsaAttributes = NULL);
+   semaphore(sp(::axis::application) papp, LONG lInitialCount = 1, LONG lMaxCount = 1, const char * pstrName=NULL, LPSECURITY_ATTRIBUTES lpsaAttributes = NULL);
    virtual ~semaphore();
 
    

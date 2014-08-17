@@ -8,7 +8,7 @@ namespace xml
    class document;
 
 
-   class CLASS_DECL_BASE node :
+   class CLASS_DECL_AXIS node :
       virtual public ::object,
       virtual public ::file::serializable
    {
@@ -40,7 +40,7 @@ namespace xml
    protected:
 
 
-      node(::base::application * papp);
+      node(::axis::application * papp);
       node(::xml::node * pnodeParent);
 
 

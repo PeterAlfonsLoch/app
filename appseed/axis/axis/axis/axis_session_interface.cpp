@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace base
+namespace axis
 {
 
 
@@ -35,30 +35,8 @@ namespace base
    }
 
    
-   ::visual::cursor * session_interface::get_cursor()
-   {
 
-      if(m_pplatformcomposite == NULL)
-         return NULL;
-      
-      return m_pplatformcomposite->get_cursor();
-
-   }
-
-
-   ::visual::cursor * session_interface::get_default_cursor()
-   {
-
-      if(m_pplatformcomposite == NULL)
-         return NULL;
-
-      return m_pplatformcomposite->get_default_cursor();
-
-   }
-
-
-
-} // namespace base
+} // namespace axis
 
 
 
