@@ -434,9 +434,6 @@
     <ClCompile Include="Source\LibJPEG\djpeg.c">
       <Filter>Source\LibJPEG</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LibJPEG\example.c">
-      <Filter>Source\LibJPEG</Filter>
-    </ClCompile>
     <ClCompile Include="Source\LibJPEG\jaricom.c">
       <Filter>Source\LibJPEG</Filter>
     </ClCompile>
@@ -723,9 +720,6 @@
       <Filter>Source\LibOpenJPEG</Filter>
     </ClCompile>
     <ClCompile Include="Source\LibOpenJPEG\function_list.c">
-      <Filter>Source\LibOpenJPEG</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibOpenJPEG\image.c">
       <Filter>Source\LibOpenJPEG</Filter>
     </ClCompile>
     <ClCompile Include="Source\LibOpenJPEG\invert.c">
@@ -1435,6 +1429,12 @@
     </ClCompile>
     <ClCompile Include="Source\OpenEXR\Imath\ImathVec.cpp">
       <Filter>Source\OpenEXR\IlmMath</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibJPEG\libjpeg_example.c">
+      <Filter>Source\LibJPEG</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\libopenjpeg_image.c">
+      <Filter>Source\LibOpenJPEG</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -2248,9 +2248,6 @@
     <Text Include="Source\LibJPEG\change.log">
       <Filter>Source\LibJPEG</Filter>
     </Text>
-    <Text Include="Source\LibPNG\libpng-manual.txt">
-      <Filter>Source\LibPNG</Filter>
-    </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\LibJPEG\README">
@@ -2307,49 +2304,7 @@
     <None Include="Source\LibOpenJPEG\THANKS">
       <Filter>Source\LibOpenJPEG</Filter>
     </None>
-    <None Include="Source\LibPNG\ANNOUNCE">
-      <Filter>Source\LibPNG</Filter>
-    </None>
-    <None Include="Source\LibPNG\CHANGES">
-      <Filter>Source\LibPNG</Filter>
-    </None>
-    <None Include="Source\LibPNG\configure">
-      <Filter>Source\LibPNG</Filter>
-    </None>
-    <None Include="Source\LibPNG\INSTALL">
-      <Filter>Source\LibPNG</Filter>
-    </None>
-    <None Include="Source\LibPNG\libpng.3">
-      <Filter>Source\LibPNG</Filter>
-    </None>
-    <None Include="Source\LibPNG\LibPNG.2003.vcproj">
-      <Filter>Source\LibPNG</Filter>
-    </None>
-    <None Include="Source\LibPNG\LibPNG.2005.vcproj">
-      <Filter>Source\LibPNG</Filter>
-    </None>
-    <None Include="Source\LibPNG\LibPNG.2008.vcproj">
-      <Filter>Source\LibPNG</Filter>
-    </None>
-    <None Include="Source\LibPNG\LibPNG.2008.vcxproj">
-      <Filter>Source\LibPNG</Filter>
-    </None>
     <None Include="Source\LibPNG\LibPNG.2008.vcxproj.filters">
-      <Filter>Source\LibPNG</Filter>
-    </None>
-    <None Include="Source\LibPNG\libpngpf.3">
-      <Filter>Source\LibPNG</Filter>
-    </None>
-    <None Include="Source\LibPNG\LICENSE">
-      <Filter>Source\LibPNG</Filter>
-    </None>
-    <None Include="Source\LibPNG\png.5">
-      <Filter>Source\LibPNG</Filter>
-    </None>
-    <None Include="Source\LibPNG\README">
-      <Filter>Source\LibPNG</Filter>
-    </None>
-    <None Include="Source\LibPNG\TODO">
       <Filter>Source\LibPNG</Filter>
     </None>
     <None Include="Source\LibRawLite\dcraw\dcraw.1.html">

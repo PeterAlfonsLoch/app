@@ -38,7 +38,7 @@ it under the terms of the one of three licenses as you choose:
 #include <memory>
 
 #if defined (WIN32)
-#include <winsock2.h>
+//#include <winsock2.h>
 
 /* MSVS 2008 and above... */
 #if _MSC_VER >= 1500

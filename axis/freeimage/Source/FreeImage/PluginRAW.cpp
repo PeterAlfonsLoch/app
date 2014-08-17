@@ -19,9 +19,10 @@
 // Use at your own risk!
 // ==========================================================
 
+#include "FreeImage.h"
+
 #include "../LibRawLite/libraw/libraw.h"
 
-#include "FreeImage.h"
 #include "Utilities.h"
 #include "../Metadata/FreeImageTag.h"
 

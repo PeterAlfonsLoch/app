@@ -25,6 +25,7 @@
 //
 // Use at your own risk!
 // ==========================================================
+#include "FreeImage.h"
 
 #ifdef _MSC_VER 
 #pragma warning (disable : 4786) // identifier was truncated to 'number' characters
@@ -40,7 +41,6 @@ extern "C" {
 #include "../LibJPEG/jerror.h"
 }
 
-#include "FreeImage.h"
 #include "Utilities.h"
 
 #include "../Metadata/FreeImageTag.h"

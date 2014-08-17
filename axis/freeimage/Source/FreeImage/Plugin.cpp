@@ -22,16 +22,6 @@
 // Use at your own risk!
 // =====================================================================
 
-#ifdef _MSC_VER 
-#pragma warning (disable : 4786) // identifier was truncated to 'number' characters
-#endif
-
-#ifdef _WIN32
-#include <windows.h>
-#include <io.h>
-#else
-#include <ctype.h>
-#endif // _WIN32
 
 #include "FreeImage.h"
 #include "Utilities.h"
