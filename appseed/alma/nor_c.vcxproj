@@ -1,0 +1,1054 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="basis|Android">
+      <Configuration>basis</Configuration>
+      <Platform>Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis|Win32">
+      <Configuration>basis</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis|x64">
+      <Configuration>basis</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="codeanalysis|Android">
+      <Configuration>codeanalysis</Configuration>
+      <Platform>Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="codeanalysis|Win32">
+      <Configuration>codeanalysis</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="codeanalysis|x64">
+      <Configuration>codeanalysis</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="memdleak|Android">
+      <Configuration>memdleak</Configuration>
+      <Platform>Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="memdleak|Win32">
+      <Configuration>memdleak</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="memdleak|x64">
+      <Configuration>memdleak</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="profiler|Android">
+      <Configuration>profiler</Configuration>
+      <Platform>Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="profiler|Win32">
+      <Configuration>profiler</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="profiler|x64">
+      <Configuration>profiler</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}</ProjectGuid>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <Keyword>ManagedCProj</Keyword>
+    <RootNamespace>_c</RootNamespace>
+    <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and $(VisualStudioVersion) == ''">$(VCTargetsPath11)</VCTargetsPath>
+    <ProjectName>_c</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Android'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>arm-linux-androideabi-4.7</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Android'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>false</CLRSupport>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|Android'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Android'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\..\stage\x86\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\x86\$(ProjectName)\</IntDir>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+    <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
+    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
+    <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Android'">
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+    <IncludePath>$(AndroidIncludeDir);$(AndroidStlIncludeDir);</IncludePath>
+    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
+    <LibraryPath>$(AndroidLibDir);$(AndroidStlLibPath);</LibraryPath>
+    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(PlatformName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(ProjectName)\</IntDir>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\..\stage\x86\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\x86\$(ProjectName)\</IntDir>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+    <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
+    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
+    <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+    <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
+    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
+    <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\..\stage\x86\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\x86\$(ProjectName)\</IntDir>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+    <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
+    <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+    <IncludePath>$(WindowsSdkDir)\include;$(VCInstallDir)include</IncludePath>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\..\stage\x86\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\x86\$(ProjectName)\</IntDir>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+    <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
+    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
+    <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+    <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
+    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
+    <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\..\stage\x64\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\x64\$(ProjectName)\</IntDir>
+    <ReferencePath>$(VCInstallDir)lib\amd64</ReferencePath>
+    <LibraryPath>$(VCInstallDir)lib\amd64;$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
+    <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\..\stage\x64\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\x64\$(ProjectName)\</IntDir>
+    <ReferencePath>$(VCInstallDir)lib\amd64</ReferencePath>
+    <LibraryPath>$(VCInstallDir)lib\amd64;$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
+    <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\..\stage\x64\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\x64\$(ProjectName)\</IntDir>
+    <ReferencePath>$(VCInstallDir)lib\amd64</ReferencePath>
+    <LibraryPath>$(VCInstallDir)lib\amd64;$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
+    <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\..\..\stage\x64\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\x64\$(ProjectName)\</IntDir>
+    <ReferencePath>$(VCInstallDir)lib\amd64</ReferencePath>
+    <LibraryPath>$(VCInstallDir)lib\amd64;$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
+    <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>__C__LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAsManaged>false</CompileAsManaged>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalOptions>-Zm384 /bigobj </AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>
+      </SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Secur32.lib;Crypt32.lib;Ole32.lib;Gdiplus.lib;psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib;Ws2_32.lib</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib</IgnoreSpecificDefaultLibraries>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <PreBuildEvent>
+      <Command>copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\msvcp110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\msvcr110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\libmysql.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\ListOpenedFileDrv_32.sys" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\ListOpenedFileDrv_64.sys" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\ListOpenedFileDrv_64.inf" "$(OutDir)"
+
+
+copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDir)"
+</Command>
+    </PreBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Android'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>__C__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAsManaged>false</CompileAsManaged>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeLibrary>
+      </RuntimeLibrary>
+      <FunctionLevelLinking>
+      </FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BasicRuntimeChecks>
+      </BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>
+      </FloatingPointModel>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalOptions>
+      </AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <GccExceptionHandling>true</GccExceptionHandling>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Gdiplus.lib;psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\stage\$(PlatformName)\</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>MEMDLEAK;__C__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAsManaged>false</CompileAsManaged>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeLibrary>
+      </RuntimeLibrary>
+      <FunctionLevelLinking>
+      </FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BasicRuntimeChecks>
+      </BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>
+      </FloatingPointModel>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <AdditionalOptions>-Zm384 /bigobj </AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>
+      </SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Gdiplus.lib;psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+    </Link>
+    <PreBuildEvent>
+      <Command>copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++\msvcp110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++\msvcr110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\FreeImage.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libeay32.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libmysql.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libssl32.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\pcre.dll" "$(OutDir)"
+
+
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDir)"
+</Command>
+    </PreBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>MEMDLEAK;__C__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAsManaged>false</CompileAsManaged>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeLibrary>
+      </RuntimeLibrary>
+      <FunctionLevelLinking>
+      </FunctionLevelLinking>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BasicRuntimeChecks>
+      </BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>
+      </FloatingPointModel>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <AdditionalOptions>-Zm384 /bigobj </AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Gdiplus.lib;psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/;$(SolutionDir)../../../app/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+    </Link>
+    <PreBuildEvent>
+      <Command>copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++\msvcp110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++\msvcr110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\FreeImage.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libeay32.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libmysql.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libssl32.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\pcre.dll" "$(OutDir)"
+
+
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDir)"
+</Command>
+    </PreBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>__C__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAsManaged>false</CompileAsManaged>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <FunctionLevelLinking>
+      </FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BasicRuntimeChecks>
+      </BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>
+      </FloatingPointModel>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <EnablePREfast>true</EnablePREfast>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>
+      </SDLCheck>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Gdiplus.lib;psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Link>
+    <PreBuildEvent>
+      <Command>copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++\msvcp110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++\msvcr110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\FreeImage.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\freetype2.3.5-1.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libeay32.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libmysql.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libssl32.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\pcre.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\ListOpenedFileDrv_32.sys" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\ListOpenedFileDrv_64.sys" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\ListOpenedFileDrv_64.inf" "$(OutDir)"
+
+
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDir)"
+</Command>
+    </PreBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>__CA__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../;$(SolutionDir)../../thirdparty/include;$(SolutionDir)../../thirdparty/appseed;$(SolutionDir)../../appseedcore;$(SolutionDir)../../appseedcore/ca2;$(SolutionDir)../../../;$(SolutionDir)../../appseed;$(SolutionDir)../../appseed/cube;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAsManaged>false</CompileAsManaged>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeLibrary>
+      </RuntimeLibrary>
+      <FunctionLevelLinking>
+      </FunctionLevelLinking>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BasicRuntimeChecks>
+      </BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>
+      </FloatingPointModel>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <EnablePREfast>true</EnablePREfast>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/;$(SolutionDir)../../thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+    </Link>
+    <PreBuildEvent>
+      <Command>copy "$(SolutionDir)..\..\stage\app\matter\msvc++100\msvcp100d.dll" "$(OutDir)msvcp100d.dll"
+copy "$(SolutionDir)..\..\stage\app\matter\msvc++100\msvcr100d.dll" "$(OutDir)msvcr100d.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\FreeImage.dll" "$(OutDir)FreeImage.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libeay32.dll" "$(OutDir)libeay32.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libmysql.dll" "$(OutDir)libmysql.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libssl32.dll" "$(OutDir)libssl32.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\pcre.dll" "$(OutDir)pcre.dll"
+
+
+copy "$(SolutionDir)..\..\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDir)libFLAC_dynamic.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libogg.dll" "$(OutDir)libogg.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libvorbis.dll" "$(OutDir)libvorbis.dll"
+copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorbisfile.dll"</Command>
+    </PreBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>__C__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAsManaged>false</CompileAsManaged>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>
+      </FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BasicRuntimeChecks>
+      </BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>
+      </FloatingPointModel>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>-Zm384 /bigobj </AdditionalOptions>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>
+      </SDLCheck>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Secur32.lib;Crypt32.lib;libeay32.lib;Ole32.lib;Gdiplus.lib;psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib;Ws2_32.lib</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <Profile>true</Profile>
+      <IgnoreSpecificDefaultLibraries>LIBCMT.lib</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <PreBuildEvent>
+      <Command>copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\msvcp110d.dll" "$(OutDir)"</Command>
+    </PreBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>__C__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAsManaged>false</CompileAsManaged>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeLibrary>
+      </RuntimeLibrary>
+      <FunctionLevelLinking>
+      </FunctionLevelLinking>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BasicRuntimeChecks>
+      </BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>
+      </FloatingPointModel>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>-Zm384 /bigobj </AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Gdiplus.lib;psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/;$(SolutionDir)../../../app/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <Profile>true</Profile>
+    </Link>
+    <PreBuildEvent>
+      <Command>copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++100\msvcp100d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\stage\app\matter\msvc++100\msvcr100d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\FreeImage.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libeay32.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libmysql.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libssl32.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\pcre.dll" "$(OutDir)"
+
+
+copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDir)"</Command>
+    </PreBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>__C__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <Optimization>Disabled</Optimization>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <CompileAsManaged>false</CompileAsManaged>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <SDLCheck>
+      </SDLCheck>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <OmitFramePointers>false</OmitFramePointers>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Secur32.lib;Crypt32.lib;Ole32.lib;Gdiplus.lib;psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib;Ws2_32.lib</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x64/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x64/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <PreBuildEvent>
+      <Command>copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\x64\msvcp110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\x64\msvcr110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutDir)"</Command>
+    </PreBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Outputs>
+      </Outputs>
+    </CustomBuildStep>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>MEMDLEAK;__C__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <Optimization>Disabled</Optimization>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <CompileAsManaged>false</CompileAsManaged>
+      <UseFullPaths>true</UseFullPaths>
+      <SDLCheck>
+      </SDLCheck>
+      <CompileAsWinRT>false</CompileAsWinRT>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Secur32.lib;Crypt32.lib;Ole32.lib;Gdiplus.lib;psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib;Ws2_32.lib</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x64/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x64/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <PreBuildEvent>
+      <Command>copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\x64\msvcp110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\x64\msvcr110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutDir)"</Command>
+    </PreBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Outputs>
+      </Outputs>
+    </CustomBuildStep>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>__C__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <RuntimeLibrary>
+      </RuntimeLibrary>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <BasicRuntimeChecks>
+      </BasicRuntimeChecks>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>
+      </FloatingPointModel>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <Optimization>Disabled</Optimization>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <CompileAsManaged>false</CompileAsManaged>
+      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <SDLCheck>
+      </SDLCheck>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <EnablePREfast>true</EnablePREfast>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Secur32.lib;Crypt32.lib;libeay32.lib;Ole32.lib;Gdiplus.lib;psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib;Ws2_32.lib</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x64/$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x64/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+    </Link>
+    <PreBuildEvent>
+      <Command>copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\x64\msvcp110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\x64\msvcr110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\FreeImage.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libeay32.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(OutDir)</Command>
+    </PreBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Outputs>
+      </Outputs>
+    </CustomBuildStep>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>__C__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <StringPooling>false</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>
+      </BasicRuntimeChecks>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>
+      </FloatingPointModel>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <Optimization>MaxSpeed</Optimization>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <CompileAsManaged>false</CompileAsManaged>
+      <SDLCheck>
+      </SDLCheck>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Secur32.lib;Crypt32.lib;Ole32.lib;Gdiplus.lib;psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib;Ws2_32.lib</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x64/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x64/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>LIBCMT.lib</IgnoreSpecificDefaultLibraries>
+      <Profile>true</Profile>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <PreBuildEvent>
+      <Command>copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\x64\msvcp110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\x64\msvcr110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutDir)"</Command>
+    </PreBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Outputs>
+      </Outputs>
+    </CustomBuildStep>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="c\c.h" />
+    <ClInclude Include="c\c_c.h" />
+    <ClInclude Include="c\c_mm.h" />
+    <ClInclude Include="framework.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="c\c.c" />
+    <ClCompile Include="framework.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="_c.def" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
