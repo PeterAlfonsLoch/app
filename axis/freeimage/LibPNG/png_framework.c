@@ -1,1 +1,0 @@
-#include "png_framework.h"
