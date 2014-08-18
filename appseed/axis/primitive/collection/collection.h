@@ -130,11 +130,6 @@ public:
 #include "axis/primitive/primitive_signal.h"
 
 
-#include "collection_point_array.h"
-#include "collection_rect_array.h"
-
-
-//#include "collection_string_to_string_map.h"
 
 
 #include "collection_typed_pointer_map.h"
@@ -145,15 +140,12 @@ public:
 
 
 
-#include "collection_sort.h"
-
 #include "collection_id_array.h"
 
 #include "collection_bitset.h"
 
 #include "collection_packset.h"
 
-#include "collection_spreadset.h"
 
 #include "collection_deque.h"
 
@@ -167,10 +159,6 @@ class CLASS_DECL_AXIS time_array :
 };
 
 
-#include "collection_stringl.h"
-#include "collection_string_sort_array.h"
-//#include "collection_stringa.h"
-
 #include "collection_lemon_array.h"
 
 
@@ -182,9 +170,5 @@ class CLASS_DECL_AXIS time_array :
 #include "collection_unique_array.h"
 
 #include "collection_stack.h"
-
-
-#include "collection_base_2array.h"
-
 
 

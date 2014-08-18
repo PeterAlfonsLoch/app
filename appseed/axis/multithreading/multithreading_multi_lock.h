@@ -7,13 +7,13 @@ class CLASS_DECL_AXIS multi_lock
 public:
 
 
-   sync_object_ptra           m_syncobjectptra;
+   sync_object_ptra              m_syncobjectptra;
 #ifdef WINDOWS
-   raw_array < HANDLE >      m_objecta;
+   raw_array < HANDLE >          m_objecta;
 #else
-   raw_array < waitable * >  m_objecta;
+   raw_array < waitable * >      m_objecta;
 #endif
-   bool_array                 m_baLocked;
+   raw_array < bool >            m_baLocked;
 
 
    multi_lock(sync_object_ptra syncobjectptra, bool bInitialLock = FALSE);

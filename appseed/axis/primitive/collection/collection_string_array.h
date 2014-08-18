@@ -86,7 +86,7 @@ public:
       void * lpvoidSwapArg = NULL,
       bool bNoCase = false);
 
-   void get_quick_sort_ci(index_array & ia);
+   void get_quick_sort_ci(raw_index_array & ia);
 
    string_array slice(index iStart, ::count iCount = -1);
 

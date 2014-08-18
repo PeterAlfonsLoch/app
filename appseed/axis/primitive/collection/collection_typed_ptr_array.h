@@ -7,8 +7,8 @@ class CLASS_DECL_AXIS ptr_array :
 {
 public:
 
-   index_array stackLowerBound;
-   index_array stackUpperBound;
+   raw_index_array stackLowerBound;
+   raw_index_array stackUpperBound;
 
 
    inline void quick_sort(void swap(void * lpVoidSwapArg, index iA, index iB), void * lpVoidSwapArg)

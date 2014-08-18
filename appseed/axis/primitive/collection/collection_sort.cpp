@@ -21,8 +21,8 @@ namespace  sort
       void * lpVoidSwapArg)
    {
       
-      index_array stackLowerBound;
-      index_array stackUpperBound;
+      raw_index_array stackLowerBound;
+      raw_index_array stackUpperBound;
       index iLowerBound;
       index iUpperBound;
       index iLPos, iUPos, iMPos;
@@ -121,8 +121,8 @@ namespace  sort
       ::array < void *, void * > & swaparga)
    {
       
-      index_array stackLowerBound;
-      index_array stackUpperBound;
+      raw_index_array stackLowerBound;
+      raw_index_array stackUpperBound;
       index iLowerBound;
       index iUpperBound;
       index iLPos, iUPos, iMPos;

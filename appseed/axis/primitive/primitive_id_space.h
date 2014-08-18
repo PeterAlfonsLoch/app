@@ -21,10 +21,10 @@ class CLASS_DECL_AXIS id_space
 protected:
 
 
-   index_array                      stackLowerBound;
-   index_array                      stackUpperBound;
+   raw_index_array                      stackLowerBound;
+   raw_index_array                      stackUpperBound;
    array < id, const id & >     m_ida; // ordered as added
-   index_array                      m_iaStr; // ordered by chType and strcmp
+   raw_index_array                      m_iaStr; // ordered by chType and strcmp
 
    void sort();
    bool find(const id & id, index & iIndex);
@@ -55,10 +55,10 @@ class CLASS_DECL_AXIS strid_array :
 protected:
 
 
-   index_array                      stackLowerBound;
-   index_array                      stackUpperBound;
+   raw_index_array                      stackLowerBound;
+   raw_index_array                      stackUpperBound;
    array < const char * >           m_idptra; // ordered as added
-   index_array                      m_iaId; // ordered by id_cmp
+   raw_index_array                      m_iaId; // ordered by id_cmp
 
    
 

@@ -1,8 +1,6 @@
 #pragma once
 
 
-template < typename T > class numeric_array;
-typedef CLASS_DECL_AXIS numeric_array < index > index_array;
 
 
 namespace constructor
@@ -490,9 +488,9 @@ public:
    // Operations that move elements around
    index insert_at(index nIndex, ARG_TYPE newElement, ::count nCount = 1);
    index remove_at(index nIndex, ::count nCount = 1);
-   void _001RemoveIndexes(index_array & ia);
-   void remove_indexes(const index_array & ia); // remove indexes from index array upper bound to index array lower bound
-   void remove_descending_indexes(const index_array & ia); // remove indexes from index array lower bound to index array upper bound
+   void _001RemoveIndexes(raw_index_array & ia);
+   void remove_indexes(const raw_index_array & ia); // remove indexes from index array upper bound to index array lower bound
+   void remove_descending_indexes(const raw_index_array & ia); // remove indexes from index array lower bound to index array upper bound
    index insert_at(index nStartIndex, array* pNewArray);
    void swap(index index1, index index2);
 
@@ -534,13 +532,13 @@ public:
 
    void quick_sort(index (* fCompare)(TYPE *, TYPE *));
    void quick_sort(index (* fCompare)(TYPE *, TYPE *), void (* fSwap)(TYPE *, TYPE *));
-   void quick_sort(index (* fCompare)(TYPE *, TYPE *), index_array & ia);
+   void quick_sort(index (* fCompare)(TYPE *, TYPE *), raw_index_array & ia);
    bool binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *)) const;
 
-   bool binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia) const;
-   index sort_add(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia);
-   ::count sort_add(const array < TYPE, ARG_TYPE > & a, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia);
-   index sort_remove(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia);
+   bool binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *), raw_index_array & ia) const;
+   index sort_add(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *), raw_index_array & ia);
+   ::count sort_add(const array < TYPE, ARG_TYPE > & a, index ( * fCompare ) (TYPE *, TYPE *), raw_index_array & ia);
+   index sort_remove(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *), raw_index_array & ia);
 
 
 

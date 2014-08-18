@@ -201,7 +201,7 @@ cregexp * cregexp_util::CompileExpression(const char * lpszExp, bool bCaseInsens
    return new cregexp(lpszExp);
 }
 
-bool cregexp_util::split(string_array & stra, index_array & iaStart, index_array & iaEnd,  const string & str, const string & strExp, int iLimit, bool bAddEmpty, bool bWithSeparator)
+bool cregexp_util::split(string_array & stra, raw_index_array & iaStart, raw_index_array & iaEnd,  const string & str, const string & strExp, int iLimit, bool bAddEmpty, bool bWithSeparator)
 {
 
    cregexp * pre;
@@ -238,7 +238,7 @@ bool    cregexp_util::split(string_array & stra, const string & str, const strin
 
 }
 
-bool cregexp_util::split(string_array & stra, index_array & iaStart, index_array & iaEnd,  const string & str, cregexp * pre, int iLimit, bool bAddEmpty, bool bWithSeparator)
+bool cregexp_util::split(string_array & stra, raw_index_array & iaStart, raw_index_array & iaEnd,  const string & str, cregexp * pre, int iLimit, bool bAddEmpty, bool bWithSeparator)
 {
 
    if(pre == NULL)

@@ -39,7 +39,7 @@ public:
 
 
       bool           m_bUpdated;
-      index_array    m_indexa;
+      raw_index_array    m_indexa;
 
 
       sort_index()
@@ -100,7 +100,7 @@ public:
    }
 
 
-   index_array & defer_update(index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE);
+   raw_index_array & defer_update(index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE);
 
    index add(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE);
 
@@ -147,10 +147,10 @@ public:
    using AXIS_ARRAY::get_size;
 
    template<class ARRAY>
-   friend index lemon::array::sort_add(ARRAY & a, typename ARRAY::AXIS_ARG_TYPE t, index ( * fCompare ) (typename ARRAY::AXIS_TYPE *, typename ARRAY::AXIS_TYPE *), index_array & ia);
+   friend index lemon::array::sort_add(ARRAY & a, typename ARRAY::AXIS_ARG_TYPE t, index ( * fCompare ) (typename ARRAY::AXIS_TYPE *, typename ARRAY::AXIS_TYPE *), raw_index_array & ia);
 
    template<class ARRAY>
-   friend bool lemon::array::binary_search(ARRAY & a, typename ARRAY::AXIS_ARG_TYPE t, index & iIndex, index ( * fCompare ) (typename ARRAY::AXIS_TYPE *, typename ARRAY::AXIS_TYPE *), index_array & ia);
+   friend bool lemon::array::binary_search(ARRAY & a, typename ARRAY::AXIS_ARG_TYPE t, index & iIndex, index ( * fCompare ) (typename ARRAY::AXIS_TYPE *, typename ARRAY::AXIS_TYPE *), raw_index_array & ia);
 
 };
 
@@ -297,9 +297,9 @@ operator == (const sort_array & a) const
    if(get_size() != a.get_size())
       return false;
 
-   index_array & ia1 = ((sort_array *) this)->defer_update();
+   raw_index_array & ia1 = ((sort_array *) this)->defer_update();
 
-   index_array & ia2 = ((sort_array *) &a)->defer_update();
+   raw_index_array & ia2 = ((sort_array *) &a)->defer_update();
 
    for(index i = 0; i < get_size(); i++)
    {

@@ -6,16 +6,16 @@ class CLASS_DECL_AXIS retry_multi_lock
 protected:
 
 
-   sync_object_ptra           m_syncobjectptra;
+   sync_object_ptra              m_syncobjectptra;
 #ifdef WINDOWS
-   raw_array < HANDLE >      m_objecta;
+   raw_array < HANDLE >          m_objecta;
 #else
-   raw_array < waitable * >  m_objecta;
+   raw_array < waitable * >      m_objecta;
 #endif
-   bool_array                 m_baLocked;
-   duration             m_durationLock;
-   duration             m_durationSleep;
-   int32_t                  m_iRetry;
+   raw_array < bool >            m_baLocked;
+   duration                      m_durationLock;
+   duration                      m_durationSleep;
+   int32_t                       m_iRetry;
 
 
 public:

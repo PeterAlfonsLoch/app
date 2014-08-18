@@ -414,13 +414,11 @@ namespace file
 #include "axis/primitive/primitive_object.h"
 
 
-#include "axis/xml/xml_exportable.h"
-#include "axis/xml/xml_importable.h"
 
 
 #include "axis/primitive/collection/collection_decl.h"
-#include "axis/primitive/collection/collection_array_decl.h"
 #include "axis/primitive/collection/collection_raw_array_decl.h"
+#include "axis/primitive/collection/collection_array_decl.h"
 #include "axis/primitive/collection/collection_lemon_array_decl.h"
 #include "axis/primitive/collection/collection_smart_pointer_array.h"
 
@@ -462,9 +460,6 @@ namespace file
 
 
 #include "axis/primitive/collection/collection.h"
-
-
-#include "axis/primitive/primitive_var2.h"
 
 
 #include "axis/primitive/primitive_id_space.h"
@@ -552,10 +547,8 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 #include "axis/primitive/primitive_type.h"
 
 
-#include "axis_flags.h"
 #include "primitive/primitive_check.h"
 #include "axis_keep.h"
-#include "axis/filesystem/file/file_stream2.h"
 
 
 
@@ -565,7 +558,6 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 
 #include "axis_departament.h"
 #include "axis_departament_container.h"
-#include "axis/xml/xml.h"
 #include "axis/database/database.h"
 #include "axis_live_object.h"
 #include "axis_live_signal.h"

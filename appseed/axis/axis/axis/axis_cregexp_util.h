@@ -41,11 +41,11 @@ public:
    static bool    find(const string & str, const string & strExp, index iSubString, strsize * piStart = NULL, strsize * piEnd = NULL);
    static bool    find(const string & str, cregexp * re, index iSubString, strsize * piStart = NULL, strsize * piEnd = NULL);
 
-   static bool    split(string_array & stra, index_array & iaStart, index_array & iaEnd, const string & str, const string & strExp, int iLimit = -1, bool bAddEmpty = true, bool bWithSeparator = false);
+   static bool    split(string_array & stra, raw_index_array & iaStart, raw_index_array & iaEnd, const string & str, const string & strExp, int iLimit = -1, bool bAddEmpty = true, bool bWithSeparator = false);
    static bool    split(string_array & stra, const string & str, const string & strExp, int iLimit = -1, bool bAddEmpty = true, bool bWithSeparator = false);
 
 
-   static bool    split(string_array & stra, index_array & iaStart, index_array & iaEnd, const string & str, cregexp * re, int iLimit = -1, bool bAddEmpty = true, bool bWithSeparator = false);
+   static bool    split(string_array & stra, raw_index_array & iaStart, raw_index_array & iaEnd, const string & str, cregexp * re, int iLimit = -1, bool bAddEmpty = true, bool bWithSeparator = false);
    static bool    split(string_array & stra, const string & str, cregexp * re, int iLimit = -1, bool bAddEmpty = true, bool bWithSeparator = false);
 
    static bool    replace(string & str, const string & strTopic, const string & strExp, index iSubString, const string & strReplace, strsize start = 0, strsize end = -1);

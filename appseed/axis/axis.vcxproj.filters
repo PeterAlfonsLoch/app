@@ -99,9 +99,6 @@
     <Filter Include="Source Files\primitive\str">
       <UniqueIdentifier>{48b842bb-d6ab-4f7c-9d21-8c8541d95a90}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\axis\xml">
-      <UniqueIdentifier>{42770ef4-1efe-40e5-864d-38ad28249a78}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\axis\exception">
       <UniqueIdentifier>{3057931a-c1e2-4b6c-9059-d0ece06cdca4}</UniqueIdentifier>
     </Filter>
@@ -140,9 +137,6 @@
     </Filter>
     <Filter Include="Source Files\axis">
       <UniqueIdentifier>{225c8e24-bbc5-4bf4-9da8-92ec39a039ec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\xml">
-      <UniqueIdentifier>{c4dba712-4a23-4904-b3c1-25fa6f1b24e8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\axis\os">
       <UniqueIdentifier>{245e3241-db5a-4886-814d-9434580575d9}</UniqueIdentifier>
@@ -494,9 +488,6 @@
     <ClInclude Include="primitive\collection\collection_pair.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\collection_point_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\collection\collection_pointer_list.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
@@ -510,9 +501,6 @@
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\collection_raw_array_decl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\collection_rect_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\collection_simple_eq_array.h">
@@ -533,16 +521,10 @@
     <ClInclude Include="primitive\collection\collection_smart_pointer_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\collection_sort.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\collection\collection_sort_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\collection_sort_map.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\collection_spreadset.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\collection_stack.h">
@@ -558,12 +540,6 @@
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\collection_string_map.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\collection_string_sort_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\collection_stringl.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\collection_template.h">
@@ -787,63 +763,6 @@
     </ClInclude>
     <ClInclude Include="primitive\str\x\x_tables.h">
       <Filter>Header Files\primitive\str\x</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_attr.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_data.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_departament.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_disp_option.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_document.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_edit.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_entity.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_enum.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_exportable.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_importable.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_input_tree.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_node.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_output_tree.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_parse_info.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_property_exchange.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_tree_schema.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_var_exchange.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_xmlite.h">
-      <Filter>Header Files\axis\xml</Filter>
     </ClInclude>
     <ClInclude Include="axis\os\cross.h">
       <Filter>Header Files\axis\os</Filter>
@@ -1077,9 +996,6 @@
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
     <ClInclude Include="axis\axis\axis_fixed_alloc_impl.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_flags.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
     <ClInclude Include="axis\axis\axis_heap.h">
@@ -2360,9 +2276,6 @@
     <ClInclude Include="primitive\str\str_base64.h">
       <Filter>Header Files\primitive\str</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\collection_base_2array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\collection\collection_base_enum.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
@@ -2371,12 +2284,6 @@
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_service_base.h">
       <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_base_array.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_tree_base.h">
-      <Filter>Header Files\axis\xml</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive_memory_base.h">
       <Filter>Header Files\primitive</Filter>
@@ -2605,9 +2512,6 @@
     <ClCompile Include="primitive\collection\collection_string_list.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\collection_string_sort_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\collection\collection_string_to_string_map.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
@@ -2724,57 +2628,6 @@
     </ClCompile>
     <ClCompile Include="primitive\str\str_wtostring.cpp">
       <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_attr.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_data.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_disp_option.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_document.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_edit.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_entity.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_exportable.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_importable.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_input_tree.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_node.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_output_tree.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_parse_info.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_property_exchange.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_tree_schema.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_var_exchange.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_xml.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_xmlite.cpp">
-      <Filter>Source Files\axis\xml</Filter>
     </ClCompile>
     <ClCompile Include="axis\os\os_file.cpp">
       <Filter>Source Files\axis\os</Filter>
@@ -2975,9 +2828,6 @@
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
     <ClCompile Include="axis\axis\axis_fixed_alloc.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_flags.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
     <ClCompile Include="axis\axis\axis_geometry.cpp">
@@ -3507,12 +3357,6 @@
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_service_base.cpp">
       <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_base_array.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_tree_base.cpp">
-      <Filter>Source Files\axis\xml</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_memory_base.cpp">
       <Filter>Source Files\primitive</Filter>
