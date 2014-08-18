@@ -40,8 +40,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfConvert.h>
-#include <limits.h>
+#include "Imf.h"
 
 namespace Imf {
 namespace {

@@ -41,8 +41,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfChannelList.h>
-#include <Iex.h>
+#include "Imf.h"
 
 
 using std::string;

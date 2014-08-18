@@ -24,9 +24,9 @@
 
 
 #include "FreeImage.h"
-#include "Utilities.h"
-#include "FreeImageIO.h"
-#include "Plugin.h"
+
+
+
 
 #include "../Metadata/FreeImageTag.h"
 

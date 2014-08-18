@@ -40,7 +40,8 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfDoubleAttribute.h>
+#include "Imf.h"
+
 
 
 namespace Imf {

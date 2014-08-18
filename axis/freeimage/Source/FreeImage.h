@@ -1,3 +1,4 @@
+#pragma once
 // ==========================================================
 // FreeImage 3
 //
@@ -28,12 +29,10 @@
 #ifndef FREEIMAGE_H
 #define FREEIMAGE_H
 
-#include "app/appseed/axis/axis/axis/axis.h"
-
 #ifdef _MSC_VER 
 #pragma warning (disable : 4786) // identifier was truncated to 'number' characters
 #endif 
-/*
+
 #include <stdlib.h>
 #if defined(_WIN32) || defined(_WIN64) || defined(__MINGW32__)
 #include <malloc.h>
@@ -46,7 +45,7 @@
 #else
 #include <ctype.h>
 #endif // _WIN32
-*/
+
 
 // Version information ------------------------------------------------------
 
@@ -1144,3 +1143,27 @@ DLL_API FIBITMAP *DLL_CALLCONV FreeImage_MultigridPoissonSolver(FIBITMAP *Laplac
 
 
 #endif // FREEIMAGE_H
+
+
+#include "FreeImageIO.h"
+#include "Utilities.h"
+#include "Quantizers.h"
+#include "Plugin.h"
+
+#include "../Metadata/FreeImageTag.h"
+
+
+
+#include  "CacheFile.h"
+
+
+
+#include "zLib/zlib.h"
+
+#include "zLib/zutil.h"	/* must be the last header because of error C3163 in VS2008 (_vsnprintf defined in stdio.h) */
+
+
+
+#include "../LibTIFF4/tiffiop.h"
+
+#include "../Metadata/FIRational.h"

@@ -23,10 +23,11 @@
 // ==========================================================
 
 #include "FreeImage.h"
-#include "Utilities.h"
-#include "Quantizers.h"
+
+
 
 // ----------------------------------------------------------
+#undef max
 
 #define CONVERT(from, to) case to : FreeImage_ConvertLine##from##To##to(bits, scanline, FreeImage_GetWidth(dib)); break;
 #define CONVERTWITHPALETTE(from, to) case to : FreeImage_ConvertLine##from##To##to(bits, scanline, FreeImage_GetWidth(dib), FreeImage_GetPalette(dib)); break;
@@ -118,6 +119,7 @@ CMYKToRGB(T C, T M, T Y, T K, T* out) {
 
 	assignRGB(red, green, blue, out);
 }
+
 
 template <class T>
 static void 

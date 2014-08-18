@@ -24,7 +24,7 @@
 
 #include "../LibTIFF4/tiffiop.h"
 
-#include "Utilities.h"
+
 
 // ==========================================================
 // Plugin Interface

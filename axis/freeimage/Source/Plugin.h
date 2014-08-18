@@ -1,3 +1,5 @@
+#pragma once
+
 // ==========================================================
 // FreeImage Plugin Interface
 //
@@ -28,7 +30,7 @@
 #define PLUGIN_H
 
 #include "FreeImage.h"
-#include "Utilities.h"
+
 
 // ==========================================================
 

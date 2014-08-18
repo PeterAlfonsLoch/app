@@ -24,7 +24,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-#include "Utilities.h"
+
 
 static const int WHITE = 255;
 static const int BLACK = 0;

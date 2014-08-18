@@ -25,16 +25,8 @@
 // Use at your own risk!
 // ========================================================== 
 
-#ifdef _MSC_VER
-#pragma warning (disable : 4786) // identifier was truncated to 'number' characters
-#endif
-
-#include "../LibTIFF4/tiffiop.h"
 
 #include "FreeImage.h"
-#include "Utilities.h"
-#include "FreeImageTag.h"
-#include "FIRational.h"
 
 // ----------------------------------------------------------
 //   Extended TIFF Directory GEO Tag Support

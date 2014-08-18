@@ -20,7 +20,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-#include "Utilities.h"
+
 
 /** @brief Determines, whether a palletized image is visually greyscale or not.
  

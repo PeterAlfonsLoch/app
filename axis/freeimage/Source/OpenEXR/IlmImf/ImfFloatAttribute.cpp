@@ -40,7 +40,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfFloatAttribute.h>
+#include "Imf.h"
 
 
 namespace Imf {

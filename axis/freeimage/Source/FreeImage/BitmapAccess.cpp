@@ -26,10 +26,6 @@
 
 
 #include "FreeImage.h"
-#include "FreeImageIO.h"
-#include "Utilities.h"
-
-#include "../Metadata/FreeImageTag.h"
 
 /** Constants for the BITMAPINFOHEADER::biCompression field */
 #ifndef _WINGDI_

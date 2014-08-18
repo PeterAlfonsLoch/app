@@ -41,7 +41,7 @@ extern "C" {
 #include "../LibJPEG/jerror.h"
 }
 
-#include "Utilities.h"
+
 
 #include "../Metadata/FreeImageTag.h"
 

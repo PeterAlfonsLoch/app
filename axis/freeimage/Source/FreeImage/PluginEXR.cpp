@@ -21,7 +21,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-#include "Utilities.h"
+
 #include "../OpenEXR/IlmImf/ImfIO.h"
 #include "../OpenEXR/Iex/Iex.h"
 #include "../OpenEXR/IlmImf/ImfOutputFile.h"

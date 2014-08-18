@@ -23,7 +23,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-#include "Utilities.h"
+
 #include "ToneMapping.h"
 
 static const int NPRE	= 1;		// Number of relaxation sweeps before ...

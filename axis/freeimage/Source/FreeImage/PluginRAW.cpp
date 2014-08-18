@@ -23,7 +23,7 @@
 
 #include "../LibRawLite/libraw/libraw.h"
 
-#include "Utilities.h"
+
 #include "../Metadata/FreeImageTag.h"
 
 // ==========================================================

@@ -38,10 +38,8 @@
 //	
 //-----------------------------------------------------------------------------
 
-#include <ImfAcesFile.h>
-#include <ImfRgbaFile.h>
-#include <ImfStandardAttributes.h>
-#include <Iex.h>
+#include "Imf.h"
+
 
 using namespace std;
 using namespace Imath;

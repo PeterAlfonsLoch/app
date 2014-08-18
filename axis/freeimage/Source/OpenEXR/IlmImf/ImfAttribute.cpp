@@ -40,11 +40,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfAttribute.h>
-#include "IlmThreadMutex.h"
-#include "Iex.h"
-#include <string.h>
-#include <map>
+#include "Imf.h"
 
 
 namespace Imf {

@@ -96,20 +96,7 @@
 //	NaNs and infinities are replaced with zeroes before compression.
 //
 //-----------------------------------------------------------------------------
-
-#include <ImfB44Compressor.h>
-#include <ImfHeader.h>
-#include <ImfChannelList.h>
-#include <ImfMisc.h>
-#include <ImfCheckedArithmetic.h>
-#include <ImathFun.h>
-#include <ImathBox.h>
-#include <Iex.h>
-#include <ImfIO.h>
-#include <ImfXdr.h>
-#include <string.h>
-#include <assert.h>
-#include <algorithm>
+#include "Imf.h"
 
 namespace Imf {
 

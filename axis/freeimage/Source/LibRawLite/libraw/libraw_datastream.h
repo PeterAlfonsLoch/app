@@ -26,6 +26,7 @@ it under the terms of the one of three licenses as you choose:
 #include <sys/types.h>
 #include <errno.h>
 #include <string.h>
+#include <windows.h>
 
 #ifndef __cplusplus
 
