@@ -82,14 +82,6 @@ namespace axis
 
 
    system::system(sp(::axis::application) papp):
-      m_urldepartament(this),
-      //m_mutexDelete(this),
-      m_httpsystem(this),
-      //m_mutex(this),
-#ifndef METROWIN
-      //m_processsection(this),
-#endif
-      //m_visual(this),
       m_libraryDraw2d(this)
    {
       
@@ -193,9 +185,6 @@ namespace axis
       m_pfactory->creatable_large < ::file::simple_binary_buffer >(type_info < ::file::binary_buffer >());
       m_pfactory->creatable_large < ::file::string_buffer >();
 
-      m_spinstall = new ::install::install(this);
-
-
 #ifdef WINDOWS
       m_pmutexDc = NULL;
       m_pdevicecontext = NULL;
@@ -235,9 +224,6 @@ namespace axis
 
 
 
-
-
-      m_compress.set_app(this);
 
 
       m_bSystemSynchronizedCursor = true;
@@ -305,12 +291,6 @@ namespace axis
       enum_display_monitors();
 
       m_peengine = new ::exception::engine(this);
-
-#ifdef BSD_STYLE_SOCKETS
-
-      m_psslinit = new ::sockets::SSLInitializer(this);
-
-#endif
 
       m_pfactory->cloneable_large < create_context >();
       m_pfactory->cloneable_large < application_bias >();

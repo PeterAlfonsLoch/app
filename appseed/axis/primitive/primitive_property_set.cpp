@@ -1045,3 +1045,57 @@ string property_set::get_http_post()
 
 
 
+
+
+
+CLASS_DECL_AXIS string url_decode_dup(const char * psz)
+{
+   string str(psz);
+
+   string strDecode;
+
+   str.replace("+"," ");
+
+   strsize iStart = 0;
+
+   while(true)
+   {
+
+      strsize iFind = str.find("%",iStart);
+
+      if(iFind == -1)
+      {
+         strDecode += str.Mid(iStart);
+         break;
+      }
+
+      strDecode += str.Mid(iStart,iFind - iStart);
+
+      if(str[iFind + 1] == '%')
+      {
+
+         strDecode += "%";
+         iStart = iFind + 2;
+
+      }
+      else
+      {
+
+         char ch = (char)strtol(str.Mid(iFind + 1,2),NULL,16);
+
+         if(ch != 0)
+         {
+            strDecode += ch;
+         }
+
+         iStart = iFind + 3;
+
+      }
+
+
+   }
+
+   return strDecode;
+
+ 
+}

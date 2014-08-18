@@ -1,6 +1,8 @@
 #include "framework.h"
 
 
+bool CLASS_DECL_AXIS vfxFullPath(wstring & wstrFullPath,const wstring & wstrPath);
+
 __STATIC inline bool IsDirSep(WCHAR ch)
 {
 
@@ -217,7 +219,7 @@ retry:
             wstring wstrFileIn;
             wstrFileIn = m_wstrFileName;
             wstring wstrFileOut;
-            bool b = vfxFullPath(wstrFileOut.alloc(MAX_PATH * 8),wstrFileIn) != FALSE;
+            bool b = vfxFullPath(wstrFileOut,wstrFileIn) != FALSE;
             if(b)
             {
                m_wstrFileName = wstrFileOut;
@@ -572,7 +574,7 @@ retry:
 
       ::file::file_status status;
       GetStatus(status);
-      return System.file().name_(status.m_strFullName);
+      return file_name_dup(status.m_strFullName);
    }
 
    string file::GetFileTitle() const
@@ -581,7 +583,7 @@ retry:
 
       ::file::file_status status;
       GetStatus(status);
-      return System.file().title_(status.m_strFullName);
+      return file_title_dup(status.m_strFullName);
    }
 
    string file::GetFilePath() const

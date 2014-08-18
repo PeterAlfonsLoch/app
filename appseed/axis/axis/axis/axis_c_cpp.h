@@ -611,7 +611,6 @@ namespace file
 
 
 
-
 //#include "axis/user/user_create_context.h"
 
 
@@ -758,10 +757,15 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 #include "axis/primitive/primitive_memory_container.h"
 
 
+
 #include "axis/filesystem/file/file_memory_buffer.h"
 #include "axis/filesystem/file/file_byte_stream_memory_buffer.h"
 #include "axis/filesystem/file/file_plain_text_stream_memory_buffer.h"
 #include "axis/filesystem/file/file_circular_buffer.h"
+
+
+#include "filesystem/file/file_timeout_buffer.h"
+#include "filesystem/file/file_transfer_buffer.h"
 
 
 #include "axis/primitive/str/str_international2.h"

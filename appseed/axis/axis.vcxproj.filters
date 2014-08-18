@@ -84,18 +84,6 @@
     <Filter Include="Source Files\primitive\collection">
       <UniqueIdentifier>{b3a683c8-c4bd-46a0-9eab-beb79650277e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\programming">
-      <UniqueIdentifier>{d0b4c014-e341-4901-87ae-635655fd469d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\programming\javascript">
-      <UniqueIdentifier>{d0c7ea9a-6603-4e55-9f3c-47dc1f6beb7e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\programming">
-      <UniqueIdentifier>{0c781238-460c-42fb-8480-ad29ea72ff6d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\programming\javascript">
-      <UniqueIdentifier>{1523f2fe-95c5-4ef8-aeb6-44864f6d2cc6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user\userpresence">
       <UniqueIdentifier>{5f8d1e2a-7a7d-40d2-b25c-52033b755438}</UniqueIdentifier>
     </Filter>
@@ -191,18 +179,6 @@
     </Filter>
     <Filter Include="Source Files\axis">
       <UniqueIdentifier>{225c8e24-bbc5-4bf4-9da8-92ec39a039ec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\compress">
-      <UniqueIdentifier>{75053c2a-c9d5-43d3-aa2e-3bd3da3bccac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\compress\zlib">
-      <UniqueIdentifier>{4d421910-8554-4853-a632-557bbb942229}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\compress\zip">
-      <UniqueIdentifier>{487ab119-db2e-4fdd-b0b1-3d12dad9dd07}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\compress\bsdiff">
-      <UniqueIdentifier>{d36617c6-420d-494e-b90d-062e519f1bc5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\axis\xml">
       <UniqueIdentifier>{c4dba712-4a23-4904-b3c1-25fa6f1b24e8}</UniqueIdentifier>
@@ -779,18 +755,6 @@
     <ClInclude Include="graphics\graphics_window_graphics.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="programming\javascript\javascript.h">
-      <Filter>Header Files\programming\javascript</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\javascript\javascript_functions.h">
-      <Filter>Header Files\programming\javascript</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\javascript\javascript_tinyjs.h">
-      <Filter>Header Files\programming\javascript</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\javascript\javascript_tinyjs_functions.h">
-      <Filter>Header Files\programming\javascript</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\geometry\geometry_types.h">
       <Filter>Header Files\primitive\geometry</Filter>
     </ClInclude>
@@ -844,9 +808,6 @@
     </ClInclude>
     <ClInclude Include="axis\compress\zlib\zutil.h">
       <Filter>Header Files\axis\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\zip_internal.h">
-      <Filter>Source Files\axis\compress\zip</Filter>
     </ClInclude>
     <ClInclude Include="axis\compress\zip\api.h">
       <Filter>Header Files\axis\compress\zip</Filter>
@@ -3457,44 +3418,8 @@
     <ClCompile Include="primitive\collection\collection_var_array.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
-    <ClCompile Include="programming\javascript\javascript.cpp">
-      <Filter>Source Files\programming\javascript</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\javascript\javascript_functions.cpp">
-      <Filter>Source Files\programming\javascript</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp">
-      <Filter>Source Files\programming\javascript</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\math\math_math.cpp">
       <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_api.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_file.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_in_file.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_ioapi.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_memory_buffer.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_unzip.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_util.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_zip.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_application.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_binary_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
@@ -3517,19 +3442,10 @@
     <ClCompile Include="filesystem\file\file_byte_stream_memory_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_c.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_composite.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_dir.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_dir_application.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_dir_system.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_dir2.cpp">
@@ -3595,9 +3511,6 @@
     <ClCompile Include="filesystem\file\file_string_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_system.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_timeout_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -3609,9 +3522,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\file\file_writer_flush.cpp">
       <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\compress_compress.cpp">
-      <Filter>Source Files\axis\compress</Filter>
     </ClCompile>
     <ClCompile Include="user\userpresence\userpresence_user_presence.cpp">
       <Filter>Source Files\user\userpresence</Filter>
@@ -3657,39 +3567,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\file\file_buffered_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_blocksort.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_bsdiff.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_bspatch.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_bzlib.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_compress.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_crctable.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_decompress.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_huffman.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_randtable.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\compress_bzip_stream.cpp">
-      <Filter>Source Files\axis\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\compress_gzip_stream.cpp">
-      <Filter>Source Files\axis\compress</Filter>
     </ClCompile>
     <ClCompile Include="primitive\str\str_base64.cpp">
       <Filter>Source Files\primitive\str</Filter>
@@ -4600,51 +4477,6 @@
     <ClCompile Include="multithreading\multithreading.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
-    <ClCompile Include="axis\compress\zlib\zlib_adler32.c">
-      <Filter>Source Files\axis\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zlib\zlib_compress.c">
-      <Filter>Source Files\axis\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zlib\zlib_crc32.c">
-      <Filter>Source Files\axis\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zlib\zlib_deflate.c">
-      <Filter>Source Files\axis\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zlib\zlib_gzclose.c">
-      <Filter>Source Files\axis\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zlib\zlib_gzlib.c">
-      <Filter>Source Files\axis\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zlib\zlib_gzread.c">
-      <Filter>Source Files\axis\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zlib\zlib_gzwrite.c">
-      <Filter>Source Files\axis\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zlib\zlib_infback.c">
-      <Filter>Source Files\axis\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zlib\zlib_inffast.c">
-      <Filter>Source Files\axis\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zlib\zlib_inflate.c">
-      <Filter>Source Files\axis\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zlib\zlib_inftrees.c">
-      <Filter>Source Files\axis\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zlib\zlib_trees.c">
-      <Filter>Source Files\axis\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zlib\zlib_uncompr.c">
-      <Filter>Source Files\axis\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zlib\zlib_zutil.c">
-      <Filter>Source Files\axis\compress\zlib</Filter>
-    </ClCompile>
     <ClCompile Include="axis\node\android\android_application.cpp">
       <Filter>Source Files\axis\node\android</Filter>
     </ClCompile>
@@ -4944,6 +4776,9 @@
     </ClCompile>
     <ClCompile Include="primitive\geometry\geometry_geometry.cpp">
       <Filter>Source Files\primitive\geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_c.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

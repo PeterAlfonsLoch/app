@@ -112,9 +112,6 @@ namespace axis
       m_pcoreapp                 = NULL;
 
       
-      m_dir.set_app(this);
-      m_file.set_app(this);
-      m_http.set_app(this);
 
 
 
@@ -345,86 +342,6 @@ namespace axis
    void application::load_string_table(const string & pszApp,const string & pszId)
    {
 
-      synch_lock sl(&m_mutexStr);
-
-      string strApp(pszApp);
-      string strMatter;
-      string strLocator;
-
-      if(strApp.is_empty())
-      {
-         strLocator = System.dir().appmatter_locator(this);
-      }
-      else
-      {
-         strLocator = System.dir().appmatter_locator(strApp);
-      }
-
-      if(strMatter.is_empty())
-      {
-         strMatter = "stringtable.xml";
-      }
-      else if(System.file().extension(strMatter) != "xml")
-      {
-         strMatter += ".xml";
-      }
-
-      string strTableId = strApp;
-
-      if(pszId.has_char() && *pszId != '\0')
-      {
-         strTableId += "\\";
-         strTableId += pszId;
-      }
-
-      ::xml::document doc(get_app());
-      string strFilePath = System.dir().matter_from_locator(sess(this).str_context(),strLocator,strMatter);
-      if(!System.file().exists(strFilePath,this))
-      {
-         try
-         {
-            if(m_stringtable[pszId] != NULL)
-               delete m_stringtable[pszId];
-         }
-         catch(...)
-         {
-         }
-         m_stringtable.set_at(pszId,new string_to_string);
-         return;
-      }
-      string strFile = Application.file().as_string(strFilePath);
-      if(!doc.load(strFile))
-         return;
-      string_to_string * pmapNew = new string_to_string;
-      for(int32_t i = 0; i < doc.get_root()->children().get_count(); i++)
-      {
-         string strId = doc.get_root()->child_at(i)->attr("id");
-         string strValue = doc.get_root()->child_at(i)->get_value();
-         pmapNew->set_at(strId,strValue);
-      }
-
-      string_to_string * pmapOld = m_stringtable[strTableId];
-
-      m_stringtable[strTableId] = NULL;
-
-      if(pmapOld != NULL)
-      {
-
-         try
-         {
-
-            delete pmapOld;
-
-         }
-         catch(...)
-         {
-
-         }
-
-      }
-
-      m_stringtable[strTableId] = pmapNew;
-      ASSERT(m_stringtable[strTableId] == pmapNew);
    }
 
 

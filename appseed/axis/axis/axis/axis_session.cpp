@@ -67,31 +67,6 @@ namespace axis
    void session::construct(sp(::axis::application) papp, int iPhase)
    {
 
-      if(iPhase == 0)
-      {
-         
-         if(papp->is_system())
-         {
-
-            m_pfontopus = create_fontopus();
-
-            if(m_pfontopus == NULL)
-               throw simple_exception(this,"could not create fontopus for ::axis::session (::axis::session::construct)");
-
-            m_pfontopus->construct(this);
-
-         }
-         m_pifs                     = new ifs(this,"");
-         m_prfs                     = new ::fs::remote_native(this,"");
-
-         ::fs::set * pset = new class ::fs::set(this);
-         ::fs::link * plink = new ::fs::link(this);
-         plink->fill_os_user();
-         pset->m_spafsdata.add(plink);
-         pset->m_spafsdata.add(new ::fs::native(this));
-         m_spfsdata = pset;
-
-      }
 
    }
 
@@ -142,16 +117,6 @@ namespace axis
    }
 
 
-
-   ::fontopus::user * session::safe_get_user()
-   {
-
-      if(m_pfontopus == NULL)
-         return NULL;
-
-      return m_pfontopus->m_puser;
-
-   }
 
 
    void session::set_cursor(::visual::e_cursor ecursor)
@@ -231,63 +196,6 @@ namespace axis
 
    }
 
-
-   ::fontopus::user * session::get_user()
-   {
-
-      return m_pfontopus->get_user();
-
-   }
-
-
-   bool session::get_auth(const string & pszForm,string & strUsername,string & strPassword)
-   {
-      UNREFERENCED_PARAMETER(pszForm);
-      UNREFERENCED_PARAMETER(strUsername);
-      UNREFERENCED_PARAMETER(strPassword);
-      return false;
-   }
-
-
-   /*::fontopus::user * application::create_user(const string & pszLogin)
-   {
-   return NULL;
-   }*/
-
-   ::fontopus::user * session::create_current_user()
-   {
-      return NULL;
-      /*   string str = get_current_user_login();
-      return create_user(str);*/
-   }
-
-   /*string application::get_current_user_login()
-   {
-   return "";
-   }*/
-
-
-
-   bool session::is_licensed(const char * pszId,bool bInteractive)
-   {
-
-      if(directrix()->m_varTopicQuery.has_property("install"))
-         return true;
-
-      if(directrix()->m_varTopicQuery.has_property("uninstall"))
-         return true;
-
-      return license().has(pszId,bInteractive);
-
-   }
-
-
-   ::fontopus::fontopus * session::create_fontopus()
-   {
-
-      return canew(::fontopus::fontopus(this));
-
-   }
 
    index session::get_ui_wkspace(::user::interaction * pui)
    {

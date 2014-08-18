@@ -159,45 +159,7 @@ void command_line::_001ParseCommandLine(const char * pszCommandLine)
 void command_line::_001ParseCommandLineUri(const char * pszCommandLine)
 {
 
-   m_varFile = System.url().get_script(pszCommandLine);
-   m_varQuery.propset().parse_url_query(System.url().get_query(pszCommandLine));
-
-   if(m_varQuery.has_property("uri"))
-   {
-      if(m_varFile.has_char())
-      {
-         m_varFile += ";";
-         m_varFile += m_varQuery["uri"];
-      }
-      else
-      {
-         m_varFile = m_varQuery["uri"];
-      }
-      if(m_ecommand == command_line::command_file_new)
-         m_ecommand = command_line::command_file_open;
-   }
-   if(m_ecommand == command_line::command_file_open)
-   {
-      m_varQuery["show_platform"] = 1;
-   }
-
-   if(m_varQuery.propset().has_property("app"))
-   {
-      m_strApp = m_varQuery.propset()["app"];
-   }
-
-   if(m_strApp == "session" && m_varQuery.propset().has_property("session_start"))
-   {
-      m_strApp = m_varQuery.propset()["session_start"];
-   }
-
-   if(m_varQuery.propset().has_property("app_type"))
-   {
-      m_strAppType = m_varQuery.propset()["app_type"];
-   }
-
-
-   //      m_pthreadParent->consolidate(this);
+   throw not_implemented(get_app());
 
 }
 
@@ -252,46 +214,7 @@ void command_line::_001ParseCommandFork(const char * pszCommandFork)
 void command_line::_001ParseCommandForkUri(const char * pszCommandFork)
 {
 
-   m_varFile.set_type(var::type_new);
-   m_strApp = System.url().get_script(pszCommandFork);
-   m_varQuery.propset().set_app(get_app());
-   m_varQuery.propset().parse_url_query(System.url().get_query(pszCommandFork));
-
-   if(m_varQuery.has_property("uri"))
-   {
-      if(m_varFile.has_char())
-      {
-         m_varFile += ";";
-         m_varFile += m_varQuery["uri"];
-      }
-      else
-      {
-         m_varFile = m_varQuery["uri"];
-      }
-      if(m_ecommand == command_line::command_file_new)
-         m_ecommand = command_line::command_file_open;
-   }
-   if(m_ecommand == command_line::command_file_open)
-   {
-      m_varQuery["show_platform"] = 1;
-   }
-
-   if(m_varQuery.propset().has_property("app") && !m_varQuery["app"].is_array())
-   {
-      m_strApp = m_varQuery.propset()["app"];
-   }
-
-   if(m_strApp == "session" && m_varQuery.propset().has_property("session_start"))
-   {
-      m_strApp = m_varQuery.propset()["session_start"];
-   }
-
-   if(m_varQuery.propset().has_property("app_type"))
-   {
-      m_strAppType = m_varQuery.propset()["app_type"];
-   }
-
-   //      m_pthreadParent->consolidate(this);
+   throw not_implemented(get_app());
 
 }
 

@@ -397,28 +397,7 @@ namespace windows
    string interaction_impl::calc_icon_window_class(uint32_t dwDefaultStyle,const char * pszMatter)
    {
 
-      string strPath = Application.dir().matter(pszMatter,"icon.ico");
-
-      HICON hIcon = (HICON) ::LoadImage(NULL,strPath,IMAGE_ICON,256,256,LR_LOADFROMFILE);
-
-      string strClass = get_user_interaction_window_class(m_pui);
-
-      if(hIcon != NULL)
-      {
-
-
-         // will fill lpszClassName with default WNDCLASS name
-         // ignore instance handle from pre_create_window.
-
-         WNDCLASS wndcls;
-         if(strClass.has_char() && GetClassInfo(System.m_hinstance,strClass,&wndcls) && wndcls.hIcon != hIcon)
-         {
-            // register a very similar WNDCLASS
-            return __register_window_class(get_app(),wndcls.style,wndcls.hCursor,wndcls.hbrBackground,hIcon);
-         }
-      }
-
-      return strClass;
+      throw not_implemented(get_app());
 
    }
 
