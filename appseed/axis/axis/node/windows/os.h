@@ -122,14 +122,9 @@ int32_t CLASS_DECL_AXIS __windows_main(sp(::axis::system) psystem, ::windows::ma
 #include "windows_file_find.h"
 #include "windows_file.h"
 #include "windows_shell.h"
-//#include "core/gen_resource.h"
-//#include "windows_resource.h"
 #include "windows_stdio_file.h"
-#include "windows_file_set.h"
-
 #include "windows_copydesk.h"
 #include "windows_registry.h"
-
 #include "windows_os.h"
 
 

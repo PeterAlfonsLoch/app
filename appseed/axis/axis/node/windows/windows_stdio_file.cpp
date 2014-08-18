@@ -38,7 +38,7 @@ namespace windows
 
       if(nOpenFlags  & ::file::defer_create_directory)
       {
-         Application.dir().mk(System.dir().name(lpszFileName));
+         ::dir::mk(::dir::name(lpszFileName));
       }
 
       m_pStream = NULL;

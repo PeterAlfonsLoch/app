@@ -1,50 +1,50 @@
 #include "framework.h"
 
 
-namespace windows
+namespace axis
 {
 
 
-   factory_exchange::factory_exchange(sp(::axis::application) papp) :
-      element(papp)
+   namespace windows
    {
 
-      System.factory().cloneable_large    < stdio_file         >  (System.type_info < ::file::text_buffer         > ()        );
-      System.factory().cloneable_large    < file               >  (System.type_info < ::file::binary_buffer       > ()  , true);
-      System.factory().creatable_large    < file_set           >  (System.type_info < ::file::set                 >());
-      System.factory().cloneable          < file_system        >  (System.type_info < ::file::system              > ()  , 1   );
-//      System.factory().cloneable          < WinResource        >  (System.type_info < ::core::resource            > ()  , 1   );
-      System.factory().creatable          < application        >  (System.type_info < ::axis::application          > ()  , 1   );
-      System.factory().cloneable          < dir                >  (System.type_info < ::file::dir::system         > ()  , 1   );
-      System.factory().cloneable_small    < folder_watch       >  (System.type_info < ::file::folder_watch        > ()        );
-      System.factory().creatable          < window_draw        >  (System.type_info < ::user::window_draw         > ()  , 1   );
-      System.factory().creatable_large    < thread             >  (System.type_info < ::thread_impl                 > ()        );
-      System.factory().creatable_large    < interaction_impl   >  (System.type_info < ::user::interaction_impl              > ()        );
-      System.factory().creatable          < os                 >  (System.type_info < ::axis::os                  > ()  , 1   );
-      System.factory().creatable          < port_forward       >  (System.type_info < ::net::port_forward         > ()  , 1   );
-      System.factory().creatable_small    < copydesk           >  (System.type_info < ::axis::copydesk            > ()  , 1   );
-      System.factory().creatable_small    < crypto              >  (System.type_info < ::crypto::crypto               > ()  , 1   );
-      System.factory().creatable_small    < ip_enum            >  (System.type_info < ::net::ip_enum              > ()        );
-//      System.factory().creatable          < printer            >  (System.type_info < ::user::printer             > ()  , 1   );
-      System.factory().creatable_large          < print_job            >  (System.type_info < ::user::print_job             > ());
 
-      shell::theWindowsShell.Initialize();
+      factory_exchange::factory_exchange(sp(::axis::application) papp):
+         element(papp)
+      {
 
-   }
+         System.factory().cloneable_large    < ::windows::stdio_file         >(System.type_info < ::file::text_buffer         >());
+         System.factory().cloneable_large    < ::windows::file               >(System.type_info < ::file::binary_buffer       >(),true);
+         System.factory().creatable          < ::windows::application        >(System.type_info < ::axis::application         >(),1);
+         System.factory().cloneable_small    < ::windows::folder_watch       >(System.type_info < ::file::folder_watch        >());
+         System.factory().creatable          < ::windows::window_draw        >(System.type_info < ::user::window_draw         >(),1);
+         System.factory().creatable_large    < ::windows::thread             >(System.type_info < ::thread_impl               >());
+         System.factory().creatable_large    < ::windows::interaction_impl   >(System.type_info < ::user::interaction_impl    >());
+         System.factory().creatable          < ::windows::os                 >(System.type_info < ::axis::os                  >(),1);
+         System.factory().creatable_small    < ::windows::copydesk           >(System.type_info < ::axis::copydesk            >(),1);
+         System.factory().creatable_large    < ::windows::print_job          >(System.type_info < ::user::print_job           >());
+
+         ::windows::shell::theWindowsShell.Initialize();
+
+      }
 
 
-   factory_exchange::~factory_exchange()
-   {
-   }
+      factory_exchange::~factory_exchange()
+      {
+
+      }
 
 
-} // namespace windows
+   } // namespace windows
+
+
+} // namespace axis
 
 
 void __node_factory_exchange(sp(::axis::application) papp)
 {
 
-   windows::factory_exchange factoryexchange(papp);
+   ::axis::windows::factory_exchange factoryexchange(papp);
 
 }
 

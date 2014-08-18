@@ -1798,11 +1798,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\exception\exception_unhandled_report.h" />
     <ClInclude Include="axis\exception\exception_user.h" />
     <ClInclude Include="axis\exception\exception_void_implementation.h" />
-    <ClInclude Include="axis\geoip\geoip.h" />
-    <ClInclude Include="axis\geoip\geoip_city.h" />
-    <ClInclude Include="axis\geoip\geoip_internal.h" />
-    <ClInclude Include="axis\geoip\geoip_update.h" />
-    <ClInclude Include="axis\geoip\global.h" />
     <ClInclude Include="axis\message\message.h" />
     <ClInclude Include="axis\message\message_base.h" />
     <ClInclude Include="axis\message\message_cross_windows.h" />
@@ -2127,7 +2122,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\node\windows\windows_factory_exchange.h" />
     <ClInclude Include="axis\node\windows\windows_file.h" />
     <ClInclude Include="axis\node\windows\windows_file_find.h" />
-    <ClInclude Include="axis\node\windows\windows_file_set.h" />
     <ClInclude Include="axis\node\windows\windows_file_system.h" />
     <ClInclude Include="axis\node\windows\windows_folder_watch.h" />
     <ClInclude Include="axis\node\windows\windows_implementation.h" />
@@ -2912,11 +2906,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\axis\axis_session_interface.cpp" />
     <ClCompile Include="axis\axis\axis_static_start.cpp" />
     <ClCompile Include="axis\exception\exception_parsing.cpp" />
-    <ClCompile Include="axis\geoip\geoip.cpp" />
-    <ClCompile Include="axis\geoip\geoip_city.cpp" />
-    <ClCompile Include="axis\geoip\geoip_region_name.cpp" />
-    <ClCompile Include="axis\geoip\geoip_time_zone.cpp" />
-    <ClCompile Include="axis\geoip\geoip_update.cpp" />
     <ClCompile Include="axis\message\message.cpp" />
     <ClCompile Include="axis\message\message_base.cpp" />
     <ClCompile Include="axis\message\message_dispatch.cpp" />
@@ -3292,7 +3281,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\node\windows\windows_factory_exchange.cpp" />
     <ClCompile Include="axis\node\windows\windows_file.cpp" />
     <ClCompile Include="axis\node\windows\windows_file_find.cpp" />
-    <ClCompile Include="axis\node\windows\windows_file_set.cpp" />
     <ClCompile Include="axis\node\windows\windows_folder_watch.cpp" />
     <ClCompile Include="axis\node\windows\windows_interaction_impl.cpp" />
     <ClCompile Include="axis\node\windows\windows_os.cpp" />
@@ -4215,7 +4203,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\axis\axis_file_watcher_thread.cpp" />
     <ClCompile Include="axis\axis\axis_fixed_alloc.cpp" />
     <ClCompile Include="axis\axis\axis_flags.cpp" />
-    <ClCompile Include="axis\axis\axis_geometry.cpp" />
     <ClCompile Include="axis\axis\axis_heap.cpp" />
     <ClCompile Include="axis\axis\axis_international.cpp" />
     <ClCompile Include="axis\axis\axis_progress.cpp" />
@@ -5348,6 +5335,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="primitive\datetime\datetime_duration.cpp" />
     <ClCompile Include="primitive\datetime\datetime_time.cpp" />
     <ClCompile Include="primitive\datetime\datetime_value.cpp" />
+    <ClCompile Include="primitive\geometry\geometry_geometry.cpp" />
     <ClCompile Include="primitive\geometry\geometry_point.cpp" />
     <ClCompile Include="primitive\geometry\geometry_rect.cpp" />
     <ClCompile Include="primitive\geometry\geometry_size.cpp" />

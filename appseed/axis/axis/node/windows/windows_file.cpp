@@ -213,8 +213,18 @@ retry:
 
          try
          {
-            ::windows::file_system fs(get_app());
-            fs.FullPath(m_wstrFileName, m_wstrFileName);
+
+            wstring wstrFileIn;
+            wstrFileIn = m_wstrFileName;
+            wstring wstrFileOut;
+            bool b = vfxFullPath(wstrFileOut.alloc(MAX_PATH * 8),wstrFileIn) != FALSE;
+            if(b)
+            {
+               m_wstrFileName = wstrFileOut;
+            }
+
+//            ::windows::file_system fs(get_app());
+  //          fs.FullPath(m_wstrFileName, m_wstrFileName);
          }
          catch(...)
          {

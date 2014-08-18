@@ -1,24 +1,31 @@
 #pragma once
 
 
-namespace windows
+namespace axis
 {
 
 
-   class CLASS_DECL_AXIS factory_exchange :
-      virtual public ::object
+   namespace windows
    {
-   public:
 
 
-      factory_exchange(sp(::axis::application) papp);
-      virtual ~factory_exchange();
+      class CLASS_DECL_AXIS factory_exchange:
+         virtual public ::object
+      {
+      public:
 
 
-   };
+         factory_exchange(sp(::axis::application) papp);
+         virtual ~factory_exchange();
 
 
-} // namespace windows
+      };
+
+
+   } // namespace windows
+
+
+} // namespace axis
 
 
 

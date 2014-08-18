@@ -351,14 +351,6 @@ namespace axis
    
 #endif // defined(APPLEOS)
    
-#ifdef BSD_STYLE_SOCKETS
-         
-         delete ::sockets::base_socket::s_pmutex;
-   
-         ::sockets::base_socket::s_pmutex = NULL;
-   
-#endif
-   
          //delete g_pmutexTrace;
    
          //g_pmutexTrace = NULL;

@@ -392,6 +392,8 @@ CLASS_DECL_AXIS char * ::core::TaskStringW2A(const wchar_t * lpw);
 
 
 
+extern "C"
+CLASS_DECL_AXIS int32_t simple_message_box(oswindow interaction_impl,const char * lpText,const char * lpCaption,uint32_t uiFlags);
 
 
 

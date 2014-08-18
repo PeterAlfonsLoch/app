@@ -183,9 +183,6 @@
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{6dfb842d-9db9-46a1-a7d1-6f696d6287bc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\axis\geoip">
-      <UniqueIdentifier>{a1196ae1-643e-46d0-9f06-361c06e383d7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\primitive\str\iconv">
       <UniqueIdentifier>{d60a1b53-2e99-40da-8849-66e0d745281b}</UniqueIdentifier>
     </Filter>
@@ -236,9 +233,6 @@
     </Filter>
     <Filter Include="Source Files\axis\axis">
       <UniqueIdentifier>{b15f9423-6971-4587-b04f-ca13192a9bcf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\geoip">
-      <UniqueIdentifier>{403c1ed8-0445-4993-8c2f-5ad393680969}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\axis\node">
       <UniqueIdentifier>{57540175-8b21-49ef-a8b9-0ccf5f3f4a56}</UniqueIdentifier>
@@ -1841,21 +1835,6 @@
     <ClInclude Include="axis\axis\axis_print_job.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
-    <ClInclude Include="axis\geoip\geoip.h">
-      <Filter>Header Files\axis\geoip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\geoip\geoip_city.h">
-      <Filter>Header Files\axis\geoip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\geoip\geoip_internal.h">
-      <Filter>Header Files\axis\geoip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\geoip\geoip_update.h">
-      <Filter>Header Files\axis\geoip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\geoip\global.h">
-      <Filter>Header Files\axis\geoip</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\math\math_mkint_c.h">
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
@@ -2703,9 +2682,6 @@
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\windows\windows_file_find.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_file_set.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\windows\windows_file_system.h">
@@ -4063,9 +4039,6 @@
     <ClCompile Include="axis\axis\axis_flags.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
-    <ClCompile Include="axis\axis\axis_geometry.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
     <ClCompile Include="axis\axis\axis_heap.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
@@ -4339,21 +4312,6 @@
     <ClCompile Include="axis\axis\axis_print_job.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
-    <ClCompile Include="axis\geoip\geoip.cpp">
-      <Filter>Source Files\axis\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\geoip\geoip_city.cpp">
-      <Filter>Source Files\axis\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\geoip\geoip_region_name.cpp">
-      <Filter>Source Files\axis\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\geoip\geoip_time_zone.cpp">
-      <Filter>Source Files\axis\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\geoip\geoip_update.cpp">
-      <Filter>Source Files\axis\geoip</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\math\math_natural.cpp">
       <Filter>Source Files\primitive\math</Filter>
     </ClCompile>
@@ -4568,9 +4526,6 @@
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="axis\node\windows\windows_file_find.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_file_set.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="axis\node\windows\windows_folder_watch.cpp">
@@ -4987,6 +4942,9 @@
     <ClCompile Include="database\database_user_interaction.cpp">
       <Filter>Header Files\database</Filter>
     </ClCompile>
+    <ClCompile Include="primitive\geometry\geometry_geometry.cpp">
+      <Filter>Source Files\primitive\geometry</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -5246,6 +5204,9 @@
     </None>
     <None Include="primitive\collection\collection.inl">
       <Filter>Header Files\primitive\collection</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
