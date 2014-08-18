@@ -4,7 +4,7 @@
 
 #ifdef WINDOWS
 
-extern "C" IMAGE_DOS_HEADER __ImageBase;
+extern "C" IMAGE_DOS_HEADER __ImageAxis;
 
 #endif
 

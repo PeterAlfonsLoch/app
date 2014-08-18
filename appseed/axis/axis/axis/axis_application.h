@@ -16,23 +16,21 @@ namespace axis
       smart_pointer < application >                   m_pimpl;
       sp(service_base)                                m_pservice;
 
-      bool                                            m_bBaseProcessInitialize;
-      bool                                            m_bBaseProcessInitializeResult;
+      bool                                            m_bAxisProcessInitialize;
+      bool                                            m_bAxisProcessInitializeResult;
 
-      bool                                            m_bBaseInitializeInstance;
-      bool                                            m_bBaseInitializeInstanceResult;
+      bool                                            m_bAxisInitializeInstance;
+      bool                                            m_bAxisInitializeInstanceResult;
 
-      bool                                            m_bBaseInitialize1;
-      bool                                            m_bBaseInitialize1Result;
+      bool                                            m_bAxisInitialize1;
+      bool                                            m_bAxisInitialize1Result;
 
-      bool                                            m_bBaseInitialize;
-      bool                                            m_bBaseInitializeResult;
+      bool                                            m_bAxisInitialize;
+      bool                                            m_bAxisInitializeResult;
 
       string_to_ptr                                   m_appmap;
       string                                          m_strAppName;
       allocatorsp                                     m_allocer;
-      sp(::command_thread)                            m_pcommandthread;
-      sp(class signal)                                m_psignal;
 
       ::axis::main_init_data *            m_pinitmaindata;
 
@@ -55,7 +53,7 @@ namespace axis
 
 
       bool                                            m_bLicense;
-      string                                          m_strBaseSupportId;
+      string                                          m_strAxisSupportId;
       int32_t                                         m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
 
 
@@ -104,8 +102,6 @@ namespace axis
 
 
       
-      void process(machine_event_data * pdata);
-
 
 
       virtual bool open_link(const string & strLink,const string & pszTarget = "");
@@ -123,26 +119,6 @@ namespace axis
 #endif
 
 
-
-
-
-
-
-      // Wall-eeeeee aliases
-      sp(::command_thread) command_central();
-      sp(::command_thread) command_thread();
-      sp(::command_thread) guideline();
-      sp(::command_thread) command();
-      sp(::command_thread) directrix();
-      sp(::command_thread) axiom();
-      sp(::command_thread) creation();
-
-
-
-
-
-      //virtual void on_allocation_error(const sp(type) info);
-      //virtual sp(element) on_alloc(const sp(type) info);
 
       virtual bool verb();
 
@@ -266,8 +242,6 @@ namespace axis
 
 
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
 
 
       virtual bool final_handle_exception(::exception::exception & e);
@@ -332,10 +306,6 @@ namespace axis
 
       virtual bool defer_initialize_twf();
 
-      // name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
-      // get/set serializables to user directory
-      bool gudo_get(const string & strKey,::file::serializable & obj);
-      bool gudo_set(const string & strKey,::file::serializable & obj);
 
 
       void assert_user_logged_in();
@@ -416,11 +386,4 @@ inline allocatorsp element::allocer()
 }
 
 
-
-inline sp(::command_thread) object::command_thread()
-{
-
-   return m_pbaseapp->command_thread();
-
-}
 

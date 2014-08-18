@@ -59,7 +59,7 @@ namespace file_watcher
 
          
          watch_struct ^ watch;
-         ::Windows::Storage::Search::IStorageQueryResultBase ^ r;
+         ::Windows::Storage::Search::IStorageQueryResultAxis ^ r;
 
 
       };

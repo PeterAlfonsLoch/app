@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE device_context
+class CLASS_DECL_AXIS device_context
 {
 public:
 

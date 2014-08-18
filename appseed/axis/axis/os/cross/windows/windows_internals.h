@@ -218,7 +218,7 @@ typedef struct _UNICODE_STRING {
         int_bool BeingDebugged; /* 002/002 */
         int_bool SpareBool; /* 003/003 */
         HANDLE Mutant; /* 004/008 */
-        HMODULE ImageBaseAddress; /* 008/010 */
+        HMODULE ImageAxisAddress; /* 008/010 */
         PPEB_LDR_DATA LdrData; /* 00c/018 */
         RTL_USER_PROCESS_PARAMETERS *ProcessParameters; /* 010/020 */
         PVOID SubSystemData; /* 014/028 */
@@ -233,7 +233,7 @@ typedef struct _UNICODE_STRING {
         ULONG TlsExpansionCounter; /* 03c/070 */
         PRTL_BITMAP TlsBitmap; /* 040/078 */
         ULONG TlsBitmapBits[2]; /* 044/080 */
-        PVOID ReadOnlySharedMemoryBase; /* 04c/088 */
+        PVOID ReadOnlySharedMemoryAxis; /* 04c/088 */
         PVOID ReadOnlySharedMemoryHeap; /* 050/090 */
         PVOID *ReadOnlyStaticServerData; /* 054/098 */
         PVOID AnsiCodePageData; /* 058/0a0 */
@@ -677,7 +677,7 @@ typedef struct _UNICODE_STRING {
         ProcessIoCounters = 2,
         ProcessVmCounters = 3,
         ProcessTimes = 4,
-        ProcessBasePriority = 5,
+        ProcessAxisPriority = 5,
         ProcessRaisePriority = 6,
         ProcessDebugPort = 7,
         ProcessExceptionPort = 8,
@@ -804,7 +804,7 @@ typedef struct _UNICODE_STRING {
         ThreadBasicInformation,
         ThreadTimes,
         ThreadPriority,
-        ThreadBasePriority,
+        ThreadAxisPriority,
         ThreadAffinityMask,
         ThreadImpersonationToken,
         ThreadDescriptorTableEntry,
@@ -824,11 +824,11 @@ typedef struct _UNICODE_STRING {
 
     typedef struct _THREAD_BASIC_INFORMATION {
         NTSTATUS ExitStatus;
-        PVOID TebBaseAddress;
+        PVOID TebAxisAddress;
         CLIENT_ID ClientId;
         ULONG_PTR AffinityMask;
         LONG Priority;
-        LONG BasePriority;
+        LONG AxisPriority;
     } THREAD_BASIC_INFORMATION, *PTHREAD_BASIC_INFORMATION;
 
     typedef struct _THREAD_DESCRIPTOR_INFORMATION {
@@ -899,7 +899,7 @@ typedef struct _UNICODE_STRING {
         LPVOID StartAddress; /* 1c/20 */
         CLIENT_ID ClientId; /* 20/28 */
         DWORD dwCurrentPriority; /* 28/38 */
-        DWORD dwBasePriority; /* 2c/3c */
+        DWORD dwAxisPriority; /* 2c/3c */
         DWORD dwContextSwitches; /* 30/40 */
         DWORD dwThreadState; /* 34/44 */
         DWORD dwWaitReason; /* 38/48 */
@@ -1023,14 +1023,14 @@ typedef struct _OBJECT_ATTRIBUTES {
     typedef struct _PROCESS_BASIC_INFORMATION {
 #ifdef __WINESRC__
         DWORD_PTR ExitStatus;
-        PPEB PebBaseAddress;
+        PPEB PebAxisAddress;
         DWORD_PTR AffinityMask;
-        DWORD_PTR BasePriority;
+        DWORD_PTR AxisPriority;
         ULONG_PTR UniqueProcessId;
         ULONG_PTR InheritedFromUniqueProcessId;
 #else
         PVOID Reserved1;
-        PPEB PebBaseAddress;
+        PPEB PebAxisAddress;
         PVOID Reserved2[2];
         ULONG_PTR UniqueProcessId;
         PVOID Reserved3;
@@ -1331,7 +1331,7 @@ typedef struct _OBJECT_ATTRIBUTES {
         LARGE_INTEGER UserTime; /* 28/28 */
         LARGE_INTEGER KernelTime; /* 30/30 */
         UNICODE_STRING ProcessName; /* 38/38 */
-        DWORD dwBasePriority; /* 40/48 */
+        DWORD dwAxisPriority; /* 40/48 */
         HANDLE UniqueProcessId; /* 44/50 */
         HANDLE ParentProcessId; /* 48/58 */
         ULONG HandleCount; /* 4c/60 */
@@ -1395,9 +1395,9 @@ typedef struct _OBJECT_ATTRIBUTES {
 
     typedef struct _DEBUG_BUFFER {
         HANDLE SectionHandle;
-        PVOID SectionBase;
-        PVOID RemoteSectionBase;
-        ULONG SectionBaseDelta;
+        PVOID SectionAxis;
+        PVOID RemoteSectionAxis;
+        ULONG SectionAxisDelta;
         HANDLE EventPairHandle;
         ULONG Unknown[2];
         HANDLE RemoteThreadHandle;
@@ -1421,7 +1421,7 @@ typedef struct _OBJECT_ATTRIBUTES {
 
     typedef struct _DEBUG_MODULE_INFORMATION {
         ULONG Reserved[2];
-        ULONG Base;
+        ULONG Axis;
         ULONG Size;
         ULONG Flags;
         USHORT Index;
@@ -1432,7 +1432,7 @@ typedef struct _OBJECT_ATTRIBUTES {
     } DEBUG_MODULE_INFORMATION, *PDEBUG_MODULE_INFORMATION;
 
     typedef struct _DEBUG_HEAP_INFORMATION {
-        ULONG Base;
+        ULONG Axis;
         ULONG Flags;
         USHORT Granularity;
         USHORT Unknown;
@@ -1744,7 +1744,7 @@ typedef struct _OBJECT_ATTRIBUTES {
     } SECTION_INFORMATION_CLASS;
 
     typedef struct _SECTION_BASIC_INFORMATION {
-        ULONG BaseAddress;
+        ULONG AxisAddress;
         ULONG Attributes;
         LARGE_INTEGER Size;
     } SECTION_BASIC_INFORMATION, *PSECTION_BASIC_INFORMATION;
@@ -1768,14 +1768,14 @@ typedef struct _OBJECT_ATTRIBUTES {
         HANDLE SectionHandle;
         ULONG SectionOffset;
         ULONG ViewSize;
-        PVOID ViewBase;
-        PVOID TargetViewBase;
+        PVOID ViewAxis;
+        PVOID TargetViewAxis;
     } LPC_SECTION_WRITE, *PLPC_SECTION_WRITE;
 
     typedef struct _LPC_SECTION_READ {
         ULONG Length;
         ULONG ViewSize;
-        PVOID ViewBase;
+        PVOID ViewAxis;
     } LPC_SECTION_READ, *PLPC_SECTION_READ;
 
     typedef struct _LPC_MESSAGE {
@@ -1829,7 +1829,7 @@ typedef struct _OBJECT_ATTRIBUTES {
     } DIRECTORY_BASIC_INFORMATION, *PDIRECTORY_BASIC_INFORMATION;
 
     typedef struct _INITIAL_TEB {
-        PVOID StackBase;
+        PVOID StackAxis;
         PVOID StackLimit;
         PVOID StackCommit;
         PVOID StackCommitMax;
@@ -1907,11 +1907,11 @@ typedef struct _OBJECT_ATTRIBUTES {
         LIST_ENTRY InLoadOrderModuleList;
         LIST_ENTRY InMemoryOrderModuleList;
         LIST_ENTRY InInitializationOrderModuleList;
-        void* BaseAddress;
+        void* AxisAddress;
         void* EntryPoint;
         ULONG SizeOfImage;
         UNICODE_STRING FullDllName;
-        UNICODE_STRING BaseDllName;
+        UNICODE_STRING AxisDllName;
         ULONG Flags;
         SHORT LoadCount;
         SHORT TlsIndex;
@@ -1939,7 +1939,7 @@ typedef struct _OBJECT_ATTRIBUTES {
     typedef struct _SYSTEM_MODULE {
         PVOID Reserved1; /* 00/00 */
         PVOID Reserved2; /* 04/08 */
-        PVOID ImageBaseAddress; /* 08/10 */
+        PVOID ImageAxisAddress; /* 08/10 */
         ULONG ImageSize; /* 0c/18 */
         ULONG Flags; /* 10/1c */
         WORD Id; /* 14/20 */

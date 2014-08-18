@@ -506,7 +506,7 @@ SRegInfo *next, *temp;
     {
       reafterword = resymb;
       resymb = reword;
-      stringa wcword;
+      string_array wcword;
       for(int32_t idx = 0; idx < wsize; idx++)
       {
         wcword.set_at_grow(idx, *resymb->un.symbol);

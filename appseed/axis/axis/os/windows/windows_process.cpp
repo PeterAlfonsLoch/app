@@ -145,7 +145,7 @@ int32_t get_current_process_affinity_order()
 
 
 
-bool process_modules(stringa & stra, uint32_t processID)
+bool process_modules(string_array & stra, uint32_t processID)
 {
    
    HANDLE hProcess;
@@ -195,7 +195,7 @@ bool process_modules(stringa & stra, uint32_t processID)
 }
 
 
-bool load_modules_diff(stringa & straOld, stringa & straNew, const char * pszExceptDir)
+bool load_modules_diff(string_array & straOld, string_array & straNew, const char * pszExceptDir)
 {
 
    bool bFound;

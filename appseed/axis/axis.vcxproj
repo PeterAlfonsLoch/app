@@ -1652,12 +1652,16 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\axis\axis_cregexp.h" />
     <ClInclude Include="axis\axis\axis_cregexp_util.h" />
     <ClInclude Include="axis\axis\axis_c_cpp.h" />
+    <ClInclude Include="axis\axis\axis_c_file.h" />
     <ClInclude Include="axis\axis\axis_c_objc.h" />
+    <ClInclude Include="axis\axis\axis_c_user.h" />
     <ClInclude Include="axis\axis\axis_c_winrt.h" />
     <ClInclude Include="axis\axis\axis_debug.h" />
     <ClInclude Include="axis\axis\axis_definition.h" />
     <ClInclude Include="axis\axis\axis_departament.h" />
     <ClInclude Include="axis\axis\axis_departament_container.h" />
+    <ClInclude Include="axis\axis\axis_c_dir.h" />
+    <ClInclude Include="axis\axis\axis_dir.h" />
     <ClInclude Include="axis\axis\axis_element.h" />
     <ClInclude Include="axis\axis\axis_enum.h" />
     <ClInclude Include="axis\axis\axis_file_watcher.h" />
@@ -1703,7 +1707,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\axis\axis_root.h" />
     <ClInclude Include="axis\axis\axis_session.h" />
     <ClInclude Include="axis\axis\axis_session_interface.h" />
-    <ClInclude Include="axis\axis\axis_simple_app.h" />
     <ClInclude Include="axis\axis\axis_simple_pixel_font.h" />
     <ClInclude Include="axis\axis\axis_simple_shell_launcher.h" />
     <ClInclude Include="axis\axis\axis_small_ipc_channel.h" />
@@ -2439,8 +2442,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\os\windows\windows_simple_hold_handle.h" />
     <ClInclude Include="axis\os\windows\windows_utils.h" />
     <ClInclude Include="axis\os\windows\windows_windows.h" />
-    <ClInclude Include="axis\os\windows\windows_window_gdi.h" />
     <ClCompile Include="axis\axis\axis_application_interface.cpp" />
+    <ClCompile Include="axis\axis\axis_c_dir.c" />
+    <ClCompile Include="axis\axis\axis_dir.cpp" />
     <ClCompile Include="axis\axis\axis_gudo.cpp" />
     <ClCompile Include="axis\axis\axis_id_pool.cpp" />
     <ClCompile Include="axis\axis\axis_library.cpp" />
@@ -2757,7 +2761,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\datetime\datetime_value.h" />
     <ClInclude Include="primitive\geometry\geometry.h" />
     <ClInclude Include="primitive\geometry\geometry_align.h" />
-    <ClInclude Include="primitive\geometry\geometry_geometry.h" />
     <ClInclude Include="primitive\geometry\geometry_types.h" />
     <ClInclude Include="primitive\geometry\geometry_point.h" />
     <ClInclude Include="primitive\geometry\geometry_rect.h" />
@@ -3085,7 +3088,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\os\windows\windows_dll.cpp" />
     <ClCompile Include="axis\os\windows\windows_error.cpp" />
     <ClCompile Include="axis\os\windows\windows_file_std.cpp" />
-    <ClCompile Include="axis\os\windows\windows_file_watcher.cpp" />
     <ClCompile Include="axis\os\windows\windows_launcher.cpp" />
     <ClCompile Include="axis\os\windows\windows_library.cpp" />
     <ClCompile Include="axis\os\windows\windows_lock.cpp" />
@@ -3093,14 +3095,12 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\os\windows\windows_message_loop.cpp" />
     <ClCompile Include="axis\os\windows\windows_multithreading.cpp" />
     <ClCompile Include="axis\os\windows\windows_process.cpp" />
-    <ClCompile Include="axis\os\windows\windows_simple_app.cpp" />
     <ClCompile Include="axis\os\windows\windows_simple_shell_launcher.cpp" />
     <ClCompile Include="axis\os\windows\windows_small_ipc_channel.cpp" />
     <ClCompile Include="axis\os\windows\windows_std_file.cpp" />
     <ClCompile Include="axis\os\windows\windows_time.cpp" />
     <ClCompile Include="axis\os\windows\windows_util.cpp" />
     <ClCompile Include="axis\os\windows\windows_utils.cpp" />
-    <ClCompile Include="axis\os\windows\windows_window_gdi.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">Create</PrecompiledHeader>
@@ -3175,16 +3175,11 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\axis\axis_argcargv.cpp" />
     <ClCompile Include="axis\axis\axis_assert.cpp" />
     <ClCompile Include="axis\axis\axis_checked.cpp" />
-    <ClCompile Include="axis\axis\axis_cmdtarg.cpp" />
-    <ClCompile Include="axis\axis\axis_command_target.cpp" />
     <ClCompile Include="axis\axis\axis_conv.cpp" />
-    <ClCompile Include="axis\axis\axis_core_os.cpp" />
     <ClCompile Include="axis\axis\axis_cpu_architecture.cpp" />
     <ClCompile Include="axis\axis\axis_cregexp.cpp" />
     <ClCompile Include="axis\axis\axis_cregexp_util.cpp" />
     <ClCompile Include="axis\axis\axis_debug.cpp" />
-    <ClCompile Include="axis\axis\axis_departament.cpp" />
-    <ClCompile Include="axis\axis\axis_departament_container.cpp" />
     <ClCompile Include="axis\axis\axis_element.cpp" />
     <ClCompile Include="axis\axis\axis_file_watcher.cpp" />
     <ClCompile Include="axis\axis\axis_file_watcher_impl.cpp" />
@@ -3196,7 +3191,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\axis\axis_international.cpp" />
     <ClCompile Include="axis\axis\axis_progress.cpp" />
     <ClCompile Include="axis\axis\axis_live_object.cpp" />
-    <ClCompile Include="axis\axis\axis_live_signal.cpp" />
     <ClCompile Include="axis\axis\axis_log.cpp" />
     <ClCompile Include="axis\axis\axis_machine_event.cpp" />
     <ClCompile Include="axis\axis\axis_machine_event_central.cpp" />
@@ -4137,15 +4131,11 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="primitive\primitive_memory_c.cpp" />
     <ClCompile Include="primitive\primitive_memory_container.cpp" />
     <ClCompile Include="primitive\primitive_object.cpp" />
-    <ClCompile Include="primitive\primitive_property.cpp" />
-    <ClCompile Include="primitive\primitive_property_set.cpp" />
-    <ClCompile Include="primitive\primitive_relation_set.cpp" />
     <ClCompile Include="primitive\primitive_request_interface.cpp" />
     <ClCompile Include="primitive\primitive_request_signal.cpp" />
     <ClCompile Include="primitive\primitive_shared_memory.cpp" />
     <ClCompile Include="primitive\primitive_signal.cpp" />
     <ClCompile Include="primitive\primitive_type.cpp" />
-    <ClCompile Include="primitive\primitive_var.cpp" />
     <ClCompile Include="primitive\primitive_virtual_memory.cpp" />
     <ClCompile Include="primitive\str\iconv\allocator.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
@@ -4801,7 +4791,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <None Include="axis\axis\axis_system_smart_pointer.inl" />
     <None Include="axis\message\message.inl" />
     <None Include="multithreading\multithreading.inl" />
-    <None Include="primitive\collection\collection.inl" />
+    <None Include="primitive\collection\collection_lemon_array_impl.inl" />
+    <None Include="primitive\collection\collection_list_impl.inl" />
+    <None Include="primitive\collection\collection_map_impl.inl" />
+    <None Include="primitive\collection\collection_raw_array_impl.inl" />
     <None Include="primitive\primitive_factory_impl.inl" />
     <None Include="primitive\str\str.inl" />
     <None Include="axis.def" />

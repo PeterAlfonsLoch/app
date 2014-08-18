@@ -231,12 +231,6 @@ class CArchiveStream;
 
 #endif
 
-extern "C"
-CLASS_DECL_BASE int32_t system_message_box(oswindow windows,const char * lpText,const char * lpCaption,uint32_t iFlags);
-
-extern "C"
-CLASS_DECL_BASE int32_t simple_message_box(oswindow windows,const char * lpText,const char * lpCaption,uint32_t iFlags);
-
 /////////////////////////////////////////////////////////////////////////////
 // General OLE features
 

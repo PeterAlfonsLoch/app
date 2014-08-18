@@ -570,10 +570,10 @@ err_out:
       : 0))
 
 /* constants for hangul syllable [de]composition */
-#define SBase 0xAC00
-#define LBase 0x1100
-#define VBase 0x1161
-#define TBase 0x11A7
+#define SAxis 0xAC00
+#define LAxis 0x1100
+#define VAxis 0x1161
+#define TAxis 0x11A7
 #define LCount 19
 #define VCount 21
 #define TCount 28
@@ -634,19 +634,19 @@ g_unicode_canonical_ordering (gunichar * string, gsize len)
 static void
 decompose_hangul (gunichar s, gunichar * r, gsize * result_len)
 {
-  gint SIndex = s - SBase;
+  gint SIndex = s - SAxis;
   gint TIndex = SIndex % TCount;
 
   if (r)
     {
-      r[0] = LBase + SIndex / NCount;
-      r[1] = VBase + (SIndex % NCount) / TCount;
+      r[0] = LAxis + SIndex / NCount;
+      r[1] = VAxis + (SIndex % NCount) / TCount;
     }
 
   if (TIndex)
     {
       if (r)
-	r[2] = TBase + TIndex;
+	r[2] = TAxis + TIndex;
       *result_len = 3;
     }
   else
@@ -700,15 +700,15 @@ find_decomposition (gunichar ch, gboolean compat)
 static gboolean
 combine_hangul (gunichar a, gunichar b, gunichar * result)
 {
-  gint LIndex = a - LBase;
-  gint SIndex = a - SBase;
+  gint LIndex = a - LAxis;
+  gint SIndex = a - SAxis;
 
-  gint VIndex = b - VBase;
-  gint TIndex = b - TBase;
+  gint VIndex = b - VAxis;
+  gint TIndex = b - TAxis;
 
   if (0 <= LIndex && LIndex < LCount && 0 <= VIndex && VIndex < VCount)
     {
-      *result = SBase + (LIndex * VCount + VIndex) * TCount;
+      *result = SAxis + (LIndex * VCount + VIndex) * TCount;
       return TRUE;
     }
   else if (0 <= SIndex && SIndex < SCount && (SIndex % TCount) == 0
@@ -801,7 +801,7 @@ _g_utf8_normalize_wc (const gchar * str, gssize max_len, GNormalizeMode mode)
       const gchar *decomp;
       gunichar wc = g_utf8_get_char (p);
 
-      if (wc >= SBase && wc < SBase + SCount)
+      if (wc >= SAxis && wc < SAxis + SCount)
 	{
 	  gsize result_len;
 	  decompose_hangul (wc, NULL, &result_len);
@@ -834,7 +834,7 @@ _g_utf8_normalize_wc (const gchar * str, gssize max_len, GNormalizeMode mode)
       int cc;
       gsize old_n_wc = n_wc;
 
-      if (wc >= SBase && wc < SBase + SCount)
+      if (wc >= SAxis && wc < SAxis + SCount)
 	{
 	  gsize result_len;
 	  decompose_hangul (wc, wc_buffer + n_wc, &result_len);

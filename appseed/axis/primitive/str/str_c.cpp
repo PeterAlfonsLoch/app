@@ -329,7 +329,7 @@ char * strnistr_dup(const char * src, const char * find, int_ptr iLen)
 }
 
 
-void uitoa_dup(char * sz, uint64_t ui, int32_t iBase)
+void uitoa_dup(char * sz, uint64_t ui, int32_t iAxis)
 {
    if(ui == 0)
    {
@@ -340,7 +340,7 @@ void uitoa_dup(char * sz, uint64_t ui, int32_t iBase)
    int32_t iIndex = 0;
    while(ui > 0)
    {
-      int32_t iDigit = (ui % iBase);
+      int32_t iDigit = (ui % iAxis);
       char ch;
       if(iDigit <= 9)
       {
@@ -351,7 +351,7 @@ void uitoa_dup(char * sz, uint64_t ui, int32_t iBase)
          ch = iDigit - 10 + 'a';
       }
       sz[iIndex] =  ch;
-      ui = ui / iBase;
+      ui = ui / iAxis;
       iIndex++;
    }
    sz[iIndex] = '\0';
@@ -360,7 +360,7 @@ void uitoa_dup(char * sz, uint64_t ui, int32_t iBase)
 
 
 
-void itoa_dup(char * sz, int64_t i, int32_t iBase)
+void itoa_dup(char * sz, int64_t i, int32_t iAxis)
 {
    if(i == 0)
    {
@@ -377,7 +377,7 @@ void itoa_dup(char * sz, int64_t i, int32_t iBase)
    int32_t iIndex = 0;
    while(i > 0)
    {
-      int32_t iDigit = (i % iBase);
+      int32_t iDigit = (i % iAxis);
       char ch;
       if(iDigit <= 9)
       {
@@ -388,7 +388,7 @@ void itoa_dup(char * sz, int64_t i, int32_t iBase)
          ch = iDigit - 10 + 'a';
       }
       sz[iIndex] =  ch;
-      i = i / iBase;
+      i = i / iAxis;
       iIndex++;
    }
    if(bNegative)
@@ -403,7 +403,7 @@ void itoa_dup(char * sz, int64_t i, int32_t iBase)
 
 
 
-/*void l64toa_dup(char * sz, int64_t i, int64_t iBase)
+/*void l64toa_dup(char * sz, int64_t i, int64_t iAxis)
 {
    if(i == 0)
    {
@@ -420,7 +420,7 @@ void itoa_dup(char * sz, int64_t i, int32_t iBase)
    int64_t iIndex = 0;
    while(i > 0)
    {
-      int64_t iDigit = (i % iBase);
+      int64_t iDigit = (i % iAxis);
       char ch;
       if(iDigit <= 9)
       {
@@ -431,7 +431,7 @@ void itoa_dup(char * sz, int64_t i, int32_t iBase)
          ch = iDigit - 10 + 'a';
       }
       sz[iIndex] =  ch;
-      i = i / iBase;
+      i = i / iAxis;
       iIndex++;
    }
    if(bNegative)

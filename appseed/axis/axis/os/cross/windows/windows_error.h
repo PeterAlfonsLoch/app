@@ -23866,7 +23866,7 @@ typedef __success(return >= 0) long HRESULT;
 
 
 // PropagateResult is a noop
-#define PropagateResult(hrPrevious, scBase) ((HRESULT) scBase)
+#define PropagateResult(hrPrevious, scAxis) ((HRESULT) scAxis)
 
 
 // ****** End of OBSOLETE functions.
@@ -34730,7 +34730,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The Base AppliCAtion Partition exists in all partition sets and Cannot be removed.
+// The Axis AppliCAtion Partition exists in all partition sets and Cannot be removed.
 //
 #define COMADMIN_E_AXISPARTITION_REQUIRED_IN_SET _HRESULT_TYPEDEF_(0x8011081FL)
 
@@ -37015,7 +37015,7 @@ copy protection errors.
 // The TBS errors are slotted into the TCG error namespace at the TBS layer.
 //
 // 0x0000 - 0x08ff     TPM hardware errors
-// 0x4000 - 0x40ff     TPM Base Services errors (tbssvc.dll)
+// 0x4000 - 0x40ff     TPM Axis Services errors (tbssvc.dll)
 //
 // The following are the subranges within the TPM Software facility. The TBS
 // has two classes of errors - those that can be returned (the public errors,
@@ -38015,7 +38015,7 @@ copy protection errors.
 #define TPM_E_DEFEND_LOCK_RUNNING        _HRESULT_TYPEDEF_(0x80280803L)
 
 //
-// TPM Base Services error codes {0x4000..0x40ff}
+// TPM Axis Services error codes {0x4000..0x40ff}
 //
 //
 // MessageId: TBS_E_INTERNAL_ERROR

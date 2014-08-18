@@ -48,3 +48,24 @@
 CLASS_DECL_AXIS int get_base_init();
 CLASS_DECL_AXIS int_bool defer_base_init();
 CLASS_DECL_AXIS int_bool defer_base_term();
+
+
+#include "axis_c_file.h"
+#include "axis_c_user.h"
+
+
+#include "axis_c_dir.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+

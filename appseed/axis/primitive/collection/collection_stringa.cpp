@@ -5,12 +5,12 @@
 __STATIC UINT __read_string_length(::file::input_stream & ar);
 
 
-stringa::stringa(sp(::axis::application) papp) :
+string_array::string_array(sp(::axis::application) papp) :
 element(papp)
 {
 }
 
-stringa::stringa(const char * psz)
+string_array::string_array(const char * psz)
 {
 
    add(psz);
@@ -18,30 +18,30 @@ stringa::stringa(const char * psz)
 }
 
 
-stringa::stringa(const string & str)
+string_array::string_array(const string & str)
 {
 
    add(str);
 
 }
 
-stringa::stringa(const var & var)
+string_array::string_array(const var & var)
 {
 
    add(var);
 
 }
 
-stringa::stringa(const stringa &array)
+string_array::string_array(const string_array &array)
 {
    operator =(array);
 }
 
-stringa::~stringa()
+string_array::~string_array()
 {
 }
 
-void stringa::add_tokens(const char * lpcsz, const char * lpcszSeparator, bool bAddEmpty)
+void string_array::add_tokens(const char * lpcsz, const char * lpcszSeparator, bool bAddEmpty)
 {
    ::str::tokenizer strTokenizer(lpcsz);
    string strToken;
@@ -64,7 +64,7 @@ void stringa::add_tokens(const char * lpcsz, const char * lpcszSeparator, bool b
 
 int32_t g_add_smallest_tokens = 0;
 
-void stringa::add_smallest_tokens(const char * lpcsz, stringa & straSeparator, bool bAddEmpty, bool bWithSeparator)
+void string_array::add_smallest_tokens(const char * lpcsz, string_array & straSeparator, bool bAddEmpty, bool bWithSeparator)
 {
    ::str::tokenizer strTokenizer(lpcsz);
    string strToken;
@@ -86,10 +86,10 @@ void stringa::add_smallest_tokens(const char * lpcsz, stringa & straSeparator, b
 }
 
 
-void stringa::add_lines(const string & str)
+void string_array::add_lines(const string & str)
 {
 
-   stringa straSeparator;
+   string_array straSeparator;
 
    straSeparator.add("\r");
 
@@ -102,7 +102,7 @@ void stringa::add_lines(const string & str)
 }
 
 
-void stringa::get_format_string(string & str, const char * lpcszSeparator) const
+void string_array::get_format_string(string & str, const char * lpcszSeparator) const
 {
    str.Empty();
    if(m_nSize > 0)
@@ -120,9 +120,9 @@ void stringa::get_format_string(string & str, const char * lpcszSeparator) const
 
 
 
-/*void stringa::XFV001Expand()
+/*void string_array::XFV001Expand()
 {
-stringa strArray;
+string_array strArray;
 raw_uint_array dwa;
 for(int32_t i = 0; i < m_nSize; i++)
 {
@@ -144,11 +144,11 @@ for(i = dwa.get_size(); --i >= 0 ;)
 {
 remove_at(dwa.get_at(i));
 }
-Sort(stringa::Compare);
+Sort(string_array::Compare);
 
 }*/
 
-index stringa::add_unique(const char * lpcsz)
+index string_array::add_unique(const char * lpcsz)
 {
    index find = find_first(lpcsz);
    if(find >= 0)
@@ -156,7 +156,7 @@ index stringa::add_unique(const char * lpcsz)
    return string_array::add(lpcsz);
 }
 
-::count stringa::add_unique(const string_array & stra)
+::count string_array::add_unique(const string_array & stra)
 {
    ::count count = 0;
    for(int32_t i = 0; i < stra.get_size(); i++)
@@ -167,7 +167,7 @@ index stringa::add_unique(const char * lpcsz)
    return count;
 }
 
-index stringa::add_unique_ci(const char * lpcsz)
+index string_array::add_unique_ci(const char * lpcsz)
 {
    index find = find_first_ci(lpcsz);
    if(find >= 0)
@@ -175,7 +175,7 @@ index stringa::add_unique_ci(const char * lpcsz)
    return string_array::add(lpcsz);
 }
 
-::count stringa::add_unique_ci(const string_array & stra)
+::count string_array::add_unique_ci(const string_array & stra)
 {
    ::count count = 0;
    for(int32_t i = 0; i < stra.get_size(); i++)
@@ -186,7 +186,7 @@ index stringa::add_unique_ci(const char * lpcsz)
    return count;
 }
 
-index stringa::find_first_ci(const char * lpcsz, index find, index last) const
+index string_array::find_first_ci(const char * lpcsz, index find, index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -200,7 +200,7 @@ index stringa::find_first_ci(const char * lpcsz, index find, index last) const
    return -1;
 }
 
-index stringa::find_first(const char * lpcsz, index find, index last) const
+index string_array::find_first(const char * lpcsz, index find, index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -215,7 +215,7 @@ index stringa::find_first(const char * lpcsz, index find, index last) const
 }
 
 
-index stringa::reverse_find_ci(const char * lpcsz, index find, index last) const
+index string_array::reverse_find_ci(const char * lpcsz, index find, index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -229,7 +229,7 @@ index stringa::reverse_find_ci(const char * lpcsz, index find, index last) const
    return -1;
 }
 
-index stringa::reverse_find(const char * lpcsz, index find, index last) const
+index string_array::reverse_find(const char * lpcsz, index find, index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -243,7 +243,7 @@ index stringa::reverse_find(const char * lpcsz, index find, index last) const
    return -1;
 }
 
-index stringa::find_first_begins_ci(const char * lpcsz, index find, index last) const
+index string_array::find_first_begins_ci(const char * lpcsz, index find, index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -257,7 +257,7 @@ index stringa::find_first_begins_ci(const char * lpcsz, index find, index last) 
    return -1;
 }
 
-index stringa::find_first_begins(const char * lpcsz, index find, index last) const
+index string_array::find_first_begins(const char * lpcsz, index find, index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -271,7 +271,7 @@ index stringa::find_first_begins(const char * lpcsz, index find, index last) con
    return -1;
 }
 
-index stringa::str_find_first_begins_ci(const char * lpcsz, index find, index last) const
+index string_array::str_find_first_begins_ci(const char * lpcsz, index find, index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -285,7 +285,7 @@ index stringa::str_find_first_begins_ci(const char * lpcsz, index find, index la
    return -1;
 }
 
-index stringa::str_find_first_begins(const char * lpcsz, index find, index last) const
+index string_array::str_find_first_begins(const char * lpcsz, index find, index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -300,7 +300,7 @@ index stringa::str_find_first_begins(const char * lpcsz, index find, index last)
 }
 
 
-bool stringa::contains_ci(const char * lpcsz, index find, index last, ::count countMin, ::count countMax) const
+bool string_array::contains_ci(const char * lpcsz, index find, index last, ::count countMin, ::count countMax) const
 {
    ::count count = 0;
    while((count < countMin || (countMax >= 0 && count <= countMax))
@@ -309,7 +309,7 @@ bool stringa::contains_ci(const char * lpcsz, index find, index last, ::count co
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
 
-bool stringa::contains(const char * lpcsz, index find, index last, ::count countMin, ::count countMax) const
+bool string_array::contains(const char * lpcsz, index find, index last, ::count countMin, ::count countMax) const
 {
    ::count count = 0;
    while((count < countMin || (countMax >= 0 && count <= countMax))
@@ -319,21 +319,21 @@ bool stringa::contains(const char * lpcsz, index find, index last, ::count count
 }
 
 
-index stringa::remove_first_ci(const char * lpcsz, index find, index last)
+index string_array::remove_first_ci(const char * lpcsz, index find, index last)
 {
    if((find = find_first_ci(lpcsz, find, last)) >= 0)
       remove_at(find);
    return find;
 }
 
-index stringa::remove_first(const char * lpcsz, index find, index last)
+index string_array::remove_first(const char * lpcsz, index find, index last)
 {
    if((find = find_first(lpcsz, find, last)) >= 0)
       remove_at(find);
    return find;
 }
 
-::count stringa::remove_ci(const char * lpcsz, index find, index last, ::count countMin, ::count countMax)
+::count string_array::remove_ci(const char * lpcsz, index find, index last, ::count countMin, ::count countMax)
 {
    ::count count = 0;
    if(contains_ci(lpcsz, find, last, countMin, countMax))
@@ -343,7 +343,7 @@ index stringa::remove_first(const char * lpcsz, index find, index last)
    return count;
 }
 
-::count stringa::remove(const char * lpcsz, index find, index last, ::count countMin, ::count countMax)
+::count string_array::remove(const char * lpcsz, index find, index last, ::count countMin, ::count countMax)
 {
    ::count count = 0;
    if(contains(lpcsz, find, last, countMin, countMax))
@@ -353,7 +353,7 @@ index stringa::remove_first(const char * lpcsz, index find, index last)
    return count;
 }
 
-::count stringa::remove_ci(const string_array & stra)
+::count string_array::remove_ci(const string_array & stra)
 {
    ::count count = 0;
    for(int32_t i = 0; i < stra.get_size(); i++)
@@ -363,7 +363,7 @@ index stringa::remove_first(const char * lpcsz, index find, index last)
    return count;
 }
 
-::count stringa::remove(const string_array & stra)
+::count string_array::remove(const string_array & stra)
 {
    ::count count = 0;
    for(int32_t i = 0; i < stra.get_size(); i++)
@@ -373,7 +373,7 @@ index stringa::remove_first(const char * lpcsz, index find, index last)
    return count;
 }
 
-void stringa::trim_left(const char * pszChars)
+void string_array::trim_left(const char * pszChars)
 {
    for(int32_t i = 0; i < m_nSize; i++)
    {
@@ -381,7 +381,7 @@ void stringa::trim_left(const char * pszChars)
    }
 }
 
-void stringa::trim_right(const char * pszChars)
+void string_array::trim_right(const char * pszChars)
 {
    for(int32_t i = 0; i < m_nSize; i++)
    {
@@ -389,7 +389,7 @@ void stringa::trim_right(const char * pszChars)
    }
 }
 
-void stringa::trim(const char * pszChars)
+void string_array::trim(const char * pszChars)
 {
    for(int32_t i = 0; i < m_nSize; i++)
    {
@@ -398,7 +398,7 @@ void stringa::trim(const char * pszChars)
 }
 
 
-void stringa::trim_left()
+void string_array::trim_left()
 {
    for(int32_t i = 0; i < m_nSize; i++)
    {
@@ -406,7 +406,7 @@ void stringa::trim_left()
    }
 }
 
-void stringa::trim_right()
+void string_array::trim_right()
 {
    for(int32_t i = 0; i < m_nSize; i++)
    {
@@ -414,7 +414,7 @@ void stringa::trim_right()
    }
 }
 
-void stringa::trim()
+void string_array::trim()
 {
    for(int32_t i = 0; i < m_nSize; i++)
    {
@@ -422,12 +422,12 @@ void stringa::trim()
    }
 }
 
-index stringa::add_normal(const char * lpcsz)
+index string_array::add_normal(const char * lpcsz)
 {
    return string_array::add(lpcsz);
 }
 
-::count stringa::remove_empty()
+::count string_array::remove_empty()
 {
    ::count count = 0;
    for(index i = 0; i < this->get_size();)
@@ -445,7 +445,7 @@ index stringa::add_normal(const char * lpcsz)
    return count;
 }
 
-primitive::memory stringa::GetFormatV004()
+primitive::memory string_array::GetFormatV004()
 {
 
    strsize iTotalLength = 0;
@@ -518,26 +518,26 @@ primitive::memory stringa::GetFormatV004()
 }
 
 
-stringa & stringa::operator =(const stringa & tokena)
+string_array & string_array::operator =(const string_array & tokena)
 {
    copy((string_array &) tokena);
    return *this;
 }
 
-stringa & stringa::operator =(const string_array & tokena)
+string_array & string_array::operator =(const string_array & tokena)
 {
    copy(tokena);
    return *this;
 }
 
-stringa & stringa::operator =(const raw_int64_array & ia)
+string_array & string_array::operator =(const raw_int64_array & ia)
 {
    copy(ia);
    return *this;
 }
 
 
-/*int32_t stringa::CountPrefixNoCase(const char * lpcszPrefix)
+/*int32_t string_array::CountPrefixNoCase(const char * lpcszPrefix)
 {
 string str;
 if(lpcszPrefix != NULL)
@@ -565,8 +565,8 @@ return iCount;
 }
 }*/
 
-/*void stringa::ExtractPrefixNoSortNoCase(
-stringa &stra,
+/*void string_array::ExtractPrefixNoSortNoCase(
+string_array &stra,
 const char * lpcsz,
 int32_t iLength,
 int32_t iMinLength)
@@ -611,7 +611,7 @@ add(strMid);
 
 }
 
-int32_t stringa::FindFirstNoSortNoCase(const char * lpcsz)
+int32_t string_array::FindFirstNoSortNoCase(const char * lpcsz)
 {
 for(int32_t i = 0; i < this->get_size(); i++)
 {
@@ -625,7 +625,7 @@ return -1;
 */
 
 
-void stringa::write(::file::output_stream & ostream)
+void string_array::write(::file::output_stream & ostream)
 {
    ostream.write_arbitrary(m_nSize);
    for(int32_t i = 0; i < this->get_size(); i++)
@@ -634,7 +634,7 @@ void stringa::write(::file::output_stream & ostream)
    }
 }
 
-void stringa::read(::file::input_stream & istream)
+void string_array::read(::file::input_stream & istream)
 {
 
    ::count iSize;
@@ -654,7 +654,7 @@ void stringa::read(::file::input_stream & istream)
    }
 
    if(this->get_size() != iSize)
-      throw io_exception(get_app(), "stringa::read");
+      throw io_exception(get_app(), "string_array::read");
 
 }
 
@@ -662,7 +662,7 @@ void stringa::read(::file::input_stream & istream)
 
 
 
-void stringa::implode(string & str, const char * lpcszSeparator, index start, ::count count) const
+void string_array::implode(string & str, const char * lpcszSeparator, index start, ::count count) const
 {
    str.Empty();
    string strSeparator(lpcszSeparator);
@@ -689,7 +689,7 @@ void stringa::implode(string & str, const char * lpcszSeparator, index start, ::
    }
 }
 
-string stringa::implode(const char * lpcszSeparator, index iStart, index iEnd) const
+string string_array::implode(const char * lpcszSeparator, index iStart, index iEnd) const
 {
    string str;
    implode(str, lpcszSeparator, iStart, iEnd);
@@ -697,7 +697,7 @@ string stringa::implode(const char * lpcszSeparator, index iStart, index iEnd) c
 }
 
 
-void stringa::reverse_implode(string & str, const char * lpcszSeparator, index start, ::count count) const
+void string_array::reverse_implode(string & str, const char * lpcszSeparator, index start, ::count count) const
 {
    str.Empty();
    string strSeparator(lpcszSeparator);
@@ -724,14 +724,14 @@ void stringa::reverse_implode(string & str, const char * lpcszSeparator, index s
    }
 }
 
-string stringa::reverse_implode(const char * lpcszSeparator, index iStart, index iEnd) const
+string string_array::reverse_implode(const char * lpcszSeparator, index iStart, index iEnd) const
 {
    string str;
    reverse_implode(str, lpcszSeparator, iStart, iEnd);
    return str;
 }
 
-stringa & stringa::explode(const string & strSeparator, const string & str)
+string_array & string_array::explode(const string & strSeparator, const string & str)
 {
 
    remove_all();
@@ -743,7 +743,7 @@ stringa & stringa::explode(const string & strSeparator, const string & str)
 }
 
 
-stringa & stringa::csstidy_explode_ws(char sep, const char * psz)
+string_array & string_array::csstidy_explode_ws(char sep, const char * psz)
 {
 
    string istring(psz);
@@ -793,7 +793,7 @@ stringa & stringa::csstidy_explode_ws(char sep, const char * psz)
 
 }
 
-void stringa::replace(const char * lpszSearch, const char * lpszReplace)
+void string_array::replace(const char * lpszSearch, const char * lpszReplace)
 {
    for(int32_t i = 0; i < this->get_size(); i++)
    {
@@ -802,7 +802,7 @@ void stringa::replace(const char * lpszSearch, const char * lpszReplace)
 }
 
 
-void stringa::surround(const char * pszPrefix, const char * pszSuffix, index iStart, ::count iCount)
+void string_array::surround(const char * pszPrefix, const char * pszSuffix, index iStart, ::count iCount)
 {
 
    string strPrefix(pszPrefix);
@@ -828,7 +828,7 @@ void stringa::surround(const char * pszPrefix, const char * pszSuffix, index iSt
 
 }
 
-string stringa::surround_and_implode(const char * pszSeparator, const char * pszPrefix, const char * pszSuffix, index iStart, ::count iCount)
+string string_array::surround_and_implode(const char * pszSeparator, const char * pszPrefix, const char * pszSuffix, index iStart, ::count iCount)
 {
    string str;
    string strSeparator(pszSeparator);
@@ -865,33 +865,33 @@ string stringa::surround_and_implode(const char * pszSeparator, const char * psz
 
 }
 
-stringa & stringa::operator -=(const string_array & stra)
+string_array & string_array::operator -=(const string_array & stra)
 {
    remove(stra);
    return *this;
 }
 
-stringa & stringa::operator +=(const string_array & stra)
+string_array & string_array::operator +=(const string_array & stra)
 {
    add(stra);
    return *this;
 }
 
-stringa stringa::operator -(const string_array & straParam) const
+string_array string_array::operator -(const string_array & straParam) const
 {
-   stringa stra(*this);
+   string_array stra(*this);
    stra -= straParam;
    return stra;
 }
 
-stringa stringa::operator +(const string_array & straParam) const
+string_array string_array::operator +(const string_array & straParam) const
 {
-   stringa stra(*this);
+   string_array stra(*this);
    stra += straParam;
    return stra;
 }
 
-stringa & stringa::operator = (var var)
+string_array & string_array::operator = (var var)
 {
    if(var.get_type() == var::type_stra)
    {
@@ -912,7 +912,7 @@ stringa & stringa::operator = (var var)
    return *this;
 }
 
-bool stringa::move_ci(const char * lpcsz, index iIndex)
+bool string_array::move_ci(const char * lpcsz, index iIndex)
 {
    index i = find_first_ci(lpcsz);
    if(i < 0)
@@ -922,12 +922,12 @@ bool stringa::move_ci(const char * lpcsz, index iIndex)
    return true;
 }
 
-bool stringa::preferred(const char * lpcsz)
+bool string_array::preferred(const char * lpcsz)
 {
    return move_ci(lpcsz, 0);
 }
 
-::count stringa::preferred(stringa & stra)
+::count string_array::preferred(string_array & stra)
 {
    ::count count = 0;
    for(index i = stra.get_upper_bound(); i >= 0; i--)
@@ -939,7 +939,7 @@ bool stringa::preferred(const char * lpcsz)
 }
 
 
-string stringa::pop(index i)
+string string_array::pop(index i)
 {
    i = get_upper_bound(i);
    string strRet = this->element_at(i);
@@ -947,7 +947,7 @@ string stringa::pop(index i)
    return strRet;
 }
 
-void stringa::slice(stringa & stra, index iOffset, ::count count)
+void string_array::slice(string_array & stra, index iOffset, ::count count)
 {
 
    index iEnd;
@@ -964,7 +964,7 @@ void stringa::slice(stringa & stra, index iOffset, ::count count)
 
 }
 
-void stringa::remove(index iOffset, ::count count)
+void string_array::remove(index iOffset, ::count count)
 {
    for(index i = iOffset + count - 1; i >= iOffset; i--)
    {
@@ -973,7 +973,7 @@ void stringa::remove(index iOffset, ::count count)
 }
 
 
-void stringa::splice(const stringa & stra, index iOffset, ::count count)
+void string_array::splice(const string_array & stra, index iOffset, ::count count)
 {
 
    remove(iOffset, count);
@@ -983,7 +983,7 @@ void stringa::splice(const stringa & stra, index iOffset, ::count count)
 }
 
 
-void stringa::splice(const stringa & stra, index iOffset, stringa & straRemoved, ::count count)
+void string_array::splice(const string_array & stra, index iOffset, string_array & straRemoved, ::count count)
 {
 
    slice(straRemoved, iOffset, count);
@@ -995,18 +995,18 @@ void stringa::splice(const stringa & stra, index iOffset, stringa & straRemoved,
 }
 
 
-bool stringa::is_empty(::count countMinimum)
+bool string_array::is_empty(::count countMinimum)
 {
    return this->get_size() < countMinimum;
 }
 
-bool stringa::has_elements(::count countMinimum)
+bool string_array::has_elements(::count countMinimum)
 {
    return this->get_count() >= countMinimum;
 }
 
 
-::count stringa::get_begins_ci(stringa & stra, const char * lpcsz, index first, index last)
+::count string_array::get_begins_ci(string_array & stra, const char * lpcsz, index first, index last)
 {
    if(last < 0)
       last = this->get_size() + last;
@@ -1028,7 +1028,7 @@ bool stringa::has_elements(::count countMinimum)
    }
 }
 
-::count stringa::filter_begins_ci(const char * lpcsz, index first, index last)
+::count string_array::filter_begins_ci(const char * lpcsz, index first, index last)
 {
    if(last < 0)
       last = this->get_size() + last;
@@ -1055,28 +1055,28 @@ bool stringa::has_elements(::count countMinimum)
    }
 }
 
-index stringa::get_random_index() const
+index string_array::get_random_index() const
 {
    if(this->get_size() <= 0)
       return -1;
    return (index) (rand() % get_size());
 }
 
-string & stringa::random_element()
+string & string_array::random_element()
 {
    if(this->get_size() <= 0)
       throw "invalid call";
    return this->element_at(get_random_index());
 }
 
-const string & stringa::random_element() const
+const string & string_array::random_element() const
 {
    if(this->get_size() <= 0)
       throw "invalid call";
    return this->element_at(get_random_index());
 }
 
-string stringa::pop_random_element()
+string string_array::pop_random_element()
 {
    if(this->get_size() <= 0)
       throw "invalid call";
@@ -1088,7 +1088,7 @@ string stringa::pop_random_element()
 
 
 
-void stringa::make_lower()
+void string_array::make_lower()
 {
    for(index i = 0; i < this->get_count(); i++)
    {
@@ -1096,7 +1096,7 @@ void stringa::make_lower()
    }
 }
 
-void stringa::make_upper()
+void string_array::make_upper()
 {
    for(index i = 0; i < this->get_count(); i++)
    {
@@ -1105,7 +1105,7 @@ void stringa::make_upper()
 }
 
 
-comparable_array < id > stringa::get_comparable_ida() const
+comparable_array < id > string_array::get_comparable_ida() const
 {
 
    comparable_array < id > ida;
@@ -1121,7 +1121,7 @@ comparable_array < id > stringa::get_comparable_ida() const
 
 
 
-string stringa::encode_v16()
+string string_array::encode_v16()
 {
    string strEncode;
    for(int32_t ui = 0; ui < this->get_count(); ui++)
@@ -1154,7 +1154,7 @@ string stringa::encode_v16()
 
 
 
-void stringa::decode_v16(const char * psz)
+void string_array::decode_v16(const char * psz)
 {
    int32_t iSize = 1024;
    char * str = NULL;
@@ -1202,7 +1202,7 @@ void stringa::decode_v16(const char * psz)
 }
 
 
-::count stringa::get_count_except(const string & str)
+::count string_array::get_count_except(const string & str)
 {
 
    ::count c = get_count();
@@ -1219,7 +1219,7 @@ void stringa::decode_v16(const char * psz)
 
 }
 
-::count stringa::get_count_except(const stringa & stra)
+::count string_array::get_count_except(const string_array & stra)
 {
 
    ::count c = get_count();
@@ -1237,7 +1237,7 @@ void stringa::decode_v16(const char * psz)
 }
 
 
-::count stringa::get_count_except_ci(const string & str)
+::count string_array::get_count_except_ci(const string & str)
 {
 
    ::count c = get_count();
@@ -1254,7 +1254,7 @@ void stringa::decode_v16(const char * psz)
 
 }
 
-::count stringa::get_count_except_ci(const stringa & stra)
+::count string_array::get_count_except_ci(const string_array & stra)
 {
 
    ::count c = get_count();
@@ -1272,7 +1272,7 @@ void stringa::decode_v16(const char * psz)
 }
 
 
-string stringa::get_json()
+string string_array::get_json()
 {
    
    string str("[");

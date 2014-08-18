@@ -26,11 +26,11 @@ CLASS_DECL_AXIS int32_t str_begins_ci_dup(const char * sz1, const char * prefix)
 CLASS_DECL_AXIS char * strrchr_dup(char * sz, char ch);
 
 
-CLASS_DECL_AXIS void uitoa_dup(char * sz, uint64_t i, int32_t iBase);
-CLASS_DECL_AXIS void itoa_dup(char * sz, int64_t i, int32_t iBase);
+CLASS_DECL_AXIS void uitoa_dup(char * sz, uint64_t i, int32_t iAxis);
+CLASS_DECL_AXIS void itoa_dup(char * sz, int64_t i, int32_t iAxis);
 
 
-//CLASS_DECL_AXIS void l64toa_dup(char * sz, int64_t i, int64_t iBase);
+//CLASS_DECL_AXIS void l64toa_dup(char * sz, int64_t i, int64_t iAxis);
 //CLASS_DECL_AXIS void i64toa_dup(char * sz, int64_t i);
 CLASS_DECL_AXIS void str_reverse(char * sz);
 CLASS_DECL_AXIS void zero_pad(char * sz, count iPad);
@@ -69,11 +69,11 @@ CLASS_DECL_AXIS int32_t wcscmp_dup(const wchar_t * sz1, const wchar_t * sz2);
 CLASS_DECL_AXIS int32_t wcsicmp_dup(const wchar_t * sz1, const wchar_t * sz2);
 
 
-CLASS_DECL_AXIS void uitow_dup(wchar_t * sz, uint64_t i, int32_t iBase);
-CLASS_DECL_AXIS void itow_dup(wchar_t * sz, int64_t i, int32_t iBase);
+CLASS_DECL_AXIS void uitow_dup(wchar_t * sz, uint64_t i, int32_t iAxis);
+CLASS_DECL_AXIS void itow_dup(wchar_t * sz, int64_t i, int32_t iAxis);
 
 
-//CLASS_DECL_AXIS void l64toa_dup(char * sz, int64_t i, int64_t iBase);
+//CLASS_DECL_AXIS void l64toa_dup(char * sz, int64_t i, int64_t iAxis);
 //CLASS_DECL_AXIS void i64toa_dup(char * sz, int64_t i);
 CLASS_DECL_AXIS void wcs_reverse(wchar_t * sz);
 CLASS_DECL_AXIS void w_zero_pad(char * sz, strsize iPad);

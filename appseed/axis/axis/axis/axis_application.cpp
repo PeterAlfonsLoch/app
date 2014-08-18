@@ -40,15 +40,6 @@ void dappy(const char * psz)
 
 namespace axis
 {
-   application_signal_details::application_signal_details(sp(::axis::application) papp,class ::signal * psignal,e_application_signal esignal):
-      element(papp),
-      ::signal_details(psignal)
-   {
-
-         m_esignal = esignal;
-         m_bOk = true;
-
-      }
 
    UINT application::APPM_LANGUAGE = WM_APP + 117;
    WPARAM application::WPARAM_LANGUAGE_UPDATE = 1;
@@ -57,8 +48,7 @@ namespace axis
    application::application():
       m_allocer(this),
       m_mutexMatterLocator(this),
-      m_mutexStr(this),
-      m_framea(this)
+      m_mutexStr(this)
    {
 
       m_peventReady = NULL;
@@ -112,15 +102,6 @@ namespace axis
       m_pcoreapp                 = NULL;
 
       
-      m_dir.set_app(this);
-      m_file.set_app(this);
-      m_http.set_app(this);
-
-
-
-      m_psignal                  = canew(class signal());
-
-      m_pcommandthread           = canew(::command_thread(this));
 
 
       m_bLicense                 = true;
@@ -128,21 +109,19 @@ namespace axis
       // initialize wait cursor state
       m_iWaitCursorCount         = 0;
 
-      m_bBaseProcessInitialize         = false;
-      m_bBaseProcessInitializeResult   = false;
+      m_bAxisProcessInitialize         = false;
+      m_bAxisProcessInitializeResult   = false;
 
-      m_bBaseInitialize1               = false;
-      m_bBaseInitialize1Result         = false;
+      m_bAxisInitialize1               = false;
+      m_bAxisInitialize1Result         = false;
 
-      m_bBaseInitialize                = false;
-      m_bBaseInitializeResult          = false;
+      m_bAxisInitialize                = false;
+      m_bAxisInitializeResult          = false;
 
-      m_bBaseInitializeInstance        = false;
-      m_bBaseInitializeInstanceResult  = false;
+      m_bAxisInitializeInstance        = false;
+      m_bAxisInitializeInstanceResult  = false;
 
 
-      m_bShouldInitializeGTwf = true;
-      m_bInitializeProDevianMode = true;
 
       m_pinitmaindata = NULL;
 
@@ -154,79 +133,8 @@ namespace axis
    }
 
 
-   void application::assert_valid() const
-   {
 
-      thread::assert_valid();
-
-
-   }
-
-   void application::dump(dump_context & dumpcontext) const
-   {
-
-      thread::dump(dumpcontext);
-
-#ifdef WINDOWS
-
-      dumpcontext << "m_hinstance = " << (void *)m_hinstance;
-
-#endif
-
-      //dumpcontext << "\nm_strCmdLine = " << m_strCmdLine;
-      //dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
-      dumpcontext << "\nm_bHelpMode = " << m_strAppName;
-
-      dumpcontext << "\n";
-
-   }
-
-
-   int32_t application::simple_message_box(sp(::user::interaction) puiOwner,const char * pszMessage,UINT fuStyle)
-   {
-
-#if defined(WINDOWSEX)
-
-      return ::simple_message_box(puiOwner->get_safe_handle(),pszMessage,m_strAppName,fuStyle);
-      //return MessageBoxW(puiOwner->get_safe_handle(),wstring(pszMessage),wstring(m_strAppName),fuStyle);
-      //return MessageBoxW((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())),
-      //   wstring(pszMessage), wstring(m_strAppName), fuStyle);
-
-#elif  defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
-
-      return ::simple_message_box(puiOwner->get_safe_handle(),pszMessage,m_strAppName,fuStyle);
-      //   return simple_message_box((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
-
-#else
-
-      return ::simple_message_box(puiOwner->get_safe_handle(), pszMessage, m_strAppName, fuStyle);
-
-#endif
-
-   }
-
-   /*
-   int32_t application::simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle)
-   {
-
-   #if defined(WINDOWSEX)
-
-   return MessageBoxW((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())),
-   wstring(pszMessage), wstring(m_strAppName), fuStyle);
-
-   #elif  defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
-
-   return simple_message_box((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
-
-   #else
-
-   return simple_message_box(m_psystem->m_posdata->m_pui->get_handle(), pszMessage, m_strAppName, fuStyle);
-
-   #endif
-
-   }
-   */
-
+   
    int32_t application::simple_message_box(const char * pszMessage,UINT fuStyle)
    {
 
@@ -258,183 +166,6 @@ namespace axis
       return "";
 
    }
-
-   string application::load_string(id id)
-   {
-      string str;
-      if(!load_string(str,id))
-      {
-         return (const string &)id;
-      }
-      return str;
-   }
-
-   bool application::load_string(string & str,id id)
-   {
-      if(!load_cached_string(str,id,true))
-      {
-         return false;
-      }
-      return true;
-   }
-
-   bool application::load_cached_string(string & str,id id,bool bLoadStringTable)
-   {
-      ::xml::document doc(this);
-      if(!doc.load(id))
-      {
-         return load_cached_string_by_id(str,id,"",bLoadStringTable);
-      }
-      sp(::xml::node) pnodeRoot = doc.get_root();
-      if(pnodeRoot->get_name() == "string")
-      {
-         string strId = pnodeRoot->attr("id");
-         string strValue = pnodeRoot->get_value();
-         return load_cached_string_by_id(str,strId,strValue,bLoadStringTable);
-      }
-      str = doc.get_name();
-      return true;
-   }
-
-   bool application::load_cached_string_by_id(string & str,id id,const string & pszFallbackValue,bool bLoadStringTable)
-   {
-
-      synch_lock sl(&m_mutexStr);
-
-      string strId(*id.m_pstr);
-      string strTable;
-      string strString;
-      string_to_string * pmap = NULL;
-      index iFind = 0;
-      if((iFind = strId.find(':')) <= 0)
-      {
-         strTable = "";
-         strString = strId;
-      }
-      else
-      {
-         strTable = strId.Mid(0,iFind);
-         strString = strId.Mid(iFind + 1);
-      }
-      if(m_stringtableStd.Lookup(strTable,pmap))
-      {
-         if(pmap->Lookup(strString,str))
-         {
-            return true;
-         }
-      }
-      else if(m_stringtable.Lookup(strTable,pmap))
-      {
-         if(pmap->Lookup(strString,str))
-         {
-            return true;
-         }
-      }
-      else if(bLoadStringTable)
-      {
-         load_string_table(strTable,"");
-         return load_cached_string_by_id(str,id,pszFallbackValue,false);
-      }
-      if(pszFallbackValue.is_empty())
-         str = strId;
-      else
-         str = pszFallbackValue;
-      return true;
-   }
-
-   void application::load_string_table(const string & pszApp,const string & pszId)
-   {
-
-      synch_lock sl(&m_mutexStr);
-
-      string strApp(pszApp);
-      string strMatter;
-      string strLocator;
-
-      if(strApp.is_empty())
-      {
-         strLocator = System.dir().appmatter_locator(this);
-      }
-      else
-      {
-         strLocator = System.dir().appmatter_locator(strApp);
-      }
-
-      if(strMatter.is_empty())
-      {
-         strMatter = "stringtable.xml";
-      }
-      else if(System.file().extension(strMatter) != "xml")
-      {
-         strMatter += ".xml";
-      }
-
-      string strTableId = strApp;
-
-      if(pszId.has_char() && *pszId != '\0')
-      {
-         strTableId += "\\";
-         strTableId += pszId;
-      }
-
-      ::xml::document doc(get_app());
-      string strFilePath = System.dir().matter_from_locator(sess(this).str_context(),strLocator,strMatter);
-      if(!System.file().exists(strFilePath,this))
-      {
-         try
-         {
-            if(m_stringtable[pszId] != NULL)
-               delete m_stringtable[pszId];
-         }
-         catch(...)
-         {
-         }
-         m_stringtable.set_at(pszId,new string_to_string);
-         return;
-      }
-      string strFile = Application.file().as_string(strFilePath);
-      if(!doc.load(strFile))
-         return;
-      string_to_string * pmapNew = new string_to_string;
-      for(int32_t i = 0; i < doc.get_root()->children().get_count(); i++)
-      {
-         string strId = doc.get_root()->child_at(i)->attr("id");
-         string strValue = doc.get_root()->child_at(i)->get_value();
-         pmapNew->set_at(strId,strValue);
-      }
-
-      string_to_string * pmapOld = m_stringtable[strTableId];
-
-      m_stringtable[strTableId] = NULL;
-
-      if(pmapOld != NULL)
-      {
-
-         try
-         {
-
-            delete pmapOld;
-
-         }
-         catch(...)
-         {
-
-         }
-
-      }
-
-      m_stringtable[strTableId] = pmapNew;
-      ASSERT(m_stringtable[strTableId] == pmapNew);
-   }
-
-
-
-
-   void application::load_string_table()
-   {
-      load_string_table("","");
-   }
-
 
    sp(element) application::alloc(sp(type) info)
    {
@@ -481,46 +212,6 @@ namespace axis
    }
 
 
-   sp(::command_thread) application::command_central()
-   {
-      return m_pcommandthread;
-   }
-
-   sp(::command_thread) application::command_thread()
-   {
-      return m_pcommandthread;
-   }
-
-   sp(::command_thread) application::command()
-   {
-      return m_pcommandthread;
-   }
-
-   sp(::command_thread) application::guideline()
-   {
-      return m_pcommandthread;
-   }
-
-   sp(::command_thread) application::directrix()
-   {
-      return m_pcommandthread;
-   }
-
-   sp(::command_thread) application::axiom()
-   {
-      return m_pcommandthread;
-   }
-
-   bool application::verb()
-   {
-      axiom()->run();
-      return true;
-   }
-
-   sp(::command_thread) application::creation()
-   {
-      return m_pcommandthread;
-   }
 
    class open_url
    {
@@ -1807,8 +1498,8 @@ namespace axis
       string strId(pszId);
       string strSystemLocale = System.m_strLocale;
       string strSystemSchema = System.m_strSchema;
-      stringa straLocale = command()->m_varTopicQuery["locale"].stra();
-      stringa straSchema = command()->m_varTopicQuery["schema"].stra();
+      string_array straLocale = command()->m_varTopicQuery["locale"].stra();
+      string_array straSchema = command()->m_varTopicQuery["schema"].stra();
 
       System.install().remove_spa_start(m_strInstallType,strId);
       System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,strSystemLocale,m_strSchema);
@@ -2273,11 +1964,11 @@ namespace axis
    bool application::process_initialize()
    {
 
-      if(m_bBaseProcessInitialize)
-         return m_bBaseProcessInitializeResult;
+      if(m_bAxisProcessInitialize)
+         return m_bAxisProcessInitializeResult;
 
-      m_bBaseProcessInitialize = true;
-      m_bBaseProcessInitializeResult = false;
+      m_bAxisProcessInitialize = true;
+      m_bAxisProcessInitializeResult = false;
 
 
       
@@ -2325,7 +2016,7 @@ namespace axis
          return false;
 
 
-      m_bBaseProcessInitializeResult = true;
+      m_bAxisProcessInitializeResult = true;
 
       return true;
 
@@ -2335,11 +2026,11 @@ namespace axis
    bool application::initialize_instance()
    {
 
-      if(m_bBaseInitializeInstance)
-         return m_bBaseInitializeInstanceResult;
+      if(m_bAxisInitializeInstance)
+         return m_bAxisInitializeInstanceResult;
 
-      m_bBaseInitializeInstance = true;
-      m_bBaseInitializeInstanceResult = false;
+      m_bAxisInitializeInstance = true;
+      m_bAxisInitializeInstanceResult = false;
 
       xxdebug_box("check_exclusive","check_exclusive",MB_ICONINFORMATION);
 
@@ -2439,7 +2130,7 @@ namespace axis
 
       System.install().m_progressApp()++; // 5
 
-      m_bBaseInitializeInstanceResult = true;
+      m_bAxisInitializeInstanceResult = true;
 
       return true;
 
@@ -2449,12 +2140,12 @@ namespace axis
    bool application::initialize1()
    {
 
-      if(m_bBaseInitialize1)
-         return m_bBaseInitialize1Result;
+      if(m_bAxisInitialize1)
+         return m_bAxisInitialize1Result;
 
-      m_bBaseInitialize1 = true;
+      m_bAxisInitialize1 = true;
 
-      m_bBaseInitialize1Result = false;
+      m_bAxisInitialize1Result = false;
 
       m_splicense = new class ::fontopus::license(this);
 
@@ -2472,7 +2163,7 @@ namespace axis
       if(!m_pimpl->initialize1())
          return false;
 
-      m_bBaseInitialize1Result = true;
+      m_bAxisInitialize1Result = true;
 
       return true;
 
@@ -2510,11 +2201,11 @@ namespace axis
    bool application::initialize()
    {
 
-      if(m_bBaseInitialize)
-         return m_bBaseInitializeResult;
+      if(m_bAxisInitialize)
+         return m_bAxisInitializeResult;
 
-      m_bBaseInitialize = true;
-      m_bBaseInitializeResult = false;
+      m_bAxisInitialize = true;
+      m_bAxisInitializeResult = false;
 
       application_signal_details signal(this,m_psignal,application_signal_initialize);
 
@@ -2591,7 +2282,7 @@ namespace axis
 
       m_dwAlive = ::get_tick_count();
 
-      m_bBaseInitializeResult = true;
+      m_bAxisInitializeResult = true;
 
       dappy(string(typeid(*this).name()) + " : initialize ok : " + ::str::from(m_iReturnCode));
 

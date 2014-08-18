@@ -152,7 +152,7 @@ namespace axis
       string strId;
       //strId = m_strAppName;
       //strId += ::str::has_char(m_strAppId, ".");
-      //strId += ::str::has_char(m_strBaseSupportId, ".");
+      //strId += ::str::has_char(m_strAxisSupportId, ".");
 
 
       strId = "ca2log";
@@ -202,7 +202,7 @@ namespace axis
 #endif
 
 
-      factory().cloneable_large < stringa >();
+      factory().cloneable_large < string_array >();
       factory().cloneable_large < ::primitive::memory >();
       factory().cloneable_large < raw_int_array >();
 
@@ -861,7 +861,7 @@ namespace axis
       if(pszFileName != NULL || pszModuleName != NULL)
       {
 
-         stringa stra;
+         string_array stra;
 
          if(pszFileName != NULL)
             stra.add(pszFileName);
@@ -1742,13 +1742,13 @@ namespace axis
       try
       {
 
-         for(index iBaseSession = 0; iBaseSession < m_basesessionptra.get_count(); iBaseSession++)
+         for(index iAxisSession = 0; iAxisSession < m_basesessionptra.get_count(); iAxisSession++)
          {
 
             try
             {
 
-               c += m_basesessionptra[iBaseSession].appptra().get_count();
+               c += m_basesessionptra[iAxisSession].appptra().get_count();
 
             }
             catch(...)
@@ -1777,13 +1777,13 @@ namespace axis
       try
       {
 
-         for(index iBaseSession = 0; iBaseSession < m_basesessionptra.get_count(); iBaseSession++)
+         for(index iAxisSession = 0; iAxisSession < m_basesessionptra.get_count(); iAxisSession++)
          {
 
             try
             {
 
-               appptra += m_basesessionptra[iBaseSession].appptra();
+               appptra += m_basesessionptra[iAxisSession].appptra();
 
             }
             catch(...)

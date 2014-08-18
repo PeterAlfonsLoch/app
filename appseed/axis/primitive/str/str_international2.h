@@ -9,8 +9,8 @@ namespace str
    {
 
 
-//      void CLASS_DECL_AXIS unicode_to_utf8(stringa & stra, stringa & stra);
-  //    void CLASS_DECL_AXIS utf8_to_unicode(stringa & stra, stringa & stra);
+//      void CLASS_DECL_AXIS unicode_to_utf8(string_array & stra, string_array & stra);
+  //    void CLASS_DECL_AXIS utf8_to_unicode(string_array & stra, string_array & stra);
 
 
       bool CLASS_DECL_AXIS UnicodeToMultiByte(UINT uiCodePage, primitive::memory & str, const wchar_t * lpcsz);
@@ -30,7 +30,7 @@ namespace str
 //      bool CLASS_DECL_AXIS OemToUtf8(primitive::memory & str, const char * lpcsz);
 //      bool CLASS_DECL_AXIS OemToUtf8(primitive::memory & str, const char * lpcsz, strsize nCount);
 
-/*      inline void unicode_to_utf8(stringa & stra, stringa & stra)
+/*      inline void unicode_to_utf8(string_array & stra, string_array & stra)
       {
          string str;
          for(strsize i = 0; i < stra.get_size(); i++)
@@ -40,7 +40,7 @@ namespace str
          }
       }
 
-      inline void utf8_to_unicode(stringa & stra, stringa & stra)
+      inline void utf8_to_unicode(string_array & stra, string_array & stra)
       {
          string str;
          for(strsize i = 0; i < stra.get_size(); i++)

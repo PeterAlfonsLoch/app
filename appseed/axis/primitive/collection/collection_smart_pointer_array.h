@@ -14,14 +14,14 @@ public:
    smart_pointer_array(smart_pointer_array && a)
    {
 
-      array < smart_pointer < T > >::operator = (a);
+      raw_array < smart_pointer < T > >::operator = (a);
 
    }
 
    inline smart_pointer_array & operator = (smart_pointer_array && a)
    {
 
-      array < smart_pointer < T > >::operator = (a);
+      raw_array < smart_pointer < T > >::operator = (a);
 
       return *this;
 
@@ -30,10 +30,10 @@ public:
 #endif
 
    smart_pointer_array(const smart_pointer_array & a) :
-      array < smart_pointer < T > >(a)
+      raw_array < smart_pointer < T > >(a)
    {
 
-      array < smart_pointer < T > >::operator = (a);
+      raw_array < smart_pointer < T > >::operator = (a);
 
    }
 
@@ -48,15 +48,14 @@ public:
 
 
    smart_pointer_array(sp(::axis::application) papp) :
-      element(papp),
-      array < smart_pointer < T > >(papp)
+      element(papp)
    {
    }
 
    sp(T) & add_new()
    {
 
-      sp(T) & sp = array < smart_pointer < T > >::add_new();
+      sp(T) & sp = raw_array < smart_pointer < T > >::add_new();
 
       sp.alloc(this->allocer());
 
@@ -68,14 +67,14 @@ public:
    ::count set_size(::count nNewSize, ::count nGrowBy = -1)
    {
 
-      return array < smart_pointer < T > > :: set_size(nNewSize);
+      return raw_array < smart_pointer < T > > :: set_size(nNewSize);
 
    }
 
    ::count set_size_create(::count nNewSize, ::count nGrowBy = -1)
    {
       index i = this->get_size();
-      array < smart_pointer < T > > :: set_size(nNewSize);
+      raw_array < smart_pointer < T > > :: set_size(nNewSize);
       ::count ca = this->get_size();
       for(; i < ca; i++)
       {
@@ -270,21 +269,21 @@ public:
    const T & operator[](index nIndex) const
    {
 
-      return *this->array < smart_pointer < T > >::operator[](nIndex).m_p;
+      return *this->raw_array < smart_pointer < T > >::operator[](nIndex).m_p;
 
    }
 
    T & operator[](index nIndex)
    {
 
-      return *this->array < smart_pointer < T > >::operator[](nIndex).m_p;
+      return *this->raw_array < smart_pointer < T > >::operator[](nIndex).m_p;
 
    }
 
    const smart_pointer < T > & sp_at(index nIndex) const
    {
 
-      return this->array < smart_pointer < T > >::element_at(nIndex);
+      return this->raw_array < smart_pointer < T > >::element_at(nIndex);
 
    }
 
@@ -292,7 +291,7 @@ public:
    smart_pointer < T > & sp_at(index nIndex)
    {
 
-      return this->array < smart_pointer < T > >::element_at(nIndex);
+      return this->raw_array < smart_pointer < T > >::element_at(nIndex);
 
    }
 
@@ -331,7 +330,7 @@ public:
    const smart_pointer < T > & first_sp(index n = 0) const
    {
 
-      return this->array < smart_pointer < T > >::first_element(n);
+      return this->raw_array < smart_pointer < T > >::first_element(n);
 
    }
 
@@ -339,7 +338,7 @@ public:
    smart_pointer < T > & first_sp(index n = 0)
    {
 
-      return this->array < smart_pointer < T > >::first_element(n);
+      return this->raw_array < smart_pointer < T > >::first_element(n);
 
    }
 
@@ -379,7 +378,7 @@ public:
    T * last_sp(index n = -1) const
    {
 
-      return this->array < smart_pointer < T > >::last_element(n);
+      return this->raw_array < smart_pointer < T > >::last_element(n);
 
    }
 
@@ -387,7 +386,7 @@ public:
    smart_pointer < T > & last_sp(index n = -1)
    {
 
-      return this->array < smart_pointer < T > >::last_element(n);
+      return this->raw_array < smart_pointer < T > >::last_element(n);
 
    }
 

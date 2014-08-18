@@ -202,7 +202,7 @@ extern "C" const IID IID_IAxWinAmbientDispatchEx;
 */
 
 #ifndef _delayimp_h
-//extern "C" IMAGE_DOS_HEADER __ImageBase;
+//extern "C" IMAGE_DOS_HEADER __ImageAxis;
 #endif
 
 
@@ -528,7 +528,7 @@ API_(void *) gen_WinModuleExtractCreateWndData(_WIN_MODULE* pWinModule);
 /////////////////////////////////////////////////////////////////////////////
 // get Registrar object from core DLL.
 
-//extern "C" CLASS_DECL_BASE HRESULT __stdcall gen_CreateRegistrar(IRegistrar** ppReg);
+//extern "C" CLASS_DECL_AXIS HRESULT __stdcall gen_CreateRegistrar(IRegistrar** ppReg);
 
 /////////////////////////////////////////////////////////////////////////////
 // GUID comparison

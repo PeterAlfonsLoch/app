@@ -302,7 +302,7 @@ CLASS_DECL_AXIS int_bool from_string(in_addr * addrParam, const char * string)
    c_in_addr * addr = (c_in_addr *) addrParam;
 
 
-   stringa stra;
+   string_array stra;
 
    stra.add_tokens(string, ".");
 
@@ -484,7 +484,7 @@ CLASS_DECL_AXIS const char * c_inet_ntop(int32_t af, const void *src, char *dst,
 CLASS_DECL_AXIS uint32_t c_inet_addr(const char * src)
 {
 
-   stringa stra;
+   string_array stra;
 
    stra.add_tokens(src, ".");
 

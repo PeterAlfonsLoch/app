@@ -1,8 +1,6 @@
 #pragma once
 
 
-class var;
-class stringa;
 class id;
 class string_format;
 
@@ -99,9 +97,9 @@ namespace str
    string CLASS_DECL_AXIS replace(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
    string CLASS_DECL_AXIS replace_ci(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
 
-   string CLASS_DECL_AXIS random_replace(sp(::axis::application) papp, const stringa & straReplacement, const stringa & straSearch, const char * psz);
+   string CLASS_DECL_AXIS random_replace(sp(::axis::application) papp, const string_array & straReplacement, const string_array & straSearch, const char * psz);
 
-   strsize CLASS_DECL_AXIS find_first(const stringa & straSearch, index & iFound, const string & str, index iStart = 0);
+   strsize CLASS_DECL_AXIS find_first(const string_array & straSearch, index & iFound, const string & str, index iStart = 0);
 
    strsize CLASS_DECL_AXIS find_ci(const string & strFind   , const string & str, strsize iStart = 0);
    strsize CLASS_DECL_AXIS find_ci(const string & strFind   , const char   * psz, strsize iStart = 0);
@@ -145,12 +143,12 @@ namespace str
 
    CLASS_DECL_AXIS  bool           to(const char * psz, int32_t & i);
    CLASS_DECL_AXIS  bool           to(const char * psz, int64_t & i);
-   CLASS_DECL_AXIS  bool           to(const char * psz, int32_t & i, int32_t iBase);
-   CLASS_DECL_AXIS  bool           to(const char * psz, int64_t & i, int32_t iBase);
+   CLASS_DECL_AXIS  bool           to(const char * psz, int32_t & i, int32_t iAxis);
+   CLASS_DECL_AXIS  bool           to(const char * psz, int64_t & i, int32_t iAxis);
    CLASS_DECL_AXIS  bool           to(const char * psz, uint32_t & i);
    CLASS_DECL_AXIS  bool           to(const char * psz, uint64_t & i);
-   CLASS_DECL_AXIS  bool           to(const char * psz, uint32_t & i, int32_t iBase);
-   CLASS_DECL_AXIS  bool           to(const char * psz, uint64_t & i, int32_t iBase);
+   CLASS_DECL_AXIS  bool           to(const char * psz, uint32_t & i, int32_t iAxis);
+   CLASS_DECL_AXIS  bool           to(const char * psz, uint64_t & i, int32_t iAxis);
 
 
    CLASS_DECL_AXIS  int_ptr        to_int_ptr(const char * psz);
@@ -179,8 +177,8 @@ namespace str
 
    inline CLASS_DECL_AXIS int32_t      to_with_fallback(const char * psz, int32_t iDefault){ to(psz, iDefault); return iDefault; }
    inline CLASS_DECL_AXIS int64_t  to_with_fallback(const char * psz, int64_t & iDefault) { to(psz, iDefault); return iDefault; }
-   inline CLASS_DECL_AXIS int32_t      to_with_fallback(const char * psz, int32_t iDefault, int32_t iBase){ to(psz, iDefault, iBase); return iDefault; }
-   inline CLASS_DECL_AXIS int64_t  to_with_fallback(const char * psz, int64_t & iDefault, int32_t iBase) { to(psz, iDefault, iBase); return iDefault; }
+   inline CLASS_DECL_AXIS int32_t      to_with_fallback(const char * psz, int32_t iDefault, int32_t iAxis){ to(psz, iDefault, iAxis); return iDefault; }
+   inline CLASS_DECL_AXIS int64_t  to_with_fallback(const char * psz, int64_t & iDefault, int32_t iAxis) { to(psz, iDefault, iAxis); return iDefault; }
 
 
 

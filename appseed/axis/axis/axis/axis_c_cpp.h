@@ -48,13 +48,10 @@ class allocatorsp;
 class var_array;
 class pair_set_interface;
 class str_str_interface;
-class command_thread;
-class thread;
-class command_target;
 class cmd_ui;
 class critical_section;
 class mutex;
-class stringa;
+class string_array;
 class string;
 class id;
 
@@ -83,19 +80,6 @@ class cmd_ui;
 
 
 
-namespace file
-{
-
-
-   class stream_buffer;
-   class input_stream;
-   class output_stream;
-   class serializable;
-
-
-} // namespace file
-
-class machine_event_data;
 namespace html
 {
    class html;
@@ -364,15 +348,6 @@ CLASS_DECL_AXIS ::axis::application * get_thread_app();
 #include "axis_keep_true.h"
 
 
-namespace file
-{
-
-
-   typedef sp(stream_buffer) buffer_sp;
-
-
-} // namespace file
-
 
 #include "axis/primitive/primitive_logic.h"
 
@@ -389,8 +364,6 @@ namespace file
 #include "axis/axis/axis_element.h"
 
 #include "axis_debug.h"
-
-
 
 
 
@@ -443,6 +416,9 @@ namespace file
 
 
 #include "axis_library.h"
+
+
+#include "axis_dir.h"
 
 
 
@@ -623,8 +599,6 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 #include "primitive/datetime/datetime_value.h"
 
 
-#include "axis/primitive/str/str_international_locale_schema.h"
-
 #include "axis_id_pool.h"
 
 
@@ -638,44 +612,21 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 #include "axis_cregexp_util.h"
 
 
-#include "primitive/str/str_base64.h"
-
-
-
 #include "axis_system.h"
 
 #include "axis_system_str.h"
 
 #include "axis/os/os_process.h"
 
-
-
-
-
-
-
-
-
-
-//#include "axis/install/install_trace.h"
-
-
 #define new AXIS_NEW
-
 
 #include "axis_system_trace.h"
 
-
-
 #include "axis/multithreading/multithreading.inl"
-
 
 #include "axis/primitive/str/str.inl"
 
 #include "axis/axis/axis.inl"
-
-#include "primitive/collection/collection.inl"
-
 
 namespace numeric_info
 {
@@ -798,16 +749,12 @@ namespace numeric_info
 
 
 
-#include "axis/primitive/collection/collection_array_impl.inl"
 #include "axis/primitive/collection/collection_raw_array_impl.inl"
 #include "axis/primitive/collection/collection_lemon_array_impl.inl"
 
 #include "axis/primitive/collection/collection_list_impl.inl"
 #include "axis/primitive/collection/collection_map_impl.inl"
 
-#include "axis/primitive/collection/collection_sort_map_impl.inl"
-
-#include "axis/primitive/collection/collection_fifo_map_impl.inl"
 
 
 
@@ -933,99 +880,5 @@ namespace numeric_info
    CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 
 
-#include "axis_simple_app.h"
 
-
-
-
-/*#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
-
-
-template < class T >
-bool ::file::system::output(sp(::axis::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, const char *), const char * lpszSource)
-{
-
-   App(papp).dir().mk(System.dir().name(pszOutput));
-
-   ::file::binary_buffer_sp fileOut = sess(papp).file().get_file(pszOutput, ::file::mode_create | ::file::type_binary | ::file::mode_write);
-
-   if(fileOut.is_null())
-      return false;
-
-   ::file::output_stream ostream(fileOut);
-
-   return (p->*lpfnOuput)(ostream, lpszSource);
-
-}
-
-
-template < class T >
-bool ::file::system::output(sp(::axis::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, ::file::input_stream &), const char * lpszInput)
-{
-
-   App(papp).dir().mk(System.dir().name(pszOutput));
-
-   string strDownloading = pszOutput;
-
-   strDownloading += ".downloading";
-
-   ::file::binary_buffer_sp fileOut = sess(papp).file().get_file(strDownloading, ::file::mode_create | ::file::type_binary | ::file::mode_write);
-
-   if(fileOut.is_null())
-      return false;
-
-   ::file::binary_buffer_sp fileIn = sess(papp).file().get_file(lpszInput, ::file::type_binary | ::file::mode_read);
-
-   if(fileIn.is_null())
-      return false;
-
-   {
-
-      ::file::output_stream ostream(fileOut);
-
-      ::file::input_stream istream(fileIn);
-
-      if(!(p->*lpfnOuput)(ostream, istream))
-         return false;
-
-   }
-
-   try
-   {
-
-      fileOut->close();
-
-   }
-   catch(...)
-   {
-
-   }
-
-
-   try
-   {
-
-      fileIn->close();
-
-   }
-   catch(...)
-   {
-
-   }
-
-   if(::rename(strDownloading, pszOutput) != 0)
-   {
-      del(strDownloading);
-      return false;
-   }
-
-   return true;
-
-}
-
-#endif // defined LINUX
-
-
-
-*/
-
+#include "primitive/collection/collection_raw_array_impl.inl"

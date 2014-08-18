@@ -36,9 +36,9 @@ if you want to make a ARGB window using xlib/Qt here is the code i use
     int32_t screen = DefaultScreen ( dpy );
     Colormap colormap = 0;
     Visual *visual = 0;
-    int32_t eventBase, errorBase;
+    int32_t eventAxis, errorAxis;
 
-    if ( XRenderQueryExtension ( dpy, &eventBase, &errorBase ) ) {
+    if ( XRenderQueryExtension ( dpy, &eventAxis, &errorAxis ) ) {
         qWarning ("You have ARGB support");
         int32_t nvi;
         XVisualInfo templ;

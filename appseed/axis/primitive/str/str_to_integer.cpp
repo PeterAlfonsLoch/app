@@ -134,16 +134,16 @@ int32_t wtoi_dup(const wchar_t *str)
    return (int32_t)wtol_dup(str);
 }
 
-int32_t _digit_atoi_dup(const char * psz, const char ** pszEnd, int32_t iBase)
+int32_t _digit_atoi_dup(const char * psz, const char ** pszEnd, int32_t iAxis)
 {
    int32_t iResult = 0;
-   char chMax = '0' + iBase;
+   char chMax = '0' + iAxis;
    while(true)
    {
       char ch = *psz;
       if(ch == '\0' || ch < '0' || ch > chMax)
          break;
-      iResult = iResult * iBase + (ch - '0');
+      iResult = iResult * iAxis + (ch - '0');
       psz++;
    }
    if(pszEnd != NULL)
@@ -153,10 +153,10 @@ int32_t _digit_atoi_dup(const char * psz, const char ** pszEnd, int32_t iBase)
    return iResult;
 }
 
-int32_t _atoi_dup(const char * psz, const char ** pszEnd, int32_t iBase)
+int32_t _atoi_dup(const char * psz, const char ** pszEnd, int32_t iAxis)
 {
    int32_t iResult = 0;
-   char chMax = 'a' + iBase - 10;
+   char chMax = 'a' + iAxis - 10;
    while(true)
    {
 
@@ -168,11 +168,11 @@ int32_t _atoi_dup(const char * psz, const char ** pszEnd, int32_t iBase)
       }
       else if(ch >= '0' && ch <= '9')
       {
-         iResult = iResult * iBase + (ch - '0');
+         iResult = iResult * iAxis + (ch - '0');
       }
       else if(ch >= 'a' && ch <= chMax)
       {
-         iResult = iResult * iBase + (ch - 'a' + 10);
+         iResult = iResult * iAxis + (ch - 'a' + 10);
       }
       else
       {
@@ -189,30 +189,30 @@ int32_t _atoi_dup(const char * psz, const char ** pszEnd, int32_t iBase)
    return iResult;
 }
 
-int32_t atoi_dup(const char * psz, const char ** pszEnd, int32_t iBase)
+int32_t atoi_dup(const char * psz, const char ** pszEnd, int32_t iAxis)
 {
-   if(iBase <= 0)
+   if(iAxis <= 0)
       return 0;
-   else if(iBase == 10)
+   else if(iAxis == 10)
       return atoi_dup(psz, pszEnd);
-   else if(iBase < 10)
-      return _digit_atoi_dup(psz, pszEnd, iBase);
-   else if(iBase < 36)
-      return _atoi_dup(psz, pszEnd, iBase);
+   else if(iAxis < 10)
+      return _digit_atoi_dup(psz, pszEnd, iAxis);
+   else if(iAxis < 36)
+      return _atoi_dup(psz, pszEnd, iAxis);
    else
       return 0;
 }
 
-uint32_t _digit_atoui_dup(const char * psz, const char ** pszEnd, int32_t iBase)
+uint32_t _digit_atoui_dup(const char * psz, const char ** pszEnd, int32_t iAxis)
 {
    uint32_t uiResult = 0;
-   char chMax = '0' + iBase;
+   char chMax = '0' + iAxis;
    while(true)
    {
       char ch = *psz;
       if(ch == '\0' || ch < '0' || ch > chMax)
          break;
-      uiResult = uiResult * iBase + (ch - '0');
+      uiResult = uiResult * iAxis + (ch - '0');
       psz++;
    }
    if(pszEnd != NULL)
@@ -222,10 +222,10 @@ uint32_t _digit_atoui_dup(const char * psz, const char ** pszEnd, int32_t iBase)
    return uiResult;
 }
 
-uint32_t _atoui_dup(const char * psz, const char ** pszEnd, int32_t iBase)
+uint32_t _atoui_dup(const char * psz, const char ** pszEnd, int32_t iAxis)
 {
    uint32_t uiResult = 0;
-   char chMax = 'a' + iBase - 10;
+   char chMax = 'a' + iAxis - 10;
    while(true)
    {
 
@@ -237,11 +237,11 @@ uint32_t _atoui_dup(const char * psz, const char ** pszEnd, int32_t iBase)
       }
       else if(ch >= '0' && ch <= '9')
       {
-         uiResult = uiResult * iBase + (ch - '0');
+         uiResult = uiResult * iAxis + (ch - '0');
       }
       else if(ch >= 'a' && ch <= chMax)
       {
-         uiResult = uiResult * iBase + (ch - 'a' + 10);
+         uiResult = uiResult * iAxis + (ch - 'a' + 10);
       }
       else
       {
@@ -258,16 +258,16 @@ uint32_t _atoui_dup(const char * psz, const char ** pszEnd, int32_t iBase)
    return uiResult;
 }
 
-uint32_t atoui_dup(const char * psz, const char ** pszEnd, int32_t iBase)
+uint32_t atoui_dup(const char * psz, const char ** pszEnd, int32_t iAxis)
 {
-   if(iBase <= 0)
+   if(iAxis <= 0)
       return 0;
-   else if(iBase == 10)
+   else if(iAxis == 10)
       return atoui_dup(psz, pszEnd);
-   else if(iBase < 10)
-      return _digit_atoui_dup(psz, pszEnd, iBase);
-   else if(iBase < 36)
-      return _atoui_dup(psz, pszEnd, iBase);
+   else if(iAxis < 10)
+      return _digit_atoui_dup(psz, pszEnd, iAxis);
+   else if(iAxis < 36)
+      return _atoui_dup(psz, pszEnd, iAxis);
    else
       return 0;
 }
@@ -385,16 +385,16 @@ int32_t nwtoi_dup(const wchar_t *str, size_t iLen)
    return (int32_t)nwtol_dup(str, iLen);
 }
 
-int32_t _digit_natoi_dup(const char * psz, const char ** pszEnd, int32_t iBase, size_t iLen)
+int32_t _digit_natoi_dup(const char * psz, const char ** pszEnd, int32_t iAxis, size_t iLen)
 {
    int32_t iResult = 0;
-   char chMax = '0' + iBase;
+   char chMax = '0' + iAxis;
    while(iLen > 0)
    {
       char ch = *psz;
       if(ch == '\0' || ch < '0' || ch > chMax)
          break;
-      iResult = iResult * iBase + (ch - '0');
+      iResult = iResult * iAxis + (ch - '0');
       psz++;
       iLen--;
    }
@@ -405,10 +405,10 @@ int32_t _digit_natoi_dup(const char * psz, const char ** pszEnd, int32_t iBase, 
    return iResult;
 }
 
-int32_t _natoi_dup(const char * psz, const char ** pszEnd, int32_t iBase, size_t iLen)
+int32_t _natoi_dup(const char * psz, const char ** pszEnd, int32_t iAxis, size_t iLen)
 {
    int32_t iResult = 0;
-   char chMax = 'a' + iBase - 10;
+   char chMax = 'a' + iAxis - 10;
    while(iLen > 0)
    {
 
@@ -420,11 +420,11 @@ int32_t _natoi_dup(const char * psz, const char ** pszEnd, int32_t iBase, size_t
       }
       else if(ch >= '0' && ch <= '9')
       {
-         iResult = iResult * iBase + (ch - '0');
+         iResult = iResult * iAxis + (ch - '0');
       }
       else if(ch >= 'a' && ch <= chMax)
       {
-         iResult = iResult * iBase + (ch - 'a' + 10);
+         iResult = iResult * iAxis + (ch - 'a' + 10);
       }
       else
       {
@@ -441,16 +441,16 @@ int32_t _natoi_dup(const char * psz, const char ** pszEnd, int32_t iBase, size_t
    return iResult;
 }
 
-int32_t natoi_dup(const char * psz, const char ** pszEnd, int32_t iBase, size_t iLen)
+int32_t natoi_dup(const char * psz, const char ** pszEnd, int32_t iAxis, size_t iLen)
 {
-   if(iBase <= 0)
+   if(iAxis <= 0)
       return 0;
-   else if(iBase == 10)
+   else if(iAxis == 10)
       return natoi_dup(psz, pszEnd, iLen);
-   else if(iBase < 10)
-      return _digit_natoi_dup(psz, pszEnd, iBase, iLen);
-   else if(iBase < 36)
-      return _natoi_dup(psz, pszEnd, iBase, iLen);
+   else if(iAxis < 10)
+      return _digit_natoi_dup(psz, pszEnd, iAxis, iLen);
+   else if(iAxis < 36)
+      return _natoi_dup(psz, pszEnd, iAxis, iLen);
    else
       return 0;
 }
@@ -496,16 +496,16 @@ int64_t atoi64_dup(const char *psz, char ** pszEnd)
    return iResult;
 }
 
-int64_t _digit_atoi64_dup(const char * psz, char ** pszEnd, int32_t iBase)
+int64_t _digit_atoi64_dup(const char * psz, char ** pszEnd, int32_t iAxis)
 {
    int64_t iResult = 0;
-   char chMax = '0' + iBase;
+   char chMax = '0' + iAxis;
    while(true)
    {
       char ch = *psz;
       if(ch == '\0' || ch < '0' || ch > chMax)
          break;
-      iResult = iResult * iBase + (ch - '0');
+      iResult = iResult * iAxis + (ch - '0');
       psz++;
    }
    if(pszEnd != NULL)
@@ -515,10 +515,10 @@ int64_t _digit_atoi64_dup(const char * psz, char ** pszEnd, int32_t iBase)
    return iResult;
 }
 
-int64_t _atoi64_dup(const char * psz, char ** pszEnd, int32_t iBase)
+int64_t _atoi64_dup(const char * psz, char ** pszEnd, int32_t iAxis)
 {
    int64_t iResult = 0;
-   char chMax = 'a' + iBase - 10;
+   char chMax = 'a' + iAxis - 10;
    while(true)
    {
 
@@ -530,11 +530,11 @@ int64_t _atoi64_dup(const char * psz, char ** pszEnd, int32_t iBase)
       }
       else if(ch >= '0' && ch <= '9')
       {
-         iResult = iResult * iBase + (ch - '0');
+         iResult = iResult * iAxis + (ch - '0');
       }
       else if(ch >= 'a' && ch <= chMax)
       {
-         iResult = iResult * iBase + (ch - 'a' + 10);
+         iResult = iResult * iAxis + (ch - 'a' + 10);
       }
       else
       {
@@ -551,16 +551,16 @@ int64_t _atoi64_dup(const char * psz, char ** pszEnd, int32_t iBase)
    return iResult;
 }
 
-int64_t atoi64_dup(const char * psz, char ** pszEnd, int32_t iBase)
+int64_t atoi64_dup(const char * psz, char ** pszEnd, int32_t iAxis)
 {
-   if(iBase <= 0)
+   if(iAxis <= 0)
       return 0;
-   else if(iBase == 10)
+   else if(iAxis == 10)
       return atoi64_dup(psz, pszEnd);
-   else if(iBase < 10)
-      return _digit_atoi64_dup(psz, pszEnd, iBase);
-   else if(iBase < 36)
-      return _atoi64_dup(psz, pszEnd, iBase);
+   else if(iAxis < 10)
+      return _digit_atoi64_dup(psz, pszEnd, iAxis);
+   else if(iAxis < 36)
+      return _atoi64_dup(psz, pszEnd, iAxis);
    else
       return 0;
 }
@@ -605,16 +605,16 @@ uint64_t atoui64_dup(const char *psz, char ** pszEnd)
    return uiResult;
 }
 
-uint64_t _digit_atoui64_dup(const char * psz, char ** pszEnd, int32_t iBase)
+uint64_t _digit_atoui64_dup(const char * psz, char ** pszEnd, int32_t iAxis)
 {
    uint64_t uiResult = 0;
-   char chMax = '0' + iBase;
+   char chMax = '0' + iAxis;
    while(true)
    {
       char ch = *psz;
       if(ch == '\0' || ch < '0' || ch > chMax)
          break;
-      uiResult = uiResult * iBase + (ch - '0');
+      uiResult = uiResult * iAxis + (ch - '0');
       psz++;
    }
    if(pszEnd != NULL)
@@ -624,10 +624,10 @@ uint64_t _digit_atoui64_dup(const char * psz, char ** pszEnd, int32_t iBase)
    return uiResult;
 }
 
-uint64_t _atoui64_dup(const char * psz, char ** pszEnd, int32_t iBase)
+uint64_t _atoui64_dup(const char * psz, char ** pszEnd, int32_t iAxis)
 {
    uint64_t uiResult = 0;
-   char chMax = 'a' + iBase - 10;
+   char chMax = 'a' + iAxis - 10;
    while(true)
    {
 
@@ -639,11 +639,11 @@ uint64_t _atoui64_dup(const char * psz, char ** pszEnd, int32_t iBase)
       }
       else if(ch >= '0' && ch <= '9')
       {
-         uiResult = uiResult * iBase + (ch - '0');
+         uiResult = uiResult * iAxis + (ch - '0');
       }
       else if(ch >= 'a' && ch <= chMax)
       {
-         uiResult = uiResult * iBase + (ch - 'a' + 10);
+         uiResult = uiResult * iAxis + (ch - 'a' + 10);
       }
       else
       {
@@ -660,24 +660,24 @@ uint64_t _atoui64_dup(const char * psz, char ** pszEnd, int32_t iBase)
    return uiResult;
 }
 
-uint64_t atoui64_dup(const char * psz, char ** pszEnd, int32_t iBase)
+uint64_t atoui64_dup(const char * psz, char ** pszEnd, int32_t iAxis)
 {
-   if(iBase <= 0)
+   if(iAxis <= 0)
       return 0;
-   else if(iBase == 10)
+   else if(iAxis == 10)
       return atoui64_dup(psz, pszEnd);
-   else if(iBase < 10)
-      return _digit_atoui64_dup(psz, pszEnd, iBase);
-   else if(iBase < 36)
-      return _atoui64_dup(psz, pszEnd, iBase);
+   else if(iAxis < 10)
+      return _digit_atoui64_dup(psz, pszEnd, iAxis);
+   else if(iAxis < 36)
+      return _atoui64_dup(psz, pszEnd, iAxis);
    else
       return 0;
 }
 
-/*int64_t atol64_dup(const char * sz, const char ** pszEnd, int32_t iBase)
+/*int64_t atol64_dup(const char * sz, const char ** pszEnd, int32_t iAxis)
 {
    const char * szIter = sz;
-   while(*szIter != '\0' && ((*szIter >= '0' && *szIter <= ('0' + min(9, iBase))) || (to_lower(*szIter) >= 'a' && to_lower(*szIter) <= ('a' + iBase - 10))))
+   while(*szIter != '\0' && ((*szIter >= '0' && *szIter <= ('0' + min(9, iAxis))) || (to_lower(*szIter) >= 'a' && to_lower(*szIter) <= ('a' + iAxis - 10))))
    {
       szIter++;
    }
@@ -701,7 +701,7 @@ uint64_t atoui64_dup(const char * psz, char ** pszEnd, int32_t iBase)
          iDigit = to_lower(ch) - 'a';
       }
       iResult += iDigit * iPow;
-      iPow = iPow * iBase;
+      iPow = iPow * iAxis;
       szIter--;
    }
    return iResult;
@@ -752,16 +752,16 @@ int64_t natoi64_dup(const char *psz, char ** pszEnd, size_t iLen)
    return iResult;
 }
 
-int64_t _digit_natoi64_dup(const char * psz, char ** pszEnd, int32_t iBase, size_t iLen)
+int64_t _digit_natoi64_dup(const char * psz, char ** pszEnd, int32_t iAxis, size_t iLen)
 {
    int64_t iResult = 0;
-   char chMax = '0' + iBase;
+   char chMax = '0' + iAxis;
    while(iLen > 0)
    {
       char ch = *psz;
       if(ch == '\0' || ch < '0' || ch > chMax)
          break;
-      iResult = iResult * iBase + (ch - '0');
+      iResult = iResult * iAxis + (ch - '0');
       psz++;
       iLen--;
    }
@@ -772,10 +772,10 @@ int64_t _digit_natoi64_dup(const char * psz, char ** pszEnd, int32_t iBase, size
    return iResult;
 }
 
-int64_t _natoi64_dup(const char * psz, char ** pszEnd, int32_t iBase, size_t iLen)
+int64_t _natoi64_dup(const char * psz, char ** pszEnd, int32_t iAxis, size_t iLen)
 {
    int64_t iResult = 0;
-   char chMax = 'a' + iBase - 10;
+   char chMax = 'a' + iAxis - 10;
    while(iLen > 0)
    {
 
@@ -787,11 +787,11 @@ int64_t _natoi64_dup(const char * psz, char ** pszEnd, int32_t iBase, size_t iLe
       }
       else if(ch >= '0' && ch <= '9')
       {
-         iResult = iResult * iBase + (ch - '0');
+         iResult = iResult * iAxis + (ch - '0');
       }
       else if(ch >= 'a' && ch <= chMax)
       {
-         iResult = iResult * iBase + (ch - 'a' + 10);
+         iResult = iResult * iAxis + (ch - 'a' + 10);
       }
       else
       {
@@ -810,21 +810,21 @@ int64_t _natoi64_dup(const char * psz, char ** pszEnd, int32_t iBase, size_t iLe
 }
 
 
-int64_t natoi64_dup(const char * psz, char ** pszEnd, int32_t iBase, size_t iLen)
+int64_t natoi64_dup(const char * psz, char ** pszEnd, int32_t iAxis, size_t iLen)
 {
-   if(iBase <= 0)
+   if(iAxis <= 0)
       return 0;
-   else if(iBase == 10)
-      return atoi64_dup(psz, pszEnd, iBase);
-   else if(iBase < 10)
-      return _digit_natoi64_dup(psz, pszEnd, iBase, iLen);
-   else if(iBase < 36)
-      return _natoi64_dup(psz, pszEnd, iBase, iLen);
+   else if(iAxis == 10)
+      return atoi64_dup(psz, pszEnd, iAxis);
+   else if(iAxis < 10)
+      return _digit_natoi64_dup(psz, pszEnd, iAxis, iLen);
+   else if(iAxis < 36)
+      return _natoi64_dup(psz, pszEnd, iAxis, iLen);
    else
       return 0;
 }
 
-int64_t nwtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int32_t iBase, size_t iLen)
+int64_t nwtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int32_t iAxis, size_t iLen)
 {
    while (iLen > 0 && iswspace_dup(*str))			// skip whitespace
    {
@@ -872,9 +872,9 @@ int64_t nwtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int32_t iBase,
       {
          break;
       }
-      if(iDigit >= iBase)
+      if(iDigit >= iAxis)
          break;
-      total = iBase * total + iDigit;			// add this digit to the total.
+      total = iAxis * total + iDigit;			// add this digit to the total.
       cur = *str++;							// Do the next character.
    }
 
@@ -891,7 +891,7 @@ int64_t nwtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int32_t iBase,
 }
 
 
-int64_t wtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int32_t iBase)
+int64_t wtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int32_t iAxis)
 {
 
    while(*str != L'\0' && iswspace_dup(*str))			// skip whitespace
@@ -934,9 +934,9 @@ int64_t wtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int32_t iBase)
       {
          break;
       }
-      if(iDigit >= iBase)
+      if(iDigit >= iAxis)
          break;
-      total = iBase * total + iDigit;			// add this digit to the total.
+      total = iAxis * total + iDigit;			// add this digit to the total.
       cur = *str++;							// Do the next character.
    }
 

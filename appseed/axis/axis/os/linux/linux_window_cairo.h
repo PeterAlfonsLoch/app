@@ -4,7 +4,7 @@
 #include "cairo/cairo.h"
 
 
-class CLASS_DECL_BASE window_cairo :
+class CLASS_DECL_AXIS window_cairo :
    public window_graphics
 {
 public:

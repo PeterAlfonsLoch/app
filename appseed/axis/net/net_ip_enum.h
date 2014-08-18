@@ -24,7 +24,7 @@ namespace net
       virtual ~ip_enum();
 
 
-      virtual ::count enumerate(stringa & stra);
+      virtual ::count enumerate(string_array & stra);
 
 
    };

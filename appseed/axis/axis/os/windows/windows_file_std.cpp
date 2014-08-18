@@ -21,6 +21,7 @@ HANDLE _get_osfhandle(int32_t i)
 	return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 }*/
 
+/*
 _FILE *fopen_dup(const char *path, const char *attrs)
 {
 
@@ -56,6 +57,10 @@ _FILE *fopen_dup(const char *path, const char *attrs)
 
 }
 
+*/
+
+
+/*
 _FILE *_wfopen_dup(const wchar_t *path, const wchar_t *attrs)
 {
 
@@ -86,7 +91,9 @@ _FILE *_wfopen_dup(const wchar_t *path, const wchar_t *attrs)
 
 }
 
+*/
 
+/*
 
 int32_t fprintf_dup(_FILE *fp, const char *s, ...)
 {
@@ -118,6 +125,8 @@ int32_t fwprintf_dup(_FILE *fp, const wchar_t *s, ...)
 	fwrite_dup(ansibfr, len+1, sizeof(char), fp);
 	return len;
 }
+*/
+/*
 
 int32_t fclose_dup(_FILE *fp)
 {
@@ -439,6 +448,7 @@ int32_t ferror_dup(_FILE *fp)
    return fp->_flag & _FILE_ERROR;
 
 }
+*/
 
 uint64_t fsize_dup(HANDLE h)
 {

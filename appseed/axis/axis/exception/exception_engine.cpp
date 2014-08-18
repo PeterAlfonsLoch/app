@@ -67,7 +67,7 @@ It is provided "as is" without express or implied warranty.
 
 HANDLE SymGetProcessHandle();
 int_bool __stdcall My_ReadProcessMemory(HANDLE      hProcess,
-DWORD64     qwBaseAddress,
+DWORD64     qwAxisAddress,
 PVOID       lpBuffer,
 DWORD       nSize,
 LPDWORD     lpNumberOfBytesRead
@@ -95,7 +95,7 @@ HANDLE SymGetProcessHandle()
 BOOL
 (__stdcall *PREAD_PROCESS_MEMORY_ROUTINE64)(
 _In_ HANDLE hProcess,
-_In_ DWORD64 qwBaseAddress,
+_In_ DWORD64 qwAxisAddress,
 _Out_writes_bytes_(nSize) PVOID lpBuffer,
 _In_ uint32_t nSize,
 _Out_ LPDWORD lpNumberOfBytesRead
@@ -104,7 +104,7 @@ _Out_ LPDWORD lpNumberOfBytesRead
 
 int_bool __stdcall My_ReadProcessMemory (
    HANDLE      hProcess,
-   DWORD64     qwBaseAddress,
+   DWORD64     qwAxisAddress,
    PVOID       lpBuffer,
    DWORD       nSize,
    LPDWORD     lpNumberOfBytesRead
@@ -115,7 +115,7 @@ int_bool __stdcall My_ReadProcessMemory (
 #if defined(METROWIN) || defined(LINUX) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
    throw todo(get_thread_app());
 #else
-   if(!ReadProcessMemory(hProcess, (LPCVOID) qwBaseAddress, (LPVOID) lpBuffer, nSize, &size))
+   if(!ReadProcessMemory(hProcess, (LPCVOID) qwAxisAddress, (LPVOID) lpBuffer, nSize, &size))
       return FALSE;
 #endif
    *lpNumberOfBytesRead = (uint32_t) size;
@@ -125,9 +125,9 @@ int_bool __stdcall My_ReadProcessMemory (
 }
 /*
 #else
-int_bool __stdcall My_ReadProcessMemory (HANDLE, LPCVOID lpBaseAddress, LPVOID lpBuffer, uint32_t nSize, SIZE_T * lpNumberOfBytesRead)
+int_bool __stdcall My_ReadProcessMemory (HANDLE, LPCVOID lpAxisAddress, LPVOID lpBuffer, uint32_t nSize, SIZE_T * lpNumberOfBytesRead)
 {
-return ReadProcessMemory(GetCurrentProcess(), lpBaseAddress, lpBuffer, nSize, lpNumberOfBytesRead) != FALSE;
+return ReadProcessMemory(GetCurrentProcess(), lpAxisAddress, lpBuffer, nSize, lpNumberOfBytesRead) != FALSE;
 }
 #endif
 */
@@ -137,7 +137,7 @@ namespace exception
 
    typedef int_bool (__stdcall *PReadProcessMemoryRoutine)(
       HANDLE      hProcess,
-      DWORD64     qwBaseAddress,
+      DWORD64     qwAxisAddress,
       PVOID       lpBuffer,
       uint32_t       nSize,
       LPDWORD     lpNumberOfBytesRead,
@@ -190,7 +190,7 @@ namespace exception
          return 0;
 
       HANDLE hprocess = SymGetProcessHandle();
-      HMODULE hmodule = (HMODULE)SymGetModuleBase64 (hprocess, m_uiAddress);
+      HMODULE hmodule = (HMODULE)SymGetModuleAxis64 (hprocess, m_uiAddress);
       if (!hmodule) return 0;
       return get_module_basename(hmodule, str);
    }
@@ -345,7 +345,7 @@ namespace exception
          My_ReadProcessMemory,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
          //NULL,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
          SymFunctionTableAccess64,                      // __in_opt  PFUNCTION_TABLE_ACCESS_ROUTINE64 FunctionTableAccessRoutine,
-         SymGetModuleBase64,                     // __in_opt  PGET_MODULE_AXIS_ROUTINE64 GetModuleBaseRoutine,
+         SymGetModuleAxis64,                     // __in_opt  PGET_MODULE_AXIS_ROUTINE64 GetModuleAxisRoutine,
          NULL                       // __in_opt  PTRANSLATE_ADDRESS_ROUTINE64 TranslateAddress
          ) != FALSE;
       /*#else
@@ -357,7 +357,7 @@ namespace exception
       m_pcontext,
       My_ReadProcessMemory,
       SymFunctionTableAccess64,
-      SymGetModuleBase64,
+      SymGetModuleAxis64,
       0) != FALSE;
       #endif*/
 
@@ -379,9 +379,9 @@ retry_get_base:
       // StackWalk returns TRUE but the address doesn't belong to
       // a module in the process.
 
-      DWORD64 dwModBase = SymGetModuleBase64 (hprocess, m_pstackframe->AddrPC.Offset);
+      DWORD64 dwModAxis = SymGetModuleAxis64 (hprocess, m_pstackframe->AddrPC.Offset);
 
-      if (!dwModBase)
+      if (!dwModAxis)
       {
          //::OutputDebugString("engine::stack_next :: StackWalk returned TRUE but the address doesn't belong to a module in the process.");
 

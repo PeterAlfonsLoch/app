@@ -25,13 +25,8 @@ public:
    virtual property_set & propset();
 
 
-   virtual void assert_valid() const;
-   virtual void dump(dump_context & dumpcontext) const;
-
    object & operator = (const object & objectSrc);       // no implementation
 
-
-   inline sp(::command_thread) command_thread();
 
 
    DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION

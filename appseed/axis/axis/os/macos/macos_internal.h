@@ -73,7 +73,7 @@ typedef int wxCoord;
 enum { wxDefaultCoord = -1 };
 
 
-class CLASS_DECL_BASE wxSize
+class CLASS_DECL_AXIS wxSize
 {
 public:
    // members are public for compatibility, don't use them directly.
@@ -141,7 +141,7 @@ public:
 };
 
 
-class CLASS_DECL_BASE wxPoint
+class CLASS_DECL_AXIS wxPoint
 {
 public:
    int x, y;
@@ -172,7 +172,7 @@ public:
 };
 
 
-class CLASS_DECL_BASE device_context
+class CLASS_DECL_AXIS device_context
 {
 public:
    
@@ -189,7 +189,7 @@ public:
    CGColorRef        m_cgcolorrefBk;
    CTFontRef         m_ctfontref;
    
-   // wxBase Begin
+   // wxAxis Begin
    
    // coordinate system variables
    
@@ -209,7 +209,7 @@ public:
    wxCoord m_minX, m_minY, m_maxX, m_maxY;
    wxCoord m_clipX1, m_clipY1, m_clipX2, m_clipY2;    
    
-   // wxBase End
+   // wxAxis End
    
    
    

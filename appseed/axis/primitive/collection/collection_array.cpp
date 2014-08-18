@@ -35,19 +35,19 @@ void ___arrayStdSortTest()
 namespace lemon
 {
 
-    stringa x1_decode_ida(const char * psz)
+    string_array x1_decode_ida(const char * psz)
 	{
       string str(psz);
       if(str.is_empty())
-      	return stringa();
+      	return string_array();
 		str.replace("><", ",");
 		str = str.Mid(1, str.get_length() - 2);
-		stringa stra;
+		string_array stra;
       stra.explode(",", str);;
 		return stra;
 	}
 
-    string x1_encode_ida(const stringa & stra)
+    string x1_encode_ida(const string_array & stra)
 	{
 		string str;
       for(int32_t i = 0 ; i < stra.get_count(); i++)

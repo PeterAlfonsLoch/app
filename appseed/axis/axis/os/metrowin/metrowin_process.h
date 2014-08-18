@@ -1,13 +1,13 @@
 #pragma once
 
 
-CLASS_DECL_BASE void call_sync(const char * path, const char * param);
+CLASS_DECL_AXIS void call_sync(const char * path, const char * param);
 
 
-CLASS_DECL_BASE bool process_modules(stringa & stra, DWORD processID);
+CLASS_DECL_AXIS bool process_modules(stringa & stra, DWORD processID);
 
    
-CLASS_DECL_BASE bool load_modules_diff(stringa & straOld, stringa & straNew, const char * pszExceptDir);
+CLASS_DECL_AXIS bool load_modules_diff(stringa & straOld, stringa & straNew, const char * pszExceptDir);
 
 
 

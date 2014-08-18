@@ -685,7 +685,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 */
 
 
-void message_box_paint(::draw2d::graphics * pdc, stringa & stra, bool_array  & baTab, raw_int_array  & ya, SIZE * psize)
+void message_box_paint(::draw2d::graphics * pdc, string_array & stra, bool_array  & baTab, raw_int_array  & ya, SIZE * psize)
 {
 
    pdc->FillSolidRect(0, 0, psize->cx, psize->cy, RGB(84, 84, 77));
@@ -750,7 +750,7 @@ public:
 
       g->selectFont(font);
 
-      stringa stra;
+      string_array stra;
 
       stra.add_tokens(lpText, "\n");
 
@@ -907,7 +907,7 @@ void message_box_show_dib_data(COLORREF * pcolorref, const RECT & rect, const ch
 	sz.cy = 0;
 
 
-	stringa stra;
+	string_array stra;
 
 	stra.add_tokens(lpText, "\n");
 

@@ -28,7 +28,7 @@ namespace axis
       bool                    m_bTrace;
       ::axis::trace::trace *     m_ptrace;
       critical_section *      m_pcsTrace;
-      stringa *               m_pstraSeparator;
+      string_array *               m_pstraSeparator;
       FILE *                  m_pfile;
       mutex *                 m_pmutex;
       bool                    m_bInitialized;

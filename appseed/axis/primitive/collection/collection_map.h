@@ -10,12 +10,12 @@ class map :
 public:
 
 
-   typedef KEY                                  AXIS_KEY;
-   typedef ARG_KEY                              AXIS_ARG_KEY;
-   typedef VALUE                                AXIS_VALUE;
-   typedef ARG_VALUE                            AXIS_ARG_VALUE;
-   typedef HASH                                 AXIS_HASH;
-   typedef EQUALS                               AXIS_EQUALS;
+   typedef KEY                                  BASE_KEY;
+   typedef ARG_KEY                              BASE_ARG_KEY;
+   typedef VALUE                                BASE_VALUE;
+   typedef ARG_VALUE                            BASE_ARG_VALUE;
+   typedef HASH                                 BASE_HASH;
+   typedef EQUALS                               BASE_EQUALS;
 
    typedef ::map_association < KEY, VALUE >     assoc;
    typedef typename assoc::pair                 pair;
@@ -218,9 +218,23 @@ public:
       return const_iterator(NULL, (map *) this);
    }
 
-   void construct(::count nBlockSize = 10);
+   assoc **          m_ppassocHash;
+   UINT              m_nHashTableSize;
+   ::count           m_nCount;
+   assoc *           m_passocFree;
+   assoc *           m_passocHead;
+   struct ::plex *   m_pplex;
+   ::count           m_nBlockSize;
+
+   assoc * new_assoc(ARG_KEY key);
+   void free_assoc(assoc * passoc);
+   assoc * get_assoc_at(ARG_KEY,UINT&,UINT&) const;
+
    map(sp(::axis::application) papp = NULL, ::count nBlockSize = 10);
    map(pair pairs[], int32_t iCount);
+   virtual ~map();
+
+   void construct(::count nBlockSize = 10);
 
    ::count get_count() const;
    ::count get_size() const;
@@ -318,25 +332,6 @@ public:
    iterator find (ARG_KEY key);
    const_iterator find (ARG_KEY key) const;
 
-   // Implementation
-protected:
-   assoc **          m_ppassocHash;
-   UINT              m_nHashTableSize;
-   ::count           m_nCount;
-   assoc *           m_passocFree;
-   assoc *           m_passocHead;
-   struct ::plex *   m_pplex;
-   ::count           m_nBlockSize;
-
-   assoc * new_assoc(ARG_KEY key);
-   void free_assoc(assoc * passoc);
-   assoc * get_assoc_at(ARG_KEY, UINT&, UINT&) const;
-
-public:
-   virtual ~map();
-   //   void Serialize(CArchive&);
-   void dump(dump_context &) const;
-   void assert_valid() const;
 
    template < class ARRAY >
    bool remove_key_array(ARRAY a)
@@ -941,39 +936,7 @@ set_at(newKey[0], newValue[0]);
 }
 */
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::dump(dump_context & dumpcontext) const
-{
-   object::dump(dumpcontext);
 
-   dumpcontext << "with " << m_nCount << " elements";
-   if (dumpcontext.GetDepth() > 0)
-   {
-      // Dump in format "[key] -> value"
-
-      const pair * ppair = PGetFirstAssoc();
-      while (ppair != NULL)
-      {
-         ppair = PGetNextAssoc(ppair);
-         dumpcontext << "\n\t[";
-         dump_elements<KEY>(dumpcontext, &ppair->m_element1, 1);
-         dumpcontext << "] = ";
-         dump_elements<VALUE>(dumpcontext, &ppair->m_element2, 1);
-      }
-   }
-
-   dumpcontext << "\n";
-}
-
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::assert_valid() const
-{
-   object::assert_valid();
-
-   ASSERT(m_nHashTableSize > 0);
-   ASSERT(m_nCount == 0 || m_ppassocHash != NULL);
-   // non-is_empty map should have hash table
-}
 
 template < class KEY, class VALUE >
 class std_map :

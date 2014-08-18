@@ -730,7 +730,7 @@
 //    ULONG dwInFlags;
 //    ULONG dwOutFlags;
 //    INT   cchUsed;
-//    INT   nBaseShift;
+//    INT   nAxisShift;
 //    INT   nPwr10;
 //} NUMPARSE;
 //

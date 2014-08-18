@@ -123,15 +123,6 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 
 
 
-   template <class T >
-   inline synch_index_iterator::synch_index_iterator(synch_ptr_array < T > & ptra,bool bInitialLock):
-      single_lock(&ptra.m_mutex,true)
-   {
-      init(&ptra.m_indexptra,bInitialLock);
-   }
-
-
-
 
 
 

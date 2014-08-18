@@ -13,7 +13,7 @@ namespace user
 } // namespace user
 
 
-struct CLASS_DECL_BASE oswindow_data
+struct CLASS_DECL_AXIS oswindow_data
 {
 public:
 
@@ -30,9 +30,9 @@ class oswindow_dataptra;
 
 
 ///static oswindow_dataptra * s_pdataptra;
-CLASS_DECL_BASE bool oswindow_find(::user::interaction * pui);
-CLASS_DECL_BASE oswindow oswindow_get(::user::interaction * pui);
-CLASS_DECL_BASE bool oswindow_remove(::user::interaction * pui);
+CLASS_DECL_AXIS bool oswindow_find(::user::interaction * pui);
+CLASS_DECL_AXIS oswindow oswindow_get(::user::interaction * pui);
+CLASS_DECL_AXIS bool oswindow_remove(::user::interaction * pui);
 #if defined(__cplusplus_winrt)
-CLASS_DECL_BASE Platform::Agile<Windows::UI::Core::CoreWindow> get_os_window(oswindow window);
+CLASS_DECL_AXIS Platform::Agile<Windows::UI::Core::CoreWindow> get_os_window(oswindow window);
 #endif

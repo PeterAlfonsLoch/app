@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
- string i64toa_dup(int64_t i, int32_t iBase)
+ string i64toa_dup(int64_t i, int32_t iAxis)
 {
 
    char sz[128 + 64];
@@ -21,7 +21,7 @@
    int32_t iIndex = 0;
    while(i > 0)
    {
-      int32_t iDigit = (i % iBase);
+      int32_t iDigit = (i % iAxis);
       char ch;
       if(iDigit <= 9)
       {
@@ -32,7 +32,7 @@
          ch = iDigit - 10 + 'a';
       }
       sz[iIndex] =  ch;
-      i = i / iBase;
+      i = i / iAxis;
       iIndex++;
    }
    if(bNegative)
@@ -57,7 +57,7 @@
 
 
 
- string ui64toa_dup(int64_t i, int32_t iBase)
+ string ui64toa_dup(int64_t i, int32_t iAxis)
 {
 
    char sz[128 + 64];
@@ -71,7 +71,7 @@
    int32_t iIndex = 0;
    while(i > 0)
    {
-      int32_t iDigit = (i % iBase);
+      int32_t iDigit = (i % iAxis);
       char ch;
       if(iDigit <= 9)
       {
@@ -82,7 +82,7 @@
          ch = iDigit - 10 + 'a';
       }
       sz[iIndex] =  ch;
-      i = i / iBase;
+      i = i / iAxis;
       iIndex++;
    }
    sz[iIndex] = '\0';
@@ -104,7 +104,7 @@
 
 
 
- void ultoa_dup(char * sz, uint64_t ui, int32_t iBase)
+ void ultoa_dup(char * sz, uint64_t ui, int32_t iAxis)
 {
    if(ui == 0)
    {
@@ -115,7 +115,7 @@
    int32_t iIndex = 0;
    while(ui > 0)
    {
-      int32_t iDigit = (ui % iBase);
+      int32_t iDigit = (ui % iAxis);
       char ch;
       if(iDigit <= 9)
       {
@@ -126,7 +126,7 @@
          ch = iDigit - 10 + 'a';
       }
       sz[iIndex] =  ch;
-      ui = ui / iBase;
+      ui = ui / iAxis;
       iIndex++;
    }
    sz[iIndex] = '\0';
@@ -135,7 +135,7 @@
 
 
 
-void ltoa_dup(char * sz, int64_t i, int32_t iBase)
+void ltoa_dup(char * sz, int64_t i, int32_t iAxis)
 {
    if(i == 0)
    {
@@ -152,7 +152,7 @@ void ltoa_dup(char * sz, int64_t i, int32_t iBase)
    int32_t iIndex = 0;
    while(i > 0)
    {
-      int32_t iDigit = (i % iBase);
+      int32_t iDigit = (i % iAxis);
       char ch;
       if(iDigit <= 9)
       {
@@ -163,7 +163,7 @@ void ltoa_dup(char * sz, int64_t i, int32_t iBase)
          ch = iDigit - 10 + 'a';
       }
       sz[iIndex] =  ch;
-      i = i / iBase;
+      i = i / iAxis;
       iIndex++;
    }
    if(bNegative)
@@ -201,7 +201,7 @@ void ltoa_dup(char * sz, int64_t i, int32_t iBase)
 
 
 
-void ultow_dup(wchar_t * sz, uint64_t ui, int32_t iBase)
+void ultow_dup(wchar_t * sz, uint64_t ui, int32_t iAxis)
 {
    if(ui == 0)
    {
@@ -212,7 +212,7 @@ void ultow_dup(wchar_t * sz, uint64_t ui, int32_t iBase)
    int32_t iIndex = 0;
    while(ui > 0)
    {
-      int32_t iDigit = (ui % iBase);
+      int32_t iDigit = (ui % iAxis);
       wchar_t wch;
       if(iDigit <= 9)
       {
@@ -223,7 +223,7 @@ void ultow_dup(wchar_t * sz, uint64_t ui, int32_t iBase)
          wch = iDigit - 10 + L'a';
       }
       sz[iIndex] =  wch;
-      ui = ui / iBase;
+      ui = ui / iAxis;
       iIndex++;
    }
    sz[iIndex] = L'\0';
@@ -232,7 +232,7 @@ void ultow_dup(wchar_t * sz, uint64_t ui, int32_t iBase)
 
 
 
-void ltow_dup(wchar_t * sz, int64_t i, int32_t iBase)
+void ltow_dup(wchar_t * sz, int64_t i, int32_t iAxis)
 {
    if(i == 0)
    {
@@ -249,7 +249,7 @@ void ltow_dup(wchar_t * sz, int64_t i, int32_t iBase)
    int32_t iIndex = 0;
    while(i > 0)
    {
-      int32_t iDigit = (i % iBase);
+      int32_t iDigit = (i % iAxis);
       wchar_t wch;
       if(iDigit <= 9)
       {
@@ -260,7 +260,7 @@ void ltow_dup(wchar_t * sz, int64_t i, int32_t iBase)
          wch = iDigit - 10 + L'a';
       }
       sz[iIndex] =  wch;
-      i = i / iBase;
+      i = i / iAxis;
       iIndex++;
    }
    if(bNegative)

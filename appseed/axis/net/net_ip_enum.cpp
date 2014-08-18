@@ -18,7 +18,7 @@ namespace net
    }
 
 
-   ::count ip_enum::enumerate(stringa & stra)
+   ::count ip_enum::enumerate(string_array & stra)
    {
 
       UNREFERENCED_PARAMETER(stra);

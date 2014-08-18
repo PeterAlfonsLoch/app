@@ -202,7 +202,7 @@ extern "C" const IID IID_IAxWinAmbientDispatchEx;
 */
 
 #ifndef _delayimp_h
-//extern "C" IMAGE_DOS_HEADER __ImageBase;
+//extern "C" IMAGE_DOS_HEADER __ImageAxis;
 #endif
 
 

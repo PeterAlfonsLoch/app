@@ -372,7 +372,7 @@ void wcscat_dup(wchar_t * dest, const wchar_t * cat)
 
 
 
-void uitow_dup(wchar_t * sz, uint32_t ui, int32_t iBase)
+void uitow_dup(wchar_t * sz, uint32_t ui, int32_t iAxis)
 {
    if(ui == 0)
    {
@@ -383,7 +383,7 @@ void uitow_dup(wchar_t * sz, uint32_t ui, int32_t iBase)
    int32_t iIndex = 0;
    while(ui > 0)
    {
-      int32_t iDigit = (ui % iBase);
+      int32_t iDigit = (ui % iAxis);
       wchar_t wch;
       if(iDigit <= 9)
       {
@@ -394,7 +394,7 @@ void uitow_dup(wchar_t * sz, uint32_t ui, int32_t iBase)
          wch = iDigit - 10 + L'a';
       }
       sz[iIndex] =  wch;
-      ui = ui / iBase;
+      ui = ui / iAxis;
       iIndex++;
    }
    sz[iIndex] = L'\0';
@@ -403,7 +403,7 @@ void uitow_dup(wchar_t * sz, uint32_t ui, int32_t iBase)
 
 
 
-void itow_dup(wchar_t * sz, int32_t i, int32_t iBase)
+void itow_dup(wchar_t * sz, int32_t i, int32_t iAxis)
 {
    if(i == 0)
    {
@@ -420,7 +420,7 @@ void itow_dup(wchar_t * sz, int32_t i, int32_t iBase)
    int32_t iIndex = 0;
    while(i > 0)
    {
-      int32_t iDigit = (i % iBase);
+      int32_t iDigit = (i % iAxis);
       wchar_t wch;
       if(iDigit <= 9)
       {
@@ -431,7 +431,7 @@ void itow_dup(wchar_t * sz, int32_t i, int32_t iBase)
          wch = iDigit - 10 + L'a';
       }
       sz[iIndex] =  wch;
-      i = i / iBase;
+      i = i / iAxis;
       iIndex++;
    }
    if(bNegative)

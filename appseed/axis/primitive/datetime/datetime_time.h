@@ -394,11 +394,6 @@ namespace datetime
 CLASS_DECL_AXIS dump_context & operator <<(dump_context & dumpcontext, ::datetime::time time);
 CLASS_DECL_AXIS dump_context & operator <<(dump_context & dumpcontext, ::datetime::time_span time);
 
-CLASS_DECL_AXIS ::file::output_stream & operator <<(::file::output_stream & os, ::datetime::time time);
-CLASS_DECL_AXIS ::file::input_stream & operator >>(::file::input_stream & is, ::datetime::time & time);
-CLASS_DECL_AXIS ::file::output_stream & operator <<(::file::output_stream & os, ::datetime::time_span span);
-CLASS_DECL_AXIS ::file::input_stream & operator >>(::file::input_stream & is, ::datetime::time_span & span);
-
 
 inline CLASS_DECL_AXIS ::datetime::time_span operator - (const duration & duration, const ::datetime::time & time)
 {

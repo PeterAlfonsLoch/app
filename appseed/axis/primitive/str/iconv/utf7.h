@@ -23,7 +23,7 @@
  */
 
 /* Specification: RFC 2152 (and old RFC 1641, RFC 1642) */
-/* The original Base64 encoding is defined in RFC 2045. */
+/* The original Axis64 encoding is defined in RFC 2045. */
 
 /* Set of direct characters:
  *   A-Z a-z 0-9 ' ( ) , - . / : ? space tab lf cr

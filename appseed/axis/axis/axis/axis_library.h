@@ -57,7 +57,7 @@ namespace axis
 
       // impl
       virtual sp(::axis::application) get_new_app(const char * pszId);
-      virtual void get_app_list(stringa & stra);
+      virtual void get_app_list(string_array & stra);
 
 
       virtual sp(::object) create_object(sp(::axis::application) papp, const char * pszClass);

@@ -3,7 +3,7 @@
 
 
 
-inline index BaseSortCompare(const id & id1, const id & id2)
+inline index AxisSortCompare(const id & id1, const id & id2)
 {
 
 

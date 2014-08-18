@@ -35,7 +35,7 @@ void socket_event::SetSocketHandle(uint32_t socket)
 {
    m_iSocket = socket;
 }
-//void SetSocketHandle(const SocketBase& socket) { m_iSocket = socket.get_handle_(); }   // MBO: alternative solution
+//void SetSocketHandle(const SocketAxis& socket) { m_iSocket = socket.get_handle_(); }   // MBO: alternative solution
 //void ChangeSocketHandle(SOCKET socket);
 
 ///  \brief		destructor

@@ -588,8 +588,8 @@ typedef DWORD FLONG;
 
 typedef struct _MEMORY_BASIC_INFORMATION
 {
-    LPVOID   BaseAddress;
-    LPVOID   AllocationBase;
+    LPVOID   AxisAddress;
+    LPVOID   AllocationAxis;
     DWORD    AllocationProtect;
     SIZE_T   RegionSize;
     DWORD    State;
@@ -853,16 +853,16 @@ typedef struct _CONTEXT
 
 typedef struct _LDT_ENTRY {
     WORD	LimitLow;
-    WORD	BaseLow;
+    WORD	AxisLow;
     union {
         struct {
-            BYTE    BaseMid;
+            BYTE    AxisMid;
             BYTE    Flags1;
             BYTE    Flags2;
-            BYTE    BaseHi;
+            BYTE    AxisHi;
         } Bytes;
         struct {
-            unsigned    BaseMid: 8;
+            unsigned    AxisMid: 8;
             unsigned    Type : 5;
             unsigned    Dpl : 2;
             unsigned    Pres : 1;
@@ -871,7 +871,7 @@ typedef struct _LDT_ENTRY {
             unsigned    Reserved_0 : 1;
             unsigned    Default_Big : 1;
             unsigned    Granularity : 1;
-            unsigned    BaseHi : 8;
+            unsigned    AxisHi : 8;
         } Bits;
     } HighWord;
 } LDT_ENTRY, *PLDT_ENTRY;
@@ -1017,7 +1017,7 @@ typedef struct _RUNTIME_FUNCTION
 
 typedef struct _UNWIND_HISTORY_TABLE_ENTRY
 {
-    ULONG64 ImageBase;
+    ULONG64 ImageAxis;
     PRUNTIME_FUNCTION FunctionEntry;
 } UNWIND_HISTORY_TABLE_ENTRY, *PUNWIND_HISTORY_TABLE_ENTRY;
 
@@ -1343,7 +1343,7 @@ typedef struct _FRAME_POINTERS {
 #define UNWIND_HISTORY_TABLE_SIZE 12
 
 typedef struct _UNWIND_HISTORY_TABLE_ENTRY {
-  ULONG64 ImageBase;
+  ULONG64 ImageAxis;
   ULONG64 Gp;
   PRUNTIME_FUNCTION FunctionEntry;
 } UNWIND_HISTORY_TABLE_ENTRY, *PUNWIND_HISTORY_TABLE_ENTRY;
@@ -2461,7 +2461,7 @@ typedef LONG (CALLBACK *PVECTORED_EXCEPTION_HANDLER)(PEXCEPTION_POINTERS Excepti
 typedef struct _NT_TIB
 {
 	struct _EXCEPTION_REGISTRATION_RECORD *ExceptionList;
-	PVOID StackBase;
+	PVOID StackAxis;
 	PVOID StackLimit;
 	PVOID SubSystemTib;
 	union {
@@ -2829,8 +2829,8 @@ typedef struct _IMAGE_OPTIONAL_HEADER64 {
   DWORD SizeOfInitializedData;
   DWORD SizeOfUninitializedData;
   DWORD AddressOfEntryPoint;
-  DWORD BaseOfCode;
-  ULONGLONG ImageBase;
+  DWORD AxisOfCode;
+  ULONGLONG ImageAxis;
   DWORD SectionAlignment;
   DWORD FileAlignment;
   WORD MajorOperatingSystemVersion;
@@ -2871,12 +2871,12 @@ typedef struct _IMAGE_OPTIONAL_HEADER {
   DWORD SizeOfInitializedData;
   DWORD SizeOfUninitializedData;
   DWORD AddressOfEntryPoint;		/* 0x10 */
-  DWORD BaseOfCode;
-  DWORD BaseOfData;
+  DWORD AxisOfCode;
+  DWORD AxisOfData;
 
   /* NT additional fields */
 
-  DWORD ImageBase;
+  DWORD ImageAxis;
   DWORD SectionAlignment;		/* 0x20 */
   DWORD FileAlignment;
   WORD  MajorOperatingSystemVersion;
@@ -3178,7 +3178,7 @@ typedef struct _IMAGE_EXPORT_DIRECTORY {
 	WORD	MajorVersion;
 	WORD	MinorVersion;
 	DWORD	Name;
-	DWORD	Base;
+	DWORD	Axis;
 	DWORD	NumberOfFunctions;
 	DWORD	NumberOfNames;
 	DWORD	AddressOfFunctions;
@@ -3800,7 +3800,7 @@ typedef struct _IMAGE_SEPARATE_DEBUG_HEADER {
 	WORD	Characteristics;
 	DWORD	TimeDateStamp;
 	DWORD	CheckSum;
-	DWORD	ImageBase;
+	DWORD	ImageAxis;
 	DWORD	SizeOfImage;
 	DWORD	NumberOfSections;
 	DWORD	ExportedNamesSize;
@@ -4011,7 +4011,7 @@ typedef struct _ACL_SIZE_INFORMATION
 #define SE_SYSTEM_PROFILE_NAME		TEXT("SeSystemProfilePrivilege")
 #define SE_SYSTEMTIME_NAME		TEXT("SeSystemtimePrivilege")
 #define SE_PROF_SINGLE_PROCESS_NAME	TEXT("SeProfileSingleProcessPrivilege")
-#define SE_INC_AXIS_PRIORITY_NAME	TEXT("SeIncreaseBasePriorityPrivilege")
+#define SE_INC_AXIS_PRIORITY_NAME	TEXT("SeIncreaseAxisPriorityPrivilege")
 #define SE_CREATE_PAGEFILE_NAME 	TEXT("SeCreatePagefilePrivilege")
 #define SE_CREATE_PERMANENT_NAME	TEXT("SeCreatePermanentPrivilege")
 #define SE_BACKUP_NAME 			TEXT("SeBackupPrivilege")

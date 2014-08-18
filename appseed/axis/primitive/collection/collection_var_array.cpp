@@ -11,7 +11,7 @@ var_array::var_array(sp(::axis::application) papp) :
    set_size(0, 64);
 }
 
-var_array::var_array(const stringa & stra)
+var_array::var_array(const string_array & stra)
 {
    set_size(0, ROUND16(stra.get_size() + 16));
    operator = (stra);
@@ -263,7 +263,7 @@ var_array var_array::operator +(var_array varaParam) const
    return vara;
 }
 
-var_array & var_array::operator = (const stringa & stra)
+var_array & var_array::operator = (const string_array & stra)
 {
    remove_all();
    for(int32_t i = 0; i < stra.get_count(); i++)

@@ -160,7 +160,7 @@ namespace datetime
       str.trim();
       str += " ";
       property_set set;
-      bool bBaseTime = false;
+      bool bAxisTime = false;
       int32_t iStart = 0;
 
       // if is international date time 2009-04-31 21:45:59
@@ -172,7 +172,7 @@ namespace datetime
          && str.Mid(13, 1) == ":"
          && str.Mid(16, 1) == ":")
          {
-            bBaseTime = true;
+            bAxisTime = true;
             Sys(pbaseapp->m_pbasesystem).datetime().international().parse_str(str, set);
             string strWord = str.Mid(19);
             strWord.trim_left();
@@ -214,12 +214,12 @@ namespace datetime
          }
       }
       // if is international date time 2009-04-31
-      if(!bBaseTime && str.get_length() >= 10)
+      if(!bAxisTime && str.get_length() >= 10)
       {
          if(str.Mid(4, 1) == "-"
          && str.Mid(7, 1) == "-")
          {
-            bBaseTime = true;
+            bAxisTime = true;
             Sys(pbaseapp->m_pbasesystem).datetime().international().parse_str(str, set);
             time = ::datetime::time(
                set["year"],
@@ -231,41 +231,41 @@ namespace datetime
             iStart = 11;
          }
       }
-      if(!bBaseTime && (
+      if(!bAxisTime && (
          ::str::begins_eat(str, "today") ||
          (pcontext != NULL && pcontext->begins_eat(str, "calendar:today"))))
       {
          time = ::datetime::time::get_current_time();
          time = ::datetime::time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
-         bBaseTime = true;
+         bAxisTime = true;
       }
-      if(!bBaseTime &&(
+      if(!bAxisTime &&(
          ::str::begins_eat(str, "tomorrow") ||
          (pcontext != NULL && pcontext->begins_eat(str, "calendar:tomorrow"))))
       {
          time = ::datetime::time::get_current_time();
          time = ::datetime::time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
          time += ::datetime::time_span(1, 0, 0, 0);
-         bBaseTime = true;
+         bAxisTime = true;
       }
-      if (!bBaseTime && (
+      if (!bAxisTime && (
          ::str::begins_eat(str, "yesterday") ||
          (pcontext != NULL && pcontext->begins_eat(str, "calendar:yesterday"))))
       {
          time = ::datetime::time::get_current_time();
          time = ::datetime::time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
          time -= ::datetime::time_span(1, 0, 0, 0);
-         bBaseTime = true;
+         bAxisTime = true;
       }
-      if (!bBaseTime && (
+      if (!bAxisTime && (
          ::str::begins_eat(str, "now") ||
          (pcontext != NULL && pcontext->begins_eat(str, "calendar:now"))))
       {
          time = ::datetime::time::get_current_time();
-         bBaseTime = true;
+         bAxisTime = true;
       }
-      stringa stra;
-      if(!bBaseTime && cregexp_util::match(stra, str, "/^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)/", true, 4) > 0)
+      string_array stra;
+      if(!bAxisTime && cregexp_util::match(stra, str, "/^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)/", true, 4) > 0)
       {
          time = ::datetime::time::get_current_time();
          int32_t i1 = atoi(stra[2]);
@@ -306,10 +306,10 @@ namespace datetime
             }
             iPath = iPath / iCount;
             iPathCount = iPathCount * iCount;
-            bBaseTime = true;
+            bAxisTime = true;
          }
       }
-      if(bBaseTime)
+      if(bAxisTime)
       {
          return value(time) + span_strtotime(pbaseapp, pcontext, str.Mid(iStart));
       }
@@ -409,7 +409,7 @@ namespace datetime
       string str;
       if(m_bSpan)
       {
-         stringa stra;
+         string_array stra;
          string strItem;
          if(m_iYear != 0)
          {

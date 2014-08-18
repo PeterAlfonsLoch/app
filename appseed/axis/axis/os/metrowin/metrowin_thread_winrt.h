@@ -244,12 +244,12 @@ inline ::Windows::Foundation::AsyncStatus wait(::Windows::Foundation::IAsyncActi
 }
 
 
-class CLASS_DECL_BASE message_array :
+class CLASS_DECL_AXIS message_array :
    public raw_array < MESSAGE >
 {
 };
 
-class CLASS_DECL_BASE mq
+class CLASS_DECL_AXIS mq
 {
 public:
 
@@ -263,7 +263,7 @@ public:
 
 };
 
-CLASS_DECL_BASE mq * get_mq(HTHREAD h);
+CLASS_DECL_AXIS mq * get_mq(HTHREAD h);
 
 
 

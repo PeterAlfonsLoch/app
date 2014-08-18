@@ -184,14 +184,14 @@ public:
    friend class thread;
 };
 
-class CLASS_DECL_BASE oswindow_map :
+class CLASS_DECL_AXIS oswindow_map :
    public handle_map < ::windows::oswindow_handle, ::windows::window >
 {
 public:
    oswindow_map(sp(::base::application) papp) : handle_map < ::windows::oswindow_handle, ::windows::window >(papp) {}
 };
 
-/*class CLASS_DECL_BASE hdc_map :
+/*class CLASS_DECL_AXIS hdc_map :
    public handle_map < ::windows::hdc_handle, ::windows::graphics >
 {
 public:
@@ -204,7 +204,7 @@ public:
 };*/
 
 /*
-class CLASS_DECL_BASE hdc_map :
+class CLASS_DECL_AXIS hdc_map :
    public handle_map < ::windows::hmenu_handle, ::windows::menu >
 {
 public:
@@ -443,8 +443,8 @@ inline CT* handle_map <HT, CT>::lookup_temporary(HANDLE h)
 }
 
 
-CLASS_DECL_BASE oswindow_map * get_oswindow_map(bool bCreate = FALSE);
-CLASS_DECL_BASE himagelist_map * afxMapHIMAGELIST(bool bCreate = FALSE);
-//CLASS_DECL_BASE hdc_map * afxMapHDC(bool bCreate = FALSE);
-//CLASS_DECL_BASE hgdiobj_map * afxMapHGDIOBJ(bool bCreate = FALSE);
-//CLASS_DECL_BASE hmenu_map * afx_map_HMENU(bool bCreate = FALSE);
+CLASS_DECL_AXIS oswindow_map * get_oswindow_map(bool bCreate = FALSE);
+CLASS_DECL_AXIS himagelist_map * afxMapHIMAGELIST(bool bCreate = FALSE);
+//CLASS_DECL_AXIS hdc_map * afxMapHDC(bool bCreate = FALSE);
+//CLASS_DECL_AXIS hgdiobj_map * afxMapHGDIOBJ(bool bCreate = FALSE);
+//CLASS_DECL_AXIS hmenu_map * afx_map_HMENU(bool bCreate = FALSE);

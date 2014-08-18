@@ -58,7 +58,6 @@ namespace axis
       stridsp(type)                                m_typemap;
       spa(service_base)                            m_serviceptra;
       sp(axis_factory)                             m_pfactory;
-      ::url::departament                           m_urldepartament;
       const id_pool                                m_cidpool;
       sp(class ::axis::log)                        m_plog;
       sp(geometry::geometry)                       m_pgeometry;
@@ -69,9 +68,7 @@ namespace axis
 
       static id_space *                            s_pidspace;
       static class id                              idEmpty;
-      class ::str::base64                          m_base64;
 
-      sp(class ::datetime::departament)            m_pdatetime;
       string_map < int_to_string >                 m_mapEnumToName;
       string_map < string_to_int >                 m_mapNameToEnum;
       spa(::axis::session)                         m_basesessionptra;
@@ -140,13 +137,10 @@ namespace axis
 
 
       class axis_factory                           & factory();
-      inline ::url::departament                    & url()     { return m_urldepartament; }
-      class ::str::base64                          & base64();
 
       class ::axis::log                            & log();
 
 
-      ::datetime::departament                      & datetime();
 
       geometry::geometry                           & geometry() { return *m_pgeometry; }
 
@@ -359,30 +353,6 @@ namespace axis
 
 
 } // namespace axis
-
-
-
-template < size_t _Bits >
-inline ::file::output_stream & operator << (::file::output_stream & _Ostr,const bitset<_Bits>& _Right)
-{
-   // insert bitset as a string
-   return (_Ostr << _Right.template to_string());
-}
-
-// TEMPLATE operator>>
-template < size_t _Bits >
-inline ::file::input_stream & operator >>(::file::input_stream &  _Istr,bitset<_Bits>& _Right)
-{
-   // extract bitset as a string
-   string _Str;
-
-   _Istr >> _Str;
-
-   _Right = bitset<_Bits>(_Str);	// convert string and store
-
-   return (_Istr);
-
-}
 
 
 

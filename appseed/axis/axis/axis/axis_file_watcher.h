@@ -35,13 +35,13 @@ namespace file_watcher
 
 	/// Type for a watch id
 	typedef uint64_t id;
-	typedef array < id > id_array;
+	typedef raw_array < id > id_array;
 
 	// forward declarations
 	class file_watcher_impl;
 	class file_watch_listener;
 
-	/// Base exception class
+	/// Axis exception class
 	/// @class Exception
 	class CLASS_DECL_AXIS exception
 	{

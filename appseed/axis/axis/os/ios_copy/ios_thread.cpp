@@ -193,7 +193,7 @@ namespace ca2
 
 ///  \brief		global function to set thread priority for current thread
 	///  \param		new priority
-	CLASS_DECL_BASE bool set_thread_priority(int32_t priority)
+	CLASS_DECL_AXIS bool set_thread_priority(int32_t priority)
 	{
 
       return SetThreadPrioriy(GetCurrentThread(), priority) != FALSE;
@@ -205,7 +205,7 @@ namespace ca2
 	///  \brief		global function to get thread priority for current thread
 	///  \return	priority of current thread
 
-	CLASS_DECL_BASE int32_t thread_priority()
+	CLASS_DECL_AXIS int32_t thread_priority()
 	{
 
       return GetThreadPrioriy(GetCurrentThread());

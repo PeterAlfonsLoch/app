@@ -1256,7 +1256,7 @@ namespace axis
 
 #ifdef METROWIN
 
-      stringa stra;
+      string_array stra;
 
       try
       {
@@ -1971,14 +1971,14 @@ namespace axis
       //localeschema.m_bAddAlternateStyle = true;
 
 
-      stringa straLocale;
-      stringa straSchema;
+      string_array straLocale;
+      string_array straSchema;
 
       straLocale.add(get_locale());
       straSchema.add(get_schema());
 
 
-      stringa stra;
+      string_array stra;
 
       stra = Application.directrix()->m_varTopicQuery["locale"].stra();
 

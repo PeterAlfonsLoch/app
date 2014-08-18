@@ -38,13 +38,13 @@ string_map < INT_PTR, INT_PTR > & __library()
 
 
 
-int g_iBaseRefCount = 0;
+int g_iAxisRefCount = 0;
 
 
 CLASS_DECL_AXIS int get_base_init()
 {
 
-   return g_iBaseRefCount;
+   return g_iAxisRefCount;
 
 }
 
@@ -52,9 +52,9 @@ CLASS_DECL_AXIS int get_base_init()
 CLASS_DECL_AXIS int_bool defer_base_init()
 {
 
-   g_iBaseRefCount++;
+   g_iAxisRefCount++;
 
-   if(g_iBaseRefCount > 1)
+   if(g_iAxisRefCount > 1)
       return TRUE;
 
    if(!axis_init())
@@ -68,9 +68,9 @@ CLASS_DECL_AXIS int_bool defer_base_init()
 CLASS_DECL_AXIS int_bool defer_base_term()
 {
 
-   g_iBaseRefCount--;
+   g_iAxisRefCount--;
 
-   if(g_iBaseRefCount >= 1)
+   if(g_iAxisRefCount >= 1)
       return TRUE;
 
    axis_term();
@@ -95,13 +95,6 @@ bool axis_init()
 
    ::multithreading::init_multithreading();
 
-   ::user::init_windowing();
-
-   ::os_thread::s_pmutex = new mutex();
-
-   ::os_thread::s_pptra = new comparable_raw_array < os_thread * >::type();
-
-
    if(!__node_pos_init())
       return false;
 
@@ -116,8 +109,6 @@ bool axis_term()
    __wait_threading_count(::millis((5000) * 8));
 
    __node_pre_term();
-
-   ::user::term_windowing();
 
    ::multithreading::term_multithreading();
 

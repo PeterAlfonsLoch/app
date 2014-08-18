@@ -306,7 +306,7 @@ namespace axis
 #endif
 
 
-      stringa straAppList;
+      string_array straAppList;
 
       get_app_list(straAppList);
 
@@ -418,7 +418,7 @@ namespace axis
    }
 
 
-   void library::get_app_list(stringa & stra)
+   void library::get_app_list(string_array & stra)
    {
 
       if(get_ca2_library() != NULL)
@@ -489,11 +489,20 @@ namespace axis
    bool library::contains_app(const char * pszAppId)
    {
 
-      stringa stra;
+      string_array stra;
 
       get_app_list(stra);
 
-      return stra.contains(pszAppId);
+
+      for(index i = 0; i < stra.get_count(); i++)
+      {
+
+         if(stra[i] == pszAppId)
+            return true;
+
+      }
+
+      return false;
 
    }
 
@@ -513,13 +522,6 @@ namespace axis
 
    }
 
-
-   void library::get_create_view_id_list(::array < id > & ida)
-   {
-
-      UNREFERENCED_PARAMETER(ida);
-
-   }
 
 
    bool library::is_opened()

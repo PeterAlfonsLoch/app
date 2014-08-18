@@ -51,7 +51,7 @@ namespace file_watcher
 
       static watch_struct ^ create_watch(Platform::String ^ strDirectory, bool bRecursive);
 
-      void ContentsChanged(::Windows::Storage::Search::IStorageQueryResultBase ^ r, ::Platform::Object ^ o)
+      void ContentsChanged(::Windows::Storage::Search::IStorageQueryResultAxis ^ r, ::Platform::Object ^ o)
       {
          file_watcher_impl::action action;
          action.watch = this;
@@ -154,7 +154,7 @@ namespace file_watcher
 		if(pwatch->m_queryresult == nullptr)
          return nullptr;
 
-      pwatch->m_evtoken = pwatch->m_queryresult->ContentsChanged += ref new ::Windows::Foundation::TypedEventHandler < ::Windows::Storage::Search::IStorageQueryResultBase ^, 
+      pwatch->m_evtoken = pwatch->m_queryresult->ContentsChanged += ref new ::Windows::Foundation::TypedEventHandler < ::Windows::Storage::Search::IStorageQueryResultAxis ^, 
          ::Platform::Object ^ >(pwatch, &watch_struct::ContentsChanged);
 
 		return pwatch;

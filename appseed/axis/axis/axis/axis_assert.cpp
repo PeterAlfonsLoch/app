@@ -1,24 +1,25 @@
 #include "framework.h"
 
 
-bool __assert_failed_line(const char * lpszFileName,int32_t iLineNumber)
+bool (* g_pfn__assert_failed_line) (const char * lpszFileName,int32_t iLineNumber) = NULL;
+
+
+CLASS_DECL_AXIS void set_assert_failed_line(bool(* pfn__assert_failed_line) (const char * lpszFileName,int32_t iLineNumber))
 {
 
-   thread * pthread = get_thread();
+   g_pfn__assert_failed_line = pfn__assert_failed_line;
+    
+}
 
-   if(pthread != NULL)
-   {
-
-      pthread->m_pbaseapp->m_pbasesystem->assert_failed_line(lpszFileName,iLineNumber);
-
-   }
+bool __axis_assert_failed_line(const char * lpszFileName,int32_t iLineNumber)
+{
 
 #ifdef DEBUG
 
    char szTitle[1024];
-   char szMessage[1024*4];
+   char szMessage[1024 * 4];
 
-   strcpy(szTitle, "Assert failed");
+   strcpy(szTitle,"Assert failed");
 
    sprintf(szMessage,"Assert failed!\n\nFile: %s\nLine: %d\n\nYou can choose to:\n\n\t - \"Cancel\": cancel debugging.\n\t - \"Try\": try debug break where assertion occurred.\n\t - \"Continue\": continue running",lpszFileName,iLineNumber);
 
@@ -48,6 +49,20 @@ bool __assert_failed_line(const char * lpszFileName,int32_t iLineNumber)
 #endif
 
    return false;
+
+
+}
+
+bool __assert_failed_line(const char * lpszFileName,int32_t iLineNumber)
+{
+
+   if(g_pfn__assert_failed_line != NULL)
+   {
+      return g_pfn__assert_failed_line(lpszFileName,iLineNumber);
+
+   }
+
+   return __axis_assert_failed_line(lpszFileName,iLineNumber);
 
 }
 

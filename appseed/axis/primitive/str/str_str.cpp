@@ -422,7 +422,7 @@ namespace str
    }
 
 
-   index  find_first(const stringa & straSearch, index & iFound, const string & str, index iStart)
+   index  find_first(const string_array & straSearch, index & iFound, const string & str, index iStart)
    {
 
       index iFind = -1;
@@ -453,7 +453,7 @@ namespace str
 
    }
 
-   string  random_replace(sp(::axis::application) papp, const stringa & straReplacement, const stringa & straSearch, const char * psz)
+   string  random_replace(sp(::axis::application) papp, const string_array & straReplacement, const string_array & straSearch, const char * psz)
    {
 
       string str(psz);
@@ -1193,21 +1193,21 @@ namespace str
    }
 
 
-   bool to(const char * psz, int64_t & i, int32_t iBase)
+   bool to(const char * psz, int64_t & i, int32_t iAxis)
    {
 
-      if(iBase < 0 || iBase == 1 || iBase > 36)
+      if(iAxis < 0 || iAxis == 1 || iAxis > 36)
          return false;
 
       char * pszEnd;
 
 #ifdef WINDOWS
 
-      int64_t iConversion = ::_strtoi64(psz, &pszEnd, iBase);
+      int64_t iConversion = ::_strtoi64(psz, &pszEnd, iAxis);
 
 #else
 
-      int64_t iConversion = ::atoi64_dup(psz, &pszEnd, iBase);
+      int64_t iConversion = ::atoi64_dup(psz, &pszEnd, iAxis);
 
 #endif
 
@@ -1220,21 +1220,21 @@ namespace str
 
    }
 
-   bool to(const char * psz, int32_t & i, int32_t iBase)
+   bool to(const char * psz, int32_t & i, int32_t iAxis)
    {
 
-      if(iBase < 0 || iBase == 1 || iBase > 36)
+      if(iAxis < 0 || iAxis == 1 || iAxis > 36)
          return false;
 
       char * pszEnd;
 
 #ifdef WINDOWS
 
-      int64_t iConversion = ::_strtoi64(psz, &pszEnd, iBase);
+      int64_t iConversion = ::_strtoi64(psz, &pszEnd, iAxis);
 
 #else
 
-      int64_t iConversion = ::atoi64_dup(psz, &pszEnd, iBase);
+      int64_t iConversion = ::atoi64_dup(psz, &pszEnd, iAxis);
 
 #endif
 
@@ -1286,15 +1286,15 @@ namespace str
    }
 
 
-   bool to(const char * psz, uint64_t & ui, int32_t iBase)
+   bool to(const char * psz, uint64_t & ui, int32_t iAxis)
    {
 
-      if(iBase < 0 || iBase == 1 || iBase > 36)
+      if(iAxis < 0 || iAxis == 1 || iAxis > 36)
          return false;
 
       char * pszEnd;
 
-      uint64_t uiConversion = ::atoui64_dup(psz, &pszEnd, iBase);
+      uint64_t uiConversion = ::atoui64_dup(psz, &pszEnd, iAxis);
 
       if(pszEnd == psz)
          return false;
@@ -1305,15 +1305,15 @@ namespace str
 
    }
 
-   bool to(const char * psz, uint32_t & ui, int32_t iBase)
+   bool to(const char * psz, uint32_t & ui, int32_t iAxis)
    {
 
-      if(iBase < 0 || iBase == 1 || iBase > 36)
+      if(iAxis < 0 || iAxis == 1 || iAxis > 36)
          return false;
 
       const char * pszEnd;
 
-      uint32_t uiConversion = ::atoui_dup(psz, &pszEnd, iBase);
+      uint32_t uiConversion = ::atoui_dup(psz, &pszEnd, iAxis);
 
       if(pszEnd == psz)
          return false;

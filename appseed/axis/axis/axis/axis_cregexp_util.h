@@ -1,15 +1,6 @@
 #pragma once
 
 
-namespace user
-{
-
-
-   class str_context;
-
-
-} // namespace user
-
 
 class CLASS_DECL_AXIS cregexp_util  
 {
@@ -28,8 +19,7 @@ public:
 
    static bool    match(const char * lpcsz, const string & strExp);
    static bool    match(const char * lpcsz, cregexp * re);
-   static bool    match(::user::str_context * pcontext, string_array & stra, const char * psz, id pszExp, id pszRoot);
-   
+      
 
    static index   match(string_array & stra, const char * lpcsz, cregexp * re, strsize iSize);
    static index   match(string_array & stra, const char * lpcsz, const char * lpcszExp, bool bCaseInsensitive, strsize iSize);

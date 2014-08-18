@@ -27,7 +27,7 @@ namespace axis
       m_pcsTrace        = new critical_section();
       m_pmutex          = new mutex(papp);
       m_ptrace          = new ::axis::trace::trace(papp);
-      m_pstraSeparator  = new stringa;
+      m_pstraSeparator  = new string_array;
       m_pstrLogPath     = new string;
       m_pid             = new id;
       m_bLog            = true;
@@ -197,7 +197,7 @@ namespace axis
       if(category.m_estatus == ::axis::trace::status_disabled || category.m_uiLevel > category.m_uiLevel)
          return;
       sl.unlock();
-      stringa stra;
+      string_array stra;
       stra.add_smallest_tokens(psz, *plog->m_pstraSeparator, FALSE);
       /*for(int32_t i = 0; i < stra.get_size(); i++)
       {
@@ -398,7 +398,7 @@ namespace axis
       string str;
       str.FormatV(pszFormat, args);
       va_end(args);
-      stringa stra;
+      string_array stra;
       stra.add_smallest_tokens(str, plog->m_straSeparator, FALSE);
       /*for(int32_t i = 0; i < stra.get_size(); i++)
       {

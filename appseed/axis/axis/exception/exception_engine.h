@@ -16,7 +16,7 @@
  sym_engine class incapsulate Symbol Handler and Debugging Service API
 
  the list of used API:
-   SymInitialize, SymCleanup, SymGetLineFromAddr, SymGetModuleBase,
+   SymInitialize, SymCleanup, SymGetLineFromAddr, SymGetModuleAxis,
    SymGetSymbolInfo, SymGetSymFromAddr, SymGetSymFromName, SymGetSymNext,
    SymLoadModule, SymSetOptions
    StackWalk

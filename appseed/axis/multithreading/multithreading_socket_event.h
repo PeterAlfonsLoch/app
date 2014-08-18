@@ -34,7 +34,7 @@ public:
 	///  \brief		socket handle setter
 	///  \param		socket socket handle
 	void SetSocketHandle(uint32_t socket);
-	//void SetSocketHandle(const SocketBase& socket) { socket_ = socket.get_handle_(); }   // MBO: alternative solution
+	//void SetSocketHandle(const SocketAxis& socket) { socket_ = socket.get_handle_(); }   // MBO: alternative solution
 	//void ChangeSocketHandle(SOCKET socket);
 
 

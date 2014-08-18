@@ -158,7 +158,7 @@ namespace axis
    
          os_thread::s_pmutex = new mutex();
    
-         os_thread::s_pptra = new comparable_raw_array < os_thread * >::type ();
+         os_thread::s_pptra = new raw_array < os_thread * >();
    
 #endif
    
