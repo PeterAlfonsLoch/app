@@ -406,7 +406,7 @@ processExifTag(FIBITMAP *dib, FITAG *tag, char *pval, BOOL msb_order, TagLib::MD
 	DWORD i;
 
 	// allocate a buffer to store the tag value
-	BYTE *exif_value = (BYTE*)malloc(FreeImage_GetTagLength(tag) * sizeof(BYTE));
+	BYTE *exif_value = (BYTE*)memory_alloc(FreeImage_GetTagLength(tag) * sizeof(BYTE));
 	if(NULL == exif_value) {
 		// out of memory ...
 		return;
@@ -509,8 +509,8 @@ processExifTag(FIBITMAP *dib, FITAG *tag, char *pval, BOOL msb_order, TagLib::MD
 	}
 	
 
-	// free the temporary buffer
-	free(exif_value);
+	// memory_free the temporary buffer
+	memory_free(exif_value);
 
 }
 
@@ -594,7 +594,7 @@ jpeg_read_exif_dir(FIBITMAP *dib, const BYTE *tiffp, unsigned long offset, unsig
 			// get the tag type
 			WORD tag_type = (WORD)ReadUint16(msb_order, pde + 2);
             if((tag_type - 1) >= EXIF_NUM_FORMATS) {
-                // a problem occured : delete the tag (not free'd after)
+                // a problem occured : delete the tag (not memory_free'd after)
 			    FreeImage_DeleteTag(tag);
 				// break out of the for loop
 				break;
@@ -620,14 +620,14 @@ jpeg_read_exif_dir(FIBITMAP *dib, const BYTE *tiffp, unsigned long offset, unsig
 				// first check if offset exceeds buffer, at this stage FreeImage_GetTagLength may return invalid data
 				DWORD offset_value = ReadUint32(msb_order, pde + 8);
 				if(offset_value > length) {
-					// a problem occured : delete the tag (not free'd after)
+					// a problem occured : delete the tag (not memory_free'd after)
 					FreeImage_DeleteTag(tag);
 					// jump to next entry
 					continue;
 				}
 				// now check that length does not exceed the buffer size
 				if(FreeImage_GetTagLength(tag) > length - offset_value){
-					// a problem occured : delete the tag (not free'd after)
+					// a problem occured : delete the tag (not memory_free'd after)
 					FreeImage_DeleteTag(tag);
 					// jump to next entry
 					continue;

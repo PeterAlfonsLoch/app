@@ -42,7 +42,7 @@ WEBP_EXTERN(int) WebPGetEncoderVersion(void);
 
 // Returns the size of the compressed data (pointed to by *output), or 0 if
 // an error occurred. The compressed data must be released by the caller
-// using the call 'free(*output)'.
+// using the call 'memory_free(*output)'.
 // These functions compress using the lossy format, and the quality_factor
 // can go from 0 (smaller output, lower quality) to 100 (best quality,
 // larger output).
@@ -231,7 +231,7 @@ WEBP_EXTERN(void) WebPMemoryWriterInit(WebPMemoryWriter* writer);
 
 // The custom writer to be used with WebPMemoryWriter as custom_ptr. Upon
 // completion, writer.mem and writer.size will hold the coded data.
-// writer.mem must be freed using the call 'free(writer.mem)'.
+// writer.mem must be freed using the call 'memory_free(writer.mem)'.
 WEBP_EXTERN(int) WebPMemoryWrite(const uint8_t* data, size_t data_size,
                                  const WebPPicture* picture);
 
@@ -326,7 +326,7 @@ struct WebPPicture {
   // If not NULL, report progress during encoding.
   WebPProgressHook progress_hook;
 
-  void* user_data;        // this field is free to be set to any value and
+  void* user_data;        // this field is memory_free to be set to any value and
                           // used during callbacks (like progress-report e.g.).
 
   uint32_t pad3[3];       // padding for later use
@@ -360,12 +360,12 @@ static WEBP_INLINE int WebPPictureInit(WebPPicture* picture) {
 
 // Convenience allocation / deallocation based on picture->width/height:
 // Allocate y/u/v buffers as per colorspace/width/height specification.
-// Note! This function will free the previous buffer if needed.
+// Note! This function will memory_free the previous buffer if needed.
 // Returns false in case of memory error.
 WEBP_EXTERN(int) WebPPictureAlloc(WebPPicture* picture);
 
 // Release the memory allocated by WebPPictureAlloc() or WebPPictureImport*().
-// Note that this function does _not_ free the memory used by the 'picture'
+// Note that this function does _not_ memory_free the memory used by the 'picture'
 // object itself.
 // Besides memory (which is reclaimed) all other fields of 'picture' are
 // preserved.
@@ -422,7 +422,7 @@ WEBP_EXTERN(int) WebPPictureIsView(const WebPPicture* picture);
 WEBP_EXTERN(int) WebPPictureRescale(WebPPicture* pic, int width, int height);
 
 // Colorspace conversion function to import RGB samples.
-// Previous buffer will be free'd, if any.
+// Previous buffer will be memory_free'd, if any.
 // *rgb buffer should have a size of at least height * rgb_stride.
 // Returns false in case of memory error.
 WEBP_EXTERN(int) WebPPictureImportRGB(

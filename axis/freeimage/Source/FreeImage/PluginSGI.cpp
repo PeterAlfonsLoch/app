@@ -264,7 +264,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		if(bIsRLE) {
 			// read the Offset Tables 
 			int index_len = height * zsize;
-			pRowIndex = (LONG*)malloc(index_len * sizeof(LONG));
+			pRowIndex = (LONG*)memory_alloc(index_len * sizeof(LONG));
 			if(!pRowIndex) {
 				throw FI_MSG_ERROR_MEMORY;
 			}
@@ -386,12 +386,12 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			}
 		}
 		if(pRowIndex)
-			free(pRowIndex);
+			memory_free(pRowIndex);
 
 		return dib;
 
 	} catch(const char *text) {
-		if(pRowIndex) free(pRowIndex);
+		if(pRowIndex) memory_free(pRowIndex);
 		if(dib) FreeImage_Unload(dib);
 		FreeImage_OutputMessageProc(s_format_id, text);
 		return NULL;

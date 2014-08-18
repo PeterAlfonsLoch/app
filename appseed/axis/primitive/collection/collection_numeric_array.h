@@ -33,6 +33,7 @@ class numeric_array :
 public:
 
    numeric_array();
+   numeric_array(::count cSize);
    numeric_array(sp(::axis::application) papp);
    numeric_array(const numeric_array & array);
 #ifdef MOVE_SEMANTICS
@@ -290,6 +291,13 @@ numeric_array < TYPE >::
 
 template < class TYPE >
 numeric_array < TYPE >::
+numeric_array(::count cSize)
+{
+   set_size(cSize);
+}
+
+template < class TYPE >
+numeric_array < TYPE >::
    numeric_array(sp(::axis::application) papp) :
    element(papp)
 {
@@ -489,7 +497,7 @@ template < class TYPE >
 index numeric_array < TYPE >::
    Cmp(const numeric_array  < TYPE > & array1)
 {
-   ::count iMinSize = min(array1.get_size(), this->get_size());
+   ::count iMinSize = MIN(array1.get_size(), this->get_size());
    index i = 0;
    while(true)
    {
@@ -692,7 +700,7 @@ inline TYPE numeric_array < TYPE > ::pop_max()
 
    TYPE nowpop = this->pop();
 
-   this->last_element() = max(nowpop, lastelement);
+   this->last_element() = MAX(nowpop, lastelement);
 
    return this->last_element();
 
@@ -708,7 +716,7 @@ inline TYPE numeric_array < TYPE > ::pop_max_last_add_up(TYPE tLastAddUp)
 
    TYPE nowpop = this->pop();
 
-   this->last_element() = max(nowpop, lastelement + tLastAddUp);
+   this->last_element() = MAX(nowpop, lastelement + tLastAddUp);
 
    return this->last_element();
 
@@ -1970,13 +1978,13 @@ namespace lemon
    {
 
       template < class ARRAY >
-      typename ARRAY::AXIS_TYPE big_average(const ARRAY & a)
+      typename ARRAY::BASE_TYPE big_average(const ARRAY & a)
       {
          ::count c = a.get_count();
          if(c == 0)
             return 0.0;
-         typename ARRAY::AXIS_TYPE f = 0.0;
-         typename ARRAY::AXIS_TYPE fCount = (typename ARRAY::AXIS_TYPE) c;
+         typename ARRAY::BASE_TYPE f = 0.0;
+         typename ARRAY::BASE_TYPE fCount = (typename ARRAY::BASE_TYPE) c;
          for(index i = 0; i < c; i++)
          {
             f += a.element_at(i) / fCount;
@@ -1998,7 +2006,7 @@ namespace lemon
    {
 
       template<class ARRAY>
-      bool binary_search(ARRAY & a, typename ARRAY::AXIS_ARG_TYPE t, index & iIndex, index ( * fCompare ) (typename ARRAY::AXIS_TYPE *, typename ARRAY::AXIS_TYPE *), index_array & ia)
+      bool binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia)
       {
          if(a.get_size() == 0)
          {
@@ -2013,7 +2021,7 @@ namespace lemon
          iIndex = (iUpperBound + iLowerBound) / 2;
          while(iUpperBound - iLowerBound >= 8)
          {
-            iCompare = fCompare((typename ARRAY::AXIS_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::AXIS_TYPE *) &t);
+            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::BASE_TYPE *) &t);
             if(iCompare == 0)
             {
                return true;
@@ -2041,7 +2049,7 @@ namespace lemon
          // do sequential search
          while(iIndex < a.get_count())
          {
-            iCompare = fCompare((typename ARRAY::AXIS_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::AXIS_TYPE *) &t);
+            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::BASE_TYPE *) &t);
             if(iCompare == 0)
                return true;
             else if(iCompare < 0)
@@ -2053,7 +2061,7 @@ namespace lemon
             return false;
          while(iIndex >= 0)
          {
-            iCompare = fCompare((typename ARRAY::AXIS_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::AXIS_TYPE *)  &t);
+            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::BASE_TYPE *)  &t);
             if(iCompare == 0)
                return true;
             else if(iCompare > 0)
@@ -2068,7 +2076,7 @@ namespace lemon
 
 
       template<class ARRAY>
-      index sort_add(ARRAY & a, typename ARRAY::AXIS_ARG_TYPE t, index ( * fCompare ) (typename ARRAY::AXIS_TYPE *, typename ARRAY::AXIS_TYPE *), index_array & ia)
+      index sort_add(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia)
       {
          index iIndex = 0;
          binary_search(a, t, iIndex, fCompare, ia);

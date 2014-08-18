@@ -371,7 +371,7 @@ TileBufferTask::TileBufferTask
 TileBufferTask::~TileBufferTask ()
 {
     //
-    // Signal that the tile buffer is now free
+    // Signal that the tile buffer is now memory_free
     //
 
     _tileBuffer->post ();
@@ -552,7 +552,7 @@ newTileBufferTask
     {
 	//
 	// Reading from the file caused an exception.
-	// Signal that the tile buffer is free, and
+	// Signal that the tile buffer is memory_free, and
 	// re-throw the exception.
 	//
 

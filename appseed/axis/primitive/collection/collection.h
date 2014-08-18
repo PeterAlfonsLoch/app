@@ -204,8 +204,12 @@ class CLASS_DECL_AXIS time_array :
 
 #include "collection_stack.h"
 
+#include "collection_set.h"
+
 
 #include "collection_base_2array.h"
+
+
 
 
 

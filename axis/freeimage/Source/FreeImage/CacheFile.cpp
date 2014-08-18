@@ -184,7 +184,7 @@ CacheFile::deleteBlock(int nr) {
 		if (it != m_page_map.end())
 			m_page_map.erase(nr);
 
-		// add block to free page list
+		// add block to memory_free page list
 
 		m_free_pages.push_back(nr);
 

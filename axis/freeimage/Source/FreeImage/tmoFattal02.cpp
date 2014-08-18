@@ -245,7 +245,7 @@ static FIBITMAP* PhiMatrix(FIBITMAP **gradients, float *avgGrad, int nlevels, fl
 	FIBITMAP **phi = NULL;
 
 	try {
-		phi = (FIBITMAP**)malloc(nlevels * sizeof(FIBITMAP*));
+		phi = (FIBITMAP**)memory_alloc(nlevels * sizeof(FIBITMAP*));
 		if(!phi) throw(1);
 		memset(phi, 0, nlevels * sizeof(FIBITMAP*));
 
@@ -311,7 +311,7 @@ static FIBITMAP* PhiMatrix(FIBITMAP **gradients, float *avgGrad, int nlevels, fl
 		// get the final result and return
 		FIBITMAP *dst = phi[0];
 
-		free(phi);
+		memory_free(phi);
 
 		return dst;
 
@@ -320,7 +320,7 @@ static FIBITMAP* PhiMatrix(FIBITMAP **gradients, float *avgGrad, int nlevels, fl
 			for(int k = nlevels-1; k >= 0; k--) {
 				if(phi[k]) FreeImage_Unload(phi[k]);
 			}
-			free(phi);
+			memory_free(phi);
 		}
 		return NULL;
 	}
@@ -521,37 +521,37 @@ static FIBITMAP* tmoFattal02(FIBITMAP *Y, float alpha, float beta) {
 		}
 
 		// create the Gaussian pyramid
-		pyramid = (FIBITMAP**)malloc(nlevels * sizeof(FIBITMAP*));
+		pyramid = (FIBITMAP**)memory_alloc(nlevels * sizeof(FIBITMAP*));
 		if(!pyramid) throw(1);
 		memset(pyramid, 0, nlevels * sizeof(FIBITMAP*));
 
 		if(!GaussianPyramid(H, pyramid, nlevels)) throw(1);
 
 		// calculate gradient magnitude and its average value on each pyramid level
-		gradients = (FIBITMAP**)malloc(nlevels * sizeof(FIBITMAP*));
+		gradients = (FIBITMAP**)memory_alloc(nlevels * sizeof(FIBITMAP*));
 		if(!gradients) throw(1);
 		memset(gradients, 0, nlevels * sizeof(FIBITMAP*));
-		avgGrad = (float*)malloc(nlevels * sizeof(float));
+		avgGrad = (float*)memory_alloc(nlevels * sizeof(float));
 		if(!avgGrad) throw(1);
 
 		if(!GradientPyramid(pyramid, nlevels, gradients, avgGrad)) throw(1);
 
-		// free the Gaussian pyramid
+		// memory_free the Gaussian pyramid
 		for(k = 0; k < nlevels; k++) {
 			if(pyramid[k]) FreeImage_Unload(pyramid[k]);
 		}
-		free(pyramid); pyramid = NULL;
+		memory_free(pyramid); pyramid = NULL;
 
 		// compute the gradient attenuation function PHI(x, y)
 		phy = PhiMatrix(gradients, avgGrad, nlevels, alpha, beta);
 		if(!phy) throw(1);
 
-		// free the gradient pyramid
+		// memory_free the gradient pyramid
 		for(k = 0; k < nlevels; k++) {
 			if(gradients[k]) FreeImage_Unload(gradients[k]);
 		}
-		free(gradients); gradients = NULL;
-		free(avgGrad); avgGrad = NULL;
+		memory_free(gradients); gradients = NULL;
+		memory_free(avgGrad); avgGrad = NULL;
 
 		// compute gradients in x and y directions, attenuate them with the attenuation matrix, 
 		// then compute the divergence div G from the attenuated gradient. 
@@ -579,15 +579,15 @@ static FIBITMAP* tmoFattal02(FIBITMAP *Y, float alpha, float beta) {
 			for(int i = 0; i < nlevels; i++) {
 				if(pyramid[i]) FreeImage_Unload(pyramid[i]);
 			}
-			free(pyramid);
+			memory_free(pyramid);
 		}
 		if(gradients) {
 			for(int i = 0; i < nlevels; i++) {
 				if(gradients[i]) FreeImage_Unload(gradients[i]);
 			}
-			free(gradients);
+			memory_free(gradients);
 		}
-		if(avgGrad) free(avgGrad);
+		if(avgGrad) memory_free(avgGrad);
 		if(phy) FreeImage_Unload(phy);
 		if(divG) FreeImage_Unload(divG);
 		if(U) FreeImage_Unload(U);

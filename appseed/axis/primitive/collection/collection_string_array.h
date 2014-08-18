@@ -97,7 +97,7 @@ public:
 protected:
    string * m_pData;   // the actual array of data
    ::count m_nSize;     // # of elements (upperBound - 1)
-   ::count m_nMaxSize;  // max allocated
+   ::count m_nMaxSize;  // MAX allocated
    ::count m_nGrowBy;   // grow amount
 
    void InsertEmpty(index nIndex, ::count nCount);
@@ -113,8 +113,8 @@ public:
 
 protected:
    // local typedefs for class templates
-   typedef string AXIS_TYPE;
-   typedef const char * AXIS_ARG_TYPE;
+   typedef string BASE_TYPE;
+   typedef const char * BASE_ARG_TYPE;
 };
 
 

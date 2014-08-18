@@ -57,22 +57,22 @@ WuQuantizer::WuQuantizer(FIBITMAP *dib) {
 	Qadd = NULL;
 
 	// Allocate 3D arrays
-	gm2 = (float*)malloc(SIZE_3D * sizeof(float));
-	wt = (LONG*)malloc(SIZE_3D * sizeof(LONG));
-	mr = (LONG*)malloc(SIZE_3D * sizeof(LONG));
-	mg = (LONG*)malloc(SIZE_3D * sizeof(LONG));
-	mb = (LONG*)malloc(SIZE_3D * sizeof(LONG));
+	gm2 = (float*)memory_alloc(SIZE_3D * sizeof(float));
+	wt = (LONG*)memory_alloc(SIZE_3D * sizeof(LONG));
+	mr = (LONG*)memory_alloc(SIZE_3D * sizeof(LONG));
+	mg = (LONG*)memory_alloc(SIZE_3D * sizeof(LONG));
+	mb = (LONG*)memory_alloc(SIZE_3D * sizeof(LONG));
 
 	// Allocate Qadd
-	Qadd = (WORD *)malloc(sizeof(WORD) * width * height);
+	Qadd = (WORD *)memory_alloc(sizeof(WORD) * width * height);
 
 	if(!gm2 || !wt || !mr || !mg || !mb || !Qadd) {
-		if(gm2)	free(gm2);
-		if(wt)	free(wt);
-		if(mr)	free(mr);
-		if(mg)	free(mg);
-		if(mb)	free(mb);
-		if(Qadd)  free(Qadd);
+		if(gm2)	memory_free(gm2);
+		if(wt)	memory_free(wt);
+		if(mr)	memory_free(mr);
+		if(mg)	memory_free(mg);
+		if(mb)	memory_free(mb);
+		if(Qadd)  memory_free(Qadd);
 		throw FI_MSG_ERROR_MEMORY;
 	}
 	memset(gm2, 0, SIZE_3D * sizeof(float));
@@ -84,12 +84,12 @@ WuQuantizer::WuQuantizer(FIBITMAP *dib) {
 }
 
 WuQuantizer::~WuQuantizer() {
-	if(gm2)	free(gm2);
-	if(wt)	free(wt);
-	if(mr)	free(mr);
-	if(mg)	free(mg);
-	if(mb)	free(mb);
-	if(Qadd)  free(Qadd);
+	if(gm2)	memory_free(gm2);
+	if(wt)	memory_free(wt);
+	if(mr)	memory_free(mr);
+	if(mg)	memory_free(mg);
+	if(mb)	memory_free(mb);
+	if(Qadd)  memory_free(Qadd);
 }
 
 
@@ -477,7 +477,7 @@ WuQuantizer::Quantize(int PaletteSize, int ReserveSize, RGBQUAD *ReservePalette)
 
 		// the space for array gm2 can be freed now
 
-		free(gm2);
+		memory_free(gm2);
 
 		gm2 = NULL;
 
@@ -493,7 +493,7 @@ WuQuantizer::Quantize(int PaletteSize, int ReserveSize, RGBQUAD *ReservePalette)
 
 		RGBQUAD *new_pal = FreeImage_GetPalette(new_dib);
 
-		tag = (BYTE*) malloc(SIZE_3D * sizeof(BYTE));
+		tag = (BYTE*) memory_alloc(SIZE_3D * sizeof(BYTE));
 		if (tag == NULL) {
 			throw FI_MSG_ERROR_MEMORY;
 		}
@@ -527,11 +527,11 @@ WuQuantizer::Quantize(int PaletteSize, int ReserveSize, RGBQUAD *ReservePalette)
 		// output 'new_pal' as color look-up table contents,
 		// 'new_bits' as the quantized image (array of table addresses).
 
-		free(tag);
+		memory_free(tag);
 
 		return (FIBITMAP*) new_dib;
 	} catch(...) {
-		free(tag);
+		memory_free(tag);
 	}
 
 	return NULL;

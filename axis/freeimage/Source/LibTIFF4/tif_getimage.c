@@ -2300,7 +2300,7 @@ setupMap(TIFFRGBAImage* img)
 	 */
 	if (!makebwmap(img))
 	    return (0);
-	/* no longer need Map, free it */
+	/* no longer need Map, memory_free it */
 	_TIFFfree(img->Map), img->Map = NULL;
     }
     return (1);

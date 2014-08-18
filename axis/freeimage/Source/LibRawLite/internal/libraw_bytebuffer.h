@@ -6,7 +6,7 @@
  * Created: Fri Aug 12 14:41:45 2011
 
 
-LibRaw is free software; you can redistribute it and/or modify
+LibRaw is memory_free software; you can redistribute it and/or modify
 it under the terms of the one of three licenses as you choose:
 
 1. GNU LESSER GENERAL PUBLIC LICENSE version 2.1

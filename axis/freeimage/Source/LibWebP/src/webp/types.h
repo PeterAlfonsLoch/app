@@ -16,12 +16,13 @@
 
 #include <stddef.h>  // for size_t
 
+/*
 #ifndef _MSC_VER
 #include <inttypes.h>
 #ifdef __STRICT_ANSI__
 #define WEBP_INLINE
 #else  /* __STRICT_ANSI__ */
-#define WEBP_INLINE inline
+/*#define WEBP_INLINE inline
 #endif
 #else
 typedef signed   char int8_t;
@@ -32,6 +33,17 @@ typedef signed   int int32_t;
 typedef unsigned int uint32_t;
 typedef unsigned long long int uint64_t;
 typedef long long int int64_t;
+#define WEBP_INLINE __forceinline
+#endif  /* _MSC_VER */
+
+
+#ifndef _MSC_VER
+#ifdef __STRICT_ANSI__
+#define WEBP_INLINE
+#else  /* __STRICT_ANSI__ */
+#define WEBP_INLINE inline
+#endif
+#else
 #define WEBP_INLINE __forceinline
 #endif  /* _MSC_VER */
 

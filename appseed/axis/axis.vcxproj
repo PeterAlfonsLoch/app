@@ -3571,6 +3571,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\collection\collection_queue.h" />
     <ClInclude Include="primitive\collection\collection_raw_array_decl.h" />
     <ClInclude Include="primitive\collection\collection_rect_array.h" />
+    <ClInclude Include="primitive\collection\collection_set.h" />
     <ClInclude Include="primitive\collection\collection_simple_eq_array.h" />
     <ClInclude Include="primitive\collection\collection_simple_object_array.h" />
     <ClInclude Include="primitive\collection\collection_simple_pointer_array.h" />

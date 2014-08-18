@@ -302,7 +302,7 @@ SamplesToCoefficients(double *Image, long Width, long Height, long spline_degree
 	// convert the image samples into interpolation coefficients 
 
 	// in-place separable process, along x 
-	Line = (double *)malloc(Width * sizeof(double));
+	Line = (double *)memory_alloc(Width * sizeof(double));
 	if (Line == NULL) {
 		// Row allocation failed
 		return false;
@@ -312,10 +312,10 @@ SamplesToCoefficients(double *Image, long Width, long Height, long spline_degree
 		ConvertToInterpolationCoefficients(Line, Width, Pole, NbPoles, DBL_EPSILON);
 		PutRow(Image, y, Line, Width);
 	}
-	free(Line);
+	memory_free(Line);
 
 	// in-place separable process, along y 
-	Line = (double *)malloc(Height * sizeof(double));
+	Line = (double *)memory_alloc(Height * sizeof(double));
 	if (Line == NULL) {
 		// Column allocation failed
 		return false;
@@ -325,7 +325,7 @@ SamplesToCoefficients(double *Image, long Width, long Height, long spline_degree
 		ConvertToInterpolationCoefficients(Line, Height, Pole, NbPoles, DBL_EPSILON);
 		PutColumn(Image, Width, x, Line, Height);
 	}
-	free(Line);
+	memory_free(Line);
 
 	return true;
 }
@@ -565,7 +565,7 @@ Rotate8Bit(FIBITMAP *dib, double angle, double x_shift, double y_shift, double x
 	}
 
 	// allocate a temporary array
-	ImageRasterArray = (double*)malloc(width * height * sizeof(double));
+	ImageRasterArray = (double*)memory_alloc(width * height * sizeof(double));
 	if(!ImageRasterArray) {
 		FreeImage_Unload(dst);
 		return NULL;
@@ -585,7 +585,7 @@ Rotate8Bit(FIBITMAP *dib, double angle, double x_shift, double y_shift, double x
 	bResult = SamplesToCoefficients(ImageRasterArray, width, height, spline);
 	if(!bResult) {
 		FreeImage_Unload(dst);
-		free(ImageRasterArray);
+		memory_free(ImageRasterArray);
 		return NULL;
 	}
 
@@ -626,8 +626,8 @@ Rotate8Bit(FIBITMAP *dib, double angle, double x_shift, double y_shift, double x
 		}
 	}
 
-	// free working array and return
-	free(ImageRasterArray);
+	// memory_free working array and return
+	memory_free(ImageRasterArray);
 
 	return dst;
 }

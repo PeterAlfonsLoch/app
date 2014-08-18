@@ -37,9 +37,9 @@
  * These two functions are used to allocate and release small chunks of
  * memory.  (Typically the total amount requested through jpeg_get_small is
  * no more than 20K or so; this will be requested in chunks of a few K each.)
- * Behavior should be the same as for the standard library functions malloc
- * and free; in particular, jpeg_get_small must return NULL on failure.
- * On most systems, these ARE malloc and free.  jpeg_free_small is passed the
+ * Behavior should be the same as for the standard library functions memory_alloc
+ * and memory_free; in particular, jpeg_get_small must return NULL on failure.
+ * On most systems, these ARE memory_alloc and memory_free.  jpeg_free_small is passed the
  * size of the object being freed, just in case it's needed.
  * On an 80x86 machine using small-data memory model, these manage near heap.
  */
@@ -50,7 +50,7 @@ EXTERN(void) jpeg_free_small JPP((j_common_ptr cinfo, void * object,
 
 /*
  * These two functions are used to allocate and release large chunks of
- * memory (up to the total free space designated by jpeg_mem_available).
+ * memory (up to the total memory_free space designated by jpeg_mem_available).
  * The interface is the same as above, except that on an 80x86 machine,
  * far pointers are used.  On most other machines these are identical to
  * the jpeg_get/free_small routines; but we keep them separate anyway,

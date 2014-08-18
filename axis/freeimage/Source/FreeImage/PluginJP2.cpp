@@ -187,7 +187,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				throw "Failed to decode image!\n";
 			}
 
-			// free the codec context
+			// memory_free the codec context
 			opj_destroy_codec(d_codec);
 			d_codec = NULL;
 
@@ -195,14 +195,14 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			dib = J2KImageToFIBITMAP(s_format_id, image, header_only);
 			if(!dib) throw "Failed to import JPEG2000 image";
 
-			// free image data structure
+			// memory_free image data structure
 			opj_image_destroy(image);
 
 			return dib;
 
 		} catch (const char *text) {
 			if(dib) FreeImage_Unload(dib);
-			// free remaining structures
+			// memory_free remaining structures
 			opj_destroy_codec(d_codec);
 			opj_image_destroy(image);
 
@@ -282,10 +282,10 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 				throw "Failed to encode image";
 			}
 
-			// free remaining compression structures
+			// memory_free remaining compression structures
 			opj_destroy_codec(c_codec);
 			
-			// free image data
+			// memory_free image data
 			opj_image_destroy(image);
 
 			return TRUE;

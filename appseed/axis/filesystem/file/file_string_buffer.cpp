@@ -50,7 +50,7 @@ namespace file
    {
       if(m_iPos >= m_iSize)
          return 0;
-      primitive::memory_size uiRead = min(nCount, (primitive::memory_size) (m_iSize - m_iPos));
+      primitive::memory_size uiRead = MIN(nCount, (primitive::memory_size) (m_iSize - m_iPos));
       memcpy(lpBuf, &m_psz[m_iPos], uiRead);
       m_iPos += uiRead;
       return uiRead;

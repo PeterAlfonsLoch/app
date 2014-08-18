@@ -402,10 +402,10 @@ namespace draw2d
          assoc * passoc = PGetFirstAssoc();
          while(passoc != NULL)
          {
-            if(passoc->m_element2->get_ref_count() <= 1 && passoc->m_element2->area() > iAreaMax)
+            if(passoc->second->get_ref_count() <= 1 && passoc->second->area() > iAreaMax)
             {
-               iAreaMax = passoc->m_element2->area();
-               keyFind = passoc->m_element1;
+               iAreaMax = passoc->second->area();
+               keyFind = passoc->first;
             }
             passoc = passoc->m_pnext;
          }
@@ -416,7 +416,7 @@ namespace draw2d
          }
          else
          {
-            remove_key(PGetFirstAssoc()->m_element1);
+            remove_key(PGetFirstAssoc()->first);
          }
       }
 

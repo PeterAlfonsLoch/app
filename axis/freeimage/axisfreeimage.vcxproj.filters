@@ -99,15 +99,6 @@
     <Filter Include="Source\LibWebP\src\enc">
       <UniqueIdentifier>{dc744dde-9477-4843-a474-7049ab97e471}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\LibWebP\src\NewFilter6">
-      <UniqueIdentifier>{86a42ddb-fe6b-45e0-87e5-cbf4d625e3aa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\LibWebP\src\NewFilter7">
-      <UniqueIdentifier>{772a17dd-4cd9-4a53-8664-563583de7cdc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\LibWebP\src\NewFilter8">
-      <UniqueIdentifier>{e2abf7f7-b0c0-4407-a3b2-2a1132bf21f7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\LibWebP\src\demux">
       <UniqueIdentifier>{bc0dc965-792d-4e8a-b915-0b9f81678aa1}</UniqueIdentifier>
     </Filter>
@@ -122,9 +113,6 @@
     </Filter>
     <Filter Include="Source\LibWebP\src\webp">
       <UniqueIdentifier>{68d9218b-6dfa-4d9f-a938-e28bf53e2ea2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\LibWebP\src\NewFilter1">
-      <UniqueIdentifier>{0fcad6f8-0930-4743-a0d4-25f0e01a072b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\OpenEXR">
       <UniqueIdentifier>{139c5d44-7610-448e-91b9-574e290e2001}</UniqueIdentifier>
@@ -2120,6 +2108,9 @@
     </ClInclude>
     <ClInclude Include="Source\OpenEXR\IlmImf\ImfZipCompressor.h">
       <Filter>Source\OpenEXR\IlmImf\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LibOpenJPEG\aaa_want_to_remove_opj_stdint.h">
+      <Filter>Source\LibOpenJPEG</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

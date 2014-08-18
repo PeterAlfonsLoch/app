@@ -361,9 +361,9 @@ typedef struct {
   VP8Tokens* pages_;        // first page
   VP8Tokens** last_page_;   // last page
   uint16_t* tokens_;        // set to (*last_page_)->tokens_
-  int left_;          // how many free tokens left before the page is full.
+  int left_;          // how many memory_free tokens left before the page is full.
 #endif
-  int error_;         // true in case of malloc error
+  int error_;         // true in case of memory_alloc error
 } VP8TBuffer;
 
 void VP8TBufferInit(VP8TBuffer* const b);    // initialize an empty buffer

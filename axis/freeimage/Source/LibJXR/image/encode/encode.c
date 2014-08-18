@@ -62,7 +62,7 @@ Int AllocateCodingContextEnc(CWMImageStrCodec *pSC, Int iNumContexts, Int iTrimF
     if (pSC == NULL)
         return ICERR_ERROR;
 
-    pSC->m_pCodingContext = malloc (iNumContexts * sizeof (CCodingContext));
+    pSC->m_pCodingContext = memory_alloc (iNumContexts * sizeof (CCodingContext));
     if (pSC->m_pCodingContext == NULL) {
         pSC->cNumCodingContext = 0;
         return ICERR_ERROR;
@@ -138,7 +138,7 @@ Void FreeCodingContextEnc(CWMImageStrCodec *pSC)
             for (k = 0; k < NUMVLCTABLES; k++)
                 Clean (pContext->m_pAHexpt[k]);
         }
-        free (pSC->m_pCodingContext);
+        memory_free (pSC->m_pCodingContext);
     }
 }
 

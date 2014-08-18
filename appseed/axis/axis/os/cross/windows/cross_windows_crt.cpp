@@ -22,7 +22,7 @@ CLASS_DECL_AXIS errno_t _ctime64_s(char * buf, int32_t iSize, const time_t * tim
    if(((iLen = (int32_t) strlen(ret)) + 1) > iSize)
       return ERANGE;
 
-   strncpy(buf, ret, min(iSize, iLen));
+   strncpy(buf, ret, MIN(iSize, iLen));
 
    return 0;
 

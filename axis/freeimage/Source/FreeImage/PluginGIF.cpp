@@ -179,7 +179,7 @@ StringTable::StringTable()
 {
 	m_buffer = NULL;
 	firstPixelPassed = 0; // Still no pixel read
-	// Maximum number of entries in the map is MAX_LZW_CODE * 256 
+	// Maximum number of entries in the std::map is MAX_LZW_CODE * 256 
 	// (aka 2**12 * 2**8 => a 20 bits key)
 	// This Map could be optmized to only handle MAX_LZW_CODE * 2**(m_bpp)
 	m_strmap = new int[1<<20];
@@ -300,7 +300,7 @@ bool StringTable::Compress(BYTE *buf, int *len)
 					m_partialSize -= 8;
 				}
 
-				//add the code to the "table map"
+				//add the code to the "table std::map"
 				m_strmap[nextprefix] = m_nextCode;
 
 				//increment the next highest valid code, increase the code size
@@ -445,7 +445,7 @@ void StringTable::ClearDecompressorTable(void)
 {
 	for( int i = 0; i < m_clearCode; i++ ) {
 		m_strings[i].resize(1);
-		m_strings[i][0] = (char)i;
+		m_strings[i].set_at(0,(char)i);
 	}
 	m_nextCode = m_endCode + 1;
 
@@ -720,7 +720,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			}
 
 			//cache some info about each of the pages so we can avoid decoding as many of them as possible
-			std::vector<PageInfo> pageinfo;
+			raw_array<PageInfo> pageinfo;
 			int start = page, end = page;
 			while( start >= 0 ) {
 				//Graphic Control Extension

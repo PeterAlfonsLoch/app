@@ -251,6 +251,84 @@ namespace sort
 
    }
 
+
+   template < class iterator,class COMPARE = ::comparison::less < typename iterator::BASE_TYPE, typename iterator::BASE_ARG_TYPE > >
+   void quick_sort(iterator  & a,iterator  & b)
+   {
+      typename iterator::BASE_TYPE t;
+      raw_array < iterator > stackLowerBound;
+      raw_array < iterator > stackUpperBound;
+      iterator iLowerBound;
+      iterator iUpperBound;
+      iterator iLPos,iUPos,iMPos;
+      //   uint32_t t;
+
+      if(a.get_count() >= 2)
+      {
+         stackLowerBound.push(a);
+         stackUpperBound.push(b);
+         while(true)
+         {
+            iLowerBound = stackLowerBound.pop();
+            iUpperBound = stackUpperBound.pop();
+            iLPos = iLowerBound;
+            iMPos = iLowerBound;
+            iUPos = iUpperBound;
+            while(true)
+            {
+               while(true)
+               {
+                  if(iMPos == iUPos)
+                     break;
+                  if(COMPARE::compare(*iMPos,*iUPos))
+                     --iUPos;
+                  else
+                  {
+                     t = *iMPos;
+                     *iMPos = *iUPos;
+                     *iUPos = t;
+                     break;
+                  }
+               }
+               if(iMPos == iUPos)
+                  break;
+               iMPos = iUPos;
+               while(true)
+               {
+                  if(iMPos == iLPos)
+                     break;
+                  if(COMPARE::compare(*iLPos,*iMPos))
+                     ++iLPos;
+                  else
+                  {
+                     t =*iMPos;
+                     *iMPos = *iLPos;
+                     *iLPos = t;
+                     break;
+                  }
+               }
+               if(iMPos == iLPos)
+                  break;
+               iMPos = iLPos;
+            }
+            if(iLowerBound < iMPos - 1)
+            {
+               stackLowerBound.push(iLowerBound);
+               stackUpperBound.push(iMPos - 1);
+            }
+            if(iMPos + 1 < iUpperBound)
+            {
+               stackLowerBound.push(iMPos + 1);
+               stackUpperBound.push(iUpperBound);
+            }
+            if(stackLowerBound.get_size() == 0)
+               break;
+         }
+      }
+
+   };
+
+
    typedef void (*ARG_SWAP_FUNCTION)(void * lpVoidSwapArg, index,  index);
    typedef int32_t (*ARG_COMPARE_FUNCTION)(void * lpVoidCompareArg,  index,  index);
 

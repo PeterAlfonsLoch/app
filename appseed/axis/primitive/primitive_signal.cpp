@@ -168,7 +168,7 @@ void signal::emit(signal_details * pobj)
    }
    else
    {
-      for(pobj->m_iIndex = m_delegatea.get_upper_bound(); pobj->m_iIndex >= 0 ; pobj->m_iIndex = min(pobj->m_iIndex - 1, m_delegatea.get_upper_bound()))
+      for(pobj->m_iIndex = m_delegatea.get_upper_bound(); pobj->m_iIndex >= 0 ; pobj->m_iIndex = MIN(pobj->m_iIndex - 1, m_delegatea.get_upper_bound()))
       {
          signal_delegate * pdelegate = m_delegatea.element_at(pobj->m_iIndex);
          pdelegate->emit(pobj);

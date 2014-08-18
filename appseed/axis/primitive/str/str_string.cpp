@@ -1,5 +1,8 @@
 #include "framework.h"
 
+
+const int string::npos = -1;
+
 strsize string_interface::get_length() const
 {
    return 0;
@@ -250,7 +253,7 @@ const char * __cdecl crt_char_traits::StringFindStrRev(const char * psz,const ch
       iStart = iLen + iStart;
    if(iLenFind > iLen)
       return NULL;
-   iStart = min(iStart, iLen - iLenFind);
+   iStart = MIN(iStart, iLen - iLenFind);
    while(iStart >= 0)
    {
       if(strncmp(&psz[iStart], pszFind, iLenFind) == 0)
@@ -1491,7 +1494,7 @@ string string::Tokenize(const char * pszTokens, strsize& iStart ) const
    }
 
    // return is_empty string, done tokenizing
-   iStart = -1;
+   iStart = npos;
 
    return( string( GetManager() ) );
 }
@@ -1508,7 +1511,7 @@ strsize string::find(char ch,strsize iStart, strsize nCount) const RELEASENOTHRO
    strsize nLength = get_length();
    if( iStart < 0 || iStart >= nLength)
    {
-      return( -1 );
+      return npos;
    }
 
    if(nCount < 0)
@@ -1518,7 +1521,7 @@ strsize string::find(char ch,strsize iStart, strsize nCount) const RELEASENOTHRO
       nCount = nLength - iStart;
 
    if(nCount < 0)
-      return -1;
+      return npos;
 
    const char * psz = GetString() + iStart;
    for(int32_t i = 0; i < nCount; i++)
@@ -1528,7 +1531,7 @@ strsize string::find(char ch,strsize iStart, strsize nCount) const RELEASENOTHRO
          return iStart + i;
       }
    }
-   return -1;
+   return npos;
 }
 
 // find the first occurrence of character 'ch', starting at strsize 'iStart'
@@ -1541,7 +1544,7 @@ strsize string::find_ci(char ch,strsize iStart, strsize nCount) const RELEASENOT
    strsize nLength = get_length();
    if( iStart < 0 || iStart >= nLength)
    {
-      return( -1 );
+      return( npos );
    }
 
    if(nCount < 0)
@@ -1551,7 +1554,7 @@ strsize string::find_ci(char ch,strsize iStart, strsize nCount) const RELEASENOT
       nCount = nLength - iStart;
 
    if(nCount < 0)
-      return -1;
+      return npos;
 
    const char * psz = GetString() + iStart;
    for(int32_t i = 0; i < nCount; i++)
@@ -1561,7 +1564,7 @@ strsize string::find_ci(char ch,strsize iStart, strsize nCount) const RELEASENOT
          return iStart + i;
       }
    }
-   return -1;
+   return npos;
 }
 
 strsize string::find_first_of(char ch,strsize iStart) const RELEASENOTHROW
@@ -1579,13 +1582,13 @@ strsize string::find(const char * pszSub,strsize iStart, strsize nCount, const c
 
    if(pszSub == NULL)
    {
-      return( -1 );
+      return( npos );
    }
    // nLength is in XCHARs
    strsize nLength = get_length();
    if( iStart < 0 || iStart > nLength )
    {
-      return( -1 );
+      return( npos );
    }
 
    strsize nLength2 = strlen(pszSub);
@@ -1597,7 +1600,7 @@ strsize string::find(const char * pszSub,strsize iStart, strsize nCount, const c
       nCount = nLength  - iStart - nLength2;
 
    if(nCount < 0)
-      return -1;
+      return npos;
 
    const char * psz = GetString() + iStart;
    for(int32_t i = 0; i <= nCount; i++)
@@ -1620,7 +1623,7 @@ strsize string::find(const char * pszSub,strsize iStart, strsize nCount, const c
       }
       psz++;
    }
-   return -1;
+   return npos;
 }
 
 // find the first occurrence of string 'pszSub', starting at strsize 'iStart'
@@ -1632,13 +1635,13 @@ strsize string::find_ci(const char * pszSub,strsize iStart,strsize nCount,const 
 
    if(pszSub == NULL)
    {
-      return( -1 );
+      return( npos );
    }
    // nLength is in XCHARs
    strsize nLength = get_length();
    if( iStart < 0 || iStart > nLength )
    {
-      return( -1 );
+      return( npos );
    }
 
    strsize nLength2 = strlen(pszSub);
@@ -1650,7 +1653,7 @@ strsize string::find_ci(const char * pszSub,strsize iStart,strsize nCount,const 
       nCount = nLength  - iStart - nLength2;
 
    if(nCount < 0)
-      return -1;
+      return npos;
 
    int32_t j;
 
@@ -1674,7 +1677,7 @@ strsize string::find_ci(const char * pszSub,strsize iStart,strsize nCount,const 
       }
       psz++;
    }
-   return -1;
+   return npos;
 }
 
 // find the first occurrence of string 'pszSub', starting at strsize 'iStart'
@@ -1686,16 +1689,16 @@ strsize string::find_w(const char * pszSub,strsize iStart,strsize nCount,const c
 
    if(pszSub == NULL)
    {
-      return( -1 );
+      return( npos );
    }
 
    if(iStart < 0)
-      return -1;
+      return npos;
 
    const char * psz = GetString() + iStart;
 
    if(*psz == '\0')
-      return -1;
+      return npos;
    while(*psz != '\0' && (psz - GetString() - iStart) < nCount)
    {
       bool bFound = true;
@@ -1721,12 +1724,12 @@ strsize string::find_w(const char * pszSub,strsize iStart,strsize nCount,const c
          }
          else
          {
-            return -1;
+            return npos;
          }
       }
       psz++;
    }
-   return -1;
+   return npos;
 }
 
 // find the first occurrence of string 'pszSub', starting at strsize 'iStart'
@@ -1738,16 +1741,16 @@ strsize string::find_wci(const char * pszSub,strsize iStart,strsize nCount,const
 
    if(pszSub == NULL)
    {
-      return( -1 );
+      return( npos );
    }
 
    if(iStart < 0)
-      return -1;
+      return npos;
 
    const char * psz = GetString() + iStart;
 
    if(*psz == '\0')
-      return -1;
+      return npos;
    while(*psz != '\0' && (psz - GetString() - iStart) < nCount)
    {
       bool bFound = true;
@@ -1773,12 +1776,12 @@ strsize string::find_wci(const char * pszSub,strsize iStart,strsize nCount,const
          }
          else
          {
-            return -1;
+            return npos;
          }
       }
       psz++;
    }
-   return -1;
+   return npos;
 }
 
 
@@ -1788,7 +1791,7 @@ strsize string::find_tail(const char * pszSub,strsize start,strsize count) const
    const char * pszTail = NULL;
 
    if(find(pszSub,start,count,&pszTail) < 0)
-      return -1;
+      return npos;
 
    return pszTail - m_pszData;
 
@@ -1801,7 +1804,7 @@ strsize string::find_w_tail(const char * pszSub,strsize start,strsize count) con
    const char * pszTail = NULL;
 
    if(find_w(pszSub,start,count,&pszTail) < 0)
-      return -1;
+      return npos;
 
    return pszTail - m_pszData;
 
@@ -1814,7 +1817,7 @@ strsize string::find_ci_tail(const char * pszSub,strsize start,strsize count) co
    const char * pszTail = NULL;
 
    if(find_ci(pszSub,start,count,&pszTail) < 0)
-      return -1;
+      return npos;
 
    return pszTail - m_pszData;
 
@@ -1827,7 +1830,7 @@ strsize string::find_wci_tail(const char * pszSub,strsize start,strsize count) c
    const char * pszTail = NULL;
 
    if(find_wci(pszSub,start,count,&pszTail) < 0)
-      return -1;
+      return npos;
 
    return pszTail - m_pszData;
 
@@ -1845,15 +1848,15 @@ strsize string::FindOneOf(const char * pszCharSet, strsize iStart, strsize n) co
    strsize nLength = get_length();
    if( iStart < 0 || iStart >= nLength)
    {
-      return( -1 );
+      return( npos );
    }
    const char * psz = string_trait::StringScanSet( &GetString()[iStart], strCharSet );
-   return( (psz == NULL) ? -1 : strsize( psz-GetString() ) );
+   return( (psz == NULL) ? npos : strsize( psz-GetString() ) );
 }
 
 strsize string::find_first_of(const char * pszCharSet, strsize iStart) const RELEASENOTHROW
 {
-   return FindOneOf(pszCharSet, iStart, -1);
+   return FindOneOf(pszCharSet, iStart, npos);
 }
 
 strsize string::find_first_of(const char * pszCharSet, strsize iStart, strsize n) const RELEASENOTHROW
@@ -1881,14 +1884,14 @@ strsize string::find_first_not_of(char ca, strsize pos) const
    strsize nLength = get_length();
 
    if(pos < 0 || pos >= nLength)
-      return -1;
+      return npos;
    const char * psz = &GetString()[pos];
    while(*psz != '\0' && *psz == ca)
    {
       psz++;
    }
    if(*psz == '\0')
-      return -1;
+      return npos;
    else
       return psz - GetString();
 }
@@ -1900,14 +1903,14 @@ strsize string::find_first_not_of(const char* s, strsize pos, strsize n ) const
    strsize nLength = get_length();
 
    if(pos < 0 || pos >= nLength)
-      return -1;
+      return npos;
    const char * psz = &GetString()[pos];
    while(*psz != '\0' && strChars.contains(*psz))
    {
       psz++;
    }
    if(*psz == '\0')
-      return -1;
+      return npos;
    else
       return psz - GetString();
 }
@@ -1922,7 +1925,7 @@ strsize string::find_last_of(char ca, strsize pos) const RELEASENOTHROW
       pos = nLength - 1;
    if(pos < 0 || pos >= nLength)
    {
-      return( -1 );
+      return( npos );
    }
    const char * psz = GetString();
    while(pos >= 0 && psz[pos] != ca)
@@ -1934,7 +1937,7 @@ strsize string::find_last_of(char ca, strsize pos) const RELEASENOTHROW
 
 strsize string::find_last_of(const char * pszCharSet, strsize iStart) const RELEASENOTHROW
 {
-   return find_last_of(pszCharSet, iStart, -1);
+   return find_last_of(pszCharSet, iStart, npos);
 }
 
 strsize string::find_last_of(const char * pszCharSet, strsize pos, strsize n) const RELEASENOTHROW
@@ -1945,7 +1948,7 @@ strsize string::find_last_of(const char * pszCharSet, strsize pos, strsize n) co
       pos = nLength - 1;
    if(pos < 0 || pos >= nLength)
    {
-      return( -1 );
+      return( npos );
    }
    string strChars(pszCharSet, n);
    const char * psz = GetString();
@@ -1971,7 +1974,7 @@ strsize string::find_last_not_of(char ca, strsize pos) const RELEASENOTHROW
       pos = nLength - 1;
    if(pos < 0 || pos >= nLength)
    {
-      return( -1 );
+      return( npos );
    }
    const char * psz = GetString();
    while(pos >= 0 && psz[pos] == ca)
@@ -1983,7 +1986,7 @@ strsize string::find_last_not_of(char ca, strsize pos) const RELEASENOTHROW
 
 strsize string::find_last_not_of(const char * pszCharSet, strsize iStart) const RELEASENOTHROW
 {
-   return find_last_not_of(pszCharSet, iStart, -1);
+   return find_last_not_of(pszCharSet, iStart, npos);
 }
 
 strsize string::find_last_not_of(const char * pszCharSet, strsize pos, strsize n) const RELEASENOTHROW
@@ -1994,7 +1997,7 @@ strsize string::find_last_not_of(const char * pszCharSet, strsize pos, strsize n
       pos = nLength - 1;
    if(pos < 0 || pos >= nLength)
    {
-      return( -1 );
+      return( npos );
    }
    string strChars(pszCharSet, n);
    const char * psz = GetString();
@@ -2017,8 +2020,8 @@ strsize string::reverse_find(char ch, strsize iStart) const RELEASENOTHROW
    // find last single character
    const char * psz = string_trait::StringFindCharRev( GetString(), ch, iStart );
 
-   // return -1 if not found, distance from beginning otherwise
-   return( (psz == NULL) ? -1 : strsize( psz-GetString() ) );
+   // return npos if not found, distance from beginning otherwise
+   return( (psz == NULL) ? npos : strsize( psz-GetString() ) );
 }
 
 // find the last occurrence of character 'ch'
@@ -2027,8 +2030,8 @@ strsize string::reverse_find( const char * ch, strsize iStart) const RELEASENOTH
    // find last single character
    const char * psz = string_trait::StringFindStrRev( GetString(), ch, iStart );
 
-   // return -1 if not found, distance from beginning otherwise
-   return( (psz == NULL) ? -1 : strsize( psz-GetString() ) );
+   // return npos if not found, distance from beginning otherwise
+   return( (psz == NULL) ? npos : strsize( psz-GetString() ) );
 }
 
 // manipulation
@@ -2797,7 +2800,7 @@ string string::reversed() const
 string string::utf8_substr(strsize iFirst) const
 {
 
-   return utf8_substr(iFirst, -1);
+   return utf8_substr(iFirst, npos);
 
 }
 

@@ -434,7 +434,7 @@ FreeImage_SaveMultiBitmapToHandle(FREE_IMAGE_FORMAT fif, FIMULTIBITMAP *bitmap, 
 							
 							// read the compressed data
 							
-							BYTE *compressed_data = (BYTE*)malloc(ref->m_size * sizeof(BYTE));
+							BYTE *compressed_data = (BYTE*)memory_alloc(ref->m_size * sizeof(BYTE));
 							
 							header->m_cachefile->readFile((BYTE *)compressed_data, ref->m_reference, ref->m_size);
 							
@@ -445,7 +445,7 @@ FreeImage_SaveMultiBitmapToHandle(FREE_IMAGE_FORMAT fif, FIMULTIBITMAP *bitmap, 
 							FreeImage_CloseMemory(hmem);
 							
 							// get rid of the buffer
-							free(compressed_data);
+							memory_free(compressed_data);
 							
 							// save the data
 							

@@ -119,7 +119,7 @@ struct BufferedTile
 };
 
 
-typedef map <TileCoord, BufferedTile *> TileMap;
+typedef std::map <TileCoord, BufferedTile *> TileMap;
 
 
 struct TileBuffer
@@ -617,7 +617,7 @@ TileBufferTask::TileBufferTask
 TileBufferTask::~TileBufferTask ()
 {
     //
-    // Signal that the tile buffer is now free
+    // Signal that the tile buffer is now memory_free
     //
 
     _tileBuffer->post ();

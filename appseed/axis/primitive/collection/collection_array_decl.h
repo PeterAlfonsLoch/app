@@ -99,9 +99,9 @@ class array :
 {
 public:
 
-   typedef TYPE AXIS_TYPE;
-   typedef ARG_TYPE AXIS_ARG_TYPE;
-   typedef array < TYPE, ARG_TYPE > AXIS_ARRAY;
+   typedef TYPE BASE_TYPE;
+   typedef ARG_TYPE BASE_ARG_TYPE;
+   typedef array < TYPE, ARG_TYPE > BASE_ARRAY;
 
    /*
 
@@ -277,6 +277,11 @@ public:
          return *this;
       }
 
+      iterator mid(const iterator & i) const
+      {
+         return iterator((m_i + i.m_i + 1) / 2,m_parray);
+      }
+
    };
 
 
@@ -378,11 +383,17 @@ public:
          return *this;
       }
 
+      const_iterator mid(const const_iterator & i) const
+      {
+         return const_iterator((m_i + i.m_i + 1) / 2,m_parray);
+      }
+
+
    };
 
    TYPE *      m_pData;    // the actual array of data
    ::count     m_nSize;    // # of elements (upperBound - 1)
-   ::count     m_nMaxSize; // max allocated
+   ::count     m_nMaxSize; // MAX allocated
    ::count     m_nGrowBy;  // grow amount
 
 
@@ -444,6 +455,9 @@ public:
    inline TYPE & back(index n = -1);
    inline const TYPE & back(index n = -1) const;
 
+
+   inline const TYPE & at(index nIndex) const { return element_at(nIndex);  }
+   inline TYPE & at(index nIndex) { return element_at(nIndex); }
 
    // Direct Access to the element data (may return NULL)
    inline const TYPE* get_data() const;

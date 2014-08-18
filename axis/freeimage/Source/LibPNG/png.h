@@ -979,7 +979,7 @@ PNG_FUNCTION(void, (PNGCAPI *png_longjmp_ptr), PNGARG((jmp_buf, int)), typedef);
 
 /* NOTE: prior to 1.5 these functions had no 'API' style declaration,
  * this allowed the zlib default functions to be used on Windows
- * platforms.  In 1.5 the zlib default malloc (which just calls malloc and
+ * platforms.  In 1.5 the zlib default memory_alloc (which just calls memory_alloc and
  * ignores the first argument) should be completely compatible with the
  * following.
  */
@@ -1124,7 +1124,7 @@ PNG_EXPORTA(18, png_infop, png_create_info_struct, (png_const_structrp png_ptr),
     PNG_ALLOCATED);
 
 /* DEPRECATED: this function allowed init structures to be created using the
- * default allocation method (typically malloc).  Use is deprecated in 1.6.0 and
+ * default allocation method (typically memory_alloc).  Use is deprecated in 1.6.0 and
  * the API will be removed in the future.
  */
 PNG_EXPORTA(19, void, png_info_init_3, (png_infopp info_ptr,
@@ -1882,7 +1882,7 @@ PNG_EXPORT(98, void, png_free_data, (png_const_structrp png_ptr,
  * in, it does not change the state for other png_info structures.
  *
  * It is unlikely that this function works correctly as of 1.6.0 and using it
- * may result either in memory leaks or double free of allocated data.
+ * may result either in memory leaks or double memory_free of allocated data.
  */
 PNG_EXPORT(99, void, png_data_freer, (png_const_structrp png_ptr,
     png_inforp info_ptr, int freer, png_uint_32 mask));
@@ -2787,7 +2787,7 @@ PNG_EXPORT(207, void, png_save_uint_16, (png_bytep buf, unsigned int i));
 typedef struct png_control *png_controlp;
 typedef struct
 {
-   png_controlp opaque;    /* Initialize to NULL, free with png_image_free */
+   png_controlp opaque;    /* Initialize to NULL, memory_free with png_image_free */
    png_uint_32  version;   /* Set to PNG_IMAGE_VERSION */
    png_uint_32  width;     /* Image width in pixels (columns) */
    png_uint_32  height;    /* Image height in pixels (rows) */

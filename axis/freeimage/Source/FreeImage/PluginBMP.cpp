@@ -217,7 +217,7 @@ LoadPixelDataRLE4(FreeImageIO *io, fi_handle handle, int width, int height, FIBI
 	try {
 		height = abs(height);
 
-		pixels = (BYTE*)malloc(width * height * sizeof(BYTE));
+		pixels = (BYTE*)memory_alloc(width * height * sizeof(BYTE));
 		if(!pixels) throw(1);
 		memset(pixels, 0, width * height * sizeof(BYTE));
 
@@ -330,12 +330,12 @@ LoadPixelDataRLE4(FreeImageIO *io, fi_handle handle, int width, int height, FIBI
 			}
 		}
 
-		free(pixels);
+		memory_free(pixels);
 
 		return TRUE;
 
 	} catch(int) {
-		if(pixels) free(pixels);
+		if(pixels) memory_free(pixels);
 		return FALSE;
 	}
 }
@@ -1383,13 +1383,13 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 
 		unsigned bpp = FreeImage_GetBPP(dib);
 		if ((bpp == 8) && (flags & BMP_SAVE_RLE)) {
-			BYTE *buffer = (BYTE*)malloc(FreeImage_GetPitch(dib) * 2 * sizeof(BYTE));
+			BYTE *buffer = (BYTE*)memory_alloc(FreeImage_GetPitch(dib) * 2 * sizeof(BYTE));
 
 			for (DWORD i = 0; i < FreeImage_GetHeight(dib); ++i) {
 				int size = RLEEncodeLine(buffer, FreeImage_GetScanLine(dib, i), FreeImage_GetLine(dib));
 
 				if (io->write_proc(buffer, size, 1, handle) != 1) {
-					free(buffer);
+					memory_free(buffer);
 					return FALSE;
 				}
 			}
@@ -1398,11 +1398,11 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 			buffer[1] = RLE_ENDOFBITMAP;
 
 			if (io->write_proc(buffer, 2, 1, handle) != 1) {
-				free(buffer);
+				memory_free(buffer);
 				return FALSE;
 			}
 
-			free(buffer);
+			memory_free(buffer);
 #ifdef FREEIMAGE_BIGENDIAN
 		} else if (bpp == 16) {
 			int padding = FreeImage_GetPitch(dib) - FreeImage_GetWidth(dib) * sizeof(WORD);

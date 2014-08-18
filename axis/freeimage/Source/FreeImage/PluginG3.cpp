@@ -390,10 +390,10 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			bits -= pitch;
 		}
 
-		// free the TIFF wrapper
+		// memory_free the TIFF wrapper
 		TIFFClose(faxTIFF);
 
-		// free the memory buffer
+		// memory_free the memory buffer
 		FreeImage_CloseMemory(memory);
 
 	} catch(const char *message) {

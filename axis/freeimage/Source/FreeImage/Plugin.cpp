@@ -25,6 +25,10 @@
 
 #include "FreeImage.h"
 
+#ifdef _WIN32
+#include <io.h>
+#endif
+
 
 
 
@@ -32,7 +36,7 @@
 
 // =====================================================================
 
-using namespace std;
+//using namespace std;
 
 // =====================================================================
 // Plugin search list
@@ -131,7 +135,7 @@ PluginList::AddNode(FI_InitProc init_proc, void *instance, const char *format, c
 
 PluginNode *
 PluginList::FindNodeFromFormat(const char *format) {
-	for (map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
+	for (std::map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
 		const char *the_format = ((*i).second->m_format != NULL) ? (*i).second->m_format : (*i).second->m_plugin->format_proc();
 
 		if ((*i).second->m_enabled) {
@@ -146,7 +150,7 @@ PluginList::FindNodeFromFormat(const char *format) {
 
 PluginNode *
 PluginList::FindNodeFromMime(const char *mime) {
-	for (map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
+	for (std::map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
 		const char *the_mime = ((*i).second->m_plugin->mime_proc != NULL) ? (*i).second->m_plugin->mime_proc() : "";
 
 		if ((*i).second->m_enabled) {
@@ -161,7 +165,7 @@ PluginList::FindNodeFromMime(const char *mime) {
 
 PluginNode *
 PluginList::FindNodeFromFIF(int node_id) {
-	map<int, PluginNode *>::iterator i = m_plugin_map.find(node_id);
+	std::map<int, PluginNode *>::iterator i = m_plugin_map.find(node_id);
 
 	if (i != m_plugin_map.end()) {
 		return (*i).second;
@@ -181,7 +185,7 @@ PluginList::IsEmpty() const {
 }
 
 PluginList::~PluginList() {
-	for (map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
+	for (std::map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
 #ifdef _WIN32
 		if ((*i).second->m_instance != NULL) {
 			FreeLibrary((HINSTANCE)(*i).second->m_instance);
@@ -737,7 +741,7 @@ FreeImage_GetFIFFromFilename(const char *filename) {
 				} else {
 					// make a copy of the extension list and split it
 
-					char *copy = (char *)malloc(strlen(FreeImage_GetFIFExtensionList((FREE_IMAGE_FORMAT)i)) + 1);
+					char *copy = (char *)memory_alloc(strlen(FreeImage_GetFIFExtensionList((FREE_IMAGE_FORMAT)i)) + 1);
 					memset(copy, 0, strlen(FreeImage_GetFIFExtensionList((FREE_IMAGE_FORMAT)i)) + 1);
 					memcpy(copy, FreeImage_GetFIFExtensionList((FREE_IMAGE_FORMAT)i), strlen(FreeImage_GetFIFExtensionList((FREE_IMAGE_FORMAT)i)));
 
@@ -747,7 +751,7 @@ FreeImage_GetFIFFromFilename(const char *filename) {
 
 					while (token != NULL) {
 						if (FreeImage_stricmp(token, extension) == 0) {
-							free(copy);
+							memory_free(copy);
 
 								return (FREE_IMAGE_FORMAT)i;
 						}
@@ -755,9 +759,9 @@ FreeImage_GetFIFFromFilename(const char *filename) {
 						token = strtok(NULL, ",");
 					}
 
-					// free the copy of the extension list
+					// memory_free the copy of the extension list
 
-					free(copy);
+					memory_free(copy);
 				}	
 			}
 		}
@@ -775,14 +779,14 @@ FreeImage_GetFIFFromFilenameU(const wchar_t *filename) {
 	wchar_t *place = wcsrchr((wchar_t *)filename, '.');	
 	if (place == NULL) return FIF_UNKNOWN;
 	// convert to single character - no national chars in extensions
-	char *extension = (char *)malloc(wcslen(place)+1);
+	char *extension = (char *)memory_alloc(wcslen(place)+1);
 	unsigned int i=0;
 	for(; i < wcslen(place); i++) // convert 16-bit to 8-bit
 		extension[i] = (char)(place[i] & 0x00FF);
 	// set terminating 0
 	extension[i]=0;
 	FREE_IMAGE_FORMAT fRet = FreeImage_GetFIFFromFilename(extension);
-	free(extension);
+	memory_free(extension);
 
 	return fRet;
 #else

@@ -299,7 +299,7 @@ void * ca2_heap_alloc_dbg(size_t size, int32_t nBlockUse, const char * pszFileNa
    str.Format("%s(%d)", pszFileName, iLine);
    size_t * psize = (size_t *) g_pheap->alloc(size + sizeof(size_t) + 128);
    psize[0] = size + sizeof(size_t) + 128;
-   strncpy((char *) &psize[1], str.Mid(max(0, str.get_length() - 124)), 124);
+   strncpy((char *) &psize[1], str.Mid(MAX(0, str.get_length() - 124)), 124);
    return ((byte *) &psize[1]) + 128;
 #else
    
@@ -325,7 +325,7 @@ void * ca2_heap_realloc_dbg(void * pvoidOld, size_t size, int32_t nBlockUse, con
    str.Format("%s(%d)", szFileName, iLine);
    size_t * psize = (size_t *) g_pheap->realloc(&((size_t *)(((byte *)pvoidOld) - 128))[-1], ((size_t *)(((byte *)pvoidOld) - 128))[-1], size + sizeof(size_t) + 128);
    psize[0] = size + sizeof(size_t) + 128;
-   strncpy((char *) &psize[1], str.Mid(max(0, str.get_length() - 124)), 124);
+   strncpy((char *) &psize[1], str.Mid(MAX(0, str.get_length() - 124)), 124);
    return ((byte *) &psize[1]) + 128;
 #else
    size_t * psize = (size_t *) g_pheap->realloc(&((size_t *)(((byte *)pvoidOld)))[-1], ((size_t *)(((byte *)pvoidOld)))[-1], size + sizeof(size_t));
@@ -441,7 +441,7 @@ void * plex_heap_alloc_array::alloc_dbg(size_t size, int32_t nBlockUse, const ch
       
    }
    
-   strncpy((char *) &psize[1], str.Mid(max(0, str.get_length() - 124)), 124);
+   strncpy((char *) &psize[1], str.Mid(MAX(0, str.get_length() - 124)), 124);
    
    return ((byte *) &psize[1]) + 128;
    
@@ -620,7 +620,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, size_t sizeOld
          
       }
 
-      memcpy(pblockNew, pblock, min(*psizeOld, nAllocSize));
+      memcpy(pblockNew, pblock, MIN(*psizeOld, nAllocSize));
 
       if(pallocOld != NULL)
       {
@@ -669,7 +669,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, size_t sizeOld
    str.Format("%s(%d)", szFileName, iLine);
    size_t * psize = (size_t *) realloc(&((size_t *)(((byte *)pvoidOld) - 128))[-1], ((size_t *)(((byte *)pvoidOld) - 128))[-1], size + sizeof(size_t) + 128);
    psize[0] = size + sizeof(size_t) + 128;
-   strncpy((char *) &psize[1], str.Mid(max(0, str.get_length() - 124)), 124);
+   strncpy((char *) &psize[1], str.Mid(MAX(0, str.get_length() - 124)), 124);
    return ((byte *) &psize[1]) + 128;
 #else
    
@@ -813,13 +813,13 @@ void * plex_heap_alloc_array::realloc(void * p, size_t size, size_t sizeOld, int
          memcpy(
                 (void *)(((int_ptr)pNew + align - 1) & ~((int_ptr)align - 1)),
                 (void *)(((int_ptr)p + align - 1) & ~((int_ptr)align - 1)),
-                min(oldSize, newSize));
+                MIN(oldSize, newSize));
 
       }
       else
       {
 
-         memcpy(pNew, p, min(sizeOld, size));
+         memcpy(pNew, p, MIN(sizeOld, size));
 
       }
 

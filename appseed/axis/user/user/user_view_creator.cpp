@@ -185,17 +185,17 @@ namespace user
       view_map::pair * ppair = m_viewmap.PGetFirstAssoc();
       while(ppair != NULL)
       {
-         if(id != ppair->m_element1)
+         if(id != ppair->first)
          {
             try
             {
-               if(ppair->m_element2->m_pholder != NULL)
+               if(ppair->second->m_pholder != NULL)
                {
-                  ppair->m_element2->m_pholder->ShowWindow(SW_HIDE);
+                  ppair->second->m_pholder->ShowWindow(SW_HIDE);
                }
-               else if(ppair->m_element2->m_pwnd != NULL)
+               else if(ppair->second->m_pwnd != NULL)
                {
-                  ppair->m_element2->m_pwnd->ShowWindow(SW_HIDE);
+                  ppair->second->m_pwnd->ShowWindow(SW_HIDE);
                }
             }
             catch(...)

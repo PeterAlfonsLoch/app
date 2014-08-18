@@ -291,7 +291,7 @@ void * fixed_alloc_array::realloc(void * pOld, size_t nOldAllocSize, size_t nNew
       if(pNew == NULL)
          return NULL;
 
-      memcpy(pNew, pOld, min(nOldAllocSize, nNewAllocSize));
+      memcpy(pNew, pOld, MIN(nOldAllocSize, nNewAllocSize));
 
       if(pallocOld != NULL)
       {

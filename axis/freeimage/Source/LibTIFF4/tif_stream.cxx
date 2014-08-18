@@ -28,7 +28,7 @@
  * TIFF Library UNIX-specific Routines.
  */
 #include "tiffiop.h"
-#include <iostream>
+//#include <iostream>
 
 #ifndef __VMS
 using namespace std;

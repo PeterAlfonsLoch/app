@@ -43,7 +43,7 @@ static int OptimizeHuffmanForRle(int length, int* const counts) {
   }
   // 2) Let's mark all population counts that already can be encoded
   // with an rle code.
-  good_for_rle = (uint8_t*)calloc(length, 1);
+  good_for_rle = (uint8_t*)memory_calloc(length, 1);
   if (good_for_rle == NULL) {
     return 0;
   }
@@ -119,7 +119,7 @@ static int OptimizeHuffmanForRle(int length, int* const counts) {
       }
     }
   }
-  free(good_for_rle);
+  memory_free(good_for_rle);
   return 1;
 }
 
@@ -272,7 +272,7 @@ static int GenerateOptimalTree(const int* const histogram, int histogram_size,
       }
     }
   }
-  free(tree);
+  memory_free(tree);
   return 1;
 }
 

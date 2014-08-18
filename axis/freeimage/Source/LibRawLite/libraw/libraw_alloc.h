@@ -5,7 +5,7 @@
  *
  * LibRaw C++ interface
  *
-LibRaw is free software; you can redistribute it and/or modify
+LibRaw is memory_free software; you can redistribute it and/or modify
 it under the terms of the one of three licenses as you choose:
 
 1. GNU LESSER GENERAL PUBLIC LICENSE version 2.1
@@ -37,36 +37,36 @@ class DllDef libraw_memmgr
             memset(mems,0,sizeof(mems));
             calloc_cnt=0;
         }
-    void *malloc(size_t sz)
+    void *memory_alloc(size_t sz)
         {
-            void *ptr = ::malloc(sz);
+            void *ptr = ::memory_alloc(sz);
             mem_ptr(ptr);
             return ptr;
         }
-    void *calloc(size_t n, size_t sz)
+    void *memory_calloc(size_t n, size_t sz)
         {
-            void *ptr =  ::calloc(n,sz);
+            void *ptr =  ::memory_calloc(n,sz);
             mem_ptr(ptr);
             return ptr;
         }
-    void *realloc(void *ptr,size_t newsz)
+    void *memory_realloc(void *ptr,size_t newsz)
         {
-            void *ret = ::realloc(ptr,newsz);
+            void *ret = ::memory_realloc(ptr,newsz);
             forget_ptr(ptr);
             mem_ptr(ret);
             return ret;
         }
-    void  free(void *ptr)
+    void  memory_free(void *ptr)
     {
         forget_ptr(ptr);
-        ::free(ptr);
+        ::memory_free(ptr);
     }
     void cleanup(void)
     {
         for(int i = 0; i< LIBRAW_MSIZE; i++)
             if(mems[i])
                 {
-                    free(mems[i]);
+                    memory_free(mems[i]);
                     mems[i] = NULL;
                 }
     }

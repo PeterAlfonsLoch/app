@@ -5,7 +5,7 @@
  *
  * LibRaw C++ interface (implementation)
 
-LibRaw is free software; you can redistribute it and/or modify
+LibRaw is memory_free software; you can redistribute it and/or modify
 it under the terms of the one of three licenses as you choose:
 
 1. GNU LESSER GENERAL PUBLIC LICENSE version 2.1
@@ -177,7 +177,7 @@ void LibRaw::derror()
 
 void LibRaw::dcraw_clear_mem(libraw_processed_image_t* p)
 {
-    if(p) ::free(p);
+    if(p) ::memory_free(p);
 }
 
 int LibRaw::is_sraw() { return load_raw == &LibRaw::canon_sraw_load_raw; }
@@ -250,7 +250,7 @@ static CameraMetaDataLR* make_camera_metadata()
       {
         len+=strlen(_rawspeed_data_xml[i]);
       }
-  char *rawspeed_xml = (char*)calloc(len+1,sizeof(_rawspeed_data_xml[0][0]));
+  char *rawspeed_xml = (char*)memory_calloc(len+1,sizeof(_rawspeed_data_xml[0][0]));
   if(!rawspeed_xml) return NULL;
   int offt = 0;
   for(i=0;i<RAWSPEED_DATA_COUNT;i++)
@@ -268,7 +268,7 @@ static CameraMetaDataLR* make_camera_metadata()
   } catch (...) {
     // Mask all exceptions
   }
-  free(rawspeed_xml);
+  memory_free(rawspeed_xml);
   return ret;
 }
 
@@ -368,32 +368,32 @@ LibRaw::~LibRaw()
 #endif
 }
 
-void* LibRaw:: malloc(size_t t)
+void* LibRaw:: memory_alloc(size_t t)
 {
-    void *p = memmgr.malloc(t);
+    void *p = memmgr.memory_alloc(t);
 	if(!p)
 		throw LIBRAW_EXCEPTION_ALLOC;
     return p;
 }
-void* LibRaw:: realloc(void *q,size_t t)
+void* LibRaw:: memory_realloc(void *q,size_t t)
 {
-    void *p = memmgr.realloc(q,t);
+    void *p = memmgr.memory_realloc(q,t);
 	if(!p)
 		throw LIBRAW_EXCEPTION_ALLOC;
     return p;
 }
 
 
-void* LibRaw::       calloc(size_t n,size_t t)
+void* LibRaw::       memory_calloc(size_t n,size_t t)
 {
-    void *p = memmgr.calloc(n,t);
+    void *p = memmgr.memory_calloc(n,t);
 	if(!p)
 		throw LIBRAW_EXCEPTION_ALLOC;
     return p;
 }
-void  LibRaw::      free(void *p)
+void  LibRaw::      memory_free(void *p)
 {
-    memmgr.free(p);
+    memmgr.memory_free(p);
 }
 
 void LibRaw:: recycle_datastream() 
@@ -411,7 +411,7 @@ void x3f_clear(void*);
 void LibRaw:: recycle() 
 {
   recycle_datastream();
-#define FREE(a) do { if(a) { free(a); a = NULL;} }while(0)
+#define FREE(a) do { if(a) { memory_free(a); a = NULL;} }while(0)
             
   FREE(imgdata.image); 
   FREE(imgdata.thumbnail.thumb);
@@ -1005,8 +1005,8 @@ int LibRaw::open_datastream(LibRaw_abstract_datastream *stream)
 #endif
     if(C.profile_length)
       {
-        if(C.profile) free(C.profile);
-        C.profile = malloc(C.profile_length);
+        if(C.profile) memory_free(C.profile);
+        C.profile = memory_alloc(C.profile_length);
         merror(C.profile,"LibRaw::open_file()");
         ID.input->seek(ID.profile_offset,SEEK_SET);
         ID.input->read(C.profile,C.profile_length,1);
@@ -1127,18 +1127,18 @@ int LibRaw::unpack(void)
     // already allocated ?
     if(imgdata.image)
       {
-        free(imgdata.image);
+        memory_free(imgdata.image);
         imgdata.image = 0;
       }
     if(imgdata.rawdata.raw_alloc)
       {
-        free(imgdata.rawdata.raw_alloc);
+        memory_free(imgdata.rawdata.raw_alloc);
         imgdata.rawdata.raw_alloc = 0;
       }
     if (libraw_internal_data.unpacker_data.meta_length) 
       {
         libraw_internal_data.internal_data.meta_data = 
-          (char *) malloc (libraw_internal_data.unpacker_data.meta_length);
+          (char *) memory_alloc (libraw_internal_data.unpacker_data.meta_length);
         merror (libraw_internal_data.internal_data.meta_data, "LibRaw::unpack()");
       }
 
@@ -1173,7 +1173,7 @@ int LibRaw::unpack(void)
             //                printf("Using rawspeed\n");
             ID.input->seek(0,SEEK_SET);
             INT64 _rawspeed_buffer_sz = ID.input->size()+32;
-            _rawspeed_buffer = malloc(_rawspeed_buffer_sz);
+            _rawspeed_buffer = memory_alloc(_rawspeed_buffer_sz);
             if(!_rawspeed_buffer) throw LIBRAW_EXCEPTION_ALLOC;
             ID.input->read(_rawspeed_buffer,_rawspeed_buffer_sz,1);
             FileMap map((uchar8*)_rawspeed_buffer,_rawspeed_buffer_sz);
@@ -1226,7 +1226,7 @@ int LibRaw::unpack(void)
                 //C.maximum = r->whitePoint;
                 fix_after_rawspeed(r->blackLevel);
               }
-            free(_rawspeed_buffer);
+            memory_free(_rawspeed_buffer);
             _rawspeed_buffer = 0;
             imgdata.process_warnings |= LIBRAW_WARN_RAWSPEED_PROCESSED;
           } 
@@ -1236,7 +1236,7 @@ int LibRaw::unpack(void)
             imgdata.process_warnings |= LIBRAW_WARN_RAWSPEED_PROBLEM;
             if(_rawspeed_buffer)
               {
-                free(_rawspeed_buffer);
+                memory_free(_rawspeed_buffer);
                 _rawspeed_buffer = 0;
               }
           }
@@ -1253,7 +1253,7 @@ int LibRaw::unpack(void)
           }
         else if(decoder_info.decoder_flags &  LIBRAW_DECODER_FLATFIELD)
           {
-            imgdata.rawdata.raw_alloc = malloc(rwidth*(rheight+7)*sizeof(imgdata.rawdata.raw_image[0]));
+            imgdata.rawdata.raw_alloc = memory_alloc(rwidth*(rheight+7)*sizeof(imgdata.rawdata.raw_image[0]));
             imgdata.rawdata.raw_image = (ushort*) imgdata.rawdata.raw_alloc;
             if(!S.raw_pitch)
                 S.raw_pitch = S.raw_width*2; // Bayer case, not set before
@@ -1267,7 +1267,7 @@ int LibRaw::unpack(void)
             S.raw_pitch = S.width*8;
             // allocate image as temporary buffer, size 
             imgdata.rawdata.raw_alloc = 0;
-            imgdata.image = (ushort (*)[4]) calloc(S.iwidth*S.iheight,sizeof(*imgdata.image));
+            imgdata.image = (ushort (*)[4]) memory_calloc(S.iwidth*S.iheight,sizeof(*imgdata.image));
           }
         ID.input->seek(libraw_internal_data.unpacker_data.data_offset, SEEK_SET);
             
@@ -1343,7 +1343,7 @@ void LibRaw::free_image(void)
 {
   if(imgdata.image)
     {
-      free(imgdata.image);
+      memory_free(imgdata.image);
       imgdata.image = 0;
       imgdata.progress_flags 
         = LIBRAW_PROGRESS_START|LIBRAW_PROGRESS_OPEN
@@ -1399,14 +1399,14 @@ int LibRaw::raw2image(void)
         phase_one_correct();
       }
 
-    // free and re-allocate image bitmap
+    // memory_free and re-allocate image bitmap
     if(imgdata.image)
       {
-        imgdata.image = (ushort (*)[4]) realloc (imgdata.image,S.iheight*S.iwidth *sizeof (*imgdata.image));
+        imgdata.image = (ushort (*)[4]) memory_realloc (imgdata.image,S.iheight*S.iwidth *sizeof (*imgdata.image));
         memset(imgdata.image,0,S.iheight*S.iwidth *sizeof (*imgdata.image));
       }
     else
-      imgdata.image = (ushort (*)[4]) calloc (S.iheight*S.iwidth, sizeof (*imgdata.image));
+      imgdata.image = (ushort (*)[4]) memory_calloc (S.iheight*S.iwidth, sizeof (*imgdata.image));
 
     merror (imgdata.image, "raw2image()");
 
@@ -1503,12 +1503,12 @@ int LibRaw::raw2image(void)
 void LibRaw::phase_one_allocate_tempbuffer()
 {
   // Allocate temp raw_image buffer
-  imgdata.rawdata.raw_image = (ushort*)malloc(S.raw_pitch*S.raw_height);
+  imgdata.rawdata.raw_image = (ushort*)memory_alloc(S.raw_pitch*S.raw_height);
   merror (imgdata.rawdata.raw_image, "phase_one_prepare_to_correct()");
 }
 void LibRaw::phase_one_free_tempbuffer()
 {
-	free(imgdata.rawdata.raw_image);
+	memory_free(imgdata.rawdata.raw_image);
 	imgdata.rawdata.raw_image = (ushort*) imgdata.rawdata.raw_alloc;
 }
 
@@ -1728,11 +1728,11 @@ int LibRaw::raw2image_ex(int do_subtract_black)
 
     if(imgdata.image)
       {
-        imgdata.image = (ushort (*)[4]) realloc (imgdata.image,alloc_sz *sizeof (*imgdata.image));
+        imgdata.image = (ushort (*)[4]) memory_realloc (imgdata.image,alloc_sz *sizeof (*imgdata.image));
         memset(imgdata.image,0,alloc_sz *sizeof (*imgdata.image));
       }
     else
-      imgdata.image = (ushort (*)[4]) calloc (alloc_sz, sizeof (*imgdata.image));
+      imgdata.image = (ushort (*)[4]) memory_calloc (alloc_sz, sizeof (*imgdata.image));
     merror (imgdata.image, "raw2image_ex()");
 
     libraw_decoder_info_t decoder_info;
@@ -1890,7 +1890,7 @@ libraw_processed_image_t * LibRaw::dcraw_make_mem_thumb(int *errcode)
   if (T.tformat == LIBRAW_THUMBNAIL_BITMAP)
     {
       libraw_processed_image_t * ret = 
-        (libraw_processed_image_t *)::malloc(sizeof(libraw_processed_image_t)+T.tlength);
+        (libraw_processed_image_t *)::memory_alloc(sizeof(libraw_processed_image_t)+T.tlength);
 
       if(!ret)
         {
@@ -1918,7 +1918,7 @@ libraw_processed_image_t * LibRaw::dcraw_make_mem_thumb(int *errcode)
       int dsize = T.tlength + mk_exif * (sizeof(exif)+sizeof(tiff_hdr));
 
       libraw_processed_image_t * ret = 
-        (libraw_processed_image_t *)::malloc(sizeof(libraw_processed_image_t)+dsize);
+        (libraw_processed_image_t *)::memory_alloc(sizeof(libraw_processed_image_t)+dsize);
 
       if(!ret)
         {
@@ -2068,7 +2068,7 @@ libraw_processed_image_t *LibRaw::dcraw_make_mem_image(int *errcode)
     get_mem_image_format(&width, &height, &colors, &bps);
     int stride = width * (bps/8) * colors;
     unsigned ds = height * stride;
-    libraw_processed_image_t *ret = (libraw_processed_image_t*)::malloc(sizeof(libraw_processed_image_t)+ds);
+    libraw_processed_image_t *ret = (libraw_processed_image_t*)::memory_alloc(sizeof(libraw_processed_image_t)+ds);
     if(!ret)
         {
                 if(errcode) *errcode= ENOMEM;
@@ -2112,7 +2112,7 @@ int LibRaw::dcraw_ppm_tiff_writer(const char *filename)
     if(!libraw_internal_data.output_data.histogram)
       {
         libraw_internal_data.output_data.histogram = 
-          (int (*)[LIBRAW_HISTOGRAM_SIZE]) malloc(sizeof(*libraw_internal_data.output_data.histogram)*4);
+          (int (*)[LIBRAW_HISTOGRAM_SIZE]) memory_alloc(sizeof(*libraw_internal_data.output_data.histogram)*4);
         merror(libraw_internal_data.output_data.histogram,"LibRaw::dcraw_ppm_tiff_writer()");
       }
     libraw_internal_data.internal_data.output = f;
@@ -2147,7 +2147,7 @@ void LibRaw::kodak_thumb_loader()
       S.width  += S.width  & 1;
     }
     
-  imgdata.image = (ushort (*)[4]) calloc (S.iheight*S.iwidth, sizeof (*imgdata.image));
+  imgdata.image = (ushort (*)[4]) memory_calloc (S.iheight*S.iwidth, sizeof (*imgdata.image));
   merror (imgdata.image, "LibRaw::kodak_thumb_loader()");
 
   ID.input->seek(ID.toffset, SEEK_SET);
@@ -2188,7 +2188,7 @@ void LibRaw::kodak_thumb_loader()
   ushort *img;
   int row,col;
     
-  int  (*t_hist)[LIBRAW_HISTOGRAM_SIZE] =  (int (*)[LIBRAW_HISTOGRAM_SIZE]) calloc(sizeof(*t_hist),4);
+  int  (*t_hist)[LIBRAW_HISTOGRAM_SIZE] =  (int (*)[LIBRAW_HISTOGRAM_SIZE]) memory_calloc(sizeof(*t_hist),4);
   merror (t_hist, "LibRaw::kodak_thumb_loader()");
     
   float out[3], 
@@ -2222,7 +2222,7 @@ void LibRaw::kodak_thumb_loader()
   libraw_internal_data.output_data.histogram = t_hist;
 
   // make curve output curve!
-  ushort (*t_curve) = (ushort*) calloc(sizeof(C.curve),1);
+  ushort (*t_curve) = (ushort*) memory_calloc(sizeof(C.curve),1);
   merror (t_curve, "LibRaw::kodak_thumb_loader()");
   memmove(t_curve,C.curve,sizeof(C.curve));
   memset(C.curve,0,sizeof(C.curve));
@@ -2241,7 +2241,7 @@ void LibRaw::kodak_thumb_loader()
   }
     
   libraw_internal_data.output_data.histogram = save_hist;
-  free(t_hist);
+  memory_free(t_hist);
     
   // from write_ppm_tiff - copy pixels into bitmap
     
@@ -2249,8 +2249,8 @@ void LibRaw::kodak_thumb_loader()
   S.iwidth  = S.width;
   if (S.flip & 4) SWAP(S.height,S.width);
 
-  if(T.thumb) free(T.thumb);
-  T.thumb = (char*) calloc (S.width * S.height, P1.colors);
+  if(T.thumb) memory_free(T.thumb);
+  T.thumb = (char*) memory_calloc (S.width * S.height, P1.colors);
   merror (T.thumb, "LibRaw::kodak_thumb_loader()");
   T.tlength = S.width * S.height * P1.colors;
 
@@ -2270,10 +2270,10 @@ void LibRaw::kodak_thumb_loader()
   }
 
   memmove(C.curve,t_curve,sizeof(C.curve));
-  free(t_curve);
+  memory_free(t_curve);
 
   // restore variables
-  free(imgdata.image);
+  memory_free(imgdata.image);
   imgdata.image  = s_image;
     
   T.twidth = S.width;
@@ -2323,8 +2323,8 @@ int LibRaw::unpack_thumb(void)
         ID.input->seek(ID.toffset, SEEK_SET);
         if ( write_thumb == &LibRaw::jpeg_thumb)
           {
-            if(T.thumb) free(T.thumb);
-            T.thumb = (char *) malloc (T.tlength);
+            if(T.thumb) memory_free(T.thumb);
+            T.thumb = (char *) memory_alloc (T.tlength);
             merror (T.thumb, "jpeg_thumb()");
             ID.input->read (T.thumb, 1, T.tlength);
             T.tcolors = 3;
@@ -2335,9 +2335,9 @@ int LibRaw::unpack_thumb(void)
         else if (write_thumb == &LibRaw::ppm_thumb)
           {
             T.tlength = T.twidth * T.theight*3;
-            if(T.thumb) free(T.thumb);
+            if(T.thumb) memory_free(T.thumb);
 
-            T.thumb = (char *) malloc (T.tlength);
+            T.thumb = (char *) memory_alloc (T.tlength);
             merror (T.thumb, "ppm_thumb()");
 
             ID.input->read(T.thumb, 1, T.tlength);
@@ -2350,17 +2350,17 @@ int LibRaw::unpack_thumb(void)
         else if (write_thumb == &LibRaw::ppm16_thumb)
           {
             T.tlength = T.twidth * T.theight*3;
-            ushort *t_thumb = (ushort*)calloc(T.tlength,2);
+            ushort *t_thumb = (ushort*)memory_calloc(T.tlength,2);
             ID.input->read(t_thumb,2,T.tlength);
             if ((libraw_internal_data.unpacker_data.order == 0x4949) == (ntohs(0x1234) == 0x1234))
               swab ((char*)t_thumb, (char*)t_thumb, T.tlength*2);
 
-            if(T.thumb) free(T.thumb);
-            T.thumb = (char *) malloc (T.tlength);
+            if(T.thumb) memory_free(T.thumb);
+            T.thumb = (char *) memory_alloc (T.tlength);
             merror (T.thumb, "ppm_thumb()");
             for (int i=0; i < T.tlength; i++)
               T.thumb[i] = t_thumb[i] >> 8;
-            free(t_thumb);
+            memory_free(t_thumb);
             T.tformat = LIBRAW_THUMBNAIL_BITMAP;
             SET_PROC_FLAG(LIBRAW_PROGRESS_THUMB_LOAD);
             return 0;
@@ -2538,7 +2538,7 @@ void LibRaw::exp_bef(float shift, float smooth)
   if(smooth < 0.0) smooth = 0.0;
   if(smooth > 1.0) smooth = 1.0;
     
-  unsigned short *lut = (ushort*)malloc((TBLN+1)*sizeof(unsigned short));
+  unsigned short *lut = (ushort*)memory_alloc((TBLN+1)*sizeof(unsigned short));
 
   if(shift <=1.0)
     {
@@ -2583,7 +2583,7 @@ void LibRaw::exp_bef(float shift, float smooth)
   if(C.maximum <= TBLN)
     C.maximum = lut[C.maximum];
   // no need to adjust the minumum, black is already subtracted
-  free(lut);
+  memory_free(lut);
 }
 
 #define MIN(a,b) ((a) < (b) ? (a) : (b))
@@ -2883,7 +2883,7 @@ int LibRaw::dcraw_process(void)
     
     if(!libraw_internal_data.output_data.histogram)
       {
-        libraw_internal_data.output_data.histogram = (int (*)[LIBRAW_HISTOGRAM_SIZE]) malloc(sizeof(*libraw_internal_data.output_data.histogram)*4);
+        libraw_internal_data.output_data.histogram = (int (*)[LIBRAW_HISTOGRAM_SIZE]) memory_alloc(sizeof(*libraw_internal_data.output_data.histogram)*4);
         merror(libraw_internal_data.output_data.histogram,"LibRaw::dcraw_process()");
       }
 #ifndef NO_LCMS
@@ -3712,7 +3712,7 @@ void LibRaw::x3f_thumb_loader()
   imgdata.thumbnail.tcolors = 3;
   if(imgdata.thumbnail.tformat == LIBRAW_THUMBNAIL_JPEG)
     {
-      imgdata.thumbnail.thumb = (char*)malloc(ID->data_size);
+      imgdata.thumbnail.thumb = (char*)memory_alloc(ID->data_size);
       merror(imgdata.thumbnail.thumb,"LibRaw::x3f_thumb_loader()");
       memmove(imgdata.thumbnail.thumb,ID->data,ID->data_size);
       imgdata.thumbnail.tlength = ID->data_size;
@@ -3720,7 +3720,7 @@ void LibRaw::x3f_thumb_loader()
   else if(imgdata.thumbnail.tformat == LIBRAW_THUMBNAIL_BITMAP)
     {
       imgdata.thumbnail.tlength = ID->columns * ID->rows * 3;
-      imgdata.thumbnail.thumb = (char*)malloc(ID->columns * ID->rows * 3);
+      imgdata.thumbnail.thumb = (char*)memory_alloc(ID->columns * ID->rows * 3);
       merror(imgdata.thumbnail.thumb,"LibRaw::x3f_thumb_loader()");
       char *src0 = (char*)ID->data; 
       for(int row = 0; row < ID->rows;row++)

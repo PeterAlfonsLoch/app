@@ -210,8 +210,8 @@ namespace file
       typename type_map::pair * p = this->PGetFirstAssoc();
       for(index index = 0; index < count; index++)
       {
-         ostream << p->m_element1;
-         ostream << p->m_element2;
+         ostream << p->first;
+         ostream << p->second;
          p = this->PGetNextAssoc(p);
       }
    }

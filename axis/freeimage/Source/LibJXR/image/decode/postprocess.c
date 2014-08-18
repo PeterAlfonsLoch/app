@@ -61,7 +61,7 @@ Int initPostProc(struct tagPostProcInfo * strPostProcInfo[MAX_CHANNELS][2], size
             if(b32bit) // integer overlow/underflow check for 32-bit system
                 if((((mbWidth + 2) >> 16) * sizeof(struct tagPostProcInfo)) & 0xffff0000)
                     return ICERR_ERROR;
-            strPostProcInfo[j][i] = (struct tagPostProcInfo *)malloc((mbWidth + 2) * sizeof(struct tagPostProcInfo));
+            strPostProcInfo[j][i] = (struct tagPostProcInfo *)memory_alloc((mbWidth + 2) * sizeof(struct tagPostProcInfo));
             assert(strPostProcInfo[j][i] != NULL);
             if(strPostProcInfo[j][i] == NULL){
                 return ICERR_ERROR;
@@ -91,7 +91,7 @@ Void termPostProc(struct tagPostProcInfo * strPostProcInfo[MAX_CHANNELS][2], siz
     for(j = 0; j < iNumChannels; j ++){
         for(i = 0; i < 2; i ++){
             if(strPostProcInfo[j][i] != NULL){
-                free(strPostProcInfo[j][i] - 1);
+                memory_free(strPostProcInfo[j][i] - 1);
             }
         }
     }

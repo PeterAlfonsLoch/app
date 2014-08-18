@@ -324,7 +324,7 @@ static int InitYUVRescaler(const VP8Io* const io, WebPDecParams* const p) {
   if (has_alpha) {
     tmp_size += work_size;
   }
-  p->memory = calloc(1, tmp_size * sizeof(*work));
+  p->memory = memory_calloc(1, tmp_size * sizeof(*work));
   if (p->memory == NULL) {
     return 0;   // memory error
   }
@@ -500,7 +500,7 @@ static int InitRGBRescaler(const VP8Io* const io, WebPDecParams* const p) {
     tmp_size1 += work_size;
     tmp_size2 += out_width;
   }
-  p->memory = calloc(1, tmp_size1 * sizeof(*work) + tmp_size2 * sizeof(*tmp));
+  p->memory = memory_calloc(1, tmp_size1 * sizeof(*work) + tmp_size2 * sizeof(*tmp));
   if (p->memory == NULL) {
     return 0;   // memory error
   }
@@ -564,7 +564,7 @@ static int CustomSetup(VP8Io* io) {
       if (io->fancy_upsampling) {
 #ifdef FANCY_UPSAMPLING
         const int uv_width = (io->mb_w + 1) >> 1;
-        p->memory = malloc(io->mb_w + 2 * uv_width);
+        p->memory = memory_alloc(io->mb_w + 2 * uv_width);
         if (p->memory == NULL) {
           return 0;   // memory error.
         }
@@ -620,7 +620,7 @@ static int CustomPut(const VP8Io* io) {
 
 static void CustomTeardown(const VP8Io* io) {
   WebPDecParams* const p = (WebPDecParams*)io->opaque;
-  free(p->memory);
+  memory_free(p->memory);
   p->memory = NULL;
 }
 

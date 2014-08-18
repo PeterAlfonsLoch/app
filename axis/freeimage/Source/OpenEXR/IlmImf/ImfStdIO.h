@@ -44,8 +44,8 @@
 //-----------------------------------------------------------------------------
 
 #include <ImfIO.h>
-#include <fstream>
-#include <sstream>
+//#include <fstream>
+//#include <sstream>
 
 namespace Imf {
 

@@ -98,7 +98,7 @@ ToneMappingReinhard05(FIBITMAP *dib, FIBITMAP *Y, float f, float m, float a, flo
 	float max_color = -1e6F;
 	float min_color = +1e6F;
 
-	// tone map image
+	// tone std::map image
 
 	bits  = (BYTE*)FreeImage_GetBits(dib);
 	Ybits = (BYTE*)FreeImage_GetBits(Y);

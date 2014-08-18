@@ -55,7 +55,7 @@ public:
          return m_ppair;
       }
 
-      const pair * operator -> () const
+      pair * operator -> () const
       {
          return m_ppair;
       }
@@ -65,7 +65,7 @@ public:
          return *m_ppair;
       }
 
-      const pair & operator * () const
+      pair & operator * () const
       {
          return *m_ppair;
       }
@@ -311,7 +311,7 @@ public:
       pair * ppair = NULL;
       while(map.next(ppair) != NULL)
       {
-         set_at(ppair->m_element1, ppair->m_element2);
+         set_at(ppair->first, ppair->second);
       }
    }
 
@@ -455,7 +455,7 @@ map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::map(pair pairs[], int32_t i
    construct();
    for(int32_t i = 0; i < iCount; i++)
    {
-      set_at(pairs[i].m_element1, pairs[i].m_element2);
+      set_at(pairs[i].first, pairs[i].second);
    }
 }
 
@@ -632,7 +632,7 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::assoc *
    for (passoc = m_ppassocHash[nHashBucket]; passoc != NULL; passoc = passoc->m_pnextHash)
    {
 
-      if(EQUALS::CompareElements(&passoc->m_element1, key))
+      if(EQUALS::CompareElements(&passoc->first, key))
          return passoc;
 
    }
@@ -653,7 +653,7 @@ bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::Lookup(ARG_KEY key, VA
    if (passoc == NULL)
       return FALSE;  // not in map
 
-   rValue = passoc->m_element2;
+   rValue = passoc->second;
 
    return TRUE;
 
@@ -697,7 +697,7 @@ VALUE * map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::pget(ARG_KEY key)
 {
    pair * p = PLookup(key);
    if(p)
-      return &p->m_element2;
+      return &p->second;
    else
       return NULL;
 }
@@ -735,7 +735,7 @@ VALUE& map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::operator[](ARG_KEY k
 
    }
 
-   return passoc->m_element2;  // return new reference
+   return passoc->second;  // return new reference
 
 }
 
@@ -753,7 +753,7 @@ bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::remove_key(ARG_KEY key
    assoc * passoc = m_ppassocHash[nHashValue%m_nHashTableSize];
    for(; passoc != NULL; passoc = passoc->m_pnextHash)
    {
-      if(EQUALS::CompareElements(&passoc->m_element1, key))
+      if(EQUALS::CompareElements(&passoc->first, key))
       {
          remove_assoc(passoc);
          return true;
@@ -812,7 +812,7 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, c
 void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::erase(iterator it)
 {
 
-   remove_key(it->m_element1);
+   remove_key(it->first);
 
 }
 
@@ -836,8 +836,8 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::get_next_assoc(POSITIO
    rNextPosition = (POSITION) passocRet->m_pnext;
 
    // fill in return data
-   rKey = passocRet->m_element1;
-   rValue = passocRet->m_element2;
+   rKey = passocRet->first;
+   rValue = passocRet->second;
 }
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
@@ -888,7 +888,7 @@ VALUE map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS> ::
    if(ppair == NULL)
       return valueDefault;
    else
-      return ppair->m_element2;
+      return ppair->second;
 }
 
 /*
@@ -956,9 +956,9 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::dump(dump_context & du
       {
          ppair = PGetNextAssoc(ppair);
          dumpcontext << "\n\t[";
-         dump_elements<KEY>(dumpcontext, &ppair->m_element1, 1);
+         dump_elements<KEY>(dumpcontext, &ppair->first, 1);
          dumpcontext << "] = ";
-         dump_elements<VALUE>(dumpcontext, &ppair->m_element2, 1);
+         dump_elements<VALUE>(dumpcontext, &ppair->second, 1);
       }
    }
 
@@ -974,14 +974,6 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::assert_valid() const
    ASSERT(m_nCount == 0 || m_ppassocHash != NULL);
    // non-is_empty map should have hash table
 }
-
-template < class KEY, class VALUE >
-class std_map :
-   virtual public map < KEY, const KEY & , VALUE, const VALUE & >
-{
-public:
-
-};
 
 
 

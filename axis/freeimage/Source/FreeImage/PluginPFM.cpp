@@ -250,7 +250,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 		if(image_type == FIT_RGBF) {
 			const unsigned lineWidth = 3 * width;
-			lineBuffer = (float*)malloc(lineWidth * sizeof(float));
+			lineBuffer = (float*)memory_alloc(lineWidth * sizeof(float));
 			if(!lineBuffer) {
 				throw FI_MSG_ERROR_MEMORY;
 			}
@@ -279,12 +279,12 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				}
 			}
 
-			free(lineBuffer);
+			memory_free(lineBuffer);
 			lineBuffer = NULL;
 
 		} else if(image_type == FIT_FLOAT) {
 			const unsigned lineWidth = width;
-			lineBuffer = (float*)malloc(lineWidth * sizeof(float));
+			lineBuffer = (float*)memory_alloc(lineWidth * sizeof(float));
 			if(!lineBuffer) {
 				throw FI_MSG_ERROR_MEMORY;
 			}
@@ -309,14 +309,14 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				}
 			}
 
-			free(lineBuffer);
+			memory_free(lineBuffer);
 			lineBuffer = NULL;
 		}
 		
 		return dib;
 
 	} catch (const char *text)  {
-		if(lineBuffer) free(lineBuffer);
+		if(lineBuffer) memory_free(lineBuffer);
 		if(dib) FreeImage_Unload(dib);
 
 		if(NULL != text) {

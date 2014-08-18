@@ -45,7 +45,7 @@ const PKIID IID_PKImageWmpDecode = 201;
 //================================================================
 ERR PKAlloc(void** ppv, size_t cb)
 {
-    *ppv = calloc(1, cb);
+    *ppv = memory_calloc(1, cb);
     return *ppv ? WMP_errSuccess : WMP_errOutOfMemory;
 }
 
@@ -54,7 +54,7 @@ ERR PKFree(void** ppv)
 {
     if (ppv)
     {
-        free(*ppv);
+        memory_free(*ppv);
         *ppv = NULL;
     }
 
@@ -69,7 +69,7 @@ ERR PKAllocAligned(void** ppv, size_t cb, size_t iAlign)
     const size_t c_cbBlockSize = cb + sizeof(void*) + iAlign - 1;
 
     *ppv = NULL;
-    pOrigPtr = calloc(1, c_cbBlockSize);
+    pOrigPtr = memory_calloc(1, c_cbBlockSize);
     if (NULL == pOrigPtr)
         return WMP_errOutOfMemory;
 
@@ -95,7 +95,7 @@ ERR PKFreeAligned(void** ppv)
     {
         U8 **ppOrigPtr = (U8**)((U8*)(*ppv) - sizeof(void*));
         assert(*ppOrigPtr <= (U8*)ppOrigPtr); // Something's wrong if pOrigPtr points forward
-        free(*ppOrigPtr);
+        memory_free(*ppOrigPtr);
         *ppv = NULL;
     }
     return WMP_errSuccess;

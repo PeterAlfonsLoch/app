@@ -1,7 +1,7 @@
 /* 
   Copyright 2008-2013 LibRaw LLC (info@libraw.org)
 
-LibRaw is free software; you can redistribute it and/or modify
+LibRaw is memory_free software; you can redistribute it and/or modify
 it under the terms of the one of three licenses as you choose:
 
 1. GNU LESSER GENERAL PUBLIC LICENSE version 2.1
@@ -399,7 +399,7 @@ ushort * CLASS make_decoder_ref (const uchar **source)
 
   count = (*source += 16) - 17;
   for (max=16; max && !count[max]; max--);
-  huff = (ushort *) calloc (1 + (1 << max), sizeof *huff);
+  huff = (ushort *) memory_calloc (1 + (1 << max), sizeof *huff);
   merror (huff, "make_decoder()");
   huff[0] = max;
   for (h=len=1; len <= max; len++)
@@ -558,11 +558,11 @@ void CLASS canon_load_raw()
   }
 #ifdef LIBRAW_LIBRARY_BUILD
   } catch (...) {
-    FORC(2) free (huff[c]);
+    FORC(2) memory_free (huff[c]);
     throw;
   }
 #endif
-  FORC(2) free (huff[c]);
+  FORC(2) memory_free (huff[c]);
 }
 
 int CLASS ljpeg_start (struct jhead *jh, int info_only)
@@ -594,7 +594,7 @@ int CLASS ljpeg_start (struct jhead *jh, int info_only)
       case 0xffc4:
 	if (info_only) break;
 	for (dp = data; dp < data+len && (c = *dp++) < 4; )
-	  jh->free[c] = jh->huff[c] = make_decoder_ref (&dp);
+	  jh->memory_free[c] = jh->huff[c] = make_decoder_ref (&dp);
 	break;
       case 0xffda:
 	jh->psv = data[1+data[0]*2];
@@ -611,7 +611,7 @@ int CLASS ljpeg_start (struct jhead *jh, int info_only)
     FORC(4)        jh->huff[2+c] = jh->huff[1];
     FORC(jh->sraw) jh->huff[1+c] = jh->huff[0];
   }
-  jh->row = (ushort *) calloc (jh->wide*jh->clrs, 4);
+  jh->row = (ushort *) memory_calloc (jh->wide*jh->clrs, 4);
   merror (jh->row, "ljpeg_start()");
   return zero_after_ff = 1;
 }
@@ -619,8 +619,8 @@ int CLASS ljpeg_start (struct jhead *jh, int info_only)
 void CLASS ljpeg_end (struct jhead *jh)
 {
   int c;
-  FORC4 if (jh->free[c]) free (jh->free[c]);
-  free (jh->row);
+  FORC4 if (jh->memory_free[c]) memory_free (jh->memory_free[c]);
+  memory_free (jh->row);
 }
 
 int CLASS ljpeg_diff (ushort *huff)
@@ -943,7 +943,7 @@ void CLASS packed_dng_load_raw()
   ushort *pixel, *rp;
   int row, col;
 
-  pixel = (ushort *) calloc (raw_width, tiff_samples*sizeof *pixel);
+  pixel = (ushort *) memory_calloc (raw_width, tiff_samples*sizeof *pixel);
   merror (pixel, "packed_dng_load_raw()");
 #ifdef LIBRAW_LIBRARY_BUILD
   try {
@@ -964,11 +964,11 @@ void CLASS packed_dng_load_raw()
   }
 #ifdef LIBRAW_LIBRARY_BUILD
   } catch (...) {
-    free (pixel);
+    memory_free (pixel);
     throw ;
   }
 #endif
-  free (pixel);
+  memory_free (pixel);
 }
 
 void CLASS pentax_load_raw()
@@ -1054,7 +1054,7 @@ void CLASS nikon_load_raw()
     checkCancel();
 #endif
     if (split && row == split) {
-      free (huff);
+      memory_free (huff);
       huff = make_decoder (nikon_tree[tree+1]);
       max += (min = 16) << 1;
     }
@@ -1073,11 +1073,11 @@ void CLASS nikon_load_raw()
   }
 #ifdef LIBRAW_LIBRARY_BUILD
   } catch (...) {
-    free (huff);
+    memory_free (huff);
     throw;
   }
 #endif
-  free (huff);
+  memory_free (huff);
 }
 
 /*
@@ -1157,12 +1157,12 @@ void CLASS ppm_thumb()
 {
   char *thumb;
   thumb_length = thumb_width*thumb_height*3;
-  thumb = (char *) malloc (thumb_length);
+  thumb = (char *) memory_alloc (thumb_length);
   merror (thumb, "ppm_thumb()");
   fprintf (ofp, "P6\n%d %d\n255\n", thumb_width, thumb_height);
   fread  (thumb, 1, thumb_length, ifp);
   fwrite (thumb, 1, thumb_length, ofp);
-  free (thumb);
+  memory_free (thumb);
 }
 
 void CLASS ppm16_thumb()
@@ -1170,14 +1170,14 @@ void CLASS ppm16_thumb()
   int i;
   char *thumb;
   thumb_length = thumb_width*thumb_height*3;
-  thumb = (char *) calloc (thumb_length, 2);
+  thumb = (char *) memory_calloc (thumb_length, 2);
   merror (thumb, "ppm16_thumb()");
   read_shorts ((ushort *) thumb, thumb_length);
   for (i=0; i < thumb_length; i++)
     thumb[i] = ((ushort *) thumb)[i] >> 8;
   fprintf (ofp, "P6\n%d %d\n255\n", thumb_width, thumb_height);
   fwrite (thumb, 1, thumb_length, ofp);
-  free (thumb);
+  memory_free (thumb);
 }
 
 void CLASS layer_thumb()
@@ -1187,14 +1187,14 @@ void CLASS layer_thumb()
 
   colors = thumb_misc >> 5 & 7;
   thumb_length = thumb_width*thumb_height;
-  thumb = (char *) calloc (colors, thumb_length);
+  thumb = (char *) memory_calloc (colors, thumb_length);
   merror (thumb, "layer_thumb()");
   fprintf (ofp, "P%d\n%d %d\n255\n",
 	5 + (colors >> 1), thumb_width, thumb_height);
   fread (thumb, thumb_length, colors, ifp);
   for (i=0; i < thumb_length; i++)
     FORCC putc (thumb[i+thumb_length*(map[thumb_misc >> 8][c]-'0')], ofp);
-  free (thumb);
+  memory_free (thumb);
 }
 
 void CLASS rollei_thumb()
@@ -1203,7 +1203,7 @@ void CLASS rollei_thumb()
   ushort *thumb;
 
   thumb_length = thumb_width * thumb_height;
-  thumb = (ushort *) calloc (thumb_length, 2);
+  thumb = (ushort *) memory_calloc (thumb_length, 2);
   merror (thumb, "rollei_thumb()");
   fprintf (ofp, "P6\n%d %d\n255\n", thumb_width, thumb_height);
   read_shorts (thumb, thumb_length);
@@ -1212,7 +1212,7 @@ void CLASS rollei_thumb()
     putc (thumb[i] >> 5  << 2, ofp);
     putc (thumb[i] >> 11 << 3, ofp);
   }
-  free (thumb);
+  memory_free (thumb);
 }
 
 void CLASS rollei_load_raw()
@@ -1253,7 +1253,7 @@ void CLASS phase_one_flat_field (int is_float, int nc)
 
   read_shorts (head, 8);
   wide = head[2] / head[4];
-  mrow = (float *) calloc (nc*wide, sizeof *mrow);
+  mrow = (float *) memory_calloc (nc*wide, sizeof *mrow);
   merror (mrow, "phase_one_flat_field()");
   for (y=0; y < head[3] / head[5]; y++) {
     for (x=0; x < wide; x++)
@@ -1286,7 +1286,7 @@ void CLASS phase_one_flat_field (int is_float, int nc)
 	  mrow[c*wide+x] += mrow[(c+1)*wide+x];
     }
   }
-  free (mrow);
+  memory_free (mrow);
 }
 
 void CLASS phase_one_correct()
@@ -1383,7 +1383,7 @@ void CLASS phase_one_correct()
   if (off_412) {
     fseek (ifp, off_412, SEEK_SET);
     for (i=0; i < 9; i++) head[i] = get4() & 0x7fff;
-    yval[0] = (float *) calloc (head[1]*head[3] + head[2]*head[4], 6);
+    yval[0] = (float *) memory_calloc (head[1]*head[3] + head[2]*head[4], 6);
     merror (yval[0], "phase_one_correct()");
     yval[1] = (float  *) (yval[0] + head[1]*head[3]);
     xval[0] = (ushort *) (yval[1] + head[2]*head[4]);
@@ -1410,7 +1410,7 @@ void CLASS phase_one_correct()
 	i = ((mult[0] * (1-cfrac) + mult[1] * cfrac) * row + num) * 2;
 	RAW(row,col) = LIM(i,0,65535);
       }
-    free (yval[0]);
+    memory_free (yval[0]);
   }
 }
 
@@ -1474,7 +1474,7 @@ void CLASS phase_one_load_raw_c()
   ushort *pixel;
   short (*t_black)[2];
 
-  pixel = (ushort *) calloc (raw_width + raw_height*4, 2);
+  pixel = (ushort *) memory_calloc (raw_width + raw_height*4, 2);
   merror (pixel, "phase_one_load_raw_c()");
   offset = (int *) (pixel + raw_width);
   fseek (ifp, strip_offset, SEEK_SET);
@@ -1486,7 +1486,7 @@ void CLASS phase_one_load_raw_c()
       {
           read_shorts ((ushort *) t_black[0], raw_height*2);
 #ifdef LIBRAW_LIBRARY_BUILD
-          imgdata.rawdata.ph1_black = (short (*)[2])calloc(raw_height*2,sizeof(short));
+          imgdata.rawdata.ph1_black = (short (*)[2])memory_calloc(raw_height*2,sizeof(short));
           merror (imgdata.rawdata.ph1_black, "phase_one_load_raw_c()");
           memmove(imgdata.rawdata.ph1_black,(short *) t_black[0],raw_height*2*sizeof(short));
 #endif
@@ -1530,11 +1530,11 @@ void CLASS phase_one_load_raw_c()
   }
 #ifdef LIBRAW_LIBRARY_BUILD
   } catch(...) {
-    free (pixel);
+    memory_free (pixel);
     throw;
   }
 #endif
-  free (pixel);
+  memory_free (pixel);
   maximum = 0xfffc - ph1.t_black;
 }
 
@@ -1581,7 +1581,7 @@ void CLASS leaf_hdr_load_raw()
   unsigned tile=0, r, c, row, col;
 
   if (!filters) {
-    pixel = (ushort *) calloc (raw_width, sizeof *pixel);
+    pixel = (ushort *) memory_calloc (raw_width, sizeof *pixel);
     merror (pixel, "leaf_hdr_load_raw()");
   }
 #ifdef LIBRAW_LIBRARY_BUILD
@@ -1605,14 +1605,14 @@ void CLASS leaf_hdr_load_raw()
     }
 #ifdef LIBRAW_LIBRARY_BUILD
   } catch (...) {
-    if(!filters) free(pixel);
+    if(!filters) memory_free(pixel);
     throw;
   }
 #endif
   if (!filters) {
     maximum = 0xffff;
     raw_color = 1;
-    free (pixel);
+    memory_free (pixel);
   }
 }
 
@@ -1648,14 +1648,14 @@ void CLASS sinar_4shot_load_raw()
     return;
   }
 #ifndef LIBRAW_LIBRARY_BUILD
-  free (raw_image);
+  memory_free (raw_image);
   raw_image = 0;
-  free (image);
+  memory_free (image);
   image = (ushort (*)[4])
-	calloc ((iheight=height), (iwidth=width)*sizeof *image);
+	memory_calloc ((iheight=height), (iwidth=width)*sizeof *image);
   merror (image, "sinar_4shot_load_raw()");
 #endif
-  pixel = (ushort *) calloc (raw_width, sizeof *pixel);
+  pixel = (ushort *) memory_calloc (raw_width, sizeof *pixel);
   merror (pixel, "sinar_4shot_load_raw()");
 #ifdef LIBRAW_LIBRARY_BUILD
   try {
@@ -1677,11 +1677,11 @@ void CLASS sinar_4shot_load_raw()
   }
 #ifdef LIBRAW_LIBRARY_BUILD
   } catch(...) {
-    free (pixel);
+    memory_free (pixel);
     throw;
   }
 #endif
-  free (pixel);
+  memory_free (pixel);
   shrink = filters = 0;
 }
 
@@ -1748,7 +1748,7 @@ void CLASS nokia_load_raw()
 
   rev = 3 * (order == 0x4949);
   dwide = (raw_width * 5 + 1) / 4;
-  data = (uchar *) malloc (dwide*2);
+  data = (uchar *) memory_alloc (dwide*2);
   merror (data, "nokia_load_raw()");
 #ifdef LIBRAW_LIBRARY_BUILD
   try {
@@ -1764,11 +1764,11 @@ void CLASS nokia_load_raw()
   }
 #ifdef LIBRAW_LIBRARY_BUILD
   } catch (...){
-    free (data);
+    memory_free (data);
     throw;
   }
 #endif
-  free (data);
+  memory_free (data);
   maximum = 0x3ff;
 }
 
@@ -2320,7 +2320,7 @@ void CLASS eight_bit_load_raw()
   uchar *pixel;
   unsigned row, col;
 
-  pixel = (uchar *) calloc (raw_width, sizeof *pixel);
+  pixel = (uchar *) memory_calloc (raw_width, sizeof *pixel);
   merror (pixel, "eight_bit_load_raw()");
 #ifdef LIBRAW_LIBRARY_BUILD
   try {
@@ -2335,11 +2335,11 @@ void CLASS eight_bit_load_raw()
   }
 #ifdef LIBRAW_LIBRARY_BUILD
   } catch(...) {
-    free (pixel);
+    memory_free (pixel);
     throw;
   }
 #endif
-  free (pixel);
+  memory_free (pixel);
   maximum = curve[0xff];
 }
 
@@ -2348,7 +2348,7 @@ void CLASS kodak_yrgb_load_raw()
   uchar *pixel;
   int row, col, y, cb, cr, rgb[3], c;
 
-  pixel = (uchar *) calloc (raw_width, 3*sizeof *pixel);
+  pixel = (uchar *) memory_calloc (raw_width, 3*sizeof *pixel);
   merror (pixel, "kodak_yrgb_load_raw()");
 #ifdef LIBRAW_LIBRARY_BUILD
   try {
@@ -2371,11 +2371,11 @@ void CLASS kodak_yrgb_load_raw()
   }
 #ifdef LIBRAW_LIBRARY_BUILD
   } catch(...) {
-    free (pixel);
+    memory_free (pixel);
     throw;
   }
 #endif
-  free (pixel);
+  memory_free (pixel);
   maximum = curve[0xff];
 }
 
@@ -2390,7 +2390,7 @@ void CLASS kodak_262_load_raw()
 
   FORC(2) huff[c] = make_decoder (kodak_tree[c]);
   ns = (raw_height+63) >> 5;
-  pixel = (uchar *) malloc (raw_width*32 + ns*4);
+  pixel = (uchar *) memory_alloc (raw_width*32 + ns*4);
   merror (pixel, "kodak_262_load_raw()");
   strip = (int *) (pixel + raw_width*32);
   order = 0x4d4d;
@@ -2424,12 +2424,12 @@ void CLASS kodak_262_load_raw()
   }
 #ifdef LIBRAW_LIBRARY_BUILD
   } catch(...) {
-    free (pixel);
+    memory_free (pixel);
     throw;
   }
 #endif
-  free (pixel);
-  FORC(2) free (huff[c]);
+  memory_free (pixel);
+  FORC(2) memory_free (huff[c]);
 }
 
 int CLASS kodak_65000_decode (short *out, int bsize)
@@ -2539,7 +2539,7 @@ void CLASS kodak_rgb_load_raw()
   ushort *ip=image[0];
 
 #ifndef LIBRAW_LIBRARY_BUILD
-  if (raw_image) free (raw_image);
+  if (raw_image) memory_free (raw_image);
   raw_image = 0;
 #endif
   for (row=0; row < height; row++)
@@ -2663,7 +2663,7 @@ void CLASS sony_arw2_load_raw()
   ushort pix[16];
   int row, col, val, max, min, imax, imin, sh, bit, i;
 
-  data = (uchar *) malloc (raw_width);
+  data = (uchar *) memory_alloc (raw_width);
   merror (data, "sony_arw2_load_raw()");
 #ifdef LIBRAW_LIBRARY_BUILD
   try {
@@ -2707,11 +2707,11 @@ void CLASS sony_arw2_load_raw()
   }
 #ifdef LIBRAW_LIBRARY_BUILD
   } catch(...) {
-    free (data);
+    memory_free (data);
     throw;
   }
 #endif
-  free (data);
+  memory_free (data);
 #ifdef LIBRAW_LIBRARY_BUILD
   if(imgdata.params.sony_arw2_hack)
   {
@@ -2918,7 +2918,7 @@ void CLASS redcine_load_raw()
 #endif
   jmat = jas_matrix_create (height/2, width/2);
   merror (jmat, "redcine_load_raw()");
-  img = (ushort *) calloc ((height+2), (width+2)*2);
+  img = (ushort *) memory_calloc ((height+2), (width+2)*2);
   merror (img, "redcine_load_raw()");
 #ifdef LIBRAW_LIBRARY_BUILD
   bool fastexitflag = false;
@@ -2966,7 +2966,7 @@ void CLASS redcine_load_raw()
     fastexitflag=true;
   }
 #endif
-  free (img);
+  memory_free (img);
   jas_matrix_destroy (jmat);
   jas_image_destroy (jimg);
   jas_stream_close (in);
@@ -3276,7 +3276,7 @@ void CLASS wavelet_denoise()
   black <<= scale;
   FORC4 cblack[c] <<= scale;
   if ((size = iheight*iwidth) < 0x15550000)
-    fimg = (float *) malloc ((size*3 + iheight + iwidth) * sizeof *fimg);
+    fimg = (float *) memory_alloc ((size*3 + iheight + iwidth) * sizeof *fimg);
   merror (fimg, "wavelet_denoise()");
   temp = fimg + size*3;
   if ((nc = colors) == 3 && filters) nc++;
@@ -3336,7 +3336,7 @@ void CLASS wavelet_denoise()
       }
     }
   }
-  free (fimg);
+  memory_free (fimg);
 }
 #else /* LIBRAW_USE_OPENMP */
 void CLASS wavelet_denoise()
@@ -3356,7 +3356,7 @@ void CLASS wavelet_denoise()
   black <<= scale;
   FORC4 cblack[c] <<= scale;
   if ((size = iheight*iwidth) < 0x15550000)
-    fimg = (float *) malloc ((size*3 + iheight + iwidth) * sizeof *fimg);
+    fimg = (float *) memory_alloc ((size*3 + iheight + iwidth) * sizeof *fimg);
   merror (fimg, "wavelet_denoise()");
   temp = fimg + size*3;
   if ((nc = colors) == 3 && filters) nc++;
@@ -3364,7 +3364,7 @@ void CLASS wavelet_denoise()
 #pragma omp parallel default(shared) private(i,col,row,thold,lev,lpass,hpass,temp,c) firstprivate(scale,size) 
 #endif
   {
-      temp = (float*)malloc( (iheight + iwidth) * sizeof *fimg);
+      temp = (float*)memory_alloc( (iheight + iwidth) * sizeof *fimg);
     FORC(nc) {			/* denoise R,G1,B,G3 individually */
 #ifdef LIBRAW_LIBRARY_BUILD
 #pragma omp for
@@ -3408,7 +3408,7 @@ void CLASS wavelet_denoise()
       for (i=0; i < size; i++)
 	image[i][c] = CLIP(SQR(fimg[i]+fimg[lpass+i])/0x10000);
     }
-    free(temp);
+    memory_free(temp);
   } /* end omp parallel */
 /* the following loops are hard to parallize, no idea yes,
  * problem is wlast which is carrying dependency
@@ -3442,7 +3442,7 @@ void CLASS wavelet_denoise()
       }
     }
   }
-  free (fimg);
+  memory_free (fimg);
 }
 
 #endif
@@ -3464,7 +3464,7 @@ void CLASS green_matching()
   if(FC(oj, oi) != 3) oi++;
   if(FC(oj, oi) != 3) oj--;
 
-  img = (ushort (*)[4]) calloc (height*width, sizeof *image);
+  img = (ushort (*)[4]) memory_calloc (height*width, sizeof *image);
   merror (img, "green_matching()");
   memcpy(img,image,height*width*sizeof *image);
 
@@ -3490,7 +3490,7 @@ void CLASS green_matching()
         image[j*width+i][3]=f>0xffff?0xffff:f;
       }
     }
-  free(img);
+  memory_free(img);
 }
 
 void CLASS scale_colors()
@@ -3597,7 +3597,7 @@ skip_block: ;
 #endif
     for (c=0; c < 4; c+=2) {
       if (aber[c] == 1) continue;
-      img = (ushort *) malloc (size * sizeof *img);
+      img = (ushort *) memory_alloc (size * sizeof *img);
       merror (img, "scale_colors()");
       for (i=0; i < size; i++)
 	img[i] = image[i][c];
@@ -3615,7 +3615,7 @@ skip_block: ;
 	    (pix[iwidth]*(1-fc) + pix[iwidth+1]*fc) * fr;
 	}
       }
-      free(img);
+      memory_free(img);
     }
   }
 #ifdef LIBRAW_LIBRARY_BUILD
@@ -3647,14 +3647,14 @@ void CLASS pre_interpolate()
 	  }
       }
     } else {
-      img = (ushort (*)[4]) calloc (height, width*sizeof *img);
+      img = (ushort (*)[4]) memory_calloc (height, width*sizeof *img);
       merror (img, "pre_interpolate()");
       for (row=0; row < height; row++)
 	for (col=0; col < width; col++) {
 	  c = fcol(row,col);
 	  img[row*width+col][c] = image[(row >> 1)*iwidth+(col >> 1)][c];
 	}
-      free (image);
+      memory_free (image);
       image = img;
       shrink = 0;
     }
@@ -3812,7 +3812,7 @@ void CLASS vng_interpolate()
 
   if (filters == 1) prow = pcol = 16;
   if (filters == 9) prow = pcol =  6;
-  ip = (int *) calloc (prow*pcol, 1280);
+  ip = (int *) memory_calloc (prow*pcol, 1280);
   merror (ip, "vng_interpolate()");
   for (row=0; row < prow; row++)		/* Precalculate for VNG */
     for (col=0; col < pcol; col++) {
@@ -3844,7 +3844,7 @@ void CLASS vng_interpolate()
 	  *ip++ = 0;
       }
     }
-  brow[4] = (ushort (*)[4]) calloc (width*3, sizeof **brow);
+  brow[4] = (ushort (*)[4]) memory_calloc (width*3, sizeof **brow);
   merror (brow[4], "vng_interpolate()");
   for (row=0; row < 3; row++)
     brow[row] = brow[4] + row*width;
@@ -3902,8 +3902,8 @@ void CLASS vng_interpolate()
   }
   memcpy (image[(row-2)*width+2], brow[0]+2, (width-4)*sizeof *image);
   memcpy (image[(row-1)*width+2], brow[1]+2, (width-4)*sizeof *image);
-  free (brow[4]);
-  free (code[0][0]);
+  memory_free (brow[4]);
+  memory_free (code[0][0]);
 }
 
 /*
@@ -4052,7 +4052,7 @@ void CLASS xtrans_interpolate (int passes)
   cielab (0,0);
   border_interpolate(6);
   ndir = 4 << (passes > 1);
-  buffer = (char *) malloc (TS*TS*(ndir*11+6));
+  buffer = (char *) memory_alloc (TS*TS*(ndir*11+6));
   merror (buffer, "xtrans_interpolate()");
   rgb  = (ushort(*)[TS][TS][3]) buffer;
   lab  = (short (*)    [TS][3])(buffer + TS*TS*(ndir*6));
@@ -4249,7 +4249,7 @@ void CLASS xtrans_interpolate (int passes)
 	  FORC3 image[(row+top)*width+col+left][c] = avg[c]/avg[3];
 	}
     }
-  free(buffer);
+  memory_free(buffer);
 }
 #undef fcol
 
@@ -4460,7 +4460,7 @@ void CLASS ahd_interpolate()
 #endif
 #endif
   {
-    buffer = (char *) malloc (26*TS*TS);		/* 1664 kB */
+    buffer = (char *) memory_alloc (26*TS*TS);		/* 1664 kB */
     merror (buffer, "ahd_interpolate()");
     rgb  = (ushort(*)[TS][TS][3]) buffer;
     lab  = (short (*)[TS][TS][3])(buffer + 12*TS*TS);
@@ -4489,7 +4489,7 @@ void CLASS ahd_interpolate()
             ahd_interpolate_combine_homogeneous_pixels(top, left, rgb, homo);
       }
     }
-    free (buffer);
+    memory_free (buffer);
   }
 #ifdef LIBRAW_LIBRARY_BUILD 
   if(terminate_flag)
@@ -4513,7 +4513,7 @@ void CLASS ahd_interpolate()
 
   cielab (0,0);
   border_interpolate(5);
-  buffer = (char *) malloc (26*TS*TS);
+  buffer = (char *) memory_alloc (26*TS*TS);
   merror (buffer, "ahd_interpolate()");
   rgb  = (ushort(*)[TS][TS][3]) buffer;
   lab  = (short (*)[TS][TS][3])(buffer + 12*TS*TS);
@@ -4601,7 +4601,7 @@ void CLASS ahd_interpolate()
 	}
       }
     }
-  free (buffer);
+  memory_free (buffer);
 }
 #endif
 #undef TS
@@ -4704,7 +4704,7 @@ void CLASS recover_highlights()
     if (pre_mul[kc] < pre_mul[c]) kc = c;
   high = height / SCALE;
   wide =  width / SCALE;
-  map = (float *) calloc (high, wide*sizeof *map);
+  map = (float *) memory_calloc (high, wide*sizeof *map);
   merror (map, "recover_highlights()");
   FORCC if (c != kc) {
 #ifdef LIBRAW_LIBRARY_BUILD
@@ -4763,7 +4763,7 @@ void CLASS recover_highlights()
 	  }
       }
   }
-  free (map);
+  memory_free (map);
 }
 #undef SCALE
 
@@ -5691,12 +5691,12 @@ int CLASS parse_tiff_ifd (int base)
 	break;
       case 50454:			/* Sinar tag */
       case 50455:
-	if (!(cbuf = (char *) malloc(len))) break;
+	if (!(cbuf = (char *) memory_alloc(len))) break;
 	fread (cbuf, 1, len, ifp);
 	for (cp = cbuf-1; cp && cp < cbuf+len; cp = strchr(cp,'\n'))
 	  if (!strncmp (++cp,"Neutral ",8))
 	    sscanf (cp+8, "%f %f %f", cam_mul, cam_mul+1, cam_mul+2);
-	free (cbuf);
+	memory_free (cbuf);
 	break;
       case 50458:
 	if (!make[0]) strcpy (make, "Hasselblad");
@@ -5829,7 +5829,7 @@ guess_cfa_pc:
     }
     fseek (ifp, save, SEEK_SET);
   }
-  if (sony_length && (buf = (unsigned *) malloc(sony_length))) {
+  if (sony_length && (buf = (unsigned *) memory_alloc(sony_length))) {
     fseek (ifp, sony_offset, SEEK_SET);
     fread (buf, sony_length, 1, ifp);
     sony_decrypt (buf, sony_length/4, 1, sony_key);
@@ -5849,7 +5849,7 @@ guess_cfa_pc:
             ifp->tempbuffer_close();
         }
 #endif
-    free (buf);
+    memory_free (buf);
   }
   for (i=0; i < colors; i++)
     FORCC cc[i][c] *= ab[i];
@@ -6110,7 +6110,7 @@ void CLASS parse_external_jpeg()
 #endif
   file++;
   if (!ext || strlen(ext) != 4 || ext-file != 8) return;
-  jname = (char *) malloc (strlen(ifname) + 1);
+  jname = (char *) memory_alloc (strlen(ifname) + 1);
   merror (jname, "parse_external_jpeg()");
   strcpy (jname, ifname);
   jfile = file - ifname + jname;
@@ -6165,7 +6165,7 @@ void CLASS parse_external_jpeg()
           fprintf (stderr,_("Failed to read metadata from %s\n"), jname);
 #endif
       }
-  free (jname);
+  memory_free (jname);
 #ifndef LIBRAW_LIBRARY_BUILD
   ifp = save;
 #endif
@@ -8983,7 +8983,7 @@ void CLASS convert_to_rgb()
 		output_color < 1 || output_color > 5;
 #endif
   if (!raw_color) {
-    oprof = (unsigned *) calloc (phead[0], 1);
+    oprof = (unsigned *) memory_calloc (phead[0], 1);
     merror (oprof, "convert_to_rgb()");
     memcpy (oprof, phead, sizeof phead);
     if (output_color == 5) oprof[4] = oprof[5];
@@ -9066,7 +9066,7 @@ void CLASS fuji_rotate()
   step = sqrt(0.5);
   wide = fuji_width / step;
   high = (height - fuji_width) / step;
-  img = (ushort (*)[4]) calloc (high, wide*sizeof *img);
+  img = (ushort (*)[4]) memory_calloc (high, wide*sizeof *img);
   merror (img, "fuji_rotate()");
 
 #ifdef LIBRAW_LIBRARY_BUILD
@@ -9087,7 +9087,7 @@ void CLASS fuji_rotate()
 	  (pix[width][i]*(1-fc) + pix[width+1][i]*fc) * fr;
     }
 
-  free (image);
+  memory_free (image);
   width  = wide;
   height = high;
   image  = img;
@@ -9112,7 +9112,7 @@ void CLASS stretch()
 #endif
   if (pixel_aspect < 1) {
     newdim = height / pixel_aspect + 0.5;
-    img = (ushort (*)[4]) calloc (width, newdim*sizeof *img);
+    img = (ushort (*)[4]) memory_calloc (width, newdim*sizeof *img);
     merror (img, "stretch()");
     for (rc=row=0; row < newdim; row++, rc+=pixel_aspect) {
       frac = rc - (c = rc);
@@ -9124,7 +9124,7 @@ void CLASS stretch()
     height = newdim;
   } else {
     newdim = width * pixel_aspect + 0.5;
-    img = (ushort (*)[4]) calloc (height, newdim*sizeof *img);
+    img = (ushort (*)[4]) memory_calloc (height, newdim*sizeof *img);
     merror (img, "stretch()");
     for (rc=col=0; col < newdim; col++, rc+=1/pixel_aspect) {
       frac = rc - (c = rc);
@@ -9135,7 +9135,7 @@ void CLASS stretch()
     }
     width = newdim;
   }
-  free (image);
+  memory_free (image);
   image = img;
 #ifdef LIBRAW_LIBRARY_BUILD
   RUN_CALLBACK(LIBRAW_PROGRESS_STRETCH,1,2);
@@ -9263,11 +9263,11 @@ void CLASS jpeg_thumb()
 {
   char *thumb;
 
-  thumb = (char *) malloc (thumb_length);
+  thumb = (char *) memory_alloc (thumb_length);
   merror (thumb, "jpeg_thumb()");
   fread (thumb, 1, thumb_length, ifp);
   jpeg_thumb_writer(ofp,thumb,thumb_length);
-  free (thumb);
+  memory_free (thumb);
 }
 #else
 void CLASS jpeg_thumb()
@@ -9276,7 +9276,7 @@ void CLASS jpeg_thumb()
   ushort exif[5];
   struct tiff_hdr th;
 
-  thumb = (char *) malloc (thumb_length);
+  thumb = (char *) memory_alloc (thumb_length);
   merror (thumb, "jpeg_thumb()");
   fread (thumb, 1, thumb_length, ifp);
   fputc (0xff, ofp);
@@ -9289,7 +9289,7 @@ void CLASS jpeg_thumb()
     fwrite (&th, 1, sizeof th, ofp);
   }
   fwrite (thumb+2, 1, thumb_length-2, ofp);
-  free (thumb);
+  memory_free (thumb);
 }
 #endif
 
@@ -9313,7 +9313,7 @@ void CLASS write_ppm_tiff()
   iheight = height;
   iwidth  = width;
   if (flip & 4) SWAP(height,width);
-  ppm = (uchar *) calloc (width, colors*output_bps/8);
+  ppm = (uchar *) memory_calloc (width, colors*output_bps/8);
   ppm2 = (ushort *) ppm;
   merror (ppm, "write_ppm_tiff()");
   if (output_tiff) {
@@ -9340,5 +9340,5 @@ void CLASS write_ppm_tiff()
       swab ((char*)ppm2, (char*)ppm2, width*colors*2);
     fwrite (ppm, colors*output_bps/8, width, ofp);
   }
-  free (ppm);
+  memory_free (ppm);
 }

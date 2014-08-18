@@ -88,8 +88,8 @@ public:
 	void dump(dump_context &) const;
 	void assert_valid() const;
 	// local typedefs for class templates
-	typedef void * AXIS_TYPE;
-	typedef void * AXIS_ARG_TYPE;
+	typedef void * BASE_TYPE;
+	typedef void * BASE_ARG_TYPE;
 };
 
 

@@ -229,7 +229,7 @@ namespace primitive
    void memory_base::delete_begin(memory_size iSize)
    {
 
-      iSize = max(0, min(get_size(), iSize));
+      iSize = MAX(0, MIN(get_size(), iSize));
 
       m_iOffset += iSize;
 

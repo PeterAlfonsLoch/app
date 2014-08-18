@@ -56,7 +56,7 @@ typedef struct opj_bio {
 	OPJ_BYTE *bp;
 	/** temporary place where each byte is read or written */
 	OPJ_UINT32 buf;
-	/** coder : number of bits free to write. decoder : number of bits read */
+	/** coder : number of bits memory_free to write. decoder : number of bits read */
 	OPJ_UINT32 ct;
 } opj_bio_t;
 

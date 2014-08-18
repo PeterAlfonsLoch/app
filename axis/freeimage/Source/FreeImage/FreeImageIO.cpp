@@ -104,7 +104,7 @@ _MemoryWriteProc(void *buffer, unsigned size, unsigned count, fi_handle handle) 
 			//double size
 			newdatalen = mem_header->datalen << 1;
 		}
-		newdata = realloc( mem_header->data, newdatalen );
+		newdata = memory_realloc( mem_header->data, newdatalen );
 		if( !newdata ) {
 			return 0;
 		}

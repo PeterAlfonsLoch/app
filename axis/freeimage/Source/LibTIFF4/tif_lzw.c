@@ -72,7 +72,7 @@
 /* predefined codes */
 #define CODE_CLEAR      256             /* code to clear string table */
 #define CODE_EOI        257             /* end-of-information code */
-#define CODE_FIRST      258             /* first free code entry */
+#define CODE_FIRST      258             /* first memory_free code entry */
 #define CODE_MAX        MAXCODE(BITS_MAX)
 #define HSIZE           9001L           /* 91% occupancy */
 #define HSHIFT          (13-8)
@@ -93,7 +93,7 @@ typedef struct {
 
 	unsigned short  nbits;          /* # of bits/code */
 	unsigned short  maxcode;        /* maximum code for lzw_nbits */
-	unsigned short  free_ent;       /* next free entry in hash table */
+	unsigned short  free_ent;       /* next memory_free entry in hash table */
 	long            nextdata;       /* next bits of i/o */
 	long            nextbits;       /* # of valid bits in lzw_nextdata */
 
@@ -139,7 +139,7 @@ typedef struct {
 	decodeFunc dec_decode;		/* regular or backwards compatible */
 	code_t* dec_codep;		/* current recognized code */
 	code_t* dec_oldcodep;		/* previously recognized code */
-	code_t* dec_free_entp;		/* next free entry */
+	code_t* dec_free_entp;		/* next memory_free entry */
 	code_t* dec_maxcodep;		/* max available entry */
 	code_t* dec_codetab;		/* kept separate for small machines */
 
@@ -945,7 +945,7 @@ LZWEncode(TIFF* tif, uint8* bp, tmsize_t cc, uint16 s)
 		 * Verify there is space in the buffer for the code
 		 * and any potential Clear code that might be emitted
 		 * below.  The value of limit is setup so that there
-		 * are at least 4 bytes free--room for 2 codes.
+		 * are at least 4 bytes memory_free--room for 2 codes.
 		 */
 		if (op > limit) {
 			tif->tif_rawcc = (tmsize_t)(op - tif->tif_rawdata);

@@ -110,7 +110,7 @@ typedef DWORD IFF_ID;
 #define ID_DPPV     MAKE_ID('D', 'P', 'P', 'V')     /* DPaint perspective chunk (EA) */
 #define ID_DRNG     MAKE_ID('D', 'R', 'N', 'G')     /* DPaint IV enhanced color cycle chunk (EA) */
 #define ID_EPSF     MAKE_ID('E', 'P', 'S', 'F')     /* Encapsulated Postscript chunk */
-#define ID_CMYK     MAKE_ID('C', 'M', 'Y', 'K')     /* Cyan, Magenta, Yellow, & Black color map (Soft-Logik) */
+#define ID_CMYK     MAKE_ID('C', 'M', 'Y', 'K')     /* Cyan, Magenta, Yellow, & Black color std::map (Soft-Logik) */
 #define ID_CNAM     MAKE_ID('C', 'N', 'A', 'M')     /* Color naming chunk (Soft-Logik) */
 #define ID_PCHG     MAKE_ID('P', 'C', 'H', 'G')     /* Line by line palette control information (Sebastiano Vigna) */
 #define ID_PRVW     MAKE_ID('P', 'R', 'V', 'W')     /* A mini duplicate ILBM used for preview (Gary Bonham) */
@@ -335,7 +335,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 					unsigned n_width=(width+15)&~15;
 					unsigned plane_size = n_width/8;
 					unsigned src_size = plane_size * planes;
-					BYTE *src = (BYTE*)malloc(src_size);
+					BYTE *src = (BYTE*)memory_alloc(src_size);
 					BYTE *dest = FreeImage_GetBits(dib);
 
 					dest += FreeImage_GetPitch(dib) * height;
@@ -408,7 +408,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 #endif
 					}
 
-					free(src);
+					memory_free(src);
 
 					return dib;
 				}

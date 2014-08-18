@@ -220,7 +220,7 @@ SupportsNoPixels() {
 static void * DLL_CALLCONV
 Open(FreeImageIO *io, fi_handle handle, BOOL read) {
 	// Allocate memory for the header structure
-	ICONHEADER *lpIH = (ICONHEADER*)malloc(sizeof(ICONHEADER));
+	ICONHEADER *lpIH = (ICONHEADER*)memory_alloc(sizeof(ICONHEADER));
 	if(lpIH == NULL) {
 		return NULL;
 	}
@@ -234,7 +234,7 @@ Open(FreeImageIO *io, fi_handle handle, BOOL read) {
 
 		if(!(lpIH->idReserved == 0) || !(lpIH->idType == 1)) {
 			// Not an ICO file
-			free(lpIH);
+			memory_free(lpIH);
 			return NULL;
 		}
 	}
@@ -250,9 +250,9 @@ Open(FreeImageIO *io, fi_handle handle, BOOL read) {
 
 static void DLL_CALLCONV
 Close(FreeImageIO *io, fi_handle handle, void *data) {
-	// free the header structure
+	// memory_free the header structure
 	ICONHEADER *lpIH = (ICONHEADER*)data;
-	free(lpIH);
+	memory_free(lpIH);
 }
 
 // ----------------------------------------------------------
@@ -349,7 +349,7 @@ LoadStandardIcon(FreeImageIO *io, fi_handle handle, int flags, BOOL header_only)
 		}
 
 		int width_and	= WidthBytes(width);
-		BYTE *line_and	= (BYTE *)malloc(width_and);
+		BYTE *line_and	= (BYTE *)memory_alloc(width_and);
 
 		if( line_and == NULL ) {
 			FreeImage_Unload(dib32);
@@ -370,7 +370,7 @@ LoadStandardIcon(FreeImageIO *io, fi_handle handle, int flags, BOOL header_only)
 				quad++;
 			}
 		}
-		free(line_and);
+		memory_free(line_and);
 
 		return dib32;
 	}
@@ -394,7 +394,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 		if (icon_header) {
 			// load the icon descriptions
-			ICONDIRENTRY *icon_list = (ICONDIRENTRY*)malloc(icon_header->idCount * sizeof(ICONDIRENTRY));
+			ICONDIRENTRY *icon_list = (ICONDIRENTRY*)memory_alloc(icon_header->idCount * sizeof(ICONDIRENTRY));
 			if(icon_list == NULL) {
 				return NULL;
 			}
@@ -420,12 +420,12 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 					dib = LoadStandardIcon(io, handle, flags, header_only);
 				}
 
-				free(icon_list);
+				memory_free(icon_list);
 
 				return dib;
 
 			} else {
-				free(icon_list);
+				memory_free(icon_list);
 				FreeImage_OutputMessageProc(s_format_id, "Page doesn't exist");
 			}
 		} else {
@@ -530,7 +530,7 @@ SaveStandardIcon(FreeImageIO *io, FIBITMAP *dib, fi_handle handle) {
 	}
 #endif
 	// AND mask
-	BYTE *and_mask = (BYTE*)malloc(size_and);
+	BYTE *and_mask = (BYTE*)memory_alloc(size_and);
 	if(!and_mask) {
 		return FALSE;
 	}
@@ -632,7 +632,7 @@ SaveStandardIcon(FreeImageIO *io, FIBITMAP *dib, fi_handle handle) {
 	}
 
 	io->write_proc(and_mask, size_and, 1, handle);
-	free(and_mask);
+	memory_free(and_mask);
 
 	return TRUE;
 }
@@ -694,7 +694,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 		
 		// save the icon descriptions
 
-		ICONDIRENTRY *icon_list = (ICONDIRENTRY *)malloc(icon_header->idCount * sizeof(ICONDIRENTRY));
+		ICONDIRENTRY *icon_list = (ICONDIRENTRY *)memory_alloc(icon_header->idCount * sizeof(ICONDIRENTRY));
 		if(!icon_list) {
 			throw FI_MSG_ERROR_MEMORY;
 		}
@@ -758,9 +758,9 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 		io->write_proc(icon_list, sizeof(ICONDIRENTRY) * icon_header->idCount, 1, handle);
 		io->seek_proc(handle, current_pos, SEEK_SET);
 
-		free(icon_list);
+		memory_free(icon_list);
 
-		// free the vector class
+		// memory_free the vector class
 		for(k = 0; k < icon_header->idCount; k++) {
 			icon_dib = (FIBITMAP*)vPages[k];
 			FreeImage_Unload(icon_dib);
@@ -769,7 +769,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 		return TRUE;
 
 	} catch(const char *text) {
-		// free the vector class
+		// memory_free the vector class
 		for(size_t k = 0; k < vPages.size(); k++) {
 			FIBITMAP *icon_dib = (FIBITMAP*)vPages[k];
 			FreeImage_Unload(icon_dib);

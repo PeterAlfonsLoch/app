@@ -67,7 +67,7 @@ namespace file_watcher
 #			if defined(UNICODE)
             {
                lstrcpynW(szFile,pNotify->FileName,
-                  min(MAX_PATH,pNotify->FileNameLength / sizeof(WCHAR)+ 1));
+                  MIN(MAX_PATH,pNotify->FileNameLength / sizeof(WCHAR)+ 1));
             }
 #			else
             {
@@ -170,7 +170,7 @@ namespace file_watcher
       watch_map::pair * ppair = m_watchmap.PGetFirstAssoc();
       for(; ppair != NULL; m_watchmap.PGetNextAssoc(ppair))
       {
-         DestroyWatch(ppair->m_element2);
+         DestroyWatch(ppair->second);
       }
       m_watchmap.clear();
    }
@@ -211,10 +211,10 @@ namespace file_watcher
       for(; ppair != NULL; m_watchmap.PGetNextAssoc(ppair))
       {
 
-         if(stricmp(directory,ppair->m_element2->m_strDirName) == 0)
+         if(stricmp(directory,ppair->second->m_strDirName) == 0)
          {
 
-            remove_watch(ppair->m_element1);
+            remove_watch(ppair->first);
 
             return;
 
@@ -231,15 +231,15 @@ namespace file_watcher
       if(ppair == NULL)
          return;
 
-      watch_struct * pwatch = ppair->m_element2;
-      m_watchmap.remove_key(ppair->m_element1);
+      watch_struct * pwatch = ppair->second;
+      m_watchmap.remove_key(ppair->first);
 
       DestroyWatch(pwatch);
    }
 
    string os_file_watcher::watch_path(id watchid)
    {
-      return m_watchmap.PLookup(watchid)->m_element2->m_strDirName;
+      return m_watchmap.PLookup(watchid)->second->m_strDirName;
    }
 
    void os_file_watcher::update()

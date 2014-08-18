@@ -55,7 +55,7 @@ static WEBP_INLINE const HuffmanTreeNode* HuffmanTreeNextNode(
 }
 
 // Releases the nodes of the Huffman tree.
-// Note: It does NOT free 'tree' itself.
+// Note: It does NOT memory_free 'tree' itself.
 void HuffmanTreeRelease(HuffmanTree* const tree);
 
 // Builds Huffman tree assuming code lengths are implicitly in symbol order.

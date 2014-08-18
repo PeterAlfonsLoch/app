@@ -164,10 +164,10 @@ CWeightsTable::CWeightsTable(CGenericFilter *pFilter, unsigned uDstSize, unsigne
 	m_LineLength = uDstSize; 
 
 	 // allocate list of contributions 
-	m_WeightTable = (Contribution*)malloc(m_LineLength * sizeof(Contribution));
+	m_WeightTable = (Contribution*)memory_alloc(m_LineLength * sizeof(Contribution));
 	for(unsigned u = 0; u < m_LineLength; u++) {
 		// allocate contributions for every pixel
-		m_WeightTable[u].Weights = (double*)malloc(m_WindowSize * sizeof(double));
+		m_WeightTable[u].Weights = (double*)memory_alloc(m_WindowSize * sizeof(double));
 	}
 
 	// offset for discrete to continuous coordinate conversion
@@ -220,11 +220,11 @@ CWeightsTable::CWeightsTable(CGenericFilter *pFilter, unsigned uDstSize, unsigne
 
 CWeightsTable::~CWeightsTable() {
 	for(unsigned u = 0; u < m_LineLength; u++) {
-		// free contributions for every pixel
-		free(m_WeightTable[u].Weights);
+		// memory_free contributions for every pixel
+		memory_free(m_WeightTable[u].Weights);
 	}
-	// free list of pixels contributions
-	free(m_WeightTable);
+	// memory_free list of pixels contributions
+	memory_free(m_WeightTable);
 }
 
 // --------------------------------------------------------------------------
@@ -421,7 +421,7 @@ FIBITMAP* CResizeEngine::scale(FIBITMAP *src, unsigned dst_width, unsigned dst_h
 			verticalFilter(tmp, dst_width, src_height, src_offset_x, src_offset_y, src_pal, dst, dst_height);
 		}
 
-		// free temporary image, if not pointing to either src or dst
+		// memory_free temporary image, if not pointing to either src or dst
 		if (tmp != src && tmp != dst) {
 			FreeImage_Unload(tmp);
 		}
@@ -488,7 +488,7 @@ FIBITMAP* CResizeEngine::scale(FIBITMAP *src, unsigned dst_width, unsigned dst_h
 			horizontalFilter(tmp, dst_height, src_width, src_offset_x, src_offset_y, src_pal, dst, dst_width);
 		}
 
-		// free temporary image, if not pointing to either src or dst
+		// memory_free temporary image, if not pointing to either src or dst
 		if (tmp != src && tmp != dst) {
 			FreeImage_Unload(tmp);
 		}

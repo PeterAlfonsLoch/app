@@ -34,3 +34,6 @@ namespace file
 } // namespace file
 
 
+
+
+using std_string_stream = ::file::plain_text_stream;

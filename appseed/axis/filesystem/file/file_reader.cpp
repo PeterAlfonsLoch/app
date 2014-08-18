@@ -107,7 +107,7 @@ namespace file
 
       }
 
-      uiBufMax = max(8 * 1024, uiBufMax);
+      uiBufMax = MAX(8 * 1024, uiBufMax);
       ::primitive::memory_size uiBufMin = uiBufMax / 8;
       ::primitive::memory_size uiBufSize = uiBufMax;
       ::primitive::memory_size uiBufInc = uiBufSize;
@@ -175,7 +175,7 @@ namespace file
       *processedSize = 0;
       while (size != 0)
       {
-         ::primitive::memory_size curSize = min(size, kBlockSize);
+         ::primitive::memory_size curSize = MIN(size, kBlockSize);
          ::primitive::memory_size processedSizeLoc;
          HRESULT res = S_OK;
          try

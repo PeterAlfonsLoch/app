@@ -30,7 +30,7 @@
 
 #include <math.h>
 #include <stdlib.h> 
-#include <memory.h>
+//#include <memory.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
@@ -40,16 +40,16 @@
 #include <float.h>
 #include <limits.h>
 
-#include <string>
-#include <list>
-#include <map>
-#include <set>
-#include <vector>
-#include <stack>
-#include <sstream>
-#include <algorithm>
-#include <limits>
-#include <memory>
+//#include <string>
+//#include <list>
+//#include <map>
+//#include <set>
+//#include <vector>
+//#include <stack>
+//#include <sstream>
+//#include <algorithm>
+//#include <limits>
+//#include <memory>
 
 // ==========================================================
 //   Bitmap palette and pixels alignment
@@ -146,7 +146,7 @@ typedef struct tagFILE_BGR {
 //   Template utility functions
 // ==========================================================
 
-/// Max function
+/*/// Max function
 template <class T> T MAX(const T &a, const T &b) {
 	return (a > b) ? a: b;
 }
@@ -154,7 +154,7 @@ template <class T> T MAX(const T &a, const T &b) {
 /// Min function
 template <class T> T MIN(const T &a, const T &b) {
 	return (a < b) ? a: b;
-}
+}*/
 
 /// INPLACESWAP adopted from codeguru.com 
 template <class T> void INPLACESWAP(T& a, T& b) {

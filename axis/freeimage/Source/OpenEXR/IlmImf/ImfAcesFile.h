@@ -82,7 +82,7 @@
 #include "ImathVec.h"
 #include "ImathBox.h"
 #include <ImfThreading.h>
-#include <string>
+//#include <string>
 
 namespace Imf {
 

@@ -27,7 +27,7 @@ void rect::ExtendOnCenter(const RECT & rect)
 
    double dx = ::width(rect);
    double dy = ::height(rect);
-   double dr = max(dx / cx, dy / cy);
+   double dr = MAX(dx / cx, dy / cy);
 
    int32_t cw = (int32_t) (cx * dr);
    int32_t ch = (int32_t) (cy * dr);
@@ -46,7 +46,7 @@ void rect::FitOnCenterOf(const RECT & rect,SIZE size)
 
    double dx = ::width(rect);
    double dy = ::height(rect);
-   double dr = min(cx == 0 ? 1 : dx / cx,cy == 0 ? 1 : dy / cy);
+   double dr = MIN(cx == 0 ? 1 : dx / cx,cy == 0 ? 1 : dy / cy);
 
    int32_t cw = cx == 0 ? (int32_t)dx : ((int32_t)(cx * dr));
    int32_t ch = cy == 0 ? (int32_t)dy : ((int32_t)(cy * dr));
@@ -337,7 +337,7 @@ void rect64::ExtendOnCenter(const __rect64 *  lpcrect)
 
     double dx = (double) (lpcrect->right - lpcrect->left);
     double dy = (double) (lpcrect->bottom - lpcrect->top);
-    double dr = max(dx / cx, dy / cy);
+    double dr = MAX(dx / cx, dy / cy);
 
     int64_t cw = (int64_t) (cx * dr);
    int64_t ch = (int64_t) (cy * dr);
@@ -355,7 +355,7 @@ void rect64::FitOnCenterOf(const __rect64 *  lpcrect)
 
     double dx = (double) (lpcrect->right - lpcrect->left);
     double dy = (double) (lpcrect->bottom - lpcrect->top);
-    double dr = min(cx == 0 ? 1 : dx / cx, cy == 0 ? 1 : dy / cy);
+    double dr = MIN(cx == 0 ? 1 : dx / cx, cy == 0 ? 1 : dy / cy);
 
     int64_t cw = cx == 0 ? (int64_t) dx : ((int64_t) (cx * dr));
    int64_t ch = cy == 0 ? (int64_t) dy : ((int64_t) (cy * dr));
@@ -646,8 +646,8 @@ bool rect::intersect(LPCRECT lpRect1,LPCRECT lpRect2) throw()
    { return ::IntersectRect(this, lpRect1, lpRect2) != FALSE;}
 rect rect::intersect(LPCRECT lpcrect) const throw()
 {
-   ::rect rect(*this);
-   rect.intersect(lpcrect);
+   ::rect rect;
+   ::IntersectRect(&rect,this,lpcrect);
    return rect;
 }
 bool rect::null_intersect(LPCRECT lpRect1,LPCRECT lpRect2) throw()
@@ -887,9 +887,9 @@ rect64::operator rect() const
 bool rect64::contains(__point64 point) const throw()
    { return ::contains(this, point); }
 void rect64::set(int64_t x1, int64_t y1, int64_t x2, int64_t y2) throw()
-   { ::set(this, x1, y1, x2, y2); }
+   { ::set_rect(this, x1, y1, x2, y2); }
 void rect64::set(__point64 topLeft, __point64 bottomRight) throw()
-   { ::set(this, topLeft.x, topLeft.y, bottomRight.x, bottomRight.y); }
+   { ::set_rect(this, topLeft.x, topLeft.y, bottomRight.x, bottomRight.y); }
 void rect64::null() throw()
    { ::null(this); }
 void rect64::copy(const __rect64 * lpSrcRect) throw()
@@ -1111,9 +1111,9 @@ rectd::operator LPCRECTD() const throw()
 bool rectd::contains(POINTD point) const throw()
    { return ::contains((LPCRECTD) this, point) != FALSE; }
 void rectd::set(double x1, double y1, double x2, double y2) throw()
-   { ::set(this, x1, y1, x2, y2); }
+   { ::set_rect(this, x1, y1, x2, y2); }
 void rectd::set(POINTD topLeft, POINTD bottomRight) throw()
-   { ::set(this, topLeft.x, topLeft.y, bottomRight.x, bottomRight.y); }
+   { ::set_rect(this, topLeft.x, topLeft.y, bottomRight.x, bottomRight.y); }
 void rectd::null() throw()
    { ::null(this); }
 void rectd::copy(LPCRECTD lpSrcRect) throw()

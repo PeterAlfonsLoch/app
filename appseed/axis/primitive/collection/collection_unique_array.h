@@ -1,8 +1,8 @@
 #pragma once
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class AXIS_ARRAY = array < TYPE, ARG_TYPE >, class COMPARE = ::comparison::less < TYPE, ARG_TYPE > >
+template < class TYPE, class ARG_TYPE = const TYPE &, class BASE_ARRAY = array < TYPE, ARG_TYPE >, class COMPARE = ::comparison::less < TYPE, ARG_TYPE > >
 class unique_sort_array :
-   protected AXIS_ARRAY
+   protected BASE_ARRAY
 {
 public:
    unique_sort_array(sp(::axis::application) papp = NULL);
@@ -68,12 +68,12 @@ public:
 
    void clear()
    {
-      AXIS_ARRAY::clear();
+      BASE_ARRAY::clear();
    }
 
    void remove_all()
    {
-      AXIS_ARRAY::remove_all();
+      BASE_ARRAY::remove_all();
    }
 
 };

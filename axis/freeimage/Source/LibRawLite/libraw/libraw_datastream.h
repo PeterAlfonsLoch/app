@@ -5,7 +5,7 @@
  *
  * LibRaw Data stream interface
 
-LibRaw is free software; you can redistribute it and/or modify
+LibRaw is memory_free software; you can redistribute it and/or modify
 it under the terms of the one of three licenses as you choose:
 
 1. GNU LESSER GENERAL PUBLIC LICENSE version 2.1
@@ -35,8 +35,8 @@ it under the terms of the one of three licenses as you choose:
 
 #include "libraw_const.h"
 #include "libraw_types.h"
-#include <fstream>
-#include <memory>
+//#include <fstream>
+//#include <memory>
 
 #if defined (WIN32)
 //#include <winsock2.h>
@@ -87,15 +87,12 @@ class DllDef LibRaw_abstract_datastream
     LibRaw_abstract_datastream *substream;
 };
 
-#ifdef WIN32
-template class DllDef std::auto_ptr<std::streambuf>;
-#endif
 
 class DllDef  LibRaw_file_datastream: public LibRaw_abstract_datastream
 {
   protected:
-    std::auto_ptr<std::streambuf> f; /* will close() automatically through dtor */
-    std::auto_ptr<std::streambuf> saved_f; /* when *f is a subfile, *saved_f is the master file */
+    ::file::buffer_sp f; /* will close() automatically through dtor */
+    ::file::buffer_sp saved_f; /* when *f is a subfile, *saved_f is the master file */
     std::string filename;
     INT64 _fsize;
 #ifdef WIN32

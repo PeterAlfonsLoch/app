@@ -144,14 +144,14 @@ int WebPPictureAlloc(WebPPicture* picture) {
   return 1;
 }
 
-// Remove reference to the ARGB buffer (doesn't free anything).
+// Remove reference to the ARGB buffer (doesn't memory_free anything).
 static void PictureResetARGB(WebPPicture* const picture) {
   picture->memory_argb_ = NULL;
   picture->argb = NULL;
   picture->argb_stride = 0;
 }
 
-// Remove reference to the YUVA buffer (doesn't free anything).
+// Remove reference to the YUVA buffer (doesn't memory_free anything).
 static void PictureResetYUVA(WebPPicture* const picture) {
   picture->memory_ = NULL;
   picture->y = picture->u = picture->v = picture->a = NULL;
@@ -175,7 +175,7 @@ static void WebPPictureGrabSpecs(const WebPPicture* const src,
 // the other YUV(A) buffer.
 static int PictureAllocARGB(WebPPicture* const picture) {
   WebPPicture tmp;
-  free(picture->memory_argb_);
+  memory_free(picture->memory_argb_);
   PictureResetARGB(picture);
   picture->use_argb = 1;
   WebPPictureGrabSpecs(picture, &tmp);
@@ -191,8 +191,8 @@ static int PictureAllocARGB(WebPPicture* const picture) {
 // Release memory owned by 'picture' (both YUV and ARGB buffers).
 void WebPPictureFree(WebPPicture* picture) {
   if (picture != NULL) {
-    free(picture->memory_);
-    free(picture->memory_argb_);
+    memory_free(picture->memory_);
+    memory_free(picture->memory_argb_);
     PictureResetYUVA(picture);
     PictureResetARGB(picture);
   }
@@ -504,7 +504,7 @@ int WebPPictureRescale(WebPPicture* pic, int width, int height) {
     AlphaMultiplyARGB(&tmp, 1);
   }
   WebPPictureFree(pic);
-  free(work);
+  memory_free(work);
   *pic = tmp;
   return 1;
 }
@@ -538,7 +538,7 @@ int WebPMemoryWrite(const uint8_t* data, size_t data_size,
     if (w->size > 0) {
       memcpy(new_mem, w->mem, w->size);
     }
-    free(w->mem);
+    memory_free(w->mem);
     w->mem = new_mem;
     // down-cast is ok, thanks to WebPSafeMalloc
     w->max_size = (size_t)next_max_size;
@@ -954,7 +954,7 @@ int WebPPictureARGBToYUVADithered(WebPPicture* picture, WebPEncCSP colorspace,
     // We work on a tmp copy of 'picture', because ImportYUVAFromRGBA()
     // would be calling WebPPictureFree(picture) otherwise.
     WebPPicture tmp = *picture;
-    PictureResetARGB(&tmp);  // reset ARGB buffer so that it's not free()'d.
+    PictureResetARGB(&tmp);  // reset ARGB buffer so that it's not memory_free()'d.
     tmp.use_argb = 0;
     tmp.colorspace = colorspace & WEBP_CSP_UV_MASK;
     if (!ImportYUVAFromRGBA(r, g, b, a, 4, 4 * picture->argb_stride, dithering,
@@ -1323,7 +1323,7 @@ static size_t Encode(const uint8_t* rgba, int width, int height, int stride,
   ok = import(&pic, rgba, stride) && WebPEncode(&config, &pic);
   WebPPictureFree(&pic);
   if (!ok) {
-    free(wrt.mem);
+    memory_free(wrt.mem);
     *output = NULL;
     return 0;
   }

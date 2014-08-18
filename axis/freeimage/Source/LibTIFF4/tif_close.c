@@ -35,7 +35,7 @@
 /************************************************************************/
 
 /**
- * Auxiliary function to free the TIFF structure. Given structure will be
+ * Auxiliary function to memory_free the TIFF structure. Given structure will be
  * completetly freed, so you should save opened file handle and pointer
  * to the close procedure in external variables before calling
  * _TIFFCleanup(), if you will need these ones to close the file.

@@ -2558,8 +2558,8 @@ Int StrIODecTerm(CWMImageStrCodec* pSC)
 {
     detachISRead(pSC, pSC->pIOHeader);
 
-    free(pSC->m_ppBitIO);
-    free(pSC->pIndexTable);
+    memory_free(pSC->m_ppBitIO);
+    memory_free(pSC->pIndexTable);
 
     return 0;
 }
@@ -2624,7 +2624,7 @@ Int initLookupTables(CWMImageStrCodec* pSC)
     if(pII->oOrientation > O_FLIPVH) // rotated !!
         i =cStrideX, cStrideX = cStrideY, cStrideY = i;
 
-    pSC->m_Dparam->pOffsetX = (size_t *)malloc(w * sizeof(size_t));
+    pSC->m_Dparam->pOffsetX = (size_t *)memory_alloc(w * sizeof(size_t));
     if(pSC->m_Dparam->pOffsetX == NULL || w * sizeof(size_t) < w)
         return ICERR_ERROR;
     /*
@@ -2640,7 +2640,7 @@ Int initLookupTables(CWMImageStrCodec* pSC)
     (pSC->m_Dparam->cROIRightX - pSC->m_Dparam->cROILeftX + pSC->m_Dparam->cThumbnailScale) / pSC->m_Dparam->cThumbnailScale / ((pII->cfColorFormat == YUV_420 || pII->cfColorFormat == YUV_422) ? 2 : 1)) - 1 - i : i) * cStrideX;
     }
 
-    pSC->m_Dparam->pOffsetY = (size_t *)malloc(h * sizeof(size_t));
+    pSC->m_Dparam->pOffsetY = (size_t *)memory_alloc(h * sizeof(size_t));
     if(pSC->m_Dparam->pOffsetY == NULL || h * sizeof(size_t) < h)
         return ICERR_ERROR;
     /*
@@ -2721,8 +2721,8 @@ Int StrDecInit(CWMImageStrCodec* pSC)
     pSC->m_bUVResolutionChange = ((cfExt != Y_ONLY) && ((cfInt == YUV_420 && cfExt != YUV_420) || 
         (cfInt == YUV_422 && cfExt != YUV_422))) && !pSC->WMISCP.bYUVData;
     if(pSC->m_bUVResolutionChange){
-        pSC->pResU = (PixelI *)malloc((cfExt == YUV_422 ? 128 : 256) * pSC->cmbWidth * sizeof(PixelI));
-        pSC->pResV = (PixelI *)malloc((cfExt == YUV_422 ? 128 : 256) * pSC->cmbWidth * sizeof(PixelI));
+        pSC->pResU = (PixelI *)memory_alloc((cfExt == YUV_422 ? 128 : 256) * pSC->cmbWidth * sizeof(PixelI));
+        pSC->pResV = (PixelI *)memory_alloc((cfExt == YUV_422 ? 128 : 256) * pSC->cmbWidth * sizeof(PixelI));
         if(pSC->pResU == NULL || pSC->pResV == NULL || (cfExt == YUV_422 ? 128 : 256) * pSC->cmbWidth * sizeof(PixelI) < pSC->cmbWidth){
             return ICERR_ERROR;
         }
@@ -2798,9 +2798,9 @@ Int StrDecTerm(CWMImageStrCodec* pSC)
     for (j = 0; j <= jend; j++) {
         if(pSC->m_bUVResolutionChange){        
             if(pSC->pResU != NULL)
-                free(pSC->pResU);
+                memory_free(pSC->pResU);
             if(pSC->pResV != NULL)
-                free(pSC->pResV);
+                memory_free(pSC->pResV);
         }
 
         freePredInfo(pSC);
@@ -2812,11 +2812,11 @@ Int StrDecTerm(CWMImageStrCodec* pSC)
         if (j == 0) {
             StrIODecTerm(pSC);
 
-            // free lookup tables for rotation and flipping
+            // memory_free lookup tables for rotation and flipping
             if(pSC->m_Dparam->pOffsetX != NULL)
-                free(pSC->m_Dparam->pOffsetX);
+                memory_free(pSC->m_Dparam->pOffsetX);
             if(pSC->m_Dparam->pOffsetY != NULL)
-                free(pSC->m_Dparam->pOffsetY);
+                memory_free(pSC->m_Dparam->pOffsetY);
         }
 
         pSC = pSC->m_pNextSC;
@@ -3287,7 +3287,7 @@ Int ImageStrDecInit(
     }
     cb += i * cMacBlock;
 
-    pb = malloc(cb);
+    pb = memory_alloc(cb);
     if(pb == NULL)
         return WMP_errOutOfMemory;
     memset(pb, 0, cb);
@@ -3336,7 +3336,7 @@ Int ImageStrDecInit(
         //================================================
         cb = sizeof(*pNextSC) + (128 - 1) + cbMacBlockStride * cMacBlock * 2;
         // if primary image is safe to allocate, alpha channel is certainly safe
-        pb = malloc(cb);
+        pb = memory_alloc(cb);
         if(pb == NULL)
             return WMP_errOutOfMemory;
         memset(pb, 0, cb);
@@ -3621,7 +3621,7 @@ Int ImageStrDecTerm(
     PERFTIMER_DELETE(pSC->m_fMeasurePerf, pSC->m_ptEncDecPerf);
     PERFTIMER_DELETE(pSC->m_fMeasurePerf, pSC->m_ptEndToEndPerf);
 
-    free(pSC);
+    memory_free(pSC);
 
     return ICERR_OK;
 }

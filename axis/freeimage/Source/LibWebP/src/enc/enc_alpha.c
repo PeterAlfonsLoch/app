@@ -34,7 +34,7 @@
 //
 // 'output' corresponds to the buffer containing compressed alpha data.
 //          This buffer is allocated by this method and caller should call
-//          free(*output) when done.
+//          memory_free(*output) when done.
 // 'output_size' corresponds to size of this compressed alpha buffer.
 //
 // Returns 1 on successfully encoding the alpha and
@@ -231,7 +231,7 @@ static int ApplyFiltersAndEncode(const uint8_t* alpha, int width, int height,
       GetFilterMap(alpha, width, height, filter, effort_level);
   InitFilterTrial(&best);
   if (try_map != FILTER_TRY_NONE) {
-    uint8_t* filtered_alpha =  (uint8_t*)malloc(data_size);
+    uint8_t* filtered_alpha =  (uint8_t*)memory_alloc(data_size);
     if (filtered_alpha == NULL) return 0;
 
     for (filter = WEBP_FILTER_NONE; ok && try_map; ++filter, try_map >>= 1) {
@@ -248,7 +248,7 @@ static int ApplyFiltersAndEncode(const uint8_t* alpha, int width, int height,
         }
       }
     }
-    free(filtered_alpha);
+    memory_free(filtered_alpha);
   } else {
     ok = EncodeAlphaInternal(alpha, width, height, method, WEBP_FILTER_NONE,
                              reduce_levels, effort_level, NULL, &best);
@@ -298,7 +298,7 @@ static int EncodeAlpha(VP8Encoder* const enc,
     filter = WEBP_FILTER_NONE;
   }
 
-  quant_alpha = (uint8_t*)malloc(data_size);
+  quant_alpha = (uint8_t*)memory_alloc(data_size);
   if (quant_alpha == NULL) {
     return 0;
   }
@@ -325,7 +325,7 @@ static int EncodeAlpha(VP8Encoder* const enc,
     }
   }
 
-  free(quant_alpha);
+  memory_free(quant_alpha);
   return ok;
 }
 
@@ -346,7 +346,7 @@ static int CompressAlphaJob(VP8Encoder* const enc, void* dummy) {
     return 0;
   }
   if (alpha_size != (uint32_t)alpha_size) {  // Sanity check.
-    free(alpha_data);
+    memory_free(alpha_data);
     return 0;
   }
   enc->alpha_data_size_ = (uint32_t)alpha_size;
@@ -401,7 +401,7 @@ int VP8EncDeleteAlpha(VP8Encoder* const enc) {
     ok = WebPWorkerSync(worker);  // finish anything left in flight
     WebPWorkerEnd(worker);  // still need to end the worker, even if !ok
   }
-  free(enc->alpha_data_);
+  memory_free(enc->alpha_data_);
   enc->alpha_data_ = NULL;
   enc->alpha_data_size_ = 0;
   enc->has_alpha_ = 0;

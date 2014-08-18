@@ -3466,7 +3466,7 @@ TIFFReadDirectory(TIFF* tif)
         
 	tif->tif_flags &= ~TIFF_BEENWRITING;    /* reset before new dir */
 	tif->tif_flags &= ~TIFF_BUF4WRITE;      /* reset before new dir */
-	/* free any old stuff and reinit */
+	/* memory_free any old stuff and reinit */
 	TIFFFreeDirectory(tif);
 	TIFFDefaultDirectory(tif);
 	/*

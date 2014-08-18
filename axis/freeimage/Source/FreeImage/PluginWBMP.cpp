@@ -152,14 +152,14 @@ readExtHeader(FreeImageIO *io, fi_handle handle, BYTE b) {
 			BYTE sizeParamIdent = (b & 0x70) >> 4;	// Size of Parameter Identifier (in bytes)
 			BYTE sizeParamValue = (b & 0x0F);		// Size of Parameter Value (in bytes)
 			
-			BYTE *Ident = (BYTE*)malloc(sizeParamIdent * sizeof(BYTE));
-			BYTE *Value = (BYTE*)malloc(sizeParamValue * sizeof(BYTE));
+			BYTE *Ident = (BYTE*)memory_alloc(sizeParamIdent * sizeof(BYTE));
+			BYTE *Value = (BYTE*)memory_alloc(sizeParamValue * sizeof(BYTE));
 		
 			io->read_proc(Ident, sizeParamIdent, 1, handle);
 			io->read_proc(Value, sizeParamValue, 1, handle);
 			
-			free(Ident);
-			free(Value);
+			memory_free(Ident);
+			memory_free(Value);
 			break;
 		}		
 

@@ -264,12 +264,12 @@ public:
 
    property * operator ->()
    {
-      return &m_set.m_propertya[m_ppair->m_element2];
+      return &m_set.m_propertya[m_ppair->second];
    }
 
    const property * operator ->() const
    {
-      return &m_set.m_propertya[m_ppair->m_element2];
+      return &m_set.m_propertya[m_ppair->second];
    }
 
    operator property_map::pair * ()
@@ -309,12 +309,12 @@ public:
 
    const property * operator ->()
    {
-      return &m_set.m_propertya[m_ppair->m_element2];
+      return &m_set.m_propertya[m_ppair->second];
    }
 
    const property * operator ->() const
    {
-      return &m_set.m_propertya[m_ppair->m_element2];
+      return &m_set.m_propertya[m_ppair->second];
    }
 
    operator const property_map::pair * () const
@@ -436,7 +436,7 @@ inline index property_set::find_index(id idName) const
    const property_map::pair * ppair = m_map.PLookup(idName);
    if(ppair == NULL)
       return -1;
-   return ppair->m_element2;
+   return ppair->second;
 }
 
 inline index property_set::find_index(string_interface & str) const

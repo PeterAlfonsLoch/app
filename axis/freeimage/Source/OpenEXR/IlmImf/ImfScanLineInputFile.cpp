@@ -376,7 +376,7 @@ LineBufferTask::LineBufferTask
 LineBufferTask::~LineBufferTask ()
 {
     //
-    // Signal that the line buffer is now free
+    // Signal that the line buffer is now memory_free
     //
 
     _lineBuffer->post ();
@@ -580,7 +580,7 @@ newLineBufferTask
     {
 	//
 	// Reading from the file caused an exception.
-	// Signal that the line buffer is free, and
+	// Signal that the line buffer is memory_free, and
 	// re-throw the exception.
 	//
 

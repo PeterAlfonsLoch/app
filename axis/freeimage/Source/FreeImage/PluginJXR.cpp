@@ -92,7 +92,7 @@ _jxr_io_Close(WMPStream** ppWS) {
 	// because FreeImage MUST HAVE the ownership of the stream
 	// see _jxr_io_Create
 	if(pWS && pWS->fMem) {
-		free(pWS);
+		memory_free(pWS);
 		*ppWS = NULL;
 	}
 	return WMP_errSuccess;
@@ -100,7 +100,7 @@ _jxr_io_Close(WMPStream** ppWS) {
 
 static ERR 
 _jxr_io_Create(WMPStream **ppWS, FreeImageJXRIO *jxr_io) {
-	*ppWS = (WMPStream*)calloc(1, sizeof(**ppWS));
+	*ppWS = (WMPStream*)memory_calloc(1, sizeof(**ppWS));
 	if(*ppWS) {
 		WMPStream *pWS = *ppWS;
 
@@ -420,7 +420,7 @@ static ERR
 ReadProfile(WMPStream* pStream, unsigned cbByteCount, unsigned uOffset, BYTE **ppbProfile) {
 	// (re-)allocate profile buffer
 	BYTE *pbProfile = *ppbProfile;
-	pbProfile = (BYTE*)realloc(pbProfile, cbByteCount);
+	pbProfile = (BYTE*)memory_realloc(pbProfile, cbByteCount);
 	if(!pbProfile) {
 		return WMP_errOutOfMemory;
 	}
@@ -606,8 +606,8 @@ ReadMetadata(PKImageDecode *pID, FIBITMAP *dib) {
 			jpegxr_read_exif_gps_profile(dib, pbProfile, cbByteCount);
 		}
 
-		// free profile buffer
-		free(pbProfile);
+		// memory_free profile buffer
+		memory_free(pbProfile);
 		// restore initial position
 		error_code = pID->pStream->SetPos(pID->pStream, currentPos);
 		JXR_CHECK(error_code);
@@ -619,8 +619,8 @@ ReadMetadata(PKImageDecode *pID, FIBITMAP *dib) {
 		return ReadDescriptiveMetadata(pID, dib);
 
 	} catch(...) {
-		// free profile buffer
-		free(pbProfile);
+		// memory_free profile buffer
+		memory_free(pbProfile);
 		if(currentPos) {
 			// restore initial position
 			pStream->SetPos(pStream, currentPos);
@@ -787,13 +787,13 @@ Open(FreeImageIO *io, fi_handle handle, BOOL read) {
 	WMPStream *pStream = NULL;	// stream interface
 	if(io && handle) {
 		// allocate the FreeImageIO stream wrapper
-		FreeImageJXRIO *jxr_io = (FreeImageJXRIO*)malloc(sizeof(FreeImageJXRIO));
+		FreeImageJXRIO *jxr_io = (FreeImageJXRIO*)memory_alloc(sizeof(FreeImageJXRIO));
 		if(jxr_io) {
 			jxr_io->io = io;
 			jxr_io->handle = handle;
 			// create a JXR stream wrapper
 			if(_jxr_io_Create(&pStream, jxr_io) != WMP_errSuccess) {
-				free(jxr_io);
+				memory_free(jxr_io);
 				return NULL;
 			}
 		}
@@ -805,10 +805,10 @@ static void DLL_CALLCONV
 Close(FreeImageIO *io, fi_handle handle, void *data) {
 	WMPStream *pStream = (WMPStream*)data;
 	if(pStream) {
-		// free the FreeImageIO stream wrapper
+		// memory_free the FreeImageIO stream wrapper
 		FreeImageJXRIO *jxr_io = (FreeImageJXRIO*)pStream->state.pvObj;
-		free(jxr_io);
-		// free the JXR stream wrapper
+		memory_free(jxr_io);
+		// memory_free the JXR stream wrapper
 		pStream->fMem = TRUE;
 		_jxr_io_Close(&pStream);
 	}
@@ -915,10 +915,10 @@ CopyPixels(PKImageDecode *pDecoder, PKPixelFormatGUID out_guid_format, FIBITMAP 
 				memcpy(dst_bits, src_bits, line_size);
 			}
 			
-			// free the local buffer
+			// memory_free the local buffer
 			PKFreeAligned((void **) &pb);
 
-			// free the pixel format converter
+			// memory_free the pixel format converter
 			PKFormatConverter_Release(&pConverter);
 		}
 
@@ -943,9 +943,9 @@ CopyPixels(PKImageDecode *pDecoder, PKPixelFormatGUID out_guid_format, FIBITMAP 
 		return WMP_errSuccess;
 
 	} catch(...) {
-		// free the local buffer
+		// memory_free the local buffer
 		PKFreeAligned((void **) &pb);
-		// free the pixel format converter
+		// memory_free the pixel format converter
 		PKFormatConverter_Release(&pConverter);
 
 		return error_code;
@@ -1026,7 +1026,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		if(header_only) {
 			// header only mode ...
 			
-			// free the decoder
+			// memory_free the decoder
 			pDecoder->Release(&pDecoder);
 			assert(pDecoder == NULL);
 
@@ -1037,7 +1037,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		error_code = CopyPixels(pDecoder, guid_format, dib, width, height);
 		JXR_CHECK(error_code);
 
-		// free the decoder
+		// memory_free the decoder
 		pDecoder->Release(&pDecoder);
 		assert(pDecoder == NULL);
 
@@ -1046,7 +1046,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	} catch (const char *message) {
 		// unload the dib
 		FreeImage_Unload(dib);
-		// free the decoder
+		// memory_free the decoder
 		pDecoder->Release(&pDecoder);
 
 		if(NULL != message) {
@@ -1257,7 +1257,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 		// recover dib coordinates
 		FreeImage_FlipVertical(dib);
 
-		// free the encoder
+		// memory_free the encoder
 		pEncoder->Release(&pEncoder);
 		assert(pEncoder == NULL);
 		
@@ -1269,7 +1269,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 			FreeImage_FlipVertical(dib);
 		}
 		if(pEncoder) {
-			// free the encoder
+			// memory_free the encoder
 			pEncoder->Release(&pEncoder);
 			assert(pEncoder == NULL);
 		}

@@ -46,7 +46,7 @@ RAW encoding operations
 typedef struct opj_raw {
 	/** temporary buffer where bits are coded or decoded */
 	OPJ_BYTE c;
-	/** number of bits already read or free to write */
+	/** number of bits already read or memory_free to write */
 	OPJ_UINT32 ct;
 	/** maximum length to decode */
 	OPJ_UINT32 lenmax;

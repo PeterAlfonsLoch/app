@@ -220,7 +220,7 @@ WebPMux* WebPMuxCreateInternal(const WebPData* bitstream, int copy_data,
   data += RIFF_HEADER_SIZE;
   size -= RIFF_HEADER_SIZE;
 
-  wpi = (WebPMuxImage*)malloc(sizeof(*wpi));
+  wpi = (WebPMuxImage*)memory_alloc(sizeof(*wpi));
   if (wpi == NULL) goto Err;
   MuxImageInit(wpi);
 
@@ -375,7 +375,7 @@ static WebPMuxError SynthesizeBitstream(const WebPMuxImage* const wpi,
   // Note: No need to output ANMF/FRGM chunk for a single image.
   const size_t size = RIFF_HEADER_SIZE + vp8x_size + alpha_size +
                       ChunkDiskSize(wpi->img_);
-  uint8_t* const data = (uint8_t*)malloc(size);
+  uint8_t* const data = (uint8_t*)memory_alloc(size);
   if (data == NULL) return WEBP_MUX_MEMORY_ERROR;
 
   // Main RIFF header.

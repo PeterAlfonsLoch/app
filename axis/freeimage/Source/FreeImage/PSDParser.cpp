@@ -397,7 +397,7 @@ int psdICCProfile::Read(FreeImageIO *io, fi_handle handle, int size) {
 	
 	clear();
 	
-	_ProfileData = new (std::nothrow) BYTE[size];
+	_ProfileData = new  BYTE[size];
 	if(NULL != _ProfileData) {
 		n = (int)io->read_proc(_ProfileData, 1, size, handle);
 		_ProfileSize = size;
@@ -713,7 +713,7 @@ FIBITMAP* psdParser::ReadImageData(FreeImageIO *io, fi_handle handle) {
 		case PSDP_CMYK	:
 		case PSDP_MULTICHANNEL	:
 			// force PSDP_MULTICHANNEL CMY as CMYK
-			dstCh = (mode == PSDP_MULTICHANNEL && !header_only) ? 4 : MIN<unsigned>(nChannels, 4);
+			dstCh = (mode == PSDP_MULTICHANNEL && !header_only) ? 4 : MIN(nChannels, 4);
 			if(dstCh < 3) {
 				throw "Invalid number of channels";
 			}
@@ -799,7 +799,7 @@ FIBITMAP* psdParser::ReadImageData(FreeImageIO *io, fi_handle handle) {
 			// store an array of these
 
 			// later use this array as WORD rleLineSizeList[nChannels][nHeight];
-			WORD *rleLineSizeList = new (std::nothrow) WORD[nChannels*nHeight];
+			WORD *rleLineSizeList = new  WORD[nChannels*nHeight];
 
 			if(!rleLineSizeList) {
 				FreeImage_Unload(bitmap);
@@ -823,7 +823,7 @@ FIBITMAP* psdParser::ReadImageData(FreeImageIO *io, fi_handle handle) {
 				}
 			}
 
-			BYTE* rle_line_start = new (std::nothrow) BYTE[largestRLELine];
+			BYTE* rle_line_start = new  BYTE[largestRLELine];
 			if(!rle_line_start) {
 				FreeImage_Unload(bitmap);
 				SAFE_DELETE_ARRAY(line_start);

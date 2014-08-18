@@ -938,7 +938,7 @@ png_write_destroy(png_structrp png_ptr)
 #endif
 
 #ifdef PNG_WRITE_WEIGHTED_FILTER_SUPPORTED
-   /* Use this to save a little code space, it doesn't free the filter_costs */
+   /* Use this to save a little code space, it doesn't memory_free the filter_costs */
    png_reset_filter_heuristics(png_ptr);
    png_free(png_ptr, png_ptr->filter_costs);
    png_free(png_ptr, png_ptr->inv_filter_costs);
@@ -956,8 +956,8 @@ png_write_destroy(png_structrp png_ptr)
 
 /* Free all memory used by the write.
  * In libpng 1.6.0 this API changed quietly to no longer accept a NULL value for
- * *png_ptr_ptr.  Prior to 1.6.0 it would accept such a value and it would free
- * the passed in info_structs but it would quietly fail to free any of the data
+ * *png_ptr_ptr.  Prior to 1.6.0 it would accept such a value and it would memory_free
+ * the passed in info_structs but it would quietly fail to memory_free any of the data
  * inside them.  In 1.6.0 it quietly does nothing (it has to be quiet because it
  * has no png_ptr.)
  */

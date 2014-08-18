@@ -395,7 +395,7 @@ int VP8EncWrite(VP8Encoder* const enc) {
     ok = ok && PutWebPHeaders(enc, size0, vp8_size, riff_size)
             && pic->writer(part0, size0, pic)
             && EmitPartitionsSize(enc, pic);
-    VP8BitWriterWipeOut(bw);    // will free the internal buffer.
+    VP8BitWriterWipeOut(bw);    // will memory_free the internal buffer.
   }
 
   // Token partitions
@@ -404,7 +404,7 @@ int VP8EncWrite(VP8Encoder* const enc) {
     const size_t size = VP8BitWriterSize(enc->parts_ + p);
     if (size)
       ok = ok && pic->writer(buf, size, pic);
-    VP8BitWriterWipeOut(enc->parts_ + p);    // will free the internal buffer.
+    VP8BitWriterWipeOut(enc->parts_ + p);    // will memory_free the internal buffer.
     ok = ok && WebPReportProgress(pic, enc->percent_ + percent_per_part,
                                   &enc->percent_);
   }

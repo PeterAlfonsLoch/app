@@ -68,7 +68,7 @@ typedef struct tagSUNHEADER {
 #define RT_EXPERIMENTAL 0xffff	// Reserved for testing
 
 // These are the possible colormap types.
-// if it's in RGB format, the map is made up of three byte arrays
+// if it's in RGB format, the std::map is made up of three byte arrays
 // (red, green, then blue) that are each 1/3 of the colormap length.
 
 #define RMT_NONE		0	// maplength is expected to be 0
@@ -316,7 +316,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 					throw "Invalid palette";
 				}
 
-				r = (BYTE*)malloc(3 * numcolors * sizeof(BYTE));
+				r = (BYTE*)memory_alloc(3 * numcolors * sizeof(BYTE));
 				g = r + numcolors;
 				b = g + numcolors;
 
@@ -330,7 +330,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 					pal[i].rgbBlue	= b[i];
 				}
 
-				free(r);
+				memory_free(r);
 				break;
 			}
 
@@ -340,11 +340,11 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 				// Read (skip) SUN raster colormap.
 
-				colormap = (BYTE *)malloc(header.maplength * sizeof(BYTE));
+				colormap = (BYTE *)memory_alloc(header.maplength * sizeof(BYTE));
 
 				io->read_proc(colormap, header.maplength, 1, handle);
 
-				free(colormap);
+				memory_free(colormap);
 				break;
 			}
 		}
@@ -392,7 +392,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			{
 				BYTE *buf, *bp;
 
-				buf = (BYTE*)malloc(header.width * 3);
+				buf = (BYTE*)memory_alloc(header.width * 3);
 
 				for (y = 0; y < header.height; y++) {
 					bits = FreeImage_GetBits(dib) + (header.height - 1 - y) * pitch;
@@ -424,7 +424,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 					}
 				}
 
-				free(buf);
+				memory_free(buf);
 				break;
 			}
 
@@ -432,7 +432,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			{
 				BYTE *buf, *bp;
 
-				buf = (BYTE*)malloc(header.width * 4);
+				buf = (BYTE*)memory_alloc(header.width * 4);
 
 				for (y = 0; y < header.height; y++) {
 					bits = FreeImage_GetBits(dib) + (header.height - 1 - y) * pitch;
@@ -468,7 +468,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 					}
 				}
 
-				free(buf);
+				memory_free(buf);
 				break;
 			}
 		}

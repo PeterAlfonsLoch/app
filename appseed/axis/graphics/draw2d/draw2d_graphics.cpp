@@ -1235,7 +1235,7 @@ namespace draw2d
                if (!dib1->from(null_point(), pgraphicsSrc, point(xSrc, ySrc), rectBlt.size()))
                   return false;
 
-               dib1->blend(point(0, 0), m_pdibAlphaBlend, point((int)max(0, x - m_ptAlphaBlend.x), (int)max(0, y - m_ptAlphaBlend.y)), rectBlt.size());
+               dib1->blend(point(0, 0), m_pdibAlphaBlend, point((int)MAX(0, x - m_ptAlphaBlend.x), (int)MAX(0, y - m_ptAlphaBlend.y)), rectBlt.size());
 
                keep < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
 
@@ -1375,7 +1375,7 @@ namespace draw2d
             //else
             {
 
-               dib1->blend(null_point(), m_pdibAlphaBlend, point((int)max(0, x - m_ptAlphaBlend.x), (int)max(0, y - m_ptAlphaBlend.y)), rectText.size());
+               dib1->blend(null_point(), m_pdibAlphaBlend, point((int)MAX(0, x - m_ptAlphaBlend.x), (int)MAX(0, y - m_ptAlphaBlend.y)), rectText.size());
 
                set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -3664,7 +3664,7 @@ namespace draw2d
             strsize i = iLen;
             if (i < 0)
                i = 0;
-            char * lpsz = str.GetBuffer(max(0, i) + 1);
+            char * lpsz = str.GetBuffer(MAX(0, i) + 1);
             while (i > 0)
             {
                sz = pdc->GetTextExtent(str, (int32_t)i);
@@ -3742,13 +3742,13 @@ namespace draw2d
 
          ::draw2d::font * pfontOld;
 
-         pdc->TextOut(rect.left, rect.top, str, (int32_t)min(iUnderline, str.get_length()));
+         pdc->TextOut(rect.left, rect.top, str, (int32_t)MIN(iUnderline, str.get_length()));
          /*::TextOutU(
          (HDC)pdc->get_os_data(),
          rect.left,
          rect.top,
          str,
-         min(iUnderline, str.get_length()));*/
+         MIN(iUnderline, str.get_length()));*/
          if (iUnderline <= str.get_length())
          {
             ::draw2d::font fPrevious = *pdc->get_current_font();
@@ -4001,14 +4001,14 @@ namespace draw2d
          
          m_sppen->m_elinecapBeg = ::draw2d::pen::line_cap_flat;
          m_sppen->m_elinecapEnd = ::draw2d::pen::line_cap_flat;
-         MoveTo(rect.top_left() + size(0,pen->m_dWidth/2.0));
-         LineTo(rect.top_right() + size(0,pen->m_dWidth/2.0));
-         MoveTo(rect.top_left() + size(0,pen->m_dWidth));
-         LineTo(rect.top_right() + size(0,pen->m_dWidth));
-         MoveTo(rect.top_left() + size(0,pen->m_dWidth *3.0/ 2.0));
-         LineTo(rect.top_right() + size(0,pen->m_dWidth *3.0/ 2.0));
-         MoveTo(rect.top_left() + size(0,pen->m_dWidth*2.0));
-         LineTo(rect.top_right() + size(0,pen->m_dWidth*2.0));
+         MoveTo(rect.top_left() + size(0,(int64_t) (pen->m_dWidth/2.0)));
+         LineTo(rect.top_right() + size(0,(int64_t)(pen->m_dWidth / 2.0)));
+         MoveTo(rect.top_left() + size(0,(int64_t)(pen->m_dWidth)));
+         LineTo(rect.top_right() + size(0,(int64_t)(pen->m_dWidth)));
+         MoveTo(rect.top_left() + size(0,(int64_t)(pen->m_dWidth *3.0 / 2.0)));
+         LineTo(rect.top_right() + size(0,(int64_t)(pen->m_dWidth *3.0 / 2.0)));
+         MoveTo(rect.top_left() + size(0,(int64_t)(pen->m_dWidth*2.0)));
+         LineTo(rect.top_right() + size(0,(int64_t)(pen->m_dWidth*2.0)));
 
       }
       else if(eicon == stock_icon_restore)
@@ -4028,30 +4028,30 @@ namespace draw2d
 
          m_sppen->m_elinecapBeg = ::draw2d::pen::line_cap_flat;
          m_sppen->m_elinecapEnd = ::draw2d::pen::line_cap_flat;
-         MoveTo(rect2.top_left() + size(0,pen->m_dWidth / 2.0));
-         LineTo(rect2.top_right() + size(0,pen->m_dWidth / 2.0));
-         MoveTo(rect2.top_left() + size(0,pen->m_dWidth));
-         LineTo(rect2.top_right() + size(0,pen->m_dWidth));
+         MoveTo(rect2.top_left() + size(0,(int64_t)(pen->m_dWidth / 2.0)));
+         LineTo(rect2.top_right() + size(0,(int64_t)(pen->m_dWidth / 2.0)));
+         MoveTo(rect2.top_left() + size(0,(int64_t)(pen->m_dWidth)));
+         LineTo(rect2.top_right() + size(0,(int64_t)(pen->m_dWidth)));
 
 
          MoveTo(rect1.top_left());
          LineTo(rect1.top_right());
-         MoveTo(rect1.top_left() + size(0,pen->m_dWidth / 2.0));
-         LineTo(rect1.top_right() + size(0,pen->m_dWidth / 2.0));
-         MoveTo(rect1.top_left() + size(0,pen->m_dWidth));
-         LineTo(rect1.top_right() + size(0,pen->m_dWidth));
+         MoveTo(rect1.top_left() + size(0,(int64_t)(pen->m_dWidth / 2.0)));
+         LineTo(rect1.top_right() + size(0,(int64_t)(pen->m_dWidth / 2.0)));
+         MoveTo(rect1.top_left() + size(0,(int64_t)(pen->m_dWidth)));
+         LineTo(rect1.top_right() + size(0,(int64_t)(pen->m_dWidth)));
 
 
 
          m_sppen->m_elinecapBeg = ::draw2d::pen::line_cap_square;
          m_sppen->m_elinecapEnd = ::draw2d::pen::line_cap_square;
          m_sppen->m_bUpdated = false;
-         MoveTo(rect1.top_left() + size(0,pen->m_dWidth));
+         MoveTo(rect1.top_left() + size(0,(int64_t)(pen->m_dWidth)));
          LineTo(rect1.bottom_left());
          LineTo(rect2.left, rect1.bottom);
 
-         MoveTo(rect1.top_right() + size(0,pen->m_dWidth));
-         LineTo(rect1.right, (int) (rect2.top - pen->m_dWidth));
+         MoveTo(rect1.top_right() + size(0,(int64_t)(pen->m_dWidth)));
+         LineTo(rect1.right,(int)(rect2.top - (int64_t)(pen->m_dWidth)));
          
       }
       else if(eicon == stock_icon_iconify)
@@ -4060,14 +4060,14 @@ namespace draw2d
          rect.deflate(0, rect.height() / 7);
          
          
-         MoveTo(rect.bottom_left() - size(0,pen->m_dWidth*2.0));
-         LineTo(rect.bottom_right() - size(0,pen->m_dWidth*2.0));
-         MoveTo(rect.bottom_left() - size(0,pen->m_dWidth*3.0/2.0));
-         LineTo(rect.bottom_right() - size(0,pen->m_dWidth*3.0/2.0));
-         MoveTo(rect.bottom_left() - size(0,pen->m_dWidth));
-         LineTo(rect.bottom_right() - size(0,pen->m_dWidth));
-         MoveTo(rect.bottom_left() - size(0,pen->m_dWidth/2.0));
-         LineTo(rect.bottom_right() - size(0,pen->m_dWidth/2.0));
+         MoveTo(rect.bottom_left() - size(0,(int64_t)(pen->m_dWidth*2.0)));
+         LineTo(rect.bottom_right() - size(0,(int64_t)(pen->m_dWidth*2.0)));
+         MoveTo(rect.bottom_left() - size(0,(int64_t)(pen->m_dWidth*3.0 / 2.0)));
+         LineTo(rect.bottom_right() - size(0,(int64_t)(pen->m_dWidth*3.0 / 2.0)));
+         MoveTo(rect.bottom_left() - size(0,(int64_t)(pen->m_dWidth)));
+         LineTo(rect.bottom_right() - size(0,(int64_t)(pen->m_dWidth)));
+         MoveTo(rect.bottom_left() - size(0,(int64_t)(pen->m_dWidth / 2.0)));
+         LineTo(rect.bottom_right() - size(0,(int64_t)(pen->m_dWidth / 2.0)));
          MoveTo(rect.bottom_left());
          LineTo(rect.bottom_right());
          
@@ -4081,13 +4081,13 @@ namespace draw2d
 
          ::rect rect1(rect);
          
-         rect1.deflate(m_sppen->m_dWidth / 2.0,m_sppen->m_dWidth / 2.0);
+         rect1.deflate((int32_t)(m_sppen->m_dWidth / 2.0),(int32_t)(m_sppen->m_dWidth / 2.0));
 
          DrawEllipse(rect1);
 
          ::rect rect2(rect);
 
-         rect2.deflate(m_sppen->m_dWidth,m_sppen->m_dWidth);
+         rect2.deflate((int32_t)(m_sppen->m_dWidth),(int32_t)(m_sppen->m_dWidth));
 
          DrawEllipse(rect2);
 

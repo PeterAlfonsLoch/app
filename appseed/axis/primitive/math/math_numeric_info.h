@@ -29,8 +29,35 @@ namespace numeric_info
    inline bool is_integer();
 
 
+   template < typename T >
+   class numeric_info
+   {
+   public:
+      
+      static inline T get_maximum_value(){ return ::numeric_info::get_maximum_value < T >();  }
+      static inline T get_minimum_value(){ return ::numeric_info::get_minimum_value < T >(); }
+      static inline T get_null_value(){ return ::numeric_info::get_null_value < T >(); }
+      static inline T get_unitary_value(){ return ::numeric_info::get_unitary_value < T >(); }
+      static inline T get_allset_value(){ return ::numeric_info::get_allset_value < T >(); }
+      static inline T is_signed(){ return ::numeric_info::is_signed < T >(); }
+      static inline T is_integer(){ return ::numeric_info::is_integer < T >(); }
 
+      static inline T maximum_value(){ return get_maximum_value(); }
+      static inline T minimum_value(){ return get_minimum_value(); }
+      static inline T null_value(){ return get_null_value(); }
+      static inline T unitary_value(){ return get_unitary_value(); }
+      static inline T allset_value(){ return get_allset_value(); }
 
+      static inline T maximum(){ return maximum_value(); }
+      static inline T minimum(){ return minimum_value(); }
+
+      static inline T max(){ return maximum(); }
+      static inline T min(){ return minimum(); }
+      static inline T null(){ return null_value(); }
+      static inline T unit(){ return unitary_value(); }
+      static inline T allset(){ return allset_value(); }
+
+   };
 
 
    template <>

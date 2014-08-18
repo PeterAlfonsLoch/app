@@ -431,7 +431,7 @@ jpeg_read_comment(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen) {
 	BYTE *profile = (BYTE*)dataptr;
 
 	// read the comment
-	char *value = (char*)malloc((length + 1) * sizeof(char));
+	char *value = (char*)memory_alloc((length + 1) * sizeof(char));
 	if(value == NULL) return FALSE;
 	memcpy(value, profile, length);
 	value[length] = '\0';
@@ -455,7 +455,7 @@ jpeg_read_comment(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen) {
 		FreeImage_DeleteTag(tag);
 	}
 
-	free(value);
+	memory_free(value);
 
 	return TRUE;
 }
@@ -492,8 +492,8 @@ marker_is_icc(jpeg_saved_marker_ptr marker) {
   If TRUE is returned, *icc_data_ptr is set to point to the
   returned data, and *icc_data_len is set to its length.
   
-  IMPORTANT: the data at **icc_data_ptr has been allocated with malloc()
-  and must be freed by the caller with free() when the caller no longer
+  IMPORTANT: the data at **icc_data_ptr has been allocated with memory_alloc()
+  and must be freed by the caller with memory_free() when the caller no longer
   needs it.  (Alternatively, we could write this routine to use the
   IJG library's memory allocator, so that the data would be freed implicitly
   at jpeg_finish_decompress() time.  But it seems likely that many apps
@@ -568,7 +568,7 @@ jpeg_read_icc_profile(j_decompress_ptr cinfo, JOCTET **icc_data_ptr, unsigned *i
 		return FALSE;		// found only empty markers ?
 	
 	// allocate space for assembled data 
-	icc_data = (JOCTET *) malloc(total_length * sizeof(JOCTET));
+	icc_data = (JOCTET *) memory_alloc(total_length * sizeof(JOCTET));
 	if (icc_data == NULL)
 		return FALSE;		// out of memory
 	
@@ -749,7 +749,7 @@ read_markers(j_decompress_ptr cinfo, FIBITMAP *dib) {
 		// copy ICC profile data
 		FreeImage_CreateICCProfile(dib, icc_profile, icc_length);
 		// clean up
-		free(icc_profile);
+		memory_free(icc_profile);
 	}
 
 	return TRUE;
@@ -794,7 +794,7 @@ jpeg_write_icc_profile(j_compress_ptr cinfo, FIBITMAP *dib) {
 	if (iccProfile->size && iccProfile->data) {
 		// ICC_HEADER_SIZE: ICC signature is 'ICC_PROFILE' + 2 bytes
 
-		BYTE *profile = (BYTE*)malloc((iccProfile->size + ICC_HEADER_SIZE) * sizeof(BYTE));
+		BYTE *profile = (BYTE*)memory_alloc((iccProfile->size + ICC_HEADER_SIZE) * sizeof(BYTE));
 		if(profile == NULL) return FALSE;
 		memcpy(profile, icc_signature, 12);
 
@@ -809,7 +809,7 @@ jpeg_write_icc_profile(j_compress_ptr cinfo, FIBITMAP *dib) {
 			jpeg_write_marker(cinfo, ICC_MARKER, profile, (length + ICC_HEADER_SIZE));
         }
 
-		free(profile);
+		memory_free(profile);
 
 		return TRUE;		
 	}
@@ -837,7 +837,7 @@ jpeg_write_iptc_profile(j_compress_ptr cinfo, FIBITMAP *dib) {
 			for(long i = 0; i < (long)profile_size; i += 65517L) {
 				unsigned length = MIN((long)profile_size - i, 65517L);
 				unsigned roundup = length & 0x01;	// needed for Photoshop
-				BYTE *iptc_profile = (BYTE*)malloc(length + roundup + tag_length);
+				BYTE *iptc_profile = (BYTE*)memory_alloc(length + roundup + tag_length);
 				if(iptc_profile == NULL) break;
 				// Photoshop identification string
 				memcpy(&iptc_profile[0], "Photoshop 3.0\x0", 14);
@@ -851,11 +851,11 @@ jpeg_write_iptc_profile(j_compress_ptr cinfo, FIBITMAP *dib) {
 				if(roundup)
 					iptc_profile[length + tag_length] = 0;
 				jpeg_write_marker(cinfo, IPTC_MARKER, iptc_profile, length + roundup + tag_length);
-				free(iptc_profile);
+				memory_free(iptc_profile);
 			}
 
 			// release profile
-			free(profile);
+			memory_free(profile);
 
 			return TRUE;
 		}
@@ -885,7 +885,7 @@ jpeg_write_xmp_profile(j_compress_ptr cinfo, FIBITMAP *dib) {
 
 			DWORD tag_length = FreeImage_GetTagLength(tag_xmp);
 
-			BYTE *profile = (BYTE*)malloc((tag_length + xmp_header_size) * sizeof(BYTE));
+			BYTE *profile = (BYTE*)memory_alloc((tag_length + xmp_header_size) * sizeof(BYTE));
 			if(profile == NULL) return FALSE;
 			memcpy(profile, xmp_signature, xmp_header_size);
 
@@ -896,7 +896,7 @@ jpeg_write_xmp_profile(j_compress_ptr cinfo, FIBITMAP *dib) {
 				jpeg_write_marker(cinfo, EXIF_MARKER, profile, (length + xmp_header_size));
 			}
 
-			free(profile);
+			memory_free(profile);
 
 			return TRUE;	
 		}
@@ -929,7 +929,7 @@ jpeg_write_exif_profile_raw(j_compress_ptr cinfo, FIBITMAP *dib) {
 		if(NULL != tag_value) {
 			DWORD tag_length = FreeImage_GetTagLength(tag_exif);
 
-			BYTE *profile = (BYTE*)malloc(tag_length * sizeof(BYTE));
+			BYTE *profile = (BYTE*)memory_alloc(tag_length * sizeof(BYTE));
 			if(profile == NULL) return FALSE;
 
 			for(DWORD i = 0; i < tag_length; i += 65504L) {
@@ -939,7 +939,7 @@ jpeg_write_exif_profile_raw(j_compress_ptr cinfo, FIBITMAP *dib) {
 				jpeg_write_marker(cinfo, EXIF_MARKER, profile, length);
 			}
 
-			free(profile);
+			memory_free(profile);
 
 			return TRUE;	
 		}
@@ -1578,7 +1578,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 			if(color_type == FIC_RGB) {
 				// 24-bit RGB image : need to swap red and blue channels
 				unsigned pitch = FreeImage_GetPitch(dib);
-				BYTE *target = (BYTE*)malloc(pitch * sizeof(BYTE));
+				BYTE *target = (BYTE*)memory_alloc(pitch * sizeof(BYTE));
 				if (target == NULL) {
 					throw FI_MSG_ERROR_MEMORY;
 				}
@@ -1597,7 +1597,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 					// write the scanline
 					jpeg_write_scanlines(&cinfo, &target, 1);
 				}
-				free(target);
+				memory_free(target);
 			}
 			else if(color_type == FIC_MINISBLACK) {
 				// 8-bit standard greyscale images
@@ -1610,7 +1610,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 			else if(color_type == FIC_PALETTE) {
 				// 8-bit palettized images are converted to 24-bit images
 				RGBQUAD *palette = FreeImage_GetPalette(dib);
-				BYTE *target = (BYTE*)malloc(cinfo.image_width * 3);
+				BYTE *target = (BYTE*)memory_alloc(cinfo.image_width * 3);
 				if (target == NULL) {
 					throw FI_MSG_ERROR_MEMORY;
 				}
@@ -1632,13 +1632,13 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 					jpeg_write_scanlines(&cinfo, &target, 1);
 				}
 
-				free(target);
+				memory_free(target);
 			}
 			else if(color_type == FIC_MINISWHITE) {
 				// reverse 8-bit greyscale image, so reverse grey value on the fly
 				unsigned i;
 				BYTE reverse[256];
-				BYTE *target = (BYTE *)malloc(cinfo.image_width);
+				BYTE *target = (BYTE *)memory_alloc(cinfo.image_width);
 				if (target == NULL) {
 					throw FI_MSG_ERROR_MEMORY;
 				}
@@ -1655,7 +1655,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 					jpeg_write_scanlines(&cinfo, &target, 1);
 				}
 
-				free(target);
+				memory_free(target);
 			}
 
 			// Step 8: Finish compression 

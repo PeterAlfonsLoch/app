@@ -146,7 +146,7 @@ Combine4(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned 
 	unsigned src_width  = FreeImage_GetWidth(src_dib);
 	unsigned src_height = FreeImage_GetHeight(src_dib);
 
-	BYTE *buffer = (BYTE *)malloc(src_line * sizeof(BYTE));
+	BYTE *buffer = (BYTE *)memory_alloc(src_line * sizeof(BYTE));
 	if (buffer == NULL) {
 		return FALSE;
 	}
@@ -183,7 +183,7 @@ Combine4(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned 
 		src_bits += FreeImage_GetPitch(src_dib);
 	}
 
-	free(buffer);
+	memory_free(buffer);
 
 	return TRUE;
 

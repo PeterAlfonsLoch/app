@@ -559,7 +559,7 @@ png_inflate(png_structrp png_ptr, png_uint_32 owner, int finish,
  * points at an allocated area holding the contents of a chunk with a
  * trailing compressed part.  What we get back is an allocated area
  * holding the original prefix part and an uncompressed version of the
- * trailing part (the malloc area passed in is freed).
+ * trailing part (the memory_alloc area passed in is freed).
  */
 static int
 png_decompress_chunk(png_structrp png_ptr,
@@ -4452,7 +4452,7 @@ defined(PNG_USER_TRANSFORM_PTR_SUPPORTED)
        (unsigned long)PNG_ROWBYTES(png_ptr->pixel_depth, png_ptr->iwidth) + 1);
 
    /* The sequential reader needs a buffer for IDAT, but the progressive reader
-    * does not, so free the read buffer now regardless; the sequential reader
+    * does not, so memory_free the read buffer now regardless; the sequential reader
     * reallocates it on demand.
     */
    if (png_ptr->read_buffer)

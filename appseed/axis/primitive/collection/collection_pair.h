@@ -7,8 +7,8 @@ class pair
 public:
    
    
-   T1       m_element1;
-   T2       m_element2;
+   T1       first;
+   T2       second;
 
    
    pair()
@@ -17,21 +17,21 @@ public:
 
    pair(const T1 & element1)
    {
-      m_element1 = element1;
+      first = element1;
    }
 
    pair(const T1 & element1, const T2 & element2)
    {
-      m_element1 = element1;
-      m_element2 = element2;
+      first = element1;
+      second = element2;
    }
 
 
-   inline T1 & element1()  { return m_element1; }
-   inline T2 & element2() { return m_element2; }
+   inline T1 & element1()  { return first; }
+   inline T2 & element2() { return second; }
 
-   inline const T1 & element1() const { return m_element1; }
-   inline const T2 & element2() const { return m_element2; }
+   inline const T1 & element1() const { return first; }
+   inline const T2 & element2() const { return second; }
 
    
 

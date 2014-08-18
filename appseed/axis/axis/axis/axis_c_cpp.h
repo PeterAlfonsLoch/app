@@ -1300,3 +1300,54 @@ return true;
 
 #include "axis/user/simple/simple.h"
 #include "axis/user/simple_ui/simple_ui.h"
+
+
+
+namespace std
+{
+
+   using string = ::string;
+   using wstring = ::wstring;
+
+      template < class KEY,class VALUE >
+      using map = ::map < KEY,const KEY &,VALUE,const VALUE & >;
+
+         template < class TYPE >
+      using list = ::list< TYPE >;
+
+      template < class TYPE >
+      using vector = ::array< TYPE >;
+
+      template < class TYPE >
+      using set = ::set< TYPE >;
+
+      using ostream = ::file::output_stream;
+      using ofstream = ::file::output_stream;
+
+      using istream = ::file::input_stream;
+      using ifstream = ::file::input_stream;
+
+      using stringstream = ::file::plain_text_stream_string_buffer;
+      using ostringstream = ::file::plain_text_output_stream_string_buffer;
+
+      template < typename T >
+      using numeric_limits = ::numeric_info::numeric_info < T >;
+ 
+//      template <class T> void sort(T & t1,T & t2)
+  //    {
+    //     ::sort::sort < T >(t1,t2);
+      //}
+
+      template < class iterator,class COMPARE = ::comparison::less < typename iterator::BASE_TYPE,typename iterator::BASE_ARG_TYPE > >
+      void sort(iterator  & a,iterator  & b)
+      {
+         ::sort::quick_sort < iterator, COMPARE > (a,b);
+      }
+
+      template < typename T >
+      using auto_ptr = ::auto_pointer < T >;
+
+      template < typename T >
+      using stack = ::stack < T >;
+
+}

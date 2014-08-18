@@ -23,8 +23,8 @@ bool null(LPRECT prectDest)
 
 bool x_intersect_rect(LPRECT prect,LPCRECT prect1,LPCRECT prect2)
 {
-   prect->left    = max(prect1->left,prect2->left);
-   prect->right   = min(prect1->right,prect2->right);
+   prect->left    = MAX(prect1->left,prect2->left);
+   prect->right   = MIN(prect1->right,prect2->right);
    if(prect->right > prect->left)
    {
       return true;
@@ -38,8 +38,8 @@ bool x_intersect_rect(LPRECT prect,LPCRECT prect1,LPCRECT prect2)
 
 bool y_intersect_rect(LPRECT prect,LPCRECT prect1,LPCRECT prect2)
 {
-   prect->top     = max(prect1->top,prect2->top);
-   prect->bottom  = min(prect1->bottom,prect2->bottom);
+   prect->top     = MAX(prect1->top,prect2->top);
+   prect->bottom  = MIN(prect1->bottom,prect2->bottom);
    if(prect->top < prect->bottom)
    {
       return true;
@@ -53,8 +53,8 @@ bool y_intersect_rect(LPRECT prect,LPCRECT prect1,LPCRECT prect2)
 
 bool x_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
 {
-   lprect->left    = max(lpcrect1->left,lpcrect2->left);
-   lprect->right   = min(lpcrect1->right,lpcrect2->right);
+   lprect->left    = MAX(lpcrect1->left,lpcrect2->left);
+   lprect->right   = MIN(lpcrect1->right,lpcrect2->right);
    if(lprect->right >= lprect->left)
    {
       return true;
@@ -70,8 +70,8 @@ bool x_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
 
 bool y_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
 {
-   lprect->top     = max(lpcrect1->top,lpcrect2->top);
-   lprect->bottom  = min(lpcrect1->bottom,lpcrect2->bottom);
+   lprect->top     = MAX(lpcrect1->top,lpcrect2->top);
+   lprect->bottom  = MIN(lpcrect1->bottom,lpcrect2->bottom);
    if(lprect->top <= lprect->bottom)
    {
       return true;
@@ -103,8 +103,8 @@ CLASS_DECL_AXIS bool null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT 
 
 bool x_left_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
 {
-   lprect->left    = max(lpcrect1->left,lpcrect2->left);
-   lprect->right   = min(lpcrect1->right,lpcrect2->right);
+   lprect->left    = MAX(lpcrect1->left,lpcrect2->left);
+   lprect->right   = MIN(lpcrect1->right,lpcrect2->right);
    if(lprect->right > lprect->left || (lprect->right == lprect->left && lpcrect1->left == lpcrect2->left))
    {
       return true;
@@ -120,8 +120,8 @@ bool x_left_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
 
 bool y_top_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
 {
-   lprect->top     = max(lpcrect1->top,lpcrect2->top);
-   lprect->bottom  = min(lpcrect1->bottom,lpcrect2->bottom);
+   lprect->top     = MAX(lpcrect1->top,lpcrect2->top);
+   lprect->bottom  = MIN(lpcrect1->bottom,lpcrect2->bottom);
    if(lprect->top < lprect->bottom || (lprect->top == lprect->bottom && lpcrect1->top == lpcrect2->top))
    {
       return true;
@@ -208,7 +208,7 @@ bool contains(const tagRECTD * prect, POINTD pt)
       pt.x >= prect->left && pt.x <= prect->right
       && pt.y >= prect->top && pt.y <= prect->bottom;
 }
-bool set(tagRECTD * prectDest, double x1, double y1, double x2, double y2)
+bool set_rect(tagRECTD * prectDest, double x1, double y1, double x2, double y2)
 {
    prectDest->left      = x1;
    prectDest->top       = y1;
@@ -274,8 +274,8 @@ bool offset(tagRECTD * prect, double x, double y)
 
 bool x_intersect_rect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2)
 {
-   prect->left    = max(prect1->left   , prect2->left);
-   prect->right   = min(prect1->right  , prect2->right);
+   prect->left    = MAX(prect1->left   , prect2->left);
+   prect->right   = MIN(prect1->right  , prect2->right);
    if(prect->right > prect->left)
    {
       return true;
@@ -289,8 +289,8 @@ bool x_intersect_rect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD 
 
 bool y_intersect_rect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2)
 {
-   prect->top     = max(prect1->top    , prect2->top);
-   prect->bottom  = min(prect1->bottom , prect2->bottom);
+   prect->top     = MAX(prect1->top    , prect2->top);
+   prect->bottom  = MIN(prect1->bottom , prect2->bottom);
    if(prect->top < prect->bottom)
    {
       return true;
@@ -307,8 +307,8 @@ bool y_intersect_rect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD 
 
 bool x_null_intersect_rect(tagRECTD * prect,const tagRECTD * prect1,const tagRECTD * prect2)
 {
-   prect->left    = max(prect1->left,prect2->left);
-   prect->right   = min(prect1->right,prect2->right);
+   prect->left    = MAX(prect1->left,prect2->left);
+   prect->right   = MIN(prect1->right,prect2->right);
    if(prect->right >= prect->left)
    {
       return true;
@@ -322,8 +322,8 @@ bool x_null_intersect_rect(tagRECTD * prect,const tagRECTD * prect1,const tagREC
 
 bool y_null_intersect_rect(tagRECTD * prect,const tagRECTD * prect1,const tagRECTD * prect2)
 {
-   prect->top     = max(prect1->top,prect2->top);
-   prect->bottom  = min(prect1->bottom,prect2->bottom);
+   prect->top     = MAX(prect1->top,prect2->top);
+   prect->bottom  = MIN(prect1->bottom,prect2->bottom);
    if(prect->top <= prect->bottom)
    {
       return true;
@@ -371,10 +371,10 @@ bool unite(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2)
       *prect = *prect1;
       return true;
    }
-   prect->left    = min(prect1->left   , prect2->left);
-   prect->right   = max(prect1->right  , prect2->right);
-   prect->top     = min(prect1->top    , prect2->top);
-   prect->bottom  = max(prect1->bottom , prect2->bottom);
+   prect->left    = MIN(prect1->left   , prect2->left);
+   prect->right   = MAX(prect1->right  , prect2->right);
+   prect->top     = MIN(prect1->top    , prect2->top);
+   prect->bottom  = MAX(prect1->bottom , prect2->bottom);
    if(prect->right > prect->left &&
       prect->bottom > prect->top)
    {
@@ -464,7 +464,7 @@ bool contains(const __rect64 * prect, point64 pt)
 
 }
 
-bool set(__rect64 * prectDest, int64_t x1, int64_t y1, int64_t x2, int64_t y2)
+bool set_rect(__rect64 * prectDest, int64_t x1, int64_t y1, int64_t x2, int64_t y2)
 {
 
    prectDest->left      = x1;
@@ -533,8 +533,8 @@ bool offset(__rect64 * prect, int64_t x, int64_t y)
 bool x_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2)
 {
 
-   prect->left    = max(prect1->left   , prect2->left);
-   prect->right   = min(prect1->right  , prect2->right);
+   prect->left    = MAX(prect1->left   , prect2->left);
+   prect->right   = MIN(prect1->right  , prect2->right);
 
    if(prect->right > prect->left)
    {
@@ -550,8 +550,8 @@ bool x_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 
 
 bool y_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2)
 {
-   prect->top     = max(prect1->top    , prect2->top);
-   prect->bottom  = min(prect1->bottom , prect2->bottom);
+   prect->top     = MAX(prect1->top    , prect2->top);
+   prect->bottom  = MIN(prect1->bottom , prect2->bottom);
    if(prect->top < prect->bottom)
    {
       return true;
@@ -601,10 +601,10 @@ bool unite(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2)
       *prect = *prect1;
       return true;
    }
-   prect->left    = min(prect1->left   , prect2->left);
-   prect->right   = max(prect1->right  , prect2->right);
-   prect->top     = min(prect1->top    , prect2->top);
-   prect->bottom  = max(prect1->bottom , prect2->bottom);
+   prect->left    = MIN(prect1->left   , prect2->left);
+   prect->right   = MAX(prect1->right  , prect2->right);
+   prect->top     = MIN(prect1->top    , prect2->top);
+   prect->bottom  = MAX(prect1->bottom , prect2->bottom);
    if(prect->right > prect->left &&
       prect->bottom > prect->top)
    {

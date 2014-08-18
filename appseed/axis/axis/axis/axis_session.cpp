@@ -618,8 +618,8 @@ namespace axis
          || rectIntersect.height() < sizeMin.cy)
       {
 
-         if(rectMonitor.width() / 7 + max(sizeMin.cx,rectMonitor.width() * 2 / 5) > rectMonitor.width()
-            || rectMonitor.height() / 7 + max(sizeMin.cy,rectMonitor.height() * 2 / 5) > rectMonitor.width())
+         if(rectMonitor.width() / 7 + MAX(sizeMin.cx,rectMonitor.width() * 2 / 5) > rectMonitor.width()
+            || rectMonitor.height() / 7 + MAX(sizeMin.cy,rectMonitor.height() * 2 / 5) > rectMonitor.width())
          {
 
             rectRestore = rectMonitor;
@@ -632,9 +632,9 @@ namespace axis
 
             rectRestore.top = rectMonitor.top + rectMonitor.height() / 7;
 
-            rectRestore.right = rectRestore.left + max(sizeMin.cx,rectMonitor.width() * 2 / 5);
+            rectRestore.right = rectRestore.left + MAX(sizeMin.cx,rectMonitor.width() * 2 / 5);
 
-            rectRestore.bottom = rectRestore.top + max(sizeMin.cy,rectMonitor.height() * 2 / 5);
+            rectRestore.bottom = rectRestore.top + MAX(sizeMin.cy,rectMonitor.height() * 2 / 5);
 
             if(rectRestore.right > rectMonitor.right - rectMonitor.width() / 7)
             {

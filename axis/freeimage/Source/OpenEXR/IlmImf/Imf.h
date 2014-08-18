@@ -1,5 +1,8 @@
 #pragma once
 
+
+#include "app/appseed/axis/axis/axis/axis.h"
+
 #include <half.h>
 
 #include "IlmThreadPool.h"
@@ -12,15 +15,15 @@
 
 #include "Iex.h"
 
-#include <algorithm>
-#include <cmath>
-#include <fstream>
-#include <iostream>
-#include <iomanip>
-#include <map>
-#include <sstream>
-#include <string>
-#include <vector>
+//#include <algorithm>
+//#include <cmath>
+//#include <fstream>
+//#include <iostream>
+//#include <iomanip>
+//#include <map>
+//#include <sstream>
+//#include <string>
+//#include <vector>
 
 #include <assert.h>
 #include <errno.h>

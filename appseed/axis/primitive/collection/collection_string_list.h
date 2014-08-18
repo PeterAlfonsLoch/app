@@ -7,8 +7,8 @@ class CLASS_DECL_AXIS string_list :
 public:
 
 
-   typedef string AXIS_TYPE;
-   typedef const char * AXIS_ARG_TYPE;
+   typedef string BASE_TYPE;
+   typedef const char * BASE_ARG_TYPE;
 
 
    struct node

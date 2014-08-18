@@ -6,7 +6,7 @@
  * LibRaw C++ interface
  *
 
-LibRaw is free software; you can redistribute it and/or modify
+LibRaw is memory_free software; you can redistribute it and/or modify
 it under the terms of the one of three licenses as you choose:
 
 1. GNU LESSER GENERAL PUBLIC LICENSE version 2.1
@@ -33,7 +33,7 @@ it under the terms of the one of three licenses as you choose:
 
 
 #include <limits.h>
-#include <memory.h>
+//#include <memory.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -150,7 +150,7 @@ class DllDef LibRaw
     void get_mem_image_format(int* width, int* height, int* colors, int* bps) const;
     int  copy_mem_image(void* scan0, int stride, int bgr);
 
-    /* free all internal data structures */
+    /* memory_free all internal data structures */
     void         recycle(); 
     virtual ~LibRaw(void); 
 
@@ -198,10 +198,10 @@ protected:
     }
 
     void adjust_bl();
-    void*        malloc(size_t t);
-    void*        calloc(size_t n,size_t t);
-    void*        realloc(void *p, size_t s);
-    void        free(void *p);
+    void*        memory_alloc(size_t t);
+    void*        memory_calloc(size_t n,size_t t);
+    void*        memory_realloc(void *p, size_t s);
+    void        memory_free(void *p);
     void        merror (void *ptr, const char *where);
     void        derror();
 

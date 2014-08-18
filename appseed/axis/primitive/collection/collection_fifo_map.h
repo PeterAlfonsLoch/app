@@ -236,7 +236,7 @@ public:
       pair * ppair = NULL;
       while(fifo_map.next(ppair) != NULL)
       {
-         set_at(ppair->m_element1, ppair->m_element2);
+         set_at(ppair->first, ppair->second);
       }
    }
 
@@ -335,7 +335,7 @@ fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::fifo_map(pair pairs[], int
    for(int32_t i = 0; i < iCount; i++)
    {
 
-      set_at(pairs[i].m_element1, pairs[i].m_element2);
+      set_at(pairs[i].first, pairs[i].second);
 
    }
 
@@ -386,7 +386,7 @@ bool fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::Lookup(ARG_KEY key, V
    if (passoc == NULL)
       return false;
 
-   rValue = passoc->m_element2;
+   rValue = passoc->second;
 
    return TRUE;
 
@@ -428,7 +428,7 @@ VALUE * fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::pget(ARG_KEY key)
    pair * p = PLookup(key);
 
    if(p)
-      return &p->m_element2;
+      return &p->second;
    else
       return NULL;
 
@@ -453,7 +453,7 @@ VALUE& fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::operator[](ARG_KEY 
 
    }
 
-   return ppair->m_element2;  // return new reference
+   return ppair->second;  // return new reference
 
 }
 
@@ -500,7 +500,7 @@ bool fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::find_key(ARG_KEY key,
    for(i = 0; i < m_ptra.get_size(); i++)
    {
 
-      if(m_ptra[i]->m_element1 == key)
+      if(m_ptra[i]->first == key)
          return true;
 
    }
@@ -524,7 +524,7 @@ void fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::sort(bool bAsc)
          for(index j = i + 1; j < m_ptra.get_size(); j++)
          {
 
-            if(m_ptra[i]->m_element1 > m_ptra[j]->m_element1)
+            if(m_ptra[i]->first > m_ptra[j]->first)
             {
 
                pair * ppair = m_ptra[i];
@@ -547,7 +547,7 @@ void fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::sort(bool bAsc)
          for(index j = i + 1; j < m_ptra.get_size(); j++)
          {
 
-            if(m_ptra[i]->m_element1 < m_ptra[j]->m_element1)
+            if(m_ptra[i]->first < m_ptra[j]->first)
             {
 
                pair * ppair = m_ptra[i];
@@ -579,7 +579,7 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE
 void fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::erase(iterator it)
 {
 
-   remove_key(it->m_element1);
+   remove_key(it->first);
 
 }
 
@@ -662,8 +662,8 @@ void fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::get_next_assoc(POSITI
    rNextPosition  = (POSITION) iNext;
 
    // fill in return data
-   rKey           = m_ptra[iRet - 1]->m_element1;
-   rValue         = m_ptra[iRet - 1]->m_element2;
+   rKey           = m_ptra[iRet - 1]->first;
+   rValue         = m_ptra[iRet - 1]->second;
 
 }
 
@@ -725,7 +725,7 @@ VALUE fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE > ::
    if(ppair == NULL)
       return valueDefault;
    else
-      return ppair->m_element2;
+      return ppair->second;
 }
 
 
@@ -744,9 +744,9 @@ void fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::dump(dump_context & d
       {
          ppair = PGetNextAssoc(ppair);
          dumpcontext << "\n\t[";
-         dump_elements<KEY>(dumpcontext, &ppair->m_element1, 1);
+         dump_elements<KEY>(dumpcontext, &ppair->first, 1);
          dumpcontext << "] = ";
-         dump_elements<VALUE>(dumpcontext, &ppair->m_element2, 1);
+         dump_elements<VALUE>(dumpcontext, &ppair->second, 1);
       }
    }
 
@@ -807,8 +807,8 @@ bool fifo_attrib_map < type_map >::operator == (const fifo_attrib_map & attribma
    for(index i = 0; i < attribmap.m_ptra.get_count(); i++)
    {
 
-      if(attribmap.m_ptra[i]->m_element1       != this->m_ptra[i]->m_element1
-         || attribmap.m_ptra[i]->m_element2     != this->m_ptra[i]->m_element2)
+      if(attribmap.m_ptra[i]->first       != this->m_ptra[i]->first
+         || attribmap.m_ptra[i]->second     != this->m_ptra[i]->second)
       {
 
          return false;
@@ -959,8 +959,8 @@ public:
    class pair
    {
    public:
-      const string m_element1;
-      T * m_element2;
+      const string first;
+      T * second;
    };
 
    bool Lookup(string key, T * & rValue) const

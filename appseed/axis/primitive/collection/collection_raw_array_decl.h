@@ -12,8 +12,8 @@ class raw_array :
 {
 public:
 
-   typedef TYPE AXIS_TYPE;
-   typedef ARG_TYPE AXIS_ARG_TYPE;
+   typedef TYPE BASE_TYPE;
+   typedef ARG_TYPE BASE_ARG_TYPE;
 
    /*
 
@@ -105,6 +105,9 @@ public:
    {
    public:
 
+      typedef TYPE BASE_TYPE;
+      typedef ARG_TYPE BASE_ARG_TYPE;
+
 
       index            m_i;
       raw_array *     m_parray;
@@ -128,13 +131,24 @@ public:
 
       TYPE & operator * ()
       {
-         return m_parray->element_at(m_i);
+         return element_at(m_i);
       }
 
       const TYPE & operator * () const
       {
-         return m_parray->element_at(m_i);
+         return element_at(m_i);
       }
+
+      TYPE & element_at(index i)
+      {
+         return m_parray->element_at(i);
+      }
+
+      const TYPE & element_at(index i) const
+      {
+         return m_parray->element_at(i);
+      }
+
 
       iterator & operator = (const iterator & it)
       {
@@ -188,6 +202,29 @@ public:
          return *this;
       }
 
+      iterator & operator -(::count c)
+      {
+         m_i-=c;
+         if(m_i < 0)
+            m_i = 0;
+         return *this;
+      }
+
+      bool operator < (const iterator & i) const
+      {
+
+         return m_i < i.m_i;
+
+      }
+
+      ::count get_count() const
+      {
+
+         return m_parray->get_count();
+
+      }
+
+
    };
 
 
@@ -195,6 +232,8 @@ public:
    {
    public:
 
+      typedef TYPE BASE_TYPE;
+      typedef ARG_TYPE BASE_ARG_TYPE;
 
       index            m_i;
       const raw_array *     m_parray;
@@ -226,6 +265,12 @@ public:
          return m_parray->element_at(m_i);
       }
 
+      const TYPE & element_at(index i) const
+      {
+         return m_parray->element_at(i);
+      }
+
+
       const_iterator & operator = (const iterator & it)
       {
 
@@ -235,6 +280,8 @@ public:
          return *this;
 
       }
+
+
 
       const_iterator & operator = (const const_iterator & it)
       {
@@ -288,11 +335,18 @@ public:
          return *this;
       }
 
+      ::count get_count() const
+      {
+
+         return m_parray->get_count();
+
+      }
+
    };
 
    TYPE *      m_pData;    // the actual raw_array of data
    ::count     m_nSize;    // # of elements (upperBound - 1)
-   ::count     m_nMaxSize; // max allocated
+   ::count     m_nMaxSize; // MAX allocated
    ::count     m_nGrowBy;  // grow amount
 
 
@@ -354,6 +408,9 @@ public:
 
    inline TYPE & back(index n = -1);
    inline const TYPE & back(index n = -1) const;
+
+   inline const TYPE & at(index nIndex) const { return element_at(nIndex); }
+   inline TYPE & at(index nIndex) { return element_at(nIndex); }
 
 
    // Direct Access to the element data (may return NULL)

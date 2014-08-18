@@ -459,7 +459,7 @@ size_t fwrite_dup(const void *buffer, size_t size, size_t count, _FILE *str)
             size_t dwWritten = 0;
             while(i - startpos - dwWritten > 0)
             {
-				   if(!WriteFile(hFile, &src[startpos + dwWritten], (uint32_t) min(1024, i - startpos - dwWritten), &bw2, 0))
+				   if(!WriteFile(hFile, &src[startpos + dwWritten], (uint32_t) MIN(1024, i - startpos - dwWritten), &bw2, 0))
                   return 0;
                bw += bw2;
                dwWritten += bw2;
@@ -476,7 +476,7 @@ size_t fwrite_dup(const void *buffer, size_t size, size_t count, _FILE *str)
       size_t dwWritten = 0;
       while(i - startpos - dwWritten > 0)
       {
-			WriteFile(hFile, &src[startpos + dwWritten], (uint32_t) min(1024, i - startpos - dwWritten), &bw2, 0);
+			WriteFile(hFile, &src[startpos + dwWritten], (uint32_t) MIN(1024, i - startpos - dwWritten), &bw2, 0);
          bw += bw2;
          dwWritten += bw2;
       }
@@ -488,7 +488,7 @@ size_t fwrite_dup(const void *buffer, size_t size, size_t count, _FILE *str)
       size_t dwWritten = 0;
       while(s - dwWritten > 0)
       {
-			WriteFile(hFile, &src[dwWritten], (uint32_t) min(1024, s - dwWritten), &bw2, 0);
+			WriteFile(hFile, &src[dwWritten], (uint32_t) MIN(1024, s - dwWritten), &bw2, 0);
          bw += bw2;
          dwWritten += bw2;
       }

@@ -49,9 +49,9 @@
 #include "ImathVec.h"
 #include "ImathShear.h"
 
-#include <cstring>
-#include <iostream>
-#include <iomanip>
+//#include <cstring>
+//#include <iostream>
+//#include <iomanip>
 #include <string.h>
 
 #if (defined _WIN32 || defined _WIN64) && defined _MSC_VER

@@ -53,7 +53,7 @@
 #include <ImfTileDescription.h>
 #include <ImfRgba.h>
 #include <ImfThreading.h>
-#include <string>
+//#include <string>
 
 namespace Imf {
 

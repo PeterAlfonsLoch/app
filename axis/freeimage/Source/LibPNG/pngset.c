@@ -985,7 +985,7 @@ png_set_sPLT(png_const_structrp png_ptr,
    if (png_ptr == NULL || info_ptr == NULL || nentries <= 0 || entries == NULL)
       return;
 
-   /* Use the internal realloc function, which checks for all the possible
+   /* Use the internal memory_realloc function, which checks for all the possible
     * overflows.  Notice that the parameters are (int) and (size_t)
     */
    np = png_voidcast(png_sPLT_tp,png_realloc_array(png_ptr,
@@ -1032,7 +1032,7 @@ png_set_sPLT(png_const_structrp png_ptr,
       memcpy(np->name, entries->name, length);
 
       /* IMPORTANT: we have memory now that won't get freed if something else
-       * goes wrong, this code must free it.  png_malloc_array produces no
+       * goes wrong, this code must memory_free it.  png_malloc_array produces no
        * warnings, use a png_chunk_report (below) if there is an error.
        */
       np->entries = png_voidcast(png_sPLT_entryp, png_malloc_array(png_ptr,

@@ -324,7 +324,7 @@ namespace primitive
 
    /*void shared_memory::To(string & str, memory_position iStart, memory_position iEnd)
    {
-      iStart = max(iStart, 0);
+      iStart = MAX(iStart, 0);
       if(iEnd == -1)
          iEnd = this->get_size() - 1;
       char * pch = (char *) get_data();

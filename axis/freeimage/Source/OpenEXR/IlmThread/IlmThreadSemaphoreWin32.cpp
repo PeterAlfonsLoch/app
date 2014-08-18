@@ -40,9 +40,9 @@
 
 #include "IlmThreadSemaphore.h"
 #include "Iex.h"
-#include <string>
+//#include <string>
 #include <assert.h>
-#include <iostream>
+//#include <iostream>
 
 namespace IlmThread {
 

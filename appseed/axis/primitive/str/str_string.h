@@ -148,6 +148,8 @@ class CLASS_DECL_AXIS string :
 {
 public:
 
+   static const int npos;
+
 
    template < typename T >
    friend inline string to_string(T o);
@@ -1805,4 +1807,5 @@ inline string string::upper() const
    return string(*this).make_lower();
 
 }
+
 

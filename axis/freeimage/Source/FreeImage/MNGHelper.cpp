@@ -116,7 +116,7 @@ enum eChunckType {
 };
 
 /**
-Helper for map<key, value> where value is a pointer to a string. 
+Helper for std::map<key, value> where value is a pointer to a string. 
 Used to store tEXt metadata. 
 */
 typedef std::map<std::string, std::string> tEXtMAP;
@@ -439,7 +439,7 @@ mng_CopyRemoveChunks(FIMEMORY *hPngMemory, DWORD start_pos, DWORD next_pos) {
 	// new file length
 	unsigned buffer_size = size_in_bytes + chunk_length;
 
-	BYTE *buffer = (BYTE*)malloc(buffer_size * sizeof(BYTE));
+	BYTE *buffer = (BYTE*)memory_alloc(buffer_size * sizeof(BYTE));
 	if(!buffer) {
 		return FALSE;
 	}
@@ -451,7 +451,7 @@ mng_CopyRemoveChunks(FIMEMORY *hPngMemory, DWORD start_pos, DWORD next_pos) {
 	// re-write the stream
 	FreeImage_WriteMemory(buffer, 1, buffer_size, hPngMemory);
 
-	free(buffer);
+	memory_free(buffer);
 
 	return TRUE;
 }
@@ -484,7 +484,7 @@ mng_CopyInsertChunks(FIMEMORY *hPngMemory, BYTE *inNextChunkName, BYTE *inInsert
 	// new file length
 	unsigned buffer_size = inChunkLength + size_in_bytes;
 
-	BYTE *buffer = (BYTE*)malloc(buffer_size * sizeof(BYTE));
+	BYTE *buffer = (BYTE*)memory_alloc(buffer_size * sizeof(BYTE));
 	if(!buffer) {
 		return FALSE;
 	}
@@ -500,7 +500,7 @@ mng_CopyInsertChunks(FIMEMORY *hPngMemory, BYTE *inNextChunkName, BYTE *inInsert
 	// re-write the stream
 	FreeImage_WriteMemory(buffer, 1, buffer_size, hPngMemory);
 
-	free(buffer);
+	memory_free(buffer);
 
 	return TRUE;
 }
@@ -697,7 +697,7 @@ static BOOL
 mng_SetMetadata_tEXt(tEXtMAP &key_value_pair, const BYTE *mChunk, DWORD mLength) {
 	std::string key;
 	std::string value;
-	BYTE *buffer = (BYTE*)malloc(mLength * sizeof(BYTE));
+	BYTE *buffer = (BYTE*)memory_alloc(mLength * sizeof(BYTE));
 	if(!buffer) {
 		return FALSE;
 	}
@@ -718,7 +718,7 @@ mng_SetMetadata_tEXt(tEXtMAP &key_value_pair, const BYTE *mChunk, DWORD mLength)
 		}
 	}
 	value = (char*)buffer;
-	free(buffer);
+	memory_free(buffer);
 
 	key_value_pair[key] = value;
 
@@ -810,7 +810,7 @@ mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, in
 			mChunkName[4] = '\0';
 
 			if(mLength > 0) {
-				mChunk = (BYTE*)realloc(mChunk, mLength);
+				mChunk = (BYTE*)memory_realloc(mChunk, mLength);
 				if(!mChunk) {
 					FreeImage_OutputMessageProc(format_id, "Error while parsing %s chunk: out of memory", mChunkName);
 					throw (const char*)NULL;
@@ -880,7 +880,7 @@ mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, in
 				case PLTE:	// Global
 					m_HasGlobalPalette = TRUE;
 					PLTE_file_size = mLength + 12; // (lentgh, name, array, crc) = (4, 4, mLength, 4)
-					PLTE_file_chunk = (BYTE*)realloc(PLTE_file_chunk, PLTE_file_size);
+					PLTE_file_chunk = (BYTE*)memory_realloc(PLTE_file_chunk, PLTE_file_size);
 					if(!PLTE_file_chunk) {
 						FreeImage_OutputMessageProc(format_id, "Error while parsing %s chunk: out of memory", mChunkName);
 						throw (const char*)NULL;
@@ -919,7 +919,7 @@ mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, in
 					FreeImage_SeekMemory(hPngMemory, 0, SEEK_SET);
 					FreeImage_WriteMemory(g_png_signature, 1, 8, hPngMemory);
 
-					mChunk = (BYTE*)realloc(mChunk, m_TotalBytesOfChunks);
+					mChunk = (BYTE*)memory_realloc(mChunk, m_TotalBytesOfChunks);
 					if(!mChunk) {
 						FreeImage_OutputMessageProc(format_id, "Error while parsing %s chunk: out of memory", mChunkName);
 						throw (const char*)NULL;
@@ -1067,8 +1067,8 @@ mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, in
 		FreeImage_CloseMemory(hJpegMemory);
 		FreeImage_CloseMemory(hPngMemory);
 		FreeImage_CloseMemory(hIDATMemory);
-		free(mChunk);
-		free(PLTE_file_chunk);
+		memory_free(mChunk);
+		memory_free(PLTE_file_chunk);
 
 		// convert to 32-bit if a transparent layer is available
 		if(!header_only && dib_alpha) {
@@ -1107,8 +1107,8 @@ mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, in
 		FreeImage_CloseMemory(hJpegMemory);
 		FreeImage_CloseMemory(hPngMemory);
 		FreeImage_CloseMemory(hIDATMemory);
-		free(mChunk);
-		free(PLTE_file_chunk);
+		memory_free(mChunk);
+		memory_free(PLTE_file_chunk);
 		FreeImage_Unload(dib);
 		FreeImage_Unload(dib_alpha);
 		if(text) {

@@ -50,7 +50,7 @@ public:
 protected:
 	void** m_pData;   // the actual array of data
 	::count m_nSize;     // # of elements (upperBound - 1)
-	::count m_nMaxSize;  // max allocated
+	::count m_nMaxSize;  // MAX allocated
 	::count m_nGrowBy;   // grow amount
 
 
@@ -61,7 +61,7 @@ public:
 
 protected:
 	// local typedefs for class templates
-	typedef void* AXIS_TYPE;
-	typedef void* AXIS_ARG_TYPE;
+	typedef void* BASE_TYPE;
+	typedef void* BASE_ARG_TYPE;
 };
 

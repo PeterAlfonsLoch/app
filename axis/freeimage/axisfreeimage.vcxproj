@@ -330,8 +330,7 @@ copy Source\FreeImage.h Dist
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../..;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/axis;Source;Source\ZLib;Source\DeprecationManager;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../..;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/axis;Source;Source\ZLib;Source\DeprecationManager;Source\OpenEXR;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -4846,6 +4845,7 @@ copy Source\FreeImage.h Dist
     <ClInclude Include="Source\LibOpenJPEG\opj_intmath.h" />
     <ClInclude Include="Source\LibOpenJPEG\opj_inttypes.h" />
     <ClInclude Include="Source\LibOpenJPEG\opj_malloc.h" />
+    <ClInclude Include="Source\LibOpenJPEG\aaa_want_to_remove_opj_stdint.h" />
     <ClInclude Include="Source\LibOpenJPEG\pi.h" />
     <ClInclude Include="Source\LibOpenJPEG\raw.h" />
     <ClInclude Include="Source\LibOpenJPEG\t1.h" />
@@ -5078,6 +5078,9 @@ copy Source\FreeImage.h Dist
     <None Include="Source\OpenEXR\Imath\Makefile.in" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\appseed\axis\axis.vcxproj">
+      <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\zlib\axiszlib.vcxproj">
       <Project>{8fd826f8-3739-44e6-8cc8-997122e53b8d}</Project>
     </ProjectReference>

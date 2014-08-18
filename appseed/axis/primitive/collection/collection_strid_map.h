@@ -55,8 +55,8 @@ public:
    class pair
    {
    public:
-      const string m_element1;
-      T * m_element2;
+      const string first;
+      T * second;
    };
 
    bool Lookup(string key, T * & rValue) const

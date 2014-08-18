@@ -108,7 +108,7 @@ static int AnalyzeEntropy(const uint32_t* argb,
 
   VP8LHistogram* nonpredicted = NULL;
   VP8LHistogram* predicted =
-      (VP8LHistogram*)malloc(2 * sizeof(*predicted));
+      (VP8LHistogram*)memory_alloc(2 * sizeof(*predicted));
   if (predicted == NULL) return 0;
   nonpredicted = predicted + 1;
 
@@ -135,7 +135,7 @@ static int AnalyzeEntropy(const uint32_t* argb,
   }
   *nonpredicted_bits = VP8LHistogramEstimateBitsBulk(nonpredicted);
   *predicted_bits = VP8LHistogramEstimateBitsBulk(predicted);
-  free(predicted);
+  memory_free(predicted);
   return 1;
 }
 
@@ -228,7 +228,7 @@ static int GetHuffBitLengthsAndCodes(
 
  End:
   if (!ok) {
-    free(mem_buf);
+    memory_free(mem_buf);
     // If one VP8LCreateHuffmanTree() above fails, we need to clean up behind.
     memset(huffman_codes, 0, 5 * histogram_image_size * sizeof(*huffman_codes));
   }
@@ -362,7 +362,7 @@ static int StoreFullHuffmanCode(VP8LBitWriter* const bw,
   }
   ok = 1;
  End:
-  free(tokens);
+  memory_free(tokens);
   return ok;
 }
 
@@ -503,9 +503,9 @@ static int EncodeImageNoHuffman(VP8LBitWriter* const bw,
   ok = 1;
 
  Error:
-  free(histogram_image);
+  memory_free(histogram_image);
   VP8LClearBackwardRefs(&refs);
-  free(huffman_codes[0].codes);
+  memory_free(huffman_codes[0].codes);
   return ok;
 }
 
@@ -532,8 +532,8 @@ static int EncodeImageInternal(VP8LBitWriter* const bw,
   assert(histogram_bits <= MAX_HUFFMAN_BITS);
 
   if (histogram_image == NULL || histogram_symbols == NULL) {
-    free(histogram_image);
-    free(histogram_symbols);
+    memory_free(histogram_image);
+    memory_free(histogram_symbols);
     return 0;
   }
 
@@ -559,7 +559,7 @@ static int EncodeImageInternal(VP8LBitWriter* const bw,
     goto Error;
   }
   // Free combined histograms.
-  free(histogram_image);
+  memory_free(histogram_image);
   histogram_image = NULL;
 
   // Color Cache parameters.
@@ -593,7 +593,7 @@ static int EncodeImageInternal(VP8LBitWriter* const bw,
                                 VP8LSubSampleSize(width, histogram_bits),
                                 VP8LSubSampleSize(height, histogram_bits),
                                 quality);
-      free(histogram_argb);
+      memory_free(histogram_argb);
       if (!ok) goto Error;
     }
   }
@@ -614,14 +614,14 @@ static int EncodeImageInternal(VP8LBitWriter* const bw,
   ok = 1;
 
  Error:
-  free(histogram_image);
+  memory_free(histogram_image);
 
   VP8LClearBackwardRefs(&refs);
   if (huffman_codes != NULL) {
-    free(huffman_codes->codes);
-    free(huffman_codes);
+    memory_free(huffman_codes->codes);
+    memory_free(huffman_codes);
   }
-  free(histogram_symbols);
+  memory_free(histogram_symbols);
   return ok;
 }
 
@@ -637,7 +637,7 @@ static int EvalAndApplySubtractGreen(VP8LEncoder* const enc,
     int i;
     const uint32_t* const argb = enc->argb_;
     double bit_cost_before, bit_cost_after;
-    VP8LHistogram* const histo = (VP8LHistogram*)malloc(sizeof(*histo));
+    VP8LHistogram* const histo = (VP8LHistogram*)memory_alloc(sizeof(*histo));
     if (histo == NULL) return 0;
 
     VP8LHistogramInit(histo, 1);
@@ -656,7 +656,7 @@ static int EvalAndApplySubtractGreen(VP8LEncoder* const enc,
       ++histo->blue_[((c >> 0) - green) & 0xff];
     }
     bit_cost_after = VP8LHistogramEstimateBits(histo);
-    free(histo);
+    memory_free(histo);
 
     // Check if subtracting green yields low entropy.
     enc->use_subtract_green_ = (bit_cost_after < bit_cost_before);
@@ -907,7 +907,7 @@ static WebPEncodingError EncodePalette(VP8LBitWriter* const bw,
   }
 
  Error:
-  free(row);
+  memory_free(row);
   return err;
 }
 
@@ -944,7 +944,7 @@ static void FinishEncParams(VP8LEncoder* const enc) {
 
 static VP8LEncoder* VP8LEncoderNew(const WebPConfig* const config,
                                    const WebPPicture* const picture) {
-  VP8LEncoder* const enc = (VP8LEncoder*)calloc(1, sizeof(*enc));
+  VP8LEncoder* const enc = (VP8LEncoder*)memory_calloc(1, sizeof(*enc));
   if (enc == NULL) {
     WebPEncodingSetError(picture, VP8_ENC_ERROR_OUT_OF_MEMORY);
     return NULL;
@@ -959,9 +959,9 @@ static VP8LEncoder* VP8LEncoderNew(const WebPConfig* const config,
 
 static void VP8LEncoderDelete(VP8LEncoder* enc) {
   if (enc != NULL) {
-    free(enc->argb_);
+    memory_free(enc->argb_);
   }
-  free(enc);
+  memory_free(enc);
 }
 
 // -----------------------------------------------------------------------------

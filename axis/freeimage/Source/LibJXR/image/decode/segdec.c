@@ -345,7 +345,7 @@ static Void DecodeCBP(CWMImageStrCodec * pSC, CCodingContext *pContext)
         pAHexpt[1] == <SR', SL | continuous>
         pAHexpt[2] == <SR', SL | continuous>
     alphabet 4:
-        pAHexpt[3] == <SR', SL | 2 free slots> (SR may be last or insignificant only)
+        pAHexpt[3] == <SR', SL | 2 memory_free slots> (SR may be last or insignificant only)
     alphabet f(run) (this can be extended to 6 contexts - SL and SR')
         pAHexpt[4] == <run | continuous>
     alphabet f(lev) (this can be extended to 9 contexts)

@@ -37,7 +37,7 @@
 
 /* Define "void" as "char" if your compiler doesn't know about type void.
  * NOTE: be sure to define void such that "void *" represents the most general
- * pointer type, e.g., that returned by malloc().
+ * pointer type, e.g., that returned by memory_alloc().
  */
 /* #define void char */
 
@@ -74,7 +74,7 @@
  * unless you are using a large-data memory model or 80386 flat-memory mode.
  * On less brain-damaged CPUs this symbol must not be defined.
  * (Defining this symbol causes large data structures to be referenced through
- * "far" pointers and to be allocated with a special version of malloc.)
+ * "far" pointers and to be allocated with a special version of memory_alloc.)
  */
 #undef NEED_FAR_POINTERS
 

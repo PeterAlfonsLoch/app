@@ -43,7 +43,7 @@
 //-----------------------------------------------------------------------------
 
 #include <ImfInt64.h>
-#include <string>
+//#include <string>
 
 namespace Imf {
 

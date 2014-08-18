@@ -1,31 +1,44 @@
 #pragma once
 
 
-template < class TYPE, class AXIS_ARRAY = array < TYPE > >
+template < class TYPE, class ARG_TYPE = const TYPE &, class BASE_CONTAINER = deque < TYPE, ARG_TYPE > >
 class stack :
-   virtual public AXIS_ARRAY
+   virtual public BASE_CONTAINER
 {
 public:
 
 
    TYPE * operator ->()
    {
-      return &AXIS_ARRAY::last_element();
+      return &BASE_CONTAINER::last_element();
    }
 
    const TYPE * operator ->() const
    {
-      return &AXIS_ARRAY::last_element();
+      return &BASE_CONTAINER::last_element();
    }
 
    TYPE & top()
    {
-      return AXIS_ARRAY::last_element();
+      return BASE_CONTAINER::last_element();
    }
 
    const TYPE & top() const
    {
-      return AXIS_ARRAY::last_element();
+      return BASE_CONTAINER::last_element();
+   }
+
+   void push(ARG_TYPE t)
+   {
+      BASE_CONTAINER::push_back(t);
+   }
+
+
+   void pop()
+   {
+
+      BASE_CONTAINER::pop_back();
+
    }
 
 };

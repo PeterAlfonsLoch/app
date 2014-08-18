@@ -89,7 +89,7 @@ Bool PerfTimerNew(PERFTIMERSTATE **ppNewPerfTimer)
         goto exit;
     }
 
-    pState = malloc(sizeof(*pState));
+    pState = memory_alloc(sizeof(*pState));
     if (NULL == pState)
     {
         TraceResult(E_OUTOFMEMORY);
@@ -105,7 +105,7 @@ Bool PerfTimerNew(PERFTIMERSTATE **ppNewPerfTimer)
     fResult = TRUE;
 
 exit:
-    assert(fResult || NULL == pState); // If error, we need to free pState
+    assert(fResult || NULL == pState); // If error, we need to memory_free pState
     return fResult;
 } // PerfTimerNew
 
@@ -113,7 +113,7 @@ exit:
 
 void PerfTimerDelete(PERFTIMERSTATE *pState)
 {
-    free(pState);
+    memory_free(pState);
 } // PerfTimerDelete
 
 

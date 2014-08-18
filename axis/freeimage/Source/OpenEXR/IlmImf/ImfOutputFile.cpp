@@ -402,7 +402,7 @@ LineBufferTask::LineBufferTask
 LineBufferTask::~LineBufferTask ()
 {
     //
-    // Signal that the line buffer is now free
+    // Signal that the line buffer is now memory_free
     //
 
     _lineBuffer->post ();

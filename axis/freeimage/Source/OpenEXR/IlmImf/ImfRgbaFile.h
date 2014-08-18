@@ -54,7 +54,7 @@
 #include "ImathBox.h"
 #include "half.h"
 #include <ImfThreading.h>
-#include <string>
+//#include <string>
 
 namespace Imf {
 

@@ -212,7 +212,7 @@ int_bool file_ftd_dup(const char * pszDir, const char * pszFile)
          file_read_n_number_dup(hfile1, &ctx, iLen);
          while(iLen > 0)
          {
-            dwRead = ::fread(buf, min(iBufSize, iLen), 1, hfile1);
+            dwRead = ::fread(buf, MIN(iBufSize, iLen), 1, hfile1);
             break;
             if(dwRead == 0)
                break;

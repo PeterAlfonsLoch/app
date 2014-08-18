@@ -53,7 +53,7 @@ extern char * getenv JPP((const char * name));
 
 /*
  * Many machines require storage alignment: longs must start on 4-byte
- * boundaries, doubles on 8-byte boundaries, etc.  On such machines, malloc()
+ * boundaries, doubles on 8-byte boundaries, etc.  On such machines, memory_alloc()
  * always returns pointers that are multiples of the worst-case alignment
  * requirement, and we had better do so too.
  * There isn't any really portable way to determine the worst-case alignment
@@ -205,7 +205,7 @@ print_mem_stats (j_common_ptr cinfo, int pool_id)
 
   for (shdr_ptr = mem->small_list[pool_id]; shdr_ptr != NULL;
        shdr_ptr = shdr_ptr->hdr.next) {
-    fprintf(stderr, "  Small chunk used %ld free %ld\n",
+    fprintf(stderr, "  Small chunk used %ld memory_free %ld\n",
 	    (long) shdr_ptr->hdr.bytes_used,
 	    (long) shdr_ptr->hdr.bytes_left);
   }
@@ -265,7 +265,7 @@ alloc_small (j_common_ptr cinfo, int pool_id, size_t sizeofobject)
 
   /* Check for unsatisfiable request (do now to ensure no overflow below) */
   if (sizeofobject > (size_t) (MAX_ALLOC_CHUNK-SIZEOF(small_pool_hdr)))
-    out_of_memory(cinfo, 1);	/* request exceeds malloc's ability */
+    out_of_memory(cinfo, 1);	/* request exceeds memory_alloc's ability */
 
   /* Round up the requested size to a multiple of SIZEOF(ALIGN_TYPE) */
   odd_bytes = sizeofobject % SIZEOF(ALIGN_TYPE);
@@ -333,7 +333,7 @@ alloc_small (j_common_ptr cinfo, int pool_id, size_t sizeofobject)
  * management heuristics are quite different.  We assume that each
  * request is large enough that it may as well be passed directly to
  * jpeg_get_large; the pool management just links everything together
- * so that we can free it all on demand.
+ * so that we can memory_free it all on demand.
  * Note: the major use of "large" objects is in JSAMPARRAY and JBLOCKARRAY
  * structures.  The routines that create these structures (see below)
  * deliberately bunch rows together to ensure a large request size.
@@ -349,7 +349,7 @@ alloc_large (j_common_ptr cinfo, int pool_id, size_t sizeofobject)
 
   /* Check for unsatisfiable request (do now to ensure no overflow below) */
   if (sizeofobject > (size_t) (MAX_ALLOC_CHUNK-SIZEOF(large_pool_hdr)))
-    out_of_memory(cinfo, 3);	/* request exceeds malloc's ability */
+    out_of_memory(cinfo, 3);	/* request exceeds memory_alloc's ability */
 
   /* Round up the requested size to a multiple of SIZEOF(ALIGN_TYPE) */
   odd_bytes = sizeofobject % SIZEOF(ALIGN_TYPE);
@@ -500,7 +500,7 @@ alloc_barray (j_common_ptr cinfo, int pool_id,
  *
  * The request routines create control blocks but not the in-memory buffers.
  * That is postponed until realize_virt_arrays is called.  At that time the
- * total amount of space needed is known (approximately, anyway), so free
+ * total amount of space needed is known (approximately, anyway), so memory_free
  * memory can be divided up fairly.
  *
  * The access_virt_array routines are responsible for making a specific strip
@@ -1006,7 +1006,7 @@ self_destruct (j_common_ptr cinfo)
 
   /* Close all backing store, release all memory.
    * Releasing pools in reverse order might help avoid fragmentation
-   * with some (brain-damaged) malloc libraries.
+   * with some (brain-damaged) memory_alloc libraries.
    */
   for (pool = JPOOL_NUMPOOLS-1; pool >= JPOOL_PERMANENT; pool--) {
     free_pool(cinfo, pool);
