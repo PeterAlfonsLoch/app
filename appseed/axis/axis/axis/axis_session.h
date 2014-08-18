@@ -1,13 +1,13 @@
 #pragma once
 
 
-namespace base
+namespace axis
 {
 
 
    class CLASS_DECL_AXIS session:
-      virtual public ::base::application,
-      virtual public ::base::session_interface,
+      virtual public ::axis::application,
+      virtual public ::axis::session_interface,
       virtual public ::user::schema
    {
    public:
@@ -30,7 +30,7 @@ namespace base
 
 
       ::core::platform *                                       m_pcoreplatform;
-      string_map < sp(::base::application) >                   m_mapApplication;
+      string_map < sp(::axis::application) >                   m_mapApplication;
       sp(::userpresence::userpresence)                         m_puserpresence;
 
       bool                                                     m_bDrawCursor;
@@ -38,7 +38,7 @@ namespace base
 
       ::visual::e_cursor                                       m_ecursor;
       ::visual::e_cursor                                       m_ecursorDefault;
-      ::base::copydesk_sp                                      m_spcopydesk;
+      ::axis::copydesk_sp                                      m_spcopydesk;
 
 
       application_ptra                                         m_appptra;
@@ -46,7 +46,7 @@ namespace base
       sp(::user::str_context)                                  m_puserstrcontext;
       bool                                                     m_bZipIsDir;
       map < ::user::e_key,::user::e_key,bool,bool > *          m_pmapKeyPressed;
-      sp(::base::savings)                                      m_psavings;
+      sp(::axis::savings)                                      m_psavings;
       bool                                                     m_bIfs;
       sp(::user::user)                                         m_spuser;
 
@@ -58,7 +58,7 @@ namespace base
 
 
 
-      session(sp(::base::application) papp);
+      session(sp(::axis::application) papp);
       virtual ~session();
 
       inline ::userpresence::userpresence & userpresence() { return *m_puserpresence; }
@@ -68,7 +68,7 @@ namespace base
       virtual bool is_session();
 
 
-      void construct(sp(::base::application) papp, int iPhase);
+      void construct(sp(::axis::application) papp, int iPhase);
 
       virtual bool process_initialize();
 
@@ -85,9 +85,9 @@ namespace base
       virtual int32_t exit_instance();
 
 
-      ::base::copydesk & copydesk();
+      ::axis::copydesk & copydesk();
       inline sp(class ::user::user)             user()         { return m_spuser; }
-      inline ::base::savings &                  savings()      { return *m_psavings; }
+      inline ::axis::savings &                  savings()      { return *m_psavings; }
 
       ::user::str_context *                     str_context();
 
@@ -113,7 +113,7 @@ namespace base
 
 
 
-      virtual sp(::base::application) start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext);
+      virtual sp(::axis::application) start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext);
 
       
       virtual void set_cursor(::visual::e_cursor ecursor);
@@ -195,7 +195,7 @@ namespace base
    };
 
 
-} // namespace base
+} // namespace axis
 
 
 
@@ -204,7 +204,7 @@ namespace base
 
 
 
-inline ::base::session & sess(::base::application * papp);
+inline ::axis::session & sess(::axis::application * papp);
 
 
 

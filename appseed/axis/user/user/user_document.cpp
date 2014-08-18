@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   document::document(sp(::base::application) papp) :
+   document::document(sp(::axis::application) papp) :
       element(papp),
       ::data::data_container_base(papp),
       m_mutex(NULL)
@@ -26,7 +26,7 @@ namespace user
       // do not call delete_contents here !
 #ifdef DEBUG
       if (is_modified())
-         TRACE(::base::trace::category_AppMsg, 0, "Warning: destroying an unsaved document.\n");
+         TRACE(::axis::trace::category_AppMsg, 0, "Warning: destroying an unsaved document.\n");
 #endif
 
       // there should be no views left!
@@ -40,7 +40,7 @@ namespace user
 
 
 
-   bool document::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
+   bool document::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
    {
       if (command_target::_001OnCmdMsg(pcmdmsg))
          return TRUE;
@@ -142,7 +142,7 @@ namespace user
       m_viewptra.remove_all();
    }
 
-   /*void document::on_alloc(sp(::base::application) papp)
+   /*void document::on_alloc(sp(::axis::application) papp)
    {
       set_app(papp);
    }*/
@@ -403,7 +403,7 @@ namespace user
    {
 #ifdef DEBUG
       if (is_modified())
-         TRACE(::base::trace::category_AppMsg, 0, "Warning: on_new_document replaces an unsaved document_interface.\n");
+         TRACE(::axis::trace::category_AppMsg, 0, "Warning: on_new_document replaces an unsaved document_interface.\n");
 #endif
 
       delete_contents();
@@ -417,7 +417,7 @@ namespace user
    {
 #ifdef DEBUG
       if (is_modified())
-         TRACE(::base::trace::category_AppMsg, 0, "Warning: on_open_document replaces an unsaved document_interface.\n");
+         TRACE(::axis::trace::category_AppMsg, 0, "Warning: on_open_document replaces an unsaved document_interface.\n");
 #endif
 
       ::file::buffer_sp spfile;
@@ -436,7 +436,7 @@ namespace user
          spfile = System.fs()->get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary, &fe);
          }*/
       }
-      catch (::exception::base & e)
+      catch (::exception::axis & e)
       {
          report_save_load_exception(varFile, &e, FALSE, "__IDP_FAILED_TO_OPEN_DOC");
          return FALSE;
@@ -451,7 +451,7 @@ namespace user
          read(is);     // load me
          spfile->close();
       }
-      catch (::exception::base & e)
+      catch (::exception::axis & e)
       {
          spfile->close();
          delete_contents();   // remove failed contents
@@ -483,7 +483,7 @@ namespace user
          spfile = Application.file().get_file(varFile, ::file::defer_create_directory | ::file::mode_create | ::file::mode_write | ::file::share_exclusive);
 
       }
-      catch (::exception::base & e)
+      catch (::exception::axis & e)
       {
 
          report_save_load_exception(varFile, &e, TRUE, "__IDP_INVALID_FILENAME");
@@ -523,7 +523,7 @@ namespace user
          spfile->close();
 
       }
-      catch (::exception::base & e)
+      catch (::exception::axis & e)
       {
 
          report_save_load_exception(varFile, &e, TRUE, "__IDP_FAILED_TO_SAVE_DOC");
@@ -583,7 +583,7 @@ namespace user
       release();
    }
 
-   void document::report_save_load_exception(const char * lpszPathName, ::exception::base* e, bool bSaving, const char * nIDPDefault)
+   void document::report_save_load_exception(const char * lpszPathName, ::exception::axis* e, bool bSaving, const char * nIDPDefault)
    {
 
       try
@@ -618,7 +618,7 @@ namespace user
             {
                ::file::exception * pfe = dynamic_cast < ::file::exception * > (e);
                // throw not_implemented(get_app());
-               TRACE(::base::trace::category_AppMsg, 0, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
+               TRACE(::axis::trace::category_AppMsg, 0, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
                   pfe->m_lOsError);
 
 
@@ -817,9 +817,9 @@ namespace user
             {
                System.file().del(newName);
             }
-            catch (::exception::base * pe)
+            catch (::exception::axis * pe)
             {
-               TRACE(::base::trace::category_AppMsg, 0, "Warning: failed to delete file after failed SaveAs.\n");
+               TRACE(::axis::trace::category_AppMsg, 0, "Warning: failed to delete file after failed SaveAs.\n");
                pe->Delete();
             }
 
@@ -846,7 +846,7 @@ namespace user
          if (!do_save(var(var::type_empty)))
          {
 
-            TRACE(::base::trace::category_AppMsg, 0, "Warning: File save with new name failed.\n");
+            TRACE(::axis::trace::category_AppMsg, 0, "Warning: File save with new name failed.\n");
 
             return FALSE;
 
@@ -859,7 +859,7 @@ namespace user
          if (!do_save(m_strPathName))
          {
 
-            TRACE(::base::trace::category_AppMsg, 0, "Warning: File save failed.\n");
+            TRACE(::axis::trace::category_AppMsg, 0, "Warning: File save failed.\n");
 
             return FALSE;
 

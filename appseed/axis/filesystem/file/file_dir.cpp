@@ -298,7 +298,7 @@ string dir::get_base_module_folder()
 
    wchar_t lpszModuleFilePath[MAX_PATH * 8];
 
-   HMODULE hmodule = ::GetModuleHandleA("base.dll");
+   HMODULE hmodule = ::GetModuleHandleA("axis.dll");
 
    if (hmodule == NULL)
       hmodule = ::GetModuleHandleA("spalib.dll");

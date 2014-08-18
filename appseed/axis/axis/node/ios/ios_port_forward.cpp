@@ -15,7 +15,7 @@ namespace ios
    // Construction/Destruction
    //////////////////////////////////////////////////////////////////////
    
-   port_forward::port_forward(::base::application * papp) :
+   port_forward::port_forward(::axis::application * papp) :
    element(papp)
    {
       //	   InitializeMembersToNull();

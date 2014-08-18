@@ -6,13 +6,13 @@ namespace mac
 
 
    class CLASS_DECL_mac copydesk :
-      virtual public ::base::copydesk,
+      virtual public ::axis::copydesk,
       virtual public ::window_sp
    {
    public:
 
 
-      copydesk(::base::application * papp);
+      copydesk(::axis::application * papp);
       virtual ~copydesk();
 
 

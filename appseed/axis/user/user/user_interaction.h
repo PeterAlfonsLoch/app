@@ -49,7 +49,7 @@ namespace user
       int32_t                             m_iModal;
       int32_t                             m_iModalCount;
       bool                                m_bRectOk;
-      sp(::base::session)                 m_psession;
+      sp(::axis::session)                 m_psession;
       bool                                m_bMessageWindow;
 
 #if defined(WINDOWS) || defined(LINUX) || defined(APPLEOS)
@@ -71,7 +71,7 @@ namespace user
 
 
       interaction();
-      interaction(sp(::base::application) papp);
+      interaction(sp(::axis::application) papp);
       virtual ~interaction();
 
 
@@ -133,9 +133,9 @@ namespace user
       // dialog support
       void UpdateDialogControls(command_target* pTarget,bool bDisableIfNoHndler);
       virtual void CenterWindow(sp(interaction) pAlternateOwner = NULL);
-      virtual id   run_modal_loop(::user::interaction * pui,uint32_t dwFlags = 0,::base::live_object * pliveobject = NULL);
-      virtual id   RunModalLoop(uint32_t dwFlags = 0,::base::live_object * pliveobject = NULL);
-      virtual id   _001RunModalLoop(uint32_t dwFlags = 0,::base::live_object * pliveobject = NULL);
+      virtual id   run_modal_loop(::user::interaction * pui,uint32_t dwFlags = 0,::axis::live_object * pliveobject = NULL);
+      virtual id   RunModalLoop(uint32_t dwFlags = 0,::axis::live_object * pliveobject = NULL);
+      virtual id   _001RunModalLoop(uint32_t dwFlags = 0,::axis::live_object * pliveobject = NULL);
       virtual bool ContinueModal(int32_t iLevel);
       virtual void EndModalLoop(id nResult);
       virtual void EndAllModalLoops(id nResult);
@@ -253,8 +253,8 @@ namespace user
       virtual bool ModifyStyleEx(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
       virtual LRESULT Default();
 
-      virtual LRESULT send(::message::base * pbase);
-      virtual bool post(::message::base * pbase);
+      virtual LRESULT send(::message::axis * pbase);
+      virtual bool post(::message::axis * pbase);
       virtual LRESULT send_message(UINT uiMessage,WPARAM wparam = 0,lparam lparam = 0);
 
 #ifdef LINUX
@@ -508,9 +508,9 @@ namespace user
 
 
       // Window-Management message handler member functions
-      virtual bool OnCommand(::message::base * pbase);
-      virtual bool OnNotify(::message::base * pbase);
-      virtual bool OnChildNotify(::message::base * pbase);
+      virtual bool OnCommand(::message::axis * pbase);
+      virtual bool OnNotify(::message::axis * pbase);
+      virtual bool OnChildNotify(::message::axis * pbase);
 
 
 
@@ -576,7 +576,7 @@ namespace user
 
       virtual void show_keyboard(bool bShow = true);
 
-      virtual void keep_alive(::base::live_object * pliveobject = NULL);
+      virtual void keep_alive(::axis::live_object * pliveobject = NULL);
 
       virtual sp(::user::interaction) best_top_level_parent(LPRECT lprect);
 

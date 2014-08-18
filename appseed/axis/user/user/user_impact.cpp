@@ -156,7 +156,7 @@ namespace user
       }
       else
       {
-         TRACE(::base::trace::category_AppMsg, 0, "Warning: Creating a pane with no ::user::document.\n");
+         TRACE(::axis::trace::category_AppMsg, 0, "Warning: Creating a pane with no ::user::document.\n");
       }
 
       pcreate->set_lresult(0);
@@ -218,7 +218,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Command routing
 
-   bool impact::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
+   bool impact::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
 
    {
 
@@ -542,7 +542,7 @@ namespace user
 
    void impact::_001OnView(signal_details * pobj)
    {
-      SCAST_PTR(::message::base, pbase, pobj)
+      SCAST_PTR(::message::axis, pbase, pobj)
       if (pbase->m_wparam == 0)
       {
          ::user::document::update * pupdate = (::user::document::update *) pbase->m_lparam.m_lparam;
@@ -620,7 +620,7 @@ namespace user
       ASSERT(pContext->m_user->m_typeinfoNewView || pContext->m_user->m_puiNew != NULL);
 
 
-      sp(::base::application) papp = pwndParent->get_app();
+      sp(::axis::application) papp = pwndParent->get_app();
 
       sp(::user::interaction) pui;
 

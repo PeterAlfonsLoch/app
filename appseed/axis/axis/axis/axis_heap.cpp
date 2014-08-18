@@ -621,16 +621,16 @@ END_EXTERN_C
 void create_id_space()
 {
 
-   ::base::system::s_pidspace = new id_space();
+   ::axis::system::s_pidspace = new id_space();
 
 }
 
 void destroy_id_space()
 {
 
-   delete ::base::system::s_pidspace;
+   delete ::axis::system::s_pidspace;
 
-   ::base::system::s_pidspace = NULL;
+   ::axis::system::s_pidspace = NULL;
 
 }
 

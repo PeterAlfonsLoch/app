@@ -4,7 +4,7 @@
 namespace xml
 {
 
-   inline disp_option::disp_option(sp(::base::application) pbaseapp)
+   inline disp_option::disp_option(sp(::axis::application) pbaseapp)
    {
       newline = true;
       reference_value = true;

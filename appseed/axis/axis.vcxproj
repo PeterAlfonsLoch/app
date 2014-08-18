@@ -1803,23 +1803,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\geoip\geoip_internal.h" />
     <ClInclude Include="axis\geoip\geoip_update.h" />
     <ClInclude Include="axis\geoip\global.h" />
-    <ClInclude Include="axis\hotplugin\hotplugin.h" />
-    <ClInclude Include="axis\hotplugin\hotplugin_composer.h" />
-    <ClInclude Include="axis\hotplugin\hotplugin_container_launcher.h" />
-    <ClInclude Include="axis\hotplugin\hotplugin_host.h" />
-    <ClInclude Include="axis\hotplugin\hotplugin_plugin.h" />
-    <ClInclude Include="axis\install\install.h" />
-    <ClInclude Include="axis\install\aaa_want_to_remove_install2.h" />
-    <ClInclude Include="axis\install\install_canvas.h" />
-    <ClInclude Include="axis\install\install_cube_run.h" />
-    <ClInclude Include="axis\install\install_focus.h" />
-    <ClInclude Include="axis\install\install_install.h" />
-    <ClInclude Include="axis\install\install_installer.h" />
-    <ClInclude Include="axis\install\install_plugin.h" />
-    <ClInclude Include="axis\install\install_small_bell.h" />
-    <ClInclude Include="axis\install\install_starter_start.h" />
-    <ClInclude Include="axis\install\install_trace.h" />
-    <ClInclude Include="axis\install\aaa_want_to_remove_install_window.h" />
     <ClInclude Include="axis\message\message.h" />
     <ClInclude Include="axis\message\message_base.h" />
     <ClInclude Include="axis\message\message_cross_windows.h" />
@@ -2140,8 +2123,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\node\windows\win1.h" />
     <ClInclude Include="axis\node\windows\windows_application.h" />
     <ClInclude Include="axis\node\windows\windows_copydesk.h" />
-    <ClInclude Include="axis\node\windows\windows_crypto.h" />
-    <ClInclude Include="axis\node\windows\windows_dir.h" />
     <ClInclude Include="axis\node\windows\windows_exception.h" />
     <ClInclude Include="axis\node\windows\windows_factory_exchange.h" />
     <ClInclude Include="axis\node\windows\windows_file.h" />
@@ -2151,9 +2132,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\node\windows\windows_folder_watch.h" />
     <ClInclude Include="axis\node\windows\windows_implementation.h" />
     <ClInclude Include="axis\node\windows\windows_interaction_impl.h" />
-    <ClInclude Include="axis\node\windows\windows_ip_enum.h" />
     <ClInclude Include="axis\node\windows\windows_os.h" />
-    <ClInclude Include="axis\node\windows\windows_port_forward.h" />
+    <ClInclude Include="axis\node\windows\windows_print_job.h" />
     <ClInclude Include="axis\node\windows\windows_registry.h" />
     <ClInclude Include="axis\node\windows\windows_shell.h" />
     <ClInclude Include="axis\node\windows\windows_simple_hold_handle.h" />
@@ -2937,13 +2917,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\geoip\geoip_region_name.cpp" />
     <ClCompile Include="axis\geoip\geoip_time_zone.cpp" />
     <ClCompile Include="axis\geoip\geoip_update.cpp" />
-    <ClCompile Include="axis\hotplugin\hotplugin.cpp" />
-    <ClCompile Include="axis\hotplugin\hotplugin_composer.cpp" />
-    <ClCompile Include="axis\hotplugin\hotplugin_windows.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_plugin_bare_paint_discreet.cpp" />
-    <ClCompile Include="axis\install\install_plugin_bare_paint_full_screen.cpp" />
     <ClCompile Include="axis\message\message.cpp" />
     <ClCompile Include="axis\message\message_base.cpp" />
     <ClCompile Include="axis\message\message_dispatch.cpp" />
@@ -3316,18 +3289,13 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\node\windows\win1.cpp" />
     <ClCompile Include="axis\node\windows\windows_application.cpp" />
     <ClCompile Include="axis\node\windows\windows_copydesk.cpp" />
-    <ClCompile Include="axis\node\windows\windows_crypto.cpp" />
-    <ClCompile Include="axis\node\windows\windows_dir.cpp" />
     <ClCompile Include="axis\node\windows\windows_factory_exchange.cpp" />
     <ClCompile Include="axis\node\windows\windows_file.cpp" />
     <ClCompile Include="axis\node\windows\windows_file_find.cpp" />
     <ClCompile Include="axis\node\windows\windows_file_set.cpp" />
-    <ClCompile Include="axis\node\windows\windows_file_system.cpp" />
     <ClCompile Include="axis\node\windows\windows_folder_watch.cpp" />
     <ClCompile Include="axis\node\windows\windows_interaction_impl.cpp" />
-    <ClCompile Include="axis\node\windows\windows_ip_enum.cpp" />
     <ClCompile Include="axis\node\windows\windows_os.cpp" />
-    <ClCompile Include="axis\node\windows\windows_port_forward.cpp" />
     <ClCompile Include="axis\node\windows\windows_print_job.cpp" />
     <ClCompile Include="axis\node\windows\windows_registry.cpp" />
     <ClCompile Include="axis\node\windows\windows_shell.cpp" />
@@ -4903,24 +4871,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\exception\exception_todo.cpp" />
     <ClCompile Include="axis\exception\exception_user.cpp" />
     <ClCompile Include="axis\exception\exception_void_implementation.cpp" />
-    <ClCompile Include="axis\hotplugin\hotplugin_container_launcher.cpp" />
-    <ClCompile Include="axis\hotplugin\hotplugin_host.cpp" />
-    <ClCompile Include="axis\hotplugin\hotplugin_plugin.cpp" />
-    <ClCompile Include="axis\install\install.cpp" />
-    <ClCompile Include="axis\install\install_boot.cpp" />
-    <ClCompile Include="axis\install\install_bz.cpp" />
-    <ClCompile Include="axis\install\install_canvas.cpp" />
-    <ClCompile Include="axis\install\install_focus.cpp" />
-    <ClCompile Include="axis\install\install_install.cpp" />
-    <ClCompile Include="axis\install\install_installer.cpp" />
-    <ClCompile Include="axis\install\install_plugin.cpp" />
-    <ClCompile Include="axis\install\install_small_bell.cpp" />
-    <ClCompile Include="axis\install\install_starter_start.cpp" />
-    <ClCompile Include="axis\install\install_trace.cpp" />
-    <ClCompile Include="axis\install\aaa_want_to_remove_install_window.cpp" />
-    <ClCompile Include="axis\install\windows\install_windows_boot.cpp" />
-    <ClCompile Include="axis\install\windows\install_windows_service.cpp" />
-    <ClCompile Include="axis\install\windows\install_windows_win.cpp" />
     <ClCompile Include="axis\os\android\android_c.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>

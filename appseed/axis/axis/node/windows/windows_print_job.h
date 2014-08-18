@@ -5,13 +5,13 @@ namespace windows
 {
 
 
-	class CLASS_DECL_BASE print_job :
+	class CLASS_DECL_AXIS print_job :
 	   virtual public ::user::print_job
 	{
 	public:
 
 
-	   print_job(sp(::base::application) papp);
+	   print_job(sp(::axis::application) papp);
 	   virtual ~print_job();
 
 

@@ -38,18 +38,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
       /** socket container class, event generator.
       \ingroup basic */
-      class CLASS_DECL_BASE socket_handler :
+      class CLASS_DECL_AXIS socket_handler :
          public base_socket_handler
       {
       public:
          /** socket_handler constructor.
          \param log Optional log class pointer */
-         socket_handler(::base::application * papp, logger *log = NULL);
+         socket_handler(::axis::application * papp, logger *log = NULL);
 
          /** socket_handler threadsafe constructor.
          \param mutex Externally declared mutex var
          \param log Optional log class pointer */
-         socket_handler(::base::application * papp, mutex & mutex,logger *log = NULL);
+         socket_handler(::axis::application * papp, mutex & mutex,logger *log = NULL);
 
          ~socket_handler();
 

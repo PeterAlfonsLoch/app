@@ -18,9 +18,9 @@ namespace sockets
 
 
    /** \defgroup basic Basic sockets */
-   /** base_socket base class.
+   /** base_socket axis class.
    \ingroup basic */
-   class CLASS_DECL_BASE base_socket :
+   class CLASS_DECL_AXIS base_socket :
       virtual public ::file::stream_buffer
    {
    public:
@@ -35,7 +35,7 @@ namespace sockets
       };
 
 
-      class CLASS_DECL_BASE callback
+      class CLASS_DECL_AXIS callback
       {
       public:
          virtual void OnRawData(base_socket * psocket, void * pdata, size_t len) = 0;
@@ -46,7 +46,7 @@ namespace sockets
 
       /** Detached base_socket run thread.
       \ingroup internal */
-      class CLASS_DECL_BASE socket_thread :
+      class CLASS_DECL_AXIS socket_thread :
          virtual public ::thread
       {
       public:
@@ -741,7 +741,7 @@ namespace sockets
       virtual void step();
 
 
-      virtual void log(const string & strUser, int32_t err, const string & strSystem, ::base::log::e_level elevel = ::base::log::level_warning);
+      virtual void log(const string & strUser, int32_t err, const string & strSystem, ::axis::log::e_level elevel = ::axis::log::level_warning);
 
 
       virtual string get_short_description();

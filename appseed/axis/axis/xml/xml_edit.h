@@ -28,7 +28,7 @@ namespace xml
       string         m_strValue;
 
 
-      edit_item(sp(::base::application) papp);
+      edit_item(sp(::axis::application) papp);
 
 
       void set_name(const sp(::xml::node) pnode);
@@ -54,7 +54,7 @@ namespace xml
       index       m_iEdit;
 
 
-      edit(sp(::base::application) papp);
+      edit(sp(::axis::application) papp);
       virtual ~edit();
 
 

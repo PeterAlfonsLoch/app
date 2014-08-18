@@ -5,7 +5,7 @@ namespace install
 {
 
 
-   trace::trace(sp(::base::application) papp) :
+   trace::trace(sp(::axis::application) papp) :
       element(papp),
       m_mutex(papp)
    {

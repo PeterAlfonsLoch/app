@@ -4,7 +4,7 @@
 #if FALSE
 
 
-WinResource::WinResource(::base::application * papp) :
+WinResource::WinResource(::axis::application * papp) :
    element(papp)
 {
 }
@@ -115,7 +115,7 @@ bool WinResource::ReadResource(::ca2::file & spfile, HINSTANCE hinst, UINT nID, 
            spfile.write(lpnRes, dwResSize);
            spfile.Flush();
         }
-        catch(::exception::base &)
+        catch(::exception::axis &)
         {
       #ifdef DEBUG
 //         g_dumpcontext << "File could not be opened " << pe->m_cause << "\n";

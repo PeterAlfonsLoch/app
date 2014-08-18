@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-void_implementation_exception::void_implementation_exception(sp(::base::application) papp, const char * pszTip) : 
+void_implementation_exception::void_implementation_exception(sp(::axis::application) papp, const char * pszTip) : 
    element(papp),
    ::call_stack(papp),
-   ::exception::base(papp),
+   ::exception::axis(papp),
    not_implemented(papp, pszTip)
 {
       if(pszTip == NULL)
@@ -21,7 +21,7 @@ void_implementation_exception::void_implementation_exception(sp(::base::applicat
 void_implementation_exception::void_implementation_exception(const void_implementation_exception & e) : 
    element(e),
    ::call_stack(e),
-   ::exception::base(e),
+   ::exception::axis(e),
    not_implemented(e)
 {
          printf(":void_implementation(copy)");

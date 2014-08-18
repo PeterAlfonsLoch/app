@@ -76,19 +76,19 @@ namespace message
 
       virtual void _on_start_user_message_handler();
 
-      virtual sp(::base::application) calc_app();
+      virtual sp(::axis::application) calc_app();
 
-      virtual sp(base) peek_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
-      virtual sp(base) get_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
-      virtual sp(base) peek_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
-      virtual sp(base) get_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
+      virtual sp(axis) peek_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
+      virtual sp(axis) get_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
+      virtual sp(axis) peek_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
+      virtual sp(axis) get_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
 
-      virtual sp(base) get_base(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam);
-      virtual sp(base) get_base(LPMESSAGE lpmsg,sp(::user::interaction) pwnd = NULL);
+      virtual sp(axis) get_base(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam);
+      virtual sp(axis) get_base(LPMESSAGE lpmsg,sp(::user::interaction) pwnd = NULL);
 
 #ifdef LINUX
 
-      virtual sp(base) get_base(XEvent * pevent,sp(::user::interaction) pwnd = NULL);
+      virtual sp(axis) get_base(XEvent * pevent,sp(::user::interaction) pwnd = NULL);
 
 #endif
 
@@ -156,7 +156,7 @@ namespace message
       void (dispatch::*m_pfnDispatchWindowProc)(signal_details * pobj);
 
       virtual void _user_message_handler(signal_details * pobj);
-      //bool _iguimessageDispatchCommandMessage(::base::command * pcommand, bool & b);
+      //bool _iguimessageDispatchCommandMessage(::axis::command * pcommand, bool & b);
       // return TRUE to stop routing
 #ifdef WINDOWS
       virtual bool igui_RelayEvent(LPMESSAGE lpmsg);

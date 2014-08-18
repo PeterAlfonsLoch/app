@@ -11,7 +11,7 @@ public:
    var         m_varQuery;
 
 
-   request_signal(sp(::base::application) papp, class ::signal * psignal = NULL);
+   request_signal(sp(::axis::application) papp, class ::signal * psignal = NULL);
 
 
 };

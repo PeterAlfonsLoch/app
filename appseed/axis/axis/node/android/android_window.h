@@ -32,7 +32,7 @@ namespace android
 
 
       interaction_impl();
-      interaction_impl(sp(::base::application) papp);
+      interaction_impl(sp(::axis::application) papp);
       virtual ~interaction_impl();
 
 
@@ -61,7 +61,7 @@ namespace android
 
       virtual oswindow get_handle() const;
 
-      virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
@@ -401,7 +401,7 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       // dialog support
       void UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHndler);
       void CenterWindow(sp(::user::interaction) pAlternateOwner = NULL);
-      //virtual id   RunModalLoop(DWORD dwFlags = 0, ::base::live_object * pliveobject = NULL);
+      //virtual id   RunModalLoop(DWORD dwFlags = 0, ::axis::live_object * pliveobject = NULL);
       //virtual bool ContinueModal(int32_t iLevel);
       //virtual void EndModalLoop(id nResult);
       //virtual void EndAllModalLoops(id nResult);

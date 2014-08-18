@@ -1,6 +1,6 @@
 //
 //  user_key_enum.h
-//  base
+//  axis
 //
 //  moved from core on 16 de Novembro de 2013
 //

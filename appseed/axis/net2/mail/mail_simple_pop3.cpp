@@ -3,7 +3,7 @@
 namespace mail
 {
 
-   simple_pop3::simple_pop3(sp(::base::application) papp) :
+   simple_pop3::simple_pop3(sp(::axis::application) papp) :
       element(papp),
       pop3(papp)
    {

@@ -18,7 +18,7 @@ category traceSocket("socket");
 */
 
 
-namespace base
+namespace axis
 {
 
    namespace trace
@@ -47,7 +47,7 @@ namespace base
          category & category = ((trace *) this)->m_map[(uint32_t ) dwCategory];
 
          //if(ShouldTraceOutput(dwModule, dwCategory, nLevel, &pCategory, &pmodule))
-         if(category.m_estatus == ::base::trace::status_disabled || nLevel > category.m_uiLevel)
+         if(category.m_estatus == ::axis::trace::status_disabled || nLevel > category.m_uiLevel)
             return;
          /*      if (nLen >= 0 && nLen < nCount)
          {

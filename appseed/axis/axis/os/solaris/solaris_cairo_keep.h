@@ -2,7 +2,7 @@
 
 /*
 
-class CLASS_DECL_BASE ca_cairo_keep
+class CLASS_DECL_AXIS ca_cairo_keep
 {
 public:
 

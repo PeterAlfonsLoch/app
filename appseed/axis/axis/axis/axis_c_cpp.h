@@ -22,7 +22,7 @@ class property_set;
 class object;
 class type;
 
-namespace base
+namespace axis
 {
 
    class application;
@@ -35,7 +35,7 @@ namespace base
 
 
 
-} // namespace base
+} // namespace axis
 
 
 class dump_context;
@@ -162,7 +162,7 @@ namespace simple_ui
 
 }
 
-namespace base
+namespace axis
 {
 
    template < typename T >
@@ -175,7 +175,7 @@ namespace base
       }
    }
 
-} // namespace base
+} // namespace axis
 
 
 
@@ -203,7 +203,7 @@ struct __SIZEPARENTPARAMS
 typedef struct tagRECTD RECTD;
 
 
-namespace base
+namespace axis
 {
 
    class live_object;
@@ -238,7 +238,7 @@ namespace base
 
    class session;
 
-} // namespace base
+} // namespace axis
 
 
 // only usable from core and core dependants
@@ -284,7 +284,7 @@ namespace user
 
 
       Platform::Agile<Windows::UI::Core::CoreWindow> window;
-      ::base::system_window ^ pwindow;
+      ::axis::system_window ^ pwindow;
 
 
    };
@@ -322,12 +322,6 @@ namespace user
 
 
 
-namespace install
-{
-
-   class install;
-
-} // namespace install
 
 enum e_extract
 {
@@ -442,7 +436,7 @@ typedef void * HDWP;
 #endif
 
 
-typedef  void(*PFN_ca2_factory_exchange)(sp(::base::application) papp);
+typedef  void(*PFN_ca2_factory_exchange)(sp(::axis::application) papp);
 
 
 
@@ -458,7 +452,7 @@ CLASS_DECL_AXIS bool __node_pre_term();
 CLASS_DECL_AXIS bool __node_pos_term();
 
 
-CLASS_DECL_AXIS ::base::application * get_thread_app();
+CLASS_DECL_AXIS ::axis::application * get_thread_app();
 
 #include "axis_definition.h"
 
@@ -895,10 +889,6 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 
 #include "axis_system.h"
 
-#include "axis/hotplugin/hotplugin.h"
-
-#include "axis/install/install.h"
-
 #include "axis_system_str.h"
 
 #include "axis/os/os_process.h"
@@ -933,7 +923,7 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 
 #include "axis/primitive/str/str.inl"
 
-#include "axis/axis/base.inl"
+#include "axis/axis/axis.inl"
 
 #include "primitive/collection/collection.inl"
 
@@ -1099,7 +1089,7 @@ inline void string_format::printf(const char * & s)
 
 
 
-#include "axis/net/http/http.h"
+// #include "axis/net/http/http.h"
 #include "axis_microtimer.h"
 
 
@@ -1214,7 +1204,7 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 
 
 template < class T >
-bool ::file::system::output(sp(::base::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, const char *), const char * lpszSource)
+bool ::file::system::output(sp(::axis::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, const char *), const char * lpszSource)
 {
 
 App(papp).dir().mk(System.dir().name(pszOutput));
@@ -1232,7 +1222,7 @@ return (p->*lpfnOuput)(ostream, lpszSource);
 
 
 template < class T >
-bool ::file::system::output(sp(::base::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, ::file::input_stream &), const char * lpszInput)
+bool ::file::system::output(sp(::axis::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, ::file::input_stream &), const char * lpszInput)
 {
 
 App(papp).dir().mk(System.dir().name(pszOutput));

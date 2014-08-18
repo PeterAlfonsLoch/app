@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-namespace base
+namespace axis
 {
 
 
-   copydesk::copydesk(sp(::base::application) papp) :
+   copydesk::copydesk(sp(::axis::application) papp) :
       element(papp)
    {
    }

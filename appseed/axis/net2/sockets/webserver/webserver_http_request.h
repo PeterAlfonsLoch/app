@@ -24,7 +24,7 @@ namespace http
 
 
 
-      request(sp(::base::application) papp);
+      request(sp(::axis::application) papp);
       request(const request& src);
       ~request();
 

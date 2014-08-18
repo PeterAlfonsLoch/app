@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   menu_base_item::menu_base_item(sp(::base::application) papp) :
+   menu_base_item::menu_base_item(sp(::axis::application) papp) :
       element(papp)
    {
 

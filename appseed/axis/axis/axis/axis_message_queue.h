@@ -12,7 +12,7 @@ public:
    message_queue_listener *         m_plistener;
 
 
-   message_queue(sp(::base::application) papp);
+   message_queue(sp(::axis::application) papp);
    virtual ~message_queue();
 
 

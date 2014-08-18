@@ -4,7 +4,7 @@
 
 
 
-struct CLASS_DECL_BASE gdi_object
+struct CLASS_DECL_AXIS gdi_object
 {
 
 

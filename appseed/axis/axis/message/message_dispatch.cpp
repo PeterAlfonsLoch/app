@@ -28,36 +28,36 @@ namespace message
       return true;
    }
 
-   sp(base) dispatch::peek_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
+   sp(axis) dispatch::peek_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
    {
       if(!::PeekMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax,wRemoveMsg))
          return NULL;
       return get_base(lpmsg,pwnd);
    }
 
-   sp(base) dispatch::get_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
+   sp(axis) dispatch::get_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
    {
       if(!::GetMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax))
          return NULL;
       return get_base(lpmsg,pwnd);
    }
 
-   sp(base) dispatch::peek_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
+   sp(axis) dispatch::peek_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
    {
       MESSAGE msg;
       return peek_message(&msg,pwnd,wMsgFilterMin,wMsgFilterMax,wRemoveMsg);
    }
 
 
-   sp(base) dispatch::get_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
+   sp(axis) dispatch::get_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
    {
       MESSAGE msg;
       return get_message(&msg,pwnd,wMsgFilterMin,wMsgFilterMax);
    }
 
-   sp(base) dispatch::get_base(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam)
+   sp(axis) dispatch::get_base(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam)
    {
-      sp(base) pbase;
+      sp(axis) pbase;
       e_prototype eprototype = PrototypeNone;
       //if(oswindow != NULL)
       {
@@ -67,7 +67,7 @@ namespace message
       {
       case PrototypeNone:
       {
-                           pbase = canew(base(get_app()));
+                           pbase = canew(axis(get_app()));
       }
          break;
       case PrototypeCreate:
@@ -159,7 +159,7 @@ namespace message
          break;
       default:
       {
-                pbase = canew(base(get_app()));
+                pbase = canew(axis(get_app()));
       }
          break;
       }
@@ -169,7 +169,7 @@ namespace message
       return pbase;
    }
 
-   sp(base) dispatch::get_base(LPMESSAGE lpmsg,sp(::user::interaction) pwnd)
+   sp(axis) dispatch::get_base(LPMESSAGE lpmsg,sp(::user::interaction) pwnd)
    {
 #if defined(METROWIN)
       if(pwnd == NULL && lpmsg->oswindow != NULL)
@@ -209,7 +209,7 @@ namespace message
 
 #if defined(LINUX)
 
-   sp(base) dispatch::get_base(XEvent * pevent,sp(::user::interaction) pwnd)
+   sp(axis) dispatch::get_base(XEvent * pevent,sp(::user::interaction) pwnd)
    {
 
       throw todo(get_app());
@@ -241,10 +241,10 @@ namespace message
       //         dispatch_event_ok()->wait();
 
       SignalPtrArray signalptra;
-      SCAST_PTR(::message::base,pbase,pobj);
+      SCAST_PTR(::message::axis,pbase,pobj);
       if(pbase->m_uiMessage == (WM_APP + 2014))
       {
-         sp(base) pbase2 = pbase->m_lparam;
+         sp(axis) pbase2 = pbase->m_lparam;
          _user_message_handler(pbase2);
          if(pbase2->m_wparam != 0)
          {
@@ -277,7 +277,7 @@ namespace message
 #endif
 
    //bool dispatch::_iguimessageDispatchCommandMessage(
-   // ::base::command * pcommand,
+   // ::axis::command * pcommand,
    //bool & b)
    //{
    /*int32_t & i = m_iHandling;
@@ -577,7 +577,7 @@ namespace message
    {
    }
 
-   sp(::base::application) dispatch::calc_app()
+   sp(::axis::application) dispatch::calc_app()
    {
       return NULL;
    }

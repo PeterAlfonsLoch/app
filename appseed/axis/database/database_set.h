@@ -5,7 +5,7 @@ namespace database
 {
 
 
-   class base;
+   class axis;
 
 
    class CLASS_DECL_AXIS set :
@@ -18,7 +18,7 @@ namespace database
      char *Password = ""; //WORK_PASSWORD;
    */
 
-     base *db;      // info about db connection
+     axis *db;      // info about db connection
      dsStates ds_state;           // current state
      CFields fields_object, edit_object;
          
@@ -92,15 +92,15 @@ namespace database
 
    /* constructor */
      set();
-     set(base *newDb);
+     set(axis *newDb);
 
    /* destructor */
      ~set();
 
    /* sets a new value of connection to database */
-     void setDatabase(base *newDb) { db = newDb; }
+     void setDatabase(axis *newDb) { db = newDb; }
    /* retrieves  a database which connected */
-     base *getDatabase() { return db; }
+     axis *getDatabase() { return db; }
 
    /* sets a new query string to database server */
      void setExecSql(const char *newSql) { sql = newSql; }

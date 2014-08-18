@@ -6,7 +6,7 @@ namespace sockets
 
 
    /** \defgroup http HTTP Sockets */
-   /** HTTP request/response base class.
+   /** HTTP request/response axis class.
    \ingroup http */
    class CLASS_DECL_AXIS http_socket :
       virtual public tcp_socket

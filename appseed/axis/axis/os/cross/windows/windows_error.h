@@ -5310,7 +5310,7 @@
 //
 // MessageText:
 //
-// The base address or the file offset specified does not have the proper alignment.
+// The axis address or the file offset specified does not have the proper alignment.
 //
 #define ERROR_MAPPED_ALIGNMENT           1132L
 
@@ -13444,7 +13444,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An new or existing archive tail or base of the active log is invalid.
+// An new or existing archive tail or axis of the active log is invalid.
 //
 #define ERROR_LOG_TAIL_INVALID           6627L
 
@@ -17255,7 +17255,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The requested search operation is only supported for base searches.
+// The requested search operation is only supported for axis searches.
 //
 #define ERROR_DS_NON_AXIS_SEARCH         8480L
 
@@ -17499,7 +17499,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An attempt is made to modify the base schema.
+// An attempt is made to modify the axis schema.
 //
 #define ERROR_DS_ILLEGAL_AXIS_SCHEMA_MOD 8507L
 
@@ -29372,7 +29372,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A base error occurred.
+// A axis error occurred.
 //
 #define NTE_SYS_ERR                      _HRESULT_TYPEDEF_(0x80090021L)
 
@@ -30721,7 +30721,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// OSS CertifiCAte encode/decode error code base
+// OSS CertifiCAte encode/decode error code axis
 //
 // See asn1code.h for a definition of the OSS runtime errors. The OSS error values are offset by CRYPT_E_OSS_ERROR.
 //
@@ -31146,7 +31146,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// ASN1 CertifiCAte encode/decode error code base. The ASN1 error values are offset by CRYPT_E_ASN1_ERROR.
+// ASN1 CertifiCAte encode/decode error code axis. The ASN1 error values are offset by CRYPT_E_ASN1_ERROR.
 //
 #define CRYPT_E_ASN1_ERROR               _HRESULT_TYPEDEF_(0x80093100L)
 
@@ -34280,7 +34280,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// This function is valid for the base partition only
+// This function is valid for the axis partition only
 //
 #define COMADMIN_E_AXIS_PARTITION_ONLY   _HRESULT_TYPEDEF_(0x80110450L)
 
@@ -34334,7 +34334,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// AppliCAtions that contain one or more imported components Cannot be installed into a non-base partition
+// AppliCAtions that contain one or more imported components Cannot be installed into a non-axis partition
 //
 #define COMADMIN_E_CAT_IMPORTED_COMPONENTS_NOT_ALLOWED _HRESULT_TYPEDEF_(0x8011045BL)
 
@@ -34694,7 +34694,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Legacy components may not exist in non-base partitions.
+// Legacy components may not exist in non-axis partitions.
 //
 #define COMADMIN_E_LEGACYCOMPS_NOT_ALLOWED_IN_NONAXIS_PARTITIONS _HRESULT_TYPEDEF_(0x8011081BL)
 
@@ -34721,7 +34721,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A private component Cannot be moved (or copied) to a library appliCAtion or to the base partition
+// A private component Cannot be moved (or copied) to a library appliCAtion or to the axis partition
 //
 #define COMADMIN_E_COMP_MOVE_PRIVATE     _HRESULT_TYPEDEF_(0x8011081EL)
 

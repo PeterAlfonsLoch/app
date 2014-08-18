@@ -14,7 +14,7 @@ namespace file
       string_buffer_sp        m_spstringbuffer;
 
 
-      plain_text_output_stream_string_buffer(sp(::base::application) papp = NULL);
+      plain_text_output_stream_string_buffer(sp(::axis::application) papp = NULL);
       virtual ~plain_text_output_stream_string_buffer();
 
       string str() const;

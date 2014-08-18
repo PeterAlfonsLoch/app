@@ -7,12 +7,12 @@ namespace metrowin
    class thread;
 } // namespace metrowin
 
-bool CLASS_DECL_BASE __internal_pump_message();
-LRESULT CLASS_DECL_BASE __internal_process_wnd_proc_exception(::exception::base*, const MSG* pMsg);
+bool CLASS_DECL_AXIS __internal_pump_message();
+LRESULT CLASS_DECL_AXIS __internal_process_wnd_proc_exception(::exception::axis*, const MSG* pMsg);
 bool __internal_pre_translate_message(MSG* pMsg);
 bool __internal_is_idle_message(MSG* pMsg);
-//__STATIC void CLASS_DECL_BASE __pre_init_dialog(sp(::user::interaction) pWnd, LPRECT lpRectOld, uint32_t* pdwStyleOld);
-//__STATIC void CLASS_DECL_BASE __post_init_dialog(sp(::user::interaction) pWnd, const RECT& rectOld, uint32_t dwStyleOld);
+//__STATIC void CLASS_DECL_AXIS __pre_init_dialog(sp(::user::interaction) pWnd, LPRECT lpRectOld, uint32_t* pdwStyleOld);
+//__STATIC void CLASS_DECL_AXIS __post_init_dialog(sp(::user::interaction) pWnd, const RECT& rectOld, uint32_t dwStyleOld);
 
 namespace core
 {
@@ -73,7 +73,7 @@ void thread::set_p(::thread * p)
    }
    */
 
-   thread::thread(::base::application * papp) :
+   thread::thread(::axis::application * papp) :
       element(papp)//,
       //message_queue(papp),//,
       //m_evFinish(FALSE, TRUE)
@@ -171,7 +171,7 @@ void thread::set_p(::thread * p)
          try
          {
             element * pca = m_captraDeletePool[i];            
-            if(dynamic_cast < ::base::application * > (pca) == m_papp)
+            if(dynamic_cast < ::axis::application * > (pca) == m_papp)
             {
                m_papp = NULL;
             }
@@ -567,8 +567,8 @@ void thread::set_p(::thread * p)
 //      // for tracking the idle time state
 //      bool bIdle = TRUE;
 //      LONG lIdleCount = 0;
-//      ::base::application * pappThis1 = dynamic_cast < ::base::application * > (this);
-//      ::base::application * pappThis2 = dynamic_cast < ::base::application * > (m_p.m_p);
+//      ::axis::application * pappThis1 = dynamic_cast < ::axis::application * > (this);
+//      ::axis::application * pappThis2 = dynamic_cast < ::axis::application * > (m_p.m_p);
 //
 //      // acquire and dispatch messages until a WM_QUIT message is received.
 //      MESSAGE msg;
@@ -807,8 +807,8 @@ void thread::set_p(::thread * p)
 //         if (pState->m_nTempMapLock == 0)
 //         {
 //         // free temp maps, OLE DLLs, etc.
-//         ::ca2::LockTempMaps(dynamic_cast < ::base::application * > (m_p->m_papp));
-//         ::ca2::UnlockTempMaps(dynamic_cast < ::base::application * > (m_p->m_papp));
+//         ::ca2::LockTempMaps(dynamic_cast < ::axis::application * > (m_p->m_papp));
+//         ::ca2::UnlockTempMaps(dynamic_cast < ::axis::application * > (m_p->m_papp));
 //         }*/
 //      }
 //
@@ -833,7 +833,7 @@ void thread::set_p(::thread * p)
 //
 //   void thread::DispatchThreadMessageEx(signal_details * pobj)
 //   {
-//      SCAST_PTR(::message::base, pbase, pobj);
+//      SCAST_PTR(::message::axis, pbase, pobj);
 //      if(!pbase->m_bRet && pbase->m_uiMessage == WM_APP + 1984 && pbase->m_wparam == 77)
 //      {
 //         smart_pointer < ::user::message > spmessage(pbase->m_lparam);
@@ -895,10 +895,10 @@ void thread::set_p(::thread * p)
 //         ::message::e_prototype eprototype = signal.m_eprototype;
 //         if(eprototype == ::message::PrototypeNone)
 //         {
-//            //::message::base base(get_app());
+//            //::message::axis axis(get_app());
 //            pbase->m_psignal = psignal;
 //            lresult = 0;
-//            //base.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
+//            //axis.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
 //            psignal->emit(pbase);
 //            if(pbase->m_bRet)
 //               return;
@@ -914,20 +914,20 @@ void thread::set_p(::thread * p)
 //      return __internal_pre_translate_message(pobj);
 //   }
 //
-//   void thread::ProcessWndProcException(::exception::base* e, signal_details * pobj)
+//   void thread::ProcessWndProcException(::exception::axis* e, signal_details * pobj)
 //   {
 //      return __internal_process_wnd_proc_exception(e, pobj);
 //   }
 //
 //   __STATIC inline bool IsEnterKey(signal_details * pobj)
 //   { 
-//      SCAST_PTR(::message::base, pbase, pobj);
+//      SCAST_PTR(::message::axis, pbase, pobj);
 //      return pbase->m_uiMessage == WM_KEYDOWN && pbase->m_wparam == VK_RETURN; 
 //   }
 //
 //   __STATIC inline bool IsButtonUp(signal_details * pobj)
 //   { 
-//      SCAST_PTR(::message::base, pbase, pobj);
+//      SCAST_PTR(::message::axis, pbase, pobj);
 //      return pbase->m_uiMessage == WM_LBUTTONUP; 
 //   }
 //
@@ -937,7 +937,7 @@ void thread::set_p(::thread * p)
 //      if(pobj == NULL)
 //         return;   // not handled
 //
-//      SCAST_PTR(::message::base, pbase, pobj);
+//      SCAST_PTR(::message::axis, pbase, pobj);
 //
 //#ifdef WINDOWSEX
 //      frame_window* pTopFrameWnd;
@@ -1047,7 +1047,7 @@ void thread::set_p(::thread * p)
 //         if(msg.message != WM_KICKIDLE)
 //         {
 //            {
-//               smart_pointer < ::message::base > spbase;
+//               smart_pointer < ::message::axis > spbase;
 //
 //               spbase = get_base(&msg);
 //
@@ -1208,7 +1208,7 @@ void thread::set_p(::thread * p)
 //
 //   void thread::message_handler(signal_details * pobj)
 //   {
-//      SCAST_PTR(::message::base, pbase, pobj);
+//      SCAST_PTR(::message::axis, pbase, pobj);
 //      // special message which identifies the window as using __window_procedure
 ///*      if(pbase->m_uiMessage == WM_QUERYAFXWNDPROC)
 //      {
@@ -1274,7 +1274,7 @@ void thread::set_p(::thread * p)
 //         pbase->set_lresult(-1);
 //         return;
 //      }
-//      catch(::exception::base * pe)
+//      catch(::exception::axis * pe)
 //      {
 //         __process_window_procedure_exception(pe, pbase);
 //         TRACE(::core::trace::category_AppMsg, 0, "Warning: Uncaught exception in message_handler (returning %ld).\n", pbase->get_lresult());
@@ -1351,7 +1351,7 @@ void thread::set_p(::thread * p)
 //   }
 //
 //
-//   CLASS_DECL_BASE ::thread * get_thread()
+//   CLASS_DECL_AXIS ::thread * get_thread()
 //   {
 //      ::metrowin::thread * pwinthread = __get_thread();
 //      if(pwinthread == NULL)
@@ -1359,7 +1359,7 @@ void thread::set_p(::thread * p)
 //      return pwinthread->m_p;
 //   }
 //
-//   CLASS_DECL_BASE ::thread_state * get_thread_state()
+//   CLASS_DECL_AXIS ::thread_state * get_thread_state()
 //   {
 //      return __get_thread_state();
 //   }
@@ -1383,7 +1383,7 @@ void thread::set_p(::thread * p)
 //
 //
 //#ifndef ___PORTABLE
-//         ::base::application * papp = dynamic_cast < ::base::application * > (get_app());
+//         ::axis::application * papp = dynamic_cast < ::axis::application * > (get_app());
 //         ___THREAD_STATE* pThreadState = gen_ThreadState.GetDataNA();
 //         if( pThreadState != NULL )
 //         {
@@ -1419,7 +1419,7 @@ void thread::set_p(::thread * p)
 //                     }
 //                  }
 //               }
-//               catch( ::exception::base * )
+//               catch( ::exception::axis * )
 //               {
 //                  //__enable_memory_tracking(bEnable);
 //                  throw;
@@ -1444,7 +1444,7 @@ void thread::set_p(::thread * p)
 //
 //      ::metrowin::thread* pThread = pStartup->pThread;
 //
-//      //      ::application* papp = dynamic_cast < ::base::application * > (get_app());
+//      //      ::application* papp = dynamic_cast < ::axis::application * > (get_app());
 //      m_evFinish.ResetEvent();
 //      install_message_handling(pThread);
 //      m_p->install_message_handling(pThread);
@@ -1555,7 +1555,7 @@ void thread::set_p(::thread * p)
 //      {
 //         // cleanup and shutdown the thread
 //         //         threadWnd.Detach();
-//         __end_thread(dynamic_cast < ::base::application * > (m_pbaseapp.m_p), nResult);
+//         __end_thread(dynamic_cast < ::axis::application * > (m_pbaseapp.m_p), nResult);
 //      }
 //      catch(...)
 //      {
@@ -1620,14 +1620,14 @@ void thread::set_p(::thread * p)
 
 ////
 ////
-////bool CLASS_DECL_BASE __internal_pump_message();
-////LRESULT CLASS_DECL_BASE __internal_process_wnd_proc_exception(::exception::base*, const MSG* pMsg);
+////bool CLASS_DECL_AXIS __internal_pump_message();
+////LRESULT CLASS_DECL_AXIS __internal_process_wnd_proc_exception(::exception::axis*, const MSG* pMsg);
 ////void __internal_pre_translate_message(signal_details * pobj);
 ////bool __internal_is_idle_message(signal_details * pobj);
 ////bool __internal_is_idle_message(LPMSG lpmsg);
 ////
 ////
-/////*thread* CLASS_DECL_BASE System.GetThread()
+/////*thread* CLASS_DECL_AXIS System.GetThread()
 ////{
 ////// check for current thread in module thread state
 ////__MODULE_THREAD_STATE* pState = __get_module_thread_state();
@@ -1635,14 +1635,14 @@ void thread::set_p(::thread * p)
 ////return pThread;
 ////}
 ////
-////MSG* CLASS_DECL_BASE __get_current_message()
+////MSG* CLASS_DECL_AXIS __get_current_message()
 ////{
 ////___THREAD_STATE* pState = __get_thread_state();
 ////ASSERT(pState);
 ////return &(pState->m_msgCur);
 ////}
 ////
-////bool CLASS_DECL_BASE __internal_pump_message()
+////bool CLASS_DECL_AXIS __internal_pump_message()
 ////{
 ////___THREAD_STATE *pState = __get_thread_state();
 ////
@@ -1679,7 +1679,7 @@ void thread::set_p(::thread * p)
 ////return TRUE;
 ////}
 ////
-////bool CLASS_DECL_BASE ::ca2::PumpMessage()
+////bool CLASS_DECL_AXIS ::ca2::PumpMessage()
 ////{
 ////thread *pThread = System.GetThread();
 ////if( pThread )
@@ -1688,7 +1688,7 @@ void thread::set_p(::thread * p)
 ////return __internal_pump_message();
 ////}
 ////
-////LRESULT CLASS_DECL_BASE __internal_process_wnd_proc_exception(::exception::base*, const MSG* pMsg)
+////LRESULT CLASS_DECL_AXIS __internal_process_wnd_proc_exception(::exception::axis*, const MSG* pMsg)
 ////{
 ////if (pMsg->message == WM_CREATE)
 ////{
@@ -1703,7 +1703,7 @@ void thread::set_p(::thread * p)
 ////return 0;   // sensible default for rest of commands
 ////}
 ////
-////LRESULT CLASS_DECL_BASE __process_window_procedure_exception(::exception::base* e, const MSG* pMsg)
+////LRESULT CLASS_DECL_AXIS __process_window_procedure_exception(::exception::axis* e, const MSG* pMsg)
 ////{
 ////thread *pThread = System.GetThread();
 ////if( pThread )
@@ -1783,7 +1783,7 @@ void thread::set_p(::thread * p)
 ////}
 ////
 /////*
-////thread* CLASS_DECL_BASE __begin_thread(::ca2::type_info pThreadClass,
+////thread* CLASS_DECL_AXIS __begin_thread(::ca2::type_info pThreadClass,
 ////int nPriority, UINT nStackSize, uint32_t dwCreateFlags,
 ////LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 ////{
@@ -1817,7 +1817,7 @@ void thread::set_p(::thread * p)
 ////}*/
 ////
 /////*
-////void CLASS_DECL_BASE __end_thread(UINT nExitCode, bool bDelete)
+////void CLASS_DECL_AXIS __end_thread(UINT nExitCode, bool bDelete)
 ////{
 ////#ifndef _MT
 ////nExitCode;
@@ -1849,7 +1849,7 @@ void thread::set_p(::thread * p)
 ////
 ////LRESULT CALLBACK __message_filter_hook(int code, WPARAM wParam, LPARAM lParam);
 ////
-////void CLASS_DECL_BASE __init_thread()
+////void CLASS_DECL_AXIS __init_thread()
 ////{
 ////if (!afxContextIsDLL)
 ////{
@@ -2169,12 +2169,12 @@ void thread::set_p(::thread * p)
 ////::message::e_prototype eprototype = signal.m_eprototype;
 ////if(eprototype == ::message::PrototypeNone)
 ////{
-////::message::base base;
-////base.m_psignal = psignal;
+////::message::axis axis;
+////axis.m_psignal = psignal;
 ////lresult = 0;
-////base.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
-////psignal->emit(&base);
-////if(base.m_bRet)
+////axis.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
+////psignal->emit(&axis);
+////if(axis.m_bRet)
 ////return true;
 ////}
 ////break;
@@ -2188,7 +2188,7 @@ void thread::set_p(::thread * p)
 ////return __internal_pre_translate_message( pMsg );
 ////}
 ////
-////LRESULT thread::ProcessWndProcException(::exception::base* e, const MSG* pMsg)
+////LRESULT thread::ProcessWndProcException(::exception::axis* e, const MSG* pMsg)
 ////{
 ////return __internal_process_wnd_proc_exception( e, pMsg );
 ////}
@@ -2207,7 +2207,7 @@ void thread::set_p(::thread * p)
 ////      return ::CallNextHookEx(gen_ThreadState->m_hHookOldMsgFilter, code, wParam, lParam);
 ////   }
 ////   ASSERT(pthread != NULL);
-////   smart_pointer < ::message::base > spbase;
+////   smart_pointer < ::message::axis > spbase;
 ////   spbase(pthread->get_base((LPMSG)lParam));
 ////   pthread->ProcessMessageFilter(code, spbase);
 ////   LRESULT lresult = spbase->m_bRet ? 1 : 0;
@@ -2215,7 +2215,7 @@ void thread::set_p(::thread * p)
 ////}
 ////
 ////
-////__STATIC bool CLASS_DECL_BASE IsHelpKey(LPMSG lpMsg)
+////__STATIC bool CLASS_DECL_AXIS IsHelpKey(LPMSG lpMsg)
 ////   // return TRUE only for non-repeat F1 keydowns.
 ////{
 ////   return lpMsg->message == WM_KEYDOWN &&

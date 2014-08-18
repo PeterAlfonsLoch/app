@@ -11,7 +11,7 @@ public:
    virtual ~departament_container_base();
 
 
-   ::base::application * get_departament_app();
+   ::axis::application * get_departament_app();
 
 
 };

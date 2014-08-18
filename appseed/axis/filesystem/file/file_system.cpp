@@ -147,7 +147,7 @@ namespace file
    }
 
 
-   bool system::exists(const char * pszPath, sp(::base::application) papp)
+   bool system::exists(const char * pszPath, sp(::axis::application) papp)
    {
 
       return exists(pszPath, NULL, papp);
@@ -155,7 +155,7 @@ namespace file
    }
 
 
-   bool system::exists(const char * pszPath, var * pvarQuery, sp(::base::application) papp)
+   bool system::exists(const char * pszPath, var * pvarQuery, sp(::axis::application) papp)
    {
 
       return exists(string(pszPath), pvarQuery, papp);
@@ -163,7 +163,7 @@ namespace file
    }
 
 
-   bool system::exists(const string & strPath, sp(::base::application) papp)
+   bool system::exists(const string & strPath, sp(::axis::application) papp)
    {
 
       return exists(strPath, NULL, papp);
@@ -171,7 +171,7 @@ namespace file
    }
 
 
-   bool system::exists(const string & strPath, var * pvarQuery, sp(::base::application) papp)
+   bool system::exists(const string & strPath, var * pvarQuery, sp(::axis::application) papp)
    {
 
       if (::str::begins_ci_iws(strPath, "uifs://"))
@@ -237,7 +237,7 @@ namespace file
 
    }
 
-   var system::length(const char * pszPath, sp(::base::application) papp)
+   var system::length(const char * pszPath, sp(::axis::application) papp)
    {
 
       return length(pszPath, NULL, papp);
@@ -245,7 +245,7 @@ namespace file
    }
 
 
-   var system::length(const char * pszPath, var * pvarQuery, sp(::base::application) papp)
+   var system::length(const char * pszPath, var * pvarQuery, sp(::axis::application) papp)
    {
 
       return length(string(pszPath), pvarQuery, papp);
@@ -253,7 +253,7 @@ namespace file
    }
 
 
-   var system::length(const string & strPath, sp(::base::application) papp)
+   var system::length(const string & strPath, sp(::axis::application) papp)
    {
 
       return length(strPath, NULL, papp);
@@ -261,7 +261,7 @@ namespace file
    }
 
 
-   var system::length(const string & strPath, var * pvarQuery, sp(::base::application) papp)
+   var system::length(const string & strPath, var * pvarQuery, sp(::axis::application) papp)
    {
 
       if (::str::begins_ci(strPath, "http://") || ::str::begins_ci(strPath, "https://"))
@@ -315,19 +315,19 @@ namespace file
    }
 
 
-   string system::time_square(sp(::base::application) papp, const char * pszPrefix, const char * pszSuffix)
+   string system::time_square(sp(::axis::application) papp, const char * pszPrefix, const char * pszSuffix)
    {
       string str;
       System.dir().time_square(str);
       return time(papp, str, 25, pszPrefix, pszSuffix);
    }
 
-   string system::time_log(sp(::base::application) papp, const char * pszId)
+   string system::time_log(sp(::axis::application) papp, const char * pszId)
    {
       return time(papp, System.dir().time_log(pszId), 9);
    }
 
-   string system::time(sp(::base::application) papp, const char * psz, int32_t iMaxLevel, const char * pszPrefix, const char * pszSuffix)
+   string system::time(sp(::axis::application) papp, const char * psz, int32_t iMaxLevel, const char * pszPrefix, const char * pszSuffix)
    {
       synch_lock lockMachineEvent(
          (&System.machine_event_central() != NULL) ?
@@ -454,13 +454,13 @@ restart:
       return true;
    }
 
-   string system::as_string(var varFile, sp(::base::application) papp)
+   string system::as_string(var varFile, sp(::axis::application) papp)
    {
       var varQuery;
       return as_string(varFile, varQuery, papp);
    }
 
-   string system::as_string(var varFile, var & varQuery, sp(::base::application) papp)
+   string system::as_string(var varFile, var & varQuery, sp(::axis::application) papp)
    {
       primitive::memory storage;
       if(varFile.cast < ::file::stream_buffer > () != NULL)
@@ -557,7 +557,7 @@ restart:
       return strResult;
    }
 
-   void system::as_memory(var varFile, primitive::memory_base & mem, sp(::base::application) papp)
+   void system::as_memory(var varFile, primitive::memory_base & mem, sp(::axis::application) papp)
    {
 
       mem.allocate(0);
@@ -616,7 +616,7 @@ restart:
 
    }
 
-   void system::lines(stringa & stra, var varFile, sp(::base::application) papp)
+   void system::lines(stringa & stra, var varFile, sp(::axis::application) papp)
    {
       UNREFERENCED_PARAMETER(papp);
       ::file::text_buffer_sp spfile(allocer());
@@ -640,7 +640,7 @@ restart:
 
    }
 
-   bool system::put_contents(var varFile, const void * pvoidContents, ::count count, sp(::base::application) papp)
+   bool system::put_contents(var varFile, const void * pvoidContents, ::count count, sp(::axis::application) papp)
    {
 
       ::file::binary_buffer_sp spfile;
@@ -656,7 +656,7 @@ restart:
 
    }
 
-   bool system::put_contents(var varFile, const char * lpcszContents, sp(::base::application) papp)
+   bool system::put_contents(var varFile, const char * lpcszContents, sp(::axis::application) papp)
    {
       if(lpcszContents == NULL)
       {
@@ -668,7 +668,7 @@ restart:
       }
    }
 
-   bool system::put_contents(var varFile, ::file::reader & reader, sp(::base::application) papp)
+   bool system::put_contents(var varFile, ::file::reader & reader, sp(::axis::application) papp)
    {
       ::file::binary_buffer_sp spfile;
       spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
@@ -684,12 +684,12 @@ restart:
       return true;
    }
 
-   bool system::put_contents(var varFile, primitive::memory & mem, sp(::base::application) papp)
+   bool system::put_contents(var varFile, primitive::memory & mem, sp(::axis::application) papp)
    {
       return put_contents(varFile, mem.get_data(), (count) mem.get_size(), papp);
    }
 
-   bool system::put_contents_utf8(var varFile, const char * lpcszContents, sp(::base::application) papp)
+   bool system::put_contents_utf8(var varFile, const char * lpcszContents, sp(::axis::application) papp)
    {
       ::file::binary_buffer_sp spfile;
       spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
@@ -814,7 +814,7 @@ restart:
 
    }
 
-   void system::copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, sp(::base::application) papp)
+   void system::copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, sp(::axis::application) papp)
    {
       if(bFailIfExists)
       {
@@ -1090,7 +1090,7 @@ restart:
    }
 
 
-   string system::copy(const char * psz, sp(::base::application) papp)
+   string system::copy(const char * psz, sp(::axis::application) papp)
    {
       string strCopy("copy");
       string strNew;
@@ -1132,7 +1132,7 @@ restart:
 
 
 
-   string system::paste(const char * pszLocation, const char * path, sp(::base::application) papp)
+   string system::paste(const char * pszLocation, const char * path, sp(::axis::application) papp)
    {
       string strDir = System.dir().name(path);
       string strDest = System.dir().path(pszLocation, "");
@@ -1149,7 +1149,7 @@ restart:
       }
    }
 
-   void system::trash_that_is_not_trash(stringa & stra, sp(::base::application) papp)
+   void system::trash_that_is_not_trash(stringa & stra, sp(::axis::application) papp)
    {
 
       if(stra.get_size() <= 0)
@@ -1170,7 +1170,7 @@ restart:
 
    }
 
-   void system::trash_that_is_not_trash(const char * psz, sp(::base::application) papp)
+   void system::trash_that_is_not_trash(const char * psz, sp(::axis::application) papp)
    {
 
       string strDir = System.dir().trash_that_is_not_trash(psz);
@@ -1186,7 +1186,7 @@ restart:
 
    }
 
-   void system::replace(const char * pszContext, const char * pszFind, const char * pszReplace, sp(::base::application) papp)
+   void system::replace(const char * pszContext, const char * pszFind, const char * pszReplace, sp(::axis::application) papp)
    {
       stringa straTitle;
       System.dir().ls(papp, pszContext, NULL, &straTitle);
@@ -1252,7 +1252,7 @@ restart:
 
    }
 
-   string system::sys_temp(const char * pszName, const char * pszExtension, sp(::base::application) papp)
+   string system::sys_temp(const char * pszName, const char * pszExtension, sp(::axis::application) papp)
    {
 
       string strTempDir = get_sys_temp_path();
@@ -1295,7 +1295,7 @@ restart:
    }
 
 
-   ::file::buffer_sp system::time_square_file(sp(::base::application) papp, const char * pszPrefix, const char * pszSuffix)
+   ::file::buffer_sp system::time_square_file(sp(::axis::application) papp, const char * pszPrefix, const char * pszSuffix)
    {
 
       return get(time_square(papp, pszPrefix, pszSuffix), papp);
@@ -1303,7 +1303,7 @@ restart:
    }
 
 
-   ::file::buffer_sp system::get(const char * name, sp(::base::application) papp)
+   ::file::buffer_sp system::get(const char * name, sp(::axis::application) papp)
    {
 
       System.dir().mk(System.dir().name(name), papp);
@@ -1355,7 +1355,7 @@ restart:
 
 
 
-   bool system::path::rename(const char *pszNew, const char *psz, sp(::base::application) papp)
+   bool system::path::rename(const char *pszNew, const char *psz, sp(::axis::application) papp)
    {
       string strDir = System.dir().name(psz);
       string strDirNew = System.dir().name(pszNew);
@@ -1415,7 +1415,7 @@ restart:
    }
 
 
-   void system::dtf(const char * pszFile, const char * pszDir, sp(::base::application) papp)
+   void system::dtf(const char * pszFile, const char * pszDir, sp(::axis::application) papp)
    {
       stringa stra;
       stringa straRelative;
@@ -1423,7 +1423,7 @@ restart:
       dtf(pszFile, stra, straRelative, papp);
    }
 
-   void system::dtf(const char * pszFile, stringa & stra, stringa & straRelative, sp(::base::application) papp)
+   void system::dtf(const char * pszFile, stringa & stra, stringa & straRelative, sp(::axis::application) papp)
    {
 
       ::file::binary_buffer_sp spfile = App(papp).file().get_file(pszFile, ::file::mode_create | ::file::mode_write  | ::file::type_binary);
@@ -1483,7 +1483,7 @@ restart:
       write_n_number(spfile, NULL, 2);
    }
 
-   void system::ftd(const char * pszDir, const char * pszFile, sp(::base::application) papp)
+   void system::ftd(const char * pszDir, const char * pszFile, sp(::axis::application) papp)
    {
       string strVersion;
       ::file::binary_buffer_sp spfile = App(papp).file().get_file(pszFile, ::file::mode_read  | ::file::type_binary);

@@ -7,10 +7,10 @@ class CLASS_DECL_AXIS system_exception :
 {
 public:
    HRESULT ErrorCode;
-   system_exception(sp(::base::application) papp, HRESULT errorCode) :
+   system_exception(sp(::axis::application) papp, HRESULT errorCode) :
       element(papp),
       ::call_stack(papp),
-      ::exception::base(papp),
+      ::exception::axis(papp),
       ::simple_exception(papp),
       ErrorCode(errorCode)
    {

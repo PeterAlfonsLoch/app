@@ -151,10 +151,10 @@ namespace sockets
       };
 
       mutex                                                                                  m_mutexCache;
-      ::base::gudo < ::file::byte_serializable_map < string_map < dns_cache_item > > >       m_mapCache;
-      ::base::gudo < ::file::byte_serializable_map < string_map < reverse_cache_item > > >   m_mapReverseCache;
+      ::axis::gudo < ::file::byte_serializable_map < string_map < dns_cache_item > > >       m_mapCache;
+      ::axis::gudo < ::file::byte_serializable_map < string_map < reverse_cache_item > > >   m_mapReverseCache;
 
-      net(sp(::base::application) papp);
+      net(sp(::axis::application) papp);
       virtual ~net();
 
 

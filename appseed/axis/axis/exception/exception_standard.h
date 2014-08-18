@@ -30,10 +30,10 @@
    { \
     friend class translator; \
    protected: \
-   name (sp(::base::application) papp, EXCEPTION_POINTERS * ppointers) : \
+   name (sp(::axis::application) papp, EXCEPTION_POINTERS * ppointers) : \
       element(papp), \
       ::call_stack(papp), \
-      ::exception::base(papp), \
+      ::exception::axis(papp), \
       ::standard_exception(papp, ppointers) \
       {printf(":" #name);} \
    };
@@ -50,7 +50,7 @@
 #endif
 
 class CLASS_DECL_AXIS standard_exception :
-   virtual public ::exception::base
+   virtual public ::exception::axis
 {
 public:
 
@@ -88,10 +88,10 @@ public:
 
 
 #ifdef WINDOWS
-   standard_exception(sp(::base::application) papp, EXCEPTION_POINTERS * ppointers) :
+   standard_exception(sp(::axis::application) papp, EXCEPTION_POINTERS * ppointers) :
       element(papp),
       ::call_stack(papp),
-      ::exception::base(papp),
+      ::exception::axis(papp),
       m_ppointers(ppointers)
    {
          
@@ -104,17 +104,17 @@ public:
    standard_exception(const standard_exception & se) :
       element(se.get_app()),
       ::call_stack(se.get_app()),
-      ::exception::base(se),
+      ::exception::axis(se),
       m_ppointers(se.m_ppointers)
    {
      printf(":standard(copy)");
    }
 
 #else
-   standard_exception(sp(::base::application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
+   standard_exception(sp(::axis::application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
       element(papp),
       ::call_stack(papp),
-      ::exception::base(papp),
+      ::exception::axis(papp),
       m_iSignal(iSignal),
       m_siginfo(*psiginfo)
 #ifndef ANDROID
@@ -124,7 +124,7 @@ public:
    standard_exception(const standard_exception& se) :
       element(se),
       ::call_stack(se),
-      ::exception::base(se),
+      ::exception::axis(se),
       m_iSignal(se.m_iSignal),
       m_siginfo(se.m_siginfo)
 #ifndef ANDROID
@@ -162,15 +162,15 @@ namespace exception
       friend class translator;
    protected:
    #if defined(ANDROID)
-      standard_access_violation (sp(::base::application) papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
+      standard_access_violation (sp(::axis::application) papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
          element(papp),
          ::call_stack(papp),
-         ::exception::base(papp),
+         ::exception::axis(papp),
          ::standard_exception(papp, signal, psiginfo, pc)
       {printf(":standard");}
    public:
 #elif defined(LINUX) || defined(APPLEOS) || defined(SOLARIS)
-      standard_access_violation (sp(::base::application) papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
+      standard_access_violation (sp(::axis::application) papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
          element(papp),
 #ifdef LINUX
 #ifdef _LP64
@@ -191,7 +191,7 @@ namespace exception
 #endif
 #endif
 #endif
-         ::exception::base(papp),
+         ::exception::axis(papp),
          ::standard_exception(papp, signal, psiginfo, pc)
       {printf(":standard");}
 
@@ -204,10 +204,10 @@ namespace exception
                  itohex_dup(info->si_addr) + " from " + itohex_dup(caller_address) + "\n\n";*/
 
    #else
-      standard_access_violation (sp(::base::application) papp, EXCEPTION_POINTERS * ppointers) :
+      standard_access_violation (sp(::axis::application) papp, EXCEPTION_POINTERS * ppointers) :
          element(papp),
          ::call_stack(papp),
-         ::exception::base(papp),
+         ::exception::axis(papp),
          ::standard_exception(papp, ppointers)
       {
             printf(":standard");
@@ -223,10 +223,10 @@ namespace exception
    {
       friend class translator;
    protected:
-      standard_sigfpe (sp(::base::application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
+      standard_sigfpe (sp(::axis::application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
          element(papp),
       ::call_stack(papp),
-         ::exception::base(papp),
+         ::exception::axis(papp),
          standard_exception(papp, iSignal, psiginfo, pc) {printf(":sigfpe");}
    public:
    //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
@@ -239,7 +239,7 @@ namespace exception
    {
       friend class translator;
    protected:
-      standard_sigfpe (sp(::base::application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
+      standard_sigfpe (sp(::axis::application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
          element(papp),
 #ifdef LINUX
 #ifdef _LP64
@@ -258,7 +258,7 @@ namespace exception
 #endif
 #endif
 #endif
-         ::exception::base(papp),
+         ::exception::axis(papp),
          standard_exception(papp, iSignal, psiginfo, pc) {printf(":sigfpe");}
    public:
    //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
@@ -274,10 +274,10 @@ namespace exception
    {
       friend class translator;
    protected:
-      standard_no_memory (sp(::base::application) papp, EXCEPTION_POINTERS * ppointers) :
+      standard_no_memory (sp(::axis::application) papp, EXCEPTION_POINTERS * ppointers) :
          element(papp),
          ::call_stack(papp),
-         ::exception::base(papp),
+         ::exception::axis(papp),
          ::standard_exception(papp, ppointers)
       {
             printf(":nomem");
@@ -342,7 +342,7 @@ private:
 {
    friend class translator;
 protected:
-   standard_sigsegv (sp(::base::application) papp, siginfo_t * psiginfo, void * pc) : element(papp), standard_exception(papp, psiginfo, pc) {}
+   standard_sigsegv (sp(::axis::application) papp, siginfo_t * psiginfo, void * pc) : element(papp), standard_exception(papp, psiginfo, pc) {}
 public:
    //bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
    //uint_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
@@ -352,7 +352,7 @@ public:
 {
    friend class translator;
 protected:
-   standard_sigfpe (sp(::base::application) papp, siginfo_t * psiginfo, void * pc) : element(papp), standard_exception(papp, psiginfo, pc) {}
+   standard_sigfpe (sp(::axis::application) papp, siginfo_t * psiginfo, void * pc) : element(papp), standard_exception(papp, psiginfo, pc) {}
 public:
 //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
   // uint_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }

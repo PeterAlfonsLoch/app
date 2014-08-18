@@ -7,8 +7,8 @@ namespace sockets
 {
 
 
-   /** Smtp server base class. */
-   class CLASS_DECL_BASE smtp_socket : public tcp_socket
+   /** Smtp server axis class. */
+   class CLASS_DECL_AXIS smtp_socket : public tcp_socket
    {
    public:
       typedef enum {

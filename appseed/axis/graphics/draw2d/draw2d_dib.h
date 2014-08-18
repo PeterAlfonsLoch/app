@@ -307,7 +307,7 @@ namespace draw2d
    {
    public:
 
-      dibmap(sp(::base::application) papp) :
+      dibmap(sp(::axis::application) papp) :
          element(papp)
       {
       }
@@ -353,7 +353,7 @@ namespace comparison
    };
 
 
-} // namespace base - for class ::comparison::hash const < ::draw2d::dib::descriptor & >
+} // namespace axis - for class ::comparison::hash const < ::draw2d::dib::descriptor & >
 
 
 
@@ -369,7 +369,7 @@ namespace draw2d
       int32_t m_iLimitCount;
 
 
-      dibmap_ex1(sp(::base::application) papp, int32_t iLimitCount = 500) :
+      dibmap_ex1(sp(::axis::application) papp, int32_t iLimitCount = 500) :
          element(papp)
       {
 

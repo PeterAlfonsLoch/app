@@ -5,7 +5,7 @@ namespace primitive
 {
 
 
-   memory_container ::memory_container(sp(::base::application) papp) :
+   memory_container ::memory_container(sp(::axis::application) papp) :
       element(papp)
    {
       
@@ -16,14 +16,14 @@ namespace primitive
    }
 
 
-   memory_container ::memory_container(sp(::base::application) papp, void * pmemory, memory_size dwSize) :
+   memory_container ::memory_container(sp(::axis::application) papp, void * pmemory, memory_size dwSize) :
       element(papp)
    {
       m_spmemory = canew(primitive::memory(this, pmemory, dwSize));
    }
 
 
-   memory_container ::memory_container(sp(::base::application) papp, memory_base * pmemory) :
+   memory_container ::memory_container(sp(::axis::application) papp, memory_base * pmemory) :
       element(papp)
    {
       m_spmemory = pmemory;

@@ -56,7 +56,7 @@ namespace hotplugin
       virtual ~composer();
 
 
-      virtual ::hotplugin::host * create_host(sp(::base::system) psystem) = 0;
+      virtual ::hotplugin::host * create_host(sp(::axis::system) psystem) = 0;
 
       virtual void hotplugin_composer_on_timer();
 

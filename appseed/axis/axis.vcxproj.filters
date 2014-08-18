@@ -141,12 +141,6 @@
     <Filter Include="Header Files\axis\xml">
       <UniqueIdentifier>{42770ef4-1efe-40e5-864d-38ad28249a78}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\axis\install">
-      <UniqueIdentifier>{90021ec4-d01a-4f04-a062-a622ecf9d870}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\hotplugin">
-      <UniqueIdentifier>{4e7f61cf-cc47-428d-8f33-b8f921606eb1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user\simple_ui">
       <UniqueIdentifier>{7bdaa2c9-1de1-4163-8aba-35a5dcab23ba}</UniqueIdentifier>
     </Filter>
@@ -236,15 +230,6 @@
     </Filter>
     <Filter Include="Source Files\axis\os\ansios">
       <UniqueIdentifier>{68334ac9-3045-461a-9922-b6f49f0a803d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\install">
-      <UniqueIdentifier>{3199e756-cf18-4f55-8ef4-e1ef783b0fda}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\install\windows">
-      <UniqueIdentifier>{754bf363-6d72-4e59-a58c-2692948bf105}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\hotplugin">
-      <UniqueIdentifier>{f616a747-70f4-495b-a334-8a945ffeca0d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\axis\exception">
       <UniqueIdentifier>{376f71e3-e41a-4d8d-8e53-daad53a7e29d}</UniqueIdentifier>
@@ -1241,48 +1226,6 @@
     <ClInclude Include="axis\os\android\android.h">
       <Filter>Header Files\axis\os\android</Filter>
     </ClInclude>
-    <ClInclude Include="axis\hotplugin\hotplugin.h">
-      <Filter>Header Files\axis\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\hotplugin\hotplugin_container_launcher.h">
-      <Filter>Header Files\axis\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\hotplugin\hotplugin_host.h">
-      <Filter>Header Files\axis\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\hotplugin\hotplugin_plugin.h">
-      <Filter>Header Files\axis\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_canvas.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_cube_run.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_focus.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_install.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_installer.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_plugin.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_small_bell.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_starter_start.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_trace.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
     <ClInclude Include="user\simple_ui\simple_ui.h">
       <Filter>Header Files\user\simple_ui</Filter>
     </ClInclude>
@@ -1429,12 +1372,6 @@
     </ClInclude>
     <ClInclude Include="axis\exception\exception2.h">
       <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\aaa_want_to_remove_install_window.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\aaa_want_to_remove_install2.h">
-      <Filter>Header Files\axis\install</Filter>
     </ClInclude>
     <ClInclude Include="user\simple_ui\simple_ui_style.h">
       <Filter>Header Files\user\simple_ui</Filter>
@@ -2756,9 +2693,6 @@
     <ClInclude Include="axis\node\windows\windows_copydesk.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_dir.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\windows\windows_exception.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
@@ -2783,13 +2717,7 @@
     <ClInclude Include="axis\node\windows\windows_implementation.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_ip_enum.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\windows\windows_os.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_port_forward.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\windows\windows_registry.h">
@@ -2930,9 +2858,6 @@
     <ClInclude Include="axis\node\android\android_crypto.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_crypto.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="axis\axis\axis_session_interface.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
@@ -2965,9 +2890,6 @@
     </ClInclude>
     <ClInclude Include="axis\exception\exception_parsing.h">
       <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\hotplugin\hotplugin_composer.h">
-      <Filter>Header Files\axis\hotplugin</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_synch_index_iterator.h">
       <Filter>Header Files\multithreading</Filter>
@@ -3292,6 +3214,9 @@
     </ClInclude>
     <ClInclude Include="filesystem\file\file_folder_watch.h">
       <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\windows\windows_print_job.h">
+      <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3937,57 +3862,6 @@
     <ClCompile Include="axis\os\android\android_window_impl.cpp">
       <Filter>Source Files\axis\os\android</Filter>
     </ClCompile>
-    <ClCompile Include="axis\hotplugin\hotplugin_container_launcher.cpp">
-      <Filter>Source Files\axis\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\hotplugin\hotplugin_host.cpp">
-      <Filter>Source Files\axis\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\hotplugin\hotplugin_plugin.cpp">
-      <Filter>Source Files\axis\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\windows\install_windows_boot.cpp">
-      <Filter>Source Files\axis\install\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\windows\install_windows_service.cpp">
-      <Filter>Source Files\axis\install\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\windows\install_windows_win.cpp">
-      <Filter>Source Files\axis\install\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_boot.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_bz.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_canvas.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_focus.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_install.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_installer.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_plugin.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_small_bell.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_starter_start.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_trace.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
     <ClCompile Include="user\simple_ui\simple_ui_style.cpp">
       <Filter>Source Files\user\simple_ui</Filter>
     </ClCompile>
@@ -4119,9 +3993,6 @@
     </ClCompile>
     <ClCompile Include="axis\exception\exception_void_implementation.cpp">
       <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\aaa_want_to_remove_install_window.cpp">
-      <Filter>Source Files\axis\install</Filter>
     </ClCompile>
     <ClCompile Include="axis\axis\axis.cpp">
       <Filter>Source Files\axis\axis</Filter>
@@ -4501,12 +4372,6 @@
     <ClCompile Include="multithreading\multithreading_thread.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
-    <ClCompile Include="axis\install\install_plugin_bare_paint_full_screen.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_plugin_bare_paint_discreet.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\str\iconv\allocator.c">
       <Filter>Source Files\primitive\str\iconv</Filter>
     </ClCompile>
@@ -4696,9 +4561,6 @@
     <ClCompile Include="axis\node\windows\windows_copydesk.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_dir.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="axis\node\windows\windows_factory_exchange.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
@@ -4711,19 +4573,10 @@
     <ClCompile Include="axis\node\windows\windows_file_set.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_file_system.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="axis\node\windows\windows_folder_watch.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_ip_enum.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="axis\node\windows\windows_os.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_port_forward.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="axis\node\windows\windows_print_job.cpp">
@@ -4927,9 +4780,6 @@
     <ClCompile Include="axis\axis\axis_static_start.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_crypto.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="axis\node\android\android_crypto.cpp">
       <Filter>Source Files\axis\node\android</Filter>
     </ClCompile>
@@ -4959,12 +4809,6 @@
     </ClCompile>
     <ClCompile Include="axis\exception\exception_parsing.cpp">
       <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\hotplugin\hotplugin.cpp">
-      <Filter>Source Files\axis\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\hotplugin\hotplugin_composer.cpp">
-      <Filter>Source Files\axis\hotplugin</Filter>
     </ClCompile>
     <ClCompile Include="user\simple_ui\simple_ui_message_box.cpp">
       <Filter>Source Files\user\simple_ui</Filter>
@@ -5094,9 +4938,6 @@
     </ClCompile>
     <ClCompile Include="axis\node\windows\windows_interaction_impl.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\hotplugin\hotplugin_windows.cpp">
-      <Filter>Source Files\axis\hotplugin</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_serializable.cpp">
       <Filter>Source Files\filesystem\file</Filter>
@@ -5405,6 +5246,9 @@
     </None>
     <None Include="primitive\collection\collection.inl">
       <Filter>Header Files\primitive\collection</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

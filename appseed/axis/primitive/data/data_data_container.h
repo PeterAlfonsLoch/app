@@ -36,7 +36,7 @@ namespace data
       spa(data)       m_spadata;
 
 
-      data_container_base(sp(::base::application) papp);
+      data_container_base(sp(::axis::application) papp);
       virtual ~data_container_base();
 
 

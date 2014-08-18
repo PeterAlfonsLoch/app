@@ -5,9 +5,9 @@ namespace userpresence
 {
 
 
-   userpresence::userpresence(sp(::base::application) papp) :
+   userpresence::userpresence(sp(::axis::application) papp) :
       element(papp),
-      ::base::departament(papp),
+      ::axis::departament(papp),
       m_queue(papp)
    {
 
@@ -177,7 +177,7 @@ namespace userpresence
    void userpresence::message_queue_message_handler(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::base, pbase, pobj);
+      SCAST_PTR(::message::axis, pbase, pobj);
 
       if(pbase->m_uiMessage == WM_TIMER)
       {

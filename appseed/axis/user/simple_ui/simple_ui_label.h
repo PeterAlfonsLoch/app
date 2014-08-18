@@ -11,7 +11,7 @@ namespace simple_ui
    public:
 
 
-      label(sp(::base::application) papp);
+      label(sp(::axis::application) papp);
       virtual ~label();
 
 

@@ -750,7 +750,7 @@ namespace draw2d
 
 
 
-} // namespace base
+} // namespace axis
 
 
 

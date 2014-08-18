@@ -5,7 +5,7 @@ namespace userpresence
 {
 
 
-   presence::presence(sp(::base::application) papp) :
+   presence::presence(sp(::axis::application) papp) :
       element(papp)
    {
       m_iShortStatusWayTag = status_online;

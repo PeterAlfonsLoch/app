@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   place_holder::place_holder(sp(::base::application) papp) :
+   place_holder::place_holder(sp(::axis::application) papp) :
       element(papp),
       m_uiptraHold(papp)
    {

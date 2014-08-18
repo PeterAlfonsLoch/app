@@ -12,7 +12,7 @@ CLASS_DECL_AXIS double atan_dup(double d);
 CLASS_DECL_AXIS double asin_dup(double d);
 CLASS_DECL_AXIS double acos_dup(double d);
 CLASS_DECL_AXIS double sqrt_dup(double d);
-CLASS_DECL_AXIS double pow_dup(double base, double e);
+CLASS_DECL_AXIS double pow_dup(double axis, double e);
 CLASS_DECL_AXIS double exp_dup(double d);
 CLASS_DECL_AXIS double log_dup(double d);
 CLASS_DECL_AXIS double tan_dup(double d);

@@ -1,6 +1,6 @@
 //
 //  base_a_rid_file.h
-//  base
+//  axis
 //
 //  Created by Carlos Gustavo Cecyn Lundgren on 25/04/14.
 //

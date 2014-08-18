@@ -88,7 +88,7 @@ namespace linux
 
    }
 
-   interaction_impl::interaction_impl(sp(::base::application) papp) :
+   interaction_impl::interaction_impl(sp(::axis::application) papp) :
       element(papp)
    {
 
@@ -124,7 +124,7 @@ namespace linux
       /*if(m_oswindow != NULL)
       {
 
-         TRACE(::base::trace::category_AppMsg, 0, "Warning: calling DestroyWindow in interaction_impl::~interaction_impl; OnDestroy or PostNcDestroy in derived class will not be called.\n");
+         TRACE(::axis::trace::category_AppMsg, 0, "Warning: calling DestroyWindow in interaction_impl::~interaction_impl; OnDestroy or PostNcDestroy in derived class will not be called.\n");
 
          m_pcallback = NULL;
 
@@ -442,8 +442,8 @@ namespace linux
             string strMessage;
             strMessage.Format("%s\n\nSystem Error Code: %d", strLastError, dwLastError);
 
-            TRACE(::base::trace::category_AppMsg, 0, "Warning: oswindow creation failed: GetLastError returned:\n");
-            TRACE(::base::trace::category_AppMsg, 0, "%s\n", strMessage);
+            TRACE(::axis::trace::category_AppMsg, 0, "Warning: oswindow creation failed: GetLastError returned:\n");
+            TRACE(::axis::trace::category_AppMsg, 0, "%s\n", strMessage);
             try
             {
                if(dwLastError == 0x0000057e)
@@ -846,8 +846,8 @@ d.unlock();
 #ifdef DEBUG
 //            sp(::interaction_impl) pWndPermanent =  (pMap->lookup_permanent(hWndOrig));;
   //          ASSERT(pWndPermanent == NULL);
-            // It is important to call base class, including ca2 core
-            // base classes implementation of install_message_handling
+            // It is important to call axis class, including ca2 core
+            // axis classes implementation of install_message_handling
             // inside derived class install_message_handling
 #endif
          }
@@ -1094,7 +1094,7 @@ d.unlock();
 
 
 
-   bool interaction_impl::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
+   bool interaction_impl::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
    {
       if(command_target_interface::_001OnCmdMsg(pcmdmsg))
          return TRUE;
@@ -1128,7 +1128,7 @@ d.unlock();
    void interaction_impl::message_handler(::signal_details * pobj)
    {
 
-      SCAST_PTR(::message::base, pbase, pobj);
+      SCAST_PTR(::message::axis, pbase, pobj);
 
       if(m_pui != NULL)
       {
@@ -2609,7 +2609,7 @@ return 0;
       ASSERT(puiStop == NULL || puiStop->IsWindow());
       ASSERT(pobj != NULL);
 
-      SCAST_PTR(::message::base, pbase, pobj);
+      SCAST_PTR(::message::axis, pbase, pobj);
       // walk from the target interaction_impl up to the hWndStop interaction_impl checking
       //  if any interaction_impl wants to translate this message
 
@@ -2860,7 +2860,7 @@ return 0;
       oswindow m_hwnd;
       HDC m_hdc;
 
-      print_window(sp(::base::application) papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
+      print_window(sp(::axis::application) papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
          element(papp),
          m_event(papp)
 
@@ -2868,7 +2868,7 @@ return 0;
          m_event.ResetEvent();
          m_hwnd = hwnd;
          m_hdc = hdc;
-         __begin_thread(papp, &print_window::s_print_window, (LPVOID) this, ::base::scheduling_priority_normal);
+         __begin_thread(papp, &print_window::s_print_window, (LPVOID) this, ::axis::scheduling_priority_normal);
          if(m_event.wait(millis(dwTimeout)).timeout())
          {
             TRACE("print_window::time_out");
@@ -3089,7 +3089,7 @@ throw not_implemented(get_app());
 
 //throw not_implemented(get_app());
 
-//      SCAST_PTR(::message::base, pbase, pobj);
+//      SCAST_PTR(::message::axis, pbase, pobj);
 //
 //      PAINTSTRUCT paint;
 //      memset(&paint, 0, sizeof(paint));
@@ -3162,7 +3162,7 @@ throw not_implemented(get_app());
    void interaction_impl::_001OnPrint(::signal_details * pobj)
    {
 throw not_implemented(get_app());
-//      SCAST_PTR(::message::base, pbase, pobj);
+//      SCAST_PTR(::message::axis, pbase, pobj);
 //
 //      if(pbase->m_wparam == NULL)
 //         return;
@@ -3328,7 +3328,7 @@ throw not_implemented(get_app());
    ASSERT(!bOK);
    // Note: DELETE_EXCEPTION_(e) not required
    }
-   catch(::exception::base * pe)
+   catch(::exception::axis * pe)
    {
    // validation failed due to OOM or other resource failure
    //e->ReportError(MB_ICONEXCLAMATION, __IDP_INTERNAL_FAILURE);
@@ -3686,7 +3686,7 @@ throw not_implemented(get_app());
    }
 
 
-   /*   view_update_hint::view_update_hint(sp(::base::application) papp) :
+   /*   view_update_hint::view_update_hint(sp(::axis::application) papp) :
    element(papp)
    {
    }
@@ -4032,7 +4032,7 @@ throw not_implemented(get_app());
       return m_pui->GetDlgCtrlId();
    }
 
-   /*   guie_message_wnd::guie_message_wnd(sp(::base::application) papp) :
+   /*   guie_message_wnd::guie_message_wnd(sp(::axis::application) papp) :
    element(papp)
    {
    m_puiForward = NULL;
@@ -5371,7 +5371,7 @@ if(psurface == g_cairosurface)
 
    void interaction_impl::_001OnSetCursor(::signal_details * pobj)
    {
-      SCAST_PTR(::message::base, pbase, pobj);
+      SCAST_PTR(::message::axis, pbase, pobj);
       if(session().get_cursor() != NULL
          && session().get_cursor()->m_ecursor != ::visual::cursor_system)
       {

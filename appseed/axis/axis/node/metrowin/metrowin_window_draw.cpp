@@ -24,7 +24,7 @@ public:
 namespace metrowin
 {
 
-   window_draw::window_draw(::base::application * papp) : 
+   window_draw::window_draw(::axis::application * papp) : 
       element(papp),
       ::thread(papp),
       ::user::window_draw(papp),
@@ -45,7 +45,7 @@ namespace metrowin
 
    void window_draw::message_queue_message_handler(signal_details * pobj)
    {
-      SCAST_PTR(::message::base, pbase, pobj);
+      SCAST_PTR(::message::axis, pbase, pobj);
       if(pbase->m_uiMessage == (WM_USER + 1984 + 1977))
       {
          _synch_redraw();

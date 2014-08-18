@@ -8,7 +8,7 @@ namespace math
 
 
 
-   math::math(sp(::base::application) papp) :
+   math::math(sp(::axis::application) papp) :
       element(papp),
       m_mutex(papp)
    {
@@ -213,7 +213,7 @@ namespace math
       else
       {
 
-         ::base::microtimer timer;
+         ::axis::microtimer timer;
 
          double d1 = timer.getTimeInMicroSec();
 

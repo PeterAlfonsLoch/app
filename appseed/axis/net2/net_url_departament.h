@@ -13,12 +13,12 @@ namespace url
 
 
    class CLASS_DECL_AXIS departament :
-      virtual public ::base::departament
+      virtual public ::axis::departament
    {
    public:
 
 
-      departament(sp(::base::application) papp);
+      departament(sp(::axis::application) papp);
       virtual ~departament();
 
 

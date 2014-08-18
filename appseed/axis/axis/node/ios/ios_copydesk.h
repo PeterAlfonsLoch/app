@@ -5,14 +5,14 @@ namespace ios
 {
 
 
-   class CLASS_DECL_BASE copydesk :
+   class CLASS_DECL_AXIS copydesk :
       virtual public ::core::copydesk,
       virtual public ::window_sp
    {
    public:
 
 
-      copydesk(::base::application * papp);
+      copydesk(::axis::application * papp);
       virtual ~copydesk();
 
 

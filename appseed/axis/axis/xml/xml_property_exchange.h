@@ -16,7 +16,7 @@ namespace xml
       property_set * m_ppropertyset;
 
 
-      property_set_exchange(sp(::base::application) papp);
+      property_set_exchange(sp(::axis::application) papp);
       virtual ~property_set_exchange();
 
 

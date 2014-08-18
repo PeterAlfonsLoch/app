@@ -16,7 +16,7 @@ namespace mac
    public:
       
       
-	   port_forward(::base::application * papp);
+	   port_forward(::axis::application * papp);
 	   virtual ~port_forward();
       
       

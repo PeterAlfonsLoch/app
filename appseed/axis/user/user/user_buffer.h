@@ -10,7 +10,7 @@ namespace user
       virtual public signalizable
    {
    public:
-      buffer(sp(::base::application) papp);
+      buffer(sp(::axis::application) papp);
       virtual ~buffer();
 
       void BitBlt(::draw2d::graphics * pdc);

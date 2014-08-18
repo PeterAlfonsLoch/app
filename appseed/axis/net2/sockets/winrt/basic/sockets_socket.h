@@ -10,9 +10,9 @@ namespace sockets
 
 
    /** \defgroup basic Basic sockets */
-   /** socket base class.
+   /** socket axis class.
    \ingroup basic */
-   class CLASS_DECL_BASE socket :
+   class CLASS_DECL_AXIS socket :
       virtual public base_socket
    {
    public:

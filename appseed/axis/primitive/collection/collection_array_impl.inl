@@ -302,7 +302,7 @@ inline array < TYPE, ARG_TYPE, DEFCONSTRUCTOR >  & array < TYPE, ARG_TYPE, DEFCO
 // out-of-line functions
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::array(sp(::base::application) papp, ::count nGrowBy) :
+array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::array(sp(::axis::application) papp, ::count nGrowBy) :
 element(papp)
 {
    m_nGrowBy = max(0, nGrowBy);
@@ -465,7 +465,7 @@ template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
       TYPE* pNewData = (TYPE*) new BYTE[(size_t)nNewMax * sizeof(TYPE)];
 
       // copy new data from old
-      ::base::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE), m_pData, (size_t)m_nSize * sizeof(TYPE));
+      ::axis::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE), m_pData, (size_t)m_nSize * sizeof(TYPE));
 
       // construct remaining elements
       ASSERT(nNewSize > m_nSize);
@@ -547,7 +547,7 @@ template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 #endif
       TYPE* pNewData = (TYPE*) new BYTE[(size_t)nNewMax * sizeof(TYPE)];
       // copy new data from old
-      ::base::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
+      ::axis::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
          m_pData, (size_t)m_nSize * sizeof(TYPE));
 
       for( int32_t i = 0; i < nNewSize-m_nSize; i++ )
@@ -607,7 +607,7 @@ void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::free_extra()
       {
          pNewData = (TYPE*) new BYTE[m_nSize * sizeof(TYPE)];
          // copy new data from old
-         ::base::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
+         ::axis::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
             m_pData, m_nSize * sizeof(TYPE));
       }
 
@@ -638,7 +638,7 @@ inline index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::remove_at(index nIndex, 
 
    if (nMoveCount)
    {
-      ::base::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE),
+      ::axis::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE),
          m_pData + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
    }
    m_nSize -= nCount;
@@ -874,7 +874,7 @@ index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::insert_at(index nIndex, ARG_TYP
       set_size(m_nSize + nCount, -1);  // grow it to new size
       // destroy intial data before copying over it
       // shift old data up to fill gap
-      ::base::memmove_s(m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(TYPE), m_pData + nIndex, (nOldSize-nIndex) * sizeof(TYPE));
+      ::axis::memmove_s(m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(TYPE), m_pData + nIndex, (nOldSize-nIndex) * sizeof(TYPE));
 
       DEFCONSTRUCTOR::construct(m_pData + nIndex, nCount);
    }

@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_BASE sip_server :
+   class CLASS_DECL_AXIS sip_server :
       public ::thread,
       public sip_base
    {
@@ -16,7 +16,7 @@ namespace sockets
       int      m_iPort;
 
 
-      sip_server(::base::application * papp);
+      sip_server(::axis::application * papp);
 
 
       virtual int run();

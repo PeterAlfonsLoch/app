@@ -102,7 +102,7 @@ public:
 
 
 
-namespace base
+namespace axis
 {
 
 
@@ -117,7 +117,7 @@ namespace base
    } // namespace pal - platform abstraction layer
 
 
-} // namespace base
+} // namespace axis
 
 
 

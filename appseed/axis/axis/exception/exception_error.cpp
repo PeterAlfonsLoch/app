@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-error_exception::error_exception(sp(::base::application) papp, const char * pszError) :
+error_exception::error_exception(sp(::axis::application) papp, const char * pszError) :
    element(papp),
    ::call_stack(papp),
-   ::exception::base(papp)
+   ::exception::axis(papp)
 {
       if(pszError == NULL)
       {

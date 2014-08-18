@@ -169,7 +169,7 @@ namespace sockets
          {
             if (!Connecting())
             {
-               log("http_get_socket", -1, "connect() failed miserably", ::base::log::level_fatal);
+               log("http_get_socket", -1, "connect() failed miserably", ::axis::log::level_fatal);
                SetCloseAndDelete();
             }
             return false;
@@ -183,7 +183,7 @@ namespace sockets
          {
             if (!Connecting())
             {
-               log("http_get_socket", -1, "connect() failed miserably", ::base::log::level_fatal);
+               log("http_get_socket", -1, "connect() failed miserably", ::axis::log::level_fatal);
                SetCloseAndDelete();
             }
             return false;

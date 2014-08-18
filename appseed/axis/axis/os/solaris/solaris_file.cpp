@@ -39,7 +39,7 @@ int64_t fd_get_file_size(int32_t fd)
 
 /*
 
-CLASS_DECL_BASE void dll_processes(simple_uint_array & dwa, stra_dup & straProcesses, const char * pszDll)
+CLASS_DECL_AXIS void dll_processes(simple_uint_array & dwa, stra_dup & straProcesses, const char * pszDll)
 {
 
 

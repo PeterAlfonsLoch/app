@@ -1,6 +1,6 @@
 //
 //  multithreading_thread_impl.cpp
-//  base
+//  axis
 //
 //
 //
@@ -9,7 +9,7 @@
 
 uint32_t __thread_entry(void * pparam);
 
-thread_impl::thread_impl(sp(::base::application) papp):
+thread_impl::thread_impl(sp(::axis::application) papp):
 element(papp),
 m_evFinish(papp),
 m_mutexUiPtra(papp),
@@ -91,7 +91,7 @@ bool thread_impl::initialize_instance()
 void thread_impl::dispatch_thread_message(signal_details * pobj)
 {
 
-   SCAST_PTR(::message::base,pbase,pobj);
+   SCAST_PTR(::message::axis,pbase,pobj);
    if(!pbase->m_bRet && pbase->m_uiMessage == WM_APP + 1984 && pbase->m_wparam == 77)
    {
       smart_pointer < ::user::message > spmessage(pbase->m_lparam);
@@ -111,10 +111,10 @@ void thread_impl::dispatch_thread_message(signal_details * pobj)
       message::e_prototype eprototype = signal.m_eprototype;
       if(eprototype == message::PrototypeNone)
       {
-         //message::base base(get_app());
+         //message::axis axis(get_app());
          pbase->m_psignal = psignal;
          lresult = 0;
-         //base.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
+         //axis.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
          psignal->emit(pbase);
          if(pbase->m_bRet)
             return;
@@ -131,7 +131,7 @@ void thread_impl::pre_translate_message(signal_details * pobj)
 
    try
    {
-      SCAST_PTR(::message::base,pbase,pobj);
+      SCAST_PTR(::message::axis,pbase,pobj);
 
       //   ASSERT_VALID(this);
 
@@ -244,9 +244,9 @@ void thread_impl::pre_translate_message(signal_details * pobj)
 
 
 
-void thread_impl::process_window_procedure_exception(::exception::base*,signal_details * pobj)
+void thread_impl::process_window_procedure_exception(::exception::axis*,signal_details * pobj)
 {
-   SCAST_PTR(::message::base,pbase,pobj);
+   SCAST_PTR(::message::axis,pbase,pobj);
    if(pbase->m_uiMessage == WM_CREATE)
    {
       pbase->set_lresult(-1);
@@ -270,13 +270,13 @@ namespace thread_impl_util
 
    inline bool IsEnterKey(signal_details * pobj)
    {
-      SCAST_PTR(::message::base,pbase,pobj);
+      SCAST_PTR(::message::axis,pbase,pobj);
       return pbase->m_uiMessage == WM_KEYDOWN && pbase->m_wparam == VK_RETURN;
    }
 
    inline bool IsButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(::message::base,pbase,pobj);
+      SCAST_PTR(::message::axis,pbase,pobj);
       return pbase->m_uiMessage == WM_LBUTTONUP;
    }
 
@@ -288,7 +288,7 @@ void thread_impl::process_message_filter(int32_t code,signal_details * pobj)
    if(pobj == NULL)
       return;   // not handled
 
-   SCAST_PTR(::message::base,pbase,pobj);
+   SCAST_PTR(::message::axis,pbase,pobj);
 
    sp(::user::frame_window) pTopFrameWnd;
    sp(::user::interaction) pMainWnd;
@@ -353,7 +353,7 @@ void thread_impl::process_message_filter(int32_t code,signal_details * pobj)
 
 
 
-thread_startup::thread_startup(sp(::base::application) papp) :
+thread_startup::thread_startup(sp(::axis::application) papp) :
    element(papp),
    m_event(papp),
    m_event2(papp)
@@ -728,7 +728,7 @@ uint32_t __thread_entry(void * pparam)
 }
 
 
-void CLASS_DECL_AXIS __end_thread(sp(::base::application) papp)
+void CLASS_DECL_AXIS __end_thread(sp(::axis::application) papp)
 {
 
    __term_thread(papp);
@@ -736,7 +736,7 @@ void CLASS_DECL_AXIS __end_thread(sp(::base::application) papp)
 }
 
 
-void CLASS_DECL_AXIS __term_thread(sp(::base::application) papp)
+void CLASS_DECL_AXIS __term_thread(sp(::axis::application) papp)
 {
 
    UNREFERENCED_PARAMETER(papp);
@@ -1442,7 +1442,7 @@ stop_run:
 void thread_impl::message_handler(signal_details * pobj)
 {
 
-   SCAST_PTR(::message::base,pbase,pobj);
+   SCAST_PTR(::message::axis,pbase,pobj);
 
    ::window_sp pwindow = pbase->m_pwnd->GetWindow();
 
@@ -1500,12 +1500,12 @@ void thread_impl::message_handler(signal_details * pobj)
       return;
 
    }
-   catch(::exception::base * pe)
+   catch(::exception::axis * pe)
    {
 
       process_window_procedure_exception(pe,pbase);
 
-      TRACE(::base::trace::category_AppMsg,0,"Warning: Uncaught exception in message_handler (returning %ld).\n",(int_ptr)pbase->get_lresult());
+      TRACE(::axis::trace::category_AppMsg,0,"Warning: Uncaught exception in message_handler (returning %ld).\n",(int_ptr)pbase->get_lresult());
 
       pe->Delete();
 
@@ -1527,7 +1527,7 @@ bool thread_impl::pump_message()
       if(!::GetMessage(&msg,NULL,0,0))
       {
 
-         TRACE(::base::trace::category_AppMsg,1,"thread::pump_message - Received WM_QUIT.\n");
+         TRACE(::axis::trace::category_AppMsg,1,"thread::pump_message - Received WM_QUIT.\n");
 
          m_nDisablePumpCount++; // application must die
          // Note: prevents calling message loop things in 'exit_instance'
@@ -1542,7 +1542,7 @@ bool thread_impl::pump_message()
       if(m_nDisablePumpCount != 0)
       {
 
-         TRACE(::base::trace::category_AppMsg,0,"Error: thread::pump_message called when not permitted.\n");
+         TRACE(::axis::trace::category_AppMsg,0,"Error: thread::pump_message called when not permitted.\n");
 
          ASSERT(FALSE);
 
@@ -1555,7 +1555,7 @@ bool thread_impl::pump_message()
 
          {
 
-            smart_pointer < message::base > spbase;
+            smart_pointer < message::axis > spbase;
 
             spbase = get_base(&msg);
 
@@ -1864,7 +1864,7 @@ void thread_impl::set_priority(int32_t priority)
 int32_t thread_impl::priority()
 {
 
-   return ::base::scheduling_priority_normal;
+   return ::axis::scheduling_priority_normal;
 
 }
 

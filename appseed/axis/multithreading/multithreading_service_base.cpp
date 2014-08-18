@@ -3,7 +3,7 @@
 //      Class:          service_base
 //      Author:         Kenny Kerr
 //      Date created:   10 April 2004
-//      Description:    Provides a base class for a service that will exist as
+//      Description:    Provides a axis class for a service that will exist as
 //                      part of a service application. service_base must be
 //                      derived when creating a new service class.
 //
@@ -26,7 +26,7 @@ service_base* service_base::s_pservice = 0;
 //                      service_base class.
 //
 //*****************************************************************************
-service_base::service_base(sp(::base::application) pbaseapp, uint32_t controlsAccepted) :
+service_base::service_base(sp(::axis::application) pbaseapp, uint32_t controlsAccepted) :
    element(pbaseapp),
    m_bStopping(false),
    m_stopped(pbaseapp)

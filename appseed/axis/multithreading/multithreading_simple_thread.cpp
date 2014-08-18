@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_thread::simple_thread(sp(::base::application) papp) :
+simple_thread::simple_thread(sp(::axis::application) papp) :
    element(papp),
    thread(papp)
 {

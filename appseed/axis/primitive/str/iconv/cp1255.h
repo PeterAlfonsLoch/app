@@ -30,7 +30,7 @@
    0x05b4, 0x05b7, 0x05b8, 0x05b9, 0x05bc, 0x05bf, 0x05c1, 0x05c2. */
 
 /* Composition tables for each of the relevant combining characters. */
-static const struct { unsigned short base; unsigned short composed; } cp1255_comp_table_data[] = {
+static const struct { unsigned short axis; unsigned short composed; } cp1255_comp_table_data[] = {
 #define cp1255_comp_table05b4_idx 0
 #define cp1255_comp_table05b4_len 1
   { 0x05D9, 0xFB1D },
@@ -96,7 +96,7 @@ static const struct { unsigned int len; unsigned int idx; } cp1255_comp_table[] 
 };
 
 /* Decomposition table for the relevant Unicode characters. */
-struct cp1255_decomp { unsigned short composed; unsigned short base; int comb1 : 8; signed int comb2 : 8; };
+struct cp1255_decomp { unsigned short composed; unsigned short axis; int comb1 : 8; signed int comb2 : 8; };
 static const struct cp1255_decomp cp1255_decomp_table[] = {
   { 0xFB1D, 0x05D9, 0, -1 },
   { 0xFB1F, 0x05F2, 1, -1 },
@@ -200,14 +200,14 @@ cp1255_mbtowc (conv_t conv, ucs4_t *pwc, const unsigned char *s, int n)
       }
       i1 = cp1255_comp_table[k].idx;
       i2 = i1 + cp1255_comp_table[k].len-1;
-      if (last_wc >= cp1255_comp_table_data[i1].base
-          && last_wc <= cp1255_comp_table_data[i2].base) {
+      if (last_wc >= cp1255_comp_table_data[i1].axis
+          && last_wc <= cp1255_comp_table_data[i2].axis) {
         unsigned int i;
         for (;;) {
           i = (i1+i2)>>1;
-          if (last_wc == cp1255_comp_table_data[i].base)
+          if (last_wc == cp1255_comp_table_data[i].axis)
             break;
-          if (last_wc < cp1255_comp_table_data[i].base) {
+          if (last_wc < cp1255_comp_table_data[i].axis) {
             if (i1 == i)
               goto not_combining;
             i2 = i;
@@ -216,7 +216,7 @@ cp1255_mbtowc (conv_t conv, ucs4_t *pwc, const unsigned char *s, int n)
               i1 = i;
             else {
               i = i2;
-              if (last_wc == cp1255_comp_table_data[i].base)
+              if (last_wc == cp1255_comp_table_data[i].axis)
                 break;
               goto not_combining;
             }
@@ -356,7 +356,7 @@ cp1255_wctomb (conv_t conv, unsigned char *r, ucs4_t wc, int n)
         }
       }
       /* Found a canonical decomposition. */
-      wc = cp1255_decomp_table[i].base;
+      wc = cp1255_decomp_table[i].axis;
       /* wc is one of 0x05d0..0x05d6, 0x05d8..0x05dc, 0x05de, 0x05e0..0x05e1,
          0x05e3..0x05e4, 0x05e6..0x05ea, 0x05f2. */
       c = cp1255_page05[wc-0x05b0];

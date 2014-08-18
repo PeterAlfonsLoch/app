@@ -7,13 +7,13 @@ namespace ios
 {
 
    
-   class CLASS_DECL_BASE thread :
+   class CLASS_DECL_AXIS thread :
       virtual public ::ansios::thread_impl
    {
    public:
       
       
-      thread(::base::application * papp);
+      thread(::axis::application * papp);
       virtual ~thread();
       
       

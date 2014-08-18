@@ -1,6 +1,6 @@
 //
 //  macos_window.h
-//  base
+//  axis
 //
 //  Created by Camilo Sasuke Tsumanuma on 2013-09-17.
 //
@@ -34,7 +34,7 @@ struct NSWindow;
 typedef NSWindow * nswindow;
 
 
-class CLASS_DECL_BASE oswindow_data
+class CLASS_DECL_AXIS oswindow_data
 {
 public:
    

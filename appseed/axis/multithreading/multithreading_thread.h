@@ -11,7 +11,7 @@ class CLASS_DECL_AXIS thread :
    virtual public ::exception::translator,
 #endif
    virtual public ptr_array < ::user::interaction >,
-   virtual public ::base::live_object,
+   virtual public ::axis::live_object,
    virtual public event_base
 {
 public:
@@ -42,8 +42,8 @@ public:
 
 
    thread();
-   thread(sp(::base::application) papp);
-   thread(sp(::base::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam);
+   thread(sp(::axis::application) papp);
+   thread(sp(::axis::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam);
    virtual ~thread();
 
    ///  \brief		starts thread on first call
@@ -125,7 +125,7 @@ public:
 
    virtual int32_t exit_instance();
 
-   virtual void process_window_procedure_exception(::exception::base*,signal_details * pobj);
+   virtual void process_window_procedure_exception(::exception::axis*,signal_details * pobj);
 
    virtual void process_message_filter(int32_t code, signal_details * pobj);
 

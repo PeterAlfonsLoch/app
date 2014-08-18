@@ -15,8 +15,8 @@ namespace metrowin
 {
 
 
-   class CLASS_DECL_BASE main_init_data :
-      public ::base::main_init_data
+   class CLASS_DECL_AXIS main_init_data :
+      public ::axis::main_init_data
    {
    public:
 
@@ -29,8 +29,8 @@ namespace metrowin
    };
 
 
-   class CLASS_DECL_BASE application :
-      virtual public ::base::application
+   class CLASS_DECL_AXIS application :
+      virtual public ::axis::application
    {
    public:
 
@@ -42,7 +42,7 @@ namespace metrowin
       main_init_data *     m_pmaininitdata;
 
 
-      application(::base::application * papp);
+      application(::axis::application * papp);
       virtual ~application();
       
       virtual HINSTANCE GetHinstance();
@@ -80,7 +80,7 @@ namespace metrowin
 
       virtual void SetCurrentHandles();
 
-      virtual bool set_main_init_data(::base::main_init_data * pdata);
+      virtual bool set_main_init_data(::axis::main_init_data * pdata);
 
       virtual bool process_initialize();
       virtual bool initialize1();
@@ -167,7 +167,7 @@ namespace metrowin
       virtual int exit_instance(); // default will 'delete this'
 
       // Advanced: exception handling
-      virtual LRESULT ProcessWndProcException(::exception::base* e, const MSG* pMsg);
+      virtual LRESULT ProcessWndProcException(::exception::axis* e, const MSG* pMsg);
 
       // Advanced: handling messages sent to message filter hook
       virtual bool ProcessMessageFilter(int code, LPMSG lpMsg);

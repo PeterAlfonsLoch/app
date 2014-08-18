@@ -5,7 +5,7 @@ namespace sip
 {
 
 
-   transaction::transaction(sp(::base::application) papp) :
+   transaction::transaction(sp(::axis::application) papp) :
       element(papp)
    {
 

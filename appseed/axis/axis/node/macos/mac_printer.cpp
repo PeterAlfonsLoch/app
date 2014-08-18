@@ -5,7 +5,7 @@ namespace mac2
 {
 
 
-   printer::printer(::base::application * papp) :
+   printer::printer(::axis::application * papp) :
       element(papp),
       ::user::printer(papp),
       m_documentproperties(papp)
@@ -50,7 +50,7 @@ namespace mac2
    }
 
 
-   printer::document_properties::document_properties(::base::application * papp) :
+   printer::document_properties::document_properties(::axis::application * papp) :
       element(papp)
    {
       m_hdc = NULL;

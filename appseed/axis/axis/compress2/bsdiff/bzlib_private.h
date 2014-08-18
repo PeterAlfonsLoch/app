@@ -403,7 +403,7 @@ typedef
       uchar    len  [BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
 
       int32_t    limit  [BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
-      int32_t    base   [BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
+      int32_t    axis   [BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
       int32_t    perm   [BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
       int32_t    minLens[BZ_N_GROUPS];
 

@@ -20,7 +20,7 @@ namespace net
       string            m_strBody;
 
 
-      email(sp(::base::application) papp);
+      email(sp(::axis::application) papp);
 
 
       void prepare_headers();

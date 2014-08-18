@@ -8,7 +8,7 @@ namespace metrowin
 {
 
 
-   application::application(::base::application * papp) :
+   application::application(::axis::application * papp) :
       element(papp)
    {
 
@@ -368,7 +368,7 @@ namespace metrowin
       // avoid calling CloseHandle() on our own thread handle
       // during the thread destructor
       m_pthreadimpl->set_os_data(NULL);
-      int32_t iRet = ::base::application::exit_instance();
+      int32_t iRet = ::axis::application::exit_instance();
 
       //smart_pointer < application_base >::destroy();
 
@@ -377,7 +377,7 @@ namespace metrowin
    }
 /*
    // Advanced: exception handling
-   LRESULT application::ProcessWndProcException(::exception::base* e, const MSG* pMsg)
+   LRESULT application::ProcessWndProcException(::exception::axis* e, const MSG* pMsg)
    {
       return   ::metrowin::thread::ProcessWndProcException(e, pMsg);
    }
@@ -532,7 +532,7 @@ namespace metrowin
    }
 
 
-   bool application::set_main_init_data(::base::main_init_data * pdata)
+   bool application::set_main_init_data(::axis::main_init_data * pdata)
    {
 
       m_pmaininitdata = (::metrowin::main_init_data *) pdata;

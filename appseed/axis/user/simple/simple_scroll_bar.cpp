@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_scroll_bar::simple_scroll_bar(sp(::base::application) papp) :
+simple_scroll_bar::simple_scroll_bar(sp(::axis::application) papp) :
    element(papp),
    ::user::interaction(papp),
    m_penDraw(allocer()),
@@ -801,7 +801,7 @@ void simple_scroll_bar::OnDisplayChange(int32_t iBitsPerPixel, size sizeScreen)
 void simple_scroll_bar::pre_translate_message(signal_details * pobj)
 {
 
-   SCAST_PTR(::message::base, pbase, pobj);
+   SCAST_PTR(::message::axis, pbase, pobj);
 
    if(pbase->m_pwnd == this)
    {
@@ -913,7 +913,7 @@ public:
    point pt2;
 
    
-   trw(sp(::base::application) papp): element(papp),::user::interaction(papp)
+   trw(sp(::axis::application) papp): element(papp),::user::interaction(papp)
    {
 
       if(create_window_ex(WS_EX_LAYERED,NULL,"",WS_VISIBLE,null_rect(),NULL, /*nIDResource*/ 0,NULL))
@@ -950,7 +950,7 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
 
    GetClientRect(rectClient);
 
-   if(session().savings().is_trying_to_save(::base::resource_processing))
+   if(session().savings().is_trying_to_save(::axis::resource_processing))
    {
 
       pdc->FillSolidRect(rectClient, RGB(255,255,255));

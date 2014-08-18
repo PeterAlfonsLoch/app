@@ -4,10 +4,10 @@
 #define SECURITY_WIN32
 
 
-#include "app/appseed/base/base/base/base.h"
+#include "app/appseed/axis/axis/axis/axis.h"
 
 
-////#define CLASS_DECL_BASE
+////#define CLASS_DECL_AXIS
 
 struct plane_system
 {
@@ -25,42 +25,42 @@ struct plane_system
 
 string get_error_message(DWORD dwError);
 
-::base::application *     ios_instantiate_application(::base::application * pappSystem, const char * pszId);
+::axis::application *     ios_instantiate_application(::axis::application * pappSystem, const char * pszId);
 
 /////////////////////////////////////////////////////////////////////////////
 // explicit initialization for general purpose classes
 
-//CLASS_DECL_BASE WINBOOL AfxInitialize(WINBOOL bDLL = FALSE, DWORD dwVersion = _MFC_VER);
-CLASS_DECL_BASE WINBOOL AfxInitialize(WINBOOL bDLL = FALSE, DWORD dwVersion = 0);
+//CLASS_DECL_AXIS WINBOOL AfxInitialize(WINBOOL bDLL = FALSE, DWORD dwVersion = _MFC_VER);
+CLASS_DECL_AXIS WINBOOL AfxInitialize(WINBOOL bDLL = FALSE, DWORD dwVersion = 0);
 
 /////////////////////////////////////////////////////////////////////////////
 // stop on a specific primitive::memory request
 
 // Debugger hook on specified allocation request - Obsolete
-CLASS_DECL_BASE void AfxSetAllocStop(LONG lRequestNumber);
+CLASS_DECL_AXIS void AfxSetAllocStop(LONG lRequestNumber);
 
 // Return TRUE if primitive::memory is sane or print out what is wrong
-CLASS_DECL_BASE bool __check_memory();
+CLASS_DECL_AXIS bool __check_memory();
 
 // Return TRUE if valid primitive::memory block of nBytes
-CLASS_DECL_BASE WINBOOL AfxIsMemoryBlock(const void * p, UINT nBytes,
+CLASS_DECL_AXIS WINBOOL AfxIsMemoryBlock(const void * p, UINT nBytes,
                                         LONG* plRequestNumber = NULL);
 
 // helper routines for non-C++ EH implementations
 // for THROW_LAST auto-delete backward compatiblity
-CLASS_DECL_BASE void AfxThrowLastCleanup();
+CLASS_DECL_AXIS void AfxThrowLastCleanup();
 
 // other out-of-line helper functions
-CLASS_DECL_BASE void AfxTryCleanup();
+CLASS_DECL_AXIS void AfxTryCleanup();
 
 
 /////////////////////////////////////////////////////////////////////////////
 // Global implementation helpers
 
 // window creation hooking
-CLASS_DECL_BASE void AfxHookWindowCreate(::user::interaction * pWnd);
-CLASS_DECL_BASE WINBOOL AfxUnhookWindowCreate();
-CLASS_DECL_BASE void AfxResetMsgCache();
+CLASS_DECL_AXIS void AfxHookWindowCreate(::user::interaction * pWnd);
+CLASS_DECL_AXIS WINBOOL AfxUnhookWindowCreate();
+CLASS_DECL_AXIS void AfxResetMsgCache();
 
 // for backward compatibility to previous versions
 #define _AfxHookWindowCreate    AfxHookWindowCreate
@@ -79,7 +79,7 @@ CLASS_DECL_BASE void AfxResetMsgCache();
 #include "ios_ip_enum.h"
 
 #define NULL_REF(class) (*((class *) NULL))
-// xxx CLASS_DECL_BASE WNDPROC AfxGetAfxWndProc();
+// xxx CLASS_DECL_AXIS WNDPROC AfxGetAfxWndProc();
 #define AfxWndProc (*AfxGetAfxWndProc())
 
 #define IOS_THREAD(pthread) (dynamic_cast < ::ios::thread * > (dynamic_cast < ::thread * >(pthread)))
@@ -87,11 +87,11 @@ CLASS_DECL_BASE void AfxResetMsgCache();
 
 #include "ios_shell.h"
 
-CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, signal_details * pobj);
-CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
+CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, signal_details * pobj);
+CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
-CLASS_DECL_BASE void AfxProcessWndProcException(::exception::base*, signal_details * pobj);
-CLASS_DECL_BASE void __cdecl __pre_translate_message(signal_details * pobj);
+CLASS_DECL_AXIS void AfxProcessWndProcException(::exception::axis*, signal_details * pobj);
+CLASS_DECL_AXIS void __cdecl __pre_translate_message(signal_details * pobj);
 
 #include "ios_printer.h"
 
@@ -114,10 +114,10 @@ WINBOOL GetMessage(
 
 
 
-int32_t CLASS_DECL_BASE __ios_main(int32_t argc, char * argv[]);
+int32_t CLASS_DECL_AXIS __ios_main(int32_t argc, char * argv[]);
 
 
-CLASS_DECL_BASE void vfxThrowFileException(::base::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
+CLASS_DECL_AXIS void vfxThrowFileException(::axis::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
 
 
 
@@ -139,11 +139,11 @@ namespace ios
 
 
 
-// Placed on frame for EXCEPTION linkage, or ::exception::base cleanup
-struct CLASS_DECL_BASE __exception_link
+// Placed on frame for EXCEPTION linkage, or ::exception::axis cleanup
+struct CLASS_DECL_AXIS __exception_link
 {
    __exception_link* m_pLinkPrev;    // previous top, next in handler chain
-   ::exception::base * m_pException;   // current exception (NULL in try block)
+   ::exception::axis * m_pException;   // current exception (NULL in try block)
 
    __exception_link();       // for initialization and linking
    ~__exception_link()       // for cleanup and unlinking
@@ -153,7 +153,7 @@ struct CLASS_DECL_BASE __exception_link
 };
 
 // Exception global state - never access directly
-struct CLASS_DECL_BASE __EXCEPTION_CONTEXT
+struct CLASS_DECL_AXIS __EXCEPTION_CONTEXT
 {
    __exception_link* m_pLinkTop;
 

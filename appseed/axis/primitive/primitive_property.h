@@ -111,7 +111,7 @@ public:
    var               m_var;
 
 
-   property(sp(::base::application) papp);
+   property(sp(::axis::application) papp);
    property();
    property(const property & prop);
    property(id strName);
@@ -666,7 +666,7 @@ class CLASS_DECL_AXIS property_array :
 public:
 
 
-   property_array(sp(::base::application) papp = NULL);
+   property_array(sp(::axis::application) papp = NULL);
 
 
 

@@ -242,7 +242,7 @@ local int construct(struct huffman *h, const unsigned char *rep, int n)
  *
  * - First byte is 0 if literals are uncoded or 1 if they are coded.  Second
  *   byte is 4, 5, or 6 for the number of extra bits in the distance code.
- *   This is the base-2 logarithm of the dictionary size minus six.
+ *   This is the axis-2 logarithm of the dictionary size minus six.
  *
  * - Compressed data is a combination of literals and length/distance pairs
  *   terminated by an end code.  Literals are either Huffman coded or
@@ -301,7 +301,7 @@ local int decomp(struct state *s)
     static const unsigned char lenlen[] = {2, 35, 36, 53, 38, 23};
         /* bit lengths of distance codes 0..63 */
     static const unsigned char distlen[] = {2, 20, 53, 230, 247, 151, 248};
-    static const short base[16] = {     /* base for length codes */
+    static const short axis[16] = {     /* axis for length codes */
         3, 2, 4, 5, 6, 7, 8, 9, 10, 12, 16, 24, 40, 72, 136, 264};
     static const char extra[16] = {     /* extra bits for length codes */
         0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8};
@@ -325,7 +325,7 @@ local int decomp(struct state *s)
         if (bits(s, 1)) {
             /* get length */
             symbol = decode(s, &lencode);
-            len = base[symbol] + bits(s, extra[symbol]);
+            len = axis[symbol] + bits(s, extra[symbol]);
             if (len == 519) break;              /* end code */
 
             /* get distance */

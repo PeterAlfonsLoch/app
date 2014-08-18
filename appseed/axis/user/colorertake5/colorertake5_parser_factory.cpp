@@ -27,7 +27,7 @@ namespace colorertake5
       {
          throw ParserFactoryException(get_app(), e.getMessage());
       }
-      catch(::exception::base * pe)
+      catch(::exception::axis * pe)
       {
          string str;
          pe->get_error_message(str);
@@ -112,7 +112,7 @@ namespace colorertake5
       return Application.dir().matter("colorer.zip:catalog.xml");
    };
 
-   ParserFactory::ParserFactory(sp(::base::application) papp) :
+   ParserFactory::ParserFactory(sp(::axis::application) papp) :
       element(papp)
    {
 
@@ -126,7 +126,7 @@ namespace colorertake5
 
    }
 
-   ParserFactory::ParserFactory(sp(::base::application) papp, string catalogPath) :
+   ParserFactory::ParserFactory(sp(::axis::application) papp, string catalogPath) :
       element(papp)
    {
 
@@ -206,7 +206,7 @@ namespace colorertake5
                   {
                      hrcParser->loadSource(straPath[i], str);
                   }
-                  catch(::exception::base &e)
+                  catch(::exception::axis &e)
                   {
                      string str;
                      e.get_error_message(str);
@@ -224,7 +224,7 @@ namespace colorertake5
                {
                   hrcParser->loadSource(path, strSource);
                }
-               catch(::exception::base & e)
+               catch(::exception::axis & e)
                {
                   string str;
                   e.get_error_message(str);
@@ -295,7 +295,7 @@ namespace colorertake5
                }
 
             }
-            catch(::exception::base & )
+            catch(::exception::axis & )
             {
             }
 
@@ -333,7 +333,7 @@ namespace colorertake5
                   mapper->loadRegionMappings(stream);
                }
             }
-            catch(::exception::base &)
+            catch(::exception::axis &)
             {
             }
          }

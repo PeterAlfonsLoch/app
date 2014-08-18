@@ -11,7 +11,7 @@ public:
    bool              m_bInitialized;
 
 
-   machine_event_central(sp(::base::application) papp);
+   machine_event_central(sp(::axis::application) papp);
    virtual ~machine_event_central();
 
 

@@ -136,7 +136,7 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
                     "inflate:         literal 0x%02x\n", here.val));
             PUP(out) = (unsigned char)(here.val);
         }
-        else if (op & 16) {                     /* length base */
+        else if (op & 16) {                     /* length axis */
             len = (unsigned)(here.val);
             op &= 15;                           /* number of extra bits */
             if (op) {
@@ -161,7 +161,7 @@ unsigned start;         /* inflate()'s starting value for strm->avail_out */
             hold >>= op;
             bits -= op;
             op = (unsigned)(here.op);
-            if (op & 16) {                      /* distance base */
+            if (op & 16) {                      /* distance axis */
                 dist = (unsigned)(here.val);
                 op &= 15;                       /* number of extra bits */
                 if (bits < op) {

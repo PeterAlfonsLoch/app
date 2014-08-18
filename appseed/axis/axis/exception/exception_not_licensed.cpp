@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-not_licensed::not_licensed(sp(::base::application) papp, const char * pszRealm, const char * pszUrl) :
+not_licensed::not_licensed(sp(::axis::application) papp, const char * pszRealm, const char * pszUrl) :
    element(papp),
    ::call_stack(papp),
-   ::exception::base(papp)
+   ::exception::axis(papp)
 {
       string str;
    m_strRealm     = pszRealm;
@@ -18,7 +18,7 @@ not_licensed::not_licensed(sp(::base::application) papp, const char * pszRealm, 
 not_licensed::not_licensed(const not_licensed & e) :
    element(e.get_app()),
    ::call_stack(e.get_app()),
-   ::exception::base(e)
+   ::exception::axis(e)
 {
 
       printf(":not_licensed(copy)");

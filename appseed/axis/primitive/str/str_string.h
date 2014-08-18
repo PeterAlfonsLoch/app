@@ -241,7 +241,7 @@ public:
    string& operator+=(uchar ch );
    string& operator+=(wchar_t ch );
 
-   // Override from base class
+   // Override from axis class
    string_manager * GetManager() const throw();
 
 
@@ -610,7 +610,7 @@ public:
    bool getenv(const char * pszVar);
 
    // Load the string from resource 'nID'
-   bool load_string(sp(::base::application) papp, id id);
+   bool load_string(sp(::axis::application) papp, id id);
 
    // Load the string from resource 'nID' in module 'hInstance'
    /*    bool load_string(HINSTANCE hInstance,strsize nID )

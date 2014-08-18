@@ -5,11 +5,11 @@ bool call_stack::s_bDoStackTrace = false;
 
 
 #if defined(LINUX) || defined(APPLEOS) || defined(SOLARIS)
-call_stack::call_stack(sp(::base::application) papp, uint32_t uiSkip, void * address) :
+call_stack::call_stack(sp(::axis::application) papp, uint32_t uiSkip, void * address) :
    element(papp)
    ,m_caller_address(address)
 #else
-call_stack::call_stack(sp(::base::application) papp, uint32_t uiSkip) :
+call_stack::call_stack(sp(::axis::application) papp, uint32_t uiSkip) :
    element(papp)
 #endif
 {

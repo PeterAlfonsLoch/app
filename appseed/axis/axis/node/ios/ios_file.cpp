@@ -24,7 +24,7 @@ namespace ios
 {
    
    
-   file::file(::base::application * papp) :
+   file::file(::axis::application * papp) :
    element(papp)
    {
       
@@ -34,7 +34,7 @@ namespace ios
       
    }
    
-   file::file(::base::application * papp, int32_t hFile) :
+   file::file(::axis::application * papp, int32_t hFile) :
    element(papp)
    {
       
@@ -44,7 +44,7 @@ namespace ios
       
    }
    
-   file::file(::base::application * papp, const char * lpszFileName, UINT nOpenFlags) :
+   file::file(::axis::application * papp, const char * lpszFileName, UINT nOpenFlags) :
    element(papp)
    {
       
@@ -517,7 +517,7 @@ namespace ios
 #endif
    
    
-   /*void CLASS_DECL_BASE vfxThrowFileException(int32_t cause, LONG lOsError,
+   /*void CLASS_DECL_AXIS vfxThrowFileException(int32_t cause, LONG lOsError,
     //   const char * lpszFileName  == NULL */
    /*{
     #ifdef DEBUG
@@ -575,13 +575,13 @@ namespace ios
    namespace file_exception
    {
    
-   void ThrowOsError(::base::application * papp, LONG lOsError, const char * lpszFileName /* = NULL */)
+   void ThrowOsError(::axis::application * papp, LONG lOsError, const char * lpszFileName /* = NULL */)
    {
       if (lOsError != 0)
          vfxThrowFileException(papp, ::ios::file_exception::OsErrorToException(lOsError), lOsError, lpszFileName);
    }
    
-   void ThrowErrno(::base::application * papp, int32_t nErrno, const char * lpszFileName /* = NULL */)
+   void ThrowErrno(::axis::application * papp, int32_t nErrno, const char * lpszFileName /* = NULL */)
    {
       if (nErrno != 0)
          vfxThrowFileException(papp, ::ios::file_exception::ErrnoToException(nErrno), errno, lpszFileName);
@@ -760,7 +760,7 @@ namespace ios
          } //      namespace file_exception
    
    
-   // IMPLEMENT_DYNAMIC(WinFileException, ::exception::base)
+   // IMPLEMENT_DYNAMIC(WinFileException, ::exception::axis)
    
    /////////////////////////////////////////////////////////////////////////////
    
@@ -888,7 +888,7 @@ namespace ios
 
    
    /*
-    UINT CLASS_DECL_BASE vfxGetFileTitle(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax)
+    UINT CLASS_DECL_AXIS vfxGetFileTitle(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax)
     {
     ASSERT(lpszTitle == NULL ||
     __is_valid_address(lpszTitle, _MAX_FNAME));
@@ -1073,7 +1073,7 @@ namespace ios
 
 
 // turn a file, relative path or other into an absolute path
-bool CLASS_DECL_BASE vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
+bool CLASS_DECL_AXIS vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
 // lpszPathOut = buffer of _MAX_PATH
 // lpszFileIn = file, relative path or absolute path
 // (both in ANSI character set)
@@ -1164,7 +1164,7 @@ bool CLASS_DECL_BASE vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
     return TRUE;*/
 }
 
-/*void CLASS_DECL_BASE __get_root_path(const char * lpszPath, string & strRoot)
+/*void CLASS_DECL_AXIS __get_root_path(const char * lpszPath, string & strRoot)
  {
  ASSERT(lpszPath != NULL);
  // determine the root name of the volume
@@ -1207,7 +1207,7 @@ bool CLASS_DECL_BASE vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
  strRoot.ReleaseBuffer();
  }*/
 
-/*bool CLASS_DECL_BASE ::ca2::ComparePath(const char * lpszPath1, const char * lpszPath2)
+/*bool CLASS_DECL_AXIS ::ca2::ComparePath(const char * lpszPath1, const char * lpszPath2)
  {
  // use case insensitive compare as a starter
  if (lstrcmpi(lpszPath1, lpszPath2) != 0)
@@ -1260,7 +1260,7 @@ bool CLASS_DECL_BASE vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
  return TRUE; // otherwise file name is truly the same
  }*/
 
-/*UINT CLASS_DECL_BASE __get_file_title(const char * lpszPathName, LPTSTR lpszTitle, UINT nMax)
+/*UINT CLASS_DECL_AXIS __get_file_title(const char * lpszPathName, LPTSTR lpszTitle, UINT nMax)
  {
  ASSERT(lpszTitle == NULL ||
  __is_valid_address(lpszTitle, _MAX_FNAME));
@@ -1282,7 +1282,7 @@ bool CLASS_DECL_BASE vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
  return lpszTitle == NULL ? lstrlen(lpszTemp)+1 : 0;
  }*/
 
-CLASS_DECL_BASE void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
+CLASS_DECL_AXIS void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
 {
    throw todo(::get_thread_app());
    //link_map * plm;
@@ -1310,7 +1310,7 @@ CLASS_DECL_BASE void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
 
 
 
-CLASS_DECL_BASE string vfxStringFromCLSID(REFCLSID rclsid)
+CLASS_DECL_AXIS string vfxStringFromCLSID(REFCLSID rclsid)
 {
    CHAR szCLSID[256];
    sprintf(szCLSID, "{%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X}",
@@ -1321,7 +1321,7 @@ CLASS_DECL_BASE string vfxStringFromCLSID(REFCLSID rclsid)
 }
 
 /*
- bool CLASS_DECL_BASE vfxGetInProcServer(const char * lpszCLSID, string & str)
+ bool CLASS_DECL_AXIS vfxGetInProcServer(const char * lpszCLSID, string & str)
  {
  HKEY hKey = NULL;
  bool b = FALSE;
@@ -1352,7 +1352,7 @@ CLASS_DECL_BASE string vfxStringFromCLSID(REFCLSID rclsid)
  //#endif  //!___NO_OLE_SUPPORT
  */
 
-CLASS_DECL_BASE bool vfxResolveShortcut(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional)
+CLASS_DECL_AXIS bool vfxResolveShortcut(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional)
 {
    
    
@@ -1452,7 +1452,7 @@ CLASS_DECL_BASE bool vfxResolveShortcut(string & strTarget, const char * pszSour
 }
 
 // turn a file, relative path or other into an absolute path
-//bool CLASS_DECL_BASE vfxFullPath(wchar_t * lpszPathOut, const wchar_t * lpszFileIn)
+//bool CLASS_DECL_AXIS vfxFullPath(wchar_t * lpszPathOut, const wchar_t * lpszFileIn)
 // lpszPathOut = buffer of _MAX_PATH
 // lpszFileIn = file, relative path or absolute path
 // (both in ANSI character set)
@@ -1505,7 +1505,7 @@ CLASS_DECL_BASE bool vfxResolveShortcut(string & strTarget, const char * pszSour
 
 
 /*
- void CLASS_DECL_BASE vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath)
+ void CLASS_DECL_AXIS vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath)
  {
  //   ASSERT(lpszPath != NULL);
  // determine the root name of the volume
@@ -1548,7 +1548,7 @@ CLASS_DECL_BASE bool vfxResolveShortcut(string & strTarget, const char * pszSour
  }*/
 
 /*
- void CLASS_DECL_BASE vfxGetRoot(const wchar_t * lpszPath, string& strRoot)
+ void CLASS_DECL_AXIS vfxGetRoot(const wchar_t * lpszPath, string& strRoot)
  {
  ASSERT(lpszPath != NULL);
  wstring wstrRoot;
@@ -1594,7 +1594,7 @@ CLASS_DECL_BASE bool vfxResolveShortcut(string & strTarget, const char * pszSour
  */
 
 
-/*bool CLASS_DECL_BASE vfxFullPath(char * lpszPathOut, const char * lpszFileIn)
+/*bool CLASS_DECL_AXIS vfxFullPath(char * lpszPathOut, const char * lpszFileIn)
  // lpszPathOut = buffer of _MAX_PATH
  // lpszFileIn = file, relative path or absolute path
  // (both in ANSI character set)
@@ -1648,7 +1648,7 @@ CLASS_DECL_BASE bool vfxResolveShortcut(string & strTarget, const char * pszSour
 
 
 
-/*CLASS_DECL_BASE UINT vfxGetFileName(const char * lpszPathName, char * lpszTitle, UINT nMax)
+/*CLASS_DECL_AXIS UINT vfxGetFileName(const char * lpszPathName, char * lpszTitle, UINT nMax)
  {
  ASSERT(lpszTitle == NULL ||
  __is_valid_address(lpszTitle, _MAX_FNAME));
@@ -1680,7 +1680,7 @@ CLASS_DECL_BASE bool vfxResolveShortcut(string & strTarget, const char * pszSour
 /////////////////////////////////////////////////////////////////////////////
 // WinFileException helpers
 
-void CLASS_DECL_BASE vfxThrowFileException(::base::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
+void CLASS_DECL_AXIS vfxThrowFileException(::axis::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
 {
 #ifdef DEBUG
    const char * lpsz;

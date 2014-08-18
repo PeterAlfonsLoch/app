@@ -29,7 +29,7 @@ namespace mac
       
         
         interaction_impl();
-        interaction_impl(::base::application * papp);
+        interaction_impl(::axis::application * papp);
         virtual ~interaction_impl();
 
         
@@ -58,7 +58,7 @@ namespace mac
       
         virtual ::user::interaction * get_wnd() const;
       
-        virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
+        virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
       
         virtual bool BaseOnControlEvent(::user::control_event * pevent);
       

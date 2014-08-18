@@ -258,7 +258,7 @@ namespace user
 #ifdef WINDOWS
       // move and resize all the windows at once!
       if(layout.hDWP == NULL || !::EndDeferWindowPos(layout.hDWP))
-         TRACE(::base::trace::category_AppMsg,0,"Warning: DeferWindowPos failed - low system resources.\n");
+         TRACE(::axis::trace::category_AppMsg,0,"Warning: DeferWindowPos failed - low system resources.\n");
 #endif
    }
 

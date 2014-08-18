@@ -91,7 +91,7 @@ namespace user
       // The ::user::document names sub-strings are represented as _one_ string:
       // windowTitle\ndocName\n ... (see DocStringIndex enum)
 
-      impact_system(sp(::base::application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass);
+      impact_system(sp(::axis::application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass);
 
       virtual void load_template();
 
@@ -125,7 +125,7 @@ namespace user
       virtual void assert_valid() const;
 
       virtual void on_idle();             // for all documents
-      virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
 
 
       bool on_open_document(sp(::user::document) pdoc, var varFile);

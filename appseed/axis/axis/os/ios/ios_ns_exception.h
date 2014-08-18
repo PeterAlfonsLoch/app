@@ -1,6 +1,6 @@
 //
 //  ios_ns_exception.h
-//  base
+//  axis
 //
 //  Created by Carlos Gustavo Cecyn Lundgren on 18/10/13.
 //

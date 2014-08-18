@@ -4,14 +4,14 @@
 string_map < INT_PTR,INT_PTR > & __library();
 
 
-namespace base
+namespace axis
 {
 
 
    const char * psz_empty_app_id = "";
 
 
-   library::library(sp(::base::application) papp):
+   library::library(sp(::axis::application) papp):
       element(papp)
    {
 
@@ -22,7 +22,7 @@ namespace base
    }
 
 
-   library::library(sp(::base::application) papp,int iDesambig,const char * pszRoot):
+   library::library(sp(::axis::application) papp,int iDesambig,const char * pszRoot):
       element(papp)
    {
 
@@ -383,7 +383,7 @@ namespace base
    }
 
 
-   sp(::base::application) library::get_new_app(const char * pszAppId)
+   sp(::axis::application) library::get_new_app(const char * pszAppId)
    {
 
       try
@@ -397,7 +397,7 @@ namespace base
             if(strAppName.is_empty())
                return NULL;
 
-            sp(::base::application) papp = get_ca2_library()->get_new_app(strAppName);
+            sp(::axis::application) papp = get_ca2_library()->get_new_app(strAppName);
 
             if(papp == NULL)
                return NULL;
@@ -464,7 +464,7 @@ namespace base
    }
 
 
-   sp(::object) library::create_object(sp(::base::application) papp,const char * pszClassId)
+   sp(::object) library::create_object(sp(::axis::application) papp,const char * pszClassId)
    {
 
       if(get_ca2_library() == NULL)
@@ -553,7 +553,7 @@ namespace base
    }
 
 
-} // namespace base
+} // namespace axis
 
 
 

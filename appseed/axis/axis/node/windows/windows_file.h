@@ -51,16 +51,15 @@ namespace windows
       
       };
 
-      zip::Util *    m_pziputil;
       string         m_strFileName;
       wstring        m_wstrFileName;
       UINT           m_hFile;
       DWORD          m_dwAccessMode;
 
 
-      file(sp(::base::application) papp);
-      file(sp(::base::application) papp, int32_t hFile);
-      file(sp(::base::application) papp, const char * lpszFileName, UINT nOpenFlags);
+      file(sp(::axis::application) papp);
+      file(sp(::axis::application) papp, int32_t hFile);
+      file(sp(::axis::application) papp, const char * lpszFileName, UINT nOpenFlags);
       virtual ~file();
 
 
@@ -112,8 +111,8 @@ namespace windows
 
       int32_t OsErrorToException(LONG lOsError);
       int32_t ErrnoToException(int32_t nErrno);
-      void ThrowOsError(sp(::base::application) papp, LONG lOsError, const char * lpszFileName = NULL);
-      void ThrowErrno(sp(::base::application) papp, int32_t nErrno, const char * lpszFileName = NULL);
+      void ThrowOsError(sp(::axis::application) papp, LONG lOsError, const char * lpszFileName = NULL);
+      void ThrowErrno(sp(::axis::application) papp, int32_t nErrno, const char * lpszFileName = NULL);
 
 
    }  // namespace file_exception

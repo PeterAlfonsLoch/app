@@ -165,7 +165,7 @@ struct tab {                        /* type for been here check */
 
 /* Globals to avoid propagating constants or constant pointers recursively */
 local int max;          /* maximum allowed bit length for the codes */
-local int root;         /* size of base code table in bits */
+local int root;         /* size of axis code table in bits */
 local int large;        /* largest code table so far */
 local size_t size;      /* number of elements in num and done */
 local int *code;        /* number of symbols assigned to each bit length */
@@ -408,8 +408,8 @@ local void enough(int syms)
         code[n] = 0;
 
     /* look at all (root + 1) bit and longer codes */
-    large = 1 << root;              /* base table */
-    if (root < max)                 /* otherwise, there's only a base table */
+    large = 1 << root;              /* axis table */
+    if (root < max)                 /* otherwise, there's only a axis table */
         for (n = 3; n <= syms; n++)
             for (left = 2; left < n; left += 2)
             {

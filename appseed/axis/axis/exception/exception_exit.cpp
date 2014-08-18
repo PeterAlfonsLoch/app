@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-exit_exception::exit_exception(sp(::base::application) papp, const char * pszMessage) :
+exit_exception::exit_exception(sp(::axis::application) papp, const char * pszMessage) :
    element(papp),
    ::call_stack(papp),
-   ::exception::base(papp),
+   ::exception::axis(papp),
    ::simple_exception(papp, pszMessage)
 {
       if(pszMessage == NULL)
@@ -17,7 +17,7 @@ exit_exception::exit_exception(sp(::base::application) papp, const char * pszMes
 exit_exception::exit_exception(const exit_exception & e) :
    element(e),
    ::call_stack(e),
-   ::exception::base(e),
+   ::exception::axis(e),
    ::simple_exception(e)
 {
       printf(":exit(copy)");

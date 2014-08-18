@@ -139,7 +139,7 @@ struct ConstructDestruct
    { 
 #undef new
       new (pObject) TYPE; 
-#define new BASE_NEW
+#define new AXIS_NEW
    }
    static void Destruct(TYPE * pObject)
    {
@@ -172,7 +172,7 @@ public:
 
 // Operations
 public:
-   CT * from_handle(HANDLE h, CT * (* pfnAllocator) (::base::application *, HANDLE) = NULL, ::base::application * papp = NULL);
+   CT * from_handle(HANDLE h, CT * (* pfnAllocator) (::axis::application *, HANDLE) = NULL, ::axis::application * papp = NULL);
    void delete_temp();
 
    void set_permanent(HANDLE h, CT * permOb);
@@ -184,13 +184,13 @@ public:
    friend class ::thread;
 };
 
-/*class CLASS_DECL_BASE hwnd_map :
+/*class CLASS_DECL_AXIS hwnd_map :
    public handle_map < ::metrowin::hwnd_handle, ::metrowin::window >
 {
 public:
 };*/
 
-/*class CLASS_DECL_BASE hdc_map :
+/*class CLASS_DECL_AXIS hdc_map :
    public handle_map < ::metrowin::hdc_handle, ::metrowin::graphics >
 {
 public:
@@ -203,7 +203,7 @@ public:
 };*/
 
 /*
-class CLASS_DECL_BASE hdc_map :
+class CLASS_DECL_AXIS hdc_map :
    public handle_map < ::metrowin::hmenu_handle, ::metrowin::menu >
 {
 public:
@@ -230,7 +230,7 @@ handle_map < HT, CT > ::handle_map() :
 }
 
 template < class HT, class CT >
-CT* handle_map < HT, CT >::from_handle(HANDLE h, CT * (*pfnAllocator) (::base::application *, HANDLE), ::base::application * papp)
+CT* handle_map < HT, CT >::from_handle(HANDLE h, CT * (*pfnAllocator) (::axis::application *, HANDLE), ::axis::application * papp)
 {
    
    single_lock sl(&m_mutex, TRUE);
@@ -290,7 +290,7 @@ CT* handle_map < HT, CT >::from_handle(HANDLE h, CT * (*pfnAllocator) (::base::a
       // set it in the ::map
       m_temporaryMap.set_at(h, pTemp);
    }
-   catch(::exception::base * pe)
+   catch(::exception::axis * pe)
    {
 //#ifndef ___PORTABLE
 //      __set_new_handler(pnhOldHandler);
@@ -441,4 +441,4 @@ inline CT* handle_map <HT, CT>::lookup_temporary(HANDLE h)
 }
 
 
-CLASS_DECL_BASE mutex * afxMutexHwnd();
+CLASS_DECL_AXIS mutex * afxMutexHwnd();

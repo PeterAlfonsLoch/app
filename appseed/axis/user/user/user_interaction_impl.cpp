@@ -392,7 +392,7 @@ namespace user
 #endif
 
 
-   bool interaction_impl::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
+   bool interaction_impl::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
    {
 
       UNREFERENCED_PARAMETER(pcmdmsg);
@@ -422,7 +422,7 @@ namespace user
    }
 
 
-   bool interaction_impl::OnNotify(::message::base * pbase)
+   bool interaction_impl::OnNotify(::message::axis * pbase)
    {
 
       UNREFERENCED_PARAMETER(pbase);
@@ -583,7 +583,7 @@ namespace user
    //}
 
 
-   bool interaction_impl::OnChildNotify(::message::base * pbase)
+   bool interaction_impl::OnChildNotify(::message::axis * pbase)
    {
 
       UNREFERENCED_PARAMETER(pbase);
@@ -593,7 +593,7 @@ namespace user
    }
 
 
-   bool interaction_impl::ReflectChildNotify(::message::base * pbase)
+   bool interaction_impl::ReflectChildNotify(::message::axis * pbase)
    {
 
       UNREFERENCED_PARAMETER(pbase);
@@ -969,7 +969,7 @@ namespace user
    LRESULT interaction_impl::send_message(UINT message, WPARAM wparam, lparam lparam)
    {
 
-      ::smart_pointer < ::message::base > spbase;
+      ::smart_pointer < ::message::axis > spbase;
 
       spbase = get_base(this, message, wparam, lparam);
 
@@ -2162,7 +2162,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // interaction_impl command handling
 
-   bool interaction_impl::OnCommand(::message::base * pbase)
+   bool interaction_impl::OnCommand(::message::axis * pbase)
    {
       UNREFERENCED_PARAMETER(pbase);
       return FALSE;
@@ -2385,7 +2385,7 @@ namespace user
    }
 
 
-   guie_message_wnd::guie_message_wnd(sp(::base::application) papp):
+   guie_message_wnd::guie_message_wnd(sp(::axis::application) papp):
       element(papp)
    {
       m_puiForward = NULL;

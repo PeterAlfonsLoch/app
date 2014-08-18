@@ -2,10 +2,10 @@
 
 
 
-hresult_exception::hresult_exception(sp(::base::application) papp, HRESULT hr) :
+hresult_exception::hresult_exception(sp(::axis::application) papp, HRESULT hr) :
    element(papp),
    ::call_stack(papp),
-   ::exception::base(papp)
+   ::exception::axis(papp)
 {
       printf(":hresult(%d)", hr);
    m_hresult = hr;

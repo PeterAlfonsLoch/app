@@ -5,7 +5,7 @@
 
 namespace sockets
 {
-   /** Smtp server base class. */
+   /** Smtp server axis class. */
    class CLASS_DECL_AXIS smtp_socket : public tcp_socket
    {
    public:

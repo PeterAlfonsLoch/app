@@ -22,18 +22,18 @@ namespace windows
    CLASS_DECL_AXIS HICON       ExtractIcon(HINSTANCE hInst, const char * lpszExeFileName, UINT nIconIndex);
    CLASS_DECL_AXIS bool        DeleteFile(const char * lpFileName);
    CLASS_DECL_AXIS int32_t         GetMenuStringW(HMENU hMenu, UINT uIDItem, string & str, UINT flags);
-   CLASS_DECL_AXIS void        TimeToFileTime(sp(::base::application) papp, const ::datetime::time& time, LPFILETIME pFileTime);
+   CLASS_DECL_AXIS void        TimeToFileTime(sp(::axis::application) papp, const ::datetime::time& time, LPFILETIME pFileTime);
 
 
 } // namespace windows
 
 
 
-// Placed on frame for EXCEPTION linkage, or ::exception::base cleanup
+// Placed on frame for EXCEPTION linkage, or ::exception::axis cleanup
 struct CLASS_DECL_AXIS __exception_link
 {
    __exception_link* m_pLinkPrev;    // previous top, next in handler chain
-   ::exception::base* m_pException;   // current exception (NULL in try block)
+   ::exception::axis* m_pException;   // current exception (NULL in try block)
 
    __exception_link();       // for initialization and linking
    ~__exception_link()       // for cleanup and unlinking
@@ -61,7 +61,7 @@ void CLASS_DECL_AXIS __abort();
 
 
 // helpers for registering your own WNDCLASSes
-CLASS_DECL_AXIS const char * __register_window_class(sp(::base::application) papp, UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
+CLASS_DECL_AXIS const char * __register_window_class(sp(::axis::application) papp, UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
 
 CLASS_DECL_AXIS bool __register_class(WNDCLASS* lpWndClass);
 
@@ -82,7 +82,7 @@ typedef void (__MSG_CALL thread::*__PMSGT)();
 CLASS_DECL_AXIS LONG delete_registry_tree_helper(HKEY hParentKey, const string & strKeyName);
 
 
-CLASS_DECL_AXIS sp(::base::application) __get_app();
+CLASS_DECL_AXIS sp(::axis::application) __get_app();
 CLASS_DECL_AXIS HINSTANCE __get_resource_handle();
 CLASS_DECL_AXIS void __set_resource_handle(HINSTANCE hInstResource);
 

@@ -5,7 +5,7 @@
    {
 
 
-      /** SOCK_STREAM socket base class.
+      /** SOCK_STREAM socket axis class.
       \ingroup basic */
       class CLASS_DECL_AXIS stream_socket : 
          virtual public socket

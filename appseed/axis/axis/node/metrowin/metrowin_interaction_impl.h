@@ -5,13 +5,13 @@ namespace metrowin
 {
 
 
-   CLASS_DECL_BASE LRESULT CALLBACK __send_message_hook(int, WPARAM, LPARAM);
-   //CLASS_DECL_BASE void _gen::StandardSubclass(oswindow);
-   CLASS_DECL_BASE LRESULT CALLBACK __cbt_filter_hook(int, WPARAM, LPARAM);
-   CLASS_DECL_BASE LRESULT __call_window_procedure(::user::interaction * pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+   CLASS_DECL_AXIS LRESULT CALLBACK __send_message_hook(int, WPARAM, LPARAM);
+   //CLASS_DECL_AXIS void _gen::StandardSubclass(oswindow);
+   CLASS_DECL_AXIS LRESULT CALLBACK __cbt_filter_hook(int, WPARAM, LPARAM);
+   CLASS_DECL_AXIS LRESULT __call_window_procedure(::user::interaction * pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
 
 
-   class CLASS_DECL_BASE interaction_impl : 
+   class CLASS_DECL_AXIS interaction_impl : 
       virtual public ::user::interaction_impl
    {
    public:
@@ -27,7 +27,7 @@ namespace metrowin
 
 
       interaction_impl();
-      interaction_impl(::base::application * papp);
+      interaction_impl(::axis::application * papp);
       virtual void construct(oswindow hwnd);
 
       virtual void on_delete(element * poc);
@@ -61,7 +61,7 @@ namespace metrowin
 
       virtual oswindow _get_handle();
 
-      virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);   
+      virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);   
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
@@ -446,7 +446,7 @@ namespace metrowin
       // dialog support
       void UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHndler);
       void CenterWindow(::user::interaction * pAlternateOwner = NULL);
-      virtual id   RunModalLoop(uint32_t dwFlags = 0, ::base::live_object * pliveobject = NULL);
+      virtual id   RunModalLoop(uint32_t dwFlags = 0, ::axis::live_object * pliveobject = NULL);
       virtual bool ContinueModal(int iLevel);
       virtual void EndModalLoop(id nResult);
       virtual void EndAllModalLoops(id nResult);
@@ -674,10 +674,10 @@ namespace metrowin
 
 
       // implementation of message dispatch/hooking
-      CLASS_DECL_BASE friend LRESULT CALLBACK __send_message_hook(int, WPARAM, LPARAM);
-      //CLASS_DECL_BASE friend void _gen::StandardSubclass(oswindow);
-      CLASS_DECL_BASE friend LRESULT CALLBACK __cbt_filter_hook(int, WPARAM, LPARAM);
-      CLASS_DECL_BASE friend LRESULT __call_window_procedure(::user::interaction * pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+      CLASS_DECL_AXIS friend LRESULT CALLBACK __send_message_hook(int, WPARAM, LPARAM);
+      //CLASS_DECL_AXIS friend void _gen::StandardSubclass(oswindow);
+      CLASS_DECL_AXIS friend LRESULT CALLBACK __cbt_filter_hook(int, WPARAM, LPARAM);
+      CLASS_DECL_AXIS friend LRESULT __call_window_procedure(::user::interaction * pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
 
       // standard message implementation
       LRESULT OnNTCtlColor(WPARAM wParam, LPARAM lParam);

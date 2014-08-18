@@ -18,7 +18,7 @@ namespace data
 
 
 
-      tree(sp(::base::application) papp);
+      tree(sp(::axis::application) papp);
       virtual ~tree();
 
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 //// Global helper functions
-// CLASS_DECL_AXIS sp(::base::application) __get_app()
+// CLASS_DECL_AXIS sp(::axis::application) __get_app()
 //{ return afxCurrentWinApp; }
 //
 // CLASS_DECL_AXIS HINSTANCE __get_instance_handle()

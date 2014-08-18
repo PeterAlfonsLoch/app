@@ -7,7 +7,7 @@ namespace mac
 {
 
 
-   application::application(::base::application * papp) :
+   application::application(::axis::application * papp) :
       element(papp)
    {
       m_pthreadimpl.alloc(allocer());
@@ -110,14 +110,14 @@ namespace mac
       m_pthreadimpl->set_os_data(NULL);
 
 
-      int32_t iRet = ::base::application::exit_instance();
+      int32_t iRet = ::axis::application::exit_instance();
 
 
       return iRet;
    }
    /*
    // Advanced: exception handling
-   LRESULT application::ProcessWndProcException(::exception::base* e, const MESSAGE* pMsg)
+   LRESULT application::ProcessWndProcException(::exception::axis* e, const MESSAGE* pMsg)
    {
    return   ::win::thread::ProcessWndProcException(e, pMsg);
    }
@@ -311,7 +311,7 @@ namespace mac
 
 
 
-   bool application::set_main_init_data(::base::main_init_data * pdata)
+   bool application::set_main_init_data(::axis::main_init_data * pdata)
    {
 
       m_pmaininitdata = (::mac::main_init_data *) pdata;

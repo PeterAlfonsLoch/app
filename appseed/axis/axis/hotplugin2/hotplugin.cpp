@@ -4,13 +4,13 @@
 namespace hotplugin
 {
 
-   ::base::system * g_pbasesystem = NULL;
+   ::axis::system * g_pbasesystem = NULL;
 
 
    uint32_t c_cdecl base_system_main(LPVOID lpVoid);
 
 
-   CLASS_DECL_AXIS ::base::system * get_base_system()
+   CLASS_DECL_AXIS ::axis::system * get_base_system()
    {
       
       return g_pbasesystem;
@@ -26,7 +26,7 @@ namespace hotplugin
       try
       {
 
-         g_pbasesystem = new ::base::system(NULL);
+         g_pbasesystem = new ::axis::system(NULL);
 
          ::set_thread(g_pbasesystem);
 

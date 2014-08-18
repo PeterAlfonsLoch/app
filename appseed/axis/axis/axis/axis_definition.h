@@ -3,7 +3,7 @@
 
 // from 7-zip
 
-namespace base
+namespace axis
 {
 
    template <class T> inline T MyMin(T a, T b)
@@ -209,7 +209,7 @@ do {                                           \
 // constructor and destructor code are now smaller.
 ///////////////////////////////////////////////////////////////////////////////
 // This should only be used on a class that is not directly createable but is
-// rather only used as a base class.  Additionally, the constructor and
+// rather only used as a axis class.  Additionally, the constructor and
 // destructor (if provided by the ::fontopus::user) should not call anything that may cause
 // a virtual function call to occur back on the object.
 ///////////////////////////////////////////////////////////////////////////////
@@ -292,7 +292,7 @@ do {                                           \
 #ifndef TRYALLOC
 
 #ifdef _AFX
-#define TRYALLOC(x) try{x;} catch(::exception::base* e){e->Delete();}
+#define TRYALLOC(x) try{x;} catch(::exception::axis* e){e->Delete();}
 #else
 /* prefast noise VSW 489981 */
 #define TRYALLOC(x) __pragma(warning(push)) __pragma(warning(disable: 4571)) try{x;} catch(...) {} __pragma(warning(pop))
@@ -305,7 +305,7 @@ do {                                           \
 //#ifndef _TRY
 //#define _TRY try
 //#ifdef _AFX
-//#define _CATCH( e ) catch( ::exception::base* e )
+//#define _CATCH( e ) catch( ::exception::axis* e )
 //#else
 //#define _CATCH( e ) catch( atl_exception e )
 //#endif
@@ -337,7 +337,7 @@ this end
 #ifdef _AFX
 /* Nice to do something more complex here in future to translate an core API exception to a better HR */
 #define ___COM_END_PART \
-   catch(::exception::base *e) \
+   catch(::exception::axis *e) \
    { \
       if(e) \
       { \
@@ -387,7 +387,7 @@ this end
 #define TRY(x) TRYALLOC(x)
 #endif   //TRY
 
-#define offsetofclass(base, derived) ((uint_ptr)(static_cast<base*>((derived*)_PACKING))-_PACKING)
+#define offsetofclass(axis, derived) ((uint_ptr)(static_cast<axis*>((derived*)_PACKING))-_PACKING)
 
 /////////////////////////////////////////////////////////////////////////////
 // Master version numbers

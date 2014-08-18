@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace base
+namespace axis
 {
 
 
@@ -9,7 +9,7 @@ namespace base
 
 
    // Throw a atl_exception corresponding to the result of ::GetLastError
-   NOINLINE DECLSPEC_NO_RETURN inline void WINAPI gen_ThrowLastWin32(sp(::base::application) papp)
+   NOINLINE DECLSPEC_NO_RETURN inline void WINAPI gen_ThrowLastWin32(sp(::axis::application) papp)
    {
       DWORD dwError = ::GetLastError();
       throw hresult_exception(papp, HRESULT_FROM_WIN32( dwError ) );
@@ -18,7 +18,7 @@ namespace base
    #else  // no exception handling
 
    // Throw a atl_exception corresponding to the result of ::GetLastError
-   NOINLINE inline void WINAPI gen_ThrowLastWin32(sp(::base::application) papp)
+   NOINLINE inline void WINAPI gen_ThrowLastWin32(sp(::axis::application) papp)
    {
       DWORD dwError = ::GetLastError();
       throw hresult_exception(papp, HRESULT_FROM_WIN32( dwError ) );
@@ -27,7 +27,7 @@ namespace base
    #endif  // no exception handling
 
 
-}  // namespace base
+}  // namespace axis
 
 
 

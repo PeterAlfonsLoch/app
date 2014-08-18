@@ -73,7 +73,7 @@ CLASS_DECL_AXIS bool GetPrimaryMonitorRect(LPRECT lprect)
 #endif
 
 
-namespace base
+namespace axis
 {
 
 
@@ -81,7 +81,7 @@ namespace base
    class ::id_space * system::s_pidspace = NULL;
 
 
-   system::system(sp(::base::application) papp):
+   system::system(sp(::axis::application) papp):
       m_urldepartament(this),
       //m_mutexDelete(this),
       m_httpsystem(this),
@@ -269,7 +269,7 @@ namespace base
    void system::construct(const char * pszAppId)
    {
 
-      ::base::application::construct(pszAppId);
+      ::axis::application::construct(pszAppId);
 
    }
 
@@ -319,7 +319,7 @@ namespace base
       m_pfactory->cloneable_large < mutex >();
       m_pfactory->cloneable_large < event >();
 
-      if(!::base::application::process_initialize())
+      if(!::axis::application::process_initialize())
          return false;
 
 #ifdef WINDOWSEX
@@ -353,12 +353,12 @@ namespace base
 
 #ifdef WINDOWSEX
 
-      dappy(string(typeid(*this).name()) + " : Going to ::base::system::m_spwindow->create_window_ex : " + ::str::from(m_iReturnCode));
+      dappy(string(typeid(*this).name()) + " : Going to ::axis::system::m_spwindow->create_window_ex : " + ::str::from(m_iReturnCode));
 
-      if(!m_spwindow->create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"::base::system::interaction_impl::no_twf"))
+      if(!m_spwindow->create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"::axis::system::interaction_impl::no_twf"))
       {
 
-         dappy(string(typeid(*this).name()) + " : ::base::system::m_spwindow->create_window_ex failure : " + ::str::from(m_iReturnCode));
+         dappy(string(typeid(*this).name()) + " : ::axis::system::m_spwindow->create_window_ex failure : " + ::str::from(m_iReturnCode));
 
          return false;
 
@@ -366,14 +366,14 @@ namespace base
 
 #endif
 
-      dappy(string(typeid(*this).name()) + " : Going to ::base::session " + ::str::from(m_iReturnCode));
+      dappy(string(typeid(*this).name()) + " : Going to ::axis::session " + ::str::from(m_iReturnCode));
       m_spfile.alloc(allocer());
 
 
       m_spdir.alloc(allocer());
 
 
-      m_pbasesession = new ::base::session(this);
+      m_pbasesession = new ::axis::session(this);
 
       if(m_pbasesession == NULL)
          return false;
@@ -405,7 +405,7 @@ namespace base
          return false;
       }
 
-      dappy(string(typeid(*this).name()) + " : ::base::session OK " + ::str::from(m_iReturnCode));
+      dappy(string(typeid(*this).name()) + " : ::axis::session OK " + ::str::from(m_iReturnCode));
 
       return true;
 
@@ -415,7 +415,7 @@ namespace base
    bool system::initialize2()
    {
 
-      if(!::base::application::initialize2())
+      if(!::axis::application::initialize2())
          return false;
 
       return true;
@@ -428,7 +428,7 @@ namespace base
 
       m_pfactory->enable_simple_factory_request();
 
-      if(!::base::application::initialize_instance())
+      if(!::axis::application::initialize_instance())
          return false;
 
       return true;
@@ -485,7 +485,7 @@ namespace base
       try
       {
 
-         bOk = ::base::application::finalize();
+         bOk = ::axis::application::finalize();
 
       }
       catch(...)
@@ -641,7 +641,7 @@ namespace base
       try
       {
 
-         iRet = ::base::application::exit_instance();
+         iRet = ::axis::application::exit_instance();
 
       }
       catch(...)
@@ -724,7 +724,7 @@ namespace base
 
 
 
-      ::base::application::exit_instance();
+      ::axis::application::exit_instance();
 
 #ifdef METROWIN
       m_pdevicecontext = nullptr;
@@ -852,7 +852,7 @@ namespace base
       if(m_plog == NULL || !m_plog->m_bExtendedLog)
       {
 
-         return ::base::SimpleDebugReport(iReportType,pszFileName,iLineNumber,pszModuleName,pszFormat,list);
+         return ::axis::SimpleDebugReport(iReportType,pszFileName,iLineNumber,pszModuleName,pszFormat,list);
 
       }
 
@@ -944,7 +944,7 @@ namespace base
 
 
 
-   sp(element) system::on_alloc(sp(::base::application) papp,sp(type) info)
+   sp(element) system::on_alloc(sp(::axis::application) papp,sp(type) info)
    {
       /*string str;
       str.Format("Could not alloc %s", info.name());
@@ -956,23 +956,23 @@ namespace base
       return NULL;
    }
 
-   sp(element) system::alloc(sp(::base::application) papp,sp(type) info)
+   sp(element) system::alloc(sp(::axis::application) papp,sp(type) info)
    {
       return on_alloc(papp,info);
    }
 
-   sp(element) system::alloc(sp(::base::application) papp,const std_type_info & info)
+   sp(element) system::alloc(sp(::axis::application) papp,const std_type_info & info)
    {
       return on_alloc(papp,canew(type(info)));
    }
 
-   void system::on_allocation_error(sp(::base::application) papp,sp(type) info)
+   void system::on_allocation_error(sp(::axis::application) papp,sp(type) info)
    {
       UNREFERENCED_PARAMETER(papp);
       UNREFERENCED_PARAMETER(info);
    }
 
-   sp(element) system::alloc(sp(::base::application) papp,const class id & idType)
+   sp(element) system::alloc(sp(::axis::application) papp,const class id & idType)
    {
       return on_alloc(papp,get_type_info(idType));
    }
@@ -1043,7 +1043,7 @@ namespace base
 
    }
 
-   ::base::log & system::log()
+   ::axis::log & system::log()
    {
       return *m_plog;
    }
@@ -1058,7 +1058,7 @@ namespace base
 
 
 
-   ::base::compress & system::compress()
+   ::axis::compress & system::compress()
    {
       return m_compress;
    }
@@ -1093,7 +1093,7 @@ namespace base
    }
 
 
-   sp(::base::session) system::query_session(index iEdge)
+   sp(::axis::session) system::query_session(index iEdge)
    {
 
       return NULL;
@@ -1101,7 +1101,7 @@ namespace base
    }
 
 
-   ::base::os & system::os()
+   ::axis::os & system::os()
    {
 
       return *m_spos;
@@ -1109,7 +1109,7 @@ namespace base
    }
 
 
-   spa(::base::session) & system::basesessionptra()
+   spa(::axis::session) & system::basesessionptra()
    {
 
       return m_basesessionptra;
@@ -1120,7 +1120,7 @@ namespace base
    {
       if(m_plog != NULL)
          return true;
-      m_plog = new ::base::log(this);
+      m_plog = new ::axis::log(this);
       m_plog->set_extended_log();
       m_plog->set_app(this);
       if(!m_plog->initialize(pszId))
@@ -1144,7 +1144,7 @@ namespace base
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
   //    {
-    //     sp(::base::application) papp = appptra()(i);
+    //     sp(::axis::application) papp = appptra()(i);
       //   papp->load_string_table();
       //}
 
@@ -1157,7 +1157,7 @@ namespace base
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
  //     {
-  //       sp(::base::application) papp = appptra()(i);
+  //       sp(::axis::application) papp = appptra()(i);
   //       papp->set_locale(pszLocale,actioncontext);
   //    }
 
@@ -1170,7 +1170,7 @@ namespace base
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
   //    {
-  //       sp(::base::application) papp = appptra()(i);
+  //       sp(::axis::application) papp = appptra()(i);
   //       papp->set_schema(pszStyle,actioncontext);
   //    }
 
@@ -1615,7 +1615,7 @@ namespace base
 #ifdef WINDOWSEX
 
 
-   system::interaction_impl::interaction_impl(sp(::base::application) papp):
+   system::interaction_impl::interaction_impl(sp(::axis::application) papp):
       element(papp),
       ::user::interaction(papp)
    {
@@ -1627,14 +1627,14 @@ namespace base
 
       ::user::interaction::install_message_handling(pdispatch);
 
-      IGUI_WIN_MSG_LINK(WM_DISPLAYCHANGE,pdispatch,this,&::base::system::interaction_impl::_001MessageHub);
+      IGUI_WIN_MSG_LINK(WM_DISPLAYCHANGE,pdispatch,this,&::axis::system::interaction_impl::_001MessageHub);
 
    }
 
    void system::interaction_impl::_001MessageHub(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::base,pbase,pobj);
+      SCAST_PTR(::message::axis,pbase,pobj);
 
       if(pbase != NULL)
       {
@@ -1972,7 +1972,7 @@ namespace base
 
 
 
-} // namespace base
+} // namespace axis
 
 
 
@@ -1982,13 +1982,13 @@ namespace base
 uint32_t _thread_proc_start_system(void * p)
 {
 
-   ::base::system * psystem = (::base::system *)p;
+   ::axis::system * psystem = (::axis::system *)p;
 
    return psystem->main();
 
 }
 
-CLASS_DECL_AXIS void __start_system(::base::system * psystem)
+CLASS_DECL_AXIS void __start_system(::axis::system * psystem)
 {
 
    ::create_thread(NULL,0,&_thread_proc_start_system,(LPVOID)psystem,0,0);
@@ -1998,11 +1998,11 @@ CLASS_DECL_AXIS void __start_system(::base::system * psystem)
 #ifdef METROWIN
 
 
-namespace base
+namespace axis
 {
 
 
-   CLASS_DECL_AXIS bool get_window_rect(::base::system_window ^ pwindow,RECTD * lprect)
+   CLASS_DECL_AXIS bool get_window_rect(::axis::system_window ^ pwindow,RECTD * lprect)
    {
 
       Windows::Foundation::Rect rect =  pwindow->get_window_rect();
@@ -2016,7 +2016,7 @@ namespace base
    }
 
 
-   CLASS_DECL_AXIS bool get_window_rect(::base::system_window ^ pwindow,LPRECT lprect)
+   CLASS_DECL_AXIS bool get_window_rect(::axis::system_window ^ pwindow,LPRECT lprect)
    {
 
       rectd r;
@@ -2032,7 +2032,7 @@ namespace base
    }
 
 
-} // namespace base
+} // namespace axis
 
 
 #endif

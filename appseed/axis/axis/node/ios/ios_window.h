@@ -8,13 +8,13 @@ namespace ios
 {
    
    
-   CLASS_DECL_BASE LRESULT CALLBACK __send_message_hook(int32_t, WPARAM, LPARAM);
+   CLASS_DECL_AXIS LRESULT CALLBACK __send_message_hook(int32_t, WPARAM, LPARAM);
    //CLASS_DECL_lnx void _gen::StandardSubclass(oswindow);
-   CLASS_DECL_BASE LRESULT CALLBACK __cbt_filter_hook(int32_t, WPARAM, LPARAM);
-   CLASS_DECL_BASE LRESULT __call_window_procedure(sp(::user::interaction)  pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+   CLASS_DECL_AXIS LRESULT CALLBACK __cbt_filter_hook(int32_t, WPARAM, LPARAM);
+   CLASS_DECL_AXIS LRESULT __call_window_procedure(sp(::user::interaction)  pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
    
    
-   class CLASS_DECL_BASE window :
+   class CLASS_DECL_AXIS window :
       virtual public ::window,
       virtual public ::round_window
    {
@@ -34,7 +34,7 @@ namespace ios
       
       
       window();
-      window(::base::application * papp);
+      window(::axis::application * papp);
       virtual void construct(oswindow hwnd);
       
 //      virtual void on_delete(::ca2::ca2 * poc);
@@ -61,7 +61,7 @@ namespace ios
       
       virtual ::window * get_wnd() const;
       
-      virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
       
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
       
@@ -678,10 +678,10 @@ namespace ios
       
       
       // implementation of message dispatch/hooking
-      CLASS_DECL_BASE friend LRESULT CALLBACK __send_message_hook(int32_t, WPARAM, LPARAM);
-      //CLASS_DECL_BASE friend void _gen::StandardSubclass(oswindow);
-      CLASS_DECL_BASE friend LRESULT CALLBACK __cbt_filter_hook(int32_t, WPARAM, LPARAM);
-      CLASS_DECL_BASE friend LRESULT __call_window_procedure(sp(::user::interaction)  pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+      CLASS_DECL_AXIS friend LRESULT CALLBACK __send_message_hook(int32_t, WPARAM, LPARAM);
+      //CLASS_DECL_AXIS friend void _gen::StandardSubclass(oswindow);
+      CLASS_DECL_AXIS friend LRESULT CALLBACK __cbt_filter_hook(int32_t, WPARAM, LPARAM);
+      CLASS_DECL_AXIS friend LRESULT __call_window_procedure(sp(::user::interaction)  pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
       
       // standard message implementation
       LRESULT OnNTCtlColor(WPARAM wParam, LPARAM lParam);

@@ -8,7 +8,7 @@ namespace android
 
 
 
-   application::application(sp(::base::application) papp) :
+   application::application(sp(::axis::application) papp) :
       element(papp)
    {
       m_pthreadimpl.alloc(allocer());
@@ -202,7 +202,7 @@ namespace android
 ////            __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
 //         }
 //      }
-//      catch( ::exception::base* e )
+//      catch( ::exception::axis* e )
 //      {
 //         e->Delete();
 //      }
@@ -213,7 +213,7 @@ namespace android
       //   if (__thread_data != NULL)
       //      __thread_data->delete_data();
       //}
-      //catch( ::exception::base* e )
+      //catch( ::exception::axis* e )
       //{
       //   e->Delete();
       //}
@@ -384,9 +384,9 @@ if(__get_module_state()->m_pmapHWND == NULL)
       //ANDROID_THREAD(m_pthreadimpl.m_p)->m_bRun = false;
       //ANDROID_THREAD(::ca2::application_base::m_p->::ca2::thread_sp::m_p)->m_bRun = false;
 
-      int32_t iRet = ::base::application::exit_instance();
+      int32_t iRet = ::axis::application::exit_instance();
 
-      //::ca2::smart_pointer<::base::application>::destroy();
+      //::ca2::smart_pointer<::axis::application>::destroy();
 
 
 
@@ -394,7 +394,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
    }
 /*
    // Advanced: exception handling
-   LRESULT application::ProcessWndProcException(::exception::base* e, const MESSAGE* pMsg)
+   LRESULT application::ProcessWndProcException(::exception::axis* e, const MESSAGE* pMsg)
    {
       return   ::win::thread::ProcessWndProcException(e, pMsg);
    }
@@ -557,8 +557,8 @@ if(__get_module_state()->m_pmapHWND == NULL)
       strExeName = System.get_module_title();
 
 
-//      dynamic_cast < ::android::thread * > ((smart_pointer < ::base::application >::m_p->::ca2::thread_sp::m_p))->m_hThread = __get_thread()->m_hThread;
-  //    dynamic_cast < ::android::thread * > ((smart_pointer < ::base::application >::m_p->::ca2::thread_sp::m_p))->m_nThreadID = __get_thread()->m_nThreadID;
+//      dynamic_cast < ::android::thread * > ((smart_pointer < ::axis::application >::m_p->::ca2::thread_sp::m_p))->m_hThread = __get_thread()->m_hThread;
+  //    dynamic_cast < ::android::thread * > ((smart_pointer < ::axis::application >::m_p->::ca2::thread_sp::m_p))->m_nThreadID = __get_thread()->m_nThreadID;
       //m_pimpl->m_hthread      =  ::GetCurrentThread();
 
 
@@ -620,7 +620,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
 
 
-   bool application::set_main_init_data(::base::main_init_data * pdata)
+   bool application::set_main_init_data(::axis::main_init_data * pdata)
    {
 
       m_pmaininitdata = (::android::main_init_data *) pdata;
@@ -656,7 +656,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
          // fill in the initial state for the application
          // Windows specific initialization (not done if no application)
 // xxx         m_hInstance = hInstance;
-// xxx          (dynamic_cast < sp(::base::application) >(m_papp))->m_hInstance = hInstance;
+// xxx          (dynamic_cast < sp(::axis::application) >(m_papp))->m_hInstance = hInstance;
          //hPrevInstance; // Obsolete.
          //m_strCmdLine = strCmdLine;
          //m_nCmdShow = nCmdShow;

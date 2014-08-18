@@ -19,7 +19,7 @@
    is the number of extra bits to get after the code.  bits is
    the number of bits in this code or part of the code to drop off
    of the bit buffer.  val is the actual byte to output in the case
-   of a literal, the base length or distance, or the offset from
+   of a literal, the axis length or distance, or the offset from
    the current table to the next table.  Each entry is four bytes. */
 typedef struct {
     unsigned char op;           /* operation, extra bits, table bits */

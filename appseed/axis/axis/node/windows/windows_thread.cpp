@@ -32,7 +32,7 @@ namespace windows
 {
 
 
-   thread::thread(sp(::base::application) papp):
+   thread::thread(sp(::axis::application) papp):
       element(papp),
       ::thread_impl(papp)
    {
@@ -246,7 +246,7 @@ LRESULT CALLBACK __message_filter_hook(int32_t code,WPARAM wParam,LPARAM lParam)
       return ::CallNextHookEx(t_hHookOldMsgFilter,code,wParam,lParam);
    }
    ASSERT(pthread != NULL);
-   smart_pointer < message::base > spbase;
+   smart_pointer < message::axis > spbase;
    spbase = pthread->get_base((LPMSG)lParam);
    if(spbase.is_null())
       return ::CallNextHookEx(t_hHookOldMsgFilter,code,wParam,lParam);

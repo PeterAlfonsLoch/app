@@ -40,7 +40,7 @@ namespace user
       strsize                          m_iSelEnd;
 
 
-      plain_text_tree(sp(::base::application) papp);
+      plain_text_tree(sp(::axis::application) papp);
       virtual ~plain_text_tree();
 
 

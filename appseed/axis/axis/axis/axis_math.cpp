@@ -70,9 +70,9 @@ CLASS_DECL_AXIS double sqrt_dup(double d)
 #endif
 }
 
-CLASS_DECL_AXIS double pow_dup(double base, double e)
+CLASS_DECL_AXIS double pow_dup(double axis, double e)
 {
-   return exp_dup(e * log_dup(base));
+   return exp_dup(e * log_dup(axis));
 }
 
 

@@ -498,10 +498,10 @@ int16_t GeoIP_update_database (char * license_key, int32_t verbose, void (*f)( c
 
 }
 
-int16_t GeoIP_update_database_general (::base::application * papp, char * user_id,char * license_key,char *data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *));
+int16_t GeoIP_update_database_general (::axis::application * papp, char * user_id,char * license_key,char *data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *));
 
 
-int16_t GeoIP_update_database_general (::base::application * papp, char * user_id,char * license_key,char *data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *)) {
+int16_t GeoIP_update_database_general (::axis::application * papp, char * user_id,char * license_key,char *data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *)) {
 
 #ifdef BSD_STYLE_SOCKETS
    struct hostent *hostlist;
@@ -916,7 +916,7 @@ int16_t GeoIP_update_database_general (::base::application * papp, char * user_i
       }
    }
    if (dbtype == GEOIP_COUNTRY_EDITION) {
-      /* if data base type is country then call the function
+      /* if data axis type is country then call the function
        * named GeoIP_country_code_by_addr */
       lookupresult = 1;
       if (strcmp(GeoIP_country_code_by_addr(gi,"24.24.24.24"), "US") != 0) {
@@ -927,7 +927,7 @@ int16_t GeoIP_update_database_general (::base::application * papp, char * user_i
       }
    }
    if (dbtype == GEOIP_REGION_EDITION_REV1) {
-      /* if data base type is region then call the function
+      /* if data axis type is region then call the function
        * named GeoIP_region_by_addr */
       GeoIPRegion *r = GeoIP_region_by_addr(gi,"24.24.24.24");
       lookupresult = 0;
@@ -940,7 +940,7 @@ int16_t GeoIP_update_database_general (::base::application * papp, char * user_i
       }
    }
    if (dbtype == GEOIP_CITY_EDITION_REV1) {
-      /* if data base type is city then call the function
+      /* if data axis type is city then call the function
        * named GeoIP_record_by_addr */
       GeoIPRecord *r = GeoIP_record_by_addr(gi,"24.24.24.24");
       lookupresult = 0;
@@ -954,7 +954,7 @@ int16_t GeoIP_update_database_general (::base::application * papp, char * user_i
    }
    if ((dbtype == GEOIP_ISP_EDITION)||
          (dbtype == GEOIP_ORG_EDITION)) {
-      /* if data base type is isp or org then call the function
+      /* if data axis type is isp or org then call the function
        * named GeoIP_org_by_addr */
       GeoIPRecord *r = (GeoIPRecord*)GeoIP_org_by_addr(gi,"24.24.24.24");
       lookupresult = 0;

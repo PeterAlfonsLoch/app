@@ -2,13 +2,13 @@
 
 #if FALSE
 
-class CLASS_DECL_BASE WinResource :
+class CLASS_DECL_AXIS WinResource :
    virtual public ::ca2::resource
 {
 public:
 
 
-   WinResource(::base::application * papp);
+   WinResource(::axis::application * papp);
    virtual ~WinResource();
    
    bool ReadResource(string & str, HINSTANCE hinst, UINT nID, const char * lpcszType);

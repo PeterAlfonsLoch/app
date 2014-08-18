@@ -81,7 +81,7 @@ void makeMaps_d ( DState* s )
       gMinlen = s->minLens[gSel];                 \
       gLimit = &(s->limit[gSel][0]);              \
       gPerm = &(s->perm[gSel][0]);                \
-      gBase = &(s->base[gSel][0]);                \
+      gBase = &(s->axis[gSel][0]);                \
    }                                              \
    groupPos--;                                    \
    zn = gMinlen;                                  \
@@ -337,7 +337,7 @@ int32_t BZ2_decompress ( DState* s )
          }
          BZ2_hbCreateDecodeTables ( 
             &(s->limit[t][0]), 
-            &(s->base[t][0]), 
+            &(s->axis[t][0]), 
             &(s->perm[t][0]), 
             &(s->len[t][0]),
             minLen, maxLen, alphaSize

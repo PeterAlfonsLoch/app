@@ -207,8 +207,8 @@ CLASS_DECL_AXIS void __dump(const object* pOb); // dump an object from CodeView
 // extern ::core::CTrace TRACE;
 #ifdef DEBUG
 #ifndef TRACE
-#define TRACE ::base::trace_add_file_and_line(m_pbaseapp, __FILE__, __LINE__)
-#define APPTRACE(papp) ::base::trace_add_file_and_line(papp, __FILE__, __LINE__)
+#define TRACE ::axis::trace_add_file_and_line(m_pbaseapp, __FILE__, __LINE__)
+#define APPTRACE(papp) ::axis::trace_add_file_and_line(papp, __FILE__, __LINE__)
 //#define TRACE2 TRACE
 #endif
 #define THIS_FILE          __FILE__
@@ -309,9 +309,9 @@ inline void c_cdecl __trace(...) { }
    do { \
       string str; \
       if (pException->get_error_message(str, 0)) \
-         TRACE(::base::trace::category_AppMsg, 0, "%s (%s:%d)\n%s\n", szMsg, __FILE__, __LINE__, str); \
+         TRACE(::axis::trace::category_AppMsg, 0, "%s (%s:%d)\n%s\n", szMsg, __FILE__, __LINE__, str); \
       else \
-         TRACE(::base::trace::category_AppMsg, 0, "%s (%s:%d)\n", szMsg, __FILE__, __LINE__); \
+         TRACE(::axis::trace::category_AppMsg, 0, "%s (%s:%d)\n", szMsg, __FILE__, __LINE__); \
       ASSERT(FALSE); \
    } while (0)
 #else
@@ -336,7 +336,7 @@ inline void c_cdecl __trace(...) { }
    } while (0)
 
 #define __BEGIN_DESTRUCTOR try {
-#define __END_DESTRUCTOR   } catch (::exception::base *pException) { EXCEPTION_IN_DTOR(pException); }
+#define __END_DESTRUCTOR   } catch (::exception::axis *pException) { EXCEPTION_IN_DTOR(pException); }
 
 
 

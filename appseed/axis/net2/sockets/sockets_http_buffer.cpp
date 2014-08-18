@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   http_buffer::http_buffer(sp(::base::application) papp, mutex * pmutex) :
+   http_buffer::http_buffer(sp(::axis::application) papp, mutex * pmutex) :
       element(papp),
       transfer_buffer(papp, pmutex)
    {
@@ -15,7 +15,7 @@ namespace sockets
 
    // it is not currently designed to call open.
    //
-   http_buffer::http_buffer(sp(::base::application) papp, ::file::memory_buffer * pmemoryfileIn) :
+   http_buffer::http_buffer(sp(::axis::application) papp, ::file::memory_buffer * pmemoryfileIn) :
       element(papp),
       transfer_buffer(papp, pmemoryfileIn)
    {

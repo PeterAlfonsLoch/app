@@ -8,9 +8,9 @@ namespace linux
 {
 
 
-   os::os(sp(::base::application) papp) :
+   os::os(sp(::axis::application) papp) :
       element(papp),
-      ::base::os(papp)
+      ::axis::os(papp)
    {
    }
 
@@ -574,7 +574,7 @@ namespace linux
 
    }
 
-   bool os::create_service(sp(::base::application) papp)
+   bool os::create_service(sp(::axis::application) papp)
    {
 
       //throw not_implemented(get_app());
@@ -627,7 +627,7 @@ namespace linux
    }
 
 
-   bool os::remove_service(sp(::base::application) papp)
+   bool os::remove_service(sp(::axis::application) papp)
    {
 //      throw not_implemented(get_app());
       return false;
@@ -668,7 +668,7 @@ namespace linux
 */
    }
 
-   bool os::start_service(sp(::base::application) papp)
+   bool os::start_service(sp(::axis::application) papp)
    {
       //throw not_implemented(get_app());
       return false;
@@ -709,7 +709,7 @@ namespace linux
       */
    }
 
-   bool os::stop_service(sp(::base::application) papp)
+   bool os::stop_service(sp(::axis::application) papp)
    {
       throw not_implemented(get_app());
       return false;

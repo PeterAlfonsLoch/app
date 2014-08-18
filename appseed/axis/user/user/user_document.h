@@ -28,7 +28,7 @@ namespace user
       document_data_map                m_datamap;
 
 
-      document(sp(::base::application) papp);
+      document(sp(::axis::application) papp);
       virtual ~document();
 
 
@@ -120,7 +120,7 @@ namespace user
       virtual bool on_open_document(var varFile);
       virtual bool on_save_document(var varFile);
       virtual void on_close_document(single_lock * psl = NULL);
-      virtual void report_save_load_exception(const char * lpszPathName, ::exception::base* e, bool bSaving, const char * nIDPDefault);
+      virtual void report_save_load_exception(const char * lpszPathName, ::exception::axis* e, bool bSaving, const char * nIDPDefault);
 
       // advanced overridables, closing down frame/doc, etc.
       virtual bool can_close_frame(sp(::user::frame_window) pFrame);
@@ -144,7 +144,7 @@ namespace user
       virtual void on_idle();
       virtual void on_final_release();
 
-      virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
 
       friend class impact_system;
 
@@ -166,12 +166,12 @@ namespace user
 
 
 
-//      virtual void on_alloc(sp(::base::application) papp);
+//      virtual void on_alloc(sp(::axis::application) papp);
 
 //      virtual void dump(dump_context &) const;
   //    virtual void assert_valid() const;
 
-//      virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
+//      virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
 
       template < class DOCUMENT >
       DOCUMENT * get_typed_document()

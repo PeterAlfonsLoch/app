@@ -7,7 +7,7 @@ class CLASS_DECL_AXIS parsing_exception:
 public:
 
 
-   parsing_exception(sp(::base::application) papp,const string & strMessage);
+   parsing_exception(sp(::axis::application) papp,const string & strMessage);
    virtual ~parsing_exception();
 
 

@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      form_interface(sp(::base::application) papp);
+      form_interface(sp(::axis::application) papp);
       virtual ~form_interface();
 
 

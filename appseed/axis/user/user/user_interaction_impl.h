@@ -9,7 +9,7 @@ class CLASS_DECL_AXIS native_window
 public:
 
 
-   ::base::system_window ^ m_pwindow;
+   ::axis::system_window ^ m_pwindow;
 
 
 };
@@ -101,7 +101,7 @@ namespace user
       bool attach(oswindow oswindow_New);
       oswindow detach();
 
-      virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
 
       DECL_GEN_SIGNAL(_002OnDraw);
 
@@ -437,8 +437,8 @@ namespace user
       virtual void CenterWindow(sp(::user::interaction) pAlternateOwner = NULL);
 
 
-      virtual bool OnCommand(::message::base * pbase);
-      virtual bool OnNotify(::message::base * pbase);
+      virtual bool OnCommand(::message::axis * pbase);
+      virtual bool OnNotify(::message::axis * pbase);
 
       void OnActivate(UINT nState,::window_sp pWndOther,bool bMinimized);
       void OnActivateApp(bool bActive,uint32_t dwThreadID);
@@ -642,9 +642,9 @@ namespace user
       virtual void PostNcDestroy();
 
       // for notifications from parent
-      virtual bool OnChildNotify(::message::base * pbase);
+      virtual bool OnChildNotify(::message::axis * pbase);
       // return TRUE if parent should not process this message
-      virtual bool ReflectChildNotify(::message::base * pbase);
+      virtual bool ReflectChildNotify(::message::axis * pbase);
 
       // Implementation
       virtual ~interaction_impl();
@@ -720,7 +720,7 @@ namespace user
       sp(::user::interaction) m_puiForward;
 
 
-      guie_message_wnd(sp(::base::application) papp);
+      guie_message_wnd(sp(::axis::application) papp);
 
 
       using interaction_impl::message_handler;

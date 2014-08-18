@@ -37,7 +37,7 @@ namespace sockets
    class IEventOwner;
 
 
-   /** timer event handler pure virtual base class.
+   /** timer event handler pure virtual axis class.
       \ingroup timer */
    class IEventHandler
    {

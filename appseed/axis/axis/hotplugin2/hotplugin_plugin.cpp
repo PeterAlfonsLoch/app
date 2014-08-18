@@ -29,11 +29,11 @@ namespace hotplugin
 {
 
 
-   plugin::plugin(sp(::base::application) papp) :
+   plugin::plugin(sp(::axis::application) papp) :
       element(papp),
       ::simple_ui::style(papp),
       ::thread(papp),
-      base::session(papp)
+      axis::session(papp)
    {
 
       m_pstyle          = this;
@@ -1018,7 +1018,7 @@ namespace hotplugin
    void plugin::message_handler(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::base,pbase,pobj);
+      SCAST_PTR(::message::axis,pbase,pobj);
 
       MESSAGE msg;
 

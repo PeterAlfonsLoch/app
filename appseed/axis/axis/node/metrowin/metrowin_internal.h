@@ -5,7 +5,7 @@
 #include <GdiPlus.h>
 #include <Gdipluseffects.h>
 
-#define new BASE_NEW
+#define new AXIS_NEW
 
 #include <wincrypt.h>
 
@@ -30,5 +30,5 @@
 
 
 // Sanity checks for ATOMs
-//CLASS_DECL_BASE bool __is_valid_atom(ATOM nAtom);
-//CLASS_DECL_BASE bool __is_valid_atom(const char * psz);
+//CLASS_DECL_AXIS bool __is_valid_atom(ATOM nAtom);
+//CLASS_DECL_AXIS bool __is_valid_atom(const char * psz);

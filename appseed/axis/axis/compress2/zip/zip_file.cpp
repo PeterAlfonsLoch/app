@@ -4,7 +4,7 @@
 namespace zip
 {
 
-   File::File(sp(::base::application) papp) :
+   File::File(sp(::axis::application) papp) :
       element(papp)
    {
       m_bOwnFile                 = false;

@@ -14,7 +14,7 @@ namespace colorertake5
    class CLASS_DECL_AXIS HRCParserImpl : public HRCParser
    {
    public:
-      HRCParserImpl(sp(::base::application) papp);
+      HRCParserImpl(sp(::axis::application) papp);
      virtual ~HRCParserImpl();
 
      void setErrorHandler(ErrorHandler *eh);

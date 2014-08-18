@@ -1466,7 +1466,7 @@ CLASS_DECL_AXIS UINT GetCurrentThreadId()
 }
 
 
-namespace base
+namespace axis
 {
 
    CLASS_DECL_AXIS bool set_thread_priority(int32_t priority)
@@ -1482,7 +1482,7 @@ namespace base
    }
 
 
-} // namespace base
+} // namespace axis
 
 
 

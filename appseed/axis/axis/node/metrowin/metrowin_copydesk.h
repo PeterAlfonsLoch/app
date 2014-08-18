@@ -5,13 +5,13 @@ namespace metrowin
 {
 
 
-   class CLASS_DECL_BASE copydesk : 
-      virtual public ::base::copydesk
+   class CLASS_DECL_AXIS copydesk : 
+      virtual public ::axis::copydesk
    {
    public:
 
       
-      copydesk(::base::application * papp);
+      copydesk(::axis::application * papp);
       virtual ~copydesk();
 
       

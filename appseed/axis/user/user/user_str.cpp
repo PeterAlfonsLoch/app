@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   str_context::str_context(sp(::base::application) papp) :
+   str_context::str_context(sp(::axis::application) papp) :
       element(papp)
    {
 
@@ -145,7 +145,7 @@ namespace user
 
    }
 
-   str::str(sp(::base::application) papp) :
+   str::str(sp(::axis::application) papp) :
       element(papp)
    {
 

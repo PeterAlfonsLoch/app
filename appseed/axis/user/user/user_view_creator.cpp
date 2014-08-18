@@ -176,7 +176,7 @@ namespace user
       {
          return m_pviewcontainer->get_view_id();
       }
-      //return ::base::system::idEmpty;
+      //return ::axis::system::idEmpty;
       return id();
    }
 

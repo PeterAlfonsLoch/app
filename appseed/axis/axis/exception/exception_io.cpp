@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-io_exception::io_exception(sp(::base::application) papp) :
+io_exception::io_exception(sp(::axis::application) papp) :
    element(papp),
    ::call_stack(papp),
-   ::exception::base(papp),
+   ::exception::axis(papp),
    simple_exception(papp)
 {
       printf(":io_exception");
@@ -12,10 +12,10 @@ io_exception::io_exception(sp(::base::application) papp) :
 }
 
 
-io_exception::io_exception(sp(::base::application) papp, const char * pszMessage) :
+io_exception::io_exception(sp(::axis::application) papp, const char * pszMessage) :
    element(papp),
    ::call_stack(papp),
-   ::exception::base(papp),
+   ::exception::axis(papp),
    simple_exception(papp, pszMessage)
 {
       if(pszMessage == NULL)

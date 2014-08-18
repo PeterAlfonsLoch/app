@@ -71,7 +71,7 @@ namespace data
    }
 
 
-   data::data(sp(::base::application) papp) :
+   data::data(sp(::axis::application) papp) :
       element(papp),
       m_pmutex(NULL)
    {

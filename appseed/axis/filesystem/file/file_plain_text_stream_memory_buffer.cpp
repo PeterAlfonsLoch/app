@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   plain_text_stream_memory_buffer::plain_text_stream_memory_buffer(::base::application * papp)
+   plain_text_stream_memory_buffer::plain_text_stream_memory_buffer(::axis::application * papp)
    {
 
       m_spmemorybuffer = canew(memory_buffer(papp));
@@ -26,7 +26,7 @@ namespace file
    }
 
 
-   plain_text_stream_memory_buffer::plain_text_stream_memory_buffer(::base::application * papp, const void * data, ::primitive::memory_size c)
+   plain_text_stream_memory_buffer::plain_text_stream_memory_buffer(::axis::application * papp, const void * data, ::primitive::memory_size c)
    {
 
       m_spmemorybuffer = canew(memory_buffer(papp, (void *) data, c));

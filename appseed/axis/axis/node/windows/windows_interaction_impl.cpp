@@ -75,7 +75,7 @@ namespace windows
    }
 
 
-   interaction_impl::interaction_impl(sp(::base::application) papp):
+   interaction_impl::interaction_impl(sp(::axis::application) papp):
       element(papp)
    {
 
@@ -275,9 +275,9 @@ namespace windows
          strMessage.Format("%s\n\nSystem Error Code: %d",strLastError,dwLastError);
 
 
-         TRACE(::base::trace::category_AppMsg,0,"Warning: Window creation failed: GetLastError returned:\n");
+         TRACE(::axis::trace::category_AppMsg,0,"Warning: Window creation failed: GetLastError returned:\n");
 
-         TRACE(::base::trace::category_AppMsg,0,"%s\n",strMessage);
+         TRACE(::axis::trace::category_AppMsg,0,"%s\n",strMessage);
 
          try
          {
@@ -562,7 +562,7 @@ namespace windows
    void interaction_impl::_001OnNcCalcSize(signal_details * pobj)
    {
 
-      SCAST_PTR(message::base,pbase,pobj);
+      SCAST_PTR(message::axis,pbase,pobj);
 
       pbase->set_lresult(0);
 
@@ -1005,7 +1005,7 @@ namespace windows
       // need to use top level parent (for the case where get_handle() is in DLL)
       sp(::user::interaction) pwindow = EnsureTopLevelParent();
 
-      TRACE(::base::trace::category_AppMsg, 0, "WinHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
+      TRACE(::axis::trace::category_AppMsg, 0, "WinHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
 
       // finally, run the Windows Help engine
       /* trans   if (!::WinHelp(NODE_WINDOW(pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
@@ -1033,7 +1033,7 @@ namespace windows
    // need to use top level parent (for the case where get_handle() is in DLL)
    sp(::user::interaction) pwindow = EnsureTopLevelParent();
 
-   TRACE(::base::trace::category_AppMsg, 0, "HtmlHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
+   TRACE(::axis::trace::category_AppMsg, 0, "HtmlHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
 
    // run the HTML Help engine
    /* trans   if (!::core::HtmlHelp(NODE_WINDOW(pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
@@ -1099,7 +1099,7 @@ namespace windows
 
 
 
-   bool interaction_impl::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
+   bool interaction_impl::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
    {
       if(command_target_interface::_001OnCmdMsg(pcmdmsg))
          return TRUE;
@@ -1128,7 +1128,7 @@ namespace windows
    void interaction_impl::message_handler(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::base,pbase,pobj);
+      SCAST_PTR(::message::axis,pbase,pobj);
 
       if(pbase->m_uiMessage == WM_SIZE || pbase->m_uiMessage == WM_MOVE)
       {
@@ -1207,7 +1207,7 @@ namespace windows
       {
       if(pbase->m_wparam == BERGEDGE_GETAPP)
       {
-      sp(::base::application)* ppapp= (sp(::base::application)*) pbase->m_lparam;
+      sp(::axis::application)* ppapp= (sp(::axis::application)*) pbase->m_lparam;
       *ppapp = get_app();
       pbase->m_bRet = true;
       return;
@@ -1435,14 +1435,14 @@ namespace windows
    }
 
 
-   bool interaction_impl::OnCommand(::message::base * pbase)
+   bool interaction_impl::OnCommand(::message::axis * pbase)
    {
       UNREFERENCED_PARAMETER(pbase);
       return FALSE;
    }
 
 
-   bool interaction_impl::OnNotify(::message::base * pbase)
+   bool interaction_impl::OnNotify(::message::axis * pbase)
    {
 
       ASSERT(pbase != NULL);
@@ -1824,7 +1824,7 @@ namespace windows
 
    // move and resize all the windows at once!
    if (layout.hDWP == NULL || !::EndDeferWindowPos(layout.hDWP))
-   TRACE(::base::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");
+   TRACE(::axis::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");
    }
 
    */
@@ -1893,7 +1893,7 @@ namespace windows
       ASSERT(puiStop == NULL || puiStop->IsWindow());
       ASSERT(pobj != NULL);
 
-      SCAST_PTR(::message::base,pbase,pobj);
+      SCAST_PTR(::message::axis,pbase,pobj);
       // walk from the target interaction_impl up to the oswindow_Stop interaction_impl checking
       //  if any interaction_impl wants to translate this message
 
@@ -1913,7 +1913,7 @@ namespace windows
       // no special processing
    }
 
-   bool interaction_impl::ReflectMessage(oswindow oswindow_Child,::message::base * pbase)
+   bool interaction_impl::ReflectMessage(oswindow oswindow_Child,::message::axis * pbase)
    {
 
       // check if in permanent map, if it is reflect it (could be OLE control)
@@ -1929,13 +1929,13 @@ namespace windows
       return NODE_WINDOW(pwindow)->OnChildNotify(pbase);
    }
 
-   bool interaction_impl::OnChildNotify(::message::base * pbase)
+   bool interaction_impl::OnChildNotify(::message::axis * pbase)
    {
 
       return ReflectChildNotify(pbase);
    }
 
-   bool interaction_impl::ReflectChildNotify(::message::base * pbase)
+   bool interaction_impl::ReflectChildNotify(::message::axis * pbase)
    {
 
       // Note: reflected messages are send directly to interaction_impl::OnWndMsg
@@ -2172,14 +2172,14 @@ namespace windows
       oswindow m_oswindow;
       HDC m_hdc;
 
-      print_window(sp(::base::application) papp,oswindow oswindow,HDC hdc,uint32_t dwTimeout):
+      print_window(sp(::axis::application) papp,oswindow oswindow,HDC hdc,uint32_t dwTimeout):
          ::element(papp),
          m_event(papp)
       {
             m_event.ResetEvent();
             m_oswindow = oswindow;
             m_hdc = hdc;
-            __begin_thread(papp,&print_window::s_print_window,(LPVOID) this,::base::scheduling_priority_above_normal);
+            __begin_thread(papp,&print_window::s_print_window,(LPVOID) this,::axis::scheduling_priority_above_normal);
             if(m_event.wait(millis(dwTimeout)).timeout())
             {
                TRACE("print_window::time_out");
@@ -2467,7 +2467,7 @@ namespace windows
       if(!sl.lock())
          return;
 
-      SCAST_PTR(::message::base,pbase,pobj);
+      SCAST_PTR(::message::axis,pbase,pobj);
 
       win_update_graphics();
 
@@ -2519,7 +2519,7 @@ namespace windows
       //synch_lock ml(&user_mutex());
       ////lock lock(m_pui, 1984);
 
-      //SCAST_PTR(::message::base, pbase, pobj);
+      //SCAST_PTR(::message::axis, pbase, pobj);
 
       //PAINTSTRUCT paint;
       //memset(&paint, 0, sizeof(paint));
@@ -2635,7 +2635,7 @@ namespace windows
       if(hDC == NULL)
       {
          // sometimes Win32 passes a NULL hDC in the WM_CTLCOLOR message.
-         //         TRACE(::base::trace::category_AppMsg, 0, "Warning: hDC is NULL in interaction_impl::GrayCtlColor; WM_CTLCOLOR not processed.\n");
+         //         TRACE(::axis::trace::category_AppMsg, 0, "Warning: hDC is NULL in interaction_impl::GrayCtlColor; WM_CTLCOLOR not processed.\n");
          return FALSE;
       }
 
@@ -2877,7 +2877,7 @@ namespace windows
    }
 
    /*
-   id interaction_impl::RunModalLoop(uint32_t dwFlags,::base::live_object * pliveobject)
+   id interaction_impl::RunModalLoop(uint32_t dwFlags,::axis::live_object * pliveobject)
    {
       // for tracking the idle time state
       bool bIdle = TRUE;
@@ -3084,9 +3084,9 @@ namespace windows
       else if(*lplpfn != oldWndProc)
       {
 
-         TRACE(::base::trace::category_AppMsg,0,"p: Trying to use subclass_window with incorrect interaction_impl\n");
-         TRACE(::base::trace::category_AppMsg,0,"\tderived class.\n");
-         TRACE(::base::trace::category_AppMsg,0,"\toswindow_ = $%08X (nIDC=$%08X) is not a %hs.\n",(UINT)(uint_ptr)oswindow,__get_dialog_control_id(oswindow),typeid(*this).name());
+         TRACE(::axis::trace::category_AppMsg,0,"p: Trying to use subclass_window with incorrect interaction_impl\n");
+         TRACE(::axis::trace::category_AppMsg,0,"\tderived class.\n");
+         TRACE(::axis::trace::category_AppMsg,0,"\toswindow_ = $%08X (nIDC=$%08X) is not a %hs.\n",(UINT)(uint_ptr)oswindow,__get_dialog_control_id(oswindow),typeid(*this).name());
 
          ASSERT(FALSE);
 
@@ -3140,7 +3140,7 @@ namespace windows
    }
 
 
-   /*   ::user::view_update_hint::user::view_update_hint(sp(::base::application) papp) :
+   /*   ::user::view_update_hint::user::view_update_hint(sp(::axis::application) papp) :
    element(papp)
    {
    }
@@ -4761,7 +4761,7 @@ namespace windows
 
    void interaction_impl::_001OnSetCursor(signal_details * pobj)
    {
-      SCAST_PTR(::message::base,pbase,pobj);
+      SCAST_PTR(::message::axis,pbase,pobj);
       if(session().get_cursor() != NULL && session().get_cursor()->m_ecursor != ::visual::cursor_system)
       {
          //::SetCursor(NULL);
@@ -4907,7 +4907,7 @@ namespace windows
    void interaction_impl::_001OnGetMinMaxInfo(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::base,pbase,pobj);
+      SCAST_PTR(::message::axis,pbase,pobj);
 
    }
 
@@ -5682,7 +5682,7 @@ CLASS_DECL_AXIS bool unhook_window_create()
 
 __declspec(thread) char t_szTempClassName[___TEMP_CLASS_NAME_SIZE] ={0};
 
-CLASS_DECL_AXIS const char * __register_window_class(sp(::base::application) papp,UINT nClassStyle,HCURSOR hCursor,HBRUSH hbrBackground,HICON hIcon)
+CLASS_DECL_AXIS const char * __register_window_class(sp(::axis::application) papp,UINT nClassStyle,HCURSOR hCursor,HBRUSH hbrBackground,HICON hIcon)
 {
    // Returns a temporary string name for the class
    //  Save in a string if you want to use it for a long time
@@ -5873,7 +5873,7 @@ __activation_window_procedure(oswindow oswindow,UINT nMsg,WPARAM wParam,LPARAM l
       if(bCallDefault)
          lResult = CallWindowProc(oldWndProc,oswindow,nMsg,wParam,lParam);
    }
-   catch(::exception::base * pe)
+   catch(::exception::axis * pe)
    {
       // handle exception
       MSG msg;
@@ -5883,7 +5883,7 @@ __activation_window_procedure(oswindow oswindow,UINT nMsg,WPARAM wParam,LPARAM l
       msg.lParam = lParam;
 
       //lResult = __process_window_procedure_exception(pe, &msg);
-      //      TRACE(::base::trace::category_AppMsg, 0, "Warning: Uncaught exception in __activation_window_procedure (returning %ld).\n",
+      //      TRACE(::axis::trace::category_AppMsg, 0, "Warning: Uncaught exception in __activation_window_procedure (returning %ld).\n",
       //       lResult);
       pe->Delete();
    }

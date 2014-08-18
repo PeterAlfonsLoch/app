@@ -15,7 +15,7 @@ namespace os
 {
 
 
-   class CLASS_DECL_BASE simple_ui :
+   class CLASS_DECL_AXIS simple_ui :
       virtual public ::simple_ui::interaction
    {
    public:
@@ -42,7 +42,7 @@ namespace os
 
 
 
-      simple_ui(sp(::base::application) papp);
+      simple_ui(sp(::axis::application) papp);
 
       virtual ~simple_ui();
 
@@ -100,4 +100,4 @@ namespace os
 
 
 
-CLASS_DECL_BASE LRESULT layered_window_nc_calc_size(WPARAM wparam, LPARAM lparam);
+CLASS_DECL_AXIS LRESULT layered_window_nc_calc_size(WPARAM wparam, LPARAM lparam);

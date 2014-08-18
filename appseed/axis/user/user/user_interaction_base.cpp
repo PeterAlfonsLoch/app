@@ -27,7 +27,7 @@ namespace user
    }
 
 
-   interaction_base::interaction_base(sp(::base::application) papp) :
+   interaction_base::interaction_base(sp(::axis::application) papp) :
       element(papp),
       command_target_interface(papp)
    {
@@ -429,7 +429,7 @@ namespace user
    }
 
 
-   interaction_base::timer_array::timer_array(sp(::base::application) papp):
+   interaction_base::timer_array::timer_array(sp(::axis::application) papp):
       element(papp),
       m_mutex(papp)
    {
@@ -992,7 +992,7 @@ namespace user
    }
 
 
-   LRESULT interaction_base::send(::message::base * pbase)
+   LRESULT interaction_base::send(::message::axis * pbase)
    {
 
       message_handler(pbase);
@@ -1003,9 +1003,9 @@ namespace user
 
 
    // pbase object should be allocated with new in
-   // base or derived object and will be delete after
+   // axis or derived object and will be delete after
    // handling
-   bool interaction_base::post(::message::base * pbase)
+   bool interaction_base::post(::message::axis * pbase)
    {
 
       throw interface_only_exception(get_app());
@@ -1820,7 +1820,7 @@ namespace user
    }
 
 
-   id interaction_base::run_modal_loop(::user::interaction * pui,uint32_t dwFlags,::base::live_object * pliveobject)
+   id interaction_base::run_modal_loop(::user::interaction * pui,uint32_t dwFlags,::axis::live_object * pliveobject)
    {
 
       throw interface_only_exception(get_app());
@@ -1828,7 +1828,7 @@ namespace user
    }
 
 
-   id interaction_base::RunModalLoop(uint32_t dwFlags,::base::live_object * pliveobject)
+   id interaction_base::RunModalLoop(uint32_t dwFlags,::axis::live_object * pliveobject)
    {
 
       throw interface_only_exception(get_app());
@@ -1836,7 +1836,7 @@ namespace user
    }
 
 
-   id interaction_base::_001RunModalLoop(uint32_t dwFlags,::base::live_object * pliveobject)
+   id interaction_base::_001RunModalLoop(uint32_t dwFlags,::axis::live_object * pliveobject)
    {
 
       throw interface_only_exception(get_app());
@@ -2273,7 +2273,7 @@ namespace user
    }
 
 
-   bool interaction_base::OnCommand(::message::base * pbase)
+   bool interaction_base::OnCommand(::message::axis * pbase)
    {
 
       throw interface_only_exception(get_app());
@@ -2283,7 +2283,7 @@ namespace user
    }
 
 
-   bool interaction_base::OnNotify(::message::base * pbase)
+   bool interaction_base::OnNotify(::message::axis * pbase)
    {
 
       throw interface_only_exception(get_app());
@@ -2293,7 +2293,7 @@ namespace user
    }
 
 
-   bool interaction_base::OnChildNotify(::message::base * pbase)
+   bool interaction_base::OnChildNotify(::message::axis * pbase)
    {
 
       throw interface_only_exception(get_app());
@@ -2575,7 +2575,7 @@ namespace user
    }
 
 
-   void interaction_base::keep_alive(::base::live_object * pliveobject)
+   void interaction_base::keep_alive(::axis::live_object * pliveobject)
    {
 
       throw interface_only_exception(get_app());

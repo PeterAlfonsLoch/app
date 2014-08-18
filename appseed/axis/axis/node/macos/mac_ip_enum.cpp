@@ -5,7 +5,7 @@ namespace mac
 {
 
 
-   ip_enum::ip_enum(::base::application * papp) :
+   ip_enum::ip_enum(::axis::application * papp) :
       element(papp),
       ::net::ip_enum(papp)
    {

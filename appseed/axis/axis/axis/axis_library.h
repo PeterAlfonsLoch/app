@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace base
+namespace axis
 {
 
 
@@ -21,8 +21,8 @@ namespace base
 
 
 
-      library(sp(::base::application) papp);
-      library(sp(::base::application) papp,int iDesmabi, const char * pszRoot);
+      library(sp(::axis::application) papp);
+      library(sp(::axis::application) papp,int iDesmabi, const char * pszRoot);
       virtual ~library();
 
       virtual bool open(const char * pszPath,bool bAutoClose = true,bool bCa2Path = false);
@@ -61,11 +61,11 @@ namespace base
 
 
       // impl
-      virtual sp(::base::application) get_new_app(const char * pszId);
+      virtual sp(::axis::application) get_new_app(const char * pszId);
       virtual void get_app_list(stringa & stra);
 
 
-      virtual sp(::object) create_object(sp(::base::application) papp, const char * pszClass);
+      virtual sp(::object) create_object(sp(::axis::application) papp, const char * pszClass);
       virtual bool has_object_class(const char * pszClass);
 
 
@@ -91,20 +91,20 @@ namespace base
    {
    public:
 
-      single_application_library(sp(::base::application) papp,const char * pszRoot): element(papp),::base::library(papp,0, pszRoot) {}
+      single_application_library(sp(::axis::application) papp,const char * pszRoot): element(papp),::axis::library(papp,0, pszRoot) {}
 
       // impl
-      virtual sp(::base::application) get_new_app(const char * pszAppId);
+      virtual sp(::axis::application) get_new_app(const char * pszAppId);
 
 
    };
 
 
 
-   typedef class library * (* PFN_GET_NEW_LIBRARY)(sp(::base::application) papp);
+   typedef class library * (* PFN_GET_NEW_LIBRARY)(sp(::axis::application) papp);
 
 
-} // namespace base
+} // namespace axis
 
 
 

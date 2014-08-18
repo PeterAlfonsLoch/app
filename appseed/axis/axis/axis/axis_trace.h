@@ -9,7 +9,7 @@ extern "C" IMAGE_DOS_HEADER __ImageBase;
 #endif
 
 
-namespace base
+namespace axis
 {
 
    //typedef void ( * PFN_trace_v)(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
@@ -102,9 +102,9 @@ namespace base
       {
       public:
 
-         sp(::base::application) m_pbaseapp;
+         sp(::axis::application) m_pbaseapp;
 
-         trace(sp(::base::application) papp)
+         trace(sp(::axis::application) papp)
          {
             m_pbaseapp = papp;
          }
@@ -200,5 +200,5 @@ namespace base
    } // namespace trace
 
 
-};  // namespace base
+};  // namespace axis
 

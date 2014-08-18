@@ -99,7 +99,7 @@ namespace str
    string CLASS_DECL_AXIS replace(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
    string CLASS_DECL_AXIS replace_ci(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
 
-   string CLASS_DECL_AXIS random_replace(sp(::base::application) papp, const stringa & straReplacement, const stringa & straSearch, const char * psz);
+   string CLASS_DECL_AXIS random_replace(sp(::axis::application) papp, const stringa & straReplacement, const stringa & straSearch, const char * psz);
 
    strsize CLASS_DECL_AXIS find_first(const stringa & straSearch, index & iFound, const string & str, index iStart = 0);
 

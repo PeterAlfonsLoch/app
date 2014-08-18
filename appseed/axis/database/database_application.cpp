@@ -33,7 +33,7 @@ namespace database
       return NULL;
    }
 
-   // should not call base class implementation because database::database is inside a n-furcation of user::database
+   // should not call axis class implementation because database::database is inside a n-furcation of user::database
    int32_t database::exit_instance()
    {
 

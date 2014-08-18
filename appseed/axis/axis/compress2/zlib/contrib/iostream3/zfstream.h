@@ -407,7 +407,7 @@ private:
  *  @brief  Gzipped file output stream manipulator class.
  *
  *  This class defines a two-argument manipulator for gzofstream. It is used
- *  as base for the setcompression(int,int) manipulator.
+ *  as axis for the setcompression(int,int) manipulator.
 */
 template<typename T1, typename T2>
   class gzomanip2

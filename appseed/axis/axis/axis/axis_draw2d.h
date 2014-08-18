@@ -1,6 +1,6 @@
 //
 //  base_draw2d.h
-//  base
+//  axis
 //
 //
 //

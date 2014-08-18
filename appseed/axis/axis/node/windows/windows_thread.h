@@ -12,7 +12,7 @@ namespace windows
 
 
 
-      thread(sp(::base::application) papp);
+      thread(sp(::axis::application) papp);
       virtual ~thread();
 
 

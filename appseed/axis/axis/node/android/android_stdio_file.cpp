@@ -7,7 +7,7 @@ namespace android
 
 
 
-stdio_file::stdio_file(sp(::base::application) papp) :
+stdio_file::stdio_file(sp(::axis::application) papp) :
    element(papp),
    ::android::file(papp)
 {

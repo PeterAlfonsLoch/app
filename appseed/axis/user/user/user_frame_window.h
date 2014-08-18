@@ -259,7 +259,7 @@ namespace user
 
       virtual bool LoadToolBar(id idToolBar, const char * pszToolBar, uint32_t dwCtrlStyle = TBSTYLE_FLAT, uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 
-      virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
       virtual void on_update_frame_title(bool bAddToTitle);
       virtual void OnUpdateFrameMenu(HMENU hMenuAlt);
       virtual HACCEL GetDefaultAccelerator();
@@ -351,7 +351,7 @@ namespace user
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
 
-      //      virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
+      //      virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
 
       //      void OnUpdateControlBarMenu(cmd_ui * pcmdui);
       //      bool OnBarCheck(UINT nID);

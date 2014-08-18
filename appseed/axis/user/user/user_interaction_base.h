@@ -107,7 +107,7 @@ namespace user
          index                               m_iItem;
 
 
-         timer_array(sp(::base::application) papp);
+         timer_array(sp(::axis::application) papp);
 
 
          uint_ptr set(sp(interaction) pui,uint_ptr uiId,UINT uiElapse);
@@ -129,7 +129,7 @@ namespace user
 
 
       interaction_base();
-      interaction_base(sp(::base::application) papp);
+      interaction_base(sp(::axis::application) papp);
       virtual ~interaction_base();
 
 
@@ -277,9 +277,9 @@ namespace user
       // dialog support
       void UpdateDialogControls(command_target* pTarget,bool bDisableIfNoHndler);
       virtual void CenterWindow(sp(interaction) pAlternateOwner = NULL);
-      virtual id   run_modal_loop(::user::interaction * pui,uint32_t dwFlags = 0,::base::live_object * pliveobject = NULL);
-      virtual id   RunModalLoop(uint32_t dwFlags = 0,::base::live_object * pliveobject = NULL);
-      virtual id   _001RunModalLoop(uint32_t dwFlags = 0,::base::live_object * pliveobject = NULL);
+      virtual id   run_modal_loop(::user::interaction * pui,uint32_t dwFlags = 0,::axis::live_object * pliveobject = NULL);
+      virtual id   RunModalLoop(uint32_t dwFlags = 0,::axis::live_object * pliveobject = NULL);
+      virtual id   _001RunModalLoop(uint32_t dwFlags = 0,::axis::live_object * pliveobject = NULL);
       virtual bool ContinueModal(int32_t iLevel);
       virtual void EndModalLoop(id nResult);
       virtual void EndAllModalLoops(id nResult);
@@ -366,8 +366,8 @@ namespace user
       virtual uint32_t GetExStyle() const;
       virtual LRESULT Default();
 
-      virtual LRESULT send(::message::base * pbase);
-      virtual bool post(::message::base * pbase);
+      virtual LRESULT send(::message::axis * pbase);
+      virtual bool post(::message::axis * pbase);
       virtual LRESULT send_message(UINT uiMessage,WPARAM wparam = 0,lparam lparam = 0);
 
 #ifdef LINUX
@@ -554,9 +554,9 @@ namespace user
 
 
       // Window-Management message handler member functions
-      virtual bool OnCommand(::message::base * pbase);
-      virtual bool OnNotify(::message::base * pbase);
-      virtual bool OnChildNotify(::message::base * pbase);
+      virtual bool OnCommand(::message::axis * pbase);
+      virtual bool OnNotify(::message::axis * pbase);
+      virtual bool OnChildNotify(::message::axis * pbase);
 
 
 
@@ -606,7 +606,7 @@ namespace user
 
       virtual void show_keyboard(bool bShow = true);
 
-      virtual void keep_alive(::base::live_object * pliveobject = NULL);
+      virtual void keep_alive(::axis::live_object * pliveobject = NULL);
 
 
 

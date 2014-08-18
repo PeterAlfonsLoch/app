@@ -5,7 +5,7 @@
 
 /* @(#) $Id$ */
 
-#include "axis/axis/axis/base.h"
+#include "axis/axis/axis/axis.h"
 
 
 #include "zutil.h"

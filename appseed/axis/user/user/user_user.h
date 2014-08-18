@@ -10,7 +10,7 @@ namespace user
 
 
    class CLASS_DECL_AXIS user :
-      virtual public ::base::departament
+      virtual public ::axis::departament
    {
    public:
 
@@ -25,7 +25,7 @@ namespace user
 
 
 
-      user(::base::application * papp);
+      user(::axis::application * papp);
       virtual ~user();
 
       virtual bool set_keyboard_layout(const char * pszPath, ::action::context actioncontext);

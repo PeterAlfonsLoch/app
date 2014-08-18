@@ -27,7 +27,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 namespace sockets
 {
 
-   /** Smtp server base class. */
+   /** Smtp server axis class. */
    class CLASS_DECL_AXIS smtpd_socket : public tcp_socket
    {
    protected:

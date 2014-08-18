@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-interface_only_exception::interface_only_exception(sp(::base::application) papp, const char * pszTip) : 
+interface_only_exception::interface_only_exception(sp(::axis::application) papp, const char * pszTip) : 
    element(papp),
    ::call_stack(papp),
-   ::exception::base(papp),
+   ::exception::axis(papp),
    not_implemented(papp, pszTip)
 {
       if(pszTip == NULL)
@@ -20,7 +20,7 @@ interface_only_exception::interface_only_exception(sp(::base::application) papp,
 interface_only_exception::interface_only_exception(const interface_only_exception & e) : 
    element(e),
    ::call_stack(e),
-   ::exception::base(e),
+   ::exception::axis(e),
    not_implemented(e)
 {
 }

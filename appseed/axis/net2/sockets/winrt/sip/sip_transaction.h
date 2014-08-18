@@ -5,7 +5,7 @@ namespace sip
 {
 
 
-   class CLASS_DECL_BASE transaction :
+   class CLASS_DECL_AXIS transaction :
       virtual public ::object
    {
    public:
@@ -17,7 +17,7 @@ namespace sip
       string m_null;
 
 
-      transaction(::base::application * papp);
+      transaction(::axis::application * papp);
       transaction(const transaction & src);
       virtual ~transaction();
 

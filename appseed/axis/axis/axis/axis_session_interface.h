@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace base
+namespace axis
 {
 
 
    class CLASS_DECL_AXIS session_interface:
-      virtual public ::base::application_interface
+      virtual public ::axis::application_interface
    {
    public:
 
@@ -30,7 +30,7 @@ namespace base
    };
 
 
-} // namespace base
+} // namespace axis
 
 
 

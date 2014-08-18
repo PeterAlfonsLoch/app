@@ -26,7 +26,7 @@ namespace android
 {
 
 
-   window_draw::window_draw(sp(::base::application) papp) :
+   window_draw::window_draw(sp(::axis::application) papp) :
       element(papp),
       ::thread(papp),
       ::ca2::window_draw(papp),
@@ -65,7 +65,7 @@ namespace android
 
    void window_draw::message_window_message_handler(::signal_details * pobj)
    {
-      SCAST_PTR(::message::base, pbase, pobj);
+      SCAST_PTR(::message::axis, pbase, pobj);
       if(pbase->m_uiMessage == (WM_USER + 5000))
       {
          _synch_redraw();

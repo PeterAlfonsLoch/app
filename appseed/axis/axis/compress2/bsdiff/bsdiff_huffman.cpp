@@ -170,7 +170,7 @@ void BZ2_hbAssignCodes ( int32_t *code,
 
 /*---------------------------------------------------*/
 void BZ2_hbCreateDecodeTables ( int32_t *limit,
-                                int32_t *base,
+                                int32_t *axis,
                                 int32_t *perm,
                                 uchar *length,
                                 int32_t minLen,
@@ -184,21 +184,21 @@ void BZ2_hbCreateDecodeTables ( int32_t *limit,
       for (j = 0; j < alphaSize; j++)
          if (length[j] == i) { perm[pp] = j; pp++; };
 
-   for (i = 0; i < BZ_MAX_CODE_LEN; i++) base[i] = 0;
-   for (i = 0; i < alphaSize; i++) base[length[i]+1]++;
+   for (i = 0; i < BZ_MAX_CODE_LEN; i++) axis[i] = 0;
+   for (i = 0; i < alphaSize; i++) axis[length[i]+1]++;
 
-   for (i = 1; i < BZ_MAX_CODE_LEN; i++) base[i] += base[i-1];
+   for (i = 1; i < BZ_MAX_CODE_LEN; i++) axis[i] += axis[i-1];
 
    for (i = 0; i < BZ_MAX_CODE_LEN; i++) limit[i] = 0;
    vec = 0;
 
    for (i = minLen; i <= maxLen; i++) {
-      vec += (base[i+1] - base[i]);
+      vec += (axis[i+1] - axis[i]);
       limit[i] = vec-1;
       vec <<= 1;
    }
    for (i = minLen + 1; i <= maxLen; i++)
-      base[i] = ((limit[i-1] + 1) << 1) - base[i];
+      axis[i] = ((limit[i-1] + 1) << 1) - axis[i];
 }
 
 

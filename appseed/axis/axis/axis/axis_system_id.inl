@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace base
+namespace axis
 {
 
    inline id system::id(const class var & var)
@@ -45,25 +45,25 @@ namespace base
    }
 
 
-} //namespace base
+} //namespace axis
 
 
 
 inline id::id(const char * psz)
 {
-   operator = (::base::system::id(psz));
+   operator = (::axis::system::id(psz));
 }
 
 #if defined(_LP64) || defined(_AMD64_)
 inline id & id::operator = (int32_t i)
 {
-   return operator = (::base::system::id(::str::from(i)));
+   return operator = (::axis::system::id(::str::from(i)));
 }
 #endif
 
 inline id & id::operator = (int_ptr i)
 {
-   return operator = (::base::system::id(::str::from(i)));
+   return operator = (::axis::system::id(::str::from(i)));
 }
 
 

@@ -8,7 +8,7 @@ class osdisplay_dataptra;
 class mutex;
 
 
-class CLASS_DECL_BASE xdisplay
+class CLASS_DECL_AXIS xdisplay
 {
 public:
 
@@ -43,7 +43,7 @@ public:
 
 
 
-class CLASS_DECL_BASE osdisplay_data
+class CLASS_DECL_AXIS osdisplay_data
 {
 public:
 
@@ -101,9 +101,9 @@ public:
 };
 
 
-CLASS_DECL_BASE int32_t osdisplay_find(Display * pdisplay);
-CLASS_DECL_BASE osdisplay_data * osdisplay_get(Display * pdisplay);
-CLASS_DECL_BASE bool osdisplay_remove(Display * pdisplay);
+CLASS_DECL_AXIS int32_t osdisplay_find(Display * pdisplay);
+CLASS_DECL_AXIS osdisplay_data * osdisplay_get(Display * pdisplay);
+CLASS_DECL_AXIS bool osdisplay_remove(Display * pdisplay);
 
 
 typedef osdisplay_data * osdisplay;

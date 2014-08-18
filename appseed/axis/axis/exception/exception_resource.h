@@ -7,7 +7,7 @@ class CLASS_DECL_AXIS resource_exception :
 public:
 
 
-   resource_exception(sp(::base::application) papp);
+   resource_exception(sp(::axis::application) papp);
    virtual ~resource_exception();
 
 

@@ -13,7 +13,7 @@
          BEGIN
             VALUE "CompanyName", "ca2 Desenvolvimento de Software Ltda."
             VALUE "FileVersion", "2014.805.305.32"
-            VALUE "FileDescription", "base Dynamic Link Library"
+            VALUE "FileDescription", "axis Dynamic Link Library"
             VALUE "LegalCopyright", "2014 ca2 Desenvolvimento de Software Ltda."
         END
       END

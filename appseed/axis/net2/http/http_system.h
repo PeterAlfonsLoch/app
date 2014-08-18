@@ -35,7 +35,7 @@ namespace http
          uint32_t       m_dwLastChecked;
 
 
-         pac(sp(::base::application) papp);
+         pac(sp(::axis::application) papp);
 
 
       };
@@ -54,7 +54,7 @@ namespace http
          uint32_t       m_dwLastChecked;
 
 
-         proxy(sp(::base::application) papp);
+         proxy(sp(::axis::application) papp);
 
 
       };
@@ -69,7 +69,7 @@ namespace http
       stringa                                m_straExists;
 
 
-      system(sp(::base::application) papp);
+      system(sp(::axis::application) papp);
       virtual ~system();
 
 

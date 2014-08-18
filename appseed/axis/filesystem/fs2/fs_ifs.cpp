@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-ifs::ifs(sp(::base::application) papp, const char * pszRoot) :
+ifs::ifs(sp(::axis::application) papp, const char * pszRoot) :
    element(papp),
    ::data::data(papp),
    ::fs::data(papp)

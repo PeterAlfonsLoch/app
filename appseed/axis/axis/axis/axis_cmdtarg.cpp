@@ -5,7 +5,7 @@ command_target::command_target()
    CommonConstruct();
 }
 
-command_target::command_target(sp(::base::application) papp)
+command_target::command_target(sp(::axis::application) papp)
 : element(papp)
 {
    CommonConstruct();
@@ -19,7 +19,7 @@ command_target::~command_target()
 {
 }
 
-bool command_target::handle(::base::cmd_msg * pcmdmsg)
+bool command_target::handle(::axis::cmd_msg * pcmdmsg)
 {
    return pcmdmsg->handle(this);
 }
@@ -275,7 +275,7 @@ __STATIC bool _::core::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t
       IsEqualGUID(*(pGuid1), *(pGuid2))))
 
 /*
-bool command_target::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
+bool command_target::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
 
 {
 
@@ -364,7 +364,7 @@ const __MSGMAP* command_target::GetThisMessageMap()
 //      cmd_ui is an implementation class for menus and general dialog
 //        controls (usually buttons)
 
-cmd_ui::cmd_ui(sp(::base::application) papp)  :
+cmd_ui::cmd_ui(sp(::axis::application) papp)  :
    element(papp)
 {
 
@@ -539,7 +539,7 @@ __STATIC void __load_dot_bitmap()
          (LPVOID)rgbBitmap);
    if (afxData.hbmMenuDot == NULL)
    {
-//      TRACE(::base::trace::category_AppMsg, 0, "Warning: using system arrow bitmap instead of dot.\n");
+//      TRACE(::axis::trace::category_AppMsg, 0, "Warning: using system arrow bitmap instead of dot.\n");
       #define OBM_MNARROW         32739
       afxData.hbmMenuDot = ::LoadBitmap(NULL, MAKEINTRESOURCE(OBM_MNARROW));
    }
@@ -549,7 +549,7 @@ __STATIC void __load_dot_bitmap()
 */
 
 
-CTestCmdUI::CTestCmdUI(sp(::base::application) papp) :
+CTestCmdUI::CTestCmdUI(sp(::axis::application) papp) :
 element(papp),
 cmd_ui(papp)
 {

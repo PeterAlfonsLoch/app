@@ -7,8 +7,8 @@
 class FileException;
 struct FileStatus;
 
-void CLASS_DECL_BASE vfxGetRoot(const wchar_t * lpszPath, string& wstrRoot);
-void CLASS_DECL_BASE vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
+void CLASS_DECL_AXIS vfxGetRoot(const wchar_t * lpszPath, string& wstrRoot);
+void CLASS_DECL_AXIS vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
 
 namespace metrowin
 {
@@ -16,7 +16,7 @@ namespace metrowin
    /////////////////////////////////////////////////////////////////////////////
    // File - raw unbuffered disk file I/O
 
-   class CLASS_DECL_BASE file :
+   class CLASS_DECL_AXIS file :
       virtual public ::file::stream_buffer
    {
    public:
@@ -42,9 +42,9 @@ namespace metrowin
       UINT           m_hFile;
 
 
-      file(::base::application * papp);
-      file(::base::application * papp, int hFile);
-      file(::base::application * papp, const char * lpszFileName, UINT nOpenFlags);
+      file(::axis::application * papp);
+      file(::axis::application * papp, int hFile);
+      file(::axis::application * papp, const char * lpszFileName, UINT nOpenFlags);
       virtual ~file();
 
 
@@ -93,8 +93,8 @@ namespace metrowin
    {
       int OsErrorToException(LONG lOsError);
       int ErrnoToException(int nErrno);
-      void ThrowOsError(::base::application * papp, LONG lOsError, const char * lpszFileName = NULL);
-      void ThrowErrno(::base::application * papp, int nErrno, const char * lpszFileName = NULL);
+      void ThrowOsError(::axis::application * papp, LONG lOsError, const char * lpszFileName = NULL);
+      void ThrowErrno(::axis::application * papp, int nErrno, const char * lpszFileName = NULL);
 
    }
 

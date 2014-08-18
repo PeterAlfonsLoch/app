@@ -12,7 +12,7 @@ public:
    int32_t      m_iPrintingPage;
 
 
-   print_job(sp(::base::application) papp);
+   print_job(sp(::axis::application) papp);
    virtual ~print_job();
 
 

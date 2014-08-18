@@ -1,6 +1,6 @@
 //
 //  multithreading_thread_impl.h
-//  base
+//  axis
 //
 //
 //
@@ -23,7 +23,7 @@ public:
    bool                    m_bSynch;
 
 
-   thread_startup(sp(::base::application) papp);
+   thread_startup(sp(::axis::application) papp);
    ~thread_startup();
 
 };
@@ -59,7 +59,7 @@ public:
    message_queue                             m_queue;
 
 
-   thread_impl(sp(::base::application) papp);
+   thread_impl(sp(::axis::application) papp);
    virtual ~thread_impl();
    
    
@@ -77,7 +77,7 @@ public:
 
    virtual void pre_translate_message(signal_details * pobj);
 
-   virtual void process_window_procedure_exception(::exception::base*,signal_details * pobj);
+   virtual void process_window_procedure_exception(::exception::axis*,signal_details * pobj);
 
    virtual void process_message_filter(int32_t code,signal_details * pobj);
 

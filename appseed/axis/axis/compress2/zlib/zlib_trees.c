@@ -117,7 +117,7 @@ local int base_dist[D_CODES];
 struct static_tree_desc_s {
     const ct_data *static_tree;  /* static tree or NULL */
     const intf *extra_bits;      /* extra bits for each code or NULL */
-    int     extra_base;          /* base index for extra_bits */
+    int     extra_base;          /* axis index for extra_bits */
     int     elems;               /* max number of elements in the tree */
     int     max_length;          /* max bit length for the codes */
 };
@@ -493,7 +493,7 @@ local void gen_bitlen(s, desc)
     int max_code         = desc->max_code;
     const ct_data *stree = desc->stat_desc->static_tree;
     const intf *extra    = desc->stat_desc->extra_bits;
-    int base             = desc->stat_desc->extra_base;
+    int axis             = desc->stat_desc->extra_base;
     int max_length       = desc->stat_desc->max_length;
     int h;              /* heap index */
     int n, m;           /* iterate over the tree elements */
@@ -520,7 +520,7 @@ local void gen_bitlen(s, desc)
 
         s->bl_count[bits]++;
         xbits = 0;
-        if (n >= base) xbits = extra[n-base];
+        if (n >= axis) xbits = extra[n-axis];
         f = tree[n].Freq;
         s->opt_len += (ulg)f * (bits + xbits);
         if (stree) s->static_len += (ulg)f * (stree[n].Len + xbits);

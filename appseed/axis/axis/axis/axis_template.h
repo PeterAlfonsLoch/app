@@ -528,7 +528,7 @@ API_(void *) gen_WinModuleExtractCreateWndData(_WIN_MODULE* pWinModule);
 /////////////////////////////////////////////////////////////////////////////
 // get Registrar object from core DLL.
 
-//extern "C" CLASS_DECL_BASE HRESULT __stdcall gen_CreateRegistrar(IRegistrar** ppReg);
+//extern "C" CLASS_DECL_AXIS HRESULT __stdcall gen_CreateRegistrar(IRegistrar** ppReg);
 
 /////////////////////////////////////////////////////////////////////////////
 // GUID comparison
@@ -607,7 +607,7 @@ const char * gen_DebugGetClassName(T*)
 
 
 template < class T >
-class base 
+class axis 
 {
 public:
 
@@ -629,7 +629,7 @@ public:
 
 
 
-#define ASSERT_KINDOF(class_name, object) ASSERT(base < class_name > ::bases(object))
+#define ASSERT_KINDOF(class_name, object) ASSERT(axis < class_name > ::bases(object))
 #define DYNAMIC_DOWNCAST(class_name, object) (dynamic_cast < class_name * > (object))
 #define STATIC_DOWNCAST(class_name, object) (dynamic_cast<class_name*>(object))
 #define STATIC_DOWNCAST_T(class_name, T1, object) (static_cast<class_name<T1>*>(::core::StaticDownCast(RUNTIME_CLASS_T(class_name, T1), object)))

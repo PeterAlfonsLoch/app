@@ -14,13 +14,13 @@ namespace ios
 {
 
 
-   class CLASS_DECL_BASE ip_enum :
+   class CLASS_DECL_AXIS ip_enum :
       virtual public ::net::ip_enum
    {
    public:
 
 
-      ip_enum(::base::application * papp);
+      ip_enum(::axis::application * papp);
       virtual ~ip_enum();
 
 

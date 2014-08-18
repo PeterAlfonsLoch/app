@@ -5,7 +5,7 @@ namespace ios
 {
    
    
-   class CLASS_DECL_BASE file_set :
+   class CLASS_DECL_AXIS file_set :
       public ::file::set
    {
    public:
@@ -17,7 +17,7 @@ namespace ios
       stringa        m_straFile;
       
       
-      file_set(::base::application * papp);
+      file_set(::axis::application * papp);
       virtual ~file_set();
       
       

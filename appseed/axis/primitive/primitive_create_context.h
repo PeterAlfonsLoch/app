@@ -50,7 +50,7 @@ public:
 
 
 
-   create_context(sp(::base::application) papp);
+   create_context(sp(::axis::application) papp);
    create_context(sp(::command_thread) pthreadParent);
    create_context(sp(::command_thread) pthreadParent, var varFile, bool bMakeVisible = true, sp(::user::interaction) puiParent = NULL);
    create_context(const create_context & createcontext);

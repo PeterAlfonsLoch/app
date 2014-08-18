@@ -6,7 +6,7 @@
 
 
       class CLASS_DECL_AXIS sockets :
-         virtual public ::base::departament
+         virtual public ::axis::departament
       {
       public:
 
@@ -26,7 +26,7 @@
 
 
 
-         sockets(::base::application * papp);
+         sockets(::axis::application * papp);
          virtual ~sockets();
 
 

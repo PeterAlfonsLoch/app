@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-namespace base
+namespace axis
 {
 
 
-   savings::savings(sp(::base::application) papp) :
+   savings::savings(sp(::axis::application) papp) :
       element(papp)
    {
 

@@ -16,7 +16,7 @@ namespace fs
       var                                          m_varFile;
 
 
-      remote_native_file(sp(::base::application) papp, var varFile);
+      remote_native_file(sp(::axis::application) papp, var varFile);
       virtual ~remote_native_file();
 
       using ::sockets::http_batch_buffer::read;

@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-namespace base
+namespace axis
 {
 
 
-   os::os(sp(::base::application) papp) :
+   os::os(sp(::axis::application) papp) :
       element(papp)
    {
    }
@@ -203,7 +203,7 @@ namespace base
 #endif
 
 
-   bool os::create_service(sp(::base::application) papp)
+   bool os::create_service(sp(::axis::application) papp)
    {
 
 
@@ -216,7 +216,7 @@ namespace base
    }
 
 
-   bool os::remove_service(sp(::base::application) papp)
+   bool os::remove_service(sp(::axis::application) papp)
    {
 
 
@@ -229,7 +229,7 @@ namespace base
    }
 
 
-   bool os::start_service(sp(::base::application) papp)
+   bool os::start_service(sp(::axis::application) papp)
    {
 
 
@@ -242,7 +242,7 @@ namespace base
    }
 
 
-   bool os::stop_service(sp(::base::application) papp)
+   bool os::stop_service(sp(::axis::application) papp)
    {
 
 

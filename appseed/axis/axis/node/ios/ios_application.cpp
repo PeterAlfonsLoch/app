@@ -7,7 +7,7 @@ namespace ios
 {
 
 
-   application::application(::base::application * papp) :
+   application::application(::axis::application * papp) :
       element(papp)
    {
       ::thread::m_p.create(allocer());
@@ -147,7 +147,7 @@ namespace ios
       IOS_THREAD(::thread::m_p.m_p)->m_bRun = false;
 //      IOS_THREAD(::application_base::m_p.m_p->::thread::m_p.m_p)->m_bRun = false;
 
-      int32_t iRet = ::base::application::exit_instance();
+      int32_t iRet = ::axis::application::exit_instance();
 
       //::ca2::smart_pointer<::application>::destroy();
 
@@ -157,7 +157,7 @@ namespace ios
    }
    /*
    // Advanced: exception handling
-   LRESULT application::ProcessWndProcException(::exception::base* e, const MESSAGE* pMsg)
+   LRESULT application::ProcessWndProcException(::exception::axis* e, const MESSAGE* pMsg)
    {
    return   ::win::thread::ProcessWndProcException(e, pMsg);
    }

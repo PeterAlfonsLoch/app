@@ -1,6 +1,6 @@
 //
 //  base_static_start.cpp
-//  base
+//  axis
 //
 //
 //
@@ -91,7 +91,7 @@ extern mutex * g_pmutexCvt;
 #undef new
 
 
-namespace base
+namespace axis
 {
    
    
@@ -102,7 +102,7 @@ namespace base
       CLASS_DECL_AXIS void init()
       {
    
-         xxdebug_box("base.dll base_static_start (0)", "box", MB_OK);
+         xxdebug_box("axis.dll base_static_start (0)", "box", MB_OK);
          
    
          /*
@@ -152,11 +152,6 @@ namespace base
    
          //g_pmutexTrace = new mutex();
    
-#ifdef BSD_STYLE_SOCKETS
-   
-         ::sockets::base_socket::s_pmutex = new mutex();
-   
-#endif
    
 #if defined(WINDOWSEX)
    
@@ -407,7 +402,7 @@ namespace base
    } // namespace static_start
 
    
-} // namespace base
+} // namespace axis
 
 
 

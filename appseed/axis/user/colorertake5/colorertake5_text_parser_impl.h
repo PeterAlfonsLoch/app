@@ -10,7 +10,7 @@ namespace colorertake5
 
    /**
    * Implementation of text_parser interface.
-   * This is the base Colorer syntax parser, which
+   * This is the axis Colorer syntax parser, which
    * works with parsed internal HRC structure and colorisez
    * text in a target editor system.
    * @ingroup colorer_parsers

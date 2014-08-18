@@ -4,7 +4,7 @@
 namespace metrowin
 {
 
-   file_system::file_system(::base::application * papp) :
+   file_system::file_system(::axis::application * papp) :
       element(papp)
    {
 

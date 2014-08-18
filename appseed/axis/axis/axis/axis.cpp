@@ -84,12 +84,12 @@ CLASS_DECL_AXIS int_bool defer_base_term()
 bool base_init()
 {
 
-   ::base::static_start::init();
+   ::axis::static_start::init();
 
    if(!__node_pre_init())
       return false;
 
-   ::base::static_start::init();
+   ::axis::static_start::init();
 
    __init_threading_count();
 
@@ -125,7 +125,7 @@ bool base_term()
 
    __node_pos_term();
 
-   ::base::static_start::term();
+   ::axis::static_start::term();
 
    return true;
 

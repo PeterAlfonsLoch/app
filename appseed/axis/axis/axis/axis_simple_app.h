@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace base
+namespace axis
 {
 
    class CLASS_DECL_AXIS simple_app:
-      virtual public ::base::system
+      virtual public ::axis::system
    {
    public:
 
@@ -34,7 +34,7 @@ namespace base
    };
 
 
-} // namespace base
+} // namespace axis
 
 
 

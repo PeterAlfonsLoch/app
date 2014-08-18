@@ -17,11 +17,11 @@ namespace metrowin
 
 
       FILE* m_pStream;    // stdio FILE
-      // m_hFile from base class is _fileno(m_pStream)
+      // m_hFile from axis class is _fileno(m_pStream)
 
 
 
-      stdio_file(::base::application * papp);
+      stdio_file(::axis::application * papp);
 
 
       virtual void write_string(const char * lpsz);

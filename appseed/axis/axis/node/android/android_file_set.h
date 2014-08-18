@@ -17,7 +17,7 @@ namespace android
       stringa        m_straFile;
 
 
-      file_set(sp(::base::application) papp);
+      file_set(sp(::axis::application) papp);
       virtual ~file_set();
 
 

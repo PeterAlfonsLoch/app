@@ -2,14 +2,14 @@
 #include "sal.h"
 
 
-CLASS_DECL_BASE int ca2_main();
+CLASS_DECL_AXIS int ca2_main();
 
 
 //CLASS_DECL_BOOT extern fixed_alloc_array * g_pfixedallocaWstring;
 
 //CLASS_DECL_BOOT fixed_alloc_array * new_wstring_manager();
 
-void CLASS_DECL_BASE __cdecl _ca2_purecall()
+void CLASS_DECL_AXIS __cdecl _ca2_purecall()
 {
     throw simple_exception(::get_thread_app());
 }
@@ -18,16 +18,16 @@ void CLASS_DECL_BASE __cdecl _ca2_purecall()
 void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers);
 
 
-//::base::application *     win_application_create(::base::application * pappSystem, const char * pszId);
-//::base::application *     win_instantiate_application(::base::application * pappSystem, const char * pszId);
-//int                     win_application_procedure(::base::application * pappSystem)
+//::axis::application *     win_application_create(::axis::application * pappSystem, const char * pszId);
+//::axis::application *     win_instantiate_application(::axis::application * pappSystem, const char * pszId);
+//int                     win_application_procedure(::axis::application * pappSystem)
 //UINT c_cdecl          win_application_thread_proc(LPVOID);
 /////////////////////////////////////////////////////////////////////////////
 // Standard WinMain implementation
 //  Can be replaced as long as '::ca2::WinInit' is called first
 
 
-int CLASS_DECL_BASE win_main(::base::system * psystem, ::Platform::Array < ::Platform::String ^ > ^ args)
+int CLASS_DECL_AXIS win_main(::axis::system * psystem, ::Platform::Array < ::Platform::String ^ > ^ args)
 {
 
    //UNREFERENCED_PARAMETER(lpCmdLine);
@@ -150,7 +150,7 @@ int CLASS_DECL_BASE win_main(::base::system * psystem, ::Platform::Array < ::Pla
 }
 
 
-int CLASS_DECL_BASE ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, int nCmdShow)
+int CLASS_DECL_AXIS ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, int nCmdShow)
 {
    try
    {

@@ -10,7 +10,7 @@ class CLASS_DECL_AXIS string_to_string :
 public:
 
 
-   string_to_string(sp(::base::application) papp = NULL, ::count nBlockSize = 10);
+   string_to_string(sp(::axis::application) papp = NULL, ::count nBlockSize = 10);
    string_to_string(const string_to_string & map);
 	~string_to_string();
 

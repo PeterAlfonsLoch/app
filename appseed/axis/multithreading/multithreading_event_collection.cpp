@@ -6,7 +6,7 @@
 /// This class represents a collection of waitable items. A collection can be mixed
 /// of any kind of waitable items (threads, events, semaphores, ...).
 ///  \brief		default constructor
-event_collection::event_collection(sp(::base::application) papp) :
+event_collection::event_collection(sp(::axis::application) papp) :
    element(papp),
    callback_cnt(0)
 {

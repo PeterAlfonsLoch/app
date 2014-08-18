@@ -3,7 +3,7 @@
 namespace database
 {
 
-   base::base()
+   axis::axis()
    {
       active = false;   // No connection yet
       error = "";//S_NO_CONNECTION;
@@ -15,12 +15,12 @@ namespace database
       sequence_table = "db_sequence";
    }
 
-   base::~base() 
+   axis::~axis() 
    {
-      disconnect();      // Disconnect if connected to base
+      disconnect();      // Disconnect if connected to axis
    }
 
-   int32_t base::connectFull(const char *newHost, const char *newPort, const char *newDb, const char *newLogin, const char *newPasswd) 
+   int32_t axis::connectFull(const char *newHost, const char *newPort, const char *newDb, const char *newLogin, const char *newPasswd) 
    {
       host = newHost;
       port = newPort;

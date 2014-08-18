@@ -22,14 +22,14 @@ namespace colorertake5
    public:
       /**
       * Initial constructor.
-      * Creates uninitialized base editor functionality support.
+      * Creates uninitialized axis editor functionality support.
       * @param pf ParserFactory, used as source of all created
       *        parsers (HRC, HRD, Text parser). Can't be NULL.
       * @param lineSource Object, that provides parser with
       *        text data in line-separated form. Can't be NULL.
       */
 
-      base_editor(sp(::base::application) papp);
+      base_editor(sp(::axis::application) papp);
       ~base_editor();
 
       void initialize(line_source * plinesource);

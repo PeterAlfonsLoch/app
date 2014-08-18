@@ -1,6 +1,6 @@
 //
 //  base_static_start.h
-//  base
+//  axis
 //
 //
 //
@@ -9,7 +9,7 @@
 #pragma once
 
 
-namespace base
+namespace axis
 {
 
    
@@ -24,6 +24,6 @@ namespace base
    } // namespace static_start
 
 
-} // namespace base
+} // namespace axis
 
 

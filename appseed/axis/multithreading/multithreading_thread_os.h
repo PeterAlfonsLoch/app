@@ -3,7 +3,7 @@
 
 
 
-namespace base
+namespace axis
 {
 
 
@@ -27,13 +27,13 @@ namespace base
 	CLASS_DECL_AXIS int32_t thread_priority();
 
 
-} // namespace base
+} // namespace axis
 
 
 inline int32_t get_scheduling_priority_none()
 {
 
-      return ::base::scheduling_priority_none;
+      return ::axis::scheduling_priority_none;
 
 }
 
@@ -41,7 +41,7 @@ inline int32_t get_scheduling_priority_none()
 inline int32_t get_scheduling_priority_normal()
 {
 
-      return ::base::scheduling_priority_normal;
+      return ::axis::scheduling_priority_normal;
 
 }
 
@@ -136,14 +136,14 @@ CLASS_DECL_AXIS DWORD get_current_thread_id();
 
 
 
-CLASS_DECL_AXIS thread* __begin_thread(sp(::base::application) papp,__THREADPROC pfnThreadProc,LPVOID pParam,int32_t epriority = ::base::scheduling_priority_normal,UINT nStackSize = 0,uint32_t dwCreateFlags = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+CLASS_DECL_AXIS thread* __begin_thread(sp(::axis::application) papp,__THREADPROC pfnThreadProc,LPVOID pParam,int32_t epriority = ::axis::scheduling_priority_normal,UINT nStackSize = 0,uint32_t dwCreateFlags = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 /* xxx CLASS_DECL_AXIS thread* __begin_thread(sp(::coretype) pThreadClass,
 int32_t nPriority = scheduling_priority_normal, UINT nStackSize = 0,
 uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
 
 
 template < class THREAD_TYPE >
-THREAD_TYPE * __begin_thread(sp(::base::application) papp,int32_t epriority = ::base::scheduling_priority_normal,UINT nStackSize = 0,uint32_t dwCreateFlags = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
+THREAD_TYPE * __begin_thread(sp(::axis::application) papp,int32_t epriority = ::axis::scheduling_priority_normal,UINT nStackSize = 0,uint32_t dwCreateFlags = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
 {
    THREAD_TYPE * pthread = new THREAD_TYPE(papp);
    pthread->begin(epriority,nStackSize,dwCreateFlags,lpSecurityAttrs);
@@ -240,9 +240,9 @@ namespace multithreading
 
 
 
-CLASS_DECL_AXIS void __end_thread(sp(::base::application) papp);
+CLASS_DECL_AXIS void __end_thread(sp(::axis::application) papp);
 
-CLASS_DECL_AXIS void __term_thread(sp(::base::application) papp);
+CLASS_DECL_AXIS void __term_thread(sp(::axis::application) papp);
 
 
 

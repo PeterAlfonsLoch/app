@@ -23,7 +23,7 @@ namespace user
 
    }
 
-   interaction::interaction(sp(::base::application) papp):
+   interaction::interaction(sp(::axis::application) papp):
       element(papp),
       ::user::interaction_base(papp)
    {
@@ -1378,9 +1378,9 @@ namespace user
 
 
    // pbase object should be allocated with new in
-   // base or derived object and will be delete after
+   // axis or derived object and will be delete after
    // handling
-   LRESULT interaction::send(::message::base * pbase)
+   LRESULT interaction::send(::message::axis * pbase)
    {
 
       message_handler(pbase);
@@ -1391,9 +1391,9 @@ namespace user
 
 
    // pbase object should be allocated with new in
-   // base or derived object and will be delete after
+   // axis or derived object and will be delete after
    // handling
-   bool interaction::post(::message::base * pbase)
+   bool interaction::post(::message::axis * pbase)
    {
 
       return post_message(WM_APP + 2014,1,(LPARAM)pbase);
@@ -2743,7 +2743,7 @@ namespace user
    }
 
 
-   id interaction::run_modal_loop(::user::interaction * pui,uint32_t dwFlags,::base::live_object * pliveobject)
+   id interaction::run_modal_loop(::user::interaction * pui,uint32_t dwFlags,::axis::live_object * pliveobject)
    {
 
       return pui->_001RunModalLoop(dwFlags,pliveobject);
@@ -2751,7 +2751,7 @@ namespace user
    }
 
 
-   id interaction::RunModalLoop(uint32_t dwFlags,::base::live_object * pliveobject)
+   id interaction::RunModalLoop(uint32_t dwFlags,::axis::live_object * pliveobject)
    {
 
       return _001RunModalLoop(dwFlags,pliveobject);
@@ -2759,7 +2759,7 @@ namespace user
    }
 
 
-   id interaction::_001RunModalLoop(uint32_t dwFlags,::base::live_object * pliveobject)
+   id interaction::_001RunModalLoop(uint32_t dwFlags,::axis::live_object * pliveobject)
    {
 
       // for tracking the idle time state
@@ -2776,8 +2776,8 @@ namespace user
       //bool bAttach = AttachThreadInput(GetWindow()->get_os_int(), ::GetCurrentThreadId(), TRUE);
 
       m_iaModalThread.add(::get_current_thread_id());
-      sp(::base::application) pappThis1 = (m_pimpl);
-      sp(::base::application) pappThis2 = (::get_thread());
+      sp(::axis::application) pappThis1 = (m_pimpl);
+      sp(::axis::application) pappThis2 = (::get_thread());
       // acquire and dispatch messages until the modal state is done
       MESSAGE msg;
 
@@ -3574,7 +3574,7 @@ namespace user
 
    void interaction::_001OnUser184(signal_details * pobj)
    {
-      SCAST_PTR(::message::base,pbase,pobj);
+      SCAST_PTR(::message::axis,pbase,pobj);
       if(pbase->m_wparam == 0 &&
          pbase->m_lparam == 0)
       {
@@ -3811,7 +3811,7 @@ namespace user
    void interaction::_001OnCommand(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::base,pbase,pobj);
+      SCAST_PTR(::message::axis,pbase,pobj);
 
       LRESULT lresult = 0;
 
@@ -3825,7 +3825,7 @@ namespace user
    void interaction::_001OnSimpleCommand(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::base,pbase,pobj);
+      SCAST_PTR(::message::axis,pbase,pobj);
 
       LRESULT lresult = 0;
 
@@ -3878,7 +3878,7 @@ namespace user
    void interaction::_001OnSetSchema(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::base,pbase,pobj);
+      SCAST_PTR(::message::axis,pbase,pobj);
 
       LRESULT lresult = 0;
 
@@ -3891,7 +3891,7 @@ namespace user
 */
 
 
-   bool interaction::OnCommand(::message::base * pbase)
+   bool interaction::OnCommand(::message::axis * pbase)
    {
 
       if(m_pimpl != NULL)
@@ -3901,7 +3901,7 @@ namespace user
 
    }
 
-   bool interaction::OnNotify(::message::base * pbase)
+   bool interaction::OnNotify(::message::axis * pbase)
    {
 
       if(m_pimpl != NULL)
@@ -3912,7 +3912,7 @@ namespace user
    }
 
 
-   bool interaction::OnChildNotify(::message::base * pbase)
+   bool interaction::OnChildNotify(::message::axis * pbase)
    {
 
       if(m_pimpl != NULL)
@@ -4266,7 +4266,7 @@ namespace user
    LRESULT interaction::call_message_handler(UINT message,WPARAM wparam,LPARAM lparam)
    {
 
-      smart_pointer < ::message::base > spbase;
+      smart_pointer < ::message::axis > spbase;
 
       spbase = get_base(this,message,wparam,lparam);
 
@@ -4301,7 +4301,7 @@ namespace user
          return -1;
 
       }
-      catch(::exception::base * pe)
+      catch(::exception::axis * pe)
       {
 
          m_pbaseapp->process_window_procedure_exception(pe,spbase);
@@ -4331,7 +4331,7 @@ namespace user
    }
 
 
-   void interaction::keep_alive(::base::live_object * pliveobject)
+   void interaction::keep_alive(::axis::live_object * pliveobject)
    {
 
       m_pbaseapp->keep_alive();
@@ -5219,7 +5219,7 @@ namespace user
 
    void interaction::_001OnBaseWndGetProperty(signal_details * pobj)
    {
-      SCAST_PTR(::message::base,pbase,pobj)
+      SCAST_PTR(::message::axis,pbase,pobj)
          pbase->set_lresult(_001BaseWndGetProperty((EProperty)pbase->m_wparam,pbase->m_lparam));
    }
 

@@ -4,7 +4,7 @@
 namespace zip
 {
 
-   InFile::InFile(sp(::base::application) papp):
+   InFile::InFile(sp(::axis::application) papp):
       element(papp)
    {
 

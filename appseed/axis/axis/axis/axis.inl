@@ -317,76 +317,76 @@ namespace xml
 } // namespace xml
 
 
-
-namespace file
-{
-
-   
-   template < class T >
-   bool system::output(sp(::base::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,const char *),const char * lpszSource)
-   {
-
-      System.dir().mk(System.dir().name(pszOutput),papp);
-
-      ::file::binary_buffer_sp fileOut = papp->m_pbasesession->file().get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
-
-      if(fileOut.is_null())
-         return false;
-
-      ::file::output_stream ostream(fileOut);
-
-      return (p->*lpfnOuput)(ostream,lpszSource);
-
-   }
-
-
-   template < class T >
-   bool system::output(sp(::base::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),const char * lpszInput)
-   {
-
-      System.dir().mk(System.dir().name(pszOutput),papp);
-
-      ::file::binary_buffer_sp fileOut = papp->m_pbasesession->file().get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
-
-      if(fileOut.is_null())
-         return false;
-
-      ::file::binary_buffer_sp fileIn = papp->m_pbasesession->file().get_file(lpszInput,::file::type_binary | ::file::mode_read);
-
-      if(fileIn.is_null())
-         return false;
-
-      ::file::output_stream ostream(fileOut);
-
-      ::file::input_stream istream(fileIn);
-
-      return (p->*lpfnOuput)(ostream,istream);
-
-   }
-
-
-   template < class T >
-   bool system::output(sp(::base::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),::file::input_stream & istream)
-   {
-
-      ::file::output_stream ostream(get(pszOutput,papp));
-
-      return (p->*lpfnOuput)(ostream,istream);
-
-   }
-
-
-} // namespace file
-
-
-
-
+//
+//namespace file
+//{
+//
+//   
+//   template < class T >
+//   bool system::output(sp(::axis::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,const char *),const char * lpszSource)
+//   {
+//
+//      System.dir().mk(System.dir().name(pszOutput),papp);
+//
+//      ::file::binary_buffer_sp fileOut = papp->m_pbasesession->file().get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
+//
+//      if(fileOut.is_null())
+//         return false;
+//
+//      ::file::output_stream ostream(fileOut);
+//
+//      return (p->*lpfnOuput)(ostream,lpszSource);
+//
+//   }
+//
+//
+//   template < class T >
+//   bool system::output(sp(::axis::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),const char * lpszInput)
+//   {
+//
+//      System.dir().mk(System.dir().name(pszOutput),papp);
+//
+//      ::file::binary_buffer_sp fileOut = papp->m_pbasesession->file().get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
+//
+//      if(fileOut.is_null())
+//         return false;
+//
+//      ::file::binary_buffer_sp fileIn = papp->m_pbasesession->file().get_file(lpszInput,::file::type_binary | ::file::mode_read);
+//
+//      if(fileIn.is_null())
+//         return false;
+//
+//      ::file::output_stream ostream(fileOut);
+//
+//      ::file::input_stream istream(fileIn);
+//
+//      return (p->*lpfnOuput)(ostream,istream);
+//
+//   }
+//
+//
+//   template < class T >
+//   bool system::output(sp(::axis::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),::file::input_stream & istream)
+//   {
+//
+//      ::file::output_stream ostream(get(pszOutput,papp));
+//
+//      return (p->*lpfnOuput)(ostream,istream);
+//
+//   }
+//
+//
+//} // namespace file
+//
+//
 
 
 
 
 
-inline ::base::session & sess(::base::application * papp)
+
+
+inline ::axis::session & sess(::axis::application * papp)
 {
 
    return *papp->m_pbasesession;
@@ -394,7 +394,7 @@ inline ::base::session & sess(::base::application * papp)
 }
 
 
-inline ::base::session & root::session()
+inline ::axis::session & root::session()
 {
 
    return *m_pbaseapp->m_pbasesession;
@@ -417,18 +417,18 @@ inline ::core::platform & root::platform()
 
 
 
-namespace base
+namespace axis
 {
 
    // impl
    template < class APP >
-   sp(::base::application) single_application_library < APP > ::get_new_app(const char * pszAppId)
+   sp(::axis::application) single_application_library < APP > ::get_new_app(const char * pszAppId)
    {
 
       if(!contains_app(pszAppId))
          return NULL;
 
-      sp(::base::application) papp = canew(APP());
+      sp(::axis::application) papp = canew(APP());
 
       if(papp == NULL)
          return NULL;
@@ -462,7 +462,7 @@ namespace base
    }
 
 
-} // namespace base
+} // namespace axis
 
 
 

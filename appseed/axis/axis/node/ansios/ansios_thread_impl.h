@@ -13,7 +13,7 @@ namespace ansios
 
 
 
-      thread_impl(sp(::base::application) papp);
+      thread_impl(sp(::axis::application) papp);
       virtual ~thread_impl();
 
 

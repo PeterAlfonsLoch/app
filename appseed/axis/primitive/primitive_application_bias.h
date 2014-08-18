@@ -17,11 +17,11 @@ public:
    public:
 
 
-      void connect_to(sp(::base::application) papp);
+      void connect_to(sp(::axis::application) papp);
 
       void on_call_signal(signal_details * pobj);
 
-      virtual void on_application_bias_callback_signal(::base::application_signal_details * pobj);
+      virtual void on_application_bias_callback_signal(::axis::application_signal_details * pobj);
 
    };
 
@@ -32,7 +32,7 @@ public:
 
 
    application_bias();
-   application_bias(sp(::base::application) papp);
+   application_bias(sp(::axis::application) papp);
    application_bias(const application_bias & bias);
    application_bias & operator = (const application_bias & bias);
 

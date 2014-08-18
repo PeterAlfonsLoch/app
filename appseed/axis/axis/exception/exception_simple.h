@@ -4,13 +4,13 @@
 
 
 class CLASS_DECL_AXIS simple_exception : 
-   virtual public ::exception::base
+   virtual public ::exception::axis
 {
 public:
    
    
-   simple_exception(sp(::base::application) papp);
-   simple_exception(sp(::base::application) papp, const char * pszMessage);
+   simple_exception(sp(::axis::application) papp);
+   simple_exception(sp(::axis::application) papp, const char * pszMessage);
    virtual ~simple_exception();
 
 

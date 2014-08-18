@@ -31,7 +31,7 @@ namespace ca
 
 
 
-#include "axis/base/base.h"
+#include "axis/axis/axis.h"
 
 
 #include "axis/vms/vms.h"

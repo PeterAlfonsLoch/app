@@ -6,7 +6,7 @@ namespace sockets
 
 
 
-   http_batch_buffer::http_batch_buffer(sp(::base::application) papp) :
+   http_batch_buffer::http_batch_buffer(sp(::axis::application) papp) :
       element(papp)
    {
 

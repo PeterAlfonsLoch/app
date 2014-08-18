@@ -538,7 +538,7 @@ ZEXTERN int ZEXPORT deflateInit2 OF((z_streamp strm,
      The method parameter is the compression method.  It must be Z_DEFLATED in
    this version of the library.
 
-     The windowBits parameter is the base two logarithm of the interaction_impl size
+     The windowBits parameter is the axis two logarithm of the interaction_impl size
    (the size of the history buffer).  It should be in the range 8..15 for this
    version of the library.  Larger values of this parameter result in better
    compression at the expense of memory usage.  The default value is 15 if
@@ -774,7 +774,7 @@ ZEXTERN int ZEXPORT inflateInit2 OF((z_streamp strm,
    fields next_in, avail_in, zalloc, zfree and opaque must be initialized
    before by the caller.
 
-     The windowBits parameter is the base two logarithm of the maximum interaction_impl
+     The windowBits parameter is the axis two logarithm of the maximum interaction_impl
    size (the size of the history buffer).  It should be in the range 8..15 for
    this version of the library.  The default value is 15 if inflateInit is used
    instead.  windowBits must be greater than or equal to the windowBits value
@@ -992,7 +992,7 @@ ZEXTERN int ZEXPORT inflateBackInit OF((z_streamp strm, int windowBits,
      Initialize the internal stream state for decompression using inflateBack()
    calls.  The fields zalloc, zfree and opaque in strm must be initialized
    before the call.  If zalloc and zfree are Z_NULL, then the default library-
-   derived memory allocation routines are used.  windowBits is the base two
+   derived memory allocation routines are used.  windowBits is the axis two
    logarithm of the interaction_impl size, in the range 8..15.  interaction_impl is a caller
    supplied buffer of that size.  Except for special applications where it is
    assured that deflate was used with small interaction_impl sizes, windowBits must be 15

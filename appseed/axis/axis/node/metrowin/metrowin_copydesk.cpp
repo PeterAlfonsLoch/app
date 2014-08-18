@@ -5,9 +5,9 @@ namespace metrowin
 {
 
 
-   copydesk::copydesk(::base::application * papp) :
+   copydesk::copydesk(::axis::application * papp) :
       element(papp),
-      ::base::copydesk(papp)
+      ::axis::copydesk(papp)
    {
    }
 
@@ -164,7 +164,7 @@ namespace metrowin
    bool copydesk::initialize()
    {
       
-      if(!::base::copydesk::initialize())
+      if(!::axis::copydesk::initialize())
          return false;
 
       /*if(!m_p->CreateEx(0, System.RegisterWndClass(0), NULL, 0, rect(0, 0, 0, 0), NULL, id()))
@@ -180,7 +180,7 @@ namespace metrowin
 
       bool bOk;
       
-      bOk = ::base::copydesk::finalize();
+      bOk = ::axis::copydesk::finalize();
 
 /*      if(::user::window_sp::is_set() && ::user::window_sp::m_p->IsWindow())
       {

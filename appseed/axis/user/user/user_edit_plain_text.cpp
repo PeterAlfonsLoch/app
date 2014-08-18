@@ -6,7 +6,7 @@ namespace user
 {
 
 
-   edit_plain_text::edit_plain_text(sp(::base::application) papp) :
+   edit_plain_text::edit_plain_text(sp(::axis::application) papp) :
       element(papp),
       ::user::interaction(papp),
       scroll_view(papp),
@@ -219,8 +219,8 @@ namespace user
 
       }
 
-      /*else if(!session().savings().is_trying_to_save(::base::resource_processing)
-      && !session().savings().is_trying_to_save(::base::resource_blur_background))
+      /*else if(!session().savings().is_trying_to_save(::axis::resource_processing)
+      && !session().savings().is_trying_to_save(::axis::resource_blur_background))
       {
 
          pdc->blur(true, 4, rectClient);
@@ -233,7 +233,7 @@ namespace user
             m_dibBk->create(rectClient.size());
             m_dibBk->Fill(184, 184, 170);
             HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
-            ::visual::fastblur *( *pfnNew )(sp(::base::application)) = (::visual::fastblur *(*)(sp(::base::application))) ::GetProcAddress(hmodule, "new_fastblur");*/
+            ::visual::fastblur *( *pfnNew )(sp(::axis::application)) = (::visual::fastblur *(*)(sp(::axis::application))) ::GetProcAddress(hmodule, "new_fastblur");*/
 /*            m_fastblur.alloc(allocer());
             m_fastblur.initialize(rectClient.size(), 2);
          }
@@ -545,7 +545,7 @@ namespace user
    /*   ::user::menu menu;
       Ex1TextFile file;
 
-      sp(::base::application) papp = ::core::get_app();
+      sp(::axis::application) papp = ::core::get_app();
 
       string strModuleFolder;
       strModuleFolder = papp->m_pcoreapp->get_module_folder();
@@ -743,7 +743,7 @@ namespace user
 
    void edit_plain_text::pre_translate_message(signal_details * pobj)
    {
-      SCAST_PTR(::message::base, pbase, pobj);
+      SCAST_PTR(::message::axis, pbase, pobj);
       if(pbase->m_uiMessage == WM_KEYDOWN)
       {
          pbase->m_bRet = true;
@@ -2354,7 +2354,7 @@ namespace user
 
    void edit_plain_text::_001OnUpdateEditFocusCopy(signal_details * pobj)
    {
-      SCAST_PTR(::base::cmd_ui, pupdatecmdui, pobj)
+      SCAST_PTR(::axis::cmd_ui, pupdatecmdui, pobj)
       string str;
       _001GetSelText(str);
       pupdatecmdui->m_pcmdui->Enable(str.has_char());
@@ -2373,7 +2373,7 @@ namespace user
 
    void edit_plain_text::_001OnUpdateEditFocusPaste(signal_details * pobj)
    {
-      SCAST_PTR(::base::cmd_ui, pupdatecmdui, pobj)
+      SCAST_PTR(::axis::cmd_ui, pupdatecmdui, pobj)
       pupdatecmdui->m_pcmdui->Enable(session().copydesk().get_plain_text().has_char());
    }
 

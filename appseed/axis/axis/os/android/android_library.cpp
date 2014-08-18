@@ -2,7 +2,7 @@
 #include <dlfcn.h>
 
 
-::base::library::base::library(sp(::base::application) papp) : element(papp)
+::axis::library::axis::library(sp(::axis::application) papp) : element(papp)
 {
 
    m_plibrary = NULL;
@@ -12,7 +12,7 @@
 }
 
 
-::base::library::base::library(sp(::base::application) papp, const char * pszOpen) :
+::axis::library::axis::library(sp(::axis::application) papp, const char * pszOpen) :
 element(papp)
 {
 
@@ -25,7 +25,7 @@ element(papp)
 }
 
 
-::base::library::~::base::library()
+::axis::library::~::axis::library()
 {
 
    if (m_bAutoClose)
@@ -38,7 +38,7 @@ element(papp)
 }
 
 
-bool ::base::library::open(const char * pszPath, bool bAutoClose)
+bool ::axis::library::open(const char * pszPath, bool bAutoClose)
 {
 
    if (m_bAutoClose)
@@ -84,7 +84,7 @@ bool ::base::library::open(const char * pszPath, bool bAutoClose)
 }
 
 
-bool ::base::library::close()
+bool ::axis::library::close()
 {
    if (m_plibrary != NULL)
    {
@@ -93,20 +93,20 @@ bool ::base::library::close()
 }
 
 
-void * ::base::library::raw_get(const char * pszElement)
+void * ::axis::library::raw_get(const char * pszElement)
 {
    return dlsym(m_plibrary, pszElement);
 }
 
-ca2_library::ca2_library(sp(::base::application) papp) :
+ca2_library::ca2_library(sp(::axis::application) papp) :
 element(papp),
-::base::library(papp)
+::axis::library(papp)
 {
 }
 
-ca2_library::ca2_library(sp(::base::application) papp, const char * pszOpen) :
+ca2_library::ca2_library(sp(::axis::application) papp, const char * pszOpen) :
 element(papp),
-::base::library(papp, pszOpen)
+::axis::library(papp, pszOpen)
 {
 
 }
@@ -121,12 +121,12 @@ ca2_library::~ca2_library()
 bool ca2_library::open(const char * pszPath, bool bAutoClose)
 {
 
-   return ::base::library::open(pszPath, bAutoClose);
+   return ::axis::library::open(pszPath, bAutoClose);
 
 }
 
 
-bool ::base::library::is_opened()
+bool ::axis::library::is_opened()
 {
 
    return m_plibrary != NULL;
@@ -134,7 +134,7 @@ bool ::base::library::is_opened()
 }
 
 
-bool ::base::library::is_closed()
+bool ::axis::library::is_closed()
 {
 
    return !is_opened();

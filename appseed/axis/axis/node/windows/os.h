@@ -18,7 +18,7 @@
 
 string get_error_message(DWORD dwError);
 
-//sp(::base::application)     windows_instantiate_application(sp(::base::application) pappSystem, const char * pszId);
+//sp(::axis::application)     windows_instantiate_application(sp(::axis::application) pappSystem, const char * pszId);
 
 /////////////////////////////////////////////////////////////////////////////
 // explicit initialization for general purpose classes
@@ -65,16 +65,13 @@ CLASS_DECL_AXIS void reset_message_cache();
 
 #include "win1.h"
 #include "windows_implementation.h"
-#include "windows_dir.h"
 #include "windows_folder_watch.h"
 #include "windows_factory_exchange.h"
 #include "windows_window_draw.h"
 #include "windows_uac_tools.h"
 #include "windows_thread.h"
 #include "windows_interaction_impl.h"
-#include "windows_port_forward.h"
 #include "windows_file.h"
-//#include "windows_printer.h"
 
 CLASS_DECL_AXIS WNDPROC __get_window_procedure();
 #define __window_procedure (*__get_window_procedure())
@@ -116,25 +113,13 @@ void CLASS_DECL_AXIS __cdecl _null_se_translator(uint32_t uiCode, EXCEPTION_POIN
 
 bool CLASS_DECL_AXIS __windows_init();
 
-int32_t CLASS_DECL_AXIS __windows_main(sp(::base::system) psystem, ::windows::main_init_data * pmaininitdata);
+int32_t CLASS_DECL_AXIS __windows_main(sp(::axis::system) psystem, ::windows::main_init_data * pmaininitdata);
 
 
 
 
-#pragma once
 
-
-#undef new
-//#include <GdiPlus.h>
-//#include <Gdipluseffects.h>
-
-#define new AXIS_NEW
-
-
-
-#include "windows_dir.h"
 #include "windows_file_find.h"
-#include "windows_file_system.h"
 #include "windows_file.h"
 #include "windows_shell.h"
 //#include "core/gen_resource.h"
@@ -143,8 +128,6 @@ int32_t CLASS_DECL_AXIS __windows_main(sp(::base::system) psystem, ::windows::ma
 #include "windows_file_set.h"
 
 #include "windows_copydesk.h"
-#include "windows_crypto.h"
-#include "windows_ip_enum.h"
 #include "windows_registry.h"
 
 #include "windows_os.h"

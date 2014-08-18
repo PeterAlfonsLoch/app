@@ -2,12 +2,12 @@
 
 void dappy(const char * psz);
 
-namespace base
+namespace axis
 {
 
 
    simple_app::simple_app():
-      ::base::system(this)
+      ::axis::system(this)
    {
 
    }
@@ -217,7 +217,7 @@ namespace base
    }
 
 
-} // namespace base
+} // namespace axis
 
 
 

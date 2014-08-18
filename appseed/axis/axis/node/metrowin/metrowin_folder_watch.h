@@ -3,13 +3,13 @@
 namespace metrowin
 {
 
-   class CLASS_DECL_BASE folder_watch :
+   class CLASS_DECL_AXIS folder_watch :
       virtual public ::file::folder_watch,
       virtual public ::thread
    {
    public:
       
-      folder_watch(::base::application * papp);
+      folder_watch(::axis::application * papp);
 
       virtual bool watch(const char * pszPath);
 

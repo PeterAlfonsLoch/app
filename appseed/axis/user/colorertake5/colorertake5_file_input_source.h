@@ -9,7 +9,7 @@
 class FileInputSource : public input_source
 {
 public:
-  FileInputSource(string basePath, FileInputSource *base);
+  FileInputSource(string basePath, FileInputSource *axis);
   ~FileInputSource();
 
   string get_location() const;

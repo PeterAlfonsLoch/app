@@ -57,9 +57,9 @@ namespace android
       int32_t        m_iFile;
 
 
-      file(sp(::base::application) papp);
-      file(sp(::base::application) papp, int32_t hFile);
-      file(sp(::base::application) papp, const char * lpszFileName, UINT nOpenFlags);
+      file(sp(::axis::application) papp);
+      file(sp(::axis::application) papp, int32_t hFile);
+      file(sp(::axis::application) papp, const char * lpszFileName, UINT nOpenFlags);
       virtual ~file();
 
 
@@ -111,8 +111,8 @@ namespace android
 
       int32_t PASCAL OsErrorToException(LONG lOsError);
       int32_t PASCAL ErrnoToException(int32_t nErrno);
-      void PASCAL ThrowOsError(sp(::base::application) papp, LONG lOsError, const char * lpszFileName = NULL);
-      void PASCAL ThrowErrno(sp(::base::application) papp, int32_t nErrno, const char * lpszFileName = NULL);
+      void PASCAL ThrowOsError(sp(::axis::application) papp, LONG lOsError, const char * lpszFileName = NULL);
+      void PASCAL ThrowErrno(sp(::axis::application) papp, int32_t nErrno, const char * lpszFileName = NULL);
 
 
    }  // namespace file_exception

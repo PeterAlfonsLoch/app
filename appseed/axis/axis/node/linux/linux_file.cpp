@@ -27,7 +27,7 @@ namespace linux
 {
 
 
-   file::file(sp(::base::application) papp) :
+   file::file(sp(::axis::application) papp) :
       element(papp)
    {
 
@@ -37,7 +37,7 @@ namespace linux
 
    }
 
-   file::file(sp(::base::application) papp, int32_t hFile) :
+   file::file(sp(::axis::application) papp, int32_t hFile) :
       element(papp)
    {
 
@@ -47,7 +47,7 @@ namespace linux
 
    }
 
-   file::file(sp(::base::application) papp, const char * lpszFileName, UINT nOpenFlags) :
+   file::file(sp(::axis::application) papp, const char * lpszFileName, UINT nOpenFlags) :
       element(papp)
    {
 
@@ -575,13 +575,13 @@ namespace linux
 
 
 
-   void PASCAL file_exception::ThrowOsError(sp(::base::application) papp, LONG lOsError, const char * lpszFileName /* = NULL */)
+   void PASCAL file_exception::ThrowOsError(sp(::axis::application) papp, LONG lOsError, const char * lpszFileName /* = NULL */)
    {
       if (lOsError != 0)
          vfxThrowFileException(papp, file_exception::OsErrorToException(lOsError), lOsError, lpszFileName);
    }
 
-   void PASCAL file_exception::ThrowErrno(sp(::base::application) papp, int32_t nErrno, const char * lpszFileName /* = NULL */)
+   void PASCAL file_exception::ThrowErrno(sp(::axis::application) papp, int32_t nErrno, const char * lpszFileName /* = NULL */)
    {
       if (nErrno != 0)
          vfxThrowFileException(papp, file_exception::ErrnoToException(nErrno), errno, lpszFileName);
@@ -758,7 +758,7 @@ namespace linux
    }
 
 
-   // IMPLEMENT_DYNAMIC(WinFileException, ::exception::base)
+   // IMPLEMENT_DYNAMIC(WinFileException, ::exception::axis)
 
    /////////////////////////////////////////////////////////////////////////////
 
@@ -1674,7 +1674,7 @@ return TRUE;
 /////////////////////////////////////////////////////////////////////////////
 // WinFileException helpers
 
-void CLASS_DECL_LINUX vfxThrowFileException(sp(::base::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
+void CLASS_DECL_LINUX vfxThrowFileException(sp(::axis::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
 {
 #ifdef DEBUG
    const char * lpsz;

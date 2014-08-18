@@ -11,7 +11,7 @@ namespace hotplugin
    class CLASS_DECL_AXIS plugin :
       virtual public ::simple_ui::style,
       virtual public ::simple_ui::interaction,
-      virtual public ::base::session
+      virtual public ::axis::session
 #ifndef METROWIN
       , virtual public ::small_ipc_channel
 #endif
@@ -58,7 +58,7 @@ namespace hotplugin
       POINT                         m_ptCursorPhase;
 
 
-      plugin(sp(::base::application) papp);
+      plugin(sp(::axis::application) papp);
       virtual ~plugin();
 
 

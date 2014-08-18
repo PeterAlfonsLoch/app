@@ -6,7 +6,7 @@ namespace windows
 {
 
 
-   application::application(sp(::base::application) papp) :
+   application::application(sp(::axis::application) papp) :
       element(papp)
    {
 
@@ -221,7 +221,7 @@ namespace windows
 
       set_run(false);
 
-      int32_t iRet = ::base::application::exit_instance();
+      int32_t iRet = ::axis::application::exit_instance();
 
       return iRet;
 
@@ -303,7 +303,7 @@ namespace windows
 
 
 
-   bool application::set_main_init_data(::base::main_init_data * pdata)
+   bool application::set_main_init_data(::axis::main_init_data * pdata)
    {
 
       m_pmaininitdata = (::windows::main_init_data *) pdata;

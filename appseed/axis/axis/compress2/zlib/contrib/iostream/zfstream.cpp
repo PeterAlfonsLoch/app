@@ -139,7 +139,7 @@ int gzfilebuf::underflow() {
     return EOF;
 
   // if a buffer doesn't exists, allocate one.
-  if ( !base() ) {
+  if ( !axis() ) {
 
     if ( (allocate()) == EOF )
       return EOF;
@@ -175,7 +175,7 @@ int gzfilebuf::overflow( int c ) {
   if ( !is_open() || !(mode & ios::out) )
     return EOF;
 
-  if ( !base() ) {
+  if ( !axis() ) {
     if ( allocate() == EOF )
       return EOF;
     setg(0,0,0);
@@ -190,7 +190,7 @@ int gzfilebuf::overflow( int c ) {
   }
 
   int bl = blen();
-  setp( base(), base() + bl);
+  setp( axis(), axis() + bl);
 
   if ( c != EOF ) {
 
@@ -237,7 +237,7 @@ int gzfilebuf::fillbuf() {
   int required;
   char *p;
 
-  p = base();
+  p = axis();
 
   required = blen();
 
@@ -245,7 +245,7 @@ int gzfilebuf::fillbuf() {
 
   if ( t <= 0) return EOF;
 
-  setg( base(), base(), base()+t);
+  setg( axis(), axis(), axis()+t);
 
   return t;
 

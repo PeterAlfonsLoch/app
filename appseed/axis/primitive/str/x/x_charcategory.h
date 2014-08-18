@@ -4,7 +4,7 @@
 #pragma once
 /*
     This file was automatically generated from
-    UNICODE 3.2.0 UnicodeData.txt base.
+    UNICODE 3.2.0 UnicodeData.txt axis.
     Do not edit it with hands.
 */
 

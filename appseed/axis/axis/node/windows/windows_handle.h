@@ -138,7 +138,7 @@ struct ConstructDestruct
    { 
 #undef new
       new (pObject) TYPE; 
-#define new BASE_NEW
+#define new AXIS_NEW
    }
    static void Destruct(TYPE * pObject)
    {
@@ -164,7 +164,7 @@ public:
    map < HANDLE, HANDLE, CT *, CT *> m_permanentMap;
    map < HANDLE, HANDLE, CT *, CT *> m_temporaryMap;
 
-   handle_map(sp(::base::application) papp);
+   handle_map(sp(::axis::application) papp);
    virtual ~handle_map()
    { 
       delete_temp();
@@ -172,7 +172,7 @@ public:
 
 // Operations
 public:
-   CT * from_handle(HANDLE h, CT * (* pfnAllocator) (sp(::base::application), HANDLE) = NULL, sp(::base::application) papp = NULL);
+   CT * from_handle(HANDLE h, CT * (* pfnAllocator) (sp(::axis::application), HANDLE) = NULL, sp(::axis::application) papp = NULL);
    void delete_temp();
 
    void set_permanent(HANDLE h, CT * permOb);
@@ -184,14 +184,14 @@ public:
    friend class thread;
 };
 
-class CLASS_DECL_BASE oswindow_map :
+class CLASS_DECL_AXIS oswindow_map :
    public handle_map < ::windows::oswindow_handle, ::windows::window >
 {
 public:
-   oswindow_map(sp(::base::application) papp) : handle_map < ::windows::oswindow_handle, ::windows::window >(papp) {}
+   oswindow_map(sp(::axis::application) papp) : handle_map < ::windows::oswindow_handle, ::windows::window >(papp) {}
 };
 
-/*class CLASS_DECL_BASE hdc_map :
+/*class CLASS_DECL_AXIS hdc_map :
    public handle_map < ::windows::hdc_handle, ::windows::graphics >
 {
 public:
@@ -204,7 +204,7 @@ public:
 };*/
 
 /*
-class CLASS_DECL_BASE hdc_map :
+class CLASS_DECL_AXIS hdc_map :
    public handle_map < ::windows::hmenu_handle, ::windows::menu >
 {
 public:
@@ -213,7 +213,7 @@ public:
 
 
 template < class HT, class CT >
-handle_map < HT, CT > ::handle_map(sp(::base::application) papp) : 
+handle_map < HT, CT > ::handle_map(sp(::axis::application) papp) : 
    element(papp),
    m_permanentMap(papp, 1024), 
    m_temporaryMap(papp, 1024), 
@@ -232,7 +232,7 @@ handle_map < HT, CT > ::handle_map(sp(::base::application) papp) :
 }
 
 template < class HT, class CT >
-CT* handle_map < HT, CT >::from_handle(HANDLE h, CT * (*pfnAllocator) (sp(::base::application), HANDLE), sp(::base::application) papp)
+CT* handle_map < HT, CT >::from_handle(HANDLE h, CT * (*pfnAllocator) (sp(::axis::application), HANDLE), sp(::axis::application) papp)
 {
    
    single_lock sl(&m_mutex, TRUE);
@@ -292,7 +292,7 @@ CT* handle_map < HT, CT >::from_handle(HANDLE h, CT * (*pfnAllocator) (sp(::base
       // set it in the map
       m_temporaryMap.set_at(h, pTemp);
    }
-   catch(::exception::base * pe)
+   catch(::exception::axis * pe)
    {
 #ifndef ___PORTABLE
 //      __set_new_handler(pnhOldHandler);
@@ -443,4 +443,4 @@ inline CT* handle_map <HT, CT>::lookup_temporary(HANDLE h)
 }
 
 
-CLASS_DECL_BASE oswindow_map * get_oswindow_map(bool bCreate = FALSE);
+CLASS_DECL_AXIS oswindow_map * get_oswindow_map(bool bCreate = FALSE);

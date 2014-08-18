@@ -3,7 +3,7 @@
 //      Class:          service_base
 //      Author:         Kenny Kerr
 //      Date created:   10 April 2004
-//      Description:    Provides a base class for a service that will exist as
+//      Description:    Provides a axis class for a service that will exist as
 //                      part of a service application. service_base must be
 //                      derived when creating a new service class.
 //
@@ -39,11 +39,11 @@ public:
 
 #ifdef WINDOWSEX
 
-   service_base(sp(::base::application) papp, uint32_t controlsAccepted = SERVICE_ACCEPT_PAUSE_CONTINUE | SERVICE_ACCEPT_STOP | SERVICE_ACCEPT_SHUTDOWN);
+   service_base(sp(::axis::application) papp, uint32_t controlsAccepted = SERVICE_ACCEPT_PAUSE_CONTINUE | SERVICE_ACCEPT_STOP | SERVICE_ACCEPT_SHUTDOWN);
 
 #else
 
-   service_base(sp(::base::application) papp, uint32_t controlsAccepted = 0);
+   service_base(sp(::axis::application) papp, uint32_t controlsAccepted = 0);
 
 #endif
 

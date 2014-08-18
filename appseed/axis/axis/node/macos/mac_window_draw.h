@@ -23,7 +23,7 @@ namespace mac
       DWORD                                  m_dwLastDelay;
       
       
-      window_draw(::base::application * papp);
+      window_draw(::axis::application * papp);
       virtual ~window_draw();
       
       

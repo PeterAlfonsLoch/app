@@ -3,7 +3,7 @@
 namespace sip
 {
 
-   request::request(::base::application * papp) :
+   request::request(::axis::application * papp) :
       element(papp),
       transaction(papp),
       m_file(papp),

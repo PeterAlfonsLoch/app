@@ -5,9 +5,9 @@ namespace user
 {
 
 
-   user::user(::base::application * papp) :
+   user::user(::axis::application * papp) :
       element(papp),
-      ::base::departament(papp)
+      ::axis::departament(papp)
    {
       
       
@@ -61,7 +61,7 @@ namespace user
 
 //      m_pshellimageset = new filemanager::_shell::ImageSet(m_pbaseapp);
 
-      if(!::base::departament::initialize1())
+      if(!::axis::departament::initialize1())
          return false;
 
       return true;
@@ -74,7 +74,7 @@ namespace user
 
 
 
-      if(!::base::departament::initialize())
+      if(!::axis::departament::initialize())
          return false;
 
 
@@ -168,7 +168,7 @@ retry_license:
   //       return false;
 
 
-      if(!::base::departament::initialize())
+      if(!::axis::departament::initialize())
          return false;
 
       return true;
@@ -182,7 +182,7 @@ retry_license:
    {
 
 
-      if(!::base::departament::initialize2())
+      if(!::axis::departament::initialize2())
          return false;
 
 /* xxx
@@ -220,7 +220,7 @@ retry_license:
    {
       try
       {
-         ::base::departament::finalize();
+         ::axis::departament::finalize();
       }
       catch(...)
       {

@@ -14,7 +14,7 @@ namespace user
       string      m_strName;
 
 
-      printer(sp(::base::application) papp);
+      printer(sp(::axis::application) papp);
       virtual ~printer();
 
       virtual bool open(const char * pszDeviceName);

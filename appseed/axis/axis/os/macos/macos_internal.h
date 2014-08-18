@@ -9,7 +9,7 @@
 #pragma once
 
 
-#include "axis/base/base/base.h"
+#include "axis/axis/axis/axis.h"
 
 #define NEAR
 #define FAR
@@ -73,7 +73,7 @@ typedef int wxCoord;
 enum { wxDefaultCoord = -1 };
 
 
-class CLASS_DECL_BASE wxSize
+class CLASS_DECL_AXIS wxSize
 {
 public:
    // members are public for compatibility, don't use them directly.
@@ -141,7 +141,7 @@ public:
 };
 
 
-class CLASS_DECL_BASE wxPoint
+class CLASS_DECL_AXIS wxPoint
 {
 public:
    int x, y;
@@ -172,7 +172,7 @@ public:
 };
 
 
-class CLASS_DECL_BASE device_context
+class CLASS_DECL_AXIS device_context
 {
 public:
    

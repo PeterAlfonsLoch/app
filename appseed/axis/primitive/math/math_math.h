@@ -30,7 +30,7 @@ namespace math
       mutex          m_mutex;
 
 
-      math(sp(::base::application) papp);
+      math(sp(::axis::application) papp);
       virtual ~math();
 
 

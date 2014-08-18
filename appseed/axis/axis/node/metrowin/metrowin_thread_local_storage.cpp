@@ -12,7 +12,7 @@ void * no_track_object::operator new(size_t nSize, const char *, int)
 {
    return no_track_object::operator new(nSize);
 }
-#define new BASE_NEW
+#define new AXIS_NEW
 void no_track_object::operator delete(void * pObject, const char *, int)
 {
    if (pObject != NULL)
@@ -29,7 +29,7 @@ void * no_track_object::operator new(size_t nSize)
       throw memory_exception(NULL);
    return p;
 }
-#define new BASE_NEW
+#define new AXIS_NEW
 
 void no_track_object::operator delete(void * p)
 {
@@ -91,7 +91,7 @@ thread_slot_data * thread_local_storage::get_slot_data()
    }
    return pdata;
 }
-#define new BASE_NEW
+#define new AXIS_NEW
 
 
 thread_slot_data::thread_slot_data()
@@ -130,7 +130,7 @@ no_track_object* process_local_object::get_data(
          if (m_pObject == NULL)
             m_pObject = (*pfnCreateObject)();
       }
-      catch(::exception::base * pe)
+      catch(::exception::axis * pe)
       {
          ::exception::rethrow(pe);
       }
@@ -148,13 +148,13 @@ process_local_object::~process_local_object()
 /////////////////////////////////////////////////////////////////////////////
 // Init/Term for thread/process local data
 
-/*void CLASS_DECL_BASE ::ca2::InitLocalData(HINSTANCE hInst)
+/*void CLASS_DECL_AXIS ::ca2::InitLocalData(HINSTANCE hInst)
 {
    if (gen_ThreadData != NULL)
       gen_ThreadData->AssignInstance(hInst);
 }
 
-void CLASS_DECL_BASE __term_local_data(HINSTANCE hInst, bool bAll)
+void CLASS_DECL_AXIS __term_local_data(HINSTANCE hInst, bool bAll)
 {
    if (gen_ThreadData != NULL)
       gen_ThreadData->DeleteValues(hInst, bAll);
@@ -167,12 +167,12 @@ void CLASS_DECL_BASE __term_local_data(HINSTANCE hInst, bool bAll)
 
 __STATIC_DATA long gen_TlsRef = 0;
 
-void CLASS_DECL_BASE __tls_add_ref()
+void CLASS_DECL_AXIS __tls_add_ref()
 {
    ++gen_TlsRef;
 }
 
-void CLASS_DECL_BASE __tls_release()
+void CLASS_DECL_AXIS __tls_release()
 {
    if (gen_TlsRef == 0 || --gen_TlsRef == 0)
    {

@@ -23,16 +23,16 @@ bool is_debugger_attached()
 assert_exception::assert_exception(const assert_exception & e) :
    element(e),
    ::call_stack(e),
-   ::exception::base(e),
+   ::exception::axis(e),
    simple_exception(e)
 {
       printf(":assert(copy)"); 
 }
 
-assert_exception::assert_exception(sp(::base::application) papp, const char * pszFile, long lLine) :
+assert_exception::assert_exception(sp(::axis::application) papp, const char * pszFile, long lLine) :
    element(papp),
    ::call_stack(papp),
-   ::exception::base(papp),
+   ::exception::axis(papp),
    simple_exception(papp)
 {
    
@@ -82,17 +82,17 @@ assert_exception::~assert_exception()
 misc_exception::misc_exception(const misc_exception & e) :
    element(e),
    ::call_stack(e),
-   ::exception::base(e),
+   ::exception::axis(e),
    simple_exception(e),
    m_strMessage(e.m_strMessage)
 {
       printf(":misc(copy)");
 }
 
-misc_exception::misc_exception(sp(::base::application) papp, const char * pszMessage) :
+misc_exception::misc_exception(sp(::axis::application) papp, const char * pszMessage) :
    element(papp),
    ::call_stack(papp),
-   ::exception::base(papp),
+   ::exception::axis(papp),
    simple_exception(papp)
 {
       if(pszMessage == NULL)

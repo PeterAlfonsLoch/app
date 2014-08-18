@@ -11,16 +11,16 @@ namespace colorertake5
        @ingroup common
    */
    class CLASS_DECL_AXIS exception :
-      virtual public ::exception::base
+      virtual public ::exception::axis
    {
    public:
      /** Default constructor
          Creates exception with is_empty message
      */
-     exception(sp(::base::application) papp);
+     exception(sp(::axis::application) papp);
      /** Creates exception with string message
      */
-     exception(sp(::base::application) papp, const string &msg);
+     exception(sp(::axis::application) papp, const string &msg);
      /** Creates exception with included exception information
      */
      exception(const exception &e);

@@ -92,7 +92,7 @@ public:
    ::dispatch  m_dispatchCommand;
 
    command_target_interface();
-   command_target_interface(sp(::base::application) papp);
+   command_target_interface(sp(::axis::application) papp);
 
 
    template < class T >
@@ -152,10 +152,10 @@ public:
    virtual bool on_simple_update(cmd_ui * pcmdui);
 
    //virtual bool on_simple_update(cmd_ui * pcmdui);
-   virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
+   virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
    //virtual bool _001HasCommandHandler(const char * pszId);
 
-   void get_command_signal_array(::base::cmd_msg::e_type etype, ::dispatch::signal_item_ptr_array & signalptra, id id);
+   void get_command_signal_array(::axis::cmd_msg::e_type etype, ::dispatch::signal_item_ptr_array & signalptra, id id);
 
 
    virtual void install_message_handling(::message::dispatch * pdispatch);
@@ -170,7 +170,7 @@ class CLASS_DECL_AXIS command_target :
 {
 public:
    command_target();
-   command_target(sp(::base::application) papp);
+   command_target(sp(::axis::application) papp);
 
    void CommonConstruct();
 
@@ -179,13 +179,13 @@ public:
    void RestoreWaitCursor();       // call after messagebox
 
 
-   virtual bool handle(::base::cmd_msg * pcmdmsg);
+   virtual bool handle(::axis::cmd_msg * pcmdmsg);
 
 
    // Overridables
    // route and dispatch standard command message types
    //   (more sophisticated than OnCommand)
-   //   virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
+   //   virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
 
 
    // Implementation
@@ -236,7 +236,7 @@ public:
    //  (probably a secondary popup menu)
 
 
-   cmd_ui(sp(::base::application) papp);
+   cmd_ui(sp(::axis::application) papp);
 
 
    // Operations to do in ON_UPDATE_COMMAND_UI
@@ -276,7 +276,7 @@ public:
    bool                    m_bRadioChanged;
 
 
-   CTestCmdUI(sp(::base::application) papp);
+   CTestCmdUI(sp(::axis::application) papp);
 
 
    virtual void Enable(bool bOn, ::action::context actioncontext = ::action::source_system);

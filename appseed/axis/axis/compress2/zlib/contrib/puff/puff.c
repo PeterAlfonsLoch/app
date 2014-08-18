@@ -396,21 +396,21 @@ local int construct(struct huffman *h, const short *length, int n)
  * - There are 256 possible lengths (3..258), and so 29 symbols are not enough
  *   to represent all of those.  Lengths 3..10 and 258 are in fact represented
  *   by just a length symbol.  Lengths 11..257 are represented as a symbol and
- *   some number of extra bits that are added as an integer to the base length
- *   of the length symbol.  The number of extra bits is determined by the base
- *   length symbol.  These are in the static arrays below, lens[] for the base
+ *   some number of extra bits that are added as an integer to the axis length
+ *   of the length symbol.  The number of extra bits is determined by the axis
+ *   length symbol.  These are in the static arrays below, lens[] for the axis
  *   lengths and lext[] for the corresponding number of extra bits.
  *
  * - The reason that 258 gets its own symbol is that the longest length is used
  *   often in highly redundant files.  Note that 258 can also be coded as the
- *   base value 227 plus the maximum extra value of 31.  While a good deflate
+ *   axis value 227 plus the maximum extra value of 31.  While a good deflate
  *   should never do this, it is not an error, and should be decoded properly.
  *
  * - If a length is decoded, including its extra bits if any, then it is
  *   followed a distance code.  There are up to 30 distance symbols.  Again
  *   there are many more possible distances (1..32768), so extra bits are added
- *   to a base value represented by the symbol.  The distances 1..4 get their
- *   own symbol, but the rest require extra bits.  The base distances and
+ *   to a axis value represented by the symbol.  The distances 1..4 get their
+ *   own symbol, but the rest require extra bits.  The axis distances and
  *   corresponding number of extra bits are below in the static arrays dist[]
  *   and dext[].
  *
@@ -439,13 +439,13 @@ local int codes(struct state *s,
     int symbol;         /* decoded symbol */
     int len;            /* length for copy */
     unsigned dist;      /* distance for copy */
-    static const short lens[29] = { /* Size base for length codes 257..285 */
+    static const short lens[29] = { /* Size axis for length codes 257..285 */
         3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 17, 19, 23, 27, 31,
         35, 43, 51, 59, 67, 83, 99, 115, 131, 163, 195, 227, 258};
     static const short lext[29] = { /* Extra bits for length codes 257..285 */
         0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2,
         3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0};
-    static const short dists[30] = { /* Offset base for distance codes 0..29 */
+    static const short dists[30] = { /* Offset axis for distance codes 0..29 */
         1, 2, 3, 4, 5, 7, 9, 13, 17, 25, 33, 49, 65, 97, 129, 193,
         257, 385, 513, 769, 1025, 1537, 2049, 3073, 4097, 6145,
         8193, 12289, 16385, 24577};
@@ -604,7 +604,7 @@ local int fixed(struct state *s)
  *   interesting consequence.  Normally if only one symbol is used for a given
  *   code, then in fact that code could be represented with zero bits.  However
  *   in deflate, that code has to be at least one bit.  So for example, if
- *   only a single distance base symbol appears in a block, then it will be
+ *   only a single distance axis symbol appears in a block, then it will be
  *   represented by a single code of length one, in particular one 0 bit.  This
  *   is an incomplete code, since if a 1 bit is received, it has no meaning,
  *   and should result in an error.  So incomplete distance codes of one symbol

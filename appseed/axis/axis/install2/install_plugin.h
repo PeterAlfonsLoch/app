@@ -59,7 +59,7 @@ namespace install
 
 
 
-      plugin(sp(::base::application) papp);
+      plugin(sp(::axis::application) papp);
       virtual ~plugin();
 
 

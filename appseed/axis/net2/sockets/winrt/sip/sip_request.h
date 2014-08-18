@@ -5,7 +5,7 @@ namespace sip
 {
 
 
-   class CLASS_DECL_BASE request :
+   class CLASS_DECL_AXIS request :
       virtual public transaction
    {
    public:
@@ -16,7 +16,7 @@ namespace sip
       http::form           m_form;
 
 
-      request(::base::application * papp);
+      request(::axis::application * papp);
       request(const request& src);
       ~request();
 

@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   scroll_view::scroll_view(sp(::base::application) papp) :
+   scroll_view::scroll_view(sp(::axis::application) papp) :
       element(papp)
    {
 
@@ -194,7 +194,7 @@ namespace user
 
    void scroll_view::_001OnUser9654(signal_details * pobj)
    {
-      SCAST_PTR(::message::base, pbase, pobj);
+      SCAST_PTR(::message::axis, pbase, pobj);
       if(pbase->m_wparam == 0)
       {
          if(pbase->m_lparam == 0)

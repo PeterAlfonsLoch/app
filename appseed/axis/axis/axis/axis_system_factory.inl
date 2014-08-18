@@ -3,7 +3,7 @@
 
 
 template < class CREATABLE_TYPE >
-sp(element) creatable_factory_item < CREATABLE_TYPE > ::create(sp(::base::application) papp)
+sp(element) creatable_factory_item < CREATABLE_TYPE > ::create(sp(::axis::application) papp)
 {
 
    void * pv = NULL;

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace base
+namespace axis
 {
 
    
@@ -28,7 +28,7 @@ namespace base
       flags_ex < e_resource > m_eresourceflagsWarning;
 
 
-      savings(sp(::base::application) papp);
+      savings(sp(::axis::application) papp);
       virtual ~savings();
 
       virtual void save(e_resource eresource);
@@ -50,7 +50,7 @@ namespace base
    };
 
    
-} // namespace base
+} // namespace axis
 
 
 

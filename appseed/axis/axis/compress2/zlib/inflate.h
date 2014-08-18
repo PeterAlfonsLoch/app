@@ -89,7 +89,7 @@ struct inflate_state {
     unsigned long total;        /* protected copy of output count */
     gz_headerp head;            /* where to save gzip header information */
         /* sliding interaction_impl */
-    unsigned wbits;             /* log base 2 of requested interaction_impl size */
+    unsigned wbits;             /* log axis 2 of requested interaction_impl size */
     unsigned wsize;             /* interaction_impl size or zero if not using interaction_impl */
     unsigned whave;             /* valid bytes in the interaction_impl */
     unsigned wnext;             /* interaction_impl write index */

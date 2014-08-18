@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-not_installed::not_installed(sp(::base::application) papp, const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema) :
+not_installed::not_installed(sp(::axis::application) papp, const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema) :
    element(papp),
    ::call_stack(papp),
-   ::exception::base(papp)
+   ::exception::axis(papp)
 {
       string str;
    m_strVersion         = pszVersion;
@@ -26,7 +26,7 @@ not_installed::not_installed(sp(::base::application) papp, const char * pszVersi
 not_installed::not_installed(const not_installed & e) :
    element(e),
    ::call_stack(e),
-   ::exception::base(e)
+   ::exception::axis(e)
 {
       printf(":not_installed(copy)");
    m_strVersion         = e.m_strVersion;

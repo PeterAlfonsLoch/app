@@ -6,7 +6,7 @@ namespace linux
 
 
    class CLASS_DECL_LINUX main_init_data :
-      public ::base::main_init_data
+      public ::axis::main_init_data
    {
    public:
 
@@ -20,7 +20,7 @@ namespace linux
 
 
    class CLASS_DECL_LINUX application :
-      virtual public ::base::application
+      virtual public ::axis::application
    {
    public:
 
@@ -32,7 +32,7 @@ namespace linux
       main_init_data *     m_pmaininitdata;
 
 
-      application(sp(::base::application) papp);
+      application(sp(::axis::application) papp);
       virtual ~application();
 
       virtual HINSTANCE GetHinstance();
@@ -49,7 +49,7 @@ namespace linux
 
       virtual void SetCurrentHandles();
 
-      virtual bool set_main_init_data(::base::main_init_data * pdata);
+      virtual bool set_main_init_data(::axis::main_init_data * pdata);
 
       virtual bool process_initialize();
       virtual bool initialize1();
@@ -138,7 +138,7 @@ namespace linux
       virtual int32_t exit_instance(); // default will 'delete this'
 
       // Advanced: exception handling
-      virtual LRESULT ProcessWndProcException(::exception::base* e, const MESSAGE* pMsg);
+      virtual LRESULT ProcessWndProcException(::exception::axis* e, const MESSAGE* pMsg);
 
       // Advanced: handling messages sent to message filter hook
       virtual bool ProcessMessageFilter(int32_t code, LPMESSAGE lpMsg);

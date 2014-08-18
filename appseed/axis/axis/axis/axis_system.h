@@ -15,12 +15,12 @@ typedef ::map < sp(element),sp(element),sp(element),sp(element) > element_map;
 typedef ::map < sp(element),sp(element),ptra,ptra > map_many;
 
 
-namespace base
+namespace axis
 {
 
 
    class CLASS_DECL_AXIS system:
-      virtual public ::base::application
+      virtual public ::axis::application
    {
    public:
 
@@ -31,7 +31,7 @@ namespace base
       public:
 
          sp(::user::interaction)                      m_pui;
-         ::base::system_window ^                      m_pwindow;
+         ::axis::system_window ^                      m_pwindow;
 
 
       };
@@ -62,7 +62,7 @@ namespace base
       sp(base_factory)                             m_pfactory;
       sp(class ::xml::departament)                 m_pxml;
       const id_pool                                m_cidpool;
-      sp(class ::base::log)                        m_plog;
+      sp(class ::axis::log)                        m_plog;
       sp(math::math)                               m_pmath;
       sp(geometry::geometry)                       m_pgeometry;
 
@@ -81,9 +81,8 @@ namespace base
       string_map < string_to_int >                 m_mapNameToEnum;
       ::user::window_draw *                        m_ptwf;
       sp(::user::str)                              m_puserstr;
-      sp(::install::install)                       m_spinstall;
-      ::base::os_sp                                m_spos;
-      spa(::base::session)                         m_basesessionptra;
+      ::axis::os_sp                                m_spos;
+      spa(::axis::session)                         m_basesessionptra;
       sp(colorertake5::ParserFactory)              m_pparserfactory;
 
 
@@ -98,7 +97,7 @@ namespace base
 
       sp(mutex)                                    m_spmutexFactory;
 
-      ::base::library                              m_libraryDraw2d;
+      ::axis::library                              m_libraryDraw2d;
 
 
       bool                                         m_bMatterFromHttpCache;
@@ -126,7 +125,7 @@ namespace base
       {
       public:
 
-         interaction_impl(sp(::base::application) papp);
+         interaction_impl(sp(::axis::application) papp);
 
          void install_message_handling(::message::dispatch * pdispath);
 
@@ -146,7 +145,7 @@ namespace base
 #endif
 
 
-      system(sp(::base::application) papp);
+      system(sp(::axis::application) papp);
       virtual ~system();
 
 
@@ -161,22 +160,21 @@ namespace base
       virtual int32_t exit_instance();
       virtual bool finalize();
 
-      spa(::base::session)                         & basesessionptra();
+      spa(::axis::session)                         & basesessionptra();
       application_ptra                                get_appptra();
 
 
 
-      class ::base::os                             & os();
+      class ::axis::os                             & os();
       class base_factory                           & factory();
       ::xml::departament                           & xml();
       class ::str::base64                          & base64();
 
-      class ::base::log                            & log();
+      class ::axis::log                            & log();
 
       class ::machine_event_central                & machine_event_central();
       ::datetime::departament                      & datetime();
       ::user::str                                  & str();
-      ::install::install                           & install() { return *m_spinstall; }
 
       geometry::geometry                           & geometry() { return *m_pgeometry; }
       ::colorertake5::ParserFactory                & parser_factory();
@@ -196,11 +194,11 @@ namespace base
 
 
 
-      using ::base::application::alloc;
-      virtual sp(element) alloc(sp(::base::application) papp,sp(type) info);
-      virtual sp(element) alloc(sp(::base::application) papp,const class id & idType);
+      using ::axis::application::alloc;
+      virtual sp(element) alloc(sp(::axis::application) papp,sp(type) info);
+      virtual sp(element) alloc(sp(::axis::application) papp,const class id & idType);
 
-      virtual sp(element) on_alloc(sp(::base::application) papp,sp(type) info);
+      virtual sp(element) on_alloc(sp(::axis::application) papp,sp(type) info);
       virtual sp(element) clone();
       template < class T >
       sp(T) clone(sp(T) p)
@@ -249,10 +247,10 @@ namespace base
       sp(::user::window_draw)               get_twf();
 
 
-      virtual void on_allocation_error(sp(::base::application) papp,sp(type) info);
-      //   sp(element) alloc(sp(::base::application) papp, sp(type) info);
-      sp(element) alloc(sp(::base::application) papp,const std_type_info & info);
-      //   virtual sp(element) on_alloc(sp(::base::application) papp, sp(type) info);
+      virtual void on_allocation_error(sp(::axis::application) papp,sp(type) info);
+      //   sp(element) alloc(sp(::axis::application) papp, sp(type) info);
+      sp(element) alloc(sp(::axis::application) papp,const std_type_info & info);
+      //   virtual sp(element) on_alloc(sp(::axis::application) papp, sp(type) info);
 
 
       static inline class id id(const ::std_type_info & info);
@@ -348,7 +346,7 @@ namespace base
 
       virtual sp(::user::document) place_hold(sp(::user::interaction) pui);
 
-      virtual sp(::base::session) query_session(index iEdge);
+      virtual sp(::axis::session) query_session(index iEdge);
 
       virtual bool initialize_log(const char * pszId);
 
@@ -403,7 +401,7 @@ namespace base
    };
 
 
-} // namespace base
+} // namespace axis
 
 
 
@@ -432,7 +430,7 @@ inline ::file::input_stream & operator >>(::file::input_stream &  _Istr,bitset<_
 
 
 
-void CLASS_DECL_AXIS __start_system(::base::system * psystem);
+void CLASS_DECL_AXIS __start_system(::axis::system * psystem);
 
 
 

@@ -92,7 +92,7 @@ namespace data
       sp(::user::document)              m_pdocument;
 
 
-      data(sp(::base::application) papp);
+      data(sp(::axis::application) papp);
       virtual ~data();
 
 

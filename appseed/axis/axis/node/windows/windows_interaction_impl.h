@@ -39,7 +39,7 @@ namespace windows
 
 
       interaction_impl();
-      interaction_impl(sp(::base::application) papp);
+      interaction_impl(sp(::axis::application) papp);
       virtual ~interaction_impl();
 
 
@@ -70,7 +70,7 @@ namespace windows
       //virtual sp(::user::interaction) get_owner();
       //virtual void set_owner(sp(::user::interaction) pOwnerWnd);
 
-      virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
 
       void _002OnDraw(::draw2d::graphics * pdc);
 
@@ -413,14 +413,14 @@ namespace windows
       // dialog support
       void UpdateDialogControls(command_target* pTarget,bool bDisableIfNoHndler);
       void CenterWindow(sp(::user::interaction) pAlternateOwner = NULL);
-      //virtual id   RunModalLoop(uint32_t dwFlags = 0,::base::live_object * pliveobject = NULL);
+      //virtual id   RunModalLoop(uint32_t dwFlags = 0,::axis::live_object * pliveobject = NULL);
       virtual bool ContinueModal(int32_t iLevel);
       virtual void EndModalLoop(id nResult);
       virtual void EndAllModalLoops(id nResult);
 
       // Window-Management message handler member functions
-      virtual bool OnCommand(::message::base * pbase);
-      virtual bool OnNotify(::message::base * pbase);
+      virtual bool OnCommand(::message::axis * pbase);
+      virtual bool OnNotify(::message::axis * pbase);
 
       void OnActivate(UINT nState,::window_sp pWndOther,bool bMinimized);
       void OnActivateApp(bool bActive,uint32_t dwThreadID);
@@ -590,10 +590,10 @@ namespace windows
       virtual void PostNcDestroy();
 
       // for notifications from parent
-      virtual bool OnChildNotify(::message::base * pbase);
+      virtual bool OnChildNotify(::message::axis * pbase);
       // return TRUE if parent should not process this message
-      virtual bool ReflectChildNotify(::message::base * pbase);
-      static bool ReflectMessage(oswindow oswindow_Child,::message::base * pbase);
+      virtual bool ReflectChildNotify(::message::axis * pbase);
+      static bool ReflectMessage(oswindow oswindow_Child,::message::axis * pbase);
 
       // Implementation
       virtual bool CheckAutoCenter();

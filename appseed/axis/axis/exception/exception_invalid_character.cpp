@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-invalid_character::invalid_character(sp(::base::application) papp, const char * pszMessage) :
+invalid_character::invalid_character(sp(::axis::application) papp, const char * pszMessage) :
    element(papp),
    ::call_stack(papp),
-   ::exception::base(papp),
+   ::exception::axis(papp),
    simple_exception(papp, pszMessage)
 {
       if(pszMessage == NULL)

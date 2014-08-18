@@ -59,11 +59,11 @@ void ssl_sigpipe_handle( int x ) {
 
    RAND_METHOD rand_meth;
 
-   ::base::system * g_psystem = NULL;
+   ::axis::system * g_psystem = NULL;
 
 
 
-   SSLInitializer::SSLInitializer(sp(::base::application) papp) :
+   SSLInitializer::SSLInitializer(sp(::axis::application) papp) :
       element(papp)
    {
 

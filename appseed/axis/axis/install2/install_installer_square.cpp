@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-CLASS_DECL_BASE bool send_short_message_to_installer(const char * psz, bool bLaunch);
-CLASS_DECL_BASE void installer_call_sync(const char * path, const char * param);
+CLASS_DECL_AXIS bool send_short_message_to_installer(const char * psz, bool bLaunch);
+CLASS_DECL_AXIS void installer_call_sync(const char * path, const char * param);
 
-CLASS_DECL_BASE char * szSpabootInstall = NULL;
+CLASS_DECL_AXIS char * szSpabootInstall = NULL;
 
 namespace install
 {
@@ -43,7 +43,7 @@ void installer_call_sync(const char * path, const char * param)
 
 
 
-CLASS_DECL_BASE bool send_short_message_to_installer(const char * psz, bool bLaunch)
+CLASS_DECL_AXIS bool send_short_message_to_installer(const char * psz, bool bLaunch)
 {
 
    

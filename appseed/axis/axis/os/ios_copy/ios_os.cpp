@@ -1,6 +1,6 @@
 //
 //  macos_os.cpp
-//  base
+//  axis
 //
 //  Created by Camilo Sasuke Tsumanuma on 2013-09-17.
 //
@@ -9,7 +9,7 @@
 
 
 
-CLASS_DECL_BASE bool _istlead(int32_t ch)
+CLASS_DECL_AXIS bool _istlead(int32_t ch)
 {
    
    return false;

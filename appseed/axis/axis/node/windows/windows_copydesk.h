@@ -6,13 +6,13 @@ namespace windows
 
 
    class CLASS_DECL_AXIS copydesk : 
-      virtual public ::base::copydesk,
+      virtual public ::axis::copydesk,
       virtual public ::user::interaction
    {
    public:
 
       
-      copydesk(sp(::base::application) papp);
+      copydesk(sp(::axis::application) papp);
       virtual ~copydesk();
 
       

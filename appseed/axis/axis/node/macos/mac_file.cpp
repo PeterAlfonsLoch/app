@@ -24,7 +24,7 @@ namespace mac
 {
    
    
-   file::file(::base::application * papp) :
+   file::file(::axis::application * papp) :
    element(papp)
    {
       
@@ -34,7 +34,7 @@ namespace mac
       
    }
    
-   file::file(::base::application * papp, int32_t hFile) :
+   file::file(::axis::application * papp, int32_t hFile) :
    element(papp)
    {
       
@@ -44,7 +44,7 @@ namespace mac
       
    }
    
-   file::file(::base::application * papp, const char * lpszFileName, UINT nOpenFlags) :
+   file::file(::axis::application * papp, const char * lpszFileName, UINT nOpenFlags) :
    element(papp)
    {
       
@@ -576,13 +576,13 @@ namespace mac
    namespace file_exception
    {
    
-   void ThrowOsError(::base::application * papp, LONG lOsError, const char * lpszFileName /* = NULL */)
+   void ThrowOsError(::axis::application * papp, LONG lOsError, const char * lpszFileName /* = NULL */)
    {
       if (lOsError != 0)
          vfxThrowFileException(papp, ::mac::file_exception::OsErrorToException(lOsError), lOsError, lpszFileName);
    }
    
-   void ThrowErrno(::base::application * papp, int32_t nErrno, const char * lpszFileName /* = NULL */)
+   void ThrowErrno(::axis::application * papp, int32_t nErrno, const char * lpszFileName /* = NULL */)
    {
       if (nErrno != 0)
          vfxThrowFileException(papp, ::mac::file_exception::ErrnoToException(nErrno), errno, lpszFileName);
@@ -761,7 +761,7 @@ namespace mac
          } //      namespace file_exception
    
    
-   // IMPLEMENT_DYNAMIC(WinFileException, ::exception::base)
+   // IMPLEMENT_DYNAMIC(WinFileException, ::exception::axis)
    
    /////////////////////////////////////////////////////////////////////////////
    
@@ -1681,7 +1681,7 @@ CLASS_DECL_mac bool vfxResolveShortcut(string & strTarget, const char * pszSourc
 /////////////////////////////////////////////////////////////////////////////
 // WinFileException helpers
 
-void CLASS_DECL_mac vfxThrowFileException(::base::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
+void CLASS_DECL_mac vfxThrowFileException(::axis::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
 {
 #ifdef DEBUG
    const char * lpsz;

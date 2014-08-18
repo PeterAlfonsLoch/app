@@ -14,7 +14,7 @@ namespace mac
 
    
    class CLASS_DECL_mac main_init_data :
-      public ::base::main_init_data
+      public ::axis::main_init_data
    {
    public:
        
@@ -29,7 +29,7 @@ namespace mac
 
    
    class CLASS_DECL_mac application :
-      virtual public ::base::application
+      virtual public ::axis::application
    {
    public:
 
@@ -40,7 +40,7 @@ namespace mac
       main_init_data *     m_pmaininitdata;
       
       
-      application(::base::application * papp);
+      application(::axis::application * papp);
       virtual ~application();
       
       virtual HINSTANCE GetHinstance();
@@ -57,7 +57,7 @@ namespace mac
       
       virtual void SetCurrentHandles();
       
-      virtual bool set_main_init_data(::base::main_init_data * pdata);
+      virtual bool set_main_init_data(::axis::main_init_data * pdata);
       
       virtual bool process_initialize();
       virtual bool initialize1();

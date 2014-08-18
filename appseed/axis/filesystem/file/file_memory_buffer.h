@@ -24,10 +24,10 @@ namespace file
    public:
    
 
-      memory_buffer(sp(::base::application) papp, ::primitive::memory_size iSize = 0);
-      memory_buffer(sp(::base::application) papp, void * pMemory, ::primitive::memory_size dwSize);
-      memory_buffer(sp(::base::application) papp, const memory_buffer & memoryfile);
-      memory_buffer(sp(::base::application) papp, ::primitive::memory_base * pmemory);
+      memory_buffer(sp(::axis::application) papp, ::primitive::memory_size iSize = 0);
+      memory_buffer(sp(::axis::application) papp, void * pMemory, ::primitive::memory_size dwSize);
+      memory_buffer(sp(::axis::application) papp, const memory_buffer & memoryfile);
+      memory_buffer(sp(::axis::application) papp, ::primitive::memory_base * pmemory);
       virtual ~memory_buffer();
 
 

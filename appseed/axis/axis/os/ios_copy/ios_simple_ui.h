@@ -8,7 +8,7 @@ namespace os
 {
 
 
-   class CLASS_DECL_BASE simple_ui :
+   class CLASS_DECL_AXIS simple_ui :
       virtual public ::simple_ui::interaction,
       virtual public ::boot_window
    {

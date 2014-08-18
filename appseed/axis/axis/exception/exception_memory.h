@@ -7,8 +7,8 @@ class CLASS_DECL_AXIS memory_exception :
 public:
 
 
-   memory_exception(sp(::base::application) papp);
-   memory_exception(sp(::base::application) papp, const char * pszMessage);
+   memory_exception(sp(::axis::application) papp);
+   memory_exception(sp(::axis::application) papp, const char * pszMessage);
    virtual ~memory_exception();
 
 
@@ -31,7 +31,7 @@ namespace std
       bad_alloc() : 
          element(::get_thread_app()), 
          ::call_stack(::get_thread_app()), 
-         ::exception::base(::get_thread_app()),
+         ::exception::axis(::get_thread_app()),
          simple_exception(::get_thread_app()),
          memory_exception(::get_thread_app())
       {

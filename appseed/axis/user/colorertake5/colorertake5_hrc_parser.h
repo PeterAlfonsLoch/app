@@ -13,20 +13,20 @@ namespace colorertake5
    {
    public:
 
-      HRCParserException(sp(::base::application) papp) :
+      HRCParserException(sp(::axis::application) papp) :
          element(papp),
          ::call_stack(papp),
-         ::exception::base(papp),
+         ::exception::axis(papp),
          ::colorertake5::exception(papp)
       {
 
       }
 
 
-      HRCParserException(sp(::base::application) papp, const string & msg) :
+      HRCParserException(sp(::axis::application) papp, const string & msg) :
          element(papp),
          ::call_stack(papp),
-         ::exception::base(papp),
+         ::exception::axis(papp),
          ::colorertake5::exception(papp)
       {
          m_strMessage += "colorertake5::HRCParserException: " + msg;
@@ -89,7 +89,7 @@ namespace colorertake5
       */
       virtual class region *getRegion(const char * name) = 0;
 
-      /** HRC base version.
+      /** HRC axis version.
       Usually this is the 'version' attribute of 'hrc' element
       of the first loaded HRC spfile->
       */

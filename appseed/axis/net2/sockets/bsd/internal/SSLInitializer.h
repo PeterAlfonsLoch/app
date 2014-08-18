@@ -40,7 +40,7 @@ namespace sockets
          bio_err
          create random file
       */
-      SSLInitializer(sp(::base::application) papp);
+      SSLInitializer(sp(::axis::application) papp);
 
       /**
          remove random file

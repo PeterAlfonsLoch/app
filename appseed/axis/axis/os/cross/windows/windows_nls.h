@@ -857,7 +857,7 @@ extern "C" {
 //
 #define MUI_LANGUAGE_ID                     0x4      // Use traditional language ID convention
 #define MUI_LANGUAGE_NAME                   0x8      // Use ISO language (culture) name convention
-#define MUI_MERGE_SYSTEM_FALLBACK           0x10     // GetThreadPreferredUILanguages merges in parent and base languages
+#define MUI_MERGE_SYSTEM_FALLBACK           0x10     // GetThreadPreferredUILanguages merges in parent and axis languages
 #define MUI_MERGE_USER_FALLBACK             0x20     // GetThreadPreferredUILanguages merges in user preferred languages
 #define MUI_UI_FALLBACK                     MUI_MERGE_SYSTEM_FALLBACK | MUI_MERGE_USER_FALLBACK
 #define MUI_THREAD_LANGUAGES                0x40     // GetThreadPreferredUILanguages merges in user preferred languages
@@ -1100,9 +1100,9 @@ enum SYSGEOCLASS {
 
 typedef enum _NORM_FORM {
     NormalizationOther  = 0,       // Not supported
-    NormalizationC      = 0x1,     // Each base plus combining characters to the canonical precomposed equivalent.
+    NormalizationC      = 0x1,     // Each axis plus combining characters to the canonical precomposed equivalent.
     NormalizationD      = 0x2,     // Each precomposed character to its canonical decomposed equivalent.
-    NormalizationKC     = 0x5,     // Each base plus combining characters to the canonical precomposed
+    NormalizationKC     = 0x5,     // Each axis plus combining characters to the canonical precomposed
                                    //   equivalents and all compatibility characters to their equivalents.
     NormalizationKD     = 0x6      // Each precomposed character to its canonical decomposed equivalent
                                    //   and all compatibility characters to their equivalents.

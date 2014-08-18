@@ -5,14 +5,14 @@ namespace sockets
 {
 
 
-   EventHandler::EventHandler(::base::application * papp, logger *p) :
+   EventHandler::EventHandler(::axis::application * papp, logger *p) :
       element(papp),
       socket_handler(papp, p), m_quit(false), m_socket(NULL)
    {
    }
 
 
-   EventHandler::EventHandler(::base::application * papp, mutex & m,logger *p) :
+   EventHandler::EventHandler(::axis::application * papp, mutex & m,logger *p) :
       element(papp),
       socket_handler(papp, m, p),
       m_quit(false), m_socket(NULL)

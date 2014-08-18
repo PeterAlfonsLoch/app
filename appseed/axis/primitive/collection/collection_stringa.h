@@ -10,7 +10,7 @@ class CLASS_DECL_AXIS stringa :
 public:
 
 
-   stringa(sp(::base::application) papp = NULL);
+   stringa(sp(::axis::application) papp = NULL);
    stringa(const char * psz);
    stringa(const string & str);
    stringa(const var & var);

@@ -413,7 +413,7 @@ namespace file
 
                      ::file::input_stream is(spfile);
 
-                     System.file().output(m_pbaseapp, strFile, &System.compress(), &::base::compress::null, is);
+                     System.file().output(m_pbaseapp, strFile, &System.compress(), &::axis::compress::null, is);
 
                   }
                   catch (...)
@@ -486,7 +486,7 @@ namespace file
       else if(::str::begins_eat_ci(strPath, "matter://"))
       {
 
-         sp(::base::application) papp = NULL;
+         sp(::axis::application) papp = NULL;
 
          if(System.url().get_server("matter://" + strPath) == m_pbaseapp->m_strAppName)
          {

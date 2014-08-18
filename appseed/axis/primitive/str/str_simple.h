@@ -230,7 +230,7 @@ inline string_data * string_manager::GetNilString()
 
 
 
-namespace base
+namespace axis
 {
 
    namespace str
@@ -241,7 +241,7 @@ namespace base
 
    } // namespace str
 
-} // namespace base
+} // namespace axis
 
 
 

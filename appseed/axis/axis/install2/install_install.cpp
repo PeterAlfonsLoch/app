@@ -11,9 +11,9 @@ namespace install
 {
 
 
-   install::install(sp(::base::application) papp) :
+   install::install(sp(::axis::application) papp) :
       element(papp),
-      ::base::departament(papp),
+      ::axis::departament(papp),
       //m_mutex(papp, false, "Global\\spa_boot_install"),
       m_mutex(papp),
       m_trace(papp)
@@ -587,11 +587,11 @@ namespace install
          // os.dll, is not a good indicator anymore, and worst, can potentially make
          // os.dll to be unloaded and make the dependant instatiated browser plugins
          // to malfunction. Using only core.dll test only by now.
-         //::base::library libraryOs(get_app());
+         //::axis::library libraryOs(get_app());
          //m_bCa2Installed = libraryOs.open(dir::path(strStage, "os")); 
          //if (m_bCa2Installed)
          //{
-         ::base::library libraryCa2(get_app());
+         ::axis::library libraryCa2(get_app());
          m_bCa2Installed = libraryCa2.open(dir::path(strStage, "core"));
          if (m_bCa2Installed)
          {
@@ -1233,7 +1233,7 @@ namespace install
 
          trace().rich_trace("***Verifying installer");
 
-         string strPathA(System.dir().path(System.dir().name(strPath), "base.dll"));
+         string strPathA(System.dir().path(System.dir().name(strPath), "axis.dll"));
          string strPathB(System.dir().path(System.dir().name(strPath), "msvcp120d.dll"));
          string strPathC(System.dir().path(System.dir().name(strPath), "msvcr120d.dll"));
          string strPathD(System.dir().path(System.dir().name(strPath), "draw2d_gdiplus.dll"));
@@ -1241,7 +1241,7 @@ namespace install
 
          if (!file_exists_dup(strPath)
             || !System.install().is_file_ok(strPath, "app.install.exe", strFormatBuild)
-            || !System.install().is_file_ok(strPathA, "base.dll", strFormatBuild)
+            || !System.install().is_file_ok(strPathA, "axis.dll", strFormatBuild)
             || !System.install().is_file_ok(strPathB, "msvcp120d.dll", strFormatBuild)
             || !System.install().is_file_ok(strPathC, "msvcr120d.dll", strFormatBuild)
             || !System.install().is_file_ok(strPathD, "draw2d_gdiplus.dll", strFormatBuild)
@@ -1253,7 +1253,7 @@ namespace install
             stringa straFile;
 
             straFile.add("app.install.exe");
-            straFile.add("base.dll");
+            straFile.add("axis.dll");
             straFile.add("msvcp120d.dll");
             straFile.add("msvcr120d.dll");
             straFile.add("draw2d_gdiplus.dll");

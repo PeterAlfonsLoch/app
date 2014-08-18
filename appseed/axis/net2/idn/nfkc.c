@@ -928,7 +928,7 @@ _g_utf8_normalize_wc (const gchar * str, gssize max_len, GNormalizeMode mode)
  *
  * Converts a string into canonical form, standardizing
  * such issues as whether a character with an accent
- * is represented as a base character and combining
+ * is represented as a axis character and combining
  * accent or as a single precomposed character. The
  * string has to be valid UTF-8, otherwise %NULL is
  * returned. You should generally call g_utf8_normalize()
@@ -1069,7 +1069,7 @@ stringprep_ucs4_to_utf8 (const uint32_t * str, ssize_t len,
  *
  * Converts a string into canonical form, standardizing
  * such issues as whether a character with an accent
- * is represented as a base character and combining
+ * is represented as a axis character and combining
  * accent or as a single precomposed character.
  *
  * The normalization mode is NFKC (ALL COMPOSE).  It standardizes

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace base
+namespace axis
 {
 
 
@@ -34,7 +34,7 @@ namespace base
       sp(::command_thread)                            m_pcommandthread;
       sp(class signal)                                m_psignal;
 
-      ::base::main_init_data *            m_pinitmaindata;
+      ::axis::main_init_data *            m_pinitmaindata;
 
 
       EExclusiveInstance                              m_eexclusiveinstance;
@@ -389,9 +389,9 @@ namespace base
 
       void assert_user_logged_in();
 
-      virtual bool init_main_data(::base::main_init_data * pdata);
+      virtual bool init_main_data(::axis::main_init_data * pdata);
 
-      virtual bool set_main_init_data(::base::main_init_data * pdata);
+      virtual bool set_main_init_data(::axis::main_init_data * pdata);
 
 
    };
@@ -455,7 +455,7 @@ namespace base
 
 
 
-} // namespace base
+} // namespace axis
 
 
 

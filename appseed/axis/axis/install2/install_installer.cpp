@@ -113,7 +113,7 @@ namespace install
 
 
 
-   installer::installer(sp(::base::application) papp) :
+   installer::installer(sp(::axis::application) papp) :
       element(papp),
 
       m_mutex(papp),
@@ -607,13 +607,13 @@ RetryHost:
          uint_array dwa;
 #ifndef METROWIN
 #ifdef X86
-         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\base.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\axis.dll"));
          dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\core.dll"));
          dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\os.dll"));
          //dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\npca2.dll"));
          //dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\iexca2.dll"));
 #else
-         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x64\\base.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x64\\axis.dll"));
          dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x64\\core.dll"));
          dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x64\\os.dll"));
          //dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x64\\npca2.dll"));
@@ -3543,7 +3543,7 @@ RetryBuildNumber:
    }
 
 
-   installer::launcher::launcher(sp(::base::application) papp, const char * pszVersion, const char * pszBuild) :
+   installer::launcher::launcher(sp(::axis::application) papp, const char * pszVersion, const char * pszBuild) :
       element(papp)
    {
 
@@ -3634,7 +3634,7 @@ RetryBuildNumber:
       //::SetDllDirectory(dir::path(dir::element(), "stage\\" + strPlatform));
 #endif
 
-      ::base::library libraryOs(get_app());
+      ::axis::library libraryOs(get_app());
 
       libraryOs.open(dir::path(dir::element(), "stage\\" + strPlatform + "\\app_core"));
 

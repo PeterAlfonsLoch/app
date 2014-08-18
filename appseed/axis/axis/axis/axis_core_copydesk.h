@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace base
+namespace axis
 {
 
 
@@ -11,7 +11,7 @@ namespace base
    public:
 
 
-      copydesk(sp(::base::application) papp);
+      copydesk(sp(::axis::application) papp);
       virtual ~copydesk();
 
 
@@ -37,7 +37,7 @@ namespace base
    typedef smart_pointer < copydesk > copydesk_sp;
 
 
-} // namespace base
+} // namespace axis
 
 
 

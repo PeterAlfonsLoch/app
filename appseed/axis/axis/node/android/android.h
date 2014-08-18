@@ -3,7 +3,7 @@
 
 string get_error_message(DWORD dwError);
 
-::base::application *     win_instantiate_application(::base::application * pappSystem, const char * pszId);
+::axis::application *     win_instantiate_application(::axis::application * pappSystem, const char * pszId);
 
 /////////////////////////////////////////////////////////////////////////////
 // explicit initialization for general purpose classes
@@ -82,7 +82,7 @@ WINBOOL GetMessage(
 int32_t CLASS_DECL_AXIS __android_main(int32_t argc, char * argv[]);
 
 
-CLASS_DECL_AXIS void vfxThrowFileException(sp(::base::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
+CLASS_DECL_AXIS void vfxThrowFileException(sp(::axis::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
 
 
 #include "android_internal.h"

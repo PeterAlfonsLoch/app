@@ -101,7 +101,7 @@ namespace android
 
    }
 
-   interaction_impl::interaction_impl(sp(::base::application) papp) :
+   interaction_impl::interaction_impl(sp(::axis::application) papp) :
       element(papp)
    {
       m_pcallback = NULL;
@@ -1001,8 +1001,8 @@ d.unlock();
 #ifdef DEBUG
 //            sp(::user::interaction) pWndPermanent =  (pMap->lookup_permanent(hWndOrig));;
   //          ASSERT(pWndPermanent == NULL);
-            // It is important to call base class, including ca2 core
-            // base classes implementation of install_message_handling
+            // It is important to call axis class, including ca2 core
+            // axis classes implementation of install_message_handling
             // inside derived class install_message_handling
 #endif
          }
@@ -1368,7 +1368,7 @@ d.unlock();
 
 
 
-   bool interaction_impl::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
+   bool interaction_impl::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
    {
       if(command_target_interface::_001OnCmdMsg(pcmdmsg))
          return TRUE;
@@ -1401,7 +1401,7 @@ d.unlock();
 
    void interaction_impl::message_handler(::signal_details * pobj)
    {
-      SCAST_PTR(::message::base, pbase, pobj);
+      SCAST_PTR(::message::axis, pbase, pobj);
 
       if(m_pui != NULL)
       {
@@ -1428,7 +1428,7 @@ d.unlock();
       {
       if(pbase->m_wparam == BERGEDGE_GETAPP)
       {
-      sp(::base::application)* ppapp= (sp(::base::application)*) pbase->m_lparam;
+      sp(::axis::application)* ppapp= (sp(::axis::application)*) pbase->m_lparam;
       *ppapp = get_app();
       pbase->m_bRet = true;
       return;
@@ -2849,7 +2849,7 @@ return 0;
       ASSERT(puiStop == NULL || puiStop->IsWindow());
       ASSERT(pobj != NULL);
 
-      SCAST_PTR(::message::base, pbase, pobj);
+      SCAST_PTR(::message::axis, pbase, pobj);
       // walk from the target interaction_impl up to the hWndStop interaction_impl checking
       //  if any interaction_impl wants to translate this message
 
@@ -3156,7 +3156,7 @@ return 0;
       oswindow m_hwnd;
       HDC m_hdc;
 
-      print_window(sp(::base::application) papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
+      print_window(sp(::axis::application) papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
          element(papp),
          m_event(papp)
 
@@ -3164,7 +3164,7 @@ return 0;
          m_event.ResetEvent();
          m_hwnd = hwnd;
          m_hdc = hdc;
-         __begin_thread(papp, &print_window::s_print_window, (LPVOID) this, ::base::scheduling_priority_normal);
+         __begin_thread(papp, &print_window::s_print_window, (LPVOID) this, ::axis::scheduling_priority_normal);
          if(m_event.wait(millis(dwTimeout)).timeout())
          {
             TRACE("print_window::time_out");
@@ -3385,7 +3385,7 @@ throw not_implemented(get_app());
 
 //throw not_implemented(get_app());
 
-//      SCAST_PTR(::message::base, pbase, pobj);
+//      SCAST_PTR(::message::axis, pbase, pobj);
 //
 //      PAINTSTRUCT paint;
 //      memset(&paint, 0, sizeof(paint));
@@ -3557,7 +3557,7 @@ throw not_implemented(get_app());
    ASSERT(!bOK);
    // Note: DELETE_EXCEPTION_(e) not required
    }
-   catch(::exception::base * pe)
+   catch(::exception::axis * pe)
    {
    // validation failed due to OOM or other resource failure
    //e->ReportError(MB_ICONEXCLAMATION, __IDP_INTERNAL_FAILURE);
@@ -3841,7 +3841,7 @@ throw not_implemented(get_app());
 
 
 //
-//   id interaction_impl::RunModalLoop(DWORD dwFlags, ::base::live_object * pliveobject)
+//   id interaction_impl::RunModalLoop(DWORD dwFlags, ::axis::live_object * pliveobject)
 //   {
 //      // for tracking the idle time state
 //      bool bIdle = TRUE;
@@ -3854,8 +3854,8 @@ throw not_implemented(get_app());
 //      m_iModalCount++;
 //
 //      m_iaModalThread.add(::GetCurrentThreadId());
-//      sp(::base::application) pappThis1 =  (m_pbaseapp->m_p);
-//      sp(::base::application) pappThis2 =  (m_pbaseapp);
+//      sp(::axis::application) pappThis1 =  (m_pbaseapp->m_p);
+//      sp(::axis::application) pappThis2 =  (m_pbaseapp);
 //
 //            //Display * d = XOpenDisplay(NULL);
 //            //XEvent  e;
@@ -4118,7 +4118,7 @@ throw not_implemented(get_app());
    }
 
 
-   /*   view_update_hint::view_update_hint(sp(::base::application) papp) :
+   /*   view_update_hint::view_update_hint(sp(::axis::application) papp) :
    element(papp)
    {
    }
@@ -4470,7 +4470,7 @@ throw not_implemented(get_app());
    }
 
 
-   /*   guie_message_wnd::guie_message_wnd(sp(::base::application) papp) :
+   /*   guie_message_wnd::guie_message_wnd(sp(::axis::application) papp) :
    element(papp)
    {
    m_pguieForward = NULL;
@@ -4704,7 +4704,7 @@ throw not_implemented(get_app());
    LRESULT interaction_impl::send_message(UINT message, WPARAM wparam, lparam lparam)
    {
 
-      ::ca::smart_pointer < ::message::base > spbase;
+      ::ca::smart_pointer < ::message::axis > spbase;
 
       spbase =get_base(this, message, wparam, lparam);
 
@@ -5863,7 +5863,7 @@ if(psurface == g_cairosurface)
 
    void interaction_impl::_001OnSetCursor(::signal_details * pobj)
    {
-      SCAST_PTR(::message::base, pbase, pobj);
+      SCAST_PTR(::message::axis, pbase, pobj);
       if(session().get_cursor() != NULL
          && session().get_cursor()->m_ecursor != ::visual::cursor_system)
       {
@@ -6197,7 +6197,7 @@ if(psurface == g_cairosurface)
 
       // catch exceptions thrown outside the scope of a CALLBACK
       // in debug builds and warn the ::fontopus::user.
-//      ::ca2::smart_pointer < ::message::base > spbase;
+//      ::ca2::smart_pointer < ::message::axis > spbase;
 //
 //      spbase(pinteraction->get_base(pinteraction, nMsg, wparam, lparam));
 //
@@ -6237,7 +6237,7 @@ if(psurface == g_cairosurface)
 //         }
 //         return -1;
 //      }
-//      catch(::exception::base * pe)
+//      catch(::exception::axis * pe)
 //      {
 //         __process_window_procedure_exception(pe, spbase);
 //         //         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Uncaught exception in message_handler (returning %ld).\n", spbase->get_lresult());
@@ -6439,7 +6439,7 @@ if(psurface == g_cairosurface)
 } // namespace android
 
 
-CTestCmdUI::CTestCmdUI(sp(::base::application) papp) :
+CTestCmdUI::CTestCmdUI(sp(::axis::application) papp) :
    element(papp),
    cmd_ui(papp)
 {
@@ -6924,7 +6924,7 @@ LRESULT CALLBACK
 //      if (bcallDefault)
 //         lResult = callWindowProc(oldWndProc, hWnd, nMsg, wparam, lparam);
 //   }
-//   catch(::exception::base * pe)
+//   catch(::exception::axis * pe)
 //   {
 //      // handle exception
 //      MESSAGE msg;
@@ -6982,7 +6982,7 @@ LRESULT CALLBACK
 //         *pModuleState->m_pstrUnregisterList += lpWndClass->lpszClassName;
 //         *pModuleState->m_pstrUnregisterList +='\n';
 //      }
-//      catch(::exception::base * pe)
+//      catch(::exception::axis * pe)
 //      {
 //         ::ca2::rethrow(pe);
 //         // Note: DELETE_EXCEPTION not required.

@@ -49,7 +49,7 @@ public:
    var                           m_varQuery;
    ::fs::item_array *            m_pitema;
 
-   sp(::base::application)             m_pappFork;
+   sp(::axis::application)             m_pappFork;
    string                        m_strApp;
    string                        m_strAppType;
    sp(::user::interaction)  m_puiParent;
@@ -59,7 +59,7 @@ public:
 
 
 
-   command_line(sp(::base::application) papp);
+   command_line(sp(::axis::application) papp);
    ~command_line();
 
    void common_construct();

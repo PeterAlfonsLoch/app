@@ -22,7 +22,7 @@ namespace fs
       string_map < uint32_t >   m_mapfileTimeout;
 
 
-      remote_native(sp(::base::application) papp, const char * pszRoot);
+      remote_native(sp(::axis::application) papp, const char * pszRoot);
       virtual ~remote_native();
 
    

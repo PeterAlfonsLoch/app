@@ -105,14 +105,14 @@ tcvn_mbtowc (conv_t conv, ucs4_t *pwc, const unsigned char *s, int n)
       }
       i1 = viet_comp_table[k].idx;
       i2 = i1 + viet_comp_table[k].len-1;
-      if (last_wc >= viet_comp_table_data[i1].base
-          && last_wc <= viet_comp_table_data[i2].base) {
+      if (last_wc >= viet_comp_table_data[i1].axis
+          && last_wc <= viet_comp_table_data[i2].axis) {
         unsigned int i;
         for (;;) {
           i = (i1+i2)>>1;
-          if (last_wc == viet_comp_table_data[i].base)
+          if (last_wc == viet_comp_table_data[i].axis)
             break;
-          if (last_wc < viet_comp_table_data[i].base) {
+          if (last_wc < viet_comp_table_data[i].axis) {
             if (i1 == i)
               goto not_combining;
             i2 = i;
@@ -121,7 +121,7 @@ tcvn_mbtowc (conv_t conv, ucs4_t *pwc, const unsigned char *s, int n)
               i1 = i;
             else {
               i = i2;
-              if (last_wc == viet_comp_table_data[i].base)
+              if (last_wc == viet_comp_table_data[i].axis)
                 break;
               goto not_combining;
             }
@@ -267,7 +267,7 @@ tcvn_wctomb (conv_t conv, unsigned char *r, ucs4_t wc, int n)
         }
       }
       /* Found a compatibility or canonical decomposition. */
-      wc = viet_decomp_table[i].base;
+      wc = viet_decomp_table[i].axis;
       /* wc is one of 0x0020, 0x0041..0x005a, 0x0061..0x007a, 0x00a5, 0x00a8,
          0x00c2, 0x00c5..0x00c7, 0x00ca, 0x00cf, 0x00d3, 0x00d4, 0x00d6,
          0x00d8, 0x00da, 0x00dc, 0x00e2, 0x00e5..0x00e7, 0x00ea, 0x00ef,

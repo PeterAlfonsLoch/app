@@ -1,20 +1,20 @@
 #include "framework.h"
 
 
-operation_canceled_exception::operation_canceled_exception(sp(::base::application) papp) :
+operation_canceled_exception::operation_canceled_exception(sp(::axis::application) papp) :
    element(papp),
    ::call_stack(papp),
-   ::exception::base(papp),
+   ::exception::axis(papp),
    ::simple_exception(papp)
 {
       printf(":operation_canceled");
 }
 
 
-operation_canceled_exception::operation_canceled_exception(sp(::base::application) papp, const char * pszMessage) :
+operation_canceled_exception::operation_canceled_exception(sp(::axis::application) papp, const char * pszMessage) :
    element(papp),
    ::call_stack(papp),
-   ::exception::base(papp),
+   ::exception::axis(papp),
    ::simple_exception(papp, pszMessage)
 {
       if(pszMessage == NULL)

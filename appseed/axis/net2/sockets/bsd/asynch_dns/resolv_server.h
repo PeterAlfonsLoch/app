@@ -40,7 +40,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          public go_thread
       {
       public:
-         resolv_server(sp(::base::application) papp, port_t);
+         resolv_server(sp(::axis::application) papp, port_t);
          ~resolv_server();
 
          virtual void go();

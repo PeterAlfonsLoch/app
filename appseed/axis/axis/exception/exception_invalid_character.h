@@ -9,7 +9,7 @@ class CLASS_DECL_AXIS invalid_character :
 public:
    
 
-   invalid_character(sp(::base::application) papp, const char * pszMessage);
+   invalid_character(sp(::axis::application) papp, const char * pszMessage);
    virtual ~invalid_character();
 
 

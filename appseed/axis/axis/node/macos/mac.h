@@ -10,7 +10,7 @@
 
 string get_error_message(DWORD dwError);
 
-::base::application *     mac_instantiate_application(::base::application * pappSystem, const char * pszId);
+::axis::application *     mac_instantiate_application(::axis::application * pappSystem, const char * pszId);
 
 /////////////////////////////////////////////////////////////////////////////
 // explicit initialization for general purpose classes
@@ -75,7 +75,7 @@ CLASS_DECL_mac void AfxResetMsgCache();
 CLASS_DECL_mac void __trace_message(const char * lpszPrefix, signal_details * pobj);
 CLASS_DECL_mac void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
-CLASS_DECL_mac void AfxProcessWndProcException(::exception::base*, signal_details * pobj);
+CLASS_DECL_mac void AfxProcessWndProcException(::exception::axis*, signal_details * pobj);
 CLASS_DECL_mac void __cdecl __pre_translate_message(signal_details * pobj);
 #include "mac_printer.h"
 
@@ -101,7 +101,7 @@ WINBOOL GetMessage(
 int32_t CLASS_DECL_mac __mac_main(int32_t argc, char * argv[]);
 
 
-CLASS_DECL_mac void vfxThrowFileException(::base::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
+CLASS_DECL_mac void vfxThrowFileException(::axis::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
 
 
 

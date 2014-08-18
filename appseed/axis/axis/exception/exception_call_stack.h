@@ -40,11 +40,11 @@ public:
 
    void * m_caller_address;
 
-   call_stack(sp(::base::application) papp, uint32_t uiSkip = 3, void * caller_address = NULL);
+   call_stack(sp(::axis::application) papp, uint32_t uiSkip = 3, void * caller_address = NULL);
 
 #else
 
-   call_stack(sp(::base::application) papp, uint32_t uiSkip = 3);
+   call_stack(sp(::axis::application) papp, uint32_t uiSkip = 3);
 
 #endif
 

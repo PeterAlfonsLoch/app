@@ -443,7 +443,7 @@ int main(argc,argv)
                      }
                      if( lastslash != NULL )
                      {
-                         savefilenameinzip = lastslash+1; // base filename follows last slash.
+                         savefilenameinzip = lastslash+1; // axis filename follows last slash.
                      }
                  }
 

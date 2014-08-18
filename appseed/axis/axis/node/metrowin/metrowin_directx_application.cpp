@@ -353,7 +353,7 @@ uint_ptr virtualkey_to_code(::Windows::System::VirtualKey e)
 
 UINT system_main(LPVOID lp)
 {
-   ::base::system * m_psystem = (::base::system *) lp;
+   ::axis::system * m_psystem = (::axis::system *) lp;
    try
    {
       //m_psystem->set_thread(m_psystem);
@@ -394,7 +394,7 @@ namespace metrowin
 {
 
 
-   directx_application::directx_application(::base::system * psystem, ::Platform::String ^ strId) :
+   directx_application::directx_application(::axis::system * psystem, ::Platform::String ^ strId) :
       m_mutex(NULL)
    {
 
@@ -679,7 +679,7 @@ namespace metrowin
       if (m_psystem->m_posdata->m_pui->m_pimpl == NULL)
          return;
 
-      smart_pointer < ::message::base > spbase;
+      smart_pointer < ::message::axis > spbase;
 
       ::message::key * pkey = canew(::message::key(get_app()));
 
@@ -712,7 +712,7 @@ namespace metrowin
       if (m_psystem->m_posdata->m_pui->m_pimpl == NULL)
          return;
 
-      smart_pointer < ::message::base > spbase;
+      smart_pointer < ::message::axis > spbase;
 
       ::message::key * pkey = canew(::message::key(get_app()));
 
@@ -744,7 +744,7 @@ namespace metrowin
       if (m_psystem->m_posdata->m_pui->m_pimpl == NULL)
          return;
 
-      smart_pointer < ::message::base > spbase;
+      smart_pointer < ::message::axis > spbase;
 
       ::message::key * pkey = new  ::message::key(get_app());
 
@@ -817,7 +817,7 @@ namespace metrowin
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      smart_pointer < ::message::base > spbase;
+      smart_pointer < ::message::axis > spbase;
 
       ::message::mouse * pmouse = new  ::message::mouse(get_app());
 
@@ -858,7 +858,7 @@ namespace metrowin
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      smart_pointer < ::message::base > spbase;
+      smart_pointer < ::message::axis > spbase;
 
       ::message::mouse * pmouse = new  ::message::mouse(get_app());
 
@@ -923,7 +923,7 @@ namespace metrowin
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      smart_pointer < ::message::base > spbase;
+      smart_pointer < ::message::axis > spbase;
 
       ::message::mouse * pmouse = new  ::message::mouse(get_app());
 
