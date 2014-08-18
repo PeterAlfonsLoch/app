@@ -136,19 +136,6 @@ CLASS_DECL_AXIS DWORD get_current_thread_id();
 
 
 
-CLASS_DECL_AXIS thread* __begin_thread(sp(::axis::application) papp,__THREADPROC pfnThreadProc,LPVOID pParam,int32_t epriority = ::axis::scheduling_priority_normal,UINT nStackSize = 0,uint32_t dwCreateFlags = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
-/* xxx CLASS_DECL_AXIS thread* __begin_thread(sp(::coretype) pThreadClass,
-int32_t nPriority = scheduling_priority_normal, UINT nStackSize = 0,
-uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
-
-
-template < class THREAD_TYPE >
-THREAD_TYPE * __begin_thread(sp(::axis::application) papp,int32_t epriority = ::axis::scheduling_priority_normal,UINT nStackSize = 0,uint32_t dwCreateFlags = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
-{
-   THREAD_TYPE * pthread = new THREAD_TYPE(papp);
-   pthread->begin(epriority,nStackSize,dwCreateFlags,lpSecurityAttrs);
-   return pthread;
-}
 
 
 CLASS_DECL_AXIS HTHREAD get_current_thread();
@@ -206,13 +193,6 @@ public:
 
 
 
-CLASS_DECL_AXIS bool __wait_threading_count(::duration dur);
-CLASS_DECL_AXIS bool __wait_threading_count_except(::thread * pthread,::duration dur);
-
-
-CLASS_DECL_AXIS ::thread * get_thread();
-CLASS_DECL_AXIS void set_thread(::thread * pthread);
-
 
 CLASS_DECL_AXIS void __node_init_multithreading();
 CLASS_DECL_AXIS void __node_term_multithreading();
@@ -226,14 +206,6 @@ namespace multithreading
    CLASS_DECL_AXIS void init_multithreading();
    CLASS_DECL_AXIS void term_multithreading();
 
-   CLASS_DECL_AXIS void __node_on_init_thread(thread * pthread);
-   CLASS_DECL_AXIS void __node_on_term_thread(thread * pthread);
-
-   CLASS_DECL_AXIS uint32_t __on_thread_finally(thread * pthread);
-
-   CLASS_DECL_AXIS extern raw_array < HTHREAD > * s_phaThread;
-   CLASS_DECL_AXIS extern raw_array < thread * > * s_pthreadptra;
-   CLASS_DECL_AXIS extern mutex * s_pmutex;
 
 
 } // namespace multithreading

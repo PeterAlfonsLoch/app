@@ -39,7 +39,7 @@ public:
 */
 
 class CLASS_DECL_AXIS waitable :
-   virtual public request_interface
+   virtual public element
 {
 public:
 

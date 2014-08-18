@@ -5,6 +5,9 @@ class CLASS_DECL_AXIS object_list :
 {
 public:
 
+   typedef object* AXIS_TYPE;
+   typedef object* AXIS_ARG_TYPE;
+
    struct node
 	{
 
@@ -15,6 +18,17 @@ public:
 
 
 	};
+
+   node* m_pnodeHead;
+   node* m_pnodeTail;
+   int_ptr m_nCount;
+   node* m_pnodeFree;
+   struct plex* m_pBlocks;
+   int_ptr m_nBlockSize;
+
+   node* NewNode(node*,node*);
+   void FreeNode(node*);
+
 
 // Construction
 	object_list(::count nBlockSize = 10);
@@ -77,26 +91,6 @@ public:
 						// get the 'nIndex'th element (may return NULL)
 
 // Implementation
-protected:
-	node* m_pnodeHead;
-	node* m_pnodeTail;
-	int_ptr m_nCount;
-	node* m_pnodeFree;
-	struct plex* m_pBlocks;
-	int_ptr m_nBlockSize;
-
-	node* NewNode(node*, node*);
-	void FreeNode(node*);
-
-   public:
-
-
-//	void Serialize(CArchive&);
-	void dump(dump_context &) const;
-	void assert_valid() const;
-	// local typedefs for class templates
-	typedef object* AXIS_TYPE;
-	typedef object* AXIS_ARG_TYPE;
 };
 
 

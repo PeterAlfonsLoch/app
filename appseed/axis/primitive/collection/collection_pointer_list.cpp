@@ -340,35 +340,3 @@ POSITION pointer_list::find(void * searchValue, POSITION startAfter) const
 }
 
 
-void pointer_list::dump(dump_context & dumpcontext) const
-{
-   object::dump(dumpcontext);
-
-   dumpcontext << "with " << m_nCount << " elements";
-   if (dumpcontext.GetDepth() > 0)
-   {
-      POSITION pos = get_head_position();
-      while (pos != NULL)
-         dumpcontext << "\n\t" << get_next(pos);
-   }
-
-   dumpcontext << "\n";
-}
-
-void pointer_list::assert_valid() const
-{
-   object::assert_valid();
-
-   if (m_nCount == 0)
-   {
-      // is_empty list
-      ASSERT(m_pnodeHead == NULL);
-      ASSERT(m_pnodeTail == NULL);
-   }
-   else
-   {
-      // non-is_empty list
-      ASSERT(__is_valid_address(m_pnodeHead, sizeof(node)));
-      ASSERT(__is_valid_address(m_pnodeTail, sizeof(node)));
-   }
-}

@@ -6,12 +6,70 @@
 
 #include "framework.h"
 
+#include "framework.h"
+
+// file.cpp
+
+// file routine overrides
+
+// 08/20/05 (mv)
+
+#ifdef METROWIN
+
+//_flag values (not the ones used by the normal CRT
+
+_FILE __iob[3];
+
+void _init_file()
+{
+   // STDIN
+   //__iob[0]._base = (char *) create_file("C:\\Temp\\pid\\stdin");
+   __iob[0]._base = (char *)INVALID_HANDLE_VALUE;
+   __iob[0]._flag = _FILE_TEXT;
+
+   // STDOUT
+   __iob[1]._base = (char *)INVALID_HANDLE_VALUE;
+   __iob[1]._flag = _FILE_TEXT;
+
+   // STDERR
+   __iob[2]._base = (char *)INVALID_HANDLE_VALUE;
+   __iob[2]._flag = _FILE_TEXT;
+}
+
+_FILE *__iob_func_dup() { return (_FILE*)__iob; }
+
+#elif defined(WINDOWS)
+
+
+//_flag values (not the ones used by the normal CRT
+
+_FILE __iob[3];
+
+void _init_file()
+{
+   // STDIN
+   __iob[0]._base = (char *)GetStdHandle(STD_INPUT_HANDLE);
+   __iob[0]._flag = _FILE_TEXT;
+
+   // STDOUT
+   __iob[1]._base = (char *)GetStdHandle(STD_OUTPUT_HANDLE);
+   __iob[1]._flag = _FILE_TEXT;
+
+   // STDERR
+   __iob[2]._base = (char *)GetStdHandle(STD_ERROR_HANDLE);
+   __iob[2]._flag = _FILE_TEXT;
+}
+
+_FILE *__iob_func_dup() { return (_FILE*)__iob; }
+#endif
+
+// used directly by the stdin, stdout, and stderr macros
 
 
 
 
 
-/*int32_t _fileno(_FILE *fp)
+int32_t _fileno(_FILE *fp)
 {
 	return (int32_t)fp;			// FIXME:  This doesn't work under Win64
 }
@@ -19,9 +77,9 @@
 HANDLE _get_osfhandle(int32_t i)
 {
 	return (HANDLE)i;		// FIXME:  This doesn't work under Win64
-}*/
+}
 
-/*
+
 _FILE *fopen_dup(const char *path, const char *attrs)
 {
 
@@ -57,10 +115,10 @@ _FILE *fopen_dup(const char *path, const char *attrs)
 
 }
 
-*/
 
 
-/*
+
+
 _FILE *_wfopen_dup(const wchar_t *path, const wchar_t *attrs)
 {
 
@@ -91,9 +149,6 @@ _FILE *_wfopen_dup(const wchar_t *path, const wchar_t *attrs)
 
 }
 
-*/
-
-/*
 
 int32_t fprintf_dup(_FILE *fp, const char *s, ...)
 {
@@ -125,8 +180,7 @@ int32_t fwprintf_dup(_FILE *fp, const wchar_t *s, ...)
 	fwrite_dup(ansibfr, len+1, sizeof(char), fp);
 	return len;
 }
-*/
-/*
+
 
 int32_t fclose_dup(_FILE *fp)
 {
@@ -448,7 +502,7 @@ int32_t ferror_dup(_FILE *fp)
    return fp->_flag & _FILE_ERROR;
 
 }
-*/
+
 
 uint64_t fsize_dup(HANDLE h)
 {

@@ -99,14 +99,12 @@ namespace axis
 
 
 
-
+      virtual bool load_string(string & str,id id);
 
       
 
 
-      virtual bool open_link(const string & strLink,const string & pszTarget = "");
-
-
+      virtual bool open_link(const string & strLink,const string & pszTarget);
 
 
 
@@ -232,12 +230,6 @@ namespace axis
       virtual string multimedia_audio_mixer_get_default_library_name();
       virtual string veriwell_multimedia_music_midi_get_default_library_name();
 
-      virtual string get_cred(const RECT & rect, string & strUsername,string & strPassword, string strToken, string strTitle, bool bInteractive);
-
-      virtual bool get_temp_file_name_template(string & str,const char * pszName,const char * pszExtension,const char * pszTemplate);
-
-      virtual bool get_temp_file_name(string & str,const char * pszName,const char * pszExtension);
-
 
 
 
@@ -258,8 +250,6 @@ namespace axis
       virtual bool start_service();
       virtual bool stop_service();
 
-
-      virtual void on_service_request(sp(::create_context) pcreatecontext);
 
       virtual sp(application) assert_running(const char * pszAppId);
 
@@ -302,9 +292,6 @@ namespace axis
       bool safe_is_running();
 
 
-      virtual void on_request(sp(::create_context) pcreatecontext);
-
-      virtual bool defer_initialize_twf();
 
 
 

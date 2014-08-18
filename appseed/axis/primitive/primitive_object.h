@@ -20,14 +20,10 @@ public:
    bool IsSerializable() const;
 
 
-   virtual property & oprop(const char * psz);
-   virtual property & oprop(const char * psz) const;
-   virtual property_set & propset();
-
 
    object & operator = (const object & objectSrc);       // no implementation
 
-
+   virtual void assert_valid() const;
 
    DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
 

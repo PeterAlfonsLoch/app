@@ -142,14 +142,6 @@ namespace primitive
    }
 
 
-   void memory_container ::read(::file::input_stream & is)
-   {
-      if(m_spmemory.is_null())
-      {
-         m_spmemory = new primitive::memory(this);
-      }
-      m_spmemory->read(is);
-   }
 
 
    void memory_container ::keep_pointer(void **ppvoid)

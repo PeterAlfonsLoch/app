@@ -18,136 +18,22 @@ public:
    virtual ~stringa();
 
 
-   primitive::memory GetFormatV004();
-   ::count remove_empty();
-   index add_normal(const char * lpcsz);
-   void trim_right(const char * pszChars);
-   void trim_left(const char * pszChars);
-   void trim(const char * pszChars);
-   void trim_right();
-   void trim_left();
-   void trim();
-   index add_unique(const char * lpcsz);
-   ::count add_unique(const string_array & stra);
-   index add_unique_ci(const char * lpcsz);
-   ::count add_unique_ci(const string_array & stra);
-
-   void make_lower();
-   void make_upper();
-
-
-   index get_random_index() const;
-
-   string & random_element();
-   const string & random_element() const;
-
-   string pop_random_element();
-
-   string pop(index i = -1);
-   void slice(stringa & stra, index index, ::count ca = -1);
-   void remove(index index, ::count count);
-   void splice(const stringa & stra, index index, ::count ca = -1);
-   void splice(const stringa & stra, index index, stringa & straRemoved, ::count ca = -1);
-
-
-   // if string is found, move it to specified position
-   bool move_ci(const char * lpcsz, index iIndex);
-
-   // move preferred in order
-   bool preferred(const char * lpcsz);
-   ::count preferred(stringa & stra);
-
-   index find_first_ci(const char * lpcsz, index find = 0, index last = -1) const;
-   index find_first(const char * lpcsz, index find = 0, index last = -1) const;
-
-   index reverse_find_ci(const char * lpcsz, index find = -1, index last = 0) const;
-   index reverse_find(const char * lpcsz, index find = -1, index last = 0) const;
-
-
-   index find_first_begins_ci(const char * lpcsz, index find = 0, index last = -1) const;
-   index find_first_begins(const char * lpcsz, index find = 0, index last = -1) const;
-
-   index str_find_first_begins_ci(const char * lpcsz, index find = 0, index last = -1) const;
-   index str_find_first_begins(const char * lpcsz, index find = 0, index last = -1) const;
-
-   bool contains_ci(const char * lpcsz, index find = 0, index last = -1, ::count countMin = 1, ::count countMax = -1) const;
-   bool contains(const char * lpcsz, index find = 0, index last = -1, ::count countMin = 1, ::count countMax = -1) const;
-
-   ::count get_begins_ci(stringa & stra, const char * lpcsz, index first = 0, index last = -1);
-
-   ::count filter_begins_ci(const char * lpcsz, index first = 0, index last = -1);
-
-   ::count remove_first_ci(const char * lpcsz, index find = 0, index last = -1);
-   ::count remove_first(const char * lpcsz, index find = 0, index last = -1);
-
-   ::count remove_ci(const char * lpcsz, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
-   ::count remove(const char * lpcsz, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
-
-   ::count remove_ci(const string_array & stra);
-   ::count remove(const string_array & stra);
-
-   stringa & explode(const string & strSeparator, const string & str);
-
-   // csstidy: Same as explode, but not within a string
-   stringa & csstidy_explode_ws(char sep, const char * psz);
-
-   void implode(string & rwstr, const char * lpcszSeparator = NULL, index iStart = 0, ::count iCount = -1) const;
-   string implode(const char * lpcszSeparator = NULL, index iStart = 0, ::count iCount = -1) const;
-   void reverse_implode(string & rwstr, const char * lpcszSeparator = NULL, index iStart = 0, ::count iCount = -1) const;
-   string reverse_implode(const char * lpcszSeparator = NULL, index iStart = 0, ::count iCount = -1) const;
-
-   void surround(const char * pszPrefix = NULL, const char * pszSuffix = NULL, index iStart = 0, ::count iCount = -1);
-   string surround_and_implode(const char * lpcszSeparator = NULL, const char * pszPrefix = NULL, const char * pszSuffix = NULL, index iStart = 0, ::count iCount = -1);
 
    comparable_array < id > get_comparable_ida() const;
 
+   void add(const var & var);
 
-
-//   void XFV001Expand();
-
-   stringa & operator =(const var var);
-   stringa & operator =(const stringa & stra);
-   stringa & operator =(const int64_array & ia);
-   stringa & operator =(const string_array & stra);
-   stringa & operator -=(const string_array & stra);
-   stringa & operator +=(const string_array & stra);
-
-   stringa operator -(const string_array & stra) const;
-   stringa operator +(const string_array & stra) const;
+   void add(const property & prop);
 
 
 
-
-
-   void replace(const char * lpszSearch, const char * lpszReplace);
+   void get_quick_sort_ci(raw_index_array & ia)
 
    void write(::file::output_stream & ostream);
    void read(::file::input_stream & istream);
 
 
-   void get_format_string(string & str, const char * lpcszSeparator) const;
-   void add_tokens(const char * lpcsz, const char * lpcszSeparator, bool bAddEmpty = true);
-   void add_smallest_tokens(const char * lpcsz, stringa & straSeparator, bool bAddEmpty = true, bool bWithSeparator = FALSE);
-   void add_lines(const string & str);
 
-
-   bool is_empty(::count countMinimum = 1);
-   bool has_elements(::count countMinimum = 1);
-
-   string encode_v16();
-
-
-   void decode_v16(const char * psz);
-
-   ::count get_count_except(const char * psz);
-   ::count get_count_except(const string & str);
-   ::count get_count_except(const stringa & stra);
-
-   ::count get_count_except_ci(const char * psz);
-   ::count get_count_except_ci(const string & str);
-   ::count get_count_except_ci(const stringa & stra);
-
-   string get_json();
 
 };
 

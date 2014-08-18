@@ -5,7 +5,7 @@ namespace exception
 {
 
 
-   base::base(sp(::base::application) papp, uint32_t uiSkip) :
+   base::base(sp(::axis::application) papp, uint32_t uiSkip) :
       element(papp),
       ::call_stack(papp, uiSkip)
    {
@@ -14,7 +14,7 @@ namespace exception
       m_ulFlags &= ~flag_ready_for_delete;
    }
 
-   base::base(sp(::base::application) papp, bool bAutoDelete, uint32_t uiSkip) :
+   base::base(sp(::axis::application) papp,bool bAutoDelete,uint32_t uiSkip):
       element(papp),
       ::call_stack(papp, uiSkip)
    {
@@ -82,13 +82,13 @@ namespace exception
       // nHelpContext should come with the message "<helpcontext id=\"123\" />"
 
       if (get_error_message(strErrorMessage, &nHelpContext))
-         nDisposition = Application.simple_message_box(NULL, strErrorMessage, nType);
+         nDisposition = Application.simple_message_box(strErrorMessage, nType);
       else
       {
          if (pszMessageId == 0)
             //pszMessageId = __IDP_NO_ERROR_AVAILABLE;
                pszMessageId = "Error message not available";
-         nDisposition = Application.simple_message_box(NULL, pszMessageId, nType);
+         nDisposition = Application.simple_message_box(pszMessageId, nType);
       }
       return nDisposition;
    }

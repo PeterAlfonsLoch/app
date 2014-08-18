@@ -59,3 +59,8 @@ CLASS_DECL_AXIS void do_events(const duration & duration);
 #include "multithreading_thread_os.h"
 
 
+
+
+
+
+CLASS_DECL_AXIS void set_get_thread_app(::axis::application * (pfn)());

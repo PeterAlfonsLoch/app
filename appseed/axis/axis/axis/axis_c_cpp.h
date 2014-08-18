@@ -152,8 +152,6 @@ namespace axis
 #endif
 
 
-   class file;
-
 
    namespace trace
    {
@@ -317,17 +315,11 @@ typedef  void(*PFN_ca2_factory_exchange)(sp(::axis::application) papp);
 
 
 
-CLASS_DECL_AXIS bool axis_init();
-CLASS_DECL_AXIS bool axis_term();
-
-CLASS_DECL_AXIS bool __node_pre_init();
-CLASS_DECL_AXIS bool __node_pos_init();
-
-CLASS_DECL_AXIS bool __node_pre_term();
-CLASS_DECL_AXIS bool __node_pos_term();
 
 
 CLASS_DECL_AXIS ::axis::application * get_thread_app();
+
+
 
 #include "axis_definition.h"
 
@@ -377,8 +369,6 @@ CLASS_DECL_AXIS ::axis::application * get_thread_app();
 #include "axis_conv.h"
 
 #include "axis_core.h"
-
-#include "axis/primitive/primitive_request_interface.h"
 
 #include "axis/multithreading/multithreading_wait_result.h"
 
@@ -460,7 +450,7 @@ CLASS_DECL_AXIS ::axis::application * get_thread_app();
 
 
 
-
+#include "axis_file.h"
 
 //#include "axis/user/user_create_context.h"
 
@@ -556,8 +546,6 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 #include "axis/primitive/primitive_factory.h"
 
 
-#include "axis/primitive/geometry/geometry_geometry.h"
-
 
 
 
@@ -583,7 +571,6 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 
 #include "axis_fixed_alloc_impl.h"
 #include "axis_plex_heap_impl.h"
-#include "axis/primitive/primitive_command.h"
 
 
 
@@ -830,9 +817,6 @@ namespace numeric_info
 
 
 
-#include "axis_file_watcher.h"
-#include "axis_file_watcher_impl.h"
-
 
 #include "axis/multithreading/multithreading_data.h"
 
@@ -840,8 +824,6 @@ namespace numeric_info
 #include "axis_simple_shell_launcher.h"
 
 
-#include "axis_file_watcher_thread.h"
-#include "axis_file_watcher_listener_thread.h"
 #include "axis_async.h"
 
 

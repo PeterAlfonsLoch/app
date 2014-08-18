@@ -147,12 +147,6 @@
     <Filter Include="Header Files\primitive\data">
       <UniqueIdentifier>{ddf01975-333f-459f-a6b4-f5e9fdffa7f6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\data">
-      <UniqueIdentifier>{b47f1200-db28-45cf-88cd-eaf066d0e7a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\axis\NewFilter1">
-      <UniqueIdentifier>{efc2954d-56c1-40a7-a45b-314841703998}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_wstringtou.h">
@@ -174,9 +168,6 @@
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_event.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_event_collection.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_file_change_event.h">
@@ -263,41 +254,17 @@
     <ClInclude Include="primitive\primitive_factory.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive_request_interface.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_interlocked_long.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive_interlocked_long_pulse.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive_edit.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive_create_context.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="net\net.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive_command.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive_command_line.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive_command_thread.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="net\net_net.h">
       <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_url_departament.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive_request_signal.h">
-      <Filter>Header Files\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive_bit.h">
       <Filter>Header Files\primitive</Filter>
@@ -317,23 +284,8 @@
     <ClInclude Include="primitive\primitive_job.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="net\net_address.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_check.h">
       <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_email.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_email_address.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_go_thread.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_simple_thread.h">
-      <Filter>Header Files\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\collection.h">
       <Filter>Header Files\primitive\collection</Filter>
@@ -482,15 +434,6 @@
     <ClInclude Include="primitive\geometry\geometry_align.h">
       <Filter>Header Files\primitive\geometry</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry\geometry_point.h">
-      <Filter>Header Files\primitive\geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\geometry\geometry_rect.h">
-      <Filter>Header Files\primitive\geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\geometry\geometry_size.h">
-      <Filter>Header Files\primitive\geometry</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\comparison\comparison.h">
       <Filter>Header Files\primitive\comparison</Filter>
     </ClInclude>
@@ -517,9 +460,6 @@
     </ClInclude>
     <ClInclude Include="net\net_url_domain.h">
       <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_signal_thread.h">
-      <Filter>Header Files\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_departament.h">
       <Filter>Header Files\primitive\datetime</Filter>
@@ -833,18 +773,6 @@
     <ClInclude Include="axis\axis\axis_enum.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
-    <ClInclude Include="axis\axis\axis_file_watcher.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_file_watcher_impl.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_file_watcher_listener_thread.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_file_watcher_thread.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
     <ClInclude Include="axis\axis\axis_fixed_alloc.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
@@ -876,9 +804,6 @@
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
     <ClInclude Include="axis\axis\axis_live_signal.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_log.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
     <ClInclude Include="axis\axis\axis_lparam.h">
@@ -976,12 +901,6 @@
     </ClInclude>
     <ClInclude Include="axis\os\os_binreloc.h">
       <Filter>Header Files\axis\os</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_ip_enum.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_port_forward.h">
-      <Filter>Header Files\net</Filter>
     </ClInclude>
     <ClInclude Include="axis\axis\axis_core_os.h">
       <Filter>Header Files\axis\axis</Filter>
@@ -1928,9 +1847,6 @@
     <ClInclude Include="axis\os\windows\windows_multithreading.h">
       <Filter>Header Files\axis\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\windows\windows_port_forward.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
     <ClInclude Include="axis\os\windows\windows_process.h">
       <Filter>Header Files\axis\os\windows</Filter>
     </ClInclude>
@@ -1944,9 +1860,6 @@
       <Filter>Header Files\axis\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="axis\os\windows\windows_windows.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\windows_file_watcher.h">
       <Filter>Header Files\axis\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="axis\axis\axis_application_signal_details.h">
@@ -2108,6 +2021,9 @@
     <ClInclude Include="axis\axis\axis_dir.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
+    <ClInclude Include="axis\axis\axis_file.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -2120,9 +2036,6 @@
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_event.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_event_collection.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_file_change_event.cpp">
@@ -2188,41 +2101,11 @@
     <ClCompile Include="primitive\primitive_interlocked_long_pulse.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive_edit.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive_type.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_request_interface.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_create_context.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_command.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_command_line.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_command_thread.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="net\net_net.cpp">
       <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\net_url_departament.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_application_bias.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_signal.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_request_signal.cpp">
-      <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_id.cpp">
       <Filter>Source Files\primitive</Filter>
@@ -2239,22 +2122,7 @@
     <ClCompile Include="version.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive_job.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="net\net_address.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\net_email.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\net_email_address.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\comparison\comparison_md5.cpp">
-      <Filter>Source Files\primitive\comparison</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\comparison\comparison_var_strict.cpp">
       <Filter>Source Files\primitive\comparison</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_duration.cpp">
@@ -2263,22 +2131,10 @@
     <ClCompile Include="primitive\datetime\datetime_time.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\geometry\geometry_point.cpp">
-      <Filter>Source Files\primitive\geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\geometry\geometry_rect.cpp">
-      <Filter>Source Files\primitive\geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\geometry\geometry_size.cpp">
-      <Filter>Source Files\primitive\geometry</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\geometry\geometry_types.cpp">
       <Filter>Source Files\primitive\geometry</Filter>
     </ClCompile>
     <ClCompile Include="primitive\collection\collection_2d_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_array.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
     <ClCompile Include="primitive\collection\collection_bit_array.cpp">
@@ -2287,34 +2143,16 @@
     <ClCompile Include="primitive\collection\collection_class_sort_array.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\collection_comparable_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_id_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\collection\collection_key_sort_array.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
     <ClCompile Include="primitive\collection\collection_map_misc.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\collection_numeric_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\collection\collection_object_list.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\collection_point_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\collection\collection_pointer_list.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_rect_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_sort.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
     <ClCompile Include="primitive\collection\collection_string_array.cpp">
@@ -2323,32 +2161,8 @@
     <ClCompile Include="primitive\collection\collection_string_list.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\collection_string_to_string_map.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_stringa.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_stringl.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_var_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive_color.cpp">
       <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_departament.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_simple_thread.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_signal_thread.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_go_thread.cpp">
-      <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_value.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
@@ -2381,9 +2195,6 @@
       <Filter>Source Files\primitive\str</Filter>
     </ClCompile>
     <ClCompile Include="primitive\str\str_international.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_international_locale_schema.cpp">
       <Filter>Source Files\primitive\str</Filter>
     </ClCompile>
     <ClCompile Include="primitive\str\str_istring.cpp">
@@ -2452,25 +2263,10 @@
     <ClCompile Include="axis\exception\exception_archive_exception.cpp">
       <Filter>Source Files\axis\exception</Filter>
     </ClCompile>
-    <ClCompile Include="axis\exception\exception_axis.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
     <ClCompile Include="axis\exception\exception_call_stack.cpp">
       <Filter>Source Files\axis\exception</Filter>
     </ClCompile>
     <ClCompile Include="axis\exception\exception_debug.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_dump.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_dump_context.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_dump_floating_point.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_dump_output.cpp">
       <Filter>Source Files\axis\exception</Filter>
     </ClCompile>
     <ClCompile Include="axis\exception\exception_engine.cpp">
@@ -2599,22 +2395,7 @@
     <ClCompile Include="axis\axis\axis_element.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
-    <ClCompile Include="axis\axis\axis_file_watcher.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_file_watcher_impl.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_file_watcher_listener_thread.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_file_watcher_thread.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
     <ClCompile Include="axis\axis\axis_fixed_alloc.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_geometry.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
     <ClCompile Include="axis\axis\axis_heap.cpp">
@@ -2629,19 +2410,7 @@
     <ClCompile Include="axis\axis\axis_log.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
-    <ClCompile Include="axis\axis\axis_machine_event.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_machine_event_central.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_machine_event_data.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
     <ClCompile Include="axis\axis\axis_math.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_message_queue.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
     <ClCompile Include="axis\axis\axis_microtimer.cpp">
@@ -2688,12 +2457,6 @@
     </ClCompile>
     <ClCompile Include="primitive\math\_math.cpp">
       <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
-    <ClCompile Include="net\net_ip_enum.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\net_port_forward.cpp">
-      <Filter>Source Files\net</Filter>
     </ClCompile>
     <ClCompile Include="axis\axis\axis_progress.cpp">
       <Filter>Source Files\axis\axis</Filter>
@@ -2959,9 +2722,6 @@
     <ClCompile Include="axis\os\windows\windows_small_ipc_channel.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_std_file.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="axis\os\windows\windows_time.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
@@ -3040,27 +2800,6 @@
     <ClCompile Include="axis\axis\axis_library.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\data_data.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_data_container.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_data_listener.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_simple_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_tree.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_tree_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
     <ClCompile Include="axis\os\windows\windows_base_crypto.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
@@ -3069,9 +2808,6 @@
     </ClCompile>
     <ClCompile Include="axis\os\windows\windows_base_registry.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_base64.cpp">
-      <Filter>Source Files\primitive\str</Filter>
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_event_base.cpp">
       <Filter>Source Files\multithreading</Filter>
@@ -3085,16 +2821,25 @@
     <ClCompile Include="axis\axis\axis_dir.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
-    <ClCompile Include="axis\axis\axis_c_dir.c">
+    <ClCompile Include="axis\exception\exception_base.cpp">
+      <Filter>Source Files\axis\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\axis\axis_c_dir.cpp">
+      <Filter>Source Files\axis\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\axis\axis_file2.cpp">
+      <Filter>Source Files\axis\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\axis\axis_user.cpp">
+      <Filter>Source Files\axis\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\axis\axis_c_file.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
       <Filter>Header Files\multithreading</Filter>
-    </None>
-    <None Include="axis.def">
-      <Filter>Header Files</Filter>
     </None>
     <None Include="axis.def">
       <Filter>Source Files</Filter>
@@ -3404,6 +3149,9 @@
     </None>
     <None Include="primitive\collection\collection_map_impl.inl">
       <Filter>Header Files\primitive\collection</Filter>
+    </None>
+    <None Include="axis.def">
+      <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -190,7 +190,7 @@ namespace exception
          return 0;
 
       HANDLE hprocess = SymGetProcessHandle();
-      HMODULE hmodule = (HMODULE)SymGetModuleAxis64 (hprocess, m_uiAddress);
+      HMODULE hmodule = (HMODULE)SymGetModuleBase64 (hprocess, m_uiAddress);
       if (!hmodule) return 0;
       return get_module_basename(hmodule, str);
    }
@@ -345,7 +345,7 @@ namespace exception
          My_ReadProcessMemory,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
          //NULL,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
          SymFunctionTableAccess64,                      // __in_opt  PFUNCTION_TABLE_ACCESS_ROUTINE64 FunctionTableAccessRoutine,
-         SymGetModuleAxis64,                     // __in_opt  PGET_MODULE_AXIS_ROUTINE64 GetModuleAxisRoutine,
+         SymGetModuleBase64,                     // __in_opt  PGET_MODULE_AXIS_ROUTINE64 GetModuleAxisRoutine,
          NULL                       // __in_opt  PTRANSLATE_ADDRESS_ROUTINE64 TranslateAddress
          ) != FALSE;
       /*#else
@@ -379,7 +379,7 @@ retry_get_base:
       // StackWalk returns TRUE but the address doesn't belong to
       // a module in the process.
 
-      DWORD64 dwModAxis = SymGetModuleAxis64 (hprocess, m_pstackframe->AddrPC.Offset);
+      DWORD64 dwModAxis = SymGetModuleBase64 (hprocess, m_pstackframe->AddrPC.Offset);
 
       if (!dwModAxis)
       {

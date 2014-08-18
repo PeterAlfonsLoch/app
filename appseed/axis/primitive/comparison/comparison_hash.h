@@ -109,17 +109,17 @@ namespace comparison
 template<> CLASS_DECL_AXIS UINT HashKey<const wchar_t *> (const wchar_t * key);
 
 
-template<> inline UINT HashKey<rect> (rect key)
+template<> inline UINT HashKey<RECT> (RECT key)
 {
    return key.left | key.top | key.bottom | key.right;
 }
 
-template<> inline UINT HashKey<point> (point key)
+template<> inline UINT HashKey<POINT> (POINT key)
 {
    return key.x | key.y;
 }
 
-template<> inline UINT HashKey<size> (size key)
+template<> inline UINT HashKey<SIZE> (SIZE key)
 {
    return key.cx | key.cy;
 }

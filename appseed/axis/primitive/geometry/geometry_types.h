@@ -124,16 +124,6 @@ inline CLASS_DECL_AXIS LPRECT rect_dim(LPRECT lprect, LONG x, LONG y, LONG cx, L
    return rect_by_dimension(lprect, x, y, cx, cy);
 }
 
-inline CLASS_DECL_AXIS ::rect rect_by_dimension(LONG x, LONG y, LONG cx, LONG cy)
-{
-   ::rect r;
-   return rect_by_dimension(r, x, y, cx, cy);
-}
-
-inline CLASS_DECL_AXIS ::rect rect_dim(LONG x, LONG y, LONG cx, LONG cy)
-{
-   return rect_by_dimension(x, y, cx, cy);
-}
 
 
 inline CLASS_DECL_AXIS POINT & point_by_coordinate(POINT & p, LONG x, LONG y)

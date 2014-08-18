@@ -26,7 +26,7 @@ service_base* service_base::s_pservice = 0;
 //                      service_base class.
 //
 //*****************************************************************************
-service_base::service_base(sp(::base::application) pbaseapp, uint32_t controlsAccepted) :
+service_base::service_base(sp(::axis::application) pbaseapp, uint32_t controlsAccepted) :
    element(pbaseapp),
    m_bStopping(false),
    m_stopped(pbaseapp)
@@ -330,8 +330,6 @@ void service_base::call_server()
    if(::os_thread::get() == NULL)
       ::os_thread::set(posthreadNew = new ::os_thread(NULL, NULL));
 
-
-   ::set_thread(m_pbaseapp);
 
    serve();
 

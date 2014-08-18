@@ -7,7 +7,6 @@ namespace axis
 
    class CLASS_DECL_AXIS application_interface:
       virtual public ::axis::live_object,
-      virtual public request_interface,
       virtual public int_scalar_source
    {
    public:

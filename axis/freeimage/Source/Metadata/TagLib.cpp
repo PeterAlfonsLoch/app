@@ -1482,7 +1482,7 @@ BOOL TagLib::addMetadataModel(MDMODEL md_model, TagInfo *tag_table) {
 	if((_table_map.find(md_model) == _table_map.end()) && (tag_table != NULL)) {
 
 		// add the tag description table
-		TAGINFO *info_map = new(std::nothrow) TAGINFO();
+		TAGINFO *info_map = new TAGINFO();
 		if(!info_map) return FALSE;
 
 		for(int i = 0; ; i++) {

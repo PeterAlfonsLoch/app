@@ -1638,9 +1638,6 @@
     <ClInclude Include="Source\LibOpenJPEG\opj_malloc.h">
       <Filter>Source\LibOpenJPEG</Filter>
     </ClInclude>
-    <ClInclude Include="Source\LibOpenJPEG\opj_stdint.h">
-      <Filter>Source\LibOpenJPEG</Filter>
-    </ClInclude>
     <ClInclude Include="Source\LibOpenJPEG\pi.h">
       <Filter>Source\LibOpenJPEG</Filter>
     </ClInclude>
@@ -2270,24 +2267,6 @@
     </None>
     <None Include="Source\LibJPEG\LibJPEG.2008.vcxproj.filters">
       <Filter>Source\LibJPEG</Filter>
-    </None>
-    <None Include="Source\LibOpenJPEG\AUTHORS">
-      <Filter>Source\LibOpenJPEG</Filter>
-    </None>
-    <None Include="Source\LibOpenJPEG\INSTALL">
-      <Filter>Source\LibOpenJPEG</Filter>
-    </None>
-    <None Include="Source\LibOpenJPEG\LibOpenJPEG.2003.vcproj">
-      <Filter>Source\LibOpenJPEG</Filter>
-    </None>
-    <None Include="Source\LibOpenJPEG\LibOpenJPEG.2005.vcproj">
-      <Filter>Source\LibOpenJPEG</Filter>
-    </None>
-    <None Include="Source\LibOpenJPEG\LibOpenJPEG.2008.vcproj">
-      <Filter>Source\LibOpenJPEG</Filter>
-    </None>
-    <None Include="Source\LibOpenJPEG\LibOpenJPEG.2008.vcxproj">
-      <Filter>Source\LibOpenJPEG</Filter>
     </None>
     <None Include="Source\LibOpenJPEG\LibOpenJPEG.2008.vcxproj.filters">
       <Filter>Source\LibOpenJPEG</Filter>

@@ -81,16 +81,7 @@ namespace axis
    class ::id_space * system::s_pidspace = NULL;
 
 
-   system::system(sp(::axis::application) papp):
-      m_urldepartament(this),
-      //m_mutexDelete(this),
-      m_httpsystem(this),
-      //m_mutex(this),
-#ifndef METROWIN
-      //m_processsection(this),
-#endif
-      //m_visual(this),
-      m_libraryDraw2d(this)
+   system::system(sp(::axis::application) papp)
    {
       
 //      if(::get_thread() == NULL)
@@ -100,59 +91,20 @@ namespace axis
          
       }
       
-      m_ptwf = NULL;
-
-#ifdef MATTER_CACHE_FROM_HTTP_SERVER
-
-      m_bMatterFromHttpCache = true;
-
-#else
-
-      m_bMatterFromHttpCache = false;
-
-#endif
-
-      m_psimpleui = NULL;
-
-#if defined(METROWIN) || defined(APPLE_IOS)
-      m_posdata = new os_data();
-#endif
 
       set_app(this);
       m_nSafetyPoolSize          = 512;        // default size
 
-      m_pmath                    = canew(math::math(this));
-      m_pgeometry                = canew(geometry::geometry(this));
       m_phtml = NULL;
 
 
       m_pbasesystem = this;
 
-      if(papp == NULL)
-      {
-
-         oprop("parent_system") = (sp(element)) NULL;
-
-      }
-      else
-      {
-
-         oprop("parent_system") = papp->m_pbasesystem;
-
-      }
 
       m_peengine = NULL;
 
 
-      m_pmachineeventcentral = NULL;
-
-      //::ca::application::m_file.set_app(this);
-      //::ca::application::m_dir.set_app(this);
-
       string strId;
-      //strId = m_strAppName;
-      //strId += ::str::has_char(m_strAppId, ".");
-      //strId += ::str::has_char(m_strAxisSupportId, ".");
 
 
       strId = "ca2log";
@@ -190,59 +142,12 @@ namespace axis
       m_pfactory = new class axis_factory(this);
       m_pfactory->set_app(this);
 
-      m_pfactory->creatable_large < ::file::simple_binary_buffer >(type_info < ::file::binary_buffer >());
-      m_pfactory->creatable_large < ::file::string_buffer >();
-
-      m_spinstall = new ::install::install(this);
-
-
-#ifdef WINDOWS
-      m_pmutexDc = NULL;
-      m_pdevicecontext = NULL;
-#endif
 
 
       factory().cloneable_large < string_array >();
       factory().cloneable_large < ::primitive::memory >();
       factory().cloneable_large < raw_int_array >();
 
-      __node_factory_exchange(this);
-
-      thread::s_bAllocReady = true;
-
-      //Ex1OnFactoryExchange();
-
-      //m_spfilesystem.alloc(allocer());
-
-
-      /*   {
-
-            draw2d_gdiplus::factory_exchange factoryexchange(this);
-
-            }*/
-
-
-
-      m_pxml = canew(::xml::departament(this));
-
-      m_pxml->construct(this);
-
-      if(!m_pxml->initialize1())
-         throw simple_exception(this,"failed to construct system m_pxml->initialize1()");
-
-      if(!m_pxml->initialize())
-         throw simple_exception(this,"failed to construct system m_pxml->initialize()");
-
-
-
-
-
-      m_compress.set_app(this);
-
-
-      m_bSystemSynchronizedCursor = true;
-
-      m_bSystemSynchronizedScreen = true;
 
       m_spmutexUserAppData = canew(mutex(get_app(),false,"Local\\ca2.UserAppData"));
       //m_spmutexSystemAppData = canew(mutex(get_app(),false,"Global\\ca2.SystemAppData"));
@@ -251,16 +156,6 @@ namespace axis
       m_spmutexFactory = canew(mutex(get_app()));
 
       m_bGudoNetCache = true;
-
-      ::draw2d::dib::static_initialize();
-
-      m_pschemaLayeredFrame = new ::user::schema_layered_frame;
-
-      m_pthreadimpl.alloc(allocer());
-
-      m_pthreadimpl->m_pthread = this;
-
-//      m_pthreadimpl->initialize_message_queue();
 
 
    }
@@ -302,19 +197,9 @@ namespace axis
 
 
 
-      enum_display_monitors();
-
       m_peengine = new ::exception::engine(this);
 
-#ifdef BSD_STYLE_SOCKETS
 
-      m_psslinit = new ::sockets::SSLInitializer(this);
-
-#endif
-
-      m_pfactory->cloneable_large < create_context >();
-      m_pfactory->cloneable_large < application_bias >();
-      m_pfactory->cloneable_large < command_line >();
       m_pfactory->cloneable_large < manual_reset_event >();
       m_pfactory->cloneable_large < mutex >();
       m_pfactory->cloneable_large < event >();
@@ -322,90 +207,16 @@ namespace axis
       if(!::axis::application::process_initialize())
          return false;
 
-#ifdef WINDOWSEX
 
-      m_spwindow = canew(interaction_impl(this));
-
-#endif
-
-      m_spos.alloc(allocer());
-
-      m_spcrypto.alloc(allocer());
-
-      if(!m_spcrypto.is_set())
-         return false;
 
 
       if(!set_main_init_data(m_pinitmaindata))
          return false;
 
 
-      if(m_pmachineeventcentral == NULL)
-      {
-
-         m_pmachineeventcentral = new ::machine_event_central(this);
-         if(!m_pmachineeventcentral->initialize())
-            return false;
-         if(m_pmachineeventcentral->is_close_application())
-            return false;
-
-      }
-
-#ifdef WINDOWSEX
-
-      dappy(string(typeid(*this).name()) + " : Going to ::axis::system::m_spwindow->create_window_ex : " + ::str::from(m_iReturnCode));
-
-      if(!m_spwindow->create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"::axis::system::interaction_impl::no_twf"))
-      {
-
-         dappy(string(typeid(*this).name()) + " : ::axis::system::m_spwindow->create_window_ex failure : " + ::str::from(m_iReturnCode));
-
-         return false;
-
-      }
-
-#endif
-
-      dappy(string(typeid(*this).name()) + " : Going to ::axis::session " + ::str::from(m_iReturnCode));
-      m_spfile.alloc(allocer());
 
 
-      m_spdir.alloc(allocer());
-
-
-      m_pbasesession = new ::axis::session(this);
-
-      if(m_pbasesession == NULL)
-         return false;
-
-      if(!m_spdir->initialize())
-         throw simple_exception(this,"failed to construct system m_spdir->initialize");
-
-      m_pbasesession->construct(this,0);
-
-
-      m_spnet = canew(::sockets::net(this));
-      //m_spnet.alloc(allocer());
-
-      if(m_spnet.is_null())
-      {
-
-         m_iReturnCode = -1986;
-
-         return false;
-
-      }
-
-
-      if(!m_spnet->initialize())
-         return false;
-
-      if(!m_pbasesession->begin_synch(&m_iReturnCode))
-      {
-         return false;
-      }
-
-      dappy(string(typeid(*this).name()) + " : ::axis::session OK " + ::str::from(m_iReturnCode));
+      
 
       return true;
 
@@ -439,90 +250,16 @@ namespace axis
    bool system::finalize()
    {
 
-      try
-      {
-
-         if(!m_spnet->gudo_set())
-         {
-
-            m_iReturnCode = -87;
-
-         }
-
-      }
-      catch(...)
-      {
-
-         m_iReturnCode = -87;
-
-      }
-
-
-      __wait_threading_count_except(this,::millis((5000) * 77));
 
       bool bOk = false;
 
 
 
-      try
-      {
-
-         if(m_spcrypto.is_set())
-         {
-
-            m_spcrypto.release();
-
-         }
-
-      }
-      catch(...)
-      {
-
-         bOk = false;
-
-      }
 
       try
       {
 
          bOk = ::axis::application::finalize();
-
-      }
-      catch(...)
-      {
-
-         bOk = false;
-
-      }
-
-      try
-      {
-
-         if(m_spportforward.is_set())
-         {
-
-            m_spportforward.release();
-
-         }
-
-      }
-      catch(...)
-      {
-
-         bOk = false;
-
-      }
-
-
-      try
-      {
-
-         if(m_spfile.is_set())
-         {
-
-            m_spfile.release();
-
-         }
 
       }
       catch(...)
@@ -541,98 +278,6 @@ namespace axis
    int32_t system::exit_instance()
    {
 
-      __wait_threading_count(::millis((5000) * 8));
-
-      try
-      {
-
-
-         /*      try
-         {
-         if(m_plemonarray != NULL)
-         {
-         delete m_plemonarray;
-         }
-         }
-         catch(...)
-         {
-         }
-         m_plemonarray = NULL;
-         */
-
-
-         m_pmath.release();
-
-         m_pgeometry.release();
-
-      }
-      catch(...)
-      {
-         m_iReturnCode = -86;
-      }
-
-
-      try
-      {
-
-         if(!m_spnet->finalize())
-         {
-
-            m_iReturnCode = -87;
-
-         }
-
-      }
-      catch(...)
-      {
-
-         m_iReturnCode = -87;
-
-      }
-
-
-
-      for(int i = 0; i < m_serviceptra.get_size(); i++)
-      {
-         try
-         {
-            m_serviceptra(i)->Stop(0);
-         }
-         catch(...)
-         {
-         }
-      }
-
-
-      for(int i = 0; i < m_serviceptra.get_size(); i++)
-      {
-         try
-         {
-            m_serviceptra(i)->Stop((5000) * 2);
-         }
-         catch(...)
-         {
-         }
-      }
-
-      m_serviceptra.remove_all();
-
-      try
-      {
-         if(m_pfactory != NULL)
-         {
-
-            m_pfactory->enable_simple_factory_request(false);
-
-            m_pfactory.release();
-
-         }
-
-      }
-      catch(...)
-      {
-         TRACE("system::exit_instance: Potentially catastrophical error : error disabling simple factory request");
-      }
 
 
       int32_t iRet = 0;
@@ -647,63 +292,6 @@ namespace axis
       catch(...)
       {
 
-      }
-
-
-
-      try
-      {
-         m_spportforward.release();
-      }
-      catch(...)
-      {
-      }
-
-
-
-      try
-      {
-         if(m_spos.is_set())
-         {
-            m_spos.release();
-         }
-      }
-      catch(...)
-      {
-      }
-      try
-      {
-         m_spdir.release();
-      }
-      catch(...)
-      {
-      }
-
-
-      try
-      {
-         m_spos.release();
-      }
-      catch(...)
-      {
-      }
-      try
-      {
-         m_spdir.release();
-      }
-      catch(...)
-      {
-      }
-
-      try
-      {
-         if(m_pmachineeventcentral != NULL)
-         {
-            m_pmachineeventcentral->set_run(false);
-         }
-      }
-      catch(...)
-      {
       }
 
 
@@ -726,55 +314,6 @@ namespace axis
 
       ::axis::application::exit_instance();
 
-#ifdef METROWIN
-      m_pdevicecontext = nullptr;
-
-      m_pmutexDc.release();
-#endif
-
-#ifdef WINDOWSEX
-
-
-
-      try
-      {
-
-         m_spwindow.release();
-
-      }
-      catch(...)
-      {
-
-         m_iReturnCode = -2;
-
-      }
-#endif
-
-      try
-      {
-
-         m_spnet.release();
-
-      }
-      catch(...)
-      {
-
-         m_iReturnCode = -86;
-
-      }
-
-#ifdef BSD_STYLE_SOCKETS
-
-      if(m_psslinit != NULL)
-      {
-
-         delete m_psslinit;
-
-         m_psslinit = NULL;
-
-      }
-
-#endif
 
       if(m_peengine != NULL)
       {
@@ -793,8 +332,6 @@ namespace axis
 
    UINT system::os_post_to_all_threads(UINT uiMessage,WPARAM wparam,lparam lparam)
    {
-
-      post_to_all_threads(uiMessage,wparam,lparam);
 
       return 0;
 
@@ -997,101 +534,10 @@ namespace axis
    }
 
 
-   ::xml::departament & system::xml()
-   {
-      return *m_pxml;
-   }
-
-
-
-   class ::str::base64 & system::base64()
-   {
-
-      return m_base64;
-
-   }
-
-
-
-
-
-   ::sockets::net & system::net()
-   {
-      return *m_spnet;
-   }
-
-
-
-   class ::crypto::crypto & system::crypto()
-   {
-      return *m_spcrypto;
-   }
-
-
-
-   ::datetime::departament & system::datetime()
-   {
-      return *m_pdatetime;
-   }
-
-
-
-   sp(::user::window_draw) system::get_twf()
-   {
-
-      return m_ptwf;
-
-   }
-
    ::axis::log & system::log()
    {
       return *m_plog;
    }
-
-
-
-
-   ::fontopus::user_set & system::userset()
-   {
-      return m_userset;
-   }
-
-
-
-   ::axis::compress & system::compress()
-   {
-      return m_compress;
-   }
-
-
-
-   machine_event_central & system::machine_event_central()
-   {
-      return *m_pmachineeventcentral;
-   }
-
-
-   ::user::str & system::str()
-   {
-
-      return *m_puserstr;
-
-   }
-
-
-   sp(::user::document) system::place_hold(sp(::user::interaction) pui)
-   {
-
-
-      //if(m_pcubeInterface != NULL)
-      //{
-      // return m_pcubeInterface->hold(pui);
-      //}
-
-      return NULL;
-
-   }
-
 
    sp(::axis::session) system::query_session(index iEdge)
    {
@@ -1101,12 +547,6 @@ namespace axis
    }
 
 
-   ::axis::os & system::os()
-   {
-
-      return *m_spos;
-
-   }
 
 
    spa(::axis::session) & system::basesessionptra()
@@ -1321,417 +761,6 @@ namespace axis
 
 
 
-   bool system::initialize_twf()
-   {
-
-      if(m_ptwf != NULL)
-         return true;
-
-      sp(::user::window_draw) pwindow = alloc(System.type_info < ::user::window_draw >());
-
-      m_ptwf = pwindow;
-
-      m_ptwf->add_ref();
-
-      if(m_ptwf->twf_start())
-         return false;
-
-      return true;
-
-   }
-
-
-   index system::get_main_monitor(LPRECT lprect)
-   {
-
-      int iMainMonitor = 0;
-
-#ifdef WINDOWSEX
-
-      HMONITOR hmonitorPrimary = GetPrimaryMonitorHandle();
-
-      for(index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
-      {
-
-         if(m_hmonitora[iMonitor] == hmonitorPrimary)
-         {
-
-            iMainMonitor = iMonitor;
-
-            break;
-
-         }
-
-      }
-
-
-#endif
-
-      if(lprect != NULL)
-      {
-
-         get_monitor_rect(iMainMonitor,lprect);
-
-      }
-
-      return iMainMonitor;
-
-   }
-
-
-   ::count system::get_monitor_count()
-   {
-
-#ifdef WINDOWSEX
-
-      return m_monitorinfoa.get_count();
-
-#elif defined(MACOS)
-      
-      return GetScreenCount();
-      
-#else
-
-      return 1;
-
-#endif
-
-   }
-
-
-   bool system::get_monitor_rect(index iMonitor,LPRECT lprect)
-   {
-
-#ifdef WINDOWSEX
-
-      if(iMonitor < 0 || iMonitor >= get_monitor_count())
-         return false;
-
-      *lprect = m_monitorinfoa[iMonitor].rcMonitor;
-
-#elif defined(METROWIN)
-
-
-      get_window_rect(m_posdata->m_pwindow,lprect);
-
-
-#elif defined(LINUX)
-
-      xdisplay  d;
-
-      if(!d.open(NULL))
-         return false;
-
-      lprect->left = 0;
-      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
-      lprect->top = 0;
-      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
-
-#elif defined(APPLEOS)
-
-      if(iMonitor < 0 || iMonitor >= get_monitor_count())
-         return false;
-
-      GetScreenRect(lprect, iMonitor);
-
-#else
-
-      throw todo(get_app());
-
-      ::GetWindowRect(::GetDesktopWindow(),lprect);
-
-#endif
-
-      return true;
-
-   }
-
-
-   ::count system::get_desk_monitor_count()
-   {
-
-      return get_monitor_count();
-
-   }
-
-
-   bool system::get_desk_monitor_rect(index iMonitor,LPRECT lprect)
-   {
-
-      return get_monitor_rect(iMonitor,lprect);
-
-   }
-
-
-   index system::get_ui_wkspace(::user::interaction * pui)
-   {
-
-      int iMainWkspace = 0;
-
-#ifdef WINDOWSEX
-
-      HMONITOR hwkspacePrimary = GetUiMonitorHandle(pui->get_handle());
-
-      for(index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
-      {
-
-         if(m_hmonitora[iWkspace] == hwkspacePrimary)
-         {
-
-            iMainWkspace = iWkspace;
-
-            break;
-
-         }
-
-      }
-
-
-#endif
-
-      return iMainWkspace;
-
-   }
-
-
-   index system::get_main_wkspace(LPRECT lprect)
-   {
-
-      int iMainWkspace = 0;
-
-#ifdef WINDOWSEX
-
-      HMONITOR hwkspacePrimary = GetPrimaryMonitorHandle();
-
-      for(index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
-      {
-
-         if(m_hmonitora[iWkspace] == hwkspacePrimary)
-         {
-
-            iMainWkspace = iWkspace;
-
-            break;
-
-         }
-
-      }
-
-
-#endif
-
-      if(lprect != NULL)
-      {
-
-         get_wkspace_rect(iMainWkspace,lprect);
-
-      }
-
-      return iMainWkspace;
-
-   }
-
-
-   ::count system::get_wkspace_count()
-   {
-
-#ifdef WINDOWSEX
-
-      return m_monitorinfoa.get_count();
-
-#else
-
-      return 1;
-
-#endif
-
-   }
-
-
-   bool system::get_wkspace_rect(index iWkspace,LPRECT lprect)
-   {
-
-#ifdef WINDOWSEX
-
-      if(iWkspace < 0 || iWkspace >= get_wkspace_count())
-         return false;
-
-      *lprect = m_monitorinfoa[iWkspace].rcWork;
-
-#elif defined(METROWIN)
-
-      return get_monitor_rect(iWkspace,lprect);
-
-#elif defined(LINUX)
-
-      xdisplay  d;
-
-      if(!d.open(NULL))
-         return false;
-
-      lprect->left = 0;
-      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
-      lprect->top = 0;
-      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
-
-#elif defined(APPLEOS)
-
-      if(iWkspace < 0 || iWkspace >= get_wkspace_count())
-         return false;
-
-      GetWkspaceRect(lprect, iWkspace);
-      
-//      lprect->top += ::mac::get_system_main_menu_bar_height();
-  //    lprect->bottom -= ::mac::get_system_dock_height();
-
-#else
-
-      throw todo(get_app());
-
-      ::GetWindowRect(::GetDesktopWindow(),lprect);
-
-#endif
-
-      return true;
-
-   }
-
-
-   ::count system::get_desk_wkspace_count()
-   {
-
-      return get_wkspace_count();
-
-   }
-
-
-   bool system::get_desk_wkspace_rect(index iWkspace,LPRECT lprect)
-   {
-
-      return get_wkspace_rect(iWkspace,lprect);
-
-   }
-
-#ifdef WINDOWSEX
-
-
-   system::interaction_impl::interaction_impl(sp(::axis::application) papp):
-      element(papp),
-      ::user::interaction(papp)
-   {
-
-   }
-
-   void system::interaction_impl::install_message_handling(::message::dispatch * pdispatch)
-   {
-
-      ::user::interaction::install_message_handling(pdispatch);
-
-      IGUI_WIN_MSG_LINK(WM_DISPLAYCHANGE,pdispatch,this,&::axis::system::interaction_impl::_001MessageHub);
-
-   }
-
-   void system::interaction_impl::_001MessageHub(signal_details * pobj)
-   {
-
-      SCAST_PTR(::message::axis,pbase,pobj);
-
-      if(pbase != NULL)
-      {
-
-         if(pbase->m_uiMessage == WM_DISPLAYCHANGE)
-         {
-
-            System.enum_display_monitors();
-
-            for(index i = 0; i < System.frames().get_count(); i++)
-            {
-
-               try
-               {
-
-                  System.frames()[i]->WfiRestore(true);
-
-               }
-               catch(...)
-               {
-               }
-
-            }
-
-
-         }
-
-      }
-
-   }
-
-
-#endif
-
-
-   sp(::user::interaction) system::get_active_guie()
-   {
-
-#if defined(WINDOWSEX) || defined(LINUX) || defined(APPLEOS)
-
-      return window_from_os_data(::GetActiveWindow());
-
-#else
-
-      if(frames().get_size() <= 0)
-         return NULL;
-
-      return frames()[0];
-
-#endif
-
-   }
-
-
-   sp(::user::interaction) system::get_focus_guie()
-   {
-
-#if defined (METROWIN)
-
-      return GetFocus()->m_pui;
-
-#elif defined(WINDOWSEX) || defined(LINUX)
-
-      ::user::interaction * pwnd = ::window_from_handle(::GetFocus());
-      if(pwnd != NULL)
-      {
-         if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-            || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
-         {
-            return pwnd;
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      pwnd = System.window_from_os_data(::GetFocus());
-      if(pwnd != NULL)
-      {
-         if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-            || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
-         {
-            return pwnd;
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      return NULL;
-#else
-
-      return System.get_active_guie();
-
-#endif
-
-   }
 
 
    ::count system::get_application_count()
@@ -1940,34 +969,6 @@ namespace axis
    }
 
 
-   string system::get_module_title()
-   {
-
-      return file().title_(get_module_file_path());
-
-   }
-
-
-   string system::get_module_name()
-   {
-
-      return file().name_(get_module_file_path());
-
-   }
-
-   colorertake5::ParserFactory & system::parser_factory()
-   {
-
-      if(m_pparserfactory == NULL)
-      {
-
-         m_pparserfactory = new colorertake5::ParserFactory(this);
-
-      }
-
-      return *m_pparserfactory;
-
-   }
 
 
 

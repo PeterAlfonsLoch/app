@@ -69,16 +69,6 @@ namespace axis
 
 
 
-      virtual void  get_cursor_pos(LPPOINT lppoint);
-
-      
-
-
-
-
-
-
-
    };
 
 

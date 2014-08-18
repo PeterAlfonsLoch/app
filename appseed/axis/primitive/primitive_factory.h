@@ -115,7 +115,6 @@ public:
    virtual ~factory_item_base();
 
    
-   using ::object::create;
    virtual sp(element) create(sp(::axis::application) papp) = 0;
    
    using ::object::clone;
@@ -231,7 +230,6 @@ public:
    template < class T >
    void cloneable(sp(type)  info, int32_t iCount, bool bOverwrite = true, bool bAligned = false);
 
-   using ::object::create;
    virtual sp(element) create(sp(::axis::application) papp, sp(type) info);
    
    virtual sp(element) axis_clone(sp(element) pobject);

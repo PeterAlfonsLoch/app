@@ -5,7 +5,20 @@ class CLASS_DECL_AXIS string_array :
    virtual public ::object
 {
 public:
+   
+   typedef string AXIS_TYPE;
+   typedef const char * AXIS_ARG_TYPE;
+
+   string * m_pData;   // the actual array of data
+   ::count m_nSize;     // # of elements (upperBound - 1)
+   ::count m_nMaxSize;  // max allocated
+   ::count m_nGrowBy;   // grow amount
+
    string_array();
+   string_array(sp(::axis::application) app);
+   string_array(const string_array & a);
+   ~string_array();
+
 
    ::count get_size() const;
    ::count get_count() const;
@@ -52,10 +65,6 @@ public:
 
    index add(wchar_t wch);
 
-   void add(const var & var);
-
-   void add(const property & prop);
-
    void add(const id & id);
 
    index add(const string & newElement);
@@ -66,7 +75,7 @@ public:
 
    void copy(const string_array & src);
 
-
+   void copy(const raw_int64_array & src);
 
    // overloaded operator helpers
    string operator[](index nIndex) const;
@@ -92,28 +101,133 @@ public:
 
    string_array & operator =(const string_array & stra);
 
+   void add_tokens(const char * lpcsz,const char * lpcszSeparator,bool bAddEmpty = true);
+   void add_smallest_tokens(const char * lpcsz,string_array & straSeparator,bool bAddEmpty = true,bool bWithSeparator = FALSE);
+   void add_lines(const string & str);
 
-protected:
-   string * m_pData;   // the actual array of data
-   ::count m_nSize;     // # of elements (upperBound - 1)
-   ::count m_nMaxSize;  // max allocated
-   ::count m_nGrowBy;   // grow amount
+
+   bool is_empty(::count countMinimum = 1);
+   bool has_elements(::count countMinimum = 1);
+
 
    void InsertEmpty(index nIndex, ::count nCount);
 
 
+   void get_format_string(string & str,const char * lpcszSeparator) const;
 
-public:
-   ~string_array();
+   string encode_v16();
 
-///   void Serialize(CArchive&);
-   void dump(dump_context &) const;
-   void assert_valid() const;
 
-protected:
-   // local typedefs for class templates
-   typedef string AXIS_TYPE;
-   typedef const char * AXIS_ARG_TYPE;
+   void decode_v16(const char * psz);
+
+   ::count get_count_except(const char * psz);
+   ::count get_count_except(const string & str);
+   ::count get_count_except(const string_array & stra);
+
+   ::count get_count_except_ci(const char * psz);
+   ::count get_count_except_ci(const string & str);
+   ::count get_count_except_ci(const string_array & stra);
+
+   string get_json();
+
+   //   void XFV001Expand();
+
+   string_array & operator =(const raw_int64_array & ia);
+   string_array & operator -=(const string_array & stra);
+   string_array & operator +=(const string_array & stra);
+
+   string_array operator -(const string_array & stra) const;
+   string_array operator +(const string_array & stra) const;
+
+
+
+
+
+   void replace(const char * lpszSearch,const char * lpszReplace);
+
+
+   primitive::memory GetFormatV004();
+   ::count remove_empty();
+   index add_normal(const char * lpcsz);
+   void trim_right(const char * pszChars);
+   void trim_left(const char * pszChars);
+   void trim(const char * pszChars);
+   void trim_right();
+   void trim_left();
+   void trim();
+   index add_unique(const char * lpcsz);
+   ::count add_unique(const string_array & stra);
+   index add_unique_ci(const char * lpcsz);
+   ::count add_unique_ci(const string_array & stra);
+
+   void make_lower();
+   void make_upper();
+
+
+   index get_random_index() const;
+
+   string & random_element();
+   const string & random_element() const;
+
+   string pop_random_element();
+
+   string pop(index i = -1);
+   void slice(string_array & stra,index index,::count ca = -1);
+   void remove(index index,::count count);
+   void splice(const string_array & stra,index index,::count ca = -1);
+   void splice(const string_array & stra,index index,string_array & straRemoved,::count ca = -1);
+
+
+   // if string is found, move it to specified position
+   bool move_ci(const char * lpcsz,index iIndex);
+
+   // move preferred in order
+   bool preferred(const char * lpcsz);
+   ::count preferred(string_array & stra);
+
+   index find_first_ci(const char * lpcsz,index find = 0,index last = -1) const;
+   index find_first(const char * lpcsz,index find = 0,index last = -1) const;
+
+   index reverse_find_ci(const char * lpcsz,index find = -1,index last = 0) const;
+   index reverse_find(const char * lpcsz,index find = -1,index last = 0) const;
+
+
+   index find_first_begins_ci(const char * lpcsz,index find = 0,index last = -1) const;
+   index find_first_begins(const char * lpcsz,index find = 0,index last = -1) const;
+
+   index str_find_first_begins_ci(const char * lpcsz,index find = 0,index last = -1) const;
+   index str_find_first_begins(const char * lpcsz,index find = 0,index last = -1) const;
+
+   bool contains_ci(const char * lpcsz,index find = 0,index last = -1,::count countMin = 1,::count countMax = -1) const;
+   bool contains(const char * lpcsz,index find = 0,index last = -1,::count countMin = 1,::count countMax = -1) const;
+
+   ::count get_begins_ci(string_array & stra,const char * lpcsz,index first = 0,index last = -1);
+
+   ::count filter_begins_ci(const char * lpcsz,index first = 0,index last = -1);
+
+   ::count remove_first_ci(const char * lpcsz,index find = 0,index last = -1);
+   ::count remove_first(const char * lpcsz,index find = 0,index last = -1);
+
+   ::count remove_ci(const char * lpcsz,index find = 0,index last = -1,::count countMin = 0,::count countMax = -1);
+   ::count remove(const char * lpcsz,index find = 0,index last = -1,::count countMin = 0,::count countMax = -1);
+
+   ::count remove_ci(const string_array & stra);
+   ::count remove(const string_array & stra);
+
+   string_array & explode(const string & strSeparator,const string & str);
+
+   // csstidy: Same as explode, but not within a string
+   string_array & csstidy_explode_ws(char sep,const char * psz);
+
+   void implode(string & rwstr,const char * lpcszSeparator = NULL,index iStart = 0,::count iCount = -1) const;
+   string implode(const char * lpcszSeparator = NULL,index iStart = 0,::count iCount = -1) const;
+   void reverse_implode(string & rwstr,const char * lpcszSeparator = NULL,index iStart = 0,::count iCount = -1) const;
+   string reverse_implode(const char * lpcszSeparator = NULL,index iStart = 0,::count iCount = -1) const;
+
+   void surround(const char * pszPrefix = NULL,const char * pszSuffix = NULL,index iStart = 0,::count iCount = -1);
+   string surround_and_implode(const char * lpcszSeparator = NULL,const char * pszPrefix = NULL,const char * pszSuffix = NULL,index iStart = 0,::count iCount = -1);
+
+
 };
 
 

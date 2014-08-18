@@ -1,8 +1,5 @@
 #include "framework.h"
 #include <VersionHelpers.h>
-#undef new
-#include <Gdiplus.h>
-#define new AXIS_NEW
 #include <ddeml.h>
 
 void __term_threading();
@@ -31,13 +28,9 @@ LSTATUS
 
 LPFN_RegGetValueW g_pfnRegGetValueW = NULL;
 
-Gdiplus::GdiplusStartupInput *   g_pgdiplusStartupInput     = NULL;
-Gdiplus::GdiplusStartupOutput *  g_pgdiplusStartupOutput    = NULL;
-DWORD_PTR                        g_gdiplusToken             = NULL;
-DWORD_PTR                        g_gdiplusHookToken         = NULL;
 bool                             g_bCoInitialize            = false;
 
-bool __node_pre_init()
+bool __node_axis_pre_init()
 {
    
    HRESULT hresult = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
@@ -75,10 +68,9 @@ bool __node_pre_init()
 
 }
 
-bool __node_pos_init()
+bool __node_axis_pos_init()
 {
 
-   _set_purecall_handler(_ca2_purecall);
 
    HMODULE hmoduleUser32 = ::LoadLibrary("User32");
    g_pfnChangeWindowMessageFilter = (LPFN_ChangeWindowMessageFilter) ::GetProcAddress(hmoduleUser32, "ChangeWindowMessageFilter");
@@ -87,54 +79,22 @@ bool __node_pos_init()
    HMODULE hmoduleAdvApi32 = ::LoadLibrary("AdvApi32");
    g_pfnRegGetValueW = (LPFN_RegGetValueW) ::GetProcAddress(hmoduleAdvApi32, "RegGetValueW");
 
-   g_pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
-   g_pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
-   g_gdiplusToken             = NULL;
-   g_gdiplusHookToken         = NULL;
 
-   g_pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
-
-   Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken,g_pgdiplusStartupInput,g_pgdiplusStartupOutput);
-
-   if(statusStartup != Gdiplus::Ok)
-   {
-
-      simple_message_box(NULL,"Gdiplus Failed to Startup. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
-
-      return false;
-
-   }
-
-   statusStartup = g_pgdiplusStartupOutput->NotificationHook(&g_gdiplusHookToken);
-
-
-   if(statusStartup != Gdiplus::Ok)
-   {
-
-      simple_message_box(NULL,"Gdiplus Failed to Hook. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
-
-      return false;
-
-   }
 
    return true;
 
 } 
 
 
-bool __node_pre_term()
+bool __node_axis_pre_term()
 {
 
-   g_pgdiplusStartupOutput->NotificationUnhook(g_gdiplusHookToken);
-
-
-   ::Gdiplus::GdiplusShutdown(g_gdiplusToken);
 
    return true;
 
 }
 
-bool __node_pos_term()
+bool __node_axis_pos_term()
 {
 
    ::CoUninitialize();
@@ -536,89 +496,6 @@ CLASS_DECL_AXIS bool  __check_memory()
 
 }
 
-void __cdecl __crt_dump_client(void * pvData,size_t nBytes)
-{
-   char sz[1024];
-   try
-   {
-
-      if(_CrtReportBlockType(pvData) != ___CLIENT_BLOCK)
-         return;
-
-      //      object * pca = (object * ) pvData;
-
-      object * pobject = NULL;
-
-      /*for(int32_t i = 0; i < 256; i++)
-      {
-      try
-      {
-      pobject = dynamic_cast < object * > ((object *)&((int_ptr *)pca)[i]);
-      }
-      catch(std::__non_rtti_object & e)
-      {
-      pobject = NULL;
-      }
-      catch(...)
-      {
-      pobject = NULL;
-      }
-      if(pobject != NULL)
-      break;
-      }*/
-
-      if(pobject == NULL)
-      {
-         C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz,_countof(sz),_countof(sz) - 1,"unknown object at $%p, %u bytes long\n",pvData,nBytes));
-      }
-      else if(g_dumpcontext.GetDepth() > 0)
-      {
-         // long form
-         pobject->dump(g_dumpcontext);
-         g_dumpcontext << "\n";
-      }
-      if(false) // else
-      {
-         object & obj = *pobject;
-         // int16_t form
-         C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz,_countof(sz),_countof(sz) - 1,"a %hs object at $%p, %u bytes long\n",typeid(obj).name(),pvData,nBytes));
-         g_dumpcontext << sz;
-      }
-   }
-   catch(std::__non_rtti_object & e)
-   {
-      g_dumpcontext << "_gen::CrtdumpClient __non_rtti_object ";
-      g_dumpcontext << e.what();
-   }
-   catch(...)
-   {
-      // int16_t form for trashed objects
-      sprintf_s(sz,_countof(sz),"faulted while dumping object at $%p, %u bytes long\n",pvData,nBytes);
-      g_dumpcontext << sz;
-   }
-}
-
-int32_t __cdecl __crt_report_hook(int32_t nRptType,__in char *szMsg,int32_t* pResult)
-{
-   // no hook on asserts or when m_pFile is NULL
-   if(nRptType == _CRT_ASSERT || g_dumpcontext.m_pfile == NULL)
-      return FALSE;
-
-   ASSERT(pResult != NULL);
-   if(pResult == NULL)
-      throw invalid_argument_exception(get_thread_app());
-
-   ASSERT(szMsg != NULL);
-   if(szMsg == NULL)
-      throw invalid_argument_exception(get_thread_app());
-
-   // non-NULL m_pFile, so go through g_dumpcontext for the message
-   *pResult = FALSE;
-   g_dumpcontext << szMsg;
-   //Allow other report hooks to be called.
-   return FALSE;
-}
-
 
 #endif
 
@@ -697,3 +574,16 @@ namespace core
 
 
 } // namespace core
+
+
+::axis::application *(* g_pfn_get_thread_app)() = NULL;
+
+CLASS_DECL_AXIS ::axis::application * get_thread_app()
+{
+   return (*g_pfn_get_thread_app)();
+}
+
+CLASS_DECL_AXIS void set_get_thread_app(::axis::application * (pfn)())
+{
+   g_pfn_get_thread_app = pfn;
+}

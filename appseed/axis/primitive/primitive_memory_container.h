@@ -41,7 +41,7 @@ namespace primitive
       void from_string(const wchar_t * pwsz);
       void from_string(const char * psz);
       void from_string(const string & str);
-      void from_string(const var & str);
+      //void from_string(const var & str);
       void to_string(string & str);
 
       void read(memory_base *pmemorystorage);
@@ -140,7 +140,7 @@ namespace primitive
 
    }
 
-   inline void memory_container ::from_string(const var & var)
+/*   inline void memory_container ::from_string(const var & var)
    {
 
       if(m_spmemory.is_null())
@@ -148,7 +148,7 @@ namespace primitive
 
       m_spmemory->from_string(var);
 
-   }
+   }*/
 
    inline void memory_container ::to_string(string & str)
    {

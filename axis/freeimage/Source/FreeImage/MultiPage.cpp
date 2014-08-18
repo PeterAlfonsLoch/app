@@ -646,7 +646,7 @@ FreeImage_SavePageToBlock(MULTIBITMAPHEADER *header, FIBITMAP *data) {
 	// get rid of the compressed data
 	FreeImage_CloseMemory(hmem);
 
-	return new(std::nothrow) BlockReference(ref, compressed_size);
+	return new BlockReference(ref, compressed_size);
 }
 
 void DLL_CALLCONV
@@ -904,15 +904,15 @@ FreeImage_LoadMultiBitmapFromMemory(FREE_IMAGE_FORMAT fif, FIMEMORY *stream, int
 		PluginNode *node = list->FindNodeFromFIF(fif);
 
 		if (node) {
-			FreeImageIO *io = new(std::nothrow) FreeImageIO;
+			FreeImageIO *io = new FreeImageIO;
 
 			if (io) {
 				SetMemoryIO(io);
 
-				FIMULTIBITMAP *bitmap = new(std::nothrow) FIMULTIBITMAP;
+				FIMULTIBITMAP *bitmap = new FIMULTIBITMAP;
 
 				if (bitmap) {
-					MULTIBITMAPHEADER *header = new(std::nothrow) MULTIBITMAPHEADER;
+					MULTIBITMAPHEADER *header = new MULTIBITMAPHEADER;
 
 					if (header) {
 						header->m_filename = NULL;
@@ -940,7 +940,7 @@ FreeImage_LoadMultiBitmapFromMemory(FREE_IMAGE_FORMAT fif, FIMEMORY *stream, int
 						
 						if (!read_only) {
 							// set up the cache
-							CacheFile *cache_file = new(std::nothrow) CacheFile("", TRUE);
+							CacheFile *cache_file = new CacheFile("", TRUE);
 							
 							if (cache_file && cache_file->open()) {
 								header->m_cachefile = cache_file;

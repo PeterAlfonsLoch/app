@@ -5,19 +5,27 @@ class CLASS_DECL_AXIS pointer_list :
    virtual public ::object
 {
 public:
-	struct node
+   typedef void * AXIS_TYPE;
+   typedef void * AXIS_ARG_TYPE;
+   struct node
 	{
 		node* pNext;
 		node* pPrev;
 		void * data;
 	};
+   node* m_pnodeHead;
+   node* m_pnodeTail;
+   int_ptr m_nCount;
+   node* m_pnodeFree;
+   struct plex* m_pBlocks;
+   int_ptr m_nBlockSize;
 
-// Construction
+   node* NewNode(node*,node*);
+   void FreeNode(node*);
+
 	pointer_list(::count nBlockSize = 10);
 	virtual ~pointer_list();
 
-// Attributes (head and tail)
-	// ::count of elements
 	::count get_count() const;
 	::count get_size() const;
 	bool is_empty() const;
@@ -72,24 +80,6 @@ public:
 	POSITION find_index(index nIndex) const;
 						// get the 'nIndex'th element (may return NULL)
 
-// Implementation
-protected:
-	node* m_pnodeHead;
-	node* m_pnodeTail;
-	int_ptr m_nCount;
-	node* m_pnodeFree;
-	struct plex* m_pBlocks;
-	int_ptr m_nBlockSize;
-
-	node* NewNode(node*, node*);
-	void FreeNode(node*);
-
-public:
-	void dump(dump_context &) const;
-	void assert_valid() const;
-	// local typedefs for class templates
-	typedef void * AXIS_TYPE;
-	typedef void * AXIS_ARG_TYPE;
 };
 
 

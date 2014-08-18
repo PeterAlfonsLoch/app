@@ -5,7 +5,7 @@ int_bool dir_mk(const char * lpcsz)
 
 #ifdef WINDOWS
 
-   if(::dir_is(lpcsz))
+   if(dir_is(lpcsz))
       return true;
 
    string url(lpcsz);
@@ -71,7 +71,7 @@ int_bool dir_mk(const char * lpcsz)
 
 }
 
-extern "C"
+
 int_bool dir_is(const char * path1)
 {
 

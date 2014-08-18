@@ -237,9 +237,6 @@ CLASS_DECL_AXIS bool deflate(LPRECT prect, const RECT & rect);
 
 
 
-#include "geometry_point.h"
-#include "geometry_size.h"
-#include "geometry_rect.h"
 
 
 

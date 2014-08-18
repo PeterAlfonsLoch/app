@@ -41,80 +41,6 @@ stringa::~stringa()
 {
 }
 
-void stringa::add_tokens(const char * lpcsz, const char * lpcszSeparator, bool bAddEmpty)
-{
-   ::str::tokenizer strTokenizer(lpcsz);
-   string strToken;
-   if(bAddEmpty)
-   {
-      while(strTokenizer.GetNextToken(strToken, lpcszSeparator, FALSE))
-      {
-         string_array::add(strToken);
-      }
-   }
-   else
-   {
-      while(strTokenizer.GetNextToken(strToken, lpcszSeparator, FALSE))
-      {
-         if(!strToken.is_empty())
-            string_array::add(strToken);
-      }
-   }
-}
-
-int32_t g_add_smallest_tokens = 0;
-
-void stringa::add_smallest_tokens(const char * lpcsz, stringa & straSeparator, bool bAddEmpty, bool bWithSeparator)
-{
-   ::str::tokenizer strTokenizer(lpcsz);
-   string strToken;
-   if(bAddEmpty)
-   {
-      while(strTokenizer.GetNextSmallestToken(strToken, straSeparator, bWithSeparator))
-      {
-         string_array::add(strToken);
-      }
-   }
-   else
-   {
-      while(strTokenizer.GetNextSmallestToken(strToken, straSeparator, bWithSeparator))
-      {
-         if(!strToken.is_empty())
-            string_array::add(strToken);
-      }
-   }
-}
-
-
-void stringa::add_lines(const string & str)
-{
-
-   stringa straSeparator;
-
-   straSeparator.add("\r");
-
-   straSeparator.add("\n");
-
-   straSeparator.add("\r\n");
-
-   add_smallest_tokens(str, straSeparator, true, false);
-
-}
-
-
-void stringa::get_format_string(string & str, const char * lpcszSeparator) const
-{
-   str.Empty();
-   if(m_nSize > 0)
-   {
-      str = get_at(0);
-   }
-   for(int32_t i = 1; i < m_nSize; i++)
-   {
-      str += lpcszSeparator + get_at(i);
-   }
-}
-
 
 
 
@@ -1296,4 +1222,130 @@ string stringa::get_json()
    str += "\r\n]";
 
    return str;
+}
+
+
+
+void stringa::get_quick_sort_ci(raw_index_array & ia)
+{
+   raw_index_array stackLowerBound;
+   raw_index_array stackUpperBound;
+   index iLowerBound;
+   index iUpperBound;
+   index iLPos,iUPos,iMPos;
+   string t;
+   ia.remove_all();
+   ia.append_sequence(0,get_upper_bound());
+   if(this->get_size() >= 2)
+   {
+      stackLowerBound.push(0);
+      stackUpperBound.push(this->get_size() - 1);
+      while(true)
+      {
+         iLowerBound = stackLowerBound.pop();
+         iUpperBound = stackUpperBound.pop();
+         iLPos = iLowerBound;
+         iMPos = iLowerBound;
+         iUPos = iUpperBound;
+         while(true)
+         {
+            while(true)
+            {
+               if(iMPos == iUPos)
+                  break;
+               if(this->element_at(ia[iMPos]).CompareNoCase(this->element_at(ia[iUPos])) <= 0)
+                  iUPos--;
+               else
+               {
+                  index i = ia[iMPos];
+                  ia[iMPos] = ia[iUPos];
+                  ia[iUPos] = i;
+                  break;
+               }
+            }
+            if(iMPos == iUPos)
+               break;
+            iMPos = iUPos;
+            while(true)
+            {
+               if(iMPos == iLPos)
+                  break;
+
+               if(this->element_at(ia[iLPos]).CompareNoCase(this->element_at(ia[iMPos])) <= 0)
+                  iLPos++;
+               else
+               {
+                  index i = ia[iLPos];
+                  ia[iLPos] = ia[iMPos];
+                  ia[iMPos] = i;
+                  break;
+               }
+            }
+            if(iMPos == iLPos)
+               break;
+            iMPos = iLPos;
+         }
+         if(iLowerBound < iMPos - 1)
+         {
+            stackLowerBound.push(iLowerBound);
+            stackUpperBound.push(iMPos - 1);
+         }
+         if(iMPos + 1 < iUpperBound)
+         {
+            stackLowerBound.push(iMPos + 1);
+            stackUpperBound.push(iUpperBound);
+         }
+         if(stackLowerBound.get_size() == 0)
+            break;
+      }
+   }
+
+}
+
+
+
+
+void string_array::add(const var & var)
+{
+   if(var.is_empty())
+   {
+   }
+   else if(var.get_type() == var::type_stra)
+   {
+      add(var.stra());
+   }
+   else if(var.cast < string_array >() != NULL)
+   {
+      add(*var.cast < string_array >());
+   }
+   else if(var.get_type() == var::type_vara)
+   {
+      for(int32_t i = 0; i < var.vara().get_count(); i++)
+      {
+         add(var.vara()[i].get_string());
+      }
+   }
+   else if(var.get_type() == var::type_inta)
+   {
+      for(int32_t i = 0; i < var.inta().get_count(); i++)
+      {
+         add(::str::from(var.inta()[i]));
+      }
+   }
+   else if(var.get_type() == var::type_propset)
+   {
+      for(int32_t i = 0; i < var.propset().m_propertya.get_count(); i++)
+      {
+         add(var.propset().m_propertya[i].get_value().get_string());
+      }
+   }
+   else
+   {
+      add(var.get_string());
+   }
+}
+
+void string_array::add(const property & prop)
+{
+   add(prop.get_value());
 }

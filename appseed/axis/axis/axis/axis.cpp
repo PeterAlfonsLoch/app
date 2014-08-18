@@ -86,7 +86,7 @@ bool axis_init()
 
    ::axis::static_start::init();
 
-   if(!__node_pre_init())
+   if(!__node_axis_pre_init())
       return false;
 
    ::axis::static_start::init();
@@ -95,7 +95,7 @@ bool axis_init()
 
    ::multithreading::init_multithreading();
 
-   if(!__node_pos_init())
+   if(!__node_axis_pos_init())
       return false;
 
    return true;
@@ -106,15 +106,13 @@ bool axis_init()
 bool axis_term()
 {
 
-   __wait_threading_count(::millis((5000) * 8));
-
-   __node_pre_term();
+   __node_axis_pre_term();
 
    ::multithreading::term_multithreading();
 
    __term_threading_count();
 
-   __node_pos_term();
+   __node_axis_pos_term();
 
    ::axis::static_start::term();
 

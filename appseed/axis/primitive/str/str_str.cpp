@@ -382,13 +382,6 @@ namespace str
       return false;
 
    }
-
-   bool ends_ci(const var & var, const char * lpcszSuffix)
-   {
-      return ends_ci(var.get_string(), lpcszSuffix);
-   }
-
-
    bool ends_eat_ci(string & str, const char * lpcszSuffix)
    {
 
@@ -2165,37 +2158,7 @@ namespace str
       return str;
    }
 
-   var ends_get(const char * pszSuffix, const char * psz)
-   {
-      if(pszSuffix == NULL)
-         return psz;
-      if(psz == NULL)
-         return "";
-      string str(psz);
-      strsize iLen = strlen(psz);
-      strsize iLenSuffix = strlen(pszSuffix);
-      if(str.Right(iLenSuffix) == pszSuffix)
-      {
-         return str.Mid(0, iLen - iLenSuffix);
-      }
-      return false;
-   }
 
-   var ends_get_ci(const char * pszSuffix, const char * psz)
-   {
-      if(pszSuffix == NULL)
-         return psz;
-      if(psz == NULL)
-         return "";
-      string str(psz);
-      strsize iLen = strlen(psz);
-      strsize iLenSuffix = strlen(pszSuffix);
-      if(str.Right(iLenSuffix).CompareNoCase(pszSuffix) == 0)
-      {
-         return str.Mid(0, iLen - iLenSuffix);
-      }
-      return false;
-   }
    /** \file Utility.cpp
    **   \date  2004-02-13
    **   \author grymse@alhem.net

@@ -77,8 +77,8 @@ m_node_count(0) {
 FREE_IMAGE_FORMAT
 PluginList::AddNode(FI_InitProc init_proc, void *instance, const char *format, const char *description, const char *extension, const char *regexpr) {
 	if (init_proc != NULL) {
-		PluginNode *node = new(std::nothrow) PluginNode;
-		Plugin *plugin = new(std::nothrow) Plugin;
+		PluginNode *node = new PluginNode;
+		Plugin *plugin = new Plugin;
 		if(!node || !plugin) {
 			if(node) delete node;
 			if(plugin) delete plugin;
@@ -219,7 +219,7 @@ FreeImage_Initialise(BOOL load_local_plugins_only) {
 
 		// internal plugin initialization
 
-		s_plugins = new(std::nothrow) PluginList;
+		s_plugins = new PluginList;
 
 		if (s_plugins) {
 			/* NOTE : 

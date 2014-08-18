@@ -247,9 +247,9 @@ namespace axis
 
          try
          {
-            if(!::dir::is(::dir::name(*plog->m_pstrLogPath)))
+            if(!::dir_is(::dir::name(*plog->m_pstrLogPath)))
             {
-               ::dir::mk(::dir::name(*plog->m_pstrLogPath));
+               ::dir_mk(::dir::name(*plog->m_pstrLogPath));
             }
             if(!(plog->m_pfile = fopen(*m_pstrLogPath, "at")))
             {

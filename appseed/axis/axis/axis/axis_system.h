@@ -24,43 +24,12 @@ namespace axis
    {
    public:
 
-#if defined METROWIN && defined(__cplusplus_winrt)
-
-      class os_data
-      {
-      public:
-
-         sp(::user::interaction)                      m_pui;
-         ::axis::system_window ^                      m_pwindow;
-
-
-      };
-
-#elif defined(APPLE_IOS)
-      class os_data
-      {
-      public:
-
-         sp(::user::interaction)                      m_pui;
-
-
-      };
-
-#else
-
-      class os_data;
-
-#endif
-
-      os_data *                                    m_posdata;
-
 
       stridsp(type)                                m_typemap;
       spa(service_base)                            m_serviceptra;
       sp(axis_factory)                             m_pfactory;
       const id_pool                                m_cidpool;
       sp(class ::axis::log)                        m_plog;
-      sp(geometry::geometry)                       m_pgeometry;
 
 
       ::exception::engine *                        m_peengine;
@@ -78,19 +47,9 @@ namespace axis
       sp(mutex)                                    m_spmutexSystemAppData;
 
 
-#ifdef WINDOWS
-      ID2D1DeviceContext *                         m_pdevicecontext;
-      sp(mutex)                                    m_pmutexDc;
-#endif
 
       sp(mutex)                                    m_spmutexFactory;
 
-      ::axis::library                              m_libraryDraw2d;
-
-
-      bool                                         m_bMatterFromHttpCache;
-      bool                                         m_bSystemSynchronizedCursor;
-      bool                                         m_bSystemSynchronizedScreen;
       bool                                         m_bGudoNetCache;
 
       string                                       m_strCa2ModulePath;
@@ -103,17 +62,6 @@ namespace axis
       size_t                                       m_nSafetyPoolSize;      // ideal size
       ::html::html *                               m_phtml; // only defined  in core;
 
-
-#ifdef WINDOWSEX
-
-
-      raw_array < MONITORINFO >                    m_monitorinfoa;
-      raw_array < HMONITOR >                       m_hmonitora;
-      raw_array < MONITORINFO >                    m_monitorinfoaDesk;
-
-
-
-#endif
 
 
       system(sp(::axis::application) papp);
@@ -140,9 +88,6 @@ namespace axis
 
       class ::axis::log                            & log();
 
-
-
-      geometry::geometry                           & geometry() { return *m_pgeometry; }
 
 
 
@@ -313,28 +258,6 @@ namespace axis
       virtual bool assert_running_local(const char * pszAppName,const char * pszId = NULL);
 
 
-      virtual bool initialize_twf();
-
-
-      void enum_display_monitors();
-
-#if defined(WINDOWS)
-      static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor,LPARAM dwData);
-      void monitor_enum(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor);
-#endif
-
-      virtual index get_main_monitor(LPRECT lprect = NULL);
-      virtual ::count get_monitor_count();
-      virtual bool  get_monitor_rect(index iMonitor,LPRECT lprect);
-      virtual ::count get_desk_monitor_count();
-      virtual bool  get_desk_monitor_rect(index iMonitor,LPRECT lprect);
-
-      virtual index get_main_wkspace(LPRECT lprect = NULL);
-      virtual ::count get_wkspace_count();
-      virtual bool  get_wkspace_rect(index iWkspace,LPRECT lprect);
-      virtual ::count get_desk_wkspace_count();
-      virtual bool  get_desk_wkspace_rect(index iWkspace,LPRECT lprect);
-
 
 
       virtual ::count get_application_count();
@@ -344,8 +267,6 @@ namespace axis
       virtual string get_ca2_module_file_path();
       virtual string get_module_folder();
       virtual string get_module_file_path();
-      virtual string get_module_title();
-      virtual string get_module_name();
 
 
 
@@ -357,7 +278,22 @@ namespace axis
 
 
 
-void CLASS_DECL_AXIS __start_system(::axis::system * psystem);
+
+
+CLASS_DECL_AXIS bool axis_init();
+CLASS_DECL_AXIS bool axis_term();
+
+CLASS_DECL_AXIS bool __node_axis_pre_init();
+CLASS_DECL_AXIS bool __node_axis_pos_init();
+
+CLASS_DECL_AXIS bool __node_axis_pre_term();
+CLASS_DECL_AXIS bool __node_axis_pos_term();
+
+
+
+
+
+
 
 
 

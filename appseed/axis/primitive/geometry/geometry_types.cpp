@@ -455,7 +455,7 @@ bool is_empty(const __rect64 * prect)
 }
 
 
-bool contains(const __rect64 * prect, point64 pt)
+bool contains(const __rect64 * prect, __point64 pt)
 {
 
    return

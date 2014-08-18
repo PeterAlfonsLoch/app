@@ -45,33 +45,7 @@ wait_result sync_object::wait(const duration & durationTimeout)
 #endif
 }
 
-void sync_object::dump(dump_context & dumpcontext) const
-{
 
-#ifdef WINDOWS
-   dumpcontext << "Object ";
-   dumpcontext << m_object;
-#endif
-
-   dumpcontext << " named " << m_strName << "\n";
-
-   object::dump(dumpcontext);
-
-}
-
-void sync_object::assert_valid() const
-{
-   object::assert_valid();
-}
-
-#ifdef WINDOWS
-
-sync_object::operator HANDLE() const
-{
-   return m_object;
-}
-
-#endif
 
 void * sync_object::get_os_data() const
 {

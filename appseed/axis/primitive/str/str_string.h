@@ -175,8 +175,8 @@ public:
    string(const string_interface & str);
 
    inline string(const id & id);
-   inline string(const var & var);
-   inline string(const property & prop);
+   //inline string(const var & var);
+   //inline string(const property & prop);
 
    template < typename T >
    inline explicit string(T o) :
@@ -212,8 +212,8 @@ public:
 
 
    inline string & operator = (const id & str);
-   inline string & operator = (const var & var);
-   inline string & operator = (const property & prop);
+   //inline string & operator = (const var & var);
+   //inline string & operator = (const property & prop);
 
    string & operator = (const string_interface & str );
    //string & operator = (string strSrc);
@@ -681,9 +681,9 @@ public:
    friend string CLASS_DECL_AXIS operator+(int32_t ch1,const string & str2 );
    friend string CLASS_DECL_AXIS operator+(const string & str1,int64_t ch2 );
    friend string CLASS_DECL_AXIS operator+(int64_t ch1,const string & str2 );
-   friend string CLASS_DECL_AXIS operator+(const var & var, const char * psz);
+   //friend string CLASS_DECL_AXIS operator+(const var & var, const char * psz);
    friend string CLASS_DECL_AXIS operator+(const char * psz, const var & var);
-   friend string CLASS_DECL_AXIS operator+(const var & var, const string & str);
+   //friend string CLASS_DECL_AXIS operator+(const var & var, const string & str);
    friend string CLASS_DECL_AXIS operator+(const string & str, const var & var);
 
 
@@ -961,6 +961,7 @@ namespace str
 
 #include "axis/primitive/str/x/x_charcategory.h"
 #include "axis/primitive/primitive_bit.h"
+#include "axis/primitive/primitive_color.h"
 #include "axis/primitive/collection/collection_bit_array.h"
 
 

@@ -1,5 +1,4 @@
 #include "framework.h"
-#include "framework.h"
 #include <process.h>    // for _beginthreadex and _endthreadex
 #undef new
 #include <gdiplus.h>
@@ -43,7 +42,7 @@ void thread_data::set(void * p)
 
 
 mutex * os_thread::s_pmutex = NULL;
-comparable_raw_array < os_thread * >::type * os_thread::s_pptra = NULL;
+raw_array < os_thread * > * os_thread::s_pptra = NULL;
 __declspec(thread) os_thread * t_posthread = NULL;
 
 os_thread::os_thread(uint32_t(* pfn)(void *),void * pv)
