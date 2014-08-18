@@ -8,7 +8,7 @@
 #ifndef ZCONF_H
 #define ZCONF_H
 
-#include "app/appseed/axis/axis/axis/base.h"
+#include "app/appseed/axis/axis/axis/axis.h"
 
 /*
  * If you *really* need a unique prefix for all types and library functions,

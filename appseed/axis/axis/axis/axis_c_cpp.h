@@ -514,8 +514,6 @@ namespace file
 
 #include "axis/primitive/comparison/comparison_md5.h"
 
-#include "axis/net/net.h"
-
 #include "axis_conv.h"
 
 #include "axis_core.h"
@@ -762,8 +760,6 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 #include "axis_trace.h"
 
 
-#include "axis/net/net.h"
-
 
 #include "axis/primitive/primitive_memory_base.h"
 #include "axis/primitive/primitive_memory.h"
@@ -780,7 +776,6 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 
 #include "axis/primitive/str/str_international2.h"
 
-#include "net/http/http_output_stream.h"
 
 
 #if defined(METROWIN)
@@ -790,24 +785,11 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 #endif
 
 
-#include "axis/net/sockets/sockets.h"
-
 #include "axis/programming/javascript/javascript.h"
 
-#include "net/http/http_http.h"
-#include "net/http/http_application.h"
-#include "net/http/http_system.h"
-#include "net/http/http_get_socket.h"
-
-//#include "axis_message_queue_listener.h"
-//#include "axis_message_queue.h"
 #include "axis/user/userpresence/userpresence.h"
 #include "axis/primitive/primitive_factory.h"
-#include "axis/filesystem/fs/fs.h"
-#include "axis/user/fontopus/fontopus.h"
 
-#include "axis/filesystem/file/file_application.h"
-#include "axis/filesystem/file/file_dir_application.h"
 
 #include "axis/primitive/math/math_math_rng.h"
 #include "axis/primitive/math/math_math.h"
@@ -839,10 +821,6 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 #include "axis_session_interface.h"
 #include "axis_session.h"
 
-#include "axis/net/net_url_departament.h"
-#include "axis/net/net_url_domain.h"
-
-
 
 
 #include "axis/primitive/primitive_application_bias.h"
@@ -867,13 +845,6 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 
 
 
-
-
-//#include "axis/graphics/visual/visual.h"
-
-
-#include "axis/filesystem/file/file_system.h"
-#include "axis/filesystem/file/file_dir_system.h"
 
 #include "axis/filesystem/file/file_buffered_buffer.h"
 

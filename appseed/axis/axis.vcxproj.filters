@@ -96,12 +96,6 @@
     <Filter Include="Header Files\programming\javascript">
       <UniqueIdentifier>{1523f2fe-95c5-4ef8-aeb6-44864f6d2cc6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\user\fontopus">
-      <UniqueIdentifier>{52423014-d461-4259-bfeb-967df0f4f8af}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\fontopus">
-      <UniqueIdentifier>{d0c65bf7-e04b-4672-a73c-349e12dc5e5d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user\userpresence">
       <UniqueIdentifier>{5f8d1e2a-7a7d-40d2-b25c-52033b755438}</UniqueIdentifier>
     </Filter>
@@ -117,9 +111,6 @@
     <Filter Include="Header Files\filesystem">
       <UniqueIdentifier>{e735cbc7-6be2-44c9-b19a-0c3d6ee00183}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\filesystem\fs">
-      <UniqueIdentifier>{ac8dd5af-8993-4120-b887-6a1e4eaaa29d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\filesystem\file">
       <UniqueIdentifier>{3a2d58e0-3564-457f-ad53-2b26fdc8b2f0}</UniqueIdentifier>
     </Filter>
@@ -131,9 +122,6 @@
     </Filter>
     <Filter Include="Source Files\filesystem">
       <UniqueIdentifier>{22c285dd-ad96-4ecc-8b5f-c3b809e98645}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\filesystem\fs">
-      <UniqueIdentifier>{b19eccb3-0ff3-4b9c-b6de-ab7724054f1c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\filesystem\file">
       <UniqueIdentifier>{7164038b-3f76-4ce1-96d5-cc885cbf7871}</UniqueIdentifier>
@@ -830,36 +818,6 @@
     <ClInclude Include="graphics\visual\visual_icon.h">
       <Filter>Header Files\graphics\visual</Filter>
     </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_authentication_map.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_contact_list.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_fontopus.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_license.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_user.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_user_authentication.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_user_set.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_usera.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_validate.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
     <ClInclude Include="user\userpresence\userpresence.h">
       <Filter>Header Files\user\userpresence</Filter>
     </ClInclude>
@@ -947,39 +905,6 @@
     <ClInclude Include="filesystem\filesystem.h">
       <Filter>Header Files\filesystem</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\fs\fs.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_data.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_fs.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_ifs.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_ifs_file.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_item.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_item_array.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_native_fs.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_remote_native_file.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_remote_native_fs.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_set.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
     <ClInclude Include="axis\compress\compress_bzip_stream.h">
       <Filter>Header Files\axis\compress</Filter>
     </ClInclude>
@@ -990,9 +915,6 @@
       <Filter>Header Files\axis\compress</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_application.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file_binary_buffer.h">
@@ -1032,12 +954,6 @@
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file_dir.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_dir_application.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_dir_system.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file_exception.h">
@@ -1110,9 +1026,6 @@
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file_string_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_system.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file_text_buffer.h">
@@ -1369,12 +1282,6 @@
     </ClInclude>
     <ClInclude Include="axis\install\install_trace.h">
       <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_login.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_simple_ui.h">
-      <Filter>Header Files\user\fontopus</Filter>
     </ClInclude>
     <ClInclude Include="user\simple_ui\simple_ui.h">
       <Filter>Header Files\user\simple_ui</Filter>
@@ -2798,9 +2705,6 @@
     <ClInclude Include="framework_c.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\fs\fs_link.h">
-      <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
     <ClInclude Include="axis\os\windows\windows.h">
       <Filter>Header Files\axis\os\windows</Filter>
     </ClInclude>
@@ -3661,27 +3565,6 @@
     <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp">
       <Filter>Source Files\programming\javascript</Filter>
     </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_contact_list.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_fontopus.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_license.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_user.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_user_set.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_usera.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_validate.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\math\math_math.cpp">
       <Filter>Source Files\primitive\math</Filter>
     </ClCompile>
@@ -3826,44 +3709,8 @@
     <ClCompile Include="filesystem\file\file_writer_flush.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_data.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_fs.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_ifs.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_ifs_file.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_item.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_item_array.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_native_fs.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_remote_native_file.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_remote_native_fs.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_set.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
     <ClCompile Include="axis\compress\compress_compress.cpp">
       <Filter>Source Files\axis\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_authentication_map.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
     </ClCompile>
     <ClCompile Include="user\userpresence\userpresence_user_presence.cpp">
       <Filter>Source Files\user\userpresence</Filter>
@@ -4141,9 +3988,6 @@
     <ClCompile Include="axis\install\install_trace.cpp">
       <Filter>Source Files\axis\install</Filter>
     </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_simple_ui.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
     <ClCompile Include="user\simple_ui\simple_ui_style.cpp">
       <Filter>Source Files\user\simple_ui</Filter>
     </ClCompile>
@@ -4158,9 +4002,6 @@
     </ClCompile>
     <ClCompile Include="user\simple_ui\simple_ui_tap.cpp">
       <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_login.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
     </ClCompile>
     <ClCompile Include="axis\exception\exception.cpp">
       <Filter>Source Files\axis\exception</Filter>
@@ -4455,9 +4296,6 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive_relation_set.cpp">
       <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_user_authentication.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
     </ClCompile>
     <ClCompile Include="axis\os\android\android.cpp">
       <Filter>Source Files\axis\os\android</Filter>
@@ -4764,9 +4602,6 @@
     </ClCompile>
     <ClCompile Include="framework_c.c">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_link.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
     <ClCompile Include="axis\os\windows\win2.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
@@ -5570,6 +5405,9 @@
     </None>
     <None Include="primitive\collection\collection.inl">
       <Filter>Header Files\primitive\collection</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

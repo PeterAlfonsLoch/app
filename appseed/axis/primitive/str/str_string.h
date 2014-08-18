@@ -1591,22 +1591,6 @@ inline string to_string(Platform::String ^ str)
 #endif
 
 
-template < >
-inline string to_string(const in_addr * addr)
-{
-
-   return to_vsstring(addr);
-
-}
-
-
-template < >
-inline string to_string(const in6_addr * addr)
-{
-
-   return to_vsstring(addr);
-
-}
 
 inline string  & operator += (string & str, const ::id & id)
 {
