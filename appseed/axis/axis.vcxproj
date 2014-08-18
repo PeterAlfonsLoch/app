@@ -4112,9 +4112,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\simple_ui\simple_ui_password.h" />
     <ClInclude Include="user\simple_ui\simple_ui_style.h" />
     <ClInclude Include="user\simple_ui\simple_ui_tap.h" />
-    <ClInclude Include="user\userpresence\userpresence.h" />
-    <ClInclude Include="user\userpresence\userpresence_userpresence.h" />
-    <ClInclude Include="user\userpresence\userpresence_user_presence.h" />
     <ClInclude Include="user\user\user.h" />
     <ClInclude Include="user\user\user_buffer.h" />
     <ClInclude Include="user\user\user_check_interface.h" />
@@ -5313,8 +5310,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\simple_ui\simple_ui_password.cpp" />
     <ClCompile Include="user\simple_ui\simple_ui_style.cpp" />
     <ClCompile Include="user\simple_ui\simple_ui_tap.cpp" />
-    <ClCompile Include="user\userpresence\userpresence_userpresence.cpp" />
-    <ClCompile Include="user\userpresence\userpresence_user_presence.cpp" />
     <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="user\user\user_buffer.cpp" />
     <ClCompile Include="user\user\user_check_interface.cpp" />
