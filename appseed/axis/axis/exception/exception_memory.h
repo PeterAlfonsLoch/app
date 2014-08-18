@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE memory_exception : 
+class CLASS_DECL_AXIS memory_exception : 
    virtual public simple_exception
 {
 public:
@@ -22,7 +22,7 @@ namespace std
 {
 
    
-   class CLASS_DECL_BASE bad_alloc :
+   class CLASS_DECL_AXIS bad_alloc :
       virtual public memory_exception
    {
    public:

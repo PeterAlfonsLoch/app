@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_BASE stream :
+   class CLASS_DECL_AXIS stream :
       virtual public output_stream,
       virtual public input_stream
    {

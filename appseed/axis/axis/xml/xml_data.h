@@ -6,7 +6,7 @@ namespace xml
 {
 
 
-   class CLASS_DECL_BASE data :
+   class CLASS_DECL_AXIS data :
       public ::xml::document
    {
    public:

@@ -26,7 +26,7 @@
 class Ex1FormInterfaceComboBox;
 
 /*
-class CLASS_DECL_BASE Ex1FormInterfaceComboBox:
+class CLASS_DECL_AXIS Ex1FormInterfaceComboBox:
    virtual public ::object
 {
 public:
@@ -87,12 +87,12 @@ class CDockContext;                     // for dragging control bars
 // Context sensitive help support (see Technical note TN028 for more details)
 
 // Help ID bases
-#define HID_BASE_COMMAND    0x00010000UL        // ID and IDM
-#define HID_BASE_RESOURCE   0x00020000UL        // IDR and IDD
-#define HID_BASE_PROMPT     0x00030000UL        // IDP
-#define HID_BASE_NCAREAS    0x00040000UL
-#define HID_BASE_CONTROL    0x00050000UL        // IDC
-#define HID_BASE_DISPATCH   0x00060000UL        // IDispatch help codes
+#define HID_AXIS_COMMAND    0x00010000UL        // ID and IDM
+#define HID_AXIS_RESOURCE   0x00020000UL        // IDR and IDD
+#define HID_AXIS_PROMPT     0x00030000UL        // IDP
+#define HID_AXIS_NCAREAS    0x00040000UL
+#define HID_AXIS_CONTROL    0x00050000UL        // IDC
+#define HID_AXIS_DISPATCH   0x00060000UL        // IDispatch help codes
 
 /////////////////////////////////////////////////////////////////////////////
 // Internal _ Windows messages (see Technical note TN024 for more details)
@@ -192,7 +192,7 @@ namespace user
 {
 
    
-   CLASS_DECL_BASE void __reposition_window(__SIZEPARENTPARAMS* lpLayout,sp(::user::interaction) oswindow,LPCRECT lpRect);
+   CLASS_DECL_AXIS void __reposition_window(__SIZEPARENTPARAMS* lpLayout,sp(::user::interaction) oswindow,LPCRECT lpRect);
 
 
 } // namespace user
@@ -205,7 +205,7 @@ namespace user
 
 // General OLE features
 
-#if (!defined ___NO_OLE_SUPPORT) && (defined _OBJBASE_H_)
+#if (!defined ___NO_OLE_SUPPORT) && (defined _OBJAXIS_H_)
 
 // Implementation structures
 struct __EVENT;               // Event sink implementation
@@ -234,7 +234,7 @@ class CArchiveStream;
 /////////////////////////////////////////////////////////////////////////////
 // General OLE features
 
-#if (!defined ___NO_OLE_SUPPORT) && (defined _OBJBASE_H_)
+#if (!defined ___NO_OLE_SUPPORT) && (defined _OBJAXIS_H_)
 #ifndef __AFXPRIV2_H__OLE__
 #define __AFXPRIV2_H__OLE__
 
@@ -311,7 +311,7 @@ public:
 };
 
 #endif // __AFXPRIV2_H__OLE__
-#endif //(!defined ___NO_OLE_SUPPORT) && (defined _OBJBASE_H_)
+#endif //(!defined ___NO_OLE_SUPPORT) && (defined _OBJAXIS_H_)
 
 /////////////////////////////////////////////////////////////////////////////
 // OLE Automation features
@@ -323,7 +323,7 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // CArchiveStream
 /*
-class CLASS_DECL_BASE CArchiveStream : public IStream
+class CLASS_DECL_AXIS CArchiveStream : public IStream
 {
 public:
 CArchiveStream(CArchive* pArchive);
@@ -352,12 +352,12 @@ HRes Clone)(LPSTREAM*);
 /////////////////////////////////////////////////////////////////////////////
 // Global UNICODE<>ANSI translation helpers
 
-CLASS_DECL_BASE void ::core::BSTR2String(string* pStr, BSTR bstr);
+CLASS_DECL_AXIS void ::core::BSTR2String(string* pStr, BSTR bstr);
 
 #if !defined(_UNICODE)
-CLASS_DECL_BASE BSTR::core::BSTR2ABSTR(BSTR bstrW);
-CLASS_DECL_BASE wchar_t * ::core::TaskStringA2W(const char * lpa);
-CLASS_DECL_BASE char * ::core::TaskStringW2A(const wchar_t * lpw);
+CLASS_DECL_AXIS BSTR::core::BSTR2ABSTR(BSTR bstrW);
+CLASS_DECL_AXIS wchar_t * ::core::TaskStringA2W(const char * lpa);
+CLASS_DECL_AXIS char * ::core::TaskStringW2A(const wchar_t * lpw);
 #endif
 
 #endif // __AFXPRIV2_H__DISP__
@@ -372,7 +372,7 @@ CLASS_DECL_BASE char * ::core::TaskStringW2A(const wchar_t * lpw);
 #include "user_job.h"
 
 
-#include "base/base/base/base_print_job.h"
+#include "axis/axis/axis/axis_print_job.h"
 
 
 #include "user_message.h"

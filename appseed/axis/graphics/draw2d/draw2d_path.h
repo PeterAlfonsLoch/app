@@ -5,13 +5,13 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_BASE path :
+   class CLASS_DECL_AXIS path :
       virtual public ::draw2d::object
    {
    public:
 
 
-     class CLASS_DECL_BASE arc
+     class CLASS_DECL_AXIS arc
       {
       public:
 
@@ -26,7 +26,7 @@ namespace draw2d
 
       };
 
-      class CLASS_DECL_BASE move
+      class CLASS_DECL_AXIS move
       {
       public:
 
@@ -36,7 +36,7 @@ namespace draw2d
       };
 
 
-      class CLASS_DECL_BASE line
+      class CLASS_DECL_AXIS line
       {
       public:
 
@@ -45,7 +45,7 @@ namespace draw2d
 
       };
 
-      class CLASS_DECL_BASE end
+      class CLASS_DECL_AXIS end
       {
       public:
 
@@ -53,7 +53,7 @@ namespace draw2d
 
       };
 
-      class CLASS_DECL_BASE string_path
+      class CLASS_DECL_AXIS string_path
       {
       public:
 
@@ -70,7 +70,7 @@ namespace draw2d
 
       };
 
-      class CLASS_DECL_BASE element
+      class CLASS_DECL_AXIS element
       {
       public:
 
@@ -191,7 +191,7 @@ namespace draw2d
    };
 
 
-   class CLASS_DECL_BASE path_sp :
+   class CLASS_DECL_AXIS path_sp :
       public smart_pointer < path >
    {
    public:

@@ -85,7 +85,7 @@ namespace sockets
    */
 
 
-   class CLASS_DECL_BASE net :
+   class CLASS_DECL_AXIS net :
       public object
    {
    private:
@@ -105,7 +105,7 @@ namespace sockets
       bool           m_bInitialized;
 
 
-      class CLASS_DECL_BASE dns_cache_item :
+      class CLASS_DECL_AXIS dns_cache_item :
          virtual public ::file::serializable
       {
       public:
@@ -127,7 +127,7 @@ namespace sockets
 
       };
 
-      class CLASS_DECL_BASE reverse_cache_item:
+      class CLASS_DECL_AXIS reverse_cache_item:
          virtual public ::file::serializable
       {
       public:

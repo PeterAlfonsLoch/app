@@ -18,7 +18,7 @@ namespace file
    typedef sp(string_buffer) string_buffer_sp;
 
 
-   class CLASS_DECL_BASE string_buffer :
+   class CLASS_DECL_AXIS string_buffer :
       virtual public ::file::stream_buffer
    {
    public:

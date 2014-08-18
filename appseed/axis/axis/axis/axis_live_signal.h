@@ -5,7 +5,7 @@ namespace base
 {
 
 
-   class CLASS_DECL_BASE live_signal :
+   class CLASS_DECL_AXIS live_signal :
       virtual public ::base::live_object,
       virtual protected ::comparable_array < live_object * >
    {

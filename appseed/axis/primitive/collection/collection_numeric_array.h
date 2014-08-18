@@ -782,23 +782,23 @@ unique_number_sort_array < TYPE >::
 
 
 
-typedef CLASS_DECL_BASE numeric_array < index > index_array;
-typedef CLASS_DECL_BASE numeric_array < count > count_array;
-typedef CLASS_DECL_BASE numeric_array < int32_t > int_array;
-typedef CLASS_DECL_BASE numeric_array < int64_t > int64_array;
-typedef CLASS_DECL_BASE numeric_array < uint64_t > uint64_array;
-typedef CLASS_DECL_BASE numeric_array < float > float_array;
-typedef CLASS_DECL_BASE numeric_array < double > double_array;
-typedef CLASS_DECL_BASE numeric_array < byte > byte_array;
-typedef CLASS_DECL_BASE numeric_array < uint16_t > uint16_array;
-typedef CLASS_DECL_BASE numeric_array < uint32_t > uint_array;
-typedef CLASS_DECL_BASE numeric_array < uint_ptr > uint_ptr_array;
+typedef CLASS_DECL_AXIS numeric_array < index > index_array;
+typedef CLASS_DECL_AXIS numeric_array < count > count_array;
+typedef CLASS_DECL_AXIS numeric_array < int32_t > int_array;
+typedef CLASS_DECL_AXIS numeric_array < int64_t > int64_array;
+typedef CLASS_DECL_AXIS numeric_array < uint64_t > uint64_array;
+typedef CLASS_DECL_AXIS numeric_array < float > float_array;
+typedef CLASS_DECL_AXIS numeric_array < double > double_array;
+typedef CLASS_DECL_AXIS numeric_array < byte > byte_array;
+typedef CLASS_DECL_AXIS numeric_array < uint16_t > uint16_array;
+typedef CLASS_DECL_AXIS numeric_array < uint32_t > uint_array;
+typedef CLASS_DECL_AXIS numeric_array < uint_ptr > uint_ptr_array;
 
 
 
 
-typedef CLASS_DECL_BASE unique_number_sort_array < int32_t > unique_int_sort_array;
-typedef CLASS_DECL_BASE unique_number_sort_array < index > unique_index_sort_array;
+typedef CLASS_DECL_AXIS unique_number_sort_array < int32_t > unique_int_sort_array;
+typedef CLASS_DECL_AXIS unique_number_sort_array < index > unique_index_sort_array;
 
 
 
@@ -913,6 +913,86 @@ inline void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::remove_indexes(const inde
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::remove_descending_indexes(const index_array & ia)
+{
+
+   for(index i = 0; i < ia.get_count(); i++)
+   {
+
+      remove_at(ia[i]);
+
+   }
+
+}
+
+
+// take in ac::count that _001RemoveIndexes change
+// the index raw_array by sorting it and returning
+// only the indexes that could be removed
+// without indexes duplicates
+template<class TYPE, class ARG_TYPE>
+inline void raw_array<TYPE, ARG_TYPE>::_001RemoveIndexes( /* [in, out] */ index_array & ia /* [in, out] */ )
+{
+
+   // sort
+   ia.quick_sort(true);
+
+   index i = ia.get_upper_bound();
+
+   // filter out of upper bound indexes
+   while(i >= 0 && ia[i] >= get_size())
+   {
+
+      ia.remove_at(i);
+
+      i--;
+
+   }
+
+   // filter out of lower bound indexes
+   while(ia.get_size() > 0 && ia[0] < 0)
+   {
+
+      ia.remove_at(0);
+
+   }
+
+   i = ia.get_upper_bound();
+
+   // filter out duplicates
+   while(i > 0 && ia[i] >= get_size())
+   {
+
+      if(ia[i] == ia[i - 1])
+         ia.remove_at(i);
+
+      i--;
+
+   }
+
+   remove_indexes(ia);
+
+}
+
+
+
+template<class TYPE, class ARG_TYPE>
+inline void raw_array<TYPE, ARG_TYPE>::remove_indexes(const index_array & ia)
+{
+
+
+   // remove indexes
+   for(index i = ia.get_upper_bound(); i >= 0; i--)
+   {
+
+      remove_at(ia[i]);
+
+   }
+
+}
+
+
+template<class TYPE, class ARG_TYPE>
+inline void raw_array<TYPE, ARG_TYPE>::remove_descending_indexes(const index_array & ia)
 {
 
    for(index i = 0; i < ia.get_count(); i++)
@@ -1477,6 +1557,410 @@ sort_remove(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia)
 
 
 
+template <class TYPE, class ARG_TYPE>
+void raw_array<TYPE, ARG_TYPE>::quick_sort(index (* fCompare)(TYPE *, TYPE *), void (* fSwap)(TYPE *, TYPE *))
+{
+   index_array stackLowerBound;
+   index_array stackUpperBound;
+   index iLowerBound;
+   index iUpperBound;
+   index iLPos, iUPos, iMPos;
+   //   uint32_t t;
+
+   if(get_size() >= 2)
+   {
+      stackLowerBound.push(0);
+      stackUpperBound.push(get_upper_bound());
+      while(true)
+      {
+         iLowerBound = stackLowerBound.pop();
+         iUpperBound = stackUpperBound.pop();
+         iLPos = iLowerBound;
+         iMPos = iLowerBound;
+         iUPos = iUpperBound;
+         while(true)
+         {
+            while(true)
+            {
+               if(iMPos == iUPos)
+                  break;
+               if(fCompare(&element_at(iMPos), &element_at(iUPos)) <= 0)
+                  iUPos--;
+               else
+               {
+                  fSwap(&element_at(iMPos), &element_at(iUPos));
+                  break;
+               }
+            }
+            if(iMPos == iUPos)
+               break;
+            iMPos = iUPos;
+            while(true)
+            {
+               if(iMPos == iLPos)
+                  break;
+               if(fCompare(&element_at(iLPos), &element_at(iMPos)) <= 0)
+                  iLPos++;
+               else
+               {
+                  fSwap(&element_at(iLPos), &element_at(iMPos));
+                  break;
+               }
+            }
+            if(iMPos == iLPos)
+               break;
+            iMPos = iLPos;
+         }
+         if(iLowerBound < iMPos - 1)
+         {
+            stackLowerBound.push(iLowerBound);
+            stackUpperBound.push(iMPos - 1);
+         }
+         if(iMPos + 1 < iUpperBound)
+         {
+            stackLowerBound.push(iMPos + 1);
+            stackUpperBound.push(iUpperBound);
+         }
+         if(stackLowerBound.get_size() == 0)
+            break;
+      }
+   }
+
+}
+
+template <class TYPE, class ARG_TYPE>
+void raw_array<TYPE, ARG_TYPE>::quick_sort(index (* fCompare)(TYPE *, TYPE *))
+{
+   index_array stackLowerBound;
+   index_array stackUpperBound;
+   index iLowerBound;
+   index iUpperBound;
+   index iLPos, iUPos, iMPos;
+   //   uint32_t t;
+
+   if(get_size() >= 2)
+   {
+      stackLowerBound.push(0);
+      stackUpperBound.push(get_upper_bound());
+      while(true)
+      {
+         iLowerBound = stackLowerBound.pop();
+         iUpperBound = stackUpperBound.pop();
+         iLPos = iLowerBound;
+         iMPos = iLowerBound;
+         iUPos = iUpperBound;
+         while(true)
+         {
+            while(true)
+            {
+               if(iMPos == iUPos)
+                  break;
+               if(fCompare(&element_at(iMPos), &element_at(iUPos)) <= 0)
+                  iUPos--;
+               else
+               {
+                  swap(iMPos, iUPos);
+                  break;
+               }
+            }
+            if(iMPos == iUPos)
+               break;
+            iMPos = iUPos;
+            while(true)
+            {
+               if(iMPos == iLPos)
+                  break;
+               if(fCompare(&element_at(iLPos), &element_at(iMPos)) <= 0)
+                  iLPos++;
+               else
+               {
+                  swap(iLPos, iMPos);
+                  break;
+               }
+            }
+            if(iMPos == iLPos)
+               break;
+            iMPos = iLPos;
+         }
+         if(iLowerBound < iMPos - 1)
+         {
+            stackLowerBound.push(iLowerBound);
+            stackUpperBound.push(iMPos - 1);
+         }
+         if(iMPos + 1 < iUpperBound)
+         {
+            stackLowerBound.push(iMPos + 1);
+            stackUpperBound.push(iUpperBound);
+         }
+         if(stackLowerBound.get_size() == 0)
+            break;
+      }
+   }
+
+}
+
+template <class TYPE, class ARG_TYPE>
+void raw_array<TYPE, ARG_TYPE>::quick_sort(index (* fCompare)(TYPE *, TYPE *), index_array & ia)
+{
+
+   // minimum check
+   if(ia.get_size() != get_size())
+      throw invalid_argument_exception(get_app());
+
+   index_array stackLowerBound;
+   index_array stackUpperBound;
+   index iLowerBound;
+   index iUpperBound;
+   index iLPos, iUPos, iMPos;
+   //   uint32_t t;
+
+   if(get_size() >= 2)
+   {
+      stackLowerBound.push(0);
+      stackUpperBound.push(get_upper_bound());
+      while(true)
+      {
+         iLowerBound = stackLowerBound.pop();
+         iUpperBound = stackUpperBound.pop();
+         iLPos = iLowerBound;
+         iMPos = iLowerBound;
+         iUPos = iUpperBound;
+         while(true)
+         {
+            while(true)
+            {
+               if(iMPos == iUPos)
+                  break;
+               if(fCompare(&element_at(ia[iMPos]), &element_at(ia[iUPos])) <= 0)
+                  iUPos--;
+               else
+               {
+                  ia.swap(iMPos, iUPos);
+                  break;
+               }
+            }
+            if(iMPos == iUPos)
+               break;
+            iMPos = iUPos;
+            while(true)
+            {
+               if(iMPos == iLPos)
+                  break;
+               if(fCompare(&element_at(ia[iLPos]), &element_at(ia[iMPos])) <= 0)
+                  iLPos++;
+               else
+               {
+                  ia.swap(iLPos, iMPos);
+                  break;
+               }
+            }
+            if(iMPos == iLPos)
+               break;
+            iMPos = iLPos;
+         }
+         if(iLowerBound < iMPos - 1)
+         {
+            stackLowerBound.push(iLowerBound);
+            stackUpperBound.push(iMPos - 1);
+         }
+         if(iMPos + 1 < iUpperBound)
+         {
+            stackLowerBound.push(iMPos + 1);
+            stackUpperBound.push(iUpperBound);
+         }
+         if(stackLowerBound.get_size() == 0)
+            break;
+      }
+   }
+
+}
+
+template < class TYPE, class ARG_TYPE >
+bool raw_array < TYPE, ARG_TYPE > ::
+binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *)) const
+{
+   if(this->get_size() == 0)
+   {
+      return false;
+   }
+
+   index iLowerBound = 0;
+   index iMaxBound   = get_upper_bound();
+   index iUpperBound = iMaxBound;
+   index iCompare;
+   // do binary search
+   iIndex = (iUpperBound + iLowerBound) / 2;
+   while(iUpperBound - iLowerBound >= 8)
+   {
+      iCompare = fCompare((TYPE *) &this->m_pData[iIndex], (TYPE *) &t);
+      if(iCompare == 0)
+      {
+         return true;
+      }
+      else if(iCompare > 0)
+      {
+         iUpperBound = iIndex - 1;
+         if(iUpperBound < 0)
+         {
+            iIndex = 0;
+            break;
+         }
+      }
+      else
+      {
+         iLowerBound = iIndex + 1;
+         if(iLowerBound > iMaxBound)
+         {
+            iIndex = iMaxBound + 1;
+            break;
+         }
+      }
+      iIndex = (iUpperBound + iLowerBound) / 2;
+   }
+   // do sequential search
+   while(iIndex < this->get_count())
+   {
+      iCompare = fCompare((TYPE *) &this->m_pData[iIndex], (TYPE *) &t);
+      if(iCompare == 0)
+         return true;
+      else if(iCompare < 0)
+         iIndex++;
+      else
+         break;
+   }
+   if(iIndex >= this->get_count())
+      return false;
+   while(iIndex >= 0)
+   {
+      iCompare = fCompare((TYPE *) &this->m_pData[iIndex], (TYPE *)  &t);
+      if(iCompare == 0)
+         return true;
+      else if(iCompare > 0)
+         iIndex--;
+      else
+         break;
+   }
+   iIndex++;
+   return false;
+
+}
+
+
+template < class TYPE, class ARG_TYPE >
+bool raw_array < TYPE, ARG_TYPE > ::
+binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia) const
+{
+   if(this->get_size() == 0)
+   {
+      return false;
+   }
+
+   index iLowerBound = 0;
+   index iMaxBound   = get_upper_bound();
+   index iUpperBound = iMaxBound;
+   index iCompare;
+   // do binary search
+   iIndex = (iUpperBound + iLowerBound) / 2;
+   while(iUpperBound - iLowerBound >= 8)
+   {
+      iCompare = fCompare((TYPE *) &this->m_pData[ia[iIndex]], (TYPE *) &t);
+      if(iCompare == 0)
+      {
+         return true;
+      }
+      else if(iCompare > 0)
+      {
+         iUpperBound = iIndex - 1;
+         if(iUpperBound < 0)
+         {
+            iIndex = 0;
+            break;
+         }
+      }
+      else
+      {
+         iLowerBound = iIndex + 1;
+         if(iLowerBound > iMaxBound)
+         {
+            iIndex = iMaxBound + 1;
+            break;
+         }
+      }
+      iIndex = (iUpperBound + iLowerBound) / 2;
+   }
+   // do sequential search
+   while(iIndex < this->get_count())
+   {
+      iCompare = fCompare((TYPE *) &this->m_pData[ia[iIndex]], (TYPE *) &t);
+      if(iCompare == 0)
+         return true;
+      else if(iCompare < 0)
+         iIndex++;
+      else
+         break;
+   }
+   if(iIndex >= this->get_count())
+      return false;
+   while(iIndex >= 0)
+   {
+      iCompare = fCompare((TYPE *) &this->m_pData[ia[iIndex]], (TYPE *)  &t);
+      if(iCompare == 0)
+         return true;
+      else if(iCompare > 0)
+         iIndex--;
+      else
+         break;
+   }
+   iIndex++;
+   return false;
+
+}
+
+template < class TYPE, class ARG_TYPE >
+index raw_array < TYPE, ARG_TYPE > ::
+sort_add(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia)
+{
+   index iIndex = 0;
+   binary_search(t, iIndex, fCompare, ia);
+   this->insert_at(iIndex, t);
+   ia.add(iIndex);
+   return iIndex;
+}
+
+template < class TYPE, class ARG_TYPE >
+::count raw_array < TYPE, ARG_TYPE> ::
+sort_add(const raw_array  < TYPE, ARG_TYPE> & a, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia)
+{
+   for(index i = 0; i < a.get_size(); i++)
+   {
+      sort_add((ARG_TYPE) a[i], fCompare, ia);
+   }
+   return a.get_size();
+}
+
+template < class TYPE, class ARG_TYPE >
+::count raw_array < TYPE, ARG_TYPE > ::
+sort_remove(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia)
+{
+   ::count ca = 0;
+   index iFind = 0;
+   while(binary_search(t, iFind, fCompare, ia))
+   {
+      remove_at(iFind);
+      index iIndex = ia[iFind];
+      ia.remove_at(iFind);
+      for(index i = 0; i < ia.get_size(); i++)
+      {
+         if(ia[i] > iIndex)
+         {
+            ia[i]--;
+         }
+      }
+      iFind = 0;
+      ca++;
+   }
+   return ca;
+}
 
 
 namespace lemon
@@ -1486,13 +1970,13 @@ namespace lemon
    {
 
       template < class ARRAY >
-      typename ARRAY::BASE_TYPE big_average(const ARRAY & a)
+      typename ARRAY::AXIS_TYPE big_average(const ARRAY & a)
       {
          ::count c = a.get_count();
          if(c == 0)
             return 0.0;
-         typename ARRAY::BASE_TYPE f = 0.0;
-         typename ARRAY::BASE_TYPE fCount = (typename ARRAY::BASE_TYPE) c;
+         typename ARRAY::AXIS_TYPE f = 0.0;
+         typename ARRAY::AXIS_TYPE fCount = (typename ARRAY::AXIS_TYPE) c;
          for(index i = 0; i < c; i++)
          {
             f += a.element_at(i) / fCount;
@@ -1514,7 +1998,7 @@ namespace lemon
    {
 
       template<class ARRAY>
-      bool binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia)
+      bool binary_search(ARRAY & a, typename ARRAY::AXIS_ARG_TYPE t, index & iIndex, index ( * fCompare ) (typename ARRAY::AXIS_TYPE *, typename ARRAY::AXIS_TYPE *), index_array & ia)
       {
          if(a.get_size() == 0)
          {
@@ -1529,7 +2013,7 @@ namespace lemon
          iIndex = (iUpperBound + iLowerBound) / 2;
          while(iUpperBound - iLowerBound >= 8)
          {
-            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::BASE_TYPE *) &t);
+            iCompare = fCompare((typename ARRAY::AXIS_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::AXIS_TYPE *) &t);
             if(iCompare == 0)
             {
                return true;
@@ -1557,7 +2041,7 @@ namespace lemon
          // do sequential search
          while(iIndex < a.get_count())
          {
-            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::BASE_TYPE *) &t);
+            iCompare = fCompare((typename ARRAY::AXIS_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::AXIS_TYPE *) &t);
             if(iCompare == 0)
                return true;
             else if(iCompare < 0)
@@ -1569,7 +2053,7 @@ namespace lemon
             return false;
          while(iIndex >= 0)
          {
-            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::BASE_TYPE *)  &t);
+            iCompare = fCompare((typename ARRAY::AXIS_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::AXIS_TYPE *)  &t);
             if(iCompare == 0)
                return true;
             else if(iCompare > 0)
@@ -1584,7 +2068,7 @@ namespace lemon
 
 
       template<class ARRAY>
-      index sort_add(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia)
+      index sort_add(ARRAY & a, typename ARRAY::AXIS_ARG_TYPE t, index ( * fCompare ) (typename ARRAY::AXIS_TYPE *, typename ARRAY::AXIS_TYPE *), index_array & ia)
       {
          index iIndex = 0;
          binary_search(a, t, iIndex, fCompare, ia);

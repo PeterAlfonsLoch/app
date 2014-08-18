@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_BASE buffered_buffer :
+   class CLASS_DECL_AXIS buffered_buffer :
       public ::file::binary_buffer
    {
    public:

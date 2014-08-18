@@ -23,7 +23,7 @@ namespace user
    class interaction_base;
 
 
-   class CLASS_DECL_BASE window_map :
+   class CLASS_DECL_AXIS window_map :
       virtual public ::object
    {
    public:

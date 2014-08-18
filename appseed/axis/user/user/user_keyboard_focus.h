@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE keyboard_focus :
+   class CLASS_DECL_AXIS keyboard_focus :
       virtual public signalizable
    {
    public:

@@ -9,7 +9,7 @@ namespace file
    struct file_status;
 
 
-   class CLASS_DECL_BASE simple_binary_buffer :
+   class CLASS_DECL_AXIS simple_binary_buffer :
       virtual public ::file::binary_buffer
    {
    public:
@@ -86,7 +86,7 @@ namespace file
    };
 
 
-   void CLASS_DECL_BASE throw_exception(sp(::base::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
+   void CLASS_DECL_AXIS throw_exception(sp(::base::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
 
 } // namespace file
 

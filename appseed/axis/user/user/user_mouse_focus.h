@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE mouse_focus
+   class CLASS_DECL_AXIS mouse_focus
    {
    public:
       mouse_focus();

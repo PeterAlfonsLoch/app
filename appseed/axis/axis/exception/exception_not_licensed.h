@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE not_licensed : 
+class CLASS_DECL_AXIS not_licensed : 
    virtual public ::exception::base
 {
 public:

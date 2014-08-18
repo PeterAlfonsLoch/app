@@ -5,7 +5,7 @@ namespace android
 {
 
 
-   class CLASS_DECL_BASE os :
+   class CLASS_DECL_AXIS os :
       public ::base::os
    {
    public:

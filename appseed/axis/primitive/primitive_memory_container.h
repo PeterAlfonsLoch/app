@@ -9,7 +9,7 @@ namespace primitive
    class virtual_memory;
 
 
-   class CLASS_DECL_BASE memory_container :
+   class CLASS_DECL_AXIS memory_container :
       virtual public ::object
    {
    protected:

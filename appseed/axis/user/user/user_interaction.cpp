@@ -5310,7 +5310,7 @@ namespace user
    }
 
 
-   CLASS_DECL_BASE bool is_docking_appearance(::user::EAppearance eappearance)
+   CLASS_DECL_AXIS bool is_docking_appearance(::user::EAppearance eappearance)
    {
       return eappearance == ::user::AppearanceLeft
          || eappearance == ::user::AppearanceTop

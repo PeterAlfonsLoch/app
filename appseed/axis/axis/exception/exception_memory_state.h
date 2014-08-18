@@ -2,7 +2,7 @@
 
 
 // Memory state for snapshots/leak detection
-struct CLASS_DECL_BASE memory_state
+struct CLASS_DECL_AXIS memory_state
 {
 // Attributes
    enum blockUsage

@@ -6,7 +6,7 @@ namespace simple_ui
 
 
 
-   class CLASS_DECL_BASE password :
+   class CLASS_DECL_AXIS password :
       virtual public edit_box
    {
    public:

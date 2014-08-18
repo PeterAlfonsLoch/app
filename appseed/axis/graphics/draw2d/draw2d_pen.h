@@ -5,7 +5,7 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_BASE pen :
+   class CLASS_DECL_AXIS pen :
       virtual public ::draw2d::object
    {
    public:
@@ -74,7 +74,7 @@ namespace draw2d
    };
 
 
-   class CLASS_DECL_BASE pen_sp :
+   class CLASS_DECL_AXIS pen_sp :
       public smart_pointer < pen >
    {
    public:

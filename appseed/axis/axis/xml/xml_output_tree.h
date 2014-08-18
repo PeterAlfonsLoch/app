@@ -5,7 +5,7 @@ namespace xml
 {
 
 
-   class CLASS_DECL_BASE output_tree :
+   class CLASS_DECL_AXIS output_tree :
       public tree_base
    {
    public:

@@ -9,7 +9,7 @@ namespace str
    {
 
 
-      class CLASS_DECL_BASE locale_schema :
+      class CLASS_DECL_AXIS locale_schema :
          virtual public ::object
       {
       public:

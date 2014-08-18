@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE error_exception : 
+class CLASS_DECL_AXIS error_exception : 
    virtual public ::exception::base
 {
    // base class for resource-critical core API exceptions

@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE interaction_base:
+   class CLASS_DECL_AXIS interaction_base:
       virtual public elemental,
       virtual public command_target,
       virtual public text_interface,
@@ -80,7 +80,7 @@ namespace user
 
 
 
-      class CLASS_DECL_BASE timer_item:
+      class CLASS_DECL_AXIS timer_item:
          virtual public element
       {
       public:
@@ -96,7 +96,7 @@ namespace user
 
       };
 
-      class CLASS_DECL_BASE timer_array:
+      class CLASS_DECL_AXIS timer_array:
          virtual public spa(interaction)
       {
       public:

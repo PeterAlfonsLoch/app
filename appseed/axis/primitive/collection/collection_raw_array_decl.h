@@ -12,8 +12,8 @@ class raw_array :
 {
 public:
 
-   typedef TYPE BASE_TYPE;
-   typedef ARG_TYPE BASE_ARG_TYPE;
+   typedef TYPE AXIS_TYPE;
+   typedef ARG_TYPE AXIS_ARG_TYPE;
 
    /*
 

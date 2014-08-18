@@ -5,7 +5,7 @@
 #endif
 
 
-//IMPLEMENT_BASE_FIXED_ALLOC_STATIC(property);
+//IMPLEMENT_AXIS_FIXED_ALLOC_STATIC(property);
 
 
 void prop_id_debug(sp(::base::application) papp);

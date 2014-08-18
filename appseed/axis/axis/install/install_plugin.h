@@ -18,14 +18,14 @@ namespace install
    };
 
 
-   class CLASS_DECL_BASE plugin :
+   class CLASS_DECL_AXIS plugin :
       virtual public ::hotplugin::plugin,
       virtual public ::fontopus::login_callback
    {
    public:
 
 
-      class CLASS_DECL_BASE thread_start_ca2 :
+      class CLASS_DECL_AXIS thread_start_ca2 :
          public thread_layer
       {
       public:

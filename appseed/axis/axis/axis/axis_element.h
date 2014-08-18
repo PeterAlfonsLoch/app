@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE element :
+class CLASS_DECL_AXIS element :
    virtual public root
 {
 public:
@@ -65,7 +65,7 @@ public:
 };
 
 
-class CLASS_DECL_BASE allocator :
+class CLASS_DECL_AXIS allocator :
    virtual public element
 {
 public:
@@ -77,7 +77,7 @@ public:
 };
 
 
-class CLASS_DECL_BASE allocatorsp :
+class CLASS_DECL_AXIS allocatorsp :
    public sp(allocator)
 {
 public:

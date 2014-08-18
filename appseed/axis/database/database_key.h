@@ -7,7 +7,7 @@ namespace database
    class client;
 
 
-   class CLASS_DECL_BASE key
+   class CLASS_DECL_AXIS key
    {
    public:
 

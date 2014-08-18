@@ -1,5 +1,5 @@
-#ifndef __BASE_BASE_DEBUG_H__
-#define __BASE_BASE_DEBUG_H__
+#ifndef __AXIS_AXIS_DEBUG_H__
+#define __AXIS_AXIS_DEBUG_H__
 
 
 #pragma once
@@ -178,8 +178,8 @@ typedef void (__clrcall * _CRT_DUMP_CLIENT_M)(void *, size_t);
 #define _ASSERT_EXPR(expr, expr_str) (()0)
 #endif
 
-#ifndef _ASSERT_BASE
-#define _ASSERT_BASE _ASSERT_EXPR
+#ifndef _ASSERT_AXIS
+#define _ASSERT_AXIS _ASSERT_EXPR
 #endif
 
 //#define _RPT0(rptno, msg)
@@ -308,15 +308,15 @@ typedef void (__clrcall * _CRT_DUMP_CLIENT_M)(void *, size_t);
 //#define _MRTIMP __declspec(dllimport)
 //#endif  /* _MRTIMP */
 //
-///* Define CLASS_DECL_BASE */
+///* Define CLASS_DECL_AXIS */
 //
-//#ifndef CLASS_DECL_BASE
+//#ifndef CLASS_DECL_AXIS
 //#ifdef  _DLL
-//#define CLASS_DECL_BASE __declspec(dllimport)
+//#define CLASS_DECL_AXIS __declspec(dllimport)
 //#else   /* ndef _DLL */
-//#define CLASS_DECL_BASE
+//#define CLASS_DECL_AXIS
 //#endif  /* _DLL */
-//#endif  /* CLASS_DECL_BASE */
+//#endif  /* CLASS_DECL_AXIS */
 //
 // /****************************************************************************
 // *
@@ -330,15 +330,15 @@ typedef void (__clrcall * _CRT_DUMP_CLIENT_M)(void *, size_t);
 #include <crtdbg.h>
 #else
 //#if !defined(_M_CEE_PURE)
-//CLASS_DECL_BASE extern long _crtAssertBusy;
+//CLASS_DECL_AXIS extern long _crtAssertBusy;
 //#endif /* !defined(_M_CEE_PURE) */
 //
 //#if !defined(_M_CEE_PURE)
-//CLASS_DECL_BASE _CRT_REPORT_HOOK DECL_C _CrtGetReportHook(
+//CLASS_DECL_AXIS _CRT_REPORT_HOOK DECL_C _CrtGetReportHook(
 //    void
 //    );
 //#endif
-//CLASS_DECL_BASE int _CrtDbgReportW(
+//CLASS_DECL_AXIS int _CrtDbgReportW(
 //   int reportType,
 //   const wchar_t *filename,
 //   int linenumber,
@@ -350,14 +350,14 @@ typedef void (__clrcall * _CRT_DUMP_CLIENT_M)(void *, size_t);
  * For IJW, we need 2 versions: 1 for clrcall and one for cdecl.
  * For pure and native, we just need clrcall and cdecl, respectively.
  */
-CLASS_DECL_BASE _CRT_REPORT_HOOK DECL_C _CrtSetReportHook(_CRT_REPORT_HOOK _PFnNewHook);
-//CLASS_DECL_BASE int32_t DECL_C _CrtSetReportHook2(int32_t _Mode, _CRT_REPORT_HOOK _PFnNewHook);
-//CLASS_DECL_BASE int32_t DECL_C _CrtSetReportHookW2(int32_t _Mode, _CRT_REPORT_HOOKW _PFnNewHook);
+CLASS_DECL_AXIS _CRT_REPORT_HOOK DECL_C _CrtSetReportHook(_CRT_REPORT_HOOK _PFnNewHook);
+//CLASS_DECL_AXIS int32_t DECL_C _CrtSetReportHook2(int32_t _Mode, _CRT_REPORT_HOOK _PFnNewHook);
+//CLASS_DECL_AXIS int32_t DECL_C _CrtSetReportHookW2(int32_t _Mode, _CRT_REPORT_HOOKW _PFnNewHook);
 //
-//CLASS_DECL_BASE int32_t DECL_C _CrtSetReportMode(int32_t _ReportType, int32_t _ReportMode);
-//CLASS_DECL_BASE _HFILE DECL_C _CrtSetReportFile(int32_t _ReportType, _HFILE _ReportFile);
-//CLASS_DECL_BASE int32_t DECL_C _CrtDbgReport(int32_t _ReportType, const char * _Filename, int32_t _Linenumber, const char * _ModuleName, const char * _Format, ...);
-//CLASS_DECL_BASE size_t DECL_C _CrtSetDebugFillThreshold(size_t _NewDebugFillThreshold);
+//CLASS_DECL_AXIS int32_t DECL_C _CrtSetReportMode(int32_t _ReportType, int32_t _ReportMode);
+//CLASS_DECL_AXIS _HFILE DECL_C _CrtSetReportFile(int32_t _ReportType, _HFILE _ReportFile);
+//CLASS_DECL_AXIS int32_t DECL_C _CrtDbgReport(int32_t _ReportType, const char * _Filename, int32_t _Linenumber, const char * _ModuleName, const char * _Format, ...);
+//CLASS_DECL_AXIS size_t DECL_C _CrtSetDebugFillThreshold(size_t _NewDebugFillThreshold);
 struct _CrtMemBlockHeader;
 
 typedef struct _CrtMemState {
@@ -367,7 +367,7 @@ typedef struct _CrtMemState {
     size_t lHighWaterCount;
     size_t lTotalCount;
 } _CrtMemState;
-CLASS_DECL_BASE int32_t DECL_C _CrtDbgReportW(int32_t _ReportType, const wchar_t * _Filename, int32_t _LineNumber, const wchar_t * _ModuleName, const wchar_t * _Format, ...);
+CLASS_DECL_AXIS int32_t DECL_C _CrtDbgReportW(int32_t _ReportType, const wchar_t * _Filename, int32_t _LineNumber, const wchar_t * _ModuleName, const wchar_t * _Format, ...);
 
 /* Asserts */
 /* We use !! below to ensure that any overloaded operators used to evaluate expr do not end up at operator || */
@@ -375,11 +375,11 @@ CLASS_DECL_BASE int32_t DECL_C _CrtDbgReportW(int32_t _ReportType, const wchar_t
         (void) ((!!(expr)) || \
                 (1 != _CrtDbgReportW(_CRT_ASSERT, _WIDEN(__FILE__), __LINE__, NULL, msg)) || \
                 (_CrtDbgBreak(), 0))
-#define _RPT_BASE(args) \
+#define _RPT_AXIS(args) \
         () ((1 != _CrtDbgReport args) || \
                 (_CrtDbgBreak(), 0))
 
-#define _RPT_BASE_W(args) \
+#define _RPT_AXIS_W(args) \
         () ((1 != _CrtDbgReportW args) || \
                 (_CrtDbgBreak(), 0))
 
@@ -394,95 +394,95 @@ CLASS_DECL_BASE int32_t DECL_C _CrtDbgReportW(int32_t _ReportType, const wchar_t
 #endif
 
 /*
-We retain _ASSERT_BASE solely for backwards compatibility with those who used it even though they
+We retain _ASSERT_AXIS solely for backwards compatibility with those who used it even though they
 should not have done so since it was not documented.
  */
-#ifndef _ASSERT_BASE
-#define _ASSERT_BASE _ASSERT_EXPR
+#ifndef _ASSERT_AXIS
+#define _ASSERT_AXIS _ASSERT_EXPR
 #endif
 
 /* Reports with no file/line info */
 
 
 //#define _RPT0(rptno, msg) \
-//        _RPT_BASE((rptno, NULL, 0, NULL, "%s", msg))
+//        _RPT_AXIS((rptno, NULL, 0, NULL, "%s", msg))
 //
 //#define _RPTW0(rptno, msg) \
-//        _RPT_BASE_W((rptno, NULL, 0, NULL, L"%s", msg))
+//        _RPT_AXIS_W((rptno, NULL, 0, NULL, L"%s", msg))
 //
 //#define _RPT1(rptno, msg, arg1) \
-//        _RPT_BASE((rptno, NULL, 0, NULL, msg, arg1))
+//        _RPT_AXIS((rptno, NULL, 0, NULL, msg, arg1))
 //
 //#define _RPTW1(rptno, msg, arg1) \
-//        _RPT_BASE_W((rptno, NULL, 0, NULL, msg, arg1))
+//        _RPT_AXIS_W((rptno, NULL, 0, NULL, msg, arg1))
 //
 //#define _RPT2(rptno, msg, arg1, arg2) \
-//        _RPT_BASE((rptno, NULL, 0, NULL, msg, arg1, arg2))
+//        _RPT_AXIS((rptno, NULL, 0, NULL, msg, arg1, arg2))
 //
 //#define _RPTW2(rptno, msg, arg1, arg2) \
-//        _RPT_BASE_W((rptno, NULL, 0, NULL, msg, arg1, arg2))
+//        _RPT_AXIS_W((rptno, NULL, 0, NULL, msg, arg1, arg2))
 //
 //#define _RPT3(rptno, msg, arg1, arg2, arg3) \
-//        _RPT_BASE((rptno, NULL, 0, NULL, msg, arg1, arg2, arg3))
+//        _RPT_AXIS((rptno, NULL, 0, NULL, msg, arg1, arg2, arg3))
 //
 //#define _RPTW3(rptno, msg, arg1, arg2, arg3) \
-//        _RPT_BASE_W((rptno, NULL, 0, NULL, msg, arg1, arg2, arg3))
+//        _RPT_AXIS_W((rptno, NULL, 0, NULL, msg, arg1, arg2, arg3))
 //
 //#define _RPT4(rptno, msg, arg1, arg2, arg3, arg4) \
-//        _RPT_BASE((rptno, NULL, 0, NULL, msg, arg1, arg2, arg3, arg4))
+//        _RPT_AXIS((rptno, NULL, 0, NULL, msg, arg1, arg2, arg3, arg4))
 //
 //#define _RPTW4(rptno, msg, arg1, arg2, arg3, arg4) \
-//        _RPT_BASE_W((rptno, NULL, 0, NULL, msg, arg1, arg2, arg3, arg4))
+//        _RPT_AXIS_W((rptno, NULL, 0, NULL, msg, arg1, arg2, arg3, arg4))
 //
 //#define _RPT5(rptno, msg, arg1, arg2, arg3, arg4, arg5) \
-//        _RPT_BASE((rptno, NULL, 0, NULL, msg, arg1, arg2, arg3, arg4, arg5))
+//        _RPT_AXIS((rptno, NULL, 0, NULL, msg, arg1, arg2, arg3, arg4, arg5))
 //
 //#define _RPTW5(rptno, msg, arg1, arg2, arg3, arg4, arg5) \
-//        _RPT_BASE_W((rptno, NULL, 0, NULL, msg, arg1, arg2, arg3, arg4, arg5))
+//        _RPT_AXIS_W((rptno, NULL, 0, NULL, msg, arg1, arg2, arg3, arg4, arg5))
 //
 ///* Reports with file/line info */
 //
 //#define _RPTF0(rptno, msg) \
-//        _RPT_BASE((rptno, __FILE__, __LINE__, NULL, "%s", msg))
+//        _RPT_AXIS((rptno, __FILE__, __LINE__, NULL, "%s", msg))
 //
 //#define _RPTFW0(rptno, msg) \
-//        _RPT_BASE_W((rptno, _CRT_WIDE(__FILE__), __LINE__, NULL, L"%s", msg))
+//        _RPT_AXIS_W((rptno, _CRT_WIDE(__FILE__), __LINE__, NULL, L"%s", msg))
 //
 //#define _RPTF1(rptno, msg, arg1) \
-//        _RPT_BASE((rptno, __FILE__, __LINE__, NULL, msg, arg1))
+//        _RPT_AXIS((rptno, __FILE__, __LINE__, NULL, msg, arg1))
 //
 //#define _RPTFW1(rptno, msg, arg1) \
-//        _RPT_BASE_W((rptno, _CRT_WIDE(__FILE__), __LINE__, NULL, msg, arg1))
+//        _RPT_AXIS_W((rptno, _CRT_WIDE(__FILE__), __LINE__, NULL, msg, arg1))
 //
 //#define _RPTF2(rptno, msg, arg1, arg2) \
-//        _RPT_BASE((rptno, __FILE__, __LINE__, NULL, msg, arg1, arg2))
+//        _RPT_AXIS((rptno, __FILE__, __LINE__, NULL, msg, arg1, arg2))
 //
 //#define _RPTFW2(rptno, msg, arg1, arg2) \
-//        _RPT_BASE_W((rptno, _CRT_WIDE(__FILE__), __LINE__, NULL, msg, arg1, arg2))
+//        _RPT_AXIS_W((rptno, _CRT_WIDE(__FILE__), __LINE__, NULL, msg, arg1, arg2))
 //
 //#define _RPTF3(rptno, msg, arg1, arg2, arg3) \
-//        _RPT_BASE((rptno, __FILE__, __LINE__, NULL, msg, arg1, arg2, arg3))
+//        _RPT_AXIS((rptno, __FILE__, __LINE__, NULL, msg, arg1, arg2, arg3))
 //
 //#define _RPTFW3(rptno, msg, arg1, arg2, arg3) \
-//        _RPT_BASE_W((rptno, _CRT_WIDE(__FILE__), __LINE__, NULL, msg, arg1, arg2, arg3))
+//        _RPT_AXIS_W((rptno, _CRT_WIDE(__FILE__), __LINE__, NULL, msg, arg1, arg2, arg3))
 //
 //#define _RPTF4(rptno, msg, arg1, arg2, arg3, arg4) \
-//        _RPT_BASE((rptno, __FILE__, __LINE__, NULL, msg, arg1, arg2, arg3, arg4))
+//        _RPT_AXIS((rptno, __FILE__, __LINE__, NULL, msg, arg1, arg2, arg3, arg4))
 //
 //#define _RPTFW4(rptno, msg, arg1, arg2, arg3, arg4) \
-//        _RPT_BASE_W((rptno, _CRT_WIDE(__FILE__), __LINE__, NULL, msg, arg1, arg2, arg3, arg4))
+//        _RPT_AXIS_W((rptno, _CRT_WIDE(__FILE__), __LINE__, NULL, msg, arg1, arg2, arg3, arg4))
 //
 //#define _RPTF5(rptno, msg, arg1, arg2, arg3, arg4, arg5) \
-//        _RPT_BASE((rptno, __FILE__, __LINE__, NULL, msg, arg1, arg2, arg3, arg4, arg5))
+//        _RPT_AXIS((rptno, __FILE__, __LINE__, NULL, msg, arg1, arg2, arg3, arg4, arg5))
 //
 //#define _RPTFW5(rptno, msg, arg1, arg2, arg3, arg4, arg5) \
-//        _RPT_BASE_W((rptno, _CRT_WIDE(__FILE__), __LINE__, NULL, msg, arg1, arg2, arg3, arg4, arg5))
+//        _RPT_AXIS_W((rptno, _CRT_WIDE(__FILE__), __LINE__, NULL, msg, arg1, arg2, arg3, arg4, arg5))
 //
 //
 //#if !defined(_CRT_PORTABLE) && !defined(LINUX)
 //#define _CrtDbgBreak() __debugbreak()
 //#else
-//CLASS_DECL_BASE void DECL_C _CrtDbgBreak();
+//CLASS_DECL_AXIS void DECL_C _CrtDbgBreak();
 //#endif
 //
 // /****************************************************************************
@@ -539,45 +539,45 @@ should not have done so since it was not documented.
 //#endif  /* _CRTDBG_MAP_ALLOC */
 //
 //#if !defined(_M_CEE_PURE)
-//CLASS_DECL_BASE extern long _crtBreakAlloc;      /* Break on this allocation */
+//CLASS_DECL_AXIS extern long _crtBreakAlloc;      /* Break on this allocation */
 //#endif /* !defined(_M_CEE_PURE) */
 //
-//CLASS_DECL_BASE long DECL_C _CrtSetBreakAlloc(long _BreakAlloc);
+//CLASS_DECL_AXIS long DECL_C _CrtSetBreakAlloc(long _BreakAlloc);
 //
-//CLASS_DECL_BASE void * DECL_C _malloc_dbg(size_t _Size, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_BASE void * DECL_C _calloc_dbg(size_t _Count, size_t _Size, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_BASE void * DECL_C _realloc_dbg(void * _Memory, size_t _NewSize, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_BASE void * DECL_C _recalloc_dbg(void * _Memory, size_t _NumOfElements, size_t _SizeOfElements, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_BASE void * DECL_C _expand_dbg(void * _Memory, size_t _NewSize, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_BASE void DECL_C _free_dbg(void * _Memory, int32_t _BlockType);
-//CLASS_DECL_BASE size_t DECL_C _msize_dbg(void * _Memory, int32_t _BlockType);
-//CLASS_DECL_BASE size_t DECL_C _aligned_msize_dbg(void * _Memory, size_t _Alignment, size_t _Offset);
-//CLASS_DECL_BASE void * DECL_C _aligned_malloc_dbg(size_t _Size, size_t _Alignment, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_BASE void * DECL_C _aligned_realloc_dbg(void * _Memory, size_t _NewSize, size_t _Alignment, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_BASE void * DECL_C _aligned_recalloc_dbg(void * _Memory, size_t _NumOfElements, size_t _SizeOfElements, size_t _Alignment, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_BASE void * DECL_C _aligned_offset_malloc_dbg(size_t _Size, size_t _Alignment, size_t _Offset, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_BASE void * DECL_C _aligned_offset_realloc_dbg(void * _Memory, size_t _NewSize, size_t _Alignment, size_t _Offset, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_BASE void * DECL_C _aligned_offset_recalloc_dbg(void * _Memory, size_t _NumOfElements, size_t _SizeOfElements, size_t _Alignment, size_t _Offset, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_BASE void DECL_C _aligned_free_dbg(void * _Memory);
-//CLASS_DECL_BASE char * DECL_C _strdup_dbg(const char * _Str, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_BASE wchar_t * DECL_C _wcsdup_dbg(const wchar_t * _Str, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_BASE char * DECL_C _tempnam_dbg(const char * _DirName, const char * _FilePrefix, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_BASE wchar_t * DECL_C _wtempnam_dbg(const wchar_t * _DirName, const wchar_t * _FilePrefix, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_BASE char * DECL_C _fullpath_dbg(char * _FullPath, const char * _Path, size_t _SizeInBytes, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_BASE wchar_t * DECL_C _wfullpath_dbg(wchar_t * _FullPath, const wchar_t * _Path, size_t _SizeInWords, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_BASE char * DECL_C _getcwd_dbg(char * _DstBuf, int32_t _SizeInBytes, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_BASE wchar_t * DECL_C _wgetcwd_dbg(wchar_t * _DstBuf, int32_t _SizeInWords, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_BASE char * DECL_C _getdcwd_dbg(int32_t _Drive, char * _DstBuf, int32_t _SizeInBytes, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_BASE wchar_t * DECL_C _wgetdcwd_dbg(int32_t _Drive, wchar_t * _DstBuf, int32_t _SizeInWords, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AXIS void * DECL_C _malloc_dbg(size_t _Size, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AXIS void * DECL_C _calloc_dbg(size_t _Count, size_t _Size, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AXIS void * DECL_C _realloc_dbg(void * _Memory, size_t _NewSize, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AXIS void * DECL_C _recalloc_dbg(void * _Memory, size_t _NumOfElements, size_t _SizeOfElements, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AXIS void * DECL_C _expand_dbg(void * _Memory, size_t _NewSize, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AXIS void DECL_C _free_dbg(void * _Memory, int32_t _BlockType);
+//CLASS_DECL_AXIS size_t DECL_C _msize_dbg(void * _Memory, int32_t _BlockType);
+//CLASS_DECL_AXIS size_t DECL_C _aligned_msize_dbg(void * _Memory, size_t _Alignment, size_t _Offset);
+//CLASS_DECL_AXIS void * DECL_C _aligned_malloc_dbg(size_t _Size, size_t _Alignment, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AXIS void * DECL_C _aligned_realloc_dbg(void * _Memory, size_t _NewSize, size_t _Alignment, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AXIS void * DECL_C _aligned_recalloc_dbg(void * _Memory, size_t _NumOfElements, size_t _SizeOfElements, size_t _Alignment, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AXIS void * DECL_C _aligned_offset_malloc_dbg(size_t _Size, size_t _Alignment, size_t _Offset, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AXIS void * DECL_C _aligned_offset_realloc_dbg(void * _Memory, size_t _NewSize, size_t _Alignment, size_t _Offset, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AXIS void * DECL_C _aligned_offset_recalloc_dbg(void * _Memory, size_t _NumOfElements, size_t _SizeOfElements, size_t _Alignment, size_t _Offset, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AXIS void DECL_C _aligned_free_dbg(void * _Memory);
+//CLASS_DECL_AXIS char * DECL_C _strdup_dbg(const char * _Str, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AXIS wchar_t * DECL_C _wcsdup_dbg(const wchar_t * _Str, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AXIS char * DECL_C _tempnam_dbg(const char * _DirName, const char * _FilePrefix, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AXIS wchar_t * DECL_C _wtempnam_dbg(const wchar_t * _DirName, const wchar_t * _FilePrefix, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AXIS char * DECL_C _fullpath_dbg(char * _FullPath, const char * _Path, size_t _SizeInBytes, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AXIS wchar_t * DECL_C _wfullpath_dbg(wchar_t * _FullPath, const wchar_t * _Path, size_t _SizeInWords, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AXIS char * DECL_C _getcwd_dbg(char * _DstBuf, int32_t _SizeInBytes, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AXIS wchar_t * DECL_C _wgetcwd_dbg(wchar_t * _DstBuf, int32_t _SizeInWords, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AXIS char * DECL_C _getdcwd_dbg(int32_t _Drive, char * _DstBuf, int32_t _SizeInBytes, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AXIS wchar_t * DECL_C _wgetdcwd_dbg(int32_t _Drive, wchar_t * _DstBuf, int32_t _SizeInWords, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
 //
 //char * DECL_C _getdcwd_lk_dbg(int32_t _Drive, char * _DstBuf, int32_t _SizeInBytes, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
 //wchar_t * DECL_C _wgetdcwd_lk_dbg(int32_t _Drive, wchar_t * _DstBuf, int32_t _SizeInWords, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
 //
-//CLASS_DECL_BASE errno_t DECL_C _dupenv_s_dbg(char ** _PBuffer, size_t * _PBufferSizeInBytes, const char * _VarName, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_BASE errno_t DECL_C _wdupenv_s_dbg(wchar_t ** _PBuffer, size_t * _PBufferSizeInWords, const wchar_t * _VarName, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AXIS errno_t DECL_C _dupenv_s_dbg(char ** _PBuffer, size_t * _PBufferSizeInBytes, const char * _VarName, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AXIS errno_t DECL_C _wdupenv_s_dbg(wchar_t ** _PBuffer, size_t * _PBufferSizeInWords, const wchar_t * _VarName, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
 //
 ///*_Success_(return!=0)
-//_Check_return_ _Ret_opt_bytecap_x_(_NumOfElements*_SizeOfElements) CLASS_DECL_BASE void * DECL_C _recalloc_dbg
+//_Check_return_ _Ret_opt_bytecap_x_(_NumOfElements*_SizeOfElements) CLASS_DECL_AXIS void * DECL_C _recalloc_dbg
 //(
 //        _Post_ptr_invalid_ void * _Memory,
 //        _In_ size_t _NumOfElements,
@@ -587,7 +587,7 @@ should not have done so since it was not documented.
 //        _In_ int32_t _LineNumber
 //);
 //
-//_Check_return_ _Ret_opt_bytecap_(_NewSize) CLASS_DECL_BASE void * DECL_C _expand_dbg(
+//_Check_return_ _Ret_opt_bytecap_(_NewSize) CLASS_DECL_AXIS void * DECL_C _expand_dbg(
 //        _Pre_notnull_ void * _Memory,
 //        _In_ size_t _NewSize,
 //        _In_ int32_t _BlockType,
@@ -595,23 +595,23 @@ should not have done so since it was not documented.
 //        _In_ int32_t _LineNumber
 //        );
 //
-//CLASS_DECL_BASE void DECL_C _free_dbg(
+//CLASS_DECL_AXIS void DECL_C _free_dbg(
 //        _Post_ptr_invalid_ void * _Memory,
 //        _In_ int32_t _BlockType
 //        );
 //
-//CLASS_DECL_BASE size_t DECL_C _msize_dbg (
+//CLASS_DECL_AXIS size_t DECL_C _msize_dbg (
 //        _Pre_notnull_ void * _Memory,
 //        _In_ int32_t _BlockType
 //        );
 //
-//CLASS_DECL_BASE size_t DECL_C _aligned_msize_dbg (
+//CLASS_DECL_AXIS size_t DECL_C _aligned_msize_dbg (
 //        _Pre_notnull_ void * _Memory,
 //        _In_ size_t _Alignment,
 //        _In_ size_t _Offset
 //        );
 //
-//_Check_return_ _Ret_opt_bytecap_(_Size) CLASS_DECL_BASE void * DECL_C _aligned_malloc_dbg(
+//_Check_return_ _Ret_opt_bytecap_(_Size) CLASS_DECL_AXIS void * DECL_C _aligned_malloc_dbg(
 //        _In_ size_t _Size,
 //        _In_ size_t _Alignment,
 //        _In_opt_z_ const char * _Filename,
@@ -619,7 +619,7 @@ should not have done so since it was not documented.
 //        );
 //
 //_Success_(return!=0)
-//_Check_return_ _Ret_opt_bytecap_(_NewSize) CLASS_DECL_BASE void * DECL_C _aligned_realloc_dbg(
+//_Check_return_ _Ret_opt_bytecap_(_NewSize) CLASS_DECL_AXIS void * DECL_C _aligned_realloc_dbg(
 //        _Post_ptr_invalid_ void * _Memory,
 //        _In_ size_t _NewSize,
 //        _In_ size_t _Alignment,
@@ -628,7 +628,7 @@ should not have done so since it was not documented.
 //        );
 //
 //_Success_(return!=0)
-//_Check_return_ _Ret_opt_bytecap_x_(_NumOfElements*_SizeOfElements) CLASS_DECL_BASE void * DECL_C _aligned_recalloc_dbg
+//_Check_return_ _Ret_opt_bytecap_x_(_NumOfElements*_SizeOfElements) CLASS_DECL_AXIS void * DECL_C _aligned_recalloc_dbg
 //(
 //        _Post_ptr_invalid_ void * _Memory,
 //        _In_ size_t _NumOfElements,
@@ -638,7 +638,7 @@ should not have done so since it was not documented.
 //        _In_ int32_t _LineNumber
 //);
 //
-//_Check_return_ _Ret_opt_bytecap_(_Size) CLASS_DECL_BASE void * DECL_C _aligned_offset_malloc_dbg(
+//_Check_return_ _Ret_opt_bytecap_(_Size) CLASS_DECL_AXIS void * DECL_C _aligned_offset_malloc_dbg(
 //        _In_ size_t _Size,
 //        _In_ size_t _Alignment,
 //        _In_ size_t _Offset,
@@ -647,7 +647,7 @@ should not have done so since it was not documented.
 //        );
 //
 //_Success_(return!=0)
-//_Check_return_ _Ret_opt_bytecap_(_NewSize) CLASS_DECL_BASE void * DECL_C _aligned_offset_realloc_dbg(
+//_Check_return_ _Ret_opt_bytecap_(_NewSize) CLASS_DECL_AXIS void * DECL_C _aligned_offset_realloc_dbg(
 //        _Post_ptr_invalid_ void * _Memory,
 //        _In_ size_t _NewSize,
 //        _In_ size_t _Alignment,
@@ -657,7 +657,7 @@ should not have done so since it was not documented.
 //        );
 //
 //_Success_(return!=0)
-//_Check_return_ _Ret_opt_bytecap_x_(_NumOfElements*_SizeOfElements) CLASS_DECL_BASE void * DECL_C _aligned_offset_recalloc_dbg
+//_Check_return_ _Ret_opt_bytecap_x_(_NumOfElements*_SizeOfElements) CLASS_DECL_AXIS void * DECL_C _aligned_offset_recalloc_dbg
 //(
 //        _Post_ptr_invalid_ void * _Memory,
 //        _In_ size_t _NumOfElements,
@@ -668,25 +668,25 @@ should not have done so since it was not documented.
 //        _In_ int32_t _LineNumber
 //);
 //
-//CLASS_DECL_BASE void DECL_C _aligned_free_dbg(
+//CLASS_DECL_AXIS void DECL_C _aligned_free_dbg(
 //        _Post_ptr_invalid_ void * _Memory
 //        );
 //
-//_Check_return_ _Ret_opt_z_ CLASS_DECL_BASE char * DECL_C _strdup_dbg(
+//_Check_return_ _Ret_opt_z_ CLASS_DECL_AXIS char * DECL_C _strdup_dbg(
 //        _In_opt_z_ const char * _Str,
 //        _In_ int32_t _BlockType,
 //        _In_opt_z_ const char * _Filename,
 //        _In_ int32_t _LineNumber
 //        );
 //
-//_Check_return_ _Ret_opt_z_ CLASS_DECL_BASE wchar_t * DECL_C _wcsdup_dbg(
+//_Check_return_ _Ret_opt_z_ CLASS_DECL_AXIS wchar_t * DECL_C _wcsdup_dbg(
 //        _In_opt_z_ const wchar_t * _Str,
 //        _In_ int32_t _BlockType,
 //        _In_opt_z_ const char * _Filename,
 //        _In_ int32_t _LineNumber
 //        );
 //
-//_Check_return_ _Ret_opt_z_ CLASS_DECL_BASE char * DECL_C _tempnam_dbg(
+//_Check_return_ _Ret_opt_z_ CLASS_DECL_AXIS char * DECL_C _tempnam_dbg(
 //        _In_opt_z_ const char * _DirName,
 //        _In_opt_z_ const char * _FilePrefix,
 //        _In_ int32_t _BlockType,
@@ -694,7 +694,7 @@ should not have done so since it was not documented.
 //        _In_ int32_t _LineNumber
 //        );
 //
-//_Check_return_ _Ret_opt_z_ CLASS_DECL_BASE wchar_t * DECL_C _wtempnam_dbg(
+//_Check_return_ _Ret_opt_z_ CLASS_DECL_AXIS wchar_t * DECL_C _wtempnam_dbg(
 //        _In_opt_z_ const wchar_t * _DirName,
 //        _In_opt_z_ const wchar_t * _FilePrefix,
 //        _In_ int32_t _BlockType,
@@ -702,7 +702,7 @@ should not have done so since it was not documented.
 //        _In_ int32_t _LineNumber
 //        );
 //
-//_Check_return_ _Ret_opt_z_ CLASS_DECL_BASE char * DECL_C _fullpath_dbg(
+//_Check_return_ _Ret_opt_z_ CLASS_DECL_AXIS char * DECL_C _fullpath_dbg(
 //        _Out_opt_z_cap_(_SizeInBytes) char * _FullPath,
 //        _In_z_ const char * _Path,
 //        _In_ size_t _SizeInBytes,
@@ -711,7 +711,7 @@ should not have done so since it was not documented.
 //        _In_ int32_t _LineNumber
 //        );
 //
-//_Check_return_ _Ret_opt_z_ CLASS_DECL_BASE wchar_t * DECL_C _wfullpath_dbg(
+//_Check_return_ _Ret_opt_z_ CLASS_DECL_AXIS wchar_t * DECL_C _wfullpath_dbg(
 //        _Out_opt_z_cap_(_SizeInWords) wchar_t * _FullPath,
 //        _In_z_ const wchar_t * _Path,
 //        _In_ size_t _SizeInWords,
@@ -720,7 +720,7 @@ should not have done so since it was not documented.
 //        _In_ int32_t _LineNumber
 //        );
 //
-//_Check_return_ _Ret_opt_z_ CLASS_DECL_BASE char * DECL_C _getcwd_dbg(
+//_Check_return_ _Ret_opt_z_ CLASS_DECL_AXIS char * DECL_C _getcwd_dbg(
 //        _Out_opt_z_cap_(_SizeInBytes) char * _DstBuf,
 //        _In_ int32_t _SizeInBytes,
 //        _In_ int32_t _BlockType,
@@ -728,7 +728,7 @@ should not have done so since it was not documented.
 //        _In_ int32_t _LineNumber
 //        );
 //
-//_Check_return_ _Ret_opt_z_ CLASS_DECL_BASE wchar_t * DECL_C _wgetcwd_dbg(
+//_Check_return_ _Ret_opt_z_ CLASS_DECL_AXIS wchar_t * DECL_C _wgetcwd_dbg(
 //        _Out_opt_z_cap_(_SizeInWords) wchar_t * _DstBuf,
 //        _In_ int32_t _SizeInWords,
 //        _In_ int32_t _BlockType,
@@ -736,7 +736,7 @@ should not have done so since it was not documented.
 //        _In_ int32_t _LineNumber
 //        );
 //
-//_Check_return_ _Ret_opt_z_ CLASS_DECL_BASE char * DECL_C _getdcwd_dbg(
+//_Check_return_ _Ret_opt_z_ CLASS_DECL_AXIS char * DECL_C _getdcwd_dbg(
 //        _In_ int32_t _Drive,
 //        _Out_opt_z_cap_(_SizeInBytes) char * _DstBuf,
 //        _In_ int32_t _SizeInBytes,
@@ -745,7 +745,7 @@ should not have done so since it was not documented.
 //        _In_ int32_t _LineNumber
 //        );
 //
-//_Check_return_ _Ret_opt_z_ CLASS_DECL_BASE wchar_t * DECL_C _wgetdcwd_dbg(
+//_Check_return_ _Ret_opt_z_ CLASS_DECL_AXIS wchar_t * DECL_C _wgetdcwd_dbg(
 //        _In_ int32_t _Drive,
 //        _Out_opt_z_cap_(_SizeInWords) wchar_t * _DstBuf,
 //        _In_ int32_t _SizeInWords,
@@ -772,7 +772,7 @@ should not have done so since it was not documented.
 //        _In_ int32_t _LineNumber
 //        );
 //
-//_Check_return_wat_ CLASS_DECL_BASE errno_t DECL_C _dupenv_s_dbg(
+//_Check_return_wat_ CLASS_DECL_AXIS errno_t DECL_C _dupenv_s_dbg(
 //        _Out_ _Deref_post_opt_z_cap_(*_PBufferSizeInBytes) char ** _PBuffer,
 //        _Out_opt_ size_t * _PBufferSizeInBytes,
 //        _In_z_ const char * _VarName,
@@ -781,7 +781,7 @@ should not have done so since it was not documented.
 //        _In_ int32_t _LineNumber
 //        );
 //
-//_Check_return_wat_ CLASS_DECL_BASE errno_t DECL_C _wdupenv_s_dbg(
+//_Check_return_wat_ CLASS_DECL_AXIS errno_t DECL_C _wdupenv_s_dbg(
 //        _Out_ _Deref_post_opt_z_cap_(*_PBufferSizeInWords) wchar_t ** _PBuffer,
 //        _Out_opt_ size_t * _PBufferSizeInWords,
 //        _In_z_ const wchar_t * _VarName,
@@ -807,7 +807,7 @@ should not have done so since it was not documented.
 // *
 // ***************************************************************************/
 //#if !defined(_M_CEE_PURE)
-//CLASS_DECL_BASE _CRT_ALLOC_HOOK DECL_C _CrtGetAllocHook
+//CLASS_DECL_AXIS _CRT_ALLOC_HOOK DECL_C _CrtGetAllocHook
 //(
 //    void
 //);
@@ -818,7 +818,7 @@ should not have done so since it was not documented.
 // * For pure and native, we just need clrcall and cdecl, respectively.
 // */
 //#if !defined(_M_CEE_PURE)
-//CLASS_DECL_BASE _CRT_ALLOC_HOOK DECL_C _CrtSetAllocHook
+//CLASS_DECL_AXIS _CRT_ALLOC_HOOK DECL_C _CrtSetAllocHook
 //(
 //    _CRT_ALLOC_HOOK _PfnNewHook
 //);
@@ -854,16 +854,16 @@ should not have done so since it was not documented.
 // */
 //
 //#if !defined(_M_CEE_PURE)
-//CLASS_DECL_BASE extern int32_t _crtDbgFlag;
+//CLASS_DECL_AXIS extern int32_t _crtDbgFlag;
 //#endif /* !defined(_M_CEE_PURE) */
 //
-//CLASS_DECL_BASE int32_t DECL_C _CrtCheckMemory();
-//CLASS_DECL_BASE int32_t DECL_C _CrtSetDbgFlag(int32_t _NewFlag);
-//CLASS_DECL_BASE void DECL_C _CrtDoForAllClientObjects(void (DECL_C *_PFn)(void *, void *), void * _Context);
-//CLASS_DECL_BASE int32_t DECL_C _CrtIsValidPointer(const void * _Ptr, uint32_t _Bytes, int32_t _ReadWrite);
-//CLASS_DECL_BASE int32_t DECL_C _CrtIsValidHeapPointer(const void * _HeapPtr);
-//CLASS_DECL_BASE int32_t DECL_C _CrtIsMemoryBlock(const void * _Memory, uint32_t _Bytes, long * _RequestNumber, char ** _Filename, int32_t * _LineNumber);
-//CLASS_DECL_BASE int32_t DECL_C _CrtReportBlockType(const void * _Memory);
+//CLASS_DECL_AXIS int32_t DECL_C _CrtCheckMemory();
+//CLASS_DECL_AXIS int32_t DECL_C _CrtSetDbgFlag(int32_t _NewFlag);
+//CLASS_DECL_AXIS void DECL_C _CrtDoForAllClientObjects(void (DECL_C *_PFn)(void *, void *), void * _Context);
+//CLASS_DECL_AXIS int32_t DECL_C _CrtIsValidPointer(const void * _Ptr, uint32_t _Bytes, int32_t _ReadWrite);
+//CLASS_DECL_AXIS int32_t DECL_C _CrtIsValidHeapPointer(const void * _HeapPtr);
+//CLASS_DECL_AXIS int32_t DECL_C _CrtIsMemoryBlock(const void * _Memory, uint32_t _Bytes, long * _RequestNumber, char ** _Filename, int32_t * _LineNumber);
+//CLASS_DECL_AXIS int32_t DECL_C _CrtReportBlockType(const void * _Memory);
 //
 //
 // /****************************************************************************
@@ -873,7 +873,7 @@ should not have done so since it was not documented.
 // ***************************************************************************/
 //
 //#if !defined(_M_CEE_PURE)
-//CLASS_DECL_BASE _CRT_DUMP_CLIENT DECL_C _CrtGetDumpClient
+//CLASS_DECL_AXIS _CRT_DUMP_CLIENT DECL_C _CrtGetDumpClient
 //(
 //    void
 //);
@@ -884,7 +884,7 @@ should not have done so since it was not documented.
 // * For pure and native, we just need clrcall and cdecl, respectively.
 // */
 //#if !defined(_M_CEE_PURE)
-//CLASS_DECL_BASE _CRT_DUMP_CLIENT DECL_C _CrtSetDumpClient
+//CLASS_DECL_AXIS _CRT_DUMP_CLIENT DECL_C _CrtSetDumpClient
 //(
 //    _CRT_DUMP_CLIENT _PFnNewDump
 //);
@@ -899,19 +899,19 @@ should not have done so since it was not documented.
 //}
 //#endif
 //
-//CLASS_DECL_BASE void DECL_C _CrtMemCheckpoint(_CrtMemState * _State);
-//CLASS_DECL_BASE int32_t DECL_C _CrtMemDifference(_CrtMemState * _State, const _CrtMemState * _OldState, const _CrtMemState * _NewState);
-//CLASS_DECL_BASE void DECL_C _CrtMemDumpAllObjectsSince(const _CrtMemState * _State);
-//CLASS_DECL_BASE void DECL_C _CrtMemDumpStatistics(const _CrtMemState * _State);
-//CLASS_DECL_BASE int32_t DECL_C _CrtDumpMemoryLeaks();
-//CLASS_DECL_BASE int32_t DECL_C _CrtSetCheckCount(int32_t _CheckCount);
-//CLASS_DECL_BASE int32_t DECL_C _CrtGetCheckCount();
+//CLASS_DECL_AXIS void DECL_C _CrtMemCheckpoint(_CrtMemState * _State);
+//CLASS_DECL_AXIS int32_t DECL_C _CrtMemDifference(_CrtMemState * _State, const _CrtMemState * _OldState, const _CrtMemState * _NewState);
+//CLASS_DECL_AXIS void DECL_C _CrtMemDumpAllObjectsSince(const _CrtMemState * _State);
+//CLASS_DECL_AXIS void DECL_C _CrtMemDumpStatistics(const _CrtMemState * _State);
+//CLASS_DECL_AXIS int32_t DECL_C _CrtDumpMemoryLeaks();
+//CLASS_DECL_AXIS int32_t DECL_C _CrtSetCheckCount(int32_t _CheckCount);
+//CLASS_DECL_AXIS int32_t DECL_C _CrtGetCheckCount();
 //
 #endif  /* DEBUG */
 
 
 
-CLASS_DECL_BASE int32_t FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, int32_t iFlags);
+CLASS_DECL_AXIS int32_t FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, int32_t iFlags);
 
 inline int32_t FUNCTION_XXDEBUGBOX(const char * pszMessage, const char * pszTitle, int32_t iFlags) {
 
@@ -931,17 +931,17 @@ inline int32_t FUNCTION_XXDEBUGBOX(const char * pszMessage, const char * pszTitl
 
 
 #ifdef DEBUG
-void CLASS_DECL_BASE TRACELASTERROR();
+void CLASS_DECL_AXIS TRACELASTERROR();
 #else
 #define TRACELASTERROR() ((void)0)
 #endif
 
 
 
-CLASS_DECL_BASE string FormatMessageFromSystem(uint32_t dwError);
+CLASS_DECL_AXIS string FormatMessageFromSystem(uint32_t dwError);
 
 
-#endif // __BASE_BASE_DEBUG_H__
+#endif // __AXIS_AXIS_DEBUG_H__
 
 
 

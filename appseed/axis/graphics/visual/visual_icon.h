@@ -5,7 +5,7 @@ namespace visual
 {
 
 
-   class CLASS_DECL_BASE icon :
+   class CLASS_DECL_AXIS icon :
       virtual public ::object
    {
    public:
@@ -32,7 +32,7 @@ namespace visual
    };
 
 
-   class CLASS_DECL_BASE icon_int_map :
+   class CLASS_DECL_AXIS icon_int_map :
       virtual public int_map < icon * >
    {
    public:

@@ -881,7 +881,7 @@ retry:
 
 
    /*
-   UINT CLASS_DECL_BASE vfxGetFileTitle(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax)
+   UINT CLASS_DECL_AXIS vfxGetFileTitle(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax)
    {
    ASSERT(lpszTitle == NULL ||
    __is_valid_address(lpszTitle, _MAX_FNAME));
@@ -1076,7 +1076,7 @@ retry:
 
 
 // turn a file, relative path or other into an absolute path
-bool CLASS_DECL_BASE vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
+bool CLASS_DECL_AXIS vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
    // lpszPathOut = buffer of _MAX_PATH
    // lpszFileIn = file, relative path or absolute path
    // (both in ANSI character set)
@@ -1159,7 +1159,7 @@ bool CLASS_DECL_BASE vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
    return TRUE;
 }
 
-/*void CLASS_DECL_BASE __get_root_path(const char * lpszPath, string & strRoot)
+/*void CLASS_DECL_AXIS __get_root_path(const char * lpszPath, string & strRoot)
 {
 ASSERT(lpszPath != NULL);
 // determine the root name of the volume
@@ -1202,7 +1202,7 @@ lpsz[1] = '\0';
 strRoot.ReleaseBuffer();
 }*/
 
-/*bool CLASS_DECL_BASE ::core::ComparePath(const char * lpszPath1, const char * lpszPath2)
+/*bool CLASS_DECL_AXIS ::core::ComparePath(const char * lpszPath1, const char * lpszPath2)
 {
 // use case insensitive compare as a starter
 if (lstrcmpi(lpszPath1, lpszPath2) != 0)
@@ -1255,7 +1255,7 @@ return FALSE;
 return TRUE; // otherwise file name is truly the same
 }*/
 
-/*UINT CLASS_DECL_BASE __get_file_title(const char * lpszPathName, LPTSTR lpszTitle, UINT nMax)
+/*UINT CLASS_DECL_AXIS __get_file_title(const char * lpszPathName, LPTSTR lpszTitle, UINT nMax)
 {
 ASSERT(lpszTitle == NULL ||
 __is_valid_address(lpszTitle, _MAX_FNAME));
@@ -1277,7 +1277,7 @@ return ::core::GetFileName(lpszPathName, lpszTitle, nMax);
 return lpszTitle == NULL ? lstrlen(lpszTemp)+1 : 0;
 }*/
 
-void CLASS_DECL_BASE vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
+void CLASS_DECL_AXIS vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
 {
    WCHAR szLongPathName[_MAX_PATH];
    wstring wstrShortName;
@@ -1297,7 +1297,7 @@ void CLASS_DECL_BASE vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
 
 
 
-string CLASS_DECL_BASE vfxStringFromCLSID(REFCLSID rclsid)
+string CLASS_DECL_AXIS vfxStringFromCLSID(REFCLSID rclsid)
 {
    WCHAR szCLSID[256];
    wsprintfW(szCLSID, L"{%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X}",
@@ -1307,7 +1307,7 @@ string CLASS_DECL_BASE vfxStringFromCLSID(REFCLSID rclsid)
    return szCLSID;
 }
 
-bool CLASS_DECL_BASE vfxGetInProcServer(const char * lpszCLSID, string & str)
+bool CLASS_DECL_AXIS vfxGetInProcServer(const char * lpszCLSID, string & str)
 {
    HKEY hKey = NULL;
    bool b = FALSE;
@@ -1338,7 +1338,7 @@ bool CLASS_DECL_BASE vfxGetInProcServer(const char * lpszCLSID, string & str)
 //#endif  //!___NO_OLE_SUPPORT
 
 
-bool CLASS_DECL_BASE vfxResolveShortcut(string & strTarget, const char * pszSource, sp(::user::interaction) puiMessageParentOptional)
+bool CLASS_DECL_AXIS vfxResolveShortcut(string & strTarget, const char * pszSource, sp(::user::interaction) puiMessageParentOptional)
 {
 
    sp(::user::interaction) pui = puiMessageParentOptional;
@@ -1402,7 +1402,7 @@ bool CLASS_DECL_BASE vfxResolveShortcut(string & strTarget, const char * pszSour
 }
 
 // turn a file, relative path or other into an absolute path
-bool CLASS_DECL_BASE vfxFullPath(wchar_t * lpszPathOut, const wchar_t * lpszFileIn)
+bool CLASS_DECL_AXIS vfxFullPath(wchar_t * lpszPathOut, const wchar_t * lpszFileIn)
    // lpszPathOut = buffer of _MAX_PATH
    // lpszFileIn = file, relative path or absolute path
    // (both in ANSI character set)
@@ -1454,7 +1454,7 @@ bool CLASS_DECL_BASE vfxFullPath(wchar_t * lpszPathOut, const wchar_t * lpszFile
 
 
 
-void CLASS_DECL_BASE vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath)
+void CLASS_DECL_AXIS vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath)
 {
    //   ASSERT(lpszPath != NULL);
    // determine the root name of the volume
@@ -1497,7 +1497,7 @@ void CLASS_DECL_BASE vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath)
 }
 
 
-void CLASS_DECL_BASE vfxGetRoot(const wchar_t * lpszPath, string& strRoot)
+void CLASS_DECL_AXIS vfxGetRoot(const wchar_t * lpszPath, string& strRoot)
 {
    ASSERT(lpszPath != NULL);
    wstring wstrRoot;
@@ -1542,7 +1542,7 @@ void CLASS_DECL_BASE vfxGetRoot(const wchar_t * lpszPath, string& strRoot)
 }
 
 
-/*bool CLASS_DECL_BASE vfxFullPath(char * lpszPathOut, const char * lpszFileIn)
+/*bool CLASS_DECL_AXIS vfxFullPath(char * lpszPathOut, const char * lpszFileIn)
 // lpszPathOut = buffer of _MAX_PATH
 // lpszFileIn = file, relative path or absolute path
 // (both in ANSI character set)
@@ -1596,7 +1596,7 @@ return TRUE;
 
 
 
-UINT CLASS_DECL_BASE vfxGetFileName(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax)
+UINT CLASS_DECL_AXIS vfxGetFileName(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax)
 {
    ASSERT(lpszTitle == NULL ||
       __is_valid_address(lpszTitle, _MAX_FNAME));

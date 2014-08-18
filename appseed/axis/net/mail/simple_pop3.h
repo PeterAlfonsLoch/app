@@ -8,7 +8,7 @@ namespace mail
    class pop3_socket;
 
    
-   class CLASS_DECL_BASE simple_pop3 :
+   class CLASS_DECL_AXIS simple_pop3 :
       virtual public pop3
    {
    public:

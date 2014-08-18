@@ -8,7 +8,7 @@ __declspec(thread) HHOOK t_hHookOldMsgFilter = NULL;
 LRESULT CALLBACK __message_filter_hook(int32_t code,WPARAM wParam,LPARAM lParam);
 
 
-void CLASS_DECL_BASE __init_thread()
+void CLASS_DECL_AXIS __init_thread()
 {
 
    if(t_hHookOldMsgFilter == NULL)
@@ -21,7 +21,7 @@ void CLASS_DECL_BASE __init_thread()
 }
 
 
-void CLASS_DECL_BASE __term_thread()
+void CLASS_DECL_AXIS __term_thread()
 {
 
 
@@ -255,7 +255,7 @@ LRESULT CALLBACK __message_filter_hook(int32_t code,WPARAM wParam,LPARAM lParam)
    return lresult;
 }
 
-__STATIC bool CLASS_DECL_BASE IsHelpKey(LPMSG lpMsg)
+__STATIC bool CLASS_DECL_AXIS IsHelpKey(LPMSG lpMsg)
 // return TRUE only for non-repeat F1 keydowns.
 {
    return lpMsg->message == WM_KEYDOWN &&

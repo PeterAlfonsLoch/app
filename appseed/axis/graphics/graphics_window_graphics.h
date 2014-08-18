@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE window_graphics
+class CLASS_DECL_AXIS window_graphics
 {
 public:
 

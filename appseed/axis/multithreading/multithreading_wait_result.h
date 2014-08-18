@@ -18,7 +18,7 @@
 // use 0
 
 /// This class represents results of waiting actions.
-class CLASS_DECL_BASE wait_result
+class CLASS_DECL_AXIS wait_result
 {
 	/// Internal member holding the result of the last waiting action
 	int32_t                        m_iWaitResult;

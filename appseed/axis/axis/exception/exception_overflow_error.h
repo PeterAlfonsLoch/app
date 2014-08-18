@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE overflow_error :
+class CLASS_DECL_AXIS overflow_error :
    virtual public error_exception
 {
    // base class for resource-critical core API exceptions

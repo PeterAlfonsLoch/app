@@ -10,12 +10,12 @@ class map :
 public:
 
 
-   typedef KEY                                  BASE_KEY;
-   typedef ARG_KEY                              BASE_ARG_KEY;
-   typedef VALUE                                BASE_VALUE;
-   typedef ARG_VALUE                            BASE_ARG_VALUE;
-   typedef HASH                                 BASE_HASH;
-   typedef EQUALS                               BASE_EQUALS;
+   typedef KEY                                  AXIS_KEY;
+   typedef ARG_KEY                              AXIS_ARG_KEY;
+   typedef VALUE                                AXIS_VALUE;
+   typedef ARG_VALUE                            AXIS_ARG_VALUE;
+   typedef HASH                                 AXIS_HASH;
+   typedef EQUALS                               AXIS_EQUALS;
 
    typedef ::map_association < KEY, VALUE >     assoc;
    typedef typename assoc::pair                 pair;

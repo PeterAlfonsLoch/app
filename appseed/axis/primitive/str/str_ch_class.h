@@ -11,7 +11,7 @@ namespace str
          char category -> enumeration conversion.
        @ingroup unicode
    */
-   class CLASS_DECL_BASE ch_class
+   class CLASS_DECL_AXIS ch_class
    {
    private:
       bit_array **infoIndex;

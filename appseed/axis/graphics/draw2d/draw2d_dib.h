@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "app/appseed/base/primitive/primitive_color.h"
+#include "app/appseed/axis/primitive/primitive_color.h"
 
 
 namespace draw2d
@@ -15,7 +15,7 @@ namespace draw2d
    //////////////////////////////////////////////////////////////////////
 
 
-   class CLASS_DECL_BASE dib :
+   class CLASS_DECL_AXIS dib :
       virtual public ::object,
       virtual public ::file::serializable
    {
@@ -272,7 +272,7 @@ namespace draw2d
 
    };
 
-   class CLASS_DECL_BASE dib_sp :
+   class CLASS_DECL_AXIS dib_sp :
       public smart_pointer < dib >
    {
    public:
@@ -302,7 +302,7 @@ namespace draw2d
 
    };
 
-   class CLASS_DECL_BASE dibmap :
+   class CLASS_DECL_AXIS dibmap :
       virtual public map < class size, class size, ::draw2d::dib_sp, ::draw2d::dib_sp >
    {
    public:
@@ -336,7 +336,7 @@ namespace comparison
 
 
    template < >
-   class CLASS_DECL_BASE hash < const ::draw2d::dib::descriptor & >
+   class CLASS_DECL_AXIS hash < const ::draw2d::dib::descriptor & >
    {
    public:
 
@@ -360,7 +360,7 @@ namespace comparison
 namespace draw2d
 {
 
-   class CLASS_DECL_BASE dibmap_ex1 :
+   class CLASS_DECL_AXIS dibmap_ex1 :
       virtual public map < ::draw2d::dib::descriptor, const ::draw2d::dib::descriptor &, ::draw2d::dib_sp, ::draw2d::dib_sp >
    {
    public:

@@ -5,7 +5,7 @@ namespace simple_ui
 {
 
 
-   class CLASS_DECL_BASE label :
+   class CLASS_DECL_AXIS label :
       virtual public interaction
    {
    public:

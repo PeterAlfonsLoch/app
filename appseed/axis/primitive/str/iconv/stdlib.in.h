@@ -651,7 +651,7 @@ _GL_WARN_ON_USE (strtod, "strtod is unportable - "
 
 #if @GNULIB_STRTOLL@
 /* Parse a signed integer whose textual representation starts at STRING.
-   The integer is expected to be in base BASE (2 <= BASE <= 36); if BASE == 0,
+   The integer is expected to be in base AXIS (2 <= AXIS <= 36); if AXIS == 0,
    it may be decimal or octal (with prefix "0") or hexadecimal (with prefix
    "0x").
    If ENDPTR is not NULL, the address of the first byte after the integer is
@@ -676,7 +676,7 @@ _GL_WARN_ON_USE (strtoll, "strtoll is unportable - "
 
 #if @GNULIB_STRTOULL@
 /* Parse an unsigned integer whose textual representation starts at STRING.
-   The integer is expected to be in base BASE (2 <= BASE <= 36); if BASE == 0,
+   The integer is expected to be in base AXIS (2 <= AXIS <= 36); if AXIS == 0,
    it may be decimal or octal (with prefix "0") or hexadecimal (with prefix
    "0x").
    If ENDPTR is not NULL, the address of the first byte after the integer is

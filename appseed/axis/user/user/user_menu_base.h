@@ -8,7 +8,7 @@ namespace user
    class menu_base_item;
 
 
-   class CLASS_DECL_BASE menu_base :
+   class CLASS_DECL_AXIS menu_base :
       virtual public ::database::user::interaction
    {
    public:

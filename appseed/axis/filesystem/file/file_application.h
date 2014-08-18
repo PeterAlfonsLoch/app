@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_BASE application :
+   class CLASS_DECL_AXIS application :
       public object
    {
    public:

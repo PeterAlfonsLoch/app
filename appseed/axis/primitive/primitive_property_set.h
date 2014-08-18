@@ -2,7 +2,7 @@
 
 
 // property set key is case insensitive
-class CLASS_DECL_BASE property_set :
+class CLASS_DECL_AXIS property_set :
    public object,
    public ::file::serializable
 {
@@ -185,7 +185,7 @@ public:
 };
 
 
-class CLASS_DECL_BASE PropertySignalObject : public signal_details
+class CLASS_DECL_AXIS PropertySignalObject : public signal_details
 {
 public:
 

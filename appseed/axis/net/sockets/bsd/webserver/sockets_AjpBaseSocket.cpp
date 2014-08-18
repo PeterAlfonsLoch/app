@@ -79,7 +79,7 @@ namespace sockets
       Method[HTTP_METHOD_UPDATE] = "UPDATE";
       Method[HTTP_METHOD_LABEL] = "LABEL";
       Method[HTTP_METHOD_MERGE] = "MERGE";
-      Method[HTTP_METHOD_BASELINE_CONTROL] = "BASELINE_CONTROL";
+      Method[HTTP_METHOD_AXISLINE_CONTROL] = "AXISLINE_CONTROL";
       Method[HTTP_METHOD_MKACTIVITY] = "MKACTIVITY";
 
       Attribute[ATTR_CONTEXT] = "context";

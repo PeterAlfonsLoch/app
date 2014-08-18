@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE string_array :
+class CLASS_DECL_AXIS string_array :
    virtual public ::object
 {
 public:
@@ -113,8 +113,8 @@ public:
 
 protected:
    // local typedefs for class templates
-   typedef string BASE_TYPE;
-   typedef const char * BASE_ARG_TYPE;
+   typedef string AXIS_TYPE;
+   typedef const char * AXIS_ARG_TYPE;
 };
 
 

@@ -11,11 +11,11 @@ class sort_map :
 public:
 
 
-   typedef KEY          BASE_KEY;
-   typedef ARG_KEY      BASE_ARG_KEY;
-   typedef VALUE        BASE_VALUE;
-   typedef ARG_VALUE    BASE_ARG_VALUE;
-   typedef COMPARE      BASE_COMPARE;
+   typedef KEY          AXIS_KEY;
+   typedef ARG_KEY      AXIS_ARG_KEY;
+   typedef VALUE        AXIS_VALUE;
+   typedef ARG_VALUE    AXIS_ARG_VALUE;
+   typedef COMPARE      AXIS_COMPARE;
 
 
    class pair
@@ -621,7 +621,7 @@ bool sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::find_key(ARG_KEY key,
 
       i = (hi + lo) / 2;
 
-      iCompare = BASE_COMPARE::CompareElements(&m_ptra[i]->m_element1, &key);
+      iCompare = AXIS_COMPARE::CompareElements(&m_ptra[i]->m_element1, &key);
 
       if(iCompare == 0)
          return true;
@@ -635,7 +635,7 @@ bool sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::find_key(ARG_KEY key,
    for(i = 0; i < hi; i++)
    {
 
-      if(BASE_COMPARE::CompareElements(&m_ptra[i]->m_element1, &key) == 0)
+      if(AXIS_COMPARE::CompareElements(&m_ptra[i]->m_element1, &key) == 0)
          return true;
 
    }
@@ -643,7 +643,7 @@ bool sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::find_key(ARG_KEY key,
    for(; i >= 0; i--)
    {
 
-      if(BASE_COMPARE::CompareElements(&m_ptra[i]->m_element1, &key) < 0)
+      if(AXIS_COMPARE::CompareElements(&m_ptra[i]->m_element1, &key) < 0)
          break;
 
    }
@@ -1104,12 +1104,12 @@ sort_int_map < VALUE, ARG_VALUE, COMPARE > & sort_int_map < VALUE, ARG_VALUE, CO
 
 }
 
-typedef CLASS_DECL_BASE sort_attrib_map < sort_map < int32_t, int32_t, int32_t, int32_t > > sort_int_to_int;
-typedef CLASS_DECL_BASE sort_attrib_map < sort_map < int32_t, int32_t, string, const string & > > sort_int_to_string;
-typedef CLASS_DECL_BASE sort_string_map < void *, void * > sort_string_to_ptr;
+typedef CLASS_DECL_AXIS sort_attrib_map < sort_map < int32_t, int32_t, int32_t, int32_t > > sort_int_to_int;
+typedef CLASS_DECL_AXIS sort_attrib_map < sort_map < int32_t, int32_t, string, const string & > > sort_int_to_string;
+typedef CLASS_DECL_AXIS sort_string_map < void *, void * > sort_string_to_ptr;
 
 template < class T >
-class CLASS_DECL_BASE sort_string_to_pointer :
+class CLASS_DECL_AXIS sort_string_to_pointer :
    virtual public string_to_ptr
 {
 public:
@@ -1169,9 +1169,9 @@ public:
 };
 
 
-typedef CLASS_DECL_BASE sort_string_map < int_ptr, int_ptr > sort_string_to_intptr;
+typedef CLASS_DECL_AXIS sort_string_map < int_ptr, int_ptr > sort_string_to_intptr;
 
-typedef CLASS_DECL_BASE sort_string_map < string, const string & > sort_string_to_string_map;
+typedef CLASS_DECL_AXIS sort_string_map < string, const string & > sort_string_to_string_map;
 
 
 

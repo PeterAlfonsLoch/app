@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE range_error : 
+class CLASS_DECL_AXIS range_error : 
    virtual public error_exception
 {
    // base class for resource-critical core API exceptions

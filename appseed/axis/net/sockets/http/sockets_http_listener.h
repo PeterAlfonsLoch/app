@@ -8,7 +8,7 @@ namespace sockets
    class http_socket;
 
 
-   class CLASS_DECL_BASE http_listener :
+   class CLASS_DECL_AXIS http_listener :
       virtual public object
    {
    public:

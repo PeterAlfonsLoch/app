@@ -98,4 +98,4 @@ inline void fixed_alloc::Free(void * p)
 
 
 
-extern CLASS_DECL_BASE fixed_alloc_array g_fixedalloca;
+extern CLASS_DECL_AXIS fixed_alloc_array g_fixedalloca;

@@ -53,8 +53,8 @@ namespace net
 #include "sockets_trace_logger.h"
 
 
-#include "base/net/net_address.h"
-#include "base/sockets_base_socket.h"
+#include "axis/net/net_address.h"
+#include "axis/sockets_base_socket.h"
 
 
 #if defined(BSD_STYLE_SOCKETS)
@@ -67,8 +67,8 @@ namespace net
 
 
 
-#include "base/filesystem/file/file_timeout_buffer.h"
-#include "base/filesystem/file/file_transfer_buffer.h"
+#include "axis/filesystem/file/file_timeout_buffer.h"
+#include "axis/filesystem/file/file_transfer_buffer.h"
 #include "sockets_http_buffer.h"
 #include "sockets_http_batch_buffer.h"
 
@@ -79,7 +79,7 @@ namespace net
 
 
 
-#include "base/net/net_ip_enum.h"
-#include "base/net/net_port_forward.h"
+#include "axis/net/net_ip_enum.h"
+#include "axis/net/net_port_forward.h"
 
 

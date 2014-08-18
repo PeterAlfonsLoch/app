@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_BASE plain_text_stream_memory_buffer :
+   class CLASS_DECL_AXIS plain_text_stream_memory_buffer :
       virtual public plain_text_stream
    {
    public:

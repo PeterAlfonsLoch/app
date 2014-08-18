@@ -1,5 +1,5 @@
-#ifndef BASE_X_TABLES_H
-#define BASE_X_TABLES_H
+#ifndef AXIS_X_TABLES_H
+#define AXIS_X_TABLES_H
 
 #pragma once
 
@@ -451,6 +451,6 @@ static float arr_CharInfo2[] = {
  *
  * ***** END LICENSE BLOCK ***** */
 
-#endif // BASE_X_TABLES_H
+#endif // AXIS_X_TABLES_H
 
 

@@ -48,18 +48,18 @@ namespace hotplugin
 
 
 
-   CLASS_DECL_BASE ::base::system * get_base_system();
+   CLASS_DECL_AXIS ::base::system * get_base_system();
 
-   CLASS_DECL_BASE bool start_base_system();
-   CLASS_DECL_BASE void stop_base_system();
+   CLASS_DECL_AXIS bool start_base_system();
+   CLASS_DECL_AXIS void stop_base_system();
 
 
 #ifdef WINDOWS
 
    // hotplugin plugin dll HINSTANCE
-   CLASS_DECL_BASE HINSTANCE get_hinstance();
-   CLASS_DECL_BASE void set_hinstance(HINSTANCE hinstance);
-   CLASS_DECL_BASE void entry_hall_windows_on_paint(HDC hdc,const RECT & rect,const string & strEntryHallText);
+   CLASS_DECL_AXIS HINSTANCE get_hinstance();
+   CLASS_DECL_AXIS void set_hinstance(HINSTANCE hinstance);
+   CLASS_DECL_AXIS void entry_hall_windows_on_paint(HDC hdc,const RECT & rect,const string & strEntryHallText);
 
 #endif
 

@@ -5,7 +5,7 @@ namespace xml
 {
 
    
-   class CLASS_DECL_BASE tree_base :
+   class CLASS_DECL_AXIS tree_base :
       virtual public ::object
    {
    public:

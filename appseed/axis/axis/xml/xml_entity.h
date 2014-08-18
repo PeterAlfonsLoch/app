@@ -5,7 +5,7 @@ namespace xml
 {
 
    
-   class CLASS_DECL_BASE entity
+   class CLASS_DECL_AXIS entity
    {
    public:
 
@@ -24,7 +24,7 @@ namespace xml
    };
 
    
-   class CLASS_DECL_BASE entities : 
+   class CLASS_DECL_AXIS entities : 
       public array < entity >
    {
    public:

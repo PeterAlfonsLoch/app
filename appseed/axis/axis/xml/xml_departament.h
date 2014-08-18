@@ -5,7 +5,7 @@ namespace xml
 {
 
 
-   class CLASS_DECL_BASE departament :
+   class CLASS_DECL_AXIS departament :
       public ::base::departament
    {
    public:

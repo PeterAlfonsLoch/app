@@ -24,7 +24,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_BASE control_event
+   class CLASS_DECL_AXIS control_event
    {
    public:
 

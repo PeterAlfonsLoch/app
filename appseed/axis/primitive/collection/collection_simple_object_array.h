@@ -65,7 +65,7 @@ public:
 
 protected:
 	// local typedefs for class templates
-	typedef object* BASE_TYPE;
-	typedef object* BASE_ARG_TYPE;
+	typedef object* AXIS_TYPE;
+	typedef object* AXIS_ARG_TYPE;
 };
 

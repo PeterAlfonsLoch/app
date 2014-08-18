@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE parsing_exception:
+class CLASS_DECL_AXIS parsing_exception:
    virtual public simple_exception
 {
 public:
@@ -14,11 +14,11 @@ public:
 };
 
 
-CLASS_DECL_BASE bool get_avoid_parsing_exception();
-CLASS_DECL_BASE bool throw_parsing_exception(const string & strMessage);
+CLASS_DECL_AXIS bool get_avoid_parsing_exception();
+CLASS_DECL_AXIS bool throw_parsing_exception(const string & strMessage);
 
 
-class CLASS_DECL_BASE avoid_parsing_exception
+class CLASS_DECL_AXIS avoid_parsing_exception
 {
 public:
 

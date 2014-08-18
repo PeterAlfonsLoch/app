@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE mutex :
+class CLASS_DECL_AXIS mutex :
    public sync_object
 {
 public:
@@ -81,7 +81,7 @@ public:
 };
 
 
-CLASS_DECL_BASE void wait_until_mutex_does_not_exist(const char * pszName);
+CLASS_DECL_AXIS void wait_until_mutex_does_not_exist(const char * pszName);
 
 
 

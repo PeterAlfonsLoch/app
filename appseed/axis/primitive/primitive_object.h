@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE object :
+class CLASS_DECL_AXIS object :
    virtual public waitable
 {
 public:

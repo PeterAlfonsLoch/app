@@ -15,7 +15,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_BASE plain_text_tree :
+   class CLASS_DECL_AXIS plain_text_tree :
       public ::data::tree
    {
    public:
@@ -58,7 +58,7 @@ namespace user
 
 #undef new
       DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
-#define new BASE_NEW
+#define new AXIS_NEW
 
    };
 
@@ -98,7 +98,7 @@ namespace user
 
 #undef new
       DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
-#define new BASE_NEW
+#define new AXIS_NEW
 
       };
 

@@ -266,7 +266,7 @@ factory_item_base::~factory_item_base()
 
 
 
-CLASS_DECL_BASE mutex * g_pmutexFactory = NULL;
+CLASS_DECL_AXIS mutex * g_pmutexFactory = NULL;
 
 
 

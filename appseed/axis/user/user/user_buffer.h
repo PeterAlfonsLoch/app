@@ -6,7 +6,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE buffer :
+   class CLASS_DECL_AXIS buffer :
       virtual public signalizable
    {
    public:

@@ -13,12 +13,12 @@ namespace data
    class simple_data;
 
 
-   typedef CLASS_DECL_BASE spa(data_listener) data_listener_ptra;
-   typedef CLASS_DECL_BASE comparable_array < data * > data_ptra;
-   typedef CLASS_DECL_BASE comparable_array < sp(element) > ca_ptra;
+   typedef CLASS_DECL_AXIS spa(data_listener) data_listener_ptra;
+   typedef CLASS_DECL_AXIS comparable_array < data * > data_ptra;
+   typedef CLASS_DECL_AXIS comparable_array < sp(element) > ca_ptra;
 
 
-   class CLASS_DECL_BASE simple_lock :
+   class CLASS_DECL_AXIS simple_lock :
       public interlocked_long_pulse
    {
    public:
@@ -35,7 +35,7 @@ namespace data
    
 
 
-   class CLASS_DECL_BASE simple_data :
+   class CLASS_DECL_AXIS simple_data :
       virtual public root
    {
    public:
@@ -59,7 +59,7 @@ namespace data
 
 
 
-   class CLASS_DECL_BASE lock :
+   class CLASS_DECL_AXIS lock :
       public interlocked_long_pulse
    {
    public:
@@ -76,7 +76,7 @@ namespace data
 
 
 
-   class CLASS_DECL_BASE data :
+   class CLASS_DECL_AXIS data :
       virtual public ::object,
       virtual public simple_data
    {

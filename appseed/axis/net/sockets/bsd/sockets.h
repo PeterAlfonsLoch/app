@@ -16,7 +16,7 @@
 #include "basic/sockets_tls_socket.h"
 
 
-#include "base/net/sockets/base/sockets_base_socket_handler.h"
+#include "axis/net/sockets/axis/sockets_base_socket_handler.h"
 #include "basic/sockets_socket_handler.h"
 #include "basic/sockets_listen_socket.h"
 
@@ -25,7 +25,7 @@
 
 
 
-#include "base/net/sockets/http/sockets_http.h"
+#include "axis/net/sockets/http/sockets_http.h"
 
 
 
@@ -70,8 +70,8 @@
 #include "basic/sockets_sync_socket_handler.h"
 
 
-#include "base/net/sockets/sockets_link_out_socket.h"
-#include "base/net/sockets/sockets_link_in_socket.h"
+#include "axis/net/sockets/sockets_link_out_socket.h"
+#include "axis/net/sockets/sockets_link_in_socket.h"
 
 #include "basic/sockets_net.h"
 

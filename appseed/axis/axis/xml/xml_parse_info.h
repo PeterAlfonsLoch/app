@@ -8,7 +8,7 @@ namespace xml
    class node;
 
    // Parse info.
-   class CLASS_DECL_BASE parse_info
+   class CLASS_DECL_AXIS parse_info
    {
    public:
 
@@ -34,7 +34,7 @@ namespace xml
    };
 
    
-   CLASS_DECL_BASE char * LoadOtherNodes( node * node, bool* pbRet, const char * pszXml, parse_info * pi = NULL);
+   CLASS_DECL_AXIS char * LoadOtherNodes( node * node, bool* pbRet, const char * pszXml, parse_info * pi = NULL);
    
 
 } // namespace xml

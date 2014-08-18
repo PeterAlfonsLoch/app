@@ -32,7 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #if !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID)
 
 // only to be included in win32 projects
-CLASS_DECL_BASE const char *StrError(int32_t x)
+CLASS_DECL_AXIS const char *StrError(int32_t x)
 {
 static   char tmp[100];
    switch (x)

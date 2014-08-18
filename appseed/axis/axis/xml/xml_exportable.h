@@ -8,7 +8,7 @@ namespace xml
    class output_tree;
 
 
-   class CLASS_DECL_BASE exportable :
+   class CLASS_DECL_AXIS exportable :
       virtual public ::object
    {
    public:

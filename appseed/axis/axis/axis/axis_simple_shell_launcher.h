@@ -9,7 +9,7 @@
 // to detect erronous adaptations of replacement
 
 
-class CLASS_DECL_BASE simple_shell_launcher
+class CLASS_DECL_AXIS simple_shell_launcher
 {
 public:
 

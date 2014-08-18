@@ -6,7 +6,7 @@ namespace install
 {
 
 
-   class CLASS_DECL_BASE interaction_impl :
+   class CLASS_DECL_AXIS interaction_impl :
       virtual public ::user::interaction
    {
    public:

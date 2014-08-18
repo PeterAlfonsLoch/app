@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE machine_event_central :
+class CLASS_DECL_AXIS machine_event_central :
    public simple_thread
 {
 public:

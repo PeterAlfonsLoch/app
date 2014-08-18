@@ -267,7 +267,7 @@ namespace win
 {
 
 
-   CLASS_DECL_BASE string error_message(uint32_t dwError)
+   CLASS_DECL_AXIS string error_message(uint32_t dwError)
    {
 
       return get_system_error_message(dwError);

@@ -26,7 +26,7 @@ namespace user
    class str_context;
 
 
-   class CLASS_DECL_BASE str_schema :
+   class CLASS_DECL_AXIS str_schema :
       public strid_map < string >
    {
    public:
@@ -40,7 +40,7 @@ namespace user
 
    };
 
-   class CLASS_DECL_BASE str_locale :
+   class CLASS_DECL_AXIS str_locale :
       public strid_map < str_schema >
    {
    public:
@@ -63,7 +63,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_BASE str :
+   class CLASS_DECL_AXIS str :
       public strid_map < str_locale >
    {
    public:
@@ -109,7 +109,7 @@ namespace user
 
 
 
-   class CLASS_DECL_BASE str_context :
+   class CLASS_DECL_AXIS str_context :
       virtual public ::object
    {
    public:

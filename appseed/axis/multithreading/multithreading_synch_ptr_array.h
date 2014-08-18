@@ -67,7 +67,7 @@ public:
 
 #undef new
    DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
-#define new BASE_NEW
+#define new AXIS_NEW
 
 
 };

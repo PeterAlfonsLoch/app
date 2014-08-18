@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE message_queue_listener :
+class CLASS_DECL_AXIS message_queue_listener :
    virtual public ::object
 {
 public:

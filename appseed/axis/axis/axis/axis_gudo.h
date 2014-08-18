@@ -4,9 +4,9 @@
 namespace base
 {
 
-   template < class BASE >
+   template < class AXIS >
    class gudo:
-      virtual public BASE,
+      virtual public AXIS,
       virtual public object
    {
    public:
@@ -24,8 +24,8 @@ namespace base
 
    };
 
-   template < class BASE >
-   gudo < BASE > ::gudo(sp(base::application) papp,const string & strKey,bool bInitialGudoGet):
+   template < class AXIS >
+   gudo < AXIS > ::gudo(sp(base::application) papp,const string & strKey,bool bInitialGudoGet):
       element(papp)
    {
 
@@ -42,8 +42,8 @@ namespace base
 
    }
 
-   template < class BASE >
-   gudo < BASE > ::~gudo()
+   template < class AXIS >
+   gudo < AXIS > ::~gudo()
    {
 
       if(m_bAutoGudoSet)

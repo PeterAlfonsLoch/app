@@ -4,7 +4,7 @@
 namespace base
 {
 
-   class CLASS_DECL_BASE simple_app:
+   class CLASS_DECL_AXIS simple_app:
       virtual public ::base::system
    {
    public:

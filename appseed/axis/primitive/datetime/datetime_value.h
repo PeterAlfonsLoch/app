@@ -5,7 +5,7 @@ namespace datetime
 {
 
 
-   class CLASS_DECL_BASE value
+   class CLASS_DECL_AXIS value
    {
    public:
 
@@ -39,17 +39,17 @@ namespace datetime
    };
 
 
-   CLASS_DECL_BASE value span_strtotime(sp(::base::application) pbaseapp, ::user::str_context * pcontext, const char * psz);
-   CLASS_DECL_BASE value strtotime(sp(::base::application) pbaseapp, ::user::str_context * pcontext, const char * psz, int32_t & iPath, int32_t & iPathCount, bool bForceUTC = false);
+   CLASS_DECL_AXIS value span_strtotime(sp(::base::application) pbaseapp, ::user::str_context * pcontext, const char * psz);
+   CLASS_DECL_AXIS value strtotime(sp(::base::application) pbaseapp, ::user::str_context * pcontext, const char * psz, int32_t & iPath, int32_t & iPathCount, bool bForceUTC = false);
 
 
 } // namespace datetime
 
 
-CLASS_DECL_BASE datetime::value operator + (const datetime::value & val1, const datetime::value & val2);
-CLASS_DECL_BASE datetime::value operator - (const datetime::value & val1, const datetime::value & val2);
-CLASS_DECL_BASE datetime::value operator * (const datetime::value & val1, double d);
-CLASS_DECL_BASE datetime::value operator / (const datetime::value & val1, double d);
+CLASS_DECL_AXIS datetime::value operator + (const datetime::value & val1, const datetime::value & val2);
+CLASS_DECL_AXIS datetime::value operator - (const datetime::value & val1, const datetime::value & val2);
+CLASS_DECL_AXIS datetime::value operator * (const datetime::value & val1, double d);
+CLASS_DECL_AXIS datetime::value operator / (const datetime::value & val1, double d);
 
 
 

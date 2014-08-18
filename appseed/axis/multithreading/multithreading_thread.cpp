@@ -384,7 +384,7 @@ int32_t thread::priority()
 
 
 
-CLASS_DECL_BASE void thread_alloc_ready(bool bReady)
+CLASS_DECL_AXIS void thread_alloc_ready(bool bReady)
 {
 
    thread::s_bAllocReady = bReady;

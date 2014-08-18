@@ -5,7 +5,7 @@ namespace base
 {
 
 
-   class CLASS_DECL_BASE trace_add_file_and_line
+   class CLASS_DECL_AXIS trace_add_file_and_line
 #if defined(LINUX) || defined(APPLEOS)
       : public string_format_printer
 #endif
@@ -20,7 +20,7 @@ namespace base
 
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
-      class CLASS_DECL_BASE category_level
+      class CLASS_DECL_AXIS category_level
       {
       public:
 

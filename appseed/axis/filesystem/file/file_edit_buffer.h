@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_BASE edit_buffer :
+   class CLASS_DECL_AXIS edit_buffer :
       public ::file::buffer_sp ,
       public ::data::tree
    {
@@ -51,7 +51,7 @@ namespace file
 
 #undef new
          DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
-#define new BASE_NEW
+#define new AXIS_NEW
 
 
       };
@@ -148,7 +148,7 @@ namespace file
 
 #undef new
          DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
-#define new BASE_NEW
+#define new AXIS_NEW
 
       };
 

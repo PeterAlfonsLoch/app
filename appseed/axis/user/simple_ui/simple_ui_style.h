@@ -6,7 +6,7 @@ namespace simple_ui
 {
 
 
-   class CLASS_DECL_BASE style :
+   class CLASS_DECL_AXIS style :
       virtual public object
    {
    public:

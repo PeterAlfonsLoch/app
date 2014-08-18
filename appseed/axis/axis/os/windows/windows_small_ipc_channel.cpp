@@ -1,6 +1,6 @@
 #include "framework.h"
 
-extern CLASS_DECL_BASE bool (WINAPI * g_pfnChangeWindowMessageFilter)(
+extern CLASS_DECL_AXIS bool (WINAPI * g_pfnChangeWindowMessageFilter)(
     _In_ UINT message,
     _In_ uint32_t dwFlag);
 

@@ -1,14 +1,14 @@
 #pragma once
 
 
-bool CLASS_DECL_BASE vfxResolveShortcut(string & strTarget, const char * pszSource, sp(::user::interaction) puiMessageParentOptional = NULL);
+bool CLASS_DECL_AXIS vfxResolveShortcut(string & strTarget, const char * pszSource, sp(::user::interaction) puiMessageParentOptional = NULL);
 
 
 namespace windows
 {
 
 
-   class CLASS_DECL_BASE os :
+   class CLASS_DECL_AXIS os :
       virtual public ::base::os
    {
    public:

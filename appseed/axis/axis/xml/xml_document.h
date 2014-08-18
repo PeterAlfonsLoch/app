@@ -8,7 +8,7 @@ namespace xml
    class edit;
 
 
-   class CLASS_DECL_BASE document :
+   class CLASS_DECL_AXIS document :
       public node,
       public ::data::data
    {

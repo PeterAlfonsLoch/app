@@ -5,7 +5,7 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_BASE graphics :
+   class CLASS_DECL_AXIS graphics :
       virtual public ::object,
       public ::core::simple_chain < ::user::draw_context >
    {
@@ -683,7 +683,7 @@ namespace draw2d
 
    };
 
-   class CLASS_DECL_BASE graphics_sp :
+   class CLASS_DECL_AXIS graphics_sp :
       public smart_pointer < graphics >
    {
    public:
@@ -710,7 +710,7 @@ namespace draw2d
 
    };
 
-   class CLASS_DECL_BASE memory_graphics :
+   class CLASS_DECL_AXIS memory_graphics :
       public graphics_sp
    {
    public:
@@ -721,7 +721,7 @@ namespace draw2d
    };
 
 
-/*   class CLASS_DECL_BASE window_graphics :
+/*   class CLASS_DECL_AXIS window_graphics :
       virtual public graphics_sp
    {
    public:
@@ -733,7 +733,7 @@ namespace draw2d
 
    };
 
-   class CLASS_DECL_BASE paint_graphics :
+   class CLASS_DECL_AXIS paint_graphics :
       virtual public graphics_sp
    {
    public:
@@ -754,6 +754,6 @@ namespace draw2d
 
 
 
-CLASS_DECL_BASE dump_context & operator<<(dump_context & dumpcontext, SIZE size);
-CLASS_DECL_BASE dump_context & operator<<(dump_context & dumpcontext, POINT point);
-CLASS_DECL_BASE dump_context & operator<<(dump_context & dumpcontext, const RECT& rect);
+CLASS_DECL_AXIS dump_context & operator<<(dump_context & dumpcontext, SIZE size);
+CLASS_DECL_AXIS dump_context & operator<<(dump_context & dumpcontext, POINT point);
+CLASS_DECL_AXIS dump_context & operator<<(dump_context & dumpcontext, const RECT& rect);

@@ -5,7 +5,7 @@
 
 
 #define CN_UPDATE_COMMAND_UI 23
-#define WM_REFLECT_BASE 2048
+#define WM_REFLECT_AXIS 2048
 #define MX_APPLANGUAGE 1000
 #define USER_MESSAGE 1024
 
@@ -20,7 +20,7 @@
 #undef new
 #include "message_base.h"
 #include "message_user.h"
-#define new BASE_NEW
+#define new AXIS_NEW
 #include "message.inl"
 
 
@@ -30,10 +30,10 @@ namespace message
 
 
 
-   CLASS_DECL_BASE bool is_idle_message(::signal_details * pobj);
+   CLASS_DECL_AXIS bool is_idle_message(::signal_details * pobj);
 
 
-   CLASS_DECL_BASE bool is_idle_message(MESSAGE* pMsg);
+   CLASS_DECL_AXIS bool is_idle_message(MESSAGE* pMsg);
 
 
 

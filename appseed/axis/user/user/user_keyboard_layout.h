@@ -13,7 +13,7 @@ typedef void * HKL;
 namespace user
 {
 
-   class CLASS_DECL_BASE keyboard_layout_id
+   class CLASS_DECL_AXIS keyboard_layout_id
    {
    public:
 
@@ -37,14 +37,14 @@ namespace user
 
    };
 
-   class CLASS_DECL_BASE keyboard_layout_ida :
+   class CLASS_DECL_AXIS keyboard_layout_ida :
       virtual public comparable_array < keyboard_layout_id >
    {
    public:
    };
 
 
-   class CLASS_DECL_BASE keyboard_layout :
+   class CLASS_DECL_AXIS keyboard_layout :
       virtual public ::object,
       virtual public keyboard_layout_id
    {

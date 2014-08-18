@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE runtime_error : 
+class CLASS_DECL_AXIS runtime_error : 
    virtual public error_exception
 {
    // base class for resource-critical core API exceptions

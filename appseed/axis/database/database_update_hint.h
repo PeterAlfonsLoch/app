@@ -9,7 +9,7 @@ namespace database
    class server;
 
    
-   class CLASS_DECL_BASE update_hint  :
+   class CLASS_DECL_AXIS update_hint  :
       virtual public ::object
    {
    public:

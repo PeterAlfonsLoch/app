@@ -5,7 +5,7 @@ namespace fontopus
 {
 
 
-   class CLASS_DECL_BASE fontopus :
+   class CLASS_DECL_AXIS fontopus :
       virtual public ::base::departament
    {
    public:
@@ -57,7 +57,7 @@ namespace fontopus
 
 
 
-   class CLASS_DECL_BASE create_user_thread:
+   class CLASS_DECL_AXIS create_user_thread:
       virtual public thread
    {
    public:

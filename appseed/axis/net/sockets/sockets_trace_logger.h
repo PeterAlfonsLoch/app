@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_BASE trace_logger : 
+   class CLASS_DECL_AXIS trace_logger : 
       public logger
    {
    public:

@@ -3,7 +3,7 @@
 
 
 
-class CLASS_DECL_BASE var_array : 
+class CLASS_DECL_AXIS var_array : 
    public ::file::serializable_array < array < var > >
 {
 public:

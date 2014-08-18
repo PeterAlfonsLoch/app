@@ -1,6 +1,6 @@
 #include "framework.h"
 
-struct CLASS_DECL_BASE __MAP_MESSAGE
+struct CLASS_DECL_AXIS __MAP_MESSAGE
 {
    UINT    nMsg;
    const char *  lpszMsg;

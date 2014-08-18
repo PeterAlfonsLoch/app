@@ -11,7 +11,7 @@ namespace file
    typedef sp(memory_buffer) memory_buffer_sp;
 
 
-   class CLASS_DECL_BASE memory_buffer :
+   class CLASS_DECL_AXIS memory_buffer :
       virtual public ::file::stream_buffer,
       virtual public primitive::memory_container
    {

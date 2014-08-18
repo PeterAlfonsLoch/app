@@ -4,40 +4,40 @@
 class property;
 
 
-string CLASS_DECL_BASE operator + (const char * psz, const property & prop);
-string CLASS_DECL_BASE operator + (const string & str, const property & prop);
+string CLASS_DECL_AXIS operator + (const char * psz, const property & prop);
+string CLASS_DECL_AXIS operator + (const string & str, const property & prop);
 
-var CLASS_DECL_BASE operator - (int32_t i, const property & prop);
-var CLASS_DECL_BASE operator - (uint32_t user, const property & prop);
-var CLASS_DECL_BASE operator - (int64_t i, const property & prop);
-var CLASS_DECL_BASE operator - (uint64_t ui, const property & prop);
-var CLASS_DECL_BASE operator - (double d, const property & prop);
-var CLASS_DECL_BASE operator - (const var & var, const property & prop);
-var CLASS_DECL_BASE operator - (const property & prop1, const property & prop2);
+var CLASS_DECL_AXIS operator - (int32_t i, const property & prop);
+var CLASS_DECL_AXIS operator - (uint32_t user, const property & prop);
+var CLASS_DECL_AXIS operator - (int64_t i, const property & prop);
+var CLASS_DECL_AXIS operator - (uint64_t ui, const property & prop);
+var CLASS_DECL_AXIS operator - (double d, const property & prop);
+var CLASS_DECL_AXIS operator - (const var & var, const property & prop);
+var CLASS_DECL_AXIS operator - (const property & prop1, const property & prop2);
 
-var CLASS_DECL_BASE operator + (int32_t i, const property & prop);
-var CLASS_DECL_BASE operator + (uint32_t user, const property & prop);
-var CLASS_DECL_BASE operator + (int64_t i, const property & prop);
-var CLASS_DECL_BASE operator + (uint64_t ui, const property & prop);
-var CLASS_DECL_BASE operator + (double d, const property & prop);
-var CLASS_DECL_BASE operator + (const var & var, const property & prop);
-var CLASS_DECL_BASE operator + (const property & prop1, const property & prop2);
+var CLASS_DECL_AXIS operator + (int32_t i, const property & prop);
+var CLASS_DECL_AXIS operator + (uint32_t user, const property & prop);
+var CLASS_DECL_AXIS operator + (int64_t i, const property & prop);
+var CLASS_DECL_AXIS operator + (uint64_t ui, const property & prop);
+var CLASS_DECL_AXIS operator + (double d, const property & prop);
+var CLASS_DECL_AXIS operator + (const var & var, const property & prop);
+var CLASS_DECL_AXIS operator + (const property & prop1, const property & prop2);
 
-var CLASS_DECL_BASE operator / (int32_t i, const property & prop);
-var CLASS_DECL_BASE operator / (uint32_t user, const property & prop);
-var CLASS_DECL_BASE operator / (int64_t i, const property & prop);
-var CLASS_DECL_BASE operator / (uint64_t ui, const property & prop);
-var CLASS_DECL_BASE operator / (double d, const property & prop);
-var CLASS_DECL_BASE operator / (const var & var, const property & prop);
-var CLASS_DECL_BASE operator / (const property & prop1, const property & prop2);
+var CLASS_DECL_AXIS operator / (int32_t i, const property & prop);
+var CLASS_DECL_AXIS operator / (uint32_t user, const property & prop);
+var CLASS_DECL_AXIS operator / (int64_t i, const property & prop);
+var CLASS_DECL_AXIS operator / (uint64_t ui, const property & prop);
+var CLASS_DECL_AXIS operator / (double d, const property & prop);
+var CLASS_DECL_AXIS operator / (const var & var, const property & prop);
+var CLASS_DECL_AXIS operator / (const property & prop1, const property & prop2);
 
-var CLASS_DECL_BASE operator * (int32_t i, const property & prop);
-var CLASS_DECL_BASE operator * (uint32_t user, const ::core:: property & prop);
-var CLASS_DECL_BASE operator * (int64_t i, const property & prop);
-var CLASS_DECL_BASE operator * (uint64_t ui, const property & prop);
-var CLASS_DECL_BASE operator * (double d, const property & prop);
-var CLASS_DECL_BASE operator * (const var & var, const property & prop);
-var CLASS_DECL_BASE operator * (const property & prop1, const property & prop2);
+var CLASS_DECL_AXIS operator * (int32_t i, const property & prop);
+var CLASS_DECL_AXIS operator * (uint32_t user, const ::core:: property & prop);
+var CLASS_DECL_AXIS operator * (int64_t i, const property & prop);
+var CLASS_DECL_AXIS operator * (uint64_t ui, const property & prop);
+var CLASS_DECL_AXIS operator * (double d, const property & prop);
+var CLASS_DECL_AXIS operator * (const var & var, const property & prop);
+var CLASS_DECL_AXIS operator * (const property & prop1, const property & prop2);
 
 
 namespace xml
@@ -50,7 +50,7 @@ namespace xml
 } // namespace xml
 
 
-class CLASS_DECL_BASE pair_set_interface
+class CLASS_DECL_AXIS pair_set_interface
 {
 public:
 
@@ -72,7 +72,7 @@ public:
    var & operator[](const char * pszName);
 };
 
-class CLASS_DECL_BASE str_str_interface
+class CLASS_DECL_AXIS str_str_interface
 {
 public:
 
@@ -97,7 +97,7 @@ class property_set;
 class property_map;
 
 
-class CLASS_DECL_BASE property :
+class CLASS_DECL_AXIS property :
    public object,
    public ::file::serializable
 {
@@ -544,8 +544,8 @@ public:
    string operator + (const char * psz) const;
    string operator + (const string & str) const;
 
-   //      friend string CLASS_DECL_BASE operator + (const char * psz, const property & var);
-   //      friend string CLASS_DECL_BASE operator + (const string & str, const property & var);
+   //      friend string CLASS_DECL_AXIS operator + (const char * psz, const property & var);
+   //      friend string CLASS_DECL_AXIS operator + (const string & str, const property & var);
 
    var operator - (int32_t i) const;
    var operator - (uint32_t user) const;
@@ -554,13 +554,13 @@ public:
    var operator - (double d) const;
    var operator - (const var & var) const;
 
-   //      friend var CLASS_DECL_BASE operator - (int32_t i, const property & prop);
-   //      friend var CLASS_DECL_BASE operator - (uint32_t user, const property & prop);
-   //      friend var CLASS_DECL_BASE operator - (int64_t i, const property & prop);
-   //      friend var CLASS_DECL_BASE operator - (uint64_t ui, const property & prop);
-   //      friend var CLASS_DECL_BASE operator - (double d, const property & prop);
-   //      friend var CLASS_DECL_BASE operator - (const var & var, const property & prop);
-   //      friend var CLASS_DECL_BASE operator - (const property & prop1, const property & prop2);
+   //      friend var CLASS_DECL_AXIS operator - (int32_t i, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator - (uint32_t user, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator - (int64_t i, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator - (uint64_t ui, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator - (double d, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator - (const var & var, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator - (const property & prop1, const property & prop2);
 
    var operator + (int32_t i) const;
    var operator + (uint32_t user) const;
@@ -569,13 +569,13 @@ public:
    var operator + (double d) const;
    var operator + (const var & var) const;
 
-   //      friend var CLASS_DECL_BASE operator + (int32_t i, const property & prop);
-   //      friend var CLASS_DECL_BASE operator + (uint32_t user, const property & prop);
-   //      friend var CLASS_DECL_BASE operator + (int64_t i, const property & prop);
-   //      friend var CLASS_DECL_BASE operator + (uint64_t ui, const property & prop);
-   //      friend var CLASS_DECL_BASE operator + (double d, const property & prop);
-   //      friend var CLASS_DECL_BASE operator + (const var & var, const property & prop);
-   //      friend var CLASS_DECL_BASE operator + (const property & prop1, const property & prop2);
+   //      friend var CLASS_DECL_AXIS operator + (int32_t i, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator + (uint32_t user, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator + (int64_t i, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator + (uint64_t ui, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator + (double d, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator + (const var & var, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator + (const property & prop1, const property & prop2);
 
    var operator / (int32_t i) const;
    var operator / (uint32_t user) const;
@@ -584,13 +584,13 @@ public:
    var operator / (double d) const;
    var operator / (const var & var) const;
 
-   //      friend var CLASS_DECL_BASE operator / (int32_t i, const property & prop);
-   //      friend var CLASS_DECL_BASE operator / (uint32_t user, const property & prop);
-   //      friend var CLASS_DECL_BASE operator / (int64_t i, const property & prop);
-   //      friend var CLASS_DECL_BASE operator / (uint64_t ui, const property & prop);
-   //      friend var CLASS_DECL_BASE operator / (double d, const property & prop);
-   //      friend var CLASS_DECL_BASE operator / (const var & var, const property & prop);
-   //      friend var CLASS_DECL_BASE operator / (const property & prop1, const property & prop2);
+   //      friend var CLASS_DECL_AXIS operator / (int32_t i, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator / (uint32_t user, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator / (int64_t i, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator / (uint64_t ui, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator / (double d, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator / (const var & var, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator / (const property & prop1, const property & prop2);
 
    var operator * (int32_t i) const;
    var operator * (uint32_t user) const;
@@ -599,13 +599,13 @@ public:
    var operator * (double d) const;
    var operator * (const var & var) const;
 
-   //      friend var CLASS_DECL_BASE operator * (int32_t i, const property & prop);
-   //      friend var CLASS_DECL_BASE operator * (uint32_t user, const property & prop);
-   //      friend var CLASS_DECL_BASE operator * (int64_t i, const property & prop);
-   //      friend var CLASS_DECL_BASE operator * (uint64_t ui, const property & prop);
-   //      friend var CLASS_DECL_BASE operator * (double d, const property & prop);
-   //      friend var CLASS_DECL_BASE operator * (const var & var, const property & prop);
-   //      friend var CLASS_DECL_BASE operator * (const property & prop1, const property & prop2);
+   //      friend var CLASS_DECL_AXIS operator * (int32_t i, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator * (uint32_t user, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator * (int64_t i, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator * (uint64_t ui, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator * (double d, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator * (const var & var, const property & prop);
+   //      friend var CLASS_DECL_AXIS operator * (const property & prop1, const property & prop2);
 
    property & operator -= (int32_t i);
    property & operator -= (uint32_t user);
@@ -650,7 +650,7 @@ public:
    var explode(const char * pszSeparator, bool bAddEmpty = true) const;
 
 
-//   DECLARE_BASE_FIXED_ALLOC(property)
+//   DECLARE_AXIS_FIXED_ALLOC(property)
     
     
     void null() { m_var.null(); }
@@ -660,7 +660,7 @@ public:
 
 
 
-class CLASS_DECL_BASE property_array :
+class CLASS_DECL_AXIS property_array :
    public ::file::byte_serializable_pointer_array < spa(property) >
 {
 public:
@@ -673,7 +673,7 @@ public:
 
 };
 
-class CLASS_DECL_BASE property_map :
+class CLASS_DECL_AXIS property_map :
    public id_to_index
 {
 public:
@@ -699,7 +699,7 @@ inline property & property::operator[](const char * pszName)
 
 namespace str
 {
-   inline bool CLASS_DECL_BASE begins(const property & property, const char * lpcszPrefix) { return begins(property.get_string(), lpcszPrefix); };
+   inline bool CLASS_DECL_AXIS begins(const property & property, const char * lpcszPrefix) { return begins(property.get_string(), lpcszPrefix); };
 }
 
 

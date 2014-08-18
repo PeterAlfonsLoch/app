@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE relation_set :
+class CLASS_DECL_AXIS relation_set :
    public property_set
 {
 public:

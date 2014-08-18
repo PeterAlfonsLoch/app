@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE command_thread :
+class CLASS_DECL_AXIS command_thread :
    virtual public ::object
 {
 public:

@@ -6,7 +6,7 @@ namespace user
 
    class keyboard_layout;
 
-   class CLASS_DECL_BASE keyboard :
+   class CLASS_DECL_AXIS keyboard :
       virtual public ::object
    {
    public:

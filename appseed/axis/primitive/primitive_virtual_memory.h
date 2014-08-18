@@ -4,7 +4,7 @@ namespace primitive
 {
 
 
-   class CLASS_DECL_BASE virtual_memory :
+   class CLASS_DECL_AXIS virtual_memory :
       public ::primitive::memory_base
    {
    public:

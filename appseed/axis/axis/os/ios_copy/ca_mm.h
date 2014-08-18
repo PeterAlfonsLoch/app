@@ -31,10 +31,10 @@ namespace ca
 
 
 
-#include "base/base/base.h"
+#include "axis/base/base.h"
 
 
-#include "base/vms/vms.h"
+#include "axis/vms/vms.h"
 
 
 //#define argb_get_a_value(rgb)      (LOBYTE((rgb)>>24))
@@ -45,29 +45,29 @@ namespace ca
 extern "C"
 {
    
-   #include "base/base_cpu_architecture.h"
+   #include "axis/base_cpu_architecture.h"
    
 }
 
 
 
-#include "base/base_libc.h"
+#include "axis/base_libc.h"
 
 
-#include "base/base_keep_true.h"
+#include "axis/base_keep_true.h"
 
 
-#include "base/base_debug.h"
-
-
-
-
-#include "base/base_printf.h"
-#include "base/base_sprintf.h"
+#include "axis/base_debug.h"
 
 
 
-#include "base/base_math.h"
+
+#include "axis/base_printf.h"
+#include "axis/base_sprintf.h"
+
+
+
+#include "axis/base_math.h"
 
 #include "primitive/geometry/geometry_types.h"
 

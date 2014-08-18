@@ -47,7 +47,7 @@ strid_map < VALUE, ARG_VALUE, HASH, EQUALS > & strid_map < VALUE, ARG_VALUE, HAS
 
 
 template < class T >
-class CLASS_DECL_BASE string_to_pointer :
+class CLASS_DECL_AXIS string_to_pointer :
    virtual public string_to_ptr
 {
 public:

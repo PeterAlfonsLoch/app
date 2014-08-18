@@ -5,7 +5,7 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_BASE region :
+   class CLASS_DECL_AXIS region :
       virtual public object
    {
    public:
@@ -103,7 +103,7 @@ namespace draw2d
    };
 
 
-   class CLASS_DECL_BASE region_sp :
+   class CLASS_DECL_AXIS region_sp :
       public smart_pointer < region >
    {
    public:

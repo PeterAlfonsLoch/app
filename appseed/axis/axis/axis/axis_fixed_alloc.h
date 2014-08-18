@@ -4,7 +4,7 @@
 struct plex;
 
 
-class CLASS_DECL_BASE fixed_alloc_no_sync
+class CLASS_DECL_AXIS fixed_alloc_no_sync
 {
 public:
 
@@ -63,7 +63,7 @@ inline void fixed_alloc_no_sync::Free(void * p)
 
 
 
-class CLASS_DECL_BASE fixed_alloc_sync
+class CLASS_DECL_AXIS fixed_alloc_sync
 {
 public:
 
@@ -88,7 +88,7 @@ public:
 
 
 
-class CLASS_DECL_BASE fixed_alloc
+class CLASS_DECL_AXIS fixed_alloc
 {
 public:
 
@@ -112,7 +112,7 @@ public:
 
 
 
-class CLASS_DECL_BASE fixed_alloc_array :
+class CLASS_DECL_AXIS fixed_alloc_array :
    public array < fixed_alloc * >
 {
 public:
@@ -134,7 +134,7 @@ public:
 
 
 // DECLARE_FIXED_ALLOC -- used in class definition
-/*#define DECLARE_BASE_FIXED_ALLOC(class_name) \
+/*#define DECLARE_AXIS_FIXED_ALLOC(class_name) \
 public: \
    void * operator new(size_t) { return s_palloc->Alloc(); } \
    void * operator new(size_t, void * p) { return p; } \
@@ -145,14 +145,14 @@ public: \
 
 
 // IMPLEMENT_FIXED_ALLOC -- used in class implementation file
-#define IMPLEMENT_BASE_FIXED_ALLOC_STATIC(class_name) \
+#define IMPLEMENT_AXIS_FIXED_ALLOC_STATIC(class_name) \
 fixed_alloc * class_name::s_palloc = NULL;
 
 
-#define IMPLEMENT_BASE_FIXED_ALLOC_CONSTRUCTOR(class_name, block_size) \
+#define IMPLEMENT_AXIS_FIXED_ALLOC_CONSTRUCTOR(class_name, block_size) \
 class_name::s_palloc = new fixed_alloc(sizeof(class_name), block_size);
 
-#define IMPLEMENT_BASE_FIXED_ALLOC_DESTRUCTOR(class_name) \
+#define IMPLEMENT_AXIS_FIXED_ALLOC_DESTRUCTOR(class_name) \
 if(class_name::s_palloc != NULL) \
 { \
    delete class_name::s_palloc; \

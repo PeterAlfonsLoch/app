@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE impact_system :
+   class CLASS_DECL_AXIS impact_system :
       virtual public ::object,
       virtual public command_target,
       virtual public ::user::server

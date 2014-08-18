@@ -1,18 +1,18 @@
 #pragma once
 
 
-CLASS_DECL_BASE string url_encode_dup(const char * psz);
-CLASS_DECL_BASE bool url_query_get_param_dup(string & strParam, const char * pszKey, const char * pszUrl);
+CLASS_DECL_AXIS string url_encode_dup(const char * psz);
+CLASS_DECL_AXIS bool url_query_get_param_dup(string & strParam, const char * pszKey, const char * pszUrl);
 
 
 namespace url
 {
 
 
-   bool CLASS_DECL_BASE is_url(const char * pszCandidate, const char ** ppszRequest = NULL);
+   bool CLASS_DECL_AXIS is_url(const char * pszCandidate, const char ** ppszRequest = NULL);
 
 
-   class CLASS_DECL_BASE departament :
+   class CLASS_DECL_AXIS departament :
       virtual public ::base::departament
    {
    public:

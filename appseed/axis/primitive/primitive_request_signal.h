@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE request_signal :
+class CLASS_DECL_AXIS request_signal :
    public signal_details
 {
 public:

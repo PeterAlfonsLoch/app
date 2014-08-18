@@ -36,7 +36,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
       /** get http page.
       \ingroup http */
-      class CLASS_DECL_BASE http_get_socket :
+      class CLASS_DECL_AXIS http_get_socket :
          virtual public http_client_socket
       {
       public:

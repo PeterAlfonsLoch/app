@@ -129,7 +129,7 @@ struct SMatches
 /** Regular expressions internal tree node.
     @ingroup cregexp
 */
-class CLASS_DECL_BASE SRegInfo
+class CLASS_DECL_AXIS SRegInfo
 {
 public:
   SRegInfo();
@@ -211,7 +211,7 @@ public:
 
     @ingroup cregexp
 */
-class CLASS_DECL_BASE cregexp :
+class CLASS_DECL_AXIS cregexp :
    virtual public ::object
 {
 public:

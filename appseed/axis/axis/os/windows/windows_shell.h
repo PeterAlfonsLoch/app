@@ -8,7 +8,7 @@ namespace windows
 {
 
 
-   class CLASS_DECL_BASE shell  
+   class CLASS_DECL_AXIS shell  
    {
    public:
 

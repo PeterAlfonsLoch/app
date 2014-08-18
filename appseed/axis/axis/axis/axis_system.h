@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_BASE ptra:
+class CLASS_DECL_AXIS ptra:
    virtual public spa(element)
 {
 public:
@@ -19,7 +19,7 @@ namespace base
 {
 
 
-   class CLASS_DECL_BASE system:
+   class CLASS_DECL_AXIS system:
       virtual public ::base::application
    {
    public:
@@ -455,7 +455,7 @@ inline ::file::input_stream & operator >>(::file::input_stream &  _Istr,bitset<_
 
 
 
-void CLASS_DECL_BASE __start_system(::base::system * psystem);
+void CLASS_DECL_AXIS __start_system(::base::system * psystem);
 
 
 

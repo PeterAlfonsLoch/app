@@ -5,7 +5,7 @@ namespace base
 {
 
 
-   class CLASS_DECL_BASE compress :
+   class CLASS_DECL_AXIS compress :
       public object
    {
    public:
@@ -46,12 +46,12 @@ namespace base
 
 
 #ifdef WINDOWS
-CLASS_DECL_BASE int32_t my_open(const char * psz, int32_t i);
-CLASS_DECL_BASE FILE * my_fopen(const char * psz, const char * pszMode);
+CLASS_DECL_AXIS int32_t my_open(const char * psz, int32_t i);
+CLASS_DECL_AXIS FILE * my_fopen(const char * psz, const char * pszMode);
 #else
-CLASS_DECL_BASE void _get_errno(int32_t * perrno);
-CLASS_DECL_BASE int32_t my_open(const char * psz, int32_t i);
-CLASS_DECL_BASE FILE * my_fopen(const char * psz, const char * pszMode);
+CLASS_DECL_AXIS void _get_errno(int32_t * perrno);
+CLASS_DECL_AXIS int32_t my_open(const char * psz, int32_t i);
+CLASS_DECL_AXIS FILE * my_fopen(const char * psz, const char * pszMode);
 #endif
 
 

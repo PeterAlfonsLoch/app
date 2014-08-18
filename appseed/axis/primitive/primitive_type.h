@@ -4,7 +4,7 @@
 class factory_item_base;
 
 
-class CLASS_DECL_BASE type :
+class CLASS_DECL_AXIS type :
    virtual public element
 {
 public:
@@ -53,8 +53,8 @@ public:
 };
 
 
-CLASS_DECL_BASE bool operator == (const std_type_info & info1, const sp(type) info2);
-CLASS_DECL_BASE bool operator != (const std_type_info & info1, const sp(type) info2);
+CLASS_DECL_AXIS bool operator == (const std_type_info & info1, const sp(type) info2);
+CLASS_DECL_AXIS bool operator != (const std_type_info & info1, const sp(type) info2);
 
 
 template<>

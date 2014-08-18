@@ -5,13 +5,13 @@ namespace file
 {
 
 
-   class CLASS_DECL_BASE system :
+   class CLASS_DECL_AXIS system :
       public object
    {
    public:
 
 
-      class CLASS_DECL_BASE path :
+      class CLASS_DECL_AXIS path :
          virtual public ::object
       {
       public:

@@ -6,7 +6,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_BASE output_stream_flush
+   class CLASS_DECL_AXIS output_stream_flush
    {
    public:
       

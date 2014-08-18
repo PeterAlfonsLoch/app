@@ -5,7 +5,7 @@ namespace install
 {
 
 
-   class CLASS_DECL_BASE installer :
+   class CLASS_DECL_AXIS installer :
       virtual public object,
       virtual public ::sockets::http_listener,
       virtual public int_scalar_source::listener
@@ -13,7 +13,7 @@ namespace install
    public:
 
 
-      class CLASS_DECL_BASE launcher :
+      class CLASS_DECL_AXIS launcher :
          virtual public ::launcher
       {
       public:
@@ -278,7 +278,7 @@ namespace install
    };
 
 
-   CLASS_DECL_BASE int32_t ca2_app_install_run(const char * pszCommandLine, uint32_t & dwStartError, bool bSynch);
+   CLASS_DECL_AXIS int32_t ca2_app_install_run(const char * pszCommandLine, uint32_t & dwStartError, bool bSynch);
 
 
 } // namespace install

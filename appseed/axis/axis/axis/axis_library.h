@@ -5,7 +5,7 @@ namespace base
 {
 
 
-   class CLASS_DECL_BASE library:
+   class CLASS_DECL_AXIS library:
       virtual public ::object
    {
    public:
@@ -79,7 +79,7 @@ namespace base
 
 
 
-   CLASS_DECL_BASE void * open_ca2_library(const char * psz);
+   CLASS_DECL_AXIS void * open_ca2_library(const char * psz);
 
 
 
@@ -112,9 +112,9 @@ namespace base
 
 
 
-CLASS_DECL_BASE void * __node_library_open(const char * pszPath);
-CLASS_DECL_BASE void * __node_library_open_ca2(const char * pszPath);
-CLASS_DECL_BASE bool __node_library_close(void * plibrary);
-CLASS_DECL_BASE void * __node_library_raw_get(void * plibrary,const char * pszEntryName);
+CLASS_DECL_AXIS void * __node_library_open(const char * pszPath);
+CLASS_DECL_AXIS void * __node_library_open_ca2(const char * pszPath);
+CLASS_DECL_AXIS bool __node_library_close(void * plibrary);
+CLASS_DECL_AXIS void * __node_library_raw_get(void * plibrary,const char * pszEntryName);
 
 

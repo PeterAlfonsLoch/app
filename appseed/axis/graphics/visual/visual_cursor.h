@@ -5,7 +5,7 @@ namespace visual
 {
 
 
-   class CLASS_DECL_BASE cursor :
+   class CLASS_DECL_AXIS cursor :
       virtual public ::object
    {
    public:

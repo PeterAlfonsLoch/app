@@ -23,7 +23,7 @@ namespace fontopus
    };
    
 
-   class CLASS_DECL_BASE login_callback :
+   class CLASS_DECL_AXIS login_callback :
       virtual public ::object
    {
    public:
@@ -39,7 +39,7 @@ namespace fontopus
    };
 
 
-   class CLASS_DECL_BASE http_execute :
+   class CLASS_DECL_AXIS http_execute :
       virtual public element
    {
    public:
@@ -52,13 +52,13 @@ namespace fontopus
    };
 
 
-   class CLASS_DECL_BASE http_execute_array :
+   class CLASS_DECL_AXIS http_execute_array :
       public spa(http_execute)
    {
    };
 
 
-   class CLASS_DECL_BASE login_thread : public simple_thread
+   class CLASS_DECL_AXIS login_thread : public simple_thread
    {
    public:
 
@@ -103,13 +103,13 @@ namespace fontopus
    };
 
 
-   class CLASS_DECL_BASE validate :
+   class CLASS_DECL_AXIS validate :
       virtual public login_callback
    {
    public:
 
 
-      class CLASS_DECL_BASE auth
+      class CLASS_DECL_AXIS auth
       {
       public:
          string m_strUsername;
@@ -117,7 +117,7 @@ namespace fontopus
       };
 
 
-      class CLASS_DECL_BASE license
+      class CLASS_DECL_AXIS license
       {
       public:
          string m_strUsername;

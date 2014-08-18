@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE printer :
+   class CLASS_DECL_AXIS printer :
       virtual public ::object
    {
    public:

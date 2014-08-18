@@ -5,12 +5,12 @@ namespace fontopus
 {
 
 
-   class CLASS_DECL_BASE license :
+   class CLASS_DECL_AXIS license :
       virtual public ::object
    {
    public:
 
-      class CLASS_DECL_BASE info
+      class CLASS_DECL_AXIS info
       {
       public:
          string      m_strId;

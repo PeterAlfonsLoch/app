@@ -3,7 +3,7 @@
 namespace sip
 {
 
-   class CLASS_DECL_BASE response :
+   class CLASS_DECL_AXIS response :
       virtual public transaction
    {
    public:

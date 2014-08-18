@@ -1,5 +1,5 @@
-#ifndef BASE_X_CHARCATEGORY_H
-#define BASE_X_CHARCATEGORY_H
+#ifndef AXIS_X_CHARCATEGORY_H
+#define AXIS_X_CHARCATEGORY_H
 
 #pragma once
 /*
@@ -105,6 +105,6 @@ BIDI_CLASS_LAST
  *
  * ***** END LICENSE BLOCK ***** */
 
-#endif // BASE_X_CHARCATEGORY_H
+#endif // AXIS_X_CHARCATEGORY_H
 
 

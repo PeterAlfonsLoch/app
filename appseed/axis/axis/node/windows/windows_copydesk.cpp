@@ -261,7 +261,7 @@ namespace windows
       return bOk;
    }
 
-#define new BASE_NEW
+#define new AXIS_NEW
 
 
 } // namespace windows

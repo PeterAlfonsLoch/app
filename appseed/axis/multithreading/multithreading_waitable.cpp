@@ -93,12 +93,12 @@ waitable_callback::~waitable_callback()
 
 ///  \brief		pauses waitable for specified time
 ///  \param		duration sleeping time of waitable
-/*CLASS_DECL_BASE void sleep(const duration & duration)
+/*CLASS_DECL_AXIS void sleep(const duration & duration)
 {
    Sleep((uint32_t)duration.total_milliseconds());
 }*/
 
-CLASS_DECL_BASE void sleep(const duration & duration)
+CLASS_DECL_AXIS void sleep(const duration & duration)
 {
    ::Sleep(static_cast<uint32_t>(duration.total_milliseconds()));
 }

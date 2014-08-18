@@ -5,7 +5,7 @@ namespace base
 {
 
 
-   class CLASS_DECL_BASE cmd_ui:
+   class CLASS_DECL_AXIS cmd_ui:
       public signal_details
    {
    public:
@@ -20,7 +20,7 @@ namespace base
    };
 
 
-   class CLASS_DECL_BASE command:
+   class CLASS_DECL_AXIS command:
       public signal_details
    {
    public:
@@ -35,7 +35,7 @@ namespace base
    };
 
 
-   class CLASS_DECL_BASE cmd_msg:
+   class CLASS_DECL_AXIS cmd_msg:
       public object
    {
    public:

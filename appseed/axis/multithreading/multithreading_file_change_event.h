@@ -5,7 +5,7 @@
 
 
 /// This class represents events for file changes
-class CLASS_DECL_BASE file_change_event :
+class CLASS_DECL_AXIS file_change_event :
    virtual public waitable,
    virtual public event_base
 {

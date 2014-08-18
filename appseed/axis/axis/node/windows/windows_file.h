@@ -5,8 +5,8 @@ class FileException;
 struct FileStatus;
 
 
-void CLASS_DECL_BASE vfxGetRoot(const wchar_t * lpszPath, string& wstrRoot);
-void CLASS_DECL_BASE vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
+void CLASS_DECL_AXIS vfxGetRoot(const wchar_t * lpszPath, string& wstrRoot);
+void CLASS_DECL_AXIS vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -17,7 +17,7 @@ namespace windows
 {
 
 
-   class CLASS_DECL_BASE file :
+   class CLASS_DECL_AXIS file :
       virtual public ::file::binary_buffer
    {
    public:

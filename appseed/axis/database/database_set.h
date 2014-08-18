@@ -8,12 +8,12 @@ namespace database
    class base;
 
 
-   class CLASS_DECL_BASE set :
+   class CLASS_DECL_AXIS set :
       virtual public ::object
    {
    protected:
    /*  char *Host     = ""; //WORK_HOST;
-     char *database = ""; //WORK_DATABASE;
+     char *database = ""; //WORK_DATAAXIS;
      char *User     = ""; //WORK_USER;
      char *Password = ""; //WORK_PASSWORD;
    */

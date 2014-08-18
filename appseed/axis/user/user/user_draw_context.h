@@ -72,7 +72,7 @@ namespace core
 namespace user
 {
 
-   class CLASS_DECL_BASE draw_context :
+   class CLASS_DECL_AXIS draw_context :
       public ::core::simple_chain < draw_context >
    {
    public:

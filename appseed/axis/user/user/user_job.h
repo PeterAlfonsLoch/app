@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE job :
+   class CLASS_DECL_AXIS job :
       virtual public ::job
    {
    public:

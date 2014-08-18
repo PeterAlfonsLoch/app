@@ -5,10 +5,10 @@ class strid_array;
 class mutex;
 
 
-extern CLASS_DECL_BASE mutex * g_pmutexFactory;
+extern CLASS_DECL_AXIS mutex * g_pmutexFactory;
 
 
-class CLASS_DECL_BASE factory_allocator :
+class CLASS_DECL_AXIS factory_allocator :
    virtual public ::object
 {
 public:
@@ -104,7 +104,7 @@ public:
 };
 
 
-class CLASS_DECL_BASE factory_item_base :
+class CLASS_DECL_AXIS factory_item_base :
    virtual public ::object
 {
 public:
@@ -155,7 +155,7 @@ public:
 
 
 
-class CLASS_DECL_BASE base_factory :
+class CLASS_DECL_AXIS base_factory :
    virtual public ::object
 {
 public:

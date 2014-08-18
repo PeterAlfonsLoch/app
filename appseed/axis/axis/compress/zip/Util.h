@@ -5,7 +5,7 @@ namespace zip
 {
 
 
-   class CLASS_DECL_BASE Util
+   class CLASS_DECL_AXIS Util
    {
    public:
 

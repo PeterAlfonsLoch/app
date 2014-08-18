@@ -8,7 +8,7 @@ namespace hotplugin
    class host;
 
 
-   class CLASS_DECL_BASE plugin :
+   class CLASS_DECL_AXIS plugin :
       virtual public ::simple_ui::style,
       virtual public ::simple_ui::interaction,
       virtual public ::base::session

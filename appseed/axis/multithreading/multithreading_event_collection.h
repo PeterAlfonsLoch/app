@@ -3,7 +3,7 @@
 
 /// This class represents a collection of waitable items. A collection can be mixed
 /// of any kind of waitable items (threads, events, semaphores, ...).
-class CLASS_DECL_BASE event_collection : public waitable
+class CLASS_DECL_AXIS event_collection : public waitable
 {
 public:
 #ifdef WINDOWS

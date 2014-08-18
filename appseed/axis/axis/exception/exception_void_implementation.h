@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE void_implementation_exception :
+class CLASS_DECL_AXIS void_implementation_exception :
    virtual public not_implemented
 {
 public:

@@ -14,7 +14,7 @@ namespace windows
 {
 
 
-   class CLASS_DECL_BASE ip_enum :
+   class CLASS_DECL_AXIS ip_enum :
       virtual public ::net::ip_enum
    {
    public:

@@ -8,7 +8,7 @@ namespace xml
    class document;
 
 
-   class CLASS_DECL_BASE node :
+   class CLASS_DECL_AXIS node :
       virtual public ::object,
       virtual public ::file::serializable
    {

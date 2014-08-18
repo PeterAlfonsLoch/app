@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE invalid_argument_exception :
+class CLASS_DECL_AXIS invalid_argument_exception :
    virtual public simple_exception
 {
 public:

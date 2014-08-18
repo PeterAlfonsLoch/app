@@ -22,7 +22,7 @@ namespace windows
    {
    public:
       handle1() { m_handlea[0] = NULL; }
-      typedef handle_base < 1 > HANDLE_BASE_TYPE;
+      typedef handle_base < 1 > HANDLE_AXIS_TYPE;
       inline H get_handle() const { return static_cast < H > (m_handlea[0]); }
       inline operator H () const { return get_handle(); }
       inline H set_handle(H h) { return static_cast < H > (m_handlea[0] = static_cast < HANDLE > (h)); }
@@ -33,7 +33,7 @@ namespace windows
    {
    public:
       handle2() { m_handlea[0] = NULL; m_handlea[1] = NULL; }
-      typedef handle_base < 2 > HANDLE_BASE_TYPE;
+      typedef handle_base < 2 > HANDLE_AXIS_TYPE;
       inline H1 get_os_data() const { return static_cast < H1 > (m_handlea[0]); }
       inline H2 get_handle2() const { return static_cast < H2 > (m_handlea[0]); }
       inline H1 set_handle1(H1 h) { return static_cast < H1 > (m_handlea[0] = static_cast < HANDLE > (h)); }
@@ -67,7 +67,7 @@ struct ConstructDestruct
    { 
 #undef new
       new (pObject) TYPE; 
-#define new BASE_NEW
+#define new AXIS_NEW
    }
    static void Destruct(TYPE * pObject)
    {

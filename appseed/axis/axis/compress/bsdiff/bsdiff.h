@@ -4,7 +4,7 @@
 #include "bzlib.h"
 
 
-#define libbsdif_API CLASS_DECL_BASE
+#define libbsdif_API CLASS_DECL_AXIS
 
 
 libbsdif_API int32_t bsdiff(const char * oldfile, const char * newfile, const char * patchfile);

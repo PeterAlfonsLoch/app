@@ -6,7 +6,7 @@ class string_manager;
 inline void throw_error_exception(const char * psz);
 DECLSPEC_NO_RETURN inline void __cdecl throw_memory_exception();
 
-struct CLASS_DECL_BASE string_data
+struct CLASS_DECL_AXIS string_data
 {
    string_manager * pstringmanager;  // string manager for this string_data
    strsize nDataLength;  // Length of currently used data in XCHARs (not including terminating NULL)
@@ -26,7 +26,7 @@ struct CLASS_DECL_BASE string_data
 
 
 
-class CLASS_DECL_BASE nil_string_data :
+class CLASS_DECL_AXIS nil_string_data :
    public string_data
 {
 public:
@@ -236,8 +236,8 @@ namespace base
    namespace str
    {
 
-      CLASS_DECL_BASE inline void copy(char * pszDest, const char * pszSrc) { strcpy(pszDest, pszSrc); }
-      CLASS_DECL_BASE inline void copy(wchar_t * pszDest, const wchar_t * pszSrc) { wcscpy_dup(pszDest, pszSrc); }
+      CLASS_DECL_AXIS inline void copy(char * pszDest, const char * pszSrc) { strcpy(pszDest, pszSrc); }
+      CLASS_DECL_AXIS inline void copy(wchar_t * pszDest, const wchar_t * pszSrc) { wcscpy_dup(pszDest, pszSrc); }
 
    } // namespace str
 
@@ -251,10 +251,10 @@ namespace base
    namespace international
    {
 
-      CLASS_DECL_BASE strsize          UnicodeToMultiByteCount(UINT uiCodePage, const wchar_t * lpcsz);
-      CLASS_DECL_BASE bool         UnicodeToMultiByte(UINT uiCodePage, char * lpstrMultiByte, strsize nCount, const wchar_t * lpcsz);
-      CLASS_DECL_BASE const char * UnicodeToMultiByte(UINT uiCodePage, const wchar_t * lpcsz);
-      CLASS_DECL_BASE
+      CLASS_DECL_AXIS strsize          UnicodeToMultiByteCount(UINT uiCodePage, const wchar_t * lpcsz);
+      CLASS_DECL_AXIS bool         UnicodeToMultiByte(UINT uiCodePage, char * lpstrMultiByte, strsize nCount, const wchar_t * lpcsz);
+      CLASS_DECL_AXIS const char * UnicodeToMultiByte(UINT uiCodePage, const wchar_t * lpcsz);
+      CLASS_DECL_AXIS
       inline const char * _001GetUtf8(const char * psz)
       {
          return _strdup(psz);
@@ -279,7 +279,7 @@ extern "C"
 
       struct string_data;
 
-/*      class CLASS_DECL_BASE string_manager
+/*      class CLASS_DECL_AXIS string_manager
       {
    public:
       // allocate a new string_data
@@ -380,7 +380,7 @@ static_string& operator=( const static_string& str ) NOTHROW;
 #define _SW( psz ) ::core::static_string< wchar_t, sizeof( L##psz ) >( L##psz )
 #define _SO( psz ) _SW( psz )
 
-class CLASS_DECL_BASE char_traits_base
+class CLASS_DECL_AXIS char_traits_base
 {
 public:
 };
@@ -414,7 +414,7 @@ public:
       class string_buffer;
 
 
-class CLASS_DECL_BASE simple_string
+class CLASS_DECL_AXIS simple_string
 {
 public:
 
@@ -995,7 +995,7 @@ public:
 
 };
 
-class CLASS_DECL_BASE string_buffer
+class CLASS_DECL_AXIS string_buffer
 {
 public:
 

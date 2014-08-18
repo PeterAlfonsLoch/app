@@ -2,7 +2,7 @@
 
 
 
-void CLASS_DECL_BASE __abort()
+void CLASS_DECL_AXIS __abort()
 {
    __android_term();
    abort();
@@ -13,7 +13,7 @@ void CLASS_DECL_BASE __abort()
 
 
 #ifdef DEBUG
-bool CLASS_DECL_BASE __check_memory()
+bool CLASS_DECL_AXIS __check_memory()
 // check all of primitive::memory (look for primitive::memory tromps)
 {
    //return _CrtCheckMemory() != FALSE;

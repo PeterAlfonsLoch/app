@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE temporary_exception : 
+class CLASS_DECL_AXIS temporary_exception : 
    virtual public ::exception::base
 {
 public:

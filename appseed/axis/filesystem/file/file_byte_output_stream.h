@@ -17,7 +17,7 @@ namespace file
 
 
 
-   class CLASS_DECL_BASE byte_output_stream :
+   class CLASS_DECL_AXIS byte_output_stream :
       virtual public output_stream
    {
    public:

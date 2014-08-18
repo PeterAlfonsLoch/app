@@ -13,7 +13,7 @@ namespace user
    class interaction;
 
 
-   class CLASS_DECL_BASE create_context   // Creation information structure
+   class CLASS_DECL_AXIS create_context   // Creation information structure
       // All fields are optional and may be NULL
    {
    public:

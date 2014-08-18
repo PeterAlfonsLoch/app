@@ -7,7 +7,7 @@
 namespace zip
 {
 
-   class CLASS_DECL_BASE memory_buffer :
+   class CLASS_DECL_AXIS memory_buffer :
       public ::file::memory_buffer
 
    {

@@ -233,7 +233,7 @@ namespace sockets
       }
       if (Handler().get_count() >= FD_SETSIZE)
       {
-         log("accept", (int32_t)Handler().get_count(), "base_socket_handler fd_set limit reached", ::base::log::level_fatal);
+         log("accept", (int32_t)Handler().get_count(), "axis_socket_handler fd_set limit reached", ::base::log::level_fatal);
          close_socket(a_s);
          return;
       }

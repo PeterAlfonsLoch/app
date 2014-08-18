@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE interface_only_exception : 
+class CLASS_DECL_AXIS interface_only_exception : 
    virtual public not_implemented
 {
 public:

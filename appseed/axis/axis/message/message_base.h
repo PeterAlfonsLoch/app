@@ -9,7 +9,7 @@ namespace message
 {
 
 
-   class CLASS_DECL_BASE base:
+   class CLASS_DECL_AXIS base:
       public signal_details
    {
    public:
@@ -40,4 +40,4 @@ namespace message
 } // namespace message
 
 
-#define new BASE_NEW
+#define new AXIS_NEW

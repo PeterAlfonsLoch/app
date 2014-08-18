@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE exit_exception : 
+class CLASS_DECL_AXIS exit_exception : 
    virtual public simple_exception
 {
 public:

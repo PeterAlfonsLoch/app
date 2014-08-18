@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_BASE root
+class CLASS_DECL_AXIS root
 {
 public:
 

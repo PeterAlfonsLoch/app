@@ -5,7 +5,7 @@ namespace base
 {
 
 
-   class CLASS_DECL_BASE main_init_data
+   class CLASS_DECL_AXIS main_init_data
    {
    public:
 

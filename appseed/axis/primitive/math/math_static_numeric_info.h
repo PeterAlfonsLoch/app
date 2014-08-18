@@ -13,7 +13,7 @@ public:
 
 
 template <>
-class CLASS_DECL_BASE static_numeric_info < uint32_t >
+class CLASS_DECL_AXIS static_numeric_info < uint32_t >
 {
 public:
 
@@ -25,7 +25,7 @@ public:
 
 
 template <>
-class CLASS_DECL_BASE static_numeric_info < uint64_t >
+class CLASS_DECL_AXIS static_numeric_info < uint64_t >
 {
 public:
 
@@ -38,7 +38,7 @@ public:
 #if defined(WINDOWS) || defined(APPLEOS)
 
 template <>
-class CLASS_DECL_BASE static_numeric_info < long unsigned int >
+class CLASS_DECL_AXIS static_numeric_info < long unsigned int >
 {
 public:
 

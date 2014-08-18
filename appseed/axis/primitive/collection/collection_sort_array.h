@@ -21,15 +21,15 @@ inline index BaseNullCompare(T * p1, T * p2)
 
 
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class BASE_ARRAY_TYPE = array < TYPE, ARG_TYPE >, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) = &BaseNullCompare < TYPE > >
+template < class TYPE, class ARG_TYPE = const TYPE &, class AXIS_ARRAY_TYPE = array < TYPE, ARG_TYPE >, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) = &BaseNullCompare < TYPE > >
 class sort_array :
-   virtual protected BASE_ARRAY_TYPE
+   virtual protected AXIS_ARRAY_TYPE
 {
 public:
 
-   typedef TYPE BASE_TYPE;
-   typedef ARG_TYPE BASE_ARG_TYPE;
-   typedef BASE_ARRAY_TYPE BASE_ARRAY;
+   typedef TYPE AXIS_TYPE;
+   typedef ARG_TYPE AXIS_ARG_TYPE;
+   typedef AXIS_ARRAY_TYPE AXIS_ARRAY;
 
 
    class sort_index :
@@ -77,7 +77,7 @@ public:
 #if defined(MOVE_SEMANTICS)
 
    sort_array(sort_array && a) :
-      BASE_ARRAY_TYPE(a)
+      AXIS_ARRAY_TYPE(a)
    {
 
    }
@@ -85,7 +85,7 @@ public:
    inline sort_array & operator = (sort_array && a)
    {
 
-      BASE_ARRAY_TYPE::operator = (a);
+      AXIS_ARRAY_TYPE::operator = (a);
 
       return *this;
 
@@ -94,7 +94,7 @@ public:
 #endif
 
    sort_array(const sort_array & a) :
-      BASE_ARRAY_TYPE(a)
+      AXIS_ARRAY_TYPE(a)
    {
 
    }
@@ -130,33 +130,33 @@ public:
 
    bool operator != (const sort_array & a) const;
 
-   void copy(const BASE_ARRAY & src);
+   void copy(const AXIS_ARRAY & src);
 
-   using BASE_ARRAY::remove_all;
+   using AXIS_ARRAY::remove_all;
 
-   using BASE_ARRAY::clear;
+   using AXIS_ARRAY::clear;
 
-   using BASE_ARRAY::quick_sort;
+   using AXIS_ARRAY::quick_sort;
 
-   using BASE_ARRAY::operator new;
+   using AXIS_ARRAY::operator new;
 
-   using BASE_ARRAY::operator delete;
+   using AXIS_ARRAY::operator delete;
 
-   using BASE_ARRAY::set_app;
+   using AXIS_ARRAY::set_app;
 
-   using BASE_ARRAY::get_size;
-
-   template<class ARRAY>
-   friend index lemon::array::sort_add(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia);
+   using AXIS_ARRAY::get_size;
 
    template<class ARRAY>
-   friend bool lemon::array::binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia);
+   friend index lemon::array::sort_add(ARRAY & a, typename ARRAY::AXIS_ARG_TYPE t, index ( * fCompare ) (typename ARRAY::AXIS_TYPE *, typename ARRAY::AXIS_TYPE *), index_array & ia);
+
+   template<class ARRAY>
+   friend bool lemon::array::binary_search(ARRAY & a, typename ARRAY::AXIS_ARG_TYPE t, index & iIndex, index ( * fCompare ) (typename ARRAY::AXIS_TYPE *, typename ARRAY::AXIS_TYPE *), index_array & ia);
 
 };
 
 
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
-bool sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+template < class TYPE, class ARG_TYPE, class AXIS_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+bool sort_array < TYPE, ARG_TYPE, AXIS_ARRAY, DEFAULT_COMPARE >::
 find(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *)) const
 {
 
@@ -170,16 +170,16 @@ find(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *)) const
 
 }
 
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
-bool sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+template < class TYPE, class ARG_TYPE, class AXIS_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+bool sort_array < TYPE, ARG_TYPE, AXIS_ARRAY, DEFAULT_COMPARE >::
 contains(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *)) const
 {
    index iIndex = 0;
    return find(t, iIndex, fCompare);
 }
 
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
-bool sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+template < class TYPE, class ARG_TYPE, class AXIS_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+bool sort_array < TYPE, ARG_TYPE, AXIS_ARRAY, DEFAULT_COMPARE >::
 add_unique(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *))
 {
    if(contains(t, fCompare))
@@ -189,8 +189,8 @@ add_unique(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *))
 }
 
 
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
-::index sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+template < class TYPE, class ARG_TYPE, class AXIS_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+::index sort_array < TYPE, ARG_TYPE, AXIS_ARRAY, DEFAULT_COMPARE >::
 add(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *))
 {
 
@@ -202,8 +202,8 @@ add(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *))
 
 }
 
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
-::count sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+template < class TYPE, class ARG_TYPE, class AXIS_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+::count sort_array < TYPE, ARG_TYPE, AXIS_ARRAY, DEFAULT_COMPARE >::
 add(const array < TYPE, ARG_TYPE > & a, index ( * fCompare ) (TYPE *, TYPE *))
 {
 
@@ -215,8 +215,8 @@ add(const array < TYPE, ARG_TYPE > & a, index ( * fCompare ) (TYPE *, TYPE *))
 
 }
 
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
-::count sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+template < class TYPE, class ARG_TYPE, class AXIS_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+::count sort_array < TYPE, ARG_TYPE, AXIS_ARRAY, DEFAULT_COMPARE >::
 remove(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *))
 {
 
@@ -229,8 +229,8 @@ remove(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *))
 }
 
 
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
-void sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+template < class TYPE, class ARG_TYPE, class AXIS_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+void sort_array < TYPE, ARG_TYPE, AXIS_ARRAY, DEFAULT_COMPARE >::
 quick_sort(index ( * fCompare ) (TYPE *, TYPE *))
 {
 
@@ -238,28 +238,28 @@ quick_sort(index ( * fCompare ) (TYPE *, TYPE *))
 
 }
 
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
-void sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+template < class TYPE, class ARG_TYPE, class AXIS_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+void sort_array < TYPE, ARG_TYPE, AXIS_ARRAY, DEFAULT_COMPARE >::
 set_size(::count n)
 {
 
-   BASE_ARRAY::allocate(n);
+   AXIS_ARRAY::allocate(n);
 
    m_indexmap.mark_dirty();
 
 }
 
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
-TYPE & sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+template < class TYPE, class ARG_TYPE, class AXIS_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+TYPE & sort_array < TYPE, ARG_TYPE, AXIS_ARRAY, DEFAULT_COMPARE >::
 element_at(::index i, index ( * fCompare ) (TYPE *, TYPE *))
 {
 
-   return BASE_ARRAY::element_at(defer_update(fCompare)[i]);
+   return AXIS_ARRAY::element_at(defer_update(fCompare)[i]);
 
 }
 
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
-const TYPE & sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+template < class TYPE, class ARG_TYPE, class AXIS_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+const TYPE & sort_array < TYPE, ARG_TYPE, AXIS_ARRAY, DEFAULT_COMPARE >::
 element_at(::index i, index ( * fCompare ) (TYPE *, TYPE *)) const
 {
 
@@ -268,8 +268,8 @@ element_at(::index i, index ( * fCompare ) (TYPE *, TYPE *)) const
 }
 
 
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
-TYPE & sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+template < class TYPE, class ARG_TYPE, class AXIS_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+TYPE & sort_array < TYPE, ARG_TYPE, AXIS_ARRAY, DEFAULT_COMPARE >::
 operator [](::index i)
 {
 
@@ -277,8 +277,8 @@ operator [](::index i)
 
 }
 
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
-const TYPE & sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+template < class TYPE, class ARG_TYPE, class AXIS_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+const TYPE & sort_array < TYPE, ARG_TYPE, AXIS_ARRAY, DEFAULT_COMPARE >::
 operator [](::index i) const
 {
 
@@ -286,8 +286,8 @@ operator [](::index i) const
 
 }
 
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
-bool sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+template < class TYPE, class ARG_TYPE, class AXIS_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+bool sort_array < TYPE, ARG_TYPE, AXIS_ARRAY, DEFAULT_COMPARE >::
 operator == (const sort_array & a) const
 {
 
@@ -303,7 +303,7 @@ operator == (const sort_array & a) const
 
    for(index i = 0; i < get_size(); i++)
    {
-      if(DEFAULT_COMPARE(&((sort_array *) this)->BASE_ARRAY::element_at(ia1[i]), &((sort_array *) &a)->BASE_ARRAY::element_at(ia2[i])) != 0)
+      if(DEFAULT_COMPARE(&((sort_array *) this)->AXIS_ARRAY::element_at(ia1[i]), &((sort_array *) &a)->AXIS_ARRAY::element_at(ia2[i])) != 0)
          return false;
    }
 
@@ -311,8 +311,8 @@ operator == (const sort_array & a) const
 
 }
 
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
-bool sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
+template < class TYPE, class ARG_TYPE, class AXIS_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+bool sort_array < TYPE, ARG_TYPE, AXIS_ARRAY, DEFAULT_COMPARE >::
 operator != (const sort_array & a) const
 {
 
@@ -320,11 +320,11 @@ operator != (const sort_array & a) const
 
 }
 
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
-void sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::copy(const BASE_ARRAY & src)
+template < class TYPE, class ARG_TYPE, class AXIS_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+void sort_array < TYPE, ARG_TYPE, AXIS_ARRAY, DEFAULT_COMPARE >::copy(const AXIS_ARRAY & src)
 {
 
-   BASE_ARRAY::copy(src);
+   AXIS_ARRAY::copy(src);
 
    m_indexmap.mark_dirty();
 

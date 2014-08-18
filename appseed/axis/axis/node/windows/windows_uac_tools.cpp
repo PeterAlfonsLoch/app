@@ -389,7 +389,7 @@ namespace VistaTools
    // link to GetModuleHandleEx dynamically:
 
    typedef
-      WINBASEAPI
+      WINAXISAPI
       bool
       (WINAPI
       *PGetModuleHandleExW)(

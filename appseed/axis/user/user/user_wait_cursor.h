@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_BASE wait_cursor :
+class CLASS_DECL_AXIS wait_cursor :
    virtual public ::object
 {
 public:

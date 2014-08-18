@@ -142,7 +142,7 @@ int32_t __cdecl __crt_report_hook(int32_t nRptType, char *szMsg, int32_t* pResul
 //
 //PROCESS_LOcaL(___DEBUG_STATE, afxDebugState)
 //
-//bool CLASS_DECL_BASE __diagnostic_init()
+//bool CLASS_DECL_AXIS __diagnostic_init()
 //{
 //   // just get the debug state to cause initialization
 //   ___DEBUG_STATE* pState = afxDebugState.get_data();

@@ -76,9 +76,9 @@ get_b_pack_count()
 }
 
 
-typedef CLASS_DECL_BASE spreadset < int32_t, int32_t, int32_t, int32_t, unique_int_sort_array, unique_int_sort_array > int_int_spreadset;
+typedef CLASS_DECL_AXIS spreadset < int32_t, int32_t, int32_t, int32_t, unique_int_sort_array, unique_int_sort_array > int_int_spreadset;
 
-typedef CLASS_DECL_BASE spreadset < index, index, index, index, unique_index_sort_array, unique_index_sort_array > index_index_spreadset;
+typedef CLASS_DECL_AXIS spreadset < index, index, index, index, unique_index_sort_array, unique_index_sort_array > index_index_spreadset;
 
 
 

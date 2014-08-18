@@ -12,7 +12,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE manual_reset_event :
+class CLASS_DECL_AXIS manual_reset_event :
    public event
 {
 public:

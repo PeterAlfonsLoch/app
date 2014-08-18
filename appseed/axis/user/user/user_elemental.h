@@ -7,7 +7,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE elemental :
+   class CLASS_DECL_AXIS elemental :
       virtual public keyboard_focus,
       virtual public mouse_focus
    {

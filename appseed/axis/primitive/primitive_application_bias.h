@@ -5,13 +5,13 @@
 // for example, the OS command line can call a cube::system that takes a command line parameter that is
 // passed as application_bias to bergedge that can later pass or use this information as application_bias
 // for further actions.
-class CLASS_DECL_BASE application_bias :
+class CLASS_DECL_AXIS application_bias :
    virtual public ::object
 {
 public:
 
 
-   class CLASS_DECL_BASE callback :
+   class CLASS_DECL_AXIS callback :
       virtual public signalizable
    {
    public:

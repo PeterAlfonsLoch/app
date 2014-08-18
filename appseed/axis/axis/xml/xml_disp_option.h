@@ -6,7 +6,7 @@ namespace xml
 
    
    // display optional environment
-   class CLASS_DECL_BASE disp_option
+   class CLASS_DECL_AXIS disp_option
    {
    public:
    
@@ -24,7 +24,7 @@ namespace xml
    };
    
 
-   //extern CLASS_DECL_BASE disp_option g_optDefault;
+   //extern CLASS_DECL_AXIS disp_option g_optDefault;
 
 
 } // namespace xml

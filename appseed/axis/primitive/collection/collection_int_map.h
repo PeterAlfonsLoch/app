@@ -44,8 +44,8 @@ int_map < VALUE, ARG_VALUE, HASH, EQUALS > & int_map < VALUE, ARG_VALUE, HASH, E
 
 
 
-typedef CLASS_DECL_BASE int_map < int, int > int_to_int;
+typedef CLASS_DECL_AXIS int_map < int, int > int_to_int;
 
-typedef CLASS_DECL_BASE int_map < string, const string & > int_to_string;
+typedef CLASS_DECL_AXIS int_map < string, const string & > int_to_string;
 
 

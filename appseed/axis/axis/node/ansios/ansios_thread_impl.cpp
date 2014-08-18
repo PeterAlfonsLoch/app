@@ -76,7 +76,7 @@ void __term_thread_impl(base::application*, HINSTANCE__*)
 
 
 
-void CLASS_DECL_BASE __init_thread()
+void CLASS_DECL_AXIS __init_thread()
 {
 
 }
@@ -86,7 +86,7 @@ void CLASS_DECL_BASE __init_thread()
 
 
 
-void CLASS_DECL_BASE __term_thread()
+void CLASS_DECL_AXIS __term_thread()
 {
 
 }

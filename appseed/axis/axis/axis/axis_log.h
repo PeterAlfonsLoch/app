@@ -5,7 +5,7 @@ namespace base
 {
 
 
-   class CLASS_DECL_BASE log :
+   class CLASS_DECL_AXIS log :
       virtual public element
    {
    public:
@@ -83,7 +83,7 @@ namespace base
    };
 
 
-   CLASS_DECL_BASE int32_t SimpleDebugReport(int32_t,const char *,int32_t,const char *,const char * pszFormat,va_list list);
+   CLASS_DECL_AXIS int32_t SimpleDebugReport(int32_t,const char *,int32_t,const char *,const char * pszFormat,va_list list);
 
 
 } // namespace base

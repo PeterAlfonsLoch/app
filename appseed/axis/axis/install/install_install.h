@@ -5,7 +5,7 @@ namespace install
 {
 
 
-   class CLASS_DECL_BASE install :
+   class CLASS_DECL_AXIS install :
       virtual public ::base::departament,
       virtual public int_scalar_source
    {

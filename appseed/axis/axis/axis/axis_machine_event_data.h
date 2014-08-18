@@ -2,7 +2,7 @@
 
 
 
-struct CLASS_DECL_BASE blob
+struct CLASS_DECL_AXIS blob
 {
 
 
@@ -17,10 +17,10 @@ struct CLASS_DECL_BASE blob
    blob & operator = (const char * psz);
 };
 
-class CLASS_DECL_BASE machine_event_data
+class CLASS_DECL_AXIS machine_event_data
 {
 public:
-   struct CLASS_DECL_BASE fixed
+   struct CLASS_DECL_AXIS fixed
    {
       fixed();
       bool  m_bRequestCloseApplication;

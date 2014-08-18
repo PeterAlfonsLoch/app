@@ -139,10 +139,10 @@ plex_heap_alloc_array * g_pheap = NULL;
 BEGIN_EXTERN_C
 
 
-#define BASE_MEMORY_MANAGEMENT TRUE
+#define AXIS_MEMORY_MANAGEMENT TRUE
 
 
-#if BASE_MEMORY_MANAGEMENT
+#if AXIS_MEMORY_MANAGEMENT
 
 void * aligned_memory_alloc(size_t size)
 {

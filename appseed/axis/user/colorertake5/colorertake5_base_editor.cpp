@@ -139,7 +139,7 @@ namespace colorertake5
    }
 
    void base_editor::setFileType(file_type *ftype){
-      CLR_INFO("base_editor", "setFileType:%s", ftype->getName().c_str());
+      CLR_INFO("axis_editor", "setFileType:%s", ftype->getName().c_str());
       currentFileType = ftype;
       textParser->setFileType(currentFileType);
       invalidLine = 0;
@@ -353,7 +353,7 @@ namespace colorertake5
    void base_editor::modifyEvent(index topLine)
    {
 
-      CLR_TRACE("base_editor", "modifyEvent:%d", topLine);
+      CLR_TRACE("axis_editor", "modifyEvent:%d", topLine);
 
       if (invalidLine > topLine)
       {
@@ -379,7 +379,7 @@ namespace colorertake5
    void base_editor::visibleTextEvent(index wStart, ::count wSize)
    {
 
-      CLR_TRACE("base_editor", "visibleTextEvent:%d-%d", wStart, wSize);
+      CLR_TRACE("axis_editor", "visibleTextEvent:%d-%d", wStart, wSize);
 
       this->wStart = wStart;
       this->wSize = wSize;
@@ -389,7 +389,7 @@ namespace colorertake5
    void base_editor::lineCountEvent(::count newLineCount)
    {
 
-      CLR_TRACE("base_editor", "lineCountEvent:%d", newLineCount);
+      CLR_TRACE("axis_editor", "lineCountEvent:%d", newLineCount);
       lineCount = newLineCount;
 
    }
@@ -427,7 +427,7 @@ namespace colorertake5
          lrSupport->clear();
          // Regions were dropped
          layoutChanged = true;
-         CLR_TRACE("base_editor", "lrSize != wSize*2");
+         CLR_TRACE("axis_editor", "lrSize != wSize*2");
       }
 
       /* Fixes window position according to line number */
@@ -458,7 +458,7 @@ namespace colorertake5
          }
          firstLine = newFirstLine;
          layoutChanged = true;
-         CLR_TRACE("base_editor", "newFirstLine=%d, parseFrom=%d, parseTo=%d", firstLine, parseFrom, parseTo);
+         CLR_TRACE("axis_editor", "newFirstLine=%d, parseFrom=%d, parseTo=%d", firstLine, parseFrom, parseTo);
       }
 
       if (!layoutChanged){
@@ -485,14 +485,14 @@ namespace colorertake5
       if (parseTo-parseFrom > 0)
       {
 
-         CLR_TRACE("base_editor", "validate:parse:%d-%d, %s", parseFrom, parseTo, tpmode == TPM_CACHE_READ?"READ":"UPDATE");
+         CLR_TRACE("axis_editor", "validate:parse:%d-%d, %s", parseFrom, parseTo, tpmode == TPM_CACHE_READ?"READ":"UPDATE");
 
          index stopLine = textParser->parse(parseFrom, parseTo-parseFrom, tpmode);
 
          if (tpmode == TPM_CACHE_UPDATE){
             invalidLine = stopLine+1;
          }
-         CLR_TRACE("base_editor", "validate:parsed: invalidLine=%d", invalidLine);
+         CLR_TRACE("axis_editor", "validate:parsed: invalidLine=%d", invalidLine);
       }
    }
 

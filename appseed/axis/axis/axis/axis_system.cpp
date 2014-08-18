@@ -20,7 +20,7 @@ void dappy(const char * psz);
 #ifdef WINDOWSEX
 
 
-CLASS_DECL_BASE HMONITOR GetUiMonitorHandle(HWND hwnd)
+CLASS_DECL_AXIS HMONITOR GetUiMonitorHandle(HWND hwnd)
 {
 
    return MonitorFromWindow(hwnd,MONITOR_DEFAULTTOPRIMARY);
@@ -28,7 +28,7 @@ CLASS_DECL_BASE HMONITOR GetUiMonitorHandle(HWND hwnd)
 }
 
 
-CLASS_DECL_BASE HMONITOR GetPrimaryMonitorHandle()
+CLASS_DECL_AXIS HMONITOR GetPrimaryMonitorHandle()
 {
 
    const POINT ptZero ={0,0};
@@ -38,7 +38,7 @@ CLASS_DECL_BASE HMONITOR GetPrimaryMonitorHandle()
 }
 
 
-CLASS_DECL_BASE bool GetPrimaryMonitorRect(LPRECT lprect)
+CLASS_DECL_AXIS bool GetPrimaryMonitorRect(LPRECT lprect)
 {
 
    MONITORINFO mi;
@@ -1988,7 +1988,7 @@ uint32_t _thread_proc_start_system(void * p)
 
 }
 
-CLASS_DECL_BASE void __start_system(::base::system * psystem)
+CLASS_DECL_AXIS void __start_system(::base::system * psystem)
 {
 
    ::create_thread(NULL,0,&_thread_proc_start_system,(LPVOID)psystem,0,0);
@@ -2002,7 +2002,7 @@ namespace base
 {
 
 
-   CLASS_DECL_BASE bool get_window_rect(::base::system_window ^ pwindow,RECTD * lprect)
+   CLASS_DECL_AXIS bool get_window_rect(::base::system_window ^ pwindow,RECTD * lprect)
    {
 
       Windows::Foundation::Rect rect =  pwindow->get_window_rect();
@@ -2016,7 +2016,7 @@ namespace base
    }
 
 
-   CLASS_DECL_BASE bool get_window_rect(::base::system_window ^ pwindow,LPRECT lprect)
+   CLASS_DECL_AXIS bool get_window_rect(::base::system_window ^ pwindow,LPRECT lprect)
    {
 
       rectd r;

@@ -5,7 +5,7 @@ namespace database
 {
 
 
-   class CLASS_DECL_BASE database :
+   class CLASS_DECL_AXIS database :
       virtual public ::database::client
    {
    public:

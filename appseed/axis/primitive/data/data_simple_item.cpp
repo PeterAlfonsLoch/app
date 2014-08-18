@@ -57,7 +57,7 @@ namespace data
    {
       return _alloc001SimpleTreeItem.Alloc();
    }
-#define new BASE_NEW*/
+#define new AXIS_NEW*/
 
 /*   void simple_item::operator delete(void * p)
    {

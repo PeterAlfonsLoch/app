@@ -8,7 +8,7 @@ namespace primitive
 {
 
 
-   class CLASS_DECL_BASE memory :
+   class CLASS_DECL_AXIS memory :
       public memory_base
    {
    public:

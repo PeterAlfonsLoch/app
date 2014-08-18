@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_BASE byte_output_stream_binary_buffer :
+   class CLASS_DECL_AXIS byte_output_stream_binary_buffer :
       virtual public byte_output_stream
    {
    public:

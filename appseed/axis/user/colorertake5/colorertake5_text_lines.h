@@ -11,7 +11,7 @@ namespace colorertake5
 
    @ingroup colorer_viewer
    */
-   class CLASS_DECL_BASE text_lines :
+   class CLASS_DECL_AXIS text_lines :
       public line_source
    {
    public:

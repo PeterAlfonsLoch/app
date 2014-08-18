@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE form_interface:
+   class CLASS_DECL_AXIS form_interface:
       virtual public ::user::scroll_view
    {
    public:

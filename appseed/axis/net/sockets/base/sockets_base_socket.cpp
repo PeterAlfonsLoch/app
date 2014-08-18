@@ -175,9 +175,9 @@ namespace sockets
    s = ::base_socket(af, iType, protno);
    if (s == INVALID_SOCKET)
    {
-   log("base_socket", Errno, StrError(Errno), ::base::log::level_fatal);
+   log("axis_socket", Errno, StrError(Errno), ::base::log::level_fatal);
    SetCloseAndDelete();
-   throw simple_exception(get_app(), string("base_socket() failed: ") + StrError(Errno));
+   throw simple_exception(get_app(), string("axis_socket() failed: ") + StrError(Errno));
    return INVALID_SOCKET;
    }
    attach(s);
@@ -1270,7 +1270,7 @@ namespace sockets
       }
       return true;
 #else
-      log("base_socket option not available", 0, "SO_REUSEADDR", ::base::log::level_info);
+      log("axis_socket option not available", 0, "SO_REUSEADDR", ::base::log::level_info);
       return false;
 #endif
    }
@@ -1287,7 +1287,7 @@ namespace sockets
       }
       return true;
 #else
-      log("base_socket option not available", 0, "SO_KEEPALIVE", ::base::log::level_info);
+      log("axis_socket option not available", 0, "SO_KEEPALIVE", ::base::log::level_info);
       return false;
 #endif
    }
@@ -1317,7 +1317,7 @@ namespace sockets
          log("getsockopt(SOL_SOCKET, SO_ACCEPTCONN)", Errno, StrError(Errno), ::base::log::level_fatal);
       }
 #else
-      log("base_socket option not available", 0, "SO_ACCEPTCONN", ::base::log::level_info);
+      log("axis_socket option not available", 0, "SO_ACCEPTCONN", ::base::log::level_info);
 #endif
       return value ? true : false;
    }
@@ -1361,7 +1361,7 @@ namespace sockets
       }
       return true;
 #else
-      log("base_socket option not available", 0, "SO_BROADCAST", ::base::log::level_info);
+      log("axis_socket option not available", 0, "SO_BROADCAST", ::base::log::level_info);
       return false;
 #endif
    }
@@ -1378,7 +1378,7 @@ namespace sockets
       }
       return true;
 #else
-      log("base_socket option not available", 0, "SO_DEBUG", ::base::log::level_info);
+      log("axis_socket option not available", 0, "SO_DEBUG", ::base::log::level_info);
       return false;
 #endif
    }
@@ -1394,7 +1394,7 @@ namespace sockets
          log("getsockopt(SOL_SOCKET, SO_ERROR)", Errno, StrError(Errno), ::base::log::level_fatal);
       }
 #else
-      log("base_socket option not available", 0, "SO_ERROR", ::base::log::level_info);
+      log("axis_socket option not available", 0, "SO_ERROR", ::base::log::level_info);
 #endif
       return value;
    }
@@ -1411,7 +1411,7 @@ namespace sockets
       }
       return true;
 #else
-      log("base_socket option not available", 0, "SO_DONTROUTE", ::base::log::level_info);
+      log("axis_socket option not available", 0, "SO_DONTROUTE", ::base::log::level_info);
       return false;
 #endif
    }
@@ -1430,7 +1430,7 @@ namespace sockets
       }
       return true;
 #else
-      log("base_socket option not available", 0, "SO_LINGER", ::base::log::level_info);
+      log("axis_socket option not available", 0, "SO_LINGER", ::base::log::level_info);
       return false;
 #endif
    }
@@ -1447,7 +1447,7 @@ namespace sockets
       }
       return true;
 #else
-      log("base_socket option not available", 0, "SO_OOBINLINE", ::base::log::level_info);
+      log("axis_socket option not available", 0, "SO_OOBINLINE", ::base::log::level_info);
       return false;
 #endif
    }
@@ -1503,7 +1503,7 @@ namespace sockets
       }
       return true;
 #else
-      log("base_socket option not available", 0, "SO_RCVLOWAT", ::base::log::level_info);
+      log("axis_socket option not available", 0, "SO_RCVLOWAT", ::base::log::level_info);
       return false;
 #endif
    }
@@ -1519,7 +1519,7 @@ namespace sockets
       }
       return true;
 #else
-      log("base_socket option not available", 0, "SO_SNDLOWAT", ::base::log::level_info);
+      log("axis_socket option not available", 0, "SO_SNDLOWAT", ::base::log::level_info);
       return false;
 #endif
    }
@@ -1535,7 +1535,7 @@ namespace sockets
       }
       return true;
 #else
-      log("base_socket option not available", 0, "SO_RCVTIMEO", ::base::log::level_info);
+      log("axis_socket option not available", 0, "SO_RCVTIMEO", ::base::log::level_info);
       return false;
 #endif
    }
@@ -1551,7 +1551,7 @@ namespace sockets
       }
       return true;
 #else
-      log("base_socket option not available", 0, "SO_SNDTIMEO", ::base::log::level_info);
+      log("axis_socket option not available", 0, "SO_SNDTIMEO", ::base::log::level_info);
       return false;
 #endif
    }
@@ -1567,7 +1567,7 @@ namespace sockets
       }
       return true;
 #else
-      log("base_socket option not available", 0, "SO_RCVBUF", ::base::log::level_info);
+      log("axis_socket option not available", 0, "SO_RCVBUF", ::base::log::level_info);
       return false;
 #endif
    }
@@ -1583,7 +1583,7 @@ namespace sockets
          log("getsockopt(SOL_SOCKET, SO_RCVBUF)", Errno, StrError(Errno), ::base::log::level_fatal);
       }
 #else
-      log("base_socket option not available", 0, "SO_RCVBUF", ::base::log::level_info);
+      log("axis_socket option not available", 0, "SO_RCVBUF", ::base::log::level_info);
 #endif
       return value;
    }
@@ -1612,7 +1612,7 @@ namespace sockets
       }
       return true;
 #else
-      log("base_socket option not available", 0, "SO_SNDBUF", ::base::log::level_info);
+      log("axis_socket option not available", 0, "SO_SNDBUF", ::base::log::level_info);
       return false;
 #endif
    }
@@ -1628,7 +1628,7 @@ namespace sockets
          log("getsockopt(SOL_SOCKET, SO_SNDBUF)", Errno, StrError(Errno), ::base::log::level_fatal);
       }
 #else
-      log("base_socket option not available", 0, "SO_SNDBUF", ::base::log::level_info);
+      log("axis_socket option not available", 0, "SO_SNDBUF", ::base::log::level_info);
 #endif
       return value;
    }
@@ -1671,7 +1671,7 @@ namespace sockets
          log("getsockopt(SOL_SOCKET, SO_TYPE)", Errno, StrError(Errno), ::base::log::level_fatal);
       }
 #else
-      log("base_socket option not available", 0, "SO_TYPE", ::base::log::level_info);
+      log("axis_socket option not available", 0, "SO_TYPE", ::base::log::level_info);
 #endif
       return value;
    }

@@ -5,13 +5,13 @@ namespace android
 {
 
 
-   CLASS_DECL_BASE LRESULT CALLBACK __send_message_hook(int32_t, WPARAM, LPARAM);
-   //CLASS_DECL_BASE void _::ca2::StandardSubclass(oswindow);
-   CLASS_DECL_BASE LRESULT CALLBACK __cbt_filter_hook(int32_t, WPARAM, LPARAM);
-   CLASS_DECL_BASE LRESULT __call_window_procedure(sp(::user::interaction) pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+   CLASS_DECL_AXIS LRESULT CALLBACK __send_message_hook(int32_t, WPARAM, LPARAM);
+   //CLASS_DECL_AXIS void _::ca2::StandardSubclass(oswindow);
+   CLASS_DECL_AXIS LRESULT CALLBACK __cbt_filter_hook(int32_t, WPARAM, LPARAM);
+   CLASS_DECL_AXIS LRESULT __call_window_procedure(sp(::user::interaction) pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
 
 
-   class CLASS_DECL_BASE interaction_impl :
+   class CLASS_DECL_AXIS interaction_impl :
       virtual public ::user::interaction_impl
    {
    public:
@@ -612,10 +612,10 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
 
 
       // implementation of message dispatch/hooking
-      CLASS_DECL_BASE friend LRESULT CALLBACK __send_message_hook(int32_t, WPARAM, LPARAM);
-      //CLASS_DECL_BASE friend void _::ca2::StandardSubclass(oswindow);
-      CLASS_DECL_BASE friend LRESULT CALLBACK __cbt_filter_hook(int32_t, WPARAM, LPARAM);
-      CLASS_DECL_BASE friend LRESULT __call_window_procedure(sp(::user::interaction) pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+      CLASS_DECL_AXIS friend LRESULT CALLBACK __send_message_hook(int32_t, WPARAM, LPARAM);
+      //CLASS_DECL_AXIS friend void _::ca2::StandardSubclass(oswindow);
+      CLASS_DECL_AXIS friend LRESULT CALLBACK __cbt_filter_hook(int32_t, WPARAM, LPARAM);
+      CLASS_DECL_AXIS friend LRESULT __call_window_procedure(sp(::user::interaction) pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
 
       // standard message implementation
       LRESULT OnNTCtlColor(WPARAM wParam, LPARAM lParam);

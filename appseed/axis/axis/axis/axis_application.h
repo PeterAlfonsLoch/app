@@ -5,7 +5,7 @@ namespace base
 {
 
 
-   class CLASS_DECL_BASE application :
+   class CLASS_DECL_AXIS application :
       virtual public application_interface
    {
    public:
@@ -411,7 +411,7 @@ namespace base
 
 
 
-   class CLASS_DECL_BASE application_ptra:
+   class CLASS_DECL_AXIS application_ptra:
       virtual public spa(application)
    {
    public:

@@ -28,7 +28,7 @@ char *_GeoIP_num_to_addr (GeoIP* gi, uint32_t ipnum);
 #define STATE_BEGIN_REV0 16700000
 #define STATE_BEGIN_REV1 16000000
 #define STRUCTURE_INFO_MAX_SIZE 20
-#define DATABASE_INFO_MAX_SIZE 100
+#define DATAAXIS_INFO_MAX_SIZE 100
 #define MAX_ORG_RECORD_LENGTH 300
 #define US_OFFSET 1
 #define CANADA_OFFSET 677
@@ -1120,7 +1120,7 @@ char *GeoIP_database_info (GeoIP* gi) {
       fseek(gi->GeoIPDatabase, -3l, SEEK_END);
    }
 
-   for (i = 0; i < DATABASE_INFO_MAX_SIZE; i++) {
+   for (i = 0; i < DATAAXIS_INFO_MAX_SIZE; i++) {
       silence = fread(buf, 1, 3, gi->GeoIPDatabase);
       if (buf[0] == 0 && buf[1] == 0 && buf[2] == 0) {
          retval = (char *) malloc(sizeof(char) * (i+1));

@@ -3,7 +3,7 @@
 #include <float.h>
 
 
-CLASS_DECL_BASE void swab(const void *from, void*to, ssize_t n)
+CLASS_DECL_AXIS void swab(const void *from, void*to, ssize_t n)
 {
    ssize_t i;
 

@@ -7,14 +7,14 @@ class base_enum_names :
 {
 public:
 
-   typedef typename map < TYPE, TYPE, string, string >::pair BASE_ENUM_PAIR;
+   typedef typename map < TYPE, TYPE, string, string >::pair AXIS_ENUM_PAIR;
 
-   base_enum_names(BASE_ENUM_PAIR pairs[]);
+   base_enum_names(AXIS_ENUM_PAIR pairs[]);
 };
 
 
 template <class TYPE>
-base_enum_names < TYPE > ::base_enum_names(BASE_ENUM_PAIR pairs[]) :
+base_enum_names < TYPE > ::base_enum_names(AXIS_ENUM_PAIR pairs[]) :
 map < TYPE, TYPE, string, string >(pairs)
 {
 }

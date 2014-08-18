@@ -9,7 +9,7 @@ namespace message
 #define VMSGEN_WINDOW_ON_NOTIFY_REFLECT(wNotifyCode, pinterface, phandler, pfunction) \
    pinterface->AddMessageHandler(\
    phandler,\
-   WM_NOTIFY + WM_REFLECT_BASE,\
+   WM_NOTIFY + WM_REFLECT_AXIS,\
    wNotifyCode,\
    0,\
    ::iguimessage::PrototypeConditional_PNMHDR_PLRESULT,\
@@ -224,7 +224,7 @@ namespace message
    ::message::cmd_connect
 
 #define IGUI_WIN_NOTIFY_REFLECT(wNotifyCode, pinterface, phandler, pfunction) \
-   IGUI_WIN_CMD_LINK(WM_COMMAND,(UINT)wNotifyCode + WM_REFLECT_BASE,0,0xffffffff,pinterface,phandler,pfunction)
+   IGUI_WIN_CMD_LINK(WM_COMMAND,(UINT)wNotifyCode + WM_REFLECT_AXIS,0,0xffffffff,pinterface,phandler,pfunction)
 
 #define IGUI_WIN_ON_CONTROL(id, ca, pdispatch, phandler, poperation) \
    IGUI_WIN_CMD_LINK(WM_COMMAND,ca,id,id,pdispatch,phandler,poperation)

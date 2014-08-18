@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE departament_container_base :
+class CLASS_DECL_AXIS departament_container_base :
    virtual public ::object
 {
 public:

@@ -14,7 +14,7 @@ namespace fs
 class command_thread;
 
 
-class CLASS_DECL_BASE command_line :
+class CLASS_DECL_AXIS command_line :
    virtual public ::object
 {
 public:

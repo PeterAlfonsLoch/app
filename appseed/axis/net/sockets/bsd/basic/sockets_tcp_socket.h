@@ -44,7 +44,7 @@ namespace sockets
 
    /** socket implementation for TCP.
    \ingroup basic */
-   class CLASS_DECL_BASE tcp_socket :
+   class CLASS_DECL_AXIS tcp_socket :
       virtual public stream_socket
    {
       /** \defgroup internal Internal utility */

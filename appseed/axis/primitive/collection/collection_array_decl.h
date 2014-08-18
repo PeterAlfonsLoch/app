@@ -2,7 +2,7 @@
 
 
 template < typename T > class numeric_array;
-typedef CLASS_DECL_BASE numeric_array < index > index_array;
+typedef CLASS_DECL_AXIS numeric_array < index > index_array;
 
 
 namespace constructor
@@ -99,9 +99,9 @@ class array :
 {
 public:
 
-   typedef TYPE BASE_TYPE;
-   typedef ARG_TYPE BASE_ARG_TYPE;
-   typedef array < TYPE, ARG_TYPE > BASE_ARRAY;
+   typedef TYPE AXIS_TYPE;
+   typedef ARG_TYPE AXIS_ARG_TYPE;
+   typedef array < TYPE, ARG_TYPE > AXIS_ARRAY;
 
    /*
 

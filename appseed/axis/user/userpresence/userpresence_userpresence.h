@@ -5,7 +5,7 @@ namespace userpresence
 {
 
 
-   class CLASS_DECL_BASE userpresence :
+   class CLASS_DECL_AXIS userpresence :
       virtual public ::base::departament,
       virtual public message_queue_listener
    {

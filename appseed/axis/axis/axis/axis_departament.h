@@ -7,7 +7,7 @@ namespace base
 
 
 
-   class CLASS_DECL_BASE departament :
+   class CLASS_DECL_AXIS departament :
    virtual public signalizable
    {
    public:

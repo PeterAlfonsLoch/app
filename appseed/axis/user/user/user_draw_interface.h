@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE draw_interface
+   class CLASS_DECL_AXIS draw_interface
    {
    public:
 

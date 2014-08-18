@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE menu_base_item :
+   class CLASS_DECL_AXIS menu_base_item :
       virtual public ::object
    {
    public:

@@ -16,7 +16,7 @@ CHAR szTitle[1024];					// The title bar text
 CHAR szWindowClassSpaAdmin[1024];			// the main interaction_impl class name
 
 //void ensure_trace_file();
-//CLASS_DECL_BASE bool g_bInstalling = false;
+//CLASS_DECL_AXIS bool g_bInstalling = false;
 
 typedef PVOID * PPVOID;
 
@@ -2450,7 +2450,7 @@ RetryHost:
    }
 
 
-   CLASS_DECL_BASE void send_spaboot_install_post(int32_t a, int32_t b)
+   CLASS_DECL_AXIS void send_spaboot_install_post(int32_t a, int32_t b)
    {
 
 #ifdef METROWIN

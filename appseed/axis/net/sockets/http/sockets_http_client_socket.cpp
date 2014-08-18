@@ -442,7 +442,7 @@ namespace sockets
 
    }
 
-   CLASS_DECL_BASE string http_method_string(e_http_method emethod)
+   CLASS_DECL_AXIS string http_method_string(e_http_method emethod)
    {
 
       switch (emethod)
@@ -468,7 +468,7 @@ namespace sockets
    }
 
 
-   CLASS_DECL_BASE e_http_method string_http_method(const string & str)
+   CLASS_DECL_AXIS e_http_method string_http_method(const string & str)
    {
 
       string strMethod(str);

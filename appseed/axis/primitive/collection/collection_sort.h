@@ -255,7 +255,7 @@ namespace sort
    typedef int32_t (*ARG_COMPARE_FUNCTION)(void * lpVoidCompareArg,  index,  index);
 
 
-   void CLASS_DECL_BASE quick_sort(
+   void CLASS_DECL_AXIS quick_sort(
       index iSize,
       array < ARG_COMPARE_FUNCTION, ARG_COMPARE_FUNCTION > & comparefna,
       array < ARG_SWAP_FUNCTION, ARG_SWAP_FUNCTION > & swapfna,

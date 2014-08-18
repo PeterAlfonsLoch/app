@@ -1,5 +1,5 @@
-#ifndef CA2_APP_BASE_USER_INTERACTION_H
-#define CA2_APP_BASE_USER_INTERACTION_H
+#ifndef CA2_APP_AXIS_USER_INTERACTION_H
+#define CA2_APP_AXIS_USER_INTERACTION_H
 
 
 #define DRAWDD() virtual void _001OnDraw(::draw2d::graphics * pgraphics)
@@ -11,10 +11,10 @@ namespace user
 
    class interaction_impl_base;
 
-   CLASS_DECL_BASE bool is_docking_appearance(::user::EAppearance eappearance);
+   CLASS_DECL_AXIS bool is_docking_appearance(::user::EAppearance eappearance);
 
 
-   class CLASS_DECL_BASE interaction:
+   class CLASS_DECL_AXIS interaction:
       virtual public interaction_base,
       virtual public ::user::schema
    {
@@ -606,7 +606,7 @@ namespace user
 } // namespace user
 
 
-#endif // CA2_APP_BASE_USER_INTERACTION_H
+#endif // CA2_APP_AXIS_USER_INTERACTION_H
 
 
 

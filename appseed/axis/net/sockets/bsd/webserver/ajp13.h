@@ -67,7 +67,7 @@ namespace sockets
 #define HTTP_METHOD_UPDATE      23
 #define HTTP_METHOD_LABEL      24
 #define HTTP_METHOD_MERGE      25
-#define HTTP_METHOD_BASELINE_CONTROL   26
+#define HTTP_METHOD_AXISLINE_CONTROL   26
 #define HTTP_METHOD_MKACTIVITY      27
 
 #define ATTR_CONTEXT       1

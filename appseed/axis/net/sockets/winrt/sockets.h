@@ -10,12 +10,12 @@
 #include "basic/sockets_tls_socket.h"
 
 
-#include "base/net/sockets/base/sockets_base_socket_handler.h"
+#include "axis/net/sockets/base/sockets_base_socket_handler.h"
 #include "basic/sockets_socket_handler.h"
 #include "basic/sockets_listen_socket.h"
 
 
-#include "base/net/sockets/http/sockets_http.h"
+#include "axis/net/sockets/http/sockets_http.h"
 
 
 #include "webserver/webserver_ajp_base_socket.h"
@@ -37,8 +37,8 @@
 #include "sip/sip_server.h"
 
 
-#include "base/net/net_email_address.h"
-#include "base/net/net_email.h"
+#include "axis/net/net_email_address.h"
+#include "axis/net/net_email.h"
 
 #include "smtp/smtp_socket.h"
 #include "smtp/smtpd_socket.h"

@@ -43,7 +43,7 @@ namespace message
    }
 
 
-   CLASS_DECL_BASE bool is_idle_message(signal_details * pobj)
+   CLASS_DECL_AXIS bool is_idle_message(signal_details * pobj)
    {
 
       SCAST_PTR(::message::base, pbase, pobj);
@@ -69,7 +69,7 @@ namespace message
 
 
 
-   CLASS_DECL_BASE bool is_idle_message(LPMESSAGE lpmsg)
+   CLASS_DECL_AXIS bool is_idle_message(LPMESSAGE lpmsg)
    {
 
       // Return FALSE if the message just dispatched should _not_

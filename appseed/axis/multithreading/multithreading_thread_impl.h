@@ -30,7 +30,7 @@ public:
 
 
 
-class CLASS_DECL_BASE thread_impl :
+class CLASS_DECL_AXIS thread_impl :
    virtual public command_target,
    virtual public message_queue_listener
 {

@@ -7,7 +7,7 @@ namespace data
    class data;
 
 
-   class CLASS_DECL_BASE data_listener :
+   class CLASS_DECL_AXIS data_listener :
       virtual public ::object
    {
    public:

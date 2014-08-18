@@ -5,7 +5,7 @@ namespace windows
 {
 
 
-   class CLASS_DECL_BASE main_init_data :
+   class CLASS_DECL_AXIS main_init_data :
       public ::base::main_init_data
    {
    public:
@@ -19,7 +19,7 @@ namespace windows
    };
 
 
-   class CLASS_DECL_BASE application :
+   class CLASS_DECL_AXIS application :
       virtual public ::base::application
    {
    public:

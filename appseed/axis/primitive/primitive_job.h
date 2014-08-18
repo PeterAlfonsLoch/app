@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE job :
+class CLASS_DECL_AXIS job :
    virtual public ::thread
 {
 public:

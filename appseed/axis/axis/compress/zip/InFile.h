@@ -1,5 +1,5 @@
-#ifndef BASE_COMPRESS_ZIP_INFILE_H
-#define BASE_COMPRESS_ZIP_INFILE_H
+#ifndef AXIS_COMPRESS_ZIP_INFILE_H
+#define AXIS_COMPRESS_ZIP_INFILE_H
 
 
 #pragma once
@@ -29,7 +29,7 @@ namespace zip {
 
     class File;
 
-    class CLASS_DECL_BASE InFile :
+    class CLASS_DECL_AXIS InFile :
     public ::file::binary_buffer {
     public:
 
@@ -116,7 +116,7 @@ namespace zip {
 } // namespace zip
 
 
-#endif // BASE_COMPRESS_ZIP_INFILE_H
+#endif // AXIS_COMPRESS_ZIP_INFILE_H
 
 
 

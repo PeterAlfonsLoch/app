@@ -9,7 +9,7 @@ class scheme;
  * HRC file_type (or prototype) instance.
  * @ingroup colorer
  */
-class CLASS_DECL_BASE file_type{
+class CLASS_DECL_AXIS file_type{
 public:
 
   /**

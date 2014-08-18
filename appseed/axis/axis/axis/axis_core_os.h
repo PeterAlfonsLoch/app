@@ -1,5 +1,5 @@
-#ifndef BASE_BASE_CORE_OS_H
-#define BASE_BASE_CORE_OS_H
+#ifndef AXIS_AXIS_CORE_OS_H
+#define AXIS_AXIS_CORE_OS_H
 
 
 
@@ -8,7 +8,7 @@ namespace base
 {
 
 
-    class CLASS_DECL_BASE os :
+    class CLASS_DECL_AXIS os :
       virtual public object 
     {
     public:
@@ -84,7 +84,7 @@ namespace base
 } // namespace base
 
 
-#endif // BASE_BASE_CORE_OS_H
+#endif // AXIS_AXIS_CORE_OS_H
 
 
 

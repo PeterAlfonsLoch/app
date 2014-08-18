@@ -5,7 +5,7 @@ namespace base
 {
 
 
-   class CLASS_DECL_BASE session_interface:
+   class CLASS_DECL_AXIS session_interface:
       virtual public ::base::application_interface
    {
    public:

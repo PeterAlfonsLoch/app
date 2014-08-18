@@ -8,7 +8,7 @@ namespace user
    class place_holder;
 
 
-   class CLASS_DECL_BASE view_creator_data
+   class CLASS_DECL_AXIS view_creator_data
    {
    public:
 

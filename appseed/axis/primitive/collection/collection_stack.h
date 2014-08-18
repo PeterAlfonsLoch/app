@@ -1,31 +1,31 @@
 #pragma once
 
 
-template < class TYPE, class BASE_ARRAY = array < TYPE > >
+template < class TYPE, class AXIS_ARRAY = array < TYPE > >
 class stack :
-   virtual public BASE_ARRAY
+   virtual public AXIS_ARRAY
 {
 public:
 
 
    TYPE * operator ->()
    {
-      return &BASE_ARRAY::last_element();
+      return &AXIS_ARRAY::last_element();
    }
 
    const TYPE * operator ->() const
    {
-      return &BASE_ARRAY::last_element();
+      return &AXIS_ARRAY::last_element();
    }
 
    TYPE & top()
    {
-      return BASE_ARRAY::last_element();
+      return AXIS_ARRAY::last_element();
    }
 
    const TYPE & top() const
    {
-      return BASE_ARRAY::last_element();
+      return AXIS_ARRAY::last_element();
    }
 
 };

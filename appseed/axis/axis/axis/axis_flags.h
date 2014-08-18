@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE sort_int_ptr_array
+class CLASS_DECL_AXIS sort_int_ptr_array
 {
 public:
 
@@ -9,7 +9,7 @@ public:
 
 };
 
-class CLASS_DECL_BASE base_sort_serializable_int_ptr_array :
+class CLASS_DECL_AXIS base_sort_serializable_int_ptr_array :
    virtual public ::file::serializable_array < sort_int_ptr_array::type >
 {
 public:

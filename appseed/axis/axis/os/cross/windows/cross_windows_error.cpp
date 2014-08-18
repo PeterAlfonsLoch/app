@@ -30,7 +30,7 @@
 #define __WINESRC__
 #include "nodeapp/operational_system/bare_operational_system.h"
 #include "os_cross_windows_internals.h"
-#define CLASS_DECL_BASE
+#define CLASS_DECL_AXIS
 #include "c/c/verisimple_string.h"
 #include "c/c/mutex.h"
 #include "c/c/single_lock.h"
@@ -201,7 +201,7 @@ static const int table_00000102[32] =
 static const int table_40000002[36] =
 {
    ERROR_INVALID_PARAMETER,                /* 40000002 (STATUS_WORKING_SET_LIMIT_RANGE) */
-   ERROR_IMAGE_NOT_AT_BASE,                /* 40000003 (STATUS_IMAGE_NOT_AT_BASE) */
+   ERROR_IMAGE_NOT_AT_AXIS,                /* 40000003 (STATUS_IMAGE_NOT_AT_AXIS) */
    0,                                      /* 40000004 (STATUS_RXACT_STATE_CREATED) */
    0,                                      /* 40000005 (STATUS_SEGMENT_NOTIFICATION) */
    ERROR_LOCAL_USER_SESSION_KEY,           /* 40000006 (STATUS_LOCAL_USER_SESSION_KEY) */
@@ -564,7 +564,7 @@ static const int table_c0000001[411] =
    ERROR_CRC,                              /* c000009c (STATUS_DEVICE_DATA_ERROR) */
    ERROR_DEVICE_NOT_CONNECTED,             /* c000009d (STATUS_DEVICE_NOT_CONNECTED) */
    ERROR_NOT_READY,                        /* c000009e (STATUS_DEVICE_POWER_FAILURE) */
-   ERROR_INVALID_ADDRESS,                  /* c000009f (STATUS_FREE_VM_NOT_AT_BASE) */
+   ERROR_INVALID_ADDRESS,                  /* c000009f (STATUS_FREE_VM_NOT_AT_AXIS) */
    ERROR_INVALID_ADDRESS,                  /* c00000a0 (STATUS_MEMORY_NOT_ALLOCATED) */
    ERROR_WORKING_SET_QUOTA,                /* c00000a1 (STATUS_WORKING_SET_QUOTA) */
    ERROR_WRITE_PROTECT,                    /* c00000a2 (STATUS_MEDIA_WRITE_PROTECTED) */
@@ -1184,7 +1184,7 @@ static const int table_c0000202[396] =
    0,                                      /* c000036a (STATUS_MCA_OCCURED) */
    ERROR_DRIVER_BLOCKED,                   /* c000036b (STATUS_DRIVER_BLOCKED_CRITICAL) */
    ERROR_DRIVER_BLOCKED,                   /* c000036c (STATUS_DRIVER_BLOCKED) */
-   0,                                      /* c000036d (STATUS_DRIVER_DATABASE_ERROR) */
+   0,                                      /* c000036d (STATUS_DRIVER_DATAAXIS_ERROR) */
    0,                                      /* c000036e (STATUS_SYSTEM_HIVE_TOO_LARGE) */
    ERROR_INVALID_IMPORT_OF_NON_DLL,        /* c000036f (STATUS_INVALID_IMPORT_OF_NON_DLL) */
    0,                                      /* c0000370 */

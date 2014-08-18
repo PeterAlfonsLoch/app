@@ -9,7 +9,7 @@ namespace file
    class output_stream;
 
 
-   class CLASS_DECL_BASE serializable :
+   class CLASS_DECL_AXIS serializable :
       virtual public element
    {
    public:
@@ -221,8 +221,8 @@ namespace file
    {
       ::count count;
       istream.read_arbitrary(count);
-      typename type_map::BASE_KEY key;
-      typename type_map::BASE_VALUE value;
+      typename type_map::AXIS_KEY key;
+      typename type_map::AXIS_VALUE value;
       for(index index = 0; index < count; index++)
       {
          istream >> key;

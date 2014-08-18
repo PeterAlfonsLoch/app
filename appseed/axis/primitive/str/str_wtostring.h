@@ -4,7 +4,7 @@
 class string;
 
 
-class CLASS_DECL_BASE wtostring :
+class CLASS_DECL_AXIS wtostring :
    public wstring
 {
 public:

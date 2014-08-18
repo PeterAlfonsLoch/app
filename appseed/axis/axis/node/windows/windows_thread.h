@@ -5,7 +5,7 @@ namespace windows
 {
 
 
-   class CLASS_DECL_BASE thread :
+   class CLASS_DECL_AXIS thread :
       virtual public ::thread_impl
    {
    public:

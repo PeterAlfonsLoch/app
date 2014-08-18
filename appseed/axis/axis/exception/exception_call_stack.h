@@ -27,7 +27,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE call_stack :
+class CLASS_DECL_AXIS call_stack :
    virtual public element
 {
 public:

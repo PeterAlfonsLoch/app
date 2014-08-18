@@ -476,7 +476,7 @@ namespace message
          case WM_CTLCOLOR:
          if(pba)
          return PrototypeCtlColor;
-         case WM_CTLCOLOR + WM_REFLECT_BASE:
+         case WM_CTLCOLOR + WM_REFLECT_AXIS:
          return PrototypeCtlColorReflect;
          #endif*/
       case WM_SETFOCUS:

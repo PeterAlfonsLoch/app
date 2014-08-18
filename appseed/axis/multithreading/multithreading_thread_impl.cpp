@@ -728,7 +728,7 @@ uint32_t __thread_entry(void * pparam)
 }
 
 
-void CLASS_DECL_BASE __end_thread(sp(::base::application) papp)
+void CLASS_DECL_AXIS __end_thread(sp(::base::application) papp)
 {
 
    __term_thread(papp);
@@ -736,7 +736,7 @@ void CLASS_DECL_BASE __end_thread(sp(::base::application) papp)
 }
 
 
-void CLASS_DECL_BASE __term_thread(sp(::base::application) papp)
+void CLASS_DECL_AXIS __term_thread(sp(::base::application) papp)
 {
 
    UNREFERENCED_PARAMETER(papp);

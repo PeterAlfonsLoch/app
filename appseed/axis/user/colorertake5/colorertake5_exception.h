@@ -10,7 +10,7 @@ namespace colorertake5
        Defines throwable exception.
        @ingroup common
    */
-   class CLASS_DECL_BASE exception :
+   class CLASS_DECL_AXIS exception :
       virtual public ::exception::base
    {
    public:

@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE not_installed : 
+class CLASS_DECL_AXIS not_installed : 
    virtual public ::exception::base
 {
 public:

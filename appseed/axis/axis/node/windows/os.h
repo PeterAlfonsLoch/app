@@ -11,9 +11,9 @@
 
 
 //#ifdef _WINDOWS_DESKTOP_LIBRARY
-  //  #define CLASS_DECL_BASE  CLASS_DECL_EXPORT
+  //  #define CLASS_DECL_AXIS  CLASS_DECL_EXPORT
 //#else
-  //  #define CLASS_DECL_BASE  CLASS_DECL_IMPORT
+  //  #define CLASS_DECL_AXIS  CLASS_DECL_IMPORT
 //#endif
 
 string get_error_message(DWORD dwError);
@@ -23,23 +23,23 @@ string get_error_message(DWORD dwError);
 /////////////////////////////////////////////////////////////////////////////
 // explicit initialization for general purpose classes
 
-CLASS_DECL_BASE bool __initialize(bool bDLL = FALSE, DWORD dwVersion = _MFC_VER);
+CLASS_DECL_AXIS bool __initialize(bool bDLL = FALSE, DWORD dwVersion = _MFC_VER);
 
 /////////////////////////////////////////////////////////////////////////////
 // stop on a specific primitive::memory request
 
 // Debugger hook on specified allocation request - Obsolete
-CLASS_DECL_BASE void __set_alloc_stop(LONG lRequestNumber);
+CLASS_DECL_AXIS void __set_alloc_stop(LONG lRequestNumber);
 
 
 
 
 // helper routines for non-C++ EH implementations
 // for THROW_LAST auto-delete backward compatiblity
-CLASS_DECL_BASE void __throw_last_cleanup();
+CLASS_DECL_AXIS void __throw_last_cleanup();
 
 // other out-of-line helper functions
-CLASS_DECL_BASE void __try_cleanup();
+CLASS_DECL_AXIS void __try_cleanup();
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -58,9 +58,9 @@ namespace windows
 
 
 // interaction_impl creation hooking
-CLASS_DECL_BASE bool hook_window_create(::windows::interaction_impl * pwindow);
-CLASS_DECL_BASE bool unhook_window_create();
-CLASS_DECL_BASE void reset_message_cache();
+CLASS_DECL_AXIS bool hook_window_create(::windows::interaction_impl * pwindow);
+CLASS_DECL_AXIS bool unhook_window_create();
+CLASS_DECL_AXIS void reset_message_cache();
 
 
 #include "win1.h"
@@ -76,7 +76,7 @@ CLASS_DECL_BASE void reset_message_cache();
 #include "windows_file.h"
 //#include "windows_printer.h"
 
-CLASS_DECL_BASE WNDPROC __get_window_procedure();
+CLASS_DECL_AXIS WNDPROC __get_window_procedure();
 #define __window_procedure (*__get_window_procedure())
 
 #define NODE_THREAD(pthread) (dynamic_cast < ::windows::thread * > (dynamic_cast < thread * >(pthread)))
@@ -98,8 +98,8 @@ CLASS_DECL_BASE WNDPROC __get_window_procedure();
 #pragma comment(lib, "Msimg32.lib") 
 #pragma comment(lib, "Psapi.lib") 
 
-CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, signal_details * pobj);
-CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, LPMSG lpmsg);
+CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, signal_details * pobj);
+CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, LPMSG lpmsg);
 
 
 
@@ -110,13 +110,13 @@ CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, LPMSG lpmsg);
 
 
 
-void CLASS_DECL_BASE __cdecl _ca2_purecall();
+void CLASS_DECL_AXIS __cdecl _ca2_purecall();
 
-void CLASS_DECL_BASE __cdecl _null_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers);
+void CLASS_DECL_AXIS __cdecl _null_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers);
 
-bool CLASS_DECL_BASE __windows_init();
+bool CLASS_DECL_AXIS __windows_init();
 
-int32_t CLASS_DECL_BASE __windows_main(sp(::base::system) psystem, ::windows::main_init_data * pmaininitdata);
+int32_t CLASS_DECL_AXIS __windows_main(sp(::base::system) psystem, ::windows::main_init_data * pmaininitdata);
 
 
 
@@ -128,7 +128,7 @@ int32_t CLASS_DECL_BASE __windows_main(sp(::base::system) psystem, ::windows::ma
 //#include <GdiPlus.h>
 //#include <Gdipluseffects.h>
 
-#define new BASE_NEW
+#define new AXIS_NEW
 
 
 
@@ -151,8 +151,8 @@ int32_t CLASS_DECL_BASE __windows_main(sp(::base::system) psystem, ::windows::ma
 
 
 // Sanity checks for ATOMs
-CLASS_DECL_BASE bool __is_valid_atom(ATOM nAtom);
-CLASS_DECL_BASE bool __is_valid_atom(const char * psz);
+CLASS_DECL_AXIS bool __is_valid_atom(ATOM nAtom);
+CLASS_DECL_AXIS bool __is_valid_atom(const char * psz);
 
 
 /////////////////////////////////////////////////////////////////////////////

@@ -67,7 +67,7 @@ namespace file
 
 
 
-   class CLASS_DECL_BASE stream_base :
+   class CLASS_DECL_AXIS stream_base :
       virtual public seekable
    {
    public:

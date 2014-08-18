@@ -12,7 +12,7 @@ namespace file
    typedef smart_pointer < reader > input_stream_sp;
 
 
-   class CLASS_DECL_BASE input_stream :
+   class CLASS_DECL_AXIS input_stream :
       virtual public stream_base,
       virtual public reader
    {

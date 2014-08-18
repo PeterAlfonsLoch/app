@@ -30,11 +30,11 @@ extern "C" {
 
 
 /*
- * BASETYPES is defined in ntdef.h if these types are already defined
+ * AXISTYPES is defined in ntdef.h if these types are already defined
  */
 
-#ifndef BASETYPES
-#define BASETYPES
+#ifndef AXISTYPES
+#define AXISTYPES
 typedef unsigned long ULONG;
 typedef ULONG *PULONG;
 typedef unsigned short USHORT;
@@ -42,7 +42,7 @@ typedef USHORT *PUSHORT;
 typedef unsigned char UCHAR;
 typedef UCHAR *PUCHAR;
 typedef char *PSZ;
-#endif  /* !BASETYPES */
+#endif  /* !AXISTYPES */
 
 #define MAX_PATH          260
 

@@ -11,9 +11,9 @@
 
 local uLong adler32_combine_ OF((uLong adler1, uLong adler2, z_off64_t len2));
 
-#define BASE 65521      /* largest prime smaller than 65536 */
+#define AXIS 65521      /* largest prime smaller than 65536 */
 #define NMAX 5552
-/* NMAX is the largest n such that 255n(n+1)/2 + (n+1)(BASE-1) <= 2^32-1 */
+/* NMAX is the largest n such that 255n(n+1)/2 + (n+1)(AXIS-1) <= 2^32-1 */
 
 #define DO1(buf,i)  {adler += (buf)[i]; sum2 += adler;}
 #define DO2(buf,i)  DO1(buf,i); DO1(buf,i+1);
@@ -24,7 +24,7 @@ local uLong adler32_combine_ OF((uLong adler1, uLong adler2, z_off64_t len2));
 /* use NO_DIVIDE if your processor does not do division in hardware --
    try it both ways to see which is faster */
 #ifdef NO_DIVIDE
-/* note that this assumes BASE is 65521, where 65536 % 65521 == 15
+/* note that this assumes AXIS is 65521, where 65536 % 65521 == 15
    (thank you to John Reiser for pointing this out) */
 #  define CHOP(a) \
     do { \
@@ -35,7 +35,7 @@ local uLong adler32_combine_ OF((uLong adler1, uLong adler2, z_off64_t len2));
 #  define MOD28(a) \
     do { \
         CHOP(a); \
-        if (a >= BASE) a -= BASE; \
+        if (a >= AXIS) a -= AXIS; \
     } while (0)
 #  define MOD(a) \
     do { \
@@ -53,12 +53,12 @@ local uLong adler32_combine_ OF((uLong adler1, uLong adler2, z_off64_t len2));
         tmp = a >> 16; \
         a &= 0xffffL; \
         a += (tmp << 4) - tmp; \
-        if (a >= BASE) a -= BASE; \
+        if (a >= AXIS) a -= AXIS; \
     } while (0)
 #else
-#  define MOD(a) a %= BASE
-#  define MOD28(a) a %= BASE
-#  define MOD63(a) a %= BASE
+#  define MOD(a) a %= AXIS
+#  define MOD28(a) a %= AXIS
+#  define MOD63(a) a %= AXIS
 #endif
 
 /* ========================================================================= */
@@ -77,11 +77,11 @@ uLong ZEXPORT adler32(adler, buf, len)
     /* in case user likes doing a byte at a time, keep it fast */
     if (len == 1) {
         adler += buf[0];
-        if (adler >= BASE)
-            adler -= BASE;
+        if (adler >= AXIS)
+            adler -= AXIS;
         sum2 += adler;
-        if (sum2 >= BASE)
-            sum2 -= BASE;
+        if (sum2 >= AXIS)
+            sum2 -= AXIS;
         return adler | (sum2 << 16);
     }
 
@@ -95,9 +95,9 @@ uLong ZEXPORT adler32(adler, buf, len)
             adler += *buf++;
             sum2 += adler;
         }
-        if (adler >= BASE)
-            adler -= BASE;
-        MOD28(sum2);            /* only added so many BASE's */
+        if (adler >= AXIS)
+            adler -= AXIS;
+        MOD28(sum2);            /* only added so many AXIS's */
         return adler | (sum2 << 16);
     }
 
@@ -152,12 +152,12 @@ local uLong adler32_combine_(adler1, adler2, len2)
     sum1 = adler1 & 0xffff;
     sum2 = rem * sum1;
     MOD(sum2);
-    sum1 += (adler2 & 0xffff) + BASE - 1;
-    sum2 += ((adler1 >> 16) & 0xffff) + ((adler2 >> 16) & 0xffff) + BASE - rem;
-    if (sum1 >= BASE) sum1 -= BASE;
-    if (sum1 >= BASE) sum1 -= BASE;
-    if (sum2 >= (BASE << 1)) sum2 -= (BASE << 1);
-    if (sum2 >= BASE) sum2 -= BASE;
+    sum1 += (adler2 & 0xffff) + AXIS - 1;
+    sum2 += ((adler1 >> 16) & 0xffff) + ((adler2 >> 16) & 0xffff) + AXIS - rem;
+    if (sum1 >= AXIS) sum1 -= AXIS;
+    if (sum1 >= AXIS) sum1 -= AXIS;
+    if (sum2 >= (AXIS << 1)) sum2 -= (AXIS << 1);
+    if (sum2 >= AXIS) sum2 -= AXIS;
     return sum1 | (sum2 << 16);
 }
 

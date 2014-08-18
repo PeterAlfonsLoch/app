@@ -7,13 +7,13 @@ namespace user
 
 
 
-   class CLASS_DECL_BASE view_creator :
+   class CLASS_DECL_AXIS view_creator :
       virtual public view_container
    {
    public:
 
 
-      class CLASS_DECL_BASE create_exception
+      class CLASS_DECL_AXIS create_exception
       {
       public:
 
@@ -27,7 +27,7 @@ namespace user
       };
 
 
-      class CLASS_DECL_BASE view_map :
+      class CLASS_DECL_AXIS view_map :
          public map < id, id, ::user::view_creator_data *, ::user::view_creator_data * >
       {
       public:

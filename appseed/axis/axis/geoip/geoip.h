@@ -99,7 +99,7 @@ extern const char GeoIP_country_code3[253][4];
 extern const char * GeoIP_country_name[253];
 extern const char GeoIP_country_continent[253][3];
 
-#define GEOIP_API CLASS_DECL_BASE
+#define GEOIP_API CLASS_DECL_AXIS
 
 GEOIP_API void GeoIP_setup_custom_directory(char *dir);
 GEOIP_API GeoIP* GeoIP_open_type (int32_t type, int32_t flags);

@@ -5,7 +5,7 @@ namespace base
 {
 
 
-   class CLASS_DECL_BASE application_interface:
+   class CLASS_DECL_AXIS application_interface:
       virtual public ::thread,
       virtual public ::base::live_object,
       virtual public command_target_interface,

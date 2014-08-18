@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_BASE text_buffer :
+   class CLASS_DECL_AXIS text_buffer :
       virtual public ::file::stream_buffer
    {
    public:

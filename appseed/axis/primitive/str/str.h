@@ -18,9 +18,9 @@ class string_array;
 #include "str_from_integer.h"
 
 
-CLASS_DECL_BASE string get_md5(const void * data, ::count c);
-CLASS_DECL_BASE string get_md5(const char * psz);
-CLASS_DECL_BASE void zero_pad(string & str, count iPad);
+CLASS_DECL_AXIS string get_md5(const void * data, ::count c);
+CLASS_DECL_AXIS string get_md5(const char * psz);
+CLASS_DECL_AXIS void zero_pad(string & str, count iPad);
 
 
 #include "str_ch_class.h"

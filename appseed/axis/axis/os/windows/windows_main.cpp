@@ -2,10 +2,10 @@
 #include "sal.h"
 
 
-CLASS_DECL_BASE int32_t ca2_main();
+CLASS_DECL_AXIS int32_t ca2_main();
 
 
-void CLASS_DECL_BASE __cdecl _ca2_purecall()
+void CLASS_DECL_AXIS __cdecl _ca2_purecall()
 {
 
    throw simple_exception(get_thread_app());
@@ -28,7 +28,7 @@ void __cdecl _null_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers
 
 
 
-CLASS_DECL_BASE int32_t __win_main(sp(::base::system) psystem, ::windows::main_init_data * pmaininitdata)
+CLASS_DECL_AXIS int32_t __win_main(sp(::base::system) psystem, ::windows::main_init_data * pmaininitdata)
 {
 
    psystem->construct(NULL);

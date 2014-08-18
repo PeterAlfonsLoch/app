@@ -5,7 +5,7 @@ class replace_thread;
 
 
 
-class CLASS_DECL_BASE thread :
+class CLASS_DECL_AXIS thread :
    virtual public command_target,
 #ifdef WINDOWS
    virtual public ::exception::translator,
@@ -185,7 +185,7 @@ public:
 
 
 
-class CLASS_DECL_BASE replace_thread
+class CLASS_DECL_AXIS replace_thread
 {
 public:
 

@@ -1,10 +1,10 @@
 #pragma once
 
 
-typedef CLASS_DECL_BASE string_map < string, const string & > base_string_to_string;
+typedef CLASS_DECL_AXIS string_map < string, const string & > base_string_to_string;
 
 
-class CLASS_DECL_BASE string_to_string :
+class CLASS_DECL_AXIS string_to_string :
    virtual public ::file::byte_serializable_map < attrib_map < base_string_to_string >  >
 {
 public:
@@ -20,7 +20,7 @@ public:
 };
 
 
-class CLASS_DECL_BASE string_table :
+class CLASS_DECL_AXIS string_table :
    virtual public string_map < string_to_string *, string_to_string * >
 {
 public:

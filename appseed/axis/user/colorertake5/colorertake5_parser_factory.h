@@ -32,7 +32,7 @@ namespace colorertake5
  *
  * @ingroup colorer
  */
-   class CLASS_DECL_BASE ParserFactory :
+   class CLASS_DECL_AXIS ParserFactory :
       virtual public ::object
 {
 public:

@@ -5,7 +5,7 @@ namespace primitive
 {
 
 
-   class CLASS_DECL_BASE command :
+   class CLASS_DECL_AXIS command :
       virtual public ::object
    {
    public:

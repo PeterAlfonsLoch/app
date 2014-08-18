@@ -5,13 +5,13 @@ namespace net
 {
 
 
-   class CLASS_DECL_BASE address
+   class CLASS_DECL_AXIS address
    {
    public:
 
 #if defined METROWIN && defined(__cplusplus_winrt)
 
-      class CLASS_DECL_BASE os_data
+      class CLASS_DECL_AXIS os_data
       {
       public:
 

@@ -82,7 +82,7 @@ namespace user
 
    };
 
-   class CLASS_DECL_BASE frame_window :
+   class CLASS_DECL_AXIS frame_window :
       virtual public ::user::interaction
    {
    public:
@@ -128,7 +128,7 @@ namespace user
       bool m_bFrameMoveEnable;
 
 
-      string m_strMatterHelp;             // Help ID (0 for none, see HID_BASE_RESOURCE)
+      string m_strMatterHelp;             // Help ID (0 for none, see HID_AXIS_RESOURCE)
       UINT m_nIDTracking;         // tracking command ID or string IDS
       UINT m_nIDLastMessage;      // last displayed message string IDS
       sp(::user::impact) m_pViewActive;       // current active ::user::impact

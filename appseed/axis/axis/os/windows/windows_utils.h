@@ -7,7 +7,7 @@
 
 
 
-CLASS_DECL_BASE int_bool IsWow64();
+CLASS_DECL_AXIS int_bool IsWow64();
 
 
 int_bool EnableTokenPrivilege(LPCTSTR pszPrivilege);

@@ -5,12 +5,12 @@ namespace message
 {
 
 
-   class CLASS_DECL_BASE dispatch:
+   class CLASS_DECL_AXIS dispatch:
       virtual public ::object
    {
    public:
 
-      class CLASS_DECL_BASE HandlerItemBase:
+      class CLASS_DECL_AXIS HandlerItemBase:
          virtual public root
       {
       public:
@@ -30,7 +30,7 @@ namespace message
          virtual signalizable* get_signalizable() { return m_psignalizable; }
       };
 
-      class CLASS_DECL_BASE HandlerItemArray:
+      class CLASS_DECL_AXIS HandlerItemArray:
          public array < HandlerItemBase *,HandlerItemBase *>
       {
       public:
@@ -38,7 +38,7 @@ namespace message
          bool HasSignalizable(signalizable* psignalizable);
       };
 
-      class CLASS_DECL_BASE Signal:
+      class CLASS_DECL_AXIS Signal:
          virtual public element
       {
       public:
@@ -55,12 +55,12 @@ namespace message
          ~Signal();
       };
 
-      class CLASS_DECL_BASE SignalPtrArray:
+      class CLASS_DECL_AXIS SignalPtrArray:
          public array < Signal *,Signal * >
       {
       };
 
-      class CLASS_DECL_BASE SignalArray:
+      class CLASS_DECL_AXIS SignalArray:
          public spa(Signal)
       {
       public:

@@ -4,13 +4,13 @@
 
 
 
-class CLASS_DECL_BASE command_target_interface :
+class CLASS_DECL_AXIS command_target_interface :
    virtual public signalizable,
    virtual public ::message::dispatch
 {
 public:
 
-   class CLASS_DECL_BASE command_signalid : public signalid
+   class CLASS_DECL_AXIS command_signalid : public signalid
    {
    public:
 
@@ -46,7 +46,7 @@ public:
       }
    };
 
-   class CLASS_DECL_BASE command_signalrange : public signalid
+   class CLASS_DECL_AXIS command_signalrange : public signalid
    {
    public:
 
@@ -165,7 +165,7 @@ public:
 
 
 
-class CLASS_DECL_BASE command_target :
+class CLASS_DECL_AXIS command_target :
    virtual public command_target_interface
 {
 public:
@@ -208,7 +208,7 @@ namespace user
 }
 
 
-class CLASS_DECL_BASE cmd_ui :
+class CLASS_DECL_AXIS cmd_ui :
    public ::user::check_interface
 {
 public:
@@ -307,7 +307,7 @@ enum __DISPMAP_FLAGS
 //IA64: __DISPMAP_ENTRY could be ordered more efficiently to reduce size
 // bloat from alignment
 #pragma warning( disable: 4121 )
-struct CLASS_DECL_BASE __DISPMAP_ENTRY
+struct CLASS_DECL_AXIS __DISPMAP_ENTRY
 {
    const char * lpszName;       // member/property name
    long lDispID;           // DISPID (may be DISPID_UNKNOWN)
@@ -320,7 +320,7 @@ struct CLASS_DECL_BASE __DISPMAP_ENTRY
 };
 #pragma warning( default: 4121 )
 
-struct CLASS_DECL_BASE __EVENTSINKMAP_ENTRY
+struct CLASS_DECL_AXIS __EVENTSINKMAP_ENTRY
 {
    __DISPMAP_ENTRY dispEntry;
    UINT nCtrlIDFirst;

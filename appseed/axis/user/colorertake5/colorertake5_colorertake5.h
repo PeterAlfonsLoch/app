@@ -5,7 +5,7 @@ namespace colorertake5
 {
 
 
-   class CLASS_DECL_BASE colorertake5 :
+   class CLASS_DECL_AXIS colorertake5 :
       virtual public ::base::departament
    {
    public:

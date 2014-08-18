@@ -79,14 +79,14 @@
 #include "collection_string_list.h"
 
 
-class CLASS_DECL_BASE map_word_to_ptr :
+class CLASS_DECL_AXIS map_word_to_ptr :
    virtual public map < WORD, WORD, void *, void * >
 {
 public:
    map_word_to_ptr(sp(::base::application) papp = NULL, ::count nBlockSize = 10);
 };
 
-class CLASS_DECL_BASE map_ptr_to_word :
+class CLASS_DECL_AXIS map_ptr_to_word :
    virtual public map < void *, void *, WORD, WORD >
 {
 public:
@@ -94,14 +94,14 @@ public:
 };
 
 
-class CLASS_DECL_BASE map_ptr_to_ptr :
+class CLASS_DECL_AXIS map_ptr_to_ptr :
    virtual public map < void *, void *, void *, void * >
 {
 public:
    map_ptr_to_ptr(sp(::base::application) papp = NULL, ::count nBlockSize = 10);
 };
 
-class CLASS_DECL_BASE map_word_to_ob :
+class CLASS_DECL_AXIS map_word_to_ob :
    virtual public map < WORD, WORD, object *, object * >
 {
 public:
@@ -109,14 +109,14 @@ public:
 };
 
 
-class CLASS_DECL_BASE map_string_to_ptr :
+class CLASS_DECL_AXIS map_string_to_ptr :
    virtual public map < string, const string &, void *, void * >
 {
 public:
    map_string_to_ptr(sp(::base::application) papp = NULL, ::count nBlockSize = 10);
 };
 
-class CLASS_DECL_BASE map_string_to_ob :
+class CLASS_DECL_AXIS map_string_to_ob :
    virtual public map < string, const string &, object *, object * >
 {
 public:
@@ -131,22 +131,22 @@ public:
 //#include "collection_bit_array.h"
 #include "collection_string_array.h"
 
-//#include "base/datetime/datetime_time.h"
+//#include "axis/datetime/datetime_time.h"
 
-#include "base/primitive/primitive_var.h"
+#include "axis/primitive/primitive_var.h"
 
 #include "collection_stringa.h"
 
 
 #include "collection_var_array.h"
-#include "base/primitive/primitive_property.h"
+#include "axis/primitive/primitive_property.h"
 
 
 
 
-#include "base/primitive/primitive_signal.h"
-#include "base/primitive/primitive_property_set.h"
-#include "base/primitive/primitive_relation_set.h"
+#include "axis/primitive/primitive_signal.h"
+#include "axis/primitive/primitive_property_set.h"
+#include "axis/primitive/primitive_relation_set.h"
 
 
 #include "collection_point_array.h"
@@ -161,8 +161,8 @@ public:
 
 
 
-typedef CLASS_DECL_BASE spa(uint_array) dword_2darray;
-typedef CLASS_DECL_BASE spa(index_array) index_2darray;
+typedef CLASS_DECL_AXIS spa(uint_array) dword_2darray;
+typedef CLASS_DECL_AXIS spa(index_array) index_2darray;
 
 
 
@@ -182,7 +182,7 @@ typedef CLASS_DECL_BASE spa(index_array) index_2darray;
 
 #include "collection_priority_queue.h"
 
-class CLASS_DECL_BASE time_array :
+class CLASS_DECL_AXIS time_array :
    public array < ::datetime::time, ::datetime::time & >
 {
 };

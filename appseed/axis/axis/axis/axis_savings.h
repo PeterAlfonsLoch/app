@@ -18,7 +18,7 @@ namespace base
    };
    
 
-   class CLASS_DECL_BASE savings :
+   class CLASS_DECL_AXIS savings :
       virtual public ::object
    {
    public:

@@ -70,13 +70,13 @@ extern mutex * g_pmutexThreadHandleLock;
 
 #if defined(APPLEOS)
 
-#include "base/os/macos/macos_window_impl.h"
+#include "axis/os/macos/macos_window_impl.h"
 
 extern oswindow_dataptra * g_poswindowdataptra;
 
 #elif defined(APPLE_IOS)
 
-#include "base/os/ios/ios_window_impl.h"
+#include "axis/os/ios/ios_window_impl.h"
 
 extern oswindow_dataptra * g_poswindowdataptra;
 
@@ -99,7 +99,7 @@ namespace base
    {
 
       
-      CLASS_DECL_BASE void init()
+      CLASS_DECL_AXIS void init()
       {
    
          xxdebug_box("base.dll base_static_start (0)", "box", MB_OK);
@@ -210,8 +210,8 @@ namespace base
    
 #endif // defined(APPLEOS)
    
-         // IMPLEMENT_BASE_FIXED_ALLOC_CONSTRUCTOR(var, 1024)
-         // IMPLEMENT_BASE_FIXED_ALLOC_CONSTRUCTOR(property, 1024)
+         // IMPLEMENT_AXIS_FIXED_ALLOC_CONSTRUCTOR(var, 1024)
+         // IMPLEMENT_AXIS_FIXED_ALLOC_CONSTRUCTOR(property, 1024)
 
          ::str::international::g_pmapRTL = new ::map < ::id,const ::id &,::id,const ::id & >();
 
@@ -266,7 +266,7 @@ namespace base
       
 
       
-      CLASS_DECL_BASE void term()
+      CLASS_DECL_AXIS void term()
       {
 
          delete g_pmutexFactory;
@@ -281,8 +281,8 @@ namespace base
 
          ::str::international::g_pmapRTL = NULL;
    
-         // IMPLEMENT_BASE_FIXED_ALLOC_DESTRUCTOR(property)
-         // IMPLEMENT_BASE_FIXED_ALLOC_DESTRUCTOR(var)
+         // IMPLEMENT_AXIS_FIXED_ALLOC_DESTRUCTOR(property)
+         // IMPLEMENT_AXIS_FIXED_ALLOC_DESTRUCTOR(var)
 
 #if defined(LINUX) || defined(APPLEOS)
    

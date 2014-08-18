@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_BASE stream_get_size :
+   class CLASS_DECL_AXIS stream_get_size :
       virtual public ::object
    {
    public:
@@ -20,7 +20,7 @@ namespace file
    };
 
 
-   class CLASS_DECL_BASE seekable :
+   class CLASS_DECL_AXIS seekable :
       virtual public ::object
    {
    public:

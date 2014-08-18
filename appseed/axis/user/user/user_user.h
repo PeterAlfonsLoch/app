@@ -9,7 +9,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE user :
+   class CLASS_DECL_AXIS user :
       virtual public ::base::departament
    {
    public:

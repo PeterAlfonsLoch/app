@@ -2,7 +2,7 @@
 
 /*
 
-class CLASS_DECL_BASE ptr_array :
+class CLASS_DECL_AXIS ptr_array :
    virtual public comparable_raw_array < void * >::type
 {
 public:
@@ -165,42 +165,42 @@ public:
 
 
 /////////////////////////////////////////////////////////////////////////////
-// CTypedPtrArray<BASE_CLASS, POINTER>
+// CTypedPtrArray<AXIS_CLASS, POINTER>
 
-template < class POINTER, class BASE_CLASS = ptr_array>
+template < class POINTER, class AXIS_CLASS = ptr_array>
 class typed_ptr_array :
-   public BASE_CLASS
+   public AXIS_CLASS
 {
 public:
 	// Accessing elements
 	POINTER GetAt(int_ptr nIndex) const
-		{ return (POINTER)BASE_CLASS::GetAt(nIndex); }
+		{ return (POINTER)AXIS_CLASS::GetAt(nIndex); }
 	POINTER& ElementAt(int_ptr nIndex)
-		{ return (POINTER&)BASE_CLASS::ElementAt(nIndex); }
+		{ return (POINTER&)AXIS_CLASS::ElementAt(nIndex); }
 	void SetAt(int_ptr nIndex, POINTER ptr)
-		{ BASE_CLASS::SetAt(nIndex, ptr); }
+		{ AXIS_CLASS::SetAt(nIndex, ptr); }
 
 	// Potentially growing the array
 	void SetAtGrow(int_ptr nIndex, POINTER newElement)
-		{ BASE_CLASS::SetAtGrow(nIndex, newElement); }
+		{ AXIS_CLASS::SetAtGrow(nIndex, newElement); }
 	int_ptr add(POINTER newElement)
-		{ return BASE_CLASS::add(newElement); }
-	int_ptr Append(const typed_ptr_array<POINTER, BASE_CLASS>& src)
-		{ return BASE_CLASS::Append(src); }
-	void Copy(const typed_ptr_array<POINTER, BASE_CLASS>& src)
-		{ BASE_CLASS::Copy(src); }
+		{ return AXIS_CLASS::add(newElement); }
+	int_ptr Append(const typed_ptr_array<POINTER, AXIS_CLASS>& src)
+		{ return AXIS_CLASS::Append(src); }
+	void Copy(const typed_ptr_array<POINTER, AXIS_CLASS>& src)
+		{ AXIS_CLASS::Copy(src); }
 
 	// Operations that move elements around
 	void InsertAt(int_ptr nIndex, POINTER newElement, int_ptr nCount = 1)
-		{ BASE_CLASS::InsertAt(nIndex, newElement, nCount); }
-	void InsertAt(int_ptr nStartIndex, typed_ptr_array<BASE_CLASS, POINTER>* pNewArray)
-		{ BASE_CLASS::InsertAt(nStartIndex, pNewArray); }
+		{ AXIS_CLASS::InsertAt(nIndex, newElement, nCount); }
+	void InsertAt(int_ptr nStartIndex, typed_ptr_array<AXIS_CLASS, POINTER>* pNewArray)
+		{ AXIS_CLASS::InsertAt(nStartIndex, pNewArray); }
 
 	// overloaded operator helpers
 	POINTER operator[](int_ptr nIndex) const
-		{ return (POINTER)BASE_CLASS::operator[](nIndex); }
+		{ return (POINTER)AXIS_CLASS::operator[](nIndex); }
 	POINTER& operator[](int_ptr nIndex)
-		{ return (POINTER&)BASE_CLASS::operator[](nIndex); }
+		{ return (POINTER&)AXIS_CLASS::operator[](nIndex); }
 };
 
 
