@@ -849,15 +849,9 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 #include "axis/filesystem/file/file_buffered_buffer.h"
 
 
-#include "axis/compress/compress.h"
-
-
 #include "axis_machine_event_data.h"
 #include "axis_machine_event.h"
 #include "axis_machine_event_central.h"
-
-#include "axis/crypto/crypto.h"
-
 
 #include "primitive/datetime/datetime_value.h"
 #include "primitive/datetime/datetime_departament.h"

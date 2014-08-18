@@ -52,11 +52,6 @@ namespace base
 
 #endif
 
-#ifdef BSD_STYLE_SOCKETS
-
-      ::sockets::SSLInitializer *                    m_psslinit;
-
-#endif
 
       ::user::interaction *                      m_psimpleui;
       os_data *                                    m_posdata;
@@ -65,7 +60,6 @@ namespace base
       stridsp(type)                                m_typemap;
       spa(service_base)                            m_serviceptra;
       sp(base_factory)                             m_pfactory;
-      ::url::departament                           m_urldepartament;
       sp(class ::xml::departament)                 m_pxml;
       const id_pool                                m_cidpool;
       sp(class ::base::log)                        m_plog;
@@ -80,20 +74,12 @@ namespace base
       static class id                              idEmpty;
       class ::str::base64                          m_base64;
 
-      ::file::system_sp                            m_spfile;
-      ::file::dir::system_sp                       m_spdir;
-      sp(::sockets::net)                           m_spnet;
-      ::net::port_forward_sp                       m_spportforward;
-      ::http::system                               m_httpsystem;
       ::string_to_string                           m_mapAppLibrary;
       class machine_event_central *                m_pmachineeventcentral;
-      class ::fontopus::user_set                   m_userset;
-      ::crypto::crypto_sp                          m_spcrypto;
       sp(class ::datetime::departament)            m_pdatetime;
       string_map < int_to_string >                 m_mapEnumToName;
       string_map < string_to_int >                 m_mapNameToEnum;
       ::user::window_draw *                        m_ptwf;
-      class ::base::compress                       m_compress;
       sp(::user::str)                              m_puserstr;
       sp(::install::install)                       m_spinstall;
       ::base::os_sp                                m_spos;
@@ -182,21 +168,12 @@ namespace base
 
       class ::base::os                             & os();
       class base_factory                           & factory();
-      inline ::url::departament                    & url()     { return m_urldepartament; }
       ::xml::departament                           & xml();
       class ::str::base64                          & base64();
 
       class ::base::log                            & log();
 
-      inline class ::http::system                  & http()    { return m_httpsystem; }
-      inline ::file::system                        & file()    { return *m_spfile; }
-      inline ::file::dir::system                   & dir()     { return *m_spdir; }
-      class ::sockets::net                         & net();
-      class ::base::compress                       & compress();
       class ::machine_event_central                & machine_event_central();
-      ::fontopus::user_set                         & userset();
-
-      class ::crypto::crypto                       & crypto();
       ::datetime::departament                      & datetime();
       ::user::str                                  & str();
       ::install::install                           & install() { return *m_spinstall; }
