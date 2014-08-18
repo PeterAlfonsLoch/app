@@ -16,7 +16,7 @@ namespace primitive
 
 
       sp(memory_base)                        m_spmemory;
-      primitive_array < void ** >            m_vppa;
+      raw_array < void ** >                  m_vppa;
       memory_size                            m_dwAllocationAddUp;
 
 

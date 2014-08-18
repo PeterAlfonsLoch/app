@@ -555,16 +555,6 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 #include "primitive/primitive_interlocked_long_pulse.h"
 
 
-#include "axis_departament.h"
-#include "axis_departament_container.h"
-#include "axis_live_object.h"
-#include "axis_live_signal.h"
-
-
-//#include "primitive/primitive_job.h"
-
-
-
 
 #include "axis_log.h"
 #include "axis_trace.h"
@@ -595,15 +585,9 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 
 
 
-//#include "user/user/user_window_map.h"
-
-//#include "user/user/user_keyboard_layout.h"
-//#include "user/user/user_keyboard.h"
-//#include "user/user/user_user.h"
-
 #include "axis_main_init_data.h"
 
-
+#include "axis_live_object.h"
 #include "axis_application_interface.h"
 #include "axis_application.h"
 
@@ -611,18 +595,14 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 #include "axis_gudo_application.h"
 
 
-#include "axis_application_signal_details.h"
-
 #include "axis_session_interface.h"
 #include "axis_session.h"
 
-#include "axis/net/net_url_departament.h"
 #include "axis/net/net_url_domain.h"
 
 
 
 
-#include "axis/primitive/primitive_application_bias.h"
 #include "axis/exception/exception_engine.h"
 
 #include "axis_fixed_alloc_impl.h"
@@ -641,7 +621,6 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 
 
 #include "primitive/datetime/datetime_value.h"
-#include "primitive/datetime/datetime_departament.h"
 
 
 #include "axis/primitive/str/str_international_locale_schema.h"

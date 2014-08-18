@@ -246,7 +246,6 @@ namespace axis
 
       virtual bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
-      virtual void _001OnFileNew(signal_details * pobj);
 
 
 

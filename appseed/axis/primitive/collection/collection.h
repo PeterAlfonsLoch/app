@@ -102,8 +102,6 @@ public:
 #include "collection_string_array.h"
 
 
-#include "axis/primitive/primitive_signal.h"
-
 
 
 
@@ -115,12 +113,10 @@ public:
 
 
 
-#include "collection_id_array.h"
 
 #include "collection_bitset.h"
 
 #include "collection_packset.h"
-
 
 #include "collection_deque.h"
 
@@ -128,21 +124,7 @@ public:
 
 #include "collection_priority_queue.h"
 
-class CLASS_DECL_AXIS time_array :
-   public array < ::datetime::time, ::datetime::time & >
-{
-};
-
-
 #include "collection_lemon_array.h"
-
-
-
-
-
-
-
-#include "collection_unique_array.h"
 
 #include "collection_stack.h"
 

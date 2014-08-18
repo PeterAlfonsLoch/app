@@ -26,7 +26,6 @@ CLASS_DECL_AXIS void do_events(const duration & duration);
 
 #include "multithreading_sync_object.h"
 #include "multithreading_event_base.h"
-#include "multithreading_event_collection.h"
 #include "multithreading_semaphore.h"
 #include "multithreading_mutex.h"
 #include "multithreading_event.h"
@@ -42,9 +41,6 @@ CLASS_DECL_AXIS void do_events(const duration & duration);
 #include "multithreading_multi_lock.h"
 #include "multithreading_retry_multi_lock.h"
 
-#include "multithreading_synch_index_ptr_array.h"
-#include "multithreading_synch_index_iterator.h"
-#include "multithreading_synch_ptr_array.h"
 
 #ifdef ___ENABLE_INLINES
 #define _AFXMT_INLINE inline

@@ -23,7 +23,7 @@ protected:
 
    raw_index_array                      stackLowerBound;
    raw_index_array                      stackUpperBound;
-   array < id, const id & >     m_ida; // ordered as added
+   raw_array < id, const id & >         m_ida; // ordered as added
    raw_index_array                      m_iaStr; // ordered by chType and strcmp
 
    void sort();
@@ -57,7 +57,7 @@ protected:
 
    raw_index_array                      stackLowerBound;
    raw_index_array                      stackUpperBound;
-   array < const char * >           m_idptra; // ordered as added
+   raw_array < const char * >           m_idptra; // ordered as added
    raw_index_array                      m_iaId; // ordered by id_cmp
 
    

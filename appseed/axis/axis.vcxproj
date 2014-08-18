@@ -2702,7 +2702,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\collection\collection_decl.h" />
     <ClInclude Include="primitive\collection\collection_deque.h" />
     <ClInclude Include="primitive\collection\collection_elements.h" />
-    <ClInclude Include="primitive\collection\collection_id_array.h" />
     <ClInclude Include="primitive\collection\collection_int_map.h" />
     <ClInclude Include="primitive\collection\collection_iterator.h" />
     <ClInclude Include="primitive\collection\collection_key_sort_array.h" />
@@ -2735,7 +2734,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\collection\collection_typed_pointer_map.h" />
     <ClInclude Include="primitive\collection\collection_typed_ptr_array.h" />
     <ClInclude Include="primitive\collection\collection_typed_ptr_list.h" />
-    <ClInclude Include="primitive\collection\collection_unique_array.h" />
     <ClInclude Include="primitive\collection\collection_var_array.h" />
     <ClInclude Include="primitive\comparison\comparison.h" />
     <ClInclude Include="primitive\comparison\comparison_binary.h" />

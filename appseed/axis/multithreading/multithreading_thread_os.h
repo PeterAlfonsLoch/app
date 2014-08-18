@@ -65,8 +65,8 @@ public:
 
 #endif
 
-   static mutex *                  s_pmutex;
-   static comparable_raw_array < os_thread * >::type *  s_pptra;
+   static mutex *                         s_pmutex;
+   static raw_array < os_thread * >       s_pptra;
 
 
    os_thread(uint32_t ( * pfn)(void *), void * pv);
@@ -231,8 +231,8 @@ namespace multithreading
 
    CLASS_DECL_AXIS uint32_t __on_thread_finally(thread * pthread);
 
-   CLASS_DECL_AXIS extern comparable_array < HTHREAD > * s_phaThread;
-   CLASS_DECL_AXIS extern comparable_array < thread * > * s_pthreadptra;
+   CLASS_DECL_AXIS extern raw_array < HTHREAD > * s_phaThread;
+   CLASS_DECL_AXIS extern raw_array < thread * > * s_pthreadptra;
    CLASS_DECL_AXIS extern mutex * s_pmutex;
 
 
