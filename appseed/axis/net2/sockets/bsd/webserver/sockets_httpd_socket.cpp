@@ -212,7 +212,7 @@ namespace sockets
          }
 
 
-         string strFile = System.dir().path(System.dir().name(m_strCat), strTitle + ".dh" + ::str::from(keylength) + ".pem");
+         string strFile = ::dir_path(Application.dir_name(m_strCat), strTitle + ".dh" + ::str::from(keylength) + ".pem");
 
          FILE * paramfile = fopen(strFile, "r");
 

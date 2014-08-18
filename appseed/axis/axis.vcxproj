@@ -1677,6 +1677,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\axis\axis_id_pool.h" />
     <ClInclude Include="axis\axis\axis_international.h" />
     <ClInclude Include="axis\axis\axis_keep.h" />
+    <ClInclude Include="axis\axis\axis_net.h" />
     <ClInclude Include="axis\axis\axis_print_job.h" />
     <ClInclude Include="axis\axis\axis_progress.h" />
     <ClInclude Include="axis\axis\axis_keep_true.h" />
@@ -2901,6 +2902,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\axis\axis_gudo.cpp" />
     <ClCompile Include="axis\axis\axis_id_pool.cpp" />
     <ClCompile Include="axis\axis\axis_library.cpp" />
+    <ClCompile Include="axis\axis\axis_net.cpp" />
     <ClCompile Include="axis\axis\axis_print_job.cpp" />
     <ClCompile Include="axis\axis\axis_session_interface.cpp" />
     <ClCompile Include="axis\axis\axis_static_start.cpp" />

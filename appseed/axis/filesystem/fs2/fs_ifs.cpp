@@ -331,7 +331,7 @@ bool ifs::is_dir(const char * pszPath)
          stringa straTitle;
          int64_array iaSize;
          bool_array baDir;
-         ls(System.dir().name(strPath), &straPath, &straTitle, &iaSize, &baDir);
+         ls(Application.dir_name(strPath), &straPath, &straTitle, &iaSize, &baDir);
       }
       else
       {
@@ -347,7 +347,7 @@ bool ifs::is_dir(const char * pszPath)
          stringa straTitle;
          int64_array iaSize;
          bool_array baDir;
-         ls(System.dir().name(strPath),&straPath,&straTitle,&iaSize, &baDir);
+         ls(Application.dir_name(strPath),&straPath,&straTitle,&iaSize, &baDir);
          if(m_mapdirTimeout.Lookup(strPath, dwTimeout))
          {
             return true;

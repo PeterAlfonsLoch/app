@@ -190,6 +190,12 @@ namespace axis
 
       ::file::binary_buffer_sp file_get_file(var varFile,uint32_t uiFlags);
 
+      virtual bool on_ui_mouse_message(::message::mouse * pmouse);
+
+
+      virtual bool is_licensed(const char * pszId,bool bInteractive = true);
+
+
 
 
    };

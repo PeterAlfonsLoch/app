@@ -1217,39 +1217,10 @@ namespace windows
          pbase->m_uiMessage == WM_NCMOUSEMOVE ||
          pbase->m_uiMessage == WM_MOUSEWHEEL)
       {
-         // user presence status activity reporting
-         if(pbase->m_uiMessage == WM_LBUTTONDOWN
-            || pbase->m_uiMessage == WM_RBUTTONDOWN
-            || pbase->m_uiMessage == WM_MBUTTONDOWN
-            || pbase->m_uiMessage == WM_MOUSEMOVE)
-         {
-
-            if(&session() != NULL && session().fontopus() != NULL && session().fontopus()->m_puser != NULL)
-            {
-
-               if(ApplicationUser.m_ppresence != NULL)
-               {
-
-                  try
-                  {
-
-                     ApplicationUser.m_ppresence->report_activity();
-
-                  }
-                  catch(...)
-                  {
-
-                  }
-
-               }
-
-            }
-
-         }
 
          message::mouse * pmouse = (::message::mouse *) pbase;
 
-         session().m_ptCursor = pmouse->m_pt;
+         session().on_ui_mouse_message(pmouse);
 
          if(m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
          {

@@ -326,9 +326,9 @@ namespace xml
 //   bool system::output(sp(::axis::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,const char *),const char * lpszSource)
 //   {
 //
-//      System.dir().mk(System.dir().name(pszOutput),papp);
+//      System.dir().mk(Application.dir_name(pszOutput),papp);
 //
-//      ::file::binary_buffer_sp fileOut = papp->m_pbasesession->file().get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
+//      ::file::binary_buffer_sp fileOut = papp->m_pbasesession->file_get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
 //
 //      if(fileOut.is_null())
 //         return false;
@@ -344,14 +344,14 @@ namespace xml
 //   bool system::output(sp(::axis::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),const char * lpszInput)
 //   {
 //
-//      System.dir().mk(System.dir().name(pszOutput),papp);
+//      System.dir().mk(Application.dir_name(pszOutput),papp);
 //
-//      ::file::binary_buffer_sp fileOut = papp->m_pbasesession->file().get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
+//      ::file::binary_buffer_sp fileOut = papp->m_pbasesession->file_get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
 //
 //      if(fileOut.is_null())
 //         return false;
 //
-//      ::file::binary_buffer_sp fileIn = papp->m_pbasesession->file().get_file(lpszInput,::file::type_binary | ::file::mode_read);
+//      ::file::binary_buffer_sp fileIn = papp->m_pbasesession->file_get_file(lpszInput,::file::type_binary | ::file::mode_read);
 //
 //      if(fileIn.is_null())
 //         return false;

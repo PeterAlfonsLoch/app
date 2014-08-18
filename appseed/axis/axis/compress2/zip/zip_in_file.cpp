@@ -610,11 +610,11 @@ namespace zip
    void InFile::add_file(const char * pszDir, const char * pszRelative)
    {
 
-      string strPath(System.dir().path(pszDir, pszRelative));
+      string strPath(::dir_path(pszDir, pszRelative));
 
       ::file::binary_buffer_sp file;
 
-      file = Application.file().get_file(strPath, ::file::mode_read | ::file::type_binary);
+      file = Application.file_get_file(strPath, ::file::mode_read | ::file::type_binary);
 
       if(file.is_null())
          throw "failed to open file for compressing";

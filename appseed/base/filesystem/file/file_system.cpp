@@ -86,12 +86,7 @@ namespace file
 
    bool system::path::is_relative(const char * psz)
    {
-      string strPath(psz);
-      if(strPath.find(':') != -1 && strPath.find(':') < 10)
-         return false;
-      if(strPath.find('/') == 0 || strPath.find('\\') == 0)
-         return false;
-      return true;
+      return file_path_is_relative_dup(psz);
    }
 
    void system::get_ascendants_path(const char * lpcsz, stringa & straParam)

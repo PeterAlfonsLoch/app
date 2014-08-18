@@ -127,7 +127,7 @@ void ssl_sigpipe_handle( int x ) {
          memstorage.get_data()[i+2] = (iValue >> 16) & 0xff;
       }*/
 
-      /*m_rand_file = System.file().time_square();
+      /*m_rand_file = Application.file_time_square();
       //*path = 0;
       //RAND_file_name(path, 512);
       //if (*path)

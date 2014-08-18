@@ -587,13 +587,13 @@ void property_set::_parse_url_query(const char * pszUrlQuery)
       {
          if(pszKeyEnd == NULL)
          {
-            strKey = System.url().url_decode(pszParam, strlen(pszUrlQuery) - (pszParam - pszUrlQuery));
+            strKey = url_decode_dup(pszParam, strlen(pszUrlQuery) - (pszParam - pszUrlQuery));
             _008Add(strKey, "");
          }
          else
          {
-            string strKey = System.url().url_decode(pszParam, pszKeyEnd - pszParam);
-            string strValue = System.url().url_decode(pszKeyEnd + 1, strlen(pszUrlQuery) - (pszKeyEnd + 1 - pszUrlQuery));
+            string strKey = url_decode_dup(pszParam, pszKeyEnd - pszParam);
+            string strValue = url_decode_dup(pszKeyEnd + 1, strlen(pszUrlQuery) - (pszKeyEnd + 1 - pszUrlQuery));
             _008Add(strKey, strValue);
          }
          return;
@@ -602,13 +602,13 @@ void property_set::_parse_url_query(const char * pszUrlQuery)
       {
          if(pszKeyEnd == NULL || pszKeyEnd > pszParamEnd)
          {
-            strKey = System.url().url_decode(pszParam, pszParamEnd - pszParam);
+            strKey = url_decode_dup(pszParam, pszParamEnd - pszParam);
             _008Add(strKey, "");
          }
          else
          {
-            string strKey = System.url().url_decode(pszParam, pszKeyEnd - pszParam);
-            string strValue = System.url().url_decode(pszKeyEnd + 1, pszParamEnd - (pszKeyEnd + 1));
+            string strKey = url_decode_dup(pszParam, pszKeyEnd - pszParam);
+            string strValue = url_decode_dup(pszKeyEnd + 1, pszParamEnd - (pszKeyEnd + 1));
             _008Add(strKey, strValue);
          }
       }
@@ -1048,54 +1048,4 @@ string property_set::get_http_post()
 
 
 
-CLASS_DECL_AXIS string url_decode_dup(const char * psz)
-{
-   string str(psz);
-
-   string strDecode;
-
-   str.replace("+"," ");
-
-   strsize iStart = 0;
-
-   while(true)
-   {
-
-      strsize iFind = str.find("%",iStart);
-
-      if(iFind == -1)
-      {
-         strDecode += str.Mid(iStart);
-         break;
-      }
-
-      strDecode += str.Mid(iStart,iFind - iStart);
-
-      if(str[iFind + 1] == '%')
-      {
-
-         strDecode += "%";
-         iStart = iFind + 2;
-
-      }
-      else
-      {
-
-         char ch = (char)strtol(str.Mid(iFind + 1,2),NULL,16);
-
-         if(ch != 0)
-         {
-            strDecode += ch;
-         }
-
-         iStart = iFind + 3;
-
-      }
-
-
-   }
-
-   return strDecode;
-
- 
 }

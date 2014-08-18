@@ -20,7 +20,7 @@ namespace mac
    string crypto::get_crypt_key_file_path()
    {
 
-      return System.dir().path(getenv("home"), ".ca2/cryptkey");
+      return ::dir_path(getenv("home"), ".ca2/cryptkey");
 
    }
 

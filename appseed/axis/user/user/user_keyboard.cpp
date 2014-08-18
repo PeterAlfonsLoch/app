@@ -94,11 +94,11 @@ namespace user
          string strPath;
 
 #ifdef LINUX
-      strPath = Application.dir().matter("keyboard/linux/default.xml");
+      strPath = Application.dir_matter("keyboard/linux/default.xml");
 #elif defined(APPLEOS)
-      strPath = Application.dir().matter("keyboard/macos/default.xml");
+      strPath = Application.dir_matter("keyboard/macos/default.xml");
 #else
-      strPath = Application.dir().matter("keyboard/windows/default.xml");
+      strPath = Application.dir_matter("keyboard/windows/default.xml");
 #endif
 
       if(!Application.file().exists(strPath))
@@ -122,7 +122,7 @@ namespace user
 
       sp(type) typeinfoKey = System.type_info < ::user::e_key > ();
 
-      string str = Application.file().as_string(pszPath);
+      string str = Application.file_as_string(pszPath);
 
       if(str.is_empty())
       {
@@ -295,7 +295,7 @@ namespace user
 
 #endif
 
-      string strPath = Application.dir().matter("keyboard layout/en_us_international.xml");
+      string strPath = Application.dir_matter("keyboard layout/en_us_international.xml");
 
       if(Application.file().exists(strPath))
       {
@@ -315,7 +315,7 @@ namespace user
       if(!Application.file().exists(pszPath))
          return false;
 
-      string str = Application.file().as_string(pszPath);
+      string str = Application.file_as_string(pszPath);
 
       if(str.is_empty())
          return false;

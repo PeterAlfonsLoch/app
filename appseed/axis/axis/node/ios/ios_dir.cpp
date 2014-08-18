@@ -336,7 +336,7 @@ namespace ios
             for(index i = iStart; i < pstraRelative->get_size(); i++)
             {
                
-               pstraRelative->element_at(i) = System.dir().path(System.file().name_(strDir), pstraRelative->element_at(i));
+               pstraRelative->element_at(i) = ::dir_path(System.file().name_(strDir), pstraRelative->element_at(i));
                
             }
             
@@ -490,7 +490,7 @@ namespace ios
             for(index i = iStart; i < pstraRelative->get_size(); i++)
             {
                
-               pstraRelative->element_at(i) = System.dir().path(strPath, pstraRelative->element_at(i));
+               pstraRelative->element_at(i) = ::dir_path(strPath, pstraRelative->element_at(i));
                
             }
             
@@ -1145,7 +1145,7 @@ namespace ios
       
       string strPath = appdata("configuration\\directory.xml");
       
-      string strDocument = Application.file().as_string(strPath);
+      string strDocument = Application.file_as_string(strPath);
       
       if(doc.load(strDocument))
       {

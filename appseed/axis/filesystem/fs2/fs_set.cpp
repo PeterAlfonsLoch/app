@@ -276,7 +276,7 @@ namespace fs
          return pdata->dir_path(pszPath1, pszPath2);
       }
 
-      return System.dir().path(pszPath1, pszPath2);
+      return ::dir_path(pszPath1, pszPath2);
 
    }
 

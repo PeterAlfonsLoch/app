@@ -61,7 +61,7 @@ namespace zip
          while(true)
          {
             //string strPathBuffer;
-            //System.file().time_square(strPathBuffer);      // buffer for path
+            //Application.file_time_square(strPathBuffer);      // buffer for path
 
 
              CHAR szTitle[_MAX_PATH];
@@ -289,7 +289,7 @@ namespace zip
       if(lpszExtractFileName == NULL)
          return true;
 
-      ::file::binary_buffer_sp spfile = sess(papp).file().get_file(lpszExtractFileName, ::file::mode_create | ::file::mode_write | ::file::defer_create_directory);
+      ::file::binary_buffer_sp spfile = sess(papp).file_get_file(lpszExtractFileName, ::file::mode_create | ::file::mode_write | ::file::defer_create_directory);
 
       if(spfile.is_set())
       {
@@ -342,7 +342,7 @@ namespace zip
             else if(infile.locate(strTitle))
             {
 
-               ::file::binary_buffer_sp spfile = sess(pfile->get_app()).file().get_file(
+               ::file::binary_buffer_sp spfile = sess(pfile->get_app()).file_get_file(
                   Sys(pfile->get_app()).dir().path(pszDir, strTitle),
                   ::file::mode_create | ::file::mode_write | ::file::defer_create_directory);
 

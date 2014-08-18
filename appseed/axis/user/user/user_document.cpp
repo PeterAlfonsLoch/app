@@ -425,7 +425,7 @@ namespace user
       try
       {
 
-         spfile = Application.file().get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary);
+         spfile = Application.file_get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary);
 
          /*if(::str::begins_ci(varFile, "uifs://"))
          {
@@ -480,7 +480,7 @@ namespace user
       try
       {
 
-         spfile = Application.file().get_file(varFile, ::file::defer_create_directory | ::file::mode_create | ::file::mode_write | ::file::share_exclusive);
+         spfile = Application.file_get_file(varFile, ::file::defer_create_directory | ::file::mode_create | ::file::mode_write | ::file::share_exclusive);
 
       }
       catch (::exception::axis & e)

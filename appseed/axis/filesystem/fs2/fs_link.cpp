@@ -155,7 +155,7 @@ namespace fs
       while(iCount > 0)
       {
 
-         strPath = System.dir().name(strPath);
+         strPath = Application.dir_name(strPath);
 
          iCount--;
 
@@ -177,7 +177,7 @@ namespace fs
    string link::dir_path(const char * psz1,const char * psz2)
    {
 
-      return System.dir().path(psz1,psz2);
+      return ::dir_path(psz1,psz2);
 
    }
 
@@ -261,7 +261,7 @@ namespace fs
          CSIDL_PROFILE,
          FALSE);
 
-      m_strPath = System.dir().path(strSourceFolder,"links");
+      m_strPath = ::dir_path(strSourceFolder,"links");
 
 #endif
 

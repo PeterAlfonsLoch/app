@@ -77,4 +77,15 @@ string file_name_dup(const char * path)
 }
 
 
+int_bool file_path_is_relative_dup(const char * psz)
+{
 
+   string strPath(psz);
+   if(strPath.find(':') != -1 && strPath.find(':') < 10)
+      return false;
+   if(strPath.find('/') == 0 || strPath.find('\\') == 0)
+      return false;
+   return true;
+
+
+}

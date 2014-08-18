@@ -779,8 +779,6 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 #endif
 
 
-#include "axis/programming/javascript/javascript.h"
-
 #include "axis/user/userpresence/userpresence.h"
 #include "axis/primitive/primitive_factory.h"
 
@@ -831,7 +829,7 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 
 
 
-
+#include "axis_net.h"
 
 
 
@@ -1207,9 +1205,9 @@ template < class T >
 bool ::file::system::output(sp(::axis::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, const char *), const char * lpszSource)
 {
 
-App(papp).dir().mk(System.dir().name(pszOutput));
+App(papp).dir().mk(Application.dir_name(pszOutput));
 
-::file::binary_buffer_sp fileOut = sess(papp).file().get_file(pszOutput, ::file::mode_create | ::file::type_binary | ::file::mode_write);
+::file::binary_buffer_sp fileOut = sess(papp).file_get_file(pszOutput, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
 if(fileOut.is_null())
 return false;
@@ -1225,18 +1223,18 @@ template < class T >
 bool ::file::system::output(sp(::axis::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, ::file::input_stream &), const char * lpszInput)
 {
 
-App(papp).dir().mk(System.dir().name(pszOutput));
+App(papp).dir().mk(Application.dir_name(pszOutput));
 
 string strDownloading = pszOutput;
 
 strDownloading += ".downloading";
 
-::file::binary_buffer_sp fileOut = sess(papp).file().get_file(strDownloading, ::file::mode_create | ::file::type_binary | ::file::mode_write);
+::file::binary_buffer_sp fileOut = sess(papp).file_get_file(strDownloading, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
 if(fileOut.is_null())
 return false;
 
-::file::binary_buffer_sp fileIn = sess(papp).file().get_file(lpszInput, ::file::type_binary | ::file::mode_read);
+::file::binary_buffer_sp fileIn = sess(papp).file_get_file(lpszInput, ::file::type_binary | ::file::mode_read);
 
 if(fileIn.is_null())
 return false;

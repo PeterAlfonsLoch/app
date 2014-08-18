@@ -339,7 +339,7 @@ namespace android
             for(index i = iStart; i < pstraRelative->get_size(); i++)
             {
 
-               pstraRelative->element_at(i) = System.dir().path(System.file().name_(strDir), pstraRelative->element_at(i));
+               pstraRelative->element_at(i) = ::dir_path(System.file().name_(strDir), pstraRelative->element_at(i));
 
             }
 
@@ -500,7 +500,7 @@ namespace android
             for(index i = iStart; i < pstraRelative->get_size(); i++)
             {
 
-               pstraRelative->element_at(i) = System.dir().path(strPath, pstraRelative->element_at(i));
+               pstraRelative->element_at(i) = ::dir_path(strPath, pstraRelative->element_at(i));
 
             }
 
@@ -1153,7 +1153,7 @@ namespace android
 
       xml::document doc(get_app());
 
-      doc.load(Application.file().as_string(appdata("configuration\\directory.xml")));
+      doc.load(Application.file_as_string(appdata("configuration\\directory.xml")));
 
       if(doc.get_root()->get_name() == "directory_configuration")
       {

@@ -201,20 +201,8 @@ namespace base
 
 
 
-      virtual string matter_as_string(const char * pszMatter,const char * pszMatter2 = NULL);
-      virtual string dir_matter(const char * pszMatter,const char * pszMatter2 = NULL);
-      virtual bool is_inside_time_dir(const char * pszPath);
-      virtual bool file_is_read_only(const char * pszPath);
-      virtual string file_as_string(var varFile);
-      virtual string dir_path(const char * psz1,const char * psz2,const char * psz3 = NULL);
-      virtual string dir_name(const char * psz);
-      virtual bool dir_mk(const char * psz);
-      virtual string file_title(const char * psz);
-      virtual string file_name(const char * psz);
 
-      ::file::binary_buffer_sp file_get_file(var varFile,uint32_t uiFlags);
-
-
+      virtual bool on_ui_mouse_message(::message::mouse * pmouse);
 
    };
 

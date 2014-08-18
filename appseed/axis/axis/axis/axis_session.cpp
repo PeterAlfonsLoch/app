@@ -1133,7 +1133,7 @@ namespace axis
       if(file().exists(strPath))
       {
 
-         string strSystem = file().as_string(strPath);
+         string strSystem = file_as_string(strPath);
 
          ::xml::document docSystem(get_app());
 
@@ -1565,88 +1565,6 @@ namespace axis
    }
 
 
-   string session::matter_as_string(const char * pszMatter,const char * pszMatter2)
-   {
-
-      var varQuery;
-
-      varQuery["disable_ca2_sessid"] = true;
-
-      return file().as_string(dir_matter(pszMatter,pszMatter2),varQuery);
-
-   }
-
-   string session::dir_matter(const char * pszMatter,const char * pszMatter2)
-   {
-
-      return dir().matter(pszMatter,pszMatter2);
-
-   }
-
-   bool session::is_inside_time_dir(const char * pszPath)
-   {
-      throw not_implemented(this);
-      return false;
-   }
-
-   bool session::file_is_read_only(const char * pszPath)
-   {
-      throw not_implemented(this);
-      return false;
-   }
-
-   string session::file_as_string(var varFile)
-   {
-
-      if(::str::begins_ci(varFile.get_string(),"http://")
-         || ::str::begins_ci(varFile.get_string(),"https://"))
-      {
-
-         ::property_set set(get_app());
-
-         return http().get(varFile.get_string(),set);
-
-      }
-      else if(::str::begins_ci(varFile["url"].get_string(),"http://")
-         || ::str::begins_ci(varFile["url"].get_string(),"https://"))
-      {
-
-         ::property_set set(get_app());
-
-         return http().get(varFile["url"].get_string(),set);
-
-      }
-      else
-      {
-         return file_as_string_dup(varFile.get_string());
-      }
-
-   }
-
-   string session::dir_path(const char * psz1,const char * psz2,const char * psz3)
-   {
-      return ::dir::path(psz1,psz2,psz3);
-   }
-
-   string session::dir_name(const char * psz)
-   {
-      return ::dir::name(psz);
-   }
-
-   bool session::dir_mk(const char * psz)
-   {
-      return ::dir::mk(psz);
-   }
-
-   string session::file_title(const char * psz)
-   {
-      return ::file_title_dup(psz);
-   }
-   string session::file_name(const char * psz)
-   {
-      return ::file_name_dup(psz);
-   }
-
 
    bool session::is_key_pressed(::user::e_key ekey)
    {
@@ -1947,9 +1865,36 @@ namespace axis
    ::file::binary_buffer_sp session::file_get_file(var varFile,uint32_t uiFlags)
    {
 
-      return file().get_file(varFile,uiFlags);
+      return file_get_file(varFile,uiFlags);
 
    }
+
+
+   bool session::on_ui_mouse_message(::message::mouse * pmouse)
+   {
+
+      m_ptCursor = pmouse->m_pt;
+
+
+
+   }
+
+
+   string session::http_get_locale_schema(const char * pszUrl,const char * pszLocale,const char * pszSchema)
+   {
+
+      throw not_implemented(get_app());
+
+   }
+
+
+   bool session::is_licensed(const char * pszId,bool bInteractive)
+   {
+
+      throw not_implemented(get_app());
+
+   }
+
 
 
 

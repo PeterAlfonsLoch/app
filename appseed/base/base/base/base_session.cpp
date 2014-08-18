@@ -2044,6 +2044,41 @@ namespace base
    }
 
 
+   bool session::on_ui_mouse_message(::message::mouse * pmouse)
+   {
+
+      // user presence status activity reporting
+      if(pmouse->m_uiMessage == WM_LBUTTONDOWN
+         || pmouse->m_uiMessage == WM_RBUTTONDOWN
+         || pmouse->m_uiMessage == WM_MBUTTONDOWN
+         || pmouse->m_uiMessage == WM_MOUSEMOVE)
+      {
+
+         if(fontopus() != NULL && fontopus()->m_puser != NULL)
+         {
+
+            if(ApplicationUser.m_ppresence != NULL)
+            {
+
+               try
+               {
+
+                  ApplicationUser.m_ppresence->report_activity();
+
+               }
+               catch(...)
+               {
+
+               }
+
+            }
+
+         }
+
+      }
+
+   }
+
 
 } // namespace base
 

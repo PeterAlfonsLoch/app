@@ -162,7 +162,7 @@ namespace user
 #ifdef METROWIN
       return true;
 #endif
-      string strMain = System.dir().path(System.dir().element(), "app\\appmatter\\main");
+      string strMain = ::dir_path(System.dir().element(), "app\\appmatter\\main");
       if(!load(strMain))
          return false;
       return true;
@@ -189,7 +189,7 @@ namespace user
                continue;
             stringa straPath;
             Application.dir().rls(
-               System.dir().path(straStylePath[iStyle], "uistr"),
+               ::dir_path(straStylePath[iStyle], "uistr"),
                &straPath);
             for(int32_t iPath = 0; iPath < straPath.get_count(); iPath++)
             {
@@ -417,7 +417,7 @@ namespace user
       straSep.add("\r");
       straSep.add("\n");
       straSep.add("\n\r");
-      straLines.add_smallest_tokens(Application.file().as_string(pszFile), straSep, false);
+      straLines.add_smallest_tokens(Application.file_as_string(pszFile), straSep, false);
 
       string str;
       string strLine;

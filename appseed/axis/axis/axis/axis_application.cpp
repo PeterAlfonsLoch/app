@@ -704,42 +704,7 @@ namespace axis
       m_pimpl->SetCurrentHandles();
       dappy(string(typeid(*this).name()) + " : SetCurrentHandles impled : " + ::str::from(m_iReturnCode));
 
-      if(is_installing() || is_uninstalling())
-      {
 
-         if(is_system())
-         {
-
-            System.install().trace().initialize();
-
-            System.install().m_progressApp.m_scalar                           = int_scalar(&System.install(),scalar_app_install_progress);
-
-            System.install().::int_scalar_source::m_plistener                 = &System.install().m_progressApp;
-
-            System.install().m_progressApp.m_plistener                        = &System.install().trace();
-
-            System.install().m_progressApp.m_dProgressStart                   = 0.84;
-
-            System.install().m_progressApp.m_dProgressEnd                     = 0.998;
-
-            System.install().m_iProgressAppInstallStart                       = 0;
-
-            if(directrix()->m_varTopicQuery["session_start"] == "session")
-            {
-
-               System.install().m_iProgressAppInstallEnd = 2 * 5;
-
-            }
-            else
-            {
-
-               System.install().m_iProgressAppInstallEnd = 3 * 5;
-
-            }
-
-         }
-
-      }
 
    }
 
@@ -1003,10 +968,11 @@ namespace axis
 
    }
 
+
    string CLASS_DECL_AXIS application::get_cred(const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
 
-      return ::fontopus::get_cred(this,rect,strUsername,strPassword,strToken,strTitle,bInteractive);
+      throw not_implemented(this);
 
    }
 
@@ -1078,7 +1044,7 @@ namespace axis
 
       for(int32_t i = 0; i < (1024 * 1024); i++)
       {
-         strRet = System.dir().path(str,strRelative + "-" + hex::lower_from(i + 1),string(pszName) + string(".") + pszExtension);
+         strRet = ::dir_path(str,strRelative + "-" + hex::lower_from(i + 1),string(pszName) + string(".") + pszExtension);
          if(pszTemplate != NULL)
          {
             if(System.install().is_file_ok(strRet,pszTemplate,""))
@@ -3227,7 +3193,7 @@ namespace axis
       string strLocale;
       string strSchema;
       TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)",pszRoot,pszRelative,pszLocale,pszStyle);
-      string strRelative = System.dir().path(System.dir().path(pszRoot,"appmatter",pszRelative),sess(this).get_locale_schema_dir(pszLocale,pszStyle)) + ".zip";
+      string strRelative = ::dir_path(::dir_path(pszRoot,"appmatter",pszRelative),sess(this).get_locale_schema_dir(pszLocale,pszStyle)) + ".zip";
       string strFile = System.dir().element(strRelative);
       string strUrl;
       if(_ca_is_basis())
@@ -3682,6 +3648,94 @@ namespace axis
 
       return session().get_focus_guie();
 
+   }
+
+   string application::matter_as_string(const char * pszMatter,const char * pszMatter2)
+   {
+
+      var varQuery;
+
+      varQuery["disable_ca2_sessid"] = true;
+
+      return file_as_string(dir_matter(pszMatter,pszMatter2),varQuery);
+
+   }
+
+   string application::dir_matter(const char * pszMatter,const char * pszMatter2)
+   {
+
+      return dir_matter(pszMatter,pszMatter2);
+
+   }
+
+   bool application::is_inside_time_dir(const char * pszPath)
+   {
+      throw not_implemented(this);
+      return false;
+   }
+
+   bool application::file_is_read_only(const char * pszPath)
+   {
+      throw not_implemented(this);
+      return false;
+   }
+
+   string application::file_as_string(var varFile)
+   {
+
+      if(::str::begins_ci(varFile.get_string(),"http://")
+         || ::str::begins_ci(varFile.get_string(),"https://"))
+      {
+
+         ::property_set set(get_app());
+
+         return http().get(varFile.get_string(),set);
+
+      }
+      else if(::str::begins_ci(varFile["url"].get_string(),"http://")
+         || ::str::begins_ci(varFile["url"].get_string(),"https://"))
+      {
+
+         ::property_set set(get_app());
+
+         return http().get(varFile["url"].get_string(),set);
+
+      }
+      else
+      {
+         return file_as_string_dup(varFile.get_string());
+      }
+
+   }
+
+   string application::dir_path(const char * psz1,const char * psz2,const char * psz3)
+   {
+      return ::dir::path(psz1,psz2,psz3);
+   }
+
+   string application::dir_name(const char * psz)
+   {
+      return ::dir::name(psz);
+   }
+
+   bool application::dir_mk(const char * psz)
+   {
+      return ::dir::mk(psz);
+   }
+
+   string application::file_title(const char * psz)
+   {
+      return ::file_title_dup(psz);
+   }
+   string application::file_name(const char * psz)
+   {
+      return ::file_name_dup(psz);
+   }
+
+   string application::file_time_square()
+   {
+      //return get_temp_file_name_template(
+      throw not_implemented(get_app());
    }
 
 

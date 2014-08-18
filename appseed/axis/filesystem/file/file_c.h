@@ -8,6 +8,8 @@ typedef uint64_t  file_size;
 typedef uint64_t  file_position;
 typedef int64_t   file_offset;
 
+CLASS_DECL_AXIS int_bool file_path_is_relative_dup(const char * psz);
+
 
 
 CLASS_DECL_AXIS int_bool file_exists_dup(const char * path1);

@@ -154,7 +154,7 @@ namespace http
       strFile.replace("?", "%19");
       strFile = System.dir().appdata("cache/" + strFile + ".exists_question");
 
-      string strCache = Application.file().as_string(strFile);
+      string strCache = Application.file_as_string(strFile);
 
       if(strCache.has_char())
       {
@@ -204,7 +204,7 @@ namespace http
       strFile.replace("?", "%19");
       strFile = System.dir().appdata("cache/" + strFile + ".length_question");
 
-      string strCache = Application.file().as_string(strFile);
+      string strCache = Application.file_as_string(strFile);
 
       if (strCache.has_char())
       {

@@ -218,7 +218,7 @@ namespace fs
             stringa straTitle;
             int64_array iaSize;
             bool_array baDir;
-            ls(System.dir().name(pszPath), &straPath, &straTitle, &iaSize, &baDir);
+            ls(Application.dir_name(pszPath), &straPath, &straTitle, &iaSize, &baDir);
          }
          else
          {
@@ -234,7 +234,7 @@ namespace fs
             stringa straTitle;
             int64_array iaSize;
             bool_array baDir;
-            ls(System.dir().name(pszPath), &straPath, &straTitle, &iaSize, &baDir);
+            ls(Application.dir_name(pszPath), &straPath, &straTitle, &iaSize, &baDir);
          }
          else
          {

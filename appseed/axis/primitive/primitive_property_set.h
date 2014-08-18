@@ -1,7 +1,6 @@
 #pragma once
 
 
-CLASS_DECL_AXIS string url_decode_dup(const char * psz);
 
 
 // property set key is case insensitive

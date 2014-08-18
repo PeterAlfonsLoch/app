@@ -728,7 +728,7 @@ namespace install
 
       string strContents;
 
-      strContents = Application.file().as_string(strPath);
+      strContents = Application.file_as_string(strPath);
 
       ::xml::document doc(get_app());
 
@@ -771,7 +771,7 @@ namespace install
 
       string strContents;
 
-      strContents = Application.file().as_string(strPath);
+      strContents = Application.file_as_string(strPath);
 
       ::xml::document doc(get_app());
 
@@ -810,11 +810,11 @@ namespace install
 
       strPath = System.dir().appdata("spa_install.xml");
 
-      System.dir().mk(System.dir().name(strPath), get_app());
+      System.dir().mk(Application.dir_name(strPath), get_app());
 
       ::xml::document doc(get_app());
 
-      doc.load(Application.file().as_string(strPath));
+      doc.load(Application.file_as_string(strPath));
 
       if (doc.get_root()->get_name().is_empty())
       {
@@ -923,7 +923,7 @@ namespace install
 
       string strContents;
 
-      strContents = Application.file().as_string(strPath);
+      strContents = Application.file_as_string(strPath);
 
       ::xml::document doc(get_app());
 
@@ -1233,11 +1233,11 @@ namespace install
 
          trace().rich_trace("***Verifying installer");
 
-         string strPathA(System.dir().path(System.dir().name(strPath), "axis.dll"));
-         string strPathB(System.dir().path(System.dir().name(strPath), "msvcp120d.dll"));
-         string strPathC(System.dir().path(System.dir().name(strPath), "msvcr120d.dll"));
-         string strPathD(System.dir().path(System.dir().name(strPath), "draw2d_gdiplus.dll"));
-         string strPathE(System.dir().path(System.dir().name(strPath), "os.dll"));
+         string strPathA(::dir_path(Application.dir_name(strPath), "axis.dll"));
+         string strPathB(::dir_path(Application.dir_name(strPath), "msvcp120d.dll"));
+         string strPathC(::dir_path(Application.dir_name(strPath), "msvcr120d.dll"));
+         string strPathD(::dir_path(Application.dir_name(strPath), "draw2d_gdiplus.dll"));
+         string strPathE(::dir_path(Application.dir_name(strPath), "os.dll"));
 
          if (!file_exists_dup(strPath)
             || !System.install().is_file_ok(strPath, "app.install.exe", strFormatBuild)
@@ -1295,7 +1295,7 @@ namespace install
 
                strUrl = strUrlPrefix + strFile + ".bz";
 
-               strDownload = System.dir().path(System.dir().name(strPath), strFile);
+               strDownload = ::dir_path(Application.dir_name(strPath), strFile);
 
                bFileNice = false;
 

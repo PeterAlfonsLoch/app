@@ -217,7 +217,7 @@ namespace linux
             int32_t iMax = filterex_time_square("", straTitle);
             if(iMax == -1)
             {
-               str = System.dir().path(str, "00");
+               str = ::dir_path(str, "00");
                System.dir().mk(str, papp);
             }
             else if(iMax == 99)
@@ -232,7 +232,7 @@ namespace linux
                   iMax++;
                }
                strFormat.Format("%02d", iMax);
-               str = System.dir().path(str, strFormat);
+               str = ::dir_path(str, strFormat);
                if(i == iIncLevel)
                {
                   System.dir().mk(str, papp);
@@ -246,7 +246,7 @@ namespace linux
             int32_t iMax = filterex_time_square(pszPrefix, straTitle);
             if(iMax == -1)
             {
-               str = System.dir().path(str, strPrefix+"00"+strSuffix);
+               str = ::dir_path(str, strPrefix+"00"+strSuffix);
                if(file_system::mk_time(str))
                   break;
             }
@@ -259,7 +259,7 @@ namespace linux
             {
                iMax++;
                strFormat.Format("%02d", iMax);
-               str = System.dir().path(str, strPrefix+strFormat+strSuffix);
+               str = ::dir_path(str, strPrefix+strFormat+strSuffix);
                if(file_system::mk_time(str))
                   break;
             }
@@ -378,7 +378,7 @@ namespace linux
             {
                try
                {
-                  storage.transfer_from(*App(papp).file().get_file(strFilePath, ::file::type_binary | ::file::mode_read));
+                  storage.transfer_from(*App(papp).file_get_file(strFilePath, ::file::type_binary | ::file::mode_read));
                }
                catch(...)
                {
@@ -462,7 +462,7 @@ namespace linux
       try
       {
 
-         spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_none);
+         spfile = App(papp).file_get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_none);
 
          mem.transfer_from(*spfile);
 
@@ -506,7 +506,7 @@ namespace linux
 
       ::file::buffer_sp spfile;
 
-      spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
+      spfile = App(papp).file_get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
 
       if(spfile.is_null())
          return false;
@@ -534,7 +534,7 @@ namespace linux
 
       ::file::buffer_sp spfile;
 
-      spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
+      spfile = App(papp).file_get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
 
       if(spfile.is_null())
          return false;
@@ -570,7 +570,7 @@ namespace linux
 
       ::file::buffer_sp spfile;
 
-      spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
+      spfile = App(papp).file_get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
 
       if(spfile.is_null())
          return false;
@@ -717,7 +717,7 @@ namespace linux
             strSrc = straPath[i];
             strDst = strSrc;
             ::str::begins_eat_ci(strDst, strDirSrc);
-            strDst = System.dir().path(strDirDst, strDst);
+            strDst = ::dir_path(strDirDst, strDst);
             if(System.dir().is(strSrc, papp))
             {
                if((eextract == extract_first || eextract == extract_none) && (::str::ends_ci(psz, ".zip")))
@@ -730,9 +730,9 @@ namespace linux
             }
             else
             {
-               if(!System.dir().is(System.dir().name(strDst), papp))
+               if(!System.dir().is(Application.dir_name(strDst), papp))
                {
-                  System.dir().mk(System.dir().name(strDst), papp);
+                  System.dir().mk(Application.dir_name(strDst), papp);
                }
                copy(strDst, strSrc, bFailIfExists, eextract == extract_all ? extract_all : extract_none, papp);
             }
@@ -745,7 +745,7 @@ namespace linux
 
          if(System.dir().is(pszNew, papp))
          {
-            strNew = System.dir().path(pszNew, name_(psz));
+            strNew = ::dir_path(pszNew, name_(psz));
          }
          else
          {
@@ -754,7 +754,7 @@ namespace linux
 
          ::file::buffer_sp ofile;
 
-         ofile = App(papp).file().get_file(strNew, ::file::mode_write | ::file::type_binary | ::file::mode_create | ::file::defer_create_directory | ::file::share_deny_write);
+         ofile = App(papp).file_get_file(strNew, ::file::mode_write | ::file::type_binary | ::file::mode_create | ::file::defer_create_directory | ::file::share_deny_write);
 
          if(ofile.is_null())
          {
@@ -765,7 +765,7 @@ namespace linux
 
          ::file::buffer_sp ifile;
 
-         ifile = App(papp).file().get_file(psz, ::file::mode_read | ::file::type_binary | ::file::share_deny_none);
+         ifile = App(papp).file_get_file(psz, ::file::mode_read | ::file::type_binary | ::file::share_deny_none);
 
          if(ifile.is_null())
          {
@@ -852,8 +852,8 @@ namespace linux
       if(file == nullptr)
          throw "file::file_system::move Could not move file, could not open source file";
 
-      string strDirOld     = System.dir().name(psz);
-      string strDirNew     = System.dir().name(pszNew);
+      string strDirOld     = Application.dir_name(psz);
+      string strDirNew     = Application.dir_name(pszNew);
       string strNameOld    = System.file().name_(psz);
       string strNameNew    = System.file().name_(pszNew);
 
@@ -1078,16 +1078,16 @@ namespace linux
 
    string file_system::paste(const char * pszLocation, const char * path, sp(::axis::application) papp)
    {
-      string strDir = System.dir().name(path);
-      string strDest = System.dir().path(pszLocation, "");
-      string strSrc = System.dir().path(strDir, "");
+      string strDir = Application.dir_name(path);
+      string strDest = ::dir_path(pszLocation, "");
+      string strSrc = ::dir_path(strDir, "");
       if(strDest == strSrc)
       {
          return copy(path, papp);
       }
       else
       {
-         string strNew = System.dir().path(strDest, name_(path));
+         string strNew = ::dir_path(strDest, name_(path));
          copy(strNew, path, false, extract_all, papp);
          return strNew;
       }
@@ -1106,9 +1106,9 @@ namespace linux
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
 #ifdef WINDOWS
-         move(System.dir().path(strDir, name_(stra[i])), stra[i]);
+         move(::dir_path(strDir, name_(stra[i])), stra[i]);
 #else
-         ::rename(stra[i], System.dir().path(strDir, name_(stra[i])));
+         ::rename(stra[i], ::dir_path(strDir, name_(stra[i])));
 #endif
       }
 
@@ -1122,10 +1122,10 @@ namespace linux
       System.dir().mk(strDir, papp);
 
 #ifdef WINDOWS
-//         ::MoveFile(psz, System.dir().path(strDir, name_(psz)));
-      move(System.dir().path(strDir, name_(psz)), psz);
+//         ::MoveFile(psz, ::dir_path(strDir, name_(psz)));
+      move(::dir_path(strDir, name_(psz)), psz);
 #else
-      ::rename(psz, System.dir().path(strDir, name_(psz)));
+      ::rename(psz, ::dir_path(strDir, name_(psz)));
 #endif
 
    }
@@ -1145,13 +1145,13 @@ namespace linux
          {
 #ifdef WINDOWS
 //               ::MoveFileW(
-//                ::str::international::utf8_to_unicode(System.dir().path(pszContext, strOld)),
- //              ::str::international::utf8_to_unicode(System.dir().path(pszContext, strNew)));
-            move(System.dir().path(pszContext, strNew), System.dir().path(pszContext, strOld));
+//                ::str::international::utf8_to_unicode(::dir_path(pszContext, strOld)),
+ //              ::str::international::utf8_to_unicode(::dir_path(pszContext, strNew)));
+            move(::dir_path(pszContext, strNew), ::dir_path(pszContext, strOld));
 #else
             ::rename(
-               System.dir().path(pszContext, strOld),
-               System.dir().path(pszContext, strNew));
+               ::dir_path(pszContext, strOld),
+               ::dir_path(pszContext, strNew));
 #endif
          }
       }
@@ -1222,7 +1222,7 @@ namespace linux
    string file_system::sys_temp_unique(const char * pszName)
    {
 
-      return System.dir().path(get_sys_temp_path(), pszName);
+      return ::dir_path(get_sys_temp_path(), pszName);
 
    }
 
@@ -1238,9 +1238,9 @@ namespace linux
    ::file::buffer_sp file_system::get(const char * name, sp(::axis::application) papp)
    {
 
-      System.dir().mk(System.dir().name(name), papp);
+      System.dir().mk(Application.dir_name(name), papp);
 
-      ::file::buffer_sp fileOut = App(papp).file().get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
+      ::file::buffer_sp fileOut = App(papp).file_get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
       if(fileOut.is_null())
          throw ::file::exception(papp, -1, ::file::exception::none, name);

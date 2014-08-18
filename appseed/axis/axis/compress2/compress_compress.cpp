@@ -185,7 +185,7 @@ namespace axis
 
    bool compress::bz(::file::output_stream & ostreamBzFileCompressed, const char * lpcszUncompressed)
    {
-      ::file::binary_buffer_sp file = Application.file().get_file(lpcszUncompressed, ::file::mode_read | ::file::type_binary);
+      ::file::binary_buffer_sp file = Application.file_get_file(lpcszUncompressed, ::file::mode_read | ::file::type_binary);
       if (file.is_null())
       {
          return false;

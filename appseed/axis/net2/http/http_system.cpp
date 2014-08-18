@@ -32,7 +32,7 @@ namespace http
       else if(i == 1)
       {
          // telmico: no proxy
-         string str = System.file().as_string(System.dir().appdata("machine/proxy.xml"), &System);
+         string str = System.file_as_string(System.dir().appdata("machine/proxy.xml"), &System);
          if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
          {
             Application.file().copy(System.dir().appdata("proxy_original.xml"), System.dir().element("proxy.xml"), false);
@@ -59,7 +59,7 @@ namespace http
       else
       {
          // telmico: simple default proxy configuration : hostname=>proxy - try etc/hosts port=>80  - assume HTTP proxy
-         string str = System.file().as_string(System.dir().appdata("proxy.xml"), &System);
+         string str = System.file_as_string(System.dir().appdata("proxy.xml"), &System);
          if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
          {
             Application.file().copy(System.dir().appdata("proxy_original.xml"), System.dir().appdata("proxy.xml"), false);
@@ -96,7 +96,7 @@ namespace http
       */
 
 
-      string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
+      string strHost = Application.file_as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
       stringa straRequestingServer;
       straRequestingServer.add("account.ca2.cc");
       //straRequestingServer.add("eu-account.ca2.cc");
@@ -164,7 +164,7 @@ namespace http
          varQuery["disable_ca2_sessid"] = true;
          varQuery["no_proxy_config"] = true;
 
-         ppac->m_strAutoConfigScript = Application.file().as_string(ppac->m_strUrl, varQuery);
+         ppac->m_strAutoConfigScript = Application.file_as_string(ppac->m_strUrl, varQuery);
 
 
          m_mapPac.set_at(pszUrl, ppac);
@@ -333,7 +333,7 @@ namespace http
    {
 
       xml::document doc(get_app());
-      string str = System.file().as_string(System.dir().appdata("proxy.xml"), &System);
+      string str = System.file_as_string(System.dir().appdata("proxy.xml"), &System);
       if(str.has_char() && str.find("<") < 0 && str.find(">") < 0)
       {
          stringa stra;
@@ -474,7 +474,7 @@ namespace http
 
       // Format of script name example "system://server.com/the rain.mp3" => "system://server.com/the%20rain.mp3"
       {
-         string strScript = System.url().url_encode(System.url().url_decode(System.url().get_script(strUrl)));
+         string strScript = System.url().url_encode(url_decode_dup(System.url().get_script(strUrl)));
          strScript.replace("+", "%20");
          strScript.replace("%2F", "/");
          strUrl = System.url().set_script(strUrl, strScript);
@@ -699,7 +699,7 @@ retry:
 
       // Format of script name example "system://server.com/the rain.mp3" => "system://server.com/the%20rain.mp3"
       {
-         string strScript = System.url().url_encode(System.url().url_decode(System.url().get_script(strUrl)));
+         string strScript = System.url().url_encode(url_decode_dup(System.url().get_script(strUrl)));
          strScript.replace("+", "%20");
          strScript.replace("%2F", "/");
          strUrl = System.url().set_script(strUrl, strScript);
@@ -1123,7 +1123,7 @@ retry:
 
       // Format of script name example "system://server.com/the rain.mp3" => "system://server.com/the%20rain.mp3"
       {
-         string strScript = System.url().url_encode(System.url().url_decode(System.url().get_script(strUrl)));
+         string strScript = System.url().url_encode(url_decode_dup(System.url().get_script(strUrl)));
          strScript.replace("+", "%20");
          strScript.replace("%2F", "/");
          strUrl = System.url().set_script(strUrl, strScript);
@@ -1587,7 +1587,7 @@ retry:
       
       ::sockets::socket_handler handler(get_app());
 
-      ::file::buffer_sp spfile = set.cast < ::axis::application >("app", get_app())->m_pbasesession->file().get_file(pszFile,
+      ::file::buffer_sp spfile = set.cast < ::axis::application >("app", get_app())->m_pbasesession->file_get_file(pszFile,
          ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
 
       set["file"] = spfile;

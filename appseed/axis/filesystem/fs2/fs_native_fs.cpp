@@ -93,7 +93,7 @@ namespace fs
       while(iCount > 0)
       {
 
-         strPath = System.dir().name(strPath);
+         strPath = Application.dir_name(strPath);
 
          iCount--;
 
@@ -115,7 +115,7 @@ namespace fs
    string native::dir_path(const char * psz1, const char * psz2)
    {
 
-      return System.dir().path(psz1, psz2);
+      return ::dir_path(psz1, psz2);
 
    }
 

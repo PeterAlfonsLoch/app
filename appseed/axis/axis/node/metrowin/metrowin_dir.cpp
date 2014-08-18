@@ -231,7 +231,7 @@ namespace metrowin
       }
       file_find filefind;
       bool bWorking;
-      bWorking = filefind.FindFile(System.dir().path(lpcsz, pszPattern));
+      bWorking = filefind.FindFile(::dir_path(lpcsz, pszPattern));
       while(bWorking)
       {
          bWorking = filefind.FindNextFileA();
@@ -322,7 +322,7 @@ namespace metrowin
          {
             for(index i = iStart; i < pstraRelative->get_size(); i++)
             {
-               pstraRelative->element_at(i) = System.dir().path(System.file().name_(strDir), pstraRelative->element_at(i));
+               pstraRelative->element_at(i) = ::dir_path(System.file().name_(strDir), pstraRelative->element_at(i));
             }
          }
       }
@@ -365,7 +365,7 @@ namespace metrowin
 
       file_find filefind;
       bool bWorking;
-      bWorking = filefind.FindFile(System.dir().path(lpcsz, "*.*"));
+      bWorking = filefind.FindFile(::dir_path(lpcsz, "*.*"));
       while(bWorking)
       {
          bWorking = filefind.FindNextFileA();
@@ -395,7 +395,7 @@ namespace metrowin
                {
                   for(index i = iStart; i < pstraRelative->get_size(); i++)
                   {
-                     pstraRelative->element_at(i) = System.dir().path(filefind.GetFileName(), pstraRelative->element_at(i));
+                     pstraRelative->element_at(i) = ::dir_path(filefind.GetFileName(), pstraRelative->element_at(i));
                   }
                }
             }
@@ -411,7 +411,7 @@ namespace metrowin
 #ifdef WINDOWSEX      
       file_find filefind;
       bool bWorking;
-      bWorking = filefind.FindFile(System.dir().path(lpcsz, "*.*"));
+      bWorking = filefind.FindFile(::dir_path(lpcsz, "*.*"));
       if(!bWorking)
       {
          ::file::dir::system::ls_dir(papp, lpcsz, pstraPath, pstraTitle);
@@ -458,7 +458,7 @@ namespace metrowin
 #ifdef WINDOWSEX
       file_find filefind;
       bool bWorking;
-      bWorking = filefind.FindFile(System.dir().path(lpcsz, "*.*"));
+      bWorking = filefind.FindFile(::dir_path(lpcsz, "*.*"));
       while(bWorking)
       {
          bWorking = filefind.FindNextFileA();
@@ -974,7 +974,7 @@ namespace metrowin
       
       xml::document doc(get_app());
       
-      doc.load(Application.file().as_string(appdata("configuration\\directory.xml")));
+      doc.load(Application.file_as_string(appdata("configuration\\directory.xml")));
       
       if(doc.get_root()->get_name() == "directory_configuration")
       {

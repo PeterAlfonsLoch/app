@@ -31,7 +31,7 @@ namespace ios
       
       if(nOpenFlags  & ::file::defer_create_directory)
       {
-         Application.dir().mk(System.dir().name(lpszFileName));
+         Application.dir().mk(Application.dir_name(lpszFileName));
       }
       
       m_pStream = NULL;

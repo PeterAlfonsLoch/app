@@ -442,7 +442,7 @@ namespace axis
          time.Format(strRelative, "%Y/%m/%d");
          string strIndex;
          strIndex.Format("%05d", iRetry);
-         plog->m_strLogPath = System.dir().path(
+         plog->m_strLogPath = ::dir_path(
                            System.dir().time_log(m_id),
                            strRelative + "-" + strIndex + ".log");
 

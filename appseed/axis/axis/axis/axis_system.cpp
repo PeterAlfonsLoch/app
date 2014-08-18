@@ -310,11 +310,6 @@ namespace axis
 
       m_spos.alloc(allocer());
 
-      m_spcrypto.alloc(allocer());
-
-      if(!m_spcrypto.is_set())
-         return false;
-
 
       if(!set_main_init_data(m_pinitmaindata))
          return false;
@@ -1848,14 +1843,14 @@ namespace axis
 
          free(pszCurDir);
 
-         if(Application.file().exists(System.dir().path(strCurDir,"core.dylib")))
+         if(Application.file().exists(::dir_path(strCurDir,"core.dylib")))
          {
             m_strCa2ModuleFolder = strCurDir;
             goto finishedCa2Module;
          }
 
 
-         if(Application.file().exists(System.dir().path(m_strModuleFolder,"core.dylib")))
+         if(Application.file().exists(::dir_path(m_strModuleFolder,"core.dylib")))
          {
             m_strCa2ModuleFolder = m_strModuleFolder;
             goto finishedCa2Module;

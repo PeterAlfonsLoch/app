@@ -220,7 +220,7 @@ namespace sockets
             string strRequestUri = pa.getword();
             string strScript = System.url().get_script(strRequestUri);
             string strQuery = System.url().object_get_query(strRequestUri);
-            m_request.m_strRequestUri = System.url().url_decode(strScript) + ::str::has_char(strQuery, "?");
+            m_request.m_strRequestUri = url_decode_dup(strScript) + ::str::has_char(strQuery, "?");
             m_request.attr(__id(request_uri)) = m_request.m_strRequestUri;
             m_request.attr(__id(http_version)) = pa.getword();
             m_b_http_1_1 = ::str::ends(m_request.attr(__id(http_version)), "/1.1");

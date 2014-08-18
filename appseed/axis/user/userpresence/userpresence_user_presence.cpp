@@ -55,7 +55,7 @@ namespace userpresence
       if(System.m_strAppName == "netnode" || System.m_strAppName == "simpledbcfg")
          return;
 
-      string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
+      string strHost = Application.file_as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
       stringa straRequestingServer;
       straRequestingServer.add("api.ca2.cc");
       straRequestingServer.add("eu-api.ca2.cc");
