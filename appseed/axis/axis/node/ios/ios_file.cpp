@@ -544,7 +544,7 @@ namespace ios
       
       ::file::file_status status;
       GetStatus(status);
-      return System.file().name_(status.m_strFullName);
+      return System.file_name(status.m_strFullName);
    }
    
    string file::GetFileTitle() const

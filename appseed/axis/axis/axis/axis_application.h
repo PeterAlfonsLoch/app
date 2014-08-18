@@ -16,17 +16,17 @@ namespace axis
       smart_pointer < application >                   m_pimpl;
       sp(service_base)                                m_pservice;
 
-      bool                                            m_bBaseProcessInitialize;
-      bool                                            m_bBaseProcessInitializeResult;
+      bool                                            m_bAxisProcessInitialize;
+      bool                                            m_bAxisProcessInitializeResult;
 
-      bool                                            m_bBaseInitializeInstance;
-      bool                                            m_bBaseInitializeInstanceResult;
+      bool                                            m_bAxisInitializeInstance;
+      bool                                            m_bAxisInitializeInstanceResult;
 
-      bool                                            m_bBaseInitialize1;
-      bool                                            m_bBaseInitialize1Result;
+      bool                                            m_bAxisInitialize1;
+      bool                                            m_bAxisInitialize1Result;
 
-      bool                                            m_bBaseInitialize;
-      bool                                            m_bBaseInitializeResult;
+      bool                                            m_bAxisInitialize;
+      bool                                            m_bAxisInitializeResult;
 
       string_to_ptr                                   m_appmap;
       string                                          m_strAppName;
@@ -60,7 +60,7 @@ namespace axis
 
 
       bool                                            m_bLicense;
-      string                                          m_strBaseSupportId;
+      string                                          m_strAxisSupportId;
       int32_t                                         m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
 
 
@@ -387,25 +387,37 @@ namespace axis
       bool gudo_set(const string & strKey,::file::serializable & obj);
 
 
-      void assert_user_logged_in();
+      virtual bool assert_user_logged_in();
 
       virtual bool init_main_data(::axis::main_init_data * pdata);
 
       virtual bool set_main_init_data(::axis::main_init_data * pdata);
 
 
-
+      virtual void dir_matter_ls_file(const string & str,stringa & stra);
       virtual string matter_as_string(const char * pszMatter,const char * pszMatter2 = NULL);
+      virtual string file_as_string(var varFile);
+      virtual string file_as_string(var varFile,var & varQuery);
       virtual string dir_matter(const char * pszMatter,const char * pszMatter2 = NULL);
       virtual bool is_inside_time_dir(const char * pszPath);
       virtual bool file_is_read_only(const char * pszPath);
-      virtual string file_as_string(var varFile);
+      virtual bool file_exists(const char * pszPath);
+      virtual bool file_is_equal_path(const char * pszPath1,const char * pszPath2);
+      virtual bool dir_is(const char * psz);
+      virtual bool file_del(const char * psz);
+      virtual string file_extension(const char * pszPath);
       virtual string dir_path(const char * psz1,const char * psz2,const char * psz3 = NULL);
+      virtual string dir_element(const char * psz = NULL);
       virtual string dir_name(const char * psz);
+      virtual void  dir_ls_dir(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL);
+      virtual void  dir_rls(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,stringa * pstraRelative = NULL);
       virtual bool dir_mk(const char * psz);
       virtual string file_title(const char * psz);
       virtual string file_name(const char * psz);
       virtual string file_time_square();
+      virtual string dir_userappdata(const char * lpcsz = NULL,const char * lpcsz2 = NULL);
+      virtual string dir_appdata(const char * lpcsz = NULL,const char * lpcsz2 = NULL);
+      virtual string dir_simple_path(const string & str1,const string & str2);
 
       ::file::binary_buffer_sp file_get_file(var varFile,uint32_t uiFlags);
 

@@ -46,7 +46,7 @@ namespace sockets
    void http_put_socket::SetFile(const string & file)
    {
 
-      if(Application.file().exists(file))
+      if(Application.file_exists(file))
       {
          
          m_filename = file;

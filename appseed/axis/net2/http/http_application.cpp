@@ -152,7 +152,7 @@ namespace http
       strFile.replace(":", "_");
       strFile.replace("//", "/");
       strFile.replace("?", "%19");
-      strFile = System.dir().appdata("cache/" + strFile + ".exists_question");
+      strFile = System.dir_appdata("cache/" + strFile + ".exists_question");
 
       string strCache = Application.file_as_string(strFile);
 
@@ -202,7 +202,7 @@ namespace http
       strFile.replace(":", "_");
       strFile.replace("//", "/");
       strFile.replace("?", "%19");
-      strFile = System.dir().appdata("cache/" + strFile + ".length_question");
+      strFile = System.dir_appdata("cache/" + strFile + ".length_question");
 
       string strCache = Application.file_as_string(strFile);
 

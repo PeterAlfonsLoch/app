@@ -42,7 +42,6 @@ namespace axis
 
       m_puiMouseMoveCapture = NULL;
       m_puiLastLButtonDown = NULL;
-      m_bIfs                     = true;
 
       m_psavings                 = canew(class ::axis::savings(this));
 
@@ -1040,16 +1039,6 @@ namespace axis
 
       m_spuser->construct(this);
 
-      m_psockets = canew(::sockets::sockets(this));
-
-      m_psockets->construct(this);
-
-      if(!m_psockets->initialize1())
-         throw simple_exception(this,"could not initialize (1) sockets for application (application::construct)");
-
-      if(!m_psockets->initialize())
-         throw simple_exception(this,"could not initialize sockets for application (application::construct)");
-
       return true;
 
    }
@@ -1058,16 +1047,6 @@ namespace axis
    bool session::initialize1()
    {
 
-      m_spfs = canew(::fs::fs(this));
-
-      if(m_spfs == NULL)
-         return false;
-
-      m_spfs->construct(this);
-
-      if(!m_spfs->initialize())
-         return false;
-
       m_spcopydesk.alloc(allocer());
 
       if(!m_spcopydesk->initialize())
@@ -1075,42 +1054,6 @@ namespace axis
 
       if(!::axis::application::initialize1())
          return false;
-
-      m_puserpresence = canew(::userpresence::userpresence(this));
-
-      if(m_puserpresence.is_null())
-      {
-
-         TRACE("Failed to create new User Presence");
-
-         return false;
-
-      }
-
-      try
-      {
-
-         m_puserpresence->construct(this);
-
-      }
-      catch(...)
-      {
-
-         TRACE("Failed to construct User Presence");
-
-         return false;
-
-      }
-
-
-      if(!m_puserpresence->initialize())
-      {
-
-         TRACE("Failed to initialize User Presence");
-
-         return false;
-
-      }
 
       m_puserstrcontext = canew(::user::str_context(this));
 
@@ -1128,9 +1071,9 @@ namespace axis
 
       string strSchemaSystem;
 
-      string strPath = System.dir().appdata("langstyle_settings.xml");
+      string strPath = System.dir_appdata("langstyle_settings.xml");
 
-      if(file().exists(strPath))
+      if(file_exists(strPath))
       {
 
          string strSystem = file_as_string(strPath);
@@ -1276,18 +1219,7 @@ namespace axis
    bool session::initialize_instance()
    {
 
-      if(m_pfontopus->m_puser == NULL &&
-         (Application.directrix()->m_varTopicQuery.has_property("install")
-         || Application.directrix()->m_varTopicQuery.has_property("uninstall")))
-      {
 
-         if(m_pfontopus->create_system_user("system") == NULL)
-            return false;
-
-      }
-
-      if(!m_pfontopus->initialize_instance())
-         return false;
 
 
       if(!::axis::application::initialize_instance())
@@ -1319,18 +1251,6 @@ namespace axis
       user()->set_keyboard_layout(NULL,::action::source::database());
 
 
-      if(m_bIfs)
-      {
-
-         if(m_spfsdata.is_null())
-            m_spfsdata = new ::fs::set(this);
-
-         ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
-         pset->m_spafsdata.add(m_pifs);
-         pset->m_spafsdata.add(m_prfs);
-
-      }
-
       return true;
 
    }
@@ -1341,17 +1261,6 @@ namespace axis
 
       bool bOk = true;
 
-      try
-      {
-
-         bOk = m_puserpresence->finalize();
-
-      }
-      catch(...)
-      {
-
-         bOk = false;
-      }
 
       try
       {
@@ -1380,7 +1289,6 @@ namespace axis
             m_spcopydesk->finalize();
             m_spcopydesk.release();
          }
-         m_splicense.release();
       }
       catch(...)
       {
@@ -1693,7 +1601,7 @@ namespace axis
    string session::get_locale_schema_dir()
    {
 
-      return System.dir().simple_path(get_locale(),get_schema());
+      return dir_simple_path(get_locale(),get_schema());
 
    }
 
@@ -1704,13 +1612,13 @@ namespace axis
       if(strLocale.is_empty())
       {
 
-         return System.dir().simple_path(get_locale(),get_schema());
+         return dir_simple_path(get_locale(),get_schema());
 
       }
       else
       {
 
-         return System.dir().simple_path(strLocale,get_schema());
+         return dir_simple_path(strLocale,get_schema());
 
       }
 
@@ -1726,13 +1634,13 @@ namespace axis
          if(strSchema.is_empty())
          {
 
-            return System.dir().simple_path(get_locale(),get_schema());
+            return dir_simple_path(get_locale(),get_schema());
 
          }
          else
          {
 
-            return System.dir().simple_path(get_locale(),strSchema);
+            return dir_simple_path(get_locale(),strSchema);
 
          }
 
@@ -1743,13 +1651,13 @@ namespace axis
          if(strSchema.is_empty())
          {
 
-            return System.dir().simple_path(strLocale,get_schema());
+            return dir_simple_path(strLocale,get_schema());
 
          }
          else
          {
 
-            return System.dir().simple_path(strLocale,strSchema);
+            return dir_simple_path(strLocale,strSchema);
 
          }
 
@@ -1862,12 +1770,6 @@ namespace axis
    }
 
 
-   ::file::binary_buffer_sp session::file_get_file(var varFile,uint32_t uiFlags)
-   {
-
-      return file_get_file(varFile,uiFlags);
-
-   }
 
 
    bool session::on_ui_mouse_message(::message::mouse * pmouse)
@@ -1875,15 +1777,7 @@ namespace axis
 
       m_ptCursor = pmouse->m_pt;
 
-
-
-   }
-
-
-   string session::http_get_locale_schema(const char * pszUrl,const char * pszLocale,const char * pszSchema)
-   {
-
-      throw not_implemented(get_app());
+      return true;
 
    }
 

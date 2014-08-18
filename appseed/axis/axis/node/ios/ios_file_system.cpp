@@ -307,7 +307,7 @@ namespace ios
    bool file_system::mk_time(const char * lpcszCandidate)
    {
       ::file::binary_buffer_sp spfile(allocer());
-      if(System.file().exists(lpcszCandidate, get_app()))
+      if(System.file_exists(lpcszCandidate, get_app()))
          return false;
       try
       {
@@ -685,7 +685,7 @@ namespace ios
       if(System.dir().is(psz, papp) && (eextract == extract_first || eextract == extract_all || !(::str::ends_ci(psz, ".zip"))))
       {
          stringa straPath;
-         System.dir().rls(papp, psz, &straPath);
+         System.dir_rls(papp, psz, &straPath);
          string strDst;
          string strSrc;
          string strDirSrc(psz);
@@ -832,8 +832,8 @@ namespace ios
       
       string strDirOld     = Application.dir_name(psz);
       string strDirNew     = Application.dir_name(pszNew);
-      string strNameOld    = System.file().name_(psz);
-      string strNameNew    = System.file().name_(pszNew);
+      string strNameOld    = System.file_name(psz);
+      string strNameNew    = System.file_name(pszNew);
       
       if(strDirOld == strDirNew)
       {

@@ -277,7 +277,16 @@ namespace base
       if(directrix()->m_varTopicQuery.has_property("uninstall"))
          return true;
 
-      return license().has(pszId,bInteractive);
+      if(!license().has(pszId,bInteractive))
+      {
+         
+         license().m_mapInfo.remove_key(strLicense);
+         
+         return false;
+
+      }
+
+      return true;
 
    }
 

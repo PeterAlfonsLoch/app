@@ -170,7 +170,7 @@ namespace http
                         strTime = t.FormatGmt("%Y\\%m\\%d\\%H\\%M\\%S\\");
                         strIndex.Format("%08x\\", i);
                         strTempFile = "C:\\upload\\" + strTime + strIndex + current_filename;
-                        if (!Application.file().exists(strTempFile))
+                        if (!Application.file_exists(strTempFile))
                            break;
 
                      }

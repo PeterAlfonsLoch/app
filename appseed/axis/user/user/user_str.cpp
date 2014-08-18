@@ -162,7 +162,7 @@ namespace user
 #ifdef METROWIN
       return true;
 #endif
-      string strMain = ::dir_path(System.dir().element(), "app\\appmatter\\main");
+      string strMain = Application.dir_path(System.dir_element(), "app\\appmatter\\main");
       if(!load(strMain))
          return false;
       return true;
@@ -173,7 +173,7 @@ namespace user
       string strMain = pszBaseDir;
       stringa straLangPath;
       stringa straLang;
-      Application.dir().ls_dir(strMain, &straLangPath, &straLang);
+      Application.dir_ls_dir(strMain, &straLangPath, &straLang);
       for(int32_t iLang = 0; iLang < straLang.get_count(); iLang++)
       {
          string strLang = straLang[iLang];
@@ -181,15 +181,14 @@ namespace user
             continue;
          stringa straStylePath;
          stringa straStyle;
-         Application.dir().ls_dir(straLangPath[iLang], &straStylePath, &straStyle);
+         Application.dir_ls_dir(straLangPath[iLang], &straStylePath, &straStyle);
          for(int32_t iStyle = 0; iStyle < straStyle.get_count(); iStyle++)
          {
             string idStyle = straStyle[iStyle];
             if(idStyle.CompareNoCase(".svn") == 0)
                continue;
             stringa straPath;
-            Application.dir().rls(
-               ::dir_path(straStylePath[iStyle], "uistr"),
+            Application.dir_rls(Application.dir_path(straStylePath[iStyle], "uistr"),
                &straPath);
             for(int32_t iPath = 0; iPath < straPath.get_count(); iPath++)
             {
@@ -198,7 +197,7 @@ namespace user
                   continue;
                if(::str::find_ci("\\.svn\\", strPath) >= 0)
                   continue;
-               if(Application.dir().is(strPath))
+               if(Application.dir_is(strPath))
                   continue;
                load_uistr_file(strLang, idStyle, strPath);
             }

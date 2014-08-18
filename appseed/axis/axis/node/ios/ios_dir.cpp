@@ -336,7 +336,7 @@ namespace ios
             for(index i = iStart; i < pstraRelative->get_size(); i++)
             {
                
-               pstraRelative->element_at(i) = ::dir_path(System.file().name_(strDir), pstraRelative->element_at(i));
+               pstraRelative->element_at(i) = ::dir_path(System.file_name(strDir), pstraRelative->element_at(i));
                
             }
             
@@ -995,7 +995,7 @@ namespace ios
                   str.trim_right("\\/");
                   try
                   {
-                     System.file().del(str);
+                     System.file_del(str);
                   }
                   catch(...)
                   {
@@ -1004,7 +1004,7 @@ namespace ios
                   str.trim_right("\\/");
                   try
                   {
-                     System.file().del(str);
+                     System.file_del(str);
                   }
                   catch(...)
                   {

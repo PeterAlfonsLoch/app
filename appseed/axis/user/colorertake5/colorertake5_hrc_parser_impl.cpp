@@ -262,7 +262,7 @@ namespace colorertake5
                continue;
             };
             type->m_strSourceLocation =
-               ::dir_path(
+               Application.dir_path(
                Application.dir_name(m_strCurrentSourceLocation),
                locationLink);
             /*type->m_strSource =

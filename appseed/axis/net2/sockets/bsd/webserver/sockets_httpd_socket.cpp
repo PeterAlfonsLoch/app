@@ -202,7 +202,7 @@ namespace sockets
 
          int keylength = ia[i];
 
-         string strTitle = System.file().name_(m_strCat);
+         string strTitle = System.file_name(m_strCat);
 
          if(strTitle.find_ci(".") >= 0)
          {

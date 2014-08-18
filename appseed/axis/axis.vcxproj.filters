@@ -84,9 +84,6 @@
     <Filter Include="Source Files\primitive\collection">
       <UniqueIdentifier>{b3a683c8-c4bd-46a0-9eab-beb79650277e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\user\userpresence">
-      <UniqueIdentifier>{5f8d1e2a-7a7d-40d2-b25c-52033b755438}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\axis\compress">
       <UniqueIdentifier>{81b4689d-269d-4f05-8d03-9fd0d7fb0783}</UniqueIdentifier>
     </Filter>
@@ -104,9 +101,6 @@
     </Filter>
     <Filter Include="Header Files\axis\compress\bsdiff">
       <UniqueIdentifier>{947fc611-80aa-4333-afb9-5718aa778672}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\userpresence">
-      <UniqueIdentifier>{4ee52bef-9322-45b6-adda-5d44ac5a67ac}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\filesystem">
       <UniqueIdentifier>{22c285dd-ad96-4ecc-8b5f-c3b809e98645}</UniqueIdentifier>
@@ -760,15 +754,6 @@
     </ClInclude>
     <ClInclude Include="graphics\visual\visual_icon.h">
       <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userpresence\userpresence.h">
-      <Filter>Header Files\user\userpresence</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userpresence\userpresence_user_presence.h">
-      <Filter>Header Files\user\userpresence</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userpresence\userpresence_userpresence.h">
-      <Filter>Header Files\user\userpresence</Filter>
     </ClInclude>
     <ClInclude Include="primitive\geometry\geometry_geometry.h">
       <Filter>Header Files\primitive\geometry</Filter>
@@ -1810,9 +1795,6 @@
     </ClInclude>
     <ClInclude Include="user\user\user_enum.h">
       <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_class.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_data.h">
       <Filter>Header Files\multithreading</Filter>
@@ -3098,62 +3080,68 @@
     <ClInclude Include="axis\os\cross\windows\windows_pshpack8.h">
       <Filter>Header Files\axis\os\cross\windows</Filter>
     </ClInclude>
-    <ClInclude Include="database\database.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_base.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_change_event.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_client.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_database.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_definition.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_field_definition.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_id.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_key.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_selection.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_selection_item.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_server.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_set.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_stringhelper.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_template.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_update_hint.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_user_interaction.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\file_folder_watch.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\windows\windows_print_job.h">
       <Filter>Header Files\axis\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_user_interaction.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_update_hint.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_template.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_stringhelper.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_set.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_server.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_selection_item.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_selection.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_key.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_id.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_field_definition.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_definition.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_database.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_client.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_change_event.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_base.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_net.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_class.h">
+      <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3522,12 +3510,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\file\file_writer_flush.cpp">
       <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userpresence\userpresence_user_presence.cpp">
-      <Filter>Source Files\user\userpresence</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userpresence\userpresence_userpresence.cpp">
-      <Filter>Source Files\user\userpresence</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_text_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
@@ -4729,67 +4711,67 @@
     <ClCompile Include="filesystem\file\file_serializable.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="database\database_application.cpp">
-      <Filter>Header Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_base.cpp">
-      <Filter>Header Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_client.cpp">
-      <Filter>Header Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_definition.cpp">
-      <Filter>Header Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_event_change.cpp">
-      <Filter>Header Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_field_definition.cpp">
-      <Filter>Header Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_id.cpp">
-      <Filter>Header Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_key.cpp">
-      <Filter>Header Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_selection.cpp">
-      <Filter>Header Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_selection_item.cpp">
-      <Filter>Header Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_server.cpp">
-      <Filter>Header Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_set.cpp">
-      <Filter>Header Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_stringhelper.cpp">
-      <Filter>Header Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_update_hint.cpp">
-      <Filter>Header Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_user_interaction.cpp">
-      <Filter>Header Files\database</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\geometry\geometry_geometry.cpp">
       <Filter>Source Files\primitive\geometry</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_c.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
+    <ClCompile Include="database\database_user_interaction.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_update_hint.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_stringhelper.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_set.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_server.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_selection_item.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_selection.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_key.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_id.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_field_definition.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_event_change.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_definition.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_client.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_base.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database_application.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\axis\axis_net.cpp">
+      <Filter>Source Files\axis\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
       <Filter>Header Files\multithreading</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
@@ -5118,6 +5100,9 @@
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="axis.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x86\msvcr120d.dll">
@@ -5134,7 +5119,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="base.rc">
+    <ResourceCompile Include="axis.rc">
       <Filter>Source Files</Filter>
     </ResourceCompile>
   </ItemGroup>

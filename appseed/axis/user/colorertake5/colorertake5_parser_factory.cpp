@@ -178,7 +178,7 @@ namespace colorertake5
          string path;
          if(file_path_is_relative_dup(relPath))
          {
-            path = ::dir_path(Application.dir_name(catalogPath), relPath);
+            path = Application.dir_path(Application.dir_name(catalogPath), relPath);
             string path2del = path;
             ::str::begins_eat(path, "file://");
             ::str::begins_eat(path, "file:/");
@@ -188,18 +188,18 @@ namespace colorertake5
          {
             path = relPath;
          }
-         if(Application.dir().is(path))
+         if(Application.dir_is(path))
          {
             //if(path == "v:\\ca2os\\basis\\app\\appmatter\\main\\_std\\_std\\colorer\\hrc\\auto")
             {
                // debug_break();
             }
             stringa straPath;
-            System.dir().rls(get_app(), path, &straPath);
+            Application.dir_rls(path, &straPath);
             ::file::binary_buffer_sp spfile(allocer());
             for(int32_t i = 0; i < straPath.get_count(); i++)
             {
-               if(!Application.dir().is(straPath[i]))
+               if(!Application.dir_is(straPath[i]))
                {
                   string str = Application.file_as_string(straPath[i]);
                   try
@@ -283,7 +283,7 @@ namespace colorertake5
 
                string strPath;
 
-               strPath = ::dir_path(strDir, hrdLocV->element_at(idx));
+               strPath = Application.dir_path(strDir, hrdLocV->element_at(idx));
 
                ::file::byte_input_stream spfile(Application.file_get_file(strPath, ::file::mode_read | ::file::type_binary));
 

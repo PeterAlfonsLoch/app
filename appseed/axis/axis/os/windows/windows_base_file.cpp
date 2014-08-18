@@ -256,7 +256,7 @@ handle create_file(const char * lpcszFileName, dword dwDesiredAccess, dword dwSh
 
 
 
-int_bool file_is_equal_path(const char * psz1, const char * psz2)
+int_bool file_is_equal_path_dup(const char * psz1, const char * psz2)
 {
 
    const int32_t iBufSize = MAX_PATH * 8;
@@ -1273,3 +1273,33 @@ int_bool file_set_length(const char * pszName, size_t iSize)
    return true;
 
 }
+
+
+
+
+
+int_bool file_move_dup(const char * lpszNewName, const char * lpszOldName)
+{
+
+   if(!::MoveFile((LPTSTR)lpszOldName,(LPTSTR)lpszNewName))
+      return FALSE;
+
+   return TRUE;
+
+}
+
+int_bool file_delete_dup(const char * lpszFileName)
+{
+   
+
+   if(!::DeleteFile((LPTSTR)lpszFileName))
+      return FALSE;
+
+   return TRUE;
+
+
+}
+
+
+
+

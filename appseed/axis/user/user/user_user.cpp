@@ -81,7 +81,7 @@ namespace user
       TRACE("::user::application::initialize");
 
       xml::document docUser(get_app());
-      string strUser = Application.file_as_string(Application.dir().userappdata("langstyle_settings.xml"));
+      string strUser = Application.file_as_string(Application.dir_userappdata("langstyle_settings.xml"));
       string strLangUser;
       string strStyleUser;
       if(docUser.load(strUser))
@@ -115,7 +115,7 @@ namespace user
          && strLicense.has_char())
       {
 
-         if(&ApplicationUser == NULL)
+         if(!session().assert_user_logged_in())
          {
             return false;
          }
@@ -134,8 +134,6 @@ retry_license:
 
          if(!session().is_licensed(strLicense))
          {
-
-            Application.license().m_mapInfo.remove_key(strLicense);
 
             if(iRetry > 0)
                goto retry_license;
@@ -553,13 +551,13 @@ retry_license:
          if(&keyboard().layout() != NULL)
          {
 
-            if(session().fontopus()->m_puser != NULL
-               && session().fontopus()->m_puser->m_strFontopusServerSessId.has_char())
-            {
+//            if(session().fontopus()->m_puser != NULL
+  //             && session().fontopus()->m_puser->m_strFontopusServerSessId.has_char())
+    //        {
 
                // xxx data_set("keyboard_layout", keyboard().layout().m_strPath);
 
-            }
+      //      }
 
             return true;
          }
@@ -570,13 +568,13 @@ retry_license:
          if(!set_keyboard_layout(keyboard().get_current_system_layout(), ::action::source_database))
             return false;
 
-         if(session().fontopus()->m_puser != NULL
-            && session().fontopus()->m_puser->m_strFontopusServerSessId.has_char())
-         {
+//         if(session().fontopus()->m_puser != NULL
+  //          && session().fontopus()->m_puser->m_strFontopusServerSessId.has_char())
+    //     {
 
 // xxx            data_set("keyboard_layout", keyboard().layout().m_strPath);
 
-         }
+      //   }
 
          return true;
       }

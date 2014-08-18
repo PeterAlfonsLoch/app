@@ -39,7 +39,7 @@ namespace fs
 
       string strUrl;
 
-      strUrl = "http://fs.veriwell.net/fs/ls?path=" + System.url().url_encode(pszPath);
+      strUrl = "http://fs.veriwell.net/fs/ls?path=" + url_encode_dup(pszPath);
 
       string strSource;
 
@@ -96,8 +96,8 @@ namespace fs
 
       string strUrl;
 
-      strUrl = "http://fs.veriwell.net/fs/ls?path=" + System.url().url_encode(System.url().get_script(pszDir))
-         + "&server=" + System.url().url_encode(System.url().get_server(pszDir));
+      strUrl = "http://fs.veriwell.net/fs/ls?path=" + url_encode_dup(System.url().get_script(pszDir))
+         + "&server=" + url_encode_dup(System.url().get_server(pszDir));
 
       string strSource;
 
@@ -262,7 +262,7 @@ namespace fs
 
       /*string strUrl;
 
-      strUrl = "http://fs.veriwell.net/fs/ls?path=" + System.url().url_encode(pszPath);
+      strUrl = "http://fs.veriwell.net/fs/ls?path=" + url_encode_dup(pszPath);
 
       string strSource;
 

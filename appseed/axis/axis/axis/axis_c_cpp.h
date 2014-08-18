@@ -779,7 +779,6 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 #endif
 
 
-#include "axis/user/userpresence/userpresence.h"
 #include "axis/primitive/primitive_factory.h"
 
 

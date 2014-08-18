@@ -101,7 +101,7 @@ namespace user
       strPath = Application.dir_matter("keyboard/windows/default.xml");
 #endif
 
-      if(!Application.file().exists(strPath))
+      if(!Application.file_exists(strPath))
          return false;
 
       if(!load_os_layout(strPath))
@@ -254,7 +254,7 @@ namespace user
    {
       keyboard_layout_ida layoutida;
       stringa straPath;
-      Application.dir().matter_ls_file("keyboard layout", straPath);
+      Application.dir_matter_ls_file("keyboard layout", straPath);
       for(int32_t i = 0; i < straPath.get_count(); i++)
       {
          keyboard_layout_id layoutid;
@@ -297,7 +297,7 @@ namespace user
 
       string strPath = Application.dir_matter("keyboard layout/en_us_international.xml");
 
-      if(Application.file().exists(strPath))
+      if(Application.file_exists(strPath))
       {
 
          return strPath;
@@ -312,7 +312,7 @@ namespace user
    bool keyboard::initialize(keyboard_layout_id * playoutid, const char * pszPath)
    {
 
-      if(!Application.file().exists(pszPath))
+      if(!Application.file_exists(pszPath))
          return false;
 
       string str = Application.file_as_string(pszPath);

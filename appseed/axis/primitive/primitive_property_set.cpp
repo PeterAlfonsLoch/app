@@ -1028,7 +1028,7 @@ string property_set::get_http_post()
    {
       strPost += m_propertya.element_at(i)->name();
       strPost += "=";
-      strPost += System.url().url_encode(m_propertya.element_at(i)->get_value().get_string());
+      strPost += url_encode_dup(m_propertya.element_at(i)->get_value().get_string());
       if (i < m_propertya.get_size() - 1)
          strPost += "&";
    }
@@ -1048,4 +1048,3 @@ string property_set::get_http_post()
 
 
 
-}

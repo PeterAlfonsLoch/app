@@ -342,10 +342,6 @@ namespace axis
 #endif
 
       dappy(string(typeid(*this).name()) + " : Going to ::axis::session " + ::str::from(m_iReturnCode));
-      m_spfile.alloc(allocer());
-
-
-      m_spdir.alloc(allocer());
 
 
       m_pbasesession = new ::axis::session(this);
@@ -353,27 +349,8 @@ namespace axis
       if(m_pbasesession == NULL)
          return false;
 
-      if(!m_spdir->initialize())
-         throw simple_exception(this,"failed to construct system m_spdir->initialize");
-
       m_pbasesession->construct(this,0);
 
-
-      m_spnet = canew(::sockets::net(this));
-      //m_spnet.alloc(allocer());
-
-      if(m_spnet.is_null())
-      {
-
-         m_iReturnCode = -1986;
-
-         return false;
-
-      }
-
-
-      if(!m_spnet->initialize())
-         return false;
 
       if(!m_pbasesession->begin_synch(&m_iReturnCode))
       {
@@ -414,48 +391,10 @@ namespace axis
    bool system::finalize()
    {
 
-      try
-      {
-
-         if(!m_spnet->gudo_set())
-         {
-
-            m_iReturnCode = -87;
-
-         }
-
-      }
-      catch(...)
-      {
-
-         m_iReturnCode = -87;
-
-      }
-
-
       __wait_threading_count_except(this,::millis((5000) * 77));
 
       bool bOk = false;
 
-
-
-      try
-      {
-
-         if(m_spcrypto.is_set())
-         {
-
-            m_spcrypto.release();
-
-         }
-
-      }
-      catch(...)
-      {
-
-         bOk = false;
-
-      }
 
       try
       {
@@ -469,44 +408,6 @@ namespace axis
          bOk = false;
 
       }
-
-      try
-      {
-
-         if(m_spportforward.is_set())
-         {
-
-            m_spportforward.release();
-
-         }
-
-      }
-      catch(...)
-      {
-
-         bOk = false;
-
-      }
-
-
-      try
-      {
-
-         if(m_spfile.is_set())
-         {
-
-            m_spfile.release();
-
-         }
-
-      }
-      catch(...)
-      {
-
-         bOk = false;
-
-      }
-
 
       return bOk;
 
@@ -543,39 +444,26 @@ namespace axis
       }
       catch(...)
       {
+
          m_iReturnCode = -86;
-      }
-
-
-      try
-      {
-
-         if(!m_spnet->finalize())
-         {
-
-            m_iReturnCode = -87;
-
-         }
 
       }
-      catch(...)
-      {
-
-         m_iReturnCode = -87;
-
-      }
-
 
 
       for(int i = 0; i < m_serviceptra.get_size(); i++)
       {
+
          try
          {
+
             m_serviceptra(i)->Stop(0);
+
          }
          catch(...)
          {
+
          }
+
       }
 
 
@@ -625,60 +513,32 @@ namespace axis
       }
 
 
-
       try
       {
-         m_spportforward.release();
-      }
-      catch(...)
-      {
-      }
 
-
-
-      try
-      {
-         if(m_spos.is_set())
-         {
-            m_spos.release();
-         }
-      }
-      catch(...)
-      {
-      }
-      try
-      {
-         m_spdir.release();
-      }
-      catch(...)
-      {
-      }
-
-
-      try
-      {
          m_spos.release();
+
       }
       catch(...)
       {
+
       }
-      try
-      {
-         m_spdir.release();
-      }
-      catch(...)
-      {
-      }
+
 
       try
       {
+
          if(m_pmachineeventcentral != NULL)
          {
+
             m_pmachineeventcentral->set_run(false);
+
          }
+
       }
       catch(...)
       {
+
       }
 
 
@@ -725,31 +585,6 @@ namespace axis
       }
 #endif
 
-      try
-      {
-
-         m_spnet.release();
-
-      }
-      catch(...)
-      {
-
-         m_iReturnCode = -86;
-
-      }
-
-#ifdef BSD_STYLE_SOCKETS
-
-      if(m_psslinit != NULL)
-      {
-
-         delete m_psslinit;
-
-         m_psslinit = NULL;
-
-      }
-
-#endif
 
       if(m_peengine != NULL)
       {
@@ -988,22 +823,6 @@ namespace axis
 
 
 
-
-
-   ::sockets::net & system::net()
-   {
-      return *m_spnet;
-   }
-
-
-
-   class ::crypto::crypto & system::crypto()
-   {
-      return *m_spcrypto;
-   }
-
-
-
    ::datetime::departament & system::datetime()
    {
       return *m_pdatetime;
@@ -1023,20 +842,6 @@ namespace axis
       return *m_plog;
    }
 
-
-
-
-   ::fontopus::user_set & system::userset()
-   {
-      return m_userset;
-   }
-
-
-
-   ::axis::compress & system::compress()
-   {
-      return m_compress;
-   }
 
 
 
@@ -1843,14 +1648,14 @@ namespace axis
 
          free(pszCurDir);
 
-         if(Application.file().exists(::dir_path(strCurDir,"core.dylib")))
+         if(Application.file_exists(::dir_path(strCurDir,"core.dylib")))
          {
             m_strCa2ModuleFolder = strCurDir;
             goto finishedCa2Module;
          }
 
 
-         if(Application.file().exists(::dir_path(m_strModuleFolder,"core.dylib")))
+         if(Application.file_exists(::dir_path(m_strModuleFolder,"core.dylib")))
          {
             m_strCa2ModuleFolder = m_strModuleFolder;
             goto finishedCa2Module;
@@ -1918,7 +1723,7 @@ namespace axis
    string system::get_module_title()
    {
 
-      return file().title_(get_module_file_path());
+      return file_title(get_module_file_path());
 
    }
 
@@ -1926,7 +1731,7 @@ namespace axis
    string system::get_module_name()
    {
 
-      return file().name_(get_module_file_path());
+      return file_name(get_module_file_path());
 
    }
 
@@ -1945,6 +1750,12 @@ namespace axis
    }
 
 
+   string system::dir_appmatter_locator(sp(::axis::application) papp)
+   {
+
+      throw not_implemented(get_app());
+
+   }
 
 
 } // namespace axis

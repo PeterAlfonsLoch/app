@@ -302,7 +302,7 @@ namespace android
    bool file_system::mk_time(const char * lpcszcandidate)
    {
       ::file::buffer_sp spfile(get_app());
-      if(System.file().exists(lpcszcandidate, get_app()))
+      if(System.file_exists(lpcszcandidate, get_app()))
          return false;
       try
       {
@@ -650,7 +650,7 @@ namespace android
       if(System.dir().is(psz, papp) && (eextract == extract_first || eextract == extract_all || !(::str::ends_ci(psz, ".zip"))))
       {
          stringa straPath;
-         System.dir().rls(papp, psz, &straPath);
+         System.dir_rls(papp, psz, &straPath);
          string strDst;
          string strSrc;
          string strDirSrc(psz);
@@ -796,8 +796,8 @@ namespace android
 
       string strDirOld     = Application.dir_name(psz);
       string strDirNew     = Application.dir_name(pszNew);
-      string strNameOld    = System.file().name_(psz);
-      string strNameNew    = System.file().name_(pszNew);
+      string strNameOld    = System.file_name(psz);
+      string strNameNew    = System.file_name(pszNew);
 
       if(strDirOld == strDirNew)
       {

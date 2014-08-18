@@ -55,6 +55,7 @@ namespace base
       sp(::base::savings)                                      m_psavings;
       bool                                                     m_bIfs;
       sp(::user::user)                                         m_spuser;
+      sp(class ::fontopus::license)                   m_splicense;
 
 
 
@@ -97,6 +98,7 @@ namespace base
       inline ::sockets::sockets &               sockets()      { return *m_psockets; }
       inline sp(class ::user::user)             user()         { return m_spuser; }
       inline ::base::savings &                  savings()      { return *m_psavings; }
+      inline class ::fontopus::license &        license()      { return *m_splicense; }
 
       ::user::str_context *                     str_context();
 

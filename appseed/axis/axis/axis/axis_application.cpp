@@ -125,17 +125,17 @@ namespace axis
       // initialize wait cursor state
       m_iWaitCursorCount         = 0;
 
-      m_bBaseProcessInitialize         = false;
-      m_bBaseProcessInitializeResult   = false;
+      m_bAxisProcessInitialize         = false;
+      m_bAxisProcessInitializeResult   = false;
 
-      m_bBaseInitialize1               = false;
-      m_bBaseInitialize1Result         = false;
+      m_bAxisInitialize1               = false;
+      m_bAxisInitialize1Result         = false;
 
-      m_bBaseInitialize                = false;
-      m_bBaseInitializeResult          = false;
+      m_bAxisInitialize                = false;
+      m_bAxisInitializeResult          = false;
 
-      m_bBaseInitializeInstance        = false;
-      m_bBaseInitializeInstanceResult  = false;
+      m_bAxisInitializeInstance        = false;
+      m_bAxisInitializeInstanceResult  = false;
 
 
       m_bShouldInitializeGTwf = true;
@@ -982,97 +982,8 @@ namespace axis
    bool application::get_temp_file_name_template(string & strRet,const char * pszName,const char * pszExtension,const char * pszTemplate)
    {
 
-#ifdef METROWIN
+      throw not_implemented(this);
 
-      string str(::Windows::Storage::ApplicationData::Current->TemporaryFolder->Path);
-
-#else
-
-      char lpPathBuffer[MAX_PATH * 4];
-
-      uint32_t dwRetVal = GetTempPath(sizeof(lpPathBuffer),lpPathBuffer);
-
-      if(dwRetVal > sizeof(lpPathBuffer) || (dwRetVal == 0))
-      {
-
-         return FALSE;
-
-      }
-
-      string str(lpPathBuffer);
-
-#endif
-
-      char bufItem[64];
-
-      string strRelative;
-
-      SYSTEMTIME st;
-
-      memset_dup(&st,0,sizeof(st));
-
-      GetSystemTime(&st);
-
-      itoa_dup(bufItem,st.wYear,10);
-      zero_pad(bufItem,4);
-      strRelative += bufItem;
-
-      itoa_dup(bufItem,st.wMonth,10);
-      zero_pad(bufItem,2);
-      strRelative += "-";
-      strRelative += bufItem;
-
-      itoa_dup(bufItem,st.wDay,10);
-      zero_pad(bufItem,2);
-      strRelative += "-";
-      strRelative += bufItem;
-
-      itoa_dup(bufItem,st.wHour,10);
-      zero_pad(bufItem,2);
-      strRelative += " ";
-      strRelative += bufItem;
-
-      itoa_dup(bufItem,st.wMinute,10);
-      zero_pad(bufItem,2);
-      strRelative += "-";
-      strRelative += bufItem;
-
-      itoa_dup(bufItem,st.wSecond,10);
-      zero_pad(bufItem,2);
-      strRelative += "-";
-      strRelative += bufItem;
-
-      for(int32_t i = 0; i < (1024 * 1024); i++)
-      {
-         strRet = ::dir_path(str,strRelative + "-" + hex::lower_from(i + 1),string(pszName) + string(".") + pszExtension);
-         if(pszTemplate != NULL)
-         {
-            if(System.install().is_file_ok(strRet,pszTemplate,""))
-               return true;
-         }
-         if(file_exists_dup(strRet))
-         {
-            try
-            {
-
-               m_pbasesystem->file().del(strRet);
-
-            }
-            catch(...)
-            {
-
-               continue;
-
-            }
-
-            return true;
-
-         }
-         else
-         {
-            return true;
-         }
-      }
       return false;
 
    }
@@ -1490,118 +1401,8 @@ namespace axis
    int32_t application::application_pre_run()
    {
 
-#ifdef WINDOWSEX
+      return 0;
 
-      MESSAGE msg;
-
-      // Create Windows Message Queue
-      ::PeekMessageA(&msg,NULL,0,0xffff,0);
-
-      if(!is_system() && (bool)oprop("SessionSynchronizedInput"))
-      {
-         ::AttachThreadInput(GetCurrentThreadId(),(uint32_t)System.m_pthreadimpl->get_os_int(),TRUE);
-      }
-
-#endif
-
-      m_iReturnCode = 0;
-
-      m_dwAlive = ::get_tick_count();
-
-      if(!InitApplication())
-      {
-         dappy(string(typeid(*this).name()) + " : InitApplication failure : " + ::str::from(m_iReturnCode));
-         goto InitFailure;
-      }
-
-
-      //::simple_message_box(NULL,"e1","e1",MB_OK);
-
-      m_dwAlive = ::get_tick_count();
-
-      try
-      {
-         try
-         {
-            if(!process_initialize())
-            {
-               dappy(string(typeid(*this).name()) + " : process_initialize failure : " + ::str::from(m_iReturnCode));
-               goto InitFailure;
-            }
-         }
-         catch(::exit_exception & e)
-         {
-
-            throw e;
-
-         }
-         catch(const ::exception::exception &)
-         {
-            goto InitFailure;
-         }
-
-
-         dappy(string(typeid(*this).name()) + " : e2 : " + ::str::from(m_iReturnCode));
-         //::simple_message_box(NULL,"e2","e2",MB_OK);
-
-         System.install().m_progressApp()++;
-         m_dwAlive = ::get_tick_count();
-         try
-         {
-
-            if(!initialize_instance())
-            {
-               dappy(string(typeid(*this).name()) + " : initialize_instance failure : " + ::str::from(m_iReturnCode));
-               try
-               {
-                  exit();
-               }
-               catch(...)
-               {
-               }
-               goto InitFailure;
-            }
-         }
-         catch(::exit_exception & e)
-         {
-
-            throw e;
-
-         }
-         catch(const ::exception::exception & e)
-         {
-            if(on_run_exception((::exception::exception &) e))
-               goto run;
-            if(final_handle_exception((::exception::exception &) e))
-               goto run;
-            try
-            {
-               m_iReturnCode = exit();
-            }
-            catch(...)
-            {
-               m_iReturnCode = -1;
-            }
-            if(m_iReturnCode == 0)
-               m_iReturnCode = -1;
-            goto InitFailure;
-         }
-      }
-      catch(::exit_exception & e)
-      {
-
-         throw e;
-
-      }
-      catch(...)
-      {
-      }
-      goto run;
-   InitFailure:
-      if(m_iReturnCode == 0)
-         m_iReturnCode = -1;
-   run:
-      return m_iReturnCode;
    }
 
 
@@ -1617,49 +1418,6 @@ namespace axis
 
    bool application::initial_check_directrix()
    {
-
-      if(directrix()->m_varTopicQuery.has_property("install"))
-      {
-
-         if(!on_install())
-            return false;
-
-         string strId = m_strAppId;
-
-         xxdebug_box("on_install1",strId,0);
-
-         if(strId.is_empty())
-            strId = m_strAppName;
-
-         if(strId.has_char() && command()->m_varTopicQuery.has_property("app") && strId == command()->m_varTopicQuery["app"])
-         {
-
-            system_add_app_install(strId);
-
-         }
-         else if(strId.has_char() && command()->m_varTopicQuery.has_property("session_start") && strId == command()->m_varTopicQuery["session_start"])
-         {
-
-            system_add_app_install(strId);
-
-         }
-         else if(m_strInstallToken.has_char())
-         {
-
-            system_add_app_install(m_strInstallToken);
-
-         }
-
-      }
-      else if(directrix()->m_varTopicQuery.has_property("uninstall"))
-      {
-
-         if(!on_uninstall())
-            return false;
-
-         System.install().remove_spa_start(m_strInstallType,m_strInstallToken);
-
-      }
 
       return true;
 
@@ -1685,68 +1443,7 @@ namespace axis
    bool application::system_add_app_install(const char * pszId)
    {
 
-      synch_lock sl(System.m_spmutexSystemAppData);
-
-      string strId(pszId);
-      string strSystemLocale = System.m_strLocale;
-      string strSystemSchema = System.m_strSchema;
-      stringa straLocale = command()->m_varTopicQuery["locale"].stra();
-      stringa straSchema = command()->m_varTopicQuery["schema"].stra();
-
-      System.install().remove_spa_start(m_strInstallType,strId);
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,strSystemLocale,m_strSchema);
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,strSystemLocale,strSystemSchema);
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,m_strLocale,m_strSchema);
-
-      for(index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-      {
-
-         System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,straLocale[iLocale],m_strSchema);
-
-      }
-
-      for(index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-      {
-
-         System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,m_strLocale,straSchema[iSchema]);
-
-      }
-
-      for(index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-      {
-
-         for(index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-         {
-
-            System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,straLocale[iLocale],straSchema[iSchema]);
-
-         }
-
-      }
-
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,strSystemLocale,"");
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,m_strLocale,"");
-
-      for(index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-      {
-
-         System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,straLocale[iLocale],"");
-
-      }
-
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,"",m_strSchema);
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,"",strSystemSchema);
-
-      for(index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-      {
-
-         System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,"",straSchema[iSchema]);
-
-      }
-
-
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,"","");
-
+      throw not_implemented(get_app());
 
       return true;
 
@@ -2156,11 +1853,11 @@ namespace axis
    bool application::process_initialize()
    {
 
-      if(m_bBaseProcessInitialize)
-         return m_bBaseProcessInitializeResult;
+      if(m_bAxisProcessInitialize)
+         return m_bAxisProcessInitializeResult;
 
-      m_bBaseProcessInitialize = true;
-      m_bBaseProcessInitializeResult = false;
+      m_bAxisProcessInitialize = true;
+      m_bAxisProcessInitializeResult = false;
 
 
       
@@ -2208,7 +1905,7 @@ namespace axis
          return false;
 
 
-      m_bBaseProcessInitializeResult = true;
+      m_bAxisProcessInitializeResult = true;
 
       return true;
 
@@ -2218,112 +1915,6 @@ namespace axis
    bool application::initialize_instance()
    {
 
-      if(m_bBaseInitializeInstance)
-         return m_bBaseInitializeInstanceResult;
-
-      m_bBaseInitializeInstance = true;
-      m_bBaseInitializeInstanceResult = false;
-
-      xxdebug_box("check_exclusive","check_exclusive",MB_ICONINFORMATION);
-
-      if(!is_system())
-      {
-         if(!check_exclusive())
-            return false;
-      }
-
-      xxdebug_box("check_exclusive ok","check_exclusive ok",MB_ICONINFORMATION);
-
-      m_dwAlive = ::get_tick_count();
-
-      //::simple_message_box(NULL,"e2.b","e2.b",MB_OK);
-
-      if(!initialize1())
-      {
-         dappy(string(typeid(*this).name()) + " : initialize1 failure : " + ::str::from(m_iReturnCode));
-         return false;
-      }
-
-
-
-      //::simple_message_box(NULL,"e3","e3",MB_OK);
-
-
-      System.install().m_progressApp()++; // 2
-
-      xxdebug_box("initialize1 ok","initialize1 ok",MB_ICONINFORMATION);
-
-      /*
-      string strWindow;
-
-      if(m_strAppName.has_char())
-         strWindow = m_strAppName;
-      else
-         strWindow = typeid(*this).name();
-
-#ifndef METROWIN
-
-      if(!create_message_queue(this,strWindow))
-      {
-         dappy(string(typeid(*this).name()) + " : create_message_queue failure : " + ::str::from(m_iReturnCode));
-         TRACE("Fatal error: could not initialize application message interaction_impl (name=\"%s\").",strWindow.c_str());
-         return false;
-      }
-
-#endif
-      */
-
-      m_dwAlive = ::get_tick_count();
-
-      if(!initialize2())
-      {
-         dappy(string(typeid(*this).name()) + " : initialize2 failure : " + ::str::from(m_iReturnCode));
-         return false;
-      }
-
-      System.install().m_progressApp()++; // 3
-
-      xxdebug_box("initialize2 ok","initialize2 ok",MB_ICONINFORMATION);
-
-      m_dwAlive = ::get_tick_count();
-
-      if(!initialize3())
-      {
-         dappy(string(typeid(*this).name()) + " : initialize3 failure : " + ::str::from(m_iReturnCode));
-         return false;
-      }
-
-      System.install().m_progressApp()++; // 4
-
-      xxdebug_box("initialize3 ok","initialize3 ok",MB_ICONINFORMATION);
-
-      m_dwAlive = ::get_tick_count();
-
-
-      dappy(string(typeid(*this).name()) + " : initialize3 ok : " + ::str::from(m_iReturnCode));
-      try
-      {
-
-         if(!initialize())
-         {
-            dappy(string(typeid(*this).name()) + " : initialize failure : " + ::str::from(m_iReturnCode));
-            return false;
-         }
-      }
-      catch(const char * psz)
-      {
-         if(!strcmp(psz,"You have not logged in! Exiting!"))
-         {
-            return false;
-         }
-         return false;
-      }
-
-
-      System.install().m_progressApp()++; // 5
-
-      m_bBaseInitializeInstanceResult = true;
-
       return true;
 
    }
@@ -2332,18 +1923,16 @@ namespace axis
    bool application::initialize1()
    {
 
-      if(m_bBaseInitialize1)
-         return m_bBaseInitialize1Result;
+      if(m_bAxisInitialize1)
+         return m_bAxisInitialize1Result;
 
-      m_bBaseInitialize1 = true;
+      m_bAxisInitialize1 = true;
 
-      m_bBaseInitialize1Result = false;
-
-      m_splicense = new class ::fontopus::license(this);
+      m_bAxisInitialize1Result = false;
 
       m_dwAlive = ::get_tick_count();
 
-      m_straMatterLocator.add_unique(System.dir().appmatter_locator(this));
+      m_straMatterLocator.add_unique(System.dir_appmatter_locator(this));
 
       if(!ca_initialize1())
          return false;
@@ -2355,7 +1944,7 @@ namespace axis
       if(!m_pimpl->initialize1())
          return false;
 
-      m_bBaseInitialize1Result = true;
+      m_bAxisInitialize1Result = true;
 
       return true;
 
@@ -2392,93 +1981,9 @@ namespace axis
 
    bool application::initialize()
    {
-
-      if(m_bBaseInitialize)
-         return m_bBaseInitializeResult;
-
-      m_bBaseInitialize = true;
-      m_bBaseInitializeResult = false;
-
-      application_signal_details signal(this,m_psignal,application_signal_initialize);
-
-      m_psignal->emit(&signal);
-
-      if(!signal.m_bOk)
-         return false;
-
-      m_dwAlive = ::get_tick_count();
-
-      if(is_system())
-      {
-         if(guideline()->m_varTopicQuery.propset().has_property("save_processing"))
-         {
-            session().savings().save(::axis::resource_processing);
-         }
-         if(guideline()->m_varTopicQuery.propset().has_property("save_blur_back"))
-         {
-            session().savings().save(::axis::resource_blur_background);
-         }
-         if(guideline()->m_varTopicQuery.propset().has_property("save_transparent_back"))
-         {
-            session().savings().save(::axis::resource_translucent_background);
-         }
-      }
-
-      if(directrix()->m_varTopicQuery.propset().has_property("install"))
-      {
-         // core level app install
-         if(!Ex2OnAppInstall())
-            return false;
-      }
-      else if(directrix()->m_varTopicQuery.propset().has_property("uninstall"))
-      {
-         // core level app uninstall
-         if(!Ex2OnAppUninstall())
-            return false;
-      }
-      else
-      {
-#ifdef WINDOWSEX
-         // when this process is started in the context of a system account,
-         // for example, this code ensure that the process will
-         // impersonate a loggen on ::fontopus::user
-         HANDLE hprocess;
-         HANDLE htoken;
-
-         hprocess = ::GetCurrentProcess();
-
-         if(!OpenProcessToken(
-            hprocess,
-            TOKEN_ALL_ACCESS,
-            &htoken))
-            return false;
-
-         if(!ImpersonateLoggedOnUser(htoken))
-         {
-            TRACELASTERROR();
-            return false;
-         }
-#endif
-      }
-
-      m_dwAlive = ::get_tick_count();
-
-      if(is_system()
-         && command_thread()->m_varTopicQuery["app"] != "app-core/netnodelite"
-         && command_thread()->m_varTopicQuery["app"] != "app-core/netnode_dynamic_web_server"
-         && command_thread()->m_varTopicQuery["app"] != "app-gtech/alarm"
-         && command_thread()->m_varTopicQuery["app"] != "app-gtech/sensible_service")
-      {
-         System.http().defer_auto_initialize_proxy_configuration();
-      }
-
-      m_dwAlive = ::get_tick_count();
-
-      m_bBaseInitializeResult = true;
-
-      dappy(string(typeid(*this).name()) + " : initialize ok : " + ::str::from(m_iReturnCode));
-
+      
       return true;
+
 
    }
 
@@ -3161,111 +2666,7 @@ namespace axis
 
 
 
-   bool application::update_appmatter(::sockets::http_session * & psession,const char * pszRoot,const char * pszRelative)
-   {
 
-      ::str::international::locale_schema localeschema(this);
-
-      session().fill_locale_schema(localeschema);
-
-      bool bIgnoreStdStd = string(pszRoot) == "app" && (string(pszRelative) == "main" || string(pszRelative) == "bergedge");
-
-      //update_appmatter(h, psession, pszRoot, pszRelative, localeschema.m_idLocale, localeschema.m_idSchema);
-
-      ::count iCount = localeschema.m_idaLocale.get_count();
-
-      for(index i = 0; i < iCount; i++)
-      {
-         if(localeschema.m_idaLocale[i] == __id(std) && localeschema.m_idaSchema[i] == __id(std) && bIgnoreStdStd)
-            continue;
-         update_appmatter(psession,pszRoot,pszRelative,localeschema.m_idaLocale[i],localeschema.m_idaSchema[i]);
-         System.install().m_progressApp()++;
-      }
-
-
-      return true;
-
-   }
-
-   bool application::update_appmatter(::sockets::http_session * & psession,const char * pszRoot,const char * pszRelative,const char * pszLocale,const char * pszStyle)
-   {
-
-      string strLocale;
-      string strSchema;
-      TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)",pszRoot,pszRelative,pszLocale,pszStyle);
-      string strRelative = ::dir_path(::dir_path(pszRoot,"appmatter",pszRelative),sess(this).get_locale_schema_dir(pszLocale,pszStyle)) + ".zip";
-      string strFile = System.dir().element(strRelative);
-      string strUrl;
-      if(_ca_is_basis())
-      {
-         strUrl = "http://basis.spaignition.api.server.ca2.cc/download?authnone&version=basis&stage=";
-      }
-      else
-      {
-         strUrl = "http://stage.spaignition.api.server.ca2.cc/download?authnone&version=stage&stage=";
-      }
-
-      strUrl += System.url().url_encode(strRelative);
-
-
-      if(psession == NULL)
-      {
-
-         while(true)
-         {
-
-            property_set setEmpty(get_app());
-
-            psession = System.http().open(System.url().get_server(strUrl),System.url().get_protocol(strUrl),setEmpty,NULL,NULL);
-
-            if(psession != NULL)
-               break;
-
-            Sleep(184);
-
-         }
-
-      }
-
-      property_set set;
-
-      set["get_memory"] = "";
-
-      psession = System.http().request(psession,strUrl,set);
-
-      ::file::memory_buffer file(get_app(),set["get_memory"].cast < primitive::memory >());
-
-      if(set["get_memory"].cast < primitive::memory >() != NULL && set["get_memory"].cast < primitive::memory >()->get_size() > 0)
-      {
-
-         zip::Util util;
-
-         string strDir = strFile;
-
-         ::str::ends_eat_ci(strDir,".zip");
-
-         try
-         {
-
-            util.extract_all(strDir,&file);
-
-         }
-         catch(...)
-         {
-
-            // spa app.install.exe would recover by retrying or someone would fix the resource packaging problem and then zip extraction at least should work.
-
-            return false;
-
-         }
-
-         //System.compress().extract_all(strFile, this);
-
-      }
-
-      return true;
-
-   }
 
 
 
@@ -3538,7 +2939,7 @@ namespace axis
 
       {
 
-         ::file::binary_buffer_sp file = session().file_get_file(Application.dir().userappdata(strPath),::file::mode_read);
+         ::file::binary_buffer_sp file = session().file_get_file(Application.dir_userappdata(strPath),::file::mode_read);
 
          if(file.is_null())
          {
@@ -3579,7 +2980,7 @@ namespace axis
 
       {
 
-         ::file::binary_buffer_sp file = session().file_get_file(Application.dir().userappdata(strPath),::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
+         ::file::binary_buffer_sp file = session().file_get_file(Application.dir_userappdata(strPath),::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
 
          if(file.is_null())
          {
@@ -3610,11 +3011,10 @@ namespace axis
    }
 
 
-   void application::assert_user_logged_in()
+   bool application::assert_user_logged_in()
    {
 
-      if(&AppUser(this) == NULL)
-         throw exit_exception(get_app(),"You have not logged in!! db_str_set::load");
+      return false;
 
    }
 
@@ -3650,6 +3050,31 @@ namespace axis
 
    }
 
+
+   void application::dir_matter_ls_file(const string & str,stringa & stra)
+   {
+
+      throw not_implemented(get_app());
+
+   }
+
+
+   string application::file_as_string(var varFile)
+   {
+
+      return ::file_as_string_dup(varFile.get_string());
+
+   }
+
+   
+   string application::file_as_string(var varFile,var & varQuery)
+   {
+
+      return file_as_string(varFile);
+
+   }
+
+
    string application::matter_as_string(const char * pszMatter,const char * pszMatter2)
    {
 
@@ -3680,63 +3105,162 @@ namespace axis
       return false;
    }
 
-   string application::file_as_string(var varFile)
+
+   bool application::file_exists(const char * pszPath)
    {
 
-      if(::str::begins_ci(varFile.get_string(),"http://")
-         || ::str::begins_ci(varFile.get_string(),"https://"))
-      {
-
-         ::property_set set(get_app());
-
-         return http().get(varFile.get_string(),set);
-
-      }
-      else if(::str::begins_ci(varFile["url"].get_string(),"http://")
-         || ::str::begins_ci(varFile["url"].get_string(),"https://"))
-      {
-
-         ::property_set set(get_app());
-
-         return http().get(varFile["url"].get_string(),set);
-
-      }
-      else
-      {
-         return file_as_string_dup(varFile.get_string());
-      }
+      return ::file_exists_dup(pszPath) != FALSE;
 
    }
+
+
+   bool application::file_is_equal_path(const char * pszPath1,const char * pszPath2)
+   {
+
+      return ::file_is_equal_path_dup(pszPath1,pszPath2) != FALSE;
+
+   }
+
+
+   bool application::dir_is(const char * psz)
+   {
+
+      return ::dir::is(psz);
+
+   }
+
+
+   bool application::file_del(const char * psz)
+   {
+
+      return file_delete_dup(psz) != FALSE;
+   
+   }
+
+   string application::file_extension(const char * pszPath)
+   {
+
+      return ::file_extension_dup(pszPath);
+
+   }
+
+
+   string application::dir_userappdata(const char * lpcsz,const char * lpcsz2)
+   {
+
+      throw not_implemented(this);
+
+   }
+
+   string application::dir_appdata(const char * lpcsz,const char * lpcsz2)
+   {
+
+      throw not_implemented(this);
+
+   }
+
+
+   string application::dir_simple_path(const string & str1,const string & str2)
+   {
+      
+      return dir_path(str1,str2);
+
+   }
+
 
    string application::dir_path(const char * psz1,const char * psz2,const char * psz3)
    {
+
       return ::dir::path(psz1,psz2,psz3);
+
    }
+
+
+   string application::dir_element(const char * psz)
+   {
+
+      return ::dir::path(::dir::element(),psz);
+
+   }
+
 
    string application::dir_name(const char * psz)
    {
+
       return ::dir::name(psz);
+
    }
+
+
+   void application::dir_ls_dir(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
+   {
+
+      throw not_implemented(get_app());
+
+   }
+
+
+   void application::dir_rls(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,stringa * pstraRelative)
+   {
+
+      throw not_implemented(get_app());
+
+   }
+
 
    bool application::dir_mk(const char * psz)
    {
+
       return ::dir::mk(psz);
+
    }
+
 
    string application::file_title(const char * psz)
    {
+
       return ::file_title_dup(psz);
+
    }
+
+
    string application::file_name(const char * psz)
    {
+
       return ::file_name_dup(psz);
+
    }
+
 
    string application::file_time_square()
    {
+
       //return get_temp_file_name_template(
       throw not_implemented(get_app());
+
    }
+
+
+   string application::http_get_locale_schema(const char * pszUrl,const char * pszLocale,const char * pszSchema)
+   {
+
+      throw not_implemented(get_app());
+
+   }
+
+
+   ::file::binary_buffer_sp application::file_get_file(var varFile,uint32_t uiFlags)
+   {
+
+      ::file::buffer_sp buffer(allocer());
+
+      if(!buffer->open(varFile,uiFlags))
+         return NULL;
+
+      return buffer;
+
+   }
+
 
 
 } // namespace axis

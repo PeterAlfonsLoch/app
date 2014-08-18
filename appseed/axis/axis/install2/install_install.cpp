@@ -724,7 +724,7 @@ namespace install
 
       string strPath;
 
-      strPath = System.dir().appdata("spa_start.xml");
+      strPath = System.dir_appdata("spa_start.xml");
 
       string strContents;
 
@@ -767,7 +767,7 @@ namespace install
 
       string strPath;
 
-      strPath = System.dir().appdata("spa_start.xml");
+      strPath = System.dir_appdata("spa_start.xml");
 
       string strContents;
 
@@ -808,7 +808,7 @@ namespace install
 
       string strPath;
 
-      strPath = System.dir().appdata("spa_install.xml");
+      strPath = System.dir_appdata("spa_install.xml");
 
       System.dir().mk(Application.dir_name(strPath), get_app());
 
@@ -919,7 +919,7 @@ namespace install
 
       string strPath;
 
-      strPath = System.dir().appdata("spa_install.xml");
+      strPath = System.dir_appdata("spa_install.xml");
 
       string strContents;
 

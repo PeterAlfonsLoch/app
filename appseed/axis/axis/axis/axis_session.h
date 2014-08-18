@@ -31,7 +31,7 @@ namespace axis
 
       ::core::platform *                                       m_pcoreplatform;
       string_map < sp(::axis::application) >                   m_mapApplication;
-      sp(::userpresence::userpresence)                         m_puserpresence;
+
 
       bool                                                     m_bDrawCursor;
 
@@ -47,7 +47,6 @@ namespace axis
       bool                                                     m_bZipIsDir;
       map < ::user::e_key,::user::e_key,bool,bool > *          m_pmapKeyPressed;
       sp(::axis::savings)                                      m_psavings;
-      bool                                                     m_bIfs;
       sp(::user::user)                                         m_spuser;
 
 
@@ -61,7 +60,6 @@ namespace axis
       session(sp(::axis::application) papp);
       virtual ~session();
 
-      inline ::userpresence::userpresence & userpresence() { return *m_puserpresence; }
 
       application_ptra & appptra();
 
@@ -176,19 +174,6 @@ namespace axis
 
 
 
-
-      virtual string matter_as_string(const char * pszMatter,const char * pszMatter2 = NULL);
-      virtual string dir_matter(const char * pszMatter,const char * pszMatter2 = NULL);
-      virtual bool is_inside_time_dir(const char * pszPath);
-      virtual bool file_is_read_only(const char * pszPath);
-      virtual string file_as_string(var varFile);
-      virtual string dir_path(const char * psz1,const char * psz2,const char * psz3 = NULL);
-      virtual string dir_name(const char * psz);
-      virtual bool dir_mk(const char * psz);
-      virtual string file_title(const char * psz);
-      virtual string file_name(const char * psz);
-
-      ::file::binary_buffer_sp file_get_file(var varFile,uint32_t uiFlags);
 
       virtual bool on_ui_mouse_message(::message::mouse * pmouse);
 

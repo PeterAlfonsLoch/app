@@ -71,7 +71,7 @@ namespace sockets
 
    void http_post_socket::AddFile(const string & name,const string & filename,const string & type)
    {
-      if (Application.file().exists(filename))
+      if (Application.file_exists(filename))
       {
          m_mapFiles[name]              = filename;
          m_mapContentLength[filename]  = Application.file().length(filename);

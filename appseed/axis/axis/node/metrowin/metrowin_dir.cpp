@@ -186,7 +186,7 @@ namespace metrowin
 
    bool path::is_equal(const char * lpcsz1, const char * lpcsz2)
    {
-      return System.file().path().is_equal(lpcsz1, lpcsz2);
+      return System.file_is_equal_path(lpcsz1, lpcsz2);
    }
 
    void dir::root_ones(stringa & stra, sp(::axis::application) papp)
@@ -272,7 +272,7 @@ namespace metrowin
       for(int i = 0; i < stra.get_count(); i++)
       {
          string strPath = stra[i];
-         string strName = System.file().name_(strPath);
+         string strName = System.file_name(strPath);
          if(!matches_wildcard_criteria(pszPattern, strName))
             continue;
          if(pstraPath != NULL)
@@ -322,7 +322,7 @@ namespace metrowin
          {
             for(index i = iStart; i < pstraRelative->get_size(); i++)
             {
-               pstraRelative->element_at(i) = ::dir_path(System.file().name_(strDir), pstraRelative->element_at(i));
+               pstraRelative->element_at(i) = ::dir_path(System.file_name(strDir), pstraRelative->element_at(i));
             }
          }
       }
@@ -332,7 +332,7 @@ namespace metrowin
       for(int i = 0; i < stra.get_count(); i++)
       {
          string strPath = stra[i];
-         string strName = System.file().name_(strPath);
+         string strName = System.file_name(strPath);
          if(!matches_wildcard_criteria(lpszPattern, strName))
             continue;
          if(pstraPath != NULL)
@@ -438,7 +438,7 @@ namespace metrowin
       for(int i = 0; i < stra.get_count(); i++)
       {
          string strPath = stra[i];
-         string strName = System.file().name_(strPath);
+         string strName = System.file_name(strPath);
          if(::dir::is(strPath))
             continue;
          if(pstraPath != NULL)
@@ -480,7 +480,7 @@ namespace metrowin
       for(int i = 0; i < stra.get_count(); i++)
       {
          string strPath = stra[i];
-         string strName = System.file().name_(strPath);
+         string strName = System.file_name(strPath);
          if(!::dir::is(strPath))
             continue;
          if(pstraPath != NULL)
@@ -830,7 +830,7 @@ namespace metrowin
                   str.trim_right("\\/");
                   try
                   {
-                     System.file().del(str);
+                     System.file_del(str);
                   }
                   catch(...)
                   {
@@ -839,7 +839,7 @@ namespace metrowin
                   str.trim_right("\\/");
                   try
                   {
-                     System.file().del(str);
+                     System.file_del(str);
                   }
                   catch(...)
                   {

@@ -24,7 +24,7 @@ CLASS_DECL_AXIS uint64_t file_length_dup(const char * path);
 
 
 
-CLASS_DECL_AXIS int_bool file_is_equal_path(const char * pszPath1, const char * pszPath2);
+CLASS_DECL_AXIS int_bool file_is_equal_path_dup(const char * pszPath1, const char * pszPath2);
 
 
 CLASS_DECL_AXIS int_bool file_ftd_dup(const char * pszDir, const char * pszFile);
@@ -331,5 +331,9 @@ CLASS_DECL_AXIS string file_get_mozilla_firefox_plugin_container_path();
 
 
 CLASS_DECL_AXIS int_bool file_set_length(const char * pszName, size_t iSize);
+
+
+CLASS_DECL_AXIS int_bool file_move_dup(const char * lpszNewName,const char * lpszOldName);
+CLASS_DECL_AXIS int_bool file_delete_dup(const char * lpszFileName);
 
 

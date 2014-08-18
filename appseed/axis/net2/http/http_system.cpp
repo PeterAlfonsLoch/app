@@ -32,16 +32,16 @@ namespace http
       else if(i == 1)
       {
          // telmico: no proxy
-         string str = System.file_as_string(System.dir().appdata("machine/proxy.xml"), &System);
+         string str = System.file_as_string(System.dir_appdata("machine/proxy.xml"), &System);
          if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
          {
-            Application.file().copy(System.dir().appdata("proxy_original.xml"), System.dir().element("proxy.xml"), false);
+            Application.file().copy(System.dir_appdata("proxy_original.xml"), System.dir().element("proxy.xml"), false);
          }
-         if(Application.file().exists(System.dir().appdata("proxy.xml")))
+         if(Application.file_exists(System.dir_appdata("proxy.xml")))
          {
             try
             {
-               System.file().del(System.dir().appdata("proxy.xml"));
+               System.file_del(System.dir_appdata("proxy.xml"));
             }
             catch(...)
             {
@@ -51,20 +51,20 @@ namespace http
       else if(i == 2)
       {
          // telmico: original proxy configuration
-         if(Application.file().exists(System.dir().appdata("proxy_original.xml")))
+         if(Application.file_exists(System.dir_appdata("proxy_original.xml")))
          {
-            Application.file().copy(System.dir().appdata("proxy.xml"), System.dir().appdata("proxy_original.xml"), false);
+            Application.file().copy(System.dir_appdata("proxy.xml"), System.dir_appdata("proxy_original.xml"), false);
          }
       }
       else
       {
          // telmico: simple default proxy configuration : hostname=>proxy - try etc/hosts port=>80  - assume HTTP proxy
-         string str = System.file_as_string(System.dir().appdata("proxy.xml"), &System);
+         string str = System.file_as_string(System.dir_appdata("proxy.xml"), &System);
          if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
          {
-            Application.file().copy(System.dir().appdata("proxy_original.xml"), System.dir().appdata("proxy.xml"), false);
+            Application.file().copy(System.dir_appdata("proxy_original.xml"), System.dir_appdata("proxy.xml"), false);
          }
-         Application.file().put_contents(System.dir().appdata("proxy.xml"), "proxy");
+         Application.file().put_contents(System.dir_appdata("proxy.xml"), "proxy");
       }
    }
 
@@ -96,7 +96,7 @@ namespace http
       */
 
 
-      string strHost = Application.file_as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
+      string strHost = Application.file_as_string(System.dir_appdata("database\\text\\last_good_known_fontopus_com.txt"));
       stringa straRequestingServer;
       straRequestingServer.add("account.ca2.cc");
       //straRequestingServer.add("eu-account.ca2.cc");
@@ -333,7 +333,7 @@ namespace http
    {
 
       xml::document doc(get_app());
-      string str = System.file_as_string(System.dir().appdata("proxy.xml"), &System);
+      string str = System.file_as_string(System.dir_appdata("proxy.xml"), &System);
       if(str.has_char() && str.find("<") < 0 && str.find(">") < 0)
       {
          stringa stra;
@@ -474,7 +474,7 @@ namespace http
 
       // Format of script name example "system://server.com/the rain.mp3" => "system://server.com/the%20rain.mp3"
       {
-         string strScript = System.url().url_encode(url_decode_dup(System.url().get_script(strUrl)));
+         string strScript = url_encode_dup(url_decode_dup(System.url().get_script(strUrl)));
          strScript.replace("+", "%20");
          strScript.replace("%2F", "/");
          strUrl = System.url().set_script(strUrl, strScript);
@@ -699,7 +699,7 @@ retry:
 
       // Format of script name example "system://server.com/the rain.mp3" => "system://server.com/the%20rain.mp3"
       {
-         string strScript = System.url().url_encode(url_decode_dup(System.url().get_script(strUrl)));
+         string strScript = url_encode_dup(url_decode_dup(System.url().get_script(strUrl)));
          strScript.replace("+", "%20");
          strScript.replace("%2F", "/");
          strUrl = System.url().set_script(strUrl, strScript);
@@ -1123,7 +1123,7 @@ retry:
 
       // Format of script name example "system://server.com/the rain.mp3" => "system://server.com/the%20rain.mp3"
       {
-         string strScript = System.url().url_encode(url_decode_dup(System.url().get_script(strUrl)));
+         string strScript = url_encode_dup(url_decode_dup(System.url().get_script(strUrl)));
          strScript.replace("+", "%20");
          strScript.replace("%2F", "/");
          strUrl = System.url().set_script(strUrl, strScript);
@@ -1742,8 +1742,8 @@ retry:
       string strPasswordFile;
       string strSection;
       strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
-      strUserNameFile = System.dir().appdata(strSection + "_1");
-      strPasswordFile = System.dir().appdata(strSection + "_2");
+      strUserNameFile = System.dir_appdata(strSection + "_1");
+      strPasswordFile = System.dir_appdata(strSection + "_2");
       bool bOk = true;
       if(!System.crypto().file_get(strUserNameFile, strUserName, NULL, get_app())
       || strUserName.is_empty())
@@ -1777,8 +1777,8 @@ retry:
    {
       string strSection;
       strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str() , "proxy_auth");
-      System.file().del(System.dir().appdata(strSection + "_1"));
-      System.file().del(System.dir().appdata(strSection + "_2"));
+      System.file_del(System.dir_appdata(strSection + "_1"));
+      System.file_del(System.dir_appdata(strSection + "_2"));
    }
 
 

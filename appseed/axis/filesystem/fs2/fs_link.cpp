@@ -169,7 +169,7 @@ namespace fs
    string link::file_name(const char * pszPath)
    {
 
-      return System.file().name_(pszPath);
+      return System.file_name(pszPath);
 
    }
 

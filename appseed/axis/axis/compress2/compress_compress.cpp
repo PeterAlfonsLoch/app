@@ -259,7 +259,7 @@ namespace axis
          stringa straRelative;
          string strPath;
          ::file::binary_buffer_sp file;
-         System.dir().rls(papp, psz, &straPath, NULL, &straRelative);
+         System.dir_rls(papp, psz, &straPath, NULL, &straRelative);
          for (int32_t i = 0; i < straPath.get_size(); i++)
          {
             strPath = straPath[i];

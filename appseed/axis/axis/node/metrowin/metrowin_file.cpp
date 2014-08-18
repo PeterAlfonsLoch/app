@@ -915,7 +915,7 @@ namespace metrowin
       ::file::file_status status;
       GetStatus(status);
       string wstrResult;
-      wstrResult = System.file().name_(status.m_strFullName);
+      wstrResult = System.file_name(status.m_strFullName);
       return wstrResult;
    }
 

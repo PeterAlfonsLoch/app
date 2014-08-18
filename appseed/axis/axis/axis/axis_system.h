@@ -397,6 +397,7 @@ namespace axis
       virtual string get_module_name();
 
 
+      virtual string dir_appmatter_locator(sp(::axis::application) papp);
 
    };
 

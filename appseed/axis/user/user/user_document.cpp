@@ -344,7 +344,7 @@ namespace user
 
       // set the document_interface title based on path name
       string strTitle;
-      strTitle = System.file().name_(strFullPath);
+      strTitle = Application.file_name(strFullPath);
       set_title(strTitle);
 
       //string strPathName;
@@ -659,7 +659,7 @@ namespace user
 
          if (prompt.is_empty())
          {
-            string strTitle = System.file().title_(lpszPathName);
+            string strTitle = System.file_title(lpszPathName);
             //throw not_implemented(get_app());
             /*
             ::core::FormatString1(prompt, nIDP, strTitle);*/
@@ -724,7 +724,7 @@ namespace user
       else
       {
          // get name based on file title of path name
-         name = System.file().name_(m_strPathName);
+         name = System.file_name(m_strPathName);
       }
 
       string prompt;
@@ -815,7 +815,7 @@ namespace user
             // be sure to delete the file
             try
             {
-               System.file().del(newName);
+               System.file_del(newName);
             }
             catch (::exception::axis * pe)
             {

@@ -2,8 +2,8 @@
 
 
 
-CLASS_DECL_AXIS string get_file_md5(const char * file);
 CLASS_DECL_AXIS string file_as_string_dup(const char * path);
+CLASS_DECL_AXIS string file_extension_dup(const char * path);
 
 
 #include "file_status.h"

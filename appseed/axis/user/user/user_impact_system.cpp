@@ -65,7 +65,7 @@ namespace user
       for (index index = 0; index < count; index++)
       {
          sp(::user::document) pdocument = get_document(index);
-         if (System.file().path().is_equal(pdocument->get_path_name(), lpszPathName))
+         if (System.file_is_equal_path(pdocument->get_path_name(), lpszPathName))
          {
             // already open
             rpDocMatch = pdocument;
@@ -80,7 +80,7 @@ namespace user
       {
          // see if extension matches
          ASSERT(strFilterExt[0] == '.');
-         string strExtension = System.file().extension(lpszPathName);
+         string strExtension = System.file_extension(lpszPathName);
          if (strExtension.has_char())
          {
             if (strExtension.CompareNoCase(strFilterExt) == 0)

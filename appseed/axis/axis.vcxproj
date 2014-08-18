@@ -3984,6 +3984,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="database\database_stringhelper.cpp" />
     <ClCompile Include="database\database_update_hint.cpp" />
     <ClCompile Include="database\database_user_interaction.cpp" />
+    <ClCompile Include="filesystem\file\file.cpp" />
     <ClCompile Include="filesystem\file\file_c.cpp" />
     <ClCompile Include="filesystem\file\file_edit_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_serializable.cpp" />
@@ -5502,7 +5503,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
     </CustomBuild>
-    <None Include="base.def" />
+    <None Include="axis.def" />
     <None Include="axis\axis\axis.inl" />
     <None Include="axis\axis\axis_system_factory.inl" />
     <None Include="axis\axis\axis_system_id.inl" />
@@ -5515,10 +5516,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <None Include="primitive\collection\collection.inl" />
     <None Include="primitive\primitive_factory_impl.inl" />
     <None Include="primitive\str\str.inl" />
-    <None Include="base.def" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="base.rc" />
+    <ResourceCompile Include="axis.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

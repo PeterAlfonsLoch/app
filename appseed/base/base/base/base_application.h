@@ -61,8 +61,7 @@ namespace base
 
       bool                                            m_bLicense;
       string                                          m_strBaseSupportId;
-      sp(class ::fontopus::license)                   m_splicense;
-      int32_t                                         m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
+            int32_t                                         m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
 
 
       string                                          m_strRoot;
@@ -130,7 +129,6 @@ namespace base
       virtual ::user::user * create_user();
 
 
-      inline class ::fontopus::license &        license()      { return *m_splicense; }
       inline ::database::server &               dataserver()   { return *m_spdataserver; }
       inline class ::http::application &        http()         { return m_http; }
       inline class ::file::dir::application &   dir()          { return m_dir; }

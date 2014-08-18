@@ -490,7 +490,7 @@ namespace sockets
          if(!bHasQuery)
             iEnd = url.get_length();
          string strScript;
-         strScript = System.url().url_encode(url.Mid(1, iEnd - 1));
+         strScript = url_encode_dup(url.Mid(1, iEnd - 1));
          string strChar;
          strChar.Format("%%%02X", '_');
          strScript.replace("_", strChar);

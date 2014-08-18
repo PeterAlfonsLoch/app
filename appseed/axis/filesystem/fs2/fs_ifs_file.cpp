@@ -60,7 +60,7 @@ void ifs_file::get_file_data()
 
    string strUrl;
 
-   strUrl = "http://file.veriwell.net/ifs/get?path=" + System.url().url_encode(m_strPath);
+   strUrl = "http://file.veriwell.net/ifs/get?path=" + url_encode_dup(m_strPath);
 
    uint32_t dwAdd = 0;
 
@@ -80,7 +80,7 @@ void ifs_file::set_file_data()
    if(m_varFile["xmledit"].cast < ::file::memory_buffer > () != NULL)
    {
 
-      strUrl = "http://file.veriwell.net/ifs/xmledit?path=" + System.url().url_encode(m_varFile["url"]);
+      strUrl = "http://file.veriwell.net/ifs/xmledit?path=" + url_encode_dup(m_varFile["url"]);
 
       property_set setRequest;
 
@@ -108,7 +108,7 @@ void ifs_file::set_file_data()
       if(strMd5Here == strMd5There)
          return;
 
-      strUrl = "http://file.veriwell.net/ifs/set?path=" + System.url().url_encode(m_varFile["url"]);
+      strUrl = "http://file.veriwell.net/ifs/set?path=" + url_encode_dup(m_varFile["url"]);
 
       property_set setPut(get_app());
 
@@ -118,7 +118,7 @@ void ifs_file::set_file_data()
 
    }
 
-   strUrl = "http://file.veriwell.net/ifs/set?path=" + System.url().url_encode(m_strPath);
+   strUrl = "http://file.veriwell.net/ifs/set?path=" + url_encode_dup(m_strPath);
 
    property_set setPut(get_app());
 

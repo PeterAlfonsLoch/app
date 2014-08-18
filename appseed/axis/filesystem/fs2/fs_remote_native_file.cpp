@@ -64,8 +64,8 @@ namespace fs
 
       string strUrl;
 
-      strUrl = "http://fs.veriwell.net/fs/get?path=" + System.url().url_encode(System.url().get_script(m_strPath))
-         + "&server=" + System.url().url_encode(System.url().get_server(m_strPath));
+      strUrl = "http://fs.veriwell.net/fs/get?path=" + url_encode_dup(System.url().get_script(m_strPath))
+         + "&server=" + url_encode_dup(System.url().get_server(m_strPath));
 
       uint32_t dwAdd = 0;
 
@@ -85,8 +85,8 @@ namespace fs
       if(m_varFile["xmledit"].cast < ::file::memory_buffer > () != NULL)
       {
 
-         strUrl = "http://fs.veriwell.net/fs/xmledit?path=" + System.url().url_encode(System.url().get_script(m_varFile["url"]))
-            + "&server=" + System.url().url_encode(System.url().get_server(m_varFile["url"]));
+         strUrl = "http://fs.veriwell.net/fs/xmledit?path=" + url_encode_dup(System.url().get_script(m_varFile["url"]))
+            + "&server=" + url_encode_dup(System.url().get_server(m_varFile["url"]));
 
          property_set setRequest(get_app());
 
@@ -114,8 +114,8 @@ namespace fs
          if(strMd5Here == strMd5There)
             return;
 
-         strUrl = "http://fs.veriwell.net/fs/set?path=" + System.url().url_encode(System.url().get_script(m_varFile["url"]))
-            + "&server=" + System.url().url_encode(System.url().get_server(m_varFile["url"]));
+         strUrl = "http://fs.veriwell.net/fs/set?path=" + url_encode_dup(System.url().get_script(m_varFile["url"]))
+            + "&server=" + url_encode_dup(System.url().get_server(m_varFile["url"]));
 
          property_set setPut(get_app());
 
@@ -125,8 +125,8 @@ namespace fs
       }
 
 
-      strUrl = "http://fs.veriwell.net/fs/set?path=" + System.url().url_encode(System.url().get_script(m_strPath))
-         + "&server=" + System.url().url_encode(System.url().get_server(m_strPath));
+      strUrl = "http://fs.veriwell.net/fs/set?path=" + url_encode_dup(System.url().get_script(m_strPath))
+         + "&server=" + url_encode_dup(System.url().get_server(m_strPath));
 
       property_set set(get_app());
 

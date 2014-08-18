@@ -191,7 +191,7 @@ bool ifs::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_
 
    string strUrl;
 
-   strUrl = "http://file.veriwell.net/ifs/ls?path=" + System.url().url_encode(pszDir);
+   strUrl = "http://file.veriwell.net/ifs/ls?path=" + url_encode_dup(pszDir);
 
    string strSource;
 
