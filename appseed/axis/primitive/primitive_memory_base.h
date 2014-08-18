@@ -32,8 +32,7 @@ namespace primitive
 
 
    class CLASS_DECL_AXIS memory_base :
-      public object,
-      public ::file::serializable
+      public object
    {
    public:
 
@@ -76,11 +75,6 @@ namespace primitive
 
       virtual void write(::file::output_stream & ostream);
       virtual void read(::file::input_stream & istream);
-
-
-      virtual void transfer_to(::file::writer & writer, ::primitive::memory_size uiBufferSize = 1024 * 1024);
-      virtual void transfer_from(::file::reader & reader, ::primitive::memory_size uiBufferSize = 1024 * 1024);
-      virtual void transfer_from_begin(::file::reader & reader, ::primitive::memory_size uiBufferSize = 1024 * 1024);
 
 
       inline  void allocate_add_up(memory_size dwAddUp);

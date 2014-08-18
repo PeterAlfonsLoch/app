@@ -16,9 +16,6 @@
 #include "collection_comparable_primitive_array.h"
 
 #include "collection_primitive_array.h"
-#include "collection_numeric_array.h"
-
-#include "collection_logic_array.h"
 
 #include "collection_list.h"
 #include "collection_comparable_eq_list.h"
@@ -127,26 +124,10 @@ public:
 
 
 
-#include "collection_string_to_string_map.h"
-//#include "collection_bit_array.h"
 #include "collection_string_array.h"
-
-//#include "axis/datetime/datetime_time.h"
-
-#include "axis/primitive/primitive_var.h"
-
-#include "collection_stringa.h"
-
-
-#include "collection_var_array.h"
-#include "axis/primitive/primitive_property.h"
-
-
 
 
 #include "axis/primitive/primitive_signal.h"
-#include "axis/primitive/primitive_property_set.h"
-#include "axis/primitive/primitive_relation_set.h"
 
 
 #include "collection_point_array.h"
@@ -161,8 +142,6 @@ public:
 
 
 
-typedef CLASS_DECL_AXIS spa(uint_array) dword_2darray;
-typedef CLASS_DECL_AXIS spa(index_array) index_2darray;
 
 
 

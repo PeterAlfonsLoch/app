@@ -7,7 +7,7 @@ void ___arrayStdSortTest();
 /*
 void _123abc_debug_gen_array_randomize(sp(::axis::application) papp)
 {
-   int_array a;
+   raw_int_array a;
    a.add_unique(1);
    a.add_unique(2);
    App(papp).array().randomize(a);

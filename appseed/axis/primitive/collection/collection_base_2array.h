@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_AXIS int2a :
-   public spa(int_array)
+   public spa(raw_int_array)
 {
 public:
 };

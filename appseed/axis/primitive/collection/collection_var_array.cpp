@@ -17,7 +17,7 @@ var_array::var_array(const stringa & stra)
    operator = (stra);
 }
 
-var_array::var_array(const int_array & ia)
+var_array::var_array(const raw_int_array & ia)
 {
    set_size(0, ROUND16(ia.get_size() + 16));
    operator = (ia);
@@ -273,7 +273,7 @@ var_array & var_array::operator = (const stringa & stra)
    return *this;
 }
 
-var_array & var_array::operator = (const int_array & inta)
+var_array & var_array::operator = (const raw_int_array & inta)
 {
    remove_all();
    for(int32_t i = 0; i < inta.get_count(); i++)

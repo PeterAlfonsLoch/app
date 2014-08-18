@@ -505,7 +505,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_AXIS_LIBRARY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed/axis/axis;$(SolutionDir)../../../app/axis/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../app/axis3/openssl;$(SolutionDir)../../../app/axis/openssl/crypto2;$(SolutionDir)../../../app/axis/openssl/ssl2;$(SolutionDir)../../../app/appseed/axis/axis/openssl/crypto/asn1;$(SolutionDir)../../../app/appseed/axis/axis/openssl/crypto/evp;$(SolutionDir)../../../app/appseed/axis/axis/openssl/crypto/krb5;$(SolutionDir)../../../app/appseed/axis/axis/openssl/crypto/modes;$(SolutionDir)../../../app/appseed/axis/axis/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed/axis/axis;$(SolutionDir)../../../app/axis/include;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -2773,11 +2773,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\collection\collection_lemon_array.h" />
     <ClInclude Include="primitive\collection\collection_lemon_array_decl.h" />
     <ClInclude Include="primitive\collection\collection_list.h" />
-    <ClInclude Include="primitive\collection\collection_logic_array.h" />
     <ClInclude Include="primitive\collection\collection_map.h" />
     <ClInclude Include="primitive\collection\collection_map_association.h" />
     <ClInclude Include="primitive\collection\collection_map_to_smart_pointer.h" />
-    <ClInclude Include="primitive\collection\collection_numeric_array.h" />
     <ClInclude Include="primitive\collection\collection_object_list.h" />
     <ClInclude Include="primitive\collection\collection_packset.h" />
     <ClInclude Include="primitive\collection\collection_pair.h" />
@@ -2800,13 +2798,11 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\collection\collection_spreadset.h" />
     <ClInclude Include="primitive\collection\collection_stack.h" />
     <ClInclude Include="primitive\collection\collection_strid_map.h" />
-    <ClInclude Include="primitive\collection\collection_stringa.h" />
     <ClInclude Include="primitive\collection\collection_stringl.h" />
     <ClInclude Include="primitive\collection\collection_string_array.h" />
     <ClInclude Include="primitive\collection\collection_string_list.h" />
     <ClInclude Include="primitive\collection\collection_string_map.h" />
     <ClInclude Include="primitive\collection\collection_string_sort_array.h" />
-    <ClInclude Include="primitive\collection\collection_string_to_string_map.h" />
     <ClInclude Include="primitive\collection\collection_template.h" />
     <ClInclude Include="primitive\collection\collection_typed_pointer_array.h" />
     <ClInclude Include="primitive\collection\collection_typed_pointer_list.h" />
@@ -2870,14 +2866,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\primitive_memory_base.h" />
     <ClInclude Include="primitive\primitive_memory_c.h" />
     <ClInclude Include="primitive\primitive_object.h" />
-    <ClInclude Include="primitive\primitive_property.h" />
-    <ClInclude Include="primitive\primitive_property_set.h" />
-    <ClInclude Include="primitive\primitive_relation_set.h" />
     <ClInclude Include="primitive\primitive_request_interface.h" />
     <ClInclude Include="primitive\primitive_request_signal.h" />
     <ClInclude Include="primitive\primitive_signal.h" />
     <ClInclude Include="primitive\primitive_type.h" />
-    <ClInclude Include="primitive\primitive_var2.h" />
     <ClInclude Include="primitive\str\iconv\aliases.h" />
     <ClInclude Include="primitive\str\iconv\aliases2.h" />
     <ClInclude Include="primitive\str\iconv\aliases_aix.h" />
@@ -3267,7 +3259,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\primitive_memory.h" />
     <ClInclude Include="primitive\primitive_memory_container.h" />
     <ClInclude Include="primitive\primitive_shared_memory.h" />
-    <ClInclude Include="primitive\primitive_var.h" />
     <ClInclude Include="primitive\primitive_virtual_memory.h" />
     <ClInclude Include="primitive\primitive_wstringtou.h" />
     <ClInclude Include="version.config.h" />

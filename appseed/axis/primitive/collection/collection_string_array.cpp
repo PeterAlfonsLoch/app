@@ -158,7 +158,7 @@ void string_array::copy(const string_array& src)
 
 }
 
-void string_array::copy(const int64_array & src)
+void string_array::copy(const raw_int64_array & src)
 {
 
    ASSERT_VALID(this);

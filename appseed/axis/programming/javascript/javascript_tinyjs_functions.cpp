@@ -202,7 +202,7 @@ void scArrayContains(CScriptVar *ca, void *data) {
 
 void scArrayRemove(CScriptVar *ca, void *data) {
   CScriptVar *obj = ca->getParameter("obj");
-  int_array removedIndices;
+  raw_int_array removedIndices;
   CScriptVarLink *v;
   // remove
   v = ca->getParameter("this")->firstChild;

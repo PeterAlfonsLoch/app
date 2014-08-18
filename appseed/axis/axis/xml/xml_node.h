@@ -76,7 +76,7 @@ namespace xml
       virtual node & AddChildNode(const char * lpcszName);
       virtual node & AddChildNode(const char * lpcszName, const char * lpcszValue);
       virtual node & AddChildNode(node & node);
-      virtual void AddAttribute(const char * lpcszName, int_array & strValue);
+      virtual void AddAttribute(const char * lpcszName, raw_int_array & strValue);
       virtual void AddAttribute(const char * lpcszName, int32_t  bValue);
       virtual void AddAttribute(const char * lpcszName, const char * bstrValue);
       virtual void RemoveAllNodes();

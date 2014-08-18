@@ -530,7 +530,7 @@ stringa & stringa::operator =(const string_array & tokena)
    return *this;
 }
 
-stringa & stringa::operator =(const int64_array & ia)
+stringa & stringa::operator =(const raw_int64_array & ia)
 {
    copy(ia);
    return *this;

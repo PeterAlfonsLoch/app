@@ -116,7 +116,7 @@ var::var(const stringa & var)
    operator = (var);
 }
 
-var::var(const int_array & ia)
+var::var(const raw_int_array & ia)
 {
    m_etype  = type_new;
    operator = (ia);
@@ -636,7 +636,7 @@ class var & var::operator = (const class var & var)
    return *this;
 }
 
-class var & var::operator = (const int_array & ia)
+class var & var::operator = (const raw_int_array & ia)
 {
    inta() = ia;
    return *this;
@@ -1835,11 +1835,11 @@ stringa & var::stra()
    return *m_pstra;
 }
 
-int_array & var::inta()
+raw_int_array & var::inta()
 {
    if(m_etype != type_inta)
    {
-      int_array * pia =  canew(int_array());
+      raw_int_array * pia =  canew(raw_int_array());
       for(int32_t i = 0; i < array_get_count(); i++)
       {
          pia->add((int32_t) at(i));
@@ -1851,17 +1851,17 @@ int_array & var::inta()
    }
    else if(m_sp.is_null())
    {
-      m_pia = canew(int_array());
+      m_pia = canew(raw_int_array());
       m_sp = m_pia;
    }
    return *m_pia;
 }
 
-int64_array & var::int64a()
+raw_int64_array & var::int64a()
 {
    if(m_etype != type_int64a)
    {
-      int64_array * pia =  canew(int64_array());
+      raw_int64_array * pia =  canew(raw_int64_array());
       for(index i = 0; i < array_get_count(); i++)
       {
          pia->add(at(i).operator int64_t());
@@ -1873,10 +1873,10 @@ int64_array & var::int64a()
    }
    else if(m_sp.is_null())
    {
-      m_pia64 = canew(int64_array());
+      m_pia64 = canew(raw_int64_array());
       m_sp = m_pia64;
    }
-   return *dynamic_cast < int64_array * > (m_sp.m_p);
+   return *dynamic_cast < raw_int64_array * > (m_sp.m_p);
 }
 
 duration & var::duration()
@@ -1926,14 +1926,14 @@ const stringa & var::stra() const
 }
 
 
-const int_array & var::inta() const
+const raw_int_array & var::inta() const
 {
 
    return ((var *)this)->inta();
    
 }
 
-const int64_array & var::int64a() const
+const raw_int64_array & var::int64a() const
 {
 
    return ((var *)this)->int64a();

@@ -204,7 +204,7 @@ namespace axis
 
       factory().cloneable_large < stringa >();
       factory().cloneable_large < ::primitive::memory >();
-      factory().cloneable_large < int_array >();
+      factory().cloneable_large < raw_int_array >();
 
       __node_factory_exchange(this);
 

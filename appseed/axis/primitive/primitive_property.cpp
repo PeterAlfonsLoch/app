@@ -292,7 +292,7 @@ stringa & property::stra()
    return get_value().stra();
 }
 
-int_array & property::inta()
+raw_int_array & property::inta()
 {
    return get_value().inta();
 }
@@ -312,7 +312,7 @@ const stringa & property::stra() const
    return get_value().stra();
 }
 
-const int_array & property::inta() const
+const raw_int_array & property::inta() const
 {
    return get_value().inta();
 }

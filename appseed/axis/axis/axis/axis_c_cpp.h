@@ -454,11 +454,6 @@ namespace file
 
 
 
-#include "axis/filesystem/filesystem.h"
-
-
-
-
 
 #include "axis/primitive/geometry/geometry.h"
 
@@ -467,9 +462,6 @@ namespace file
 
 
 #include "axis/primitive/collection/collection.h"
-
-
-#include "axis/filesystem/file/file_string_buffer.h"
 
 
 #include "axis/primitive/primitive_var2.h"
@@ -1108,4 +1100,8 @@ bool ::file::system::output(sp(::axis::application) papp, const char * pszOutput
 #include "app/appseed/axis/axis/node/node.h"
 
 
+
+
+
+#include "str_base64.h"
 

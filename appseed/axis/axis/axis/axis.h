@@ -81,8 +81,6 @@
 
 #include "axis/primitive/str/str_c.h"
 
-#include "axis/filesystem/file/file_c.h"
-
 #include "axis/primitive/primitive_memory_c.h"
 
 #include "axis/primitive/datetime/datetime_c.h"

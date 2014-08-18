@@ -4,14 +4,14 @@
 
 
 class CLASS_DECL_AXIS var_array : 
-   public ::file::serializable_array < array < var > >
+   public  array < var >
 {
 public:
 
 
    var_array(sp(::axis::application) papp = NULL);
    var_array(const stringa & stra);
-   var_array(const int_array & inta);
+   var_array(const raw_int_array & inta);
    var_array(const property_set & propset);
    var_array(const var_array & vara);
    virtual ~var_array();
@@ -50,7 +50,7 @@ public:
    var_array operator +(var_array vara) const;
 
    var_array & operator = (const stringa & stra);
-   var_array & operator = (const int_array & inta);
+   var_array & operator = (const raw_int_array & inta);
    var_array & operator = (const property_set & propset);
    var_array & operator = (const var_array & vara);
 
