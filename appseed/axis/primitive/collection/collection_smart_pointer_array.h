@@ -3,7 +3,7 @@
 
 template < class T >
 class smart_pointer_array :
-   virtual public array < smart_pointer < T > >
+   virtual public raw_array < smart_pointer < T > >
 {
 public:
 

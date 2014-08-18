@@ -46,16 +46,12 @@ namespace axis
 
 
 
-      stringa                                         m_straMatterLocator;
       string                                          m_strLibraryName;
       string                                          m_strAppId;
-      sp(::database::server)                          m_spdataserver;
 #ifdef WINDOWS
       HINSTANCE                                       m_hinstance;
 #endif
 
-
-      bool                                            m_bUpdateMatterOnInstall;
 
 
       bool                                            m_bLicense;
@@ -63,10 +59,6 @@ namespace axis
       int32_t                                         m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
 
 
-      string                                          m_strRoot;
-      string                                          m_strDomain;
-      string                                          m_strLocale;
-      string                                          m_strSchema;
 
       // Initial state of the application's interaction_impl; normally,
       // this is an argument to ShowWindow().
@@ -78,15 +70,11 @@ namespace axis
 
 
       mutex                                           m_mutexStr;
-      string_table                                    m_stringtable;
-      string_table                                    m_stringtableStd;
 
 
       static UINT                                     APPM_LANGUAGE;
       static WPARAM                                   WPARAM_LANGUAGE_UPDATE;
 
-      bool                                            m_bShouldInitializeGTwf;
-      bool                                            m_bInitializeProDevianMode;
 
 
 
@@ -103,14 +91,6 @@ namespace axis
       virtual string message_box(const string & pszMatter,property_set & propertyset);
 
 
-      virtual string load_string(id id);
-      virtual bool load_string(string & str,id id);
-      virtual void load_string_table();
-      //   virtual string load_string(id id);
-      // virtual bool load_string(string & str, id id);
-      bool load_cached_string(string & str,id id,bool bLoadStringTable);
-      bool load_cached_string_by_id(string & str,id id,const string & pszFallbackValue,bool bLoadStringTable);
-      void load_string_table(const string & pszApp,const string & pszId);
 
 
 
@@ -118,9 +98,6 @@ namespace axis
       virtual bool is_session();
       virtual bool is_serviceable();
 
-
-
-      inline ::database::server &               dataserver()   { return *m_spdataserver; }
 
 
 

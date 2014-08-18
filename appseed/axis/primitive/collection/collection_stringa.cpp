@@ -123,7 +123,7 @@ void stringa::get_format_string(string & str, const char * lpcszSeparator) const
 /*void stringa::XFV001Expand()
 {
 stringa strArray;
-uint_array dwa;
+raw_uint_array dwa;
 for(int32_t i = 0; i < m_nSize; i++)
 {
 strArray.add_tokens(get_at(i), "/", FALSE);

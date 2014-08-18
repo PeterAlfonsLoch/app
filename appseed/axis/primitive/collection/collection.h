@@ -10,20 +10,13 @@
 
 
 
-#include "collection_comparable_eq_array.h"
-#include "collection_comparable_array.h"
-#include "collection_comparable_raw_array.h"
-#include "collection_comparable_primitive_array.h"
-
-#include "collection_primitive_array.h"
-
 #include "collection_list.h"
 #include "collection_comparable_eq_list.h"
 #include "collection_comparable_list.h"
 
 
 #include "collection_typed_ptr_array.h"
-#include "collection_typed_pointer_array.h"
+
 
 
 #include "collection_map_association.h"
@@ -35,33 +28,15 @@
 #include "collection_string_map.h"
 #include "collection_strid_map.h"
 #include "collection_map_to_smart_pointer.h"
-#include "collection_fifo_map.h"
-#include "collection_sort_map.h"
 
 
-#include "collection_sort_array.h"
+class pointer_list;             // list of void *
+class object_list;              // list of object*
 
+class map_ptr_to_ptr;         // map from void * to void *
 
-/////////////////////////////////////////////////////////////////////////////
-// Classes declared in this file
-
-//object
-
-   // Lists
-   class pointer_list;             // list of void *
-   class object_list;              // list of object*
-
-   // Maps (aka Dictionaries)
-   class CMapWordToOb;         // map from WORD to object*
-   class CMapWordToPtr;        // map from WORD to void *
-   class CMapPtrToWord;        // map from void * to WORD
-   class map_ptr_to_ptr;         // map from void * to void *
-
-   // Special string variants
-   class string_list;          // list of Strings
-   class CMapStringToPtr;      // map from string to void *
-   class CMapStringToOb;       // map from string to object*
-   class string_to_string;   // map from string to string
+class string_list;          // list of Strings
+class string_to_string;   // map from string to string
 
 
 

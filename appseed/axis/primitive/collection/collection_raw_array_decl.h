@@ -472,3 +472,6 @@ public:
 
 
 typedef CLASS_DECL_AXIS raw_array < index > raw_index_array;
+typedef CLASS_DECL_AXIS raw_array < int > raw_int_array;
+typedef CLASS_DECL_AXIS raw_array < int64_t > raw_int64_array;
+typedef CLASS_DECL_AXIS raw_array < uint32_t > raw_4int_array;

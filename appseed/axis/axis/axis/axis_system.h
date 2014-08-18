@@ -59,10 +59,8 @@ namespace axis
       spa(service_base)                            m_serviceptra;
       sp(axis_factory)                             m_pfactory;
       ::url::departament                           m_urldepartament;
-      sp(class ::xml::departament)                 m_pxml;
       const id_pool                                m_cidpool;
       sp(class ::axis::log)                        m_plog;
-      sp(math::math)                               m_pmath;
       sp(geometry::geometry)                       m_pgeometry;
 
 
@@ -73,12 +71,9 @@ namespace axis
       static class id                              idEmpty;
       class ::str::base64                          m_base64;
 
-      ::string_to_string                           m_mapAppLibrary;
-      class machine_event_central *                m_pmachineeventcentral;
       sp(class ::datetime::departament)            m_pdatetime;
       string_map < int_to_string >                 m_mapEnumToName;
       string_map < string_to_int >                 m_mapNameToEnum;
-      ::axis::os_sp                                m_spos;
       spa(::axis::session)                         m_basesessionptra;
 
 
@@ -144,10 +139,8 @@ namespace axis
 
 
 
-      class ::axis::os                             & os();
       class axis_factory                           & factory();
       inline ::url::departament                    & url()     { return m_urldepartament; }
-      ::xml::departament                           & xml();
       class ::str::base64                          & base64();
 
       class ::axis::log                            & log();
@@ -159,7 +152,6 @@ namespace axis
 
 
 
-      math::math & math() { return *m_pmath; }
 
 
 
@@ -230,8 +222,6 @@ namespace axis
       static inline class id id(const string & str);
       static inline class id id(int64_t i);
       static inline class id_space & id();
-      inline class id id(const var & var);
-      inline class id id(const property & prop);
 
 
       virtual int32_t _001OnDebugReport(int32_t i1,const char * psz1,int32_t i2,const char * psz2,const char * psz3,va_list args);

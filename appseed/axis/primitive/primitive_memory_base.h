@@ -97,7 +97,6 @@ namespace primitive
       inline void from_string(const wchar_t * pwsz);
       inline void from_string(const char * psz);
       inline void from_string(const string & str);
-      inline void from_string(const var & var);
       inline void to_string(string & str) const;
       inline string to_string() const;
 
@@ -550,12 +549,6 @@ namespace primitive
 
    }
 
-   inline void memory_base::from_string(const var & var)
-   {
-
-      from_string((const string &) var.get_string());
-
-   }
 
    inline void memory_base::to_string(string & str) const
    {

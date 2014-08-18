@@ -418,7 +418,6 @@ namespace file
 
 #include "axis/primitive/collection/collection_decl.h"
 #include "axis/primitive/collection/collection_raw_array_decl.h"
-#include "axis/primitive/collection/collection_array_decl.h"
 #include "axis/primitive/collection/collection_lemon_array_decl.h"
 #include "axis/primitive/collection/collection_smart_pointer_array.h"
 
@@ -558,7 +557,6 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 
 #include "axis_departament.h"
 #include "axis_departament_container.h"
-#include "axis/database/database.h"
 #include "axis_live_object.h"
 #include "axis_live_signal.h"
 
@@ -582,32 +580,16 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 #include "axis/primitive/primitive_memory_container.h"
 
 
-#include "axis/filesystem/file/file_memory_buffer.h"
-#include "axis/filesystem/file/file_byte_stream_memory_buffer.h"
-#include "axis/filesystem/file/file_plain_text_stream_memory_buffer.h"
-#include "axis/filesystem/file/file_circular_buffer.h"
 
 
 #include "axis/primitive/str/str_international2.h"
 
 
-#if defined(METROWIN)
-
-#include "app/appseed/axis/axis/os/metrowin/metrowin_sockets.h"
-
-#endif
 
 
-
-#include "axis/programming/javascript/javascript.h"
-
-
-//#include "axis/user/userpresence/userpresence.h"
 #include "axis/primitive/primitive_factory.h"
 
 
-#include "axis/primitive/math/math_math_rng.h"
-#include "axis/primitive/math/math_math.h"
 #include "axis/primitive/geometry/geometry_geometry.h"
 
 
@@ -620,8 +602,6 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 //#include "user/user/user_user.h"
 
 #include "axis_main_init_data.h"
-
-#include "axis_savings.h"
 
 
 #include "axis_application_interface.h"
@@ -647,9 +627,7 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 
 #include "axis_fixed_alloc_impl.h"
 #include "axis_plex_heap_impl.h"
-#include "axis/primitive/primitive_command_line.h"
 #include "axis/primitive/primitive_command.h"
-#include "axis/primitive/primitive_request_signal.h"
 
 
 
@@ -658,14 +636,7 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 
 
 
-#include "axis/primitive/primitive_command_thread.h"
 
-
-
-
-
-
-#include "axis/filesystem/file/file_buffered_buffer.h"
 
 
 
@@ -688,9 +659,9 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 #include "axis_cregexp_util.h"
 
 
+#include "primitive/str/str_base64.h"
 
 
-#include "axis_core_os.h"
 
 #include "axis_system.h"
 
@@ -850,7 +821,6 @@ namespace numeric_info
 
 #include "axis/primitive/collection/collection_array_impl.inl"
 #include "axis/primitive/collection/collection_raw_array_impl.inl"
-#include "axis/primitive/collection/collection_sort_array_impl.inl"
 #include "axis/primitive/collection/collection_lemon_array_impl.inl"
 
 #include "axis/primitive/collection/collection_list_impl.inl"
@@ -872,12 +842,9 @@ namespace numeric_info
 #include "axis_system_object.inl"
 #include "axis_system_id.inl"
 #include "axis_system_factory.inl"
-#include "axis_system_primitive_var.inl"
-#include "axis_system_xml.inl"
 
 
 
-#include "axis_core_os.h"
 
 
 #define AppUser(pbaseapp) (*pbaseapp->m_pbasesession->fontopus()->get_user())
@@ -1082,18 +1049,4 @@ bool ::file::system::output(sp(::axis::application) papp, const char * pszOutput
 
 
 */
-
-
-
-
-
-
-
-#include "app/appseed/axis/axis/node/node.h"
-
-
-
-
-
-#include "str_base64.h"
 

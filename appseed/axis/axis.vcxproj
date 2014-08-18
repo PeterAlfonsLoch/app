@@ -1701,7 +1701,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\axis\axis_plex_heap_impl.h" />
     <ClInclude Include="axis\axis\axis_printf.h" />
     <ClInclude Include="axis\axis\axis_root.h" />
-    <ClInclude Include="axis\axis\axis_savings.h" />
     <ClInclude Include="axis\axis\axis_session.h" />
     <ClInclude Include="axis\axis\axis_session_interface.h" />
     <ClInclude Include="axis\axis\axis_simple_app.h" />
@@ -2441,22 +2440,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\os\windows\windows_utils.h" />
     <ClInclude Include="axis\os\windows\windows_windows.h" />
     <ClInclude Include="axis\os\windows\windows_window_gdi.h" />
-    <ClInclude Include="database\database.h" />
-    <ClInclude Include="database\database_base.h" />
-    <ClInclude Include="database\database_change_event.h" />
-    <ClInclude Include="database\database_client.h" />
-    <ClInclude Include="database\database_database.h" />
-    <ClInclude Include="database\database_definition.h" />
-    <ClInclude Include="database\database_field_definition.h" />
-    <ClInclude Include="database\database_id.h" />
-    <ClInclude Include="database\database_key.h" />
-    <ClInclude Include="database\database_selection.h" />
-    <ClInclude Include="database\database_selection_item.h" />
-    <ClInclude Include="database\database_server.h" />
-    <ClInclude Include="database\database_set.h" />
-    <ClInclude Include="database\database_stringhelper.h" />
-    <ClInclude Include="database\database_template.h" />
-    <ClInclude Include="database\database_update_hint.h" />
     <ClCompile Include="axis\axis\axis_application_interface.cpp" />
     <ClCompile Include="axis\axis\axis_gudo.cpp" />
     <ClCompile Include="axis\axis\axis_id_pool.cpp" />
@@ -2676,24 +2659,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     </ClCompile>
     <ClInclude Include="framework.h" />
     <ClInclude Include="framework_c.h" />
-    <ClInclude Include="graphics\graphics_window_graphics.h" />
-    <ClInclude Include="graphics\draw2d\draw2d.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_bitmap.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_brush.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_dib.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_font.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_graphics.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_igui.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_object.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_palette.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_path.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_pen.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_region.h" />
-    <ClInclude Include="graphics\graphics.h" />
-    <ClInclude Include="graphics\visual\visual.h" />
-    <ClInclude Include="graphics\visual\visual_const.h" />
-    <ClInclude Include="graphics\visual\visual_cursor.h" />
-    <ClInclude Include="graphics\visual\visual_icon.h" />
     <ClInclude Include="multithreading\multithreading_data.h" />
     <ClInclude Include="multithreading\multithreading_event_base.h" />
     <ClInclude Include="multithreading\multithreading_go_thread.h" />
@@ -2728,21 +2693,15 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="net\net_url_departament.h" />
     <ClInclude Include="net\net_url_domain.h" />
     <ClInclude Include="primitive\collection\collection.h" />
-    <ClInclude Include="primitive\collection\collection_array_decl.h" />
     <ClInclude Include="primitive\collection\collection_attrib_map.h" />
     <ClInclude Include="primitive\collection\collection_base_enum.h" />
     <ClInclude Include="primitive\collection\collection_bitset.h" />
     <ClInclude Include="primitive\collection\collection_bit_array.h" />
-    <ClInclude Include="primitive\collection\collection_comparable_array.h" />
-    <ClInclude Include="primitive\collection\collection_comparable_eq_array.h" />
     <ClInclude Include="primitive\collection\collection_comparable_eq_list.h" />
     <ClInclude Include="primitive\collection\collection_comparable_list.h" />
-    <ClInclude Include="primitive\collection\collection_comparable_primitive_array.h" />
-    <ClInclude Include="primitive\collection\collection_comparable_raw_array.h" />
     <ClInclude Include="primitive\collection\collection_decl.h" />
     <ClInclude Include="primitive\collection\collection_deque.h" />
     <ClInclude Include="primitive\collection\collection_elements.h" />
-    <ClInclude Include="primitive\collection\collection_fifo_map.h" />
     <ClInclude Include="primitive\collection\collection_id_array.h" />
     <ClInclude Include="primitive\collection\collection_int_map.h" />
     <ClInclude Include="primitive\collection\collection_iterator.h" />
@@ -2757,7 +2716,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\collection\collection_packset.h" />
     <ClInclude Include="primitive\collection\collection_pair.h" />
     <ClInclude Include="primitive\collection\collection_pointer_list.h" />
-    <ClInclude Include="primitive\collection\collection_primitive_array.h" />
     <ClInclude Include="primitive\collection\collection_priority_queue.h" />
     <ClInclude Include="primitive\collection\collection_queue.h" />
     <ClInclude Include="primitive\collection\collection_raw_array_decl.h" />
@@ -2767,15 +2725,12 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\collection\collection_simple_template.h" />
     <ClInclude Include="primitive\collection\collection_simple_typed_pointer_array.h" />
     <ClInclude Include="primitive\collection\collection_smart_pointer_array.h" />
-    <ClInclude Include="primitive\collection\collection_sort_array.h" />
-    <ClInclude Include="primitive\collection\collection_sort_map.h" />
     <ClInclude Include="primitive\collection\collection_stack.h" />
     <ClInclude Include="primitive\collection\collection_strid_map.h" />
     <ClInclude Include="primitive\collection\collection_string_array.h" />
     <ClInclude Include="primitive\collection\collection_string_list.h" />
     <ClInclude Include="primitive\collection\collection_string_map.h" />
     <ClInclude Include="primitive\collection\collection_template.h" />
-    <ClInclude Include="primitive\collection\collection_typed_pointer_array.h" />
     <ClInclude Include="primitive\collection\collection_typed_pointer_list.h" />
     <ClInclude Include="primitive\collection\collection_typed_pointer_map.h" />
     <ClInclude Include="primitive\collection\collection_typed_ptr_array.h" />
@@ -2811,8 +2766,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\geometry\geometry_size.h" />
     <ClInclude Include="primitive\math\math_count.h" />
     <ClInclude Include="primitive\math\math_index.h" />
-    <ClInclude Include="primitive\math\math_math.h" />
-    <ClInclude Include="primitive\math\math_math_rng.h" />
     <ClInclude Include="primitive\math\math_natural.h" />
     <ClInclude Include="primitive\math\math_number.h" />
     <ClInclude Include="primitive\math\math_numeric_info.h" />
@@ -3125,10 +3078,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\str\x\x_defines.h" />
     <ClInclude Include="primitive\str\x\x_encodings.h" />
     <ClInclude Include="primitive\str\x\x_tables.h" />
-    <ClInclude Include="programming\javascript\javascript.h" />
-    <ClInclude Include="programming\javascript\javascript_functions.h" />
-    <ClInclude Include="programming\javascript\javascript_tinyjs.h" />
-    <ClInclude Include="programming\javascript\javascript_tinyjs_functions.h" />
     <ClCompile Include="axis\os\windows\win2.cpp" />
     <ClCompile Include="axis\os\windows\windows.cpp" />
     <ClCompile Include="axis\os\windows\windows_base_crypto.cpp" />
@@ -3154,20 +3103,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\os\windows\windows_util.cpp" />
     <ClCompile Include="axis\os\windows\windows_utils.cpp" />
     <ClCompile Include="axis\os\windows\windows_window_gdi.cpp" />
-    <ClCompile Include="database\database_application.cpp" />
-    <ClCompile Include="database\database_base.cpp" />
-    <ClCompile Include="database\database_client.cpp" />
-    <ClCompile Include="database\database_definition.cpp" />
-    <ClCompile Include="database\database_event_change.cpp" />
-    <ClCompile Include="database\database_field_definition.cpp" />
-    <ClCompile Include="database\database_id.cpp" />
-    <ClCompile Include="database\database_key.cpp" />
-    <ClCompile Include="database\database_selection.cpp" />
-    <ClCompile Include="database\database_selection_item.cpp" />
-    <ClCompile Include="database\database_server.cpp" />
-    <ClCompile Include="database\database_set.cpp" />
-    <ClCompile Include="database\database_stringhelper.cpp" />
-    <ClCompile Include="database\database_update_hint.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">Create</PrecompiledHeader>
@@ -3277,7 +3212,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\axis\axis_plex_heap.cpp" />
     <ClCompile Include="axis\axis\axis_printf.cpp" />
     <ClCompile Include="axis\axis\axis_root.cpp" />
-    <ClCompile Include="axis\axis\axis_savings.cpp" />
     <ClCompile Include="axis\axis\axis_session.cpp" />
     <ClCompile Include="axis\axis\axis_simple_shell_launcher.cpp" />
     <ClCompile Include="axis\axis\axis_small_ipc_channel.cpp" />
@@ -4182,8 +4116,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="primitive\geometry\geometry_rect.cpp" />
     <ClCompile Include="primitive\geometry\geometry_size.cpp" />
     <ClCompile Include="primitive\geometry\geometry_types.cpp" />
-    <ClCompile Include="primitive\math\math_math.cpp" />
-    <ClCompile Include="primitive\math\math_math_rng.cpp" />
     <ClCompile Include="primitive\math\math_mkint_c.cpp" />
     <ClCompile Include="primitive\math\math_natural.cpp" />
     <ClCompile Include="primitive\math\math_scalar.cpp" />
@@ -4723,9 +4655,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="primitive\str\str_to_integer.cpp" />
     <ClCompile Include="primitive\str\str_verisimple_wstring.cpp" />
     <ClCompile Include="primitive\str\str_wtostring.cpp" />
-    <ClCompile Include="programming\javascript\javascript.cpp" />
-    <ClCompile Include="programming\javascript\javascript_functions.cpp" />
-    <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp" />
     <ClCompile Include="version.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -4871,9 +4800,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <None Include="axis\axis\axis_system_factory.inl" />
     <None Include="axis\axis\axis_system_id.inl" />
     <None Include="axis\axis\axis_system_object.inl" />
-    <None Include="axis\axis\axis_system_primitive_var.inl" />
     <None Include="axis\axis\axis_system_smart_pointer.inl" />
-    <None Include="axis\axis\axis_system_xml.inl" />
     <None Include="axis\message\message.inl" />
     <None Include="multithreading\multithreading.inl" />
     <None Include="primitive\collection\collection.inl" />

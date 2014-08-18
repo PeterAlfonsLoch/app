@@ -95,7 +95,7 @@ public:
 
    int32_t                                         m_i;
    int32_t                                         m_iShareCount;
-   array < fixed_alloc_sync * >                    m_allocptra;
+   raw_array < fixed_alloc_sync * >                m_allocptra;
 
 
    fixed_alloc(UINT nAllocSize, UINT nBlockSize = 64);
@@ -113,7 +113,7 @@ public:
 
 
 class CLASS_DECL_AXIS fixed_alloc_array :
-   public array < fixed_alloc * >
+   public raw_array < fixed_alloc * >
 {
 public:
 

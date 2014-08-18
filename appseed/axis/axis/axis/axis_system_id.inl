@@ -4,16 +4,6 @@
 namespace axis
 {
 
-   inline id system::id(const class var & var)
-   {
-      return ::id((const char *)(class var &) var);
-   }
-
-   inline id system::id(const property & prop)
-   {
-      return ::id((const string &)(property &)prop);
-   }
-
 
    inline id system::id(const std_type_info & info)
    {
