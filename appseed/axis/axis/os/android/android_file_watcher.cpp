@@ -68,7 +68,7 @@ namespace file_watcher
 		WatchMap::pair * ppair = m_watchmap.PGetFirstAssoc();
 		for(; ppair != NULL; ppair = m_watchmap.PGetNextAssoc(ppair))
 		{
-			delete ppair->m_element2;
+			delete ppair->second;
 		}
 		m_watchmap.remove_all();
 	}
@@ -141,9 +141,9 @@ namespace file_watcher
 		WatchMap::pair * ppair = m_watchmap.PGetFirstAssoc();
 		for(; ppair != NULL; ppair = m_watchmap.PGetNextAssoc(ppair))
 		{
-			if(directory == ppair->m_element2->m_strDirName)
+			if(directory == ppair->second->m_strDirName)
 			{
-				remove_watch(ppair->m_element1);
+				remove_watch(ppair->first);
 				return;
 			}
 		}
@@ -158,8 +158,8 @@ namespace file_watcher
 		if(ppair == NULL)
 			return;
 
-		watch_struct* watch = ppair->m_element2;
-		m_watchmap.remove_key(ppair->m_element1);
+		watch_struct* watch = ppair->second;
+		m_watchmap.remove_key(ppair->first);
 
 		inotify_rm_watch(mFD, watchid);
 

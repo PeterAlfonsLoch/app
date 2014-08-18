@@ -44,6 +44,7 @@ public:
 
 #else
 
+   call_stack(uint32_t uiSkip = 3);
    call_stack(sp(::axis::application) papp, uint32_t uiSkip = 3);
 
 #endif

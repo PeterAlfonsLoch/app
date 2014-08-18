@@ -2,6 +2,24 @@
 
 
 bool call_stack::s_bDoStackTrace = false;
+#if defined(LINUX) || defined(APPLEOS) || defined(SOLARIS)
+call_stack::call_stack(uint32_t uiSkip,void * address):
+element(get_thread_app())
+,m_caller_address(address)
+#else
+call_stack::call_stack( uint32_t uiSkip) :
+element(get_thread_app())
+#endif
+{
+
+   if(s_bDoStackTrace && uiSkip != 0xffffffffu)
+   {
+
+      m_strCallStack = call_stack::get(uiSkip);
+
+   }
+
+}
 
 
 #if defined(LINUX) || defined(APPLEOS) || defined(SOLARIS)

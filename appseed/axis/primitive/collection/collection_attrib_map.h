@@ -43,7 +43,7 @@ attrib_map < type_map > & attrib_map < type_map >::operator = (const attrib_map 
       const typename type_map::pair * ppair = attribmap.PGetFirstAssoc();
       while(ppair != NULL)
       {
-         this->set_at(ppair->m_element1, ppair->m_element2);
+         this->set_at(ppair->first, ppair->second);
          ppair  = attribmap.PGetNextAssoc(ppair);
       }
    }

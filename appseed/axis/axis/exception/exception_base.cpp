@@ -4,6 +4,23 @@
 namespace exception
 {
 
+   base::base(uint32_t uiSkip):
+      element(get_thread_app()),
+      ::call_stack(get_thread_app(),uiSkip)
+   {
+         // most exceptions are deleted when not needed
+         m_ulFlags |= flag_auto_clean;
+         m_ulFlags &= ~flag_ready_for_delete;
+      }
+   base::base(const string & strMessage, uint32_t uiSkip):
+      element(get_thread_app()),
+      ::call_stack(get_thread_app(),uiSkip)
+   {
+         // most exceptions are deleted when not needed
+         m_ulFlags |= flag_auto_clean;
+         m_ulFlags &= ~flag_ready_for_delete;
+         m_strMessage = strMessage;
+      }
 
    base::base(sp(::axis::application) papp, uint32_t uiSkip) :
       element(papp),
