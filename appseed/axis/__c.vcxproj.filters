@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\c">
+      <UniqueIdentifier>{675accf4-8e28-4521-b653-27e5c9b9947a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\c">
+      <UniqueIdentifier>{67f5274d-6338-473b-949d-77079a0e2008}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\windows">
+      <UniqueIdentifier>{89708304-017f-4b66-a710-44a563817942}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="c\c.c">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_c.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_mm.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\c_os_internal.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
