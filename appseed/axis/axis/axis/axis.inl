@@ -383,33 +383,10 @@ namespace xml
 
 
 
-
-
-
-inline ::axis::session & sess(::axis::application * papp)
-{
-
-   return *papp->m_pbasesession;
-
-}
-
-
-inline ::axis::session & root::session()
-{
-
-   return *m_pbaseapp->m_pbasesession;
-
-}
-
-
-inline ::core::platform & root::platform()
-{
-
-   return *m_pbaseapp->m_pcoreplatform;
-
-}
-
-
+#define Sess(paxisapp) (*paxisapp->m_paxissession)
+#define Session (Sess(m_paxisapp))
+#define Plat(paxisapp) (*paxisapp->m_pcoreplatform)
+#define Platform (Plat(m_paxisapp))
 
 
 

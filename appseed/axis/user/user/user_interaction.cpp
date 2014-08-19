@@ -541,10 +541,10 @@ namespace user
          try
          {
 
-            if(m_pbaseapp->m_pbasesystem != NULL)
+            if(m_pbaseapp->m_paxissystem != NULL)
             {
 
-               m_pbaseapp->m_pbasesystem->remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
+               m_pbaseapp->m_paxissystem->remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
 
             }
 
@@ -1017,10 +1017,10 @@ namespace user
 
             synch_lock sl(m_spmutex);
 
-            if(m_pbaseapp->m_pbasesystem != NULL)
+            if(m_pbaseapp->m_paxissystem != NULL)
             {
 
-               m_pbaseapp->m_pbasesystem->add_frame(this);
+               m_pbaseapp->m_paxissystem->add_frame(this);
 
             }
 

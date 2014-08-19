@@ -14,7 +14,7 @@ namespace windows
 
       m_pthreadimpl->m_pthread = this;
 
-      m_pbasesystem                    =  papp->m_pbaseapp->m_pbasesystem;
+      m_pbasesystem                    =  papp->m_pbaseapp->m_paxissystem;
 
       m_atomApp = m_atomSystemTopic    = NULL;
 

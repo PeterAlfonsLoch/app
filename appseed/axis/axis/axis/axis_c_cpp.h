@@ -241,6 +241,16 @@ namespace axis
 } // namespace axis
 
 
+// only usable from base and base dependants
+namespace base
+{
+
+   class application;
+   class session;
+   class system;
+
+}
+
 // only usable from core and core dependants
 namespace core
 {
@@ -402,15 +412,15 @@ typedef smart_pointer < thread_impl > thread_impl_sp;
 #define SCAST_REF(TYPE, rtarget, psource) TYPE & rtarget = *(dynamic_cast < TYPE * > (psource));
 
 
-#define CaSys(pca) (*pca->m_pbaseapp->m_pbasesystem)
-#define Sys(pbaseapp) (*pbaseapp->m_pbasesystem)
-#define System (Sys(this->m_pbaseapp))
+#define CaSys(pca) (*pca->m_paxisapp->m_paxissystem)
+#define Sys(paxisapp) (*paxisapp->m_paxissystem)
+#define System (Sys(this->m_paxisapp))
 #define threadSystem (Sys(get_thread_app()))
 
 
 #undef App
-#define App(pbaseapp) (*pbaseapp)
-#define Application (App(m_pbaseapp))
+#define App(paxisapp) (*paxisapp)
+#define Application (App(m_paxisapp))
 
 
 // return - result - if not ok
@@ -804,7 +814,7 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 #include "axis_application.h"
 
 
-#include "axis_gudo_application.h"
+#include "axis_gudo_application.inl"
 
 
 #include "axis_application_signal_details.h"

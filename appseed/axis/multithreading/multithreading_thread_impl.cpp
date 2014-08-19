@@ -1599,19 +1599,19 @@ bool thread_impl::pump_message()
                         try
                         {
 
-                           if(m_pbaseapp->m_pbasesystem != NULL)
+                           if(m_pbaseapp->m_paxissystem != NULL)
                            {
 
-                              m_pbaseapp->m_pbasesystem->pre_translate_message(spbase);
+                              m_pbaseapp->m_paxissystem->pre_translate_message(spbase);
 
                               if(spbase->m_bRet)
                                  return true;
 
                               /*                                 try
                               {
-                              if(m_pbaseapp->m_pbasesystem->m_pcube != NULL)
+                              if(m_pbaseapp->m_paxissystem->m_pcube != NULL)
                               {
-                              m_pbaseapp->m_pbasesystem->m_pcubeInterface->pre_translate_message(spbase);
+                              m_pbaseapp->m_paxissystem->m_pcubeInterface->pre_translate_message(spbase);
                               if(spbase->m_bRet)
                               return TRUE;
                               }

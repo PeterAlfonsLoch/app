@@ -15,8 +15,11 @@ namespace axis
    public:
 
 
-      ::axis::system *                                m_pbasesystem;
-      ::axis::session *                               m_pbasesession;
+      ::axis::system *                                m_paxissystem;
+      ::axis::session *                               m_paxissession;
+      ::base::application *                           m_pbaseapp; // can be used only from base and upper
+      ::base::system *                                m_pbasesystem; // can be used only from base and upper
+      ::base::session *                               m_pbasesession; // can be used only from base and upper
       ::core::application *                           m_pcoreapp; // can be used only from core and upper
       ::core::system *                                m_pcoresystem; // can be used only from core and upper
       ::core::platform *                              m_pcoreplatform; // can be used only from core and upper

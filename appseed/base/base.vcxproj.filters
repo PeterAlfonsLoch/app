@@ -9,9 +9,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Source Files\primitive">
-      <UniqueIdentifier>{73b6eb83-847b-4f04-a3de-daf20e5f9a48}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\net">
       <UniqueIdentifier>{ab3329cf-9ecc-4590-a567-9f22556c4d8f}</UniqueIdentifier>
     </Filter>
@@ -78,15 +75,6 @@
     <Filter Include="Source Files\net\sockets\bsd\smtp\NewFilter1">
       <UniqueIdentifier>{4d9ffa81-d63c-4b08-9569-b94adbe41760}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\graphics">
-      <UniqueIdentifier>{99770166-4760-4a1f-97fa-e3f6766a517c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\draw2d">
-      <UniqueIdentifier>{f63fcdc5-a231-426e-9b32-4429c5fee34d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics">
-      <UniqueIdentifier>{b8226273-efa2-4c5c-814e-29792dd05b58}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\net\http">
       <UniqueIdentifier>{2451c210-f24a-4626-b8cc-97b3f5930555}</UniqueIdentifier>
     </Filter>
@@ -126,27 +114,6 @@
     <Filter Include="Header Files\net\sockets\bsd\basic">
       <UniqueIdentifier>{12411c8f-2a93-40cf-bb5e-14f2988930a7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\graphics\draw2d">
-      <UniqueIdentifier>{adb13c14-e574-4d1e-b88d-00b62542c49e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics\visual">
-      <UniqueIdentifier>{2703a7f6-7ead-46b3-b241-4cbd23d6a89e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\comparison">
-      <UniqueIdentifier>{9a0a93c5-d58e-43b1-a174-d908a0b14745}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\datetime">
-      <UniqueIdentifier>{f2480041-dd34-48a1-9e82-8e15ce73c20f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\geometry">
-      <UniqueIdentifier>{9ab6e881-1057-497a-b2eb-4ac5abee8395}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\math">
-      <UniqueIdentifier>{9c4ef044-8d24-4b30-ac71-c8174d893338}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\collection">
-      <UniqueIdentifier>{b3a683c8-c4bd-46a0-9eab-beb79650277e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\programming">
       <UniqueIdentifier>{d0b4c014-e341-4901-87ae-635655fd469d}</UniqueIdentifier>
     </Filter>
@@ -171,9 +138,6 @@
     <Filter Include="Header Files\base\compress">
       <UniqueIdentifier>{81b4689d-269d-4f05-8d03-9fd0d7fb0783}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\base\compress\zlib">
-      <UniqueIdentifier>{da7ff1e7-14c8-4c47-8f7b-c0623c1067f4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\base\compress\zip">
       <UniqueIdentifier>{a8ba95fd-1ee1-4c54-885a-73221d29eba7}</UniqueIdentifier>
     </Filter>
@@ -186,185 +150,11 @@
     <Filter Include="Header Files\filesystem\file">
       <UniqueIdentifier>{3a2d58e0-3564-457f-ad53-2b26fdc8b2f0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\base\compress\bsdiff">
-      <UniqueIdentifier>{947fc611-80aa-4333-afb9-5718aa778672}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\base\crypto">
       <UniqueIdentifier>{827d6b98-e29f-4ba3-9835-3a7b78877deb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\user\userpresence">
       <UniqueIdentifier>{4ee52bef-9322-45b6-adda-5d44ac5a67ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl">
-      <UniqueIdentifier>{3d9ba5b2-afe4-4aa9-b8a6-ae14bd4ac233}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto">
-      <UniqueIdentifier>{25a6130d-96a3-4277-91d7-99b83fc0c74e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\asn1">
-      <UniqueIdentifier>{02fe8080-ffd2-4291-a1b3-ddfcd71adb50}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\aes">
-      <UniqueIdentifier>{00f49fa7-212a-45eb-a6cc-2e181dbc4539}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\x509">
-      <UniqueIdentifier>{53763e45-3d3e-4700-91ea-2c3a77be1e85}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\bio">
-      <UniqueIdentifier>{3b570d45-6db8-41e4-bb7f-0d0d86f486a6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\bf">
-      <UniqueIdentifier>{25f8dd6c-7611-4b31-a70e-edd4d8bd1199}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\bn">
-      <UniqueIdentifier>{770855f5-236c-4488-8b00-f77ba8f5398b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\buffer">
-      <UniqueIdentifier>{91bfe1f5-d3a0-4e01-bfdc-8fcf243f43e4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\evp">
-      <UniqueIdentifier>{fa4d4dd4-05ec-4e0b-a8df-6df3b12d9c51}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\ts">
-      <UniqueIdentifier>{3db22aca-390c-4ba1-993f-f6e8fb65997e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\ui">
-      <UniqueIdentifier>{897e6e48-2f6c-4f7c-bbf4-9b501b7dadea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\camellia">
-      <UniqueIdentifier>{fabc8d17-7130-4ea7-9ce8-6dd389c80d5e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\cast">
-      <UniqueIdentifier>{97f05dd1-e53e-41cb-8770-60a4cdbaf0cd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\cmac">
-      <UniqueIdentifier>{c7b622f6-9511-42c5-a250-6bb7a3d887f8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\cms">
-      <UniqueIdentifier>{45cbebfb-5658-4e83-ae38-85cbcfb2b8cc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\comp">
-      <UniqueIdentifier>{a3d1ecf5-62a7-4214-a49a-9a0346b790ad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\dh">
-      <UniqueIdentifier>{5950650c-684c-4c2a-bdf3-9db07c27ef00}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\dsa">
-      <UniqueIdentifier>{4965ac0d-4b01-4cd4-95b5-8fc2c63fc322}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\dso">
-      <UniqueIdentifier>{42e499d7-f9af-4cff-a774-749590c09c58}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\ec">
-      <UniqueIdentifier>{b0e28e27-f5b9-47bd-8198-89f41fef63df}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\ecdsa">
-      <UniqueIdentifier>{ea66e98d-74ac-4c75-9692-f267719d0a60}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\ecdh">
-      <UniqueIdentifier>{38148ff4-fa52-4c84-b437-a190692477bc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\engine">
-      <UniqueIdentifier>{c4fc1dfe-8953-47f4-ab6b-74a900427ceb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\err">
-      <UniqueIdentifier>{ff5762dc-0c78-4872-a853-0b36fdaddff7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\pkcs7">
-      <UniqueIdentifier>{3054a522-d299-4489-9b63-d747b4f38cd8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\x509v3">
-      <UniqueIdentifier>{ec26268a-e384-47b5-b791-e70b154ed08c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\hmac">
-      <UniqueIdentifier>{c5e3a278-8074-4ba9-968e-c1f1a9f62930}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\idea">
-      <UniqueIdentifier>{db79d932-b544-4886-ae49-605ebd51edf3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\jpake">
-      <UniqueIdentifier>{cfffb7b8-fc7c-4552-ac80-145e4926645c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\lhash">
-      <UniqueIdentifier>{4ee0f6ea-8b9a-4c63-8be2-9c60154cbed5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\krb5">
-      <UniqueIdentifier>{88ead517-7a9e-4812-9f68-c8b45929e7fc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\md2">
-      <UniqueIdentifier>{c201b7ba-0b88-4ef8-ba61-06a20baf3333}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\md4">
-      <UniqueIdentifier>{7853c465-d4ef-440f-87a9-2f6060040318}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\md5">
-      <UniqueIdentifier>{ae933225-613b-47b5-93bc-91755e52beca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\mdc2">
-      <UniqueIdentifier>{19098855-b986-4cd1-a453-ab7b1a6f48c9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\modes">
-      <UniqueIdentifier>{e9e9ea74-f753-49c4-b64e-44b210033462}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\objects">
-      <UniqueIdentifier>{ee992d5e-c5b1-481d-9359-c011b17cb775}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\ocsp">
-      <UniqueIdentifier>{dfce3584-7e19-41b2-b9dc-f77683a6b70d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\pem">
-      <UniqueIdentifier>{ccfd88cc-4469-4169-9153-6125abfe2112}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\rc2">
-      <UniqueIdentifier>{82754b69-6591-48a8-bc5e-003582b64b50}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\rc4">
-      <UniqueIdentifier>{61aac51e-ef47-41a3-bda0-5df8a8d1281f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\rc5">
-      <UniqueIdentifier>{a403654c-1bf2-45a0-97dd-e2577ced3d9b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\sha">
-      <UniqueIdentifier>{b963e019-8387-497e-a158-41546f526b3b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\pkcs12">
-      <UniqueIdentifier>{ff4576a3-4248-4294-9e4e-3a3a9cfe219f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\stack">
-      <UniqueIdentifier>{23a0d00a-baad-43c2-a007-7f1c4e678bac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\txt_db">
-      <UniqueIdentifier>{8ecbc333-4136-4b02-b36d-73ab98999e0b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\pqueue">
-      <UniqueIdentifier>{ee07dca1-c644-4de9-bcb6-8d345d434d78}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\rand">
-      <UniqueIdentifier>{580a3d4c-1045-4db8-a930-ddecb89d8048}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\des">
-      <UniqueIdentifier>{d8293271-7e6f-44ed-bd60-3968194d1f03}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\whllrpool">
-      <UniqueIdentifier>{17bc4bba-53ef-4d6d-981a-67878bbd898f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\srp">
-      <UniqueIdentifier>{e68a1d7b-5b84-4d28-a5b7-e303e8a71cfd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\store">
-      <UniqueIdentifier>{da593eec-af5c-4a8d-8eb6-b5139b987725}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\seed">
-      <UniqueIdentifier>{f681e452-6f83-4d2a-8317-a665e625b12e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\rsa">
-      <UniqueIdentifier>{85b81d9e-f713-4350-a248-f5087090c127}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\crypto\ripemd">
-      <UniqueIdentifier>{03069d28-2406-4932-b6c9-ccc9a0b7cd85}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\ssl">
-      <UniqueIdentifier>{bdbc6840-b65d-4d61-af50-154c6436c95e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\filesystem">
       <UniqueIdentifier>{22c285dd-ad96-4ecc-8b5f-c3b809e98645}</UniqueIdentifier>
@@ -375,32 +165,17 @@
     <Filter Include="Source Files\filesystem\file">
       <UniqueIdentifier>{7164038b-3f76-4ce1-96d5-cc885cbf7871}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\graphics\visual">
-      <UniqueIdentifier>{279c4f0b-7469-485f-a720-40edf81d3278}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\crypto\crypto">
-      <UniqueIdentifier>{20c88a33-e98c-4710-a7c2-fbaf3e3b8766}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\net\mail">
       <UniqueIdentifier>{18e5190d-031e-4ad6-a338-9a3c09365a81}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\net\mail">
       <UniqueIdentifier>{680a0322-4659-4b9e-9c33-fd5c55060730}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\str">
-      <UniqueIdentifier>{48b842bb-d6ab-4f7c-9d21-8c8541d95a90}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\base\install">
       <UniqueIdentifier>{90021ec4-d01a-4f04-a062-a622ecf9d870}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\base\hotplugin">
       <UniqueIdentifier>{4e7f61cf-cc47-428d-8f33-b8f921606eb1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\user\simple_ui">
-      <UniqueIdentifier>{7bdaa2c9-1de1-4163-8aba-35a5dcab23ba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\simple_ui">
-      <UniqueIdentifier>{b9ff5070-0942-458c-8d35-e0f4e463f2ce}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\base\base">
       <UniqueIdentifier>{5dc0d2bc-fc5d-4202-9b04-2343b93cccb5}</UniqueIdentifier>
@@ -423,20 +198,8 @@
     <Filter Include="Header Files\base\os\ansios">
       <UniqueIdentifier>{d8fdcc30-b719-4944-8c43-76d53cfb6b94}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\user\user">
-      <UniqueIdentifier>{6d60439d-8fc1-4d30-963f-b0f9e77abb41}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\user\user">
-      <UniqueIdentifier>{6dfb842d-9db9-46a1-a7d1-6f696d6287bc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\base\geoip">
       <UniqueIdentifier>{a1196ae1-643e-46d0-9f06-361c06e383d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\include">
-      <UniqueIdentifier>{8c0ad50e-fa55-4b2c-a241-3cd0b5e64ade}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\openssl\include\openssl">
-      <UniqueIdentifier>{2c81aac1-370e-43ed-9d07-e606444f8b9a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\net\idn">
       <UniqueIdentifier>{09524ebc-0318-4348-a462-4eee83de81bb}</UniqueIdentifier>
@@ -444,29 +207,17 @@
     <Filter Include="Source Files\net\idn">
       <UniqueIdentifier>{8e679719-0ed1-4584-a8be-b13c4d00dc92}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\str\iconv">
-      <UniqueIdentifier>{d60a1b53-2e99-40da-8849-66e0d745281b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\base">
       <UniqueIdentifier>{225c8e24-bbc5-4bf4-9da8-92ec39a039ec}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\base\compress">
       <UniqueIdentifier>{75053c2a-c9d5-43d3-aa2e-3bd3da3bccac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\base\compress\zlib">
-      <UniqueIdentifier>{4d421910-8554-4853-a632-557bbb942229}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\base\compress\zip">
       <UniqueIdentifier>{487ab119-db2e-4fdd-b0b1-3d12dad9dd07}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\base\compress\bsdiff">
-      <UniqueIdentifier>{d36617c6-420d-494e-b90d-062e519f1bc5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\base\crypto">
       <UniqueIdentifier>{3447641d-5c92-4366-adec-9adba60127e0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\base\crypto\crypto">
-      <UniqueIdentifier>{8a0af4d6-01ab-43f0-8402-9b330e6a65c2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\base\os">
       <UniqueIdentifier>{245e3241-db5a-4886-814d-9434580575d9}</UniqueIdentifier>
@@ -527,21 +278,6 @@
     </Filter>
     <Filter Include="Source Files\base\node\ansios">
       <UniqueIdentifier>{a082445c-e80b-4002-8250-1fd29ecad1d1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\colorertake5">
-      <UniqueIdentifier>{0c23c4ce-27f7-46af-9b9e-571b9d43d36d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\user\colorertake5">
-      <UniqueIdentifier>{8962965e-f8b9-4deb-b8e6-5f1271a7adc0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\data">
-      <UniqueIdentifier>{b47f1200-db28-45cf-88cd-eaf066d0e7a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\simple">
-      <UniqueIdentifier>{e035613e-26d4-49da-a3f4-14a8924d15cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\user\simple">
-      <UniqueIdentifier>{87359dfc-dc8d-48ea-9e7a-cc1bd37769e0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -764,51 +500,6 @@
     <ClInclude Include="net\sockets\bsd\sockets_sockets.h">
       <Filter>Header Files\net\sockets\bsd</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_bitmap.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_brush.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_dib.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_font.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_graphics.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_igui.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_object.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_palette.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_path.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_pen.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_region.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\graphics.h">
-      <Filter>Header Files\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_const.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
     <ClInclude Include="net\net_address.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
@@ -817,9 +508,6 @@
     </ClInclude>
     <ClInclude Include="net\net_email_address.h">
       <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\graphics_window_graphics.h">
-      <Filter>Header Files\graphics</Filter>
     </ClInclude>
     <ClInclude Include="programming\javascript\javascript.h">
       <Filter>Header Files\programming\javascript</Filter>
@@ -832,9 +520,6 @@
     </ClInclude>
     <ClInclude Include="programming\javascript\javascript_tinyjs_functions.h">
       <Filter>Header Files\programming\javascript</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_icon.h">
-      <Filter>Header Files\graphics\visual</Filter>
     </ClInclude>
     <ClInclude Include="user\fontopus\fontopus.h">
       <Filter>Header Files\user\fontopus</Filter>
@@ -877,39 +562,6 @@
     </ClInclude>
     <ClInclude Include="net\net_url_domain.h">
       <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="base\compress\zlib\crc32.h">
-      <Filter>Header Files\base\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="base\compress\zlib\deflate.h">
-      <Filter>Header Files\base\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="base\compress\zlib\gzguts.h">
-      <Filter>Header Files\base\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="base\compress\zlib\inffast.h">
-      <Filter>Header Files\base\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="base\compress\zlib\inffixed.h">
-      <Filter>Header Files\base\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="base\compress\zlib\inflate.h">
-      <Filter>Header Files\base\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="base\compress\zlib\inftrees.h">
-      <Filter>Header Files\base\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="base\compress\zlib\trees.h">
-      <Filter>Header Files\base\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="base\compress\zlib\zconf.h">
-      <Filter>Header Files\base\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="base\compress\zlib\zlib.h">
-      <Filter>Header Files\base\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="base\compress\zlib\zutil.h">
-      <Filter>Header Files\base\compress\zlib</Filter>
     </ClInclude>
     <ClInclude Include="base\compress\zip\zip_internal.h">
       <Filter>Source Files\base\compress\zip</Filter>
@@ -995,49 +647,7 @@
     <ClInclude Include="net\http\http.h">
       <Filter>Header Files\net\http</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\file_application.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_binary_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_buffered_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_byte_input_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_byte_input_stream_binary_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_byte_output_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_byte_output_stream_binary_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_byte_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_byte_stream_memory_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_c.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_circular_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_composite.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_dir.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file_dir_application.h">
@@ -1046,491 +656,8 @@
     <ClInclude Include="filesystem\file\file_dir_system.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\file_exception.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_input_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_memory_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_opened.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_output_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_output_stream_flush.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_plain_text_input_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_plain_text_output_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_plain_text_output_stream_string_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_plain_text_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_plain_text_stream_base.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_plain_text_stream_memory_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_plain_text_stream_string_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_reader.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_seekable.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_serializable.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_simple_binary_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_status.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_stream_base.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_stream_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_stream_buffer_base.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_stream2.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_string_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\file_system.h">
       <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_text_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_timeout_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_transfer_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_writer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_writer_flush.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="base\compress\bsdiff\bsdiff.h">
-      <Filter>Header Files\base\compress\bsdiff</Filter>
-    </ClInclude>
-    <ClInclude Include="base\compress\bsdiff\bsdiff_private.h">
-      <Filter>Header Files\base\compress\bsdiff</Filter>
-    </ClInclude>
-    <ClInclude Include="base\compress\bsdiff\bzlib.h">
-      <Filter>Header Files\base\compress\bsdiff</Filter>
-    </ClInclude>
-    <ClInclude Include="base\compress\bsdiff\bzlib_private.h">
-      <Filter>Header Files\base\compress\bsdiff</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_cursor.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\arm_arch.h">
-      <Filter>Header Files\base\openssl\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\cryptlib.h">
-      <Filter>Header Files\base\openssl\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\crypto.h">
-      <Filter>Header Files\base\openssl\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\ebcdic.h">
-      <Filter>Header Files\base\openssl\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\fips_err.h">
-      <Filter>Header Files\base\openssl\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\md32_common.h">
-      <Filter>Header Files\base\openssl\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\opensslconf.h">
-      <Filter>Header Files\base\openssl\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\opensslv.h">
-      <Filter>Header Files\base\openssl\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\ossl_typ.h">
-      <Filter>Header Files\base\openssl\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\o_dir.h">
-      <Filter>Header Files\base\openssl\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\o_str.h">
-      <Filter>Header Files\base\openssl\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\o_time.h">
-      <Filter>Header Files\base\openssl\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\symhacks.h">
-      <Filter>Header Files\base\openssl\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\vms_rms.h">
-      <Filter>Header Files\base\openssl\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\asn1\asn1.h">
-      <Filter>Header Files\base\openssl\crypto\asn1</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\asn1\asn1t.h">
-      <Filter>Header Files\base\openssl\crypto\asn1</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\asn1\asn1_locl.h">
-      <Filter>Header Files\base\openssl\crypto\asn1</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\asn1\asn1_mac.h">
-      <Filter>Header Files\base\openssl\crypto\asn1</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\asn1\charmap.h">
-      <Filter>Header Files\base\openssl\crypto\asn1</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\aes\aes.h">
-      <Filter>Header Files\base\openssl\crypto\aes</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\x509v3\x509v3.h">
-      <Filter>Header Files\base\openssl\crypto\x509</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\x509\x509.h">
-      <Filter>Header Files\base\openssl\crypto\x509</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\x509\x509_vfy.h">
-      <Filter>Header Files\base\openssl\crypto\x509</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\bio\bio.h">
-      <Filter>Header Files\base\openssl\crypto\bio</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\bio\bio_lcl.h">
-      <Filter>Header Files\base\openssl\crypto\bio</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\bf\bf_locl.h">
-      <Filter>Header Files\base\openssl\crypto\bf</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\bf\bf_pi.h">
-      <Filter>Header Files\base\openssl\crypto\bf</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\bf\blowfish.h">
-      <Filter>Header Files\base\openssl\crypto\bf</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\bn\bn.h">
-      <Filter>Header Files\base\openssl\crypto\bn</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\bn\bn_lcl.h">
-      <Filter>Header Files\base\openssl\crypto\bn</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\bn\bn_prime.h">
-      <Filter>Header Files\base\openssl\crypto\bn</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\buffer\buffer.h">
-      <Filter>Header Files\base\openssl\crypto\buffer</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\evp\evp.h">
-      <Filter>Header Files\base\openssl\crypto\evp</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\evp\evp_locl.h">
-      <Filter>Header Files\base\openssl\crypto\evp</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\ts\ts.h">
-      <Filter>Header Files\base\openssl\crypto\ts</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\ui\ui.h">
-      <Filter>Header Files\base\openssl\crypto\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\ui\ui_locl.h">
-      <Filter>Header Files\base\openssl\crypto\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\camellia\camellia.h">
-      <Filter>Header Files\base\openssl\crypto\camellia</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\camellia\cmll_locl.h">
-      <Filter>Header Files\base\openssl\crypto\camellia</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\cast\cast.h">
-      <Filter>Header Files\base\openssl\crypto\cast</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\cast\cast_lcl.h">
-      <Filter>Header Files\base\openssl\crypto\cast</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\cast\cast_s.h">
-      <Filter>Header Files\base\openssl\crypto\cast</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\cmac\cmac.h">
-      <Filter>Header Files\base\openssl\crypto\cmac</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\cms\cms.h">
-      <Filter>Header Files\base\openssl\crypto\cms</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\cms\cms_lcl.h">
-      <Filter>Header Files\base\openssl\crypto\cms</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\comp\comp.h">
-      <Filter>Header Files\base\openssl\crypto\comp</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\dh\dh.h">
-      <Filter>Header Files\base\openssl\crypto\dh</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\dsa\dsa.h">
-      <Filter>Header Files\base\openssl\crypto\dsa</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\dso\dso.h">
-      <Filter>Header Files\base\openssl\crypto\dso</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\ec\ec.h">
-      <Filter>Header Files\base\openssl\crypto\ec</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\ec\ec_lcl.h">
-      <Filter>Header Files\base\openssl\crypto\ec</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\ecdsa\ecdsa.h">
-      <Filter>Header Files\base\openssl\crypto\ecdsa</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\ecdsa\ecs_locl.h">
-      <Filter>Header Files\base\openssl\crypto\ecdsa</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\ecdh\ecdh.h">
-      <Filter>Header Files\base\openssl\crypto\ecdh</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\ecdh\ech_locl.h">
-      <Filter>Header Files\base\openssl\crypto\ecdh</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\engine\engine.h">
-      <Filter>Header Files\base\openssl\crypto\engine</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\engine\eng_int.h">
-      <Filter>Header Files\base\openssl\crypto\engine</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\err\err.h">
-      <Filter>Header Files\base\openssl\crypto\err</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\pkcs7\example.h">
-      <Filter>Header Files\base\openssl\crypto\pkcs7</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\pkcs7\pkcs7.h">
-      <Filter>Header Files\base\openssl\crypto\pkcs7</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\x509v3\ext_dat.h">
-      <Filter>Header Files\base\openssl\crypto\x509v3</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\x509v3\pcy_int.h">
-      <Filter>Header Files\base\openssl\crypto\x509v3</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\hmac\hmac.h">
-      <Filter>Header Files\base\openssl\crypto\hmac</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\idea\idea.h">
-      <Filter>Header Files\base\openssl\crypto\idea</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\idea\idea_lcl.h">
-      <Filter>Header Files\base\openssl\crypto\idea</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\jpake\jpake.h">
-      <Filter>Header Files\base\openssl\crypto\jpake</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\lhash\lhash.h">
-      <Filter>Header Files\base\openssl\crypto\lhash</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\krb5\krb5_asn.h">
-      <Filter>Header Files\base\openssl\crypto\krb5</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\md2\md2.h">
-      <Filter>Header Files\base\openssl\crypto\md2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\md4\md4.h">
-      <Filter>Header Files\base\openssl\crypto\md4</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\md4\md4_locl.h">
-      <Filter>Header Files\base\openssl\crypto\md4</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\md5\md5.h">
-      <Filter>Header Files\base\openssl\crypto\md5</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\md5\md5_locl.h">
-      <Filter>Header Files\base\openssl\crypto\md5</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\mdc2\mdc2.h">
-      <Filter>Header Files\base\openssl\crypto\mdc2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\modes\modes.h">
-      <Filter>Header Files\base\openssl\crypto\modes</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\modes\modes_lcl.h">
-      <Filter>Header Files\base\openssl\crypto\modes</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\objects\objects.h">
-      <Filter>Header Files\base\openssl\crypto\objects</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\objects\obj_dat.h">
-      <Filter>Header Files\base\openssl\crypto\objects</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\objects\obj_mac.h">
-      <Filter>Header Files\base\openssl\crypto\objects</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\objects\obj_xref.h">
-      <Filter>Header Files\base\openssl\crypto\objects</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\ocsp\ocsp.h">
-      <Filter>Header Files\base\openssl\crypto\ocsp</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\pem\pem.h">
-      <Filter>Header Files\base\openssl\crypto\pem</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\pem\pem2.h">
-      <Filter>Header Files\base\openssl\crypto\pem</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\rc2\rc2.h">
-      <Filter>Header Files\base\openssl\crypto\rc2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\rc2\rc2_locl.h">
-      <Filter>Header Files\base\openssl\crypto\rc2</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\rc4\rc4.h">
-      <Filter>Header Files\base\openssl\crypto\rc4</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\rc4\rc4_locl.h">
-      <Filter>Header Files\base\openssl\crypto\rc4</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\rc5\rc5.h">
-      <Filter>Header Files\base\openssl\crypto\rc5</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\rc5\rc5_locl.h">
-      <Filter>Header Files\base\openssl\crypto\rc5</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\sha\sha.h">
-      <Filter>Header Files\base\openssl\crypto\sha</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\sha\sha_locl.h">
-      <Filter>Header Files\base\openssl\crypto\sha</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\pkcs12\pkcs12.h">
-      <Filter>Header Files\base\openssl\crypto\pkcs12</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\stack\safestack.h">
-      <Filter>Header Files\base\openssl\crypto\stack</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\stack\stack.h">
-      <Filter>Header Files\base\openssl\crypto\stack</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\txt_db\txt_db.h">
-      <Filter>Header Files\base\openssl\crypto\txt_db</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\pqueue\pqueue.h">
-      <Filter>Header Files\base\openssl\crypto\pqueue</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\rand\rand.h">
-      <Filter>Header Files\base\openssl\crypto\rand</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\rand\rand_lcl.h">
-      <Filter>Header Files\base\openssl\crypto\rand</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\des\des.h">
-      <Filter>Header Files\base\openssl\crypto\des</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\des\des_locl.h">
-      <Filter>Header Files\base\openssl\crypto\des</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\des\des_old.h">
-      <Filter>Header Files\base\openssl\crypto\des</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\des\des_ver.h">
-      <Filter>Header Files\base\openssl\crypto\des</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\des\rpc_des.h">
-      <Filter>Header Files\base\openssl\crypto\des</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\des\spr.h">
-      <Filter>Header Files\base\openssl\crypto\des</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\whrlpool\whrlpool.h">
-      <Filter>Header Files\base\openssl\crypto\whllrpool</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\whrlpool\wp_locl.h">
-      <Filter>Header Files\base\openssl\crypto\whllrpool</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\srp\srp.h">
-      <Filter>Header Files\base\openssl\crypto\srp</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\srp\srp_grps.h">
-      <Filter>Header Files\base\openssl\crypto\srp</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\srp\srp_lcl.h">
-      <Filter>Header Files\base\openssl\crypto\srp</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\store\store.h">
-      <Filter>Header Files\base\openssl\crypto\store</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\store\str_locl.h">
-      <Filter>Header Files\base\openssl\crypto\store</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\seed\seed.h">
-      <Filter>Header Files\base\openssl\crypto\seed</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\seed\seed_locl.h">
-      <Filter>Header Files\base\openssl\crypto\seed</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\rsa\rsa.h">
-      <Filter>Header Files\base\openssl\crypto\rsa</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\ripemd\ripemd.h">
-      <Filter>Header Files\base\openssl\crypto\ripemd</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\ripemd\rmdconst.h">
-      <Filter>Header Files\base\openssl\crypto\ripemd</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\crypto\ripemd\rmd_locl.h">
-      <Filter>Header Files\base\openssl\crypto\ripemd</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\ssl\dtls1.h">
-      <Filter>Header Files\base\openssl\ssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\ssl\kssl.h">
-      <Filter>Header Files\base\openssl\ssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\ssl\kssl_lcl.h">
-      <Filter>Header Files\base\openssl\ssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\ssl\srtp.h">
-      <Filter>Header Files\base\openssl\ssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\ssl\ssl.h">
-      <Filter>Header Files\base\openssl\ssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\ssl\ssl2.h">
-      <Filter>Header Files\base\openssl\ssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\ssl\ssl23.h">
-      <Filter>Header Files\base\openssl\ssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\ssl\ssl3.h">
-      <Filter>Header Files\base\openssl\ssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\ssl\ssl_locl.h">
-      <Filter>Header Files\base\openssl\ssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\ssl\tls1.h">
-      <Filter>Header Files\base\openssl\ssl</Filter>
     </ClInclude>
     <ClInclude Include="base\crypto\crypto.h">
       <Filter>Header Files\base\crypto</Filter>
@@ -1550,93 +677,6 @@
     <ClInclude Include="base\crypto\crypto_sha1.h">
       <Filter>Header Files\base\crypto</Filter>
     </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_aes.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_aes_cbc.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_aes_icm.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_alg.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_alloc.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_auth.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_c_crypto.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_cipher.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_config.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_datatypes.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_err.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_gf2_8.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_hmac.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_integers.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_kernel.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_kernel_compat.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_key.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_math.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_null_auth.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_null_cipher.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_prng.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_rand_source.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_rdb.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_rdbx.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_stat.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_types.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_ut_sim.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_xfm.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
     <ClInclude Include="net\mail\mail.h">
       <Filter>Header Files\net\mail</Filter>
     </ClInclude>
@@ -1648,12 +688,6 @@
     </ClInclude>
     <ClInclude Include="net\mail\simple_pop3.h">
       <Filter>Header Files\net\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_sha1_digest.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto\crypto_internal_data_types.h">
-      <Filter>Header Files\base\crypto\crypto</Filter>
     </ClInclude>
     <ClInclude Include="base\os\cross.h">
       <Filter>Header Files\base\os</Filter>
@@ -1718,29 +752,11 @@
     <ClInclude Include="user\fontopus\fontopus_simple_ui.h">
       <Filter>Header Files\user\fontopus</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui_edit_box.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui_label.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui_password.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui_tap.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
     <ClInclude Include="base\install\aaa_want_to_remove_install_window.h">
       <Filter>Header Files\base\install</Filter>
     </ClInclude>
     <ClInclude Include="base\install\aaa_want_to_remove_install2.h">
       <Filter>Header Files\base\install</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui_style.h">
-      <Filter>Header Files\user\simple_ui</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base.h">
       <Filter>Header Files\base\base</Filter>
@@ -1772,9 +788,6 @@
     <ClInclude Include="net\net_port_forward.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\file_set.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
     <ClInclude Include="net\sockets\http\sockets_http_listener.h">
       <Filter>Header Files\net\sockets\http</Filter>
     </ClInclude>
@@ -1783,12 +796,6 @@
     </ClInclude>
     <ClInclude Include="net\http\http_signal.h">
       <Filter>Header Files\net\http</Filter>
-    </ClInclude>
-    <ClInclude Include="version.config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="version.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="base\os\android\android_cross_win_file.h">
       <Filter>Header Files\base\os\android</Filter>
@@ -1880,114 +887,6 @@
     <ClInclude Include="base\os\ansios\ansios_thread.h">
       <Filter>Header Files\base\os\ansios</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_buffer.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_check_interface.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_control_bar.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_control_event.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_create_context.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_draw_context.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_draw_interface.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_elemental.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_frame_window.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_impact.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_impact_system.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_impact_update_hint.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_interaction.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_job.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_key_enum.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_keyboard.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_keyboard_focus.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_keyboard_layout.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_message.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_mouse_focus.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_place_holder.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_place_holder_container.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_printer.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_server.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_str.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_text_interface.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_user.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_view_container.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_view_creator.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_view_creator_data.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_wait_cursor.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_window_draw.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_window_map.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_window_util.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_print_job.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="base\geoip\geoip.h">
       <Filter>Header Files\base\geoip</Filter>
     </ClInclude>
@@ -2002,228 +901,6 @@
     </ClInclude>
     <ClInclude Include="base\geoip\global.h">
       <Filter>Header Files\base\geoip</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\aes.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\asn1.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\asn1_mac.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\asn1t.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\bio.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\blowfish.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\bn.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\buffer.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\camellia.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\cast.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\cmac.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\cms.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\comp.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\conf.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\conf_api.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\crypto.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\des.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\des_old.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\dh.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\dsa.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\dso.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\dtls1.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\e_os2.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\ebcdic.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\ec.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\ecdh.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\ecdsa.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\engine.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\err.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\evp.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\hmac.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\idea.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\krb5_asn.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\kssl.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\lhash.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\md4.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\md5.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\mdc2.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\modes.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\obj_mac.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\objects.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\ocsp.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\opensslv.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\ossl_typ.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\pem.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\pem2.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\pkcs7.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\pkcs12.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\pqueue.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\rand.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\rc2.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\rc4.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\ripemd.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\rsa.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\safestack.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\seed.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\sha.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\srp.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\srtp.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\ssl.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\ssl2.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\ssl3.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\ssl23.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\stack.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\symhacks.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\tls1.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\ts.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\txt_db.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\ui.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\ui_compat.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\whrlpool.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\x509.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\x509_vfy.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="base\openssl\include\openssl\x509v3.h">
-      <Filter>Header Files\base\openssl\include\openssl</Filter>
     </ClInclude>
     <ClInclude Include="net\idn\ac-stdint.h">
       <Filter>Header Files\net\idn</Filter>
@@ -2266,21 +943,6 @@
     </ClInclude>
     <ClInclude Include="net\idn\unistd.h">
       <Filter>Header Files\net\idn</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_menu_base.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_menu_base_item.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_inline.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_enum.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_class.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
@@ -2341,12 +1003,6 @@
     </ClInclude>
     <ClInclude Include="base\node\windows\windows_simple_hold_handle.h">
       <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui_interaction.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_windowing.h">
-      <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="base\node\android\android.h">
       <Filter>Header Files\base\node\android</Filter>
@@ -2420,215 +1076,8 @@
     <ClInclude Include="base\base\base_session_interface.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
-    <ClInclude Include="base\base\base_application_interface.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_interaction_base.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_interaction_impl.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_interaction_child.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_interaction_impl_base.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="base\hotplugin\hotplugin_composer.h">
       <Filter>Header Files\base\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_schema.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_schema_simple_impl.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_document.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_document_data_map.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_schema_layered_frame.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_edit_plain_text.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_scroll_view.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_control.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_base_editor.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_colorertake5.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_cregexp.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_default_error_handler.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_editor_listener.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_error_handler.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_error_handler_writer.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_exception.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_features.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_file_input_source.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_file_type.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_file_type_impl.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_file_writer.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_hrc_parser.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_hrc_parser_helpers.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_hrc_parser_impl.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_line_region.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_line_regions_compact_support.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_line_regions_support.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_line_source.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_logging.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_memory_chunks.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_memory_file.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_outline_item.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_outliner.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_pair_match.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_parsed_line_writer.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_parser_factory.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_parser_factory_exception.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_region.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_region_define.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_region_handler.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_region_mapper.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_region_mapper_impl.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_scheme.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_shared_input_source.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_string_buffer.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_styled_hrd_mapper.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_styled_region.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_text_console_viewer.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_text_hrd_mapper.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_text_lines.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_text_parser.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_text_parser_helpers.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_text_parser_impl.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_text_region.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_Writer.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_xmldom.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_plain_text_data.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_edit_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_scroll_bar.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple\simple_scroll_bar.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple\simple.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_form_interface.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui_message_box.h">
-      <Filter>Header Files\user\simple_ui</Filter>
     </ClInclude>
     <ClInclude Include="base\os\cross\windows\e.h">
       <Filter>Header Files\base\os\cross\windows</Filter>
@@ -2681,172 +1130,16 @@
     <ClInclude Include="base\base\base_c_cpp.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
-    <ClInclude Include="base\os\aaa_want_to_remove_os_process.h">
-      <Filter>Header Files\base\os</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\windows\aaa_want_to_remove_windows_base_registry.h">
-      <Filter>Header Files\base\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\windows\aaa_want_to_remove_windows_process.h">
-      <Filter>Header Files\base\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\windows\aaa_want_to_remove_windows_simple_hold_handle.h">
-      <Filter>Header Files\base\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\windows\aaa_want_to_remove_windows_file_watcher.h">
-      <Filter>Header Files\base\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\windows\aaa_want_to_remove_windows_base_file.h">
-      <Filter>Header Files\base\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\windows\aaa_want_to_remove_windows_base_internal.h">
-      <Filter>Header Files\base\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\windows\aaa_want_to_remove_windows_implementation.h">
-      <Filter>Header Files\base\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\windows\aaa_want_to_remove_windows_multithreading.h">
-      <Filter>Header Files\base\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\aaa_want_to_remove_win1.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\aaa_want_to_remove_windows_implementation.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\aaa_want_to_remove_windows_interaction_impl.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\aaa_want_to_remove_windows_folder_watch.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\aaa_want_to_remove_windows_window_draw.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\aaa_want_to_remove_windows_uac_tools.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\aaa_want_to_remove_windows_thread.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="base\node\windows\windows_port_forward.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\aaa_want_to_remove_windows_file.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\aaa_want_to_remove_windows_print_job.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\aaa_want_to_remove_windows_application.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\aaa_want_to_remove_windows_file_find.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\aaa_want_to_remove_windows_shell.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\aaa_want_to_remove_windows_stdio_file.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\aaa_want_to_remove_windows_copydesk.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\aaa_want_to_remove_windows_registry.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\aaa_want_to_remove_windows_os.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="primitive\primitive_memory.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_memory_base.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_memory_container.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_shared_memory.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_virtual_memory.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_property.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_object.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_factory.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_interlocked_long.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_interlocked_long_pulse.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_edit.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_type.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_var.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_property_set.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_request_interface.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_create_context.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_command.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_command_line.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_command_thread.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="net\net_net.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
     <ClCompile Include="net\net_url_departament.cpp">
       <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_application_bias.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_signal.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_request_signal.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_id.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_id_space.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_memory_c.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_bit.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="version.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="net\http\http_application.cpp">
       <Filter>Source Files\net\http</Filter>
@@ -3034,39 +1327,6 @@
     <ClCompile Include="net\sockets\sockets_trace_logger.cpp">
       <Filter>Source Files\net\sockets</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_brush.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_dib.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_font.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_graphics.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_object.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_palette.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_path.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_pen.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_region.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_job.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="net\net_address.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
@@ -3075,93 +1335,6 @@
     </ClCompile>
     <ClCompile Include="net\net_email_address.cpp">
       <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\comparison\comparison_md5.cpp">
-      <Filter>Source Files\primitive\comparison</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\comparison\comparison_var_strict.cpp">
-      <Filter>Source Files\primitive\comparison</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_duration.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_time.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\geometry\geometry_point.cpp">
-      <Filter>Source Files\primitive\geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\geometry\geometry_rect.cpp">
-      <Filter>Source Files\primitive\geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\geometry\geometry_size.cpp">
-      <Filter>Source Files\primitive\geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\geometry\geometry_types.cpp">
-      <Filter>Source Files\primitive\geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_2d_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_bit_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_class_sort_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_comparable_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_id_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_key_sort_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_map_misc.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_numeric_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_object_list.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_point_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_pointer_list.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_rect_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_sort.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_string_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_string_list.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_string_sort_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_string_to_string_map.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_stringa.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_stringl.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_var_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
     <ClCompile Include="programming\javascript\javascript.cpp">
       <Filter>Source Files\programming\javascript</Filter>
@@ -3193,9 +1366,6 @@
     <ClCompile Include="user\fontopus\fontopus_validate.cpp">
       <Filter>Source Files\user\fontopus</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\math\math_math.cpp">
-      <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
     <ClCompile Include="base\compress\zip\zip_api.cpp">
       <Filter>Source Files\base\compress\zip</Filter>
     </ClCompile>
@@ -3223,118 +1393,13 @@
     <ClCompile Include="filesystem\file\file_application.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_binary_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_input_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_input_stream_binary_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_output_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_output_stream_binary_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_stream_memory_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_c.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_composite.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_dir.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_dir_application.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_dir_system.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_dir2.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_exception.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_input_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_memory_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_output_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_plain_text_input_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_plain_text_output_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_plain_text_output_stream_string_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_plain_text_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_plain_text_stream_base.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_plain_text_stream_memory_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_plain_text_stream_string_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_reader.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_seekable.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_simple_binary_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_stream_base.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_stream_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_stream_buffer_base.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_stream2.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_string_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_system.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_timeout_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_transfer_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_writer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_writer_flush.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\fs\fs_data.cpp">
@@ -3385,71 +1450,8 @@
     <ClCompile Include="user\userpresence\userpresence_userpresence.cpp">
       <Filter>Source Files\user\userpresence</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_text_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_color.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_departament.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\visual\visual_icon.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\visual\visual_cursor.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_value.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\math_math_rng.cpp">
-      <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\graphics_window_graphics.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_circular_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_buffered_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="net\net_url_domain.cpp">
       <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\bsdiff\bsdiff_blocksort.cpp">
-      <Filter>Source Files\base\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\bsdiff\bsdiff_bsdiff.cpp">
-      <Filter>Source Files\base\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\bsdiff\bsdiff_bspatch.cpp">
-      <Filter>Source Files\base\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\bsdiff\bsdiff_bzlib.cpp">
-      <Filter>Source Files\base\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\bsdiff\bsdiff_compress.cpp">
-      <Filter>Source Files\base\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\bsdiff\bsdiff_crctable.cpp">
-      <Filter>Source Files\base\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\bsdiff\bsdiff_decompress.cpp">
-      <Filter>Source Files\base\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\bsdiff\bsdiff_huffman.cpp">
-      <Filter>Source Files\base\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\bsdiff\bsdiff_randtable.cpp">
-      <Filter>Source Files\base\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\compress_bzip_stream.cpp">
-      <Filter>Source Files\base\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\compress_gzip_stream.cpp">
-      <Filter>Source Files\base\compress</Filter>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto.cpp">
       <Filter>Source Files\base\crypto</Filter>
@@ -3472,72 +1474,6 @@
     <ClCompile Include="base\crypto\crypto_whirpool.cpp">
       <Filter>Source Files\base\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_ae_xfm.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_cipher_aes.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_cipher_aes_cbc.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_cipher_aes_icm.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_cipher_cipher.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_cipher_null_cipher.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_gf2_8.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_hash_auth.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_hash_hmac.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_hash_null_auth.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_hash_sha1.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_kernel_alloc.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_kernel_err.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_kernel_key.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_math.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_rng_rand_source.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_rng_prng.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_rng_ctr_prng.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_replay_ut_sim.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_replay_rdbx.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_replay_rdb.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_math_stat.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="net\mail\mail_pop3.cpp">
       <Filter>Source Files\net\mail</Filter>
     </ClCompile>
@@ -3546,81 +1482,6 @@
     </ClCompile>
     <ClCompile Include="net\mail\mail_simple_pop3.cpp">
       <Filter>Source Files\net\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto\crypto_kernel_crypto_kernel.c">
-      <Filter>Source Files\base\crypto\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_base64.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_c.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_ch.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_ch_class.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_core.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_dup.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_format.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_from_integer.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_hex.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_international.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_international_locale_schema.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_istring.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_manager.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_parse.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_simple.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_str.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_string.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_stringtow.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_strw.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_strx.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_to_integer.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_tokenizer.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_verisimple_wstring.cpp">
-      <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\str_wtostring.cpp">
-      <Filter>Source Files\primitive\str</Filter>
     </ClCompile>
     <ClCompile Include="base\os\os_file.cpp">
       <Filter>Source Files\base\os</Filter>
@@ -3694,58 +1555,13 @@
     <ClCompile Include="user\fontopus\fontopus_simple_ui.cpp">
       <Filter>Source Files\user\fontopus</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple_ui\simple_ui_style.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\simple_ui_edit_box.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\simple_ui_label.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\simple_ui_password.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\simple_ui_tap.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
     <ClCompile Include="user\fontopus\fontopus_login.cpp">
       <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="base\install\aaa_want_to_remove_install_window.cpp">
-      <Filter>Source Files\base\install</Filter>
     </ClCompile>
     <ClCompile Include="base\base\base.cpp">
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
     <ClCompile Include="base\base\base_application.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base_checked.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base_cmdtarg.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base_conv.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base_cpu_architecture.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base_debug.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base_departament.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base_departament_container.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base_international.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base_live_signal.cpp">
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
     <ClCompile Include="base\base\base_session.cpp">
@@ -3754,41 +1570,17 @@
     <ClCompile Include="base\base\base_system.cpp">
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
-    <ClCompile Include="base\base\base_template.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base_trace.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\_math.cpp">
-      <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_folder_watch.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="net\net_ip_enum.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
     <ClCompile Include="net\net_port_forward.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_set.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\math_scalar.cpp">
-      <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
     <ClCompile Include="net\sockets\http\sockets_http_listener.cpp">
       <Filter>Source Files\net\sockets\http</Filter>
     </ClCompile>
     <ClCompile Include="net\http\http_status.cpp">
       <Filter>Source Files\net\http</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base_action_context.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_relation_set.cpp">
-      <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="user\fontopus\fontopus_user_authentication.cpp">
       <Filter>Source Files\user\fontopus</Filter>
@@ -3859,108 +1651,6 @@
     <ClCompile Include="base\os\android\android_c.c">
       <Filter>Source Files\base\os\android</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_buffer.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_check_interface.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_control_bar.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_control_event.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_create_context.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_draw_context.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_draw_interface.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_elemental.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_frame_window.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_impact.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_impact_system.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_impact_update_hint.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_interaction.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_job.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_keyboard.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_keyboard_focus.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_keyboard_layout.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_message.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_mouse_focus.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_place_holder.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_place_holder_container.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_printer.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_server.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_str.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_text_interface.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_user.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_view_container.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_view_creator.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_wait_cursor.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_window_draw.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_window_map.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_window_util.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_print_job.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="base\geoip\geoip.cpp">
       <Filter>Source Files\base\geoip</Filter>
     </ClCompile>
@@ -3975,12 +1665,6 @@
     </ClCompile>
     <ClCompile Include="base\geoip\geoip_update.cpp">
       <Filter>Source Files\base\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\math_natural.cpp">
-      <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\math_mkint_c.cpp">
-      <Filter>Source Files\primitive\math</Filter>
     </ClCompile>
     <ClCompile Include="net\idn\idna.c">
       <Filter>Source Files\net\idn</Filter>
@@ -4030,107 +1714,11 @@
     <ClCompile Include="net\idn\toutf8.c">
       <Filter>Source Files\net\idn</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_menu_base.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_menu_base_item.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="base\install\install_plugin_bare_paint_full_screen.cpp">
       <Filter>Source Files\base\install</Filter>
     </ClCompile>
     <ClCompile Include="base\install\install_plugin_bare_paint_discreet.cpp">
       <Filter>Source Files\base\install</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\allocator.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\areadlink.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\canonicalize-lgpl.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\careadlinkat.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\c-ctype.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\error.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\genaliases.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\genaliases2.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\genflags.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\gentranslit.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\iconv.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\lstat.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\malloca.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\memmove.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\progname.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\progreloc.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\read.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\readlink.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\relocatable.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\relocwrapper.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\safe-read.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\setenv.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\sigprocmask.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\stat.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\stdio-write.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\strerror.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\strerror-override.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\xmalloc.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\xreadlink.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\xstrdup.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
     </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
@@ -4297,9 +1885,6 @@
     <ClCompile Include="base\node\windows\win1.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple_ui\simple_ui_interaction.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\windows\windows_process.cpp">
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
@@ -4308,54 +1893,6 @@
     </ClCompile>
     <ClCompile Include="base\os\windows\windows_debug.cpp">
       <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_windowing.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\zlib_adler32.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\zlib_compress.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\zlib_crc32.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\zlib_deflate.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\zlib_gzclose.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\zlib_gzlib.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\zlib_gzread.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\zlib_gzwrite.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\zlib_infback.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\zlib_inffast.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\zlib_inflate.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\zlib_inftrees.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\zlib_trees.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\zlib_uncompr.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="base\compress\zlib\zlib_zutil.c">
-      <Filter>Source Files\base\compress\zlib</Filter>
     </ClCompile>
     <ClCompile Include="base\node\android\android_application.cpp">
       <Filter>Source Files\base\node\android</Filter>
@@ -4459,161 +1996,17 @@
     <ClCompile Include="base\base\base_session_interface.cpp">
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
-    <ClCompile Include="base\base\base_application_interface.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_interaction_base.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_interaction_impl_base.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_interaction_impl.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_interaction_child.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base_gudo.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
     <ClCompile Include="base\hotplugin\hotplugin.cpp">
       <Filter>Source Files\base\hotplugin</Filter>
     </ClCompile>
     <ClCompile Include="base\hotplugin\hotplugin_composer.cpp">
       <Filter>Source Files\base\hotplugin</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple_ui\simple_ui_message_box.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_document.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_schema.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_schema_simple_impl.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_schema_layered_frame.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_edit_plain_text.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_scroll_view.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_control.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_base_editor.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_colorertake5.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_default_error_handler.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_error_handler_writer.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_exception.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_hrc_parser_helpers.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_hrc_parser_impl.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_line_regions_compact_support.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_line_regions_support.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_line_source.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_logging.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_outliner.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_parsed_line_writer.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_parser_factory.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_region_handler.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_region_mapper_impl.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_styled_hrd_mapper.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_text_hrd_mapper.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_text_lines.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_text_parser_helpers.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_text_parser_impl.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_plain_text_data.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_data.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_data_container.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_data_listener.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_simple_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_tree.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_tree_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_edit_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple\simple_scroll_bar.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_form_interface.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_scroll_bar.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\windows\windows_interaction_impl.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="base\hotplugin\hotplugin_windows.cpp">
       <Filter>Source Files\base\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_serializable.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -4782,8 +2175,8 @@
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="base\message\message.inl">
-      <Filter>Header Files</Filter>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

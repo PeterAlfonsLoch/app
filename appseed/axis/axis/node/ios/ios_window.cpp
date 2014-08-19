@@ -562,7 +562,7 @@ namespace ios
    window::~window()
    {
       
-      if(m_pbaseapp != NULL && m_pbaseapp->m_pplaneapp != NULL && m_pbaseapp->m_pbasesystem != NULL && Sys(m_pbaseapp).user()->m_pwindowmap != NULL)
+      if(m_pbaseapp != NULL && m_pbaseapp->m_pplaneapp != NULL && m_pbaseapp->m_paxissystem != NULL && Sys(m_pbaseapp).user()->m_pwindowmap != NULL)
       {
          Sys(m_pbaseapp).user()->m_pwindowmap->m_map.remove_key((int_ptr) get_handle());
       }

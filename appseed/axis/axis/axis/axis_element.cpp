@@ -94,7 +94,7 @@ void element::delete_this()
    else if(m_ulFlags & flag_discard_to_factory)
    {
 
-      m_pbaseapp->m_pbasesystem->discard_to_factory(this);
+      m_pbaseapp->m_paxissystem->discard_to_factory(this);
 
    }
    else if(is_heap())

@@ -13,10 +13,10 @@ namespace axis
    public:
 
 
-      sp(::axis::application)     m_pbaseapp;
-      const char * const      m_pszFileName;
-      const int32_t               m_nLineNo;
-      string                  m_str;
+      ::axis::application *      m_paxisapp;
+      const char * const         m_pszFileName;
+      const int32_t              m_nLineNo;
+      string                     m_str;
 
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
@@ -33,19 +33,19 @@ namespace axis
 
 #endif
 
-      trace_add_file_and_line(sp(::axis::application) papp, const char *pszFileName, int32_t nLineNo)
-         : m_pbaseapp(papp), m_pszFileName(pszFileName), m_nLineNo(nLineNo)
+      trace_add_file_and_line(::axis::application * papp, const char *pszFileName, int32_t nLineNo)
+         : m_paxisapp(papp),m_pszFileName(pszFileName),m_nLineNo(nLineNo)
       {
       }
 
       inline sp(::axis::application) get_app() const
       {
-         return m_pbaseapp;
+         return m_paxisapp;
       }
 
       inline sp(::axis::application) get_app()
       {
-         return m_pbaseapp;
+         return m_paxisapp;
       }
 
 #ifndef VARIADIC_TEMPLATE

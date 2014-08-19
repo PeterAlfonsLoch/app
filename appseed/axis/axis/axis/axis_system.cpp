@@ -129,7 +129,7 @@ namespace axis
       else
       {
 
-         oprop("parent_system") = papp->m_pbasesystem;
+         oprop("parent_system") = papp->m_paxissystem;
 
       }
 

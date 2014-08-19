@@ -37,7 +37,7 @@ service_base::service_base(sp(::axis::application) pbaseapp, uint32_t controlsAc
 #endif
 {
 
-   pbaseapp->m_pbasesystem->m_serviceptra.add(this);
+   pbaseapp->m_paxissystem->m_serviceptra.add(this);
 
 #ifdef WINDOWSEX
     m_status.dwServiceType = SERVICE_WIN32_OWN_PROCESS;

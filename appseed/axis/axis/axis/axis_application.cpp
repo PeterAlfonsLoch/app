@@ -80,7 +80,7 @@ namespace axis
       if(m_pbaseapp != NULL)
       {
 
-         m_pbasesystem           = m_pbaseapp->m_pbasesystem;
+         m_pbasesystem           = m_pbaseapp->m_paxissystem;
 
          if(m_pbaseapp->m_pbasesession == NULL && m_pbasesystem != NULL)
          {
