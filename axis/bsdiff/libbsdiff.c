@@ -40,8 +40,8 @@
 
 
 
-#ifndef MIN
-#define MIN(x,y) (((x)<(y)) ? (x) : (y))
+#ifndef min
+#define min(x,y) (((x)<(y)) ? (x) : (y))
 #endif
 
 static void split(bs_offset *I,bs_offset *V,bs_offset start,bs_offset len,bs_offset h)
@@ -172,7 +172,7 @@ static bs_offset search(bs_offset *I,unsigned char *old,bs_offset oldsize,
 	};
 
 	x=st+(en-st)/2;
-	if(memcmp(old+I[x],new,MIN(oldsize-I[x],newsize))<0) {
+	if(memcmp(old+I[x],new,min(oldsize-I[x],newsize))<0) {
 		return search(I,old,oldsize,new,newsize,x,en,pos);
 	} else {
 		return search(I,old,oldsize,new,newsize,st,x,pos);
@@ -199,7 +199,7 @@ static void offtout(bs_offset x,unsigned char *buf)
 
 #define BSDIFF_HEADER_LEN 32
 
-int bsdiff(bs_offset * bsret,unsigned char *old,bs_offset oldsize,unsigned char *new,bs_offset newsize,unsigned char *patch,bs_offset patch_size)
+int libbsdiff_diff(bs_offset * bsret,unsigned char *old,bs_offset oldsize,unsigned char *new,bs_offset newsize,unsigned char *patch,bs_offset patch_size)
 {
 	bs_offset *I,*V;
 	bs_offset scan,pos,len;
@@ -379,12 +379,12 @@ static bs_offset offtin(unsigned char *buf)
 }
 
 
-bs_offset size_of_patched(unsigned char *patch)
+bs_offset libbsdiff_size_of_patched(unsigned char *patch)
 {
   return(offtin(patch+24));
 }
 
-int bspatch(unsigned char *old, bs_offset oldsize, unsigned char *patch, bs_offset patch_size, unsigned char *new)
+int libbsdiff_patch(unsigned char *old, bs_offset oldsize, unsigned char *patch, bs_offset patch_size, unsigned char *new)
 {
 	bs_offset newsize;
 	unsigned char *header, buf[8];

@@ -4792,7 +4792,7 @@ throw not_implemented(get_app());
 
       strncpy(lpszString, m_strWindowText, nMaxCount);
 
-      return MIN(nMaxCount, m_strWindowText.get_length());
+      return min(nMaxCount, m_strWindowText.get_length());
 
    }
 

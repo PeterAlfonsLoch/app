@@ -56,7 +56,7 @@ namespace file
 
       ::primitive::memory_size uiRead;
       ::primitive::memory_size uiSize = 0;
-      uiBufSize = MAX(8 * 1024, uiBufSize);
+      uiBufSize = max(8 * 1024, uiBufSize);
 
       ::primitive::memory buf;
 

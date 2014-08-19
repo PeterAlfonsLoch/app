@@ -50,7 +50,7 @@ public:
 protected:
 	object** m_pData;   // the actual array of data
 	int32_t m_nSize;     // # of elements (upperBound - 1)
-	int32_t m_nMaxSize;  // MAX allocated
+	int32_t m_nMaxSize;  // max allocated
 	int32_t m_nGrowBy;   // grow amount
 
 

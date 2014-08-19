@@ -2,8 +2,8 @@
 #include "framework.h"
 #include <process.h>    // for _beginthreadex and _endthreadex
 #undef new
-#define min MIN
-#define max MAX
+#define min min
+#define max max
 #include <gdiplus.h>
 
 

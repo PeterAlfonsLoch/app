@@ -305,7 +305,7 @@ template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::array(sp(::axis::application) papp, ::count nGrowBy) :
 element(papp)
 {
-   m_nGrowBy = MAX(0, nGrowBy);
+   m_nGrowBy = max(0, nGrowBy);
    m_pData = NULL;
    m_nSize = m_nMaxSize = 0;
 }

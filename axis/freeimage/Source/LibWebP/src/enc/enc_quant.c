@@ -386,7 +386,7 @@ void VP8SetSegmentParams(VP8Encoder* const enc, float quality) {
 
   // uv_alpha_ is normally spread around ~60. The useful range is
   // typically ~30 (quite bad) to ~100 (ok to decimate UV more).
-  // We map it to the safe maximal range of MAX/MIN_DQ_UV for dq_uv.
+  // We map it to the safe maximal range of max/MIN_DQ_UV for dq_uv.
   dq_uv_ac = (enc->uv_alpha_ - MID_ALPHA) * (MAX_DQ_UV - MIN_DQ_UV)
                                           / (MAX_ALPHA - MIN_ALPHA);
   // we rescale by the user-defined strength of adaptation

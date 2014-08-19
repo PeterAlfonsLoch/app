@@ -277,7 +277,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 				RGBQUAD *pal = FreeImage_GetPalette(dib);
 				if(pal != NULL) {
-					unsigned palette_entries = MIN((unsigned)ch_size / 3, FreeImage_GetColorsUsed(dib));
+					unsigned palette_entries = min((unsigned)ch_size / 3, FreeImage_GetColorsUsed(dib));
 					for (unsigned k = 0; k < palette_entries; k++) {					
 						io->read_proc(&pal[k].rgbRed, 1, 1, handle );
 						io->read_proc(&pal[k].rgbGreen, 1, 1, handle );

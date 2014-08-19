@@ -117,15 +117,15 @@ CLASS_DECL_AXIS int_bool OffsetRect(LPRECT prect, int32_t x, int32_t y)
 /*
 CLASS_DECL_AXIS bool x_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 {
-   prect->left = MAX(prect1->left, prect2->left);
-   prect->right = MIN(prect1->right, prect2->right);
+   prect->left = max(prect1->left, prect2->left);
+   prect->right = min(prect1->right, prect2->right);
    return prect->right >= prect->left;
 }
 
 CLASS_DECL_AXIS bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 {
-   prect->top = MAX(prect1->top, prect2->top);
-   prect->bottom = MIN(prect1->bottom, prect2->bottom);
+   prect->top = max(prect1->top, prect2->top);
+   prect->bottom = min(prect1->bottom, prect2->bottom);
    return prect->bottom >= prect->top;
 }
 */
@@ -140,10 +140,10 @@ CLASS_DECL_AXIS int_bool IntersectRect(LPRECT prect, LPCRECT prect1, LPCRECT pre
 
 CLASS_DECL_AXIS int_bool UnionRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 {
-   prect->left = MIN(prect1->left, prect2->left);
-   prect->top = MIN(prect1->top, prect2->top);
-   prect->right = MAX(prect1->right, prect2->right);
-   prect->bottom = MAX(prect1->bottom, prect2->bottom);
+   prect->left = min(prect1->left, prect2->left);
+   prect->top = min(prect1->top, prect2->top);
+   prect->right = max(prect1->right, prect2->right);
+   prect->bottom = max(prect1->bottom, prect2->bottom);
    return ((prect->right - prect->left) > 0) && ((prect->bottom - prect->top) > 0);
 }
 
@@ -214,7 +214,7 @@ MultiByteToWideChar(
          }
       }
 
-      int32_t iLen = (int32_t) MIN(cchWideChar, wstr.get_length());
+      int32_t iLen = (int32_t) min(cchWideChar, wstr.get_length());
 
       if(lpWideCharStr != NULL)
       {
@@ -362,7 +362,7 @@ WideCharToMultiByte(
       }
    }
 
-   int32_t iLen = (int32_t) MIN(cbMultiByte, str.get_length());
+   int32_t iLen = (int32_t) min(cbMultiByte, str.get_length());
 
    if(lpMultiByteStr != NULL)
    {

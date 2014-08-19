@@ -67,7 +67,7 @@ namespace file_watcher
 #			if defined(UNICODE)
             {
                lstrcpynW(szFile,pNotify->FileName,
-                  MIN(MAX_PATH,pNotify->FileNameLength / sizeof(WCHAR)+ 1));
+                  min(MAX_PATH,pNotify->FileNameLength / sizeof(WCHAR)+ 1));
             }
 #			else
             {

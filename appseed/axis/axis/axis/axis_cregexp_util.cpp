@@ -159,9 +159,9 @@ bool cregexp_util::find(const string & str, cregexp * re, index iSubString, strs
    if(iSubString < 0)
       iSubString = 0;
 
-   iStart = MIN(str.get_length(), MAX(0, iStart));
+   iStart = min(str.get_length(), max(0, iStart));
 
-   iEnd = MIN(str.get_length(), MAX(0, iEnd));
+   iEnd = min(str.get_length(), max(0, iEnd));
 
    SMatches matches;
 

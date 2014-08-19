@@ -18,6 +18,8 @@
 
 
 #ifdef WINDOWSEX
+#undef min
+#undef max
 #include <gdiplus.h>
 #endif
 

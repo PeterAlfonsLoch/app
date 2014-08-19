@@ -81,7 +81,7 @@ void * MidRealloc(void * address, size_t sizeOld, size_t sizeNew)
      MidFree(address);
      return NULL;
   }
-  memcpy(pnew, address, MIN(sizeOld, sizeNew));
+  memcpy(pnew, address, min(sizeOld, sizeNew));
   MidFree(address);
   return pnew;
 }

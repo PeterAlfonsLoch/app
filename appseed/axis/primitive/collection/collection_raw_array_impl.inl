@@ -289,7 +289,7 @@ template<class TYPE, class ARG_TYPE>
 raw_array<TYPE, ARG_TYPE>::raw_array(sp(::axis::application) papp, ::count nGrowBy) :
 element(papp)
 {
-   m_nGrowBy = MAX(0, nGrowBy);
+   m_nGrowBy = max(0, nGrowBy);
    m_pData = NULL;
    m_nSize = m_nMaxSize = 0;
 }

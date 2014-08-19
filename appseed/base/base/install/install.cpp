@@ -94,7 +94,7 @@ string Login()
 	if (!strcasecmp(protocol,"http") || https)
 	{
 		HttpGetSocket s(h, host, port, dir, file);
-		uchar *p = new uchar[32000]; // MAX doc size
+		uchar *p = new uchar[32000]; // max doc size
 		memset_dup(p, 0, 32000);
 		s.SetDataPtr(p, 31999); // preserve zero at end of document
 /*		if (https)

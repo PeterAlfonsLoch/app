@@ -665,7 +665,7 @@ string get_file_md5_by_read(const char * path)
 
 #endif
 
-   int32_t iAlloc = MIN((int32_t) uiSize, 1024 * 1024 * 8);
+   int32_t iAlloc = min((int32_t) uiSize, 1024 * 1024 * 8);
 
    char * psz = (char *) memory_alloc(iAlloc);
 
@@ -678,7 +678,7 @@ string get_file_md5_by_read(const char * path)
 
 #ifdef WINDOWS
 
-      if(!::ReadFile(hfile, psz, MIN((int32_t) uiSize, iAlloc), &dwRead, NULL))
+      if(!::ReadFile(hfile, psz, min((int32_t) uiSize, iAlloc), &dwRead, NULL))
       {
          break;
       }
@@ -691,7 +691,7 @@ string get_file_md5_by_read(const char * path)
 
 #else
 
-      dwRead = ::read(fd, psz, MIN((int32_t) uiSize, iAlloc));
+      dwRead = ::read(fd, psz, min((int32_t) uiSize, iAlloc));
 
       if(dwRead <= 0)
       {

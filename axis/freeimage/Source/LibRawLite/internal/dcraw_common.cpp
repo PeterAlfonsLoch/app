@@ -518,7 +518,7 @@ void CLASS canon_load_raw()
     checkCancel();
 #endif
     pixel = raw_image + row*raw_width;
-    nblocks = MIN (8, raw_height-row) * raw_width >> 6;
+    nblocks = min (8, raw_height-row) * raw_width >> 6;
     for (block=0; block < nblocks; block++) {
       memset (diffbuf, 0, sizeof diffbuf);
       for (i=0; i < 64; i++ ) {
@@ -2490,7 +2490,7 @@ void CLASS kodak_65000_load_raw()
 #endif
     for (col=0; col < width; col+=256) {
       pred[0] = pred[1] = 0;
-      len = MIN (256, width-col);
+      len = min (256, width-col);
       ret = kodak_65000_decode (buf, len);
       for (i=0; i < len; i++)
 	if ((RAW(row,col+i) =	curve[ret ? buf[i] :
@@ -2512,7 +2512,7 @@ void CLASS kodak_ycbcr_load_raw()
     checkCancel();
 #endif
     for (col=0; col < width; col+=128) {
-      len = MIN (128, width-col);
+      len = min (128, width-col);
       kodak_65000_decode (buf, len*3);
       y[0][1] = y[1][1] = cb = cr = 0;
       for (bp=buf, i=0; i < len; i+=2, bp+=2) {
@@ -2548,7 +2548,7 @@ void CLASS kodak_rgb_load_raw()
     checkCancel();
 #endif
     for (col=0; col < width; col+=256) {
-      len = MIN (256, width-col);
+      len = min (256, width-col);
       kodak_65000_decode (buf, len*3);
       memset (rgb, 0, sizeof rgb);
       for (bp=buf, i=0; i < len; i++, ip+=4)
@@ -3038,8 +3038,8 @@ sides:
 mask_set:
   memset (mblack, 0, sizeof mblack);
   for (zero=m=0; m < 8; m++)
-    for (row=MAX(mask[m][0],0); row < MIN(mask[m][2],raw_height); row++)
-      for (col=MAX(mask[m][1],0); col < MIN(mask[m][3],raw_width); col++) {
+    for (row=max(mask[m][0],0); row < min(mask[m][2],raw_height); row++)
+      for (col=max(mask[m][1],0); col < min(mask[m][3],raw_width); col++) {
 	c = FC(row-top_margin,col-left_margin);
 	mblack[c] += val = raw_image[(row)*raw_pitch/2+(col)];
 	mblack[4+c]++;
@@ -3509,8 +3509,8 @@ void CLASS scale_colors()
     memcpy (pre_mul, user_mul, sizeof pre_mul);
   if (use_auto_wb || (use_camera_wb && cam_mul[0] == -1)) {
     memset (dsum, 0, sizeof dsum);
-    bottom = MIN (greybox[1]+greybox[3], height);
-    right  = MIN (greybox[0]+greybox[2], width);
+    bottom = min (greybox[1]+greybox[3], height);
+    right  = min (greybox[0]+greybox[2], width);
     for (row=greybox[1]; row < bottom; row += 8)
       for (col=greybox[0]; col < right; col += 8) {
 	memset (sum, 0, sizeof sum);
@@ -4095,8 +4095,8 @@ void CLASS xtrans_interpolate (int passes)
 
   for (top=3; top < height-19; top += TS-16)
     for (left=3; left < width-19; left += TS-16) {
-      mrow = MIN (top+TS, height-3);
-      mcol = MIN (left+TS, width-3);
+      mrow = min (top+TS, height-3);
+      mcol = min (left+TS, width-3);
       for (row=top; row < mrow; row++)
 	for (col=left; col < mcol; col++)
 	  memcpy (rgb[0][row-top][col-left], image[row*width+col], 6);
@@ -4228,8 +4228,8 @@ void CLASS xtrans_interpolate (int passes)
 /* Average the most homogenous pixels for the final result:	*/
       if (height-top < TS+4) mrow = height-top+2;
       if (width-left < TS+4) mcol = width-left+2;
-      for (row = MIN(top,8); row < mrow-8; row++)
-	for (col = MIN(left,8); col < mcol-8; col++) {
+      for (row = min(top,8); row < mrow-8; row++)
+	for (col = min(left,8); col < mcol-8; col++) {
 	  for (d=0; d < ndir; d++)
 	    for (hm[d]=0, v=-2; v <= 2; v++)
 	      for (h=-2; h <= 2; h++)
@@ -4264,8 +4264,8 @@ void CLASS ahd_interpolate_green_h_and_v(int top, int left, ushort (*out_rgb)[TS
   int row, col;
   int c, val;
   ushort (*pix)[4];
-  const int rowlimit = MIN(top+TS, height-2);
-  const int collimit = MIN(left+TS, width-2);
+  const int rowlimit = min(top+TS, height-2);
+  const int collimit = min(left+TS, width-2);
 
   for (row = top; row < rowlimit; row++) {
     col = left + (FC(row,left) & 1);
@@ -4289,8 +4289,8 @@ void CLASS ahd_interpolate_r_and_b_in_rgb_and_convert_to_cielab(int top, int lef
   short (*lix)[3];
 //  float xyz[3];
   const unsigned num_pix_per_row = 4*width;
-  const unsigned rowlimit = MIN(top+TS-1, height-3);
-  const unsigned collimit = MIN(left+TS-1, width-3);
+  const unsigned rowlimit = min(top+TS-1, height-3);
+  const unsigned collimit = min(left+TS-1, width-3);
   ushort *pix_above;
   ushort *pix_below;
   int t1, t2;
@@ -4351,8 +4351,8 @@ void CLASS ahd_interpolate_build_homogeneity_map(int top, int left, short (*lab)
   short *adjacent_lix;
   unsigned ldiff[2][4], abdiff[2][4], leps, abeps;
   static const int dir[4] = { -1, 1, -TS, TS };
-  const int rowlimit = MIN(top+TS-2, height-4);
-  const int collimit = MIN(left+TS-2, width-4);
+  const int rowlimit = min(top+TS-2, height-4);
+  const int collimit = min(left+TS-2, width-4);
   int homogeneity;
   char (*homogeneity_map_p)[2];
 
@@ -4378,10 +4378,10 @@ void CLASS ahd_interpolate_build_homogeneity_map(int top, int left, short (*lab)
             + SQR(lix[0][2]-adjacent_lix[2]);
         }
       }
-      leps = MIN(MAX(ldiff[0][0],ldiff[0][1]),
-          MAX(ldiff[1][2],ldiff[1][3]));
-      abeps = MIN(MAX(abdiff[0][0],abdiff[0][1]),
-          MAX(abdiff[1][2],abdiff[1][3]));
+      leps = min(max(ldiff[0][0],ldiff[0][1]),
+          max(ldiff[1][2],ldiff[1][3]));
+      abeps = min(max(abdiff[0][0],abdiff[0][1]),
+          max(abdiff[1][2],abdiff[1][3]));
       for (direction=0; direction < 2; direction++) {
 	homogeneity = 0;
         for (i=0; i < 4; i++) {
@@ -4402,8 +4402,8 @@ void CLASS ahd_interpolate_combine_homogeneous_pixels(int top, int left, ushort 
   int direction;
   int hm[2];
   int c;
-  const int rowlimit = MIN(top+TS-3, height-5);
-  const int collimit = MIN(left+TS-3, width-5);
+  const int rowlimit = min(top+TS-3, height-5);
+  const int collimit = min(left+TS-3, width-5);
 
   ushort (*pix)[4];
   ushort (*rix[2])[3];
@@ -4579,10 +4579,10 @@ void CLASS ahd_interpolate()
 			   + SQR(lix[0][2]-lix[dir[i]][2]);
 	    }
 	  }
-	  leps = MIN(MAX(ldiff[0][0],ldiff[0][1]),
-		     MAX(ldiff[1][2],ldiff[1][3]));
-	  abeps = MIN(MAX(abdiff[0][0],abdiff[0][1]),
-		      MAX(abdiff[1][2],abdiff[1][3]));
+	  leps = min(max(ldiff[0][0],ldiff[0][1]),
+		     max(ldiff[1][2],ldiff[1][3]));
+	  abeps = min(max(abdiff[0][0],abdiff[0][1]),
+		      max(abdiff[1][2],abdiff[1][3]));
 	  for (d=0; d < 2; d++)
 	    for (i=0; i < 4; i++)
 	      if (ldiff[d][i] <= leps && abdiff[d][i] <= abeps)
@@ -4669,7 +4669,7 @@ void CLASS blend_highlights()
       if (c == colors) continue;
       FORCC {
 	cam[0][c] = image[row*width+col][c];
-	cam[1][c] = MIN(cam[0][c],clip);
+	cam[1][c] = min(cam[0][c],clip);
       }
       for (i=0; i < 2; i++) {
 	FORCC for (lab[i][c]=j=0; j < colors; j++)
@@ -5220,7 +5220,7 @@ void CLASS parse_gps (int base)
       case 6:
 	FORC(2) gpsdata[18+c] = get4();			break;
       case 18: case 29:
-	fgets ((char *) (gpsdata+14+tag/3), MIN(len,12), ifp);
+	fgets ((char *) (gpsdata+14+tag/3), min(len,12), ifp);
     }
     fseek (ifp, save, SEEK_SET);
   }

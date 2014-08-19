@@ -530,7 +530,7 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -1640,7 +1640,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base\base_session.h" />
     <ClInclude Include="base\base\base_simple_app.h" />
     <ClInclude Include="base\base\base_system.h" />
-    <ClInclude Include="base\base\base_system_trace.h" />
     <ClInclude Include="base\compress\compress.h" />
     <ClInclude Include="base\compress\compress_bzip_stream.h" />
     <ClInclude Include="base\compress\compress_compress.h" />
@@ -1658,10 +1657,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\compress\zip\zip_internal.h" />
     <ClInclude Include="base\crypto\crypto.h" />
     <ClInclude Include="base\crypto\crypto_crypto.h" />
-    <ClInclude Include="base\crypto\crypto_hmac_sha1.h" />
     <ClInclude Include="base\crypto\crypto_md5.h" />
     <ClInclude Include="base\crypto\crypto_nessie.h" />
-    <ClInclude Include="base\crypto\crypto_sha1.h" />
     <ClInclude Include="base\geoip\geoip.h" />
     <ClInclude Include="base\geoip\geoip_city.h" />
     <ClInclude Include="base\geoip\geoip_internal.h" />
@@ -3062,7 +3059,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="base\node\node.cpp" />
-    <ClCompile Include="base\node\windows\win1.cpp" />
     <ClCompile Include="base\node\windows\windows_crypto.cpp" />
     <ClCompile Include="base\node\windows\windows_dir.cpp" />
     <ClCompile Include="base\node\windows\windows_factory_exchange.cpp" />
@@ -3452,11 +3448,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\compress\zip\zip_zip.cpp" />
     <ClCompile Include="base\crypto\crypto.cpp" />
     <ClCompile Include="base\crypto\crypto_crypto.cpp" />
-    <ClCompile Include="base\crypto\crypto_hmac_sha1.cpp" />
     <ClCompile Include="base\crypto\crypto_md5.cpp" />
     <ClCompile Include="base\crypto\crypto_nessie.cpp" />
-    <ClCompile Include="base\crypto\crypto_sha1.cpp" />
-    <ClCompile Include="base\crypto\crypto_whirpool.cpp" />
     <ClCompile Include="base\hotplugin\hotplugin_container_launcher.cpp" />
     <ClCompile Include="base\hotplugin\hotplugin_host.cpp" />
     <ClCompile Include="base\hotplugin\hotplugin_plugin.cpp" />
@@ -4512,7 +4505,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     </CustomBuild>
     <None Include="base.def" />
     <None Include="base\base\base.inl" />
-    <None Include="base\base\base_system_xml.inl" />
     <None Include="base.def" />
   </ItemGroup>
   <ItemGroup>

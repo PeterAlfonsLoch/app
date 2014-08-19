@@ -677,7 +677,7 @@ uint64_t atoui64_dup(const char * psz, char ** pszEnd, int32_t iBase)
 /*int64_t atol64_dup(const char * sz, const char ** pszEnd, int32_t iBase)
 {
    const char * szIter = sz;
-   while(*szIter != '\0' && ((*szIter >= '0' && *szIter <= ('0' + MIN(9, iBase))) || (to_lower(*szIter) >= 'a' && to_lower(*szIter) <= ('a' + iBase - 10))))
+   while(*szIter != '\0' && ((*szIter >= '0' && *szIter <= ('0' + min(9, iBase))) || (to_lower(*szIter) >= 'a' && to_lower(*szIter) <= ('a' + iBase - 10))))
    {
       szIter++;
    }

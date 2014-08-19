@@ -126,8 +126,8 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, const RECT & rectParam)
    if(iMode == 6) // if(m_bHealingSurface)
    {
 #ifdef SUPORTA_TELA_AVANCADA
-      int32_t iCount = MAX(1, cx / 25);
-      int32_t jCount = MAX(1, cy / 25);
+      int32_t iCount = max(1, cx / 25);
+      int32_t jCount = max(1, cy / 25);
 
       for(int32_t i = 0; i < iCount; i++)
       {
@@ -485,7 +485,7 @@ void canvas_zero::on_paint(simple_graphics & gPaint, const RECT & rect)
       pt.x = (rand_dup() * cx / RAND_MAX) + lpcrect->left;
       pt.y = (rand_dup() * cy / RAND_MAX) + lpcrect->top;
       m_pta.insert_at(0, pt);
-      m_ia.insert_at(0, ((rand_dup() * MAX(cx, cy) / 4 / RAND_MAX) + 23));
+      m_ia.insert_at(0, ((rand_dup() * max(cx, cy) / 4 / RAND_MAX) + 23));
       m_dwCurZero = ::get_tick_count();
       m_dwNextZero = m_dwCurZero + m_ia[m_ia.get_count() - 1] * 1000 / iTimeFactor + 5000;
       m_iLast = 0;
@@ -542,7 +542,7 @@ void canvas_zero::on_paint(simple_graphics & gPaint, const RECT & rect)
       pt = m_pta[0];
       iSize = m_ia[0];
       iCurStep = (::get_tick_count() - m_dwCurZero) * iTimeFactor / 1000;
-      iCurStep = MAX(2, MIN(iCurStep, iSize));
+      iCurStep = max(2, min(iCurStep, iSize));
       zero(hdc, pt, iSize, iCurStep);
       if(iCurStep == iSize)
       {

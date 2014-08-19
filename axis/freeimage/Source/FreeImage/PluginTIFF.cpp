@@ -470,7 +470,7 @@ CreateImageType(BOOL header_only, FREE_IMAGE_TYPE fit, int width, int height, ui
 		}
 		else {
 
-			dib = FreeImage_AllocateHeader(header_only, width, height, MIN(bpp, 32), FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK);
+			dib = FreeImage_AllocateHeader(header_only, width, height, min(bpp, 32), FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK);
 		}
 
 
@@ -1506,7 +1506,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			// ---------------------------------------------------------------------------------
 
 			// create a new 8-bit DIB
-			dib = CreateImageType(header_only, image_type, width, height, bitspersample, MIN<uint16>(2, samplesperpixel));
+			dib = CreateImageType(header_only, image_type, width, height, bitspersample, min<uint16>(2, samplesperpixel));
 			if (dib == NULL) {
 				throw FI_MSG_ERROR_MEMORY;
 			}
@@ -1656,7 +1656,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			}
 			
 			// create a new DIB
-			const uint16 chCount = MIN<uint16>(samplesperpixel, 4);
+			const uint16 chCount = min<uint16>(samplesperpixel, 4);
 			dib = CreateImageType(header_only, image_type, width, height, bitspersample, chCount);
 			if (dib == NULL) {
 				FreeImage_Unload(alpha);
@@ -1857,7 +1857,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			// ---------------------------------------------------------------------------------
 
 			// create a new DIB
-			const uint16 chCount = MIN<uint16>(samplesperpixel, 4);
+			const uint16 chCount = min<uint16>(samplesperpixel, 4);
 			dib = CreateImageType(header_only, image_type, width, height, bitspersample, chCount);
 			if (dib == NULL) {
 				throw FI_MSG_ERROR_MEMORY;

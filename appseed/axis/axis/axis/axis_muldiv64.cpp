@@ -235,7 +235,7 @@ inline uint32_t msb(uint64_t value)
     // calculate an approximate result by shifting according to msb set
     int32_t msb_nominator = msb(mod_h)+32;
     int32_t msb_denominator = msb(denominator);
-    int32_t msb = std::MAX(msb_nominator,msb_denominator);
+    int32_t msb = std::max(msb_nominator,msb_denominator);
     int32_t shift = msb-63;
     res += (mod_h << (32-shift)) / (denominator>>shift);
     return res;
@@ -347,7 +347,7 @@ int64_t _stdcall muldiv64(int64_t number, int64_t numerator, int64_t denominator
     // calculate an approximate result by shifting according to msb set
     int32_t msb_nominator = msb(mod_h)+32;
     int32_t msb_denominator = msb(denominator);
-    int32_t msb = std::MAX(msb_nominator,msb_denominator);
+    int32_t msb = std::max(msb_nominator,msb_denominator);
     int32_t shift = msb-63;
     res += (mod_h << (32-shift)) / (denominator>>shift);
     return res;
@@ -685,7 +685,7 @@ startDIV:
       mov      cl, al                  // Store number of 32 blocks in counter
       mov      char ptr[rshift], ah      // Store remaining number of shifts
       // Test shift not equal or larger than 4*32 already done at the begining
-      // Do dword shift cl times (MAX = 3)
+      // Do dword shift cl times (max = 3)
       xor      ch, ch
       xor      edx, edx
       jcxz   bitShift

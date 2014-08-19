@@ -147,12 +147,12 @@ typedef struct tagFILE_BGR {
 // ==========================================================
 
 /// Max function
-template <class T> T MAX(const T &a, const T &b) {
+template <class T> T max(const T &a, const T &b) {
 	return (a > b) ? a: b;
 }
 
 /// Min function
-template <class T> T MIN(const T &a, const T &b) {
+template <class T> T min(const T &a, const T &b) {
 	return (a < b) ? a: b;
 }
 

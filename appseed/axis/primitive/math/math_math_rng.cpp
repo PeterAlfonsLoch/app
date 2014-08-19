@@ -19,7 +19,7 @@ namespace math
 
    void rng::seed(int32_t iTwistLen, uint32_t seed)
    {
-      iTwistLen = MAX(TWIST_IA + 10, iTwistLen);
+      iTwistLen = max(TWIST_IA + 10, iTwistLen);
       m_uinta.allocate(iTwistLen);
       m_uinta[0]= seed & 0xffffffffUL;
       for (int32_t i = 1; i < m_uinta.get_count(); i++)

@@ -12,7 +12,6 @@
 #elif defined(BSD_STYLE_SOCKETS)
 
 
-#include "openssl/sha.h"
 
 typedef struct rsa_st RSA;
 
@@ -30,9 +29,7 @@ typedef struct rsa_st RSA;
 
 
 
-#include "crypto_sha1.h"
 #include "crypto_nessie.h"
-#include "crypto_hmac_sha1.h"
 #include "crypto_md5.h"
 
 

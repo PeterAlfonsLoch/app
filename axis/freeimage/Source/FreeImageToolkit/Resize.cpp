@@ -126,7 +126,7 @@ GetRGBAPalette(FIBITMAP *dib, RGBQUAD * const buffer) {
 	}
 	memcpy(buffer, FreeImage_GetPalette(dib), ncolors * sizeof(RGBQUAD));
 	// merge the transparency table
-	const unsigned ntransp = MIN(ncolors, FreeImage_GetTransparencyCount(dib));
+	const unsigned ntransp = min(ncolors, FreeImage_GetTransparencyCount(dib));
 	const BYTE * const tt = FreeImage_GetTransparencyTable(dib);
 	for (unsigned i = 0; i < ntransp; i++) {
 		buffer[i].rgbReserved = tt[i];
@@ -181,8 +181,8 @@ CWeightsTable::CWeightsTable(CGenericFilter *pFilter, unsigned uDstSize, unsigne
 		const double dCenter = (double)u / dScale + dOffset;
 
 		// find the significant edge points that affect the pixel
-		const int iLeft = MAX(0, (int)(dCenter - dWidth + 0.5));
-		const int iRight = MIN((int)(dCenter + dWidth + 0.5), int(uSrcSize));
+		const int iLeft = max(0, (int)(dCenter - dWidth + 0.5));
+		const int iRight = min((int)(dCenter + dWidth + 0.5), int(uSrcSize));
 
 		m_WeightTable[u].Left = iLeft; 
 		m_WeightTable[u].Right = iRight;

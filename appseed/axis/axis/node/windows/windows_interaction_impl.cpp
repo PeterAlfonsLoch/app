@@ -3744,7 +3744,7 @@ namespace windows
    strsize interaction_impl::GetWindowText(LPTSTR lpszString,strsize nMaxCount)
    {
       strncpy(lpszString,m_strWindowText,nMaxCount);
-      return MIN(nMaxCount,m_strWindowText.get_length());
+      return min(nMaxCount,m_strWindowText.get_length());
    }
 
    strsize interaction_impl::GetWindowTextLength()
@@ -4822,7 +4822,7 @@ namespace windows
 
                m_eapperanceLayout = m_pui->get_appearance();
 
-               send_message(WM_SIZE, 0, MAKELONG(MAX(0, rect.width()), MAX(0, rect.height())));
+               send_message(WM_SIZE, 0, MAKELONG(max(0, rect.width()), max(0, rect.height())));
 
                keepLockWindowUpdate.KeepAway();
 

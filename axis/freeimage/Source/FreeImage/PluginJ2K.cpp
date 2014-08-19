@@ -233,7 +233,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 		try {
 			parameters.numresolution = 1;
 			// check the resolution (i.e. parameters.numresolution)
-			int min_size = MIN(FreeImage_GetWidth(dib), FreeImage_GetHeight(dib));
+			int min_size = min(FreeImage_GetWidth(dib), FreeImage_GetHeight(dib));
 			if(min_size < (1 << parameters.numresolution)) {
 				throw "Invalid image size - image is too small";
 			}

@@ -262,10 +262,10 @@ struct jpeg_color_quantizer {
 
 /* Miscellaneous useful macros */
 
-#undef MAX
-#define MAX(a,b)	((a) > (b) ? (a) : (b))
-#undef MIN
-#define MIN(a,b)	((a) < (b) ? (a) : (b))
+#undef max
+#define max(a,b)	((a) > (b) ? (a) : (b))
+#undef min
+#define min(a,b)	((a) < (b) ? (a) : (b))
 
 
 /* We assume that right shift corresponds to signed division by 2 with

@@ -1874,7 +1874,7 @@ namespace str
    {
       if(uiMax < uiMin)
       {
-         throw invalid_argument_exception(get_thread_app(), "MAX should be greater than MIN");
+         throw invalid_argument_exception(get_thread_app(), "max should be greater than min");
       }
       const char * psz = pszXml;
       int32_t i = 0;
@@ -1892,11 +1892,11 @@ namespace str
       ui = ::str::to_uint(string(pszXml, psz - pszXml));
       if(ui < uiMin)
       {
-         throw_parsing_exception("natural less than MIN");
+         throw_parsing_exception("natural less than min");
       }
       else if(ui > uiMax)
       {
-         throw_parsing_exception("natural greater than MAX");
+         throw_parsing_exception("natural greater than max");
       }
       end:
       pszXml = psz;

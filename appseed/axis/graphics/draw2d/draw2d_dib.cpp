@@ -273,9 +273,9 @@ namespace draw2d
       if(size.cy < 0)
          return true;
 
-      int xEnd = MIN(size.cx, MIN(pdibSrc->m_size.cx - ptSrc.x, pdibDst->m_size.cx - ptDst.x));
+      int xEnd = min(size.cx, min(pdibSrc->m_size.cx - ptSrc.x, pdibDst->m_size.cx - ptDst.x));
 
-      int yEnd = MIN(size.cy, MIN(pdibSrc->m_size.cy - ptSrc.y, pdibDst->m_size.cy - ptDst.y));
+      int yEnd = min(size.cy, min(pdibSrc->m_size.cy - ptSrc.y, pdibDst->m_size.cy - ptDst.y));
 
       if(xEnd < 0)
          return false;
@@ -340,9 +340,9 @@ namespace draw2d
       if(size.cy < 0)
          return true;
 
-      int xEnd = MIN(size.cx, MIN(pdib->m_size.cx - ptSrc.x, m_size.cx - ptDst.x));
+      int xEnd = min(size.cx, min(pdib->m_size.cx - ptSrc.x, m_size.cx - ptDst.x));
 
-      int yEnd = MIN(size.cy, MIN(pdib->m_size.cy - ptSrc.y, m_size.cy - ptDst.y));
+      int yEnd = min(size.cy, min(pdib->m_size.cy - ptSrc.y, m_size.cy - ptDst.y));
 
       if(xEnd < 0)
          return false;
@@ -437,9 +437,9 @@ namespace draw2d
       if (size.cy < 0)
          return true;
 
-      int xEnd = MIN(size.cx, MIN(pdibSrc->m_size.cx - ptSrc.x, pdibDst->m_size.cx - ptDst.x));
+      int xEnd = min(size.cx, min(pdibSrc->m_size.cx - ptSrc.x, pdibDst->m_size.cx - ptDst.x));
 
-      int yEnd = MIN(size.cy, MIN(pdibSrc->m_size.cy - ptSrc.y, pdibDst->m_size.cy - ptDst.y));
+      int yEnd = min(size.cy, min(pdibSrc->m_size.cy - ptSrc.y, pdibDst->m_size.cy - ptDst.y));
 
       if (xEnd < 0)
          return false;
@@ -503,9 +503,9 @@ namespace draw2d
                   a = (*palf2 * psrc2[3]) / 255;
                   a = psrc2[3];
                   //a = (int) (byte) sqrt((float) (*palf2 * psrc2[3]));
-                  pdst2[3] = (BYTE)MAX(a, pdst2[3]);
+                  pdst2[3] = (BYTE)max(a, pdst2[3]);
                   //pdst2[3] = (BYTE)((((int)psrc2[3] - (int)pdst2[3]) * a + ((int)pdst2[3] * 255)) / 255);
-                  pdst2[3] = (BYTE)(MAX(psrc2[3], pdst2[3]));
+                  pdst2[3] = (BYTE)(max(psrc2[3], pdst2[3]));
 
 //                  if (a > 0)
                   {
@@ -520,12 +520,12 @@ namespace draw2d
                else
                {
 
-                  //pdst2[3] = (BYTE)(MAX(psrc2[3], pdst2[3]));
+                  //pdst2[3] = (BYTE)(max(psrc2[3], pdst2[3]));
                   //pdst2[3] = (BYTE)((((int)psrc2[3] - (int)pdst2[3]) * (int)psrc2[3] + ((int)pdst2[3] * 255)) / 255);
                   //pdst2[0] = (BYTE)((((int)psrc2[0] - (int)pdst2[0]) * (int)psrc2[3] + ((int)pdst2[0] * 255)) / 255);
                   //pdst2[1] = (BYTE)((((int)psrc2[1] - (int)pdst2[1]) * (int)psrc2[3] + ((int)pdst2[1] * 255)) / 255);
                   //pdst2[2] = (BYTE)((((int)psrc2[2] - (int)pdst2[2]) * (int)psrc2[3] + ((int)pdst2[2] * 255)) / 255);
-                  pdst2[3] = (BYTE)(MAX(((((int)psrc2[3] - (int)pdst2[3]) * (int)psrc2[3] + ((int)pdst2[3] * 255)) / 255), pdst2[3]));
+                  pdst2[3] = (BYTE)(max(((((int)psrc2[3] - (int)pdst2[3]) * (int)psrc2[3] + ((int)pdst2[3] * 255)) / 255), pdst2[3]));
                   pdst2[0] = (BYTE)((((int)psrc2[0] - (int)pdst2[0]) * (int)psrc2[3] + ((int)pdst2[0] * 255)) / 255);
                   pdst2[1] = (BYTE)((((int)psrc2[1] - (int)pdst2[1]) * (int)psrc2[3] + ((int)pdst2[1] * 255)) / 255);
                   pdst2[2] = (BYTE)((((int)psrc2[2] - (int)pdst2[2]) * (int)psrc2[3] + ((int)pdst2[2] * 255)) / 255);
@@ -587,9 +587,9 @@ namespace draw2d
       if (size.cy < 0)
          return true;
 
-      int xEnd = MIN(size.cx, MIN(pdibSrc->m_size.cx - ptSrc.x, pdibDst->m_size.cx - ptDst.x));
+      int xEnd = min(size.cx, min(pdibSrc->m_size.cx - ptSrc.x, pdibDst->m_size.cx - ptDst.x));
 
-      int yEnd = MIN(size.cy, MIN(pdibSrc->m_size.cy - ptSrc.y, pdibDst->m_size.cy - ptDst.y));
+      int yEnd = min(size.cy, min(pdibSrc->m_size.cy - ptSrc.y, pdibDst->m_size.cy - ptDst.y));
 
       if (xEnd < 0)
          return false;
@@ -1267,7 +1267,7 @@ namespace draw2d
       else
       {
 
-         int iScan = MIN(m_iScan, dib->m_iScan);
+         int iScan = min(m_iScan, dib->m_iScan);
 
          for (int i = 0; i < m_iScan; i++)
          {
@@ -2575,11 +2575,11 @@ namespace draw2d
          {
             bMax = 0;
             b =(BYTE)(r1[0]  - r2[0]);
-            bMax = MAX(b, bMax);
+            bMax = max(b, bMax);
             b =(BYTE)(r1[1]  - r2[1]);
-            bMax = MAX(b, bMax);
+            bMax = max(b, bMax);
             b =(BYTE)(r1[2]  - r2[2]);
-            bMax = MAX(b, bMax);
+            bMax = max(b, bMax);
             bMax = 255 - bMax;
          }
          dest[0]  =  bMax;
@@ -2600,12 +2600,12 @@ namespace draw2d
       // ::draw2d::dib_sp spdib(allocer());
       //   spdib->Paste(this);
 
-      int32_t l = MAX(m_size.cx, m_size.cy);
+      int32_t l = max(m_size.cx, m_size.cy);
 
 
-      int32_t jmax = MIN(l, m_size.cy / 2);
+      int32_t jmax = min(l, m_size.cy / 2);
       int32_t jmin = - jmax;
-      int32_t imax = MIN(l, m_size.cx / 2);
+      int32_t imax = min(l, m_size.cx / 2);
       int32_t imin = - imax;
 
 
@@ -2682,12 +2682,12 @@ namespace draw2d
    void dib::Rotate034(dib * pdib, double dAngle, double dScale)
    {
 
-      int32_t l = MAX(m_size.cx, m_size.cy);
+      int32_t l = max(m_size.cx, m_size.cy);
 
 
-      int32_t jmax = MIN(l, m_size.cy / 2);
+      int32_t jmax = min(l, m_size.cy / 2);
       int32_t jmin = - jmax;
-      int32_t imax = MIN(l, m_size.cx / 2);
+      int32_t imax = min(l, m_size.cx / 2);
       int32_t imin = - imax;
 
 
@@ -2758,11 +2758,11 @@ namespace draw2d
 //      int32_t cx = rect.width();
   //    int32_t cy = rect.height();
 
-      int32_t l = MAX(m_size.cx, m_size.cy);
+      int32_t l = max(m_size.cx, m_size.cy);
 
-      int32_t jmax = MIN(l, m_size.cy / 2);
+      int32_t jmax = min(l, m_size.cy / 2);
       int32_t jmin = - jmax;
-      int32_t imax = MIN(l, m_size.cx / 2);
+      int32_t imax = min(l, m_size.cx / 2);
       int32_t imin = - imax;
 
 
@@ -3848,9 +3848,9 @@ namespace draw2d
          int64_t iArea = area();
          while(iArea > 0)
          {
-            puch[0] = MAX(0,MIN(255,puch[0] * iMul / iDiv));
-            puch[1] = MAX(0,MIN(255,puch[1] * iMul / iDiv));
-            puch[2] = MAX(0,MIN(255,puch[2] * iMul / iDiv));
+            puch[0] = max(0,min(255,puch[0] * iMul / iDiv));
+            puch[1] = max(0,min(255,puch[1] * iMul / iDiv));
+            puch[2] = max(0,min(255,puch[2] * iMul / iDiv));
             puch+=4;
             iArea--;
          }
@@ -3936,13 +3936,13 @@ namespace draw2d
       else
       {
 
-//         int x1 = MIN(pt1.x, pt2.x);
+//         int x1 = min(pt1.x, pt2.x);
 
-  //       int x2 = MAX(pt1.x, pt2.x);
+  //       int x2 = max(pt1.x, pt2.x);
 
-    //     int y1 = MIN(pt1.y, pt2.y);
+    //     int y1 = min(pt1.y, pt2.y);
 
-      //   int y2 = MAX(pt1.y, pt2.y);
+      //   int y2 = max(pt1.y, pt2.y);
 
 //         int top = y1;
 //
@@ -3952,7 +3952,7 @@ namespace draw2d
           //
        //  int bottom = m_size.cy - y2;
 
-         int dim = MAX(m_size.cx, m_size.cy);
+         int dim = max(m_size.cx, m_size.cy);
 
          double angle = atan2(dy, dx);
 
@@ -3997,7 +3997,7 @@ namespace draw2d
          ::sort::swap(&clr1, &clr2);
       }
 
-      end = MIN(end, m_size.cy - 1);
+      end = min(end, m_size.cy - 1);
       COLORREF clr = clr1;
       byte * pb = (byte *) m_pcolorref;
       COLORREF * pdata;
@@ -4051,7 +4051,7 @@ namespace draw2d
          ::sort::swap(&clr1, &clr2);
       }
 
-      end = MIN(end, m_size.cx - 1);
+      end = min(end, m_size.cx - 1);
       COLORREF clr = clr1;
       byte * pb = (byte *) m_pcolorref;
       COLORREF * pdata;

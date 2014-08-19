@@ -35,7 +35,7 @@
 
 #include "opj_includes.h"
 
-#define MAX(a,b) ((a)>(b)?(a):(b))
+#define max(a,b) ((a)>(b)?(a):(b))
 
 /* 
  * Get number of maximum tile parts per tile
@@ -179,7 +179,7 @@ int get_num_max_tile_parts( opj_codestream_info_t cstr_info)
   int num_max_tp = 0, i;
 
   for( i=0; i<cstr_info.tw*cstr_info.th; i++)
-    num_max_tp = MAX( cstr_info.tile[i].num_tps, num_max_tp);
+    num_max_tp = max( cstr_info.tile[i].num_tps, num_max_tp);
   
   return num_max_tp;
 }

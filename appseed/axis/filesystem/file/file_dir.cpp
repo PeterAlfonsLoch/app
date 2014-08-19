@@ -407,7 +407,7 @@ bool eat_end_level_dup(string & str, int32_t iLevelCount, const char * lpSeparat
 
       strsize iFind2 = str.reverse_find('\\', iLast);
 
-      strsize iFind = MAX(iFind1, iFind2);
+      strsize iFind = max(iFind1, iFind2);
 
       if(iFind >= iLast)
          return false;
@@ -1076,7 +1076,7 @@ string dir::userfolder(const char * lpcsz, const char * lpcsz2)
    {
       ::index iFind1 = strRelative.reverse_find('\\', iFind);
       ::index iFind2 = strRelative.reverse_find('/', iFind);
-      ::index iStart = MAX(iFind1 + 1, iFind2 + 1);
+      ::index iStart = max(iFind1 + 1, iFind2 + 1);
       strRelative = strRelative.substr(0, iFind - 1) + "_" + strRelative.substr(iStart, iFind - iStart) + strRelative.substr(iFind + 1);
    }
 

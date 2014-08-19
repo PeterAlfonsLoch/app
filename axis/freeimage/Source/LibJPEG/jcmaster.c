@@ -274,9 +274,9 @@ initial_setup (j_compress_ptr cinfo, boolean transcode_only)
     if (compptr->h_samp_factor<=0 || compptr->h_samp_factor>MAX_SAMP_FACTOR ||
 	compptr->v_samp_factor<=0 || compptr->v_samp_factor>MAX_SAMP_FACTOR)
       ERREXIT(cinfo, JERR_BAD_SAMPLING);
-    cinfo->max_h_samp_factor = MAX(cinfo->max_h_samp_factor,
+    cinfo->max_h_samp_factor = max(cinfo->max_h_samp_factor,
 				   compptr->h_samp_factor);
-    cinfo->max_v_samp_factor = MAX(cinfo->max_v_samp_factor,
+    cinfo->max_v_samp_factor = max(cinfo->max_v_samp_factor,
 				   compptr->v_samp_factor);
   }
 
@@ -642,7 +642,7 @@ per_scan_setup (j_compress_ptr cinfo)
   /* Note that count must fit in 16 bits, so we provide limiting. */
   if (cinfo->restart_in_rows > 0) {
     long nominal = (long) cinfo->restart_in_rows * (long) cinfo->MCUs_per_row;
-    cinfo->restart_interval = (unsigned int) MIN(nominal, 65535L);
+    cinfo->restart_interval = (unsigned int) min(nominal, 65535L);
   }
 }
 

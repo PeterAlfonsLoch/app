@@ -50,9 +50,6 @@ namespace numeric_info
 
       static inline T maximum(){ return maximum_value(); }
       static inline T minimum(){ return minimum_value(); }
-
-      static inline T max(){ return maximum(); }
-      static inline T min(){ return minimum(); }
       static inline T null(){ return null_value(); }
       static inline T unit(){ return unitary_value(); }
       static inline T allset(){ return allset_value(); }

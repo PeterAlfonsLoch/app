@@ -908,7 +908,7 @@ namespace sockets
          check_max_fd = true;
       }
 
-      // calculate MAX file descriptor for select() call
+      // calculate max file descriptor for select() call
       if (check_max_fd)
       {
          m_maxsock = m_fds.maximum(0);

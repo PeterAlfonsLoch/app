@@ -842,7 +842,7 @@ void LibRaw::wf_bayer4_green_blur(int mode, void* src_image, int src_imgmode, vo
 	line_filtered = (long int*) calloc(S.width, sizeof(*line_filtered));
 	
 //	ushort *src, *src_c, *src_u1, *src_u2, *src_d1, *src_d2, *dst_c, *src_ca, *dst_ca, *dst_rb; 
-   ushort *src,*src_c,*src_u1,*src_u2,*src_d1,*src_d2,*dst_c,*dst_rb;
+   ushort *src=0,*src_c = 0,*src_u1=0,*src_u2=0,*src_d1=0,*src_d2=0,*dst_c=0,*dst_rb=0;
 	int start_col, start_col_left, row_up, row_dn;
 
 	if ( green_mode != WF_GREENMODE_IND)

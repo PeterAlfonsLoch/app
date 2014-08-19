@@ -917,7 +917,7 @@ namespace user
       if(!(nFlags & SWP_NOSIZE))
       {
 
-         send_message(WM_SIZE,0,MAKELONG(MAX(0,cx),MAX(0,cy)));
+         send_message(WM_SIZE,0,MAKELONG(max(0,cx),max(0,cy)));
 
       }
 

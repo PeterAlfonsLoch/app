@@ -222,17 +222,6 @@ namespace base
    }
 
 
-
-
-
-   ::base::copydesk & session::copydesk()
-   {
-
-      return *m_spcopydesk;
-
-   }
-
-
    ::fontopus::user * session::get_user()
    {
 
@@ -281,7 +270,7 @@ namespace base
       if(!license().has(pszId,bInteractive))
       {
          
-         license().m_mapInfo.remove_key(strLicense);
+         license().m_mapInfo.remove_key(pszId);
          
          return false;
 
@@ -721,8 +710,8 @@ namespace base
          || rectIntersect.height() < sizeMin.cy)
       {
 
-         if(rectMonitor.width() / 7 + MAX(sizeMin.cx,rectMonitor.width() * 2 / 5) > rectMonitor.width()
-            || rectMonitor.height() / 7 + MAX(sizeMin.cy,rectMonitor.height() * 2 / 5) > rectMonitor.width())
+         if(rectMonitor.width() / 7 + max(sizeMin.cx,rectMonitor.width() * 2 / 5) > rectMonitor.width()
+            || rectMonitor.height() / 7 + max(sizeMin.cy,rectMonitor.height() * 2 / 5) > rectMonitor.width())
          {
 
             rectRestore = rectMonitor;
@@ -735,9 +724,9 @@ namespace base
 
             rectRestore.top = rectMonitor.top + rectMonitor.height() / 7;
 
-            rectRestore.right = rectRestore.left + MAX(sizeMin.cx,rectMonitor.width() * 2 / 5);
+            rectRestore.right = rectRestore.left + max(sizeMin.cx,rectMonitor.width() * 2 / 5);
 
-            rectRestore.bottom = rectRestore.top + MAX(sizeMin.cy,rectMonitor.height() * 2 / 5);
+            rectRestore.bottom = rectRestore.top + max(sizeMin.cy,rectMonitor.height() * 2 / 5);
 
             if(rectRestore.right > rectMonitor.right - rectMonitor.width() / 7)
             {

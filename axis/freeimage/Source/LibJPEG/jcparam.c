@@ -627,7 +627,7 @@ jpeg_simple_progression (j_compress_ptr cinfo)
    * enough space to handle YCC even if initially asked for grayscale.
    */
   if (cinfo->script_space == NULL || cinfo->script_space_size < nscans) {
-    cinfo->script_space_size = MAX(nscans, 10);
+    cinfo->script_space_size = max(nscans, 10);
     cinfo->script_space = (jpeg_scan_info *)
       (*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_PERMANENT,
 			cinfo->script_space_size * SIZEOF(jpeg_scan_info));

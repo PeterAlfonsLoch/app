@@ -21,7 +21,7 @@ string chunk_split(const string & body,int32_t chunklen,const string & end)
    strsize iRead;
    while(pos < body.get_length())
    {
-      iRead = MIN(chunklen,body.get_length() - pos);
+      iRead = min(chunklen,body.get_length() - pos);
       strRet += body.Mid(pos,iRead);
       strRet += end;
       pos += iRead;

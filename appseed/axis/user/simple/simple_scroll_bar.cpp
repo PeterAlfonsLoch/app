@@ -469,13 +469,13 @@ void simple_scroll_bar::layout()
 
       m_rectA.left   = 0;
       m_rectA.top    = 0;
-      m_rectA.right  = MIN(GetSystemMetrics(SM_CXHSCROLL),size.cx / 2);
+      m_rectA.right  = min(GetSystemMetrics(SM_CXHSCROLL),size.cx / 2);
       m_rectA.bottom = size.cy;
 
       /*
       m_ptaA[0].x = 0;
       m_ptaA[0].y = size.cy / 2;
-      m_ptaA[1].x = MIN(GetSystemMetrics(SM_CXHSCROLL), size.cx / 2);
+      m_ptaA[1].x = min(GetSystemMetrics(SM_CXHSCROLL), size.cx / 2);
       m_ptaA[1].y = size.cy - 1;
       m_ptaA[2].x = m_ptaA[1].x;
       m_ptaA[2].y = 1;
@@ -490,7 +490,7 @@ void simple_scroll_bar::layout()
       m_ptaA[2].x = m_rectA.left + (m_rectA.width() + iArrowForce) / 2;
       m_ptaA[2].y = m_rectA.top + (m_rectA.height() + iArrowStability) / 2;;
 
-      m_rectB.left   = MAX(size.cx - GetSystemMetrics(SM_CXHSCROLL),size.cx / 2);
+      m_rectB.left   = max(size.cx - GetSystemMetrics(SM_CXHSCROLL),size.cx / 2);
       m_rectB.top    = 0;
       m_rectB.right  = size.cx;
       m_rectB.bottom = size.cy;
@@ -520,13 +520,13 @@ void simple_scroll_bar::layout()
       m_rectA.left   = 0;
       m_rectA.top    = 0;
       m_rectA.right  = size.cx;
-      m_rectA.bottom = MIN(GetSystemMetrics(SM_CYVSCROLL),size.cy / 2);
+      m_rectA.bottom = min(GetSystemMetrics(SM_CYVSCROLL),size.cy / 2);
 
       /*
       m_ptaA[0].x = size.cx / 2;
       m_ptaA[0].y = 0;
       m_ptaA[1].x = 1;
-      m_ptaA[1].y = MIN(GetSystemMetrics(SM_CYVSCROLL), size.cy / 2);
+      m_ptaA[1].y = min(GetSystemMetrics(SM_CYVSCROLL), size.cy / 2);
       m_ptaA[2].x = size.cx - 1;
       m_ptaA[2].y = m_ptaA[1].y;
       m_ptaA[3].x = m_ptaA[0].x;
@@ -541,7 +541,7 @@ void simple_scroll_bar::layout()
       m_ptaA[2].y = m_rectA.top + (m_rectA.height() + iArrowForce) / 2;;
 
       m_rectB.left   = 0;
-      m_rectB.top    = MAX(size.cy - GetSystemMetrics(SM_CYVSCROLL),size.cy / 2);
+      m_rectB.top    = max(size.cy - GetSystemMetrics(SM_CYVSCROLL),size.cy / 2);
       m_rectB.right  = size.cx;
       m_rectB.bottom = size.cy;
 
@@ -549,7 +549,7 @@ void simple_scroll_bar::layout()
       m_ptaB[0].x = size.cx / 2;
       m_ptaB[0].y = size.cy;
       m_ptaB[1].x = size.cx - 1;
-      m_ptaB[1].y = MAX(size.cy - GetSystemMetrics(SM_CYVSCROLL), size.cy / 2);
+      m_ptaB[1].y = max(size.cy - GetSystemMetrics(SM_CYVSCROLL), size.cy / 2);
       m_ptaB[2].x = 1;
       m_ptaB[2].y = m_ptaB[1].y;
       m_ptaB[3].x = m_ptaA[0].x;
@@ -991,7 +991,7 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
 
       DWORD dwFadeOut = 490;
 
-      byte uchAlpha = MAX(0, MIN(255, oprop("tracking_alpha").uint32()));
+      byte uchAlpha = max(0, min(255, oprop("tracking_alpha").uint32()));
 
       if(m_bTracking)
       {
@@ -1035,7 +1035,7 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
          DWORD dwFade = get_tick_count() - oprop("tracking_start").uint32();
          if(dwFade < dwFadeIn)
          {
-            uchAlpha = (byte) MIN(255, MAX(0, (dwFade * 255 / dwFadeIn)));
+            uchAlpha = (byte) min(255, max(0, (dwFade * 255 / dwFadeIn)));
          }
          else
          {
@@ -1049,7 +1049,7 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
          DWORD dwFade = get_tick_count() - oprop("tracking_start").uint32();
          if(dwFade < dwFadeOut)
          {
-            uchAlpha = (byte) (255 - MIN(255,MAX(0,(dwFade * 255 / dwFadeOut))));
+            uchAlpha = (byte) (255 - min(255,max(0,(dwFade * 255 / dwFadeOut))));
          }
          else
          {
@@ -1081,7 +1081,7 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
 
          rectIntersect.intersect(rectMachineThumb,rectTrack);
 
-         int32_t iArea = (int32_t) (MAX(1,rectIntersect.area()));
+         int32_t iArea = (int32_t) (max(1,rectIntersect.area()));
 
          rectMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5),1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
 
@@ -1279,7 +1279,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics * pdc,LPCRECT lpc
 
    rect rectDraw(lpcrectDraw);
 
-   int iModelSize = MIN(rectDraw.width(), rectDraw.height());
+   int iModelSize = min(rectDraw.width(), rectDraw.height());
 
    iModelSize = (iModelSize / 4) * 4;
 

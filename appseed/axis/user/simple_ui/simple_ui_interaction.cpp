@@ -243,7 +243,7 @@ namespace simple_ui
 
       }
 
-      int32_t iBorderH = MIN(height(&m_rect) / 2, 49);
+      int32_t iBorderH = min(height(&m_rect) / 2, 49);
 
       ::draw2d::brush_sp br(allocer());
 

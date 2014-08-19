@@ -608,7 +608,7 @@ namespace user
 
       m_iItem = 0;
 
-      for(; m_iItem < MIN(iPreviousItem,m_timera.get_count());)
+      for(; m_iItem < min(iPreviousItem,m_timera.get_count());)
       {
          try
          {

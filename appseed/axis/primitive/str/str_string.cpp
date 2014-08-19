@@ -253,7 +253,7 @@ const char * __cdecl crt_char_traits::StringFindStrRev(const char * psz,const ch
       iStart = iLen + iStart;
    if(iLenFind > iLen)
       return NULL;
-   iStart = MIN(iStart, iLen - iLenFind);
+   iStart = min(iStart, iLen - iLenFind);
    while(iStart >= 0)
    {
       if(strncmp(&psz[iStart], pszFind, iLenFind) == 0)

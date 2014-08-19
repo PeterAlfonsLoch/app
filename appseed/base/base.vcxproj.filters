@@ -665,16 +665,10 @@
     <ClInclude Include="base\crypto\crypto_crypto.h">
       <Filter>Header Files\base\crypto</Filter>
     </ClInclude>
-    <ClInclude Include="base\crypto\crypto_hmac_sha1.h">
-      <Filter>Header Files\base\crypto</Filter>
-    </ClInclude>
     <ClInclude Include="base\crypto\crypto_md5.h">
       <Filter>Header Files\base\crypto</Filter>
     </ClInclude>
     <ClInclude Include="base\crypto\crypto_nessie.h">
-      <Filter>Header Files\base\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto_sha1.h">
       <Filter>Header Files\base\crypto</Filter>
     </ClInclude>
     <ClInclude Include="net\mail\mail.h">
@@ -774,9 +768,6 @@
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base_system.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_system_trace.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
     <ClInclude Include="base\os\os_binreloc.h">
@@ -1438,19 +1429,10 @@
     <ClCompile Include="base\crypto\crypto_crypto.cpp">
       <Filter>Source Files\base\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="base\crypto\crypto_hmac_sha1.cpp">
-      <Filter>Source Files\base\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="base\crypto\crypto_md5.cpp">
       <Filter>Source Files\base\crypto</Filter>
     </ClCompile>
     <ClCompile Include="base\crypto\crypto_nessie.cpp">
-      <Filter>Source Files\base\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto_sha1.cpp">
-      <Filter>Source Files\base\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto_whirpool.cpp">
       <Filter>Source Files\base\crypto</Filter>
     </ClCompile>
     <ClCompile Include="net\mail\mail_pop3.cpp">
@@ -1756,9 +1738,6 @@
     <ClCompile Include="base\node\windows\windows_port_forward.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="base\node\windows\win1.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\node.cpp">
       <Filter>Source Files\base\node</Filter>
     </ClCompile>
@@ -2029,9 +2008,6 @@
       <Filter>Source Files</Filter>
     </None>
     <None Include="base\base\base.inl">
-      <Filter>Header Files\base\base</Filter>
-    </None>
-    <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
     </None>
     <None Include="base.def">

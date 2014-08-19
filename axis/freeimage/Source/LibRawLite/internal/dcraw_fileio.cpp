@@ -141,7 +141,7 @@ void CLASS subtract (const char *fname)
   for (row=0; row < height; row++) {
     fread (pixel, 2, width, fp);
     for (col=0; col < width; col++)
-      BAYER(row,col) = MAX (BAYER(row,col) - ntohs(pixel[col]), 0);
+      BAYER(row,col) = max (BAYER(row,col) - ntohs(pixel[col]), 0);
   }
   free (pixel);
   fclose (fp);

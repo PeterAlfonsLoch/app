@@ -497,7 +497,7 @@ template < class TYPE >
 index numeric_array < TYPE >::
    Cmp(const numeric_array  < TYPE > & array1)
 {
-   ::count iMinSize = MIN(array1.get_size(), this->get_size());
+   ::count iMinSize = min(array1.get_size(), this->get_size());
    index i = 0;
    while(true)
    {
@@ -700,7 +700,7 @@ inline TYPE numeric_array < TYPE > ::pop_max()
 
    TYPE nowpop = this->pop();
 
-   this->last_element() = MAX(nowpop, lastelement);
+   this->last_element() = max(nowpop, lastelement);
 
    return this->last_element();
 
@@ -716,7 +716,7 @@ inline TYPE numeric_array < TYPE > ::pop_max_last_add_up(TYPE tLastAddUp)
 
    TYPE nowpop = this->pop();
 
-   this->last_element() = MAX(nowpop, lastelement + tLastAddUp);
+   this->last_element() = max(nowpop, lastelement + tLastAddUp);
 
    return this->last_element();
 

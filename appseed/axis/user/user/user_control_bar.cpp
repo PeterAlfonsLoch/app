@@ -691,13 +691,13 @@ namespace user
 
          size size = CalcDynamicLayout(-1, dwMode);
 
-         size.cx = MIN(size.cx, sizeAvail.cx);
-         size.cy = MIN(size.cy, sizeAvail.cy);
+         size.cx = min(size.cx, sizeAvail.cx);
+         size.cy = min(size.cy, sizeAvail.cy);
 
          if (dwStyle & CBRS_ORIENT_HORZ)
          {
             lpLayout->sizeTotal.cy += size.cy;
-            lpLayout->sizeTotal.cx = MAX(lpLayout->sizeTotal.cx, size.cx);
+            lpLayout->sizeTotal.cx = max(lpLayout->sizeTotal.cx, size.cx);
             if (dwStyle & CBRS_ALIGN_TOP)
                lpLayout->rect.top += size.cy;
             else if (dwStyle & CBRS_ALIGN_BOTTOM)
@@ -709,7 +709,7 @@ namespace user
          else if (dwStyle & CBRS_ORIENT_VERT)
          {
             lpLayout->sizeTotal.cx += size.cx;
-            lpLayout->sizeTotal.cy = MAX(lpLayout->sizeTotal.cy, size.cy);
+            lpLayout->sizeTotal.cy = max(lpLayout->sizeTotal.cy, size.cy);
             if (dwStyle & CBRS_ALIGN_LEFT)
                lpLayout->rect.left += size.cx;
             else if (dwStyle & CBRS_ALIGN_RIGHT)

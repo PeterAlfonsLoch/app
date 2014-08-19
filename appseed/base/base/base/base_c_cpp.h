@@ -22,22 +22,6 @@ class property_set;
 class object;
 class type;
 
-namespace base
-{
-
-   class application;
-   class system;
-   class application_signal_details;
-   class copydesk;
-
-   typedef smart_pointer < copydesk > copydesk_sp;
-   class command;
-
-
-
-} // namespace base
-
-
 class dump_context;
 class string_interface;
 class id_space;

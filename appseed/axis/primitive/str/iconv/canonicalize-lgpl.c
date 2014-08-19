@@ -60,12 +60,12 @@
 #  endif
 #  ifdef VMS
     /* We want the directory in Unix syntax, not in VMS syntax.  */
-#   define __getcwd(buf, MAX) getcwd (buf, MAX, 0)
+#   define __getcwd(buf, max) getcwd (buf, max, 0)
 #  else
 #   define __getcwd getcwd
 #  endif
 # else
-#  define __getcwd(buf, MAX) getwd (buf)
+#  define __getcwd(buf, max) getwd (buf)
 # endif
 # define __readlink readlink
 # define __set_errno(e) errno = (e)
