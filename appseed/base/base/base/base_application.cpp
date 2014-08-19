@@ -420,15 +420,15 @@ namespace base
    }
 
 
-   sp(element) application::alloc(sp(type) info)
-   {
-      return System.alloc(this,info);
-   }
+   //sp(element) application::alloc(sp(type) info)
+   //{
+   //   return System.alloc(this,info);
+   //}
 
-   sp(element) application::alloc(const  id & idType)
-   {
-      return System.alloc(this,idType);
-   }
+   //sp(element) application::alloc(const  id & idType)
+   //{
+   //   return System.alloc(this,idType);
+   //}
 
    bool application::is_system()
    {
@@ -454,261 +454,261 @@ namespace base
 
    
 
-   bool application::app_map_lookup(const char * psz,void * & p)
-   {
-      return m_appmap.Lookup(psz,p) != FALSE;
-   }
-
-   void application::app_map_set(const char * psz,void * p)
-   {
-      m_appmap.set_at(psz,p);
-   }
-
-
-   sp(::command_thread) application::command_central()
-   {
-      return m_pcommandthread;
-   }
-
-   sp(::command_thread) application::command_thread()
-   {
-      return m_pcommandthread;
-   }
-
-   sp(::command_thread) application::command()
-   {
-      return m_pcommandthread;
-   }
-
-   sp(::command_thread) application::guideline()
-   {
-      return m_pcommandthread;
-   }
-
-   sp(::command_thread) application::directrix()
-   {
-      return m_pcommandthread;
-   }
-
-   sp(::command_thread) application::axiom()
-   {
-      return m_pcommandthread;
-   }
-
-   bool application::verb()
-   {
-      axiom()->run();
-      return true;
-   }
-
-   sp(::command_thread) application::creation()
-   {
-      return m_pcommandthread;
-   }
-
-   class open_url
-   {
-   public:
-      string m_strLink;
-      string m_strTarget;
-      open_url(const string & strLink,const string & pszTarget);
-      bool open();
-   };
+   //bool application::app_map_lookup(const char * psz,void * & p)
+   //{
+   //   return m_appmap.Lookup(psz,p) != FALSE;
+   //}
+
+   //void application::app_map_set(const char * psz,void * p)
+   //{
+   //   m_appmap.set_at(psz,p);
+   //}
+
+
+   //sp(::command_thread) application::command_central()
+   //{
+   //   return m_pcommandthread;
+   //}
+
+   //sp(::command_thread) application::command_thread()
+   //{
+   //   return m_pcommandthread;
+   //}
+
+   //sp(::command_thread) application::command()
+   //{
+   //   return m_pcommandthread;
+   //}
+
+   //sp(::command_thread) application::guideline()
+   //{
+   //   return m_pcommandthread;
+   //}
+
+   //sp(::command_thread) application::directrix()
+   //{
+   //   return m_pcommandthread;
+   //}
+
+   //sp(::command_thread) application::axiom()
+   //{
+   //   return m_pcommandthread;
+   //}
+
+   //bool application::verb()
+   //{
+   //   axiom()->run();
+   //   return true;
+   //}
+
+   //sp(::command_thread) application::creation()
+   //{
+   //   return m_pcommandthread;
+   //}
+
+//   class open_url
+//   {
+//   public:
+//      string m_strLink;
+//      string m_strTarget;
+//      open_url(const string & strLink,const string & pszTarget);
+//      bool open();
+//   };
+//
+//
+//   open_url::open_url(const string & strLink,const string & pszTarget)
+//   {
+//      m_strLink = strLink;
+//      m_strTarget = pszTarget;
+//   }
+//
+//
+//   uint32_t c_cdecl thread_proc_open_url(void * p)
+//   {
+//
+//      open_url * popenurl = (open_url *) p;
+//
+//      if(!popenurl->open())
+//         return -1;
+//
+//      return 0;
+//   }
+//
+//   bool open_url::open()
+//   {
+//      string strLink = m_strLink;
+//      string pszTarget = m_strTarget;
+//#ifdef WINDOWSEX
+//      string strUrl = strLink;
+//      if(!::str::begins_ci(strUrl,"http://")
+//         && !::str::begins_ci(strUrl,"https://"))
+//      {
+//         strUrl = "http://" + strUrl;
+//      }
+//      ::ShellExecuteA(NULL,"open",strUrl,NULL,NULL,SW_SHOW);
+//      return true;
+//#elif defined METROWIN
+//#pragma push_macro("System")
+//#undef System
+//      ::Windows::Foundation::Uri ^ uri = ref new ::Windows::Foundation::Uri(strLink);
+//      ::Windows::System::LauncherOptions ^ options = ref new ::Windows::System::LauncherOptions();
+//      options->TreatAsUntrusted = false;
+//      bool success = ::wait(::Windows::System::Launcher::LaunchUriAsync(uri,options));
+//
+//      return success;
+//
+//#pragma pop_macro("System")
+//#elif defined(LINUX)
+//      ::system("xdg-open " + strLink);
+//      return true;
+//#elif defined(APPLEOS)
+//      openURL(strLink);
+//      return true;
+//#else
+//      throw not_implemented(get_thread_app());
+//#endif
+//
+//   }
 
 
-   open_url::open_url(const string & strLink,const string & pszTarget)
-   {
-      m_strLink = strLink;
-      m_strTarget = pszTarget;
-   }
+   //bool application::open_link(const string & strLink,const string & pszTarget)
+   //{
+   //   if(is_system())
+   //   {
+   //      return __begin_thread(this,thread_proc_open_url,new open_url(strLink, pszTarget)) != FALSE;
+   //   }
+   //   else
+   //   {
+   //      return System.open_link(strLink,pszTarget);
+   //   }
 
+   //   return false;
 
-   uint32_t c_cdecl thread_proc_open_url(void * p)
-   {
+   //}
 
-      open_url * popenurl = (open_url *) p;
 
-      if(!popenurl->open())
-         return -1;
+   //ptr_array < ::user::interaction > application::frames()
+   //{
 
-      return 0;
-   }
+   //   return m_framea.base_ptra();
 
-   bool open_url::open()
-   {
-      string strLink = m_strLink;
-      string pszTarget = m_strTarget;
-#ifdef WINDOWSEX
-      string strUrl = strLink;
-      if(!::str::begins_ci(strUrl,"http://")
-         && !::str::begins_ci(strUrl,"https://"))
-      {
-         strUrl = "http://" + strUrl;
-      }
-      ::ShellExecuteA(NULL,"open",strUrl,NULL,NULL,SW_SHOW);
-      return true;
-#elif defined METROWIN
-#pragma push_macro("System")
-#undef System
-      ::Windows::Foundation::Uri ^ uri = ref new ::Windows::Foundation::Uri(strLink);
-      ::Windows::System::LauncherOptions ^ options = ref new ::Windows::System::LauncherOptions();
-      options->TreatAsUntrusted = false;
-      bool success = ::wait(::Windows::System::Launcher::LaunchUriAsync(uri,options));
+   //}
 
-      return success;
 
-#pragma pop_macro("System")
-#elif defined(LINUX)
-      ::system("xdg-open " + strLink);
-      return true;
-#elif defined(APPLEOS)
-      openURL(strLink);
-      return true;
-#else
-      throw not_implemented(get_thread_app());
-#endif
+   //void application::add_frame(sp(::user::interaction) pwnd)
+   //{
 
-   }
+   //   synch_lock sl(&m_framea.m_mutex); // recursive lock (on m_framea.add(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
 
+   //   m_framea.add(pwnd);
 
-   bool application::open_link(const string & strLink,const string & pszTarget)
-   {
-      if(is_system())
-      {
-         return __begin_thread(this,thread_proc_open_url,new open_url(strLink, pszTarget)) != FALSE;
-      }
-      else
-      {
-         return System.open_link(strLink,pszTarget);
-      }
+   //   if(m_puiMain == NULL)
+   //   {
 
-      return false;
+   //      m_puiMain = pwnd;
 
-   }
+   //   }
 
+   //}
 
-   ptr_array < ::user::interaction > application::frames()
-   {
 
-      return m_framea.base_ptra();
+   //void application::remove_frame(sp(::user::interaction) pwnd)
+   //{
 
-   }
+   //   synch_lock sl(&m_framea.m_mutex); // recursive lock (on m_framea.remove(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
 
+   //   if(m_puiMain == pwnd)
+   //   {
 
-   void application::add_frame(sp(::user::interaction) pwnd)
-   {
+   //      m_puiMain = NULL;
 
-      synch_lock sl(&m_framea.m_mutex); // recursive lock (on m_framea.add(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
+   //   }
 
-      m_framea.add(pwnd);
+   //   m_framea.remove(pwnd);
 
-      if(m_puiMain == NULL)
-      {
+   //}
 
-         m_puiMain = pwnd;
 
-      }
 
-   }
 
+//#if defined(METROWIN) || defined(APPLE_IOS)
+//
+//   sp(::user::interaction) application::window_from_os_data(void * pdata)
+//   {
+//
+//      return window_from_handle((oswindow)pdata);
+//
+//   }
+//
+//#else
+//
+//   sp(::user::interaction) application::window_from_os_data(void * pdata)
+//   {
+//
+//      return window_from_handle((oswindow)pdata);
+//
+//   }
+//
+//#endif
 
-   void application::remove_frame(sp(::user::interaction) pwnd)
-   {
 
-      synch_lock sl(&m_framea.m_mutex); // recursive lock (on m_framea.remove(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
 
-      if(m_puiMain == pwnd)
-      {
+   //void application::DoWaitCursor(int32_t nCode)
+   //{
 
-         m_puiMain = NULL;
+   //   if(nCode < 0)
+   //   {
 
-      }
+   //      m_iWaitCursorCount = 0;
+   //      ShowWaitCursor(false);
 
-      m_framea.remove(pwnd);
+   //   }
+   //   else if(nCode == 0)
+   //   {
 
-   }
+   //      if(m_iWaitCursorCount > 0)
+   //      {
+   //         m_iWaitCursorCount--;
+   //      }
 
+   //      if(m_iWaitCursorCount > 0)
+   //      {
 
+   //         ShowWaitCursor(true);
 
+   //      }
 
-#if defined(METROWIN) || defined(APPLE_IOS)
+   //      m_iWaitCursorCount = 0;
+   //      ShowWaitCursor(false);
 
-   sp(::user::interaction) application::window_from_os_data(void * pdata)
-   {
+   //   }
+   //   else
+   //   {
 
-      return window_from_handle((oswindow)pdata);
+   //      if(m_iWaitCursorCount < 0)
+   //      {
+   //         m_iWaitCursorCount = 0;
+   //      }
 
-   }
+   //      m_iWaitCursorCount++;
 
-#else
+   //      ShowWaitCursor(true);
 
-   sp(::user::interaction) application::window_from_os_data(void * pdata)
-   {
+   //   }
 
-      return window_from_handle((oswindow)pdata);
 
-   }
 
-#endif
+   //}
 
+   //void application::ShowWaitCursor(bool bShow)
+   //{
 
+   //   if(m_pimpl == NULL)
+   //      return;
 
-   void application::DoWaitCursor(int32_t nCode)
-   {
+   //   m_pimpl->ShowWaitCursor(bShow);
 
-      if(nCode < 0)
-      {
-
-         m_iWaitCursorCount = 0;
-         ShowWaitCursor(false);
-
-      }
-      else if(nCode == 0)
-      {
-
-         if(m_iWaitCursorCount > 0)
-         {
-            m_iWaitCursorCount--;
-         }
-
-         if(m_iWaitCursorCount > 0)
-         {
-
-            ShowWaitCursor(true);
-
-         }
-
-         m_iWaitCursorCount = 0;
-         ShowWaitCursor(false);
-
-      }
-      else
-      {
-
-         if(m_iWaitCursorCount < 0)
-         {
-            m_iWaitCursorCount = 0;
-         }
-
-         m_iWaitCursorCount++;
-
-         ShowWaitCursor(true);
-
-      }
-
-
-
-   }
-
-   void application::ShowWaitCursor(bool bShow)
-   {
-
-      if(m_pimpl == NULL)
-         return;
-
-      m_pimpl->ShowWaitCursor(bShow);
-
-   }
+   //}
 
 
 
@@ -719,57 +719,44 @@ namespace base
 
 
 
-   void application::TermThread(HINSTANCE hInstTerm)
-   {
+   //void application::TermThread(HINSTANCE hInstTerm)
+   //{
 
-      throw interface_only_exception(this);
+   //   throw interface_only_exception(this);
 
-   }
-
-
-
-   sp(::user::interaction) application::FindWindow(const char * lpszClassName,const char * lpszWindowName)
-   {
-
-      throw interface_only_exception(this);
-
-   }
+   //}
 
 
-   sp(::user::interaction) application::FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow)
-   {
 
-      throw interface_only_exception(this);
+   //sp(::user::interaction) application::FindWindow(const char * lpszClassName,const char * lpszWindowName)
+   //{
 
-   }
+   //   throw interface_only_exception(this);
+
+   //}
 
 
-   string application::get_version()
-   {
+   //sp(::user::interaction) application::FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow)
+   //{
 
-      throw interface_only_exception(this);
+   //   throw interface_only_exception(this);
 
-   }
+   //}
+
+
+   //string application::get_version()
+   //{
+
+   //   throw interface_only_exception(this);
+
+   //}
 
 
    void application::SetCurrentHandles()
    {
 
-      dappy(string(typeid(*this).name()) + " : SetCurrentHandles 1 : " + ::str::from(m_iReturnCode));
-      m_pimpl->set_os_data(::get_current_thread());
-      if(m_pthreadimpl->get_os_data() == NULL)
-      {
-         m_pthreadimpl->set_os_data(m_pimpl->get_os_data());
-      }
-      dappy(string(typeid(*this).name()) + " : SetCurrentHandles 2 : " + ::str::from(m_iReturnCode));
-      m_pimpl->set_os_int(::get_current_thread_id());
-      if(m_pthreadimpl->get_os_int() == 0)
-      {
-         m_pthreadimpl->set_os_int(m_pimpl->get_os_int());
-      }
+      ::axis::application::SetCurrentHandles();
 
-      m_pimpl->SetCurrentHandles();
-      dappy(string(typeid(*this).name()) + " : SetCurrentHandles impled : " + ::str::from(m_iReturnCode));
 
       if(is_installing() || is_uninstalling())
       {
@@ -811,12 +798,12 @@ namespace base
    }
 
 
-   void application::set_env_var(const string & var,const string & value)
-   {
+   //void application::set_env_var(const string & var,const string & value)
+   //{
 
-      throw interface_only_exception(this);
+   //   throw interface_only_exception(this);
 
-   }
+   //}
 
 
 
@@ -853,31 +840,31 @@ namespace base
    }
 
 
-   sp(::user::printer) application::get_printer(const char * pszDeviceName)
-   {
+   //sp(::user::printer) application::get_printer(const char * pszDeviceName)
+   //{
 
-      throw interface_only_exception(this);
+   //   throw interface_only_exception(this);
 
-   }
-
-
-   bool application::update_module_paths()
-   {
+   //}
 
 
-      if(is_system())
-      {
-
-         if(!m_pimpl->update_module_paths())
-            return false;
+   //bool application::update_module_paths()
+   //{
 
 
-      }
+   //   if(is_system())
+   //   {
 
-      return true;
+   //      if(!m_pimpl->update_module_paths())
+   //         return false;
 
 
-   }
+   //   }
+
+   //   return true;
+
+
+   //}
 
 
 
@@ -935,7 +922,7 @@ namespace base
 
 
 
-
+/*
    void application::process(machine_event_data * pdata)
    {
       if(pdata->m_fixed.m_bRequestCloseApplication)
@@ -951,114 +938,114 @@ namespace base
       throw todo(get_app());
 
    }
+*/
 
 
 
 
+//   sp(::user::interaction) application::release_capture_uie()
+//   {
+//
+//#if defined(LINUX)
+//
+//      oswindow oswindowCapture = ::GetCapture();
+//      if (oswindowCapture == NULL)
+//         return NULL;
+//      return oswindowCapture->get_user_interaction()->ReleaseCapture();
+//
+//#elif defined(WINDOWS)
+//
+//      oswindow oswindowCapture = ::GetCapture();
+//      if(oswindowCapture == NULL)
+//         return NULL;
+//      return System.window_from_os_data(oswindowCapture)->ReleaseCapture();
+//
+//#elif defined(APPLEOS)
+//
+//      oswindow oswindowCapture = ::GetCapture();
+//      if (oswindowCapture == NULL)
+//         return NULL;
+//      return oswindowCapture->get_user_interaction()->ReleaseCapture();
+//
+//#else
+//
+//      throw not_implemented(get_app());
+//
+//#endif
+//
+//   }
+//
+//
+//   sp(::user::interaction) application::get_capture_uie()
+//   {
+//
+//#if defined(METROWIN)
+//
+//      oswindow oswindowCapture = ::GetCapture();
+//
+//      if (oswindowCapture == NULL)
+//         return NULL;
+//
+//      ::user::interaction * pui = oswindowCapture->window();
+//
+//      if (pui == NULL)
+//         return NULL;
+//
+//      return pui->GetCapture();
+//
+//#elif defined(WINDOWS) || defined(APPLE_IOS)
+//
+//      oswindow oswindowCapture = ::GetCapture();
+//
+//      if(oswindowCapture == NULL)
+//         return NULL;
+//
+//      sp(::user::interaction) pui = System.window_from_os_data(oswindowCapture);
+//
+//      if(pui == NULL)
+//         return NULL;
+//
+//      return pui->GetCapture();
+//
+//#else
+//
+//      //      throw not_implemented(get_app());
+//
+//      oswindow oswindowCapture = ::GetCapture();
+//
+//      if (oswindowCapture == NULL)
+//         return NULL;
+//
+//      return ::GetCapture()->get_user_interaction()->m_pimpl->GetCapture();
+//
+//#endif
+//
+//   }
+//
+//
+//
+//
+//
+//
+//
+//   uint32_t application::get_thread_id()
+//   {
+//      return m_pimpl->get_thread_id();
+//   }
+//
+//
+//
 
-   sp(::user::interaction) application::release_capture_uie()
-   {
-
-#if defined(LINUX)
-
-      oswindow oswindowCapture = ::GetCapture();
-      if (oswindowCapture == NULL)
-         return NULL;
-      return oswindowCapture->get_user_interaction()->ReleaseCapture();
-
-#elif defined(WINDOWS)
-
-      oswindow oswindowCapture = ::GetCapture();
-      if(oswindowCapture == NULL)
-         return NULL;
-      return System.window_from_os_data(oswindowCapture)->ReleaseCapture();
-
-#elif defined(APPLEOS)
-
-      oswindow oswindowCapture = ::GetCapture();
-      if (oswindowCapture == NULL)
-         return NULL;
-      return oswindowCapture->get_user_interaction()->ReleaseCapture();
-
-#else
-
-      throw not_implemented(get_app());
-
-#endif
-
-   }
-
-
-   sp(::user::interaction) application::get_capture_uie()
-   {
-
-#if defined(METROWIN)
-
-      oswindow oswindowCapture = ::GetCapture();
-
-      if (oswindowCapture == NULL)
-         return NULL;
-
-      ::user::interaction * pui = oswindowCapture->window();
-
-      if (pui == NULL)
-         return NULL;
-
-      return pui->GetCapture();
-
-#elif defined(WINDOWS) || defined(APPLE_IOS)
-
-      oswindow oswindowCapture = ::GetCapture();
-
-      if(oswindowCapture == NULL)
-         return NULL;
-
-      sp(::user::interaction) pui = System.window_from_os_data(oswindowCapture);
-
-      if(pui == NULL)
-         return NULL;
-
-      return pui->GetCapture();
-
-#else
-
-      //      throw not_implemented(get_app());
-
-      oswindow oswindowCapture = ::GetCapture();
-
-      if (oswindowCapture == NULL)
-         return NULL;
-
-      return ::GetCapture()->get_user_interaction()->m_pimpl->GetCapture();
-
-#endif
-
-   }
-
-
-
-
-
-
-
-   uint32_t application::get_thread_id()
-   {
-      return m_pimpl->get_thread_id();
-   }
-
-
-
-
-
-#ifndef METROWIN
-
-   void application::get_time(timeval *p)
-   {
-      m_pimpl->get_time(p);
-   }
-
-#endif
-
+//
+//#ifndef METROWIN
+//
+//   void application::get_time(timeval *p)
+//   {
+//      m_pimpl->get_time(p);
+//   }
+//
+//#endif
+//
 
    bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::user::impact_system) ptemplate,sp(::user::document) pdocument)
    {
@@ -1191,7 +1178,7 @@ namespace base
 
 
 
-
+/*
 
    ::visual::icon * application::set_icon(object * pobject,::visual::icon * picon,bool bBigIcon)
    {
@@ -1233,7 +1220,7 @@ namespace base
       }
 
    }
-
+*/
 
 
    bool application::final_handle_exception(::exception::exception & e)
@@ -1418,7 +1405,7 @@ namespace base
 
       try
       {
-         application_signal_details signal(this,m_psignal,application_signal_start);
+         ::axis::application_signal_details signal(this,m_psignal,::axis::application_signal_start);
          m_psignal->emit(&signal);
       }
       catch(...)
@@ -2076,62 +2063,62 @@ namespace base
    }
 
 
-   bool application::safe_is_running()
-   {
+   //bool application::safe_is_running()
+   //{
 
-      bool bRunning = false;
+   //   bool bRunning = false;
 
-      try
-      {
+   //   try
+   //   {
 
-         if(is_running())
-         {
+   //      if(is_running())
+   //      {
 
-            bRunning = true;
+   //         bRunning = true;
 
-         }
+   //      }
 
-      }
-      catch(...)
-      {
+   //   }
+   //   catch(...)
+   //   {
 
-         bRunning = false;
+   //      bRunning = false;
 
-      }
-
-
-      return bRunning;
-
-   }
+   //   }
 
 
-   sp(application) application::assert_running(const char * pszAppId)
-   {
+   //   return bRunning;
 
-      sp(application) papp;
-
-      papp = session().m_appptra.find_running_defer_try_quit_damaged(pszAppId);
-
-      if(papp.is_null())
-      {
-
-         sp(::create_context) spcreatecontext(allocer());
-
-         papp = session().start_application("application",pszAppId,spcreatecontext);
-
-      }
-
-      return papp;
-
-   }
+   //}
 
 
+   //sp(application) application::assert_running(const char * pszAppId)
+   //{
+
+   //   sp(application) papp;
+
+   //   papp = session().m_appptra.find_running_defer_try_quit_damaged(pszAppId);
+
+   //   if(papp.is_null())
+   //   {
+
+   //      sp(::create_context) spcreatecontext(allocer());
+
+   //      papp = session().start_application("application",pszAppId,spcreatecontext);
+
+   //   }
+
+   //   return papp;
+
+   //}
 
 
 
+
+/*
    typedef  void(*PFN_ca2_factory_exchange)(sp(application) papp);
 
-
+*/
 
 
    /*::file::binary_buffer_sp application::friendly_get_file(var varFile, UINT nOpenFlags)
@@ -3230,7 +3217,7 @@ namespace base
       if(strLibrary.is_empty())
          strLibrary = "draw2d_cairo";
 
-      ::base::library & library = System.m_libraryDraw2d;
+      ::axis::library & library = System.m_libraryDraw2d;
 
       if(library.is_opened())
          return;
@@ -3750,6 +3737,99 @@ namespace base
       return session().get_focus_guie();
 
    }
+
+
+
+   string application::matter_as_string(const char * pszMatter,const char * pszMatter2)
+   {
+
+      var varQuery;
+
+      varQuery["disable_ca2_sessid"] = true;
+
+      return file().as_string(dir().matter(pszMatter,pszMatter2),varQuery);
+
+   }
+
+   string application::dir_matter(const char * pszMatter,const char * pszMatter2)
+   {
+
+      return dir().matter(pszMatter,pszMatter2);
+
+   }
+
+   bool application::is_inside_time_dir(const char * pszPath)
+   {
+      return dir().is_inside_time_dir(pszPath);
+   }
+
+   bool application::file_is_read_only(const char * pszPath)
+   {
+      return file().is_read_only(pszPath);
+      
+   }
+
+   string application::file_as_string(var varFile)
+   {
+
+      if(::str::begins_ci(varFile.get_string(),"http://")
+         || ::str::begins_ci(varFile.get_string(),"https://"))
+      {
+
+         ::property_set set(get_app());
+
+         return http().get(varFile.get_string(),set);
+
+      }
+      else if(::str::begins_ci(varFile["url"].get_string(),"http://")
+         || ::str::begins_ci(varFile["url"].get_string(),"https://"))
+      {
+
+         ::property_set set(get_app());
+
+         return http().get(varFile["url"].get_string(),set);
+
+      }
+      else
+      {
+         return file_as_string_dup(varFile.get_string());
+      }
+
+   }
+
+   string application::dir_path(const char * psz1,const char * psz2,const char * psz3)
+   {
+      return dir().path(psz1,psz2,psz3);
+   }
+
+   string application::dir_name(const char * psz)
+   {
+      return dir().name(psz);
+   }
+
+   bool application::dir_mk(const char * psz)
+   {
+      return dir().mk(psz);
+   }
+
+   string application::file_title(const char * psz)
+   {
+      return file().title_(psz);
+   }
+   string application::file_name(const char * psz)
+   {
+      return file().name_(psz);
+   }
+
+
+   ::file::binary_buffer_sp application::file_get_file(var varFile,uint32_t uiFlags)
+   {
+
+      return file().get_file(varFile,uiFlags);
+
+   }
+
+
 
 
 } // namespace base

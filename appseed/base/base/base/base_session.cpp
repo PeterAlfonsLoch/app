@@ -155,71 +155,71 @@ namespace base
    }
 
 
-   void session::set_cursor(::visual::e_cursor ecursor)
-   {
+//   void session::set_cursor(::visual::e_cursor ecursor)
+//   {
+//
+//      m_ecursor = ecursor;
+//
+//#ifdef WINDOWSEX
+//
+//      ::visual::cursor * pcursor = get_cursor();
+//
+//      if(pcursor != NULL)
+//      {
+//
+//         ::SetCursor(pcursor->get_HCURSOR());
+//
+//      }
+//
+//#endif
+//
+//   }
+//
+//
+//   void session::set_default_cursor(::visual::e_cursor ecursor)
+//   {
+//
+//      if(ecursor == ::visual::cursor_default)
+//      {
+//
+//         m_ecursorDefault = ::visual::cursor_arrow;
+//
+//      }
+//      else
+//      {
+//
+//         m_ecursorDefault = ecursor;
+//
+//      }
+//
+//   }
+//
 
-      m_ecursor = ecursor;
 
-#ifdef WINDOWSEX
+   //COLORREF session::get_default_color(uint64_t ui)
+   //{
 
-      ::visual::cursor * pcursor = get_cursor();
+   //   switch(ui)
+   //   {
+   //   case COLOR_3DFACE:
+   //      return ARGB(127,192,192,184);
+   //   case COLOR_WINDOW:
+   //      return ARGB(127,255,255,255);
+   //   case COLOR_3DLIGHT:
+   //      return ARGB(127,218,218,210);
+   //   case COLOR_3DHIGHLIGHT:
+   //      return ARGB(127,238,238,230);
+   //   case COLOR_3DSHADOW:
+   //      return ARGB(127,138,138,130);
+   //   case COLOR_3DDKSHADOW:
+   //      return ARGB(127,84,84,77);
+   //   default:
+   //      break;
+   //   }
 
-      if(pcursor != NULL)
-      {
+   //   return ARGB(127,0,0,0);
 
-         ::SetCursor(pcursor->get_HCURSOR());
-
-      }
-
-#endif
-
-   }
-
-
-   void session::set_default_cursor(::visual::e_cursor ecursor)
-   {
-
-      if(ecursor == ::visual::cursor_default)
-      {
-
-         m_ecursorDefault = ::visual::cursor_arrow;
-
-      }
-      else
-      {
-
-         m_ecursorDefault = ecursor;
-
-      }
-
-   }
-
-
-
-   COLORREF session::get_default_color(uint64_t ui)
-   {
-
-      switch(ui)
-      {
-      case COLOR_3DFACE:
-         return ARGB(127,192,192,184);
-      case COLOR_WINDOW:
-         return ARGB(127,255,255,255);
-      case COLOR_3DLIGHT:
-         return ARGB(127,218,218,210);
-      case COLOR_3DHIGHLIGHT:
-         return ARGB(127,238,238,230);
-      case COLOR_3DSHADOW:
-         return ARGB(127,138,138,130);
-      case COLOR_3DDKSHADOW:
-         return ARGB(127,84,84,77);
-      default:
-         break;
-      }
-
-      return ARGB(127,0,0,0);
-
-   }
+   //}
 
 
    ::fontopus::user * session::get_user()
@@ -288,832 +288,832 @@ namespace base
 
    }
 
-   index session::get_ui_wkspace(::user::interaction * pui)
-   {
+   //index session::get_ui_wkspace(::user::interaction * pui)
+   //{
 
-      if(m_bSystemSynchronizedScreen)
-      {
+   //   if(m_bSystemSynchronizedScreen)
+   //   {
 
-         return System.get_ui_wkspace(pui);
+   //      return System.get_ui_wkspace(pui);
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         ::rect rect;
+   //      ::rect rect;
 
-         pui->GetWindowRect(rect);
+   //      pui->GetWindowRect(rect);
 
-         return get_best_wkspace(NULL,rect);
+   //      return get_best_wkspace(NULL,rect);
 
-      }
+   //   }
 
 
-   }
+   //}
 
-   index session::get_main_wkspace(LPRECT lprect)
-   {
+   //index session::get_main_wkspace(LPRECT lprect)
+   //{
 
-      if(m_bSystemSynchronizedScreen)
-      {
+   //   if(m_bSystemSynchronizedScreen)
+   //   {
 
-         if(m_iMainWkspace < 0 || m_iMainWkspace >= System.get_monitor_count())
-         {
+   //      if(m_iMainWkspace < 0 || m_iMainWkspace >= System.get_monitor_count())
+   //      {
 
-            return System.get_main_wkspace(lprect);
+   //         return System.get_main_wkspace(lprect);
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            if(System.get_monitor_rect(m_iMainWkspace,lprect))
-            {
+   //         if(System.get_monitor_rect(m_iMainWkspace,lprect))
+   //         {
 
-               return m_iMainMonitor;
+   //            return m_iMainMonitor;
 
-            }
-            else
-            {
+   //         }
+   //         else
+   //         {
 
-               System.get_wkspace_rect(0,lprect);
+   //            System.get_wkspace_rect(0,lprect);
 
-               return 0;
+   //            return 0;
 
-            }
+   //         }
 
-         }
+   //      }
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         int iMainWkspace = m_iMainWkspace;
+   //      int iMainWkspace = m_iMainWkspace;
 
-         if(iMainWkspace < 0 || iMainWkspace >= m_rectaWkspace.get_count())
-         {
+   //      if(iMainWkspace < 0 || iMainWkspace >= m_rectaWkspace.get_count())
+   //      {
 
-            iMainWkspace = 0;
+   //         iMainWkspace = 0;
 
-         }
+   //      }
 
-         if(m_rectaWkspace.get_count() <= 0)
-         {
+   //      if(m_rectaWkspace.get_count() <= 0)
+   //      {
 
-            return -1;
+   //         return -1;
 
-         }
+   //      }
 
-         *lprect = m_rectaWkspace[iMainWkspace];
+   //      *lprect = m_rectaWkspace[iMainWkspace];
 
-         return iMainWkspace;
+   //      return iMainWkspace;
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   bool session::set_main_wkspace(index iWkspace)
-   {
+   //bool session::set_main_wkspace(index iWkspace)
+   //{
 
-      if(iWkspace == -1)
-      {
+   //   if(iWkspace == -1)
+   //   {
 
-         m_iMainWkspace = -1;
+   //      m_iMainWkspace = -1;
 
-         return true;
+   //      return true;
 
-      }
-      else if(iWkspace < 0 || iWkspace >= get_wkspace_count())
-      {
+   //   }
+   //   else if(iWkspace < 0 || iWkspace >= get_wkspace_count())
+   //   {
 
-         return false;
+   //      return false;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         m_iMainWkspace = iWkspace;
+   //      m_iMainWkspace = iWkspace;
 
-         return true;
+   //      return true;
 
-      }
+   //   }
 
-   }
+   //}
 
-   index session::get_main_monitor(LPRECT lprect)
-   {
+   //index session::get_main_monitor(LPRECT lprect)
+   //{
 
-      if(m_bSystemSynchronizedScreen)
-      {
+   //   if(m_bSystemSynchronizedScreen)
+   //   {
 
-         if(m_iMainMonitor < 0 || m_iMainMonitor >= System.get_monitor_count())
-         {
+   //      if(m_iMainMonitor < 0 || m_iMainMonitor >= System.get_monitor_count())
+   //      {
 
-            return System.get_main_monitor(lprect);
+   //         return System.get_main_monitor(lprect);
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            if(System.get_monitor_rect(m_iMainMonitor,lprect))
-            {
+   //         if(System.get_monitor_rect(m_iMainMonitor,lprect))
+   //         {
 
-               return m_iMainMonitor;
+   //            return m_iMainMonitor;
 
-            }
-            else
-            {
+   //         }
+   //         else
+   //         {
 
-               System.get_monitor_rect(0,lprect);
+   //            System.get_monitor_rect(0,lprect);
 
-               return 0;
+   //            return 0;
 
-            }
+   //         }
 
-         }
+   //      }
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         int iMainMonitor = m_iMainMonitor;
+   //      int iMainMonitor = m_iMainMonitor;
 
-         if(iMainMonitor < 0 || iMainMonitor >= m_rectaMonitor.get_count())
-         {
+   //      if(iMainMonitor < 0 || iMainMonitor >= m_rectaMonitor.get_count())
+   //      {
 
-            iMainMonitor = 0;
+   //         iMainMonitor = 0;
 
-         }
+   //      }
 
-         if(m_rectaMonitor.get_count() <= 0)
-         {
+   //      if(m_rectaMonitor.get_count() <= 0)
+   //      {
 
-            return -1;
+   //         return -1;
 
-         }
+   //      }
 
-         *lprect = m_rectaMonitor[iMainMonitor];
+   //      *lprect = m_rectaMonitor[iMainMonitor];
 
-         return iMainMonitor;
+   //      return iMainMonitor;
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   bool session::set_main_monitor(index iMonitor)
-   {
+   //bool session::set_main_monitor(index iMonitor)
+   //{
 
-      if(iMonitor == -1)
-      {
+   //   if(iMonitor == -1)
+   //   {
 
-         m_iMainMonitor = -1;
+   //      m_iMainMonitor = -1;
 
-         return true;
+   //      return true;
 
-      }
-      else if(iMonitor < 0 || iMonitor >= get_monitor_count())
-      {
+   //   }
+   //   else if(iMonitor < 0 || iMonitor >= get_monitor_count())
+   //   {
 
-         return false;
+   //      return false;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         m_iMainMonitor = iMonitor;
+   //      m_iMainMonitor = iMonitor;
 
-         return true;
+   //      return true;
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   ::count session::get_wkspace_count()
-   {
+   //::count session::get_wkspace_count()
+   //{
 
-      if(m_bSystemSynchronizedScreen)
-      {
+   //   if(m_bSystemSynchronizedScreen)
+   //   {
 
-         return System.get_wkspace_count();
+   //      return System.get_wkspace_count();
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         return m_rectaWkspace.get_count();
+   //      return m_rectaWkspace.get_count();
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   ::count session::get_monitor_count()
-   {
+   //::count session::get_monitor_count()
+   //{
 
-      if(m_bSystemSynchronizedScreen)
-      {
+   //   if(m_bSystemSynchronizedScreen)
+   //   {
 
-         return System.get_monitor_count();
+   //      return System.get_monitor_count();
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         return m_rectaMonitor.get_count();
+   //      return m_rectaMonitor.get_count();
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   bool session::get_monitor_rect(index iMonitor,LPRECT lprect)
-   {
+   //bool session::get_monitor_rect(index iMonitor,LPRECT lprect)
+   //{
 
-      if(m_bSystemSynchronizedScreen)
-      {
+   //   if(m_bSystemSynchronizedScreen)
+   //   {
 
-         return System.get_monitor_rect(iMonitor, lprect);
+   //      return System.get_monitor_rect(iMonitor, lprect);
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         if(iMonitor < 0 || iMonitor >= m_rectaMonitor.get_count())
-         {
+   //      if(iMonitor < 0 || iMonitor >= m_rectaMonitor.get_count())
+   //      {
 
-            return false;
+   //         return false;
 
-         }
+   //      }
 
-         *lprect = m_rectaMonitor[iMonitor];
+   //      *lprect = m_rectaMonitor[iMonitor];
 
-         return true;
+   //      return true;
 
-      }
+   //   }
 
-   }
+   //}
 
-   bool session::wkspace_to_monitor(LPRECT lprect,index iMonitor,index iWkspace)
-   {
+   //bool session::wkspace_to_monitor(LPRECT lprect,index iMonitor,index iWkspace)
+   //{
 
-      rect rect(lprect);
+   //   rect rect(lprect);
 
-      ::rect rectWkspace;
+   //   ::rect rectWkspace;
 
-      if(!get_wkspace_rect(iWkspace,rectWkspace))
-         return false;
+   //   if(!get_wkspace_rect(iWkspace,rectWkspace))
+   //      return false;
 
-      rect -= rectWkspace.top_left();
+   //   rect -= rectWkspace.top_left();
 
-      ::rect rectMonitor;
+   //   ::rect rectMonitor;
 
-      if(!get_monitor_rect(iMonitor,rectMonitor))
-         return false;
+   //   if(!get_monitor_rect(iMonitor,rectMonitor))
+   //      return false;
 
-      rect += rectMonitor.top_left();
+   //   rect += rectMonitor.top_left();
 
-      *lprect = rect;
+   //   *lprect = rect;
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
-   
-   bool session::wkspace_to_monitor(LPRECT lprect)
-   {
-      
-      int iWkspace = get_best_wkspace(NULL,rect(lprect));
+   //
+   //bool session::wkspace_to_monitor(LPRECT lprect)
+   //{
+   //   
+   //   int iWkspace = get_best_wkspace(NULL,rect(lprect));
 
-      return wkspace_to_monitor(lprect,iWkspace,iWkspace);
+   //   return wkspace_to_monitor(lprect,iWkspace,iWkspace);
 
-   }
+   //}
 
 
-   bool session::monitor_to_wkspace(LPRECT lprect)
-   {
+   //bool session::monitor_to_wkspace(LPRECT lprect)
+   //{
 
-      int iMonitor = get_best_monitor(NULL, rect(lprect));
+   //   int iMonitor = get_best_monitor(NULL, rect(lprect));
 
-      return monitor_to_wkspace(lprect,iMonitor,iMonitor);
+   //   return monitor_to_wkspace(lprect,iMonitor,iMonitor);
 
-   }
+   //}
 
 
-   bool session::monitor_to_wkspace(LPRECT lprect,index iWkspace,index iMonitor)
-   {
+   //bool session::monitor_to_wkspace(LPRECT lprect,index iWkspace,index iMonitor)
+   //{
 
-      rect rect(lprect);
+   //   rect rect(lprect);
 
-      ::rect rectMonitor;
+   //   ::rect rectMonitor;
 
-      if(!get_monitor_rect(iMonitor,rectMonitor))
-         return false;
+   //   if(!get_monitor_rect(iMonitor,rectMonitor))
+   //      return false;
 
-      rect -= rectMonitor.top_left();
+   //   rect -= rectMonitor.top_left();
 
-      ::rect rectWkspace;
+   //   ::rect rectWkspace;
 
-      if(!get_wkspace_rect(iWkspace,rectWkspace))
-         return false;
+   //   if(!get_wkspace_rect(iWkspace,rectWkspace))
+   //      return false;
 
-      rect += rectWkspace.top_left();
+   //   rect += rectWkspace.top_left();
 
-      *lprect = rect;
+   //   *lprect = rect;
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
 
 
-   bool session::get_wkspace_rect(index iWkspace,LPRECT lprect)
-   {
+   //bool session::get_wkspace_rect(index iWkspace,LPRECT lprect)
+   //{
 
-      if(m_bSystemSynchronizedScreen)
-      {
+   //   if(m_bSystemSynchronizedScreen)
+   //   {
 
-         return System.get_wkspace_rect(iWkspace,lprect);
+   //      return System.get_wkspace_rect(iWkspace,lprect);
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         if(iWkspace < 0 || iWkspace >= m_rectaWkspace.get_count())
-         {
+   //      if(iWkspace < 0 || iWkspace >= m_rectaWkspace.get_count())
+   //      {
 
-            return false;
+   //         return false;
 
-         }
+   //      }
 
-         *lprect = m_rectaWkspace[iWkspace];
+   //      *lprect = m_rectaWkspace[iWkspace];
 
-         return true;
+   //      return true;
 
-      }
+   //   }
 
-   }
+   //}
 
-   ::count session::get_desk_monitor_count()
-   {
+   //::count session::get_desk_monitor_count()
+   //{
 
-      return get_monitor_count();
+   //   return get_monitor_count();
 
-   }
+   //}
 
 
-   bool session::get_desk_monitor_rect(index iMonitor,LPRECT lprect)
-   {
+   //bool session::get_desk_monitor_rect(index iMonitor,LPRECT lprect)
+   //{
 
-      return get_monitor_rect(iMonitor,lprect);
+   //   return get_monitor_rect(iMonitor,lprect);
 
-   }
+   //}
 
 
-   index session::initial_frame_position(LPRECT lprect,const RECT & rectParam, bool bMove)
-   {
+   //index session::initial_frame_position(LPRECT lprect,const RECT & rectParam, bool bMove)
+   //{
 
-      rect rectRestore(rectParam);
+   //   rect rectRestore(rectParam);
 
-      rect rectMonitor;
+   //   rect rectMonitor;
 
-      index iMatchingMonitor = get_best_monitor(rectMonitor,rectParam);
+   //   index iMatchingMonitor = get_best_monitor(rectMonitor,rectParam);
 
-      ::size sizeMin;
+   //   ::size sizeMin;
 
-      get_window_minimum_size(&sizeMin);
+   //   get_window_minimum_size(&sizeMin);
 
-      rect rectIntersect;
+   //   rect rectIntersect;
 
-      if(bMove)
-      {
+   //   if(bMove)
+   //   {
 
-         rect_array rectaMonitor;
+   //      rect_array rectaMonitor;
 
-         rect_array rectaIntersect;
+   //      rect_array rectaIntersect;
 
-         get_monitor(rectaMonitor,rectaIntersect,rectParam);
+   //      get_monitor(rectaMonitor,rectaIntersect,rectParam);
 
-         rectaIntersect.get_box(rectIntersect);
+   //      rectaIntersect.get_box(rectIntersect);
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         rectIntersect.intersect(rectMonitor,&rectParam);
+   //      rectIntersect.intersect(rectMonitor,&rectParam);
 
-      }
+   //   }
 
-      if(rectIntersect.width() < sizeMin.cx
-         || rectIntersect.height() < sizeMin.cy)
-      {
+   //   if(rectIntersect.width() < sizeMin.cx
+   //      || rectIntersect.height() < sizeMin.cy)
+   //   {
 
-         if(rectMonitor.width() / 7 + max(sizeMin.cx,rectMonitor.width() * 2 / 5) > rectMonitor.width()
-            || rectMonitor.height() / 7 + max(sizeMin.cy,rectMonitor.height() * 2 / 5) > rectMonitor.width())
-         {
+   //      if(rectMonitor.width() / 7 + max(sizeMin.cx,rectMonitor.width() * 2 / 5) > rectMonitor.width()
+   //         || rectMonitor.height() / 7 + max(sizeMin.cy,rectMonitor.height() * 2 / 5) > rectMonitor.width())
+   //      {
 
-            rectRestore = rectMonitor;
+   //         rectRestore = rectMonitor;
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            rectRestore.left = rectMonitor.left + rectMonitor.width() / 7;
+   //         rectRestore.left = rectMonitor.left + rectMonitor.width() / 7;
 
-            rectRestore.top = rectMonitor.top + rectMonitor.height() / 7;
+   //         rectRestore.top = rectMonitor.top + rectMonitor.height() / 7;
 
-            rectRestore.right = rectRestore.left + max(sizeMin.cx,rectMonitor.width() * 2 / 5);
+   //         rectRestore.right = rectRestore.left + max(sizeMin.cx,rectMonitor.width() * 2 / 5);
 
-            rectRestore.bottom = rectRestore.top + max(sizeMin.cy,rectMonitor.height() * 2 / 5);
+   //         rectRestore.bottom = rectRestore.top + max(sizeMin.cy,rectMonitor.height() * 2 / 5);
 
-            if(rectRestore.right > rectMonitor.right - rectMonitor.width() / 7)
-            {
+   //         if(rectRestore.right > rectMonitor.right - rectMonitor.width() / 7)
+   //         {
 
-               rectRestore.offset(rectMonitor.right - rectMonitor.width() / 7 - rectRestore.right,0);
+   //            rectRestore.offset(rectMonitor.right - rectMonitor.width() / 7 - rectRestore.right,0);
 
-            }
+   //         }
 
-            if(rectRestore.bottom > rectMonitor.bottom - rectMonitor.height() / 7)
-            {
+   //         if(rectRestore.bottom > rectMonitor.bottom - rectMonitor.height() / 7)
+   //         {
 
-               rectRestore.offset(0,rectMonitor.bottom - rectMonitor.height() / 7 - rectRestore.bottom);
+   //            rectRestore.offset(0,rectMonitor.bottom - rectMonitor.height() / 7 - rectRestore.bottom);
 
-            }
+   //         }
 
-         }
+   //      }
 
-         *lprect = rectRestore;
+   //      *lprect = rectRestore;
 
-         return iMatchingMonitor;
+   //      return iMatchingMonitor;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         if(!bMove)
-         {
+   //      if(!bMove)
+   //      {
 
-            *lprect = rectIntersect;
+   //         *lprect = rectIntersect;
 
-         }
+   //      }
 
-         return -1;
+   //      return -1;
 
-      }
+   //   }
 
-   }
+   //}
 
-   void session::get_monitor(rect_array & rectaMonitor,rect_array & rectaIntersect,const RECT & rectParam)
-   {
+   //void session::get_monitor(rect_array & rectaMonitor,rect_array & rectaIntersect,const RECT & rectParam)
+   //{
 
-      for(index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
-      {
+   //   for(index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
+   //   {
 
-         rect rectIntersect;
+   //      rect rectIntersect;
 
-         rect rectMonitor;
+   //      rect rectMonitor;
 
-         if(get_monitor_rect(iMonitor,rectMonitor))
-         {
+   //      if(get_monitor_rect(iMonitor,rectMonitor))
+   //      {
 
-            if(rectIntersect.top_left_null_intersect(&rectParam,rectMonitor))
-            {
+   //         if(rectIntersect.top_left_null_intersect(&rectParam,rectMonitor))
+   //         {
 
-               if(rectIntersect.area() >= 0)
-               {
+   //            if(rectIntersect.area() >= 0)
+   //            {
 
-                  rectaMonitor.add(rectMonitor);
+   //               rectaMonitor.add(rectMonitor);
 
-                  rectaIntersect.add(rectIntersect);
+   //               rectaIntersect.add(rectIntersect);
 
-               }
+   //            }
 
-            }
+   //         }
 
-         }
+   //      }
 
-      }
+   //   }
 
-   }
+   //}
 
-   index session::get_zoneing(LPRECT lprect,const RECT & rectParam,::user::EAppearance eappearance)
-   {
+   //index session::get_zoneing(LPRECT lprect,const RECT & rectParam,::user::EAppearance eappearance)
+   //{
 
-      index iMonitor = get_best_wkspace(lprect,rectParam);
+   //   index iMonitor = get_best_wkspace(lprect,rectParam);
 
-      int cx = width(lprect);
-      int cy = height(lprect);
+   //   int cx = width(lprect);
+   //   int cy = height(lprect);
 
-      if(cx <= 0 || cy <= 0)
-      {
+   //   if(cx <= 0 || cy <= 0)
+   //   {
 
-         return -1;
+   //      return -1;
 
-      }
+   //   }
 
-      if(width(rectParam) <= 0 || height(rectParam) <= 0)
-      {
+   //   if(width(rectParam) <= 0 || height(rectParam) <= 0)
+   //   {
 
-         return -1;
+   //      return -1;
 
-      }
+   //   }
 
 
-      int midcx = cx / 2;
-      int midcy = cy / 2;
+   //   int midcx = cx / 2;
+   //   int midcy = cy / 2;
 
-      if(eappearance == ::user::AppearanceTop)
-      {
-         *lprect = rect_dim(0,0,cx,midcy) + top_left(lprect);
-      }
-      else if(eappearance == ::user::AppearanceLeft)
-      {
-         *lprect = rect_dim(0,0,midcx,cy) + top_left(lprect);
-      }
-      else if(eappearance == ::user::AppearanceRight)
-      {
-         *lprect = rect_dim(midcx,0,midcx,cy) + top_left(lprect);
-      }
-      else if(eappearance == ::user::AppearanceBottom)
-      {
-         *lprect = rect_dim(0,midcy,cx,midcy) + top_left(lprect);
-      }
-      else if(eappearance == ::user::AppearanceTopLeft)
-      {
-         *lprect = rect_dim(0,0,midcx,midcy) + top_left(lprect);
-      }
-      else if(eappearance == ::user::AppearanceTopRight)
-      {
-         *lprect = rect_dim(midcx,0,midcx,midcy) + top_left(lprect);
-      }
-      else if(eappearance == ::user::AppearanceBottomLeft)
-      {
-         *lprect = rect_dim(0,midcy,midcx,midcy) + top_left(lprect);
-      }
-      else if(eappearance == ::user::AppearanceBottomRight)
-      {
-         *lprect = rect_dim(midcx,midcy,midcx,midcy) + top_left(lprect);
-      }
-      else
-      {
-         return -1;
-      }
+   //   if(eappearance == ::user::AppearanceTop)
+   //   {
+   //      *lprect = rect_dim(0,0,cx,midcy) + top_left(lprect);
+   //   }
+   //   else if(eappearance == ::user::AppearanceLeft)
+   //   {
+   //      *lprect = rect_dim(0,0,midcx,cy) + top_left(lprect);
+   //   }
+   //   else if(eappearance == ::user::AppearanceRight)
+   //   {
+   //      *lprect = rect_dim(midcx,0,midcx,cy) + top_left(lprect);
+   //   }
+   //   else if(eappearance == ::user::AppearanceBottom)
+   //   {
+   //      *lprect = rect_dim(0,midcy,cx,midcy) + top_left(lprect);
+   //   }
+   //   else if(eappearance == ::user::AppearanceTopLeft)
+   //   {
+   //      *lprect = rect_dim(0,0,midcx,midcy) + top_left(lprect);
+   //   }
+   //   else if(eappearance == ::user::AppearanceTopRight)
+   //   {
+   //      *lprect = rect_dim(midcx,0,midcx,midcy) + top_left(lprect);
+   //   }
+   //   else if(eappearance == ::user::AppearanceBottomLeft)
+   //   {
+   //      *lprect = rect_dim(0,midcy,midcx,midcy) + top_left(lprect);
+   //   }
+   //   else if(eappearance == ::user::AppearanceBottomRight)
+   //   {
+   //      *lprect = rect_dim(midcx,midcy,midcx,midcy) + top_left(lprect);
+   //   }
+   //   else
+   //   {
+   //      return -1;
+   //   }
 
-      return iMonitor;
+   //   return iMonitor;
 
-   }
+   //}
 
-   index session::get_best_zoneing(::user::EAppearance * peappearance,LPRECT lprect,const RECT & rectParam)
-   {
+   //index session::get_best_zoneing(::user::EAppearance * peappearance,LPRECT lprect,const RECT & rectParam)
+   //{
 
-      index iMonitor = get_best_monitor(lprect,rectParam);
+   //   index iMonitor = get_best_monitor(lprect,rectParam);
 
-      int cx = width(lprect);
-      int cy = height(lprect);
+   //   int cx = width(lprect);
+   //   int cy = height(lprect);
 
-      if(cx <= 0 || cy <= 0)
-      {
+   //   if(cx <= 0 || cy <= 0)
+   //   {
 
-         *peappearance = ::user::AppearanceZoomed;
+   //      *peappearance = ::user::AppearanceZoomed;
 
-         return iMonitor;
+   //      return iMonitor;
 
-      }
+   //   }
 
-      if(width(rectParam) <= 0 || height(rectParam) <= 0)
-      {
+   //   if(width(rectParam) <= 0 || height(rectParam) <= 0)
+   //   {
 
-         *peappearance = ::user::AppearanceZoomed;
+   //      *peappearance = ::user::AppearanceZoomed;
 
-         return iMonitor;
+   //      return iMonitor;
 
-      }
+   //   }
 
 
-      int midcx = cx / 2;
-      int midcy = cy / 2;
+   //   int midcx = cx / 2;
+   //   int midcy = cy / 2;
 
-      rect_array recta;
-      array < ::user::EAppearance > aa;
+   //   rect_array recta;
+   //   array < ::user::EAppearance > aa;
 
-      aa.add(::user::AppearanceTop);
-      recta.add_dim(0,0,cx,midcy);
+   //   aa.add(::user::AppearanceTop);
+   //   recta.add_dim(0,0,cx,midcy);
 
-      aa.add(::user::AppearanceLeft);
-      recta.add_dim(0,0,midcx,cy);
+   //   aa.add(::user::AppearanceLeft);
+   //   recta.add_dim(0,0,midcx,cy);
 
-      aa.add(::user::AppearanceRight);
-      recta.add_dim(midcx,0, midcx, cy);
+   //   aa.add(::user::AppearanceRight);
+   //   recta.add_dim(midcx,0, midcx, cy);
 
-      aa.add(::user::AppearanceBottom);
-      recta.add_dim(0,midcy,cx,midcy);
+   //   aa.add(::user::AppearanceBottom);
+   //   recta.add_dim(0,midcy,cx,midcy);
 
-      aa.add(::user::AppearanceTopLeft);
-      recta.add_dim(0,0,midcx,midcy);
+   //   aa.add(::user::AppearanceTopLeft);
+   //   recta.add_dim(0,0,midcx,midcy);
 
-      aa.add(::user::AppearanceTopRight);
-      recta.add_dim(midcx,0,midcx,midcy);
+   //   aa.add(::user::AppearanceTopRight);
+   //   recta.add_dim(midcx,0,midcx,midcy);
 
-      aa.add(::user::AppearanceBottomLeft);
-      recta.add_dim(0,midcy,midcx,midcy);
+   //   aa.add(::user::AppearanceBottomLeft);
+   //   recta.add_dim(0,midcy,midcx,midcy);
 
-      aa.add(::user::AppearanceBottomRight);
-      recta.add_dim(midcx,midcy,midcx,midcy);
+   //   aa.add(::user::AppearanceBottomRight);
+   //   recta.add_dim(midcx,midcy,midcx,midcy);
 
-      int iFoundAppearance = recta.max_normal_intersect_area(rectParam,*lprect);
+   //   int iFoundAppearance = recta.max_normal_intersect_area(rectParam,*lprect);
 
-      if(iFoundAppearance < 0)
-      {
+   //   if(iFoundAppearance < 0)
+   //   {
 
-         *peappearance = ::user::AppearanceZoomed;
+   //      *peappearance = ::user::AppearanceZoomed;
 
-         return iMonitor;
+   //      return iMonitor;
 
-      }
+   //   }
 
-      if(lprect != NULL)
-      {
+   //   if(lprect != NULL)
+   //   {
 
-         *lprect = recta[iFoundAppearance];
+   //      *lprect = recta[iFoundAppearance];
 
-      }
+   //   }
 
-      *peappearance = aa[iFoundAppearance];
+   //   *peappearance = aa[iFoundAppearance];
 
-      return iMonitor;
+   //   return iMonitor;
 
-   }
+   //}
 
-   index session::get_best_monitor(LPRECT lprect,const RECT & rectParam)
-   {
+   //index session::get_best_monitor(LPRECT lprect,const RECT & rectParam)
+   //{
 
-      index iMatchingMonitor = -1;
-      int64_t iBestArea = -1;
-      rect rectMatch;
+   //   index iMatchingMonitor = -1;
+   //   int64_t iBestArea = -1;
+   //   rect rectMatch;
 
-      for(index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
-      {
+   //   for(index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
+   //   {
 
-         rect rectIntersect;
+   //      rect rectIntersect;
 
-         rect rectMonitor;
+   //      rect rectMonitor;
 
-         if(get_monitor_rect(iMonitor,rectMonitor))
-         {
+   //      if(get_monitor_rect(iMonitor,rectMonitor))
+   //      {
 
-            if(rectIntersect.top_left_null_intersect(&rectParam,rectMonitor))
-            {
+   //         if(rectIntersect.top_left_null_intersect(&rectParam,rectMonitor))
+   //         {
 
-               if(rectIntersect.area() > iBestArea)
-               {
+   //            if(rectIntersect.area() > iBestArea)
+   //            {
 
-                  iMatchingMonitor = iMonitor;
+   //               iMatchingMonitor = iMonitor;
 
-                  iBestArea = rectIntersect.area();
+   //               iBestArea = rectIntersect.area();
 
-                  rectMatch = rectMonitor;
+   //               rectMatch = rectMonitor;
 
-               }
+   //            }
 
-            }
+   //         }
 
-         }
+   //      }
 
-      }
+   //   }
 
-      if(iMatchingMonitor >= 0)
-      {
+   //   if(iMatchingMonitor >= 0)
+   //   {
 
-         if(lprect != NULL)
-         {
+   //      if(lprect != NULL)
+   //      {
 
-            *lprect = rectMatch;
+   //         *lprect = rectMatch;
 
-         }
+   //      }
 
-         return iMatchingMonitor;
+   //      return iMatchingMonitor;
 
-      }
+   //   }
 
-      iMatchingMonitor = get_main_monitor(lprect);
+   //   iMatchingMonitor = get_main_monitor(lprect);
 
-      return iMatchingMonitor;
+   //   return iMatchingMonitor;
 
-   }
+   //}
 
 
-   index session::get_best_wkspace(LPRECT lprect,const RECT & rectParam)
-   {
+   //index session::get_best_wkspace(LPRECT lprect,const RECT & rectParam)
+   //{
 
-      index iMatchingWkspace = -1;
-      int64_t iBestArea = -1;
-      rect rectMatch;
+   //   index iMatchingWkspace = -1;
+   //   int64_t iBestArea = -1;
+   //   rect rectMatch;
 
-      for(index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
-      {
+   //   for(index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
+   //   {
 
-         rect rectIntersect;
+   //      rect rectIntersect;
 
-         rect rectMonitor;
+   //      rect rectMonitor;
 
-         if(get_wkspace_rect(iWkspace,rectMonitor))
-         {
+   //      if(get_wkspace_rect(iWkspace,rectMonitor))
+   //      {
 
-            if(rectIntersect.top_left_null_intersect(&rectParam,rectMonitor))
-            {
+   //         if(rectIntersect.top_left_null_intersect(&rectParam,rectMonitor))
+   //         {
 
-               if(rectIntersect.area() > iBestArea)
-               {
+   //            if(rectIntersect.area() > iBestArea)
+   //            {
 
-                  iMatchingWkspace = iWkspace;
+   //               iMatchingWkspace = iWkspace;
 
-                  iBestArea = rectIntersect.area();
+   //               iBestArea = rectIntersect.area();
 
-                  rectMatch = rectMonitor;
+   //               rectMatch = rectMonitor;
 
-               }
+   //            }
 
-            }
+   //         }
 
-         }
+   //      }
 
-      }
+   //   }
 
-      if(iMatchingWkspace >= 0)
-      {
+   //   if(iMatchingWkspace >= 0)
+   //   {
 
-         *lprect = rectMatch;
+   //      *lprect = rectMatch;
 
-         return iMatchingWkspace;
+   //      return iMatchingWkspace;
 
-      }
+   //   }
 
-      iMatchingWkspace = get_main_wkspace(lprect);
+   //   iMatchingWkspace = get_main_wkspace(lprect);
 
-      return iMatchingWkspace;
+   //   return iMatchingWkspace;
 
-   }
+   //}
 
 
-   index session::get_good_restore(LPRECT lprect,const RECT & rectParam)
-   {
+   //index session::get_good_restore(LPRECT lprect,const RECT & rectParam)
+   //{
 
-      return initial_frame_position(lprect,rectParam,false);
+   //   return initial_frame_position(lprect,rectParam,false);
 
-   }
+   //}
 
 
-   index session::get_good_iconify(LPRECT lprect,const RECT & rectParam)
-   {
+   //index session::get_good_iconify(LPRECT lprect,const RECT & rectParam)
+   //{
 
-      rect rectMonitor;
+   //   rect rectMonitor;
 
-      index iMatchingMonitor = get_best_monitor(rectMonitor,rectParam);
+   //   index iMatchingMonitor = get_best_monitor(rectMonitor,rectParam);
 
-      lprect->left = rectMonitor.left;
-      lprect->top = rectMonitor.top;
-      lprect->right = rectMonitor.left;
-      lprect->bottom = rectMonitor.top;
+   //   lprect->left = rectMonitor.left;
+   //   lprect->top = rectMonitor.top;
+   //   lprect->right = rectMonitor.left;
+   //   lprect->bottom = rectMonitor.top;
 
-      return iMatchingMonitor;
+   //   return iMatchingMonitor;
 
-   }
+   //}
 
 
-   index session::get_good_move(LPRECT lprect,const RECT & rectParam)
-   {
+   //index session::get_good_move(LPRECT lprect,const RECT & rectParam)
+   //{
 
-      index iMatchingMonitor = initial_frame_position(lprect,rectParam,true);
+   //   index iMatchingMonitor = initial_frame_position(lprect,rectParam,true);
 
-      if(memcmp(lprect,&rectParam,sizeof(RECT)))
-      {
+   //   if(memcmp(lprect,&rectParam,sizeof(RECT)))
+   //   {
 
-         return iMatchingMonitor;
+   //      return iMatchingMonitor;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         return -1;
+   //      return -1;
 
-      }
+   //   }
 
 
-   }
+   //}
 
 
-   bool  session::get_window_minimum_size(LPSIZE lpsize)
-   {
+   //bool  session::get_window_minimum_size(LPSIZE lpsize)
+   //{
 
-      lpsize->cx = 184 + 177;
+   //   lpsize->cx = 184 + 177;
 
-      lpsize->cy = 184 + 177;
+   //   lpsize->cy = 184 + 177;
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
 
@@ -1121,15 +1121,18 @@ namespace base
    bool session::process_initialize()
    {
 
-      if(!::axis::application::process_initialize())
+      if(!::axis::session::process_initialize())
          return false;
 
-      m_spuser = create_user();
-
-      if(m_spuser == NULL)
+      if(!::base::application::process_initialize())
          return false;
 
-      m_spuser->construct(this);
+      //m_spuser = create_user();
+
+      //if(m_spuser == NULL)
+      //   return false;
+
+      //m_spuser->construct(this);
 
       m_psockets = canew(::sockets::sockets(this));
 
@@ -1159,12 +1162,15 @@ namespace base
       if(!m_spfs->initialize())
          return false;
 
-      m_spcopydesk.alloc(allocer());
+      //m_spcopydesk.alloc(allocer());
 
-      if(!m_spcopydesk->initialize())
+      //if(!m_spcopydesk->initialize())
+      //   return false;
+
+      if(!::axis::session::initialize1())
          return false;
 
-      if(!::axis::application::initialize1())
+      if(!::base::application::initialize1())
          return false;
 
       m_puserpresence = canew(::userpresence::userpresence(this));
@@ -1208,141 +1214,141 @@ namespace base
       if(m_puserstrcontext == NULL)
          return false;
 
-      if(!m_spuser->initialize1())
-         return false;
+      //if(!m_spuser->initialize1())
+      //   return false;
 
-      if(!m_spuser->initialize2())
-         return false;
-
-
-      string strLocaleSystem;
-
-      string strSchemaSystem;
-
-      string strPath = System.dir().appdata("langstyle_settings.xml");
-
-      if(file().exists(strPath))
-      {
-
-         string strSystem = file().as_string(strPath);
-
-         ::xml::document docSystem(get_app());
-
-         if(docSystem.load(strSystem))
-         {
-
-            if(docSystem.get_child("lang") != NULL)
-            {
-
-               strLocaleSystem = docSystem.get_child("lang")->get_value();
-
-            }
-
-            if(docSystem.get_child("style") != NULL)
-            {
-
-               strSchemaSystem = docSystem.get_child("style")->get_value();
-
-            }
-
-         }
-
-      }
-
-      string strLocale;
-
-      string strSchema;
-
-#ifdef METROWIN
-
-      stringa stra;
-
-      try
-      {
-
-         stra.explode("-",::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
-
-      }
-      catch(long)
-      {
+      //if(!m_spuser->initialize2())
+      //   return false;
 
 
-      }
-
-      strLocale = stra[0];
-
-      strSchema = stra[0];
-
-#elif defined(WINDOWS)
-
-      LANGID langid = ::GetUserDefaultLangID();
-
-#define SPR_DEUTSCH LANG_GERMAN
-
-      if(langid == LANG_SWEDISH)
-      {
-         strLocale = "se";
-         strSchema = "se";
-      }
-      else if(langid == MAKELANGID(LANG_PORTUGUESE,SUBLANG_PORTUGUESE_BRAZILIAN))
-      {
-         strLocale = "pt-br";
-         strSchema = "pt-br";
-      }
-      else if(PRIMARYLANGID(langid) == SPR_DEUTSCH)
-      {
-         strLocale = "de";
-         strSchema = "de";
-      }
-      else if(PRIMARYLANGID(langid) == LANG_ENGLISH)
-      {
-         strLocale = "en";
-         strSchema = "en";
-      }
-      else if(PRIMARYLANGID(langid) == LANG_JAPANESE)
-      {
-         strLocale = "jp";
-         strSchema = "jp";
-      }
-      else if(PRIMARYLANGID(langid) == LANG_POLISH)
-      {
-         strLocale = "pl";
-         strSchema = "pl";
-      }
-
-#endif
-
-      if(strLocale.is_empty())
-         strLocale = "se";
-
-      if(strSchema.is_empty())
-         strSchema = "se";
-
-      if(strLocaleSystem.has_char())
-         strLocale = strLocaleSystem;
-
-      if(strSchemaSystem.has_char())
-         strSchema = strSchemaSystem;
-
-      if(Sys(this).directrix()->m_varTopicQuery["locale"].get_count() > 0)
-         strLocale = Sys(this).directrix()->m_varTopicQuery["locale"].stra()[0];
-
-      if(Sys(this).directrix()->m_varTopicQuery["schema"].get_count() > 0)
-         strSchema = Sys(this).directrix()->m_varTopicQuery["schema"].stra()[0];
-
-      if(App(this).directrix()->m_varTopicQuery["locale"].get_count() > 0)
-         strLocale = App(this).directrix()->m_varTopicQuery["locale"].stra()[0];
-
-      if(App(this).directrix()->m_varTopicQuery["schema"].get_count() > 0)
-         strSchema = App(this).directrix()->m_varTopicQuery["schema"].stra()[0];
-
-
-      set_locale(strLocale,::action::source::database());
-      set_schema(strSchema,::action::source::database());
-
-
-      str_context()->localeschema().m_idaLocale.add(strLocale);
-      str_context()->localeschema().m_idaSchema.add(strSchema);
+//      string strLocaleSystem;
+//
+//      string strSchemaSystem;
+//
+//      string strPath = System.dir().appdata("langstyle_settings.xml");
+//
+//      if(file().exists(strPath))
+//      {
+//
+//         string strSystem = file().as_string(strPath);
+//
+//         ::xml::document docSystem(get_app());
+//
+//         if(docSystem.load(strSystem))
+//         {
+//
+//            if(docSystem.get_child("lang") != NULL)
+//            {
+//
+//               strLocaleSystem = docSystem.get_child("lang")->get_value();
+//
+//            }
+//
+//            if(docSystem.get_child("style") != NULL)
+//            {
+//
+//               strSchemaSystem = docSystem.get_child("style")->get_value();
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//      string strLocale;
+//
+//      string strSchema;
+//
+//#ifdef METROWIN
+//
+//      stringa stra;
+//
+//      try
+//      {
+//
+//         stra.explode("-",::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
+//
+//      }
+//      catch(long)
+//      {
+//
+//
+//      }
+//
+//      strLocale = stra[0];
+//
+//      strSchema = stra[0];
+//
+//#elif defined(WINDOWS)
+//
+//      LANGID langid = ::GetUserDefaultLangID();
+//
+//#define SPR_DEUTSCH LANG_GERMAN
+//
+//      if(langid == LANG_SWEDISH)
+//      {
+//         strLocale = "se";
+//         strSchema = "se";
+//      }
+//      else if(langid == MAKELANGID(LANG_PORTUGUESE,SUBLANG_PORTUGUESE_BRAZILIAN))
+//      {
+//         strLocale = "pt-br";
+//         strSchema = "pt-br";
+//      }
+//      else if(PRIMARYLANGID(langid) == SPR_DEUTSCH)
+//      {
+//         strLocale = "de";
+//         strSchema = "de";
+//      }
+//      else if(PRIMARYLANGID(langid) == LANG_ENGLISH)
+//      {
+//         strLocale = "en";
+//         strSchema = "en";
+//      }
+//      else if(PRIMARYLANGID(langid) == LANG_JAPANESE)
+//      {
+//         strLocale = "jp";
+//         strSchema = "jp";
+//      }
+//      else if(PRIMARYLANGID(langid) == LANG_POLISH)
+//      {
+//         strLocale = "pl";
+//         strSchema = "pl";
+//      }
+//
+//#endif
+//
+//      if(strLocale.is_empty())
+//         strLocale = "se";
+//
+//      if(strSchema.is_empty())
+//         strSchema = "se";
+//
+//      if(strLocaleSystem.has_char())
+//         strLocale = strLocaleSystem;
+//
+//      if(strSchemaSystem.has_char())
+//         strSchema = strSchemaSystem;
+//
+//      if(Sys(this).directrix()->m_varTopicQuery["locale"].get_count() > 0)
+//         strLocale = Sys(this).directrix()->m_varTopicQuery["locale"].stra()[0];
+//
+//      if(Sys(this).directrix()->m_varTopicQuery["schema"].get_count() > 0)
+//         strSchema = Sys(this).directrix()->m_varTopicQuery["schema"].stra()[0];
+//
+//      if(App(this).directrix()->m_varTopicQuery["locale"].get_count() > 0)
+//         strLocale = App(this).directrix()->m_varTopicQuery["locale"].stra()[0];
+//
+//      if(App(this).directrix()->m_varTopicQuery["schema"].get_count() > 0)
+//         strSchema = App(this).directrix()->m_varTopicQuery["schema"].stra()[0];
+//
+//
+//      set_locale(strLocale,::action::source::database());
+//      set_schema(strSchema,::action::source::database());
+//
+//
+//      str_context()->localeschema().m_idaLocale.add(strLocale);
+//      str_context()->localeschema().m_idaSchema.add(strSchema);
 
 
       return true;
@@ -1353,10 +1359,13 @@ namespace base
    bool session::initialize2()
    {
 
-      if(!::axis::application::initialize2())
+      if(!::axis::session::initialize2())
          return false;
 
-      fill_locale_schema(*str_context()->m_plocaleschema);
+      if(!::base::application::initialize2())
+         return false;
+
+      //fill_locale_schema(*str_context()->m_plocaleschema);
 
       return true;
 
@@ -1380,8 +1389,11 @@ namespace base
       if(!m_pfontopus->initialize_instance())
          return false;
 
+      if(!::axis::session::initialize_instance())
+         return false;
 
-      if(!::axis::application::initialize_instance())
+
+      if(!::base::application::initialize_instance())
          return false;
 
 
@@ -1393,21 +1405,24 @@ namespace base
    bool session::initialize()
    {
 
-      if(!::axis::application::initialize())
+      if(!::axis::session::initialize())
          return false;
 
-      if(!is_installing() && !is_uninstalling())
-      {
-
-         if(!user()->keyboard().initialize())
-            return false;
-
-      }
-
-      if(!m_spuser->initialize())
+      if(!::base::application::initialize())
          return false;
 
-      user()->set_keyboard_layout(NULL,::action::source::database());
+      //if(!is_installing() && !is_uninstalling())
+      //{
+
+      //   if(!user()->keyboard().initialize())
+      //      return false;
+
+      //}
+
+      //if(!m_spuser->initialize())
+      //   return false;
+
+      //user()->set_keyboard_layout(NULL,::action::source::database());
 
 
       if(m_bIfs)
@@ -1447,7 +1462,19 @@ namespace base
       try
       {
 
-         bOk = ::axis::application::finalize();
+         bOk = ::base::application::finalize();
+
+      }
+      catch(...)
+      {
+
+         bOk = false;
+      }
+
+      try
+      {
+
+         bOk = ::axis::session::finalize();
 
       }
       catch(...)
@@ -1464,128 +1491,130 @@ namespace base
    int32_t session::exit_instance()
    {
 
-      try
-      {
-         if(m_spcopydesk.is_set())
-         {
-            m_spcopydesk->finalize();
-            m_spcopydesk.release();
-         }
-         m_splicense.release();
-      }
-      catch(...)
-      {
+      //try
+      //{
+      //   if(m_spcopydesk.is_set())
+      //   {
+      //      m_spcopydesk->finalize();
+      //      m_spcopydesk.release();
+      //   }
+      //   m_splicense.release();
+      //}
+      //catch(...)
+      //{
 
-      }
+      //}
 
 
-      ::axis::application::exit_instance();
+      ::base::application::exit_instance();
+
+      ::axis::session::exit_instance();
 
       return 0;
 
    }
 
 
-   void system::enum_display_monitors()
-   {
+//   void system::enum_display_monitors()
+//   {
+//
+//#ifdef WINDOWSEX
+//
+//      m_monitorinfoa.remove_all();
+//
+//      ::EnumDisplayMonitors(NULL,NULL,&system::monitor_enum_proc,(LPARAM)(dynamic_cast < ::base::system * > (this)));
+//
+//#else
+//
+//      // todo
+//      //      m_monitorinfoa.remove_all();
+//
+//
+//#endif
+//
+//   }
+//
+//
+//
+//#ifdef WINDOWSEX
+//   BOOL CALLBACK system::monitor_enum_proc(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor,LPARAM dwData)
+//   {
+//
+//      ::base::system * psystem = (::base::system *) dwData;
+//
+//      psystem->monitor_enum(hmonitor,hdcMonitor,lprcMonitor);
+//
+//      return TRUE; // to enumerate all
+//
+//   }
+//
+//   void system::monitor_enum(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor)
+//   {
+//
+//      UNREFERENCED_PARAMETER(hdcMonitor);
+//      UNREFERENCED_PARAMETER(lprcMonitor);
+//
+//      m_monitorinfoa.allocate(m_monitorinfoa.get_size() + 1);
+//
+//      ZERO(m_monitorinfoa.last_element());
+//
+//      m_hmonitora.add(hmonitor);
+//
+//      m_monitorinfoa.last_element().cbSize = sizeof(MONITORINFO);
+//
+//      ::GetMonitorInfo(hmonitor,&m_monitorinfoa.last_element());
+//
+//      MONITORINFO mi = m_monitorinfoa.last_element();
+//
+//      TRACE0("session::monitor_enum\n");
+//      TRACE("upper_bound %d\n",m_monitorinfoa.get_upper_bound());
+//      TRACE("rcMonitor(left, top, right, bottom) %d, %d, %d, %d\n",mi.rcMonitor.left,mi.rcMonitor.top,mi.rcMonitor.right,mi.rcMonitor.bottom);
+//      TRACE("rcWork(left, top, right, bottom) %d, %d, %d, %d\n",mi.rcWork.left,mi.rcWork.top,mi.rcWork.right,mi.rcWork.bottom);
+//
+//   }
+//
+//
+//#endif
+//
 
-#ifdef WINDOWSEX
-
-      m_monitorinfoa.remove_all();
-
-      ::EnumDisplayMonitors(NULL,NULL,&system::monitor_enum_proc,(LPARAM)(dynamic_cast < ::base::system * > (this)));
-
-#else
-
-      // todo
-      //      m_monitorinfoa.remove_all();
-
-
-#endif
-
-   }
-
-
-
-#ifdef WINDOWSEX
-   BOOL CALLBACK system::monitor_enum_proc(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor,LPARAM dwData)
-   {
-
-      ::base::system * psystem = (::base::system *) dwData;
-
-      psystem->monitor_enum(hmonitor,hdcMonitor,lprcMonitor);
-
-      return TRUE; // to enumerate all
-
-   }
-
-   void system::monitor_enum(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor)
-   {
-
-      UNREFERENCED_PARAMETER(hdcMonitor);
-      UNREFERENCED_PARAMETER(lprcMonitor);
-
-      m_monitorinfoa.allocate(m_monitorinfoa.get_size() + 1);
-
-      ZERO(m_monitorinfoa.last_element());
-
-      m_hmonitora.add(hmonitor);
-
-      m_monitorinfoa.last_element().cbSize = sizeof(MONITORINFO);
-
-      ::GetMonitorInfo(hmonitor,&m_monitorinfoa.last_element());
-
-      MONITORINFO mi = m_monitorinfoa.last_element();
-
-      TRACE0("session::monitor_enum\n");
-      TRACE("upper_bound %d\n",m_monitorinfoa.get_upper_bound());
-      TRACE("rcMonitor(left, top, right, bottom) %d, %d, %d, %d\n",mi.rcMonitor.left,mi.rcMonitor.top,mi.rcMonitor.right,mi.rcMonitor.bottom);
-      TRACE("rcWork(left, top, right, bottom) %d, %d, %d, %d\n",mi.rcWork.left,mi.rcWork.top,mi.rcWork.right,mi.rcWork.bottom);
-
-   }
-
-
-#endif
-
-
-   void session::get_cursor_pos(LPPOINT lppoint)
-   {
-
-      if(m_bSystemSynchronizedCursor)
-      {
-
-#ifdef METROWIN
-
-         Windows::Foundation::Point p;
-
-         p = System.m_posdata->m_pwindow->get_cursor_pos();
-
-         lppoint->x = (LONG)p.X;
-
-         lppoint->y = (LONG)p.Y;
-
-#else
-
-         ::GetCursorPos(&m_ptCursor);
-
-#endif
-
-      }
-
-      if(lppoint != NULL)
-      {
-
-         *lppoint = m_ptCursor;
-
-      }
-
-   }
+//   void session::get_cursor_pos(LPPOINT lppoint)
+//   {
+//
+//      if(m_bSystemSynchronizedCursor)
+//      {
+//
+//#ifdef METROWIN
+//
+//         Windows::Foundation::Point p;
+//
+//         p = System.m_posdata->m_pwindow->get_cursor_pos();
+//
+//         lppoint->x = (LONG)p.X;
+//
+//         lppoint->y = (LONG)p.Y;
+//
+//#else
+//
+//         ::GetCursorPos(&m_ptCursor);
+//
+//#endif
+//
+//      }
+//
+//      if(lppoint != NULL)
+//      {
+//
+//         *lppoint = m_ptCursor;
+//
+//      }
+//
+//   }
 
 
    sp(::user::interaction) session::get_active_guie()
    {
 
-      return System.get_active_guie();
+      return ::axis::session::get_active_guie();
 
    }
 
@@ -1593,454 +1622,316 @@ namespace base
    sp(::user::interaction) session::get_focus_guie()
    {
 
-#if defined (METROWIN)
-
-      return GetFocus()->m_pui;
-
-#elif defined(WINDOWSEX) || defined(LINUX)
-
-      ::user::interaction * pwnd = ::window_from_handle(::GetFocus());
-      if(pwnd != NULL)
-      {
-         if(get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-            || ::user::window_util::IsAscendant(get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
-         {
-            return pwnd;
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      pwnd = System.window_from_os_data(::GetFocus());
-      if(pwnd != NULL)
-      {
-         if(get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-            || ::user::window_util::IsAscendant(get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
-         {
-            return pwnd;
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      pwnd = m_spuiFocus;
-      if(pwnd != NULL)
-      {
-         if(get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-            || ::user::window_util::IsAscendant(get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
-         {
-            return pwnd;
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      return NULL;
-#else
-
-      return System.get_active_guie();
-
-#endif
+      ::axis::session::get_active_guie();
 
    }
 
 
-   application_ptra & session::appptra()
-   {
+   //application_ptra & session::appptra()
+   //{
 
-      return m_appptra;
+   //   return m_appptra;
 
-   }
+   //}
+
+
 
+
+   //bool session::is_key_pressed(::user::e_key ekey)
+   //{
+
+   //   if(m_pmapKeyPressed == NULL)
+   //   {
+
+   //      m_pmapKeyPressed = new ::map < ::user::e_key,::user::e_key,bool,bool >;
+
+   //   }
+   //      
+   //   bool bPressed = false;
+   //   if(ekey == ::user::key_shift)
+   //   {
+   //      m_pmapKeyPressed->Lookup(::user::key_shift,bPressed);
+   //      if(bPressed)
+   //         goto ret;
+   //      m_pmapKeyPressed->Lookup(::user::key_lshift,bPressed);
+   //      if(bPressed)
+   //         goto ret;
+   //      m_pmapKeyPressed->Lookup(::user::key_rshift,bPressed);
+   //      if(bPressed)
+   //         goto ret;
+   //   }
+   //   else if(ekey == ::user::key_control)
+   //   {
+   //      m_pmapKeyPressed->Lookup(::user::key_control,bPressed);
+   //      if(bPressed)
+   //         goto ret;
+   //      m_pmapKeyPressed->Lookup(::user::key_lcontrol,bPressed);
+   //      if(bPressed)
+   //         goto ret;
+   //      m_pmapKeyPressed->Lookup(::user::key_rcontrol,bPressed);
+   //      if(bPressed)
+   //         goto ret;
+   //   }
+   //   else if(ekey == ::user::key_alt)
+   //   {
+   //      m_pmapKeyPressed->Lookup(::user::key_alt,bPressed);
+   //      if(bPressed)
+   //         goto ret;
+   //      m_pmapKeyPressed->Lookup(::user::key_lalt,bPressed);
+   //      if(bPressed)
+   //         goto ret;
+   //      m_pmapKeyPressed->Lookup(::user::key_ralt,bPressed);
+   //      if(bPressed)
+   //         goto ret;
+   //   }
+   //   else
+   //   {
 
-   string session::matter_as_string(const char * pszMatter,const char * pszMatter2)
-   {
+   //      m_pmapKeyPressed->Lookup(ekey,bPressed);
 
-      var varQuery;
+   //   }
 
-      varQuery["disable_ca2_sessid"] = true;
+   //ret:
 
-      return file().as_string(dir_matter(pszMatter,pszMatter2),varQuery);
+   //   return bPressed;
 
-   }
+   //}
 
-   string session::dir_matter(const char * pszMatter,const char * pszMatter2)
-   {
+   //void session::set_key_pressed(::user::e_key ekey,bool bPressed)
+   //{
 
-      return dir().matter(pszMatter,pszMatter2);
+   //   if(m_pmapKeyPressed == NULL)
+   //   {
 
-   }
-
-   bool session::is_inside_time_dir(const char * pszPath)
-   {
-      throw not_implemented(this);
-      return false;
-   }
-
-   bool session::file_is_read_only(const char * pszPath)
-   {
-      throw not_implemented(this);
-      return false;
-   }
-
-   string session::file_as_string(var varFile)
-   {
-
-      if(::str::begins_ci(varFile.get_string(),"http://")
-         || ::str::begins_ci(varFile.get_string(),"https://"))
-      {
-
-         ::property_set set(get_app());
-
-         return http().get(varFile.get_string(),set);
-
-      }
-      else if(::str::begins_ci(varFile["url"].get_string(),"http://")
-         || ::str::begins_ci(varFile["url"].get_string(),"https://"))
-      {
-
-         ::property_set set(get_app());
-
-         return http().get(varFile["url"].get_string(),set);
-
-      }
-      else
-      {
-         return file_as_string_dup(varFile.get_string());
-      }
+   //      m_pmapKeyPressed = new ::map < ::user::e_key,::user::e_key,bool,bool >;
 
-   }
+   //   }
 
-   string session::dir_path(const char * psz1,const char * psz2,const char * psz3)
-   {
-      return ::dir::path(psz1,psz2,psz3);
-   }
+   //   (*m_pmapKeyPressed)[ekey] = bPressed;
 
-   string session::dir_name(const char * psz)
-   {
-      return ::dir::name(psz);
-   }
+   //}
 
-   bool session::dir_mk(const char * psz)
-   {
-      return ::dir::mk(psz);
-   }
+   //::user::str_context * session::str_context()
+   //{
 
-   string session::file_title(const char * psz)
-   {
-      return ::file_title_dup(psz);
-   }
-   string session::file_name(const char * psz)
-   {
-      return ::file_name_dup(psz);
-   }
+   //   return m_puserstrcontext;
 
+   //}
 
-   bool session::is_key_pressed(::user::e_key ekey)
-   {
 
-      if(m_pmapKeyPressed == NULL)
-      {
+   //void session::set_locale(const string & lpcsz,::action::context actioncontext)
+   //{
+   //   string strLocale(lpcsz);
+   //   strLocale.trim();
+   //   m_strLocale = strLocale;
+   //   on_set_locale(m_strLocale,actioncontext);
+   //}
 
-         m_pmapKeyPressed = new ::map < ::user::e_key,::user::e_key,bool,bool >;
+   //void session::set_schema(const string & lpcsz,::action::context actioncontext)
+   //{
+   //   string strSchema(lpcsz);
+   //   strSchema.trim();
+   //   m_strSchema = strSchema;
+   //   on_set_schema(m_strSchema,actioncontext);
+   //}
 
-      }
-         
-      bool bPressed = false;
-      if(ekey == ::user::key_shift)
-      {
-         m_pmapKeyPressed->Lookup(::user::key_shift,bPressed);
-         if(bPressed)
-            goto ret;
-         m_pmapKeyPressed->Lookup(::user::key_lshift,bPressed);
-         if(bPressed)
-            goto ret;
-         m_pmapKeyPressed->Lookup(::user::key_rshift,bPressed);
-         if(bPressed)
-            goto ret;
-      }
-      else if(ekey == ::user::key_control)
-      {
-         m_pmapKeyPressed->Lookup(::user::key_control,bPressed);
-         if(bPressed)
-            goto ret;
-         m_pmapKeyPressed->Lookup(::user::key_lcontrol,bPressed);
-         if(bPressed)
-            goto ret;
-         m_pmapKeyPressed->Lookup(::user::key_rcontrol,bPressed);
-         if(bPressed)
-            goto ret;
-      }
-      else if(ekey == ::user::key_alt)
-      {
-         m_pmapKeyPressed->Lookup(::user::key_alt,bPressed);
-         if(bPressed)
-            goto ret;
-         m_pmapKeyPressed->Lookup(::user::key_lalt,bPressed);
-         if(bPressed)
-            goto ret;
-         m_pmapKeyPressed->Lookup(::user::key_ralt,bPressed);
-         if(bPressed)
-            goto ret;
-      }
-      else
-      {
-
-         m_pmapKeyPressed->Lookup(ekey,bPressed);
+   //void session::on_set_locale(const string & lpcsz,::action::context actioncontext)
+   //{
+   //   UNREFERENCED_PARAMETER(actioncontext);
+   //   UNREFERENCED_PARAMETER(lpcsz);
+   //   //System.appa_load_string_table();
+   //}
 
-      }
+   //void session::on_set_schema(const string & lpcsz,::action::context actioncontext)
+   //{
+   //   UNREFERENCED_PARAMETER(actioncontext);
+   //   UNREFERENCED_PARAMETER(lpcsz);
+   //   //System.appa_load_string_table();
+   //}
 
-   ret:
 
-      return bPressed;
+   //string session::get_locale()
+   //{
+   //   return m_strLocale;
+   //}
 
-   }
+   //string session::get_schema()
+   //{
+   //   return m_strSchema;
+   //}
 
-   void session::set_key_pressed(::user::e_key ekey,bool bPressed)
-   {
 
-      if(m_pmapKeyPressed == NULL)
-      {
+   //string session::get_locale_schema_dir()
+   //{
 
-         m_pmapKeyPressed = new ::map < ::user::e_key,::user::e_key,bool,bool >;
+   //   return System.dir().simple_path(get_locale(),get_schema());
 
-      }
+   //}
 
-      (*m_pmapKeyPressed)[ekey] = bPressed;
 
-   }
+   //string session::get_locale_schema_dir(const string & strLocale)
+   //{
 
-   ::user::str_context * session::str_context()
-   {
+   //   if(strLocale.is_empty())
+   //   {
 
-      return m_puserstrcontext;
+   //      return System.dir().simple_path(get_locale(),get_schema());
 
-   }
+   //   }
+   //   else
+   //   {
 
+   //      return System.dir().simple_path(strLocale,get_schema());
 
-   void session::set_locale(const string & lpcsz,::action::context actioncontext)
-   {
-      string strLocale(lpcsz);
-      strLocale.trim();
-      m_strLocale = strLocale;
-      on_set_locale(m_strLocale,actioncontext);
-   }
+   //   }
 
-   void session::set_schema(const string & lpcsz,::action::context actioncontext)
-   {
-      string strSchema(lpcsz);
-      strSchema.trim();
-      m_strSchema = strSchema;
-      on_set_schema(m_strSchema,actioncontext);
-   }
+   //}
 
-   void session::on_set_locale(const string & lpcsz,::action::context actioncontext)
-   {
-      UNREFERENCED_PARAMETER(actioncontext);
-      UNREFERENCED_PARAMETER(lpcsz);
-      //System.appa_load_string_table();
-   }
 
-   void session::on_set_schema(const string & lpcsz,::action::context actioncontext)
-   {
-      UNREFERENCED_PARAMETER(actioncontext);
-      UNREFERENCED_PARAMETER(lpcsz);
-      //System.appa_load_string_table();
-   }
+   //string session::get_locale_schema_dir(const string & strLocale,const string & strSchema)
+   //{
 
+   //   if(strLocale.is_empty())
+   //   {
 
-   string session::get_locale()
-   {
-      return m_strLocale;
-   }
+   //      if(strSchema.is_empty())
+   //      {
 
-   string session::get_schema()
-   {
-      return m_strSchema;
-   }
+   //         return System.dir().simple_path(get_locale(),get_schema());
 
+   //      }
+   //      else
+   //      {
 
-   string session::get_locale_schema_dir()
-   {
+   //         return System.dir().simple_path(get_locale(),strSchema);
 
-      return System.dir().simple_path(get_locale(),get_schema());
+   //      }
 
-   }
+   //   }
+   //   else
+   //   {
 
+   //      if(strSchema.is_empty())
+   //      {
 
-   string session::get_locale_schema_dir(const string & strLocale)
-   {
+   //         return System.dir().simple_path(strLocale,get_schema());
 
-      if(strLocale.is_empty())
-      {
+   //      }
+   //      else
+   //      {
 
-         return System.dir().simple_path(get_locale(),get_schema());
+   //         return System.dir().simple_path(strLocale,strSchema);
 
-      }
-      else
-      {
+   //      }
 
-         return System.dir().simple_path(strLocale,get_schema());
+   //   }
 
-      }
+   //}
 
-   }
 
+   //void session::fill_locale_schema(::str::international::locale_schema & localeschema,const char * pszLocale,const char * pszSchema)
+   //{
 
-   string session::get_locale_schema_dir(const string & strLocale,const string & strSchema)
-   {
 
-      if(strLocale.is_empty())
-      {
+   //   localeschema.m_idaLocale.remove_all();
+   //   localeschema.m_idaSchema.remove_all();
 
-         if(strSchema.is_empty())
-         {
 
-            return System.dir().simple_path(get_locale(),get_schema());
+   //   string strLocale(pszLocale);
+   //   string strSchema(pszSchema);
 
-         }
-         else
-         {
 
-            return System.dir().simple_path(get_locale(),strSchema);
+   //   localeschema.m_idLocale = pszLocale;
+   //   localeschema.m_idSchema = pszSchema;
 
-         }
 
-      }
-      else
-      {
+   //   localeschema.add_locale_variant(strLocale,strSchema);
+   //   localeschema.add_locale_variant(get_locale(),strSchema);
+   //   localeschema.add_locale_variant(__id(std),strSchema);
+   //   localeschema.add_locale_variant(__id(en),strSchema);
 
-         if(strSchema.is_empty())
-         {
 
-            return System.dir().simple_path(strLocale,get_schema());
+   //   localeschema.finalize();
 
-         }
-         else
-         {
 
-            return System.dir().simple_path(strLocale,strSchema);
+   //}
 
-         }
 
-      }
+   //void session::fill_locale_schema(::str::international::locale_schema & localeschema)
+   //{
 
-   }
 
+   //   localeschema.m_idaLocale.remove_all();
+   //   localeschema.m_idaSchema.remove_all();
 
-   void session::fill_locale_schema(::str::international::locale_schema & localeschema,const char * pszLocale,const char * pszSchema)
-   {
 
+   //   //localeschema.m_bAddAlternateStyle = true;
 
-      localeschema.m_idaLocale.remove_all();
-      localeschema.m_idaSchema.remove_all();
 
+   //   stringa straLocale;
+   //   stringa straSchema;
 
-      string strLocale(pszLocale);
-      string strSchema(pszSchema);
+   //   straLocale.add(get_locale());
+   //   straSchema.add(get_schema());
 
 
-      localeschema.m_idLocale = pszLocale;
-      localeschema.m_idSchema = pszSchema;
+   //   stringa stra;
 
+   //   stra = Application.directrix()->m_varTopicQuery["locale"].stra();
 
-      localeschema.add_locale_variant(strLocale,strSchema);
-      localeschema.add_locale_variant(get_locale(),strSchema);
-      localeschema.add_locale_variant(__id(std),strSchema);
-      localeschema.add_locale_variant(__id(en),strSchema);
+   //   stra.remove_ci("_std");
 
+   //   straLocale.add_unique(Application.directrix()->m_varTopicQuery["locale"].stra());
 
-      localeschema.finalize();
+   //   stra = Application.directrix()->m_varTopicQuery["schema"].stra();
 
+   //   stra.remove_ci("_std");
 
-   }
+   //   straSchema.add_unique(Application.directrix()->m_varTopicQuery["schema"].stra());
 
 
-   void session::fill_locale_schema(::str::international::locale_schema & localeschema)
-   {
+   //   localeschema.m_idLocale = straLocale[0];
+   //   localeschema.m_idSchema = straSchema[0];
 
+   //   for(index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+   //   {
 
-      localeschema.m_idaLocale.remove_all();
-      localeschema.m_idaSchema.remove_all();
+   //      for(index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
+   //      {
 
+   //         localeschema.add_locale_variant(straLocale[iLocale],straSchema[iSchema]);
 
-      //localeschema.m_bAddAlternateStyle = true;
+   //      }
 
+   //   }
 
-      stringa straLocale;
-      stringa straSchema;
+   //   for(index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
+   //   {
 
-      straLocale.add(get_locale());
-      straSchema.add(get_schema());
+   //      localeschema.add_locale_variant(get_locale(),straSchema[iSchema]);
 
+   //   }
 
-      stringa stra;
+   //   for(index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
+   //   {
 
-      stra = Application.directrix()->m_varTopicQuery["locale"].stra();
+   //      localeschema.add_locale_variant(__id(std),straSchema[iSchema]);
 
-      stra.remove_ci("_std");
+   //   }
 
-      straLocale.add_unique(Application.directrix()->m_varTopicQuery["locale"].stra());
 
-      stra = Application.directrix()->m_varTopicQuery["schema"].stra();
+   //   for(index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
+   //   {
 
-      stra.remove_ci("_std");
+   //      localeschema.add_locale_variant(__id(en),straSchema[iSchema]);
 
-      straSchema.add_unique(Application.directrix()->m_varTopicQuery["schema"].stra());
+   //   }
 
+   //   localeschema.finalize();
 
-      localeschema.m_idLocale = straLocale[0];
-      localeschema.m_idSchema = straSchema[0];
 
-      for(index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-      {
+   //}
 
-         for(index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
-         {
-
-            localeschema.add_locale_variant(straLocale[iLocale],straSchema[iSchema]);
-
-         }
-
-      }
-
-      for(index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
-      {
-
-         localeschema.add_locale_variant(get_locale(),straSchema[iSchema]);
-
-      }
-
-      for(index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
-      {
-
-         localeschema.add_locale_variant(__id(std),straSchema[iSchema]);
-
-      }
-
-
-      for(index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
-      {
-
-         localeschema.add_locale_variant(__id(en),straSchema[iSchema]);
-
-      }
-
-      localeschema.finalize();
-
-
-   }
-
-
-   ::file::binary_buffer_sp session::file_get_file(var varFile,uint32_t uiFlags)
-   {
-
-      return file().get_file(varFile,uiFlags);
-
-   }
 
 
    bool session::on_ui_mouse_message(::message::mouse * pmouse)

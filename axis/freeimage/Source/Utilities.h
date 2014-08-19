@@ -145,7 +145,8 @@ typedef struct tagFILE_BGR {
 // ==========================================================
 //   Template utility functions
 // ==========================================================
-
+#undef min
+#undef max
 /// Max function
 template <class T> T max(const T &a, const T &b) {
 	return (a > b) ? a: b;

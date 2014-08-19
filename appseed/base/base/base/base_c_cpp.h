@@ -379,8 +379,9 @@ typedef smart_pointer < thread_impl > thread_impl_sp;
 //#define Plat(paxisapp) (*paxisapp->m_pcoreplatform)
 //#define Platform (Plat(m_paxisapp))
 
-
+#undef App
 #undef Application
+#define App(paxisapp) (*paxisapp->m_pbaseapp)
 #define Application (App(m_paxisapp->m_pbaseapp))
 
 #define AppUser(pbaseapp) (*pbaseapp->m_pbasesession->fontopus()->get_user())

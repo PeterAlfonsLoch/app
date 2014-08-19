@@ -34,7 +34,8 @@
  */
 
 #include "opj_includes.h"
-
+#undef min
+#undef max
 #define max(a,b) ((a)>(b)?(a):(b))
 
 /* 

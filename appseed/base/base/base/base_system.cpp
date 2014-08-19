@@ -273,12 +273,12 @@ namespace base
    }
 
 
-   ::exception::engine & system::eengine()
-   {
+   //::exception::engine & system::eengine()
+   //{
 
-      return *m_peengine;
+   //   return *m_peengine;
 
-   }
+   //}
 
 
    bool system::process_initialize()
@@ -776,39 +776,39 @@ namespace base
    }
 
 
-   UINT system::os_post_to_all_threads(UINT uiMessage,WPARAM wparam,lparam lparam)
-   {
+   //UINT system::os_post_to_all_threads(UINT uiMessage,WPARAM wparam,lparam lparam)
+   //{
 
-      post_to_all_threads(uiMessage,wparam,lparam);
+   //   post_to_all_threads(uiMessage,wparam,lparam);
 
-      return 0;
+   //   return 0;
 
-   }
+   //}
 
-   sp(element) system::clone()
-   {
-      // by the time, it is not possible to clone a system
-      return NULL;
-   }
-
-
-
-   void system::discard_to_factory(sp(element) pca)
-   {
-
-      if(m_pfactory == NULL)
-         return;
-
-      m_pfactory->discard(pca);
-
-   }
+   //sp(element) system::clone()
+   //{
+   //   // by the time, it is not possible to clone a system
+   //   return NULL;
+   //}
 
 
 
-   void system::wait_twf()
-   {
+   //void system::discard_to_factory(sp(element) pca)
+   //{
 
-   }
+   //   if(m_pfactory == NULL)
+   //      return;
+
+   //   m_pfactory->discard(pca);
+
+   //}
+
+
+
+   //void system::wait_twf()
+   //{
+
+   //}
 
    bool system::is_system()
    {
@@ -837,7 +837,7 @@ namespace base
       if(m_plog == NULL || !m_plog->m_bExtendedLog)
       {
 
-         return ::base::SimpleDebugReport(iReportType,pszFileName,iLineNumber,pszModuleName,pszFormat,list);
+         return ::axis::SimpleDebugReport(iReportType,pszFileName,iLineNumber,pszModuleName,pszFormat,list);
 
       }
 
@@ -929,27 +929,27 @@ namespace base
 
 
 
-   sp(element) system::on_alloc(sp(::axis::application) papp,sp(type) info)
-   {
-      /*string str;
-      str.Format("Could not alloc %s", info.name());
-      simple_message_box(str);*/
-      sp(element) pobj = m_pfactory->create(papp,info);
-      if(pobj != NULL)
-         return pobj;
-      on_allocation_error(papp,info);
-      return NULL;
-   }
+   //sp(element) system::on_alloc(sp(::axis::application) papp,sp(type) info)
+   //{
+   //   /*string str;
+   //   str.Format("Could not alloc %s", info.name());
+   //   simple_message_box(str);*/
+   //   sp(element) pobj = m_pfactory->create(papp,info);
+   //   if(pobj != NULL)
+   //      return pobj;
+   //   on_allocation_error(papp,info);
+   //   return NULL;
+   //}
 
-   sp(element) system::alloc(sp(::axis::application) papp,sp(type) info)
-   {
-      return on_alloc(papp,info);
-   }
+   //sp(element) system::alloc(sp(::axis::application) papp,sp(type) info)
+   //{
+   //   return on_alloc(papp,info);
+   //}
 
-   sp(element) system::alloc(sp(::axis::application) papp,const std_type_info & info)
+   /*sp(element) system::alloc(sp(::axis::application) papp,const std_type_info & info)
    {
       return on_alloc(papp,canew(type(info)));
-   }
+   }*/
 
    void system::on_allocation_error(sp(::axis::application) papp,sp(type) info)
    {
@@ -957,44 +957,44 @@ namespace base
       UNREFERENCED_PARAMETER(info);
    }
 
-   sp(element) system::alloc(sp(::axis::application) papp,const class id & idType)
-   {
-      return on_alloc(papp,get_type_info(idType));
-   }
+//   sp(element) system::alloc(sp(::axis::application) papp,const class id & idType)
+//   {
+//      return on_alloc(papp,get_type_info(idType));
+//   }
+//
+//
+//   sp(type) system::get_type_info(const ::std_type_info & info)
+//   {
+//
+//      synch_lock sl(m_spmutexFactory);
+//
+//#ifdef WINDOWS
+//      sp(type) & typeinfo = m_typemap[info.raw_name()];
+//#else
+//      sp(type) & typeinfo = m_typemap[info.name()];
+//#endif
+//
+//      if(typeinfo.is_null())
+//         typeinfo = canew(type(info));
+//
+//      return typeinfo;
+//
+//   }
+//
+//
+//   ::xml::departament & system::xml()
+//   {
+//      return *m_pxml;
+//   }
+//
 
 
-   sp(type) system::get_type_info(const ::std_type_info & info)
-   {
+   //class ::str::base64 & system::base64()
+   //{
 
-      synch_lock sl(m_spmutexFactory);
+   //   return m_base64;
 
-#ifdef WINDOWS
-      sp(type) & typeinfo = m_typemap[info.raw_name()];
-#else
-      sp(type) & typeinfo = m_typemap[info.name()];
-#endif
-
-      if(typeinfo.is_null())
-         typeinfo = canew(type(info));
-
-      return typeinfo;
-
-   }
-
-
-   ::xml::departament & system::xml()
-   {
-      return *m_pxml;
-   }
-
-
-
-   class ::str::base64 & system::base64()
-   {
-
-      return m_base64;
-
-   }
+   //}
 
 
 
@@ -1014,24 +1014,24 @@ namespace base
 
 
 
-   ::datetime::departament & system::datetime()
-   {
-      return *m_pdatetime;
-   }
+   //::datetime::departament & system::datetime()
+   //{
+   //   return *m_pdatetime;
+   //}
 
 
 
-   sp(::user::window_draw) system::get_twf()
-   {
+   //sp(::user::window_draw) system::get_twf()
+   //{
 
-      return m_ptwf;
+   //   return m_ptwf;
 
-   }
+   //}
 
-   ::axis::log & system::log()
-   {
-      return *m_plog;
-   }
+   //::axis::log & system::log()
+   //{
+   //   return *m_plog;
+   //}
 
 
 
@@ -1050,72 +1050,72 @@ namespace base
 
 
 
-   machine_event_central & system::machine_event_central()
-   {
-      return *m_pmachineeventcentral;
-   }
+   //machine_event_central & system::machine_event_central()
+   //{
+   //   return *m_pmachineeventcentral;
+   //}
 
 
-   ::user::str & system::str()
-   {
+   //::user::str & system::str()
+   //{
 
-      return *m_puserstr;
+   //   return *m_puserstr;
 
-   }
-
-
-   sp(::user::document) system::place_hold(sp(::user::interaction) pui)
-   {
+   //}
 
 
-      //if(m_pcubeInterface != NULL)
-      //{
-      // return m_pcubeInterface->hold(pui);
-      //}
-
-      return NULL;
-
-   }
+   //sp(::user::document) system::place_hold(sp(::user::interaction) pui)
+   //{
 
 
-   sp(::base::session) system::query_session(index iEdge)
-   {
+   //   //if(m_pcubeInterface != NULL)
+   //   //{
+   //   // return m_pcubeInterface->hold(pui);
+   //   //}
 
-      return NULL;
+   //   return NULL;
 
-   }
-
-
-   ::base::os & system::os()
-   {
-
-      return *m_spos;
-
-   }
+   //}
 
 
-   spa(::base::session) & system::basesessionptra()
-   {
+   //sp(::base::session) system::query_session(index iEdge)
+   //{
 
-      return m_basesessionptra;
+   //   return NULL;
 
-   }
+   //}
 
-   bool system::initialize_log(const char * pszId)
-   {
-      if(m_plog != NULL)
-         return true;
-      m_plog = new ::axis::log(this);
-      m_plog->set_extended_log();
-      m_plog->set_app(this);
-      if(!m_plog->initialize(pszId))
-      {
-         m_plog.release();
-         return false;
-      }
-      //      ::core::trace_v = &::core::system_log_trace_v;
-      return true;
-   }
+
+   //::base::os & system::os()
+   //{
+
+   //   return *m_spos;
+
+   //}
+
+
+   //spa(::base::session) & system::basesessionptra()
+   //{
+
+   //   return m_basesessionptra;
+
+   //}
+
+   //bool system::initialize_log(const char * pszId)
+   //{
+   //   if(m_plog != NULL)
+   //      return true;
+   //   m_plog = new ::axis::log(this);
+   //   m_plog->set_extended_log();
+   //   m_plog->set_app(this);
+   //   if(!m_plog->initialize(pszId))
+   //   {
+   //      m_plog.release();
+   //      return false;
+   //   }
+   //   //      ::core::trace_v = &::core::system_log_trace_v;
+   //   return true;
+   //}
 
 
 
@@ -1306,656 +1306,656 @@ namespace base
 
 
 
-   bool system::initialize_twf()
-   {
-
-      if(m_ptwf != NULL)
-         return true;
-
-      sp(::user::window_draw) pwindow = alloc(System.type_info < ::user::window_draw >());
-
-      m_ptwf = pwindow;
-
-      m_ptwf->add_ref();
-
-      if(m_ptwf->twf_start())
-         return false;
-
-      return true;
-
-   }
-
-
-   index system::get_main_monitor(LPRECT lprect)
-   {
-
-      int iMainMonitor = 0;
-
-#ifdef WINDOWSEX
-
-      HMONITOR hmonitorPrimary = GetPrimaryMonitorHandle();
-
-      for(index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
-      {
-
-         if(m_hmonitora[iMonitor] == hmonitorPrimary)
-         {
-
-            iMainMonitor = iMonitor;
-
-            break;
-
-         }
-
-      }
-
-
-#endif
-
-      if(lprect != NULL)
-      {
-
-         get_monitor_rect(iMainMonitor,lprect);
-
-      }
-
-      return iMainMonitor;
-
-   }
-
-
-   ::count system::get_monitor_count()
-   {
-
-#ifdef WINDOWSEX
-
-      return m_monitorinfoa.get_count();
-
-#elif defined(MACOS)
-      
-      return GetScreenCount();
-      
-#else
-
-      return 1;
-
-#endif
-
-   }
-
-
-   bool system::get_monitor_rect(index iMonitor,LPRECT lprect)
-   {
-
-#ifdef WINDOWSEX
-
-      if(iMonitor < 0 || iMonitor >= get_monitor_count())
-         return false;
-
-      *lprect = m_monitorinfoa[iMonitor].rcMonitor;
-
-#elif defined(METROWIN)
-
-
-      get_window_rect(m_posdata->m_pwindow,lprect);
-
-
-#elif defined(LINUX)
-
-      xdisplay  d;
-
-      if(!d.open(NULL))
-         return false;
-
-      lprect->left = 0;
-      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
-      lprect->top = 0;
-      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
-
-#elif defined(APPLEOS)
-
-      if(iMonitor < 0 || iMonitor >= get_monitor_count())
-         return false;
-
-      GetScreenRect(lprect, iMonitor);
-
-#else
-
-      throw todo(get_app());
-
-      ::GetWindowRect(::GetDesktopWindow(),lprect);
-
-#endif
-
-      return true;
-
-   }
-
-
-   ::count system::get_desk_monitor_count()
-   {
-
-      return get_monitor_count();
-
-   }
-
-
-   bool system::get_desk_monitor_rect(index iMonitor,LPRECT lprect)
-   {
-
-      return get_monitor_rect(iMonitor,lprect);
-
-   }
-
-
-   index system::get_ui_wkspace(::user::interaction * pui)
-   {
-
-      int iMainWkspace = 0;
-
-#ifdef WINDOWSEX
-
-      HMONITOR hwkspacePrimary = GetUiMonitorHandle(pui->get_handle());
-
-      for(index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
-      {
-
-         if(m_hmonitora[iWkspace] == hwkspacePrimary)
-         {
-
-            iMainWkspace = iWkspace;
-
-            break;
-
-         }
-
-      }
-
-
-#endif
-
-      return iMainWkspace;
-
-   }
-
-
-   index system::get_main_wkspace(LPRECT lprect)
-   {
-
-      int iMainWkspace = 0;
-
-#ifdef WINDOWSEX
-
-      HMONITOR hwkspacePrimary = GetPrimaryMonitorHandle();
-
-      for(index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
-      {
-
-         if(m_hmonitora[iWkspace] == hwkspacePrimary)
-         {
-
-            iMainWkspace = iWkspace;
-
-            break;
-
-         }
-
-      }
-
-
-#endif
-
-      if(lprect != NULL)
-      {
-
-         get_wkspace_rect(iMainWkspace,lprect);
-
-      }
-
-      return iMainWkspace;
-
-   }
-
-
-   ::count system::get_wkspace_count()
-   {
-
-#ifdef WINDOWSEX
-
-      return m_monitorinfoa.get_count();
-
-#else
-
-      return 1;
-
-#endif
-
-   }
-
-
-   bool system::get_wkspace_rect(index iWkspace,LPRECT lprect)
-   {
-
-#ifdef WINDOWSEX
-
-      if(iWkspace < 0 || iWkspace >= get_wkspace_count())
-         return false;
-
-      *lprect = m_monitorinfoa[iWkspace].rcWork;
-
-#elif defined(METROWIN)
-
-      return get_monitor_rect(iWkspace,lprect);
-
-#elif defined(LINUX)
-
-      xdisplay  d;
-
-      if(!d.open(NULL))
-         return false;
-
-      lprect->left = 0;
-      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
-      lprect->top = 0;
-      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
-
-#elif defined(APPLEOS)
-
-      if(iWkspace < 0 || iWkspace >= get_wkspace_count())
-         return false;
-
-      GetWkspaceRect(lprect, iWkspace);
-      
-//      lprect->top += ::mac::get_system_main_menu_bar_height();
-  //    lprect->bottom -= ::mac::get_system_dock_height();
-
-#else
-
-      throw todo(get_app());
-
-      ::GetWindowRect(::GetDesktopWindow(),lprect);
-
-#endif
-
-      return true;
-
-   }
-
-
-   ::count system::get_desk_wkspace_count()
-   {
-
-      return get_wkspace_count();
-
-   }
-
-
-   bool system::get_desk_wkspace_rect(index iWkspace,LPRECT lprect)
-   {
-
-      return get_wkspace_rect(iWkspace,lprect);
-
-   }
-
-#ifdef WINDOWSEX
-
-
-   system::interaction_impl::interaction_impl(sp(::axis::application) papp):
-      element(papp),
-      ::user::interaction(papp)
-   {
-
-   }
-
-   void system::interaction_impl::install_message_handling(::message::dispatch * pdispatch)
-   {
-
-      ::user::interaction::install_message_handling(pdispatch);
-
-      IGUI_WIN_MSG_LINK(WM_DISPLAYCHANGE,pdispatch,this,&::base::system::interaction_impl::_001MessageHub);
-
-   }
-
-   void system::interaction_impl::_001MessageHub(signal_details * pobj)
-   {
-
-      SCAST_PTR(::message::base,pbase,pobj);
-
-      if(pbase != NULL)
-      {
-
-         if(pbase->m_uiMessage == WM_DISPLAYCHANGE)
-         {
-
-            System.enum_display_monitors();
-
-            for(index i = 0; i < System.frames().get_count(); i++)
-            {
-
-               try
-               {
-
-                  System.frames()[i]->WfiRestore(true);
-
-               }
-               catch(...)
-               {
-               }
-
-            }
-
-
-         }
-
-      }
-
-   }
-
-
-#endif
-
-
-   sp(::user::interaction) system::get_active_guie()
-   {
-
-#if defined(WINDOWSEX) || defined(LINUX) || defined(APPLEOS)
-
-      return window_from_os_data(::GetActiveWindow());
-
-#else
-
-      if(frames().get_size() <= 0)
-         return NULL;
-
-      return frames()[0];
-
-#endif
-
-   }
-
-
-   sp(::user::interaction) system::get_focus_guie()
-   {
-
-#if defined (METROWIN)
-
-      return GetFocus()->m_pui;
-
-#elif defined(WINDOWSEX) || defined(LINUX)
-
-      ::user::interaction * pwnd = ::window_from_handle(::GetFocus());
-      if(pwnd != NULL)
-      {
-         if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-            || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
-         {
-            return pwnd;
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      pwnd = System.window_from_os_data(::GetFocus());
-      if(pwnd != NULL)
-      {
-         if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-            || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
-         {
-            return pwnd;
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      return NULL;
-#else
-
-      return System.get_active_guie();
-
-#endif
-
-   }
-
-
-   ::count system::get_application_count()
-   {
-
-      ::count c = 0;
-
-      try
-      {
-
-         for(index iBaseSession = 0; iBaseSession < m_basesessionptra.get_count(); iBaseSession++)
-         {
-
-            try
-            {
-
-               c += m_basesessionptra[iBaseSession].appptra().get_count();
-
-            }
-            catch(...)
-            {
-
-            }
-
-         }
-
-      }
-      catch(...)
-      {
-
-      }
-
-      return c;
-
-   }
-
-
-   application_ptra system::get_appptra()
-   {
-
-      application_ptra appptra;
-
-      try
-      {
-
-         for(index iBaseSession = 0; iBaseSession < m_basesessionptra.get_count(); iBaseSession++)
-         {
-
-            try
-            {
-
-               appptra += m_basesessionptra[iBaseSession].appptra();
-
-            }
-            catch(...)
-            {
-
-            }
-
-         }
-
-      }
-      catch(...)
-      {
-
-
-      }
-
-      return appptra;
-
-   }
-
-
-   string system::get_ca2_module_folder()
-   {
-
-      single_lock sl(m_pmutex,true);
-
-      return m_strCa2ModuleFolder;
-
-   }
-
-
-   string system::get_ca2_module_file_path()
-   {
-
-      string strModuleFileName;
-
-#ifdef WINDOWSEX
-
-      wchar_t lpszModuleFilePath[MAX_PATH + 1];
-
-      if(GetModuleFileNameW(::GetModuleHandleA("core.dll"),lpszModuleFilePath,MAX_PATH + 1))
-      {
-
-         strModuleFileName = lpszModuleFilePath;
-
-      }
-
-#elif defined(METROWIN)
-
-      throw todo(this);
-
-#else
-
-#ifdef LINUX
-
-      {
-
-         void * handle = dlopen("core.so",0);
-
-         if(handle == NULL)
-            return "";
-
-         link_map * plm;
-
-         dlinfo(handle,RTLD_DI_LINKMAP,&plm);
-
-         strModuleFileName = plm->l_name;
-
-         dlclose(handle);
-
-         //         m_strCa2ModuleFolder = dir::name(strModuleFileName);
-
-      }
-
-#else
-
-      {
-
-         char * pszCurDir = getcwd(NULL,0);
-
-         string strCurDir = pszCurDir;
-
-         free(pszCurDir);
-
-         if(Application.file().exists(System.dir().path(strCurDir,"core.dylib")))
-         {
-            m_strCa2ModuleFolder = strCurDir;
-            goto finishedCa2Module;
-         }
-
-
-         if(Application.file().exists(System.dir().path(m_strModuleFolder,"core.dylib")))
-         {
-            m_strCa2ModuleFolder = m_strModuleFolder;
-            goto finishedCa2Module;
-         }
-
-         strModuleFileName = Application.dir().pathfind(getenv("LD_LIBRARY_PATH"),"core.dylib","rfs"); // readable - normal file - non zero sized
-
-      }
-
-   finishedCa2Module:;
-
-#endif
-
-#endif
-
-      return strModuleFileName;
-
-
-   }
-
-
-   string system::get_module_folder()
-   {
-
-      return m_strModuleFolder;
-
-   }
-
-
-   string system::get_module_file_path()
-   {
-
-#ifdef WINDOWSEX
-
-      wchar_t lpszModuleFilePath[MAX_PATH + 1];
-
-      GetModuleFileNameW(NULL,lpszModuleFilePath,MAX_PATH + 1);
-
-      string strModuleFileName(lpszModuleFilePath);
-
-      return strModuleFileName;
-
-#elif defined(METROWIN)
-
-      return "m_app.exe";
-
-#else
-
-      char * lpszModuleFilePath = br_find_exe_dir("app");
-
-      if(lpszModuleFilePath == NULL)
-         return "";
-
-      string strModuleFileName(lpszModuleFilePath);
-
-      free(lpszModuleFilePath);
-
-      return strModuleFileName;
-
-#endif
-
-   }
-
-
-   string system::get_module_title()
-   {
-
-      return file().title_(get_module_file_path());
-
-   }
-
-
-   string system::get_module_name()
-   {
-
-      return file().name_(get_module_file_path());
-
-   }
-
-   colorertake5::ParserFactory & system::parser_factory()
-   {
-
-      if(m_pparserfactory == NULL)
-      {
-
-         m_pparserfactory = new colorertake5::ParserFactory(this);
-
-      }
-
-      return *m_pparserfactory;
-
-   }
-
-
-
+//   bool system::initialize_twf()
+//   {
+//
+//      if(m_ptwf != NULL)
+//         return true;
+//
+//      sp(::user::window_draw) pwindow = alloc(System.type_info < ::user::window_draw >());
+//
+//      m_ptwf = pwindow;
+//
+//      m_ptwf->add_ref();
+//
+//      if(m_ptwf->twf_start())
+//         return false;
+//
+//      return true;
+//
+//   }
+//
+//
+//   index system::get_main_monitor(LPRECT lprect)
+//   {
+//
+//      int iMainMonitor = 0;
+//
+//#ifdef WINDOWSEX
+//
+//      HMONITOR hmonitorPrimary = GetPrimaryMonitorHandle();
+//
+//      for(index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
+//      {
+//
+//         if(m_hmonitora[iMonitor] == hmonitorPrimary)
+//         {
+//
+//            iMainMonitor = iMonitor;
+//
+//            break;
+//
+//         }
+//
+//      }
+//
+//
+//#endif
+//
+//      if(lprect != NULL)
+//      {
+//
+//         get_monitor_rect(iMainMonitor,lprect);
+//
+//      }
+//
+//      return iMainMonitor;
+//
+//   }
+//
+//
+//   ::count system::get_monitor_count()
+//   {
+//
+//#ifdef WINDOWSEX
+//
+//      return m_monitorinfoa.get_count();
+//
+//#elif defined(MACOS)
+//      
+//      return GetScreenCount();
+//      
+//#else
+//
+//      return 1;
+//
+//#endif
+//
+//   }
+//
+//
+//   bool system::get_monitor_rect(index iMonitor,LPRECT lprect)
+//   {
+//
+//#ifdef WINDOWSEX
+//
+//      if(iMonitor < 0 || iMonitor >= get_monitor_count())
+//         return false;
+//
+//      *lprect = m_monitorinfoa[iMonitor].rcMonitor;
+//
+//#elif defined(METROWIN)
+//
+//
+//      get_window_rect(m_posdata->m_pwindow,lprect);
+//
+//
+//#elif defined(LINUX)
+//
+//      xdisplay  d;
+//
+//      if(!d.open(NULL))
+//         return false;
+//
+//      lprect->left = 0;
+//      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
+//      lprect->top = 0;
+//      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
+//
+//#elif defined(APPLEOS)
+//
+//      if(iMonitor < 0 || iMonitor >= get_monitor_count())
+//         return false;
+//
+//      GetScreenRect(lprect, iMonitor);
+//
+//#else
+//
+//      throw todo(get_app());
+//
+//      ::GetWindowRect(::GetDesktopWindow(),lprect);
+//
+//#endif
+//
+//      return true;
+//
+//   }
+//
+//
+//   ::count system::get_desk_monitor_count()
+//   {
+//
+//      return get_monitor_count();
+//
+//   }
+//
+//
+//   bool system::get_desk_monitor_rect(index iMonitor,LPRECT lprect)
+//   {
+//
+//      return get_monitor_rect(iMonitor,lprect);
+//
+//   }
+//
+//
+//   index system::get_ui_wkspace(::user::interaction * pui)
+//   {
+//
+//      int iMainWkspace = 0;
+//
+//#ifdef WINDOWSEX
+//
+//      HMONITOR hwkspacePrimary = GetUiMonitorHandle(pui->get_handle());
+//
+//      for(index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
+//      {
+//
+//         if(m_hmonitora[iWkspace] == hwkspacePrimary)
+//         {
+//
+//            iMainWkspace = iWkspace;
+//
+//            break;
+//
+//         }
+//
+//      }
+//
+//
+//#endif
+//
+//      return iMainWkspace;
+//
+//   }
+//
+//
+//   index system::get_main_wkspace(LPRECT lprect)
+//   {
+//
+//      int iMainWkspace = 0;
+//
+//#ifdef WINDOWSEX
+//
+//      HMONITOR hwkspacePrimary = GetPrimaryMonitorHandle();
+//
+//      for(index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
+//      {
+//
+//         if(m_hmonitora[iWkspace] == hwkspacePrimary)
+//         {
+//
+//            iMainWkspace = iWkspace;
+//
+//            break;
+//
+//         }
+//
+//      }
+//
+//
+//#endif
+//
+//      if(lprect != NULL)
+//      {
+//
+//         get_wkspace_rect(iMainWkspace,lprect);
+//
+//      }
+//
+//      return iMainWkspace;
+//
+//   }
+//
+//
+//   ::count system::get_wkspace_count()
+//   {
+//
+//#ifdef WINDOWSEX
+//
+//      return m_monitorinfoa.get_count();
+//
+//#else
+//
+//      return 1;
+//
+//#endif
+//
+//   }
+//
+//
+//   bool system::get_wkspace_rect(index iWkspace,LPRECT lprect)
+//   {
+//
+//#ifdef WINDOWSEX
+//
+//      if(iWkspace < 0 || iWkspace >= get_wkspace_count())
+//         return false;
+//
+//      *lprect = m_monitorinfoa[iWkspace].rcWork;
+//
+//#elif defined(METROWIN)
+//
+//      return get_monitor_rect(iWkspace,lprect);
+//
+//#elif defined(LINUX)
+//
+//      xdisplay  d;
+//
+//      if(!d.open(NULL))
+//         return false;
+//
+//      lprect->left = 0;
+//      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
+//      lprect->top = 0;
+//      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
+//
+//#elif defined(APPLEOS)
+//
+//      if(iWkspace < 0 || iWkspace >= get_wkspace_count())
+//         return false;
+//
+//      GetWkspaceRect(lprect, iWkspace);
+//      
+////      lprect->top += ::mac::get_system_main_menu_bar_height();
+//  //    lprect->bottom -= ::mac::get_system_dock_height();
+//
+//#else
+//
+//      throw todo(get_app());
+//
+//      ::GetWindowRect(::GetDesktopWindow(),lprect);
+//
+//#endif
+//
+//      return true;
+//
+//   }
+//
+//
+//   ::count system::get_desk_wkspace_count()
+//   {
+//
+//      return get_wkspace_count();
+//
+//   }
+//
+//
+//   bool system::get_desk_wkspace_rect(index iWkspace,LPRECT lprect)
+//   {
+//
+//      return get_wkspace_rect(iWkspace,lprect);
+//
+//   }
+//
+//#ifdef WINDOWSEX
+//
+//
+//   system::interaction_impl::interaction_impl(sp(::axis::application) papp):
+//      element(papp),
+//      ::user::interaction(papp)
+//   {
+//
+//   }
+//
+//   void system::interaction_impl::install_message_handling(::message::dispatch * pdispatch)
+//   {
+//
+//      ::user::interaction::install_message_handling(pdispatch);
+//
+//      IGUI_WIN_MSG_LINK(WM_DISPLAYCHANGE,pdispatch,this,&::base::system::interaction_impl::_001MessageHub);
+//
+//   }
+//
+//   void system::interaction_impl::_001MessageHub(signal_details * pobj)
+//   {
+//
+//      SCAST_PTR(::message::base,pbase,pobj);
+//
+//      if(pbase != NULL)
+//      {
+//
+//         if(pbase->m_uiMessage == WM_DISPLAYCHANGE)
+//         {
+//
+//            System.enum_display_monitors();
+//
+//            for(index i = 0; i < System.frames().get_count(); i++)
+//            {
+//
+//               try
+//               {
+//
+//                  System.frames()[i]->WfiRestore(true);
+//
+//               }
+//               catch(...)
+//               {
+//               }
+//
+//            }
+//
+//
+//         }
+//
+//      }
+//
+//   }
+//
+//
+//#endif
+//
+//
+//   sp(::user::interaction) system::get_active_guie()
+//   {
+//
+//#if defined(WINDOWSEX) || defined(LINUX) || defined(APPLEOS)
+//
+//      return window_from_os_data(::GetActiveWindow());
+//
+//#else
+//
+//      if(frames().get_size() <= 0)
+//         return NULL;
+//
+//      return frames()[0];
+//
+//#endif
+//
+//   }
+//
+//
+//   sp(::user::interaction) system::get_focus_guie()
+//   {
+//
+//#if defined (METROWIN)
+//
+//      return GetFocus()->m_pui;
+//
+//#elif defined(WINDOWSEX) || defined(LINUX)
+//
+//      ::user::interaction * pwnd = ::window_from_handle(::GetFocus());
+//      if(pwnd != NULL)
+//      {
+//         if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
+//            || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
+//         {
+//            return pwnd;
+//         }
+//         else
+//         {
+//            return NULL;
+//         }
+//      }
+//      pwnd = System.window_from_os_data(::GetFocus());
+//      if(pwnd != NULL)
+//      {
+//         if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
+//            || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
+//         {
+//            return pwnd;
+//         }
+//         else
+//         {
+//            return NULL;
+//         }
+//      }
+//      return NULL;
+//#else
+//
+//      return System.get_active_guie();
+//
+//#endif
+//
+//   }
+//
+//
+//   ::count system::get_application_count()
+//   {
+//
+//      ::count c = 0;
+//
+//      try
+//      {
+//
+//         for(index iBaseSession = 0; iBaseSession < m_basesessionptra.get_count(); iBaseSession++)
+//         {
+//
+//            try
+//            {
+//
+//               c += m_basesessionptra[iBaseSession].appptra().get_count();
+//
+//            }
+//            catch(...)
+//            {
+//
+//            }
+//
+//         }
+//
+//      }
+//      catch(...)
+//      {
+//
+//      }
+//
+//      return c;
+//
+//   }
+//
+//
+//   application_ptra system::get_appptra()
+//   {
+//
+//      application_ptra appptra;
+//
+//      try
+//      {
+//
+//         for(index iBaseSession = 0; iBaseSession < m_basesessionptra.get_count(); iBaseSession++)
+//         {
+//
+//            try
+//            {
+//
+//               appptra += m_basesessionptra[iBaseSession].appptra();
+//
+//            }
+//            catch(...)
+//            {
+//
+//            }
+//
+//         }
+//
+//      }
+//      catch(...)
+//      {
+//
+//
+//      }
+//
+//      return appptra;
+//
+//   }
+//
+//
+//   string system::get_ca2_module_folder()
+//   {
+//
+//      single_lock sl(m_pmutex,true);
+//
+//      return m_strCa2ModuleFolder;
+//
+//   }
+//
+//
+//   string system::get_ca2_module_file_path()
+//   {
+//
+//      string strModuleFileName;
+//
+//#ifdef WINDOWSEX
+//
+//      wchar_t lpszModuleFilePath[MAX_PATH + 1];
+//
+//      if(GetModuleFileNameW(::GetModuleHandleA("core.dll"),lpszModuleFilePath,MAX_PATH + 1))
+//      {
+//
+//         strModuleFileName = lpszModuleFilePath;
+//
+//      }
+//
+//#elif defined(METROWIN)
+//
+//      throw todo(this);
+//
+//#else
+//
+//#ifdef LINUX
+//
+//      {
+//
+//         void * handle = dlopen("core.so",0);
+//
+//         if(handle == NULL)
+//            return "";
+//
+//         link_map * plm;
+//
+//         dlinfo(handle,RTLD_DI_LINKMAP,&plm);
+//
+//         strModuleFileName = plm->l_name;
+//
+//         dlclose(handle);
+//
+//         //         m_strCa2ModuleFolder = dir::name(strModuleFileName);
+//
+//      }
+//
+//#else
+//
+//      {
+//
+//         char * pszCurDir = getcwd(NULL,0);
+//
+//         string strCurDir = pszCurDir;
+//
+//         free(pszCurDir);
+//
+//         if(Application.file().exists(System.dir().path(strCurDir,"core.dylib")))
+//         {
+//            m_strCa2ModuleFolder = strCurDir;
+//            goto finishedCa2Module;
+//         }
+//
+//
+//         if(Application.file().exists(System.dir().path(m_strModuleFolder,"core.dylib")))
+//         {
+//            m_strCa2ModuleFolder = m_strModuleFolder;
+//            goto finishedCa2Module;
+//         }
+//
+//         strModuleFileName = Application.dir().pathfind(getenv("LD_LIBRARY_PATH"),"core.dylib","rfs"); // readable - normal file - non zero sized
+//
+//      }
+//
+//   finishedCa2Module:;
+//
+//#endif
+//
+//#endif
+//
+//      return strModuleFileName;
+//
+//
+//   }
+//
+//
+//   string system::get_module_folder()
+//   {
+//
+//      return m_strModuleFolder;
+//
+//   }
+//
+//
+//   string system::get_module_file_path()
+//   {
+//
+//#ifdef WINDOWSEX
+//
+//      wchar_t lpszModuleFilePath[MAX_PATH + 1];
+//
+//      GetModuleFileNameW(NULL,lpszModuleFilePath,MAX_PATH + 1);
+//
+//      string strModuleFileName(lpszModuleFilePath);
+//
+//      return strModuleFileName;
+//
+//#elif defined(METROWIN)
+//
+//      return "m_app.exe";
+//
+//#else
+//
+//      char * lpszModuleFilePath = br_find_exe_dir("app");
+//
+//      if(lpszModuleFilePath == NULL)
+//         return "";
+//
+//      string strModuleFileName(lpszModuleFilePath);
+//
+//      free(lpszModuleFilePath);
+//
+//      return strModuleFileName;
+//
+//#endif
+//
+//   }
+//
+//
+//   string system::get_module_title()
+//   {
+//
+//      return file().title_(get_module_file_path());
+//
+//   }
+//
+//
+//   string system::get_module_name()
+//   {
+//
+//      return file().name_(get_module_file_path());
+//
+//   }
+//
+//   colorertake5::ParserFactory & system::parser_factory()
+//   {
+//
+//      if(m_pparserfactory == NULL)
+//      {
+//
+//         m_pparserfactory = new colorertake5::ParserFactory(this);
+//
+//      }
+//
+//      return *m_pparserfactory;
+//
+//   }
+//
+//
+//
 
 } // namespace base
 

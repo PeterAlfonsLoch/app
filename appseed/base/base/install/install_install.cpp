@@ -67,7 +67,7 @@ namespace install
 
       property_set set(get_app());
 
-      return file_exists_dup(path1) && !stricmp_dup(get_file_md5(path1), Application.http().get(strUrl, set));
+      return file_exists_dup(path1) && !stricmp_dup(System.crypto().md5(path1), Application.http().get(strUrl, set));
 
    }
 
@@ -587,11 +587,11 @@ namespace install
          // os.dll, is not a good indicator anymore, and worst, can potentially make
          // os.dll to be unloaded and make the dependant instatiated browser plugins
          // to malfunction. Using only core.dll test only by now.
-         //::base::library libraryOs(get_app());
+         //::axis::library libraryOs(get_app());
          //m_bCa2Installed = libraryOs.open(dir::path(strStage, "os")); 
          //if (m_bCa2Installed)
          //{
-         ::base::library libraryCa2(get_app());
+         ::axis::library libraryCa2(get_app());
          m_bCa2Installed = libraryCa2.open(dir::path(strStage, "core"));
          if (m_bCa2Installed)
          {

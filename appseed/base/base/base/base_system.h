@@ -103,6 +103,11 @@ namespace base
 
       virtual string dir_appmatter_locator(sp(::axis::application) papp);
 
+      virtual sp(::user::interaction) get_active_guie();
+      virtual sp(::user::interaction) get_focus_guie();
+
+
+      virtual bool is_system();
 
    };
 

@@ -2155,9 +2155,9 @@ void LibRaw::kodak_thumb_loader()
   (this->*thumb_load_raw)();
 
   // copy-n-paste from image pipe
-#define min(a,b) ((a) < (b) ? (a) : (b))
-#define max(a,b) ((a) > (b) ? (a) : (b))
-#define LIM(x,min,max) max(min,min(x,max))
+#define MIN(a,b) ((a) < (b) ? (a) : (b))
+#define MAX(a,b) ((a) > (b) ? (a) : (b))
+#define LIM(x,min,max) MAX(min,MIN(x,max))
 #define CLIP(x) LIM(x,0,65535)
 #define SWAP(a,b) { a ^= b; a ^= (b ^= a); }
 
@@ -2290,8 +2290,8 @@ void LibRaw::kodak_thumb_loader()
 
   P1.filters = s_filters;
 }
-#undef min
-#undef max
+#undef MIN
+#undef MAX
 #undef LIM
 #undef CLIP
 #undef SWAP
@@ -2487,9 +2487,9 @@ int LibRaw::subtract_black_internal()
           cblk[i] = C.cblack[i];
 
         int size = S.iheight * S.iwidth;
-#define min(a,b) ((a) < (b) ? (a) : (b))
-#define max(a,b) ((a) > (b) ? (a) : (b))
-#define LIM(x,min,max) max(min,min(x,max))
+#define MIN(a,b) ((a) < (b) ? (a) : (b))
+#define MAX(a,b) ((a) > (b) ? (a) : (b))
+#define LIM(x,min,max) MAX(min,MIN(x,max))
 #define CLIP(x) LIM(x,0,65535)
         int dmax = 0;
         for(i=0; i< size*4; i++)
@@ -2586,9 +2586,9 @@ void LibRaw::exp_bef(float shift, float smooth)
   free(lut);
 }
 
-#define min(a,b) ((a) < (b) ? (a) : (b))
-#define max(a,b) ((a) > (b) ? (a) : (b))
-#define LIM(x,min,max) max(min,min(x,max))
+#define MIN(a,b) ((a) < (b) ? (a) : (b))
+#define MAX(a,b) ((a) > (b) ? (a) : (b))
+#define LIM(x,min,max) MAX(min,MIN(x,max))
 #define ULIM(x,y,z) ((y) < (z) ? LIM(x,y,z) : LIM(x,z,y))
 #define CLIP(x) LIM(x,0,65535)
 

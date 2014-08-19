@@ -95,7 +95,7 @@ namespace base
       inline ::sockets::sockets &               sockets()      { return *m_psockets; }
       inline class ::fontopus::license &        license()      { return *m_splicense; }
 
-      ::user::str_context *                     str_context();
+      //::user::str_context *                     str_context();
 
 
 
@@ -125,10 +125,21 @@ namespace base
       virtual bool  get_window_minimum_size(LPSIZE lpsize);
 
 
-      virtual void  get_cursor_pos(LPPOINT lppoint);
+      //virtual void  get_cursor_pos(LPPOINT lppoint);
 
 
       virtual bool on_ui_mouse_message(::message::mouse * pmouse);
+
+
+      virtual sp(::user::interaction) get_active_guie();
+      virtual sp(::user::interaction) get_focus_guie();
+
+
+      //virtual string matter_as_string(const char * pszMatter,const char * pszMatter2);
+      //virtual string dir_matter(const char * pszMatter,const char * pszMatter2);
+
+      //virtual bool is_inside_time_dir(const char * pszPath);
+      //virtual bool file_is_read_only(const char * pszPath);
 
    };
 

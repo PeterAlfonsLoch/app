@@ -3634,7 +3634,7 @@ RetryBuildNumber:
       //::SetDllDirectory(dir::path(dir::element(), "stage\\" + strPlatform));
 #endif
 
-      ::base::library libraryOs(get_app());
+      ::axis::library libraryOs(get_app());
 
       libraryOs.open(dir::path(dir::element(), "stage\\" + strPlatform + "\\app_core"));
 

@@ -1,8 +1,6 @@
 #include "framework.h"
 #undef new
 #ifdef WINDOWS
-#undef min
-#undef max
 #include <gdiplus.h>
 #endif
 #if defined(LINUX) || defined(ANDROID) || defined(APPLEOS) || defined(SOLARIS)
