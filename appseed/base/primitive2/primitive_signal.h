@@ -26,7 +26,7 @@ public:
 
 
 
-   signal_details(sp(::base::application) papp = NULL);
+   signal_details(sp(::axis::application) papp = NULL);
    signal_details(class signal * psignal);
    virtual ~signal_details();
 

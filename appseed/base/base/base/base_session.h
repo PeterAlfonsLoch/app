@@ -6,7 +6,8 @@ namespace base
 
 
    class CLASS_DECL_BASE session:
-      virtual public ::base::application,
+      virtual public ::axis::session,
+      virtual public ::axis::application,
       virtual public ::base::session_interface,
       virtual public ::user::schema
    {
@@ -14,58 +15,57 @@ namespace base
 
       
 
-      ::user::interaction *                                    m_puiMouseMoveCapture;
-      ::user::interaction *                                    m_puiLastLButtonDown;
+      //::user::interaction *                                    m_puiMouseMoveCapture;
+      //::user::interaction *                                    m_puiLastLButtonDown;
 
-      bool                                                     m_bMatterFromHttpCache;
+      //bool                                                     m_bMatterFromHttpCache;
 
-      bool                                                     m_bSystemSynchronizedCursor;
-      point                                                    m_ptCursor;
-      bool                                                     m_bSystemSynchronizedScreen;
-      rect_array                                               m_rectaMonitor;
-      rect_array                                               m_rectaWkspace;
-      index                                                    m_iMainMonitor;
-      index                                                    m_iMainWkspace;
+      //bool                                                     m_bSystemSynchronizedCursor;
+      //point                                                    m_ptCursor;
+      //bool                                                     m_bSystemSynchronizedScreen;
+      //rect_array                                               m_rectaMonitor;
+      //rect_array                                               m_rectaWkspace;
+      //index                                                    m_iMainMonitor;
+      //index                                                    m_iMainWkspace;
 
 
 
-      ::core::platform *                                       m_pcoreplatform;
-      string_map < sp(::base::application) >                   m_mapApplication;
+      //::core::platform *                                       m_pcoreplatform;
+      //string_map < sp(::axis::application) >                   m_mapApplication;
       sp(::userpresence::userpresence)                         m_puserpresence;
       sp(::ifs)                                                m_pifs;
       sp(::fs::remote_native)                                  m_prfs;
       sp(::fs::fs)                                             m_spfs;
       sp(class ::fs::data)                                     m_spfsdata;
+           //bool                                                     m_bDrawCursor;
 
-      bool                                                     m_bDrawCursor;
 
-
-      ::visual::e_cursor                                       m_ecursor;
-      ::visual::e_cursor                                       m_ecursorDefault;
-      ::base::copydesk_sp                                      m_spcopydesk;
+      //::visual::e_cursor                                       m_ecursor;
+      //::visual::e_cursor                                       m_ecursorDefault;
+      //::base::copydesk_sp                                      m_spcopydesk;
 
 
       sp(::fontopus::fontopus)                                 m_pfontopus;
-      application_ptra                                         m_appptra;
-      sp(::user::interaction)                                  m_spuiFocus;
-      sp(::user::str_context)                                  m_puserstrcontext;
+      //application_ptra                                         m_appptra;
+      //sp(::user::interaction)                                  m_spuiFocus;
+      //sp(::user::str_context)                                  m_puserstrcontext;
       sp(::sockets::sockets)                                   m_psockets;
-      bool                                                     m_bZipIsDir;
-      map < ::user::e_key,::user::e_key,bool,bool > *          m_pmapKeyPressed;
-      sp(::base::savings)                                      m_psavings;
-      bool                                                     m_bIfs;
-      sp(::user::user)                                         m_spuser;
+      //bool                                                     m_bZipIsDir;
+      //map < ::user::e_key,::user::e_key,bool,bool > *          m_pmapKeyPressed;
+      //sp(::base::savings)                                      m_psavings;
+      //bool                                                     m_bIfs;
+      //sp(::user::user)                                         m_spuser;
       sp(class ::fontopus::license)                   m_splicense;
 
 
 
 
-      ::user::schema_simple_impl                               m_schemasimple;
+      //::user::schema_simple_impl                               m_schemasimple;
 
 
 
 
-      session(sp(::base::application) papp);
+      session(sp(::axis::application) papp);
       virtual ~session();
 
       inline ::userpresence::userpresence & userpresence() { return *m_puserpresence; }
@@ -76,7 +76,7 @@ namespace base
       virtual bool is_session();
 
 
-      void construct(sp(::base::application) papp, int iPhase);
+      void construct(sp(::axis::application) papp, int iPhase);
 
       virtual bool process_initialize();
 
@@ -97,7 +97,7 @@ namespace base
       inline sp(class ::fs::data)               fs()           { return m_spfsdata; }
       inline ::sockets::sockets &               sockets()      { return *m_psockets; }
       inline sp(class ::user::user)             user()         { return m_spuser; }
-      inline ::base::savings &                  savings()      { return *m_psavings; }
+//      inline ::base::savings &                  savings()      { return *m_psavings; }
       inline class ::fontopus::license &        license()      { return *m_splicense; }
 
       ::user::str_context *                     str_context();
@@ -124,7 +124,7 @@ namespace base
 
 
 
-      virtual sp(::base::application) start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext);
+      virtual sp(::axis::application) start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext);
 
       
       virtual void set_cursor(::visual::e_cursor ecursor);
@@ -218,7 +218,7 @@ namespace base
 
 
 
-inline ::base::session & sess(::base::application * papp);
+//inline ::base::session & sess(::axis::application * papp);
 
 
 

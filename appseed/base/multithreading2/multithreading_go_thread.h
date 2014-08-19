@@ -11,7 +11,7 @@ public:
    bool m_bStartRelease;
 
 
-   go_thread(sp(::base::application) papp, bool bRelease = true);
+   go_thread(sp(::axis::application) papp, bool bRelease = true);
    virtual ~go_thread();
 
    virtual void start();

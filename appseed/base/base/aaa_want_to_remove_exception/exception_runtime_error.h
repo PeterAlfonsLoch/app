@@ -9,7 +9,7 @@ class CLASS_DECL_BASE runtime_error :
 public:
    
    
-   runtime_error(sp(::base::application) papp, const char * pszError);
+   runtime_error(sp(::axis::application) papp, const char * pszError);
    virtual ~runtime_error();
 
 };

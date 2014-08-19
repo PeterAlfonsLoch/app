@@ -5,7 +5,7 @@ namespace geometry
 {
 
 
-   geometry::geometry(sp(::base::application) papp) :
+   geometry::geometry(sp(::axis::application) papp) :
       element(papp)
    {
 

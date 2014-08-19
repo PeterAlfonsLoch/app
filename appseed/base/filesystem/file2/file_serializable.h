@@ -177,7 +177,7 @@ namespace file
    public:
 
 
-      byte_serializable_map(sp(::base::application) papp = NULL, ::count nBlockSize = 10);
+      byte_serializable_map(sp(::axis::application) papp = NULL, ::count nBlockSize = 10);
       byte_serializable_map(const byte_serializable_map & map);
 
 
@@ -191,7 +191,7 @@ namespace file
    };
 
    template < class type_map >
-   byte_serializable_map < type_map >::byte_serializable_map(sp(::base::application) papp, ::count nBlockSize) :
+   byte_serializable_map < type_map >::byte_serializable_map(sp(::axis::application) papp, ::count nBlockSize) :
       type_map(papp, nBlockSize)
    {
    }

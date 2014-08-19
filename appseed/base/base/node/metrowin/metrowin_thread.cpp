@@ -73,7 +73,7 @@ void thread::set_p(::thread * p)
    }
    */
 
-   thread::thread(::base::application * papp) :
+   thread::thread(::axis::application * papp) :
       element(papp)//,
       //message_queue(papp),//,
       //m_evFinish(FALSE, TRUE)
@@ -171,7 +171,7 @@ void thread::set_p(::thread * p)
          try
          {
             element * pca = m_captraDeletePool[i];            
-            if(dynamic_cast < ::base::application * > (pca) == m_papp)
+            if(dynamic_cast < ::axis::application * > (pca) == m_papp)
             {
                m_papp = NULL;
             }
@@ -567,8 +567,8 @@ void thread::set_p(::thread * p)
 //      // for tracking the idle time state
 //      bool bIdle = TRUE;
 //      LONG lIdleCount = 0;
-//      ::base::application * pappThis1 = dynamic_cast < ::base::application * > (this);
-//      ::base::application * pappThis2 = dynamic_cast < ::base::application * > (m_p.m_p);
+//      ::axis::application * pappThis1 = dynamic_cast < ::axis::application * > (this);
+//      ::axis::application * pappThis2 = dynamic_cast < ::axis::application * > (m_p.m_p);
 //
 //      // acquire and dispatch messages until a WM_QUIT message is received.
 //      MESSAGE msg;
@@ -807,8 +807,8 @@ void thread::set_p(::thread * p)
 //         if (pState->m_nTempMapLock == 0)
 //         {
 //         // free temp maps, OLE DLLs, etc.
-//         ::ca2::LockTempMaps(dynamic_cast < ::base::application * > (m_p->m_papp));
-//         ::ca2::UnlockTempMaps(dynamic_cast < ::base::application * > (m_p->m_papp));
+//         ::ca2::LockTempMaps(dynamic_cast < ::axis::application * > (m_p->m_papp));
+//         ::ca2::UnlockTempMaps(dynamic_cast < ::axis::application * > (m_p->m_papp));
 //         }*/
 //      }
 //
@@ -1383,7 +1383,7 @@ void thread::set_p(::thread * p)
 //
 //
 //#ifndef ___PORTABLE
-//         ::base::application * papp = dynamic_cast < ::base::application * > (get_app());
+//         ::axis::application * papp = dynamic_cast < ::axis::application * > (get_app());
 //         ___THREAD_STATE* pThreadState = gen_ThreadState.GetDataNA();
 //         if( pThreadState != NULL )
 //         {
@@ -1444,7 +1444,7 @@ void thread::set_p(::thread * p)
 //
 //      ::metrowin::thread* pThread = pStartup->pThread;
 //
-//      //      ::application* papp = dynamic_cast < ::base::application * > (get_app());
+//      //      ::application* papp = dynamic_cast < ::axis::application * > (get_app());
 //      m_evFinish.ResetEvent();
 //      install_message_handling(pThread);
 //      m_p->install_message_handling(pThread);
@@ -1555,7 +1555,7 @@ void thread::set_p(::thread * p)
 //      {
 //         // cleanup and shutdown the thread
 //         //         threadWnd.Detach();
-//         __end_thread(dynamic_cast < ::base::application * > (m_pbaseapp.m_p), nResult);
+//         __end_thread(dynamic_cast < ::axis::application * > (m_pbaseapp.m_p), nResult);
 //      }
 //      catch(...)
 //      {

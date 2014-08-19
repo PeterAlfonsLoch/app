@@ -9,7 +9,7 @@ namespace sockets
 {
 
 
-   ssl_client_context::ssl_client_context(sp(::base::application) papp, const SSL_METHOD * pmethod) :
+   ssl_client_context::ssl_client_context(sp(::axis::application) papp, const SSL_METHOD * pmethod) :
       element(papp)
    {
       m_psession = NULL;

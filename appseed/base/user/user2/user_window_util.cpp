@@ -908,7 +908,7 @@ namespace user
 
 
 
-      interaction_ptr_array::interaction_ptr_array(sp(::base::application) papp) :
+      interaction_ptr_array::interaction_ptr_array(sp(::axis::application) papp) :
       element(papp)
    {
 

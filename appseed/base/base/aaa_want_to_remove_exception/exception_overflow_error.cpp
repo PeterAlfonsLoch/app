@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-overflow_error::overflow_error(sp(::base::application) papp, const char * pszError) :
+overflow_error::overflow_error(sp(::axis::application) papp, const char * pszError) :
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),

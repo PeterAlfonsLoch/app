@@ -19,7 +19,7 @@ namespace fs
       stringa     m_straPath;
 
 
-      link(sp(::base::application) papp);
+      link(sp(::axis::application) papp);
 
 
       // optional if ls_dir is implemented

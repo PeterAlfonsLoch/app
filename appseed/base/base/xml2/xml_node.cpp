@@ -18,7 +18,7 @@ namespace xml
    static const CHAR szXMLCDATAOpen[] = "<![CDATA[";
    static const CHAR szXMLCDATAClose[] = "]]>";
 
-   node::node(::base::application * papp) :
+   node::node(::axis::application * papp) :
       element(papp),
       m_nodea(papp),
       m_attra(papp)

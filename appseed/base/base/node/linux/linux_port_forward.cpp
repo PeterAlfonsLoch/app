@@ -15,7 +15,7 @@ namespace linux
    // Construction/Destruction
    //////////////////////////////////////////////////////////////////////
 
-   port_forward::port_forward(sp(::base::application) papp) :
+   port_forward::port_forward(sp(::axis::application) papp) :
       element(papp)
    {
 //	   InitializeMembersToNull();

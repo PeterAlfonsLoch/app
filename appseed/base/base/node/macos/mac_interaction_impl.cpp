@@ -87,7 +87,7 @@ namespace mac
    }
    
    
-    interaction_impl::interaction_impl(::base::application * papp) :
+    interaction_impl::interaction_impl(::axis::application * papp) :
         element(papp)
     {
       
@@ -3009,7 +3009,7 @@ namespace mac
       oswindow m_hwnd;
       HDC m_hdc;
       
-      print_window(::base::application * papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
+      print_window(::axis::application * papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
       element(papp),
       m_event(papp)
       
@@ -3700,7 +3700,7 @@ namespace mac
    }
    
    
-   /*   view_update_hint::view_update_hint(::base::application * papp) :
+   /*   view_update_hint::view_update_hint(::axis::application * papp) :
     element(papp)
     {
     }
@@ -3983,7 +3983,7 @@ namespace mac
    
    }
    
-   /*   guie_message_wnd::guie_message_wnd(::base::application * papp) :
+   /*   guie_message_wnd::guie_message_wnd(::axis::application * papp) :
     element(papp)
     {
     m_pguieForward = NULL;

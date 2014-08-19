@@ -13,7 +13,7 @@ namespace ansios
 {
 
 
-   thread_impl::thread_impl(sp(::base::application) papp) :
+   thread_impl::thread_impl(sp(::axis::application) papp) :
    element(papp),
    ::thread_impl(papp)
    {
@@ -55,14 +55,14 @@ namespace ansios
 
 
 
-void __end_thread_impl(base::application*, unsigned int, bool)
+void __end_thread_impl(axis::application*, unsigned int, bool)
 
 {
 
 }
 
 
-void __term_thread_impl(base::application*, HINSTANCE__*)
+void __term_thread_impl(axis::application*, HINSTANCE__*)
 {
 }
 

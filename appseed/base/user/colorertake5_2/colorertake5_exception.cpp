@@ -15,7 +15,7 @@ namespace colorertake5
 
    }
 
-   exception::exception(sp(::base::application) papp) :
+   exception::exception(sp(::axis::application) papp) :
       element(papp),
       ::call_stack(papp),
       ::exception::base(papp)
@@ -26,7 +26,7 @@ namespace colorertake5
 
    }
 
-   exception::exception(sp(::base::application) papp, const string &msg) :
+   exception::exception(sp(::axis::application) papp, const string &msg) :
       element(papp),
       ::call_stack(papp),
       ::exception::base(papp)
@@ -41,13 +41,13 @@ namespace colorertake5
    }
 
 
-/*   InputSourceException::InputSourceException(sp(::base::application) papp)
+/*   InputSourceException::InputSourceException(sp(::axis::application) papp)
          element(papp),
       ::call_stack(papp),
       ::exception::base(papp)
 
    {};
-   InputSourceException::InputSourceException(sp(::base::application) pappconst string & msg){
+   InputSourceException::InputSourceException(sp(::axis::application) pappconst string & msg){
       message += "InputSourceException: " + msg;
    };
 

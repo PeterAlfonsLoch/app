@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-not_installed::not_installed(sp(::base::application) papp, const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema) :
+not_installed::not_installed(sp(::axis::application) papp, const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema) :
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp)

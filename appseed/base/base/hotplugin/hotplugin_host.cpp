@@ -352,7 +352,7 @@ namespace hotplugin
    }
 
 
-   int32_t host::host_starter_start(const char * pszCommandLine, ::base::application * papp, plugin * pplugin)
+   int32_t host::host_starter_start(const char * pszCommandLine, ::axis::application * papp, plugin * pplugin)
    {
       
       ::install::starter_start * pstart    = new ::install::starter_start(papp);
@@ -387,7 +387,7 @@ throw todo(get_thread_app());
    }
 
 
-   int32_t host::host_starter_start_sync(const char * pszCommandLine, ::base::application * papp, plugin * pplugin)
+   int32_t host::host_starter_start_sync(const char * pszCommandLine, ::axis::application * papp, plugin * pplugin)
    {
 
       ::install::starter_start * pstart = new ::install::starter_start(papp);

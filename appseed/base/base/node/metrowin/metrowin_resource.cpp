@@ -4,7 +4,7 @@
 #if FALSE
 
 
-WinResource::WinResource(::base::application * papp) :
+WinResource::WinResource(::axis::application * papp) :
    element(papp)
 {
 }

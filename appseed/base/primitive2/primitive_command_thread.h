@@ -17,7 +17,7 @@ public:
    var                              m_varTopicQuery; // accumulatted, reset, set, or clear as command_thread history passes
 
 
-   command_thread(sp(::base::application) papp);
+   command_thread(sp(::axis::application) papp);
    virtual ~command_thread();
 
    virtual var run();

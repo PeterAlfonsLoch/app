@@ -1670,7 +1670,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\axis\axis_fixed_alloc_impl.h" />
     <ClInclude Include="axis\axis\axis_flags.h" />
     <ClInclude Include="axis\axis\axis_gudo.h" />
-    <ClInclude Include="axis\axis\axis_gudo_application.h" />
+    <ClInclude Include="axis\axis\axis_gudo_application.inl" />
     <ClInclude Include="axis\axis\axis_heap.h" />
     <ClInclude Include="axis\axis\axis_heap_item.h" />
     <ClInclude Include="axis\axis\axis_heap_item_array.h" />

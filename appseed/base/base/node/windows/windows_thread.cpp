@@ -32,7 +32,7 @@ namespace windows
 {
 
 
-   thread::thread(sp(::base::application) papp):
+   thread::thread(sp(::axis::application) papp):
       element(papp),
       ::thread_impl(papp)
    {

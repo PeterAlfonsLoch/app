@@ -88,7 +88,7 @@ namespace linux
 
    }
 
-   interaction_impl::interaction_impl(sp(::base::application) papp) :
+   interaction_impl::interaction_impl(sp(::axis::application) papp) :
       element(papp)
    {
 
@@ -2860,7 +2860,7 @@ return 0;
       oswindow m_hwnd;
       HDC m_hdc;
 
-      print_window(sp(::base::application) papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
+      print_window(sp(::axis::application) papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
          element(papp),
          m_event(papp)
 
@@ -3686,7 +3686,7 @@ throw not_implemented(get_app());
    }
 
 
-   /*   view_update_hint::view_update_hint(sp(::base::application) papp) :
+   /*   view_update_hint::view_update_hint(sp(::axis::application) papp) :
    element(papp)
    {
    }
@@ -4032,7 +4032,7 @@ throw not_implemented(get_app());
       return m_pui->GetDlgCtrlId();
    }
 
-   /*   guie_message_wnd::guie_message_wnd(sp(::base::application) papp) :
+   /*   guie_message_wnd::guie_message_wnd(sp(::axis::application) papp) :
    element(papp)
    {
    m_puiForward = NULL;

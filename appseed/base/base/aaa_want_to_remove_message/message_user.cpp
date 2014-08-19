@@ -54,7 +54,7 @@ namespace message
       m_nIDEvent = static_cast<UINT>(wparam);
    }
 
-   activate::activate(sp(::base::application) papp):
+   activate::activate(sp(::axis::application) papp):
       element(papp),
       message::base(papp)
    {
@@ -70,7 +70,7 @@ namespace message
 
 
 
-   erase_bkgnd::erase_bkgnd(sp(::base::application) papp):
+   erase_bkgnd::erase_bkgnd(sp(::axis::application) papp):
       element(papp),
       message::base(papp)
    {
@@ -81,7 +81,7 @@ namespace message
       set_lresult(bResult);
    }
 
-   key::key(sp(::base::application) papp):
+   key::key(sp(::axis::application) papp):
       element(papp),
       message::base(papp)
    {
@@ -102,7 +102,7 @@ namespace message
 
    }
 
-   nc_activate::nc_activate(sp(::base::application) papp):
+   nc_activate::nc_activate(sp(::axis::application) papp):
       element(papp),
       message::base(papp)
    {
@@ -121,7 +121,7 @@ namespace message
       m_size      = ::size(LOWORD(lparam),HIWORD(lparam));
    }
 
-   mouse::mouse(sp(::base::application) papp):
+   mouse::mouse(sp(::axis::application) papp):
       element(papp),
       base(papp),
       m_ecursor(::visual::cursor_unmodified)

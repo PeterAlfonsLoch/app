@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   resolv_server::resolv_server(::base::application * papp, port_t port) :
+   resolv_server::resolv_server(::axis::application * papp, port_t port) :
       element(papp),
       thread(papp),
       simple_thread(papp),

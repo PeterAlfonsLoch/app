@@ -21,7 +21,7 @@ namespace metrowin
 
 
 
-      stdio_file(::base::application * papp);
+      stdio_file(::axis::application * papp);
 
 
       virtual void write_string(const char * lpsz);

@@ -17,7 +17,7 @@ thread::thread()
 
 
 
-thread::thread(sp(::base::application) papp) :
+thread::thread(sp(::axis::application) papp) :
 element(papp),
 m_set(papp)
 {
@@ -43,7 +43,7 @@ m_set(papp)
 }
 
 
-thread::thread(sp(::base::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
+thread::thread(sp(::axis::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
 element(papp)
 {
 
@@ -714,7 +714,7 @@ bool thread::on_run_step()
 
    step_timer();
 
-   sp(::base::application) papp = (this);
+   sp(::axis::application) papp = (this);
 
    m_dwAlive = ::get_tick_count();
 
@@ -725,7 +725,7 @@ bool thread::on_run_step()
 
    }
 
-   sp(::base::application) pappP = (this);
+   sp(::axis::application) pappP = (this);
 
    if (pappP != NULL)
    {
@@ -974,7 +974,7 @@ void thread::register_at_required_threads()
 
    // register default dependencies
 
-   sp(::base::application) papp = this;
+   sp(::axis::application) papp = this;
 
    sp(::base::session) psession = this;
 

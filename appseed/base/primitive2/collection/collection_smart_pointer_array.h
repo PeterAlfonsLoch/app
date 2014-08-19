@@ -47,7 +47,7 @@ public:
    }
 
 
-   smart_pointer_array(sp(::base::application) papp) :
+   smart_pointer_array(sp(::axis::application) papp) :
       element(papp),
       array < smart_pointer < T > >(papp)
    {

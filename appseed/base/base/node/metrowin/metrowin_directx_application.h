@@ -24,7 +24,7 @@ namespace metrowin
       mutex m_mutex;
 
       ::base::system * m_psystem;
-      ::base::application * m_papp;
+      ::axis::application * m_papp;
 
       bool        m_bLeftButton;
       bool        m_bMiddleButton;
@@ -32,7 +32,7 @@ namespace metrowin
 
       Windows::Foundation::Rect m_rectLastWindowRect;
 
-      ::base::application * get_app() const
+      ::axis::application * get_app() const
       {
          return m_papp;
       }

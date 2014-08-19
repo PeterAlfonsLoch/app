@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-range_error::range_error(sp(::base::application) papp, const char * pszError) :
+range_error::range_error(sp(::axis::application) papp, const char * pszError) :
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),

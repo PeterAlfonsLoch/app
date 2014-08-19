@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   window_draw::window_draw(sp(::base::application) papp) :
+   window_draw::window_draw(sp(::axis::application) papp) :
       element(papp),
       thread(papp),
       m_eventFree(papp, TRUE, TRUE)

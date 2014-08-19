@@ -52,7 +52,7 @@ CLASS_DECL_BASE MESSAGE * __get_current_message();
 
 CLASS_DECL_BASE void __android_term();
 
-CLASS_DECL_BASE sp(::base::application)  __get_app();
+CLASS_DECL_BASE sp(::axis::application)  __get_app();
 CLASS_DECL_BASE sp(::user::interaction) __get_main_window();
 CLASS_DECL_BASE const char * __get_app_name();
 

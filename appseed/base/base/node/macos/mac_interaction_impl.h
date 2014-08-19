@@ -29,7 +29,7 @@ namespace mac
       
         
         interaction_impl();
-        interaction_impl(::base::application * papp);
+        interaction_impl(::axis::application * papp);
         virtual ~interaction_impl();
 
         

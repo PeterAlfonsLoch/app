@@ -6,7 +6,7 @@ namespace fontopus
 
 
    class CLASS_DECL_BASE fontopus :
-      virtual public ::base::departament
+      virtual public ::axis::departament
    {
    public:
 
@@ -20,7 +20,7 @@ namespace fontopus
 
 
 
-      fontopus(::base::application * papp);
+      fontopus(::axis::application * papp);
       virtual ~fontopus();
 
 
@@ -66,7 +66,7 @@ namespace fontopus
       manual_reset_event m_evReady;
       string m_strRequestUrl;
 
-      create_user_thread(sp(::base::application) papp);
+      create_user_thread(sp(::axis::application) papp);
       virtual ~create_user_thread();
 
       int32_t run();

@@ -116,7 +116,7 @@ namespace ios
 
 
 
-void CLASS_DECL_BASE __end_thread(::base::application * papp, UINT nExitCode, bool bDelete)
+void CLASS_DECL_BASE __end_thread(::axis::application * papp, UINT nExitCode, bool bDelete)
 {
 
    ::ios::thread* pThread = ::ios::__get_thread();
@@ -138,7 +138,7 @@ void CLASS_DECL_BASE __end_thread(::base::application * papp, UINT nExitCode, bo
    //   _endthreadex(nExitCode);
 }
 
-void CLASS_DECL_BASE __term_thread(::base::application * papp, HINSTANCE hInstTerm)
+void CLASS_DECL_BASE __term_thread(::axis::application * papp, HINSTANCE hInstTerm)
 {
    
    
@@ -186,7 +186,7 @@ namespace ios
       CommonConstruct();
    }
    
-   thread::thread(::base::application * papp) :
+   thread::thread(::axis::application * papp) :
    element(papp),
    message_queue(papp),//,
    m_evFinish(papp, FALSE, TRUE),
@@ -435,9 +435,9 @@ namespace ios
       step_timer();
      
       
-      ::base::application * pappThis1 = dynamic_cast < ::base::application * > (this);
+      ::axis::application * pappThis1 = dynamic_cast < ::axis::application * > (this);
 
-      ::base::application * pappThis2 = dynamic_cast < ::base::application * > (m_p.m_p);
+      ::axis::application * pappThis2 = dynamic_cast < ::axis::application * > (m_p.m_p);
       
       m_p->m_dwAlive = m_dwAlive = ::get_tick_count();
       

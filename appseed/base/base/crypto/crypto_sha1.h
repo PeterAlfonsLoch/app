@@ -21,22 +21,22 @@ namespace crypto
       class CLASS_DECL_BASE CContextBase
       {
       protected:
-         sha1_ctx_t     m_ctx;
+         SHA_CTX     m_ctx;
          uint64_t         _count;
          void UpdateBlock(void * data, bool returnRes)
          {
-            GetBlockDigest(data, m_ctx.Message_Digest, returnRes);
+            GetBlockDigest(data, &m_ctx, returnRes);
             _count++;
          }
          void UpdateBlock(const void * data)
          {
-            GetBlockDigest(data, m_ctx.Message_Digest);
+            GetBlockDigest(data, &m_ctx);
             _count++;
          }
       public:
          void Init();
-         void GetBlockDigest(const void * blockData, uint32_t *destDigest);
-         void GetBlockDigest(void * blockData, uint32_t *destDigest, bool returnRes);
+         void GetBlockDigest(const void * blockData,SHA_CTX *destDigest);
+         void GetBlockDigest(void * blockData,SHA_CTX *destDigest,bool returnRes);
          //void
          // PrepareBlock can be used only when size <= 13. size in Words
          //         void PrepareBlock(uint32_t *block, uint32_t size) const;

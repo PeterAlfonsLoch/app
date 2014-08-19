@@ -4,7 +4,7 @@
 thread_int_ptr < int_ptr > t_iAvoidParsingException;
 
 
-parsing_exception::parsing_exception(sp(::base::application) papp,const string & strMessage) :
+parsing_exception::parsing_exception(sp(::axis::application) papp,const string & strMessage) :
    element(papp),
    ::call_stack(get_app()),
    ::exception::base(get_app()),

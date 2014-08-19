@@ -11,7 +11,7 @@ namespace base
    public:
 
 
-      copydesk(sp(::base::application) papp);
+      copydesk(sp(::axis::application) papp);
       virtual ~copydesk();
 
 

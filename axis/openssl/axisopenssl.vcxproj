@@ -4364,7 +4364,7 @@
     <ClInclude Include="ssl\tls1.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="baseopenssl.def" />
+    <None Include="axisopenssl.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

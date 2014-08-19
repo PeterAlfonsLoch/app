@@ -75,7 +75,7 @@ namespace windows
    }
 
 
-   interaction_impl::interaction_impl(sp(::base::application) papp):
+   interaction_impl::interaction_impl(sp(::axis::application) papp):
       element(papp)
    {
 
@@ -1207,7 +1207,7 @@ namespace windows
       {
       if(pbase->m_wparam == BERGEDGE_GETAPP)
       {
-      sp(::base::application)* ppapp= (sp(::base::application)*) pbase->m_lparam;
+      sp(::axis::application)* ppapp= (sp(::axis::application)*) pbase->m_lparam;
       *ppapp = get_app();
       pbase->m_bRet = true;
       return;
@@ -2172,7 +2172,7 @@ namespace windows
       oswindow m_oswindow;
       HDC m_hdc;
 
-      print_window(sp(::base::application) papp,oswindow oswindow,HDC hdc,uint32_t dwTimeout):
+      print_window(sp(::axis::application) papp,oswindow oswindow,HDC hdc,uint32_t dwTimeout):
          ::element(papp),
          m_event(papp)
       {
@@ -3140,7 +3140,7 @@ namespace windows
    }
 
 
-   /*   ::user::view_update_hint::user::view_update_hint(sp(::base::application) papp) :
+   /*   ::user::view_update_hint::user::view_update_hint(sp(::axis::application) papp) :
    element(papp)
    {
    }
@@ -5682,7 +5682,7 @@ CLASS_DECL_BASE bool unhook_window_create()
 
 __declspec(thread) char t_szTempClassName[___TEMP_CLASS_NAME_SIZE] ={0};
 
-CLASS_DECL_BASE const char * __register_window_class(sp(::base::application) papp,UINT nClassStyle,HCURSOR hCursor,HBRUSH hbrBackground,HICON hIcon)
+CLASS_DECL_BASE const char * __register_window_class(sp(::axis::application) papp,UINT nClassStyle,HCURSOR hCursor,HBRUSH hbrBackground,HICON hIcon)
 {
    // Returns a temporary string name for the class
    //  Save in a string if you want to use it for a long time

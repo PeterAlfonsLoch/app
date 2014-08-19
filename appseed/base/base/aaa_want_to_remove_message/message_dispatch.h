@@ -76,7 +76,7 @@ namespace message
 
       virtual void _on_start_user_message_handler();
 
-      virtual sp(::base::application) calc_app();
+      virtual sp(::axis::application) calc_app();
 
       virtual sp(base) peek_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
       virtual sp(base) get_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);

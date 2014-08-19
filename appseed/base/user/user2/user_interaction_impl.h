@@ -720,7 +720,7 @@ namespace user
       sp(::user::interaction) m_puiForward;
 
 
-      guie_message_wnd(sp(::base::application) papp);
+      guie_message_wnd(sp(::axis::application) papp);
 
 
       using interaction_impl::message_handler;

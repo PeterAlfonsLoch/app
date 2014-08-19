@@ -99,7 +99,7 @@ namespace ios
    }
    
    
-   window::window(::base::application * papp) :
+   window::window(::axis::application * papp) :
    element(papp),
    ::user::interaction(papp)
    {
@@ -3161,7 +3161,7 @@ namespace ios
       oswindow m_hwnd;
       HDC m_hdc;
       
-      print_window(::base::application * papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
+      print_window(::axis::application * papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
       element(papp),
       m_event(papp)
       
@@ -3896,9 +3896,9 @@ namespace ios
       
       pui->m_iaModalThread.add(::GetCurrentThreadId());
       
-      //::base::application * pappThis1 = dynamic_cast < ::base::application * > (pui->m_pthread->m_p.m_p);
+      //::axis::application * pappThis1 = dynamic_cast < ::axis::application * > (pui->m_pthread->m_p.m_p);
       
-      //::base::application * pappThis2 = dynamic_cast < ::base::application * > (pui->m_pthread.m_p);
+      //::axis::application * pappThis2 = dynamic_cast < ::axis::application * > (pui->m_pthread.m_p);
       
       while(true)
       {
@@ -3935,8 +3935,8 @@ namespace ios
       m_iModalCount++;
       
                   m_iaModalThread.add(::GetCurrentThreadId());
-      ::base::application * pappThis1 = dynamic_cast < ::base::application * > (m_pthread->m_p.m_p);
-      ::base::application * pappThis2 = dynamic_cast < ::base::application * > (m_pthread.m_p);
+      ::axis::application * pappThis1 = dynamic_cast < ::axis::application * > (m_pthread->m_p.m_p);
+      ::axis::application * pappThis2 = dynamic_cast < ::axis::application * > (m_pthread.m_p);
 
       while(true)
       {
@@ -4215,7 +4215,7 @@ namespace ios
    }
    
    
-   /*   view_update_hint::view_update_hint(::base::application * papp) :
+   /*   view_update_hint::view_update_hint(::axis::application * papp) :
     element(papp)
     {
     }
@@ -4556,7 +4556,7 @@ namespace ios
       return m_id;
    }
    
-   /*   guie_message_wnd::guie_message_wnd(::base::application * papp) :
+   /*   guie_message_wnd::guie_message_wnd(::axis::application * papp) :
     element(papp)
     {
     m_pguieForward = NULL;

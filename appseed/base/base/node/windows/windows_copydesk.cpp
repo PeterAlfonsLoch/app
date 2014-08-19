@@ -9,7 +9,7 @@ namespace windows
 {
 
 
-   copydesk::copydesk(sp(::base::application) papp) :
+   copydesk::copydesk(sp(::axis::application) papp) :
       element(papp),
       ::base::copydesk(papp),
       ::user::interaction(papp)
@@ -261,7 +261,7 @@ namespace windows
       return bOk;
    }
 
-#define new BASE_NEW
+#define new AXIS_NEW
 
 
 } // namespace windows

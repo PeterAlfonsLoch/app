@@ -59,7 +59,7 @@ namespace user
       property_set                   m_setEscape;
 
 
-      keyboard_layout(sp(::base::application) papp);
+      keyboard_layout(sp(::axis::application) papp);
 
       bool load(const char * pszPath);
 

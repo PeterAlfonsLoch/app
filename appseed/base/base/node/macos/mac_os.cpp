@@ -8,7 +8,7 @@ namespace mac
 {
    
    
-   os::os(::base::application * papp) :
+   os::os(::axis::application * papp) :
    element(papp),
    ::base::os(papp)
    {
@@ -570,7 +570,7 @@ namespace mac
       
    }
    
-   bool os::create_service(sp(::base::application) papp)
+   bool os::create_service(sp(::axis::application) papp)
    {
       
   //    throw not_implemented(get_app());
@@ -623,7 +623,7 @@ namespace mac
    }
    
    
-   bool os::remove_service(sp(::base::application) papp)
+   bool os::remove_service(sp(::axis::application) papp)
    {
    //   throw not_implemented(get_app());
       return false;
@@ -664,7 +664,7 @@ namespace mac
        */
    }
    
-   bool os::start_service(sp(::base::application) papp)
+   bool os::start_service(sp(::axis::application) papp)
    {
     //  throw not_implemented(get_app());
       return false;
@@ -705,7 +705,7 @@ namespace mac
        */
    }
    
-   bool os::stop_service(sp(::base::application) papp)
+   bool os::stop_service(sp(::axis::application) papp)
    {
   //    throw not_implemented(get_app());
       return false;

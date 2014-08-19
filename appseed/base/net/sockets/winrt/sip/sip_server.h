@@ -16,7 +16,7 @@ namespace sockets
       int      m_iPort;
 
 
-      sip_server(::base::application * papp);
+      sip_server(::axis::application * papp);
 
 
       virtual int run();

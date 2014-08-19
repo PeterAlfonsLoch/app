@@ -93,7 +93,7 @@ namespace fontopus
 
 
 
-      login_thread(sp(::base::application) papp);
+      login_thread(sp(::axis::application) papp);
       virtual ~login_thread();
 
       virtual int32_t run();
@@ -141,7 +141,7 @@ namespace fontopus
       void *                                    m_pvOldWindow;
 
 
-      validate(sp(::base::application) papp, const char * pszForm, bool bAuth = false, bool bInteractive = true);
+      validate(sp(::axis::application) papp, const char * pszForm, bool bAuth = false, bool bInteractive = true);
       virtual ~validate();
 
 

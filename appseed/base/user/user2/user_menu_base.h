@@ -19,7 +19,7 @@ namespace user
       sp(menu_base) *         m_pmenubaseThis;
 
 
-      menu_base(sp(::base::application) papp);
+      menu_base(sp(::axis::application) papp);
       virtual ~menu_base();
 
 

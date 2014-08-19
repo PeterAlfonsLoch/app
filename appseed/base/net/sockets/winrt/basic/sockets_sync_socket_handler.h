@@ -17,7 +17,7 @@ namespace sockets
       socket_handler                m_handler;
       int                           m_iDefaultTimeout;
 
-      sync_socket_handler(::base::application * papp, logger *log = NULL);
+      sync_socket_handler(::axis::application * papp, logger *log = NULL);
       virtual ~sync_socket_handler();
 
 

@@ -5,7 +5,7 @@ namespace android
 {
 
 
-   factory_exchange::factory_exchange(sp(::base::application) papp) :
+   factory_exchange::factory_exchange(sp(::axis::application) papp) :
       element(papp)
    {
 
@@ -13,7 +13,7 @@ namespace android
       System.factory().cloneable_large < file                  >  (System. type_info < ::file::binary_buffer              > ());
       System.factory().creatable_large < file_set              >  (System. type_info < ::file::set          > ());
       System.factory().creatable < file_system                 >(System. type_info < ::file::system       >(),1);
-      System.factory().creatable < application                 >(System. type_info < ::base::application  >(),1);
+      System.factory().creatable < application                 >(System. type_info < ::axis::application  >(),1);
       System.factory().creatable < dir                         >(System. type_info < ::file::dir::system        >(),1);
       System.factory().creatable < window_draw                 >  (System. type_info < ::user::window_draw        > (), 1);
       System.factory().creatable_large < thread                >  (System. type_info < ::thread             > ());
@@ -37,7 +37,7 @@ namespace android
 
 
 extern "C"
-void ca2_factory_exchange(sp(::base::application) papp)
+void ca2_factory_exchange(sp(::axis::application) papp)
 {
    ::android::factory_exchange factoryexchange(papp);
 }

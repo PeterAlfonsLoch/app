@@ -5,7 +5,7 @@ namespace linux
 {
 
 
-   file_set::file_set(sp(::base::application) papp) :
+   file_set::file_set(sp(::axis::application) papp) :
       element(papp)
    {
 

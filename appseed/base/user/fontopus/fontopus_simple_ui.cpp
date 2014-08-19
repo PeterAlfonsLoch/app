@@ -11,7 +11,7 @@ namespace fontopus
 {
 
 
-   simple_ui::simple_ui(sp(::base::application) papp) :
+   simple_ui::simple_ui(sp(::axis::application) papp) :
       element(papp),
       ::simple_ui::style(papp),
       m_login(papp, 0, 0)
@@ -196,7 +196,7 @@ namespace fontopus
 
       if((rectFontopus.width() < 300 || rectFontopus.height() < 300) && puiParent != NULL)
       {
-         sp(::base::application) papp = puiParent;
+         sp(::axis::application) papp = puiParent;
          if(papp != NULL)
          {
             papp->open_link("ca2account:this");
@@ -461,7 +461,7 @@ namespace fontopus
 
 
 
-   string CLASS_DECL_BASE get_cred(::base::application * papp,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   string CLASS_DECL_BASE get_cred(::axis::application * papp,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
 
       ::fontopus::simple_ui ui(papp);
@@ -486,7 +486,7 @@ namespace fontopus
 
    }
 
-   string CLASS_DECL_BASE get_cred(::base::application * papp, string & strUsername, string & strPassword, string strToken)
+   string CLASS_DECL_BASE get_cred(::axis::application * papp, string & strUsername, string & strPassword, string strToken)
    {
 
       string str;
@@ -498,7 +498,7 @@ namespace fontopus
 
    }
 
-   void set_cred(::base::application * papp, string strToken, const char * pszUsername, const char * pszPassword)
+   void set_cred(::axis::application * papp, string strToken, const char * pszUsername, const char * pszPassword)
    {
 
       string strUsername(pszUsername);
@@ -519,7 +519,7 @@ namespace fontopus
    }
 
 
-   void set_cred_ok(::base::application * papp,string strToken,bool bOk)
+   void set_cred_ok(::axis::application * papp,string strToken,bool bOk)
    {
 
       if(bOk)

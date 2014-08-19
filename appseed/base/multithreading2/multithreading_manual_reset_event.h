@@ -18,7 +18,7 @@ class CLASS_DECL_BASE manual_reset_event :
 public:
 
 
-   manual_reset_event(sp(::base::application) papp, bool bInitiallyOwn = false);
+   manual_reset_event(sp(::axis::application) papp, bool bInitiallyOwn = false);
 
    
 };

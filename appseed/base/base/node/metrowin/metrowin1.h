@@ -22,7 +22,7 @@ namespace metrowin
    CLASS_DECL_BASE HICON       ExtractIcon(HINSTANCE hInst, const char * lpszExeFileName, UINT nIconIndex);
    CLASS_DECL_BASE bool        DeleteFile(const char * lpFileName);
    CLASS_DECL_BASE int         GetMenuStringW(HMENU hMenu, UINT uIDItem, string & str, UINT flags);
-   CLASS_DECL_BASE void        TimeToFileTime(::base::application * papp, const ::datetime::time& time, LPFILETIME pFileTime);
+   CLASS_DECL_BASE void        TimeToFileTime(::axis::application * papp, const ::datetime::time& time, LPFILETIME pFileTime);
 
 
 } // namespace metrowin
@@ -87,10 +87,10 @@ CLASS_DECL_BASE ::metrowin::thread * __get_thread();
 CLASS_DECL_BASE void __set_thread(::thread * pthread);
 CLASS_DECL_BASE MSG* __get_current_message();
 
-CLASS_DECL_BASE void __end_thread(::base::application * papp, UINT nExitCode, bool bDelete = TRUE);
+CLASS_DECL_BASE void __end_thread(::axis::application * papp, UINT nExitCode, bool bDelete = TRUE);
 
 CLASS_DECL_BASE void __init_thread();
-CLASS_DECL_BASE void __term_thread(::base::application * papp, HINSTANCE hInstTerm = NULL);
+CLASS_DECL_BASE void __term_thread(::axis::application * papp, HINSTANCE hInstTerm = NULL);
 
 
 CLASS_DECL_BASE void __win_term();

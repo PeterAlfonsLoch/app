@@ -112,7 +112,7 @@ namespace colorertake5
       return Application.dir().matter("colorer.zip:catalog.xml");
    };
 
-   ParserFactory::ParserFactory(sp(::base::application) papp) :
+   ParserFactory::ParserFactory(sp(::axis::application) papp) :
       element(papp)
    {
 
@@ -126,7 +126,7 @@ namespace colorertake5
 
    }
 
-   ParserFactory::ParserFactory(sp(::base::application) papp, string catalogPath) :
+   ParserFactory::ParserFactory(sp(::axis::application) papp, string catalogPath) :
       element(papp)
    {
 

@@ -6,7 +6,7 @@
 namespace visual
 {
 
-   cursor::cursor(sp(::base::application) papp) :
+   cursor::cursor(sp(::axis::application) papp) :
       element(papp),
       m_dib(allocer())
       //,m_dibWork(allocer())

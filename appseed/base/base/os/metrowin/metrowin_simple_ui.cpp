@@ -6,7 +6,7 @@ namespace os
 {
 
 
-   simple_ui::simple_ui(sp(::base::application) papp) :
+   simple_ui::simple_ui(sp(::axis::application) papp) :
       element(papp),
       simple_ui::interaction(papp),
       m_eventReady(papp)

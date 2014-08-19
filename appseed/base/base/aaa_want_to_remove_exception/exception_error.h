@@ -12,7 +12,7 @@ public:
    string m_strError;
 
 
-   error_exception(sp(::base::application) papp, const char * pszError);
+   error_exception(sp(::axis::application) papp, const char * pszError);
    virtual ~error_exception();
 
    virtual bool get_error_message(string & str, PUINT pnHelpContext = NULL);

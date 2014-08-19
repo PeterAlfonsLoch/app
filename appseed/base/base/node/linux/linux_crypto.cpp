@@ -5,7 +5,7 @@ namespace linux
 {
 
 
-   crypto::crypto(sp(::base::application) papp) :
+   crypto::crypto(sp(::axis::application) papp) :
       element(papp),
       ::crypto::crypto(papp)
    {

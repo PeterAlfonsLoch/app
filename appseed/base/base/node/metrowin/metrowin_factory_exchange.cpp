@@ -5,7 +5,7 @@ namespace metrowin
 {
 
 
-   factory_exchange::factory_exchange(::base::application * papp) :
+   factory_exchange::factory_exchange(::axis::application * papp) :
       element(papp)
    {
 
@@ -13,7 +13,7 @@ namespace metrowin
       System.factory().cloneable_large < file                  >  (System.template type_info < ::file::stream_buffer       > ()     );
       System.factory().creatable_small < file_set              >  (System.template type_info < ::file::set                 > ()     );
       System.factory().cloneable       < file_system           >  (System.template type_info < ::file::system              > ()  , 1);
-      System.factory().cloneable       < application           >  (System.template type_info < ::base::application         > ()  , 1);
+      System.factory().cloneable       < application           >  (System.template type_info < ::axis::application         > ()  , 1);
       System.factory().cloneable       < dir                   >  (System.template type_info < ::file::dir::system         > ()  , 1);
       System.factory().cloneable_small < folder_watch          >  (System.template type_info < ::file::folder_watch        > ()     );
       System.factory().creatable       < window_draw           >  (System.template type_info < ::user::window_draw         > ()  , 1);
@@ -39,7 +39,7 @@ namespace metrowin
 
 
 
-void ca2_factory_exchange(::base::application * papp)
+void ca2_factory_exchange(::axis::application * papp)
 {
    metrowin::factory_exchange factoryexchange(papp);
 }

@@ -2,7 +2,7 @@
 
 
 
-void application_bias::callback::connect_to(sp(::base::application) papp)
+void application_bias::callback::connect_to(sp(::axis::application) papp)
 {
    set_app(papp);
    m_pbaseapp->m_psignal->connect(this, &callback::on_call_signal);
@@ -27,7 +27,7 @@ application_bias::application_bias()
    m_puiParent                            = NULL;
 }
 
-application_bias::application_bias(sp(::base::application) papp) :
+application_bias::application_bias(sp(::axis::application) papp) :
    element(papp)
 {
    m_set["SessionSynchronizedInput"]      = true;

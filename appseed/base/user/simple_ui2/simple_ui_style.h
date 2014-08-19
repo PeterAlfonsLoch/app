@@ -25,7 +25,7 @@ namespace simple_ui
       string                        m_strRuri;
 
 
-      style(sp(::base::application) papp);
+      style(sp(::axis::application) papp);
 
       virtual ~style();
 

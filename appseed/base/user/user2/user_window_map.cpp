@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   window_map::window_map(sp(::base::application) papp) :
+   window_map::window_map(sp(::axis::application) papp) :
       element(papp)
    {
 

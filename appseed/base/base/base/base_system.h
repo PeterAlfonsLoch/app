@@ -2,55 +2,28 @@
 
 
 
-class CLASS_DECL_BASE ptra:
-   virtual public spa(element)
-{
-public:
-
-
-};
-
-
-typedef ::map < sp(element),sp(element),sp(element),sp(element) > element_map;
-typedef ::map < sp(element),sp(element),ptra,ptra > map_many;
-
+//class CLASS_DECL_BASE ptra:
+//   virtual public spa(element)
+//{
+//public:
+//
+//
+//};
+//
+//
+//typedef ::map < sp(element),sp(element),sp(element),sp(element) > element_map;
+//typedef ::map < sp(element),sp(element),ptra,ptra > map_many;
+//
 
 namespace base
 {
 
 
    class CLASS_DECL_BASE system:
+      virtual public ::axis::system,
       virtual public ::base::application
    {
    public:
-
-#if defined METROWIN && defined(__cplusplus_winrt)
-
-      class os_data
-      {
-      public:
-
-         sp(::user::interaction)                      m_pui;
-         ::base::system_window ^                      m_pwindow;
-
-
-      };
-
-#elif defined(APPLE_IOS)
-      class os_data
-      {
-      public:
-
-         sp(::user::interaction)                      m_pui;
-
-
-      };
-
-#else
-
-      class os_data;
-
-#endif
 
 #ifdef BSD_STYLE_SOCKETS
 
@@ -58,109 +31,29 @@ namespace base
 
 #endif
 
-      ::user::interaction *                      m_psimpleui;
-      os_data *                                    m_posdata;
-
-
-      stridsp(type)                                m_typemap;
-      spa(service_base)                            m_serviceptra;
-      sp(base_factory)                             m_pfactory;
       ::url::departament                           m_urldepartament;
-      sp(class ::xml::departament)                 m_pxml;
-      const id_pool                                m_cidpool;
-      sp(class ::base::log)                        m_plog;
-      sp(math::math)                               m_pmath;
-      sp(geometry::geometry)                       m_pgeometry;
 
-
-      ::exception::engine *                        m_peengine;
-
-
-      static id_space *                            s_pidspace;
-      static class id                              idEmpty;
-      class ::str::base64                          m_base64;
 
       ::file::system_sp                            m_spfile;
       ::file::dir::system_sp                       m_spdir;
       sp(::sockets::net)                           m_spnet;
       ::net::port_forward_sp                       m_spportforward;
       ::http::system                               m_httpsystem;
-      ::string_to_string                           m_mapAppLibrary;
-      class machine_event_central *                m_pmachineeventcentral;
+
+
       class ::fontopus::user_set                   m_userset;
       ::crypto::crypto_sp                          m_spcrypto;
       sp(class ::datetime::departament)            m_pdatetime;
-      string_map < int_to_string >                 m_mapEnumToName;
-      string_map < string_to_int >                 m_mapNameToEnum;
-      ::user::window_draw *                        m_ptwf;
       class ::base::compress                       m_compress;
       sp(::user::str)                              m_puserstr;
       sp(::install::install)                       m_spinstall;
-      ::base::os_sp                                m_spos;
-      spa(::base::session)                         m_basesessionptra;
-      sp(colorertake5::ParserFactory)              m_pparserfactory;
-
-
-      sp(mutex)                                    m_spmutexUserAppData;
-      sp(mutex)                                    m_spmutexSystemAppData;
-
-
-#ifdef WINDOWS
-      ID2D1DeviceContext *                         m_pdevicecontext;
-      sp(mutex)                                    m_pmutexDc;
-#endif
-
-      sp(mutex)                                    m_spmutexFactory;
-
-      ::base::library                              m_libraryDraw2d;
-
-
-      bool                                         m_bMatterFromHttpCache;
-      bool                                         m_bSystemSynchronizedCursor;
-      bool                                         m_bSystemSynchronizedScreen;
-      bool                                         m_bGudoNetCache;
-
-      string                                       m_strCa2ModulePath;
-      string                                       m_strCa2ModuleFolder;
-      string                                       m_strModulePath;
-      string                                       m_strModuleFolder;
-
-      string                                       m_strCmdLine;
-      int32_t                                      m_nCmdShow;
-      size_t                                       m_nSafetyPoolSize;      // ideal size
-      ::html::html *                               m_phtml; // only defined  in core;
-
-      ::user::schema *                             m_pschemaLayeredFrame;
-
-
-#ifdef WINDOWSEX
-
-      class interaction_impl:
-         virtual public ::user::interaction
-      {
-      public:
-
-         interaction_impl(sp(::base::application) papp);
-
-         void install_message_handling(::message::dispatch * pdispath);
-
-         DECL_GEN_SIGNAL(_001MessageHub);
-
-
-      };
-
-      sp(interaction_impl)                                   m_spwindow;
-
-      raw_array < MONITORINFO >                    m_monitorinfoa;
-      raw_array < HMONITOR >                       m_hmonitora;
-      raw_array < MONITORINFO >                    m_monitorinfoaDesk;
 
 
 
-#endif
 
 
-      system(sp(::base::application) papp);
+
+      system(sp(::axis::application) papp);
       virtual ~system();
 
 
@@ -178,15 +71,12 @@ namespace base
       spa(::base::session)                         & basesessionptra();
       application_ptra                                get_appptra();
 
-
-
-      class ::base::os                             & os();
       class base_factory                           & factory();
       inline ::url::departament                    & url()     { return m_urldepartament; }
       ::xml::departament                           & xml();
       class ::str::base64                          & base64();
 
-      class ::base::log                            & log();
+      class ::axis::log                            & log();
 
       inline class ::http::system                  & http()    { return m_httpsystem; }
       inline ::file::system                        & file()    { return *m_spfile; }
@@ -219,11 +109,11 @@ namespace base
 
 
 
-      using ::base::application::alloc;
-      virtual sp(element) alloc(sp(::base::application) papp,sp(type) info);
-      virtual sp(element) alloc(sp(::base::application) papp,const class id & idType);
+      using ::axis::application::alloc;
+      virtual sp(element) alloc(sp(::axis::application) papp,sp(type) info);
+      virtual sp(element) alloc(sp(::axis::application) papp,const class id & idType);
 
-      virtual sp(element) on_alloc(sp(::base::application) papp,sp(type) info);
+      virtual sp(element) on_alloc(sp(::axis::application) papp,sp(type) info);
       virtual sp(element) clone();
       template < class T >
       sp(T) clone(sp(T) p)
@@ -272,10 +162,10 @@ namespace base
       sp(::user::window_draw)               get_twf();
 
 
-      virtual void on_allocation_error(sp(::base::application) papp,sp(type) info);
-      //   sp(element) alloc(sp(::base::application) papp, sp(type) info);
-      sp(element) alloc(sp(::base::application) papp,const std_type_info & info);
-      //   virtual sp(element) on_alloc(sp(::base::application) papp, sp(type) info);
+      virtual void on_allocation_error(sp(::axis::application) papp,sp(type) info);
+      //   sp(element) alloc(sp(::axis::application) papp, sp(type) info);
+      sp(element) alloc(sp(::axis::application) papp,const std_type_info & info);
+      //   virtual sp(element) on_alloc(sp(::axis::application) papp, sp(type) info);
 
 
       static inline class id id(const ::std_type_info & info);
@@ -371,7 +261,7 @@ namespace base
 
       virtual sp(::user::document) place_hold(sp(::user::interaction) pui);
 
-      virtual sp(::base::session) query_session(index iEdge);
+      virtual sp(::axis::session) query_session(index iEdge);
 
       virtual bool initialize_log(const char * pszId);
 
@@ -430,27 +320,6 @@ namespace base
 
 
 
-template < size_t _Bits >
-inline ::file::output_stream & operator << (::file::output_stream & _Ostr,const bitset<_Bits>& _Right)
-{
-   // insert bitset as a string
-   return (_Ostr << _Right.template to_string());
-}
-
-// TEMPLATE operator>>
-template < size_t _Bits >
-inline ::file::input_stream & operator >>(::file::input_stream &  _Istr,bitset<_Bits>& _Right)
-{
-   // extract bitset as a string
-   string _Str;
-
-   _Istr >> _Str;
-
-   _Right = bitset<_Bits>(_Str);	// convert string and store
-
-   return (_Istr);
-
-}
 
 
 

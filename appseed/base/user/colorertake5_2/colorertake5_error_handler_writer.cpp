@@ -1,6 +1,6 @@
 #include "framework.h"
 
-ErrorHandlerWriter::ErrorHandlerWriter(sp(::base::application) papp) :
+ErrorHandlerWriter::ErrorHandlerWriter(sp(::axis::application) papp) :
 element(papp)
 {
 }

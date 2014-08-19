@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-not_licensed::not_licensed(sp(::base::application) papp, const char * pszRealm, const char * pszUrl) :
+not_licensed::not_licensed(sp(::axis::application) papp, const char * pszRealm, const char * pszUrl) :
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp)

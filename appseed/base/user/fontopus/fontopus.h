@@ -13,10 +13,10 @@ namespace fontopus
 {
 
 
-   string CLASS_DECL_BASE get_cred(::base::application * papp, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive);
-   string CLASS_DECL_BASE get_cred(::base::application * papp, string & strUsername, string & strPassword, string strToken);
-   void CLASS_DECL_BASE set_cred(::base::application * papp,string strToken,const char * pszUsername,const char * pszPassword);
-   void CLASS_DECL_BASE set_cred_ok(::base::application * papp,string strToken,bool bOk);
+   string CLASS_DECL_BASE get_cred(::axis::application * papp, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive);
+   string CLASS_DECL_BASE get_cred(::axis::application * papp, string & strUsername, string & strPassword, string strToken);
+   void CLASS_DECL_BASE set_cred(::axis::application * papp,string strToken,const char * pszUsername,const char * pszPassword);
+   void CLASS_DECL_BASE set_cred_ok(::axis::application * papp,string strToken,bool bOk);
 
 
 } // namespace fontopus

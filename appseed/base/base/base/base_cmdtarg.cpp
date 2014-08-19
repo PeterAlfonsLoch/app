@@ -5,7 +5,7 @@ command_target::command_target()
    CommonConstruct();
 }
 
-command_target::command_target(sp(::base::application) papp)
+command_target::command_target(sp(::axis::application) papp)
 : element(papp)
 {
    CommonConstruct();
@@ -364,7 +364,7 @@ const __MSGMAP* command_target::GetThisMessageMap()
 //      cmd_ui is an implementation class for menus and general dialog
 //        controls (usually buttons)
 
-cmd_ui::cmd_ui(sp(::base::application) papp)  :
+cmd_ui::cmd_ui(sp(::axis::application) papp)  :
    element(papp)
 {
 
@@ -549,7 +549,7 @@ __STATIC void __load_dot_bitmap()
 */
 
 
-CTestCmdUI::CTestCmdUI(sp(::base::application) papp) :
+CTestCmdUI::CTestCmdUI(sp(::axis::application) papp) :
 element(papp),
 cmd_ui(papp)
 {

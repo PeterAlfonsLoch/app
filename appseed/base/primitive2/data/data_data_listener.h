@@ -16,7 +16,7 @@ namespace data
       comparable_array < data * > m_dataptra;
 
 
-      data_listener(sp(::base::application) papp);
+      data_listener(sp(::axis::application) papp);
       virtual ~data_listener();
 
 

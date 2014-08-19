@@ -81,7 +81,7 @@ namespace base
    class ::id_space * system::s_pidspace = NULL;
 
 
-   system::system(sp(::base::application) papp):
+   system::system(sp(::axis::application) papp):
       m_urldepartament(this),
       //m_mutexDelete(this),
       m_httpsystem(this),
@@ -269,7 +269,7 @@ namespace base
    void system::construct(const char * pszAppId)
    {
 
-      ::base::application::construct(pszAppId);
+      ::axis::application::construct(pszAppId);
 
    }
 
@@ -319,7 +319,7 @@ namespace base
       m_pfactory->cloneable_large < mutex >();
       m_pfactory->cloneable_large < event >();
 
-      if(!::base::application::process_initialize())
+      if(!::axis::application::process_initialize())
          return false;
 
 #ifdef WINDOWSEX
@@ -415,7 +415,7 @@ namespace base
    bool system::initialize2()
    {
 
-      if(!::base::application::initialize2())
+      if(!::axis::application::initialize2())
          return false;
 
       return true;
@@ -428,7 +428,7 @@ namespace base
 
       m_pfactory->enable_simple_factory_request();
 
-      if(!::base::application::initialize_instance())
+      if(!::axis::application::initialize_instance())
          return false;
 
       return true;
@@ -485,7 +485,7 @@ namespace base
       try
       {
 
-         bOk = ::base::application::finalize();
+         bOk = ::axis::application::finalize();
 
       }
       catch(...)
@@ -641,7 +641,7 @@ namespace base
       try
       {
 
-         iRet = ::base::application::exit_instance();
+         iRet = ::axis::application::exit_instance();
 
       }
       catch(...)
@@ -724,7 +724,7 @@ namespace base
 
 
 
-      ::base::application::exit_instance();
+      ::axis::application::exit_instance();
 
 #ifdef METROWIN
       m_pdevicecontext = nullptr;
@@ -944,7 +944,7 @@ namespace base
 
 
 
-   sp(element) system::on_alloc(sp(::base::application) papp,sp(type) info)
+   sp(element) system::on_alloc(sp(::axis::application) papp,sp(type) info)
    {
       /*string str;
       str.Format("Could not alloc %s", info.name());
@@ -956,23 +956,23 @@ namespace base
       return NULL;
    }
 
-   sp(element) system::alloc(sp(::base::application) papp,sp(type) info)
+   sp(element) system::alloc(sp(::axis::application) papp,sp(type) info)
    {
       return on_alloc(papp,info);
    }
 
-   sp(element) system::alloc(sp(::base::application) papp,const std_type_info & info)
+   sp(element) system::alloc(sp(::axis::application) papp,const std_type_info & info)
    {
       return on_alloc(papp,canew(type(info)));
    }
 
-   void system::on_allocation_error(sp(::base::application) papp,sp(type) info)
+   void system::on_allocation_error(sp(::axis::application) papp,sp(type) info)
    {
       UNREFERENCED_PARAMETER(papp);
       UNREFERENCED_PARAMETER(info);
    }
 
-   sp(element) system::alloc(sp(::base::application) papp,const class id & idType)
+   sp(element) system::alloc(sp(::axis::application) papp,const class id & idType)
    {
       return on_alloc(papp,get_type_info(idType));
    }
@@ -1043,7 +1043,7 @@ namespace base
 
    }
 
-   ::base::log & system::log()
+   ::axis::log & system::log()
    {
       return *m_plog;
    }
@@ -1120,7 +1120,7 @@ namespace base
    {
       if(m_plog != NULL)
          return true;
-      m_plog = new ::base::log(this);
+      m_plog = new ::axis::log(this);
       m_plog->set_extended_log();
       m_plog->set_app(this);
       if(!m_plog->initialize(pszId))
@@ -1144,7 +1144,7 @@ namespace base
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
   //    {
-    //     sp(::base::application) papp = appptra()(i);
+    //     sp(::axis::application) papp = appptra()(i);
       //   papp->load_string_table();
       //}
 
@@ -1157,7 +1157,7 @@ namespace base
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
  //     {
-  //       sp(::base::application) papp = appptra()(i);
+  //       sp(::axis::application) papp = appptra()(i);
   //       papp->set_locale(pszLocale,actioncontext);
   //    }
 
@@ -1170,7 +1170,7 @@ namespace base
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
   //    {
-  //       sp(::base::application) papp = appptra()(i);
+  //       sp(::axis::application) papp = appptra()(i);
   //       papp->set_schema(pszStyle,actioncontext);
   //    }
 
@@ -1615,7 +1615,7 @@ namespace base
 #ifdef WINDOWSEX
 
 
-   system::interaction_impl::interaction_impl(sp(::base::application) papp):
+   system::interaction_impl::interaction_impl(sp(::axis::application) papp):
       element(papp),
       ::user::interaction(papp)
    {

@@ -19,7 +19,7 @@ namespace ios
    };
 
    class CLASS_DECL_BASE application :
-   virtual public ::base::application
+   virtual public ::axis::application
    {
    public:
 
@@ -29,7 +29,7 @@ namespace ios
       main_init_data *     m_pmaininitdata;
       
       
-      application(::base::application * papp);
+      application(::axis::application * papp);
       virtual ~application();
       
       virtual HINSTANCE GetHinstance();

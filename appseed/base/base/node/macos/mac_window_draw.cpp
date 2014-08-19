@@ -27,7 +27,7 @@ namespace mac
 {
 
    
-   window_draw::window_draw(::base::application * papp) :
+   window_draw::window_draw(::axis::application * papp) :
    element(papp),
    ::thread(papp),
    ::user::window_draw(papp),

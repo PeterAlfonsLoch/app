@@ -4,7 +4,7 @@
 namespace user
 {
 
-   printer::printer(sp(::base::application) papp) :
+   printer::printer(sp(::axis::application) papp) :
       element(papp)
    {
    }

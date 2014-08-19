@@ -5,7 +5,7 @@ namespace metrowin
 {
 
 
-   copydesk::copydesk(::base::application * papp) :
+   copydesk::copydesk(::axis::application * papp) :
       element(papp),
       ::base::copydesk(papp)
    {

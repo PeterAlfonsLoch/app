@@ -11,7 +11,7 @@ namespace ios
    public:
       
       
-      os(::base::application * papp);
+      os(::axis::application * papp);
       virtual ~os();
       
       
@@ -45,11 +45,11 @@ namespace ios
       
       virtual bool open_in_ie(const char * lpcsz);
       
-      virtual bool create_service(sp(::base::application) papp);
-      virtual bool remove_service(sp(::base::application) papp);
+      virtual bool create_service(sp(::axis::application) papp);
+      virtual bool remove_service(sp(::axis::application) papp);
       
-      virtual bool start_service(sp(::base::application) papp);
-      virtual bool stop_service(sp(::base::application) papp);
+      virtual bool start_service(sp(::axis::application) papp);
+      virtual bool stop_service(sp(::axis::application) papp);
       
       virtual bool resolve_link(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional = NULL);
       

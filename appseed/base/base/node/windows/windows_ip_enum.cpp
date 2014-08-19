@@ -5,7 +5,7 @@ namespace windows
 {
 
 
-   ip_enum::ip_enum(sp(::base::application) papp) :
+   ip_enum::ip_enum(sp(::axis::application) papp) :
       element(papp),
       ::net::ip_enum(papp)
    {

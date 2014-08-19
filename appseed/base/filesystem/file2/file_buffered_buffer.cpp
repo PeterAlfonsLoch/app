@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   buffered_buffer::buffered_buffer(sp(::base::application) papp, ::file::binary_buffer_sp pfile, ::primitive::memory_size iBufferSize) :
+   buffered_buffer::buffered_buffer(sp(::axis::application) papp, ::file::binary_buffer_sp pfile, ::primitive::memory_size iBufferSize) :
       element(papp)
    {
       m_storage.allocate(iBufferSize);

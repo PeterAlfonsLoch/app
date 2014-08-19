@@ -3,7 +3,7 @@
 namespace xml
 {
 
-   output_tree::output_tree(sp(::base::application) papp) :
+   output_tree::output_tree(sp(::axis::application) papp) :
       element(papp),
       tree_base(papp)
    {
@@ -11,7 +11,7 @@ namespace xml
       m_pnode = NULL;
    }
 
-   output_tree::output_tree(sp(::base::application) papp, tree_schema * pschema) :
+   output_tree::output_tree(sp(::axis::application) papp, tree_schema * pschema) :
       element(papp),
       tree_base(papp, pschema)
    {

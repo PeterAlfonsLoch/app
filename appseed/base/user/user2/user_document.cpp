@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   document::document(sp(::base::application) papp) :
+   document::document(sp(::axis::application) papp) :
       element(papp),
       ::data::data_container_base(papp),
       m_mutex(NULL)
@@ -142,7 +142,7 @@ namespace user
       m_viewptra.remove_all();
    }
 
-   /*void document::on_alloc(sp(::base::application) papp)
+   /*void document::on_alloc(sp(::axis::application) papp)
    {
       set_app(papp);
    }*/

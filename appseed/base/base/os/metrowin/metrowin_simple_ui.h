@@ -36,7 +36,7 @@ namespace os
       point                      m_ptCursor;
 
 
-      simple_ui(sp(::base::application) papp);
+      simple_ui(sp(::axis::application) papp);
       virtual ~simple_ui();
 
 

@@ -25,20 +25,20 @@ namespace mac
       class file_system::path m_path;
  
       
-      file_system(::base::application * papp);
+      file_system(::axis::application * papp);
       
       
       path & path();
       
       
-      virtual void copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, ::base::application * papp);
+      virtual void copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, ::axis::application * papp);
       virtual void move(const char * pszNew, const char * psz);
       virtual void del(const char * psz);
-      virtual string copy(const char * psz, ::base::application * papp);
-      virtual string paste(const char * pszLocation, const char * path, ::base::application * papp);
+      virtual string copy(const char * psz, ::axis::application * papp);
+      virtual string paste(const char * pszLocation, const char * path, ::axis::application * papp);
       
-      virtual void trash_that_is_not_trash(const char * psz, ::base::application * papp);
-      virtual void trash_that_is_not_trash(stringa & stra, ::base::application * papp);
+      virtual void trash_that_is_not_trash(const char * psz, ::axis::application * papp);
+      virtual void trash_that_is_not_trash(stringa & stra, ::axis::application * papp);
       
       virtual string title_(const char * path);
       virtual string name_(const char * path);
@@ -46,40 +46,40 @@ namespace mac
       
       virtual var length(const char * path);
       
-      virtual void replace(const char * pszContext, const char * pszFind, const char * pszReplace, ::base::application * papp);
+      virtual void replace(const char * pszContext, const char * pszFind, const char * pszReplace, ::axis::application * papp);
       
-      virtual bool exists(const char * path, ::base::application * papp);
-      virtual bool exists(const string & path, ::base::application * papp);
+      virtual bool exists(const char * path, ::axis::application * papp);
+      virtual bool exists(const string & path, ::axis::application * papp);
       
       void  get_ascendants_path(const char * lpcsz, stringa & stra);
       void  get_ascendants_name(const char * lpcsz, stringa & stra);
       
       
-      string time(::base::application * papp, const char * pszBasePath, int32_t iDepth, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-      string time_square(::base::application * papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-      string time_log(::base::application * papp, const char * pszId);
+      string time(::axis::application * papp, const char * pszBasePath, int32_t iDepth, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+      string time_square(::axis::application * papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+      string time_log(::axis::application * papp, const char * pszId);
       
-      virtual ::file::buffer_sp time_square_file(::base::application * papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-      virtual ::file::buffer_sp get(const char * name, ::base::application * papp);
+      virtual ::file::buffer_sp time_square_file(::axis::application * papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+      virtual ::file::buffer_sp get(const char * name, ::axis::application * papp);
       
       
       int32_t filterex_time_square(const char * pszPrefix, stringa & stra);
       bool mk_time(const char * lpcszCandidate);
       
-      string as_string(var varFile, ::base::application * papp);
-      string as_string(var varFile, var & varQuery, ::base::application * papp);
-      void as_memory(var varFile, primitive::memory_base & mem, ::base::application * papp);
-      void lines(stringa & stra, var varFile, ::base::application * papp);
+      string as_string(var varFile, ::axis::application * papp);
+      string as_string(var varFile, var & varQuery, ::axis::application * papp);
+      void as_memory(var varFile, primitive::memory_base & mem, ::axis::application * papp);
+      void lines(stringa & stra, var varFile, ::axis::application * papp);
       
-      bool put_contents(var varFile, const void * pvoidContents, count count, ::base::application * papp);
-      bool put_contents(var varFile, const char * lpcszContents, ::base::application * papp);
-      bool put_contents(var varFile, ::file::reader & reader, ::base::application * papp);
-      bool put_contents(var varFile, primitive::memory & mem, ::base::application * papp);
-      bool put_contents_utf8(var varFile, const char * lpcszContents, ::base::application * papp);
+      bool put_contents(var varFile, const void * pvoidContents, count count, ::axis::application * papp);
+      bool put_contents(var varFile, const char * lpcszContents, ::axis::application * papp);
+      bool put_contents(var varFile, ::file::reader & reader, ::axis::application * papp);
+      bool put_contents(var varFile, primitive::memory & mem, ::axis::application * papp);
+      bool put_contents_utf8(var varFile, const char * lpcszContents, ::axis::application * papp);
       
       bool is_read_only(const char * psz);
       
-      string sys_temp(const char * pszName, const char * pszExtension, ::base::application * papp);
+      string sys_temp(const char * pszName, const char * pszExtension, ::axis::application * papp);
       string sys_temp_unique(const char * pszName);
       
       

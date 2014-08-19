@@ -36,7 +36,7 @@ namespace linux
       DWORD                                  m_dwLastDelay;
 
 
-      window_draw(sp(::base::application) papp);
+      window_draw(sp(::axis::application) papp);
       virtual ~window_draw();
 
 

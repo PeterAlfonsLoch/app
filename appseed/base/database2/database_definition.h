@@ -145,7 +145,7 @@ namespace database
 
 
       result_set();
-      result_set(sp(::base::application) papp);
+      result_set(sp(::axis::application) papp);
       result_set(const result_set & set);
 
 

@@ -34,7 +34,7 @@ namespace ios
       
       
       window();
-      window(::base::application * papp);
+      window(::axis::application * papp);
       virtual void construct(oswindow hwnd);
       
 //      virtual void on_delete(::ca2::ca2 * poc);

@@ -9,7 +9,7 @@
 namespace user
 {
 
-   impact_system::impact_system(sp(::base::application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass) :
+   impact_system::impact_system(sp(::axis::application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass) :
       element(papp)
    {
 

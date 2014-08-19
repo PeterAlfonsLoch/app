@@ -10,7 +10,7 @@ namespace metrowin
    }
 
 
-   file::file(::base::application * papp) :
+   file::file(::axis::application * papp) :
       element(papp)
    {
 
@@ -20,7 +20,7 @@ namespace metrowin
 
    }
 
-   file::file(::base::application * papp, int hFile) :
+   file::file(::axis::application * papp, int hFile) :
       element(papp)
    {
 
@@ -30,7 +30,7 @@ namespace metrowin
 
    }
 
-   file::file(::base::application * papp, const char * lpszFileName, UINT nOpenFlags) :
+   file::file(::axis::application * papp, const char * lpszFileName, UINT nOpenFlags) :
       element(papp)
    {
 
@@ -971,13 +971,13 @@ namespace metrowin
 
 
 
-   void WinFileException::ThrowOsError(::base::application * papp, LONG lOsError, const char * lpszFileName /* = NULL */)
+   void WinFileException::ThrowOsError(::axis::application * papp, LONG lOsError, const char * lpszFileName /* = NULL */)
    {
       if (lOsError != 0)
          ::file::throw_exception(papp, WinFileException::OsErrorToException(lOsError), lOsError, lpszFileName);
    }
 
-   void WinFileException::ThrowErrno(::base::application * papp, int nErrno, const char * lpszFileName /* = NULL */)
+   void WinFileException::ThrowErrno(::axis::application * papp, int nErrno, const char * lpszFileName /* = NULL */)
    {
       if (nErrno != 0)
          ::file::throw_exception(papp, WinFileException::ErrnoToException(nErrno), _doserrno, lpszFileName);
@@ -988,7 +988,7 @@ namespace metrowin
    /////////////////////////////////////////////////////////////////////////////
    // WinFileException helpers
 
-   void CLASS_DECL_BASE ::file::throw_exception(::base::application * papp, int cause, LONG lOsError, const char * lpszFileName /* == NULL */)
+   void CLASS_DECL_BASE ::file::throw_exception(::axis::application * papp, int cause, LONG lOsError, const char * lpszFileName /* == NULL */)
    {
 #ifdef DEBUG
       const char * lpsz;
@@ -1678,7 +1678,7 @@ namespace metrowin
 
 
 
-void CLASS_DECL_BASE ::file::throw_exception(::base::application * papp, int cause, LONG lOsError,   const char * lpszFileName /* == NULL */)
+void CLASS_DECL_BASE ::file::throw_exception(::axis::application * papp, int cause, LONG lOsError,   const char * lpszFileName /* == NULL */)
 {
    throw ::file::exception(papp, cause, lOsError, lpszFileName);
 #ifdef WINDOWSEX

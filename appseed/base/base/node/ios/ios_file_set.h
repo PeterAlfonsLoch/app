@@ -17,7 +17,7 @@ namespace ios
       stringa        m_straFile;
       
       
-      file_set(::base::application * papp);
+      file_set(::axis::application * papp);
       virtual ~file_set();
       
       

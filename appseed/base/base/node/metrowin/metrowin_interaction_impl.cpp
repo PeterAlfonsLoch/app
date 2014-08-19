@@ -33,7 +33,7 @@ namespace metrowin
 
    }
 
-   interaction_impl::interaction_impl(::base::application * papp):
+   interaction_impl::interaction_impl(::axis::application * papp):
       element(papp)
    {
 
@@ -1188,7 +1188,7 @@ namespace metrowin
       {
       if(pbase->m_wparam == BERGEDGE_GETAPP)
       {
-      ::base::application ** ppapp= (::base::application **) pbase->m_lparam;
+      ::axis::application ** ppapp= (::axis::application **) pbase->m_lparam;
       *ppapp = get_app();
       pbase->m_bRet = true;
       return;
@@ -2984,7 +2984,7 @@ namespace metrowin
       oswindow m_hwnd;
       HDC m_hdc;
 
-      print_window(::base::application * papp,oswindow hwnd,HDC hdc,uint32_t dwTimeout):
+      print_window(::axis::application * papp,oswindow hwnd,HDC hdc,uint32_t dwTimeout):
          element(papp),
          m_event(papp)
       {
@@ -3762,8 +3762,8 @@ namespace metrowin
       m_iModalCount++;
 
       m_iaModalThread.add(::GetCurrentThreadId());
-      ::base::application * pappThis1 = dynamic_cast <::base::application *> (m_pthread->m_p.m_p);
-      ::base::application * pappThis2 = dynamic_cast <::base::application *> (m_pthread.m_p);
+      ::axis::application * pappThis1 = dynamic_cast <::axis::application *> (m_pthread->m_p.m_p);
+      ::axis::application * pappThis2 = dynamic_cast <::axis::application *> (m_pthread.m_p);
       // acquire and dispatch messages until the modal state is done
       MESSAGE msg;
       for(;;)
@@ -4026,7 +4026,7 @@ namespace metrowin
    }
 
 
-   /*   view_update_hint::view_update_hint(::base::application * papp) :
+   /*   view_update_hint::view_update_hint(::axis::application * papp) :
    element(papp)
    {
    }
@@ -4320,7 +4320,7 @@ namespace metrowin
       return m_id;
    }
 
-   /*   guie_message_wnd::guie_message_wnd(::base::application * papp) :
+   /*   guie_message_wnd::guie_message_wnd(::axis::application * papp) :
    element(papp)
    {
    m_pguieForward = NULL;

@@ -31,12 +31,12 @@ string chunk_split(const string & body,int32_t chunklen,const string & end)
 
 }
 
-typedef string(*SALT)(sp(::base::application),const char *,stringa &);
+typedef string(*SALT)(sp(::axis::application),const char *,stringa &);
 
 namespace fontopus
 {
 
-   validate::validate(sp(::base::application) papp,const char * pszForm,bool bAuth,bool bInteractive):
+   validate::validate(sp(::axis::application) papp,const char * pszForm,bool bAuth,bool bInteractive):
       element(papp),
       m_loginthread(papp)
    {
@@ -50,7 +50,7 @@ namespace fontopus
       m_bAuth          = bAuth;
       m_strForm               = pszForm;
       m_bDeferRegistration    = false;
-      sp(::base::application) pgenapp = (papp);
+      sp(::axis::application) pgenapp = (papp);
       if(pgenapp != NULL)
       {
          try
@@ -395,7 +395,7 @@ namespace fontopus
 
 
 
-   login_thread::login_thread(sp(::base::application) papp):
+   login_thread::login_thread(sp(::axis::application) papp):
       element(papp),
       thread(papp),
       simple_thread(papp)

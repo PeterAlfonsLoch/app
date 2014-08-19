@@ -6,7 +6,7 @@ namespace sockets
 
 
    class CLASS_DECL_BASE sockets :
-      virtual public ::base::departament
+      virtual public ::axis::departament
    {
    public:
 
@@ -26,7 +26,7 @@ namespace sockets
 
 
 
-      sockets(sp(::base::application) papp);
+      sockets(sp(::axis::application) papp);
 
 
       bool initialize1();

@@ -33,7 +33,7 @@ namespace file
 
 
       string_buffer();
-      string_buffer(sp(::base::application) papp);
+      string_buffer(sp(::axis::application) papp);
       string_buffer(const string & str);
       string_buffer(const string_buffer & str);
       virtual ~string_buffer();

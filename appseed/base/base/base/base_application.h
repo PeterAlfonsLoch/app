@@ -6,6 +6,7 @@ namespace base
 
 
    class CLASS_DECL_BASE application :
+      virtual public ::axis::application,
       virtual public application_interface
    {
    public:
@@ -13,8 +14,8 @@ namespace base
 
 
 
-      smart_pointer < application >                   m_pimpl;
-      sp(service_base)                                m_pservice;
+      //smart_pointer < application >                   m_pimpl;
+      //sp(service_base)                                m_pservice;
 
       bool                                            m_bBaseProcessInitialize;
       bool                                            m_bBaseProcessInitializeResult;
@@ -28,67 +29,67 @@ namespace base
       bool                                            m_bBaseInitialize;
       bool                                            m_bBaseInitializeResult;
 
-      string_to_ptr                                   m_appmap;
-      string                                          m_strAppName;
-      allocatorsp                                     m_allocer;
-      sp(::command_thread)                            m_pcommandthread;
-      sp(class signal)                                m_psignal;
+      //string_to_ptr                                   m_appmap;
+      //string                                          m_strAppName;
+      //allocatorsp                                     m_allocer;
+      //sp(::command_thread)                            m_pcommandthread;
+      //sp(class signal)                                m_psignal;
 
-      ::base::main_init_data *            m_pinitmaindata;
-
-
-      EExclusiveInstance                              m_eexclusiveinstance;
-
-      sp(::mutex)                                     m_pmutexLocal;
-      sp(::mutex)                                     m_pmutexLocalId;
-      sp(::mutex)                                     m_pmutexGlobal;
-      sp(::mutex)                                     m_pmutexGlobalId;
+      //::axis::main_init_data *            m_pinitmaindata;
 
 
+      //EExclusiveInstance                              m_eexclusiveinstance;
 
-      stringa                                         m_straMatterLocator;
-      string                                          m_strLibraryName;
-      string                                          m_strAppId;
-      synch_ptr_array < ::user::interaction >         m_framea;
-      sp(::database::server)                          m_spdataserver;
-#ifdef WINDOWS
-      HINSTANCE                                       m_hinstance;
-#endif
-
-
-      bool                                            m_bUpdateMatterOnInstall;
-
-
-      bool                                            m_bLicense;
-      string                                          m_strBaseSupportId;
-            int32_t                                         m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
-
-
-      string                                          m_strRoot;
-      string                                          m_strDomain;
-      string                                          m_strLocale;
-      string                                          m_strSchema;
-
-      // Initial state of the application's interaction_impl; normally,
-      // this is an argument to ShowWindow().
-      manual_reset_event *                            m_peventReady;
-      string                                          m_strInstallToken;
-      string                                          m_strInstallType;
-      mutex                                           m_mutexMatterLocator;
+      //sp(::mutex)                                     m_pmutexLocal;
+      //sp(::mutex)                                     m_pmutexLocalId;
+      //sp(::mutex)                                     m_pmutexGlobal;
+      //sp(::mutex)                                     m_pmutexGlobalId;
 
 
 
-      mutex                                           m_mutexStr;
-      string_table                                    m_stringtable;
-      string_table                                    m_stringtableStd;
+//      stringa                                         m_straMatterLocator;
+//      string                                          m_strLibraryName;
+//      string                                          m_strAppId;
+//      synch_ptr_array < ::user::interaction >         m_framea;
+//      sp(::database::server)                          m_spdataserver;
+//#ifdef WINDOWS
+//      HINSTANCE                                       m_hinstance;
+//#endif
+//
+//
+//      bool                                            m_bUpdateMatterOnInstall;
+//
+//
+//      bool                                            m_bLicense;
+//      string                                          m_strBaseSupportId;
+//            int32_t                                         m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
+//
+//
+//      string                                          m_strRoot;
+//      string                                          m_strDomain;
+//      string                                          m_strLocale;
+//      string                                          m_strSchema;
+//
+//      // Initial state of the application's interaction_impl; normally,
+//      // this is an argument to ShowWindow().
+//      manual_reset_event *                            m_peventReady;
+//      string                                          m_strInstallToken;
+//      string                                          m_strInstallType;
+//      mutex                                           m_mutexMatterLocator;
+//
+//
+//
+//      mutex                                           m_mutexStr;
+//      string_table                                    m_stringtable;
+//      string_table                                    m_stringtableStd;
+//
 
+      //static UINT                                     APPM_LANGUAGE;
+      //static WPARAM                                   WPARAM_LANGUAGE_UPDATE;
 
-      static UINT                                     APPM_LANGUAGE;
-      static WPARAM                                   WPARAM_LANGUAGE_UPDATE;
-
-      bool                                            m_bShouldInitializeGTwf;
-      sp(::user::interaction)                         m_pwndMain;
-      bool                                            m_bInitializeProDevianMode;
+      //bool                                            m_bShouldInitializeGTwf;
+      //sp(::user::interaction)                         m_pwndMain;
+      //bool                                            m_bInitializeProDevianMode;
 
       ::http::application                             m_http;
       ::file::dir::application                        m_dir;
@@ -344,7 +345,7 @@ namespace base
 
       virtual void on_service_request(sp(::create_context) pcreatecontext);
 
-      virtual sp(application) assert_running(const char * pszAppId);
+      virtual sp(::axis::application) assert_running(const char * pszAppId);
 
       virtual bool is_running();
 
@@ -395,11 +396,11 @@ namespace base
       bool gudo_set(const string & strKey,::file::serializable & obj);
 
 
-      void assert_user_logged_in();
+      virtual bool assert_user_logged_in();
 
-      virtual bool init_main_data(::base::main_init_data * pdata);
+      virtual bool init_main_data(::axis::main_init_data * pdata);
 
-      virtual bool set_main_init_data(::base::main_init_data * pdata);
+      virtual bool set_main_init_data(::axis::main_init_data * pdata);
 
 
    };
@@ -467,17 +468,9 @@ namespace base
 
 
 
-inline allocatorsp element::allocer()
-{
-   return m_pbaseapp->m_allocer;
-}
 
 
 
-inline sp(::command_thread) object::command_thread()
-{
 
-   return m_pbaseapp->command_thread();
 
-}
 

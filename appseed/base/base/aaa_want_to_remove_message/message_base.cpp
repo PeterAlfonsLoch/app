@@ -7,7 +7,7 @@ namespace message
 
 
 
-   base::base(sp(::base::application) papp,class ::signal * psignal):
+   base::base(sp(::axis::application) papp,class ::signal * psignal):
       element(papp),
       signal_details(psignal)
    {
@@ -15,7 +15,7 @@ namespace message
       m_plresult = &m_lresult;
    }
 
-   base::base(sp(::base::application) papp,sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult):
+   base::base(sp(::axis::application) papp,sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult):
       element(papp),
       signal_details(papp)
    {

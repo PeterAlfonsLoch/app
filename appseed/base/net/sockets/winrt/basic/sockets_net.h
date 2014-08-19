@@ -116,7 +116,7 @@ namespace sockets
       ::string_map < dns_cache_item * >   m_mapCache;
 
 
-      net(::base::application * papp);
+      net(::axis::application * papp);
       virtual ~net();
 
 

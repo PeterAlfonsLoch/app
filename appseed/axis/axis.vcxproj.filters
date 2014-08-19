@@ -2801,9 +2801,6 @@
     <ClInclude Include="axis\axis\axis_gudo.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
-    <ClInclude Include="axis\axis\axis_gudo_application.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
     <ClInclude Include="axis\axis\axis_keep.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
@@ -3145,6 +3142,9 @@
     </ClInclude>
     <ClInclude Include="primitive\collection\collection_set.h">
       <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_gudo_application.inl">
+      <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4775,9 +4775,6 @@
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
       <Filter>Header Files\multithreading</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

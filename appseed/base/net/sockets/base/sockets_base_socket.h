@@ -741,7 +741,7 @@ namespace sockets
       virtual void step();
 
 
-      virtual void log(const string & strUser, int32_t err, const string & strSystem, ::base::log::e_level elevel = ::base::log::level_warning);
+      virtual void log(const string & strUser, int32_t err, const string & strSystem, ::axis::log::e_level elevel = ::axis::log::level_warning);
 
 
       virtual string get_short_description();

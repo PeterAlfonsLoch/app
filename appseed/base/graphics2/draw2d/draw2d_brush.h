@@ -92,13 +92,13 @@ namespace draw2d
 
 /*
       // CreateHatchBrush
-      brush_sp(sp(::base::application) papp, int32_t nIndex, COLORREF crColor) :
+      brush_sp(sp(::axis::application) papp, int32_t nIndex, COLORREF crColor) :
          smart_pointer < brush > (papp)
       {
          m_p->construct(nIndex, crColor);
       }
       // CreatePatternBrush
-      brush_sp(sp(::base::application) papp, bitmap * pbitmap) :
+      brush_sp(sp(::axis::application) papp, bitmap * pbitmap) :
          smart_pointer < brush > (papp)
       {
          m_p->construct(pbitmap);

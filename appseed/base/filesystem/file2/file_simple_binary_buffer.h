@@ -19,7 +19,7 @@ namespace file
       string       m_strFileName;
 
 
-      simple_binary_buffer(sp(::base::application) papp);
+      simple_binary_buffer(sp(::axis::application) papp);
       virtual ~simple_binary_buffer();
 
       virtual file_position get_position() const;
@@ -86,7 +86,7 @@ namespace file
    };
 
 
-   void CLASS_DECL_BASE throw_exception(sp(::base::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
+   void CLASS_DECL_BASE throw_exception(sp(::axis::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
 
 } // namespace file
 

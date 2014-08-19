@@ -39,7 +39,7 @@ private:
 
 public:
    ///  \brief		default constructor
-   event_collection(sp(::base::application) papp);
+   event_collection(sp(::axis::application) papp);
 
    //template<typename InIt>
    //event_collection( InIt first, InIt last )

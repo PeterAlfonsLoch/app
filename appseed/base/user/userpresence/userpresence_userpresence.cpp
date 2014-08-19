@@ -5,9 +5,9 @@ namespace userpresence
 {
 
 
-   userpresence::userpresence(sp(::base::application) papp) :
+   userpresence::userpresence(sp(::axis::application) papp) :
       element(papp),
-      ::base::departament(papp),
+      ::axis::departament(papp),
       m_queue(papp)
    {
 

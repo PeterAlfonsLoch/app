@@ -6,7 +6,7 @@ namespace base
 {
 
 
-   session::session(sp(::base::application) papp) :
+   session::session(sp(::axis::application) papp) :
       element(papp),
       ::thread(papp)
    {
@@ -64,7 +64,7 @@ namespace base
    }
 
 
-   void session::construct(sp(::base::application) papp, int iPhase)
+   void session::construct(sp(::axis::application) papp, int iPhase)
    {
 
       if(iPhase == 0)
@@ -104,7 +104,7 @@ namespace base
 
       string strId;
 
-      sp(::base::application) pbaseapp;
+      sp(::axis::application) pbaseapp;
 
       while(pos != NULL)
       {
@@ -115,7 +115,7 @@ namespace base
 
          m_mapApplication.get_next_assoc(pos,strId,pbaseapp);
 
-         sp(::base::application) papp = (pbaseapp);
+         sp(::axis::application) papp = (pbaseapp);
 
          papp->post_thread_message(WM_QUIT);
 
@@ -132,7 +132,7 @@ namespace base
    }
 
 
-   sp(::base::application) session::start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext)
+   sp(::axis::application) session::start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext)
    {
 
       throw interface_only_exception(this);
@@ -1131,7 +1131,7 @@ namespace base
    bool session::process_initialize()
    {
 
-      if(!::base::application::process_initialize())
+      if(!::axis::application::process_initialize())
          return false;
 
       m_spuser = create_user();
@@ -1174,7 +1174,7 @@ namespace base
       if(!m_spcopydesk->initialize())
          return false;
 
-      if(!::base::application::initialize1())
+      if(!::axis::application::initialize1())
          return false;
 
       m_puserpresence = canew(::userpresence::userpresence(this));
@@ -1363,7 +1363,7 @@ namespace base
    bool session::initialize2()
    {
 
-      if(!::base::application::initialize2())
+      if(!::axis::application::initialize2())
          return false;
 
       fill_locale_schema(*str_context()->m_plocaleschema);
@@ -1391,7 +1391,7 @@ namespace base
          return false;
 
 
-      if(!::base::application::initialize_instance())
+      if(!::axis::application::initialize_instance())
          return false;
 
 
@@ -1403,7 +1403,7 @@ namespace base
    bool session::initialize()
    {
 
-      if(!::base::application::initialize())
+      if(!::axis::application::initialize())
          return false;
 
       if(!is_installing() && !is_uninstalling())
@@ -1457,7 +1457,7 @@ namespace base
       try
       {
 
-         bOk = ::base::application::finalize();
+         bOk = ::axis::application::finalize();
 
       }
       catch(...)
@@ -1489,7 +1489,7 @@ namespace base
       }
 
 
-      ::base::application::exit_instance();
+      ::axis::application::exit_instance();
 
       return 0;
 

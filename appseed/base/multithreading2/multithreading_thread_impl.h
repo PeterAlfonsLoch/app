@@ -23,7 +23,7 @@ public:
    bool                    m_bSynch;
 
 
-   thread_startup(sp(::base::application) papp);
+   thread_startup(sp(::axis::application) papp);
    ~thread_startup();
 
 };
@@ -59,7 +59,7 @@ public:
    message_queue                             m_queue;
 
 
-   thread_impl(sp(::base::application) papp);
+   thread_impl(sp(::axis::application) papp);
    virtual ~thread_impl();
    
    

@@ -4,7 +4,7 @@
 #if defined(CUBE)
 
 
-void draw2d_factory_exchange(sp(::base::application) papp);
+void draw2d_factory_exchange(sp(::axis::application) papp);
 
 
 #endif
@@ -40,7 +40,7 @@ void dappy(const char * psz)
 
 namespace base
 {
-   application_signal_details::application_signal_details(sp(::base::application) papp,class ::signal * psignal,e_application_signal esignal):
+   application_signal_details::application_signal_details(sp(::axis::application) papp,class ::signal * psignal,e_application_signal esignal):
       element(papp),
       ::signal_details(psignal)
    {
@@ -3735,7 +3735,7 @@ namespace base
 
    }
 
-   bool application::init_main_data(::base::main_init_data * pdata)
+   bool application::init_main_data(::axis::main_init_data * pdata)
    {
 
       m_pinitmaindata = pdata;
@@ -3744,7 +3744,7 @@ namespace base
 
    }
 
-   bool application::set_main_init_data(::base::main_init_data * pdata)
+   bool application::set_main_init_data(::axis::main_init_data * pdata)
    {
 
       return m_pimpl->set_main_init_data(pdata);

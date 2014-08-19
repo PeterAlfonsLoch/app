@@ -11,9 +11,9 @@ namespace url
 {
 
 
-   departament::departament(sp(::base::application) papp) :
+   departament::departament(sp(::axis::application) papp) :
 	   element(papp),
-      ::base::departament(papp)
+      ::axis::departament(papp)
    {
 
    }

@@ -6,14 +6,14 @@ namespace fs
 
 
    class CLASS_DECL_BASE fs :
-      virtual public ::base::departament
+      virtual public ::axis::departament
    {
    public:
 
 
 
 
-      fs(::base::application * papp);
+      fs(::axis::application * papp);
       virtual ~fs();
 
       bool initialize();

@@ -15,7 +15,7 @@ namespace fontopus
    UINT c_cdecl thread_proc_defer_translate_login(void * p);
 
 
-   login::login(sp(::base::application) papp, int left, int top) :
+   login::login(sp(::axis::application) papp, int left, int top) :
       element(papp)
    {
 
@@ -530,7 +530,7 @@ namespace fontopus
    UINT c_cdecl thread_proc_pre_login(void * p)
    {
 
-      ::base::application * papp = (::base::application *) p;
+      ::axis::application * papp = (::axis::application *) p;
 
       return 0;
 

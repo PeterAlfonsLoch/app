@@ -58,7 +58,7 @@ namespace hotplugin
       POINT                         m_ptCursorPhase;
 
 
-      plugin(sp(::base::application) papp);
+      plugin(sp(::axis::application) papp);
       virtual ~plugin();
 
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-void_implementation_exception::void_implementation_exception(sp(::base::application) papp, const char * pszTip) : 
+void_implementation_exception::void_implementation_exception(sp(::axis::application) papp, const char * pszTip) : 
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),

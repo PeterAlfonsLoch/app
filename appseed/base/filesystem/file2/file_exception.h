@@ -55,7 +55,7 @@ namespace file
             printf(":file");
       }
 
-      exception(sp(::base::application) papp, int32_t cause = exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
+      exception(sp(::axis::application) papp, int32_t cause = exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
 
       virtual void Construct(int32_t cause = exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
 
@@ -85,7 +85,7 @@ namespace file
 
 
 
-CLASS_DECL_BASE void throw_file_exception(::base::application * papp, int32_t cause, LONG lOsError,   const char * lpszFileName = NULL);
+CLASS_DECL_BASE void throw_file_exception(::axis::application * papp, int32_t cause, LONG lOsError,   const char * lpszFileName = NULL);
 
 
 

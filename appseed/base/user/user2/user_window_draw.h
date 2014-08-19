@@ -30,7 +30,7 @@ namespace user
       bool                 m_bRunning;
 
 
-      window_draw(sp(::base::application) papp);
+      window_draw(sp(::axis::application) papp);
 
       virtual bool UpdateBuffer();
       virtual bool ScreenOutput();

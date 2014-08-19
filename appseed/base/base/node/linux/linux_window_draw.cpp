@@ -26,7 +26,7 @@ namespace linux
 {
 
 
-   window_draw::window_draw(sp(::base::application) papp) :
+   window_draw::window_draw(sp(::axis::application) papp) :
       element(papp),
       ::thread(papp),
       ::user::window_draw(papp),

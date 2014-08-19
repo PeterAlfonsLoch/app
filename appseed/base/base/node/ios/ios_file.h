@@ -51,9 +51,9 @@ namespace ios
       int32_t        m_iFile;
       
       
-      file(::base::application * papp);
-      file(::base::application * papp, int32_t hFile);
-      file(::base::application * papp, const char * lpszFileName, UINT nOpenFlags);
+      file(::axis::application * papp);
+      file(::axis::application * papp, int32_t hFile);
+      file(::axis::application * papp, const char * lpszFileName, UINT nOpenFlags);
       virtual ~file();
       
       
@@ -105,8 +105,8 @@ namespace ios
       
       int32_t PASCAL OsErrorToException(LONG lOsError);
       int32_t PASCAL ErrnoToException(int32_t nErrno);
-      void PASCAL ThrowOsError(::base::application * papp, LONG lOsError, const char * lpszFileName = NULL);
-      void PASCAL ThrowErrno(::base::application * papp, int32_t nErrno, const char * lpszFileName = NULL);
+      void PASCAL ThrowOsError(::axis::application * papp, LONG lOsError, const char * lpszFileName = NULL);
+      void PASCAL ThrowErrno(::axis::application * papp, int32_t nErrno, const char * lpszFileName = NULL);
       
       
    }  // namespace file_exception

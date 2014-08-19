@@ -4,7 +4,7 @@
 namespace user
 {
 
-   place_holder_container::place_holder_container(sp(::base::application) papp) :
+   place_holder_container::place_holder_container(sp(::axis::application) papp) :
       element(papp),
       m_holdera(papp)
    {

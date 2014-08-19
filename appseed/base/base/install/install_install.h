@@ -6,7 +6,7 @@ namespace install
 
 
    class CLASS_DECL_BASE install :
-      virtual public ::base::departament,
+      virtual public ::axis::departament,
       virtual public int_scalar_source
    {
    public:
@@ -46,7 +46,7 @@ namespace install
 
 
 
-      install(sp(::base::application) papp);
+      install(sp(::axis::application) papp);
       virtual ~install();
 
 

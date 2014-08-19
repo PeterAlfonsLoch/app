@@ -5,7 +5,7 @@ namespace xml
 {
 
 
-   data::data(sp(::base::application) papp, ::xml::parse_info * pparseinfo) :
+   data::data(sp(::axis::application) papp, ::xml::parse_info * pparseinfo) :
       ::xml::document(papp, pparseinfo)
    {
 

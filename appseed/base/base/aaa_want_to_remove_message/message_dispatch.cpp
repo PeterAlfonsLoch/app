@@ -577,7 +577,7 @@ namespace message
    {
    }
 
-   sp(::base::application) dispatch::calc_app()
+   sp(::axis::application) dispatch::calc_app()
    {
       return NULL;
    }

@@ -11,6 +11,9 @@
 
 #elif defined(BSD_STYLE_SOCKETS)
 
+
+#include "openssl/sha.h"
+
 typedef struct rsa_st RSA;
 
 #define BASE_RSA_KEY RSA *

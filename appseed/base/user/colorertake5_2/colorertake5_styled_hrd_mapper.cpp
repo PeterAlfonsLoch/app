@@ -8,7 +8,7 @@ const int32_t StyledRegion::RD_ITALIC = 2;
 const int32_t StyledRegion::RD_UNDERLINE = 4;
 const int32_t StyledRegion::RD_STRIKEOUT = 8;
 
-StyledHRDMapper::StyledHRDMapper(sp(::base::application) papp) :
+StyledHRDMapper::StyledHRDMapper(sp(::axis::application) papp) :
    element(papp),
    RegionMapperImpl(papp)
 {

@@ -15,7 +15,7 @@ static geoipv6_t IPV6_NULL;
 
 #endif
 
-int32_t GeoIP_db_avail(::base::application * papp, int32_t type);
+int32_t GeoIP_db_avail(::axis::application * papp, int32_t type);
 char *_get_name_v6 (GeoIP* gi, geoipv6_t ipnum);
 char *_GeoIP_num_to_addr (GeoIP* gi, uint32_t ipnum);
 

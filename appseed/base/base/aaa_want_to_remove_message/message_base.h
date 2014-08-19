@@ -22,8 +22,8 @@ namespace message
       bool                       m_bConditional;
       bool                       m_bReflect;
 
-      base(sp(::base::application) papp,class ::signal * psignal = NULL);
-      base(sp(::base::application) papp,sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      base(sp(::axis::application) papp,class ::signal * psignal = NULL);
+      base(sp(::axis::application) papp,sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
 
 
 

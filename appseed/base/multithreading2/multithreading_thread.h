@@ -42,8 +42,8 @@ public:
 
 
    thread();
-   thread(sp(::base::application) papp);
-   thread(sp(::base::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam);
+   thread(sp(::axis::application) papp);
+   thread(sp(::axis::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam);
    virtual ~thread();
 
    ///  \brief		starts thread on first call

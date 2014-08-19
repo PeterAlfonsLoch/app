@@ -13,7 +13,7 @@ public:
   /** Creates ErrorHandler instance.
       @param writer writer, which is used to output error logs.
   */
-   ErrorHandlerWriter(sp(::base::application) papp);
+   ErrorHandlerWriter(sp(::axis::application) papp);
   ~ErrorHandlerWriter();
 
   void fatalError(const string &msg);

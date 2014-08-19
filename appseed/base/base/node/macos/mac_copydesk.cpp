@@ -5,7 +5,7 @@ namespace mac
 {
 
 
-   copydesk::copydesk(::base::application * papp) :
+   copydesk::copydesk(::axis::application * papp) :
       element(papp),
       ::base::copydesk(papp),
       window_sp(papp)

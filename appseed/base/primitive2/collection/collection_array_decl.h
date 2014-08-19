@@ -387,7 +387,7 @@ public:
 
 
 
-   array(sp(::base::application) papp = NULL, ::count nGrowBy = 32);
+   array(sp(::axis::application) papp = NULL, ::count nGrowBy = 32);
    array(const array <TYPE, ARG_TYPE> & a);
    array(::count n);
  //  array(ARG_TYPE t, ::count n = 1);
@@ -606,7 +606,7 @@ class nodefctr_array :
 public:
 
 
-   nodefctr_array(sp(::base::application) papp = NULL, ::count nGrowBy = 32) : array < TYPE, ARG_TYPE, ::constructor::nodef > (papp, nGrowBy) {}
+   nodefctr_array(sp(::axis::application) papp = NULL, ::count nGrowBy = 32) : array < TYPE, ARG_TYPE, ::constructor::nodef > (papp, nGrowBy) {}
    nodefctr_array(const array <TYPE, ARG_TYPE> & a) : array < TYPE, ARG_TYPE, ::constructor::nodef > (a) {}
    nodefctr_array(::count n) : array < TYPE, ARG_TYPE, ::constructor::nodef > (n){}
    virtual ~nodefctr_array() {}

@@ -42,9 +42,9 @@ namespace metrowin
       UINT           m_hFile;
 
 
-      file(::base::application * papp);
-      file(::base::application * papp, int hFile);
-      file(::base::application * papp, const char * lpszFileName, UINT nOpenFlags);
+      file(::axis::application * papp);
+      file(::axis::application * papp, int hFile);
+      file(::axis::application * papp, const char * lpszFileName, UINT nOpenFlags);
       virtual ~file();
 
 
@@ -93,8 +93,8 @@ namespace metrowin
    {
       int OsErrorToException(LONG lOsError);
       int ErrnoToException(int nErrno);
-      void ThrowOsError(::base::application * papp, LONG lOsError, const char * lpszFileName = NULL);
-      void ThrowErrno(::base::application * papp, int nErrno, const char * lpszFileName = NULL);
+      void ThrowOsError(::axis::application * papp, LONG lOsError, const char * lpszFileName = NULL);
+      void ThrowErrno(::axis::application * papp, int nErrno, const char * lpszFileName = NULL);
 
    }
 

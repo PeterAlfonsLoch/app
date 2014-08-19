@@ -47,7 +47,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          bool m_ready;
 
 
-         resolv_server(::base::application * papp, port_t);
+         resolv_server(::axis::application * papp, port_t);
          ~resolv_server();
 
 

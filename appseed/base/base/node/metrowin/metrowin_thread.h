@@ -32,7 +32,7 @@ namespace metrowin
 
       */
 
-      thread(::base::application * papp);
+      thread(::axis::application * papp);
 
 
       //operator HANDLE() const;

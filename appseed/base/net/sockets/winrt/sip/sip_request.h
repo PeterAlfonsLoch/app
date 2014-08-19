@@ -16,7 +16,7 @@ namespace sip
       http::form           m_form;
 
 
-      request(::base::application * papp);
+      request(::axis::application * papp);
       request(const request& src);
       ~request();
 

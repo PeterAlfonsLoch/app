@@ -32,7 +32,7 @@ namespace android
 
 
       interaction_impl();
-      interaction_impl(sp(::base::application) papp);
+      interaction_impl(sp(::axis::application) papp);
       virtual ~interaction_impl();
 
 

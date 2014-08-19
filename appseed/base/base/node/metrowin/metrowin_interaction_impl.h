@@ -27,7 +27,7 @@ namespace metrowin
 
 
       interaction_impl();
-      interaction_impl(::base::application * papp);
+      interaction_impl(::axis::application * papp);
       virtual void construct(oswindow hwnd);
 
       virtual void on_delete(element * poc);

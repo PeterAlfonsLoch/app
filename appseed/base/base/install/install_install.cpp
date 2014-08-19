@@ -11,9 +11,9 @@ namespace install
 {
 
 
-   install::install(sp(::base::application) papp) :
+   install::install(sp(::axis::application) papp) :
       element(papp),
-      ::base::departament(papp),
+      ::axis::departament(papp),
       //m_mutex(papp, false, "Global\\spa_boot_install"),
       m_mutex(papp),
       m_trace(papp)

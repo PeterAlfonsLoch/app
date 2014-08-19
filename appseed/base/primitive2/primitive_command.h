@@ -11,7 +11,7 @@ namespace primitive
    public:
 
 
-      command(sp(::base::application) papp);
+      command(sp(::axis::application) papp);
       virtual ~command();
 
       virtual var run();

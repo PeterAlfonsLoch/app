@@ -8,7 +8,7 @@ class CLASS_DECL_BASE WinResource :
 public:
 
 
-   WinResource(::base::application * papp);
+   WinResource(::axis::application * papp);
    virtual ~WinResource();
    
    bool ReadResource(string & str, HINSTANCE hinst, UINT nID, const char * lpcszType);

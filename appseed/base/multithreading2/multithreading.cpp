@@ -74,7 +74,7 @@ namespace multithreading
 
       ::multithreading::__node_on_term_thread(pthread);
 
-      sp(::base::application) papp = pthread->get_app();
+      sp(::axis::application) papp = pthread->get_app();
 
       int nExitCode = pthread->m_iReturnCode;
 
@@ -118,7 +118,7 @@ void set_thread(::thread* pthread)
 
 
 
-thread* __begin_thread(sp(::base::application) papp,__THREADPROC pfnThreadProc,LPVOID pParam,int32_t epriority,UINT nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+thread* __begin_thread(sp(::axis::application) papp,__THREADPROC pfnThreadProc,LPVOID pParam,int32_t epriority,UINT nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
    ASSERT(pfnThreadProc != NULL);
@@ -163,7 +163,7 @@ mutex & message_dispatch_mutex()
 
 
 
-::base::application * get_thread_app()
+::axis::application * get_thread_app()
 {
 
    thread * pthread = get_thread();

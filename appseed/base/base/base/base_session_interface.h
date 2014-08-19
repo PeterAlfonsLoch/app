@@ -6,6 +6,7 @@ namespace base
 
 
    class CLASS_DECL_BASE session_interface:
+      virtual public ::axis::session_interface,
       virtual public ::base::application_interface
    {
    public:

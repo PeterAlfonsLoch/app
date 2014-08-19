@@ -5,7 +5,7 @@ namespace windows
 {
 
 
-   print_job::print_job(sp(::base::application) papp) :
+   print_job::print_job(sp(::axis::application) papp) :
       element(papp),
       ::print_job(papp),
       ::job(papp),

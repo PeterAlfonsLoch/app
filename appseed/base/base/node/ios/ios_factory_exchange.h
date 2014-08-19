@@ -11,7 +11,7 @@ namespace ios
    public:
       
       
-      factory_exchange(::base::application * papp);
+      factory_exchange(::axis::application * papp);
       virtual ~factory_exchange();
       
       

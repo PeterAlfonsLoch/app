@@ -17,7 +17,7 @@ namespace sip
       string m_null;
 
 
-      transaction(::base::application * papp);
+      transaction(::axis::application * papp);
       transaction(const transaction & src);
       virtual ~transaction();
 

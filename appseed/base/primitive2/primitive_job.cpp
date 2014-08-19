@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-job::job(sp(::base::application) papp) :
+job::job(sp(::axis::application) papp) :
 element(papp)
 {
    m_bCancel = false;

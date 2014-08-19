@@ -5,7 +5,7 @@ namespace http
 {
 
 
-   system::system(sp(::base::application) papp) :
+   system::system(sp(::axis::application) papp) :
       element(papp),
       m_mutexPac(papp),
       m_mutexProxy(papp),
@@ -132,7 +132,7 @@ namespace http
 
    }
 
-   system::pac::pac(sp(::base::application) papp) :
+   system::pac::pac(sp(::axis::application) papp) :
       element(papp),
       m_js(papp)
    {
@@ -192,7 +192,7 @@ namespace http
    }
 
 
-   system::proxy::proxy(sp(::base::application) papp) :
+   system::proxy::proxy(sp(::axis::application) papp) :
       element(papp)
    {
    }
@@ -454,7 +454,7 @@ namespace http
       UNREFERENCED_PARAMETER(pszVersion);
       string strServer = pszHost;
       string strProtocol = pszProtocol;
-      sp(::base::application) papp = set["app"].cast < application >();
+      sp(::axis::application) papp = set["app"].cast < application >();
       int32_t iPort;
       if(strProtocol == "https")
       {
@@ -689,7 +689,7 @@ retry:
 
          uint32_t dwTimeProfile1 = get_tick_count();
 
-         sp(::base::application) papp = psession->get_app();
+         sp(::axis::application) papp = psession->get_app();
 
          string strRequest = System.url().get_object(pszRequest);
 
@@ -1101,7 +1101,7 @@ retry:
       string strServer = System.url().get_root(pszUrl);
       string strProtocol = System.url().get_protocol(pszUrl);
       string strObject = System.url().get_object(pszUrl);
-      sp(::base::application) papp = set["app"].cast < application >();
+      sp(::axis::application) papp = set["app"].cast < application >();
       int32_t iPort;
       if(strProtocol == "https")
       {
@@ -1587,7 +1587,7 @@ retry:
       
       ::sockets::socket_handler handler(get_app());
 
-      ::file::buffer_sp spfile = set.cast < ::base::application >("app", get_app())->m_pbasesession->file().get_file(pszFile,
+      ::file::buffer_sp spfile = set.cast < ::axis::application >("app", get_app())->m_pbasesession->file().get_file(pszFile,
          ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
 
       set["file"] = spfile;
@@ -1806,7 +1806,7 @@ retry:
    bool system::get(const char * pszUrl, property_set & set)
    {
 
-      sockets::socket_handler h(set.cast < ::base::application >("app", get_app()));
+      sockets::socket_handler h(set.cast < ::axis::application >("app", get_app()));
 
       sp(::sockets::http_client_socket) psocket = System.http().get(h, pszUrl, set);
 

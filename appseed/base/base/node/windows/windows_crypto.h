@@ -11,7 +11,7 @@ namespace windows
    public:
 
 
-      crypto(sp(::base::application) papp);
+      crypto(sp(::axis::application) papp);
       virtual ~crypto();
 
 

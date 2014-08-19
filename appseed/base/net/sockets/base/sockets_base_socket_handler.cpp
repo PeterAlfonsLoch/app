@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   base_socket_handler::base_socket_handler(sp(::base::application) papp, logger * plogger) :
+   base_socket_handler::base_socket_handler(sp(::axis::application) papp, logger * plogger) :
       element(papp),
       m_splogger(plogger)
    {
@@ -26,7 +26,7 @@ namespace sockets
 
    }
 
-   void base_socket_handler::log(base_socket * psocket, const string & strUser, int iError,const string & strSystem, ::base::log::e_level elevel)
+   void base_socket_handler::log(base_socket * psocket, const string & strUser, int iError,const string & strSystem, ::axis::log::e_level elevel)
    {
 
       if(m_splogger.is_null())

@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   plain_text_tree::plain_text_tree(sp(::base::application) papp) :
+   plain_text_tree::plain_text_tree(sp(::axis::application) papp) :
       element(papp),
       ::data::data(papp),
       ::data::tree(papp),

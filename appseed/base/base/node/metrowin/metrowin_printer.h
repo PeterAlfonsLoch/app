@@ -19,7 +19,7 @@ namespace metrowin
          HDC            m_hdc;
 
 
-         document_properties(::base::application * papp);
+         document_properties(::axis::application * papp);
          virtual ~document_properties();
 
 
@@ -34,7 +34,7 @@ namespace metrowin
       document_properties     m_documentproperties;
 
 
-      printer(::base::application * papp);
+      printer(::axis::application * papp);
       virtual ~printer();
 
 

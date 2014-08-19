@@ -9,7 +9,7 @@
 
 string get_error_message(DWORD dwError);
 
-sp(::base::application)     linux_instantiate_application(sp(::base::application) pappSystem, const char * pszId);
+sp(::axis::application)     linux_instantiate_application(sp(::axis::application) pappSystem, const char * pszId);
 
 /////////////////////////////////////////////////////////////////////////////
 // explicit initialization for general purpose classes
@@ -112,7 +112,7 @@ WINBOOL GetMessage(
 int32_t CLASS_DECL_LINUX __linux_main(int32_t argc, char * argv[]);
 
 
-CLASS_DECL_LINUX void vfxThrowFileException(sp(::base::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
+CLASS_DECL_LINUX void vfxThrowFileException(sp(::axis::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
 
 
 #include "linux_internal.h"

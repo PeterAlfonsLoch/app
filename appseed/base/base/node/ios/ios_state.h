@@ -123,7 +123,7 @@ public:
    __MODULE_STATE(bool bDLL, DWORD dwVersion, bool bSystem = FALSE);
    ~__MODULE_STATE();
    
-   ::base::application * m_pCurrentWinApp;
+   ::axis::application * m_pCurrentWinApp;
    HINSTANCE m_hCurrentInstanceHandle;
    HINSTANCE m_hCurrentResourceHandle;
    const char * m_lpszCurrentAppName;

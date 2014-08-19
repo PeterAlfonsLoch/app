@@ -19,14 +19,14 @@ namespace datetime
 
 
    class CLASS_DECL_BASE departament :
-      virtual public ::base::departament
+      virtual public ::axis::departament
    {
    public:
       class CLASS_DECL_BASE international :
          virtual public ::object
       {
       public:
-         international(sp(::base::application) papp);
+         international(sp(::axis::application) papp);
          void parse_str(const char * psz, property_set & set);
          string get_gmt_date_time(const ::datetime::time & time);
          string get_gmt_date_time();
@@ -38,7 +38,7 @@ namespace datetime
          virtual public ::object
       {
       public:
-         str(sp(::base::application) papp);
+         str(sp(::axis::application) papp);
          departament * m_pdatetime;
          string get_gmt_date_time();
       };
@@ -48,7 +48,7 @@ namespace datetime
       class ::datetime::departament::str m_str;
 
 
-      departament(sp(::base::application) papp);
+      departament(sp(::axis::application) papp);
 
       int32_t get_month_day_count(int32_t year, int32_t month);
       int32_t get_weekday(int32_t year, int32_t month, int32_t day);

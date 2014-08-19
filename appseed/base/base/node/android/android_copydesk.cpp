@@ -5,7 +5,7 @@ namespace android
 {
 
 
-   copydesk::copydesk(sp(::base::application) papp) :
+   copydesk::copydesk(sp(::axis::application) papp) :
       element(papp),
       ::base::copydesk(papp)
    {

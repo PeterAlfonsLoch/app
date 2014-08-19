@@ -2,7 +2,7 @@
 #include <VersionHelpers.h>
 #undef new
 #include <Gdiplus.h>
-#define new BASE_NEW
+#define new AXIS_NEW
 #include <ddeml.h>
 
 void __term_threading();
