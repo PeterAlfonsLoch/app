@@ -1,0 +1,1371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="basis|Win32">
+      <Configuration>basis</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis|x64">
+      <Configuration>basis</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="memdleak|Win32">
+      <Configuration>memdleak</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="memdleak|x64">
+      <Configuration>memdleak</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>axisfreeimage</ProjectName>
+    <ProjectGuid>{B39ED2B3-D53A-4077-B957-930979A3577D}</ProjectGuid>
+    <RootNamespace>axisfreeimage</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)..\..\..\stage\x86\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <OutDir>$(SolutionDir)..\..\..\stage\x86\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(Configuration)\$(Platform)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <OutDir>$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(Configuration)\$(Platform)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">
+    <OutDir>$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(Configuration)\$(Platform)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/FreeImage.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>Source;Source\ZLib;Source\DeprecationManager;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <PrecompiledHeaderOutputFile>.\Release/FreeImage.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>.\Release/FreeImage.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ProgramDatabaseFile>.\Release/FreeImage.pdb</ProgramDatabaseFile>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>.\Release/FreeImage.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <Profile>true</Profile>
+      <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy Release\FreeImage.dll Dist
+copy Release\FreeImage.lib Dist
+copy Source\FreeImage.h Dist
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>.\Release/FreeImage.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>Source;Source\ZLib;Source\DeprecationManager;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <OpenMPSupport>true</OpenMPSupport>
+      <PrecompiledHeaderOutputFile>.\Release/FreeImage.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>.\Release/FreeImage.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ProgramDatabaseFile>.\Release/FreeImage.pdb</ProgramDatabaseFile>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>.\Release/FreeImage.lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <Profile>true</Profile>
+      <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy Release\FreeImage.dll Dist
+copy Release\FreeImage.lib Dist
+copy Source\FreeImage.h Dist
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/FreeImage.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>Source;Source\ZLib;Source\DeprecationManager;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>.\Debug/FreeImage.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>Debug/FreeImaged.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/FreeImaged.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>.\Debug/FreeImaged.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy Debug\FreeImaged.dll Dist
+copy Debug\FreeImaged.lib Dist
+copy Source\FreeImage.h Dist
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/FreeImage.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>Source;Source\DeprecationManager;Source\LibJPEG;Source\LibRawLite;Source\OpenEXR;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NO_LCMS;NO_JASPER;USE_JPIP;WIN32;_DEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>.\Debug/FreeImage.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/FreeImaged.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>.\Debug/FreeImaged.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/FreeImage.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>Source;Source\ZLib;Source\DeprecationManager;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>.\Debug/FreeImage.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>Debug/FreeImaged.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/FreeImaged.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>.\Debug/FreeImaged.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy Debug\FreeImaged.dll Dist
+copy Debug\FreeImaged.lib Dist
+copy Source\FreeImage.h Dist
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>.\Debug/FreeImage.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>Source;Source\ZLib;Source\DeprecationManager;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <OpenMPSupport>true</OpenMPSupport>
+      <PrecompiledHeaderOutputFile>.\Debug/FreeImage.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>Debug/FreeImaged.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/FreeImaged.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>.\Debug/FreeImaged.lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy Debug\FreeImaged.dll Dist
+copy Debug\FreeImaged.lib Dist
+copy Source\FreeImage.h Dist
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>.\Debug/FreeImage.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>Source;Source\ZLib;Source\DeprecationManager;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <OpenMPSupport>true</OpenMPSupport>
+      <PrecompiledHeaderOutputFile>.\Debug/FreeImage.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>Debug/FreeImaged.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/FreeImaged.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>.\Debug/FreeImaged.lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy Debug\FreeImaged.dll Dist
+copy Debug\FreeImaged.lib Dist
+copy Source\FreeImage.h Dist
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>.\Debug/FreeImage.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>Source;Source\ZLib;Source\DeprecationManager;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <OpenMPSupport>true</OpenMPSupport>
+      <PrecompiledHeaderOutputFile>.\Debug/FreeImage.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>Debug/FreeImaged.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/FreeImaged.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>.\Debug/FreeImaged.lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy Debug\FreeImaged.dll Dist
+copy Debug\FreeImaged.lib Dist
+copy Source\FreeImage.h Dist
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\FreeImage\BitmapAccess.cpp" />
+    <ClCompile Include="Source\FreeImage\ColorLookup.cpp" />
+    <ClCompile Include="Source\FreeImage\FreeImage.cpp" />
+    <ClCompile Include="Source\FreeImage\FreeImageC.c" />
+    <ClCompile Include="Source\FreeImage\FreeImageIO.cpp" />
+    <ClCompile Include="Source\FreeImage\GetType.cpp" />
+    <ClCompile Include="Source\FreeImage\MemoryIO.cpp" />
+    <ClCompile Include="Source\FreeImage\PixelAccess.cpp" />
+    <ClCompile Include="Source\FreeImage\J2KHelper.cpp" />
+    <ClCompile Include="Source\FreeImage\MNGHelper.cpp" />
+    <ClCompile Include="Source\FreeImage\Plugin.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginBMP.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginCUT.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginDDS.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginEXR.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginG3.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginGIF.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginHDR.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginICO.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginIFF.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginJ2K.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginJNG.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginJP2.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginJPEG.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginJXR.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginKOALA.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginMNG.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginPCD.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginPCX.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginPFM.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginPICT.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginPNG.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginPNM.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginPSD.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginRAS.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginRAW.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginSGI.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginTARGA.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginTIFF.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginWBMP.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginWebP.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginXBM.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginXPM.cpp" />
+    <ClCompile Include="Source\FreeImage\PSDParser.cpp" />
+    <ClCompile Include="Source\FreeImage\TIFFLogLuv.cpp" />
+    <ClCompile Include="Source\FreeImage\Conversion.cpp" />
+    <ClCompile Include="Source\FreeImage\Conversion16_555.cpp" />
+    <ClCompile Include="Source\FreeImage\Conversion16_565.cpp" />
+    <ClCompile Include="Source\FreeImage\Conversion24.cpp" />
+    <ClCompile Include="Source\FreeImage\Conversion32.cpp" />
+    <ClCompile Include="Source\FreeImage\Conversion4.cpp" />
+    <ClCompile Include="Source\FreeImage\Conversion8.cpp" />
+    <ClCompile Include="Source\FreeImage\ConversionFloat.cpp" />
+    <ClCompile Include="Source\FreeImage\ConversionRGB16.cpp" />
+    <ClCompile Include="Source\FreeImage\ConversionRGBF.cpp" />
+    <ClCompile Include="Source\FreeImage\ConversionType.cpp" />
+    <ClCompile Include="Source\FreeImage\ConversionUINT16.cpp" />
+    <ClCompile Include="Source\FreeImage\Halftoning.cpp" />
+    <ClCompile Include="Source\FreeImage\tmoColorConvert.cpp" />
+    <ClCompile Include="Source\FreeImage\tmoDrago03.cpp" />
+    <ClCompile Include="Source\FreeImage\tmoFattal02.cpp" />
+    <ClCompile Include="Source\FreeImage\tmoReinhard05.cpp" />
+    <ClCompile Include="Source\FreeImage\ToneMapping.cpp" />
+    <ClCompile Include="Source\FreeImage\NNQuantizer.cpp" />
+    <ClCompile Include="Source\FreeImage\WuQuantizer.cpp" />
+    <ClCompile Include="Source\DeprecationManager\Deprecated.cpp" />
+    <ClCompile Include="Source\DeprecationManager\DeprecationMgr.cpp" />
+    <ClCompile Include="Source\FreeImage\CacheFile.cpp" />
+    <ClCompile Include="Source\FreeImage\MultiPage.cpp" />
+    <ClCompile Include="Source\FreeImage\ZLibInterface.cpp" />
+    <ClCompile Include="Source\LibJPEG\cdjpeg.c" />
+    <ClCompile Include="Source\LibJPEG\jaricom.c" />
+    <ClCompile Include="Source\LibJPEG\jcapimin.c" />
+    <ClCompile Include="Source\LibJPEG\jcapistd.c" />
+    <ClCompile Include="Source\LibJPEG\jcarith.c" />
+    <ClCompile Include="Source\LibJPEG\jccoefct.c" />
+    <ClCompile Include="Source\LibJPEG\jccolor.c" />
+    <ClCompile Include="Source\LibJPEG\jcdctmgr.c" />
+    <ClCompile Include="Source\LibJPEG\jchuff.c" />
+    <ClCompile Include="Source\LibJPEG\jcinit.c" />
+    <ClCompile Include="Source\LibJPEG\jcmainct.c" />
+    <ClCompile Include="Source\LibJPEG\jcmarker.c" />
+    <ClCompile Include="Source\LibJPEG\jcmaster.c" />
+    <ClCompile Include="Source\LibJPEG\jcomapi.c" />
+    <ClCompile Include="Source\LibJPEG\jcparam.c" />
+    <ClCompile Include="Source\LibJPEG\jcprepct.c" />
+    <ClCompile Include="Source\LibJPEG\jcsample.c" />
+    <ClCompile Include="Source\LibJPEG\jctrans.c" />
+    <ClCompile Include="Source\LibJPEG\jdapimin.c" />
+    <ClCompile Include="Source\LibJPEG\jdapistd.c" />
+    <ClCompile Include="Source\LibJPEG\jdarith.c" />
+    <ClCompile Include="Source\LibJPEG\jdatadst.c" />
+    <ClCompile Include="Source\LibJPEG\jdatasrc.c" />
+    <ClCompile Include="Source\LibJPEG\jdcoefct.c" />
+    <ClCompile Include="Source\LibJPEG\jdcolor.c" />
+    <ClCompile Include="Source\LibJPEG\jddctmgr.c" />
+    <ClCompile Include="Source\LibJPEG\jdhuff.c" />
+    <ClCompile Include="Source\LibJPEG\jdinput.c" />
+    <ClCompile Include="Source\LibJPEG\jdmainct.c" />
+    <ClCompile Include="Source\LibJPEG\jdmarker.c" />
+    <ClCompile Include="Source\LibJPEG\jdmaster.c" />
+    <ClCompile Include="Source\LibJPEG\jdmerge.c" />
+    <ClCompile Include="Source\LibJPEG\jdpostct.c" />
+    <ClCompile Include="Source\LibJPEG\jdsample.c" />
+    <ClCompile Include="Source\LibJPEG\jdtrans.c" />
+    <ClCompile Include="Source\LibJPEG\jerror.c" />
+    <ClCompile Include="Source\LibJPEG\jfdctflt.c" />
+    <ClCompile Include="Source\LibJPEG\jfdctfst.c" />
+    <ClCompile Include="Source\LibJPEG\jfdctint.c" />
+    <ClCompile Include="Source\LibJPEG\jidctflt.c" />
+    <ClCompile Include="Source\LibJPEG\jidctfst.c" />
+    <ClCompile Include="Source\LibJPEG\jidctint.c" />
+    <ClCompile Include="Source\LibJPEG\jmemansi.c" />
+    <ClCompile Include="Source\LibJPEG\jmemmgr.c" />
+    <ClCompile Include="Source\LibJPEG\jquant1.c" />
+    <ClCompile Include="Source\LibJPEG\jquant2.c" />
+    <ClCompile Include="Source\LibJPEG\jutils.c" />
+    <ClCompile Include="Source\LibJPEG\rdbmp.c" />
+    <ClCompile Include="Source\LibJPEG\rdcolmap.c" />
+    <ClCompile Include="Source\LibJPEG\rdgif.c" />
+    <ClCompile Include="Source\LibJPEG\rdppm.c" />
+    <ClCompile Include="Source\LibJPEG\rdrle.c" />
+    <ClCompile Include="Source\LibJPEG\rdswitch.c" />
+    <ClCompile Include="Source\LibJPEG\rdtarga.c" />
+    <ClCompile Include="Source\LibJPEG\transupp.c" />
+    <ClCompile Include="Source\LibJPEG\wrbmp.c" />
+    <ClCompile Include="Source\LibJPEG\wrgif.c" />
+    <ClCompile Include="Source\LibJPEG\wrppm.c" />
+    <ClCompile Include="Source\LibJPEG\wrrle.c" />
+    <ClCompile Include="Source\LibJPEG\wrtarga.c" />
+    <ClCompile Include="Source\LibJXR\image\decode\decode.c" />
+    <ClCompile Include="Source\LibJXR\image\decode\JXRTranscode.c" />
+    <ClCompile Include="Source\LibJXR\image\decode\postprocess.c" />
+    <ClCompile Include="Source\LibJXR\image\decode\segdec.c" />
+    <ClCompile Include="Source\LibJXR\image\decode\strdec.c" />
+    <ClCompile Include="Source\LibJXR\image\decode\strdec_x86.c" />
+    <ClCompile Include="Source\LibJXR\image\decode\strInvTransform.c" />
+    <ClCompile Include="Source\LibJXR\image\decode\strPredQuantDec.c" />
+    <ClCompile Include="Source\LibJXR\image\encode\encode.c" />
+    <ClCompile Include="Source\LibJXR\image\encode\segenc.c" />
+    <ClCompile Include="Source\LibJXR\image\encode\strenc.c" />
+    <ClCompile Include="Source\LibJXR\image\encode\strenc_x86.c" />
+    <ClCompile Include="Source\LibJXR\image\encode\strFwdTransform.c" />
+    <ClCompile Include="Source\LibJXR\image\encode\strPredQuantEnc.c" />
+    <ClCompile Include="Source\LibJXR\image\sys\adapthuff.c" />
+    <ClCompile Include="Source\LibJXR\image\sys\image.c" />
+    <ClCompile Include="Source\LibJXR\image\sys\perfTimerANSI.c" />
+    <ClCompile Include="Source\LibJXR\image\sys\strcodec.c" />
+    <ClCompile Include="Source\LibJXR\image\sys\strPredQuant.c" />
+    <ClCompile Include="Source\LibJXR\image\sys\strTransform.c" />
+    <ClCompile Include="Source\LibJXR\jxrgluelib\JXRGlue.c" />
+    <ClCompile Include="Source\LibJXR\jxrgluelib\JXRGlueJxr.c" />
+    <ClCompile Include="Source\LibJXR\jxrgluelib\JXRGluePFC.c" />
+    <ClCompile Include="Source\LibJXR\jxrgluelib\JXRMeta.c" />
+    <ClCompile Include="Source\LibOpenJPEG\bio.c" />
+    <ClCompile Include="Source\LibOpenJPEG\cidx_manager.c" />
+    <ClCompile Include="Source\LibOpenJPEG\cio.c" />
+    <ClCompile Include="Source\LibOpenJPEG\dwt.c" />
+    <ClCompile Include="Source\LibOpenJPEG\event.c" />
+    <ClCompile Include="Source\LibOpenJPEG\function_list.c" />
+    <ClCompile Include="Source\LibOpenJPEG\opj_image.c" />
+    <ClCompile Include="Source\LibOpenJPEG\invert.c" />
+    <ClCompile Include="Source\LibOpenJPEG\j2k.c" />
+    <ClCompile Include="Source\LibOpenJPEG\jp2.c" />
+    <ClCompile Include="Source\LibOpenJPEG\mct.c" />
+    <ClCompile Include="Source\LibOpenJPEG\mqc.c" />
+    <ClCompile Include="Source\LibOpenJPEG\openjpeg.c" />
+    <ClCompile Include="Source\LibOpenJPEG\opj_clock.c" />
+    <ClCompile Include="Source\LibOpenJPEG\phix_manager.c" />
+    <ClCompile Include="Source\LibOpenJPEG\pi.c" />
+    <ClCompile Include="Source\LibOpenJPEG\ppix_manager.c" />
+    <ClCompile Include="Source\LibOpenJPEG\raw.c" />
+    <ClCompile Include="Source\LibOpenJPEG\t1.c" />
+    <ClCompile Include="Source\LibOpenJPEG\t2.c" />
+    <ClCompile Include="Source\LibOpenJPEG\tcd.c" />
+    <ClCompile Include="Source\LibOpenJPEG\tgt.c" />
+    <ClCompile Include="Source\LibOpenJPEG\thix_manager.c" />
+    <ClCompile Include="Source\LibOpenJPEG\tpix_manager.c" />
+    <ClCompile Include="Source\LibPNG\png.c" />
+    <ClCompile Include="Source\LibPNG\pngerror.c" />
+    <ClCompile Include="Source\LibPNG\pngget.c" />
+    <ClCompile Include="Source\LibPNG\pngmem.c" />
+    <ClCompile Include="Source\LibPNG\pngpread.c" />
+    <ClCompile Include="Source\LibPNG\pngread.c" />
+    <ClCompile Include="Source\LibPNG\pngrio.c" />
+    <ClCompile Include="Source\LibPNG\pngrtran.c" />
+    <ClCompile Include="Source\LibPNG\pngrutil.c" />
+    <ClCompile Include="Source\LibPNG\pngset.c" />
+    <ClCompile Include="Source\LibPNG\pngtrans.c" />
+    <ClCompile Include="Source\LibPNG\pngwio.c" />
+    <ClCompile Include="Source\LibPNG\pngwrite.c" />
+    <ClCompile Include="Source\LibPNG\pngwtran.c" />
+    <ClCompile Include="Source\LibPNG\pngwutil.c" />
+    <ClCompile Include="Source\LibRawLite\internal\dcraw_common.cpp" />
+    <ClCompile Include="Source\LibRawLite\internal\dcraw_fileio.cpp" />
+    <ClCompile Include="Source\LibRawLite\internal\demosaic_packs.cpp" />
+    <ClCompile Include="Source\LibRawLite\src\libraw_cxx.cpp" />
+    <ClCompile Include="Source\LibRawLite\src\libraw_c_api.cpp" />
+    <ClCompile Include="Source\LibRawLite\src\libraw_datastream.cpp" />
+    <ClCompile Include="Source\LibTIFF4\tif_aux.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_close.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_codec.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_color.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_compress.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_dir.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_dirinfo.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_dirread.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_dirwrite.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_dumpmode.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_error.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_extension.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_fax3.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_fax3sm.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_flush.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_getimage.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_jbig.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_jpeg.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_jpeg_12.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_luv.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_lzma.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_lzw.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_next.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_ojpeg.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_open.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_packbits.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_pixarlog.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_predict.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_print.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_read.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_stream.cxx" />
+    <ClCompile Include="Source\LibTIFF4\tif_strip.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_swab.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_thunder.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_tile.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_version.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_warning.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_write.c" />
+    <ClCompile Include="Source\LibTIFF4\tif_zip.c" />
+    <ClCompile Include="Source\LibWebP\src\dec\dec_alpha.c" />
+    <ClCompile Include="Source\LibWebP\src\dec\dec_buffer.c" />
+    <ClCompile Include="Source\LibWebP\src\dec\dec_frame.c" />
+    <ClCompile Include="Source\LibWebP\src\dec\dec_idec.c" />
+    <ClCompile Include="Source\LibWebP\src\dec\dec_io.c" />
+    <ClCompile Include="Source\LibWebP\src\dec\dec_layer.c" />
+    <ClCompile Include="Source\LibWebP\src\dec\dec_quant.c" />
+    <ClCompile Include="Source\LibWebP\src\dec\dec_tree.c" />
+    <ClCompile Include="Source\LibWebP\src\dec\dec_vp8.c" />
+    <ClCompile Include="Source\LibWebP\src\dec\dec_vp8l.c" />
+    <ClCompile Include="Source\LibWebP\src\dec\dec_webp.c" />
+    <ClCompile Include="Source\LibWebP\src\demux\demux.c" />
+    <ClCompile Include="Source\LibWebP\src\dsp\cpu.c" />
+    <ClCompile Include="Source\LibWebP\src\dsp\dec.c" />
+    <ClCompile Include="Source\LibWebP\src\dsp\dec_clip_tables.c" />
+    <ClCompile Include="Source\LibWebP\src\dsp\dec_mips32.c" />
+    <ClCompile Include="Source\LibWebP\src\dsp\dec_neon.c" />
+    <ClCompile Include="Source\LibWebP\src\dsp\dec_sse2.c" />
+    <ClCompile Include="Source\LibWebP\src\dsp\enc.c" />
+    <ClCompile Include="Source\LibWebP\src\dsp\enc_neon.c" />
+    <ClCompile Include="Source\LibWebP\src\dsp\enc_sse2.c" />
+    <ClCompile Include="Source\LibWebP\src\dsp\lossless.c" />
+    <ClCompile Include="Source\LibWebP\src\dsp\upsampling.c" />
+    <ClCompile Include="Source\LibWebP\src\dsp\upsampling_mips32.c" />
+    <ClCompile Include="Source\LibWebP\src\dsp\upsampling_neon.c" />
+    <ClCompile Include="Source\LibWebP\src\dsp\upsampling_sse2.c" />
+    <ClCompile Include="Source\LibWebP\src\dsp\yuv.c" />
+    <ClCompile Include="Source\LibWebP\src\enc\enc_alpha.c" />
+    <ClCompile Include="Source\LibWebP\src\enc\enc_analysis.c" />
+    <ClCompile Include="Source\LibWebP\src\enc\enc_backward_references.c" />
+    <ClCompile Include="Source\LibWebP\src\enc\enc_config.c" />
+    <ClCompile Include="Source\LibWebP\src\enc\enc_cost.c" />
+    <ClCompile Include="Source\LibWebP\src\enc\enc_filter.c" />
+    <ClCompile Include="Source\LibWebP\src\enc\enc_frame.c" />
+    <ClCompile Include="Source\LibWebP\src\enc\enc_histogram.c" />
+    <ClCompile Include="Source\LibWebP\src\enc\enc_iterator.c" />
+    <ClCompile Include="Source\LibWebP\src\enc\enc_layer.c" />
+    <ClCompile Include="Source\LibWebP\src\enc\enc_picture.c" />
+    <ClCompile Include="Source\LibWebP\src\enc\enc_quant.c" />
+    <ClCompile Include="Source\LibWebP\src\enc\enc_syntax.c" />
+    <ClCompile Include="Source\LibWebP\src\enc\enc_tree.c" />
+    <ClCompile Include="Source\LibWebP\src\enc\enc_vp8l.c" />
+    <ClCompile Include="Source\LibWebP\src\enc\enc_webpenc.c" />
+    <ClCompile Include="Source\LibWebP\src\enc\token.c" />
+    <ClCompile Include="Source\LibWebP\src\mux\muxedit.c" />
+    <ClCompile Include="Source\LibWebP\src\mux\muxinternal.c" />
+    <ClCompile Include="Source\LibWebP\src\mux\muxread.c" />
+    <ClCompile Include="Source\LibWebP\src\utils\alpha_processing.c" />
+    <ClCompile Include="Source\LibWebP\src\utils\bit_reader.c" />
+    <ClCompile Include="Source\LibWebP\src\utils\bit_writer.c" />
+    <ClCompile Include="Source\LibWebP\src\utils\color_cache.c" />
+    <ClCompile Include="Source\LibWebP\src\utils\filters.c" />
+    <ClCompile Include="Source\LibWebP\src\utils\huffman.c" />
+    <ClCompile Include="Source\LibWebP\src\utils\huffman_encode.c" />
+    <ClCompile Include="Source\LibWebP\src\utils\quant_levels.c" />
+    <ClCompile Include="Source\LibWebP\src\utils\quant_levels_dec.c" />
+    <ClCompile Include="Source\LibWebP\src\utils\random.c" />
+    <ClCompile Include="Source\LibWebP\src\utils\rescaler.c" />
+    <ClCompile Include="Source\LibWebP\src\utils\thread.c" />
+    <ClCompile Include="Source\LibWebP\src\utils\utils.c" />
+    <ClCompile Include="Source\Metadata\Exif.cpp" />
+    <ClCompile Include="Source\Metadata\FIRational.cpp" />
+    <ClCompile Include="Source\Metadata\FreeImageTag.cpp" />
+    <ClCompile Include="Source\Metadata\IPTC.cpp" />
+    <ClCompile Include="Source\Metadata\TagConversion.cpp" />
+    <ClCompile Include="Source\Metadata\TagLib.cpp" />
+    <ClCompile Include="Source\Metadata\XTIFF.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\Background.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\BSplineRotate.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\Channels.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\ClassicRotate.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\Colors.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\CopyPaste.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\Display.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\Flip.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\JPEGTransform.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\MultigridPoissonSolver.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\Rescale.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\Resize.cpp" />
+    <ClCompile Include="Source\OpenEXR\Half\half.cpp" />
+    <ClCompile Include="Source\OpenEXR\Iex\IexBaseExc.cpp" />
+    <ClCompile Include="Source\OpenEXR\Iex\IexThrowErrnoExc.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfAcesFile.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfAttribute.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfB44Compressor.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfBoxAttribute.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfChannelList.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfChannelListAttribute.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfChromaticities.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfChromaticitiesAttribute.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfCompressionAttribute.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfCompressor.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfConvert.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfCRgbaFile.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfDoubleAttribute.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfEnvmap.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfEnvmapAttribute.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfFloatAttribute.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfFrameBuffer.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfFramesPerSecond.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfHeader.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfHuf.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfInputFile.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfIntAttribute.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfIO.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfKeyCode.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfKeyCodeAttribute.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfLineOrderAttribute.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfLut.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfMatrixAttribute.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfMisc.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfMultiView.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfOpaqueAttribute.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfOutputFile.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfPizCompressor.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfPreviewImage.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfPreviewImageAttribute.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfPxr24Compressor.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfRational.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfRationalAttribute.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfRgbaFile.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfRgbaYca.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfRleCompressor.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfScanLineInputFile.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfStandardAttributes.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfStdIO.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfStringAttribute.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfStringVectorAttribute.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfTestFile.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfThreading.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfTileDescriptionAttribute.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfTiledInputFile.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfTiledMisc.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfTiledOutputFile.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfTiledRgbaFile.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfTileOffsets.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfTimeCode.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfTimeCodeAttribute.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfVecAttribute.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfVersion.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfWav.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmImf\ImfZipCompressor.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmThread\IlmThread.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Source\OpenEXR\IlmThread\IlmThreadMutex.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Source\OpenEXR\IlmThread\IlmThreadMutexPosix.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Source\OpenEXR\IlmThread\IlmThreadMutexWin32.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmThread\IlmThreadPool.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmThread\IlmThreadPosix.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Source\OpenEXR\IlmThread\IlmThreadSemaphore.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Source\OpenEXR\IlmThread\IlmThreadSemaphorePosix.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Source\OpenEXR\IlmThread\IlmThreadSemaphorePosixCompat.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Source\OpenEXR\IlmThread\IlmThreadSemaphoreWin32.cpp" />
+    <ClCompile Include="Source\OpenEXR\IlmThread\IlmThreadWin32.cpp" />
+    <ClCompile Include="Source\OpenEXR\Imath\ImathBox.cpp" />
+    <ClCompile Include="Source\OpenEXR\Imath\ImathColorAlgo.cpp" />
+    <ClCompile Include="Source\OpenEXR\Imath\ImathFun.cpp" />
+    <ClCompile Include="Source\OpenEXR\Imath\ImathMatrixAlgo.cpp" />
+    <ClCompile Include="Source\OpenEXR\Imath\ImathRandom.cpp" />
+    <ClCompile Include="Source\OpenEXR\Imath\ImathShear.cpp" />
+    <ClCompile Include="Source\OpenEXR\Imath\ImathVec.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="FreeImage.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\CacheFile.h" />
+    <ClInclude Include="Source\DeprecationManager\DeprecationMgr.h" />
+    <ClInclude Include="Source\LibJPEG\cderror.h" />
+    <ClInclude Include="Source\LibJPEG\cdjpeg.h" />
+    <ClInclude Include="Source\LibJPEG\jconfig.h" />
+    <ClInclude Include="Source\LibJPEG\jdct.h" />
+    <ClInclude Include="Source\LibJPEG\jerror.h" />
+    <ClInclude Include="Source\LibJPEG\jinclude.h" />
+    <ClInclude Include="Source\LibJPEG\jmemsys.h" />
+    <ClInclude Include="Source\LibJPEG\jmorecfg.h" />
+    <ClInclude Include="Source\LibJPEG\jpegint.h" />
+    <ClInclude Include="Source\LibJPEG\jpeglib.h" />
+    <ClInclude Include="Source\LibJPEG\jversion.h" />
+    <ClInclude Include="Source\LibJPEG\transupp.h" />
+    <ClInclude Include="Source\LibJXR\common\include\guiddef.h" />
+    <ClInclude Include="Source\LibJXR\common\include\wmsal.h" />
+    <ClInclude Include="Source\LibJXR\common\include\wmspecstring.h" />
+    <ClInclude Include="Source\LibJXR\common\include\wmspecstrings_adt.h" />
+    <ClInclude Include="Source\LibJXR\common\include\wmspecstrings_strict.h" />
+    <ClInclude Include="Source\LibJXR\common\include\wmspecstrings_undef.h" />
+    <ClInclude Include="Source\LibJXR\image\decode\decode.h" />
+    <ClInclude Include="Source\LibJXR\image\encode\encode.h" />
+    <ClInclude Include="Source\LibJXR\image\sys\ansi.h" />
+    <ClInclude Include="Source\LibJXR\image\sys\common.h" />
+    <ClInclude Include="Source\LibJXR\image\sys\perfTimer.h" />
+    <ClInclude Include="Source\LibJXR\image\sys\strcodec.h" />
+    <ClInclude Include="Source\LibJXR\image\sys\strTransform.h" />
+    <ClInclude Include="Source\LibJXR\image\sys\windowsmediaphoto.h" />
+    <ClInclude Include="Source\LibJXR\image\sys\xplatform_image.h" />
+    <ClInclude Include="Source\LibJXR\image\x86\x86.h" />
+    <ClInclude Include="Source\LibJXR\jxrgluelib\JXRGlue.h" />
+    <ClInclude Include="Source\LibJXR\jxrgluelib\JXRMeta.h" />
+    <ClInclude Include="Source\LibOpenJPEG\bio.h" />
+    <ClInclude Include="Source\LibOpenJPEG\cidx_manager.h" />
+    <ClInclude Include="Source\LibOpenJPEG\cio.h" />
+    <ClInclude Include="Source\LibOpenJPEG\dwt.h" />
+    <ClInclude Include="Source\LibOpenJPEG\event.h" />
+    <ClInclude Include="Source\LibOpenJPEG\function_list.h" />
+    <ClInclude Include="Source\LibOpenJPEG\image.h" />
+    <ClInclude Include="Source\LibOpenJPEG\indexbox_manager.h" />
+    <ClInclude Include="Source\LibOpenJPEG\invert.h" />
+    <ClInclude Include="Source\LibOpenJPEG\j2k.h" />
+    <ClInclude Include="Source\LibOpenJPEG\jp2.h" />
+    <ClInclude Include="Source\LibOpenJPEG\mct.h" />
+    <ClInclude Include="Source\LibOpenJPEG\mqc.h" />
+    <ClInclude Include="Source\LibOpenJPEG\openjpeg.h" />
+    <ClInclude Include="Source\LibOpenJPEG\opj_clock.h" />
+    <ClInclude Include="Source\LibOpenJPEG\opj_codec.h" />
+    <ClInclude Include="Source\LibOpenJPEG\opj_config.h" />
+    <ClInclude Include="Source\LibOpenJPEG\opj_config_private.h" />
+    <ClInclude Include="Source\LibOpenJPEG\opj_includes.h" />
+    <ClInclude Include="Source\LibOpenJPEG\opj_intmath.h" />
+    <ClInclude Include="Source\LibOpenJPEG\opj_inttypes.h" />
+    <ClInclude Include="Source\LibOpenJPEG\opj_malloc.h" />
+    <ClInclude Include="Source\LibOpenJPEG\opj_stdint.h" />
+    <ClInclude Include="Source\LibOpenJPEG\pi.h" />
+    <ClInclude Include="Source\LibOpenJPEG\raw.h" />
+    <ClInclude Include="Source\LibOpenJPEG\t1.h" />
+    <ClInclude Include="Source\LibOpenJPEG\t1_luts.h" />
+    <ClInclude Include="Source\LibOpenJPEG\t2.h" />
+    <ClInclude Include="Source\LibOpenJPEG\tcd.h" />
+    <ClInclude Include="Source\LibOpenJPEG\tgt.h" />
+    <ClInclude Include="Source\LibPNG\png.h" />
+    <ClInclude Include="Source\LibPNG\pngconf.h" />
+    <ClInclude Include="Source\LibPNG\pngdebug.h" />
+    <ClInclude Include="Source\LibPNG\pnginfo.h" />
+    <ClInclude Include="Source\LibPNG\pnglibconf.h" />
+    <ClInclude Include="Source\LibPNG\pngpriv.h" />
+    <ClInclude Include="Source\LibPNG\pngstruct.h" />
+    <ClInclude Include="Source\LibRawLite\internal\defines.h" />
+    <ClInclude Include="Source\LibRawLite\internal\libraw_bytebuffer.h" />
+    <ClInclude Include="Source\LibRawLite\internal\libraw_internal_funcs.h" />
+    <ClInclude Include="Source\LibRawLite\internal\var_defines.h" />
+    <ClInclude Include="Source\LibRawLite\libraw\libraw.h" />
+    <ClInclude Include="Source\LibRawLite\libraw\libraw_alloc.h" />
+    <ClInclude Include="Source\LibRawLite\libraw\libraw_const.h" />
+    <ClInclude Include="Source\LibRawLite\libraw\libraw_datastream.h" />
+    <ClInclude Include="Source\LibRawLite\libraw\libraw_internal.h" />
+    <ClInclude Include="Source\LibRawLite\libraw\libraw_types.h" />
+    <ClInclude Include="Source\LibRawLite\libraw\libraw_version.h" />
+    <ClInclude Include="Source\LibTIFF4\t4.h" />
+    <ClInclude Include="Source\LibTIFF4\tiff.h" />
+    <ClInclude Include="Source\LibTIFF4\tiffconf.h" />
+    <ClInclude Include="Source\LibTIFF4\tiffconf.vc.h" />
+    <ClInclude Include="Source\LibTIFF4\tiffconf.wince.h" />
+    <ClInclude Include="Source\LibTIFF4\tiffio.h" />
+    <ClInclude Include="Source\LibTIFF4\tiffio.hxx" />
+    <ClInclude Include="Source\LibTIFF4\tiffiop.h" />
+    <ClInclude Include="Source\LibTIFF4\tiffvers.h" />
+    <ClInclude Include="Source\LibTIFF4\tif_config.h" />
+    <ClInclude Include="Source\LibTIFF4\tif_config.vc.h" />
+    <ClInclude Include="Source\LibTIFF4\tif_config.wince.h" />
+    <ClInclude Include="Source\LibTIFF4\tif_dir.h" />
+    <ClInclude Include="Source\LibTIFF4\tif_fax3.h" />
+    <ClInclude Include="Source\LibTIFF4\tif_predict.h" />
+    <ClInclude Include="Source\LibTIFF4\uvcode.h" />
+    <ClInclude Include="Source\LibWebP\src\dec\alphai.h" />
+    <ClInclude Include="Source\LibWebP\src\dec\decode_vp8.h" />
+    <ClInclude Include="Source\LibWebP\src\dec\vp8i.h" />
+    <ClInclude Include="Source\LibWebP\src\dec\vp8li.h" />
+    <ClInclude Include="Source\LibWebP\src\dec\webpi.h" />
+    <ClInclude Include="Source\LibWebP\src\dsp\dsp.h" />
+    <ClInclude Include="Source\LibWebP\src\dsp\lossless.h" />
+    <ClInclude Include="Source\LibWebP\src\dsp\yuv.h" />
+    <ClInclude Include="Source\LibWebP\src\enc\backward_references.h" />
+    <ClInclude Include="Source\LibWebP\src\enc\cost.h" />
+    <ClInclude Include="Source\LibWebP\src\enc\histogram.h" />
+    <ClInclude Include="Source\LibWebP\src\enc\vp8enci.h" />
+    <ClInclude Include="Source\LibWebP\src\enc\vp8li.h" />
+    <ClInclude Include="Source\LibWebP\src\mux\muxi.h" />
+    <ClInclude Include="Source\LibWebP\src\utils\alpha_processing.h" />
+    <ClInclude Include="Source\LibWebP\src\utils\bit_reader.h" />
+    <ClInclude Include="Source\LibWebP\src\utils\bit_writer.h" />
+    <ClInclude Include="Source\LibWebP\src\utils\color_cache.h" />
+    <ClInclude Include="Source\LibWebP\src\utils\filters.h" />
+    <ClInclude Include="Source\LibWebP\src\utils\huffman.h" />
+    <ClInclude Include="Source\LibWebP\src\utils\huffman_encode.h" />
+    <ClInclude Include="Source\LibWebP\src\utils\quant_levels.h" />
+    <ClInclude Include="Source\LibWebP\src\utils\quant_levels_dec.h" />
+    <ClInclude Include="Source\LibWebP\src\utils\random.h" />
+    <ClInclude Include="Source\LibWebP\src\utils\rescaler.h" />
+    <ClInclude Include="Source\LibWebP\src\utils\thread.h" />
+    <ClInclude Include="Source\LibWebP\src\utils\utils.h" />
+    <ClInclude Include="Source\LibWebP\src\webp\decode.h" />
+    <ClInclude Include="Source\LibWebP\src\webp\demux.h" />
+    <ClInclude Include="Source\LibWebP\src\webp\encode.h" />
+    <ClInclude Include="Source\LibWebP\src\webp\format_constants.h" />
+    <ClInclude Include="Source\LibWebP\src\webp\mux.h" />
+    <ClInclude Include="Source\LibWebP\src\webp\mux_types.h" />
+    <ClInclude Include="Source\LibWebP\src\webp\types.h" />
+    <ClInclude Include="Source\Metadata\FIRational.h" />
+    <ClInclude Include="Source\FreeImage.h" />
+    <ClInclude Include="Source\FreeImageIO.h" />
+    <ClInclude Include="Source\Metadata\FreeImageTag.h" />
+    <ClInclude Include="Source\FreeImage\J2KHelper.h" />
+    <ClInclude Include="Source\OpenEXR\Half\half.h" />
+    <ClInclude Include="Source\OpenEXR\Half\halfFunction.h" />
+    <ClInclude Include="Source\OpenEXR\Half\halfLimits.h" />
+    <ClInclude Include="Source\OpenEXR\Half\toFloat.h" />
+    <ClInclude Include="Source\OpenEXR\Iex\Iex.h" />
+    <ClInclude Include="Source\OpenEXR\Iex\IexBaseExc.h" />
+    <ClInclude Include="Source\OpenEXR\Iex\IexErrnoExc.h" />
+    <ClInclude Include="Source\OpenEXR\Iex\IexMacros.h" />
+    <ClInclude Include="Source\OpenEXR\Iex\IexMathExc.h" />
+    <ClInclude Include="Source\OpenEXR\Iex\IexThrowErrnoExc.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\b44ExpLogTable.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfAcesFile.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfArray.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfAttribute.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfAutoArray.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfB44Compressor.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfBoxAttribute.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfChannelList.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfChannelListAttribute.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfCheckedArithmetic.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfChromaticities.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfChromaticitiesAttribute.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfCompression.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfCompressionAttribute.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfCompressor.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfConvert.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfCRgbaFile.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfDoubleAttribute.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfEnvmap.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfEnvmapAttribute.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfFloatAttribute.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfFrameBuffer.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfFramesPerSecond.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfHeader.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfHuf.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfInputFile.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfInt64.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfIntAttribute.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfIO.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfKeyCode.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfKeyCodeAttribute.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfLineOrder.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfLineOrderAttribute.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfLut.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfMatrixAttribute.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfMisc.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfMultiView.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfName.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfOpaqueAttribute.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfOutputFile.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfPixelType.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfPizCompressor.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfPreviewImage.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfPreviewImageAttribute.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfPxr24Compressor.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfRational.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfRationalAttribute.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfRgba.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfRgbaFile.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfRgbaYca.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfRleCompressor.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfScanLineInputFile.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfStandardAttributes.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfStdIO.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfStringAttribute.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfStringVectorAttribute.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfTestFile.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfThreading.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfTileDescription.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfTileDescriptionAttribute.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfTiledInputFile.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfTiledMisc.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfTiledOutputFile.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfTiledRgbaFile.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfTileOffsets.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfTimeCode.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfTimeCodeAttribute.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfVecAttribute.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfVersion.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfWav.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfXdr.h" />
+    <ClInclude Include="Source\OpenEXR\IlmImf\ImfZipCompressor.h" />
+    <ClInclude Include="Source\OpenEXR\IlmThread\IlmThread.h" />
+    <ClInclude Include="Source\OpenEXR\IlmThread\IlmThreadMutex.h" />
+    <ClInclude Include="Source\OpenEXR\IlmThread\IlmThreadPool.h" />
+    <ClInclude Include="Source\OpenEXR\IlmThread\IlmThreadSemaphore.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathBox.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathBoxAlgo.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathColor.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathColorAlgo.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathEuler.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathExc.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathFrame.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathFrustum.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathFrustumTest.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathFun.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathGL.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathGLU.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathHalfLimits.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathInt64.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathInterval.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathLimits.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathLine.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathLineAlgo.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathMath.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathMatrix.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathMatrixAlgo.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathPlane.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathPlatform.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathQuat.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathRandom.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathRoots.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathShear.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathSphere.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathVec.h" />
+    <ClInclude Include="Source\OpenEXR\Imath\ImathVecAlgo.h" />
+    <ClInclude Include="Source\Plugin.h" />
+    <ClInclude Include="Source\FreeImage\PSDParser.h" />
+    <ClInclude Include="Source\Quantizers.h" />
+    <ClInclude Include="Source\ToneMapping.h" />
+    <ClInclude Include="Source\Utilities.h" />
+    <ClInclude Include="Source\FreeImageToolkit\Resize.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Source\LibJPEG\change.log" />
+    <Text Include="Source\LibJPEG\coderules.txt" />
+    <Text Include="Source\LibJPEG\filelist.txt" />
+    <Text Include="Source\LibJPEG\install.txt" />
+    <Text Include="Source\LibJPEG\jconfig.txt" />
+    <Text Include="Source\LibJPEG\libjpeg.txt" />
+    <Text Include="Source\LibJPEG\structure.txt" />
+    <Text Include="Source\LibJPEG\usage.txt" />
+    <Text Include="Source\LibJPEG\wizard.txt" />
+    <Text Include="Source\LibPNG\libpng-manual.txt" />
+    <Text Include="Todo.txt" />
+    <Text Include="Whatsnew.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="axisfreeimage.def" />
+    <None Include="Source\LibJPEG\jmemdosa.asm" />
+    <None Include="Source\LibJPEG\LibJPEG.2003.vcproj" />
+    <None Include="Source\LibJPEG\LibJPEG.2005.vcproj" />
+    <None Include="Source\LibJPEG\LibJPEG.2008.vcproj" />
+    <None Include="Source\LibJPEG\LibJPEG.2008.vcxproj" />
+    <None Include="Source\LibJPEG\LibJPEG.2008.vcxproj.filters" />
+    <None Include="Source\LibJPEG\README" />
+    <None Include="Source\LibOpenJPEG\AUTHORS" />
+    <None Include="Source\LibOpenJPEG\INSTALL" />
+    <None Include="Source\LibOpenJPEG\LibOpenJPEG.2003.vcproj" />
+    <None Include="Source\LibOpenJPEG\LibOpenJPEG.2005.vcproj" />
+    <None Include="Source\LibOpenJPEG\LibOpenJPEG.2008.vcproj" />
+    <None Include="Source\LibOpenJPEG\LibOpenJPEG.2008.vcxproj" />
+    <None Include="Source\LibOpenJPEG\LibOpenJPEG.2008.vcxproj.filters" />
+    <None Include="Source\LibOpenJPEG\LICENSE" />
+    <None Include="Source\LibOpenJPEG\NEWS" />
+    <None Include="Source\LibOpenJPEG\README" />
+    <None Include="Source\LibOpenJPEG\THANKS" />
+    <None Include="Source\LibPNG\ANNOUNCE" />
+    <None Include="Source\LibPNG\CHANGES" />
+    <None Include="Source\LibPNG\configure" />
+    <None Include="Source\LibPNG\INSTALL" />
+    <None Include="Source\LibPNG\LibPNG.2003.vcproj" />
+    <None Include="Source\LibPNG\LibPNG.2005.vcproj" />
+    <None Include="Source\LibPNG\LibPNG.2008.vcproj" />
+    <None Include="Source\LibPNG\LibPNG.2008.vcxproj" />
+    <None Include="Source\LibPNG\LibPNG.2008.vcxproj.filters" />
+    <None Include="Source\LibPNG\libpng.3" />
+    <None Include="Source\LibPNG\libpngpf.3" />
+    <None Include="Source\LibPNG\LICENSE" />
+    <None Include="Source\LibPNG\png.5" />
+    <None Include="Source\LibPNG\README" />
+    <None Include="Source\LibPNG\TODO" />
+    <None Include="Source\LibRawLite\dcraw\dcraw.1.html" />
+    <None Include="Source\LibRawLite\internal\preprocess.pl" />
+    <None Include="Source\LibTIFF4\ChangeLog" />
+    <None Include="Source\LibTIFF4\LibTIFF4.2003.vcproj" />
+    <None Include="Source\LibTIFF4\LibTIFF4.2005.vcproj" />
+    <None Include="Source\LibTIFF4\LibTIFF4.2008.vcproj" />
+    <None Include="Source\LibTIFF4\LibTIFF4.2008.vcxproj" />
+    <None Include="Source\LibTIFF4\LibTIFF4.2008.vcxproj.filters" />
+    <None Include="Source\LibTIFF4\tiffconf.h-vms" />
+    <None Include="Source\LibTIFF4\tiffconf.h.in" />
+    <None Include="Source\LibTIFF4\tiffvers.h.in" />
+    <None Include="Source\LibTIFF4\tif_config.h-vms" />
+    <None Include="Source\LibTIFF4\tif_config.h.in" />
+    <None Include="Source\OpenEXR\Half\Makefile.am" />
+    <None Include="Source\OpenEXR\Half\Makefile.in" />
+    <None Include="Source\OpenEXR\Iex\Makefile.am" />
+    <None Include="Source\OpenEXR\Iex\Makefile.in" />
+    <None Include="Source\OpenEXR\IlmImf\Makefile.am" />
+    <None Include="Source\OpenEXR\IlmImf\Makefile.in" />
+    <None Include="Source\OpenEXR\IlmThread\Makefile.am" />
+    <None Include="Source\OpenEXR\IlmThread\Makefile.in" />
+    <None Include="Source\OpenEXR\Imath\Makefile.am" />
+    <None Include="Source\OpenEXR\Imath\Makefile.in" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\zlib\axiszlib.vcxproj">
+      <Project>{8fd826f8-3739-44e6-8cc8-997122e53b8d}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
