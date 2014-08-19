@@ -1825,9 +1825,6 @@
     <ClCompile Include="base\node\windows\windows_factory_exchange.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="base\node\windows\windows_file.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\windows\windows_file_find.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
@@ -1855,19 +1852,10 @@
     <ClCompile Include="base\node\windows\windows_registry.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="base\node\windows\windows_shell.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\windows\windows_stdio_file.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\windows\windows_thread.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="base\node\windows\windows_trace.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\windows\windows_window_draw.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="base\os\windows\windows_library.cpp">
@@ -1995,9 +1983,6 @@
     </ClCompile>
     <ClCompile Include="base\hotplugin\hotplugin_composer.cpp">
       <Filter>Source Files\base\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\windows\windows_interaction_impl.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="base\hotplugin\hotplugin_windows.cpp">
       <Filter>Source Files\base\hotplugin</Filter>

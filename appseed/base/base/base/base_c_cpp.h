@@ -544,6 +544,9 @@ CLASS_DECL_BASE bool __node_pos_term();
 #define ApplicationUser (AppUser(m_pbaseapp))
 
 
+#undef Application
+#define Application (App(m_pbaseapp))
+
 
 #include "base/net/http/http.h"
 //#include "base_microtimer.h"

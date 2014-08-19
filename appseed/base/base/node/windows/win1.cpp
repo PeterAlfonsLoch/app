@@ -1,17 +1,25 @@
 #include "framework.h"
-#include "win1.h"
+
 
 namespace windows
 {
+
+
    int32_t windows::function()
    {
+
       return 0;
+
    }
+
 
    HINSTANCE LoadLibrary(const char * lpsz)
    {
+
       return ::LoadLibraryW(::str::international::utf8_to_unicode(lpsz));
+
    }
+
 
    bool CLASS_DECL_BASE SHGetSpecialFolderPath(oswindow oswindow,string &str,int32_t csidl,bool fCreate)
    {

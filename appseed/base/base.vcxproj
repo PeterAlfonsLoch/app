@@ -3074,23 +3074,18 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\node\windows\windows_crypto.cpp" />
     <ClCompile Include="base\node\windows\windows_dir.cpp" />
     <ClCompile Include="base\node\windows\windows_factory_exchange.cpp" />
-    <ClCompile Include="base\node\windows\windows_file.cpp" />
     <ClCompile Include="base\node\windows\windows_file_find.cpp" />
     <ClCompile Include="base\node\windows\windows_file_set.cpp" />
     <ClCompile Include="base\node\windows\windows_file_system.cpp" />
     <ClCompile Include="base\node\windows\windows_folder_watch.cpp" />
-    <ClCompile Include="base\node\windows\windows_interaction_impl.cpp" />
     <ClCompile Include="base\node\windows\windows_ip_enum.cpp" />
     <ClCompile Include="base\node\windows\windows_os.cpp" />
     <ClCompile Include="base\node\windows\windows_port_forward.cpp" />
     <ClCompile Include="base\node\windows\windows_print_job.cpp" />
     <ClCompile Include="base\node\windows\windows_registry.cpp" />
-    <ClCompile Include="base\node\windows\windows_shell.cpp" />
-    <ClCompile Include="base\node\windows\windows_stdio_file.cpp" />
     <ClCompile Include="base\node\windows\windows_thread.cpp" />
     <ClCompile Include="base\node\windows\windows_trace.cpp" />
     <ClCompile Include="base\node\windows\windows_uac_tools.cpp" />
-    <ClCompile Include="base\node\windows\windows_window_draw.cpp" />
     <ClCompile Include="base\os\ansios\ansios_cross_win.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
