@@ -1,36 +1,4 @@
-///////////////////////////////////////////////////////////////////////////
-//
-// Copyright (c) 2007, Industrial Light & Magic, a division of Lucas
-// Digital Ltd. LLC
-// 
-// All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without
-// modification, are permitted provided that the following conditions are
-// met:
-// *       Redistributions of source code must retain the above copyright
-// notice, this list of conditions and the following disclaimer.
-// *       Redistributions in binary form must reproduce the above
-// copyright notice, this list of conditions and the following disclaimer
-// in the documentation and/or other materials provided with the
-// distribution.
-// *       Neither the name of Industrial Light & Magic nor the names of
-// its contributors may be used to endorse or promote products derived
-// from this software without specific prior written permission. 
-// 
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-//
-///////////////////////////////////////////////////////////////////////////
+#include "Imf.h"
 
 //-----------------------------------------------------------------------------
 //
@@ -38,10 +6,10 @@
 //	
 //-----------------------------------------------------------------------------
 
-#include <ImfAcesFile.h>
-#include <ImfRgbaFile.h>
-#include <ImfStandardAttributes.h>
-#include <Iex.h>
+//#include <ImfAcesFile.h>
+//#include <ImfRgbaFile.h>
+//#include <ImfStandardAttributes.h>
+//#include <Iex.h>
 
 using namespace std;
 using namespace Imath;
@@ -54,10 +22,10 @@ const Chromaticities &
 acesChromaticities ()
 {
     static const Chromaticities acesChr 
-	    (V2f (0.73470,  0.26530),	// red
-	     V2f (0.00000,  1.00000),	// green
-	     V2f (0.00010, -0.07700),	// blue
-	     V2f (0.32168,  0.33767));	// white
+	    (V2f (0.73470f,  0.26530f),	// red
+	     V2f (0.00000f,  1.00000f),	// green
+	     V2f (0.00010f, -0.07700f),	// blue
+	     V2f (0.32168f,  0.33767f));	// white
 
     return acesChr;
 }

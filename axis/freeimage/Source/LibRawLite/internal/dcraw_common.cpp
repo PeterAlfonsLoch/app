@@ -20,7 +20,7 @@ it under the terms of the one of three licenses as you choose:
    Look into dcraw homepage (probably http://cybercom.net/~dcoffin/dcraw/)
    for more information
 */
-
+#pragma warning (disable : 4309)
 #include <math.h>
 #define CLASS LibRaw::
 #include "libraw/libraw_types.h"
@@ -146,7 +146,7 @@ void CLASS read_shorts (ushort *pixel, int count)
 {
   if (fread (pixel, 2, count, ifp) < count) derror();
   if ((order == 0x4949) == (ntohs(0x1234) == 0x1234))
-    swab ((char*)pixel, (char*)pixel, count*2);
+    _swab ((char*)pixel, (char*)pixel, count*2);
 }
 
 void CLASS canon_600_fixed_wb (int temp)
@@ -1147,7 +1147,7 @@ int CLASS minolta_z2()
   int i, nz;
   char tail[424];
 
-  fseek (ifp, -sizeof tail, SEEK_END);
+  fseek (ifp, -(long long) (sizeof tail), SEEK_END);
   fread (tail, 1, sizeof tail, ifp);
   for (nz=i=0; i < sizeof tail; i++)
     if (tail[i]) nz++;
@@ -2078,7 +2078,7 @@ void CLASS kodak_radc_load_raw()
       for (i=0; i < sizeof(buf[0])/sizeof(short); i++)
 	buf[c][0][i] = (buf[c][0][i] * val + x) >> s;
       last[c] = mul[c];
-      for (r=0; r <= !c; r++) {
+      for (r=0; r <= (c ? 0 : 1); r++) {
 	buf[c][1][width/2] = buf[c][2][width/2] = mul[c] << 7;
 	for (tree=1, col=width/2; col > 0; ) {
 	  if ((tree = radc_token(tree))) {
@@ -3782,22 +3782,22 @@ void CLASS vng_interpolate()
     -2,+0,+0,-1,0,0x06, -2,+0,+0,+0,1,0x02, -2,+0,+0,+1,0,0x03,
     -2,+1,-1,+0,0,0x04, -2,+1,+0,-1,1,0x04, -2,+1,+0,+0,0,0x06,
     -2,+1,+0,+1,0,0x02, -2,+2,+0,+0,1,0x04, -2,+2,+0,+1,0,0x04,
-    -1,-2,-1,+0,0,0x80, -1,-2,+0,-1,0,0x01, -1,-2,+1,-1,0,0x01,
-    -1,-2,+1,+0,1,0x01, -1,-1,-1,+1,0,0x88, -1,-1,+1,-2,0,0x40,
+    -1,-2,-1,+0,0,(char)0x80, -1,-2,+0,-1,0,0x01, -1,-2,+1,-1,0,0x01,
+    -1,-2,+1,+0,1,0x01, -1,-1,-1,+1,0,(char)0x88, -1,-1,+1,-2,0,0x40,
     -1,-1,+1,-1,0,0x22, -1,-1,+1,+0,0,0x33, -1,-1,+1,+1,1,0x11,
     -1,+0,-1,+2,0,0x08, -1,+0,+0,-1,0,0x44, -1,+0,+0,+1,0,0x11,
     -1,+0,+1,-2,1,0x40, -1,+0,+1,-1,0,0x66, -1,+0,+1,+0,1,0x22,
     -1,+0,+1,+1,0,0x33, -1,+0,+1,+2,1,0x10, -1,+1,+1,-1,1,0x44,
     -1,+1,+1,+0,0,0x66, -1,+1,+1,+1,0,0x22, -1,+1,+1,+2,0,0x10,
     -1,+2,+0,+1,0,0x04, -1,+2,+1,+0,1,0x04, -1,+2,+1,+1,0,0x04,
-    +0,-2,+0,+0,1,0x80, +0,-1,+0,+1,1,0x88, +0,-1,+1,-2,0,0x40,
+    +0,-2,+0,+0,1,(char)0x80, +0,-1,+0,+1,1,(char)0x88, +0,-1,+1,-2,0,0x40,
     +0,-1,+1,+0,0,0x11, +0,-1,+2,-2,0,0x40, +0,-1,+2,-1,0,0x20,
     +0,-1,+2,+0,0,0x30, +0,-1,+2,+1,1,0x10, +0,+0,+0,+2,1,0x08,
     +0,+0,+2,-2,1,0x40, +0,+0,+2,-1,0,0x60, +0,+0,+2,+0,1,0x20,
     +0,+0,+2,+1,0,0x30, +0,+0,+2,+2,1,0x10, +0,+1,+1,+0,0,0x44,
     +0,+1,+1,+2,0,0x10, +0,+1,+2,-1,1,0x40, +0,+1,+2,+0,0,0x60,
-    +0,+1,+2,+1,0,0x20, +0,+1,+2,+2,0,0x10, +1,-2,+1,+0,0,0x80,
-    +1,-1,+1,+1,0,0x88, +1,+0,+1,+2,0,0x08, +1,+0,+2,-1,0,0x40,
+    +0,+1,+2,+1,0,0x20, +0,+1,+2,+2,0,0x10, +1,-2,+1,+0,0,(char)0x80,
+    +1,-1,+1,+1,0,(char)0x88, +1,+0,+1,+2,0,0x08, +1,+0,+2,-1,0,0x40,
     +1,+0,+2,+1,0,0x10
   }, chood[] = { -1,-1, -1,0, -1,+1, 0,+1, +1,+1, +1,0, +1,-1, 0,-1 };
   ushort (*brow[5])[4], *pix;
@@ -4051,7 +4051,7 @@ void CLASS xtrans_interpolate (int passes)
 
   cielab (0,0);
   border_interpolate(6);
-  ndir = 4 << (passes > 1);
+  ndir = 4 << ((passes > 1) ? 1:0);
   buffer = (char *) malloc (TS*TS*(ndir*11+6));
   merror (buffer, "xtrans_interpolate()");
   rgb  = (ushort(*)[TS][TS][3]) buffer;
@@ -4287,7 +4287,7 @@ void CLASS ahd_interpolate_r_and_b_in_rgb_and_convert_to_cielab(int top, int lef
   ushort (*pix)[4];
   ushort (*rix)[3];
   short (*lix)[3];
-  float xyz[3];
+//  float xyz[3];
   const unsigned num_pix_per_row = 4*width;
   const unsigned rowlimit = MIN(top+TS-1, height-3);
   const unsigned collimit = MIN(left+TS-1, width-3);
@@ -4442,8 +4442,13 @@ void CLASS ahd_interpolate_combine_homogeneous_pixels(int top, int left, ushort 
 }
 void CLASS ahd_interpolate()
 {
-  int i, j, k, top, left;
-  float xyz_cam[3][4],r;
+#ifdef LIBRAW_LIBRARY_BUILD
+#ifdef LIBRAW_USE_OPENMP
+   int i, k, j;
+   float xyz_cam[3][4],r;
+#endif
+#endif
+   int top,left;
   char *buffer;
   ushort (*rgb)[TS][TS][3];
   short (*lab)[TS][TS][3];
@@ -5845,7 +5850,7 @@ guess_cfa_pc:
 #else
     if( !ifp->tempbuffer_open(buf,sony_length))
         {
-            parse_tiff_ifd(-sony_offset);
+            parse_tiff_ifd(-(long long) sony_offset);
             ifp->tempbuffer_close();
         }
 #endif
@@ -6624,7 +6629,7 @@ void CLASS parse_redcine()
   width  = get4();
   height = get4();
   fseek (ifp, 0, SEEK_END);
-  fseek (ifp, -(i = ftello(ifp) & 511), SEEK_CUR);
+  fseek (ifp, -(long)(i = ftello(ifp) & 511), SEEK_CUR);
   if (get4() != i || get4() != 0x52454f42) {
 #ifdef DCRAW_VERBOSE
     fprintf (stderr,_("%s: Tail is missing, parsing from head...\n"), ifname);
@@ -8863,7 +8868,7 @@ konica_400z:
 dng_skip:
 
   if (fuji_width) {
-    fuji_width = width >> !fuji_layout;
+    fuji_width = width >> (fuji_layout ? 0 : 1);
     if (~fuji_width & 1) filters = 0x49494949;
     width = (height >> fuji_layout) + fuji_width;
     height = width - 1;
@@ -9337,7 +9342,7 @@ void CLASS write_ppm_tiff()
 	   FORCC ppm [col*colors+c] = curve[image[soff][c]] >> 8;
       else FORCC ppm2[col*colors+c] = curve[image[soff][c]];
     if (output_bps == 16 && !output_tiff && htons(0x55aa) != 0x55aa)
-      swab ((char*)ppm2, (char*)ppm2, width*colors*2);
+      _swab ((char*)ppm2, (char*)ppm2, width*colors*2);
     fwrite (ppm, colors*output_bps/8, width, ofp);
   }
   free (ppm);

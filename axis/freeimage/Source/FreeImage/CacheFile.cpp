@@ -20,11 +20,13 @@
 // Use at your own risk!
 // ==========================================================
 
+#include "FreeImage.h"
+
 #ifdef _MSC_VER 
 #pragma warning (disable : 4786) // identifier was truncated to 'number' characters
 #endif 
 
-#include "CacheFile.h"
+//#include "CacheFile.h"
 
 // ----------------------------------------------------------
 

@@ -1,3 +1,4 @@
+#pragma once
 // =============================================================
 // Quantizer objects and functions
 //

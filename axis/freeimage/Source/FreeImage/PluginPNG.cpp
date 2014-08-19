@@ -27,9 +27,9 @@
 #endif
 
 #include "FreeImage.h"
-#include "Utilities.h"
+//#include "Utilities.h"
 
-#include "../Metadata/FreeImageTag.h"
+//#include "../Metadata/FreeImageTag.h"
 
 // ----------------------------------------------------------
 
@@ -39,7 +39,7 @@
 
 // ----------------------------------------------------------
 
-#include "../ZLib/zlib.h"
+#include "ZLib/zlib.h"
 #include "../LibPNG/png.h"
 
 // ----------------------------------------------------------

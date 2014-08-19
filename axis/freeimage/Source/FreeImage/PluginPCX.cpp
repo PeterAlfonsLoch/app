@@ -24,7 +24,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-#include "Utilities.h"
+//#include "Utilities.h"
 
 // ----------------------------------------------------------
 //   Constants + headers

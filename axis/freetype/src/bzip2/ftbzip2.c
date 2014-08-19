@@ -49,7 +49,7 @@
 #endif
 
 #define BZ_NO_STDIO /* Do not need FILE */
-#include <bzlib.h>
+#include <bzip2/bzlib.h>
 
 
 /***************************************************************************/

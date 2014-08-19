@@ -20,7 +20,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-#include "Utilities.h"
+//#include "Utilities.h"
 #include "FIRational.h"
 
 /// Initialize and normalize a rational number

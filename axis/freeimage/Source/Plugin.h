@@ -28,7 +28,7 @@
 #define PLUGIN_H
 
 #include "FreeImage.h"
-#include "Utilities.h"
+//#include "Utilities.h"
 
 // ==========================================================
 

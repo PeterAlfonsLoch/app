@@ -25,7 +25,9 @@ it under the terms of the one of three licenses as you choose:
 #define NO_JPEG
 #endif
 #ifndef USE_JASPER
+#ifndef NO_JASPER
 #define NO_JASPER
+#endif
 #endif
 #define DCRAW_VERSION "9.19"
 
@@ -50,11 +52,11 @@ it under the terms of the one of three licenses as you choose:
 #endif
 #ifdef WIN32
 #include <sys/utime.h>
-#include <winsock2.h>
+//#include <winsock2.h>
 #pragma comment(lib, "ws2_32.lib")
 #define snprintf _snprintf
-#define strcasecmp stricmp
-#define strncasecmp strnicmp
+#define strcasecmp _stricmp
+#define strncasecmp _strnicmp
 #else
 #include <unistd.h>
 #include <utime.h>

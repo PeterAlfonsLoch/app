@@ -34,7 +34,7 @@
 
 #ifndef INCLUDED_IMF_CHECKED_ARITHMETIC_H
 #define INCLUDED_IMF_CHECKED_ARITHMETIC_H
-
+#pragma warning (disable : 4101)
 //-----------------------------------------------------------------------------
 //
 //	Integer arithmetic operations that throw exceptions

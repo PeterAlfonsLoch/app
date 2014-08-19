@@ -23,21 +23,8 @@
 //
 // Use at your own risk!
 // ==========================================================
-
-#ifdef _MSC_VER 
-#pragma warning (disable : 4786) // identifier was truncated to 'number' characters
-#endif 
-
-#include <stdlib.h>
-#if defined(_WIN32) || defined(_WIN64) || defined(__MINGW32__)
-#include <malloc.h>
-#endif // _WIN32 || _WIN64 || __MINGW32__
-
 #include "FreeImage.h"
-#include "FreeImageIO.h"
-#include "Utilities.h"
 
-#include "../Metadata/FreeImageTag.h"
 
 /** Constants for the BITMAPINFOHEADER::biCompression field */
 #ifndef _WINGDI_

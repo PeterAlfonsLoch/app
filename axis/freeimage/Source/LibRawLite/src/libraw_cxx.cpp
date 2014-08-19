@@ -29,7 +29,7 @@ it under the terms of the one of three licenses as you choose:
 #ifndef WIN32
 #include <netinet/in.h>
 #else
-#include <winsock2.h>
+//#include <winsock2.h>
 #endif
 #define LIBRAW_LIBRARY_BUILD
 #include "libraw/libraw.h"
@@ -1029,7 +1029,7 @@ int LibRaw::open_datastream(LibRaw_abstract_datastream *stream)
     
   if (load_raw == &LibRaw::kodak_ycbcr_load_raw) 
     {
-      S.height += S.height & 1;
+      S.height += (S.height & 1);
       S.width  += S.width  & 1;
     }
 
@@ -1420,7 +1420,7 @@ int LibRaw::raw2image(void)
           unsigned r,c;
           int row,col;
           for (row=0; row < S.raw_height-S.top_margin*2; row++) {
-            for (col=0; col < IO.fuji_width << !libraw_internal_data.unpacker_data.fuji_layout; col++) {
+            for (col=0; col < IO.fuji_width << (libraw_internal_data.unpacker_data.fuji_layout?0:1); col++) {
               if (libraw_internal_data.unpacker_data.fuji_layout) {
                 r = IO.fuji_width - 1 - col + (row >> 1);
                 c = col + ((row+1) >> 1);
@@ -1564,7 +1564,7 @@ void LibRaw::copy_fuji_uncropped(unsigned short cblack[4],unsigned short *dmaxp)
     {
       int col;
       unsigned short ldmax = 0;
-      for (col=0; col < IO.fuji_width << !libraw_internal_data.unpacker_data.fuji_layout; col++) 
+      for (col=0; col < IO.fuji_width << (libraw_internal_data.unpacker_data.fuji_layout?0:1); col++) 
         {
           unsigned r,c;
           if (libraw_internal_data.unpacker_data.fuji_layout) {
@@ -1718,8 +1718,8 @@ int LibRaw::raw2image_ex(int do_subtract_black)
     
     if(IO.fuji_width && do_crop)
       {
-        int IO_fw = S.width >> !libraw_internal_data.unpacker_data.fuji_layout;
-        int t_alloc_width = (S.height >> libraw_internal_data.unpacker_data.fuji_layout) + IO_fw;
+        int IO_fw = S.width >> (libraw_internal_data.unpacker_data.fuji_layout?0:1);
+        int t_alloc_width = (S.height >> (libraw_internal_data.unpacker_data.fuji_layout?1:0)) + IO_fw;
         int t_alloc_height = t_alloc_width - 1;
         alloc_height = (t_alloc_height + IO.shrink) >> IO.shrink;
         alloc_width = (t_alloc_width + IO.shrink) >> IO.shrink;
@@ -1755,7 +1755,7 @@ int LibRaw::raw2image_ex(int do_subtract_black)
           {
             if(do_crop)
               {
-                IO.fuji_width = S.width >> !libraw_internal_data.unpacker_data.fuji_layout;
+                IO.fuji_width = S.width >> (libraw_internal_data.unpacker_data.fuji_layout?0:1);
                 int IO_fwidth = (S.height >> libraw_internal_data.unpacker_data.fuji_layout) + IO.fuji_width;
                 int IO_fheight = IO_fwidth - 1;
                 
@@ -2143,7 +2143,7 @@ void LibRaw::kodak_thumb_loader()
 
   if (thumb_load_raw == &CLASS kodak_ycbcr_load_raw) 
     {
-      S.height += S.height & 1;
+      S.height += (S.height & 1);
       S.width  += S.width  & 1;
     }
     
@@ -2353,7 +2353,7 @@ int LibRaw::unpack_thumb(void)
             ushort *t_thumb = (ushort*)calloc(T.tlength,2);
             ID.input->read(t_thumb,2,T.tlength);
             if ((libraw_internal_data.unpacker_data.order == 0x4949) == (ntohs(0x1234) == 0x1234))
-              swab ((char*)t_thumb, (char*)t_thumb, T.tlength*2);
+              _swab ((char*)t_thumb, (char*)t_thumb, T.tlength*2);
 
             if(T.thumb) free(T.thumb);
             T.thumb = (char *) malloc (T.tlength);

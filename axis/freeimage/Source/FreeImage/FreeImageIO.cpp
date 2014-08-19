@@ -20,8 +20,8 @@
 // ==========================================================
 
 #include "FreeImage.h"
-#include "Utilities.h"
-#include "FreeImageIO.h"
+//#include "Utilities.h"
+//#include "FreeImageIO.h"
 
 // =====================================================================
 // File IO functions

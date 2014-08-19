@@ -21,7 +21,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-#include "Utilities.h"
+//#include "Utilities.h"
 
 // ----------------------------------------------------------
 //   Definitions for the DDS format

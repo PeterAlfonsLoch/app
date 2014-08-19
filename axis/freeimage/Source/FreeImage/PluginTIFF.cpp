@@ -36,12 +36,12 @@
 #endif
 
 #include "FreeImage.h"
-#include "Utilities.h"
+//#include "Utilities.h"
 #include "../LibTIFF4/tiffiop.h"
-#include "../Metadata/FreeImageTag.h"
+//#include "../Metadata/FreeImageTag.h"
 #include "../OpenEXR/Half/half.h"
 
-#include "FreeImageIO.h"
+//#include "FreeImageIO.h"
 #include "PSDParser.h"
 
 // ----------------------------------------------------------

@@ -24,8 +24,8 @@
 #endif
 
 #include "FreeImage.h"
-#include "Utilities.h"
-#include "FreeImageTag.h"
+//#include "Utilities.h"
+//#include "FreeImageTag.h"
 #include "FIRational.h"
 
 #define MAX_TEXT_EXTENT	512

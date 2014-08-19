@@ -20,7 +20,8 @@
 // Use at your own risk!
 // ==========================================================
 
-#include "Resize.h"
+#include "FreeImage.h"
+//#include "Resize.h"
 
 FIBITMAP * DLL_CALLCONV 
 FreeImage_Rescale(FIBITMAP *src, int dst_width, int dst_height, FREE_IMAGE_FILTER filter) {

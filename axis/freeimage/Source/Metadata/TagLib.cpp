@@ -34,8 +34,8 @@
 #endif
 
 #include "FreeImage.h"
-#include "Utilities.h"
-#include "FreeImageTag.h"
+//#include "Utilities.h"
+//#include "FreeImageTag.h"
 
 /**
  HOW-TO : add a new TagInfo table

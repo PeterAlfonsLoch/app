@@ -22,7 +22,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-#include "Utilities.h"
+//#include "Utilities.h"
 
 /**
 Flip the image horizontally along the vertical axis.

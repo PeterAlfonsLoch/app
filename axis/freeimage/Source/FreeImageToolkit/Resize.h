@@ -25,7 +25,7 @@
 #define _RESIZE_H_
 
 #include "FreeImage.h"
-#include "Utilities.h"
+//#include "Utilities.h"
 #include "Filters.h" 
 
 /**

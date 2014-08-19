@@ -1,3 +1,4 @@
+#pragma once
 // ==========================================================
 // FreeImage 3
 //
@@ -1120,3 +1121,34 @@ DLL_API FIBITMAP *DLL_CALLCONV FreeImage_MultigridPoissonSolver(FIBITMAP *Laplac
 #endif
 
 #endif // FREEIMAGE_H
+
+
+
+#include <stdlib.h>
+#if defined(_WIN32) || defined(_WIN64) || defined(__MINGW32__)
+#include <malloc.h>
+#include <io.h>
+#endif // _WIN32 || _WIN64 || __MINGW32__
+
+
+
+#ifdef _MSC_VER 
+#pragma warning (disable : 4786) // identifier was truncated to 'number' characters
+#endif 
+
+
+#include  "FreeImageIO.h"
+#include  "Utilities.h"
+
+#include  "../Metadata/FreeImageTag.h"
+#include  "Quantizers.h"
+
+#include  "CacheFile.h"
+
+#include  "Plugin.h"
+
+#include  "FreeImageToolkit/Resize.h"
+
+
+#include  "Imf.h"
+

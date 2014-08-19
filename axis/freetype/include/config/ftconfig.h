@@ -592,9 +592,25 @@ FT_BEGIN_HEADER
 #ifndef FT_EXPORT
 
 #ifdef __cplusplus
-#define FT_EXPORT( x )  extern "C"  x
+#ifdef _WIN32
+#ifdef FT2_BUILD_LIBRARY
+#define FT_EXPORT( x ) extern "C" __declspec(dllexport)  x
 #else
-#define FT_EXPORT( x )  extern  x
+#define FT_EXPORT( x )extern "C"  __declspec(dllimport)  x
+#endif
+#else
+#define FT_EXPORT( x )  extern "C"  x
+#endif
+#else
+#ifdef _WIN32
+#ifdef FT2_BUILD_LIBRARY
+#define FT_EXPORT( x ) extern  __declspec(dllexport)  x
+#else
+#define FT_EXPORT( x )extern  __declspec(dllimport)  x
+#endif
+#else
+#define FT_EXPORT( x ) extern   x
+#endif
 #endif
 
 #endif /* !FT_EXPORT */
@@ -603,9 +619,25 @@ FT_BEGIN_HEADER
 #ifndef FT_EXPORT_DEF
 
 #ifdef __cplusplus
-#define FT_EXPORT_DEF( x )  extern "C"  x
+#ifdef _WIN32
+#ifdef FT2_BUILD_LIBRARY
+#define FT_EXPORT_DEF( x )  extern "C" __declspec(dllexport)  x
+#else
+#define FT_EXPORT_DEF( x )  extern "C" __declspec(dllimport)  x
+#endif
+#else
+#define FT_EXPORT_DEF( x )  extern "C"   x
+#endif
+#else
+#ifdef _WIN32
+#ifdef FT2_BUILD_LIBRARY
+#define FT_EXPORT_DEF( x )  extern __declspec(dllexport)  x
+#else
+#define FT_EXPORT_DEF( x ) extern __declspec(dllimport)  x
+#endif
 #else
 #define FT_EXPORT_DEF( x )  extern  x
+#endif
 #endif
 
 #endif /* !FT_EXPORT_DEF */

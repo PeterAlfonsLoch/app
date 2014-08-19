@@ -30,9 +30,9 @@
 //               Author: Hervé Drolon (drolon@infonie.fr)
 ///////////////////////////////////////////////////////////////////////
 
-#include "Quantizers.h"
+//#include "Quantizers.h"
 #include "FreeImage.h"
-#include "Utilities.h"
+//#include "Utilities.h"
 
 
 // Four primes near 500 - assume no image has a length so large

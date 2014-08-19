@@ -33,7 +33,9 @@
 #ifdef USE_JASPER
 #include <jasper/jasper.h>	/* Decode RED camera movies */
 #else
+#ifndef NO_JASPER
 #define NO_JASPER
+#endif
 #endif
 #ifdef USE_JPEG
 #include <jpeglib.h>

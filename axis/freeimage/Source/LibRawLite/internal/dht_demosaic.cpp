@@ -754,7 +754,7 @@ void DHT::make_rbhv(int i) {
 		 * то можно выбрать наилучшее направление исходя из информации по обоим цветам.
 		 */
 		int dx, dy, dx2, dy2;
-		float h1, h2;
+//		float h1, h2;
 		if (ndir[nr_offset(y, x)] & VER) {
 			dx = dx2 = 0;
 			dy = -1;

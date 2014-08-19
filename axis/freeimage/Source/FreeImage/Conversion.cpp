@@ -23,9 +23,9 @@
 // ==========================================================
 
 #include "FreeImage.h"
-#include "Utilities.h"
-#include "Quantizers.h"
-
+//#include "Utilities.h"
+//#include "Quantizers.h"
+#undef max
 // ----------------------------------------------------------
 
 #define CONVERT(from, to) case to : FreeImage_ConvertLine##from##To##to(bits, scanline, FreeImage_GetWidth(dib)); break;

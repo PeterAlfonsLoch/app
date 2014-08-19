@@ -34,11 +34,11 @@
 #endif // _WIN32
 
 #include "FreeImage.h"
-#include "Utilities.h"
-#include "FreeImageIO.h"
-#include "Plugin.h"
+//#include "Utilities.h"
+//#include "FreeImageIO.h"
+//#include "Plugin.h"
 
-#include "../Metadata/FreeImageTag.h"
+//#include "../Metadata/FreeImageTag.h"
 
 // =====================================================================
 

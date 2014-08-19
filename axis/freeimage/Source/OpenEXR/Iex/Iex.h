@@ -48,6 +48,7 @@
 #include "IexMacros.h"
 #include "IexBaseExc.h"
 #include "IexMathExc.h"
+#include "IexErrnoExc.h"
 #include "IexThrowErrnoExc.h"
 #include <algorithm>
 

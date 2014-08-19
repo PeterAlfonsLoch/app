@@ -20,7 +20,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-#include "Utilities.h"
+//#include "Utilities.h"
 
 // ----------------------------------------------------------
 //   smart convert X to RGBF

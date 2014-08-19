@@ -25,8 +25,8 @@
 #endif
 
 #include "FreeImage.h"
-#include "Utilities.h"
-#include "../Metadata/FreeImageTag.h"
+//#include "Utilities.h"
+//#include "../Metadata/FreeImageTag.h"
 
 // ==========================================================
 //   Metadata declarations

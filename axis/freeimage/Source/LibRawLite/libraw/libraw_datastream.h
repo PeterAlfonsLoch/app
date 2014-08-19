@@ -22,10 +22,18 @@ it under the terms of the one of three licenses as you choose:
 #ifndef __LIBRAW_DATASTREAM_H
 #define __LIBRAW_DATASTREAM_H
 
+
+#pragma warning (disable : 4244 )
+#pragma warning (disable : 4018 )
+#pragma warning (disable : 4305 )
+
 #include <stdio.h>
 #include <sys/types.h>
 #include <errno.h>
 #include <string.h>
+#ifdef _WIN32
+#include <windows.h>
+#endif
 
 #ifndef __cplusplus
 
@@ -38,7 +46,7 @@ it under the terms of the one of three licenses as you choose:
 #include <memory>
 
 #if defined (WIN32)
-#include <winsock2.h>
+//#include <winsock2.h>
 
 /* MSVS 2008 and above... */
 #if _MSC_VER >= 1500

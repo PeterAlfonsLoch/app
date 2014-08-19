@@ -20,8 +20,9 @@
 //
 // Use at your own risk!
 // ==========================================================
+#include "FreeImage.h"
 
-#include "Resize.h"
+//#include "Resize.h"
 
 /**
 Returns the color type of a bitmap. In contrast to FreeImage_GetColorType,

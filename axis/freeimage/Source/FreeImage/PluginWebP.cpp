@@ -20,9 +20,9 @@
 // ==========================================================
 
 #include "FreeImage.h"
-#include "Utilities.h"
+//#include "Utilities.h"
 
-#include "../Metadata/FreeImageTag.h"
+//#include "../Metadata/FreeImageTag.h"
 
 #include "../LibWebP/src/webp/decode.h"
 #include "../LibWebP/src/webp/encode.h"

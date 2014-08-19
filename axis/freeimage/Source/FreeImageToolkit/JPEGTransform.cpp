@@ -20,6 +20,7 @@
 //
 // Use at your own risk!
 // ==========================================================
+#include "FreeImage.h"
 
 extern "C" {
 #define XMD_H
@@ -32,9 +33,8 @@ extern "C" {
 #include "../LibJPEG/transupp.h"
 }
 
-#include "FreeImage.h"
-#include "Utilities.h"
-#include "FreeImageIO.h"
+//#include "Utilities.h"
+//#include "FreeImageIO.h"
 
 // ----------------------------------------------------------
 //   Source manager & Destination manager setup
