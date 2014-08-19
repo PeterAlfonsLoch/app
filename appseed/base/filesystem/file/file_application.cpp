@@ -469,7 +469,7 @@ namespace file
 /* xxx      else if(::str::begins(strPath, "fs://"))
       {
 
-         if(&session() == NULL)
+         if(&Session == NULL)
          {
 
             spfile = NULL;
@@ -478,7 +478,7 @@ namespace file
          else
          {
 
-            spfile = session().m_prfs->get_file(varFile, nOpenFlags);
+            spfile = Session.m_prfs->get_file(varFile, nOpenFlags);
 
          }
 
@@ -503,7 +503,7 @@ namespace file
             }
 
          }
-         else if(&session() != NULL && session().m_mapApplication.Lookup(System.url().get_server("matter://" + strPath), papp) && App(m_paxisapp).m_strAppName.has_char())
+         else if(&Session != NULL && Session.m_mapApplication.Lookup(System.url().get_server("matter://" + strPath), papp) && App(m_paxisapp).m_strAppName.has_char())
          {
 
             spfile = App(papp).file().get_file("matter://" + strPath, nOpenFlags);

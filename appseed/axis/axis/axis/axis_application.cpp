@@ -4,7 +4,7 @@
 #if defined(CUBE)
 
 
-void draw2d_factory_exchange(sp(::axis::application) papp);
+void draw2d_factory_exchange(sp(application) papp);
 
 
 #endif
@@ -40,7 +40,7 @@ void dappy(const char * psz)
 
 namespace axis
 {
-   application_signal_details::application_signal_details(sp(::axis::application) papp,class ::signal * psignal,e_application_signal esignal):
+   application_signal_details::application_signal_details(sp(application) papp,class ::signal * psignal,e_application_signal esignal):
       element(papp),
       ::signal_details(psignal)
    {
@@ -2634,7 +2634,7 @@ namespace axis
       if(strLibrary.is_empty())
          strLibrary = "draw2d_cairo";
 
-      ::axis::library & library = System.m_libraryDraw2d;
+      library & library = System.m_libraryDraw2d;
 
       if(library.is_opened())
          return;
@@ -3018,7 +3018,7 @@ namespace axis
 
    }
 
-   bool application::init_main_data(::axis::main_init_data * pdata)
+   bool application::init_main_data(main_init_data * pdata)
    {
 
       m_pinitmaindata = pdata;
@@ -3027,7 +3027,7 @@ namespace axis
 
    }
 
-   bool application::set_main_init_data(::axis::main_init_data * pdata)
+   bool application::set_main_init_data(main_init_data * pdata)
    {
 
       return m_pimpl->set_main_init_data(pdata);

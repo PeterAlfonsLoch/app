@@ -902,7 +902,7 @@ namespace file
 
             string strDomain(pszApp);
 
-            if(session().m_bMatterFromHttpCache)
+            if(Session.m_bMatterFromHttpCache)
             {
 
                return path(simple_path(strRoot,"appmatter",strDomain),papp->m_pbasesession->get_locale_schema_dir(strLocale,strSchema));
@@ -1066,7 +1066,7 @@ namespace file
 
             string strFile;
 
-            if(session().m_bMatterFromHttpCache)
+            if(Session.m_bMatterFromHttpCache)
             {
 
 
@@ -1263,7 +1263,7 @@ namespace file
          }
 
 
-         if(session().m_bMatterFromHttpCache)
+         if(Session.m_bMatterFromHttpCache)
 
          {
 
@@ -1489,7 +1489,7 @@ else
 
          ret:
 
-            if(session().m_bMatterFromHttpCache)
+            if(Session.m_bMatterFromHttpCache)
             {
                Application.file().put_contents(strFile,strPath);
             }
@@ -1541,7 +1541,7 @@ else
             string strApp(pszApp);
 
 
-            if(session().m_bMatterFromHttpCache)
+            if(Session.m_bMatterFromHttpCache)
 
             {
 
@@ -1704,7 +1704,7 @@ else
          }
 
 
-         if(session().m_bMatterFromHttpCache)
+         if(Session.m_bMatterFromHttpCache)
          {
 
 
@@ -1905,7 +1905,7 @@ else
 
 ret:
 
-         if(session().m_bMatterFromHttpCache)
+         if(Session.m_bMatterFromHttpCache)
 
          {
             Application.file().put_contents(strFile,strPath);
@@ -2258,7 +2258,7 @@ ret:
 
          appmatter_locators(strRoot,strDomain,papp);
 
-         if(session().m_bMatterFromHttpCache)
+         if(Session.m_bMatterFromHttpCache)
          {
             return simple_path(strRoot, "appmatter", strDomain);
 
@@ -2493,14 +2493,14 @@ ret:
 
          synch_lock sl(&m_mutex);
 
-         if(&session() == NULL || session().fontopus().is_null())
+         if(&Session == NULL || Session.fontopus().is_null())
             return "api.ca2.cc";
 
          string strApiServer;
 
          string strGetFontopus("http://api.ca2.cc/get_fontopus");
 
-         string strFontopusServer = session().fontopus()->get_server(strGetFontopus,8);
+         string strFontopusServer = Session.fontopus()->get_server(strGetFontopus,8);
 
          strApiServer = strFontopusServer;
 

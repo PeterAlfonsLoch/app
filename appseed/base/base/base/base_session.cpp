@@ -96,7 +96,7 @@ namespace base
 
    }
 
-   session::~session()
+   session::~Session
    {
 
       m_pbasesystem->m_basesessionptra.remove(this);

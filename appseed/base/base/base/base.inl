@@ -394,7 +394,7 @@ inline void __cdecl operator delete(void * p, void * palloc)
 //}
 //
 //
-//inline ::base::session & root::session()
+//inline ::base::session & root::Session
 //{
 //
 //   return *m_pbaseapp->m_pbasesession;

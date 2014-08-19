@@ -42,10 +42,10 @@ namespace fontopus
    bool user::initialize()
    {
 
-      if(&session() == NULL)
+      if(&Session == NULL)
          return true;
 
-      session().userpresence().defer_initialize_user_presence();
+      Session.userpresence().defer_initialize_user_presence();
 
       return true;
 
@@ -69,7 +69,7 @@ namespace fontopus
          return true;
       }
 
-      m_pifs = session().m_pifs;
+      m_pifs = Session.m_pifs;
 
       return true;
 

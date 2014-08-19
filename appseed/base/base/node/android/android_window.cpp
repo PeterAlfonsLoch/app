@@ -1422,7 +1422,7 @@ d.unlock();
       }
       else if(pbase->m_uiMessage == WM_LBUTTONDOWN)
       {
-         //session().m_puiLastLButtonDown = this;
+         //Session.m_puiLastLButtonDown = this;
       }
       /*      else if(pbase->m_uiMessage == ca2M_BERGEDGE)
       {
@@ -1442,13 +1442,13 @@ d.unlock();
 
          ::message::key * pkey = (::message::key *) pbase;
 
-         session().user()->keyboard().translate_os_key_message(pkey);
+         Session.user()->keyboard().translate_os_key_message(pkey);
 
          if(pbase->m_uiMessage == WM_KEYDOWN)
          {
             try
             {
-               session().set_key_pressed(pkey->m_ekey, true);
+               Session.set_key_pressed(pkey->m_ekey, true);
             }
             catch(...)
             {
@@ -1458,7 +1458,7 @@ d.unlock();
          {
             try
             {
-               session().set_key_pressed(pkey->m_ekey, false);
+               Session.set_key_pressed(pkey->m_ekey, false);
             }
             catch(...)
             {
@@ -1499,7 +1499,7 @@ d.unlock();
             || pbase->m_uiMessage == WM_MBUTTONDOWN
             || pbase->m_uiMessage == WM_MOUSEMOVE)
          {
-            if(session().fontopus()->m_puser != NULL)
+            if(Session.fontopus()->m_puser != NULL)
             {
                if(&ApplicationUser != NULL)
                {
@@ -1526,7 +1526,7 @@ d.unlock();
 
          ::message::mouse * pmouse = (::message::mouse *) pbase;
 
-         session().m_ptCursor = pmouse->m_pt;
+         Session.m_ptCursor = pmouse->m_pt;
 
 
          if(m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
@@ -1544,10 +1544,10 @@ d.unlock();
             {
                m_pui->GetWindowRect(rectWindow);
             }
-            if(session().get_monitor_count() > 0)
+            if(Session.get_monitor_count() > 0)
             {
                rect rcMonitor;
-               session().get_main_monitor(rcMonitor);
+               Session.get_main_monitor(rcMonitor);
                if(rectWindow.left >= rcMonitor.left)
                   pmouse->m_pt.x += (LONG) rectWindow.left;
                if(rectWindow.top >= rcMonitor.top)
@@ -1639,7 +1639,7 @@ restart_mouse_hover_check:
       {
 
          ::message::key * pkey = (::message::key *) pbase;
-         sp(::user::interaction) puiFocus =  (session().user()->get_keyboard_focus());
+         sp(::user::interaction) puiFocus =  (Session.user()->get_keyboard_focus());
          if(puiFocus != NULL
             && puiFocus->IsWindow()
             && puiFocus->GetTopLevel() != NULL)
@@ -5864,8 +5864,8 @@ if(psurface == g_cairosurface)
    void interaction_impl::_001OnSetCursor(::signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
-      if(session().get_cursor() != NULL
-         && session().get_cursor()->m_ecursor != ::visual::cursor_system)
+      if(Session.get_cursor() != NULL
+         && Session.get_cursor()->m_ecursor != ::visual::cursor_system)
       {
 
          throw not_implemented(get_app());
@@ -6418,7 +6418,7 @@ if(psurface == g_cairosurface)
 
    void interaction_impl::_001BaseWndInterfaceMap()
    {
-      session().user()->window_map().set((int_ptr)get_handle(), this);
+      Session.user()->window_map().set((int_ptr)get_handle(), this);
    }
 
 

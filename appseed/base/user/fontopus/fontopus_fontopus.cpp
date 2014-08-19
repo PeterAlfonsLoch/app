@@ -361,7 +361,7 @@ namespace fontopus
 
          sp(::create_context) spcreatecontext(allocer());
 
-         sp(::axis::application) papp = session().start_application("application", "app-core/deepfish", spcreatecontext);
+         sp(::axis::application) papp = Session.start_application("application", "app-core/deepfish", spcreatecontext);
 
          if(papp == NULL)
          {
@@ -483,7 +483,7 @@ namespace fontopus
 
       url_domain domainFontopus;
 
-      string strFontopusServer = session().fontopus()->get_server(strGetFontopus,8);
+      string strFontopusServer = Session.fontopus()->get_server(strGetFontopus,8);
 
       domainFontopus.create(strFontopusServer);
 
@@ -526,7 +526,7 @@ namespace fontopus
 
 #endif
 
-      ::fontopus::user * puser = session().fontopus()->create_current_user(m_strRequestUrl);
+      ::fontopus::user * puser = Session.fontopus()->create_current_user(m_strRequestUrl);
 
       if(puser != NULL)
       {
@@ -536,13 +536,13 @@ namespace fontopus
 
             delete puser;
 
-            session().fontopus()->m_puser = NULL;
+            Session.fontopus()->m_puser = NULL;
 
          }
          else
          {
 
-            session().fontopus()->m_puser = puser;
+            Session.fontopus()->m_puser = puser;
 
          }
 
@@ -550,13 +550,13 @@ namespace fontopus
       else
       {
 
-         session().fontopus()->m_puser = NULL;
+         Session.fontopus()->m_puser = NULL;
 
       }
 
       m_evReady.SetEvent();
 
-      session().fontopus()->m_pthreadCreatingUser = NULL;
+      Session.fontopus()->m_pthreadCreatingUser = NULL;
 
       return 0;
 

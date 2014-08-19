@@ -2097,14 +2097,14 @@ namespace base
 
    //   sp(application) papp;
 
-   //   papp = session().m_appptra.find_running_defer_try_quit_damaged(pszAppId);
+   //   papp = Session.m_appptra.find_running_defer_try_quit_damaged(pszAppId);
 
    //   if(papp.is_null())
    //   {
 
    //      sp(::create_context) spcreatecontext(allocer());
 
-   //      papp = session().start_application("application",pszAppId,spcreatecontext);
+   //      papp = Session.start_application("application",pszAppId,spcreatecontext);
 
    //   }
 
@@ -2163,77 +2163,77 @@ namespace base
    }
 
 
-   bool application::create_new_service()
-   {
+   //bool application::create_new_service()
+   //{
 
-      if(m_pservice != NULL)
-         return false;
+   //   if(m_pservice != NULL)
+   //      return false;
 
-      m_pservice = allocate_new_service();
+   //   m_pservice = allocate_new_service();
 
-      if(m_pservice == NULL)
-         return false;
+   //   if(m_pservice == NULL)
+   //      return false;
 
-      return true;
+   //   return true;
 
-   }
-
-
-
-   bool application::create_service()
-   {
-
-      return System.os().create_service(this);
-
-   }
-
-   bool application::remove_service()
-   {
-
-      return System.os().remove_service(this);
-
-   }
-
-   bool application::start_service()
-   {
-
-      return System.os().start_service(this);
-
-   }
-
-   bool application::stop_service()
-   {
-
-      return System.os().stop_service(this);
-
-   }
+   //}
 
 
-   void application::on_service_request(sp(::create_context) pcreatecontext)
-   {
 
-      if(!is_serviceable())
-         return;
+   //bool application::create_service()
+   //{
 
-      if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("create_service"))
-      {
-         create_service();
-      }
-      else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("start_service"))
-      {
-         start_service();
-      }
-      else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("stop_service"))
-      {
-         stop_service();
-      }
-      else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("remove_service"))
-      {
-         remove_service();
-      }
+   //   return System.os().create_service(this);
+
+   //}
+
+   //bool application::remove_service()
+   //{
+
+   //   return System.os().remove_service(this);
+
+   //}
+
+   //bool application::start_service()
+   //{
+
+   //   return System.os().start_service(this);
+
+   //}
+
+   //bool application::stop_service()
+   //{
+
+   //   return System.os().stop_service(this);
+
+   //}
 
 
-   }
+   //void application::on_service_request(sp(::create_context) pcreatecontext)
+   //{
+
+   //   if(!is_serviceable())
+   //      return;
+
+   //   if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("create_service"))
+   //   {
+   //      create_service();
+   //   }
+   //   else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("start_service"))
+   //   {
+   //      start_service();
+   //   }
+   //   else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("stop_service"))
+   //   {
+   //      stop_service();
+   //   }
+   //   else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("remove_service"))
+   //   {
+   //      remove_service();
+   //   }
+
+
+   //}
 
 
 
@@ -2251,49 +2251,51 @@ namespace base
       m_bBaseProcessInitializeResult = false;
 
 
+      if(!::axis::application::process_initialize())
+         return false;
       
 
-      if(m_pthreadimpl == NULL)
-      {
+      //if(m_pthreadimpl == NULL)
+      //{
 
-         m_pthreadimpl.alloc(allocer());
+      //   m_pthreadimpl.alloc(allocer());
 
-         m_pthreadimpl->m_pthread = this;
+      //   m_pthreadimpl->m_pthread = this;
 
-      }
+      //}
 
-      m_pimpl.alloc(allocer());
+      //m_pimpl.alloc(allocer());
 
-      m_pimpl->construct(NULL);
+      //m_pimpl->construct(NULL);
 
-      m_pimpl->m_pimpl = this;
+      //m_pimpl->m_pimpl = this;
 
-      if(::get_thread() == NULL)
-      {
-         set_thread(dynamic_cast <thread *> (this));
-      }
+      //if(::get_thread() == NULL)
+      //{
+      //   set_thread(dynamic_cast <thread *> (this));
+      //}
 
-      if(is_system())
-      {
+      //if(is_system())
+      //{
 
-         if(!update_module_paths())
-            return false;
+      //   if(!update_module_paths())
+      //      return false;
 
-      }
+      //}
 
 
-      if(!ca_process_initialize())
-         return false;
+      //if(!ca_process_initialize())
+      //   return false;
 
-      if(is_system())
-      {
+      //if(is_system())
+      //{
 
-         draw2d_factory_exchange();
+      //   draw2d_factory_exchange();
 
-      }
+      //}
 
-      if(!m_pimpl->process_initialize())
-         return false;
+      //if(!m_pimpl->process_initialize())
+      //   return false;
 
 
       m_bBaseProcessInitializeResult = true;
@@ -2487,7 +2489,7 @@ namespace base
       m_bBaseInitialize = true;
       m_bBaseInitializeResult = false;
 
-      application_signal_details signal(this,m_psignal,application_signal_initialize);
+      ::axis::application_signal_details signal(this,m_psignal,::axis::application_signal_initialize);
 
       m_psignal->emit(&signal);
 
@@ -2500,15 +2502,15 @@ namespace base
       {
          if(guideline()->m_varTopicQuery.propset().has_property("save_processing"))
          {
-            session().savings().save(::base::resource_processing);
+            Session.savings().save(::base::resource_processing);
          }
          if(guideline()->m_varTopicQuery.propset().has_property("save_blur_back"))
          {
-            session().savings().save(::base::resource_blur_background);
+            Session.savings().save(::base::resource_blur_background);
          }
          if(guideline()->m_varTopicQuery.propset().has_property("save_transparent_back"))
          {
-            session().savings().save(::base::resource_translucent_background);
+            Session.savings().save(::base::resource_translucent_background);
          }
       }
 
@@ -2630,7 +2632,7 @@ namespace base
          if(m_psignal != NULL)
          {
 
-            application_signal_details signal(this,m_psignal,application_signal_exit_instance);
+            ::axis::application_signal_details signal(this,m_psignal,::axis::application_signal_exit_instance);
 
             try
             {
@@ -2772,7 +2774,7 @@ namespace base
       try
       {
 
-         if(session().appptra().get_count() <= 1)
+         if(Session.appptra().get_count() <= 1)
          {
 
             if(System.thread::get_os_data() != NULL)
@@ -2844,7 +2846,7 @@ namespace base
    bool application::ca_initialize2()
    {
 
-      application_signal_details signal(this,m_psignal,application_signal_initialize2);
+      ::axis::application_signal_details signal(this,m_psignal,::axis::application_signal_initialize2);
       m_psignal->emit(&signal);
       return signal.m_bOk;
 
@@ -2854,7 +2856,7 @@ namespace base
    bool application::ca_initialize3()
    {
 
-      application_signal_details signal(this,m_psignal,application_signal_initialize3);
+      ::axis::application_signal_details signal(this,m_psignal,::axis::application_signal_initialize3);
       m_psignal->emit(&signal);
       if(!signal.m_bOk)
          return false;
@@ -3066,14 +3068,14 @@ namespace base
 
    bool application::ca_process_initialize()
    {
-      application_signal_details signal(this,m_psignal,application_signal_process_initialize);
+      ::axis::application_signal_details signal(this,m_psignal,::axis::application_signal_process_initialize);
       m_psignal->emit(&signal);
       return true;
    }
 
    bool application::ca_initialize1()
    {
-      application_signal_details signal(this,m_psignal,application_signal_initialize1);
+      ::axis::application_signal_details signal(this,m_psignal,::axis::application_signal_initialize1);
       m_psignal->emit(&signal);
       return signal.m_bOk;
    }
@@ -3082,7 +3084,7 @@ namespace base
 
    bool application::ca_finalize()
    {
-      application_signal_details signal(this,m_psignal,application_signal_finalize);
+      ::axis::application_signal_details signal(this,m_psignal,::axis::application_signal_finalize);
       try
       {
          m_psignal->emit(&signal);
@@ -3254,7 +3256,7 @@ namespace base
 
       ::str::international::locale_schema localeschema(this);
 
-      session().fill_locale_schema(localeschema);
+      Session.fill_locale_schema(localeschema);
 
       bool bIgnoreStdStd = string(pszRoot) == "app" && (string(pszRelative) == "main" || string(pszRelative) == "bergedge");
 
@@ -3626,7 +3628,7 @@ namespace base
 
       {
 
-         ::file::binary_buffer_sp file = session().file_get_file(Application.dir().userappdata(strPath),::file::mode_read);
+         ::file::binary_buffer_sp file = Session.file_get_file(Application.dir().userappdata(strPath),::file::mode_read);
 
          if(file.is_null())
          {
@@ -3667,7 +3669,7 @@ namespace base
 
       {
 
-         ::file::binary_buffer_sp file = session().file_get_file(Application.dir().userappdata(strPath),::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
+         ::file::binary_buffer_sp file = Session.file_get_file(Application.dir().userappdata(strPath),::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
 
          if(file.is_null())
          {
@@ -3726,7 +3728,7 @@ namespace base
    sp(::user::interaction) application::get_active_guie()
    {
 
-      return session().get_active_guie();
+      return Session.get_active_guie();
 
    }
 
@@ -3734,7 +3736,7 @@ namespace base
    sp(::user::interaction) application::get_focus_guie()
    {
 
-      return session().get_focus_guie();
+      return Session.get_focus_guie();
 
    }
 

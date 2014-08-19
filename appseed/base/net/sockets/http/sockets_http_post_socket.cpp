@@ -38,17 +38,17 @@ namespace sockets
 
       m_emethod = http_method_post;
 
-      single_lock lock(&session().sockets().m_mutexHttpPostBoundary, true);
+      single_lock lock(&Session.sockets().m_mutexHttpPostBoundary, true);
 
       m_boundary = "----";
       for (int i = 0; i < 12; i++)
       {
-         char c = session().sockets().m_countHttpPostBoundary++ % 128;
+         char c = Session.sockets().m_countHttpPostBoundary++ % 128;
          while (!isalnum((unsigned char) c))
-            c = session().sockets().m_countHttpPostBoundary++ % 128;
+            c = Session.sockets().m_countHttpPostBoundary++ % 128;
          m_boundary += c;
       }
-      m_boundary += "__" + ::str::from(session().sockets().m_countHttpPostBoundary++);
+      m_boundary += "__" + ::str::from(Session.sockets().m_countHttpPostBoundary++);
    }
 
 

@@ -342,7 +342,7 @@ namespace install
          if(m_phost->m_pbasecomposer->m_strPluginUrl.has_char())
          {
 
-            m_bLogged = ::root::session().fontopus()->get_user(false,m_phost->m_pbasecomposer->m_strPluginUrl) != NULL;
+            m_bLogged = ::root::Session.fontopus()->get_user(false,m_phost->m_pbasecomposer->m_strPluginUrl) != NULL;
 
          }
 
@@ -379,7 +379,7 @@ namespace install
          if(strUrl.is_empty())
          {
           
-            strUrl = "http://" + ::root::session().fontopus()->get_server(m_phost->m_pbasecomposer->m_strPluginUrl) + "/";
+            strUrl = "http://" + ::root::Session.fontopus()->get_server(m_phost->m_pbasecomposer->m_strPluginUrl) + "/";
 
          }
 

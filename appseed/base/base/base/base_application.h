@@ -90,6 +90,8 @@ namespace base
       //sp(::user::interaction)                         m_pwndMain;
       //bool                                            m_bInitializeProDevianMode;
 
+      sp(::fontopus::license)                                     m_splicense;
+
       ::http::application                             m_http;
       ::file::dir::application                        m_dir;
       ::file::application                             m_file;

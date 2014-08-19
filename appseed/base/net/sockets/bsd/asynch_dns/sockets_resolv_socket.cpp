@@ -130,14 +130,14 @@ namespace sockets
 
          {
 
-            single_lock lock(&session().sockets().m_mutexResolvCache, true);
+            single_lock lock(&Session.sockets().m_mutexResolvCache, true);
 
             string result;
 
-            if(session().sockets().m_resolvcache[m_query].Lookup(m_data, result))
+            if(Session.sockets().m_resolvcache[m_query].Lookup(m_data, result))
             {
 
-               if (time(NULL) - session().sockets().m_resolvtimeout[m_query][m_data] < 3600) // ttl
+               if (time(NULL) - Session.sockets().m_resolvtimeout[m_query][m_data] < 3600) // ttl
                {
 
                   TRACE(" *** Returning cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), result.c_str());
@@ -195,10 +195,10 @@ namespace sockets
          if (!m_cached)
          {
 
-            single_lock lock(&session().sockets().m_mutexResolvCache, true);
+            single_lock lock(&Session.sockets().m_mutexResolvCache, true);
             TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), value.c_str());
-            session().sockets().m_resolvcache[m_query][m_data] = value;
-            session().sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
+            Session.sockets().m_resolvcache[m_query][m_data] = value;
+            Session.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
          m_parent = NULL;
       }
@@ -212,10 +212,10 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&session().sockets().m_mutexResolvCache, true);
+            single_lock lock(&Session.sockets().m_mutexResolvCache, true);
    TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), value.c_str());
-            session().sockets().m_resolvcache[m_query][m_data] = value;
-            session().sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
+            Session.sockets().m_resolvcache[m_query][m_data] = value;
+            Session.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
          m_parent = NULL;
       }
@@ -231,10 +231,10 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&session().sockets().m_mutexResolvCache, true);
+            single_lock lock(&Session.sockets().m_mutexResolvCache, true);
             TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), value.c_str());
-            session().sockets().m_resolvcache[m_query][m_data] = value;
-            session().sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
+            Session.sockets().m_resolvcache[m_query][m_data] = value;
+            Session.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
          m_parent = NULL; // always use first ip in case there are several
       }
@@ -249,10 +249,10 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&session().sockets().m_mutexResolvCache, true);
+            single_lock lock(&Session.sockets().m_mutexResolvCache, true);
             TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), value.c_str());
-            session().sockets().m_resolvcache[m_query][m_data] = value;
-            session().sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
+            Session.sockets().m_resolvcache[m_query][m_data] = value;
+            Session.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
          m_parent = NULL;
       }
@@ -390,11 +390,11 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&session().sockets().m_mutexResolvCache, true);
+            single_lock lock(&Session.sockets().m_mutexResolvCache, true);
             string value;
    TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), value.c_str());
-   session().sockets().m_resolvcache[m_query][m_data] = value;
-   session().sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
+   Session.sockets().m_resolvcache[m_query][m_data] = value;
+   Session.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
          m_parent = NULL;
       }

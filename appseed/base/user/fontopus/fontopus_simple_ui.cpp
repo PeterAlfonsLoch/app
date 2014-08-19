@@ -137,7 +137,7 @@ namespace fontopus
    string simple_ui::do_fontopus(const RECT & rectParam)
    {
 
-      ::user::interaction * puiParent = session().oprop("plugin_parent").cast < ::user::interaction >();
+      ::user::interaction * puiParent = Session.oprop("plugin_parent").cast < ::user::interaction >();
 
       ::rect rectDesktop;
 
@@ -150,7 +150,7 @@ namespace fontopus
       else if (IsRectEmpty(&rectParam))
       {
 
-         session().get_main_monitor(rectDesktop);
+         Session.get_main_monitor(rectDesktop);
 
       }
       else
@@ -328,7 +328,7 @@ namespace fontopus
             else
             {
 
-               session().get_main_monitor(rectDesktop);
+               Session.get_main_monitor(rectDesktop);
 
             }
 

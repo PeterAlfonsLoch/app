@@ -58,7 +58,7 @@ namespace axis
 
 
       session(sp(::axis::application) papp);
-      virtual ~session();
+      virtual ~Session;
 
 
       application_ptra & appptra();
