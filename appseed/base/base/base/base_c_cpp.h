@@ -502,15 +502,15 @@ CLASS_DECL_BASE bool __node_pos_term();
 //#include "base/primitive/primitive_object.h"
 
 
-#include "base/xml/xml_exportable.h"
-#include "base/xml/xml_importable.h"
+//#include "base/xml/xml_exportable.h"
+//#include "base/xml/xml_importable.h"
 
 
-#include "base/primitive/collection/collection_decl.h"
-#include "base/primitive/collection/collection_array_decl.h"
-#include "base/primitive/collection/collection_raw_array_decl.h"
-#include "base/primitive/collection/collection_lemon_array_decl.h"
-#include "base/primitive/collection/collection_smart_pointer_array.h"
+//#include "base/primitive/collection/collection_decl.h"
+//#include "base/primitive/collection/collection_array_decl.h"
+//#include "base/primitive/collection/collection_raw_array_decl.h"
+//#include "base/primitive/collection/collection_lemon_array_decl.h"
+//#include "base/primitive/collection/collection_smart_pointer_array.h"
 
 
 #include "base_action_context.h"

@@ -1633,7 +1633,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="base\base\base.h" />
-    <ClInclude Include="base\base\base_action_context.h" />
+    <ClInclude Include="base\base\aaa_want_to_remove_base_action_context.h" />
     <ClInclude Include="base\base\base_action_source.h" />
     <ClInclude Include="base\base\base_allocate.h" />
     <ClInclude Include="base\base\base_application.h" />

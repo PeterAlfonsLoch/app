@@ -2813,9 +2813,6 @@
     <ClInclude Include="database\database_user_interaction.h">
       <Filter>Header Files\database</Filter>
     </ClInclude>
-    <ClInclude Include="base\base\base_action_context.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
     <ClInclude Include="base\base\base_action_source.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
@@ -4683,6 +4680,9 @@
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
     <ClInclude Include="base\base\aaa_want_to_remove_base_core.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\aaa_want_to_remove_base_action_context.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
   </ItemGroup>
