@@ -64,7 +64,7 @@ void output_debug_string(const char * psz)
 
 
 
-CLASS_DECL_AXIS bool __node_pre_init()
+CLASS_DECL_AXIS bool __node_axis_pre_init()
 {
    
    

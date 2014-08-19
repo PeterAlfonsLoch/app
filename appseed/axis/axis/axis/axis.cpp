@@ -38,26 +38,26 @@ string_map < INT_PTR, INT_PTR > & __library()
 
 
 
-int g_iBaseRefCount = 0;
+int g_iAxisRefCount = 0;
 
 
 CLASS_DECL_AXIS int get_base_init()
 {
 
-   return g_iBaseRefCount;
+   return g_iAxisRefCount;
 
 }
 
 
-CLASS_DECL_AXIS int_bool defer_base_init()
+CLASS_DECL_AXIS int_bool defer_axis_init()
 {
 
-   g_iBaseRefCount++;
+   g_iAxisRefCount++;
 
-   if(g_iBaseRefCount > 1)
+   if(g_iAxisRefCount > 1)
       return TRUE;
 
-   if(!base_init())
+   if(!axis_init())
       return FALSE;
 
    return TRUE;
@@ -65,15 +65,15 @@ CLASS_DECL_AXIS int_bool defer_base_init()
 }
 
 
-CLASS_DECL_AXIS int_bool defer_base_term()
+CLASS_DECL_AXIS int_bool defer_axis_term()
 {
 
-   g_iBaseRefCount--;
+   g_iAxisRefCount--;
 
-   if(g_iBaseRefCount >= 1)
+   if(g_iAxisRefCount >= 1)
       return TRUE;
 
-   base_term();
+   axis_term();
 
    return TRUE;
 
@@ -81,12 +81,12 @@ CLASS_DECL_AXIS int_bool defer_base_term()
 
 
 
-bool base_init()
+bool axis_init()
 {
 
    ::axis::static_start::init();
 
-   if(!__node_pre_init())
+   if(!__node_axis_pre_init())
       return false;
 
    ::axis::static_start::init();
@@ -102,7 +102,7 @@ bool base_init()
    ::os_thread::s_pptra = new comparable_raw_array < os_thread * >::type();
 
 
-   if(!__node_pos_init())
+   if(!__node_axis_pos_init())
       return false;
 
    return true;
@@ -110,12 +110,12 @@ bool base_init()
 }
 
 
-bool base_term()
+bool axis_term()
 {
 
    __wait_threading_count(::millis((5000) * 8));
 
-   __node_pre_term();
+   __node_axis_pre_term();
 
    ::user::term_windowing();
 
@@ -123,7 +123,7 @@ bool base_term()
 
    __term_threading_count();
 
-   __node_pos_term();
+   __node_axis_pos_term();
 
    ::axis::static_start::term();
 

@@ -80,7 +80,7 @@ void output_debug_string(const char * psz)
 
 
 
-bool __node_pre_init()
+bool __node_axis_pre_init()
 {
 
    c_xstart();

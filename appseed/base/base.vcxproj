@@ -505,7 +505,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_BASE_LIBRARY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed/base/base;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../app/base3/openssl;$(SolutionDir)../../../app/base/openssl/crypto2;$(SolutionDir)../../../app/base/openssl/ssl2;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/asn1;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/evp;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/krb5;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/modes;$(SolutionDir)../../../app/appseed/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/base/base;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../app/base3/openssl;$(SolutionDir)../../../app/base/openssl/crypto2;$(SolutionDir)../../../app/base/openssl/ssl2;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/asn1;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/evp;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/krb5;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/modes;$(SolutionDir)../../../app/appseed/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -1640,27 +1640,25 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base\base_application_interface.h" />
     <ClInclude Include="base\base\base_application_signal_details.h" />
     <ClInclude Include="base\base\base_async.h" />
-    <ClInclude Include="base\base\base_auto_pointer.h" />
+    <ClInclude Include="base\base\base_auto_pointer2.h" />
     <ClInclude Include="base\base\base_c.h" />
     <ClInclude Include="base\base\base_command.h" />
     <ClInclude Include="base\base\base_command_target.h" />
     <ClInclude Include="base\base\base_common.h" />
-    <ClInclude Include="base\base\base_conv.h" />
-    <ClInclude Include="base\base\base_core.h" />
-    <ClInclude Include="base\base\base_core_copydesk.h" />
-    <ClInclude Include="base\base\base_core_os.h" />
-    <ClInclude Include="base\base\base_cpu_architecture.h" />
-    <ClInclude Include="base\base\base_cregexp.h" />
-    <ClInclude Include="base\base\base_cregexp_util.h" />
+    <ClInclude Include="base\base\aaa_want_to_remove_base_conv.h" />
+    <ClInclude Include="base\base\aaa_want_to_remove_base_core.h" />
+    <ClInclude Include="base\base\aaa_want_to_remove_base_core_copydesk.h" />
+    <ClInclude Include="base\base\aaa_want_to_remove_base_core_os.h" />
+    <ClInclude Include="base\base\aaa_want_to_remove_base_cpu_architecture.h" />
+    <ClInclude Include="base\base\aaa_want_to_remove_base_cregexp.h" />
+    <ClInclude Include="base\base\aaa_want_to_remove_base_cregexp_util.h" />
     <ClInclude Include="base\base\base_c_cpp.h" />
-    <ClInclude Include="base\base\base_c_objc.h" />
-    <ClInclude Include="base\base\base_c_winrt.h" />
-    <ClInclude Include="base\base\base_debug.h" />
+    <ClInclude Include="base\base\aaa_want_to_remove_base_debug.h" />
     <ClInclude Include="base\base\base_definition.h" />
     <ClInclude Include="base\base\base_departament.h" />
     <ClInclude Include="base\base\base_departament_container.h" />
     <ClInclude Include="base\base\base_draw2d.h" />
-    <ClInclude Include="base\base\base_element.h" />
+    <ClInclude Include="base\base\aaa_want_to_remove_base_element.h" />
     <ClInclude Include="base\base\base_enum.h" />
     <ClInclude Include="base\base\base_file_watcher.h" />
     <ClInclude Include="base\base\base_file_watcher_impl.h" />
@@ -1676,17 +1674,17 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base\base_heap_item_array.h" />
     <ClInclude Include="base\base\base_id_pool.h" />
     <ClInclude Include="base\base\base_international.h" />
-    <ClInclude Include="base\base\base_keep.h" />
-    <ClInclude Include="base\base\base_print_job.h" />
+    <ClInclude Include="base\base\aaa_want_to_remove_base_keep.h" />
+    <ClInclude Include="base\base\base_print_job2.h" />
     <ClInclude Include="base\base\base_progress.h" />
-    <ClInclude Include="base\base\base_keep_true.h" />
+    <ClInclude Include="base\base\aaa_want_to_remove_base_keep_true.h" />
     <ClInclude Include="base\base\base_launcher.h" />
     <ClInclude Include="base\base\base_libc.h" />
     <ClInclude Include="base\base\base_library.h" />
     <ClInclude Include="base\base\base_live_object.h" />
     <ClInclude Include="base\base\base_live_signal.h" />
     <ClInclude Include="base\base\base_log.h" />
-    <ClInclude Include="base\base\base_lparam.h" />
+    <ClInclude Include="base\base\base_lparam2.h" />
     <ClInclude Include="base\base\base_machine_event.h" />
     <ClInclude Include="base\base\base_machine_event_central.h" />
     <ClInclude Include="base\base\base_machine_event_data.h" />
@@ -1704,7 +1702,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base\base_plex_heap.h" />
     <ClInclude Include="base\base\base_plex_heap_impl.h" />
     <ClInclude Include="base\base\base_printf.h" />
-    <ClInclude Include="base\base\base_root.h" />
+    <ClInclude Include="base\base\base_root2.h" />
     <ClInclude Include="base\base\base_savings.h" />
     <ClInclude Include="base\base\base_session.h" />
     <ClInclude Include="base\base\base_session_interface.h" />
@@ -1712,8 +1710,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base\base_simple_pixel_font.h" />
     <ClInclude Include="base\base\base_simple_shell_launcher.h" />
     <ClInclude Include="base\base\base_small_ipc_channel.h" />
-    <ClInclude Include="base\base\base_smart_pointer1.h" />
-    <ClInclude Include="base\base\base_smart_pointer2.h" />
+    <ClInclude Include="base\base\aaa_want_to_remove_base_smart_pointer1.h" />
+    <ClInclude Include="base\base\aaa_want_to_remove_base_smart_pointer2.h" />
     <ClInclude Include="base\base\base_sprintf.h" />
     <ClInclude Include="base\base\base_static_start.h" />
     <ClInclude Include="base\base\base_system.h" />
@@ -3181,7 +3179,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\base\base_gudo.cpp" />
     <ClCompile Include="base\base\base_id_pool.cpp" />
     <ClCompile Include="base\base\base_library.cpp" />
-    <ClCompile Include="base\base\base_print_job.cpp" />
     <ClCompile Include="base\base\base_session_interface.cpp" />
     <ClCompile Include="base\base\base_static_start.cpp" />
     <ClCompile Include="base\exception\exception_parsing.cpp" />
@@ -8166,8 +8163,23 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ResourceCompile Include="base.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\base\openssl\baseopenssl.vcxproj">
-      <Project>{29676444-4d0f-4dd0-9104-0499d94da2c9}</Project>
+    <ProjectReference Include="..\..\axis\bsdiff\axisbsdiff.vcxproj">
+      <Project>{3a2c59ed-a76d-41d8-abbb-2666f0a599b8}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\axis\bzip2\axisbzip2.vcxproj">
+      <Project>{a5a649e1-d516-4f29-a627-da6884dd421c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\axis\freeimage\axisfreeimage.vcxproj">
+      <Project>{b39ed2b3-d53a-4077-b957-930979a3577d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\axis\freetype\axisfreetype.vcxproj">
+      <Project>{78b079bd-9fc7-4b9e-b4a6-96da0f00248b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\axis\zlib\axiszlib.vcxproj">
+      <Project>{8fd826f8-3739-44e6-8cc8-997122e53b8d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\axis\axis.vcxproj">
+      <Project>{73a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -442,14 +442,14 @@ typedef  void(*PFN_ca2_factory_exchange)(sp(::axis::application) papp);
 
 
 
-CLASS_DECL_AXIS bool base_init();
-CLASS_DECL_AXIS bool base_term();
+CLASS_DECL_AXIS bool axis_init();
+CLASS_DECL_AXIS bool axis_term();
 
-CLASS_DECL_AXIS bool __node_pre_init();
-CLASS_DECL_AXIS bool __node_pos_init();
+CLASS_DECL_AXIS bool __node_axis_pre_init();
+CLASS_DECL_AXIS bool __node_axis_pos_init();
 
-CLASS_DECL_AXIS bool __node_pre_term();
-CLASS_DECL_AXIS bool __node_pos_term();
+CLASS_DECL_AXIS bool __node_axis_pre_term();
+CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 
 CLASS_DECL_AXIS ::axis::application * get_thread_app();

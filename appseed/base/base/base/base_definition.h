@@ -271,7 +271,9 @@ do {                                           \
 #endif
 #endif
 
+#undef API
 #define API CLASS_DECL_BASE __declspec(nothrow) HRESULT __stdcall
+#undef API_
 #define API_(x)CLASS_DECL_BASE __declspec(nothrow) x __stdcall
 #define APIINL API
 #define APIINL_(x) API_(x)
@@ -546,19 +548,5 @@ that we consider it dangerous to even throw an exception
 
 
 
-
-
-
-enum EExclusiveInstance
-{
-
-   ExclusiveInstanceNone,
-   ExclusiveInstanceLocal,
-   ExclusiveInstanceLocalId,
-   ExclusiveInstanceGlobal,
-   ExclusiveInstanceGlobalId,
-   ExclusiveInstanceLicense
-
-};
 
 

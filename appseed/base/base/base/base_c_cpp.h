@@ -188,16 +188,6 @@ class image_list;
 typedef void * HDWP;
 #endif // WINDOWS
 
-// special struct for WM_SIZEPARENT
-struct __SIZEPARENTPARAMS
-{
-
-   HDWP hDWP;       // handle for DeferWindowPos
-   RECT rect;       // parent client rectangle (trim as appropriate)
-   SIZE sizeTotal;  // total size on each side as layout proceeds
-   bool bStretch;   // should stretch to fill all space
-
-};
 
 
 typedef struct tagRECTD RECTD;
@@ -314,9 +304,6 @@ namespace user
 
 
 
-   CLASS_DECL_BASE bool is_descendant(::user::interaction * puiParent, ::user::interaction * puiChild);
-
-
 } // namespace user
 
 
@@ -329,14 +316,6 @@ namespace install
 
 } // namespace install
 
-enum e_extract
-{
-
-   extract_none,
-   extract_first,
-   extract_all
-
-};
 
 
 namespace str
@@ -366,9 +345,6 @@ namespace draw2d
 
 
 } // namespace draw2d
-
-
-class random_access_iterator { public: };
 
 
 #ifdef WINDOWSEX
@@ -442,9 +418,6 @@ typedef void * HDWP;
 #endif
 
 
-typedef  void(*PFN_ca2_factory_exchange)(sp(::base::application) papp);
-
-
 
 
 
@@ -458,7 +431,7 @@ CLASS_DECL_BASE bool __node_pre_term();
 CLASS_DECL_BASE bool __node_pos_term();
 
 
-CLASS_DECL_BASE ::base::application * get_thread_app();
+//CLASS_DECL_BASE ::base::application * get_thread_app();
 
 #include "base_definition.h"
 
@@ -466,67 +439,67 @@ CLASS_DECL_BASE ::base::application * get_thread_app();
 
 #include "base_new.h"
 
-#include "base_lparam.h"
+//#include "base_lparam.h"
 #include "base_muldiv64.h"
 
-#include "base_auto_pointer.h"
+//#include "base_auto_pointer.h"
 
-#include "base_smart_pointer1.h"
-#include "base_root.h"
-#include "base_smart_pointer2.h"
-
-
-#include "base_keep_true.h"
+//#include "base_smart_pointer1.h"
+//#include "base_root.h"
+//#include "base_smart_pointer2.h"
 
 
-namespace file
-{
+//#include "base_keep_true.h"
 
 
-   typedef sp(stream_buffer) buffer_sp;
+//namespace file
+//{
+//
+//
+//   typedef sp(stream_buffer) buffer_sp;
+//
+//
+//} // namespace file
 
 
-} // namespace file
-
-
-#include "base/primitive/primitive_logic.h"
+//#include "base/primitive/primitive_logic.h"
 
 
 
-#include "base/primitive/math/math_static_numeric_info.h"
-#include "base/primitive/math/math_numeric_info.h"
-#include "base/primitive/math/math_number.h"
+//#include "base/primitive/math/math_static_numeric_info.h"
+//#include "base/primitive/math/math_numeric_info.h"
+//#include "base/primitive/math/math_number.h"
+//
+//
+//#include "base/primitive/datetime/datetime_duration.h"
 
 
-#include "base/primitive/datetime/datetime_duration.h"
+//#include "base/base/base_element.h"
 
-
-#include "base/base/base_element.h"
-
-#include "base_debug.h"
-
-
+//#include "base_debug.h"
 
 
 
 
-#include "base_class.h"
 
-#include "base/primitive/comparison/comparison_md5.h"
+
+//#include "base_class.h"
+
+//#include "base/primitive/comparison/comparison_md5.h"
 
 #include "base/net/net.h"
 
-#include "base_conv.h"
+//#include "base_conv.h"
 
-#include "base_core.h"
-
-#include "base/primitive/primitive_request_interface.h"
-
-#include "base/multithreading/multithreading_wait_result.h"
-
-#include "base/multithreading/multithreading_waitable.h"
-
-#include "base/primitive/primitive_object.h"
+//#include "base_core.h"
+//
+//#include "base/primitive/primitive_request_interface.h"
+//
+//#include "base/multithreading/multithreading_wait_result.h"
+//
+//#include "base/multithreading/multithreading_waitable.h"
+//
+//#include "base/primitive/primitive_object.h"
 
 
 #include "base/xml/xml_exportable.h"

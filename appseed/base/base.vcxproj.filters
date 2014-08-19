@@ -2570,21 +2570,6 @@
     <ClInclude Include="base\base\base_async.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
-    <ClInclude Include="base\base\base_auto_pointer.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_c.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_c_cpp.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_c_objc.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_c_winrt.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
     <ClInclude Include="base\base\base_command.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
@@ -2592,24 +2577,6 @@
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base_common.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_conv.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_core.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_cpu_architecture.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_cregexp.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_cregexp_util.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_debug.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base_definition.h">
@@ -2622,9 +2589,6 @@
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base_draw2d.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_element.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base_enum.h">
@@ -2660,9 +2624,6 @@
     <ClInclude Include="base\base\base_international.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
-    <ClInclude Include="base\base\base_keep_true.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
     <ClInclude Include="base\base\base_launcher.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
@@ -2679,9 +2640,6 @@
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base_log.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_lparam.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base_machine_event.h">
@@ -2735,9 +2693,6 @@
     <ClInclude Include="base\base\base_printf.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
-    <ClInclude Include="base\base\base_root.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
     <ClInclude Include="base\base\base_session.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
@@ -2751,12 +2706,6 @@
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base_small_ipc_channel.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_smart_pointer1.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_smart_pointer2.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base_sprintf.h">
@@ -2791,12 +2740,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\file\file_set.h">
       <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_core_copydesk.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_core_os.h">
-      <Filter>Header Files\base\base</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base_savings.h">
       <Filter>Header Files\base\base</Filter>
@@ -3085,9 +3028,6 @@
     </ClInclude>
     <ClInclude Include="user\user\user_print_job.h">
       <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_print_job.h">
-      <Filter>Header Files\base\base</Filter>
     </ClInclude>
     <ClInclude Include="base\geoip\geoip.h">
       <Filter>Header Files\base\geoip</Filter>
@@ -4412,9 +4352,6 @@
     <ClInclude Include="base\base\base_gudo_application.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
-    <ClInclude Include="base\base\base_keep.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
     <ClInclude Include="base\exception\exception_parsing.h">
       <Filter>Header Files\base\exception</Filter>
     </ClInclude>
@@ -4690,6 +4627,63 @@
     </ClInclude>
     <ClInclude Include="base\os\cross\windows\windows_pshpack8.h">
       <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_c.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_c_cpp.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_print_job2.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_lparam2.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_auto_pointer2.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_root2.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\aaa_want_to_remove_base_smart_pointer1.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\aaa_want_to_remove_base_smart_pointer2.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\aaa_want_to_remove_base_keep_true.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\aaa_want_to_remove_base_keep.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\aaa_want_to_remove_base_element.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\aaa_want_to_remove_base_debug.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\aaa_want_to_remove_base_conv.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\aaa_want_to_remove_base_core_copydesk.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\aaa_want_to_remove_base_core_os.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\aaa_want_to_remove_base_cpu_architecture.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\aaa_want_to_remove_base_cregexp.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\aaa_want_to_remove_base_cregexp_util.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\aaa_want_to_remove_base_core.h">
+      <Filter>Header Files\base\base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -6292,9 +6286,6 @@
     <ClCompile Include="user\user\user_print_job.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="base\base\base_print_job.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
     <ClCompile Include="base\geoip\geoip.cpp">
       <Filter>Source Files\base\geoip</Filter>
     </ClCompile>
@@ -7238,6 +7229,15 @@
     </None>
     <None Include="primitive\collection\collection.inl">
       <Filter>Header Files\primitive\collection</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
