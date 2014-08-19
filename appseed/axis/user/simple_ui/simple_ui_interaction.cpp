@@ -322,7 +322,7 @@ namespace simple_ui
       rectClient.left--;
       rectClient.top--;
 
-      if(session().user()->get_keyboard_focus() == this)
+      if(Session.user()->get_keyboard_focus() == this)
       {
 
          if (iStyle == 1)

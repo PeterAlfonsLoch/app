@@ -438,8 +438,8 @@ namespace metrowin
 
       m_psystem->init_main_data(pinitmaindata);
 
-//      m_psystem->m_pbaseapp   = m_psystem;
-  //    m_psystem->m_psystem    = m_pbasesystem;
+//      m_psystem->m_paxisapp   = m_psystem;
+  //    m_psystem->m_psystem    = m_paxissystem;
 
 
 

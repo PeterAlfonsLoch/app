@@ -227,7 +227,7 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
 //      UINT nIDEvent = ptimer->m_nIDEvent;
 #ifdef WINDOWSEX
-      if (session().is_key_pressed(::user::key_lbutton))
+      if (Session.is_key_pressed(::user::key_lbutton))
          return;
 #else
       throw todo(get_app());

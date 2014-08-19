@@ -838,7 +838,7 @@ namespace user
    bool document::do_file_save()
    {
 
-      if (is_new_document() || session().file_is_read_only(m_strPathName))
+      if (is_new_document() || Session.file_is_read_only(m_strPathName))
       {
 
          // we do not have read-write access or the file does not (now) exist

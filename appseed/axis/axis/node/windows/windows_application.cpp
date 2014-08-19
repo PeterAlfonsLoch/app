@@ -14,7 +14,7 @@ namespace windows
 
       m_pthreadimpl->m_pthread = this;
 
-      m_pbasesystem                    =  papp->m_pbaseapp->m_paxissystem;
+      m_paxissystem                    =  papp->m_paxisapp->m_paxissystem;
 
       m_atomApp = m_atomSystemTopic    = NULL;
 
@@ -335,7 +335,7 @@ namespace windows
          SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
 
          m_hinstance = hInstance;
-         m_pbaseapp->m_hinstance = hInstance;
+         m_paxisapp->m_hinstance = hInstance;
          m_pimpl->m_hinstance = hInstance;
          //hPrevInstance; // Obsolete.
          System.m_strCmdLine = strCmdLine;

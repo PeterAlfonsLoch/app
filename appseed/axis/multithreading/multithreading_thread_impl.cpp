@@ -147,22 +147,22 @@ void thread_impl::pre_translate_message(signal_details * pobj)
 
       try
       {
-         if(m_pbaseapp->m_pbasesession != NULL)
+         if(m_paxisapp->m_paxissession != NULL)
          {
             try
             {
 
-               synch_index_iterator it(m_pbaseapp->m_pbasesession->m_framea);
+               synch_index_iterator it(m_paxisapp->m_paxissession->m_framea);
 
                sp(::user::interaction) pui;
 
-               for(it.m_i = 0; it.m_i < m_pbaseapp->m_pbasesession->frames().get_count(); it.m_i++)
+               for(it.m_i = 0; it.m_i < m_paxisapp->m_paxissession->frames().get_count(); it.m_i++)
                {
                   
                   try
                   {
 
-                     pui = m_pbaseapp->m_pbasesession->frames()[it.m_i];
+                     pui = m_paxisapp->m_paxissession->frames()[it.m_i];
 
                   }
                   catch(...)
@@ -705,7 +705,7 @@ uint32_t __thread_entry(void * pparam)
       catch(::exit_exception &)
       {
 
-         Sys(pthreadimpl->m_pbaseapp).post_thread_message(WM_QUIT,0,0);
+         Sys(pthreadimpl->m_paxisapp).post_thread_message(WM_QUIT,0,0);
 
          return ::multithreading::__on_thread_finally(pthread);
 
@@ -1593,25 +1593,25 @@ bool thread_impl::pump_message()
                   try
                   {
 
-                     if(m_pbaseapp != NULL)
+                     if(m_paxisapp != NULL)
                      {
 
                         try
                         {
 
-                           if(m_pbaseapp->m_paxissystem != NULL)
+                           if(m_paxisapp->m_paxissystem != NULL)
                            {
 
-                              m_pbaseapp->m_paxissystem->pre_translate_message(spbase);
+                              m_paxisapp->m_paxissystem->pre_translate_message(spbase);
 
                               if(spbase->m_bRet)
                                  return true;
 
                               /*                                 try
                               {
-                              if(m_pbaseapp->m_paxissystem->m_pcube != NULL)
+                              if(m_paxisapp->m_paxissystem->m_pcube != NULL)
                               {
-                              m_pbaseapp->m_paxissystem->m_pcubeInterface->pre_translate_message(spbase);
+                              m_paxisapp->m_paxissystem->m_pcubeInterface->pre_translate_message(spbase);
                               if(spbase->m_bRet)
                               return TRUE;
                               }
@@ -1630,13 +1630,13 @@ bool thread_impl::pump_message()
 
                         }
 
-                        if(m_pbaseapp->m_pbasesession != NULL)
+                        if(m_paxisapp->m_paxissession != NULL)
                         {
 
                            try
                            {
 
-                              m_pbaseapp->m_pbasesession->pre_translate_message(spbase);
+                              m_paxisapp->m_paxissession->pre_translate_message(spbase);
 
                               if(spbase->m_bRet)
                                  return true;
@@ -1649,9 +1649,9 @@ bool thread_impl::pump_message()
 
                            /*                              try
                            {
-                           if(m_pbaseapp->m_pbasesession->m_pbergedge != NULL)
+                           if(m_paxisapp->m_paxissession->m_pbergedge != NULL)
                            {
-                           m_pbaseapp->m_pbasesession->m_pbergedgeInterface->pre_translate_message(spbase);
+                           m_paxisapp->m_paxissession->m_pbergedgeInterface->pre_translate_message(spbase);
                            if(spbase->m_bRet)
                            return TRUE;
                            }
@@ -1673,10 +1673,10 @@ bool thread_impl::pump_message()
                   try
                   {
 
-                     if(!m_pbaseapp->is_system() && m_pbaseapp->is_session())
+                     if(!m_paxisapp->is_system() && m_paxisapp->is_session())
                      {
 
-                        m_pbaseapp->pre_translate_message(spbase);
+                        m_paxisapp->pre_translate_message(spbase);
 
                         if(spbase->m_bRet)
                            return true;

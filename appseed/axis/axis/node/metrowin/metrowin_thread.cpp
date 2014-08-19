@@ -1066,13 +1066,13 @@ void thread::set_p(::thread * p)
 //
 //               try
 //               {
-//                  if(m_pbaseapp != NULL)
+//                  if(m_paxisapp != NULL)
 //                  {
 //                     try
 //                     {
-//                        if(m_pbaseapp->m_pcoreapp->m_psystem != NULL)
+//                        if(m_paxisapp->m_pcoreapp->m_psystem != NULL)
 //                        {
-//                           m_pbaseapp->m_pcoreapp->m_psystem->pre_translate_message(spbase);
+//                           m_paxisapp->m_pcoreapp->m_psystem->pre_translate_message(spbase);
 //                           if(spbase->m_bRet)
 //                              return TRUE;
 //                        }
@@ -1080,11 +1080,11 @@ void thread::set_p(::thread * p)
 //                     catch(...)
 //                     {
 //                     }
-//                     if(m_pbaseapp->m_pcoreapp->m_psession != NULL)
+//                     if(m_paxisapp->m_pcoreapp->m_psession != NULL)
 //                     {
 //                        try
 //                        {
-//                           m_pbaseapp->m_pcoreapp->m_psession->m_pplanesession->pre_translate_message(spbase);
+//                           m_paxisapp->m_pcoreapp->m_psession->m_pplanesession->pre_translate_message(spbase);
 //                           if(spbase->m_bRet)
 //                              return TRUE;
 //                        }
@@ -1099,9 +1099,9 @@ void thread::set_p(::thread * p)
 //               }
 //               try
 //               {
-//                  if(!m_pbaseapp->m_pcoreapp->is_system())
+//                  if(!m_paxisapp->m_pcoreapp->is_system())
 //                  {
-//                     m_pbaseapp->m_pcoreapp->pre_translate_message(spbase);
+//                     m_paxisapp->m_pcoreapp->pre_translate_message(spbase);
 //                     if(spbase->m_bRet)
 //                        return TRUE;
 //                  }
@@ -1555,7 +1555,7 @@ void thread::set_p(::thread * p)
 //      {
 //         // cleanup and shutdown the thread
 //         //         threadWnd.Detach();
-//         __end_thread(dynamic_cast < ::axis::application * > (m_pbaseapp.m_p), nResult);
+//         __end_thread(dynamic_cast < ::axis::application * > (m_paxisapp.m_p), nResult);
 //      }
 //      catch(...)
 //      {

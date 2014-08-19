@@ -383,16 +383,16 @@ typedef smart_pointer < thread_impl > thread_impl_sp;
 #define SCAST_PTR(TYPE, ptarget, psource) TYPE * ptarget = dynamic_cast < TYPE * > (psource);
 #define SCAST_REF(TYPE, rtarget, psource) TYPE & rtarget = *(dynamic_cast < TYPE * > (psource));
 
-
+#undef CaSys
+#undef Sys
 #define CaSys(pca) (*pca->m_pbaseapp->m_pbasesystem)
 #define Sys(pbaseapp) (*pbaseapp->m_pbasesystem)
-#define System (Sys(this->m_pbaseapp))
 #define threadSystem (Sys(get_thread_app()))
 
 
-#undef App
-#define App(pbaseapp) (*pbaseapp)
-#define Application (App(m_pbaseapp))
+//#undef App
+//#define App(pbaseapp) (*pbaseapp)
+//#define Application (App(m_pbaseapp))
 
 
 // return - result - if not ok
@@ -513,7 +513,6 @@ CLASS_DECL_BASE bool __node_pos_term();
 #include "base/filesystem/file/file_dir_application.h"
 
 
-#include "base_application_interface.h"
 #include "base_application.h"
 
 

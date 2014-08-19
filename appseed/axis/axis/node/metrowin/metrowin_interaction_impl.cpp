@@ -385,10 +385,10 @@ namespace metrowin
    interaction_impl::~interaction_impl()
    {
 
-      if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL && m_pbaseapp->m_pbasesession->user().is_set() && m_pbaseapp->m_pbasesession->user()->m_pwindowmap != NULL)
+      if(m_paxisapp != NULL && m_paxisapp->m_paxissession != NULL && m_paxisapp->m_paxissession->user().is_set() && m_paxisapp->m_paxissession->user()->m_pwindowmap != NULL)
       {
 
-         m_pbaseapp->m_pbasesession->user()->m_pwindowmap->m_map.remove_key((int_ptr)(void *)get_handle());
+         m_paxisapp->m_paxissession->user()->m_pwindowmap->m_map.remove_key((int_ptr)(void *)get_handle());
 
       }
 
@@ -1225,7 +1225,7 @@ namespace metrowin
             || pbase->m_uiMessage == WM_MBUTTONDOWN
             || pbase->m_uiMessage == WM_MOUSEMOVE)
          {
-            if(Application.fontopus()->m_puser != NULL && m_pbaseapp->m_pcoreapp->m_psession != NULL)
+            if(Application.fontopus()->m_puser != NULL && m_paxisapp->m_pcoreapp->m_psession != NULL)
             {
                try
                {
@@ -1254,17 +1254,17 @@ namespace metrowin
          ::message::mouse * pmouse = (::message::mouse *) pbase;
 
          Application.m_ptCursor = pmouse->m_pt;
-         if(m_pbaseapp->m_pcoreapp->m_psession != NULL)
+         if(m_paxisapp->m_pcoreapp->m_psession != NULL)
          {
             Session.m_ptCursor = pmouse->m_pt;
          }
-         if(m_pui != NULL && m_pui->m_pbaseapp->m_pcoreapp->m_psession != NULL && m_pui->m_pbaseapp->m_pcoreapp->m_psession != m_pbaseapp->m_pcoreapp->m_psession)
+         if(m_pui != NULL && m_pui->m_paxisapp->m_pcoreapp->m_psession != NULL && m_pui->m_paxisapp->m_pcoreapp->m_psession != m_paxisapp->m_pcoreapp->m_psession)
          {
-            Sess(m_pui->m_pbaseapp->m_pcoreapp->m_psession).m_ptCursor = pmouse->m_pt;
+            Sess(m_pui->m_paxisapp->m_pcoreapp->m_psession).m_ptCursor = pmouse->m_pt;
          }
 
          sp(base_session) psession;
-         if(m_pbaseapp->m_pcoreapp->is_system())
+         if(m_paxisapp->m_pcoreapp->is_system())
          {
             psession = System.query_session(0);
             if(psession != NULL && psession->m_bSessionSynchronizedCursor)
@@ -4064,8 +4064,8 @@ namespace metrowin
    {
       /*bool b;
       bool * pb = &b;
-      if(m_pbaseapp->m_pcoreapp->s_ptwf != NULL)
-      pb = &m_pbaseapp->m_pcoreapp->s_ptwf->m_bProDevianMode;
+      if(m_paxisapp->m_pcoreapp->s_ptwf != NULL)
+      pb = &m_paxisapp->m_pcoreapp->s_ptwf->m_bProDevianMode;
       keeper < bool > keepOnDemandDraw(pb, false, *pb, true);
       */
       ASSERT(::IsWindow(get_handle()));

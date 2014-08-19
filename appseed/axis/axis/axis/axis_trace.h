@@ -102,11 +102,11 @@ namespace axis
       {
       public:
 
-         sp(::axis::application) m_pbaseapp;
+         sp(::axis::application) m_paxisapp;
 
          trace(sp(::axis::application) papp)
          {
-            m_pbaseapp = papp;
+            m_paxisapp = papp;
          }
 
          ~trace()

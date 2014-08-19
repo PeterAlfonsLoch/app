@@ -1073,9 +1073,6 @@
     <ClInclude Include="base\node\windows\windows_crypto.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="base\base\base_session_interface.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
     <ClInclude Include="base\hotplugin\hotplugin_composer.h">
       <Filter>Header Files\base\hotplugin</Filter>
     </ClInclude>
@@ -1992,9 +1989,6 @@
     </ClCompile>
     <ClCompile Include="base\os\windows\windows_base_crypto.cpp">
       <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base_session_interface.cpp">
-      <Filter>Source Files\base\base</Filter>
     </ClCompile>
     <ClCompile Include="base\hotplugin\hotplugin.cpp">
       <Filter>Source Files\base\hotplugin</Filter>

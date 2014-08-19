@@ -163,29 +163,29 @@ namespace android
                TRACE("window_draw::_synch_redraw :: during prodevian Performance Analysis Time Frame - %d milliseconds -,", iTimeFrame);
                TRACE("window_draw::_synch_redraw :: failure count has exceeded the maximum count - %d", iMaxFailureCount);
                TRACE("window_draw::_synch_redraw :: Going to try to save some resource that may favor drawing perfomance");
-               if(!session().savings().is_trying_to_save(::ca2::resource_blur_background))
+               if(!Session.savings().is_trying_to_save(::ca2::resource_blur_background))
                {
                   TRACE("window_draw::_synch_redraw :: System is not trying to save \"blur background\" resource");
                   TRACE("window_draw::_synch_redraw :: Going to try to save \"blur background\" resource");
-                  session().savings().try_to_save(::ca2::resource_blur_background);
+                  Session.savings().try_to_save(::ca2::resource_blur_background);
                }
-               else if(!session().savings().is_trying_to_save(::ca2::resource_blurred_text_embossing))
+               else if(!Session.savings().is_trying_to_save(::ca2::resource_blurred_text_embossing))
                {
                   TRACE("window_draw::_synch_redraw :: System is not trying to save \"blurred text embossing\" resource");
                   TRACE("window_draw::_synch_redraw :: Going to try to save \"blurred text embossing\" resource");
-                  session().savings().try_to_save(::ca2::resource_blurred_text_embossing);
+                  Session.savings().try_to_save(::ca2::resource_blurred_text_embossing);
                }
-               else if(!session().savings().is_warning(::ca2::resource_processing))
+               else if(!Session.savings().is_warning(::ca2::resource_processing))
                {
                   TRACE("window_draw::_synch_redraw :: System is not warning to save \"processing\" resource");
                   TRACE("window_draw::_synch_redraw :: Going to warn to save \"processing\" resource");
-                  session().savings().warn(::ca2::resource_processing);
+                  Session.savings().warn(::ca2::resource_processing);
                }
-               else if(!session().savings().is_trying_to_save(::ca2::resource_processing))
+               else if(!Session.savings().is_trying_to_save(::ca2::resource_processing))
                {
                   TRACE("window_draw::_synch_redraw :: System is not trying to save \"processing\" resource");
                   TRACE("window_draw::_synch_redraw :: Going to try to save \"processing\" resource");
-                  session().savings().try_to_save(::ca2::resource_blur_background);
+                  Session.savings().try_to_save(::ca2::resource_blur_background);
                }
             }
             s_iFrameFailureCount = 0;
@@ -266,7 +266,7 @@ namespace android
       }
       else
       {
-         ::user::interaction_base * ptwi = session().user()->window_map().get((int_ptr) hwndParam);
+         ::user::interaction_base * ptwi = Session.user()->window_map().get((int_ptr) hwndParam);
          sp(::user::interaction) pguie =  (ptwi);
          rect rectWindow;
          ::GetWindowRect((oswindow) hwndParam, rectWindow);

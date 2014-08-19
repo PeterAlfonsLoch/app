@@ -182,9 +182,9 @@ namespace user
                iStyle &= ~WS_VISIBLE;
             }
             smart_pointer_array < timer_item > timera;
-            if(m_pbaseapp != NULL && m_pbaseapp->m_pthreadimpl != NULL && m_pbaseapp->m_pthreadimpl->m_sptimera.is_set())
+            if(m_paxisapp != NULL && m_paxisapp->m_pthreadimpl != NULL && m_paxisapp->m_pthreadimpl->m_sptimera.is_set())
             {
-               m_pbaseapp->m_pthreadimpl->m_sptimera->detach(timera,this);
+               m_paxisapp->m_pthreadimpl->m_sptimera->detach(timera,this);
             }
 
             rect rectWindow;
@@ -483,10 +483,10 @@ namespace user
       try
       {
 
-         if(session().user()->m_pkeyboardfocus == this)
+         if(Session.user()->m_pkeyboardfocus == this)
          {
 
-            session().user()->m_pkeyboardfocus = NULL;
+            Session.user()->m_pkeyboardfocus = NULL;
 
          }
 
@@ -514,7 +514,7 @@ namespace user
          try
          {
 
-            m_pbaseapp->remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
+            m_paxisapp->remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
 
          }
          catch(...)
@@ -525,10 +525,10 @@ namespace user
          try
          {
 
-            if(m_pbaseapp->m_pbasesession != NULL)
+            if(m_paxisapp->m_paxissession != NULL)
             {
 
-               m_pbaseapp->m_pbasesession->remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
+               m_paxisapp->m_paxissession->remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
 
             }
 
@@ -541,10 +541,10 @@ namespace user
          try
          {
 
-            if(m_pbaseapp->m_paxissystem != NULL)
+            if(m_paxisapp->m_paxissystem != NULL)
             {
 
-               m_pbaseapp->m_paxissystem->remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
+               m_paxisapp->m_paxissystem->remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
 
             }
 
@@ -790,7 +790,7 @@ namespace user
    void interaction::_001DrawChildren(::draw2d::graphics *pdc)
    {
 
-      single_lock sl(m_pbaseapp->m_pmutex, true);
+      single_lock sl(m_paxisapp->m_pmutex, true);
 
       ptr_array < interaction > ptraChild(m_uiptraChild);
 
@@ -840,16 +840,16 @@ namespace user
 
       set_viewport_org(pgraphics);
 
-      if(&session() != NULL && session().m_bDrawCursor)
+      if(&Session != NULL && Session.m_bDrawCursor)
       {
 
          point ptCursor;
 
-         session().get_cursor_pos(&ptCursor);
+         Session.get_cursor_pos(&ptCursor);
 
          ScreenToClient(&ptCursor);
 
-         ::visual::cursor * pcursor = session().get_cursor();
+         ::visual::cursor * pcursor = Session.get_cursor();
 
          if(pcursor != NULL && pgraphics != NULL)
          {
@@ -864,12 +864,12 @@ namespace user
 
       /*
 
-      if(&session() != NULL )
+      if(&Session != NULL )
       {
          string strText;
          point ptCursor;
 
-         session().get_cursor_pos(&ptCursor);
+         Session.get_cursor_pos(&ptCursor);
 
          ScreenToClient(&ptCursor);
          strText += ":[" + ::str::from(ptCursor.x) + ", " + ::str::from(ptCursor.y) + ":]";
@@ -1001,40 +1001,40 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
 
 
-      if(m_pbaseapp == NULL)
-         throw simple_exception(get_app(), "m_pbaseapp cannot be null");
+      if(m_paxisapp == NULL)
+         throw simple_exception(get_app(), "m_paxisapp cannot be null");
 
       on_set_may_pro_devian();
 
       {
 
-         m_pbaseapp->add(this);
+         m_paxisapp->add(this);
 
          if(GetParent() == NULL && !is_message_only_window())
          {
 
-//            synch_lock slUser(m_pbaseapp->m_pmutex);
+//            synch_lock slUser(m_paxisapp->m_pmutex);
 
             synch_lock sl(m_spmutex);
 
-            if(m_pbaseapp->m_paxissystem != NULL)
+            if(m_paxisapp->m_paxissystem != NULL)
             {
 
-               m_pbaseapp->m_paxissystem->add_frame(this);
+               m_paxisapp->m_paxissystem->add_frame(this);
 
             }
 
-            if(m_pbaseapp->m_pbasesession != NULL)
+            if(m_paxisapp->m_paxissession != NULL)
             {
 
-               m_pbaseapp->m_pbasesession->add_frame(this);
+               m_paxisapp->m_paxissession->add_frame(this);
 
             }
 
-            if(m_pbaseapp != NULL)
+            if(m_paxisapp != NULL)
             {
 
-               m_pbaseapp->add_frame(this);
+               m_paxisapp->add_frame(this);
 
             }
 
@@ -1112,7 +1112,7 @@ namespace user
    void interaction::_000OnKey(::message::key * pkey)
    {
       point ptCursor;
-      session().get_cursor_pos(&ptCursor);
+      Session.get_cursor_pos(&ptCursor);
       if(!pkey->m_bRet)
       {
          // these try catchs are needed for multi threading : multi threaded windows: the hell
@@ -1228,28 +1228,28 @@ namespace user
 
    void interaction::_001OnKeyDown(signal_details * pobj)
    {
-      if(session().user()->get_keyboard_focus() != this
-         && session().user()->get_keyboard_focus() != NULL)
+      if(Session.user()->get_keyboard_focus() != this
+         && Session.user()->get_keyboard_focus() != NULL)
       {
-         session().user()->get_keyboard_focus()->keyboard_focus_OnKeyDown(pobj);
+         Session.user()->get_keyboard_focus()->keyboard_focus_OnKeyDown(pobj);
       }
    }
 
    void interaction::_001OnKeyUp(signal_details * pobj)
    {
-      if(session().user()->get_keyboard_focus() != this
-         && session().user()->get_keyboard_focus() != NULL)
+      if(Session.user()->get_keyboard_focus() != this
+         && Session.user()->get_keyboard_focus() != NULL)
       {
-         session().user()->get_keyboard_focus()->keyboard_focus_OnKeyUp(pobj);
+         Session.user()->get_keyboard_focus()->keyboard_focus_OnKeyUp(pobj);
       }
    }
 
    void interaction::_001OnChar(signal_details * pobj)
    {
-      if(session().user()->get_keyboard_focus() != this
-         && session().user()->get_keyboard_focus() != NULL)
+      if(Session.user()->get_keyboard_focus() != this
+         && Session.user()->get_keyboard_focus() != NULL)
       {
-         session().user()->get_keyboard_focus()->keyboard_focus_OnChar(pobj);
+         Session.user()->get_keyboard_focus()->keyboard_focus_OnChar(pobj);
       }
    }
 
@@ -1756,7 +1756,7 @@ namespace user
 
             }
 
-            single_lock sl(m_pbaseapp->m_pmutex,TRUE);
+            single_lock sl(m_paxisapp->m_pmutex,TRUE);
 
             sl.unlock();
 
@@ -2893,7 +2893,7 @@ namespace user
 
    bool interaction::ContinueModal(int32_t iLevel)
    {
-      return iLevel < m_iModalCount && (::get_thread() == NULL || ::get_thread()->m_bRun) && m_pbaseapp->m_bRun;
+      return iLevel < m_iModalCount && (::get_thread() == NULL || ::get_thread()->m_bRun) && m_paxisapp->m_bRun;
    }
 
    void interaction::EndModalLoop(id nResult)
@@ -3226,9 +3226,9 @@ namespace user
          if(m_pparent != NULL)
          {
 
-            single_lock sl(m_pparent->m_pbaseapp->m_pmutex,TRUE);
+            single_lock sl(m_pparent->m_paxisapp->m_pmutex,TRUE);
 
-            single_lock sl2(m_pbaseapp->m_pmutex,TRUE);
+            single_lock sl2(m_paxisapp->m_pmutex,TRUE);
 
             m_pparent->m_uiptraChild.remove(this);
 
@@ -3245,9 +3245,9 @@ namespace user
          if(puiParent != NULL)
          {
 
-            single_lock sl(puiParent->m_pbaseapp->m_pmutex,TRUE);
+            single_lock sl(puiParent->m_paxisapp->m_pmutex,TRUE);
 
-            single_lock sl2(m_pbaseapp->m_pmutex,TRUE);
+            single_lock sl2(m_paxisapp->m_pmutex,TRUE);
 
             puiParent->m_uiptraChild.add_unique(this);
 
@@ -3268,8 +3268,8 @@ namespace user
             {
 
                // A Copy Paste error (the commented out code below)?
-               //single_lock sl(puiParent->m_pbaseapp->m_pmutex,TRUE);
-               //single_lock sl2(m_pbaseapp->m_pmutex,TRUE);
+               //single_lock sl(puiParent->m_paxisapp->m_pmutex,TRUE);
+               //single_lock sl2(m_paxisapp->m_pmutex,TRUE);
 
                if(!pholder->is_holding(this))
                {
@@ -3438,7 +3438,7 @@ namespace user
 
    sp(interaction) interaction::get_bottom_child()
    {
-      single_lock sl(m_pbaseapp->m_pmutex,TRUE);
+      single_lock sl(m_paxisapp->m_pmutex,TRUE);
       if(m_uiptraChild.get_count() <= 0)
          return NULL;
       else
@@ -3447,7 +3447,7 @@ namespace user
 
    sp(interaction) interaction::get_top_child()
    {
-      single_lock sl(m_pbaseapp->m_pmutex,TRUE);
+      single_lock sl(m_paxisapp->m_pmutex,TRUE);
       if(m_uiptraChild.get_count() <= 0)
          return NULL;
       else
@@ -3456,7 +3456,7 @@ namespace user
 
    sp(interaction) interaction::under_sibling()
    {
-      single_lock sl(m_pbaseapp->m_pmutex,TRUE);
+      single_lock sl(m_paxisapp->m_pmutex,TRUE);
       sp(interaction) pui = NULL;
       try
       {
@@ -3480,7 +3480,7 @@ namespace user
 
    sp(interaction) interaction::under_sibling(sp(interaction) pui)
    {
-      single_lock sl(m_pbaseapp->m_pmutex,TRUE);
+      single_lock sl(m_paxisapp->m_pmutex,TRUE);
       index i = m_uiptraChild.find_first(pui);
       if(i < 0)
          return NULL;
@@ -3504,7 +3504,7 @@ namespace user
 
    sp(interaction) interaction::above_sibling()
    {
-      single_lock sl(m_pbaseapp->m_pmutex,TRUE);
+      single_lock sl(m_paxisapp->m_pmutex,TRUE);
       sp(interaction) pui = NULL;
       try
       {
@@ -3550,7 +3550,7 @@ namespace user
 
    sp(interaction) interaction::above_sibling(sp(interaction) pui)
    {
-      single_lock sl(m_pbaseapp->m_pmutex,TRUE);
+      single_lock sl(m_paxisapp->m_pmutex,TRUE);
       index i = m_uiptraChild.find_first(pui);
       if(i < 0)
          return NULL;
@@ -3980,7 +3980,7 @@ namespace user
 
       point pt;
 
-      session().get_cursor_pos(&pt);
+      Session.get_cursor_pos(&pt);
 
       return track_popup_menu(pitem,iFlags,pt.x,pt.y);
 
@@ -3992,7 +3992,7 @@ namespace user
 
       point pt;
 
-      session().get_cursor_pos(&pt);
+      Session.get_cursor_pos(&pt);
 
       return track_popup_menu(lpnode,iFlags,pt.x,pt.y);
 
@@ -4004,7 +4004,7 @@ namespace user
 
       point pt;
 
-      session().get_cursor_pos(&pt);
+      Session.get_cursor_pos(&pt);
 
       return track_popup_xml_matter_menu(pszMatter,iFlags,pt.x,pt.y);
 
@@ -4304,7 +4304,7 @@ namespace user
       catch(::exception::base * pe)
       {
 
-         m_pbaseapp->process_window_procedure_exception(pe,spbase);
+         m_paxisapp->process_window_procedure_exception(pe,spbase);
 
          pe->Delete();
 
@@ -4334,7 +4334,7 @@ namespace user
    void interaction::keep_alive(::axis::live_object * pliveobject)
    {
 
-      m_pbaseapp->keep_alive();
+      m_paxisapp->keep_alive();
 
       if(::get_thread() != NULL)
       {
@@ -4396,7 +4396,7 @@ namespace user
 
       ::rect rectNew;
 
-      index iMatchingMonitor = session().get_best_monitor(rectNew,rectWindow);
+      index iMatchingMonitor = Session.get_best_monitor(rectNew,rectWindow);
 
       if(bSet && (!::IsRectEmpty(&rect) || iMatchingMonitor >= 0))
       {
@@ -4442,7 +4442,7 @@ namespace user
 
          wp.flags = 0;
 
-         session().monitor_to_wkspace(rect);
+         Session.monitor_to_wkspace(rect);
 
          wp.rcNormalPosition = rect;
 
@@ -4489,11 +4489,11 @@ namespace user
 
       ::rect rectNew;
 
-      index iMatchingMonitor = session().get_best_monitor(rectNew,rectWindow);
+      index iMatchingMonitor = Session.get_best_monitor(rectNew,rectWindow);
 
       ::rect rectWkspace;
 
-      session().get_wkspace_rect(iMatchingMonitor,rectWkspace);
+      Session.get_wkspace_rect(iMatchingMonitor,rectWkspace);
 
       if(bSet && (!::IsRectEmpty(&rect) || iMatchingMonitor >= 0))
       {
@@ -4526,7 +4526,7 @@ namespace user
 
          ::rect rectWkspace;
 
-         session().get_wkspace_rect(iMatchingMonitor,rectWkspace);
+         Session.get_wkspace_rect(iMatchingMonitor,rectWkspace);
 
          if(!::IsRectEmpty(&rect))
          {
@@ -4550,7 +4550,7 @@ namespace user
 
          wp.flags = 0;
 
-         session().monitor_to_wkspace(rect);
+         Session.monitor_to_wkspace(rect);
 
          wp.rcNormalPosition = rectWkspace;
 
@@ -4606,7 +4606,7 @@ namespace user
 
       ::rect rectNew;
 
-      index iMatchingMonitor = session().get_zoneing(rectNew,rectWindow,*peappearance);
+      index iMatchingMonitor = Session.get_zoneing(rectNew,rectWindow,*peappearance);
 
       if(bSet & (!::IsRectEmpty(&rect) || iMatchingMonitor >= 0))
       {
@@ -4641,7 +4641,7 @@ namespace user
 
          ::rect rectWkspace;
 
-         session().get_wkspace_rect(iMatchingMonitor,rectWkspace);
+         Session.get_wkspace_rect(iMatchingMonitor,rectWkspace);
 
          if(!::IsRectEmpty(&rect))
          {
@@ -4665,7 +4665,7 @@ namespace user
 
          wp.flags = 0;
 
-         session().monitor_to_wkspace(rect);
+         Session.monitor_to_wkspace(rect);
 
          wp.rcNormalPosition = rectWkspace;
 
@@ -4724,7 +4724,7 @@ namespace user
 
       ::rect rectNew;
 
-      index iMatchingMonitor = session().get_best_zoneing(peappearance,rectNew,rectWindow);
+      index iMatchingMonitor = Session.get_best_zoneing(peappearance,rectNew,rectWindow);
 
       if(bSet && (!::IsRectEmpty(&rect) || iMatchingMonitor >= 0))
       {
@@ -4759,7 +4759,7 @@ namespace user
 
          ::rect rectWkspace;
 
-         session().get_wkspace_rect(iMatchingMonitor,rectWkspace);
+         Session.get_wkspace_rect(iMatchingMonitor,rectWkspace);
 
          if(!::IsRectEmpty(&rect))
          {
@@ -4783,7 +4783,7 @@ namespace user
 
          wp.flags = 0;
 
-         session().monitor_to_wkspace(rect);
+         Session.monitor_to_wkspace(rect);
 
          wp.rcNormalPosition = rectWkspace;
 
@@ -4832,7 +4832,7 @@ namespace user
 
       ::rect rectNew;
 
-      index iMatchingMonitor = session().get_good_restore(rectNew,rectWindow);
+      index iMatchingMonitor = Session.get_good_restore(rectNew,rectWindow);
 
       if(bSet && (!::IsRectEmpty(&rect) || iMatchingMonitor >= 0))
       {
@@ -4882,7 +4882,7 @@ namespace user
 
          wp.flags = 0;
 
-         session().monitor_to_wkspace(rect);
+         Session.monitor_to_wkspace(rect);
 
          wp.rcNormalPosition = rect;
 
@@ -4929,7 +4929,7 @@ namespace user
 
       ::rect rectNew;
 
-      index iMatchingMonitor = session().get_good_iconify(&rectNew,rectWindow);
+      index iMatchingMonitor = Session.get_good_iconify(&rectNew,rectWindow);
 
       if(bSet && (!::IsRectEmpty(&rect) || iMatchingMonitor >= 0))
       {
@@ -4965,7 +4965,7 @@ namespace user
 
          wp.flags = WPF_SETMINPOSITION;
 
-         session().monitor_to_wkspace(rect);
+         Session.monitor_to_wkspace(rect);
 
          //wp.rcNormalPosition = rect;
 
@@ -5014,7 +5014,7 @@ namespace user
 
       ::rect rectNew;
 
-      index iMatchingMonitor = session().get_good_move(rectNew,rectWindow);
+      index iMatchingMonitor = Session.get_good_move(rectNew,rectWindow);
 
       if(!::IsRectEmpty(&rect) || iMatchingMonitor >= 0)
       {
@@ -5048,7 +5048,7 @@ namespace user
             if(z == ZORDER_TOP || z == ZORDER_TOPMOST)
             {
 
-               single_lock sl(m_pbaseapp->m_pmutex);
+               single_lock sl(m_paxisapp->m_pmutex);
 
                synch_lock slWindow(m_spmutex);
 
@@ -5330,10 +5330,10 @@ namespace user
       if(!pshowwindow->m_bShow)
       {
 
-         if(session().user()->m_pkeyboardfocus == this)
+         if(Session.user()->m_pkeyboardfocus == this)
          {
 
-            session().user()->set_keyboard_focus(NULL);
+            Session.user()->set_keyboard_focus(NULL);
 
          }
 

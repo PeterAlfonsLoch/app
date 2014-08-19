@@ -390,7 +390,7 @@ void handle_map < HT, CT >::delete_temp()
       }
 
       ASSERT(m_pfnDestructObject != NULL);
-      pTemp->m_pbaseapp = NULL;
+      pTemp->m_paxisapp = NULL;
       (*m_pfnDestructObject)(pTemp);   // destruct the object
    }
 

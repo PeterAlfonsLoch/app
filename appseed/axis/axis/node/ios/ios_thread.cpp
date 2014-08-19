@@ -61,7 +61,7 @@ UINT APIENTRY __thread_entry(void * pParam)
    {
       pStartup->bError = TRUE;
       pStartup->hEvent.set_event();
-      __end_thread(pThread->m_pbaseapp, (UINT)-1, FALSE);
+      __end_thread(pThread->m_paxisapp, (UINT)-1, FALSE);
       ASSERT(FALSE);  // unreachable
    }
    
@@ -1199,8 +1199,8 @@ namespace ios
       
       m_bRun               = true;
       
-      m_ptimera->m_pbaseapp    = m_pbaseapp;
-      m_puiptra->m_pbaseapp    = m_pbaseapp;
+      m_ptimera->m_paxisapp    = m_paxisapp;
+      m_puiptra->m_paxisapp    = m_paxisapp;
       
       
       if(!create_message_queue(get_app(), ""))
@@ -1302,7 +1302,7 @@ namespace ios
       {
          // cleanup and shutdown the thread
          //         threadWnd.Detach();
-         __end_thread(m_pbaseapp, nResult);
+         __end_thread(m_paxisapp, nResult);
       }
       catch(...)
       {

@@ -118,7 +118,7 @@ namespace axis
       m_phtml = NULL;
 
 
-      m_pbasesystem = this;
+      m_paxissystem = this;
 
       if(papp == NULL)
       {
@@ -344,15 +344,15 @@ namespace axis
       dappy(string(typeid(*this).name()) + " : Going to ::axis::session " + ::str::from(m_iReturnCode));
 
 
-      m_pbasesession = new ::axis::session(this);
+      m_paxissession = new ::axis::session(this);
 
-      if(m_pbasesession == NULL)
+      if(m_paxissession == NULL)
          return false;
 
-      m_pbasesession->construct(this,0);
+      m_paxissession->construct(this,0);
 
 
-      if(!m_pbasesession->begin_synch(&m_iReturnCode))
+      if(!m_paxissession->begin_synch(&m_iReturnCode))
       {
          return false;
       }

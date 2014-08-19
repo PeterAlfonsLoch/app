@@ -67,7 +67,7 @@ namespace file
    void exception::OnFileFound(OF_INFO_t OpenedFileInfo )
    {
 
-      if(session().file_name(::str::international::unicode_to_utf8(OpenedFileInfo.lpFile)).CompareNoCase(session().file_name(m_strFileName)) == 0)
+      if(Session.file_name(::str::international::unicode_to_utf8(OpenedFileInfo.lpFile)).CompareNoCase(Session.file_name(m_strFileName)) == 0)
       {
 
          PROCESS_INFO_t stInfo;
@@ -154,7 +154,7 @@ namespace file
 
          wstring wstr;
 
-         wstr = ::str::international::utf8_to_unicode(session().dir_name(m_strFileName));
+         wstr = ::str::international::utf8_to_unicode(Session.dir_name(m_strFileName));
 
 #ifdef WINDOWSEX
          GetOpenedFiles(wstr, ALL_TYPES, &exception::CallBackFunc, (uint_ptr)this);

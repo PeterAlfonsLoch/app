@@ -33,7 +33,7 @@ namespace metrowin
    {
    internal:
 
-      ::axis::application * m_pbaseapp;
+      ::axis::application * m_paxisapp;
 
       mutex    m_mutexDc;
 
@@ -45,7 +45,7 @@ namespace metrowin
 
       ::axis::application * get_app() const
       {
-         return m_pbaseapp;
+         return m_paxisapp;
       }
    
 

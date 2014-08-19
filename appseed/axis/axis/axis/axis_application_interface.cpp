@@ -8,8 +8,8 @@ namespace axis
    application_interface::application_interface()
    {
 
-      m_pbasesystem     = NULL;
-      m_pbasesession    = NULL;
+      m_paxissystem     = NULL;
+      m_paxissession    = NULL;
       m_pcoreapp        = NULL;
       m_pcoresystem     = NULL;
 

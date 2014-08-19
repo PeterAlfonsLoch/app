@@ -9,7 +9,7 @@ public:
 
    int64_t                       m_countReference;
    bool                          m_bHeap;
-   ::axis::application *         m_pbaseapp;
+   ::axis::application *         m_paxisapp;
 
 
 

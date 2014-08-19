@@ -15,7 +15,7 @@ namespace metrowin
       m_pthreadimpl.create(allocer());
       m_pthreadimpl->m_pthread = this;
 
-      m_pbasesystem = papp->m_paxissystem;
+      m_paxissystem = papp->m_paxissystem;
 
       m_atomApp = m_atomSystemTopic = NULL;
 

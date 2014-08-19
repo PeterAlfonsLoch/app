@@ -562,9 +562,9 @@ namespace ios
    window::~window()
    {
       
-      if(m_pbaseapp != NULL && m_pbaseapp->m_pplaneapp != NULL && m_pbaseapp->m_paxissystem != NULL && Sys(m_pbaseapp).user()->m_pwindowmap != NULL)
+      if(m_paxisapp != NULL && m_paxisapp->m_pplaneapp != NULL && m_paxisapp->m_paxissystem != NULL && Sys(m_paxisapp).user()->m_pwindowmap != NULL)
       {
-         Sys(m_pbaseapp).user()->m_pwindowmap->m_map.remove_key((int_ptr) get_handle());
+         Sys(m_paxisapp).user()->m_pwindowmap->m_map.remove_key((int_ptr) get_handle());
       }
       
       single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
@@ -1408,18 +1408,18 @@ namespace ios
          ::message::mouse * pmouse = (::message::mouse *) pbase;
          
          Application.m_ptCursor = pmouse->m_pt;
-         if(m_pbaseapp->m_pbasesession != NULL)
+         if(m_paxisapp->m_paxissession != NULL)
          {
             Session.m_ptCursor = pmouse->m_pt;
          }
-         if(m_pui != NULL && m_pui != this && m_pui->m_pbaseapp->m_pbasesession != NULL && m_pui->m_pbaseapp->m_pbasesession != m_pbaseapp->m_pbasesession)
+         if(m_pui != NULL && m_pui != this && m_pui->m_paxisapp->m_paxissession != NULL && m_pui->m_paxisapp->m_paxissession != m_paxisapp->m_paxissession)
          {
-            Sess(m_pui->m_pbaseapp->m_pbasesession).m_ptCursor = pmouse->m_pt;
+            Sess(m_pui->m_paxisapp->m_paxissession).m_ptCursor = pmouse->m_pt;
          }
          
          sp(base_session) psession;
          
-         if(m_pbaseapp->is_system())
+         if(m_paxisapp->is_system())
          {
             psession = System.query_session(0);
             if(psession != NULL && psession->m_bSessionSynchronizedCursor)
@@ -4263,8 +4263,8 @@ namespace ios
       /*
          bool b;
          bool * pb = &b;
-         if(m_pbaseapp->m_pplaneapp->s_ptwf != NULL)
-         pb = &m_pbaseapp->m_pplaneapp->s_ptwf->m_bProDevianMode;
+         if(m_paxisapp->m_pplaneapp->s_ptwf != NULL)
+         pb = &m_paxisapp->m_pplaneapp->s_ptwf->m_bProDevianMode;
          keeper < bool > keepOnDemandDraw(pb, false, *pb, true);
       */
       

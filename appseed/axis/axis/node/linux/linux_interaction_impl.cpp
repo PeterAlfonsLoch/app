@@ -103,13 +103,13 @@ namespace linux
    {
 
 /*
-      if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL && m_pbaseapp->m_pbasesession->m_spuser.is_set())
+      if(m_paxisapp != NULL && m_paxisapp->m_paxissession != NULL && m_paxisapp->m_paxissession->m_spuser.is_set())
       {
 
-         if(session().user()->m_pwindowmap != NULL)
+         if(Session.user()->m_pwindowmap != NULL)
          {
 
-            session().user()->m_pwindowmap->m_map.remove_key((int_ptr) get_handle());
+            Session.user()->m_pwindowmap->m_map.remove_key((int_ptr) get_handle());
 
          }
 
@@ -662,7 +662,7 @@ d.unlock();
          retry_single_lock sl(&pdraw->m_eventFree, millis(84), millis(84));
          pdraw->m_wndpaOut.remove(m_pui);
       }
-      m_pbaseapp->remove(m_pui);
+      m_paxisapp->remove(m_pui);
       oswindow_remove(m_oswindow->display(), m_oswindow->window());
    }
 
@@ -676,7 +676,7 @@ d.unlock();
    void interaction_impl::_001OnNcDestroy(::signal_details * pobj)
    {
 
-      single_lock sl(m_pbaseapp == NULL ? NULL : m_pbaseapp->m_pmutex, TRUE);
+      single_lock sl(m_paxisapp == NULL ? NULL : m_paxisapp->m_pmutex, TRUE);
 
       pobj->m_bRet = true;
 
@@ -811,7 +811,7 @@ d.unlock();
 
       }
 
-      single_lock sl(m_pbaseapp == NULL ? NULL : m_pbaseapp->m_pmutex, TRUE);
+      single_lock sl(m_paxisapp == NULL ? NULL : m_paxisapp->m_pmutex, TRUE);
       sp(::user::interaction) pWnd;
       oswindow hWndOrig;
       bool bResult;
@@ -1164,13 +1164,13 @@ d.unlock();
 
          ::message::key * pkey = (::message::key *) pbase;
 
-         session().user()->keyboard().translate_os_key_message(pkey);
+         Session.user()->keyboard().translate_os_key_message(pkey);
 
          if(pbase->m_uiMessage == WM_KEYDOWN)
          {
             try
             {
-               session().set_key_pressed(pkey->m_ekey, true);
+               Session.set_key_pressed(pkey->m_ekey, true);
             }
             catch(...)
             {
@@ -1180,7 +1180,7 @@ d.unlock();
          {
             try
             {
-               session().set_key_pressed(pkey->m_ekey, false);
+               Session.set_key_pressed(pkey->m_ekey, false);
             }
             catch(...)
             {
@@ -1222,7 +1222,7 @@ d.unlock();
             || pbase->m_uiMessage == WM_MOUSEMOVE)
          {
 
-            if(session().fontopus()->m_puser != NULL)
+            if(Session.fontopus()->m_puser != NULL)
             {
 
                if(&ApplicationUser != NULL)
@@ -1259,15 +1259,15 @@ d.unlock();
 
          ::message::mouse * pmouse = (::message::mouse *) pbase;
 
-         if(m_pbaseapp->m_pbasesession != NULL)
+         if(m_paxisapp->m_paxissession != NULL)
          {
-            session().m_ptCursor = pmouse->m_pt;
+            Session.m_ptCursor = pmouse->m_pt;
          }
 
-         if(m_pui != NULL && m_pui->m_pbaseapp->m_pbasesession != NULL && m_pui->m_pbaseapp->m_pbasesession != m_pbaseapp->m_pbasesession)
+         if(m_pui != NULL && m_pui->m_paxisapp->m_paxissession != NULL && m_pui->m_paxisapp->m_paxissession != m_paxisapp->m_paxissession)
          {
 
-            sess(m_pui->m_pbaseapp->m_pbasesession).m_ptCursor = pmouse->m_pt;
+            sess(m_pui->m_paxisapp->m_paxissession).m_ptCursor = pmouse->m_pt;
 
          }
 
@@ -1383,7 +1383,7 @@ restart_mouse_hover_check:
       {
 
          ::message::key * pkey = (::message::key *) pbase;
-         sp(::user::interaction) puiFocus =  (session().user()->get_keyboard_focus());
+         sp(::user::interaction) puiFocus =  (Session.user()->get_keyboard_focus());
          if(puiFocus != NULL
             && puiFocus->IsWindow()
             && puiFocus->GetTopLevel() != NULL)
@@ -2135,7 +2135,7 @@ restart_mouse_hover_check:
    sp(::user::interaction) PASCAL interaction_impl::GetDescendantWindow(sp(::user::interaction) hWnd, id id)
    {
 
-      single_lock sl(hWnd->m_pbaseapp->m_pmutex, TRUE);
+      single_lock sl(hWnd->m_paxisapp->m_pmutex, TRUE);
 
       for(int32_t i = 0; i < hWnd->m_uiptraChild.get_count(); i++)
       {
@@ -4739,7 +4739,7 @@ if(psurface == g_cairosurface)
 
         UNREFERENCED_PARAMETER(lpfnTimer);
 
-        m_pui->m_pbaseapp->set_timer(m_pui, nIDEvent, nElapse);
+        m_pui->m_paxisapp->set_timer(m_pui, nIDEvent, nElapse);
 
         return nIDEvent;
 
@@ -4755,7 +4755,7 @@ if(psurface == g_cairosurface)
 
    return ::user::interaction_impl::KillTimer(nIDEvent);
 
-       m_pui->m_pbaseapp->unset_timer(m_pui, nIDEvent);
+       m_pui->m_paxisapp->unset_timer(m_pui, nIDEvent);
 
        return TRUE;
 
@@ -5372,8 +5372,8 @@ if(psurface == g_cairosurface)
    void interaction_impl::_001OnSetCursor(::signal_details * pobj)
    {
       SCAST_PTR(::message::axis, pbase, pobj);
-      if(session().get_cursor() != NULL
-         && session().get_cursor()->m_ecursor != ::visual::cursor_system)
+      if(Session.get_cursor() != NULL
+         && Session.get_cursor()->m_ecursor != ::visual::cursor_system)
       {
 
          throw not_implemented(get_app());
@@ -5699,7 +5699,7 @@ if(psurface == g_cairosurface)
 
    void interaction_impl::_001BaseWndInterfaceMap()
    {
-      session().user()->window_map().set((int_ptr)get_handle(), this);
+      Session.user()->window_map().set((int_ptr)get_handle(), this);
    }
 
 

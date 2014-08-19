@@ -222,7 +222,7 @@ namespace user
 
       int iCode = (int) (ekey);
 
-      if(session().is_key_pressed(::user::key_shift))
+      if(Session.is_key_pressed(::user::key_shift))
       {
          iCode |= 0x80000000;
       }

@@ -37,10 +37,10 @@ namespace user
 
       }
 
-      if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL && m_pbaseapp->m_pbasesession != m_puserschema && m_pbaseapp->m_pbasesession->m_puserschema != m_puserschema)
+      if(m_paxisapp != NULL && m_paxisapp->m_paxissession != NULL && m_paxisapp->m_paxissession != m_puserschema && m_paxisapp->m_paxissession->m_puserschema != m_puserschema)
       {
 
-         if(m_pbaseapp->m_pbasesession->get_color(cr,ecolor))
+         if(m_paxisapp->m_paxissession->get_color(cr,ecolor))
             return true;
 
       }
@@ -68,10 +68,10 @@ namespace user
 
       }
 
-      if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL && m_pbaseapp->m_pbasesession != m_puserschema && m_pbaseapp->m_pbasesession->m_puserschema != m_puserschema)
+      if(m_paxisapp != NULL && m_paxisapp->m_paxissession != NULL && m_paxisapp->m_paxissession != m_puserschema && m_paxisapp->m_paxissession->m_puserschema != m_puserschema)
       {
 
-         if(m_pbaseapp->m_pbasesession->get_font(spfont))
+         if(m_paxisapp->m_paxissession->get_font(spfont))
             return true;
 
       }
@@ -99,10 +99,10 @@ namespace user
 
       }
 
-      if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL && m_pbaseapp->m_pbasesession != m_puserschema && m_pbaseapp->m_pbasesession->m_puserschema != m_puserschema)
+      if(m_paxisapp != NULL && m_paxisapp->m_paxissession != NULL && m_paxisapp->m_paxissession != m_puserschema && m_paxisapp->m_paxissession->m_puserschema != m_puserschema)
       {
 
-         if(m_pbaseapp->m_pbasesession->get_translucency(etranslucency))
+         if(m_paxisapp->m_paxissession->get_translucency(etranslucency))
             return true;
 
       }

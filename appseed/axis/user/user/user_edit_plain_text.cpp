@@ -219,8 +219,8 @@ namespace user
 
       }
 
-      /*else if(!session().savings().is_trying_to_save(::axis::resource_processing)
-      && !session().savings().is_trying_to_save(::axis::resource_blur_background))
+      /*else if(!Session.savings().is_trying_to_save(::axis::resource_processing)
+      && !Session.savings().is_trying_to_save(::axis::resource_blur_background))
       {
 
          pdc->blur(true, 4, rectClient);
@@ -294,7 +294,7 @@ namespace user
 
    //   pdc->SelectClipRgn(&rgn);
 
-      if(session().user()->get_keyboard_focus() == this)
+      if(Session.user()->get_keyboard_focus() == this)
       {
          m_bFocus = keyboard_focus_is_focusable();
       }
@@ -591,7 +591,7 @@ namespace user
       if(ptimer->m_nIDEvent >= 100
          && ptimer->m_nIDEvent <= 200)
       {
-         if(this == session().user()->get_keyboard_focus())
+         if(this == Session.user()->get_keyboard_focus())
          {
             _001OnKeyboardFocusTimer(ptimer->m_nIDEvent - 100);
          }
@@ -613,7 +613,7 @@ namespace user
       SCAST_PTR(::message::key, pkey, pobj)
       if(pkey->m_ekey == ::user::key_return)
       {
-         if(session().is_key_pressed(::user::key_control) && session().is_key_pressed(::user::key_alt))
+         if(Session.is_key_pressed(::user::key_control) && Session.is_key_pressed(::user::key_alt))
          {
             pkey->m_bRet      = false;
             return;
@@ -634,8 +634,8 @@ namespace user
       }
       else if(pkey->m_ekey == ::user::key_tab)
       {
-         if(session().is_key_pressed(::user::key_control)
-            && session().is_key_pressed(::user::key_alt))
+         if(Session.is_key_pressed(::user::key_control)
+            && Session.is_key_pressed(::user::key_alt))
          {
             pkey->m_bRet      = false;
             return;
@@ -668,7 +668,7 @@ namespace user
       }
       else if(pkey->m_ekey == ::user::key_c)
       {
-         if(session().is_key_pressed(::user::key_control))
+         if(Session.is_key_pressed(::user::key_control))
          {
             pkey->m_bRet      = true;
             clipboard_copy();
@@ -677,7 +677,7 @@ namespace user
       }
       else if(pkey->m_ekey == ::user::key_v)
       {
-         if(session().is_key_pressed(::user::key_control))
+         if(Session.is_key_pressed(::user::key_control))
          {
             pkey->m_bRet      = true;
             clipboard_paste();
@@ -700,8 +700,8 @@ namespace user
       SCAST_PTR(::message::key, pkey, pobj)
       if(pkey->m_ekey == ::user::key_return)
       {
-         if(session().is_key_pressed(::user::key_control)
-         &&   session().is_key_pressed(::user::key_alt))
+         if(Session.is_key_pressed(::user::key_control)
+         &&   Session.is_key_pressed(::user::key_alt))
          {
             pkey->m_bRet = false;
             return;
@@ -782,7 +782,7 @@ namespace user
 
 
       //LRESULT lresult;
-      bool bShift = session().is_key_pressed(::user::key_shift);
+      bool bShift = Session.is_key_pressed(::user::key_shift);
 
       if(key.m_nChar < 256 && isalpha((int32_t) key.m_nChar))
       {
@@ -919,8 +919,8 @@ namespace user
       m_ptree->m_iSelEnd = m_ptree->m_iSelStart;
 
       RedrawWindow();
-      session().user()->set_keyboard_focus(this);
-      session().user()->set_mouse_focus_LButtonDown(this);
+      Session.user()->set_keyboard_focus(this);
+      Session.user()->set_mouse_focus_LButtonDown(this);
       pmouse->m_bRet = true;
       pmouse->set_lresult(1);
    }
@@ -952,8 +952,8 @@ namespace user
       m_ptree->m_iSelEnd = m_ptree->m_iSelStart;
 
       RedrawWindow();
-      session().user()->set_keyboard_focus(this);
-      session().user()->set_mouse_focus_RButtonDown(this);
+      Session.user()->set_keyboard_focus(this);
+      Session.user()->set_mouse_focus_RButtonDown(this);
       pmouse->m_bRet = true;
       pmouse->set_lresult(1);
    }
@@ -1480,14 +1480,14 @@ namespace user
 
       if(pkey->m_ekey == ::user::key_s)
       {
-         if(session().is_key_pressed(::user::key_control))
+         if(Session.is_key_pressed(::user::key_control))
          {
             return;
          }
       }
       else if(pkey->m_ekey == ::user::key_z)
       {
-         if(session().is_key_pressed(::user::key_control))
+         if(Session.is_key_pressed(::user::key_control))
          {
             Undo();
             return;
@@ -1495,14 +1495,14 @@ namespace user
       }
       else if(pkey->m_ekey == ::user::key_y)
       {
-         if(session().is_key_pressed(::user::key_control))
+         if(Session.is_key_pressed(::user::key_control))
          {
             Redo();
             return;
          }
       }
 
-      bool bShift = session().is_key_pressed(::user::key_shift);
+      bool bShift = Session.is_key_pressed(::user::key_shift);
 
       if(pkey->m_ekey == ::user::key_back)
       {
@@ -1757,7 +1757,7 @@ namespace user
                iCode |= 0x80000000;
             }
             string strMap;
-            str = session().user()->keyboard().process_key(pkey->m_ekey);
+            str = Session.user()->keyboard().process_key(pkey->m_ekey);
             m_ptree->m_iSelEnd += str.get_length();
             m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
            m_ptree-> m_editfile.Insert(str, str.get_length());
@@ -2148,14 +2148,14 @@ namespace user
          return;
       string str;
       _001GetSelText(str);
-      session().copydesk().set_plain_text(str);
+      Session.copydesk().set_plain_text(str);
    }
 
    void edit_plain_text::clipboard_paste()
    {
 
       string str;
-      str = session().copydesk().get_plain_text();
+      str = Session.copydesk().get_plain_text();
       str.replace("\r\n", "\n");
       _001SetSelText(str, ::action::source::user());
       MacroBegin();
@@ -2374,7 +2374,7 @@ namespace user
    void edit_plain_text::_001OnUpdateEditFocusPaste(signal_details * pobj)
    {
       SCAST_PTR(::axis::cmd_ui, pupdatecmdui, pobj)
-      pupdatecmdui->m_pcmdui->Enable(session().copydesk().get_plain_text().has_char());
+      pupdatecmdui->m_pcmdui->Enable(Session.copydesk().get_plain_text().has_char());
    }
 
    void edit_plain_text::_001OnEditFocusPaste(signal_details * pobj)

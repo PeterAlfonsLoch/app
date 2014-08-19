@@ -33,10 +33,10 @@ m_set(papp)
    m_pthreadimpl->m_pthread = this;
    m_pthreadimpl->construct();
 
-   if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL)
+   if(m_paxisapp != NULL && m_paxisapp->m_paxissession != NULL)
    {
 
-      m_bZipIsDir = m_pbaseapp->m_pbasesession->m_bZipIsDir;
+      m_bZipIsDir = m_paxisapp->m_paxissession->m_bZipIsDir;
 
    }
 
@@ -53,10 +53,10 @@ element(papp)
    m_pthreadimpl->m_pthread = this;
    m_pthreadimpl->construct(pfnThreadProc, pParam);
 
-   if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL)
+   if(m_paxisapp != NULL && m_paxisapp->m_paxissession != NULL)
    {
 
-      m_bZipIsDir = m_pbaseapp->m_pbasesession->m_bZipIsDir;
+      m_bZipIsDir = m_paxisapp->m_paxissession->m_bZipIsDir;
 
    }
 
@@ -985,15 +985,15 @@ void thread::register_at_required_threads()
 
       Application.register_dependent_thread(this);
 
-      if(psystem == NULL && &session() != NULL)
+      if(psystem == NULL && &Session != NULL)
       {
 
-         session().register_dependent_thread(this);
+         Session.register_dependent_thread(this);
 
-         if(session().m_pplatformcomposite != NULL)
+         if(Session.m_pplatformcomposite != NULL)
          {
 
-            session().m_pplatformcomposite->register_dependent_thread(this);
+            Session.m_pplatformcomposite->register_dependent_thread(this);
 
          }
 

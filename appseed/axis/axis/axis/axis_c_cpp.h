@@ -1091,8 +1091,8 @@ inline void string_format::printf(const char * & s)
 #include "axis_core_os.h"
 
 
-#define AppUser(pbaseapp) (*pbaseapp->m_pbasesession->fontopus()->get_user())
-#define ApplicationUser (AppUser(m_pbaseapp))
+#define AppUser(pbaseapp) (*pbaseapp->m_paxissession->fontopus()->get_user())
+#define ApplicationUser (AppUser(m_paxisapp))
 
 
 

@@ -9,7 +9,7 @@ bool __assert_failed_line(const char * lpszFileName,int32_t iLineNumber)
    if(pthread != NULL)
    {
 
-      pthread->m_pbaseapp->m_paxissystem->assert_failed_line(lpszFileName,iLineNumber);
+      pthread->m_paxisapp->m_paxissystem->assert_failed_line(lpszFileName,iLineNumber);
 
    }
 

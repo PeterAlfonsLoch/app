@@ -42,7 +42,7 @@ namespace xml
 
       m_strLocation = psz;
       string str;
-      str = session().file_as_string(psz);
+      str = Session.file_as_string(psz);
       return load(str);
 
    }
@@ -162,7 +162,7 @@ namespace xml
       if(extEnt.has_char())
       {
          bExt = true;
-         return session().file_as_string(session().dir_path(session().dir_name(m_strLocation),extEnt));
+         return Session.file_as_string(Session.dir_path(Session.dir_name(m_strLocation),extEnt));
       }
       return "";
    }

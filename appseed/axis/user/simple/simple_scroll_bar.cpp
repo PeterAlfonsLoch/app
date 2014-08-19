@@ -581,7 +581,7 @@ void simple_scroll_bar::_001OnTimer(signal_details * pobj)
 
    point pt;
 
-   session().get_cursor_pos(&pt);
+   Session.get_cursor_pos(&pt);
 
    ScreenToClient(&pt);
 
@@ -950,7 +950,7 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
 
    GetClientRect(rectClient);
 
-   if(session().savings().is_trying_to_save(::axis::resource_processing))
+   if(Session.savings().is_trying_to_save(::axis::resource_processing))
    {
 
       pdc->FillSolidRect(rectClient, RGB(255,255,255));
@@ -1022,7 +1022,7 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
 
       point pt2;
 
-      session().get_cursor_pos(&pt2);
+      Session.get_cursor_pos(&pt2);
 
       ClientToScreen(pt1);
 

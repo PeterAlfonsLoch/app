@@ -6,7 +6,7 @@ root::root()
 
    m_countReference  = 1;
    m_bHeap           = false;
-   m_pbaseapp        = NULL;
+   m_paxisapp        = NULL;
 
 }
 
@@ -16,7 +16,7 @@ root::root(sp(::axis::application) papp)
 
    m_countReference  = 1;
    m_bHeap           = false;
-   m_pbaseapp        = papp.m_p;
+   m_paxisapp        = papp.m_p;
 
 }
 

@@ -11,14 +11,14 @@ namespace file
       serializable::serializable(const serializable & s)
       {
 
-         m_pbaseapp = s.m_pbaseapp;
+         m_paxisapp = s.m_paxisapp;
 
       }
       #ifdef MOVE_SEMANTICS
       serializable::serializable(serializable && s)
       {
 
-         m_pbaseapp = s.m_pbaseapp;
+         m_paxisapp = s.m_paxisapp;
 
       }
       #endif

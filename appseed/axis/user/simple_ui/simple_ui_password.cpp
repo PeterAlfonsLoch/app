@@ -94,8 +94,8 @@ namespace simple_ui
 
       }
 
-      /*else if(!session().savings().is_trying_to_save(::axis::resource_processing)
-      && !session().savings().is_trying_to_save(::axis::resource_blur_background))
+      /*else if(!Session.savings().is_trying_to_save(::axis::resource_processing)
+      && !Session.savings().is_trying_to_save(::axis::resource_blur_background))
       {
 
       pdc->blur(true, 4, rectClient);
@@ -169,7 +169,7 @@ namespace simple_ui
 
       //   pdc->SelectClipRgn(&rgn);
 
-      if(session().user()->get_keyboard_focus() == this)
+      if(Session.user()->get_keyboard_focus() == this)
       {
          m_bFocus = keyboard_focus_is_focusable();
       }

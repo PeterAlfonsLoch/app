@@ -99,7 +99,7 @@ namespace windows
 
       if(nOpenFlags & ::file::defer_create_directory)
       {
-         session().dir_mk(session().dir_name(lpszFileName));
+         Session.dir_mk(Session.dir_name(lpszFileName));
       }
 
       m_hFile = (UINT)hFileNull;

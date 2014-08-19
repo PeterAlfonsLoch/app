@@ -68,7 +68,7 @@ namespace user
       sp(interaction) puiThis = (this);
       if(puiThis == NULL)
          return NULL;
-      single_lock(puiThis->m_pbaseapp->m_pmutex,TRUE);
+      single_lock(puiThis->m_paxisapp->m_pmutex,TRUE);
       sp(interaction) pui = puiThis->above_sibling();
       while(pui != NULL)
       {
@@ -88,7 +88,7 @@ namespace user
 
    bool keyboard_focus::keyboard_set_focus()
    {
-      session().user()->set_keyboard_focus( (this));
+      Session.user()->set_keyboard_focus( (this));
       return true;
    }
 

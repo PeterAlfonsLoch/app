@@ -22,7 +22,7 @@ namespace axis
    ::count session_interface::get_monitor_count()
    {
 
-      return m_pbasesession->get_monitor_count();
+      return m_paxissession->get_monitor_count();
 
    }
 
@@ -30,7 +30,7 @@ namespace axis
    bool session_interface::get_monitor_rect(index iMonitor,LPRECT lprect)
    {
 
-      return m_pbasesession->get_monitor_rect(iMonitor,lprect);
+      return m_paxissession->get_monitor_rect(iMonitor,lprect);
 
    }
 

@@ -100,13 +100,13 @@ namespace windows
    interaction_impl::~interaction_impl()
    {
 
-      if(m_pbaseapp != NULL &&  m_pbaseapp->m_pbasesession != NULL &&  m_pbaseapp->m_pbasesession->m_spuser.is_set())
+      if(m_paxisapp != NULL &&  m_paxisapp->m_paxissession != NULL &&  m_paxisapp->m_paxissession->m_spuser.is_set())
       {
 
-         if(session().user()->m_pwindowmap != NULL)
+         if(Session.user()->m_pwindowmap != NULL)
          {
 
-            session().user()->m_pwindowmap->m_map.remove_key((int_ptr)get_handle());
+            Session.user()->m_pwindowmap->m_map.remove_key((int_ptr)get_handle());
 
          }
 
@@ -266,7 +266,7 @@ namespace windows
 
          //::simple_message_box(NULL,"h3","h3",MB_OK);
 
-         if(m_pbaseapp == NULL)
+         if(m_paxisapp == NULL)
             return FALSE;
 
          uint32_t dwLastError = GetLastError();
@@ -560,19 +560,19 @@ namespace windows
    void interaction_impl::_001OnNcDestroy(signal_details * pobj)
    {
 
-      single_lock sl(m_pui->m_pbaseapp->m_pmutex,TRUE);
+      single_lock sl(m_pui->m_paxisapp->m_pmutex,TRUE);
 
       ::window_sp pwindow;
 
-      if(m_pui->m_pbaseapp != NULL && m_pui->m_pbaseapp->m_pthreadimpl.is_set())
+      if(m_pui->m_paxisapp != NULL && m_pui->m_paxisapp->m_pthreadimpl.is_set())
       {
 
-         synch_lock sl(&m_pui->m_pbaseapp->m_pthreadimpl->m_mutexUiPtra);
+         synch_lock sl(&m_pui->m_paxisapp->m_pthreadimpl->m_mutexUiPtra);
 
-         if(m_pui->m_pbaseapp->m_pthreadimpl->m_spuiptra.is_set())
+         if(m_pui->m_paxisapp->m_pthreadimpl->m_spuiptra.is_set())
          {
 
-            m_pui->m_pbaseapp->m_pthreadimpl->m_spuiptra->remove(m_pui);
+            m_pui->m_paxisapp->m_pthreadimpl->m_spuiptra->remove(m_pui);
 
          }
 
@@ -1123,13 +1123,13 @@ namespace windows
 
          SCAST_PTR(::message::key,pkey,pobj);
 
-         session().user()->keyboard().translate_os_key_message(pkey);
+         Session.user()->keyboard().translate_os_key_message(pkey);
 
          if(pbase->m_uiMessage == WM_KEYDOWN)
          {
             try
             {
-               session().set_key_pressed(pkey->m_ekey,true);
+               Session.set_key_pressed(pkey->m_ekey,true);
             }
             catch(...)
             {
@@ -1139,7 +1139,7 @@ namespace windows
          {
             try
             {
-               session().set_key_pressed(pkey->m_ekey,false);
+               Session.set_key_pressed(pkey->m_ekey,false);
             }
             catch(...)
             {
@@ -1158,7 +1158,7 @@ namespace windows
 
       if(pbase->m_uiMessage == WM_TIMER)
       {
-         m_pui->m_pbaseapp->step_timer();
+         m_pui->m_paxisapp->step_timer();
       }
       else if(pbase->m_uiMessage == WM_LBUTTONDOWN)
       {
@@ -1180,7 +1180,7 @@ namespace windows
          ::GetWindowPlacement(get_handle(),&wp);
          bool bZoomed = ::IsZoomed(get_handle()) != FALSE;
          bool bIconic = ::IsIconic(get_handle()) != FALSE;
-         session().m_puiLastLButtonDown = m_pui;
+         Session.m_puiLastLButtonDown = m_pui;
       }
       /*      else if(pbase->m_uiMessage == CA2M_BERGEDGE)
       {
@@ -1220,7 +1220,7 @@ namespace windows
 
          message::mouse * pmouse = (::message::mouse *) pbase;
 
-         session().on_ui_mouse_message(pmouse);
+         Session.on_ui_mouse_message(pmouse);
 
          if(m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
          {
@@ -1343,7 +1343,7 @@ namespace windows
 
          message::key * pkey = (::message::key *) pbase;
 
-         sp(::user::interaction) puiFocus = session().user()->get_keyboard_focus();
+         sp(::user::interaction) puiFocus = Session.user()->get_keyboard_focus();
          if(puiFocus != NULL
             && puiFocus->IsWindow())
          {
@@ -1463,7 +1463,7 @@ namespace windows
 
    sp(::user::interaction) interaction_impl::GetDescendantWindow(sp(::user::interaction) oswindow,id id)
    {
-      single_lock sl(oswindow->m_pbaseapp->m_pmutex,TRUE);
+      single_lock sl(oswindow->m_paxisapp->m_pmutex,TRUE);
       // get_child_by_id recursive (return first found)
       // breadth-first for 1 level, then depth-first for next level
 
@@ -2609,7 +2609,7 @@ namespace windows
       VERIFY(::GetObject(hbrGray,sizeof(LOGBRUSH),(LPVOID)&logbrush));
       ::SetBkColor(hDC,logbrush.lbColor);
       if(clrText == (COLORREF)-1)
-         clrText = session().get_default_color(COLOR_WINDOWTEXT);  // normal text
+         clrText = Session.get_default_color(COLOR_WINDOWTEXT);  // normal text
       ::SetTextColor(hDC,clrText);
       return TRUE;
    }
@@ -4712,7 +4712,7 @@ namespace windows
    void interaction_impl::_001OnSetCursor(signal_details * pobj)
    {
       SCAST_PTR(::message::axis,pbase,pobj);
-      if(session().get_cursor() != NULL && session().get_cursor()->m_ecursor != ::visual::cursor_system)
+      if(Session.get_cursor() != NULL && Session.get_cursor()->m_ecursor != ::visual::cursor_system)
       {
          //::SetCursor(NULL);
       }
@@ -5372,7 +5372,7 @@ namespace windows
 
    void interaction_impl::_001BaseWndInterfaceMap()
    {
-      session().user()->window_map().set((int_ptr)get_handle(),this);
+      Session.user()->window_map().set((int_ptr)get_handle(),this);
    }
 
 
@@ -5756,7 +5756,7 @@ string CLASS_DECL_AXIS get_user_interaction_window_class(sp(::user::interaction)
    WNDCLASS wndcls;
    memset(&wndcls,0,sizeof(WNDCLASS));   // start with NULL defaults
    wndcls.lpfnWndProc = DefWindowProc;
-   wndcls.hInstance = pui->m_pbaseapp->m_hinstance;
+   wndcls.hInstance = pui->m_paxisapp->m_hinstance;
 
    INITCOMMONCONTROLSEX init;
    init.dwSize = sizeof(init);

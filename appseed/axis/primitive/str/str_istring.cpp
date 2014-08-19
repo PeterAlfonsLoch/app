@@ -4,7 +4,7 @@
 istring::istring(sp(::axis::application) papp)
 {
 
-   m_pbaseapp = papp;
+   m_paxisapp = papp;
 
 }
       
@@ -16,7 +16,7 @@ istring::~istring()
 void istring::update_string()
 {
 
-   m_pbaseapp->load_string(m_str, m_strTemplate);
+   m_paxisapp->load_string(m_str, m_strTemplate);
 
 }
 

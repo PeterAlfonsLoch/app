@@ -70,34 +70,34 @@ namespace axis
 
 #endif
 
-      if(m_pbaseapp == NULL)
+      if(m_paxisapp == NULL)
       {
 
-         m_pbaseapp              = this;
+         m_paxisapp              = this;
 
       }
 
-      if(m_pbaseapp != NULL)
+      if(m_paxisapp != NULL)
       {
 
-         m_pbasesystem           = m_pbaseapp->m_paxissystem;
+         m_paxissystem           = m_paxisapp->m_paxissystem;
 
-         if(m_pbaseapp->m_pbasesession == NULL && m_pbasesystem != NULL)
+         if(m_paxisapp->m_paxissession == NULL && m_paxissystem != NULL)
          {
 
-            m_pbasesession       = m_pbasesystem->m_pbasesession;
+            m_paxissession       = m_paxissystem->m_paxissession;
 
          }
          else
          {
 
-            m_pbasesession       = m_pbaseapp->m_pbasesession;
+            m_paxissession       = m_paxisapp->m_paxissession;
 
          }
 
 #ifdef WINDOWS
 
-         m_hinstance             = m_pbaseapp->m_hinstance;
+         m_hinstance             = m_paxisapp->m_hinstance;
 
 #endif
 
@@ -105,7 +105,7 @@ namespace axis
       else
       {
 
-         m_pbasesystem           = NULL;
+         m_paxissystem           = NULL;
 
       }
 
@@ -1706,14 +1706,14 @@ namespace axis
 
       sp(application) papp;
 
-      papp = session().m_appptra.find_running_defer_try_quit_damaged(pszAppId);
+      papp = Session.m_appptra.find_running_defer_try_quit_damaged(pszAppId);
 
       if(papp.is_null())
       {
 
          sp(::create_context) spcreatecontext(allocer());
 
-         papp = session().start_application("application",pszAppId,spcreatecontext);
+         papp = Session.start_application("application",pszAppId,spcreatecontext);
 
       }
 
@@ -2189,7 +2189,7 @@ namespace axis
       try
       {
 
-         if(session().appptra().get_count() <= 1)
+         if(Session.appptra().get_count() <= 1)
          {
 
             if(System.thread::get_os_data() != NULL)
@@ -2939,7 +2939,7 @@ namespace axis
 
       {
 
-         ::file::binary_buffer_sp file = session().file_get_file(Application.dir_userappdata(strPath),::file::mode_read);
+         ::file::binary_buffer_sp file = Session.file_get_file(Application.dir_userappdata(strPath),::file::mode_read);
 
          if(file.is_null())
          {
@@ -2980,7 +2980,7 @@ namespace axis
 
       {
 
-         ::file::binary_buffer_sp file = session().file_get_file(Application.dir_userappdata(strPath),::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
+         ::file::binary_buffer_sp file = Session.file_get_file(Application.dir_userappdata(strPath),::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
 
          if(file.is_null())
          {
@@ -3038,7 +3038,7 @@ namespace axis
    sp(::user::interaction) application::get_active_guie()
    {
 
-      return session().get_active_guie();
+      return Session.get_active_guie();
 
    }
 
@@ -3046,7 +3046,7 @@ namespace axis
    sp(::user::interaction) application::get_focus_guie()
    {
 
-      return session().get_focus_guie();
+      return Session.get_focus_guie();
 
    }
 

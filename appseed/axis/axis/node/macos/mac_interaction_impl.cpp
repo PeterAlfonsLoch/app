@@ -109,9 +109,9 @@ namespace mac
       
       /*
       
-      if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL && m_pbaseapp->m_pbasesession->user().m_p != NULL && m_pbaseapp->m_pbasesession->user()->m_pwindowmap != NULL)
+      if(m_paxisapp != NULL && m_paxisapp->m_paxissession != NULL && m_paxisapp->m_paxissession->user().m_p != NULL && m_paxisapp->m_paxissession->user()->m_pwindowmap != NULL)
       {
-         session().user()->m_pwindowmap->m_map.remove_key((int_ptr) get_handle());
+         Session.user()->m_pwindowmap->m_map.remove_key((int_ptr) get_handle());
       }
        
        */
@@ -660,7 +660,7 @@ namespace mac
    // WM_NCDESTROY is the absolute LAST message sent.
    void interaction_impl::_001OnNcDestroy(signal_details * pobj)
    {
-      single_lock sl(m_pbaseapp == NULL ? NULL : m_pbaseapp->m_pmutex, TRUE);
+      single_lock sl(m_paxisapp == NULL ? NULL : m_paxisapp->m_pmutex, TRUE);
       pobj->m_bRet = true;
       // cleanup main and active windows
       ::thread* pThread = ::get_thread();
@@ -812,7 +812,7 @@ namespace mac
    bool interaction_impl::DestroyWindow()
    {
 
-      single_lock sl(m_pbaseapp == NULL ? NULL : m_pbaseapp->m_pmutex, TRUE);
+      single_lock sl(m_paxisapp == NULL ? NULL : m_paxisapp->m_pmutex, TRUE);
    
       if(get_handle() == NULL)
          return false;
@@ -1149,7 +1149,7 @@ namespace mac
          {
             try
             {
-               session().set_key_pressed(pkey->m_ekey, true);
+               Session.set_key_pressed(pkey->m_ekey, true);
             }
             catch(...)
             {
@@ -1159,7 +1159,7 @@ namespace mac
          {
             try
             {
-               session().set_key_pressed(pkey->m_ekey, false);
+               Session.set_key_pressed(pkey->m_ekey, false);
             }
             catch(...)
             {
@@ -1176,7 +1176,7 @@ namespace mac
       
       if(pbase->m_uiMessage == WM_TIMER)
       {
-//         m_pbaseapp->m_pbaseapp->step_timer();
+//         m_paxisapp->m_paxisapp->step_timer();
       }
       else if(pbase->m_uiMessage == WM_LBUTTONDOWN)
       {
@@ -1229,7 +1229,7 @@ namespace mac
             || pbase->m_uiMessage == WM_MOUSEMOVE)
          {
             
-            if(session().fontopus()->m_puser != NULL)
+            if(Session.fontopus()->m_puser != NULL)
             {
                
                if(&ApplicationUser != NULL)
@@ -1259,17 +1259,17 @@ namespace mac
          
          ::message::mouse * pmouse = (::message::mouse *) pbase;
          
-         if(m_pbaseapp->m_pbasesession != NULL)
+         if(m_paxisapp->m_paxissession != NULL)
          {
             
-            session().m_ptCursor = pmouse->m_pt;
+            Session.m_ptCursor = pmouse->m_pt;
             
          }
          
-/*         if(m_pui != NULL && m_pui != this && m_pui->m_pbaseapp->m_pbasesession != NULL && m_pui->m_pbaseapp->m_pbasesession != m_pbaseapp->m_pbasesession)
+/*         if(m_pui != NULL && m_pui != this && m_pui->m_paxisapp->m_paxissession != NULL && m_pui->m_paxisapp->m_paxissession != m_paxisapp->m_paxissession)
          {
             
-            BaseSess(m_pui->m_pbaseapp->m_pbasesession).m_ptCursor = pmouse->m_pt;
+            BaseSess(m_pui->m_paxisapp->m_paxissession).m_ptCursor = pmouse->m_pt;
             
          }
   */
@@ -1413,7 +1413,7 @@ namespace mac
          }
          */
          
-         ::user::interaction * puiFocus = dynamic_cast < ::user::interaction * > (session().user()->get_keyboard_focus().m_p);
+         ::user::interaction * puiFocus = dynamic_cast < ::user::interaction * > (Session.user()->get_keyboard_focus().m_p);
          if(puiFocus != NULL
             && puiFocus->IsWindow()
             && puiFocus->GetTopLevel() != NULL)
@@ -2141,7 +2141,7 @@ namespace mac
    
    sp(::user::interaction) PASCAL interaction_impl::GetDescendantWindow(sp(::user::interaction) hWnd, id id)
    {
-      single_lock sl(hWnd->m_pbaseapp->m_pmutex, TRUE);
+      single_lock sl(hWnd->m_paxisapp->m_pmutex, TRUE);
       // GetDlgItem recursive (return first found)
       // breadth-first for 1 level, then depth-first for next level
       
@@ -3225,7 +3225,7 @@ namespace mac
    void interaction_impl::_001OnProdevianSynch(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //      System.get_event(m_pbaseapp->m_pbaseapp)->SetEvent();
+      //      System.get_event(m_paxisapp->m_paxisapp)->SetEvent();
       //    System.get_event(System.get_twf())->wait(millis(8400));
    }
    
@@ -3742,8 +3742,8 @@ namespace mac
       /*
          bool b;
          bool * pb = &b;
-         if(m_pbaseapp->m_pplaneapp->s_ptwf != NULL)
-         pb = &m_pbaseapp->m_pplaneapp->s_ptwf->m_bProDevianMode;
+         if(m_paxisapp->m_pplaneapp->s_ptwf != NULL)
+         pb = &m_paxisapp->m_pplaneapp->s_ptwf->m_bProDevianMode;
          keeper < bool > keepOnDemandDraw(pb, false, *pb, true);
       */
       
@@ -4250,9 +4250,9 @@ namespace mac
    
    bool interaction_impl::post_message(UINT message, WPARAM wparam, lparam lparam)
    {
-      if(m_pbaseapp != NULL)
+      if(m_paxisapp != NULL)
       {
-         return m_pbaseapp->post_message(m_pui, message, wparam, lparam);
+         return m_paxisapp->post_message(m_pui, message, wparam, lparam);
       }
       else
       {
@@ -4604,7 +4604,7 @@ namespace mac
 //      ASSERT(::IsWindow(get_handle()));
   //    return interaction_impl::GetDescendantWindow(this, id);
       
-      single_lock sl(m_pbaseapp->m_pmutex, TRUE);
+      single_lock sl(m_paxisapp->m_pmutex, TRUE);
       for(int32_t i = 0; i < m_pui->m_uiptraChild.get_count(); i++)
       {
          if(m_pui->m_uiptraChild[i]->GetDlgCtrlId() == id)
@@ -4693,7 +4693,7 @@ namespace mac
 /*
       UNREFERENCED_PARAMETER(lpfnTimer);
       
-      m_pui->m_pbaseapp->set_timer(m_pui, nIDEvent, nElapse);
+      m_pui->m_paxisapp->set_timer(m_pui, nIDEvent, nElapse);
       
       return nIDEvent;
       
@@ -4713,7 +4713,7 @@ namespace mac
       //ASSERT(::IsWindow(get_handle()));
       //return ::KillTimer(get_handle(), nIDEvent)  != FALSE;
       
-      m_pui->m_pbaseapp->unset_timer(m_pui, nIDEvent);
+      m_pui->m_paxisapp->unset_timer(m_pui, nIDEvent);
       
 
       return true;*/
@@ -5317,8 +5317,8 @@ namespace mac
    void interaction_impl::_001OnSetCursor(signal_details * pobj)
    {
       SCAST_PTR(::message::axis, pbase, pobj);
-      if(session().get_cursor() != NULL
-         && session().get_cursor()->m_ecursor != ::visual::cursor_system)
+      if(Session.get_cursor() != NULL
+         && Session.get_cursor()->m_ecursor != ::visual::cursor_system)
       {
          
          throw not_implemented(get_app());
@@ -5645,7 +5645,7 @@ namespace mac
    
    void interaction_impl::_001BaseWndInterfaceMap()
    {
-      session().user()->window_map().set((int_ptr)get_handle(), this);
+      Session.user()->window_map().set((int_ptr)get_handle(), this);
    }
    
    

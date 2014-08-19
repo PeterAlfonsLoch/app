@@ -34,16 +34,16 @@ namespace user
    bool user::initialize1()
    {
 
-      if(m_pbaseapp->is_session())
+      if(m_paxisapp->is_session())
       {
          m_pwindowmap = new class ::user::window_map(get_app());
       }
       else
       {
-         m_pwindowmap = session().user()->m_pwindowmap;
+         m_pwindowmap = Session.user()->m_pwindowmap;
       }
 
-      m_pkeyboard = new ::user::keyboard(m_pbaseapp);
+      m_pkeyboard = new ::user::keyboard(m_paxisapp);
 
       if(m_pkeyboard == NULL)
          return false;
@@ -54,12 +54,12 @@ namespace user
 
 
 
-      if(m_pbaseapp->is_system())
+      if(m_paxisapp->is_system())
       {
          System.factory().creatable_small < keyboard_layout > ();
       }
 
-//      m_pshellimageset = new filemanager::_shell::ImageSet(m_pbaseapp);
+//      m_pshellimageset = new filemanager::_shell::ImageSet(m_paxisapp);
 
       if(!::axis::departament::initialize1())
          return false;
@@ -97,9 +97,9 @@ namespace user
       }
 
       if(strLangUser.has_char())
-         session().set_locale(strLangUser, ::action::source_database);
+         Session.set_locale(strLangUser, ::action::source_database);
       if(strStyleUser.has_char())
-         session().set_schema(strStyleUser,::action::source_database);
+         Session.set_schema(strStyleUser,::action::source_database);
 
       string strLicense = Application.get_license_id();
 
@@ -115,7 +115,7 @@ namespace user
          && strLicense.has_char())
       {
 
-         if(!session().assert_user_logged_in())
+         if(!Session.assert_user_logged_in())
          {
             return false;
          }
@@ -132,7 +132,7 @@ retry_license:
 
          iRetry--;
 
-         if(!session().is_licensed(strLicense))
+         if(!Session.is_licensed(strLicense))
          {
 
             if(iRetry > 0)
@@ -285,9 +285,9 @@ retry_license:
    int32_t user::simple_message_box(sp(::user::interaction) pwndOwner, const char * pszMessage, UINT fuStyle)
    {
 
-      //if(m_pbaseapp->m_pcoreapp->m_psession != NULL)
+      //if(m_paxisapp->m_pcoreapp->m_psession != NULL)
       //{
-        // return m_pbaseapp->m_pcoreapp->m_psession->m_pcoreplatform->m_pcoreplatform->simple_message_box(pwndOwner, pszMessage, fuStyle);
+        // return m_paxisapp->m_pcoreapp->m_psession->m_pcoreplatform->m_pcoreplatform->simple_message_box(pwndOwner, pszMessage, fuStyle);
       //}
 
       class ::userex::message_box box(get_app());
@@ -456,7 +456,7 @@ retry_license:
       {
          if(pchange->m_key.m_idIndex  == "savings")
          {
-            pchange->data_get(session().savings().m_eresourceflagsShouldSave);
+            pchange->data_get(Session.savings().m_eresourceflagsShouldSave);
          }
       }
    }
@@ -482,11 +482,11 @@ retry_license:
       {
          return m_pkeyboardfocus;
       }
-      else if(Application.m_pbasesession != NULL)
+      else if(Application.m_paxissession != NULL)
       {
          return sess(get_app()).user()->get_keyboard_focus();
       }
-      else if(Application.m_pbasesystem != NULL)
+      else if(Application.m_paxissystem != NULL)
       {
          return sess(get_app()).user()->get_keyboard_focus();
       }
@@ -542,7 +542,7 @@ retry_license:
    bool user::set_keyboard_layout(const char * pszPath, ::action::context actioncontext)
    {
 
-      if (get_app()->m_pbasesession == NULL)
+      if (get_app()->m_paxissession == NULL)
          return false;
 
       if(pszPath == NULL)
@@ -551,8 +551,8 @@ retry_license:
          if(&keyboard().layout() != NULL)
          {
 
-//            if(session().fontopus()->m_puser != NULL
-  //             && session().fontopus()->m_puser->m_strFontopusServerSessId.has_char())
+//            if(Session.fontopus()->m_puser != NULL
+  //             && Session.fontopus()->m_puser->m_strFontopusServerSessId.has_char())
     //        {
 
                // xxx data_set("keyboard_layout", keyboard().layout().m_strPath);
@@ -568,8 +568,8 @@ retry_license:
          if(!set_keyboard_layout(keyboard().get_current_system_layout(), ::action::source_database))
             return false;
 
-//         if(session().fontopus()->m_puser != NULL
-  //          && session().fontopus()->m_puser->m_strFontopusServerSessId.has_char())
+//         if(Session.fontopus()->m_puser != NULL
+  //          && Session.fontopus()->m_puser->m_strFontopusServerSessId.has_char())
     //     {
 
 // xxx            data_set("keyboard_layout", keyboard().layout().m_strPath);
@@ -579,7 +579,7 @@ retry_license:
          return true;
       }
 
-      if(!session().user()->keyboard().load_layout(pszPath, actioncontext))
+      if(!Session.user()->keyboard().load_layout(pszPath, actioncontext))
          return false;
 
       // xxx Application.simpledb().on_set_keyboard_layout(pszPath, actioncontext);
@@ -592,7 +592,7 @@ retry_license:
    {
       if(!Application.is_session())
       {
-         return session().user()->keyboard();
+         return Session.user()->keyboard();
       }
       return *m_pkeyboard;
    }

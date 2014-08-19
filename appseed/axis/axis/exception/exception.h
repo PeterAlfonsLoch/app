@@ -207,7 +207,7 @@ CLASS_DECL_AXIS void __dump(const object* pOb); // dump an object from CodeView
 // extern ::core::CTrace TRACE;
 #ifdef DEBUG
 #ifndef TRACE
-#define TRACE ::axis::trace_add_file_and_line(m_pbaseapp, __FILE__, __LINE__)
+#define TRACE ::axis::trace_add_file_and_line(m_paxisapp, __FILE__, __LINE__)
 #define APPTRACE(papp) ::axis::trace_add_file_and_line(papp, __FILE__, __LINE__)
 //#define TRACE2 TRACE
 #endif

@@ -11,16 +11,16 @@ namespace axis
       ::thread(papp)
    {
 
-      m_pbaseapp        = this;
+      m_paxisapp        = this;
 
-      m_pbasesession    = this;
+      m_paxissession    = this;
 
       m_pcoreplatform   = NULL;
 
-      m_bMatterFromHttpCache = m_pbasesystem->m_bMatterFromHttpCache;
+      m_bMatterFromHttpCache = m_paxissystem->m_bMatterFromHttpCache;
 
-      m_bSystemSynchronizedCursor = m_pbasesystem->m_bSystemSynchronizedCursor;
-      m_bSystemSynchronizedScreen = m_pbasesystem->m_bSystemSynchronizedScreen;
+      m_bSystemSynchronizedCursor = m_paxissystem->m_bSystemSynchronizedCursor;
+      m_bSystemSynchronizedScreen = m_paxissystem->m_bSystemSynchronizedScreen;
       m_iMainMonitor = -1;
 
 #ifdef WINDOWS
@@ -28,7 +28,7 @@ namespace axis
       if(m_hinstance == NULL)
       {
 
-         m_hinstance = m_pbaseapp->m_hinstance;
+         m_hinstance = m_paxisapp->m_hinstance;
 
       }
 
@@ -51,7 +51,7 @@ namespace axis
       m_pmapKeyPressed           = NULL;
       m_puserstrcontext = NULL;
 
-      m_pbasesystem->m_basesessionptra.add_unique(this);
+      m_paxissystem->m_basesessionptra.add_unique(this);
 
       m_puserschema = &m_schemasimple;
 
@@ -72,7 +72,7 @@ namespace axis
    session::~session()
    {
 
-      m_pbasesystem->m_basesessionptra.remove(this);
+      m_paxissystem->m_basesessionptra.remove(this);
 
       POSITION pos = m_mapApplication.get_start_position();
 

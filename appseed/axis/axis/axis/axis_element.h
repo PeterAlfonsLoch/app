@@ -39,7 +39,7 @@ public:
 
    inline allocatorsp allocer();
 
-   inline ::axis::application * get_app() const { return m_pbaseapp; }
+   inline ::axis::application * get_app() const { return m_paxisapp; }
 
    virtual void set_app(sp(::axis::application) papp);
 

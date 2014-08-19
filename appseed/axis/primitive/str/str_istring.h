@@ -6,7 +6,7 @@ class CLASS_DECL_AXIS istring
 protected:
 
 
-   sp(::axis::application)  m_pbaseapp;
+   sp(::axis::application)  m_paxisapp;
    string               m_str;
    string               m_strTemplate;
 
