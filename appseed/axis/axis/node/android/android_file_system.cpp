@@ -1171,7 +1171,7 @@ namespace android
 
       System.dir().mk(Application.dir_name(name), papp);
 
-      ::file::buffer_sp fileOut = sess(papp).file_get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
+      ::file::buffer_sp fileOut = Sess(papp).file_get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
       if(fileOut.is_null())
          throw ::file::exception(papp, -1, ::file::exception::none, name);

@@ -1267,7 +1267,7 @@ d.unlock();
          if(m_pui != NULL && m_pui->m_paxisapp->m_paxissession != NULL && m_pui->m_paxisapp->m_paxissession != m_paxisapp->m_paxissession)
          {
 
-            sess(m_pui->m_paxisapp->m_paxissession).m_ptCursor = pmouse->m_pt;
+            Sess(m_pui->m_paxisapp->m_paxissession).m_ptCursor = pmouse->m_pt;
 
          }
 

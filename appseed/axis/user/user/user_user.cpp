@@ -484,11 +484,11 @@ retry_license:
       }
       else if(Application.m_paxissession != NULL)
       {
-         return sess(get_app()).user()->get_keyboard_focus();
+         return Sess(get_app()).user()->get_keyboard_focus();
       }
       else if(Application.m_paxissystem != NULL)
       {
-         return sess(get_app()).user()->get_keyboard_focus();
+         return Sess(get_app()).user()->get_keyboard_focus();
       }
       else
       {

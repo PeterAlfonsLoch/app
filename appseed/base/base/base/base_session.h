@@ -8,7 +8,6 @@ namespace base
    class CLASS_DECL_BASE session:
       virtual public ::axis::session,
       virtual public ::axis::application,
-      virtual public ::base::session_interface,
       virtual public ::user::schema
    {
    public:

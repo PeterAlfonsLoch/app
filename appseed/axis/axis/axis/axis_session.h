@@ -195,7 +195,7 @@ namespace axis
 
 
 
-inline ::axis::session & sess(::axis::application * papp);
+
 
 
 

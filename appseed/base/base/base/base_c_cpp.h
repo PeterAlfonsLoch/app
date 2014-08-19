@@ -516,7 +516,6 @@ CLASS_DECL_BASE bool __node_pos_term();
 #include "base_application.h"
 
 
-#include "base_session_interface.h"
 #include "base_session.h"
 
 #include "base/net/net_url_departament.h"
