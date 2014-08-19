@@ -369,7 +369,7 @@ typedef smart_pointer < thread_impl > thread_impl_sp;
 
 #undef CaSys
 #undef Sys
-#define CaSys(pca) (*pca->m_pbaseapp->m_pbasesystem)
+#define CaSys(pca) (*pca->m_paxisapp->m_pbasesystem)
 #define Sys(pbaseapp) (*pbaseapp->m_pbasesystem)
 #define threadSystem (Sys(get_thread_app()))
 
@@ -381,11 +381,11 @@ typedef smart_pointer < thread_impl > thread_impl_sp;
 
 #undef App
 #undef Application
-#define App(paxisapp) (*paxisapp->m_pbaseapp)
-#define Application (App(m_paxisapp->m_pbaseapp))
+#define App(paxisapp) (*paxisapp->m_pbasesapp)
+#define Application (App(m_paxisapp->m_pbasesapp))
 
 #define AppUser(pbaseapp) (*pbaseapp->m_pbasesession->fontopus()->get_user())
-#define ApplicationUser (AppUser(m_paxisapp->m_pbaseapp))
+#define ApplicationUser (AppUser(m_paxisapp->m_pbasesapp))
 
 
 

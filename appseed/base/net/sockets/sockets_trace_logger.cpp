@@ -12,11 +12,11 @@ namespace sockets
 
       if (sock)
       {
-         Sys(phandler->m_pbaseapp).log().trace("fd %d :: %s: %d %s (%s)\n", sock->GetSocket(), strUser.c_str(), iError, strSystem.c_str(), strLevel.c_str());
+         Sys(phandler->m_paxisapp).log().trace("fd %d :: %s: %d %s (%s)\n", sock->GetSocket(), strUser.c_str(), iError, strSystem.c_str(), strLevel.c_str());
       }
       else
       {
-         Sys(phandler->m_pbaseapp).log().trace("%s: %d %s (%s)\n", strUser.c_str(), iError, strSystem.c_str(), strLevel.c_str());
+         Sys(phandler->m_paxisapp).log().trace("%s: %d %s (%s)\n", strUser.c_str(), iError, strSystem.c_str(), strLevel.c_str());
       }
 
    }

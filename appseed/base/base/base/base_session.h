@@ -64,7 +64,7 @@ namespace base
 
 
       session(sp(::axis::application) papp);
-      virtual ~Session;
+      virtual ~session();
 
       inline ::userpresence::userpresence & userpresence() { return *m_puserpresence; }
       inline sp(::fontopus::fontopus)           fontopus()     { return m_pfontopus; }

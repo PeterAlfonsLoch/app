@@ -397,7 +397,7 @@ inline void __cdecl operator delete(void * p, void * palloc)
 //inline ::base::session & root::Session
 //{
 //
-//   return *m_pbaseapp->m_pbasesession;
+//   return *m_paxisapp->m_pbasesession;
 //
 //}
 
@@ -405,7 +405,7 @@ inline void __cdecl operator delete(void * p, void * palloc)
 //inline ::core::platform & root::platform()
 //{
 //
-//   return *m_pbaseapp->m_pcoreplatform;
+//   return *m_paxisapp->m_pcoreplatform;
 //
 //}
 //

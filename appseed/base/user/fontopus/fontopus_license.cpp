@@ -34,7 +34,7 @@ namespace fontopus
 
       bool bLicensed = false;
 
-      //if(m_pbaseapp != NULL && m_pbaseapp->m_pbasesession != NULL)
+      //if(m_paxisapp != NULL && m_paxisapp->m_pbasesession != NULL)
       //{
         // bLicensed = Session.m_pfontopus->check_license(pszId, bInteractive);
       //}

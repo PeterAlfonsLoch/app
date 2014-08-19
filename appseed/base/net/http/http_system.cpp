@@ -820,7 +820,7 @@ retry:
          psession->m_phandler->add(psession);
 
          int32_t iIteration = 0;
-         ::base::live_signal keeplive;
+         ::axis::live_signal keeplive;
 
          if(papp != NULL)
          {
@@ -1338,7 +1338,7 @@ retry:
       handler.add(psocket);
 
       int32_t iIteration = 0;
-      ::base::live_signal keeplive;
+      ::axis::live_signal keeplive;
 
       if((bool)set["noloop"])
          return psocket;

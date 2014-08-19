@@ -69,7 +69,7 @@ namespace axis
 
    }
 
-   session::~Session
+   session::~session()
    {
 
       m_paxissystem->m_basesessionptra.remove(this);

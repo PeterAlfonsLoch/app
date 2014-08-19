@@ -739,18 +739,6 @@ string get_file_md5_by_read(const char * path)
 }
 
 
-string get_file_md5(const char * path)
-{
-
-   string strMd5 = get_file_md5_by_map(path);
-
-   if(strMd5.has_char())
-      return strMd5;
-
-   return get_file_md5_by_read(path);
-
-}
-
 
 
 

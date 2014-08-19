@@ -54,19 +54,19 @@ namespace base
 
 #endif
 
-      if(m_pbaseapp == NULL)
+      if(m_paxisapp == NULL)
       {
 
-         m_pbaseapp              = this;
+         m_paxisapp              = this;
 
       }
 
-      if(m_pbaseapp != NULL)
+      if(m_paxisapp != NULL)
       {
 
-         m_pbasesystem           = m_pbaseapp->m_pbasesystem;
+         m_pbasesystem           = m_paxisapp->m_pbasesystem;
 
-         if(m_pbaseapp->m_pbasesession == NULL && m_pbasesystem != NULL)
+         if(m_paxisapp->m_pbasesession == NULL && m_pbasesystem != NULL)
          {
 
             m_pbasesession       = m_pbasesystem->m_pbasesession;
@@ -75,13 +75,13 @@ namespace base
          else
          {
 
-            m_pbasesession       = m_pbaseapp->m_pbasesession;
+            m_pbasesession       = m_paxisapp->m_pbasesession;
 
          }
 
 #ifdef WINDOWS
 
-         m_hinstance             = m_pbaseapp->m_hinstance;
+         m_hinstance             = m_paxisapp->m_hinstance;
 
 #endif
 
@@ -2502,15 +2502,15 @@ namespace base
       {
          if(guideline()->m_varTopicQuery.propset().has_property("save_processing"))
          {
-            Session.savings().save(::base::resource_processing);
+            Session.savings().save(::axis::resource_processing);
          }
          if(guideline()->m_varTopicQuery.propset().has_property("save_blur_back"))
          {
-            Session.savings().save(::base::resource_blur_background);
+            Session.savings().save(::axis::resource_blur_background);
          }
          if(guideline()->m_varTopicQuery.propset().has_property("save_transparent_back"))
          {
-            Session.savings().save(::base::resource_translucent_background);
+            Session.savings().save(::axis::resource_translucent_background);
          }
       }
 

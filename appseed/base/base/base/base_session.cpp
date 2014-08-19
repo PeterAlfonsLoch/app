@@ -12,7 +12,7 @@ namespace base
       ::axis::session(papp)
    {
 
-      m_pbaseapp        = dynamic_cast < ::base::application * > (this);
+      m_paxisapp        = dynamic_cast < ::base::application * > (this);
 
       m_pbasesession    = this;
 
@@ -29,7 +29,7 @@ namespace base
       if(m_hinstance == NULL)
       {
 
-         m_hinstance = m_pbaseapp->m_hinstance;
+         m_hinstance = m_paxisapp->m_hinstance;
 
       }
 
@@ -96,7 +96,7 @@ namespace base
 
    }
 
-   session::~Session
+   session::~session()
    {
 
       m_pbasesystem->m_basesessionptra.remove(this);

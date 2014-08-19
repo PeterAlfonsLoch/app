@@ -444,7 +444,7 @@ RetryHost:
 
          string strIndexMd5 = Application.http().get(strUrl, set);
          if(strIndexMd5.length() != 32
-            || stricmp_dup(get_file_md5(strIndexPath), strIndexMd5) != 0)
+            || stricmp_dup(System.crypto().md5(strIndexPath), strIndexMd5) != 0)
          {
             System.install().trace().rich_trace("Invalid file list!");
             System.install().trace().rich_trace("Going to retry host...");
@@ -964,7 +964,7 @@ RetryHost:
 
          if(file_exists_dup(strStageInplace)
          && (iLen != -1) && file_length_dup(strStageInplace) == iLen
-         && strMd5.has_char() && stricmp_dup(get_file_md5(strStageInplace), strMd5) == 0)
+         && strMd5.has_char() && stricmp_dup(System.crypto().md5(strStageInplace), strMd5) == 0)
          {
 
             bDownload = false;
@@ -980,7 +980,7 @@ RetryHost:
 
             if(file_exists_dup(strStageInplace)
             && (iLen != -1) && file_length_dup(strStageInplace) == iLen
-            && strMd5.has_char() && stricmp_dup(get_file_md5(strStageInplace), strMd5) == 0)
+            && strMd5.has_char() && stricmp_dup(System.crypto().md5(strStageInplace), strMd5) == 0)
                bDownload = false;
 
          }
@@ -1076,7 +1076,7 @@ RetryHost:
 
          if(file_exists_dup(strStageInplace)
          && (iLen != -1) && file_length_dup(strStageInplace) == iLen
-         && strMd5.has_char() && stricmp_dup(get_file_md5(strStageInplace), strMd5) == 0)
+         && strMd5.has_char() && stricmp_dup(System.crypto().md5(strStageInplace), strMd5) == 0)
          {
 
             bDownload = false;
@@ -1093,7 +1093,7 @@ RetryHost:
 
             if(file_exists_dup(strStageInplace)
             && (iLen != -1) && file_length_dup(strStageInplace) == iLen
-            && strMd5.has_char() && stricmp_dup(get_file_md5(strStageInplace), strMd5) == 0)
+            && strMd5.has_char() && stricmp_dup(System.crypto().md5(strStageInplace), strMd5) == 0)
                bDownload = false;
 
          }
@@ -1192,7 +1192,7 @@ RetryHost:
          {
             if(iLength != -1 && iLength == file_length_dup((dir2 + file2)))
             {
-               if(pszMd5 != NULL && strlen_dup(pszMd5) > 0 && stricmp_dup(get_file_md5((dir2 + file2)), pszMd5) == 0)
+               if(pszMd5 != NULL && strlen_dup(pszMd5) > 0 && stricmp_dup(System.crypto().md5((dir2 + file2)), pszMd5) == 0)
                {
                   return true;
                }
@@ -1331,7 +1331,7 @@ RetryHost:
          {
             if(iLength != -1 && iLength == file_length_dup(inplace))
             {
-               if(pszMd5 != NULL && strlen_dup(pszMd5) > 0 && stricmp_dup(get_file_md5(inplace), pszMd5) == 0)
+               if(pszMd5 != NULL && strlen_dup(pszMd5) > 0 && stricmp_dup(System.crypto().md5(inplace), pszMd5) == 0)
                {
 
                   System.install().trace().trace_add(unitext(" up-to-date c"));
@@ -1360,7 +1360,7 @@ RetryHost:
 
          // then first try to download and apply patch
 
-         string strOldMd5 = get_file_md5(inplace);
+         string strOldMd5 = System.crypto().md5(inplace);
 
          string strNewMd5 = pszMd5;
 
@@ -1475,7 +1475,7 @@ RetryHost:
                else
                {
                   string strMd5;
-                  strMd5 = get_file_md5((dir3 + file2));
+                  strMd5 = System.crypto().md5((dir3 + file2));
                   bOk = stricmp_dup(strMd5, pszMd5) == 0;
                   //System.install().trace().rich_trace("Patch MD5 Hash Verification");
                   /*sprintf(sz, "correct MD5 Hash : %s", pszMd5);
@@ -1582,7 +1582,7 @@ RetryHost:
                bOk = iLength == -1 || iLength == file_length_dup(inplace);
                if(bOk)
                {
-                  bOk = pszMd5 == NULL || strlen_dup(pszMd5) == 0 || stricmp_dup(get_file_md5(inplace), pszMd5) == 0;
+                  bOk = pszMd5 == NULL || strlen_dup(pszMd5) == 0 || stricmp_dup(System.crypto().md5(inplace), pszMd5) == 0;
                   if(bOk)
                   {
                      break;
