@@ -383,10 +383,6 @@ namespace xml
 
 
 
-#define Sess(paxisapp) (*paxisapp->m_paxissession)
-#define Session (Sess(m_paxisapp))
-#define Plat(paxisapp) (*paxisapp->m_pcoreplatform)
-#define Platform (Plat(m_paxisapp))
 
 
 

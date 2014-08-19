@@ -346,13 +346,13 @@ namespace sockets
          socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
          while(ppair != NULL)
          {
-            if(ppair->m_element2 != NULL)
+            if(ppair->second != NULL)
             {
-               //TRACE("tmout sckt(%d):\"%s\"", ppair->m_element1, ppair->m_element2->oprop("meta_info").get_string());
+               //TRACE("tmout sckt(%d):\"%s\"", ppair->first, ppair->second->oprop("meta_info").get_string());
 
-               SOCKET s = ppair->m_element1;
+               SOCKET s = ppair->first;
 
-               sp(class socket) psocket = ppair->m_element2;
+               sp(class socket) psocket = ppair->second;
 
                TRACE("tmout sckt(%d):remote_address=\"%s\""          , s, psocket->GetRemoteAddress().get_display_number().c_str());
 //               TRACE("tmout sckt(%d):remote_canonical_name=\"%s\""   , s, psocket->GetRemoteAddress().get_canonical_name());
@@ -971,7 +971,7 @@ namespace sockets
       socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
       while(ppair != NULL)
       {
-         if (p0 == ppair->m_element2)
+         if (p0 == ppair->second)
             return true;
          ppair = m_sockets.PGetNextAssoc(ppair);
       }
@@ -1155,7 +1155,7 @@ namespace sockets
       socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
       while(ppair != NULL)
       {
-         pool_socket *pools = dynamic_cast<pool_socket *>(ppair->m_element2.m_p);
+         pool_socket *pools = dynamic_cast<pool_socket *>(ppair->second.m_p);
          if (pools)
          {
             if (pools -> GetSocketType() == type &&
@@ -1163,7 +1163,7 @@ namespace sockets
    // %!             pools -> GetClientRemoteAddress() &&
                 pools -> GetClientRemoteAddress() == ad)
             {
-               m_sockets.remove_key(ppair->m_element1);
+               m_sockets.remove_key(ppair->first);
                pools -> SetRetain(); // avoid close in socket destructor
                return pools; // Caller is responsible that this socket is deleted
             }
@@ -1198,10 +1198,10 @@ namespace sockets
       socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
       while(ppair != NULL)
       {
-         if(ppair->m_element2 == p)
+         if(ppair->second == p)
          {
             log(p, "remove", -1, "socket destructor called while still in use", ::axis::log::level_warning);
-            m_sockets.remove_key(ppair->m_element1);
+            m_sockets.remove_key(ppair->first);
             return;
          }
          ppair = m_sockets.PGetNextAssoc(ppair);
@@ -1209,10 +1209,10 @@ namespace sockets
       socket_map::pair * ppair2 = m_add.PGetFirstAssoc();
       while(ppair2 != NULL)
       {
-         if (ppair2->m_element2 == p)
+         if (ppair2->second == p)
          {
             log(p, "remove", -2, "socket destructor called while still in use", ::axis::log::level_warning);
-            m_add.remove_key(ppair2->m_element1);
+            m_add.remove_key(ppair2->first);
             return;
          }
          ppair2 = m_add.PGetNextAssoc(ppair2);
@@ -1349,7 +1349,7 @@ namespace sockets
          socket_bool::pair * ppair = m_trigger_dst[id].PGetFirstAssoc();
          while(ppair != NULL);
          {
-            sp(socket) dst = ppair->m_element1;
+            sp(socket) dst = ppair->first;
             if (Valid(dst))
             {
                dst->OnTrigger(id, data);

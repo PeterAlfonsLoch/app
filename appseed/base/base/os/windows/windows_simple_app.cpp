@@ -1,12 +1,15 @@
 #include "framework.h"
 
+
 void dappy(const char * psz);
+
 
 namespace base
 {
 
 
    simple_app::simple_app():
+      ::axis::system(this),
       ::base::system(this)
    {
 

@@ -77,28 +77,13 @@ namespace base
 {
 
 
-   class ::id system::idEmpty;
-   class ::id_space * system::s_pidspace = NULL;
-
 
    system::system(sp(::axis::application) papp):
+      axis::system(this),
       m_urldepartament(this),
-      //m_mutexDelete(this),
-      m_httpsystem(this),
-      //m_mutex(this),
-#ifndef METROWIN
-      //m_processsection(this),
-#endif
-      //m_visual(this),
-      m_libraryDraw2d(this)
+      m_httpsystem(this)
    {
       
-//      if(::get_thread() == NULL)
-      {
-         
-//         ::set_thread(this);
-         
-      }
       
       m_ptwf = NULL;
 

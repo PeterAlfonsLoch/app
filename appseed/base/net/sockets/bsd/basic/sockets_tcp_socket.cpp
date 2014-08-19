@@ -1225,7 +1225,7 @@ void ssl_sigpipe_handle( int x );
          }
          else
          {
-            m_spsslclientcontext = clientcontextmap.PLookup(context)->m_element2;
+            m_spsslclientcontext = clientcontextmap.PLookup(context)->second;
          }
       }
       if(m_spsslclientcontext.is_set())

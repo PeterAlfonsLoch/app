@@ -386,7 +386,7 @@ inline void __cdecl operator delete(void * p, void * palloc)
 
 
 
-//inline ::base::session & sess(::axis::application * papp)
+//inline ::base::session & Sess(::axis::application * papp)
 //{
 //
 //   return *papp->m_pbasesession;

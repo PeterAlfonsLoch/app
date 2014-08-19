@@ -1555,9 +1555,6 @@
     <ClCompile Include="user\fontopus\fontopus_login.cpp">
       <Filter>Source Files\user\fontopus</Filter>
     </ClCompile>
-    <ClCompile Include="base\base\base.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
     <ClCompile Include="base\base\base_application.cpp">
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
@@ -1732,9 +1729,6 @@
     <ClCompile Include="base\os\windows\windows.cpp">
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\windows\windows_base_file.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\windows\windows_base_registry.cpp">
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
@@ -1813,19 +1807,10 @@
     <ClCompile Include="base\os\cross\metrowin\cross_metrowin_user.cpp">
       <Filter>Source Files\base\os\cross\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="base\node\windows\windows_application.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\windows\windows_copydesk.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\windows\windows_dir.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="base\node\windows\windows_factory_exchange.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\windows\windows_file_find.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="base\node\windows\windows_file_set.cpp">
@@ -1834,28 +1819,10 @@
     <ClCompile Include="base\node\windows\windows_file_system.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="base\node\windows\windows_folder_watch.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\windows\windows_ip_enum.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="base\node\windows\windows_os.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\windows\windows_port_forward.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\windows\windows_print_job.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\windows\windows_registry.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\windows\windows_thread.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\windows\windows_trace.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="base\os\windows\windows_library.cpp">
@@ -1863,9 +1830,6 @@
     </ClCompile>
     <ClCompile Include="base\os\windows\windows_file_watcher.cpp">
       <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\windows\windows_uac_tools.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="base\node\windows\win1.cpp">
       <Filter>Source Files\base\node\windows</Filter>

@@ -52,7 +52,7 @@ namespace base
       //bool                                                     m_bZipIsDir;
       //map < ::user::e_key,::user::e_key,bool,bool > *          m_pmapKeyPressed;
       //sp(::base::savings)                                      m_psavings;
-      //bool                                                     m_bIfs;
+      bool                                                     m_bIfs;
       //sp(::user::user)                                         m_spuser;
       sp(class ::fontopus::license)                   m_splicense;
 
@@ -217,7 +217,7 @@ namespace base
 
 
 
-//inline ::base::session & sess(::axis::application * papp);
+//inline ::base::session & Sess(::axis::application * papp);
 
 
 

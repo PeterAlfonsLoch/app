@@ -385,7 +385,7 @@ namespace file
                sl.lock();
             }
 
-            if (!Sys(m_pbaseapp).http().m_straDownloading.contains(strPath) && sess(m_pbaseapp).m_http.exists(strPath, &varQuery, set))
+            if (!Sys(m_pbaseapp).http().m_straDownloading.contains(strPath) && Sess(m_pbaseapp).m_http.exists(strPath, &varQuery, set))
             {
 
                System.http().m_straDownloading.add(strPath);

@@ -389,10 +389,19 @@ typedef smart_pointer < thread_impl > thread_impl_sp;
 #define Sys(pbaseapp) (*pbaseapp->m_pbasesystem)
 #define threadSystem (Sys(get_thread_app()))
 
+#undef Sess
+#define Sess(paxisapp) (*paxisapp->m_pbasession)
+//#define Session (Sess(m_paxisapp))
+//#define Plat(paxisapp) (*paxisapp->m_pcoreplatform)
+//#define Platform (Plat(m_paxisapp))
 
-//#undef App
-//#define App(pbaseapp) (*pbaseapp)
-//#define Application (App(m_pbaseapp))
+
+#undef Application
+#define Application (App(m_paxisapp->m_pbaseapp))
+
+#define AppUser(pbaseapp) (*pbaseapp->m_pbasesession->fontopus()->get_user())
+#define ApplicationUser (AppUser(m_paxisapp->m_pbaseapp))
+
 
 
 // return - result - if not ok
@@ -540,50 +549,9 @@ CLASS_DECL_BASE bool __node_pos_term();
 
 
 
-#define AppUser(pbaseapp) (*pbaseapp->m_pbasesession->fontopus()->get_user())
-#define ApplicationUser (AppUser(m_pbaseapp))
-
-
-#undef Application
-#define Application (App(m_pbaseapp))
 
 
 #include "base/net/http/http.h"
-//#include "base_microtimer.h"
-
-
-
-
-
-
-
-
-//#include "base/vms/vms.h"
-
-
-//#include "base_cpu_architecture.h"
-
-
-//#include "base_libc.h"
-
-
-//#include "base_number.h"
-
-
-//#include "base_debug.h"
-//
-//
-//#include "base_printf.h"
-//#include "base_sprintf.h"
-
-
-
-//#include "base_math.h"
-
-
-
-
-
 
 
 #ifdef METROWIN
@@ -593,172 +561,25 @@ CLASS_DECL_BASE bool __node_pos_term();
 #else
 
 #ifndef BSD_STYLE_SOCKETS
+
 #define BSD_STYLE_SOCKETS 1
-#endif
-   //#include "base_small_ipc_channel.h"
 
 #endif
 
-
-
-//#include "base_file_watcher.h"
-//#include "base_file_watcher_impl.h"
+#endif
 
 
 #include "base_os.h"
 
 
-//#include "base/multithreading/multithreading_data.h"
-
-
-//#include "base_simple_shell_launcher.h"
-
-
-//#include "base_file_watcher_thread.h"
-//#include "base_file_watcher_listener_thread.h"
-//#include "base_async.h"
-
-
-   //#include "base/hotplugin/hotplugin.h"
-
-
-
-
-//#include "base_message_loop.h"
-
-//#include "base_url.h"
-
-//#include "base_international.h"
-
-//#include "base_static_start.h"
-
-
-//
-//#define return_(y, x) {y = x; return;}
-//
-//
-//   extern "C"
-//   {
-//
-//
-//      int32_t _c_lock_is_active(const char * pszName);
-//      int32_t _c_lock(const char * pszName, void ** pdata);
-//      int32_t _c_unlock(void ** pdata);
-//
-//
-//   }
-//
-//
-//   CLASS_DECL_BASE string _ca_get_file_name(const char * psz, bool bCreate = false, int32_t * pfd = NULL);
-//
-//   CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
-//
-
 #include "base_simple_app.h"
-
-
-
-
-/*#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
-
-
-template < class T >
-bool ::file::system::output(sp(::axis::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, const char *), const char * lpszSource)
-{
-
-   App(papp).dir().mk(System.dir().name(pszOutput));
-
-   ::file::binary_buffer_sp fileOut = sess(papp).file().get_file(pszOutput, ::file::mode_create | ::file::type_binary | ::file::mode_write);
-
-   if(fileOut.is_null())
-      return false;
-
-   ::file::output_stream ostream(fileOut);
-
-   return (p->*lpfnOuput)(ostream, lpszSource);
-
-}
-
-
-template < class T >
-bool ::file::system::output(sp(::axis::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, ::file::input_stream &), const char * lpszInput)
-{
-
-   App(papp).dir().mk(System.dir().name(pszOutput));
-
-   string strDownloading = pszOutput;
-
-   strDownloading += ".downloading";
-
-   ::file::binary_buffer_sp fileOut = sess(papp).file().get_file(strDownloading, ::file::mode_create | ::file::type_binary | ::file::mode_write);
-
-   if(fileOut.is_null())
-      return false;
-
-   ::file::binary_buffer_sp fileIn = sess(papp).file().get_file(lpszInput, ::file::type_binary | ::file::mode_read);
-
-   if(fileIn.is_null())
-      return false;
-
-   {
-
-      ::file::output_stream ostream(fileOut);
-
-      ::file::input_stream istream(fileIn);
-
-      if(!(p->*lpfnOuput)(ostream, istream))
-         return false;
-
-   }
-
-   try
-   {
-
-      fileOut->close();
-
-   }
-   catch(...)
-   {
-
-   }
-
-
-   try
-   {
-
-      fileIn->close();
-
-   }
-   catch(...)
-   {
-
-   }
-
-   if(::rename(strDownloading, pszOutput) != 0)
-   {
-      del(strDownloading);
-      return false;
-   }
-
-   return true;
-
-}
-
-#endif // defined LINUX
-
-
-
-*/
-
-
-
-
-
 
 
 #include "app/appseed/base/base/node/node.h"
 
 
 
-//#include "base/user/simple/simple.h"
-//#include "base/user/simple_ui/simple_ui.h"
+
+
+
+

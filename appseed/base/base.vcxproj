@@ -3069,23 +3069,13 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     </ClCompile>
     <ClCompile Include="base\node\node.cpp" />
     <ClCompile Include="base\node\windows\win1.cpp" />
-    <ClCompile Include="base\node\windows\windows_application.cpp" />
-    <ClCompile Include="base\node\windows\windows_copydesk.cpp" />
     <ClCompile Include="base\node\windows\windows_crypto.cpp" />
     <ClCompile Include="base\node\windows\windows_dir.cpp" />
     <ClCompile Include="base\node\windows\windows_factory_exchange.cpp" />
-    <ClCompile Include="base\node\windows\windows_file_find.cpp" />
     <ClCompile Include="base\node\windows\windows_file_set.cpp" />
     <ClCompile Include="base\node\windows\windows_file_system.cpp" />
-    <ClCompile Include="base\node\windows\windows_folder_watch.cpp" />
     <ClCompile Include="base\node\windows\windows_ip_enum.cpp" />
-    <ClCompile Include="base\node\windows\windows_os.cpp" />
     <ClCompile Include="base\node\windows\windows_port_forward.cpp" />
-    <ClCompile Include="base\node\windows\windows_print_job.cpp" />
-    <ClCompile Include="base\node\windows\windows_registry.cpp" />
-    <ClCompile Include="base\node\windows\windows_thread.cpp" />
-    <ClCompile Include="base\node\windows\windows_trace.cpp" />
-    <ClCompile Include="base\node\windows\windows_uac_tools.cpp" />
     <ClCompile Include="base\os\ansios\ansios_cross_win.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
@@ -3405,7 +3395,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="programming\javascript\javascript_tinyjs_functions.h" />
     <ClCompile Include="base\os\windows\win2.cpp" />
     <ClCompile Include="base\os\windows\windows.cpp" />
-    <ClCompile Include="base\os\windows\windows_base_file.cpp" />
     <ClCompile Include="base\os\windows\windows_base_registry.cpp" />
     <ClCompile Include="base\os\windows\windows_base_crypto.cpp" />
     <ClCompile Include="base\os\windows\windows_debug.cpp" />
@@ -3476,7 +3465,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\userpresence\userpresence_user_presence.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="base\base\base.cpp" />
     <ClCompile Include="base\base\base_application.cpp" />
     <ClCompile Include="base\base\base_session.cpp" />
     <ClCompile Include="base\base\base_system.cpp" />

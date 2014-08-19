@@ -407,7 +407,7 @@ namespace file
 
             property_set set(get_app());
 
-            string str = sess(papp).http().get(lpcsz, set);
+            string str = Sess(papp).http().get(lpcsz, set);
 
             if(pstraPath != NULL)
             {
@@ -497,7 +497,7 @@ namespace file
 
             property_set set(get_app());
 
-            bIs = sess(papp).http().exists(lpcszPath, set);
+            bIs = Sess(papp).http().exists(lpcszPath, set);
 
             return true;
 
@@ -584,7 +584,7 @@ namespace file
 
             property_set set(get_app());
 
-            return sess(papp).http().exists(strPath, set);
+            return Sess(papp).http().exists(strPath, set);
 
          }
 
@@ -685,14 +685,14 @@ namespace file
          if(ppair == NULL)
             return false;
 
-         if(::get_tick_count() > ppair->m_element2.m_dwLastCheck + m_dwTimeOut)
+         if(::get_tick_count() > ppair->second.m_dwLastCheck + m_dwTimeOut)
          {
             return false;
          }
 
-         bIsDir = ppair->m_element2.m_bIsDir;
+         bIsDir = ppair->second.m_bIsDir;
 
-         dwLastError = ppair->m_element2.m_dwError;
+         dwLastError = ppair->second.m_dwError;
 
          return true;
 
@@ -716,14 +716,14 @@ namespace file
          if(ppair == NULL)
             return false;
 
-         if(::get_tick_count() > ppair->m_element2.m_dwLastCheck + m_dwTimeOut)
+         if(::get_tick_count() > ppair->second.m_dwLastCheck + m_dwTimeOut)
          {
             return false;
          }
 
-         bIsDir = ppair->m_element2.m_bIsDir;
+         bIsDir = ppair->second.m_bIsDir;
 
-         dwLastError = ppair->m_element2.m_dwError;
+         dwLastError = ppair->second.m_dwError;
 
          return true;
 
@@ -954,7 +954,7 @@ namespace file
 
          string strDir = matter(papp, str, true);
 
-         if(sess(papp).m_bMatterFromHttpCache)
+         if(Sess(papp).m_bMatterFromHttpCache)
          {
 
             property_set set(get_app());
@@ -987,7 +987,7 @@ namespace file
             {
                
                // todo: keep cache timeout information;
-               strLs = sess(papp).http().get("http://" + get_api_cc() + "/api/matter/list_dir?dir=" + System.url().url_encode(strDir),set);
+               strLs = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/list_dir?dir=" + System.url().url_encode(strDir),set);
                
                Application.file().put_contents(strFile, strLs);
                
@@ -1030,7 +1030,7 @@ namespace file
       string system::matter(sp(::axis::application) papp, const stringa & stra, bool bDir, const char * pszRoot, const char * pszApp)
       {
 
-         ::user::str_context * pcontext = sess(papp).str_context();
+         ::user::str_context * pcontext = Sess(papp).str_context();
 
          ::index j;
 
@@ -1062,7 +1062,7 @@ namespace file
             if (ca <= 0)
                return "";
 
-            ::user::str_context * pcontext = sess(papp).str_context();
+            ::user::str_context * pcontext = Sess(papp).str_context();
 
             string strFile;
 
@@ -1144,11 +1144,11 @@ namespace file
 
                   if (bDir)
                   {
-                     strPath = sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                     strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
                   }
                   else
                   {
-                     strPath = sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")),set);
+                     strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")),set);
                   }
 
                   if (strPath.has_char())
@@ -1338,11 +1338,11 @@ namespace file
 
                if(bDir)
                {
-                  strPath = sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                  strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
                }
                else
                {
-                  strPath = sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")),set);
+                  strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")),set);
                }
 
                if(strPath.has_char())
@@ -1517,7 +1517,7 @@ else
       string system::matter(sp(::axis::application) papp, const string & str, const string & str2, bool bDir, const char * pszRoot, const char * pszApp)
       {
 
-         ::user::str_context * pcontext = sess(papp).str_context();
+         ::user::str_context * pcontext = Sess(papp).str_context();
 
          string strLocale;
 
@@ -1609,11 +1609,11 @@ else
 
                if (bDir)
                {
-                  strPath = sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                  strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
                }
                else
                {
-                  strPath = sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                  strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
                }
 
                strPath.trim();
@@ -2474,7 +2474,7 @@ ret:
 
             strCandidate = path(stra[i], pszTopic);
 
-            if(sess(papp).file().exists(strCandidate))
+            if(Sess(papp).file().exists(strCandidate))
             {
                return strCandidate;
             }

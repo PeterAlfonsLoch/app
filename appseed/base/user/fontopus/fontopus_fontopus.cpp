@@ -198,11 +198,11 @@ namespace fontopus
          puser->m_strPathPrefix = Application.dir().default_os_user_path_prefix();
       }
       puser->m_strPath = Application.dir().default_userfolder(puser->m_strPathPrefix, puser->m_strLogin);
-      sess(m_pbaseapp).dir().mk(puser->m_strPath);
+      Sess(m_pbaseapp).dir().mk(puser->m_strPath);
       puser->m_strDataPath = Application.dir().default_userdata(puser->m_strPathPrefix, puser->m_strLogin);
-      sess(m_pbaseapp).dir().mk(puser->m_strDataPath);
+      Sess(m_pbaseapp).dir().mk(puser->m_strDataPath);
       puser->m_strAppDataPath = Application.dir().default_userappdata(puser->m_strPathPrefix, puser->m_strLogin);
-      sess(m_pbaseapp).dir().mk(puser->m_strAppDataPath);
+      Sess(m_pbaseapp).dir().mk(puser->m_strAppDataPath);
       puser->create_ifs();
       return puser;
    }

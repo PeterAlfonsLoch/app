@@ -707,14 +707,14 @@ namespace crypto
    {
       primitive::memory memoryEncrypt;
       encrypt(memoryEncrypt, pszData, pszSalt);
-      sess(papp).file().put_contents(varFile, memoryEncrypt);
+      Sess(papp).file().put_contents(varFile, memoryEncrypt);
       return true;
    }
 
    bool crypto::file_get(var varFile, string & str, const char * pszSalt, sp(::axis::application) papp)
    {
       primitive::memory memoryEncrypt;
-      sess(papp).file().as_memory(varFile, memoryEncrypt);
+      Sess(papp).file().as_memory(varFile, memoryEncrypt);
       decrypt(str, memoryEncrypt, pszSalt);
       return true;
    }

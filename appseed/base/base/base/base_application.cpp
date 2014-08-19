@@ -40,25 +40,9 @@ void dappy(const char * psz)
 
 namespace base
 {
-   application_signal_details::application_signal_details(sp(::axis::application) papp,class ::signal * psignal,e_application_signal esignal):
-      element(papp),
-      ::signal_details(psignal)
-   {
-
-         m_esignal = esignal;
-         m_bOk = true;
-
-      }
-
-   UINT application::APPM_LANGUAGE = WM_APP + 117;
-   WPARAM application::WPARAM_LANGUAGE_UPDATE = 1;
 
 
-   application::application():
-      m_allocer(this),
-      m_mutexMatterLocator(this),
-      m_mutexStr(this),
-      m_framea(this)
+   application::application()
    {
 
       m_peventReady = NULL;
@@ -378,7 +362,7 @@ namespace base
       }
 
       ::xml::document doc(get_app());
-      string strFilePath = System.dir().matter_from_locator(sess(this).str_context(),strLocator,strMatter);
+      string strFilePath = System.dir().matter_from_locator(Sess(this).str_context(),strLocator,strMatter);
       if(!System.file().exists(strFilePath,this))
       {
          try
@@ -3310,7 +3294,7 @@ namespace base
       string strLocale;
       string strSchema;
       TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)",pszRoot,pszRelative,pszLocale,pszStyle);
-      string strRelative = System.dir().path(System.dir().path(pszRoot,"appmatter",pszRelative),sess(this).get_locale_schema_dir(pszLocale,pszStyle)) + ".zip";
+      string strRelative = System.dir().path(System.dir().path(pszRoot,"appmatter",pszRelative),Sess(this).get_locale_schema_dir(pszLocale,pszStyle)) + ".zip";
       string strFile = System.dir().element(strRelative);
       string strUrl;
       if(_ca_is_basis())

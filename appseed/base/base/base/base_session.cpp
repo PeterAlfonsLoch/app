@@ -8,10 +8,11 @@ namespace base
 
    session::session(sp(::axis::application) papp) :
       element(papp),
-      ::thread(papp)
+      ::thread(papp),
+      ::axis::session(papp)
    {
 
-      m_pbaseapp        = this;
+      m_pbaseapp        = dynamic_cast < ::base::application * > (this);
 
       m_pbasesession    = this;
 
@@ -44,7 +45,7 @@ namespace base
       m_puiLastLButtonDown = NULL;
       m_bIfs                     = true;
 
-      m_psavings                 = canew(class ::base::savings(this));
+      m_psavings                 = canew(class ::axis::savings(this));
 
       m_bZipIsDir                = true;
 

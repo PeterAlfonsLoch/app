@@ -145,11 +145,11 @@ namespace http
 
       string_map < pac * >::pair * ppair = m_mapPac.PLookup(pszUrl);
 
-      if(ppair == NULL || (::get_tick_count() - ppair->m_element2->m_dwLastChecked) > (84 * 1000))
+      if(ppair == NULL || (::get_tick_count() - ppair->second->m_dwLastChecked) > (84 * 1000))
       {
          if(ppair != NULL)
          {
-            delete ppair->m_element2;
+            delete ppair->second;
             m_mapPac.remove_key(pszUrl);
          }
 
@@ -184,10 +184,10 @@ namespace http
             return NULL;
       }
 
-      if(ppair->m_element2->m_strAutoConfigScript.is_empty())
+      if(ppair->second->m_strAutoConfigScript.is_empty())
          return NULL;
 
-      return ppair->m_element2;
+      return ppair->second;
 
    }
 
@@ -206,11 +206,11 @@ namespace http
 
       string_map < ::http::system::proxy * >::pair * ppair = m_mapProxy.PLookup(pszUrl);
 
-      if(ppair == NULL || (::get_tick_count() - ppair->m_element2->m_dwLastChecked) > (84 * 1000))
+      if(ppair == NULL || (::get_tick_count() - ppair->second->m_dwLastChecked) > (84 * 1000))
       {
          if(ppair != NULL)
          {
-            delete ppair->m_element2;
+            delete ppair->second;
             m_mapPac.remove_key(pszUrl);
          }
 
@@ -228,7 +228,7 @@ namespace http
 
       }
 
-      return ppair->m_element2;
+      return ppair->second;
 
    }
 
@@ -825,7 +825,7 @@ retry:
          if(papp != NULL)
          {
             keeplive.keep(papp);
-            keeplive.keep(&sess(papp));
+            keeplive.keep(&Sess(papp));
             keeplive.keep(&Sys(papp));
          }
          oprop("dw").get_value().set_type(var::type_uint32);
@@ -1346,7 +1346,7 @@ retry:
       if(papp != NULL)
       {
          keeplive.keep(papp);
-         keeplive.keep(&sess(papp));
+         keeplive.keep(&Sess(papp));
          keeplive.keep(&Sys(papp));
       }
 
