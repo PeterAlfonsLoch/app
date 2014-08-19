@@ -1414,7 +1414,7 @@ namespace axis
    void system::interaction_impl::_001MessageHub(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::axis,pbase,pobj);
+      SCAST_PTR(::message::base,pbase,pobj);
 
       if(pbase != NULL)
       {

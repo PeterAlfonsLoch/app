@@ -194,7 +194,7 @@ namespace user
 
    void scroll_view::_001OnUser9654(signal_details * pobj)
    {
-      SCAST_PTR(::message::axis, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       if(pbase->m_wparam == 0)
       {
          if(pbase->m_lparam == 0)

@@ -992,7 +992,7 @@ namespace user
    }
 
 
-   LRESULT interaction_base::send(::message::axis * pbase)
+   LRESULT interaction_base::send(::message::base * pbase)
    {
 
       message_handler(pbase);
@@ -1005,7 +1005,7 @@ namespace user
    // pbase object should be allocated with new in
    // axis or derived object and will be delete after
    // handling
-   bool interaction_base::post(::message::axis * pbase)
+   bool interaction_base::post(::message::base * pbase)
    {
 
       throw interface_only_exception(get_app());
@@ -2273,7 +2273,7 @@ namespace user
    }
 
 
-   bool interaction_base::OnCommand(::message::axis * pbase)
+   bool interaction_base::OnCommand(::message::base * pbase)
    {
 
       throw interface_only_exception(get_app());
@@ -2283,7 +2283,7 @@ namespace user
    }
 
 
-   bool interaction_base::OnNotify(::message::axis * pbase)
+   bool interaction_base::OnNotify(::message::base * pbase)
    {
 
       throw interface_only_exception(get_app());
@@ -2293,7 +2293,7 @@ namespace user
    }
 
 
-   bool interaction_base::OnChildNotify(::message::axis * pbase)
+   bool interaction_base::OnChildNotify(::message::base * pbase)
    {
 
       throw interface_only_exception(get_app());

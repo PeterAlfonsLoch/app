@@ -56,7 +56,7 @@ namespace message
 
    activate::activate(sp(::axis::application) papp):
       element(papp),
-      message::axis(papp)
+      ::message::base(papp)
    {
       }
 
@@ -72,7 +72,7 @@ namespace message
 
    erase_bkgnd::erase_bkgnd(sp(::axis::application) papp):
       element(papp),
-      message::axis(papp)
+      ::message::base(papp)
    {
       }
 
@@ -83,7 +83,7 @@ namespace message
 
    key::key(sp(::axis::application) papp):
       element(papp),
-      message::axis(papp)
+      ::message::base(papp)
    {
       }
 
@@ -104,7 +104,7 @@ namespace message
 
    nc_activate::nc_activate(sp(::axis::application) papp):
       element(papp),
-      message::axis(papp)
+      ::message::base(papp)
    {
       }
 

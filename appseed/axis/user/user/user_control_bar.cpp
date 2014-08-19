@@ -281,7 +281,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-      SCAST_PTR(::message::axis, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
 
       UINT message = pbase->m_uiMessage;
 
@@ -325,7 +325,7 @@ namespace user
       if(pobj->m_bRet)
          return;
 
-      SCAST_PTR(::message::axis, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
 
       ASSERT_VALID(this);
 
@@ -379,7 +379,7 @@ namespace user
    void control_bar::_001OnHelpHitTest(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::message::axis, pbase, pobj)
+//      SCAST_PTR(::message::base, pbase, pobj)
       ASSERT_VALID(this);
 
    }
@@ -587,7 +587,7 @@ namespace user
 
    void control_bar::_001OnIdleUpdateCmdUI(signal_details * pobj)
    {
-      SCAST_PTR(::message::axis, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj)
       // handle delay hide/show
       bool bVis = (GetStyle() & WS_VISIBLE) != 0;
       UINT swpFlags = 0;
@@ -618,7 +618,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(pobj);
       // update the indicators before becoming visible
-      ::message::axis axis(get_app());
+      ::message::base axis(get_app());
       LRESULT lresult;
       axis.set(this, WM_IDLEUPDATECMDUI, TRUE, 0L, lresult);
       _001OnIdleUpdateCmdUI(&axis);
@@ -668,7 +668,7 @@ namespace user
 
    void control_bar::_001OnSizeParent(signal_details * pobj)
    {
-      SCAST_PTR(::message::axis, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj)
       __SIZEPARENTPARAMS* lpLayout = (__SIZEPARENTPARAMS*) pbase->m_lparam.m_lparam;
       uint32_t dwStyle = RecalcDelayShow(lpLayout);
 

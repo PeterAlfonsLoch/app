@@ -542,7 +542,7 @@ namespace user
 
    void impact::_001OnView(signal_details * pobj)
    {
-      SCAST_PTR(::message::axis, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj)
       if (pbase->m_wparam == 0)
       {
          ::user::document::update * pupdate = (::user::document::update *) pbase->m_lparam.m_lparam;

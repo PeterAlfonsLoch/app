@@ -541,7 +541,7 @@ namespace windows
    void interaction_impl::_001OnNcCalcSize(signal_details * pobj)
    {
 
-      SCAST_PTR(message::axis,pbase,pobj);
+      SCAST_PTR(::message::base,pbase,pobj);
 
       pbase->set_lresult(0);
 
@@ -1107,7 +1107,7 @@ namespace windows
    void interaction_impl::message_handler(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::axis,pbase,pobj);
+      SCAST_PTR(::message::base,pbase,pobj);
 
       if(pbase->m_uiMessage == WM_SIZE || pbase->m_uiMessage == WM_MOVE)
       {
@@ -1385,14 +1385,14 @@ namespace windows
    }
 
 
-   bool interaction_impl::OnCommand(::message::axis * pbase)
+   bool interaction_impl::OnCommand(::message::base * pbase)
    {
       UNREFERENCED_PARAMETER(pbase);
       return FALSE;
    }
 
 
-   bool interaction_impl::OnNotify(::message::axis * pbase)
+   bool interaction_impl::OnNotify(::message::base * pbase)
    {
 
       ASSERT(pbase != NULL);
@@ -1843,7 +1843,7 @@ namespace windows
       ASSERT(puiStop == NULL || puiStop->IsWindow());
       ASSERT(pobj != NULL);
 
-      SCAST_PTR(::message::axis,pbase,pobj);
+      SCAST_PTR(::message::base,pbase,pobj);
       // walk from the target interaction_impl up to the oswindow_Stop interaction_impl checking
       //  if any interaction_impl wants to translate this message
 
@@ -1863,7 +1863,7 @@ namespace windows
       // no special processing
    }
 
-   bool interaction_impl::ReflectMessage(oswindow oswindow_Child,::message::axis * pbase)
+   bool interaction_impl::ReflectMessage(oswindow oswindow_Child,::message::base * pbase)
    {
 
       // check if in permanent map, if it is reflect it (could be OLE control)
@@ -1879,13 +1879,13 @@ namespace windows
       return NODE_WINDOW(pwindow)->OnChildNotify(pbase);
    }
 
-   bool interaction_impl::OnChildNotify(::message::axis * pbase)
+   bool interaction_impl::OnChildNotify(::message::base * pbase)
    {
 
       return ReflectChildNotify(pbase);
    }
 
-   bool interaction_impl::ReflectChildNotify(::message::axis * pbase)
+   bool interaction_impl::ReflectChildNotify(::message::base * pbase)
    {
 
       // Note: reflected messages are send directly to interaction_impl::OnWndMsg
@@ -2417,7 +2417,7 @@ namespace windows
       if(!sl.lock())
          return;
 
-      SCAST_PTR(::message::axis,pbase,pobj);
+      SCAST_PTR(::message::base,pbase,pobj);
 
       win_update_graphics();
 
@@ -2469,7 +2469,7 @@ namespace windows
       //synch_lock ml(&user_mutex());
       ////lock lock(m_pui, 1984);
 
-      //SCAST_PTR(::message::axis, pbase, pobj);
+      //SCAST_PTR(::message::base, pbase, pobj);
 
       //PAINTSTRUCT paint;
       //memset(&paint, 0, sizeof(paint));
@@ -4711,7 +4711,7 @@ namespace windows
 
    void interaction_impl::_001OnSetCursor(signal_details * pobj)
    {
-      SCAST_PTR(::message::axis,pbase,pobj);
+      SCAST_PTR(::message::base,pbase,pobj);
       if(Session.get_cursor() != NULL && Session.get_cursor()->m_ecursor != ::visual::cursor_system)
       {
          //::SetCursor(NULL);
@@ -4857,7 +4857,7 @@ namespace windows
    void interaction_impl::_001OnGetMinMaxInfo(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::axis,pbase,pobj);
+      SCAST_PTR(::message::base,pbase,pobj);
 
    }
 

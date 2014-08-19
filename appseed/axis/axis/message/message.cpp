@@ -46,7 +46,7 @@ namespace message
    CLASS_DECL_AXIS bool is_idle_message(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::axis, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
 
       // Return FALSE if the message just dispatched should _not_
       // cause on_idle to be run.  Messages which do not usually

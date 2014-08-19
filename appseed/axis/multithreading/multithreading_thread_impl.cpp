@@ -91,7 +91,7 @@ bool thread_impl::initialize_instance()
 void thread_impl::dispatch_thread_message(signal_details * pobj)
 {
 
-   SCAST_PTR(::message::axis,pbase,pobj);
+   SCAST_PTR(::message::base,pbase,pobj);
    if(!pbase->m_bRet && pbase->m_uiMessage == WM_APP + 1984 && pbase->m_wparam == 77)
    {
       smart_pointer < ::user::message > spmessage(pbase->m_lparam);
@@ -111,7 +111,7 @@ void thread_impl::dispatch_thread_message(signal_details * pobj)
       message::e_prototype eprototype = signal.m_eprototype;
       if(eprototype == message::PrototypeNone)
       {
-         //message::axis axis(get_app());
+         //::message::base axis(get_app());
          pbase->m_psignal = psignal;
          lresult = 0;
          //axis.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
@@ -131,7 +131,7 @@ void thread_impl::pre_translate_message(signal_details * pobj)
 
    try
    {
-      SCAST_PTR(::message::axis,pbase,pobj);
+      SCAST_PTR(::message::base,pbase,pobj);
 
       //   ASSERT_VALID(this);
 
@@ -246,7 +246,7 @@ void thread_impl::pre_translate_message(signal_details * pobj)
 
 void thread_impl::process_window_procedure_exception(::exception::base*,signal_details * pobj)
 {
-   SCAST_PTR(::message::axis,pbase,pobj);
+   SCAST_PTR(::message::base,pbase,pobj);
    if(pbase->m_uiMessage == WM_CREATE)
    {
       pbase->set_lresult(-1);
@@ -270,13 +270,13 @@ namespace thread_impl_util
 
    inline bool IsEnterKey(signal_details * pobj)
    {
-      SCAST_PTR(::message::axis,pbase,pobj);
+      SCAST_PTR(::message::base,pbase,pobj);
       return pbase->m_uiMessage == WM_KEYDOWN && pbase->m_wparam == VK_RETURN;
    }
 
    inline bool IsButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(::message::axis,pbase,pobj);
+      SCAST_PTR(::message::base,pbase,pobj);
       return pbase->m_uiMessage == WM_LBUTTONUP;
    }
 
@@ -288,7 +288,7 @@ void thread_impl::process_message_filter(int32_t code,signal_details * pobj)
    if(pobj == NULL)
       return;   // not handled
 
-   SCAST_PTR(::message::axis,pbase,pobj);
+   SCAST_PTR(::message::base,pbase,pobj);
 
    sp(::user::frame_window) pTopFrameWnd;
    sp(::user::interaction) pMainWnd;
@@ -1442,7 +1442,7 @@ stop_run:
 void thread_impl::message_handler(signal_details * pobj)
 {
 
-   SCAST_PTR(::message::axis,pbase,pobj);
+   SCAST_PTR(::message::base,pbase,pobj);
 
    ::window_sp pwindow = pbase->m_pwnd->GetWindow();
 
@@ -1555,7 +1555,7 @@ bool thread_impl::pump_message()
 
          {
 
-            smart_pointer < message::axis > spbase;
+            smart_pointer < ::message::base > spbase;
 
             spbase = get_base(&msg);
 

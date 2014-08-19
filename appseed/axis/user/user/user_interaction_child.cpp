@@ -429,7 +429,7 @@ namespace user
    LRESULT interaction_child::send_message(UINT uiMessage,WPARAM wparam,lparam lparam)
    {
 
-      smart_pointer < ::message::axis > spbase;
+      smart_pointer < ::message::base > spbase;
 
       spbase = get_base(m_pui,uiMessage,wparam,lparam);
 
@@ -456,7 +456,7 @@ namespace user
    LRESULT interaction_child::send_message(XEvent * pevent)
    {
 
-      smart_pointer < ::message::axis > spbase;
+      smart_pointer < ::message::base > spbase;
 
       spbase = get_base(pevent, m_pui);
 
@@ -654,7 +654,7 @@ namespace user
 
    void interaction_child::message_handler(signal_details * pobj)
    {
-      SCAST_PTR(::message::axis,pbase,pobj);
+      SCAST_PTR(::message::base,pbase,pobj);
       //LRESULT lresult = 0;
       if(m_pui != NULL)
       {

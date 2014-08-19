@@ -437,8 +437,8 @@ namespace user
       virtual void CenterWindow(sp(::user::interaction) pAlternateOwner = NULL);
 
 
-      virtual bool OnCommand(::message::axis * pbase);
-      virtual bool OnNotify(::message::axis * pbase);
+      virtual bool OnCommand(::message::base * pbase);
+      virtual bool OnNotify(::message::base * pbase);
 
       void OnActivate(UINT nState,::window_sp pWndOther,bool bMinimized);
       void OnActivateApp(bool bActive,uint32_t dwThreadID);
@@ -642,9 +642,9 @@ namespace user
       virtual void PostNcDestroy();
 
       // for notifications from parent
-      virtual bool OnChildNotify(::message::axis * pbase);
+      virtual bool OnChildNotify(::message::base * pbase);
       // return TRUE if parent should not process this message
-      virtual bool ReflectChildNotify(::message::axis * pbase);
+      virtual bool ReflectChildNotify(::message::base * pbase);
 
       // Implementation
       virtual ~interaction_impl();

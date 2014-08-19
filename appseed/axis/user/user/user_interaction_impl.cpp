@@ -422,7 +422,7 @@ namespace user
    }
 
 
-   bool interaction_impl::OnNotify(::message::axis * pbase)
+   bool interaction_impl::OnNotify(::message::base * pbase)
    {
 
       UNREFERENCED_PARAMETER(pbase);
@@ -583,7 +583,7 @@ namespace user
    //}
 
 
-   bool interaction_impl::OnChildNotify(::message::axis * pbase)
+   bool interaction_impl::OnChildNotify(::message::base * pbase)
    {
 
       UNREFERENCED_PARAMETER(pbase);
@@ -593,7 +593,7 @@ namespace user
    }
 
 
-   bool interaction_impl::ReflectChildNotify(::message::axis * pbase)
+   bool interaction_impl::ReflectChildNotify(::message::base * pbase)
    {
 
       UNREFERENCED_PARAMETER(pbase);
@@ -969,7 +969,7 @@ namespace user
    LRESULT interaction_impl::send_message(UINT message, WPARAM wparam, lparam lparam)
    {
 
-      ::smart_pointer < ::message::axis > spbase;
+      ::smart_pointer < ::message::base > spbase;
 
       spbase = get_base(this, message, wparam, lparam);
 
@@ -2162,7 +2162,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // interaction_impl command handling
 
-   bool interaction_impl::OnCommand(::message::axis * pbase)
+   bool interaction_impl::OnCommand(::message::base * pbase)
    {
       UNREFERENCED_PARAMETER(pbase);
       return FALSE;

@@ -1401,7 +1401,7 @@ d.unlock();
 
    void interaction_impl::message_handler(::signal_details * pobj)
    {
-      SCAST_PTR(::message::axis, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
 
       if(m_pui != NULL)
       {
@@ -2849,7 +2849,7 @@ return 0;
       ASSERT(puiStop == NULL || puiStop->IsWindow());
       ASSERT(pobj != NULL);
 
-      SCAST_PTR(::message::axis, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       // walk from the target interaction_impl up to the hWndStop interaction_impl checking
       //  if any interaction_impl wants to translate this message
 
@@ -3385,7 +3385,7 @@ throw not_implemented(get_app());
 
 //throw not_implemented(get_app());
 
-//      SCAST_PTR(::message::axis, pbase, pobj);
+//      SCAST_PTR(::message::base, pbase, pobj);
 //
 //      PAINTSTRUCT paint;
 //      memset(&paint, 0, sizeof(paint));
@@ -4704,7 +4704,7 @@ throw not_implemented(get_app());
    LRESULT interaction_impl::send_message(UINT message, WPARAM wparam, lparam lparam)
    {
 
-      ::ca::smart_pointer < ::message::axis > spbase;
+      ::ca::smart_pointer < ::message::base > spbase;
 
       spbase =get_base(this, message, wparam, lparam);
 
@@ -5863,7 +5863,7 @@ if(psurface == g_cairosurface)
 
    void interaction_impl::_001OnSetCursor(::signal_details * pobj)
    {
-      SCAST_PTR(::message::axis, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       if(Session.get_cursor() != NULL
          && Session.get_cursor()->m_ecursor != ::visual::cursor_system)
       {
@@ -6197,7 +6197,7 @@ if(psurface == g_cairosurface)
 
       // catch exceptions thrown outside the scope of a CALLBACK
       // in debug builds and warn the ::fontopus::user.
-//      ::ca2::smart_pointer < ::message::axis > spbase;
+//      ::ca2::smart_pointer < ::message::base > spbase;
 //
 //      spbase(pinteraction->get_base(pinteraction, nMsg, wparam, lparam));
 //

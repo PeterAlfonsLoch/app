@@ -241,7 +241,7 @@ namespace message
       //         dispatch_event_ok()->wait();
 
       SignalPtrArray signalptra;
-      SCAST_PTR(::message::axis,pbase,pobj);
+      SCAST_PTR(::message::base,pbase,pobj);
       if(pbase->m_uiMessage == (WM_APP + 2014))
       {
          sp(axis) pbase2 = pbase->m_lparam;

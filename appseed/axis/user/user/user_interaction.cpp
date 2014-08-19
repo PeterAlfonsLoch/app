@@ -1380,7 +1380,7 @@ namespace user
    // pbase object should be allocated with new in
    // axis or derived object and will be delete after
    // handling
-   LRESULT interaction::send(::message::axis * pbase)
+   LRESULT interaction::send(::message::base * pbase)
    {
 
       message_handler(pbase);
@@ -1393,7 +1393,7 @@ namespace user
    // pbase object should be allocated with new in
    // axis or derived object and will be delete after
    // handling
-   bool interaction::post(::message::axis * pbase)
+   bool interaction::post(::message::base * pbase)
    {
 
       return post_message(WM_APP + 2014,1,(LPARAM)pbase);
@@ -3574,7 +3574,7 @@ namespace user
 
    void interaction::_001OnUser184(signal_details * pobj)
    {
-      SCAST_PTR(::message::axis,pbase,pobj);
+      SCAST_PTR(::message::base,pbase,pobj);
       if(pbase->m_wparam == 0 &&
          pbase->m_lparam == 0)
       {
@@ -3811,7 +3811,7 @@ namespace user
    void interaction::_001OnCommand(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::axis,pbase,pobj);
+      SCAST_PTR(::message::base,pbase,pobj);
 
       LRESULT lresult = 0;
 
@@ -3825,7 +3825,7 @@ namespace user
    void interaction::_001OnSimpleCommand(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::axis,pbase,pobj);
+      SCAST_PTR(::message::base,pbase,pobj);
 
       LRESULT lresult = 0;
 
@@ -3878,7 +3878,7 @@ namespace user
    void interaction::_001OnSetSchema(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::axis,pbase,pobj);
+      SCAST_PTR(::message::base,pbase,pobj);
 
       LRESULT lresult = 0;
 
@@ -3891,7 +3891,7 @@ namespace user
 */
 
 
-   bool interaction::OnCommand(::message::axis * pbase)
+   bool interaction::OnCommand(::message::base * pbase)
    {
 
       if(m_pimpl != NULL)
@@ -3901,7 +3901,7 @@ namespace user
 
    }
 
-   bool interaction::OnNotify(::message::axis * pbase)
+   bool interaction::OnNotify(::message::base * pbase)
    {
 
       if(m_pimpl != NULL)
@@ -3912,7 +3912,7 @@ namespace user
    }
 
 
-   bool interaction::OnChildNotify(::message::axis * pbase)
+   bool interaction::OnChildNotify(::message::base * pbase)
    {
 
       if(m_pimpl != NULL)
@@ -4266,7 +4266,7 @@ namespace user
    LRESULT interaction::call_message_handler(UINT message,WPARAM wparam,LPARAM lparam)
    {
 
-      smart_pointer < ::message::axis > spbase;
+      smart_pointer < ::message::base > spbase;
 
       spbase = get_base(this,message,wparam,lparam);
 
@@ -5219,7 +5219,7 @@ namespace user
 
    void interaction::_001OnBaseWndGetProperty(signal_details * pobj)
    {
-      SCAST_PTR(::message::axis,pbase,pobj)
+      SCAST_PTR(::message::base,pbase,pobj)
          pbase->set_lresult(_001BaseWndGetProperty((EProperty)pbase->m_wparam,pbase->m_lparam));
    }
 

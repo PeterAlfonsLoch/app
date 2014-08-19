@@ -9,7 +9,7 @@ namespace message
 {
 
 
-   class CLASS_DECL_AXIS axis:
+   class CLASS_DECL_AXIS base:
       public signal_details
    {
    public:
@@ -22,8 +22,8 @@ namespace message
       bool                       m_bConditional;
       bool                       m_bReflect;
 
-      axis(sp(::axis::application) papp,class ::signal * psignal = NULL);
-      axis(sp(::axis::application) papp,sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      base(sp(::axis::application) papp,class ::signal * psignal = NULL);
+      base(sp(::axis::application) papp,sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
 
 
 

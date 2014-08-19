@@ -1734,7 +1734,7 @@ namespace user
 
 #ifdef WINDOWS
 
-      SCAST_PTR(::message::axis, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       
       if (GetParent() == NULL)
       {

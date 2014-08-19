@@ -801,7 +801,7 @@ void simple_scroll_bar::OnDisplayChange(int32_t iBitsPerPixel, size sizeScreen)
 void simple_scroll_bar::pre_translate_message(signal_details * pobj)
 {
 
-   SCAST_PTR(::message::axis, pbase, pobj);
+   SCAST_PTR(::message::base, pbase, pobj);
 
    if(pbase->m_pwnd == this)
    {

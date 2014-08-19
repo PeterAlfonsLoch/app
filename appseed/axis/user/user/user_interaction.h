@@ -253,8 +253,8 @@ namespace user
       virtual bool ModifyStyleEx(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
       virtual LRESULT Default();
 
-      virtual LRESULT send(::message::axis * pbase);
-      virtual bool post(::message::axis * pbase);
+      virtual LRESULT send(::message::base * pbase);
+      virtual bool post(::message::base * pbase);
       virtual LRESULT send_message(UINT uiMessage,WPARAM wparam = 0,lparam lparam = 0);
 
 #ifdef LINUX
@@ -508,9 +508,9 @@ namespace user
 
 
       // Window-Management message handler member functions
-      virtual bool OnCommand(::message::axis * pbase);
-      virtual bool OnNotify(::message::axis * pbase);
-      virtual bool OnChildNotify(::message::axis * pbase);
+      virtual bool OnCommand(::message::base * pbase);
+      virtual bool OnNotify(::message::base * pbase);
+      virtual bool OnChildNotify(::message::base * pbase);
 
 
 

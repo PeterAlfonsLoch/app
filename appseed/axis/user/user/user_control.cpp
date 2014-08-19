@@ -226,7 +226,7 @@ namespace user
    {
       m_pwndCustomWindowProc = pwnd;
       keep <bool> keepOnCustomMessage(&m_bCustomWindowProc, true, false, true);
-      ::message::axis axis(get_app(), pwnd, message, wparam, lparam, lresult);
+      ::message::base axis(get_app(), pwnd, message, wparam, lparam, lresult);
       _003CustomWindowProc(&axis);
       return axis.m_bRet;
    }
@@ -823,7 +823,7 @@ namespace user
    bool control::simple_process_system_message(signal_details * pobj,::user::e_event eevent)
    {
 
-      SCAST_PTR(::message::axis,pbase,pobj);
+      SCAST_PTR(::message::base,pbase,pobj);
 
       ::user::control_event ev;
 
