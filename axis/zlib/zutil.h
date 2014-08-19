@@ -250,4 +250,10 @@ extern z_const char * const z_errmsg[10]; /* indexed by 2-zlib_error */
 #define ZSWAP32(q) ((((q) >> 24) & 0xff) + (((q) >> 8) & 0xff00) + \
                     (((q) & 0xff00) << 8) + (((q) & 0xff) << 24))
 
+#ifdef cplusplus
+#include "gzip_stream.h"
+#endif
+
 #endif /* ZUTIL_H */
+
+

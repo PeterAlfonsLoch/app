@@ -58,6 +58,7 @@
     <ClInclude Include="crc32.h" />
     <ClInclude Include="deflate.h" />
     <ClInclude Include="gzguts.h" />
+    <ClInclude Include="gzip_stream.h" />
     <ClInclude Include="inffast.h" />
     <ClInclude Include="inffixed.h" />
     <ClInclude Include="inflate.h" />
@@ -77,6 +78,10 @@
     <ClCompile Include="crc32.c" />
     <ClCompile Include="deflate.c" />
     <ClCompile Include="gzclose.c" />
+    <ClCompile Include="gzip_stream.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(ProjectDir)../../../include;$(ProjectDir)../../..;$(ProjectDir)../..;;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)..;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">_ZLIB_LIBRARY</PreprocessorDefinitions>
+    </ClCompile>
     <ClCompile Include="gzlib.c" />
     <ClCompile Include="gzread.c" />
     <ClCompile Include="gzwrite.c" />
@@ -97,6 +102,11 @@
       </ExcludedFromBuild>
     </None>
     <None Include="contrib\masmx86\match686.asm" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\appseed\axis\axis.vcxproj">
+      <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8FD826F8-3739-44E6-8CC8-997122E53B8D}</ProjectGuid>

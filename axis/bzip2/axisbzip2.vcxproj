@@ -56,6 +56,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="blocksort.c" />
+    <ClCompile Include="bzip_stream.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(ProjectDir)../../../include;$(ProjectDir)../../..;$(ProjectDir)../..;;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">_BZIP2_LIBRARY</PreprocessorDefinitions>
+    </ClCompile>
     <ClCompile Include="bzlib.c" />
     <ClCompile Include="compress.c" />
     <ClCompile Include="crctable.c" />
@@ -64,11 +68,17 @@
     <ClCompile Include="randtable.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bzip_stream.h" />
     <ClInclude Include="bzlib.h" />
     <ClInclude Include="bzlib_private.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="axisbzip2.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\appseed\axis\axis.vcxproj">
+      <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A5A649E1-D516-4F29-A627-DA6884DD421C}</ProjectGuid>
