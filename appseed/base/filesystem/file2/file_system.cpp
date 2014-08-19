@@ -63,7 +63,7 @@ namespace file
 
          strsize iFind2 = str.reverse_find('\\', iLast);
 
-         strsize iFind = max(iFind1, iFind2);
+         strsize iFind = MAX(iFind1, iFind2);
 
          if(iFind >= iLast)
             return false;
@@ -1513,7 +1513,7 @@ restart:
             read_n_number(spfile, &md5, iLen);
             while(iLen > 0)
             {
-               uiRead = spfile->read(buf, (UINT)  (min(iBufSize, iLen )));
+               uiRead = spfile->read(buf, (UINT)  (MIN(iBufSize, iLen )));
                if(uiRead == 0)
                   break;
                file2->write(buf, uiRead);
@@ -1605,7 +1605,7 @@ restart:
          int64_t iProcessed = 0;
          while(iLen - iProcessed > 0)
          {
-            int32_t iProcess = (int32_t) min(1024 * 1024, iLen - iProcessed);
+            int32_t iProcess = (int32_t) MIN(1024 * 1024, iLen - iProcessed);
             pctx->update(&lpsz[iProcessed], iProcess);
             iProcessed += iProcess;
          }

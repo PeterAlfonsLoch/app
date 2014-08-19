@@ -204,7 +204,7 @@ int main(int argc, char *argv[])
         do
         {
             long all_read_before = zcpr.total_in;
-            zcpr.avail_in = min(lOrigToDo,BlockSizeCompress);
+            zcpr.avail_in = MIN(lOrigToDo,BlockSizeCompress);
             zcpr.avail_out = BlockSizeCompress;
             ret=deflate(&zcpr,(zcpr.avail_in==lOrigToDo) ? Z_FINISH : Z_SYNC_FLUSH);
             lOrigDone += (zcpr.total_in-all_read_before);
@@ -245,7 +245,7 @@ int main(int argc, char *argv[])
         do
         {
             long all_read_before = zcpr.total_in;
-            zcpr.avail_in = min(lOrigToDo,BlockSizeUncompress);
+            zcpr.avail_in = MIN(lOrigToDo,BlockSizeUncompress);
             zcpr.avail_out = BlockSizeUncompress;
             ret=inflate(&zcpr,Z_SYNC_FLUSH);
             lOrigDone += (zcpr.total_in-all_read_before);

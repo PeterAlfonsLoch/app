@@ -485,7 +485,7 @@ l1:
 
       DeleteItem * pdelete;
 
-      uiCount = min(uiCount, (::primitive::memory_size) (get_length() - m_dwPosition));
+      uiCount = MIN(uiCount, (::primitive::memory_size) (get_length() - m_dwPosition));
       if(uiCount == 0)
          return;
 

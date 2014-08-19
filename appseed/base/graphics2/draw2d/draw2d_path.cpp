@@ -409,13 +409,13 @@ namespace draw2d
 
       POINT pt2;
 
-      lprect->left   = (LONG) min(a.m_xCenter, lprect->left);
+      lprect->left   = (LONG) MIN(a.m_xCenter, lprect->left);
 
-      lprect->top    = (LONG) min(a.m_yCenter, lprect->top);
+      lprect->top    = (LONG) MIN(a.m_yCenter, lprect->top);
 
-      lprect->right  = (LONG) max(a.m_xCenter, lprect->right);
+      lprect->right  = (LONG) MAX(a.m_xCenter, lprect->right);
 
-      lprect->bottom = (LONG) max(a.m_yCenter, lprect->bottom);
+      lprect->bottom = (LONG) MAX(a.m_yCenter, lprect->bottom);
 
 //      double e = a.m_dRadiusY / a.m_dRadiusX;
 
@@ -431,28 +431,28 @@ namespace draw2d
 
       pt2.y          = (LONG) (a.m_yCenter - a.m_dRadiusY * sin(f2));
 
-      lprect->left   = (LONG) min(pt1.x       , lprect->left);
+      lprect->left   = (LONG) MIN(pt1.x       , lprect->left);
 
-      lprect->top    = (LONG) min(pt1.y       , lprect->top);
+      lprect->top    = (LONG) MIN(pt1.y       , lprect->top);
 
-      lprect->right  = (LONG) max(pt1.x       , lprect->right);
+      lprect->right  = (LONG) MAX(pt1.x       , lprect->right);
 
-      lprect->bottom = (LONG) max(pt1.y       , lprect->bottom);
+      lprect->bottom = (LONG) MAX(pt1.y       , lprect->bottom);
 
-      lprect->left   = (LONG) min(pt2.x       , lprect->left);
+      lprect->left   = (LONG) MIN(pt2.x       , lprect->left);
 
-      lprect->top    = (LONG) min(pt2.y       , lprect->top);
+      lprect->top    = (LONG) MIN(pt2.y       , lprect->top);
 
-      lprect->right  = (LONG) max(pt2.x       , lprect->right);
+      lprect->right  = (LONG) MAX(pt2.x       , lprect->right);
 
-      lprect->bottom = (LONG) max(pt2.y       , lprect->bottom);
+      lprect->bottom = (LONG) MAX(pt2.y       , lprect->bottom);
 
       if((f1 >= 0 && f2 <= f1) || (f1 <= 0 && f2 >= 0))
       {
 
-         lprect->left   = (LONG) min(r.right        , lprect->left);
+         lprect->left   = (LONG) MIN(r.right        , lprect->left);
 
-         lprect->right  = (LONG) max(r.right        , lprect->right);
+         lprect->right  = (LONG) MAX(r.right        , lprect->right);
 
       }
 
@@ -463,22 +463,9 @@ namespace draw2d
       if((f1 >= 0 && f2 <= f1) || (f1 <= 0 && f2 >= 0))
       {
 
-         lprect->top    = (LONG) min(r.top        , lprect->top);
+         lprect->top    = (LONG) MIN(r.top        , lprect->top);
 
-         lprect->bottom = (LONG) max(r.top        , lprect->bottom);
-
-      }
-
-      f1 -= System.math().GetPi() / 2.0;
-
-      f2 -= System.math().GetPi() / 2.0;
-
-      if((f1 >= 0 && f2 <= f1) || (f1 <= 0 && f2 >= 0))
-      {
-
-         lprect->left   = (LONG) min(r.left        , lprect->left);
-
-         lprect->right  = (LONG) max(r.left        , lprect->right);
+         lprect->bottom = (LONG) MAX(r.top        , lprect->bottom);
 
       }
 
@@ -489,9 +476,22 @@ namespace draw2d
       if((f1 >= 0 && f2 <= f1) || (f1 <= 0 && f2 >= 0))
       {
 
-         lprect->top    = (LONG) min(r.bottom        , lprect->top);
+         lprect->left   = (LONG) MIN(r.left        , lprect->left);
 
-         lprect->bottom = (LONG) max(r.bottom        , lprect->bottom);
+         lprect->right  = (LONG) MAX(r.left        , lprect->right);
+
+      }
+
+      f1 -= System.math().GetPi() / 2.0;
+
+      f2 -= System.math().GetPi() / 2.0;
+
+      if((f1 >= 0 && f2 <= f1) || (f1 <= 0 && f2 >= 0))
+      {
+
+         lprect->top    = (LONG) MIN(r.bottom        , lprect->top);
+
+         lprect->bottom = (LONG) MAX(r.bottom        , lprect->bottom);
 
       }
 
@@ -500,13 +500,13 @@ namespace draw2d
    void path::get_bounding_rect(LPRECT lprect, move & m)
    {
 
-      lprect->left   = (LONG) min(m.m_x, lprect->left);
+      lprect->left   = (LONG) MIN(m.m_x, lprect->left);
 
-      lprect->top    = (LONG) min(m.m_y, lprect->top);
+      lprect->top    = (LONG) MIN(m.m_y, lprect->top);
 
-      lprect->right  = (LONG) max(m.m_x, lprect->right);
+      lprect->right  = (LONG) MAX(m.m_x, lprect->right);
 
-      lprect->bottom = (LONG) max(m.m_y, lprect->bottom);
+      lprect->bottom = (LONG) MAX(m.m_y, lprect->bottom);
 
    }
 
@@ -514,13 +514,13 @@ namespace draw2d
    void path::get_bounding_rect(LPRECT lprect, line & l)
    {
 
-      lprect->left   = (LONG) min(l.m_x, lprect->left);
+      lprect->left   = (LONG) MIN(l.m_x, lprect->left);
 
-      lprect->top    = (LONG) min(l.m_y, lprect->top);
+      lprect->top    = (LONG) MIN(l.m_y, lprect->top);
 
-      lprect->right  = (LONG) max(l.m_x, lprect->right);
+      lprect->right  = (LONG) MAX(l.m_x, lprect->right);
 
-      lprect->bottom = (LONG) max(l.m_y, lprect->bottom);
+      lprect->bottom = (LONG) MAX(l.m_y, lprect->bottom);
 
    }
 

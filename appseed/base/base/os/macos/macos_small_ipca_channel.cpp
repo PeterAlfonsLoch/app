@@ -69,9 +69,9 @@ bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
    while(c > 0)
    {
       
-      cSend = min(c, 511);
+      cSend = MIN(c, 511);
    
-      memcpy(data.data, &pszMessage[cPos], min(c, 511));
+      memcpy(data.data, &pszMessage[cPos], MIN(c, 511));
    
       c -= cSend;
       
@@ -125,9 +125,9 @@ bool small_ipc_tx_channel::send(int message, void * pdata, int len, DWORD dwTime
    while(c > 0)
    {
       
-      cSend = min(c, 511);
+      cSend = MIN(c, 511);
       
-      memcpy(data.data, &pszMessage[cPos], min(c, 511));
+      memcpy(data.data, &pszMessage[cPos], MIN(c, 511));
       
       c -= cSend;
       

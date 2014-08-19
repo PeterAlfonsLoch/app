@@ -13,7 +13,7 @@ GetTempPathA(
 
     if(ptmpdir != NULL && *ptmpdir != '\0')
     {
-        strncpy(lpBuffer, ptmpdir, min(nBufferLength, strlen(ptmpdir) + 1));
+        strncpy(lpBuffer, ptmpdir, MIN(nBufferLength, strlen(ptmpdir) + 1));
         return strlen(ptmpdir);
     }
 
@@ -21,11 +21,11 @@ GetTempPathA(
 
     if(ptmpdir != NULL && *ptmpdir != '\0')
     {
-        strncpy(lpBuffer, ptmpdir, min(nBufferLength, strlen(ptmpdir) + 1));
+        strncpy(lpBuffer, ptmpdir, MIN(nBufferLength, strlen(ptmpdir) + 1));
         return strlen(ptmpdir);
     }
 
-    strncpy(lpBuffer, "/tmp", min(nBufferLength, 5));
+    strncpy(lpBuffer, "/tmp", MIN(nBufferLength, 5));
     return 5;
 
 

@@ -1393,7 +1393,7 @@ void thread::set_p(::thread * p)
 //               _msize(pThreadState->m_pSafetyPoolBuffer) < papp->m_pcoreapp->m_pcoreapp->m_nSafetyPoolSize) &&
 //               papp->m_pcoreapp->m_pcoreapp->m_nSafetyPoolSize != 0)
 //            {
-//               // attempt to restore the safety pool to its max size
+//               // attempt to restore the safety pool to its MAX size
 //               size_t nOldSize = 0;
 //               if (pThreadState->m_pSafetyPoolBuffer != NULL)
 //               {

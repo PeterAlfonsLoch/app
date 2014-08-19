@@ -167,7 +167,7 @@ GetTempPathW(
 
    wstring wstr = "/var/core/time/";
 
-   ::count iLen = min(nBufferLength, wstr.get_length());
+   ::count iLen = MIN(nBufferLength, wstr.get_length());
 
    wcsncpy(lpBuffer, wstr, iLen);
 

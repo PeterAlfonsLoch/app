@@ -130,7 +130,7 @@ bool small_ipc_tx_channel::send(int message, void * pdata, int len, DWORD dwTime
    COPYDATASTRUCT cds;
 
    cds.dwData = (DWORD) message;
-   cds.cbData = (DWORD) max(0, len);
+   cds.cbData = (DWORD) MAX(0, len);
    cds.lpData = (void *) pdata;
 
    if(dwTimeout == INFINITE)

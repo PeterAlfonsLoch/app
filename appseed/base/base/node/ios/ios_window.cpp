@@ -4865,7 +4865,7 @@ namespace ios
    strsize window::GetWindowText(LPTSTR lpszString, strsize nMaxCount)
    {
       strncpy(lpszString, m_strWindowText, nMaxCount);
-      return min(nMaxCount, m_strWindowText.get_length());
+      return MIN(nMaxCount, m_strWindowText.get_length());
    }
    
    strsize window::GetWindowTextLength()

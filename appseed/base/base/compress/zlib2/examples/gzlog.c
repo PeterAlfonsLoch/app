@@ -39,7 +39,7 @@
    - fixed-length (no file name) header with extra field (see below)
    - compressed data ending initially with empty stored block
    - uncompressed data filling out originally empty stored block and
-     subsequent stored blocks as needed (16K max each)
+     subsequent stored blocks as needed (16K MAX each)
    - gzip trailer
    - no junk at end (no other gzip streams)
 
@@ -608,7 +608,7 @@ local int log_replace(struct log *log)
 local int log_compress(struct log *log, unsigned char *data, size_t len)
 {
     int fd;
-    uint got, max;
+    uint got, MAX;
     ssize_t dict;
     off_t end;
     z_stream strm;
@@ -651,9 +651,9 @@ local int log_compress(struct log *log, unsigned char *data, size_t len)
 
         /* compress, finishing with a partial non-last empty static block */
         strm.next_in = data;
-        max = (((uint)0 - 1) >> 1) + 1; /* in case int smaller than size_t */
+        MAX = (((uint)0 - 1) >> 1) + 1; /* in case int smaller than size_t */
         do {
-            strm.avail_in = len > max ? max : (uint)len;
+            strm.avail_in = len > MAX ? MAX : (uint)len;
             len -= strm.avail_in;
             do {
                 strm.avail_out = DICT;

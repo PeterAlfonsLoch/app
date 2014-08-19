@@ -170,7 +170,7 @@ namespace metrowin
         NULL,
         NULL,
         NULL);
-      int iSize = max(dwMaxSubKeyLen, 1024);
+      int iSize = MAX(dwMaxSubKeyLen, 1024);
       char *buf = (char *) malloc(iSize);
       int iKey = 0;
       while(::RegEnumKey(m_hkey, iKey, buf, iSize) == ERROR_SUCCESS)

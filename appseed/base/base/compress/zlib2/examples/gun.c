@@ -206,7 +206,7 @@ local int lunpipe(unsigned have, unsigned char *next, struct ind *indp,
     int bits;                   /* current bits per code */
     unsigned code;              /* code, table traversal index */
     unsigned mask;              /* mask for current bits codes */
-    int max;                    /* maximum bits per code for this stream */
+    int MAX;                    /* maximum bits per code for this stream */
     unsigned flags;             /* compress flags, then block compress flag */
     unsigned end;               /* last valid entry in prefix/suffix tables */
     unsigned temp;              /* current code */
@@ -229,13 +229,13 @@ local int lunpipe(unsigned have, unsigned char *next, struct ind *indp,
         strm->msg = (char *)"unknown lzw flags set";
         return Z_DATA_ERROR;
     }
-    max = flags & 0x1f;
-    if (max < 9 || max > 16) {
+    MAX = flags & 0x1f;
+    if (MAX < 9 || MAX > 16) {
         strm->msg = (char *)"lzw bits out of range";
         return Z_DATA_ERROR;
     }
-    if (max == 9)                           /* 9 doesn't really mean 9 */
-        max = 10;
+    if (MAX == 9)                           /* 9 doesn't really mean 9 */
+        MAX = 10;
     flags &= 0x80;                          /* true if block compress */
 
     /* clear table */
@@ -264,7 +264,7 @@ local int lunpipe(unsigned have, unsigned char *next, struct ind *indp,
     stack = 0;
     for (;;) {
         /* if the table will be full after this, increment the code size */
-        if (end >= mask && bits < max) {
+        if (end >= mask && bits < MAX) {
             FLUSHCODE();
             bits++;
             mask <<= 1;

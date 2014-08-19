@@ -12,7 +12,7 @@
                      As inflate does, decrease root for short codes
                      Refuse cases where inflate would increase root
    1.3  17 Feb 2008  Add argument for initial root table size
-                     Fix bug for initial root table size == max - 1
+                     Fix bug for initial root table size == MAX - 1
                      Use a macro to compute the history index
  */
 
@@ -121,18 +121,18 @@ struct tab {                        /* type for been here check */
 
       syms: 3..totsym (totsym == total symbols to code)
       left: 2..syms - 1, but only the evens (so syms == 8 -> 2, 4, 6)
-      len: 1..max - 1 (max == maximum code length in bits)
+      len: 1..MAX - 1 (MAX == maximum code length in bits)
 
    syms == 2 is not saved since that immediately leads to a single code.  left
    must be even, since it represents the number of available bit patterns at
    the current length, which is double the number at the previous length.
    left ends at syms-1 since left == syms immediately results in a single code.
    (left > sym is not allowed since that would result in an incomplete code.)
-   len is less than max, since the code completes immediately when len == max.
+   len is less than MAX, since the code completes immediately when len == MAX.
 
    The offset into the array is calculated for the three indices with the
    first one (syms) being outermost, and the last one (len) being innermost.
-   We build the array with length max-1 lists for the len index, with syms-3
+   We build the array with length MAX-1 lists for the len index, with syms-3
    of those for each symbol.  There are totsym-2 of those, with each one
    varying in length as a function of sym.  See the calculation of index in
    count() for the index, and the calculation of size in main() for the size
@@ -164,7 +164,7 @@ struct tab {                        /* type for been here check */
  */
 
 /* Globals to avoid propagating constants or constant pointers recursively */
-local int max;          /* maximum allowed bit length for the codes */
+local int MAX;          /* maximum allowed bit length for the codes */
 local int root;         /* size of base code table in bits */
 local int large;        /* largest code table so far */
 local size_t size;      /* number of elements in num and done */
@@ -173,7 +173,7 @@ local big_t *num;       /* saved results array for code counting */
 local struct tab *done; /* states already evaluated array */
 
 /* Index function for num[] and done[] */
-#define INDEX(i,j,k) (((size_t)((i-1)>>1)*((i-2)>>1)+(j>>1)-1)*(max-1)+k-1)
+#define INDEX(i,j,k) (((size_t)((i-1)>>1)*((i-2)>>1)+(j>>1)-1)*(MAX-1)+k-1)
 
 /* Free allocated space.  Uses globals code, num, and done. */
 local void cleanup(void)
@@ -193,10 +193,10 @@ local void cleanup(void)
 }
 
 /* Return the number of possible Huffman codes using bit patterns of lengths
-   len through max inclusive, coding syms symbols, with left bit patterns of
+   len through MAX inclusive, coding syms symbols, with left bit patterns of
    length len unused -- return -1 if there is an overflow in the counting.
    Keep a record of previous results in num to prevent repeating the same
-   calculation.  Uses the globals max and num. */
+   calculation.  Uses the globals MAX and num. */
 local big_t count(int syms, int len, int left)
 {
     big_t sum;          /* number of possible codes from this juncture */
@@ -211,7 +211,7 @@ local big_t count(int syms, int len, int left)
         return 1;
 
     /* note and verify the expected state */
-    assert(syms > left && left > 0 && len < max);
+    assert(syms > left && left > 0 && len < MAX);
 
     /* see if we've done this one already */
     index = INDEX(syms, left, len);
@@ -228,8 +228,8 @@ local big_t count(int syms, int len, int left)
     /* we can use at most this many bit patterns, lest there not be enough
        available for the remaining symbols at the maximum length (if there were
        no limit to the code length, this would become: most = left - 1) */
-    most = (((code_t)left << (max - len)) - syms) /
-            (((code_t)1 << (max - len)) - 1);
+    most = (((code_t)left << (MAX - len)) - syms) /
+            (((code_t)1 << (MAX - len)) - 1);
 
     /* count all possible codes from this juncture and add them up */
     sum = 0;
@@ -314,7 +314,7 @@ local int beenhere(int syms, int len, int left, int mem, int rem)
 /* Examine all possible codes from the given node (syms, len, left).  Compute
    the amount of memory required to build inflate's decoding tables, where the
    number of code structures used so far is mem, and the number remaining in
-   the current sub-table is rem.  Uses the globals max, code, root, large, and
+   the current sub-table is rem.  Uses the globals MAX, code, root, large, and
    done. */
 local void examine(int syms, int len, int left, int mem, int rem)
 {
@@ -338,8 +338,8 @@ local void examine(int syms, int len, int left, int mem, int rem)
         /* if this is a new maximum, show the entries used and the sub-code */
         if (mem > large) {
             large = mem;
-            printf("max %d: ", mem);
-            for (use = root + 1; use <= max; use++)
+            printf("MAX %d: ", mem);
+            for (use = root + 1; use <= MAX; use++)
                 if (code[use])
                     printf("%d[%d] ", code[use], use);
             putchar('\n');
@@ -364,8 +364,8 @@ local void examine(int syms, int len, int left, int mem, int rem)
     /* we can use at most this many bit patterns, lest there not be enough
        available for the remaining symbols at the maximum length (if there were
        no limit to the code length, this would become: most = left - 1) */
-    most = (((code_t)left << (max - len)) - syms) /
-            (((code_t)1 << (max - len)) - 1);
+    most = (((code_t)left << (MAX - len)) - syms) /
+            (((code_t)1 << (MAX - len)) - 1);
 
     /* occupy least table spaces, creating new sub-tables as needed */
     use = least;
@@ -396,7 +396,7 @@ local void examine(int syms, int len, int left, int mem, int rem)
    intermediate code states (syms, left, len).  For each completed code,
    calculate the amount of memory required by inflate to build the decoding
    tables. Find the maximum amount of memory required and show the code that
-   requires that maximum.  Uses the globals max, root, and num. */
+   requires that maximum.  Uses the globals MAX, root, and num. */
 local void enough(int syms)
 {
     int n;              /* number of remaing symbols for this node */
@@ -404,19 +404,19 @@ local void enough(int syms)
     size_t index;       /* index of this case in *num */
 
     /* clear code */
-    for (n = 0; n <= max; n++)
+    for (n = 0; n <= MAX; n++)
         code[n] = 0;
 
     /* look at all (root + 1) bit and longer codes */
     large = 1 << root;              /* base table */
-    if (root < max)                 /* otherwise, there's only a base table */
+    if (root < MAX)                 /* otherwise, there's only a base table */
         for (n = 3; n <= syms; n++)
             for (left = 2; left < n; left += 2)
             {
                 /* look at all reachable (root + 1) bit nodes, and the
                    resulting codes (complete at root + 2 or more) */
                 index = INDEX(n, left, root + 1);
-                if (root + 1 < max && num[index])       /* reachable node */
+                if (root + 1 < MAX && num[index])       /* reachable node */
                     examine(n, root + 1, left, 1 << root, 0);
 
                 /* also look at root bit codes with completions at root + 1
@@ -467,24 +467,24 @@ int main(int argc, char **argv)
     /* get arguments -- default to the deflate literal/length code */
     syms = 286;
         root = 9;
-    max = 15;
+    MAX = 15;
     if (argc > 1) {
         syms = atoi(argv[1]);
         if (argc > 2) {
             root = atoi(argv[2]);
                         if (argc > 3)
-                                max = atoi(argv[3]);
+                                MAX = atoi(argv[3]);
                 }
     }
-    if (argc > 4 || syms < 2 || root < 1 || max < 1) {
-        fputs("invalid arguments, need: [sym >= 2 [root >= 1 [max >= 1]]]\n",
+    if (argc > 4 || syms < 2 || root < 1 || MAX < 1) {
+        fputs("invalid arguments, need: [sym >= 2 [root >= 1 [MAX >= 1]]]\n",
                           stderr);
         return 1;
     }
 
     /* if not restricting the code length, the longest is syms - 1 */
-    if (max > syms - 1)
-        max = syms - 1;
+    if (MAX > syms - 1)
+        MAX = syms - 1;
 
     /* determine the number of bits in a code_t */
     n = 0;
@@ -492,20 +492,20 @@ int main(int argc, char **argv)
         n++;
 
     /* make sure that the calculation of most will not overflow */
-    if (max > n || syms - 2 >= (((code_t)0 - 1) >> (max - 1))) {
+    if (MAX > n || syms - 2 >= (((code_t)0 - 1) >> (MAX - 1))) {
         fputs("abort: code length too long for internal types\n", stderr);
         return 1;
     }
 
     /* reject impossible code requests */
-    if (syms - 1 > ((code_t)1 << max) - 1) {
+    if (syms - 1 > ((code_t)1 << MAX) - 1) {
         fprintf(stderr, "%d symbols cannot be coded in %d bits\n",
-                syms, max);
+                syms, MAX);
         return 1;
     }
 
     /* allocate code vector */
-    code = calloc(max + 1, sizeof(int));
+    code = calloc(MAX + 1, sizeof(int));
     if (code == NULL) {
         fputs("abort: unable to allocate enough memory\n", stderr);
         return 1;
@@ -513,12 +513,12 @@ int main(int argc, char **argv)
 
     /* determine size of saved results array, checking for overflows,
        allocate and clear the array (set all to zero with calloc()) */
-    if (syms == 2)              /* iff max == 1 */
+    if (syms == 2)              /* iff MAX == 1 */
         num = NULL;             /* won't be saving any results */
     else {
         size = syms >> 1;
         if (size > ((size_t)0 - 1) / (n = (syms - 1) >> 1) ||
-                (size *= n, size > ((size_t)0 - 1) / (n = max - 1)) ||
+                (size *= n, size > ((size_t)0 - 1) / (n = MAX - 1)) ||
                 (size *= n, size > ((size_t)0 - 1) / sizeof(big_t)) ||
                 (num = calloc(size, sizeof(big_t))) == NULL) {
             fputs("abort: unable to allocate enough memory\n", stderr);
@@ -540,8 +540,8 @@ int main(int argc, char **argv)
         printf("%llu %d-codes\n", got, n);
     }
     printf("%llu total codes for 2 to %d symbols", sum, syms);
-    if (max < syms - 1)
-        printf(" (%d-bit length limit)\n", max);
+    if (MAX < syms - 1)
+        printf(" (%d-bit length limit)\n", MAX);
     else
         puts(" (no length limit)");
 
@@ -556,8 +556,8 @@ int main(int argc, char **argv)
     }
 
     /* find and show maximum inflate table usage */
-        if (root > max)                 /* reduce root to max length */
-                root = max;
+        if (root > MAX)                 /* reduce root to MAX length */
+                root = MAX;
     if (syms < ((code_t)1 << (root + 1)))
         enough(syms);
     else

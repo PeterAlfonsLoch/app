@@ -259,7 +259,7 @@ namespace ios
       ::primitive::memory_size readNow;
       while(nCount > 0)
       {
-         readNow = (size_t) min(0x7fffffff, nCount);
+         readNow = (size_t) MIN(0x7fffffff, nCount);
          size_t iRead = ::read(m_iFile, &((byte *)lpBuf)[pos], readNow);
          if(iRead == ::numeric_info::get_allset_value < size_t >())
          {
@@ -297,7 +297,7 @@ namespace ios
       ::primitive::memory_position pos = 0;
       while(nCount > 0)
       {
-         size_t iWrite = ::write(m_iFile, &((const byte *)lpBuf)[pos], (size_t) min(0x7fffffff, nCount));
+         size_t iWrite = ::write(m_iFile, &((const byte *)lpBuf)[pos], (size_t) MIN(0x7fffffff, nCount));
          if(iWrite == ::numeric_info::get_allset_value < size_t >())
             ::ios::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError(), m_strFileName);
          nCount -= iWrite;

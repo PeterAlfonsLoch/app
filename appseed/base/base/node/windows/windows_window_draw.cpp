@@ -230,7 +230,7 @@ namespace windows
       }
       else if((1000 / m_iFramesPerSecond) > m_dwLastDelay)
       {
-         Sleep(max((DWORD)max(0,iUiDataWriteWindowTimeForTheApplicationInThisMachine),(1000 / m_iFramesPerSecond) - m_dwLastDelay));
+         Sleep(MAX((DWORD)MAX(0,iUiDataWriteWindowTimeForTheApplicationInThisMachine),(1000 / m_iFramesPerSecond) - m_dwLastDelay));
       }
       else
       {
@@ -280,7 +280,7 @@ namespace windows
             }
             else if((1000 / m_iFramesPerSecond) > m_dwLastDelay)
             {
-               Sleep(max((DWORD)max(0,iUiDataWriteWindowTimeForTheApplicationInThisMachine),(1000 / m_iFramesPerSecond) - m_dwLastDelay));
+               Sleep(MAX((DWORD)MAX(0,iUiDataWriteWindowTimeForTheApplicationInThisMachine),(1000 / m_iFramesPerSecond) - m_dwLastDelay));
             }
             else
             {

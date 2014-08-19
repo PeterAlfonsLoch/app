@@ -229,9 +229,9 @@ const gchar *const g_utf8_skip = utf8_skip_data;
 /*
  * g_utf8_strlen:
  * @p: pointer to the start of a UTF-8 encoded string
- * @max: the maximum number of bytes to examine. If @max
+ * @MAX: the maximum number of bytes to examine. If @MAX
  *       is less than 0, then the string is assumed to be
- *       nul-terminated. If @max is 0, @p will not be examined and
+ *       nul-terminated. If @MAX is 0, @p will not be examined and
  *       may be %NULL.
  *
  * Computes the length of the string in characters, not including
@@ -240,13 +240,13 @@ const gchar *const g_utf8_skip = utf8_skip_data;
  * Return value: the length of the string in characters
  **/
 static glong
-g_utf8_strlen (const gchar * p, gssize max)
+g_utf8_strlen (const gchar * p, gssize MAX)
 {
   glong len = 0;
   const gchar *start = p;
-  g_return_val_if_fail (p != NULL || max == 0, 0);
+  g_return_val_if_fail (p != NULL || MAX == 0, 0);
 
-  if (max < 0)
+  if (MAX < 0)
     {
       while (*p)
 	{
@@ -256,12 +256,12 @@ g_utf8_strlen (const gchar * p, gssize max)
     }
   else
     {
-      if (max == 0 || !*p)
+      if (MAX == 0 || !*p)
 	return 0;
 
       p = g_utf8_next_char (p);
 
-      while (p - start < max && *p)
+      while (p - start < MAX && *p)
 	{
 	  ++len;
 	  p = g_utf8_next_char (p);
@@ -270,7 +270,7 @@ g_utf8_strlen (const gchar * p, gssize max)
       /* only do the last len increment if we got a complete
        * char (don't count partial chars)
        */
-      if (p - start <= max)
+      if (p - start <= MAX)
 	++len;
     }
 

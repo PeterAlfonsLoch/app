@@ -100,7 +100,7 @@ void window_xlib::update_window(oswindow window, COLORREF * pOsBitmapData, LPCRE
       return;
 
 
-   //memset(pOsBitmapData, 0x44, min(iStride * 16, iStride * m_size.cy));
+   //memset(pOsBitmapData, 0x44, MIN(iStride * 16, iStride * m_size.cy));
 
    copy_colorref((COLORREF *) m_mem.get_data(), pOsBitmapData, iStride);
 

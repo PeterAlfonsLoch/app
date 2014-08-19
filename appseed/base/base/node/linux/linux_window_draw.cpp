@@ -367,7 +367,7 @@ namespace linux
          }
          else if((1000 / m_iFramesPerSecond) > m_dwLastDelay)
          {
-            Sleep(max((DWORD) max(0, iUiDataWriteWindowTimeForTheApplicationInThisMachine), (1000 / m_iFramesPerSecond) - m_dwLastDelay));
+            Sleep(MAX((DWORD) MAX(0, iUiDataWriteWindowTimeForTheApplicationInThisMachine), (1000 / m_iFramesPerSecond) - m_dwLastDelay));
          }
          else
          {
@@ -1266,8 +1266,8 @@ throw not_implemented(get_app());
 //
 //         System.get_monitor_rect(0, &rcMonitor);
 //
-//         sz.cx = (LONG) min(rectWindow.right - pt.x, rcMonitor.right - pt.x);
-//         sz.cy = (LONG) min(rectWindow.bottom - pt.y, rcMonitor.bottom - pt.y);
+//         sz.cx = (LONG) MIN(rectWindow.right - pt.x, rcMonitor.right - pt.x);
+//         sz.cy = (LONG) MIN(rectWindow.bottom - pt.y, rcMonitor.bottom - pt.y);
 //
 ////         m_pbuffer->m_spdib->fill_channel(0xc0, visual::rgba::channel_alpha);
 //

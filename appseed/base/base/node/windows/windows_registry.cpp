@@ -170,7 +170,7 @@ namespace windows
         NULL,
         NULL,
         NULL);
-      int32_t iSize = max(dwMaxSubKeyLen, 1024);
+      int32_t iSize = MAX(dwMaxSubKeyLen, 1024);
       char *buf = (char *) malloc(iSize);
       int32_t iKey = 0;
       while(::RegEnumKey(m_hkey, iKey, buf, iSize) == ERROR_SUCCESS)

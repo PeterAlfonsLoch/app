@@ -77,13 +77,13 @@ tiny_http::~tiny_http()
 /*
  * read a line from file descriptor
  * returns the number of bytes read. negative if a read error occured
- * before the end of line or the max.
+ * before the end of line or the MAX.
  * cariage returns (CR) are ignored.
  */
-int32_t tiny_http::t_read_line (int32_t fd, char * buffer, int32_t max)
+int32_t tiny_http::t_read_line (int32_t fd, char * buffer, int32_t MAX)
 { /* not efficient on long lines (multiple unbuffered 1 char reads) */
   int32_t n=0;
-  while (n<max) {
+  while (n<MAX) {
     if (read(fd,buffer,1)!=1) {
       n= -n;
       break;

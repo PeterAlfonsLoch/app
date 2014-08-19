@@ -251,7 +251,7 @@ namespace android
       ::primitive::memory_size readNow;
       while(nCount > 0)
       {
-         readNow = (size_t) min(0x7fffffff, nCount);
+         readNow = (size_t) MIN(0x7fffffff, nCount);
          int32_t iRead = ::read(m_iFile, &((byte *)lpBuf)[pos], readNow);
          if(iRead < 0)
          {
@@ -289,7 +289,7 @@ namespace android
       ::primitive::memory_position pos = 0;
       while(nCount > 0)
       {
-         int32_t iWrite = ::write(m_iFile, &((const byte *)lpBuf)[pos], (size_t) min(0x7fffffff, nCount));
+         int32_t iWrite = ::write(m_iFile, &((const byte *)lpBuf)[pos], (size_t) MIN(0x7fffffff, nCount));
          if(iWrite < 0)
             file_exception::ThrowOsError(get_app(), (LONG)::GetLastError(), m_strFileName);
          nCount -= iWrite;

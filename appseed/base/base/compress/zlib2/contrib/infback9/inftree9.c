@@ -39,7 +39,7 @@ unsigned short FAR *work;
 {
     unsigned len;               /* a code's length in bits */
     unsigned sym;               /* index of code symbols */
-    unsigned min, max;          /* minimum and maximum code lengths */
+    unsigned MIN, MAX;          /* minimum and maximum code lengths */
     unsigned root;              /* number of index bits for root table */
     unsigned curr;              /* number of index bits for current table */
     unsigned drop;              /* code bits to drop for sub-table */
@@ -113,13 +113,13 @@ unsigned short FAR *work;
 
     /* bound code lengths, force root to be within code lengths */
     root = *bits;
-    for (max = MAXBITS; max >= 1; max--)
-        if (count[max] != 0) break;
-    if (root > max) root = max;
-    if (max == 0) return -1;            /* no codes! */
-    for (min = 1; min <= MAXBITS; min++)
-        if (count[min] != 0) break;
-    if (root < min) root = min;
+    for (MAX = MAXBITS; MAX >= 1; MAX--)
+        if (count[MAX] != 0) break;
+    if (root > MAX) root = MAX;
+    if (MAX == 0) return -1;            /* no codes! */
+    for (MIN = 1; MIN <= MAXBITS; MIN++)
+        if (count[MIN] != 0) break;
+    if (root < MIN) root = MIN;
 
     /* check for an over-subscribed or incomplete set of lengths */
     left = 1;
@@ -128,7 +128,7 @@ unsigned short FAR *work;
         left -= count[len];
         if (left < 0) return -1;        /* over-subscribed */
     }
-    if (left > 0 && (type == CODES || max != 1))
+    if (left > 0 && (type == CODES || MAX != 1))
         return -1;                      /* incomplete set */
 
     /* generate offsets into symbol table for each length for sorting */
@@ -166,7 +166,7 @@ unsigned short FAR *work;
        for more information.
 
        sym increments through all symbols, and the loop terminates when
-       all codes of length max, i.e. all codes, have been processed.  This
+       all codes of length MAX, i.e. all codes, have been processed.  This
        routine permits incomplete codes, so another loop after this one fills
        in the rest of the decoding tables with invalid code markers.
      */
@@ -193,7 +193,7 @@ unsigned short FAR *work;
     /* initialize state for loop */
     huff = 0;                   /* starting code */
     sym = 0;                    /* starting code symbol */
-    len = min;                  /* starting code length */
+    len = MIN;                  /* starting code length */
     next = *table;              /* current table to fill in */
     curr = root;                /* current table index bits */
     drop = 0;                   /* current bits to drop from code for index */
@@ -245,7 +245,7 @@ unsigned short FAR *work;
         /* go to next symbol, update count, len */
         sym++;
         if (--(count[len]) == 0) {
-            if (len == max) break;
+            if (len == MAX) break;
             len = lens[work[sym]];
         }
 
@@ -261,7 +261,7 @@ unsigned short FAR *work;
             /* determine length of next table */
             curr = len - drop;
             left = (int)(1 << curr);
-            while (curr + drop < max) {
+            while (curr + drop < MAX) {
                 left -= count[curr + drop];
                 if (left <= 0) break;
                 curr++;

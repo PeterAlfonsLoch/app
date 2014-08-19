@@ -95,7 +95,7 @@ void string_array::set_size(::count nNewSize, ::count nGrowBy)
       {
          // heuristically determine growth when nGrowBy == 0
          //  (this avoids heap fragmentation in many situations)
-         nGrowBy = min(1024, max(4, m_nSize / 8));
+         nGrowBy = MIN(1024, MAX(4, m_nSize / 8));
       }
       ::count nNewMax;
       if (nNewSize < m_nMaxSize + nGrowBy)

@@ -118,8 +118,8 @@ struct static_tree_desc_s {
     const ct_data *static_tree;  /* static tree or NULL */
     const intf *extra_bits;      /* extra bits for each code or NULL */
     int     extra_base;          /* base index for extra_bits */
-    int     elems;               /* max number of elements in the tree */
-    int     max_length;          /* max bit length for the codes */
+    int     elems;               /* MAX number of elements in the tree */
+    int     max_length;          /* MAX bit length for the codes */
 };
 
 local static_tree_desc  static_l_desc =
@@ -712,8 +712,8 @@ local void scan_tree (s, tree, max_code)
     int curlen;                /* length of current code */
     int nextlen = tree[0].Len; /* length of next code */
     int count = 0;             /* repeat count of the current code */
-    int max_count = 7;         /* max repeat count */
-    int min_count = 4;         /* min repeat count */
+    int max_count = 7;         /* MAX repeat count */
+    int min_count = 4;         /* MIN repeat count */
 
     if (nextlen == 0) max_count = 138, min_count = 3;
     tree[max_code+1].Len = (ush)0xffff; /* guard */
@@ -757,8 +757,8 @@ local void send_tree (s, tree, max_code)
     int curlen;                /* length of current code */
     int nextlen = tree[0].Len; /* length of next code */
     int count = 0;             /* repeat count of the current code */
-    int max_count = 7;         /* max repeat count */
-    int min_count = 4;         /* min repeat count */
+    int max_count = 7;         /* MAX repeat count */
+    int min_count = 4;         /* MIN repeat count */
 
     /* tree[max_code+1].Len = -1; */  /* guard already set */
     if (nextlen == 0) max_count = 138, min_count = 3;

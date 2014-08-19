@@ -292,7 +292,7 @@ public:
 
    TYPE *      m_pData;    // the actual raw_array of data
    ::count     m_nSize;    // # of elements (upperBound - 1)
-   ::count     m_nMaxSize; // max allocated
+   ::count     m_nMaxSize; // MAX allocated
    ::count     m_nGrowBy;  // grow amount
 
 

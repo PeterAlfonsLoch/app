@@ -624,20 +624,20 @@ namespace draw2d
    void region::max_bounding_box_rect(LPRECT lprect) const
    {
 
-      lprect->left = min(lprect->left, m_x1);
-      lprect->right = max(lprect->right, m_x2);
-      lprect->top = min(lprect->left, m_y1);
-      lprect->bottom = max(lprect->right, m_y2);
+      lprect->left = MIN(lprect->left, m_x1);
+      lprect->right = MAX(lprect->right, m_x2);
+      lprect->top = MIN(lprect->left, m_y1);
+      lprect->bottom = MAX(lprect->right, m_y2);
 
    }
 
    void region::max_bounding_box_oval(LPRECT lprect) const
    {
 
-      lprect->left = min(lprect->left, m_x1);
-      lprect->right = max(lprect->right, m_x2);
-      lprect->top = min(lprect->left, m_y1);
-      lprect->bottom = max(lprect->right, m_y2);
+      lprect->left = MIN(lprect->left, m_x1);
+      lprect->right = MAX(lprect->right, m_x2);
+      lprect->top = MIN(lprect->left, m_y1);
+      lprect->bottom = MAX(lprect->right, m_y2);
 
    }
 
@@ -651,10 +651,10 @@ namespace draw2d
       for(int i = 0; i < m_nCount; i++)
       {
 
-         lprect->left = min(lprect->left, m_lppoints[i].x);
-         lprect->right = max(lprect->right, m_lppoints[i].x);
-         lprect->top = min(lprect->left, m_lppoints[i].y);
-         lprect->bottom = max(lprect->right, m_lppoints[i].y);
+         lprect->left = MIN(lprect->left, m_lppoints[i].x);
+         lprect->right = MAX(lprect->right, m_lppoints[i].x);
+         lprect->top = MIN(lprect->left, m_lppoints[i].y);
+         lprect->bottom = MAX(lprect->right, m_lppoints[i].y);
 
       }
 
@@ -673,10 +673,10 @@ namespace draw2d
          for(int j = 0; j < iCount; j++, n++)
          {
 
-            lprect->left = min(lprect->left, m_lppoints[n].x);
-            lprect->right = max(lprect->right, m_lppoints[n].x);
-            lprect->top = min(lprect->left, m_lppoints[n].y);
-            lprect->bottom = max(lprect->right, m_lppoints[n].y);
+            lprect->left = MIN(lprect->left, m_lppoints[n].x);
+            lprect->right = MAX(lprect->right, m_lppoints[n].x);
+            lprect->top = MIN(lprect->left, m_lppoints[n].y);
+            lprect->bottom = MAX(lprect->right, m_lppoints[n].y);
 
          }
 

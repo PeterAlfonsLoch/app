@@ -190,7 +190,7 @@ _GL_WARN_ON_USE (canonicalize_file_name,
 #endif
 
 #if @GNULIB_GETLOADAVG@
-/* Store max(NELEM,3) load average numbers in LOADAVG[].
+/* Store MAX(NELEM,3) load average numbers in LOADAVG[].
    The three numbers are the load average of the last 1 minute, the last 5
    minutes, and the last 15 minutes, respectively.
    LOADAVG is an array of NELEM numbers.  */

@@ -207,7 +207,7 @@ namespace math
       int32_t iValue;
       if (iLevel > 0)
       {
-         iLevel = min(iLevel, 3);
+         iLevel = MIN(iLevel, 3);
          iValue = abs(random_context_entropy(iMin, iMax, iLevel - 1) + random_context_entropy(iMin, iMax, iLevel - 1)) % abs(iMax - iMin);
       }
       else
@@ -307,8 +307,8 @@ namespace math
    // dRandRange == 0.0 is impossible event due this next statement;
    if(i1 == i2)
    return i1;
-   int32_t iMin = min(i1, i2);
-   int32_t iMax = max(i1, i2);
+   int32_t iMin = MIN(i1, i2);
+   int32_t iMax = MAX(i1, i2);
    double dRand = 0.0;
    double dRange = (double) (iMax - iMin);
    double dRandRange = 1.0;
@@ -331,8 +331,8 @@ namespace math
    // dRandRange == 0.0 is impossible event due this next statement;
    if(ui1 == ui2)
    return ui1;
-   int32_t iMin = min(ui1, ui2);
-   int32_t iMax = max(ui1, ui2);
+   int32_t iMin = MIN(ui1, ui2);
+   int32_t iMax = MAX(ui1, ui2);
    double dRand = 0.0;
    double dRange = (double) (iMax - iMin);
    double dRandRange = 1.0;
@@ -355,8 +355,8 @@ namespace math
       // dRandRange == 0.0 is impossible event due this next statement;
       if (i1 == i2)
          return i1;
-      int64_t iMin = min(i1, i2);
-      int64_t iMax = max(i1, i2);
+      int64_t iMin = MIN(i1, i2);
+      int64_t iMax = MAX(i1, i2);
       uint64_t uiRange = iMax - iMin;
       return (gen_rand() % (uiRange + 1)) + iMin;
    }
@@ -368,8 +368,8 @@ namespace math
    // dRandRange == 0.0 is impossible event due this next statement;
    if(ui1 == ui2)
    return ui1;
-   uint64_t uiMin = min(ui1, ui2);
-   uint64_t uiMax = max(ui1, ui2);
+   uint64_t uiMin = MIN(ui1, ui2);
+   uint64_t uiMax = MAX(ui1, ui2);
    double dRand = 0.0;
    double dRange = (double) (uiMax - uiMin);
    double dRandRange = 1.0;

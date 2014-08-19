@@ -283,7 +283,7 @@ void thread_get_os_priority(int32_t * piPolicy, sched_param * pparam, int32_t nC
       iOsPriority = (((nCa2Priority - iCa2Min)  * (iOsMax - iOsMin)) / (iCa2Max - iCa2Min)) + iOsMin;
    }
    
-   iOsPriority = max(iOsMin, min(iOsMax, iOsPriority));
+   iOsPriority = MAX(iOsMin, MIN(iOsMax, iOsPriority));
    
    *piPolicy = iOsPolicy;
    
@@ -341,7 +341,7 @@ int32_t thread_get_scheduling_priority(int32_t iOsPolicy, const sched_param * pp
       iCa2Priority = (((pparam->sched_priority - iOsMin)  * (iCa2Max - iCa2Min)) / (iOsMax - iOsMin)) + iCa2Min;
    }
    
-   iCa2Priority = max(iCa2Min, min(iCa2Max, iCa2Priority));
+   iCa2Priority = MAX(iCa2Min, MIN(iCa2Max, iCa2Priority));
    
    return iCa2Priority;
    
@@ -370,9 +370,9 @@ int32_t process_get_os_priority(int32_t nCa2Priority)
       return 0;
    
    if(nCa2Priority <= (int) ::core::scheduling_priority_normal)
-      return max(-20, min(0, -20 * ((int) ::core::scheduling_priority_normal - nCa2Priority) / ((int) ::core::scheduling_priority_normal - (int) ::core::scheduling_priority_idle)));
+      return MAX(-20, MIN(0, -20 * ((int) ::core::scheduling_priority_normal - nCa2Priority) / ((int) ::core::scheduling_priority_normal - (int) ::core::scheduling_priority_idle)));
    
-   return max(0, min(20, 20 * (nCa2Priority - (int) ::core::scheduling_priority_normal) / ((int) ::core::scheduling_priority_time_critical - (int) ::core::scheduling_priority_normal)));
+   return MAX(0, MIN(20, 20 * (nCa2Priority - (int) ::core::scheduling_priority_normal) / ((int) ::core::scheduling_priority_time_critical - (int) ::core::scheduling_priority_normal)));
    
 }
 

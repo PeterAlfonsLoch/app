@@ -319,7 +319,7 @@ namespace zip
          BYTE lpbBuf[1024];
          while(iRemain > 0)
          {
-            iGet = min(iRemain, 1024);
+            iGet = MIN(iRemain, 1024);
             iRead = unzReadCurrentFile(get_zip_file()->m_pfUnzip, lpbBuf, (uint32_t) iGet);
             iRemain -= iRead;
             if(iRead < iGet)

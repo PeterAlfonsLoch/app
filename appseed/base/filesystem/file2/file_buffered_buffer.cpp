@@ -133,7 +133,7 @@ namespace file
       {
          if(m_uiPosition >= m_uiBufLPos && m_uiPosition <= m_uiBufUPos && m_uiBufUPos != 0xFFFFFFFF)
          {
-            uiReadNow = min(nCount - uiRead, (::primitive::memory_size) (m_uiBufUPos - m_uiPosition + 1));
+            uiReadNow = MIN(nCount - uiRead, (::primitive::memory_size) (m_uiBufUPos - m_uiPosition + 1));
             if(nCount == 1)
             {
                ((LPBYTE)lpBufParam)[uiRead] = m_storage.get_data()[m_uiPosition - m_uiBufLPos];
@@ -165,7 +165,7 @@ namespace file
       m_pfile->seek((file_offset) m_uiPosition, seek_begin);
       ::primitive::memory_size uiCopy;
       if(uiGrow > 0)
-         uiCopy = min(m_uiBufferSize, uiGrow);
+         uiCopy = MIN(m_uiBufferSize, uiGrow);
       else
          uiCopy = m_uiBufferSize;
       ::primitive::memory_size uiRead    = m_pfile->read(m_storage.get_data(), uiCopy);
@@ -186,7 +186,7 @@ namespace file
          if(m_uiPosition >= m_uiBufLPos && m_uiPosition < (m_uiBufLPos + m_uiBufferSize))
          {
             m_bDirty = true;
-            uiWriteNow = min(nCount - uiWrite, (::primitive::memory_size) ((m_uiBufLPos + m_uiBufferSize) - m_uiPosition + 1));
+            uiWriteNow = MIN(nCount - uiWrite, (::primitive::memory_size) ((m_uiBufLPos + m_uiBufferSize) - m_uiPosition + 1));
             if(m_uiWriteLPos == 0xffffffff || m_uiWriteLPos > m_uiPosition)
                m_uiWriteLPos = m_uiPosition;
             if(m_uiWriteUPos == 0xffffffff || m_uiWriteUPos < (m_uiPosition + uiWriteNow - 1))
