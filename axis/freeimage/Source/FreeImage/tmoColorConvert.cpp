@@ -21,7 +21,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-
+#include "Utilities.h"
 #include "ToneMapping.h"
 
 // ----------------------------------------------------------
@@ -400,7 +400,7 @@ static void findMaxMinPercentile(FIBITMAP *Y, float minPrct, float *minLum, floa
 	int height = FreeImage_GetHeight(Y);
 	int pitch = FreeImage_GetPitch(Y);
 
-	numeric_array<float> vY(width * height);
+	std::vector<float> vY(width * height);
 
 	BYTE *bits = (BYTE*)FreeImage_GetBits(Y);
 	for(y = 0; y < height; y++) {
@@ -414,8 +414,6 @@ static void findMaxMinPercentile(FIBITMAP *Y, float minPrct, float *minLum, floa
 	}
 
 	std::sort(vY.begin(), vY.end());
-
-//   vY.quick_sort();
 	
 	*minLum = vY.at( int(minPrct * vY.size()) );
 	*maxLum = vY.at( int(maxPrct * vY.size()) );

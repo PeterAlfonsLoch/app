@@ -38,7 +38,8 @@ namespace file
       defer_create_directory           = (int32_t) 0x10000,
       hint_unknown_length_supported    = (int32_t) 0x20000,
       binary                           = type_binary,
-      out                              = mode_write
+      out                              = mode_write,
+      in                               = mode_read,
    };
 
 
@@ -113,14 +114,14 @@ namespace file
          return m_iostate == goodbit;
       }
 
-      void setstate(e_iostate state)
+      void setstate(int state)
       {
          clear((e_iostate) (rdstate() | state));
       }
 
-      void clear(e_iostate state = goodbit)
+      void clear(int state = goodbit)
       {
-         m_iostate = state;
+         m_iostate = (e_iostate) state;
       }
 
       virtual string GetFilePath() const;

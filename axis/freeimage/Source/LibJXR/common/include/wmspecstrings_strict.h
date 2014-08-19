@@ -110,7 +110,7 @@
 *  <> : The buffer is not accessed. If used on the return value or with
 *  _deref, the function will provide the buffer, and it will be uninitialized
 *  at exit.  Otherwise, the caller must provide the buffer. This should only
-*  be used for alloc and memory_free functions.
+*  be used for alloc and free functions.
 *
 *  _in : The function will only read from the buffer. The caller must provide
 *  the buffer and initialize it.
@@ -681,7 +681,7 @@
 *    char *buf;                                                  
 *   };                                                           
 *   void InitBuf(__out struct *buf_s b,int sz) {                 
-*        b->buf = memory_calloc(sz,sizeof(char));                       
+*        b->buf = calloc(sz,sizeof(char));                       
 *        b->sz = sz;                                             
 *   }                                                            
 *   void WriteBuf(__in FILE *fp,__in struct *buf_s b) {          

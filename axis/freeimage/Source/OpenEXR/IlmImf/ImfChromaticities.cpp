@@ -40,7 +40,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include "Imf.h"
+#include <ImfChromaticities.h>
 
 namespace Imf {
 

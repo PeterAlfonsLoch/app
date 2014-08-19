@@ -563,7 +563,7 @@ int32_t thread::exit_instance()
 }
 
 
-void thread::process_window_procedure_exception(::exception::axis* e, signal_details * pobj)
+void thread::process_window_procedure_exception(::exception::base* e, signal_details * pobj)
 {
 
    if(m_pthreadimpl.is_null())

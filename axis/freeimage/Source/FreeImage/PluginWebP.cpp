@@ -20,7 +20,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-
+#include "Utilities.h"
 
 #include "../Metadata/FreeImageTag.h"
 
@@ -52,7 +52,7 @@ ReadFileToWebPData(FreeImageIO *io, fi_handle handle, WebPData * const bitstream
 	  io->seek_proc(handle, 0, SEEK_END);
 	  size_t file_length = (size_t)(io->tell_proc(handle) - start_pos);
 	  io->seek_proc(handle, start_pos, SEEK_SET);
-	  raw_data = (uint8_t*)memory_alloc(file_length * sizeof(uint8_t));
+	  raw_data = (uint8_t*)malloc(file_length * sizeof(uint8_t));
 	  if(!raw_data) {
 		  throw FI_MSG_ERROR_MEMORY;
 	  }
@@ -60,7 +60,7 @@ ReadFileToWebPData(FreeImageIO *io, fi_handle handle, WebPData * const bitstream
 		  throw "Error while reading input stream";
 	  }
 	  
-	  // copy pointers (must be released later using memory_free)
+	  // copy pointers (must be released later using free)
 	  bitstream->bytes = raw_data;
 	  bitstream->size = file_length;
 
@@ -68,7 +68,7 @@ ReadFileToWebPData(FreeImageIO *io, fi_handle handle, WebPData * const bitstream
 
   } catch(const char *text) {
 	  if(raw_data) {
-		  memory_free(raw_data);
+		  free(raw_data);
 	  }
 	  memset(bitstream, 0, sizeof(WebPData));
 	  if(NULL != text) {
@@ -179,7 +179,7 @@ Open(FreeImageIO *io, fi_handle handle, BOOL read) {
 		// create the MUX object
 		mux = WebPMuxCreate(&bitstream, copy_data);
 		// no longer needed since copy_data == 1
-		memory_free((void*)bitstream.bytes);
+		free((void*)bitstream.bytes);
 		if(mux == NULL) {
 			FreeImage_OutputMessageProc(s_format_id, "Failed to create mux object from file");
 			return NULL;
@@ -200,7 +200,7 @@ static void DLL_CALLCONV
 Close(FreeImageIO *io, fi_handle handle, void *data) {
 	WebPMux *mux = (WebPMux*)data;
 	if(mux != NULL) {
-		// memory_free the MUX object
+		// free the MUX object
 		WebPMuxDelete(mux);
 	}
 }
@@ -654,7 +654,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 			throw (1);
 		}
 
-		// memory_free WebP output file
+		// free WebP output file
 		WebPDataClear(&output_data);
 
 		return TRUE;

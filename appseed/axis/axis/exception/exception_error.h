@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_AXIS error_exception : 
-   virtual public ::exception::axis
+   virtual public ::exception::base
 {
    // axis class for resource-critical core API exceptions
    // handles ownership and initialization of an error message

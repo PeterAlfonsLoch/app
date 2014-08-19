@@ -53,7 +53,7 @@
 #endif
 #ifdef WIN32
 #include <sys/utime.h>
-//#include <winsock2.h>
+#include <winsock2.h>
 #pragma comment(lib, "ws2_32.lib")
 #define snprintf _snprintf
 #define strcasecmp stricmp
@@ -80,7 +80,7 @@ typedef unsigned long long UINT64;
 #include <jpeglib.h>		/* Decode compressed Kodak DC120 photos */
 #endif				/* and Adobe Lossy DNGs */
 #ifndef NO_LCMS
-#include <lcms2.h>		/* Support color profiles */
+//#include <lcms2.h>		/* Support color profiles */
 #endif
 #ifdef LOCALEDIR
 #include <libintl.h>

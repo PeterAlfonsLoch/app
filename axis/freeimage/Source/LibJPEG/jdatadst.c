@@ -20,9 +20,9 @@
 #include "jpeglib.h"
 #include "jerror.h"
 
-#ifndef HAVE_STDLIB_H		/* <stdlib.h> should declare memory_alloc(),memory_free() */
-extern void * memory_alloc JPP((size_t size));
-extern void memory_free JPP((void *ptr));
+#ifndef HAVE_STDLIB_H		/* <stdlib.h> should declare malloc(),free() */
+extern void * malloc JPP((size_t size));
+extern void free JPP((void *ptr));
 #endif
 
 
@@ -128,7 +128,7 @@ empty_mem_output_buffer (j_compress_ptr cinfo)
 
   /* Try to allocate new buffer with double size */
   nextsize = dest->bufsize * 2;
-  nextbuffer = (JOCTET *) memory_alloc(nextsize);
+  nextbuffer = (JOCTET *) malloc(nextsize);
 
   if (nextbuffer == NULL)
     ERREXIT1(cinfo, JERR_OUT_OF_MEMORY, 10);
@@ -136,7 +136,7 @@ empty_mem_output_buffer (j_compress_ptr cinfo)
   MEMCOPY(nextbuffer, dest->buffer, dest->bufsize);
 
   if (dest->newbuffer != NULL)
-    memory_free(dest->newbuffer);
+    free(dest->newbuffer);
 
   dest->newbuffer = nextbuffer;
 
@@ -222,12 +222,12 @@ jpeg_stdio_dest (j_compress_ptr cinfo, FILE * outfile)
  * The caller may supply an own initial buffer with appropriate size.
  * Otherwise, or when the actual data output exceeds the given size,
  * the library adapts the buffer size as necessary.
- * The standard library functions memory_alloc/memory_free are used for allocating
+ * The standard library functions malloc/free are used for allocating
  * larger memory, so the buffer is available to the application after
  * finishing compression, and then the application is responsible for
  * freeing the requested memory.
  * Note:  An initial buffer supplied by the caller is expected to be
- * managed by the application.  The library does not memory_free such buffer
+ * managed by the application.  The library does not free such buffer
  * when allocating a larger buffer.
  */
 
@@ -259,7 +259,7 @@ jpeg_mem_dest (j_compress_ptr cinfo,
 
   if (*outbuffer == NULL || *outsize == 0) {
     /* Allocate initial buffer */
-    dest->newbuffer = *outbuffer = (unsigned char *) memory_alloc(OUTPUT_BUF_SIZE);
+    dest->newbuffer = *outbuffer = (unsigned char *) malloc(OUTPUT_BUF_SIZE);
     if (dest->newbuffer == NULL)
       ERREXIT1(cinfo, JERR_OUT_OF_MEMORY, 10);
     *outsize = OUTPUT_BUF_SIZE;

@@ -27,7 +27,7 @@
 #endif
 
 #include "FreeImage.h"
-
+#include "Utilities.h"
 
 #include "../Metadata/FreeImageTag.h"
 
@@ -39,7 +39,7 @@
 
 // ----------------------------------------------------------
 
-#include "zLib/zlib.h"
+#include "../ZLib/zlib.h"
 #include "../LibPNG/png.h"
 
 // ----------------------------------------------------------
@@ -578,7 +578,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				// get possible metadata (it can be located both before and after the image data)
 				ReadMetadata(png_ptr, info_ptr, dib);
 				if (png_ptr) {
-					// clean up after the read, and memory_free any memory allocated - REQUIRED
+					// clean up after the read, and free any memory allocated - REQUIRED
 					png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
 				}
 				return dib;
@@ -586,7 +586,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 			// set the individual row_pointers to point at the correct offsets
 
-			row_pointers = (png_bytepp)memory_alloc(height * sizeof(png_bytep));
+			row_pointers = (png_bytepp)malloc(height * sizeof(png_bytep));
 
 			if (!row_pointers) {
 				png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
@@ -617,7 +617,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			// cleanup
 
 			if (row_pointers) {
-				memory_free(row_pointers);
+				free(row_pointers);
 				row_pointers = NULL;
 			}
 
@@ -630,7 +630,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			ReadMetadata(png_ptr, info_ptr, dib);
 
 			if (png_ptr) {
-				// clean up after the read, and memory_free any memory allocated - REQUIRED
+				// clean up after the read, and free any memory allocated - REQUIRED
 				png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
 			}
 
@@ -641,7 +641,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
 			}
 			if (row_pointers) {
-				memory_free(row_pointers);
+				free(row_pointers);
 			}
 			if (dib) {
 				FreeImage_Unload(dib);			
@@ -802,7 +802,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 					
 					png_set_PLTE(png_ptr, info_ptr, palette, palette_entries);
 
-					// You must not memory_free palette here, because png_set_PLTE only makes a link to
+					// You must not free palette here, because png_set_PLTE only makes a link to
 					// the palette that you malloced.  Wait until you are about to destroy
 					// the png structure.
 
@@ -897,7 +897,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 			}
 
 			if ((pixel_depth == 32) && (!has_alpha_channel)) {
-				BYTE *buffer = (BYTE *)memory_alloc(width * 3);
+				BYTE *buffer = (BYTE *)malloc(width * 3);
 
 				// transparent conversion to 24-bit
 				// the number of passes is either 1 for non-interlaced images, or 7 for interlaced images
@@ -907,7 +907,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 						png_write_row(png_ptr, buffer);
 					}
 				}
-				memory_free(buffer);
+				free(buffer);
 			} else {
 				// the number of passes is either 1 for non-interlaced images, or 7 for interlaced images
 				for (int pass = 0; pass < number_passes; pass++) {
@@ -922,7 +922,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 
 			png_write_end(png_ptr, info_ptr);
 
-			// clean up after the write, and memory_free any memory allocated
+			// clean up after the write, and free any memory allocated
 			if (palette) {
 				png_free(png_ptr, palette);
 			}

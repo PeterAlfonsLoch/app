@@ -129,12 +129,12 @@ Void Clean (CAdaptiveHuffman *pAdHuff)
 {
     if (pAdHuff == NULL)
         return;
-    memory_free (pAdHuff);
+    free (pAdHuff);
 }
 
 CAdaptiveHuffman *Allocate (Int iNSymbols, CODINGMODE cm)
 {
-    CAdaptiveHuffman *pAdHuff = (CAdaptiveHuffman *) memory_alloc (sizeof (CAdaptiveHuffman));
+    CAdaptiveHuffman *pAdHuff = (CAdaptiveHuffman *) malloc (sizeof (CAdaptiveHuffman));
 
     UNREFERENCED_PARAMETER(cm);
 

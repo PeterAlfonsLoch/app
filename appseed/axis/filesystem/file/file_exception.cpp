@@ -12,7 +12,7 @@ namespace file
    exception::exception(sp(::axis::application) papp, int32_t cause , LONG lOsError, const char * lpszArchiveName) :
       element(papp),
       ::call_stack(papp),
-      ::exception::axis(papp),
+      ::exception::base(papp),
       ::simple_exception(papp),
       ::io_exception(papp)
    {

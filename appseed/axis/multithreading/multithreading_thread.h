@@ -125,7 +125,7 @@ public:
 
    virtual int32_t exit_instance();
 
-   virtual void process_window_procedure_exception(::exception::axis*,signal_details * pobj);
+   virtual void process_window_procedure_exception(::exception::base*,signal_details * pobj);
 
    virtual void process_message_filter(int32_t code, signal_details * pobj);
 

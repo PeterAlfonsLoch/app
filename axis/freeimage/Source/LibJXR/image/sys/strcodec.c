@@ -245,7 +245,7 @@ Int IDPEmpty(CWMImageStrCodec* pSC)
 
 ERR WMPAlloc(void** ppv, size_t cb)
 {
-    *ppv = memory_calloc(1, cb);
+    *ppv = calloc(1, cb);
     return *ppv ? WMP_errSuccess : WMP_errOutOfMemory;
 }
 
@@ -253,7 +253,7 @@ ERR WMPFree(void** ppv)
 {
     if (*ppv)
     {
-        memory_free(*ppv);
+        free(*ppv);
         *ppv = NULL;
     }
 
@@ -734,7 +734,7 @@ Int allocateBitIOInfo(CWMImageStrCodec* pSC)
     if(cNumBitIO > 0){
         U32 i = 0;
         size_t cb = sizeof(BitIOInfo) * cNumBitIO + (PACKETLENGTH * 4 - 1) + PACKETLENGTH * 4 * cNumBitIO;
-        U8* pb = (U8*)memory_alloc(cb);
+        U8* pb = (U8*)malloc(cb);
 
         if (NULL == pb) return ICERR_ERROR;
         memset(pb, 0, cb);
@@ -751,7 +751,7 @@ Int allocateBitIOInfo(CWMImageStrCodec* pSC)
         // allocate index table
         if(cNumBitIO > MAX_TILES * 4 || pSC->WMISCP.cNumOfSliceMinus1H >= MAX_TILES)
             return ICERR_ERROR;
-        pSC->pIndexTable = memory_alloc(cNumBitIO * (pSC->WMISCP.cNumOfSliceMinus1H + 1) * sizeof(size_t));
+        pSC->pIndexTable = malloc(cNumBitIO * (pSC->WMISCP.cNumOfSliceMinus1H + 1) * sizeof(size_t));
         if(NULL == pSC->pIndexTable) return ICERR_ERROR;
     }
 
@@ -797,7 +797,7 @@ Int allocateTileInfo(CWMImageStrCodec * pSC)
 
     if(pSC->WMISCP.cNumOfSliceMinus1V >= MAX_TILES)
         return ICERR_ERROR;
-    pSC->pTile = (CWMITile *)memory_alloc((pSC->WMISCP.cNumOfSliceMinus1V + 1) * sizeof(CWMITile));
+    pSC->pTile = (CWMITile *)malloc((pSC->WMISCP.cNumOfSliceMinus1V + 1) * sizeof(CWMITile));
     if(pSC->pTile == NULL)
         return ICERR_ERROR;
     memset(pSC->pTile, 0, (pSC->WMISCP.cNumOfSliceMinus1V + 1) * sizeof(CWMITile));
@@ -833,7 +833,7 @@ Void freeTileInfo(CWMImageStrCodec * pSC)
             freeQuantizer(pSC->pTile[0].pQuantizerHP);
 
     if(pSC->pTile != NULL)
-        memory_free(pSC->pTile);
+        free(pSC->pTile);
 }
 
 Int allocateQuantizer(CWMIQuantizer * pQuantizer[MAX_CHANNELS], size_t cChannel, size_t cQP)
@@ -842,7 +842,7 @@ Int allocateQuantizer(CWMIQuantizer * pQuantizer[MAX_CHANNELS], size_t cChannel,
     
     if(cQP > 16 || cChannel > MAX_CHANNELS)
         return ICERR_ERROR;
-    pQuantizer[0] = (CWMIQuantizer *)memory_alloc(cQP * sizeof(CWMIQuantizer) * cChannel);
+    pQuantizer[0] = (CWMIQuantizer *)malloc(cQP * sizeof(CWMIQuantizer) * cChannel);
     if(pQuantizer[0] == NULL)
         return ICERR_ERROR;
 
@@ -855,7 +855,7 @@ Int allocateQuantizer(CWMIQuantizer * pQuantizer[MAX_CHANNELS], size_t cChannel,
 Void freeQuantizer(CWMIQuantizer * pQuantizer[MAX_CHANNELS])
 {
     if(pQuantizer[0] != NULL)
-        memory_free(pQuantizer[0]);
+        free(pQuantizer[0]);
 }
 
 Void formatQuantizer(CWMIQuantizer * pQuantizer[MAX_CHANNELS], U8 cChMode, size_t cCh, size_t iPos, Bool bShiftedUV,

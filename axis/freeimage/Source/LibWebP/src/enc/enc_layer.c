@@ -39,6 +39,6 @@ int VP8EncFinishLayer(VP8Encoder* const enc) {
 }
 
 void VP8EncDeleteLayer(VP8Encoder* enc) {
-  memory_free(enc->layer_data_);
+  free(enc->layer_data_);
 }
 

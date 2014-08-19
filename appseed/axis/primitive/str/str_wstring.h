@@ -139,6 +139,9 @@ public:
    inline operator wchar_t * () const { return get_data()->m_iAllocation <= 0 ? NULL : m_pwsz; }
    inline operator wchar_t * () { return get_data()->m_iAllocation <= 0 ? NULL : m_pwsz; }
 
+
+   inline const wchar_t * c_str() const { return this->operator const wchar_t *();  }
+
 #if defined(METROWIN) && defined(__cplusplus_winrt)
    inline operator Platform::String ^ () const { return ref new Platform::String(operator const wchar_t *()); }
    inline operator Platform::String ^ () { return ref new Platform::String(operator const wchar_t *()); }
@@ -285,7 +288,8 @@ public:
 
    }
 
-   verisimple_wstring substr(::index iStart, ::count = -1);
+   verisimple_wstring substr(::index iStart, ::count c = -1);
+   verisimple_wstring & replace(::index iStart,::count c, const wchar_t * psz);
 
 };
 

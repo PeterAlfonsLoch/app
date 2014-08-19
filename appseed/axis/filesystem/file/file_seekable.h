@@ -16,7 +16,10 @@ namespace file
    {
       seek_begin     = 0x0,
       seek_current   = 0x1,
-      seek_end       = 0x2
+      seek_end       = 0x2,
+      beg = seek_begin,
+      cur = seek_current,
+      end=seek_end
    };
 
 

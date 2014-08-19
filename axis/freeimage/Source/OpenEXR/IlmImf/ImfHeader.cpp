@@ -40,7 +40,35 @@
 //
 //-----------------------------------------------------------------------------
 
-#include "Imf.h"
+#include <ImfHeader.h>
+#include <ImfStdIO.h>
+#include <ImfVersion.h>
+#include <ImfCompressor.h>
+#include <ImfMisc.h>
+#include <ImfBoxAttribute.h>
+#include <ImfChannelListAttribute.h>
+#include <ImfChromaticitiesAttribute.h>
+#include <ImfCompressionAttribute.h>
+#include <ImfDoubleAttribute.h>
+#include <ImfEnvmapAttribute.h>
+#include <ImfFloatAttribute.h>
+#include <ImfIntAttribute.h>
+#include <ImfKeyCodeAttribute.h>
+#include <ImfLineOrderAttribute.h>
+#include <ImfMatrixAttribute.h>
+#include <ImfOpaqueAttribute.h>
+#include <ImfPreviewImageAttribute.h>
+#include <ImfRationalAttribute.h>
+#include <ImfStringAttribute.h>
+#include <ImfStringVectorAttribute.h>
+#include <ImfTileDescriptionAttribute.h>
+#include <ImfTimeCodeAttribute.h>
+#include <ImfVecAttribute.h>
+#include "IlmThreadMutex.h"
+#include "Iex.h"
+#include <sstream>
+#include <stdlib.h>
+#include <time.h>
 
 
 namespace Imf {

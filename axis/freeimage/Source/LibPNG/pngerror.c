@@ -674,9 +674,9 @@ png_free_jmpbuf(png_structrp png_ptr)
       if (jb != NULL && png_ptr->jmp_buf_size > 0)
       {
 
-         /* This stuff is so that a failure to memory_free the error control structure
+         /* This stuff is so that a failure to free the error control structure
           * does not leave libpng in a state with no valid error handling: the
-          * memory_free always succeeds, if there is an error it gets ignored.
+          * free always succeeds, if there is an error it gets ignored.
           */
          if (jb != &png_ptr->jmp_buf_local)
          {
@@ -844,7 +844,7 @@ png_set_error_fn(png_structrp png_ptr, png_voidp error_ptr,
 
 
 /* This function returns a pointer to the error_ptr associated with the user
- * functions.  The application should memory_free any memory associated with this
+ * functions.  The application should free any memory associated with this
  * pointer before png_write_destroy and png_read_destroy are called.
  */
 png_voidp PNGAPI

@@ -89,7 +89,7 @@
  <>     : The buffer is not accessed. If used on the return value or with _deref, the
             function will provide the buffer, and it will be uninitialized at exit.
             Otherwise, the caller must provide the buffer. This should only be used
-            for alloc and memory_free functions.
+            for alloc and free functions.
  _in    : The function will only read from the buffer. The caller must provide the
             buffer and initialize it. Cannot be used with _deref.
  _out   : The function will only write to the buffer. If used on the return value or

@@ -336,7 +336,7 @@ inline void c_cdecl __trace(...) { }
    } while (0)
 
 #define __BEGIN_DESTRUCTOR try {
-#define __END_DESTRUCTOR   } catch (::exception::axis *pException) { EXCEPTION_IN_DTOR(pException); }
+#define __END_DESTRUCTOR   } catch (::exception::base *pException) { EXCEPTION_IN_DTOR(pException); }
 
 
 

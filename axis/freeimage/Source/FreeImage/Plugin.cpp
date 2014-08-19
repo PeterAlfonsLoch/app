@@ -22,21 +22,27 @@
 // Use at your own risk!
 // =====================================================================
 
-
-#include "FreeImage.h"
-
-#ifdef _WIN32
-#include <io.h>
+#ifdef _MSC_VER 
+#pragma warning (disable : 4786) // identifier was truncated to 'number' characters
 #endif
 
+#ifdef _WIN32
+#include <windows.h>
+#include <io.h>
+#else
+#include <ctype.h>
+#endif // _WIN32
 
-
+#include "FreeImage.h"
+#include "Utilities.h"
+#include "FreeImageIO.h"
+#include "Plugin.h"
 
 #include "../Metadata/FreeImageTag.h"
 
 // =====================================================================
 
-//using namespace std;
+using namespace std;
 
 // =====================================================================
 // Plugin search list
@@ -81,8 +87,8 @@ m_node_count(0) {
 FREE_IMAGE_FORMAT
 PluginList::AddNode(FI_InitProc init_proc, void *instance, const char *format, const char *description, const char *extension, const char *regexpr) {
 	if (init_proc != NULL) {
-		PluginNode *node = new PluginNode;
-		Plugin *plugin = new Plugin;
+		PluginNode *node = new(std::nothrow) PluginNode;
+		Plugin *plugin = new(std::nothrow) Plugin;
 		if(!node || !plugin) {
 			if(node) delete node;
 			if(plugin) delete plugin;
@@ -135,7 +141,7 @@ PluginList::AddNode(FI_InitProc init_proc, void *instance, const char *format, c
 
 PluginNode *
 PluginList::FindNodeFromFormat(const char *format) {
-	for (std::map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
+	for (map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
 		const char *the_format = ((*i).second->m_format != NULL) ? (*i).second->m_format : (*i).second->m_plugin->format_proc();
 
 		if ((*i).second->m_enabled) {
@@ -150,7 +156,7 @@ PluginList::FindNodeFromFormat(const char *format) {
 
 PluginNode *
 PluginList::FindNodeFromMime(const char *mime) {
-	for (std::map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
+	for (map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
 		const char *the_mime = ((*i).second->m_plugin->mime_proc != NULL) ? (*i).second->m_plugin->mime_proc() : "";
 
 		if ((*i).second->m_enabled) {
@@ -165,7 +171,7 @@ PluginList::FindNodeFromMime(const char *mime) {
 
 PluginNode *
 PluginList::FindNodeFromFIF(int node_id) {
-	std::map<int, PluginNode *>::iterator i = m_plugin_map.find(node_id);
+	map<int, PluginNode *>::iterator i = m_plugin_map.find(node_id);
 
 	if (i != m_plugin_map.end()) {
 		return (*i).second;
@@ -185,7 +191,7 @@ PluginList::IsEmpty() const {
 }
 
 PluginList::~PluginList() {
-	for (std::map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
+	for (map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
 #ifdef _WIN32
 		if ((*i).second->m_instance != NULL) {
 			FreeLibrary((HINSTANCE)(*i).second->m_instance);
@@ -223,7 +229,7 @@ FreeImage_Initialise(BOOL load_local_plugins_only) {
 
 		// internal plugin initialization
 
-		s_plugins = new PluginList;
+		s_plugins = new(std::nothrow) PluginList;
 
 		if (s_plugins) {
 			/* NOTE : 
@@ -741,7 +747,7 @@ FreeImage_GetFIFFromFilename(const char *filename) {
 				} else {
 					// make a copy of the extension list and split it
 
-					char *copy = (char *)memory_alloc(strlen(FreeImage_GetFIFExtensionList((FREE_IMAGE_FORMAT)i)) + 1);
+					char *copy = (char *)malloc(strlen(FreeImage_GetFIFExtensionList((FREE_IMAGE_FORMAT)i)) + 1);
 					memset(copy, 0, strlen(FreeImage_GetFIFExtensionList((FREE_IMAGE_FORMAT)i)) + 1);
 					memcpy(copy, FreeImage_GetFIFExtensionList((FREE_IMAGE_FORMAT)i), strlen(FreeImage_GetFIFExtensionList((FREE_IMAGE_FORMAT)i)));
 
@@ -751,7 +757,7 @@ FreeImage_GetFIFFromFilename(const char *filename) {
 
 					while (token != NULL) {
 						if (FreeImage_stricmp(token, extension) == 0) {
-							memory_free(copy);
+							free(copy);
 
 								return (FREE_IMAGE_FORMAT)i;
 						}
@@ -759,9 +765,9 @@ FreeImage_GetFIFFromFilename(const char *filename) {
 						token = strtok(NULL, ",");
 					}
 
-					// memory_free the copy of the extension list
+					// free the copy of the extension list
 
-					memory_free(copy);
+					free(copy);
 				}	
 			}
 		}
@@ -779,14 +785,14 @@ FreeImage_GetFIFFromFilenameU(const wchar_t *filename) {
 	wchar_t *place = wcsrchr((wchar_t *)filename, '.');	
 	if (place == NULL) return FIF_UNKNOWN;
 	// convert to single character - no national chars in extensions
-	char *extension = (char *)memory_alloc(wcslen(place)+1);
+	char *extension = (char *)malloc(wcslen(place)+1);
 	unsigned int i=0;
 	for(; i < wcslen(place); i++) // convert 16-bit to 8-bit
 		extension[i] = (char)(place[i] & 0x00FF);
 	// set terminating 0
 	extension[i]=0;
 	FREE_IMAGE_FORMAT fRet = FreeImage_GetFIFFromFilename(extension);
-	memory_free(extension);
+	free(extension);
 
 	return fRet;
 #else

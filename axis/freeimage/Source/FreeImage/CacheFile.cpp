@@ -20,14 +20,11 @@
 // Use at your own risk!
 // ==========================================================
 
-#include "FreeImage.h"
-
-
 #ifdef _MSC_VER 
 #pragma warning (disable : 4786) // identifier was truncated to 'number' characters
 #endif 
 
-
+#include "CacheFile.h"
 
 // ----------------------------------------------------------
 
@@ -184,7 +181,7 @@ CacheFile::deleteBlock(int nr) {
 		if (it != m_page_map.end())
 			m_page_map.erase(nr);
 
-		// add block to memory_free page list
+		// add block to free page list
 
 		m_free_pages.push_back(nr);
 

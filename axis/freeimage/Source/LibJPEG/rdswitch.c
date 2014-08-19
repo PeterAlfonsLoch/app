@@ -165,7 +165,7 @@ read_scan_script (j_compress_ptr cinfo, char * filename)
  * The component indexes denote which component(s) are to be transmitted
  * in the current scan.  The first component has index 0.
  * Sequential JPEG is used if the progressive-JPEG parameters are omitted.
- * The file is memory_free format text: any whitespace may appear between numbers
+ * The file is free format text: any whitespace may appear between numbers
  * and the ':' and ';' punctuation marks.  Also, other punctuation (such
  * as commas or dashes) can be placed between numbers if desired.
  * Comments preceded by '#' may be included in the file.

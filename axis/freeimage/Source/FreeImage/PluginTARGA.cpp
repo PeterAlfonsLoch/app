@@ -26,7 +26,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-
+#include "Utilities.h"
 
 // ----------------------------------------------------------
 //   Constants + headers
@@ -40,12 +40,12 @@
 
 typedef struct tagTGAHEADER {
 	BYTE id_length;				// ID length
-	BYTE color_map_type;		// color std::map type
+	BYTE color_map_type;		// color map type
 	BYTE image_type;			// image type
 
 	WORD cm_first_entry;		// first entry index
-	WORD cm_length;				// color std::map length
-	BYTE cm_size;				// color std::map entry size, in bits
+	WORD cm_length;				// color map length
+	BYTE cm_size;				// color map entry size, in bits
 
 	WORD is_xorigin;			// X-origin of image
 	WORD is_yorigin;			// Y-origin of image
@@ -111,7 +111,7 @@ public:
 	}
 	~TargaThumbnail() { 
 		if(_data) {
-			memory_free(_data); 
+			free(_data); 
 		}
 	}
 
@@ -124,7 +124,7 @@ public:
 		io->read_proc(&_h, 1, 1, handle);
 		
 		const size_t sizeofData = size - 2;
-		_data = (BYTE*)memory_alloc(sizeofData);
+		_data = (BYTE*)malloc(sizeofData);
 		if(_data) {
 			return (io->read_proc(_data, 1, (unsigned)sizeofData, handle) == sizeofData);
 		}
@@ -211,7 +211,7 @@ class IOCache
 public:
 	IOCache(FreeImageIO *io, fi_handle handle, size_t size) :
 		_ptr(NULL), _begin(NULL), _end(NULL), _size(size), _io(io), _handle(handle)	{
-			_begin = (BYTE*)memory_alloc(size);
+			_begin = (BYTE*)malloc(size);
 			if (_begin) {
 			_end = _begin + _size;
 			_ptr = _end;	// will force refill on first access
@@ -220,7 +220,7 @@ public:
 	
 	~IOCache() {
 		if (_begin != NULL) {
-			memory_free(_begin);
+			free(_begin);
 		}	
 	}
 		
@@ -394,13 +394,13 @@ Validate(FreeImageIO *io, fi_handle handle) {
 		// rewind
 		io->seek_proc(handle, start_offset, SEEK_SET);
 
-		// the color std::map type should be a 0 or a 1...
+		// the color map type should be a 0 or a 1...
 		if(header.color_map_type != 0 && header.color_map_type != 1) {
 			return FALSE;
 		}
-		// if the color std::map type is 1 then we validate the std::map entry information...
+		// if the color map type is 1 then we validate the map entry information...
 		if(header.color_map_type > 0) {
-			// It doesn't make any sense if the first entry is larger than the color std::map table
+			// It doesn't make any sense if the first entry is larger than the color map table
 			if(header.cm_first_entry >= header.cm_length) {
 				return FALSE;
 			}
@@ -469,7 +469,7 @@ loadTrueColor(FIBITMAP* dib, int width, int height, int file_pixel_size, FreeIma
 	const int pixel_size = as24bit ? 3 : file_pixel_size;
 
 	// input line cache
-	BYTE* file_line = (BYTE*)memory_alloc( width * file_pixel_size);
+	BYTE* file_line = (BYTE*)malloc( width * file_pixel_size);
 
 	if (!file_line) {
 		throw FI_MSG_ERROR_MEMORY;
@@ -496,7 +496,7 @@ loadTrueColor(FIBITMAP* dib, int width, int height, int file_pixel_size, FreeIma
 		}
 	}
 
-	memory_free(file_line);
+	free(file_line);
 }
 
 /**
@@ -747,11 +747,11 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				if (header.color_map_type > 0) {
 					unsigned count, csize;
 
-					// calculate the color std::map size
+					// calculate the color map size
 					csize = header.cm_length * header.cm_size / 8;
 					
-					// read the color std::map
-					BYTE *cmap = (BYTE*)memory_alloc(csize * sizeof(BYTE));
+					// read the color map
+					BYTE *cmap = (BYTE*)malloc(csize * sizeof(BYTE));
 					if (cmap == NULL) {
 						throw FI_MSG_ERROR_DIB_MEMORY;
 					}
@@ -814,7 +814,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 					} // switch(header.cm_size)
 
-					memory_free(cmap);
+					free(cmap);
 				}
 				
 				// handle thumbnail
@@ -928,7 +928,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				switch (header.image_type) {
 					case TGA_RGB: { //(16 bit)
 						// input line cache
-						BYTE *in_line = (BYTE*)memory_alloc(header.is_width * sizeof(WORD));
+						BYTE *in_line = (BYTE*)malloc(header.is_width * sizeof(WORD));
 
 						if (!in_line)
 							throw FI_MSG_ERROR_MEMORY;
@@ -949,7 +949,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 							}
 						}
 
-						memory_free(in_line);
+						free(in_line);
 					}
 					break;
 
@@ -1201,7 +1201,7 @@ saveRLE(FIBITMAP* dib, FreeImageIO* io, fi_handle handle) {
 
 	// packet (compressed or not) to be written to line
 
-	BYTE* const packet_begin = (BYTE*)memory_alloc(max_packet_size * pixel_size);
+	BYTE* const packet_begin = (BYTE*)malloc(max_packet_size * pixel_size);
 	BYTE* packet = packet_begin;
 
 	// line to be written to disk
@@ -1213,11 +1213,11 @@ saveRLE(FIBITMAP* dib, FreeImageIO* io, fi_handle handle) {
 
 	// add extra space for anti-commpressed lines
 	size_t extra_space = (size_t)ceil(width / 3.0);
-	BYTE* const line_begin = (BYTE*)memory_alloc(width * pixel_size + extra_space);
+	BYTE* const line_begin = (BYTE*)malloc(width * pixel_size + extra_space);
 	BYTE* line = line_begin;
 
-	BYTE *current = (BYTE*)memory_alloc(pixel_size);
-	BYTE *next    = (BYTE*)memory_alloc(pixel_size);
+	BYTE *current = (BYTE*)malloc(pixel_size);
+	BYTE *next    = (BYTE*)malloc(pixel_size);
 
 	for(unsigned y = 0; y < height; y++) {
 		BYTE *bits = FreeImage_GetScanLine(dib, y);
@@ -1313,10 +1313,10 @@ saveRLE(FIBITMAP* dib, FreeImageIO* io, fi_handle handle) {
 
 	}//for height
 
-	memory_free(line_begin);
-	memory_free(packet_begin);
-	memory_free(current);
-	memory_free(next);
+	free(line_begin);
+	free(packet_begin);
+	free(current);
+	free(next);
 }
 
 static BOOL DLL_CALLCONV
@@ -1375,7 +1375,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 
 	if (palette) {
 		if (FreeImage_IsTransparent(dib)) {
-			FILE_BGRA *bgra_pal = (FILE_BGRA*)memory_alloc(header.cm_length * sizeof(FILE_BGRA));
+			FILE_BGRA *bgra_pal = (FILE_BGRA*)malloc(header.cm_length * sizeof(FILE_BGRA));
 
 			// get the transparency table
 			BYTE *trns = FreeImage_GetTransparencyTable(dib);
@@ -1389,10 +1389,10 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 
 			io->write_proc(bgra_pal, sizeof(FILE_BGRA), header.cm_length, handle);
 
-			memory_free(bgra_pal);
+			free(bgra_pal);
 
 		} else {
-			FILE_BGR *bgr_pal = (FILE_BGR*)memory_alloc(header.cm_length * sizeof(FILE_BGR));
+			FILE_BGR *bgr_pal = (FILE_BGR*)malloc(header.cm_length * sizeof(FILE_BGR));
 
 			for (unsigned i = 0; i < header.cm_length; i++) {
 				bgr_pal[i].b = palette[i].rgbBlue;
@@ -1402,7 +1402,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 
 			io->write_proc(bgr_pal, sizeof(FILE_BGR), header.cm_length, handle);
 
-			memory_free(bgr_pal);
+			free(bgr_pal);
 		}
 	}
 
@@ -1421,7 +1421,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 		const unsigned height = header.is_height;
 		const unsigned pixel_size = bpp/8;
 
-		BYTE *line, *const line_begin = (BYTE*)memory_alloc(width * pixel_size);
+		BYTE *line, *const line_begin = (BYTE*)malloc(width * pixel_size);
 		BYTE *line_source = line_begin;
 
 		for (unsigned y = 0; y < height; y++) {
@@ -1494,7 +1494,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 
 		}//for height
 
-		memory_free(line_begin);
+		free(line_begin);
 	}
 
 	

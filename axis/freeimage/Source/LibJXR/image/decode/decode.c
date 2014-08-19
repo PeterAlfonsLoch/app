@@ -57,7 +57,7 @@ static Void CleanAH(CAdaptiveHuffman **ppAdHuff)
     if (NULL != ppAdHuff) {
         pAdHuff = *ppAdHuff;
         if (NULL != pAdHuff) {
-            memory_free(pAdHuff);
+            free(pAdHuff);
         }
         *ppAdHuff = NULL;
     }
@@ -97,7 +97,7 @@ static Int InitializeAH(CAdaptiveHuffman **ppAdHuff, Int iSym)
 
 ErrorExit:
     if (pAdHuff) {
-        memory_free(pAdHuff);
+        free(pAdHuff);
     }
     *ppAdHuff = NULL;
     if (-1 == iMemStatus) {
@@ -121,7 +121,7 @@ Int AllocateCodingContextDec(CWMImageStrCodec *pSC, Int iNumContexts)
     if (pSC == NULL)
         return ICERR_ERROR;
 
-    pSC->m_pCodingContext = memory_alloc (iNumContexts * sizeof (CCodingContext));
+    pSC->m_pCodingContext = malloc (iNumContexts * sizeof (CCodingContext));
     if (pSC->m_pCodingContext == NULL) {
         pSC->cNumCodingContext = 0;
         return ICERR_ERROR;
@@ -194,7 +194,7 @@ Void FreeCodingContextDec(CWMImageStrCodec *pSC)
             for (k = 0; k < NUMVLCTABLES; k++)
                 CleanAH (&pContext->m_pAHexpt[k]);
         }
-        memory_free (pSC->m_pCodingContext);
+        free (pSC->m_pCodingContext);
     }
 }
 

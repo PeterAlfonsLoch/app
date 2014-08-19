@@ -36,7 +36,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-
+#include "Utilities.h"
 
 // ==========================================================
 // Plugin Interface
@@ -72,7 +72,7 @@ ReadString(FreeImageIO *io, fi_handle handle) {
 		if( io->read_proc(&c, sizeof(BYTE), 1, handle) != 1 )
 			return NULL;
 	}
-	char *cstr = (char *)memory_alloc(s.length()+1);
+	char *cstr = (char *)malloc(s.length()+1);
 	strcpy(cstr,s.c_str());
 	return cstr;
 }
@@ -176,10 +176,10 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 		int width, height, colors, cpp;
 		if( sscanf(str, "%d %d %d %d", &width, &height, &colors, &cpp) != 4 ) {
-			memory_free(str);
+			free(str);
 			throw "Improperly formed info string";
 		}
-		memory_free(str);
+		free(str);
 
         if (colors > 256) {
 			dib = FreeImage_AllocateHeader(header_only, width, height, 24, FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK);
@@ -187,7 +187,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			dib = FreeImage_AllocateHeader(header_only, width, height, 8);
 		}
 
-		//build a std::map of color chars to rgb values
+		//build a map of color chars to rgb values
 		std::map<std::string,FILE_RGBA> rawpal; //will store index in Alpha if 8bpp
 		for(int i = 0; i < colors; i++ ) {
 			FILE_RGBA rgba;
@@ -240,7 +240,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 							break;
 					}
 					if( n != 3 ) {
-						memory_free(str);
+						free(str);
 						throw "Improperly formed hex color value";
 					}
 					rgba.r = (BYTE)red;
@@ -274,16 +274,16 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 					if (!FreeImage_LookupX11Color(clr,  &rgba.r, &rgba.g, &rgba.b)) {
 						sprintf(msg, "Unknown color name '%s'", str);
-						memory_free(str);
+						free(str);
 						throw msg;
 					}
 				}
 			} else {
-				memory_free(str);
+				free(str);
 				throw "Only color visuals are supported";
 			}
 
-			//add color to std::map
+			//add color to map
 			rgba.a = (BYTE)((colors > 256) ? 0 : i);
 			rawpal[chrs] = rgba;
 
@@ -295,9 +295,9 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				pal[i].rgbRed = rgba.r;
 			}
 
-			memory_free(str);
+			free(str);
 		}
-		//done parsing color std::map
+		//done parsing color map
 
 		if(header_only) {
 			// header only mode
@@ -313,7 +313,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			char *pixel_ptr = str;
 
 			for(int x = 0; x < width; x++ ) {
-				//locate the chars in the color std::map
+				//locate the chars in the color map
 				std::string chrs(pixel_ptr,cpp);
 				FILE_RGBA rgba = rawpal[chrs];
 
@@ -330,7 +330,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				pixel_ptr += cpp;
 			}
 
-			memory_free(str);
+			free(str);
 		}
 		//done reading pixel data
 
@@ -362,9 +362,9 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 		RGBQUAD *pal = FreeImage_GetPalette(dib);
 		int x,y;
 
-		//std::map base92 chrs to the rgb value to create the palette
+		//map base92 chrs to the rgb value to create the palette
 		std::map<DWORD,FILE_RGB> chrs2color;
-		//std::map 8bpp index or 24bpp rgb value to the base92 chrs to create pixel data
+		//map 8bpp index or 24bpp rgb value to the base92 chrs to create pixel data
 		typedef union {
 			DWORD index;
 			FILE_RGBA rgba;
@@ -409,7 +409,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 		if( io->write_proc(start_colors, (unsigned int)strlen(start_colors), 1, handle) != 1 )
 			return FALSE;
 
-		//write colors, using std::map of chrs->rgb
+		//write colors, using map of chrs->rgb
 		for(x = 0; x < num_colors; x++ ) {
 			sprintf(buf, "%*s c #%02x%02x%02x", cpp, Base92(x), chrs2color[x].r, chrs2color[x].g, chrs2color[x].b );
 			if( io->write_proc(buf, (unsigned int)strlen(buf), 1, handle) != 1 )
@@ -424,7 +424,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 		}
 
 
-		//write pixels, using std::map of rgb(if 24bpp) or index(if 8bpp)->chrs
+		//write pixels, using map of rgb(if 24bpp) or index(if 8bpp)->chrs
 		for(y = 0; y < height; y++ ) {
 			BYTE *line = FreeImage_GetScanLine(dib, height - y - 1);
 			for(x = 0; x < width; x++ ) {

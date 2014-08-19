@@ -24,7 +24,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-
+#include "Utilities.h"
 
 static const int WHITE = 255;
 static const int BLACK = 0;
@@ -52,8 +52,8 @@ static FIBITMAP* FloydSteinberg(FIBITMAP *dib) {
 	if(NULL == new_dib) return NULL;
 
 	// allocate space for error arrays
-	int *lerr = (int*)memory_alloc (width * sizeof(int));
-	int *cerr = (int*)memory_alloc (width * sizeof(int));
+	int *lerr = (int*)malloc (width * sizeof(int));
+	int *cerr = (int*)malloc (width * sizeof(int));
 	memset(lerr, 0, width * sizeof(int));
 	memset(cerr, 0, width * sizeof(int));
 
@@ -120,8 +120,8 @@ static FIBITMAP* FloydSteinberg(FIBITMAP *dib) {
 		int *terr = lerr; lerr = cerr; cerr = terr;
 	}
 
-	memory_free(lerr);
-	memory_free(cerr);
+	free(lerr);
+	free(cerr);
 
 	return new_dib;
 }
@@ -173,7 +173,7 @@ static FIBITMAP* OrderedDispersedDot(FIBITMAP *dib, int order) {
 
 	// build the dithering matrix
 	int l = (1 << order);	// square of dither matrix order; the dimensions of the matrix
-	BYTE *matrix = (BYTE*)memory_alloc(l*l * sizeof(BYTE));
+	BYTE *matrix = (BYTE*)malloc(l*l * sizeof(BYTE));
 	for(int i = 0; i < l*l; i++) {
 		// according to "Purdue University: Digital Image Processing Laboratory: Image Halftoning, April 30th, 2006
 		matrix[i] = (BYTE)( 255 * (((double)dithervalue(i / l, i % l, order) + 0.5) / (l*l)) );
@@ -193,7 +193,7 @@ static FIBITMAP* OrderedDispersedDot(FIBITMAP *dib, int order) {
 		}
 	}
 
-	memory_free(matrix);
+	free(matrix);
 
 	return new_dib;
 }

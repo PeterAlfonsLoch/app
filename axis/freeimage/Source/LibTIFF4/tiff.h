@@ -239,8 +239,8 @@ typedef enum {
 #define	TIFFTAG_PAGENAME		285	/* page name image is from */
 #define	TIFFTAG_XPOSITION		286	/* x page offset of image lhs */
 #define	TIFFTAG_YPOSITION		287	/* y page offset of image lhs */
-#define	TIFFTAG_FREEOFFSETS		288	/* +byte offset to memory_free block */
-#define	TIFFTAG_FREEBYTECOUNTS		289	/* +sizes of memory_free blocks */
+#define	TIFFTAG_FREEOFFSETS		288	/* +byte offset to free block */
+#define	TIFFTAG_FREEBYTECOUNTS		289	/* +sizes of free blocks */
 #define	TIFFTAG_GRAYRESPONSEUNIT	290	/* $gray scale curve accuracy */
 #define	    GRAYRESPONSEUNIT_10S	1	/* tenths of a unit */
 #define	    GRAYRESPONSEUNIT_100S	2	/* hundredths of a unit */

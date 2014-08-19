@@ -26,6 +26,14 @@
 // Use at your own risk!
 // ==========================================================
 
+#ifdef _MSC_VER 
+#pragma warning (disable : 4786) // identifier was truncated to 'number' characters
+#endif
+
+#include "CacheFile.h"
+#include "FreeImageIO.h"
+#include "Plugin.h"
+#include "Utilities.h"
 #include "FreeImage.h"
 
 // ----------------------------------------------------------
@@ -434,7 +442,7 @@ FreeImage_SaveMultiBitmapToHandle(FREE_IMAGE_FORMAT fif, FIMULTIBITMAP *bitmap, 
 							
 							// read the compressed data
 							
-							BYTE *compressed_data = (BYTE*)memory_alloc(ref->m_size * sizeof(BYTE));
+							BYTE *compressed_data = (BYTE*)malloc(ref->m_size * sizeof(BYTE));
 							
 							header->m_cachefile->readFile((BYTE *)compressed_data, ref->m_reference, ref->m_size);
 							
@@ -445,7 +453,7 @@ FreeImage_SaveMultiBitmapToHandle(FREE_IMAGE_FORMAT fif, FIMULTIBITMAP *bitmap, 
 							FreeImage_CloseMemory(hmem);
 							
 							// get rid of the buffer
-							memory_free(compressed_data);
+							free(compressed_data);
 							
 							// save the data
 							
@@ -638,7 +646,7 @@ FreeImage_SavePageToBlock(MULTIBITMAPHEADER *header, FIBITMAP *data) {
 	// get rid of the compressed data
 	FreeImage_CloseMemory(hmem);
 
-	return new BlockReference(ref, compressed_size);
+	return new(std::nothrow) BlockReference(ref, compressed_size);
 }
 
 void DLL_CALLCONV
@@ -896,15 +904,15 @@ FreeImage_LoadMultiBitmapFromMemory(FREE_IMAGE_FORMAT fif, FIMEMORY *stream, int
 		PluginNode *node = list->FindNodeFromFIF(fif);
 
 		if (node) {
-			FreeImageIO *io = new FreeImageIO;
+			FreeImageIO *io = new(std::nothrow) FreeImageIO;
 
 			if (io) {
 				SetMemoryIO(io);
 
-				FIMULTIBITMAP *bitmap = new FIMULTIBITMAP;
+				FIMULTIBITMAP *bitmap = new(std::nothrow) FIMULTIBITMAP;
 
 				if (bitmap) {
-					MULTIBITMAPHEADER *header = new MULTIBITMAPHEADER;
+					MULTIBITMAPHEADER *header = new(std::nothrow) MULTIBITMAPHEADER;
 
 					if (header) {
 						header->m_filename = NULL;
@@ -932,7 +940,7 @@ FreeImage_LoadMultiBitmapFromMemory(FREE_IMAGE_FORMAT fif, FIMEMORY *stream, int
 						
 						if (!read_only) {
 							// set up the cache
-							CacheFile *cache_file = new CacheFile("", TRUE);
+							CacheFile *cache_file = new(std::nothrow) CacheFile("", TRUE);
 							
 							if (cache_file && cache_file->open()) {
 								header->m_cachefile = cache_file;

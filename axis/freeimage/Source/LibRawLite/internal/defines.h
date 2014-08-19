@@ -1,7 +1,7 @@
 /* 
   Copyright 2008-2013 LibRaw LLC (info@libraw.org)
 
-LibRaw is memory_free software; you can redistribute it and/or modify
+LibRaw is free software; you can redistribute it and/or modify
 it under the terms of the one of three licenses as you choose:
 
 1. GNU LESSER GENERAL PUBLIC LICENSE version 2.1
@@ -50,7 +50,7 @@ it under the terms of the one of three licenses as you choose:
 #endif
 #ifdef WIN32
 #include <sys/utime.h>
-//#include <winsock2.h>
+#include <winsock2.h>
 #pragma comment(lib, "ws2_32.lib")
 #define snprintf _snprintf
 #define strcasecmp stricmp

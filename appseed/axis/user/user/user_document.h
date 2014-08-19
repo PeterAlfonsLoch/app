@@ -120,7 +120,7 @@ namespace user
       virtual bool on_open_document(var varFile);
       virtual bool on_save_document(var varFile);
       virtual void on_close_document(single_lock * psl = NULL);
-      virtual void report_save_load_exception(const char * lpszPathName, ::exception::axis* e, bool bSaving, const char * nIDPDefault);
+      virtual void report_save_load_exception(const char * lpszPathName, ::exception::base* e, bool bSaving, const char * nIDPDefault);
 
       // advanced overridables, closing down frame/doc, etc.
       virtual bool can_close_frame(sp(::user::frame_window) pFrame);

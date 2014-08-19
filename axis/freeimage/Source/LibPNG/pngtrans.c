@@ -802,7 +802,7 @@ png_set_user_transform_info(png_structrp png_ptr, png_voidp
 #endif
 
 /* This function returns a pointer to the user_transform_ptr associated with
- * the user transform functions.  The application should memory_free any memory
+ * the user transform functions.  The application should free any memory
  * associated with this pointer before png_write_destroy and png_read_destroy
  * are called.
  */

@@ -13,8 +13,4 @@ If your big endian system isn't being detected, add an OS specific check
 #define OPJ_BIG_ENDIAN
 #endif /* BYTE_ORDER */
 
-
-#define USE_JPIP
-//#define USE_JPWL
-
 #endif /* OPJ_CONFIG_PRIVATE_H */

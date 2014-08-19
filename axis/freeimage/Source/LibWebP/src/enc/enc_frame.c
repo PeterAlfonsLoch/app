@@ -162,7 +162,7 @@ static int Record(int bit, proba_t* const stats) {
   return bit;
 }
 
-// We keep the table memory_free variant around for reference, in case.
+// We keep the table free variant around for reference, in case.
 #define USE_LEVEL_CODE_TABLE
 
 // Simulate block coding, but only record statistics.
@@ -864,7 +864,7 @@ static int PreLoopInitialize(VP8Encoder* const enc) {
   for (p = 0; ok && p < enc->num_parts_; ++p) {
     ok = VP8BitWriterInit(enc->parts_ + p, bytes_per_parts);
   }
-  if (!ok) VP8EncFreeBitWriters(enc);  // memory_alloc error occurred
+  if (!ok) VP8EncFreeBitWriters(enc);  // malloc error occurred
   return ok;
 }
 

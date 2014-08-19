@@ -274,7 +274,7 @@ jpeg_write_tables (j_compress_ptr cinfo)
   /* And clean up. */
   (*cinfo->dest->term_destination) (cinfo);
   /*
-   * In library releases up through v6a, we called jpeg_abort() here to memory_free
+   * In library releases up through v6a, we called jpeg_abort() here to free
    * any working memory allocated by the destination manager and marker
    * writer.  Some applications had a problem with that: they allocated space
    * of their own from the library memory manager, and didn't want it to go

@@ -100,7 +100,7 @@ typedef float         OPJ_FLOAT32;
 typedef double        OPJ_FLOAT64;
 typedef unsigned char OPJ_BYTE;
 
-//#include "opj_stdint.h"
+#include "opj_stdint.h"
 
 typedef int8_t   OPJ_INT8;
 typedef uint8_t  OPJ_UINT8;
@@ -512,7 +512,7 @@ typedef OPJ_OFF_T (* opj_stream_skip_fn) (OPJ_OFF_T p_nb_bytes, void * p_user_da
 typedef OPJ_BOOL (* opj_stream_seek_fn) (OPJ_OFF_T p_nb_bytes, void * p_user_data) ;
 
 /*
- * Callback function prototype for memory_free user data function
+ * Callback function prototype for free user data function
  */
 typedef void (* opj_stream_free_user_data_fn) (void * p_user_data) ;
 
@@ -1065,7 +1065,7 @@ OPJ_API void OPJ_CALLCONV opj_stream_set_seek_function(opj_stream_t* p_stream, o
  * Sets the given data to be used as a user data for the stream.
  * @param		p_stream	the stream to modify
  * @param		p_data		the data to set.
- * @param		p_function	the function to memory_free p_data when opj_stream_destroy() is called.
+ * @param		p_function	the function to free p_data when opj_stream_destroy() is called.
 */
 OPJ_API void OPJ_CALLCONV opj_stream_set_user_data (opj_stream_t* p_stream, void * p_data, opj_stream_free_user_data_fn p_function);
 

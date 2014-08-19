@@ -29,11 +29,11 @@ namespace windows
 
 
 
-// Placed on frame for EXCEPTION linkage, or ::exception::axis cleanup
+// Placed on frame for EXCEPTION linkage, or ::exception::base cleanup
 struct CLASS_DECL_AXIS __exception_link
 {
    __exception_link* m_pLinkPrev;    // previous top, next in handler chain
-   ::exception::axis* m_pException;   // current exception (NULL in try block)
+   ::exception::base* m_pException;   // current exception (NULL in try block)
 
    __exception_link();       // for initialization and linking
    ~__exception_link()       // for cleanup and unlinking

@@ -237,6 +237,48 @@ namespace file
       throw interface_only_exception(get_app());
    }
 
+   int input_stream::get()
+   {
+      unsigned char uch;
+
+      if(read(&uch,1) == 1)
+         return uch;
+
+      return EOF;
+
+   }
+
+   input_stream & input_stream::getline(char * sz,strsize n)
+   {
+      int c;
+      while(n > 0)
+      {
+         c = get();
+         if(c == EOF)
+         {
+            break;
+         }
+         else if(c == '\n')
+         {
+            c = get();
+            if(c != '\r' && c != EOF)
+               seek(-1,seek_current);
+            break;
+         }
+         else if(c == '\r')
+         {
+            c = get();
+            if(c != '\n' && c != EOF)
+               seek(-1,seek_current);
+            break;
+         }
+         *sz = (char)c;
+         sz++;
+         n--;
+      }
+      return *this;
+   }
+
    void input_stream::close()
    {
 

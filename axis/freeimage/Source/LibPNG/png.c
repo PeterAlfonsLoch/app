@@ -88,7 +88,7 @@ png_zalloc,(voidpf png_ptr, uInt items, uInt size),PNG_ALLOCATED)
    return png_malloc_warn(png_voidcast(png_structrp, png_ptr), num_bytes);
 }
 
-/* Function to memory_free memory for zlib */
+/* Function to free memory for zlib */
 void /* PRIVATE */
 png_zfree(voidpf png_ptr, voidpf ptr)
 {
@@ -351,10 +351,10 @@ png_create_info_struct,(png_const_structrp png_ptr),PNG_ALLOCATED)
 
 /* This function frees the memory associated with a single info struct.
  * Normally, one would use either png_destroy_read_struct() or
- * png_destroy_write_struct() to memory_free an info struct, but this may be
+ * png_destroy_write_struct() to free an info struct, but this may be
  * useful for some applications.  From libpng 1.6.0 this function is also used
  * internally to implement the png_info release part of the 'struct' destroy
- * APIs.  This ensures that all possible approaches memory_free the same data (all of
+ * APIs.  This ensures that all possible approaches free the same data (all of
  * it).
  */
 void PNGAPI
@@ -375,7 +375,7 @@ png_destroy_info_struct(png_const_structrp png_ptr, png_infopp info_ptr_ptr)
       /* Do this first in case of an error below; if the app implements its own
        * memory management this can lead to png_free calling png_error, which
        * will abort this routine and return control to the app error handler.
-       * An infinite loop may result if it then tries to memory_free the same info
+       * An infinite loop may result if it then tries to free the same info
        * ptr.
        */
       *info_ptr_ptr = NULL;
@@ -410,7 +410,7 @@ png_info_init_3,(png_infopp ptr_ptr, png_size_t png_info_struct_size),
    {
       *ptr_ptr = NULL;
       /* The following line is why this API should not be used: */
-      memory_free(info_ptr);
+      free(info_ptr);
       info_ptr = png_voidcast(png_inforp, png_malloc_base(NULL,
          (sizeof *info_ptr)));
       *ptr_ptr = info_ptr;
@@ -638,7 +638,7 @@ png_free_data(png_const_structrp png_ptr, png_inforp info_ptr, png_uint_32 mask,
 #endif /* defined(PNG_READ_SUPPORTED) || defined(PNG_WRITE_SUPPORTED) */
 
 /* This function returns a pointer to the io_ptr associated with the user
- * functions.  The application should memory_free any memory associated with this
+ * functions.  The application should free any memory associated with this
  * pointer before png_write_destroy() or png_read_destroy() are called.
  */
 png_voidp PNGAPI
@@ -4298,7 +4298,7 @@ png_image_free_function(png_voidp argument)
    if (cp->png_ptr == NULL)
       return 0;
 
-   /* First memory_free any data held in the control structure. */
+   /* First free any data held in the control structure. */
 #  ifdef PNG_STDIO_SUPPORTED
       if (cp->owned_file)
       {

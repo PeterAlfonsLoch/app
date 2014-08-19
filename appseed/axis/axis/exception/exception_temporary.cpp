@@ -3,7 +3,7 @@
 temporary_exception::temporary_exception(const temporary_exception & e) : 
    element(e),
    ::call_stack(e),
-   ::exception::axis(e),
+   ::exception::base(e),
    m_strTip(e.m_strTip)
 {
       printf(":temporary");
@@ -12,7 +12,7 @@ temporary_exception::temporary_exception(const temporary_exception & e) :
 temporary_exception::temporary_exception(sp(::axis::application) papp, const char * pszTip) : 
    element(papp),
    ::call_stack(papp),
-   ::exception::axis(papp),
+   ::exception::base(papp),
    m_strTip(pszTip)
 {
       if(pszTip == NULL)

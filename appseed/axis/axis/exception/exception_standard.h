@@ -33,7 +33,7 @@
    name (sp(::axis::application) papp, EXCEPTION_POINTERS * ppointers) : \
       element(papp), \
       ::call_stack(papp), \
-      ::exception::axis(papp), \
+      ::exception::base(papp), \
       ::standard_exception(papp, ppointers) \
       {printf(":" #name);} \
    };
@@ -50,7 +50,7 @@
 #endif
 
 class CLASS_DECL_AXIS standard_exception :
-   virtual public ::exception::axis
+   virtual public ::exception::base
 {
 public:
 
@@ -91,7 +91,7 @@ public:
    standard_exception(sp(::axis::application) papp, EXCEPTION_POINTERS * ppointers) :
       element(papp),
       ::call_stack(papp),
-      ::exception::axis(papp),
+      ::exception::base(papp),
       m_ppointers(ppointers)
    {
          
@@ -104,7 +104,7 @@ public:
    standard_exception(const standard_exception & se) :
       element(se.get_app()),
       ::call_stack(se.get_app()),
-      ::exception::axis(se),
+      ::exception::base(se),
       m_ppointers(se.m_ppointers)
    {
      printf(":standard(copy)");
@@ -114,7 +114,7 @@ public:
    standard_exception(sp(::axis::application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
       element(papp),
       ::call_stack(papp),
-      ::exception::axis(papp),
+      ::exception::base(papp),
       m_iSignal(iSignal),
       m_siginfo(*psiginfo)
 #ifndef ANDROID
@@ -124,7 +124,7 @@ public:
    standard_exception(const standard_exception& se) :
       element(se),
       ::call_stack(se),
-      ::exception::axis(se),
+      ::exception::base(se),
       m_iSignal(se.m_iSignal),
       m_siginfo(se.m_siginfo)
 #ifndef ANDROID
@@ -165,7 +165,7 @@ namespace exception
       standard_access_violation (sp(::axis::application) papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
          element(papp),
          ::call_stack(papp),
-         ::exception::axis(papp),
+         ::exception::base(papp),
          ::standard_exception(papp, signal, psiginfo, pc)
       {printf(":standard");}
    public:
@@ -191,7 +191,7 @@ namespace exception
 #endif
 #endif
 #endif
-         ::exception::axis(papp),
+         ::exception::base(papp),
          ::standard_exception(papp, signal, psiginfo, pc)
       {printf(":standard");}
 
@@ -207,7 +207,7 @@ namespace exception
       standard_access_violation (sp(::axis::application) papp, EXCEPTION_POINTERS * ppointers) :
          element(papp),
          ::call_stack(papp),
-         ::exception::axis(papp),
+         ::exception::base(papp),
          ::standard_exception(papp, ppointers)
       {
             printf(":standard");
@@ -226,7 +226,7 @@ namespace exception
       standard_sigfpe (sp(::axis::application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
          element(papp),
       ::call_stack(papp),
-         ::exception::axis(papp),
+         ::exception::base(papp),
          standard_exception(papp, iSignal, psiginfo, pc) {printf(":sigfpe");}
    public:
    //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
@@ -258,7 +258,7 @@ namespace exception
 #endif
 #endif
 #endif
-         ::exception::axis(papp),
+         ::exception::base(papp),
          standard_exception(papp, iSignal, psiginfo, pc) {printf(":sigfpe");}
    public:
    //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
@@ -277,7 +277,7 @@ namespace exception
       standard_no_memory (sp(::axis::application) papp, EXCEPTION_POINTERS * ppointers) :
          element(papp),
          ::call_stack(papp),
-         ::exception::axis(papp),
+         ::exception::base(papp),
          ::standard_exception(papp, ppointers)
       {
             printf(":nomem");

@@ -549,7 +549,7 @@ png_text_compress(png_structrp png_ptr, png_uint_32 chunk_name,
                break;
             }
 
-            /* Need a new (memory_alloc'ed) buffer, but there may be one present
+            /* Need a new (malloc'ed) buffer, but there may be one present
              * already.
              */
             next = *end;
@@ -1008,7 +1008,7 @@ png_compress_IDAT(png_structrp png_ptr, png_const_bytep input,
    if (png_ptr->zowner != png_IDAT)
    {
       /* First time.   Ensure we have a temporary buffer for compression and
-       * trim the buffer list if it has more than one entry to memory_free memory.
+       * trim the buffer list if it has more than one entry to free memory.
        * If 'WRITE_COMPRESSED_TEXT' is not set the list will never have been
        * created at this point, but the check here is quick and safe.
        */

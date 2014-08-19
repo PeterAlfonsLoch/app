@@ -4,7 +4,7 @@
 exit_exception::exit_exception(sp(::axis::application) papp, const char * pszMessage) :
    element(papp),
    ::call_stack(papp),
-   ::exception::axis(papp),
+   ::exception::base(papp),
    ::simple_exception(papp, pszMessage)
 {
       if(pszMessage == NULL)
@@ -17,7 +17,7 @@ exit_exception::exit_exception(sp(::axis::application) papp, const char * pszMes
 exit_exception::exit_exception(const exit_exception & e) :
    element(e),
    ::call_stack(e),
-   ::exception::axis(e),
+   ::exception::base(e),
    ::simple_exception(e)
 {
       printf(":exit(copy)");

@@ -20,7 +20,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-
+#include "Utilities.h"
 #include "../LibOpenJPEG/openjpeg.h"
 #include "J2KHelper.h"
 
@@ -73,7 +73,7 @@ opj_freeimage_stream_create(FreeImageIO *io, fi_handle handle, BOOL bRead) {
 	if(!handle) {
 		return NULL;
 	}
-	J2KFIO_t *fio = (J2KFIO_t*)memory_alloc(sizeof(J2KFIO_t));
+	J2KFIO_t *fio = (J2KFIO_t*)malloc(sizeof(J2KFIO_t));
 	if(fio) {
 		fio->io = io;
 		fio->handle = handle;
@@ -89,7 +89,7 @@ opj_freeimage_stream_create(FreeImageIO *io, fi_handle handle, BOOL bRead) {
 			fio->stream = l_stream;
 			return fio;
 		} else {
-			memory_free(fio);
+			free(fio);
 		}
 	}
 
@@ -102,7 +102,7 @@ opj_freeimage_stream_destroy(J2KFIO_t* fio) {
 		if(fio->stream) {
 			opj_stream_destroy(fio->stream);
 		}
-		memory_free(fio);
+		free(fio);
 	}
 }
 

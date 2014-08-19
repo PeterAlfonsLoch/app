@@ -107,7 +107,7 @@ struct tiff {
 	#define TIFF_BEENWRITING 0x00040 /* written 1+ scanlines to file */
 	#define TIFF_SWAB        0x00080 /* byte swap file information */
 	#define TIFF_NOBITREV    0x00100 /* inhibit bit reversal logic */
-	#define TIFF_MYBUFFER    0x00200 /* my raw data buffer; memory_free on close */
+	#define TIFF_MYBUFFER    0x00200 /* my raw data buffer; free on close */
 	#define TIFF_ISTILED     0x00400 /* file is tile, not strip- based */
 	#define TIFF_MAPPED      0x00800 /* file is mapped into memory */
 	#define TIFF_POSTENCODE  0x01000 /* need call to postencode routine */

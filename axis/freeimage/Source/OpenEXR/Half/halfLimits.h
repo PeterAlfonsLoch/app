@@ -48,7 +48,7 @@
 //
 //------------------------------------------------------------------------
 
-//#include <limits>
+#include <limits>
 #include "half.h"
 
 namespace std {

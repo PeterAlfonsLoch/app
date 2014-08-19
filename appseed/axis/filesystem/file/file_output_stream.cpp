@@ -251,6 +251,12 @@ namespace file
 
    }
 
+   output_stream & output_stream::put(char ch)
+   {
+      write(ch);
+      return *this;
+   }
+
 } // namespace file
 
 

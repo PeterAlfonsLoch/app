@@ -48,7 +48,7 @@
 #include "ImathMath.h"
 #include "ImathVec.h"
 
-//#include <iostream>
+#include <iostream>
 
 
 namespace Imath {

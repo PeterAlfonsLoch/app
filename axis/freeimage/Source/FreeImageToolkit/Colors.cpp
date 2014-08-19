@@ -22,7 +22,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-
+#include "Utilities.h"
 
 // ----------------------------------------------------------
 //   Macros + structures
@@ -705,14 +705,14 @@ FreeImage_ApplyColorMapping(FIBITMAP *dib, RGBQUAD *srccolors, RGBQUAD *dstcolor
 			return result;
 		}
 		case 16: {
-			WORD *src16 = (WORD *)memory_alloc(sizeof(WORD) * count);
+			WORD *src16 = (WORD *)malloc(sizeof(WORD) * count);
 			if (NULL == src16) {
 				return 0;
 			}
 
-			WORD *dst16 = (WORD *)memory_alloc(sizeof(WORD) * count);
+			WORD *dst16 = (WORD *)malloc(sizeof(WORD) * count);
 			if (NULL == dst16) {
-				memory_free(src16);
+				free(src16);
 				return 0;
 			}
 
@@ -743,8 +743,8 @@ FreeImage_ApplyColorMapping(FIBITMAP *dib, RGBQUAD *srccolors, RGBQUAD *dstcolor
 					}
 				}
 			}
-			memory_free(src16);
-			memory_free(dst16);
+			free(src16);
+			free(dst16);
 			return result;
 		}
 		case 24: {

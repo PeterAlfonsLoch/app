@@ -41,7 +41,7 @@
 
 #include "IlmThread.h"
 #include "Iex.h"
-//#include <iostream>
+#include <iostream>
 #include <assert.h>
 
 namespace IlmThread {

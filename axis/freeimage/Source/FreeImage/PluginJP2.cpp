@@ -20,7 +20,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-
+#include "Utilities.h"
 #include "../LibOpenJPEG/openjpeg.h"
 #include "J2KHelper.h"
 
@@ -187,7 +187,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				throw "Failed to decode image!\n";
 			}
 
-			// memory_free the codec context
+			// free the codec context
 			opj_destroy_codec(d_codec);
 			d_codec = NULL;
 
@@ -195,14 +195,14 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			dib = J2KImageToFIBITMAP(s_format_id, image, header_only);
 			if(!dib) throw "Failed to import JPEG2000 image";
 
-			// memory_free image data structure
+			// free image data structure
 			opj_image_destroy(image);
 
 			return dib;
 
 		} catch (const char *text) {
 			if(dib) FreeImage_Unload(dib);
-			// memory_free remaining structures
+			// free remaining structures
 			opj_destroy_codec(d_codec);
 			opj_image_destroy(image);
 
@@ -282,10 +282,10 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 				throw "Failed to encode image";
 			}
 
-			// memory_free remaining compression structures
+			// free remaining compression structures
 			opj_destroy_codec(c_codec);
 			
-			// memory_free image data
+			// free image data
 			opj_image_destroy(image);
 
 			return TRUE;

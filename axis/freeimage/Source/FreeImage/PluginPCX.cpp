@@ -24,7 +24,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-
+#include "Utilities.h"
 
 // ----------------------------------------------------------
 //   Constants + headers
@@ -425,7 +425,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				io->read_proc(&palette_id, 1, 1, handle);
 
 				if (palette_id == 0x0C) {
-					BYTE *cmap = (BYTE*)memory_alloc(768 * sizeof(BYTE));
+					BYTE *cmap = (BYTE*)malloc(768 * sizeof(BYTE));
 					io->read_proc(cmap, 768, 1, handle);
 
 					pal = FreeImage_GetPalette(dib);
@@ -438,7 +438,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 						pColormap += 3;
 					}
 
-					memory_free(cmap);
+					free(cmap);
 				}
 
 				// wrong palette ID, perhaps a gray scale is needed ?
@@ -477,10 +477,10 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		// load image data
 		// ---------------
 
-		line = (BYTE*)memory_alloc(linelength * sizeof(BYTE));
+		line = (BYTE*)malloc(linelength * sizeof(BYTE));
 		if(!line) throw FI_MSG_ERROR_MEMORY;
 		
-		ReadBuf = (BYTE*)memory_alloc(IO_BUF_SIZE * sizeof(BYTE));
+		ReadBuf = (BYTE*)malloc(IO_BUF_SIZE * sizeof(BYTE));
 		if(!ReadBuf) throw FI_MSG_ERROR_MEMORY;
 		
 		bits = FreeImage_GetScanLine(dib, height - 1);
@@ -512,7 +512,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			BYTE *buffer;
 			unsigned x, y, written;
 
-			buffer = (BYTE*)memory_alloc(width * sizeof(BYTE));
+			buffer = (BYTE*)malloc(width * sizeof(BYTE));
 			if(!buffer) throw FI_MSG_ERROR_MEMORY;
 
 			for (y = 0; y < height; y++) {
@@ -551,7 +551,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				bits -= pitch;
 			}
 
-			memory_free(buffer);
+			free(buffer);
 
 		} else if((header.planes == 3) && (header.bpp == 8)) {
 			BYTE *pline;
@@ -586,22 +586,22 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			throw FI_MSG_ERROR_UNSUPPORTED_FORMAT;
 		}
 
-		memory_free(line);
-		memory_free(ReadBuf);
+		free(line);
+		free(ReadBuf);
 
 		return dib;
 
 	} catch (const char *text) {
-		// memory_free allocated memory
+		// free allocated memory
 
 		if (dib != NULL) {
 			FreeImage_Unload(dib);
 		}
 		if (line != NULL) {
-			memory_free(line);
+			free(line);
 		}
 		if (ReadBuf != NULL) {
-			memory_free(ReadBuf);
+			free(ReadBuf);
 		}
 
 		FreeImage_OutputMessageProc(s_format_id, text);

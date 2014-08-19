@@ -39,7 +39,21 @@
 //
 //-----------------------------------------------------------------------------
 
-#include "Imf.h"
+
+#include <ImfCRgbaFile.h>
+#include <ImfRgbaFile.h>
+#include <ImfTiledRgbaFile.h>
+#include <ImfIntAttribute.h>
+#include <ImfFloatAttribute.h>
+#include <ImfDoubleAttribute.h>
+#include <ImfStringAttribute.h>
+#include <ImfBoxAttribute.h>
+#include <ImfVecAttribute.h>
+#include <ImfMatrixAttribute.h>
+#include <ImfChannelList.h>
+#include <ImfLut.h>
+#include "half.h"
+#include <string.h>
 
 using Imath::Box2i;
 using Imath::Box2f;

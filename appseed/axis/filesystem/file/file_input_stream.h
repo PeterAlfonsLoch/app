@@ -99,6 +99,9 @@ namespace file
       virtual void read (var & var);
       virtual void read (string & str);
 
+      virtual input_stream & getline(char * sz, strsize n);
+      virtual int get();
+
       virtual void close();
 
       ::primitive::memory_size gcount() { return m_gcount; }

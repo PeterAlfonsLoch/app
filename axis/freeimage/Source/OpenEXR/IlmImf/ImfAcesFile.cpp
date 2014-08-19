@@ -38,8 +38,10 @@
 //	
 //-----------------------------------------------------------------------------
 
-#include "Imf.h"
-
+#include <ImfAcesFile.h>
+#include <ImfRgbaFile.h>
+#include <ImfStandardAttributes.h>
+#include <Iex.h>
 
 using namespace std;
 using namespace Imath;
@@ -513,8 +515,8 @@ AcesInputFile::readPixels (int scanLine1, int scanLine2)
     if (!_data->mustConvertColor)
 	return;
 
-    int minY = min (scanLine1, scanLine2);
-    int maxY = max (scanLine1, scanLine2);
+    int minY = std::min (scanLine1, scanLine2);
+    int maxY = std::max (scanLine1, scanLine2);
 
     for (int y = minY; y <= maxY; ++y)
     {

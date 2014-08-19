@@ -21,7 +21,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-
+#include "Utilities.h"
 #include "../OpenEXR/IlmImf/ImfIO.h"
 #include "../OpenEXR/Iex/Iex.h"
 #include "../OpenEXR/IlmImf/ImfOutputFile.h"
@@ -666,7 +666,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 
 		if(pixelType == Imf::HALF) {
 			// convert from float to half
-			halfData = new half[width * height * components];
+			halfData = new(std::nothrow) half[width * height * components];
 			if(!halfData) THROW (Iex::NullExc, FI_MSG_ERROR_MEMORY);
 
 			for(int y = 0; y < height; y++) {

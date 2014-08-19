@@ -4317,7 +4317,7 @@ OPJ_BOOL opj_j2k_read_sod (opj_j2k_t *p_j2k,
         if (p_j2k->m_specific_param.m_decoder.m_sot_length) {
             if (! *l_current_data) {
                 /* LH: oddly enough, in this path, l_tile_len!=0.
-                 * TODO: If this was consistant, we could simplify the code to only use memory_realloc(), as memory_realloc(0,...) default to memory_alloc(0,...).
+                 * TODO: If this was consistant, we could simplify the code to only use realloc(), as realloc(0,...) default to malloc(0,...).
                  */
                 *l_current_data = (OPJ_BYTE*) opj_malloc(p_j2k->m_specific_param.m_decoder.m_sot_length);
             }

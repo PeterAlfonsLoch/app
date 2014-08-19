@@ -22,7 +22,7 @@
 // ALPHDecoder object.
 
 ALPHDecoder* ALPHNew(void) {
-  ALPHDecoder* const dec = (ALPHDecoder*)memory_calloc(1, sizeof(*dec));
+  ALPHDecoder* const dec = (ALPHDecoder*)calloc(1, sizeof(*dec));
   return dec;
 }
 
@@ -30,7 +30,7 @@ void ALPHDelete(ALPHDecoder* const dec) {
   if (dec != NULL) {
     VP8LDelete(dec->vp8l_dec_);
     dec->vp8l_dec_ = NULL;
-    memory_free(dec);
+    free(dec);
   }
 }
 

@@ -330,7 +330,7 @@ namespace file
 
 
 
-   // IMPLEMENT_DYNAMIC(file_exception, ::exception::axis)
+   // IMPLEMENT_DYNAMIC(file_exception, ::exception::base)
 
    /////////////////////////////////////////////////////////////////////////////
 
@@ -369,6 +369,12 @@ namespace file
    bool stream_buffer::IsOpened()
    {
       return false;
+   }
+
+
+   bool stream_buffer::is_open()
+   {
+      return IsOpened();
    }
 
    string stream_buffer::get_location() const

@@ -923,7 +923,7 @@ PNG_INTERNAL_FUNCTION(png_voidp,png_realloc_array,(png_const_structrp png_ptr,
 /* Magic to create a struct when there is no struct to call the user supplied
  * memory allocators.  Because error handling has not been set up the memory
  * handlers can't safely call png_error, but this is an obscure and undocumented
- * restriction so libpng has to assume that the 'memory_free' handler, at least, might
+ * restriction so libpng has to assume that the 'free' handler, at least, might
  * call png_error.
  */
 PNG_INTERNAL_FUNCTION(png_structp,png_create_png_struct,
@@ -942,7 +942,7 @@ PNG_INTERNAL_FUNCTION(void,png_free_jmpbuf,(png_structrp png_ptr),PNG_EMPTY);
 PNG_INTERNAL_FUNCTION(voidpf,png_zalloc,(voidpf png_ptr, uInt items, uInt size),
    PNG_ALLOCATED);
 
-/* Function to memory_free memory for zlib.  PNGAPI is disallowed. */
+/* Function to free memory for zlib.  PNGAPI is disallowed. */
 PNG_INTERNAL_FUNCTION(void,png_zfree,(voidpf png_ptr, voidpf ptr),PNG_EMPTY);
 
 /* Next four functions are used internally as callbacks.  PNGCBAPI is required

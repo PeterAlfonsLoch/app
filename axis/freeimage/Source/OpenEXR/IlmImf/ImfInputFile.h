@@ -46,8 +46,8 @@
 #include <ImfHeader.h>
 #include <ImfFrameBuffer.h>
 #include <ImfTiledOutputFile.h>
-//#include <string>
-//#include <fstream>
+#include <string>
+#include <fstream>
 #include <ImfThreading.h>
 
 namespace Imf {

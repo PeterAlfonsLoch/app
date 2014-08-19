@@ -24,9 +24,9 @@
 #endif 
 
 #include "FreeImage.h"
-
-
-
+#include "Utilities.h"
+#include "FreeImageIO.h"
+#include "Plugin.h"
 #include "../DeprecationManager/DeprecationMgr.h"
 
 // ----------------------------------------------------------

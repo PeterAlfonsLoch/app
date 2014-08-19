@@ -4,7 +4,7 @@
 void_implementation_exception::void_implementation_exception(sp(::axis::application) papp, const char * pszTip) : 
    element(papp),
    ::call_stack(papp),
-   ::exception::axis(papp),
+   ::exception::base(papp),
    not_implemented(papp, pszTip)
 {
       if(pszTip == NULL)
@@ -21,7 +21,7 @@ void_implementation_exception::void_implementation_exception(sp(::axis::applicat
 void_implementation_exception::void_implementation_exception(const void_implementation_exception & e) : 
    element(e),
    ::call_stack(e),
-   ::exception::axis(e),
+   ::exception::base(e),
    not_implemented(e)
 {
          printf(":void_implementation(copy)");

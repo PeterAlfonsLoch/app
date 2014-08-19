@@ -27,7 +27,7 @@ namespace colorertake5
       {
          throw ParserFactoryException(get_app(), e.getMessage());
       }
-      catch(::exception::axis * pe)
+      catch(::exception::base * pe)
       {
          string str;
          pe->get_error_message(str);
@@ -206,7 +206,7 @@ namespace colorertake5
                   {
                      hrcParser->loadSource(straPath[i], str);
                   }
-                  catch(::exception::axis &e)
+                  catch(::exception::base &e)
                   {
                      string str;
                      e.get_error_message(str);
@@ -224,7 +224,7 @@ namespace colorertake5
                {
                   hrcParser->loadSource(path, strSource);
                }
-               catch(::exception::axis & e)
+               catch(::exception::base & e)
                {
                   string str;
                   e.get_error_message(str);
@@ -295,7 +295,7 @@ namespace colorertake5
                }
 
             }
-            catch(::exception::axis & )
+            catch(::exception::base & )
             {
             }
 
@@ -333,7 +333,7 @@ namespace colorertake5
                   mapper->loadRegionMappings(stream);
                }
             }
-            catch(::exception::axis &)
+            catch(::exception::base &)
             {
             }
          }

@@ -4,7 +4,7 @@
 operation_canceled_exception::operation_canceled_exception(sp(::axis::application) papp) :
    element(papp),
    ::call_stack(papp),
-   ::exception::axis(papp),
+   ::exception::base(papp),
    ::simple_exception(papp)
 {
       printf(":operation_canceled");
@@ -14,7 +14,7 @@ operation_canceled_exception::operation_canceled_exception(sp(::axis::applicatio
 operation_canceled_exception::operation_canceled_exception(sp(::axis::application) papp, const char * pszMessage) :
    element(papp),
    ::call_stack(papp),
-   ::exception::axis(papp),
+   ::exception::base(papp),
    ::simple_exception(papp, pszMessage)
 {
       if(pszMessage == NULL)

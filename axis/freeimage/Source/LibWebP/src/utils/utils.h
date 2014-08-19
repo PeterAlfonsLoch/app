@@ -29,15 +29,15 @@ extern "C" {
 // This is the maximum memory amount that libwebp will ever try to allocate.
 #define WEBP_MAX_ALLOCABLE_MEMORY (1ULL << 40)
 
-// size-checking safe memory_alloc/memory_calloc: verify that the requested size is not too
+// size-checking safe malloc/calloc: verify that the requested size is not too
 // large, or return NULL. You don't need to call these for constructs like
-// memory_alloc(sizeof(foo)), but only if there's picture-dependent size involved
-// somewhere (like: memory_alloc(num_pixels * sizeof(*something))). That's why this
-// safe memory_alloc() borrows the signature from memory_calloc(), pointing at the dangerous
+// malloc(sizeof(foo)), but only if there's picture-dependent size involved
+// somewhere (like: malloc(num_pixels * sizeof(*something))). That's why this
+// safe malloc() borrows the signature from calloc(), pointing at the dangerous
 // underlying multiply involved.
 void* WebPSafeMalloc(uint64_t nmemb, size_t size);
 // Note that WebPSafeCalloc() expects the second argument type to be 'size_t'
-// in order to favor the "memory_calloc(num_foo, sizeof(foo))" pattern.
+// in order to favor the "calloc(num_foo, sizeof(foo))" pattern.
 void* WebPSafeCalloc(uint64_t nmemb, size_t size);
 
 //------------------------------------------------------------------------------

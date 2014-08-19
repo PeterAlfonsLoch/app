@@ -9,8 +9,8 @@
 // for a discussion of the algorithm.
 //
 // Any party obtaining a copy of these files from the author, directly or
-// indirectly, is granted, memory_free of charge, a full and unrestricted irrevocable,
-// world-wide, paid up, royalty-memory_free, nonexclusive right and license to deal
+// indirectly, is granted, free of charge, a full and unrestricted irrevocable,
+// world-wide, paid up, royalty-free, nonexclusive right and license to deal
 // in this software and documentation files (the "Software"), including without
 // limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
 // and/or sell copies of the Software, and to permit persons who receive
@@ -30,9 +30,9 @@
 //               Author: Hervé Drolon (drolon@infonie.fr)
 ///////////////////////////////////////////////////////////////////////
 
-
+#include "Quantizers.h"
 #include "FreeImage.h"
-
+#include "Utilities.h"
 
 
 // Four primes near 500 - assume no image has a length so large
@@ -55,26 +55,26 @@ NNQuantizer::NNQuantizer(int PaletteSize)
 
 	network = NULL;
 
-	network = (pixel *)memory_alloc(netsize * sizeof(pixel));
-	bias = (int *)memory_alloc(netsize * sizeof(int));
-	freq = (int *)memory_alloc(netsize * sizeof(int));
-	radpower = (int *)memory_alloc(initrad * sizeof(int));
+	network = (pixel *)malloc(netsize * sizeof(pixel));
+	bias = (int *)malloc(netsize * sizeof(int));
+	freq = (int *)malloc(netsize * sizeof(int));
+	radpower = (int *)malloc(initrad * sizeof(int));
 
 	if( !network || !bias || !freq || !radpower ) {
-		if(network) memory_free(network);
-		if(bias) memory_free(bias);
-		if(freq) memory_free(freq);
-		if(radpower) memory_free(radpower);
+		if(network) free(network);
+		if(bias) free(bias);
+		if(freq) free(freq);
+		if(radpower) free(radpower);
 		throw FI_MSG_ERROR_MEMORY;
 	}
 }
 
 NNQuantizer::~NNQuantizer()
 {
-	if(network) memory_free(network);
-	if(bias) memory_free(bias);
-	if(freq) memory_free(freq);
-	if(radpower) memory_free(radpower);
+	if(network) free(network);
+	if(bias) free(bias);
+	if(freq) free(freq);
+	if(radpower) free(radpower);
 }
 
 ///////////////////////////////////////////////////////////////////////////

@@ -16,7 +16,7 @@ namespace colorertake5
       HRCParserException(sp(::axis::application) papp) :
          element(papp),
          ::call_stack(papp),
-         ::exception::axis(papp),
+         ::exception::base(papp),
          ::colorertake5::exception(papp)
       {
 
@@ -26,7 +26,7 @@ namespace colorertake5
       HRCParserException(sp(::axis::application) papp, const string & msg) :
          element(papp),
          ::call_stack(papp),
-         ::exception::axis(papp),
+         ::exception::base(papp),
          ::colorertake5::exception(papp)
       {
          m_strMessage += "colorertake5::HRCParserException: " + msg;

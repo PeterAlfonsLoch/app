@@ -271,3 +271,18 @@ verisimple_wstring verisimple_wstring::substr(::index iStart, ::count count)
 }
 
 
+
+
+verisimple_wstring & verisimple_wstring::replace(::index iStart,::count c,const wchar_t * psz)
+{
+   if(c < 0)
+   {
+      return operator = (substr(0,iStart) + psz);
+   }
+   else
+   {
+      return operator = (substr(0,iStart) + psz + substr(iStart + c));
+   }
+   
+
+}

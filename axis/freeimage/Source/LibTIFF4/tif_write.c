@@ -598,7 +598,7 @@ TIFFWriteBufferSetup(TIFF* tif, void* bp, tmsize_t size)
 		 */
 		if (size < 8*1024)
 			size = 8*1024;
-		bp = NULL;			/* NB: force memory_alloc */
+		bp = NULL;			/* NB: force malloc */
 	}
 	if (bp == NULL) {
 		bp = _TIFFmalloc(size);

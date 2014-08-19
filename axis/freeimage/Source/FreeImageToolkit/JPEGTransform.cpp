@@ -33,8 +33,8 @@ extern "C" {
 }
 
 #include "FreeImage.h"
-
-
+#include "Utilities.h"
+#include "FreeImageIO.h"
 
 // ----------------------------------------------------------
 //   Source manager & Destination manager setup

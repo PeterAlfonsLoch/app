@@ -5,7 +5,7 @@ namespace exception
 {
 
 
-   axis::axis(sp(::axis::application) papp, uint32_t uiSkip) :
+   base::base(sp(::axis::application) papp, uint32_t uiSkip) :
       element(papp),
       ::call_stack(papp, uiSkip)
    {
@@ -14,7 +14,7 @@ namespace exception
       m_ulFlags &= ~flag_ready_for_delete;
    }
 
-   axis::axis(sp(::axis::application) papp, bool bAutoDelete, uint32_t uiSkip) :
+   base::base(sp(::axis::application) papp, bool bAutoDelete, uint32_t uiSkip) :
       element(papp),
       ::call_stack(papp, uiSkip)
    {
@@ -30,11 +30,11 @@ namespace exception
       m_ulFlags &= ~flag_ready_for_delete;
    }
 
-   axis::~axis()
+   base::~base()
    {
    }
 
-   void axis::Delete()
+   void base::Delete()
    {
       // delete exception if it is auto-deleting
       if(is_set_ca_flag(flag_auto_clean))
@@ -45,7 +45,7 @@ namespace exception
    }
 
 
-   bool axis::get_error_message(string & str, PUINT pnHelpContext)
+   bool base::get_error_message(string & str, PUINT pnHelpContext)
    {
 
       if (pnHelpContext != NULL)
@@ -57,7 +57,7 @@ namespace exception
 
    }
 
-   string axis::get_message(PUINT pnHelpContext)
+   string base::get_message(PUINT pnHelpContext)
    {
 
       string str;
@@ -73,7 +73,7 @@ namespace exception
 
 
 
-   int32_t axis::ReportError(UINT nType /* = MB_OK */, const char * pszMessageId /* = NULL */)
+   int32_t base::ReportError(UINT nType /* = MB_OK */, const char * pszMessageId /* = NULL */)
    {
       string   strErrorMessage;
       int32_t     nDisposition;
@@ -94,7 +94,7 @@ namespace exception
    }
 
 
-   const char * axis::getMessage() const throw()
+   const char * base::getMessage() const throw()
    {
 
       return what();
@@ -103,12 +103,12 @@ namespace exception
 
 
 
-   void axis::operator delete(void * pbData)
+   void base::operator delete(void * pbData)
    {
       object::operator delete(pbData);
    }
 
-   void axis::operator delete(void * pbData,   const char * /* lpszFileName */, int32_t /* nLine */)
+   void base::operator delete(void * pbData,   const char * /* lpszFileName */, int32_t /* nLine */)
    {
       operator delete(pbData);
    }

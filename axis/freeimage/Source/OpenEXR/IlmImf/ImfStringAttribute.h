@@ -44,7 +44,7 @@
 //-----------------------------------------------------------------------------
 
 #include <ImfAttribute.h>
-//#include <string>
+#include <string>
 
 
 namespace Imf {

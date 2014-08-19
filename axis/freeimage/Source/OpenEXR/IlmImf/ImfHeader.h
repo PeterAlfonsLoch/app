@@ -51,9 +51,9 @@
 #include "ImathVec.h"
 #include "ImathBox.h"
 #include "IexBaseExc.h"
-//#include <map>
-//#include <iosfwd>
-//#include <string>
+#include <map>
+#include <iosfwd>
+#include <string>
 
 namespace Imf {
 

@@ -82,7 +82,7 @@
 #include "ImathVec.h"
 #include "ImathBox.h"
 #include <ImfThreading.h>
-//#include <string>
+#include <string>
 
 namespace Imf {
 
@@ -90,7 +90,7 @@ namespace Imf {
 class RgbaOutputFile;
 class RgbaInputFile;
 struct PreviewRgba;
-struct Chromaticities;
+class Chromaticities;
 
 //
 // ACES red, green, blue and white-point chromaticities.

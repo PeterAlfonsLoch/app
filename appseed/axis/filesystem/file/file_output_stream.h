@@ -104,6 +104,9 @@ namespace file
       output_stream & seekp(file_position position) { m_spbuffer->seek_from_begin(position); return *this; }
       output_stream & seekp(file_offset offset, e_seek eseek) { m_spbuffer->seek(offset, eseek); return *this; }
 
+
+      output_stream & put(char ch);
+
    };
 
 

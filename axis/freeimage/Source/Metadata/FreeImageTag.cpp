@@ -24,7 +24,7 @@
 #endif
 
 #include "FreeImage.h"
-
+#include "Utilities.h"
 #include "FreeImageTag.h"
 
 // --------------------------------------------------------------------------
@@ -47,16 +47,16 @@ FI_STRUCT (FITAGHEADER) {
 
 FITAG * DLL_CALLCONV 
 FreeImage_CreateTag() {
-	FITAG *tag = (FITAG *)memory_alloc(sizeof(FITAG));
+	FITAG *tag = (FITAG *)malloc(sizeof(FITAG));
 
 	if (tag != NULL) {
 		unsigned tag_size = sizeof(FITAGHEADER); 
-		tag->data = (BYTE *)memory_alloc(tag_size * sizeof(BYTE));
+		tag->data = (BYTE *)malloc(tag_size * sizeof(BYTE));
 		if (tag->data != NULL) {
 			memset(tag->data, 0, tag_size);
 			return tag;
 		}
-		memory_free(tag);
+		free(tag);
 	}
 
 	return NULL;
@@ -68,14 +68,14 @@ FreeImage_DeleteTag(FITAG *tag) {
 		if (NULL != tag->data) {
 			FITAGHEADER *tag_header = (FITAGHEADER *)tag->data;
 			// delete tag members
-			memory_free(tag_header->key); 
-			memory_free(tag_header->description); 
-			memory_free(tag_header->value);
+			free(tag_header->key); 
+			free(tag_header->description); 
+			free(tag_header->value);
 			// delete the tag
-			memory_free(tag->data);
+			free(tag->data);
 		}
 		// and the wrapper
-		memory_free(tag);
+		free(tag);
 	}
 }
 
@@ -96,7 +96,7 @@ FreeImage_CloneTag(FITAG *tag) {
 		dst_tag->id = src_tag->id;
 		// tag key
 		if(src_tag->key) {
-			dst_tag->key = (char*)memory_alloc((strlen(src_tag->key) + 1) * sizeof(char));
+			dst_tag->key = (char*)malloc((strlen(src_tag->key) + 1) * sizeof(char));
 			if(!dst_tag->key) {
 				throw FI_MSG_ERROR_MEMORY;
 			}
@@ -104,7 +104,7 @@ FreeImage_CloneTag(FITAG *tag) {
 		}
 		// tag description
 		if(src_tag->description) {
-			dst_tag->description = (char*)memory_alloc((strlen(src_tag->description) + 1) * sizeof(char));
+			dst_tag->description = (char*)malloc((strlen(src_tag->description) + 1) * sizeof(char));
 			if(!dst_tag->description) {
 				throw FI_MSG_ERROR_MEMORY;
 			}
@@ -119,7 +119,7 @@ FreeImage_CloneTag(FITAG *tag) {
 		// tag value
 		switch(dst_tag->type) {
 			case FIDT_ASCII:
-				dst_tag->value = (BYTE*)memory_alloc((src_tag->length + 1) * sizeof(BYTE));
+				dst_tag->value = (BYTE*)malloc((src_tag->length + 1) * sizeof(BYTE));
 				if(!dst_tag->value) {
 					throw FI_MSG_ERROR_MEMORY;
 				}
@@ -127,7 +127,7 @@ FreeImage_CloneTag(FITAG *tag) {
 				((BYTE*)dst_tag->value)[src_tag->length] = 0;
 				break;
 			default:
-				dst_tag->value = (BYTE*)memory_alloc(src_tag->length * sizeof(BYTE));
+				dst_tag->value = (BYTE*)malloc(src_tag->length * sizeof(BYTE));
 				if(!dst_tag->value) {
 					throw FI_MSG_ERROR_MEMORY;
 				}
@@ -187,8 +187,8 @@ BOOL DLL_CALLCONV
 FreeImage_SetTagKey(FITAG *tag, const char *key) {
 	if(tag && key) {
 		FITAGHEADER *tag_header = (FITAGHEADER *)tag->data;
-		if(tag_header->key) memory_free(tag_header->key);
-		tag_header->key = (char*)memory_alloc(strlen(key) + 1);
+		if(tag_header->key) free(tag_header->key);
+		tag_header->key = (char*)malloc(strlen(key) + 1);
 		strcpy(tag_header->key, key);
 		return TRUE;
 	}
@@ -199,8 +199,8 @@ BOOL DLL_CALLCONV
 FreeImage_SetTagDescription(FITAG *tag, const char *description) {
 	if(tag && description) {
 		FITAGHEADER *tag_header = (FITAGHEADER *)tag->data;
-		if(tag_header->description) memory_free(tag_header->description);
-		tag_header->description = (char*)memory_alloc(strlen(description) + 1);
+		if(tag_header->description) free(tag_header->description);
+		tag_header->description = (char*)malloc(strlen(description) + 1);
 		strcpy(tag_header->description, description);
 		return TRUE;
 	}
@@ -258,13 +258,13 @@ FreeImage_SetTagValue(FITAG *tag, const void *value) {
 		}
 
 		if(tag_header->value) {
-			memory_free(tag_header->value);
+			free(tag_header->value);
 		}
 
 		switch(tag_header->type) {
 			case FIDT_ASCII:
 			{
-				tag_header->value = (char*)memory_alloc((tag_header->length + 1) * sizeof(char));
+				tag_header->value = (char*)malloc((tag_header->length + 1) * sizeof(char));
 				if(!tag_header->value) {
 					return FALSE;
 				}
@@ -278,7 +278,7 @@ FreeImage_SetTagValue(FITAG *tag, const void *value) {
 			break;
 
 			default:
-				tag_header->value = memory_alloc(tag_header->length * sizeof(BYTE));
+				tag_header->value = malloc(tag_header->length * sizeof(BYTE));
 				if(!tag_header->value) {
 					return FALSE;
 				}

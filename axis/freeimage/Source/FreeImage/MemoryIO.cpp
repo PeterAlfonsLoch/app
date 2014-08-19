@@ -21,8 +21,8 @@
 // ==========================================================
 
 #include "FreeImage.h"
-
-
+#include "Utilities.h"
+#include "FreeImageIO.h"
 
 // =====================================================================
 
@@ -34,9 +34,9 @@
 FIMEMORY * DLL_CALLCONV 
 FreeImage_OpenMemory(BYTE *data, DWORD size_in_bytes) {
 	// allocate a memory handle
-	FIMEMORY *stream = (FIMEMORY*)memory_alloc(sizeof(FIMEMORY));
+	FIMEMORY *stream = (FIMEMORY*)malloc(sizeof(FIMEMORY));
 	if(stream) {
-		stream->data = (BYTE*)memory_alloc(sizeof(FIMEMORYHEADER));
+		stream->data = (BYTE*)malloc(sizeof(FIMEMORYHEADER));
 
 		if(stream->data) {
 			FIMEMORYHEADER *mem_header = (FIMEMORYHEADER*)(stream->data);
@@ -55,7 +55,7 @@ FreeImage_OpenMemory(BYTE *data, DWORD size_in_bytes) {
 
 			return stream;
 		}
-		memory_free(stream);
+		free(stream);
 	}
 
 	return NULL;
@@ -67,10 +67,10 @@ FreeImage_CloseMemory(FIMEMORY *stream) {
 	if(stream && stream->data) {
 		FIMEMORYHEADER *mem_header = (FIMEMORYHEADER*)(stream->data);
 		if(mem_header->delete_me) {
-			memory_free(mem_header->data);
+			free(mem_header->data);
 		}
-		memory_free(mem_header);
-		memory_free(stream);
+		free(mem_header);
+		free(stream);
 	}
 }
 

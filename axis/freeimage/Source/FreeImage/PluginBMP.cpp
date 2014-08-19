@@ -24,7 +24,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-
+#include "Utilities.h"
 
 // ----------------------------------------------------------
 //   Constants + headers
@@ -35,14 +35,12 @@ static const BYTE RLE_ENDOFLINE   = 0;
 static const BYTE RLE_ENDOFBITMAP = 1;
 static const BYTE RLE_DELTA       = 2;
 
-#ifndef _WIN32
 static const BYTE BI_RGB            = 0;	// compression: none
 static const BYTE BI_RLE8           = 1;	// compression: RLE 8-bit/pixel
 static const BYTE BI_RLE4           = 2;	// compression: RLE 4-bit/pixel
 static const BYTE BI_BITFIELDS      = 3;	// compression: Bit field or Huffman 1D compression for BITMAPCOREHEADER2
 static const BYTE BI_JPEG           = 4;	// compression: JPEG or RLE-24 compression for BITMAPCOREHEADER2
 static const BYTE BI_PNG            = 5;	// compression: PNG
-#endif
 static const BYTE BI_ALPHABITFIELDS = 6;	// compression: Bit field (this value is valid in Windows CE .NET 4.0 and later)
 
 // ----------------------------------------------------------
@@ -52,7 +50,7 @@ static const BYTE BI_ALPHABITFIELDS = 6;	// compression: Bit field (this value i
 #else
 #pragma pack(1)
 #endif
-#ifndef _WIN32
+
 typedef struct tagBITMAPCOREHEADER {
   DWORD   bcSize;
   WORD    bcWidth;
@@ -60,7 +58,7 @@ typedef struct tagBITMAPCOREHEADER {
   WORD    bcPlanes;
   WORD    bcBitCnt;
 } BITMAPCOREHEADER, *PBITMAPCOREHEADER; 
-#endif
+
 typedef struct tagBITMAPINFOOS2_1X_HEADER {
   DWORD  biSize;
   WORD   biWidth;
@@ -68,7 +66,7 @@ typedef struct tagBITMAPINFOOS2_1X_HEADER {
   WORD   biPlanes; 
   WORD   biBitCount;
 } BITMAPINFOOS2_1X_HEADER, *PBITMAPINFOOS2_1X_HEADER; 
-#ifndef _WIN32
+
 typedef struct tagBITMAPFILEHEADER {
   WORD    bfType;		//! The file type
   DWORD   bfSize;		//! The size, in bytes, of the bitmap file
@@ -76,7 +74,7 @@ typedef struct tagBITMAPFILEHEADER {
   WORD    bfReserved2;	//! Reserved; must be zero
   DWORD   bfOffBits;	//! The offset, in bytes, from the beginning of the BITMAPFILEHEADER structure to the bitmap bits
 } BITMAPFILEHEADER, *PBITMAPFILEHEADER;
-#endif
+
 #ifdef _WIN32
 #pragma pack(pop)
 #else
@@ -217,7 +215,7 @@ LoadPixelDataRLE4(FreeImageIO *io, fi_handle handle, int width, int height, FIBI
 	try {
 		height = abs(height);
 
-		pixels = (BYTE*)memory_alloc(width * height * sizeof(BYTE));
+		pixels = (BYTE*)malloc(width * height * sizeof(BYTE));
 		if(!pixels) throw(1);
 		memset(pixels, 0, width * height * sizeof(BYTE));
 
@@ -330,12 +328,12 @@ LoadPixelDataRLE4(FreeImageIO *io, fi_handle handle, int width, int height, FIBI
 			}
 		}
 
-		memory_free(pixels);
+		free(pixels);
 
 		return TRUE;
 
 	} catch(int) {
-		if(pixels) memory_free(pixels);
+		if(pixels) free(pixels);
 		return FALSE;
 	}
 }
@@ -1383,13 +1381,13 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 
 		unsigned bpp = FreeImage_GetBPP(dib);
 		if ((bpp == 8) && (flags & BMP_SAVE_RLE)) {
-			BYTE *buffer = (BYTE*)memory_alloc(FreeImage_GetPitch(dib) * 2 * sizeof(BYTE));
+			BYTE *buffer = (BYTE*)malloc(FreeImage_GetPitch(dib) * 2 * sizeof(BYTE));
 
 			for (DWORD i = 0; i < FreeImage_GetHeight(dib); ++i) {
 				int size = RLEEncodeLine(buffer, FreeImage_GetScanLine(dib, i), FreeImage_GetLine(dib));
 
 				if (io->write_proc(buffer, size, 1, handle) != 1) {
-					memory_free(buffer);
+					free(buffer);
 					return FALSE;
 				}
 			}
@@ -1398,11 +1396,11 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 			buffer[1] = RLE_ENDOFBITMAP;
 
 			if (io->write_proc(buffer, 2, 1, handle) != 1) {
-				memory_free(buffer);
+				free(buffer);
 				return FALSE;
 			}
 
-			memory_free(buffer);
+			free(buffer);
 #ifdef FREEIMAGE_BIGENDIAN
 		} else if (bpp == 16) {
 			int padding = FreeImage_GetPitch(dib) - FreeImage_GetWidth(dib) * sizeof(WORD);

@@ -244,7 +244,7 @@ void thread_impl::pre_translate_message(signal_details * pobj)
 
 
 
-void thread_impl::process_window_procedure_exception(::exception::axis*,signal_details * pobj)
+void thread_impl::process_window_procedure_exception(::exception::base*,signal_details * pobj)
 {
    SCAST_PTR(::message::axis,pbase,pobj);
    if(pbase->m_uiMessage == WM_CREATE)
@@ -1500,7 +1500,7 @@ void thread_impl::message_handler(signal_details * pobj)
       return;
 
    }
-   catch(::exception::axis * pe)
+   catch(::exception::base * pe)
    {
 
       process_window_procedure_exception(pe,pbase);

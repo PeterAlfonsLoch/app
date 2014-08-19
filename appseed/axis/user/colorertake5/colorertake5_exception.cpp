@@ -8,7 +8,7 @@ namespace colorertake5
    exception::exception(const exception & e) :
       element(e.get_app()),
       ::call_stack(e.get_app()),
-      ::exception::axis(e.get_app())
+      ::exception::base(e.get_app())
    {
 
       m_strMessage = e.m_strMessage;
@@ -18,7 +18,7 @@ namespace colorertake5
    exception::exception(sp(::axis::application) papp) :
       element(papp),
       ::call_stack(papp),
-      ::exception::axis(papp)
+      ::exception::base(papp)
    {
          printf(":colorertake5");
 
@@ -29,7 +29,7 @@ namespace colorertake5
    exception::exception(sp(::axis::application) papp, const string &msg) :
       element(papp),
       ::call_stack(papp),
-      ::exception::axis(papp)
+      ::exception::base(papp)
    {
          printf(":colorertake5(%s)", msg.c_str());
       m_strMessage = "colorertake5::exception: ";
@@ -44,7 +44,7 @@ namespace colorertake5
 /*   InputSourceException::InputSourceException(sp(::axis::application) papp)
          element(papp),
       ::call_stack(papp),
-      ::exception::axis(papp)
+      ::exception::base(papp)
 
    {};
    InputSourceException::InputSourceException(sp(::axis::application) pappconst string & msg){

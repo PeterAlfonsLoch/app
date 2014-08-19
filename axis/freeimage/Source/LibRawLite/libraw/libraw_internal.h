@@ -5,7 +5,7 @@
  *
  * LibRaw internal data structures (not visible outside)
 
-LibRaw is memory_free software; you can redistribute it and/or modify
+LibRaw is free software; you can redistribute it and/or modify
 it under the terms of the one of three licenses as you choose:
 
 1. GNU LESSER GENERAL PUBLIC LICENSE version 2.1
@@ -166,7 +166,7 @@ struct tiff_ifd_t
 
 struct jhead {
   int bits, high, wide, clrs, sraw, psv, restart, vpred[6];
-    ushort *huff[6], *memory_free[4], *row;
+    ushort *huff[6], *free[4], *row;
 };
 struct tiff_tag {
   ushort tag, type;

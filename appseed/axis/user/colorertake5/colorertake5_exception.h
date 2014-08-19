@@ -11,7 +11,7 @@ namespace colorertake5
        @ingroup common
    */
    class CLASS_DECL_AXIS exception :
-      virtual public ::exception::axis
+      virtual public ::exception::base
    {
    public:
      /** Default constructor

@@ -106,7 +106,7 @@
  * first row group).  For now, we simply do not support providing context
  * rows when min_DCT_scaled_size is 1.  That combination seems unlikely to
  * be worth providing --- if someone wants a 1/8th-size preview, they probably
- * want it quick and dirty, so a context-memory_free upsampler is sufficient.
+ * want it quick and dirty, so a context-free upsampler is sufficient.
  */
 
 

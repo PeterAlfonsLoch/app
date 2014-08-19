@@ -40,7 +40,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include "Imf.h"
+#include <ImfChannelListAttribute.h>
 
 
 namespace Imf {

@@ -107,7 +107,7 @@ public:
 
    inline ::count size() { return get_size();  }
    inline ::count get_count() { return get_size(); }
-   inline ::count get_size() { return get_size(); }
+   inline ::count get_size() { return BASE_ARRAY_TYPE::get_size(); }
    
 };
 

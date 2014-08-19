@@ -25,8 +25,16 @@
 // Use at your own risk!
 // ========================================================== 
 
+#ifdef _MSC_VER
+#pragma warning (disable : 4786) // identifier was truncated to 'number' characters
+#endif
+
+#include "../LibTIFF4/tiffiop.h"
 
 #include "FreeImage.h"
+#include "Utilities.h"
+#include "FreeImageTag.h"
+#include "FIRational.h"
 
 // ----------------------------------------------------------
 //   Extended TIFF Directory GEO Tag Support
@@ -376,7 +384,7 @@ tiff_read_exif_tag(TIFF *tif, TagLib::MDMODEL md_model, FIBITMAP *dib, TagLib& t
 
 		case TIFF_RATIONAL: {
 			// LibTIFF converts rational to floats : reconvert floats to rationals
-			DWORD *rvalue = (DWORD*)memory_alloc(2 * value_count * sizeof(DWORD));
+			DWORD *rvalue = (DWORD*)malloc(2 * value_count * sizeof(DWORD));
 			for(uint32 i = 0; i < value_count; i++) {
 				float *fv = (float*)raw_data;
 				FIRational rational(fv[i]);
@@ -387,13 +395,13 @@ tiff_read_exif_tag(TIFF *tif, TagLib::MDMODEL md_model, FIBITMAP *dib, TagLib& t
 			FreeImage_SetTagLength(fitag, TIFFDataWidth(fip->field_type) * value_count);
 			FreeImage_SetTagCount(fitag, value_count);
 			FreeImage_SetTagValue(fitag, rvalue);
-			memory_free(rvalue);
+			free(rvalue);
 		}
 		break;
 
 		case TIFF_SRATIONAL: {
 			// LibTIFF converts rational to floats : reconvert floats to rationals
-			LONG *rvalue = (LONG*)memory_alloc(2 * value_count * sizeof(LONG));
+			LONG *rvalue = (LONG*)malloc(2 * value_count * sizeof(LONG));
 			for(uint32 i = 0; i < value_count; i++) {
 				float *fv = (float*)raw_data;
 				FIRational rational(fv[i]);
@@ -404,7 +412,7 @@ tiff_read_exif_tag(TIFF *tif, TagLib::MDMODEL md_model, FIBITMAP *dib, TagLib& t
 			FreeImage_SetTagLength(fitag, TIFFDataWidth(fip->field_type) * value_count);
 			FreeImage_SetTagCount(fitag, value_count);
 			FreeImage_SetTagValue(fitag, rvalue);
-			memory_free(rvalue);
+			free(rvalue);
 		}
 		break;
 

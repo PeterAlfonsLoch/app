@@ -141,7 +141,7 @@ namespace android
       virtual int32_t exit_instance(); // default will 'delete this'
 
       // Advanced: exception handling
-      virtual LRESULT ProcessWndProcException(::exception::axis* e, const MESSAGE* pMsg);
+      virtual LRESULT ProcessWndProcException(::exception::base* e, const MESSAGE* pMsg);
 
       // Advanced: handling messages sent to message filter hook
       virtual bool ProcessMessageFilter(int32_t code, LPMESSAGE lpMsg);

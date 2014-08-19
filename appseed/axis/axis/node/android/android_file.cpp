@@ -753,7 +753,7 @@ namespace android
    }
 
 
-   // IMPLEMENT_DYNAMIC(WinFileException, ::exception::axis)
+   // IMPLEMENT_DYNAMIC(WinFileException, ::exception::base)
 
    /////////////////////////////////////////////////////////////////////////////
 

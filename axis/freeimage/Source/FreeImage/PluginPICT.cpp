@@ -69,7 +69,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-
+#include "Utilities.h"
 
 // ==========================================================
 // Plugin Interface
@@ -592,7 +592,7 @@ Unpack32Bits( FreeImageIO *io, fi_handle handle, FIBITMAP* dib, MacRect* bounds,
 		rowBytes = width*4;
 	}
 	
-	BYTE* pLineBuf = (BYTE*)memory_alloc( rowBytes ); // Let's allocate enough for 4 bit planes
+	BYTE* pLineBuf = (BYTE*)malloc( rowBytes ); // Let's allocate enough for 4 bit planes
 	if ( pLineBuf )	{
 		try	{
 			for ( int i = 0; i < height; i++ ) { 
@@ -634,11 +634,11 @@ Unpack32Bits( FreeImageIO *io, fi_handle handle, FIBITMAP* dib, MacRect* bounds,
 			}
 		}
 		catch( ... ) {
-			memory_free( pLineBuf );
+			free( pLineBuf );
 			throw;
 		}
 	}
-	memory_free( pLineBuf );
+	free( pLineBuf );
 }
 
 /**

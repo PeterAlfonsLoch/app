@@ -48,7 +48,11 @@
 //	The tables are used by class B44Compressor.
 //
 //---------------------------------------------------------------------------
-#include "Imf.h"
+
+#include <half.h>
+#include <math.h>
+#include <iostream>
+#include <iomanip>
 
 using namespace std;
 

@@ -5823,7 +5823,7 @@ __activation_window_procedure(oswindow oswindow,UINT nMsg,WPARAM wParam,LPARAM l
       if(bCallDefault)
          lResult = CallWindowProc(oldWndProc,oswindow,nMsg,wParam,lParam);
    }
-   catch(::exception::axis * pe)
+   catch(::exception::base * pe)
    {
       // handle exception
       MSG msg;

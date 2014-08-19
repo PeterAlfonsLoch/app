@@ -20,7 +20,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-
+#include "Utilities.h"
 
 
 /** @brief Retrieves the red, green, blue or alpha channel of a BGR[A] image. 

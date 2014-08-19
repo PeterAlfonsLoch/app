@@ -23,7 +23,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-
+#include "Utilities.h"
 
 // ==========================================================
 // Internal functions
@@ -157,7 +157,7 @@ readXBMFile(FreeImageIO *io, fi_handle handle, int *widthP, int *heightP, char *
 	bytes_per_line = (*widthP + 7) / 8 + padding;
 
 	raster_length =  bytes_per_line * *heightP;
-	*dataP = (char*) memory_alloc( raster_length );
+	*dataP = (char*) malloc( raster_length );
 	if ( *dataP == (char*) 0 )
 		return( ERR_XBM_MEMORY );
 
@@ -360,11 +360,11 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			bP++;
 		}
 
-		memory_free(buffer);
+		free(buffer);
 		return dib;
 
 	} catch(const char *text) {
-		if(buffer)	memory_free(buffer);
+		if(buffer)	free(buffer);
 		if(dib)		FreeImage_Unload(dib);
 		FreeImage_OutputMessageProc(s_format_id, text);
 		return NULL;

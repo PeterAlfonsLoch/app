@@ -1421,6 +1421,18 @@ string & string::replace(strsize iStart, strsize nCount, const char * psz)
    }
 }
 
+string & string::replace(strsize iStart,strsize nCount,const char * psz, strsize nSubLen)
+{
+   if(nCount < 0)
+   {
+      return operator = (Left(iStart) + string(psz,nSubLen));
+   }
+   else
+   {
+      return operator = (Left(iStart) + string(psz,nSubLen) + Mid(nCount));
+   }
+}
+
 strsize string::remove(char chRemove )
 {
    strsize nLength = get_length();

@@ -134,7 +134,7 @@ Int allocatePredInfo(CWMImageStrCodec *pSC)
     if(b32Bit) // integer overlow/underflow check for 32-bit system
         if(((mbWidth >> 16) * iChannels * 2 * sizeof(CWMIPredInfo)) & 0xffff0000)
             return ICERR_ERROR;    
-    pMemory = (CWMIPredInfo *)memory_alloc(mbWidth * iChannels * 2 * sizeof(CWMIPredInfo));
+    pMemory = (CWMIPredInfo *)malloc(mbWidth * iChannels * 2 * sizeof(CWMIPredInfo));
     if (pMemory == NULL)
         return ICERR_ERROR;
 
@@ -158,7 +158,7 @@ Int allocatePredInfo(CWMImageStrCodec *pSC)
 Void freePredInfo(CWMImageStrCodec *pSC)
 {
     if (pSC->pPredInfoMemory)
-        memory_free (pSC->pPredInfoMemory);
+        free (pSC->pPredInfoMemory);
     pSC->pPredInfoMemory = NULL;
 }
 

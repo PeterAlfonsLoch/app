@@ -4,7 +4,7 @@
 interface_only_exception::interface_only_exception(sp(::axis::application) papp, const char * pszTip) : 
    element(papp),
    ::call_stack(papp),
-   ::exception::axis(papp),
+   ::exception::base(papp),
    not_implemented(papp, pszTip)
 {
       if(pszTip == NULL)
@@ -20,7 +20,7 @@ interface_only_exception::interface_only_exception(sp(::axis::application) papp,
 interface_only_exception::interface_only_exception(const interface_only_exception & e) : 
    element(e),
    ::call_stack(e),
-   ::exception::axis(e),
+   ::exception::base(e),
    not_implemented(e)
 {
 }

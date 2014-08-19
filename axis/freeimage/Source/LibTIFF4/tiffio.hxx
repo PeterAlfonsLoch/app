@@ -31,7 +31,7 @@
  * TIFF I/O library definitions which provide C++ streams API.
  */
 
-//#include <iostream>
+#include <iostream>
 #include "tiff.h"
 
 extern TIFF* TIFFStreamOpen(const char*, std::ostream *);

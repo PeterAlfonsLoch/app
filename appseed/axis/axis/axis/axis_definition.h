@@ -292,7 +292,7 @@ do {                                           \
 #ifndef TRYALLOC
 
 #ifdef _AFX
-#define TRYALLOC(x) try{x;} catch(::exception::axis* e){e->Delete();}
+#define TRYALLOC(x) try{x;} catch(::exception::base* e){e->Delete();}
 #else
 /* prefast noise VSW 489981 */
 #define TRYALLOC(x) __pragma(warning(push)) __pragma(warning(disable: 4571)) try{x;} catch(...) {} __pragma(warning(pop))
@@ -305,7 +305,7 @@ do {                                           \
 //#ifndef _TRY
 //#define _TRY try
 //#ifdef _AFX
-//#define _CATCH( e ) catch( ::exception::axis* e )
+//#define _CATCH( e ) catch( ::exception::base* e )
 //#else
 //#define _CATCH( e ) catch( atl_exception e )
 //#endif
@@ -337,7 +337,7 @@ this end
 #ifdef _AFX
 /* Nice to do something more complex here in future to translate an core API exception to a better HR */
 #define ___COM_END_PART \
-   catch(::exception::axis *e) \
+   catch(::exception::base *e) \
    { \
       if(e) \
       { \

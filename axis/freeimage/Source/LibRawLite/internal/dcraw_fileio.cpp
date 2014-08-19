@@ -1,7 +1,7 @@
 /* 
   Copyright 2008-2013 LibRaw LLC (info@libraw.org)
 
-LibRaw is memory_free software; you can redistribute it and/or modify
+LibRaw is free software; you can redistribute it and/or modify
 it under the terms of the one of three licenses as you choose:
 
 1. GNU LESSER GENERAL PUBLIC LICENSE version 2.1
@@ -136,14 +136,14 @@ void CLASS subtract (const char *fname)
 #endif
     fclose (fp);  return;
   }
-  pixel = (ushort *) memory_calloc (width, sizeof *pixel);
+  pixel = (ushort *) calloc (width, sizeof *pixel);
   merror (pixel, "subtract()");
   for (row=0; row < height; row++) {
     fread (pixel, 2, width, fp);
     for (col=0; col < width; col++)
       BAYER(row,col) = MAX (BAYER(row,col) - ntohs(pixel[col]), 0);
   }
-  memory_free (pixel);
+  free (pixel);
   fclose (fp);
   memset (cblack, 0, sizeof cblack);
   black = 0;
@@ -167,12 +167,12 @@ void CLASS apply_profile (const char *input, const char *output)
     hInProfile = cmsOpenProfileFromFile (input, "r");
   else if (profile_length) {
 #ifndef LIBRAW_LIBRARY_BUILD
-    prof = (char *) memory_alloc (profile_length);
+    prof = (char *) malloc (profile_length);
     merror (prof, "apply_profile()");
     fseek (ifp, profile_offset, SEEK_SET);
     fread (prof, 1, profile_length, ifp);
     hInProfile = cmsOpenProfileFromMem (prof, profile_length);
-    memory_free (prof);
+    free (prof);
 #else
     hInProfile = cmsOpenProfileFromMem (imgdata.color.profile, profile_length);
 #endif
@@ -197,12 +197,12 @@ void CLASS apply_profile (const char *input, const char *output)
   else if ((fp = fopen (output, "rb"))) {
     fread (&size, 4, 1, fp);
     fseek (fp, 0, SEEK_SET);
-    oprof = (unsigned *) memory_alloc (size = ntohl(size));
+    oprof = (unsigned *) malloc (size = ntohl(size));
     merror (oprof, "apply_profile()");
     fread (oprof, 1, size, fp);
     fclose (fp);
     if (!(hOutProfile = cmsOpenProfileFromMem (oprof, size))) {
-      memory_free (oprof);
+      free (oprof);
       oprof = 0;
     }
   }

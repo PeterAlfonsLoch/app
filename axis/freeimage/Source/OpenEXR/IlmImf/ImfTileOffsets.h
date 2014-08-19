@@ -44,7 +44,7 @@
 
 #include <ImfTileDescription.h>
 #include <ImfInt64.h>
-//#include <vector>
+#include <vector>
 
 namespace Imf {
 

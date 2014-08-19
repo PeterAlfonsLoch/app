@@ -9,17 +9,17 @@ class string;
 namespace exception
 {
 
-   class CLASS_DECL_AXIS axis :
+   class CLASS_DECL_AXIS base :
       virtual public ::exception::exception,
       virtual public call_stack
    {
    public:
 
 
-      axis(sp(::axis::application) papp, uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = TRUE
-      explicit axis(sp(::axis::application) papp, bool bAutoDelete, uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = bAutoDelete
+      base(sp(::axis::application) papp,uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = TRUE
+      explicit base(sp(::axis::application) papp,bool bAutoDelete,uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = bAutoDelete
       // Implementation (setting m_bAutoDelete to FALSE is advanced)
-      virtual ~axis();
+      virtual ~base();
 
 
       void Delete();  // use to delete exception in 'catch' block

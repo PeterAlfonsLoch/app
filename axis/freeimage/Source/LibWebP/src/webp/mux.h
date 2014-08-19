@@ -43,7 +43,7 @@
   WebPMuxGetChunk(mux, "ICCP", &icc_profile);
   // ... (Consume icc_data).
   WebPMuxDelete(mux);
-  memory_free(data);
+  free(data);
 */
 
 #ifndef WEBP_WEBP_MUX_H_
@@ -160,7 +160,7 @@ WEBP_EXTERN(WebPMuxError) WebPMuxSetChunk(
     int copy_data);
 
 // Gets a reference to the data of the chunk with id 'fourcc' in the mux object.
-// The caller should NOT memory_free the returned data.
+// The caller should NOT free the returned data.
 // Parameters:
 //   mux - (in) object from which the chunk data is to be fetched
 //   fourcc - (in) a character array containing the fourcc of the chunk;
@@ -241,7 +241,7 @@ WEBP_EXTERN(WebPMuxError) WebPMuxPushFrame(
     WebPMux* mux, const WebPMuxFrameInfo* frame, int copy_data);
 
 // Gets the nth frame from the mux object.
-// The content of 'frame->bitstream' is allocated using memory_alloc(), and NOT
+// The content of 'frame->bitstream' is allocated using malloc(), and NOT
 // owned by the 'mux' object. It MUST be deallocated by the caller by calling
 // WebPDataClear().
 // nth=0 has a special meaning - last position.
@@ -354,7 +354,7 @@ WEBP_EXTERN(WebPMuxError) WebPMuxNumChunks(const WebPMux* mux,
 // Assembles all chunks in WebP RIFF format and returns in 'assembled_data'.
 // This function also validates the mux object.
 // Note: The content of 'assembled_data' will be ignored and overwritten.
-// Also, the content of 'assembled_data' is allocated using memory_alloc(), and NOT
+// Also, the content of 'assembled_data' is allocated using malloc(), and NOT
 // owned by the 'mux' object. It MUST be deallocated by the caller by calling
 // WebPDataClear().
 // Parameters:

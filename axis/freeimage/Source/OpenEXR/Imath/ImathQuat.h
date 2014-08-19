@@ -58,7 +58,7 @@
 #include "ImathExc.h"
 #include "ImathMatrix.h"
 
-//#include <iostream>
+#include <iostream>
 
 namespace Imath {
 

@@ -23,7 +23,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-
+#include "Utilities.h"
 #include "ToneMapping.h"
 
 static const int NPRE	= 1;		// Number of relaxation sweeps before ...
@@ -310,7 +310,7 @@ static BOOL fmg_mglin(FIBITMAP *U, int n, int ncycle) {
 // --------------------------------------------------------------------------
 
 #define _CREATE_ARRAY_GRID_(array, array_size) \
-	array = (FIBITMAP**)memory_alloc(array_size * sizeof(FIBITMAP*));\
+	array = (FIBITMAP**)malloc(array_size * sizeof(FIBITMAP*));\
 	if(!array) throw(1);\
 	memset(array, 0, array_size * sizeof(FIBITMAP*))
 
@@ -321,7 +321,7 @@ static BOOL fmg_mglin(FIBITMAP *U, int n, int ncycle) {
 				FreeImage_Unload(array[k]); array[k] = NULL;\
 			}\
 		}\
-		memory_free(array);\
+		free(array);\
 	}
 
 // --------------------------------------------------------------------------

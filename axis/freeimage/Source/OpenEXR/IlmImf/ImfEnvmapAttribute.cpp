@@ -39,7 +39,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include "Imf.h"
+#include <ImfEnvmapAttribute.h>
 
 
 namespace Imf {

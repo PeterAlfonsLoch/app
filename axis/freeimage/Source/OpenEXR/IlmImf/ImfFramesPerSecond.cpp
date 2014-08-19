@@ -38,7 +38,9 @@
 //
 //-----------------------------------------------------------------------------
 
-#include "Imf.h"
+#include <ImfFramesPerSecond.h>
+#include "ImathFun.h"
+
 using namespace Imath;
 
 namespace Imf {

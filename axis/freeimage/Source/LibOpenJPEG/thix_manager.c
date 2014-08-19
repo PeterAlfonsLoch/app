@@ -122,7 +122,7 @@ int opj_write_tilemhix( int coff, opj_codestream_info_t cstr_info, int tileno, o
     opj_stream_write_data(cio,l_data_header,2,p_manager);
   }
      
-  /*  memory_free( marker);*/
+  /*  free( marker);*/
 
   len = (OPJ_UINT32)(opj_stream_tell(cio)-lenp);
   opj_stream_seek(cio, lenp,p_manager);

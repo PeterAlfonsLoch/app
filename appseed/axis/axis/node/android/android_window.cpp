@@ -3557,7 +3557,7 @@ throw not_implemented(get_app());
    ASSERT(!bOK);
    // Note: DELETE_EXCEPTION_(e) not required
    }
-   catch(::exception::axis * pe)
+   catch(::exception::base * pe)
    {
    // validation failed due to OOM or other resource failure
    //e->ReportError(MB_ICONEXCLAMATION, __IDP_INTERNAL_FAILURE);
@@ -6237,7 +6237,7 @@ if(psurface == g_cairosurface)
 //         }
 //         return -1;
 //      }
-//      catch(::exception::axis * pe)
+//      catch(::exception::base * pe)
 //      {
 //         __process_window_procedure_exception(pe, spbase);
 //         //         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Uncaught exception in message_handler (returning %ld).\n", spbase->get_lresult());
@@ -6924,7 +6924,7 @@ LRESULT CALLBACK
 //      if (bcallDefault)
 //         lResult = callWindowProc(oldWndProc, hWnd, nMsg, wparam, lparam);
 //   }
-//   catch(::exception::axis * pe)
+//   catch(::exception::base * pe)
 //   {
 //      // handle exception
 //      MESSAGE msg;
@@ -6982,7 +6982,7 @@ LRESULT CALLBACK
 //         *pModuleState->m_pstrUnregisterList += lpWndClass->lpszClassName;
 //         *pModuleState->m_pstrUnregisterList +='\n';
 //      }
-//      catch(::exception::axis * pe)
+//      catch(::exception::base * pe)
 //      {
 //         ::ca2::rethrow(pe);
 //         // Note: DELETE_EXCEPTION not required.

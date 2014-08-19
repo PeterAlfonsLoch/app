@@ -46,7 +46,7 @@ namespace file
 
       // Constructor
       exception(const exception & e) :
-         ::exception::axis(e.get_app()),
+         ::exception::base(e.get_app()),
          ::simple_exception(e.get_app()),
          ::io_exception(e.get_app()),
          ::call_stack(e.get_app())

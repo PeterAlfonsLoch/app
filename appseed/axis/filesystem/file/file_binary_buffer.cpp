@@ -167,7 +167,7 @@ namespace file
 
 
 
-   // IMPLEMENT_DYNAMIC(file_exception, ::exception::axis)
+   // IMPLEMENT_DYNAMIC(file_exception, ::exception::base)
 
    /////////////////////////////////////////////////////////////////////////////
 

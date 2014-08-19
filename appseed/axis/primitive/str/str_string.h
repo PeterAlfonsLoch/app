@@ -327,6 +327,7 @@ public:
    strsize replace_ci(const char * pszOld,const char * pszNew, strsize iStart = 0);
 
    string & replace(strsize iStart, strsize nCount, const char * psz);
+   string & replace(strsize iStart,strsize nCount,const char * psz, strsize nLen);
 
    // remove all occurrences of character 'chRemove'
    strsize remove(char chRemove );

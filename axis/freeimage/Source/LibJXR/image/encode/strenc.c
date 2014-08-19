@@ -435,17 +435,17 @@ Int StrIOEncInit(CWMImageStrCodec* pSC)
 #endif
         char * pFilename;
 
-        pSC->ppWStream = (struct WMPStream **)memory_alloc(pSC->cNumBitIO * sizeof(struct WMPStream *));
+        pSC->ppWStream = (struct WMPStream **)malloc(pSC->cNumBitIO * sizeof(struct WMPStream *));
         if(pSC->ppWStream == NULL) return ICERR_ERROR;
         memset(pSC->ppWStream, 0, pSC->cNumBitIO * sizeof(struct WMPStream *));
 
         if (pSC->cmbHeight * pSC->cmbWidth * pSC->WMISCP.cChannel >= MAX_MEMORY_SIZE_IN_WORDS) {
 #ifdef _WINDOWS_
-            pSC->ppTempFile = (TCHAR **)memory_alloc(pSC->cNumBitIO * sizeof(TCHAR *));
+            pSC->ppTempFile = (TCHAR **)malloc(pSC->cNumBitIO * sizeof(TCHAR *));
             if(pSC->ppTempFile == NULL) return ICERR_ERROR;
             memset(pSC->ppTempFile, 0, pSC->cNumBitIO * sizeof(TCHAR *)); 
 #else
-            pSC->ppTempFile = (char **)memory_alloc(pSC->cNumBitIO * sizeof(char *));
+            pSC->ppTempFile = (char **)malloc(pSC->cNumBitIO * sizeof(char *));
             if(pSC->ppTempFile == NULL) return ICERR_ERROR;
             memset(pSC->ppTempFile, 0, pSC->cNumBitIO * sizeof(char *));
 #endif
@@ -455,7 +455,7 @@ Int StrIOEncInit(CWMImageStrCodec* pSC)
             if (pSC->cmbHeight * pSC->cmbWidth * pSC->WMISCP.cChannel >= MAX_MEMORY_SIZE_IN_WORDS) {
 #if defined(_WINDOWS_) || defined(UNDER_CE)  // tmpnam does not exist in VS2005 WinCE CRT              
                 Bool bUnicode = sizeof(TCHAR) == 2;
-                pSC->ppTempFile[i] = (TCHAR *)memory_alloc(MAX_PATH * sizeof(TCHAR));
+                pSC->ppTempFile[i] = (TCHAR *)malloc(MAX_PATH * sizeof(TCHAR));
                 if(pSC->ppTempFile[i] == NULL) return ICERR_ERROR;
 
                 pFilename = (char *)pSC->ppTempFile[i];
@@ -479,7 +479,7 @@ Int StrIOEncInit(CWMImageStrCodec* pSC)
                 }
 
 #else //DPK needs to support ANSI 
-                pSC->ppTempFile[i] = (char *)memory_alloc(FILENAME_MAX * sizeof(char));
+                pSC->ppTempFile[i] = (char *)malloc(FILENAME_MAX * sizeof(char));
                 if(pSC->ppTempFile[i] == NULL) return ICERR_ERROR;
 
                 if ((pFilename = tmpnam(NULL)) == NULL)
@@ -715,16 +715,16 @@ Int StrIOEncTerm(CWMImageStrCodec* pSC)
                     }
 
                     if (*(pSC->ppWStream + i))
-                        memory_free(*(pSC->ppWStream + i));
+                        free(*(pSC->ppWStream + i));
                 }
                 if(pSC->ppTempFile){
                     if(pSC->ppTempFile[i])
-                        memory_free(pSC->ppTempFile[i]);
+                        free(pSC->ppTempFile[i]);
                 }
             }
 
             if(pSC->ppTempFile)
-                memory_free(pSC->ppTempFile);
+                free(pSC->ppTempFile);
         }
         else{
             for(i = 0; i < pSC->cNumBitIO; i ++){
@@ -733,10 +733,10 @@ Int StrIOEncTerm(CWMImageStrCodec* pSC)
             }
         }
 
-        memory_free(pSC->ppWStream);
+        free(pSC->ppWStream);
 
-        memory_free(pSC->m_ppBitIO);
-        memory_free(pSC->pIndexTable);
+        free(pSC->m_ppBitIO);
+        free(pSC->pIndexTable);
     }
 
     return 0;
@@ -936,8 +936,8 @@ Int StrEncInit(CWMImageStrCodec* pSC)
             if(cSize >= 0x3fffffff)
                 return ICERR_ERROR;
         }
-        pSC->pResU = (PixelI *)memory_alloc(cSize * sizeof(PixelI));
-        pSC->pResV = (PixelI *)memory_alloc(cSize * sizeof(PixelI));
+        pSC->pResU = (PixelI *)malloc(cSize * sizeof(PixelI));
+        pSC->pResV = (PixelI *)malloc(cSize * sizeof(PixelI));
         if(pSC->pResU == NULL || pSC->pResV == NULL){
             return ICERR_ERROR;
         }
@@ -1100,9 +1100,9 @@ static Int StrEncTerm(CTXSTRCODEC ctxSC)
 
         if(pSC->m_bUVResolutionChange){
             if(pSC->pResU != NULL)
-                memory_free(pSC->pResU);
+                free(pSC->pResU);
             if(pSC->pResV != NULL)
-                memory_free(pSC->pResV);
+                free(pSC->pResV);
         }
 
         freePredInfo(pSC);
@@ -1382,7 +1382,7 @@ Int ImageStrEncInit(
     i *= cMacBlock * 2;
     cb += i;
 
-    pb = memory_alloc(cb);
+    pb = malloc(cb);
     if (NULL == pb)
     {
         goto ErrorExit;
@@ -1438,7 +1438,7 @@ Int ImageStrEncInit(
         // 1. allocate new pNextSC info
         //================================================
         cb = sizeof(*pNextSC) + (128 - 1) + cbMacBlockStride * cMacBlock * 2;
-        pb = memory_alloc(cb);
+        pb = malloc(cb);
         if (NULL == pb)
         {
             goto ErrorExit;
@@ -1595,7 +1595,7 @@ Int ImageStrEncTerm(
     PERFTIMER_DELETE(pSC->m_fMeasurePerf, pSC->m_ptEncDecPerf);
     PERFTIMER_DELETE(pSC->m_fMeasurePerf, pSC->m_ptEndToEndPerf);
 
-    memory_free(pSC);
+    free(pSC);
     return ICERR_OK;
 }
 

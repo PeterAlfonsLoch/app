@@ -89,7 +89,7 @@ png_malloc_base,(png_const_structrp png_ptr, png_alloc_size_t size),
 
       else
 #endif
-         return memory_alloc((size_t)size); /* checked for truncation above */
+         return malloc((size_t)size); /* checked for truncation above */
    }
 
    else
@@ -132,7 +132,7 @@ png_realloc_array,(png_const_structrp png_ptr, png_const_voidp old_array,
    /* These are internal errors: */
    if (add_elements <= 0 || element_size == 0 || old_elements < 0 ||
       (old_array == NULL && old_elements > 0))
-      png_error(png_ptr, "internal error: array memory_realloc");
+      png_error(png_ptr, "internal error: array realloc");
 
    /* Check for overflow on the elements count (so the caller does not have to
     * check.)
@@ -192,7 +192,7 @@ png_malloc_default,(png_const_structrp png_ptr, png_alloc_size_t size),
       return NULL;
 
    /* Passing 'NULL' here bypasses the application provided memory handler. */
-   ret = png_malloc_base(NULL/*use memory_alloc*/, size);
+   ret = png_malloc_base(NULL/*use malloc*/, size);
 
    if (ret == NULL)
       png_error(png_ptr, "Out of Memory"); /* 'M' means png_malloc_default */
@@ -246,7 +246,7 @@ png_free_default,(png_const_structrp png_ptr, png_voidp ptr),PNG_DEPRECATED)
       return;
 #endif /* PNG_USER_MEM_SUPPORTED */
 
-   memory_free(ptr);
+   free(ptr);
 }
 
 #ifdef PNG_USER_MEM_SUPPORTED
@@ -266,7 +266,7 @@ png_set_mem_fn(png_structrp png_ptr, png_voidp mem_ptr, png_malloc_ptr
 }
 
 /* This function returns a pointer to the mem_ptr associated with the user
- * functions.  The application should memory_free any memory associated with this
+ * functions.  The application should free any memory associated with this
  * pointer before png_write_destroy and png_read_destroy are called.
  */
 png_voidp PNGAPI

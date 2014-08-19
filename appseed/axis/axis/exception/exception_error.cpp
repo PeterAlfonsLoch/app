@@ -4,7 +4,7 @@
 error_exception::error_exception(sp(::axis::application) papp, const char * pszError) :
    element(papp),
    ::call_stack(papp),
-   ::exception::axis(papp)
+   ::exception::base(papp)
 {
       if(pszError == NULL)
       {

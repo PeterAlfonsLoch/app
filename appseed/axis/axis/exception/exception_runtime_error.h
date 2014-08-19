@@ -8,7 +8,8 @@ class CLASS_DECL_AXIS runtime_error :
    // handles ownership and initialization of an error message
 public:
    
-   
+
+   runtime_error(const string & strError, sp(::axis::application) papp = ::get_thread_app());
    runtime_error(sp(::axis::application) papp, const char * pszError);
    virtual ~runtime_error();
 

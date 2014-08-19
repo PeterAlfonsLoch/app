@@ -682,7 +682,7 @@ Void AdaptHighpassEnc(CCodingContext *pSC)
         pAHexpt[1] == <SR', SL | continuous>
         pAHexpt[2] == <SR', SL | continuous>
     alphabet 4:
-        pAHexpt[3] == <SR', SL | 1 memory_free slot> (SR may be last or insignificant only)
+        pAHexpt[3] == <SR', SL | 1 free slot> (SR may be last or insignificant only)
     alphabet f(run) (this can be extended to 6 contexts - SL and SR')
         pAHexpt[4] == <run | continuous>
     alphabet f(lev) (this can be extended to 9 contexts)

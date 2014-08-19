@@ -20,7 +20,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-
+#include "Utilities.h"
 
 /**
 Performs a tone mapping on a 48-bit RGB or a 96-bit RGBF image and returns a 24-bit image. 

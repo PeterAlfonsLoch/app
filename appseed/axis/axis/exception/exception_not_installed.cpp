@@ -4,7 +4,7 @@
 not_installed::not_installed(sp(::axis::application) papp, const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema) :
    element(papp),
    ::call_stack(papp),
-   ::exception::axis(papp)
+   ::exception::base(papp)
 {
       string str;
    m_strVersion         = pszVersion;
@@ -26,7 +26,7 @@ not_installed::not_installed(sp(::axis::application) papp, const char * pszVersi
 not_installed::not_installed(const not_installed & e) :
    element(e),
    ::call_stack(e),
-   ::exception::axis(e)
+   ::exception::base(e)
 {
       printf(":not_installed(copy)");
    m_strVersion         = e.m_strVersion;

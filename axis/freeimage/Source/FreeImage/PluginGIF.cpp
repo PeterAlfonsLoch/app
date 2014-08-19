@@ -25,7 +25,7 @@
 #endif
 
 #include "FreeImage.h"
-
+#include "Utilities.h"
 #include "../Metadata/FreeImageTag.h"
 
 // ==========================================================
@@ -179,10 +179,10 @@ StringTable::StringTable()
 {
 	m_buffer = NULL;
 	firstPixelPassed = 0; // Still no pixel read
-	// Maximum number of entries in the std::map is MAX_LZW_CODE * 256 
+	// Maximum number of entries in the map is MAX_LZW_CODE * 256 
 	// (aka 2**12 * 2**8 => a 20 bits key)
 	// This Map could be optmized to only handle MAX_LZW_CODE * 2**(m_bpp)
-	m_strmap = new int[1<<20];
+	m_strmap = new(std::nothrow) int[1<<20];
 }
 
 StringTable::~StringTable()
@@ -219,11 +219,11 @@ void StringTable::Initialize(int minCodeSize)
 BYTE *StringTable::FillInputBuffer(int len)
 {
 	if( m_buffer == NULL ) {
-		m_buffer = new BYTE[len];
+		m_buffer = new(std::nothrow) BYTE[len];
 		m_bufferRealSize = len;
 	} else if( len > m_bufferRealSize ) {
 		delete [] m_buffer;
-		m_buffer = new BYTE[len];
+		m_buffer = new(std::nothrow) BYTE[len];
 		m_bufferRealSize = len;
 	}
 	m_bufferSize = len;
@@ -300,7 +300,7 @@ bool StringTable::Compress(BYTE *buf, int *len)
 					m_partialSize -= 8;
 				}
 
-				//add the code to the "table std::map"
+				//add the code to the "table map"
 				m_strmap[nextprefix] = m_nextCode;
 
 				//increment the next highest valid code, increase the code size
@@ -445,7 +445,7 @@ void StringTable::ClearDecompressorTable(void)
 {
 	for( int i = 0; i < m_clearCode; i++ ) {
 		m_strings[i].resize(1);
-		m_strings[i].set_at(0,(char)i);
+		m_strings[i][0] = (char)i;
 	}
 	m_nextCode = m_endCode + 1;
 
@@ -524,7 +524,7 @@ SupportsExportType(FREE_IMAGE_TYPE type) {
 
 static void *DLL_CALLCONV 
 Open(FreeImageIO *io, fi_handle handle, BOOL read) {
-	GIFinfo *info = new GIFinfo;
+	GIFinfo *info = new(std::nothrow) GIFinfo;
 	if( info == NULL ) {
 		return NULL;
 	}
@@ -720,7 +720,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			}
 
 			//cache some info about each of the pages so we can avoid decoding as many of them as possible
-			raw_array<PageInfo> pageinfo;
+			std::vector<PageInfo> pageinfo;
 			int start = page, end = page;
 			while( start >= 0 ) {
 				//Graphic Control Extension
@@ -904,7 +904,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 		//LZW Minimum Code Size
 		io->read_proc(&b, 1, 1, handle);
-		StringTable *stringtable = new StringTable;
+		StringTable *stringtable = new(std::nothrow) StringTable;
 		stringtable->Initialize(b);
 
 		//Image Data Sub-blocks
@@ -1305,7 +1305,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 		//LZW Minimum Code Size
 		b = (BYTE)(bpp == 1 ? 2 : bpp);
 		io->write_proc(&b, 1, 1, handle);
-		StringTable *stringtable = new StringTable;
+		StringTable *stringtable = new(std::nothrow) StringTable;
 		stringtable->Initialize(b);
 		stringtable->CompressStart(bpp, width);
 

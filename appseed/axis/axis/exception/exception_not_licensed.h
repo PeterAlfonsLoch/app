@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_AXIS not_licensed : 
-   virtual public ::exception::axis
+   virtual public ::exception::base
 {
 public:
 

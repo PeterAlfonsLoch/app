@@ -85,7 +85,7 @@
 #ifndef _HALF_H_
 #define _HALF_H_
 
-//#include <iostream>
+#include <iostream>
 
 #if defined(OPENEXR_DLL)
     #if defined(HALF_EXPORTS)

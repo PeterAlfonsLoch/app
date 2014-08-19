@@ -243,7 +243,7 @@ TIFFUnRegisterCODEC(TIFFCodec* c)
 
 /**
  * Get list of configured codecs, both built-in and registered by user.
- * Caller is responsible to memory_free this structure.
+ * Caller is responsible to free this structure.
  * 
  * @return returns array of TIFFCodec records (the last record should be NULL)
  * or NULL if function failed.

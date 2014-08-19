@@ -1,5 +1,80 @@
-#include "Imf.h"
+/////////////////////////////////////////////////////////////////////////////
+//
+// Copyright (c) 2004, Pixar Animation Studios
+//
+// All rights reserved.
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions  are
+// met:
+// *       Redistributions of source code must retain the above  copyright
+// notice, this list of conditions and the following disclaimer.
+// *       Redistributions in binary form must reproduce the above
+// copyright notice, this list of conditions and the following  disclaimer
+// in the documentation and/or other materials provided with the
+// distribution.
+// *       Neither the name of Pixar Animation Studios nor the names of
+// its contributors may be used to endorse or promote products derived
+// from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+/////////////////////////////////////////////////////////////////////////////
 
+//-----------------------------------------------------------------------------
+//
+//	class Pxr24Compressor
+//
+//	This compressor is based on source code that was contributed to
+//	OpenEXR by Pixar Animation Studios.  The compression method was
+//	developed by Loren Carpenter.
+//
+//	The compressor preprocesses the pixel data to reduce entropy,
+//	and then calls zlib.
+//
+//	Compression of HALF and UINT channels is lossless, but compressing
+//	FLOAT channels is lossy: 32-bit floating-point numbers are converted
+//	to 24 bits by rounding the significand to 15 bits.
+//
+//	When the compressor is invoked, the caller has already arranged
+//	the pixel data so that the values for each channel appear in a
+//	contiguous block of memory.  The compressor converts the pixel
+//	values to unsigned integers: For UINT, this is a no-op.  HALF
+//	values are simply re-interpreted as 16-bit integers.  FLOAT
+//	values are converted to 24 bits, and the resulting bit patterns
+//	are interpreted as integers.  The compressor then replaces each
+//	value with the difference between the value and its left neighbor.
+//	This turns flat fields in the image into zeroes, and ramps into
+//	strings of similar values.  Next, each difference is split into
+//	2, 3 or 4 bytes, and the bytes are transposed so that all the
+//	most significant bytes end up in a contiguous block, followed
+//	by the second most significant bytes, and so on.  The resulting
+//	string of bytes is compressed with zlib.
+//
+//-----------------------------------------------------------------------------
+//#define ZLIB_WINAPI 
+
+#include <ImfPxr24Compressor.h>
+#include <ImfHeader.h>
+#include <ImfChannelList.h>
+#include <ImfMisc.h>
+#include <ImfCheckedArithmetic.h>
+#include <ImathFun.h>
+#include <Iex.h>
+#include <half.h>
+#include <zlib/zlib.h>
+#include <assert.h>
+#include <algorithm>
 
 using namespace std;
 using namespace Imath;

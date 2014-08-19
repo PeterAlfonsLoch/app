@@ -39,7 +39,10 @@
 //
 //-----------------------------------------------------------------------------
 
-#include "Imf.h"
+#include <ImfEnvmap.h>
+#include "ImathFun.h"
+#include <algorithm>
+#include <math.h>
 
 using namespace std;
 using namespace Imath;

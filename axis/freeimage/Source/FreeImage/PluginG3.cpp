@@ -20,11 +20,10 @@
 // Use at your own risk!
 // ==========================================================
 
-#include "FreeImage.h"
-
 #include "../LibTIFF4/tiffiop.h"
 
-
+#include "FreeImage.h"
+#include "Utilities.h"
 
 // ==========================================================
 // Plugin Interface
@@ -390,10 +389,10 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			bits -= pitch;
 		}
 
-		// memory_free the TIFF wrapper
+		// free the TIFF wrapper
 		TIFFClose(faxTIFF);
 
-		// memory_free the memory buffer
+		// free the memory buffer
 		FreeImage_CloseMemory(memory);
 
 	} catch(const char *message) {

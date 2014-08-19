@@ -22,7 +22,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-
+#include "Utilities.h"
 
 // ==========================================================
 // Internal functions
@@ -170,9 +170,9 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 		// temporary stuff to load PCD
 
-		BYTE *y1 = (BYTE*)memory_alloc(width * sizeof(BYTE));
-		BYTE *y2 = (BYTE*)memory_alloc(width * sizeof(BYTE));
-		BYTE *cbcr = (BYTE*)memory_alloc(width * sizeof(BYTE));
+		BYTE *y1 = (BYTE*)malloc(width * sizeof(BYTE));
+		BYTE *y2 = (BYTE*)malloc(width * sizeof(BYTE));
+		BYTE *cbcr = (BYTE*)malloc(width * sizeof(BYTE));
 		if(!y1 || !y2 || !cbcr) throw FI_MSG_ERROR_MEMORY;
 
 		BYTE *yl[] = { y1, y2 };
@@ -206,17 +206,17 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			}
 		}
 
-		memory_free(cbcr);
-		memory_free(y2);
-		memory_free(y1);
+		free(cbcr);
+		free(y2);
+		free(y1);
 
 		return dib;
 
 	} catch(const char *text) {
 		if(dib) FreeImage_Unload(dib);
-		if(cbcr) memory_free(cbcr);
-		if(y2) memory_free(y2);
-		if(y1) memory_free(y1);
+		if(cbcr) free(cbcr);
+		if(y2) free(y2);
+		if(y1) free(y1);
 
 		FreeImage_OutputMessageProc(s_format_id, text);
 

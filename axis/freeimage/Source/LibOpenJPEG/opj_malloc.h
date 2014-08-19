@@ -50,9 +50,9 @@ void * OPJ_CALLCONV opj_malloc(size_t size);
 #else
 /* prevent assertion on overflow for MSVC */
 #ifdef _MSC_VER
-#define opj_malloc(size) ((size_t)(size) >= (size_t)-0x100 ? NULL : memory_alloc(size))
+#define opj_malloc(size) ((size_t)(size) >= (size_t)-0x100 ? NULL : malloc(size))
 #else
-#define opj_malloc(size) memory_alloc(size)
+#define opj_malloc(size) malloc(size)
 #endif
 #endif
 
@@ -67,9 +67,9 @@ void * OPJ_CALLCONV opj_calloc(size_t _NumOfElements, size_t _SizeOfElements);
 #else
 /* prevent assertion on overflow for MSVC */
 #ifdef _MSC_VER
-#define opj_calloc(num, size) ((size_t)(num) != 0 && (size_t)(num) >= (size_t)-0x100 / (size_t)(size) ? NULL : memory_calloc(num, size))
+#define opj_calloc(num, size) ((size_t)(num) != 0 && (size_t)(num) >= (size_t)-0x100 / (size_t)(size) ? NULL : calloc(num, size))
 #else
-#define opj_calloc(num, size) memory_calloc(num, size)
+#define opj_calloc(num, size) calloc(num, size)
 #endif
 #endif
 
@@ -80,12 +80,12 @@ Allocate memory aligned to a 16 byte boundry
 */
 /* FIXME: These should be set with cmake tests, but we're currently not requiring use of cmake */
 #ifdef _WIN32
-	/* Someone should tell the mingw people that their memory_alloc.h ought to provide _mm_malloc() */
+	/* Someone should tell the mingw people that their malloc.h ought to provide _mm_malloc() */
 	#ifdef __GNUC__
 		#include <mm_malloc.h>
 		#define HAVE_MM_MALLOC
 	#else /* MSVC, Intel C++ */
-		#include <memory_alloc.h>
+		#include <malloc.h>
 		#ifdef _mm_malloc
 			#define HAVE_MM_MALLOC
 		#endif
@@ -98,12 +98,12 @@ Allocate memory aligned to a 16 byte boundry
 	/* Linux x86_64 and OSX always align allocations to 16 bytes */
 	#elif !defined(__amd64__) && !defined(__APPLE__) && !defined(_AIX)
 		#define HAVE_MEMALIGN
-		#include <memory_alloc.h>			
+		#include <malloc.h>			
 	#endif
 #endif
 
-#define opj_aligned_malloc(size) memory_alloc(size)
-#define opj_aligned_free(m) memory_free(m)
+#define opj_aligned_malloc(size) malloc(size)
+#define opj_aligned_free(m) free(m)
 
 #ifdef HAVE_MM_MALLOC
 	#undef opj_aligned_malloc
@@ -117,20 +117,20 @@ Allocate memory aligned to a 16 byte boundry
 	#undef opj_aligned_malloc
 	#define opj_aligned_malloc(size) memalign(16, (size))
 	#undef opj_aligned_free
-	#define opj_aligned_free(m) memory_free(m)
+	#define opj_aligned_free(m) free(m)
 #endif
 
 #ifdef HAVE_POSIX_MEMALIGN
 	#undef opj_aligned_malloc
 	extern int posix_memalign(void**, size_t, size_t);
 
-	static INLINE void* __attribute__ ((memory_alloc)) opj_aligned_malloc(size_t size){
+	static INLINE void* __attribute__ ((malloc)) opj_aligned_malloc(size_t size){
 		void* mem = NULL;
 		posix_memalign(&mem, 16, size);
 		return mem;
 	}
 	#undef opj_aligned_free
-	#define opj_aligned_free(m) memory_free(m)
+	#define opj_aligned_free(m) free(m)
 #endif
 
 #ifdef ALLOC_PERF_OPT
@@ -151,9 +151,9 @@ void * OPJ_CALLCONV opj_realloc(void * m, size_t s);
 #else
 /* prevent assertion on overflow for MSVC */
 #ifdef _MSC_VER
-#define opj_realloc(m, s) ((size_t)(s) >= (size_t)-0x100 ? NULL : memory_realloc(m, s))
+#define opj_realloc(m, s) ((size_t)(s) >= (size_t)-0x100 ? NULL : realloc(m, s))
 #else
-#define opj_realloc(m, s) memory_realloc(m, s)
+#define opj_realloc(m, s) realloc(m, s)
 #endif
 #endif
 
@@ -164,11 +164,11 @@ Deallocates or frees a memory block.
 #ifdef ALLOC_PERF_OPT
 void OPJ_CALLCONV opj_free(void * m);
 #else
-#define opj_free(m) memory_free(m)
+#define opj_free(m) free(m)
 #endif
 
 #ifdef __GNUC__
-#pragma GCC poison memory_alloc memory_calloc memory_realloc memory_free
+#pragma GCC poison malloc calloc realloc free
 #endif
 
 /* ----------------------------------------------------------------------- */

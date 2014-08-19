@@ -202,7 +202,7 @@ namespace android
 ////            __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
 //         }
 //      }
-//      catch( ::exception::axis* e )
+//      catch( ::exception::base* e )
 //      {
 //         e->Delete();
 //      }
@@ -213,7 +213,7 @@ namespace android
       //   if (__thread_data != NULL)
       //      __thread_data->delete_data();
       //}
-      //catch( ::exception::axis* e )
+      //catch( ::exception::base* e )
       //{
       //   e->Delete();
       //}
@@ -394,7 +394,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
    }
 /*
    // Advanced: exception handling
-   LRESULT application::ProcessWndProcException(::exception::axis* e, const MESSAGE* pMsg)
+   LRESULT application::ProcessWndProcException(::exception::base* e, const MESSAGE* pMsg)
    {
       return   ::win::thread::ProcessWndProcException(e, pMsg);
    }

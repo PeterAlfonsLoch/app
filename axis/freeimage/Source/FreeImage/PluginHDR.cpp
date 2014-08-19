@@ -20,7 +20,7 @@
 // ==========================================================
 
 #include "FreeImage.h"
-
+#include "Utilities.h"
 
 // ==========================================================
 // Plugin Interface
@@ -163,7 +163,7 @@ rgbe_FloatToRGBE(BYTE rgbe[4], FIRGBF *rgbf) {
 /**
 Standard conversion from rgbe to float pixels. 
 Note: Ward uses ldexp(col+0.5,exp-(128+8)). 
-However we wanted pixels in the range [0,1] to std::map back into the range [0,1].
+However we wanted pixels in the range [0,1] to map back into the range [0,1].
 */
 static inline void 
 rgbe_RGBEToFloat(FIRGBF *rgbf, BYTE rgbe[4]) {
@@ -361,22 +361,22 @@ rgbe_ReadPixels_RLE(FreeImageIO *io, fi_handle handle, FIRGBF *data, int scanlin
 	// read in each successive scanline 
 	while(num_scanlines > 0) {
 		if(io->read_proc(rgbe, 1, sizeof(rgbe), handle) < 1) {
-			memory_free(scanline_buffer);
+			free(scanline_buffer);
 			return rgbe_Error(rgbe_read_error,NULL);
 		}
 		if((rgbe[0] != 2) || (rgbe[1] != 2) || (rgbe[2] & 0x80)) {
 			// this file is not run length encoded
 			rgbe_RGBEToFloat(data, rgbe);
 			data ++;
-			memory_free(scanline_buffer);
+			free(scanline_buffer);
 			return rgbe_ReadPixels(io, handle, data, scanline_width * num_scanlines - 1);
 		}
 		if((((int)rgbe[2]) << 8 | rgbe[3]) != scanline_width) {
-			memory_free(scanline_buffer);
+			free(scanline_buffer);
 			return rgbe_Error(rgbe_format_error,"wrong scanline width");
 		}
 		if(scanline_buffer == NULL) {
-			scanline_buffer = (BYTE*)memory_alloc(sizeof(BYTE) * 4 * scanline_width);
+			scanline_buffer = (BYTE*)malloc(sizeof(BYTE) * 4 * scanline_width);
 			if(scanline_buffer == NULL) {
 				return rgbe_Error(rgbe_memory_error, "unable to allocate buffer space");
 			}
@@ -388,14 +388,14 @@ rgbe_ReadPixels_RLE(FreeImageIO *io, fi_handle handle, FIRGBF *data, int scanlin
 			ptr_end = &scanline_buffer[(i+1)*scanline_width];
 			while(ptr < ptr_end) {
 				if(io->read_proc(buf, 1, 2 * sizeof(BYTE), handle) < 1) {
-					memory_free(scanline_buffer);
+					free(scanline_buffer);
 					return rgbe_Error(rgbe_read_error, NULL);
 				}
 				if(buf[0] > 128) {
 					// a run of the same value
 					count = buf[0] - 128;
 					if((count == 0) || (count > ptr_end - ptr)) {
-						memory_free(scanline_buffer);
+						free(scanline_buffer);
 						return rgbe_Error(rgbe_format_error, "bad scanline data");
 					}
 					while(count-- > 0)
@@ -405,13 +405,13 @@ rgbe_ReadPixels_RLE(FreeImageIO *io, fi_handle handle, FIRGBF *data, int scanlin
 					// a non-run
 					count = buf[0];
 					if((count == 0) || (count > ptr_end - ptr)) {
-						memory_free(scanline_buffer);
+						free(scanline_buffer);
 						return rgbe_Error(rgbe_format_error, "bad scanline data");
 					}
 					*ptr++ = buf[1];
 					if(--count > 0) {
 						if(io->read_proc(ptr, 1, sizeof(BYTE) * count, handle) < 1) {
-							memory_free(scanline_buffer);
+							free(scanline_buffer);
 							return rgbe_Error(rgbe_read_error, NULL);
 						}
 						ptr += count;
@@ -432,7 +432,7 @@ rgbe_ReadPixels_RLE(FreeImageIO *io, fi_handle handle, FIRGBF *data, int scanlin
 		num_scanlines--;
 	}
 
-	memory_free(scanline_buffer);
+	free(scanline_buffer);
 	
 	return TRUE;
 }
@@ -504,7 +504,7 @@ rgbe_WritePixels_RLE(FreeImageIO *io, fi_handle handle, FIRGBF *data, unsigned s
 		// run length encoding is not allowed so write flat
 		return rgbe_WritePixels(io, handle, data, scanline_width * num_scanlines);
 	}
-	buffer = (BYTE*)memory_alloc(sizeof(BYTE) * 4 * scanline_width);
+	buffer = (BYTE*)malloc(sizeof(BYTE) * 4 * scanline_width);
 	if (buffer == NULL) {
 		// no buffer space so write flat 
 		return rgbe_WritePixels(io, handle, data, scanline_width * num_scanlines);
@@ -515,7 +515,7 @@ rgbe_WritePixels_RLE(FreeImageIO *io, fi_handle handle, FIRGBF *data, unsigned s
 		rgbe[2] = (BYTE)(scanline_width >> 8);
 		rgbe[3] = (BYTE)(scanline_width & 0xFF);
 		if(io->write_proc(rgbe, sizeof(rgbe), 1, handle) < 1) {
-			memory_free(buffer);
+			free(buffer);
 			return rgbe_Error(rgbe_write_error, NULL);
 		}
 		for(unsigned x = 0; x < scanline_width; x++) {
@@ -531,12 +531,12 @@ rgbe_WritePixels_RLE(FreeImageIO *io, fi_handle handle, FIRGBF *data, unsigned s
 		for(int i = 0; i < 4; i++) {
 			BOOL bOK = rgbe_WriteBytes_RLE(io, handle, &buffer[i*scanline_width], scanline_width);
 			if(!bOK) {
-				memory_free(buffer);
+				free(buffer);
 				return bOK;
 			}
 		}
 	}
-	memory_free(buffer);
+	free(buffer);
 	
 	return TRUE;
 }

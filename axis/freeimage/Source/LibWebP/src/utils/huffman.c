@@ -66,7 +66,7 @@ static int TreeInit(HuffmanTree* const tree, int num_leaves) {
 
 void HuffmanTreeRelease(HuffmanTree* const tree) {
   if (tree != NULL) {
-    memory_free(tree->root_);
+    free(tree->root_);
     tree->root_ = NULL;
     tree->max_nodes_ = 0;
     tree->num_nodes_ = 0;
@@ -245,7 +245,7 @@ int HuffmanTreeBuildImplicit(HuffmanTree* const tree,
     }
     ok = 1;
  End:
-    memory_free(codes);
+    free(codes);
     ok = ok && IsFull(tree);
     if (!ok) HuffmanTreeRelease(tree);
     return ok;

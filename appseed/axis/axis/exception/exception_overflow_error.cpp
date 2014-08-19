@@ -4,7 +4,7 @@
 overflow_error::overflow_error(sp(::axis::application) papp, const char * pszError) :
    element(papp),
    ::call_stack(papp),
-   ::exception::axis(papp),
+   ::exception::base(papp),
    error_exception(papp, pszError)
 {
       if(pszError == NULL)

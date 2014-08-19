@@ -1350,4 +1350,26 @@ namespace std
       template < typename T >
       using stack = ::stack < T >;
 
+
+      using filebuf = ::file::stream_buffer;
+
+      //using ios_base = ::file::stream_base;
+
+      // replace ::std::ios_base:: => ::file::
+
+
+      using runtime_error = ::runtime_error;
+
+
+      template < typename T >
+      T abs(T t)
+      { 
+         if(t >= ::numeric_info::get_null_value < T >()) 
+            return t; 
+         else 
+            return -t;
+      }
+
+
+
 }

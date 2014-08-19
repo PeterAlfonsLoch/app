@@ -41,7 +41,9 @@
 //
 //-----------------------------------------------------------------------------
 
-#include "Imf.h"
+#include <ImfFrameBuffer.h>
+#include "Iex.h"
+
 
 using namespace std;
 

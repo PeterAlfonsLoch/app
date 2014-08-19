@@ -19,11 +19,10 @@
 // Use at your own risk!
 // ==========================================================
 
-#include "FreeImage.h"
-
 #include "../LibRawLite/libraw/libraw.h"
 
-
+#include "FreeImage.h"
+#include "Utilities.h"
 #include "../Metadata/FreeImageTag.h"
 
 // ==========================================================
@@ -477,7 +476,7 @@ Validate(FreeImageIO *io, fi_handle handle) {
 	// no magic signature : we need to open the file (it will take more time to identify it)
 	// do not declare RawProcessor on the stack as it may be huge (300 KB)
 	{
-		LibRaw *RawProcessor = new LibRaw;
+		LibRaw *RawProcessor = new(std::nothrow) LibRaw;
 
 		if(RawProcessor) {
 			BOOL bSuccess = TRUE;
@@ -532,7 +531,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 	try {
 		// do not declare RawProcessor on the stack as it may be huge (300 KB)
-		RawProcessor = new LibRaw;
+		RawProcessor = new(std::nothrow) LibRaw;
 		if(!RawProcessor) {
 			throw FI_MSG_ERROR_MEMORY;
 		}

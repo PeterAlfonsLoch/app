@@ -436,7 +436,7 @@ namespace user
          spfile = System.fs()->get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary, &fe);
          }*/
       }
-      catch (::exception::axis & e)
+      catch (::exception::base & e)
       {
          report_save_load_exception(varFile, &e, FALSE, "__IDP_FAILED_TO_OPEN_DOC");
          return FALSE;
@@ -451,7 +451,7 @@ namespace user
          read(is);     // load me
          spfile->close();
       }
-      catch (::exception::axis & e)
+      catch (::exception::base & e)
       {
          spfile->close();
          delete_contents();   // remove failed contents
@@ -483,7 +483,7 @@ namespace user
          spfile = Application.file_get_file(varFile, ::file::defer_create_directory | ::file::mode_create | ::file::mode_write | ::file::share_exclusive);
 
       }
-      catch (::exception::axis & e)
+      catch (::exception::base & e)
       {
 
          report_save_load_exception(varFile, &e, TRUE, "__IDP_INVALID_FILENAME");
@@ -523,7 +523,7 @@ namespace user
          spfile->close();
 
       }
-      catch (::exception::axis & e)
+      catch (::exception::base & e)
       {
 
          report_save_load_exception(varFile, &e, TRUE, "__IDP_FAILED_TO_SAVE_DOC");
@@ -583,7 +583,7 @@ namespace user
       release();
    }
 
-   void document::report_save_load_exception(const char * lpszPathName, ::exception::axis* e, bool bSaving, const char * nIDPDefault)
+   void document::report_save_load_exception(const char * lpszPathName, ::exception::base* e, bool bSaving, const char * nIDPDefault)
    {
 
       try
@@ -817,7 +817,7 @@ namespace user
             {
                System.file_del(newName);
             }
-            catch (::exception::axis * pe)
+            catch (::exception::base * pe)
             {
                TRACE(::axis::trace::category_AppMsg, 0, "Warning: failed to delete file after failed SaveAs.\n");
                pe->Delete();

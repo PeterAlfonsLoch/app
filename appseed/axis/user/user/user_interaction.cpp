@@ -4301,7 +4301,7 @@ namespace user
          return -1;
 
       }
-      catch(::exception::axis * pe)
+      catch(::exception::base * pe)
       {
 
          m_pbaseapp->process_window_procedure_exception(pe,spbase);

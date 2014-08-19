@@ -34,7 +34,7 @@
 */
 
 #include "FreeImage.h"
-
+#include "Utilities.h"
 
 #define RBLOCK		64	// image blocks of RBLOCK*RBLOCK pixels
 
@@ -813,7 +813,7 @@ RotateAny(FIBITMAP *src, double dAngle, const void *bkcolor) {
 		FIBITMAP *dst = Rotate45(image, dAngle, bkcolor);
 
 		if(src != image) {
-			// Middle image was required, memory_free it now.
+			// Middle image was required, free it now.
 			FreeImage_Unload(image);
 		}
 

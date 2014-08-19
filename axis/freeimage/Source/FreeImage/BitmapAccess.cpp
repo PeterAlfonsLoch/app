@@ -24,8 +24,20 @@
 // Use at your own risk!
 // ==========================================================
 
+#ifdef _MSC_VER 
+#pragma warning (disable : 4786) // identifier was truncated to 'number' characters
+#endif 
+
+#include <stdlib.h>
+#if defined(_WIN32) || defined(_WIN64) || defined(__MINGW32__)
+#include <malloc.h>
+#endif // _WIN32 || _WIN64 || __MINGW32__
 
 #include "FreeImage.h"
+#include "FreeImageIO.h"
+#include "Utilities.h"
+
+#include "../Metadata/FreeImageTag.h"
 
 /** Constants for the BITMAPINFOHEADER::biCompression field */
 #ifndef _WINGDI_
@@ -37,16 +49,16 @@
 //  Metadata definitions
 // ----------------------------------------------------------
 
-// helper for std::map<key, value> where value is a pointer to a FreeImage tag
+// helper for map<key, value> where value is a pointer to a FreeImage tag
 typedef std::map<std::string, FITAG*> TAGMAP;
 
-// helper for std::map<FREE_IMAGE_MDMODEL, TAGMAP*>
+// helper for map<FREE_IMAGE_MDMODEL, TAGMAP*>
 typedef std::map<int, TAGMAP*> METADATAMAP;
 
 // helper for metadata iterator
 FI_STRUCT (METADATAHEADER) { 
-	long pos;		// current position when iterating the std::map
-	TAGMAP *tagmap;	// pointer to the tag std::map
+	long pos;		// current position when iterating the map
+	TAGMAP *tagmap;	// pointer to the tag map
 };
 
 // ----------------------------------------------------------
@@ -114,14 +126,14 @@ void FreeImage_Aligned_Free(void* mem) {
 void* FreeImage_Aligned_Malloc(size_t amount, size_t alignment) {
 	assert(alignment == FIBITMAP_ALIGNMENT);
 	/*
-	In some rare situations, the memory_alloc routines can return misaligned memory. 
+	In some rare situations, the malloc routines can return misaligned memory. 
 	The routine FreeImage_Aligned_Malloc allocates a bit more memory to do
 	aligned writes.  Normally, it *should* allocate "alignment" extra memory and then writes
 	one dword back the true pointer.  But if the memory manager returns a
 	misaligned block that is less than a dword from the next alignment, 
 	then the writing back one dword will corrupt memory.
 
-	For example, suppose that alignment is 16 and memory_alloc returns the address 0xFFFF.
+	For example, suppose that alignment is 16 and malloc returns the address 0xFFFF.
 
 	16 - 0xFFFF % 16 + 0xFFFF = 16 - 15 + 0xFFFF = 0x10000.
 
@@ -129,7 +141,7 @@ void* FreeImage_Aligned_Malloc(size_t amount, size_t alignment) {
 
 	That's why the code below allocates *two* alignments instead of one. 
 	*/
-	void* mem_real = memory_alloc(amount + 2 * alignment);
+	void* mem_real = malloc(amount + 2 * alignment);
 	if(!mem_real) return NULL;
 	char* mem_align = (char*)((unsigned long)(2 * alignment - (unsigned long)mem_real % (unsigned long)alignment) + (unsigned long)mem_real);
 	*((long*)mem_align - 1) = (long)mem_real;
@@ -137,7 +149,7 @@ void* FreeImage_Aligned_Malloc(size_t amount, size_t alignment) {
 }
 
 void FreeImage_Aligned_Free(void* mem) {
-	memory_free((void*)*((long*)mem - 1));
+	free((void*)*((long*)mem - 1));
 }
 
 #endif // _WIN32 || _WIN64
@@ -175,11 +187,11 @@ FreeImage_GetImageSizeHeader(BOOL header_only, unsigned width, unsigned height, 
 		// pixels are aligned on a 16 bytes boundary
 		dib_size += (size_t)CalculatePitch(CalculateLine(width, bpp)) * (size_t)height; 
 
-		// check for possible memory_alloc overflow using a KISS integer overflow detection mechanism
+		// check for possible malloc overflow using a KISS integer overflow detection mechanism
 		{
 			/*
 			The following constant take into account the additionnal memory used by 
-			aligned memory_alloc functions as well as debug memory_alloc functions. 
+			aligned malloc functions as well as debug malloc functions. 
 			It is supposed here that using a (8 * FIBITMAP_ALIGNMENT) risk margin will be enough
 			for the target compiler. 
 			*/
@@ -187,7 +199,7 @@ FreeImage_GetImageSizeHeader(BOOL header_only, unsigned width, unsigned height, 
 			const double dPitch = floor( ((double)bpp * width + 31.0) / 32.0 ) * 4.0;
 			const double dImageSize = (double)header_size + dPitch * height;
 			if(dImageSize != (double)dib_size) {
-				// here, we are sure to encounter a memory_alloc overflow: try to avoid it ...
+				// here, we are sure to encounter a malloc overflow: try to avoid it ...
 				return 0;
 			}
 			if(dImageSize > FIBITMAP_MAX_MEMORY) {
@@ -281,7 +293,7 @@ FreeImage_AllocateHeaderT(BOOL header_only, FREE_IMAGE_TYPE type, int width, int
 			return NULL;
 	}
 
-	FIBITMAP *bitmap = (FIBITMAP *)memory_alloc(sizeof(FIBITMAP));
+	FIBITMAP *bitmap = (FIBITMAP *)malloc(sizeof(FIBITMAP));
 
 	if (bitmap != NULL) {
 
@@ -293,8 +305,8 @@ FreeImage_AllocateHeaderT(BOOL header_only, FREE_IMAGE_TYPE type, int width, int
 		size_t dib_size = FreeImage_GetImageSizeHeader(header_only, width, height, bpp, need_masks);
 
 		if(dib_size == 0) {
-			// memory allocation will fail (probably a memory_alloc overflow)
-			memory_free(bitmap);
+			// memory allocation will fail (probably a malloc overflow)
+			free(bitmap);
 			return NULL;
 		}
 
@@ -325,7 +337,7 @@ FreeImage_AllocateHeaderT(BOOL header_only, FREE_IMAGE_TYPE type, int width, int
 
 			// initialize metadata models list
 
-			fih->metadata = new METADATAMAP;
+			fih->metadata = new(std::nothrow) METADATAMAP;
 
 			// initialize attached thumbnail
 
@@ -366,7 +378,7 @@ FreeImage_AllocateHeaderT(BOOL header_only, FREE_IMAGE_TYPE type, int width, int
 			return bitmap;
 		}
 
-		memory_free(bitmap);
+		free(bitmap);
 	}
 
 	return NULL;
@@ -393,7 +405,7 @@ FreeImage_Unload(FIBITMAP *dib) {
 		if (NULL != dib->data) {
 			// delete possible icc profile ...
 			if (FreeImage_GetICCProfile(dib)->data)
-				memory_free(FreeImage_GetICCProfile(dib)->data);
+				free(FreeImage_GetICCProfile(dib)->data);
 
 			// delete metadata models
 			METADATAMAP *metadata = ((FREEIMAGEHEADER *)dib->data)->metadata;
@@ -419,7 +431,7 @@ FreeImage_Unload(FIBITMAP *dib) {
 			// delete bitmap ...
 			FreeImage_Aligned_Free(dib->data);
 		}
-		memory_free(dib);		// ... and the wrapper
+		free(dib);		// ... and the wrapper
 	}
 }
 
@@ -482,7 +494,7 @@ FreeImage_Clone(FIBITMAP *dib) {
 
 			if(src_tagmap) {
 				// create a metadata model
-				TAGMAP *dst_tagmap = new TAGMAP();
+				TAGMAP *dst_tagmap = new(std::nothrow) TAGMAP();
 
 				if(dst_tagmap) {
 					// fill the model
@@ -859,13 +871,13 @@ FreeImage_SetTransparentIndex(FIBITMAP *dib, int index) {
 	if (dib) {
 		int count = FreeImage_GetColorsUsed(dib);
 		if (count) {
-			BYTE *new_tt = (BYTE *)memory_alloc(count * sizeof(BYTE));
+			BYTE *new_tt = (BYTE *)malloc(count * sizeof(BYTE));
 			memset(new_tt, 0xFF, count);
 			if ((index >= 0) && (index < count)) {
 				new_tt[index] = 0x00;
 			}
 			FreeImage_SetTransparencyTable(dib, new_tt, count);
-			memory_free(new_tt);
+			free(new_tt);
 		}
 	}
 }
@@ -910,7 +922,7 @@ FreeImage_CreateICCProfile(FIBITMAP *dib, void *data, long size) {
 	// create the new profile
 	FIICCPROFILE *profile = FreeImage_GetICCProfile(dib);
 	if(size && profile) {
-		profile->data = memory_alloc(size);
+		profile->data = malloc(size);
 		if(profile->data) {
 			memcpy(profile->data, data, profile->size = size);
 		}
@@ -923,7 +935,7 @@ FreeImage_DestroyICCProfile(FIBITMAP *dib) {
 	FIICCPROFILE *profile = FreeImage_GetICCProfile(dib);
 	if(profile) {
 		if (profile->data) {
-			memory_free (profile->data);
+			free (profile->data);
 		}
 		// clear the profile but preserve profile->flags
 		profile->data = NULL;
@@ -1028,12 +1040,12 @@ FreeImage_FindFirstMetadata(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, FITAG **tag
 	}
 	if(tagmap) {
 		// allocate a handle
-		FIMETADATA 	*handle = (FIMETADATA *)memory_alloc(sizeof(FIMETADATA));
+		FIMETADATA 	*handle = (FIMETADATA *)malloc(sizeof(FIMETADATA));
 		if(handle) {
 			// calculate the size of a METADATAHEADER
 			int header_size = sizeof(METADATAHEADER);
 
-			handle->data = (BYTE *)memory_alloc(header_size * sizeof(BYTE));
+			handle->data = (BYTE *)malloc(header_size * sizeof(BYTE));
 			
 			if(handle->data) {
 				memset(handle->data, 0, header_size * sizeof(BYTE));
@@ -1051,7 +1063,7 @@ FreeImage_FindFirstMetadata(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, FITAG **tag
 				return handle;
 			}
 
-			memory_free(handle);
+			free(handle);
 		}
 	}
 
@@ -1092,9 +1104,9 @@ void DLL_CALLCONV
 FreeImage_FindCloseMetadata(FIMETADATA *mdhandle) {
 	if (NULL != mdhandle) {	// delete the handle
 		if (NULL != mdhandle->data) {
-			memory_free(mdhandle->data);
+			free(mdhandle->data);
 		}
-		memory_free(mdhandle);		// ... and the wrapper
+		free(mdhandle);		// ... and the wrapper
 	}
 }
 
@@ -1124,7 +1136,7 @@ FreeImage_CloneMetadata(FIBITMAP *dst, FIBITMAP *src) {
 			}
 
 			// create a metadata model
-			TAGMAP *dst_tagmap = new TAGMAP();
+			TAGMAP *dst_tagmap = new(std::nothrow) TAGMAP();
 
 			if(dst_tagmap) {
 				// fill the model
@@ -1169,7 +1181,7 @@ FreeImage_SetMetadata(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const char *key, 
 
 		if(!tagmap) {
 			// this model, doesn't exist: create it 
-			tagmap = new TAGMAP();
+			tagmap = new(std::nothrow) TAGMAP();
 			(*metadata)[model] = tagmap;
 		}
 		

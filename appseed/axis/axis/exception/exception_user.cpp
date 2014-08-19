@@ -4,7 +4,7 @@
 user_exception::user_exception(sp(::axis::application) papp) :
    element(papp),
    ::call_stack(papp),
-   ::exception::axis(papp),
+   ::exception::base(papp),
    ::simple_exception(papp)
 {
          printf(":user");

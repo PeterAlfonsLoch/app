@@ -24,7 +24,7 @@
 #endif
 
 #include "FreeImage.h"
-
+#include "Utilities.h"
 #include "FreeImageTag.h"
 
 // ----------------------------------------------------------
@@ -113,7 +113,7 @@ read_iptc_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen) {
 		FreeImage_SetTagLength(tag, tagByteCount);
 
 		// allocate a buffer to store the tag value
-		BYTE *iptc_value = (BYTE*)memory_alloc((tagByteCount + 1) * sizeof(BYTE));
+		BYTE *iptc_value = (BYTE*)malloc((tagByteCount + 1) * sizeof(BYTE));
 		memset(iptc_value, 0, (tagByteCount + 1) * sizeof(BYTE));
 
 		// get the tag value
@@ -181,7 +181,7 @@ read_iptc_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen) {
 			}
 		}
 
-		memory_free(iptc_value);
+		free(iptc_value);
 
         // next tag
 		offset += tagByteCount;
@@ -227,7 +227,7 @@ append_iptc_tag(BYTE *profile, unsigned *profile_size, WORD id, DWORD length, co
 
 	// calculate the new buffer size
 	size_t buffer_size = (5 + *profile_size + length) * sizeof(BYTE);
-	buffer = (BYTE*)memory_alloc(buffer_size);
+	buffer = (BYTE*)malloc(buffer_size);
 	if(!buffer)
 		return NULL;
 
@@ -248,7 +248,7 @@ append_iptc_tag(BYTE *profile, unsigned *profile_size, WORD id, DWORD length, co
 	else {
 		memcpy(buffer + 5 + length, profile, *profile_size);
 		*profile_size += (5 + length);
-		memory_free(profile);
+		free(profile);
 	}
 	
 	return buffer;

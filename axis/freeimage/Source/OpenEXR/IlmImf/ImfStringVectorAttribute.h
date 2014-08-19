@@ -43,8 +43,8 @@
 //-----------------------------------------------------------------------------
 
 #include <ImfAttribute.h>
-//#include <string>
-//#include <vector>
+#include <string>
+#include <vector>
 
 
 namespace Imf {

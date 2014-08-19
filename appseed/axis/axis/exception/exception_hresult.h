@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_AXIS hresult_exception : 
-   virtual public ::exception::axis
+   virtual public ::exception::base
 {
 public:
    
