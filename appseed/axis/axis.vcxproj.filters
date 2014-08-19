@@ -4555,9 +4555,6 @@
     <ClCompile Include="axis\node\android\android_crypto.cpp">
       <Filter>Source Files\axis\node\android</Filter>
     </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_base_crypto.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="axis\axis\axis_session_interface.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
@@ -4775,9 +4772,6 @@
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
       <Filter>Header Files\multithreading</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

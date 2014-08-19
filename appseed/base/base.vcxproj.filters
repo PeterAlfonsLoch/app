@@ -956,24 +956,6 @@
     <ClInclude Include="base\os\windows\windows.h">
       <Filter>Header Files\base\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="base\os\windows\windows_os.h">
-      <Filter>Header Files\base\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\windows\windows_port_forward.h">
-      <Filter>Header Files\base\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\windows\windows_shell.h">
-      <Filter>Header Files\base\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\windows\windows_utils.h">
-      <Filter>Header Files\base\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\windows\windows_window_gdi.h">
-      <Filter>Header Files\base\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\windows\windows_windows.h">
-      <Filter>Header Files\base\os\windows</Filter>
-    </ClInclude>
     <ClInclude Include="base\node\node.h">
       <Filter>Header Files\base\node</Filter>
     </ClInclude>
@@ -1723,61 +1705,10 @@
     <ClCompile Include="filesystem\fs\fs_link.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\windows\win2.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_base_registry.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\windows\windows_dll.cpp">
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\windows\windows_error.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_file_std.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_launcher.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_lock.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_main.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_message_loop.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_multithreading.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\windows\windows_simple_app.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_simple_shell_launcher.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_small_ipc_channel.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_std_file.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_time.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_util.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_utils.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_window_gdi.cpp">
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="base\os\cross\windows\cross_windows_crt.cpp">
@@ -1825,23 +1756,11 @@
     <ClCompile Include="base\node\windows\windows_port_forward.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\windows\windows_library.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_file_watcher.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\windows\win1.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\windows\windows_process.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\node.cpp">
       <Filter>Source Files\base\node</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_debug.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="base\node\android\android_application.cpp">
       <Filter>Source Files\base\node\android</Filter>

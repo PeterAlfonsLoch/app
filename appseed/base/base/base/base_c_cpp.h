@@ -390,7 +390,7 @@ typedef smart_pointer < thread_impl > thread_impl_sp;
 #define threadSystem (Sys(get_thread_app()))
 
 #undef Sess
-#define Sess(paxisapp) (*paxisapp->m_pbasession)
+#define Sess(paxisapp) (*paxisapp->m_pbasesession)
 //#define Session (Sess(m_paxisapp))
 //#define Plat(paxisapp) (*paxisapp->m_pcoreplatform)
 //#define Platform (Plat(m_paxisapp))
