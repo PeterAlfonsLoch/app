@@ -23,13 +23,13 @@ namespace message
 
    void create::set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
-      axis::set(pwnd,uiMessage,wparam,lparam,lresult);
+      base::set(pwnd,uiMessage,wparam,lparam,lresult);
       m_lpcreatestruct = reinterpret_cast<::user::create_struct *>(lparam);
    }
 
    void create::set_lresult(LRESULT lresult)
    {
-      axis::set_lresult(lresult);
+      base::set_lresult(lresult);
       if(get_lresult() == -1)
          m_bRet = true;
       else
@@ -50,7 +50,7 @@ namespace message
 
    void timer::set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
-      axis::set(pwnd,uiMessage,wparam,lparam,lresult);
+      base::set(pwnd,uiMessage,wparam,lparam,lresult);
       m_nIDEvent = static_cast<UINT>(wparam);
    }
 
@@ -62,7 +62,7 @@ namespace message
 
    void activate::set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
-      axis::set(pwnd,uiMessage,wparam,lparam,lresult);
+      base::set(pwnd,uiMessage,wparam,lparam,lresult);
       m_nState = (UINT)(LOWORD(wparam));
       m_pWndOther = System.window_from_os_data((void *)lparam);
       m_bMinimized = HIWORD(wparam) != FALSE;
@@ -90,7 +90,7 @@ namespace message
    void key::set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
 
-      axis::set(pwnd,uiMessage,wparam,lparam,lresult);
+      base::set(pwnd,uiMessage,wparam,lparam,lresult);
 
       m_nChar = static_cast<UINT>(wparam);
 
@@ -110,20 +110,20 @@ namespace message
 
    void nc_activate::set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
-      axis::set(pwnd,uiMessage,wparam,lparam,lresult);
+      base::set(pwnd,uiMessage,wparam,lparam,lresult);
       m_bActive = wparam != FALSE;
    }
 
    void size::set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
-      axis::set(pwnd,uiMessage,wparam,lparam,lresult);
+      base::set(pwnd,uiMessage,wparam,lparam,lresult);
       m_nType     = static_cast < UINT > (wparam);
       m_size      = ::size(LOWORD(lparam),HIWORD(lparam));
    }
 
    mouse::mouse(sp(::axis::application) papp):
       element(papp),
-      axis(papp),
+      ::message::base(papp),
       m_ecursor(::visual::cursor_unmodified)
    {
    }
@@ -149,7 +149,7 @@ namespace message
 
    void mouse::set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
-      axis::set(pwnd,uiMessage,wparam,lparam,lresult);
+      base::set(pwnd,uiMessage,wparam,lparam,lresult);
       m_nFlags    = wparam;
       m_pt        = point(lparam);
 #ifdef LINUX
@@ -163,7 +163,7 @@ namespace message
 
    void mouse_wheel::set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
-      axis::set(pwnd,uiMessage,wparam,lparam,lresult);
+      base::set(pwnd,uiMessage,wparam,lparam,lresult);
       m_nFlags    = wparam;
       m_pt        = point(lparam);
       m_bTranslated = true;
@@ -201,7 +201,7 @@ namespace message
 
    void scroll::set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
-      axis::set(pwnd,uiMessage,wparam,lparam,lresult);
+      base::set(pwnd,uiMessage,wparam,lparam,lresult);
       m_nSBCode = (int16_t)LOWORD(wparam);
       m_nPos = (int16_t)HIWORD(wparam);
       m_pScrollBar = (sp(::user::interaction)) lparam;
@@ -209,27 +209,27 @@ namespace message
 
    void show_window::set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
-      axis::set(pwnd,uiMessage,wparam,lparam,lresult);
+      base::set(pwnd,uiMessage,wparam,lparam,lresult);
       m_bShow = wparam != FALSE;
       m_nStatus = static_cast<UINT>(lparam);
    }
 
    void set_focus::set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
-      axis::set(pwnd,uiMessage,wparam,lparam,lresult);
+      base::set(pwnd,uiMessage,wparam,lparam,lresult);
       //m_pwnd = System.window_from_os_data(reinterpret_cast<oswindow>(wparam));
       m_pwnd = NULL;
    }
 
    void window_pos::set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
-      axis::set(pwnd,uiMessage,wparam,lparam,lresult);
+      base::set(pwnd,uiMessage,wparam,lparam,lresult);
       m_pwindowpos = reinterpret_cast<WINDOWPOS*>(lparam);
    }
 
    void nc_calc_size::set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
-      axis::set(pwnd,uiMessage,wparam,lparam,lresult);
+      base::set(pwnd,uiMessage,wparam,lparam,lresult);
       m_pparams = reinterpret_cast<NCCALCSIZE_PARAMS*>(lparam);
    }
 

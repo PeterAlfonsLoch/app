@@ -1622,7 +1622,7 @@ namespace base
    sp(::user::interaction) session::get_focus_guie()
    {
 
-      ::axis::session::get_active_guie();
+      return ::axis::session::get_active_guie();
 
    }
 
@@ -1937,6 +1937,9 @@ namespace base
    bool session::on_ui_mouse_message(::message::mouse * pmouse)
    {
 
+
+      ::axis::session::on_ui_mouse_message(pmouse);
+
       // user presence status activity reporting
       if(pmouse->m_uiMessage == WM_LBUTTONDOWN
          || pmouse->m_uiMessage == WM_RBUTTONDOWN
@@ -1966,6 +1969,8 @@ namespace base
          }
 
       }
+
+      return true;
 
    }
 

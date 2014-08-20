@@ -28,36 +28,36 @@ namespace message
       return true;
    }
 
-   sp(axis) dispatch::peek_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
+   sp(::message::base) dispatch::peek_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
    {
       if(!::PeekMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax,wRemoveMsg))
          return NULL;
       return get_base(lpmsg,pwnd);
    }
 
-   sp(axis) dispatch::get_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
+   sp(::message::base) dispatch::get_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
    {
       if(!::GetMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax))
          return NULL;
       return get_base(lpmsg,pwnd);
    }
 
-   sp(axis) dispatch::peek_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
+   sp(::message::base) dispatch::peek_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
    {
       MESSAGE msg;
       return peek_message(&msg,pwnd,wMsgFilterMin,wMsgFilterMax,wRemoveMsg);
    }
 
 
-   sp(axis) dispatch::get_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
+   sp(::message::base) dispatch::get_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
    {
       MESSAGE msg;
       return get_message(&msg,pwnd,wMsgFilterMin,wMsgFilterMax);
    }
 
-   sp(axis) dispatch::get_base(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam)
+   sp(::message::base) dispatch::get_base(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam)
    {
-      sp(axis) pbase;
+      sp(::message::base) pbase;
       e_prototype eprototype = PrototypeNone;
       //if(oswindow != NULL)
       {
@@ -67,7 +67,7 @@ namespace message
       {
       case PrototypeNone:
       {
-                           pbase = canew(axis(get_app()));
+                           pbase = canew(::message::base(get_app()));
       }
          break;
       case PrototypeCreate:
@@ -77,89 +77,89 @@ namespace message
          break;
       case PrototypeNcActivate:
       {
-                                 pbase = canew(nc_activate(get_app()));
+                                 pbase = canew(::message::nc_activate(get_app()));
       }
          break;
       case PrototypeKey:
       {
-                          pbase = canew(key(get_app()));
+                          pbase = canew(::message::key(get_app()));
       }
          break;
       case PrototypeTimer:
       {
-                            pbase = canew(timer(get_app()));
+                            pbase = canew(::message::timer(get_app()));
       }
          break;
       case PrototypeShowWindow:
       {
-                                 pbase = canew(show_window(get_app()));
+                                 pbase = canew(::message::show_window(get_app()));
       }
          break;
       case PrototypeSetCursor:
       {
-                                pbase = canew(set_cursor(get_app()));
+                                pbase = canew(::message::set_cursor(get_app()));
       }
          break;
       case PrototypeNcHitTest:
       {
-                                pbase = canew(nchittest(get_app()));
+                                pbase = canew(::message::nchittest(get_app()));
       }
          break;
       case PrototypeMove:
       {
-                           pbase = canew(move(get_app()));
+                           pbase = canew(::message::move(get_app()));
       }
          break;
       case PrototypeEraseBkgnd:
       {
-                                 pbase = canew(erase_bkgnd(get_app()));
+                                 pbase = canew(::message::erase_bkgnd(get_app()));
       }
          break;
       case PrototypeScroll:
       {
-                             pbase = canew(scroll(get_app()));
+                             pbase = canew(::message::scroll(get_app()));
       }
          break;
       case PrototypeSetFocus:
       {
-                               pbase = canew(set_focus(get_app()));
+                               pbase = canew(::message::set_focus(get_app()));
       }
          break;
 #if !defined(METROWIN) && !defined(LINUX) && !defined(APPLEOS)
       case PrototypeWindowPos:
       {
-                                pbase = canew(window_pos(get_app()));
+                                pbase = canew(::message::window_pos(get_app()));
       }
          break;
       case PrototypeNcCalcSize:
       {
-                                 pbase = canew(nc_calc_size(get_app()));
+                                 pbase = canew(::message::nc_calc_size(get_app()));
       }
          break;
 #endif
       case PrototypeMouse:
       {
-                            pbase = canew(mouse(get_app()));
+                            pbase = canew(::message::mouse(get_app()));
       }
          break;
       case PrototypeMouseWheel:
       {
-                                 pbase = canew(mouse_wheel(get_app()));
+                                 pbase = canew(::message::mouse_wheel(get_app()));
       }
          break;
       case PrototypeSize:
       {
-                           pbase = canew(size(get_app()));
+                           pbase = canew(::message::size(get_app()));
       }
          break;
       case PrototypeActivate:
       {
-                               pbase = canew(activate(get_app()));
+                               pbase = canew(::message::activate(get_app()));
       }
          break;
       default:
       {
-                pbase = canew(axis(get_app()));
+                pbase = canew(::message::base(get_app()));
       }
          break;
       }
@@ -169,7 +169,7 @@ namespace message
       return pbase;
    }
 
-   sp(axis) dispatch::get_base(LPMESSAGE lpmsg,sp(::user::interaction) pwnd)
+   sp(::message::base) dispatch::get_base(LPMESSAGE lpmsg,sp(::user::interaction) pwnd)
    {
 #if defined(METROWIN)
       if(pwnd == NULL && lpmsg->oswindow != NULL)
@@ -209,7 +209,7 @@ namespace message
 
 #if defined(LINUX)
 
-   sp(axis) dispatch::get_base(XEvent * pevent,sp(::user::interaction) pwnd)
+   sp(::message::base) dispatch::get_base(XEvent * pevent,sp(::user::interaction) pwnd)
    {
 
       throw todo(get_app());
@@ -244,7 +244,7 @@ namespace message
       SCAST_PTR(::message::base,pbase,pobj);
       if(pbase->m_uiMessage == (WM_APP + 2014))
       {
-         sp(axis) pbase2 = pbase->m_lparam;
+         sp(::message::base) pbase2 = pbase->m_lparam;
          _user_message_handler(pbase2);
          if(pbase2->m_wparam != 0)
          {

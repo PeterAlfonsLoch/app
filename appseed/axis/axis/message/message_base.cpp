@@ -7,7 +7,7 @@ namespace message
 
 
 
-   axis::axis(sp(::axis::application) papp,class ::signal * psignal):
+   base::base(sp(::axis::application) papp,class ::signal * psignal):
       element(papp),
       signal_details(psignal)
    {
@@ -15,7 +15,7 @@ namespace message
       m_plresult = &m_lresult;
    }
 
-   axis::axis(sp(::axis::application) papp,sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult):
+   base::base(sp(::axis::application) papp,sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult):
       element(papp),
       signal_details(papp)
    {
@@ -23,7 +23,7 @@ namespace message
       set(pwnd,uiMessage,wparam,lparam,lresult);
    }
 
-   void axis::set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
+   void base::set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
       m_pwnd            = pwnd;
       m_uiMessage       = uiMessage;
@@ -32,17 +32,17 @@ namespace message
       m_plresult        = &lresult;
    }
 
-   void axis::set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam)
+   void base::set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam)
    {
       set(pwnd,uiMessage,wparam,lparam,m_lresult);
    }
 
-   void axis::set_lresult(LRESULT lresult)
+   void base::set_lresult(LRESULT lresult)
    {
       *m_plresult = lresult;
    }
 
-   LRESULT & axis::get_lresult()
+   LRESULT & base::get_lresult()
    {
       return *m_plresult;
    }

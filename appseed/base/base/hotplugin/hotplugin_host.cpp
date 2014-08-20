@@ -17,6 +17,7 @@ namespace hotplugin
       element(this),
       hotplugin::plugin(this),
       ::simple_ui::style(this),
+      ::axis::session(this),
       ::base::session(this)
    {
 

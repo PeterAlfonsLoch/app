@@ -226,12 +226,6 @@ namespace base
       virtual bool initialize();
       virtual bool finalize();
 
-      bool ca_process_initialize();
-      bool ca_initialize1();
-      bool ca_initialize2();
-      bool ca_initialize3();
-
-      bool ca_finalize();
 
       virtual bool is_installing();
       virtual bool is_uninstalling();

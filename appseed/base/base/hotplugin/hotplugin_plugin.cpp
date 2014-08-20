@@ -33,7 +33,8 @@ namespace hotplugin
       element(papp),
       ::simple_ui::style(papp),
       ::thread(papp),
-      base::session(papp)
+      ::axis::session(papp),
+      ::base::session(papp)
    {
 
       m_pstyle          = this;

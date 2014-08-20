@@ -78,17 +78,17 @@ namespace message
 
       virtual sp(::axis::application) calc_app();
 
-      virtual sp(axis) peek_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
-      virtual sp(axis) get_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
-      virtual sp(axis) peek_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
-      virtual sp(axis) get_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
+      virtual sp(::message::base) peek_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
+      virtual sp(::message::base) get_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
+      virtual sp(::message::base) peek_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
+      virtual sp(::message::base) get_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
 
-      virtual sp(axis) get_base(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam);
-      virtual sp(axis) get_base(LPMESSAGE lpmsg,sp(::user::interaction) pwnd = NULL);
+      virtual sp(::message::base) get_base(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam);
+      virtual sp(::message::base) get_base(LPMESSAGE lpmsg,sp(::user::interaction) pwnd = NULL);
 
 #ifdef LINUX
 
-      virtual sp(axis) get_base(XEvent * pevent,sp(::user::interaction) pwnd = NULL);
+      virtual sp(::message::base) get_base(XEvent * pevent,sp(::user::interaction) pwnd = NULL);
 
 #endif
 

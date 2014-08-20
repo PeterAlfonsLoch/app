@@ -11,7 +11,7 @@ namespace database
    represents  connection with database server;
 
    ******************************************************************/
-   class CLASS_DECL_AXIS axis :
+   class CLASS_DECL_AXIS base :
       virtual public ::object
    {
    public:
@@ -21,9 +21,9 @@ namespace database
       string   sequence_table; //Sequence table for nextid
 
       /* constructor */
-      axis();
+      base();
       /* destructor */
-      virtual ~axis();
+      virtual ~base();
       virtual class set *CreateDataset() const = 0;
       /* sets a new host name */
       void setHostName(const char *newHost) { host = newHost; }

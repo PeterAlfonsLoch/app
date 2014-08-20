@@ -22,7 +22,7 @@ namespace message
    CLASS_DECL_AXIS UINT translate_to_os_message(UINT uiMessage);
 
 
-   class axis;
+   class base;
 
 
    enum e_prototype

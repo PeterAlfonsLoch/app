@@ -647,43 +647,16 @@ namespace crypto
 
       primitive::memory memSha1;
 
-      memSha1.allocate(20);
+      memSha1.allocate(32);
 
       string strSha1;
-      //string strSha1_2;
 
-      {
+      SHA1((const unsigned char *) psz,strlen(psz),memSha1.get_data());
 
-         ::crypto::sha1::CContext ctx;
-
-         ctx.Init();
-
-         ctx.update(psz, (int32_t)strlen(psz));
-
-         memSha1.set(0, memSha1.get_size());
-
-         ctx.Final(memSha1.get_data());
-
-         strSha1 = memSha1.to_hex();
-
-      }
-
-      /*{
-         SHA_CTX ctx;
-         SHA1_Init(&ctx);
-         SHA1_Update(&ctx, psz, strlen(psz));
-
-         memSha1.set(0, memSha1.get_size());
-
-         SHA1_Final(memSha1.get_data(), &ctx);
-
-
-         strSha1_2 = memSha1.to_hex();
-
-         }
-         */
+      strSha1 = memSha1.to_hex();
 
       return strSha1;
+
    }
 
 
@@ -692,13 +665,8 @@ namespace crypto
 
       memSha1.allocate(32);
 
-      ::crypto::sha1::CContext ctx;
+      SHA1(mem.get_data(), mem.get_size(), memSha1.get_data());
 
-      ctx.Init();
-
-      ctx.update(mem, (int32_t)mem.get_size());
-
-      ctx.Final(memSha1.get_data());
 
    }
 
@@ -806,21 +774,23 @@ namespace crypto
       return (uint32_t) ::crc32(dwPrevious, (const byte *)psz, (uInt)strlen(psz));
    }
 
+
    void crypto::hmac(void * result, const primitive::memory & memMessage, const primitive::memory & memKey)
    {
 
-      ::crypto::hmac_sha1::context context;
+      unsigned int md_len = 0;
 
-      context.digest(result, memMessage.get_data(), (int32_t)memMessage.get_size(), memKey.get_data(), (int32_t)memKey.get_size());
+      HMAC(EVP_sha1(), memKey.get_data(), memKey.get_size(), memMessage.get_data(), memMessage.get_size(), (unsigned char *) result, &md_len);
 
    }
+
 
    void crypto::hmac(void * result, const string & strMessage, const string & strKey)
    {
 
-      ::crypto::hmac_sha1::context context;
+      unsigned int md_len = 0;
 
-      context.digest(result, strMessage, (int32_t)strMessage.get_length(), strKey, (int32_t)strKey.get_length());
+      HMAC(EVP_sha1(),strKey,strKey.length(),(const unsigned char *) (const char *) strMessage,strMessage.length(),(unsigned char *)result,&md_len);
 
    }
 

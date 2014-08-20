@@ -37,9 +37,10 @@ namespace install
    plugin::plugin(sp(::axis::application) papp) :
       element(papp),
       ::simple_ui::style(papp),
+      ::axis::session(papp),
+      ::base::session(papp),
       hotplugin::plugin(papp),
-      m_canvas(papp),
-      ::base::session(papp)
+      m_canvas(papp)
    {
 
 
@@ -342,7 +343,7 @@ namespace install
          if(m_phost->m_pbasecomposer->m_strPluginUrl.has_char())
          {
 
-            m_bLogged = ::root::Session.fontopus()->get_user(false,m_phost->m_pbasecomposer->m_strPluginUrl) != NULL;
+            m_bLogged = Session.fontopus()->get_user(false,m_phost->m_pbasecomposer->m_strPluginUrl) != NULL;
 
          }
 
@@ -379,7 +380,7 @@ namespace install
          if(strUrl.is_empty())
          {
           
-            strUrl = "http://" + ::root::Session.fontopus()->get_server(m_phost->m_pbasecomposer->m_strPluginUrl) + "/";
+            strUrl = "http://" + Session.fontopus()->get_server(m_phost->m_pbasecomposer->m_strPluginUrl) + "/";
 
          }
 
