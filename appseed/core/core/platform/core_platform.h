@@ -11,7 +11,7 @@ namespace core
    class CLASS_DECL_CORE platform :
       virtual public ::platform::application,
       virtual public ::filemanager::item_action,
-      virtual public ::base::session_interface
+      virtual public ::axis::session_interface
    {
    public:
 

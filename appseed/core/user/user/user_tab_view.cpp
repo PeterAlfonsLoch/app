@@ -355,11 +355,11 @@ namespace user
             {
                try
                {
-                  if(ppair->m_element2 != m_pviewdata)
+                  if(ppair->second != m_pviewdata)
                   {
-                     if(ppair->m_element2->m_pholder != NULL)
+                     if(ppair->second->m_pholder != NULL)
                      {
-                        ppair->m_element2->m_pholder->ShowWindow(SW_HIDE);
+                        ppair->second->m_pholder->ShowWindow(SW_HIDE);
                      }
                   }
                }

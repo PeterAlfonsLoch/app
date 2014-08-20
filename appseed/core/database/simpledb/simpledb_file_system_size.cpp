@@ -257,8 +257,8 @@ bool DBFileSystemSizeSet::get_cache_fs_size(int64_t & i64Size, const char * pszP
    FileSystemSizeWnd::size_map::pair * ppair = m_table.m_pwnd->m_map.PLookup(pszPath);
    if(ppair != NULL)
    {
-      i64Size     = ppair->m_element2.m_iSize;
-      bPending    = ppair->m_element2.m_bPending;
+      i64Size     = ppair->second.m_iSize;
+      bPending    = ppair->second.m_bPending;
       return true;
    }
    return  false;

@@ -349,8 +349,8 @@ void serialize_write(::file::output_stream & ostream, map < t1, t2, t3, t4 > & m
    ostream << count;
    while(ppair != NULL)
    {
-      ostream << ppair->m_element1;
-      ostream << ppair->m_element2;
+      ostream << ppair->first;
+      ostream << ppair->second;
       ppair = m.PGetNextAssoc(ppair);
    }
 }
@@ -417,7 +417,7 @@ void biunique < T, T_to_T > ::read(::file::input_stream & istream)
          typename T_to_T::pair * ppair = ab.PGetFirstAssoc();
          while(ppair != NULL)
          {
-            set(ppair->m_element1, ppair->m_element2);
+            set(ppair->first, ppair->second);
             ppair = ab.PGetNextAssoc(ppair);
          }
       }
@@ -448,8 +448,8 @@ T biunique < T, T_to_T > ::calc_max_a()
    T iMaxA = -1;
    while(ppair != NULL)
    {
-      if(ppair->m_element1 > iMaxA)
-         iMaxA = ppair->m_element1;
+      if(ppair->first > iMaxA)
+         iMaxA = ppair->first;
       ppair = m_ab.PGetNextAssoc(ppair);
    }
    return iMaxA;
@@ -463,8 +463,8 @@ T biunique < T, T_to_T > ::calc_max_b()
    T iMaxB = -1;
    while(ppair != NULL)
    {
-      if(ppair->m_element1 > iMaxB)
-         iMaxB = ppair->m_element1;
+      if(ppair->first > iMaxB)
+         iMaxB = ppair->first;
       ppair = m_ba.PGetNextAssoc(ppair);
    }
    return iMaxB;

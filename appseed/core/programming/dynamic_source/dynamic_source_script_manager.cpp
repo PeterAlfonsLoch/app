@@ -450,7 +450,7 @@ namespace dynamic_source
       single_lock sl(&m_mutexIncludeMatches, TRUE);
       string_map < bool >::pair * ppair = m_mapIncludeMatchesFileExists.PLookup(strPath);
       if(ppair != NULL)
-         return ppair->m_element2;
+         return ppair->second;
       else
       {
          bool bFileExists = Application.file().exists(strPath);
@@ -473,7 +473,7 @@ namespace dynamic_source
       single_lock sl(&m_mutexIncludeMatches, TRUE);
       string_map < bool >::pair * ppair = m_mapIncludeMatchesIsDir.PLookup(strPath);
       if(ppair != NULL)
-         return ppair->m_element2;
+         return ppair->second;
       else
       {
          bool bIsDir = Application.dir().is(strPath);
@@ -491,7 +491,7 @@ namespace dynamic_source
       single_lock sl(&m_mutexIncludeHasScript, TRUE);
       string_map < bool >::pair * ppair = m_mapIncludeHasScript.PLookup(strPath);
       if(ppair != NULL)
-         return ppair->m_element2;
+         return ppair->second;
       else
       {
 
@@ -595,23 +595,23 @@ namespace dynamic_source
       if (ppair != NULL)
       {
 
-         if (::datetime::time::get_current_time() < ppair->m_element2->m_timeExpiry)
+         if (::datetime::time::get_current_time() < ppair->second->m_timeExpiry)
          {
 
-            ppair->m_element2->m_timeExpiry = ::datetime::time::get_current_time() + minutes(9);
+            ppair->second->m_timeExpiry = ::datetime::time::get_current_time() + minutes(9);
 
-            return ppair->m_element2;
+            return ppair->second;
 
          }
             
-         ppair->m_element2.m_p->~session();
+         ppair->second.m_p->~session();
 
 #undef new
-         ::new(ppair->m_element2.m_p) ::dynamic_source::session(pszId, this);
+         ::new(ppair->second.m_p) ::dynamic_source::session(pszId, this);
 #define new AXIS_NEW
 
 
-         return ppair->m_element2;
+         return ppair->second;
 
       }
          
@@ -636,15 +636,15 @@ namespace dynamic_source
       while(passoc != NULL)
       {
          passocNext = passoc->m_pnext;
-         if(passoc->m_element2.is_null())
+         if(passoc->second.is_null())
          {
 
             m_mapSession.remove_assoc(passoc);
 
          }
-         else if(passoc->m_element2->get_ref_count() <= 1)
+         else if(passoc->second->get_ref_count() <= 1)
          {
-            if(passoc->m_element2->m_timeExpiry < time)
+            if(passoc->second->m_timeExpiry < time)
             {
                m_mapSession.remove_assoc(passoc);
             }
@@ -770,7 +770,7 @@ namespace dynamic_source
       if(ppair != NULL)
       {
 
-         psocket = ppair->m_element2;
+         psocket = ppair->second;
 
          if(psocket != NULL)
          {
@@ -829,7 +829,7 @@ namespace dynamic_source
       if(ppair == NULL)
          return NULL;
 
-      ::sockets::link_in_socket * pinsocket = ppair->m_element2;
+      ::sockets::link_in_socket * pinsocket = ppair->second;
 
       m_mapInLink.remove_key(poutsocket);
 
@@ -848,7 +848,7 @@ namespace dynamic_source
       if(ppair == NULL)
          return false;
 
-      if(::get_tick_count() - ppair->m_element2.m_dwLast > (60 * 1000))
+      if(::get_tick_count() - ppair->second.m_dwLast > (60 * 1000))
          return false;
 
       return true;

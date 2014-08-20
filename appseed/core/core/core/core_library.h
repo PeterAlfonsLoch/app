@@ -6,7 +6,7 @@ namespace core
 
 
    class CLASS_DECL_CORE library:
-      virtual public ::base::single_application_library < application >,
+      virtual public ::axis::single_application_library < application >,
       virtual public ::filehandler::menu_library
    {
    public:

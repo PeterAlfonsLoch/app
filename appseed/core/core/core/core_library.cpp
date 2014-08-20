@@ -29,7 +29,7 @@ namespace core
    library::library(sp(::axis::application) papp):
       element(papp),
       ::axis::library(papp,0,"app"),
-      ::base::single_application_library < application >(papp,"app"),
+      ::axis::single_application_library < application >(papp,"app"),
       ::filehandler::library(papp),
       ::filehandler::menu_library(papp)
    {

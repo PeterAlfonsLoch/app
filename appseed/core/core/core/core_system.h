@@ -176,7 +176,7 @@ namespace core
 
       virtual void post_fork_uri(const char * pszUri,application_bias * pbiasCreate);
 
-      sp(::base::session) query_session(index iEdge);
+      sp(::axis::session) query_session(index iEdge);
 
       virtual bool wait_twf(uint32_t dwTimeOut = INFINITE);
 
@@ -203,7 +203,7 @@ namespace core
       //virtual void get_cursor_pos(LPPOINT lppoint);
 
 
-      virtual bool set_main_init_data(::base::main_init_data * pdata);
+      virtual bool set_main_init_data(::axis::main_init_data * pdata);
 
 
 
