@@ -5,7 +5,7 @@ namespace draw2d_direct2d
 {
 
 
-   bitmap::bitmap(::base::application * papp) :
+   bitmap::bitmap(sp(::axis::application) papp) :
       element(papp)
    { 
 

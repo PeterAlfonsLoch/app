@@ -70,5 +70,5 @@ namespace draw2d_direct2d
 
 
 
-#define new BASE_NEW
+#define new AXIS_NEW
 

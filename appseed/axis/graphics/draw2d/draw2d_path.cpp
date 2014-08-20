@@ -376,7 +376,7 @@ namespace draw2d
          get_bounding_rect(lprect, e.u.m_move);
          break;
       case ::draw2d::path::element::type_string:
-         //get_bounding_rect(lprect,e.m_stringpath);
+         get_bounding_rect(lprect,e.m_stringpath);
          break;
       case ::draw2d::path::element::type_end:
          {
@@ -524,6 +524,11 @@ namespace draw2d
 
    }
 
+   void path::get_bounding_rect(LPRECT lprect,string_path & p)
+   {
+
+
+   }
 
 
 

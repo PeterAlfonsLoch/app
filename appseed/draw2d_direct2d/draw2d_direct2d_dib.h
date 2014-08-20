@@ -26,7 +26,7 @@ namespace draw2d_direct2d
       bool                          m_bTrans;
 
 
-      dib(sp(::base::application) papp);
+      dib(sp(::axis::application) papp);
       virtual void construct(int32_t cx, int32_t cy);
       virtual ~dib();
 

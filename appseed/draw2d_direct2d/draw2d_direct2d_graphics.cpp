@@ -9,7 +9,7 @@ namespace draw2d_direct2d
 {
 
    
-   graphics::graphics(::base::application * papp) :
+   graphics::graphics(sp(::axis::application) papp) :
       element(papp)
    {
 
@@ -1559,7 +1559,7 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics::get_text_metrics(LPTEXTMETRICW lpMetrics) const
+   bool graphics::get_text_metrics(::draw2d::text_metric * lpMetrics) const
    { 
 
 
@@ -1673,7 +1673,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::get_output_text_metrics(LPTEXTMETRICW lpMetrics) const
+   bool graphics::get_output_text_metrics(::draw2d::text_metric * lpMetrics) const
    {
       
       throw todo(get_app());
@@ -2751,7 +2751,7 @@ namespace draw2d_direct2d
    /////////////////////////////////////////////////////////////////////////////
    // special graphics drawing primitives/helpers
 
-   ::draw2d::brush* graphics::GetHalftoneBrush(::base::application * papp)
+   ::draw2d::brush* graphics::GetHalftoneBrush(sp(::axis::application) papp)
    {
       /*
       ::core::LockGlobals(CRIT_HALFTONEBRUSH);
@@ -3744,8 +3744,10 @@ namespace draw2d_direct2d
 
    int graphics::SelectClipRgn(::draw2d::region* pRgn, int nMode)
    {
+
+      return 0;
       
-      throw todo(get_app());
+      //throw todo(get_app());
 
       //ASSERT(get_handle1() != NULL);
       //int nRetVal = ERROR;

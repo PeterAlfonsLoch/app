@@ -41,7 +41,7 @@ namespace draw2d_direct2d
       };
 
       graphics();
-      graphics(::base::application * papp);
+      graphics(sp(::axis::application) papp);
       virtual ~graphics();
 
 
@@ -353,8 +353,8 @@ namespace draw2d_direct2d
       UINT SetTextAlign(UINT nFlags);
       int GetTextFace(__in int nCount, __out_ecount_part_z(nCount, return + 1) LPTSTR lpszFacename) const;
       int GetTextFace(string & rString) const;
-      bool get_text_metrics(LPTEXTMETRICW lpMetrics) const;
-      bool get_output_text_metrics(LPTEXTMETRICW lpMetrics) const;
+      bool get_text_metrics(::draw2d::text_metric * lpMetrics) const;
+      bool get_output_text_metrics(::draw2d::text_metric * lpMetrics) const;
       int SetTextJustification(int nBreakExtra, int nBreakCount);
       int GetTextCharacterExtra() const;
       int SetTextCharacterExtra(int nCharExtra);
@@ -444,7 +444,7 @@ namespace draw2d_direct2d
       bool SelectClipPath(int nMode);
 
    // Misc Helper Functions
-      static ::draw2d::brush* GetHalftoneBrush(::base::application * papp);
+      static ::draw2d::brush* GetHalftoneBrush(sp(::axis::application) papp);
       void DrawDragRect(const RECT & lpRect, SIZE size,
          const RECT & lpRectLast, SIZE sizeLast,
          ::draw2d::brush* pBrush = NULL, ::draw2d::brush* pBrushLast = NULL);

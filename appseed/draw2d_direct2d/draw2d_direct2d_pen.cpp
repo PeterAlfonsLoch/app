@@ -109,7 +109,7 @@ namespace draw2d_direct2d
 {
 
 
-   pen::pen(::base::application * papp) :
+   pen::pen(sp(::axis::application) papp) :
       element(papp)
    { 
 
