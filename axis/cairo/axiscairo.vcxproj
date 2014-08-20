@@ -387,7 +387,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)../pixman/pixman;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;$(ProjectDir)../../include/freetype;$(ProjectDir)..;$(ProjectDir);$(ProjectDir)../pixman/pixman;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -437,7 +437,7 @@
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <AdditionalDependencies>Msimg32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
-      <ModuleDefinitionFile>basecairo.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <ShowProgress>NotSet</ShowProgress>
     </Link>
     <PostBuildEvent>
@@ -1513,9 +1513,6 @@
     <ClCompile Include="src\cairo-polygon-reduce.c" />
     <ClCompile Include="src\cairo-polygon.c" />
     <ClCompile Include="src\cairo-ps-surface.c" />
-    <ClCompile Include="src\cairo-quartz-font.c" />
-    <ClCompile Include="src\cairo-quartz-image-surface.c" />
-    <ClCompile Include="src\cairo-quartz-surface.c" />
     <ClCompile Include="src\cairo-raster-source-pattern.c" />
     <ClCompile Include="src\cairo-recording-surface.c" />
     <ClCompile Include="src\cairo-rectangle.c" />
@@ -1557,32 +1554,75 @@
     <ClCompile Include="src\cairo-unicode.c" />
     <ClCompile Include="src\cairo-user-font.c" />
     <ClCompile Include="src\cairo-version.c" />
-    <ClCompile Include="src\cairo-vg-surface.c" />
-    <ClCompile Include="src\cairo-wgl-context.c" />
+    <ClCompile Include="src\cairo-vg-surface.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\cairo-wgl-context.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\cairo-wideint.c" />
-    <ClCompile Include="src\cairo-xcb-connection-core.c" />
-    <ClCompile Include="src\cairo-xcb-connection-render.c" />
-    <ClCompile Include="src\cairo-xcb-connection-shm.c" />
-    <ClCompile Include="src\cairo-xcb-connection.c" />
-    <ClCompile Include="src\cairo-xcb-screen.c" />
-    <ClCompile Include="src\cairo-xcb-shm.c" />
-    <ClCompile Include="src\cairo-xcb-surface-core.c" />
-    <ClCompile Include="src\cairo-xcb-surface-render.c" />
-    <ClCompile Include="src\cairo-xcb-surface.c" />
-    <ClCompile Include="src\cairo-xlib-core-compositor.c" />
-    <ClCompile Include="src\cairo-xlib-display.c" />
-    <ClCompile Include="src\cairo-xlib-fallback-compositor.c" />
-    <ClCompile Include="src\cairo-xlib-render-compositor.c" />
-    <ClCompile Include="src\cairo-xlib-screen.c" />
-    <ClCompile Include="src\cairo-xlib-source.c" />
-    <ClCompile Include="src\cairo-xlib-surface-shm.c" />
-    <ClCompile Include="src\cairo-xlib-surface.c" />
-    <ClCompile Include="src\cairo-xlib-visual.c" />
-    <ClCompile Include="src\cairo-xlib-xcb-surface.c" />
+    <ClCompile Include="src\cairo-xcb-connection-core.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\cairo-xcb-connection-render.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\cairo-xcb-connection-shm.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\cairo-xcb-connection.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\cairo-xcb-screen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\cairo-xcb-shm.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\cairo-xcb-surface-core.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\cairo-xcb-surface-render.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\cairo-xcb-surface.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\cairo-xlib-core-compositor.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\cairo-xlib-display.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\cairo-xlib-fallback-compositor.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\cairo-xlib-render-compositor.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\cairo-xlib-screen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\cairo-xlib-source.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\cairo-xlib-surface-shm.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\cairo-xlib-surface.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\cairo-xlib-visual.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\cairo-xlib-xcb-surface.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\cairo-xml-surface.c" />
     <ClCompile Include="src\cairo.c" />
-    <ClCompile Include="src\check-has-hidden-symbols.c" />
-    <ClCompile Include="src\check-link.c" />
+    <ClCompile Include="src\check-has-hidden-symbols.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\test-base-compositor-surface.c" />
     <ClCompile Include="src\test-compositor-surface.c" />
     <ClCompile Include="src\test-null-compositor-surface.c" />

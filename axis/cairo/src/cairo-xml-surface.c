@@ -463,7 +463,7 @@ _cairo_xml_surface_emit_clip_boxes (cairo_xml_surface_t *surface,
 				    cairo_clip_t *clip)
 {
     cairo_box_t *box;
-    cairo_status_t status;
+//    cairo_status_t status;
     cairo_xml_t *xml;
     int n;
 
@@ -573,7 +573,7 @@ _cairo_xml_surface_emit_clip (cairo_xml_surface_t *surface,
     if (clip == NULL)
 	return CAIRO_STATUS_SUCCESS;
 
-    status = _cairo_xml_surface_emit_clip_boxes (surface, clip);
+    status = _cairo_xml_surface_emit_clip_boxes(surface,(cairo_clip_t *) clip);
     if (unlikely (status))
 	return status;
 

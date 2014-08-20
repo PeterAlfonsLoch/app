@@ -329,15 +329,6 @@
     <ClCompile Include="src\cairo-ps-surface.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cairo-quartz-font.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-quartz-image-surface.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-quartz-surface.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\cairo-raster-source-pattern.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -531,9 +522,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\check-has-hidden-symbols.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\check-link.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\test-base-compositor-surface.c">

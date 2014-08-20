@@ -1133,10 +1133,10 @@ _cairo_default_context_clip_extents (void *abstract_cr,
     cairo_default_context_t *cr = abstract_cr;
 
     if (! _cairo_gstate_clip_extents (cr->gstate, x1, y1, x2, y2)) {
-	*x1 = -INFINITY;
-	*y1 = -INFINITY;
-	*x2 = +INFINITY;
-	*y2 = +INFINITY;
+       *x1 = -HUGE_VALD;
+       *y1 = -HUGE_VALD;
+       *x2 = +HUGE_VALD;
+       *y2 = +HUGE_VALD;
     }
 
     return CAIRO_STATUS_SUCCESS;

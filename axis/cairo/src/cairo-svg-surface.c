@@ -2088,7 +2088,7 @@ _cairo_svg_surface_emit_stroke_style (cairo_output_stream_t	   *output,
 				      const cairo_matrix_t	   *parent_matrix)
 {
     cairo_status_t status;
-    const char *line_cap, *line_join;
+    const char *line_cap = NULL, *line_join = NULL;
     unsigned int i;
 
     switch (stroke_style->line_cap) {

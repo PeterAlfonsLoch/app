@@ -54,6 +54,7 @@
 
 #include <wchar.h>
 #include <windows.h>
+//#include <Version.h>
 
 static cairo_device_t *__cairo_win32_device;
 
@@ -101,14 +102,17 @@ hr = m_pD2DFactory->CreateDCRenderTarget(&props, &device->d2d);
 
 static cairo_bool_t is_win98 (void)
 {
-    OSVERSIONINFO os;
 
-    os.dwOSVersionInfoSize = sizeof (os);
-    GetVersionEx (&os);
+   return FALSE;
 
-    return (VER_PLATFORM_WIN32_WINDOWS == os.dwPlatformId &&
-	    os.dwMajorVersion == 4 &&
-	    os.dwMinorVersion == 10);
+    //OSVERSIONINFO os;
+
+  //  os.dwOSVersionInfoSize = sizeof (os);
+//    GetVersionEx (&os);
+
+    //return (VER_PLATFORM_WIN32_WINDOWS == os.dwPlatformId &&
+	   // os.dwMajorVersion == 4 &&
+	    //os.dwMinorVersion == 10);
 }
 
 static void *

@@ -64,7 +64,7 @@
 #include "cairo-type3-glyph-surface-private.h"
 
 #include <time.h>
-#include <zlib.h>
+#include <zlib/zlib.h>
 
 /* Issues:
  *
@@ -1323,8 +1323,8 @@ _cairo_pdf_surface_add_source_surface (cairo_pdf_surface_t	    *surface,
     cairo_bool_t interpolate;
     unsigned char *unique_id = NULL;
     unsigned long unique_id_length = 0;
-    cairo_image_surface_t *image;
-    void *image_extra;
+    cairo_image_surface_t *image = NULL;
+    void *image_extra = NULL;
 
     switch (filter) {
     default:
@@ -2104,7 +2104,7 @@ _cairo_pdf_surface_add_padded_image_surface (cairo_pdf_surface_t          *surfa
 {
     cairo_image_surface_t *image;
     cairo_surface_t *pad_image;
-    void *image_extra;
+    void *image_extra = NULL;
     cairo_int_status_t status;
     int w, h;
     cairo_rectangle_int_t extents2;

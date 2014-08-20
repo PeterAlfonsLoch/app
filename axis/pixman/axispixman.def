@@ -57,3 +57,4 @@ pixman_image_get_depth
 pixman_region32_rectangles
 pixman_region32_rectangles
 pixman_transform_point_3d
+pixman_image_get_component_alpha

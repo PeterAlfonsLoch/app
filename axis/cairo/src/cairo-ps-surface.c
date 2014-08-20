@@ -81,7 +81,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <time.h>
-#include <zlib.h>
+#include <zlib/zlib.h>
 #include <errno.h>
 
 #define DEBUG_PS 0
@@ -1682,7 +1682,7 @@ _cairo_ps_surface_acquire_source_surface_from_pattern (cairo_ps_surface_t       
 						       void                        **image_extra)
 {
     cairo_status_t          status;
-    cairo_image_surface_t  *image;
+    cairo_image_surface_t  *image = NULL;
 
     *x_offset = *y_offset = 0;
     switch (pattern->type) {
