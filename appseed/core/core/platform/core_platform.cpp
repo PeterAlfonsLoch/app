@@ -20,7 +20,7 @@ namespace core
 
       m_pbasesession->m_pplatformcomposite   = this;
 
-      m_pbaseapp                          = this;
+      m_paxisapp                          = this;
       
       m_pcoreapp                          = this;
 
@@ -237,7 +237,7 @@ namespace core
 
          m_pbergedgedocument =  (m_ptemplate_bergedge->open_document_file(createcontextBergedge).m_p);
 
-         //m_pbergedgedocument->m_pbaseapp->m_pbasesession->m_pcoreplatform = this;
+         //m_pbergedgedocument->m_paxisapp->m_pbasesession->m_pcoreplatform = this;
 
       }
 
@@ -786,7 +786,7 @@ namespace core
 
    platform::run_application::run_application()
    {
-      m_pbaseapp = NULL;
+      m_paxisapp = NULL;
       m_puiParent = NULL;
    }
 

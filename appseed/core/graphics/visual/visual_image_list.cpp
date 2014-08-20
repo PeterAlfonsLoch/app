@@ -280,7 +280,7 @@ int32_t image_list::add_matter(const char * lpcsz, sp(::axis::application) papp)
    }
    else
    {
-      return add_file(sess(papp).dir().matter(lpcsz));
+      return add_file(Sess(papp).dir().matter(lpcsz));
    }
 }
 

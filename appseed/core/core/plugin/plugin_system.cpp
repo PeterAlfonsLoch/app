@@ -7,9 +7,9 @@ namespace plugin
 
    system::system(sp(::axis::application) papp) :
       element(papp),
+      ::axis::system(papp),
       ::base::system(papp),
       ::core::system(papp)
-      
    {
 
          if (papp.is_set())

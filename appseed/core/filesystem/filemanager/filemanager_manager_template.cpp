@@ -41,7 +41,7 @@ namespace filemanager
       {
 
          pfilemanagerdata = canew(::filemanager::data(get_app()));
-         pfilemanagerdata->m_pcallback = &platform().filemanager();
+         pfilemanagerdata->m_pcallback = &Platform.filemanager();
          pfilemanagerdata->m_iTemplate = m_iTemplate;
          pfilemanagerdata->m_iDocument = m_iNextDocument++;
          pfilemanagerdata->m_bTransparentBackground = pcreatecontext == NULL ? true : pcreatecontext->m_bTransparentBackground;
@@ -111,8 +111,8 @@ namespace filemanager
       createcontext->oprop("filemanager::data") = pfilemanagerdata;
 
       pfilemanagerdata->m_pmanagertemplate = this;
-      pfilemanagerdata->m_pcallback = &platform().filemanager();
-      pfilemanagerdata->m_pfilemanager = &platform().filemanager();
+      pfilemanagerdata->m_pcallback = &Platform.filemanager();
+      pfilemanagerdata->m_pfilemanager = &Platform.filemanager();
       pfilemanagerdata->m_iTemplate = m_iTemplate;
       pfilemanagerdata->m_iDocument = m_iNextDocument++;
       pfilemanagerdata->m_bTransparentBackground = bTransparentBackground;
@@ -126,7 +126,7 @@ namespace filemanager
       {
 
          string strId;
-         strId.Format("%s::(%d)",platform().filemanager().m_idFileManager.str(),pdoc->get_filemanager_data()->m_iDocument);
+         strId.Format("%s::(%d)",Platform.filemanager().m_idFileManager.str(),pdoc->get_filemanager_data()->m_iDocument);
          pdoc->get_filemanager_data()->m_strDISection = strId;
 
       }
@@ -154,8 +154,8 @@ namespace filemanager
             pfilemanagerdata = new ::filemanager::data(get_app());
          }
          pdoc->set_filemanager_data(pfilemanagerdata);
-         pdoc->get_filemanager_data()->m_pcallback = &platform().filemanager();
-         pdoc->get_filemanager_data()->m_pfilemanager = &platform().filemanager();
+         pdoc->get_filemanager_data()->m_pcallback = &Platform.filemanager();
+         pdoc->get_filemanager_data()->m_pfilemanager = &Platform.filemanager();
          pdoc->get_filemanager_data()->m_pmanager = pdoc;
          pdoc->get_filemanager_data()->m_pmanagerMain = pdoc;
          pdoc->get_filemanager_template() = this;

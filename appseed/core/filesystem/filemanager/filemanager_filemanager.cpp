@@ -201,9 +201,9 @@ namespace filemanager
       if(data_get(dataid, ".local://InitialBrowsePath", ::base::system::idEmpty, strPath))
       {
 
-         sess(get_app()).dir().mk(strPath);
+         Sess(get_app()).dir().mk(strPath);
 
-         if(sess(get_app()).dir().is(strPath))
+         if(Sess(get_app()).dir().is(strPath))
          {
 
             return strPath;

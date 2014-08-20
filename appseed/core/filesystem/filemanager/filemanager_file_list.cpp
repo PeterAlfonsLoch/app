@@ -138,7 +138,7 @@ namespace filemanager
             {
 
 
-               m_pbaseapp = get_app()->m_pcoreapp;
+               m_paxisapp = get_app()->m_pcoreapp;
                db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
                if(pcentral == NULL)
                   return;
@@ -337,7 +337,7 @@ namespace filemanager
    UINT c_cdecl file_list::ThreadProcFileSize(LPVOID lpparam)
    {
       file_size * psize = (file_size *) lpparam;
-      db_server * pcentral = dynamic_cast < db_server * > (&App(psize->m_pview->m_pbaseapp).simpledb().db());
+      db_server * pcentral = dynamic_cast < db_server * > (&App(psize->m_pview->m_paxisapp).simpledb().db());
       if(pcentral == NULL)
          return 0;
       DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
@@ -376,7 +376,7 @@ namespace filemanager
          {
             int64_t i64Size;
             bool bPendingSize;
-            single_lock lock(m_pbaseapp);
+            single_lock lock(m_paxisapp);
             if(!lock.lock(millis(1984)))
                return;
             if(i >= get_fs_list_data()->m_itema.get_count())
@@ -412,15 +412,15 @@ namespace filemanager
             GetSelectedFilePath(stra);
             if(stra.get_count() <= 0)
             {
-               platform().m_varTopicFile.unset();
+               Platform.m_varTopicFile.unset();
             }
             else if(stra.get_count() == 1)
             {
-               platform().m_varTopicFile = stra[0];
+               Platform.m_varTopicFile = stra[0];
             }
             else
             {
-               platform().m_varTopicFile = stra;
+               Platform.m_varTopicFile = stra;
             }
 
          }
@@ -585,11 +585,11 @@ namespace filemanager
 
    void file_list::_001OnUpdateFileRename(signal_details * pobj)
    {
-//      SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
+//      SCAST_PTR(::axis::cmd_ui, pcmdui, pobj)
   //    pcmdui->m_pcmdui->Enable(_001GetSelectedItemCount() == 1);
     //  pobj->m_bRet = true;
 
-      SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::axis::cmd_ui, pcmdui, pobj)
          range range;
       _001GetSelection(range);
       pcmdui->m_pcmdui->Enable(
@@ -602,7 +602,7 @@ namespace filemanager
 
    void file_list::_001OnUpdateEditCopy(signal_details * pobj)
    {
-      SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::axis::cmd_ui, pcmdui, pobj)
       range range;
       _001GetSelection(range);
       pcmdui->m_pcmdui->Enable(range.get_item_count() > 0);
@@ -640,7 +640,7 @@ namespace filemanager
 
    void file_list::_001OnUpdateEditPaste(signal_details * pobj)
    {
-      SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::axis::cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->Enable(Session.copydesk().get_file_count() > 0);
       pobj->m_bRet = true;
    }
@@ -678,7 +678,7 @@ namespace filemanager
 
    void file_list::_001OnUpdateTrashThatIsNotTrash(signal_details * pobj)
    {
-      SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::axis::cmd_ui, pcmdui, pobj)
       range range;
       _001GetSelection(range);
       pcmdui->m_pcmdui->Enable(range.get_item_count() > 0);
@@ -701,7 +701,7 @@ namespace filemanager
 
    void file_list::_001OnUpdateOpenWith(signal_details * pobj)
    {
-      SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::axis::cmd_ui, pcmdui, pobj)
 
          ::user::menu_button_cmd_ui * pcmdui1 = dynamic_cast < ::user::menu_button_cmd_ui * > (pcmdui->m_pcmdui);
          if(pcmdui1 != NULL)
@@ -822,7 +822,7 @@ namespace filemanager
 
    void file_list::_001OnUpdateSpafy(signal_details * pobj)
    {
-      SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::axis::cmd_ui, pcmdui, pobj)
       range range;
       _001GetSelection(range);
       pcmdui->m_pcmdui->Enable(range.get_item_count() > 0);
@@ -887,7 +887,7 @@ namespace filemanager
 
    void file_list::_001OnUpdateSpafy2(signal_details * pobj)
    {
-      SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::axis::cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->Enable(TRUE);
       pobj->m_bRet = true;
    }
@@ -1255,7 +1255,7 @@ namespace filemanager
       }
    endloop:
       m_plist->post_message(MessageMainPost, MessageMainPostCreateImageListItemRedraw);
-      synch_lock lock(m_plist->m_pbaseapp);
+      synch_lock lock(m_plist->m_paxisapp);
       m_plist->m_pcreateimagelistthread = NULL;
       return 0;
 

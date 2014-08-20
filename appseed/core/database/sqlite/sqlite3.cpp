@@ -83724,7 +83724,7 @@ err:
       /* Step 1a */
       if( z[0]=='s' ){
          if(
-            !stem(&z, "sess", "ss", 0) &&
+            !stem(&z, "Sess", "ss", 0) &&
             !stem(&z, "sei", "i", 0)  &&
             !stem(&z, "ss", "ss", 0)
             ){

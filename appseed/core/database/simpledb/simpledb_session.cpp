@@ -10,7 +10,7 @@ namespace simpledb
       m_pserver = NULL;
    }
 
-   session::~Session
+   session::~session()
    {
    }
 

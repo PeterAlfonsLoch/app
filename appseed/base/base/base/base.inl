@@ -402,7 +402,7 @@ inline void __cdecl operator delete(void * p, void * palloc)
 //}
 
 //
-//inline ::core::platform & root::platform()
+//inline ::core::platform & root::Platform
 //{
 //
 //   return *m_paxisapp->m_pcoreplatform;

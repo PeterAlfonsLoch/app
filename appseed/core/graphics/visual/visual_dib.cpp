@@ -43,7 +43,7 @@ namespace visual
    bool dib_sp::load_from_matter(const char * pszMatter)
    {
 
-      return Sys(m_p->m_paxisapp).visual().imaging().load_from_file(m_p, sess(m_p->m_paxisapp).dir().matter(pszMatter), true, m_p->m_paxisapp);
+      return Sys(m_p->m_paxisapp).visual().imaging().load_from_file(m_p, Sess(m_p->m_paxisapp).dir().matter(pszMatter), true, m_p->m_paxisapp);
 
    }
 
@@ -59,7 +59,7 @@ namespace visual
    bool dib_sp::save_to_file(var varFile, save_image * psaveimage)
    {
       ::file::buffer_sp spfile;
-      spfile = sess(m_p->m_paxisapp).file().get_file(varFile, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
+      spfile = Sess(m_p->m_paxisapp).file().get_file(varFile, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
       if(spfile.is_null())
          return false;
       return write_to_file(spfile, psaveimage);

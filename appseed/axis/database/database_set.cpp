@@ -18,7 +18,7 @@ namespace database
 
 
 
-   set::set(axis *newDb) {
+   set::set(base *newDb) {
 
      db = newDb;
      haveError = active = false;

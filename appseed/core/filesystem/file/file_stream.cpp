@@ -9,7 +9,7 @@ namespace core
    output_file_stream::output_file_stream(sp(::axis::application) papp, const char * pszFileName, uint32_t dwFlags)
    {
 
-      m_spfile = sess(papp).file().get_file(pszFileName, dwFlags);
+      m_spfile = Sess(papp).file().get_file(pszFileName, dwFlags);
 
    }
       

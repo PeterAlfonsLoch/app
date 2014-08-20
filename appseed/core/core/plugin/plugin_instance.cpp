@@ -14,6 +14,7 @@ namespace plugin
       ::simple_ui::style(papp),
       ::user::interaction(papp),
       plugin(papp),
+      ::axis::session(papp),
       ::base::session(papp)
    {
 

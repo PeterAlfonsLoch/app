@@ -828,7 +828,7 @@ namespace html
             && m_pparent->get_tag()->get_attr_value("rel").CompareNoCase("stylesheet") == 0)
          {
             sp(style_sheet) pstylesheet(new style_sheet(m_paxisapp));
-            pstylesheet->parse(pdata, sess(pdata->get_app()).file().as_string(m_pparent->get_tag()->get_attr_value("href")));
+            pstylesheet->parse(pdata, Sess(pdata->get_app()).file().as_string(m_pparent->get_tag()->get_attr_value("href")));
             pdata->m_stylesheeta.add(pstylesheet);
          }
       }

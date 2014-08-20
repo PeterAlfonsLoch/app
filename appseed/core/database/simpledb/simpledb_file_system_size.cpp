@@ -98,7 +98,7 @@ void file_size_table::item::ls(sp(::axis::application) papp, index & iIteration)
       bool_array baIsDir;
       if(path().is_empty())
       {
-         sess(papp).dir().root_ones(straPath, straTitle);
+         Sess(papp).dir().root_ones(straPath, straTitle);
          for(int32_t i = 0; i < straPath.get_size(); i++)
          {
             item item;
@@ -114,7 +114,7 @@ void file_size_table::item::ls(sp(::axis::application) papp, index & iIteration)
       }
       else
       {
-         sess(papp).dir().ls(path(), &straPath, &straTitle, &baIsDir, &iaSize);
+         Sess(papp).dir().ls(path(), &straPath, &straTitle, &baIsDir, &iaSize);
          for(int32_t i = 0; i < straTitle.get_size(); i++)
          {
             item item;

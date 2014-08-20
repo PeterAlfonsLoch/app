@@ -1515,7 +1515,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
   <ItemGroup>
     <ClCompile Include="user\user\user_orto_button.cpp" />
     <ClInclude Include="..\filesystem\file\file_transfer_stream.h" />
-    <ClInclude Include="compress\crypto\aaa_want_to_remove_crypto_aes_cbc_coder.h" />
     <ClInclude Include="core\android\os.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
@@ -1657,88 +1656,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\windows\os_defs.h" />
     <ClInclude Include="core\windows\os_library.h" />
     <ClInclude Include="core\windows\os_utils.h" />
-    <ClInclude Include="compress\7z\7z.h" />
-    <ClInclude Include="compress\7z\7zCompressionMode.h" />
-    <ClInclude Include="compress\7z\7zDecode.h" />
-    <ClInclude Include="compress\7z\7zEncode.h" />
-    <ClInclude Include="compress\7z\7zFolderInStream.h" />
-    <ClInclude Include="compress\7z\7zFolderOutStream.h" />
-    <ClInclude Include="compress\7z\7zHandler.h" />
-    <ClInclude Include="compress\7z\7zHeader.h" />
-    <ClInclude Include="compress\7z\7zIn.h" />
-    <ClInclude Include="compress\7z\7zItem.h" />
-    <ClInclude Include="compress\7z\7zOut.h" />
-    <ClInclude Include="compress\7z\7zProperties.h" />
-    <ClInclude Include="compress\7z\7zSpecStream.h" />
-    <ClInclude Include="compress\7z\7zUpdate.h" />
-    <ClInclude Include="compress\compress\compress.h" />
-    <ClInclude Include="compress\compress\compress_codecs_info_interface.h" />
-    <ClInclude Include="compress\compress\compress_coder2_interface.h" />
-    <ClInclude Include="compress\compress\compress_coder_interface.h" />
-    <ClInclude Include="compress\compress\compress_filter_interface.h" />
-    <ClInclude Include="compress\compress\compress_get_input_stream_processed_size_interface.h" />
-    <ClInclude Include="compress\compress\compress_progress_info_interface.h" />
-    <ClInclude Include="compress\compress\compress_set_codecs_info_interface.h" />
-    <ClInclude Include="compress\compress\compress_set_coder_mt_interface.h" />
-    <ClInclude Include="compress\compress\compress_set_coder_properties_interface.h" />
-    <ClInclude Include="compress\compress\compress_set_decoder_properties2_interface.h" />
-    <ClInclude Include="compress\compress\compress_set_input_stream_interface.h" />
-    <ClInclude Include="compress\compress\compress_set_output_stream_interface.h" />
-    <ClInclude Include="compress\compress\compress_write_coder_properties_interface.h" />
-    <ClInclude Include="compress\compress\compress_get_sub_stream_size_interface.h" />
-    <ClInclude Include="compress\compress_archive.h" />
-    <ClInclude Include="compress\compress_coder.h" />
-    <ClInclude Include="compress\compress_coder_mixer.h" />
-    <ClInclude Include="compress\compress_coder_mixer2.h" />
-    <ClInclude Include="compress\compress_coder_mixer2mt.h" />
-    <ClInclude Include="compress\aaa_want_to_remove_compress.h" />
-    <ClInclude Include="compress\compress_get_input_stream_processed_size_interface.h" />
-    <ClInclude Include="compress\compress_get_sub_stream_size_interface.h" />
-    <ClInclude Include="compress\compress_progress_info_interface.h" />
-    <ClInclude Include="compress\compress_set_codecs_info_interface.h" />
-    <ClInclude Include="compress\compress_set_coder_mt_interface.h" />
-    <ClInclude Include="compress\compress_set_coder_properties_interface.h" />
-    <ClInclude Include="compress\compress_set_decoder_properties2_interface.h" />
-    <ClInclude Include="compress\compress_set_input_stream_interface.h" />
-    <ClInclude Include="compress\compress_set_output_stream_interface.h" />
-    <ClInclude Include="compress\compress_write_coder_properties_interface.h" />
-    <ClInclude Include="compress\compress_copy_coder.h" />
-    <ClInclude Include="compress\compress_create_coder.h" />
-    <ClInclude Include="compress\compress_filter_coder.h" />
-    <ClInclude Include="compress\compress_huffman_decoder.h" />
-    <ClInclude Include="compress\compress_input_stream_with_crc.h" />
-    <ClInclude Include="compress\compress_int_to_string.h" />
-    <ClInclude Include="compress\compress_item_name.h" />
-    <ClInclude Include="compress\compress_local_progress.h" />
-    <ClInclude Include="compress\compress_lz_out_window.h" />
-    <ClInclude Include="compress\compress_method_properties.h" />
-    <ClInclude Include="compress\compress_out_handler.h" />
-    <ClInclude Include="compress\compress_ppmd.h" />
-    <ClInclude Include="compress\compress_ppmd7.h" />
-    <ClInclude Include="compress\compress_ppmd8.h" />
-    <ClInclude Include="compress\compress_prop_id.h" />
-    <ClInclude Include="compress\crypto\crypto.h" />
-    <ClInclude Include="compress\crypto\crypto_7z_crc.h" />
-    <ClInclude Include="compress\crypto\crypto_get_text_password2_interface.h" />
-    <ClInclude Include="compress\crypto\crypto_get_text_password_interface.h" />
-    <ClInclude Include="compress\crypto\crypto_properties_interface.h" />
-    <ClInclude Include="compress\crypto\crypto_rar20.h" />
-    <ClInclude Include="compress\crypto\crypto_reset_init_vector_interface.h" />
-    <ClInclude Include="compress\crypto\crypto_set_password_interface.h" />
-    <ClInclude Include="compress\rar\aaa_want_to_remove_aes.h" />
-    <ClInclude Include="compress\rar\folder_reader.h" />
-    <ClInclude Include="compress\rar\handler.h" />
-    <ClInclude Include="compress\rar\header.h" />
-    <ClInclude Include="compress\rar\input_file.h" />
-    <ClInclude Include="compress\rar\item.h" />
-    <ClInclude Include="compress\rar\rar.h" />
-    <ClInclude Include="compress\rar\rar1_decoder.h" />
-    <ClInclude Include="compress\rar\rar2_decoder.h" />
-    <ClInclude Include="compress\rar\rar3_decoder.h" />
-    <ClInclude Include="compress\rar\rar3_vm.h" />
-    <ClInclude Include="compress\compress_reader_with_crc.h" />
-    <ClInclude Include="compress\compress_register_codec.h" />
-    <ClInclude Include="compress\compress_writer_with_crc.h" />
     <ClInclude Include="database\databaseuser\databaseuser.h" />
     <ClInclude Include="database\databaseuser\data_key_list_data.h" />
     <ClInclude Include="database\databaseuser\list_data.h" />
@@ -2239,7 +2156,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\userhtml\userhtml_view_update_hint.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="compress\crypto\crypto_my_aes.cpp" />
     <ClCompile Include="core\android\os.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
@@ -2318,102 +2234,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="core\windows\os_library_initialize.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="compress\7z\7zDecode.cpp" />
-    <ClCompile Include="compress\7z\7zEncode.cpp" />
-    <ClCompile Include="compress\7z\7zExtract.cpp" />
-    <ClCompile Include="compress\7z\7zFolderInStream.cpp" />
-    <ClCompile Include="compress\7z\7zFolderOutStream.cpp" />
-    <ClCompile Include="compress\7z\7zHandler.cpp" />
-    <ClCompile Include="compress\7z\7zHandlerOut.cpp" />
-    <ClCompile Include="compress\7z\7zHeader.cpp" />
-    <ClCompile Include="compress\7z\7zIn.cpp" />
-    <ClCompile Include="compress\7z\7zOut.cpp" />
-    <ClCompile Include="compress\7z\7zProperties.cpp" />
-    <ClCompile Include="compress\7z\7zRegister.cpp" />
-    <ClCompile Include="compress\7z\7zSpecStream.cpp" />
-    <ClCompile Include="compress\7z\7zUpdate.cpp" />
-    <ClCompile Include="compress\compress_7z_crc_opt.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\compress_archive.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\compress_archive_item_name.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\compress_coder_mixer.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\compress_coder_mixer2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\compress_coder_mixer2mt.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\compress_copy_coder.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\compress_create_coder.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\compress_filter_coder.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\compress_int_to_string.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\compress_local_progress.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\compress_lz_out_window.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\compress_method_id.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\compress_method_properties.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\compress_out_handler.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\compress_parse_properties.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\compress_ppmd7.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\compress_ppmd7_dec.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\compress_ppmd7_enc.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\compress_ppmd8.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\compress_prop_id.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\compress_reader_with_crc.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\compress_writer_with_crc.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="compress\crypto\crypto_7z_crc.cpp" />
-    <ClCompile Include="compress\crypto\crypto_rar20.cpp" />
-    <ClCompile Include="compress\rar\rar1_decoder.cpp" />
-    <ClCompile Include="compress\rar\rar2_decoder.cpp" />
-    <ClCompile Include="compress\rar\rar3_decoder.cpp" />
-    <ClCompile Include="compress\rar\rar3_vm.cpp" />
-    <ClCompile Include="compress\rar\rar_aes.cpp" />
-    <ClCompile Include="compress\rar\rar_codecs_register.cpp" />
-    <ClCompile Include="compress\rar\rar_handler.cpp" />
-    <ClCompile Include="compress\rar\rar_header.cpp" />
-    <ClCompile Include="compress\rar\rar_input_file.cpp" />
-    <ClCompile Include="compress\rar\rar_item.cpp" />
-    <ClCompile Include="compress\rar\rar_volume_input_stream.cpp" />
     <ClCompile Include="database\databaseuser\database_key_list_data.cpp" />
     <ClCompile Include="database\databaseuser\database_list_data.cpp" />
     <ClCompile Include="database\simpledb\simpledb_database.cpp" />

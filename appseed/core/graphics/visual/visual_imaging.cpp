@@ -490,10 +490,10 @@ void EmbossedTextOut(
    RECT                    rcText;
 
    if (crShadow == (COLORREF)-1)
-      crShadow = sess(pdc->m_paxisapp).get_default_color (COLOR_BTNSHADOW);
+      crShadow = Sess(pdc->m_paxisapp).get_default_color (COLOR_BTNSHADOW);
 
    if (crText == (COLORREF)-1)
-      crText = sess(pdc->m_paxisapp).get_default_color (COLOR_BTNTEXT);
+      crText = Sess(pdc->m_paxisapp).get_default_color (COLOR_BTNTEXT);
 
    /* setup the DC, saving off the old values
    */
@@ -6629,11 +6629,11 @@ bool imaging::load_from_file(::draw2d::dib * pdib, var varFile, bool bCache, sp(
       strFile.replace("/", "\\");
       strFile = System.dir().time("cache", strFile);
       strFile += ".dib";
-      if (false && sess(papp).file().exists(strFile))
+      if (false && Sess(papp).file().exists(strFile))
       {
          try
          {
-            ::file::byte_input_stream istream(sess(papp).file().get_file(strFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary));
+            ::file::byte_input_stream istream(Sess(papp).file().get_file(strFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary));
             istream >> *pdib;
             return true;
          }
@@ -6717,7 +6717,7 @@ bool imaging::load_from_matter(::draw2d::dib * pdib, var varFile, sp(::axis::app
       papp = get_app();
 
 
-   return load_from_file(pdib, sess(papp).dir().matter((const string &) varFile), true, papp);
+   return load_from_file(pdib, Sess(papp).dir().matter((const string &) varFile), true, papp);
 
 }
 
@@ -6734,7 +6734,7 @@ bool imaging::load_from_file(::visual::cursor * pcursor, var varFile, sp(::axis:
       papp = get_app();
 
    str += ".xml";
-   string strNode = sess(papp).file().as_string(str);
+   string strNode = Sess(papp).file().as_string(str);
    ::xml::document doc(get_app());
    if (doc.load(strNode))
    {
@@ -6749,7 +6749,7 @@ bool imaging::load_from_matter(::visual::cursor * pcursor, var varFile, sp(::axi
    if (papp == NULL)
       papp = get_app();
 
-   return load_from_file(pcursor, sess(papp).dir().matter((const string &) varFile), papp);
+   return load_from_file(pcursor, Sess(papp).dir().matter((const string &) varFile), papp);
 
 }
 
@@ -6773,6 +6773,6 @@ bool imaging::load_from_matter(::visual::cursor * pcursor, var varFile, sp(::axi
    if (papp == NULL)
       papp = get_app();
 
-   return load_cursor_from_file(sess(papp).dir().matter((const string &) varFile));
+   return load_cursor_from_file(Sess(papp).dir().matter((const string &) varFile));
 
 }

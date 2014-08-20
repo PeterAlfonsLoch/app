@@ -29,13 +29,13 @@ namespace core
 
 
    application::application():
-      element(this), // start m_pbaseapp as this for constructor referencing this app
+      element(this), // start m_paxisapp as this for constructor referencing this app
       m_mutex(this),
       thread(NULL),
       m_simpledb(this)
    {
 
-      if(m_pbaseapp == NULL)
+      if(m_paxisapp == NULL)
       {
          set_app(this);
       }
@@ -264,7 +264,7 @@ namespace core
 
       if(!is_system())
       {
-         platform().register_bergedge_application(this);
+         Platform.register_bergedge_application(this);
       }
 
 
@@ -386,7 +386,7 @@ namespace core
          data_pulse_change("ca2","savings",NULL);
 
 
-         sess(this).fill_locale_schema(*Session.str_context()->m_plocaleschema);
+         Sess(this).fill_locale_schema(*Session.str_context()->m_plocaleschema);
 
 
          Sys(this).appa_load_string_table();
@@ -481,7 +481,7 @@ namespace core
       {
          if(!is_system())
          {
-            platform().unregister_bergedge_application(this);
+            Platform.unregister_bergedge_application(this);
          }
       }
       catch(...)
@@ -1711,9 +1711,9 @@ namespace core
    bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::user::impact_system) ptemplate,sp(::user::document) pdocument)
       // if ptemplate==NULL => all document templates
    {
-      if(platform().m_pfilemanager != NULL)
+      if(Platform.m_pfilemanager != NULL)
       {
-         return platform().m_pfilemanager->do_prompt_file_name(varFile,nIDSTitle,lFlags,bOpenFileDialog,ptemplate,pdocument);
+         return Platform.m_pfilemanager->do_prompt_file_name(varFile,nIDSTitle,lFlags,bOpenFileDialog,ptemplate,pdocument);
       }
       ENSURE(m_pdocmanager != NULL);
       /*      return m_pdocmanager->do_prompt_file_name(fileName, nIDSTitle, lFlags,
@@ -3107,7 +3107,7 @@ namespace core
 
       if(!is_system())
       {
-         platform().register_bergedge_application(this);
+         Platform.register_bergedge_application(this);
       }
 
       xxdebug_box("register_bergedge_application ok","register_bergedge_application ok",MB_ICONINFORMATION);
@@ -3488,7 +3488,7 @@ namespace core
    void application::set_title(const char * pszTitle)
    {
 
-      platform().set_app_title(m_strInstallType,m_strAppName,pszTitle);
+      Platform.set_app_title(m_strInstallType,m_strAppName,pszTitle);
 
    }
 
@@ -3801,7 +3801,7 @@ namespace core
       if(strId.CompareNoCase("session") == 0)
       {
 
-         ::core::platform * psession = new ::core::platform(m_pbaseapp->m_pbasesession);
+         ::core::platform * psession = new ::core::platform(m_paxisapp->m_pbasesession);
 
          papp = psession;
 
@@ -3834,7 +3834,7 @@ namespace core
 
          }
 
-         papp = platform().get_new_app(this,pszType,strNewId);
+         papp = Platform.get_new_app(this,pszType,strNewId);
 
          if(papp == NULL)
             return NULL;
