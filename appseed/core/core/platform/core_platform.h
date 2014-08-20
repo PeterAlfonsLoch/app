@@ -24,7 +24,7 @@ namespace core
          string                  m_strApp;
          string                  m_strQuery;
          sp(::core::platform)      m_pbergedgeParent;
-         sp(::axis::application)   m_pbaseapp;
+         sp(::axis::application)   m_paxisapp;
          bool                    m_bMakeVisible;
          sp(::user::interaction) m_puiParent;
          property_set      m_setParameters;

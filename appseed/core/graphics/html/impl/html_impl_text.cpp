@@ -648,7 +648,7 @@ namespace html
          strsize iSelStart;
          strsize iSelEnd;
          ::size size3;
-         visual::graphics_extension(pdata->m_pbaseapp).GetTextExtent(pdc, unitext("gGYIﾍ"), size3);
+         visual::graphics_extension(pdata->m_paxisapp).GetTextExtent(pdc, unitext("gGYIﾍ"), size3);
          int32_t maxcy = size3.cy;
 
          _001GetViewSel(iSelStart, iSelEnd);

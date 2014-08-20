@@ -23,7 +23,7 @@ namespace platform
          string                  m_strApp;
          string                  m_strQuery;
          sp(view)                  m_pview;
-         sp(::axis::application)     m_pbaseapp;
+         sp(::axis::application)     m_paxisapp;
          bool                    m_bMakeVisible;
       };
 

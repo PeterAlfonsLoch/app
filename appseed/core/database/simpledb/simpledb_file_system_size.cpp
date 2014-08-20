@@ -322,7 +322,7 @@ bool DBFileSystemSizeSet::get_fs_size(int64_t & i64Size, const char * pszPath, b
    {
       return false;
    }
-   pitem->update_size_recursive(m_pbaseapp, iIteration);
+   pitem->update_size_recursive(m_paxisapp, iIteration);
    bPending = pitem->m_bPending;
    i64Size = pitem->m_iSize;
    return true;

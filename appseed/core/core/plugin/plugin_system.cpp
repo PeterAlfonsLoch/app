@@ -14,14 +14,14 @@ namespace plugin
 
          if (papp.is_set())
          {
-            m_pbaseapp = papp;
+            m_paxisapp = papp;
          }
          
       
       if (m_pbasesession == NULL)
       {
          
-            m_pbasesession = m_pbaseapp->m_pbasesession;
+            m_pbasesession = m_paxisapp->m_pbasesession;
 
       }
 

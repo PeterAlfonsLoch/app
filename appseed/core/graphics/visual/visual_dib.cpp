@@ -35,7 +35,7 @@ namespace visual
    bool dib_sp::load_from_file(var varFile, bool bCache)
    {
       
-      return Sys(m_p->m_pbaseapp).visual().imaging().load_from_file(m_p, varFile, bCache, m_p->m_pbaseapp);
+      return Sys(m_p->m_paxisapp).visual().imaging().load_from_file(m_p, varFile, bCache, m_p->m_paxisapp);
 
    }
 
@@ -43,7 +43,7 @@ namespace visual
    bool dib_sp::load_from_matter(const char * pszMatter)
    {
 
-      return Sys(m_p->m_pbaseapp).visual().imaging().load_from_file(m_p, sess(m_p->m_pbaseapp).dir().matter(pszMatter), true, m_p->m_pbaseapp);
+      return Sys(m_p->m_paxisapp).visual().imaging().load_from_file(m_p, sess(m_p->m_paxisapp).dir().matter(pszMatter), true, m_p->m_paxisapp);
 
    }
 
@@ -51,7 +51,7 @@ namespace visual
    bool dib_sp::read_from_file(::file::buffer_sp spfile)
    {
 
-      return Sys(m_p->m_pbaseapp).visual().imaging().read_from_file(m_p, spfile, m_p->m_pbaseapp);
+      return Sys(m_p->m_paxisapp).visual().imaging().read_from_file(m_p, spfile, m_p->m_paxisapp);
 
    }
 
@@ -59,7 +59,7 @@ namespace visual
    bool dib_sp::save_to_file(var varFile, save_image * psaveimage)
    {
       ::file::buffer_sp spfile;
-      spfile = sess(m_p->m_pbaseapp).file().get_file(varFile, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
+      spfile = sess(m_p->m_paxisapp).file().get_file(varFile, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
       if(spfile.is_null())
          return false;
       return write_to_file(spfile, psaveimage);
@@ -73,7 +73,7 @@ namespace visual
 
 #ifdef METROWIN
 
-      throw todo(m_p->m_pbaseapp);
+      throw todo(m_p->m_paxisapp);
 
 #else
 
@@ -125,7 +125,7 @@ namespace visual
 
 
       FIMEMORY * pfm1 = FreeImage_OpenMemory();
-      FIBITMAP * pfi7 = Sys(m_p->m_pbaseapp).visual().imaging().HBITMAPtoFI(m_p->get_bitmap());
+      FIBITMAP * pfi7 = Sys(m_p->m_paxisapp).visual().imaging().HBITMAPtoFI(m_p->get_bitmap());
       FIBITMAP * pfi8 = NULL;
       bool bConv;
       if(b8)
@@ -179,7 +179,7 @@ namespace visual
    bool dib_sp::from(class draw2d::graphics * pgraphics, struct FIBITMAP * pfi, bool bUnload)
    {
       
-      return Sys(m_p->m_pbaseapp).visual().imaging().from(m_p, pgraphics, pfi, bUnload);
+      return Sys(m_p->m_paxisapp).visual().imaging().from(m_p, pgraphics, pfi, bUnload);
 
    }
 

@@ -228,7 +228,7 @@ private:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   void putValue(::lite_html_reader * m_pbaseapp, const char * lpszValue);
+   void putValue(::lite_html_reader * m_paxisapp, const char * lpszValue);
 
 // Parsing Helpers
 public:

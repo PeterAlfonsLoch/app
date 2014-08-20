@@ -7,10 +7,10 @@ namespace html
 
 
    elemental::elemental(data * pdata, elemental * pparent) :
-      m_style(pdata->m_pbaseapp)
+      m_style(pdata->m_paxisapp)
    {
 
-      m_pbaseapp = pdata->m_pbaseapp;
+      m_paxisapp = pdata->m_paxisapp;
       m_pparent = pparent;
       m_pimpl = NULL;
       m_pbase = NULL;
@@ -89,7 +89,7 @@ namespace html
 
       }
 
-      m_etag = m_pbaseapp->m_pcoresystem->m_phtml->tag_name_to_id(m_idTagName);
+      m_etag = m_paxisapp->m_pcoresystem->m_phtml->tag_name_to_id(m_idTagName);
 
       if (m_etag == tag_initial)
       {
@@ -798,7 +798,7 @@ namespace html
          }
          if (m_idTagName == __id(html_link) && get_tag()->get_attr_value("rel").CompareNoCase("stylesheet") == 0)
          {
-            sp(style_sheet) pstylesheet(new style_sheet(m_pbaseapp));
+            sp(style_sheet) pstylesheet(new style_sheet(m_paxisapp));
             pstylesheet->parse(pdata, App(pdata->get_app()).file().as_string(get_tag()->get_attr_value("href")));
             pdata->m_stylesheeta.add(pstylesheet);
          }
@@ -820,14 +820,14 @@ namespace html
          m_strBody = pvalue->get_value();
          if (m_idTagName == __id(html_style))
          {
-            sp(style_sheet) pstylesheet(new style_sheet(m_pbaseapp));
+            sp(style_sheet) pstylesheet(new style_sheet(m_paxisapp));
             pstylesheet->parse(pdata, pvalue->get_value());
             pdata->m_stylesheeta.add(pstylesheet);
          }
          else if (m_idTagName == __id(html_link)
             && m_pparent->get_tag()->get_attr_value("rel").CompareNoCase("stylesheet") == 0)
          {
-            sp(style_sheet) pstylesheet(new style_sheet(m_pbaseapp));
+            sp(style_sheet) pstylesheet(new style_sheet(m_paxisapp));
             pstylesheet->parse(pdata, sess(pdata->get_app()).file().as_string(m_pparent->get_tag()->get_attr_value("href")));
             pdata->m_stylesheeta.add(pstylesheet);
          }
@@ -1182,7 +1182,7 @@ namespace html
       if (m_pbase->get_type() == base::type_value)
       {
 
-         str += Sys(pdata->m_pbaseapp).html()->entities(m_strBody);
+         str += Sys(pdata->m_paxisapp).html()->entities(m_strBody);
 
       }
       else
@@ -1207,7 +1207,7 @@ namespace html
          if (m_elementalptra.get_size() <= 0)
          {
 
-            str += Sys(pdata->m_pbaseapp).html()->entities(m_strBody);
+            str += Sys(pdata->m_paxisapp).html()->entities(m_strBody);
 
          }
          else
