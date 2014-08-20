@@ -5,7 +5,7 @@ namespace calculator
 {
 
 
-   calculator::calculator(::base::application * papp) :
+   calculator::calculator(sp(::axis::application) papp) :
       element(papp),
       ::base::departament(papp)
    {

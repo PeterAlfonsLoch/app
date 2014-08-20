@@ -522,7 +522,7 @@ namespace dynamic_source
    }
 
 
-   ::base::application * ds_script::get_app() const
+   sp(::axis::application) ds_script::get_app() const
    {
       return m_pmanager->get_app();
    }

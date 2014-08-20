@@ -5,7 +5,7 @@ namespace html
 {
 
 
-   html::html(::base::application * papp) :
+   html::html(sp(::axis::application) papp) :
       element(papp),
       ::base::departament(papp),
       m_entityresolver(papp)

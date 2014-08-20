@@ -182,7 +182,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib, var varFile, sp(::axis::applic
 }
 
 
-bool imaging::from(::draw2d::dib * pdib, ::draw2d::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI, ::base::application * papp)
+bool imaging::from(::draw2d::dib * pdib, ::draw2d::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI, sp(::axis::application) papp)
 {
 
    if (pfibitmap == NULL)
@@ -6611,7 +6611,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pdc, int32_t left, int32_t top, c
 }
 
 
-bool imaging::load_from_file(::draw2d::dib * pdib, var varFile, bool bCache, ::base::application * papp)
+bool imaging::load_from_file(::draw2d::dib * pdib, var varFile, bool bCache, sp(::axis::application) papp)
 {
 
    if (papp == NULL)
@@ -6676,7 +6676,7 @@ bool imaging::load_from_file(::draw2d::dib * pdib, var varFile, bool bCache, ::b
 
 }
 
-bool imaging::read_from_file(::draw2d::dib * pdib, ::file::buffer_sp  pfile, ::base::application * papp)
+bool imaging::read_from_file(::draw2d::dib * pdib, ::file::buffer_sp  pfile, sp(::axis::application) papp)
 {
 
    if (papp == NULL)
@@ -6710,7 +6710,7 @@ bool imaging::read_from_file(::draw2d::dib * pdib, ::file::buffer_sp  pfile, ::b
 
 
 
-bool imaging::load_from_matter(::draw2d::dib * pdib, var varFile, ::base::application * papp)
+bool imaging::load_from_matter(::draw2d::dib * pdib, var varFile, sp(::axis::application) papp)
 {
 
    if (papp == NULL)
@@ -6722,7 +6722,7 @@ bool imaging::load_from_matter(::draw2d::dib * pdib, var varFile, ::base::applic
 }
 
 
-bool imaging::load_from_file(::visual::cursor * pcursor, var varFile, ::base::application * papp)
+bool imaging::load_from_file(::visual::cursor * pcursor, var varFile, sp(::axis::application) papp)
 {
    string str(varFile);
    if (!::str::ends_eat_ci(str, ".png"))
@@ -6744,7 +6744,7 @@ bool imaging::load_from_file(::visual::cursor * pcursor, var varFile, ::base::ap
    return true;
 }
 
-bool imaging::load_from_matter(::visual::cursor * pcursor, var varFile, ::base::application * papp)
+bool imaging::load_from_matter(::visual::cursor * pcursor, var varFile, sp(::axis::application) papp)
 {
    if (papp == NULL)
       papp = get_app();
@@ -6753,7 +6753,7 @@ bool imaging::load_from_matter(::visual::cursor * pcursor, var varFile, ::base::
 
 }
 
-::visual::cursor_sp imaging::load_cursor_from_file(var varFile, ::base::application * papp)
+::visual::cursor_sp imaging::load_cursor_from_file(var varFile, sp(::axis::application) papp)
 {
    if (papp == NULL)
       papp = get_app();
@@ -6767,7 +6767,7 @@ bool imaging::load_from_matter(::visual::cursor * pcursor, var varFile, ::base::
 
 }
 
-::visual::cursor_sp imaging::load_cursor_from_matter(var varFile, ::base::application * papp)
+::visual::cursor_sp imaging::load_cursor_from_matter(var varFile, sp(::axis::application) papp)
 {
 
    if (papp == NULL)

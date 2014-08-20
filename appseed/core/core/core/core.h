@@ -104,7 +104,7 @@ namespace dynamic_source
 #define CoreApp(pbaseapp) (*pbaseapp->m_pcoreapp)
 #define CoreApplication (CoreApp(m_pbaseapp))
 
-inline ::core::platform & plat(::base::application * papp)
+inline ::core::platform & plat(sp(::axis::application) papp)
 {
    
    return *papp->m_pcoreplatform;

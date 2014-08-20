@@ -72,7 +72,7 @@ namespace core
       string_map < sp(::user::uinteraction::interaction) >     m_mapUinteraction;
 
 
-      platform(::base::application * papp);
+      platform(sp(::axis::application) papp);
       virtual ~platform();
 
 

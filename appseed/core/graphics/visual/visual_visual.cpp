@@ -34,7 +34,7 @@ namespace visual
 {
 
 
-   visual::visual(::base::application * papp) :
+   visual::visual(sp(::axis::application) papp) :
       element(papp),
       ::base::departament(papp)
    {

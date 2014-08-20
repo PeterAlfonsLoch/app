@@ -93,7 +93,7 @@ namespace dynamic_source
       string get_stage_path();
 
 
-      ::base::application * get_app() const;
+      sp(::axis::application) get_app() const;
 
       script_instance * create_instance();
 

@@ -26,7 +26,7 @@ namespace html
       LiteHTMLEntityResolver     m_entityresolver;
 
 
-      html(::base::application * papp);
+      html(sp(::axis::application) papp);
       virtual ~html();
 
       virtual void construct(sp(::axis::application) papp);

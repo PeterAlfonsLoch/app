@@ -43,7 +43,7 @@ namespace userex
 
 
 
-      userex(::base::application * papp);
+      userex(sp(::axis::application) papp);
       virtual ~userex();
 
 

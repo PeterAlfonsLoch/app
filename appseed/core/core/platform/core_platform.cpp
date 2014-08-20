@@ -5,7 +5,7 @@ namespace core
 {
 
 
-   platform::platform(::base::application * papp):
+   platform::platform(sp(::axis::application) papp):
       element(papp),
       ::thread(papp)
    {

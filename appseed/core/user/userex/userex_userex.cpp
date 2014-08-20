@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   userex::userex(::base::application * papp):
+   userex::userex(sp(::axis::application) papp):
       element(papp),
       ::base::departament(papp),
       ::user::core(papp)

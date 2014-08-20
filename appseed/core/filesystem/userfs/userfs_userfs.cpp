@@ -5,7 +5,7 @@ namespace userfs
 {
 
 
-   userfs::userfs(::base::application * papp) :
+   userfs::userfs(sp(::axis::application) papp) :
       element(papp),
       ::base::departament(papp)
    {

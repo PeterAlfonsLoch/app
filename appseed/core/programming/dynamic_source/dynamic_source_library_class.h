@@ -59,7 +59,7 @@ namespace dynamic_source
 
 
 
-     ::base::application * get_app() const;
+     sp(::axis::application) get_app() const;
 
    };
 

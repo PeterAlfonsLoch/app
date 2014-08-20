@@ -72,7 +72,7 @@ namespace dynamic_source
    }
 
 
-   ::base::application * library_class::get_app() const
+   sp(::axis::application) library_class::get_app() const
    {
       return m_pmanager->get_app();
    }

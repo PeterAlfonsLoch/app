@@ -23,7 +23,7 @@ namespace filemanager
       id                                           m_idFileManager;
 
 
-      filemanager(::base::application * papp);
+      filemanager(sp(::axis::application) papp);
       virtual ~filemanager();
 
       bool initialize();

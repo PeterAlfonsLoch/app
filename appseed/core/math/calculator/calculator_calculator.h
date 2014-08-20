@@ -14,7 +14,7 @@ namespace calculator
    public:
 
 
-      calculator(::base::application * papp);
+      calculator(sp(::axis::application) papp);
       virtual ~calculator();
 
 
