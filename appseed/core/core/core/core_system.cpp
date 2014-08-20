@@ -282,7 +282,7 @@ namespace core
          return false;
 
 
-      //if(session().fontopus()->create_system_user("system") == NULL)
+      //if(Session.fontopus()->create_system_user("system") == NULL)
       // return false;
 
 
@@ -324,7 +324,7 @@ namespace core
       if(directrix()->m_varTopicQuery.has_property("install"))
          return true;
 
-      ::file::binary_buffer_sp file = session().m_file.get_file(System.dir().appdata("applibcache.bin"),::file::type_binary | ::file::mode_read);
+      ::file::binary_buffer_sp file = Session.m_file.get_file(System.dir().appdata("applibcache.bin"),::file::type_binary | ::file::mode_read);
 
       if(file.is_null())
          return false;
@@ -389,7 +389,7 @@ namespace core
       try
       {
 
-         file = session().m_file.get_file(System.dir().appdata("applibcache.bin"),::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write);
+         file = Session.m_file.get_file(System.dir().appdata("applibcache.bin"),::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write);
 
       }
       catch(::exception::base &)
@@ -1129,12 +1129,12 @@ namespace core
 
       if(command()->m_varTopicQuery["locale"].array_get_count() > 0 && command()->m_varTopicQuery["locale"].stra().get_count_except_ci("_std") > 0)
       {
-         ::root::session().set_locale(command()->m_varTopicQuery["locale"].stra()[0],::action::source::user());
+         Session.set_locale(command()->m_varTopicQuery["locale"].stra()[0],::action::source::user());
       }
 
       if(command()->m_varTopicQuery["schema"].array_get_count() > 0)
       {
-         ::root::session().set_schema(command()->m_varTopicQuery["schema"].stra()[0],::action::source::user());
+         Session.set_schema(command()->m_varTopicQuery["schema"].stra()[0],::action::source::user());
       }
 
    }

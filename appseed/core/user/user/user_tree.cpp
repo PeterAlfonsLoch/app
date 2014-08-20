@@ -104,7 +104,7 @@ namespace user
 
       point ptCursor;
 
-      session().get_cursor_pos(&ptCursor);
+      Session.get_cursor_pos(&ptCursor);
       DWORD dwHoverIn = 384;
       DWORD dwHoverOut = 1284;
       ScreenToClient(&ptCursor);
@@ -152,7 +152,7 @@ namespace user
                m_uchHoverAlpha = (BYTE) (m_uchHoverAlphaInit - dwCurve);
          }
       }
-      //      ::base::savings & savings = session().savings();
+      //      ::base::savings & savings = Session.savings();
 
       ///      ::draw2d::graphics * pDCBuffer = pdc;
 
@@ -276,10 +276,10 @@ namespace user
       }
 
 
-      //      ::base::savings & savings = session().savings();
+      //      ::base::savings & savings = Session.savings();
       if(bSelected) // selected
       {
-         if(session().savings().is_trying_to_save(::base::resource_processing))
+         if(Session.savings().is_trying_to_save(::base::resource_processing))
          {
             data.m_pdc->FillSolidRect(
                data.m_rect,
@@ -1024,7 +1024,7 @@ namespace user
    void tree::UpdateHover()
    {
       point pt;
-      session().get_cursor_pos(&pt);
+      Session.get_cursor_pos(&pt);
       ScreenToClient(&pt);
       ::user::e_tree_element eelement;
       sp(::data::tree_item) pitem = _001HitTest(pt, eelement);

@@ -83,7 +83,7 @@ namespace user
 
       m_oswindowParent   = oswindowParent;
       m_pmenuParent  = pmenuParent;
-      //pwndParent->SendMessage(CA2M_BERGEDGE, BERGEDGE_GETAPP, (LPARAM) &m_pbaseapp);
+      //pwndParent->SendMessage(CA2M_BERGEDGE, BERGEDGE_GETAPP, (LPARAM) &m_paxisapp);
 
 //      const char * lpcsz = System.RegisterWndClass(CS_DBLCLKS | CS_HREDRAW | CS_VREDRAW);
 
@@ -231,7 +231,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-         pdc->FillSolidRect(rectClient, session().get_default_color(COLOR_WINDOW));
+         pdc->FillSolidRect(rectClient, Session.get_default_color(COLOR_WINDOW));
 
 #else
 

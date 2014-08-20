@@ -629,7 +629,7 @@ namespace user
 
          rect rectMonitor;
 
-         session().get_best_monitor(rectMonitor, rectWindow);
+         Session.get_best_monitor(rectMonitor, rectWindow);
 
          bool bDown = true;
 

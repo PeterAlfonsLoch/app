@@ -19,7 +19,7 @@ namespace user
 
 
       color color;
-      color.set_rgb(session().get_default_color(COLOR_HIGHLIGHT));
+      color.set_rgb(Session.get_default_color(COLOR_HIGHLIGHT));
 
       class color colorHover(color);
       colorHover.hls_rate(0.0, 0.3, 0.0);
@@ -33,10 +33,10 @@ namespace user
       m_button.set_color(color_text_press,color | (0xff << 24));
       m_button.set_color(color_text_disabled,ARGB(255,127,127,127));
       m_button.set_color(color_text_hover,color | (0xff << 24));
-      m_button.set_color(color_background_normal,session().get_default_color(COLOR_3DFACE) | (0xff << 24));
-      m_button.set_color(color_background_press,session().get_default_color(COLOR_3DFACE) | (0xff << 24));
-      m_button.set_color(color_background_disabled,session().get_default_color(COLOR_3DFACE) | (0xff << 24));
-      m_button.set_color(color_background_hover,session().get_default_color(COLOR_3DFACE) | (0xff << 24));
+      m_button.set_color(color_background_normal,Session.get_default_color(COLOR_3DFACE) | (0xff << 24));
+      m_button.set_color(color_background_press,Session.get_default_color(COLOR_3DFACE) | (0xff << 24));
+      m_button.set_color(color_background_disabled,Session.get_default_color(COLOR_3DFACE) | (0xff << 24));
+      m_button.set_color(color_background_hover,Session.get_default_color(COLOR_3DFACE) | (0xff << 24));
       m_button.m_bBorder      = false;
       m_button.m_etranslucency = ::user::TranslucencyNone;
 
@@ -47,10 +47,10 @@ namespace user
       m_buttonBaseWndMenuSysMenu.set_color(color_text_press,color | (0xff << 24));
       m_buttonBaseWndMenuSysMenu.set_color(color_text_disabled,ARGB(255,127,127,127));
       m_buttonBaseWndMenuSysMenu.set_color(color_text_hover,color | (0xff << 24));
-      m_buttonBaseWndMenuSysMenu.set_color(color_background_normal,session().get_default_color(COLOR_3DFACE) | (0xff << 24));
-      m_buttonBaseWndMenuSysMenu.set_color(color_background_press,session().get_default_color(COLOR_3DFACE) | (0xff << 24));
-      m_buttonBaseWndMenuSysMenu.set_color(color_background_disabled,session().get_default_color(COLOR_3DFACE) | (0xff << 24));
-      m_buttonBaseWndMenuSysMenu.set_color(color_background_hover,session().get_default_color(COLOR_3DFACE) | (0xff << 24));
+      m_buttonBaseWndMenuSysMenu.set_color(color_background_normal,Session.get_default_color(COLOR_3DFACE) | (0xff << 24));
+      m_buttonBaseWndMenuSysMenu.set_color(color_background_press,Session.get_default_color(COLOR_3DFACE) | (0xff << 24));
+      m_buttonBaseWndMenuSysMenu.set_color(color_background_disabled,Session.get_default_color(COLOR_3DFACE) | (0xff << 24));
+      m_buttonBaseWndMenuSysMenu.set_color(color_background_hover,Session.get_default_color(COLOR_3DFACE) | (0xff << 24));
       m_buttonBaseWndMenuSysMenu.m_bBorder      = false;
       m_buttonBaseWndMenuSysMenu.m_etranslucency = ::user::TranslucencyNone;
 
@@ -61,10 +61,10 @@ namespace user
       m_buttonBaseWndMenuItem.set_color(color_text_press,color | (0xff << 24));
       m_buttonBaseWndMenuItem.set_color(color_text_disabled,ARGB(255,127,127,127));
       m_buttonBaseWndMenuItem.set_color(color_text_hover,color | (0xff << 24));
-      m_buttonBaseWndMenuItem.set_color(color_background_normal,session().get_default_color(COLOR_3DFACE) | (0xff << 24));
-      m_buttonBaseWndMenuItem.set_color(color_background_press,session().get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
-      m_buttonBaseWndMenuItem.set_color(color_background_disabled,session().get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
-      m_buttonBaseWndMenuItem.set_color(color_background_hover,session().get_default_color(COLOR_3DFACE) | (0xff << 24));
+      m_buttonBaseWndMenuItem.set_color(color_background_normal,Session.get_default_color(COLOR_3DFACE) | (0xff << 24));
+      m_buttonBaseWndMenuItem.set_color(color_background_press,Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
+      m_buttonBaseWndMenuItem.set_color(color_background_disabled,Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
+      m_buttonBaseWndMenuItem.set_color(color_background_hover,Session.get_default_color(COLOR_3DFACE) | (0xff << 24));
       m_buttonBaseWndMenuItem.m_bBorder      = false;
       m_buttonBaseWndMenuItem.m_etranslucency = ::user::TranslucencyPresent;
 
@@ -79,10 +79,10 @@ namespace user
       m_buttonBaseWndMenuItemPopup.set_color(color_text_press,color | (0xff << 24));
       m_buttonBaseWndMenuItemPopup.set_color(color_text_disabled,ARGB(255,127,127,127));
       m_buttonBaseWndMenuItemPopup.set_color(color_text_hover,color | (0xff << 24));
-      m_buttonBaseWndMenuItemPopup.set_color(color_background_normal, session().get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
-      m_buttonBaseWndMenuItemPopup.set_color(color_background_press,session().get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
-      m_buttonBaseWndMenuItemPopup.set_color(color_background_disabled, session().get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
-      m_buttonBaseWndMenuItemPopup.set_color(color_background_hover, session().get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
+      m_buttonBaseWndMenuItemPopup.set_color(color_background_normal, Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
+      m_buttonBaseWndMenuItemPopup.set_color(color_background_press,Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
+      m_buttonBaseWndMenuItemPopup.set_color(color_background_disabled, Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
+      m_buttonBaseWndMenuItemPopup.set_color(color_background_hover, Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
       m_buttonBaseWndMenuItemPopup.m_bBorder      = false;
       m_buttonBaseWndMenuItemPopup.m_etranslucency = ::user::TranslucencyPresent;
 

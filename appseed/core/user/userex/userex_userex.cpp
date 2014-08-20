@@ -83,9 +83,9 @@ namespace userex
       }
 
       if(strLangUser.has_char())
-         session().set_locale(strLangUser,::action::source::database());
+         Session.set_locale(strLangUser,::action::source::database());
       if(strStyleUser.has_char())
-         session().set_schema(strStyleUser,::action::source::database());
+         Session.set_schema(strStyleUser,::action::source::database());
 
       string strLicense = Application.get_license_id();
 
@@ -118,7 +118,7 @@ namespace userex
 
          iRetry--;
 
-         if(!session().is_licensed(strLicense))
+         if(!Session.is_licensed(strLicense))
          {
 
             Application.license().m_mapInfo.remove_key(strLicense);
@@ -462,7 +462,7 @@ namespace userex
       {
          if(pchange->m_key.m_idIndex == "savings")
          {
-            pchange->data_get(session().savings().m_eresourceflagsShouldSave);
+            pchange->data_get(Session.savings().m_eresourceflagsShouldSave);
          }
       }
    }

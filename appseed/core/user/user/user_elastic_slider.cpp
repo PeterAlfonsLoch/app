@@ -131,7 +131,7 @@ namespace user
    void elastic_slider::CalcTension()
    {
       point pt;
-      session().get_cursor_pos(&pt);
+      Session.get_cursor_pos(&pt);
       ScreenToClient(&pt);
       CalcTension(pt);
    }
@@ -220,7 +220,7 @@ namespace user
       {
          pdc->MoveTo(rect.center());
          POINT pt;
-         session().get_cursor_pos(&pt);
+         Session.get_cursor_pos(&pt);
          ScreenToClient(&pt);
          pdc->LineTo(pt);
       }

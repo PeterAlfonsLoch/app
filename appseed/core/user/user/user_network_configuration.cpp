@@ -29,7 +29,7 @@ namespace user
    bool network_configuration::initialize_child(sp(::user::interaction) puiParent)
    {
       /*
-      m_pdoc = session().user()->create_child_form(this, puiParent);
+      m_pdoc = Session.user()->create_child_form(this, puiParent);
       if(m_pdoc != NULL)
       {
          m_pview = m_pdoc->get_typed_view < form_view > ();

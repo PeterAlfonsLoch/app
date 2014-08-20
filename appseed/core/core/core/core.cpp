@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "freeimage/freeimage.h"
+#include "freeimage/source/freeimage.h"
 
 #ifdef WINDOWS
 #include <cderr.h>      // Commdlg Error definitions

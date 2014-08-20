@@ -99,7 +99,7 @@ namespace user
 
       point ptCursor;
 
-      session().get_cursor_pos(&ptCursor);
+      Session.get_cursor_pos(&ptCursor);
 
       ScreenToClient(&ptCursor);
 
@@ -198,7 +198,7 @@ namespace user
 
       point ptCursor;
 
-      session().get_cursor_pos(&ptCursor);
+      Session.get_cursor_pos(&ptCursor);
 
       ScreenToClient(&ptCursor);
 
@@ -358,7 +358,7 @@ namespace user
 
          point ptCursor;
 
-         session().get_cursor_pos(&ptCursor);
+         Session.get_cursor_pos(&ptCursor);
 
          m_pcombo->ScreenToClient(&ptCursor);
 

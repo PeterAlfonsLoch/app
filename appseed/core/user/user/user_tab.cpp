@@ -296,7 +296,7 @@ namespace user
 
             point ptCursor;
 
-            session().get_cursor_pos(&ptCursor);
+            Session.get_cursor_pos(&ptCursor);
 
             bool bShowTabs = rectTab.contains(ptCursor);
 
@@ -355,7 +355,7 @@ namespace user
 
             point ptCursor;
 
-            session().get_cursor_pos(&ptCursor);
+            Session.get_cursor_pos(&ptCursor);
 
             if(get_data()->m_bVertical)
             {

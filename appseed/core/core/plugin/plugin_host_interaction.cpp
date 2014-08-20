@@ -65,7 +65,7 @@ namespace plugin
       
       UNREFERENCED_PARAMETER(pobj);
       
-      session().m_bSystemSynchronizedCursor = false;
+      Session.m_bSystemSynchronizedCursor = false;
 
    }
 
@@ -128,9 +128,9 @@ namespace plugin
       //pdc->SetViewportOrg(ptPreviousViewportOrg);
       //pdc->SelectClipRgn(NULL);
       point ptCursor;
-      session().get_cursor_pos(&ptCursor);
+      Session.get_cursor_pos(&ptCursor);
       ScreenToClient(&ptCursor);
-      ::visual::cursor * pcursor = session().get_cursor();
+      ::visual::cursor * pcursor = Session.get_cursor();
       if(pcursor != NULL)
       {
          pcursor->to(pdc, ptCursor);
@@ -235,9 +235,9 @@ namespace plugin
 
    void host_interaction::_000OnMouse(::message::mouse * pmouse)
    {
-      if(&session() != NULL)
+      if(&Session != NULL)
       {
-         session().m_ptCursor = pmouse->m_pt;
+         Session.m_ptCursor = pmouse->m_pt;
       }
       else
       {

@@ -183,7 +183,7 @@ namespace user
 
                   ptCursor = -m_ptWindowOrigin + rectEvent.top_left() + m_ptCursorOrigin;
 
-                  if(session().m_bSystemSynchronizedCursor)
+                  if(Session.m_bSystemSynchronizedCursor)
                   {
 #ifdef WINDOWSEX
                      ::SetCursorPos(ptCursor.x,ptCursor.y);
@@ -192,7 +192,7 @@ namespace user
 #endif
                   }
 
-                  session().m_ptCursor = ptCursor;
+                  Session.m_ptCursor = ptCursor;
 
                }
                System.release_capture_uie();

@@ -124,10 +124,10 @@ namespace core
 
       if(is_remote_session())
       {
-         /*session().savings().save(::base::resource_display_bandwidth);
-         session().savings().save(::base::resource_blur_background);
-         session().savings().save(::base::resource_blurred_text_embossing);
-         session().savings().save(::base::resource_translucent_background);*/
+         /*Session.savings().save(::base::resource_display_bandwidth);
+         Session.savings().save(::base::resource_blur_background);
+         Session.savings().save(::base::resource_blurred_text_embossing);
+         Session.savings().save(::base::resource_translucent_background);*/
       }
 
       /*      if(System.directrix()->m_varTopicQuery.has_property("install")
@@ -625,7 +625,7 @@ namespace core
          || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
       {
 
-         ::root::session().appptra().remove(papp);
+         Session.appptra().remove(papp);
 
          return NULL;
 
@@ -1058,7 +1058,7 @@ namespace core
    //
    ///*      if(pui == NULL && m_bShowPlatform && m_pbergedge->get_document() != NULL)
    //      {
-   //         pui = session().get_document()->get_bergedge_view();
+   //         pui = Session.get_document()->get_bergedge_view();
    //      }
    //
    //      return pui;
@@ -1194,15 +1194,15 @@ namespace core
 
       if(emouse == ::user::mouse_left_button)
       {
-         return ::root::session().is_key_pressed(::user::key_lbutton);
+         return Session.is_key_pressed(::user::key_lbutton);
       }
       else if(emouse == ::user::mouse_right_button)
       {
-         return ::root::session().is_key_pressed(::user::key_rbutton);
+         return Session.is_key_pressed(::user::key_rbutton);
       }
       else if(emouse == ::user::mouse_middle_button)
       {
-         return ::root::session().is_key_pressed(::user::key_mbutton);
+         return Session.is_key_pressed(::user::key_mbutton);
       }
       else
       {
@@ -1531,7 +1531,7 @@ namespace core
 
       /*      if(pui == NULL && m_bShowPlatform && m_pbergedge->get_document() != NULL)
       {
-      pui = session().get_document()->get_bergedge_view();
+      pui = Session.get_document()->get_bergedge_view();
       }
 
       return pui;
@@ -1831,7 +1831,7 @@ namespace core
       if(papp.is_null() || papp->m_pcoreapp == NULL)
          return;
 
-      ::root::session().m_appptra.add_unique(papp.m_p);
+      Session.m_appptra.add_unique(papp.m_p);
 
       if(System.is_installing() || System.is_uninstalling())
          System.m_bDoNotExitIfNoApplications = false;
@@ -1851,7 +1851,7 @@ namespace core
 
       retry_single_lock rsl(&m_mutex,millis(84),millis(84));
 
-      ::root::session().m_appptra.remove(papp);
+      Session.m_appptra.remove(papp);
 
    }
 

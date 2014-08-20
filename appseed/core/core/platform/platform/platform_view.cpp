@@ -200,7 +200,7 @@ namespace platform
       m_dibBkImage.load_from_matter("casweden1.png");
 
       m_dibBk->create(1280, 1024);
-      //::base::savings & savings = session().savings();
+      //::base::savings & savings = Session.savings();
       //if(
 
       const char * pszSessionName = NULL;
@@ -298,7 +298,7 @@ namespace platform
                cc->m_spCommandLine->m_strApp   = strApp;
                cc->m_spCommandLine->m_varFile  = platform().m_varTopicFile;
 
-               session().command()->request_create(cc);
+               Session.command()->request_create(cc);
             }
          }
       }
@@ -346,7 +346,7 @@ namespace platform
       rectDesktop.top = 0;
       rectDesktop.bottom = ::GetSystemMetrics(SM_CYSCREEN);
       }*/
-      if(session().savings().is_trying_to_save(::base::resource_processing))
+      if(Session.savings().is_trying_to_save(::base::resource_processing))
       {
          pdc->FillRect(rectClient, m_brushBk);
       }
@@ -372,7 +372,7 @@ namespace platform
 
 
       class rect rectThumb;
-      if(&session() != NULL)
+      if(&Session != NULL)
       {
          platform().get_document()->get_bergedge_view()->GetWindowRect(rectThumb);
          if(rectThumb.area() > 0)

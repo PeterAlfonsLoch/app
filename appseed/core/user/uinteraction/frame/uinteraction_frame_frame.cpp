@@ -86,7 +86,7 @@ namespace user
 
             ::size sizeMin;
 
-            session().get_window_minimum_size(sizeMin);
+            Session.get_window_minimum_size(sizeMin);
 
             return sizeMin;
 

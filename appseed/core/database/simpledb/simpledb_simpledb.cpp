@@ -222,7 +222,7 @@ namespace simpledb
    bool simpledb::set_keyboard_layout(const char * pszPath, ::action::context actioncontext)
    {
 
-      return session().user()->set_keyboard_layout(pszPath, actioncontext);
+      return Session.user()->set_keyboard_layout(pszPath, actioncontext);
 
    }
 

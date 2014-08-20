@@ -515,7 +515,7 @@ namespace filemanager
          
          point ptCursor;
          
-         session().get_cursor_pos(&ptCursor);
+         Session.get_cursor_pos(&ptCursor);
       
          if(m_spmenuPopup->create_menu(straCommand, straCommandTitle))
          {
@@ -634,14 +634,14 @@ namespace filemanager
    */
 
 
-      session().copydesk().set_filea(stra);
+      Session.copydesk().set_filea(stra);
 
    }
 
    void file_list::_001OnUpdateEditPaste(signal_details * pobj)
    {
       SCAST_PTR(::base::cmd_ui, pcmdui, pobj)
-      pcmdui->m_pcmdui->Enable(session().copydesk().get_file_count() > 0);
+      pcmdui->m_pcmdui->Enable(Session.copydesk().get_file_count() > 0);
       pobj->m_bRet = true;
    }
 
@@ -651,7 +651,7 @@ namespace filemanager
       UNREFERENCED_PARAMETER(pobj);
       stringa stra;
 
-      session().copydesk().get_filea(stra);
+      Session.copydesk().get_filea(stra);
       string strDir;
       strDir = get_filemanager_item().m_strPath;
 

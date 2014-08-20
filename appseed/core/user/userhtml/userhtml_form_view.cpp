@@ -163,7 +163,7 @@ void html_form_view::_001OnSetFocus(signal_details * pobj)
    UNREFERENCED_PARAMETER(pobj);
    if(get_html_data()->m_focusptra.get_size() > 0)
    {
-      session().user()->set_keyboard_focus(get_html_data()->m_focusptra[0]);
+      Session.user()->set_keyboard_focus(get_html_data()->m_focusptra[0]);
    }
 }
 

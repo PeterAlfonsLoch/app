@@ -295,12 +295,12 @@ namespace core
          {
             if(str.has_char())
             {
-               if(str != ::root::session().get_locale())
+               if(str != Session.get_locale())
                {
                   try
                   {
-                     data_set("system_locale",::root::session().get_locale());
-                     data_set("locale",::root::session().get_locale());
+                     data_set("system_locale",Session.get_locale());
+                     data_set("locale",Session.get_locale());
                   }
                   catch(...)
                   {
@@ -310,7 +310,7 @@ namespace core
          }
          else
          {
-            data_set("system_locale",::root::session().get_locale());
+            data_set("system_locale",Session.get_locale());
          }
 
          if(command()->m_varTopicQuery["locale"].get_count() > 0)
@@ -318,20 +318,20 @@ namespace core
             str = command()->m_varTopicQuery["locale"].stra()[0];
             data_set("system_locale",str);
             data_set("locale",str);
-            ::root::session().set_locale(str,::action::source::database());
+            Session.set_locale(str,::action::source::database());
          }
          else if(command()->m_varTopicQuery["lang"].get_count() > 0)
          {
             str = command()->m_varTopicQuery["lang"].stra()[0];
             data_set("system_locale",str);
             data_set("locale",str);
-            ::root::session().set_locale(str,::action::source::database());
+            Session.set_locale(str,::action::source::database());
          }
          else if(data_get("locale",str))
          {
             if(str.has_char())
             {
-               ::root::session().set_locale(str,::action::source::database());
+               Session.set_locale(str,::action::source::database());
             }
          }
          // if system schema has changed (compared to last recorded one by core)
@@ -340,12 +340,12 @@ namespace core
          {
             if(str.has_char())
             {
-               if(str != ::root::session().get_schema())
+               if(str != Session.get_schema())
                {
                   try
                   {
-                     data_set("system_schema",::root::session().get_schema());
-                     data_set("schema",::root::session().get_schema());
+                     data_set("system_schema",Session.get_schema());
+                     data_set("schema",Session.get_schema());
                   }
                   catch(...)
                   {
@@ -355,7 +355,7 @@ namespace core
          }
          else
          {
-            data_set("system_schema",::root::session().get_schema());
+            data_set("system_schema",Session.get_schema());
          }
 
          if(command()->m_varTopicQuery["schema"].get_count() > 0)
@@ -363,30 +363,30 @@ namespace core
             str = command()->m_varTopicQuery["schema"].stra()[0];
             data_set("system_schema",str);
             data_set("schema",str);
-            ::root::session().set_schema(str,::action::source::database());
+            Session.set_schema(str,::action::source::database());
          }
          else if(data_get("schema",str))
          {
             if(str.has_char())
             {
-               ::root::session().set_schema(str,::action::source::database());
+               Session.set_schema(str,::action::source::database());
             }
          }
 
          // keyboard layout
          if(data_get("keyboard_layout",str) && str.has_char())
          {
-            ::root::session().user()->set_keyboard_layout(str,::action::source::database());
+            Session.user()->set_keyboard_layout(str,::action::source::database());
          }
          else
          {
-            ::root::session().user()->set_keyboard_layout(NULL,::action::source::database());
+            Session.user()->set_keyboard_layout(NULL,::action::source::database());
          }
 
          data_pulse_change("ca2","savings",NULL);
 
 
-         sess(this).fill_locale_schema(*::root::session().str_context()->m_plocaleschema);
+         sess(this).fill_locale_schema(*Session.str_context()->m_plocaleschema);
 
 
          Sys(this).appa_load_string_table();
@@ -3416,7 +3416,7 @@ namespace core
    bool application::set_keyboard_layout(const char * pszPath,::action::context actioncontext)
    {
 
-      return session().user()->keyboard().load_layout(pszPath,actioncontext);
+      return Session.user()->keyboard().load_layout(pszPath,actioncontext);
 
    }
 
@@ -3694,7 +3694,7 @@ namespace core
 
    sp(::create_context) spcreatecontext(allocer());
 
-   papp = session().start_application("application", pszAppId, spcreatecontext);
+   papp = Session.start_application("application", pszAppId, spcreatecontext);
 
    }
 
@@ -3740,7 +3740,7 @@ namespace core
       try
       {
 
-         return ::root::session().m_file.get_file(varFile,nOpenFlags);
+         return Session.m_file.get_file(varFile,nOpenFlags);
 
       }
       catch(::file::exception & e)
@@ -3895,8 +3895,8 @@ namespace core
          string strCommandLine;
 
          strCommandLine = " : app=" + strId;
-         strCommandLine += " locale=" + string(session().str_context()->m_plocaleschema->m_idLocale);
-         strCommandLine += " style=" + string(session().str_context()->m_plocaleschema->m_idSchema);
+         strCommandLine += " locale=" + string(Session.str_context()->m_plocaleschema->m_idLocale);
+         strCommandLine += " style=" + string(Session.str_context()->m_plocaleschema->m_idSchema);
          strCommandLine += " install";
 
          System.install().start(strCommandLine,Application.command()->m_varTopicQuery["build_number"]);
@@ -3968,7 +3968,7 @@ namespace core
       {
          if(pchange->m_key.m_idIndex == "savings")
          {
-            pchange->data_get(::root::session().savings().m_eresourceflagsShouldSave);
+            pchange->data_get(Session.savings().m_eresourceflagsShouldSave);
          }
       }
    }
@@ -3977,7 +3977,7 @@ namespace core
    int32_t application::simple_message_box(sp(::user::interaction) puiOwner,const char * pszMessage,UINT fuStyle)
    {
 
-      if(!::root::session().user().is_set())
+      if(!Session.user().is_set())
          return ::base::application::simple_message_box(puiOwner,pszMessage,fuStyle);
 
       return userex()->simple_message_box(puiOwner,pszMessage,fuStyle);
@@ -3988,7 +3988,7 @@ namespace core
    int32_t application::simple_message_box_timeout(sp(::user::interaction) pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle)
    {
 
-      if(!::root::session().user().is_set())
+      if(!Session.user().is_set())
          return ::base::application::simple_message_box_timeout(pwndOwner,pszMessage,durationTimeOut,fuStyle);
 
       return userex()->simple_message_box_timeout(pwndOwner,pszMessage,durationTimeOut,fuStyle);

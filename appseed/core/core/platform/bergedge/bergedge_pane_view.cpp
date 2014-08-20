@@ -111,7 +111,7 @@ namespace bergedge
       if(::str::begins_eat(strId, "app:"))
       {
          sp(::axis::application) pappTab;
-         if(session().m_mapApplication.Lookup("application:" + strId, pappTab))
+         if(Session.m_mapApplication.Lookup("application:" + strId, pappTab))
          {
             platform().m_pappCurrent = pappTab;
             platform().m_pappCurrent = pappTab;
@@ -145,7 +145,7 @@ namespace bergedge
       {
    /*      sp(::user::interaction) pui = m_pformOptions->ve_display_bandwidth");
          check_interface * pcheck = dynamic_cast < check_interface * > (puie);
-         if(session().savings().save().is_signalized(::core::save_display_bandwidth))
+         if(Session.savings().save().is_signalized(::core::save_display_bandwidth))
          {
             pcheck->_001SetCheck(check::checked, false);
          }
@@ -195,7 +195,7 @@ namespace bergedge
       if(::str::begins_eat(strId, "app:"))
       {
          sp(::axis::application) pappTab;
-         if(!session().m_mapApplication.Lookup("application:" + strId, pappTab))
+         if(!Session.m_mapApplication.Lookup("application:" + strId, pappTab))
          {
 
             application_bias * pbiasCreate = new application_bias;
@@ -208,7 +208,7 @@ namespace bergedge
             string str;
             str = ::str::from((int_ptr) createcontext->m_spApplicationBias->m_puiParent);
             //simple_message_box(NULL, str, str, MB_ICONEXCLAMATION);
-            session().request_create(createcontext);
+            Session.request_create(createcontext);
 
          }
 

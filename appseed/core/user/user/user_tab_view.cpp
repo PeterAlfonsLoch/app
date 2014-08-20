@@ -563,7 +563,7 @@ namespace user
       pdc->FillSolidRect(rectClient, ARGB(84, 255,255,255));
 
       point ptCursor;
-      session().get_cursor_pos(&ptCursor);
+      Session.get_cursor_pos(&ptCursor);
       ScreenToClient(&ptCursor);
       e_position epositionDrag = m_ptab->DragHitTest(ptCursor);
       rect rectTop;

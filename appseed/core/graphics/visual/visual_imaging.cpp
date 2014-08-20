@@ -490,10 +490,10 @@ void EmbossedTextOut(
    RECT                    rcText;
 
    if (crShadow == (COLORREF)-1)
-      crShadow = sess(pdc->m_pbaseapp).get_default_color (COLOR_BTNSHADOW);
+      crShadow = sess(pdc->m_paxisapp).get_default_color (COLOR_BTNSHADOW);
 
    if (crText == (COLORREF)-1)
-      crText = sess(pdc->m_pbaseapp).get_default_color (COLOR_BTNTEXT);
+      crText = sess(pdc->m_paxisapp).get_default_color (COLOR_BTNTEXT);
 
    /* setup the DC, saving off the old values
    */
@@ -944,11 +944,11 @@ bool imaging::GrayVRCP(
    COLORREF crAlpha)
 {
    UNREFERENCED_PARAMETER(crAlpha);
-   //COLORREF cr3dface = session().get_default_color(COLOR_3DFACE);
+   //COLORREF cr3dface = Session.get_default_color(COLOR_3DFACE);
 
 #ifdef WINDOWSEX
 
-   COLORREF cr3dshadow = session().get_default_color(COLOR_3DSHADOW);
+   COLORREF cr3dshadow = Session.get_default_color(COLOR_3DSHADOW);
 
 #else
 
@@ -966,7 +966,7 @@ bool imaging::GrayVRCP(
 
 #ifdef WINDOWSEX
 
-   COLORREF cr3dhighlight = session().get_default_color(COLOR_3DHILIGHT);
+   COLORREF cr3dhighlight = Session.get_default_color(COLOR_3DHILIGHT);
 
 #else
 
@@ -1072,9 +1072,9 @@ bool imaging::GrayVRCP(
 
    BYTE br, bg, bb;
 
-   //   COLORREF crBtnFace = session().get_default_color(COLOR_BTNFACE);
-   //   COLORREF crBtnShad = session().get_default_color(COLOR_BTNSHADOW);
-   //   COLORREF crWndBack = session().get_default_color(COLOR_WINDOW);
+   //   COLORREF crBtnFace = Session.get_default_color(COLOR_BTNFACE);
+   //   COLORREF crBtnShad = Session.get_default_color(COLOR_BTNSHADOW);
+   //   COLORREF crWndBack = Session.get_default_color(COLOR_WINDOW);
 
    //   BYTE bRBtnFace = rgba_get_r(crBtnFace);
    //   BYTE bGBtnFace = rgba_get_g(crBtnFace);

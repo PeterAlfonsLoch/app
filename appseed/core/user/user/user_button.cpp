@@ -123,7 +123,7 @@ namespace user
          if(simple_process_system_message(pobj,::user::event_button_down))
          {
             
-            session().m_puiLastLButtonDown = this;
+            Session.m_puiLastLButtonDown = this;
 
          }
 
@@ -133,7 +133,7 @@ namespace user
 
    bool button::_001IsPressed()
    {
-      return session().m_puiLastLButtonDown == this;
+      return Session.m_puiLastLButtonDown == this;
    }
 
    void button::_001OnLButtonUp(signal_details * pobj)
@@ -143,9 +143,9 @@ namespace user
 
       e_element eelement;
 
-      if(hit_test(pmouse->m_pt, eelement) >= 0 && session().m_puiLastLButtonDown == this)
+      if(hit_test(pmouse->m_pt, eelement) >= 0 && Session.m_puiLastLButtonDown == this)
       {
-         session().m_puiLastLButtonDown = NULL;
+         Session.m_puiLastLButtonDown = NULL;
          ::user::control_event ev;
          ev.m_puie = this;
          ev.m_eevent = ::user::event_button_clicked;
@@ -456,7 +456,7 @@ namespace user
       POINT pt;
       // netshare
       // System.get_cursor_position(&pt);
-      session().get_cursor_pos(&pt);
+      Session.get_cursor_pos(&pt);
       e_element eelement;
       return hit_test(pt, eelement);
 

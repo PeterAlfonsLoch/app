@@ -120,7 +120,7 @@ namespace user
 
          point pt;
          
-         session().get_cursor_pos(&pt);
+         Session.get_cursor_pos(&pt);
 
          ::rect rectWindow;
 

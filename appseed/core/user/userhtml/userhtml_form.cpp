@@ -361,7 +361,7 @@ void html_form::_001GetText(string & str) const
 void html_form::_001SetText(const string & str, ::action::context actioncontext)
 {
 
-   bool bFocus = session().user()->get_keyboard_focus() == this || is_descendant(session().user()->get_keyboard_focus());
+   bool bFocus = Session.user()->get_keyboard_focus() == this || is_descendant(Session.user()->get_keyboard_focus());
 
    sp(::html::data) sphtmldata;
 
@@ -380,7 +380,7 @@ void html_form::_001SetText(const string & str, ::action::context actioncontext)
 	   sp(::user::keyboard_focus) pfocus = get_focusable_descendant();
       if(pfocus != NULL)
       {
-         session().user()->set_keyboard_focus(pfocus);
+         Session.user()->set_keyboard_focus(pfocus);
       }
    }
 }
