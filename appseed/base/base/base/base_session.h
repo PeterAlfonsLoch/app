@@ -69,7 +69,7 @@ namespace base
       inline ::userpresence::userpresence & userpresence() { return *m_puserpresence; }
       inline sp(::fontopus::fontopus)           fontopus()     { return m_pfontopus; }
 
-      application_ptra & appptra();
+      //application_ptra & appptra();
 
       virtual bool is_session();
 

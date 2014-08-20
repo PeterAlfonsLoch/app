@@ -1,8 +1,4 @@
 #include "framework.h"
-#ifdef WINDOWSEX
-#include <ShlObj.h>
-bool  SHGetSpecialFolderPath(oswindow oswindow,string &str,int32_t csidl,bool fCreate);
-#endif
 
 
 namespace fs
@@ -255,7 +251,7 @@ namespace fs
 
       m_strTitle = "Favoritos";
       
-      SHGetSpecialFolderPath(
+      ::windows::SHGetSpecialFolderPath(
          NULL,
          strSourceFolder,
          CSIDL_PROFILE,
@@ -281,7 +277,7 @@ namespace fs
 
       m_strTitle = "Área de Trabalho";
 
-      SHGetSpecialFolderPath(
+      ::windows::SHGetSpecialFolderPath(
          NULL,
          m_strPath,
          CSIDL_DESKTOP,

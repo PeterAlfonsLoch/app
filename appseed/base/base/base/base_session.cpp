@@ -1104,16 +1104,16 @@ namespace base
    //}
 
 
-   //bool  session::get_window_minimum_size(LPSIZE lpsize)
-   //{
+   bool  session::get_window_minimum_size(LPSIZE lpsize)
+   {
 
-   //   lpsize->cx = 184 + 177;
+      lpsize->cx = 184 + 177;
 
-   //   lpsize->cy = 184 + 177;
+      lpsize->cy = 184 + 177;
 
-   //   return true;
+      return true;
 
-   //}
+   }
 
 
 
@@ -1627,12 +1627,12 @@ namespace base
    }
 
 
-   //application_ptra & session::appptra()
-   //{
+   application_ptra & session::appptra()
+   {
 
-   //   return m_appptra;
+      return m_appptra;
 
-   //}
+   }
 
 
 
