@@ -9,7 +9,7 @@ namespace core
 
    process_departament::process_departament(application * papp) :
       element(papp),
-      ::base::departament(papp)
+      ::axis::departament(papp)
    {
    }
 

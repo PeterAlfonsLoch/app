@@ -10,7 +10,7 @@ namespace simpledb
 
    simpledb::simpledb(sp(::axis::application) papp) :
       element(papp),
-      ::base::departament(papp)
+      ::axis::departament(papp)
    {
 
       m_pserver      = NULL;

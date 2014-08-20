@@ -12,7 +12,7 @@ namespace base
       ::axis::session(papp)
    {
 
-      m_paxisapp        = dynamic_cast < sp(::axis::application) > (this);
+      m_paxisapp        = dynamic_cast < ::base::application * > (this);
 
       m_pbasesession    = this;
 

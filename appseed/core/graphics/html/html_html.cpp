@@ -7,7 +7,7 @@ namespace html
 
    html::html(sp(::axis::application) papp) :
       element(papp),
-      ::base::departament(papp),
+      ::axis::departament(papp),
       m_entityresolver(papp)
    {
 
@@ -23,7 +23,7 @@ namespace html
    void html::construct(sp(::axis::application) papp)
    {
 
-      ::base::departament::construct(papp);
+      ::axis::departament::construct(papp);
 
       m_clrInvalid = 0xffffffff;
       m_percentMax = USHRT_MAX;

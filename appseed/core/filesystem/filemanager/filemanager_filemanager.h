@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE filemanager :
-      virtual public ::base::departament,
+      virtual public ::axis::departament,
       virtual public ::filemanager::callback,
       virtual public ::filemanager::file_list_callback,
       virtual public ::database::client

@@ -11,7 +11,7 @@ namespace user
 
       uinteraction::uinteraction(sp(::axis::application) papp) :
          element(papp),
-         ::base::departament(papp)
+         ::axis::departament(papp)
       {
 
       }

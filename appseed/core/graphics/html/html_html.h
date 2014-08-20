@@ -12,7 +12,7 @@ namespace html
 
 
    class CLASS_DECL_CORE html :
-      public ::base::departament
+      public ::axis::departament
    {
    public:
 

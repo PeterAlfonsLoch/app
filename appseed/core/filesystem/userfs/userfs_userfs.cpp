@@ -7,7 +7,7 @@ namespace userfs
 
    userfs::userfs(sp(::axis::application) papp) :
       element(papp),
-      ::base::departament(papp)
+      ::axis::departament(papp)
    {
 
    }
@@ -29,7 +29,7 @@ namespace userfs
       }
 
 
-      if(!::base::departament::initialize())
+      if(!::axis::departament::initialize())
          return false;
 
 

@@ -10,7 +10,7 @@ namespace user
 
 
       class CLASS_DECL_CORE uinteraction :
-         virtual public ::base::departament
+         virtual public ::axis::departament
       {
       public:
 

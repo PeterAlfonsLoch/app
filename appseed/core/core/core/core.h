@@ -277,7 +277,7 @@ struct memory_state;
 
 
 
-#define new BASE_NEW
+#define new AXIS_NEW
 
 
 

@@ -7,7 +7,7 @@ namespace userex
 
    userex::userex(sp(::axis::application) papp):
       element(papp),
-      ::base::departament(papp),
+      ::axis::departament(papp),
       ::user::core(papp)
    {
 
@@ -46,7 +46,7 @@ namespace userex
 
       m_pshellimageset = new filemanager::_shell::ImageSet(m_pbaseapp);
 
-      if(!::base::departament::initialize1())
+      if(!::axis::departament::initialize1())
          return false;
 
       return true;
@@ -173,7 +173,7 @@ namespace userex
          return false;
 
 
-      if(!::base::departament::initialize())
+      if(!::axis::departament::initialize())
          return false;
 
       return true;
@@ -187,7 +187,7 @@ namespace userex
    {
 
 
-      if(!::base::departament::initialize2())
+      if(!::axis::departament::initialize2())
          return false;
 
       m_ptemplateForm = new ::user::multiple_document_template(
@@ -222,7 +222,7 @@ namespace userex
    {
       try
       {
-         ::base::departament::finalize();
+         ::axis::departament::finalize();
       }
       catch(...)
       {

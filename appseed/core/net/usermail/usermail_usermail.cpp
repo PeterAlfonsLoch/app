@@ -7,7 +7,7 @@ namespace usermail
 
    usermail::usermail(sp(::axis::application) papp) : 
       element(papp),
-      ::base::departament(papp)
+      ::axis::departament(papp)
    {
    }
 
@@ -19,7 +19,7 @@ namespace usermail
    bool usermail::initialize_instance()
    {
 
-      if(!::base::departament::initialize_instance())
+      if(!::axis::departament::initialize_instance())
          return FALSE;
 
 
@@ -30,7 +30,7 @@ namespace usermail
    {
       try
       {
-         ::base::departament::exit_instance();
+         ::axis::departament::exit_instance();
       }
       catch(...)
       {

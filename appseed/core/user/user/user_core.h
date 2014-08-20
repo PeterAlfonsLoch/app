@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_CORE core :
-      virtual public ::base::departament
+      virtual public ::axis::departament
    {
    public:
 

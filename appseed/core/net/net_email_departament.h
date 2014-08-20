@@ -6,7 +6,7 @@ namespace net
 
 
    class CLASS_DECL_CORE email_departament :
-      virtual public ::base::departament
+      virtual public ::axis::departament
    {
    public:
 

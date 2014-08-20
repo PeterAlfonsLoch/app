@@ -7,7 +7,7 @@ namespace filemanager
 
    filemanager::filemanager(sp(::axis::application) papp) :
       element(papp),
-      ::base::departament(papp)
+      ::axis::departament(papp)
    {
       m_ptemplateStd       = NULL;
 

@@ -31,7 +31,7 @@ namespace visual
 
 
    class CLASS_DECL_CORE visual  :
-      virtual public ::base::departament
+      virtual public ::axis::departament
    {
    public:
 

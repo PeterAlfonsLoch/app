@@ -3,7 +3,7 @@
 #ifdef WINDOWS
 #undef new
 #include <GdiPlus.h>
-#define new BASE_NEW
+#define new AXIS_NEW
 #endif
 
 #include "ft2build.h"
