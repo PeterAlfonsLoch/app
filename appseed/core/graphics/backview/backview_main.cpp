@@ -29,7 +29,7 @@ namespace backview
 
       m_pthreadHighestPriority   = new thread(get_app());
       m_pthreadHighestPriority->SetMain(this);
-      m_pthreadHighestPriority->begin(::base::scheduling_priority_highest);
+      m_pthreadHighestPriority->begin(::axis::scheduling_priority_highest);
 
       m_bPendingLayout = true;
 

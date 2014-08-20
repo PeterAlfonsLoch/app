@@ -556,7 +556,7 @@ namespace platform
    void view::mt_show_window(oswindow oswindow, int32_t iShow)
    {
 
-      __begin_thread(get_app(), &view::ThreadProcShowWindow, new show_window(oswindow, iShow), ::base::scheduling_priority_highest);
+      __begin_thread(get_app(), &view::ThreadProcShowWindow, new show_window(oswindow, iShow), ::axis::scheduling_priority_highest);
 
    }
 

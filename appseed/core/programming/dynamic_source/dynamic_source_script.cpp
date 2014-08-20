@@ -447,7 +447,7 @@ namespace dynamic_source
          try
          {
 
-            ::base::set_thread_priority(::base::scheduling_priority_highest);
+            ::base::set_thread_priority(::axis::scheduling_priority_highest);
 
          }
          catch(...)
@@ -497,7 +497,7 @@ namespace dynamic_source
          try
          {
 
-            ::base::set_thread_priority(::base::scheduling_priority_normal);
+            ::base::set_thread_priority(::axis::scheduling_priority_normal);
 
          }
          catch(...)

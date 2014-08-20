@@ -126,7 +126,7 @@ namespace visual
       if(!::axis::departament::initialize())
          return false;
 
-      __begin_thread(get_app(), &visual::thread_proc_parallel_initialize, this, ::base::scheduling_priority_highest);
+      __begin_thread(get_app(), &visual::thread_proc_parallel_initialize, this, ::axis::scheduling_priority_highest);
 
       return true;
 
