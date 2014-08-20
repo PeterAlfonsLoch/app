@@ -60,7 +60,7 @@ namespace axis
 
 
       bool                                            m_bLicense;
-      string                                          m_strAxisSupportId;
+      string                                          m_strBaseSupportId;
       int32_t                                         m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
 
 
