@@ -54,17 +54,24 @@ namespace base
 
 #endif
 
-      if(m_paxisapp == NULL)
-      {
-
-         m_paxisapp              = this;
-
-      }
-
       if(m_paxisapp != NULL)
       {
 
-         m_pbasesystem           = m_paxisapp->m_pbasesystem;
+         m_pbasesapp              = m_paxisapp->m_pbasesapp;
+
+      }
+
+      if(m_pbasesapp == NULL)
+      {
+
+         m_pbasesapp              = this;
+
+      }
+
+      if(m_pbasesapp != NULL)
+      {
+
+         m_pbasesystem           = m_pbasesapp->m_pbasesystem;
 
          if(m_paxisapp->m_pbasesession == NULL && m_pbasesystem != NULL)
          {
@@ -75,13 +82,13 @@ namespace base
          else
          {
 
-            m_pbasesession       = m_paxisapp->m_pbasesession;
+            m_pbasesession       = m_pbasesapp->m_pbasesession;
 
          }
 
 #ifdef WINDOWS
 
-         m_hinstance             = m_paxisapp->m_hinstance;
+         m_hinstance             = m_pbasesapp->m_hinstance;
 
 #endif
 
@@ -3640,8 +3647,9 @@ namespace base
          return http().get(varFile.get_string(),set);
 
       }
-      else if(::str::begins_ci(varFile["url"].get_string(),"http://")
-         || ::str::begins_ci(varFile["url"].get_string(),"https://"))
+      else if(varFile.has_property("url") &&
+         (::str::begins_ci(varFile["url"].get_string(),"http://")
+         || ::str::begins_ci(varFile["url"].get_string(),"https://")))
       {
 
          ::property_set set(get_app());
@@ -3651,7 +3659,7 @@ namespace base
       }
       else
       {
-         return file_as_string_dup(varFile.get_string());
+         return file().as_string(varFile.get_string());
       }
 
    }
@@ -3691,7 +3699,7 @@ namespace base
    void application::dir_matter_ls_file(const string & str,stringa & stra)
    {
 
-      throw not_implemented(get_app());
+      return dir().matter_ls_file(str,stra);
 
    }
 

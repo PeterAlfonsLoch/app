@@ -3839,6 +3839,8 @@ namespace core
          if(papp == NULL)
             return NULL;
 
+         papp->m_pcoreapp->m_paxissession = m_paxissession;
+
          papp->m_pcoreapp->m_pbasesession = m_pbasesession;
 
          if(papp != NULL)

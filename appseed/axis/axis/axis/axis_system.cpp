@@ -195,22 +195,9 @@ namespace axis
       factory().cloneable_large < ::primitive::memory >();
       factory().cloneable_large < int_array >();
 
-      __node_factory_exchange(this);
+      __node_axis_factory_exchange(this);
 
       thread::s_bAllocReady = true;
-
-      //Ex1OnFactoryExchange();
-
-      //m_spfilesystem.alloc(allocer());
-
-
-      /*   {
-
-            draw2d_gdiplus::factory_exchange factoryexchange(this);
-
-            }*/
-
-
 
       m_pxml = canew(::xml::departament(this));
 
@@ -245,9 +232,6 @@ namespace axis
       m_pthreadimpl.alloc(allocer());
 
       m_pthreadimpl->m_pthread = this;
-
-//      m_pthreadimpl->initialize_message_queue();
-
 
    }
 
@@ -341,7 +325,7 @@ namespace axis
 
 #endif
 
-      dappy(string(typeid(*this).name()) + " : Going to ::axis::session " + ::str::from(m_iReturnCode));
+/*      dappy(string(typeid(*this).name()) + " : Going to ::axis::session " + ::str::from(m_iReturnCode));
 
 
       m_paxissession = new ::axis::session(this);
@@ -357,7 +341,7 @@ namespace axis
          return false;
       }
 
-      dappy(string(typeid(*this).name()) + " : ::axis::session OK " + ::str::from(m_iReturnCode));
+      dappy(string(typeid(*this).name()) + " : ::axis::session OK " + ::str::from(m_iReturnCode));*/
 
       return true;
 

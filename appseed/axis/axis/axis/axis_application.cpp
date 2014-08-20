@@ -2939,7 +2939,7 @@ namespace axis
 
       {
 
-         ::file::binary_buffer_sp file = Session.file_get_file(Application.dir_userappdata(strPath),::file::mode_read);
+         ::file::binary_buffer_sp file = file_get_file(Application.dir_userappdata(strPath),::file::mode_read);
 
          if(file.is_null())
          {
@@ -2980,7 +2980,7 @@ namespace axis
 
       {
 
-         ::file::binary_buffer_sp file = Session.file_get_file(Application.dir_userappdata(strPath),::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
+         ::file::binary_buffer_sp file = file_get_file(Application.dir_userappdata(strPath),::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
 
          if(file.is_null())
          {

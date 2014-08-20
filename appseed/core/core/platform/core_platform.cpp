@@ -11,16 +11,22 @@ namespace core
    {
 
       m_pplatformcomposite                   = this;
+
+      m_paxissession                      = papp->m_paxissession;
          
       m_pbasesession                      = papp->m_pbasesession;
 
       m_pbasesession->m_pcoreplatform     = this;
 
+      m_paxissystem                       = papp->m_paxissystem;
+
       m_pbasesystem                       = papp->m_pbasesystem;
 
-      m_pbasesession->m_pplatformcomposite   = this;
+      m_pbasesession->m_pplatformcomposite = this;
 
       m_paxisapp                          = this;
+
+      m_pbasesapp                         = this;
       
       m_pcoreapp                          = this;
 
@@ -1949,6 +1955,8 @@ namespace core
       sp(::axis::application) pgenapp = (papp);
 
       pgenapp->m_pcoreapp->m_strAppId = pszAppId;
+
+      pgenapp->m_paxissystem = m_paxissystem;
 
       pgenapp->m_pbasesystem = m_pbasesystem;
 

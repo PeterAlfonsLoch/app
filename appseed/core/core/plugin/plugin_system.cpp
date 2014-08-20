@@ -17,7 +17,13 @@ namespace plugin
             m_paxisapp = papp;
          }
          
-      
+         if(m_paxissession == NULL)
+         {
+
+            m_paxissession = m_paxisapp->m_paxissession;
+
+         }
+
       if (m_pbasesession == NULL)
       {
          

@@ -27,7 +27,7 @@ namespace windows
 } // namespace windows
 
 
-void __node_factory_exchange(sp(::axis::application) papp)
+void __node_base_factory_exchange(sp(::axis::application) papp)
 {
 
    windows::factory_exchange factoryexchange(papp);

@@ -1,7 +1,7 @@
 #pragma once
 
 
-void __node_factory_exchange(sp(::axis::application) papp);
+void __node_base_factory_exchange(sp(::axis::application) papp);
 
 
 #ifdef WINDOWSEX

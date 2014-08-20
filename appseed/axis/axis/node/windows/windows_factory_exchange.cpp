@@ -41,7 +41,7 @@ namespace axis
 } // namespace axis
 
 
-void __node_factory_exchange(sp(::axis::application) papp)
+void __node_axis_factory_exchange(sp(::axis::application) papp)
 {
 
    ::axis::windows::factory_exchange factoryexchange(papp);

@@ -83,169 +83,14 @@ namespace base
       m_urldepartament(this),
       m_httpsystem(this)
    {
-      
-      
-      m_ptwf = NULL;
-
-#ifdef MATTER_CACHE_FROM_HTTP_SERVER
-
-      m_bMatterFromHttpCache = true;
-
-#else
-
-      m_bMatterFromHttpCache = false;
-
-#endif
-
-      m_psimpleui = NULL;
-
-#if defined(METROWIN) || defined(APPLE_IOS)
-      m_posdata = new os_data();
-#endif
-
-      set_app(this);
-      m_nSafetyPoolSize          = 512;        // default size
-
-      m_pmath                    = canew(math::math(this));
-      m_pgeometry                = canew(geometry::geometry(this));
-      m_phtml = NULL;
-
 
       m_pbasesystem = this;
 
-      if(papp == NULL)
-      {
-
-         oprop("parent_system") = (sp(element)) NULL;
-
-      }
-      else
-      {
-
-         oprop("parent_system") = papp->m_pbasesystem;
-
-      }
-
-      m_peengine = NULL;
-
-
-      m_pmachineeventcentral = NULL;
-
-      //::ca::application::m_file.set_app(this);
-      //::ca::application::m_dir.set_app(this);
-
-      string strId;
-      //strId = m_strAppName;
-      //strId += ::str::has_char(m_strAppId, ".");
-      //strId += ::str::has_char(m_strBaseSupportId, ".");
-
-
-      strId = "ca2log";
-
-
-      xxdebug_box("Going to start Log","Just before initialize log",0);
-
-      // log starts here
-      if(!initialize_log(strId))
-      {
-         xxdebug_box("Could not initialize log","Failed to initialize log",0);
-         throw "failed to initialize log";
-      }
-
-
-      /*
-      if(psystemParent == NULL)
-      {
-
-      m_peengine                                = new ::exception::engine(this);
-
-      }
-      else
-      {
-
-      m_peengine                                = psystemParent->m_peengine;
-
-      }
-      */
-
-
-      //use_base_ca2_allocator();
-
-
-      m_pfactory = new class base_factory(this);
-      m_pfactory->set_app(this);
-
-      m_pfactory->creatable_large < ::file::simple_binary_buffer >(type_info < ::file::binary_buffer >());
-      m_pfactory->creatable_large < ::file::string_buffer >();
-
       m_spinstall = new ::install::install(this);
 
-
-#ifdef WINDOWS
-      m_pmutexDc = NULL;
-      m_pdevicecontext = NULL;
-#endif
-
-
-      factory().cloneable_large < stringa >();
-      factory().cloneable_large < ::primitive::memory >();
-      factory().cloneable_large < int_array >();
-
-      __node_factory_exchange(this);
-
-      thread::s_bAllocReady = true;
-
-      //Ex1OnFactoryExchange();
-
-      //m_spfilesystem.alloc(allocer());
-
-
-      /*   {
-
-            draw2d_gdiplus::factory_exchange factoryexchange(this);
-
-            }*/
-
-
-
-      m_pxml = canew(::xml::departament(this));
-
-      m_pxml->construct(this);
-
-      if(!m_pxml->initialize1())
-         throw simple_exception(this,"failed to construct system m_pxml->initialize1()");
-
-      if(!m_pxml->initialize())
-         throw simple_exception(this,"failed to construct system m_pxml->initialize()");
-
-
-
-
+      __node_base_factory_exchange(this);
 
       m_compress.set_app(this);
-
-
-      m_bSystemSynchronizedCursor = true;
-
-      m_bSystemSynchronizedScreen = true;
-
-      m_spmutexUserAppData = canew(mutex(get_app(),false,"Local\\ca2.UserAppData"));
-      //m_spmutexSystemAppData = canew(mutex(get_app(),false,"Global\\ca2.SystemAppData"));
-      m_spmutexSystemAppData = canew(mutex(get_app(),false,"Local\\ca2.SystemAppData"));
-
-      m_spmutexFactory = canew(mutex(get_app()));
-
-      m_bGudoNetCache = true;
-
-      ::draw2d::dib::static_initialize();
-
-      m_pschemaLayeredFrame = new ::user::schema_layered_frame;
-
-      m_pthreadimpl.alloc(allocer());
-
-      m_pthreadimpl->m_pthread = this;
-
-//      m_pthreadimpl->initialize_message_queue();
 
 
    }
@@ -304,14 +149,9 @@ namespace base
       m_pfactory->cloneable_large < mutex >();
       m_pfactory->cloneable_large < event >();
 
-      if(!::axis::application::process_initialize())
+
+      if(!::axis::system::process_initialize())
          return false;
-
-#ifdef WINDOWSEX
-
-      m_spwindow = canew(interaction_impl(this));
-
-#endif
 
       m_spos.alloc(allocer());
 
@@ -321,35 +161,20 @@ namespace base
          return false;
 
 
-      if(!set_main_init_data(m_pinitmaindata))
-         return false;
-
-
-      if(m_pmachineeventcentral == NULL)
-      {
-
-         m_pmachineeventcentral = new ::machine_event_central(this);
-         if(!m_pmachineeventcentral->initialize())
-            return false;
-         if(m_pmachineeventcentral->is_close_application())
-            return false;
-
-      }
-
-#ifdef WINDOWSEX
-
-      dappy(string(typeid(*this).name()) + " : Going to ::base::system::m_spwindow->create_window_ex : " + ::str::from(m_iReturnCode));
-
-      if(!m_spwindow->create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"::base::system::interaction_impl::no_twf"))
-      {
-
-         dappy(string(typeid(*this).name()) + " : ::base::system::m_spwindow->create_window_ex failure : " + ::str::from(m_iReturnCode));
-
-         return false;
-
-      }
-
-#endif
+//#ifdef WINDOWSEX
+//
+//      dappy(string(typeid(*this).name()) + " : Going to ::base::system::m_spwindow->create_window_ex : " + ::str::from(m_iReturnCode));
+//
+//      if(!m_spwindow->create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"::base::system::interaction_impl::no_twf"))
+//      {
+//
+//         dappy(string(typeid(*this).name()) + " : ::base::system::m_spwindow->create_window_ex failure : " + ::str::from(m_iReturnCode));
+//
+//         return false;
+//
+//      }
+//
+//#endif
 
       dappy(string(typeid(*this).name()) + " : Going to ::base::session " + ::str::from(m_iReturnCode));
       m_spfile.alloc(allocer());
@@ -413,7 +238,7 @@ namespace base
 
       m_pfactory->enable_simple_factory_request();
 
-      if(!::axis::application::initialize_instance())
+      if(!::axis::system::initialize_instance())
          return false;
 
       return true;
