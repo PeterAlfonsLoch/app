@@ -198,6 +198,7 @@ public:
    virtual void WfiOnMaximize();
    virtual void WfiOnMinimize();
    virtual void WfiOnRestore();
+   virtual void WfiOnDock(::user::EAppearance eappearance);
 
    virtual bool DeferFullScreen(bool bFullScreen, bool bRestore);
 

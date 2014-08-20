@@ -38,6 +38,9 @@ namespace user
             virtual bool WfiIsFullScreenEnabled();
 
 
+            virtual bool Wfi(EAppearance eappearance = AppearanceCurrent);
+
+            virtual bool WfiDock(EAppearance eappearance);
             virtual bool WfiClose();
             virtual bool WfiRestore(bool bForceNormal = false);
             virtual bool WfiMinimize();
@@ -53,7 +56,7 @@ namespace user
             virtual bool WfiOnSize(bool bTracking);
             virtual bool WfiOnMove(bool bTracking);
 
-
+            virtual void WfiOnDock(EAppearance eapperance);
             virtual void WfiOnDown();
             virtual void WfiOnUp();
             virtual void WfiOnRestore();
@@ -63,6 +66,7 @@ namespace user
             virtual void WfiOnExitFullScreen();
             virtual void WfiOnClose();
             virtual void WfiOnNotifyIcon();
+            virtual bool WfiOnBeforeDock(EAppearance eapperance);
             virtual bool WfiOnBeforeDown();
             virtual bool WfiOnBeforeUp();
             virtual bool WfiOnBeforeRestore();
@@ -71,6 +75,7 @@ namespace user
             virtual bool WfiOnBeforeClose();
             virtual bool WfiOnBeforeFullScreen();
             virtual bool WfiOnBeforeNotifyIcon();
+            virtual void WfiOnAfterDock(EAppearance eapperance);
             virtual void WfiOnAfterDown();
             virtual void WfiOnAfterUp();
             virtual void WfiOnAfterRestore();

@@ -792,6 +792,11 @@ void simple_frame_window::_001OnDdeInitiate(signal_details * pobj)
 void simple_frame_window::pre_translate_message(signal_details * pobj)
 {
    SCAST_PTR(::message::base, pbase, pobj);
+   if(pbase->m_uiMessage == WM_APP + 1984 + 21)
+   {
+      Wfi();
+   }
+   else
    if (pbase->m_uiMessage == WM_MOUSEMOVE)
    {
 
@@ -1743,7 +1748,13 @@ void simple_frame_window::WfiOnRestore()
 
    _001WindowRestore();
 
-   //good_restore(NULL,NULL,true);
+}
+
+
+void simple_frame_window::WfiOnDock(::user::EAppearance eappearance)
+{
+
+   _001WindowDock(eappearance);
 
 }
 

@@ -1391,6 +1391,7 @@ namespace axis
 
       ::user::interaction::install_message_handling(pdispatch);
 
+      IGUI_WIN_MSG_LINK(WM_SETTINGCHANGE,pdispatch,this,&::axis::system::interaction_impl::_001MessageHub);
       IGUI_WIN_MSG_LINK(WM_DISPLAYCHANGE,pdispatch,this,&::axis::system::interaction_impl::_001MessageHub);
 
    }
@@ -1403,7 +1404,9 @@ namespace axis
       if(pbase != NULL)
       {
 
-         if(pbase->m_uiMessage == WM_DISPLAYCHANGE)
+         if(pbase->m_uiMessage == WM_DISPLAYCHANGE ||
+            (pbase->m_uiMessage == WM_SETTINGCHANGE &&
+            (pbase->m_wparam == SPI_SETWORKAREA)))
          {
 
             System.enum_display_monitors();
@@ -1414,7 +1417,7 @@ namespace axis
                try
                {
 
-                  System.frames()[i]->WfiRestore(true);
+                  System.frames()[i]->post_message(WM_APP + 1984 + 21);
 
                }
                catch(...)

@@ -558,6 +558,9 @@ namespace user
       virtual bool WfiIsIconic();
 
 
+      virtual bool Wfi(EAppearance eapperance = AppearanceCurrent);
+
+      virtual bool WfiDock(EAppearance eapperance);
       virtual bool WfiClose();
       virtual bool WfiRestore(bool bForceNormal = false);
       virtual bool WfiMinimize();

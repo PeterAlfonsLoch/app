@@ -9,6 +9,7 @@ namespace user
    {
 
       AppearanceNone,
+      AppearanceCurrent,
       AppearanceIconic,
       AppearanceNormal,
       AppearanceLeft,
@@ -24,7 +25,7 @@ namespace user
       AppearanceNotifyIcon,
       AppearanceUp,
       AppearanceDown,
-      AppearanceFixedSize
+      AppearanceFixedSize,
               
 
    };

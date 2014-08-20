@@ -4151,6 +4151,21 @@ namespace user
    }
 
 
+   bool interaction::Wfi(EAppearance eapperance)
+   {
+
+      return false;
+
+   }
+
+
+   bool interaction::WfiDock(EAppearance eapperance)
+   {
+
+      return false;
+
+   }
+
    bool interaction::WfiRestore(bool bForceNormal)
    {
 

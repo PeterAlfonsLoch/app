@@ -48,7 +48,7 @@ namespace visual
    void graphics_extension::GetTextExtent(::draw2d::graphics *pdc, const char * lpsz, size & size)
    {
 
-      synch_lock ml(&user_mutex());
+      //synch_lock ml(&user_mutex());
 
       /*string str(lpwsz);
       if(pdc == NULL)

@@ -2449,6 +2449,20 @@ namespace user
       return false;
 
    }
+   bool interaction_base::Wfi(EAppearance eapperance)
+   {
+
+      return false;
+
+   }
+
+
+   bool interaction_base::WfiDock(EAppearance eapperance)
+   {
+
+      return false;
+
+   }
 
 
    bool interaction_base::WfiRestore(bool bForceNormal)

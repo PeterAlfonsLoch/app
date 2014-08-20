@@ -61,6 +61,11 @@ namespace user
 
          }
 
+         void WorkSetClientInterface::WfiOnDock(EAppearance eapperance)
+         {
+
+         }
+
          void WorkSetClientInterface::WfiOnUp()
          {
 
@@ -68,6 +73,82 @@ namespace user
 
          void WorkSetClientInterface::WfiOnDown()
          {
+
+         }
+
+         bool WorkSetClientInterface::Wfi(EAppearance eappearance)
+         {
+
+            if(eappearance == AppearanceCurrent)
+            {
+
+               eappearance = m_eappearance;
+
+            }
+
+            if(eappearance == AppearanceNone)
+            {
+
+               return true;
+
+            }
+
+            if(::user::is_docking_appearance(eappearance))
+            {
+               WfiDock(eappearance);
+            }
+            else
+            {
+               switch(eappearance)
+               {
+               case AppearanceZoomed:
+                  WfiMaximize();
+                  break;
+               case AppearanceIconic:
+                  WfiMinimize();
+                  break;
+               case AppearanceNormal:
+                  WfiRestore(true);
+                  break;
+               case AppearanceNotifyIcon:
+                  WfiNotifyIcon();
+                  break;
+               case AppearanceFullScreen:
+                  WfiFullScreen();
+                  break;
+               case AppearanceUp:
+                  WfiUp();
+                  break;
+               case AppearanceDown:
+                  WfiDown();
+                  break;
+               default:
+                  WfiRestore(true);
+                  break;
+               }
+            }
+
+            return false;
+
+         }
+
+
+         bool WorkSetClientInterface::WfiDock(EAppearance eappearance)
+         {
+
+            if(!::user::is_docking_appearance(eappearance))
+               return false;
+
+            if(!WfiOnBeforeDock(eappearance))
+               return false;
+
+            m_workset.SetAppearance(eappearance);
+
+            WfiOnDock(eappearance);
+
+            WfiOnAfterDock(eappearance);
+
+            return false;
 
          }
 
@@ -346,6 +427,19 @@ namespace user
 
          }
 
+         bool WorkSetClientInterface::WfiOnBeforeDock(EAppearance eappearance)
+         {
+
+            if(WfiIsFullScreen())
+            {
+
+               WfiOnExitFullScreen();
+
+            }
+
+            return true;
+
+         }
 
          bool WorkSetClientInterface::WfiOnBeforeDown()
          {
@@ -413,6 +507,11 @@ namespace user
          }
 
          void WorkSetClientInterface::WfiOnAfterDown()
+         {
+            WindowDataSaveWindowRect();
+         }
+
+         void WorkSetClientInterface::WfiOnAfterDock(EAppearance eappearance)
          {
             WindowDataSaveWindowRect();
          }
