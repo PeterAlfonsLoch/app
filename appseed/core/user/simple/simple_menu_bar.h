@@ -48,7 +48,7 @@ public:
         LPARAM lParam   // address of structure with message data
         );
 
-   virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
+   virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
    virtual void pre_translate_message(signal_details * pobj);
    protected:
    virtual bool pre_create_window(::user::create_struct& cs);

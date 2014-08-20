@@ -985,7 +985,7 @@ class Ex1FactoryImpl;
 
 
 
-#include "core/compress/compress.h"
+//#include "core/compress/compress.h"
 //#include "core/programming/javascript/javascript.h"
 
 // former core - changed to core on 2013-02-21

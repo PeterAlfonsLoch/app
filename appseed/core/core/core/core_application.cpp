@@ -986,7 +986,7 @@ namespace core
       }
    }
 
-   bool application::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
+   bool application::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
 
    {
       if(command_target_interface::_001OnCmdMsg(pcmdmsg))
@@ -3949,7 +3949,7 @@ namespace core
 
 
 
-   bool application::add_library(::base::library * plibrary)
+   bool application::add_library(::axis::library * plibrary)
    {
 
       plibrary->set_app(this);

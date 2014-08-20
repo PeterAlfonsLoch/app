@@ -123,7 +123,7 @@ bool simple_menu_bar::pre_create_window(::user::create_struct& cs)
 }*/
 
 
-bool simple_menu_bar::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
+bool simple_menu_bar::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
 {
    // TODO: add your specialized code here and/or call the base class
 

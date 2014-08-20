@@ -100,7 +100,7 @@ namespace filemanager
 
       virtual bool on_new_document();
 
-      virtual bool HandleDefaultFileManagerItemCmdMsg(::base::cmd_msg * pcmdmsg,::fs::item_array & itema);
+      virtual bool HandleDefaultFileManagerItemCmdMsg(::axis::cmd_msg * pcmdmsg,::fs::item_array & itema);
 
       void PopViews();
       void CreateViews();

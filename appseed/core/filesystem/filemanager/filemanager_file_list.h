@@ -77,7 +77,7 @@ namespace filemanager
 
       void FileSize();
 
-      virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
       virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
       virtual bool pre_create_window(::user::create_struct& cs);
 

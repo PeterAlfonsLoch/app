@@ -57,7 +57,7 @@ namespace user
 
 #endif
 
-         ::base::library library(get_app(), 0, NULL);
+         ::axis::library library(get_app(), 0, NULL);
 
          string strLibrary(strId);
 

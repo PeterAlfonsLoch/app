@@ -35,7 +35,7 @@ namespace dynamic_source
       stringa                                m_straSourcePath;
       stringa                                m_straCppPath;
       string                                 m_strLibraryPath;
-      ::base::library                        m_library;
+      ::axis::library                        m_library;
 
       array < __time_t, __time_t & >         m_ftaCreation;
       array < __time_t, __time_t & >         m_ftaAccess;

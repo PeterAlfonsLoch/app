@@ -745,7 +745,7 @@ namespace userex
    }
 
 
-   bool userex::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
+   bool userex::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
    {
 
       UNREFERENCED_PARAMETER(pcmdmsg);

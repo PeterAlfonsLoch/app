@@ -42,7 +42,7 @@ namespace dynamic_source
    public:
 
 
-      ::base::library                  m_library;
+      ::axis::library                  m_library;
 
 
 #ifdef WINDOWS

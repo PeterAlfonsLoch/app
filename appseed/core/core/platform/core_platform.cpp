@@ -202,7 +202,7 @@ namespace core
    }
 
 
-   bool platform::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
+   bool platform::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
    {
 
       return application::_001OnCmdMsg(pcmdmsg);
@@ -1910,7 +1910,7 @@ namespace core
 
 #endif
 
-      ::base::library library(pappNewApplicationParent,0,NULL);
+      ::axis::library library(pappNewApplicationParent,0,NULL);
 
 #ifdef CUBE
 

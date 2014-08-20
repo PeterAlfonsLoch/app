@@ -434,10 +434,10 @@ namespace user
             return false;
          }
 
-         bool WorkSet::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
+         bool WorkSet::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
          {
 
-            if(pcmdmsg->m_etype == ::base::cmd_msg::type_command && m_pwndCommand != NULL)
+            if(pcmdmsg->m_etype == ::axis::cmd_msg::type_command && m_pwndCommand != NULL)
             {
 
                WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pwndCommand.m_p);

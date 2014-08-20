@@ -230,7 +230,7 @@ namespace core
       void OnUpdateRecentFileMenu(cmd_ui * pcmdui);
 
       virtual DECL_GEN_SIGNAL(OnAppLanguage);
-      virtual bool _001OnCmdMsg(::base::cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
 
 
 
@@ -552,7 +552,7 @@ namespace core
       //       virtual sp(::bergedge::document) get_document();
 
 
-      virtual bool add_library(::base::library * plibrary);
+      virtual bool add_library(::axis::library * plibrary);
 
       virtual ::userex::userex * create_userex();
       virtual ::userfs::userfs * create_userfs();
