@@ -53,6 +53,7 @@ namespace draw2d_direct2d
       bool set(const ::draw2d::path::arc & arc);
       bool set(const ::draw2d::path::move & move);
       bool set(const ::draw2d::path::line & line);
+      bool set(const ::draw2d::path::string_path & path);
 
 
 

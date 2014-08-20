@@ -83,7 +83,7 @@ namespace draw2d_direct2d
    graphics::~graphics()
    {
 
-      synch_lock ml(&user_mutex());
+      synch_lock ml(&draw2d_direct2_mutex());
 
       if(m_prendertarget != NULL)
       {
@@ -149,7 +149,7 @@ namespace draw2d_direct2d
 
       //single_lock sl(System.m_pmutexDc, true);
 
-      synch_lock ml(&user_mutex());
+      synch_lock ml(&draw2d_direct2_mutex());
 
       if(m_iType != 0)
          destroy();
@@ -652,10 +652,11 @@ namespace draw2d_direct2d
    bool graphics::Polyline(const POINT* lpPoints, int nCount)
    {
 
-      throw todo(get_app());
+      //throw todo(get_app());
       //ASSERT(get_handle1() != NULL);
 
       //return ::Polyline(get_handle1(), lpPoints, nCount) != FALSE;
+      return true;
 
    }
 
@@ -1069,7 +1070,7 @@ namespace draw2d_direct2d
 
       ::draw2d::path_sp path(allocer());
 
-      path->begin_figure(get_os_brush() != NULL, ::draw2d::fill_mode_winding);
+      path->begin_figure(get_os_brush(m_spbrush) != NULL, ::draw2d::fill_mode_winding);
 
       path->add_lines(lpPoints, nCount);
 
@@ -1153,7 +1154,7 @@ namespace draw2d_direct2d
    bool graphics::FillRectangle(int x1, int y1, int x2, int y2)
    { 
 
-      if(get_os_brush() == NULL)
+      if(get_os_brush(m_spbrush) == NULL)
          return true;
 
       D2D1_RECT_F r;
@@ -1163,7 +1164,7 @@ namespace draw2d_direct2d
       r.right     = (FLOAT) x2;
       r.bottom    = (FLOAT) y2;
 
-      m_prendertarget->FillRectangle(r, (ID2D1Brush *) get_os_brush());
+      m_prendertarget->FillRectangle(r, (ID2D1Brush *) get_os_brush(m_spbrush));
 
       return true;
 
@@ -1575,7 +1576,7 @@ namespace draw2d_direct2d
       UINT32 findex; 
       BOOL exists;
 
-      if (get_os_font() == NULL)
+      if (get_os_font(m_spfont) == NULL)
       {
          lpMetrics->tmAveCharWidth = 0;
          lpMetrics->tmAscent = 0;
@@ -1584,9 +1585,9 @@ namespace draw2d_direct2d
 
          return true;
       }
-      get_os_font()->GetFontFamilyName(name, 256);
+      get_os_font(m_spfont)->GetFontFamilyName(name, 256);
 
-      get_os_font()->GetFontCollection(&pcollection);
+      get_os_font(m_spfont)->GetFontCollection(&pcollection);
 
       if (pcollection == NULL)
       {
@@ -1632,7 +1633,7 @@ namespace draw2d_direct2d
       }
       IDWriteFont * pfont;
 
-      ffamily->GetFirstMatchingFont(get_os_font()->GetFontWeight(), get_os_font()->GetFontStretch(), get_os_font()->GetFontStyle(), &pfont);
+      ffamily->GetFirstMatchingFont(get_os_font(m_spfont)->GetFontWeight(), get_os_font(m_spfont)->GetFontStretch(), get_os_font(m_spfont)->GetFontStyle(), &pfont);
 
       if (pfont == NULL)
       {
@@ -1651,7 +1652,7 @@ namespace draw2d_direct2d
 
       pfont->GetMetrics(&metrics);
 
-      double ratio = get_os_font()->GetFontSize() / (float)metrics.designUnitsPerEm;
+      double ratio = get_os_font(m_spfont)->GetFontSize() / (float)metrics.designUnitsPerEm;
 
       string str("APÁpgfditflmnopw");
 
@@ -3953,44 +3954,44 @@ namespace draw2d_direct2d
       if (m_spfont.is_null())
          return false;
 
-      if (get_os_font() == NULL)
+      if (get_os_font(m_spfont) == NULL)
          return false;
 
       if (nFormat & DT_RIGHT)
       {
 
-         get_os_font()->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_TRAILING);
+         get_os_font(m_spfont)->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_TRAILING);
 
       }
       else if (nFormat & DT_CENTER)
       {
 
-         get_os_font()->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER);
+         get_os_font(m_spfont)->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER);
 
       }
       else
       {
 
-         get_os_font()->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
+         get_os_font(m_spfont)->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
 
       }
 
       if (nFormat & DT_BOTTOM)
       {
 
-         get_os_font()->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_FAR);
+         get_os_font(m_spfont)->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_FAR);
 
       }
       else if (nFormat & DT_VCENTER)
       {
 
-         get_os_font()->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
+         get_os_font(m_spfont)->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
 
       }
       else
       {
 
-         get_os_font()->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
+         get_os_font(m_spfont)->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
 
       }
 
@@ -4010,7 +4011,7 @@ namespace draw2d_direct2d
 
       m_prendertarget->SetTransform(&m);
 
-      m_prendertarget->DrawText(wstr, (UINT32) wstr.get_length(), get_os_font(), &rectf, get_os_brush());
+      m_prendertarget->DrawText(wstr, (UINT32) wstr.get_length(), get_os_font(m_spfont), &rectf, get_os_brush(m_spbrush));
 
       m_prendertarget->SetTransform(&mOriginal);
       
@@ -4123,7 +4124,7 @@ namespace draw2d_direct2d
       if (m_spfont.is_null())
          return false;
 
-      if (get_os_font() == NULL)
+      if (get_os_font(m_spfont) == NULL)
          return false;
 
       string str(lpszString, iIndex);
@@ -4276,7 +4277,7 @@ namespace draw2d_direct2d
       r.right     = (FLOAT) x + cx;
       r.bottom    = (FLOAT) y + cy;
 
-      m_prendertarget->FillRectangle(r, get_os_brush());
+      m_prendertarget->FillRectangle(r, get_os_brush(m_spbrush));
 
 
    }
@@ -4331,7 +4332,7 @@ namespace draw2d_direct2d
       if (m_spfont.is_null())
          return false;
 
-      if (get_os_font() == NULL)
+      if (get_os_font(m_spfont) == NULL)
          return false;
 
       D2D1::Matrix3x2F m;
@@ -4342,9 +4343,9 @@ namespace draw2d_direct2d
 
       D2D1_RECT_F rectf = D2D1::RectF((FLOAT) (x / m_spfont->m_dFontWidth), (FLOAT)y, (FLOAT) (1024 * 1024), (FLOAT) (1024 * 1024));
 
-      get_os_font()->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
+      get_os_font(m_spfont)->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
 
-      get_os_font()->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
+      get_os_font(m_spfont)->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
 
       string str(lpszString, nCount);
 
@@ -4354,7 +4355,7 @@ namespace draw2d_direct2d
 
       m_prendertarget->SetTransform(&m);
 
-      m_prendertarget->DrawText(wstr, (UINT32)wstr.get_length(), get_os_font(), &rectf, get_os_brush());
+      m_prendertarget->DrawText(wstr, (UINT32)wstr.get_length(), get_os_font(m_spfont), &rectf, get_os_brush(m_spbrush));
 
       m_prendertarget->SetTransform(mOriginal);
 
@@ -4377,7 +4378,7 @@ namespace draw2d_direct2d
       p2.x = (FLOAT) x;
       p2.y = (FLOAT) y;
 
-      ID2D1Brush * pbrush =  get_os_pen_brush();
+      ID2D1Brush * pbrush =  get_os_pen_brush(m_sppen);
 
       if(pbrush == NULL)
          return false;
@@ -4672,7 +4673,7 @@ namespace draw2d_direct2d
    bool graphics::draw_path(::draw2d::path * ppath)
    {
 
-      ::ID2D1Brush * pbrush = get_os_pen_brush();
+      ::ID2D1Brush * pbrush = get_os_pen_brush(m_sppen);
 
       if (pbrush == NULL)
          return false;
@@ -4684,6 +4685,35 @@ namespace draw2d_direct2d
       return true;
 
    }
+
+
+
+   bool graphics::draw_path(::draw2d::path * ppath, ::draw2d::pen * ppen)
+   {
+
+      ::ID2D1Brush * pbrush = get_os_pen_brush(ppen);
+
+      if(pbrush == NULL)
+         return false;
+
+      ID2D1PathGeometry * pg = (ID2D1PathGeometry *)ppath->get_os_data();
+      if(pg != NULL)
+      {
+         m_prendertarget->DrawGeometry(pg,pbrush,(FLOAT)ppen->m_dWidth);
+      }
+
+      for(index i = 0; i < ppath->m_elementa.get_size(); i++)
+      {
+         if(ppath->m_elementa[i].m_etype == ::draw2d::path::element::type_string)
+         {
+            draw(ppath->m_elementa[i].m_stringpath, ppen);
+         }
+      }
+
+      return true;
+
+   }
+
 
    bool graphics::fill_path(::draw2d::path * ppath)
    {
@@ -4697,7 +4727,7 @@ namespace draw2d_direct2d
 
       ppath->m_bUpdated = false;
 
-      ID2D1Brush * pbrush = get_os_brush();
+      ID2D1Brush * pbrush = get_os_brush(m_spbrush);
 
       if(pbrush == NULL)
          return false;
@@ -4708,6 +4738,37 @@ namespace draw2d_direct2d
          return false;
 
       m_prendertarget->FillGeometry(pgeometry, pbrush);
+
+      //HRESULT hr = m_prendertarget->Flush();
+
+      return true;
+
+   }
+
+
+   bool graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrushParam)
+   {
+
+      if(ppath == NULL)
+         return false;
+
+      keep < bool > keepPreviousFill(&ppath->m_bFill,true,ppath->m_bFill,true);
+
+      ppath->m_bFill = true;
+
+      ppath->m_bUpdated = false;
+
+      ID2D1Brush * pbrush = get_os_brush(pbrushParam);
+
+      if(pbrush == NULL)
+         return false;
+
+      ID2D1PathGeometry * pgeometry = (ID2D1PathGeometry *)ppath->get_os_data();
+
+      if(pgeometry == NULL)
+         return false;
+
+      m_prendertarget->FillGeometry(pgeometry,pbrush);
 
       //HRESULT hr = m_prendertarget->Flush();
 
@@ -4730,57 +4791,73 @@ namespace draw2d_direct2d
    }
 
 
-   IDWriteTextFormat * graphics::get_os_font() const
+   IDWriteTextFormat * graphics::get_os_font(::draw2d::font * pfont) const
    {
 
-      if(m_spfont.is_null())
-      {
-       
-         ((graphics *) this)->m_spfont.alloc(((graphics *) this)->allocer());
-         ((graphics *) this)->m_spfont->m_powner = (void *) (graphics *) this;
+      pfont->m_powner = (void *) (graphics *) this;
 
-      }
-
-      if(m_spfont.is_null())
-         return NULL;
-
-      return (dynamic_cast < ::draw2d_direct2d::font * > (m_spfont.m_p))->get_os_font((graphics *) this);
+      return (dynamic_cast < ::draw2d_direct2d::font * > (pfont))->get_os_font((graphics *) this);
 
    }
 
-   ID2D1Brush * graphics::get_os_brush() const
+
+   ID2D1Brush * graphics::get_os_brush(::draw2d::brush * pbrush) const
    {
 
-      if(m_spbrush.is_null())
-      {
-         ((graphics *) this)->m_spbrush.alloc(((graphics *) this)->allocer());
-         ((graphics *) this)->m_spbrush->m_powner = (void *) (graphics *) this;
-      }
+      pbrush->m_powner = (void *) (graphics *) this;
 
-      if(m_spbrush.is_null())
-         return NULL;
-
-      return (dynamic_cast < ::draw2d_direct2d::brush * > (m_spbrush.m_p))->get_os_brush((graphics *) this);
+      return (dynamic_cast < ::draw2d_direct2d::brush * > (pbrush))->get_os_brush((graphics *) this);
 
    }
 
-   ID2D1Brush * graphics::get_os_pen_brush() const
+   ID2D1Brush * graphics::get_os_pen_brush(::draw2d::pen * ppen) const
    {
 
-      if(m_sppen.is_null())
-      {
-         
-         ((graphics *) this)->m_sppen.alloc(((graphics *) this)->allocer());
-         ((graphics *) this)->m_sppen->m_powner = (void *) (graphics *) this;
+      ppen->m_powner = (void *) (graphics *) this;
 
-      }
-
-      if(m_sppen.is_null())
-         return NULL;
-
-      return (dynamic_cast < ::draw2d_direct2d::pen * > (m_sppen.m_p))->get_os_pen_brush((graphics *) this);
+      return (dynamic_cast < ::draw2d_direct2d::pen * > (ppen))->get_os_pen_brush((graphics *) this);
 
    }
+
+   bool graphics::draw(const ::draw2d::path::string_path & path, ::draw2d::pen * ppen)
+   {
+
+
+      wstring szOutline(path.m_strText);
+
+      IDWriteTextFormat * pformat =(IDWriteTextFormat *) get_os_font(path.m_spfont);
+
+      IDWriteFactory * pfactory = TlsGetWriteFactory();
+
+
+      IDWriteTextLayout * playout = NULL;
+
+      HRESULT hr = pfactory->CreateTextLayout(
+         szOutline,      // The string to be laid out and formatted.
+         szOutline.length(),  // The length of the string.
+         pformat,  // The text format to apply to the string (contains font information, etc).
+         4096,         // The width of the layout box.
+         4096,        // The height of the layout box.
+         &playout  // The IDWriteTextLayout interface pointer.
+         );
+
+      if(playout == NULL)
+      {
+         return false;
+      }
+
+      CustomTextRenderer * pr = new CustomTextRenderer(GetD2D1Factory1(),m_prendertarget.Get(),get_os_pen_brush(ppen));
+
+
+      playout->Draw(NULL, pr, path.m_x, path.m_y);
+
+
+      delete pr;
+
+
+
+   }
+
 
 } // namespace draw2d_direct2d
 

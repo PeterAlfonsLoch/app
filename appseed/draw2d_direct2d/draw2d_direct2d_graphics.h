@@ -142,6 +142,8 @@ namespace draw2d_direct2d
       virtual bool fill_path(::draw2d::path * ppath);
       virtual bool path(::draw2d::path * ppath);
 
+      virtual bool draw_path(::draw2d::path * ppath, ::draw2d::pen * ppen);
+      virtual bool fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush);
 
       // World transform
       bool SetWorldTransform(const XFORM* pXform);
@@ -486,9 +488,12 @@ namespace draw2d_direct2d
 
       virtual bool destroy();
 
-      IDWriteTextFormat * get_os_font() const;
-      ID2D1Brush * get_os_brush() const;
-      ID2D1Brush * get_os_pen_brush() const;
+      IDWriteTextFormat * get_os_font(::draw2d::font * pfont) const;
+      ID2D1Brush * get_os_brush(::draw2d::brush * pbrush) const;
+      ID2D1Brush * get_os_pen_brush(::draw2d::pen * ppen) const;
+
+      virtual bool draw(const ::draw2d::path::string_path & path,::draw2d::pen * ppen);
+
 
    //protected:
       // used for implementation of non-virtual SelectObject calls

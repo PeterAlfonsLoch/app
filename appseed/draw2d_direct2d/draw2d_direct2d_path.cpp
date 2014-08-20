@@ -269,7 +269,14 @@ namespace draw2d_direct2d
 
       }
 
-      m_psink->Close();
+      if(m_psink != NULL)
+      {
+         m_psink->Close();
+      }
+      else
+      {
+         m_ppath = nullptr;
+      }
 
       m_psink = nullptr;
 
@@ -291,6 +298,9 @@ namespace draw2d_direct2d
          break;
       case ::draw2d::path::element::type_line:
          set(e.u.m_line);
+         break;
+      case ::draw2d::path::element::type_string:
+         set(e.m_stringpath);
          break;
       case ::draw2d::path::element::type_end:
          internal_end_figure(e.u.m_end.m_bClose);
@@ -331,6 +341,13 @@ namespace draw2d_direct2d
    {
 
       return internal_add_line((int) line.m_x, (int) line.m_y);
+
+   }
+
+   bool graphics_path::set(const ::draw2d::path::string_path & path)
+   {
+
+      return true;
 
    }
 
