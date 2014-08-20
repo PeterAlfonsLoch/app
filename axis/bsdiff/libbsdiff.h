@@ -6,10 +6,23 @@
 #define bs_offset long
 #endif
 
+#ifdef __cplusplus
+
+#ifdef _BSDIFF_LIBRARY
+#define CLASS_DECL_BSDIFF  extern "C" _declspec(dllexport)
+#else
+#define CLASS_DECL_BSDIFF  extern "C" _declspec(dllimport)
+#endif
+
+#else
+
 #ifdef _BSDIFF_LIBRARY
 #define CLASS_DECL_BSDIFF  _declspec(dllexport)
 #else
 #define CLASS_DECL_BSDIFF  _declspec(dllimport)
+#endif
+
+
 #endif
 
 CLASS_DECL_BSDIFF int libbsdiff_diff(bs_offset * bsret,unsigned char *old,bs_offset oldsize,unsigned char *pnew,bs_offset newsize,unsigned char *patch,bs_offset patch_size);

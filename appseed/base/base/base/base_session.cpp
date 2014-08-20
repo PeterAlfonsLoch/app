@@ -1627,12 +1627,6 @@ namespace base
    }
 
 
-   application_ptra & session::appptra()
-   {
-
-      return m_appptra;
-
-   }
 
 
 

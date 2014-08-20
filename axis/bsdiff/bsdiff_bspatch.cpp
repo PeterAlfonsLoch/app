@@ -23,39 +23,28 @@
  * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
 */
+#include "appseed/axis/axis/axis/axis.h"
 #include "bzip2/bzlib.h"
 #include "libbsdiff.h"
 
 
-int err(int i, const char* str)
+int err(int i, const char* str, ...)
 {
-    
-   wchar_t lastErrorTxt[1024];
-    
-#if defined(WINDOWS)
-    
-   FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM|FORMAT_MESSAGE_IGNORE_INSERTS,NULL,GetLastError(), 0, lastErrorTxt, 1024, NULL);
-    
-#else
-    
-    throw "not implemented";
-    
-#endif
-    
-   printf("%s", string(lastErrorTxt).c_str());
-    
-   if (str!=NULL)
-   {
-       
-      printf("%s",str);
-       
-   }
+   va_list a_list;
+   va_start(a_list,str);
+
+    if(str != NULL)
+    {
+       vprintf(str,a_list);
+
+    }
     
    return (i);
     
 }
 
-int errx(int i, const char* str)
+/*
+int err(int i, const char* str)
 {
    
    printf("%s",str);
@@ -63,7 +52,7 @@ int errx(int i, const char* str)
    return i;
 
 }
-
+*/
 
 static off_t offtin(u_char *buf)
 {
@@ -119,21 +108,21 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
    */
 
    /* _read header */
-   if (fread_dup(header, 1, 32, f) < 32) {
-      if (feof_dup(f))
+   if (fread(header, 1, 32, f) < 32) {
+      if (feof(f))
       {
          fclose(f);
-         return errx(1, "Corrupt patch\n");
+         return err(1, "Corrupt patch\n");
       }
       fclose(f);
-      return  err(1, "fread_dup(%s)", patchfile);
+      return  err(1, "fread(%s)", patchfile);
    }
 
    /* Check for appropriate magic */
    if (memcmp(header, "BSDIFF40", 8) != 0)
    {
       fclose(f);
-      return errx(1, "Corrupt patch\n");
+      return err(1, "Corrupt patch\n");
    }
 
    /* _read lengths from header */
@@ -143,7 +132,7 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
    if((bzctrllen<0) || (bzdatalen<0) || (newsize<0))
    {
       fclose(f);
-      return errx(1,"Corrupt patch\n");
+      return err(1,"Corrupt patch\n");
    }
 
    /* fclose patch file and re-fopen it via libbzip2 at the right places */
@@ -159,7 +148,7 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
    if ((cpfbz2 = BZ2_bzReadOpen(&cbz2err, cpf, 0, 0, NULL, 0)) == NULL)
    {
       fclose(cpf);
-      return errx(1, "BZ2_bzReadOpen, bz2err = %d", cbz2err);
+      return err(1, "BZ2_bzReadOpen, bz2err = %d", cbz2err);
    }
    if ((dpf = fopen(patchfile, "rb")) == 0)
    {
@@ -177,7 +166,7 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
    {
       fclose(cpf);
       fclose(dpf);
-      return errx(1, "BZ2_bzReadOpen, bz2err = %d", dbz2err);
+      return err(1, "BZ2_bzReadOpen, bz2err = %d", dbz2err);
    }
    if ((epf = fopen(patchfile, "rb")) == 0)
    {
@@ -198,13 +187,13 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
       fclose(cpf);
       fclose(dpf);
       fclose(epf);
-      return errx(1, "BZ2_bzReadOpen, bz2err = %d", ebz2err);
+      return err(1, "BZ2_bzReadOpen, bz2err = %d", ebz2err);
    }
 
    //org:
    //if(((fd=fopen(oldfile,O_RDONLY,0))<0) ||
    //   ((oldsize=fseek(fd,0,SEEK_END))==-1) ||
-   //   ((old=malloc(oldsize+1))==NULL) ||
+   //   ((old=memory_alloc(oldsize+1))==NULL) ||
    //   (fseek(fd,0,SEEK_SET)!=0) ||
    //   (_read(fd,old,oldsize)!=oldsize) ||
    //   (fclose(fd)==-1)) return err(1,"%s",oldfile);
@@ -212,7 +201,7 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
    //_read in chunks, don't rely on _read always returns full data!
    if(((fd=fopen(oldfile,"rb"))==0) ||
       ((oldsize = (ssize_t) fseek(fd,0,SEEK_END))==-1) ||
-      ((old=(u_char*)malloc(oldsize+1))==NULL) ||
+      ((old=(u_char*)memory_alloc(oldsize+1))==NULL) ||
       (fseek(fd,0,SEEK_SET)!=0))
    {
       fclose(cpf);
@@ -224,14 +213,14 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
       }
       if(old != NULL)
       {
-         free(old);
+         memory_free(old);
       }
       return err(1,"%s",oldfile);
    }
    
    size_t r = oldsize;
    
-   while(r > 0 && (i = (off_t) fread_dup(old+oldsize-r,r, 1, fd)) > 0)
+   while(r > 0 && (i = (off_t) fread(old+oldsize-r,r, 1, fd)) > 0)
       r-=i;
 
    if (r>0 || fclose(fd)==-1)
@@ -239,17 +228,17 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
       fclose(cpf);
       fclose(dpf);
       fclose(epf);
-      free(old);
+      memory_free(old);
       return err(1,"%s",oldfile);
    }
 
-   if((_new=(u_char*)malloc(newsize+1))==NULL)
+   if((_new=(u_char*)memory_alloc(newsize+1))==NULL)
    {
       fclose(cpf);
       fclose(dpf);
       fclose(epf);
       fclose(fd);
-      free(old);
+      memory_free(old);
       return err(1,NULL);
    }
 
@@ -265,9 +254,9 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
             fclose(dpf);
             fclose(epf);
             fclose(fd);
-            free(_new, 0);
-            free(old);
-            return errx(1, "Corrupt patch\n");
+            memory_free(_new);
+            memory_free(old);
+            return err(1, "Corrupt patch\n");
          }
          ctrl[i]=offtin(buf);
       };
@@ -279,9 +268,9 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
          fclose(dpf);
          fclose(epf);
          fclose(fd);
-         free(_new, 0);
-         free(old);
-         return errx(1,"Corrupt patch\n");
+         memory_free(_new);
+         memory_free(old);
+         return err(1,"Corrupt patch\n");
       }
 
       /* _read diff string */
@@ -293,9 +282,9 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
          fclose(dpf);
          fclose(epf);
          fclose(fd);
-         free(_new, 0);
-         free(old);
-         return errx(1, "Corrupt patch\n");
+         memory_free(_new);
+         memory_free(old);
+         return err(1, "Corrupt patch\n");
       }
 
       /* add old data to diff string */
@@ -314,9 +303,9 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
          fclose(dpf);
          fclose(epf);
          fclose(fd);
-         free(_new, 0);
-         free(old);
-         return errx(1,"Corrupt patch\n");
+         memory_free(_new);
+         memory_free(old);
+         return err(1,"Corrupt patch\n");
       }
 
       /* _read extra string */
@@ -328,9 +317,9 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
          fclose(dpf);
          fclose(epf);
          fclose(fd);
-         free(_new, 0);
-         free(old);
-         return errx(1, "Corrupt patch\n");
+         memory_free(_new);
+         memory_free(old);
+         return err(1, "Corrupt patch\n");
       }
 
       /* Adjust pointers */
@@ -344,8 +333,8 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
    BZ2_bzReadClose(&ebz2err, epfbz2);
    if (fclose(cpf) || fclose(dpf) || fclose(epf))
    {
-      free(_new, 0);
-      free(old);
+      memory_free(_new);
+      memory_free(old);
       return err(1, "fclose(%s)", patchfile);
    }
 
@@ -354,15 +343,15 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
    //if(((fd=fopen(newfile,O_CREAT|O_TRUNC|O_WRONLY,0666))<0) ||
    //new:
    if(((fd=fopen(newfile,"wb")) == 0) ||
-      (fwrite_dup(_new,newsize,1, fd)!=newsize) || (fclose(fd)==-1))
+      (fwrite(_new,newsize,1, fd)!=newsize) || (fclose(fd)==-1))
    {
-      free(_new, 0);
-      free(old);
+      memory_free(_new);
+      memory_free(old);
       return err(1,"%s",newfile);
    }
 
-   free(_new, 0);
-   free(old);
+   memory_free(_new);
+   memory_free(old);
 
    return 0;
 }

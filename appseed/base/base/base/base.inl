@@ -471,3 +471,67 @@ inline void __cdecl operator delete(void * p, void * palloc)
 //
 //
 //
+
+
+
+namespace file
+{
+
+   
+   template < class T >
+   bool system::output(sp(::axis::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,const char *),const char * lpszSource)
+   {
+
+      System.dir().mk(Application.dir_name(pszOutput),papp);
+
+      ::file::binary_buffer_sp fileOut = papp->m_paxissession->file_get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
+
+      if(fileOut.is_null())
+         return false;
+
+      ::file::output_stream ostream(fileOut);
+
+      return (p->*lpfnOuput)(ostream,lpszSource);
+
+   }
+
+
+   template < class T >
+   bool system::output(sp(::axis::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),const char * lpszInput)
+   {
+
+      System.dir().mk(Application.dir_name(pszOutput),papp);
+
+      ::file::binary_buffer_sp fileOut = papp->m_paxissession->file_get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
+
+      if(fileOut.is_null())
+         return false;
+
+      ::file::binary_buffer_sp fileIn = papp->m_paxissession->file_get_file(lpszInput,::file::type_binary | ::file::mode_read);
+
+      if(fileIn.is_null())
+         return false;
+
+      ::file::output_stream ostream(fileOut);
+
+      ::file::input_stream istream(fileIn);
+
+      return (p->*lpfnOuput)(ostream,istream);
+
+   }
+
+
+   template < class T >
+   bool system::output(sp(::axis::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),::file::input_stream & istream)
+   {
+
+      ::file::output_stream ostream(get(pszOutput,papp));
+
+      return (p->*lpfnOuput)(ostream,istream);
+
+   }
+
+
+} // namespace file
+
+
