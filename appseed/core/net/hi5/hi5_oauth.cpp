@@ -1,6 +1,4 @@
 #include "framework.h"
-//#include <iostream>
-//#include <memory>
 #undef HMAC_SHA1
 
 

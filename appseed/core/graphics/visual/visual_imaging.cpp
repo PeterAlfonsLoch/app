@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "freeimage/freeimage.h"
+#include "freeimage/Source/freeimage.h"
 #include "visual_FreeImageFileProc.h"
 #ifdef WINDOWSEX
 #undef new

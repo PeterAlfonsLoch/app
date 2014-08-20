@@ -70,7 +70,7 @@ namespace core
             else if (rglpsz[i] != NULL)
             {
                size_t nLen = strlen(rglpsz[i]);
-               ::base::strcpy_s(pchDest, nTotalLen + 1, rglpsz[i]);
+               ::axis::strcpy_s(pchDest, nTotalLen + 1, rglpsz[i]);
                nTotalLen -= nLen;
                pchDest += nLen;
             }
@@ -109,7 +109,7 @@ namespace core
 
       ASSERT(nLen >= 0);
 
-      ::base::memcpy_s(rString.GetBufferSetLength(nLen), nLen*sizeof(char), lpszFullString, nLen*sizeof(char));
+      ::axis::memcpy_s(rString.GetBufferSetLength(nLen), nLen*sizeof(char), lpszFullString, nLen*sizeof(char));
 
       rString.ReleaseBuffer();   // Need to call ReleaseBuffer after calling GetBufferSetLength
 

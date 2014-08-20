@@ -1,6 +1,6 @@
 #include "framework.h"
 #ifndef METROWIN
-#include "freeimage/freeimage.h"
+#include "freeimage/Source/freeimage.h"
 #endif
 
 

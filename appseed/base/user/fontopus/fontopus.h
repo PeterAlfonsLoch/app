@@ -28,7 +28,7 @@ namespace fontopus
 #include "fontopus_usera.h"
 #include "fontopus_contact_list.h"
 #include "fontopus_user_set.h"
-#include "fontopus_license.h"
+#include "fontopus_licensing.h"
 #include "fontopus_validate.h"
 
 

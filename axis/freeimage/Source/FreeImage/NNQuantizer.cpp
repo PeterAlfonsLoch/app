@@ -31,7 +31,7 @@
 ///////////////////////////////////////////////////////////////////////
 
 //#include "Quantizers.h"
-#include "FreeImage.h"
+#include  "FreeImageFramework.h"
 //#include "Utilities.h"
 
 

@@ -12,7 +12,7 @@ namespace base
       ::axis::session(papp)
    {
 
-      m_paxisapp        = dynamic_cast < ::base::application * > (this);
+      m_pbasesapp       = this;
 
       m_pbasesession    = this;
 
@@ -267,10 +267,10 @@ namespace base
       if(directrix()->m_varTopicQuery.has_property("uninstall"))
          return true;
 
-      if(!license().has(pszId,bInteractive))
+      if(!licensing().has(pszId,bInteractive))
       {
          
-         license().m_mapInfo.remove_key(pszId);
+         licensing().m_mapInfo.remove_key(pszId);
          
          return false;
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 #ifndef METROWIN
-#include "freeimage/freeimage.h"
+#include "freeimage/Source/freeimage.h"
 #endif
 
 image_list::image_list(sp(::axis::application) papp) :

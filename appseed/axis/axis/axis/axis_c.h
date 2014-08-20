@@ -43,6 +43,6 @@
 
 
 
-CLASS_DECL_AXIS int get_base_init();
-CLASS_DECL_AXIS int_bool defer_base_init();
-CLASS_DECL_AXIS int_bool defer_base_term();
+CLASS_DECL_AXIS int get_axis_init();
+CLASS_DECL_AXIS int_bool defer_axis_init();
+CLASS_DECL_AXIS int_bool defer_axis_term();

@@ -42,12 +42,16 @@
     }
 //////////////////////////////////////////////////////////////////////////////
 */
+
 #pragma once
+
+
 #ifdef _ZLIB_LIBRARY
-#define CLASS_DECL_ZLIB  _declspec(dllexport)
+#define CLASS_DECL_ZLIB  CLASS_DECL_EXPORT
 #else
-#define CLASS_DECL_ZLIB  _declspec(dllimport)
+#define CLASS_DECL_ZLIB  CLASS_DECL_IMPORT
 #endif
+
 
 class CLASS_DECL_ZLIB gzip_stream:
    virtual public ::file::output_stream

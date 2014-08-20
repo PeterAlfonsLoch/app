@@ -456,7 +456,7 @@ namespace filemanager
 
    void file_list::_001OnFileManagerItemCommand(signal_details * pobj)
    {
-      SCAST_PTR(::base::command, pcommand, pobj)
+      SCAST_PTR(::axis::command, pcommand, pobj)
       ::fs::item_array itema;
       index iItemRange, iItem;
       range range;

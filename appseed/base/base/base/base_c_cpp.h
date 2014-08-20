@@ -557,6 +557,9 @@ CLASS_DECL_BASE bool __node_pos_term();
 #include "base_os.h"
 
 
+#include "base_static_start.h"
+
+
 #include "base_simple_app.h"
 
 

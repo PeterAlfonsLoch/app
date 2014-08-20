@@ -35,7 +35,7 @@
 #undef __unix
 #endif
 
-#include "FreeImage.h"
+#include  "FreeImageFramework.h"
 //#include "Utilities.h"
 #include "../LibTIFF4/tiffiop.h"
 //#include "../Metadata/FreeImageTag.h"

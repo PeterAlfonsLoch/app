@@ -41,7 +41,7 @@ string_map < INT_PTR, INT_PTR > & __library()
 int g_iAxisRefCount = 0;
 
 
-CLASS_DECL_AXIS int get_base_init()
+CLASS_DECL_AXIS int get_axis_init()
 {
 
    return g_iAxisRefCount;
@@ -89,7 +89,7 @@ bool axis_init()
    if(!__node_axis_pre_init())
       return false;
 
-   ::axis::static_start::init();
+   //::axis::static_start::init();
 
    __init_threading_count();
 

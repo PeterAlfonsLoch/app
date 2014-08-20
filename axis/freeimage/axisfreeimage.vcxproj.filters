@@ -1364,6 +1364,9 @@
     <ClCompile Include="Source\OpenEXR\Imf.cpp">
       <Filter>Source\OpenEXR</Filter>
     </ClCompile>
+    <ClCompile Include="Source\FreeImage\FreeImageFramework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="FreeImage.rc">
@@ -2144,6 +2147,9 @@
     </ClInclude>
     <ClInclude Include="Source\OpenEXR\IlmImf\ImfFloatAttribute.h">
       <Filter>Source\OpenEXR\IlmImf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FreeImage\FreeImageFramework.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

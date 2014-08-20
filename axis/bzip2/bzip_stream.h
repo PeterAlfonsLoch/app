@@ -42,15 +42,18 @@ int32_t  aLen=plain.Length;    // Length is length of unzipped data.
 }
 //////////////////////////////////////////////////////////////////////////////
 */
-
 #pragma once
-#ifdef _BZIP2_LIBRARY
-#define CLASS_DECL_BZIP2  _declspec(dllexport)
-#else
-#define CLASS_DECL_BZIP2  _declspec(dllimport)
-#endif
+
 
 #include "bzip2/bzlib.h"
+
+
+#ifdef _BZIP2_LIBRARY
+#define CLASS_DECL_BZIP2  CLASS_DECL_EXPORT
+#else
+#define CLASS_DECL_BZIP2  CLASS_DECL_IMPORT
+#endif
+
 
 class CLASS_DECL_BZIP2 bzip_stream:
    virtual public ::file::output_stream

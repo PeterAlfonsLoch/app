@@ -1,6 +1,6 @@
 #include "framework.h"
 #define _WINDOWS_
-#include "freeimage/freeimage.h"
+#include "freeimage/Source/freeimage.h"
 #include "visual_FreeImageFileProc.h"
 
 /*uint32_t ___ReadProc    (void *buffer, uint32_t size, uint32_t count, fi_handle handle)

@@ -3,16 +3,16 @@
 namespace fontopus
 {
 
-   license::license(sp(::axis::application) papp) :
+   licensing::licensing(sp(::axis::application) papp) :
       element(papp)
    {
    }
 
-   license::~license()
+   licensing::~licensing()
    {
    }
 
-   bool license::has(const char * pszId, bool bInteractive)
+   bool licensing::has(const char * pszId, bool bInteractive)
    {
       class info info;
       if(m_mapInfo.Lookup(pszId, info))
@@ -25,7 +25,7 @@ namespace fontopus
       }
    }
 
-   bool license::check(const char * pszId, bool bInteractive)
+   bool licensing::check(const char * pszId, bool bInteractive)
    {
 
       class info info;
@@ -49,14 +49,14 @@ namespace fontopus
 
    }
 
-   ::count license::clear_all_cache()
+   ::count licensing::clear_all_cache()
    {
       ::count count = m_mapInfo.get_count();
       m_mapInfo.remove_all();
       return count;
    }
 
-   bool license::clear_cache(const char * pszId)
+   bool licensing::clear_cache(const char * pszId)
    {
       return m_mapInfo.remove_key(pszId) != FALSE;
    }

@@ -2429,7 +2429,7 @@ namespace base
 
       m_bBaseInitialize1Result = false;
 
-      m_splicense = new class ::fontopus::license(this);
+      m_splicensing = new class ::fontopus::licensing(this);
 
       m_dwAlive = ::get_tick_count();
 
@@ -3430,85 +3430,6 @@ namespace base
 
    //}
 
-
-
-
-
-
-
-
-   application * application_ptra::find_by_app_name(const string & strAppName)
-   {
-
-      application * papp = NULL;
-
-      for(int32_t i = 0; i < get_count(); i++)
-      {
-         try
-         {
-
-            papp = element_at(i).m_p;
-
-            if(papp == NULL)
-               continue;
-
-            if(papp->m_strAppName == strAppName)
-            {
-
-               return papp;
-
-            }
-
-         }
-         catch(...)
-         {
-
-         }
-
-      }
-
-      return NULL;
-
-
-   }
-
-
-   application * application_ptra::find_running_defer_try_quit_damaged(const string & strAppName)
-   {
-
-      sp(application) papp = find_by_app_name(strAppName);
-
-      if(papp.is_null())
-         return NULL;
-
-      if(papp->safe_is_running())
-         return papp;
-
-      try
-      {
-
-         papp->post_thread_message(WM_QUIT);
-
-      }
-      catch(...)
-      {
-
-      }
-
-      try
-      {
-
-         papp.release();
-
-      }
-      catch(...)
-      {
-
-      }
-
-      return NULL;
-
-   }
 
 
 

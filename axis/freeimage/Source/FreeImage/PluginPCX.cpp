@@ -23,7 +23,7 @@
 // Use at your own risk!
 // ==========================================================
 
-#include "FreeImage.h"
+#include  "FreeImageFramework.h"
 //#include "Utilities.h"
 
 // ----------------------------------------------------------

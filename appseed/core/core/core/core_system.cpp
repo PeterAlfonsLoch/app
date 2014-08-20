@@ -16,6 +16,7 @@ namespace core
 
    system::system(sp(::axis::application) papp):
       ::element(papp),
+      ::axis::system(papp),
       ::base::system(papp),
       m_mutexDelete(this),
       m_mutex(this),
@@ -563,7 +564,7 @@ namespace core
       if(!m_bDoNotExitIfNoApplications)
       {
 
-         ::base::application_ptra appptra;
+         ::axis::application_ptra appptra;
 
          appptra = get_appptra();
 
@@ -730,7 +731,7 @@ namespace core
    */
 
 
-   sp(::base::session) system::query_session(index iEdge)
+   sp(::axis::session) system::query_session(index iEdge)
    {
       sp(::core::platform) pbergedge = NULL;
       if(m_pbergedgemap == NULL)
@@ -1166,7 +1167,7 @@ namespace core
 #endif
 
 
-   bool system::set_main_init_data(::base::main_init_data * pdata)
+   bool system::set_main_init_data(::axis::main_init_data * pdata)
    {
 
       if(pdata != NULL)

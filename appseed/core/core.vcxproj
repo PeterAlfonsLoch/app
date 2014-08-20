@@ -2311,7 +2311,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="filesystem\file\file_clustered_input_stream.cpp" />
     <ClCompile Include="filesystem\file\file_dynamic_buffered_writer.cpp" />
     <ClCompile Include="filesystem\file\file_in_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_io_temp_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_limited_input_stream.cpp" />
     <ClCompile Include="filesystem\file\file_limited_reader.cpp" />
     <ClCompile Include="filesystem\file\file_limited_writer.cpp" />

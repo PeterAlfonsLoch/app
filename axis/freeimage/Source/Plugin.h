@@ -27,7 +27,7 @@
 #ifndef PLUGIN_H
 #define PLUGIN_H
 
-#include "FreeImage.h"
+#include  "FreeImage.h"
 //#include "Utilities.h"
 
 // ==========================================================

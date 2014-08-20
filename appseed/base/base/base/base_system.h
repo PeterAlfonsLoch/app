@@ -54,7 +54,7 @@ namespace base
       virtual bool finalize();
 
       spa(::base::session)                         & basesessionptra();
-      application_ptra                                get_appptra();
+      //application_ptra                                get_appptra();
 
       class base_factory                           & factory();
       inline ::url::departament                    & url()     { return m_urldepartament; }

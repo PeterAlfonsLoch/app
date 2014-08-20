@@ -20,7 +20,7 @@
 //
 // ==========================================================
 
-#include "FreeImage.h"
+#include  "FreeImageFramework.h"
 //#include "Utilities.h"
 
 // RGB color names  ---------------------------------------------------------

@@ -26,7 +26,7 @@
 // Use at your own risk!
 // ==========================================================
 
-#include "FreeImage.h"
+#include  "FreeImageFramework.h"
 #ifdef _MSC_VER 
 #pragma warning (disable : 4786) // identifier was truncated to 'number' characters
 #endif
@@ -35,7 +35,7 @@
 //#include "FreeImageIO.h"
 //#include "Plugin.h"
 //#include "Utilities.h"
-//#include "FreeImage.h"
+//#include  "FreeImageFramework.h"
 
 // ----------------------------------------------------------
 

@@ -662,7 +662,7 @@ void simple_frame_window::_001OnClose(signal_details * pobj)
       // TODO: instead of closing all applications in process System.m_apptra, should close application that make part of
       // cube, bergedge, session or system.
 
-      ::base::application_ptra appptra = System.get_appptra();
+      ::axis::application_ptra appptra = System.get_appptra();
 
       for (int32_t i = 0; i <  appptra.get_count(); i++)
       {

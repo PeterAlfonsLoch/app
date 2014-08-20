@@ -19,14 +19,14 @@
 // Use at your own risk!
 // ==========================================================
 
-#ifdef _MSC_VER 
-#pragma warning (disable : 4786) // identifier was truncated to 'number' characters
-#endif 
-
-#ifdef _WIN32
-#include <windows.h>
-#endif // _WIN32
-#include "FreeImage.h"
+//#ifdef _MSC_VER 
+//#pragma warning (disable : 4786) // identifier was truncated to 'number' characters
+//#endif 
+//
+//#ifdef _WIN32
+//#include <windows.h>
+//#endif // _WIN32
+#include  "FreeImageFramework.h"
 //#include "Utilities.h"
 #include "DeprecationMgr.h"
 

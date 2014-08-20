@@ -5,7 +5,7 @@ namespace fontopus
 {
 
 
-   class CLASS_DECL_BASE license :
+   class CLASS_DECL_BASE licensing :
       virtual public ::object
    {
    public:
@@ -19,8 +19,8 @@ namespace fontopus
 
       string_map < info >  m_mapInfo;
 
-      license(sp(::axis::application) papp);
-      virtual ~license();
+      licensing(sp(::axis::application) papp);
+      virtual ~licensing();
 
       bool has(const char * pszId, bool bInteractive = true);
       bool check(const char * pszId, bool bInteractive = true);

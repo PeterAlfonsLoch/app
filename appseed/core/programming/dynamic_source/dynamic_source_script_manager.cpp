@@ -604,7 +604,7 @@ namespace dynamic_source
 
          }
             
-         ppair->second.m_p->~Session;
+         ppair->second.m_p->~session();
 
 #undef new
          ::new(ppair->second.m_p) ::dynamic_source::session(pszId, this);

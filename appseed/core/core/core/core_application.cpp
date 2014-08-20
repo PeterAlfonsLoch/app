@@ -235,7 +235,7 @@ namespace core
    bool application::initialize1()
    {
 
-      m_splicense = new class ::fontopus::license(this);
+      m_splicensing = new class ::fontopus::licensing(this);
 
       if(!::base::application::initialize1())
          return false;
@@ -527,7 +527,7 @@ namespace core
       try
       {
 
-         ::base::application   * papp = m_pimpl.detach();
+         ::axis::application   * papp = m_pimpl.detach();
 
          if(papp != NULL && papp != this && !papp->is_system())
          {

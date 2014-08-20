@@ -20,7 +20,7 @@
 //
 // Use at your own risk!
 // ==========================================================
-#include "FreeImage.h"
+#include  "FreeImageFramework.h"
 
 extern "C" {
 #define XMD_H

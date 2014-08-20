@@ -45,7 +45,7 @@ public:
 
 
 
-   simple_toolbar(sp(::base::application) papp);
+   simple_toolbar(sp(::axis::application) papp);
    virtual ~simple_toolbar();
 
 
