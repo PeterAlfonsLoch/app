@@ -5,7 +5,7 @@ namespace draw2d_cairo
 {
 
 
-   palette::palette(sp(::base::application) papp) :
+   palette::palette(sp(::axis::application) papp) :
       element(papp)
    {
 

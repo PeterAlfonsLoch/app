@@ -73,6 +73,11 @@ CLASS_DECL_BASE bool GetPrimaryMonitorRect(LPRECT lprect)
 #endif
 
 
+#include "ft2build.h"
+#include FT_FREETYPE_H
+
+
+
 namespace base
 {
 
@@ -91,6 +96,10 @@ namespace base
       __node_base_factory_exchange(this);
 
       m_compress.set_app(this);
+
+      m_ftlibrary = NULL;
+
+
 
 
    }
@@ -125,11 +134,24 @@ namespace base
 
    //}
 
+   void * & system::ftlibrary()
+   {
+
+      return m_ftlibrary;
+
+   }
+
 
    bool system::process_initialize()
    {
 
 
+      int32_t error = FT_Init_FreeType((FT_Library *)&m_ftlibrary);
+      if(error)
+      {
+         TRACE("an error occurred during Free Type library initialization");
+         return false;
+      }
 
 
       enum_display_monitors();

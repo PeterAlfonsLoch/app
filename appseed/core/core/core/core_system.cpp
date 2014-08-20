@@ -6,8 +6,6 @@
 #define new AXIS_NEW
 #endif
 
-#include "ft2build.h"
-#include FT_FREETYPE_H
 
 
 namespace core
@@ -47,9 +45,6 @@ namespace core
             oprop("parent_system") = papp->m_pcoresystem;
 
          }
-
-         m_ftlibrary = NULL;
-
 
          m_bDoNotExitIfNoApplications              = true;
 
@@ -234,12 +229,6 @@ namespace core
       if(!m_visual.initialize())
          return false;
 
-      int32_t error = FT_Init_FreeType((FT_Library *) &m_ftlibrary);
-      if(error)
-      {
-         TRACE("an error occurred during Free Type library initialization");
-         return false;
-      }
 
 
 #ifndef APPLEOS
@@ -1115,13 +1104,6 @@ namespace core
    }
 
    
-   void * & system::ftlibrary()
-   {
-
-      return m_ftlibrary;
-
-   }
-
 
    void system::post_fork_uri(const char * pszUri,application_bias * pbiasCreate)
    {

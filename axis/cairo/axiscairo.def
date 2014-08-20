@@ -1,4 +1,4 @@
-LIBRARY  "basecairo"
+LIBRARY  "axiscairo"
 
 EXPORTS
 

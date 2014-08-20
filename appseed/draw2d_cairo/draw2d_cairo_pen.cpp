@@ -5,7 +5,7 @@ namespace draw2d_cairo
 {
 
 
-   pen::pen(sp(::base::application) papp) :
+   pen::pen(sp(::axis::application) papp) :
       element(papp)
    {
    }

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "app/appseed/core/core.h" // System.ftlibrary()
+#include "app/appseed/base/base/base/base.h" // System.ftlibrary()
 
 
 #include "ft2build.h"
@@ -13,7 +13,7 @@
 
 
 mutex & cairo_mutex();
-void init_cairo_mutex(sp(::base::application) papp);
+void init_cairo_mutex(sp(::axis::application) papp);
 
 
 #ifdef _DRAW2D_CAIRO_LIBRARY

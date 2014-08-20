@@ -34,6 +34,7 @@ namespace base
       sp(::install::install)                       m_spinstall;
 
 
+      void *                                       m_ftlibrary;
 
 
 
@@ -69,6 +70,8 @@ namespace base
 
       class ::crypto::crypto                       & crypto();
       ::install::install                           & install() { return *m_spinstall; }
+
+      void *                                       & ftlibrary();
 
 
 

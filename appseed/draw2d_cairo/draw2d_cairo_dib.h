@@ -32,7 +32,7 @@ namespace draw2d_cairo
 
 
 
-      dib(sp(::base::application) papp);
+      dib(sp(::axis::application) papp);
       virtual void construct(int32_t cx, int32_t cy);
       virtual ~dib();
 
