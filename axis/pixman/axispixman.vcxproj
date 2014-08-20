@@ -1,0 +1,368 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="basis|Win32">
+      <Configuration>basis</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis|x64">
+      <Configuration>basis</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="memdleak|Win32">
+      <Configuration>memdleak</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="memdleak|x64">
+      <Configuration>memdleak</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>axispixman</ProjectName>
+    <ProjectGuid>{0A298E22-839B-4D11-B5A7-456EAD013C11}</ProjectGuid>
+    <RootNamespace>axispixman</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <OutDir>$(SolutionDir)..\..\..\stage\x86\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <EmbedManifest>false</EmbedManifest>
+    <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
+    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
+    <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <OutDir>$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(Configuration)\$(Platform)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">
+    <OutDir>$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(Configuration)\$(Platform)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/FreeImage.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(ProjectDir);pixman;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>false</StringPooling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <SDLCheck>true</SDLCheck>
+      <CompileAsManaged>false</CompileAsManaged>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <DisableSpecificWarnings>4244</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/FreeImage.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>Source;Source\ZLib;Source\DeprecationManager;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>.\Debug/FreeImage.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>Debug/FreeImaged.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/FreeImaged.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>.\Debug/FreeImaged.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy Debug\FreeImaged.dll Dist
+copy Debug\FreeImaged.lib Dist
+copy Source\FreeImage.h Dist
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>.\Debug/FreeImage.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>Source;Source\ZLib;Source\DeprecationManager;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <OpenMPSupport>true</OpenMPSupport>
+      <PrecompiledHeaderOutputFile>.\Debug/FreeImage.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>Debug/FreeImaged.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/FreeImaged.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>.\Debug/FreeImaged.lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy Debug\FreeImaged.dll Dist
+copy Debug\FreeImaged.lib Dist
+copy Source\FreeImage.h Dist
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>.\Debug/FreeImage.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>Source;Source\ZLib;Source\DeprecationManager;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <OpenMPSupport>true</OpenMPSupport>
+      <PrecompiledHeaderOutputFile>.\Debug/FreeImage.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>Debug/FreeImaged.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/FreeImaged.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>.\Debug/FreeImaged.lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy Debug\FreeImaged.dll Dist
+copy Debug\FreeImaged.lib Dist
+copy Source\FreeImage.h Dist
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="axispixman.def" />
+    <None Include="Source\LibJPEG\LibJPEG.2008.vcxproj.filters" />
+    <None Include="Source\LibOpenJPEG\LibOpenJPEG.2008.vcxproj.filters" />
+    <None Include="Source\LibPNG\LibPNG.2008.vcxproj.filters" />
+    <None Include="Source\LibTIFF4\LibTIFF4.2008.vcxproj.filters" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\zlib\axiszlib.vcxproj">
+      <Project>{8fd826f8-3739-44e6-8cc8-997122e53b8d}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pixman\pixman-access-accessors.c" />
+    <ClCompile Include="pixman\pixman-access.c" />
+    <ClCompile Include="pixman\pixman-arm.c" />
+    <ClCompile Include="pixman\pixman-bits-image.c" />
+    <ClCompile Include="pixman\pixman-combine-float.c" />
+    <ClCompile Include="pixman\pixman-combine32.c" />
+    <ClCompile Include="pixman\pixman-conical-gradient.c" />
+    <ClCompile Include="pixman\pixman-edge-accessors.c" />
+    <ClCompile Include="pixman\pixman-edge.c" />
+    <ClCompile Include="pixman\pixman-fast-path.c" />
+    <ClCompile Include="pixman\pixman-filter.c" />
+    <ClCompile Include="pixman\pixman-general.c" />
+    <ClCompile Include="pixman\pixman-glyph.c" />
+    <ClCompile Include="pixman\pixman-gradient-walker.c" />
+    <ClCompile Include="pixman\pixman-image.c" />
+    <ClCompile Include="pixman\pixman-implementation.c" />
+    <ClCompile Include="pixman\pixman-linear-gradient.c" />
+    <ClCompile Include="pixman\pixman-matrix.c" />
+    <ClCompile Include="pixman\pixman-mips.c" />
+    <ClCompile Include="pixman\pixman-mmx.c" />
+    <ClCompile Include="pixman\pixman-noop.c" />
+    <ClCompile Include="pixman\pixman-ppc.c" />
+    <ClCompile Include="pixman\pixman-radial-gradient.c" />
+    <ClCompile Include="pixman\pixman-region16.c" />
+    <ClCompile Include="pixman\pixman-region32.c" />
+    <ClCompile Include="pixman\pixman-solid-fill.c" />
+    <ClCompile Include="pixman\pixman-sse2.c" />
+    <ClCompile Include="pixman\pixman-ssse3.c" />
+    <ClCompile Include="pixman\pixman-timer.c" />
+    <ClCompile Include="pixman\pixman-trap.c" />
+    <ClCompile Include="pixman\pixman-utils.c" />
+    <ClCompile Include="pixman\pixman-x86.c" />
+    <ClCompile Include="pixman\pixman.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="config.h" />
+    <ClInclude Include="pixman\loongson-mmintrin.h" />
+    <ClInclude Include="pixman\pixman-accessor.h" />
+    <ClInclude Include="pixman\pixman-arm-common.h" />
+    <ClInclude Include="pixman\pixman-arm-neon-asm.h" />
+    <ClInclude Include="pixman\pixman-arm-simd-asm.h" />
+    <ClInclude Include="pixman\pixman-combine32.h" />
+    <ClInclude Include="pixman\pixman-compiler.h" />
+    <ClInclude Include="pixman\pixman-edge-imp.h" />
+    <ClInclude Include="pixman\pixman-inlines.h" />
+    <ClInclude Include="pixman\pixman-mips-dspr2-asm.h" />
+    <ClInclude Include="pixman\pixman-mips-dspr2.h" />
+    <ClInclude Include="pixman\pixman-private.h" />
+    <ClInclude Include="pixman\pixman-version.h" />
+    <ClInclude Include="pixman\pixman.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

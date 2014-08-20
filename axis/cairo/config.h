@@ -113,14 +113,34 @@
 /* Define to 1 if you have the `FT_GlyphSlot_Embolden' function. */
 #undef HAVE_FT_GLYPHSLOT_EMBOLDEN
 
+#ifdef _WIN32
+#define HAVE_FT_GLYPHSLOT_EMBOLDEN 1
+#endif
+
 /* Define to 1 if you have the `FT_GlyphSlot_Oblique' function. */
 #undef HAVE_FT_GLYPHSLOT_OBLIQUE
+
+#ifdef _WIN32
+#define HAVE_FT_GLYPHSLOT_OBLIQUE 1
+#endif
+
 
 /* Define to 1 if you have the `FT_Library_SetLcdFilter' function. */
 #undef HAVE_FT_LIBRARY_SETLCDFILTER
 
+
+#ifdef _WIN32
+#define HAVE_FT_LIBRARY_SETLCDFILTER 1
+#endif
+
+
 /* Define to 1 if you have the `FT_Load_Sfnt_Table' function. */
 #undef HAVE_FT_LOAD_SFNT_TABLE
+
+#ifdef _WIN32
+#define HAVE_FT_LOAD_SFNT_TABLE 1
+#endif
+
 
 /* Define to 1 if you have the `funlockfile' function. */
 #undef HAVE_FUNLOCKFILE
@@ -201,8 +221,16 @@
 /* Define to 1 if you have the <stdlib.h> header file. */
 #undef HAVE_STDLIB_H
 
+#ifdef _WIN32
+#define HAVE_STDLIB_H 1
+#endif
+
 /* Define to 1 if you have the <strings.h> header file. */
 #undef HAVE_STRINGS_H
+
+#ifdef _WIN32
+#define HAVE_STRINGS_H 1
+#endif
 
 /* Define to 1 if you have the <string.h> header file. */
 #undef HAVE_STRING_H
@@ -240,11 +268,20 @@
 /* Define to 1 if you have the <time.h> header file. */
 #undef HAVE_TIME_H
 
+#ifdef _WIN32
+#define HAVE_TIME_H 1
+#endif
+
 /* Define to 1 if the system has the type `uint128_t'. */
 #undef HAVE_UINT128_T
 
 /* Define to 1 if the system has the type `uint64_t'. */
 #undef HAVE_UINT64_T
+
+#ifdef _WIN32
+#define HAVE_UINT64_T 1
+#endif
+
 
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
@@ -355,7 +392,7 @@
 
 /* Define to the value your compiler uses to support the warn-unused-result
    attribute */
-#undef WARN_UNUSED_RESULT
+//#undef WARN_UNUSED_RESULT
 
 /* Define WORDS_BIGENDIAN to 1 if your processor stores words with the most
    significant byte first (like Motorola and SPARC, unlike Intel). */
@@ -408,6 +445,12 @@
 
 /* Define to `__inline__' or `__inline' if that's what the C compiler
    calls it, or to nothing if 'inline' is not supported under any name.  */
-#ifndef __cplusplus
-#undef inline
+//#ifndef __cplusplus
+#ifdef __WIN32
+#define inline __inline
 #endif
+//#endif
+
+
+
+#define CAIRO_HAS_FT_FONT 1
