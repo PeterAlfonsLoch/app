@@ -1,20 +1,21 @@
 #include "framework.h"
+#include "openssl/whrlpool.h"
 
 
 string crypt_nessie(const char * psz)
 {
 
-   NESSIEstruct ns;
+   WHIRLPOOL_CTX ns;
    
-   uint8_t digest[NESSIE_DIGESTBYTES];
+   unsigned char digest[WHIRLPOOL_DIGEST_LENGTH];
    
-   NESSIEinit(&ns);
+   WHIRLPOOL_Init(&ns);
    
-   NESSIEadd((const byte *) psz, (uint_ptr) (8*strlen(psz)), &ns);
+   WHIRLPOOL_Update(&ns, psz, strlen(psz));
    
-   NESSIEfinalize(&ns, digest);
+   WHIRLPOOL_Final(digest,&ns);
 
-   return hex::lower_from(digest, NESSIE_DIGESTBYTES);
+   return hex::lower_from(digest,WHIRLPOOL_DIGEST_LENGTH);
 
 }
 
@@ -73,15 +74,7 @@ namespace crypto
    string crypto::nessie(const char * psz)
    {
 
-      string strFormat;
-      string str;
-      //      int32_t i;
-      NESSIEstruct ns;
-      uint8_t digest[NESSIE_DIGESTBYTES];
-      NESSIEinit(&ns);
-      NESSIEadd((const byte *)psz, (uint_ptr)(8 * strlen(psz)), &ns);
-      NESSIEfinalize(&ns, digest);
-      return ::hex::lower_from(digest, NESSIE_DIGESTBYTES);
+      return ::crypt_nessie(psz);
 
    }
 
@@ -114,18 +107,28 @@ namespace file
    string system::nessie(::file::buffer_sp  pfile)
    {
 
-      int32_t iBufSize = 1024 * 256;
-      uchar * buf = new uchar[iBufSize];
-      NESSIEstruct ns;
-      NESSIEinit(&ns);
-      uint64_t iRead;
-      while ((iRead = pfile->read(buf, iBufSize)) > 0)
+      ::primitive::memory mem(get_app());
+
+      mem.allocate(1024 * 256);
+
+      WHIRLPOOL_CTX ns;
+
+      WHIRLPOOL_Init(&ns);
+
+      file_size iRead;
+
+      while((iRead = pfile->read(mem.get_data(),mem.get_size())) > 0)
       {
-         NESSIEadd(buf, 8 * iBufSize, &ns);
+
+         WHIRLPOOL_Update(&ns,mem.get_data(),iRead);
+
       }
-      uint8_t digest[NESSIE_DIGESTBYTES];
-      NESSIEfinalize(&ns, digest);
-      return ::hex::lower_from(digest, NESSIE_DIGESTBYTES);
+
+      unsigned char digest[WHIRLPOOL_DIGEST_LENGTH];
+
+      WHIRLPOOL_Final(digest,&ns);
+
+      return ::hex::lower_from(digest,WHIRLPOOL_DIGEST_LENGTH);
 
    }
 

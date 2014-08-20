@@ -58,7 +58,7 @@
     <ClCompile Include="blocksort.c" />
     <ClCompile Include="bzip_stream.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(ProjectDir)../../../include;$(ProjectDir)../../..;$(ProjectDir)../..;;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">_BZIP2_LIBRARY</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">BZ_EXPORT;_BZIP2_LIBRARY</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="bzlib.c" />
     <ClCompile Include="compress.c" />

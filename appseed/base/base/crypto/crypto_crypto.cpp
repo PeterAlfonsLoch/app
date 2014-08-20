@@ -8,10 +8,11 @@
 #include <openssl/err.h>
 #include <openssl/crypto.h>
 #include <openssl/hmac.h>
+#include <openssl/whrlpool.h>
 #endif
 
-#define CA4_CRYPT_V5_FINAL_HASH_BYTES (NESSIE_DIGESTBYTES * 16)
-#define CA4_CRYPT_V5_SALT_BYTES (CA4_CRYPT_V5_FINAL_HASH_BYTES - NESSIE_DIGESTBYTES)
+#define CA4_CRYPT_V5_FINAL_HASH_BYTES (WHIRLPOOL_DIGEST_LENGTH * 16)
+#define CA4_CRYPT_V5_SALT_BYTES (CA4_CRYPT_V5_FINAL_HASH_BYTES - WHIRLPOOL_DIGEST_LENGTH)
 
 
 namespace crypto
@@ -712,7 +713,7 @@ namespace crypto
    {
       string strSalt;
       string strFormat;
-      for (int32_t i = 0; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - NESSIE_DIGESTBYTES; i += 2)
+      for(int32_t i = 0; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - WHIRLPOOL_DIGEST_LENGTH; i += 2)
       {
          int64_t iDigit = System.math().RandRange(0, 255);
          strFormat.Format("%02x", iDigit);
@@ -728,7 +729,7 @@ namespace crypto
       string strHash(pszPassword);
       string strSalt(pszSalt);
       strSalt = strSalt.Left(CA4_CRYPT_V5_SALT_BYTES);
-      for (int32_t i = iOrder; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - NESSIE_DIGESTBYTES; i++)
+      for(int32_t i = iOrder; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - WHIRLPOOL_DIGEST_LENGTH; i++)
       {
          string strStepSalt = strSalt.Mid(i) + strSalt.Left(i);
          strHash = nessie(strStepSalt + strHash);

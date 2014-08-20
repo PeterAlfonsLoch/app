@@ -495,11 +495,11 @@ namespace base
    //   return m_pcommandthread;
    //}
 
-   //bool application::verb()
-   //{
-   //   axiom()->run();
-   //   return true;
-   //}
+   bool application::verb()
+   {
+      axiom()->run();
+      return true;
+   }
 
    //sp(::command_thread) application::creation()
    //{
@@ -2092,25 +2092,25 @@ namespace base
    //}
 
 
-   //sp(application) application::assert_running(const char * pszAppId)
-   //{
+   sp(::axis::application) application::assert_running(const char * pszAppId)
+   {
 
-   //   sp(application) papp;
+      sp(::axis::application) papp;
 
-   //   papp = Session.m_appptra.find_running_defer_try_quit_damaged(pszAppId);
+      papp = Session.m_appptra.find_running_defer_try_quit_damaged(pszAppId);
 
-   //   if(papp.is_null())
-   //   {
+      if(papp.is_null())
+      {
 
-   //      sp(::create_context) spcreatecontext(allocer());
+         sp(::create_context) spcreatecontext(allocer());
 
-   //      papp = Session.start_application("application",pszAppId,spcreatecontext);
+         papp = Session.start_application("application",pszAppId,spcreatecontext);
 
-   //   }
+      }
 
-   //   return papp;
+      return papp;
 
-   //}
+   }
 
 
 
@@ -3767,6 +3767,141 @@ namespace base
 
    }
 
+   void application::dir_matter_ls_file(const string & str,stringa & stra)
+   {
+
+      throw not_implemented(get_app());
+
+   }
+
+
+
+   string application::file_as_string(var varFile,var & varQuery)
+   {
+
+      return file().as_string(varFile);
+
+   }
+
+
+
+   bool application::file_exists(const char * pszPath)
+   {
+
+      return file().exists(pszPath) != FALSE;
+
+   }
+
+
+   bool application::file_is_equal_path(const char * pszPath1,const char * pszPath2)
+   {
+
+      return System.file().path().is_equal(pszPath1,pszPath2) != FALSE;
+
+   }
+
+
+   bool application::dir_is(const char * psz)
+   {
+
+      return dir().is(psz);
+
+   }
+
+
+   bool application::file_del(const char * psz)
+   {
+
+      try
+      {
+
+         System.file().del(psz);
+
+      }
+      catch(...)
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+   string application::file_extension(const char * pszPath)
+   {
+
+      return System.file().extension(pszPath);
+
+   }
+
+
+   string application::dir_userappdata(const char * lpcsz,const char * lpcsz2)
+   {
+
+      return dir().userappdata(lpcsz,lpcsz2);
+
+   }
+
+   string application::dir_appdata(const char * lpcsz,const char * lpcsz2)
+   {
+
+      return System.dir().appdata(lpcsz,lpcsz2);
+
+   }
+
+
+   string application::dir_simple_path(const string & str1,const string & str2)
+   {
+
+      return System.dir().simple_path(str1,str2);
+
+   }
+
+
+   string application::dir_element(const char * psz)
+   {
+
+      return System.dir().element(psz);
+
+   }
+
+
+
+
+   void application::dir_ls_dir(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
+   {
+
+      dir().ls_dir(lpcsz,pstraPath,pstraTitle);
+
+   }
+
+
+   void application::dir_rls(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,stringa * pstraRelative)
+   {
+
+      dir().rls(lpcsz,pstraPath,pstraTitle,pstraRelative);
+
+   }
+
+
+
+
+   string application::file_time_square()
+   {
+
+      return file().time_square();
+
+   }
+
+
+   string application::http_get_locale_schema(const char * pszUrl,const char * pszLocale,const char * pszSchema)
+   {
+
+      return http().get_locale_schema(pszUrl,pszLocale,pszSchema);
+
+   }
 
 
 
@@ -3775,39 +3910,3 @@ namespace base
 
 
 
-#if defined(MACOS)
-
-void openURL(const string &url_str);
-
-
-void openURL(const string &url_str) {
-   CFURLRef url = CFURLCreateWithBytes (
-      NULL,                        // allocator
-      (UInt8*)url_str.c_str(),     // URLBytes
-      url_str.length(),            // length
-      kCFStringEncodingASCII,      // encoding
-      NULL                         // baseURL
-      );
-   LSOpenCFURLRef(url,0);
-   CFRelease(url);
-}
-
-#elif defined(APPLE_IOS)
-
-void openURL(const string &url_str);
-
-
-void openURL(const string &url_str) {
-   CFURLRef url = CFURLCreateWithBytes (
-      NULL,                        // allocator
-      (UInt8*)url_str.c_str(),     // URLBytes
-      url_str.length(),            // length
-      kCFStringEncodingASCII,      // encoding
-      NULL                         // baseURL
-      );
-   //    LSOpenCFURLRef(url,0);
-   CFRelease(url);
-}
-
-
-#endif

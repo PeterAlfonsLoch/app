@@ -989,12 +989,12 @@ namespace base
 //
 
 
-   //class ::str::base64 & system::base64()
-   //{
+   class ::str::base64 & system::base64()
+   {
 
-   //   return m_base64;
+      return m_base64;
 
-   //}
+   }
 
 
 
@@ -1655,69 +1655,24 @@ namespace base
 //#endif
 //
 //
-//   sp(::user::interaction) system::get_active_guie()
-//   {
-//
-//#if defined(WINDOWSEX) || defined(LINUX) || defined(APPLEOS)
-//
-//      return window_from_os_data(::GetActiveWindow());
-//
-//#else
-//
-//      if(frames().get_size() <= 0)
-//         return NULL;
-//
-//      return frames()[0];
-//
-//#endif
-//
-//   }
-//
-//
-//   sp(::user::interaction) system::get_focus_guie()
-//   {
-//
-//#if defined (METROWIN)
-//
-//      return GetFocus()->m_pui;
-//
-//#elif defined(WINDOWSEX) || defined(LINUX)
-//
-//      ::user::interaction * pwnd = ::window_from_handle(::GetFocus());
-//      if(pwnd != NULL)
-//      {
-//         if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-//            || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
-//         {
-//            return pwnd;
-//         }
-//         else
-//         {
-//            return NULL;
-//         }
-//      }
-//      pwnd = System.window_from_os_data(::GetFocus());
-//      if(pwnd != NULL)
-//      {
-//         if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-//            || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
-//         {
-//            return pwnd;
-//         }
-//         else
-//         {
-//            return NULL;
-//         }
-//      }
-//      return NULL;
-//#else
-//
-//      return System.get_active_guie();
-//
-//#endif
-//
-//   }
-//
+
+
+   sp(::user::interaction) system::get_active_guie()
+   {
+
+      return ::axis::system::get_active_guie();
+
+   }
+
+
+   sp(::user::interaction) system::get_focus_guie()
+   {
+
+      return ::axis::system::get_focus_guie();
+
+   }
+
+
 //
 //   ::count system::get_application_count()
 //   {
@@ -1957,6 +1912,14 @@ namespace base
 //
 //
 
+
+string system::dir_appmatter_locator(sp(::axis::application) papp)
+{
+
+   return dir().appmatter_locator(papp);
+
+}
+
 } // namespace base
 
 
@@ -1979,48 +1942,4 @@ CLASS_DECL_BASE void __start_system(::base::system * psystem)
    ::create_thread(NULL,0,&_thread_proc_start_system,(LPVOID)psystem,0,0);
 
 }
-
-#ifdef METROWIN
-
-
-namespace base
-{
-
-
-   CLASS_DECL_BASE bool get_window_rect(::base::system_window ^ pwindow,RECTD * lprect)
-   {
-
-      Windows::Foundation::Rect rect =  pwindow->get_window_rect();
-
-      lprect->left = rect.X;
-      lprect->top = rect.Y;
-      lprect->right = lprect->left + rect.Width;
-      lprect->bottom = lprect->top + rect.Height;
-
-      return true;
-   }
-
-
-   CLASS_DECL_BASE bool get_window_rect(::base::system_window ^ pwindow,LPRECT lprect)
-   {
-
-      rectd r;
-
-      if(!get_window_rect(pwindow,&r))
-         return false;
-
-      if(!::copy(lprect,r))
-         return false;
-
-      return true;
-
-   }
-
-
-} // namespace base
-
-
-#endif
-
-
 
