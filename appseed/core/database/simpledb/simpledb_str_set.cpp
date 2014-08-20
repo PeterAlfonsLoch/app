@@ -71,7 +71,7 @@ db_str_set::queue_item & db_str_set::queue_item::operator = (const queue_item & 
 }
 
 
-db_str_set::sync_queue::sync_queue(sp(::base::application) papp) :
+db_str_set::sync_queue::sync_queue(sp(::axis::application) papp) :
    element(papp),
    thread(papp),
    simple_thread(papp),

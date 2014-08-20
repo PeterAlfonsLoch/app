@@ -47,7 +47,7 @@ namespace filemanager
       sp(manager)        m_pfilemanager;
 
       
-      folder_list (sp(::base::application) papp);
+      folder_list (sp(::axis::application) papp);
       virtual ~folder_list ();
       
       virtual void install_message_handling(::message::dispatch * pinterface);

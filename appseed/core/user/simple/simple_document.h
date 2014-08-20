@@ -10,7 +10,7 @@ public:
    property_set       m_set;
 
 
-   simple_document(sp(::base::application) papp);
+   simple_document(sp(::axis::application) papp);
    virtual ~simple_document();
 
 };

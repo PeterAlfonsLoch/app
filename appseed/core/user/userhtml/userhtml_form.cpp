@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 
 
-html_form::html_form(sp(::base::application) papp) :
+html_form::html_form(sp(::axis::application) papp) :
    element(papp),
    ::user::interaction(papp),
    ::user::scroll_view(papp),

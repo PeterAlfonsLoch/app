@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   main_frame::main_frame(sp(::base::application) papp) :
+   main_frame::main_frame(sp(::axis::application) papp) :
       element(papp),
       simple_frame_window(papp)
    {

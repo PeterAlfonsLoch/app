@@ -3,7 +3,7 @@
 
 CLASS_DECL_CORE UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
-typedef sp(::base::application) (*LPFN_instantiate_application)(sp(::base::application) pappParent, const char * pszId);
+typedef sp(::axis::application) (*LPFN_instantiate_application)(sp(::axis::application) pappParent, const char * pszId);
 
 extern CLASS_DECL_CORE LPFN_instantiate_application g_lpfn_instantiate_application;
 
@@ -460,7 +460,7 @@ namespace core
 
       virtual int32_t run();
 
-      sp(::base::application) get_system();
+      sp(::axis::application) get_system();
 
       virtual bool set_keyboard_layout(const char * pszPath,::action::context actioncontext);
 
@@ -526,8 +526,8 @@ namespace core
 
 
 
-      virtual sp(::base::application) instantiate_application(const char * pszType,const char * pszId,application_bias * pbias);
-      virtual sp(::base::application) create_application(const char * pszType,const char * pszId,bool bSynch,application_bias * pbias);
+      virtual sp(::axis::application) instantiate_application(const char * pszType,const char * pszId,application_bias * pbias);
+      virtual sp(::axis::application) create_application(const char * pszType,const char * pszId,bool bSynch,application_bias * pbias);
 
 
 
@@ -574,7 +574,7 @@ namespace core
 
       //sp(::user::document) _001OpenDocumentFile(var varFile);
 
-      //sp(::base::application) get_system();
+      //sp(::axis::application) get_system();
 
       //virtual sp(::core::application) assert_running(const char * pszAppdId);
 
@@ -617,7 +617,7 @@ namespace core
 
 CLASS_DECL_CORE UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
-typedef sp(::base::application) (*LPFN_instantiate_application)(sp(::base::application) pappParent, const char * pszId);
+typedef sp(::axis::application) (*LPFN_instantiate_application)(sp(::axis::application) pappParent, const char * pszId);
 
 extern CLASS_DECL_CORE LPFN_instantiate_application g_lpfn_instantiate_application;
 

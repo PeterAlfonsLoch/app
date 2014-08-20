@@ -7,7 +7,7 @@ class CLASS_DECL_CORE MetaControlBox :
 public:
 
 
-   MetaControlBox(sp(::base::application) papp);
+   MetaControlBox(sp(::axis::application) papp);
    virtual ~MetaControlBox();
 
 

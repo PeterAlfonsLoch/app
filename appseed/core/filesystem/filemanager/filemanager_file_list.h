@@ -39,7 +39,7 @@ namespace filemanager
          file_list * m_plist;
 
 
-         create_image_list_thread(sp(::base::application) papp);
+         create_image_list_thread(sp(::axis::application) papp);
 
          virtual int32_t run();
 
@@ -62,7 +62,7 @@ namespace filemanager
       uint32_t                         m_dwLastFileSize;
 
 
-      file_list(sp(::base::application) papp);
+      file_list(sp(::axis::application) papp);
 
       void schedule_file_size(const char * psz);
 
@@ -154,7 +154,7 @@ namespace filemanager
       public:
 
 
-      ItemArray(sp(::base::application) papp);
+      ItemArray(sp(::axis::application) papp);
 
 
       void add_item(Item & item);

@@ -5,7 +5,7 @@
 namespace mysql
 {
 
-   database::database(sp(::base::application) papp) :
+   database::database(sp(::axis::application) papp) :
       element(papp)
    {
       m_pmysql = NULL;

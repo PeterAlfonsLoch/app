@@ -49,7 +49,7 @@ namespace user
       };
 
 
-      form_list(sp(::base::application) papp);
+      form_list(sp(::axis::application) papp);
       virtual ~form_list();
 
 

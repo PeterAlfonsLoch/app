@@ -3,7 +3,7 @@
 namespace user
 {
 
-   check_box::check_box(sp(::base::application) papp) :
+   check_box::check_box(sp(::axis::application) papp) :
       element(papp),
       ::user::interaction(papp)
    {

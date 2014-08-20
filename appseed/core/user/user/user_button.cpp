@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   button::button(sp(::base::application) papp) :
+   button::button(sp(::axis::application) papp) :
       element(papp),
       ::user::interaction(papp),
       m_istrButtonText(papp),

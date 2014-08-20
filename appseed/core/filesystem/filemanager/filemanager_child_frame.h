@@ -12,7 +12,7 @@ namespace filemanager
 
 
 
-      child_frame(sp(::base::application) papp);
+      child_frame(sp(::axis::application) papp);
       virtual ~child_frame();
 
       void install_message_handling(::message::dispatch * pinterface);

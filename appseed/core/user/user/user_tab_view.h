@@ -22,7 +22,7 @@ namespace user
       ::user::view_creator *                 m_pviewcreator;
 
 
-      tab_view(sp(::base::application) papp);
+      tab_view(sp(::axis::application) papp);
       virtual ~tab_view();
 
 

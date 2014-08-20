@@ -94,7 +94,7 @@ namespace filemanager
 
 #endif
 
-         ImageSet(sp(::base::application) papp);
+         ImageSet(sp(::axis::application) papp);
          virtual ~ImageSet();
 
 #ifdef WINDOWSEX
@@ -140,10 +140,10 @@ namespace filemanager
 
 #ifdef WINDOWSEX
       HICON CLASS_DECL_CORE CalcIcon(LPITEMIDLIST lpiidl, const char * lpcszExtra, int32_t cx, int32_t cy);
-      bool CLASS_DECL_CORE _017HasSubFolder(sp(::base::application) papp, LPITEMIDLIST lpiidl, const char * lpcszExtra);
+      bool CLASS_DECL_CORE _017HasSubFolder(sp(::axis::application) papp, LPITEMIDLIST lpiidl, const char * lpcszExtra);
 #endif
-      EFolder CLASS_DECL_CORE GetFolderType(sp(::base::application) papp, const wchar_t * lpcszPath);
-      EFolder CLASS_DECL_CORE GetFolderType(sp(::base::application) papp, const char * lpcszPath);
+      EFolder CLASS_DECL_CORE GetFolderType(sp(::axis::application) papp, const wchar_t * lpcszPath);
+      EFolder CLASS_DECL_CORE GetFolderType(sp(::axis::application) papp, const char * lpcszPath);
 //      void CLASS_DECL_CORE GetChildren(stringa & stra, const char * lpcszPath);
 #ifdef WINDOWSEX
       LPITEMIDLIST CLASS_DECL_CORE _017ItemIDListGetLast(LPITEMIDLIST lpiidl);

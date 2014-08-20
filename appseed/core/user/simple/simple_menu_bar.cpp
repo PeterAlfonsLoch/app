@@ -9,7 +9,7 @@
 #define ITEMCHECKEDPADRIGHT 2
 #define ITEMCHECKEDPADBOTTOM 2
 
-simple_menu_bar::simple_menu_bar(sp(::base::application) papp) :
+simple_menu_bar::simple_menu_bar(sp(::axis::application) papp) :
    element(papp),
    simple_toolbar(papp),
    m_menu(papp)

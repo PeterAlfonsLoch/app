@@ -65,7 +65,7 @@ namespace dynamic_source
       string                                    m_strTime;
 
 
-      script_compiler(sp(::base::application) papp);
+      script_compiler(sp(::axis::application) papp);
       virtual ~script_compiler();
 
       void initialize();

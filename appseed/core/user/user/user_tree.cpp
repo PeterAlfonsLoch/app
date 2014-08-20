@@ -7,7 +7,7 @@ namespace user
 
 
 
-   tree::tree(sp(::base::application) papp) :
+   tree::tree(sp(::axis::application) papp) :
       element(papp),
       ::user::scroll_view(papp),
       m_dcextension(papp)

@@ -14,7 +14,7 @@ namespace core
 {
 
 
-   system::system(sp(::base::application) papp):
+   system::system(sp(::axis::application) papp):
       ::element(papp),
       ::base::system(papp),
       m_mutexDelete(this),
@@ -716,7 +716,7 @@ namespace core
    }
 
    /*
-   sp(element) system::on_alloc(sp(::base::application) papp, sp(type) info)
+   sp(element) system::on_alloc(sp(::axis::application) papp, sp(type) info)
    {
    /*string str;
    str.Format("Could not alloc %s", info.name());
@@ -814,7 +814,7 @@ namespace core
 
 
 
-   void system::on_allocation_error(sp(::base::application) papp,sp(type) info)
+   void system::on_allocation_error(sp(::axis::application) papp,sp(type) info)
    {
 
       UNREFERENCED_PARAMETER(papp);
@@ -1263,7 +1263,7 @@ namespace core
    return pbergedge->get_nature();
    }
 
-   sp(::base::application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
+   sp(::axis::application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
    sp(::core::platform) pbergedge = get_session(iEdge, pbiasCreate);
    return pbergedge->application_get(pszType, pszId, bCreate, bSynch, pbiasCreate);

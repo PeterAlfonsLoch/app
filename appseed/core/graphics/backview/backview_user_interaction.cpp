@@ -9,7 +9,7 @@ namespace backview
    {
 
 
-      interaction::interaction(sp(::base::application) papp) :
+      interaction::interaction(sp(::axis::application) papp) :
          element(papp),
 
          Interface(papp)

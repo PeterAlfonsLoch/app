@@ -28,7 +28,7 @@ namespace html
       e_display            m_edisplay;
 
 
-      style(sp(::base::application) papp);
+      style(sp(::axis::application) papp);
       style(const style & style);
 
       void initialize(e_tag etag);

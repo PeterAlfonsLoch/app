@@ -24,7 +24,7 @@ namespace core
          manual_reset_event *       m_pevReady;
 
 
-         process_thread(sp(::base::application) papp, string * pstrRead = NULL, manual_reset_event * pevReady = NULL);
+         process_thread(sp(::axis::application) papp, string * pstrRead = NULL, manual_reset_event * pevReady = NULL);
          int32_t run();
 
 

@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   preview::preview(sp(::base::application) papp) :
+   preview::preview(sp(::axis::application) papp) :
       element(papp)
    {
 

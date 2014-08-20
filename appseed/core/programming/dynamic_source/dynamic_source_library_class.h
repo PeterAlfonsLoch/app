@@ -45,7 +45,7 @@ namespace dynamic_source
 
 
 
-      library_class(sp(::base::application) papp);
+      library_class(sp(::axis::application) papp);
       ~library_class();
 
 

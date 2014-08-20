@@ -125,8 +125,8 @@ namespace userex
    };
 
 
-   CLASS_DECL_CORE::user::front_end_schema * GetUfeSchema(sp(::base::application) papp);
-   CLASS_DECL_CORE::user::front_end * GetUfe(sp(::base::application) papp);
+   CLASS_DECL_CORE::user::front_end_schema * GetUfeSchema(sp(::axis::application) papp);
+   CLASS_DECL_CORE::user::front_end * GetUfe(sp(::axis::application) papp);
 
 
 } // namespace core

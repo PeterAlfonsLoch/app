@@ -21,7 +21,7 @@ namespace backview
          color          m_colorBackground;
 
 
-         interaction(sp(::base::application) papp);
+         interaction(sp(::axis::application) papp);
          virtual ~interaction();
 
          virtual void BackViewGetClientRect(LPRECT lprect);

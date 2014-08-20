@@ -21,7 +21,7 @@ namespace libcompress
          spa(::file::reader)                InStreamPointers;
          spa(::file::writer)                OutStreamPointers;
 
-         CCoder2(sp(::base::application) papp, uint32_t numInStreams, uint32_t numOutStreams);
+         CCoder2(sp(::axis::application) papp, uint32_t numInStreams, uint32_t numOutStreams);
          void SetCoderInfo(const file_size **inSizes, const file_size **outSizes);
          virtual int32_t run();
          void Code(progress_info_interface *progress);
@@ -58,7 +58,7 @@ namespace libcompress
          spa(CCoder2) _coders;
 
 
-         CCoderMixer2MT(sp(::base::application) papp);
+         CCoderMixer2MT(sp(::axis::application) papp);
 
          HRes Code(spa(::file::reader) & inStreams,
             const file_size **inSizes,

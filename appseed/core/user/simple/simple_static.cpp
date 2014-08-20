@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_static::simple_static(sp(::base::application) papp) :
+simple_static::simple_static(sp(::axis::application) papp) :
    element(papp),
    
    ::user::static_control(papp),

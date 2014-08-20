@@ -13,7 +13,7 @@ namespace simpledb
       base *     m_pbase;
 
 
-      server(sp(::base::application) papp);
+      server(sp(::axis::application) papp);
       virtual ~server();
 
       

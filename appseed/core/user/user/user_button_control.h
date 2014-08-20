@@ -17,7 +17,7 @@ public:
    int32_t               m_iImageSubItemHover;
 
 
-   BaseButtonControl(sp(::base::application) papp);
+   BaseButtonControl(sp(::axis::application) papp);
    virtual ~BaseButtonControl();
 
 

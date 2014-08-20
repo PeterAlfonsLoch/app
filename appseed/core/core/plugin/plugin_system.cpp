@@ -5,7 +5,7 @@ namespace plugin
 {
 
 
-   system::system(sp(::base::application) papp) :
+   system::system(sp(::axis::application) papp) :
       element(papp),
       ::base::system(papp),
       ::core::system(papp)

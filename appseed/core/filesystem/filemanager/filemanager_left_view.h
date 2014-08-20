@@ -16,7 +16,7 @@ namespace filemanager
       sp(::filemanager::tree)    m_ptree;
 
 
-      left_view(sp(::base::application) papp);
+      left_view(sp(::axis::application) papp);
       virtual ~left_view();
 
 

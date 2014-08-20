@@ -29,7 +29,7 @@ protected:
 
 
 public:
-   imaging(sp(::base::application) papp);
+   imaging(sp(::axis::application) papp);
     ~imaging();
 
 
@@ -294,14 +294,14 @@ public:
       HRSRC hRsrc,
       bool bMono = false);*/
 
-   virtual bool LoadImageFile(::draw2d::dib * pdib, var varFile, sp(::base::application) papp);
-   virtual bool LoadImageSync(::draw2d::dib * pdib, const char * lpcszImageFilePath, sp(::base::application) papp);
+   virtual bool LoadImageFile(::draw2d::dib * pdib, var varFile, sp(::axis::application) papp);
+   virtual bool LoadImageSync(::draw2d::dib * pdib, const char * lpcszImageFilePath, sp(::axis::application) papp);
 
-   virtual FIBITMAP * LoadImageFile(var varFile, sp(::base::application) papp);
+   virtual FIBITMAP * LoadImageFile(var varFile, sp(::axis::application) papp);
    virtual FIBITMAP * LoadImageFile(::file::buffer_sp  pfile);
    virtual ::draw2d::bitmap_sp FItoHBITMAP(FIBITMAP * pfibitmap, bool bDestroyFI);
    virtual FIBITMAP * HBITMAPtoFI(::draw2d::bitmap_sp hbitmap);
-   virtual ::draw2d::bitmap_sp LoadImageSync(const char * lpcszImageFilePath, sp(::base::application) papp);
+   virtual ::draw2d::bitmap_sp LoadImageSync(const char * lpcszImageFilePath, sp(::axis::application) papp);
    virtual void SaveJpeg(const char * lpcszFile, ::draw2d::bitmap_sp pbitmap);
    virtual void SavePng(const char * lpcszFile, ::draw2d::bitmap_sp pbitmap);
    virtual void SavePng(const char * lpcszFile, FIBITMAP * pfi, bool bUnload);

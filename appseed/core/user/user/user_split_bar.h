@@ -22,7 +22,7 @@ namespace user
 
 
 
-      split_bar(sp(::base::application) papp);
+      split_bar(sp(::axis::application) papp);
       virtual ~split_bar();
 
 

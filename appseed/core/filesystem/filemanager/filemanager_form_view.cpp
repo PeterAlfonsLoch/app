@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   form_view::form_view(sp(::base::application) papp):
+   form_view::form_view(sp(::axis::application) papp):
       element(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),

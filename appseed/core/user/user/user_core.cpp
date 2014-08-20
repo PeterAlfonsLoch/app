@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   core::core(sp(::base::application) papp) :
+   core::core(sp(::axis::application) papp) :
       element(papp),
       ::base::departament(papp)
    {

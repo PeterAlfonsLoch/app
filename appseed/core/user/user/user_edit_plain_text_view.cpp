@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   edit_plain_text_view::edit_plain_text_view(sp(::base::application) papp) :
+   edit_plain_text_view::edit_plain_text_view(sp(::axis::application) papp) :
       element(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),

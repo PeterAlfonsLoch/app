@@ -113,7 +113,7 @@ namespace user
             {
    /* xxx            if (!pSBP->strText.load_string(pSBP->strId))
                {
-                  TRACE(::base::trace::category_AppMsg, 0, "Warning: failed to load indicator string 0x%04X.\n",
+                  TRACE(::axis::trace::category_AppMsg, 0, "Warning: failed to load indicator string 0x%04X.\n",
                      pSBP->strId);
                   bResult = FALSE;
                   break;
@@ -705,13 +705,13 @@ namespace user
    {
    public: // re-implementations only
 
-      CStatusCmdUI(sp(::base::application) papp);
+      CStatusCmdUI(sp(::axis::application) papp);
       virtual void Enable(bool bOn);
       virtual void SetCheck(check::e_check echeck = check::checked);
       virtual void SetText(const char * lpszText);
    };
 
-   CStatusCmdUI::CStatusCmdUI(sp(::base::application) papp) :
+   CStatusCmdUI::CStatusCmdUI(sp(::axis::application) papp) :
    element(papp),
       cmd_ui(papp)
 

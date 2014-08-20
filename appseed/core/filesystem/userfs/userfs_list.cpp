@@ -5,7 +5,7 @@ namespace userfs
 {
 
 
-   list::list(sp(::base::application) papp) :
+   list::list(sp(::axis::application) papp) :
       element(papp),
       ::user::scroll_view(papp),
       m_headerctrl(papp),

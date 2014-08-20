@@ -37,7 +37,7 @@ namespace user
 
 
 
-      combo_box(sp(::base::application) papp);
+      combo_box(sp(::axis::application) papp);
       virtual ~combo_box();
 
 

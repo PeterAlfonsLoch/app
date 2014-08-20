@@ -58,7 +58,7 @@ namespace visual
    }
 
 
-   void visual::construct(sp(::base::application) papp)
+   void visual::construct(sp(::axis::application) papp)
    {
 
       ::base::departament::construct(papp);

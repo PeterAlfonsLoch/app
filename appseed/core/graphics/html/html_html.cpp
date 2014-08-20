@@ -20,7 +20,7 @@ namespace html
    }
 
 
-   void html::construct(sp(::base::application) papp)
+   void html::construct(sp(::axis::application) papp)
    {
 
       ::base::departament::construct(papp);

@@ -34,7 +34,7 @@ numbers:
       class token * m_ptoken;
 
 
-      scanner(sp(::base::application) papp);
+      scanner(sp(::axis::application) papp);
       virtual ~scanner();
 
       

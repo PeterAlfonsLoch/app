@@ -4,7 +4,7 @@
 namespace nature
 {
 
-   appearance_view::appearance_view(sp(::base::application) papp) :
+   appearance_view::appearance_view(sp(::axis::application) papp) :
       element(papp),
       ::user::tab(papp),
 

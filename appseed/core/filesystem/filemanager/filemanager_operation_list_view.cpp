@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   operation_list_view::operation_list_view(sp(::base::application) papp):
+   operation_list_view::operation_list_view(sp(::axis::application) papp):
       element(papp),
       m_headerctrl(papp),
 

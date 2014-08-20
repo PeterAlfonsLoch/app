@@ -4,7 +4,7 @@
 namespace simpledb
 {
 
-   session::session(sp(::base::application) papp) :
+   session::session(sp(::axis::application) papp) :
       element(papp)
    {
       m_pserver = NULL;

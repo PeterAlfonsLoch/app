@@ -5,7 +5,7 @@ class CLASS_DECL_CORE form_view :
    virtual public html_form_view
 {
 public:
-   form_view(sp(::base::application) papp);
+   form_view(sp(::axis::application) papp);
 
    void on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint);
    virtual bool BaseOnControlEvent(::user::control_event * pevent);

@@ -22,7 +22,7 @@ namespace user
             control_box *     m_pcontrolbox;
             
             
-            control_box_button(sp(::base::application) papp);
+            control_box_button(sp(::axis::application) papp);
             virtual ~control_box_button();
 
 

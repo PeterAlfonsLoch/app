@@ -4,7 +4,7 @@ namespace core
 {
 
    /*
-   file_association::file_association(sp(::base::application) papp) :
+   file_association::file_association(sp(::axis::application) papp) :
       element(papp)
    {
       m_hkeyClassesRoot = NULL;

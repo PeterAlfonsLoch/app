@@ -5,7 +5,7 @@ namespace usermail
 {
 
 
-   tree::tree(sp(::base::application) papp) :
+   tree::tree(sp(::axis::application) papp) :
       element(papp),
       ::data::data(papp),
       ::data::tree(papp)

@@ -12,7 +12,7 @@ namespace core
    public:
 
 
-      library(sp(::base::application) papp);
+      library(sp(::axis::application) papp);
 
 
       // impl
@@ -21,7 +21,7 @@ namespace core
       virtual void get_extension_app(stringa & straApp,const char * pszExtension);
 
 
-      //virtual sp(::base::application) get_new_app(const char * pszAppId);
+      //virtual sp(::axis::application) get_new_app(const char * pszAppId);
 
 
    };

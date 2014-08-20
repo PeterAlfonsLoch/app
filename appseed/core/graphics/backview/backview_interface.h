@@ -36,7 +36,7 @@ namespace backview
 
 
 
-      Interface(sp(::base::application) papp);
+      Interface(sp(::axis::application) papp);
       virtual ~Interface();
 
 

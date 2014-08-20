@@ -11,7 +11,7 @@ namespace user
    const UINT list::MESSAGE_COLUMNHEADERTRACK = WM_USER + 26;
    const UINT list::MESSAGE_ENDCOLUMNHEADERTRACK = WM_USER + 27;
 
-   list::list(sp(::base::application) papp) :
+   list::list(sp(::axis::application) papp) :
    element(papp),
    ::user::scroll_view(papp),
    m_columna(papp),
@@ -3015,7 +3015,7 @@ namespace user
       return this->get_size();
    }
 
-   list_column_array::list_column_array(sp(::base::application) papp) :
+   list_column_array::list_column_array(sp(::axis::application) papp) :
    element(papp)
    {
       m_plist = NULL;

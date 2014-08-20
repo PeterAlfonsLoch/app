@@ -17,7 +17,7 @@ namespace simpledb
       int32_t                           m_iErrorCode;
 
 
-      base(sp(::base::application) papp);
+      base(sp(::axis::application) papp);
 
 
       virtual int32_t connect();

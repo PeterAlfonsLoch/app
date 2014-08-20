@@ -20,7 +20,7 @@ public:
    string                     m_strMatter;
 
 
-   dialog(sp(::base::application) papp);
+   dialog(sp(::axis::application) papp);
    dialog(const char * pszMatter, sp(::user::interaction) puiParent);
    virtual ~dialog();
 

@@ -23,7 +23,7 @@ namespace file
       uint_ptr            ProcessedSize;
 
 
-      stream_binder(sp(::base::application) papp);
+      stream_binder(sp(::axis::application) papp);
       HRes CreateEvents();
 
       virtual void CreateStreams(sp(::file::reader) & inStream, sp(::file::writer) & outStream);

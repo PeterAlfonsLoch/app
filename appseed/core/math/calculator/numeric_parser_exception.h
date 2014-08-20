@@ -7,7 +7,7 @@ class CLASS_DECL_CORE numeric_parser_exception:
 public:
 
 
-   numeric_parser_exception(sp(::base::application) papp,const string & strMessage);
+   numeric_parser_exception(sp(::axis::application) papp,const string & strMessage);
    virtual ~numeric_parser_exception();
 
 

@@ -42,7 +42,7 @@ namespace filemanager
       sp(::user::multiple_document_template) m_pdoctemplateChildList;
 
 
-      manager_template(sp(::base::application) papp);
+      manager_template(sp(::axis::application) papp);
       virtual ~manager_template();
 
 

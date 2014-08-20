@@ -3,7 +3,7 @@
 namespace plugin
 {
 
-   run_start_installer::run_start_installer(sp(::base::application) papp, plugin * pplugin) :
+   run_start_installer::run_start_installer(sp(::axis::application) papp, plugin * pplugin) :
       m_pplugin(pplugin)
    {
       UNREFERENCED_PARAMETER(papp);

@@ -14,7 +14,7 @@ namespace file
       virtual public system_exception
    {
    public:
-      out_buffer_exception(sp(::base::application) papp, HRESULT errorCode) : 
+      out_buffer_exception(sp(::axis::application) papp, HRESULT errorCode) : 
          element(papp),
          ::call_stack(papp),
          ::exception::base(papp),

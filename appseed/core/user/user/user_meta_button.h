@@ -18,7 +18,7 @@ public:
    ::draw2d::region_sp                 m_spregion;
 
 
-   MetaButton(sp(::base::application) papp);
+   MetaButton(sp(::axis::application) papp);
    virtual ~MetaButton();
 
 

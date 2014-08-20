@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   static_control::static_control(sp(::base::application) papp) :
+   static_control::static_control(sp(::axis::application) papp) :
       element(papp)
    {
 

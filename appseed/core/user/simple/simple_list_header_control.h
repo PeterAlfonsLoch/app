@@ -11,7 +11,7 @@ public:
 
 
 
-   simple_list_header_control(sp(::base::application) papp);
+   simple_list_header_control(sp(::axis::application) papp);
    virtual ~simple_list_header_control();
 
 

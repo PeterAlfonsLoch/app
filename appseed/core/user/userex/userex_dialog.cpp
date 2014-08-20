@@ -18,7 +18,7 @@ dialog::dialog(const char * pszMatter, sp(::user::interaction) puiParent) :
 }
 
 
-dialog::dialog(sp(::base::application) papp) :
+dialog::dialog(sp(::axis::application) papp) :
    element(papp),
    user::scroll_view(papp),
    ::user::form_interface(papp),

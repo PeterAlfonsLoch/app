@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   view::view(sp(::base::application) papp) :
+   view::view(sp(::axis::application) papp) :
       element(papp),
       ::user::split_layout(papp),
       ::user::split_view(papp),

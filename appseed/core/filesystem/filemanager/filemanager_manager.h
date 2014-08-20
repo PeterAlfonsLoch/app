@@ -16,7 +16,7 @@ namespace filemanager
       ::action::context    m_actioncontext;
 
 
-      full_browse(sp(::base::application) papp);
+      full_browse(sp(::axis::application) papp);
       virtual ~full_browse();
 
       virtual int32_t run();
@@ -40,7 +40,7 @@ namespace filemanager
       string                        m_strTopic;
 
 
-      manager(sp(::base::application) papp);
+      manager(sp(::axis::application) papp);
       virtual ~manager();
 
 

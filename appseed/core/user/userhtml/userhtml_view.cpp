@@ -21,7 +21,7 @@ ON_COMMAND(ID_FILE_PRINT_PREVIEW, ::user::impact::OnFilePrintPreview)
 // // END_MESSAGE_MAP()
 
 
-html_view::html_view(sp(::base::application) papp) :
+html_view::html_view(sp(::axis::application) papp) :
    element(papp),
    ::user::interaction(papp),
    ::user::scroll_view(papp),

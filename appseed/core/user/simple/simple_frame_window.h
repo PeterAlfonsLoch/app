@@ -56,7 +56,7 @@ public:
    mapsp(id, id, ::user::toolbar)     m_toolbarmap;
 
 
-   simple_frame_window(sp(::base::application) papp);
+   simple_frame_window(sp(::axis::application) papp);
    virtual ~simple_frame_window();
 
 

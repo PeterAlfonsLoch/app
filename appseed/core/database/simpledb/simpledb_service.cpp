@@ -8,7 +8,7 @@ namespace simpledb
 {
 
 
-   service::service(sp(::base::application) papp) :
+   service::service(sp(::axis::application) papp) :
       element(papp),
       plain_service(papp)
    {
@@ -21,7 +21,7 @@ namespace simpledb
    void service::serve()
    {
 
-      sp(::base::application) pbaseapp = get_app();
+      sp(::axis::application) pbaseapp = get_app();
 
       ::set_thread(&Sys(pbaseapp));
 

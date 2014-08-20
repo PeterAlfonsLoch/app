@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   menu_list_view::menu_list_view(sp(::base::application) papp) :
+   menu_list_view::menu_list_view(sp(::axis::application) papp) :
       element(papp),
       menu_base(papp),
       menu(papp),

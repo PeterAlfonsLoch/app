@@ -28,7 +28,7 @@ namespace user
       notify_icon_listener * m_plistener;
 
 
-      notify_icon(sp(::base::application) papp);
+      notify_icon(sp(::axis::application) papp);
       virtual ~notify_icon();
 
 

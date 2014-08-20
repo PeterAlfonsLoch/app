@@ -29,7 +29,7 @@ namespace html
       html(::base::application * papp);
       virtual ~html();
 
-      virtual void construct(sp(::base::application) papp);
+      virtual void construct(sp(::axis::application) papp);
 
 
       virtual bool initialize();

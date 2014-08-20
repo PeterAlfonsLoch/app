@@ -47,7 +47,7 @@ namespace filemanager
          ::data::tree_item *        m_pdataitem;
          e_step                     m_estep;
 
-         polishing(sp(::base::application) papp,::filemanager::tree * ptree,::user::tree * pusertree, bool bLowLatency);
+         polishing(sp(::axis::application) papp,::filemanager::tree * ptree,::user::tree * pusertree, bool bLowLatency);
 
          int32_t run();
          bool step(::single_lock & sl);
@@ -65,7 +65,7 @@ namespace filemanager
 #endif
 
 
-      tree(sp(::base::application) papp);
+      tree(sp(::axis::application) papp);
       virtual ~tree();
 
 

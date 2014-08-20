@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   manager::manager(sp(::base::application) papp):
+   manager::manager(sp(::axis::application) papp):
       element(papp),
       ::data::data_container_base(papp),
       ::user::document(papp),
@@ -728,7 +728,7 @@ namespace filemanager
 
    }
 
-   full_browse::full_browse(sp(::base::application) papp):
+   full_browse::full_browse(sp(::axis::application) papp):
       element(papp),
       thread(papp)
    {

@@ -7,7 +7,7 @@ class CLASS_DECL_CORE datetime_parser_exception:
 public:
 
 
-   datetime_parser_exception(sp(::base::application) papp,const string & strMessage);
+   datetime_parser_exception(sp(::axis::application) papp,const string & strMessage);
    virtual ~datetime_parser_exception();
 
 

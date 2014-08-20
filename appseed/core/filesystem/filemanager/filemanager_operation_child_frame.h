@@ -11,7 +11,7 @@ namespace filemanager
    public:
       
 
-      operation_child_frame(sp(::base::application) papp);
+      operation_child_frame(sp(::axis::application) papp);
 
 
    };

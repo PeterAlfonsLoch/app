@@ -17,7 +17,7 @@ namespace filemanager
       bool                             m_bRecursiveColumn;
 
 
-      folder_list_view(sp(::base::application) papp);
+      folder_list_view(sp(::axis::application) papp);
       virtual ~folder_list_view();
 
 

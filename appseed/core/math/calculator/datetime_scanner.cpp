@@ -603,7 +603,7 @@ namespace datetime
       }
    }
 
-   scanner::scanner(sp(::base::application) papp, ::user::str_context * pcontext)
+   scanner::scanner(sp(::axis::application) papp, ::user::str_context * pcontext)
    {
       m_pstrcontext     = pcontext;
       m_ptoken          = NULL;

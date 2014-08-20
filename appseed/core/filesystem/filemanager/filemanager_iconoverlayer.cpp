@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   iconoverlayer::iconoverlayer(sp(::base::application) papp) :
+   iconoverlayer::iconoverlayer(sp(::axis::application) papp) :
       element(papp)
    {
 

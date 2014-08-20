@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   tree_data::tree_data(sp(::base::application) papp):
+   tree_data::tree_data(sp(::axis::application) papp):
       element(papp),
       ::data::data(papp),
       ::data::tree(papp)

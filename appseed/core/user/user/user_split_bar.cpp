@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   split_bar::split_bar(sp(::base::application) papp) :
+   split_bar::split_bar(sp(::axis::application) papp) :
       element(papp)
    {
 

@@ -8,7 +8,7 @@ namespace backview
    const UINT thread::MESSAGE_BACKVIEW = WM_APP + 123;
    const WPARAM thread::WPARAM_BACKVIEW_IMAGELOADED = 0;
 
-   thread::thread(sp(::base::application) papp):
+   thread::thread(sp(::axis::application) papp):
       element(papp),
       ::thread(papp),
       m_evInitialized(papp,FALSE,TRUE),

@@ -47,8 +47,8 @@ namespace user
       point                      m_ptTrack;
 
 
-      menu(sp(::base::application) papp);
-      menu(sp(::base::application) papp, sp(menu_item) pitem);
+      menu(sp(::axis::application) papp);
+      menu(sp(::axis::application) papp, sp(menu_item) pitem);
       virtual ~menu();
 
 

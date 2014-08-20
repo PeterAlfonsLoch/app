@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   property_sheet::property_sheet(sp(::base::application) papp) :
+   property_sheet::property_sheet(sp(::axis::application) papp) :
       element(papp),
       ::user::scroll_view(papp),
       ::user::form_interface(papp),

@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   combo_box::combo_box(sp(::base::application) papp) :
+   combo_box::combo_box(sp(::axis::application) papp) :
       element(papp),
       ::user::scroll_view(papp),
       ::data::data_listener(papp),

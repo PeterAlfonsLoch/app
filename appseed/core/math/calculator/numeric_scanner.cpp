@@ -22,7 +22,7 @@ namespace calculator
    }
 
 
-   scanner::scanner(sp(::base::application) papp) :
+   scanner::scanner(sp(::axis::application) papp) :
       element(papp)
    {
       m_ptoken    = NULL;

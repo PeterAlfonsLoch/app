@@ -5,7 +5,7 @@ namespace simpledb
 {
 
 
-   manager::manager(sp(::base::application) papp) :
+   manager::manager(sp(::axis::application) papp) :
       element(papp),
       thread(papp),
       message_queue(papp),

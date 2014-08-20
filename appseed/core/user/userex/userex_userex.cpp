@@ -538,14 +538,14 @@ namespace userex
    }
 
 
-   ::user::front_end_schema * GetUfeSchema(sp(::base::application) papp)
+   ::user::front_end_schema * GetUfeSchema(sp(::axis::application) papp)
    {
 
       return App(papp).userex()->GetUfeSchema();
 
    }
 
-   ::user::front_end * GetUfe(sp(::base::application) papp)
+   ::user::front_end * GetUfe(sp(::axis::application) papp)
    {
       return App(papp).userex()->GetUfe();
    }

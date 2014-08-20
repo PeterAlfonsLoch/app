@@ -23,7 +23,7 @@ namespace userfs
       int32_t                       m_iDefaultImageSelected;
 
 
-      tree(sp(::base::application) papp);
+      tree(sp(::axis::application) papp);
       virtual ~tree();
 
 

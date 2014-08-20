@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_edit_plain_text::simple_edit_plain_text(sp(::base::application) papp) :
+simple_edit_plain_text::simple_edit_plain_text(sp(::axis::application) papp) :
    element(papp),
    ::user::interaction(papp),
    ::user::scroll_view(papp),

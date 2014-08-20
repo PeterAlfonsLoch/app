@@ -18,7 +18,7 @@ namespace userex
       sp(filemanager::manager)      m_pfilemanagerTabbed;
 
 
-      pane_tab_view(sp(::base::application) papp);
+      pane_tab_view(sp(::axis::application) papp);
       virtual ~pane_tab_view();
 
 

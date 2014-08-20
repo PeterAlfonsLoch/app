@@ -13,7 +13,7 @@ namespace calculator
       spa(::calculator::element)      m_elementa;
 
 
-      parser(sp(::base::application) papp);
+      parser(sp(::axis::application) papp);
       virtual ~parser();
 
 

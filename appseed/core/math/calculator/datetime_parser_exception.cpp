@@ -4,7 +4,7 @@
 thread_int_ptr < int_ptr > t_iAvoidDatetimeParserException;
 
 
-datetime_parser_exception::datetime_parser_exception(sp(::base::application) papp,const string & strMessage):
+datetime_parser_exception::datetime_parser_exception(sp(::axis::application) papp,const string & strMessage):
 element(papp),
 ::call_stack(get_app()),
 ::exception::base(get_app()),

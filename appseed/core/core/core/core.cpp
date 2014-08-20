@@ -63,7 +63,7 @@ namespace core
             pchSrc += 2;
             if (i >= nString)
             {
-               //               TRACE(::base::trace::category_AppMsg, 0, "Error: illegal string index requested %d.\n", i);
+               //               TRACE(::axis::trace::category_AppMsg, 0, "Error: illegal string index requested %d.\n", i);
                *pchDest++ = '?';
                nTotalLen--;
             }

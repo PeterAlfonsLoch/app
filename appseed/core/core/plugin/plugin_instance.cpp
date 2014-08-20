@@ -1,14 +1,14 @@
 #include "framework.h"
 #include "plugin_instance.h"
 
-::hotplugin::plugin * new_hotplugin(sp(::base::application) papp);
+::hotplugin::plugin * new_hotplugin(sp(::axis::application) papp);
 
 
 namespace plugin
 {
 
 
-   instance::instance(sp(::base::application) papp) :
+   instance::instance(sp(::axis::application) papp) :
       element(papp),
       hotplugin::plugin(papp),
       ::simple_ui::style(papp),
@@ -99,7 +99,7 @@ namespace plugin
 
 
 
-::hotplugin::plugin * new_hotplugin(sp(::base::application) papp)
+::hotplugin::plugin * new_hotplugin(sp(::axis::application) papp)
 {
 
    return new ::plugin::instance(papp);

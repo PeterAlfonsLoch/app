@@ -1,6 +1,6 @@
 #include "framework.h"
 
-font_central::font_central(sp(::base::application) papp) :
+font_central::font_central(sp(::axis::application) papp) :
    element(papp),
    m_fontCaption(allocer()),
    m_fontMenu(allocer()),

@@ -4,7 +4,7 @@
 namespace plugin
 {
 
-   history::history(sp(::base::application) papp, plugin * pplugin) :
+   history::history(sp(::axis::application) papp, plugin * pplugin) :
       element(papp),
       ::core::history(papp),
       m_pplugin(pplugin)

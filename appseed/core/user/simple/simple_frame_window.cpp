@@ -6,7 +6,7 @@
 #define TEST 0
 
 
-simple_frame_window::simple_frame_window(sp(::base::application) papp) :
+simple_frame_window::simple_frame_window(sp(::axis::application) papp) :
 element(papp),
 m_dibBk(allocer()),
 m_fastblur(allocer())
@@ -654,7 +654,7 @@ void simple_frame_window::_001OnClose(signal_details * pobj)
       return;
    }
 
-   sp(::base::application) papp = &Application;
+   sp(::axis::application) papp = &Application;
 
    if (papp->m_pcoreapp->is_system() || papp->m_pcoreapp->is_session())
    {
@@ -667,7 +667,7 @@ void simple_frame_window::_001OnClose(signal_details * pobj)
       for (int32_t i = 0; i <  appptra.get_count(); i++)
       {
 
-         sp(::base::application) pappChild = &appptra[i];
+         sp(::axis::application) pappChild = &appptra[i];
 
          if (!pappChild->m_pcoreapp->_001CloseApplicationByUser(this))
             return;
@@ -995,7 +995,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics * pdc)
             m_dibBk->create(rectClient.size());
             m_dibBk->Fill(0, 184, 184, 170);
             //HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
-            //::visual::fastblur *( *pfnNew )(sp(::base::application)) = (::visual::fastblur *(*)(sp(::base::application))) ::GetProcAddress(hmodule, "new_fastblur");
+            //::visual::fastblur *( *pfnNew )(sp(::axis::application)) = (::visual::fastblur *(*)(sp(::axis::application))) ::GetProcAddress(hmodule, "new_fastblur");
             m_fastblur.alloc(allocer());
             m_fastblur.initialize(rectClient.size(), 2);
          }
@@ -1407,7 +1407,7 @@ LRESULT simple_frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
    // don't execute the command when the window is disabled
    if (!is_window_enabled())
    {
-      TRACE(::base::trace::category_AppMsg, 0, "Warning: DDE command '%s' ignored because window is disabled.\n",
+      TRACE(::axis::trace::category_AppMsg, 0, "Warning: DDE command '%s' ignored because window is disabled.\n",
          strCommand.GetString());
       return 0;
    }
@@ -1415,7 +1415,7 @@ LRESULT simple_frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
    // execute the command
    LPTSTR lpszCommand = strCommand.GetBuffer();
    if (!System.OnDDECommand(lpszCommand))
-      TRACE(::base::trace::category_AppMsg, 0, "Error: failed to execute DDE command '%s'.\n", lpszCommand);
+      TRACE(::axis::trace::category_AppMsg, 0, "Error: failed to execute DDE command '%s'.\n", lpszCommand);
    strCommand.ReleaseBuffer();
 
 #else

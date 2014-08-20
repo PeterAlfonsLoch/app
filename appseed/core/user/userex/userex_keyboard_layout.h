@@ -19,7 +19,7 @@ namespace userex // ca8 + cube
       sp(simple_list_view)            m_plistview;
       ::user::keyboard_layout_ida   m_layoutida;
 
-      keyboard_layout(sp(::base::application) papp);
+      keyboard_layout(sp(::axis::application) papp);
       virtual ~keyboard_layout();
 
       bool CreateViews();

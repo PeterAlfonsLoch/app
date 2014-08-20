@@ -41,7 +41,7 @@ namespace html
 
          };
 
-         cell(sp(::base::application) papp);
+         cell(sp(::axis::application) papp);
          virtual ~cell();
          // example 1:
          // -------------------

@@ -20,7 +20,7 @@ namespace html
 {
 
 
-   style::style(sp(::base::application) papp) :
+   style::style(sp(::axis::application) papp) :
       element(papp)
    {
 

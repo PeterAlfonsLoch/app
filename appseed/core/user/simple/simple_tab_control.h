@@ -7,7 +7,7 @@ class CLASS_DECL_CORE simple_tab_control :
 public:
 
 
-   simple_tab_control(sp(::base::application) papp);
+   simple_tab_control(sp(::axis::application) papp);
    virtual ~simple_tab_control();
 
 

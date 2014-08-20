@@ -20,8 +20,8 @@ namespace datetime
       element *   m_pelement3;
 
 
-      value get_value(sp(::base::application) pbaseapp, ::user::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const;
-      string get_expression(sp(::base::application) pbaseapp, ::user::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const;
+      value get_value(sp(::axis::application) pbaseapp, ::user::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const;
+      string get_expression(sp(::axis::application) pbaseapp, ::user::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const;
          
 
 

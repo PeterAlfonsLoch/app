@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   manager_template::manager_template(sp(::base::application) papp) :
+   manager_template::manager_template(sp(::axis::application) papp) :
       element(papp)
    {
 

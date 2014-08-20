@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      core(sp(::base::application) papp);
+      core(sp(::axis::application) papp);
       virtual ~core();
 
 

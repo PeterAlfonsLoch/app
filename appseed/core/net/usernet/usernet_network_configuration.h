@@ -16,7 +16,7 @@ namespace usernet // ca8 + cube
       sp(form_view)                   m_pview;
 
 
-      network_configuration(sp(::base::application) papp);
+      network_configuration(sp(::axis::application) papp);
       virtual ~network_configuration();
 
 

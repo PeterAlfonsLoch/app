@@ -6,7 +6,7 @@ namespace visual
 
 
 
-   graphics_extension::graphics_extension(sp(::base::application) papp) :
+   graphics_extension::graphics_extension(sp(::axis::application) papp) :
       element(papp)
    {
 

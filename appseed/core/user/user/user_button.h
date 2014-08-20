@@ -38,7 +38,7 @@ namespace user
       bool                                m_bLButtonDown;
 
 
-      button(sp(::base::application) papp);
+      button(sp(::axis::application) papp);
       virtual ~button();
 
       void VirtualOnSize();

@@ -53,7 +53,7 @@ namespace user
             map < e_button, e_button, sp(control_box_button), sp(control_box_button) >      m_buttonmap;
 
 
-            control_box(sp(::base::application) papp);
+            control_box(sp(::axis::application) papp);
             virtual ~control_box();
 
 

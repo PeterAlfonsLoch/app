@@ -192,7 +192,7 @@ public:
 
 // Construction/Destruction
 
-   lite_html_reader(sp(::base::application) papp)  :
+   lite_html_reader(sp(::axis::application) papp)  :
       element(papp)
    {
       m_bResolveEntities = true;   // entities are resolved, by default

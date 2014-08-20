@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   tool_tip_window::tool_tip_window(sp(::base::application) papp) :
+   tool_tip_window::tool_tip_window(sp(::axis::application) papp) :
       element(papp),
       m_font(allocer())
    {

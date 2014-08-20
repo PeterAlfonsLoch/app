@@ -30,7 +30,7 @@ namespace filemanager
       WPARAM                     m_wparamCallback;
 
 
-      operation(sp(::base::application) papp);
+      operation(sp(::axis::application) papp);
       virtual ~operation();
       
       virtual bool set_copy(stringa & stra,const char * pszDestBase,const char * pszSrcBase,bool bExpand);

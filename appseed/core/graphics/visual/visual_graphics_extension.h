@@ -11,7 +11,7 @@ namespace visual
    public:
       
       
-      graphics_extension(sp(::base::application) papp);
+      graphics_extension(sp(::axis::application) papp);
       virtual ~graphics_extension();
       void GetTextExtent(::draw2d::graphics * pdc, const char * lpcwsz, array < size > & sizea);
       void GetTextExtent(::draw2d::graphics * pdc, const char * lpcwsz, size & size);

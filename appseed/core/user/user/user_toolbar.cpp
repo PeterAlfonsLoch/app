@@ -1582,7 +1582,7 @@ throw todo(get_app());
 
       childs = doc.get_root()->children();
 
-      //   sp(::base::application) papp = (get_app());
+      //   sp(::axis::application) papp = (get_app());
 
 #if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(APPLEOS)
 

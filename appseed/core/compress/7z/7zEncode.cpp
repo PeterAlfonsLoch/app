@@ -287,7 +287,7 @@ namespace n7z
    }
 
 
-   CEncoder::CEncoder(sp(::base::application) papp, const CCompressionMethodMode &options):
+   CEncoder::CEncoder(sp(::axis::application) papp, const CCompressionMethodMode &options):
       element(papp),
       _bindReverseConverter(0),
       _constructed(false)

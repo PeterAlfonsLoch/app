@@ -1,12 +1,12 @@
 #include "framework.h"
 
 
-index_biunique::index_biunique(sp(::base::application) papp) : 
+index_biunique::index_biunique(sp(::axis::application) papp) : 
    biunique < index >(papp) 
 { 
 }
 
-int_biunique::int_biunique(sp(::base::application) papp) : 
+int_biunique::int_biunique(sp(::axis::application) papp) : 
    biunique < int32_t, int_to_int >(papp) 
 { 
 }

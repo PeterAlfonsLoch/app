@@ -11,7 +11,7 @@ namespace filemanager
    public:
    
 
-      tab_view(sp(::base::application) papp);
+      tab_view(sp(::axis::application) papp);
       virtual ~tab_view();
 
 

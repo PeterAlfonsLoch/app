@@ -69,7 +69,7 @@ namespace core
       ::visual::visual                    m_visual;
 
 
-      system(sp(::base::application) papp = NULL);
+      system(sp(::axis::application) papp = NULL);
       virtual ~system();
 
 
@@ -133,7 +133,7 @@ namespace core
 
 
 
-      virtual void on_allocation_error(sp(::base::application) papp,sp(type) info);
+      virtual void on_allocation_error(sp(::axis::application) papp,sp(type) info);
 
 
       void *                                 & ftlibrary();

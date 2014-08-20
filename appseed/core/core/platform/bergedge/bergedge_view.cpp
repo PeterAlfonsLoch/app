@@ -3,7 +3,7 @@
 namespace bergedge
 {
 
-   view::view(sp(::base::application) papp) :
+   view::view(sp(::axis::application) papp) :
       element(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
@@ -477,7 +477,7 @@ namespace bergedge
       {
          while(pui != NULL)
          {
-            sp(::base::application) papp = NULL;
+            sp(::axis::application) papp = NULL;
             try
             {
                papp = &App(pui->get_app());

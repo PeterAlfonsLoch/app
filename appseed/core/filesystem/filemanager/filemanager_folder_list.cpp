@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   folder_list::folder_list(sp(::base::application) papp) :
+   folder_list::folder_list(sp(::axis::application) papp) :
       element(papp),
       ::user::scroll_view(papp),
       ::user::list(papp),

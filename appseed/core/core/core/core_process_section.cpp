@@ -98,7 +98,7 @@ namespace core
 
    }
 
-   process_departament::process_thread::process_thread(sp(::base::application) papp,string * pstrRead,manual_reset_event * pevReady):
+   process_departament::process_thread::process_thread(sp(::axis::application) papp,string * pstrRead,manual_reset_event * pevReady):
       element(papp),
       thread(papp),
       simple_thread(papp),

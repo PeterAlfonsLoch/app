@@ -573,10 +573,10 @@ CLASS_DECL_CORE CArchive& operator>>(CArchive& ar, RECT& rect);
 
 
 
-CLASS_DECL_CORE void __get_gray_bitmap(sp(::base::application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF crBackground);
-CLASS_DECL_CORE void __draw_gray_bitmap(sp(::base::application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF crBackground);
-CLASS_DECL_CORE void __get_dithered_bitmap(sp(::base::application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF cr1, COLORREF cr2);
-CLASS_DECL_CORE void __draw_dithered_bitmap(sp(::base::application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
+CLASS_DECL_CORE void __get_gray_bitmap(sp(::axis::application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF crBackground);
+CLASS_DECL_CORE void __draw_gray_bitmap(sp(::axis::application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF crBackground);
+CLASS_DECL_CORE void __get_dithered_bitmap(sp(::axis::application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF cr1, COLORREF cr2);
+CLASS_DECL_CORE void __draw_dithered_bitmap(sp(::axis::application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
 
 
 #include "graphics/visual/visual_const.h"
@@ -730,7 +730,7 @@ extern CLASS_DECL_CORE UINT g_uiTraceFlags;
 #endif // DEBUG
 
 #ifdef DEBUG
-#define DECLARE___TRACE_CATEGORY( name ) extern CLASS_DECL_CORE ::base::trace::category name;
+#define DECLARE___TRACE_CATEGORY( name ) extern CLASS_DECL_CORE ::axis::trace::category name;
 #else
 #define DECLARE___TRACE_CATEGORY( name ) const uint_ptr name = 0;
 #endif
@@ -895,7 +895,7 @@ class document;
 class main_frame;
 
 
-typedef sp(::base::application) (* LP_GET_NEW_APP) ();
+typedef sp(::axis::application) (* LP_GET_NEW_APP) ();
 
 
 namespace core

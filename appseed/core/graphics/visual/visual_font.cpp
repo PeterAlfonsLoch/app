@@ -3,7 +3,7 @@
 namespace visual
 {
 
-   font::font(sp(::base::application) papp) :
+   font::font(sp(::axis::application) papp) :
       element(papp),
       m_spfont(allocer())
    {

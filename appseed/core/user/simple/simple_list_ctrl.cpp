@@ -1,6 +1,6 @@
 #include "framework.h"
 
-simple_list_control::simple_list_control(sp(::base::application) papp) :
+simple_list_control::simple_list_control(sp(::axis::application) papp) :
    element(papp),
    m_headerctrl(papp),
    

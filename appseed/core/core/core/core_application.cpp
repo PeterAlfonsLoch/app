@@ -911,7 +911,7 @@ namespace core
       /*   if (m_puiMain == NULL) // may be a service or console application window
       {
       // Not launched /Embedding or /Automation, but has no main window!
-      TRACE(::base::trace::category_AppMsg, 0, "Warning: m_puiMain is NULL in application::run - quitting application.\n");
+      TRACE(::axis::trace::category_AppMsg, 0, "Warning: m_puiMain is NULL in application::run - quitting application.\n");
       __post_quit_message(0);
       }*/
       //      return application::run();
@@ -2039,7 +2039,7 @@ namespace core
    string string;
    if (!string.load_string(nIDPrompt))
    {
-   TRACE(::base::trace::category_AppMsg, 0, "Error: failed to load message box prompt string 0x%04x.\n",
+   TRACE(::axis::trace::category_AppMsg, 0, "Error: failed to load message box prompt string 0x%04x.\n",
    nIDPrompt);
    ASSERT(FALSE);
    }
@@ -3591,7 +3591,7 @@ namespace core
 
 
 
-   sp(::base::application) application::get_system()
+   sp(::axis::application) application::get_system()
    {
       return new application();
    }
@@ -3729,7 +3729,7 @@ namespace core
 
 
 
-   //typedef  void (* PFN_ca2_factory_exchange)(sp(::base::application) papp);
+   //typedef  void (* PFN_ca2_factory_exchange)(sp(::axis::application) papp);
 
 
 
@@ -3791,10 +3791,10 @@ namespace core
 
 
 
-   sp(::base::application) application::instantiate_application(const char * pszType,const char * pszId,application_bias * pbias)
+   sp(::axis::application) application::instantiate_application(const char * pszType,const char * pszId,application_bias * pbias)
    {
 
-      sp(::base::application) papp = NULL;
+      sp(::axis::application) papp = NULL;
 
       string strId(pszId);
 
@@ -3912,15 +3912,15 @@ namespace core
    }
 
 
-   sp(::base::application) application::create_application(const char * pszType,const char * pszId,bool bSynch,application_bias * pbias)
+   sp(::axis::application) application::create_application(const char * pszType,const char * pszId,bool bSynch,application_bias * pbias)
    {
 
-      sp(::base::application) pbaseapp = instantiate_application(pszType,pszId,pbias);
+      sp(::axis::application) pbaseapp = instantiate_application(pszType,pszId,pbias);
 
       if(pbaseapp == NULL)
          return NULL;
 
-      sp(::base::application) papp = (pbaseapp);
+      sp(::axis::application) papp = (pbaseapp);
 
       if(!papp->m_pcoreapp->start_application(bSynch,pbias))
       {

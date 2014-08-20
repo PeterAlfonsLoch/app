@@ -11,7 +11,7 @@ namespace filemanager
    public:
 
 
-      iconoverlayer(sp(::base::application) papp);
+      iconoverlayer(sp(::axis::application) papp);
       virtual ~iconoverlayer();
 
       virtual bool initialize() = 0;

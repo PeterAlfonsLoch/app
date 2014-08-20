@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-OrtoButton::OrtoButton(sp(::base::application) papp):
+OrtoButton::OrtoButton(sp(::axis::application) papp):
 element(papp),
 ::user::button(papp),
 ::user::uinteraction::frame::control_box_button(papp),
