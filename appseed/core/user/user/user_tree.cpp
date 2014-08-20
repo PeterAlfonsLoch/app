@@ -279,7 +279,7 @@ namespace user
       //      ::base::savings & savings = Session.savings();
       if(bSelected) // selected
       {
-         if(Session.savings().is_trying_to_save(::base::resource_processing))
+         if(Session.savings().is_trying_to_save(::axis::resource_processing))
          {
             data.m_pdc->FillSolidRect(
                data.m_rect,

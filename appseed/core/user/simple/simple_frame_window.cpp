@@ -912,8 +912,8 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
 void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
 {
-   if (Session.savings().is_trying_to_save(::base::resource_processing)
-      || Session.savings().is_trying_to_save(::base::resource_translucent_background))
+   if (Session.savings().is_trying_to_save(::axis::resource_processing)
+      || Session.savings().is_trying_to_save(::axis::resource_translucent_background))
    {
       rect rectClient;
       GetClientRect(rectClient);
@@ -935,9 +935,9 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pdc)
       _001DrawThis(pdc);
       _001DrawChildren(pdc);
    }
-   else if(!Session.savings().is_trying_to_save(::base::resource_processing)
-      && !Session.savings().is_trying_to_save(::base::resource_display_bandwidth)
-      && !Session.savings().is_trying_to_save(::base::resource_memory))
+   else if(!Session.savings().is_trying_to_save(::axis::resource_processing)
+      && !Session.savings().is_trying_to_save(::axis::resource_display_bandwidth)
+      && !Session.savings().is_trying_to_save(::axis::resource_memory))
       //&& (GetParent() != NULL || (this->GetExStyle() & WS_EX_LAYERED) != 0))
    {
 #if TEST
@@ -978,12 +978,12 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics * pdc)
       rect rectClient;
       GetClientRect(rectClient);
       //rectClient.offset(rectClient.top_left());
-      if (Session.savings().is_trying_to_save(::base::resource_translucent_background))
+      if (Session.savings().is_trying_to_save(::axis::resource_translucent_background))
       {
          //pdc->FillSolidRect(rectClient, RGB(150, 220, 140));
       }
-      else if (Session.savings().is_trying_to_save(::base::resource_processing)
-         || Session.savings().is_trying_to_save(::base::resource_blur_background))
+      else if (Session.savings().is_trying_to_save(::axis::resource_processing)
+         || Session.savings().is_trying_to_save(::axis::resource_blur_background))
       {
          imaging.color_blend(pdc, rectClient, RGB(150, 180, 140), 150);
       }
@@ -1669,7 +1669,7 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
 void simple_frame_window::_011OnDraw(::draw2d::graphics *pdc)
 {
 
-   if ((m_bWindowFrame || _001IsTranslucent()) && !Session.savings().is_trying_to_save(::base::resource_display_bandwidth))
+   if ((m_bWindowFrame || _001IsTranslucent()) && !Session.savings().is_trying_to_save(::axis::resource_display_bandwidth))
    {
 
       ::user::uinteraction::frame::WorkSetClientInterface::_001OnDraw(pdc);
@@ -1819,8 +1819,8 @@ bool simple_frame_window::calc_layered()
 
    if (m_bLayered && _001GetTranslucency() != ::user::TranslucencyNone)
    {
-      return !Session.savings().is_trying_to_save(::base::resource_processing)
-         && !Session.savings().is_trying_to_save(::base::resource_display_bandwidth);
+      return !Session.savings().is_trying_to_save(::axis::resource_processing)
+         && !Session.savings().is_trying_to_save(::axis::resource_display_bandwidth);
    }
    else
    {

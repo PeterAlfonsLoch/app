@@ -124,10 +124,10 @@ namespace core
 
       if(is_remote_session())
       {
-         /*Session.savings().save(::base::resource_display_bandwidth);
-         Session.savings().save(::base::resource_blur_background);
-         Session.savings().save(::base::resource_blurred_text_embossing);
-         Session.savings().save(::base::resource_translucent_background);*/
+         /*Session.savings().save(::axis::resource_display_bandwidth);
+         Session.savings().save(::axis::resource_blur_background);
+         Session.savings().save(::axis::resource_blurred_text_embossing);
+         Session.savings().save(::axis::resource_translucent_background);*/
       }
 
       /*      if(System.directrix()->m_varTopicQuery.has_property("install")

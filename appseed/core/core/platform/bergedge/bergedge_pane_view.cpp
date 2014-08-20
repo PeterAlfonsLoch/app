@@ -676,7 +676,7 @@ namespace bergedge
             "",
             "ca2",
             "savings",
-            ::base::resource_display_bandwidth);
+            ::axis::resource_display_bandwidth);
    //   control.add_function(user::control::function_static);
       pform->_001AddControl(control);
 
@@ -687,7 +687,7 @@ namespace bergedge
             "",
             "ca2",
             "savings",
-            ::base::resource_processing);
+            ::axis::resource_processing);
    //   control.add_function(user::control::function_static);
       pform->_001AddControl(control);
 
@@ -698,7 +698,7 @@ namespace bergedge
             "",
             "ca2",
             "savings",
-            ::base::resource_memory);
+            ::axis::resource_memory);
    //   control.add_function(user::control::function_static);
       pform->_001AddControl(control);
 

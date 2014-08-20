@@ -346,7 +346,7 @@ namespace platform
       rectDesktop.top = 0;
       rectDesktop.bottom = ::GetSystemMetrics(SM_CYSCREEN);
       }*/
-      if(Session.savings().is_trying_to_save(::base::resource_processing))
+      if(Session.savings().is_trying_to_save(::axis::resource_processing))
       {
          pdc->FillRect(rectClient, m_brushBk);
       }
