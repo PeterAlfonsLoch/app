@@ -30,7 +30,7 @@ namespace command
       if(!::asphere::application::initialize_instance())
          return false;
 
-      platform().filemanager().std().m_strLevelUp = "levelup";
+      Platform.filemanager().std().m_strLevelUp = "levelup";
 
       if(m_strId == "command")
       {

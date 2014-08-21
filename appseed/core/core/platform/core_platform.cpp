@@ -50,7 +50,7 @@ namespace core
 
    }
 
-   platform::~platform()
+   platform::~platform_parent
    {
 
       if(m_pnaturedocument != NULL)

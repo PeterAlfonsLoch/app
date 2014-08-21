@@ -1,5 +1,6 @@
 #pragma once
 
+#define platform_parent platform()
 
 namespace core
 {
@@ -73,7 +74,7 @@ namespace core
 
 
       platform(sp(::axis::application) papp);
-      virtual ~platform();
+      virtual ~platform_parent;
 
 
       virtual void construct(const char * pszAppId);

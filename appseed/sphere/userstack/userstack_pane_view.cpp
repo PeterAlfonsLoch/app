@@ -131,8 +131,8 @@ namespace userstack
          sp(::axis::application) pappTab;
          if(Session.m_mapApplication.Lookup("application:" + strId, pappTab))
          {
-            platform().m_pappCurrent = pappTab;
-            //platform().m_pappCurrent = pappTab;
+            Platform.m_pappCurrent = pappTab;
+            //Platform.m_pappCurrent = pappTab;
          }
 /*            sp(::simple_frame_window) pframeApp = dynamic_cast < sp(::simple_frame_window) > (m_pviewdata->m_pwnd);
          if(pframeApp != NULL)
@@ -233,13 +233,13 @@ namespace userstack
 
             createcontext->m_spCommandLine->m_eventReady.ResetEvent();
 
-            platform().on_request(createcontext);
+            Platform.on_request(createcontext);
 
             createcontext->m_spCommandLine->m_eventReady.wait();
 
          }
 
-         sp(::axis::application) pappCurrent = platform().m_pappCurrent;
+         sp(::axis::application) pappCurrent = Platform.m_pappCurrent;
 
          Application.m_mapApplication[strId] = pappCurrent;
 
@@ -248,7 +248,7 @@ namespace userstack
          string strIcon = sess(pappCurrent).dir().matter("mainframe/icon48.png");
          pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
 
-         pappCurrent = platform().m_pappCurrent;
+         pappCurrent = Platform.m_pappCurrent;
 
          if(sess(pappCurrent).file().exists(strIcon))
          {

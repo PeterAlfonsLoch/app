@@ -137,7 +137,7 @@ namespace command
       {
       case PaneViewContextMenu:
          {
-                                 sp(::filemanager::manager) pdoc = platform().filemanager().std().open_child_list(false, true);
+                                 sp(::filemanager::manager) pdoc = Platform.filemanager().std().open_child_list(false, true);
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_iIconSize = 16;
@@ -180,7 +180,7 @@ namespace command
          break;
       case PaneViewFileManager:
          {
-                                 sp(::filemanager::manager) pdoc = platform().filemanager().std().open_child(false, true);
+                                 sp(::filemanager::manager) pdoc = Platform.filemanager().std().open_child(false, true);
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_strDISection = "winactionarea_filemanager";
@@ -208,7 +208,7 @@ namespace command
          break;
       case PaneViewThreeActionLaunch:
          {
-                                       sp(::filemanager::manager) pdoc = platform().filemanager().std().open_child_list(false, true);
+                                       sp(::filemanager::manager) pdoc = Platform.filemanager().std().open_child_list(false, true);
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_iIconSize = 48;
