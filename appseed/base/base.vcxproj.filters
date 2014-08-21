@@ -533,9 +533,6 @@
     <ClInclude Include="user\fontopus\fontopus_fontopus.h">
       <Filter>Header Files\user\fontopus</Filter>
     </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_license.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
     <ClInclude Include="user\fontopus\fontopus_user.h">
       <Filter>Header Files\user\fontopus</Filter>
     </ClInclude>
@@ -1103,6 +1100,12 @@
     <ClInclude Include="base\node\windows\windows_port_forward.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
+    <ClInclude Include="base\base\base_static_start.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="user\fontopus\fontopus_licensing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
@@ -1319,9 +1322,6 @@
       <Filter>Source Files\user\fontopus</Filter>
     </ClCompile>
     <ClCompile Include="user\fontopus\fontopus_fontopus.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_license.cpp">
       <Filter>Source Files\user\fontopus</Filter>
     </ClCompile>
     <ClCompile Include="user\fontopus\fontopus_user.cpp">
@@ -1849,6 +1849,12 @@
     <ClCompile Include="base\hotplugin\hotplugin_windows.cpp">
       <Filter>Source Files\base\hotplugin</Filter>
     </ClCompile>
+    <ClCompile Include="base.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="user\fontopus\fontopus_licensing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="base.def">
@@ -2009,6 +2015,9 @@
     </None>
     <None Include="base\base\base.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

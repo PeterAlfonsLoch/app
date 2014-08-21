@@ -350,84 +350,6 @@
     <ClInclude Include="primitive\primitive.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="compress\compress.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\7z\7z.h">
-      <Filter>Header Files\compress\7z</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\7z\7zCompressionMode.h">
-      <Filter>Header Files\compress\7z</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\7z\7zDecode.h">
-      <Filter>Header Files\compress\7z</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\7z\7zEncode.h">
-      <Filter>Header Files\compress\7z</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\7z\7zFolderInStream.h">
-      <Filter>Header Files\compress\7z</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\7z\7zFolderOutStream.h">
-      <Filter>Header Files\compress\7z</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\7z\7zHandler.h">
-      <Filter>Header Files\compress\7z</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\7z\7zHeader.h">
-      <Filter>Header Files\compress\7z</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\7z\7zIn.h">
-      <Filter>Header Files\compress\7z</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\7z\7zItem.h">
-      <Filter>Header Files\compress\7z</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\7z\7zOut.h">
-      <Filter>Header Files\compress\7z</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\7z\7zProperties.h">
-      <Filter>Header Files\compress\7z</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\7z\7zSpecStream.h">
-      <Filter>Header Files\compress\7z</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\7z\7zUpdate.h">
-      <Filter>Header Files\compress\7z</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\rar\aes.h">
-      <Filter>Header Files\compress\rar</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\rar\folder_reader.h">
-      <Filter>Header Files\compress\rar</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\rar\handler.h">
-      <Filter>Header Files\compress\rar</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\rar\header.h">
-      <Filter>Header Files\compress\rar</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\rar\input_file.h">
-      <Filter>Header Files\compress\rar</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\rar\item.h">
-      <Filter>Header Files\compress\rar</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\rar\rar.h">
-      <Filter>Header Files\compress\rar</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\rar\rar1_decoder.h">
-      <Filter>Header Files\compress\rar</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\rar\rar2_decoder.h">
-      <Filter>Header Files\compress\rar</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\rar\rar3_decoder.h">
-      <Filter>Header Files\compress\rar</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\rar\rar3_vm.h">
-      <Filter>Header Files\compress\rar</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\datetime\datetime.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
@@ -466,174 +388,6 @@
     </ClInclude>
     <ClInclude Include="math\value.h">
       <Filter>Header Files\math</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_get_input_stream_processed_size_interface.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_get_sub_stream_size_interface.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_progress_info_interface.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_set_codecs_info_interface.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_set_coder_mt_interface.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_set_coder_properties_interface.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_set_decoder_properties2_interface.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_set_input_stream_interface.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_set_output_stream_interface.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_write_coder_properties_interface.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_coder_mixer2mt.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_coder_mixer2.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_coder_mixer.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_coder.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_archive.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_create_coder.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_copy_coder.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_filter_coder.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_huffman_decoder.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_input_stream_with_crc.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_int_to_string.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_item_name.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_local_progress.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_lz_out_window.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_method_properties.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_out_handler.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_ppmd.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_ppmd7.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_ppmd8.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_prop_id.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_reader_with_crc.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_register_codec.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress_writer_with_crc.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress\compress.h">
-      <Filter>Header Files\compress\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\crypto\crypto.h">
-      <Filter>Header Files\compress\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress\compress_codecs_info_interface.h">
-      <Filter>Header Files\compress\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress\compress_coder2_interface.h">
-      <Filter>Header Files\compress\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress\compress_coder_interface.h">
-      <Filter>Header Files\compress\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress\compress_filter_interface.h">
-      <Filter>Header Files\compress\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress\compress_get_input_stream_processed_size_interface.h">
-      <Filter>Header Files\compress\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress\compress_progress_info_interface.h">
-      <Filter>Header Files\compress\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress\compress_set_codecs_info_interface.h">
-      <Filter>Header Files\compress\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress\compress_set_coder_mt_interface.h">
-      <Filter>Header Files\compress\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress\compress_set_coder_properties_interface.h">
-      <Filter>Header Files\compress\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress\compress_set_decoder_properties2_interface.h">
-      <Filter>Header Files\compress\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress\compress_set_input_stream_interface.h">
-      <Filter>Header Files\compress\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress\compress_set_output_stream_interface.h">
-      <Filter>Header Files\compress\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress\compress_write_coder_properties_interface.h">
-      <Filter>Header Files\compress\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\crypto\crypto_get_text_password2_interface.h">
-      <Filter>Header Files\compress\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\crypto\crypto_properties_interface.h">
-      <Filter>Header Files\compress\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\crypto\crypto_reset_init_vector_interface.h">
-      <Filter>Header Files\compress\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\crypto\crypto_set_password_interface.h">
-      <Filter>Header Files\compress\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\compress\compress_get_sub_stream_size_interface.h">
-      <Filter>Header Files\compress\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\crypto\crypto_7z_crc.h">
-      <Filter>Header Files\compress\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\crypto\crypto_get_text_password_interface.h">
-      <Filter>Header Files\compress\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\crypto\crypto_rar20.h">
-      <Filter>Header Files\compress\crypto</Filter>
     </ClInclude>
     <ClInclude Include=".\primitive\primitive_fixed_string.h">
       <Filter>Header Files\primitive</Filter>
@@ -1823,9 +1577,6 @@
     <ClInclude Include="user\userex\userex_userex.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="compress\crypto\crypto_aes_cbc_coder.h">
-      <Filter>Header Files\compress\crypto</Filter>
-    </ClInclude>
     <ClInclude Include="net\usermail\usermail_tree.h">
       <Filter>Header Files\net\usermail</Filter>
     </ClInclude>
@@ -2233,138 +1984,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="compress\compress_archive.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_archive_item_name.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_coder_mixer.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_coder_mixer2.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_coder_mixer2mt.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_copy_coder.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_create_coder.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_filter_coder.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_int_to_string.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_local_progress.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_lz_out_window.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_method_id.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_method_properties.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_parse_properties.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_ppmd7.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_ppmd7_dec.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_ppmd7_enc.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_ppmd8.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_reader_with_crc.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zDecode.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zEncode.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zExtract.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zFolderInStream.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zFolderOutStream.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zHandler.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zHandlerOut.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zHeader.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zIn.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zOut.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zProperties.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zRegister.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zSpecStream.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\7z\7zUpdate.cpp">
-      <Filter>Source Files\compress\7z</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\rar\rar_aes.cpp">
-      <Filter>Source Files\compress\rar</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\rar\rar_codecs_register.cpp">
-      <Filter>Source Files\compress\rar</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\rar\rar_handler.cpp">
-      <Filter>Source Files\compress\rar</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\rar\rar_header.cpp">
-      <Filter>Source Files\compress\rar</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\rar\rar_input_file.cpp">
-      <Filter>Source Files\compress\rar</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\rar\rar_item.cpp">
-      <Filter>Source Files\compress\rar</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\rar\rar_volume_input_stream.cpp">
-      <Filter>Source Files\compress\rar</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\rar\rar1_decoder.cpp">
-      <Filter>Source Files\compress\rar</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\rar\rar2_decoder.cpp">
-      <Filter>Source Files\compress\rar</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\rar\rar3_decoder.cpp">
-      <Filter>Source Files\compress\rar</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\rar\rar3_vm.cpp">
-      <Filter>Source Files\compress\rar</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_calendar.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
@@ -2409,24 +2028,6 @@
     </ClCompile>
     <ClCompile Include="math\value.cpp">
       <Filter>Source Files\math</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\crypto\crypto_7z_crc.cpp">
-      <Filter>Source Files\compress\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\crypto\crypto_rar20.cpp">
-      <Filter>Source Files\compress\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_7z_crc_opt.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_out_handler.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_prop_id.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\compress_writer_with_crc.cpp">
-      <Filter>Source Files\compress</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_float_time.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
@@ -3064,9 +2665,6 @@
     <ClCompile Include="net\hi5\hi5_twit.cpp">
       <Filter>Source Files\net\hi5</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_io_temp_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_limited_reader.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -3375,9 +2973,6 @@
     </ClCompile>
     <ClCompile Include="user\user\user_xfplayer_view_lines.cpp">
       <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\crypto\crypto_my_aes.cpp">
-      <Filter>Source Files\compress\crypto</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_context_menu.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
