@@ -30,7 +30,7 @@ namespace linux
 } // namespace win
 
 
-void __node_factory_exchange(sp(::axis::application) papp)
+void __node_axis_factory_exchange(sp(::axis::application) papp)
 {
 
    linux::factory_exchange factoryexchange(papp);

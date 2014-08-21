@@ -574,6 +574,7 @@
 		<Unit filename="database/database_update_hint.h" />
 		<Unit filename="database/database_user_interaction.cpp" />
 		<Unit filename="database/database_user_interaction.h" />
+		<Unit filename="filesystem/file/file.cpp" />
 		<Unit filename="filesystem/file/file.h" />
 		<Unit filename="filesystem/file/file_application.h" />
 		<Unit filename="filesystem/file/file_binary_buffer.cpp" />
