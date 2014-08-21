@@ -829,7 +829,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="basemysql.def">
+    <None Include="axismysql.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

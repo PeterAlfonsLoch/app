@@ -2031,9 +2031,6 @@
     <ClCompile Include="vio\viosslfactories.c" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="basemysql.def" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\appseed\axis\axis.vcxproj">
       <Project>{73a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
     </ProjectReference>
@@ -2043,6 +2040,9 @@
     <ProjectReference Include="..\zlib\axiszlib.vcxproj">
       <Project>{8fd826f8-3739-44e6-8cc8-997122e53b8d}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="axismysql.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
