@@ -52,23 +52,15 @@ CLASS_DECL_LINUX void AfxResetMsgcache();
 
 #include "linux1.h"
 #include "implementation.h"
-//#include "linux_state.h"
-// xxx #include "handle.h"
-// xxx #include "linux_file_find.h"
-#include "linux_dir.h"
-// xxx #include "linux_folder_watch.h"
 #include "linux_factory_exchange.h"
 #include "linux_window_draw.h"
 #include "linux_thread.h"
 #include "linux_interaction_impl.h"
 #include "linux_os.h"
-#include "linux_port_forward.h"
 #include "linux_copydesk.h"
 #include "linux_crypto.h"
-#include "linux_ip_enum.h"
 
 #define NULL_REF(class) (*((class *) NULL))
-// xxx CLASS_DECL_LINUX WNDPROC AfxGetAfxWndProc();
 #define AfxWndProc (*AfxGetAfxWndProc())
 
 #define LNX_THREAD(pthread) (dynamic_cast < ::linux::thread * > (dynamic_cast < ::thread * >(pthread)))

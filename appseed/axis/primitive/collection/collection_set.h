@@ -3,7 +3,7 @@
 
 
 
-template < class TYPE,class ARG_TYPE = const TYPE &,class BASE_ARRAY_TYPE = array < TYPE,ARG_TYPE >,class COMPARE = ::comparison::less < typename TYPE,typename ARG_TYPE > >
+template < class TYPE,class ARG_TYPE = const TYPE &,class BASE_ARRAY_TYPE = array < TYPE,ARG_TYPE >,class COMPARE = ::comparison::less < TYPE, ARG_TYPE > >
 class set:
    virtual protected BASE_ARRAY_TYPE
 {
@@ -108,7 +108,7 @@ public:
    inline ::count size() { return get_size();  }
    inline ::count get_count() { return get_size(); }
    inline ::count get_size() { return BASE_ARRAY_TYPE::get_size(); }
-   
+
 };
 
 template < class TYPE,class ARG_TYPE,class BASE_ARRAY_TYPE,class COMPARE>
@@ -171,9 +171,9 @@ bool set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >::
     search(typename BASE_ARRAY_TYPE::const_iterator & m, ARG_TYPE t) const
 {
 
-   BASE_ARRAY_TYPE::const_iterator l = cbegin();
+   typename BASE_ARRAY_TYPE::const_iterator l = cbegin();
 
-   BASE_ARRAY_TYPE::const_iterator u = cend();
+   typename BASE_ARRAY_TYPE::const_iterator u = cend();
 
    --u;
 
@@ -184,7 +184,7 @@ bool set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >::
 
       if(COMPARE::compare(t,*m))
       {
-         
+
          if(m == cbegin())
             break;
 
@@ -220,9 +220,9 @@ bool set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >::
 search(typename BASE_ARRAY_TYPE::iterator & m, ARG_TYPE t)
 {
 
-   BASE_ARRAY_TYPE::iterator l = begin();
+   typename BASE_ARRAY_TYPE::iterator l = begin();
 
-   BASE_ARRAY_TYPE::iterator u = end();
+   typename BASE_ARRAY_TYPE::iterator u = end();
 
    --u;
 

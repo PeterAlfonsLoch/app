@@ -293,7 +293,7 @@ template < class TYPE >
 numeric_array < TYPE >::
 numeric_array(::count cSize)
 {
-   set_size(cSize);
+   this->set_size(cSize);
 }
 
 template < class TYPE >
@@ -316,7 +316,7 @@ numeric_array < TYPE >::
 numeric_array(numeric_array < TYPE > && a)
 : raw_array < TYPE,const TYPE & >((raw_array < TYPE,const TYPE & > &&) a)
 {
-   
+
 }
 #endif
 

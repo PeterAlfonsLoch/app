@@ -11,7 +11,7 @@
 //#include "graphics/draw2d_xlib/draw2d_xlib.h"
 
 
-void set(XColor & color, COLORREF cr);
+void set_xcolor(XColor & color, COLORREF cr);
 
 
 
