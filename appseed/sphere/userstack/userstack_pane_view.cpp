@@ -129,7 +129,7 @@ namespace userstack
       if(::str::begins_eat(strId, "app:"))
       {
          sp(::base::application) pappTab;
-         if(session().m_mapApplication.Lookup("application:" + strId, pappTab))
+         if(Session.m_mapApplication.Lookup("application:" + strId, pappTab))
          {
             platform().m_pappCurrent = pappTab;
             //platform().m_pappCurrent = pappTab;
@@ -150,7 +150,7 @@ namespace userstack
       {
    /*      sp(::user::interaction) pui = m_pformOptions->ve_display_bandwidth");
          check_interface * pcheck = dynamic_cast < check_interface * > (puie);
-         if(session().savings().save().is_signalized(::ca2::save_display_bandwidth))
+         if(Session.savings().save().is_signalized(::ca2::save_display_bandwidth))
          {
             pcheck->_001SetCheck(check::checked, false);
          }
@@ -202,7 +202,7 @@ namespace userstack
       if(::str::begins_eat(strId, "app:"))
       {
          sp(::base::application) pappTab;
-         if(!session().m_mapApplication.Lookup("application:" + strId, pappTab))
+         if(!Session.m_mapApplication.Lookup("application:" + strId, pappTab))
          {
 
             application_bias * pbiasCreate = new application_bias;

@@ -537,8 +537,8 @@ namespace file
 #include "axis/primitive/primitive_object.h"
 
 
-#include "axis/xml/xml_exportable.h"
-#include "axis/xml/xml_importable.h"
+#include "axis/axis/xml/xml_exportable.h"
+#include "axis/axis/xml/xml_importable.h"
 
 
 #include "axis/primitive/collection/collection_decl.h"

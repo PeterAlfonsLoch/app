@@ -1,6 +1,10 @@
 #pragma once
 
 
+
+#define session_parent session()
+
+
 namespace axis
 {
 
@@ -58,7 +62,7 @@ namespace axis
 
 
       session(sp(::axis::application) papp);
-      virtual ~session();
+      virtual ~session_parent;
 
 
       application_ptra & appptra();

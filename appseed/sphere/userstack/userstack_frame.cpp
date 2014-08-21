@@ -114,7 +114,7 @@ namespace userstack
          {
             OnHoverAction();
          }
-         session().get_cursor_pos(&pt);
+         Session.get_cursor_pos(&pt);
          if(!m_bHoverMouse && pt.x == 0 && pt.y == 0)
          {
             m_dwLastHover = ::get_tick_count();
@@ -172,7 +172,7 @@ namespace userstack
 
    void frame::_000OnMouse(::message::mouse * pmouse)
    {
-      session().m_ptCursor = pmouse->m_pt;
+      Session.m_ptCursor = pmouse->m_pt;
 //      ::aspheresp(::core::application) pappParent = &App(Application.m_pbaseapp->m_pcoreapp);
 //      ::aspheresp(::core::application) papp = &Application;
 /*      if(pmouse->m_uiMessage == WM_MOUSEMOVE

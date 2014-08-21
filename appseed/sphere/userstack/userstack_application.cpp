@@ -273,7 +273,7 @@ namespace userstack
             return NULL;
          }
          m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
-         session().m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
+         Session.m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
          return papp;
       }
    }
@@ -332,7 +332,7 @@ namespace userstack
 
 /*      if(pui == NULL && m_bShowPlatform && m_pbergedge->get_document() != NULL)
       {
-         pui = session().get_document()->get_bergedge_view();
+         pui = Session.get_document()->get_bergedge_view();
       }
 
       return pui;

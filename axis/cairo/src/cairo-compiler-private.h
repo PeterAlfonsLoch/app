@@ -196,7 +196,7 @@
 #endif
 
 #if (defined(__WIN32__) && !defined(__WINE__)) || defined(_MSC_VER)
-#define access _access
+//#define access _access
 #define fdopen _fdopen
 #define hypot _hypot
 #define pclose _pclose

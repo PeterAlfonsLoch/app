@@ -3,13 +3,9 @@
 
 #include "app/appseed/base/base/base/base.h" // System.ftlibrary()
 
-
-#include "ft2build.h"
-#include FT_FREETYPE_H
-
-
-#include "app/base/cairo/cairo.h"
-#include "app/base/cairo/cairo-ft.h"
+#include "app/axis/cairo/src/cairo-features.h"
+#include "app/axis/cairo/src/cairo.h"
+#include "app/axis/cairo/src/cairo-ft.h"
 
 
 mutex & cairo_mutex();

@@ -40,7 +40,7 @@
 
 #include "cairo-error-private.h"
 #include "cairo-output-stream-private.h"
-#include <zlib/zlib.h>
+#include <zlib.h>
 
 #define BUFFER_SIZE 16384
 

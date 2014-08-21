@@ -41,7 +41,7 @@
 //#include <ImathFun.h>
 //#include <Iex.h>
 #include <half.h>
-#include <zlib/zlib.h>
+#include <zlib.h>
 #include <assert.h>
 #include <algorithm>
 

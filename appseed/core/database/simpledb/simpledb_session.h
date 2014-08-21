@@ -15,7 +15,7 @@ namespace simpledb
       server *       m_pserver;
 
       session(sp(::axis::application) papp);
-      virtual ~session();
+      virtual ~session_parent;
 
       
       virtual bool open(const char * pszDatabase);

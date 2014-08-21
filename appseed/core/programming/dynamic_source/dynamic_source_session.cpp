@@ -13,7 +13,7 @@ namespace dynamic_source
    {
    }
 
-   session::~session()
+   session::~session_parent
    {
       ::str::international::locale_schema * pls = m_set["locale_schema"].cast < ::str::international::locale_schema > ();
       if(pls != NULL)

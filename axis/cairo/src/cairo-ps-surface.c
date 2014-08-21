@@ -81,7 +81,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <time.h>
-#include <zlib/zlib.h>
+#include <zlib.h>
 #include <errno.h>
 
 #define DEBUG_PS 0
@@ -186,7 +186,7 @@ typedef struct _cairo_page_media {
 static void
 _cairo_ps_surface_emit_header (cairo_ps_surface_t *surface)
 {
-    char ctime_buf[26];
+    //char ctime_buf[26];
     time_t now;
     char **comments;
     int i, num_comments;

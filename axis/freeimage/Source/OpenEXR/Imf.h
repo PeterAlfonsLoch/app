@@ -19,7 +19,7 @@
 #include <cmath>
 #include <sstream>
 
-#include <zlib/zlib.h>
+#include <zlib.h>
 
 
 #pragma warning (disable : 4305)

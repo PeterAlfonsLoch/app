@@ -93,7 +93,7 @@ namespace command
    /*      rect rectWindow;
          GetWindowRect(rectWindow);
          point pt;
-         session().get_cursor_pos(&pt);
+         Session.get_cursor_pos(&pt);
          if(!rectWindow.contains(pt) && !m_bTimerHide)
          {
             m_bTimerHide = true;
@@ -109,7 +109,7 @@ namespace command
          {
             OnHoverAction();
          }
-         if(session().get_cursor_pos(&pt))
+         if(Session.get_cursor_pos(&pt))
          {
             if(!m_bHoverMouse && pt.x == 0 && pt.y == 0)
             {

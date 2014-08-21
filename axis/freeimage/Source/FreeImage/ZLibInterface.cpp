@@ -20,7 +20,7 @@
 // ==========================================================
 
 #include  "FreeImageFramework.h"
-#include "zLib/zlib.h"
+#include "zlib.h"
 //#include "Utilities.h"
 #include "zLib/zutil.h"	/* must be the last header because of error C3163 in VS2008 (_vsnprintf defined in stdio.h) */
 

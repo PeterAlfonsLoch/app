@@ -1,6 +1,6 @@
 #pragma once
 
-#include "zlib/zlib.h"
+#include "zlib.h"
 
 #include "bsdiff/libbsdiff.h"
 #include "zip/zip.h"

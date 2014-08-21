@@ -19,7 +19,7 @@ namespace dynamic_source
 
 
       session(const string & strId, ::dynamic_source::script_manager * pmanager);
-      virtual ~session();
+      virtual ~session_parent;
 
       virtual int64_t add_ref();
       virtual int64_t release();
