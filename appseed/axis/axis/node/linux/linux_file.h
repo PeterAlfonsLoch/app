@@ -51,7 +51,6 @@ namespace linux
 
       };
 
-      zip::Util *    m_pziputil;
       string         m_strFileName;
       wstring        m_wstrFileName;
       int32_t        m_iFile;
