@@ -245,12 +245,12 @@ namespace userstack
 
          string strTypeId = typeid(*pappCurrent).name();
 
-         string strIcon = sess(pappCurrent).dir().matter("mainframe/icon48.png");
+         string strIcon = Sess(pappCurrent).dir().matter("mainframe/icon48.png");
          pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
 
          pappCurrent = Platform.m_pappCurrent;
 
-         if(sess(pappCurrent).file().exists(strIcon))
+         if(Sess(pappCurrent).file().exists(strIcon))
          {
             ppane->m_dib.alloc(allocer());
             ppane->m_dib.load_from_file(strIcon);
