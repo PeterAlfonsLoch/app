@@ -364,7 +364,7 @@ int_bool file_copy_dup(const char * pszNew, const char * pszSrc, int_bool bOverw
 
 
 
-int_bool file_is_equal_path(const char * psz1, const char * psz2)
+int_bool file_is_equal_path_dup(const char * psz1, const char * psz2)
 {
    if(stricmp_dup(psz1, psz2) == 0)
       return true;
@@ -383,3 +383,49 @@ CLASS_DECL_AXIS string file_get_mozilla_firefox_plugin_container_path()
    return "";
 
 }
+
+
+
+int_bool file_delete_dup(const char * lpszFileName)
+{
+
+
+   if(!::unlink(lpszFileName))
+      return FALSE;
+
+   return TRUE;
+
+
+}
+
+
+
+/*
+
+int_bool file_is_equal_path(const char * psz1,const char * psz2)
+{
+
+   const int32_t iBufSize = MAX_PATH * 8;
+   wstring pwsz1 = ::str::international::utf8_to_unicode(psz1);
+   wstring pwsz2 = ::str::international::utf8_to_unicode(psz2);
+   wchar_t * pwszFile1;
+   wchar_t * pwszFile2;
+   wchar_t * pwszPath1 = new wchar_t[iBufSize];
+   wchar_t * pwszPath2 = new wchar_t[iBufSize];
+   int32_t iCmp = -1;
+   if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
+   {
+      if(GetFullPathNameW(pwsz2,iBufSize,pwszPath2,&pwszFile2))
+      {
+         string p1 = ::str::international::unicode_to_utf8(pwszPath1);
+         string p2 = ::str::international::unicode_to_utf8(pwszPath2);
+         iCmp = stricmp_dup(p1,p2);
+      }
+   }
+   delete pwszPath1;
+   delete pwszPath2;
+   return iCmp == 0;
+
+}
+
+*/
