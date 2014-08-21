@@ -72,6 +72,8 @@
 			<Add directory="base/openssl/crypto/modes" />
 			<Add directory="base/openssl/include" />
 			<Add directory="../../../nodeapp/thirdparty/include" />
+			<Add directory="../../appseed" />
+			<Add directory="../axis" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />

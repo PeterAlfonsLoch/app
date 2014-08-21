@@ -9,7 +9,7 @@
  * All rights reserved
  *
  * Redistribution and use in source and binary forms, with or without
- * modification, are permitted providing that the following conditions 
+ * modification, are permitted providing that the following conditions
  * are met:
  * 1. Redistributions of source code must retain the above copyright
  *    notice, this list of conditions and the following disclaimer.
@@ -32,7 +32,7 @@
 
 #include <string.h>
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(LINUX)
 #include <malloc.h>
 #endif
 
@@ -221,10 +221,10 @@ int libbsdiff_diff(bs_offset * bsret,unsigned char *old,bs_offset oldsize,unsign
         size_counter += length;								\
         }
 
-	
+
 	bs_offset size_counter, patch_index=BSDIFF_HEADER_LEN;
 	bs_offset retval=0;
-	
+
 	if(patch_size < BSDIFF_HEADER_LEN)
 	        return(0);
         header = patch;
@@ -235,7 +235,7 @@ int libbsdiff_diff(bs_offset * bsret,unsigned char *old,bs_offset oldsize,unsign
 	qsufsort(I,V,old,oldsize);
 
 	free(V);
-	
+
 	if(((db=malloc(newsize+1))==NULL) ||
 		((eb=malloc(newsize+1))==NULL)) return -1;
 	dblen=0;
@@ -256,7 +256,7 @@ int libbsdiff_diff(bs_offset * bsret,unsigned char *old,bs_offset oldsize,unsign
 	offtout(0, header + 8);
 	offtout(0, header + 16);
 	offtout(newsize, header + 24);
-	
+
 
 	/* Compute the differences, writing ctrl as we go */
 	scan=0;len=0;
@@ -274,7 +274,7 @@ int libbsdiff_diff(bs_offset * bsret,unsigned char *old,bs_offset oldsize,unsign
 				(old[scsc+lastoffset] == new[scsc]))
 				oldscore++;
 
-			if(((len==oldscore) && (len!=0)) || 
+			if(((len==oldscore) && (len!=0)) ||
 				(len>oldscore+8)) break;
 
 			if((scan+lastoffset<oldsize) &&

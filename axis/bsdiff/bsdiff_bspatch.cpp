@@ -24,7 +24,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
 */
 #include "appseed/axis/axis/axis/axis.h"
-#include "bzip2/bzlib.h"
+#include "bzlib.h"
 #include "libbsdiff.h"
 
 
@@ -38,17 +38,17 @@ int err(int i, const char* str, ...)
        vprintf(str,a_list);
 
     }
-    
+
    return (i);
-    
+
 }
 
 /*
 int err(int i, const char* str)
 {
-   
+
    printf("%s",str);
-   
+
    return i;
 
 }
@@ -217,9 +217,9 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
       }
       return err(1,"%s",oldfile);
    }
-   
+
    size_t r = oldsize;
-   
+
    while(r > 0 && (i = (off_t) fread(old+oldsize-r,r, 1, fd)) > 0)
       r-=i;
 

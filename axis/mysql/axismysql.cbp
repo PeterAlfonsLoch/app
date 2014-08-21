@@ -72,6 +72,8 @@
 			<Add directory="base/openssl/crypto/modes" />
 			<Add directory="base/openssl/include" />
 			<Add directory="../../../nodeapp/thirdparty/include" />
+			<Add directory="../../appseed" />
+			<Add directory="../../appseed/axis" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -80,9 +82,56 @@
 			<Add option="-lpthread" />
 			<Add option="-lX11" />
 			<Add option="-lXmu" />
+			<Add option="-laxisopenssl" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
+		<Unit filename="client/get_password.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysql/client_authentication.h" />
+		<Unit filename="mysql/client_plugin.h" />
+		<Unit filename="mysql/get_password.h" />
+		<Unit filename="mysql/plugin_auth_common.h" />
+		<Unit filename="mysql/psi/mysql_file.h" />
+		<Unit filename="mysql/psi/mysql_idle.h" />
+		<Unit filename="mysql/psi/mysql_socket.h" />
+		<Unit filename="mysql/psi/mysql_stage.h" />
+		<Unit filename="mysql/psi/mysql_statement.h" />
+		<Unit filename="mysql/psi/mysql_table.h" />
+		<Unit filename="mysql/psi/mysql_thread.h" />
+		<Unit filename="mysql/psi/psi.h" />
+		<Unit filename="mysql/psi/psi_abi_v0.h" />
+		<Unit filename="mysql/psi/psi_abi_v1.h" />
+		<Unit filename="mysql/psi/psi_abi_v2.h" />
+		<Unit filename="mysys_ssl/crypt_genhash_impl.cc" />
+		<Unit filename="mysys_ssl/my_aes.cc" />
+		<Unit filename="mysys_ssl/my_default.cc" />
+		<Unit filename="mysys_ssl/my_default_priv.h" />
+		<Unit filename="mysys_ssl/my_getopt.cc" />
+		<Unit filename="mysys_ssl/my_md5.cc" />
+		<Unit filename="mysys_ssl/my_rnd.cc" />
+		<Unit filename="mysys_ssl/my_sha1.cc" />
+		<Unit filename="mysys_ssl/my_sha2.cc" />
+		<Unit filename="vio/vio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="vio/vio_priv.h" />
+		<Unit filename="vio/viopipe.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="vio/vioshm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="vio/viosocket.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="vio/viossl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="vio/viosslfactories.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<debugger />

@@ -72,6 +72,8 @@
 			<Add directory="base/openssl/crypto/modes" />
 			<Add directory="base/openssl/include" />
 			<Add directory="../../../nodeapp/thirdparty/include" />
+			<Add directory="../../appseed/axis" />
+			<Add directory="../../appseed" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -80,9 +82,88 @@
 			<Add option="-lpthread" />
 			<Add option="-lX11" />
 			<Add option="-lXmu" />
+			<Add option="-laxis" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
+		<Unit filename="CMakeLists.txt" />
+		<Unit filename="ChangeLog" />
+		<Unit filename="FAQ" />
+		<Unit filename="INDEX" />
+		<Unit filename="Makefile" />
+		<Unit filename="Makefile.in" />
+		<Unit filename="README" />
+		<Unit filename="adler32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="axiszlib.cbp" />
+		<Unit filename="axiszlib.def" />
+		<Unit filename="axiszlib.layout" />
+		<Unit filename="axiszlib.sln" />
+		<Unit filename="axiszlib.vcxproj" />
+		<Unit filename="compress.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="configure" />
+		<Unit filename="crc32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crc32.h" />
+		<Unit filename="deflate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="deflate.h" />
+		<Unit filename="gzclose.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="gzguts.h" />
+		<Unit filename="gzip_stream.cpp" />
+		<Unit filename="gzip_stream.h" />
+		<Unit filename="gzlib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="gzread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="gzwrite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="infback.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="inffast.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="inffast.h" />
+		<Unit filename="inffixed.h" />
+		<Unit filename="inflate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="inflate.h" />
+		<Unit filename="inftrees.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="inftrees.h" />
+		<Unit filename="make_vms.com" />
+		<Unit filename="treebuild.xml" />
+		<Unit filename="trees.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="trees.h" />
+		<Unit filename="uncompr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="zconf.h.cmakein" />
+		<Unit filename="zconf.h.in" />
+		<Unit filename="zlib.3" />
+		<Unit filename="zlib.3.pdf" />
+		<Unit filename="zlib.map" />
+		<Unit filename="zlib.pc.in" />
+		<Unit filename="zlib2ansi" />
+		<Unit filename="zutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="zutil.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

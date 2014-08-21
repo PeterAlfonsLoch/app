@@ -1,6 +1,6 @@
 #include "appseed/axis/axis/axis/axis.h"
 #include "libbsdiff.h"
-#include "bzip2/bzlib.h"
+#include "bzlib.h"
 
 
 

@@ -72,6 +72,8 @@
 			<Add directory="base/openssl/crypto/modes" />
 			<Add directory="base/openssl/include" />
 			<Add directory="../../../nodeapp/thirdparty/include" />
+			<Add directory="../../appseed" />
+			<Add directory="../../appseed/axis" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -80,9 +82,78 @@
 			<Add option="-lpthread" />
 			<Add option="-lX11" />
 			<Add option="-lXmu" />
+			<Add option="-laxis" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
+		<Unit filename="CHANGES" />
+		<Unit filename="LICENSE" />
+		<Unit filename="Makefile" />
+		<Unit filename="Makefile-libbz2_so" />
+		<Unit filename="README" />
+		<Unit filename="README.COMPILATION.PROBLEMS" />
+		<Unit filename="README.XML.STUFF" />
+		<Unit filename="axisbzip2.def" />
+		<Unit filename="axisbzip2.layout" />
+		<Unit filename="axisbzip2.sln" />
+		<Unit filename="axisbzip2.vcxproj" />
+		<Unit filename="blocksort.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="bz-common.xsl" />
+		<Unit filename="bz-fo.xsl" />
+		<Unit filename="bz-html.xsl" />
+		<Unit filename="bzdiff" />
+		<Unit filename="bzdiff.1" />
+		<Unit filename="bzgrep" />
+		<Unit filename="bzgrep.1" />
+		<Unit filename="bzip.css" />
+		<Unit filename="bzip2.1" />
+		<Unit filename="bzip2.1.preformatted" />
+		<Unit filename="bzip2.txt" />
+		<Unit filename="bzip_stream.cpp" />
+		<Unit filename="bzip_stream.h" />
+		<Unit filename="bzlib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="bzlib.h" />
+		<Unit filename="bzlib_private.h" />
+		<Unit filename="bzmore" />
+		<Unit filename="bzmore.1" />
+		<Unit filename="compress.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crctable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="decompress.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="entities.xml" />
+		<Unit filename="format.pl" />
+		<Unit filename="huffman.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libbz2.def" />
+		<Unit filename="makefile.msc" />
+		<Unit filename="manual.html" />
+		<Unit filename="manual.pdf" />
+		<Unit filename="manual.ps" />
+		<Unit filename="manual.xml" />
+		<Unit filename="randtable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sample1.bz2" />
+		<Unit filename="sample1.ref" />
+		<Unit filename="sample2.bz2" />
+		<Unit filename="sample2.ref" />
+		<Unit filename="sample3.bz2" />
+		<Unit filename="sample3.ref" />
+		<Unit filename="words0" />
+		<Unit filename="words1" />
+		<Unit filename="words2" />
+		<Unit filename="words3" />
+		<Unit filename="xmlproc.sh" />
 		<Extensions>
 			<code_completion />
 			<debugger />

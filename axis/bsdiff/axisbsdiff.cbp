@@ -17,6 +17,7 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
+					<Add directory="../../appseed" />
 				</Compiler>
 				<Linker>
 					<Add directory="../../../stage/x86" />
@@ -72,6 +73,7 @@
 			<Add directory="base/openssl/crypto/modes" />
 			<Add directory="base/openssl/include" />
 			<Add directory="../../../nodeapp/thirdparty/include" />
+			<Add directory="../../appseed/axis" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -83,6 +85,20 @@
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
+		<Unit filename="README" />
+		<Unit filename="axisbsdiff.def" />
+		<Unit filename="axisbsdiff.layout" />
+		<Unit filename="axisbsdiff.sln" />
+		<Unit filename="axisbsdiff.vcxproj" />
+		<Unit filename="axisbsdiff.vcxproj.filters" />
+		<Unit filename="bsdiff.cpp" />
+		<Unit filename="bsdiff_bsdiff.cpp" />
+		<Unit filename="bsdiff_bspatch.cpp" />
+		<Unit filename="bspatch.cpp" />
+		<Unit filename="libbsdiff.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libbsdiff.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
