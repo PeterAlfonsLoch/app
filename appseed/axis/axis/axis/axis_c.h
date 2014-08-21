@@ -21,7 +21,7 @@
 #define _(c_string_to_be_translated_from_english) c_string_to_be_translated_from_english
 
 
-#include "primitive/math/math_mkint_c.h"
+#include "axis/primitive/math/math_mkint_c.h"
 
 #if defined(ANDROID)
 #include "axis/axis/os/android/android.h"
