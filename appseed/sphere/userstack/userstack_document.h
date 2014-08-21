@@ -14,7 +14,7 @@ namespace userstack
    public:
 
 
-      document(sp(::base::application) papp); 
+      document(sp(::axis::application) papp); 
       virtual ~document();
 
 

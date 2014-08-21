@@ -5,7 +5,7 @@ namespace filehandler
 {
 
 
-   view::view(sp(::base::application) papp) :
+   view::view(sp(::axis::application) papp) :
       element(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
@@ -89,7 +89,7 @@ namespace filehandler
 
    }
 
-   view::item::item(sp(::base::application) papp) :
+   view::item::item(sp(::axis::application) papp) :
       element(papp)
    {
 
@@ -101,7 +101,7 @@ namespace filehandler
       UNREFERENCED_PARAMETER(plist);
 
       COLORREF cr;
-      sp(::base::application) papp = pview->get_app();
+      sp(::axis::application) papp = pview->get_app();
       bool bHover = pview->m_iHover == m_iIndex;
       cr = bHover ? ARGB(255, 230, 255, 230) : ARGB(255, 200, 255, 200);
       if(!sess(papp).savings().is_trying_to_save(::base::resource_processing)
@@ -140,7 +140,7 @@ namespace filehandler
    }
 
 
-   view::list::list(sp(::base::application) papp) :
+   view::list::list(sp(::axis::application) papp) :
       element(papp)
    {
       m_iItemHeight = 30;

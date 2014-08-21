@@ -21,7 +21,7 @@ namespace command
       bool                    m_bMoveDrag;
       bool                    m_bLControl;
 
-	   frame(sp(::base::application) papp);
+	   frame(sp(::axis::application) papp);
       virtual ~frame();
 
       virtual void install_message_handling(::message::dispatch * pinterface);

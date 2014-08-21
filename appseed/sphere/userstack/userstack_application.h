@@ -18,8 +18,8 @@ namespace userstack
                                                                      
       bool                                                           m_bShowPlatform;
                                                                      
-      sp(::base::application)                                            m_pappCurrent;
-      string_map < sp(::base::application) >               m_mapApplication;
+      sp(::axis::application)                                            m_pappCurrent;
+      string_map < sp(::axis::application) >               m_mapApplication;
                                                                      
       
       sp(::user::single_document_template)                         m_ptemplate_main;
@@ -80,9 +80,9 @@ namespace userstack
 
       void on_request(sp(::create_context) pcreatecontext);
 
-      sp(::base::application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, application_bias * pbiasCreate = NULL);
+      sp(::axis::application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, application_bias * pbiasCreate = NULL);
 
-      sp(::base::application) get_current_application();
+      sp(::axis::application) get_current_application();
 
       //virtual void get_screen_rect(LPRECT lprect);
 

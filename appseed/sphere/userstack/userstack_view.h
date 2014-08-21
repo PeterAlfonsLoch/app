@@ -49,7 +49,7 @@ namespace userstack
       mutex m_mutexDraw;
 
 
-      view(sp(::base::application) papp);
+      view(sp(::axis::application) papp);
       virtual ~view();
 
    #ifdef DEBUG

@@ -21,7 +21,7 @@ namespace command
          OpUpdateCurrentArea,
       };
 
-	   view(sp(::base::application) papp);
+	   view(sp(::axis::application) papp);
 	   virtual ~view();
 
 

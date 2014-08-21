@@ -11,7 +11,7 @@ namespace calculator
    public:
 
 
-      document(sp(::base::application) papp);   
+      document(sp(::axis::application) papp);   
       virtual ~document();
 
 

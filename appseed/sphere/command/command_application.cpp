@@ -57,7 +57,7 @@ namespace command
       return 0;
    }
 
-   bool application::_001OnCmdMsg(::base::cmd_msg * pcmdmsg)
+   bool application::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
 
    {
       return ::core::application::_001OnCmdMsg(pcmdmsg);

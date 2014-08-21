@@ -5,7 +5,7 @@ namespace calculator
 {
 
 
-   frame::frame(sp(::base::application) papp) :
+   frame::frame(sp(::axis::application) papp) :
       element(papp),
       simple_frame_window(papp)
    {

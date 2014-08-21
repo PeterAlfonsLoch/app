@@ -4,7 +4,7 @@
 namespace userstack
 {
 
-   pane_view::pane_view(sp(::base::application) papp) :
+   pane_view::pane_view(sp(::axis::application) papp) :
       element(papp),
       ::user::tab(papp),
       ::user::tab_view(papp),
@@ -128,7 +128,7 @@ namespace userstack
       string strId = get_view_id();
       if(::str::begins_eat(strId, "app:"))
       {
-         sp(::base::application) pappTab;
+         sp(::axis::application) pappTab;
          if(Session.m_mapApplication.Lookup("application:" + strId, pappTab))
          {
             platform().m_pappCurrent = pappTab;
@@ -201,7 +201,7 @@ namespace userstack
 
       if(::str::begins_eat(strId, "app:"))
       {
-         sp(::base::application) pappTab;
+         sp(::axis::application) pappTab;
          if(!Session.m_mapApplication.Lookup("application:" + strId, pappTab))
          {
 
@@ -239,7 +239,7 @@ namespace userstack
 
          }
 
-         sp(::base::application) pappCurrent = platform().m_pappCurrent;
+         sp(::axis::application) pappCurrent = platform().m_pappCurrent;
 
          Application.m_mapApplication[strId] = pappCurrent;
 

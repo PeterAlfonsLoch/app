@@ -5,10 +5,10 @@ namespace sphere
 {
 
 
-   library::library(sp(::base::application) papp) :
+   library::library(sp(::axis::application) papp) :
       element(papp),
       ::axis::library(papp,0, "app"),
-      ::base::single_application_library < application > (papp, "app"),
+      ::axis::single_application_library < application > (papp, "app"),
       ::filehandler::library(papp),
       ::filehandler::menu_library(papp)
    {
@@ -53,7 +53,7 @@ namespace sphere
    }
 
 
-/*   sp(::base::application) library::get_new_app(const char * pszAppId)
+/*   sp(::axis::application) library::get_new_app(const char * pszAppId)
    {
 
       if(::str::equals_ci(pszAppId, "calculator"))
@@ -73,7 +73,7 @@ namespace sphere
          return new ::filehandler::application();
       }
 
-      return ::base::single_application_library < application >::get_new_app(pszAppId);
+      return ::axis::single_application_library < application >::get_new_app(pszAppId);
 
    }*/
 
@@ -84,7 +84,7 @@ namespace sphere
 #ifndef _WIN32
 extern "C"
 #endif
-::axis::library * get_new_library(sp(::base::application) papp)
+::axis::library * get_new_library(sp(::axis::application) papp)
 {
 
    return new ::sphere::library(papp);

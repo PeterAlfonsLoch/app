@@ -17,7 +17,7 @@ namespace axis
 
       ::axis::system *                                m_paxissystem;
       ::axis::session *                               m_paxissession;
-      ::base::application *                           m_pbasesapp; // can be used only from base and upper
+      sp(::axis::application)                           m_pbasesapp; // can be used only from base and upper
       ::base::system *                                m_pbasesystem; // can be used only from base and upper
       ::base::session *                               m_pbasesession; // can be used only from base and upper
       ::core::application *                           m_pcoreapp; // can be used only from core and upper
