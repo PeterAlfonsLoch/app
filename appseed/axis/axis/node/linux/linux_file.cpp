@@ -100,7 +100,7 @@ namespace linux
 
       if(nOpenFlags & ::file::defer_create_directory)
       {
-         Application.dir().mk(Application.dir_name(lpszFileName));
+         Application.dir_mk(Application.dir_name(lpszFileName));
       }
 
 //      m_bCloseOnDelete = FALSE;
@@ -554,7 +554,7 @@ namespace linux
 
       ::file::file_status status;
       GetStatus(status);
-      return System.file().title_(status.m_strFullName);
+      return System.file_title(status.m_strFullName);
    }
 
    string file::GetFilePath() const

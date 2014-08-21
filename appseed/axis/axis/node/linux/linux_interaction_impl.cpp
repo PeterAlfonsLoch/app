@@ -1128,7 +1128,7 @@ d.unlock();
    void interaction_impl::message_handler(::signal_details * pobj)
    {
 
-      SCAST_PTR(::message::axis, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
 
       if(m_pui != NULL)
       {
@@ -1215,40 +1215,6 @@ d.unlock();
        pbase->m_uiMessage == WM_MOUSEMOVE)
 //         pbase->m_uiMessage == WM_MOUSEWHEEL)
       {
-         // user presence status activity reporting
-         if(pbase->m_uiMessage == WM_LBUTTONDOWN
-            || pbase->m_uiMessage == WM_RBUTTONDOWN
-            || pbase->m_uiMessage == WM_MBUTTONDOWN
-            || pbase->m_uiMessage == WM_MOUSEMOVE)
-         {
-
-            if(Session.fontopus()->m_puser != NULL)
-            {
-
-               if(&ApplicationUser != NULL)
-               {
-
-                  if(ApplicationUser.m_ppresence != NULL)
-                  {
-
-                     try
-                     {
-
-                        ApplicationUser.m_ppresence->report_activity();
-
-                     }
-                     catch(...)
-                     {
-
-                     }
-
-                  }
-
-               }
-
-            }
-
-         }
 
          if(pbase->m_uiMessage == WM_LBUTTONDOWN)
          {
@@ -1258,6 +1224,8 @@ d.unlock();
          }
 
          ::message::mouse * pmouse = (::message::mouse *) pbase;
+
+         Session.on_ui_mouse_message(pmouse);
 
          if(m_paxisapp->m_paxissession != NULL)
          {
@@ -2609,7 +2577,7 @@ return 0;
       ASSERT(puiStop == NULL || puiStop->IsWindow());
       ASSERT(pobj != NULL);
 
-      SCAST_PTR(::message::axis, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       // walk from the target interaction_impl up to the hWndStop interaction_impl checking
       //  if any interaction_impl wants to translate this message
 
@@ -3089,7 +3057,7 @@ throw not_implemented(get_app());
 
 //throw not_implemented(get_app());
 
-//      SCAST_PTR(::message::axis, pbase, pobj);
+//      SCAST_PTR(::message::base, pbase, pobj);
 //
 //      PAINTSTRUCT paint;
 //      memset(&paint, 0, sizeof(paint));
@@ -3162,7 +3130,7 @@ throw not_implemented(get_app());
    void interaction_impl::_001OnPrint(::signal_details * pobj)
    {
 throw not_implemented(get_app());
-//      SCAST_PTR(::message::axis, pbase, pobj);
+//      SCAST_PTR(::message::base, pbase, pobj);
 //
 //      if(pbase->m_wparam == NULL)
 //         return;
@@ -5371,7 +5339,7 @@ if(psurface == g_cairosurface)
 
    void interaction_impl::_001OnSetCursor(::signal_details * pobj)
    {
-      SCAST_PTR(::message::axis, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       if(Session.get_cursor() != NULL
          && Session.get_cursor()->m_ecursor != ::visual::cursor_system)
       {
