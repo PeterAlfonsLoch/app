@@ -104,9 +104,9 @@ namespace filehandler
       sp(::axis::application) papp = pview->get_app();
       bool bHover = pview->m_iHover == m_iIndex;
       cr = bHover ? ARGB(255, 230, 255, 230) : ARGB(255, 200, 255, 200);
-      if(!sess(papp).savings().is_trying_to_save(::base::resource_processing)
-         && !sess(papp).savings().is_trying_to_save(::base::resource_display_bandwidth)
-         && !sess(papp).savings().is_trying_to_save(::base::resource_memory))
+      if(!Sess(papp).savings().is_trying_to_save(::axis::resource_processing)
+         && !Sess(papp).savings().is_trying_to_save(::axis::resource_display_bandwidth)
+         && !Sess(papp).savings().is_trying_to_save(::axis::resource_memory))
       {
          class imaging & imaging = Sys(papp).visual().imaging();
          imaging.color_blend(pdc, m_rectItem, cr, 127);
