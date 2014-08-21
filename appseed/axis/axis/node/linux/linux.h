@@ -58,7 +58,6 @@ CLASS_DECL_LINUX void AfxResetMsgcache();
 #include "linux_interaction_impl.h"
 #include "linux_os.h"
 #include "linux_copydesk.h"
-#include "linux_crypto.h"
 
 #define NULL_REF(class) (*((class *) NULL))
 #define AfxWndProc (*AfxGetAfxWndProc())
@@ -78,7 +77,7 @@ CLASS_DECL_LINUX void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
 
 
-CLASS_DECL_LINUX void AfxProcessWndProcException(::exception::axis*, ::signal_details * pobj);
+CLASS_DECL_LINUX void AfxProcessWndProcException(::exception::base*, ::signal_details * pobj);
 CLASS_DECL_LINUX void __cdecl __pre_translate_message(::signal_details * pobj);
 
 
