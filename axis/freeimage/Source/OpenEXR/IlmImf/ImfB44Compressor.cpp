@@ -77,7 +77,7 @@
 //#include <ImfXdr.h>
 //#include <string.h>
 //#include <assert.h>
-//#include <algorithm>
+////#include <algorithm>
 
 namespace Imf {
 

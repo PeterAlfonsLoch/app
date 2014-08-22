@@ -130,7 +130,7 @@
 #include "ImathQuat.h"
 #include "ImathMatrix.h"
 #include "ImathLimits.h"
-#include <iostream>
+//#include <iostream>
 
 namespace Imath {
 

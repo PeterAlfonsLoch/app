@@ -33,14 +33,14 @@
 //#include <ImfVecAttribute.h>
 //#include "Iex.h"
 //#include "Iex.h"
-//#include <sstream>
+////#include <sstream>
 //#include <stdlib.h>
 //#include <time.h>
 
 
 namespace Imf {
 
-using namespace std;
+//using namespace std;
 using Imath::Box2i;
 using Imath::V2i;
 using Imath::V2f;

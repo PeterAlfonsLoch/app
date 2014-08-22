@@ -40,9 +40,14 @@
 
 //#include "../Metadata/FreeImageTag.h"
 
+#ifdef _WIN32
+#include <io.h>
+#endif
+
+
 // =====================================================================
 
-using namespace std;
+//using namespace std;
 
 // =====================================================================
 // Plugin search list
@@ -87,8 +92,8 @@ m_node_count(0) {
 FREE_IMAGE_FORMAT
 PluginList::AddNode(FI_InitProc init_proc, void *instance, const char *format, const char *description, const char *extension, const char *regexpr) {
 	if (init_proc != NULL) {
-		PluginNode *node = new(std::nothrow) PluginNode;
-		Plugin *plugin = new(std::nothrow) Plugin;
+		PluginNode *node = new PluginNode;
+		Plugin *plugin = new Plugin;
 		if(!node || !plugin) {
 			if(node) delete node;
 			if(plugin) delete plugin;
@@ -141,7 +146,7 @@ PluginList::AddNode(FI_InitProc init_proc, void *instance, const char *format, c
 
 PluginNode *
 PluginList::FindNodeFromFormat(const char *format) {
-	for (map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
+	for (std::map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
 		const char *the_format = ((*i).second->m_format != NULL) ? (*i).second->m_format : (*i).second->m_plugin->format_proc();
 
 		if ((*i).second->m_enabled) {
@@ -156,7 +161,7 @@ PluginList::FindNodeFromFormat(const char *format) {
 
 PluginNode *
 PluginList::FindNodeFromMime(const char *mime) {
-	for (map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
+   for(std::map<int,PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
 		const char *the_mime = ((*i).second->m_plugin->mime_proc != NULL) ? (*i).second->m_plugin->mime_proc() : "";
 
 		if ((*i).second->m_enabled) {
@@ -171,7 +176,7 @@ PluginList::FindNodeFromMime(const char *mime) {
 
 PluginNode *
 PluginList::FindNodeFromFIF(int node_id) {
-	map<int, PluginNode *>::iterator i = m_plugin_map.find(node_id);
+   std::map<int,PluginNode *>::iterator i = m_plugin_map.find(node_id);
 
 	if (i != m_plugin_map.end()) {
 		return (*i).second;
@@ -191,7 +196,7 @@ PluginList::IsEmpty() const {
 }
 
 PluginList::~PluginList() {
-	for (map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
+   for(std::map<int,PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
 #ifdef _WIN32
 		if ((*i).second->m_instance != NULL) {
 			FreeLibrary((HINSTANCE)(*i).second->m_instance);
@@ -229,7 +234,7 @@ FreeImage_Initialise(BOOL load_local_plugins_only) {
 
 		// internal plugin initialization
 
-		s_plugins = new(std::nothrow) PluginList;
+		s_plugins = new PluginList;
 
 		if (s_plugins) {
 			/* NOTE : 

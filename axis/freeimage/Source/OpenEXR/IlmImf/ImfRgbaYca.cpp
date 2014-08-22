@@ -8,10 +8,10 @@
 
 //#include <ImfRgbaYca.h>
 //#include <assert.h>
-//#include <algorithm>
+////#include <algorithm>
 
 using namespace Imath;
-using namespace std;
+//using namespace std;
 
 namespace Imf {
 namespace RgbaYca {

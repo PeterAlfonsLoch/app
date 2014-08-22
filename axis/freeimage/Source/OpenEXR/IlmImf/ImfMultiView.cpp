@@ -9,7 +9,7 @@
 
 //#include <ImfMultiView.h>
 
-using namespace std;
+//using namespace std;
 
 namespace Imf {
 namespace {

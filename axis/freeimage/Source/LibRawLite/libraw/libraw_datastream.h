@@ -42,8 +42,8 @@ it under the terms of the one of three licenses as you choose:
 
 #include "libraw_const.h"
 #include "libraw_types.h"
-#include <fstream>
-#include <memory>
+//#include <fstream>
+//#include <memory>
 
 #if defined (WIN32)
 //#include <winsock2.h>

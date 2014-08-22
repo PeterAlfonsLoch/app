@@ -15,7 +15,7 @@
 //#include <assert.h>
 //#include "half.h"
 
-using namespace std;
+//using namespace std;
 
 //-------------------------------------------------------------
 // Lookup tables for half-to-float and float-to-half conversion

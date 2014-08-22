@@ -10,40 +10,13 @@
 
 
 
-//#ifdef _WINDOWS_DESKTOP_LIBRARY
-  //  #define CLASS_DECL_AXIS  CLASS_DECL_EXPORT
-//#else
-  //  #define CLASS_DECL_AXIS  CLASS_DECL_IMPORT
-//#endif
-
 string get_error_message(DWORD dwError);
 
-//sp(::axis::application)     windows_instantiate_application(sp(::axis::application) pappSystem, const char * pszId);
-
-/////////////////////////////////////////////////////////////////////////////
-// explicit initialization for general purpose classes
 
 CLASS_DECL_AXIS bool __initialize(bool bDLL = FALSE, DWORD dwVersion = _MFC_VER);
-
-/////////////////////////////////////////////////////////////////////////////
-// stop on a specific primitive::memory request
-
-// Debugger hook on specified allocation request - Obsolete
 CLASS_DECL_AXIS void __set_alloc_stop(LONG lRequestNumber);
-
-
-
-
-// helper routines for non-C++ EH implementations
-// for THROW_LAST auto-delete backward compatiblity
 CLASS_DECL_AXIS void __throw_last_cleanup();
-
-// other out-of-line helper functions
 CLASS_DECL_AXIS void __try_cleanup();
-
-
-/////////////////////////////////////////////////////////////////////////////
-// Global implementation helpers
 
 
 namespace windows
@@ -80,39 +53,20 @@ CLASS_DECL_AXIS WNDPROC __get_window_procedure();
 #define NODE_WINDOW(pwnd) ((sp(::windows::interaction_impl))(pwnd))
 
 
-#pragma comment(lib, "kernel32.lib")
-#pragma comment(lib, "user32.lib")
-#pragma comment(lib, "advapi32.lib")
-#pragma comment(lib, "ole32.lib")
-#pragma comment(lib, "shell32.lib")
-#pragma comment(lib, "oleaut32.lib")
-#pragma comment(lib, "uuid.lib")
-#pragma comment(lib, "shlwapi.lib")
-#pragma comment(lib, "vfw32.lib") 
-#pragma comment(lib, "opengl32.lib") 
-#pragma comment(lib, "Wtsapi32.lib") 
-#pragma comment(lib, "Secur32.lib") 
-#pragma comment(lib, "Msimg32.lib") 
-#pragma comment(lib, "Psapi.lib") 
 
 CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, signal_details * pobj);
 CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, LPMSG lpmsg);
 
 
 
-//#include "windows_printer.h"
 #include "windows_print_job.h"
-
 #include "windows_application.h"
 
 
 
 void CLASS_DECL_AXIS __cdecl _ca2_purecall();
-
 void CLASS_DECL_AXIS __cdecl _null_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers);
-
 bool CLASS_DECL_AXIS __windows_init();
-
 int32_t CLASS_DECL_AXIS __windows_main(sp(::axis::system) psystem, ::windows::main_init_data * pmaininitdata);
 
 

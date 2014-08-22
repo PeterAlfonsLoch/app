@@ -11,7 +11,7 @@
 //#include <ImfStandardAttributes.h>
 //#include <Iex.h>
 
-using namespace std;
+//using namespace std;
 using namespace Imath;
 using namespace Iex;
 

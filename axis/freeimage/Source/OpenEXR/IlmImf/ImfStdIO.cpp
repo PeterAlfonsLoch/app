@@ -12,7 +12,7 @@
 //#include "Iex.h"
 //#include <errno.h>
 
-using namespace std;
+//using namespace std;
 
 namespace Imf {
 namespace {

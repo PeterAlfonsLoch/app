@@ -17,12 +17,12 @@
 //#include <IlmThreadMutex.h>
 //#include <Iex.h>
 //#include <string.h>
-//#include <algorithm>
+////#include <algorithm>
 
 
 namespace Imf {
 
-using namespace std;
+//using namespace std;
 using namespace Imath;
 using namespace RgbaYca;
 using namespace IlmThread;

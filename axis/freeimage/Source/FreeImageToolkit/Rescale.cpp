@@ -35,22 +35,22 @@ FreeImage_Rescale(FIBITMAP *src, int dst_width, int dst_height, FREE_IMAGE_FILTE
 	CGenericFilter *pFilter = NULL;
 	switch (filter) {
 		case FILTER_BOX:
-			pFilter = new(std::nothrow) CBoxFilter();
+			pFilter = new CBoxFilter();
 			break;
 		case FILTER_BICUBIC:
-			pFilter = new(std::nothrow) CBicubicFilter();
+			pFilter = new CBicubicFilter();
 			break;
 		case FILTER_BILINEAR:
-			pFilter = new(std::nothrow) CBilinearFilter();
+			pFilter = new CBilinearFilter();
 			break;
 		case FILTER_BSPLINE:
-			pFilter = new(std::nothrow) CBSplineFilter();
+			pFilter = new CBSplineFilter();
 			break;
 		case FILTER_CATMULLROM:
-			pFilter = new(std::nothrow) CCatmullRomFilter();
+			pFilter = new CCatmullRomFilter();
 			break;
 		case FILTER_LANCZOS3:
-			pFilter = new(std::nothrow) CLanczos3Filter();
+			pFilter = new CLanczos3Filter();
 			break;
 	}
 

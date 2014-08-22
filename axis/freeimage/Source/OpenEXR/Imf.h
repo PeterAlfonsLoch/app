@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "axis/axis/axis.h"
+
+
 #include <assert.h>
 #include <errno.h>
 #include <string.h>
@@ -9,15 +12,15 @@
 #include <time.h>
 #include <limits.h>
 
-#include <iostream>
-#include <string>
-#include <list>
-#include <vector>
-#include <fstream>
-#include <map>
-#include <algorithm>
-#include <cmath>
-#include <sstream>
+//#include <iostream>
+//#include <string>
+//#include <list>
+//#include <vector>
+//#include <fstream>
+//#include <map>
+//#include <algorithm>
+//#include <cmath>
+//#include <sstream>
 
 #include <zlib.h>
 

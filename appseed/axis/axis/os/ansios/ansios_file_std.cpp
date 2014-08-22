@@ -431,7 +431,7 @@ size_t fwrite_dup(const void *buffer, size_t size, size_t count, _FILE *str)
 
 #ifdef WINDOWS
 
-	uint32_t bw = 0, bw2 = 0;
+	DWORD bw = 0, bw2 = 0;
 
 	if (size*count == 0)
 		return 0;
@@ -668,10 +668,29 @@ uint64_t fsize_dup(FILE * fp)
 #else
 uint64_t fsize_dup(HANDLE h)
 {
-   uint32_t dwHi;
-   uint32_t dwLo = ::GetFileSize(h, &dwHi);
+   DWORD dwHi;
+   DWORD dwLo = ::GetFileSize(h,&dwHi);
    if(dwHi)
       return 0;
    return dwLo | (((DWORD64) dwHi) << 32);
 }
 #endif
+
+
+uint64_t flen_dup(_FILE *str)
+{
+
+#ifdef WINDOWS
+
+   return fsize_dup((HANDLE)((_FILE*)str)->_base);
+
+#else
+
+   return fsize_dup(str);
+
+#endif
+
+}
+
+
+

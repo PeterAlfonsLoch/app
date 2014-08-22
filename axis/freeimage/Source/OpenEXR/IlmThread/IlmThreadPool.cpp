@@ -7,7 +7,7 @@
 //-----------------------------------------------------------------------------
 
 
-using namespace std;
+//using namespace std;
 
 namespace IlmThread {
 namespace {

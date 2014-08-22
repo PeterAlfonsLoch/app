@@ -1281,6 +1281,8 @@ namespace std
 
       using runtime_error = ::runtime_error;
 
+      using streambuf = ::file::streambuf;
+
 
       template < typename T >
       T abs(T t)
@@ -1290,7 +1292,6 @@ namespace std
          else 
             return -t;
       }
-
 
 
 }

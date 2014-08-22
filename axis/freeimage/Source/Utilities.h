@@ -40,16 +40,16 @@
 #include <float.h>
 #include <limits.h>
 
-#include <string>
-#include <list>
-#include <map>
-#include <set>
-#include <vector>
-#include <stack>
-#include <sstream>
-#include <algorithm>
-#include <limits>
-#include <memory>
+//#include <string>
+//#include <list>
+//#include <map>
+//#include <set>
+//#include <vector>
+//#include <stack>
+//#include <sstream>
+//#include <algorithm>
+//#include <limits>
+//#include <memory>
 
 // ==========================================================
 //   Bitmap palette and pixels alignment

@@ -43,7 +43,7 @@
 //
 //--------------------------------------------------------------------
 
-#include <sstream>
+//#include <sstream>
 
 
 //----------------------------------------------------------------------------
@@ -132,11 +132,11 @@
 //
 // Example:
 //
-//	ASSERT (ptr != NULL, NullExc, "Null pointer" );
+//	IEX_ASSERT (ptr != NULL, NullExc, "Null pointer" );
 //
 //-------------------------------------------------------------
 
-#define ASSERT(assertion, type, text)   \
+#define IEX_ASSERT(assertion, type, text)   \
     do                                  \
     {                                   \
 	if ((assertion) == false)       \

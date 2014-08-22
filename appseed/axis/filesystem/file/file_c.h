@@ -110,6 +110,7 @@ CLASS_DECL_AXIS int32_t fgetc_dup(_FILE *s);
 CLASS_DECL_AXIS int32_t ungetc_dup(int32_t c,_FILE *s);
 CLASS_DECL_AXIS int32_t ferror_dup(_FILE *s);
 CLASS_DECL_AXIS int32_t fflush_dup(_FILE *s);
+CLASS_DECL_AXIS uint64_t flen_dup(_FILE *s);
 
 
 #ifdef WINDOWS

@@ -50,7 +50,7 @@
 #include "IexMathExc.h"
 #include "IexErrnoExc.h"
 #include "IexThrowErrnoExc.h"
-#include <algorithm>
+//#include <algorithm>
 
 // Note that we do not include file IexErrnoExc.h here.  That file
 // defines over 150 classes and significantly slows down compilation.

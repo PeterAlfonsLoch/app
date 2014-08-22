@@ -84,3 +84,7 @@ CLASS_DECL_AXIS string file_extension_dup(const char * path);
 
 
 
+#include "file_streambuf.h"
+
+
+

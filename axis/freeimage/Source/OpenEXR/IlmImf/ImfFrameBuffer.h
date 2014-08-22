@@ -14,8 +14,8 @@
 
 #include <ImfName.h>
 #include <ImfPixelType.h>
-#include <map>
-#include <string>
+//#include <map>
+//#include <string>
 
 
 namespace Imf {

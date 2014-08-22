@@ -42,7 +42,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <limits>
+//#include <limits>
 #include <IexMathExc.h>
 
 namespace Imf {

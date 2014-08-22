@@ -324,7 +324,7 @@ FreeImage_AllocateHeaderT(BOOL header_only, FREE_IMAGE_TYPE type, int width, int
 
 			// initialize metadata models list
 
-			fih->metadata = new(std::nothrow) METADATAMAP;
+			fih->metadata = new METADATAMAP;
 
 			// initialize attached thumbnail
 
@@ -481,7 +481,7 @@ FreeImage_Clone(FIBITMAP *dib) {
 
 			if(src_tagmap) {
 				// create a metadata model
-				TAGMAP *dst_tagmap = new(std::nothrow) TAGMAP();
+				TAGMAP *dst_tagmap = new TAGMAP();
 
 				if(dst_tagmap) {
 					// fill the model
@@ -1123,7 +1123,7 @@ FreeImage_CloneMetadata(FIBITMAP *dst, FIBITMAP *src) {
 			}
 
 			// create a metadata model
-			TAGMAP *dst_tagmap = new(std::nothrow) TAGMAP();
+			TAGMAP *dst_tagmap = new TAGMAP();
 
 			if(dst_tagmap) {
 				// fill the model
@@ -1168,7 +1168,7 @@ FreeImage_SetMetadata(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const char *key, 
 
 		if(!tagmap) {
 			// this model, doesn't exist: create it 
-			tagmap = new(std::nothrow) TAGMAP();
+			tagmap = new TAGMAP();
 			(*metadata)[model] = tagmap;
 		}
 		
