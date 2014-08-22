@@ -3060,9 +3060,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="base\node\node.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="base\node\windows\windows_crypto.cpp" />
     <ClCompile Include="base\node\windows\windows_dir.cpp" />
     <ClCompile Include="base\node\windows\windows_factory_exchange.cpp" />

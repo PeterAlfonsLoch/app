@@ -219,6 +219,15 @@ void pointd_array::get_bounding_rect(LPRECTD lprect, const POINTD * lppoint, ::c
 }
 
 
+bool pointd_array::bounding_rect_contains_pt(pointd pt)
+{
+   rectd rect;
+   get_bounding_rect(rect);
+   return rect.contains(pt);
+}
+
+
+
 void pointd_array::rotate(double dAngle)
 {
 

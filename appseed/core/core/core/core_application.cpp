@@ -1617,7 +1617,49 @@ namespace core
                if(!(bool)System.oprop("not_installed_message_already_shown"))
                {
 
-                  ::simple_message_box(NULL,"Debug only message, please install:\n\n\n\t" + notinstalled.m_strId + "\n\ttype = " + notinstalled.m_strType + "\n\tlocale = " + notinstalled.m_strLocale + "\n\tschema = " + notinstalled.m_strSchema + "\n\tbuild number = " + notinstalled.m_strBuild + "\n\n\nThere are helper scripts under <solution directory>/nodeapp/stage/install/","Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
+                  if(IDYES == ::simple_message_box(NULL,"Debug only message, please install:\n\n\n\t" + notinstalled.m_strId + "\n\ttype = " + notinstalled.m_strType + "\n\tlocale = " + notinstalled.m_strLocale + "\n\tschema = " + notinstalled.m_strSchema + "\n\tbuild number = " + notinstalled.m_strBuild + "\n\n\nThere are helper scripts under <solution directory>/nodeapp/stage/install/","Debug only message, please install.",MB_ICONINFORMATION | MB_YESNO))
+                  {
+
+                     string strPath = notinstalled.m_strId;
+
+                     strPath.replace("/", "_");
+                     strPath.replace("-","_");
+                     ::str::begins_eat_ci(strPath,"app_");
+                     strPath += ".bat";
+#ifdef OS64BIT
+                     strPath = System.dir().ca2module(
+#else
+                     strPath = System.dir().element("nodeapp/stage/install/basis/x86/_std",strPath);
+#endif
+
+                     uint32_t dwExitCode;
+                     string str;
+                     ::core::process process;
+                     bool bOk = true;
+                     if(!process.create_child_process(strPath,false,System.dir().name(strPath)))
+                     {
+                        bOk = false;
+                     }
+                     if(bOk)
+                     {
+                        int32_t i;
+                        i = 1;
+                        while(!process.has_exited(&dwExitCode))
+                        {
+                           i++;
+                        }
+                     }
+
+                     if(bOk && dwExitCode == 0)
+                     {
+                        ::simple_message_box(NULL,"Successfully run : " + strPath,"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
+                     }
+                     else
+                     {
+                        ::simple_message_box(NULL,"Fail ret code run : " + strPath,"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
+                     }
+
+                  }
 
                   System.oprop("not_installed_message_already_shown") = true;
 

@@ -662,9 +662,6 @@
     <ClCompile Include="strings\bchange.c">
       <Filter>Source Files\strings</Filter>
     </ClCompile>
-    <ClCompile Include="strings\conf_to_src.c">
-      <Filter>Source Files\strings</Filter>
-    </ClCompile>
     <ClCompile Include="strings\ctype.c">
       <Filter>Source Files\strings</Filter>
     </ClCompile>

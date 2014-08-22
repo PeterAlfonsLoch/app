@@ -1979,7 +1979,6 @@
     <ClCompile Include="sql\auth\password.c" />
     <ClCompile Include="sql\net_serv.cc" />
     <ClCompile Include="strings\bchange.c" />
-    <ClCompile Include="strings\conf_to_src.c" />
     <ClCompile Include="strings\ctype-big5.c" />
     <ClCompile Include="strings\ctype-bin.c" />
     <ClCompile Include="strings\ctype-cp932.c" />

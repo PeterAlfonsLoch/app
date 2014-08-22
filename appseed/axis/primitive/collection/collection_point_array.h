@@ -59,6 +59,9 @@ public:
 
    static void get_bounding_rect(LPRECTD lprect, const POINTD * lppoint, ::count count);
 
+   bool bounding_rect_contains_pt(pointd pt);
+
+
    __inline index add(double x, double y) {return array < pointd >::add(pointd(x, y)); }
    __inline index add(pointd point) {return add(point.x, point.y); }
    __inline pointd_array & operator =(const pointd_array & pointset) { copy(pointset); return *this; }

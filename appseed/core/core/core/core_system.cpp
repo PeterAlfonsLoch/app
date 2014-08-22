@@ -563,7 +563,7 @@ namespace core
             try
             {
 
-               if(appptra[i].is_session() || appptra[i].is_system())
+               if(&appptra[i]==NULL || appptra[i].is_session() || appptra[i].is_system())
                {
 
                   appptra.remove_at(i);

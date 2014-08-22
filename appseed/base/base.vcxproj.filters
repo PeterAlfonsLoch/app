@@ -1738,9 +1738,6 @@
     <ClCompile Include="base\node\windows\windows_port_forward.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="base\node\node.cpp">
-      <Filter>Source Files\base\node</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\android\android_application.cpp">
       <Filter>Source Files\base\node\android</Filter>
     </ClCompile>
@@ -2015,6 +2012,9 @@
     </None>
     <None Include="base\base\base.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
