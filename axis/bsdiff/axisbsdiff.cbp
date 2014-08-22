@@ -7,9 +7,9 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../stage/x86/libbase.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libaxisbsdiff.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
-				<Option object_output="../../../time/intermediate/app/base" />
+				<Option object_output="../../../time/intermediate/app/axisbsdiff" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -24,9 +24,9 @@
 				</Linker>
 			</Target>
 			<Target title="memdleak">
-				<Option output="../../../stage/x86/libbase.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libaxisbsdiff.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
-				<Option object_output="../../../time/intermediate/app/base" />
+				<Option object_output="../../../time/intermediate/app/axisbsdiff" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -85,16 +85,8 @@
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
-		<Unit filename="README" />
-		<Unit filename="axisbsdiff.def" />
-		<Unit filename="axisbsdiff.layout" />
-		<Unit filename="axisbsdiff.sln" />
-		<Unit filename="axisbsdiff.vcxproj" />
-		<Unit filename="axisbsdiff.vcxproj.filters" />
-		<Unit filename="bsdiff.cpp" />
 		<Unit filename="bsdiff_bsdiff.cpp" />
 		<Unit filename="bsdiff_bspatch.cpp" />
-		<Unit filename="bspatch.cpp" />
 		<Unit filename="libbsdiff.c">
 			<Option compilerVar="CC" />
 		</Unit>

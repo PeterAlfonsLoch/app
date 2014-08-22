@@ -32,7 +32,7 @@
 #  elif	defined(__ARM_ARCH_4__)	|| defined(__ARM_ARCH_4T__)
 #   define __ARM_ARCH__ 4
 #  else
-#   error "unsupported ARM architecture"
+  error "unsupported ARM architecture"
 #  endif
 # endif
 #endif
@@ -43,7 +43,7 @@
 
 #if !__ASSEMBLER__
 extern unsigned int OPENSSL_armcap_P;
-                                     
+
 #define ARMV7_NEON      (1<<0)
 #define ARMV7_TICK      (1<<1)
 #endif
