@@ -84,7 +84,7 @@ TIFFWriteScanline(TIFF* tif, void* buf, uint32 row, uint16 sample)
 	if (td->td_planarconfig == PLANARCONFIG_SEPARATE) {
 		if (sample >= td->td_samplesperpixel) {
 			TIFFErrorExt(tif->tif_clientdata, module,
-			    "%lu: Sample out of range, max %lu",
+			    "%lu: Sample out of range, MAX %lu",
 			    (unsigned long) sample, (unsigned long) td->td_samplesperpixel);
 			return (-1);
 		}
@@ -358,7 +358,7 @@ TIFFWriteEncodedTile(TIFF* tif, uint32 tile, void* data, tmsize_t cc)
 		return ((tmsize_t)(-1));
 	td = &tif->tif_dir;
 	if (tile >= td->td_nstrips) {
-		TIFFErrorExt(tif->tif_clientdata, module, "Tile %lu out of range, max %lu",
+		TIFFErrorExt(tif->tif_clientdata, module, "Tile %lu out of range, MAX %lu",
 		    (unsigned long) tile, (unsigned long) td->td_nstrips);
 		return ((tmsize_t)(-1));
 	}
@@ -455,7 +455,7 @@ TIFFWriteRawTile(TIFF* tif, uint32 tile, void* data, tmsize_t cc)
 	if (!WRITECHECKTILES(tif, module))
 		return ((tmsize_t)(-1));
 	if (tile >= tif->tif_dir.td_nstrips) {
-		TIFFErrorExt(tif->tif_clientdata, module, "Tile %lu out of range, max %lu",
+		TIFFErrorExt(tif->tif_clientdata, module, "Tile %lu out of range, MAX %lu",
 		    (unsigned long) tile,
 		    (unsigned long) tif->tif_dir.td_nstrips);
 		return ((tmsize_t)(-1));

@@ -52,17 +52,17 @@ public:
 
    inline static T max_value()
    {
-      return ::numeric_info::get_maximum_value < T > ();
+      return ::numeric_info< T >::maximum();
    }
 
    inline static T min_value()
    {
-      return ::numeric_info::get_minimum_value < T > ();
+      return ::numeric_info< T >::minimum();
    }
 
    inline static T allset_value()
    {
-      return ::numeric_info::get_allset_value < T > ();
+      return ::numeric_info< T >::allset();
    }
 
    inline void set_maximum()
@@ -345,13 +345,20 @@ DEFINE_C_NUMBER(CLASS_DECL_AXIS, os_lock_duration, uint32_t)
 
 */
 
-namespace numeric_info
+namespace numeric_info_internal
 {
 
-   template < typename T > class CLASS_DECL_AXIS offset < ::c_number < T > > { public: typedef typename ::numeric_info::offset < T >::TYPE TYPE; };
-   template < typename T > class CLASS_DECL_AXIS type   < ::c_number < T > > { public: typedef typename ::numeric_info::type   < T >::TYPE TYPE; };
+   template < typename T >
+   class CLASS_DECL_AXIS numeric_info < ::c_number < T > > :
+   public numeric_info < T >
+   {
+   public:
+
+
+   };
 
 }
+
 
 template < typename T > 
 inline ::file::input_stream &  operator >>(::file::input_stream & istream, c_number < T > & t)

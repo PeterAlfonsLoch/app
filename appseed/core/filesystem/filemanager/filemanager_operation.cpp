@@ -58,7 +58,7 @@ namespace filemanager
          for(int32_t i = 1; i < stra.get_size(); i++)
          {
             strCompare = System.dir().name(stra[i]);
-            for(int32_t j = 0; j < min(strCompare.get_length(),strBase.get_length()); j++)
+            for(int32_t j = 0; j < MIN(strCompare.get_length(),strBase.get_length()); j++)
             {
                if(strCompare[j] != strBase[j])
                {

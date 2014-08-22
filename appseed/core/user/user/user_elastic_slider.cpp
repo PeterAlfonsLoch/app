@@ -235,8 +235,8 @@ namespace user
       int32_t iWidth = 16;
       rect.top = rectClient.top;
       rect.bottom = rectClient.bottom;
-      rect.left = (LONG) min(rectClient.right, m_dPosition * (rectClient.width() - iWidth));
-      rect.right = (LONG) min(rectClient.right, m_dPosition * ((rectClient.width() - iWidth)) + iWidth);
+      rect.left = (LONG) MIN(rectClient.right, m_dPosition * (rectClient.width() - iWidth));
+      rect.right = (LONG) MIN(rectClient.right, m_dPosition * ((rectClient.width() - iWidth)) + iWidth);
    }
 
 } // namespace user

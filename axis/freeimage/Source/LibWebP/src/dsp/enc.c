@@ -21,8 +21,8 @@ static WEBP_INLINE uint8_t clip_8b(int v) {
   return (!(v & ~0xff)) ? v : (v < 0) ? 0 : 255;
 }
 
-static WEBP_INLINE int clip_max(int v, int max) {
-  return (v > max) ? max : v;
+static WEBP_INLINE int clip_max(int v, int MAX) {
+  return (v > MAX) ? MAX : v;
 }
 
 //------------------------------------------------------------------------------

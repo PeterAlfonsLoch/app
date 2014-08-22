@@ -48,7 +48,7 @@
 
 namespace Imf {
 
-int levelSize (int min, int max, int l, LevelRoundingMode rmode);
+int levelSize (int MIN, int MAX, int l, LevelRoundingMode rmode);
 
 Imath::Box2i dataWindowForLevel (const TileDescription &tileDesc,
 				 int minX, int maxX,

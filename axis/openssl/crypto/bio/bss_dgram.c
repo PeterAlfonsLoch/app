@@ -940,8 +940,8 @@ BIO *BIO_new_dgram_sctp(int fd, int close_flag)
 #endif
 #endif
 
-	/* Disable partial delivery by setting the min size
-	 * larger than the max record size of 2^14 + 2048 + 13
+	/* Disable partial delivery by setting the MIN size
+	 * larger than the MAX record size of 2^14 + 2048 + 13
 	 */
 	ret = setsockopt(fd, IPPROTO_SCTP, SCTP_PARTIAL_DELIVERY_POINT, &optval, sizeof(optval));
 	OPENSSL_assert(ret >= 0);
@@ -1146,7 +1146,7 @@ static int dgram_sctp_read(BIO *b, char *out, int outl)
 			if (ret == outl)
 				return -1;
 
-			/* Test if socket buffer can handle max record
+			/* Test if socket buffer can handle MAX record
 			 * size (2^14 + 2048 + 13)
 			 */
 			optlen = (socklen_t) sizeof(int);
@@ -1155,7 +1155,7 @@ static int dgram_sctp_read(BIO *b, char *out, int outl)
 			OPENSSL_assert(optval >= 18445);
 
 			/* Test if SCTP doesn't partially deliver below
-			 * max record size (2^14 + 2048 + 13)
+			 * MAX record size (2^14 + 2048 + 13)
 			 */
 			optlen = (socklen_t) sizeof(int);
 			ret = getsockopt(b->num, IPPROTO_SCTP, SCTP_PARTIAL_DELIVERY_POINT,

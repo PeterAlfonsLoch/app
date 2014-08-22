@@ -242,9 +242,9 @@ LuminanceFromYxy(FIBITMAP *Yxy, float *maxLum, float *minLum, float *worldLum) {
 	for(unsigned y = 0; y < height; y++) {
 		const FIRGBF *pixel = (FIRGBF*)bits;
 		for(unsigned x = 0; x < width; x++) {
-			const float Y = max(0.0F, pixel[x].red);// avoid negative values
-			max_lum = (max_lum < Y) ? Y : max_lum;	// max Luminance in the scene
-			min_lum = (min_lum < Y) ? min_lum : Y;	// min Luminance in the scene
+			const float Y = MAX(0.0F, pixel[x].red);// avoid negative values
+			max_lum = (max_lum < Y) ? Y : max_lum;	// MAX Luminance in the scene
+			min_lum = (min_lum < Y) ? min_lum : Y;	// MIN Luminance in the scene
 			sum += log(2.3e-5F + Y);				// contrast constant in Tumblin paper
 		}
 		// next line
@@ -372,8 +372,8 @@ LuminanceFromY(FIBITMAP *dib, float *maxLum, float *minLum, float *Lav, float *L
 		const float *pixel = (float*)bits;
 		for(unsigned x = 0; x < width; x++) {
 			const float Y = pixel[x];
-			max_lum = (max_lum < Y) ? Y : max_lum;				// max Luminance in the scene
-			min_lum = ((Y > 0) && (min_lum < Y)) ? min_lum : Y;	// min Luminance in the scene
+			max_lum = (max_lum < Y) ? Y : max_lum;				// MAX Luminance in the scene
+			min_lum = ((Y > 0) && (min_lum < Y)) ? min_lum : Y;	// MIN Luminance in the scene
 			sumLum += Y;										// average luminance
 			sumLogLum += log(2.3e-5F + Y);						// contrast constant in Tumblin paper
 		}
@@ -443,7 +443,7 @@ NormalizeY(FIBITMAP *Y, float minPrct, float maxPrct) {
 	int height = FreeImage_GetHeight(Y);
 	int pitch = FreeImage_GetPitch(Y);
 
-	// find max & min luminance values
+	// find MAX & MIN luminance values
 	if((minPrct > 0) || (maxPrct < 1)) {
 		maxLum = 0, minLum = 0;
 		findMaxMinPercentile(Y, minPrct, &minLum, maxPrct, &maxLum);
@@ -454,8 +454,8 @@ NormalizeY(FIBITMAP *Y, float minPrct, float maxPrct) {
 			const float *pixel = (float*)bits;
 			for(x = 0; x < width; x++) {
 				const float value = pixel[x];
-				maxLum = (maxLum < value) ? value : maxLum;	// max Luminance in the scene
-				minLum = (minLum < value) ? minLum : value;	// min Luminance in the scene
+				maxLum = (maxLum < value) ? value : maxLum;	// MAX Luminance in the scene
+				minLum = (minLum < value) ? minLum : value;	// MIN Luminance in the scene
 			}
 			// next line
 			bits += pitch;

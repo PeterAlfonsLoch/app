@@ -50,8 +50,8 @@
 
 //#include <algorithm>
 
-//using std::min;
-//using std::max;
+//using std::MIN;
+//using std::MAX;
 
 #ifdef EMBEDDED_LIBRARY
 #undef MYSQL_SERVER
@@ -829,7 +829,7 @@ static ulong net_read_packet(NET *net, size_t *complen)
   if (!pkt_len)
     goto end;
 
-  pkt_data_len = max(pkt_len, *complen) + net->where_b;
+  pkt_data_len = MAX(pkt_len, *complen) + net->where_b;
 
   /* Expand packet buffer if necessary. */
   if ((pkt_data_len >= net->max_packet) && net_realloc(net, pkt_data_len))

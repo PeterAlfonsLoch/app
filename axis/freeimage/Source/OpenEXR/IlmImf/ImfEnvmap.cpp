@@ -100,7 +100,7 @@ namespace CubeMap {
 int
 sizeOfFace (const Box2i &dataWindow)
 {
-    return min ((dataWindow.max.x - dataWindow.min.x + 1),
+    return MIN ((dataWindow.max.x - dataWindow.min.x + 1),
 		(dataWindow.max.y - dataWindow.min.y + 1) / 6);
 }
 

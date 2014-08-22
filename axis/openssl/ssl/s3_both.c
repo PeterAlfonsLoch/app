@@ -418,11 +418,11 @@ unsigned long ssl3_output_cert_chain(SSL *s, X509 *x)
 	}
 
 /* Obtain handshake message of message type 'mt' (any if mt == -1),
- * maximum acceptable body length 'max'.
+ * maximum acceptable body length 'MAX'.
  * The first four bytes (msg_type and length) are read in state 'st1',
  * the body is read in state 'stn'.
  */
-long ssl3_get_message(SSL *s, int st1, int stn, int mt, long max, int *ok)
+long ssl3_get_message(SSL *s, int st1, int stn, int mt, long MAX, int *ok)
 	{
 	unsigned char *p;
 	unsigned long l;
@@ -506,7 +506,7 @@ long ssl3_get_message(SSL *s, int st1, int stn, int mt, long max, int *ok)
 		s->s3->tmp.message_type= *(p++);
 
 		n2l3(p,l);
-		if (l > (unsigned long)max)
+		if (l > (unsigned long)MAX)
 			{
 			al=SSL_AD_ILLEGAL_PARAMETER;
 			SSLerr(SSL_F_SSL3_GET_MESSAGE,SSL_R_EXCESSIVE_MESSAGE_SIZE);

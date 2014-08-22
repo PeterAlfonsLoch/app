@@ -321,7 +321,7 @@ bool XfplayerViewLine::to(::draw2d::graphics * pdc,bool bDraw,const RECT & rect,
                strFinal.get_length(),
                dBlend);
            }
-           int32_t iMaxCounter = max((int32_t) m_iaPosition.element_at(m_str.get_length()) - m_iaPosition.element_at(0) + 100, m_rect.right - m_rect.left);
+           int32_t iMaxCounter = MAX((int32_t) m_iaPosition.element_at(m_str.get_length()) - m_iaPosition.element_at(0) + 100, m_rect.right - m_rect.left);
            int32_t iRight = iMaxCounter - (int32_t) m_dAnimateProgress;
            if(iRight < m_rect.right)
            {
@@ -475,7 +475,7 @@ bool XfplayerViewLine::to(::draw2d::graphics * pdc,bool bDraw,const RECT & rect,
               0,
                 MapToFontEffect(m_iTextEffect));   */
             int32_t iSpacing = 100;
-            int32_t iMaxCounter = max(
+            int32_t iMaxCounter = MAX(
                (int32_t) m_iaPosition.element_at(m_str.get_length())
                   - m_iaPosition.element_at(0) + iSpacing, m_rect.right - m_rect.left);
             int32_t iRight = iMaxCounter - (int32_t) m_dAnimateProgress;
@@ -705,7 +705,7 @@ void XfplayerViewLine::CalcCharsPositions(::draw2d::graphics *             pdc,c
    }
 
 
-   m_str.Truncate(min(84, m_str.length()));
+   m_str.Truncate(MIN(84, m_str.length()));
 
    pdc->SelectObject(m_font);
 
@@ -956,7 +956,7 @@ void XfplayerViewLine::OnTimerAnimate(
                 m_dAnimateProgress+= m_dAnimateProgressIncrement;
                 if(m_iaPosition.get_size() > 0)
                 {
-                    if((int32_t)m_dAnimateProgress > max(m_iaPosition.element_at(m_str.get_length()) - m_iaPosition.element_at(0) + 100, m_rect.right - m_rect.left))
+                    if((int32_t)m_dAnimateProgress > MAX(m_iaPosition.element_at(m_str.get_length()) - m_iaPosition.element_at(0) + 100, m_rect.right - m_rect.left))
                         m_dAnimateProgress = 0.0;
                     rect rect;
                     GetPlacement(rect);
@@ -1447,8 +1447,8 @@ void XfplayerViewLine::CacheEmboss(::draw2d::graphics * pdc, const char * lpcsz,
    pdc->select_font(m_font);
    m_dcextension.GetTextExtent(pdc, lpcsz, iLen, size);
 
-   size.cx += (LONG) (2 * (max(2.0, m_floatRateX * 8.0)));
-   size.cy += (LONG) (2 * (max(2.0, m_floatRateX * 8.0)));
+   size.cx += (LONG) (2 * (MAX(2.0, m_floatRateX * 8.0)));
+   size.cy += (LONG) (2 * (MAX(2.0, m_floatRateX * 8.0)));
 
 
    if(!pdibCache->create(size))
@@ -1464,13 +1464,13 @@ void XfplayerViewLine::CacheEmboss(::draw2d::graphics * pdc, const char * lpcsz,
    pdcCache->SelectObject(brushText);
    //pdcCache->SetTextColor();
 
-   m_dcextension.TextOut(pdcCache, (int32_t) (int32_t) ((max(2.0, m_floatRateX * 8.0)) / 2), (int32_t) 1 * (int32_t) ((max(2.0, m_floatRateX * 8.0)) / 2), lpcsz, iLen);
+   m_dcextension.TextOut(pdcCache, (int32_t) (int32_t) ((MAX(2.0, m_floatRateX * 8.0)) / 2), (int32_t) 1 * (int32_t) ((MAX(2.0, m_floatRateX * 8.0)) / 2), lpcsz, iLen);
 
-   System.visual().imaging().channel_spread_set_color(pdcCache, null_point(), size, pdcCache, null_point(), 0, int32_t (max(1.0, m_floatRateX * 2.0)), ARGB(23, 23, 23, 23));
+   System.visual().imaging().channel_spread_set_color(pdcCache, null_point(), size, pdcCache, null_point(), 0, int32_t (MAX(1.0, m_floatRateX * 2.0)), ARGB(23, 23, 23, 23));
 
    pdcCache->set_alpha_mode(::draw2d::alpha_mode_blend);
-   System.visual().imaging().channel_alpha_gray_blur(pdcCache, null_point(), size, pdcCache, null_point(), 0, int32_t (max(1.0, m_floatRateX * 3.0)));
-   System.visual().imaging().channel_alpha_gray_blur(pdcCache, null_point(), size, pdcCache, null_point(), 0, int32_t (max(1.0, m_floatRateX * 3.0)));
+   System.visual().imaging().channel_alpha_gray_blur(pdcCache, null_point(), size, pdcCache, null_point(), 0, int32_t (MAX(1.0, m_floatRateX * 3.0)));
+   System.visual().imaging().channel_alpha_gray_blur(pdcCache, null_point(), size, pdcCache, null_point(), 0, int32_t (MAX(1.0, m_floatRateX * 3.0)));
 
    /*pdibCache->fill_channel(92, ::visual::rgba::channel_blue);
    pdibCache->fill_channel(92, ::visual::rgba::channel_green);

@@ -2,7 +2,11 @@
 #include "framework.h"
 #include <process.h>    // for _beginthreadex and _endthreadex
 #undef new
+#define min MIN
+#define max MAX
 #include <gdiplus.h>
+#undef min
+#undef max
 
 
 

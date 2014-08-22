@@ -1043,7 +1043,7 @@ ulonglong max_of_int_range(int var_type)
 /*
   function: getopt_ll_limit_value
 
-  Applies min/max/block_size to a numeric value of an option.
+  Applies MIN/MAX/block_size to a numeric value of an option.
   Returns "fixed" value.
 */
 
@@ -1058,7 +1058,7 @@ longlong getopt_ll_limit_value(longlong num, const struct my_option *optp,
     (longlong)max_of_int_range(optp->var_type & GET_TYPE_MASK);
 
   if (num > 0 && ((ulonglong) num > (ulonglong) optp->max_value) &&
-      optp->max_value) /* if max value is not set -> no upper limit */
+      optp->max_value) /* if MAX value is not set -> no upper limit */
   {
     num= (ulonglong) optp->max_value;
     adjusted= TRUE;
@@ -1134,7 +1134,7 @@ ulonglong getopt_ull_limit_value(ulonglong num, const struct my_option *optp,
     max_of_int_range(optp->var_type & GET_TYPE_MASK);
 
   if ((ulonglong) num > (ulonglong) optp->max_value &&
-      optp->max_value) /* if max value is not set -> no upper limit */
+      optp->max_value) /* if MAX value is not set -> no upper limit */
   {
     num= (ulonglong) optp->max_value;
     adjusted= TRUE;
@@ -1174,18 +1174,18 @@ double getopt_double_limit_value(double num, const struct my_option *optp,
 {
   my_bool adjusted= FALSE;
   double old= num;
-  double min, max;
+  double MIN, MAX;
 
-  max= getopt_ulonglong2double(optp->max_value);
-  min= getopt_ulonglong2double(optp->min_value);
-  if (max && num > max)
+  MAX= getopt_ulonglong2double(optp->max_value);
+  MIN= getopt_ulonglong2double(optp->min_value);
+  if (MAX && num > MAX)
   {
-    num= max;
+    num= MAX;
     adjusted= TRUE;
   }
-  if (num < min)
+  if (num < MIN)
   {
-    num= min;
+    num= MIN;
     adjusted= TRUE;
   }
   if (fix)

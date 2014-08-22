@@ -62,7 +62,7 @@ namespace file
       }
          break;
       default:
-         return ::numeric_info::get_allset_value < file_size >();
+         return ::numeric_info < file_size >::allset();
       }
       m_dwLastCall = ::get_tick_count();
       while (true)
@@ -72,7 +72,7 @@ namespace file
          m_pfile->seek(dwFuture, ::file::seek_begin);
          if (dwFuture == m_pfile->get_position())
             break;
-         Sleep(max(11, m_dwSleep));
+         Sleep(MAX(11, m_dwSleep));
       }
       return m_pfile->get_position();
    }
@@ -94,7 +94,7 @@ namespace file
          {
             if (::get_tick_count() - m_dwLastCall > m_dwTimeOut)
                break;
-            Sleep(max(11, m_dwSleep));
+            Sleep(MAX(11, m_dwSleep));
          }
          TRACE("timeout_buffer::m_uiExpectedSize = %d", m_uiExpectedSize);
       }
@@ -120,7 +120,7 @@ namespace file
          {
             if (::get_tick_count() - m_dwLastCall > m_dwTimeOut)
                break;
-            Sleep(max(11, m_dwSleep));
+            Sleep(MAX(11, m_dwSleep));
          }
          TRACE("timeout_buffer::m_uiExpectedSize = %d", m_uiExpectedSize);
       }
@@ -156,7 +156,7 @@ namespace file
             m_uiExpectedSize != ((uint64_t)-1)
             && m_uiExpectedSize != ((uint64_t)-2)))
             break;
-         Sleep(max(11, m_dwSleep));
+         Sleep(MAX(11, m_dwSleep));
       }
       return uiRead;
    }

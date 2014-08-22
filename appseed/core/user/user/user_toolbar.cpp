@@ -596,9 +596,9 @@ namespace user
          {
             // a separator represents either a height or width
             if (pData[i].fsState & TBSTATE_WRAP)
-               sizeResult.cy = max(cur.y + m_sizeButton.cy + cySep, sizeResult.cy);
+               sizeResult.cy = MAX(cur.y + m_sizeButton.cy + cySep, sizeResult.cy);
             else
-               sizeResult.cx = max(cur.x + pData[i].iBitmap, sizeResult.cx);
+               sizeResult.cx = MAX(cur.x + pData[i].iBitmap, sizeResult.cx);
          }
          else
          {
@@ -609,8 +609,8 @@ namespace user
                // add size of drop down
                cx += 2;
             }
-            sizeResult.cx = max(cur.x + cx, sizeResult.cx);
-            sizeResult.cy = max(cur.y + m_sizeButton.cy, sizeResult.cy);
+            sizeResult.cx = MAX(cur.x + cx, sizeResult.cx);
+            sizeResult.cy = MAX(cur.y + m_sizeButton.cy, sizeResult.cy);
          }
 
          if (pData[i].fsStyle & TBSTYLE_SEP)
@@ -965,8 +965,8 @@ namespace user
          sizeResult.cx -= rect.width();
 
          size size = ::user::control_bar::CalcFixedLayout((dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
-         sizeResult.cx = max(sizeResult.cx, size.cx);
-         sizeResult.cy = max(sizeResult.cy, size.cy);
+         sizeResult.cx = MAX(sizeResult.cx, size.cx);
+         sizeResult.cy = MAX(sizeResult.cy, size.cy);
       }
       return sizeResult;
 #else

@@ -155,7 +155,7 @@ FreeImage_FindBlock(FIMULTIBITMAP *bitmap, int position) {
 
 	// step 2: make sure we found the node. from here it gets a little complicated:
 	// * if the block is there, just return it
-	// * if the block is a series of blocks, split it in max 3 new blocks
+	// * if the block is a series of blocks, split it in MAX 3 new blocks
 	//   and return the splitted block
 
 	if ((current_block) && (count > position)) {

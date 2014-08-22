@@ -901,11 +901,11 @@ namespace filemanager
 
             if(item->m_iImage < 0)
             {
-               item->m_iImage = max(0,m_iDefaultImage);
+               item->m_iImage = MAX(0,m_iDefaultImage);
             }
             if(item->m_iImageSelected < 0)
             {
-               item->m_iImageSelected = max(0, m_iDefaultImageSelected);
+               item->m_iImageSelected = MAX(0, m_iDefaultImageSelected);
             }
 #else
 

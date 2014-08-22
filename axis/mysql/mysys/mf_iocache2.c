@@ -352,7 +352,7 @@ size_t my_b_vprintf(IO_CACHE *info, const char* fmt, va_list args)
     minimum_width_sign= 1;
     minimum_width= 0;
     precision= 0;
-    /* Skip if max size is used (to be compatible with printf) */
+    /* Skip if MAX size is used (to be compatible with printf) */
 
 process_flags:
     switch (*fmt)

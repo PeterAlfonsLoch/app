@@ -29,7 +29,7 @@ public:
 #endif
    {
       m_pbStart = (byte *)p;
-      m_pbEnd = ((byte *)p) + max(iSize - 1,0);
+      m_pbEnd = ((byte *)p) + MAX(iSize - 1,0);
       m_dwTickCount = dwTick;
    }
 

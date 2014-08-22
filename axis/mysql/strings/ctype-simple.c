@@ -978,7 +978,7 @@ my_bool my_like_range_simple(const CHARSET_INFO *cs,
     }
     if (*ptr == w_one)				/* '_' in SQL */
     {
-      *min_str++='\0';				/* This should be min char */
+      *min_str++='\0';				/* This should be MIN char */
       *max_str++= (char) cs->max_sort_char;
       continue;
     }

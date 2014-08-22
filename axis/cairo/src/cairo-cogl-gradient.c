@@ -119,18 +119,18 @@ static float
 get_max_color_component_range (const cairo_color_stop_t *color0, const cairo_color_stop_t *color1)
 {
     float range;
-    float max = 0;
+    float MAX = 0;
 
     range = fabs (color0->red - color1->red);
-    max = MAX (range, max);
+    MAX = MAX (range, MAX);
     range = fabs (color0->green - color1->green);
-    max = MAX (range, max);
+    MAX = MAX (range, MAX);
     range = fabs (color0->blue - color1->blue);
-    max = MAX (range, max);
+    MAX = MAX (range, MAX);
     range = fabs (color0->alpha - color1->alpha);
-    max = MAX (range, max);
+    MAX = MAX (range, MAX);
 
-    return max;
+    return MAX;
 }
 
 static int

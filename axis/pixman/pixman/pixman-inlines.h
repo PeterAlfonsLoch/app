@@ -1118,7 +1118,7 @@ fast_composite_scaled_bilinear ## scale_func_name (pixman_implementation_t *imp,
 		if (pixman_fixed_to_int (vx) == src_width - 1)					\
 		{										\
 		    /* for positive unit_x							\
-		     * num_pixels = max(n) + 1, where vx + n*unit_x < src_width_fixed		\
+		     * num_pixels = MAX(n) + 1, where vx + n*unit_x < src_width_fixed		\
 		     *										\
 		     * vx is in range [0, src_width_fixed - pixman_fixed_e]			\
 		     * So we are safe from overflow.						\
@@ -1146,7 +1146,7 @@ fast_composite_scaled_bilinear ## scale_func_name (pixman_implementation_t *imp,
 		if (pixman_fixed_to_int (vx) != src_width - 1 && width_remain > 0)		\
 		{										\
 		    /* for positive unit_x							\
-		     * num_pixels = max(n) + 1, where vx + n*unit_x < (src_width_fixed - 1)	\
+		     * num_pixels = MAX(n) + 1, where vx + n*unit_x < (src_width_fixed - 1)	\
 		     *										\
 		     * vx is in range [0, src_width_fixed - pixman_fixed_e]			\
 		     * So we are safe from overflow here.					\

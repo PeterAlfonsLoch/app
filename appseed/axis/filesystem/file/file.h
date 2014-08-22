@@ -88,3 +88,14 @@ CLASS_DECL_AXIS string file_extension_dup(const char * path);
 
 
 
+
+
+namespace file
+{
+
+   using pos_type = ::file_position;
+   using off_type = ::file_offset;
+
+   using iostate = ::file::e_iostate;
+   using seekdir = ::file::e_seek;
+}

@@ -78,7 +78,7 @@ struct my_option
                                            visible in --help.
                                          */
   void       *value;                    /**< A pointer to the variable value */
-  void       *u_max_value;              /**< The user def. max variable value */
+  void       *u_max_value;              /**< The user def. MAX variable value */
   struct st_typelib *typelib;           /**< Pointer to possible values */
   ulong     var_type;                   /**< GET_BOOL, GET_ULL, etc */
   enum get_opt_arg_type arg_type;       /**< e.g. REQUIRED_ARG or OPT_ARG */

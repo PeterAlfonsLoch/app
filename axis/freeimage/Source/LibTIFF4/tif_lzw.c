@@ -68,7 +68,7 @@
  * strings range from 9 to 12 bits.
  */
 #define BITS_MIN        9               /* start with 9 bits */
-#define BITS_MAX        12              /* max of 12 bit strings */
+#define BITS_MAX        12              /* MAX of 12 bit strings */
 /* predefined codes */
 #define CODE_CLEAR      256             /* code to clear string table */
 #define CODE_EOI        257             /* end-of-information code */
@@ -140,7 +140,7 @@ typedef struct {
 	code_t* dec_codep;		/* current recognized code */
 	code_t* dec_oldcodep;		/* previously recognized code */
 	code_t* dec_free_entp;		/* next free entry */
-	code_t* dec_maxcodep;		/* max available entry */
+	code_t* dec_maxcodep;		/* MAX available entry */
 	code_t* dec_codetab;		/* kept separate for small machines */
 
 	/* Encoding specific data */
@@ -814,7 +814,7 @@ LZWPreEncode(TIFF* tif, uint16 s)
 	sp->enc_incount = 0;
 	sp->enc_outcount = 0;
 	/*
-	 * The 4 here insures there is space for 2 max-sized
+	 * The 4 here insures there is space for 2 MAX-sized
 	 * codes in LZWEncode and LZWPostDecode.
 	 */
 	sp->enc_rawlimit = tif->tif_rawdata + tif->tif_rawdatasize-1 - 4;

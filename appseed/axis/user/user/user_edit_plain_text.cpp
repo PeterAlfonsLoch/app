@@ -340,7 +340,7 @@ namespace user
       string strExtent3;
       index iLineStart = should_load_full_file() ? m_iLineOffset : 0;
       index iLineEnd = should_load_full_file() ? m_iLineCount - 1 : straLines.get_size() - 1;
-      iLineEnd = min(iLineEnd, straLines.get_upper_bound());
+      iLineEnd = MIN(iLineEnd, straLines.get_upper_bound());
       for(index i = iLineStart; i <= iLineEnd; i++)
       {
          straLineFeed.remove_all();
@@ -404,8 +404,8 @@ namespace user
             strsize i1 = iSelStart - lim;
             strsize i2 = iSelEnd - lim;
             strsize i3 = iCursor - lim;
-            strsize iStart = max(0, i1);
-            strsize iEnd = min(i2, strLine.get_length());
+            strsize iStart = MAX(0, i1);
+            strsize iEnd = MIN(i2, strLine.get_length());
             if(m_bPassword)
             {
                str_fill(strLine, '*');
@@ -450,8 +450,8 @@ namespace user
             pdc->SelectObject(brushText);
             pdc->TextOut(left + size1.cx + size2.cx, y, strExtent3);
 
-            //maxcy = max(size1.cy, size2.cy);
-            //maxcy = max(maxcy, size3.cy);
+            //maxcy = MAX(size1.cy, size2.cy);
+            //maxcy = MAX(maxcy, size3.cy);
             if(m_bFocus && m_bCaretOn && i3 == str1.get_length())
             {
                pdc->SelectObject(penCaret);
@@ -1034,7 +1034,7 @@ namespace user
          strLine = straLines[i];
          strLine.replace("\t", "   ");
          size = (uint32_t) (strLine.get_length() * size3.cx / 8);
-//         maxcy = max(size.cy, size3.cy);
+//         maxcy = MAX(size.cy, size3.cy);
          if(size.cx > m_scrollinfo.m_sizeTotal.cx)
             m_scrollinfo.m_sizeTotal.cx = (int32_t) size.cx;
 
@@ -1281,7 +1281,7 @@ namespace user
          strExtent.replace("\t", "   ");
          size size;
          size = pdc->GetTextExtent(strExtent);
-         //iLineHeight = max(size.cy, size3.cy);
+         //iLineHeight = MAX(size.cy, size3.cy);
          if(py >= y && py < y + iLineHeight)
          {
             bFound = true;
@@ -1321,7 +1321,7 @@ namespace user
             break;
 
       }
-      return (strsize) min((strsize)(iOffset + strLine.get_length() + m_iViewOffset), (strsize)m_ptree->m_editfile.get_length());
+      return (strsize) MIN((strsize)(iOffset + strLine.get_length() + m_iViewOffset), (strsize)m_ptree->m_editfile.get_length());
    }
 
    void edit_plain_text::_002OnMouseMove(signal_details * pobj)
@@ -1536,7 +1536,7 @@ namespace user
                psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
                char buf[512];
                memset(buf, 0, sizeof(buf));
-               strsize iBegin = max(0, m_ptree->m_iSelEnd - 256);
+               strsize iBegin = MAX(0, m_ptree->m_iSelEnd - 256);
                strsize iCur = m_ptree->m_iSelEnd - iBegin;
                m_ptree->m_editfile.seek(iBegin, ::file::seek_begin);
                m_ptree->m_editfile.read(buf, sizeof(buf));
@@ -1585,7 +1585,7 @@ namespace user
             {
                char buf[512];
                memset(buf,0,sizeof(buf));
-               strsize iBegin = max(0,m_ptree->m_iSelEnd - 256);
+               strsize iBegin = MAX(0,m_ptree->m_iSelEnd - 256);
                strsize iCur = m_ptree->m_iSelEnd - iBegin;
                m_ptree->m_editfile.seek(iBegin,::file::seek_begin);
                m_ptree->m_editfile.read(buf,sizeof(buf));
@@ -1674,8 +1674,8 @@ namespace user
             {
                char buf[64];
                char * psz;
-               m_ptree->m_editfile.seek(max(0, m_ptree->m_iSelEnd - 32), ::file::seek_begin);
-               psz = &buf[min(32, m_ptree->m_iSelEnd)];
+               m_ptree->m_editfile.seek(MAX(0, m_ptree->m_iSelEnd - 32), ::file::seek_begin);
+               psz = &buf[MIN(32, m_ptree->m_iSelEnd)];
                primitive::memory_size uiRead = m_ptree->m_editfile.read(buf, 64);
                if(uiRead == 2 &&
                   psz[0] == '\r' &&
@@ -1812,7 +1812,7 @@ namespace user
             {
                char buf[512];
                memset(buf, 0, sizeof(buf));
-               strsize iBegin = max(0, m_ptree->m_iSelEnd - 256);
+               strsize iBegin = MAX(0, m_ptree->m_iSelEnd - 256);
                strsize iCur = m_ptree->m_iSelEnd - iBegin;
                m_ptree->m_editfile.seek(iBegin, ::file::seek_begin);
                m_ptree->m_editfile.read(buf, sizeof(buf));
@@ -2184,7 +2184,7 @@ namespace user
       }
       else
       {
-         m_iLineOffset = max(0, m_scrollinfo.m_ptScroll.y / m_iLineHeight);
+         m_iLineOffset = MAX(0, m_scrollinfo.m_ptScroll.y / m_iLineHeight);
       }
 
       ::index iLine = 0;
@@ -2220,7 +2220,7 @@ namespace user
       iLine = m_iLineOffset;
       i = 0;
       ::index iLineStart = should_load_full_file() ? 0 : m_iLineOffset;
-      ::index iLineEnd = should_load_full_file() ? m_iaLineIndex.get_size() - 1 : min(m_iaLineIndex.get_size(), m_iLineCount) - 1;
+      ::index iLineEnd = should_load_full_file() ? m_iaLineIndex.get_size() - 1 : MIN(m_iaLineIndex.get_size(), m_iLineCount) - 1;
       for(::index iLine = iLineStart; i <= iLineEnd && iLine < m_iaLineIndex.get_size(); i++, iLine++)
       {
          strsize iLen = m_iaLineIndex[iLine];

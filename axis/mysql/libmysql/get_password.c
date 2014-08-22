@@ -97,7 +97,7 @@ char *get_tty_password(const char *opt_message)
 #ifndef HAVE_GETPASS
 /*
   Can't use fgets, because readline will get confused
-  length is max number of chars in to, not counting \0
+  length is MAX number of chars in to, not counting \0
   to will not include the eol characters.
 */
 

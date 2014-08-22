@@ -58,7 +58,7 @@ NeXTDecode(TIFF* tif, uint8* buf, tmsize_t occ, uint16 s)
 	/*
 	 * Each scanline is assumed to start off as all
 	 * white (we assume a PhotometricInterpretation
-	 * of ``min-is-black'').
+	 * of ``MIN-is-black'').
 	 */
 	for (op = (unsigned char*) buf, cc = occ; cc-- > 0;)
 		*op++ = 0xff;

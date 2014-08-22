@@ -60,8 +60,8 @@ class numeric_limits <half>
 
     static const bool is_specialized = true;
 
-    static half min () throw () {return HALF_NRM_MIN;}
-    static half max () throw () {return HALF_MAX;}
+    static half MIN () throw () {return HALF_NRM_MIN;}
+    static half MAX () throw () {return HALF_MAX;}
 
     static const int digits = HALF_MANT_DIG;
     static const int digits10 = HALF_DIG;

@@ -17,7 +17,7 @@
    (See file LICENSE.LibRaw.pdf provided in LibRaw distribution archive for details).
 
 */
-
+#include "axis/axis/axis.h"
 #ifdef WIN32
 #ifdef __MINGW32__
     #define _WIN32_WINNT 0x0500
@@ -84,7 +84,7 @@ LibRaw_file_datastream::LibRaw_file_datastream(const char *fname)
 #endif
       
       std::auto_ptr<std::filebuf> buf(new std::filebuf());
-      buf->open(filename.c_str(), std::ios_base::in | std::ios_base::binary);
+      buf->open(filename.c_str(), ::file::in | ::file::binary);
       if (buf->is_open()) {
         f = buf;
       }
@@ -99,7 +99,7 @@ LibRaw_file_datastream::LibRaw_file_datastream(const wchar_t *fname) : filename(
       if(!_wstati64(wfilename.c_str(),&st))
         _fsize = st.st_size;
       std::auto_ptr<std::filebuf> buf(new std::filebuf());
-      buf->open(wfilename.c_str(), std::ios_base::in | std::ios_base::binary);
+      buf->open(string(wfilename), ::file::in | ::file::binary);
       if (buf->is_open()) {
         f = buf;
       }
@@ -126,7 +126,8 @@ int LibRaw_file_datastream::read(void * ptr,size_t size, size_t nmemb)
 #if defined(WIN32SECURECALLS) && (_MSC_VER < 1600)
     LR_STREAM_CHK(); return int(f->_Sgetn_s(static_cast<char*>(ptr), nmemb * size,nmemb * size) / size); 
 #else
-    LR_STREAM_CHK(); return int(f->sgetn(static_cast<char*>(ptr), std::streamsize(nmemb * size)) / size); 
+    //LR_STREAM_CHK(); return int(f->sgetn(static_cast<char*>(ptr), std::streamsize(nmemb * size)) / size); 
+    LR_STREAM_CHK(); return int(f->read(static_cast<char*>(ptr),std::streamsize(nmemb * size)) / size);
 #endif
 }
 
@@ -140,21 +141,23 @@ int LibRaw_file_datastream::seek(INT64 o, int whence)
 { 
     if(substream) return substream->seek(o,whence);
     LR_STREAM_CHK(); 
-    std::ios_base::seekdir dir;
+    ::file::seekdir dir;
     switch (whence) 
         {
-        case SEEK_SET: dir = std::ios_base::beg; break;
-        case SEEK_CUR: dir = std::ios_base::cur; break;
-        case SEEK_END: dir = std::ios_base::end; break;
-        default: dir = std::ios_base::beg;
+        case SEEK_SET: dir = ::file::beg; break;
+        case SEEK_CUR: dir = ::file::cur; break;
+        case SEEK_END: dir = ::file::end; break;
+        default: dir = ::file::beg;
         }
-    return f->pubseekoff((long)o, dir) < 0;
+//    return f->pubseekoff((long)o, dir) < 0;
+    return f->seek((long)o,dir) < 0;
 }
 
 INT64 LibRaw_file_datastream::tell()     
 { 
     if(substream) return substream->tell();
-    LR_STREAM_CHK(); return f->pubseekoff(0, std::ios_base::cur);  
+    //LR_STREAM_CHK(); return f->pubseekoff(0, ::file::cur);  
+    return f->seek(0,::file::cur);
 }
 
 char* LibRaw_file_datastream::gets(char *str, int sz) 
@@ -203,7 +206,7 @@ int LibRaw_file_datastream::subfile_open(const char *fn)
     saved_f = f;
         std::auto_ptr<std::filebuf> buf(new std::filebuf());
         
-        buf->open(fn, std::ios_base::in | std::ios_base::binary);
+        buf->open(fn, ::file::in | ::file::binary);
         if (!buf->is_open()) {
             f = saved_f;
             return ENOENT;
@@ -222,7 +225,7 @@ int LibRaw_file_datastream::subfile_open(const wchar_t *fn)
 	saved_f = f;
 	std::auto_ptr<std::filebuf> buf(new std::filebuf());
 
-	buf->open(fn, std::ios_base::in | std::ios_base::binary);
+	buf->open(string(fn), ::file::in | ::file::binary);
 	if (!buf->is_open()) {
 		f = saved_f;
 		return ENOENT;

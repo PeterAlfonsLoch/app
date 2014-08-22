@@ -694,12 +694,12 @@ typedef struct _cairo_stroke_face {
 /* cairo.c */
 
 static inline double cairo_const
-_cairo_restrict_value (double value, double min, double max)
+_cairo_restrict_value (double value, double MIN, double MAX)
 {
-    if (value < min)
-	return min;
-    else if (value > max)
-	return max;
+    if (value < MIN)
+	return MIN;
+    else if (value > MAX)
+	return MAX;
     else
 	return value;
 }

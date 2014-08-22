@@ -243,8 +243,8 @@ template <class T> class Vec2
     // Limitations of type T (see also class limits<T>)
     //-------------------------------------------------
 
-    static T		baseTypeMin()		{return limits<T>::min();}
-    static T		baseTypeMax()		{return limits<T>::max();}
+    static T		baseTypeMin()		{return limits<T>::minimum();}
+    static T		baseTypeMax()		{return limits<T>::maximum();}
     static T		baseTypeSmallest()	{return limits<T>::smallest();}
     static T		baseTypeEpsilon()	{return limits<T>::epsilon();}
 
@@ -455,8 +455,8 @@ template <class T> class Vec3
     // Limitations of type T (see also class limits<T>)
     //-------------------------------------------------
 
-    static T		baseTypeMin()		{return limits<T>::min();}
-    static T		baseTypeMax()		{return limits<T>::max();}
+    static T		baseTypeMin()		{return limits<T>::minimum();}
+    static T		baseTypeMax()		{return limits<T>::maximum();}
     static T		baseTypeSmallest()	{return limits<T>::smallest();}
     static T		baseTypeEpsilon()	{return limits<T>::epsilon();}
 
@@ -637,8 +637,8 @@ template <class T> class Vec4
     // Limitations of type T (see also class limits<T>)
     //-------------------------------------------------
 
-    static T		baseTypeMin()		{return limits<T>::min();}
-    static T		baseTypeMax()		{return limits<T>::max();}
+    static T		baseTypeMin()		{return limits<T>::minimum();}
+    static T		baseTypeMax()		{return limits<T>::maximum();}
     static T		baseTypeSmallest()	{return limits<T>::smallest();}
     static T		baseTypeEpsilon()	{return limits<T>::epsilon();}
 
@@ -1146,24 +1146,24 @@ Vec2<T>::lengthTiny () const
     T absX = (x >= T (0))? x: -x;
     T absY = (y >= T (0))? y: -y;
     
-    T max = absX;
+    T MAX = absX;
 
-    if (max < absY)
-	max = absY;
+    if (MAX < absY)
+	MAX = absY;
 
-    if (max == T (0))
+    if (MAX == T (0))
 	return T (0);
 
     //
-    // Do not replace the divisions by max with multiplications by 1/max.
-    // Computing 1/max can overflow but the divisions below will always
+    // Do not replace the divisions by MAX with multiplications by 1/MAX.
+    // Computing 1/MAX can overflow but the divisions below will always
     // produce results less than or equal to 1.
     //
 
-    absX /= max;
-    absY /= max;
+    absX /= MAX;
+    absY /= MAX;
 
-    return max * Math<T>::sqrt (absX * absX + absY * absY);
+    return MAX * Math<T>::sqrt (absX * absX + absY * absY);
 }
 
 template <class T>
@@ -1633,28 +1633,28 @@ Vec3<T>::lengthTiny () const
     T absY = (y >= T (0))? y: -y;
     T absZ = (z >= T (0))? z: -z;
     
-    T max = absX;
+    T MAX = absX;
 
-    if (max < absY)
-	max = absY;
+    if (MAX < absY)
+	MAX = absY;
 
-    if (max < absZ)
-	max = absZ;
+    if (MAX < absZ)
+	MAX = absZ;
 
-    if (max == T (0))
+    if (MAX == T (0))
 	return T (0);
 
     //
-    // Do not replace the divisions by max with multiplications by 1/max.
-    // Computing 1/max can overflow but the divisions below will always
+    // Do not replace the divisions by MAX with multiplications by 1/MAX.
+    // Computing 1/MAX can overflow but the divisions below will always
     // produce results less than or equal to 1.
     //
 
-    absX /= max;
-    absY /= max;
-    absZ /= max;
+    absX /= MAX;
+    absY /= MAX;
+    absZ /= MAX;
 
-    return max * Math<T>::sqrt (absX * absX + absY * absY + absZ * absZ);
+    return MAX * Math<T>::sqrt (absX * absX + absY * absY + absZ * absZ);
 }
 
 template <class T>
@@ -2032,32 +2032,32 @@ Vec4<T>::lengthTiny () const
     T absZ = (z >= T (0))? z: -z;
     T absW = (w >= T (0))? w: -w;
     
-    T max = absX;
+    T MAX = absX;
 
-    if (max < absY)
-        max = absY;
+    if (MAX < absY)
+        MAX = absY;
 
-    if (max < absZ)
-        max = absZ;
+    if (MAX < absZ)
+        MAX = absZ;
 
-    if (max < absW)
-        max = absW;
+    if (MAX < absW)
+        MAX = absW;
 
-    if (max == T (0))
+    if (MAX == T (0))
         return T (0);
 
     //
-    // Do not replace the divisions by max with multiplications by 1/max.
-    // Computing 1/max can overflow but the divisions below will always
+    // Do not replace the divisions by MAX with multiplications by 1/MAX.
+    // Computing 1/MAX can overflow but the divisions below will always
     // produce results less than or equal to 1.
     //
 
-    absX /= max;
-    absY /= max;
-    absZ /= max;
-    absW /= max;
+    absX /= MAX;
+    absY /= MAX;
+    absZ /= MAX;
+    absW /= MAX;
 
-    return max *
+    return MAX *
         Math<T>::sqrt (absX * absX + absY * absY + absZ * absZ + absW * absW);
 }
 

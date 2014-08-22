@@ -79,7 +79,7 @@ static void CollectHistogramSSE2(const uint8_t* ref, const uint8_t* pred,
       // v = abs(out) >> 3
       const __m128i v0 = _mm_srai_epi16(abs0, 3);
       const __m128i v1 = _mm_srai_epi16(abs1, 3);
-      // bin = min(v, MAX_COEFF_THRESH)
+      // bin = MIN(v, MAX_COEFF_THRESH)
       const __m128i bin0 = _mm_min_epi16(v0, max_coeff_thresh);
       const __m128i bin1 = _mm_min_epi16(v1, max_coeff_thresh);
       // Store.

@@ -2961,7 +2961,7 @@ png_ascii_from_fp(png_const_structrp png_ptr, png_charp ascii, png_size_t size,
             }
             while (cdigits+czero-clead < (int)precision && fp > DBL_MIN);
 
-            /* The total output count (max) is now 4+precision */
+            /* The total output count (MAX) is now 4+precision */
 
             /* Check for an exponent, if we don't need one we are
              * done and just need to terminate the string.  At
@@ -3754,7 +3754,7 @@ png_build_16bit_table(png_structrp png_ptr, png_uint_16pp *ptable,
 {
    /* Various values derived from 'shift': */
    PNG_CONST unsigned int num = 1U << (8U - shift);
-   PNG_CONST unsigned int max = (1U << (16U - shift))-1U;
+   PNG_CONST unsigned int MAX = (1U << (16U - shift))-1U;
    PNG_CONST unsigned int max_by_2 = 1U << (15U-shift);
    unsigned int i;
 
@@ -3776,20 +3776,20 @@ png_build_16bit_table(png_structrp png_ptr, png_uint_16pp *ptable,
           * arithmetic error.  This code follows the spec exactly; ig is
           * the recovered input sample, it always has 8-16 bits.
           *
-          * We want input * 65535/max, rounded, the arithmetic fits in 32
-          * bits (unsigned) so long as max <= 32767.
+          * We want input * 65535/MAX, rounded, the arithmetic fits in 32
+          * bits (unsigned) so long as MAX <= 32767.
           */
          unsigned int j;
          for (j = 0; j < 256; j++)
          {
             png_uint_32 ig = (j << (8-shift)) + i;
 #           ifdef PNG_FLOATING_ARITHMETIC_SUPPORTED
-               /* Inline the 'max' scaling operation: */
-               double d = floor(65535*pow(ig/(double)max, gamma_val*.00001)+.5);
+               /* Inline the 'MAX' scaling operation: */
+               double d = floor(65535*pow(ig/(double)MAX, gamma_val*.00001)+.5);
                sub_table[j] = (png_uint_16)d;
 #           else
                if (shift)
-                  ig = (ig * 65535U + max_by_2)/max;
+                  ig = (ig * 65535U + max_by_2)/MAX;
 
                sub_table[j] = png_gamma_16bit_correct(ig, gamma_val);
 #           endif
@@ -3805,7 +3805,7 @@ png_build_16bit_table(png_structrp png_ptr, png_uint_16pp *ptable,
             png_uint_32 ig = (j << (8-shift)) + i;
 
             if (shift)
-               ig = (ig * 65535U + max_by_2)/max;
+               ig = (ig * 65535U + max_by_2)/MAX;
 
             sub_table[j] = (png_uint_16)ig;
          }
@@ -3821,7 +3821,7 @@ png_build_16to8_table(png_structrp png_ptr, png_uint_16pp *ptable,
    PNG_CONST unsigned int shift, PNG_CONST png_fixed_point gamma_val)
 {
    PNG_CONST unsigned int num = 1U << (8U - shift);
-   PNG_CONST unsigned int max = (1U << (16U - shift))-1U;
+   PNG_CONST unsigned int MAX = (1U << (16U - shift))-1U;
    unsigned int i;
    png_uint_32 last;
 
@@ -3850,7 +3850,7 @@ png_build_16to8_table(png_structrp png_ptr, png_uint_16pp *ptable,
     * values the code below uses a 16-bit value in i; the values start at
     * 128.5 (for 0.5) and step by 257, for a total of 254 values (the last
     * entries are filled with 255).  Start i at 128 and fill all 'last'
-    * table entries <= 'max'
+    * table entries <= 'MAX'
     */
    last = 0;
    for (i = 0; i < 255; ++i) /* 8-bit output value */
@@ -3862,7 +3862,7 @@ png_build_16to8_table(png_structrp png_ptr, png_uint_16pp *ptable,
       png_uint_32 bound = png_gamma_16bit_correct(out+128U, gamma_val);
 
       /* Adjust (round) to (16-shift) bits: */
-      bound = (bound * max + 32768U)/65535U + 1U;
+      bound = (bound * MAX + 32768U)/65535U + 1U;
 
       while (last < bound)
       {

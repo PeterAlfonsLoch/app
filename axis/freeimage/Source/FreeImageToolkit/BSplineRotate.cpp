@@ -622,7 +622,7 @@ Rotate8Bit(FIBITMAP *dib, double angle, double x_shift, double y_shift, double x
 				p = (double)InterpolatedValue(ImageRasterArray, width, height, x1, y1, spline);
 			}
 			// clamp and convert to BYTE
-			dst_bits[x] = (BYTE)min(max((int)0, (int)(p + 0.5)), (int)255);
+			dst_bits[x] = (BYTE)MIN(MAX((int)0, (int)(p + 0.5)), (int)255);
 		}
 	}
 

@@ -51,7 +51,7 @@ namespace visual
       for(int32_t i = 0; i < m_uchaDiv.get_count(); i++)
       {
 
-         dv[i]= min(255, i/div);
+         dv[i]= MIN(255, i/div);
 
       }
 
@@ -73,7 +73,7 @@ namespace visual
 
       int s = m_p->m_iScan / sizeof(COLORREF);
 
-      int maxsh = max(s, m_size.cy);
+      int maxsh = MAX(s, m_size.cy);
 
       m_iaVmin.allocate(maxsh);
 
@@ -166,7 +166,7 @@ namespace visual
          for (i = -radius; i <= radius; i++)
          {
 
-            p = &pb[yw + (min(wm, max(i, 0)) * 4)];
+            p = &pb[yw + (MIN(wm, MAX(i, 0)) * 4)];
             rsum += p[0];
             gsum += p[1];
             bsum += p[2];
@@ -252,7 +252,7 @@ namespace visual
 
          for (i = -radius; i <= radius; i++)
          {
-            p = &pwk[max(0, yp) + x * 4];
+            p = &pwk[MAX(0, yp) + x * 4];
             rsum += p[0];
             gsum += p[1];
             bsum += p[2];
@@ -357,8 +357,8 @@ namespace visual
 
       for (x = 0; x < w; x++)
       {
-         vmin[x] = min(x + radius + 1, wm);
-         vmax[x] = max(x - radius, 0);
+         vmin[x] = MIN(x + radius + 1, wm);
+         vmax[x] = MAX(x - radius, 0);
       }
 
       for (y = 0; y < h; y++)
@@ -367,7 +367,7 @@ namespace visual
          yi = y * s;
          for (i = -radius; i <= radius; i++)
          {
-            p = pix[yi + min(wm, max(i, 0))];
+            p = pix[yi + MIN(wm, MAX(i, 0))];
             asum += ((p & 0xff000000) >> 24);
             rsum += ((p & 0xff0000) >> 16);
             gsum += ((p & 0x00ff00) >> 8);
@@ -393,8 +393,8 @@ namespace visual
       }
       for (y = 0; y < h; y++)
       {
-         vmin[y] = min(y + radius + 1, hm) * s;
-         vmax[y] = max(y - radius, 0) * s;
+         vmin[y] = MIN(y + radius + 1, hm) * s;
+         vmax[y] = MAX(y - radius, 0) * s;
       }
 
       for (x = 0; x < w; x++)
@@ -403,7 +403,7 @@ namespace visual
          yp = -radius*s;
          for (i = -radius; i <= radius; i++)
          {
-            yi = max(0, yp) + x;
+            yi = MAX(0, yp) + x;
             rsum += r[yi];
             gsum += g[yi];
             bsum += b[yi];

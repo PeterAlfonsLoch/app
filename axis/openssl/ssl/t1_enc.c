@@ -1168,8 +1168,8 @@ int tls1_export_keying_material(SSL *s, unsigned char *out, size_t olen,
 		}
 
 	/* disallow prohibited labels
-	 * note that SSL3_RANDOM_SIZE > max(prohibited label len) =
-	 * 15, so size of val > max(prohibited label len) = 15 and the
+	 * note that SSL3_RANDOM_SIZE > MAX(prohibited label len) =
+	 * 15, so size of val > MAX(prohibited label len) = 15 and the
 	 * comparisons won't have buffer overflow
 	 */
 	if (memcmp(val, TLS_MD_CLIENT_FINISH_CONST,

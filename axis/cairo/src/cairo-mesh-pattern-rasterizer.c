@@ -325,17 +325,17 @@ fd_fixed_fwd (int32_t f[4])
  * so (since a Bezier curve is always bounded by its convex hull), we
  * can say that:
  *
- *  max(|B'(t)|) <= 3 max (|p1-p0|, |p2-p1|, |p3-p2|)
+ *  MAX(|B'(t)|) <= 3 MAX (|p1-p0|, |p2-p1|, |p3-p2|)
  *
  * We can improve this by noticing that a quadratic Bezier (a,b,c) is
  * bounded by the quad (a,lerp(a,b,t),lerp(b,c,t),c) for any t, so
  * (substituting the previous values, using t=0.5 and simplifying):
  *
- *  max(|B'(t)|) <= 3 max (|p1-p0|, |p2-p0|/2, |p3-p1|/2, |p3-p2|)
+ *  MAX(|B'(t)|) <= 3 MAX (|p1-p0|, |p2-p0|/2, |p3-p1|/2, |p3-p2|)
  *
  * So, to guarantee a maximum step length of 1/sqrt(2) we must do:
  *
- *   3 max (|p1-p0|, |p2-p0|/2, |p3-p1|/2, |p3-p2|) sqrt(2) steps
+ *   3 MAX (|p1-p0|, |p2-p0|/2, |p3-p1|/2, |p3-p2|) sqrt(2) steps
  */
 static inline double
 bezier_steps_sq (cairo_point_double_t p[4])

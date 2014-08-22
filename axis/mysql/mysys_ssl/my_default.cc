@@ -1137,7 +1137,7 @@ static char *remove_end_comment(char *ptr)
   decrypted and then returned.
 
   @param str  [out]       Buffer to store the read text.
-  @param size [in]        At max, size-1 bytes to be read.
+  @param size [in]        At MAX, size-1 bytes to be read.
   @param file [in]        Source file.
 
   @return 1               Success

@@ -519,7 +519,7 @@ static size_t thai2sortable(uchar *tstr, size_t len)
 
   NOTE:
     We can't cut strings at end \0 as this would break comparision with
-    LIKE characters, where the min range is stored as end \0
+    LIKE characters, where the MIN range is stored as end \0
 
   Arg: 2 Strings and it compare length
   Ret: strcmp result

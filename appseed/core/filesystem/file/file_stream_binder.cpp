@@ -105,7 +105,7 @@ namespace file
       if(size > 0)
       {
          _thereAreBytesToReadEvent.wait();
-         sizeToRead = min(_size, size);
+         sizeToRead = MIN(_size, size);
          if(_size > 0)
          {
             memcpy(data, _data, sizeToRead);

@@ -511,7 +511,7 @@ BIO *PKCS7_dataDecode(PKCS7 *p7, EVP_PKEY *pkey, BIO *in_bio, X509 *pcert)
 		unsigned char iv[EVP_MAX_IV_LENGTH];
 		unsigned char *p;
 		int keylen,ivlen;
-		int max;
+		int MAX;
 		X509_OBJECT ret;
 #endif
 

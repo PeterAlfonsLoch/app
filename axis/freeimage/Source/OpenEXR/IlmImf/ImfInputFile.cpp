@@ -46,8 +46,8 @@ struct InputFile::Data: public Mutex
     ScanLineInputFile *	sFile;
 
     LineOrder		lineOrder;      // the file's lineorder
-    int			minY;           // data window's min y coord
-    int			maxY;           // data window's max x coord
+    int			minY;           // data window's MIN y coord
+    int			maxY;           // data window's MAX x coord
     
     FrameBuffer		tFileBuffer;
     FrameBuffer *	cachedBuffer;

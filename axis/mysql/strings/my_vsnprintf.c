@@ -19,8 +19,8 @@
 #include <m_ctype.h>
 
 
-#define MAX_ARGS 32                           /* max positional args count*/
-#define MAX_PRINT_INFO 32                     /* max print position count */
+#define MAX_ARGS 32                           /* MAX positional args count*/
+#define MAX_PRINT_INFO 32                     /* MAX print position count */
 
 #define LENGTH_ARG     1
 #define WIDTH_ARG      2
@@ -230,7 +230,7 @@ static char *process_dbl_arg(char *to, char *end, size_t width,
   if (width == SIZE_T_MAX)
     width= FLT_DIG; /* width not set, use default */
   else if (width >= NOT_FIXED_DEC)
-    width= NOT_FIXED_DEC - 1; /* max.precision for my_fcvt() */
+    width= NOT_FIXED_DEC - 1; /* MAX.precision for my_fcvt() */
   width= MY_MIN(width, (size_t)(end-to) - 1);
   
   if (arg_type == 'f')
@@ -557,7 +557,7 @@ size_t my_vsnprintf_ex(const CHARSET_INFO *cs, char *to, size_t n,
     length= width= 0;
     print_type= 0;
 
-    /* Read max fill size (only used with %d and %u) */
+    /* Read MAX fill size (only used with %d and %u) */
     if (my_isdigit(&my_charset_latin1, *fmt))
     {
       fmt= get_length(fmt, &length, &print_type);

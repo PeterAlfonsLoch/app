@@ -2478,8 +2478,8 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
          pdibWork4->Fill(255, 0, 0, 0);
 
-         pdibWork4->from(point(max(0, m_ptAlphaBlend.x - xDst), max(0, m_ptAlphaBlend.y - yDst)),
-            m_pdibAlphaBlend->get_graphics(), point(max(0, xDst - m_ptAlphaBlend.x), max(0, yDst - m_ptAlphaBlend.y)), size);
+         pdibWork4->from(point(MAX(0, m_ptAlphaBlend.x - xDst), MAX(0, m_ptAlphaBlend.y - yDst)),
+            m_pdibAlphaBlend->get_graphics(), point(MAX(0, xDst - m_ptAlphaBlend.x), MAX(0, yDst - m_ptAlphaBlend.y)), size);
 
          pdibWork->channel_multiply(visual::rgba::channel_alpha, pdibWork4);
 
@@ -2634,8 +2634,8 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
          pdibWork4->Fill(255, 0, 0, 0);
 
-         pdibWork4->from(point(max(0, m_ptAlphaBlend.x - xDest), max(0, m_ptAlphaBlend.y - yDest)),
-            m_pdibAlphaBlend->get_graphics(), point(max(0, xDest - m_ptAlphaBlend.x), max(0, yDest - m_ptAlphaBlend.y)), size);
+         pdibWork4->from(point(MAX(0, m_ptAlphaBlend.x - xDest), MAX(0, m_ptAlphaBlend.y - yDest)),
+            m_pdibAlphaBlend->get_graphics(), point(MAX(0, xDest - m_ptAlphaBlend.x), MAX(0, yDest - m_ptAlphaBlend.y)), size);
 
          pdibWork->channel_multiply(visual::rgba::channel_alpha, pdibWork4);
 
@@ -4431,7 +4431,7 @@ synch_lock ml(&cairo_mutex());
       if (iIndex < 0)
          iIndex = (int32_t) nCount;
 
-      string str(lpszString, min(iIndex, nCount));
+      string str(lpszString, MIN(iIndex, nCount));
 
       cairo_keep keep(m_pdc);
 

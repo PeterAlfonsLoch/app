@@ -92,7 +92,7 @@ _MemoryWriteProc(void *buffer, unsigned size, unsigned count, fi_handle handle) 
 	while( (mem_header->curpos + (long)(size*count)) >= mem_header->datalen ) {
 		//if we are at or above 1G, we cant double without going negative
 		if( mem_header->datalen & 0x40000000 ) {
-			//max 2G
+			//MAX 2G
 			if( mem_header->datalen == 0x7FFFFFFF ) {
 				return 0;
 			}

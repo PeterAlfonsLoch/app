@@ -20,12 +20,12 @@ using Imath::V2i;
 
 
 int
-levelSize (int min, int max, int l, LevelRoundingMode rmode)
+levelSize (int MIN, int MAX, int l, LevelRoundingMode rmode)
 {
     if (l < 0)
 	throw Iex::ArgExc ("Argument not in valid range.");
 
-    int a = max - min + 1;
+    int a = MAX - MIN + 1;
     int b = (1 << l);
     int size = a / b;
 
@@ -226,13 +226,13 @@ calculateNumYLevels (const TileDescription& tileDesc,
 void
 calculateNumTiles (int *numTiles,
 		   int numLevels,
-		   int min, int max,
+		   int MIN, int MAX,
 		   int size,
 		   LevelRoundingMode rmode)
 {
     for (int i = 0; i < numLevels; i++)
     {
-	numTiles[i] = (levelSize (min, max, i, rmode) + size - 1) / size;
+	numTiles[i] = (levelSize (MIN, MAX, i, rmode) + size - 1) / size;
     }
 }
 

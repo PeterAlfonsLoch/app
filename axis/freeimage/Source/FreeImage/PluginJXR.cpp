@@ -896,7 +896,7 @@ CopyPixels(PKImageDecode *pDecoder, PKPixelFormatGUID out_guid_format, FIBITMAP 
 
 				unsigned cbStrideFrom = ((pPIFrom.cbitUnit + 7) >> 3) * width;
 				unsigned cbStrideTo = ((pPITo.cbitUnit + 7) >> 3) * width;
-				cbStride = max(cbStrideFrom, cbStrideTo);
+				cbStride = MAX(cbStrideFrom, cbStrideTo);
 			}
 
 			// allocate a local decoder / encoder buffer

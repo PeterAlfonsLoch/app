@@ -178,14 +178,14 @@ static int BN_from_montgomery_word(BIGNUM *ret, BIGNUM *r, BN_MONT_CTX *mont)
 	{
 	BIGNUM *n;
 	BN_ULONG *ap,*np,*rp,n0,v,carry;
-	int nl,max,i;
+	int nl,MAX,i;
 
 	n= &(mont->N);
 	nl=n->top;
 	if (nl == 0) { ret->top=0; return(1); }
 
-	max=(2*nl); /* carry is stored separately */
-	if (bn_wexpand(r,max) == NULL) return(0);
+	MAX=(2*nl); /* carry is stored separately */
+	if (bn_wexpand(r,MAX) == NULL) return(0);
 
 	r->neg^=n->neg;
 	np=n->d;
@@ -193,13 +193,13 @@ static int BN_from_montgomery_word(BIGNUM *ret, BIGNUM *r, BN_MONT_CTX *mont)
 
 	/* clear the top words of T */
 #if 1
-	for (i=r->top; i<max; i++) /* memset? XXX */
+	for (i=r->top; i<MAX; i++) /* memset? XXX */
 		rp[i]=0;
 #else
-	memset(&(rp[r->top]),0,(max-r->top)*sizeof(BN_ULONG)); 
+	memset(&(rp[r->top]),0,(MAX-r->top)*sizeof(BN_ULONG)); 
 #endif
 
-	r->top=max;
+	r->top=MAX;
 	n0=mont->n0[0];
 
 #ifdef BN_COUNT

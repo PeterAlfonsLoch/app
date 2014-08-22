@@ -122,13 +122,13 @@ static int do_ssl3_write(SSL *s, int type, const unsigned char *buf,
 			 unsigned int len, int create_empty_fragment);
 static int ssl3_get_record(SSL *s);
 
-int ssl3_read_n(SSL *s, int n, int max, int extend)
+int ssl3_read_n(SSL *s, int n, int MAX, int extend)
 	{
 	/* If extend == 0, obtain new n-byte packet; if extend == 1, increase
 	 * packet by another n bytes.
 	 * The packet will be in the sub-array of s->s3->rbuf.buf specified
 	 * by s->packet and s->packet_length.
-	 * (If s->read_ahead is set, 'max' bytes may be stored in rbuf
+	 * (If s->read_ahead is set, 'MAX' bytes may be stored in rbuf
 	 * [plus s->packet_length bytes if extend == 1].)
 	 */
 	int i,len,left;
@@ -217,27 +217,27 @@ int ssl3_read_n(SSL *s, int n, int max, int extend)
 		}
 
 	if (!s->read_ahead)
-		/* ignore max parameter */
-		max = n;
+		/* ignore MAX parameter */
+		MAX = n;
 	else
 		{
-		if (max < n)
-			max = n;
-		if (max > (int)(rb->len - rb->offset))
-			max = rb->len - rb->offset;
+		if (MAX < n)
+			MAX = n;
+		if (MAX > (int)(rb->len - rb->offset))
+			MAX = rb->len - rb->offset;
 		}
 
 	while (left < n)
 		{
 		/* Now we have len+left bytes at the front of s->s3->rbuf.buf
 		 * and need to read in more until we have len+n (up to
-		 * len+max if possible) */
+		 * len+MAX if possible) */
 
 		clear_sys_error();
 		if (s->rbio != NULL)
 			{
 			s->rwstate=SSL_READING;
-			i=BIO_read(s->rbio,pkt+len+left, max-left);
+			i=BIO_read(s->rbio,pkt+len+left, MAX-left);
 			}
 		else
 			{

@@ -154,7 +154,7 @@ LF_PINS *_lf_pinbox_get_pins(LF_PINBOX *pinbox)
   uint32 pins, next, top_ver;
   LF_PINS *el;
   /*
-    We have an array of max. 64k elements.
+    We have an array of MAX. 64k elements.
     The highest index currently allocated is pinbox->pins_in_array.
     Freed elements are in a lifo stack, pinstack_top_ver.
     pinstack_top_ver is 32 bits; 16 low bits are the index in the

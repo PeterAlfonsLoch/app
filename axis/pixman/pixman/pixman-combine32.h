@@ -97,7 +97,7 @@ un8x4_add_un8x4 (uint32_t x, uint32_t y)
     } while (0)
 
 /*
- * x_rb = min (x_rb + y_rb, 255)
+ * x_rb = MIN (x_rb + y_rb, 255)
  */
 #ifndef UN8_rb_ADD_UN8_rb
 #define UN8_rb_ADD_UN8_rb(x, y, t)					\
@@ -251,7 +251,7 @@ un8x4_add_un8x4 (uint32_t x, uint32_t y)
     } while (0)
 
 /*
-  x_c = min(x_c + y_c, 255)
+  x_c = MIN(x_c + y_c, 255)
 */
 #ifndef UN8x4_ADD_UN8x4
 #define UN8x4_ADD_UN8x4(x, y)						\

@@ -318,12 +318,12 @@ int BIO_gets(BIO *b, char *in, int inl)
 	return(i);
 	}
 
-int BIO_indent(BIO *b,int indent,int max)
+int BIO_indent(BIO *b,int indent,int MAX)
 	{
 	if(indent < 0)
 		indent=0;
-	if(indent > max)
-		indent=max;
+	if(indent > MAX)
+		indent=MAX;
 	while(indent--)
 		if(BIO_puts(b," ") != 1)
 			return 0;

@@ -9,7 +9,7 @@ inline int32_t msb(N n)
    do
    {
       i--;
-      if(n & (numeric_info::get_unitary_value < N > () << i))
+      if(n & (numeric_info < N >::unitary () << i))
          return i;
 
    }

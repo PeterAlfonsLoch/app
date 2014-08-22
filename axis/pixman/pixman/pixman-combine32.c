@@ -924,19 +924,19 @@ PDF_SEPARABLE_BLEND_MODE (exclusion)
 
 /*
  * PDF nonseperable blend modes are implemented using the following functions
- * to operate in Hsl space, with Cmax, Cmid, Cmin referring to the max, mid
- * and min value of the red, green and blue components.
+ * to operate in Hsl space, with Cmax, Cmid, Cmin referring to the MAX, mid
+ * and MIN value of the red, green and blue components.
  *
  * LUM (C) = 0.3 × Cred + 0.59 × Cgreen + 0.11 × Cblue
  *
  * clip_color (C):
  *     l = LUM (C)
- *     min = Cmin
- *     max = Cmax
+ *     MIN = Cmin
+ *     MAX = Cmax
  *     if n < 0.0
- *         C = l + (((C – l) × l) ⁄ (l – min))
+ *         C = l + (((C – l) × l) ⁄ (l – MIN))
  *     if x > 1.0
- *         C = l + (((C – l) × (1 – l) ) ⁄ (max – l))
+ *         C = l + (((C – l) × (1 – l) ) ⁄ (MAX – l))
  *     return C
  *
  * set_lum (C, l):
@@ -1044,7 +1044,7 @@ PDF_SEPARABLE_BLEND_MODE (exclusion)
 static void
 set_lum (uint32_t dest[3], uint32_t src[3], uint32_t sa, uint32_t lum)
 {
-    double a, l, min, max;
+    double a, l, MIN, MAX;
     double tmp[3];
 
     a = sa * (1.0 / MASK);
@@ -1061,12 +1061,12 @@ set_lum (uint32_t dest[3], uint32_t src[3], uint32_t sa, uint32_t lum)
 
     /* clip_color */
     l = LUM (tmp);
-    min = CH_MIN (tmp);
-    max = CH_MAX (tmp);
+    MIN = CH_MIN (tmp);
+    MAX = CH_MAX (tmp);
 
-    if (min < 0)
+    if (MIN < 0)
     {
-	if (l - min == 0.0)
+	if (l - MIN == 0.0)
 	{
 	    tmp[0] = 0;
 	    tmp[1] = 0;
@@ -1074,14 +1074,14 @@ set_lum (uint32_t dest[3], uint32_t src[3], uint32_t sa, uint32_t lum)
 	}
 	else
 	{
-	    tmp[0] = l + (tmp[0] - l) * l / (l - min);
-	    tmp[1] = l + (tmp[1] - l) * l / (l - min);
-	    tmp[2] = l + (tmp[2] - l) * l / (l - min);
+	    tmp[0] = l + (tmp[0] - l) * l / (l - MIN);
+	    tmp[1] = l + (tmp[1] - l) * l / (l - MIN);
+	    tmp[2] = l + (tmp[2] - l) * l / (l - MIN);
 	}
     }
-    if (max > a)
+    if (MAX > a)
     {
-	if (max - l == 0.0)
+	if (MAX - l == 0.0)
 	{
 	    tmp[0] = a;
 	    tmp[1] = a;
@@ -1089,9 +1089,9 @@ set_lum (uint32_t dest[3], uint32_t src[3], uint32_t sa, uint32_t lum)
 	}
 	else
 	{
-	    tmp[0] = l + (tmp[0] - l) * (a - l) / (max - l);
-	    tmp[1] = l + (tmp[1] - l) * (a - l) / (max - l);
-	    tmp[2] = l + (tmp[2] - l) * (a - l) / (max - l);
+	    tmp[0] = l + (tmp[0] - l) * (a - l) / (MAX - l);
+	    tmp[1] = l + (tmp[1] - l) * (a - l) / (MAX - l);
+	    tmp[2] = l + (tmp[2] - l) * (a - l) / (MAX - l);
 	}
     }
 
@@ -1104,7 +1104,7 @@ static void
 set_sat (uint32_t dest[3], uint32_t src[3], uint32_t sat)
 {
     int id[3];
-    uint32_t min, max;
+    uint32_t MIN, MAX;
 
     if (src[0] > src[1])
     {
@@ -1153,11 +1153,11 @@ set_sat (uint32_t dest[3], uint32_t src[3], uint32_t sat)
 	}
     }
 
-    max = dest[id[0]];
-    min = dest[id[2]];
-    if (max > min)
+    MAX = dest[id[0]];
+    MIN = dest[id[2]];
+    if (MAX > MIN)
     {
-	dest[id[1]] = (dest[id[1]] - min) * sat / (max - min);
+	dest[id[1]] = (dest[id[1]] - MIN) * sat / (MAX - MIN);
 	dest[id[0]] = sat;
 	dest[id[2]] = 0;
     }
@@ -1277,15 +1277,15 @@ PDF_NON_SEPARABLE_BLEND_MODE (hsl_luminosity)
  * (0,0,0,0)	0		0		0		0
  * (0,A,0,A)	1		0		1		0
  * (0,0,B,B)	0		1		0		1
- * (0,A,B,A)	1		min((1-a)/b,1)	1		max(1-a/b,0)
- * (0,A,B,B)	min((1-b)/a,1)	1		max(1-b/a,0)	1
- * (0,0,0,A)	max(1-(1-b)/a,0) 0		min(1,b/a)	0
- * (0,0,0,B)	0		max(1-(1-a)/b,0) 0		min(a/b,1)
- * (0,A,0,0)	min(1,(1-b)/a)	0		max(1-b/a,0)	0
- * (0,0,B,0)	0		min(1,(1-a)/b)	0		max(1-a/b,0)
- * (0,0,B,A)	max(1-(1-b)/a,0) min(1,(1-a)/b)	 min(1,b/a)	max(1-a/b,0)
- * (0,A,0,B)	min(1,(1-b)/a)	max(1-(1-a)/b,0) max(1-b/a,0)	min(1,a/b)
- * (0,A,B,0)	min(1,(1-b)/a)	min(1,(1-a)/b)	max(1-b/a,0)	max(1-a/b,0)
+ * (0,A,B,A)	1		MIN((1-a)/b,1)	1		MAX(1-a/b,0)
+ * (0,A,B,B)	MIN((1-b)/a,1)	1		MAX(1-b/a,0)	1
+ * (0,0,0,A)	MAX(1-(1-b)/a,0) 0		MIN(1,b/a)	0
+ * (0,0,0,B)	0		MAX(1-(1-a)/b,0) 0		MIN(a/b,1)
+ * (0,A,0,0)	MIN(1,(1-b)/a)	0		MAX(1-b/a,0)	0
+ * (0,0,B,0)	0		MIN(1,(1-a)/b)	0		MAX(1-a/b,0)
+ * (0,0,B,A)	MAX(1-(1-b)/a,0) MIN(1,(1-a)/b)	 MIN(1,b/a)	MAX(1-a/b,0)
+ * (0,A,0,B)	MIN(1,(1-b)/a)	MAX(1-(1-a)/b,0) MAX(1-b/a,0)	MIN(1,a/b)
+ * (0,A,B,0)	MIN(1,(1-b)/a)	MIN(1,(1-a)/b)	MAX(1-b/a,0)	MAX(1-a/b,0)
  *
  * See  http://marc.info/?l=xfree-render&m=99792000027857&w=2  for more
  * information about these operators.
@@ -1309,7 +1309,7 @@ PDF_NON_SEPARABLE_BLEND_MODE (hsl_luminosity)
 static uint8_t
 combine_disjoint_out_part (uint8_t a, uint8_t b)
 {
-    /* min (1, (1-b) / a) */
+    /* MIN (1, (1-b) / a) */
 
     b = ~b;                 /* 1 - b */
     if (b >= a)             /* 1 - b >= a -> (1-b)/a >= 1 */
@@ -1321,9 +1321,9 @@ combine_disjoint_out_part (uint8_t a, uint8_t b)
 static uint8_t
 combine_disjoint_in_part (uint8_t a, uint8_t b)
 {
-    /* max (1-(1-b)/a,0) */
-    /*  = - min ((1-b)/a - 1, 0) */
-    /*  = 1 - min (1, (1-b)/a) */
+    /* MAX (1-(1-b)/a,0) */
+    /*  = - MIN ((1-b)/a - 1, 0) */
+    /*  = 1 - MIN (1, (1-b)/a) */
 
     b = ~b;                 /* 1 - b */
     if (b >= a)             /* 1 - b >= a -> (1-b)/a >= 1 */
@@ -1335,10 +1335,10 @@ combine_disjoint_in_part (uint8_t a, uint8_t b)
 static uint8_t
 combine_conjoint_out_part (uint8_t a, uint8_t b)
 {
-    /* max (1-b/a,0) */
-    /* = 1-min(b/a,1) */
+    /* MAX (1-b/a,0) */
+    /* = 1-MIN(b/a,1) */
 
-    /* min (1, (1-b) / a) */
+    /* MIN (1, (1-b) / a) */
 
     if (b >= a)             /* b >= a -> b/a >= 1 */
 	return 0x00;        /* 0 */
@@ -1349,7 +1349,7 @@ combine_conjoint_out_part (uint8_t a, uint8_t b)
 static uint8_t
 combine_conjoint_in_part (uint8_t a, uint8_t b)
 {
-    /* min (1,b/a) */
+    /* MIN (1,b/a) */
 
     if (b >= a)             /* b >= a -> b/a >= 1 */
 	return MASK;        /* 1 */

@@ -444,7 +444,7 @@ RgbaOutputFile::ToYca::writePixels (int numScanLines)
 		++_linesConverted;
 		decimateChromaVertAndWriteScanLine();
 
-		for (int j = 1; j < min (_height, N2); ++j)
+		for (int j = 1; j < MIN (_height, N2); ++j)
 		{
 		    duplicateLastBuffer();
 		    ++_linesConverted;
@@ -917,8 +917,8 @@ RgbaInputFile::FromYca::setFrameBuffer (Rgba *base,
 void	
 RgbaInputFile::FromYca::readPixels (int scanLine1, int scanLine2)
 {
-    int minY = min (scanLine1, scanLine2);
-    int maxY = max (scanLine1, scanLine2);
+    int minY = MIN (scanLine1, scanLine2);
+    int maxY = MAX (scanLine1, scanLine2);
 
     if (_lineOrder == INCREASING_Y)
     {
@@ -983,7 +983,7 @@ RgbaInputFile::FromYca::readPixels (int scanLine)
     if (dy < 0)
     {
 	{
-	    int n = min (-dy, N + 2);
+	    int n = MIN (-dy, N + 2);
 	    int yMin = scanLine - N2 - 1;
 
 	    for (int i = n - 1; i >= 0; --i)
@@ -991,7 +991,7 @@ RgbaInputFile::FromYca::readPixels (int scanLine)
 	}
 
 	{
-	    int n = min (-dy, 3);
+	    int n = MIN (-dy, 3);
 
 	    for (int i = 0; i < n; ++i)
 	    {
@@ -1010,7 +1010,7 @@ RgbaInputFile::FromYca::readPixels (int scanLine)
     else
     {
 	{
-	    int n = min (dy, N + 2);
+	    int n = MIN (dy, N + 2);
 	    int yMax = scanLine + N2 + 1;
 
 	    for (int i = n - 1; i >= 0; --i)
@@ -1018,7 +1018,7 @@ RgbaInputFile::FromYca::readPixels (int scanLine)
 	}
 
 	{
-	    int n = min (dy, 3);
+	    int n = MIN (dy, 3);
 
 	    for (int i = 2; i > 2 - n; --i)
 	    {

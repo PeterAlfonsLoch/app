@@ -592,7 +592,7 @@ add(strMid);
 }
 else
 {
-int32_t iLen = max(str.get_length(), iMinLength);
+int32_t iLen = MAX(str.get_length(), iMinLength);
 for(int32_t i = 0; i < stra.get_size(); i++)
 {
 string & strMid = stra[i].Left(iLength);
@@ -647,7 +647,7 @@ void stringa::read(::file::input_stream & istream)
    {
 
       if(i >= this->get_size())
-         set_size(min(i + 1024, iSize));
+         set_size(MIN(i + 1024, iSize));
 
       istream >> this->element_at(i);
 

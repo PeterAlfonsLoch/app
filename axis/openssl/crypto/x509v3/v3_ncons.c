@@ -229,7 +229,7 @@ static int print_nc_ipadd(BIO *bp, ASN1_OCTET_STRING *ip)
  *  X509_V_OK: All constraints obeyed.
  *  X509_V_ERR_PERMITTED_VIOLATION: Permitted subtree violation.
  *  X509_V_ERR_EXCLUDED_VIOLATION: Excluded subtree violation.
- *  X509_V_ERR_SUBTREE_MINMAX: Min or max values present and matching type.
+ *  X509_V_ERR_SUBTREE_MINMAX: Min or MAX values present and matching type.
  *  X509_V_ERR_UNSUPPORTED_CONSTRAINT_TYPE:  Unsupported constraint type.
  *  X509_V_ERR_UNSUPPORTED_CONSTRAINT_SYNTAX: bad unsupported constraint syntax.
  *  X509_V_ERR_UNSUPPORTED_NAME_SYNTAX: bad or unsupported syntax of name

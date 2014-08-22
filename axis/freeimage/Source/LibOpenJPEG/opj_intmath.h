@@ -79,16 +79,16 @@ static INLINE OPJ_UINT32 opj_uint_max(OPJ_UINT32  a, OPJ_UINT32  b) {
 Clamp an integer inside an interval
 @return
 <ul>
-<li>Returns a if (min < a < max)
-<li>Returns max if (a > max)
-<li>Returns min if (a < min) 
+<li>Returns a if (MIN < a < MAX)
+<li>Returns MAX if (a > MAX)
+<li>Returns MIN if (a < MIN) 
 </ul>
 */
-static INLINE OPJ_INT32 opj_int_clamp(OPJ_INT32 a, OPJ_INT32 min, OPJ_INT32 max) {
-	if (a < min)
-		return min;
-	if (a > max)
-		return max;
+static INLINE OPJ_INT32 opj_int_clamp(OPJ_INT32 a, OPJ_INT32 MIN, OPJ_INT32 MAX) {
+	if (a < MIN)
+		return MIN;
+	if (a > MAX)
+		return MAX;
 	return a;
 }
 /**

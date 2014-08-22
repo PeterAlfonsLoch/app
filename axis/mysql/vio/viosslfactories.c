@@ -341,7 +341,7 @@ new_VioSSLAcceptorFd(const char *key_file, const char *cert_file,
   }
   /* Init the the VioSSLFd as a "acceptor" ie. the server side */
 
-  /* Set max number of cached sessions, returns the previous size */
+  /* Set MAX number of cached sessions, returns the previous size */
   SSL_CTX_sess_set_cache_size(ssl_fd->ssl_context, 128);
 
   SSL_CTX_set_verify(ssl_fd->ssl_context, verify, NULL);

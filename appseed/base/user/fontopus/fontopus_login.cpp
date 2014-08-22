@@ -157,15 +157,15 @@ namespace fontopus
          if (davailwh > dwh) // remaining width
          {
 
-            h = (int) min(stdh, availh);
-            w = (int) min(stdw, h  * dwh);
+            h = (int) MIN(stdh, availh);
+            w = (int) MIN(stdw, h  * dwh);
 
          }
          else // remaining height
          {
 
-            w = (int) min(stdw, availw);
-            h = (int) min(stdh, w / dwh);
+            w = (int) MIN(stdw, availw);
+            h = (int) MIN(stdh, w / dwh);
 
          }
 

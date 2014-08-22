@@ -257,9 +257,9 @@ Pxr24Compressor::compress (const char *inPtr,
     }
 
     int minX = range.min.x;
-    int maxX = min (range.max.x, _maxX);
+    int maxX = MIN (range.max.x, _maxX);
     int minY = range.min.y;
-    int maxY = min (range.max.y, _maxY);
+    int maxY = MIN (range.max.y, _maxY);
 
     unsigned char *tmpBufferEnd = _tmpBuffer;
 
@@ -401,9 +401,9 @@ Pxr24Compressor::uncompress (const char *inPtr,
     }
 
     int minX = range.min.x;
-    int maxX = min (range.max.x, _maxX);
+    int maxX = MIN (range.max.x, _maxX);
     int minY = range.min.y;
-    int maxY = min (range.max.y, _maxY);
+    int maxY = MIN (range.max.y, _maxY);
 
     const unsigned char *tmpBufferEnd = _tmpBuffer;
     char *writePtr = _outBuffer;

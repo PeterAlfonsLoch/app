@@ -544,8 +544,8 @@ namespace user
          {
             rect rectDib;
             rectDib = m_rectText;
-            rectDib.bottom = min(rectText.top + m_dib->m_size.cy, rectText.bottom);
-            rectDib.right = min(rectText.left + m_dib->m_size.cx, rectText.right);
+            rectDib.bottom = MIN(rectText.top + m_dib->m_size.cy, rectText.bottom);
+            rectDib.right = MIN(rectText.left + m_dib->m_size.cx, rectText.right);
             //m_dib->to(pdc, rectDib);
             m_dib->bitmap_blend(pdc, rectDib);
             rectText.left += m_dib->m_size.cx;

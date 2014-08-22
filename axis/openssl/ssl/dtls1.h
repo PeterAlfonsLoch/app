@@ -119,7 +119,7 @@ typedef struct dtls1_bitmap_st
 	{
 	unsigned long map;		/* track 32 packets on 32-bit systems
 					   and 64 - on 64-bit systems */
-	unsigned char max_seq_num[8];	/* max record number seen so far,
+	unsigned char max_seq_num[8];	/* MAX record number seen so far,
 					   64-bit value in big-endian
 					   encoding */
 	} DTLS1_BITMAP;
@@ -229,7 +229,7 @@ typedef struct dtls1_state_st
 	/* Is set when listening for new connections with dtls1_listen() */
 	unsigned int listen;
 
-	unsigned int mtu; /* max DTLS packet size */
+	unsigned int mtu; /* MAX DTLS packet size */
 
 	struct hm_header_st w_msg_hdr;
 	struct hm_header_st r_msg_hdr;

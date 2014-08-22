@@ -170,7 +170,7 @@ void        crw_init_tables (unsigned table, ushort *huff[2]);
     void *      foveon_camf_matrix (unsigned dim[3], const char *name);
     int         foveon_fixed (void *ptr, int size, const char *name);
     float       foveon_avg (short *pix, int range[2], float cfilt);
-    short *     foveon_make_curve (double max, double mul, double filt);
+    short *     foveon_make_curve (double MAX, double mul, double filt);
     void        foveon_make_curves(short **curvep, float dq[3], float div[3], float filt);
     int         foveon_apply_curve (short *curve, int i);
     void        foveon_interpolate();

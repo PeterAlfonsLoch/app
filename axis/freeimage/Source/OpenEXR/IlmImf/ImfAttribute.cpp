@@ -41,6 +41,7 @@ struct NameCompare: std::binary_function <const char *, const char *, bool>
 
 typedef Attribute* (*Constructor)();
 typedef std::map <const char *, Constructor, NameCompare> TypeMap;
+//typedef std::map <const char *,Constructor> TypeMap;
 
 
 class LockedTypeMap: public TypeMap
@@ -91,7 +92,7 @@ Attribute::registerAttributeType (const char typeName[],
 			    "type \"" << typeName << "\". "
 			    "The type has already been registered.");
 
-    tMap.insert (TypeMap::value_type (typeName, newAttribute));
+    tMap.set_at(typeName, newAttribute);
 }
 
 

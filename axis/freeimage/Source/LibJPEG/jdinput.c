@@ -233,9 +233,9 @@ initial_setup (j_decompress_ptr cinfo)
     if (compptr->h_samp_factor<=0 || compptr->h_samp_factor>MAX_SAMP_FACTOR ||
 	compptr->v_samp_factor<=0 || compptr->v_samp_factor>MAX_SAMP_FACTOR)
       ERREXIT(cinfo, JERR_BAD_SAMPLING);
-    cinfo->max_h_samp_factor = max(cinfo->max_h_samp_factor,
+    cinfo->max_h_samp_factor = MAX(cinfo->max_h_samp_factor,
 				   compptr->h_samp_factor);
-    cinfo->max_v_samp_factor = max(cinfo->max_v_samp_factor,
+    cinfo->max_v_samp_factor = MAX(cinfo->max_v_samp_factor,
 				   compptr->v_samp_factor);
   }
 

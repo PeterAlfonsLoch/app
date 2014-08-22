@@ -390,7 +390,7 @@ namespace filemanager
 
                sp(::sqlite::set) pds = pdoc->m_pdsAlbum;
 
-               int32_t iRemove = max(30, m_buildhelper.m_iDisplayItemCount);
+               int32_t iRemove = MAX(30, m_buildhelper.m_iDisplayItemCount);
 
                int_array iaRemove;
                while(true)
@@ -445,7 +445,7 @@ namespace filemanager
                MediaLibraryDoc * pdoc = get_document();
                sp(::sqlite::set) pds = pdoc->m_pdsAlbum;
 
-               int32_t iRemove = max(30, m_buildhelper.m_iDisplayItemCount);
+               int32_t iRemove = MAX(30, m_buildhelper.m_iDisplayItemCount);
 
                int_array iaRemove;
                int32_t iFind = 0;

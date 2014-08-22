@@ -252,11 +252,11 @@ namespace user
                }
 
 
-               m_splitbara[i].m_dwPosition = min(m_splitbara[i].m_dwMaxPosition, (uint32_t)(m_splitbara[i].m_dRate * iDimension));
+               m_splitbara[i].m_dwPosition = MIN(m_splitbara[i].m_dwMaxPosition, (uint32_t)(m_splitbara[i].m_dRate * iDimension));
             }
             else
             {
-               m_splitbara[i].m_dwPosition = min(m_splitbara[i].m_dwMaxPosition, (uint32_t)(m_splitbara[i].m_dwPosition));
+               m_splitbara[i].m_dwPosition = MIN(m_splitbara[i].m_dwMaxPosition, (uint32_t)(m_splitbara[i].m_dwPosition));
             }
 
          }
@@ -471,15 +471,15 @@ namespace user
       GetClientRect(lpRect);
       if(m_eorientationSplit == orientation_horizontal)
       {
-         nPos = max(nPos, lpRect->top + m_iMarging / 2);
-         nPos = min(nPos, lpRect->bottom - m_iMarging / 2);
+         nPos = MAX(nPos, lpRect->top + m_iMarging / 2);
+         nPos = MIN(nPos, lpRect->bottom - m_iMarging / 2);
          lpRect->top      = nPos - m_iMarging / 2;
          lpRect->bottom   = nPos + m_iMarging / 2;
       }
       else
       {
-         nPos = max(nPos, lpRect->left + m_iMarging / 2);
-         nPos = min(nPos, lpRect->right - m_iMarging / 2);
+         nPos = MAX(nPos, lpRect->left + m_iMarging / 2);
+         nPos = MIN(nPos, lpRect->right - m_iMarging / 2);
          lpRect->left   = nPos - m_iMarging / 2;
          lpRect->right   = nPos + m_iMarging / 2;
       }

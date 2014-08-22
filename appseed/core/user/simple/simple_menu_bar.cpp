@@ -522,7 +522,7 @@ int32_t simple_menu_bar::_001HitTest(const POINT *lppoint)
       ix += size.cx + ITEMCHECKEDCX + ITEMCHECKEDPADLEFT + ITEMCHECKEDPADRIGHT;
       m_buttona[iItem].m_rect.right = ix;
       m_buttona[iItem].m_rect.top   = 0;
-      iy = max(iy, size.cy);
+      iy = MAX(iy, size.cy);
    }
    for(iItem = 0; iItem < m_buttona.get_size(); iItem++)
    {

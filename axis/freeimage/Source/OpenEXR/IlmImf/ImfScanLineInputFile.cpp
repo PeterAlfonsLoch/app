@@ -147,10 +147,10 @@ struct ScanLineInputFile::Data: public Mutex
     int			version;            // file's version
     FrameBuffer		frameBuffer;	    // framebuffer to write into
     LineOrder		lineOrder;          // order of the scanlines in file
-    int			minX;		    // data window's min x coord
-    int			maxX;		    // data window's max x coord
-    int			minY;		    // data window's min y coord
-    int			maxY;		    // data window's max x coord
+    int			minX;		    // data window's MIN x coord
+    int			maxX;		    // data window's MAX x coord
+    int			minY;		    // data window's MIN y coord
+    int			maxY;		    // data window's MAX x coord
     vector<Int64>	lineOffsets;	    // stores offsets in file for
 					    // each line
     bool		fileIsComplete;	    // True if no scanlines are missing
@@ -185,7 +185,7 @@ ScanLineInputFile::Data::Data (IStream *is, int numThreads):
     // to keep n threads busy we need 2*n lineBuffers
     //
 
-    lineBuffers.resize (max (1, 2 * numThreads));
+    lineBuffers.resize (MAX (1, 2 * numThreads));
 }
 
 
@@ -419,7 +419,7 @@ LineBufferTask::execute ()
         if (_lineBuffer->uncompressedData == 0)
         {
             int uncompressedSize = 0;
-            int maxY = min (_lineBuffer->maxY, _ifd->maxY);
+            int maxY = MIN (_lineBuffer->maxY, _ifd->maxY);
     
             for (int i = _lineBuffer->minY - _ifd->minY;
                  i <= maxY - _ifd->minY;
@@ -615,8 +615,8 @@ newLineBufferTask
 	throw;
     }
     
-    scanLineMin = max (lineBuffer->minY, scanLineMin);
-    scanLineMax = min (lineBuffer->maxY, scanLineMax);
+    scanLineMin = MAX (lineBuffer->minY, scanLineMin);
+    scanLineMax = MIN (lineBuffer->maxY, scanLineMax);
 
     return new LineBufferTask (group, ifd, lineBuffer,
 			       scanLineMin, scanLineMax);
@@ -845,8 +845,8 @@ ScanLineInputFile::readPixels (int scanLine1, int scanLine2)
 	    throw Iex::ArgExc ("No frame buffer specified "
 			       "as pixel data destination.");
 
-	int scanLineMin = min (scanLine1, scanLine2);
-	int scanLineMax = max (scanLine1, scanLine2);
+	int scanLineMin = MIN (scanLine1, scanLine2);
+	int scanLineMax = MAX (scanLine1, scanLine2);
 
 	if (scanLineMin < _data->minY || scanLineMax > _data->maxY)
 	    throw Iex::ArgExc ("Tried to read scan line outside "

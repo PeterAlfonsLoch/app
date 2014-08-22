@@ -410,7 +410,7 @@ static FIBITMAP* Divergence(FIBITMAP *H, FIBITMAP *PHI) {
 }
 
 /**
-Given the luminance channel, find max & min luminance values, 
+Given the luminance channel, find MAX & MIN luminance values, 
 normalize to range 0..100 and take the logarithm. 
 @param Y Image luminance
 @return Returns the normalized luminance H if successful, returns NULL otherwise
@@ -427,7 +427,7 @@ static FIBITMAP* LogLuminance(FIBITMAP *Y) {
 		const unsigned height = FreeImage_GetHeight(H);
 		const unsigned pitch  = FreeImage_GetPitch(H);
 
-		// find max & min luminance values
+		// find MAX & MIN luminance values
 		float maxLum = -1e20F, minLum = 1e20F;
 
 		BYTE *bits = (BYTE*)FreeImage_GetBits(H);
@@ -435,8 +435,8 @@ static FIBITMAP* LogLuminance(FIBITMAP *Y) {
 			const float *pixel = (float*)bits;
 			for(unsigned x = 0; x < width; x++) {
 				const float value = pixel[x];
-				maxLum = (maxLum < value) ? value : maxLum;	// max Luminance in the scene
-				minLum = (minLum < value) ? minLum : value;	// min Luminance in the scene
+				maxLum = (maxLum < value) ? value : maxLum;	// MAX Luminance in the scene
+				minLum = (minLum < value) ? minLum : value;	// MIN Luminance in the scene
 			}
 			// next line
 			bits += pitch;
@@ -514,7 +514,7 @@ static FIBITMAP* tmoFattal02(FIBITMAP *Y, float alpha, float beta) {
 		// get the number of levels for the pyramid
 		const unsigned width = FreeImage_GetWidth(H);
 		const unsigned height = FreeImage_GetHeight(H);
-		unsigned minsize = min(width, height);
+		unsigned minsize = MIN(width, height);
 		while(minsize >= MIN_PYRAMID_SIZE) {
 			nlevels++;
 			minsize /= 2;
@@ -610,8 +610,8 @@ Apply the Gradient Domain High Dynamic Range Compression to a RGBF image and con
 FIBITMAP* DLL_CALLCONV 
 FreeImage_TmoFattal02(FIBITMAP *dib, double color_saturation, double attenuation) {	
 	const float alpha = 0.1F;									// parameter alpha = 0.1
-	const float beta = (float)max(0.8, min(0.9, attenuation));	// parameter beta = [0.8..0.9]
-	const float s = (float)max(0.4, min(0.6, color_saturation));// exponent s controls color saturation = [0.4..0.6]
+	const float beta = (float)MAX(0.8, MIN(0.9, attenuation));	// parameter beta = [0.8..0.9]
+	const float s = (float)MAX(0.4, MIN(0.6, color_saturation));// exponent s controls color saturation = [0.4..0.6]
 
 	FIBITMAP *src = NULL;
 	FIBITMAP *Yin = NULL;

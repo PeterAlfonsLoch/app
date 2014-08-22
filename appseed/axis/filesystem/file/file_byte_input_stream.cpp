@@ -332,7 +332,7 @@ namespace file
 
          spseekable->seek_to_begin();
 
-         ::strsize uiCount = (strsize) min(uiLength, natural(::numeric_info::get_maximum_value < strsize >()));
+         ::strsize uiCount = ::numeric_info< strsize >::natural(uiLength);
 
          ::file_position uiPos = 0;
 

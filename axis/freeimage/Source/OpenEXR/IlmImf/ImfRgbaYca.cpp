@@ -366,8 +366,8 @@ namespace {
 inline float
 saturation (const Rgba &in)
 {
-    float rgbMax = max (in.r, max (in.g, in.b));
-    float rgbMin = min (in.r, min (in.g, in.b));
+    float rgbMax = MAX (in.r, MAX (in.g, in.b));
+    float rgbMin = MIN (in.r, MIN (in.g, in.b));
 
     if (rgbMax > 0)
 	return 1 - rgbMin / rgbMax;
@@ -379,11 +379,11 @@ saturation (const Rgba &in)
 void
 desaturate (const Rgba &in, float f, const V3f &yw, Rgba &out)
 {
-    float rgbMax = max (in.r, max (in.g, in.b));
+    float rgbMax = MAX (in.r, MAX (in.g, in.b));
 
-    out.r = max (float (rgbMax - (rgbMax - in.r) * f), 0.0f);
-    out.g = max (float (rgbMax - (rgbMax - in.g) * f), 0.0f);
-    out.b = max (float (rgbMax - (rgbMax - in.b) * f), 0.0f);
+    out.r = MAX (float (rgbMax - (rgbMax - in.r) * f), 0.0f);
+    out.g = MAX (float (rgbMax - (rgbMax - in.g) * f), 0.0f);
+    out.b = MAX (float (rgbMax - (rgbMax - in.b) * f), 0.0f);
     out.a = in.a;
 
     float Yin  = in.r  * yw.x + in.g  * yw.y + in.b  * yw.z;
@@ -432,7 +432,7 @@ fixSaturation (const Imath::V3f &yw,
 	// B0       B1       B2
 	//
 
-	float sMean = min (1.0f, 0.25f * (neighborA0 + neighborA2 +
+	float sMean = MIN (1.0f, 0.25f * (neighborA0 + neighborA2 +
 					  neighborB0 + neighborB2));
 
 	const Rgba &in  = rgbaIn[1][i];
@@ -442,7 +442,7 @@ fixSaturation (const Imath::V3f &yw,
 
 	if (s > sMean)
 	{
-	    float sMax = min (1.0f, 1 - (1 - sMean) * 0.25f);
+	    float sMax = MIN (1.0f, 1 - (1 - sMean) * 0.25f);
 
 	    if (s > sMax)
 	    {

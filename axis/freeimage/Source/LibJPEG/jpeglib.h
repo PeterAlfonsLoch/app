@@ -435,7 +435,7 @@ struct jpeg_compress_struct {
 
   int block_size;		/* the basic DCT block size: 1..16 */
   const int * natural_order;	/* natural-order position array */
-  int lim_Se;			/* min( Se, DCTSIZE2-1 ) */
+  int lim_Se;			/* MIN( Se, DCTSIZE2-1 ) */
 
   /*
    * Links to compression subobjects (methods and private variables of modules)
@@ -492,7 +492,7 @@ struct jpeg_decompress_struct {
   /* the following are ignored if not quantize_colors: */
   J_DITHER_MODE dither_mode;	/* type of color dithering to use */
   boolean two_pass_quantize;	/* TRUE=use two-pass color quantization */
-  int desired_number_of_colors;	/* max # colors to use in created colormap */
+  int desired_number_of_colors;	/* MAX # colors to use in created colormap */
   /* these are significant only in buffered-image mode: */
   boolean enable_1pass_quant;	/* enable future use of 1-pass quantizer */
   boolean enable_external_quant;/* enable future use of external colormap */
@@ -511,7 +511,7 @@ struct jpeg_decompress_struct {
   /* output_components is 1 (a colormap index) when quantizing colors;
    * otherwise it equals out_color_components.
    */
-  int rec_outbuf_height;	/* min recommended height of scanline buffer */
+  int rec_outbuf_height;	/* MIN recommended height of scanline buffer */
   /* If the buffer passed to jpeg_read_scanlines() is less than this many rows
    * high, space and time will be wasted due to unnecessary data copying.
    * Usually rec_outbuf_height will be 1 or 2, at most 4.
@@ -664,7 +664,7 @@ struct jpeg_decompress_struct {
    */
   int block_size;		/* the basic DCT block size: 1..16 */
   const int * natural_order; /* natural-order position array for entropy decode */
-  int lim_Se;			/* min( Se, DCTSIZE2-1 ) for entropy decode */
+  int lim_Se;			/* MIN( Se, DCTSIZE2-1 ) for entropy decode */
 
   /* This field is shared between entropy decoder and marker parser.
    * It is either zero or the code of a JPEG marker that has been
@@ -724,7 +724,7 @@ struct jpeg_error_mgr {
   
   /* Standard state variables for error facility */
   
-  int trace_level;		/* max msg_level that will be displayed */
+  int trace_level;		/* MAX msg_level that will be displayed */
   
   /* For recoverable corrupt-data errors, we emit a warning message,
    * but keep going unless emit_message chooses to abort.  emit_message

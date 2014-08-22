@@ -230,7 +230,7 @@ int main(int argc, char **argv)
 	static char key[16]={	0x12,0x34,0x56,0x78,0x9a,0xbc,0xde,0xf0,
 				0x12,0x34,0x56,0x78,0x9a,0xbc,0xde,0xf0};
 	BF_KEY sch;
-	double d,tm[16],max=0;
+	double d,tm[16],MAX=0;
 	int rank[16];
 	char *str[16];
 	int max_idx=0,i,num=0,j;
@@ -286,30 +286,30 @@ int main(int argc, char **argv)
 
 	str[0]="<nothing>";
 	print_it("BF_encrypt_normal ",0);
-	max=tm[0];
+	MAX=tm[0];
 	max_idx=0;
 	str[1]="ptr      ";
 	print_it("BF_encrypt_ptr ",1);
-	if (max < tm[1]) { max=tm[1]; max_idx=1; }
+	if (MAX < tm[1]) { MAX=tm[1]; max_idx=1; }
 	str[2]="ptr2     ";
 	print_it("BF_encrypt_ptr2 ",2);
-	if (max < tm[2]) { max=tm[2]; max_idx=2; }
+	if (MAX < tm[2]) { MAX=tm[2]; max_idx=2; }
 
 	printf("options    BF ecb/s\n");
 	printf("%s %12.2f 100.0%%\n",str[max_idx],tm[max_idx]);
 	d=tm[max_idx];
 	tm[max_idx]= -2.0;
-	max= -1.0;
+	MAX= -1.0;
 	for (;;)
 		{
 		for (i=0; i<3; i++)
 			{
-			if (max < tm[i]) { max=tm[i]; j=i; }
+			if (MAX < tm[i]) { MAX=tm[i]; j=i; }
 			}
-		if (max < 0.0) break;
+		if (MAX < 0.0) break;
 		printf("%s %12.2f  %4.1f%%\n",str[j],tm[j],tm[j]/d*100.0);
 		tm[j]= -2.0;
-		max= -1.0;
+		MAX= -1.0;
 		}
 
 	switch (max_idx)

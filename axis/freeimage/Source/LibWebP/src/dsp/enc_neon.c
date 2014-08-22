@@ -571,7 +571,7 @@ static int Disto4x4(const uint8_t* const a, const uint8_t* const b,
     "vadd.u64        d18, d19                 \n"
 
     // Hadamard transform needs 4 bits of extra precision (2 bits in each
-    // direction) for dynamic raw. Weights w[] are 16bits at max, so the maximum
+    // direction) for dynamic raw. Weights w[] are 16bits at MAX, so the maximum
     // precision for coeff is 8bit of input + 4bits of Hadamard transform +
     // 16bits for w[] + 2 bits of abs() summation.
     //

@@ -343,9 +343,9 @@ namespace html
 
          size sizeContent = size(get_bound_size());
 
-         sizeContent.cx = max(0, sizeContent.cx - m_padding.left - m_padding.right - m_border.left - m_border.right - m_margin.left - m_margin.right);
+         sizeContent.cx = MAX(0, sizeContent.cx - m_padding.left - m_padding.right - m_border.left - m_border.right - m_margin.left - m_margin.right);
 
-         sizeContent.cy = max(0, sizeContent.cy - m_padding.top - m_padding.bottom - m_border.top - m_border.bottom - m_margin.top - m_margin.bottom);
+         sizeContent.cy = MAX(0, sizeContent.cy - m_padding.top - m_padding.bottom - m_border.top - m_border.bottom - m_margin.top - m_margin.bottom);
 
          for (int32_t i = 0; i < str.get_length();)
          {
@@ -551,7 +551,7 @@ namespace html
                      pdata->m_pdc,
                      rect,
                      cr,
-                     max(0, min(255, (BYTE)(d * 255))));
+                     MAX(0, MIN(255, (BYTE)(d * 255))));
                }
                else if(has_link() && m_pelemental->m_style.get_color("background-color", "link", pdata, m_pelemental, cr))
                {
@@ -559,7 +559,7 @@ namespace html
                      pdata->m_pdc,
                      rect,
                      cr,
-                     max(0, min(255, (BYTE)(d * 255))));
+                     MAX(0, MIN(255, (BYTE)(d * 255))));
                }
                else if (m_pelemental->m_style.get_color("background-color", "", pdata, m_pelemental, cr))
                {
@@ -567,7 +567,7 @@ namespace html
                      pdata->m_pdc,
                      rect,
                      cr,
-                     max(0, min(255, (BYTE)(d * 255))));
+                     MAX(0, MIN(255, (BYTE)(d * 255))));
                }
             }
             else
@@ -709,8 +709,8 @@ namespace html
             strsize i1 = iSelStart - lim;
             strsize i2 = iSelEnd - lim;
             strsize i3 = iCursor - lim;
-            strsize iStart = max(0, i1);
-            strsize iEnd = min(i2, strLine.get_length());
+            strsize iStart = MAX(0, i1);
+            strsize iEnd = MIN(i2, strLine.get_length());
             str1 = strLine.Mid(0, iStart);
             str2 = strLine.Mid(iStart, iEnd - iStart);
             str3 = strLine.Mid(iEnd);
@@ -745,8 +745,8 @@ namespace html
   //          pdc->SetBkMode(TRANSPARENT);
             pdc->TextOut(left + size1.cx + size2.cx, y, strExtent3);
 
-            maxcy = max(size1.cy, size2.cy);
-            maxcy = max(maxcy, size3.cy);
+            maxcy = MAX(size1.cy, size2.cy);
+            maxcy = MAX(maxcy, size3.cy);
             if(m_bFocus && m_bCaretOn && i3 == str1.get_length())
             {
                pdc->MoveTo(left + size1.cx, y);

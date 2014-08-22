@@ -1847,7 +1847,7 @@ static int do_add(const decimal_t *from1, const decimal_t *from2, decimal_t *to)
     set_if_smaller(intg2, intg0);
   }
 
-  /* part 1 - max(frac) ... min (frac) */
+  /* part 1 - MAX(frac) ... MIN (frac) */
   if (frac1 > frac2)
   {
     buf1=from1->buf+intg1+frac1;
@@ -1865,14 +1865,14 @@ static int do_add(const decimal_t *from1, const decimal_t *from2, decimal_t *to)
   while (buf1 > stop)
     *--buf0=*--buf1;
 
-  /* part 2 - min(frac) ... min(intg) */
+  /* part 2 - MIN(frac) ... MIN(intg) */
   carry=0;
   while (buf1 > stop2)
   {
     ADD(*--buf0, *--buf1, *--buf2, carry);
   }
 
-  /* part 3 - min(intg) ... max(intg) */
+  /* part 3 - MIN(intg) ... MAX(intg) */
   buf1= intg1 > intg2 ? ((stop=from1->buf)+intg1-intg2) :
                         ((stop=from2->buf)+intg2-intg1) ;
   while (buf1 > stop)
@@ -1979,7 +1979,7 @@ static int do_sub(const decimal_t *from1, const decimal_t *from2, decimal_t *to)
   }
   carry=0;
 
-  /* part 1 - max(frac) ... min (frac) */
+  /* part 1 - MAX(frac) ... MIN (frac) */
   if (frac1 > frac2)
   {
     buf1=start1+intg1+frac1;
@@ -2003,7 +2003,7 @@ static int do_sub(const decimal_t *from1, const decimal_t *from2, decimal_t *to)
     }
   }
 
-  /* part 2 - min(frac) ... intg2 */
+  /* part 2 - MIN(frac) ... intg2 */
   while (buf2 > start2)
   {
     SUB(*--buf0, *--buf1, *--buf2, carry);
@@ -2267,7 +2267,7 @@ static int do_div_mod(const decimal_t *from1, const decimal_t *from2,
   {
     /* we're calculating N1 % N2.
        The result will have
-         frac=max(frac1, frac2), as for subtraction
+         frac=MAX(frac1, frac2), as for subtraction
          intg=intg2
     */
     to->sign=from1->sign;
@@ -2400,7 +2400,7 @@ static int do_div_mod(const decimal_t *from1, const decimal_t *from2,
     /*
       now the result is in tmp1, it has
         intg=prec1-frac1
-        frac=max(frac1, frac2)=to->frac
+        frac=MAX(frac1, frac2)=to->frac
     */
     if (dcarry)
       *--start1=dcarry;

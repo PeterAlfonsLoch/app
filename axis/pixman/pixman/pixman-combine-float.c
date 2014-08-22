@@ -495,19 +495,19 @@ MAKE_SEPARABLE_PDF_COMBINERS (exclusion)
  * PDF nonseperable blend modes.
  *
  * These are implemented using the following functions to operate in Hsl
- * space, with Cmax, Cmid, Cmin referring to the max, mid and min value
+ * space, with Cmax, Cmid, Cmin referring to the MAX, mid and MIN value
  * of the red, green and blue components.
  *
  * LUM (C) = 0.3 × Cred + 0.59 × Cgreen + 0.11 × Cblue
  *
  * clip_color (C):
  *   l = LUM (C)
- *   min = Cmin
- *   max = Cmax
+ *   MIN = Cmin
+ *   MAX = Cmax
  *   if n < 0.0
- *     C = l + (((C – l) × l) ⁄     (l – min))
+ *     C = l + (((C – l) × l) ⁄     (l – MIN))
  *   if x > 1.0
- *     C = l + (((C – l) × (1 – l)) (max – l))
+ *     C = l + (((C – l) × (1 – l)) (MAX – l))
  *   return C
  *
  * set_lum (C, l):
@@ -702,59 +702,59 @@ set_lum (rgb_t *color, float sa, float l)
 static void
 set_sat (rgb_t *src, float sat)
 {
-    float *max, *mid, *min;
+    float *max, *mid, *MIN;
     float t;
 
     if (src->r > src->g)
     {
 	if (src->r > src->b)
 	{
-	    max = &(src->r);
+	    MAX = &(src->r);
 
 	    if (src->g > src->b)
 	    {
 		mid = &(src->g);
-		min = &(src->b);
+		MIN = &(src->b);
 	    }
 	    else
 	    {
 		mid = &(src->b);
-		min = &(src->g);
+		MIN = &(src->g);
 	    }
 	}
 	else
 	{
-	    max = &(src->b);
+	    MAX = &(src->b);
 	    mid = &(src->r);
-	    min = &(src->g);
+	    MIN = &(src->g);
 	}
     }
     else
     {
 	if (src->r > src->b)
 	{
-	    max = &(src->g);
+	    MAX = &(src->g);
 	    mid = &(src->r);
-	    min = &(src->b);
+	    MIN = &(src->b);
 	}
 	else
 	{
-	    min = &(src->r);
+	    MIN = &(src->r);
 
 	    if (src->g > src->b)
 	    {
-		max = &(src->g);
+		MAX = &(src->g);
 		mid = &(src->b);
 	    }
 	    else
 	    {
-		max = &(src->b);
+		MAX = &(src->b);
 		mid = &(src->g);
 	    }
 	}
     }
 
-    t = *max - *min;
+    t = *max - *MIN;
 
     if (FLOAT_IS_ZERO (t))
     {
@@ -762,11 +762,11 @@ set_sat (rgb_t *src, float sat)
     }
     else
     {
-	*mid = ((*mid - *min) * sat) / t;
+	*mid = ((*mid - *MIN) * sat) / t;
 	*max = sat;
     }
 
-    *min = 0.0f;
+    *MIN = 0.0f;
 }
 
 /*

@@ -176,8 +176,8 @@ TIFFCIELabToRGBInit(TIFFCIELabToRGB* cielab,
 #define	FIX(x)			((int32)((x) * (1L<<SHIFT) + 0.5))
 #define	ONE_HALF		((int32)(1<<(SHIFT-1)))
 #define	Code2V(c, RB, RW, CR)	((((c)-(int32)(RB))*(float)(CR))/(float)(((RW)-(RB)) ? ((RW)-(RB)) : 1))
-#define	CLAMP(f,min,max)	((f)<(min)?(min):(f)>(max)?(max):(f))
-#define HICLAMP(f,max)		((f)>(max)?(max):(f))
+#define	CLAMP(f,MIN,MAX)	((f)<(MIN)?(MIN):(f)>(MAX)?(MAX):(f))
+#define HICLAMP(f,MAX)		((f)>(MAX)?(MAX):(f))
 
 void
 TIFFYCbCrtoRGB(TIFFYCbCrToRGB *ycbcr, uint32 Y, int32 Cb, int32 Cr,

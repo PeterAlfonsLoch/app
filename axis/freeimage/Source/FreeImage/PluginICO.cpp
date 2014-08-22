@@ -770,7 +770,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 
 	} catch(const char *text) {
 		// free the vector class
-		for(size_t k = 0; k < vPages.size(); k++) {
+		for(index k = 0; k < vPages.size(); k++) {
 			FIBITMAP *icon_dib = (FIBITMAP*)vPages[k];
 			FreeImage_Unload(icon_dib);
 		}

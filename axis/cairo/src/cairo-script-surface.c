@@ -131,7 +131,7 @@ struct _cairo_script_context {
     cairo_script_mode_t mode;
 
     struct _bitmap {
-	unsigned long min;
+	unsigned long MIN;
 	unsigned long count;
 	unsigned int map[64];
 	struct _bitmap *next;
@@ -212,10 +212,10 @@ _bitmap_release_id (struct _bitmap *b, unsigned long token)
     struct _bitmap **prev = NULL;
 
     do {
-	if (token < b->min + sizeof (b->map) * CHAR_BIT) {
+	if (token < b->MIN + sizeof (b->map) * CHAR_BIT) {
 	    unsigned int bit, elem;
 
-	    token -= b->min;
+	    token -= b->MIN;
 	    elem = token / (sizeof (b->map[0]) * CHAR_BIT);
 	    bit  = token % (sizeof (b->map[0]) * CHAR_BIT);
 	    b->map[elem] &= ~(1 << bit);
@@ -235,10 +235,10 @@ _bitmap_next_id (struct _bitmap *b,
 		 unsigned long *id)
 {
     struct _bitmap *bb, **prev = NULL;
-    unsigned long min = 0;
+    unsigned long MIN = 0;
 
     do {
-	if (b->min != min)
+	if (b->MIN != MIN)
 	    break;
 
 	if (b->count < sizeof (b->map) * CHAR_BIT) {
@@ -251,13 +251,13 @@ _bitmap_next_id (struct _bitmap *b,
 		    if ((b->map[n] & bit) == 0) {
 			b->map[n] |= bit;
 			b->count++;
-			*id = n * sizeof (b->map[0])*CHAR_BIT + m + b->min;
+			*id = n * sizeof (b->map[0])*CHAR_BIT + m + b->MIN;
 			return CAIRO_STATUS_SUCCESS;
 		    }
 		}
 	    }
 	}
-	min += sizeof (b->map) * CHAR_BIT;
+	MIN += sizeof (b->map) * CHAR_BIT;
 
 	prev = &b->next;
 	b = b->next;
@@ -269,11 +269,11 @@ _bitmap_next_id (struct _bitmap *b,
 
     *prev = bb;
     bb->next = b;
-    bb->min = min;
+    bb->MIN = MIN;
     bb->count = 1;
     bb->map[0] = 0x1;
     memset (bb->map + 1, 0, sizeof (bb->map) - sizeof (bb->map[0]));
-    *id = min;
+    *id = MIN;
 
     return CAIRO_STATUS_SUCCESS;
 }

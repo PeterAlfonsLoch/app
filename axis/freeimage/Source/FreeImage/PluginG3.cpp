@@ -174,7 +174,7 @@ copyFaxFile(FreeImageIO *io, fi_handle handle, TIFF* tifin, uint32 xsize, int st
 		if (verbose) {
 			fprintf(stderr, "%d rows in input\n", rows);
 			fprintf(stderr, "%ld total bad rows\n", (long) badfaxlines);
-			fprintf(stderr, "%d max consecutive bad rows\n", badfaxrun);
+			fprintf(stderr, "%d MAX consecutive bad rows\n", badfaxrun);
 		}
 		*/
 

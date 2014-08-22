@@ -230,8 +230,8 @@ int NNQuantizer::inxsearch(int b, int g, int r) {
 // ----------------------------
 
 int NNQuantizer::contest(int b, int g, int r) {
-	// finds closest neuron (min dist) and updates freq
-	// finds best neuron (min dist-bias) and returns position
+	// finds closest neuron (MIN dist) and updates freq
+	// finds best neuron (MIN dist-bias) and returns position
 	// for frequently chosen neurons, freq[i] is high and bias[i] is negative
 	// bias[i] = gamma*((1/netsize)-freq[i])
 

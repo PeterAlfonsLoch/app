@@ -77,20 +77,20 @@ static void SetSegmentAlphas(VP8Encoder* const enc,
                              const int centers[NUM_MB_SEGMENTS],
                              int mid) {
   const int nb = enc->segment_hdr_.num_segments_;
-  int min = centers[0], max = centers[0];
+  int MIN = centers[0], MAX = centers[0];
   int n;
 
   if (nb > 1) {
     for (n = 0; n < nb; ++n) {
-      if (min > centers[n]) min = centers[n];
-      if (max < centers[n]) max = centers[n];
+      if (MIN > centers[n]) MIN = centers[n];
+      if (MAX < centers[n]) MAX = centers[n];
     }
   }
-  if (max == min) max = min + 1;
-  assert(mid <= max && mid >= min);
+  if (MAX == MIN) MAX = MIN + 1;
+  assert(mid <= MAX && mid >= MIN);
   for (n = 0; n < nb; ++n) {
-    const int alpha = 255 * (centers[n] - mid) / (max - min);
-    const int beta = 255 * (centers[n] - min) / (max - min);
+    const int alpha = 255 * (centers[n] - mid) / (MAX - MIN);
+    const int beta = 255 * (centers[n] - MIN) / (MAX - MIN);
     enc->dqm_[n].alpha_ = clip(alpha, -127, 127);
     enc->dqm_[n].beta_ = clip(beta, 0, 255);
   }

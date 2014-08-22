@@ -309,7 +309,7 @@ FreeImage_AdjustBrightness(FIBITMAP *src, double percentage) {
 	const double scale = (100 + percentage) / 100;
 	for(int i = 0; i < 256; i++) {
 		value = i * scale;
-		value = max(0.0, min(value, 255.0));
+		value = MAX(0.0, MIN(value, 255.0));
 		LUT[i] = (BYTE)floor(value + 0.5);
 	}
 	return FreeImage_AdjustCurve(src, LUT, FICC_RGB);
@@ -335,7 +335,7 @@ FreeImage_AdjustContrast(FIBITMAP *src, double percentage) {
 	const double scale = (100 + percentage) / 100;
 	for(int i = 0; i < 256; i++) {
 		value = 128 + (i - 128) * scale;
-		value = max(0.0, min(value, 255.0));
+		value = MAX(0.0, MIN(value, 255.0));
 		LUT[i] = (BYTE)floor(value + 0.5);
 	}
 	return FreeImage_AdjustCurve(src, LUT, FICC_RGB);
@@ -524,7 +524,7 @@ FreeImage_GetAdjustColorsLookupTable(BYTE *LUT, double brightness, double contra
 		const double v = (100.0 + contrast) / 100.0;
 		for (int i = 0; i < 256; i++) {
 			value = 128 + (dblLUT[i] - 128) * v;
-			dblLUT[i] = max(0.0, min(value, 255.0));
+			dblLUT[i] = MAX(0.0, MIN(value, 255.0));
 		}
 		result++;
 	}
@@ -534,7 +534,7 @@ FreeImage_GetAdjustColorsLookupTable(BYTE *LUT, double brightness, double contra
 		const double v = (100.0 + brightness) / 100.0;
 		for (int i = 0; i < 256; i++) {
 			value = dblLUT[i] * v;
-			dblLUT[i] = max(0.0, min(value, 255.0));
+			dblLUT[i] = MAX(0.0, MIN(value, 255.0));
 		}
 		result++;
 	}
@@ -545,7 +545,7 @@ FreeImage_GetAdjustColorsLookupTable(BYTE *LUT, double brightness, double contra
 		const double v = 255.0 * (double)pow((double)255, -exponent);
 		for (int i = 0; i < 256; i++) {
 			value = pow(dblLUT[i], exponent) * v;
-			dblLUT[i] = max(0.0, min(value, 255.0));
+			dblLUT[i] = MAX(0.0, MIN(value, 255.0));
 		}
 		result++;
 	}

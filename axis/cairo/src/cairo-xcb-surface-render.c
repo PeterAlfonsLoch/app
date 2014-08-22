@@ -4705,7 +4705,7 @@ _composite_glyphs (void				*closure,
 	if (glyphset_info == NULL)
 	    glyphset_info = this_glyphset_info;
 
-	/* Update max glyph index */
+	/* Update MAX glyph index */
 	if (glyph_index > max_index) {
 	    max_index = glyph_index;
 	    if (max_index >= 65536)
@@ -4716,7 +4716,7 @@ _composite_glyphs (void				*closure,
 		request_size += (width - old_width) * i;
 	}
 
-	/* If we will pass the max request size by adding this glyph,
+	/* If we will pass the MAX request size by adding this glyph,
 	 * flush current glyphs.  Note that we account for a
 	 * possible element being added below.
 	 *

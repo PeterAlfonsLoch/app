@@ -203,8 +203,8 @@ template <class T> class Shear6
     // Limitations of type T (see also class limits<T>)
     //-------------------------------------------------
 
-    static T		baseTypeMin()		{return limits<T>::min();}
-    static T		baseTypeMax()		{return limits<T>::max();}
+    static T		baseTypeMin()		{return limits<T>::minimum();}
+    static T		baseTypeMax()		{return limits<T>::maximum();}
     static T		baseTypeSmallest()	{return limits<T>::smallest();}
     static T		baseTypeEpsilon()	{return limits<T>::epsilon();}
 

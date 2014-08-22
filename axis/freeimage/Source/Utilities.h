@@ -145,15 +145,15 @@ typedef struct tagFILE_BGR {
 // ==========================================================
 //   Template utility functions
 // ==========================================================
-#undef min
-#undef max
+#undef MIN
+#undef MAX
 /// Max function
-template <class T> T max(const T &a, const T &b) {
+template <class T> T MAX(const T &a, const T &b) {
 	return (a > b) ? a: b;
 }
 
 /// Min function
-template <class T> T min(const T &a, const T &b) {
+template <class T> T MIN(const T &a, const T &b) {
 	return (a < b) ? a: b;
 }
 
@@ -167,20 +167,20 @@ template <class T> T CLAMP(const T &value, const T &min_value, const T &max_valu
 	return ((value < min_value) ? min_value : (value > max_value) ? max_value : value);
 }
 
-/** This procedure computes minimum min and maximum max
+/** This procedure computes minimum MIN and maximum MAX
  of n numbers using only (3n/2) - 2 comparisons.
- min = L[i1] and max = L[i2].
+ MIN = L[i1] and MAX = L[i2].
  ref: Aho A.V., Hopcroft J.E., Ullman J.D., 
  The design and analysis of computer algorithms, 
  Addison-Wesley, Reading, 1974.
 */
 template <class T> void 
-MAXMIN(const T* L, long n, T& max, T& min) {
+MAXMIN(const T* L, long n, T& MAX, T& MIN) {
 	long i1, i2, i, j;
 	T x1, x2;
 	long k1, k2;
 
-	i1 = 0; i2 = 0; min = L[0]; max = L[0]; j = 0;
+	i1 = 0; i2 = 0; MIN = L[0]; MAX = L[0]; j = 0;
 	if((n % 2) != 0)  j = 1;
 	for(i = j; i < n; i+= 2) {
 		k1 = i; k2 = i+1;
@@ -189,11 +189,11 @@ MAXMIN(const T* L, long n, T& max, T& min) {
 			k1 = k2;  k2 = i;
 			x1 = x2;  x2 = L[k2];
 		}
-		if(x1 < min) {
-			min = x1;  i1 = k1;
+		if(x1 < MIN) {
+			MIN = x1;  i1 = k1;
 		}
-		if(x2 > max) {
-			max = x2;  i2 = k2;
+		if(x2 > MAX) {
+			MAX = x2;  i2 = k2;
 		}
 	}
 }

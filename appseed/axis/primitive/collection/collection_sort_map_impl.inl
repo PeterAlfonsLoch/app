@@ -1,24 +1,81 @@
 #pragma once
 
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
-index sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::add_pair(ARG_KEY key, ARG_VALUE newValue)
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
+void sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE, m_bMultiKey >::add_pair(ARG_KEY key,ARG_VALUE newValue)
 {
 
-   index i;
-
-   if(!find_key(key, i))
+   if(m_pnode == NULL)
    {
+      m_pnode = new node(key,newValue);
+      return;
+   }
 
-      m_ptra.insert_at(i, new pair(key));
+   node * pnode = m_pnode;
+
+   while(true)
+   {
+      if(compare(key,pnode->first))
+      {
+
+         if(pnode->left == NULL)
+         {
+
+            pnode->left = new node(key,newValue);
+
+            return;
+
+         }
+         else
+         {
+
+            pnode = pnode->left;
+
+         }
+
+      }
+      else if(m_bMultiKey || compare(key,pnode->first))
+      {
+
+         if(pnode->right == NULL)
+         {
+
+            pnode->right = new node(key, newValue);
+
+            return;
+
+         }
+         else
+         {
+
+            pnode = pnode->right;
+
+         }
+
+      }
+      else
+      {
+         
+         pnode->second = newValue;
+
+         return;
+
+      }
 
    }
 
-   m_ptra[i]->m_element2 = newValue;
-
-   return i;
 
 }
+
+
+template < class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class COMPARE, bool m_bMultiKey >
+void sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE, m_bMultiKey >::insert(const pair < KEY,VALUE > & pair)
+{
+
+   add_pair(pair.first,pair.second);
+
+}
+
 
 template < class type_map >
 sort_attrib_map < type_map > & sort_attrib_map < type_map >::operator = (const sort_attrib_map & attribmap)

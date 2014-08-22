@@ -64,7 +64,7 @@
 /* I've just gone over this and it is now %20 faster on x86 - eay - 27 Jun 96 */
 int BN_sqr(BIGNUM *r, const BIGNUM *a, BN_CTX *ctx)
 	{
-	int max,al;
+	int MAX,al;
 	int ret = 0;
 	BIGNUM *tmp,*rr;
 
@@ -86,8 +86,8 @@ int BN_sqr(BIGNUM *r, const BIGNUM *a, BN_CTX *ctx)
 	tmp=BN_CTX_get(ctx);
 	if (!rr || !tmp) goto err;
 
-	max = 2 * al; /* Non-zero (from above) */
-	if (bn_wexpand(rr,max) == NULL) goto err;
+	MAX = 2 * al; /* Non-zero (from above) */
+	if (bn_wexpand(rr,MAX) == NULL) goto err;
 
 	if (al == 4)
 		{
@@ -129,23 +129,23 @@ int BN_sqr(BIGNUM *r, const BIGNUM *a, BN_CTX *ctx)
 				}
 			else
 				{
-				if (bn_wexpand(tmp,max) == NULL) goto err;
+				if (bn_wexpand(tmp,MAX) == NULL) goto err;
 				bn_sqr_normal(rr->d,a->d,al,tmp->d);
 				}
 			}
 #else
-		if (bn_wexpand(tmp,max) == NULL) goto err;
+		if (bn_wexpand(tmp,MAX) == NULL) goto err;
 		bn_sqr_normal(rr->d,a->d,al,tmp->d);
 #endif
 		}
 
 	rr->neg=0;
 	/* If the most-significant half of the top word of 'a' is zero, then
-	 * the square of 'a' will max-1 words. */
+	 * the square of 'a' will MAX-1 words. */
 	if(a->d[al - 1] == (a->d[al - 1] & BN_MASK2l))
-		rr->top = max - 1;
+		rr->top = MAX - 1;
 	else
-		rr->top = max;
+		rr->top = MAX;
 	if (rr != r) BN_copy(r,rr);
 	ret = 1;
  err:
@@ -158,14 +158,14 @@ int BN_sqr(BIGNUM *r, const BIGNUM *a, BN_CTX *ctx)
 /* tmp must have 2*n words */
 void bn_sqr_normal(BN_ULONG *r, const BN_ULONG *a, int n, BN_ULONG *tmp)
 	{
-	int i,j,max;
+	int i,j,MAX;
 	const BN_ULONG *ap;
 	BN_ULONG *rp;
 
-	max=n*2;
+	MAX=n*2;
 	ap=a;
 	rp=r;
-	rp[0]=rp[max-1]=0;
+	rp[0]=rp[MAX-1]=0;
 	rp++;
 	j=n;
 
@@ -184,13 +184,13 @@ void bn_sqr_normal(BN_ULONG *r, const BN_ULONG *a, int n, BN_ULONG *tmp)
 		rp+=2;
 		}
 
-	bn_add_words(r,r,r,max);
+	bn_add_words(r,r,r,MAX);
 
 	/* There will not be a carry */
 
 	bn_sqr_words(tmp,a,n);
 
-	bn_add_words(r,r,tmp,max);
+	bn_add_words(r,r,tmp,MAX);
 	}
 
 #ifdef BN_RECURSION

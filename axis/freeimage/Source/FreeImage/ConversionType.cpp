@@ -65,8 +65,8 @@ CONVERT_TYPE<Tdst, Tsrc>::convert(FIBITMAP *src, FREE_IMAGE_TYPE dst_type) {
 
 
 /** Convert a greyscale image of type Tsrc to a 8-bit grayscale dib.
-	Conversion is done using either a linear scaling from [min, max] to [0, 255]
-	or a rounding from src_pixel to (BYTE) min(255, max(0, q)) where int q = int(src_pixel + 0.5); 
+	Conversion is done using either a linear scaling from [MIN, MAX] to [0, 255]
+	or a rounding from src_pixel to (BYTE) MIN(255, MAX(0, q)) where int q = int(src_pixel + 0.5); 
 */
 template<class Tsrc>
 class CONVERT_TO_BYTE
@@ -99,31 +99,31 @@ CONVERT_TO_BYTE<Tsrc>::convert(FIBITMAP *src, BOOL scale_linear) {
 	// convert the src image to dst
 	// (FIBITMAP are stored upside down)
 	if(scale_linear) {
-		Tsrc max, min;
+		Tsrc MAX, MIN;
 		double scale;
 
-		// find the min and max value of the image
+		// find the MIN and MAX value of the image
 		Tsrc l_min, l_max;
-		min = 255, max = 0;
+		MIN = 255, MAX = 0;
 		for(y = 0; y < height; y++) {
 			Tsrc *bits = reinterpret_cast<Tsrc*>(FreeImage_GetScanLine(src, y));
 			MAXMIN(bits, width, l_max, l_min);
-			if(l_max > max) max = l_max;
-			if(l_min < min) min = l_min;
+			if(l_max > MAX) MAX = l_max;
+			if(l_min < MIN) MIN = l_min;
 		}
-		if(max == min) {
-			max = 255; min = 0;
+		if(MAX == MIN) {
+			MAX = 255; MIN = 0;
 		}
 
 		// compute the scaling factor
-		scale = 255 / (double)(max - min);
+		scale = 255 / (double)(MAX - MIN);
 
 		// scale to 8-bit
 		for(y = 0; y < height; y++) {
 			Tsrc *src_bits = reinterpret_cast<Tsrc*>(FreeImage_GetScanLine(src, y));
 			BYTE *dst_bits = FreeImage_GetScanLine(dst, y);
 			for(x = 0; x < width; x++) {
-				dst_bits[x] = (BYTE)( scale * (src_bits[x] - min) + 0.5);
+				dst_bits[x] = (BYTE)( scale * (src_bits[x] - MIN) + 0.5);
 			}
 		}
 	} else {
@@ -133,7 +133,7 @@ CONVERT_TO_BYTE<Tsrc>::convert(FIBITMAP *src, BOOL scale_linear) {
 			for(x = 0; x < width; x++) {
 				// rounding
 				int q = int(src_bits[x] + 0.5);
-				dst_bits[x] = (BYTE) min(255, max(0, q));
+				dst_bits[x] = (BYTE) MIN(255, MAX(0, q));
 			}
 		}
 	}

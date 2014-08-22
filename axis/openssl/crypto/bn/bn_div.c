@@ -270,7 +270,7 @@ int BN_div(BIGNUM *dv, BIGNUM *rm, const BIGNUM *num, const BIGNUM *divisor,
 	wnum.neg   = 0;
 	wnum.d     = &(snum->d[loop]);
 	wnum.top   = div_n;
-	/* only needed when BN_ucmp messes up the values between top and max */
+	/* only needed when BN_ucmp messes up the values between top and MAX */
 	wnum.dmax  = snum->dmax - loop; /* so we don't step out of bounds */
 
 	/* Get the top 2 words of sdiv */
@@ -296,7 +296,7 @@ int BN_div(BIGNUM *dv, BIGNUM *rm, const BIGNUM *num, const BIGNUM *divisor,
 			{
 			/* If BN_DEBUG_RAND is defined BN_ucmp changes (via
 			 * bn_pollute) the const bignum arguments =>
-			 * clean the values between top and max again */
+			 * clean the values between top and MAX again */
 			bn_clear_top2max(&wnum);
 			bn_sub_words(wnum.d, wnum.d, sdiv->d, div_n);
 			*resp=1;

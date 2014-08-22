@@ -66,7 +66,7 @@ struct PageInfo {
 	WORD left, top, width, height;
 };
 
-//GIF defines a max of 12 bits per code
+//GIF defines a MAX of 12 bits per code
 #define MAX_LZW_CODE			4096
 
 class StringTable
@@ -948,7 +948,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		}
 
 		if( page == 0 ) {
-			size_t idx;
+			index idx;
 
 			//Logical Screen Descriptor
 			io->seek_proc(handle, 6, SEEK_SET);
@@ -1311,7 +1311,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 
 		//Image Data Sub-blocks
 		int y = 0, interlacepass = 0, line = FreeImage_GetLine(dib);
-		BYTE buf[255], *bufptr = buf; //255 is the max sub-block length
+		BYTE buf[255], *bufptr = buf; //255 is the MAX sub-block length
 		int size = sizeof(buf);
 		b = sizeof(buf);
 		while( y < output_height ) {

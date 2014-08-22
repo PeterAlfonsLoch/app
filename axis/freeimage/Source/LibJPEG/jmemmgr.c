@@ -152,7 +152,7 @@ struct jvirt_sarray_control {
   JSAMPARRAY mem_buffer;	/* => the in-memory buffer */
   JDIMENSION rows_in_array;	/* total virtual array height */
   JDIMENSION samplesperrow;	/* width of array (and of memory buffer) */
-  JDIMENSION maxaccess;		/* max rows accessed by access_virt_sarray */
+  JDIMENSION maxaccess;		/* MAX rows accessed by access_virt_sarray */
   JDIMENSION rows_in_mem;	/* height of memory buffer */
   JDIMENSION rowsperchunk;	/* allocation chunk size in mem_buffer */
   JDIMENSION cur_start_row;	/* first logical row # in the buffer */
@@ -168,7 +168,7 @@ struct jvirt_barray_control {
   JBLOCKARRAY mem_buffer;	/* => the in-memory buffer */
   JDIMENSION rows_in_array;	/* total virtual array height */
   JDIMENSION blocksperrow;	/* width of array (and of memory buffer) */
-  JDIMENSION maxaccess;		/* max rows accessed by access_virt_barray */
+  JDIMENSION maxaccess;		/* MAX rows accessed by access_virt_barray */
   JDIMENSION rows_in_mem;	/* height of memory buffer */
   JDIMENSION rowsperchunk;	/* allocation chunk size in mem_buffer */
   JDIMENSION cur_start_row;	/* first logical row # in the buffer */
@@ -403,7 +403,7 @@ alloc_sarray (j_common_ptr cinfo, int pool_id,
   JDIMENSION rowsperchunk, currow, i;
   long ltemp;
 
-  /* Calculate max # of rows allowed in one allocation chunk */
+  /* Calculate MAX # of rows allowed in one allocation chunk */
   ltemp = (MAX_ALLOC_CHUNK-SIZEOF(large_pool_hdr)) /
 	  ((long) samplesperrow * SIZEOF(JSAMPLE));
   if (ltemp <= 0)
@@ -421,7 +421,7 @@ alloc_sarray (j_common_ptr cinfo, int pool_id,
   /* Get the rows themselves (large objects) */
   currow = 0;
   while (currow < numrows) {
-    rowsperchunk = min(rowsperchunk, numrows - currow);
+    rowsperchunk = MIN(rowsperchunk, numrows - currow);
     workspace = (JSAMPROW) alloc_large(cinfo, pool_id,
 	(size_t) ((size_t) rowsperchunk * (size_t) samplesperrow
 		  * SIZEOF(JSAMPLE)));
@@ -451,7 +451,7 @@ alloc_barray (j_common_ptr cinfo, int pool_id,
   JDIMENSION rowsperchunk, currow, i;
   long ltemp;
 
-  /* Calculate max # of rows allowed in one allocation chunk */
+  /* Calculate MAX # of rows allowed in one allocation chunk */
   ltemp = (MAX_ALLOC_CHUNK-SIZEOF(large_pool_hdr)) /
 	  ((long) blocksperrow * SIZEOF(JBLOCK));
   if (ltemp <= 0)
@@ -469,7 +469,7 @@ alloc_barray (j_common_ptr cinfo, int pool_id,
   /* Get the rows themselves (large objects) */
   currow = 0;
   while (currow < numrows) {
-    rowsperchunk = min(rowsperchunk, numrows - currow);
+    rowsperchunk = MIN(rowsperchunk, numrows - currow);
     workspace = (JBLOCKROW) alloc_large(cinfo, pool_id,
 	(size_t) ((size_t) rowsperchunk * (size_t) blocksperrow
 		  * SIZEOF(JBLOCK)));
@@ -698,12 +698,12 @@ do_sarray_io (j_common_ptr cinfo, jvirt_sarray_ptr ptr, boolean writing)
   /* Loop to read or write each allocation chunk in mem_buffer */
   for (i = 0; i < (long) ptr->rows_in_mem; i += ptr->rowsperchunk) {
     /* One chunk, but check for short chunk at end of buffer */
-    rows = min((long) ptr->rowsperchunk, (long) ptr->rows_in_mem - i);
+    rows = MIN((long) ptr->rowsperchunk, (long) ptr->rows_in_mem - i);
     /* Transfer no more than is currently defined */
     thisrow = (long) ptr->cur_start_row + i;
-    rows = min(rows, (long) ptr->first_undef_row - thisrow);
+    rows = MIN(rows, (long) ptr->first_undef_row - thisrow);
     /* Transfer no more than fits in file */
-    rows = min(rows, (long) ptr->rows_in_array - thisrow);
+    rows = MIN(rows, (long) ptr->rows_in_array - thisrow);
     if (rows <= 0)		/* this chunk might be past end of file! */
       break;
     byte_count = rows * bytesperrow;
@@ -731,12 +731,12 @@ do_barray_io (j_common_ptr cinfo, jvirt_barray_ptr ptr, boolean writing)
   /* Loop to read or write each allocation chunk in mem_buffer */
   for (i = 0; i < (long) ptr->rows_in_mem; i += ptr->rowsperchunk) {
     /* One chunk, but check for short chunk at end of buffer */
-    rows = min((long) ptr->rowsperchunk, (long) ptr->rows_in_mem - i);
+    rows = MIN((long) ptr->rowsperchunk, (long) ptr->rows_in_mem - i);
     /* Transfer no more than is currently defined */
     thisrow = (long) ptr->cur_start_row + i;
-    rows = min(rows, (long) ptr->first_undef_row - thisrow);
+    rows = MIN(rows, (long) ptr->first_undef_row - thisrow);
     /* Transfer no more than fits in file */
-    rows = min(rows, (long) ptr->rows_in_array - thisrow);
+    rows = MIN(rows, (long) ptr->rows_in_array - thisrow);
     if (rows <= 0)		/* this chunk might be past end of file! */
       break;
     byte_count = rows * bytesperrow;

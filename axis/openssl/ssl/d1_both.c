@@ -167,7 +167,7 @@ static void dtls1_set_message_header_int(SSL *s, unsigned char mt,
 	unsigned long len, unsigned short seq_num, unsigned long frag_off, 
 	unsigned long frag_len);
 static long dtls1_get_message_fragment(SSL *s, int st1, int stn, 
-	long max, int *ok);
+	long MAX, int *ok);
 
 static hm_fragment *
 dtls1_hm_fragment_new(unsigned long frag_len, int reassembly)
@@ -408,11 +408,11 @@ int dtls1_do_write(SSL *s, int type)
 
 
 /* Obtain handshake message of message type 'mt' (any if mt == -1),
- * maximum acceptable body length 'max'.
+ * maximum acceptable body length 'MAX'.
  * Read an entire handshake message.  Handshake messages arrive in
  * fragments.
  */
-long dtls1_get_message(SSL *s, int st1, int stn, int mt, long max, int *ok)
+long dtls1_get_message(SSL *s, int st1, int stn, int mt, long MAX, int *ok)
 	{
 	int i, al;
 	struct hm_header_st *msg_hdr;
@@ -440,7 +440,7 @@ long dtls1_get_message(SSL *s, int st1, int stn, int mt, long max, int *ok)
 	memset(msg_hdr, 0x00, sizeof(struct hm_header_st));
 
 again:
-	i = dtls1_get_message_fragment(s, st1, stn, max, ok);
+	i = dtls1_get_message_fragment(s, st1, stn, MAX, ok);
 	if ( i == DTLS1_HM_BAD_FRAGMENT ||
 		i == DTLS1_HM_FRAGMENT_RETRY)  /* bad fragment received */
 		goto again;
@@ -483,7 +483,7 @@ f_err:
 	}
 
 
-static int dtls1_preprocess_fragment(SSL *s,struct hm_header_st *msg_hdr,int max)
+static int dtls1_preprocess_fragment(SSL *s,struct hm_header_st *msg_hdr,int MAX)
 	{
 	size_t frag_off,frag_len,msg_len;
 
@@ -498,7 +498,7 @@ static int dtls1_preprocess_fragment(SSL *s,struct hm_header_st *msg_hdr,int max
 		return SSL_AD_ILLEGAL_PARAMETER;
 		}
 
-	if ( (frag_off+frag_len) > (unsigned long)max)
+	if ( (frag_off+frag_len) > (unsigned long)MAX)
 		{
 		SSLerr(SSL_F_DTLS1_PREPROCESS_FRAGMENT,SSL_R_EXCESSIVE_MESSAGE_SIZE);
 		return SSL_AD_ILLEGAL_PARAMETER;
@@ -507,7 +507,7 @@ static int dtls1_preprocess_fragment(SSL *s,struct hm_header_st *msg_hdr,int max
 	if ( s->d1->r_msg_hdr.frag_off == 0) /* first fragment */
 		{
 		/* msg_len is limited to 2^24, but is effectively checked
-		 * against max above */
+		 * against MAX above */
 		if (!BUF_MEM_grow_clean(s->init_buf,msg_len+DTLS1_HM_HEADER_LENGTH))
 			{
 			SSLerr(SSL_F_DTLS1_PREPROCESS_FRAGMENT,ERR_R_BUF_LIB);
@@ -533,7 +533,7 @@ static int dtls1_preprocess_fragment(SSL *s,struct hm_header_st *msg_hdr,int max
 
 
 static int
-dtls1_retrieve_buffered_fragment(SSL *s, long max, int *ok)
+dtls1_retrieve_buffered_fragment(SSL *s, long MAX, int *ok)
 	{
 	/* (0) check whether the desired fragment is available
 	 * if so:
@@ -560,7 +560,7 @@ dtls1_retrieve_buffered_fragment(SSL *s, long max, int *ok)
 		unsigned long frag_len = frag->msg_header.frag_len;
 		pqueue_pop(s->d1->buffered_messages);
 
-		al=dtls1_preprocess_fragment(s,&frag->msg_header,max);
+		al=dtls1_preprocess_fragment(s,&frag->msg_header,MAX);
 
 		if (al==0) /* no alert */
 			{
@@ -800,7 +800,7 @@ err:
 
 
 static long
-dtls1_get_message_fragment(SSL *s, int st1, int stn, long max, int *ok)
+dtls1_get_message_fragment(SSL *s, int st1, int stn, long MAX, int *ok)
 	{
 	unsigned char wire[DTLS1_HM_HEADER_LENGTH];
 	unsigned long len, frag_off, frag_len;
@@ -809,7 +809,7 @@ dtls1_get_message_fragment(SSL *s, int st1, int stn, long max, int *ok)
 
 	redo:
 	/* see if we have the required fragment already */
-	if ((frag_len = dtls1_retrieve_buffered_fragment(s,max,ok)) || *ok)
+	if ((frag_len = dtls1_retrieve_buffered_fragment(s,MAX,ok)) || *ok)
 		{
 		if (*ok)	s->init_num = frag_len;
 		return frag_len;
@@ -876,7 +876,7 @@ dtls1_get_message_fragment(SSL *s, int st1, int stn, long max, int *ok)
 			}
 		}
 
-	if ((al=dtls1_preprocess_fragment(s,&msg_hdr,max)))
+	if ((al=dtls1_preprocess_fragment(s,&msg_hdr,MAX)))
 		goto f_err;
 
 	/* XDTLS:  ressurect this when restart is in place */

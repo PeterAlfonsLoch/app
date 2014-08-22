@@ -60,7 +60,7 @@ namespace Iex {
 // Our most basic exception class
 //-------------------------------
 
-class BaseExc: public std::string, public std::exception
+class BaseExc: public verisimple_exception
 {
   public:
 
@@ -224,7 +224,7 @@ BaseExc::operator += (std::stringstream &s)
 inline BaseExc &
 BaseExc::assign (const char *s)
 {
-    std::string::assign(s);
+    m_strMessage = s;
     return *this;
 }
 
@@ -239,7 +239,7 @@ BaseExc::operator = (const char *s)
 inline BaseExc &
 BaseExc::append (const char *s)
 {
-    std::string::append(s);
+    m_strMessage+=s;
     return *this;
 }
 

@@ -319,7 +319,7 @@ namespace backview
             double dRate;
             if(imagechange.m_eplacement == ImagePlacementZoomAll)
             {
-               dRate = min((double) cx / sizeSource.cx, (double) cy / sizeSource.cy);
+               dRate = MIN((double) cx / sizeSource.cx, (double) cy / sizeSource.cy);
                finalW = (int32_t) (sizeSource.cx * dRate);
                finalH = (int32_t)(sizeSource.cy * dRate);
                finalX = (cx - finalW) / 2;
@@ -327,7 +327,7 @@ namespace backview
             }
             else if (imagechange.m_eplacement == ImagePlacementZoomExtend)
             {
-               dRate = max((double) cx / sizeSource.cx, (double) cy / sizeSource.cy);
+               dRate = MAX((double) cx / sizeSource.cx, (double) cy / sizeSource.cy);
                finalW = (int32_t) (sizeSource.cx * dRate);
                finalH = (int32_t) (sizeSource.cy * dRate);
                finalX = (cx - finalW) / 2;

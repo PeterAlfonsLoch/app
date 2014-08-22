@@ -90,7 +90,7 @@ namespace html
          int iSize = 20;
 
          if (strSize.has_char())
-            iSize = max(1, atoi(strSize));
+            iSize = MAX(1, atoi(strSize));
       
          m_box.set_cxy(iSize * 10.f, 23.f);
 

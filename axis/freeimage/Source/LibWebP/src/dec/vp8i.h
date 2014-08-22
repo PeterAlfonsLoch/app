@@ -176,7 +176,7 @@ typedef struct {
   quant_t y1_mat_, y2_mat_, uv_mat_;
 
   int uv_quant_;   // U/V quantizer value
-  int dither_;     // dithering amplitude (0 = off, max=255)
+  int dither_;     // dithering amplitude (0 = off, MAX=255)
 } VP8QuantMatrix;
 
 // Data needed to reconstruct a macroblock

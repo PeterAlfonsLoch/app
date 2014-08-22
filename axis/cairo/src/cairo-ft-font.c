@@ -97,7 +97,7 @@
 #define DOUBLE_TO_16_16(d) ((FT_Fixed)((d) * 65536.0))
 #define DOUBLE_FROM_16_16(t) ((double)(t) / 65536.0)
 
-/* This is the max number of FT_face objects we keep open at once
+/* This is the MAX number of FT_face objects we keep open at once
  */
 #define MAX_OPEN_FACES 10
 
@@ -2556,7 +2556,7 @@ _cairo_index_to_glyph_name (void	         *abstract_font,
     cairo_ft_scaled_font_t *scaled_font = abstract_font;
     cairo_ft_unscaled_font_t *unscaled = scaled_font->unscaled;
     FT_Face face;
-    char buffer[256]; /* PLRM spcifies max name length of 127 */
+    char buffer[256]; /* PLRM spcifies MAX name length of 127 */
     FT_Error error;
     int i;
 

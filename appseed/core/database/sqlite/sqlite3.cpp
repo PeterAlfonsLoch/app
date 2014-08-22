@@ -1938,7 +1938,7 @@ namespace sqlite3
       ** sqlite3_free(P) where P is the first parameter to sqlite3_realloc().
       ** Sqlite3_realloc() returns a pointer to a primitive::memory allocation
       ** of at least N bytes in size or NULL if sufficient primitive::memory is unavailable.
-      ** If M is the size of the prior allocation, then min(N,M) bytes
+      ** If M is the size of the prior allocation, then MIN(N,M) bytes
       ** of the prior allocation are copied into the beginning of buffer returned
       ** by sqlite3_realloc() and the prior allocation is freed.
       ** If sqlite3_realloc() returns NULL, then the prior allocation
@@ -9265,8 +9265,8 @@ namespace sqlite3
    ** come in groups of 5 as follows:
    **
    **       N       number of digits in the integer
-   **       min     minimum allowed value of the integer
-   **       max     maximum allowed value of the integer
+   **       MIN     minimum allowed value of the integer
+   **       MAX     maximum allowed value of the integer
    **       nextC   first character after the integer
    **       pVal    where to write the integers value.
    **
@@ -9277,16 +9277,16 @@ namespace sqlite3
       va_list ap;
       int32_t val;
       int32_t N;
-      int32_t min;
-      int32_t max;
+      int32_t MIN;
+      int32_t MAX;
       int32_t nextC;
       int32_t *pVal;
       int32_t cnt = 0;
       va_start(ap, zDate);
       do{
          N = va_arg(ap, int32_t);
-         min = va_arg(ap, int32_t);
-         max = va_arg(ap, int32_t);
+         MIN = va_arg(ap, int32_t);
+         MAX = va_arg(ap, int32_t);
          nextC = va_arg(ap, int32_t);
          pVal = va_arg(ap, int32_t*);
          val = 0;
@@ -9297,7 +9297,7 @@ namespace sqlite3
             val = val*10 + *zDate - '0';
             zDate++;
          }
-         if( val<min || val>max || (nextC!=0 && nextC!=*zDate) ){
+         if( val<MIN || val>MAX || (nextC!=0 && nextC!=*zDate) ){
             goto end_getDigits;
          }
          *pVal = val;
@@ -28166,18 +28166,18 @@ stmt_begin_failed:
    ** This counter allows other processes to know when the file has changed
    ** and thus when they need to flush their cache.
    **
-   ** The max embedded payload fraction is the amount of the total usable
+   ** The MAX embedded payload fraction is the amount of the total usable
    ** space in a page that can be consumed by a single cell for standard
    ** B-tree (non-LEAFDATA) tables.  A value of 255 means 100%.  The default
    ** is to limit the maximum cell size so that at least 4 cells will fit
-   ** on one page.  Thus the default max embedded payload fraction is 64.
+   ** on one page.  Thus the default MAX embedded payload fraction is 64.
    **
-   ** If the payload for a cell is larger than the max payload, then extra
+   ** If the payload for a cell is larger than the MAX payload, then extra
    ** payload is spilled to overflow pages.  Once an overflow page is allocated,
    ** as many bytes as possible are moved into the overflow pages without letting
-   ** the cell size drop below the min embedded payload fraction.
+   ** the cell size drop below the MIN embedded payload fraction.
    **
-   ** The min leaf payload fraction is like the min embedded payload fraction
+   ** The MIN leaf payload fraction is like the MIN embedded payload fraction
    ** except that it applies to leaf nodes in a LEAFDATA tree.  The maximum
    ** payload fraction for a LEAFDATA tree is always 100% (or 255) and it
    ** not specified in the header.
@@ -35144,7 +35144,7 @@ cleardatabasepage_out:
                *piMoved = maxRootPgno;
             }
 
-            /* Set the new 'max-root-page' value in the database header. This
+            /* Set the new 'MAX-root-page' value in the database header. This
             ** is the old value less one, less one more if that happens to
             ** be a root-page number, less one again if that is the
             ** PENDING_BYTE_PAGE.
@@ -41745,7 +41745,7 @@ arithmetic_result_is_null:
                                   **
                                   ** P4 is a pointer to a CollSeq struct. If the next call to a user function
                                   ** or aggregate calls sqlite3GetFuncCollSeq(), this collation sequence will
-                                  ** be returned. This is used by the built-in min(), max() and nullif()
+                                  ** be returned. This is used by the built-in MIN(), MAX() and nullif()
                                   ** functions.
                                   **
                                   ** The interface used by the implementation of the aforementioned functions
@@ -50117,7 +50117,7 @@ exit_begin_add_column:
          */
          if( db->nDb>=SQLITE_MAX_ATTACHED+2 ){
             sqlite3_snprintf(
-               sizeof(zErr), zErr, "too many attached databases - max %d",
+               sizeof(zErr), zErr, "too many attached databases - MAX %d",
                SQLITE_MAX_ATTACHED
                );
             goto attach_error;
@@ -55211,7 +55211,7 @@ delete_from_cleanup:
    }
 
    /*
-   ** Implementation of the non-aggregate min() and max() functions
+   ** Implementation of the non-aggregate MIN() and MAX() functions
    */
    static void minmaxFunc(
       sqlite3_context *context,
@@ -55219,7 +55219,7 @@ delete_from_cleanup:
       sqlite3_value **argv
       ){
          int32_t i;
-         int32_t mask;    /* 0 for min() or 0xffffffff for max() */
+         int32_t mask;    /* 0 for MIN() or 0xffffffff for MAX() */
          int32_t iBest;
          CollSeq *pColl;
 
@@ -56459,7 +56459,7 @@ delete_from_cleanup:
    }
 
    /*
-   ** Routines to implement min() and max() aggregate functions.
+   ** Routines to implement MIN() and MAX() aggregate functions.
    */
    static void minmaxStep(sqlite3_context *context, int32_t argc, sqlite3_value **argv){
       Mem *pArg  = (Mem *)argv[0];
@@ -56470,20 +56470,20 @@ delete_from_cleanup:
       if( !pBest ) return;
 
       if( pBest->flags ){
-         int32_t max;
+         int32_t MAX;
          int32_t cmp;
          CollSeq *pColl = sqlite3GetFuncCollSeq(context);
-         /* This step function is used for both the min() and max() aggregates,
+         /* This step function is used for both the MIN() and MAX() aggregates,
          ** the only difference between the two being that the sense of the
-         ** comparison is inverted. For the max() aggregate, the
-         ** sqlite3_user_data() function returns (void *)-1. For min() it
+         ** comparison is inverted. For the MAX() aggregate, the
+         ** sqlite3_user_data() function returns (void *)-1. For MIN() it
          ** returns (void *)db, where db is the sqlite3* database pointer.
-         ** Therefore the next statement sets var 'max' to 1 for the max()
-         ** aggregate, or 0 for min().
+         ** Therefore the next statement sets var 'MAX' to 1 for the MAX()
+         ** aggregate, or 0 for MIN().
          */
-         max = sqlite3_user_data(context)!=0;
+         MAX = sqlite3_user_data(context)!=0;
          cmp = sqlite3MemCompare(pBest, pArg, pColl);
-         if( (max && cmp<0) || (!max && cmp>0) ){
+         if( (MAX && cmp<0) || (!MAX && cmp>0) ){
             sqlite3VdbeMemCopy(pBest, pArg);
          }
       }else{
@@ -56562,10 +56562,10 @@ delete_from_cleanup:
          u8 needCollSeq;
          void (*xFunc)(sqlite3_context*,int32_t,sqlite3_value **);
       } aFuncs[] = {
-         { (char *)  "min",               -1, 0, SQLITE_UTF8,    1, minmaxFunc },
-         { (char *)  "min",                0, 0, SQLITE_UTF8,    1, 0          },
-         { (char *)  "max",               -1, 1, SQLITE_UTF8,    1, minmaxFunc },
-         { (char *)  "max",                0, 1, SQLITE_UTF8,    1, 0          },
+         { (char *)  "MIN",               -1, 0, SQLITE_UTF8,    1, minmaxFunc },
+         { (char *)  "MIN",                0, 0, SQLITE_UTF8,    1, 0          },
+         { (char *)  "MAX",               -1, 1, SQLITE_UTF8,    1, minmaxFunc },
+         { (char *)  "MAX",                0, 1, SQLITE_UTF8,    1, 0          },
          { (char *)  "typeof",             1, 0, SQLITE_UTF8,    0, typeofFunc },
          { (char *)  "length",             1, 0, SQLITE_UTF8,    0, lengthFunc },
          { (char *)  "substr",             2, 0, SQLITE_UTF8,    0, substrFunc },
@@ -56619,8 +56619,8 @@ delete_from_cleanup:
          void (*xStep)(sqlite3_context*,int32_t,sqlite3_value**);
          void (*xFinalize)(sqlite3_context*);
       } aAggs[] = {
-         { (char *)  "min",    1, 0, 1, minmaxStep,   minMaxFinalize },
-         { (char *)  "max",    1, 1, 1, minmaxStep,   minMaxFinalize },
+         { (char *)  "MIN",    1, 0, 1, minmaxStep,   minMaxFinalize },
+         { (char *)  "MAX",    1, 1, 1, minmaxStep,   minMaxFinalize },
          { (char *)  "sum",    1, 0, 0, sumStep,      sumFinalize    },
          { (char *)  "total",  1, 0, 0, sumStep,      totalFinalize    },
          { (char *)  "avg",    1, 0, 0, sumStep,      avgFinalize    },
@@ -64080,14 +64080,14 @@ multi_select_end:
 
    /*
    ** Analyze the SELECT statement passed as an argument to see if it
-   ** is a min() or max() query. Return ORDERBY_MIN or ORDERBY_MAX if
+   ** is a MIN() or MAX() query. Return ORDERBY_MIN or ORDERBY_MAX if
    ** it is, or 0 otherwise. At present, a query is considered to be
-   ** a min()/max() query if:
+   ** a MIN()/MAX() query if:
    **
    **   1. There is a single object in the FROM clause.
    **
    **   2. There is a single expression in the result set, and it is
-   **      either min(x) or max(x), where x is a column reference.
+   **      either MIN(x) or MAX(x), where x is a column reference.
    */
    static int32_t minMaxQuery(Parse *pParse, Select *p){
       Expr *pExpr;
@@ -64099,9 +64099,9 @@ multi_select_end:
       if( pExpr->op!=TK_AGG_FUNCTION || pEList==0 || pEList->nExpr!=1 ) return 0;
       if( pEList->a[0].pExpr->op!=TK_AGG_COLUMN ) return ORDERBY_NORMAL;
       if( pExpr->token.n!=3 ) return ORDERBY_NORMAL;
-      if( sqlite3StrNICmp((char*)pExpr->token.z,"min",3)==0 ){
+      if( sqlite3StrNICmp((char*)pExpr->token.z,"MIN",3)==0 ){
          return ORDERBY_MIN;
-      }else if( sqlite3StrNICmp((char*)pExpr->token.z,"max",3)==0 ){
+      }else if( sqlite3StrNICmp((char*)pExpr->token.z,"MAX",3)==0 ){
          return ORDERBY_MAX;
       }
       return ORDERBY_NORMAL;
@@ -64933,8 +64933,8 @@ multi_select_end:
 
                /* Check if the query is of one of the following forms:
                **
-               **   SELECT min(x) FROM ...
-               **   SELECT max(x) FROM ...
+               **   SELECT MIN(x) FROM ...
+               **   SELECT MAX(x) FROM ...
                **
                ** If it is, then ask the code in where.ca to attempt to sort results
                ** as if there was an "ORDER ON x" or "ORDER ON x DESC" clause.
@@ -64947,7 +64947,7 @@ multi_select_end:
                ** A special flag must be passed to sqlite3WhereBegin() to slightly
                ** modify behaviour as follows:
                **
-               **   + If the query is a "SELECT min(x)", then the loop coded by
+               **   + If the query is a "SELECT MIN(x)", then the loop coded by
                **     where.ca should not iterate over any values with a NULL value
                **     for x.
                **
@@ -64978,7 +64978,7 @@ multi_select_end:
                updateAccumulator(pParse, &sAggInfo);
                if( !pMinMax && flag ){
                   sqlite3VdbeAddOp2(v, OP_Goto, 0, pWInfo->iBreak);
-                  VdbeComment((v, "%s() by index", (flag==ORDERBY_MIN?"min":"max")));
+                  VdbeComment((v, "%s() by index", (flag==ORDERBY_MIN?"MIN":"MAX")));
                }
                sqlite3WhereEnd(pWInfo);
                finalizeAggFunctions(pParse, &sAggInfo);
@@ -70348,7 +70348,7 @@ or_not_possible:
                   int32_t testOp;
                   int32_t topLimit = (pLevel->flags & WHERE_TOP_LIMIT)!=0;
                   int32_t btmLimit = (pLevel->flags & WHERE_BTM_LIMIT)!=0;
-                  int32_t isMinQuery = 0;      /* If this is an optimized SELECT min(x) ... */
+                  int32_t isMinQuery = 0;      /* If this is an optimized SELECT MIN(x) ... */
                   int32_t regBase;        /* Base register holding constraint values */
                   int32_t r1;             /* Temp register */
 
@@ -70372,7 +70372,7 @@ or_not_possible:
                   }
 
                   /* If this loop satisfies a sort order (pOrderBy) request that
-                  ** was passed to this function to implement a "SELECT min(x) ..."
+                  ** was passed to this function to implement a "SELECT MIN(x) ..."
                   ** query, then the caller will only allow the loop to run for
                   ** a single iteration. This means that the first row returned
                   ** should not have a NULL value stored in 'x'. If column 'x' is
@@ -70508,7 +70508,7 @@ or_not_possible:
                   */
                   int32_t start;
                   int32_t nEq = pLevel->nEq;
-                  int32_t isMinQuery = 0;      /* If this is an optimized SELECT min(x) ... */
+                  int32_t isMinQuery = 0;      /* If this is an optimized SELECT MIN(x) ... */
                   int32_t regBase;             /* Base register of array holding constraints */
                   int32_t r1;
 
@@ -78521,13 +78521,13 @@ error_out:
       /* BLOCK_SELECT */ "select block from %_segments where blockid = ?",
       /* BLOCK_DELETE */ "delete from %_segments where blockid between ? and ?",
 
-      /* SEGDIR_MAX_INDEX */ "select max(idx) from %_segdir where level = ?",
+      /* SEGDIR_MAX_INDEX */ "select MAX(idx) from %_segdir where level = ?",
       /* SEGDIR_SET */ "insert into %_segdir values (?, ?, ?, ?, ?, ?)",
       /* SEGDIR_SELECT */
       "select start_block, leaves_end_block, root from %_segdir "
       " where level = ? order by idx",
       /* SEGDIR_SPAN */
-      "select min(start_block), max(end_block) from %_segdir "
+      "select MIN(start_block), MAX(end_block) from %_segdir "
       " where level = ? and start_block <> 0",
       /* SEGDIR_DELETE */ "delete from %_segdir where level = ?",
       /* SEGDIR_SELECT_ALL */
@@ -78880,11 +78880,11 @@ error_out:
       if( rc!=SQLITE_OK ) return rc;
 
       rc = sqlite3_step(s);
-      /* Should always get at least one row due to how max() works. */
+      /* Should always get at least one row due to how MAX() works. */
       if( rc==SQLITE_DONE ) return SQLITE_DONE;
       if( rc!=SQLITE_ROW ) return rc;
 
-      /* NULL means that there were no inputs to max(). */
+      /* NULL means that there were no inputs to MAX(). */
       if( SQLITE_NULL==sqlite3_column_type(s, 0) ){
          rc = sqlite3_step(s);
          if( rc==SQLITE_ROW ) return SQLITE_ERROR;
@@ -80858,7 +80858,7 @@ out:
 
    /* Minimum number of terms per interior node (except the root). This
    ** prevents large terms from making the tree too skinny - must be >0
-   ** so that the tree always makes progress.  Note that the min tree
+   ** so that the tree always makes progress.  Note that the MIN tree
    ** fanout will be INTERIOR_MIN_TERMS+1.
    */
 #define INTERIOR_MIN_TERMS 7

@@ -19,8 +19,8 @@
 
 // VP8 related constants.
 #define VP8_SIGNATURE 0x9d012a              // Signature in VP8 data.
-#define VP8_MAX_PARTITION0_SIZE (1 << 19)   // max size of mode partition
-#define VP8_MAX_PARTITION_SIZE  (1 << 24)   // max size for token partition
+#define VP8_MAX_PARTITION0_SIZE (1 << 19)   // MAX size of mode partition
+#define VP8_MAX_PARTITION_SIZE  (1 << 24)   // MAX size for token partition
 #define VP8_FRAME_HEADER_SIZE 10  // Size of the frame header within VP8 data.
 
 // VP8L related constants.
@@ -45,8 +45,8 @@
 #define NUM_DISTANCE_CODES           40
 #define CODE_LENGTH_CODES            19
 
-#define MIN_HUFFMAN_BITS             2  // min number of Huffman bits
-#define MAX_HUFFMAN_BITS             9  // max number of Huffman bits
+#define MIN_HUFFMAN_BITS             2  // MIN number of Huffman bits
+#define MAX_HUFFMAN_BITS             9  // MAX number of Huffman bits
 
 #define TRANSFORM_PRESENT            1  // The bit to be written when next data
                                         // to be read is a transform.
@@ -75,8 +75,8 @@ typedef enum {
 #define FRGM_CHUNK_SIZE    6     // Size of a FRGM chunk.
 #define VP8X_CHUNK_SIZE    10    // Size of a VP8X chunk.
 
-#define MAX_CANVAS_SIZE     (1 << 24)     // 24-bit max for VP8X width/height.
-#define MAX_IMAGE_AREA      (1ULL << 32)  // 32-bit max for width x height.
+#define MAX_CANVAS_SIZE     (1 << 24)     // 24-bit MAX for VP8X width/height.
+#define MAX_IMAGE_AREA      (1ULL << 32)  // 32-bit MAX for width x height.
 #define MAX_LOOP_COUNT      (1 << 16)     // maximum value for loop-count
 #define MAX_DURATION        (1 << 24)     // maximum duration
 #define MAX_POSITION_OFFSET (1 << 24)     // maximum frame/fragment x/y offset

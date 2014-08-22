@@ -259,7 +259,7 @@ namespace user
       }
       else
       {
-         iItemLast = min(m_nItemCount - 1, iItemFirst + m_nDisplayCount - 1);
+         iItemLast = MIN(m_nItemCount - 1, iItemFirst + m_nDisplayCount - 1);
       }
 
       if(iItemFirst < 0)
@@ -859,7 +859,7 @@ namespace user
             if(m_iItemHeight <= 0)
                rect.right = rectClient.right;
             else
-               rect.right  = (LONG) min(
+               rect.right  = (LONG) MIN(
                   rectClient.left +
                   m_nItemCount * itemFirst.m_rectItem.width() * m_iItemHeight /
                   rectClient.height()
@@ -935,11 +935,11 @@ namespace user
 
             _001GetViewClientRect(&rectClient);
 
-            itemTopRight.m_iItem = (index)max(1, rectClient.width() / get_item_size().cx) - 1;
+            itemTopRight.m_iItem = (index)MAX(1, rectClient.width() / get_item_size().cx) - 1;
          }
          else
          {
-            itemTopRight.m_iItem = max(1, m_iconlayout.m_iWidth) - 1;
+            itemTopRight.m_iItem = MAX(1, m_iconlayout.m_iWidth) - 1;
          }
          itemTopRight.m_iDisplayItem = itemTopRight.m_iDisplayItem;
          _001GetItemRect(&itemTopRight);
@@ -1348,7 +1348,7 @@ namespace user
          rect rectView;
          _001GetViewClientRect(&rectView);
          class size sizeItem = get_item_size();
-         return max((rectView.width() / sizeItem.cx) * (rectView.height() / sizeItem.cy),
+         return MAX((rectView.width() / sizeItem.cx) * (rectView.height() / sizeItem.cy),
             m_iconlayout.m_iaDisplayToStrict.get_max_a() + 1);
       }
       else if(m_eview == ViewReport)
@@ -1609,27 +1609,27 @@ namespace user
          {
             rectClient.top += m_rectTopText.height();
          }
-         index iIconSize = max(32, m_columna[0].m_sizeIcon.cy);
+         index iIconSize = MAX(32, m_columna[0].m_sizeIcon.cy);
          index iItemSize = iIconSize * 2;
 
          index ix = (index)( pt.x + m_scrollinfo.m_ptScroll.x);
-         ix = (index)max(m_scrollinfo.m_ptScroll.x, ix);
-         ix = (index)min(rectClient.right, ix);
-         ix = (index)max(rectClient.left, ix);
+         ix = (index)MAX(m_scrollinfo.m_ptScroll.x, ix);
+         ix = (index)MIN(rectClient.right, ix);
+         ix = (index)MAX(rectClient.left, ix);
          ix /= iItemSize;
 
          index iy = pt.y + m_scrollinfo.m_ptScroll.y;
-         iy = max(m_scrollinfo.m_ptScroll.y, iy);
-         iy = max(rectClient.top, iy);
+         iy = MAX(m_scrollinfo.m_ptScroll.y, iy);
+         iy = MAX(rectClient.top, iy);
          iy /= iItemSize;
 
          if(m_flags.is_signalized(flag_auto_arrange) || m_iconlayout.m_iWidth <= 0)
          {
-            iItemParam = iy * (max(1, rectClient.width() / iItemSize) ) + ix;
+            iItemParam = iy * (MAX(1, rectClient.width() / iItemSize) ) + ix;
          }
          else
          {
-            iItemParam = iy * (max(1, m_iconlayout.m_iWidth)) + ix;
+            iItemParam = iy * (MAX(1, m_iconlayout.m_iWidth)) + ix;
          }
 
 
@@ -1672,7 +1672,7 @@ namespace user
       _001GetItemRect(&itemLast);
 
       pdrawitem->m_rectGroup.unite(itemFirst.m_rectItem, itemLast.m_rectItem);
-      pdrawitem->m_rectGroup.bottom = max(itemLast.m_rectItem.bottom, itemFirst.m_rectItem.top + m_iGroupMinHeight);
+      pdrawitem->m_rectGroup.bottom = MAX(itemLast.m_rectItem.bottom, itemFirst.m_rectItem.top + m_iGroupMinHeight);
       pdrawitem->m_rectGroup.left = 0;
       pdrawitem->m_rectGroup.right = m_iLateralGroupWidth;
       pdrawitem->m_bOk = true;
@@ -1850,10 +1850,10 @@ namespace user
             {
                rectClient.top += m_rectTopText.height();
             }
-            index iIconSize = max(32, m_columna[0].m_sizeIcon.cy);
+            index iIconSize = MAX(32, m_columna[0].m_sizeIcon.cy);
             index iItemSize = iIconSize * 2;
-            pdrawitem->m_rectItem.left = (LONG) (iItemSize * (pdrawitem->m_iItem % (max(1, rectClient.width() / iItemSize) )));
-            pdrawitem->m_rectItem.top = (LONG) (iItemSize * (pdrawitem->m_iItem / (max(1, rectClient.width() / iItemSize) )));
+            pdrawitem->m_rectItem.left = (LONG) (iItemSize * (pdrawitem->m_iItem % (MAX(1, rectClient.width() / iItemSize) )));
+            pdrawitem->m_rectItem.top = (LONG) (iItemSize * (pdrawitem->m_iItem / (MAX(1, rectClient.width() / iItemSize) )));
             pdrawitem->m_rectItem.bottom = (LONG) (pdrawitem->m_rectItem.top + iItemSize);
             pdrawitem->m_rectItem.right = (LONG) (pdrawitem->m_rectItem.left + iItemSize);
          }
@@ -2292,7 +2292,7 @@ namespace user
          m_pheaderctrl->SetWindowPos(
             ZORDER_TOP,
             0, 0,
-            max(m_iItemWidth + 10, rectClient.width()),
+            MAX(m_iItemWidth + 10, rectClient.width()),
             m_iItemHeight,
             SWP_SHOWWINDOW);
       }
@@ -2409,8 +2409,8 @@ namespace user
             if(_001DisplayHitTest(pt, iItem))
             {
                item_range itemrange;
-               int_ptr iLItem = min(m_iShiftFirstSelection, iItem);
-               int_ptr iUItem = max(m_iShiftFirstSelection, iItem);
+               int_ptr iLItem = MIN(m_iShiftFirstSelection, iItem);
+               int_ptr iUItem = MAX(m_iShiftFirstSelection, iItem);
                itemrange.set(iLItem, iUItem, 0, m_columna.get_count() - 1, - 1, -1);
                m_rangeSelection.add_item(itemrange);
                m_iShiftFirstSelection = iItem;
@@ -2421,8 +2421,8 @@ namespace user
             if(_001DisplayHitTest(pt, iItem))
             {
                item_range itemrange;
-               int_ptr iLItem = min(m_iShiftFirstSelection, iItem);
-               int_ptr iUItem = max(m_iShiftFirstSelection, iItem);
+               int_ptr iLItem = MIN(m_iShiftFirstSelection, iItem);
+               int_ptr iUItem = MAX(m_iShiftFirstSelection, iItem);
                itemrange.set(iLItem, iUItem, 0, m_columna.get_count() - 1, - 1, -1);
                m_rangeSelection.add_item(itemrange);
                m_iShiftFirstSelection = iItem;
@@ -3703,10 +3703,10 @@ namespace user
                      {
                         item_range itemrange;
                         itemrange.set(
-                           min(iItemSel, m_iItemSel),
-                           max(iItemSel, m_iItemSel),
-                           min(iSubItemSel, m_iSubItemSel),
-                           max(iSubItemSel, m_iSubItemSel),
+                           MIN(iItemSel, m_iItemSel),
+                           MAX(iItemSel, m_iItemSel),
+                           MIN(iSubItemSel, m_iSubItemSel),
+                           MAX(iSubItemSel, m_iSubItemSel),
                            -1,
                            -1);
                         _001AddSelection(itemrange);
@@ -3715,10 +3715,10 @@ namespace user
                      {
                         item_range itemrange;
                         itemrange.set(
-                           min(iItemSel, m_iItemSel),
-                           max(iItemSel, m_iItemSel),
-                           min(iSubItemSel, m_iSubItemSel),
-                           max(iSubItemSel, m_iSubItemSel),
+                           MIN(iItemSel, m_iItemSel),
+                           MAX(iItemSel, m_iItemSel),
+                           MIN(iSubItemSel, m_iSubItemSel),
+                           MAX(iSubItemSel, m_iSubItemSel),
                            -1,
                            -1);
                         range range;
@@ -4164,7 +4164,7 @@ namespace user
    void list::_001EnsureVisible(index iItem, range & range)
    {
 
-      index iyScroll = m_scrollinfo.m_ptScroll.y / max(1, m_iItemHeight);
+      index iyScroll = m_scrollinfo.m_ptScroll.y / MAX(1, m_iItemHeight);
       if(iItem < iyScroll)
       {
          iyScroll = iItem - m_nDisplayCount + 1;
@@ -4173,13 +4173,13 @@ namespace user
       {
          iyScroll = iItem;
       }
-      if(m_scrollinfo.m_ptScroll.y  / max(1, m_iItemHeight) != iyScroll)
+      if(m_scrollinfo.m_ptScroll.y  / MAX(1, m_iItemHeight) != iyScroll)
       {
          item_range item;
          m_scrollinfo.m_ptScroll.y = (LONG) (iyScroll * m_iItemHeight);
          _001UpdateScrollBars();
          item.set_lower_bound(iyScroll);
-         item.set_upper_bound(min(iyScroll + m_nDisplayCount - 1, m_nItemCount - 1));
+         item.set_upper_bound(MIN(iyScroll + m_nDisplayCount - 1, m_nItemCount - 1));
          range.add_item(item);
       }
    }
@@ -4470,7 +4470,7 @@ namespace user
 
       string wstrItem;
 
-      index iItemCount = min(m_nItemCount, m_iFilter1Step + 1000);
+      index iItemCount = MIN(m_nItemCount, m_iFilter1Step + 1000);
 
       index iFilter1Step;
 
@@ -5060,11 +5060,11 @@ namespace user
                _001GetViewClientRect(rectClient);
                index iIconSize;
                if(m_columna.get_count() > 0)
-                  iIconSize = max(32, m_columna[0].m_sizeIcon.cy);
+                  iIconSize = MAX(32, m_columna[0].m_sizeIcon.cy);
                else
                   iIconSize = 32;
                index iItemSize = iIconSize * 2;
-               m_iconlayout.m_iWidth = (int32_t) (max(1, rectClient.width() / iItemSize));
+               m_iconlayout.m_iWidth = (int32_t) (MAX(1, rectClient.width() / iItemSize));
             }
             return do_drop(iDisplayDrop, iDisplayDrag);
          }
@@ -5127,7 +5127,7 @@ namespace user
          {
             return size(32, 32);
          }
-         index iIconSize = max(32, m_columna[0].m_sizeIcon.cy);
+         index iIconSize = MAX(32, m_columna[0].m_sizeIcon.cy);
          index iItemSize = iIconSize * 2;
          return size(iItemSize, iItemSize);
       }
@@ -5240,7 +5240,7 @@ namespace user
    int32_t list::_001GetGroupHeight(index iGroup)
    {
       int32_t iListHeight = (int32_t) (_001GetGroupItemCount(iGroup) * m_iItemHeight);
-      return max(m_iGroupMinHeight, iListHeight);
+      return MAX(m_iGroupMinHeight, iListHeight);
    }
 
    list_item::list_item(list * plist) :

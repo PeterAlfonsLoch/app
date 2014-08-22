@@ -191,8 +191,8 @@ typedef enum {
 #define     COMPRESSION_JP2000          34712   /* Leadtools JPEG2000 */
 #define	    COMPRESSION_LZMA		34925	/* LZMA2 */
 #define	TIFFTAG_PHOTOMETRIC		262	/* photometric interpretation */
-#define	    PHOTOMETRIC_MINISWHITE	0	/* min value is white */
-#define	    PHOTOMETRIC_MINISBLACK	1	/* min value is black */
+#define	    PHOTOMETRIC_MINISWHITE	0	/* MIN value is white */
+#define	    PHOTOMETRIC_MINISBLACK	1	/* MIN value is black */
 #define	    PHOTOMETRIC_RGB		2	/* RGB color model */
 #define	    PHOTOMETRIC_PALETTE		3	/* color map indexed */
 #define	    PHOTOMETRIC_MASK		4	/* $holdout mask */
@@ -289,7 +289,7 @@ typedef enum {
 #define	    CLEANFAXDATA_CLEAN		0	/* no errors detected */
 #define	    CLEANFAXDATA_REGENERATED	1	/* receiver regenerated lines */
 #define	    CLEANFAXDATA_UNCLEAN	2	/* uncorrected errors exist */
-#define	TIFFTAG_CONSECUTIVEBADFAXLINES	328	/* max consecutive bad lines */
+#define	TIFFTAG_CONSECUTIVEBADFAXLINES	328	/* MAX consecutive bad lines */
 #define	TIFFTAG_SUBIFD			330	/* subimage descriptors */
 #define	TIFFTAG_INKSET			332	/* !inks in separated image */
 #define	    INKSET_CMYK			1	/* !cyan-magenta-yellow-black color */

@@ -54,7 +54,7 @@ string dir::appdata(const char * lpcsz)
       
       index iFind2 = strCa2.reverse_find('/', iFind);
       
-      index iStart = max(iFind1 + 1, iFind2 + 1);
+      index iStart = MAX(iFind1 + 1, iFind2 + 1);
       
       strCa2 = strCa2.substr(0, iFind - 1) + "_" + strCa2.substr(iStart, iFind - iStart) + strCa2.substr(iFind + 1);
 
@@ -103,7 +103,7 @@ string dir::userappdata(const char * lpcsz)
       
       index iFind2 = strCa2.reverse_find('/', iFind);
       
-      index iStart = max(iFind1 + 1, iFind2 + 1);
+      index iStart = MAX(iFind1 + 1, iFind2 + 1);
       
       strCa2 = strCa2.substr(0, iFind - 1) + "_" + strCa2.substr(iStart, iFind - iStart) + strCa2.substr(iFind + 1);
 

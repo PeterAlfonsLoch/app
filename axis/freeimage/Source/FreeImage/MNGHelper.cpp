@@ -69,7 +69,7 @@ enum eChunckType {
 	MHDR,
 	BACK,
 	BASI,
-	CLIP,
+	CLIP_USHORT,
 	CLON,
 	DEFI,
 	DHDR,
@@ -1229,7 +1229,7 @@ mng_WriteJNG(int format_id, FreeImageIO *io, FIBITMAP *dib, fi_handle handle, in
 			// write chunks
 			for(DWORD k = 0; k < size_in_bytes;) {
 				DWORD bytes_left = size_in_bytes - k;
-				DWORD chunk_size = min(JPEG_CHUNK_SIZE, bytes_left);
+				DWORD chunk_size = MIN(JPEG_CHUNK_SIZE, bytes_left);
 				mng_WriteChunk(mng_JDAT, &jpeg_data[k], chunk_size, hJngMemory);
 				k += chunk_size;
 			}

@@ -38,7 +38,7 @@ struct HuffmanTree {
   int16_t lut_jump_[HUFF_LUT];
   // Complete tree for lookups.
   HuffmanTreeNode* root_;   // all the nodes, starting at root.
-  int max_nodes_;           // max number of nodes
+  int max_nodes_;           // MAX number of nodes
   int num_nodes_;           // number of currently occupied nodes
 };
 

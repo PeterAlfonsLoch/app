@@ -60,7 +60,7 @@ static const cairo_surface_backend_t _cairo_surface_observer_backend;
 
 static void init_stats (struct stat *s)
 {
-    s->min = HUGE_VAL;
+    s->MIN = HUGE_VAL;
     s->max = -HUGE_VAL;
 }
 
@@ -263,8 +263,8 @@ add_clip (struct clip *stats,
 static void
 stats_add (struct stat *s, double v)
 {
-    if (v < s->min)
-	s->min = v;
+    if (v < s->MIN)
+	s->MIN = v;
     if (v > s->max)
 	s->max = v;
     s->sum += v;

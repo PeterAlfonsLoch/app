@@ -129,7 +129,7 @@ class Compressor
     //  char *endOfBuf = buf;
     //
     //	for (int y = minY;
-    //	     y <= min (minY + numScanLines() - 1, header().dataWindow().max.y);
+    //	     y <= MIN (minY + numScanLines() - 1, header().dataWindow().max.y);
     //	     ++y)
     //	{
     //	    for (ChannelList::ConstIterator c = header().channels().begin();

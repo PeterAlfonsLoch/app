@@ -52,13 +52,13 @@ typedef struct st_key_cache
   my_bool can_be_used;           /* usage of cache for read/write is allowed */
   size_t key_cache_mem_size;      /* specified size of the cache memory       */
   uint key_cache_block_size;     /* size of the page buffer of a cache block */
-  ulong min_warm_blocks;         /* min number of warm blocks;               */
+  ulong min_warm_blocks;         /* MIN number of warm blocks;               */
   ulong age_threshold;           /* age threshold for hot blocks             */
   ulonglong keycache_time;       /* total number of block link operations    */
-  uint hash_entries;             /* max number of entries in the hash table  */
-  int hash_links;                /* max number of hash links                 */
+  uint hash_entries;             /* MAX number of entries in the hash table  */
+  int hash_links;                /* MAX number of hash links                 */
   int hash_links_used;           /* number of hash links currently used      */
-  int disk_blocks;               /* max number of blocks in the cache        */
+  int disk_blocks;               /* MAX number of blocks in the cache        */
   ulong blocks_used; /* maximum number of concurrently used blocks */
   ulong blocks_unused; /* number of currently unused blocks */
   ulong blocks_changed;          /* number of currently dirty blocks         */
@@ -92,7 +92,7 @@ typedef struct st_key_cache
 
   ulonglong param_buff_size;      /* size the memory allocated for the cache  */
   ulonglong param_block_size;     /* size of the blocks in the key cache      */
-  ulonglong param_division_limit; /* min. percentage of warm blocks           */
+  ulonglong param_division_limit; /* MIN. percentage of warm blocks           */
   ulonglong param_age_threshold;  /* determines when hot block is downgraded  */
 
   /* Statistics variables. These are reset in reset_key_cache_counters(). */
@@ -102,7 +102,7 @@ typedef struct st_key_cache
   ulonglong global_cache_r_requests;/* number of read requests (read hits)   */
   ulonglong global_cache_read;      /* number of reads from files to cache   */
 
-  int blocks;                   /* max number of blocks in the cache        */
+  int blocks;                   /* MAX number of blocks in the cache        */
   my_bool in_init;		/* Set to 1 in MySQL during init/resize     */
 } KEY_CACHE;
 

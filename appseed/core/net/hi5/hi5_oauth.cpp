@@ -568,8 +568,8 @@ void CSHA1::GetHash(UINT_8 *puDest)
    {
 
       string escaped;
-      ::count max = ca.get_length();
-      for(int32_t i=0; i<max; i++)
+      ::count MAX = ca.get_length();
+      for(int32_t i=0; i<MAX; i++)
       {
          if ( (48 <= ca[i] && ca[i] <= 57) ||//0-9
             (65 <= ca[i] && ca[i] <= 90) ||//ABC...XYZ

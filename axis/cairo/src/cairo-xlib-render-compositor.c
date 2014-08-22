@@ -1629,7 +1629,7 @@ composite_glyphs (void				*surface,
 	 */
 	old_width = width;
 
-	/* Update max glyph index */
+	/* Update MAX glyph index */
 	if (glyphs[i].index > max_index) {
 	    max_index = glyphs[i].index;
 	    if (max_index >= 65536)
@@ -1640,7 +1640,7 @@ composite_glyphs (void				*surface,
 	      request_size += (width - old_width) * num_out_glyphs;
 	}
 
-	/* If we will pass the max request size by adding this glyph,
+	/* If we will pass the MAX request size by adding this glyph,
 	 * flush current glyphs.  Note that we account for a
 	 * possible element being added below.
 	 *

@@ -70,8 +70,8 @@ void h__dump (unsigned char *p, int len);
 #endif
 
 /* PKCS12 compatible key/IV generation */
-#ifndef min
-#define min(a,b) ((a) < (b) ? (a) : (b))
+#ifndef MIN
+#define MIN(a,b) ((a) < (b) ? (a) : (b))
 #endif
 
 int PKCS12_key_gen_asc(const char *pass, int passlen, unsigned char *salt,
@@ -163,7 +163,7 @@ int PKCS12_key_gen_uni(unsigned char *pass, int passlen, unsigned char *salt,
 				|| !EVP_DigestFinal_ex(&ctx, Ai, NULL))
 			goto err;
 		}
-		memcpy (out, Ai, min (n, u));
+		memcpy (out, Ai, MIN (n, u));
 		if (u >= n) {
 #ifdef DEBUG_KEYGEN
 			fprintf(stderr, "Output KEY (length %d)\n", tmpn);

@@ -82,7 +82,7 @@ typedef struct {
 	Ttag    tag;			/* encoding state */
 	unsigned char*	refline;	/* reference line for 2d decoding */
 	int	k;			/* #rows left that can be 2d encoded */
-	int	maxk;			/* max #rows that can be 2d encoded */
+	int	maxk;			/* MAX #rows that can be 2d encoded */
 
 	int line;
 } Fax3CodecState;
@@ -804,7 +804,7 @@ static	int32 find1span(unsigned char*, int32, int32);
  * table.  The ``base'' of the bit string is supplied
  * along with the start+end bit indices.
  */
-inline static int32
+static int32
 find0span(unsigned char* bp, int32 bs, int32 be)
 {
 	int32 bits = be - bs;
@@ -863,7 +863,7 @@ find0span(unsigned char* bp, int32 bs, int32 be)
 	return (span);
 }
 
-inline static int32
+static int32
 find1span(unsigned char* bp, int32 bs, int32 be)
 {
 	int32 bits = be - bs;

@@ -14,12 +14,12 @@ inline bool LessCompareElements(ARG_TYPE element1, ARG_TYPE element2)
 namespace comparison
 {
 
-   template < class TYPE, class ARG_TYPE >
+   template < class TYPE, class ARG_TYPE = const TYPE & >
    class less
    {
    public:
 
-      inline static bool compare(ARG_TYPE element1, ARG_TYPE element2)
+      inline bool operator() (ARG_TYPE element1, ARG_TYPE element2) const
       {
          return ::LessCompareElements < TYPE, ARG_TYPE > (element1, element2);
       }
@@ -32,7 +32,7 @@ namespace comparison
    {
    public:
 
-      inline static bool compare(const string & element1, const string & element2)
+      inline bool operator()(const string & element1, const string & element2) const
       {
          return element1 < element2;
       }
@@ -44,7 +44,7 @@ namespace comparison
    {
    public:
 
-      inline static bool compare(const id & element1, const id & element2)
+      inline bool operator()(const id & element1, const id & element2) const
       {
          return element1.m_pstr < element2.m_pstr;
       }

@@ -38,8 +38,8 @@ static void
 _TIFFprintAsciiBounded(FILE* fd, const char* cp, int max_chars);
 
 static const char *photoNames[] = {
-    "min-is-white",				/* PHOTOMETRIC_MINISWHITE */
-    "min-is-black",				/* PHOTOMETRIC_MINISBLACK */
+    "MIN-is-white",				/* PHOTOMETRIC_MINISWHITE */
+    "MIN-is-black",				/* PHOTOMETRIC_MINISBLACK */
     "RGB color",				/* PHOTOMETRIC_RGB */
     "palette color (RGB from colormap)",	/* PHOTOMETRIC_PALETTE */
     "transparency mask",			/* PHOTOMETRIC_MASK */

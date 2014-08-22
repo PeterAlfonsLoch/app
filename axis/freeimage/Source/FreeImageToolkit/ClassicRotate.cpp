@@ -58,11 +58,11 @@ HorizontalSkewT(FIBITMAP *src, FIBITMAP *dst, int row, int iOffset, double weigh
 	const unsigned src_width  = FreeImage_GetWidth(src);
 	const unsigned dst_width  = FreeImage_GetWidth(dst);
 
-	T pxlSrc[4], pxlLeft[4], pxlOldLeft[4];	// 4 = 4*sizeof(T) max
+	T pxlSrc[4], pxlLeft[4], pxlOldLeft[4];	// 4 = 4*sizeof(T) MAX
 	
 	// background
 	const T pxlBlack[4] = {0, 0, 0, 0 };
-	const T *pxlBkg = static_cast<const T*>(bkcolor); // assume at least bytespp and 4*sizeof(T) max
+	const T *pxlBkg = static_cast<const T*>(bkcolor); // assume at least bytespp and 4*sizeof(T) MAX
 	if(!pxlBkg) {
 		// default background color is black
 		pxlBkg = pxlBlack;
@@ -189,11 +189,11 @@ VerticalSkewT(FIBITMAP *src, FIBITMAP *dst, int col, int iOffset, double weight,
 	unsigned src_height = FreeImage_GetHeight(src);
 	unsigned dst_height = FreeImage_GetHeight(dst);
 
-	T pxlSrc[4], pxlLeft[4], pxlOldLeft[4];	// 4 = 4*sizeof(T) max
+	T pxlSrc[4], pxlLeft[4], pxlOldLeft[4];	// 4 = 4*sizeof(T) MAX
 
 	// background
 	const T pxlBlack[4] = {0, 0, 0, 0 };
-	const T *pxlBkg = static_cast<const T*>(bkcolor); // assume at least bytespp and 4*sizeof(T) max
+	const T *pxlBkg = static_cast<const T*>(bkcolor); // assume at least bytespp and 4*sizeof(T) MAX
 	if(!pxlBkg) {
 		// default background color is black
 		pxlBkg = pxlBlack;
@@ -388,13 +388,13 @@ Rotate90(FIBITMAP *src) {
 				for(unsigned xs = 0; xs < dst_width; xs += RBLOCK) {
 					// y-segment
 					for(unsigned ys = 0; ys < dst_height; ys += RBLOCK) {
-						for(unsigned y = ys; y < min(dst_height, ys + RBLOCK); y++) {    // do rotation
+						for(unsigned y = ys; y < MIN(dst_height, ys + RBLOCK); y++) {    // do rotation
 							const unsigned y2 = dst_height - y - 1;
 							// point to src pixel at (y2, xs)
 							BYTE *src_bits = bsrc + (xs * src_pitch) + (y2 * bytespp);
 							// point to dst pixel at (xs, y)
 							BYTE *dst_bits = bdest + (y * dst_pitch) + (xs * bytespp);
-							for(unsigned x = xs; x < min(dst_width, xs + RBLOCK); x++) {
+							for(unsigned x = xs; x < MIN(dst_width, xs + RBLOCK); x++) {
 								// dst.SetPixel(x, y, src.GetPixel(y2, x));
 								AssignPixel(dst_bits, src_bits, bytespp);
 								dst_bits += bytespp;
@@ -580,13 +580,13 @@ Rotate270(FIBITMAP *src) {
 				for(unsigned xs = 0; xs < dst_width; xs += RBLOCK) {
 					// y-segment
 					for(unsigned ys = 0; ys < dst_height; ys += RBLOCK) {
-						for(unsigned x = xs; x < min(dst_width, xs + RBLOCK); x++) {    // do rotation
+						for(unsigned x = xs; x < MIN(dst_width, xs + RBLOCK); x++) {    // do rotation
 							x2 = dst_width - x - 1;
 							// point to src pixel at (ys, x2)
 							BYTE *src_bits = bsrc + (x2 * src_pitch) + (ys * bytespp);
 							// point to dst pixel at (x, ys)
 							BYTE *dst_bits = bdest + (ys * dst_pitch) + (x * bytespp);
-							for(unsigned y = ys; y < min(dst_height, ys + RBLOCK); y++) {
+							for(unsigned y = ys; y < MIN(dst_height, ys + RBLOCK); y++) {
 								// dst.SetPixel(x, y, src.GetPixel(y, x2));
 								AssignPixel(dst_bits, src_bits, bytespp);
 								src_bits += bytespp;

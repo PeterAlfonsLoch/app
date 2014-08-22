@@ -401,8 +401,8 @@ template <class T> class Matrix33
     // Limitations of type T (see also class limits<T>)
     //-------------------------------------------------
 
-    static T            baseTypeMin()           {return limits<T>::min();}
-    static T            baseTypeMax()           {return limits<T>::max();}
+    static T            baseTypeMin()           {return limits<T>::minimum();}
+    static T            baseTypeMax()           {return limits<T>::maximum();}
     static T            baseTypeSmallest()      {return limits<T>::smallest();}
     static T            baseTypeEpsilon()       {return limits<T>::epsilon();}
 
@@ -800,8 +800,8 @@ template <class T> class Matrix44
     // Limitations of type T (see also class limits<T>)
     //-------------------------------------------------
 
-    static T            baseTypeMin()           {return limits<T>::min();}
-    static T            baseTypeMax()           {return limits<T>::max();}
+    static T            baseTypeMin()           {return limits<T>::minimum();}
+    static T            baseTypeMax()           {return limits<T>::maximum();}
     static T            baseTypeSmallest()      {return limits<T>::smallest();}
     static T            baseTypeEpsilon()       {return limits<T>::epsilon();}
 
@@ -3245,18 +3245,18 @@ template <class T>
 std::ostream &
 operator << (std::ostream &s, const Matrix33<T> &m)
 {
-    std::ios_base::fmtflags oldFlags = s.flags();
+    ::file::fmtflags oldFlags = s.flags();
     int width;
 
-    if (s.flags() & std::ios_base::fixed)
+    if (s.flags() & ::file::fixed)
     {
-        s.setf (std::ios_base::showpoint);
+        s.setf (::file::showpoint);
         width = s.precision() + 5;
     }
     else
     {
-        s.setf (std::ios_base::scientific);
-        s.setf (std::ios_base::showpoint);
+        s.setf (::file::scientific);
+        s.setf (::file::showpoint);
         width = s.precision() + 8;
     }
 
@@ -3280,18 +3280,18 @@ template <class T>
 std::ostream &
 operator << (std::ostream &s, const Matrix44<T> &m)
 {
-    std::ios_base::fmtflags oldFlags = s.flags();
+    ::file::fmtflags oldFlags = s.flags();
     int width;
 
-    if (s.flags() & std::ios_base::fixed)
+    if (s.flags() & ::file::fixed)
     {
-        s.setf (std::ios_base::showpoint);
+        s.setf (::file::showpoint);
         width = s.precision() + 5;
     }
     else
     {
-        s.setf (std::ios_base::scientific);
-        s.setf (std::ios_base::showpoint);
+        s.setf (::file::scientific);
+        s.setf (::file::showpoint);
         width = s.precision() + 8;
     }
 

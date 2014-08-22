@@ -59,7 +59,7 @@ enum { NUM_MB_SEGMENTS = 4,
        NUM_PROBAS = 11,
        MAX_LF_LEVELS = 64,       // Maximum loop filter level
        MAX_VARIABLE_LEVEL = 67,  // last (inclusive) level with variable cost
-       MAX_LEVEL = 2047          // max level (note: max codable is 2047 + 67)
+       MAX_LEVEL = 2047          // MAX level (note: MAX codable is 2047 + 67)
      };
 
 typedef enum {   // Rate-distortion optimization levels
@@ -248,7 +248,7 @@ typedef struct {
   int beta_;       // filter-susceptibility, range [0,255].
   int quant_;      // final segment quantizer.
   int fstrength_;  // final in-loop filtering strength
-  int max_edge_;   // max edge delta (for filtering strength)
+  int max_edge_;   // MAX edge delta (for filtering strength)
   int min_disto_;  // minimum distortion required to trigger filtering record
   // reactivities
   int lambda_i16_, lambda_i4_, lambda_uv_;

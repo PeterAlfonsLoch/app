@@ -41,6 +41,12 @@
 #error Not Supported Operational System
 #endif
 
+#define MAX(a, b) (((a) > (b)) ? (a) : (b))
+#define MIN(a, b) (((a) < (b)) ? (a) : (b))
+#define LIM(a, min, max) MIN(max, MAX(min, a))
+#define SORT_LIM(x,minmax,maxmin) ((minmax) < (maxmin) ? LIM(x,minmax,maxmin) : LIM(x,maxmin,minmax))
+#define CLIP_USHRT(x) LIM(x,0,USHRT_MAX)
+
 
 
 CLASS_DECL_AXIS int get_axis_init();

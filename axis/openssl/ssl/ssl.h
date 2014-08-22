@@ -422,7 +422,7 @@ struct ssl_method_st
 	int (*ssl_renegotiate)(SSL *s);
 	int (*ssl_renegotiate_check)(SSL *s);
 	long (*ssl_get_message)(SSL *s, int st1, int stn, int mt, long
-		max, int *ok);
+		MAX, int *ok);
 	int (*ssl_read_bytes)(SSL *s, int type, unsigned char *buf, int len, 
 		int peek);
 	int (*ssl_write_bytes)(SSL *s, int type, const void *buf_, int len);
@@ -737,9 +737,9 @@ int SRP_generate_client_master_secret(SSL *s,unsigned char *master_key);
 #endif
 
 #if defined(OPENSSL_SYS_MSDOS) && !defined(OPENSSL_SYS_WIN32)
-#define SSL_MAX_CERT_LIST_DEFAULT 1024*30 /* 30k max cert list :-) */
+#define SSL_MAX_CERT_LIST_DEFAULT 1024*30 /* 30k MAX cert list :-) */
 #else
-#define SSL_MAX_CERT_LIST_DEFAULT 1024*100 /* 100k max cert list :-) */
+#define SSL_MAX_CERT_LIST_DEFAULT 1024*100 /* 100k MAX cert list :-) */
 #endif
 
 #define SSL_SESSION_CACHE_MAX_SIZE_DEFAULT	(1024*20)

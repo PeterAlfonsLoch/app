@@ -62,7 +62,7 @@
 #include <openssl/asn1.h>
 #include <openssl/asn1_mac.h>
 
-static int asn1_get_length(const unsigned char **pp,int *inf,long *rl,int max);
+static int asn1_get_length(const unsigned char **pp,int *inf,long *rl,int MAX);
 static void asn1_put_length(unsigned char **pp, int length);
 const char ASN1_version[]="ASN.1" OPENSSL_VERSION_PTEXT;
 
@@ -98,38 +98,38 @@ int ASN1_get_object(const unsigned char **pp, long *plength, int *ptag,
 	long l;
 	const unsigned char *p= *pp;
 	int tag,xclass,inf;
-	long max=omax;
+	long MAX=omax;
 
-	if (!max) goto err;
+	if (!MAX) goto err;
 	ret=(*p&V_ASN1_CONSTRUCTED);
 	xclass=(*p&V_ASN1_PRIVATE);
 	i= *p&V_ASN1_PRIMITIVE_TAG;
 	if (i == V_ASN1_PRIMITIVE_TAG)
 		{		/* high-tag */
 		p++;
-		if (--max == 0) goto err;
+		if (--MAX == 0) goto err;
 		l=0;
 		while (*p&0x80)
 			{
 			l<<=7L;
 			l|= *(p++)&0x7f;
-			if (--max == 0) goto err;
+			if (--MAX == 0) goto err;
 			if (l > (INT_MAX >> 7L)) goto err;
 			}
 		l<<=7L;
 		l|= *(p++)&0x7f;
 		tag=(int)l;
-		if (--max == 0) goto err;
+		if (--MAX == 0) goto err;
 		}
 	else
 		{ 
 		tag=i;
 		p++;
-		if (--max == 0) goto err;
+		if (--MAX == 0) goto err;
 		}
 	*ptag=tag;
 	*pclass=xclass;
-	if (!asn1_get_length(&p,&inf,plength,(int)max)) goto err;
+	if (!asn1_get_length(&p,&inf,plength,(int)MAX)) goto err;
 
 	if (inf && !(ret & V_ASN1_CONSTRUCTED))
 		goto err;
@@ -154,13 +154,13 @@ err:
 	return(0x80);
 	}
 
-static int asn1_get_length(const unsigned char **pp, int *inf, long *rl, int max)
+static int asn1_get_length(const unsigned char **pp, int *inf, long *rl, int MAX)
 	{
 	const unsigned char *p= *pp;
 	unsigned long ret=0;
 	unsigned int i;
 
-	if (max-- < 1) return(0);
+	if (MAX-- < 1) return(0);
 	if (*p == 0x80)
 		{
 		*inf=1;
@@ -175,12 +175,12 @@ static int asn1_get_length(const unsigned char **pp, int *inf, long *rl, int max
 			{
 			if (i > sizeof(long))
 				return 0;
-			if (max-- == 0) return(0);
+			if (MAX-- == 0) return(0);
 			while (i-- > 0)
 				{
 				ret<<=8L;
 				ret|= *(p++);
-				if (max-- == 0) return(0);
+				if (MAX-- == 0) return(0);
 				}
 			}
 		else

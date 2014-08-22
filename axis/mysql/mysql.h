@@ -239,8 +239,8 @@ typedef struct character_set
   const char        *name;      /* character set name                */
   const char        *comment;   /* comment                           */
   const char        *dir;       /* character set directory           */
-  unsigned int      mbminlen;   /* min. length for multibyte strings */
-  unsigned int      mbmaxlen;   /* max. length for multibyte strings */
+  unsigned int      mbminlen;   /* MIN. length for multibyte strings */
+  unsigned int      mbmaxlen;   /* MAX. length for multibyte strings */
 } MY_CHARSET_INFO;
 
 struct st_mysql_methods;

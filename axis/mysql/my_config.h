@@ -502,7 +502,7 @@
 # define HAVE_SETENV
 #define setenv(a,b,c) _putenv_s(a,b)
 #endif
-/* We don't want the min/max macros */
+/* We don't want the MIN/MAX macros */
 #ifdef _WIN32
 #define NOMINMAX
 #endif

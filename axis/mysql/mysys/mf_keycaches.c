@@ -90,7 +90,7 @@ static uchar *safe_hash_entry_get(SAFE_HASH_ENTRY *entry, size_t *length,
   SYNOPSIS
     safe_hash_init()
     hash		safe_hash handler
-    elements		Expected max number of elements
+    elements		Expected MAX number of elements
     default_value	default value
 
   NOTES

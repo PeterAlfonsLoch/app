@@ -3,7 +3,11 @@
 
 #ifdef WINDOWS
 #undef new
+#define min MIN
+#define max MAX
 #include <gdiplus.h>
+#undef min
+#undef max
 #endif
 
 #if defined(LINUX) || defined(ANDROID) || defined(APPLEOS)

@@ -1464,7 +1464,7 @@ namespace sqlite3
    ** sqlite3_free(P) where P is the first parameter to sqlite3_realloc().
    ** Sqlite3_realloc() returns a pointer to a primitive::memory allocation
    ** of at least N bytes in size or NULL if sufficient primitive::memory is unavailable.
-   ** If M is the size of the prior allocation, then min(N,M) bytes
+   ** If M is the size of the prior allocation, then MIN(N,M) bytes
    ** of the prior allocation are copied into the beginning of buffer returned
    ** by sqlite3_realloc() and the prior allocation is freed.
    ** If sqlite3_realloc() returns NULL, then the prior allocation

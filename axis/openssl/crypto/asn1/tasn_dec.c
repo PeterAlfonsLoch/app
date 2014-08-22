@@ -1191,7 +1191,7 @@ static int asn1_collect(BUF_MEM *buf, const unsigned char **in, long len,
 			return 0;
 			}
 
-		/* If indefinite length constructed update max length */
+		/* If indefinite length constructed update MAX length */
 		if (cst)
 			{
 			if (depth >= ASN1_MAX_STRING_NEST)

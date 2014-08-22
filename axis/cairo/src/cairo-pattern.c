@@ -2152,12 +2152,12 @@ _radial_pattern_is_degenerate (const cairo_radial_pattern_t *radial)
      * one of the two cases:
      *
      * 1) The radii are both very small:
-     *      |dr| < DBL_EPSILON && min (r0, r1) < DBL_EPSILON
+     *      |dr| < DBL_EPSILON && MIN (r0, r1) < DBL_EPSILON
      *
      * 2) The two circles have about the same radius and are very
      *    close to each other (approximately a cylinder gradient that
      *    doesn't move with the parameter):
-     *      |dr| < DBL_EPSILON && max (|dx|, |dy|) < 2 * DBL_EPSILON
+     *      |dr| < DBL_EPSILON && MAX (|dx|, |dy|) < 2 * DBL_EPSILON
      *
      * These checks are consistent with the assumptions used in
      * _cairo_radial_pattern_box_to_parameter ().
@@ -2435,10 +2435,10 @@ _cairo_radial_pattern_box_to_parameter (const cairo_radial_pattern_t *radial,
 	 *     |dr| < DBL_EPSILON
 	 *  AND
 	 *  2a) The circles are both very small:
-	 *      min (r0, r1) < DBL_EPSILON
+	 *      MIN (r0, r1) < DBL_EPSILON
 	 *   OR
 	 *  2b) The circles are very close to each other:
-	 *      max (|dx|, |dy|) < 2 * DBL_EPSILON
+	 *      MAX (|dx|, |dy|) < 2 * DBL_EPSILON
 	 *
 	 * Assuming that the gradient is not degenerate, we want to
 	 * show that |a| < DBL_EPSILON^2 implies |dr| >= DBL_EPSILON.
@@ -2446,9 +2446,9 @@ _cairo_radial_pattern_box_to_parameter (const cairo_radial_pattern_t *radial,
 	 * If the gradient is not degenerate yet it has |dr| <
 	 * DBL_EPSILON, (2b) is false, thus:
 	 *
-	 *   max (|dx|, |dy|) >= 2*DBL_EPSILON
+	 *   MAX (|dx|, |dy|) >= 2*DBL_EPSILON
 	 * which implies:
-	 *   4*DBL_EPSILON^2 <= max (|dx|, |dy|)^2 <= dx^2 + dy^2
+	 *   4*DBL_EPSILON^2 <= MAX (|dx|, |dy|)^2 <= dx^2 + dy^2
 	 *
 	 * From the definition of a, we get:
 	 *   a = dx^2 + dy^2 - dr^2 < DBL_EPSILON^2

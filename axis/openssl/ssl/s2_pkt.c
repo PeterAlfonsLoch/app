@@ -115,7 +115,7 @@
 #include <errno.h>
 #define USE_SOCKETS
 
-static int read_n(SSL *s,unsigned int n,unsigned int max,unsigned int extend);
+static int read_n(SSL *s,unsigned int n,unsigned int MAX,unsigned int extend);
 static int n_do_ssl_write(SSL *s, const unsigned char *buf, unsigned int len);
 static int write_pending(SSL *s, const unsigned char *buf, unsigned int len);
 static int ssl_mt_error(int n);
@@ -315,7 +315,7 @@ int ssl2_peek(SSL *s, void *buf, int len)
 	return ssl2_read_internal(s, buf, len, 1);
 	}
 
-static int read_n(SSL *s, unsigned int n, unsigned int max,
+static int read_n(SSL *s, unsigned int n, unsigned int MAX,
 	     unsigned int extend)
 	{
 	int i,off,newb;
@@ -336,9 +336,9 @@ static int read_n(SSL *s, unsigned int n, unsigned int max,
 		return(n);
 		}
 
-	if (!s->read_ahead) max=n;
-	if (max > (unsigned int)(SSL2_MAX_RECORD_LENGTH_2_BYTE_HEADER+2))
-		max=SSL2_MAX_RECORD_LENGTH_2_BYTE_HEADER+2;
+	if (!s->read_ahead) MAX=n;
+	if (MAX > (unsigned int)(SSL2_MAX_RECORD_LENGTH_2_BYTE_HEADER+2))
+		MAX=SSL2_MAX_RECORD_LENGTH_2_BYTE_HEADER+2;
 	
 
 	/* Else we want more than we have.
@@ -377,7 +377,7 @@ static int read_n(SSL *s, unsigned int n, unsigned int max,
 			{
 			s->rwstate=SSL_READING;
 			i=BIO_read(s->rbio,(char *)&(s->s2->rbuf[off+newb]),
-				max-newb);
+				MAX-newb);
 			}
 		else
 			{
@@ -558,7 +558,7 @@ static int n_do_ssl_write(SSL *s, const unsigned char *buf, unsigned int len)
 			{
 			if (j > SSL2_MAX_RECORD_LENGTH_2_BYTE_HEADER)
 				j=SSL2_MAX_RECORD_LENGTH_2_BYTE_HEADER;
-			/* set k to the max number of bytes with 2
+			/* set k to the MAX number of bytes with 2
 			 * byte header */
 			k=j-(j%bs);
 			/* how many data bytes? */

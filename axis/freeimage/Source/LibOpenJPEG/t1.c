@@ -1566,18 +1566,18 @@ void opj_t1_encode_cblk(opj_t1_t *t1,
 	OPJ_INT32 bpno;
 	OPJ_UINT32 passtype;
 	OPJ_INT32 nmsedec = 0;
-	OPJ_INT32 max;
+	OPJ_INT32 MAX;
 	OPJ_UINT32 i;
 	OPJ_BYTE type = T1_TYPE_MQ;
 	OPJ_FLOAT64 tempwmsedec;
 
-	max = 0;
+	MAX = 0;
 	for (i = 0; i < t1->w * t1->h; ++i) {
 		OPJ_INT32 tmp = abs(t1->data[i]);
-		max = opj_int_max(max, tmp);
+		MAX = opj_int_max(MAX, tmp);
 	}
 
-	cblk->numbps = max ? (OPJ_UINT32)((opj_int_floorlog2(max) + 1) - T1_NMSEDEC_FRACBITS) : 0;
+	cblk->numbps = MAX ? (OPJ_UINT32)((opj_int_floorlog2(MAX) + 1) - T1_NMSEDEC_FRACBITS) : 0;
 
 	bpno = (OPJ_INT32)(cblk->numbps - 1);
 	passtype = 2;

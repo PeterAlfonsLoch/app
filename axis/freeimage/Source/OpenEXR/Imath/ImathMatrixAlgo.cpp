@@ -145,15 +145,15 @@ procrustesRotationAndTranslation (const Vec3<T>* A, const Vec3<T>* B, const T* w
         // Finding a uniform scale: let us assume the Q is completely fixed
         // at this point (solving for both simultaneously seems much harder).  
         // We are trying to compute (again, per Golub and van Loan)
-        //    min || s*A*Q - B ||_F
+        //    MIN || s*A*Q - B ||_F
         // Notice that we've jammed a uniform scale in front of the Q.  
         // Now, the Frobenius norm (the least squares norm over matrices)
         // has the neat property that it is equivalent to minimizing the trace
         // of M^T*M (see your friendly neighborhood linear algebra text for a
         // derivation).  Thus, we can expand this out as
-        //   min tr (s*A*Q - B)^T*(s*A*Q - B)
-        // = min tr(Q^T*A^T*s*s*A*Q) + tr(B^T*B) - 2*tr(Q^T*A^T*s*B)  by linearity of the trace
-        // = min s^2 tr(A^T*A) + tr(B^T*B) - 2*s*tr(Q^T*A^T*B)        using the fact that the trace is invariant
+        //   MIN tr (s*A*Q - B)^T*(s*A*Q - B)
+        // = MIN tr(Q^T*A^T*s*s*A*Q) + tr(B^T*B) - 2*tr(Q^T*A^T*s*B)  by linearity of the trace
+        // = MIN s^2 tr(A^T*A) + tr(B^T*B) - 2*s*tr(Q^T*A^T*B)        using the fact that the trace is invariant
         //                                                            under similarity transforms Q*M*Q^T
         // If we differentiate w.r.t. s and set this to 0, we get
         // 0 = 2*s*tr(A^T*A) - 2*tr(Q^T*A^T*B)
@@ -1007,7 +1007,7 @@ jacobiRotation (Matrix44<T>& A,
 
     // Let's see if rho^(-1) = mu2 / mu1 is less than tol
     // This test also checks if rho^2 will overflow 
-    // when tol^(-1) < sqrt(limits<T>::max()).
+    // when tol^(-1) < sqrt(limits<T>::maximum()).
     if (std::abs(mu2) <= tol*std::abs(mu1))
     {
         A[j][k] = 0;

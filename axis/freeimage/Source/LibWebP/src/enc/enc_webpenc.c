@@ -358,7 +358,7 @@ int WebPEncode(const WebPConfig* config, WebPPicture* pic) {
       if (config->preprocessing & 2) {
         const float x = config->quality / 100.f;
         const float x2 = x * x;
-        // slowly decreasing from max dithering at low quality (q->0)
+        // slowly decreasing from MAX dithering at low quality (q->0)
         // to 0.5 dithering amplitude at high quality (q->100)
         dithering = 1.0f + (0.5f - 1.0f) * x2 * x2;
       }

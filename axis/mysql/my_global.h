@@ -466,7 +466,7 @@ typedef SOCKET_SIZE_TYPE size_socket;
 
   It is larger on Windows, because it all file handles are stored in my_file_info
   Default size is 16384 and this should be enough for most cases.If it is not
-  enough, --max-open-files with larger value can be used.
+  enough, --MAX-open-files with larger value can be used.
 
   For Posix , my_file_info array is only used to store filenames for
   error reporting and its size is not a limitation for number of open files.

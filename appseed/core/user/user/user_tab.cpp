@@ -914,7 +914,7 @@ namespace user
             if(pane.m_dib.is_set())
             {
                size.cx += pane.m_dib->m_size.cx+ 2;
-               size.cy = max(size.cy, pane.m_dib->m_size.cy);
+               size.cy = MAX(size.cy, pane.m_dib->m_size.cy);
             }
             cx = size.cx + 2;
 
@@ -1005,7 +1005,7 @@ namespace user
 
             if(pane.m_dib.m_p != NULL)
             {
-               size.cy = max(size.cy, pane.m_dib->size().cy);
+               size.cy = MAX(size.cy, pane.m_dib->size().cy);
             }
             cy = size.cy + 2;
 

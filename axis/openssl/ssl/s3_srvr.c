@@ -3412,7 +3412,7 @@ int ssl3_send_newsession_ticket(SSL *s)
  		 * follows 1 (size of message name) + 3 (message length
  		 * bytes) + 4 (ticket lifetime hint) + 2 (ticket length) +
  		 * 16 (key name) + max_iv_len (iv length) +
- 		 * session_length + max_enc_block_size (max encrypted session
+ 		 * session_length + max_enc_block_size (MAX encrypted session
  		 * length) + max_md_size (HMAC).
  		 */
 		if (!BUF_MEM_grow(s->init_buf,

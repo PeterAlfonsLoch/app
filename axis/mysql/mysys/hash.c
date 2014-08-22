@@ -758,7 +758,7 @@ my_bool my_hash_check(HASH *hash)
   }
   if (records)
     DBUG_PRINT("info",
-	       ("records: %u   seeks: %d   max links: %d   hitrate: %.2f",
+	       ("records: %u   seeks: %d   MAX links: %d   hitrate: %.2f",
 		records,seek,max_links,(float) seek / (float) records));
   return error;
 }

@@ -244,7 +244,7 @@ static void SetupMatrices(VP8Encoder* enc) {
     m->lambda_trellis_uv_  = (quv *quv) << 1;
     m->tlambda_            = (tlambda_scale * q4) >> 5;
 
-    m->min_disto_ = 10 * m->y1_.q_[0];   // quantization-aware min disto
+    m->min_disto_ = 10 * m->y1_.q_[0];   // quantization-aware MIN disto
     m->max_edge_  = 0;
   }
 }
@@ -278,7 +278,7 @@ static void SetupFilterStrength(VP8Encoder* const enc) {
 
 //------------------------------------------------------------------------------
 
-// Note: if you change the values below, remember that the max range
+// Note: if you change the values below, remember that the MAX range
 // allowed by the syntax for DQ_UV is [-16,16].
 #define MAX_DQ_UV (6)
 #define MIN_DQ_UV (-4)
@@ -386,7 +386,7 @@ void VP8SetSegmentParams(VP8Encoder* const enc, float quality) {
 
   // uv_alpha_ is normally spread around ~60. The useful range is
   // typically ~30 (quite bad) to ~100 (ok to decimate UV more).
-  // We map it to the safe maximal range of max/MIN_DQ_UV for dq_uv.
+  // We map it to the safe maximal range of MAX/MIN_DQ_UV for dq_uv.
   dq_uv_ac = (enc->uv_alpha_ - MID_ALPHA) * (MAX_DQ_UV - MIN_DQ_UV)
                                           / (MAX_ALPHA - MIN_ALPHA);
   // we rescale by the user-defined strength of adaptation
@@ -397,7 +397,7 @@ void VP8SetSegmentParams(VP8Encoder* const enc, float quality) {
   // U/V channels are quite more reactive to high quants (flat DC-blocks
   // tend to appear, and are unpleasant).
   dq_uv_dc = -4 * enc->config_->sns_strength / 100;
-  dq_uv_dc = clip(dq_uv_dc, -15, 15);   // 4bit-signed max allowed
+  dq_uv_dc = clip(dq_uv_dc, -15, 15);   // 4bit-signed MAX allowed
 
   enc->dq_y1_dc_ = 0;       // TODO(skal): dq-lum
   enc->dq_y2_dc_ = 0;
@@ -575,7 +575,7 @@ static int TrellisQuantizeBlock(const VP8Encoder* const enc,
     // to last + 1 (inclusive) without losing much.
     if (last < 15) ++last;
 
-    // compute 'skip' score. This is the max score one can do.
+    // compute 'skip' score. This is the MAX score one can do.
     cost = VP8BitCost(0, last_proba);
     best_score = RDScoreTrellis(lambda, cost, 0);
 
@@ -887,7 +887,7 @@ static void PickBestIntra16(VP8EncIterator* const it, VP8ModeScore* const rd) {
   VP8SetIntra16Mode(it, rd->mode_i16);
 
   // we have a blocky macroblock (only DCs are non-zero) with fairly high
-  // distortion, record max delta so we can later adjust the minimal filtering
+  // distortion, record MAX delta so we can later adjust the minimal filtering
   // strength needed to smooth these blocks out.
   if ((rd->nz & 0xffff) == 0 && rd->D > dqm->min_disto_) {
     StoreMaxDelta(dqm, rd->y_dc_levels);

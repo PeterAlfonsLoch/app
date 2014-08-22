@@ -243,7 +243,7 @@ wav2Decode
     int p2;
 
     //
-    // Search max level
+    // Search MAX level
     //
 
     while (p <= n)

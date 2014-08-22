@@ -60,7 +60,7 @@ namespace backview
       case TransitionEffectWipeLeft:
          {
             HelperGetMain().GetTransitionEffect().m_dwDelay = 50;
-            int32_t iFrameCount = max(4, cy / 16);
+            int32_t iFrameCount = MAX(4, cy / 16);
             m_data.m_sliceframe.m_iFrameCount = iFrameCount;
             m_iStepCount = iFrameCount + 1;
          }
@@ -71,7 +71,7 @@ namespace backview
       case TransitionEffectWipeTopLeft:
          {
 
-            const int32_t iFrameCount = max(4, cy / 32);
+            const int32_t iFrameCount = MAX(4, cy / 32);
             m_data.m_sliceframe.m_iFrameCount = iFrameCount;
             m_iStepCount = iFrameCount + 1;
          }
@@ -81,7 +81,7 @@ namespace backview
       case TransitionEffectWipeMidHorizontal:
       case TransitionEffectWipeMidVertical:
          {
-            const int32_t iFrameCount = max(4, cy / 32);
+            const int32_t iFrameCount = MAX(4, cy / 32);
             m_data.m_sliceframe.m_iFrameCount = iFrameCount;
             m_iStepCount = iFrameCount + 1;
          }
@@ -97,7 +97,7 @@ namespace backview
       case TransitionEffectScaleCenter:
          {
             effect.m_dwDelay = 60;
-            const int32_t iFrameCount = max(4, cy / 16);
+            const int32_t iFrameCount = MAX(4, cy / 16);
             m_data.m_sliceframe.m_iFrameCount = iFrameCount;
             m_iStepCount = iFrameCount;
          }
@@ -106,8 +106,8 @@ namespace backview
       case TransitionEffectEllipsoidalpixelate_:
          {
 
-            const int32_t tilesx = max(4, cx / 48);
-            const int32_t tilesy = max(4, cy / 48);
+            const int32_t tilesx = MAX(4, cx / 48);
+            const int32_t tilesy = MAX(4, cy / 48);
             const int32_t tiles = tilesx * tilesy;
 
             m_data.m_tiles.m_iTilesX = tilesx;
@@ -134,7 +134,7 @@ namespace backview
             System.geometry().rotate((m_cx / 2), (m_cy / 2), pointaBigRect, 4, m_phi);
             rect rectBigRect;
             GetSimplePolyBox(rectBigRect, pointaBigRect, 4);
-            int32_t iDimension = max(rectBigRect.width(), rectBigRect.height());
+            int32_t iDimension = MAX(rectBigRect.width(), rectBigRect.height());
             int32_t imax = m_size.cx == 0 ? iDimension : (iDimension / (m_size.cx * 2)) + 1;
             int32_t jmax = m_size.cy == 0 ? iDimension : (iDimension / (m_size.cy * 2)) + 1;
             POINT pointaRect[4];
@@ -167,7 +167,7 @@ namespace backview
             GetSimplePolyBox(rectBigRect, pointaBigRect, 4);
             m_iRadius = 48;
             int32_t & iRadius = m_iRadius;
-            int32_t iDimension = max(rectBigRect.width(), rectBigRect.height());
+            int32_t iDimension = MAX(rectBigRect.width(), rectBigRect.height());
             int32_t mCount = ((int32_t) ((iDimension / (2.0 + 3.0 * iRadius)) + 2)) + 2;
             int32_t nCount = ((int32_t) HIDOUBLETOINT(iDimension / (iRadius * sqrt(3.0)))) + 2;
             int32_t mExCount = mCount + 1;
@@ -204,8 +204,8 @@ namespace backview
             //double dPow = 1.0 / 2.5;
             //const int32_t iMaxGroupCount = 256;
             const int32_t iMaxGroupCount = 127;
-            const int32_t iTileCount = max(4, cy / 8);
-            int32_t iGroupCount = min(256, iMaxGroupCount);
+            const int32_t iTileCount = MAX(4, cy / 8);
+            int32_t iGroupCount = MIN(256, iMaxGroupCount);
             const int32_t iFrameCount = iTileCount;
 
             //m_dAlpha = ceil(255.0 / pow(iGroupCount, dPow));
@@ -213,7 +213,7 @@ namespace backview
             m_data.m_sliceframe.m_iTileCount = iTileCount;
             m_data.m_sliceframe.m_iFrameCount = iFrameCount;
             m_data.m_sliceframe.m_iGroupCount = iGroupCount;
-//               int32_t iTileExCount = max(iTileCount - iFrameCount + 1, 0);
+//               int32_t iTileExCount = MAX(iTileCount - iFrameCount + 1, 0);
             for(int32_t iFrame = - iGroupCount; iFrame < iFrameCount; iFrame++)
             {
                for(int32_t iGroup =  0; iGroup < iGroupCount; iGroup++)
@@ -339,7 +339,7 @@ namespace backview
             m_data.m_radialunveil.m_iRadius = 0;
             m_pointa.remove_all();
 
-            int32_t c1 = max(cx, cy) * 3 / 2;
+            int32_t c1 = MAX(cx, cy) * 3 / 2;
             int32_t dim = 1;
             int32_t ca = 0;
             while(dim < c1)
@@ -1081,9 +1081,9 @@ namespace backview
 
       rect rect(lpcrect);
 
-      double dMaxSide = max(rect.width(), rect.height());
+      double dMaxSide = MAX(rect.width(), rect.height());
 
-      double dAdd = max(abs(iRandX), abs(iRandY));
+      double dAdd = MAX(abs(iRandX), abs(iRandY));
 
       double dSide = dMaxSide + dAdd;
 
@@ -1113,7 +1113,7 @@ namespace backview
 
       rect rect(lpcrect);
 
-      double dMaxSide = max(rect.width(), rect.height());
+      double dMaxSide = MAX(rect.width(), rect.height());
 
       double dAdd = abs(iRand);
 

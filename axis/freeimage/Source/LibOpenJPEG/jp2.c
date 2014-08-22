@@ -840,7 +840,7 @@ void opj_jp2_apply_pclr(opj_image_t *image, opj_jp2_color_t *color)
 	OPJ_UINT32 *entries;
 	opj_jp2_cmap_comp_t *cmap;
 	OPJ_INT32 *src, *dst;
-	OPJ_UINT32 j, max;
+	OPJ_UINT32 j, MAX;
 	OPJ_UINT16 i, nr_channels, cmp, pcol;
 	OPJ_INT32 k, top_k;
 
@@ -880,14 +880,14 @@ void opj_jp2_apply_pclr(opj_image_t *image, opj_jp2_color_t *color)
 		cmp = cmap[i].cmp; pcol = cmap[i].pcol;
 		src = old_comps[cmp].data;
     assert( src );
-		max = new_comps[pcol].w * new_comps[pcol].h;
+		MAX = new_comps[pcol].w * new_comps[pcol].h;
 
 		/* Direct use: */
     if(cmap[i].mtyp == 0) {
       assert( cmp == 0 );
       dst = new_comps[i].data;
       assert( dst );
-      for(j = 0; j < max; ++j) {
+      for(j = 0; j < MAX; ++j) {
         dst[j] = src[j];
       }
     }
@@ -895,7 +895,7 @@ void opj_jp2_apply_pclr(opj_image_t *image, opj_jp2_color_t *color)
       assert( i == pcol );
       dst = new_comps[pcol].data;
       assert( dst );
-      for(j = 0; j < max; ++j) {
+      for(j = 0; j < MAX; ++j) {
         /* The index */
         if((k = src[j]) < 0) k = 0; else if(k > top_k) k = top_k;
 
@@ -905,8 +905,8 @@ void opj_jp2_apply_pclr(opj_image_t *image, opj_jp2_color_t *color)
     }
 	}
 
-	max = image->numcomps;
-	for(i = 0; i < max; ++i) {
+	MAX = image->numcomps;
+	for(i = 0; i < MAX; ++i) {
 		if(old_comps[i].data) opj_free(old_comps[i].data);
 	}
 

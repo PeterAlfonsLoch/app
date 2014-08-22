@@ -705,7 +705,7 @@ my_hash_sort_mb_bin(const CHARSET_INFO *cs __attribute__((unused)),
       end  End of buffer to fill
 
   DESCRIPTION
-      Write max key:
+      Write MAX key:
       - for non-Unicode character sets:
         just memset using max_sort_char if max_sort_char is one byte.
         In case when max_sort_char is two bytes, fill with double-byte pairs
@@ -804,14 +804,14 @@ fill_max_and_min:
       *min_length= ((cs->state & MY_CS_BINSORT) ? (size_t) (min_str - min_org) :
                     res_length);
       *max_length= res_length;
-      /* Create min key  */
+      /* Create MIN key  */
       do
       {
 	*min_str++= (char) cs->min_sort_char;
       } while (min_str != min_end);
       
       /* 
-        Write max key: create a buffer with multibyte
+        Write MAX key: create a buffer with multibyte
         representation of the max_sort_char character,
         and copy it into max_str in a loop. 
       */
@@ -838,7 +838,7 @@ fill_max_and_min:
 
         If we simply return this LIKE range:
 
-         'abc\min\min\min' and 'abc\max\max\max'
+         'abc\MIN\MIN\MIN' and 'abc\MAX\MAX\MAX'
 
         then this query: SELECT * FROM t1 WHERE a LIKE 'abc%'
         will only find values starting from 'abc[^h]',
@@ -851,7 +851,7 @@ fill_max_and_min:
         For example, for Czech 'abc%', we will return LIKE range,
         which is equal to LIKE range for 'ab%':
 
-        'ab\min\min\min\min' and 'ab\max\max\max\max'.
+        'ab\MIN\MIN\MIN\MIN' and 'ab\MAX\MAX\MAX\MAX'.
 
       */
       if (contractions && ptr + 1 < end &&
@@ -1001,8 +1001,8 @@ my_like_range_generic(const CHARSET_INFO *cs,
     {
       /*
         Calculate length of keys:
-        a\min\min... is the smallest possible string
-        a\max\max... is the biggest possible string
+        a\MIN\MIN... is the smallest possible string
+        a\MAX\MAX... is the biggest possible string
       */
       *min_length= ((cs->state & MY_CS_BINSORT) ?
                     (size_t) (min_str - min_org) :

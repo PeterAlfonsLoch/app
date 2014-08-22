@@ -1098,7 +1098,7 @@ cairo_cff_font_read_cid_fontdict (cairo_cff_font_t *font, unsigned char *ptr)
         if (unlikely (status))
             goto fail;
 
-	/* Set integer operand to max value to use max size encoding to reserve
+	/* Set integer operand to MAX value to use MAX size encoding to reserve
          * space for any value later */
         end_buf = encode_integer_max (buf, 0);
         end_buf = encode_integer_max (end_buf, 0);
@@ -1895,7 +1895,7 @@ cairo_cff_font_create_cid_fontdict (cairo_cff_font_t *font)
     font->fd_subset_map[0] = 0;
     font->num_subset_fontdicts = 1;
 
-    /* Set integer operand to max value to use max size encoding to reserve
+    /* Set integer operand to MAX value to use MAX size encoding to reserve
      * space for any value later */
     end_buf = encode_integer_max (buf, 0);
     end_buf = encode_integer_max (end_buf, 0);
@@ -2001,7 +2001,7 @@ cairo_cff_font_subset_font (cairo_cff_font_t  *font)
 /* Set the operand of the specified operator in the (already written)
  * top dict to point to the current position in the output
  * array. Operands updated with this function must have previously
- * been encoded with the 5-byte (max) integer encoding. */
+ * been encoded with the 5-byte (MAX) integer encoding. */
 static void
 cairo_cff_font_set_topdict_operator_to_cur_pos (cairo_cff_font_t  *font,
                                                 int                operator)

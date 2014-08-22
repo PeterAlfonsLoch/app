@@ -297,7 +297,7 @@ static int mem_gets(BIO *bp, char *buf, int size)
 		}
 
 	/*
-	 * i is now the max num of bytes to copy, either j or up to
+	 * i is now the MAX num of bytes to copy, either j or up to
 	 * and including the first newline
 	 */ 
 

@@ -584,9 +584,9 @@ true);
             int32_t finalW = cx;
             int32_t finalH = cy;
 
-            const int32_t tilesx = max(4, m_tool001.m_data.m_tiles.m_iTilesX);
-            const int32_t tilesy = max(4, m_tool001.m_data.m_tiles.m_iTilesY);
-//               const int32_t tiles = max(16, m_tool001.m_data.m_tiles.m_iTiles);
+            const int32_t tilesx = MAX(4, m_tool001.m_data.m_tiles.m_iTilesX);
+            const int32_t tilesy = MAX(4, m_tool001.m_data.m_tiles.m_iTilesY);
+//               const int32_t tiles = MAX(16, m_tool001.m_data.m_tiles.m_iTiles);
 
 
             if(m_tool001.m_iStep > 0)
@@ -728,7 +728,7 @@ true);
             int32_t iGroupCount = m_tool001.m_data.m_sliceframe.m_iGroupCount;
 
             index iIndex = m_tool001.m_iStep - 1;
-            iIndex = min(iIndex, m_tool001.m_pointa.get_size() -1);
+            iIndex = MIN(iIndex, m_tool001.m_pointa.get_size() -1);
             if(iIndex >= 0)
             {
                point point = m_tool001.m_pointa.element_at(iIndex);
@@ -759,7 +759,7 @@ true);
                (double) 0, (double) iFrameCountEx);*/
                //dAlpha /= 8.0;
 
-               //m_dwDelay = (uint32_t) min(10, dAlpha * 10 / 255);
+               //m_dwDelay = (uint32_t) MIN(10, dAlpha * 10 / 255);
              //  m_dwDelay = 0;
 
                int32_t iAlphaAccumul = 0;;
@@ -780,7 +780,7 @@ true);
                   }
                   else
                   {
-                     //dAlpha = max(1.0, 255.0 / pow((double) (iGroup), 2.0));
+                     //dAlpha = MAX(1.0, 255.0 / pow((double) (iGroup), 2.0));
             //         dAlpha = 255.0 * pow((double) (iGroupCount - iGroup) / iGroupCount, 2.5);
 //
   //                               if(iFrame == iFrameCount - 1)
@@ -794,13 +794,13 @@ true);
                dAlpha = 140.0 * ::pow((iGroupCount - 1.0 - iGroup) / (iGroupCount - 1.0), dExp) + dMin;
             }
 
-                     /*                     dAlpha = iAlphaAccumul / 2.0 + max(5.0, 255.0 / iFrameCount);
+                     /*                     dAlpha = iAlphaAccumul / 2.0 + MAX(5.0, 255.0 / iFrameCount);
                      dAlpha = dAlpha / 255.0;
                      dAlpha *= dAlpha;
                      dAlpha *= dAlpha;
                      dAlpha *= 255.0;
-                     dAlpha = iAlphaAccumul / 2.0 + max(2.0, 127.0 / iFrameCount);
-                     dAlpha = max(2.0, min(255.0, dAlpha));*/
+                     dAlpha = iAlphaAccumul / 2.0 + MAX(2.0, 127.0 / iFrameCount);
+                     dAlpha = MAX(2.0, MIN(255.0, dAlpha));*/
                   }
                   if(iAlphaAccumul <= 255)
                   {
@@ -897,7 +897,7 @@ true);
 //               int32_t finalW = cx;
 //               int32_t finalH = cy;
 
-            const int32_t iFrameCount = max(1, m_tool001.m_data.m_sliceframe.m_iFrameCount);
+            const int32_t iFrameCount = MAX(1, m_tool001.m_data.m_sliceframe.m_iFrameCount);
             const int32_t iFrameMax = iFrameCount -1;
 
 
@@ -942,7 +942,7 @@ true);
 //               int32_t finalW = cx;
 //               int32_t finalH = cy;
 
-            const int32_t iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
+            const int32_t iFrameCount = MAX(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
             const int32_t iFrameMax = iFrameCount;
 
             ::index iFrame = m_tool001.m_iStep - 1;
@@ -982,7 +982,7 @@ true);
 //               int32_t finalW = cx;
 //               int32_t finalH = cy;
 
-            const int32_t iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
+            const int32_t iFrameCount = MAX(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
             const int32_t iFrameMax = iFrameCount - 1;
 
             ::index iFrame = m_tool001.m_iStep - 1;
@@ -1044,7 +1044,7 @@ true);
       case TransitionEffectWipeCenter:
          {
 
-            const int32_t iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
+            const int32_t iFrameCount = MAX(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
             const int32_t iFrameMax = iFrameCount - 1;
 
             ::index iFrame = m_tool001.m_iStep - 1;
@@ -1073,7 +1073,7 @@ true);
       case TransitionEffectWipeIn:
          {
 
-            const int32_t iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
+            const int32_t iFrameCount = MAX(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
             const int32_t iFrameMax = iFrameCount - 1;
 
             ::index iFrame = m_tool001.m_iStep - 1;
@@ -1145,7 +1145,7 @@ true);
       case TransitionEffectWipeMidHorizontal:
          {
 
-            const int32_t iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
+            const int32_t iFrameCount = MAX(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
             const int32_t iFrameMax = iFrameCount - 1;
 
             ::index iFrame = m_tool001.m_iStep - 1;
@@ -1175,7 +1175,7 @@ true);
       case TransitionEffectWipeMidVertical:
          {
 
-            const int32_t iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
+            const int32_t iFrameCount = MAX(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
             const int32_t iFrameMax = iFrameCount - 1;
 
             ::index iFrame = m_tool001.m_iStep - 1;
@@ -1216,7 +1216,7 @@ true);
 //               int32_t finalW = cx;
 //               int32_t finalH = cy;
 
-            const int32_t iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
+            const int32_t iFrameCount = MAX(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
             const int32_t iFrameMax = iFrameCount - 1;
 
             ::index iFrame = m_tool001.m_iStep - 1;
@@ -1261,7 +1261,7 @@ true);
 //               int32_t finalW = cx;
 //               int32_t finalH = cy;
 
-            const int32_t iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
+            const int32_t iFrameCount = MAX(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
             const int32_t iFrameMax = iFrameCount - 1;
 
             ::index iFrame = m_tool001.m_iStep - 1;
@@ -1555,8 +1555,8 @@ true);
                dcBack->BitBlt(
                   rectDest.left,
                   rectDest.top,
-                  min(rectDest.width(), finalW),
-                  min(rectDest.height(), finalH),
+                  MIN(rectDest.width(), finalW),
+                  MIN(rectDest.height(), finalH),
                   pdib->get_graphics(),
                   rectDest.left - rectBound.left,
                   rectDest.top - rectBound.top,
@@ -1585,10 +1585,10 @@ true);
 
                int32_t xm = cx / 2;
                int32_t ym = cy / 2;
-               int32_t x1 = max(0, xm - r);
-               int32_t x2 = min(cx, xm + r);
-               int32_t y1 = max(0, ym - r);
-               int32_t y2 = min(cy, ym + r);
+               int32_t x1 = MAX(0, xm - r);
+               int32_t x2 = MIN(cx, xm + r);
+               int32_t y1 = MAX(0, ym - r);
+               int32_t y2 = MIN(cy, ym + r);
 
 
                int32_t xOff = 0;
@@ -1599,8 +1599,8 @@ true);
                if(r > ym)
                   yOff = pdibT2->m_size.cy * (r - ym) / d;
 
-               int32_t wWindow = min(cx, d);
-               int32_t hWindow = min(cy, d);
+               int32_t wWindow = MIN(cx, d);
+               int32_t hWindow = MIN(cy, d);
 
 //                  double xrate = (double) wWindow / d;
 //                  double yrate = (double) hWindow / d;
@@ -1766,7 +1766,7 @@ true);
          break;
 
       }
-      iStepRepeatCount = max(1, iStepRepeatCount);
+      iStepRepeatCount = MAX(1, iStepRepeatCount);
       return iStepRepeatCount;
 
    }
@@ -1912,7 +1912,7 @@ true);
                break;
 
                /*mmr = timeSetEvent(
-                  max(natural(iResolution), peffect->m_dwDelay),
+                  MAX(natural(iResolution), peffect->m_dwDelay),
                   iResolution,  // 5 ms resolution
                   (LPTIMECALLBACK) (HANDLE) event,
                   NULL,

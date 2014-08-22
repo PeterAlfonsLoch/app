@@ -484,7 +484,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
          {
             int j = num_palette;
 
-            /* Put all the useful colors within the max, but don't
+            /* Put all the useful colors within the MAX, but don't
              * move the others.
              */
             for (i = 0; i < maximum_colors; i++)
@@ -503,7 +503,7 @@ png_set_quantize(png_structrp png_ptr, png_colorp palette,
          {
             int j = num_palette;
 
-            /* Move all the used colors inside the max limit, and
+            /* Move all the used colors inside the MAX limit, and
              * develop a translation table.
              */
             for (i = 0; i < maximum_colors; i++)

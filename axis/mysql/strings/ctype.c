@@ -159,7 +159,7 @@ static struct my_cs_file_section_st sec[] =
   {_CS_MISC,		"xml/version"},
   {_CS_MISC,		"xml/encoding"},
   {_CS_MISC,		"charsets"},
-  {_CS_MISC,		"charsets/max-id"},
+  {_CS_MISC,		"charsets/MAX-id"},
   {_CS_MISC,		"charsets/copyright"},
   {_CS_MISC,		"charsets/description"},
   {_CS_CHARSET,		"charsets/charset"},

@@ -97,16 +97,16 @@
   /*    y3  :: The end coordinate.                                         */
   /*                                                                       */
   /* <InOut>                                                               */
-  /*    min :: The address of the current minimum.                         */
+  /*    MIN :: The address of the current minimum.                         */
   /*                                                                       */
-  /*    max :: The address of the current maximum.                         */
+  /*    MAX :: The address of the current maximum.                         */
   /*                                                                       */
   static void
   BBox_Conic_Check( FT_Pos   y1,
                     FT_Pos   y2,
                     FT_Pos   y3,
-                    FT_Pos*  min,
-                    FT_Pos*  max )
+                    FT_Pos*  MIN,
+                    FT_Pos*  MAX )
   {
     /* This function is only called when a control off-point is outside */
     /* the bbox that contains all on-points.  It finds a local extremum */
@@ -117,8 +117,8 @@
     y3 -= y2;
     y2 += FT_MulDiv( y1, y3, y1 + y3 );
 
-    if ( y2 < *min )
-      *min = y2;
+    if ( y2 < *MIN )
+      *MIN = y2;
     if ( y2 > *max )
       *max = y2;
   }
@@ -198,20 +198,20 @@
   /*    p4  :: The end coordinate.                                         */
   /*                                                                       */
   /* <InOut>                                                               */
-  /*    min :: The address of the current minimum.                         */
+  /*    MIN :: The address of the current minimum.                         */
   /*                                                                       */
-  /*    max :: The address of the current maximum.                         */
+  /*    MAX :: The address of the current maximum.                         */
   /*                                                                       */
   static FT_Pos
   update_cubic_max( FT_Pos  q1,
                     FT_Pos  q2,
                     FT_Pos  q3,
                     FT_Pos  q4,
-                    FT_Pos  max )
+                    FT_Pos  MAX )
   {
     /* for a cubic segment to possibly reach new maximum, at least */
     /* one of its off-points must stay above the current value     */
-    while ( q2 > max || q3 > max )
+    while ( q2 > MAX || q3 > MAX )
     {
       /* determine which half contains the maximum and split */
       if ( q1 + q2 > q3 + q4 ) /* first half */
@@ -240,17 +240,17 @@
       /* check whether either end reached the maximum */
       if ( q1 == q2 && q1 >= q3 )
       {
-        max = q1;
+        MAX = q1;
         break;
       }
       if ( q3 == q4 && q2 <= q4 )
       {
-        max = q4;
+        MAX = q4;
         break;
       }
     }
 
-    return max;
+    return MAX;
   }
 
 
@@ -259,8 +259,8 @@
                     FT_Pos   p2,
                     FT_Pos   p3,
                     FT_Pos   p4,
-                    FT_Pos*  min,
-                    FT_Pos*  max )
+                    FT_Pos*  MIN,
+                    FT_Pos*  MAX )
   {
     FT_Pos  nmin, nmax;
     FT_Int  shift;
@@ -288,7 +288,7 @@
       p2 <<=  shift;
       p3 <<=  shift;
       p4 <<=  shift;
-      nmin = *min << shift;
+      nmin = *MIN << shift;
       nmax = *max << shift;
     }
     else
@@ -297,7 +297,7 @@
       p2 >>= -shift;
       p3 >>= -shift;
       p4 >>= -shift;
-      nmin = *min >> -shift;
+      nmin = *MIN >> -shift;
       nmax = *max >> -shift;
     }
 
@@ -317,8 +317,8 @@
       nmax <<= -shift;
     }
 
-    if ( nmin < *min )
-      *min = nmin;
+    if ( nmin < *MIN )
+      *MIN = nmin;
     if ( nmax > *max )
       *max = nmax;
   }

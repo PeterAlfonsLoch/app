@@ -73,7 +73,7 @@ int PEM_SealInit(PEM_ENCODE_SEAL_CTX *ctx, EVP_CIPHER *type, EVP_MD *md_type,
 	{
 	unsigned char key[EVP_MAX_KEY_LENGTH];
 	int ret= -1;
-	int i,j,max=0;
+	int i,j,MAX=0;
 	char *s=NULL;
 
 	for (i=0; i<npubk; i++)
@@ -84,9 +84,9 @@ int PEM_SealInit(PEM_ENCODE_SEAL_CTX *ctx, EVP_CIPHER *type, EVP_MD *md_type,
 			goto err;
 			}
 		j=RSA_size(pubk[i]->pkey.rsa);
-		if (j > max) max=j;
+		if (j > MAX) MAX=j;
 		}
-	s=(char *)OPENSSL_malloc(max*2);
+	s=(char *)OPENSSL_malloc(MAX*2);
 	if (s == NULL)
 		{
 		PEMerr(PEM_F_PEM_SEALINIT,ERR_R_MALLOC_FAILURE);

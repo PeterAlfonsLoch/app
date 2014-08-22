@@ -588,7 +588,7 @@ void opj_get_encoding_parameters(	const opj_image_t *p_image,
 	*p_ty0 = opj_int_max((OPJ_INT32)(p_cp->ty0 + q * p_cp->tdy), (OPJ_INT32)p_image->y0);
 	*p_ty1 = opj_int_min((OPJ_INT32)(p_cp->ty0 + (q + 1) * p_cp->tdy), (OPJ_INT32)p_image->y1);
 
-	/* max precision is 0 (can only grow) */
+	/* MAX precision is 0 (can only grow) */
 	*p_max_prec = 0;
 	*p_max_res = 0;
 
@@ -707,7 +707,7 @@ void opj_get_all_encoding_parameters(   const opj_image_t *p_image,
 	*p_ty0 = opj_int_max((OPJ_INT32)(p_cp->ty0 + q * p_cp->tdy), (OPJ_INT32)p_image->y0);
 	*p_ty1 = opj_int_min((OPJ_INT32)(p_cp->ty0 + (q + 1) * p_cp->tdy), (OPJ_INT32)p_image->y1);
 
-	/* max precision and resolution is 0 (can only grow)*/
+	/* MAX precision and resolution is 0 (can only grow)*/
 	*p_max_prec = 0;
 	*p_max_res = 0;
 

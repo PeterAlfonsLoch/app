@@ -183,7 +183,7 @@ namespace file
 
          break;
       default:
-         return ::numeric_info::get_allset_value < ::primitive::memory_position > ();
+         return ::numeric_info< ::primitive::memory_position >::allset();
       }
 
       m_dwPosition = dwNew;

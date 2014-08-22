@@ -86,7 +86,7 @@ int HuffmanCodeLengthsToCodes(const int* const code_lengths,
   assert(code_lengths_size > 0);
   assert(huff_codes != NULL);
 
-  // Calculate max code length.
+  // Calculate MAX code length.
   for (symbol = 0; symbol < code_lengths_size; ++symbol) {
     if (code_lengths[symbol] > max_code_length) {
       max_code_length = code_lengths[symbol];

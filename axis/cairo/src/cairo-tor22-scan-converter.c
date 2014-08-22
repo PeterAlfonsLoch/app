@@ -1265,7 +1265,7 @@ _glitter_scan_converter_fini(glitter_scan_converter_t *self)
 static grid_scaled_t
 int_to_grid_scaled(int i, int scale)
 {
-    /* Clamp to max/min representable scaled number. */
+    /* Clamp to MAX/MIN representable scaled number. */
     if (i >= 0) {
 	if (i >= INT_MAX/scale)
 	    i = INT_MAX/scale;

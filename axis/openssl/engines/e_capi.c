@@ -1167,7 +1167,7 @@ static int capi_list_containers(CAPI_CTX *ctx, BIO *out)
 		CryptReleaseContext(hprov, 0);
 		return 0;
 		}
-	CAPI_trace(ctx, "Got max container len %d\n", buflen);
+	CAPI_trace(ctx, "Got MAX container len %d\n", buflen);
 	if (buflen == 0)
 		buflen = 1024;
 	cname = OPENSSL_malloc(buflen);

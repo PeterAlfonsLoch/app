@@ -141,7 +141,7 @@ pre_process_data (j_compress_ptr cinfo,
     /* Do color conversion to fill the conversion buffer. */
     inrows = in_rows_avail - *in_row_ctr;
     numrows = cinfo->max_v_samp_factor - prep->next_buf_row;
-    numrows = (int) min((JDIMENSION) numrows, inrows);
+    numrows = (int) MIN((JDIMENSION) numrows, inrows);
     (*cinfo->cconvert->color_convert) (cinfo, input_buf + *in_row_ctr,
 				       prep->color_buf,
 				       (JDIMENSION) prep->next_buf_row,
@@ -210,7 +210,7 @@ pre_process_context (j_compress_ptr cinfo,
       /* Do color conversion to fill the conversion buffer. */
       inrows = in_rows_avail - *in_row_ctr;
       numrows = prep->next_buf_stop - prep->next_buf_row;
-      numrows = (int) min((JDIMENSION) numrows, inrows);
+      numrows = (int) MIN((JDIMENSION) numrows, inrows);
       (*cinfo->cconvert->color_convert) (cinfo, input_buf + *in_row_ctr,
 					 prep->color_buf,
 					 (JDIMENSION) prep->next_buf_row,

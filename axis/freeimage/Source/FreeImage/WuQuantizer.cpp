@@ -128,21 +128,21 @@ WuQuantizer::Hist3D(LONG *vwt, LONG *vmr, LONG *vmg, LONG *vmb, float *m2, int R
 	}
 
 	if( ReserveSize > 0 ) {
-		int max = 0;
+		int MAX = 0;
 		for(i = 0; i < SIZE_3D; i++) {
-			if( vwt[i] > max ) max = vwt[i];
+			if( vwt[i] > MAX ) MAX = vwt[i];
 		}
-		max++;
+		MAX++;
 		for(i = 0; i < ReserveSize; i++) {
 			inr = (ReservePalette[i].rgbRed >> 3) + 1;
 			ing = (ReservePalette[i].rgbGreen >> 3) + 1;
 			inb = (ReservePalette[i].rgbBlue >> 3) + 1;
 			ind = INDEX(inr, ing, inb);
-			wt[ind] = max;
-			mr[ind] = max * ReservePalette[i].rgbRed;
-			mg[ind] = max * ReservePalette[i].rgbGreen;
-			mb[ind] = max * ReservePalette[i].rgbBlue;
-			gm2[ind] = (float)max * (float)(table[ReservePalette[i].rgbRed] + table[ReservePalette[i].rgbGreen] + table[ReservePalette[i].rgbBlue]);
+			wt[ind] = MAX;
+			mr[ind] = MAX * ReservePalette[i].rgbRed;
+			mg[ind] = MAX * ReservePalette[i].rgbGreen;
+			mb[ind] = MAX * ReservePalette[i].rgbBlue;
+			gm2[ind] = (float)MAX * (float)(table[ReservePalette[i].rgbRed] + table[ReservePalette[i].rgbGreen] + table[ReservePalette[i].rgbBlue]);
 		}
 	}
 }
@@ -316,7 +316,7 @@ WuQuantizer::Maximize(Box *cube, BYTE dir, int first, int last , int *cut, LONG 
     LONG base_b = Bottom(cube, dir, mb);
     LONG base_w = Bottom(cube, dir, wt);
 
-    float max = 0.0;
+    float MAX = 0.0;
 
     *cut = -1;
 
@@ -345,13 +345,13 @@ WuQuantizer::Maximize(Box *cube, BYTE dir, int first, int last , int *cut, LONG 
 			temp += ((float)half_r*half_r + (float)half_g*half_g + (float)half_b*half_b)/half_w;
 		}
 
-    	if (temp > max) {
-			max=temp;
+    	if (temp > MAX) {
+			MAX=temp;
 			*cut=i;
 		}
     }
 
-    return max;
+    return MAX;
 }
 
 bool

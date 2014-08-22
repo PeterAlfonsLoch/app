@@ -448,11 +448,11 @@ static int IsNotCompatible(int feature, int num_items) {
 static WebPMuxError ValidateChunk(const WebPMux* const mux, CHUNK_INDEX idx,
                                   WebPFeatureFlags feature,
                                   uint32_t vp8x_flags,
-                                  int max, int* num) {
+                                  int MAX, int* num) {
   const WebPMuxError err =
       WebPMuxNumChunks(mux, kChunks[idx].id, num);
   if (err != WEBP_MUX_OK) return err;
-  if (max > -1 && *num > max) return WEBP_MUX_INVALID_ARGUMENT;
+  if (MAX > -1 && *num > MAX) return WEBP_MUX_INVALID_ARGUMENT;
   if (feature != NO_FLAG && IsNotCompatible(vp8x_flags & feature, *num)) {
     return WEBP_MUX_INVALID_ARGUMENT;
   }

@@ -127,7 +127,7 @@ class ScanLineInputFile
     // Read pixel data:
     //
     // readPixels(s1,s2) reads all scan lines with y coordinates
-    // in the interval [min (s1, s2), max (s1, s2)] from the file,
+    // in the interval [MIN (s1, s2), MAX (s1, s2)] from the file,
     // and stores them in the current frame buffer.
     //
     // Both s1 and s2 must be within the interval

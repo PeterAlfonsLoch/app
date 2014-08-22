@@ -2083,14 +2083,14 @@ EC_GROUP *EC_GROUP_new_by_curve_name(int nid)
 
 size_t EC_get_builtin_curves(EC_builtin_curve *r, size_t nitems)
 	{
-	size_t	i, min;
+	size_t	i, MIN;
 
 	if (r == NULL || nitems == 0)
 		return curve_list_length;
 
-	min = nitems < curve_list_length ? nitems : curve_list_length;
+	MIN = nitems < curve_list_length ? nitems : curve_list_length;
 
-	for (i = 0; i < min; i++)
+	for (i = 0; i < MIN; i++)
 		{
 		r[i].nid = curve_list[i].nid;
 		r[i].comment = curve_list[i].comment;

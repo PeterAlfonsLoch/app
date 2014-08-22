@@ -3146,6 +3146,9 @@
     <ClInclude Include="axis\axis\axis_gudo_application.inl">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\file\file_streambuf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -4768,13 +4771,13 @@
     <ClCompile Include="filesystem\file\file.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
+    <ClCompile Include="filesystem\file\file_streambuf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
       <Filter>Header Files\multithreading</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

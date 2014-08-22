@@ -277,7 +277,7 @@ namespace simpledb
                {
                   if(iEnd >= iStart)
                   {
-                     uiRead = min(mem.get_size(), (primitive::memory_size) (iEnd - iPos + 1));
+                     uiRead = MIN(mem.get_size(), (primitive::memory_size) (iEnd - iPos + 1));
                   }
                   else
                   {
@@ -322,7 +322,7 @@ namespace simpledb
                {
                   if(iEnd != -1 && iEnd >= iStart)
                   {
-                     uiRead = min(mem.get_size(), (iEnd - iPos + 1));
+                     uiRead = MIN(mem.get_size(), (iEnd - iPos + 1));
                   }
                   else
                   {

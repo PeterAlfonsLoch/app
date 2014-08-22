@@ -85,7 +85,7 @@ using Imath::divp;
 using Imath::modp;
 using Imath::Box2i;
 using Imath::V2i;
-using std::min;
+//using std::min;
 
 namespace {
 
@@ -619,9 +619,9 @@ B44Compressor::compress (const char *inPtr,
     //
 
     int minX = range.min.x;
-    int maxX = min (range.max.x, _maxX);
+    int maxX = MIN (range.max.x, _maxX);
     int minY = range.min.y;
-    int maxY = min (range.max.y, _maxY);
+    int maxY = MIN (range.max.y, _maxY);
     
     unsigned short *tmpBufferEnd = _tmpBuffer;
     int i = 0;
@@ -789,7 +789,7 @@ B44Compressor::compress (const char *inPtr,
 
 		    for (int i = 0; i < 4; ++i)
 		    {
-			int j = min (i, n - 1);
+			int j = MIN (i, n - 1);
 
 			s[i +  0] = row0[j];
 			s[i +  4] = row1[j];
@@ -852,9 +852,9 @@ B44Compressor::uncompress (const char *inPtr,
     }
 
     int minX = range.min.x;
-    int maxX = min (range.max.x, _maxX);
+    int maxX = MIN (range.max.x, _maxX);
     int minY = range.min.y;
-    int maxY = min (range.max.y, _maxY);
+    int maxY = MIN (range.max.y, _maxY);
     
     unsigned short *tmpBufferEnd = _tmpBuffer;
     int i = 0;

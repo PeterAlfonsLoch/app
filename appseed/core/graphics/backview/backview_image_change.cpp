@@ -119,7 +119,7 @@ namespace backview
 
    void ImageChange::SetBackgroundUpdateMillis(uint32_t dwMillis)
    {
-      m_dwBackgroundUpdateMillis = max(dwMillis, 1000);
+      m_dwBackgroundUpdateMillis = MAX(dwMillis, 1000);
    }
 
 

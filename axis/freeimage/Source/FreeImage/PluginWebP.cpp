@@ -451,7 +451,7 @@ EncodeImage(FIMEMORY *hmem, FIBITMAP *dib, int flags) {
 		}
 
 		// check format limits
-		if(max(width, height) > WEBP_MAX_DIMENSION) {
+		if(MAX(width, height) > WEBP_MAX_DIMENSION) {
 			FreeImage_OutputMessageProc(s_format_id, "Unsupported image size: width x height = %d x %d", width, height);
 			return FALSE;
 		}

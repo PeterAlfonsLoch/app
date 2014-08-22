@@ -26,7 +26,7 @@
 #if !defined(DISABLE_TOKEN_BUFFER)
 
 // we use pages to reduce the number of memcpy()
-#define MAX_NUM_TOKEN 8192          // max number of token per page
+#define MAX_NUM_TOKEN 8192          // MAX number of token per page
 #define FIXED_PROBA_BIT (1u << 14)
 
 struct VP8Tokens {

@@ -342,7 +342,7 @@ namespace visual
       LPTTPOLYCURVE       lpCurve;    // the current curve of a contour
       //  LPPOINT             pt;         // the bezier buffer
       POINTFX             ptStart;    // The starting point of a curve
-      uint32_t               dwMaxPts = size/sizeof(POINTFX); // max possible pts.
+      uint32_t               dwMaxPts = size/sizeof(POINTFX); // MAX possible pts.
       uint32_t               dwBuffSize;
 
       dwBuffSize = dwMaxPts *     // Maximum possible # of contour points.

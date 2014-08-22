@@ -149,7 +149,7 @@ int reinit_queue(QUEUE *queue, uint max_elements, uint offset_to_key,
   SYNOPSIS
     resize_queue()
     queue			Queue
-    max_elements		New max size for queue
+    max_elements		New MAX size for queue
 
   NOTES
     If you resize queue to be less than the elements you have in it,

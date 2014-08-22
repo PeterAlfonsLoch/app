@@ -35,7 +35,7 @@ typedef struct st_queue {
   uint elements;
   uint max_elements;
   uint offset_to_key;	/* compare is done on element+offset */
-  int max_at_top;	/* Normally 1, set to -1 if queue_top gives max */
+  int max_at_top;	/* Normally 1, set to -1 if queue_top gives MAX */
   int  (*compare)(void *, uchar *,uchar *);
   uint auto_extent;
 } QUEUE;

@@ -423,7 +423,7 @@ int main(int argc, char **argv)
 	static DES_cblock key2={0x34,0x56,0x78,0x9a,0xbc,0xde,0xf0,0x12};
 	static DES_cblock key3={0x56,0x78,0x9a,0xbc,0xde,0xf0,0x12,0x34};
 	DES_key_schedule sch,sch2,sch3;
-	double d,tm[16],max=0;
+	double d,tm[16],MAX=0;
 	int rank[16];
 	char *str[16];
 	int max_idx=0,i,num=0,j;
@@ -503,63 +503,63 @@ int main(int argc, char **argv)
 #ifdef PART1
 	str[0]=" 4  c i";
 	print_it("des_encrypt_u4_cisc_idx  ",0);
-	max=tm[0];
+	MAX=tm[0];
 	max_idx=0;
 	str[1]="16  c i";
 	print_it("des_encrypt_u16_cisc_idx ",1);
-	if (max < tm[1]) { max=tm[1]; max_idx=1; }
+	if (MAX < tm[1]) { MAX=tm[1]; max_idx=1; }
 	str[2]=" 4 r1 i";
 	print_it("des_encrypt_u4_risc1_idx ",2);
-	if (max < tm[2]) { max=tm[2]; max_idx=2; }
+	if (MAX < tm[2]) { MAX=tm[2]; max_idx=2; }
 #endif
 #ifdef PART2
 	str[3]="16 r1 i";
 	print_it("des_encrypt_u16_risc1_idx",3);
-	if (max < tm[3]) { max=tm[3]; max_idx=3; }
+	if (MAX < tm[3]) { MAX=tm[3]; max_idx=3; }
 	str[4]=" 4 r2 i";
 	print_it("des_encrypt_u4_risc2_idx ",4);
-	if (max < tm[4]) { max=tm[4]; max_idx=4; }
+	if (MAX < tm[4]) { MAX=tm[4]; max_idx=4; }
 	str[5]="16 r2 i";
 	print_it("des_encrypt_u16_risc2_idx",5);
-	if (max < tm[5]) { max=tm[5]; max_idx=5; }
+	if (MAX < tm[5]) { MAX=tm[5]; max_idx=5; }
 #endif
 #ifdef PART3
 	str[6]=" 4  c p";
 	print_it("des_encrypt_u4_cisc_ptr  ",6);
-	if (max < tm[6]) { max=tm[6]; max_idx=6; }
+	if (MAX < tm[6]) { MAX=tm[6]; max_idx=6; }
 	str[7]="16  c p";
 	print_it("des_encrypt_u16_cisc_ptr ",7);
-	if (max < tm[7]) { max=tm[7]; max_idx=7; }
+	if (MAX < tm[7]) { MAX=tm[7]; max_idx=7; }
 	str[8]=" 4 r1 p";
 	print_it("des_encrypt_u4_risc1_ptr ",8);
-	if (max < tm[8]) { max=tm[8]; max_idx=8; }
+	if (MAX < tm[8]) { MAX=tm[8]; max_idx=8; }
 #endif
 #ifdef PART4
 	str[9]="16 r1 p";
 	print_it("des_encrypt_u16_risc1_ptr",9);
-	if (max < tm[9]) { max=tm[9]; max_idx=9; }
+	if (MAX < tm[9]) { MAX=tm[9]; max_idx=9; }
 	str[10]=" 4 r2 p";
 	print_it("des_encrypt_u4_risc2_ptr ",10);
-	if (max < tm[10]) { max=tm[10]; max_idx=10; }
+	if (MAX < tm[10]) { MAX=tm[10]; max_idx=10; }
 	str[11]="16 r2 p";
 	print_it("des_encrypt_u16_risc2_ptr",11);
-	if (max < tm[11]) { max=tm[11]; max_idx=11; }
+	if (MAX < tm[11]) { MAX=tm[11]; max_idx=11; }
 #endif
 	printf("options    des ecb/s\n");
 	printf("%s %12.2f 100.0%%\n",str[max_idx],tm[max_idx]);
 	d=tm[max_idx];
 	tm[max_idx]= -2.0;
-	max= -1.0;
+	MAX= -1.0;
 	for (;;)
 		{
 		for (i=0; i<12; i++)
 			{
-			if (max < tm[i]) { max=tm[i]; j=i; }
+			if (MAX < tm[i]) { MAX=tm[i]; j=i; }
 			}
-		if (max < 0.0) break;
+		if (MAX < 0.0) break;
 		printf("%s %12.2f  %4.1f%%\n",str[j],tm[j],tm[j]/d*100.0);
 		tm[j]= -2.0;
-		max= -1.0;
+		MAX= -1.0;
 		}
 
 	switch (max_idx)

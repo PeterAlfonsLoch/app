@@ -160,7 +160,7 @@ int BN_div_recp(BIGNUM *dv, BIGNUM *rem, const BIGNUM *m,
 	 *
 	 */
 
-	/* i := max(BN_num_bits(m), 2*BN_num_bits(N)) */
+	/* i := MAX(BN_num_bits(m), 2*BN_num_bits(N)) */
 	i=BN_num_bits(m);
 	j=recp->num_bits<<1;
 	if (j>i) i=j;

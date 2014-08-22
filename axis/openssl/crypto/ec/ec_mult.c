@@ -82,7 +82,7 @@
 typedef struct ec_pre_comp_st {
 	const EC_GROUP *group; /* parent EC_GROUP object */
 	size_t blocksize;      /* block size for wNAF splitting */
-	size_t numblocks;      /* max. number of blocks for which we have precomputation */
+	size_t numblocks;      /* MAX. number of blocks for which we have precomputation */
 	size_t w;              /* window size */
 	EC_POINT **points;     /* array with pre-calculated multiples of generator:
 	                        * 'num' pointers to EC_POINT objects followed by a NULL */
@@ -820,7 +820,7 @@ int ec_wNAF_precompute_mult(EC_GROUP *group, BN_CTX *ctx)
 		w = EC_window_bits_for_scalar_size(bits);
 		}
 
-	numblocks = (bits + blocksize - 1) / blocksize; /* max. number of blocks to use for wNAF splitting */
+	numblocks = (bits + blocksize - 1) / blocksize; /* MAX. number of blocks to use for wNAF splitting */
 	
 	pre_points_per_block = (size_t)1 << (w - 1);
 	num = pre_points_per_block * numblocks; /* number of points to compute and store */

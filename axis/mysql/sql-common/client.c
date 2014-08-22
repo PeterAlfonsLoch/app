@@ -1020,7 +1020,7 @@ static const char *default_options[]=
   "ssl-key" ,"ssl-cert" ,"ssl-ca" ,"ssl-capath",
   "character-sets-dir", "default-character-set", "interactive-timeout",
   "connect-timeout", "local-infile", "disable-local-infile",
-  "ssl-cipher", "max-allowed-packet", "protocol", "shared-memory-base-name",
+  "ssl-cipher", "MAX-allowed-packet", "protocol", "shared-memory-base-name",
   "multi-results", "multi-statements", "multi-queries", "secure-auth",
   "report-data-truncation", "plugin-dir", "default-auth",
   "bind-address", "ssl-crl", "ssl-crlpath", "enable-cleartext-plugin",
@@ -2527,7 +2527,7 @@ error:
     Bytes       Content
     -----       ----
     2           client capabilities
-    3           max packet size
+    3           MAX packet size
     n           user name, \0-terminated
     9           scramble_323, \0-terminated
 
@@ -2536,7 +2536,7 @@ error:
     Bytes       Content
     -----       ----
     4           client capabilities
-    4           max packet size
+    4           MAX packet size
     1           charset number
     23          reserved (always 0)
     n           user name, \0-terminated
@@ -2566,7 +2566,7 @@ static int send_client_reply_packet(MCPVIO_EXT *mpvio,
   
   /*
     see end= buff+32 below, fixed size of the packet is 32 bytes.
-     +9 because data is a length encoded binary where meta data size is max 9.
+     +9 because data is a length encoded binary where meta data size is MAX 9.
   */
   buff_size= 33 + USERNAME_LENGTH + data_len + 9 + NAME_LEN + NAME_LEN + connect_attrs_len + 9;
   buff= my_alloca(buff_size);

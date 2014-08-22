@@ -399,8 +399,11 @@ public:
    // find the last occurrence of character 'ch'
    strsize reverse_find(char ch, strsize iStart = -1 ) const RELEASENOTHROW;
 
-   // find the last occurrence of character 'ch'
-   strsize reverse_find( const char * ch, strsize iStart = -1 ) const RELEASENOTHROW;
+   // find the last occurrence of string 'sz'
+   strsize reverse_find(const char * sz,strsize iStart = -1) const RELEASENOTHROW;
+
+   strsize rfind(char ch,strsize iStart = -1) const RELEASENOTHROW{return reverse_find(ch,iStart);};
+   strsize rfind(const char * sz,strsize iStart = -1) const RELEASENOTHROW{return reverse_find(sz,iStart);};
 
 
    inline bool ends_ci(const string & strSuffixCandidate);

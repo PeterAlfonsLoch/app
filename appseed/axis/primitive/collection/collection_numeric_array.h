@@ -5,9 +5,9 @@ template < typename T >
 index numeric_compare(T * p1, T * p2)
 {
    T t = *p1 - *p2;
-   if(t > ::numeric_info::get_null_value < T > ())
+   if(t > ::numeric_info< T >::null())
       return 1;
-   else if(t < ::numeric_info::get_null_value < T > ())
+   else if(t < ::numeric_info < T >::null())
       return -1;
    else
       return 0;
@@ -320,10 +320,8 @@ numeric_array(numeric_array < TYPE > && a)
 }
 #endif
 
-namespace numeric_info
-{
-   template < typename TYPE > string json(const TYPE & t);
-}
+template < typename T >
+string to_json(const T & t);
 
 
 template < class TYPE >
@@ -340,7 +338,7 @@ string numeric_array < TYPE >::get_json()
          str += ", \r\n";
       }
 
-      str += ::numeric_info::json(this->element_at(i));
+      str += to_json(this->element_at(i));
 
    }
 
@@ -497,7 +495,7 @@ template < class TYPE >
 index numeric_array < TYPE >::
    Cmp(const numeric_array  < TYPE > & array1)
 {
-   ::count iMinSize = min(array1.get_size(), this->get_size());
+   ::count iMinSize = MIN(array1.get_size(), this->get_size());
    index i = 0;
    while(true)
    {
@@ -700,7 +698,7 @@ inline TYPE numeric_array < TYPE > ::pop_max()
 
    TYPE nowpop = this->pop();
 
-   this->last_element() = max(nowpop, lastelement);
+   this->last_element() = MAX(nowpop, lastelement);
 
    return this->last_element();
 
@@ -716,7 +714,7 @@ inline TYPE numeric_array < TYPE > ::pop_max_last_add_up(TYPE tLastAddUp)
 
    TYPE nowpop = this->pop();
 
-   this->last_element() = max(nowpop, lastelement + tLastAddUp);
+   this->last_element() = MAX(nowpop, lastelement + tLastAddUp);
 
    return this->last_element();
 

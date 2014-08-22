@@ -221,7 +221,7 @@ hufCanonicalCodeTable (Int64 hcode[HUF_ENCSIZE])
 //
 // Compute Huffman codes (based on frq input) and store them in frq:
 //	- code structure is : [63:lsb - 6:msb] | [5-0: bit length];
-//	- max code length is 58 bits;
+//	- MAX code length is 58 bits;
 //	- codes outside the range [im-iM] have a null length (unused values);
 //	- original frequencies are destroyed;
 //	- encoding tables are used by hufEncode() and hufBuildDecTable();
@@ -237,8 +237,8 @@ struct FHeapCompare
 void
 hufBuildEncTable
     (Int64*	frq,	// io: input frequencies [HUF_ENCSIZE], output table
-     int*	im,	//  o: min frq index
-     int*	iM)	//  o: max frq index
+     int*	im,	//  o: MIN frq index
+     int*	iM)	//  o: MAX frq index
 {
     //
     // This function assumes that when it is called, array frq
@@ -431,8 +431,8 @@ const int LONGEST_LONG_RUN   = 255 + SHORTEST_LONG_RUN;
 void
 hufPackEncTable
     (const Int64*	hcode,		// i : encoding table [HUF_ENCSIZE]
-     int		im,		// i : min hcode index
-     int		iM,		// i : max hcode index
+     int		im,		// i : MIN hcode index
+     int		iM,		// i : MAX hcode index
      char**		pcode)		//  o: ptr to packed table (updated)
 {
     char *p = *pcode;
@@ -488,8 +488,8 @@ void
 hufUnpackEncTable
     (const char**	pcode,		// io: ptr to packed table (updated)
      int		ni,		// i : input size (in bytes)
-     int		im,		// i : min hcode index
-     int		iM,		// i : max hcode index
+     int		im,		// i : MIN hcode index
+     int		iM,		// i : MAX hcode index
      Int64*		hcode)		//  o: encoding table [HUF_ENCSIZE]
 {
     memset (hcode, 0, sizeof (Int64) * HUF_ENCSIZE);
@@ -568,8 +568,8 @@ hufClearDecTable
 void
 hufBuildDecTable
     (const Int64*	hcode,		// i : encoding table
-     int		im,		// i : min index in hcode
-     int		iM,		// i : max index in hcode
+     int		im,		// i : MIN index in hcode
+     int		iM,		// i : MAX index in hcode
      HufDec *		hdecod)		//  o: (allocated by caller)
      					//     decoding table [HUF_DECSIZE]
 {
@@ -692,7 +692,7 @@ inline void
 sendCode (Int64 sCode, int runCount, Int64 runCode,
 	  Int64 &c, int &lc, char *&out)
 {
-    static const int RLMIN = 32; // min count to activate run-length coding
+    static const int RLMIN = 32; // MIN count to activate run-length coding
 
     if (runCount > RLMIN)
     {

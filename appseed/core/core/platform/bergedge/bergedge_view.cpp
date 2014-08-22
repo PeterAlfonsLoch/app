@@ -170,8 +170,8 @@ namespace bergedge
       //::backview::Interface::GetMain().GetTransitionEffect().DisableEffect(::backview::TransitionEffectVisual);
 
 
-      SetTimer(TimerBackView, 83, NULL);  // max. 12 fps
-      SetTimer(21977, 1984 * 11, NULL);  // max. 12 fps
+      SetTimer(TimerBackView, 83, NULL);  // MAX. 12 fps
+      SetTimer(21977, 1984 * 11, NULL);  // MAX. 12 fps
 
       check_apps();
 

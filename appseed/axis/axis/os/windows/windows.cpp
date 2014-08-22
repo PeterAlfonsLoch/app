@@ -1,7 +1,11 @@
 #include "framework.h"
 #include <VersionHelpers.h>
 #undef new
-#include <Gdiplus.h>
+#define min MIN
+#define max MAX
+#include <gdiplus.h>
+#undef min
+#undef max
 #define new AXIS_NEW
 #include <ddeml.h>
 

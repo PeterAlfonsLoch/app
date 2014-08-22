@@ -215,12 +215,12 @@ _cairo_slope_compare_sgn (double dx1, double dy1, double dx2, double dy2)
 }
 
 static inline int
-_range_step (int i, int step, int max)
+_range_step (int i, int step, int MAX)
 {
     i += step;
     if (i < 0)
-	i = max - 1;
-    if (i >= max)
+	i = MAX - 1;
+    if (i >= MAX)
 	i = 0;
     return i;
 }

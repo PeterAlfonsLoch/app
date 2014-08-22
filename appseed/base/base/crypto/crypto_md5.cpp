@@ -96,7 +96,7 @@ namespace crypto
          while(pos < size)
          {
 
-            read = min(size - pos, 0xffffffffu);
+            read = MIN(size - pos, 0xffffffffu);
 
             MD5_Update(m_pctx, &((byte *) data)[pos], read);
 

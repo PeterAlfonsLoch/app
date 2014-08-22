@@ -328,7 +328,7 @@ namespace file
       if (dwEnd == (file_position)-1)
       {
 
-         nCount = ::numeric_info::get_maximum_value < strsize >();
+         nCount = ::numeric_info< strsize >::max();
 
       }
       else
@@ -338,7 +338,7 @@ namespace file
 
       }
        
-      while((uiRead = read(&memory.get_data()[uiPos], min(memory.get_size() - uiPos, (::primitive::memory_size) nCount))) > 0)
+      while((uiRead = read(&memory.get_data()[uiPos], MIN(memory.get_size() - uiPos, (::primitive::memory_size) nCount))) > 0)
       {
          uiPos += uiRead;
          nCount -= uiRead;

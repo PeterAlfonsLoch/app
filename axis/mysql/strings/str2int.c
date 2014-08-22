@@ -83,7 +83,7 @@ char *str2int(const char *src, int radix, long int lower,
       machines all, if +|n| is representable, so is -|n|, but on
       twos complement machines the converse is not true.  So the
       "maximum" representable number has a negative representative.
-      Limit is set to min(-|lower|,-|upper|); this is the "largest"
+      Limit is set to MIN(-|lower|,-|upper|); this is the "largest"
       number we are concerned with.	*/
 
   /*  Calculate Limit using Scale as a scratch variable  */

@@ -8,7 +8,7 @@
 // -----------------------------------------------------------------------------
 //
 // Quantize levels for specified number of quantization-levels ([2, 256]).
-// Min and max values are preserved (usual 0 and 255 for alpha plane).
+// Min and MAX values are preserved (usual 0 and 255 for alpha plane).
 //
 // Author: Skal (pascal.massimino@gmail.com)
 #include "axis/axis/axis.h"

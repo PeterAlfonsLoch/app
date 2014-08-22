@@ -644,11 +644,11 @@ namespace user
 
          rectList = rectMonitor;
 
-         sizeList.cx = min(sizeFull.cx, rectMonitor.width());
+         sizeList.cx = MIN(sizeFull.cx, rectMonitor.width());
 
          {
 
-            sizeList.cx = max(sizeList.cx, rectWindow.width());
+            sizeList.cx = MAX(sizeList.cx, rectWindow.width());
 
          }
 
@@ -661,7 +661,7 @@ namespace user
          else if(sizeList.cx < rectMonitor.width())
          {
 
-            rectList.left = min(rectMonitor.right - sizeList.cx, ((rectWindow.left + rectWindow.right) / 2) - sizeList.cx / 2);
+            rectList.left = MIN(rectMonitor.right - sizeList.cx, ((rectWindow.left + rectWindow.right) / 2) - sizeList.cx / 2);
 
          }
 
@@ -672,7 +672,7 @@ namespace user
 
             rectList.top = rectWindow.bottom + 1;
 
-            sizeList.cy = min(sizeFull.cy, (rectMonitor.bottom - rectWindow.bottom));
+            sizeList.cy = MIN(sizeFull.cy, (rectMonitor.bottom - rectWindow.bottom));
             sizeList.cy -= sizeList.cy % m_plist->_001GetItemHeight();
 
 
@@ -686,7 +686,7 @@ namespace user
          {
             rectList.bottom = rectWindow.top - 1;
 
-            sizeList.cy = min(sizeFull.cy, (rectWindow.top - rectMonitor.top));
+            sizeList.cy = MIN(sizeFull.cy, (rectWindow.top - rectMonitor.top));
             sizeList.cy -= sizeList.cy % m_plist->_001GetItemHeight();
 
             rectList.top = rectList.bottom - sizeList.cy;
@@ -755,7 +755,7 @@ namespace user
       GetClientRect(rectClient);
 
 
-      m_plist->m_iItemHeight = min(24, rectClient.height());
+      m_plist->m_iItemHeight = MIN(24, rectClient.height());
 
 
 

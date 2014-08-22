@@ -70,8 +70,8 @@ static int InitPassStats(const VP8Encoder* const enc, PassStats* const s) {
   return do_size_search;
 }
 
-static float Clamp(float v, float min, float max) {
-  return (v < min) ? min : (v > max) ? max : v;
+static float Clamp(float v, float MIN, float MAX) {
+  return (v < MIN) ? MIN : (v > MAX) ? MAX : v;
 }
 
 static float ComputeNextQ(PassStats* const s) {

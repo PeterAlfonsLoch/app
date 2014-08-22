@@ -276,13 +276,13 @@ typedef struct opj_tcp
 	opj_mct_data_t * m_mct_records;
 	/** the number of mct records. */
 	OPJ_UINT32 m_nb_mct_records;
-	/** the max number of mct records. */
+	/** the MAX number of mct records. */
 	OPJ_UINT32 m_nb_max_mct_records;
 	/** mcc records */
 	opj_simple_mcc_decorrelation_data_t * m_mcc_records;
 	/** the number of mct records. */
 	OPJ_UINT32 m_nb_mcc_records;
-	/** the max number of mct records. */
+	/** the MAX number of mct records. */
 	OPJ_UINT32 m_nb_max_mcc_records;
 
 

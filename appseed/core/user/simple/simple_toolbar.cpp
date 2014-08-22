@@ -409,23 +409,23 @@ size simple_toolbar::CalcSize(int32_t nCount)
       if (item.m_spdib.is_set())
       {
          buttonx =  item.m_spdib->m_size.cx
-            + max(ITEMCX, max(ITEMHOVERCX, ITEMPRESSCX))
-            - min(ITEMCX, min(ITEMHOVERCX, ITEMPRESSCX))
+            + MAX(ITEMCX, MAX(ITEMHOVERCX, ITEMPRESSCX))
+            - MIN(ITEMCX, MIN(ITEMHOVERCX, ITEMPRESSCX))
             + ITEMPADLEFT + ITEMPADRIGHT;
          buttony = item.m_spdib->m_size.cy
-            + max(ITEMCY, max(ITEMHOVERCY, ITEMPRESSCY))
-            - min(ITEMCY, min(ITEMHOVERCY, ITEMPRESSCY))
+            + MAX(ITEMCY, MAX(ITEMHOVERCY, ITEMPRESSCY))
+            - MIN(ITEMCY, MIN(ITEMHOVERCY, ITEMPRESSCY))
             + ITEMPADTOP + ITEMPADBOTTOM;
       }
       else
       {
          buttonx = m_sizeImage.cx
-            + max(ITEMCX, max(ITEMHOVERCX, ITEMPRESSCX))
-            - min(ITEMCX, min(ITEMHOVERCX, ITEMPRESSCX))
+            + MAX(ITEMCX, MAX(ITEMHOVERCX, ITEMPRESSCX))
+            - MIN(ITEMCX, MIN(ITEMHOVERCX, ITEMPRESSCX))
             + ITEMPADLEFT + ITEMPADRIGHT;
          buttony = m_sizeImage.cy
-            + max(ITEMCY, max(ITEMHOVERCY, ITEMPRESSCY))
-            - min(ITEMCY, min(ITEMHOVERCY, ITEMPRESSCY))
+            + MAX(ITEMCY, MAX(ITEMHOVERCY, ITEMPRESSCY))
+            - MIN(ITEMCY, MIN(ITEMHOVERCY, ITEMPRESSCY))
             + ITEMPADTOP + ITEMPADBOTTOM;
       }
 
@@ -439,9 +439,9 @@ size simple_toolbar::CalcSize(int32_t nCount)
       {
          // a separator represents either a height or width
          if (m_itema[i].m_fsState & TBSTATE_WRAP)
-            sizeResult.cy = max(cur.y + m_sizeButton.cy + cySep, sizeResult.cy);
+            sizeResult.cy = MAX(cur.y + m_sizeButton.cy + cySep, sizeResult.cy);
          else
-            sizeResult.cx = max(cur.x + m_itema[i].m_iImage, sizeResult.cx);
+            sizeResult.cx = MAX(cur.x + m_itema[i].m_iImage, sizeResult.cx);
       }
       else
       {
@@ -453,9 +453,9 @@ size simple_toolbar::CalcSize(int32_t nCount)
          ASSERT(gen_DropDownWidth != -1);
          cx += gen_DropDownWidth;
          }*/
-         sizeResult.cx = max(cur.x + cx, sizeResult.cx);
-         //sizeResult.cy = max(cur.y + m_sizeButton.cy, sizeResult.cy);
-         sizeResult.cy = max(cur.y + buttony, sizeResult.cy);
+         sizeResult.cx = MAX(cur.x + cx, sizeResult.cx);
+         //sizeResult.cy = MAX(cur.y + m_sizeButton.cy, sizeResult.cy);
+         sizeResult.cy = MAX(cur.y + buttony, sizeResult.cy);
       }
 
       if (m_itema[i].m_fsStyle & TBSTYLE_SEP)
@@ -491,11 +491,11 @@ _001GetElementRect(i, rectItem);
 if(bHorz)
 {
 size.cx += rectItem.width();
-size.cy = max(size.cy, rectItem.height());
+size.cy = MAX(size.cy, rectItem.height());
 }
 else
 {
-size.cx = max(size.cx, rectItem.width());
+size.cx = MAX(size.cx, rectItem.width());
 size.cy += rectItem.height();
 }
 }
@@ -1098,20 +1098,20 @@ void simple_toolbar::layout()
 
    size size;
    int32_t ix = 0;
-   //   int32_t intrax = max(ITEMCX, max(ITEMHOVERCX, ITEMPRESSCX))
-   //            - min(ITEMCX, min(ITEMHOVERCX, ITEMPRESSCX))
-   //          + max(ITEMPADLEFT, ITEMPADRIGHT);
+   //   int32_t intrax = MAX(ITEMCX, MAX(ITEMHOVERCX, ITEMPRESSCX))
+   //            - MIN(ITEMCX, MIN(ITEMHOVERCX, ITEMPRESSCX))
+   //          + MAX(ITEMPADLEFT, ITEMPADRIGHT);
    int32_t buttonx1, buttonx2, buttony;
    buttonx1 = m_sizeImage.cx
-      + max(ITEMCX, max(ITEMHOVERCX, ITEMPRESSCX))
-      - min(ITEMCX, min(ITEMHOVERCX, ITEMPRESSCX))
+      + MAX(ITEMCX, MAX(ITEMHOVERCX, ITEMPRESSCX))
+      - MIN(ITEMCX, MIN(ITEMHOVERCX, ITEMPRESSCX))
       + ITEMPADLEFT + ITEMPADRIGHT;
-   buttonx2 = max(ITEMCX, max(ITEMHOVERCX, ITEMPRESSCX))
-      - min(ITEMCX, min(ITEMHOVERCX, ITEMPRESSCX))
+   buttonx2 = MAX(ITEMCX, MAX(ITEMHOVERCX, ITEMPRESSCX))
+      - MIN(ITEMCX, MIN(ITEMHOVERCX, ITEMPRESSCX))
       + ITEMPADLEFT + ITEMPADRIGHT;
    buttony = m_sizeImage.cy
-      + max(ITEMCY, max(ITEMHOVERCY, ITEMPRESSCY))
-      - min(ITEMCY, min(ITEMHOVERCY, ITEMPRESSCY))
+      + MAX(ITEMCY, MAX(ITEMHOVERCY, ITEMPRESSCY))
+      - MIN(ITEMCY, MIN(ITEMHOVERCY, ITEMPRESSCY))
       + ITEMPADTOP + ITEMPADBOTTOM;
 
    rect  rectClient;
@@ -1156,7 +1156,7 @@ void simple_toolbar::layout()
          else if(item.m_spdib.is_set())
          {
             cx = buttonx2 + sizeText.cx + item.m_spdib->m_size.cx;
-            cy = max(buttony, item.m_spdib->m_size.cy);
+            cy = MAX(buttony, item.m_spdib->m_size.cy);
          }
          else if(item.m_iImage >= 0)
          {
@@ -1179,7 +1179,7 @@ void simple_toolbar::layout()
          else if(item.m_spdib.is_set())
          {
             cx = buttonx2 + sizeText.cx + item.m_spdib->m_size.cx;
-            cy = max(buttony, item.m_spdib->m_size.cy);
+            cy = MAX(buttony, item.m_spdib->m_size.cy);
          }
          else if(uiImage != 0xffffffff)
          {
@@ -1913,8 +1913,8 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
       sizeResult.cx -= rect.width();
 
       size size = ::user::control_bar::CalcFixedLayout((dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
-      sizeResult.cx = max(sizeResult.cx, size.cx);
-      sizeResult.cy = max(sizeResult.cy, size.cy);
+      sizeResult.cx = MAX(sizeResult.cx, size.cx);
+      sizeResult.cy = MAX(sizeResult.cy, size.cy);
    }
 
    return sizeResult;
@@ -1957,9 +1957,9 @@ if (m_itema[i].m_fsStyle & TBSTYLE_SEP)
 {
 // a separator represents either a height or width
 if (m_itema[i].fsState & TBSTATE_WRAP)
-sizeResult.cy = max(cur.y + m_sizeButton.cy + cySep, sizeResult.cy);
+sizeResult.cy = MAX(cur.y + m_sizeButton.cy + cySep, sizeResult.cy);
 else
-sizeResult.cx = max(cur.x + m_itema[i].iBitmap, sizeResult.cx);
+sizeResult.cx = MAX(cur.x + m_itema[i].iBitmap, sizeResult.cx);
 }
 else
 {
@@ -1971,8 +1971,8 @@ if ((m_itema[i].m_fsStyle & TBSTYLE_DROPDOWN) &&
 //            ASSERT(gen_DropDownWidth != -1);
 //            cx += gen_DropDownWidth;
 }
-sizeResult.cx = max(cur.x + cx, sizeResult.cx);
-sizeResult.cy = max(cur.y + m_sizeButton.cy, sizeResult.cy);
+sizeResult.cx = MAX(cur.x + cx, sizeResult.cx);
+sizeResult.cy = MAX(cur.y + m_sizeButton.cy, sizeResult.cy);
 }
 
 if (m_itema[i].m_fsStyle & TBSTYLE_SEP)

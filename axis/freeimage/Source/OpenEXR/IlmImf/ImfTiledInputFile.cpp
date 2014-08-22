@@ -160,10 +160,10 @@ struct TiledInputFile::Data: public Mutex
     int		    version;		    // file's version
     FrameBuffer	    frameBuffer;	    // framebuffer to write into
     LineOrder	    lineOrder;		    // the file's lineorder
-    int		    minX;		    // data window's min x coord
-    int		    maxX;		    // data window's max x coord
-    int		    minY;		    // data window's min y coord
-    int		    maxY;		    // data window's max x coord
+    int		    minX;		    // data window's MIN x coord
+    int		    maxX;		    // data window's MAX x coord
+    int		    minY;		    // data window's MIN y coord
+    int		    maxY;		    // data window's MAX x coord
 
     int		    numXLevels;		    // number of x levels
     int		    numYLevels;		    // number of y levels
@@ -216,7 +216,7 @@ TiledInputFile::Data::Data (bool del, int numThreads):
     // to keep n threads busy we need 2*n tileBuffers
     //
 
-    tileBuffers.resize (max (1, 2 * numThreads));
+    tileBuffers.resize (MAX (1, 2 * numThreads));
 }
 
 

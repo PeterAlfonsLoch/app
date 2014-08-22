@@ -430,8 +430,8 @@ FI_ENUM(FREE_IMAGE_TYPE) {
 /** Image color type used in FreeImage.
 */
 FI_ENUM(FREE_IMAGE_COLOR_TYPE) {
-	FIC_MINISWHITE = 0,		// min value is white
-    FIC_MINISBLACK = 1,		// min value is black
+	FIC_MINISWHITE = 0,		// MIN value is white
+    FIC_MINISBLACK = 1,		// MIN value is black
     FIC_RGB        = 2,		// RGB color model
     FIC_PALETTE    = 3,		// color map indexed
 	FIC_RGBALPHA   = 4,		// RGB color model with alpha channel

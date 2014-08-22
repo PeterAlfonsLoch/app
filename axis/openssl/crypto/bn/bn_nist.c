@@ -286,16 +286,16 @@ const BIGNUM *BN_get0_nist_prime_521(void)
 	}
 
 
-static void nist_cp_bn_0(BN_ULONG *dst, const BN_ULONG *src, int top, int max)
+static void nist_cp_bn_0(BN_ULONG *dst, const BN_ULONG *src, int top, int MAX)
 	{
 	int i;
 
 #ifdef BN_DEBUG
-	OPENSSL_assert(top <= max);
+	OPENSSL_assert(top <= MAX);
 #endif
 	for (i = 0; i < top; i++)
 		dst[i] = src[i];
-	for (; i < max; i++)
+	for (; i < MAX; i++)
 		dst[i] = 0;
 	}
 

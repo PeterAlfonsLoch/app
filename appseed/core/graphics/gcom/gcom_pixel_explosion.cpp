@@ -75,7 +75,7 @@ namespace gcom
 
 
 
-      double dmax = min(m_iWidth, m_iHeight);
+      double dmax = MIN(m_iWidth, m_iHeight);
 
       double dm = dmax / 3;
 
@@ -153,8 +153,8 @@ namespace gcom
       double dmax = sqrt((double) (imax * imax + jmax * jmax));
 
       if(m_z > dmax) m_z = dmax;
-      //double dmax = min(m_iWidth, m_iHeight);
-      //double dmax = max(m_iWidth, m_iHeight) * 2;
+      //double dmax = MIN(m_iWidth, m_iHeight);
+      //double dmax = MAX(m_iWidth, m_iHeight) * 2;
 
       double m, n, o;
 
@@ -177,7 +177,7 @@ namespace gcom
                dcos = cos(da);
                dsin = sin(da);
                //dr = 1.0;
-               dr = max(2.0, d);
+               dr = MAX(2.0, d);
                //o = 0;
             }
             else
@@ -224,9 +224,9 @@ namespace gcom
       int32_t jmin = - m_iHeight / 2;
       int32_t jmax = m_iHeight / 2;
 
-      double max = imax * imax + jmax * jmax;
-      //double max = max(imax, jmax) * 2;
-   //   max = 2 * max;
+      double MAX = imax * imax + jmax * jmax;
+      //double MAX = MAX(imax, jmax) * 2;
+   //   MAX = 2 * MAX;
 
       int32_t k = 0;
       int32_t i, j;
@@ -237,7 +237,7 @@ namespace gcom
 
             m_pointaM[k].x = i;
             m_pointaM[k].x = j;
-            m_pointaM[k].z = sqrt(max - (i * i + j * j));
+            m_pointaM[k].z = sqrt(MAX - (i * i + j * j));
             m_pointa[k].x = i;
             m_pointa[k].y = j;
             m_pointa[k].z = m_pointaM[k].z;

@@ -74,15 +74,15 @@ CLASS_DECL_BASE bool OffsetRect(LPRECT prect, int32_t x, int32_t y)
 
 CLASS_DECL_BASE bool x_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 {
-   prect->left = max(prect1->left, prect2->left);
-   prect->right = min(prect1->right, prect2->right);
+   prect->left = MAX(prect1->left, prect2->left);
+   prect->right = MIN(prect1->right, prect2->right);
    return prect->right >= prect->left;
 }
 
 CLASS_DECL_BASE bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 {
-   prect->top = max(prect1->top, prect2->top);
-   prect->right = min(prect1->bottom, prect2->bottom);
+   prect->top = MAX(prect1->top, prect2->top);
+   prect->right = MIN(prect1->bottom, prect2->bottom);
    return prect->bottom >= prect->top;
 }
 
@@ -96,10 +96,10 @@ CLASS_DECL_BASE bool IntersectRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 
 CLASS_DECL_BASE bool UnionRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 {
-   prect->left = min(prect1->left, prect2->left);
-   prect->top = min(prect1->top, prect2->top);
-   prect->right = max(prect1->right, prect2->right);
-   prect->bottom = max(prect1->bottom, prect2->bottom);
+   prect->left = MIN(prect1->left, prect2->left);
+   prect->top = MIN(prect1->top, prect2->top);
+   prect->right = MAX(prect1->right, prect2->right);
+   prect->bottom = MAX(prect1->bottom, prect2->bottom);
    return ((prect->right - prect->left) > 0) && ((prect->bottom - prect->top) > 0);
 }
 

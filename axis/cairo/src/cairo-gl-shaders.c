@@ -502,7 +502,7 @@ cairo_gl_shader_emit_color (cairo_output_stream_t *stream,
 	    "    vec2 t = (B + vec2 (sqrtdet, -sqrtdet)) / %s_a;\n"
 	    "    \n"
 	    "    vec2 is_valid = step (vec2 (0.0), t) * step (t, vec2(1.0));\n"
-	    "    float has_color = step (0., det) * max (is_valid.x, is_valid.y);\n"
+	    "    float has_color = step (0., det) * MAX (is_valid.x, is_valid.y);\n"
 	    "    \n"
 	    "    float upper_t = mix (t.y, t.x, is_valid.x);\n",
 	    namestr, namestr, rectstr, namestr, namestr, namestr, namestr,
@@ -546,7 +546,7 @@ cairo_gl_shader_emit_color (cairo_output_stream_t *stream,
 	    "    vec2 t = (B + vec2 (sqrtdet, -sqrtdet)) / %s_a;\n"
 	    "    \n"
 	    "    vec2 is_valid = step (vec2 (-%s_radius_0), t * %s_circle_d.z);\n"
-	    "    float has_color = step (0., det) * max (is_valid.x, is_valid.y);\n"
+	    "    float has_color = step (0., det) * MAX (is_valid.x, is_valid.y);\n"
 	    "    \n"
 	    "    float upper_t = mix (t.y, t.x, is_valid.x);\n"
 	    "    vec4 texel = texture2D%s (%s_sampler, %s_wrap (vec2(upper_t, 0.5)));\n"

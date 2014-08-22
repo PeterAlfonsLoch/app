@@ -631,7 +631,7 @@ restart:
 //      varQuery.propset()["headers"].propset()["Accept-Language"] = "en-us,en;q=0.5";
       //varQuery.propset()["headers"].propset()["Accept-Encoding"] = "gzip,deflate";
 //      varQuery.propset()["headers"].propset()["Accept-Charset"] = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
-      varQuery.propset()["headers"].propset()["Cache-Control"] = "max-age=0";
+      varQuery.propset()["headers"].propset()["Cache-Control"] = "MAX-age=0";
 
       string str = Application.file().as_string(varFile, varQuery);
 

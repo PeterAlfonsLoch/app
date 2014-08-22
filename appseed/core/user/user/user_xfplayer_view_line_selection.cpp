@@ -758,7 +758,7 @@ XfplayerViewLineSelection::e_state XfplayerViewLineSelection::GetState()
 bool XfplayerViewLineSelectionItem::Intersect(index iFirstLine, index iLastLine)
 {
 
-   return max(iFirstLine, m_iLineStart) <= min(iLastLine, m_iLineEnd);
+   return MAX(iFirstLine, m_iLineStart) <= MIN(iLastLine, m_iLineEnd);
 
 }
 

@@ -84,21 +84,21 @@ rgb2hsv_d(const Vec3<double> &c)
     const double &y = c.y;
     const double &z = c.z;
 
-    double max	 = (x > y) ? ((x > z) ? x : z) : ((y > z) ? y : z);
-    double min	 = (x < y) ? ((x < z) ? x : z) : ((y < z) ? y : z);
-    double range = max - min;
-    double val	 = max;
+    double MAX	 = (x > y) ? ((x > z) ? x : z) : ((y > z) ? y : z);
+    double MIN	 = (x < y) ? ((x < z) ? x : z) : ((y < z) ? y : z);
+    double range = MAX - MIN;
+    double val	 = MAX;
     double sat   = 0;
     double hue   = 0;
     
-    if (max != 0)   sat = range/max;
+    if (MAX != 0)   sat = range/MAX;
     
     if (sat != 0) 
     {
 	double h;
 	
-	if      (x == max)	h =     (y - z) / range;
-	else if (y == max)	h = 2 + (z - x) / range;
+	if      (x == MAX)	h =     (y - z) / range;
+	else if (y == MAX)	h = 2 + (z - x) / range;
 	else		h = 4 + (x - y) / range;
 
 	hue = h/6.;
@@ -117,21 +117,21 @@ rgb2hsv_d(const Color4<double> &c)
     const double &g = c.g;
     const double &b = c.b;
 
-    double max	 = (r > g) ? ((r > b) ? r : b) : ((g > b) ? g : b);
-    double min	 = (r < g) ? ((r < b) ? r : b) : ((g < b) ? g : b);
-    double range = max - min;
-    double val	 = max;
+    double MAX	 = (r > g) ? ((r > b) ? r : b) : ((g > b) ? g : b);
+    double MIN	 = (r < g) ? ((r < b) ? r : b) : ((g < b) ? g : b);
+    double range = MAX - MIN;
+    double val	 = MAX;
     double sat   = 0;
     double hue   = 0;
     
-    if (max != 0)   sat = range/max;
+    if (MAX != 0)   sat = range/MAX;
     
     if (sat != 0) 
     {
 	double h;
 	
-	if      (r == max)	h =     (g - b) / range;
-	else if (g == max)	h = 2 + (b - r) / range;
+	if      (r == MAX)	h =     (g - b) / range;
+	else if (g == MAX)	h = 2 + (b - r) / range;
 	else		h = 4 + (r - g) / range;
 
 	hue = h/6.;

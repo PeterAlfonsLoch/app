@@ -229,7 +229,7 @@ namespace platform
          m_dibBk->Fill(0, 84, 84, 77);
       }
 
-      SetTimer(21977, 1984 * 11, NULL);  // max. 12 fps
+      SetTimer(21977, 1984 * 11, NULL);  // MAX. 12 fps
 
       check_apps();
 

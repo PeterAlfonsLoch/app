@@ -97,7 +97,7 @@ lerpfactor(T m, T a, T b)
     T d = b - a;
     T n = m - a;
 
-    if (abs(d) > T(1) || abs(n) < limits<T>::max() * abs(d))
+    if (abs(d) > T(1) || abs(n) < limits<T>::maximum() * abs(d))
 	return n / d;
 
     return T(0);

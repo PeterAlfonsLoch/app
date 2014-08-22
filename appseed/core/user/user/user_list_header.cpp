@@ -330,7 +330,7 @@ namespace user
          {
             for (index iColumn = 0; iColumn < m_plistctrlinterface->_001GetColumnCount(); iColumn++)
             {
-               m_plistctrlinterface->_001SetColumnWidth(iColumn, max(iaWidth[iColumn], 50));
+               m_plistctrlinterface->_001SetColumnWidth(iColumn, MAX(iaWidth[iColumn], 50));
             }
          }
          else
@@ -404,7 +404,7 @@ namespace user
                GetItemRect(rect, ElementItem, m_iItemLButtonDown);
                rect.right = ptCursor.x;
                int32_t iNewWidth = rect.width();
-               plist->_001SetColumnWidth(m_iItemLButtonDown, max(0, iNewWidth));
+               plist->_001SetColumnWidth(m_iItemLButtonDown, MAX(0, iNewWidth));
                plist->Redraw();
                Redraw();
             }
@@ -457,7 +457,7 @@ namespace user
             GetItemRect(rect, ElementItem, m_iItemLButtonDown);
             rect.right = ptCursor.x;
             int32_t iNewWidth = rect.width();
-            plist->_001SetColumnWidth(m_iItemLButtonDown, max(0, iNewWidth));
+            plist->_001SetColumnWidth(m_iItemLButtonDown, MAX(0, iNewWidth));
             plist->Redraw();
             Redraw();
          }

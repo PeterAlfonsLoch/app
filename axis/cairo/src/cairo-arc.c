@@ -52,7 +52,7 @@
    curves", Tor Dokken and Morten Daehlen, Computer Aided Geometric
    Design 8 (1990) 22-41, we learn:
 
-	abs (max(e)) = 4/27 * sin**6(angle/4) / cos**2(angle/4)
+	abs (MAX(e)) = 4/27 * sin**6(angle/4) / cos**2(angle/4)
 
    and
 	abs (error) =~ 1/2 * e

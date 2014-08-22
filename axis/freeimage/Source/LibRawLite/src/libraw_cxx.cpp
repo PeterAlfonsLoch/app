@@ -18,11 +18,11 @@ it under the terms of the one of three licenses as you choose:
    (See file LICENSE.LibRaw.pdf provided in LibRaw distribution archive for details).
 
  */
-
+#include "axis/axis/axis.h"
 #include <math.h>
 #include <errno.h>
 #include <float.h>
-#include <new>
+//#include <new>
 #include <exception>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -274,7 +274,7 @@ static CameraMetaDataLR* make_camera_metadata()
 
 #endif
 
-#define ZERO(a) memset(&a,0,sizeof(a))
+//#define ZERO(a) memset(&a,0,sizeof(a))
 
 
 LibRaw:: LibRaw(unsigned int flags)
@@ -1691,8 +1691,8 @@ int LibRaw::raw2image_ex(int do_subtract_black)
           }
         do_crop = 1;
         
-        crop[2] = min (crop[2], (signed) S.width-crop[0]);
-        crop[3] = min (crop[3], (signed) S.height-crop[1]);
+        crop[2] = MIN (crop[2], (signed) S.width-crop[0]);
+        crop[3] = MIN (crop[3], (signed) S.height-crop[1]);
         if (crop[2] <= 0 || crop[3] <= 0)
           throw LIBRAW_EXCEPTION_BAD_CROP;
         
@@ -2155,10 +2155,10 @@ void LibRaw::kodak_thumb_loader()
   (this->*thumb_load_raw)();
 
   // copy-n-paste from image pipe
-#define MIN(a,b) ((a) < (b) ? (a) : (b))
-#define MAX(a,b) ((a) > (b) ? (a) : (b))
-#define LIM(x,min,max) MAX(min,MIN(x,max))
-#define CLIP(x) LIM(x,0,65535)
+//#define MIN(a,b) ((a) < (b) ? (a) : (b))
+//#define MAX(a,b) ((a) > (b) ? (a) : (b))
+//#define LIM(x,MIN,MAX) MAX(MIN,MIN(x,MAX))
+
 #define SWAP(a,b) { a ^= b; a ^= (b ^= a); }
 
   // from scale_colors
@@ -2180,7 +2180,7 @@ void LibRaw::kodak_thumb_loader()
         val = imgdata.image[0][i];
         if(!val) continue;
         val *= scale_mul[i & 3];
-        imgdata.image[0][i] = CLIP(val);
+        imgdata.image[0][i] = CLIP_USHRT(val);
       }
   }
 
@@ -2211,7 +2211,7 @@ void LibRaw::kodak_thumb_loader()
             out[2] += out_cam[2][c] * img[c];
           }
         for(c=0; c<3; c++)
-          img[c] = CLIP((int) out[c]);
+          img[c] = CLIP_USHRT((int) out[c]);
         for(c=0; c<P1.colors;c++)
           t_hist[c][img[c] >> 3]++;
                     
@@ -2290,10 +2290,10 @@ void LibRaw::kodak_thumb_loader()
 
   P1.filters = s_filters;
 }
-#undef MIN
-#undef MAX
-#undef LIM
-#undef CLIP
+//#undef MIN
+//#undef MAX
+//#undef LIM
+//#undef CLIP_USHRT
 #undef SWAP
 
 
@@ -2487,23 +2487,23 @@ int LibRaw::subtract_black_internal()
           cblk[i] = C.cblack[i];
 
         int size = S.iheight * S.iwidth;
-#define MIN(a,b) ((a) < (b) ? (a) : (b))
-#define MAX(a,b) ((a) > (b) ? (a) : (b))
-#define LIM(x,min,max) MAX(min,MIN(x,max))
-#define CLIP(x) LIM(x,0,65535)
+//#define MIN(a,b) ((a) < (b) ? (a) : (b))
+//#define MAX(a,b) ((a) > (b) ? (a) : (b))
+//#define LIM(x,MIN,MAX) MAX(MIN,MIN(x,MAX))
+//#define CLIP_USHRT(x) LIM(x,0,65535)
         int dmax = 0;
         for(i=0; i< size*4; i++)
           {
             int val = imgdata.image[0][i];
             val -= cblk[i & 3];
-            imgdata.image[0][i] = CLIP(val);
+            imgdata.image[0][i] = CLIP_USHRT(val);
             if(dmax < val) dmax = val;
           }
         C.data_maximum = dmax & 0xffff;
-#undef min
-#undef max
-#undef LIM
-#undef CLIP
+//#undef MIN
+//#undef MAX
+//#undef LIM
+//#undef CLIP_USHRT
         C.maximum -= C.black;
         ZERO(C.cblack);
         C.black = 0;
@@ -2586,11 +2586,11 @@ void LibRaw::exp_bef(float shift, float smooth)
   free(lut);
 }
 
-#define MIN(a,b) ((a) < (b) ? (a) : (b))
-#define MAX(a,b) ((a) > (b) ? (a) : (b))
-#define LIM(x,min,max) MAX(min,MIN(x,max))
-#define ULIM(x,y,z) ((y) < (z) ? LIM(x,y,z) : LIM(x,z,y))
-#define CLIP(x) LIM(x,0,65535)
+//#define MIN(a,b) ((a) < (b) ? (a) : (b))
+//#define MAX(a,b) ((a) > (b) ? (a) : (b))
+//#define LIM(x,MIN,MAX) MAX(MIN,MIN(x,MAX))
+//#define SORT_LIM(x,y,z) ((y) < (z) ? LIM(x,y,z) : LIM(x,z,y))
+//#define CLIP_USHRT(x) LIM(x,0,65535)
 
 void LibRaw::convert_to_rgb_loop(float out_cam[3][4])
 {
@@ -2607,7 +2607,7 @@ void LibRaw::convert_to_rgb_loop(float out_cam[3][4])
           out[1] += out_cam[1][c] * img[c];
           out[2] += out_cam[2][c] * img[c];
         }
-        for(c=0;c<3;c++) img[c] = CLIP((int) out[c]);
+        for(c=0;c<3;c++) img[c] = CLIP_USHRT((int) out[c]);
       }
       for(c=0; c< imgdata.idata.colors; c++) libraw_internal_data.output_data.histogram[c][img[c] >> 3]++;
     }
@@ -2626,7 +2626,7 @@ void LibRaw::scale_colors_loop(float scale_mul[4])
           if (!val) continue;
           val -= C.cblack[i & 3];
           val *= scale_mul[i & 3];
-          imgdata.image[0][i] = CLIP(val);
+          imgdata.image[0][i] = CLIP_USHRT(val);
         }
     }
   else // BL is zero
@@ -2635,7 +2635,7 @@ void LibRaw::scale_colors_loop(float scale_mul[4])
         {
           int val = imgdata.image[0][i];
           val *= scale_mul[i & 3];
-          imgdata.image[0][i] = CLIP(val);
+          imgdata.image[0][i] = CLIP_USHRT(val);
         }
     }
 }

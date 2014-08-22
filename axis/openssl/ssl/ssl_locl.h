@@ -907,7 +907,7 @@ int ssl3_send_alert(SSL *s,int level, int desc);
 int ssl3_generate_master_secret(SSL *s, unsigned char *out,
 	unsigned char *p, int len);
 int ssl3_get_req_cert_type(SSL *s,unsigned char *p);
-long ssl3_get_message(SSL *s, int st1, int stn, int mt, long max, int *ok);
+long ssl3_get_message(SSL *s, int st1, int stn, int mt, long MAX, int *ok);
 int ssl3_send_finished(SSL *s, int a, int b, const char *sender,int slen);
 int ssl3_num_ciphers(void);
 const SSL_CIPHER *ssl3_get_cipher(unsigned int u);
@@ -961,7 +961,7 @@ long ssl23_default_timeout(void );
 
 long tls1_default_timeout(void);
 int dtls1_do_write(SSL *s,int type);
-int ssl3_read_n(SSL *s, int n, int max, int extend);
+int ssl3_read_n(SSL *s, int n, int MAX, int extend);
 int dtls1_read_bytes(SSL *s, int type, unsigned char *buf, int len, int peek);
 int ssl3_do_compress(SSL *ssl);
 int ssl3_do_uncompress(SSL *ssl);
@@ -1068,7 +1068,7 @@ void dtls1_clear(SSL *s);
 long dtls1_ctrl(SSL *s,int cmd, long larg, void *parg);
 int dtls1_shutdown(SSL *s);
 
-long dtls1_get_message(SSL *s, int st1, int stn, int mt, long max, int *ok);
+long dtls1_get_message(SSL *s, int st1, int stn, int mt, long MAX, int *ok);
 int dtls1_get_record(SSL *s);
 int do_dtls1_write(SSL *s, int type, const unsigned char *buf,
 	unsigned int len, int create_empty_fragement);

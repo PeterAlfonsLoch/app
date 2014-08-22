@@ -179,16 +179,16 @@ _dopr(
     LLONG value;
     LDOUBLE fvalue;
     char *strvalue;
-    int min;
-    int max;
+    int MIN;
+    int MAX;
     int state;
     int flags;
     int cflags;
     size_t currlen;
 
     state = DP_S_DEFAULT;
-    flags = currlen = cflags = min = 0;
-    max = -1;
+    flags = currlen = cflags = MIN = 0;
+    MAX = -1;
     ch = *format++;
 
     while (state != DP_S_DONE) {
@@ -232,10 +232,10 @@ _dopr(
             break;
         case DP_S_MIN:
             if (isdigit((unsigned char)ch)) {
-                min = 10 * min + char_to_int(ch);
+                MIN = 10 * MIN + char_to_int(ch);
                 ch = *format++;
             } else if (ch == '*') {
-                min = va_arg(args, int);
+                MIN = va_arg(args, int);
                 ch = *format++;
                 state = DP_S_DOT;
             } else
@@ -250,12 +250,12 @@ _dopr(
             break;
         case DP_S_MAX:
             if (isdigit((unsigned char)ch)) {
-                if (max < 0)
-                    max = 0;
-                max = 10 * max + char_to_int(ch);
+                if (MAX < 0)
+                    MAX = 0;
+                MAX = 10 * MAX + char_to_int(ch);
                 ch = *format++;
             } else if (ch == '*') {
-                max = va_arg(args, int);
+                MAX = va_arg(args, int);
                 ch = *format++;
                 state = DP_S_MOD;
             } else
@@ -307,7 +307,7 @@ _dopr(
                     break;
                 }
                 fmtint(sbuffer, buffer, &currlen, maxlen,
-                       value, 10, min, max, flags);
+                       value, 10, MIN, MAX, flags);
                 break;
             case 'X':
                 flags |= DP_F_UP;
@@ -334,7 +334,7 @@ _dopr(
                 }
                 fmtint(sbuffer, buffer, &currlen, maxlen, value,
                        ch == 'o' ? 8 : (ch == 'u' ? 10 : 16),
-                       min, max, flags);
+                       MIN, MAX, flags);
                 break;
             case 'f':
                 if (cflags == DP_C_LDOUBLE)
@@ -342,7 +342,7 @@ _dopr(
                 else
                     fvalue = va_arg(args, double);
                 fmtfp(sbuffer, buffer, &currlen, maxlen,
-                      fvalue, min, max, flags);
+                      fvalue, MIN, MAX, flags);
                 break;
             case 'E':
                 flags |= DP_F_UP;
@@ -366,19 +366,19 @@ _dopr(
                 break;
             case 's':
                 strvalue = va_arg(args, char *);
-                if (max < 0) {
+                if (MAX < 0) {
 		    if (buffer)
-			max = INT_MAX;
+			MAX = INT_MAX;
 		    else
-			max = *maxlen;
+			MAX = *maxlen;
 		}
                 fmtstr(sbuffer, buffer, &currlen, maxlen, strvalue,
-                       flags, min, max);
+                       flags, MIN, MAX);
                 break;
             case 'p':
                 value = (long)va_arg(args, void *);
                 fmtint(sbuffer, buffer, &currlen, maxlen,
-                    value, 16, min, max, flags|DP_F_NUM);
+                    value, 16, MIN, MAX, flags|DP_F_NUM);
                 break;
             case 'n': /* XXX */
                 if (cflags == DP_C_SHORT) {
@@ -412,8 +412,8 @@ _dopr(
             }
             ch = *format++;
             state = DP_S_DEFAULT;
-            flags = cflags = min = 0;
-            max = -1;
+            flags = cflags = MIN = 0;
+            MAX = -1;
             break;
         case DP_S_DONE:
             break;
@@ -437,8 +437,8 @@ fmtstr(
     size_t *maxlen,
     const char *value,
     int flags,
-    int min,
-    int max)
+    int MIN,
+    int MAX)
 {
     int padlen, strln;
     int cnt = 0;
@@ -447,22 +447,22 @@ fmtstr(
         value = "<NULL>";
     for (strln = 0; value[strln]; ++strln)
         ;
-    padlen = min - strln;
+    padlen = MIN - strln;
     if (padlen < 0)
         padlen = 0;
     if (flags & DP_F_MINUS)
         padlen = -padlen;
 
-    while ((padlen > 0) && (cnt < max)) {
+    while ((padlen > 0) && (cnt < MAX)) {
         doapr_outch(sbuffer, buffer, currlen, maxlen, ' ');
         --padlen;
         ++cnt;
     }
-    while (*value && (cnt < max)) {
+    while (*value && (cnt < MAX)) {
         doapr_outch(sbuffer, buffer, currlen, maxlen, *value++);
         ++cnt;
     }
-    while ((padlen < 0) && (cnt < max)) {
+    while ((padlen < 0) && (cnt < MAX)) {
         doapr_outch(sbuffer, buffer, currlen, maxlen, ' ');
         ++padlen;
         ++cnt;
@@ -477,8 +477,8 @@ fmtint(
     size_t *maxlen,
     LLONG value,
     int base,
-    int min,
-    int max,
+    int MIN,
+    int MAX,
     int flags)
 {
     int signvalue = 0;
@@ -490,8 +490,8 @@ fmtint(
     int zpadlen = 0;
     int caps = 0;
 
-    if (max < 0)
-        max = 0;
+    if (MAX < 0)
+        MAX = 0;
     uvalue = value;
     if (!(flags & DP_F_UNSIGNED)) {
         if (value < 0) {
@@ -518,8 +518,8 @@ fmtint(
         place--;
     convert[place] = 0;
 
-    zpadlen = max - place;
-    spadlen = min - OSSL_MAX(max, place) - (signvalue ? 1 : 0) - strlen(prefix);
+    zpadlen = MAX - place;
+    spadlen = MIN - OSSL_MAX(MAX, place) - (signvalue ? 1 : 0) - strlen(prefix);
     if (zpadlen < 0)
         zpadlen = 0;
     if (spadlen < 0)
@@ -604,8 +604,8 @@ fmtfp(
     size_t *currlen,
     size_t *maxlen,
     LDOUBLE fvalue,
-    int min,
-    int max,
+    int MIN,
+    int MAX,
     int flags)
 {
     int signvalue = 0;
@@ -621,8 +621,8 @@ fmtfp(
     long fracpart;
     long max10;
 
-    if (max < 0)
-        max = 6;
+    if (MAX < 0)
+        MAX = 6;
     ufvalue = abs_val(fvalue);
     if (fvalue < 0)
         signvalue = '-';
@@ -635,13 +635,13 @@ fmtfp(
 
     /* sorry, we only support 9 digits past the decimal because of our
        conversion method */
-    if (max > 9)
-        max = 9;
+    if (MAX > 9)
+        MAX = 9;
 
     /* we "cheat" by converting the fractional part to integer by
        multiplying by a factor of 10 */
-    max10 = roundv(pow_10(max));
-    fracpart = roundv(pow_10(max) * (ufvalue - intpart));
+    max10 = roundv(pow_10(MAX));
+    fracpart = roundv(pow_10(MAX) * (ufvalue - intpart));
 
     if (fracpart >= max10) {
         intpart++;
@@ -665,14 +665,14 @@ fmtfp(
             (caps ? "0123456789ABCDEF"
               : "0123456789abcdef")[fracpart % 10];
         fracpart = (fracpart / 10);
-    } while (fplace < max);
+    } while (fplace < MAX);
     if (fplace == sizeof fconvert)
         fplace--;
     fconvert[fplace] = 0;
 
     /* -1 for decimal point, another -1 if we are printing a sign */
-    padlen = min - iplace - max - 1 - ((signvalue) ? 1 : 0);
-    zpadlen = max - fplace;
+    padlen = MIN - iplace - MAX - 1 - ((signvalue) ? 1 : 0);
+    zpadlen = MAX - fplace;
     if (zpadlen < 0)
         zpadlen = 0;
     if (padlen < 0)
@@ -705,7 +705,7 @@ fmtfp(
      * Decimal point. This should probably use locale to find the correct
      * char to print out.
      */
-    if (max > 0 || (flags & DP_F_NUM)) {
+    if (MAX > 0 || (flags & DP_F_NUM)) {
         doapr_outch(sbuffer, buffer, currlen, maxlen, '.');
 
         while (fplace > 0)

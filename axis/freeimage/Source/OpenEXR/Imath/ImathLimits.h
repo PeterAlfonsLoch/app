@@ -47,17 +47,17 @@
 #include <limits.h>
 
 //------------------------------------------
-// In Windows, min and max are macros.  Yay.
+// In Windows, MIN and MAX are macros.  Yay.
 //------------------------------------------
 
-#if defined _WIN32 || defined _WIN64
-    #ifdef min
-        #undef min
+/*#if defined _WIN32 || defined _WIN64
+    #ifdef MIN
+        #undef MIN
     #endif
-    #ifdef max
-        #undef max
+    #ifdef MAX
+        #undef MAX
     #endif
-#endif
+#endif*/
 
 namespace Imath {
 
@@ -67,9 +67,9 @@ namespace Imath {
 // Template class limits<T> returns information about the limits
 // of numerical data type T:
 //
-//	min()		largest possible negative value of type T
+//	minimum()		largest possible negative value of type T
 //
-//	max()		largest possible positive value of type T
+//	maximum()		largest possible positive value of type T
 //
 //	smallest()	smallest possible positive value of type T
 //			(for float and double: smallest normalized
@@ -86,9 +86,9 @@ namespace Imath {
 // functions which depend on the limits of a numerical type
 // which is not known in advance; for example:
 //
-//	template <class T> max (T x[], int n)
+//	template <class T> MAX (T x[], int n)
 //	{
-//	    T m = limits<T>::min();
+//	    T m = limits<T>::minimum();
 //
 //	    for (int i = 0; i < n; i++)
 //		if (m < x[i])
@@ -116,8 +116,8 @@ namespace Imath {
 
 template <class T> struct limits
 {
-    static T	min();
-    static T	max();
+    static T	minimum();
+    static T	maximum();
     static T	smallest();
     static T	epsilon();
     static bool	isIntegral();
@@ -132,8 +132,8 @@ template <class T> struct limits
 template <>
 struct limits <char>
 {
-    static char			min()		{return CHAR_MIN;}
-    static char			max()		{return CHAR_MAX;}
+    static char			minimum()		{return CHAR_MIN;}
+    static char			maximum()		{return CHAR_MAX;}
     static char			smallest()	{return 1;}
     static char			epsilon()	{return 1;}
     static bool			isIntegral()	{return true;}
@@ -143,8 +143,8 @@ struct limits <char>
 template <>
 struct limits <signed char>
 {
-    static signed char		min()		{return SCHAR_MIN;}
-    static signed char		max()		{return SCHAR_MAX;}
+    static signed char		minimum()		{return SCHAR_MIN;}
+    static signed char		maximum()		{return SCHAR_MAX;}
     static signed char		smallest()	{return 1;}
     static signed char		epsilon()	{return 1;}
     static bool			isIntegral()	{return true;}
@@ -154,8 +154,8 @@ struct limits <signed char>
 template <>
 struct limits <unsigned char>
 {
-    static unsigned char	min()		{return 0;}
-    static unsigned char	max()		{return UCHAR_MAX;}
+    static unsigned char	minimum()		{return 0;}
+    static unsigned char	maximum()		{return UCHAR_MAX;}
     static unsigned char	smallest()	{return 1;}
     static unsigned char	epsilon()	{return 1;}
     static bool			isIntegral()	{return true;}
@@ -165,8 +165,8 @@ struct limits <unsigned char>
 template <>
 struct limits <short>
 {
-    static short		min()		{return SHRT_MIN;}
-    static short		max()		{return SHRT_MAX;}
+    static short		minimum()		{return SHRT_MIN;}
+    static short		maximum()		{return SHRT_MAX;}
     static short		smallest()	{return 1;}
     static short		epsilon()	{return 1;}
     static bool			isIntegral()	{return true;}
@@ -176,8 +176,8 @@ struct limits <short>
 template <>
 struct limits <unsigned short>
 {
-    static unsigned short	min()		{return 0;}
-    static unsigned short	max()		{return USHRT_MAX;}
+    static unsigned short	minimum()		{return 0;}
+    static unsigned short	maximum()		{return USHRT_MAX;}
     static unsigned short	smallest()	{return 1;}
     static unsigned short	epsilon()	{return 1;}
     static bool			isIntegral()	{return true;}
@@ -187,8 +187,8 @@ struct limits <unsigned short>
 template <>
 struct limits <int>
 {
-    static int			min()		{return INT_MIN;}
-    static int			max()		{return INT_MAX;}
+    static int			minimum()		{return INT_MIN;}
+    static int			maximum()		{return INT_MAX;}
     static int			smallest()	{return 1;}
     static int			epsilon()	{return 1;}
     static bool			isIntegral()	{return true;}
@@ -198,8 +198,8 @@ struct limits <int>
 template <>
 struct limits <unsigned int>
 {
-    static unsigned int		min()		{return 0;}
-    static unsigned int		max()		{return UINT_MAX;}
+    static unsigned int		minimum()		{return 0;}
+    static unsigned int		maximum()		{return UINT_MAX;}
     static unsigned int		smallest()	{return 1;}
     static unsigned int		epsilon()	{return 1;}
     static bool			isIntegral()	{return true;}
@@ -209,8 +209,8 @@ struct limits <unsigned int>
 template <>
 struct limits <long>
 {
-    static long			min()		{return LONG_MIN;}
-    static long			max()		{return LONG_MAX;}
+    static long			minimum()		{return LONG_MIN;}
+    static long			maximum()		{return LONG_MAX;}
     static long			smallest()	{return 1;}
     static long			epsilon()	{return 1;}
     static bool			isIntegral()	{return true;}
@@ -220,8 +220,8 @@ struct limits <long>
 template <>
 struct limits <unsigned long>
 {
-    static unsigned long	min()		{return 0;}
-    static unsigned long	max()		{return ULONG_MAX;}
+    static unsigned long	minimum()		{return 0;}
+    static unsigned long	maximum()		{return ULONG_MAX;}
     static unsigned long	smallest()	{return 1;}
     static unsigned long	epsilon()	{return 1;}
     static bool			isIntegral()	{return true;}
@@ -231,8 +231,8 @@ struct limits <unsigned long>
 template <>
 struct limits <float>
 {
-    static float		min()		{return -FLT_MAX;}
-    static float		max()		{return FLT_MAX;}
+    static float		minimum()		{return -FLT_MAX;}
+    static float		maximum()		{return FLT_MAX;}
     static float		smallest()	{return FLT_MIN;}
     static float		epsilon()	{return FLT_EPSILON;}
     static bool			isIntegral()	{return false;}
@@ -242,8 +242,8 @@ struct limits <float>
 template <>
 struct limits <double>
 {
-    static double		min()		{return -DBL_MAX;}
-    static double		max()		{return DBL_MAX;}
+    static double		minimum()		{return -DBL_MAX;}
+    static double		maximum()		{return DBL_MAX;}
     static double		smallest()	{return DBL_MIN;}
     static double		epsilon()	{return DBL_EPSILON;}
     static bool			isIntegral()	{return false;}
@@ -253,8 +253,8 @@ struct limits <double>
 template <>
 struct limits <long double>
 {
-    static long double		min()		{return -LDBL_MAX;}
-    static long double		max()		{return LDBL_MAX;}
+    static long double		minimum()		{return -LDBL_MAX;}
+    static long double		maximum()		{return LDBL_MAX;}
     static long double		smallest()	{return LDBL_MIN;}
     static long double		epsilon()	{return LDBL_EPSILON;}
     static bool			isIntegral()	{return false;}

@@ -20,8 +20,8 @@ namespace user
 
       uint32_t       m_dwLastTime;
 
-      double         m_dPosition;// 0.0 = min 1.0 = max
-      double         m_dTensionPosition;// 0.0 = min 1.0 = max
+      double         m_dPosition;// 0.0 = MIN 1.0 = MAX
+      double         m_dTensionPosition;// 0.0 = MIN 1.0 = MAX
       bool           m_bSlide;
       index          m_iScalar;
       double_array   m_daScalar;

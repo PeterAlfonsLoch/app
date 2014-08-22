@@ -1162,7 +1162,7 @@ void WebPBlendAlpha(WebPPicture* pic, uint32_t background_rgb) {
 #undef BLEND_10BIT
 
 //------------------------------------------------------------------------------
-// local-min distortion
+// local-MIN distortion
 //
 // For every pixel in the *reference* picture, we search for the local best
 // match in the compressed image. This is not a symmetrical measure.

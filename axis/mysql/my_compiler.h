@@ -33,8 +33,8 @@
 /* GNU C/C++ */
 #if defined __GNUC__
 /* Convenience macro to test the minimum required GCC version. */
-# define MY_GNUC_PREREQ(maj, min) \
-    ((__GNUC__ << 16) + __GNUC_MINOR__ >= ((maj) << 16) + (min))
+# define MY_GNUC_PREREQ(maj, MIN) \
+    ((__GNUC__ << 16) + __GNUC_MINOR__ >= ((maj) << 16) + (MIN))
 /* Any after 2.95... */
 # define MY_ALIGN_EXT
 /* Comunicate to the compiler the unreachability of the code. */
@@ -78,7 +78,7 @@
 */
 
 #ifndef MY_GNUC_PREREQ
-# define MY_GNUC_PREREQ(maj, min) (0)
+# define MY_GNUC_PREREQ(maj, MIN) (0)
 #endif
 
 #ifndef MY_ALIGNOF

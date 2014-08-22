@@ -167,14 +167,14 @@ class TiledInputFile
     //      return value is: 1
     //
     //	if levelMode() == MIPMAP_LEVELS:
-    //      return value is: rfunc (log (max (w, h)) / log (2)) + 1
+    //      return value is: rfunc (log (MAX (w, h)) / log (2)) + 1
     //
     //	if levelMode() == RIPMAP_LEVELS:
     //      return value is: rfunc (log (w) / log (2)) + 1
     //
     //	where
-    //	    w is the width of the image's data window,  max.x - min.x + 1,
-    //	    y is the height of the image's data window, max.y - min.y + 1,
+    //	    w is the width of the image's data window,  MAX.x - MIN.x + 1,
+    //	    y is the height of the image's data window, MAX.y - MIN.y + 1,
     //	    and rfunc(x) is either floor(x), or ceil(x), depending on
     //	    whether levelRoundingMode() returns ROUND_DOWN or ROUND_UP.
     //
@@ -214,14 +214,14 @@ class TiledInputFile
     // number (lx, *), where * is any number.
     //
     //	return value is:
-    //      max (1, rfunc (w / pow (2, lx)))
+    //      MAX (1, rfunc (w / pow (2, lx)))
     //
     //
     // levelHeight(ly) returns the height of a level with level
     // number (*, ly), where * is any number.
     //
     //	return value is:
-    //      max (1, rfunc (h / pow (2, ly)))
+    //      MAX (1, rfunc (h / pow (2, ly)))
     //
     //----------------------------------------------------------
 
@@ -259,10 +259,10 @@ class TiledInputFile
     // dataWindowForLevel(lx, ly) returns a 2-dimensional region of
     // valid pixel coordinates for a level with level number (lx, ly)
     //
-    //	return value is a Box2i with min value:
+    //	return value is a Box2i with MIN value:
     //      (dataWindow.min.x, dataWindow.min.y)
     //
-    //	and max value:
+    //	and MAX value:
     //      (dataWindow.min.x + levelWidth(lx) - 1,
     //       dataWindow.min.y + levelHeight(ly) - 1)
     //
@@ -283,11 +283,11 @@ class TiledInputFile
     // region of valid pixel coordinates for a tile with tile coordinates
     // (dx,dy) and level number (lx, ly).
     //
-    //	return value is a Box2i with min value:
+    //	return value is a Box2i with MIN value:
     //      (dataWindow.min.x + dx * tileXSize(),
     //       dataWindow.min.y + dy * tileYSize())
     //
-    //	and max value:
+    //	and MAX value:
     //      (dataWindow.min.x + (dx + 1) * tileXSize() - 1,
     //       dataWindow.min.y + (dy + 1) * tileYSize() - 1)
     //

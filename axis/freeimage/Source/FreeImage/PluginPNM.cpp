@@ -233,7 +233,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			throw FI_MSG_ERROR_MAGIC_NUMBER;
 		}
 
-		// Read the header information: width, height and the 'max' value if any
+		// Read the header information: width, height and the 'MAX' value if any
 
 		int width  = GetInt(io, handle);
 		int height = GetInt(io, handle);
@@ -242,7 +242,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		if((id_two == '2') || (id_two == '5') || (id_two == '3') || (id_two == '6')) {
 			maxval = GetInt(io, handle);
 			if((maxval <= 0) || (maxval > 65535)) {
-				FreeImage_OutputMessageProc(s_format_id, "Invalid max value : %d", maxval);
+				FreeImage_OutputMessageProc(s_format_id, "Invalid MAX value : %d", maxval);
 				throw (const char*)NULL;
 			}
 		}

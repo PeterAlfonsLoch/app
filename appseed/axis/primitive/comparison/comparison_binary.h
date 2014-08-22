@@ -5,18 +5,18 @@ namespace comparison
 {
 
 
-   template < typename TYPE >
+   template < typename TYPE, typename ARG_TYPE = const TYPE & >
    class binary
    {
    public:
 
 
-      inline static int_ptr CompareElements(const TYPE * pElement1, const TYPE * pElement2)
+      int operator ()(ARG_TYPE a, ARG_TYPE b)
       {
-         if(*pElement1 > *pElement2)
-            return 1;
-         else if(*pElement1 < *pElement2)
+         if(a < b)
             return -1;
+         else if(b < a)
+            return 1;
          else
             return 0;
       }

@@ -637,7 +637,7 @@ Quat<T>::log () const
     T sintheta = Math<T>::sin (theta);
     
     T k;
-    if (abs (sintheta) < 1 && abs (theta) >= limits<T>::max() * abs (sintheta))
+    if (abs (sintheta) < 1 && abs (theta) >= limits<T>::maximum() * abs (sintheta))
 	k = 1;
     else
 	k = theta / sintheta;
@@ -660,7 +660,7 @@ Quat<T>::exp () const
     T sintheta = Math<T>::sin (theta);
     
     T k;
-    if (abs (theta) < 1 && abs (sintheta) >= limits<T>::max() * abs (theta))
+    if (abs (theta) < 1 && abs (sintheta) >= limits<T>::maximum() * abs (theta))
 	k = 1;
     else
 	k = sintheta / theta;

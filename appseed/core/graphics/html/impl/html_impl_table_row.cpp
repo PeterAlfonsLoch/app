@@ -152,9 +152,9 @@ namespace html
             for(index i = 0; i < get_table()->m_columna.get_size(); i++)
             {
 
-               cxMax += max(0.f, get_table()->m_columna[i].m_cxMax);
+               cxMax += MAX(0.f, get_table()->m_columna[i].m_cxMax);
 
-               cxMin += max(0.f, get_table()->m_columna[i].m_cxMin);
+               cxMin += MAX(0.f, get_table()->m_columna[i].m_cxMin);
 
             }
 

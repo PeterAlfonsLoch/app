@@ -296,8 +296,8 @@ namespace backview
 #ifdef WINDOWSEX
       GdiFlush();
 #endif
-      //double dmin = min(cx, cy);
-      //double dmax = max(cx, cy);abs
+      //double dmin = MIN(cx, cy);
+      //double dmax = MAX(cx, cy);abs
 
 
      // ::draw2d::graphics_sp pdib3->get_graphics();
@@ -423,8 +423,8 @@ namespace backview
       GdiFlush();
 #endif
 
-      //double dmin = min(cx, cy);
-      //double dmax = max(cx, cy);abs
+      //double dmin = MIN(cx, cy);
+      //double dmax = MAX(cx, cy);abs
 
 
      // ::draw2d::graphics_sp pdib3->get_graphics();
@@ -591,8 +591,8 @@ namespace backview
       GdiFlush();
 #endif
 
-      //double dmin = min(cx, cy);
-      //double dmax = max(cx, cy);abs
+      //double dmin = MIN(cx, cy);
+      //double dmax = MAX(cx, cy);abs
 
      // ::draw2d::graphics_sp pdib3->get_graphics();
       //pdib3->get_graphics()->CreateCompatibleDC(NULL);
@@ -1124,8 +1124,8 @@ namespace backview
       GdiFlush();
 #endif
 
-      //double dmin = min(cx, cy);
-      //double dmax = max(cx, cy);abs
+      //double dmin = MIN(cx, cy);
+      //double dmax = MAX(cx, cy);abs
 
      // ::draw2d::graphics_sp pdib3->get_graphics();
       //pdib3->get_graphics()->CreateCompatibleDC(NULL);
@@ -1356,8 +1356,8 @@ namespace backview
       GdiFlush();
 #endif
 
-      //double dmin = min(cx, cy);
-      //double dmax = max(cx, cy);abs
+      //double dmin = MIN(cx, cy);
+      //double dmax = MAX(cx, cy);abs
 
      // ::draw2d::graphics_sp pdib3->get_graphics();
       //pdib3->get_graphics()->CreateCompatibleDC(NULL);
@@ -1730,8 +1730,8 @@ namespace backview
       GdiFlush();
 #endif
 
-      //double dmin = min(cx, cy);
-      //double dmax = max(cx, cy);abs
+      //double dmin = MIN(cx, cy);
+      //double dmax = MAX(cx, cy);abs
 
      // ::draw2d::graphics_sp pdib3->get_graphics();
       //pdib3->get_graphics()->CreateCompatibleDC(NULL);
@@ -2130,8 +2130,8 @@ namespace backview
       GdiFlush();
 #endif
 
-      //double dmin = min(cx, cy);
-      //double dmax = max(cx, cy);abs
+      //double dmin = MIN(cx, cy);
+      //double dmax = MAX(cx, cy);abs
 
       if(m_bGrowColor0)
       {
@@ -2157,7 +2157,7 @@ namespace backview
          m_dAngleOffsetAddUp = (5.1 * rand() / RAND_MAX) - 2.05;
       }
       double dOffset3 = (1.0 * rand() / RAND_MAX) - .5;
-      m_dAngleOffset += min(10.0, min(2.0, m_dAngleOffsetAddUp + dOffset3));
+      m_dAngleOffset += MIN(10.0, MIN(2.0, m_dAngleOffsetAddUp + dOffset3));
       m_dAngleOffset = fmod(m_dAngleOffset, 360.0);
 
 //         double dAngleOffset = m_dAngleOffset;
@@ -2460,12 +2460,12 @@ namespace backview
       pdib4->fill_channel(255, visual::rgba::channel_alpha);
       pdib2->fill_channel(255, visual::rgba::channel_alpha);
 
-      int32_t mod = max(1, (int32_t) tool1.dmod);
+      int32_t mod = MAX(1, (int32_t) tool1.dmod);
       if((tool1.frame % mod) == 0)
       {
          int32_t x = rand() * cx1 / RAND_MAX;
          int32_t y = rand() * cy1 / RAND_MAX;
-         int32_t r = (int32_t) (rand() * min(tool1.dminsize, 60.0) / RAND_MAX + min(tool1.dminsize / 2, 60.0));
+         int32_t r = (int32_t) (rand() * MIN(tool1.dminsize, 60.0) / RAND_MAX + MIN(tool1.dminsize / 2, 60.0));
          int32_t h = rand() * 100 / RAND_MAX;
          if(transitioneffect.m_tool001.m_iStep < iReturnPoint)
          {
@@ -2619,7 +2619,7 @@ namespace backview
          //offset = r1 + r2 + ((rand() - rhalf) * j * delta / rmax);
          jres = j * jmul;
          offset = (rand() - rhalf) * j * delta / rmax;
-         m_pointa[i].y = (int32_t) max(margin2 - jres, min(margin2 + jres, m_pointa[i - 1].y + offset));
+         m_pointa[i].y = (int32_t) MAX(margin2 - jres, MIN(margin2 + jres, m_pointa[i - 1].y + offset));
          m_pointa[i].y = (m_pointa[i].y + margin2) / 2;
          j++;
       }
@@ -2638,7 +2638,7 @@ namespace backview
          //offset = r1 + r2 + ((rand() - rhalf) * j * delta / rmax);
          jres = j * jmul;
          offset = ((rand() - rhalf) * j * delta / rmax);
-         m_pointa[i].y = (int32_t) max(margin2 - jres, min(margin2 + jres, m_pointa[i + 1].y + offset));
+         m_pointa[i].y = (int32_t) MAX(margin2 - jres, MIN(margin2 + jres, m_pointa[i + 1].y + offset));
          m_pointa[i].y = (m_pointa[i].y + margin2) / 2;
          j++;
       }
@@ -2925,8 +2925,8 @@ namespace backview
       GdiFlush();
 #endif
 
-      //double dmin = min(cx, cy);
-      //double dmax = max(cx, cy);abs
+      //double dmin = MIN(cx, cy);
+      //double dmax = MAX(cx, cy);abs
 
       if(m_bGrowColor0)
       {
@@ -2966,7 +2966,7 @@ namespace backview
          m_dAngleOffsetAddUp = (5.1 * rand() / RAND_MAX) - 2.05;
       }
       double dOffset3 = (1.0 * rand() / RAND_MAX) - .5;
-      m_dAngleOffset += min(10.0, min(2.0, m_dAngleOffsetAddUp + dOffset3));
+      m_dAngleOffset += MIN(10.0, MIN(2.0, m_dAngleOffsetAddUp + dOffset3));
       m_dAngleOffset = fmod(m_dAngleOffset, 360.0);
 
       double dAngleOffset = m_dAngleOffset;
@@ -3060,7 +3060,7 @@ namespace backview
          }
          m_pointa[i].x = i;
          offset = r1 + r2 + ((rand() - rhalf) * j * delta / rmax);
-         m_pointa[i].y = max(- j * w , min( j * w , m_pointa[i].y + offset));
+         m_pointa[i].y = MAX(- j * w , MIN( j * w , m_pointa[i].y + offset));
          j++;
       }
       for(; i < imax; i++)
@@ -3075,7 +3075,7 @@ namespace backview
          }
          m_pointa[i].x = i;
          offset = r1 + r2 + ((rand() - rhalf) * j * delta / rmax);
-         m_pointa[i].y = max(- j * w , min( j * w , m_pointa[i].y + offset));
+         m_pointa[i].y = MAX(- j * w , MIN( j * w , m_pointa[i].y + offset));
          j--;
       }
       pdib1->get_graphics()->SelectObject(penWhite);
@@ -3325,12 +3325,12 @@ namespace backview
 
       m_explosion.to(pdib4->get_data(), pdib3->get_data());
 
-      /*int32_t mod = max(1, (int32_t) tool1.dmod);
+      /*int32_t mod = MAX(1, (int32_t) tool1.dmod);
       if((tool1.frame % mod) == 0)
       {
          int32_t x = rand() * cx1 / RAND_MAX;
          int32_t y = rand() * cy1 / RAND_MAX;
-         int32_t r = rand() * min(tool1.dminsize, 60.0) / RAND_MAX + min(tool1.dminsize / 2, 60.0);
+         int32_t r = rand() * MIN(tool1.dminsize, 60.0) / RAND_MAX + MIN(tool1.dminsize / 2, 60.0);
          int32_t h = rand() * 100 / RAND_MAX;
          if(transitioneffect.m_tool001.m_iStep < iReturnPoint)
          {
@@ -3423,18 +3423,18 @@ namespace backview
          null_point(), pdib1->size(),
          pdib1->get_graphics(),
          null_point(),
-         (BYTE) max(min(255, tool1.dalpha), 0));
+         (BYTE) MAX(MIN(255, tool1.dalpha), 0));
 
       ::index iReturnPoint = transitioneffect.m_tool001.m_iStepCount * 5 / 21;
 
       m_explosion.to(pdib4->get_data(), pdib2->get_data());
 
-      /*int32_t mod = max(1, (int32_t) tool1.dmod);
+      /*int32_t mod = MAX(1, (int32_t) tool1.dmod);
       if((tool1.frame % mod) == 0)
       {
          int32_t x = rand() * cx1 / RAND_MAX;
          int32_t y = rand() * cy1 / RAND_MAX;
-         int32_t r = rand() * min(tool1.dminsize, 60.0) / RAND_MAX + min(tool1.dminsize / 2, 60.0);
+         int32_t r = rand() * MIN(tool1.dminsize, 60.0) / RAND_MAX + MIN(tool1.dminsize / 2, 60.0);
          int32_t h = rand() * 100 / RAND_MAX;
          if(transitioneffect.m_tool001.m_iStep < iReturnPoint)
          {
@@ -3528,18 +3528,18 @@ namespace backview
          0, 0, cx1, cy1,
          pdib1->get_graphics(),
          0, 0,
-         (BYTE) max(min(255, tool1.dalpha), 0));*/
+         (BYTE) MAX(MIN(255, tool1.dalpha), 0));*/
 
       ::index iReturnPoint = transitioneffect.m_tool001.m_iStepCount * 5 / 21;
 
       m_explosion.to(pdib4->get_data(), pdib3->get_data());
 
-      /*int32_t mod = max(1, (int32_t) tool1.dmod);
+      /*int32_t mod = MAX(1, (int32_t) tool1.dmod);
       if((tool1.frame % mod) == 0)
       {
          int32_t x = rand() * cx1 / RAND_MAX;
          int32_t y = rand() * cy1 / RAND_MAX;
-         int32_t r = rand() * min(tool1.dminsize, 60.0) / RAND_MAX + min(tool1.dminsize / 2, 60.0);
+         int32_t r = rand() * MIN(tool1.dminsize, 60.0) / RAND_MAX + MIN(tool1.dminsize / 2, 60.0);
          int32_t h = rand() * 100 / RAND_MAX;
          if(transitioneffect.m_tool001.m_iStep < iReturnPoint)
          {
@@ -3772,8 +3772,8 @@ namespace backview
       GdiFlush();
 #endif
 
-      //double dmin = min(cx, cy);
-      //double dmax = max(cx, cy);abs
+      //double dmin = MIN(cx, cy);
+      //double dmax = MAX(cx, cy);abs
 
       if(m_bGrowColor0)
       {
@@ -3791,7 +3791,7 @@ namespace backview
          m_dAngleOffsetAddUp = (5.1 * rand() / RAND_MAX) - 2.05;
       }
       double dOffset3 = (1.0 * rand() / RAND_MAX) - .5;
-      m_dAngleOffset += min(10.0, min(2.0, m_dAngleOffsetAddUp + dOffset3));
+      m_dAngleOffset += MIN(10.0, MIN(2.0, m_dAngleOffsetAddUp + dOffset3));
       m_dAngleOffset = fmod(m_dAngleOffset, 360.0);
 
 //         double dAngleOffset = m_dAngleOffset;
@@ -4214,8 +4214,8 @@ namespace backview
       GdiFlush();
 #endif
 
-      //double dmin = min(cx, cy);
-      //double dmax = max(cx, cy);abs
+      //double dmin = MIN(cx, cy);
+      //double dmax = MAX(cx, cy);abs
 
       if(m_bGrowColor0)
       {
@@ -4241,7 +4241,7 @@ namespace backview
          m_dAngleOffsetAddUp = (5.1 * rand() / RAND_MAX) - 2.05;
       }
       double dOffset3 = (1.0 * rand() / RAND_MAX) - .5;
-      m_dAngleOffset += min(10.0, min(2.0, m_dAngleOffsetAddUp + dOffset3));
+      m_dAngleOffset += MIN(10.0, MIN(2.0, m_dAngleOffsetAddUp + dOffset3));
       m_dAngleOffset = fmod(m_dAngleOffset, 360.0);
 
 //         double dAngleOffset = m_dAngleOffset;
@@ -4604,7 +4604,7 @@ namespace backview
          //offset = r1 + r2 + ((rand() - rhalf) * j * delta / rmax);
          jres = j * jmul;
          offset = (rand() - rhalf) * j * delta / rmax;
-         m_pointa[i].y = (LONG) max(margin2 - jres, min(margin2 + jres, m_pointa[i - 1].y + offset));
+         m_pointa[i].y = (LONG) MAX(margin2 - jres, MIN(margin2 + jres, m_pointa[i - 1].y + offset));
          m_pointa[i].y = (LONG) (m_pointa[i].y + margin2) / 2;
          j++;
       }
@@ -4623,7 +4623,7 @@ namespace backview
          //offset = r1 + r2 + ((rand() - rhalf) * j * delta / rmax);
          jres = j * jmul;
          offset = ((rand() - rhalf) * j * delta / rmax);
-         m_pointa[i].y = (LONG) max(margin2 - jres, min(margin2 + jres, m_pointa[i + 1].y + offset));
+         m_pointa[i].y = (LONG) MAX(margin2 - jres, MIN(margin2 + jres, m_pointa[i + 1].y + offset));
          m_pointa[i].y = (LONG) (m_pointa[i].y + margin2) / 2;
          j++;
       }
@@ -4914,8 +4914,8 @@ namespace backview
       GdiFlush();
 #endif
 
-      //double dmin = min(cx, cy);
-      //double dmax = max(cx, cy);abs
+      //double dmin = MIN(cx, cy);
+      //double dmax = MAX(cx, cy);abs
 
       if(m_bGrowColor0)
       {
@@ -4955,7 +4955,7 @@ namespace backview
          m_dAngleOffsetAddUp = (5.1 * rand() / RAND_MAX) - 2.05;
       }
       double dOffset3 = (1.0 * rand() / RAND_MAX) - .5;
-      m_dAngleOffset += min(10.0, min(2.0, m_dAngleOffsetAddUp + dOffset3));
+      m_dAngleOffset += MIN(10.0, MIN(2.0, m_dAngleOffsetAddUp + dOffset3));
       m_dAngleOffset = fmod(m_dAngleOffset, 360.0);
 
       double dAngleOffset = m_dAngleOffset;
@@ -5049,7 +5049,7 @@ namespace backview
          }
          m_pointa[i].x = i;
          offset = r1 + r2 + ((rand() - rhalf) * j * delta / rmax);
-         m_pointa[i].y = max(- j * w , min( j * w , m_pointa[i].y + offset));
+         m_pointa[i].y = MAX(- j * w , MIN( j * w , m_pointa[i].y + offset));
          j++;
       }
       for(; i < imax; i++)
@@ -5064,7 +5064,7 @@ namespace backview
          }
          m_pointa[i].x = i;
          offset = r1 + r2 + ((rand() - rhalf) * j * delta / rmax);
-         m_pointa[i].y = max(- j * w , min( j * w , m_pointa[i].y + offset));
+         m_pointa[i].y = MAX(- j * w , MIN( j * w , m_pointa[i].y + offset));
          j--;
       }
       pdib1->get_graphics()->SelectObject(penWhite);
@@ -5454,8 +5454,8 @@ namespace backview
       GdiFlush();
 #endif
 
-      //double dmin = min(cx, cy);
-      //double dmax = max(cx, cy);abs
+      //double dmin = MIN(cx, cy);
+      //double dmax = MAX(cx, cy);abs
 
       if(m_bGrowColor0)
       {
@@ -5473,7 +5473,7 @@ namespace backview
          m_dAngleOffsetAddUp = (5.1 * rand() / RAND_MAX) - 2.05;
       }
       double dOffset3 = (1.0 * rand() / RAND_MAX) - .5;
-      m_dAngleOffset += min(10.0, min(2.0, m_dAngleOffsetAddUp + dOffset3));
+      m_dAngleOffset += MIN(10.0, MIN(2.0, m_dAngleOffsetAddUp + dOffset3));
       m_dAngleOffset = fmod(m_dAngleOffset, 360.0);
 
 //         double dAngleOffset = m_dAngleOffset;

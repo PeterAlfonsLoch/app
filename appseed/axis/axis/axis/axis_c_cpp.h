@@ -941,7 +941,7 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 #include "primitive/collection/collection.inl"
 
 
-namespace numeric_info
+/*namespace numeric_info
 {
 
 
@@ -997,7 +997,7 @@ namespace numeric_info
 
 } // namespace numeric_info
 
-
+*/
 
 
 #ifdef VARIADIC_TEMPLATE
@@ -1230,8 +1230,8 @@ namespace std
    using string = ::string;
    using wstring = ::wstring;
 
-      template < class KEY,class VALUE >
-      using map = ::map < KEY,const KEY &,VALUE,const VALUE & >;
+      template < class KEY,class VALUE, class COMPARE = ::comparison::less < KEY >, bool bMultiKey = false >
+      using map = ::sort_map < KEY,const KEY &,VALUE,const VALUE &,COMPARE,bMultiKey >;
 
          template < class TYPE >
       using list = ::list< TYPE >;
@@ -1252,8 +1252,8 @@ namespace std
       using ostringstream = ::file::plain_text_output_stream_string_buffer;
 
       template < typename T >
-      using numeric_limits = ::numeric_info::numeric_info < T >;
- 
+      using numeric_limits = ::numeric_info < T >;
+
 //      template <class T> void sort(T & t1,T & t2)
   //    {
     //     ::sort::sort < T >(t1,t2);
@@ -1272,16 +1272,16 @@ namespace std
       using stack = ::stack < T >;
 
 
-      using filebuf = ::file::stream_buffer;
+      using filebuf = ::file::streambuf;
 
       //using ios_base = ::file::stream_base;
 
-      // replace ::std::ios_base:: => ::file::
+      // replace ::::file:: => ::file::
 
 
       using runtime_error = ::runtime_error;
 
-      using streambuf = ::file::streambuf;
+      using streambuf = ::file::stream_buffer;
 
 
       template < typename T >
@@ -1294,4 +1294,17 @@ namespace std
       }
 
 
+      using streamsize = ::file_size;
+
+      template <class T> const T& min(const T& a,const T& b) { return !(a > b) ? a : b; }
+      template <class T> const T& max(const T& a,const T& b) { return !(a < b) ? a : b; }
+
+
+}
+
+
+template < typename T >
+inline string to_json(const T & value)
+{
+   return ::str::from(value);
 }

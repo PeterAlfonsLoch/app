@@ -310,7 +310,7 @@ _cairo_contour_simplify (cairo_contour_t *contour, double tolerance)
     cairo_point_t *last = NULL;
     cairo_contour_iter_t iter, furthest;
     cairo_bool_t simplified;
-    uint64_t max = 0;
+    uint64_t MAX = 0;
     int i;
 
     if (contour->chain.num_points <= 2)
@@ -336,7 +336,7 @@ _cairo_contour_simplify (cairo_contour_t *contour, double tolerance)
     do {
 	last = &contour->chain.points[0];
 	iter_init (&furthest, contour);
-	max = 0;
+	MAX = 0;
 	for (chain = &contour->chain; chain; chain = chain->next) {
 	    for (i = 0; i < chain->num_points; i++) {
 		uint64_t d;
@@ -345,14 +345,14 @@ _cairo_contour_simplify (cairo_contour_t *contour, double tolerance)
 		    continue;
 
 		d = point_distance_sq (last, &chain->points[i]);
-		if (d > max) {
+		if (d > MAX) {
 		    furthest.chain = chain;
 		    furthest.point = &chain->points[i];
-		    max = d;
+		    MAX = d;
 		}
 	    }
 	}
-	assert (max);
+	assert (MAX);
 
 	simplified = FALSE;
 	iter_init (&iter, contour);

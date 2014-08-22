@@ -35,34 +35,30 @@ stackTracer ()
 
 
 BaseExc::BaseExc (const char* s) throw () :
-    std::string (s? s: ""),
     _stackTrace (currentStackTracer? currentStackTracer(): "")
 {
-    // empty
+       m_strMessage = s;
 }
 
 
 BaseExc::BaseExc (const std::string &s) throw () :
-    std::string (s),
     _stackTrace (currentStackTracer? currentStackTracer(): "")
 {
-    // empty
+   m_strMessage = s;
 }
 
 
 BaseExc::BaseExc (std::stringstream &s) throw () :
-    std::string (s.str()),
     _stackTrace (currentStackTracer? currentStackTracer(): "")
 {
-    // empty
+       m_strMessage = s.str();
 }
 
 
 BaseExc::BaseExc (const BaseExc &be) throw () :
-    std::string (be),
     _stackTrace (be._stackTrace)
 {
-    // empty
+   m_strMessage = be.m_strMessage;
 }
 
 
@@ -75,21 +71,21 @@ BaseExc::~BaseExc () throw ()
 const char *
 BaseExc::what () const throw ()
 {
-    return c_str();
+    return m_strMessage;
 }
 
 
 BaseExc &
 BaseExc::assign (std::stringstream &s)
 {
-    std::string::assign (s.str());
+    m_strMessage = s.str();
     return *this;
 }
 
 BaseExc &
 BaseExc::append (std::stringstream &s)
 {
-    std::string::append (s.str());
+    m_strMessage += s.str();
     return *this;
 }
 

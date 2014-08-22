@@ -7848,8 +7848,8 @@ my_mb_wc_utf8mb4(const CHARSET_INFO *cs __attribute__((unused)),
       The maximum character defined in the Unicode standard is U+0010FFFF.
       Higher characters U+00110000..U+001FFFFF are not used.
       
-      11110000.10010000.10xxxxxx.10xxxxxx == F0.90.80.80 == U+00010000 (min)
-      11110100.10001111.10111111.10111111 == F4.8F.BF.BF == U+0010FFFF (max)
+      11110000.10010000.10xxxxxx.10xxxxxx == F0.90.80.80 == U+00010000 (MIN)
+      11110100.10001111.10111111.10111111 == F4.8F.BF.BF == U+0010FFFF (MAX)
       
       Valid codes:
       [F0][90..BF][80..BF][80..BF]

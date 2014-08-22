@@ -546,8 +546,8 @@ template <class T>
 inline bool
 Box<Vec2<T> > ::isInfinite() const
 {
-    if (min[0] != limits<T>::min() || max[0] != limits<T>::max() ||
-        min[1] != limits<T>::min() || max[1] != limits<T>::max())
+    if (min[0] != limits<T>::minimum() || max[0] != limits<T>::maximum() ||
+        min[1] != limits<T>::minimum() || max[1] != limits<T>::maximum())
         return false;
     
     return true;
@@ -804,9 +804,9 @@ template <class T>
 inline bool
 Box<Vec3<T> >::isInfinite() const
 {
-    if (min[0] != limits<T>::min() || max[0] != limits<T>::max() ||
-        min[1] != limits<T>::min() || max[1] != limits<T>::max() ||
-        min[2] != limits<T>::min() || max[2] != limits<T>::max())
+    if (min[0] != limits<T>::minimum() || max[0] != limits<T>::maximum() ||
+        min[1] != limits<T>::minimum() || max[1] != limits<T>::maximum() ||
+        min[2] != limits<T>::minimum() || max[2] != limits<T>::maximum())
         return false;
     
     return true;

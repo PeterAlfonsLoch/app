@@ -26,6 +26,8 @@
 
 #ifndef _TIFFIOP_
 #define	_TIFFIOP_
+
+#include "axis/axis/axis.h"
 /*
  * ``Library-private'' definitions.
  */

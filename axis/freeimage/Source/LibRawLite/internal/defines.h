@@ -84,12 +84,12 @@ typedef uint64_t UINT64;
 #include <lcms2.h>		/* Support color profiles */
 #endif
 #endif
-#ifdef LOCALEDIR
-#include <libintl.h>
-#define _(String) gettext(String)
-#else
-#define _(String) (String)
-#endif
+//#ifdef LOCALEDIR
+//#include <libintl.h>
+//#define _(String) gettext(String)
+//#else
+//#define _(String) (String)
+//#endif
 
 #ifdef LJPEG_DECODE
 #error Please compile dcraw.c by itself.
@@ -106,11 +106,11 @@ typedef uint64_t UINT64;
 
 #define SQR(x) ((x)*(x))
 #define ABS(x) (((int)(x) ^ ((int)(x) >> 31)) - ((int)(x) >> 31))
-#define MIN(a,b) ((a) < (b) ? (a) : (b))
-#define MAX(a,b) ((a) > (b) ? (a) : (b))
-#define LIM(x,min,max) MAX(min,MIN(x,max))
-#define ULIM(x,y,z) ((y) < (z) ? LIM(x,y,z) : LIM(x,z,y))
-#define CLIP(x) LIM(x,0,65535)
+//#define MIN(a,b) ((a) < (b) ? (a) : (b))
+//#define MAX(a,b) ((a) > (b) ? (a) : (b))
+//#define LIM(x,MIN,MAX) MAX(MIN,MIN(x,MAX))
+//#define SORT_LIM(x,y,z) ((y) < (z) ? LIM(x,y,z) : LIM(x,z,y))
+#define CLIP_USHORT(x) LIM(x,0,65535)
 #define SWAP(a,b) { a=a+b; b=a-b; a=a-b; }
 
 /*

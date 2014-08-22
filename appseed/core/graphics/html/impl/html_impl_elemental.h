@@ -100,7 +100,7 @@ namespace html
          virtual void container_raw_cxmax(data * pdata);
 
 
-         virtual void layout_phase0(data * pdata); // cx min/max calculation
+         virtual void layout_phase0(data * pdata); // cx MIN/MAX calculation
          virtual void layout_phase1(data * pdata); // cx calculation or cxy calculation at final nodes
          virtual void layout_phase2(data * pdata); // adjust
          virtual void layout_phase3(data * pdata); // final layout

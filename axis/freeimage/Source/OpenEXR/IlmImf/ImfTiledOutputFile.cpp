@@ -205,10 +205,10 @@ struct TiledOutputFile::Data: public Mutex
     FrameBuffer		frameBuffer;		// framebuffer to write into
     Int64		previewPosition;
     LineOrder		lineOrder;		// the file's lineorder
-    int			minX;			// data window's min x coord
-    int			maxX;			// data window's max x coord
-    int			minY;			// data window's min y coord
-    int			maxY;			// data window's max x coord
+    int			minX;			// data window's MIN x coord
+    int			maxX;			// data window's MAX x coord
+    int			minY;			// data window's MIN y coord
+    int			maxY;			// data window's MAX x coord
 
     int			numXLevels;		// number of x levels
     int			numYLevels;		// number of y levels
@@ -260,7 +260,7 @@ TiledOutputFile::Data::Data (bool del, int numThreads):
     // to keep n threads busy we need 2*n tileBuffers
     //
 
-    tileBuffers.resize (max (1, 2 * numThreads));
+    tileBuffers.resize (MAX (1, 2 * numThreads));
 }
 
 
@@ -1102,7 +1102,7 @@ TiledOutputFile::writeTiles (int dx1, int dx2, int dy1, int dy2,
         }
         
         int numTiles = (dx2 - dx1 + 1) * (dy2 - dy1 + 1);
-        int numTasks = min ((int)_data->tileBuffers.size(), numTiles);
+        int numTasks = MIN ((int)_data->tileBuffers.size(), numTiles);
 
         //
         // Create a task group for all tile buffer tasks.  When the

@@ -135,7 +135,7 @@ static bs_offset search(bs_offset *I,u_char *old,bs_offset oldsize,
    };
 
    x=st+(en-st)/2;
-   if(memcmp(old+I[x],_new, (size_t) min(oldsize-I[x],newsize))<0) {
+   if(memcmp(old+I[x],_new, (size_t) MIN(oldsize-I[x],newsize))<0) {
       return search(I,old,oldsize,_new,newsize,x,en,pos);
    } else {
       return search(I,old,oldsize,_new,newsize,st,x,pos);

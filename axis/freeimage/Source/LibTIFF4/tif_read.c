@@ -183,7 +183,7 @@ TIFFSeek(TIFF* tif, uint32 row, uint16 sample )
         */
 	if (row >= td->td_imagelength) {	/* out of range */
 		TIFFErrorExt(tif->tif_clientdata, tif->tif_name,
-		    "%lu: Row out of range, max %lu",
+		    "%lu: Row out of range, MAX %lu",
 		    (unsigned long) row,
 		    (unsigned long) td->td_imagelength);
 		return (0);
@@ -191,7 +191,7 @@ TIFFSeek(TIFF* tif, uint32 row, uint16 sample )
 	if (td->td_planarconfig == PLANARCONFIG_SEPARATE) {
 		if (sample >= td->td_samplesperpixel) {
 			TIFFErrorExt(tif->tif_clientdata, tif->tif_name,
-			    "%lu: Sample out of range, max %lu",
+			    "%lu: Sample out of range, MAX %lu",
 			    (unsigned long) sample, (unsigned long) td->td_samplesperpixel);
 			return (0);
 		}
@@ -329,7 +329,7 @@ TIFFReadEncodedStrip(TIFF* tif, uint32 strip, void* buf, tmsize_t size)
 	if (strip>=td->td_nstrips)
 	{
 		TIFFErrorExt(tif->tif_clientdata,module,
-		    "%lu: Strip out of range, max %lu",(unsigned long)strip,
+		    "%lu: Strip out of range, MAX %lu",(unsigned long)strip,
 		    (unsigned long)td->td_nstrips);
 		return((tmsize_t)(-1));
 	}
@@ -446,7 +446,7 @@ TIFFReadRawStrip(TIFF* tif, uint32 strip, void* buf, tmsize_t size)
 		return ((tmsize_t)(-1));
 	if (strip >= td->td_nstrips) {
 		TIFFErrorExt(tif->tif_clientdata, module,
-		     "%lu: Strip out of range, max %lu",
+		     "%lu: Strip out of range, MAX %lu",
 		     (unsigned long) strip,
 		     (unsigned long) td->td_nstrips);
 		return ((tmsize_t)(-1));
@@ -657,7 +657,7 @@ TIFFReadEncodedTile(TIFF* tif, uint32 tile, void* buf, tmsize_t size)
 		return ((tmsize_t)(-1));
 	if (tile >= td->td_nstrips) {
 		TIFFErrorExt(tif->tif_clientdata, module,
-		    "%lu: Tile out of range, max %lu",
+		    "%lu: Tile out of range, MAX %lu",
 		    (unsigned long) tile, (unsigned long) td->td_nstrips);
 		return ((tmsize_t)(-1));
 	}
@@ -763,7 +763,7 @@ TIFFReadRawTile(TIFF* tif, uint32 tile, void* buf, tmsize_t size)
 		return ((tmsize_t)(-1));
 	if (tile >= td->td_nstrips) {
 		TIFFErrorExt(tif->tif_clientdata, module,
-		    "%lu: Tile out of range, max %lu",
+		    "%lu: Tile out of range, MAX %lu",
 		    (unsigned long) tile, (unsigned long) td->td_nstrips);
 		return ((tmsize_t)(-1));
 	}

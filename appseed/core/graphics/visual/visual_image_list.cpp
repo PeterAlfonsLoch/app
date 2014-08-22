@@ -142,10 +142,10 @@ bool image_list::draw(::draw2d::graphics * pdc, int32_t iImage, point pt, size s
 
    UNREFERENCED_PARAMETER(iFlag);
 
-   sz.cx = min(m_size.cx, sz.cx);
-   sz.cy = min(m_size.cy, sz.cy);
-   ptOffset.x = min(m_size.cx, ptOffset.x);
-   ptOffset.y = min(m_size.cy, ptOffset.y);
+   sz.cx = MIN(m_size.cx, sz.cx);
+   sz.cy = MIN(m_size.cy, sz.cy);
+   ptOffset.x = MIN(m_size.cx, ptOffset.x);
+   ptOffset.y = MIN(m_size.cy, ptOffset.y);
 
    return pdc->BitBlt(pt.x, pt.y, sz.cx, sz.cy, m_spdib->get_graphics(), iImage * m_size.cx + ptOffset.x, ptOffset.y, SRCCOPY);
 
@@ -229,7 +229,7 @@ int32_t image_list::add_icon(const char * psz)
 
 #ifdef WINDOWSEX
 
-   int32_t iSize = min(m_size.cx, m_size.cy);
+   int32_t iSize = MIN(m_size.cx, m_size.cy);
    
    icon.m_picon = (void *) (HICON) ::LoadImage(NULL, psz, IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE);
 

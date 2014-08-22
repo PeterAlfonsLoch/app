@@ -729,7 +729,7 @@ namespace user
       case tree_element_expand_box:
          {
             lprect->left   = drawitem.m_rect.left;
-            lprect->right  = min(lprect->left + 16, drawitem.m_rect.right);
+            lprect->right  = MIN(lprect->left + 16, drawitem.m_rect.right);
             lprect->top    = drawitem.m_rect.top;
             lprect->bottom = drawitem.m_rect.bottom;
          }
@@ -737,7 +737,7 @@ namespace user
       case tree_element_image:
          {
             lprect->left   = drawitem.m_rect.left + 18;
-            lprect->right  = min(lprect->left + 16, drawitem.m_rect.right);
+            lprect->right  = MIN(lprect->left + 16, drawitem.m_rect.right);
             lprect->top    = drawitem.m_rect.top;
             lprect->bottom = drawitem.m_rect.bottom;
          }
@@ -804,8 +804,8 @@ namespace user
                index iNewScroll = (int32_t) (m_scrollinfo.m_ptScroll.y + iObscured * _001GetItemHeight());
                if(iNewScroll > (iParentIndex * _001GetItemHeight()))
                   iNewScroll = (iParentIndex * _001GetItemHeight());
-               m_scrollinfo.m_ptScroll.y = (LONG) max(iNewScroll, 0);
-               //            _001SetYScroll(max(iNewScroll, 0), false);
+               m_scrollinfo.m_ptScroll.y = (LONG) MAX(iNewScroll, 0);
+               //            _001SetYScroll(MAX(iNewScroll, 0), false);
                //m_pscrollbarVert->_001SetScrollPos(m_scrollinfo.m_ptScroll.y);
             }
          }
@@ -1490,7 +1490,7 @@ namespace user
       if (iIndex < iMinVisibleIndex || iIndex > iMaxVisibleIndex)
       {
          index iNewScrollIndex = iIndex;
-         m_scrollinfo.m_ptScroll.y = (int) (max(iNewScrollIndex,0) * m_iItemHeight);
+         m_scrollinfo.m_ptScroll.y = (int) (MAX(iNewScrollIndex,0) * m_iItemHeight);
       }
 
       layout();

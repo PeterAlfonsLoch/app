@@ -55,8 +55,8 @@ int LibRaw::wf_remove_banding()
 #define WF_BAYERGAU(l, row, col) (gauss_pyramid[l])[((row) >> IO.shrink)*S.iwidth + ((col) >> IO.shrink)] 
 #define WF_BAYERDFG(l, row, col) (difwg_pyramid[l])[((row) >> IO.shrink)*S.iwidth + ((col) >> IO.shrink)] 
 	
-#define MIN(a,b) ((a) < (b) ? (a) : (b))
-#define MAX(a,b) ((a) > (b) ? (a) : (b))
+//#define MIN(a,b) ((a) < (b) ? (a) : (b))
+//#define MAX(a,b) ((a) > (b) ? (a) : (b))
 
 #define WF_i_1TO4 for(int i=0; i<4; i++)
 

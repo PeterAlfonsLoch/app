@@ -159,7 +159,7 @@ Line3<T>::closestPointTo(const Line3<T>& line) const
     {
 	T absNum = ((num >= 0)? num: -num);
 
-	if (absNum >= absDenom * limits<T>::max())
+	if (absNum >= absDenom * limits<T>::maximum())
 	    return pos;
     }
 

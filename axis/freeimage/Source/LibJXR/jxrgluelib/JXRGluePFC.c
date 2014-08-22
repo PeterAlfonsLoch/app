@@ -974,9 +974,9 @@ ERR RGB96Float_RGBE(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbS
         for (x = 0; x < iWidth; x++)
         {
             // We clamp source RGB values at zero (don't allow negative numbers)
-            const float fltRed = max(pfltSrcPixel[3*x], 0.0F);
-            const float fltGreen = max(pfltSrcPixel[3*x+1], 0.0F);
-            const float fltBlue = max(pfltSrcPixel[3*x+2], 0.0F);
+            const float fltRed = MAX(pfltSrcPixel[3*x], 0.0F);
+            const float fltGreen = MAX(pfltSrcPixel[3*x+1], 0.0F);
+            const float fltBlue = MAX(pfltSrcPixel[3*x+2], 0.0F);
             float fltMaxPos = fltRed;
 
             if (fltGreen > fltMaxPos)

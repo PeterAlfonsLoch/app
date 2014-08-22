@@ -391,7 +391,7 @@ static int parse_tagging(const char *vstart, int vlen, int *ptag, int *pclass)
 	if (!vstart)
 		return 0;
 	tag_num = strtoul(vstart, &eptr, 10);
-	/* Check we haven't gone past max length: should be impossible */
+	/* Check we haven't gone past MAX length: should be impossible */
 	if (eptr && *eptr && (eptr > vstart + vlen))
 		return 0;
 	if (tag_num < 0)

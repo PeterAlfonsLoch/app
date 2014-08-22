@@ -76,8 +76,8 @@
  */
 
 ASN1_SEQUENCE(ASRange) = {
-  ASN1_SIMPLE(ASRange, min, ASN1_INTEGER),
-  ASN1_SIMPLE(ASRange, max, ASN1_INTEGER)
+  ASN1_SIMPLE(ASRange, MIN, ASN1_INTEGER),
+  ASN1_SIMPLE(ASRange, MAX, ASN1_INTEGER)
 } ASN1_SEQUENCE_END(ASRange)
 
 ASN1_CHOICE(ASIdOrRange) = {
@@ -128,7 +128,7 @@ static int i2r_ASIdentifierChoice(BIO *out,
 	OPENSSL_free(s);
 	break;
       case ASIdOrRange_range:
-	if ((s = i2s_ASN1_INTEGER(NULL, aor->u.range->min)) == NULL)
+	if ((s = i2s_ASN1_INTEGER(NULL, aor->u.range->MIN)) == NULL)
 	  return 0;
 	BIO_printf(out, "%*s%s-", indent + 2, "", s);
 	OPENSSL_free(s);
@@ -173,24 +173,24 @@ static int ASIdOrRange_cmp(const ASIdOrRange * const *a_,
 
   OPENSSL_assert((a->type == ASIdOrRange_id && a->u.id != NULL) ||
 	 (a->type == ASIdOrRange_range && a->u.range != NULL &&
-	  a->u.range->min != NULL && a->u.range->max != NULL));
+	  a->u.range->MIN != NULL && a->u.range->max != NULL));
 
   OPENSSL_assert((b->type == ASIdOrRange_id && b->u.id != NULL) ||
 	 (b->type == ASIdOrRange_range && b->u.range != NULL &&
-	  b->u.range->min != NULL && b->u.range->max != NULL));
+	  b->u.range->MIN != NULL && b->u.range->max != NULL));
 
   if (a->type == ASIdOrRange_id && b->type == ASIdOrRange_id)
     return ASN1_INTEGER_cmp(a->u.id, b->u.id);
 
   if (a->type == ASIdOrRange_range && b->type == ASIdOrRange_range) {
-    int r = ASN1_INTEGER_cmp(a->u.range->min, b->u.range->min);
+    int r = ASN1_INTEGER_cmp(a->u.range->MIN, b->u.range->MIN);
     return r != 0 ? r : ASN1_INTEGER_cmp(a->u.range->max, b->u.range->max);
   }
 
   if (a->type == ASIdOrRange_id)
-    return ASN1_INTEGER_cmp(a->u.id, b->u.range->min);
+    return ASN1_INTEGER_cmp(a->u.id, b->u.range->MIN);
   else
-    return ASN1_INTEGER_cmp(a->u.range->min, b->u.id);
+    return ASN1_INTEGER_cmp(a->u.range->MIN, b->u.id);
 }
 
 /*
@@ -227,7 +227,7 @@ int v3_asid_add_inherit(ASIdentifiers *asid, int which)
  */
 int v3_asid_add_id_or_range(ASIdentifiers *asid,
 			    int which,
-			    ASN1_INTEGER *min,
+			    ASN1_INTEGER *MIN,
 			    ASN1_INTEGER *max)
 {
   ASIdentifierChoice **choice;
@@ -257,17 +257,17 @@ int v3_asid_add_id_or_range(ASIdentifiers *asid,
   }
   if ((aor = ASIdOrRange_new()) == NULL)
     return 0;
-  if (max == NULL) {
+  if (MAX == NULL) {
     aor->type = ASIdOrRange_id;
-    aor->u.id = min;
+    aor->u.id = MIN;
   } else {
     aor->type = ASIdOrRange_range;
     if ((aor->u.range = ASRange_new()) == NULL)
       goto err;
-    ASN1_INTEGER_free(aor->u.range->min);
-    aor->u.range->min = min;
+    ASN1_INTEGER_free(aor->u.range->MIN);
+    aor->u.range->MIN = MIN;
     ASN1_INTEGER_free(aor->u.range->max);
-    aor->u.range->max = max;
+    aor->u.range->max = MAX;
   }
   if (!(sk_ASIdOrRange_push((*choice)->u.asIdsOrRanges, aor)))
     goto err;
@@ -279,20 +279,20 @@ int v3_asid_add_id_or_range(ASIdentifiers *asid,
 }
 
 /*
- * Extract min and max values from an ASIdOrRange.
+ * Extract MIN and MAX values from an ASIdOrRange.
  */
 static void extract_min_max(ASIdOrRange *aor,
-			    ASN1_INTEGER **min,
+			    ASN1_INTEGER **MIN,
 			    ASN1_INTEGER **max)
 {
-  OPENSSL_assert(aor != NULL && min != NULL && max != NULL);
+  OPENSSL_assert(aor != NULL && MIN != NULL && MAX != NULL);
   switch (aor->type) {
   case ASIdOrRange_id:
-    *min = aor->u.id;
+    *MIN = aor->u.id;
     *max = aor->u.id;
     return;
   case ASIdOrRange_range:
-    *min = aor->u.range->min;
+    *MIN = aor->u.range->MIN;
     *max = aor->u.range->max;
     return;
   }
@@ -476,7 +476,7 @@ static int ASIdentifierChoice_canonize(ASIdentifierChoice *choice)
 		    ERR_R_MALLOC_FAILURE);
 	  goto done;
 	}
-	r->min = a_min;
+	r->MIN = a_min;
 	r->max = b_max;
 	a->type = ASIdOrRange_range;
 	a->u.range = r;
@@ -542,7 +542,7 @@ static void *v2i_ASIdentifiers(const struct v3_ext_method *method,
 			       struct v3_ext_ctx *ctx,
 			       STACK_OF(CONF_VALUE) *values)
 {
-  ASN1_INTEGER *min = NULL, *max = NULL;
+  ASN1_INTEGER *MIN = NULL, *max = NULL;
   ASIdentifiers *asid = NULL;
   int i;
 
@@ -607,7 +607,7 @@ static void *v2i_ASIdentifiers(const struct v3_ext_method *method,
      * Syntax is ok, read and add it.
      */
     if (!is_range) {
-      if (!X509V3_get_value_int(val, &min)) {
+      if (!X509V3_get_value_int(val, &MIN)) {
 	X509V3err(X509V3_F_V2I_ASIDENTIFIERS, ERR_R_MALLOC_FAILURE);
 	goto err;
       }
@@ -618,23 +618,23 @@ static void *v2i_ASIdentifiers(const struct v3_ext_method *method,
 	goto err;
       }
       s[i1] = '\0';
-      min = s2i_ASN1_INTEGER(NULL, s);
-      max = s2i_ASN1_INTEGER(NULL, s + i2);
+      MIN = s2i_ASN1_INTEGER(NULL, s);
+      MAX = s2i_ASN1_INTEGER(NULL, s + i2);
       OPENSSL_free(s);
-      if (min == NULL || max == NULL) {
+      if (MIN == NULL || MAX == NULL) {
 	X509V3err(X509V3_F_V2I_ASIDENTIFIERS, ERR_R_MALLOC_FAILURE);
 	goto err;
       }
-      if (ASN1_INTEGER_cmp(min, max) > 0) {
+      if (ASN1_INTEGER_cmp(MIN, MAX) > 0) {
 	X509V3err(X509V3_F_V2I_ASIDENTIFIERS, X509V3_R_EXTENSION_VALUE_ERROR);
 	goto err;
       }
     }
-    if (!v3_asid_add_id_or_range(asid, which, min, max)) {
+    if (!v3_asid_add_id_or_range(asid, which, MIN, MAX)) {
       X509V3err(X509V3_F_V2I_ASIDENTIFIERS, ERR_R_MALLOC_FAILURE);
       goto err;
     }
-    min = max = NULL;
+    MIN = MAX = NULL;
   }
 
   /*
@@ -646,8 +646,8 @@ static void *v2i_ASIdentifiers(const struct v3_ext_method *method,
 
  err:
   ASIdentifiers_free(asid);
-  ASN1_INTEGER_free(min);
-  ASN1_INTEGER_free(max);
+  ASN1_INTEGER_free(MIN);
+  ASN1_INTEGER_free(MAX);
   return NULL;
 }
 

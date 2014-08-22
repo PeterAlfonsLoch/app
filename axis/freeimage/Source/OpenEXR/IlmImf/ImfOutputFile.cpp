@@ -143,10 +143,10 @@ struct OutputFile::Data: public Mutex
     int			 currentScanLine;       // next scanline to be written
     int			 missingScanLines;      // number of lines to write
     LineOrder		 lineOrder;		// the file's lineorder
-    int			 minX;			// data window's min x coord
-    int			 maxX;			// data window's max x coord
-    int			 minY;			// data window's min y coord
-    int			 maxY;			// data window's max x coord
+    int			 minX;			// data window's MIN x coord
+    int			 maxX;			// data window's MAX x coord
+    int			 minY;			// data window's MIN y coord
+    int			 maxY;			// data window's MAX x coord
     vector<Int64>	 lineOffsets;		// stores offsets in file for
 						// each scanline
     vector<size_t>	 bytesPerLine;          // combined size of a line over
@@ -186,7 +186,7 @@ OutputFile::Data::Data (bool deleteStream, int numThreads):
     // to keep n threads busy we need 2*n lineBuffers.
     //
 
-    lineBuffers.resize (max (1, 2 * numThreads));
+    lineBuffers.resize (MAX (1, 2 * numThreads));
 }
 
 
@@ -300,14 +300,14 @@ convertToXdr (OutputFile::Data *ofd,
     
     if (ofd->lineOrder == INCREASING_Y)
     {
-	startY = max (lineBufferMinY, ofd->minY);
-	endY = min (lineBufferMaxY, ofd->maxY) + 1;
+	startY = MAX (lineBufferMinY, ofd->minY);
+	endY = MIN (lineBufferMaxY, ofd->maxY) + 1;
         step = 1;
     }
     else
     {
-	startY = min (lineBufferMaxY, ofd->maxY);
-	endY = max (lineBufferMinY, ofd->minY) - 1;
+	startY = MIN (lineBufferMaxY, ofd->maxY);
+	endY = MAX (lineBufferMinY, ofd->minY) - 1;
         step = -1;
     }
 
@@ -415,14 +415,14 @@ LineBufferTask::LineBufferTask
 
         _lineBuffer->minY = _ofd->minY + number * _ofd->linesInBuffer;
 
-        _lineBuffer->maxY = min (_lineBuffer->minY + _ofd->linesInBuffer - 1,
+        _lineBuffer->maxY = MIN (_lineBuffer->minY + _ofd->linesInBuffer - 1,
 				 _ofd->maxY);
 
         _lineBuffer->partiallyFull = true;
     }
     
-    _lineBuffer->scanLineMin = max (_lineBuffer->minY, scanLineMin);
-    _lineBuffer->scanLineMax = min (_lineBuffer->maxY, scanLineMax);
+    _lineBuffer->scanLineMin = MAX (_lineBuffer->minY, scanLineMin);
+    _lineBuffer->scanLineMax = MIN (_lineBuffer->maxY, scanLineMax);
 }
 
 
@@ -920,7 +920,7 @@ OutputFile::writePixels (int numScanLines)
                 scanLineMin = _data->currentScanLine;
                 scanLineMax = _data->currentScanLine + numScanLines - 1;
     
-                int numTasks = max (min ((int)_data->lineBuffers.size(),
+                int numTasks = MAX (MIN ((int)_data->lineBuffers.size(),
                                          last - first + 1),
 				    1);
 
@@ -943,7 +943,7 @@ OutputFile::writePixels (int numScanLines)
                 scanLineMax = _data->currentScanLine;
                 scanLineMin = _data->currentScanLine - numScanLines + 1;
     
-                int numTasks = max (min ((int)_data->lineBuffers.size(),
+                int numTasks = MAX (MIN ((int)_data->lineBuffers.size(),
                                          first - last + 1),
 				    1);
 

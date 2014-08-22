@@ -2195,7 +2195,7 @@ static char *dtoa(double dd, int mode, int ndigits, int *decpt, int *sign,
           1 ==> like 0, but with Steele & White stopping rule;
                 e.g. with IEEE P754 arithmetic , mode 0 gives
                 1e23 whereas mode 1 gives 9.999999999999999e22.
-          2 ==> max(1,ndigits) significant digits.  This gives a
+          2 ==> MAX(1,ndigits) significant digits.  This gives a
                 return value similar to that of ecvt, except
                 that trailing zeros are suppressed.
           3 ==> through ndigits past the decimal point.  This

@@ -78,7 +78,7 @@ struct io_status { short status, count; long flags; };
 struct rpc_msg {		/* Should have member alignment inhibited */
    char channel;		/* 'A'-app data. 'R'-remote client 'G'-global */
    char function;		/* 'G'-get, 'P'-put, 'C'-confirm, 'X'-close */
-   unsigned short int length;	/* Amount of data returned or max to return */
+   unsigned short int length;	/* Amount of data returned or MAX to return */
    char data[4092];		/* variable data */
 };
 #define RPC_HDR_SIZE (sizeof(struct rpc_msg) - 4092)

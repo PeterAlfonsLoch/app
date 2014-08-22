@@ -579,8 +579,8 @@ Header::sanityCheck (bool isTiled) const
     // The display window and the data window must each
     // contain at least one pixel.  In addition, the
     // coordinates of the window corners must be small
-    // enough to keep expressions like max-min+1 or
-    // max+min from overflowing.
+    // enough to keep expressions like MAX-MIN+1 or
+    // MAX+MIN from overflowing.
     //
 
     const Box2i &displayWindow = this->displayWindow();

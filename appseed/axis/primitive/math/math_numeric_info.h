@@ -1,349 +1,300 @@
 #pragma once
 
 
+#include <limits.h>
+#include <memory.h>
+#include <float.h>
 
-
-namespace numeric_info
+namespace numeric_info_internal
 {
 
-
-   template < typename T >
-   inline T get_maximum_value();
-
-   template < typename T >
-   inline T get_minimum_value();
-
-   template < typename T >
-   inline T get_null_value();
-
-   template < typename T >
-   inline T get_unitary_value();
-
-   template < typename T >
-   inline T get_allset_value();
-
-   template < typename T >
-   inline bool is_signed();
-
-   template < typename T >
-   inline bool is_integer();
-
-
-   template < typename T >
-   class numeric_info
+   class numeric_info_base
    {
    public:
-      
-      static inline T get_maximum_value(){ return ::numeric_info::get_maximum_value < T >();  }
-      static inline T get_minimum_value(){ return ::numeric_info::get_minimum_value < T >(); }
-      static inline T get_null_value(){ return ::numeric_info::get_null_value < T >(); }
-      static inline T get_unitary_value(){ return ::numeric_info::get_unitary_value < T >(); }
-      static inline T get_allset_value(){ return ::numeric_info::get_allset_value < T >(); }
-      static inline T is_signed(){ return ::numeric_info::is_signed < T >(); }
-      static inline T is_integer(){ return ::numeric_info::is_integer < T >(); }
 
-      static inline T maximum_value(){ return get_maximum_value(); }
-      static inline T minimum_value(){ return get_minimum_value(); }
-      static inline T null_value(){ return get_null_value(); }
-      static inline T unitary_value(){ return get_unitary_value(); }
-      static inline T allset_value(){ return get_allset_value(); }
-
-      static inline T maximum(){ return maximum_value(); }
-      static inline T minimum(){ return minimum_value(); }
-      static inline T null(){ return null_value(); }
-      static inline T unit(){ return unitary_value(); }
-      static inline T allset(){ return allset_value(); }
+      static const bool is_signed = false;
+      static const bool is_integer = false;
 
    };
 
 
-   template <>
-   inline int32_t get_maximum_value < int32_t > ()
+   template < typename T >
+   class numeric_info:
+      public numeric_info_base
    {
-      return (int32_t) 0x7fffffff;
-   }
-   template <>
-   inline int32_t get_minimum_value < int32_t > ()
-   {
-      return (int32_t) 0x80000000;
-   }
-   template <>
-   inline int32_t get_null_value < int32_t > ()
-   {
-      return 0;
-   }
-   template <>
-   inline int32_t get_unitary_value < int32_t >()
-   {
-      return 1;
-   }
-   template <>
-   inline bool is_signed < int32_t >()
-   {
-      return true;
-   }
-   template <>
-   inline bool is_integer < int32_t >()
-   {
-      return true;
-   }
+   public:
+
+      typedef T TYPE;
+      typedef T OFFSET_TYPE;
+
+      static inline TYPE maximum(){ throw not_implemented(::get_thread_app()); }
+      static inline TYPE minimum(){ throw not_implemented(::get_thread_app()); }
+      static inline TYPE null(){ throw not_implemented(::get_thread_app()); }
+      static inline TYPE unitary(){ throw not_implemented(::get_thread_app()); }
+      static inline TYPE allset(){ TYPE t; memset(&t,0xff,sizeof(TYPE)); return t; }
 
 
 
-   template <>
-   inline float get_maximum_value < float >()
-   {
-      return 3.4e38f;
-   }
-   template <>
-   inline float get_minimum_value < float >()
-   {
-      return -3.4e38f;
-   }
-   template <>
-   inline float get_null_value < float >()
-   {
-      return 0.0f;
-   }
-   template <>
-   inline float get_unitary_value < float >()
-   {
-      return 1.0f;
-   }
-   template <>
-   inline bool is_signed < float >()
-   {
-      return true;
-   }
-   template <>
-   inline bool is_integer < float >()
-   {
-      return false;
-   }
+   };
 
 
-   template <>
-   inline double get_maximum_value < double >()
+   class numeric_integer_base:
+      public numeric_info_base
    {
-      return 1.7e308;
-   }
-   template <>
-   inline double get_minimum_value < double >()
-   {
-      return -1.7e308;
-   }
-   template <>
-   inline double get_null_value < double >()
-   {
-      return 0.0;
-   }
-   template <>
-   inline double get_unitary_value < double >()
-   {
-      return 1.0;
-   }
-   template <>
-   inline bool is_signed < double >()
-   {
-      return true;
-   }
-   template <>
-   inline bool is_integer < double >()
-   {
-      return false;
-   }
+   public:
+
+      static const bool is_integer = true;
+
+   };
 
 
+   class numeric_floating_base:
+      public numeric_info_base
+   {
+   public:
 
-   template <>
-   inline BYTE get_maximum_value < BYTE > ()
-   {
-      return (BYTE) 255;
-   }
-   template <>
-   inline BYTE get_minimum_value < BYTE > ()
-   {
-      return (BYTE) 0;
-   }
-   template <>
-   inline BYTE get_null_value < BYTE > ()
-   {
-      return 0;
-   }
-   template <>
-   inline BYTE get_unitary_value < BYTE >()
-   {
-      return 1;
-   }
-   template <>
-   inline bool is_signed < BYTE >()
-   {
-      return false;
-   }
-   template <>
-   inline bool is_integer < BYTE >()
-   {
-      return true;
-   }
+      static const bool is_integer = false;
+
+   };
 
 
+   template < >
+   class CLASS_DECL_AXIS numeric_info < int8_t > :
+   public numeric_integer_base
+   {
+   public:
 
-   template <>
-   inline WORD get_maximum_value < WORD > ()
+      typedef int8_t TYPE;
+      typedef int8_t OFFSET_TYPE;
+
+      static inline TYPE maximum(){ return (TYPE)CHAR_MAX; }
+      static inline TYPE minimum(){ return (TYPE)CHAR_MIN; }
+      static inline TYPE null(){ return (TYPE)0; }
+      static inline TYPE unitary(){ return (TYPE)1; }
+      static inline TYPE allset(){ TYPE t; memset(&t,0xff,sizeof(TYPE)); return t; }
+
+      static const bool is_signed = true;
+
+   };
+
+   template < >
+   class CLASS_DECL_AXIS numeric_info < uint8_t > :
+   public numeric_integer_base
    {
-      return static_cast < WORD > (0xffff);
-   }
-   template <>
-   inline WORD get_minimum_value < WORD > ()
+   public:
+
+      typedef uint8_t TYPE;
+      typedef int8_t OFFSET_TYPE;
+
+      static inline TYPE maximum(){ return (TYPE)UCHAR_MAX; }
+      static inline TYPE minimum(){ return (TYPE)0; }
+      static inline TYPE null(){ return (TYPE)0; }
+      static inline TYPE unitary(){ return (TYPE)1; }
+      static inline TYPE allset(){ TYPE t; memset(&t,0xff,sizeof(TYPE)); return t; }
+
+      static const bool is_signed = false;
+
+   };
+   template < >
+   class CLASS_DECL_AXIS numeric_info < int16_t > :
+   public numeric_integer_base
    {
-      return (WORD) 0;
-   }
-   template <>
-   inline WORD get_null_value < WORD > ()
+   public:
+
+      typedef int16_t TYPE;
+      typedef int16_t OFFSET_TYPE;
+
+      static inline TYPE maximum(){ return (TYPE)SHRT_MAX; }
+      static inline TYPE minimum(){ return (TYPE)SHRT_MIN; }
+      static inline TYPE null(){ return (TYPE)0; }
+      static inline TYPE unitary(){ return (TYPE)1; }
+      static inline TYPE allset(){ TYPE t; memset(&t,0xff,sizeof(TYPE)); return t; }
+
+      static const bool is_signed = true;
+
+   };
+
+   template < >
+   class CLASS_DECL_AXIS numeric_info < uint16_t > :
+   public numeric_integer_base
    {
-      return 0;
-   }
-   template <>
-   inline WORD get_unitary_value < WORD >()
+   public:
+
+      typedef uint16_t TYPE;
+      typedef int16_t OFFSET_TYPE;
+
+      static inline TYPE maximum(){ return (TYPE)USHRT_MAX; }
+      static inline TYPE minimum(){ return (TYPE)0; }
+      static inline TYPE null(){ return (TYPE)0; }
+      static inline TYPE unitary(){ return (TYPE)1; }
+      static inline TYPE allset(){ TYPE t; memset(&t,0xff,sizeof(TYPE)); return t; }
+
+      static const bool is_signed = false;
+
+   };
+
+   template < >
+   class CLASS_DECL_AXIS numeric_info < int32_t > :
+   public numeric_integer_base
    {
-      return 1;
-   }
-   template <>
-   inline bool is_signed < WORD >()
+   public:
+
+      typedef int32_t TYPE;
+      typedef int32_t OFFSET_TYPE;
+
+      static inline TYPE maximum(){ return (TYPE)INT_MAX; }
+      static inline TYPE minimum(){ return (TYPE)INT_MIN; }
+      static inline TYPE null(){ return (TYPE)0; }
+      static inline TYPE unitary(){ return (TYPE)1; }
+      static inline TYPE allset(){ TYPE t; memset(&t,0xff,sizeof(TYPE)); return t; }
+
+      static const bool is_signed = true;
+
+   };
+
+   template < >
+   class CLASS_DECL_AXIS numeric_info < uint32_t > :
+   public numeric_integer_base
    {
-      return false;
-   }
-   template <>
-   inline bool is_integer < WORD >()
+   public:
+
+      typedef uint32_t TYPE;
+      typedef int32_t OFFSET_TYPE;
+
+      static inline TYPE maximum(){ return (TYPE)UINT_MAX; }
+      static inline TYPE minimum(){ return (TYPE)0; }
+      static inline TYPE null(){ return (TYPE)0; }
+      static inline TYPE unitary(){ return (TYPE)1; }
+      static inline TYPE allset(){ TYPE t; memset(&t,0xff,sizeof(TYPE)); return t; }
+
+      static const bool is_signed = false;
+
+   };
+
+   template < >
+   class CLASS_DECL_AXIS numeric_info < int64_t > :
+   public numeric_integer_base
    {
-      return true;
-   }
+   public:
+
+      typedef int64_t TYPE;
+      typedef int64_t OFFSET_TYPE;
+
+      static inline TYPE maximum(){ return (TYPE)LLONG_MAX; }
+      static inline TYPE minimum(){ return (TYPE)LLONG_MIN; }
+      static inline TYPE null(){ return (TYPE)0; }
+      static inline TYPE unitary(){ return (TYPE)1; }
+      static inline TYPE allset(){ TYPE t; memset(&t,0xff,sizeof(TYPE)); return t; }
+
+      static const bool is_signed = true;
+
+   };
+
+   template < >
+   class CLASS_DECL_AXIS numeric_info < uint64_t >:
+   public numeric_integer_base
+   {
+   public:
+
+      typedef uint64_t TYPE;
+      typedef int64_t OFFSET_TYPE;
+
+      static inline TYPE maximum(){ return (TYPE)ULLONG_MAX; }
+      static inline TYPE minimum(){ return (TYPE)0; }
+      static inline TYPE null(){ return (TYPE)0; }
+      static inline TYPE unitary(){ return (TYPE)1; }
+      static inline TYPE allset(){ TYPE t; memset(&t,0xff,sizeof(TYPE)); return t; }
+
+      static const bool is_signed = false;
+
+   };
 
 
+   template < >
+   class CLASS_DECL_AXIS numeric_info < float >:
+   public numeric_floating_base
+   {
+   public:
 
-   template <>
-   inline uint32_t get_maximum_value < uint32_t > ()
-   {
-      return static_cast < uint32_t > (0xffffffff);
-   }
-   template <>
-   inline uint32_t get_minimum_value < uint32_t > ()
-   {
-      return (uint32_t) 0;
-   }
-   template <>
-   inline uint32_t get_null_value < uint32_t > ()
-   {
-      return 0;
-   }
-   template <>
-   inline uint32_t get_unitary_value < uint32_t >()
-   {
-      return 1;
-   }
-   template <>
-   inline bool is_signed < uint32_t >()
-   {
-      return false;
-   }
-   template <>
-   inline bool is_integer < uint32_t >()
-   {
-      return true;
-   }
+      typedef float TYPE;
+      typedef float OFFSET_TYPE;
 
+      static inline TYPE maximum(){ return (TYPE)FLT_MAX; }
+      static inline TYPE minimum(){ return (TYPE)FLT_MIN; }
+      static inline TYPE null(){ return (TYPE)0.f; }
+      static inline TYPE unitary(){ return (TYPE)1.f; }
+      static inline TYPE allset(){ TYPE t; memset(&t,0xff,sizeof(TYPE)); return t; }
 
-
-   template <>
-   inline uint64_t get_maximum_value < uint64_t > ()
-   {
-      return static_cast < uint64_t > (0xffffffffffffffff);
-   }
-   template <>
-   inline uint64_t get_allset_value < uint64_t > ()
-   {
-      return static_cast < uint64_t > (0xffffffffffffffff);
-   }
-   template <>
-   inline uint64_t get_minimum_value < uint64_t > ()
-   {
-      return static_cast < uint64_t > (0);
-   }
-   template <>
-   inline uint64_t get_unitary_value < uint64_t >()
-   {
-      return 1;
-   }
-   template <>
-   inline bool is_signed < uint64_t >()
-   {
-      return false;
-   }
-   template <>
-   inline bool is_integer < uint64_t >()
-   {
-      return true;
-   }
+   };
 
 
 
-
-   template <>
-   inline int64_t get_maximum_value < int64_t > ()
+   template < >
+   class CLASS_DECL_AXIS numeric_info < double >:
+   public numeric_floating_base
    {
-      return static_cast < int64_t > (0x7ffffffffffffffful);
-   }
-   template <>
-   inline int64_t get_minimum_value < int64_t > ()
-   {
-      return static_cast < int64_t > (0x8000000000000000ul);
-   }
-   template <>
-   inline int64_t get_null_value < int64_t > ()
-   {
-      return 0;
-   }
-   template <>
-   inline int64_t get_unitary_value < int64_t >()
-   {
-      return 1;
-   }
-   template <>
-   inline bool is_signed < int64_t >()
-   {
-      return true;
-   }
-   template <>
-   inline bool is_integer < int64_t >()
-   {
-      return true;
-   }
+   public:
+
+      typedef double TYPE;
+      typedef double OFFSET_TYPE;
+
+
+      static inline TYPE maximum(){ return (TYPE)DBL_MAX; }
+      static inline TYPE minimum(){ return (TYPE)DBL_MIN; }
+      static inline TYPE null(){ return (TYPE)0.0; }
+      static inline TYPE unitary(){ return (TYPE)1.0; }
+      static inline TYPE allset(){ TYPE t; memset(&t,0xff,sizeof(TYPE)); return t; }
+
+      static const bool is_signed = false;
+
+   };
+
+
+} // namespace numeric_info_internal
 
 
 
-/*   template <>
-   inline bool is_signed < size_t >()
-   {
-      return false;
-   }
-   template <>
-   inline bool is_integer < size_t >()
-   {
-      return true;
-   }
-*/
+template < typename T > 
+class numeric_info:
+   public numeric_info_internal::numeric_info < T >
+{
+public:
 
-   template < typename T > class offset { public: typedef T TYPE; };
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE get_maximum_value() { return maximum(); }
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE get_minimum_value() { return minimum(); }
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE get_null_value() { return null(); }
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE get_unitary_value() { return unitary(); }
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE get_allset_value() { return allset(); }
 
-   template < > class CLASS_DECL_AXIS offset < uchar > { public: typedef char TYPE; };
-   template < > class CLASS_DECL_AXIS offset < uint16_t > { public: typedef int16_t TYPE; };
-   template < > class CLASS_DECL_AXIS offset < uint32_t > { public: typedef int32_t TYPE; };
-   template < > class CLASS_DECL_AXIS offset < uint64_t > { public: typedef int64_t TYPE; };
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE get_maximum() { return get_maximum_value(); }
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE get_minimum() { return get_minimum_value(); }
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE get_null() { return get_null_value(); }
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE get_unitary() { return get_unitary_value(); }
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE get_allset() { return get_allset_value(); }
 
-   template < typename T > class type { public: typedef T TYPE; };
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE maximum_value() { return get_maximum(); }
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE minimum_value() { return get_minimum(); }
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE null_value() { return get_null(); }
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE unitary_value() { return get_unitary(); }
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE allset_value() { return get_allset(); }
+
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE min() { return minimum(); }
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE max() { return maximum(); }
+
+   template < typename T2 >
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE natural(const T2 & t2) { return MIN(max(), MAX(null(), (T) t2)); }
+
+};
 
 
-} // numeric_info
+template < typename T, typename T2 >
+inline T clip_assign(T & t, const T2 & t2)
+{ 
+   t = MIN(max(),MAX(min(),(T)t2)); 
+}
 
-
-
+template < typename T,typename T2 >
+inline T natural_assign(T & t,const T2 & t2)
+{
+   t = MIN(max(),MAX(null(),(T)t2));
+}

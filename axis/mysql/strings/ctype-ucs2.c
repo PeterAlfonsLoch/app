@@ -984,7 +984,7 @@ my_vsnprintf_mb2(char *dst, size_t n, const char* fmt, va_list ap)
     
     fmt++;
     
-    /* Skip if max size is used (to be compatible with printf) */
+    /* Skip if MAX size is used (to be compatible with printf) */
     while ( (*fmt >= '0' && *fmt <= '9') || *fmt == '.' || *fmt == '-')
       fmt++;
     
@@ -2269,7 +2269,7 @@ my_vsnprintf_utf32(char *dst, size_t n, const char* fmt, va_list ap)
     
     fmt++;
     
-    /* Skip if max size is used (to be compatible with printf) */
+    /* Skip if MAX size is used (to be compatible with printf) */
     while ( (*fmt>='0' && *fmt<='9') || *fmt == '.' || *fmt == '-')
       fmt++;
     

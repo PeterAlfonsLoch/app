@@ -35,8 +35,8 @@ class WuQuantizer
 public:
 
 typedef struct tagBox {
-    int r0;			 // min value, exclusive
-    int r1;			 // max value, inclusive
+    int r0;			 // MIN value, exclusive
+    int r1;			 // MAX value, inclusive
     int g0;  
     int g1;  
     int b0;  

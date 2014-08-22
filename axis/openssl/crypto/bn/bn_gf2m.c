@@ -439,14 +439,14 @@ err:
 int	BN_GF2m_mod_mul(BIGNUM *r, const BIGNUM *a, const BIGNUM *b, const BIGNUM *p, BN_CTX *ctx)
 	{
 	int ret = 0;
-	const int max = BN_num_bits(p) + 1;
+	const int MAX = BN_num_bits(p) + 1;
 	int *arr=NULL;
 	bn_check_top(a);
 	bn_check_top(b);
 	bn_check_top(p);
-	if ((arr = (int *)OPENSSL_malloc(sizeof(int) * max)) == NULL) goto err;
-	ret = BN_GF2m_poly2arr(p, arr, max);
-	if (!ret || ret > max)
+	if ((arr = (int *)OPENSSL_malloc(sizeof(int) * MAX)) == NULL) goto err;
+	ret = BN_GF2m_poly2arr(p, arr, MAX);
+	if (!ret || ret > MAX)
 		{
 		BNerr(BN_F_BN_GF2M_MOD_MUL,BN_R_INVALID_LENGTH);
 		goto err;
@@ -495,14 +495,14 @@ err:
 int	BN_GF2m_mod_sqr(BIGNUM *r, const BIGNUM *a, const BIGNUM *p, BN_CTX *ctx)
 	{
 	int ret = 0;
-	const int max = BN_num_bits(p) + 1;
+	const int MAX = BN_num_bits(p) + 1;
 	int *arr=NULL;
 
 	bn_check_top(a);
 	bn_check_top(p);
-	if ((arr = (int *)OPENSSL_malloc(sizeof(int) * max)) == NULL) goto err;
-	ret = BN_GF2m_poly2arr(p, arr, max);
-	if (!ret || ret > max)
+	if ((arr = (int *)OPENSSL_malloc(sizeof(int) * MAX)) == NULL) goto err;
+	ret = BN_GF2m_poly2arr(p, arr, MAX);
+	if (!ret || ret > MAX)
 		{
 		BNerr(BN_F_BN_GF2M_MOD_SQR,BN_R_INVALID_LENGTH);
 		goto err;
@@ -856,14 +856,14 @@ err:
 int BN_GF2m_mod_exp(BIGNUM *r, const BIGNUM *a, const BIGNUM *b, const BIGNUM *p, BN_CTX *ctx)
 	{
 	int ret = 0;
-	const int max = BN_num_bits(p) + 1;
+	const int MAX = BN_num_bits(p) + 1;
 	int *arr=NULL;
 	bn_check_top(a);
 	bn_check_top(b);
 	bn_check_top(p);
-	if ((arr = (int *)OPENSSL_malloc(sizeof(int) * max)) == NULL) goto err;
-	ret = BN_GF2m_poly2arr(p, arr, max);
-	if (!ret || ret > max)
+	if ((arr = (int *)OPENSSL_malloc(sizeof(int) * MAX)) == NULL) goto err;
+	ret = BN_GF2m_poly2arr(p, arr, MAX);
+	if (!ret || ret > MAX)
 		{
 		BNerr(BN_F_BN_GF2M_MOD_EXP,BN_R_INVALID_LENGTH);
 		goto err;
@@ -915,13 +915,13 @@ err:
 int BN_GF2m_mod_sqrt(BIGNUM *r, const BIGNUM *a, const BIGNUM *p, BN_CTX *ctx)
 	{
 	int ret = 0;
-	const int max = BN_num_bits(p) + 1;
+	const int MAX = BN_num_bits(p) + 1;
 	int *arr=NULL;
 	bn_check_top(a);
 	bn_check_top(p);
-	if ((arr = (int *)OPENSSL_malloc(sizeof(int) * max)) == NULL) goto err;
-	ret = BN_GF2m_poly2arr(p, arr, max);
-	if (!ret || ret > max)
+	if ((arr = (int *)OPENSSL_malloc(sizeof(int) * MAX)) == NULL) goto err;
+	ret = BN_GF2m_poly2arr(p, arr, MAX);
+	if (!ret || ret > MAX)
 		{
 		BNerr(BN_F_BN_GF2M_MOD_SQRT,BN_R_INVALID_LENGTH);
 		goto err;
@@ -1033,14 +1033,14 @@ err:
 int BN_GF2m_mod_solve_quad(BIGNUM *r, const BIGNUM *a, const BIGNUM *p, BN_CTX *ctx)
 	{
 	int ret = 0;
-	const int max = BN_num_bits(p) + 1;
+	const int MAX = BN_num_bits(p) + 1;
 	int *arr=NULL;
 	bn_check_top(a);
 	bn_check_top(p);
 	if ((arr = (int *)OPENSSL_malloc(sizeof(int) *
-						max)) == NULL) goto err;
-	ret = BN_GF2m_poly2arr(p, arr, max);
-	if (!ret || ret > max)
+						MAX)) == NULL) goto err;
+	ret = BN_GF2m_poly2arr(p, arr, MAX);
+	if (!ret || ret > MAX)
 		{
 		BNerr(BN_F_BN_GF2M_MOD_SOLVE_QUAD,BN_R_INVALID_LENGTH);
 		goto err;
@@ -1055,10 +1055,10 @@ err:
 /* Convert the bit-string representation of a polynomial
  * ( \sum_{i=0}^n a_i * x^i) into an array of integers corresponding 
  * to the bits with non-zero coefficient.  Array is terminated with -1.
- * Up to max elements of the array will be filled.  Return value is total
+ * Up to MAX elements of the array will be filled.  Return value is total
  * number of array elements that would be filled if array was large enough.
  */
-int BN_GF2m_poly2arr(const BIGNUM *a, int p[], int max)
+int BN_GF2m_poly2arr(const BIGNUM *a, int p[], int MAX)
 	{
 	int i, j, k = 0;
 	BN_ULONG mask;
@@ -1076,14 +1076,14 @@ int BN_GF2m_poly2arr(const BIGNUM *a, int p[], int max)
 			{
 			if (a->d[i] & mask) 
 				{
-				if (k < max) p[k] = BN_BITS2 * i + j;
+				if (k < MAX) p[k] = BN_BITS2 * i + j;
 				k++;
 				}
 			mask >>= 1;
 			}
 		}
 
-	if (k < max) {
+	if (k < MAX) {
 		p[k] = -1;
 		k++;
 	}

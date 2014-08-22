@@ -932,7 +932,7 @@ _cairo_matrix_transformed_circle_major_axis (const cairo_matrix_t *matrix,
 
     /*
      * we don't need the minor axis length, which is
-     * double min = radius * sqrt (f - sqrt (g*g+h*h));
+     * double MIN = radius * sqrt (f - sqrt (g*g+h*h));
      */
 }
 

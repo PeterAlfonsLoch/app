@@ -227,11 +227,11 @@ namespace html
             if (pelemental == pelemental->get_first_sibling())
             {
 
-               cxMaxMax = max(cxMax, cxMaxMax);
+               cxMaxMax = MAX(cxMax, cxMaxMax);
 
                cxMax = pelemental->m_cxMax;
 
-               cxMinMax = max(cxMin, cxMinMax);
+               cxMinMax = MAX(cxMin, cxMinMax);
 
                cxMin = pelemental->m_cxMin;
 
@@ -247,9 +247,9 @@ namespace html
 
          }
 
-         cxMaxMax = max(cxMax, cxMaxMax);
+         cxMaxMax = MAX(cxMax, cxMaxMax);
 
-         cxMinMax = max(cxMin, cxMinMax);
+         cxMinMax = MAX(cxMin, cxMinMax);
 
          m_cxMin = cxMinMax;
 
@@ -420,7 +420,7 @@ namespace html
             if (!bBlock)
             {
 
-               float cx = min(m_pelemental->m_pparent->m_pimpl->m_bound.get_cx(), m_cxMax);
+               float cx = MIN(m_pelemental->m_pparent->m_pimpl->m_bound.get_cx(), m_cxMax);
 
                m_box.set_cx(cx);
 
@@ -524,7 +524,7 @@ namespace html
 
          float cxTotal = pdata->m_layoutstate1.m_cxa.last_element() + get_extra_content_cx();
 
-         cxMax = max(cxMax, cxTotal);
+         cxMax = MAX(cxMax, cxTotal);
 
          pdata->m_layoutstate1.m_cxMax.last_element() = cxMax;
 
@@ -607,7 +607,7 @@ namespace html
 
          pdata->m_layoutstate3.m_cx = get_cx();
 
-         pdata->m_layoutstate3.m_cya.last_element() = max(pdata->m_layoutstate3.m_cya.last_element(), get_cy());
+         pdata->m_layoutstate3.m_cya.last_element() = MAX(pdata->m_layoutstate3.m_cya.last_element(), get_cy());
 
 
       }
@@ -647,7 +647,7 @@ namespace html
                      pdata->m_pdc,
                      rect,
                      cr,
-                     max(0, min(255, (BYTE)(d * 255))));
+                     MAX(0, MIN(255, (BYTE)(d * 255))));
 
                }
 
@@ -1052,8 +1052,8 @@ namespace html
 
          class size size = m_box.get_cxy();
 
-         size.cx = max(0, size.cx - m_padding.left - m_padding.right - m_border.left - m_border.right - m_margin.left - m_margin.right);
-         size.cy = max(0, size.cy - m_padding.top - m_padding.bottom - m_border.top - m_border.bottom - m_margin.top - m_margin.bottom);
+         size.cx = MAX(0, size.cx - m_padding.left - m_padding.right - m_border.left - m_border.right - m_margin.left - m_margin.right);
+         size.cy = MAX(0, size.cy - m_padding.top - m_padding.bottom - m_border.top - m_border.bottom - m_margin.top - m_margin.bottom);
 
          return size;
 

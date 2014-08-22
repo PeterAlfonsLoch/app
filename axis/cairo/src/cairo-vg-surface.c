@@ -463,7 +463,7 @@ _vg_surface_get_extents (void                  *abstract_surface,
     return TRUE;
 }
 
-#define MAX_SEG  16  /* max number of knots to upload in a batch */
+#define MAX_SEG  16  /* MAX number of knots to upload in a batch */
 
 typedef struct _vg_path {
     VGPath path;

@@ -437,9 +437,9 @@ static void UpdateHistogramCost(VP8LHistogram* const h) {
                  alpha_cost + distance_cost;
 }
 
-static int GetBinIdForEntropy(double min, double max, double val) {
-  const double range = max - min + 1e-6;
-  const double delta = val - min;
+static int GetBinIdForEntropy(double MIN, double MAX, double val) {
+  const double range = MAX - MIN + 1e-6;
+  const double delta = val - MIN;
   return (int)(NUM_PARTITIONS * delta / range);
 }
 

@@ -1573,7 +1573,7 @@ _cairo_truetype_read_font_name (cairo_scaled_font_t  	 *scaled_font,
      * name is also PS compatible. */
     if (ps_name) {
 	static const char *reserved = "()<>[]{}/%#\\";
-	char buf[128]; /* max name length is 127 bytes */
+	char buf[128]; /* MAX name length is 127 bytes */
 	char *src = ps_name;
 	char *dst = buf;
 

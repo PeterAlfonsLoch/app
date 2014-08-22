@@ -89,7 +89,7 @@ namespace hotplugin
          else
          bA = 184 * 2 - iA;*/
 
-         bA = min(255, max(0, (BYTE)((184.0 * ((sin(w * t) + 1.0) / 2.0)) + 23.0)));
+         bA = MIN(255, MAX(0, (BYTE)((184.0 * ((sin(w * t) + 1.0) / 2.0)) + 23.0)));
 
 
 
@@ -104,11 +104,11 @@ namespace hotplugin
       int32_t iRate = 10;
 
       const int32_t iRowCount = cx - cx / (iRate / 2);
-      int32_t iProgressCount = max(min((int32_t)(iRowCount * dRate), iRowCount), 0);
+      int32_t iProgressCount = MAX(MIN((int32_t)(iRowCount * dRate), iRowCount), 0);
 
 
 
-      int32_t iBorder1 = max(cx / iRate1, cy / iRate1);
+      int32_t iBorder1 = MAX(cx / iRate1, cy / iRate1);
 
       ::draw2d::path_sp pathClip1(allocer());
 

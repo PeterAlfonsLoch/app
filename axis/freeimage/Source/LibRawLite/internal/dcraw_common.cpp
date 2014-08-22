@@ -20,6 +20,7 @@ it under the terms of the one of three licenses as you choose:
    Look into dcraw homepage (probably http://cybercom.net/~dcoffin/dcraw/)
    for more information
 */
+#include "axis/axis/axis.h"
 #pragma warning (disable : 4309)
 #include <math.h>
 #define CLASS LibRaw::
@@ -393,19 +394,19 @@ unsigned CLASS getbithuff (int nbits, ushort *huff)
  */
 ushort * CLASS make_decoder_ref (const uchar **source)
 {
-  int max, len, h, i, j;
+  int MAX, len, h, i, j;
   const uchar *count;
   ushort *huff;
 
   count = (*source += 16) - 17;
-  for (max=16; max && !count[max]; max--);
-  huff = (ushort *) calloc (1 + (1 << max), sizeof *huff);
+  for (MAX=16; MAX && !count[MAX]; MAX--);
+  huff = (ushort *) calloc (1 + (1 << MAX), sizeof *huff);
   merror (huff, "make_decoder()");
-  huff[0] = max;
-  for (h=len=1; len <= max; len++)
+  huff[0] = MAX;
+  for (h=len=1; len <= MAX; len++)
     for (i=0; i < count[len]; i++, ++*source)
-      for (j=0; j < 1 << (max-len); j++)
-	if (h <= 1 << max)
+      for (j=0; j < 1 << (MAX-len); j++)
+	if (h <= 1 << MAX)
 	  huff[h++] = len << 8 | **source;
   return huff;
 }
@@ -518,7 +519,7 @@ void CLASS canon_load_raw()
     checkCancel();
 #endif
     pixel = raw_image + row*raw_width;
-    nblocks = min (8, raw_height-row) * raw_width >> 6;
+    nblocks = MIN (8, raw_height-row) * raw_width >> 6;
     for (block=0; block < nblocks; block++) {
       memset (diffbuf, 0, sizeof diffbuf);
       for (i=0; i < 64; i++ ) {
@@ -863,7 +864,7 @@ void CLASS canon_sraw_load_raw()
         pix[2] = rp[0] + rp[1];
         pix[1] = rp[0] + ((-778*rp[1] - (rp[2] << 11)) >> 12);
       }
-      FORC3 rp[c] = CLIP(pix[c] * sraw_mul[c] >> 10);
+      FORC3 rp[c] = CLIP_USHORT(pix[c] * sraw_mul[c] >> 10);
     }
 #ifdef LIBRAW_LIBRARY_BUILD
   } catch (...) {
@@ -1019,7 +1020,7 @@ void CLASS nikon_load_raw()
     { 0,1,4,2,2,3,1,2,0,0,0,0,0,0,0,0,	/* 14-bit lossless */
       7,6,8,5,9,4,10,3,11,12,2,0,1,13,14 } };
   ushort *huff, ver0, ver1, vpred[2][2], hpred[2], csize;
-  int i, min, max, step=0, tree=0, split=0, row, col, len, shl, diff;
+  int i, MIN, MAX, step=0, tree=0, split=0, row, col, len, shl, diff;
 
   fseek (ifp, meta_offset, SEEK_SET);
   ver0 = fgetc(ifp);
@@ -1029,34 +1030,34 @@ void CLASS nikon_load_raw()
   if (ver0 == 0x46) tree = 2;
   if (tiff_bps == 14) tree += 3;
   read_shorts (vpred[0], 4);
-  max = 1 << tiff_bps & 0x7fff;
+  MAX = 1 << tiff_bps & 0x7fff;
   if ((csize = get2()) > 1)
-    step = max / (csize-1);
+    step = MAX / (csize-1);
   if (ver0 == 0x44 && ver1 == 0x20 && step > 0) {
     for (i=0; i < csize; i++)
       curve[i*step] = get2();
-    for (i=0; i < max; i++)
+    for (i=0; i < MAX; i++)
       curve[i] = ( curve[i-i%step]*(step-i%step) +
 		   curve[i-i%step+step]*(i%step) ) / step;
     fseek (ifp, meta_offset+562, SEEK_SET);
     split = get2();
   } else if (ver0 != 0x46 && csize <= 0x4001)
-    read_shorts (curve, max=csize);
-  while (curve[max-2] == curve[max-1]) max--;
+    read_shorts (curve, MAX=csize);
+  while (curve[MAX-2] == curve[MAX-1]) MAX--;
   huff = make_decoder (nikon_tree[tree]);
   fseek (ifp, data_offset, SEEK_SET);
   getbits(-1);
 #ifdef LIBRAW_LIBRARY_BUILD
   try {
 #endif
-  for (min=row=0; row < height; row++) {
+  for (MIN=row=0; row < height; row++) {
 #ifdef LIBRAW_LIBRARY_BUILD
     checkCancel();
 #endif
     if (split && row == split) {
       free (huff);
       huff = make_decoder (nikon_tree[tree+1]);
-      max += (min = 16) << 1;
+      MAX += (MIN = 16) << 1;
     }
     for (col=0; col < raw_width; col++) {
       i = gethuff(huff);
@@ -1067,7 +1068,7 @@ void CLASS nikon_load_raw()
 	diff -= (1 << len) - !shl;
       if (col < 2) hpred[col] = vpred[row & 1][col] += diff;
       else	   hpred[col & 1] += diff;
-      if ((ushort)(hpred[col & 1] + min) >= max) derror();
+      if ((ushort)(hpred[col & 1] + MIN) >= MAX) derror();
       RAW(row,col) = curve[LIM((short)hpred[col & 1],0,0x3fff)];
     }
   }
@@ -1292,7 +1293,7 @@ void CLASS phase_one_flat_field (int is_float, int nc)
 void CLASS phase_one_correct()
 {
   unsigned entries, tag, data, save, col, row, type;
-  int len, i, j, k, cip, val[4], dev[4], sum, max;
+  int len, i, j, k, cip, val[4], dev[4], sum, MAX;
   int head[9], diff, mindiff=INT_MAX, off_412=0;
   static const signed char dir[12][2] =
     { {-1,-1}, {-1,1}, {1,-1}, {1,1}, {-2,0}, {0,-2}, {0,2}, {2,0},
@@ -1345,11 +1346,11 @@ void CLASS phase_one_correct()
 	    if (FC(row-top_margin,col-left_margin) == 1) {
 	      for (sum=i=0; i < 4; i++)
 		sum += val[i] = raw (row+dir[i][0], col+dir[i][1]);
-	      for (max=i=0; i < 4; i++) {
+	      for (MAX=i=0; i < 4; i++) {
 		dev[i] = abs((val[i] << 2) - sum);
-		if (dev[max] < dev[i]) max = i;
+		if (dev[MAX] < dev[i]) MAX = i;
 	      }
-	      RAW(row,col) = (sum - val[max])/3.0 + 0.5;
+	      RAW(row,col) = (sum - val[MAX])/3.0 + 0.5;
 	    } else {
 	      for (sum=0, i=8; i < 12; i++)
 		sum += raw (row+dir[i][0], col+dir[i][1]);
@@ -2490,7 +2491,7 @@ void CLASS kodak_65000_load_raw()
 #endif
     for (col=0; col < width; col+=256) {
       pred[0] = pred[1] = 0;
-      len = min (256, width-col);
+      len = MIN (256, width-col);
       ret = kodak_65000_decode (buf, len);
       for (i=0; i < len; i++)
 	if ((RAW(row,col+i) =	curve[ret ? buf[i] :
@@ -2512,7 +2513,7 @@ void CLASS kodak_ycbcr_load_raw()
     checkCancel();
 #endif
     for (col=0; col < width; col+=128) {
-      len = min (128, width-col);
+      len = MIN (128, width-col);
       kodak_65000_decode (buf, len*3);
       y[0][1] = y[1][1] = cb = cr = 0;
       for (bp=buf, i=0; i < len; i+=2, bp+=2) {
@@ -2548,7 +2549,7 @@ void CLASS kodak_rgb_load_raw()
     checkCancel();
 #endif
     for (col=0; col < width; col+=256) {
-      len = min (256, width-col);
+      len = MIN (256, width-col);
       kodak_65000_decode (buf, len*3);
       memset (rgb, 0, sizeof rgb);
       for (bp=buf, i=0; i < len; i++, ip+=4)
@@ -2661,7 +2662,7 @@ void CLASS sony_arw2_load_raw()
 {
   uchar *data, *dp;
   ushort pix[16];
-  int row, col, val, max, min, imax, imin, sh, bit, i;
+  int row, col, val, MAX, MIN, imax, imin, sh, bit, i;
 
   data = (uchar *) malloc (raw_width);
   merror (data, "sony_arw2_load_raw()");
@@ -2674,16 +2675,16 @@ void CLASS sony_arw2_load_raw()
 #endif
     fread (data, 1, raw_width, ifp);
     for (dp=data, col=0; col < raw_width-30; dp+=16) {
-      max = 0x7ff & (val = sget4(dp));
-      min = 0x7ff & val >> 11;
+      MAX = 0x7ff & (val = sget4(dp));
+      MIN = 0x7ff & val >> 11;
       imax = 0x0f & val >> 22;
       imin = 0x0f & val >> 26;
-      for (sh=0; sh < 4 && 0x80 << sh <= max-min; sh++);
+      for (sh=0; sh < 4 && 0x80 << sh <= MAX-MIN; sh++);
       for (bit=30, i=0; i < 16; i++)
-	if      (i == imax) pix[i] = max;
-	else if (i == imin) pix[i] = min;
+	if      (i == imax) pix[i] = MAX;
+	else if (i == imin) pix[i] = MIN;
 	else {
-	  pix[i] = ((sget2(dp+(bit >> 3)) >> (bit & 7) & 0x7f) << sh) + min;
+	  pix[i] = ((sget2(dp+(bit >> 3)) >> (bit & 7) & 0x7f) << sh) + MIN;
 	  if (pix[i] > 0x7ff) pix[i] = 0x7ff;
 	  bit += 7;
 	}
@@ -2830,15 +2831,15 @@ void CLASS smal_v6_load_raw()
 
 int CLASS median4 (int *p)
 {
-  int min, max, sum, i;
+  int MIN, MAX, sum, i;
 
-  min = max = sum = p[0];
+  MIN = MAX = sum = p[0];
   for (i=1; i < 4; i++) {
     sum += p[i];
-    if (min > p[i]) min = p[i];
-    if (max < p[i]) max = p[i];
+    if (MIN > p[i]) MIN = p[i];
+    if (MAX < p[i]) MAX = p[i];
   }
-  return (sum - min - max) >> 1;
+  return (sum - MIN - MAX) >> 1;
 }
 
 void CLASS fill_holes (int holes)
@@ -3038,8 +3039,8 @@ sides:
 mask_set:
   memset (mblack, 0, sizeof mblack);
   for (zero=m=0; m < 8; m++)
-    for (row=max(mask[m][0],0); row < min(mask[m][2],raw_height); row++)
-      for (col=max(mask[m][1],0); col < min(mask[m][3],raw_width); col++) {
+    for (row=MAX(mask[m][0],0); row < MIN(mask[m][2],raw_height); row++)
+      for (col=MAX(mask[m][1],0); col < MIN(mask[m][3],raw_width); col++) {
 	c = FC(row-top_margin,col-left_margin);
 	mblack[c] += val = raw_image[(row)*raw_pitch/2+(col)];
 	mblack[4+c]++;
@@ -3306,7 +3307,7 @@ void CLASS wavelet_denoise()
       hpass = lpass;
     }
     for (i=0; i < size; i++)
-      image[i][c] = CLIP(SQR(fimg[i]+fimg[lpass+i])/0x10000);
+      image[i][c] = CLIP_USHORT(SQR(fimg[i]+fimg[lpass+i])/0x10000);
   }
   if (filters && colors == 3) {  /* pull G1 and G3 closer together */
     for (row=0; row < 2; row++) {
@@ -3332,7 +3333,7 @@ void CLASS wavelet_denoise()
 	if      (diff < -thold) diff += thold;
 	else if (diff >  thold) diff -= thold;
 	else diff = 0;
-	BAYER(row,col) = CLIP(SQR(avg+diff) + 0.5);
+	BAYER(row,col) = CLIP_USHORT(SQR(avg+diff) + 0.5);
       }
     }
   }
@@ -3406,7 +3407,7 @@ void CLASS wavelet_denoise()
 #pragma omp for
 #endif
       for (i=0; i < size; i++)
-	image[i][c] = CLIP(SQR(fimg[i]+fimg[lpass+i])/0x10000);
+	image[i][c] = CLIP_USHORT(SQR(fimg[i]+fimg[lpass+i])/0x10000);
     }
     free(temp);
   } /* end omp parallel */
@@ -3438,7 +3439,7 @@ void CLASS wavelet_denoise()
 	if      (diff < -thold) diff += thold;
 	else if (diff >  thold) diff -= thold;
 	else diff = 0;
-	BAYER(row,col) = CLIP(SQR(avg+diff) + 0.5);
+	BAYER(row,col) = CLIP_USHORT(SQR(avg+diff) + 0.5);
       }
     }
   }
@@ -3509,8 +3510,8 @@ void CLASS scale_colors()
     memcpy (pre_mul, user_mul, sizeof pre_mul);
   if (use_auto_wb || (use_camera_wb && cam_mul[0] == -1)) {
     memset (dsum, 0, sizeof dsum);
-    bottom = min (greybox[1]+greybox[3], height);
-    right  = min (greybox[0]+greybox[2], width);
+    bottom = MIN (greybox[1]+greybox[3], height);
+    right  = MIN (greybox[0]+greybox[2], width);
     for (row=greybox[1]; row < bottom; row += 8)
       for (col=greybox[0]; col < right; col += 8) {
 	memset (sum, 0, sizeof sum);
@@ -3587,7 +3588,7 @@ skip_block: ;
     if (!val) continue;
     val -= cblack[i & 3];
     val *= scale_mul[i & 3];
-    image[0][i] = CLIP(val);
+    image[0][i] = CLIP_USHORT(val);
   }
 #endif
   if ((aber[0] != 1 || aber[2] != 1) && colors == 3) {
@@ -3892,7 +3893,7 @@ void CLASS vng_interpolate()
 	t = pix[color];
 	if (c != color)
 	  t += (sum[c] - sum[color]) / num;
-	brow[2][col][c] = CLIP(t);
+	brow[2][col][c] = CLIP_USHORT(t);
       }
     }
     if (row > 3)				/* Write buffer to image */
@@ -3940,7 +3941,7 @@ void CLASS ppg_interpolate()
 		    ABS(pix[-3*d][1] - pix[-d][1]) ) * 2;
       }
       d = dir[i = diff[0] > diff[1]];
-      pix[0][1] = ULIM(guess[i] >> 2, pix[d][1], pix[-d][1]);
+      pix[0][1] = SORT_LIM(guess[i] >> 2, pix[d][1], pix[-d][1]);
     }
 /*  Calculate red and blue for each green pixel:		*/
 #ifdef LIBRAW_LIBRARY_BUILD
@@ -3953,7 +3954,7 @@ void CLASS ppg_interpolate()
     for (col=1+(FC(row,2) & 1), c=FC(row,col+1); col < width-1; col+=2) {
       pix = image + row*width+col;
       for (i=0; (d=dir[i]) > 0; c=2-c, i++)
-	pix[0][c] = CLIP((pix[-d][c] + pix[d][c] + 2*pix[0][1]
+	pix[0][c] = CLIP_USHORT((pix[-d][c] + pix[d][c] + 2*pix[0][1]
 			- pix[-d][1] - pix[d][1]) >> 1);
     }
 /*  Calculate blue for red pixels and vice versa:		*/
@@ -3974,9 +3975,9 @@ void CLASS ppg_interpolate()
 		 - pix[-d][1] - pix[d][1];
       }
       if (diff[0] != diff[1])
-	pix[0][c] = CLIP(guess[diff[0] > diff[1]] >> 1);
+	pix[0][c] = CLIP_USHORT(guess[diff[0] > diff[1]] >> 1);
       else
-	pix[0][c] = CLIP((guess[0]+guess[1]) >> 2);
+	pix[0][c] = CLIP_USHORT((guess[0]+guess[1]) >> 2);
     }
 }
 
@@ -4011,9 +4012,9 @@ void CLASS cielab (ushort rgb[3], short lab[3])
     xyz[1] += xyz_cam[1][c] * rgb[c];
     xyz[2] += xyz_cam[2][c] * rgb[c];
   }
-  xyz[0] = cbrt[CLIP((int) xyz[0])];
-  xyz[1] = cbrt[CLIP((int) xyz[1])];
-  xyz[2] = cbrt[CLIP((int) xyz[2])];
+  xyz[0] = cbrt[CLIP_USHORT((int) xyz[0])];
+  xyz[1] = cbrt[CLIP_USHORT((int) xyz[1])];
+  xyz[2] = cbrt[CLIP_USHORT((int) xyz[2])];
   lab[0] = 64 * (116 * xyz[1] - 16);
   lab[1] = 64 * 500 * (xyz[0] - xyz[1]);
   lab[2] = 64 * 200 * (xyz[1] - xyz[2]);
@@ -4038,7 +4039,7 @@ void CLASS xtrans_interpolate (int passes)
 			{ 0,1,0,-2,1,0,-2,0,1,1,-2,-2,1,-1,-1,1 } },
 	dir[4] = { 1,TS,TS+1,TS-1 };
   short allhex[3][3][2][8], *hex;
-  ushort min, max, sgrow, sgcol;
+  ushort MIN, MAX, sgrow, sgcol;
   ushort (*rgb)[TS][TS][3], (*rix)[3], (*pix)[4];
    short (*lab)    [TS][3], (*lix)[3];
    float (*drv)[TS][TS], diff[6], tr;
@@ -4076,27 +4077,27 @@ void CLASS xtrans_interpolate (int passes)
 
 /* Set green1 and green3 to the minimum and maximum allowed values:	*/
   for (row=2; row < height-2; row++)
-    for (min=~(max=0), col=2; col < width-2; col++) {
-      if (fcol(row,col) == 1 && (min=~(max=0))) continue;
+    for (MIN=~(MAX=0), col=2; col < width-2; col++) {
+      if (fcol(row,col) == 1 && (MIN=~(MAX=0))) continue;
       pix = image + row*width + col;
       hex = allhex[row % 3][col % 3][0];
-      if (!max) FORC(6) {
+      if (!MAX) FORC(6) {
 	val = pix[hex[c]][1];
-	if (min > val) min = val;
-	if (max < val) max = val;
+	if (MIN > val) MIN = val;
+	if (MAX < val) MAX = val;
       }
-      pix[0][1] = min;
-      pix[0][3] = max;
+      pix[0][1] = MIN;
+      pix[0][3] = MAX;
       switch ((row-sgrow) % 3) {
 	case 1: if (row < height-3) { row++; col--; } break;
-	case 2: if ((min=~(max=0)) && (col+=2) < width-3 && row > 2) row--;
+	case 2: if ((MIN=~(MAX=0)) && (col+=2) < width-3 && row > 2) row--;
       }
     }
 
   for (top=3; top < height-19; top += TS-16)
     for (left=3; left < width-19; left += TS-16) {
-      mrow = min (top+TS, height-3);
-      mcol = min (left+TS, width-3);
+      mrow = MIN (top+TS, height-3);
+      mcol = MIN (left+TS, width-3);
       for (row=top; row < mrow; row++)
 	for (col=left; col < mcol; col++)
 	  memcpy (rgb[0][row-top][col-left], image[row*width+col], 6);
@@ -4157,7 +4158,7 @@ void CLASS xtrans_interpolate (int passes)
 		if (diff[d-1] < diff[d])
 		  FORC(2) color[c*2][d] = color[c*2][d-1];
 	      if (d < 2 || (d & 1)) {
-		FORC(2) rix[0][c*2] = CLIP(color[c*2][d]/2);
+		FORC(2) rix[0][c*2] = CLIP_USHORT(color[c*2][d]/2);
 		rix += TS*TS;
 	      }
 	    }
@@ -4170,7 +4171,7 @@ void CLASS xtrans_interpolate (int passes)
 	    rix = &rgb[0][row-top][col-left];
 	    i = (row-sgrow) % 3 ? TS:1;
 	    for (d=0; d < 4; d++, rix += TS*TS)
-	      rix[0][f] = CLIP((rix[i][f] + rix[-i][f] +
+	      rix[0][f] = CLIP_USHORT((rix[i][f] + rix[-i][f] +
 		  2*rix[0][1] - rix[i][1] - rix[-i][1])/2);
 	  }
 
@@ -4183,11 +4184,11 @@ void CLASS xtrans_interpolate (int passes)
 	      if (hex[d] + hex[d+1]) {
 		g = 3*rix[0][1] - 2*rix[hex[d]][1] - rix[hex[d+1]][1];
 		for (c=0; c < 4; c+=2) rix[0][c] =
-			CLIP((g + 2*rix[hex[d]][c] + rix[hex[d+1]][c])/3);
+			CLIP_USHORT((g + 2*rix[hex[d]][c] + rix[hex[d+1]][c])/3);
 	      } else {
 		g = 2*rix[0][1] - rix[hex[d]][1] - rix[hex[d+1]][1];
 		for (c=0; c < 4; c+=2) rix[0][c] =
-			CLIP((g + rix[hex[d]][c] + rix[hex[d+1]][c])/2);
+			CLIP_USHORT((g + rix[hex[d]][c] + rix[hex[d+1]][c])/2);
 	      }
 	  }
       }
@@ -4228,8 +4229,8 @@ void CLASS xtrans_interpolate (int passes)
 /* Average the most homogenous pixels for the final result:	*/
       if (height-top < TS+4) mrow = height-top+2;
       if (width-left < TS+4) mcol = width-left+2;
-      for (row = min(top,8); row < mrow-8; row++)
-	for (col = min(left,8); col < mcol-8; col++) {
+      for (row = MIN(top,8); row < mrow-8; row++)
+	for (col = MIN(left,8); col < mcol-8; col++) {
 	  for (d=0; d < ndir; d++)
 	    for (hm[d]=0, v=-2; v <= 2; v++)
 	      for (h=-2; h <= 2; h++)
@@ -4237,12 +4238,12 @@ void CLASS xtrans_interpolate (int passes)
 	  for (d=0; d < ndir-4; d++)
 	    if (hm[d] < hm[d+4]) hm[d  ] = 0; else
 	    if (hm[d] > hm[d+4]) hm[d+4] = 0;
-	  for (max=hm[0],d=1; d < ndir; d++)
-	    if (max < hm[d]) max = hm[d];
-	  max -= max >> 3;
+	  for (MAX=hm[0],d=1; d < ndir; d++)
+	    if (MAX < hm[d]) MAX = hm[d];
+	  MAX -= MAX >> 3;
 	  memset (avg, 0, sizeof avg);
 	  for (d=0; d < ndir; d++)
-	    if (hm[d] >= max) {
+	    if (hm[d] >= MAX) {
 	      FORC3 avg[c] += rgb[d][row][col][c];
 	      avg[3]++;
 	    }
@@ -4264,8 +4265,8 @@ void CLASS ahd_interpolate_green_h_and_v(int top, int left, ushort (*out_rgb)[TS
   int row, col;
   int c, val;
   ushort (*pix)[4];
-  const int rowlimit = min(top+TS, height-2);
-  const int collimit = min(left+TS, width-2);
+  const int rowlimit = MIN(top+TS, height-2);
+  const int collimit = MIN(left+TS, width-2);
 
   for (row = top; row < rowlimit; row++) {
     col = left + (FC(row,left) & 1);
@@ -4273,10 +4274,10 @@ void CLASS ahd_interpolate_green_h_and_v(int top, int left, ushort (*out_rgb)[TS
       pix = image + row*width+col;
       val = ((pix[-1][1] + pix[0][c] + pix[1][1]) * 2
             - pix[-2][c] - pix[2][c]) >> 2;
-      out_rgb[0][row-top][col-left][1] = ULIM(val,pix[-1][1],pix[1][1]);
+      out_rgb[0][row-top][col-left][1] = SORT_LIM(val,pix[-1][1],pix[1][1]);
       val = ((pix[-width][1] + pix[0][c] + pix[width][1]) * 2
             - pix[-2*width][c] - pix[2*width][c]) >> 2;
-      out_rgb[1][row-top][col-left][1] = ULIM(val,pix[-width][1],pix[width][1]);
+      out_rgb[1][row-top][col-left][1] = SORT_LIM(val,pix[-width][1],pix[width][1]);
     }
   }
 }
@@ -4289,8 +4290,8 @@ void CLASS ahd_interpolate_r_and_b_in_rgb_and_convert_to_cielab(int top, int lef
   short (*lix)[3];
 //  float xyz[3];
   const unsigned num_pix_per_row = 4*width;
-  const unsigned rowlimit = min(top+TS-1, height-3);
-  const unsigned collimit = min(left+TS-1, width-3);
+  const unsigned rowlimit = MIN(top+TS-1, height-3);
+  const unsigned collimit = MIN(left+TS-1, width-3);
   ushort *pix_above;
   ushort *pix_below;
   int t1, t2;
@@ -4314,7 +4315,7 @@ void CLASS ahd_interpolate_r_and_b_in_rgb_and_convert_to_cielab(int top, int lef
 	t1 = 2-c;
         val = pix[0][1] + (( pix[-1][t1] + pix[1][t1]
               - rix[-1][1] - rix[1][1] ) >> 1);
-        rix[0][t1] = CLIP(val);
+        rix[0][t1] = CLIP_USHORT(val);
         val = pix[0][1] + (( pix_above[c] + pix_below[c]
               - rix[-TS][1] - rix[TS][1] ) >> 1);
       } else {
@@ -4325,7 +4326,7 @@ void CLASS ahd_interpolate_r_and_b_in_rgb_and_convert_to_cielab(int top, int lef
               - rix[-TS-1][1] - rix[-TS+1][1]
               - rix[+TS-1][1] - rix[+TS+1][1] + 1) >> 2);
       }
-      rix[0][c] = CLIP(val);
+      rix[0][c] = CLIP_USHORT(val);
       c = FC(row,col);
       rix[0][c] = pix[0][c];
       cielab(rix[0],lix[0]);
@@ -4351,8 +4352,8 @@ void CLASS ahd_interpolate_build_homogeneity_map(int top, int left, short (*lab)
   short *adjacent_lix;
   unsigned ldiff[2][4], abdiff[2][4], leps, abeps;
   static const int dir[4] = { -1, 1, -TS, TS };
-  const int rowlimit = min(top+TS-2, height-4);
-  const int collimit = min(left+TS-2, width-4);
+  const int rowlimit = MIN(top+TS-2, height-4);
+  const int collimit = MIN(left+TS-2, width-4);
   int homogeneity;
   char (*homogeneity_map_p)[2];
 
@@ -4378,10 +4379,10 @@ void CLASS ahd_interpolate_build_homogeneity_map(int top, int left, short (*lab)
             + SQR(lix[0][2]-adjacent_lix[2]);
         }
       }
-      leps = min(max(ldiff[0][0],ldiff[0][1]),
-          max(ldiff[1][2],ldiff[1][3]));
-      abeps = min(max(abdiff[0][0],abdiff[0][1]),
-          max(abdiff[1][2],abdiff[1][3]));
+      leps = MIN(MAX(ldiff[0][0],ldiff[0][1]),
+          MAX(ldiff[1][2],ldiff[1][3]));
+      abeps = MIN(MAX(abdiff[0][0],abdiff[0][1]),
+          MAX(abdiff[1][2],abdiff[1][3]));
       for (direction=0; direction < 2; direction++) {
 	homogeneity = 0;
         for (i=0; i < 4; i++) {
@@ -4402,8 +4403,8 @@ void CLASS ahd_interpolate_combine_homogeneous_pixels(int top, int left, ushort 
   int direction;
   int hm[2];
   int c;
-  const int rowlimit = min(top+TS-3, height-5);
-  const int collimit = min(left+TS-3, width-5);
+  const int rowlimit = MIN(top+TS-3, height-5);
+  const int collimit = MIN(left+TS-3, width-5);
 
   ushort (*pix)[4];
   ushort (*rix[2])[3];
@@ -4534,10 +4535,10 @@ void CLASS ahd_interpolate()
 	  pix = image + row*width+col;
 	  val = ((pix[-1][1] + pix[0][c] + pix[1][1]) * 2
 		- pix[-2][c] - pix[2][c]) >> 2;
-	  rgb[0][row-top][col-left][1] = ULIM(val,pix[-1][1],pix[1][1]);
+	  rgb[0][row-top][col-left][1] = SORT_LIM(val,pix[-1][1],pix[1][1]);
 	  val = ((pix[-width][1] + pix[0][c] + pix[width][1]) * 2
 		- pix[-2*width][c] - pix[2*width][c]) >> 2;
-	  rgb[1][row-top][col-left][1] = ULIM(val,pix[-width][1],pix[width][1]);
+	  rgb[1][row-top][col-left][1] = SORT_LIM(val,pix[-width][1],pix[width][1]);
 	}
       }
 
@@ -4552,7 +4553,7 @@ void CLASS ahd_interpolate()
 	      c = FC(row+1,col);
 	      val = pix[0][1] + (( pix[-1][2-c] + pix[1][2-c]
 				 - rix[-1][1] - rix[1][1] ) >> 1);
-	      rix[0][2-c] = CLIP(val);
+	      rix[0][2-c] = CLIP_USHORT(val);
 	      val = pix[0][1] + (( pix[-width][c] + pix[width][c]
 				 - rix[-TS][1] - rix[TS][1] ) >> 1);
 	    } else
@@ -4560,7 +4561,7 @@ void CLASS ahd_interpolate()
 				 + pix[+width-1][c] + pix[+width+1][c]
 				 - rix[-TS-1][1] - rix[-TS+1][1]
 				 - rix[+TS-1][1] - rix[+TS+1][1] + 1) >> 2);
-	    rix[0][c] = CLIP(val);
+	    rix[0][c] = CLIP_USHORT(val);
 	    c = FC(row,col);
 	    rix[0][c] = pix[0][c];
 	    cielab (rix[0],lix[0]);
@@ -4579,10 +4580,10 @@ void CLASS ahd_interpolate()
 			   + SQR(lix[0][2]-lix[dir[i]][2]);
 	    }
 	  }
-	  leps = min(max(ldiff[0][0],ldiff[0][1]),
-		     max(ldiff[1][2],ldiff[1][3]));
-	  abeps = min(max(abdiff[0][0],abdiff[0][1]),
-		      max(abdiff[1][2],abdiff[1][3]));
+	  leps = MIN(MAX(ldiff[0][0],ldiff[0][1]),
+		     MAX(ldiff[1][2],ldiff[1][3]));
+	  abeps = MIN(MAX(abdiff[0][0],abdiff[0][1]),
+		      MAX(abdiff[1][2],abdiff[1][3]));
 	  for (d=0; d < 2; d++)
 	    for (i=0; i < 4; i++)
 	      if (ldiff[d][i] <= leps && abdiff[d][i] <= abeps)
@@ -4638,7 +4639,7 @@ void CLASS median_filter()
 	for (i=0; i < sizeof opt; i+=2)
 	  if     (med[opt[i]] > med[opt[i+1]])
 	    SWAP (med[opt[i]] , med[opt[i+1]]);
-	pix[0][c] = CLIP(med[4] + pix[0][1]);
+	pix[0][c] = CLIP_USHORT(med[4] + pix[0][1]);
       }
     }
   }
@@ -4669,7 +4670,7 @@ void CLASS blend_highlights()
       if (c == colors) continue;
       FORCC {
 	cam[0][c] = image[row*width+col][c];
-	cam[1][c] = min(cam[0][c],clip);
+	cam[1][c] = MIN(cam[0][c],clip);
       }
       for (i=0; i < 2; i++) {
 	FORCC for (lab[i][c]=j=0; j < colors; j++)
@@ -4763,7 +4764,7 @@ void CLASS recover_highlights()
 	    pixel = image[row*width+col];
 	    if (pixel[c] / hsat[c] > 1) {
 	      val = pixel[kc] * map[mrow*wide+mcol];
-	      if (pixel[c] < val) pixel[c] = CLIP(val);
+	      if (pixel[c] < val) pixel[c] = CLIP_USHORT(val);
 	    }
 	  }
       }
@@ -5220,7 +5221,7 @@ void CLASS parse_gps (int base)
       case 6:
 	FORC(2) gpsdata[18+c] = get4();			break;
       case 18: case 29:
-	fgets ((char *) (gpsdata+14+tag/3), min(len,12), ifp);
+	fgets ((char *) (gpsdata+14+tag/3), MIN(len,12), ifp);
     }
     fseek (ifp, save, SEEK_SET);
   }
@@ -9038,7 +9039,7 @@ void CLASS convert_to_rgb()
 	  out[1] += out_cam[1][c] * img[c];
 	  out[2] += out_cam[2][c] * img[c];
 	}
-	FORC3 img[c] = CLIP((int) out[c]);
+	FORC3 img[c] = CLIP_USHORT((int) out[c]);
       }
       else if (document_mode)
 	img[0] = img[fcol(row,col)];

@@ -74,7 +74,7 @@ namespace html
       virtual void implement_phase1(data * pdoc);
       virtual void implement_phase2(data * pdoc);
 
-      virtual void layout_phase0(data * pdata); // cx min/max
+      virtual void layout_phase0(data * pdata); // cx MIN/MAX
       virtual void layout_phase1(data * pdata); // cxy
       virtual void layout_phase2(data * pdata); // adjust
       virtual void layout_phase3(data * pdata); // final layout

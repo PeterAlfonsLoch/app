@@ -543,7 +543,7 @@ namespace user
 
             int32_t iCaptionHeight = 0;
 
-            iCaptionHeight = max(m_spcontrolbox->calc_control_box_height() + iMargin, iCaptionHeight);
+            iCaptionHeight = MAX(m_spcontrolbox->calc_control_box_height() + iMargin, iCaptionHeight);
 
             return iCaptionHeight;
 

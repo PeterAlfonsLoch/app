@@ -236,7 +236,7 @@ LoadPixelDataRLE4(FreeImageIO *io, fi_handle handle, int width, int height, FIBI
 				throw(1);
 			}
 			if (status_byte != 0)	{
-				status_byte = (int)min((size_t)status_byte, (size_t)(end - q));
+				status_byte = (int)MIN((size_t)status_byte, (size_t)(end - q));
 				// Encoded mode
 				if(io->read_proc(&second_byte, sizeof(BYTE), 1, handle) != 1) {
 					throw(1);
@@ -291,7 +291,7 @@ LoadPixelDataRLE4(FreeImageIO *io, fi_handle handle, int width, int height, FIBI
 					default:
 					{
 						// Absolute mode
-						status_byte = (int)min((size_t)status_byte, (size_t)(end - q));
+						status_byte = (int)MIN((size_t)status_byte, (size_t)(end - q));
 						for (int i = 0; i < status_byte; i++) {
 							if ((i & 0x01) == 0) {
 								if(io->read_proc(&second_byte, sizeof(BYTE), 1, handle) != 1) {
@@ -408,7 +408,7 @@ LoadPixelDataRLE8(FreeImageIO *io, fi_handle handle, int width, int height, FIBI
 							return TRUE;
 						}
 
-						int count = min((int)status_byte, width - bits);
+						int count = MIN((int)status_byte, width - bits);
 
 						BYTE *sline = FreeImage_GetScanLine(dib, scanline);
 
@@ -438,7 +438,7 @@ LoadPixelDataRLE8(FreeImageIO *io, fi_handle handle, int width, int height, FIBI
 					return TRUE;
 				}
 
-				int count = min((int)status_byte, width - bits);
+				int count = MIN((int)status_byte, width - bits);
 
 				BYTE *sline = FreeImage_GetScanLine(dib, scanline);
 

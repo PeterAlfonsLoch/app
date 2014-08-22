@@ -385,7 +385,7 @@ OPJ_BOOL opj_tcd_rateallocate(  opj_tcd_t *tcd,
 {
         OPJ_UINT32 compno, resno, bandno, precno, cblkno, layno;
         OPJ_UINT32 passno;
-        OPJ_FLOAT64 min, max;
+        OPJ_FLOAT64 MIN, MAX;
         OPJ_FLOAT64 cumdisto[100];      /* fixed_quality */
         const OPJ_FLOAT64 K = 1;                /* 1.1; fixed_quality */
         OPJ_FLOAT64 maxSE = 0;
@@ -394,8 +394,8 @@ OPJ_BOOL opj_tcd_rateallocate(  opj_tcd_t *tcd,
         opj_tcd_tile_t *tcd_tile = tcd->tcd_image->tiles;
         opj_tcp_t *tcd_tcp = tcd->tcp;
 
-        min = DBL_MAX;
-        max = 0;
+        MIN = DBL_MAX;
+        MAX = 0;
 
         tcd_tile->numpix = 0;           /* fixed_quality */
 
@@ -433,12 +433,12 @@ OPJ_BOOL opj_tcd_rateallocate(  opj_tcd_t *tcd,
                                                         }
 
                                                         rdslope = dd / dr;
-                                                        if (rdslope < min) {
-                                                                min = rdslope;
+                                                        if (rdslope < MIN) {
+                                                                MIN = rdslope;
                                                         }
 
-                                                        if (rdslope > max) {
-                                                                max = rdslope;
+                                                        if (rdslope > MAX) {
+                                                                MAX = rdslope;
                                                         }
                                                 } /* passno */
 
@@ -464,8 +464,8 @@ OPJ_BOOL opj_tcd_rateallocate(  opj_tcd_t *tcd,
         }
 
         for (layno = 0; layno < tcd_tcp->numlayers; layno++) {
-                OPJ_FLOAT64 lo = min;
-                OPJ_FLOAT64 hi = max;
+                OPJ_FLOAT64 lo = MIN;
+                OPJ_FLOAT64 hi = MAX;
                 OPJ_BOOL success = OPJ_FALSE;
                 OPJ_UINT32 maxlen = tcd_tcp->rates[layno] ? opj_uint_min(((OPJ_UINT32) ceil(tcd_tcp->rates[layno])), len) : len;
                 OPJ_FLOAT64 goodthresh = 0;
@@ -529,7 +529,7 @@ OPJ_BOOL opj_tcd_rateallocate(  opj_tcd_t *tcd,
                                         if (! opj_t2_encode_packets(t2, tcd->tcd_tileno, tcd_tile, layno + 1, dest,p_data_written, maxlen, cstr_info,tcd->cur_tp_num,tcd->tp_pos,tcd->cur_pino,THRESH_CALC))
                                         {
                                                 /* TODO: what to do with l ??? seek / tell ??? */
-                                                /* opj_event_msg(tcd->cinfo, EVT_INFO, "rate alloc: len=%d, max=%d\n", l, maxlen); */
+                                                /* opj_event_msg(tcd->cinfo, EVT_INFO, "rate alloc: len=%d, MAX=%d\n", l, maxlen); */
                                                 lo = thresh;
                                                 continue;
                                         }
@@ -545,7 +545,7 @@ OPJ_BOOL opj_tcd_rateallocate(  opj_tcd_t *tcd,
                         opj_t2_destroy(t2);
                 } else {
                         success = OPJ_TRUE;
-                        goodthresh = min;
+                        goodthresh = MIN;
                 }
 
                 if (!success) {

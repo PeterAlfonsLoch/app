@@ -1237,9 +1237,9 @@ static my_bool reset_stmt_handle(MYSQL_STMT *stmt, uint flags);
 
 /* A macro to check truncation errors */
 
-#define IS_TRUNCATED(value, is_unsigned, min, max, umax) \
+#define IS_TRUNCATED(value, is_unsigned, MIN, MAX, umax) \
         ((is_unsigned) ? (((value) > (umax) || (value) < 0) ? 1 : 0) : \
-                         (((value) > (max)  || (value) < (min)) ? 1 : 0))
+                         (((value) > (MAX)  || (value) < (MIN)) ? 1 : 0))
 
 #define BIND_RESULT_DONE 1
 /*
@@ -3738,7 +3738,7 @@ static void fetch_result_str(MYSQL_BIND *param,
 
 
 /*
-  functions to calculate max lengths for strings during
+  functions to calculate MAX lengths for strings during
   mysql_stmt_store_result()
 */
 

@@ -72,26 +72,27 @@ public:
    void quick_sort(index(* fCompare) (TYPE *,TYPE *) = DEFAULT_COMPARE);
 
    void set_size(::count ca);
+   */
 
-   const TYPE & element_at(::index i,index(* fCompare) (TYPE *,TYPE *) = DEFAULT_COMPARE) const;
+   TYPE element_at(::index i) const;
 
-   TYPE & element_at(::index i,index(* fCompare) (TYPE *,TYPE *) = DEFAULT_COMPARE);
+   TYPE element_at(::index i);
 
-   const TYPE & operator [] (::index i) const;
+   TYPE operator [] (::index i) const;
 
-   TYPE & operator [] (::index i);
+   TYPE operator [] (::index i);
 
    bool operator == (const set & a) const;
 
    bool operator != (const set & a) const;
 
-   void copy(const BASE_ARRAY & src);
+   void copy(const set & src);
 
    using BASE_ARRAY::remove_all;
 
    using BASE_ARRAY::clear;
 
-   using BASE_ARRAY::quick_sort;
+   //using BASE_ARRAY::quick_sort;
 
    using BASE_ARRAY::operator new;
 
@@ -101,6 +102,7 @@ public:
 
    using BASE_ARRAY::get_size;
 
+   /*
    template<class ARRAY>
    friend index lemon::array::sort_add(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index(* fCompare) (typename ARRAY::BASE_TYPE *,typename ARRAY::BASE_TYPE *),index_array & ia);
    */
@@ -367,28 +369,27 @@ set_size(::count n)
    m_indexmap.mark_dirty();
 
 }
+*/
 
 template < class TYPE,class ARG_TYPE,class BASE_ARRAY_TYPE,class COMPARE>
-TYPE & set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >::
-element_at(::index i,index(* fCompare) (TYPE *,TYPE *))
+TYPE set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >::element_at(::index i)
 {
 
-   return BASE_ARRAY::element_at(defer_update(fCompare)[i]);
+   return BASE_ARRAY::element_at(i);
 
 }
 
 template < class TYPE,class ARG_TYPE,class BASE_ARRAY_TYPE,class COMPARE>
-const TYPE & set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >::
-element_at(::index i,index(* fCompare) (TYPE *,TYPE *)) const
+TYPE set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >::element_at(::index i) const
 {
 
-   return ((set *) this)->element_at(i,fCompare);
+   return ((set *) this)->element_at(i);
 
 }
 
 
 template < class TYPE,class ARG_TYPE,class BASE_ARRAY_TYPE,class COMPARE>
-TYPE & set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >::
+TYPE set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >::
 operator [](::index i)
 {
 
@@ -397,7 +398,7 @@ operator [](::index i)
 }
 
 template < class TYPE,class ARG_TYPE,class BASE_ARRAY_TYPE,class COMPARE>
-const TYPE & set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >::
+TYPE set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >::
 operator [](::index i) const
 {
 
@@ -416,13 +417,11 @@ operator == (const set & a) const
    if(get_size() != a.get_size())
       return false;
 
-   index_array & ia1 = ((set *) this)->defer_update();
-
-   index_array & ia2 = ((set *)&a)->defer_update();
-
    for(index i = 0; i < get_size(); i++)
    {
-      if(DEFAULT_COMPARE(&((set *) this)->BASE_ARRAY::element_at(ia1[i]),&((set *)&a)->BASE_ARRAY::element_at(ia2[i])) != 0)
+      if(COMPARE::compare(this->BASE_ARRAY::element_at(i),a.BASE_ARRAY::element_at(i)))
+         return false;
+      if(COMPARE::compare(a.BASE_ARRAY::element_at(i),this->BASE_ARRAY::element_at(i)))
          return false;
    }
 
@@ -440,17 +439,15 @@ operator != (const set & a) const
 }
 
 template < class TYPE,class ARG_TYPE,class BASE_ARRAY_TYPE,class COMPARE>
-void set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >::copy(const BASE_ARRAY & src)
+void set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >::copy(const set & src)
 {
 
    BASE_ARRAY::copy(src);
 
-   m_indexmap.mark_dirty();
-
 }
 
 
-
+/*
 
 
 // smart_pointer_sort_array

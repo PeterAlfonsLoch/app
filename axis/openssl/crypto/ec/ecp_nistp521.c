@@ -387,7 +387,7 @@ static void felem_diff128(largefelem out, const largefelem in)
  * On entry:
  *   in[i] < 2^62
  * On exit:
- *   out[i] < 17 * max(in[i]) * max(in[i])
+ *   out[i] < 17 * MAX(in[i]) * MAX(in[i])
  */
 static void felem_square(largefelem out, const felem in)
 	{
@@ -479,7 +479,7 @@ static void felem_square(largefelem out, const felem in)
  *   in1[i] < 2^64
  *   in2[i] < 2^63
  * On exit:
- *   out[i] < 17 * max(in1[i]) * max(in2[i])
+ *   out[i] < 17 * MAX(in1[i]) * MAX(in2[i])
  */
 static void felem_mul(largefelem out, const felem in1, const felem in2)
 	{

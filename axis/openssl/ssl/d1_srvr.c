@@ -1641,7 +1641,7 @@ int dtls1_send_newsession_ticket(SSL *s)
  		 * follows 12 (DTLS handshake message header) +
  		 * 4 (ticket lifetime hint) + 2 (ticket length) +
  		 * 16 (key name) + max_iv_len (iv length) +
- 		 * session_length + max_enc_block_size (max encrypted session
+ 		 * session_length + max_enc_block_size (MAX encrypted session
  		 * length) + max_md_size (HMAC).
  		 */
 		if (!BUF_MEM_grow(s->init_buf,

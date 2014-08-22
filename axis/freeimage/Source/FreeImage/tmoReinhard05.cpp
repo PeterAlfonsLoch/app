@@ -49,8 +49,8 @@ ToneMappingReinhard05(FIBITMAP *dib, FIBITMAP *Y, float f, float m, float a, flo
 	float Cav[3];		// channel average
 	float Lav = 0;		// average luminance
 	float Llav = 0;		// log average luminance
-	float minLum = 1;	// min luminance
-	float maxLum = 1;	// max luminance
+	float minLum = 1;	// MIN luminance
+	float maxLum = 1;	// MAX luminance
 
 	float L;		// pixel luminance
 	float I_g, I_l; // global and local light adaptation

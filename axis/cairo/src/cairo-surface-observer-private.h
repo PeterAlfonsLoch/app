@@ -46,7 +46,7 @@
 #include "cairo-time-private.h"
 
 struct stat {
-    double min, max, sum, sum_sq;
+    double MIN, MAX, sum, sum_sq;
     unsigned count;
 };
 

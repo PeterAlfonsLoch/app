@@ -258,8 +258,8 @@ namespace user
                {
                   rectWindow.top = m_rcWindowOrigin.bottom - m_minSize.cy;
                }
-               rectWindow.left = min(rectWindow.left, rectMonitor.right - m_minBorder.cx);
-               rectWindow.top = min(rectWindow.top, rectMonitor.bottom - m_minBorder.cy);
+               rectWindow.left = MIN(rectWindow.left, rectMonitor.right - m_minBorder.cx);
+               rectWindow.top = MIN(rectWindow.top, rectMonitor.bottom - m_minBorder.cy);
             }
             else if(m_ehittestMode == HitTestSizingTop)
             {
@@ -271,7 +271,7 @@ namespace user
                {
                   rectWindow.top = m_rcWindowOrigin.bottom - m_minSize.cy;
                }
-               rectWindow.top = min(rectWindow.top, rectMonitor.bottom - m_minBorder.cy);
+               rectWindow.top = MIN(rectWindow.top, rectMonitor.bottom - m_minBorder.cy);
             }
             else if(m_ehittestMode == HitTestSizingTopRight)
             {
@@ -288,8 +288,8 @@ namespace user
                {
                   rectWindow.top = m_rcWindowOrigin.bottom - m_minSize.cy;
                }
-               rectWindow.right = max(rectWindow.right, rectMonitor.left + m_minBorder.cx);
-               rectWindow.top = min(rectWindow.top, rectMonitor.bottom - m_minBorder.cy);
+               rectWindow.right = MAX(rectWindow.right, rectMonitor.left + m_minBorder.cx);
+               rectWindow.top = MIN(rectWindow.top, rectMonitor.bottom - m_minBorder.cy);
             }
             else if(m_ehittestMode == HitTestSizingRight)
             {
@@ -302,7 +302,7 @@ namespace user
                   rectWindow.right = m_rcWindowOrigin.left + m_minSize.cx;
 
                }
-               rectWindow.right = max(rectWindow.right, rectMonitor.left + m_minBorder.cx);
+               rectWindow.right = MAX(rectWindow.right, rectMonitor.left + m_minBorder.cx);
             }
             else if(m_ehittestMode == HitTestSizingBottomRight)
             {
@@ -319,8 +319,8 @@ namespace user
                {
                   rectWindow.bottom = m_rcWindowOrigin.top + m_minSize.cy;
                }
-               rectWindow.right = max(rectWindow.right, rectMonitor.left + m_minBorder.cx);
-               rectWindow.bottom = max(rectWindow.bottom, rectMonitor.top + m_minBorder.cy);
+               rectWindow.right = MAX(rectWindow.right, rectMonitor.left + m_minBorder.cx);
+               rectWindow.bottom = MAX(rectWindow.bottom, rectMonitor.top + m_minBorder.cy);
             }
             else if(m_ehittestMode == HitTestSizingBottom)
             {
@@ -332,7 +332,7 @@ namespace user
                {
                   rectWindow.bottom = m_rcWindowOrigin.top + m_minSize.cy;
                }
-               rectWindow.bottom = max(rectWindow.bottom, rectMonitor.top + m_minBorder.cy);
+               rectWindow.bottom = MAX(rectWindow.bottom, rectMonitor.top + m_minBorder.cy);
             }
             else if(m_ehittestMode == HitTestSizingBottomLeft)
             {
@@ -349,8 +349,8 @@ namespace user
                {
                   rectWindow.bottom = m_rcWindowOrigin.top + m_minSize.cy;
                }
-               rectWindow.left = min(rectWindow.left, rectMonitor.right - m_minBorder.cx);
-               rectWindow.bottom = max(rectWindow.bottom, rectMonitor.top + m_minBorder.cy);
+               rectWindow.left = MIN(rectWindow.left, rectMonitor.right - m_minBorder.cx);
+               rectWindow.bottom = MAX(rectWindow.bottom, rectMonitor.top + m_minBorder.cy);
             }
             else if(m_ehittestMode == HitTestSizingLeft)
             {
@@ -363,7 +363,7 @@ namespace user
                   rectWindow.left = m_rcWindowOrigin.right - m_minSize.cx;
 
                }
-               rectWindow.left = min(rectWindow.left, rectMonitor.right - m_minBorder.cx);
+               rectWindow.left = MIN(rectWindow.left, rectMonitor.right - m_minBorder.cx);
             }
             else
             {

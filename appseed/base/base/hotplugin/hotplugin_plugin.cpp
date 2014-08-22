@@ -18,7 +18,11 @@
 
 
 #ifdef WINDOWSEX
+#define min MIN
+#define max MAX
 #include <gdiplus.h>
+#undef min
+#undef max
 #endif
 
 

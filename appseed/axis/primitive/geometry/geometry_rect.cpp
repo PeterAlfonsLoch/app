@@ -27,7 +27,7 @@ void rect::ExtendOnCenter(const RECT & rect)
 
    double dx = ::width(rect);
    double dy = ::height(rect);
-   double dr = max(dx / cx, dy / cy);
+   double dr = MAX(dx / cx, dy / cy);
 
    int32_t cw = (int32_t) (cx * dr);
    int32_t ch = (int32_t) (cy * dr);
@@ -46,7 +46,7 @@ void rect::FitOnCenterOf(const RECT & rect,SIZE size)
 
    double dx = ::width(rect);
    double dy = ::height(rect);
-   double dr = min(cx == 0 ? 1 : dx / cx,cy == 0 ? 1 : dy / cy);
+   double dr = MIN(cx == 0 ? 1 : dx / cx,cy == 0 ? 1 : dy / cy);
 
    int32_t cw = cx == 0 ? (int32_t)dx : ((int32_t)(cx * dr));
    int32_t ch = cy == 0 ? (int32_t)dy : ((int32_t)(cy * dr));
@@ -337,7 +337,7 @@ void rect64::ExtendOnCenter(const __rect64 *  lpcrect)
 
     double dx = (double) (lpcrect->right - lpcrect->left);
     double dy = (double) (lpcrect->bottom - lpcrect->top);
-    double dr = max(dx / cx, dy / cy);
+    double dr = MAX(dx / cx, dy / cy);
 
     int64_t cw = (int64_t) (cx * dr);
    int64_t ch = (int64_t) (cy * dr);
@@ -355,7 +355,7 @@ void rect64::FitOnCenterOf(const __rect64 *  lpcrect)
 
     double dx = (double) (lpcrect->right - lpcrect->left);
     double dy = (double) (lpcrect->bottom - lpcrect->top);
-    double dr = min(cx == 0 ? 1 : dx / cx, cy == 0 ? 1 : dy / cy);
+    double dr = MIN(cx == 0 ? 1 : dx / cx, cy == 0 ? 1 : dy / cy);
 
     int64_t cw = cx == 0 ? (int64_t) dx : ((int64_t) (cx * dr));
    int64_t ch = cy == 0 ? (int64_t) dy : ((int64_t) (cy * dr));

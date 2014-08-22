@@ -2427,7 +2427,7 @@ static OPJ_BOOL opj_j2k_read_cod (  opj_j2k_t *p_j2k,
         opj_read_bytes(p_header_data,&l_tcp->numlayers,2);      /* SGcod (B) */
         p_header_data+=2;
 
-        /* If user didn't set a number layer to decode take the max specify in the codestream. */
+        /* If user didn't set a number layer to decode take the MAX specify in the codestream. */
         if      (l_cp->m_specific_param.m_dec.m_layer) {
                 l_tcp->num_layers_to_decode = l_cp->m_specific_param.m_dec.m_layer;
         }
@@ -3037,7 +3037,7 @@ void opj_j2k_write_poc_in_memory(   opj_j2k_t *p_j2k,
                 opj_write_bytes(l_current_data,l_current_poc->prg,1);                                   /* Ppoc_i */
                 ++l_current_data;
 
-                /* change the value of the max layer according to the actual number of layers in the file, components and resolutions*/
+                /* change the value of the MAX layer according to the actual number of layers in the file, components and resolutions*/
                 l_current_poc->layno1 = (OPJ_UINT32)opj_int_min((OPJ_INT32)l_current_poc->layno1, (OPJ_INT32)l_tcp->numlayers);
                 l_current_poc->resno1 = (OPJ_UINT32)opj_int_min((OPJ_INT32)l_current_poc->resno1, (OPJ_INT32)l_tccp->numresolutions);
                 l_current_poc->compno1 = (OPJ_UINT32)opj_int_min((OPJ_INT32)l_current_poc->compno1, (OPJ_INT32)l_nb_comp);
@@ -3887,7 +3887,7 @@ OPJ_BOOL opj_j2k_write_tlm(     opj_j2k_t *p_j2k,
         opj_write_bytes(l_current_data,0,1);                                                    /* Ztlm=0*/
         ++l_current_data;
 
-        opj_write_bytes(l_current_data,0x50,1);                                                 /* Stlm ST=1(8bits-255 tiles max),SP=1(Ptlm=32bits) */
+        opj_write_bytes(l_current_data,0x50,1);                                                 /* Stlm ST=1(8bits-255 tiles MAX),SP=1(Ptlm=32bits) */
         ++l_current_data;
 
         /* do nothing on the 5 * l_j2k->m_specific_param.m_encoder.m_total_tile_parts remaining data */
@@ -8324,7 +8324,7 @@ OPJ_BOOL opj_j2k_read_SPCod_SPCoc(  opj_j2k_t *p_j2k,
         ++l_tccp->numresolutions;                                                                               /* tccp->numresolutions = read() + 1 */
         if (l_tccp->numresolutions > OPJ_J2K_MAXRLVLS) {
                 opj_event_msg(p_manager, EVT_ERROR,
-                              "Invalid value for numresolutions : %d, max value is set in openjpeg.h at %d\n",
+                              "Invalid value for numresolutions : %d, MAX value is set in openjpeg.h at %d\n",
                               l_tccp->numresolutions, OPJ_J2K_MAXRLVLS);
                 return OPJ_FALSE;
         }
@@ -9387,7 +9387,7 @@ OPJ_BOOL opj_j2k_get_tile(      opj_j2k_t *p_j2k,
         }
 
         if ( /*(tile_index < 0) &&*/ (tile_index >= p_j2k->m_cp.tw * p_j2k->m_cp.th) ){
-                opj_event_msg(p_manager, EVT_ERROR, "Tile index provided by the user is incorrect %d (max = %d) \n", tile_index, (p_j2k->m_cp.tw * p_j2k->m_cp.th) - 1);
+                opj_event_msg(p_manager, EVT_ERROR, "Tile index provided by the user is incorrect %d (MAX = %d) \n", tile_index, (p_j2k->m_cp.tw * p_j2k->m_cp.th) - 1);
                 return OPJ_FALSE;
         }
 

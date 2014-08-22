@@ -151,7 +151,7 @@ typedef struct opj_tcd_tilecomp
 {
 	OPJ_INT32 x0, y0, x1, y1;				/* dimension of component : left upper corner (x0, y0) right low corner (x1,y1) */
 	OPJ_UINT32 numresolutions;				/* number of resolutions level */
-	OPJ_UINT32 minimum_num_resolutions;		/* number of resolutions level to decode (at max)*/
+	OPJ_UINT32 minimum_num_resolutions;		/* number of resolutions level to decode (at MAX)*/
 	opj_tcd_resolution_t *resolutions;	/* resolutions information */
 	OPJ_UINT32 resolutions_size;			/* size of data for resolutions (in bytes) */
 	OPJ_INT32 *data;						/* data of the component */
