@@ -78,10 +78,8 @@
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
-			<Add option="-ldl" />
-			<Add option="-lpthread" />
-			<Add option="-lX11" />
-			<Add option="-lXmu" />
+			<Add option="-laxis" />
+			<Add option="-laxisbzip2" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>

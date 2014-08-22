@@ -74,6 +74,7 @@
 			<Add directory="../../../nodeapp/thirdparty/include" />
 			<Add directory="../../appseed" />
 			<Add directory="../axis" />
+			<Add directory="../../axis" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />

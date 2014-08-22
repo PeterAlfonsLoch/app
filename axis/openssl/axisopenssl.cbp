@@ -17,6 +17,7 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
+					<Add option="-DOPENSSL_NO_ASM" />
 				</Compiler>
 				<Linker>
 					<Add directory="../../../stage/x86" />
@@ -34,6 +35,7 @@
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
 					<Add option="-DMEMDLEAK" />
+					<Add option="-DOPENSSL_NO_ASM" />
 				</Compiler>
 				<Linker>
 					<Add directory="../../../stage/x86" />
@@ -51,6 +53,7 @@
 			<Add option="-Winvalid-pch" />
 			<Add option="-fPIC" />
 			<Add option="-DLINUX" />
+			<Add option="-DOPENSSL_NO_ASM" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
 			<Add directory="framework" />
@@ -85,9 +88,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="crypto/aes/aes_cfb.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/aes/aes_core.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="crypto/aes/aes_ctr.c">
@@ -346,9 +346,6 @@
 		<Unit filename="crypto/asn1/x_x509a.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="crypto/bf/bf_cbc.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="crypto/bf/bf_cfb64.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -360,9 +357,6 @@
 		</Unit>
 		<Unit filename="crypto/bf/bf_locl.h" />
 		<Unit filename="crypto/bf/bf_ofb64.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/bf/bf_opts.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="crypto/bf/bf_pi.h" />
@@ -687,9 +681,6 @@
 		<Unit filename="crypto/des/cfb_enc.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="crypto/des/des.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="crypto/des/des.h" />
 		<Unit filename="crypto/des/des_enc.c">
 			<Option compilerVar="CC" />
@@ -724,9 +715,6 @@
 		<Unit filename="crypto/des/fcrypt_b.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="crypto/des/ncbc_enc.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="crypto/des/ofb64ede.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -750,9 +738,6 @@
 		</Unit>
 		<Unit filename="crypto/des/rpc_des.h" />
 		<Unit filename="crypto/des/rpc_enc.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/des/rpw.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="crypto/des/set_key.c">
@@ -1012,9 +997,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="crypto/engine/engine.h" />
-		<Unit filename="crypto/engine/enginetest.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="crypto/engine/tb_asnmth.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1058,6 +1040,7 @@
 		<Unit filename="crypto/err/err_prn.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="crypto/evp/Makefile" />
 		<Unit filename="crypto/evp/bio_b64.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1162,6 +1145,10 @@
 		<Unit filename="crypto/evp/evp_pkey.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="crypto/evp/evp_test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/evp/evptests.txt" />
 		<Unit filename="crypto/evp/m_dss.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1353,9 +1340,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="crypto/o_dir.h" />
-		<Unit filename="crypto/o_dir_test.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="crypto/o_fips.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1532,9 +1516,6 @@
 		<Unit filename="crypto/pkcs7/pkcs7err.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="crypto/ppccap.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="crypto/pqueue/pqueue.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1593,9 +1574,6 @@
 		<Unit filename="crypto/rc5/rc5.h" />
 		<Unit filename="crypto/rc5/rc5_locl.h" />
 		<Unit filename="crypto/ripemd/ripemd.h" />
-		<Unit filename="crypto/ripemd/rmd160.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="crypto/ripemd/rmd_dgst.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -2028,9 +2006,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="engines/ccgost/gosthash.h" />
-		<Unit filename="engines/ccgost/gostsum.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="engines/e_4758cca.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -2139,9 +2114,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="ssl/dtls1.h" />
-		<Unit filename="ssl/heartbeat_test.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="ssl/kssl.c">
 			<Option compilerVar="CC" />
 		</Unit>
