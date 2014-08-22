@@ -11,14 +11,9 @@ namespace axis
       ::thread(papp)
    {
 
-      //if(m_paxisapp == NULL)
-      //{
-
-      //   m_paxisapp        = this;
-
-      //}
-
       m_paxissession    = this;
+
+     
 
       m_pcoreplatform   = NULL;
 

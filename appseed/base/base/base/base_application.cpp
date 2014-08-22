@@ -111,7 +111,6 @@ namespace base
 
       m_psignal                  = canew(class signal());
 
-      m_pcommandthread           = canew(::command_thread(this));
 
 
       m_bLicense                 = true;
@@ -3797,6 +3796,12 @@ namespace base
    }
 
 
+   string application::dir_ca2module(const char * psz)
+   {
+
+      return System.dir().ca2module(psz);
+
+   }
 
 
    void application::dir_ls_dir(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)

@@ -408,6 +408,7 @@ namespace axis
       virtual string file_extension(const char * pszPath);
       virtual string dir_path(const char * psz1,const char * psz2,const char * psz3 = NULL);
       virtual string dir_element(const char * psz = NULL);
+      virtual string dir_ca2module(const char * psz = NULL);
       virtual string dir_name(const char * psz);
       virtual void  dir_ls_dir(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL);
       virtual void  dir_rls(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,stringa * pstraRelative = NULL);
@@ -419,7 +420,7 @@ namespace axis
       virtual string dir_appdata(const char * lpcsz = NULL,const char * lpcsz2 = NULL);
       virtual string dir_simple_path(const string & str1,const string & str2);
 
-      virtual ::file::binary_buffer_sp file_get_file(var varFile,uint32_t uiFlags);
+      virtual ::file::buffer_sp file_get_file(var varFile,uint32_t uiFlags);
 
       virtual string http_get_locale_schema(const char * pszUrl,const char * pszLocale,const char * pszSchema);
 

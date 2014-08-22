@@ -442,6 +442,8 @@ namespace user
          return FALSE;
       }
 
+
+
       delete_contents();
       set_modified_flag();  // dirty during de-serialize
       ::file::input_stream is(spfile);

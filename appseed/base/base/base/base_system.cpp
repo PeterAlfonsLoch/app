@@ -207,6 +207,8 @@ namespace base
 
       m_pbasesession = new ::base::session(this);
 
+      m_paxissession = m_pbasesession;
+
       if(m_pbasesession == NULL)
          return false;
 

@@ -3183,6 +3183,12 @@ namespace axis
 
    }
 
+   string application::dir_ca2module(const char * psz)
+   {
+
+      return ::dir::path(::dir::get_ca2_module_folder(),psz);
+
+   }
 
    string application::dir_name(const char * psz)
    {
@@ -3249,7 +3255,7 @@ namespace axis
    }
 
 
-   ::file::binary_buffer_sp application::file_get_file(var varFile,uint32_t uiFlags)
+   ::file::buffer_sp application::file_get_file(var varFile,uint32_t uiFlags)
    {
 
       ::file::buffer_sp buffer(allocer());

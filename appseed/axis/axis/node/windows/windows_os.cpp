@@ -328,12 +328,11 @@ namespace windows
          if(keyPlugin.OpenKey(keyPlugins, "@ca2.cc/npca2", true))
          {
 
-            throw todo(get_app());
             keyPlugin.SetValue("Description", "core plugin for NPAPI");
-            //keyPlugin.SetValue("Path", System.dir().ca2module("npca2.dll"));
+            keyPlugin.SetValue("Path", System.dir_ca2module("npca2.dll"));
             keyPlugin.SetValue("ProductName", "core plugin for NPAPI");
             keyPlugin.SetValue("Vendor", "core Desenvolvimento de Software Ltda.");
-            //keyPlugin.SetValue("Version", Application.file_as_string(System.dir().element("appdata/x86/ca2_build.txt")));
+            keyPlugin.SetValue("Version", Application.file_as_string(System.dir_element("appdata/x86/ca2_build.txt")));
 
             registry::Key keyApplicationCa2;
 
