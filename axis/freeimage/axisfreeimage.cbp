@@ -2,14 +2,14 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="axisbsdiff" />
+		<Option title="axisfreeimage" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../stage/x86/libbase.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libaxisfreeimage.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
-				<Option object_output="../../../time/intermediate/app/base" />
+				<Option object_output="../../../time/intermediate/app/axisfreeimage" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -23,9 +23,9 @@
 				</Linker>
 			</Target>
 			<Target title="memdleak">
-				<Option output="../../../stage/x86/libbase.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libaxisfreeimage.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
-				<Option object_output="../../../time/intermediate/app/base" />
+				<Option object_output="../../../time/intermediate/app/axisfreeimage" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -64,14 +64,9 @@
 			<Add directory="../../nodeapp/linux/include" />
 			<Add directory="../../.." />
 			<Add directory="../base" />
-			<Add directory="base/openssl" />
-			<Add directory="base/openssl/crypto" />
-			<Add directory="base/openssl/ssl" />
-			<Add directory="base/openssl/crypto/asn1" />
-			<Add directory="base/openssl/crypto/evp" />
-			<Add directory="base/openssl/crypto/modes" />
-			<Add directory="base/openssl/include" />
 			<Add directory="../../../nodeapp/thirdparty/include" />
+			<Add directory="Source" />
+			<Add directory="Source/FreeImage" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -83,6 +78,1208 @@
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
+		<Unit filename="Source/CacheFile.h" />
+		<Unit filename="Source/DeprecationManager/Deprecated.cpp" />
+		<Unit filename="Source/DeprecationManager/DeprecationMgr.cpp" />
+		<Unit filename="Source/DeprecationManager/DeprecationMgr.h" />
+		<Unit filename="Source/FreeImage.h" />
+		<Unit filename="Source/FreeImage/BitmapAccess.cpp" />
+		<Unit filename="Source/FreeImage/CacheFile.cpp" />
+		<Unit filename="Source/FreeImage/ColorLookup.cpp" />
+		<Unit filename="Source/FreeImage/Conversion.cpp" />
+		<Unit filename="Source/FreeImage/Conversion16_555.cpp" />
+		<Unit filename="Source/FreeImage/Conversion16_565.cpp" />
+		<Unit filename="Source/FreeImage/Conversion24.cpp" />
+		<Unit filename="Source/FreeImage/Conversion32.cpp" />
+		<Unit filename="Source/FreeImage/Conversion4.cpp" />
+		<Unit filename="Source/FreeImage/Conversion8.cpp" />
+		<Unit filename="Source/FreeImage/ConversionFloat.cpp" />
+		<Unit filename="Source/FreeImage/ConversionRGB16.cpp" />
+		<Unit filename="Source/FreeImage/ConversionRGBF.cpp" />
+		<Unit filename="Source/FreeImage/ConversionType.cpp" />
+		<Unit filename="Source/FreeImage/ConversionUINT16.cpp" />
+		<Unit filename="Source/FreeImage/FreeImage.cpp" />
+		<Unit filename="Source/FreeImage/FreeImageC.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/FreeImage/FreeImageFramework.cpp" />
+		<Unit filename="Source/FreeImage/FreeImageFramework.h" />
+		<Unit filename="Source/FreeImage/FreeImageIO.cpp" />
+		<Unit filename="Source/FreeImage/GetType.cpp" />
+		<Unit filename="Source/FreeImage/Halftoning.cpp" />
+		<Unit filename="Source/FreeImage/J2KHelper.cpp" />
+		<Unit filename="Source/FreeImage/J2KHelper.h" />
+		<Unit filename="Source/FreeImage/MNGHelper.cpp" />
+		<Unit filename="Source/FreeImage/MemoryIO.cpp" />
+		<Unit filename="Source/FreeImage/MultiPage.cpp" />
+		<Unit filename="Source/FreeImage/NNQuantizer.cpp" />
+		<Unit filename="Source/FreeImage/PSDParser.cpp" />
+		<Unit filename="Source/FreeImage/PSDParser.h" />
+		<Unit filename="Source/FreeImage/PixelAccess.cpp" />
+		<Unit filename="Source/FreeImage/Plugin.cpp" />
+		<Unit filename="Source/FreeImage/PluginBMP.cpp" />
+		<Unit filename="Source/FreeImage/PluginCUT.cpp" />
+		<Unit filename="Source/FreeImage/PluginDDS.cpp" />
+		<Unit filename="Source/FreeImage/PluginEXR.cpp" />
+		<Unit filename="Source/FreeImage/PluginG3.cpp" />
+		<Unit filename="Source/FreeImage/PluginGIF.cpp" />
+		<Unit filename="Source/FreeImage/PluginHDR.cpp" />
+		<Unit filename="Source/FreeImage/PluginICO.cpp" />
+		<Unit filename="Source/FreeImage/PluginIFF.cpp" />
+		<Unit filename="Source/FreeImage/PluginJ2K.cpp" />
+		<Unit filename="Source/FreeImage/PluginJNG.cpp" />
+		<Unit filename="Source/FreeImage/PluginJP2.cpp" />
+		<Unit filename="Source/FreeImage/PluginJPEG.cpp" />
+		<Unit filename="Source/FreeImage/PluginJXR.cpp" />
+		<Unit filename="Source/FreeImage/PluginKOALA.cpp" />
+		<Unit filename="Source/FreeImage/PluginMNG.cpp" />
+		<Unit filename="Source/FreeImage/PluginPCD.cpp" />
+		<Unit filename="Source/FreeImage/PluginPCX.cpp" />
+		<Unit filename="Source/FreeImage/PluginPFM.cpp" />
+		<Unit filename="Source/FreeImage/PluginPICT.cpp" />
+		<Unit filename="Source/FreeImage/PluginPNG.cpp" />
+		<Unit filename="Source/FreeImage/PluginPNM.cpp" />
+		<Unit filename="Source/FreeImage/PluginPSD.cpp" />
+		<Unit filename="Source/FreeImage/PluginRAS.cpp" />
+		<Unit filename="Source/FreeImage/PluginRAW.cpp" />
+		<Unit filename="Source/FreeImage/PluginSGI.cpp" />
+		<Unit filename="Source/FreeImage/PluginTARGA.cpp" />
+		<Unit filename="Source/FreeImage/PluginTIFF.cpp" />
+		<Unit filename="Source/FreeImage/PluginWBMP.cpp" />
+		<Unit filename="Source/FreeImage/PluginWebP.cpp" />
+		<Unit filename="Source/FreeImage/PluginXBM.cpp" />
+		<Unit filename="Source/FreeImage/PluginXPM.cpp" />
+		<Unit filename="Source/FreeImage/TIFFLogLuv.cpp" />
+		<Unit filename="Source/FreeImage/ToneMapping.cpp" />
+		<Unit filename="Source/FreeImage/WuQuantizer.cpp" />
+		<Unit filename="Source/FreeImage/ZLibInterface.cpp" />
+		<Unit filename="Source/FreeImage/tmoColorConvert.cpp" />
+		<Unit filename="Source/FreeImage/tmoDrago03.cpp" />
+		<Unit filename="Source/FreeImage/tmoFattal02.cpp" />
+		<Unit filename="Source/FreeImage/tmoReinhard05.cpp" />
+		<Unit filename="Source/FreeImageIO.h" />
+		<Unit filename="Source/FreeImageToolkit/BSplineRotate.cpp" />
+		<Unit filename="Source/FreeImageToolkit/Background.cpp" />
+		<Unit filename="Source/FreeImageToolkit/Channels.cpp" />
+		<Unit filename="Source/FreeImageToolkit/ClassicRotate.cpp" />
+		<Unit filename="Source/FreeImageToolkit/Colors.cpp" />
+		<Unit filename="Source/FreeImageToolkit/CopyPaste.cpp" />
+		<Unit filename="Source/FreeImageToolkit/Display.cpp" />
+		<Unit filename="Source/FreeImageToolkit/Filters.h" />
+		<Unit filename="Source/FreeImageToolkit/Flip.cpp" />
+		<Unit filename="Source/FreeImageToolkit/JPEGTransform.cpp" />
+		<Unit filename="Source/FreeImageToolkit/MultigridPoissonSolver.cpp" />
+		<Unit filename="Source/FreeImageToolkit/Rescale.cpp" />
+		<Unit filename="Source/FreeImageToolkit/Resize.cpp" />
+		<Unit filename="Source/FreeImageToolkit/Resize.h" />
+		<Unit filename="Source/LibJPEG/ansi2knr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/cderror.h" />
+		<Unit filename="Source/LibJPEG/cdjpeg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/cdjpeg.h" />
+		<Unit filename="Source/LibJPEG/cjpeg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/ckconfig.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/djpeg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jaricom.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jcapimin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jcapistd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jcarith.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jccoefct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jccolor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jcdctmgr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jchuff.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jcinit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jcmainct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jcmarker.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jcmaster.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jcomapi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jconfig.h" />
+		<Unit filename="Source/LibJPEG/jcparam.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jcprepct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jcsample.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jctrans.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jdapimin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jdapistd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jdarith.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jdatadst.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jdatasrc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jdcoefct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jdcolor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jdct.h" />
+		<Unit filename="Source/LibJPEG/jddctmgr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jdhuff.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jdinput.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jdmainct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jdmarker.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jdmaster.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jdmerge.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jdpostct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jdsample.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jdtrans.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jerror.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jerror.h" />
+		<Unit filename="Source/LibJPEG/jfdctflt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jfdctfst.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jfdctint.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jidctflt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jidctfst.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jidctint.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jinclude.h" />
+		<Unit filename="Source/LibJPEG/jmemansi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jmemdos.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jmemmac.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jmemmgr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jmemname.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jmemnobs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jmemsys.h" />
+		<Unit filename="Source/LibJPEG/jmorecfg.h" />
+		<Unit filename="Source/LibJPEG/jpegint.h" />
+		<Unit filename="Source/LibJPEG/jpeglib.h" />
+		<Unit filename="Source/LibJPEG/jpegtran.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jquant1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jquant2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jutils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/jversion.h" />
+		<Unit filename="Source/LibJPEG/libjpeg_example.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/rdbmp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/rdcolmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/rdgif.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/rdjpgcom.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/rdppm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/rdrle.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/rdswitch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/rdtarga.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/transupp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/transupp.h" />
+		<Unit filename="Source/LibJPEG/wrbmp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/wrgif.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/wrjpgcom.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/wrppm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/wrrle.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJPEG/wrtarga.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/common/include/guiddef.h" />
+		<Unit filename="Source/LibJXR/common/include/wmsal.h" />
+		<Unit filename="Source/LibJXR/common/include/wmspecstring.h" />
+		<Unit filename="Source/LibJXR/common/include/wmspecstrings_adt.h" />
+		<Unit filename="Source/LibJXR/common/include/wmspecstrings_strict.h" />
+		<Unit filename="Source/LibJXR/common/include/wmspecstrings_undef.h" />
+		<Unit filename="Source/LibJXR/image/decode/JXRTranscode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/image/decode/decode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/image/decode/decode.h" />
+		<Unit filename="Source/LibJXR/image/decode/postprocess.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/image/decode/segdec.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/image/decode/strInvTransform.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/image/decode/strPredQuantDec.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/image/decode/strdec.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/image/decode/strdec_x86.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/image/encode/encode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/image/encode/encode.h" />
+		<Unit filename="Source/LibJXR/image/encode/segenc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/image/encode/strFwdTransform.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/image/encode/strPredQuantEnc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/image/encode/strenc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/image/encode/strenc_x86.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/image/sys/adapthuff.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/image/sys/ansi.h" />
+		<Unit filename="Source/LibJXR/image/sys/common.h" />
+		<Unit filename="Source/LibJXR/image/sys/image.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/image/sys/perfTimer.h" />
+		<Unit filename="Source/LibJXR/image/sys/perfTimerANSI.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/image/sys/strPredQuant.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/image/sys/strTransform.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/image/sys/strTransform.h" />
+		<Unit filename="Source/LibJXR/image/sys/strcodec.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/image/sys/strcodec.h" />
+		<Unit filename="Source/LibJXR/image/sys/windowsmediaphoto.h" />
+		<Unit filename="Source/LibJXR/image/sys/xplatform_image.h" />
+		<Unit filename="Source/LibJXR/image/x86/x86.h" />
+		<Unit filename="Source/LibJXR/jxrgluelib/JXRGlue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/jxrgluelib/JXRGlue.h" />
+		<Unit filename="Source/LibJXR/jxrgluelib/JXRGlueJxr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/jxrgluelib/JXRGluePFC.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/jxrgluelib/JXRMeta.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibJXR/jxrgluelib/JXRMeta.h" />
+		<Unit filename="Source/LibOpenJPEG/aaa_want_to_remove_opj_stdint.h" />
+		<Unit filename="Source/LibOpenJPEG/bio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/bio.h" />
+		<Unit filename="Source/LibOpenJPEG/cidx_manager.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/cidx_manager.h" />
+		<Unit filename="Source/LibOpenJPEG/cio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/cio.h" />
+		<Unit filename="Source/LibOpenJPEG/dwt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/dwt.h" />
+		<Unit filename="Source/LibOpenJPEG/event.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/event.h" />
+		<Unit filename="Source/LibOpenJPEG/function_list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/function_list.h" />
+		<Unit filename="Source/LibOpenJPEG/image.h" />
+		<Unit filename="Source/LibOpenJPEG/indexbox_manager.h" />
+		<Unit filename="Source/LibOpenJPEG/invert.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/invert.h" />
+		<Unit filename="Source/LibOpenJPEG/j2k.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/j2k.h" />
+		<Unit filename="Source/LibOpenJPEG/jp2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/jp2.h" />
+		<Unit filename="Source/LibOpenJPEG/libopenjpeg_image.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/mct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/mct.h" />
+		<Unit filename="Source/LibOpenJPEG/mqc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/mqc.h" />
+		<Unit filename="Source/LibOpenJPEG/openjpeg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/openjpeg.h" />
+		<Unit filename="Source/LibOpenJPEG/opj_clock.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/opj_clock.h" />
+		<Unit filename="Source/LibOpenJPEG/opj_codec.h" />
+		<Unit filename="Source/LibOpenJPEG/opj_config.h" />
+		<Unit filename="Source/LibOpenJPEG/opj_config_private.h" />
+		<Unit filename="Source/LibOpenJPEG/opj_image.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/opj_includes.h" />
+		<Unit filename="Source/LibOpenJPEG/opj_intmath.h" />
+		<Unit filename="Source/LibOpenJPEG/opj_inttypes.h" />
+		<Unit filename="Source/LibOpenJPEG/opj_malloc.h" />
+		<Unit filename="Source/LibOpenJPEG/opj_stdint.h" />
+		<Unit filename="Source/LibOpenJPEG/phix_manager.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/pi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/pi.h" />
+		<Unit filename="Source/LibOpenJPEG/ppix_manager.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/raw.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/raw.h" />
+		<Unit filename="Source/LibOpenJPEG/t1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/t1.h" />
+		<Unit filename="Source/LibOpenJPEG/t1_generate_luts.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/t1_luts.h" />
+		<Unit filename="Source/LibOpenJPEG/t2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/t2.h" />
+		<Unit filename="Source/LibOpenJPEG/tcd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/tcd.h" />
+		<Unit filename="Source/LibOpenJPEG/tgt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/tgt.h" />
+		<Unit filename="Source/LibOpenJPEG/thix_manager.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibOpenJPEG/tpix_manager.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibPNG/png.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibPNG/png.h" />
+		<Unit filename="Source/LibPNG/pngconf.h" />
+		<Unit filename="Source/LibPNG/pngdebug.h" />
+		<Unit filename="Source/LibPNG/pngerror.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibPNG/pngget.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibPNG/pnginfo.h" />
+		<Unit filename="Source/LibPNG/pnglibconf.h" />
+		<Unit filename="Source/LibPNG/pngmem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibPNG/pngpread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibPNG/pngpriv.h" />
+		<Unit filename="Source/LibPNG/pngread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibPNG/pngrio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibPNG/pngrtran.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibPNG/pngrutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibPNG/pngset.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibPNG/pngstruct.h" />
+		<Unit filename="Source/LibPNG/pngtest.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibPNG/pngtrans.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibPNG/pngwio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibPNG/pngwrite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibPNG/pngwtran.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibPNG/pngwutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibRawLite/dcraw/dcraw.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibRawLite/internal/aahd_demosaic.cpp" />
+		<Unit filename="Source/LibRawLite/internal/dcb_demosaicing.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibRawLite/internal/dcraw_common.cpp" />
+		<Unit filename="Source/LibRawLite/internal/dcraw_fileio.cpp" />
+		<Unit filename="Source/LibRawLite/internal/defines.h" />
+		<Unit filename="Source/LibRawLite/internal/demosaic_packs.cpp" />
+		<Unit filename="Source/LibRawLite/internal/dht_demosaic.cpp" />
+		<Unit filename="Source/LibRawLite/internal/libraw_bytebuffer.h" />
+		<Unit filename="Source/LibRawLite/internal/libraw_internal_funcs.h" />
+		<Unit filename="Source/LibRawLite/internal/libraw_x3f.cpp" />
+		<Unit filename="Source/LibRawLite/internal/var_defines.h" />
+		<Unit filename="Source/LibRawLite/internal/wf_filtering.cpp" />
+		<Unit filename="Source/LibRawLite/libraw/libraw.h" />
+		<Unit filename="Source/LibRawLite/libraw/libraw_alloc.h" />
+		<Unit filename="Source/LibRawLite/libraw/libraw_const.h" />
+		<Unit filename="Source/LibRawLite/libraw/libraw_datastream.h" />
+		<Unit filename="Source/LibRawLite/libraw/libraw_internal.h" />
+		<Unit filename="Source/LibRawLite/libraw/libraw_types.h" />
+		<Unit filename="Source/LibRawLite/libraw/libraw_version.h" />
+		<Unit filename="Source/LibRawLite/src/libraw_c_api.cpp" />
+		<Unit filename="Source/LibRawLite/src/libraw_cxx.cpp" />
+		<Unit filename="Source/LibRawLite/src/libraw_datastream.cpp" />
+		<Unit filename="Source/LibTIFF4/mkg3states.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/mkspans.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/t4.h" />
+		<Unit filename="Source/LibTIFF4/tif_aux.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_close.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_codec.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_color.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_compress.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_config.h" />
+		<Unit filename="Source/LibTIFF4/tif_config.vc.h" />
+		<Unit filename="Source/LibTIFF4/tif_config.wince.h" />
+		<Unit filename="Source/LibTIFF4/tif_dir.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_dir.h" />
+		<Unit filename="Source/LibTIFF4/tif_dirinfo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_dirread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_dirwrite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_dumpmode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_error.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_extension.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_fax3.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_fax3.h" />
+		<Unit filename="Source/LibTIFF4/tif_fax3sm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_flush.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_getimage.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_jbig.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_jpeg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_jpeg_12.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_luv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_lzma.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_lzw.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_next.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_ojpeg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_open.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_packbits.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_pixarlog.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_predict.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_predict.h" />
+		<Unit filename="Source/LibTIFF4/tif_print.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_read.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_stream.cxx" />
+		<Unit filename="Source/LibTIFF4/tif_strip.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_swab.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_thunder.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_tile.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_unix.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_version.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_vms.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_warning.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_win32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_wince.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_write.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tif_zip.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibTIFF4/tiff.h" />
+		<Unit filename="Source/LibTIFF4/tiffconf.h" />
+		<Unit filename="Source/LibTIFF4/tiffconf.vc.h" />
+		<Unit filename="Source/LibTIFF4/tiffconf.wince.h" />
+		<Unit filename="Source/LibTIFF4/tiffio.h" />
+		<Unit filename="Source/LibTIFF4/tiffio.hxx" />
+		<Unit filename="Source/LibTIFF4/tiffiop.h" />
+		<Unit filename="Source/LibTIFF4/tiffvers.h" />
+		<Unit filename="Source/LibTIFF4/uvcode.h" />
+		<Unit filename="Source/LibWebP/src/dec/alphai.h" />
+		<Unit filename="Source/LibWebP/src/dec/dec.h" />
+		<Unit filename="Source/LibWebP/src/dec/dec_alpha.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dec/dec_buffer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dec/dec_frame.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dec/dec_idec.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dec/dec_io.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dec/dec_layer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dec/dec_quant.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dec/dec_tree.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dec/dec_vp8.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dec/dec_vp8l.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dec/dec_webp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dec/decode_vp8.h" />
+		<Unit filename="Source/LibWebP/src/dec/vp8i.h" />
+		<Unit filename="Source/LibWebP/src/dec/vp8li.h" />
+		<Unit filename="Source/LibWebP/src/dec/webpi.h" />
+		<Unit filename="Source/LibWebP/src/demux/demux.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dsp/cpu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dsp/dec.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dsp/dec_clip_tables.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dsp/dec_mips32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dsp/dec_neon.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dsp/dec_sse2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dsp/dsp.h" />
+		<Unit filename="Source/LibWebP/src/dsp/enc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dsp/enc_neon.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dsp/enc_sse2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dsp/lossless.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dsp/lossless.h" />
+		<Unit filename="Source/LibWebP/src/dsp/upsampling.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dsp/upsampling_mips32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dsp/upsampling_neon.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dsp/upsampling_sse2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dsp/yuv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/dsp/yuv.h" />
+		<Unit filename="Source/LibWebP/src/enc/backward_references.h" />
+		<Unit filename="Source/LibWebP/src/enc/cost.h" />
+		<Unit filename="Source/LibWebP/src/enc/enc_alpha.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/enc/enc_analysis.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/enc/enc_backward_references.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/enc/enc_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/enc/enc_cost.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/enc/enc_filter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/enc/enc_frame.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/enc/enc_histogram.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/enc/enc_iterator.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/enc/enc_layer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/enc/enc_picture.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/enc/enc_quant.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/enc/enc_syntax.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/enc/enc_tree.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/enc/enc_vp8l.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/enc/enc_webpenc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/enc/histogram.h" />
+		<Unit filename="Source/LibWebP/src/enc/token.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/enc/vp8enci.h" />
+		<Unit filename="Source/LibWebP/src/enc/vp8li.h" />
+		<Unit filename="Source/LibWebP/src/mux/muxedit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/mux/muxi.h" />
+		<Unit filename="Source/LibWebP/src/mux/muxinternal.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/mux/muxread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/utils/alpha_processing.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/utils/alpha_processing.h" />
+		<Unit filename="Source/LibWebP/src/utils/bit_reader.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/utils/bit_reader.h" />
+		<Unit filename="Source/LibWebP/src/utils/bit_writer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/utils/bit_writer.h" />
+		<Unit filename="Source/LibWebP/src/utils/color_cache.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/utils/color_cache.h" />
+		<Unit filename="Source/LibWebP/src/utils/filters.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/utils/filters.h" />
+		<Unit filename="Source/LibWebP/src/utils/huffman.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/utils/huffman.h" />
+		<Unit filename="Source/LibWebP/src/utils/huffman_encode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/utils/huffman_encode.h" />
+		<Unit filename="Source/LibWebP/src/utils/quant_levels.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/utils/quant_levels.h" />
+		<Unit filename="Source/LibWebP/src/utils/quant_levels_dec.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/utils/quant_levels_dec.h" />
+		<Unit filename="Source/LibWebP/src/utils/random.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/utils/random.h" />
+		<Unit filename="Source/LibWebP/src/utils/rescaler.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/utils/rescaler.h" />
+		<Unit filename="Source/LibWebP/src/utils/thread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/utils/thread.h" />
+		<Unit filename="Source/LibWebP/src/utils/utils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/utils/utils.h" />
+		<Unit filename="Source/LibWebP/src/webp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Source/LibWebP/src/webp.h" />
+		<Unit filename="Source/LibWebP/src/webp/decode.h" />
+		<Unit filename="Source/LibWebP/src/webp/demux.h" />
+		<Unit filename="Source/LibWebP/src/webp/encode.h" />
+		<Unit filename="Source/LibWebP/src/webp/format_constants.h" />
+		<Unit filename="Source/LibWebP/src/webp/mux.h" />
+		<Unit filename="Source/LibWebP/src/webp/mux_types.h" />
+		<Unit filename="Source/LibWebP/src/webp/types.h" />
+		<Unit filename="Source/Metadata/Exif.cpp" />
+		<Unit filename="Source/Metadata/FIRational.cpp" />
+		<Unit filename="Source/Metadata/FIRational.h" />
+		<Unit filename="Source/Metadata/FreeImageTag.cpp" />
+		<Unit filename="Source/Metadata/FreeImageTag.h" />
+		<Unit filename="Source/Metadata/IPTC.cpp" />
+		<Unit filename="Source/Metadata/TagConversion.cpp" />
+		<Unit filename="Source/Metadata/TagLib.cpp" />
+		<Unit filename="Source/Metadata/XTIFF.cpp" />
+		<Unit filename="Source/OpenEXR/Half/eLut.cpp" />
+		<Unit filename="Source/OpenEXR/Half/eLut.h" />
+		<Unit filename="Source/OpenEXR/Half/half.cpp" />
+		<Unit filename="Source/OpenEXR/Half/half.h" />
+		<Unit filename="Source/OpenEXR/Half/halfFunction.h" />
+		<Unit filename="Source/OpenEXR/Half/halfLimits.h" />
+		<Unit filename="Source/OpenEXR/Half/toFloat.cpp" />
+		<Unit filename="Source/OpenEXR/Half/toFloat.h" />
+		<Unit filename="Source/OpenEXR/Iex/Iex.h" />
+		<Unit filename="Source/OpenEXR/Iex/IexBaseExc.cpp" />
+		<Unit filename="Source/OpenEXR/Iex/IexBaseExc.h" />
+		<Unit filename="Source/OpenEXR/Iex/IexErrnoExc.h" />
+		<Unit filename="Source/OpenEXR/Iex/IexMacros.h" />
+		<Unit filename="Source/OpenEXR/Iex/IexMathExc.h" />
+		<Unit filename="Source/OpenEXR/Iex/IexThrowErrnoExc.cpp" />
+		<Unit filename="Source/OpenEXR/Iex/IexThrowErrnoExc.h" />
+		<Unit filename="Source/OpenEXR/IlmBaseConfig.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/Imf.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfAcesFile.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfAcesFile.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfArray.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfAttribute.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfAttribute.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfAutoArray.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfB44Compressor.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfB44Compressor.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfBoxAttribute.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfBoxAttribute.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfCRgbaFile.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfCRgbaFile.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfChannelList.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfChannelList.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfChannelListAttribute.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfChannelListAttribute.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfCheckedArithmetic.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfChromaticities.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfChromaticities.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfChromaticitiesAttribute.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfChromaticitiesAttribute.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfCompression.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfCompressionAttribute.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfCompressionAttribute.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfCompressor.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfCompressor.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfConvert.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfConvert.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfDoubleAttribute.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfDoubleAttribute.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfEnvmap.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfEnvmap.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfEnvmapAttribute.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfEnvmapAttribute.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfFloatAttribute.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfFloatAttribute.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfFrameBuffer.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfFrameBuffer.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfFramesPerSecond.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfFramesPerSecond.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfHeader.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfHeader.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfHuf.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfHuf.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfIO.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfIO.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfInputFile.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfInputFile.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfInt64.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfIntAttribute.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfIntAttribute.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfKeyCode.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfKeyCode.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfKeyCodeAttribute.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfKeyCodeAttribute.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfLineOrder.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfLineOrderAttribute.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfLineOrderAttribute.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfLut.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfLut.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfMatrixAttribute.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfMatrixAttribute.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfMisc.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfMisc.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfMultiView.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfMultiView.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfName.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfOpaqueAttribute.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfOpaqueAttribute.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfOutputFile.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfOutputFile.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfPixelType.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfPizCompressor.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfPizCompressor.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfPreviewImage.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfPreviewImage.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfPreviewImageAttribute.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfPreviewImageAttribute.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfPxr24Compressor.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfPxr24Compressor.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfRational.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfRational.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfRationalAttribute.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfRationalAttribute.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfRgba.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfRgbaFile.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfRgbaFile.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfRgbaYca.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfRgbaYca.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfRleCompressor.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfRleCompressor.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfScanLineInputFile.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfScanLineInputFile.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfStandardAttributes.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfStandardAttributes.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfStdIO.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfStdIO.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfStringAttribute.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfStringAttribute.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfStringVectorAttribute.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfStringVectorAttribute.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfTestFile.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfTestFile.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfThreading.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfThreading.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfTileDescription.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfTileDescriptionAttribute.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfTileDescriptionAttribute.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfTileOffsets.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfTileOffsets.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfTiledInputFile.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfTiledInputFile.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfTiledMisc.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfTiledMisc.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfTiledOutputFile.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfTiledOutputFile.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfTiledRgbaFile.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfTiledRgbaFile.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfTimeCode.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfTimeCode.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfTimeCodeAttribute.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfTimeCodeAttribute.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfVecAttribute.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfVecAttribute.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfVersion.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfVersion.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfWav.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfWav.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfXdr.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfZipCompressor.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/ImfZipCompressor.h" />
+		<Unit filename="Source/OpenEXR/IlmImf/b44ExpLogTable.cpp" />
+		<Unit filename="Source/OpenEXR/IlmImf/b44ExpLogTable.h" />
+		<Unit filename="Source/OpenEXR/IlmThread/IlmThread.cpp" />
+		<Unit filename="Source/OpenEXR/IlmThread/IlmThread.h" />
+		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadMutex.cpp" />
+		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadMutex.h" />
+		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadMutexPosix.cpp" />
+		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadMutexWin32.cpp" />
+		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadPool.cpp" />
+		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadPool.h" />
+		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadPosix.cpp" />
+		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadSemaphore.cpp" />
+		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadSemaphore.h" />
+		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadSemaphorePosix.cpp" />
+		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadSemaphorePosixCompat.cpp" />
+		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadSemaphoreWin32.cpp" />
+		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadWin32.cpp" />
+		<Unit filename="Source/OpenEXR/Imath/ImathBox.cpp" />
+		<Unit filename="Source/OpenEXR/Imath/ImathBox.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathBoxAlgo.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathColor.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathColorAlgo.cpp" />
+		<Unit filename="Source/OpenEXR/Imath/ImathColorAlgo.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathEuler.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathExc.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathFrame.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathFrustum.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathFrustumTest.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathFun.cpp" />
+		<Unit filename="Source/OpenEXR/Imath/ImathFun.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathGL.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathGLU.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathHalfLimits.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathInt64.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathInterval.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathLimits.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathLine.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathLineAlgo.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathMath.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathMatrix.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathMatrixAlgo.cpp" />
+		<Unit filename="Source/OpenEXR/Imath/ImathMatrixAlgo.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathPlane.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathPlatform.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathQuat.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathRandom.cpp" />
+		<Unit filename="Source/OpenEXR/Imath/ImathRandom.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathRoots.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathShear.cpp" />
+		<Unit filename="Source/OpenEXR/Imath/ImathShear.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathSphere.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathVec.cpp" />
+		<Unit filename="Source/OpenEXR/Imath/ImathVec.h" />
+		<Unit filename="Source/OpenEXR/Imath/ImathVecAlgo.h" />
+		<Unit filename="Source/OpenEXR/Imf.cpp" />
+		<Unit filename="Source/OpenEXR/Imf.h" />
+		<Unit filename="Source/OpenEXR/OpenEXRConfig.h" />
+		<Unit filename="Source/Plugin.h" />
+		<Unit filename="Source/Quantizers.h" />
+		<Unit filename="Source/ToneMapping.h" />
+		<Unit filename="Source/Utilities.h" />
+		<Unit filename="TestAPI/MainTestSuite.cpp" />
+		<Unit filename="TestAPI/testChannels.cpp" />
+		<Unit filename="TestAPI/testHeaderOnly.cpp" />
+		<Unit filename="TestAPI/testImageType.cpp" />
+		<Unit filename="TestAPI/testJPEG.cpp" />
+		<Unit filename="TestAPI/testMPage.cpp" />
+		<Unit filename="TestAPI/testMPageMemory.cpp" />
+		<Unit filename="TestAPI/testMPageStream.cpp" />
+		<Unit filename="TestAPI/testMemIO.cpp" />
+		<Unit filename="TestAPI/testPlugins.cpp" />
+		<Unit filename="TestAPI/testThumbnail.cpp" />
+		<Unit filename="TestAPI/testTools.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

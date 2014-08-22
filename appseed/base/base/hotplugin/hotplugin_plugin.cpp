@@ -11,9 +11,9 @@
 
 
 #ifdef LINUX
-#include "base/os/linux/linux_cross_win_gdi_internal.h"
+#include "axis/os/linux/linux_cross_win_gdi_internal.h"
 #elif defined(ANDROID)
-#include "base/os/android/android_cross_win_gdi_internal.h"
+#include "axis/os/android/android_cross_win_gdi_internal.h"
 #endif
 
 
@@ -701,7 +701,7 @@ namespace hotplugin
 
    void plugin::ensure_bitmap_data(int32_t cx, int32_t cy, bool bCreateFile)
    {
-      
+
       if((cx * cy) <= 0)
          return;
 
@@ -991,7 +991,7 @@ namespace hotplugin
    //      return m_phost->destroy_window();
 
    //   }
-   //   
+   //
    //   return true;
 
    //}
