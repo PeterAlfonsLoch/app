@@ -24,6 +24,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "opj_includes.h"
+
 #ifdef _WIN32
 #include <windows.h>
 #else
@@ -31,7 +33,6 @@
 #include <sys/resource.h>
 #include <sys/times.h>
 #endif /* _WIN32 */
-#include "opj_includes.h"
 
 OPJ_FLOAT64 opj_clock(void) {
 #ifdef _WIN32

@@ -10,7 +10,7 @@
 // Incremental decoding
 //
 // Author: somnath@google.com (Somnath Banerjee)
-
+#include "axis/axis/axis.h"
 #include <assert.h>
 #include <string.h>
 #include <stdlib.h>

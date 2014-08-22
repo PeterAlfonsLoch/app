@@ -10,7 +10,7 @@
 // CPU detection
 //
 // Author: Christian Duvivier (cduvivier@google.com)
-
+#include "axis/axis/axis.h"
 #include "./dsp.h"
 
 #if defined(__ANDROID__)

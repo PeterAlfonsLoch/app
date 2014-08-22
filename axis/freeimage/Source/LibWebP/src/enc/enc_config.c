@@ -10,7 +10,7 @@
 // Coding tools configuration
 //
 // Author: Skal (pascal.massimino@gmail.com)
-
+#include "axis/axis/axis.h"
 #include "../webp/encode.h"
 
 //------------------------------------------------------------------------------

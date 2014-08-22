@@ -28,6 +28,9 @@
 #ifndef OPJ_INCLUDES_H
 #define OPJ_INCLUDES_H
 
+
+#include "axis/axis/axis.h"
+
 /*
  * This must be included before any system headers,
  * since they can react to macro defined there

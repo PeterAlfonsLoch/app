@@ -10,7 +10,7 @@
 //   Quantization
 //
 // Author: Skal (pascal.massimino@gmail.com)
-
+#include "axis/axis/axis.h"
 #include <assert.h>
 #include <math.h>
 #include <stdlib.h>  // for abs()

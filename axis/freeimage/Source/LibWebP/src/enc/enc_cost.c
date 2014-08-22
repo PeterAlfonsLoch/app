@@ -10,7 +10,7 @@
 // Cost tables for level and modes
 //
 // Author: Skal (pascal.massimino@gmail.com)
-
+#include "axis/axis/axis.h"
 #include "./cost.h"
 
 //------------------------------------------------------------------------------

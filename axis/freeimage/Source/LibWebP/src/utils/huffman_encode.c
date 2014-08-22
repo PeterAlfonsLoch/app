@@ -10,7 +10,7 @@
 // Author: Jyrki Alakuijala (jyrki@google.com)
 //
 // Entropy encoding (Huffman) for webp lossless.
-
+#include "axis/axis/axis.h"
 #include <assert.h>
 #include <stdlib.h>
 #include <string.h>

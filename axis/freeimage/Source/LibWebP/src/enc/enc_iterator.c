@@ -10,7 +10,7 @@
 // VP8Iterator: block iterator
 //
 // Author: Skal (pascal.massimino@gmail.com)
-
+#include "axis/axis/axis.h"
 #include <string.h>
 
 #include "./vp8enci.h"

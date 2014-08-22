@@ -10,7 +10,7 @@
 // Rescaling functions
 //
 // Author: Skal (pascal.massimino@gmail.com)
-
+#include "axis/axis/axis.h"
 #include <assert.h>
 #include <stdlib.h>
 #include "./rescaler.h"

@@ -10,7 +10,7 @@
 // WebPPicture utils: colorspace conversion, crop, ...
 //
 // Author: Skal (pascal.massimino@gmail.com)
-
+#include "axis/axis/axis.h"
 #include <assert.h>
 #include <stdlib.h>
 #include <math.h>

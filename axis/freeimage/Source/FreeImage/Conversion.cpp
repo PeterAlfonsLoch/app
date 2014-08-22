@@ -105,7 +105,7 @@ mapped to [0-MAX_VAL]:
 template <class T>
 static inline void 
 CMYKToRGB(T C, T M, T Y, T K, T* out) {
-	unsigned max_val = std::numeric_limits<T>::max();
+	unsigned max_val = std::numeric_limits<T>::maximum();
 	
 	unsigned r = (max_val - C) * (max_val - K) / max_val;
 	unsigned g = (max_val - M) * (max_val - K) / max_val;
@@ -123,7 +123,7 @@ template <class T>
 static void 
 _convertCMYKtoRGBA(unsigned width, unsigned height, BYTE* line_start, unsigned pitch, unsigned samplesperpixel) {
 	const BOOL hasBlack = (samplesperpixel > 3) ? TRUE : FALSE;
-	const T MAX_VAL = std::numeric_limits<T>::max();
+	const T MAX_VAL = std::numeric_limits<T>::maximum();
 		
 	T K = 0;
 	for(unsigned y = 0; y < height; y++) {
@@ -259,7 +259,7 @@ static void
 CIELabToRGB(float L, float a, float b, T *rgb) {
 	float X, Y, Z;
 	float R, G, B;
-	const float max_val = std::numeric_limits<T>::max();
+	const float max_val = std::numeric_limits<T>::maximum();
 
 	CIELabToXYZ(L, a, b, &X, &Y, &Z);
 	XYZToRGB(X, Y, Z, &R, &G, &B);
@@ -275,7 +275,7 @@ CIELabToRGB(float L, float a, float b, T *rgb) {
 template<class T>
 static void 
 _convertLABtoRGB(unsigned width, unsigned height, BYTE* line_start, unsigned pitch, unsigned samplesperpixel) {
-	const unsigned max_val = std::numeric_limits<T>::max();
+	const unsigned max_val = std::numeric_limits<T>::maximum();
 	const float sL = 100.F / max_val;
 	const float sa = 256.F / max_val;
 	const float sb = 256.F / max_val;

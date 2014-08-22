@@ -9,6 +9,7 @@
 //
 // Author: Jyrki Alakuijala (jyrki@google.com)
 //
+#include "axis/axis/axis.h"
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif

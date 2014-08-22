@@ -26,12 +26,12 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifdef _WIN32
-#include <windows.h>
-#endif /* _WIN32 */
 
 #include "opj_includes.h"
 
+#ifdef _WIN32
+#include <windows.h>
+#endif /* _WIN32 */
 
 /* ---------------------------------------------------------------------- */
 /* Functions to set the message handlers */

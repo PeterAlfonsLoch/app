@@ -194,6 +194,9 @@ public:
    {
    public:
 
+      typedef TYPE BASE_TYPE;
+      typedef ARG_TYPE BASE_ARG_TYPE;
+      typedef array < TYPE,ARG_TYPE > BASE_ARRAY;
 
       index            m_i;
       array *     m_parray;
@@ -282,6 +285,26 @@ public:
          return iterator((m_i + i.m_i + 1) / 2,m_parray);
       }
 
+      iterator & operator -(::count c)
+      {
+         m_i-=c;
+         if(m_i < 0)
+            m_i = 0;
+         return *this;
+      }
+
+      bool operator < (const iterator & i) const
+      {
+
+         return m_i < i.m_i;
+
+      }
+
+      ::count get_count() const
+      {
+         return m_parray->get_count();
+      }
+
    };
 
 
@@ -290,6 +313,10 @@ public:
    {
    public:
 
+
+      typedef TYPE BASE_TYPE;
+      typedef ARG_TYPE BASE_ARG_TYPE;
+      typedef array < TYPE,ARG_TYPE > BASE_ARRAY;
 
       index            m_i;
       const array *     m_parray;
@@ -388,6 +415,25 @@ public:
          return const_iterator((m_i + i.m_i + 1) / 2,m_parray);
       }
 
+      const_iterator & operator -(::count c)
+      {
+         m_i-=c;
+         if(m_i < 0)
+            m_i = 0;
+         return *this;
+      }
+
+      bool operator < (const const_iterator & i) const
+      {
+
+         return m_i < i.m_i;
+
+      }
+
+      ::count get_count() const
+      {
+         return m_parray->get_count();
+      }
 
    };
 

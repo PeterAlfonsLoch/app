@@ -10,7 +10,7 @@
 // Speed-critical decoding functions.
 //
 // Author: Skal (pascal.massimino@gmail.com)
-
+#include "axis/axis/axis.h"
 #include "./dsp.h"
 #include "../dec/vp8i.h"
 

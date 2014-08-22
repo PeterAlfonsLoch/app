@@ -10,7 +10,7 @@
 // SSE2 version of speed-critical encoding functions.
 //
 // Author: Christian Duvivier (cduvivier@google.com)
-
+#include "axis/axis/axis.h"
 #include "./dsp.h"
 
 #if defined(WEBP_USE_SSE2)

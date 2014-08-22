@@ -11,7 +11,7 @@
 //
 // Author(s):  Djordje Pesut    (djordje.pesut@imgtec.com)
 //             Jovan Zelincevic (jovan.zelincevic@imgtec.com)
-
+#include "axis/axis/axis.h"
 #include "./dsp.h"
 
 #if defined(WEBP_USE_MIPS32)

@@ -10,7 +10,7 @@
 // Alpha-plane decompression.
 //
 // Author: Skal (pascal.massimino@gmail.com)
-
+#include "axis/axis/axis.h"
 #include <stdlib.h>
 #include "./alphai.h"
 #include "./vp8i.h"

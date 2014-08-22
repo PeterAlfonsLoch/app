@@ -10,7 +10,7 @@
 // TODO(skal): implement gradient smoothing.
 //
 // Author: Skal (pascal.massimino@gmail.com)
-
+#include "axis/axis/axis.h"
 #include "./quant_levels_dec.h"
 
 int DequantizeLevels(uint8_t* const data, int width, int height,

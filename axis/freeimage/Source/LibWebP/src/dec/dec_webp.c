@@ -10,7 +10,7 @@
 // Main decoding functions for WEBP images.
 //
 // Author: Skal (pascal.massimino@gmail.com)
-
+#include "axis/axis/axis.h"
 #include <stdlib.h>
 
 #include "./vp8i.h"

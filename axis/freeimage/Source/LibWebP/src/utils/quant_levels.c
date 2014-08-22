@@ -11,7 +11,7 @@
 // Min and max values are preserved (usual 0 and 255 for alpha plane).
 //
 // Author: Skal (pascal.massimino@gmail.com)
-
+#include "axis/axis/axis.h"
 #include <assert.h>
 
 #include "./quant_levels.h"

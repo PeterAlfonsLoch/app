@@ -720,7 +720,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			}
 
 			//cache some info about each of the pages so we can avoid decoding as many of them as possible
-			std::vector<PageInfo> pageinfo;
+			raw_array<PageInfo> pageinfo;
 			int start = page, end = page;
 			while( start >= 0 ) {
 				//Graphic Control Extension

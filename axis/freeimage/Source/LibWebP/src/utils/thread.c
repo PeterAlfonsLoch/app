@@ -10,7 +10,7 @@
 // Multi-threaded worker
 //
 // Author: Skal (pascal.massimino@gmail.com)
-
+#include "axis/axis/axis.h"
 #include <assert.h>
 #include <string.h>   // for memset()
 #include "./thread.h"
