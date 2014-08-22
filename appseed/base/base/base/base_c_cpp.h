@@ -186,12 +186,12 @@ namespace base
 
    interface class system_window
    {
-      
+
       virtual Windows::Foundation::Rect get_window_rect() = 0;
       virtual Windows::Foundation::Point get_cursor_pos() = 0;
 
 
-    
+
    };
 
    CLASS_DECL_BASE bool get_window_rect(system_window ^ pwindow,RECTD * lprect);
@@ -438,7 +438,6 @@ CLASS_DECL_BASE bool __node_pos_term();
 #if defined(LINUX)
 
 #include "base/os/ansios/ansios.h"
-#include "base/os/linux/linux_user_impl.h"
 
 #elif defined(METROWIN)
 
