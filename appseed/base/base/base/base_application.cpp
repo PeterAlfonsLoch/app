@@ -3688,7 +3688,7 @@ namespace base
    }
 
 
-   ::file::binary_buffer_sp application::file_get_file(var varFile,uint32_t uiFlags)
+   ::file::buffer_sp application::file_get_file(var varFile,uint32_t uiFlags)
    {
 
       return file().get_file(varFile,uiFlags);
