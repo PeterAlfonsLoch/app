@@ -3569,7 +3569,7 @@ namespace base
    }
 
 /*
-   bool application::init_main_data(::axis::main_init_data * pdata)
+   bool application::init_main_data(::aura::main_init_data * pdata)
    {
 
       m_pinitmaindata = pdata;
@@ -3578,7 +3578,7 @@ namespace base
 
    }
 
-   bool application::set_main_init_data(::axis::main_init_data * pdata)
+   bool application::set_main_init_data(::aura::main_init_data * pdata)
    {
 
       return m_pimpl->set_main_init_data(pdata);

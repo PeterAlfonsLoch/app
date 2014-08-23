@@ -34,7 +34,7 @@ namespace axis
       sp(::command_thread)                            m_pcommandthread;
       sp(class signal)                                m_psignal;
 
-      ::axis::main_init_data *            m_pinitmaindata;
+      ::aura::main_init_data *            m_pinitmaindata;
 
 
       EExclusiveInstance                              m_eexclusiveinstance;
@@ -400,9 +400,9 @@ namespace axis
 
       virtual bool assert_user_logged_in();
 
-      virtual bool init_main_data(::axis::main_init_data * pdata);
+      virtual bool init_main_data(::aura::main_init_data * pdata);
 
-      virtual bool set_main_init_data(::axis::main_init_data * pdata);
+      virtual bool set_main_init_data(::aura::main_init_data * pdata);
 
 
       virtual void dir_matter_ls_file(const string & str,stringa & stra);

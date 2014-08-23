@@ -6,7 +6,7 @@ namespace android
 
 
    class CLASS_DECL_BASE main_init_data :
-      public ::axis::main_init_data
+      public ::aura::main_init_data
    {
    public:
 
@@ -52,7 +52,7 @@ namespace android
 
       virtual void SetCurrentHandles();
 
-      virtual bool set_main_init_data(::axis::main_init_data * pdata);
+      virtual bool set_main_init_data(::aura::main_init_data * pdata);
 
       virtual bool process_initialize();
       virtual bool initialize1();

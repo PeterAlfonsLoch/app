@@ -1149,7 +1149,7 @@ namespace core
 #endif
 
 
-   bool system::set_main_init_data(::axis::main_init_data * pdata)
+   bool system::set_main_init_data(::aura::main_init_data * pdata)
    {
 
       if(pdata != NULL)

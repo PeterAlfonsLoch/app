@@ -620,7 +620,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
 
 
-   bool application::set_main_init_data(::axis::main_init_data * pdata)
+   bool application::set_main_init_data(::aura::main_init_data * pdata)
    {
 
       m_pmaininitdata = (::android::main_init_data *) pdata;
