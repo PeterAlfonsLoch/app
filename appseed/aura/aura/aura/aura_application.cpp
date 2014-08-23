@@ -2984,6 +2984,20 @@ namespace aura
    }
 
 
+   bool application::post_user_message(::thread_impl * pimpl,::user::interaction * pui,UINT message,WPARAM wparam,lparam lparam)
+   {
+
+      UNREFERENCED_PARAMETER(pimpl);
+      UNREFERENCED_PARAMETER(pui);
+      UNREFERENCED_PARAMETER(message);
+      UNREFERENCED_PARAMETER(wparam);
+      UNREFERENCED_PARAMETER(lparam);
+
+      return false;
+
+   }
+
+
    bool application::is_window(::user::interaction * pui)
    {
 
