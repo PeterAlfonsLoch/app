@@ -158,6 +158,7 @@ namespace axis
 #endif
 
       virtual bool on_thread_on_idle(::thread_impl * pimpl,LONG lCount);
+      virtual bool post_user_message(::thread_impl * pimpl,::user::interaction * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
 
 
       virtual bool is_window(::user::interaction * pui);
