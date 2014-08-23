@@ -618,14 +618,6 @@ namespace aura
    }
 
 
-   sp(::user::printer) application::get_printer(const char * pszDeviceName)
-   {
-
-      throw interface_only_exception(this);
-
-   }
-
-
    bool application::update_module_paths()
    {
 
