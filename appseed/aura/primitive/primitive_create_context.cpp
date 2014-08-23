@@ -102,7 +102,7 @@ create_context & create_context::operator = (const create_context & createcontex
 
 
 
-CLASS_DECL_AURA void(g_user_create_context_delfn *)(void * pusercreatecontext) = NULL;
+CLASS_DECL_AURA void(*g_user_create_context_delfn)(void * pusercreatecontext) = NULL;
 
 CLASS_DECL_AURA void set user_create_context_delfn( void (pfn_user_create_context_del *) (void *))
 {
