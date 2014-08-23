@@ -2768,24 +2768,6 @@
     <ClInclude Include="aura\exception\exception_verisimple.h">
       <Filter>Header Files\aura\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\policy\policy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\policy\policy_c.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\policy\policy_cpp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\policy\policy_objc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\policy\policy_objcpp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\policy\policy_winrt.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura_command_target.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
@@ -4175,9 +4157,6 @@
     </None>
     <None Include="primitive\primitive_factory_impl.inl">
       <Filter>Header Files\primitive</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

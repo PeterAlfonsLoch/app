@@ -3267,6 +3267,26 @@ namespace axis
 
    }
 
+   bool application::is_window(::user::interaction * pui)
+   {
+
+      return pui->IsWindow();
+
+   }
+
+   LRESULT application::send_message(::user::interaction * pui,UINT message,WPARAM wparam,lparam lparam)
+   {
+
+      return pui->send_message(message, wparam, lparam);
+
+   }
+
+   oswindow application::get_safe_handle(::user::interaction * pui)
+   {
+
+      return pui->get_safe_handle();
+
+   }
 
 
 } // namespace axis

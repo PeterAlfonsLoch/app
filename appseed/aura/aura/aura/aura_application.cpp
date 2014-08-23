@@ -466,69 +466,6 @@ namespace aura
    }
 
 
-   ptr_array < ::user::interaction > application::frames()
-   {
-
-      return m_framea.base_ptra();
-
-   }
-
-
-   void application::add_frame(::user::interaction * pwnd)
-   {
-
-      synch_lock sl(&m_framea.m_mutex); // recursive lock (on m_framea.add(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
-
-      m_framea.add(pwnd);
-
-      if(m_puiMain == NULL)
-      {
-
-         m_puiMain = pwnd;
-
-      }
-
-   }
-
-
-   void application::remove_frame(::user::interaction * pwnd)
-   {
-
-      synch_lock sl(&m_framea.m_mutex); // recursive lock (on m_framea.remove(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
-
-      if(m_puiMain == pwnd)
-      {
-
-         m_puiMain = NULL;
-
-      }
-
-      m_framea.remove(pwnd);
-
-   }
-
-
-
-
-#if defined(METROWIN) || defined(APPLE_IOS)
-
-   ::user::interaction * application::window_from_os_data(void * pdata)
-   {
-
-      return window_from_handle((oswindow)pdata);
-
-   }
-
-#else
-
-   ::user::interaction * application::window_from_os_data(void * pdata)
-   {
-
-      return window_from_handle((oswindow)pdata);
-
-   }
-
-#endif
 
 
 

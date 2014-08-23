@@ -101,10 +101,9 @@ namespace axis
       virtual sp(element) alloc(const id & idType);
 
 
-      virtual int32_t simple_message_box(sp(::user::interaction) puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);
+      using ::aura::application::simple_message_box;
       virtual int32_t simple_message_box_timeout(sp(::user::interaction) pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle);
       int32_t simple_message_box(const char * pszMessage,UINT fuStyle);
-      virtual string message_box(const string & pszMatter,property_set & propertyset);
 
 
       virtual string load_string(id id);
@@ -159,6 +158,9 @@ namespace axis
 #endif
 
 
+      virtual bool is_window(::user::interaction * pui);
+      virtual LRESULT send_message(::user::interaction * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
+      virtual oswindow get_safe_handle(::user::interaction * pui);
 
 
 
