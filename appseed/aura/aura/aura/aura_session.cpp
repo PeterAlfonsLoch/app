@@ -1768,6 +1768,24 @@ namespace aura
    }
 
 
+   ::user::interaction * session::get_active_guie()
+   {
+
+      return NULL;
+
+   }
+
+
+   ::user::interaction * session::get_focus_guie()
+   {
+
+      return NULL;
+
+   }
+
+
+
+
    bool session::is_licensed(const char * pszId,bool bInteractive)
    {
 

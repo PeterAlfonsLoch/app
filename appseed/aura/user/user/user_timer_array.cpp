@@ -218,7 +218,7 @@ namespace user
       if(pui == NULL)
          return 0xffffffff;
 
-      m_puiptra.add(pui);
+      m_uiptra.add(pui);
 
       index i = find(pui,uiId);
 

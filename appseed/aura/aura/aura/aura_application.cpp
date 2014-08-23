@@ -2673,29 +2673,6 @@ namespace aura
 
 
 
-   ::user::user * application::create_user()
-   {
-
-      return canew(::user::user(this));
-
-   }
-
-
-
-   bool application::defer_initialize_twf()
-   {
-
-      if(System.m_ptwf == NULL && (System.m_bShouldInitializeGTwf && m_bShouldInitializeGTwf && m_bInitializeProDevianMode))
-      {
-
-         if(!System.initialize_twf())
-            return false;
-
-      }
-
-      return true;
-
-   }
 
    bool application::gudo_get(const string & strKey,::file::serializable & obj)
    {

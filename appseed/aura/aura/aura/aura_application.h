@@ -152,6 +152,8 @@ namespace aura
       virtual bool set_window_text(::user::interaction * pui, const string & strText);
 
 
+      virtual ::user::interaction * get_active_guie();
+      virtual ::user::interaction * get_focus_guie();
 
 
       // Wall-eeeeee aliases
@@ -358,8 +360,6 @@ namespace aura
 
 
       virtual void on_request(sp(::create_context) pcreatecontext);
-
-      virtual bool defer_initialize_twf();
 
       // name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
       // get/set serializables to user directory
