@@ -808,67 +808,11 @@ int32_t thread_impl::exit_instance()
 
 bool thread_impl::on_idle(LONG lCount)
 {
-
-   ASSERT_VALID(this);
-
-#if defined(WINDOWS) && defined(DEBUG) && !defined(___NO_DEBUG_CRT)
-   // check core API's allocator (before idle)
-   if(_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) & _CRTDBG_CHECK_ALWAYS_DF)
-      ASSERT(__check_memory());
-#endif
    
-   single_lock sl(&m_mutexUiPtra, TRUE);
+   
+   return Application.on_thread_on_idle(lCount);
 
 
-   if(lCount <= 0 && m_spuiptra.is_set())
-   {
-      for(int32_t i = 0; i < m_spuiptra->get_count();)
-      {
-         ::user::interaction * pui = m_spuiptra->element_at(i);
-         bool bOk = false;
-         try
-         {
-
-            bOk = pui != NULL && pui->IsWindowVisible();
-         }
-         catch(...)
-         {
-         }
-         if(!bOk)
-         {
-            m_spuiptra->remove_at(i);
-         }
-         else
-         {
-            sl.unlock();
-            try
-            {
-               pui->send_message(WM_IDLEUPDATECMDUI,(WPARAM)TRUE);
-            }
-            catch(...)
-            {
-
-            }
-            sl.lock();
-            i++;
-         }
-      }
-
-
-   }
-   else if(lCount >= 0)
-   {
-   }
-
-#if defined(WINDOWS) && defined(DEBUG) && !defined(___NO_DEBUG_CRT)
-   // check core API's allocator (after idle)
-   if(_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) & _CRTDBG_CHECK_ALWAYS_DF)
-      ASSERT(__check_memory());
-#endif
-
-
-
-   return lCount < 0;  // nothing more to do if lCount >= 0
 }
 
 
