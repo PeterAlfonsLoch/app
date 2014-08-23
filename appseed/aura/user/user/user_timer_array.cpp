@@ -26,7 +26,7 @@ namespace user
          m_timera.remove_at(i);
          if(find_from(pui,0) < 0)
          {
-            remove(pui);
+            m_uiptra.remove(pui);
          }
          return true;
       }

@@ -2854,6 +2854,9 @@
     <ClCompile Include="user\user\user_str_context.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_value.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
