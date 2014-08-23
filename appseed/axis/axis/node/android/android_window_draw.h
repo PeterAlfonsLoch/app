@@ -5,7 +5,7 @@ namespace android
 {
 
 
-   class CLASS_DECL_AURA window_draw :
+   class CLASS_DECL_AXIS window_draw :
       virtual public ::user::window_draw,
       virtual public ::message_queue_listener
    {

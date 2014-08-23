@@ -1,15 +1,19 @@
 #include "framework.h"
 
+
 namespace windows
 {
 
+
    message_queue::message_queue(sp(::aura::application) papp):
-      element(papp)
+      element(papp),
+      ::aura::message_queue(papp)
    {
 
       m_plistener          = NULL;
 
    }
+
 
    message_queue::~message_queue()
    {
@@ -78,5 +82,8 @@ namespace windows
 
 
 } // namespace windows
+
+
+
 
 

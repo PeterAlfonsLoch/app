@@ -6,17 +6,17 @@
 //
 //
 //
-//   CLASS_DECL_AURA HINSTANCE   LoadLibrary(const char * lpsz);
-//   CLASS_DECL_AURA bool        SHGetSpecialFolderPath(oswindow oswindow, string &str, int32_t csidl, bool fCreate);
-//   CLASS_DECL_AURA DWORD       GetFileAttributes(const char * lpFileName);
-//   CLASS_DECL_AURA bool        CreateDirectory(const char * lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
-//   CLASS_DECL_AURA DWORD       GetCurrentDirectory(string & str);
-//   CLASS_DECL_AURA DWORD       GetTempPath(string & str);
-//   CLASS_DECL_AURA LONG        RegQueryValue(HKEY hkey, const char * lpszSubKey, string & str);
-//   CLASS_DECL_AURA HICON       ExtractIcon(HINSTANCE hInst, const char * lpszExeFileName, UINT nIconIndex);
-//   CLASS_DECL_AURA bool        DeleteFile(const char * lpFileName);
-//   CLASS_DECL_AURA int32_t         GetMenuStringW(HMENU hMenu, UINT uIDItem, string & str, UINT flags);
-//   CLASS_DECL_AURA void        TimeToFileTime(sp(::aura::application) papp, const ::datetime::time& time, LPFILETIME pFileTime);
+//   CLASS_DECL_AXIS HINSTANCE   LoadLibrary(const char * lpsz);
+//   CLASS_DECL_AXIS bool        SHGetSpecialFolderPath(oswindow oswindow, string &str, int32_t csidl, bool fCreate);
+//   CLASS_DECL_AXIS DWORD       GetFileAttributes(const char * lpFileName);
+//   CLASS_DECL_AXIS bool        CreateDirectory(const char * lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
+//   CLASS_DECL_AXIS DWORD       GetCurrentDirectory(string & str);
+//   CLASS_DECL_AXIS DWORD       GetTempPath(string & str);
+//   CLASS_DECL_AXIS LONG        RegQueryValue(HKEY hkey, const char * lpszSubKey, string & str);
+//   CLASS_DECL_AXIS HICON       ExtractIcon(HINSTANCE hInst, const char * lpszExeFileName, UINT nIconIndex);
+//   CLASS_DECL_AXIS bool        DeleteFile(const char * lpFileName);
+//   CLASS_DECL_AXIS int32_t         GetMenuStringW(HMENU hMenu, UINT uIDItem, string & str, UINT flags);
+//   CLASS_DECL_AXIS void        TimeToFileTime(sp(::aura::application) papp, const ::datetime::time& time, LPFILETIME pFileTime);
 //
 //
 //} // namespace windows
@@ -24,7 +24,7 @@
 //
 //
 //// Placed on frame for EXCEPTION linkage, or ::exception::base cleanup
-//struct CLASS_DECL_AURA __exception_link
+//struct CLASS_DECL_AXIS __exception_link
 //{
 //   __exception_link* m_pLinkPrev;    // previous top, next in handler chain
 //   ::exception::base* m_pException;   // current exception (NULL in try block)
@@ -35,7 +35,7 @@
 //};
 //
 //// Exception global state - never access directly
-//struct CLASS_DECL_AURA __EXCEPTION_CONTEXT
+//struct CLASS_DECL_AXIS __EXCEPTION_CONTEXT
 //{
 //   __exception_link* m_pLinkTop;
 //
@@ -47,21 +47,21 @@
 //#define _PNH_DEFINED
 //#endif
 //
-//_PNH CLASS_DECL_AURA __get_new_handler();
-//_PNH CLASS_DECL_AURA __set_new_handler(_PNH pfnNewHandler);
-//CLASS_DECL_AURA int32_t c_cdecl __new_handler(size_t nSize);
+//_PNH CLASS_DECL_AXIS __get_new_handler();
+//_PNH CLASS_DECL_AXIS __set_new_handler(_PNH pfnNewHandler);
+//CLASS_DECL_AXIS int32_t c_cdecl __new_handler(size_t nSize);
 //
-//void CLASS_DECL_AURA __abort();
+//void CLASS_DECL_AXIS __abort();
 //
 
 // helpers for registering your own WNDCLASSes
-CLASS_DECL_AURA const char * __register_window_class(sp(::aura::application) papp, UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
+CLASS_DECL_AXIS const char * __register_window_class(sp(::aura::application) papp, UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
 
-CLASS_DECL_AURA bool __register_class(WNDCLASS* lpWndClass);
+CLASS_DECL_AXIS bool __register_class(WNDCLASS* lpWndClass);
 
 
-CLASS_DECL_AURA LRESULT CALLBACK __window_procedure(oswindow oswindow, UINT nMsg, WPARAM wParam, LPARAM lParam);
-CLASS_DECL_AURA WNDPROC __get_window_procedure();
+CLASS_DECL_AXIS LRESULT CALLBACK __window_procedure(oswindow oswindow, UINT nMsg, WPARAM wParam, LPARAM lParam);
+CLASS_DECL_AXIS WNDPROC __get_window_procedure();
 #define __window_procedure (*__get_window_procedure())
 
 typedef void (__MSG_CALL ::user::interaction_impl::*__PMSGW)();
@@ -73,15 +73,15 @@ typedef void (__MSG_CALL thread::*__PMSGT)();
 
 
 
-//CLASS_DECL_AURA LONG delete_registry_tree_helper(HKEY hParentKey, const string & strKeyName);
+//CLASS_DECL_AXIS LONG delete_registry_tree_helper(HKEY hParentKey, const string & strKeyName);
 
 
-//CLASS_DECL_AURA sp(::aura::application) __get_app();
-//CLASS_DECL_AURA HINSTANCE __get_resource_handle();
-//CLASS_DECL_AURA void __set_resource_handle(HINSTANCE hInstResource);
+//CLASS_DECL_AXIS sp(::aura::application) __get_app();
+//CLASS_DECL_AXIS HINSTANCE __get_resource_handle();
+//CLASS_DECL_AXIS void __set_resource_handle(HINSTANCE hInstResource);
 //
-//CLASS_DECL_AURA HINSTANCE __get_resource_handle();
-//CLASS_DECL_AURA HINSTANCE __find_string_resource_handle(UINT nID);
+//CLASS_DECL_AXIS HINSTANCE __get_resource_handle();
+//CLASS_DECL_AXIS HINSTANCE __find_string_resource_handle(UINT nID);
 
 
 

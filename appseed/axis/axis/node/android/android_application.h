@@ -5,7 +5,7 @@ namespace android
 {
 
 
-   class CLASS_DECL_AURA main_init_data :
+   class CLASS_DECL_AXIS main_init_data :
       public ::aura::main_init_data
    {
    public:
@@ -19,7 +19,7 @@ namespace android
    };
 
 
-   class CLASS_DECL_AURA application :
+   class CLASS_DECL_AXIS application :
       virtual public ::aura::application
    {
    public:

@@ -151,7 +151,7 @@ void thread_data::set(void * p)
 
 
 
-CLASS_DECL_AURA HTHREAD get_current_thread()
+CLASS_DECL_AXIS HTHREAD get_current_thread()
 {
 
    return ::GetCurrentThread();
@@ -159,7 +159,7 @@ CLASS_DECL_AURA HTHREAD get_current_thread()
 }
 
 
-CLASS_DECL_AURA DWORD get_current_thread_id()
+CLASS_DECL_AXIS DWORD get_current_thread_id()
 {
 
    return ::GetCurrentThreadId();
@@ -1019,7 +1019,7 @@ HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa,uint_ptr cbStack,LPTHREAD_START
 static HANDLE g_hMainThread = NULL;
 static UINT g_uiMainThread = -1;
 
-CLASS_DECL_AURA void set_main_thread(HANDLE hThread)
+CLASS_DECL_AXIS void set_main_thread(HANDLE hThread)
 {
 
    //   MESSAGE msg;
@@ -1032,7 +1032,7 @@ CLASS_DECL_AURA void set_main_thread(HANDLE hThread)
 
 }
 
-CLASS_DECL_AURA void set_main_thread_id(UINT uiThread)
+CLASS_DECL_AXIS void set_main_thread_id(UINT uiThread)
 {
 
    //   MESSAGE msg;
@@ -1046,18 +1046,18 @@ CLASS_DECL_AURA void set_main_thread_id(UINT uiThread)
 }
 
 
-CLASS_DECL_AURA HANDLE get_main_thread()
+CLASS_DECL_AXIS HANDLE get_main_thread()
 {
    return g_hMainThread;
 
 }
-CLASS_DECL_AURA UINT   get_main_thread_id()
+CLASS_DECL_AXIS UINT   get_main_thread_id()
 {
    return g_uiMainThread;
 }
 
 
-CLASS_DECL_AURA void attach_thread_input_to_main_thread(bool bAttach)
+CLASS_DECL_AXIS void attach_thread_input_to_main_thread(bool bAttach)
 {
    return;
    //   MESSAGE msg;
@@ -1119,7 +1119,7 @@ mq * get_mq(HTHREAD  h)
 
 
 
-CLASS_DECL_AURA int_bool WINAPI GetMessageW(LPMESSAGE lpMsg,oswindow oswindow,UINT wMsgFilterMin,UINT wMsgFilterMax)
+CLASS_DECL_AXIS int_bool WINAPI GetMessageW(LPMESSAGE lpMsg,oswindow oswindow,UINT wMsgFilterMin,UINT wMsgFilterMax)
 {
 
 
@@ -1220,7 +1220,7 @@ restart:
 }
 
 
-CLASS_DECL_AURA int_bool WINAPI PeekMessageW(LPMESSAGE lpMsg,oswindow oswindow,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
+CLASS_DECL_AXIS int_bool WINAPI PeekMessageW(LPMESSAGE lpMsg,oswindow oswindow,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
 {
 
    mq * pmq = get_mq();
@@ -1266,7 +1266,7 @@ CLASS_DECL_AURA int_bool WINAPI PeekMessageW(LPMESSAGE lpMsg,oswindow oswindow,U
 
 
 
-CLASS_DECL_AURA DWORD WINAPI GetThreadId(HTHREAD Thread)
+CLASS_DECL_AXIS DWORD WINAPI GetThreadId(HTHREAD Thread)
 {
 
    synch_lock mlThreadId(g_pmutexThreadIdLock);
@@ -1281,7 +1281,7 @@ CLASS_DECL_AURA DWORD WINAPI GetThreadId(HTHREAD Thread)
 
 }
 
-CLASS_DECL_AURA HTHREAD  WINAPI get_thread_handle(DWORD dw)
+CLASS_DECL_AXIS HTHREAD  WINAPI get_thread_handle(DWORD dw)
 {
 
    synch_lock mlThreadIdHandle(g_pmutexThreadIdHandleLock);
@@ -1297,7 +1297,7 @@ CLASS_DECL_AURA HTHREAD  WINAPI get_thread_handle(DWORD dw)
 }
 
 
-CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(DWORD idThread,UINT Msg,WPARAM wParam,LPARAM lParam)
+CLASS_DECL_AXIS int_bool WINAPI PostThreadMessageW(DWORD idThread,UINT Msg,WPARAM wParam,LPARAM lParam)
 {
 
    HTHREAD h = ::get_thread_handle(idThread);
@@ -1334,7 +1334,7 @@ CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(DWORD idThread,UINT Msg,WPARA
 
 }
 
-CLASS_DECL_AURA int_bool WINAPI PostMessageW(oswindow oswindow,UINT Msg,WPARAM wParam,LPARAM lParam)
+CLASS_DECL_AXIS int_bool WINAPI PostMessageW(oswindow oswindow,UINT Msg,WPARAM wParam,LPARAM lParam)
 {
 
    HTHREAD  h = oswindow->get_user_interaction()->m_pauraapp->get_os_handle();
@@ -1451,14 +1451,14 @@ bool thread_layer::on_idle()
 
 
 
-CLASS_DECL_AURA HTHREAD GetCurrentThread()
+CLASS_DECL_AXIS HTHREAD GetCurrentThread()
 {
 
    return currentThread;
 
 }
 
-CLASS_DECL_AURA UINT GetCurrentThreadId()
+CLASS_DECL_AXIS UINT GetCurrentThreadId()
 {
 
    return currentThreadId;
@@ -1469,14 +1469,14 @@ CLASS_DECL_AURA UINT GetCurrentThreadId()
 namespace aura
 {
 
-   CLASS_DECL_AURA bool set_thread_priority(int32_t priority)
+   CLASS_DECL_AXIS bool set_thread_priority(int32_t priority)
    {
 
       return (::SetThreadPriority(::GetCurrentThread(),priority) != 0);
    }
 
 
-   CLASS_DECL_AURA int32_t thread_priority()
+   CLASS_DECL_AXIS int32_t thread_priority()
    {
       return ::GetThreadPriority(::GetCurrentThread());
    }

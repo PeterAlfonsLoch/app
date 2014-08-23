@@ -5,11 +5,11 @@ namespace windows
 {
 
 
-   CLASS_DECL_AURA LRESULT CALLBACK __send_message_hook(int32_t,WPARAM,LPARAM);
-   CLASS_DECL_AURA LRESULT CALLBACK __cbt_filter_hook(int32_t,WPARAM,LPARAM);
+   CLASS_DECL_AXIS LRESULT CALLBACK __send_message_hook(int32_t,WPARAM,LPARAM);
+   CLASS_DECL_AXIS LRESULT CALLBACK __cbt_filter_hook(int32_t,WPARAM,LPARAM);
 
 
-   class CLASS_DECL_AURA interaction_impl:
+   class CLASS_DECL_AXIS interaction_impl:
       virtual public ::user::interaction_impl
    {
    public:
@@ -622,8 +622,8 @@ namespace windows
       bool CreateDlg(const char * lpszTemplateName,::window_sp pParentWnd);
 
 
-      CLASS_DECL_AURA friend LRESULT CALLBACK __send_message_hook(int32_t,WPARAM,LPARAM);
-      CLASS_DECL_AURA friend LRESULT CALLBACK __cbt_filter_hook(int32_t,WPARAM,LPARAM);
+      CLASS_DECL_AXIS friend LRESULT CALLBACK __send_message_hook(int32_t,WPARAM,LPARAM);
+      CLASS_DECL_AXIS friend LRESULT CALLBACK __cbt_filter_hook(int32_t,WPARAM,LPARAM);
 
       // standard message implementation
       LRESULT OnNTCtlColor(WPARAM wParam,LPARAM lParam);

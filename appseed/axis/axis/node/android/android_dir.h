@@ -5,7 +5,7 @@ namespace android
 {
 
 
-   class CLASS_DECL_AURA path :
+   class CLASS_DECL_AXIS path :
       virtual public ::file::path
    {
    public:
@@ -14,7 +14,7 @@ namespace android
    };
 
 
-   class CLASS_DECL_AURA dir :
+   class CLASS_DECL_AXIS dir :
       virtual public ::file::dir::system
    {
    public:

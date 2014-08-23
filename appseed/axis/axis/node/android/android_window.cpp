@@ -6,15 +6,15 @@
 //#include <X11/extensions/Xcomposite.h>
 
 
-CLASS_DECL_AURA int32_t oswindow_find_message_only_window(::user::interaction * puibaseMessageWindow);
-//CLASS_DECL_AURA int32_t oswindow_find(Display * pdisplay,Window window);
-//CLASS_DECL_AURA int32_t oswindow_find(Window window);
-CLASS_DECL_AURA oswindow_data * oswindow_get_message_only_window(::user::interaction * puibaseMessageWindow);
-//CLASS_DECL_AURA oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual = NULL);
-//CLASS_DECL_AURA oswindow_data * oswindow_get(Window window);
-//CLASS_DECL_AURA oswindow oswindow_defer_get(Window w);
-//CLASS_DECL_AURA bool oswindow_remove(Display * pdisplay,Window window);
-CLASS_DECL_AURA bool oswindow_remove_message_only_window(::user::interaction * puibaseMessageOnlyWindow);
+CLASS_DECL_AXIS int32_t oswindow_find_message_only_window(::user::interaction * puibaseMessageWindow);
+//CLASS_DECL_AXIS int32_t oswindow_find(Display * pdisplay,Window window);
+//CLASS_DECL_AXIS int32_t oswindow_find(Window window);
+CLASS_DECL_AXIS oswindow_data * oswindow_get_message_only_window(::user::interaction * puibaseMessageWindow);
+//CLASS_DECL_AXIS oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual = NULL);
+//CLASS_DECL_AXIS oswindow_data * oswindow_get(Window window);
+//CLASS_DECL_AXIS oswindow oswindow_defer_get(Window w);
+//CLASS_DECL_AXIS bool oswindow_remove(Display * pdisplay,Window window);
+CLASS_DECL_AXIS bool oswindow_remove_message_only_window(::user::interaction * puibaseMessageOnlyWindow);
 
 
 
@@ -25,11 +25,11 @@ CLASS_DECL_AURA bool oswindow_remove_message_only_window(::user::interaction * p
 
 //#include "sal.h"
 
-//CLASS_DECL_AURA void hook_window_create(sp(::user::interaction) pWnd);
-//CLASS_DECL_AURA bool unhook_window_create();
-//void CLASS_DECL_AURA __pre_init_dialog(
+//CLASS_DECL_AXIS void hook_window_create(sp(::user::interaction) pWnd);
+//CLASS_DECL_AXIS bool unhook_window_create();
+//void CLASS_DECL_AXIS __pre_init_dialog(
 //   sp(::user::interaction) pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld);
-//void CLASS_DECL_AURA __post_init_dialog(
+//void CLASS_DECL_AXIS __post_init_dialog(
 //   sp(::user::interaction) pWnd, const RECT& rectOld, DWORD dwStyleOld);
 //LRESULT CALLBACK
 //   __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam);
@@ -145,7 +145,7 @@ namespace android
 
    // Change a interaction_impl's style
 
-   /*__STATIC bool CLASS_DECL_AURA __modify_style(oswindow hWnd, int32_t nStyleOffset,
+   /*__STATIC bool CLASS_DECL_AXIS __modify_style(oswindow hWnd, int32_t nStyleOffset,
       DWORD dwRemove, DWORD dwAdd, UINT nFlags)
    {
       ASSERT(hWnd != NULL);
@@ -2233,7 +2233,7 @@ restart_mouse_hover_check:
    }
    */
 
-   /* trans oswindow CLASS_DECL_AURA __get_parent_owner(sp(::user::interaction) hWnd)
+   /* trans oswindow CLASS_DECL_AXIS __get_parent_owner(sp(::user::interaction) hWnd)
    {
    // check for permanent-owned interaction_impl first
    sp(::user::interaction) pWnd = sp(::user::interaction)::FromHandlePermanent(hWnd);
@@ -6183,7 +6183,7 @@ if(psurface == g_cairosurface)
    /////////////////////////////////////////////////////////////////////////////
    // Official way to send message to a interaction_impl
 
-   CLASS_DECL_AURA LRESULT __call_window_procedure(sp(::user::interaction) pinteraction, oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam)
+   CLASS_DECL_AXIS LRESULT __call_window_procedure(sp(::user::interaction) pinteraction, oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam)
    {
       ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
       MESSAGE oldState = pThreadState->m_lastSentMsg;   // save for nesting
@@ -6526,14 +6526,14 @@ LRESULT CALLBACK __window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPA
 }
 
 // always indirectly accessed via __get_window_procedure
-//WNDPROC CLASS_DECL_AURA __get_window_procedure()
+//WNDPROC CLASS_DECL_AXIS __get_window_procedure()
 //{
 //   return __get_module_state()->m_pfn_window_procedure;
 //}
 /////////////////////////////////////////////////////////////////////////////
 // Special helpers for certain windows messages
 
-__STATIC void CLASS_DECL_AURA __pre_init_dialog(
+__STATIC void CLASS_DECL_AXIS __pre_init_dialog(
    sp(::user::interaction) pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld)
 {
    ASSERT(lpRectOld != NULL);
@@ -6543,7 +6543,7 @@ __STATIC void CLASS_DECL_AURA __pre_init_dialog(
    *pdwStyleOld = ANDROID_WINDOW(pWnd)->GetStyle();
 }
 
-__STATIC void CLASS_DECL_AURA __post_init_dialog(
+__STATIC void CLASS_DECL_AXIS __post_init_dialog(
    sp(::user::interaction) pWnd, const RECT& rectOld, DWORD dwStyleOld)
 {
    // must be hidden to start with
@@ -6574,7 +6574,7 @@ __STATIC void CLASS_DECL_AURA __post_init_dialog(
 
 
 
-CLASS_DECL_AURA bool hook_window_create(sp(::user::interaction) pWnd)
+CLASS_DECL_AXIS bool hook_window_create(sp(::user::interaction) pWnd)
 {
 
 //      throw not_implemented(::get_thread_app());
@@ -6598,7 +6598,7 @@ CLASS_DECL_AURA bool hook_window_create(sp(::user::interaction) pWnd)
 }
 
 
-CLASS_DECL_AURA bool unhook_window_create()
+CLASS_DECL_AXIS bool unhook_window_create()
 {
    ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
    if (pThreadState->m_pWndInit != NULL)
@@ -6611,7 +6611,7 @@ CLASS_DECL_AURA bool unhook_window_create()
 
 
 
-CLASS_DECL_AURA const char * __register_window_class(UINT nClassStyle,
+CLASS_DECL_AXIS const char * __register_window_class(UINT nClassStyle,
                                                     HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon)
 {
 
@@ -6669,7 +6669,7 @@ CLASS_DECL_AURA const char * __register_window_class(UINT nClassStyle,
 }
 
 
-__STATIC void CLASS_DECL_AURA
+__STATIC void CLASS_DECL_AXIS
    __handle_activate(::sp(::user::interaction) pWnd, WPARAM nState, sp(::user::interaction) pWndOther)
 {
 
@@ -6700,7 +6700,7 @@ __STATIC void CLASS_DECL_AURA
 //   }
 }
 
-__STATIC bool CLASS_DECL_AURA
+__STATIC bool CLASS_DECL_AXIS
    __handle_set_cursor(::sp(::user::interaction) pWnd, UINT nHitTest, UINT nMsg)
 {
 
@@ -6729,7 +6729,7 @@ __STATIC bool CLASS_DECL_AURA
 /////////////////////////////////////////////////////////////////////////////
 // Standard init called by WinMain
 
-//__STATIC bool CLASS_DECL_AURA __register_with_icon(WNDCLASS* pWndCls,
+//__STATIC bool CLASS_DECL_AXIS __register_with_icon(WNDCLASS* pWndCls,
 //                                                  const char * lpszClassName, UINT nIDIcon)
 //{
 //   pWndCls->lpszClassName = lpszClassName;
@@ -6738,7 +6738,7 @@ __STATIC bool CLASS_DECL_AURA
 //}
 
 
-//bool CLASS_DECL_AURA __end_defer_register_class(LONG fToRegisterParam, const char ** ppszClass)
+//bool CLASS_DECL_AXIS __end_defer_register_class(LONG fToRegisterParam, const char ** ppszClass)
 //{
 //   // mask off all classes that are already registered
 //   __MODULE_STATE* pModuleState = __get_module_state();
@@ -6950,7 +6950,7 @@ LRESULT CALLBACK
 // Additional helpers for WNDCLASS init
 
 // like RegisterClass, except will automatically call UnregisterClass
-//bool CLASS_DECL_AURA __register_class(WNDCLASS* lpWndClass)
+//bool CLASS_DECL_AXIS __register_class(WNDCLASS* lpWndClass)
 //{
 //   WNDCLASS wndcls;
 //   if (GetClassInfo(lpWndClass->hInstance, lpWndClass->lpszClassName,

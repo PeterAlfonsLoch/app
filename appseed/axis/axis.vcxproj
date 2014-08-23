@@ -3055,7 +3055,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="axis\node\node.cpp" />
-    <ClCompile Include="axis\node\windows\win1.cpp" />
     <ClCompile Include="axis\node\windows\windows_copydesk.cpp" />
     <ClCompile Include="axis\node\windows\windows_factory_exchange.cpp" />
     <ClCompile Include="axis\node\windows\windows_interaction_impl.cpp" />

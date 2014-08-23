@@ -30,7 +30,7 @@
 #define __WINESRC__
 #include "nodeapp/operational_system/bare_operational_system.h"
 #include "os_cross_windows_internals.h"
-#define CLASS_DECL_AURA
+#define CLASS_DECL_AXIS
 #include "c/c/verisimple_string.h"
 #include "c/c/mutex.h"
 #include "c/c/single_lock.h"

@@ -5,7 +5,7 @@ namespace android
 {
 
 
-   class CLASS_DECL_AURA crypto :
+   class CLASS_DECL_AXIS crypto :
       virtual public ::crypto::crypto
    {
    public:

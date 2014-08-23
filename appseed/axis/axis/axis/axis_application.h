@@ -234,7 +234,7 @@ namespace axis
       virtual ::user::interaction * get_focus_guie();
 
 
-      virtual sp(::user::interaction) window_from_os_data(void * pdata);
+      virtual ::user::interaction * window_from_os_data(void * pdata);
 
 
       virtual void construct(const char * pszAppId);

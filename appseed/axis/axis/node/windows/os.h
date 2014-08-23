@@ -27,9 +27,9 @@ namespace windows
 
 
 // interaction_impl creation hooking
-CLASS_DECL_AURA bool hook_window_create(::windows::interaction_impl * pwindow);
-CLASS_DECL_AURA bool unhook_window_create();
-CLASS_DECL_AURA void reset_message_cache();
+CLASS_DECL_AXIS bool hook_window_create(::windows::interaction_impl * pwindow);
+CLASS_DECL_AXIS bool unhook_window_create();
+CLASS_DECL_AXIS void reset_message_cache();
 
 
 #include "win1.h"
@@ -39,7 +39,7 @@ CLASS_DECL_AURA void reset_message_cache();
 #include "windows_window_draw.h"
 #include "windows_interaction_impl.h"
 
-CLASS_DECL_AURA WNDPROC __get_window_procedure();
+CLASS_DECL_AXIS WNDPROC __get_window_procedure();
 #define __window_procedure (*__get_window_procedure())
 
 #define NODE_THREAD(pthread) (dynamic_cast < ::windows::thread * > (dynamic_cast < thread * >(pthread)))
@@ -47,8 +47,8 @@ CLASS_DECL_AURA WNDPROC __get_window_procedure();
 
 
 
-CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, signal_details * pobj);
-CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, LPMSG lpmsg);
+CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, signal_details * pobj);
+CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, LPMSG lpmsg);
 
 
 
@@ -56,10 +56,10 @@ CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, LPMSG lpmsg);
 
 
 
-void CLASS_DECL_AURA __cdecl _ca2_purecall();
-void CLASS_DECL_AURA __cdecl _null_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers);
-bool CLASS_DECL_AURA __windows_init();
-int32_t CLASS_DECL_AURA __windows_main(sp(::aura::system) psystem, ::windows::main_init_data * pmaininitdata);
+void CLASS_DECL_AXIS __cdecl _ca2_purecall();
+void CLASS_DECL_AXIS __cdecl _null_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers);
+bool CLASS_DECL_AXIS __windows_init();
+int32_t CLASS_DECL_AXIS __windows_main(sp(::aura::system) psystem, ::windows::main_init_data * pmaininitdata);
 
 
 
@@ -69,8 +69,8 @@ int32_t CLASS_DECL_AURA __windows_main(sp(::aura::system) psystem, ::windows::ma
 
 
 // Sanity checks for ATOMs
-CLASS_DECL_AURA bool __is_valid_atom(ATOM nAtom);
-CLASS_DECL_AURA bool __is_valid_atom(const char * psz);
+CLASS_DECL_AXIS bool __is_valid_atom(ATOM nAtom);
+CLASS_DECL_AXIS bool __is_valid_atom(const char * psz);
 
 
 

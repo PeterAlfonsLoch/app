@@ -1630,9 +1630,6 @@
     <ClCompile Include="axis\node\windows\windows_window_draw.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\windows\win1.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="user\simple_ui\simple_ui_interaction.cpp">
       <Filter>Source Files\user\simple_ui</Filter>
     </ClCompile>

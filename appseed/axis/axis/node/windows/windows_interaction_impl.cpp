@@ -134,7 +134,7 @@ namespace windows
 
    // Change a interaction_impl's style
 
-   __STATIC bool CLASS_DECL_AURA __modify_style(oswindow oswindow,int32_t nStyleOffset,
+   __STATIC bool CLASS_DECL_AXIS __modify_style(oswindow oswindow,int32_t nStyleOffset,
       uint32_t dwRemove,uint32_t dwAdd,UINT nFlags)
    {
       ASSERT(oswindow != NULL);
@@ -5590,7 +5590,7 @@ LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam
 
 
 // always indirectly accessed via __get_window_procedure
-WNDPROC CLASS_DECL_AURA __get_window_procedure()
+WNDPROC CLASS_DECL_AXIS __get_window_procedure()
 {
    //return __get_module_state()->m_pfn_window_procedure;
    return &::__window_procedure;
@@ -5599,7 +5599,7 @@ WNDPROC CLASS_DECL_AURA __get_window_procedure()
 
 
 
-CLASS_DECL_AURA bool hook_window_create(::windows::interaction_impl * pwindow)
+CLASS_DECL_AXIS bool hook_window_create(::windows::interaction_impl * pwindow)
 {
 
    if(pwindow == NULL)
@@ -5638,7 +5638,7 @@ CLASS_DECL_AURA bool hook_window_create(::windows::interaction_impl * pwindow)
 
 }
 
-CLASS_DECL_AURA bool unhook_window_create()
+CLASS_DECL_AXIS bool unhook_window_create()
 {
 
    if(t_pwndInit != NULL)
@@ -5653,7 +5653,7 @@ CLASS_DECL_AURA bool unhook_window_create()
 
 __declspec(thread) char t_szTempClassName[___TEMP_CLASS_NAME_SIZE] ={0};
 
-CLASS_DECL_AURA const char * __register_window_class(sp(::aura::application) papp,UINT nClassStyle,HCURSOR hCursor,HBRUSH hbrBackground,HICON hIcon)
+CLASS_DECL_AXIS const char * __register_window_class(sp(::aura::application) papp,UINT nClassStyle,HCURSOR hCursor,HBRUSH hbrBackground,HICON hIcon)
 {
    // Returns a temporary string name for the class
    //  Save in a string if you want to use it for a long time
@@ -5704,7 +5704,7 @@ CLASS_DECL_AURA const char * __register_window_class(sp(::aura::application) pap
 }
 
 
-__STATIC void CLASS_DECL_AURA
+__STATIC void CLASS_DECL_AXIS
 __handle_activate(::window_sp pwindow,WPARAM nState,::window_sp pWndOther)
 {
    ASSERT(pwindow != NULL);
@@ -5733,7 +5733,7 @@ __handle_activate(::window_sp pwindow,WPARAM nState,::window_sp pWndOther)
    }
 }
 
-__STATIC bool CLASS_DECL_AURA
+__STATIC bool CLASS_DECL_AXIS
 __handle_set_cursor(::window_sp pwindow,UINT nHitTest,UINT nMsg)
 {
    if(nHitTest == HTERROR &&
@@ -5760,7 +5760,7 @@ __handle_set_cursor(::window_sp pwindow,UINT nHitTest,UINT nMsg)
 /////////////////////////////////////////////////////////////////////////////
 // Standard init called by WinMain
 
-__STATIC bool CLASS_DECL_AURA __register_with_icon(WNDCLASS* pWndCls,
+__STATIC bool CLASS_DECL_AXIS __register_with_icon(WNDCLASS* pWndCls,
    const char * lpszClassName,UINT nIDIcon)
 {
    pWndCls->lpszClassName = lpszClassName;
@@ -5769,7 +5769,7 @@ __STATIC bool CLASS_DECL_AURA __register_with_icon(WNDCLASS* pWndCls,
 }
 
 
-string CLASS_DECL_AURA get_user_interaction_window_class(sp(::user::interaction) pui)
+string CLASS_DECL_AXIS get_user_interaction_window_class(sp(::user::interaction) pui)
 {
 
    ::user::interaction::e_type etype = pui->get_window_type();
@@ -5870,7 +5870,7 @@ __activation_window_procedure(oswindow oswindow,UINT nMsg,WPARAM wParam,LPARAM l
 // Additional helpers for WNDCLASS init
 
 // like RegisterClass, except will automatically call UnregisterClass
-bool CLASS_DECL_AURA __register_class(WNDCLASS* lpWndClass)
+bool CLASS_DECL_AXIS __register_class(WNDCLASS* lpWndClass)
 {
 
    WNDCLASS wndcls;

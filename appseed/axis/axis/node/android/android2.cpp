@@ -1,28 +1,28 @@
 #include "framework.h"
 
 //// Global helper functions
-// CLASS_DECL_AURA sp(::aura::application) __get_app()
+// CLASS_DECL_AXIS sp(::aura::application) __get_app()
 //{ return afxCurrentWinApp; }
 //
-// CLASS_DECL_AURA HINSTANCE __get_instance_handle()
+// CLASS_DECL_AXIS HINSTANCE __get_instance_handle()
 //   { ASSERT(afxCurrentInstanceHandle != NULL);
 //      return afxCurrentInstanceHandle; }
-// CLASS_DECL_AURA HINSTANCE __get_resource_handle()
+// CLASS_DECL_AXIS HINSTANCE __get_resource_handle()
 //   { ASSERT(afxCurrentResourceHandle != NULL);
 //      return afxCurrentResourceHandle; }
-// CLASS_DECL_AURA void __set_resource_handle(HINSTANCE hInstResource)
+// CLASS_DECL_AXIS void __set_resource_handle(HINSTANCE hInstResource)
 //   { ASSERT(hInstResource != NULL); afxCurrentResourceHandle = hInstResource; }
-// CLASS_DECL_AURA const char * __get_app_name()
+// CLASS_DECL_AXIS const char * __get_app_name()
 //   { ASSERT(afxCurrentAppName != NULL); return afxCurrentAppName; }
-// CLASS_DECL_AURA sp(::user::interaction) __get_main_window()
+// CLASS_DECL_AXIS sp(::user::interaction) __get_main_window()
 //{
 //      ::thread* pThread = dynamic_cast < ::thread * > (::android::get_thread());
 //      return pThread != NULL ? pThread->GetMainWnd().m_p : NULL;
 // }
 //
-// CLASS_DECL_AURA bool __gen_get_ambient_act_ctx()
+// CLASS_DECL_AXIS bool __gen_get_ambient_act_ctx()
 //   {    return afxAmbientActCtx; }
-// CLASS_DECL_AURA void __set_ambient_act_ctx(bool bSet)
+// CLASS_DECL_AXIS void __set_ambient_act_ctx(bool bSet)
 //   {  afxAmbientActCtx = bSet; }
 
 
