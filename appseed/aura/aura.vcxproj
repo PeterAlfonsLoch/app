@@ -3886,8 +3886,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\colorertake5\colorertake5_xmldom.h" />
     <ClInclude Include="user\simple\simple_message_box.h" />
     <ClInclude Include="user\user\user.h" />
+    <ClInclude Include="user\user\user_check_interface.h" />
     <ClInclude Include="user\user\user_timer_array.h" />
     <ClCompile Include="user\simple\simple_message_box.cpp" />
+    <ClCompile Include="user\user\user_check_interface.cpp" />
     <ClCompile Include="user\user\user_timer_item.cpp">
       <FileType>CppHeader</FileType>
     </ClCompile>

@@ -41,8 +41,6 @@ CLASS_DECL_AXIS WNDPROC __get_window_procedure();
 
 
 
-CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, signal_details * pobj);
-CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, LPMSG lpmsg);
 
 
 
@@ -50,10 +48,6 @@ CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, LPMSG lpmsg);
 
 
 
-void CLASS_DECL_AXIS __cdecl _ca2_purecall();
-void CLASS_DECL_AXIS __cdecl _null_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers);
-bool CLASS_DECL_AXIS __windows_init();
-int32_t CLASS_DECL_AXIS __windows_main(sp(::aura::system) psystem, ::windows::main_init_data * pmaininitdata);
 
 
 
@@ -62,9 +56,6 @@ int32_t CLASS_DECL_AXIS __windows_main(sp(::aura::system) psystem, ::windows::ma
 #include "windows_copydesk.h"
 
 
-// Sanity checks for ATOMs
-CLASS_DECL_AXIS bool __is_valid_atom(ATOM nAtom);
-CLASS_DECL_AXIS bool __is_valid_atom(const char * psz);
 
 
 

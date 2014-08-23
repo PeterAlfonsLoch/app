@@ -3305,7 +3305,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\os\windows\windows_gdi.cpp" />
     <ClCompile Include="axis\os\windows\windows_simple_app.cpp" />
     <ClCompile Include="axis\os\windows\windows_window_gdi.cpp" />
-    <ClCompile Include="axis\policy\policy_c.c" />
     <ClCompile Include="database\database_application.cpp" />
     <ClCompile Include="database\database_base.cpp" />
     <ClCompile Include="database\database_client.cpp" />
@@ -3441,7 +3440,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\simple_ui\simple_ui_tap.h" />
     <ClInclude Include="user\user\user.h" />
     <ClInclude Include="user\user\user_buffer.h" />
-    <ClInclude Include="user\user\user_check_interface.h" />
     <ClInclude Include="user\user\user_control.h" />
     <ClInclude Include="user\user\user_control_bar.h" />
     <ClInclude Include="user\user\user_control_event.h" />
@@ -3918,7 +3916,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\simple_ui\simple_ui_tap.cpp" />
     <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="user\user\user_buffer.cpp" />
-    <ClCompile Include="user\user\user_check_interface.cpp" />
     <ClCompile Include="user\user\user_control.cpp" />
     <ClCompile Include="user\user\user_control_bar.cpp" />
     <ClCompile Include="user\user\user_control_event.cpp" />

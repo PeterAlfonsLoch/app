@@ -2687,6 +2687,9 @@
     <ClInclude Include="user\user\user.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\user_check_interface.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -4021,6 +4024,9 @@
     <ClCompile Include="user\user\user_timer_item.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\user_check_interface.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -4031,9 +4037,6 @@
     </None>
     <None Include="primitive\str\str.inl">
       <Filter>Header Files\primitive\str</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="aura\aura\aura.inl">
       <Filter>Header Files\aura\aura</Filter>

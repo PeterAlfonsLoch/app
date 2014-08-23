@@ -13,17 +13,17 @@ namespace user
    }
 
 
-   void check_interface::_001SetCheck(bool bChecked, ::action::context actioncontext)
+   void check_interface::_001SetCheck(bool bChecked,::action::context actioncontext)
    {
 
-      _001SetCheck((check::e_check) (bChecked ? check::checked : check::unchecked), actioncontext);
+      _001SetCheck((check::e_check) (bChecked ? check::checked : check::unchecked),actioncontext);
 
    }
 
 
-   void check_interface::_001SetCheck(check::e_check echeck, ::action::context actioncontext)
+   void check_interface::_001SetCheck(check::e_check echeck,::action::context actioncontext)
    {
-   
+
       UNREFERENCED_PARAMETER(echeck);
       UNREFERENCED_PARAMETER(actioncontext);
 
@@ -36,25 +36,25 @@ namespace user
       if(_001GetCheck() == check::checked)
       {
 
-         _001SetCheck(check::unchecked, actioncontext);
+         _001SetCheck(check::unchecked,actioncontext);
 
       }
       else if(_001GetCheck() == check::unchecked)
       {
 
-         _001SetCheck(check::checked, actioncontext);
+         _001SetCheck(check::checked,actioncontext);
 
       }
       else if(_001GetCheck() == check::tristate)
       {
 
-         _001SetCheck(check::unchecked, actioncontext);
+         _001SetCheck(check::unchecked,actioncontext);
 
       }
       else
       {
 
-         _001SetCheck(check::unchecked, actioncontext);
+         _001SetCheck(check::unchecked,actioncontext);
 
       }
 
