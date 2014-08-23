@@ -3301,6 +3301,15 @@ namespace axis
    }
 
 
+   ::user::interaction * application::get_parent(::user::interaction * pui)
+   {
+
+      return pui->GetParent();
+
+   }
+
+
+
 } // namespace axis
 
 
