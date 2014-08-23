@@ -544,22 +544,6 @@ namespace aura
 
 
 
-   ::user::interaction * application::FindWindow(const char * lpszClassName,const char * lpszWindowName)
-   {
-
-      throw interface_only_exception(this);
-
-   }
-
-
-   ::user::interaction * application::FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow)
-   {
-
-      throw interface_only_exception(this);
-
-   }
-
-
    string application::get_version()
    {
 
