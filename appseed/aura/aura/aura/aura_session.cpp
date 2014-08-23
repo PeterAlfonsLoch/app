@@ -365,19 +365,6 @@ namespace aura
    int32_t session::exit_instance()
    {
 
-      try
-      {
-         if(m_spcopydesk.is_set())
-         {
-            m_spcopydesk->finalize();
-            m_spcopydesk.release();
-         }
-      }
-      catch(...)
-      {
-
-      }
-
 
       ::aura::application::exit_instance();
 
@@ -386,106 +373,11 @@ namespace aura
    }
 
 
-   void system::enum_display_monitors()
-   {
-
-#ifdef WINDOWSEX
-
-      m_monitorinfoa.remove_all();
-
-      ::EnumDisplayMonitors(NULL,NULL,&system::monitor_enum_proc,(LPARAM)(dynamic_cast < ::aura::system * > (this)));
-
-#else
-
-      // todo
-      //      m_monitorinfoa.remove_all();
-
-
-#endif
-
-   }
-
-
-
-#ifdef WINDOWSEX
-   BOOL CALLBACK system::monitor_enum_proc(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor,LPARAM dwData)
-   {
-
-      ::aura::system * psystem = (::aura::system *) dwData;
-
-      psystem->monitor_enum(hmonitor,hdcMonitor,lprcMonitor);
-
-      return TRUE; // to enumerate all
-
-   }
-
-   void system::monitor_enum(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor)
-   {
-
-      UNREFERENCED_PARAMETER(hdcMonitor);
-      UNREFERENCED_PARAMETER(lprcMonitor);
-
-      m_monitorinfoa.allocate(m_monitorinfoa.get_size() + 1);
-
-      ZERO(m_monitorinfoa.last_element());
-
-      m_hmonitora.add(hmonitor);
-
-      m_monitorinfoa.last_element().cbSize = sizeof(MONITORINFO);
-
-      ::GetMonitorInfo(hmonitor,&m_monitorinfoa.last_element());
-
-      MONITORINFO mi = m_monitorinfoa.last_element();
-
-      TRACE0("session::monitor_enum\n");
-      TRACE("upper_bound %d\n",m_monitorinfoa.get_upper_bound());
-      TRACE("rcMonitor(left, top, right, bottom) %d, %d, %d, %d\n",mi.rcMonitor.left,mi.rcMonitor.top,mi.rcMonitor.right,mi.rcMonitor.bottom);
-      TRACE("rcWork(left, top, right, bottom) %d, %d, %d, %d\n",mi.rcWork.left,mi.rcWork.top,mi.rcWork.right,mi.rcWork.bottom);
-
-   }
-
-
-#endif
-
-
-   void session::get_cursor_pos(LPPOINT lppoint)
-   {
-
-      if(m_bSystemSynchronizedCursor)
-      {
-
-#ifdef METROWIN
-
-         Windows::Foundation::Point p;
-
-         p = System.m_posdata->m_pwindow->get_cursor_pos();
-
-         lppoint->x = (LONG)p.X;
-
-         lppoint->y = (LONG)p.Y;
-
-#else
-
-         ::GetCursorPos(&m_ptCursor);
-
-#endif
-
-      }
-
-      if(lppoint != NULL)
-      {
-
-         *lppoint = m_ptCursor;
-
-      }
-
-   }
-
 
    ::user::interaction * session::get_active_guie()
    {
 
-      return System.get_active_guie();
+      return NULL;
 
    }
 
@@ -493,57 +385,8 @@ namespace aura
    ::user::interaction * session::get_focus_guie()
    {
 
-#if defined (METROWIN)
 
-      return GetFocus()->m_pui;
-
-#elif defined(WINDOWSEX) || defined(LINUX)
-
-      ::user::interaction * pwnd = ::window_from_handle(::GetFocus());
-      if(pwnd != NULL)
-      {
-         if(get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-            || ::user::window_util::IsAscendant(get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
-         {
-            return pwnd;
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      pwnd = System.window_from_os_data(::GetFocus());
-      if(pwnd != NULL)
-      {
-         if(get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-            || ::user::window_util::IsAscendant(get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
-         {
-            return pwnd;
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      pwnd = m_spuiFocus;
-      if(pwnd != NULL)
-      {
-         if(get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-            || ::user::window_util::IsAscendant(get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
-         {
-            return pwnd;
-         }
-         else
-         {
-            return NULL;
-         }
-      }
       return NULL;
-#else
-
-      return System.get_active_guie();
-
-#endif
 
    }
 
