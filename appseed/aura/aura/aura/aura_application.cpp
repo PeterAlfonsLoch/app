@@ -3068,6 +3068,14 @@ namespace aura
    }
 
 
+   void application::dispatch_user_message(::message::base * pbase)
+   {
+
+      UNREFERENCED_PARAMETER(pbase);
+
+   }
+
+
 } // namespace aura
 
 
