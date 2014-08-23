@@ -5173,7 +5173,7 @@ namespace user
 
    void list::_001OnUpdateListViewAutoArrange(signal_details * pobj)
    {
-      SCAST_PTR(::axis::cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->_001SetCheck(get_auto_arrange());
       pcmdui->m_pcmdui->Enable();
    }

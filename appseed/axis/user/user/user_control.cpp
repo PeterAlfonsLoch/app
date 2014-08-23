@@ -781,7 +781,7 @@ namespace user
 
 
    control_cmd_ui::control_cmd_ui(class ::signal * psignal) :
-      ::axis::cmd_ui(psignal)
+      ::aura::cmd_ui(psignal)
    {
    }
 

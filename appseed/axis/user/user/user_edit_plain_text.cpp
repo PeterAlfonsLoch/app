@@ -2354,7 +2354,7 @@ namespace user
 
    void edit_plain_text::_001OnUpdateEditFocusCopy(signal_details * pobj)
    {
-      SCAST_PTR(::axis::cmd_ui, pupdatecmdui, pobj)
+      SCAST_PTR(::aura::cmd_ui, pupdatecmdui, pobj)
       string str;
       _001GetSelText(str);
       pupdatecmdui->m_pcmdui->Enable(str.has_char());
@@ -2373,7 +2373,7 @@ namespace user
 
    void edit_plain_text::_001OnUpdateEditFocusPaste(signal_details * pobj)
    {
-      SCAST_PTR(::axis::cmd_ui, pupdatecmdui, pobj)
+      SCAST_PTR(::aura::cmd_ui, pupdatecmdui, pobj)
       pupdatecmdui->m_pcmdui->Enable(Session.copydesk().get_plain_text().has_char());
    }
 

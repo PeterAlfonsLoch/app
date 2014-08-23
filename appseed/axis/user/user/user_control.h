@@ -221,7 +221,7 @@ namespace user
    };
 
 
-   class control_cmd_ui : public ::axis::cmd_ui
+   class control_cmd_ui : public ::aura::cmd_ui
    {
    public:
 

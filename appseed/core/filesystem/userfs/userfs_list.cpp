@@ -513,7 +513,7 @@ namespace userfs
 
    void list::_001OnUpdateFileRename(signal_details * pobj)
    {
-      SCAST_PTR(::axis::cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj)
          range range;
       _001GetSelection(range);
       pcmdui->m_pcmdui->Enable(

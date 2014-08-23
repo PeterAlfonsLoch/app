@@ -493,7 +493,7 @@ void simple_frame_window::_001OnMouseMove(signal_details * pobj)
 
 void simple_frame_window::_001OnUpdateViewFullScreen(signal_details * pobj)
 {
-   SCAST_PTR(::axis::cmd_ui, pcmdui, pobj)
+   SCAST_PTR(::aura::cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->Enable();
    pcmdui->m_pcmdui->_001SetCheck(WfiIsFullScreen());
    pcmdui->m_bRet = true;
@@ -578,7 +578,7 @@ void simple_frame_window::_001OnToggleCustomFrame(signal_details * pobj)
 
 void simple_frame_window::_001OnUpdateToggleCustomFrame(signal_details * pobj)
 {
-   SCAST_PTR(::axis::cmd_ui, pcmdui, pobj)
+   SCAST_PTR(::aura::cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->Enable();
    pcmdui->m_pcmdui->_001SetCheck(m_bWindowFrame);
 }

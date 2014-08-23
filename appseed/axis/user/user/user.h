@@ -293,6 +293,7 @@ CLASS_DECL_AXIS char * ::core::TaskStringW2A(const wchar_t * lpw);
 #include "user_message.h"
 
 #include "user_printer.h"
+#include "axis_print_job.h"
 #include "user_print_job.h"
 
 
@@ -306,9 +307,6 @@ CLASS_DECL_AXIS char * ::core::TaskStringW2A(const wchar_t * lpw);
 
 
 
-
-extern "C"
-CLASS_DECL_AXIS int32_t simple_message_box(oswindow interaction_impl,const char * lpText,const char * lpCaption,uint32_t uiFlags);
 
 
 
