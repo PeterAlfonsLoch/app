@@ -3096,6 +3096,17 @@ namespace aura
    }
 
 
+   bool application::set_window_text(::user::interaction * pui,const string & strText)
+   {
+
+      UNREFERENCED_PARAMETER(pui);
+      UNREFERENCED_PARAMETER(strText);
+
+      return false;
+
+   }
+
+
 
 } // namespace aura
 
