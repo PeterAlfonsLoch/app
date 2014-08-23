@@ -13,10 +13,6 @@
 string get_error_message(DWORD dwError);
 
 
-CLASS_DECL_AURA bool __initialize(bool bDLL = FALSE, DWORD dwVersion = _MFC_VER);
-CLASS_DECL_AURA void __set_alloc_stop(LONG lRequestNumber);
-CLASS_DECL_AURA void __throw_last_cleanup();
-CLASS_DECL_AURA void __try_cleanup();
 
 
 namespace windows
@@ -38,13 +34,9 @@ CLASS_DECL_AURA void reset_message_cache();
 
 #include "win1.h"
 #include "windows_implementation.h"
-#include "windows_folder_watch.h"
 #include "windows_factory_exchange.h"
 #include "windows_window_draw.h"
-#include "windows_uac_tools.h"
-#include "windows_thread.h"
 #include "windows_interaction_impl.h"
-#include "windows_file.h"
 
 CLASS_DECL_AURA WNDPROC __get_window_procedure();
 #define __window_procedure (*__get_window_procedure())
@@ -73,13 +65,7 @@ int32_t CLASS_DECL_AURA __windows_main(sp(::aura::system) psystem, ::windows::ma
 
 
 
-#include "windows_file_find.h"
-#include "windows_file.h"
-#include "windows_shell.h"
-#include "windows_stdio_file.h"
 #include "windows_copydesk.h"
-#include "windows_registry.h"
-#include "windows_os.h"
 
 
 // Sanity checks for ATOMs
