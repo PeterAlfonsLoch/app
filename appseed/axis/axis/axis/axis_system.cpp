@@ -78,6 +78,7 @@ namespace axis
 
 
    system::system(sp(::aura::application) papp):
+      ::aura::system(this),
       m_libraryDraw2d(this)
    {
       

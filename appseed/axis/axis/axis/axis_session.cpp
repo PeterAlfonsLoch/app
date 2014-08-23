@@ -44,7 +44,7 @@ namespace axis
       m_puiMouseMoveCapture = NULL;
       m_puiLastLButtonDown = NULL;
 
-      m_psavings                 = canew(class ::axis::savings(this));
+      m_psavings                 = canew(class ::aura::savings(this));
 
       m_bZipIsDir                = true;
 

@@ -50,7 +50,7 @@ namespace base
       sp(::sockets::sockets)                                   m_psockets;
       //bool                                                     m_bZipIsDir;
       //map < ::user::e_key,::user::e_key,bool,bool > *          m_pmapKeyPressed;
-      //sp(::axis::savings)                                      m_psavings;
+      //sp(::aura::savings)                                      m_psavings;
       bool                                                     m_bIfs;
       //sp(::user::user)                                         m_spuser;
       sp(class ::fontopus::licensing)                   m_splicensing;

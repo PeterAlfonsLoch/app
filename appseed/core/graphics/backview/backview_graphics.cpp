@@ -147,7 +147,7 @@ namespace backview
 
       Main & main = HelperGetMain();
 
-      //         ::axis::savings & savings = Session.savings();
+      //         ::aura::savings & savings = Session.savings();
 
       bool bOk = false;
       // 2004-08-24

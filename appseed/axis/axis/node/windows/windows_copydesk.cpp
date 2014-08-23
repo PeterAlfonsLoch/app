@@ -123,7 +123,7 @@ namespace windows
 
       bool bOk;
       
-      bOk = ::aura::copydesk::finalize();
+      bOk = ::axis::copydesk::finalize();
 
       return bOk;
 

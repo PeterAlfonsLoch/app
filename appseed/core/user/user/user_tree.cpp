@@ -152,7 +152,7 @@ namespace user
                m_uchHoverAlpha = (BYTE) (m_uchHoverAlphaInit - dwCurve);
          }
       }
-      //      ::axis::savings & savings = Session.savings();
+      //      ::aura::savings & savings = Session.savings();
 
       ///      ::draw2d::graphics * pDCBuffer = pdc;
 
@@ -276,7 +276,7 @@ namespace user
       }
 
 
-      //      ::axis::savings & savings = Session.savings();
+      //      ::aura::savings & savings = Session.savings();
       if(bSelected) // selected
       {
          if(Session.savings().is_trying_to_save(::axis::resource_processing))

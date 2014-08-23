@@ -200,7 +200,7 @@ namespace platform
       m_dibBkImage.load_from_matter("casweden1.png");
 
       m_dibBk->create(1280, 1024);
-      //::axis::savings & savings = Session.savings();
+      //::aura::savings & savings = Session.savings();
       //if(
 
       const char * pszSessionName = NULL;

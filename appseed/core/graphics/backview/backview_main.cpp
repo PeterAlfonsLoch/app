@@ -80,7 +80,7 @@ namespace backview
 
    void Main::update_drawing_objects()
    {
-      //::axis::savings & savings = Session.savings();
+      //::aura::savings & savings = Session.savings();
       Graphics & graphics = GetGraphics();
 
       graphics.UpdateObjects();
@@ -139,7 +139,7 @@ namespace backview
       ImageChange & imagechange = GetImageChange();
       Graphics & graphics = GetGraphics();
       EImagePlacement eplacement;
-      //::axis::savings & savings = Session.savings();
+      //::aura::savings & savings = Session.savings();
 
       TRACE("\nCXfplayerView::OnAfterImageLoaded\n");
 
@@ -169,7 +169,7 @@ namespace backview
 
       ASSERT(papp != NULL);
 
-      //         ::axis::savings & savings = Session.savings();
+      //         ::aura::savings & savings = Session.savings();
 
       Graphics & graphics = GetGraphics();
 

@@ -45,7 +45,7 @@ namespace base
       m_puiLastLButtonDown = NULL;
       m_bIfs                     = true;
 
-      m_psavings                 = canew(class ::axis::savings(this));
+      m_psavings                 = canew(class ::aura::savings(this));
 
       m_bZipIsDir                = true;
 

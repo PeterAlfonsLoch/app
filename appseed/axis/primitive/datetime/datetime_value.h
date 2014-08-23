@@ -5,7 +5,7 @@ namespace datetime
 {
 
 
-   string to_string(sp(::aura::application) pbaseapp,::user::str_context * pcontext,datetime & value);
+   string to_string(sp(::aura::application) pbaseapp,::user::str_context * pcontext,::datetime::value & value);
 
 
    CLASS_DECL_AXIS value span_strtotime(sp(::aura::application) pbaseapp,::user::str_context * pcontext,const char * psz);
