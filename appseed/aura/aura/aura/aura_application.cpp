@@ -772,46 +772,6 @@ namespace aura
 
 
 
-   ::visual::icon * application::set_icon(object * pobject,::visual::icon * picon,bool bBigIcon)
-   {
-
-      ::visual::icon * piconOld = get_icon(pobject,bBigIcon);
-
-      if(bBigIcon)
-      {
-
-         pobject->oprop("big_icon").operator =((sp(element)) picon);
-
-      }
-      else
-      {
-
-         pobject->oprop("small_icon").operator =((sp(element)) picon);
-
-      }
-
-      return piconOld;
-
-   }
-
-
-   ::visual::icon * application::get_icon(object * pobject,bool bBigIcon) const
-   {
-
-      if(bBigIcon)
-      {
-
-         return const_cast <object *> (pobject)->oprop("big_icon").cast < ::visual::icon >();
-
-      }
-      else
-      {
-
-         return const_cast <object *> (pobject)->oprop("small_icon").cast < ::visual::icon >();
-
-      }
-
-   }
 
 
 
