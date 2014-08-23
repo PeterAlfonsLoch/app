@@ -104,45 +104,6 @@ namespace aura
 
 
 
-   void session::set_cursor(::visual::e_cursor ecursor)
-   {
-
-      m_ecursor = ecursor;
-
-#ifdef WINDOWSEX
-
-      ::visual::cursor * pcursor = get_cursor();
-
-      if(pcursor != NULL)
-      {
-
-         ::SetCursor(pcursor->get_HCURSOR());
-
-      }
-
-#endif
-
-   }
-
-
-   void session::set_default_cursor(::visual::e_cursor ecursor)
-   {
-
-      if(ecursor == ::visual::cursor_default)
-      {
-
-         m_ecursorDefault = ::visual::cursor_arrow;
-
-      }
-      else
-      {
-
-         m_ecursorDefault = ecursor;
-
-      }
-
-   }
-
 
 
    COLORREF session::get_default_color(uint64_t ui)
