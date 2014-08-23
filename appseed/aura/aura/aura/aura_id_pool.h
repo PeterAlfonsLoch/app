@@ -1,6 +1,6 @@
 
 #undef __id
-#define __id(x) (m_pauraapp->m_paxissystem->m_cidpool.id_##x)
+#define __id(x) (m_pauraapp->m_paurasystem->m_cidpool.id_##x)
 
 
 

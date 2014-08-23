@@ -1602,16 +1602,16 @@ bool thread_impl::pump_message()
                            if(m_pauraapp->m_paxissystem != NULL)
                            {
 
-                              m_pauraapp->m_paxissystem->pre_translate_message(spbase);
+                              m_pauraapp->m_paurasystem->pre_translate_message(spbase);
 
                               if(spbase->m_bRet)
                                  return true;
 
                               /*                                 try
                               {
-                              if(m_pauraapp->m_paxissystem->m_pcube != NULL)
+                              if(m_pauraapp->m_paurasystem->m_pcube != NULL)
                               {
-                              m_pauraapp->m_paxissystem->m_pcubeInterface->pre_translate_message(spbase);
+                              m_pauraapp->m_paurasystem->m_pcubeInterface->pre_translate_message(spbase);
                               if(spbase->m_bRet)
                               return TRUE;
                               }
