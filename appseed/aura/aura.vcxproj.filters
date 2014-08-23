@@ -30,6 +30,15 @@
     <Filter Include="Source Files\aura\aura">
       <UniqueIdentifier>{6401af26-9768-4e60-a9d7-997c789ce08a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\aura\aura_policy">
+      <UniqueIdentifier>{fb301775-b3fc-4300-a0b4-476341b7fdcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\aura_policy">
+      <UniqueIdentifier>{1a9958bc-c3fe-4692-98b1-0526e704bcd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\veriwell_musical_studio">
+      <UniqueIdentifier>{04b2d3a5-77df-4526-9d5b-6e1af4c4aea6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -47,6 +56,33 @@
     <ClInclude Include="aura\aura\aura_aura.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
+    <ClInclude Include="aura\veriwell_musical_studio\veriwell_musical_studio.h">
+      <Filter>Header Files\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\veriwell_musical_studio\vms.h">
+      <Filter>Header Files\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\veriwell_musical_studio\vms_2.h">
+      <Filter>Header Files\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura_policy\aura_c.h">
+      <Filter>Header Files\aura\aura_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura_policy\aura_cpp.h">
+      <Filter>Header Files\aura\aura_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura_policy\aura_policy.h">
+      <Filter>Header Files\aura\aura_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura_policy\aura_policy_objc.h">
+      <Filter>Header Files\aura\aura_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura_policy\aura_policy_objcpp.h">
+      <Filter>Header Files\aura\aura_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura_policy\aura_policy_winrt.h">
+      <Filter>Header Files\aura\aura_policy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -55,11 +91,23 @@
     <ClCompile Include="framework_c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="aura\aura\aura_allocate_mid_big.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_allocate_system_heap.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_heap.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_new.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura_policy\aura_c.c">
+      <Filter>Source Files\aura\aura_policy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

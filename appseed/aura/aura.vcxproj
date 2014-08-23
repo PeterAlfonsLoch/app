@@ -1635,8 +1635,22 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\aura\aura.h" />
     <ClInclude Include="aura\aura\aura_aura.h" />
     <ClInclude Include="aura\aura\aura_types.h" />
+    <ClInclude Include="aura\aura_policy\aura_c.h" />
+    <ClInclude Include="aura\aura_policy\aura_cpp.h" />
+    <ClInclude Include="aura\aura_policy\aura_policy.h" />
+    <ClInclude Include="aura\aura_policy\aura_policy_objc.h" />
+    <ClInclude Include="aura\aura_policy\aura_policy_objcpp.h" />
+    <ClInclude Include="aura\aura_policy\aura_policy_winrt.h" />
+    <ClInclude Include="aura\veriwell_musical_studio\veriwell_musical_studio.h" />
+    <ClInclude Include="aura\veriwell_musical_studio\vms.h" />
+    <ClInclude Include="aura\veriwell_musical_studio\vms_2.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="framework_c.h" />
+    <ClCompile Include="aura\aura\aura_allocate_mid_big.cpp" />
+    <ClCompile Include="aura\aura\aura_allocate_system_heap.cpp" />
+    <ClCompile Include="aura\aura\aura_heap.cpp" />
+    <ClCompile Include="aura\aura\aura_new.cpp" />
+    <ClCompile Include="aura\aura_policy\aura_c.c" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">Create</PrecompiledHeader>
