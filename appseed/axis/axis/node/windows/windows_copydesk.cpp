@@ -107,7 +107,7 @@ namespace windows
    bool copydesk::initialize()
    {
       
-      if(!::aura::copydesk::initialize())
+      if(!::axis::copydesk::initialize())
          return false;
 
       if(!create_window_ex())

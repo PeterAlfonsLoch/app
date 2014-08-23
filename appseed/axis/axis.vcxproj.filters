@@ -9,12 +9,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Source Files\multithreading">
-      <UniqueIdentifier>{262b60e3-e795-4339-b4cc-f4ca20348991}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\multithreading">
-      <UniqueIdentifier>{0d1fb68a-ae17-4c19-a26a-903d27492e6a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\axis">
       <UniqueIdentifier>{c884c593-8d0f-465b-8314-98944d5dac4f}</UniqueIdentifier>
     </Filter>
@@ -63,9 +57,6 @@
     <Filter Include="Source Files\graphics\visual">
       <UniqueIdentifier>{279c4f0b-7469-485f-a720-40edf81d3278}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\axis\xml">
-      <UniqueIdentifier>{42770ef4-1efe-40e5-864d-38ad28249a78}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user\simple_ui">
       <UniqueIdentifier>{7bdaa2c9-1de1-4163-8aba-35a5dcab23ba}</UniqueIdentifier>
     </Filter>
@@ -107,9 +98,6 @@
     </Filter>
     <Filter Include="Source Files\axis">
       <UniqueIdentifier>{225c8e24-bbc5-4bf4-9da8-92ec39a039ec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\xml">
-      <UniqueIdentifier>{c4dba712-4a23-4904-b3c1-25fa6f1b24e8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\axis\os">
       <UniqueIdentifier>{245e3241-db5a-4886-814d-9434580575d9}</UniqueIdentifier>
@@ -200,87 +188,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="multithreading\multithreading.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_condition.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_critical_section.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_event.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_event_base.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_event_collection.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_file_change_event.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_manual_reset_event.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_multi_lock.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_mutex.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_plain_service.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_retry_multi_lock.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_retry_single_lock.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_semaphore.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_service_base.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_service_status.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_single_lock.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_socket_event.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_sync_object.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_synch_lock.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_thread_pool.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_wait_result.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_waitable.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_initial_single_lock.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_thread.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_thread_os.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_set_event_on_exit.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\draw2d\draw2d.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
@@ -326,86 +233,14 @@
     <ClInclude Include="graphics\visual\visual.h">
       <Filter>Header Files\graphics\visual</Filter>
     </ClInclude>
-    <ClInclude Include="multithreading\multithreading_go_thread.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_simple_thread.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\graphics_window_graphics.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
     <ClInclude Include="graphics\visual\visual_icon.h">
       <Filter>Header Files\graphics\visual</Filter>
     </ClInclude>
-    <ClInclude Include="multithreading\multithreading_signal_thread.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\visual\visual_cursor.h">
       <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_attr.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_base_array.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_data.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_departament.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_disp_option.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_document.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_edit.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_entity.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_enum.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_exportable.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_importable.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_input_tree.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_node.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_output_tree.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_parse_info.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_property_exchange.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_tree_base.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_tree_schema.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_var_exchange.h">
-      <Filter>Header Files\axis\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\xml\xml_xmlite.h">
-      <Filter>Header Files\axis\xml</Filter>
     </ClInclude>
     <ClInclude Include="axis\os\cross.h">
       <Filter>Header Files\axis\os</Filter>
@@ -665,9 +500,6 @@
     <ClInclude Include="user\user\user_enum.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="multithreading\multithreading_data.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -709,9 +541,6 @@
     </ClInclude>
     <ClInclude Include="axis\message\message_user.h">
       <Filter>Header Files\axis\message</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_thread_impl.h">
-      <Filter>Header Files\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_windowing.h">
       <Filter>Header Files\user\user</Filter>
@@ -796,15 +625,6 @@
     </ClInclude>
     <ClInclude Include="user\user\user_interaction_impl_base.h">
       <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_synch_index_iterator.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_synch_ptr_array.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_synch_index_ptr_array.h">
-      <Filter>Header Files\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_schema.h">
       <Filter>Header Files\user\user</Filter>
@@ -1195,66 +1015,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="multithreading\multithreading_condition.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_core.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_critical_section.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_event.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_event_base.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_event_collection.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_file_change_event.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_manual_reset_event.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_multi_lock.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_mutex.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_retry_multi_lock.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_retry_single_lock.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_semaphore.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_service_base.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_single_lock.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_socket_event.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_sync_object.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_synch_lock.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_wait_result.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_waitable.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
     <ClCompile Include="version.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1288,15 +1048,6 @@
     <ClCompile Include="graphics\draw2d\draw2d_region.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="multithreading\multithreading_simple_thread.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_signal_thread.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_go_thread.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\visual\visual_icon.cpp">
       <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
@@ -1305,63 +1056,6 @@
     </ClCompile>
     <ClCompile Include="graphics\graphics_window_graphics.cpp">
       <Filter>Source Files\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_attr.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_base_array.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_data.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_disp_option.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_document.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_edit.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_entity.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_exportable.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_importable.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_input_tree.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_node.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_output_tree.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_parse_info.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_property_exchange.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_tree_base.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_tree_schema.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_var_exchange.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_xml.cpp">
-      <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\xml\xml_xmlite.cpp">
-      <Filter>Source Files\axis\xml</Filter>
     </ClCompile>
     <ClCompile Include="axis\os\android\android_locale.c">
       <Filter>Source Files\axis\os\android</Filter>
@@ -1567,9 +1261,6 @@
     <ClCompile Include="user\user\user_menu_base_item.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="multithreading\multithreading_thread.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1633,14 +1324,8 @@
     <ClCompile Include="axis\message\message_user.cpp">
       <Filter>Source Files\axis\message</Filter>
     </ClCompile>
-    <ClCompile Include="multithreading\multithreading_thread_impl.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_windowing.cpp">
       <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading.cpp">
-      <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="axis\node\android\android_application.cpp">
       <Filter>Source Files\axis\node\android</Filter>
@@ -1917,9 +1602,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="multithreading\multithreading.inl">
-      <Filter>Header Files\multithreading</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
