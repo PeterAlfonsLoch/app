@@ -1580,6 +1580,13 @@ namespace aura
    }
 
 
+   ::user::interaction * system::get_focus_guie()
+   {
+
+      return NULL;
+
+   }
+
 } // namespace aura
 
 
@@ -1602,48 +1609,4 @@ CLASS_DECL_AURA void __start_system(::aura::system * psystem)
    ::create_thread(NULL,0,&_thread_proc_start_system,(LPVOID)psystem,0,0);
 
 }
-
-#ifdef METROWIN
-
-
-namespace aura
-{
-
-
-   CLASS_DECL_AURA bool get_window_rect(::aura::system_window ^ pwindow,RECTD * lprect)
-   {
-
-      Windows::Foundation::Rect rect =  pwindow->get_window_rect();
-
-      lprect->left = rect.X;
-      lprect->top = rect.Y;
-      lprect->right = lprect->left + rect.Width;
-      lprect->bottom = lprect->top + rect.Height;
-
-      return true;
-   }
-
-
-   CLASS_DECL_AURA bool get_window_rect(::aura::system_window ^ pwindow,LPRECT lprect)
-   {
-
-      rectd r;
-
-      if(!get_window_rect(pwindow,&r))
-         return false;
-
-      if(!::copy(lprect,r))
-         return false;
-
-      return true;
-
-   }
-
-
-} // namespace aura
-
-
-#endif
-
-
 
