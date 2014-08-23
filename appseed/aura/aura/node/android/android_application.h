@@ -116,7 +116,6 @@ namespace android
       DWORD SuspendThread();
       DWORD ResumeThread();
       bool post_thread_message(UINT message, WPARAM wParam, LPARAM lParam);
-      bool post_message(::user::interaction * pguie, UINT message, WPARAM wParam, LPARAM lParam);
 
       virtual bool PreInitInstance();
 
@@ -146,8 +145,6 @@ namespace android
       // Advanced: handling messages sent to message filter hook
       virtual bool ProcessMessageFilter(int32_t code, LPMESSAGE lpMsg);
 
-      // Advanced: virtual access to GetMainWnd()
-      virtual ::user::interaction * GetMainWnd();
 
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
@@ -162,12 +159,6 @@ namespace android
       //::draw2d::graphics * graphics_from_os_data(void * pdata);
 
       virtual void ShowWaitCursor(bool bShow = true);
-
-      ::user::interaction * window_from_os_data(void * pdata);
-      ::user::interaction * window_from_os_data_permanent(void * pdata);
-
-      virtual ::user::interaction * FindWindow(const char * lpszClassName,const char * lpszWindowName);
-      virtual ::user::interaction * FindWindowEx(oswindow hwndParent,oswindow hwndChildAfter,const char * lpszClass,const char * lpszWindow);
 
       virtual void get_time(struct timeval *p);
       virtual void set_env_var(const string & var,const string & value);

@@ -130,9 +130,6 @@ namespace aura
 
 
 
-      ptr_array < ::user::interaction > frames();
-      virtual void add_frame(::user::interaction * pwnd);
-      virtual void remove_frame(::user::interaction * pwnd);
 
       virtual void DoWaitCursor(int32_t nCode); // 0 => restore, 1=> begin, -1=> end
       virtual void ShowWaitCursor(bool bShow = true);

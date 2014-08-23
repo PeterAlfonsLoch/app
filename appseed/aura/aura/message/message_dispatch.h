@@ -78,8 +78,8 @@ namespace message
 
       virtual sp(::aura::application) calc_app();
 
-      static sp(::message::base) get_base(oswindow window,UINT uiMessage,WPARAM wparam,LPARAM lparam);
-      static sp(::message::base) get_base(LPMESSAGE lpmsg, oswindow window = NULL);
+      sp(::message::base) get_base(UINT uiMessage,WPARAM wparam,LPARAM lparam);
+      sp(::message::base) get_base(LPMESSAGE lpmsg);
 
 #ifdef LINUX
 

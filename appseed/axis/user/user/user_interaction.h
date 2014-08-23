@@ -614,6 +614,10 @@ namespace user
       virtual sp(::message::base) get_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
 
 
+      sp(::message::base) get_base(UINT uiMessage,WPARAM wparam,LPARAM lparam);
+      sp(::message::base) get_base(LPMESSAGE lpmsg);
+
+
       void transfer(timer_array & ta, ::user::interaction_impl * pwindow,interaction * pui);
 
 

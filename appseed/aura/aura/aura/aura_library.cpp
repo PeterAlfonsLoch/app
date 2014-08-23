@@ -498,14 +498,6 @@ namespace aura
    }
 
 
-   void library::on_create_view(::user::view_creator_data * pcreatordata)
-   {
-
-      UNREFERENCED_PARAMETER(pcreatordata);
-
-   }
-
-
    string library::get_root()
    {
 

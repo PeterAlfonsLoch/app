@@ -24,9 +24,6 @@ namespace aura
    {
    public:
 
-      os_data *                                    m_posdata;
-
-
       stridsp(type)                                m_typemap;
       spa(service_base)                            m_serviceptra;
       sp(base_factory)                             m_pfactory;
