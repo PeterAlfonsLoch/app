@@ -52,7 +52,6 @@ CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, LPMSG lpmsg);
 
 
 #include "windows_print_job.h"
-#include "windows_application.h"
 
 
 
