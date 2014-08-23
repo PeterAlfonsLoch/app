@@ -218,10 +218,6 @@ namespace aura
 
       m_bGudoNetCache = true;
 
-      ::draw2d::dib::static_initialize();
-
-      m_pschemaLayeredFrame = new ::user::schema_layered_frame;
-
       m_pthreadimpl.alloc(allocer());
 
       m_pthreadimpl->m_pthread = this;
