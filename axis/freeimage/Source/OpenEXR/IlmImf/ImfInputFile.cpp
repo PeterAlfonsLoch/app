@@ -287,8 +287,7 @@ InputFile::InputFile (const char fileName[], int numThreads):
     {
 	delete _data;
 
-        REPLACE_EXC (e, "Cannot read image file "
-			"\"" << fileName << "\". " << e);
+        REPLACE_EXC (e, "Cannot read image file \"" << fileName << "\". " << e);
         throw;
     }
     catch (...)

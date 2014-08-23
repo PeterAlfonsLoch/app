@@ -13,6 +13,20 @@ namespace file
    }
 
 
+   streambuf::streambuf(const char * lpszFileName,UINT nOpenFlags)
+   {
+
+      m_pfile = NULL;
+
+      if(!open(lpszFileName,nOpenFlags))
+      {
+
+         throw_file_exception(get_app(),::file::exception::type_generic,::GetLastError(), lpszFileName);
+
+      }
+
+   }
+
 
    streambuf::~streambuf()
    {

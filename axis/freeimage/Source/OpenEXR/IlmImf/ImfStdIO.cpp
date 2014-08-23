@@ -25,7 +25,7 @@ clearError ()
 
 
 bool
-checkError (istream &is, streamsize expected = 0)
+checkError(std::istream &is,::std::streamsize expected = 0)
 {
     if (!is)
     {
@@ -45,7 +45,7 @@ checkError (istream &is, streamsize expected = 0)
 
 
 void
-checkError (ostream &os)
+checkError(std::ostream &os)
 {
     if (!os)
     {
@@ -61,7 +61,7 @@ checkError (ostream &os)
 
 StdIFStream::StdIFStream (const char fileName[]):
     IStream (fileName),
-    _is (new ifstream (fileName, ios_base::binary)),
+    _is(new std::ifstream(fileName,::file::binary | ::file::mode_read)),
     _deleteStream (true)
 {
     if (!*_is)
@@ -72,7 +72,7 @@ StdIFStream::StdIFStream (const char fileName[]):
 }
 
     
-StdIFStream::StdIFStream (ifstream &is, const char fileName[]):
+StdIFStream::StdIFStream (std::ifstream &is, const char fileName[]):
     IStream (fileName),
     _is (&is),
     _deleteStream (false)
@@ -124,7 +124,7 @@ StdIFStream::clear ()
 
 StdOFStream::StdOFStream (const char fileName[]):
     OStream (fileName),
-    _os (new ofstream (fileName, ios_base::binary)),
+    _os (new std::ofstream (fileName, ::file::binary)),
     _deleteStream (true)
 {
     if (!*_os)
@@ -135,7 +135,7 @@ StdOFStream::StdOFStream (const char fileName[]):
 }
 
 
-StdOFStream::StdOFStream (ofstream &os, const char fileName[]):
+StdOFStream::StdOFStream(std::ofstream &os,const char fileName[]):
     OStream (fileName),
     _os (&os),
     _deleteStream (false)

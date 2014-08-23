@@ -43,17 +43,3 @@ bool simple_exception::get_error_message(string & str, PUINT pnHelpContext)
 
 
 
-verisimple_exception::verisimple_exception(const string & strMessage):
-element(::get_thread_app()),
-::call_stack(::get_thread_app())
-{
-   m_strMessage = strMessage;
-   printf(":verisimple(\"%s\")", strMessage.c_str());
-
-}
-
-
-
-verisimple_exception::~verisimple_exception()
-{
-}

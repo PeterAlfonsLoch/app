@@ -322,7 +322,7 @@ hufBuildEncTable
     // of the tree) are incremented by one.
     //
 
-    make_heap (&fHeap[0], &fHeap[nf], FHeapCompare());
+    std::make_heap (&fHeap[0], &fHeap[nf], FHeapCompare());
 
     AutoArray <Int64, HUF_ENCSIZE> scode;
     memset (scode, 0, sizeof (Int64) * HUF_ENCSIZE);
@@ -336,14 +336,14 @@ hufBuildEncTable
 	//
 
 	int mm = fHeap[0] - frq;
-	pop_heap (&fHeap[0], &fHeap[nf], FHeapCompare());
+	std::pop_heap (&fHeap[0], &fHeap[nf], FHeapCompare());
 	--nf;
 
 	int m = fHeap[0] - frq;
-	pop_heap (&fHeap[0], &fHeap[nf], FHeapCompare());
+	std::pop_heap (&fHeap[0], &fHeap[nf], FHeapCompare());
 
 	frq[m ] += frq[mm];
-	push_heap (&fHeap[0], &fHeap[nf], FHeapCompare());
+	std::push_heap (&fHeap[0], &fHeap[nf], FHeapCompare());
 
 	//
 	// The entries in scode are linked into lists with the

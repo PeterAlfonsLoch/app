@@ -126,8 +126,8 @@ int LibRaw_file_datastream::read(void * ptr,size_t size, size_t nmemb)
 #if defined(WIN32SECURECALLS) && (_MSC_VER < 1600)
     LR_STREAM_CHK(); return int(f->_Sgetn_s(static_cast<char*>(ptr), nmemb * size,nmemb * size) / size); 
 #else
-    //LR_STREAM_CHK(); return int(f->sgetn(static_cast<char*>(ptr), std::streamsize(nmemb * size)) / size); 
-    LR_STREAM_CHK(); return int(f->read(static_cast<char*>(ptr),std::streamsize(nmemb * size)) / size);
+    //LR_STREAM_CHK(); return int(f->sgetn(static_cast<char*>(ptr), streamsize(nmemb * size)) / size); 
+    LR_STREAM_CHK(); return int(f->read(static_cast<char*>(ptr),::std::streamsize(nmemb * size)) / size);
 #endif
 }
 

@@ -165,7 +165,8 @@ class DllDef  LibRaw_buffer_datastream : public LibRaw_abstract_datastream
 
   private:
     unsigned char *buf;
-    size_t   streampos,streamsize;
+    ::std::streampos   streampos;
+    ::std::streamsize streamsize;
 };
 
 class DllDef LibRaw_bigfile_datastream : public LibRaw_abstract_datastream

@@ -3,6 +3,7 @@
 
 #include "exception_call_stack.h"
 
+#include "exception_verisimple.h"
 
 #include "exception_exception.h"
 

@@ -35,12 +35,12 @@
 #endif
 
 /*
-  ISO C++ uses a 'std::streamsize' type to define counts.  This makes
+  ISO C++ uses a '::std::streamsize' type to define counts.  This makes
   it similar to, (but perhaps not the same as) size_t.
 
   The ::file::pos_type is used to represent stream positions as used
   by tellg(), tellp(), seekg(), and seekp().  This makes it similar to
-  (but perhaps not the same as) 'off_t'.  The ::file::streampos type
+  (but perhaps not the same as) 'off_t'.  The ::file::::std::streampos type
   is used for character streams, but is documented to not be an
   integral type anymore, so it should *not* be assigned to an integral
   type.
@@ -56,23 +56,23 @@
 
   Set read position
     basic_istream& basic_istream::seekg(::file::pos_type)
-    basic_istream& basic_istream::seekg(::file::off_type, ios_base::seekdir)
+    basic_istream& basic_istream::seekg(::file::off_type, ::file::seekdir)
 
   Read data
-    basic_istream& istream::read(char *str, streamsize count)
+    basic_istream& istream::read(char *str, ::std::streamsize count)
 
   Number of characters read in last unformatted read
-    streamsize istream::gcount();
+    ::std::streamsize istream::gcount();
 
   Obtain write position
     ::file::pos_type basic_ostream::tellp()
 
   Set write position
     basic_ostream& basic_ostream::seekp(::file::pos_type)
-    basic_ostream& basic_ostream::seekp(::file::off_type, ios_base::seekdir)
+    basic_ostream& basic_ostream::seekp(::file::off_type, ::file::seekdir)
 
   Write data
-    basic_ostream& ostream::write(const char *str, streamsize count)
+    basic_ostream& ostream::write(const char *str, ::std::streamsize count)
 */
 
 struct tiffis_data;
@@ -118,7 +118,7 @@ _tiffisReadProc(thandle_t fd, void* buf, tmsize_t size)
         tiffis_data	*data = reinterpret_cast<tiffis_data *>(fd);
 
         // Verify that type does not overflow.
-        std::streamsize request_size = size;
+        ::std::streamsize request_size = size;
         if (static_cast<tmsize_t>(request_size) != size)
           return static_cast<tmsize_t>(-1);
 
@@ -135,7 +135,7 @@ _tiffosWriteProc(thandle_t fd, void* buf, tmsize_t size)
 	::file::pos_type	pos = os->tellp();
 
         // Verify that type does not overflow.
-        std::streamsize request_size = size;
+        ::std::streamsize request_size = size;
         if (static_cast<tmsize_t>(request_size) != size)
           return static_cast<tmsize_t>(-1);
 

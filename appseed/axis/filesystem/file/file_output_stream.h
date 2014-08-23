@@ -18,6 +18,7 @@ namespace file
 
       
       output_stream();
+      output_stream(const char * lpszFileName, uint32_t nOpenFlags, sp(::axis::application) papp = ::get_thread_app());
       output_stream(stream_buffer * pwriter);
       output_stream(const output_stream & pwriter);
       virtual ~output_stream();

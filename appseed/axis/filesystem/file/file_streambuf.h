@@ -15,6 +15,7 @@ namespace file
 
 
       streambuf();
+      streambuf(const char * lpszFileName,UINT nOpenFlags);
       virtual ~streambuf();
 
 

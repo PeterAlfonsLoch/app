@@ -1287,18 +1287,74 @@ namespace std
       template < typename T >
       T abs(T t)
       { 
-         if(t >= ::numeric_info::get_null_value < T >()) 
-            return t; 
+         if(t < ::numeric_info< T >::null()) 
+            return -t; 
          else 
-            return -t;
+            return t;
       }
 
 
       using streamsize = ::file_size;
+      using streampos = ::file_position;
+      using streamoff = ::file_offset;
 
       template <class T> const T& min(const T& a,const T& b) { return !(a > b) ? a : b; }
       template <class T> const T& max(const T& a,const T& b) { return !(a < b) ? a : b; }
 
+      template <class RandomAccessIterator>
+      void make_heap(RandomAccessIterator first,RandomAccessIterator last)
+      {
+         ::lemon::make_heap(first,last);
+      }
+
+      template <class RandomAccessIterator,class Compare>
+      void make_heap(RandomAccessIterator first,RandomAccessIterator last, Compare comp)
+      {
+         ::lemon::make_heap(first,last, comp);
+      }
+
+      template <class RandomAccessIterator,class Compare>
+      void pop_heap(RandomAccessIterator first,RandomAccessIterator last)
+      {
+         ::lemon::pop_heap(first,last);
+      }
+
+      template <class RandomAccessIterator,class Compare>
+      void pop_heap(RandomAccessIterator first,RandomAccessIterator last,Compare comp)
+      {
+         ::lemon::pop_heap(first,last,comp);
+      }
+
+      template <class RandomAccessIterator,class Compare>
+      void push_heap(RandomAccessIterator first,RandomAccessIterator last)
+      {
+         ::lemon::push_heap(first,last);
+      }
+
+      template <class RandomAccessIterator,class Compare>
+      void push_heap(RandomAccessIterator first,RandomAccessIterator last,Compare comp)
+      {
+         ::lemon::push_heap(first,last, comp);
+      }
+
+      template <class RandomAccessIterator>
+      void sort_heap(RandomAccessIterator first,RandomAccessIterator last)
+      {
+         ::lemon::sort_heap(first,last);
+      }
+
+      template <class RandomAccessIterator,class Compare>
+      void sort_heap(RandomAccessIterator first,RandomAccessIterator last,Compare comp)
+      {
+         ::lemon::sort_heap(first,last,comp);
+      }
+
+      template <class T> void swap(T& a,T& b)
+      {
+         T c(a); a=b; b=c;
+      }
+
+      template < class T > T sqrt(const T & t) { return ::sqrt(t);  }
 
 }
 

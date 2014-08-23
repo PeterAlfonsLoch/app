@@ -3447,6 +3447,9 @@ copy Source\FreeImage.h Dist
     <None Include="Source\LibTIFF4\tif_config.h.in" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\appseed\axis\axis.vcxproj">
+      <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\zlib\axiszlib.vcxproj">
       <Project>{8fd826f8-3739-44e6-8cc8-997122e53b8d}</Project>
     </ProjectReference>

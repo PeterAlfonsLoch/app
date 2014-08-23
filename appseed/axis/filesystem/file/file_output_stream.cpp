@@ -11,6 +11,25 @@ namespace file
    }
 
 
+   output_stream::output_stream(const char * lpszFileName, uint32_t nOpenFlags, sp(::axis::application) papp)
+   {
+
+      if(papp == NULL)
+      {
+
+         m_spbuffer = canew(::file::streambuf(lpszFileName,nOpenFlags | ::file::mode_write));
+
+      }
+      else
+      {
+
+         m_spbuffer = App(papp).file_get_file(lpszFileName,nOpenFlags | ::file::mode_write);
+
+      }
+
+   }
+
+
    output_stream::output_stream(stream_buffer * pwriter)
    {
 

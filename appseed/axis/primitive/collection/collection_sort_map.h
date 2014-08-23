@@ -1162,28 +1162,23 @@ void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::erase(it
    if(first.m_pmap != this || last.m_pmap != this)
       return;
 
-   index iFirst;
+   node * pnode = first.m_pnode;
 
-   if(first.m_pnode == (node *) (uint_ptr) (-1))
-      iFirst = 0;
-   else
-      iFirst = m_ptra.find_first(first.m_pnode);
+   node * pnodeNext;
 
-   if(iFirst < 0)
-      return;
+   while(pnode != NULL)
+   {
 
-   index iLast;
+      pnodeNext = next(pnode);
 
-   if(last.m_pnode == NULL)
-      iLast = m_ptra.get_size();
-   else
-      iLast = m_ptra.find_first(first.m_pnode);
+      remove_node(pnode);
 
-   if(iLast < 0)
-      return;
+      if(pnode == last.m_pnode)
+         break;
 
-   while(iLast-- > iFirst)
-      delete m_ptra.pop();
+      pnode = pnodeNext;
+
+   }
 
 }
 
@@ -1218,9 +1213,18 @@ void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::get_next
 
 }
 
+template < class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class COMPARE,bool m_bMultiKey >
+const typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node*
+sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::next(const typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node * pnode) const
+{
+
+   return ((sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey > * ) this)->next(pnode);
+}
+
+
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
-const typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::node*
-   sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::next(const typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::node * pnode) const
+typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::node*
+   sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::next(const typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::node * pnode) 
 {
 
    if(pnode->right != NULL)
@@ -1267,6 +1271,67 @@ const typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >
    }
 
    return pnodeNext;
+
+}
+
+template < class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class COMPARE,bool m_bMultiKey >
+const typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node*
+sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::prev(const typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node * pnode) const
+{
+
+   return ((sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey > *) this)->prev(pnode);
+}
+
+
+template < class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class COMPARE,bool m_bMultiKey >
+typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node*
+sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::prev(const typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node * pnode)
+{
+
+   if(pnode->right != NULL)
+      return pnode->left->max();
+
+   node * pnodePrev = NULL;
+
+   if(m_bMultiKey)
+   {
+
+      pnodePrev = equally_keyed_prev_node(pnode);
+
+      if(pnodePrev != NULL)
+         return pnodePrev;
+
+   }
+
+   node * pnodeRoot = m_pnode;
+
+   while(pnodeRoot != NULL)
+   {
+
+      if(compare(*pnodeRoot,*pnode))
+      {
+
+         pnodePrev = pnodeRoot;
+
+         pnodeRoot = pnodeRoot->right;
+
+      }
+      else if(compare(*pnode,*pnodeRoot))
+      {
+
+         pnodeRoot = pnodeRoot->left;
+
+      }
+      else
+      {
+
+         break;
+
+      }
+
+   }
+
+   return pnodePrev;
 
 }
 

@@ -50,10 +50,12 @@ StringVectorAttribute::readValueFrom (IStream &is, int size, int version)
        read += Xdr::size<int>();       
 
        std::string str;
-       str.resize (strSize);
-  
-       Xdr::read<StreamIO> (is, &str[0], strSize);
+
+       Xdr::read<StreamIO>(is,str.GetBufferSetLength(strSize),strSize);
+
        read += strSize;
+
+       str.ReleaseBuffer(strSize);
 
        _value.push_back (str);
     }

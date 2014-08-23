@@ -1797,6 +1797,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\exception\exception_trap.h" />
     <ClInclude Include="axis\exception\exception_unhandled_report.h" />
     <ClInclude Include="axis\exception\exception_user.h" />
+    <ClInclude Include="axis\exception\exception_verisimple.h" />
     <ClInclude Include="axis\exception\exception_void_implementation.h" />
     <ClInclude Include="axis\message\message.h" />
     <ClInclude Include="axis\message\message_base.h" />
@@ -2908,6 +2909,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\axis\axis_session_interface.cpp" />
     <ClCompile Include="axis\axis\axis_static_start.cpp" />
     <ClCompile Include="axis\exception\exception_parsing.cpp" />
+    <ClCompile Include="axis\exception\exception_verisimple.cpp" />
     <ClCompile Include="axis\message\message.cpp" />
     <ClCompile Include="axis\message\message_base.cpp" />
     <ClCompile Include="axis\message\message_dispatch.cpp" />

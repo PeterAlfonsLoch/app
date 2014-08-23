@@ -190,16 +190,16 @@ half::convert (int i)
 // Stream I/O operators
 //---------------------
 
-ostream &
-operator << (ostream &os, half h)
+std::ostream &
+operator << (std::ostream &os,half h)
 {
     os << float (h);
     return os;
 }
 
 
-istream &
-operator >> (istream &is, half &h)
+std::istream &
+operator >> (std::istream &is,half &h)
 {
     float f;
     is >> f;
@@ -214,7 +214,7 @@ operator >> (istream &is, half &h)
 //---------------------------------------
 
 void
-printBits (ostream &os, half h)
+printBits(std::ostream &os,half h)
 {
     unsigned short b = h.bits();
 
@@ -229,7 +229,7 @@ printBits (ostream &os, half h)
 
 
 void
-printBits (ostream &os, float f)
+printBits(std::ostream &os,float f)
 {
     half::uif x;
     x.f = f;
