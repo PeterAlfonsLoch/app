@@ -156,13 +156,6 @@ namespace aura
       if(!::aura::application::process_initialize())
          return false;
 
-      m_spuser = create_user();
-
-      if(m_spuser == NULL)
-         return false;
-
-      m_spuser->construct(this);
-
       return true;
 
    }
