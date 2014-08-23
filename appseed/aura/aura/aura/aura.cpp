@@ -43,26 +43,26 @@ string_map < INT_PTR, INT_PTR > & __library()
 
 
 
-int g_iAxisRefCount = 0;
+int g_iAuraRefCount = 0;
 
 
-CLASS_DECL_AURA int get_axis_init()
+CLASS_DECL_AURA int get_aura_init()
 {
 
-   return g_iAxisRefCount;
+   return g_iAuraRefCount;
 
 }
 
 
-CLASS_DECL_AURA int_bool defer_axis_init()
+CLASS_DECL_AURA int_bool defer_aura_init()
 {
 
-   g_iAxisRefCount++;
+   g_iAuraRefCount++;
 
-   if(g_iAxisRefCount > 1)
+   if(g_iAuraRefCount > 1)
       return TRUE;
 
-   if(!axis_init())
+   if(!aura_init())
       return FALSE;
 
    return TRUE;
@@ -70,15 +70,15 @@ CLASS_DECL_AURA int_bool defer_axis_init()
 }
 
 
-CLASS_DECL_AURA int_bool defer_axis_term()
+CLASS_DECL_AURA int_bool defer_aura_term()
 {
 
-   g_iAxisRefCount--;
+   g_iAuraRefCount--;
 
-   if(g_iAxisRefCount >= 1)
+   if(g_iAuraRefCount >= 1)
       return TRUE;
 
-   axis_term();
+   aura_term();
 
    return TRUE;
 
@@ -86,12 +86,12 @@ CLASS_DECL_AURA int_bool defer_axis_term()
 
 
 
-bool axis_init()
+bool aura_init()
 {
 
    ::aura::static_start::init();
 
-   if(!__node_axis_pre_init())
+   if(!__node_aura_pre_init())
       return false;
 
    //::aura::static_start::init();
@@ -100,14 +100,12 @@ bool axis_init()
 
    ::multithreading::init_multithreading();
 
-   ::user::init_windowing();
-
    ::os_thread::s_pmutex = new mutex();
 
    ::os_thread::s_pptra = new comparable_raw_array < os_thread * >::type();
 
 
-   if(!__node_axis_pos_init())
+   if(!__node_aura_pos_init())
       return false;
 
    return true;
@@ -115,12 +113,12 @@ bool axis_init()
 }
 
 
-bool axis_term()
+bool aura_term()
 {
 
    __wait_threading_count(::millis((5000) * 8));
 
-   __node_axis_pre_term();
+   __node_aura_pre_term();
 
    ::user::term_windowing();
 
@@ -128,7 +126,7 @@ bool axis_term()
 
    __term_threading_count();
 
-   __node_axis_pos_term();
+   __node_aura_pos_term();
 
    ::aura::static_start::term();
 

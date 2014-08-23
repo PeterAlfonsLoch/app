@@ -75,7 +75,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{73A245F9-C92F-4487-AEF7-CB0531F665BD}</ProjectGuid>
+    <ProjectGuid>{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>aura</RootNamespace>
@@ -3945,7 +3945,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="aura\aura\aura_cmdtarg.cpp" />
     <ClCompile Include="aura\aura\aura_command_target.cpp" />
     <ClCompile Include="aura\aura\aura_conv.cpp" />
-    <ClCompile Include="aura\aura\aura_core_copydesk.cpp" />
     <ClCompile Include="aura\aura\aura_core_os.cpp" />
     <ClCompile Include="aura\aura\aura_cpu_architecture.cpp" />
     <ClCompile Include="aura\aura\aura_cregexp.cpp" />

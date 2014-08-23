@@ -1091,9 +1091,6 @@
     <ClInclude Include="user\user\user_server.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_str.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_text_interface.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -1727,6 +1724,9 @@
     <ClInclude Include="filesystem\file\file_edit_buffer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\user_str_context.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -2341,9 +2341,6 @@
     <ClCompile Include="user\user\user_server.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_str.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_text_interface.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -2851,13 +2848,13 @@
     <ClCompile Include="filesystem\file\file_edit_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\user_str_context.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
       <Filter>Header Files\multithreading</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

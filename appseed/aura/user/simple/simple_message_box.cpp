@@ -33,7 +33,7 @@ CLASS_DECL_AURA int32_t aura_simple_message_box(oswindow interaction_impl,const 
 
 
 extern "C"
-CLASS_DECL_AURA int32_t set_simple_message_box(int32_t(*pfn)(oswindow,const char *,const char *,uint32_t));
+CLASS_DECL_AURA int32_t set_simple_message_box(int32_t(*pfn)(oswindow,const char *,const char *,uint32_t))
 {
 
    g_pfn_simple_message_box = pfn;

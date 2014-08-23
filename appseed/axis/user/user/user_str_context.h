@@ -197,6 +197,9 @@ namespace user
       }
 
 
+      virtual bool match(const cregexp_util & u,string_array & stra,const char * psz,id pszExp,id pszRoot);
+
+
    };
 
 

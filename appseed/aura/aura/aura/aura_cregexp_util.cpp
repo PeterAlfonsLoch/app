@@ -11,26 +11,6 @@ cregexp_util::~cregexp_util()
 
 }
 
-bool cregexp_util::match(::user::str_context * pcontext, string_array & stra, const char * psz,  id pszExp, id pszRoot)
-{
-   stringa straCandidate;
-   pcontext->get(straCandidate, pszRoot);
-   for(int32_t i = 0; i < straCandidate.get_count(); i++)
-   {
-      string strCandidate = straCandidate[i];
-      strCandidate.replace("-", "\\-");
-      string strExp(pszExp);
-      strExp.replace("%1", strCandidate);
-      stringa straResult;
-      if(match(straResult, psz, strExp, true, 2) > 0)
-      {
-         stra = straResult;
-         return true;
-      }
-   }
-   return false;
-}
-
 
 index cregexp_util::match(string_array & stra, const char * lpcsz, cregexp * re, strsize iSize)
 {
