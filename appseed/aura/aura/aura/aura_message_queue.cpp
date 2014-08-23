@@ -56,3 +56,12 @@ bool message_queue::is_initialized()
 
 }
 
+
+bool message_queue::message_queue_set_timer(uint_ptr uiId,DWORD dwMillis)
+{
+
+   throw interface_only_exception(get_app());
+
+   return false;
+
+}

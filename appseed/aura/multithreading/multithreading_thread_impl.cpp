@@ -1180,7 +1180,7 @@ bool thread_impl::initialize_message_queue()
    if(m_spuiptra.is_null())
    {
 
-      m_spuiptra = canew(ptr_array < ::user::interaction >));
+      m_spuiptra = canew(ptr_array < ::user::interaction >);
 
    }
 
@@ -1222,7 +1222,7 @@ bool thread_impl::initialize_message_queue()
 
    sl.unlock();
 
-   m_queue.SetTimer((uint_ptr)-2,iMin,NULL);
+   m_queue.message_queue_set_timer((uint_ptr)-2,iMin);
 
    return true;
 
