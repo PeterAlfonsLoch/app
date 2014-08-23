@@ -2687,9 +2687,6 @@
     <ClInclude Include="primitive\data\data_item.h">
       <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\data_simple_item.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
     <ClInclude Include="aura\os\cross\windows\e.h">
       <Filter>Header Files\aura\os\cross\windows</Filter>
     </ClInclude>
@@ -4096,9 +4093,6 @@
     <ClCompile Include="primitive\data\data_item.cpp">
       <Filter>Source Files\primitive\data</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\data_simple_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_serializable.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -4136,9 +4130,6 @@
     </None>
     <None Include="primitive\primitive_factory_impl.inl">
       <Filter>Header Files\primitive</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

@@ -3439,7 +3439,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\data\data_data_container.h" />
     <ClInclude Include="primitive\data\data_data_listener.h" />
     <ClInclude Include="primitive\data\data_item.h" />
-    <ClInclude Include="primitive\data\data_simple_item.h" />
     <ClInclude Include="primitive\datetime\datetime_duration.h" />
     <ClInclude Include="primitive\datetime\datetime_time.h" />
     <ClInclude Include="primitive\datetime\datetime_value.h" />
@@ -4469,7 +4468,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="primitive\data\data_data_container.cpp" />
     <ClCompile Include="primitive\data\data_data_listener.cpp" />
     <ClCompile Include="primitive\data\data_item.cpp" />
-    <ClCompile Include="primitive\data\data_simple_item.cpp" />
     <ClCompile Include="primitive\datetime\datetime_duration.cpp" />
     <ClCompile Include="primitive\datetime\datetime_time.cpp" />
     <ClCompile Include="primitive\datetime\datetime_value.cpp" />
