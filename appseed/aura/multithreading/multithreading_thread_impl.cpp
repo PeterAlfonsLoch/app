@@ -1617,7 +1617,7 @@ void thread_impl::thread_impl_delete()
 bool thread_impl::finalize()
 {
    
-   m_queue.DestroyWindow();
+   m_queue.message_queue_destroy();
 
 //   destroy_message_queue();
 
