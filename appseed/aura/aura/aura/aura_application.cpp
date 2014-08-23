@@ -3079,11 +3079,22 @@ namespace aura
    ::user::interaction * application::get_parent(::user::interaction * pui)
    {
 
-      UNREFERENCED_PARAMETER(pbase);
+      UNREFERENCED_PARAMETER(pui);
 
       return NULL;
 
    }
+
+   bool application::enable_window(::user::interaction * pui,bool bEnable)
+   {
+
+      UNREFERENCED_PARAMETER(pui);
+      UNREFERENCED_PARAMETER(bEnable);
+
+      return false;
+
+   }
+
 
 
 } // namespace aura
