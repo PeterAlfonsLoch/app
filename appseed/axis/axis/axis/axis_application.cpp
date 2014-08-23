@@ -3418,6 +3418,14 @@ namespace axis
    }
 
 
+   void application::set_thread(::user::interaction * pui,::thread * pthread)
+   {
+
+      pui->m_pthread = pthread;
+
+   }
+
+
 } // namespace axis
 
 
