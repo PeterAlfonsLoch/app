@@ -64,8 +64,6 @@ namespace aura
         virtual bool stop_service(sp(::aura::application) papp);
 
 
-        virtual bool resolve_link(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional = NULL);
-
         DECLSPEC_NO_RETURN void raise_exception(uint32_t dwExceptionCode, uint32_t dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
 
 

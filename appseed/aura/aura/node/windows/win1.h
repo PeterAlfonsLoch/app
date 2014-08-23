@@ -60,22 +60,6 @@ CLASS_DECL_AURA int32_t c_cdecl __new_handler(size_t nSize);
 void CLASS_DECL_AURA __abort();
 
 
-// helpers for registering your own WNDCLASSes
-CLASS_DECL_AURA const char * __register_window_class(sp(::aura::application) papp, UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
-
-CLASS_DECL_AURA bool __register_class(WNDCLASS* lpWndClass);
-
-
-CLASS_DECL_AURA LRESULT CALLBACK __window_procedure(oswindow oswindow, UINT nMsg, WPARAM wParam, LPARAM lParam);
-CLASS_DECL_AURA WNDPROC __get_window_procedure();
-#define __window_procedure (*__get_window_procedure())
-
-typedef void (__MSG_CALL ::user::interaction_impl::*__PMSGW)();
-   // like '__PMSG' but for interaction_impl derived classes only
-
-typedef void (__MSG_CALL thread::*__PMSGT)();
-   // like '__PMSG' but for thread-derived classes only
-
 
 
 

@@ -18,12 +18,6 @@ namespace aura
       virtual ~session_interface();
 
 
-      virtual ::count get_monitor_count();
-      virtual bool  get_monitor_rect(index iMonitor,LPRECT lprect);
-
-
-      //virtual ::visual::cursor * get_cursor();
-      //virtual ::visual::cursor * get_default_cursor();
 
 
 

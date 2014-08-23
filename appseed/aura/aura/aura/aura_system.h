@@ -24,36 +24,6 @@ namespace aura
    {
    public:
 
-#if defined METROWIN && defined(__cplusplus_winrt)
-
-      class os_data
-      {
-      public:
-
-         ::user::interaction *                      m_pui;
-         ::aura::system_window ^                      m_pwindow;
-
-
-      };
-
-#elif defined(APPLE_IOS)
-      class os_data
-      {
-      public:
-
-         ::user::interaction *                      m_pui;
-
-
-      };
-
-#else
-
-      class os_data;
-
-#endif
-
-
-      ::user::interaction *                      m_psimpleui;
       os_data *                                    m_posdata;
 
 
@@ -111,9 +81,6 @@ namespace aura
       int32_t                                      m_nCmdShow;
       size_t                                       m_nSafetyPoolSize;      // ideal size
       ::html::html *                               m_phtml; // only defined  in core;
-
-      ::user::schema *                             m_pschemaLayeredFrame;
-
 
 
 
@@ -312,8 +279,6 @@ namespace aura
          return get_enum_name(System.type_info < TYPE >(),(int32_t)e);
       }
 
-      virtual sp(::user::document) place_hold(::user::interaction * pui);
-
       virtual sp(::aura::session) query_session(index iEdge);
 
       virtual bool initialize_log(const char * pszId);
@@ -326,32 +291,6 @@ namespace aura
       virtual bool assert_running_global(const char * pszAppName,const char * pszId = NULL);
       virtual bool assert_running_local(const char * pszAppName,const char * pszId = NULL);
 
-
-      virtual bool initialize_twf();
-
-
-      void enum_display_monitors();
-
-#if defined(WINDOWS)
-      static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor,LPARAM dwData);
-      void monitor_enum(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor);
-#endif
-
-      virtual index get_main_monitor(LPRECT lprect = NULL);
-      virtual ::count get_monitor_count();
-      virtual bool  get_monitor_rect(index iMonitor,LPRECT lprect);
-      virtual ::count get_desk_monitor_count();
-      virtual bool  get_desk_monitor_rect(index iMonitor,LPRECT lprect);
-
-      virtual index get_ui_wkspace(::user::interaction * pui);
-      virtual index get_main_wkspace(LPRECT lprect = NULL);
-      virtual ::count get_wkspace_count();
-      virtual bool  get_wkspace_rect(index iWkspace,LPRECT lprect);
-      virtual ::count get_desk_wkspace_count();
-      virtual bool  get_desk_wkspace_rect(index iWkspace,LPRECT lprect);
-
-      virtual ::user::interaction * get_active_guie();
-      virtual ::user::interaction * get_focus_guie();
 
 
       virtual ::count get_application_count();

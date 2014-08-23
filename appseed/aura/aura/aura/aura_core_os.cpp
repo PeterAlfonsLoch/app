@@ -255,17 +255,6 @@ namespace aura
    }
 
 
-   bool os::resolve_link(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional)
-   {
-
-
-      throw interface_only_exception(get_app());
-
-
-      return false;
-
-   }
-
 
    bool os::is_remote_session()
    {

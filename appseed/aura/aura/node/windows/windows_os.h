@@ -1,8 +1,6 @@
 #pragma once
 
 
-bool CLASS_DECL_AURA vfxResolveShortcut(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional = NULL);
-
 
 namespace windows
 {

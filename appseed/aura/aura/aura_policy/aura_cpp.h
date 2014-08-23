@@ -156,9 +156,13 @@ class image_list;
 namespace user
 {
 
+   
    class interaction;
+   class document;
+   class frame_window;
 
-}
+
+} // namespace user
 
 
 
@@ -671,8 +675,8 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura/primitive/data/data_data_listener.h"
 #include "aura/primitive/data/data_data_container.h"
 #include "aura/primitive/data/data_item.h"
-#include "aura/primitive/data/data_tree_item.h"
-#include "aura/primitive/data/data_tree.h"
+//#include "aura/primitive/data/data_tree_item.h"
+//#include "aura/primitive/data/data_tree.h"
 #include "aura/primitive/data/data_simple_item.h"
 
 #include "aura/primitive/primitive_edit.h"
@@ -818,7 +822,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura_cregexp_util.h"
 
 #include "user/colorertake5/colorertake5.h"
-#include "filesystem/file/file_edit_buffer.h"
+//#include "filesystem/file/file_edit_buffer.h"
 
 
 

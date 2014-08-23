@@ -1328,18 +1328,6 @@
     <ClInclude Include="aura\aura\aura_auto_pointer.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_c.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aura_c_cpp.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aura_c_objc.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aura_c_winrt.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura_common.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
@@ -2825,15 +2813,6 @@
     <ClInclude Include="primitive\data\data_simple_item.h">
       <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\data_tree.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\data_tree_item.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_edit_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
     <ClInclude Include="user\simple\simple_scroll_bar.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
@@ -3010,6 +2989,15 @@
     </ClInclude>
     <ClInclude Include="aura\aura_policy\aura_policy_winrt.h">
       <Filter>Header Files\aura\aura_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\aaa_want_to_remove_data_tree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\aaa_want_to_remove_data_tree_item.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\aaa_want_to_remove_file_edit_buffer.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4270,9 +4258,6 @@
     <ClCompile Include="aura\node\android\android_window.cpp">
       <Filter>Source Files\aura\node\android</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\android\android_window_draw.cpp">
-      <Filter>Source Files\aura\node\android</Filter>
-    </ClCompile>
     <ClCompile Include="aura\node\android\android1.cpp">
       <Filter>Source Files\aura\node\android</Filter>
     </ClCompile>
@@ -4405,9 +4390,6 @@
     <ClCompile Include="primitive\data\data_tree_item.cpp">
       <Filter>Source Files\primitive\data</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_edit_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="user\simple\simple_scroll_bar.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
@@ -4486,6 +4468,15 @@
     <ClCompile Include="aura\policy\policy_c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\user_timer_item.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_timer_array.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\aaa_want_to_remove_file_edit_buffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -4493,18 +4484,6 @@
     </None>
     <None Include="primitive\primitive_factory_impl.inl">
       <Filter>Header Files\primitive</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

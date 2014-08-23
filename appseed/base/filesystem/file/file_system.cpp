@@ -1615,9 +1615,15 @@ restart:
    }
 
 
+   bool system::resolve_link(string & strTarget,const char * pszSource,sp(::user::interaction) puiMessageParentOptional)
+   {
+
+      return vfxResolveShortcut(strTarget,pszSource,puiMessageParentOptional);
+
+   }
 
 
-} // namespace core
+} // namespace file
 
 
 

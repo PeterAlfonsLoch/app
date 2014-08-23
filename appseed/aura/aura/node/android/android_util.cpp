@@ -70,23 +70,7 @@ oswindow CLASS_DECL_lnx _AfxChildWindowFromPoint(oswindow hWnd, POINT pt)
    return NULL;    // not found
 }
 
-void CLASS_DECL_lnx AfxSetWindowText(::user::interaction * hWndCtrl, const char * lpszNew)
-{
-   hWndCtrl->SetWindowText(lpszNew);
-   /*ENSURE(hWndCtrl);
-   ENSURE(lpszNew);
 
-   int32_t nNewLen = lstrlen(lpszNew);
-   char szOld[256]="";
-   // fast check to see if text really changes (reduces flash in controls)
-   if (nNewLen > _countof(szOld) ||
-      ::GetWindowText(hWndCtrl, szOld, _countof(szOld)) != nNewLen ||
-      lstrcmp(szOld, lpszNew) != 0)
-   {
-      // change it
-      ::SetWindowText(hWndCtrl, lpszNew);
-   }*/
-//}
 
 /*
 void CLASS_DECL_lnx AfxDeleteObject(HGDIOBJ* pObject)

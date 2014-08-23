@@ -614,6 +614,7 @@ namespace user
       virtual sp(::message::base) get_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
 
 
+      void transfer(timer_array & ta, ::user::interaction_impl * pwindow,interaction * pui);
 
 
    };

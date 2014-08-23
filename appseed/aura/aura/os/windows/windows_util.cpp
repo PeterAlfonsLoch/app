@@ -70,22 +70,3 @@ oswindow CLASS_DECL_AURA __child_window_from_point(oswindow oswindow, POINT pt)
    return NULL;    // not found
 }
 
-void CLASS_DECL_AURA __set_window_text(::user::interaction * oswindow_Ctrl, const char * lpszNew)
-{
-   oswindow_Ctrl->SetWindowText(lpszNew);
-   /*ENSURE(oswindow_Ctrl);
-   ENSURE(lpszNew);
-
-   int32_t nNewLen = lstrlen(lpszNew);
-   char szOld[256]="";
-   // fast check to see if text really changes (reduces flash in controls)
-   if (nNewLen > _countof(szOld) ||
-      ::GetWindowText(oswindow_Ctrl, szOld, _countof(szOld)) != nNewLen ||
-      lstrcmp(szOld, lpszNew) != 0)
-   {
-      // change it
-      ::SetWindowText(oswindow_Ctrl, lpszNew);
-   }*/
-}
-
-

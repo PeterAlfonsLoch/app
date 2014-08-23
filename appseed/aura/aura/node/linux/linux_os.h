@@ -51,8 +51,6 @@ namespace linux
       virtual bool start_service(sp(::aura::application) papp);
       virtual bool stop_service(sp(::aura::application) papp);
 
-      virtual bool resolve_link(string & strTarget, const char * pszSource, sp(::user::interaction) puiMessageParentOptional = NULL);
-
       void raise_exception( DWORD dwExceptionCode, DWORD dwExceptionFlags);
 
       virtual bool is_remote_session();

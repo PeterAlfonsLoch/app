@@ -75,7 +75,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}</ProjectGuid>
+    <ProjectGuid>{73A245F9-C92F-4487-AEF7-CB0531F665BD}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>aura</RootNamespace>
@@ -1641,7 +1641,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\aura\aura_application_signal_details.h" />
     <ClInclude Include="aura\aura\aura_async.h" />
     <ClInclude Include="aura\aura\aura_auto_pointer.h" />
-    <ClInclude Include="aura\aura\aura_c.h" />
     <ClInclude Include="aura\aura\aura_command.h" />
     <ClInclude Include="aura\aura\aura_command_target.h" />
     <ClInclude Include="aura\aura\aura_common.h" />
@@ -1651,9 +1650,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\aura\aura_cpu_architecture.h" />
     <ClInclude Include="aura\aura\aura_cregexp.h" />
     <ClInclude Include="aura\aura\aura_cregexp_util.h" />
-    <ClInclude Include="aura\aura\aura_c_cpp.h" />
-    <ClInclude Include="aura\aura\aura_c_objc.h" />
-    <ClInclude Include="aura\aura\aura_c_winrt.h" />
     <ClInclude Include="aura\aura\aura_debug.h" />
     <ClInclude Include="aura\aura\aura_definition.h" />
     <ClInclude Include="aura\aura\aura_departament.h" />
@@ -2875,7 +2871,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="filesystem\file\file_circular_buffer.h" />
     <ClInclude Include="filesystem\file\file_composite.h" />
     <ClInclude Include="filesystem\file\file_dir.h" />
-    <ClInclude Include="filesystem\file\file_edit_buffer.h" />
+    <ClInclude Include="filesystem\file\aaa_want_to_remove_file_edit_buffer.h" />
     <ClInclude Include="filesystem\file\file_exception.h" />
     <ClInclude Include="filesystem\file\file_folder_watch.h" />
     <ClInclude Include="filesystem\file\file_input_stream.h" />
@@ -3257,20 +3253,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="aura\node\android\android_window_draw.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="aura\node\ansios\ansios_thread_impl.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -3622,8 +3604,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\data\data_data_listener.h" />
     <ClInclude Include="primitive\data\data_item.h" />
     <ClInclude Include="primitive\data\data_simple_item.h" />
-    <ClInclude Include="primitive\data\data_tree.h" />
-    <ClInclude Include="primitive\data\data_tree_item.h" />
+    <ClInclude Include="primitive\data\aaa_want_to_remove_data_tree.h" />
+    <ClInclude Include="primitive\data\aaa_want_to_remove_data_tree_item.h" />
     <ClInclude Include="primitive\datetime\datetime_duration.h" />
     <ClInclude Include="primitive\datetime\datetime_time.h" />
     <ClInclude Include="primitive\datetime\datetime_value.h" />
@@ -4000,7 +3982,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="database\database_user_interaction.cpp" />
     <ClCompile Include="filesystem\file\file.cpp" />
     <ClCompile Include="filesystem\file\file_c.cpp" />
-    <ClCompile Include="filesystem\file\file_edit_buffer.cpp" />
+    <ClCompile Include="filesystem\file\aaa_want_to_remove_file_edit_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_serializable.cpp" />
     <ClCompile Include="filesystem\file\file_streambuf.cpp" />
     <ClCompile Include="framework.cpp">
@@ -4129,6 +4111,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\simple_ui\simple_ui_style.h" />
     <ClInclude Include="user\simple_ui\simple_ui_tap.h" />
     <ClInclude Include="user\user\user_timer_array.h" />
+    <ClCompile Include="user\user\user_timer_item.cpp">
+      <FileType>CppHeader</FileType>
+    </ClCompile>
     <ClInclude Include="user\user\user_timer_item.h" />
     <ClInclude Include="version.config.h" />
     <ClInclude Include="version.h" />
@@ -5271,6 +5256,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\simple_ui\simple_ui_password.cpp" />
     <ClCompile Include="user\simple_ui\simple_ui_style.cpp" />
     <ClCompile Include="user\simple_ui\simple_ui_tap.cpp" />
+    <ClCompile Include="user\user\user_timer_array.cpp" />
     <ClCompile Include="version.cpp" />
   </ItemGroup>
   <ItemGroup>

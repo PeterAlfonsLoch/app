@@ -41,7 +41,7 @@ namespace windows
       virtual HINSTANCE GetHinstance();
       bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
-      virtual sp(::user::document) _001OpenDocumentFile(var varFile);
+      virtual ::user::document *  _001OpenDocumentFile(var varFile);
       virtual void _001OnFileNew();
 
 
@@ -108,8 +108,6 @@ namespace windows
 
       virtual void ShowWaitCursor(bool bShow = true);
 
-
-      virtual sp(::user::printer) get_printer(const char * pszDeviceName);
 
       virtual string draw2d_get_default_library_name();
       virtual string multimedia_audio_get_default_library_name();

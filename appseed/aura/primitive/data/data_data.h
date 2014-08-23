@@ -89,7 +89,7 @@ namespace data
 
       mutex  *                               m_pmutex;
 
-      sp(::user::document)              m_pdocument;
+      ::user::document *                     m_pdocument;
 
 
       data(sp(::aura::application) papp);

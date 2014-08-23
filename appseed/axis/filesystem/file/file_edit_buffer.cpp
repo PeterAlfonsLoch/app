@@ -23,7 +23,7 @@ namespace file
    }
 
 
-   file_position edit_buffer::Item::get_position(bool bForward) {UNREFERENCED_PARAMETER(bForward); return m_dwPosition;};
+   file_position edit_buffer::Item::get_position(bool bForward) { UNREFERENCED_PARAMETER(bForward); return m_dwPosition; };
 
    BYTE * edit_buffer::Item::get_data() { return NULL; }
    edit_buffer::EItemType edit_buffer::Item::get_type() { return ItemTypeUndefined; }
@@ -332,20 +332,20 @@ namespace file
    }
 
 
-   edit_buffer::edit_buffer(sp(::aura::application) papp) :
+   edit_buffer::edit_buffer(sp(::aura::application) papp):
       element(papp),
       ::file::buffer_sp(papp),
       ::data::data(papp),
       ::data::tree(papp)
    {
 
-      m_iBranch = 0;
-      m_pgroupitem = NULL;
+         m_iBranch = 0;
+         m_pgroupitem = NULL;
 
-      m_ptreeitem = get_base_item();
-      m_ptreeitemFlush = get_base_item();
+         m_ptreeitem = get_base_item();
+         m_ptreeitemFlush = get_base_item();
 
-   }
+      }
 
    edit_buffer::~edit_buffer()
    {
@@ -363,28 +363,28 @@ namespace file
 
       m_dwFileLength = pfile->get_length();
 
-      m_pfile->seek(0, ::file::seek_begin);
+      m_pfile->seek(0,::file::seek_begin);
 
       m_dwPosition = 0;
 
    }
 
 
-   ::primitive::memory_size edit_buffer::read(void *lpBuf, ::primitive::memory_size nCount)
+   ::primitive::memory_size edit_buffer::read(void *lpBuf,::primitive::memory_size nCount)
    {
-      byte * buf = (byte *) lpBuf;
+      byte * buf = (byte *)lpBuf;
       UINT uiRead = 0;
       if(m_dwPosition >= m_dwFileLength)
       {
          return uiRead;
       }
-//      uint32_t dwPosition = m_dwPosition;
-//      uint32_t dwFilePosition = m_dwPosition;
-//      uint32_t dwMaxCount = m_dwFileLength;
-//      uint32_t dwUpperLimit = m_dwFileLength;
-//      int32_t iOffset =0;
+      //      uint32_t dwPosition = m_dwPosition;
+      //      uint32_t dwFilePosition = m_dwPosition;
+      //      uint32_t dwMaxCount = m_dwFileLength;
+      //      uint32_t dwUpperLimit = m_dwFileLength;
+      //      int32_t iOffset =0;
       sp(::data::tree_item) ptreeitem;
-//      GroupItem * pitemgroup = NULL;
+      //      GroupItem * pitemgroup = NULL;
       int_array ia;
 
       m_bRootDirection = calc_root_direction();
@@ -392,16 +392,16 @@ namespace file
       UINT uiReadItem = 0xffffffff;
       do
       {
-l1:
+      l1:
          ptreeitem = m_ptreeitem;
          m_dwReadPosition = m_dwPosition;
          while(nCount > 0 && ptreeitem != NULL && ptreeitem != m_ptreeitemFlush && m_dwPosition < m_dwFileLength)
          {
-            sp(Item) pitem = (sp(Item) )ptreeitem->m_pitem;
+            sp(Item) pitem = (sp(Item))ptreeitem->m_pitem;
             uiReadItem = pitem->read_ch(this);
             if(uiReadItem <= 255)
             {
-               buf[uiRead] = (byte) uiReadItem;
+               buf[uiRead] = (byte)uiReadItem;
                nCount--;
                uiRead++;
                m_dwPosition++;
@@ -413,10 +413,10 @@ l1:
          }
          if(nCount > 0 && m_dwPosition < m_dwFileLength)
          {
-            m_pfile->seek((file_offset) m_dwPosition, ::file::seek_begin);
-            if(!m_pfile->read(&uiReadItem, 1))
+            m_pfile->seek((file_offset)m_dwPosition,::file::seek_begin);
+            if(!m_pfile->read(&uiReadItem,1))
                break;
-            buf[uiRead] = (byte) uiReadItem;
+            buf[uiRead] = (byte)uiReadItem;
             nCount--;
             uiRead++;
             m_dwPosition++;
@@ -433,7 +433,7 @@ l1:
    void edit_buffer::TreeInsert(sp(Item) pitem)
    {
       if(m_pgroupitem != NULL
-        && m_pgroupitem != pitem)
+         && m_pgroupitem != pitem)
       {
          m_pgroupitem->add(pitem);
          return;
@@ -441,7 +441,7 @@ l1:
       sp(::data::tree_item) pitemNew = NULL;
       if(m_ptreeitem != NULL && m_ptreeitem->next().is_set())
       {
-         pitemNew = insert_item(pitem, ::data::RelativeFirstChild, m_ptreeitem);
+         pitemNew = insert_item(pitem,::data::RelativeFirstChild,m_ptreeitem);
          if(pitemNew != NULL)
          {
             m_ptreeitem = pitemNew;
@@ -449,7 +449,7 @@ l1:
       }
       else
       {
-         pitemNew = insert_item(pitem, ::data::RelativeLastSibling, m_ptreeitem);
+         pitemNew = insert_item(pitem,::data::RelativeLastSibling,m_ptreeitem);
          if(pitemNew != NULL)
          {
             m_ptreeitem = pitemNew;
@@ -458,24 +458,24 @@ l1:
 
    }
 
-   void edit_buffer::write(const void * lpBuf, ::primitive::memory_size nCount)
+   void edit_buffer::write(const void * lpBuf,::primitive::memory_size nCount)
    {
       EditItem * pedit;
       pedit = new EditItem;
       pedit->m_dwPosition = m_dwPosition;
       pedit->m_memstorage.allocate(nCount);
-      memcpy(pedit->m_memstorage.get_data(), lpBuf, nCount);
+      memcpy(pedit->m_memstorage.get_data(),lpBuf,nCount);
       TreeInsert(pedit);
       m_dwPosition += nCount;
    }
 
-   void edit_buffer::Insert(const void * lpBuf, ::primitive::memory_size nCount)
+   void edit_buffer::Insert(const void * lpBuf,::primitive::memory_size nCount)
    {
       InsertItem * pinsert;
       pinsert = new InsertItem;
       pinsert->m_dwPosition = m_dwPosition;
       pinsert->m_memstorage.allocate(nCount);
-      memcpy(pinsert->m_memstorage.get_data(), lpBuf, nCount);
+      memcpy(pinsert->m_memstorage.get_data(),lpBuf,nCount);
       TreeInsert(pinsert);
       m_dwFileLength += nCount;
    }
@@ -485,15 +485,15 @@ l1:
 
       DeleteItem * pdelete;
 
-      uiCount = MIN(uiCount, (::primitive::memory_size) (get_length() - m_dwPosition));
+      uiCount = MIN(uiCount,(::primitive::memory_size) (get_length() - m_dwPosition));
       if(uiCount == 0)
          return;
 
       pdelete = new DeleteItem;
       pdelete->m_dwPosition = m_dwPosition;
       pdelete->m_memstorage.allocate(uiCount);
-      seek((file_offset) m_dwPosition, ::file::seek_begin);
-      read(pdelete->m_memstorage.get_data(), uiCount);
+      seek((file_offset)m_dwPosition,::file::seek_begin);
+      read(pdelete->m_memstorage.get_data(),uiCount);
       TreeInsert(pdelete);
       m_dwFileLength -= uiCount;
 
@@ -510,18 +510,18 @@ l1:
       return true;
    }
 
-   file_position edit_buffer::seek(file_offset lOff, ::file::e_seek nFrom)
+   file_position edit_buffer::seek(file_offset lOff,::file::e_seek nFrom)
    {
       ASSERT(IsValid());
       ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
       ASSERT(::file::seek_begin == FILE_BEGIN && ::file::seek_end == FILE_END && ::file::seek_current == FILE_CURRENT);
 
-      file_position dwNew = (uint32_t) -1;
+      file_position dwNew = (uint32_t)-1;
 
       switch(nFrom)
       {
       case ::file::seek_begin:
-         dwNew = (file_position) lOff;
+         dwNew = (file_position)lOff;
          break;
       case ::file::seek_end:
          dwNew = get_length() - lOff;
@@ -540,7 +540,7 @@ l1:
 
          break;
       default:
-         return (file_position) -1;
+         return (file_position)-1;
       }
 
       m_dwPosition = dwNew;
@@ -560,11 +560,11 @@ l1:
 
       strTimeFile = Application.file_time_square();
 
-      ::file::binary_buffer_sp spfile = Application.file_get_file(strTimeFile, ::file::type_binary | ::file::mode_read_write | ::file::mode_create | ::file::defer_create_directory);
+      ::file::binary_buffer_sp spfile = Application.file_get_file(strTimeFile,::file::type_binary | ::file::mode_read_write | ::file::mode_create | ::file::defer_create_directory);
 
       if(spfile.is_null())
       {
-         throw ::file::exception(get_app(), ::file::exception::none, -1, strTimeFile);
+         throw ::file::exception(get_app(),::file::exception::none,-1,strTimeFile);
          return;
       }
 
@@ -573,10 +573,10 @@ l1:
       char buf[4096];
       primitive::memory_size uiRead;
       m_pfile->set_length(0);
-      spfile->seek(0, ::file::seek_begin);
-      while((uiRead = spfile->read(buf, sizeof(buf))) > 0)
+      spfile->seek(0,::file::seek_begin);
+      while((uiRead = spfile->read(buf,sizeof(buf))) > 0)
       {
-         m_pfile->write(buf, uiRead);
+         m_pfile->write(buf,uiRead);
       }
       m_pfile->flush();
       m_dwFileLength = m_pfile->get_length();
@@ -587,10 +587,10 @@ l1:
    {
       char buf[4096];
       primitive::memory_size uiRead;
-      seek(0, ::file::seek_begin);
-      while((uiRead = read(buf, sizeof(buf))) > 0)
+      seek(0,::file::seek_begin);
+      while((uiRead = read(buf,sizeof(buf))) > 0)
       {
-         ostream.write(buf, uiRead);
+         ostream.write(buf,uiRead);
       }
       ostream.flush();
       //file.close();
@@ -602,10 +602,10 @@ l1:
       char buf[4096];
       primitive::memory_size uiRead;
       file.set_length(0);
-      seek(0, ::file::seek_begin);
-      while((uiRead = read(buf, sizeof(buf))) > 0)
+      seek(0,::file::seek_begin);
+      while((uiRead = read(buf,sizeof(buf))) > 0)
       {
-         file.write(buf, uiRead);
+         file.write(buf,uiRead);
       }
       file.flush();
       //file.close();
@@ -618,13 +618,13 @@ l1:
       string str;
       primitive::memory_size uiRead;
       file.set_length(0);
-      seek(0, ::file::seek_begin);
-      while((uiRead = read(buf, sizeof(buf))) > 0)
+      seek(0,::file::seek_begin);
+      while((uiRead = read(buf,sizeof(buf))) > 0)
       {
          buf[uiRead] = '\0';
          str = buf;
-         str.replace("\n", "\r\n");
-         file.write(str, str.get_length());
+         str.replace("\n","\r\n");
+         file.write(str,str.get_length());
       }
       //file.flush();
       file.close();
@@ -640,7 +640,7 @@ l1:
    bool edit_buffer::CanRedo()
    {
       return m_iBranch < m_ptreeitem->get_expandable_children_count()
-         || m_ptreeitem->get_next(false, false) != NULL;
+         || m_ptreeitem->get_next(false,false) != NULL;
    }
 
    ::count edit_buffer::GetRedoBranchCount()
@@ -649,8 +649,8 @@ l1:
          return 1;
       else
          return   m_ptreeitem->get_expandable_children_count()
-           + (m_ptreeitem->get_next(false, false) != NULL ? 1 : 0)
-           + (m_ptreeitem->m_children.has_elements() ? 1 : 0);
+         + (m_ptreeitem->get_next(false,false) != NULL ? 1 : 0)
+         + (m_ptreeitem->m_children.has_elements() ? 1 : 0);
    }
 
    bool edit_buffer::Undo()
@@ -670,7 +670,7 @@ l1:
       {
          return false;
       }
-//      sp(Item) pitem = NULL;
+      //      sp(Item) pitem = NULL;
       sp(::data::tree_item) ptreeitem;
       if(m_iBranch < m_ptreeitem->get_expandable_children_count())
       {
@@ -680,7 +680,7 @@ l1:
          ptreeitem = m_ptreeitem->get_next();
       if(ptreeitem == NULL)
          return false;
-      m_dwFileLength += (( sp(Item) ) ptreeitem->m_pitem)->get_delta_length();
+      m_dwFileLength += ((sp(Item)) ptreeitem->m_pitem)->get_delta_length();
       m_ptreeitem = ptreeitem;
       return true;
    }
@@ -714,8 +714,8 @@ l1:
       if(m_ptreeitem == m_ptreeitemFlush)
          return false;
       for(ptreeitem  = m_ptreeitem;
-          ptreeitem != m_ptreeitemFlush && ptreeitem != get_base_item() && ptreeitem != NULL;
-          ptreeitem  = ptreeitem->get_previous())
+         ptreeitem != m_ptreeitemFlush && ptreeitem != get_base_item() && ptreeitem != NULL;
+         ptreeitem  = ptreeitem->get_previous())
       {
       }
       return ptreeitem == m_ptreeitemFlush;

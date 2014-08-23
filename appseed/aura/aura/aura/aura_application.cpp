@@ -735,7 +735,7 @@ namespace aura
    }
 
 
-   sp(::user::document) application::_001OpenDocumentFile(var varFile)
+   ::user::document *  application::_001OpenDocumentFile(var varFile)
    {
 
       throw interface_only_exception(this);
@@ -958,7 +958,7 @@ namespace aura
 #endif
 
 
-   bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::user::impact_system) ptemplate,sp(::user::document) pdocument)
+   bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::user::impact_system) ptemplate,::user::document *  pdocument)
    {
 
       UNREFERENCED_PARAMETER(varFile);
@@ -1611,7 +1611,7 @@ namespace aura
    //}
 
 
-   //sp(::user::document) application::_001OpenDocumentFile(var varFile)
+   //::user::document *  application::_001OpenDocumentFile(var varFile)
    //{
    //   string strId = m_strId;
    //   char chFirst = '\0';

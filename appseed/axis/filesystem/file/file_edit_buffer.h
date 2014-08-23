@@ -5,8 +5,8 @@ namespace file
 {
 
 
-   class CLASS_DECL_AURA edit_buffer :
-      public ::file::buffer_sp ,
+   class CLASS_DECL_AURA edit_buffer:
+      public ::file::buffer_sp,
       public ::data::tree
    {
    public:
@@ -21,7 +21,7 @@ namespace file
          ItemTypeGroup
       };
 
-      class Item : 
+      class Item:
          public ::data::item
       {
       public:
@@ -56,7 +56,7 @@ namespace file
 
       };
 
-      class DeleteItem : public Item
+      class DeleteItem: public Item
       {
       public:
 
@@ -78,7 +78,7 @@ namespace file
          virtual ::primitive::memory_offset get_delta_length() ;
       };
 
-      class InsertItem : public Item
+      class InsertItem: public Item
       {
       public:
 
@@ -100,7 +100,7 @@ namespace file
 
       };
 
-      class EditItem : public Item
+      class EditItem: public Item
       {
       public:
 
@@ -121,12 +121,12 @@ namespace file
 
       };
 
-      class ItemPtrArray : public array < sp(Item), sp(Item) >
+      class ItemPtrArray: public array < sp(Item),sp(Item) >
       {
       public:
       };
 
-      class GroupItem : public Item, public ItemPtrArray
+      class GroupItem: public Item,public ItemPtrArray
       {
       public:
 
@@ -177,7 +177,7 @@ namespace file
       //void load_string(string & str);
       //void create(::primitive::memory_offset iSize = -1);
       //void seek_to_begin();
-      file_position seek(file_offset lOff, ::file::e_seek  nFrom);
+      file_position seek(file_offset lOff,::file::e_seek  nFrom);
       file_position get_position() const;
 
       //virtual string GetFilePath() const;
@@ -185,9 +185,9 @@ namespace file
       file_size get_length() const;
       //void Truncate(::primitive::memory_offset iPosition);
       //void clear();
-      virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
-      virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
-      virtual void Insert(const void * lpBuf, ::primitive::memory_size nCount);
+      virtual ::primitive::memory_size read(void *lpBuf,::primitive::memory_size nCount);
+      virtual void write(const void * lpBuf,::primitive::memory_size nCount);
+      virtual void Insert(const void * lpBuf,::primitive::memory_size nCount);
       virtual void Delete(::primitive::memory_size uiCount);
 
 
@@ -222,12 +222,12 @@ namespace file
    private:
 
 
-      edit_buffer(const ::file::edit_buffer & ) :
+      edit_buffer(const ::file::edit_buffer &):
          ::data::data(NULL),
          ::data::tree(NULL)
       {
 
-      }
+         }
 
    };
 

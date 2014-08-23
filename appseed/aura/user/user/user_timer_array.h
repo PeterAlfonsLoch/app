@@ -25,7 +25,6 @@ namespace user
       bool unset(interaction * pui,uint_ptr uiId);
       void unset(interaction * pui);
       void detach(spa(timer_item) & timera,interaction * pui);
-      void transfer(::user::interaction_impl * pwindow,interaction * pui);
       interaction * find(element * pca);
       index find(interaction * pui,uint_ptr uiId);
       index find_from(interaction * pui,index iStart);

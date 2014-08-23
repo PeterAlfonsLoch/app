@@ -57,7 +57,7 @@ namespace android
       //::ca2::application_base::m_p->_001OnFileNew(NULL);
    }
 
-   sp(::user::document) application::_001OpenDocumentFile(var varFile)
+   ::user::document *  application::_001OpenDocumentFile(var varFile)
    {
      // return ::ca2::application_base::m_p->_001OpenDocumentFile(varFile);
    }
@@ -407,12 +407,6 @@ if(__get_module_state()->m_pmapHWND == NULL)
    }
 
 
-   // Advanced: access to GetMainWnd()
-   ::user::interaction * application::GetMainWnd()
-   {
-      return ::win::thread::GetMainWnd();
-   }
-
 
 
    void application::assert_valid() const
@@ -496,26 +490,6 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
    }
 
-   ::user::interaction * application::window_from_os_data(void * pdata)
-   {
-      return ::window_from_handle((oswindow) pdata);
-   }
-
-   ::user::interaction * application::window_from_os_data_permanent(void * pdata)
-   {
-      ::user::interaction * pwnd = ::window_from_handle((oswindow) pdata);
-      if(pwnd != NULL)
-         return pwnd;
-      user::interaction_ptr_array wndptra = System.frames();
-      for(int32_t i = 0; i < wndptra.get_count(); i++)
-      {
-         if(wndptra[i].get_safe_handle() == (oswindow) pdata)
-         {
-            return wndptra(i);
-         }
-      }
-      return NULL;
-   }
 
 
    void application::SetCurrentHandles()
@@ -562,16 +536,6 @@ if(__get_module_state()->m_pmapHWND == NULL)
       //m_pimpl->m_hthread      =  ::GetCurrentThread();
 
 
-   }
-
-   ::user::interaction * application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
-   {
-      return interaction_impl::FindWindow(lpszClassName, lpszWindowName);
-   }
-
-   ::user::interaction * application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
-   {
-      return interaction_impl::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow);
    }
 
 

@@ -49,8 +49,7 @@ namespace aura
       stringa                                         m_straMatterLocator;
       string                                          m_strLibraryName;
       string                                          m_strAppId;
-      synch_ptr_array < ::user::interaction >         m_framea;
-//      sp(::database::server)                          m_spdataserver;
+
 #ifdef WINDOWS
       HINSTANCE                                       m_hinstance;
 #endif
@@ -120,20 +119,6 @@ namespace aura
       virtual bool is_system();
       virtual bool is_session();
       virtual bool is_serviceable();
-
-
-      virtual ::user::user * create_user();
-
-
-//      inline ::database::server &               dataserver()   { return *m_spdataserver; }
-
-
-
-//      virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::user::impact_system) ptemplate,sp(::user::document) pdocument);
-
-
-  //    virtual ::user::interaction * release_capture_uie();
-    //  virtual ::user::interaction * get_capture_uie();
 
 
       void process(machine_event_data * pdata);
@@ -218,12 +203,6 @@ namespace aura
       virtual string get_license_id();
 
 
-      virtual ::user::interaction * get_active_guie();
-      virtual ::user::interaction * get_focus_guie();
-
-
-      virtual ::user::interaction * window_from_os_data(void * pdata);
-
 
       virtual void construct(const char * pszAppId);
 
@@ -276,8 +255,6 @@ namespace aura
 
 
 
-      virtual ::user::interaction * FindWindow(const char * lpszClassName,const char * lpszWindowName);
-      virtual ::user::interaction * FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow);
 
       virtual string get_version();
 
@@ -289,10 +266,8 @@ namespace aura
 
       virtual bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
-      virtual sp(::user::document) _001OpenDocumentFile(var varFile);
+      virtual ::user::document *  _001OpenDocumentFile(var varFile);
       virtual void _001OnFileNew(signal_details * pobj);
-
-      virtual sp(::user::printer) get_printer(const char * pszDeviceName);
 
 
       virtual bool update_module_paths();

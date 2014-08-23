@@ -22,7 +22,7 @@ namespace aura
    ::count session_interface::get_monitor_count()
    {
 
-      return m_paxissession->get_monitor_count();
+      return m_paurasession->get_monitor_count();
 
    }
 
@@ -30,7 +30,7 @@ namespace aura
    bool session_interface::get_monitor_rect(index iMonitor,LPRECT lprect)
    {
 
-      return m_paxissession->get_monitor_rect(iMonitor,lprect);
+      return m_paurasession->get_monitor_rect(iMonitor,lprect);
 
    }
 
