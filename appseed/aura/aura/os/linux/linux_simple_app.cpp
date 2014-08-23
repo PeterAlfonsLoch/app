@@ -2,12 +2,12 @@
 
 void dappy(const char * psz);
 
-namespace axis
+namespace aura
 {
 
 
    simple_app::simple_app():
-      ::axis::system(this)
+      ::aura::system(this)
    {
 
    }
@@ -217,7 +217,7 @@ namespace axis
    }
 
 
-} // namespace axis
+} // namespace aura
 
 
 

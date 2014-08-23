@@ -41,7 +41,7 @@ DWORD_PTR                        g_gdiplusToken             = NULL;
 DWORD_PTR                        g_gdiplusHookToken         = NULL;
 bool                             g_bCoInitialize            = false;
 
-bool __node_axis_pre_init()
+bool __node_aura_pre_init()
 {
    
    HRESULT hresult = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
@@ -79,7 +79,7 @@ bool __node_axis_pre_init()
 
 }
 
-bool __node_axis_pos_init()
+bool __node_aura_pos_init()
 {
 
    _set_purecall_handler(_ca2_purecall);
@@ -126,7 +126,7 @@ bool __node_axis_pos_init()
 } 
 
 
-bool __node_axis_pre_term()
+bool __node_aura_pre_term()
 {
 
    g_pgdiplusStartupOutput->NotificationUnhook(g_gdiplusHookToken);
@@ -138,7 +138,7 @@ bool __node_axis_pre_term()
 
 }
 
-bool __node_axis_pos_term()
+bool __node_aura_pos_term()
 {
 
    ::CoUninitialize();

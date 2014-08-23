@@ -6,7 +6,7 @@
 //
 #include "framework.h"
 #define LIBICONV_PLUG
-#include "axis/primitive/str/iconv/iconv.h"
+#include "aura/primitive/str/iconv/iconv.h"
 
 CLASS_DECL_AURA COLORREF GetSysColor(DWORD dw)
 {

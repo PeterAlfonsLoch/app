@@ -2,7 +2,7 @@
 #include <dlfcn.h>
 
 
-::axis::library::axis::library(sp(::axis::application) papp) : element(papp)
+::aura::library::aura::library(sp(::aura::application) papp) : element(papp)
 {
 
    m_plibrary = NULL;
@@ -12,7 +12,7 @@
 }
 
 
-::axis::library::axis::library(sp(::axis::application) papp, const char * pszOpen) :
+::aura::library::aura::library(sp(::aura::application) papp, const char * pszOpen) :
 element(papp)
 {
 
@@ -25,7 +25,7 @@ element(papp)
 }
 
 
-::axis::library::~::axis::library()
+::aura::library::~::aura::library()
 {
 
    if (m_bAutoClose)
@@ -38,7 +38,7 @@ element(papp)
 }
 
 
-bool ::axis::library::open(const char * pszPath, bool bAutoClose)
+bool ::aura::library::open(const char * pszPath, bool bAutoClose)
 {
 
    if (m_bAutoClose)
@@ -84,7 +84,7 @@ bool ::axis::library::open(const char * pszPath, bool bAutoClose)
 }
 
 
-bool ::axis::library::close()
+bool ::aura::library::close()
 {
    if (m_plibrary != NULL)
    {
@@ -93,20 +93,20 @@ bool ::axis::library::close()
 }
 
 
-void * ::axis::library::raw_get(const char * pszElement)
+void * ::aura::library::raw_get(const char * pszElement)
 {
    return dlsym(m_plibrary, pszElement);
 }
 
-ca2_library::ca2_library(sp(::axis::application) papp) :
+ca2_library::ca2_library(sp(::aura::application) papp) :
 element(papp),
-::axis::library(papp)
+::aura::library(papp)
 {
 }
 
-ca2_library::ca2_library(sp(::axis::application) papp, const char * pszOpen) :
+ca2_library::ca2_library(sp(::aura::application) papp, const char * pszOpen) :
 element(papp),
-::axis::library(papp, pszOpen)
+::aura::library(papp, pszOpen)
 {
 
 }
@@ -121,12 +121,12 @@ ca2_library::~ca2_library()
 bool ca2_library::open(const char * pszPath, bool bAutoClose)
 {
 
-   return ::axis::library::open(pszPath, bAutoClose);
+   return ::aura::library::open(pszPath, bAutoClose);
 
 }
 
 
-bool ::axis::library::is_opened()
+bool ::aura::library::is_opened()
 {
 
    return m_plibrary != NULL;
@@ -134,7 +134,7 @@ bool ::axis::library::is_opened()
 }
 
 
-bool ::axis::library::is_closed()
+bool ::aura::library::is_closed()
 {
 
    return !is_opened();

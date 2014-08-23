@@ -31,10 +31,10 @@ namespace ca
 
 
 
-#include "axis/axis/axis.h"
+#include "aura/aura/aura.h"
 
 
-#include "axis/vms/vms.h"
+#include "aura/vms/vms.h"
 
 
 //#define argb_get_a_value(rgb)      (LOBYTE((rgb)>>24))
@@ -45,29 +45,29 @@ namespace ca
 extern "C"
 {
    
-   #include "axis/base_cpu_architecture.h"
+   #include "aura/base_cpu_architecture.h"
    
 }
 
 
 
-#include "axis/base_libc.h"
+#include "aura/base_libc.h"
 
 
-#include "axis/base_keep_true.h"
+#include "aura/base_keep_true.h"
 
 
-#include "axis/base_debug.h"
-
-
-
-
-#include "axis/base_printf.h"
-#include "axis/base_sprintf.h"
+#include "aura/base_debug.h"
 
 
 
-#include "axis/base_math.h"
+
+#include "aura/base_printf.h"
+#include "aura/base_sprintf.h"
+
+
+
+#include "aura/base_math.h"
 
 #include "primitive/geometry/geometry_types.h"
 

@@ -96,14 +96,59 @@
     <Filter Include="Header Files\primitive\data">
       <UniqueIdentifier>{b5262f7a-d7f3-4245-8373-7e3b0851e285}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\aura\os">
+      <UniqueIdentifier>{1461a4ce-5258-4315-bc28-721f9e7bd8ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\os\android">
+      <UniqueIdentifier>{e5d387ab-a59c-4459-8fbe-172626884b83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\os\windows">
+      <UniqueIdentifier>{3c3d553d-5a82-426c-8acf-c7a5d9369413}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\os\cross">
+      <UniqueIdentifier>{7ac779a0-781e-4608-9b71-eacec0b997fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\os\cross\windows">
+      <UniqueIdentifier>{ab668282-1b3b-4342-9f06-51590d206dce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\os\ansios">
+      <UniqueIdentifier>{4126b0f7-d693-49da-be28-c1082f24f9fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\os">
+      <UniqueIdentifier>{09cac943-f624-452a-a488-d6125202b4a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\os\cross">
+      <UniqueIdentifier>{8990421b-3d21-4f55-8faf-ee61347e210f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\os\cross\metrowin">
+      <UniqueIdentifier>{c3f20a81-e52d-40cb-8003-8aadcd527afb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\os\cross\windows">
+      <UniqueIdentifier>{18203fc3-9d84-4907-b5dc-0caa565c7955}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\os\android">
+      <UniqueIdentifier>{434fdeb1-67bf-40a0-8026-3c5aa006cb3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\os\windows">
+      <UniqueIdentifier>{cf4adce3-66f7-4ad6-a05a-e87313ee4f58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\os\ansios">
+      <UniqueIdentifier>{cd4778d9-5c7d-45db-83d3-a5ae75fdf554}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem">
+      <UniqueIdentifier>{e63383c8-8958-4946-9bdf-bbc38b5514f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem\file">
+      <UniqueIdentifier>{7ef9face-01d2-411c-8c1d-b044add520a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem">
+      <UniqueIdentifier>{af3ab4ab-f201-410a-be1e-95c78b4633de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\file">
+      <UniqueIdentifier>{32a76e6d-fe45-47a5-9e6c-4a45514711f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework_c.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
@@ -1409,11 +1454,350 @@
     <ClInclude Include="primitive\data\data_tree_item.h">
       <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
-    <ClInclude Include="version.config.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="aura\os\cross.h">
+      <Filter>Header Files\aura\os</Filter>
     </ClInclude>
-    <ClInclude Include="version.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="aura\os\os.h">
+      <Filter>Header Files\aura\os</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\os_binreloc.h">
+      <Filter>Header Files\aura\os</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\os_process.h">
+      <Filter>Header Files\aura\os</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\android\android.h">
+      <Filter>Header Files\aura\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\android\android_cross_win_file.h">
+      <Filter>Header Files\aura\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\android\android_cross_win_gdi.h">
+      <Filter>Header Files\aura\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\android\android_cross_win_gdi_internal.h">
+      <Filter>Header Files\aura\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\android\android_file.h">
+      <Filter>Header Files\aura\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\android\android_file_watcher.h">
+      <Filter>Header Files\aura\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\android\android_graphics.h">
+      <Filter>Header Files\aura\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\android\android_internal.h">
+      <Filter>Header Files\aura\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\android\android_process.h">
+      <Filter>Header Files\aura\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\android\android_window_android.h">
+      <Filter>Header Files\aura\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\android\android_window_impl.h">
+      <Filter>Header Files\aura\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\android\android_android.h">
+      <Filter>Header Files\aura\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\windows\windows.h">
+      <Filter>Header Files\aura\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\windows\windows_base_file.h">
+      <Filter>Header Files\aura\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\windows\windows_base_internal.h">
+      <Filter>Header Files\aura\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\windows\windows_base_registry.h">
+      <Filter>Header Files\aura\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\windows\windows_file_watcher.h">
+      <Filter>Header Files\aura\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\windows\windows_implementation.h">
+      <Filter>Header Files\aura\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\windows\windows_multithreading.h">
+      <Filter>Header Files\aura\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\windows\windows_os.h">
+      <Filter>Header Files\aura\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\windows\windows_port_forward.h">
+      <Filter>Header Files\aura\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\windows\windows_process.h">
+      <Filter>Header Files\aura\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\windows\windows_shell.h">
+      <Filter>Header Files\aura\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\windows\windows_simple_hold_handle.h">
+      <Filter>Header Files\aura\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\windows\windows_utils.h">
+      <Filter>Header Files\aura\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\windows\windows_windows.h">
+      <Filter>Header Files\aura\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\windows\windows_window_gdi.h">
+      <Filter>Header Files\aura\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\cross.h">
+      <Filter>Header Files\aura\os\cross</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\e.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_base.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_base_tsd.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_common_controls.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_crt.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_crtdefs.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_defs.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_errno.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_error.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_file.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_gdi.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_guid_def.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_internals.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_mmeapi.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_mmsystem.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_nls.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_nt.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_ntstatus.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_ole_automation.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_poppack.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_pshpack2.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_pshpack4.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_pshpack8.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_shared_memory.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_thread.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_thread_impl.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_time.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_types.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_user.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\windows\windows_winnt.h">
+      <Filter>Header Files\aura\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\ansios\ansios.h">
+      <Filter>Header Files\aura\os\ansios</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\ansios\ansios_file.h">
+      <Filter>Header Files\aura\os\ansios</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\ansios\ansios_multithreading.h">
+      <Filter>Header Files\aura\os\ansios</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\ansios\ansios_thread.h">
+      <Filter>Header Files\aura\os\ansios</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem.h">
+      <Filter>Header Files\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_binary_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_buffered_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_byte_input_stream.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_byte_input_stream_binary_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_byte_output_stream.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_byte_output_stream_binary_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_byte_stream.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_byte_stream_memory_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_c.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_circular_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_composite.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_dir.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_edit_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_exception.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_folder_watch.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_input_stream.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_memory_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_opened.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_output_stream.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_output_stream_flush.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_plain_text_input_stream.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_plain_text_output_stream.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_plain_text_output_stream_string_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_plain_text_stream.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_plain_text_stream_base.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_plain_text_stream_memory_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_plain_text_stream_string_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_reader.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_seekable.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_serializable.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_set.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_simple_binary_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_status.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_stream.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_stream2.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_streambuf.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_stream_base.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_stream_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_stream_buffer_base.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_string_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_text_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_timeout_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_transfer_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_writer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_writer_flush.h">
+      <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1825,14 +2209,338 @@
     <ClCompile Include="version.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="aura\os\os_binreloc.cpp">
+      <Filter>Source Files\aura\os</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\os_file.cpp">
+      <Filter>Source Files\aura\os</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\os_http.cpp">
+      <Filter>Source Files\aura\os</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\os_process.cpp">
+      <Filter>Source Files\aura\os</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\os_thread.cpp">
+      <Filter>Source Files\aura\os</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\cross\metrowin\cross_metrowin_user.cpp">
+      <Filter>Source Files\aura\os\cross\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\cross\windows\cross_windows_windows.cpp">
+      <Filter>Source Files\aura\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\cross\windows\cross_windows_crt.cpp">
+      <Filter>Source Files\aura\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\cross\windows\cross_windows_error.cpp">
+      <Filter>Source Files\aura\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\cross\windows\cross_windows_locale.cpp">
+      <Filter>Source Files\aura\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\cross\windows\cross_windows_shared_memory.cpp">
+      <Filter>Source Files\aura\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\cross\windows\cross_windows_threading.cpp">
+      <Filter>Source Files\aura\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\cross\windows\cross_windows_datetime.cpp">
+      <Filter>Source Files\aura\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\cross\windows\cross_windows_user.cpp">
+      <Filter>Source Files\aura\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\android\android_c.c">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\android\android.cpp">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\android\android_cross_win_file.cpp">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\android\android_cross_win_gdi.cpp">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\android\android_base_file.cpp">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\android\android_file_watcher.cpp">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\android\android_launcher.cpp">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\android\android_library.cpp">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\android\android_locale.c">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\android\android_lock.cpp">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\android\android_message_loop.cpp">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\android\android_process.cpp">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\android\android_process_pid.cpp">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\android\android_simple_shell_launcher.cpp">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\android\android_small_ipca_channel.cpp">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\android\android_multithreading.cpp">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\android\android_windowing.cpp">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\android\android_window_android.cpp">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\android\android_window_impl.cpp">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\android\android_win_base.cpp">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\win2.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_base_file.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_base_registry.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_debug.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_dll.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_error.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_file_std.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_file_watcher.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_gdi.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_launcher.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_library.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_lock.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_main.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_message_loop.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_multithreading.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_process.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_simple_app.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_simple_shell_launcher.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_small_ipc_channel.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_std_file.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_time.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_util.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_utils.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_window_gdi.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\ansios\ansios_cross_win.cpp">
+      <Filter>Source Files\aura\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\ansios\ansios_cross_windows_user.cpp">
+      <Filter>Source Files\aura\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\ansios\ansios_cross_win_file.cpp">
+      <Filter>Source Files\aura\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\ansios\ansios_base_file.cpp">
+      <Filter>Source Files\aura\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\ansios\ansios_file_std.cpp">
+      <Filter>Source Files\aura\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\ansios\ansios_multithreading.cpp">
+      <Filter>Source Files\aura\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\ansios\crypto\ansios_crypt.cpp">
+      <Filter>Source Files\aura\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_c.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_edit_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_serializable.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_streambuf.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_binary_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_buffered_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_byte_input_stream.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_byte_input_stream_binary_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_byte_output_stream.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_byte_output_stream_binary_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_byte_stream.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_byte_stream_memory_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_circular_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_composite.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_dir.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_dir2.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_exception.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_folder_watch.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_input_stream.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_memory_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_output_stream.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_plain_text_input_stream.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_plain_text_output_stream.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_plain_text_output_stream_string_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_plain_text_stream.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_plain_text_stream_base.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_plain_text_stream_memory_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_plain_text_stream_string_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_reader.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_seekable.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_set.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_simple_binary_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_stream.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_stream2.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_stream_base.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_stream_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_stream_buffer_base.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_string_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_text_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_timeout_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_transfer_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_writer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_writer_flush.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

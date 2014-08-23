@@ -28,7 +28,7 @@ void __cdecl _null_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers
 
 
 
-CLASS_DECL_AURA int32_t __win_main(sp(::axis::system) psystem, ::windows::main_init_data * pmaininitdata)
+CLASS_DECL_AURA int32_t __win_main(sp(::aura::system) psystem, ::windows::main_init_data * pmaininitdata)
 {
 
    psystem->construct(NULL);

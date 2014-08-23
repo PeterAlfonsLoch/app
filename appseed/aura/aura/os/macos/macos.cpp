@@ -61,7 +61,7 @@ void output_debug_string(const char * psz)
 
 
 
-CLASS_DECL_AURA bool __node_axis_pre_init()
+CLASS_DECL_AURA bool __node_aura_pre_init()
 {
 
    
@@ -71,7 +71,7 @@ CLASS_DECL_AURA bool __node_axis_pre_init()
 
 
 
-CLASS_DECL_AURA bool __node_axis_pos_init()
+CLASS_DECL_AURA bool __node_aura_pos_init()
 {
    
    t_posthread = new os_thread(NULL, NULL);

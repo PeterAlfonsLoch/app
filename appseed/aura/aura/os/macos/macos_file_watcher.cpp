@@ -220,7 +220,7 @@ namespace file_watcher
 		
 		void addAll()
 		{
-			// add axis dir
+			// add aura dir
 			int fd = open(m_strDirName, O_RDONLY);
 			EV_SET(&m_keventaChange[0], fd, EVFILT_VNODE,
 				   EV_ADD | EV_ENABLE | EV_ONESHOT,

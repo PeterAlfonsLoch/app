@@ -1,6 +1,6 @@
 //
 //  macos_ns_exception.cpp
-//  axis
+//  aura
 //
 //  Created by Carlos Gustavo Cecyn Lundgren on 18/10/13.
 //

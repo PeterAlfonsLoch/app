@@ -286,7 +286,7 @@ inline raw_array<TYPE, ARG_TYPE> & raw_array<TYPE, ARG_TYPE>::operator = (const 
 // out-of-line functions
 
 template<class TYPE, class ARG_TYPE>
-raw_array<TYPE, ARG_TYPE>::raw_array(sp(::axis::application) papp, ::count nGrowBy) :
+raw_array<TYPE, ARG_TYPE>::raw_array(sp(::aura::application) papp, ::count nGrowBy) :
 element(papp)
 {
    m_nGrowBy = MAX(0, nGrowBy);
@@ -502,7 +502,7 @@ template<class TYPE, class ARG_TYPE>
 #define new AXIS_NEW
 
       // copy new data from old
-      ::axis::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
+      ::aura::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
          m_pData, (size_t)m_nSize * sizeof(TYPE));
 
       // construct remaining elements
@@ -572,7 +572,7 @@ void raw_array<TYPE, ARG_TYPE>::free_extra()
       {
          pNewData = (TYPE*) new BYTE[m_nSize * sizeof(TYPE)];
          // copy new data from old
-         ::axis::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
+         ::aura::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
             m_pData, m_nSize * sizeof(TYPE));
       }
 
@@ -643,7 +643,7 @@ index raw_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, ::
       allocate(m_nSize + nCount, -1);  // grow it to new size
       // destroy intial data before copying over it
       // shift old data up to fill gap
-      ::axis::memmove_s(m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(TYPE),
+      ::aura::memmove_s(m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(TYPE),
          m_pData + nIndex, (nOldSize-nIndex) * sizeof(TYPE));
 
       // re-init slots we copied from
@@ -677,7 +677,7 @@ inline index raw_array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
    ::count nMoveCount = m_nSize - (nUpperBound);
    if (nMoveCount)
    {
-      ::axis::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE),
+      ::aura::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE),
          m_pData + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
    }
    m_nSize -= nCount;

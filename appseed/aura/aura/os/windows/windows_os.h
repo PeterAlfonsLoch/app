@@ -9,12 +9,12 @@ namespace windows
 
 
    class CLASS_DECL_AURA os :
-      public ::axis::os
+      public ::aura::os
    {
    public:
    
       
-      os(sp(::axis::application) papp);
+      os(sp(::aura::application) papp);
       virtual ~os();
 
 
@@ -50,11 +50,11 @@ namespace windows
       virtual bool open_in_ie(const char * lpcsz);
 
 
-      virtual bool create_service(sp(::axis::application) papp);
-      virtual bool remove_service(sp(::axis::application) papp);
+      virtual bool create_service(sp(::aura::application) papp);
+      virtual bool remove_service(sp(::aura::application) papp);
       
-      virtual bool start_service(sp(::axis::application) papp);
-      virtual bool stop_service(sp(::axis::application) papp);
+      virtual bool start_service(sp(::aura::application) papp);
+      virtual bool stop_service(sp(::aura::application) papp);
 
       virtual bool resolve_link(string & strTarget, const char * pszSource, sp(::user::interaction) puiMessageParentOptional = NULL);
 

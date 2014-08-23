@@ -15,10 +15,10 @@ CLASS_DECL_AURA void swab(const void *from, void*to, ssize_t n)
 }
 
 // used deep inside FreeImage
-void* lfind( const void * key, const void * axis, size_t * num, size_t width, int (*fncomparison)(const void *, const void * ) )
+void* lfind( const void * key, const void * aura, size_t * num, size_t width, int (*fncomparison)(const void *, const void * ) )
 {
 
-   char * Ptr = (char *) axis;
+   char * Ptr = (char *) aura;
 
    size_t i;
 
@@ -33,10 +33,10 @@ void* lfind( const void * key, const void * axis, size_t * num, size_t width, in
 }
 
 
-void* lsearch( const void * key, const void * axis, size_t * num, size_t width, int (*fncomparison)(const void *, const void * ) )
+void* lsearch( const void * key, const void * aura, size_t * num, size_t width, int (*fncomparison)(const void *, const void * ) )
 {
 
-   char * Ptr = (char *) axis;
+   char * Ptr = (char *) aura;
 
    size_t i;
 

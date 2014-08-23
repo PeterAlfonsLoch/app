@@ -680,9 +680,6 @@
     <ClInclude Include="primitive\collection\collection_var_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_c.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_duration.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
@@ -4808,9 +4805,6 @@
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
       <Filter>Header Files\multithreading</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

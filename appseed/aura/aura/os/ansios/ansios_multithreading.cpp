@@ -1337,7 +1337,7 @@ CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(DWORD idThread,UINT Msg,WPARA
 CLASS_DECL_AURA int_bool WINAPI PostMessageW(oswindow oswindow,UINT Msg,WPARAM wParam,LPARAM lParam)
 {
 
-   HTHREAD  h = oswindow->get_user_interaction()->m_paxisapp->get_os_handle();
+   HTHREAD  h = oswindow->get_user_interaction()->m_pauraapp->get_os_handle();
 
    if(h == NULL)
       return FALSE;
@@ -1466,7 +1466,7 @@ CLASS_DECL_AURA UINT GetCurrentThreadId()
 }
 
 
-namespace axis
+namespace aura
 {
 
    CLASS_DECL_AURA bool set_thread_priority(int32_t priority)
@@ -1482,7 +1482,7 @@ namespace axis
    }
 
 
-} // namespace axis
+} // namespace aura
 
 
 
