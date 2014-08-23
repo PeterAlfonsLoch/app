@@ -1,3 +1,14 @@
+/////////////////////////////////////////////////////////////////////////////////////////
+//
+//   All Pure and Aural ca2 and God and Gods and Goddssesses and devils's blessings
+//
+//   C++
+//
+//   C => in ca2 scope
+//
+//   Thank you God for C++!!
+//
+
 #pragma once
 
 #pragma warning(disable: 4251)

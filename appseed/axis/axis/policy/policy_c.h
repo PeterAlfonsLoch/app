@@ -1,3 +1,15 @@
+/////////////////////////////////////////////////////////////////////////////////////////
+//
+//   All Pure and Aural ca2 and God and Gods and Goddssesses and devils's blessings
+//
+//   C - C++0 - C++ pureness
+//
+//   C => in ca2 scope
+//
+//   Thank you God for C pureness!!
+//
+
+
 #pragma once
 
 
