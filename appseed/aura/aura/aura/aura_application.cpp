@@ -2997,6 +2997,15 @@ namespace aura
 
    }
 
+   
+   void application::message_handler(::thread_impl * pimpl,signal_details * pobj)
+   {
+
+      UNREFERENCED_PARAMETER(pimpl);
+      UNREFERENCED_PARAMETER(pobj);
+
+   }
+
 
    bool application::is_window(::user::interaction * pui)
    {
