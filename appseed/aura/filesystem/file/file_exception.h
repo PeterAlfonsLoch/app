@@ -9,7 +9,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_AXIS exception :
+   class CLASS_DECL_AURA exception :
       virtual public ::io_exception
    {
    public:
@@ -55,7 +55,7 @@ namespace file
             printf(":file");
       }
 
-      exception(sp(::axis::application) papp, int32_t cause = exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
+      exception(sp(::aura::application) papp, int32_t cause = exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
 
       virtual void Construct(int32_t cause = exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
 
@@ -85,7 +85,7 @@ namespace file
 
 
 
-CLASS_DECL_AXIS void throw_file_exception(::axis::application * papp, int32_t cause, LONG lOsError,   const char * lpszFileName = NULL);
+CLASS_DECL_AURA void throw_file_exception(::aura::application * papp, int32_t cause, LONG lOsError,   const char * lpszFileName = NULL);
 
 
 

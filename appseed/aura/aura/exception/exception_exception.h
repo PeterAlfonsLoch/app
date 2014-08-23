@@ -5,7 +5,7 @@ namespace exception
 {
 
 
-   class CLASS_DECL_AXIS exception :
+   class CLASS_DECL_AURA exception :
       virtual public ::object
    {
    public:
@@ -25,7 +25,7 @@ namespace exception
    };
 
 
-   void CLASS_DECL_AXIS rethrow(exception * pe);
+   void CLASS_DECL_AURA rethrow(exception * pe);
 
 
 } // namespace exception

@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_AXIS plain_text_output_stream :
+   class CLASS_DECL_AURA plain_text_output_stream :
       virtual public output_stream,
       virtual public plain_text_stream_base
    {

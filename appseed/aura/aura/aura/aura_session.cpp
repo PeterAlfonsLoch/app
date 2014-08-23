@@ -2,11 +2,11 @@
 
 
 
-namespace axis
+namespace aura
 {
 
 
-   session::session(sp(::axis::application) papp) :
+   session::session(sp(::aura::application) papp) :
       element(papp),
       ::thread(papp)
    {
@@ -28,7 +28,7 @@ namespace axis
       if(m_hinstance == NULL)
       {
 
-         m_hinstance = m_paxisapp->m_hinstance;
+         m_hinstance = m_pauraapp->m_hinstance;
 
       }
 
@@ -43,7 +43,7 @@ namespace axis
       m_puiMouseMoveCapture = NULL;
       m_puiLastLButtonDown = NULL;
 
-      m_psavings                 = canew(class ::axis::savings(this));
+      m_psavings                 = canew(class ::aura::savings(this));
 
       m_bZipIsDir                = true;
 
@@ -63,7 +63,7 @@ namespace axis
    }
 
 
-   void session::construct(sp(::axis::application) papp, int iPhase)
+   void session::construct(sp(::aura::application) papp, int iPhase)
    {
 
 
@@ -78,7 +78,7 @@ namespace axis
 
       string strId;
 
-      sp(::axis::application) pbaseapp;
+      sp(::aura::application) pbaseapp;
 
       while(pos != NULL)
       {
@@ -89,7 +89,7 @@ namespace axis
 
          m_mapApplication.get_next_assoc(pos,strId,pbaseapp);
 
-         sp(::axis::application) papp = (pbaseapp);
+         sp(::aura::application) papp = (pbaseapp);
 
          papp->post_thread_message(WM_QUIT);
 
@@ -106,7 +106,7 @@ namespace axis
    }
 
 
-   sp(::axis::application) session::start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext)
+   sp(::aura::application) session::start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext)
    {
 
       throw interface_only_exception(this);
@@ -188,7 +188,7 @@ namespace axis
 
 
 
-   ::axis::copydesk & session::copydesk()
+   ::aura::copydesk & session::copydesk()
    {
 
       return *m_spcopydesk;
@@ -1029,7 +1029,7 @@ namespace axis
    bool session::process_initialize()
    {
 
-      if(!::axis::application::process_initialize())
+      if(!::aura::application::process_initialize())
          return false;
 
       m_spuser = create_user();
@@ -1052,7 +1052,7 @@ namespace axis
       if(!m_spcopydesk->initialize())
          return false;
 
-      if(!::axis::application::initialize1())
+      if(!::aura::application::initialize1())
          return false;
 
       m_puserstrcontext = canew(::user::str_context(this));
@@ -1205,7 +1205,7 @@ namespace axis
    bool session::initialize2()
    {
 
-      if(!::axis::application::initialize2())
+      if(!::aura::application::initialize2())
          return false;
 
       fill_locale_schema(*str_context()->m_plocaleschema);
@@ -1222,7 +1222,7 @@ namespace axis
 
 
 
-      if(!::axis::application::initialize_instance())
+      if(!::aura::application::initialize_instance())
          return false;
 
 
@@ -1234,7 +1234,7 @@ namespace axis
    bool session::initialize()
    {
 
-      if(!::axis::application::initialize())
+      if(!::aura::application::initialize())
          return false;
 
       if(!is_installing() && !is_uninstalling())
@@ -1265,7 +1265,7 @@ namespace axis
       try
       {
 
-         bOk = ::axis::application::finalize();
+         bOk = ::aura::application::finalize();
 
       }
       catch(...)
@@ -1296,7 +1296,7 @@ namespace axis
       }
 
 
-      ::axis::application::exit_instance();
+      ::aura::application::exit_instance();
 
       return 0;
 
@@ -1310,7 +1310,7 @@ namespace axis
 
       m_monitorinfoa.remove_all();
 
-      ::EnumDisplayMonitors(NULL,NULL,&system::monitor_enum_proc,(LPARAM)(dynamic_cast < ::axis::system * > (this)));
+      ::EnumDisplayMonitors(NULL,NULL,&system::monitor_enum_proc,(LPARAM)(dynamic_cast < ::aura::system * > (this)));
 
 #else
 
@@ -1328,7 +1328,7 @@ namespace axis
    BOOL CALLBACK system::monitor_enum_proc(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor,LPARAM dwData)
    {
 
-      ::axis::system * psystem = (::axis::system *) dwData;
+      ::aura::system * psystem = (::aura::system *) dwData;
 
       psystem->monitor_enum(hmonitor,hdcMonitor,lprcMonitor);
 
@@ -1792,7 +1792,7 @@ namespace axis
 
 
 
-} // namespace axis
+} // namespace aura
 
 
 

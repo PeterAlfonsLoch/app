@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace axis
+namespace aura
 {
 
 
-   class CLASS_DECL_AXIS application :
+   class CLASS_DECL_AURA application :
       virtual public application_interface
    {
    public:
@@ -34,7 +34,7 @@ namespace axis
       sp(::command_thread)                            m_pcommandthread;
       sp(class signal)                                m_psignal;
 
-      ::axis::main_init_data *            m_pinitmaindata;
+      ::aura::main_init_data *            m_pinitmaindata;
 
 
       EExclusiveInstance                              m_eexclusiveinstance;
@@ -50,7 +50,7 @@ namespace axis
       string                                          m_strLibraryName;
       string                                          m_strAppId;
       synch_ptr_array < ::user::interaction >         m_framea;
-      sp(::database::server)                          m_spdataserver;
+//      sp(::database::server)                          m_spdataserver;
 #ifdef WINDOWS
       HINSTANCE                                       m_hinstance;
 #endif
@@ -126,15 +126,15 @@ namespace axis
       virtual ::user::user * create_user();
 
 
-      inline ::database::server &               dataserver()   { return *m_spdataserver; }
+//      inline ::database::server &               dataserver()   { return *m_spdataserver; }
 
 
 
-      virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::user::impact_system) ptemplate,sp(::user::document) pdocument);
+//      virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::user::impact_system) ptemplate,sp(::user::document) pdocument);
 
 
-      virtual sp(::user::interaction) release_capture_uie();
-      virtual sp(::user::interaction) get_capture_uie();
+  //    virtual sp(::user::interaction) release_capture_uie();
+    //  virtual sp(::user::interaction) get_capture_uie();
 
 
       void process(machine_event_data * pdata);
@@ -389,9 +389,9 @@ namespace axis
 
       virtual bool assert_user_logged_in();
 
-      virtual bool init_main_data(::axis::main_init_data * pdata);
+      virtual bool init_main_data(::aura::main_init_data * pdata);
 
-      virtual bool set_main_init_data(::axis::main_init_data * pdata);
+      virtual bool set_main_init_data(::aura::main_init_data * pdata);
 
 
       virtual void dir_matter_ls_file(const string & str,stringa & stra);
@@ -431,7 +431,7 @@ namespace axis
 
 
 
-   class CLASS_DECL_AXIS application_ptra:
+   class CLASS_DECL_AURA application_ptra:
       virtual public spa(application)
    {
    public:
@@ -485,13 +485,15 @@ namespace axis
 
 
 
-} // namespace axis
+} // namespace aura
 
 
 
 inline allocatorsp element::allocer()
 {
-   return m_paxisapp->m_allocer;
+   
+   return m_pauraapp->m_allocer;
+
 }
 
 
@@ -499,7 +501,7 @@ inline allocatorsp element::allocer()
 inline sp(::command_thread) object::command_thread()
 {
 
-   return m_paxisapp->command_thread();
+   return m_pauraapp->command_thread();
 
 }
 

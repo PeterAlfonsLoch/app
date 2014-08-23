@@ -2,7 +2,7 @@
 
 
 /// This class represents events for socket communication.
-class CLASS_DECL_AXIS socket_event :
+class CLASS_DECL_AURA socket_event :
    public event
 {
 public:
@@ -21,7 +21,7 @@ public:
 	///  \brief		constructor with passed socket handle and read state
 	///  \param		socket socket handle (default: -1)
 	///  \param		read true if socket should be ready to read (default: true)
-	socket_event(sp(::axis::application) papp, uint32_t socket = -1, bool read = true);
+	socket_event(sp(::aura::application) papp, uint32_t socket = -1, bool read = true);
 
 	///  \brief		destructor
 	virtual ~socket_event();

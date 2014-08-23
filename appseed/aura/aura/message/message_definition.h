@@ -19,7 +19,7 @@ namespace message
    };
 
 
-   CLASS_DECL_AXIS UINT translate_to_os_message(UINT uiMessage);
+   CLASS_DECL_AURA UINT translate_to_os_message(UINT uiMessage);
 
 
    class base;

@@ -5,7 +5,7 @@ namespace ios2
 {
 
 
-   printer::printer(::axis::application * papp) :
+   printer::printer(::aura::application * papp) :
       element(papp),
       ::user::printer(papp),
       m_documentproperties(papp)
@@ -50,7 +50,7 @@ namespace ios2
    }
 
 
-   printer::document_properties::document_properties(::axis::application * papp) :
+   printer::document_properties::document_properties(::aura::application * papp) :
       element(papp)
    {
       m_hdc = NULL;

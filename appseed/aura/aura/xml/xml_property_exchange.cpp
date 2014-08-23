@@ -3,7 +3,7 @@
 namespace xml
 {
 
-   property_set_exchange::property_set_exchange(sp(::axis::application) papp) :
+   property_set_exchange::property_set_exchange(sp(::aura::application) papp) :
       element(papp)
    {
       m_ppropertyset = NULL;

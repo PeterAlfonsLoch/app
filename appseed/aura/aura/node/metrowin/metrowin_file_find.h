@@ -6,7 +6,7 @@ namespace metrowin
 
 #ifdef WINDOWSEX
 
-   class CLASS_DECL_AXIS file_find : public ::object
+   class CLASS_DECL_AURA file_find : public ::object
    {
    public:
 

@@ -20,7 +20,7 @@ namespace mac
    public:
 
 
-      ip_enum(::axis::application * papp);
+      ip_enum(::aura::application * papp);
       virtual ~ip_enum();
 
 

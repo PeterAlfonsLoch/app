@@ -5,9 +5,9 @@ namespace xml
 {
 
 
-   departament::departament(::axis::application * papp) :
+   departament::departament(::aura::application * papp) :
       element(papp),
-      ::axis::departament(papp)
+      ::aura::departament(papp)
    {
       
       m_poptionDefault     = NULL;
@@ -31,7 +31,7 @@ namespace xml
          System.factory().cloneable_large < edit_item > ();
       }
 
-      if(!::axis::departament::initialize1())
+      if(!::aura::departament::initialize1())
          return false;
 
       m_poptionDefault     = new disp_option(get_app());
@@ -51,7 +51,7 @@ namespace xml
    bool departament::initialize()
    {
 
-      if(!::axis::departament::initialize())
+      if(!::aura::departament::initialize())
          return false;
 
       return true;

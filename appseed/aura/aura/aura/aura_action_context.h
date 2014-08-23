@@ -14,13 +14,13 @@ namespace action
    };
    
 
-   class CLASS_DECL_AXIS context
+   class CLASS_DECL_AURA context
    {
    public:
 
 
 
-      class CLASS_DECL_AXIS data :
+      class CLASS_DECL_AURA data :
          virtual public root
       {
       public:
@@ -96,7 +96,7 @@ namespace action
    };
 
 
-   CLASS_DECL_AXIS e_source translation_source(e_source esource, e_context econtextDst, e_context econtextSrc);
+   CLASS_DECL_AURA e_source translation_source(e_source esource, e_context econtextDst, e_context econtextSrc);
 
    namespace source
    {

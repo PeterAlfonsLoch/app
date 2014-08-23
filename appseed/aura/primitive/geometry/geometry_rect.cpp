@@ -113,28 +113,28 @@ void rect::Align(int32_t align, const RECT & rect)
 
    point pt(0, 0);
 
-   if((align & AlignH) == AlignHorizontalCenter)
+   if((align & align_horizontal) == align_horizontal_center)
    {
       pt.x = rect.left + (rect.right - rect.left) / 2 - width() / 2 - left;
    }
-   else if((align & AlignH) == AlignLeft)
+   else if((align & align_horizontal) == align_left)
    {
       pt.x = rect.left - left;
    }
-   else if((align & AlignH) == AlignRight)
+   else if((align & align_horizontal) == align_right)
    {
       pt.x = rect.right - right;
    }
 
-   if((align & AlignV) ==  AlignVerticalCenter)
+   if((align & align_vertical) ==  align_vertical_center)
    {
       pt.y = rect.top + (rect.bottom - rect.top) / 2 - height() / 2 - top;
    }
-   else if((align & AlignV) == AlignTop)
+   else if((align & align_vertical) == align_top)
    {
       pt.y = rect.top - top;
    }
-   else if((align & AlignV) == AlignBottom)
+   else if((align & align_vertical) == align_bottom)
    {
       pt.y = rect.bottom - bottom;
    }
@@ -389,28 +389,28 @@ void rect64::Align(int64_t align, const __rect64 *  lpcrect)
 
    point64 pt(0, 0);
 
-   if((align & AlignH) == AlignHorizontalCenter)
+   if((align & align_horizontal) == align_horizontal_center)
    {
       pt.x = lpcrect->left + (lpcrect->right - lpcrect->left) / 2 - width() / 2 - left;
    }
-   else if((align & AlignH) == AlignLeft)
+   else if((align & align_horizontal) == align_left)
    {
       pt.x = lpcrect->left - left;
    }
-   else if((align & AlignH) == AlignRight)
+   else if((align & align_horizontal) == align_right)
    {
       pt.x = lpcrect->right - right;
    }
 
-   if((align & AlignV) ==  AlignVerticalCenter)
+   if((align & align_vertical) ==  align_vertical_center)
    {
       pt.y = lpcrect->top + (lpcrect->bottom - lpcrect->top) / 2 - height() / 2 - top;
    }
-   else if((align & AlignV) == AlignTop)
+   else if((align & align_vertical) == align_top)
    {
       pt.y = lpcrect->top - top;
    }
-   else if((align & AlignV) == AlignBottom)
+   else if((align & align_vertical) == align_bottom)
    {
       pt.y = lpcrect->bottom - bottom;
    }

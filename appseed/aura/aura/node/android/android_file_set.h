@@ -5,7 +5,7 @@ namespace android
 {
 
 
-   class CLASS_DECL_AXIS file_set :
+   class CLASS_DECL_AURA file_set :
       virtual public ::file::set
    {
    public:
@@ -17,7 +17,7 @@ namespace android
       stringa        m_straFile;
 
 
-      file_set(sp(::axis::application) papp);
+      file_set(sp(::aura::application) papp);
       virtual ~file_set();
 
 

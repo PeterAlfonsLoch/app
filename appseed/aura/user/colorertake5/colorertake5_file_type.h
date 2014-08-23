@@ -9,7 +9,7 @@ class scheme;
  * HRC file_type (or prototype) instance.
  * @ingroup colorer
  */
-class CLASS_DECL_AXIS file_type{
+class CLASS_DECL_AURA file_type{
 public:
 
   /**
@@ -29,10 +29,10 @@ public:
   */
   virtual const string getDescription() = 0;
 
-  /** Returns the axis scheme of this file type.
+  /** Returns the aura scheme of this file type.
       Basically, this is the scheme with same public name, as it's type.
       If this file_type object is not yet loaded, it is loaded with this call.
-      @return File type axis scheme, to be used as root scheme of text parsing.
+      @return File type aura scheme, to be used as root scheme of text parsing.
   */
   virtual scheme *getBaseScheme() = 0;
 
@@ -71,7 +71,7 @@ public:
 
   /** Changes value of the parameter with specified name.
       Note, that changed parameter values are not stored in HRC
-      axis - they remains active only during this HRC session.
+      aura - they remains active only during this HRC session.
       System should use its own mechanism to save these
       values between sessions (if needed).
       @param name Parameter's name

@@ -9,7 +9,7 @@ namespace file
    struct file_status;
 
 
-   class CLASS_DECL_AXIS binary_buffer :
+   class CLASS_DECL_AURA binary_buffer :
       virtual public ::file::stream_buffer
    {
    public:

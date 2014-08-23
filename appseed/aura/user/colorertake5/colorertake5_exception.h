@@ -10,17 +10,17 @@ namespace colorertake5
        Defines throwable exception.
        @ingroup common
    */
-   class CLASS_DECL_AXIS exception :
+   class CLASS_DECL_AURA exception :
       virtual public ::exception::base
    {
    public:
      /** Default constructor
          Creates exception with is_empty message
      */
-     exception(sp(::axis::application) papp);
+     exception(sp(::aura::application) papp);
      /** Creates exception with string message
      */
-     exception(sp(::axis::application) papp, const string &msg);
+     exception(sp(::aura::application) papp, const string &msg);
      /** Creates exception with included exception information
      */
      exception(const exception &e);

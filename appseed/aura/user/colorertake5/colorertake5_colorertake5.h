@@ -5,13 +5,13 @@ namespace colorertake5
 {
 
 
-   class CLASS_DECL_AXIS colorertake5 :
-      virtual public ::axis::departament
+   class CLASS_DECL_AURA colorertake5 :
+      virtual public ::aura::departament
    {
    public:
 
 
-      colorertake5(::axis::application * papp);
+      colorertake5(::aura::application * papp);
       virtual ~colorertake5();
 
 

@@ -6,11 +6,11 @@
 
 //#include "sal.h"
 
-CLASS_DECL_AXIS void hook_window_create(::user::interaction * pWnd);
-CLASS_DECL_AXIS bool unhook_window_create();
-void CLASS_DECL_AXIS __pre_init_dialog(
+CLASS_DECL_AURA void hook_window_create(::user::interaction * pWnd);
+CLASS_DECL_AURA bool unhook_window_create();
+void CLASS_DECL_AURA __pre_init_dialog(
                                       ::user::interaction * pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld);
-void CLASS_DECL_AXIS __post_init_dialog(
+void CLASS_DECL_AURA __post_init_dialog(
                                        ::user::interaction * pWnd, const RECT& rectOld, DWORD dwStyleOld);
 LRESULT CALLBACK
 __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam);
@@ -99,7 +99,7 @@ namespace ios
    }
    
    
-   window::window(::axis::application * papp) :
+   window::window(::aura::application * papp) :
    element(papp),
    ::user::interaction(papp)
    {
@@ -138,7 +138,7 @@ namespace ios
    
    // Change a window's style
    
-   /*__STATIC bool CLASS_DECL_AXIS __modify_style(oswindow hWnd, int32_t nStyleOffset,
+   /*__STATIC bool CLASS_DECL_AURA __modify_style(oswindow hWnd, int32_t nStyleOffset,
     DWORD dwRemove, DWORD dwAdd, UINT nFlags)
     {
     ASSERT(hWnd != NULL);
@@ -898,8 +898,8 @@ namespace ios
 #ifdef DEBUG
             //            ::window * pWndPermanent = dynamic_cast < ::window * > (pMap->lookup_permanent(hWndOrig));;
             //          ASSERT(pWndPermanent == NULL);
-            // It is important to call axis class, including ca2 core
-            // axis classes implementation of install_message_handling
+            // It is important to call aura class, including ca2 core
+            // aura classes implementation of install_message_handling
             // inside derived class install_message_handling
 #endif
          }
@@ -1248,7 +1248,7 @@ namespace ios
    
    
    
-   bool window::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
+   bool window::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
    {
       if(command_target_interface::_001OnCmdMsg(pcmdmsg))
          return TRUE;
@@ -1281,7 +1281,7 @@ namespace ios
    
    void window::message_handler(signal_details * pobj)
    {
-      SCAST_PTR(::message::axis, pbase, pobj);
+      SCAST_PTR(::message::aura, pbase, pobj);
       
       if(pbase->m_uiMessage == WM_SIZE || pbase->m_uiMessage == WM_MOVE)
       {
@@ -2153,7 +2153,7 @@ namespace ios
       return NULL;
    }
    
-   /* trans oswindow CLASS_DECL_AXIS __get_parent_owner(::user::interaction * hWnd)
+   /* trans oswindow CLASS_DECL_AURA __get_parent_owner(::user::interaction * hWnd)
     {
     // check for permanent-owned window first
     ::window * pWnd = ::ios::window::FromHandlePermanent(hWnd);
@@ -2818,7 +2818,7 @@ namespace ios
       ASSERT(puiStop == NULL || puiStop->IsWindow());
       ASSERT(pobj != NULL);
       
-      SCAST_PTR(::message::axis, pbase, pobj);
+      SCAST_PTR(::message::aura, pbase, pobj);
       // walk from the target window up to the hWndStop window checking
       //  if any window wants to translate this message
       
@@ -3161,7 +3161,7 @@ namespace ios
       oswindow m_hwnd;
       HDC m_hdc;
       
-      print_window(::axis::application * papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
+      print_window(::aura::application * papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
       element(papp),
       m_event(papp)
       
@@ -3169,7 +3169,7 @@ namespace ios
          m_event.ResetEvent();
          m_hwnd = hwnd;
          m_hdc = hdc;
-         __begin_thread(papp, &print_window::s_print_window, (LPVOID) this, ::axis::scheduling_priority_normal);
+         __begin_thread(papp, &print_window::s_print_window, (LPVOID) this, ::aura::scheduling_priority_normal);
          if(m_event.wait(millis(dwTimeout)).timeout())
          {
             TRACE("print_window::time_out");
@@ -3388,7 +3388,7 @@ namespace ios
       
       throw not_implemented(get_app());
       
-      //      SCAST_PTR(::message::axis, pbase, pobj);
+      //      SCAST_PTR(::message::aura, pbase, pobj);
       //
       //      PAINTSTRUCT paint;
       //      memset(&paint, 0, sizeof(paint));
@@ -3461,7 +3461,7 @@ namespace ios
    void window::_001OnPrint(signal_details * pobj)
    {
       throw not_implemented(get_app());
-      //      SCAST_PTR(::message::axis, pbase, pobj);
+      //      SCAST_PTR(::message::aura, pbase, pobj);
       //
       //      if(pbase->m_wparam == NULL)
       //         return;
@@ -3896,9 +3896,9 @@ namespace ios
       
       pui->m_iaModalThread.add(::GetCurrentThreadId());
       
-      //::axis::application * pappThis1 = dynamic_cast < ::axis::application * > (pui->m_pthread->m_p.m_p);
+      //::aura::application * pappThis1 = dynamic_cast < ::aura::application * > (pui->m_pthread->m_p.m_p);
       
-      //::axis::application * pappThis2 = dynamic_cast < ::axis::application * > (pui->m_pthread.m_p);
+      //::aura::application * pappThis2 = dynamic_cast < ::aura::application * > (pui->m_pthread.m_p);
       
       while(true)
       {
@@ -3935,8 +3935,8 @@ namespace ios
       m_iModalCount++;
       
                   m_iaModalThread.add(::GetCurrentThreadId());
-      ::axis::application * pappThis1 = dynamic_cast < ::axis::application * > (m_pthread->m_p.m_p);
-      ::axis::application * pappThis2 = dynamic_cast < ::axis::application * > (m_pthread.m_p);
+      ::aura::application * pappThis1 = dynamic_cast < ::aura::application * > (m_pthread->m_p.m_p);
+      ::aura::application * pappThis2 = dynamic_cast < ::aura::application * > (m_pthread.m_p);
 
       while(true)
       {
@@ -4215,7 +4215,7 @@ namespace ios
    }
    
    
-   /*   view_update_hint::view_update_hint(::axis::application * papp) :
+   /*   view_update_hint::view_update_hint(::aura::application * papp) :
     element(papp)
     {
     }
@@ -4556,7 +4556,7 @@ namespace ios
       return m_id;
    }
    
-   /*   guie_message_wnd::guie_message_wnd(::axis::application * papp) :
+   /*   guie_message_wnd::guie_message_wnd(::aura::application * papp) :
     element(papp)
     {
     m_pguieForward = NULL;
@@ -4794,7 +4794,7 @@ namespace ios
    LRESULT window::send_message(UINT message, WPARAM wparam, lparam lparam)
    {
       
-      ::smart_pointer < ::message::axis > spbase;
+      ::smart_pointer < ::message::aura > spbase;
       
       spbase = get_base(m_pui, message, wparam, lparam);
       
@@ -5908,7 +5908,7 @@ namespace ios
    
    void window::_001OnSetCursor(signal_details * pobj)
    {
-      SCAST_PTR(::message::axis, pbase, pobj);
+      SCAST_PTR(::message::aura, pbase, pobj);
       if(Session.get_cursor() != NULL
          && Session.get_cursor()->m_ecursor != ::visual::cursor_system)
       {
@@ -6289,7 +6289,7 @@ namespace ios
    bool window::round_window_key_down(::user::e_key ekey)
    {
       
-      sp(::message::axis) spbase;
+      sp(::message::aura) spbase;
       
       ::message::key * pkey = canew(::message::key(get_app()));
       
@@ -6308,7 +6308,7 @@ namespace ios
    bool window::round_window_key_up(::user::e_key ekey)
    {
       
-      sp(::message::axis) spbase;
+      sp(::message::aura) spbase;
       
       ::message::key * pkey = canew(::message::key(get_app()));
       
@@ -6327,7 +6327,7 @@ namespace ios
    bool window::round_window_on_text(const char * pszText)
    {
       
-      sp(::message::axis) spbase;
+      sp(::message::aura) spbase;
       
       ::message::key * pkey = canew(::message::key(get_app()));
       
@@ -6372,7 +6372,7 @@ namespace ios
    void window::round_window_mouse_down(double x, double y)
    {
       
-      sp(::message::axis) spbase;
+      sp(::message::aura) spbase;
       
       if(::GetActiveWindow() != get_handle())
       {
@@ -6433,7 +6433,7 @@ namespace ios
    void window::round_window_mouse_up(double x, double y)
    {
       
-      sp(::message::axis) spbase;
+      sp(::message::aura) spbase;
       
       ::message::mouse * pmouse = canew(::message::mouse(get_app()));
       
@@ -6453,7 +6453,7 @@ namespace ios
    void window::round_window_mouse_moved(double x, double y)
    {
       
-      sp(::message::axis) spbase;
+      sp(::message::aura) spbase;
       
       ::message::mouse * pmouse = canew(::message::mouse(get_app()));
       
@@ -6473,7 +6473,7 @@ namespace ios
    void window::round_window_mouse_dragged(double x, double y)
    {
       
-      sp(::message::axis) spbase;
+      sp(::message::aura) spbase;
       
       ::message::mouse * pmouse = canew(::message::mouse(get_app()));
       
@@ -6498,7 +6498,7 @@ namespace ios
 
 
 
-__STATIC void CLASS_DECL_AXIS __pre_init_dialog(
+__STATIC void CLASS_DECL_AURA __pre_init_dialog(
                                                ::user::interaction * pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld)
 {
    ASSERT(lpRectOld != NULL);
@@ -6508,7 +6508,7 @@ __STATIC void CLASS_DECL_AXIS __pre_init_dialog(
    *pdwStyleOld = IOS_WINDOW(pWnd)->GetStyle();
 }
 
-__STATIC void CLASS_DECL_AXIS __post_init_dialog(
+__STATIC void CLASS_DECL_AURA __post_init_dialog(
                                                 ::user::interaction * pWnd, const RECT& rectOld, DWORD dwStyleOld)
 {
    // must be hidden to start with
@@ -6539,7 +6539,7 @@ __STATIC void CLASS_DECL_AXIS __post_init_dialog(
 
 
 
-CLASS_DECL_AXIS void hook_window_create(::user::interaction * pWnd)
+CLASS_DECL_AURA void hook_window_create(::user::interaction * pWnd)
 {
    
    UNREFERENCED_PARAMETER(pWnd);
@@ -6547,7 +6547,7 @@ CLASS_DECL_AXIS void hook_window_create(::user::interaction * pWnd)
 }
 
 
-CLASS_DECL_AXIS bool unhook_window_create()
+CLASS_DECL_AURA bool unhook_window_create()
 {
    return TRUE;
 }

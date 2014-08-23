@@ -19,7 +19,7 @@
 #include "message_dispatch.h"
 #undef new
 #include "message_base.h"
-#include "message_user.h"
+//#include "message_user.h"
 #define new AXIS_NEW
 #include "message.inl"
 
@@ -30,10 +30,10 @@ namespace message
 
 
 
-   CLASS_DECL_AXIS bool is_idle_message(::signal_details * pobj);
+   CLASS_DECL_AURA bool is_idle_message(::signal_details * pobj);
 
 
-   CLASS_DECL_AXIS bool is_idle_message(MESSAGE* pMsg);
+   CLASS_DECL_AURA bool is_idle_message(MESSAGE* pMsg);
 
 
 

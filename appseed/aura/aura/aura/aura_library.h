@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace axis
+namespace aura
 {
 
 
-   class CLASS_DECL_AXIS library:
+   class CLASS_DECL_AURA library:
       virtual public ::object
    {
    public:
@@ -21,8 +21,8 @@ namespace axis
 
 
 
-      library(sp(::axis::application) papp);
-      library(sp(::axis::application) papp,int iDesmabi, const char * pszRoot);
+      library(sp(::aura::application) papp);
+      library(sp(::aura::application) papp,int iDesmabi, const char * pszRoot);
       virtual ~library();
 
       virtual bool open(const char * pszPath,bool bAutoClose = true,bool bCa2Path = false);
@@ -61,11 +61,11 @@ namespace axis
 
 
       // impl
-      virtual sp(::axis::application) get_new_app(const char * pszId);
+      virtual sp(::aura::application) get_new_app(const char * pszId);
       virtual void get_app_list(stringa & stra);
 
 
-      virtual sp(::object) create_object(sp(::axis::application) papp, const char * pszClass);
+      virtual sp(::object) create_object(sp(::aura::application) papp, const char * pszClass);
       virtual bool has_object_class(const char * pszClass);
 
 
@@ -79,7 +79,7 @@ namespace axis
 
 
 
-   CLASS_DECL_AXIS void * open_ca2_library(const char * psz);
+   CLASS_DECL_AURA void * open_ca2_library(const char * psz);
 
 
 
@@ -91,30 +91,30 @@ namespace axis
    {
    public:
 
-      single_application_library(sp(::axis::application) papp,const char * pszRoot): element(papp),::axis::library(papp,0, pszRoot) {}
+      single_application_library(sp(::aura::application) papp,const char * pszRoot): element(papp),::aura::library(papp,0, pszRoot) {}
 
       // impl
-      virtual sp(::axis::application) get_new_app(const char * pszAppId);
+      virtual sp(::aura::application) get_new_app(const char * pszAppId);
 
 
    };
 
 
 
-   typedef class library * (* PFN_GET_NEW_LIBRARY)(sp(::axis::application) papp);
+   typedef class library * (* PFN_GET_NEW_LIBRARY)(sp(::aura::application) papp);
 
 
-} // namespace axis
-
-
-
+} // namespace aura
 
 
 
 
-CLASS_DECL_AXIS void * __node_library_open(const char * pszPath);
-CLASS_DECL_AXIS void * __node_library_open_ca2(const char * pszPath);
-CLASS_DECL_AXIS bool __node_library_close(void * plibrary);
-CLASS_DECL_AXIS void * __node_library_raw_get(void * plibrary,const char * pszEntryName);
+
+
+
+CLASS_DECL_AURA void * __node_library_open(const char * pszPath);
+CLASS_DECL_AURA void * __node_library_open_ca2(const char * pszPath);
+CLASS_DECL_AURA bool __node_library_close(void * plibrary);
+CLASS_DECL_AURA void * __node_library_raw_get(void * plibrary,const char * pszEntryName);
 
 

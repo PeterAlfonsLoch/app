@@ -15,13 +15,13 @@ class multi_lock;
 
 
 // Use instead of PostQuitMessage in OLE server applications
-CLASS_DECL_AXIS void __post_quit_message(int32_t nExitCode);
+CLASS_DECL_AURA void __post_quit_message(int32_t nExitCode);
 
 typedef UINT(c_cdecl *__THREADPROC)(LPVOID);
 
 
-CLASS_DECL_AXIS void do_events();
-CLASS_DECL_AXIS void do_events(const duration & duration);
+CLASS_DECL_AURA void do_events();
+CLASS_DECL_AURA void do_events(const duration & duration);
 
 
 #include "multithreading_sync_object.h"

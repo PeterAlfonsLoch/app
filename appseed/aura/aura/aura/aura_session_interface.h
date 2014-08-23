@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace axis
+namespace aura
 {
 
 
-   class CLASS_DECL_AXIS session_interface:
-      virtual public ::axis::application_interface
+   class CLASS_DECL_AURA session_interface:
+      virtual public ::aura::application_interface
    {
    public:
 
@@ -22,15 +22,15 @@ namespace axis
       virtual bool  get_monitor_rect(index iMonitor,LPRECT lprect);
 
 
-      virtual ::visual::cursor * get_cursor();
-      virtual ::visual::cursor * get_default_cursor();
+      //virtual ::visual::cursor * get_cursor();
+      //virtual ::visual::cursor * get_default_cursor();
 
 
 
    };
 
 
-} // namespace axis
+} // namespace aura
 
 
 

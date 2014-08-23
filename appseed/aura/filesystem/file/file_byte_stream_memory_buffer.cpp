@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   byte_stream_memory_buffer::byte_stream_memory_buffer(::axis::application * papp)
+   byte_stream_memory_buffer::byte_stream_memory_buffer(::aura::application * papp)
    {
 
       m_spmemorybuffer = canew(memory_buffer(papp));
@@ -26,7 +26,7 @@ namespace file
    }
 
 
-   byte_stream_memory_buffer::byte_stream_memory_buffer(::axis::application * papp, const void * data, ::primitive::memory_size c)
+   byte_stream_memory_buffer::byte_stream_memory_buffer(::aura::application * papp, const void * data, ::primitive::memory_size c)
    {
 
       m_spmemorybuffer = canew(memory_buffer(papp, (void *) data, c));

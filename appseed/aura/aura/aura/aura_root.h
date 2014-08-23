@@ -2,19 +2,19 @@
 
 
 
-class CLASS_DECL_AXIS root
+class CLASS_DECL_AURA root
 {
 public:
 
 
    int64_t                       m_countReference;
    bool                          m_bHeap;
-   ::axis::application *         m_paxisapp;
+   ::aura::application *         m_pauraapp;
 
 
 
    root();
-   root(sp(::axis::application) papp);
+   root(sp(::aura::application) papp);
    virtual ~root();
 
 

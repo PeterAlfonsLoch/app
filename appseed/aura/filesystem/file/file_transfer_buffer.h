@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_AXIS transfer_buffer :
+   class CLASS_DECL_AURA transfer_buffer :
       virtual public ::file::composite
    {
    public:
@@ -18,8 +18,8 @@ namespace file
       sp(mutex)                        m_spmutex;
 
 
-      transfer_buffer(sp(::axis::application) papp, mutex * pmutex = NULL);
-      transfer_buffer(sp(::axis::application) papp, ::file::memory_buffer * pmemoryfileIn);
+      transfer_buffer(sp(::aura::application) papp, mutex * pmutex = NULL);
+      transfer_buffer(sp(::aura::application) papp, ::file::memory_buffer * pmemoryfileIn);
       virtual ~transfer_buffer();
 
 

@@ -4,17 +4,17 @@
 
 
 
-namespace axis
+namespace aura
 {
 
 
-    class CLASS_DECL_AXIS os :
+    class CLASS_DECL_AURA os :
       virtual public object 
     {
     public:
 
 
-        os(sp(::axis::application) papp);
+        os(sp(::aura::application) papp);
         virtual ~os();
 
 
@@ -57,11 +57,11 @@ namespace axis
 #endif
 
 
-        virtual bool create_service(sp(::axis::application) papp);
-        virtual bool remove_service(sp(::axis::application) papp);
+        virtual bool create_service(sp(::aura::application) papp);
+        virtual bool remove_service(sp(::aura::application) papp);
 
-        virtual bool start_service(sp(::axis::application) papp);
-        virtual bool stop_service(sp(::axis::application) papp);
+        virtual bool start_service(sp(::aura::application) papp);
+        virtual bool stop_service(sp(::aura::application) papp);
 
 
         virtual bool resolve_link(string & strTarget, const char * pszSource, sp(::user::interaction) puiMessageParentOptional = NULL);
@@ -81,7 +81,7 @@ namespace axis
     typedef smart_pointer < os > os_sp;
 
 
-} // namespace axis
+} // namespace aura
 
 
 #endif // AXIS_AXIS_CORE_OS_H

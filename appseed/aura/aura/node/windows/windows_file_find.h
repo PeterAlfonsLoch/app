@@ -5,7 +5,7 @@ namespace windows
 {
 
 
-   class CLASS_DECL_AXIS file_find : 
+   class CLASS_DECL_AURA file_find : 
       public ::object
    {
    // ementation

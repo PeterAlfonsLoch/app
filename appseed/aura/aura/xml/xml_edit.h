@@ -16,7 +16,7 @@ namespace xml
    };
 
 
-   class CLASS_DECL_AXIS edit_item :
+   class CLASS_DECL_AURA edit_item :
       public ::file::serializable
    {
    public:
@@ -28,7 +28,7 @@ namespace xml
       string         m_strValue;
 
 
-      edit_item(sp(::axis::application) papp);
+      edit_item(sp(::aura::application) papp);
 
 
       void set_name(const sp(::xml::node) pnode);
@@ -43,7 +43,7 @@ namespace xml
 
    };
 
-   class CLASS_DECL_AXIS edit :
+   class CLASS_DECL_AURA edit :
       public ::edit < ::xml::document >,
       public ::file::byte_serializable_pointer_array < spa(edit_item) >
    {
@@ -54,7 +54,7 @@ namespace xml
       index       m_iEdit;
 
 
-      edit(sp(::axis::application) papp);
+      edit(sp(::aura::application) papp);
       virtual ~edit();
 
 

@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // Build data tables by including data file three times
 
-struct CLASS_DECL_AXIS __MAP_MESSAGE
+struct CLASS_DECL_AURA __MAP_MESSAGE
 {
    UINT    nMsg;
    const char *  lpszMsg;
@@ -277,7 +277,7 @@ void __trace_message(const char * lpszPrefix, signal_details * pobj)
 {
    //   ENSURE_ARG(AfxIsValidString(lpszPrefix));
    ENSURE_ARG(pobj != NULL);
-   SCAST_PTR(::message::axis, pbase, pobj);
+   SCAST_PTR(::message::aura, pbase, pobj);
    
    if (pbase->m_uiMessage == WM_MOUSEMOVE || pbase->m_uiMessage == WM_NCMOUSEMOVE ||
        pbase->m_uiMessage == WM_NCHITTEST || pbase->m_uiMessage == WM_SETCURSOR ||

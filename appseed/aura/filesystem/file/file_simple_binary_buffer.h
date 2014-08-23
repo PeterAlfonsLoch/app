@@ -9,7 +9,7 @@ namespace file
    struct file_status;
 
 
-   class CLASS_DECL_AXIS simple_binary_buffer :
+   class CLASS_DECL_AURA simple_binary_buffer :
       virtual public ::file::binary_buffer
    {
    public:
@@ -19,7 +19,7 @@ namespace file
       string       m_strFileName;
 
 
-      simple_binary_buffer(sp(::axis::application) papp);
+      simple_binary_buffer(sp(::aura::application) papp);
       virtual ~simple_binary_buffer();
 
       virtual file_position get_position() const;
@@ -86,7 +86,7 @@ namespace file
    };
 
 
-   void CLASS_DECL_AXIS throw_exception(sp(::axis::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
+   void CLASS_DECL_AURA throw_exception(sp(::aura::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
 
 } // namespace file
 

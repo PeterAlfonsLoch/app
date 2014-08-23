@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS synch_index_ptr_array:
+class CLASS_DECL_AURA synch_index_ptr_array:
    virtual protected ptr_array < index >
 {
 public:

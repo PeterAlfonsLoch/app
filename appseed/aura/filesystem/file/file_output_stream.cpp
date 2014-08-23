@@ -11,7 +11,7 @@ namespace file
    }
 
 
-   output_stream::output_stream(const char * lpszFileName, uint32_t nOpenFlags, sp(::axis::application) papp)
+   output_stream::output_stream(const char * lpszFileName, uint32_t nOpenFlags, sp(::aura::application) papp)
    {
 
       if(papp == NULL)

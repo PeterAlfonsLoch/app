@@ -1,6 +1,6 @@
 //
 //  base_static_start.cpp
-//  axis
+//  aura
 //
 //
 //
@@ -70,13 +70,13 @@ extern mutex * g_pmutexThreadHandleLock;
 
 #if defined(APPLEOS)
 
-#include "axis/os/macos/macos_window_impl.h"
+#include "aura/os/macos/macos_window_impl.h"
 
 extern oswindow_dataptra * g_poswindowdataptra;
 
 #elif defined(APPLE_IOS)
 
-#include "axis/os/ios/ios_window_impl.h"
+#include "aura/os/ios/ios_window_impl.h"
 
 extern oswindow_dataptra * g_poswindowdataptra;
 
@@ -91,7 +91,7 @@ extern mutex * g_pmutexCvt;
 #undef new
 
 
-namespace axis
+namespace aura
 {
    
    
@@ -99,10 +99,10 @@ namespace axis
    {
 
       
-      CLASS_DECL_AXIS void init()
+      CLASS_DECL_AURA void init()
       {
    
-         xxdebug_box("axis.dll base_static_start (0)", "box", MB_OK);
+         xxdebug_box("aura.dll base_static_start (0)", "box", MB_OK);
          
    
          /*
@@ -261,7 +261,7 @@ namespace axis
       
 
       
-      CLASS_DECL_AXIS void term()
+      CLASS_DECL_AURA void term()
       {
 
          delete g_pmutexFactory;
@@ -394,7 +394,7 @@ namespace axis
    } // namespace static_start
 
    
-} // namespace axis
+} // namespace aura
 
 
 

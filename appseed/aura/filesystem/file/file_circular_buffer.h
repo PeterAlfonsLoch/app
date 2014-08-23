@@ -9,7 +9,7 @@ namespace file
    /** buffer class containing one read/write circular buffer.
    \ingroup internal */
 
-   class CLASS_DECL_AXIS circular_buffer :
+   class CLASS_DECL_AURA circular_buffer :
       virtual public stream_buffer
    {
    protected:

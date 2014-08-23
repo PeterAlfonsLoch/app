@@ -2,7 +2,7 @@
 
 #define CA2_PALACE_SAFE_ZONE_BORDER_SIZE 32
 
-struct CLASS_DECL_AXIS plex     // warning var length structure
+struct CLASS_DECL_AURA plex     // warning var length structure
 {
    plex*                            pNext;
    // BYTE data[maxNum*elementSize];

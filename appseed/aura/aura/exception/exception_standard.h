@@ -26,11 +26,11 @@
 #include <eh.h>
 
 
-#define DECLARE_SE_EXCEPTION_CLASS(name) class CLASS_DECL_AXIS name : virtual public standard_exception \
+#define DECLARE_SE_EXCEPTION_CLASS(name) class CLASS_DECL_AURA name : virtual public standard_exception \
    { \
     friend class translator; \
    protected: \
-   name (sp(::axis::application) papp, EXCEPTION_POINTERS * ppointers) : \
+   name (sp(::aura::application) papp, EXCEPTION_POINTERS * ppointers) : \
       element(papp), \
       ::call_stack(papp), \
       ::exception::base(papp), \
@@ -49,7 +49,7 @@
 
 #endif
 
-class CLASS_DECL_AXIS standard_exception :
+class CLASS_DECL_AURA standard_exception :
    virtual public ::exception::base
 {
 public:
@@ -88,7 +88,7 @@ public:
 
 
 #ifdef WINDOWS
-   standard_exception(sp(::axis::application) papp, EXCEPTION_POINTERS * ppointers) :
+   standard_exception(sp(::aura::application) papp, EXCEPTION_POINTERS * ppointers) :
       element(papp),
       ::call_stack(papp),
       ::exception::base(papp),
@@ -111,7 +111,7 @@ public:
    }
 
 #else
-   standard_exception(sp(::axis::application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
+   standard_exception(sp(::aura::application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
       element(papp),
       ::call_stack(papp),
       ::exception::base(papp),
@@ -162,7 +162,7 @@ namespace exception
       friend class translator;
    protected:
    #if defined(ANDROID)
-      standard_access_violation (sp(::axis::application) papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
+      standard_access_violation (sp(::aura::application) papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
          element(papp),
          ::call_stack(papp),
          ::exception::base(papp),
@@ -170,7 +170,7 @@ namespace exception
       {printf(":standard");}
    public:
 #elif defined(LINUX) || defined(APPLEOS) || defined(SOLARIS)
-      standard_access_violation (sp(::axis::application) papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
+      standard_access_violation (sp(::aura::application) papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
          element(papp),
 #ifdef LINUX
 #ifdef _LP64
@@ -204,7 +204,7 @@ namespace exception
                  itohex_dup(info->si_addr) + " from " + itohex_dup(caller_address) + "\n\n";*/
 
    #else
-      standard_access_violation (sp(::axis::application) papp, EXCEPTION_POINTERS * ppointers) :
+      standard_access_violation (sp(::aura::application) papp, EXCEPTION_POINTERS * ppointers) :
          element(papp),
          ::call_stack(papp),
          ::exception::base(papp),
@@ -223,7 +223,7 @@ namespace exception
    {
       friend class translator;
    protected:
-      standard_sigfpe (sp(::axis::application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
+      standard_sigfpe (sp(::aura::application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
          element(papp),
       ::call_stack(papp),
          ::exception::base(papp),
@@ -239,7 +239,7 @@ namespace exception
    {
       friend class translator;
    protected:
-      standard_sigfpe (sp(::axis::application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
+      standard_sigfpe (sp(::aura::application) papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
          element(papp),
 #ifdef LINUX
 #ifdef _LP64
@@ -274,7 +274,7 @@ namespace exception
    {
       friend class translator;
    protected:
-      standard_no_memory (sp(::axis::application) papp, EXCEPTION_POINTERS * ppointers) :
+      standard_no_memory (sp(::aura::application) papp, EXCEPTION_POINTERS * ppointers) :
          element(papp),
          ::call_stack(papp),
          ::exception::base(papp),
@@ -324,7 +324,7 @@ namespace exception
 #include <sys/ucontext.h>
 #endif*/
 
-/*class CLASS_DECL_AXIS standard_exception :
+/*class CLASS_DECL_AURA standard_exception :
    public bastandard_exception
 {
 public:
@@ -342,7 +342,7 @@ private:
 {
    friend class translator;
 protected:
-   standard_sigsegv (sp(::axis::application) papp, siginfo_t * psiginfo, void * pc) : element(papp), standard_exception(papp, psiginfo, pc) {}
+   standard_sigsegv (sp(::aura::application) papp, siginfo_t * psiginfo, void * pc) : element(papp), standard_exception(papp, psiginfo, pc) {}
 public:
    //bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
    //uint_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
@@ -352,7 +352,7 @@ public:
 {
    friend class translator;
 protected:
-   standard_sigfpe (sp(::axis::application) papp, siginfo_t * psiginfo, void * pc) : element(papp), standard_exception(papp, psiginfo, pc) {}
+   standard_sigfpe (sp(::aura::application) papp, siginfo_t * psiginfo, void * pc) : element(papp), standard_exception(papp, psiginfo, pc) {}
 public:
 //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
   // uint_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }

@@ -8,7 +8,7 @@ namespace xml
    class edit;
 
 
-   class CLASS_DECL_AXIS document :
+   class CLASS_DECL_AURA document :
       public node,
       public ::data::data
    {
@@ -23,7 +23,7 @@ namespace xml
       sp(::xml::edit)              m_pedit;
 
 
-      document(sp(::axis::application) papp = NULL, parse_info * pparseinfo = NULL);
+      document(sp(::aura::application) papp = NULL, parse_info * pparseinfo = NULL);
       virtual ~document();
     
 

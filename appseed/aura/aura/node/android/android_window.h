@@ -5,13 +5,13 @@ namespace android
 {
 
 
-   CLASS_DECL_AXIS LRESULT CALLBACK __send_message_hook(int32_t, WPARAM, LPARAM);
-   //CLASS_DECL_AXIS void _::ca2::StandardSubclass(oswindow);
-   CLASS_DECL_AXIS LRESULT CALLBACK __cbt_filter_hook(int32_t, WPARAM, LPARAM);
-   CLASS_DECL_AXIS LRESULT __call_window_procedure(sp(::user::interaction) pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+   CLASS_DECL_AURA LRESULT CALLBACK __send_message_hook(int32_t, WPARAM, LPARAM);
+   //CLASS_DECL_AURA void _::ca2::StandardSubclass(oswindow);
+   CLASS_DECL_AURA LRESULT CALLBACK __cbt_filter_hook(int32_t, WPARAM, LPARAM);
+   CLASS_DECL_AURA LRESULT __call_window_procedure(sp(::user::interaction) pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
 
 
-   class CLASS_DECL_AXIS interaction_impl :
+   class CLASS_DECL_AURA interaction_impl :
       virtual public ::user::interaction_impl
    {
    public:
@@ -32,7 +32,7 @@ namespace android
 
 
       interaction_impl();
-      interaction_impl(sp(::axis::application) papp);
+      interaction_impl(sp(::aura::application) papp);
       virtual ~interaction_impl();
 
 
@@ -61,7 +61,7 @@ namespace android
 
       virtual oswindow get_handle() const;
 
-      virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
@@ -401,7 +401,7 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       // dialog support
       void UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHndler);
       void CenterWindow(sp(::user::interaction) pAlternateOwner = NULL);
-      //virtual id   RunModalLoop(DWORD dwFlags = 0, ::axis::live_object * pliveobject = NULL);
+      //virtual id   RunModalLoop(DWORD dwFlags = 0, ::aura::live_object * pliveobject = NULL);
       //virtual bool ContinueModal(int32_t iLevel);
       //virtual void EndModalLoop(id nResult);
       //virtual void EndAllModalLoops(id nResult);
@@ -612,10 +612,10 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
 
 
       // implementation of message dispatch/hooking
-      CLASS_DECL_AXIS friend LRESULT CALLBACK __send_message_hook(int32_t, WPARAM, LPARAM);
-      //CLASS_DECL_AXIS friend void _::ca2::StandardSubclass(oswindow);
-      CLASS_DECL_AXIS friend LRESULT CALLBACK __cbt_filter_hook(int32_t, WPARAM, LPARAM);
-      CLASS_DECL_AXIS friend LRESULT __call_window_procedure(sp(::user::interaction) pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+      CLASS_DECL_AURA friend LRESULT CALLBACK __send_message_hook(int32_t, WPARAM, LPARAM);
+      //CLASS_DECL_AURA friend void _::ca2::StandardSubclass(oswindow);
+      CLASS_DECL_AURA friend LRESULT CALLBACK __cbt_filter_hook(int32_t, WPARAM, LPARAM);
+      CLASS_DECL_AURA friend LRESULT __call_window_procedure(sp(::user::interaction) pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
 
       // standard message implementation
       LRESULT OnNTCtlColor(WPARAM wParam, LPARAM lParam);

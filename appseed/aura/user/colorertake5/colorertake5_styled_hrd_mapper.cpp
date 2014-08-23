@@ -8,7 +8,7 @@ const int32_t StyledRegion::RD_ITALIC = 2;
 const int32_t StyledRegion::RD_UNDERLINE = 4;
 const int32_t StyledRegion::RD_STRIKEOUT = 8;
 
-StyledHRDMapper::StyledHRDMapper(sp(::axis::application) papp) :
+StyledHRDMapper::StyledHRDMapper(sp(::aura::application) papp) :
    element(papp),
    RegionMapperImpl(papp)
 {
@@ -31,7 +31,7 @@ void StyledHRDMapper::loadRegionMappings(::file::input_stream & istream)
    
    istream >> str;
 
-   xml::document hbasedoc(m_paxisapp);
+   xml::document hbasedoc(m_pauraapp);
 
    if(!hbasedoc.load(str))
    {

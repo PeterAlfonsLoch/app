@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS retry_single_lock
+class CLASS_DECL_AURA retry_single_lock
 {
 protected:
 

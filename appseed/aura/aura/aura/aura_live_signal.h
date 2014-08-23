@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace axis
+namespace aura
 {
 
 
-   class CLASS_DECL_AXIS live_signal :
-      virtual public ::axis::live_object,
+   class CLASS_DECL_AURA live_signal :
+      virtual public ::aura::live_object,
       virtual protected ::comparable_array < live_object * >
    {
    public:
@@ -25,7 +25,7 @@ namespace axis
    };
 
 
-} // namespace axis
+} // namespace aura
 
 
 

@@ -5,7 +5,7 @@ namespace xml
 {
 
 
-   parse_info::parse_info(sp(::axis::application) papp)
+   parse_info::parse_info(sp(::aura::application) papp)
    {
       m_bTrimValue      = false; 
       m_bEntityValue    = true; 

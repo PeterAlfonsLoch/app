@@ -22,7 +22,7 @@
 namespace win
 {
 
-   CLASS_DECL_AXIS string error_message(uint32_t dwError);
+   CLASS_DECL_AURA string error_message(uint32_t dwError);
 
 }
 
@@ -83,8 +83,8 @@ class dump_context;
 
 
 // ::datetime::time_span diagnostics and serialization
-CLASS_DECL_AXIS dump_context & operator<<(dump_context & dumpcontext, const ::datetime::time_span & dateSpanSrc);
-CLASS_DECL_AXIS dump_context & operator<<(dump_context & dumpcontext, const ::datetime::time & dateSrc);
+CLASS_DECL_AURA dump_context & operator<<(dump_context & dumpcontext, const ::datetime::time_span & dateSpanSrc);
+CLASS_DECL_AURA dump_context & operator<<(dump_context & dumpcontext, const ::datetime::time & dateSrc);
 
 
 #if defined(DEBUG) && !defined(___NO_DEBUG_CRT)
@@ -92,10 +92,10 @@ CLASS_DECL_AXIS dump_context & operator<<(dump_context & dumpcontext, const ::da
 
 
 // Return TRUE if primitive::memory is sane or print out what is wrong
-CLASS_DECL_AXIS bool __check_memory();
+CLASS_DECL_AURA bool __check_memory();
 
 // Return TRUE if valid primitive::memory block of nBytes
-CLASS_DECL_AXIS bool __is_memory_block(const void * p,UINT nBytes,LONG* plRequestNumber = NULL);
+CLASS_DECL_AURA bool __is_memory_block(const void * p,UINT nBytes,LONG* plRequestNumber = NULL);
 
 
 
@@ -115,13 +115,13 @@ enum e_memdbg // primitive::memory debug/diagnostic flags
 #define __output_debug_string TRACE
 
 // turn on/off tracking for a int16_t while
-CLASS_DECL_AXIS bool __enable_memory_tracking(bool bTrack);
+CLASS_DECL_AURA bool __enable_memory_tracking(bool bTrack);
 
 // Turn on/off the global flag gen_MemoryLeakOverride. if bEnable is TRUE
 // then further calls to __enable_memory_tracking() wont change the current
 // primitive::memory tracking state, until __enable_memory_leak_override(bool bEnable)
 // is called again with bEnable == FALSE.
-CLASS_DECL_AXIS bool __enable_memory_leak_override(bool bEnable);
+CLASS_DECL_AURA bool __enable_memory_leak_override(bool bEnable);
 
 
 
@@ -164,8 +164,8 @@ void __dump_stack(uint32_t dwFlags = __stack_dump_TARGET_DEFAULT);
 #include "exception_dump_context.h"
 
 #ifdef DEBUG
-extern CLASS_DECL_AXIS dump_context g_dumpcontext;
-extern CLASS_DECL_AXIS bool g_bTraceEnabled;
+extern CLASS_DECL_AURA dump_context g_dumpcontext;
+extern CLASS_DECL_AURA bool g_bTraceEnabled;
 #endif
 
 #ifdef DEBUG
@@ -186,8 +186,8 @@ extern CLASS_DECL_AXIS bool g_bTraceEnabled;
 #endif
 
 
-CLASS_DECL_AXIS string __get_thread_note();
-CLASS_DECL_AXIS void __set_thread_note(const char * pszNote);
+CLASS_DECL_AURA string __get_thread_note();
+CLASS_DECL_AURA void __set_thread_note(const char * pszNote);
 
 
 
@@ -196,20 +196,20 @@ CLASS_DECL_AXIS void __set_thread_note(const char * pszNote);
 
 
 
-CLASS_DECL_AXIS bool __assert_failed_line(const char * lpszFileName, int32_t nLine);
+CLASS_DECL_AURA bool __assert_failed_line(const char * lpszFileName, int32_t nLine);
 
-CLASS_DECL_AXIS void c_cdecl __trace(const char * lpszFormat, ...);
+CLASS_DECL_AURA void c_cdecl __trace(const char * lpszFormat, ...);
 // Note: file names are still ANSI strings (filenames rarely need UNICODE)
-CLASS_DECL_AXIS void assert_valid_object(const object* pOb,
+CLASS_DECL_AURA void assert_valid_object(const object* pOb,
             const char * lpszFileName, int32_t nLine);
-CLASS_DECL_AXIS void __dump(const object* pOb); // dump an object from CodeView
+CLASS_DECL_AURA void __dump(const object* pOb); // dump an object from CodeView
 
 
 // extern ::core::CTrace TRACE;
 #ifdef DEBUG
 #ifndef TRACE
-#define TRACE ::axis::trace_add_file_and_line(m_paxisapp, __FILE__, __LINE__)
-#define APPTRACE(papp) ::axis::trace_add_file_and_line(papp, __FILE__, __LINE__)
+#define TRACE ::aura::trace_add_file_and_line(m_pauraapp, __FILE__, __LINE__)
+#define APPTRACE(papp) ::aura::trace_add_file_and_line(papp, __FILE__, __LINE__)
 //#define TRACE2 TRACE
 #endif
 #define THIS_FILE          __FILE__
@@ -310,9 +310,9 @@ inline void c_cdecl __trace(...) { }
    do { \
       string str; \
       if (pException->get_error_message(str, 0)) \
-         TRACE(::axis::trace::category_AppMsg, 0, "%s (%s:%d)\n%s\n", szMsg, __FILE__, __LINE__, str); \
+         TRACE(::aura::trace::category_AppMsg, 0, "%s (%s:%d)\n%s\n", szMsg, __FILE__, __LINE__, str); \
       else \
-         TRACE(::axis::trace::category_AppMsg, 0, "%s (%s:%d)\n", szMsg, __FILE__, __LINE__); \
+         TRACE(::aura::trace::category_AppMsg, 0, "%s (%s:%d)\n", szMsg, __FILE__, __LINE__); \
       ASSERT(FALSE); \
    } while (0)
 #else

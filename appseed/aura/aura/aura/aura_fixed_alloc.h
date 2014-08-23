@@ -4,7 +4,7 @@
 struct plex;
 
 
-class CLASS_DECL_AXIS fixed_alloc_no_sync
+class CLASS_DECL_AURA fixed_alloc_no_sync
 {
 public:
 
@@ -63,7 +63,7 @@ inline void fixed_alloc_no_sync::Free(void * p)
 
 
 
-class CLASS_DECL_AXIS fixed_alloc_sync
+class CLASS_DECL_AURA fixed_alloc_sync
 {
 public:
 
@@ -88,7 +88,7 @@ public:
 
 
 
-class CLASS_DECL_AXIS fixed_alloc
+class CLASS_DECL_AURA fixed_alloc
 {
 public:
 
@@ -112,7 +112,7 @@ public:
 
 
 
-class CLASS_DECL_AXIS fixed_alloc_array :
+class CLASS_DECL_AURA fixed_alloc_array :
    public array < fixed_alloc * >
 {
 public:

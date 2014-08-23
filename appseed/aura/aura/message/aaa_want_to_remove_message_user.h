@@ -5,11 +5,11 @@ namespace message
 {
 
 
-   class CLASS_DECL_AXIS create: public base
+   class CLASS_DECL_AURA create: public base
    {
    public:
 
-      create(sp(::axis::application) papp): element(papp),::message::base(papp) {}
+      create(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       ::user::create_struct * m_lpcreatestruct;
 
       virtual void set_lresult(LRESULT lresult);
@@ -19,18 +19,18 @@ namespace message
       virtual void failed(const char * lpcszErrorMessage);
    };
 
-   class CLASS_DECL_AXIS timer: public base
+   class CLASS_DECL_AURA timer: public base
    {
    public:
 
 
-      timer(sp(::axis::application) papp): element(papp),::message::base(papp) {}
+      timer(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       using ::message::base::set;
       virtual void set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
       UINT m_nIDEvent;
    };
 
-   class CLASS_DECL_AXIS activate: public base
+   class CLASS_DECL_AURA activate: public base
    {
    public:
 
@@ -40,27 +40,27 @@ namespace message
       bool  m_bMinimized;
 
 
-      activate(sp(::axis::application) papp);
+      activate(sp(::aura::application) papp);
       using ::message::base::set;
 
       virtual void set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
    };
 
-   class CLASS_DECL_AXIS move: public base
+   class CLASS_DECL_AURA move: public base
    {
    public:
 
 
-      move(sp(::axis::application) papp): element(papp),::message::base(papp) {}
+      move(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       point m_pt;
    };
 
-   class CLASS_DECL_AXIS size: public base
+   class CLASS_DECL_AURA size: public base
    {
    public:
 
 
-      size(sp(::axis::application) papp): element(papp),::message::base(papp) {}
+      size(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       UINT     m_nType;
       ::size   m_size;
       using ::message::base::set;
@@ -68,12 +68,12 @@ namespace message
    };
 
 
-   class CLASS_DECL_AXIS scroll: public base
+   class CLASS_DECL_AURA scroll: public base
    {
    public:
 
 
-      scroll(sp(::axis::application) papp): element(papp),::message::base(papp) {}
+      scroll(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       UINT              m_nSBCode;
       int32_t           m_nPos;
       sp(::user::interaction)  m_pScrollBar;
@@ -82,7 +82,7 @@ namespace message
    };
 
 
-   class CLASS_DECL_AXIS mouse: public base
+   class CLASS_DECL_AURA mouse: public base
    {
    public:
 
@@ -92,7 +92,7 @@ namespace message
       ::visual::e_cursor      m_ecursor;
       bool                    m_bTranslated;
 
-      mouse(sp(::axis::application) papp);
+      mouse(sp(::aura::application) papp);
       virtual ~mouse();
       using ::message::base::set;
 
@@ -100,12 +100,12 @@ namespace message
       static mouse * cast(signal_details * pobj) { return (mouse *)pobj; }
    };
 
-   class CLASS_DECL_AXIS mouse_wheel: public mouse
+   class CLASS_DECL_AURA mouse_wheel: public mouse
    {
    public:
 
 
-      mouse_wheel(sp(::axis::application) papp): element(papp),mouse(papp) {}
+      mouse_wheel(sp(::aura::application) papp): element(papp),mouse(papp) {}
       UINT     GetFlags();
       int16_t    GetDelta();
       point    GetPoint();
@@ -115,61 +115,61 @@ namespace message
    };
 
 
-   class CLASS_DECL_AXIS mouse_activate: public base
+   class CLASS_DECL_AURA mouse_activate: public base
    {
    public:
 
 
-      mouse_activate(sp(::axis::application) papp): element(papp),::message::base(papp) {}
+      mouse_activate(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       sp(::user::interaction) GetDesktopWindow();
       UINT GetHitTest();
       UINT get_message();
    };
 
-   class CLASS_DECL_AXIS context_menu: public base
+   class CLASS_DECL_AURA context_menu: public base
    {
    public:
 
 
-      context_menu(sp(::axis::application) papp): element(papp),::message::base(papp) {}
+      context_menu(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       ::window_sp GetWindow();
       point GetPoint();
    };
 
 
-   class CLASS_DECL_AXIS set_cursor: public base
+   class CLASS_DECL_AURA set_cursor: public base
    {
    public:
 
 
-      set_cursor(sp(::axis::application) papp): element(papp),::message::base(papp) {}
+      set_cursor(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       sp(::user::interaction) m_pWnd;
       UINT m_nHitTest;
       UINT m_message;
    };
 
-   class CLASS_DECL_AXIS show_window: public base
+   class CLASS_DECL_AURA show_window: public base
    {
    public:
 
 
-      show_window(sp(::axis::application) papp): element(papp),::message::base(papp) {}
+      show_window(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       bool m_bShow;
       UINT  m_nStatus;
       using ::message::base::set;
       virtual void set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
    };
 
-   class CLASS_DECL_AXIS on_draw: public base
+   class CLASS_DECL_AURA on_draw: public base
    {
    public:
 
 
-      on_draw(sp(::axis::application) papp): element(papp),::message::base(papp) {}
+      on_draw(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       ::draw2d::graphics * m_pdc;
    };
 
-   class CLASS_DECL_AXIS erase_bkgnd: public base
+   class CLASS_DECL_AURA erase_bkgnd: public base
    {
    public:
 
@@ -177,25 +177,25 @@ namespace message
       ::draw2d::graphics * m_pdc;
 
 
-      erase_bkgnd(sp(::axis::application) papp);
+      erase_bkgnd(sp(::aura::application) papp);
 
       void set_result(bool bResult);
 
    };
 
-   // WM_PAINT -> axis
-   // WM_MOUSELEAVE -> axis
+   // WM_PAINT -> aura
+   // WM_MOUSELEAVE -> aura
 
-   class CLASS_DECL_AXIS nchittest: public base
+   class CLASS_DECL_AURA nchittest: public base
    {
    public:
 
 
-      nchittest(sp(::axis::application) papp): element(papp),::message::base(papp) {}
+      nchittest(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       point m_pt;
    };
 
-   class CLASS_DECL_AXIS key: public base
+   class CLASS_DECL_AURA key: public base
    {
    public:
 
@@ -216,13 +216,13 @@ namespace message
       #endif*/
 
 
-      key(sp(::axis::application) papp);
+      key(sp(::aura::application) papp);
 
       using ::message::base::set;
       virtual void set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
    };
 
-   class CLASS_DECL_AXIS nc_activate: public base
+   class CLASS_DECL_AURA nc_activate: public base
    {
    public:
 
@@ -230,7 +230,7 @@ namespace message
       bool m_bActive;
 
 
-      nc_activate(sp(::axis::application) papp);
+      nc_activate(sp(::aura::application) papp);
 
       using ::message::base::set;
       virtual void set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
@@ -238,67 +238,67 @@ namespace message
 
 #ifdef WINDOWSEX
 
-   class CLASS_DECL_AXIS notify: public base
+   class CLASS_DECL_AURA notify: public base
    {
    public:
 
 
-      notify(sp(::axis::application) papp): element(papp),::message::base(papp) {}
+      notify(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       LPNMHDR get_lpnmhdr();
       int32_t get_ctrl_id();
    };
 
 #endif
 
-   class CLASS_DECL_AXIS update_cmd_ui: public base
+   class CLASS_DECL_AURA update_cmd_ui: public base
    {
    public:
 
 
-      update_cmd_ui(sp(::axis::application) papp): element(papp),::message::base(papp) {}
+      update_cmd_ui(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       cmd_ui *    m_pcmdui;
    };
 
-   class CLASS_DECL_AXIS command: public base
+   class CLASS_DECL_AURA command: public base
    {
    public:
 
 
-      command(sp(::axis::application) papp): element(papp),::message::base(papp) {}
+      command(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       UINT GetNotifyCode();
       UINT GetId();
       oswindow get_oswindow();
    };
 
-   class CLASS_DECL_AXIS ctl_color: public base
+   class CLASS_DECL_AURA ctl_color: public base
    {
    public:
 
 
-      ctl_color(sp(::axis::application) papp): element(papp),::message::base(papp) {}
+      ctl_color(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       HBRUSH      m_hbrush;
       ::draw2d::graphics *       m_pdc;
       ::window_sp      m_pwnd;
       UINT        m_nCtlType;
    };
 
-   class CLASS_DECL_AXIS set_focus: public base
+   class CLASS_DECL_AURA set_focus: public base
    {
    public:
 
 
-      set_focus(sp(::axis::application) papp): element(papp),::message::base(papp) {}
+      set_focus(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       using ::message::base::set;
       virtual void set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
    };
 
 
 
-   class CLASS_DECL_AXIS window_pos: public base
+   class CLASS_DECL_AURA window_pos: public base
    {
    public:
 
-      window_pos(sp(::axis::application) papp): element(papp),::message::base(papp) {}
+      window_pos(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       WINDOWPOS * m_pwindowpos;
       using ::message::base::set;
       virtual void set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
@@ -309,24 +309,24 @@ namespace message
 #ifdef WINDOWSEX
 
 
-   class CLASS_DECL_AXIS measure_item: public base
+   class CLASS_DECL_AURA measure_item: public base
    {
    public:
 
 
-      measure_item(sp(::axis::application) papp): element(papp),::message::base(papp) {}
+      measure_item(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       int32_t m_i;
       LPMEASUREITEMSTRUCT m_lpmis;
    };
 
 #endif
 
-   class CLASS_DECL_AXIS nc_calc_size: public base
+   class CLASS_DECL_AURA nc_calc_size: public base
    {
    public:
 
 
-      nc_calc_size(sp(::axis::application) papp): element(papp),::message::base(papp) {}
+      nc_calc_size(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       NCCALCSIZE_PARAMS * m_pparams;
       bool GetCalcValidRects();
       using ::message::base::set;
@@ -335,12 +335,12 @@ namespace message
    };
 
 
-   class CLASS_DECL_AXIS enable: public base
+   class CLASS_DECL_AURA enable: public base
    {
    public:
 
 
-      enable(sp(::axis::application) papp): element(papp),::message::base(papp) {}
+      enable(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       bool get_enable();
    };
 

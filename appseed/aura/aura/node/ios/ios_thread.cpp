@@ -10,10 +10,10 @@ struct ___THREAD_STARTUP : ::ios::thread_startup
 };
 
 
-WINBOOL CLASS_DECL_AXIS AfxInternalPumpMessage();
-LRESULT CLASS_DECL_AXIS AfxInternalProcessWndProcException(::exception::axis*, const MESSAGE* pMsg);
-__STATIC void CLASS_DECL_AXIS __pre_init_dialog(::user::interaction * pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld);
-__STATIC void CLASS_DECL_AXIS __post_init_dialog(::user::interaction * pWnd, const RECT& rectOld, DWORD dwStyleOld);
+WINBOOL CLASS_DECL_AURA AfxInternalPumpMessage();
+LRESULT CLASS_DECL_AURA AfxInternalProcessWndProcException(::exception::aura*, const MESSAGE* pMsg);
+__STATIC void CLASS_DECL_AURA __pre_init_dialog(::user::interaction * pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld);
+__STATIC void CLASS_DECL_AURA __post_init_dialog(::user::interaction * pWnd, const RECT& rectOld, DWORD dwStyleOld);
 
 namespace ios
 {
@@ -57,7 +57,7 @@ UINT APIENTRY __thread_entry(void * pParam)
       __init_thread();
       
    }
-   catch(::exception::axis *)
+   catch(::exception::aura *)
    {
       pStartup->bError = TRUE;
       pStartup->hEvent.set_event();
@@ -92,7 +92,7 @@ namespace ios
    thread_pointer < ::thread > t_pthread;
 
    
-   CLASS_DECL_AXIS ::thread * __get_thread()
+   CLASS_DECL_AURA ::thread * __get_thread()
    {
       
       return t_pthread;
@@ -100,7 +100,7 @@ namespace ios
    }
    
    
-   CLASS_DECL_AXIS void __set_thread(::thread * pthread)
+   CLASS_DECL_AURA void __set_thread(::thread * pthread)
    {
 
       t_pthread = pthread;
@@ -116,7 +116,7 @@ namespace ios
 
 
 
-void CLASS_DECL_AXIS __end_thread(::axis::application * papp, UINT nExitCode, bool bDelete)
+void CLASS_DECL_AURA __end_thread(::aura::application * papp, UINT nExitCode, bool bDelete)
 {
 
    ::ios::thread* pThread = ::ios::__get_thread();
@@ -138,7 +138,7 @@ void CLASS_DECL_AXIS __end_thread(::axis::application * papp, UINT nExitCode, bo
    //   _endthreadex(nExitCode);
 }
 
-void CLASS_DECL_AXIS __term_thread(::axis::application * papp, HINSTANCE hInstTerm)
+void CLASS_DECL_AURA __term_thread(::aura::application * papp, HINSTANCE hInstTerm)
 {
    
    
@@ -149,7 +149,7 @@ void CLASS_DECL_AXIS __term_thread(::axis::application * papp, HINSTANCE hInstTe
   //       ios::__thread_data->delete_data();
       //__thread_data->DeleteValues(hInstTerm, FALSE);
    }
-   catch( ::exception::axis* e )
+   catch( ::exception::aura* e )
    {
       e->Delete();
    }
@@ -186,7 +186,7 @@ namespace ios
       CommonConstruct();
    }
    
-   thread::thread(::axis::application * papp) :
+   thread::thread(::aura::application * papp) :
    element(papp),
    message_queue(papp),//,
    m_evFinish(papp, FALSE, TRUE),
@@ -435,9 +435,9 @@ namespace ios
       step_timer();
      
       
-      ::axis::application * pappThis1 = dynamic_cast < ::axis::application * > (this);
+      ::aura::application * pappThis1 = dynamic_cast < ::aura::application * > (this);
 
-      ::axis::application * pappThis2 = dynamic_cast < ::axis::application * > (m_p.m_p);
+      ::aura::application * pappThis2 = dynamic_cast < ::aura::application * > (m_p.m_p);
       
       m_p->m_dwAlive = m_dwAlive = ::get_tick_count();
       
@@ -481,7 +481,7 @@ namespace ios
       
       uint32_t dwCreateFlags = dwCreateFlagsParam;
       
-      if(epriority != ::axis::scheduling_priority_normal)
+      if(epriority != ::aura::scheduling_priority_normal)
       {
    dwCreateFlags |= CREATE_SUSPENDED;
       }
@@ -533,7 +533,7 @@ namespace ios
       // allow thread to continue, once resumed (it may already be resumed)
       pstartup->hEvent2.set_event();
       
-      if(epriority != ::axis::scheduling_priority_normal)
+      if(epriority != ::aura::scheduling_priority_normal)
       {
          
          //VERIFY(set_thread_priority(epriority));
@@ -808,7 +808,7 @@ namespace ios
    
    void thread::DispatchThreadMessageEx(signal_details * pobj)
    {
-      SCAST_PTR(::message::axis, pbase, pobj);
+      SCAST_PTR(::message::aura, pbase, pobj);
       if(pbase->m_uiMessage == WM_APP + 1984 && pbase->m_wparam == 77)
       {
          ::smart_pointer < ::user::message > spmessage(pbase->m_lparam);
@@ -827,10 +827,10 @@ namespace ios
          ::message::e_prototype eprototype = signal.m_eprototype;
          if(eprototype == ::message::PrototypeNone)
          {
-            //::message::axis axis(get_app());
+            //::message::aura aura(get_app());
             pbase->m_psignal = psignal;
             lresult = 0;
-            //axis.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
+            //aura.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
             psignal->emit(pbase);
             if(pbase->m_bRet)
                return;
@@ -846,20 +846,20 @@ namespace ios
       return AfxInternalPreTranslateMessage(pobj);
    }
    
-   void thread::ProcessWndProcException(::exception::axis* e, signal_details * pobj)
+   void thread::ProcessWndProcException(::exception::aura* e, signal_details * pobj)
    {
       return AfxInternalProcessWndProcException(e, pobj);
    }
    
    __STATIC inline WINBOOL IsEnterKey(signal_details * pobj)
    {
-      SCAST_PTR(::message::axis, pbase, pobj);
+      SCAST_PTR(::message::aura, pbase, pobj);
       return pbase->m_uiMessage == WM_KEYDOWN && pbase->m_wparam == VK_RETURN;
    }
    
    __STATIC inline WINBOOL IsButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(::message::axis, pbase, pobj);
+      SCAST_PTR(::message::aura, pbase, pobj);
       return pbase->m_uiMessage == WM_LBUTTONUP;
    }
    
@@ -869,7 +869,7 @@ namespace ios
       if(pobj == NULL)
          return;   // not handled
       
-//      SCAST_PTR(::message::axis, pbase, pobj);
+//      SCAST_PTR(::message::aura, pbase, pobj);
 //      
 //      frame_window* pTopFrameWnd;
 //      ::user::interaction* pMainWnd;
@@ -965,7 +965,7 @@ namespace ios
          if(msg.message != WM_KICKIDLE)
          {
             {
-               ::smart_pointer < ::message::axis > spbase;
+               ::smart_pointer < ::message::aura > spbase;
                
                spbase = get_base(&msg);
                
@@ -1047,7 +1047,7 @@ namespace ios
    
    void thread::message_handler(signal_details * pobj)
    {
-      SCAST_PTR(::message::axis, pbase, pobj);
+      SCAST_PTR(::message::aura, pbase, pobj);
       // special message which identifies the window as using AfxWndProc
 //      if(pbase->m_uiMessage == WM_QUERYAFXWNDPROC)
   //    {
@@ -1102,7 +1102,7 @@ namespace ios
          pbase->set_lresult(-1);
          return;
       }
-      catch(::exception::axis * pe)
+      catch(::exception::aura * pe)
       {
          AfxProcessWndProcException(pe, pbase);
          TRACE(::core::trace::category_AppMsg, 0, "Warning: Uncaught exception in message_handler (returning %ld).\n", pbase->get_lresult());
@@ -1171,7 +1171,7 @@ namespace ios
    }
    
    
-   CLASS_DECL_AXIS ::thread * get_thread()
+   CLASS_DECL_AURA ::thread * get_thread()
    {
       ::thread * pthread = ::get_thread();
       if(pthread == NULL)
@@ -1787,8 +1787,8 @@ namespace ios
 
 
 
-WINBOOL CLASS_DECL_AXIS AfxInternalPumpMessage();
-LRESULT CLASS_DECL_AXIS AfxInternalProcessWndProcException(::exception::axis*, const MESSAGE* pMsg);
+WINBOOL CLASS_DECL_AURA AfxInternalPumpMessage();
+LRESULT CLASS_DECL_AURA AfxInternalProcessWndProcException(::exception::aura*, const MESSAGE* pMsg);
 void AfxInternalPreTranslateMessage(signal_details * pobj);
 WINBOOL AfxInternalIsIdleMessage(signal_details * pobj);
 WINBOOL AfxInternalIsIdleMessage(LPMESSAGE lpmsg);

@@ -13,7 +13,7 @@ namespace colorertake5
    {
    public:
 
-      HRCParserException(sp(::axis::application) papp) :
+      HRCParserException(sp(::aura::application) papp) :
          element(papp),
          ::call_stack(papp),
          ::exception::base(papp),
@@ -23,7 +23,7 @@ namespace colorertake5
       }
 
 
-      HRCParserException(sp(::axis::application) papp, const string & msg) :
+      HRCParserException(sp(::aura::application) papp, const string & msg) :
          element(papp),
          ::call_stack(papp),
          ::exception::base(papp),
@@ -41,7 +41,7 @@ namespace colorertake5
    HRC information.
    @ingroup colorer
    */
-   class CLASS_DECL_AXIS HRCParser :
+   class CLASS_DECL_AURA HRCParser :
       virtual public ::object
    {
    public:
@@ -89,7 +89,7 @@ namespace colorertake5
       */
       virtual class region *getRegion(const char * name) = 0;
 
-      /** HRC axis version.
+      /** HRC aura version.
       Usually this is the 'version' attribute of 'hrc' element
       of the first loaded HRC spfile->
       */

@@ -9,7 +9,7 @@
 #endif
 
 
-condition::condition(sp(::axis::application) papp) :
+condition::condition(sp(::aura::application) papp) :
    element(papp)
 {
 

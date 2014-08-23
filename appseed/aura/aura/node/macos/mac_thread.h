@@ -17,7 +17,7 @@ namespace mac
       
 
       
-      thread(::axis::application * papp);
+      thread(::aura::application * papp);
       virtual ~thread();
       
       

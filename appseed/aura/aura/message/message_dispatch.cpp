@@ -277,7 +277,7 @@ namespace message
 #endif
 
    //bool dispatch::_iguimessageDispatchCommandMessage(
-   // ::axis::command * pcommand,
+   // ::aura::command * pcommand,
    //bool & b)
    //{
    /*int32_t & i = m_iHandling;
@@ -577,7 +577,7 @@ namespace message
    {
    }
 
-   sp(::axis::application) dispatch::calc_app()
+   sp(::aura::application) dispatch::calc_app()
    {
       return NULL;
    }

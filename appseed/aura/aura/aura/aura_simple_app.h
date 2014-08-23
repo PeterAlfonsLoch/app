@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace axis
+namespace aura
 {
 
-   class CLASS_DECL_AXIS simple_app:
-      virtual public ::axis::system
+   class CLASS_DECL_AURA simple_app:
+      virtual public ::aura::system
    {
    public:
 
@@ -34,7 +34,7 @@ namespace axis
    };
 
 
-} // namespace axis
+} // namespace aura
 
 
 

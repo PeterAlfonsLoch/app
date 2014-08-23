@@ -2,12 +2,12 @@
 
 
 
-namespace axis
+namespace aura
 {
 
 
 
-   class CLASS_DECL_AXIS departament :
+   class CLASS_DECL_AURA departament :
    virtual public signalizable
    {
    public:
@@ -41,7 +41,7 @@ namespace axis
 
 
 
-} // namespace axis
+} // namespace aura
 
 
 

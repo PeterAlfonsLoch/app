@@ -5,14 +5,14 @@ namespace windows
 {
 
 
-   class CLASS_DECL_AXIS thread :
+   class CLASS_DECL_AURA thread :
       virtual public ::thread_impl
    {
    public:
 
 
 
-      thread(sp(::axis::application) papp);
+      thread(sp(::aura::application) papp);
       virtual ~thread();
 
 

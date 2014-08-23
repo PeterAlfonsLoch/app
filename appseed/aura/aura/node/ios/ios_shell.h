@@ -6,7 +6,7 @@
 namespace ios
 {
    
-   class CLASS_DECL_AXIS shell
+   class CLASS_DECL_AURA shell
    {
    public:
       shell();

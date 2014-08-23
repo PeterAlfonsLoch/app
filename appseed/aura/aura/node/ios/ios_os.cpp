@@ -8,7 +8,7 @@ namespace ios
 {
    
    
-   os::os(::axis::application * papp) :
+   os::os(::aura::application * papp) :
    element(papp),
    ::core::os(papp)
    {
@@ -570,7 +570,7 @@ namespace ios
       
    }
    
-   bool os::create_service(sp(::axis::application) papp)
+   bool os::create_service(sp(::aura::application) papp)
    {
       
   //    throw not_implemented(get_app());
@@ -623,7 +623,7 @@ namespace ios
    }
    
    
-   bool os::remove_service(sp(::axis::application) papp)
+   bool os::remove_service(sp(::aura::application) papp)
    {
    //   throw not_implemented(get_app());
       return false;
@@ -664,7 +664,7 @@ namespace ios
        */
    }
    
-   bool os::start_service(sp(::axis::application) papp)
+   bool os::start_service(sp(::aura::application) papp)
    {
     //  throw not_implemented(get_app());
       return false;
@@ -705,7 +705,7 @@ namespace ios
        */
    }
    
-   bool os::stop_service(sp(::axis::application) papp)
+   bool os::stop_service(sp(::aura::application) papp)
    {
   //    throw not_implemented(get_app());
       return false;
@@ -917,14 +917,14 @@ namespace ios
 
 //
 //  macos_os.cpp
-//  axis
+//  aura
 //
 //  Created by Camilo Sasuke Tsumanuma on 2013-09-17.
 //
 //
 
 
-CLASS_DECL_AXIS bool _istlead(int32_t ch)
+CLASS_DECL_AURA bool _istlead(int32_t ch)
 {
 
    return false;

@@ -88,7 +88,7 @@ namespace linux
 
    }
 
-   interaction_impl::interaction_impl(sp(::axis::application) papp) :
+   interaction_impl::interaction_impl(sp(::aura::application) papp) :
       element(papp)
    {
 
@@ -124,7 +124,7 @@ namespace linux
       /*if(m_oswindow != NULL)
       {
 
-         TRACE(::axis::trace::category_AppMsg, 0, "Warning: calling DestroyWindow in interaction_impl::~interaction_impl; OnDestroy or PostNcDestroy in derived class will not be called.\n");
+         TRACE(::aura::trace::category_AppMsg, 0, "Warning: calling DestroyWindow in interaction_impl::~interaction_impl; OnDestroy or PostNcDestroy in derived class will not be called.\n");
 
          m_pcallback = NULL;
 
@@ -442,8 +442,8 @@ namespace linux
             string strMessage;
             strMessage.Format("%s\n\nSystem Error Code: %d", strLastError, dwLastError);
 
-            TRACE(::axis::trace::category_AppMsg, 0, "Warning: oswindow creation failed: GetLastError returned:\n");
-            TRACE(::axis::trace::category_AppMsg, 0, "%s\n", strMessage);
+            TRACE(::aura::trace::category_AppMsg, 0, "Warning: oswindow creation failed: GetLastError returned:\n");
+            TRACE(::aura::trace::category_AppMsg, 0, "%s\n", strMessage);
             try
             {
                if(dwLastError == 0x0000057e)
@@ -846,8 +846,8 @@ d.unlock();
 #ifdef DEBUG
 //            sp(::interaction_impl) pWndPermanent =  (pMap->lookup_permanent(hWndOrig));;
   //          ASSERT(pWndPermanent == NULL);
-            // It is important to call axis class, including ca2 core
-            // axis classes implementation of install_message_handling
+            // It is important to call aura class, including ca2 core
+            // aura classes implementation of install_message_handling
             // inside derived class install_message_handling
 #endif
          }
@@ -1094,7 +1094,7 @@ d.unlock();
 
 
 
-   bool interaction_impl::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
+   bool interaction_impl::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
    {
       if(command_target_interface::_001OnCmdMsg(pcmdmsg))
          return TRUE;
@@ -2828,7 +2828,7 @@ return 0;
       oswindow m_hwnd;
       HDC m_hdc;
 
-      print_window(sp(::axis::application) papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
+      print_window(sp(::aura::application) papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
          element(papp),
          m_event(papp)
 
@@ -2836,7 +2836,7 @@ return 0;
          m_event.ResetEvent();
          m_hwnd = hwnd;
          m_hdc = hdc;
-         __begin_thread(papp, &print_window::s_print_window, (LPVOID) this, ::axis::scheduling_priority_normal);
+         __begin_thread(papp, &print_window::s_print_window, (LPVOID) this, ::aura::scheduling_priority_normal);
          if(m_event.wait(millis(dwTimeout)).timeout())
          {
             TRACE("print_window::time_out");
@@ -3296,7 +3296,7 @@ throw not_implemented(get_app());
    ASSERT(!bOK);
    // Note: DELETE_EXCEPTION_(e) not required
    }
-   catch(::exception::axis * pe)
+   catch(::exception::aura * pe)
    {
    // validation failed due to OOM or other resource failure
    //e->ReportError(MB_ICONEXCLAMATION, __IDP_INTERNAL_FAILURE);
@@ -3654,7 +3654,7 @@ throw not_implemented(get_app());
    }
 
 
-   /*   view_update_hint::view_update_hint(sp(::axis::application) papp) :
+   /*   view_update_hint::view_update_hint(sp(::aura::application) papp) :
    element(papp)
    {
    }
@@ -4000,7 +4000,7 @@ throw not_implemented(get_app());
       return m_pui->GetDlgCtrlId();
    }
 
-   /*   guie_message_wnd::guie_message_wnd(sp(::axis::application) papp) :
+   /*   guie_message_wnd::guie_message_wnd(sp(::aura::application) papp) :
    element(papp)
    {
    m_puiForward = NULL;

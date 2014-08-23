@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS launcher :
+class CLASS_DECL_AURA launcher :
    virtual public object
 {
 public:

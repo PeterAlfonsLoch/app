@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_AXIS edit_buffer :
+   class CLASS_DECL_AURA edit_buffer :
       public ::file::buffer_sp ,
       public ::data::tree
    {
@@ -170,7 +170,7 @@ namespace file
 
       void FillFilePosition(sp(Item) pitem);
 
-      edit_buffer(sp(::axis::application) papp);
+      edit_buffer(sp(::aura::application) papp);
       virtual ~edit_buffer();
 
       virtual bool IsValid() const;

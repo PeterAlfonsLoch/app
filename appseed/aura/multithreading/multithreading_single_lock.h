@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS single_lock
+class CLASS_DECL_AURA single_lock
 {
 public:
 

@@ -627,9 +627,9 @@ namespace linux
 {
 
 
-   copydesk::copydesk(sp(::axis::application) papp) :
+   copydesk::copydesk(sp(::aura::application) papp) :
       element(papp),
-      ::axis::copydesk(papp)
+      ::aura::copydesk(papp)
    {
    }
 
@@ -733,7 +733,7 @@ namespace linux
    {
 
 
-      if(!::axis::copydesk::initialize())
+      if(!::aura::copydesk::initialize())
          return false;
 
       return true;
@@ -746,7 +746,7 @@ namespace linux
 
       bool bOk;
 
-      bOk = ::axis::copydesk::finalize();
+      bOk = ::aura::copydesk::finalize();
 
 //      if(::window_sp::is_set() && ::window_sp::m_p->IsWindow())
       {

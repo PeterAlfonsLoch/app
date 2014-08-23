@@ -5,7 +5,7 @@ namespace xml
 {
 
 
-   input_tree::input_tree(sp(::axis::application) papp) :
+   input_tree::input_tree(sp(::aura::application) papp) :
       element(papp),
       tree_base(papp)
    {
@@ -13,7 +13,7 @@ namespace xml
       m_pnode = NULL;
    }
 
-   input_tree::input_tree(sp(::axis::application) papp, tree_schema * pschema) :
+   input_tree::input_tree(sp(::aura::application) papp, tree_schema * pschema) :
       element(papp),
       tree_base(papp, pschema)
    {

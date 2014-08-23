@@ -1,6 +1,6 @@
 //
 //  multithreading_thread_impl.cpp
-//  axis
+//  aura
 //
 //
 //
@@ -9,7 +9,7 @@
 
 uint32_t __thread_entry(void * pparam);
 
-thread_impl::thread_impl(sp(::axis::application) papp):
+thread_impl::thread_impl(sp(::aura::application) papp):
 element(papp),
 m_evFinish(papp),
 m_mutexUiPtra(papp),
@@ -111,10 +111,10 @@ void thread_impl::dispatch_thread_message(signal_details * pobj)
       message::e_prototype eprototype = signal.m_eprototype;
       if(eprototype == message::PrototypeNone)
       {
-         //::message::base axis(get_app());
+         //::message::base aura(get_app());
          pbase->m_psignal = psignal;
          lresult = 0;
-         //axis.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
+         //aura.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
          psignal->emit(pbase);
          if(pbase->m_bRet)
             return;
@@ -147,22 +147,22 @@ void thread_impl::pre_translate_message(signal_details * pobj)
 
       try
       {
-         if(m_paxisapp->m_paxissession != NULL)
+         if(m_pauraapp->m_paxissession != NULL)
          {
             try
             {
 
-               synch_index_iterator it(m_paxisapp->m_paxissession->m_framea);
+               synch_index_iterator it(m_pauraapp->m_paxissession->m_framea);
 
                sp(::user::interaction) pui;
 
-               for(it.m_i = 0; it.m_i < m_paxisapp->m_paxissession->frames().get_count(); it.m_i++)
+               for(it.m_i = 0; it.m_i < m_pauraapp->m_paxissession->frames().get_count(); it.m_i++)
                {
                   
                   try
                   {
 
-                     pui = m_paxisapp->m_paxissession->frames()[it.m_i];
+                     pui = m_pauraapp->m_paxissession->frames()[it.m_i];
 
                   }
                   catch(...)
@@ -353,7 +353,7 @@ void thread_impl::process_message_filter(int32_t code,signal_details * pobj)
 
 
 
-thread_startup::thread_startup(sp(::axis::application) papp) :
+thread_startup::thread_startup(sp(::aura::application) papp) :
    element(papp),
    m_event(papp),
    m_event2(papp)
@@ -705,7 +705,7 @@ uint32_t __thread_entry(void * pparam)
       catch(::exit_exception &)
       {
 
-         Sys(pthreadimpl->m_paxisapp).post_thread_message(WM_QUIT,0,0);
+         Sys(pthreadimpl->m_pauraapp).post_thread_message(WM_QUIT,0,0);
 
          return ::multithreading::__on_thread_finally(pthread);
 
@@ -728,7 +728,7 @@ uint32_t __thread_entry(void * pparam)
 }
 
 
-void CLASS_DECL_AXIS __end_thread(sp(::axis::application) papp)
+void CLASS_DECL_AURA __end_thread(sp(::aura::application) papp)
 {
 
    __term_thread(papp);
@@ -736,7 +736,7 @@ void CLASS_DECL_AXIS __end_thread(sp(::axis::application) papp)
 }
 
 
-void CLASS_DECL_AXIS __term_thread(sp(::axis::application) papp)
+void CLASS_DECL_AURA __term_thread(sp(::aura::application) papp)
 {
 
    UNREFERENCED_PARAMETER(papp);
@@ -1505,7 +1505,7 @@ void thread_impl::message_handler(signal_details * pobj)
 
       process_window_procedure_exception(pe,pbase);
 
-      TRACE(::axis::trace::category_AppMsg,0,"Warning: Uncaught exception in message_handler (returning %ld).\n",(int_ptr)pbase->get_lresult());
+      TRACE(::aura::trace::category_AppMsg,0,"Warning: Uncaught exception in message_handler (returning %ld).\n",(int_ptr)pbase->get_lresult());
 
       pe->Delete();
 
@@ -1527,7 +1527,7 @@ bool thread_impl::pump_message()
       if(!::GetMessage(&msg,NULL,0,0))
       {
 
-         TRACE(::axis::trace::category_AppMsg,1,"thread::pump_message - Received WM_QUIT.\n");
+         TRACE(::aura::trace::category_AppMsg,1,"thread::pump_message - Received WM_QUIT.\n");
 
          m_nDisablePumpCount++; // application must die
          // Note: prevents calling message loop things in 'exit_instance'
@@ -1542,7 +1542,7 @@ bool thread_impl::pump_message()
       if(m_nDisablePumpCount != 0)
       {
 
-         TRACE(::axis::trace::category_AppMsg,0,"Error: thread::pump_message called when not permitted.\n");
+         TRACE(::aura::trace::category_AppMsg,0,"Error: thread::pump_message called when not permitted.\n");
 
          ASSERT(FALSE);
 
@@ -1593,25 +1593,25 @@ bool thread_impl::pump_message()
                   try
                   {
 
-                     if(m_paxisapp != NULL)
+                     if(m_pauraapp != NULL)
                      {
 
                         try
                         {
 
-                           if(m_paxisapp->m_paxissystem != NULL)
+                           if(m_pauraapp->m_paxissystem != NULL)
                            {
 
-                              m_paxisapp->m_paxissystem->pre_translate_message(spbase);
+                              m_pauraapp->m_paxissystem->pre_translate_message(spbase);
 
                               if(spbase->m_bRet)
                                  return true;
 
                               /*                                 try
                               {
-                              if(m_paxisapp->m_paxissystem->m_pcube != NULL)
+                              if(m_pauraapp->m_paxissystem->m_pcube != NULL)
                               {
-                              m_paxisapp->m_paxissystem->m_pcubeInterface->pre_translate_message(spbase);
+                              m_pauraapp->m_paxissystem->m_pcubeInterface->pre_translate_message(spbase);
                               if(spbase->m_bRet)
                               return TRUE;
                               }
@@ -1630,13 +1630,13 @@ bool thread_impl::pump_message()
 
                         }
 
-                        if(m_paxisapp->m_paxissession != NULL)
+                        if(m_pauraapp->m_paxissession != NULL)
                         {
 
                            try
                            {
 
-                              m_paxisapp->m_paxissession->pre_translate_message(spbase);
+                              m_pauraapp->m_paxissession->pre_translate_message(spbase);
 
                               if(spbase->m_bRet)
                                  return true;
@@ -1649,9 +1649,9 @@ bool thread_impl::pump_message()
 
                            /*                              try
                            {
-                           if(m_paxisapp->m_paxissession->m_pbergedge != NULL)
+                           if(m_pauraapp->m_paxissession->m_pbergedge != NULL)
                            {
-                           m_paxisapp->m_paxissession->m_pbergedgeInterface->pre_translate_message(spbase);
+                           m_pauraapp->m_paxissession->m_pbergedgeInterface->pre_translate_message(spbase);
                            if(spbase->m_bRet)
                            return TRUE;
                            }
@@ -1673,10 +1673,10 @@ bool thread_impl::pump_message()
                   try
                   {
 
-                     if(!m_paxisapp->is_system() && m_paxisapp->is_session())
+                     if(!m_pauraapp->is_system() && m_pauraapp->is_session())
                      {
 
-                        m_paxisapp->pre_translate_message(spbase);
+                        m_pauraapp->pre_translate_message(spbase);
 
                         if(spbase->m_bRet)
                            return true;
@@ -1864,7 +1864,7 @@ void thread_impl::set_priority(int32_t priority)
 int32_t thread_impl::priority()
 {
 
-   return ::axis::scheduling_priority_normal;
+   return ::aura::scheduling_priority_normal;
 
 }
 

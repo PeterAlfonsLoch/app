@@ -11,10 +11,10 @@ namespace colorertake5
        realtime text syntax parsing.
        @ingroup colorer_parsers
    */
-   class CLASS_DECL_AXIS HRCParserImpl : public HRCParser
+   class CLASS_DECL_AURA HRCParserImpl : public HRCParser
    {
    public:
-      HRCParserImpl(sp(::axis::application) papp);
+      HRCParserImpl(sp(::aura::application) papp);
      virtual ~HRCParserImpl();
 
      void setErrorHandler(ErrorHandler *eh);

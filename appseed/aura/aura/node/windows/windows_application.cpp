@@ -6,7 +6,7 @@ namespace windows
 {
 
 
-   application::application(sp(::axis::application) papp) :
+   application::application(sp(::aura::application) papp) :
       element(papp)
    {
 
@@ -14,7 +14,7 @@ namespace windows
 
       m_pthreadimpl->m_pthread = this;
 
-      m_paxissystem                    =  papp->m_paxisapp->m_paxissystem;
+      m_paxissystem                    =  papp->m_pauraapp->m_paxissystem;
 
       m_atomApp = m_atomSystemTopic    = NULL;
 
@@ -221,7 +221,7 @@ namespace windows
 
       set_run(false);
 
-      int32_t iRet = ::axis::application::exit_instance();
+      int32_t iRet = ::aura::application::exit_instance();
 
       return iRet;
 
@@ -303,7 +303,7 @@ namespace windows
 
 
 
-   bool application::set_main_init_data(::axis::main_init_data * pdata)
+   bool application::set_main_init_data(::aura::main_init_data * pdata)
    {
 
       m_pmaininitdata = (::windows::main_init_data *) pdata;
@@ -335,7 +335,7 @@ namespace windows
          SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
 
          m_hinstance = hInstance;
-         m_paxisapp->m_hinstance = hInstance;
+         m_pauraapp->m_hinstance = hInstance;
          m_pimpl->m_hinstance = hInstance;
          //hPrevInstance; // Obsolete.
          System.m_strCmdLine = strCmdLine;

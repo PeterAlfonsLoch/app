@@ -3,7 +3,7 @@
 namespace metrowin
 {
 
-   folder_watch::folder_watch(::axis::application * papp) :
+   folder_watch::folder_watch(::aura::application * papp) :
       element(papp),
       ::thread(papp)
    {

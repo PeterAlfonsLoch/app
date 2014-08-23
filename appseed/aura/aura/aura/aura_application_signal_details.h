@@ -2,7 +2,7 @@
 
 
 
-namespace axis
+namespace aura
 
 {
 
@@ -23,7 +23,7 @@ namespace axis
 
    };
 
-   class CLASS_DECL_AXIS application_signal_details:
+   class CLASS_DECL_AURA application_signal_details:
       public signal_details
    {
    public:
@@ -40,4 +40,4 @@ namespace axis
    };
 
 
-} // namespace axis
+} // namespace aura

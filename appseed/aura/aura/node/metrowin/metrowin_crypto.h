@@ -5,13 +5,13 @@ namespace metrowin
 {
 
 
-   class CLASS_DECL_AXIS crypto :
+   class CLASS_DECL_AURA crypto :
       virtual public ::crypto::crypto
    {
    public:
 
 
-      crypto(sp(::axis::application) papp);
+      crypto(sp(::aura::application) papp);
       virtual ~crypto();
 
 

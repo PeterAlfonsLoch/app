@@ -5,7 +5,7 @@ namespace linux
 {
 
 
-   thread::thread(sp(::axis::application) papp) :
+   thread::thread(sp(::aura::application) papp) :
       element(papp),
       ::ansios::thread_impl(papp),
       ::thread_impl(papp)

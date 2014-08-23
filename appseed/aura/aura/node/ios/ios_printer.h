@@ -5,13 +5,13 @@ namespace ios2
 {
 
 
-   class CLASS_DECL_AXIS printer :
+   class CLASS_DECL_AURA printer :
       virtual public ::user::printer
    {
    public:
 
 
-      class CLASS_DECL_AXIS document_properties :
+      class CLASS_DECL_AURA document_properties :
          virtual public ::object
       {
       public:
@@ -21,7 +21,7 @@ namespace ios2
          HDC            m_hdc;
 
 
-         document_properties(::axis::application * papp);
+         document_properties(::aura::application * papp);
          virtual ~document_properties();
 
 
@@ -37,7 +37,7 @@ namespace ios2
       document_properties     m_documentproperties;
 
 
-      printer(::axis::application * papp);
+      printer(::aura::application * papp);
       virtual ~printer();
 
 

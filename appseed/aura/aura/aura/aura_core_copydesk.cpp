@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-namespace axis
+namespace aura
 {
 
 
-   copydesk::copydesk(sp(::axis::application) papp) :
+   copydesk::copydesk(sp(::aura::application) papp) :
       element(papp)
    {
    }

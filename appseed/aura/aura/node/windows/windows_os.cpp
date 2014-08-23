@@ -12,9 +12,9 @@ namespace windows
 {
 
 
-   os::os(sp(::axis::application) papp) :
+   os::os(sp(::aura::application) papp) :
       element(papp),
-      ::axis::os(papp)
+      ::aura::os(papp)
    {
    }
 
@@ -515,7 +515,7 @@ namespace windows
 
    }
 
-   bool os::create_service(sp(::axis::application) papp)
+   bool os::create_service(sp(::aura::application) papp)
    {
 
       if(papp->m_strAppName.is_empty()
@@ -570,7 +570,7 @@ namespace windows
    }
 
 
-   bool os::remove_service(sp(::axis::application) papp)
+   bool os::remove_service(sp(::aura::application) papp)
    {
 
       if(papp->m_strAppName.is_empty()
@@ -613,7 +613,7 @@ namespace windows
 
    }
 
-   bool os::start_service(sp(::axis::application) papp)
+   bool os::start_service(sp(::aura::application) papp)
    {
 
       if(papp->m_strAppName.is_empty()
@@ -655,7 +655,7 @@ namespace windows
       return bOk != FALSE;
    }
 
-   bool os::stop_service(sp(::axis::application) papp)
+   bool os::stop_service(sp(::aura::application) papp)
    {
 
       if(papp->m_strAppName.is_empty()

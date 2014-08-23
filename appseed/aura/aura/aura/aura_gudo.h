@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace axis
+namespace aura
 {
 
    template < class AXIS >
@@ -16,7 +16,7 @@ namespace axis
       bool           m_bAutoGudoSet;
 
 
-      gudo(sp(axis::application) papp,const string & strKey,bool bInitialGudoGet = true);
+      gudo(sp(aura::application) papp,const string & strKey,bool bInitialGudoGet = true);
       virtual ~gudo();
 
       virtual void gudo_get();
@@ -25,7 +25,7 @@ namespace axis
    };
 
    template < class AXIS >
-   gudo < AXIS > ::gudo(sp(axis::application) papp,const string & strKey,bool bInitialGudoGet):
+   gudo < AXIS > ::gudo(sp(aura::application) papp,const string & strKey,bool bInitialGudoGet):
       element(papp)
    {
 
@@ -56,4 +56,4 @@ namespace axis
    }
 
 
-} // namespace axis
+} // namespace aura

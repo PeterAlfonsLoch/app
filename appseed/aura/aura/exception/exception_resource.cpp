@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-resource_exception::resource_exception(sp(::axis::application) papp) :
+resource_exception::resource_exception(sp(::aura::application) papp) :
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),

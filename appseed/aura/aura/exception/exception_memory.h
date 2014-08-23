@@ -1,14 +1,14 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS memory_exception : 
+class CLASS_DECL_AURA memory_exception : 
    virtual public simple_exception
 {
 public:
 
 
-   memory_exception(sp(::axis::application) papp);
-   memory_exception(sp(::axis::application) papp, const char * pszMessage);
+   memory_exception(sp(::aura::application) papp);
+   memory_exception(sp(::aura::application) papp, const char * pszMessage);
    virtual ~memory_exception();
 
 
@@ -22,7 +22,7 @@ namespace std
 {
 
    
-   class CLASS_DECL_AXIS bad_alloc :
+   class CLASS_DECL_AURA bad_alloc :
       virtual public memory_exception
    {
    public:

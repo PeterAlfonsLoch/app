@@ -12,9 +12,9 @@ namespace metrowin
 {
 
 
-   os::os(::axis::application * papp) :
+   os::os(::aura::application * papp) :
       element(papp),
-      ::axis::os(papp)
+      ::aura::os(papp)
    {
    }
 
@@ -624,7 +624,7 @@ namespace metrowin
 
    }
 
-   bool os::create_service(sp(::axis::application) papp)
+   bool os::create_service(sp(::aura::application) papp)
    {
 
 #ifdef WINDOWSEX
@@ -680,7 +680,7 @@ namespace metrowin
    }
    
 
-   bool os::remove_service(sp(::axis::application) papp)
+   bool os::remove_service(sp(::aura::application) papp)
    {
 
 #ifdef WINDOWSEX
@@ -726,7 +726,7 @@ namespace metrowin
 
    }
 
-   bool os::start_service(sp(::axis::application) papp)
+   bool os::start_service(sp(::aura::application) papp)
    {
 
       bool bOk = false;
@@ -773,7 +773,7 @@ namespace metrowin
       return bOk != FALSE;
    }
 
-   bool os::stop_service(sp(::axis::application) papp)
+   bool os::stop_service(sp(::aura::application) papp)
    {
 
       bool bOk = false;

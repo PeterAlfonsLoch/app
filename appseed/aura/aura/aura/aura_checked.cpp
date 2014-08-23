@@ -8,14 +8,14 @@ namespace core
 #ifdef WINDOWS
 
 
-   CLASS_DECL_AXIS int32_t get_errno()
+   CLASS_DECL_AURA int32_t get_errno()
    {
       int32_t nErrNo;
       C_RUNTIME_ERROR_CHECK(::_get_errno(&nErrNo));
       return nErrNo;
    }
 
-   CLASS_DECL_AXIS void set_errno(int32_t _Value)
+   CLASS_DECL_AURA void set_errno(int32_t _Value)
    {
       C_RUNTIME_ERROR_CHECK(::_set_errno(_Value));
    }
@@ -24,12 +24,12 @@ namespace core
 #else
 
 
-   CLASS_DECL_AXIS int32_t get_errno()
+   CLASS_DECL_AURA int32_t get_errno()
    {
       return errno;
    }
 
-   CLASS_DECL_AXIS void set_errno(int32_t _Value)
+   CLASS_DECL_AURA void set_errno(int32_t _Value)
    {
       errno = _Value;
    }

@@ -3,7 +3,7 @@
 namespace metrowin
 {
 
-   class CLASS_DECL_AXIS palette : 
+   class CLASS_DECL_AURA palette : 
       virtual public ::metrowin::graphics_object,
       virtual public ::ca2::palette
    {

@@ -15,7 +15,7 @@ namespace metrowin
 
    ref class directx_application;
 
-   class CLASS_DECL_AXIS window_draw : 
+   class CLASS_DECL_AURA window_draw : 
       virtual public ::user::window_draw,
       virtual public ::message_queue
    {
@@ -47,7 +47,7 @@ namespace metrowin
       DWORD                                  m_dwLastDelay;
 
 
-      window_draw(::axis::application * papp);
+      window_draw(::aura::application * papp);
       virtual ~window_draw();
 
 

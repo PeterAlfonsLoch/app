@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_AXIS buffered_buffer :
+   class CLASS_DECL_AURA buffered_buffer :
       public ::file::binary_buffer
    {
    public:
@@ -23,7 +23,7 @@ namespace file
       primitive::memory          m_storage;
 
 
-      buffered_buffer(sp(::axis::application) papp, ::file::binary_buffer_sp pfile, ::primitive::memory_size iBufferSize = 1024 * 128);
+      buffered_buffer(sp(::aura::application) papp, ::file::binary_buffer_sp pfile, ::primitive::memory_size iBufferSize = 1024 * 128);
       virtual ~buffered_buffer();
 
 

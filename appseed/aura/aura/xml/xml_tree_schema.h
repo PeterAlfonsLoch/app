@@ -5,7 +5,7 @@ namespace xml
 {
 
 
-   class CLASS_DECL_AXIS tree_schema :
+   class CLASS_DECL_AURA tree_schema :
       virtual public ::object
    {
    public:

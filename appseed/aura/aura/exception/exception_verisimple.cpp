@@ -20,7 +20,7 @@ verisimple_exception::~verisimple_exception()
 
 
 
-CLASS_DECL_AXIS ::file::output_stream & operator << (::file::output_stream & os,const verisimple_exception & e)
+CLASS_DECL_AURA ::file::output_stream & operator << (::file::output_stream & os,const verisimple_exception & e)
 {
 
    return os << "verisimple_exception(" << e.m_strMessage << ")";

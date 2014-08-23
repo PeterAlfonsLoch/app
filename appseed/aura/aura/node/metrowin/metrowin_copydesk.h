@@ -5,13 +5,13 @@ namespace metrowin
 {
 
 
-   class CLASS_DECL_AXIS copydesk : 
-      virtual public ::axis::copydesk
+   class CLASS_DECL_AURA copydesk : 
+      virtual public ::aura::copydesk
    {
    public:
 
       
-      copydesk(::axis::application * papp);
+      copydesk(::aura::application * papp);
       virtual ~copydesk();
 
       

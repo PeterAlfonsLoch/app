@@ -5,7 +5,7 @@ namespace mac
 {
 
 
-   crypto::crypto(::axis::application * papp) :
+   crypto::crypto(::aura::application * papp) :
       element(papp),
       ::crypto::crypto(papp)
    {

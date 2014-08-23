@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS machine_event_central :
+class CLASS_DECL_AURA machine_event_central :
    public simple_thread
 {
 public:
@@ -11,7 +11,7 @@ public:
    bool              m_bInitialized;
 
 
-   machine_event_central(sp(::axis::application) papp);
+   machine_event_central(sp(::aura::application) papp);
    virtual ~machine_event_central();
 
 

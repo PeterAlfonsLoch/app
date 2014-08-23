@@ -332,7 +332,7 @@ namespace file
    }
 
 
-   edit_buffer::edit_buffer(sp(::axis::application) papp) :
+   edit_buffer::edit_buffer(sp(::aura::application) papp) :
       element(papp),
       ::file::buffer_sp(papp),
       ::data::data(papp),

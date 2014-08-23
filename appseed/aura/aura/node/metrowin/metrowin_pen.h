@@ -5,7 +5,7 @@ namespace metrowin
 {
 
 
-   class CLASS_DECL_AXIS pen : 
+   class CLASS_DECL_AURA pen : 
       virtual public ::metrowin::graphics_object,
       virtual public ::ca2::pen
    {

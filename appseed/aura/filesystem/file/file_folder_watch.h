@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_AXIS folder_watch :
+   class CLASS_DECL_AURA folder_watch :
       virtual public ::object
    {
    public:
@@ -23,7 +23,7 @@ namespace file
       };
       
 
-      class CLASS_DECL_AXIS callback
+      class CLASS_DECL_AURA callback
       {
       public:
          

@@ -21,7 +21,7 @@ Thank you Thomas Hoefer!!
 
 /// This class represents an item which can be waited for. Items can be threads, events, sockets,
 /// files, semaphores and so on.
-class CLASS_DECL_AXIS waitable :
+class CLASS_DECL_AURA waitable :
    virtual public ::object
 {
 public:
@@ -38,7 +38,7 @@ public:
 };
 */
 
-class CLASS_DECL_AXIS waitable :
+class CLASS_DECL_AURA waitable :
    virtual public request_interface
 {
 public:
@@ -79,7 +79,7 @@ public:
 
 ///  \brief		pauses waitable for specified time
 ///  \param		duration sleeping time of waitable
-CLASS_DECL_AXIS void sleep(const duration & duration);
+CLASS_DECL_AURA void sleep(const duration & duration);
 
 
 // forward declaration
@@ -90,7 +90,7 @@ class event_base;
 /// event_collection.
 
 
-class CLASS_DECL_AXIS waitable_callback
+class CLASS_DECL_AURA waitable_callback
 {
 public:
 	virtual ~waitable_callback();
@@ -102,7 +102,7 @@ public:
 
 
 
-namespace axis
+namespace aura
 {
 
 
@@ -117,7 +117,7 @@ namespace axis
    } // namespace pal - platform abstraction layer
 
 
-} // namespace axis
+} // namespace aura
 
 
 

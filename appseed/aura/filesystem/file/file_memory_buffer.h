@@ -11,7 +11,7 @@ namespace file
    typedef sp(memory_buffer) memory_buffer_sp;
 
 
-   class CLASS_DECL_AXIS memory_buffer :
+   class CLASS_DECL_AURA memory_buffer :
       virtual public ::file::stream_buffer,
       virtual public primitive::memory_container
    {
@@ -24,10 +24,10 @@ namespace file
    public:
    
 
-      memory_buffer(sp(::axis::application) papp, ::primitive::memory_size iSize = 0);
-      memory_buffer(sp(::axis::application) papp, void * pMemory, ::primitive::memory_size dwSize);
-      memory_buffer(sp(::axis::application) papp, const memory_buffer & memoryfile);
-      memory_buffer(sp(::axis::application) papp, ::primitive::memory_base * pmemory);
+      memory_buffer(sp(::aura::application) papp, ::primitive::memory_size iSize = 0);
+      memory_buffer(sp(::aura::application) papp, void * pMemory, ::primitive::memory_size dwSize);
+      memory_buffer(sp(::aura::application) papp, const memory_buffer & memoryfile);
+      memory_buffer(sp(::aura::application) papp, ::primitive::memory_base * pmemory);
       virtual ~memory_buffer();
 
 

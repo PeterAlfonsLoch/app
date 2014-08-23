@@ -33,7 +33,7 @@ namespace metrowin
    {
    internal:
 
-      ::axis::application * m_paxisapp;
+      ::aura::application * m_paxisapp;
 
       mutex    m_mutexDc;
 
@@ -41,9 +41,9 @@ namespace metrowin
 
       bool m_bInitialized;
 
-      directx_base(::axis::application * papp);
+      directx_base(::aura::application * papp);
 
-      ::axis::application * get_app() const
+      ::aura::application * get_app() const
       {
          return m_paxisapp;
       }

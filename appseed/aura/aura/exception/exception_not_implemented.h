@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS not_implemented : 
+class CLASS_DECL_AURA not_implemented : 
    virtual public ::exception::base
 {
 public:
@@ -10,7 +10,7 @@ public:
    string m_strTip;
 
 
-   not_implemented(sp(::axis::application) papp, const char * pszTip = NULL);
+   not_implemented(sp(::aura::application) papp, const char * pszTip = NULL);
    not_implemented(const not_implemented & e);
    virtual ~not_implemented();
 

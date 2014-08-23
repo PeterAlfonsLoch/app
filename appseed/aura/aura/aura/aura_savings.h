@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace axis
+namespace aura
 {
 
    
@@ -18,7 +18,7 @@ namespace axis
    };
    
 
-   class CLASS_DECL_AXIS savings :
+   class CLASS_DECL_AURA savings :
       virtual public ::object
    {
    public:
@@ -28,7 +28,7 @@ namespace axis
       flags_ex < e_resource > m_eresourceflagsWarning;
 
 
-      savings(sp(::axis::application) papp);
+      savings(sp(::aura::application) papp);
       virtual ~savings();
 
       virtual void save(e_resource eresource);
@@ -50,7 +50,7 @@ namespace axis
    };
 
    
-} // namespace axis
+} // namespace aura
 
 
 

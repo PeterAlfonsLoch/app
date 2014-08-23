@@ -16,7 +16,7 @@ namespace colorertake5
    public:
 
 
-      ParserFactoryException(sp(::axis::application) papp) :
+      ParserFactoryException(sp(::aura::application) papp) :
          element(papp),
          ::call_stack(papp),
          ::exception::base(papp),
@@ -26,7 +26,7 @@ namespace colorertake5
       }
 
 
-      ParserFactoryException(sp(::axis::application) papp, const char * pszMessage) :
+      ParserFactoryException(sp(::aura::application) papp, const char * pszMessage) :
          element(papp),
          ::call_stack(papp),
          ::exception::base(papp),

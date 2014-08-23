@@ -1,6 +1,6 @@
 //
 //  ansios_thread_impl.cpp
-//  axis
+//  aura
 //
 //
 //
@@ -13,7 +13,7 @@ namespace ansios
 {
 
 
-   thread_impl::thread_impl(sp(::axis::application) papp) :
+   thread_impl::thread_impl(sp(::aura::application) papp) :
    element(papp),
    ::thread_impl(papp)
    {
@@ -55,30 +55,15 @@ namespace ansios
 
 
 
-void __end_thread_impl(axis::application*, unsigned int, bool)
+void __end_thread_impl(aura::application*, unsigned int, bool)
 
 {
 
 }
 
 
-void __term_thread_impl(axis::application*, HINSTANCE__*)
+void __term_thread_impl(aura::application*, HINSTANCE__*)
 {
-}
-
-
-
-
-
-
-
-
-
-
-
-void CLASS_DECL_AXIS __init_thread()
-{
-
 }
 
 
@@ -86,7 +71,22 @@ void CLASS_DECL_AXIS __init_thread()
 
 
 
-void CLASS_DECL_AXIS __term_thread()
+
+
+
+
+
+void CLASS_DECL_AURA __init_thread()
+{
+
+}
+
+
+
+
+
+
+void CLASS_DECL_AURA __term_thread()
 {
 
 }

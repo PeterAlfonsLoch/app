@@ -1,12 +1,12 @@
 #pragma once
 
-CLASS_DECL_AXIS int get_sync_io_error();
-CLASS_DECL_AXIS void set_sync_io_error(int iError);
-CLASS_DECL_AXIS int get_generate_sync_io_error();
-CLASS_DECL_AXIS void set_generate_sync_io_error(int iError);
+CLASS_DECL_AURA int get_sync_io_error();
+CLASS_DECL_AURA void set_sync_io_error(int iError);
+CLASS_DECL_AURA int get_generate_sync_io_error();
+CLASS_DECL_AURA void set_generate_sync_io_error(int iError);
 
 
-class CLASS_DECL_AXIS sync_io_error
+class CLASS_DECL_AURA sync_io_error
 {
 public:
 
@@ -45,7 +45,7 @@ namespace file
 
 
 
-   class CLASS_DECL_AXIS stream_buffer :
+   class CLASS_DECL_AURA stream_buffer :
       virtual public ::file::reader,
       virtual public ::file::writer,
       virtual public ::file::seekable,

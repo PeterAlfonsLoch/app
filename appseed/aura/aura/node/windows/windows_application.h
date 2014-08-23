@@ -5,8 +5,8 @@ namespace windows
 {
 
 
-   class CLASS_DECL_AXIS main_init_data :
-      public ::axis::main_init_data
+   class CLASS_DECL_AURA main_init_data :
+      public ::aura::main_init_data
    {
    public:
 
@@ -19,8 +19,8 @@ namespace windows
    };
 
 
-   class CLASS_DECL_AXIS application :
-      virtual public ::axis::application
+   class CLASS_DECL_AURA application :
+      virtual public ::aura::application
    {
    public:
 
@@ -32,7 +32,7 @@ namespace windows
       main_init_data *     m_pmaininitdata;
 
 
-      application(sp(::axis::application) papp);
+      application(sp(::aura::application) papp);
       virtual ~application();
 
 
@@ -55,7 +55,7 @@ namespace windows
 
       virtual void SetCurrentHandles();
 
-      virtual bool set_main_init_data(::axis::main_init_data * pdata);
+      virtual bool set_main_init_data(::aura::main_init_data * pdata);
 
       virtual bool process_initialize();
       virtual bool initialize1();

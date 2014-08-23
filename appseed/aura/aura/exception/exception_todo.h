@@ -1,13 +1,13 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS todo :
+class CLASS_DECL_AURA todo :
    virtual public not_implemented
 {
 public:
 
 
-   todo(sp(::axis::application) papp, const char * pszTip = NULL);
+   todo(sp(::aura::application) papp, const char * pszTip = NULL);
    todo(const todo & e);
    virtual ~todo();
 

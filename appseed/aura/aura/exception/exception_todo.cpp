@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-todo::todo(sp(::axis::application) papp, const char * pszTip) :
+todo::todo(sp(::aura::application) papp, const char * pszTip) :
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),

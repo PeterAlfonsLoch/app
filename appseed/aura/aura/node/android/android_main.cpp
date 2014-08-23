@@ -1,9 +1,9 @@
 #include "framework.h"
 
 
-CLASS_DECL_AXIS int32_t ca2_main();
+CLASS_DECL_AURA int32_t ca2_main();
 
-void CLASS_DECL_AXIS __cdecl _ca2_purecall()
+void CLASS_DECL_AURA __cdecl _ca2_purecall()
 {
     throw simple_exception(::get_thread_app());
 }
@@ -15,7 +15,7 @@ void __cdecl _null_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers
 
 
 
-int32_t CLASS_DECL_AXIS __android_main(::axis::system * psystem, int32_t argc, char * argv[])
+int32_t CLASS_DECL_AURA __android_main(::aura::system * psystem, int32_t argc, char * argv[])
 {
 
    if(!defer_base_init())
@@ -75,7 +75,7 @@ int32_t CLASS_DECL_AXIS __android_main(::axis::system * psystem, int32_t argc, c
 }
 
 
-int32_t CLASS_DECL_AXIS ca2_main(::axis::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, int32_t nCmdShow)
+int32_t CLASS_DECL_AURA ca2_main(::aura::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, int32_t nCmdShow)
 {
    try
    {

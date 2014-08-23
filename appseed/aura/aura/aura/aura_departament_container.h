@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS departament_container_base :
+class CLASS_DECL_AURA departament_container_base :
    virtual public ::object
 {
 public:
@@ -11,7 +11,7 @@ public:
    virtual ~departament_container_base();
 
 
-   ::axis::application * get_departament_app();
+   ::aura::application * get_departament_app();
 
 
 };

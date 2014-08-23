@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-message_queue::message_queue(sp(::axis::application) papp) :
+message_queue::message_queue(sp(::aura::application) papp) :
    element(papp)
 {
 

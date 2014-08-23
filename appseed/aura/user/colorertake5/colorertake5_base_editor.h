@@ -15,21 +15,21 @@ namespace colorertake5
    * is passed into this object and gets internal processing.
    * @ingroup colorer_editor
    */
-   class CLASS_DECL_AXIS base_editor :
+   class CLASS_DECL_AURA base_editor :
       public RegionHandler,
       virtual public ::object
    {
    public:
       /**
       * Initial constructor.
-      * Creates uninitialized axis editor functionality support.
+      * Creates uninitialized aura editor functionality support.
       * @param pf ParserFactory, used as source of all created
       *        parsers (HRC, HRD, Text parser). Can't be NULL.
       * @param lineSource Object, that provides parser with
       *        text data in line-separated form. Can't be NULL.
       */
 
-      base_editor(sp(::axis::application) papp);
+      base_editor(sp(::aura::application) papp);
       ~base_editor();
 
       void initialize(line_source * plinesource);

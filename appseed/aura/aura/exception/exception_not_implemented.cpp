@@ -10,7 +10,7 @@ not_implemented::not_implemented(const not_implemented & e) :
       printf(":not_implemented(copy)");
    }
 
-not_implemented::not_implemented(sp(::axis::application) papp, const char * pszTip) : 
+not_implemented::not_implemented(sp(::aura::application) papp, const char * pszTip) : 
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),

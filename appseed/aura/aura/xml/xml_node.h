@@ -8,7 +8,7 @@ namespace xml
    class document;
 
 
-   class CLASS_DECL_AXIS node :
+   class CLASS_DECL_AURA node :
       virtual public ::object,
       virtual public ::file::serializable
    {
@@ -40,7 +40,7 @@ namespace xml
    protected:
 
 
-      node(::axis::application * papp);
+      node(::aura::application * papp);
       node(::xml::node * pnodeParent);
 
 

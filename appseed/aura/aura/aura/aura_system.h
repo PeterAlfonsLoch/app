@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_AXIS ptra:
+class CLASS_DECL_AURA ptra:
    virtual public spa(element)
 {
 public:
@@ -15,12 +15,12 @@ typedef ::map < sp(element),sp(element),sp(element),sp(element) > element_map;
 typedef ::map < sp(element),sp(element),ptra,ptra > map_many;
 
 
-namespace axis
+namespace aura
 {
 
 
-   class CLASS_DECL_AXIS system:
-      virtual public ::axis::application
+   class CLASS_DECL_AURA system:
+      virtual public ::aura::application
    {
    public:
 
@@ -31,7 +31,7 @@ namespace axis
       public:
 
          sp(::user::interaction)                      m_pui;
-         ::axis::system_window ^                      m_pwindow;
+         ::aura::system_window ^                      m_pwindow;
 
 
       };
@@ -62,7 +62,7 @@ namespace axis
       sp(base_factory)                             m_pfactory;
       sp(class ::xml::departament)                 m_pxml;
       const id_pool                                m_cidpool;
-      sp(class ::axis::log)                        m_plog;
+      sp(class ::aura::log)                        m_plog;
       sp(math::math)                               m_pmath;
       sp(geometry::geometry)                       m_pgeometry;
 
@@ -76,13 +76,10 @@ namespace axis
 
       ::string_to_string                           m_mapAppLibrary;
       class machine_event_central *                m_pmachineeventcentral;
-      sp(class ::datetime::departament)            m_pdatetime;
       string_map < int_to_string >                 m_mapEnumToName;
       string_map < string_to_int >                 m_mapNameToEnum;
-      ::user::window_draw *                        m_ptwf;
-      sp(::user::str)                              m_puserstr;
-      ::axis::os_sp                                m_spos;
-      spa(::axis::session)                         m_basesessionptra;
+      ::aura::os_sp                                m_spos;
+      spa(::aura::session)                         m_basesessionptra;
       sp(colorertake5::ParserFactory)              m_pparserfactory;
 
 
@@ -97,7 +94,7 @@ namespace axis
 
       sp(mutex)                                    m_spmutexFactory;
 
-      ::axis::library                              m_libraryDraw2d;
+      ::aura::library                              m_libraryDraw2d;
 
 
       bool                                         m_bMatterFromHttpCache;
@@ -118,34 +115,10 @@ namespace axis
       ::user::schema *                             m_pschemaLayeredFrame;
 
 
-#ifdef WINDOWSEX
-
-      class CLASS_DECL_AXIS interaction_impl:
-         virtual public ::user::interaction
-      {
-      public:
-
-         interaction_impl(sp(::axis::application) papp);
-
-         void install_message_handling(::message::dispatch * pdispath);
-
-         DECL_GEN_SIGNAL(_001MessageHub);
-
-
-      };
-
-      sp(interaction_impl)                                   m_spwindow;
-
-      raw_array < MONITORINFO >                    m_monitorinfoa;
-      raw_array < HMONITOR >                       m_hmonitora;
-      raw_array < MONITORINFO >                    m_monitorinfoaDesk;
 
 
 
-#endif
-
-
-      system(sp(::axis::application) papp);
+      system(sp(::aura::application) papp);
       virtual ~system();
 
 
@@ -160,21 +133,19 @@ namespace axis
       virtual int32_t exit_instance();
       virtual bool finalize();
 
-      spa(::axis::session)                         & basesessionptra();
+      spa(::aura::session)                         & basesessionptra();
       application_ptra                                get_appptra();
 
 
 
-      class ::axis::os                             & os();
+      class ::aura::os                             & os();
       class base_factory                           & factory();
       ::xml::departament                           & xml();
       class ::str::base64                          & base64();
 
-      class ::axis::log                            & log();
+      class ::aura::log                            & log();
 
       class ::machine_event_central                & machine_event_central();
-      ::datetime::departament                      & datetime();
-      ::user::str                                  & str();
 
       geometry::geometry                           & geometry() { return *m_pgeometry; }
       ::colorertake5::ParserFactory                & parser_factory();
@@ -194,11 +165,11 @@ namespace axis
 
 
 
-      using ::axis::application::alloc;
-      virtual sp(element) alloc(sp(::axis::application) papp,sp(type) info);
-      virtual sp(element) alloc(sp(::axis::application) papp,const class id & idType);
+      using ::aura::application::alloc;
+      virtual sp(element) alloc(sp(::aura::application) papp,sp(type) info);
+      virtual sp(element) alloc(sp(::aura::application) papp,const class id & idType);
 
-      virtual sp(element) on_alloc(sp(::axis::application) papp,sp(type) info);
+      virtual sp(element) on_alloc(sp(::aura::application) papp,sp(type) info);
       virtual sp(element) clone();
       template < class T >
       sp(T) clone(sp(T) p)
@@ -244,13 +215,10 @@ namespace axis
 
       virtual bool is_system();
 
-      sp(::user::window_draw)               get_twf();
-
-
-      virtual void on_allocation_error(sp(::axis::application) papp,sp(type) info);
-      //   sp(element) alloc(sp(::axis::application) papp, sp(type) info);
-      sp(element) alloc(sp(::axis::application) papp,const std_type_info & info);
-      //   virtual sp(element) on_alloc(sp(::axis::application) papp, sp(type) info);
+      virtual void on_allocation_error(sp(::aura::application) papp,sp(type) info);
+      //   sp(element) alloc(sp(::aura::application) papp, sp(type) info);
+      sp(element) alloc(sp(::aura::application) papp,const std_type_info & info);
+      //   virtual sp(element) on_alloc(sp(::aura::application) papp, sp(type) info);
 
 
       static inline class id id(const ::std_type_info & info);
@@ -346,7 +314,7 @@ namespace axis
 
       virtual sp(::user::document) place_hold(sp(::user::interaction) pui);
 
-      virtual sp(::axis::session) query_session(index iEdge);
+      virtual sp(::aura::session) query_session(index iEdge);
 
       virtual bool initialize_log(const char * pszId);
 
@@ -397,12 +365,12 @@ namespace axis
       virtual string get_module_name();
 
 
-      virtual string dir_appmatter_locator(sp(::axis::application) papp);
+      virtual string dir_appmatter_locator(sp(::aura::application) papp);
 
    };
 
 
-} // namespace axis
+} // namespace aura
 
 
 
@@ -431,7 +399,7 @@ inline ::file::input_stream & operator >>(::file::input_stream &  _Istr,bitset<_
 
 
 
-void CLASS_DECL_AXIS __start_system(::axis::system * psystem);
+void CLASS_DECL_AURA __start_system(::aura::system * psystem);
 
 
 

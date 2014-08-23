@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS condition :
+class CLASS_DECL_AURA condition :
    virtual public waitable
 {
 public:
@@ -25,7 +25,7 @@ public:
 #endif
 
 
-   condition(sp(::axis::application) papp);
+   condition(sp(::aura::application) papp);
    virtual ~condition();
 
 

@@ -5,7 +5,7 @@ namespace file_watcher
 {
 
 
-   class CLASS_DECL_AXIS thread :
+   class CLASS_DECL_AURA thread :
       public file_watcher,
       public thread_layer
    {

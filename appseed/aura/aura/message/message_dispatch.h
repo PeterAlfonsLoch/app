@@ -5,12 +5,12 @@ namespace message
 {
 
 
-   class CLASS_DECL_AXIS dispatch:
+   class CLASS_DECL_AURA dispatch:
       virtual public ::object
    {
    public:
 
-      class CLASS_DECL_AXIS HandlerItemBase:
+      class CLASS_DECL_AURA HandlerItemBase:
          virtual public root
       {
       public:
@@ -30,7 +30,7 @@ namespace message
          virtual signalizable* get_signalizable() { return m_psignalizable; }
       };
 
-      class CLASS_DECL_AXIS HandlerItemArray:
+      class CLASS_DECL_AURA HandlerItemArray:
          public array < HandlerItemBase *,HandlerItemBase *>
       {
       public:
@@ -38,7 +38,7 @@ namespace message
          bool HasSignalizable(signalizable* psignalizable);
       };
 
-      class CLASS_DECL_AXIS Signal:
+      class CLASS_DECL_AURA Signal:
          virtual public element
       {
       public:
@@ -55,12 +55,12 @@ namespace message
          ~Signal();
       };
 
-      class CLASS_DECL_AXIS SignalPtrArray:
+      class CLASS_DECL_AURA SignalPtrArray:
          public array < Signal *,Signal * >
       {
       };
 
-      class CLASS_DECL_AXIS SignalArray:
+      class CLASS_DECL_AURA SignalArray:
          public spa(Signal)
       {
       public:
@@ -76,7 +76,7 @@ namespace message
 
       virtual void _on_start_user_message_handler();
 
-      virtual sp(::axis::application) calc_app();
+      virtual sp(::aura::application) calc_app();
 
       virtual sp(::message::base) peek_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
       virtual sp(::message::base) get_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
@@ -156,7 +156,7 @@ namespace message
       void (dispatch::*m_pfnDispatchWindowProc)(signal_details * pobj);
 
       virtual void _user_message_handler(signal_details * pobj);
-      //bool _iguimessageDispatchCommandMessage(::axis::command * pcommand, bool & b);
+      //bool _iguimessageDispatchCommandMessage(::aura::command * pcommand, bool & b);
       // return TRUE to stop routing
 #ifdef WINDOWS
       virtual bool igui_RelayEvent(LPMESSAGE lpmsg);

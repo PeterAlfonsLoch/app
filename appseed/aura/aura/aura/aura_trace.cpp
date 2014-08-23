@@ -18,14 +18,14 @@ category traceSocket("socket");
 */
 
 
-namespace axis
+namespace aura
 {
 
    namespace trace
    {
       typedef void ( * PFN_trace_v)(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
-      CLASS_DECL_AXIS void raw_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
-      CLASS_DECL_AXIS PFN_trace_v trace_v = &raw_trace_v;
+      CLASS_DECL_AURA void raw_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
+      CLASS_DECL_AURA PFN_trace_v trace_v = &raw_trace_v;
 
       /*   category::category( const char * pszCategoryName, UINT nStartingLevel ) throw() :
       m_dwCategory( 0 )
@@ -47,7 +47,7 @@ namespace axis
          category & category = ((trace *) this)->m_map[(uint32_t ) dwCategory];
 
          //if(ShouldTraceOutput(dwModule, dwCategory, nLevel, &pCategory, &pmodule))
-         if(category.m_estatus == ::axis::trace::status_disabled || nLevel > category.m_uiLevel)
+         if(category.m_estatus == ::aura::trace::status_disabled || nLevel > category.m_uiLevel)
             return;
          /*      if (nLen >= 0 && nLen < nCount)
          {
@@ -129,7 +129,7 @@ namespace axis
          return m_uiLevel;
       }
 
-      CLASS_DECL_AXIS void raw_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args)
+      CLASS_DECL_AURA void raw_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args)
       {
          UNREFERENCED_PARAMETER(pszFileName);
          UNREFERENCED_PARAMETER(nLine);
@@ -141,7 +141,7 @@ namespace axis
          ::OutputDebugStringW(::str::international::utf8_to_unicode(str));
       }
 
-      /*CLASS_DECL_AXIS void system_log_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args)
+      /*CLASS_DECL_AURA void system_log_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args)
       {
       System.log().trace_v(pszFileName, nLine, dwCategory, nLevel, pszFmt, args);
       }*/

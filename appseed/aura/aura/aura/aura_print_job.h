@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS print_job :
+class CLASS_DECL_AURA print_job :
    virtual public ::user::job
 {
 public:
@@ -12,7 +12,7 @@ public:
    int32_t      m_iPrintingPage;
 
 
-   print_job(sp(::axis::application) papp);
+   print_job(sp(::aura::application) papp);
    virtual ~print_job();
 
 

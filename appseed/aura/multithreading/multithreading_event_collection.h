@@ -3,7 +3,7 @@
 
 /// This class represents a collection of waitable items. A collection can be mixed
 /// of any kind of waitable items (threads, events, semaphores, ...).
-class CLASS_DECL_AXIS event_collection : public waitable
+class CLASS_DECL_AURA event_collection : public waitable
 {
 public:
 #ifdef WINDOWS
@@ -39,7 +39,7 @@ private:
 
 public:
    ///  \brief		default constructor
-   event_collection(sp(::axis::application) papp);
+   event_collection(sp(::aura::application) papp);
 
    //template<typename InIt>
    //event_collection( InIt first, InIt last )

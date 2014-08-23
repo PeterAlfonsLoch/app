@@ -4,13 +4,13 @@
 
 
 
-class CLASS_DECL_AXIS command_target_interface :
+class CLASS_DECL_AURA command_target_interface :
    virtual public signalizable,
    virtual public ::message::dispatch
 {
 public:
 
-   class CLASS_DECL_AXIS command_signalid : public signalid
+   class CLASS_DECL_AURA command_signalid : public signalid
    {
    public:
 
@@ -46,7 +46,7 @@ public:
       }
    };
 
-   class CLASS_DECL_AXIS command_signalrange : public signalid
+   class CLASS_DECL_AURA command_signalrange : public signalid
    {
    public:
 
@@ -92,7 +92,7 @@ public:
    ::dispatch  m_dispatchCommand;
 
    command_target_interface();
-   command_target_interface(sp(::axis::application) papp);
+   command_target_interface(sp(::aura::application) papp);
 
 
    template < class T >
@@ -152,10 +152,10 @@ public:
    virtual bool on_simple_update(cmd_ui * pcmdui);
 
    //virtual bool on_simple_update(cmd_ui * pcmdui);
-   virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
+   virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
    //virtual bool _001HasCommandHandler(const char * pszId);
 
-   void get_command_signal_array(::axis::cmd_msg::e_type etype, ::dispatch::signal_item_ptr_array & signalptra, id id);
+   void get_command_signal_array(::aura::cmd_msg::e_type etype, ::dispatch::signal_item_ptr_array & signalptra, id id);
 
 
    virtual void install_message_handling(::message::dispatch * pdispatch);
@@ -165,12 +165,12 @@ public:
 
 
 
-class CLASS_DECL_AXIS command_target :
+class CLASS_DECL_AURA command_target :
    virtual public command_target_interface
 {
 public:
    command_target();
-   command_target(sp(::axis::application) papp);
+   command_target(sp(::aura::application) papp);
 
    void CommonConstruct();
 
@@ -179,13 +179,13 @@ public:
    void RestoreWaitCursor();       // call after messagebox
 
 
-   virtual bool handle(::axis::cmd_msg * pcmdmsg);
+   virtual bool handle(::aura::cmd_msg * pcmdmsg);
 
 
    // Overridables
    // route and dispatch standard command message types
    //   (more sophisticated than OnCommand)
-   //   virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
+   //   virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
 
    // Implementation
@@ -208,8 +208,7 @@ namespace user
 }
 
 
-class CLASS_DECL_AXIS cmd_ui :
-   public ::user::check_interface
+class CLASS_DECL_AURA cmd_ui
 {
 public:
 
@@ -236,7 +235,7 @@ public:
    //  (probably a secondary popup menu)
 
 
-   cmd_ui(sp(::axis::application) papp);
+   cmd_ui(sp(::aura::application) papp);
 
 
    // Operations to do in ON_UPDATE_COMMAND_UI
@@ -276,7 +275,7 @@ public:
    bool                    m_bRadioChanged;
 
 
-   CTestCmdUI(sp(::axis::application) papp);
+   CTestCmdUI(sp(::aura::application) papp);
 
 
    virtual void Enable(bool bOn, ::action::context actioncontext = ::action::source_system);
@@ -307,7 +306,7 @@ enum __DISPMAP_FLAGS
 //IA64: __DISPMAP_ENTRY could be ordered more efficiently to reduce size
 // bloat from alignment
 #pragma warning( disable: 4121 )
-struct CLASS_DECL_AXIS __DISPMAP_ENTRY
+struct CLASS_DECL_AURA __DISPMAP_ENTRY
 {
    const char * lpszName;       // member/property name
    long lDispID;           // DISPID (may be DISPID_UNKNOWN)
@@ -320,7 +319,7 @@ struct CLASS_DECL_AXIS __DISPMAP_ENTRY
 };
 #pragma warning( default: 4121 )
 
-struct CLASS_DECL_AXIS __EVENTSINKMAP_ENTRY
+struct CLASS_DECL_AURA __EVENTSINKMAP_ENTRY
 {
    __DISPMAP_ENTRY dispEntry;
    UINT nCtrlIDFirst;

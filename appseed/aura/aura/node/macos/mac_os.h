@@ -6,12 +6,12 @@ namespace mac
    
    
    class CLASS_DECL_mac os :
-      virtual public ::axis::os
+      virtual public ::aura::os
    {
    public:
       
       
-      os(::axis::application * papp);
+      os(::aura::application * papp);
       virtual ~os();
       
       
@@ -45,11 +45,11 @@ namespace mac
       
       virtual bool open_in_ie(const char * lpcsz);
       
-      virtual bool create_service(sp(::axis::application) papp);
-      virtual bool remove_service(sp(::axis::application) papp);
+      virtual bool create_service(sp(::aura::application) papp);
+      virtual bool remove_service(sp(::aura::application) papp);
       
-      virtual bool start_service(sp(::axis::application) papp);
-      virtual bool stop_service(sp(::axis::application) papp);
+      virtual bool start_service(sp(::aura::application) papp);
+      virtual bool stop_service(sp(::aura::application) papp);
       
       virtual bool resolve_link(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional = NULL);
       

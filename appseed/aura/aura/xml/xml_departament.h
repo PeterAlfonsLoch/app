@@ -5,8 +5,8 @@ namespace xml
 {
 
 
-   class CLASS_DECL_AXIS departament :
-      public ::axis::departament
+   class CLASS_DECL_AURA departament :
+      public ::aura::departament
    {
    public:
 
@@ -16,7 +16,7 @@ namespace xml
       parse_info *   m_pparseinfoDefault;
 
 
-      departament(::axis::application * papp);
+      departament(::aura::application * papp);
       virtual ~departament();
 
       virtual bool initialize1();

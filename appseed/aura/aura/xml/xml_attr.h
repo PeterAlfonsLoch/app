@@ -11,7 +11,7 @@ namespace xml
    typedef property attr;
 
 
-   class CLASS_DECL_AXIS attr_array :
+   class CLASS_DECL_AURA attr_array :
       public property_set
    {
    protected:
@@ -27,7 +27,7 @@ namespace xml
    public:
 
 
-      attr_array(sp(::axis::application) papp);
+      attr_array(sp(::aura::application) papp);
 
 
    };

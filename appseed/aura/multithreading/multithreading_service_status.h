@@ -12,7 +12,7 @@
 #ifdef WINDOWSEX
 
 
-class CLASS_DECL_AXIS service_status : public SERVICE_STATUS
+class CLASS_DECL_AURA service_status : public SERVICE_STATUS
 {
 public:
 
@@ -29,7 +29,7 @@ public:
 #else
 
 
-class CLASS_DECL_AXIS service_status
+class CLASS_DECL_AURA service_status
 {
 public:
 

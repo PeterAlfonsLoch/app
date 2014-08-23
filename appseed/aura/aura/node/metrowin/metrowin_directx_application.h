@@ -7,7 +7,7 @@ namespace metrowin
 
    ref class directx_application : 
       public Windows::ApplicationModel::Core::IFrameworkView,
-      public ::axis::system_window
+      public ::aura::system_window
    {
    internal:
 
@@ -23,8 +23,8 @@ namespace metrowin
 
       mutex m_mutex;
 
-      ::axis::system * m_psystem;
-      ::axis::application * m_papp;
+      ::aura::system * m_psystem;
+      ::aura::application * m_papp;
 
       bool        m_bLeftButton;
       bool        m_bMiddleButton;
@@ -32,13 +32,13 @@ namespace metrowin
 
       Windows::Foundation::Rect m_rectLastWindowRect;
 
-      ::axis::application * get_app() const
+      ::aura::application * get_app() const
       {
          return m_papp;
       }
 
 
-      directx_application(::axis::system * psystem, Platform::String ^ strId);
+      directx_application(::aura::system * psystem, Platform::String ^ strId);
 
 
       void init_part_2ex();
@@ -122,7 +122,7 @@ namespace metrowin
    };
 
 
-   CLASS_DECL_AXIS directx_application_source ^ new_directx_application_source(Platform::String ^ id);
+   CLASS_DECL_AURA directx_application_source ^ new_directx_application_source(Platform::String ^ id);
 
 
 } // namespace metrowin

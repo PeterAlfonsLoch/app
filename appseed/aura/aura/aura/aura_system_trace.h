@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace axis
+namespace aura
 {
 
 
-   class CLASS_DECL_AXIS trace_add_file_and_line
+   class CLASS_DECL_AURA trace_add_file_and_line
 #if defined(LINUX) || defined(APPLEOS)
       : public string_format_printer
 #endif
@@ -13,14 +13,14 @@ namespace axis
    public:
 
 
-      ::axis::application *      m_paxisapp;
+      ::aura::application *      m_pauraapp;
       const char * const         m_pszFileName;
       const int32_t              m_nLineNo;
       string                     m_str;
 
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
-      class CLASS_DECL_AXIS category_level
+      class CLASS_DECL_AURA category_level
       {
       public:
 
@@ -33,19 +33,19 @@ namespace axis
 
 #endif
 
-      trace_add_file_and_line(::axis::application * papp, const char *pszFileName, int32_t nLineNo)
-         : m_paxisapp(papp),m_pszFileName(pszFileName),m_nLineNo(nLineNo)
+      trace_add_file_and_line(::aura::application * papp, const char *pszFileName, int32_t nLineNo)
+         : m_pauraapp(papp),m_pszFileName(pszFileName),m_nLineNo(nLineNo)
       {
       }
 
-      inline sp(::axis::application) get_app() const
+      inline sp(::aura::application) get_app() const
       {
-         return m_paxisapp;
+         return m_pauraapp;
       }
 
-      inline sp(::axis::application) get_app()
+      inline sp(::aura::application) get_app()
       {
-         return m_paxisapp;
+         return m_pauraapp;
       }
 
 #ifndef VARIADIC_TEMPLATE
@@ -143,7 +143,7 @@ namespace axis
    };
 
 
-} // namespace axis
+} // namespace aura
 
 
 

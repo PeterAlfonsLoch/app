@@ -5,7 +5,7 @@ namespace exception
 {
 
 
-   base::base(sp(::axis::application) papp, uint32_t uiSkip) :
+   base::base(sp(::aura::application) papp, uint32_t uiSkip) :
       element(papp),
       ::call_stack(papp, uiSkip)
    {
@@ -14,7 +14,7 @@ namespace exception
       m_ulFlags &= ~flag_ready_for_delete;
    }
 
-   base::base(sp(::axis::application) papp, bool bAutoDelete, uint32_t uiSkip) :
+   base::base(sp(::aura::application) papp, bool bAutoDelete, uint32_t uiSkip) :
       element(papp),
       ::call_stack(papp, uiSkip)
    {

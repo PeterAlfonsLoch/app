@@ -14,13 +14,13 @@ namespace android
 {
 
 
-   class CLASS_DECL_AXIS ip_enum :
+   class CLASS_DECL_AURA ip_enum :
       virtual public ::net::ip_enum
    {
    public:
 
 
-      ip_enum(sp(::axis::application) papp);
+      ip_enum(sp(::aura::application) papp);
       virtual ~ip_enum();
 
 

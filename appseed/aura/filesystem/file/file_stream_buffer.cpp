@@ -3,24 +3,24 @@
 thread_int_ptr < int_ptr > g_iGenerateSyncIoError;
 thread_int_ptr < int_ptr > g_iSyncIoError;
 
-CLASS_DECL_AXIS int get_sync_io_error()
+CLASS_DECL_AURA int get_sync_io_error()
 {
    return g_iSyncIoError;
 }
 
 
-CLASS_DECL_AXIS void set_sync_io_error(int iError)
+CLASS_DECL_AURA void set_sync_io_error(int iError)
 {
    g_iSyncIoError = iError;
 }
 
-CLASS_DECL_AXIS int get_generate_sync_io_error()
+CLASS_DECL_AURA int get_generate_sync_io_error()
 {
    return g_iGenerateSyncIoError;
 }
 
 
-CLASS_DECL_AXIS void set_generate_sync_io_error(int iError)
+CLASS_DECL_AURA void set_generate_sync_io_error(int iError)
 {
    g_iGenerateSyncIoError = iError;
 }

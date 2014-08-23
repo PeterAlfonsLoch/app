@@ -11,7 +11,7 @@ namespace file
    typedef smart_pointer < reader > reader_sp;
 
 
-   class CLASS_DECL_AXIS reader :
+   class CLASS_DECL_AURA reader :
       virtual public stream_buffer_base
    {
    public:
@@ -38,9 +38,9 @@ namespace file
 
    typedef reader readable;
 
-   CLASS_DECL_AXIS HRESULT read(reader * preader, void * data, ::primitive::memory_size * size);
-   CLASS_DECL_AXIS HRESULT read_false(reader * preader, void * data, ::primitive::memory_size size);
-   CLASS_DECL_AXIS HRESULT read_fail(reader * preader, void * data, ::primitive::memory_size size);
+   CLASS_DECL_AURA HRESULT read(reader * preader, void * data, ::primitive::memory_size * size);
+   CLASS_DECL_AURA HRESULT read_false(reader * preader, void * data, ::primitive::memory_size size);
+   CLASS_DECL_AURA HRESULT read_fail(reader * preader, void * data, ::primitive::memory_size size);
 
 
 } // namespace file

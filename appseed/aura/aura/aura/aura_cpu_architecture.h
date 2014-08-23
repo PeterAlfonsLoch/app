@@ -134,15 +134,15 @@ enum
    CPU_FIRM_VIA
 };
 
-CLASS_DECL_AXIS int32_t x86cpuid_CheckAndRead(struct Cx86cpuid *p);
-CLASS_DECL_AXIS int32_t x86cpuid_GetFirm(const struct Cx86cpuid *p);
+CLASS_DECL_AURA int32_t x86cpuid_CheckAndRead(struct Cx86cpuid *p);
+CLASS_DECL_AURA int32_t x86cpuid_GetFirm(const struct Cx86cpuid *p);
 
 #define x86cpuid_GetFamily(p) (((p)->ver >> 8) & 0xFF00F)
 #define x86cpuid_GetModel(p) (((p)->ver >> 4) & 0xF00F)
 #define x86cpuid_GetStepping(p) ((p)->ver & 0xF)
 
-CLASS_DECL_AXIS int32_t CPU_Is_InOrder();
-CLASS_DECL_AXIS int32_t CPU_Is_Aes_Supported();
+CLASS_DECL_AURA int32_t CPU_Is_InOrder();
+CLASS_DECL_AURA int32_t CPU_Is_Aes_Supported();
 
 #endif
 

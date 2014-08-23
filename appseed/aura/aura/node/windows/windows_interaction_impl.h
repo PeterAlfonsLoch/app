@@ -5,11 +5,11 @@ namespace windows
 {
 
 
-   CLASS_DECL_AXIS LRESULT CALLBACK __send_message_hook(int32_t,WPARAM,LPARAM);
-   CLASS_DECL_AXIS LRESULT CALLBACK __cbt_filter_hook(int32_t,WPARAM,LPARAM);
+   CLASS_DECL_AURA LRESULT CALLBACK __send_message_hook(int32_t,WPARAM,LPARAM);
+   CLASS_DECL_AURA LRESULT CALLBACK __cbt_filter_hook(int32_t,WPARAM,LPARAM);
 
 
-   class CLASS_DECL_AXIS interaction_impl:
+   class CLASS_DECL_AURA interaction_impl:
       virtual public ::user::interaction_impl
    {
    public:
@@ -39,7 +39,7 @@ namespace windows
 
 
       interaction_impl();
-      interaction_impl(sp(::axis::application) papp);
+      interaction_impl(sp(::aura::application) papp);
       virtual ~interaction_impl();
 
 
@@ -70,7 +70,7 @@ namespace windows
       //virtual sp(::user::interaction) get_owner();
       //virtual void set_owner(sp(::user::interaction) pOwnerWnd);
 
-      virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
       void _002OnDraw(::draw2d::graphics * pdc);
 
@@ -413,7 +413,7 @@ namespace windows
       // dialog support
       void UpdateDialogControls(command_target* pTarget,bool bDisableIfNoHndler);
       void CenterWindow(sp(::user::interaction) pAlternateOwner = NULL);
-      //virtual id   RunModalLoop(uint32_t dwFlags = 0,::axis::live_object * pliveobject = NULL);
+      //virtual id   RunModalLoop(uint32_t dwFlags = 0,::aura::live_object * pliveobject = NULL);
       virtual bool ContinueModal(int32_t iLevel);
       virtual void EndModalLoop(id nResult);
       virtual void EndAllModalLoops(id nResult);
@@ -622,8 +622,8 @@ namespace windows
       bool CreateDlg(const char * lpszTemplateName,::window_sp pParentWnd);
 
 
-      CLASS_DECL_AXIS friend LRESULT CALLBACK __send_message_hook(int32_t,WPARAM,LPARAM);
-      CLASS_DECL_AXIS friend LRESULT CALLBACK __cbt_filter_hook(int32_t,WPARAM,LPARAM);
+      CLASS_DECL_AURA friend LRESULT CALLBACK __send_message_hook(int32_t,WPARAM,LPARAM);
+      CLASS_DECL_AURA friend LRESULT CALLBACK __cbt_filter_hook(int32_t,WPARAM,LPARAM);
 
       // standard message implementation
       LRESULT OnNTCtlColor(WPARAM wParam,LPARAM lParam);

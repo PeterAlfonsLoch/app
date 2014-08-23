@@ -5,13 +5,13 @@ namespace ios
 {
    
    
-   class CLASS_DECL_AXIS os :
+   class CLASS_DECL_AURA os :
    public ::core::os
    {
    public:
       
       
-      os(::axis::application * papp);
+      os(::aura::application * papp);
       virtual ~os();
       
       
@@ -45,11 +45,11 @@ namespace ios
       
       virtual bool open_in_ie(const char * lpcsz);
       
-      virtual bool create_service(sp(::axis::application) papp);
-      virtual bool remove_service(sp(::axis::application) papp);
+      virtual bool create_service(sp(::aura::application) papp);
+      virtual bool remove_service(sp(::aura::application) papp);
       
-      virtual bool start_service(sp(::axis::application) papp);
-      virtual bool stop_service(sp(::axis::application) papp);
+      virtual bool start_service(sp(::aura::application) papp);
+      virtual bool stop_service(sp(::aura::application) papp);
       
       virtual bool resolve_link(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional = NULL);
       

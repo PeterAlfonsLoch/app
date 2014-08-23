@@ -10,7 +10,7 @@ namespace file
    typedef smart_pointer < output_stream > output_stream_sp;
 
 
-   class CLASS_DECL_AXIS output_stream :
+   class CLASS_DECL_AURA output_stream :
       virtual public stream_base,
       virtual public writer
    {
@@ -18,7 +18,7 @@ namespace file
 
       
       output_stream();
-      output_stream(const char * lpszFileName, uint32_t nOpenFlags, sp(::axis::application) papp = ::get_thread_app());
+      output_stream(const char * lpszFileName, uint32_t nOpenFlags, sp(::aura::application) papp = ::get_thread_app());
       output_stream(stream_buffer * pwriter);
       output_stream(const output_stream & pwriter);
       virtual ~output_stream();

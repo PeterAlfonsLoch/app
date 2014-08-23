@@ -5,8 +5,8 @@ class FileException;
 struct FileStatus;
 
 
-void CLASS_DECL_AXIS vfxGetRoot(const wchar_t * lpszPath, string& wstrRoot);
-void CLASS_DECL_AXIS vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
+void CLASS_DECL_AURA vfxGetRoot(const wchar_t * lpszPath, string& wstrRoot);
+void CLASS_DECL_AURA vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -17,7 +17,7 @@ namespace android
 {
 
 
-   class CLASS_DECL_AXIS file :
+   class CLASS_DECL_AURA file :
       virtual public ::file::binary_buffer
    {
    public:
@@ -57,9 +57,9 @@ namespace android
       int32_t        m_iFile;
 
 
-      file(sp(::axis::application) papp);
-      file(sp(::axis::application) papp, int32_t hFile);
-      file(sp(::axis::application) papp, const char * lpszFileName, UINT nOpenFlags);
+      file(sp(::aura::application) papp);
+      file(sp(::aura::application) papp, int32_t hFile);
+      file(sp(::aura::application) papp, const char * lpszFileName, UINT nOpenFlags);
       virtual ~file();
 
 
@@ -111,8 +111,8 @@ namespace android
 
       int32_t PASCAL OsErrorToException(LONG lOsError);
       int32_t PASCAL ErrnoToException(int32_t nErrno);
-      void PASCAL ThrowOsError(sp(::axis::application) papp, LONG lOsError, const char * lpszFileName = NULL);
-      void PASCAL ThrowErrno(sp(::axis::application) papp, int32_t nErrno, const char * lpszFileName = NULL);
+      void PASCAL ThrowOsError(sp(::aura::application) papp, LONG lOsError, const char * lpszFileName = NULL);
+      void PASCAL ThrowErrno(sp(::aura::application) papp, int32_t nErrno, const char * lpszFileName = NULL);
 
 
    }  // namespace file_exception
@@ -123,7 +123,7 @@ namespace android
 
 
 
-bool CLASS_DECL_AXIS vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath);
+bool CLASS_DECL_AURA vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath);
 
 
 

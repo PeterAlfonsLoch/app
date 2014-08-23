@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace axis
+namespace aura
 {
 
 
-   class CLASS_DECL_AXIS cmd_ui:
+   class CLASS_DECL_AURA cmd_ui:
       public signal_details
    {
    public:
@@ -20,7 +20,7 @@ namespace axis
    };
 
 
-   class CLASS_DECL_AXIS command:
+   class CLASS_DECL_AURA command:
       public signal_details
    {
    public:
@@ -35,7 +35,7 @@ namespace axis
    };
 
 
-   class CLASS_DECL_AXIS cmd_msg:
+   class CLASS_DECL_AURA cmd_msg:
       public object
    {
    public:
@@ -66,7 +66,7 @@ namespace axis
    };
 
 
-} // namespace axis
+} // namespace aura
 
 
 

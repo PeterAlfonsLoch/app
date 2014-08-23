@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS lparam
+class CLASS_DECL_AURA lparam
 {
 public:
 

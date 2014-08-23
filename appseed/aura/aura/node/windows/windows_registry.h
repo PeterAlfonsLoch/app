@@ -5,13 +5,13 @@ namespace windows
 {
 
 
-   class CLASS_DECL_AXIS registry :
+   class CLASS_DECL_AURA registry :
       virtual public ::object
    {
    public:
 
 
-      class CLASS_DECL_AXIS Key
+      class CLASS_DECL_AURA Key
       {
       public:
 

@@ -4,7 +4,7 @@
 namespace user
 {
 
-   class ::user::interaction_base;
+   class interaction_base;
 
 } // namespace user
 
@@ -13,7 +13,7 @@ namespace windows
 {
 
 
-   class CLASS_DECL_AXIS window_draw:
+   class CLASS_DECL_AURA window_draw:
       virtual public ::user::window_draw,
       virtual public message_queue
    {
@@ -38,7 +38,7 @@ namespace windows
       DWORD                                  m_dwLastDelay;
 
 
-      window_draw(sp(::axis::application) papp);
+      window_draw(sp(::aura::application) papp);
       virtual ~window_draw();
 
 

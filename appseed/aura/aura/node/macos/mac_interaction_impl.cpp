@@ -87,7 +87,7 @@ namespace mac
    }
    
    
-    interaction_impl::interaction_impl(::axis::application * papp) :
+    interaction_impl::interaction_impl(::aura::application * papp) :
         element(papp)
     {
       
@@ -1094,7 +1094,7 @@ namespace mac
    
    
    
-   bool interaction_impl::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
+   bool interaction_impl::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
    {
       if(command_target_interface::_001OnCmdMsg(pcmdmsg))
          return TRUE;
@@ -1127,7 +1127,7 @@ namespace mac
    
    void interaction_impl::message_handler(signal_details * pobj)
    {
-      SCAST_PTR(::message::axis, pbase, pobj);
+      SCAST_PTR(::message::aura, pbase, pobj);
       
       if(pbase->m_uiMessage == WM_SIZE || pbase->m_uiMessage == WM_MOVE)
       {
@@ -2673,7 +2673,7 @@ namespace mac
       ASSERT(puiStop == NULL || puiStop->IsWindow());
       ASSERT(pobj != NULL);
       
-      SCAST_PTR(::message::axis, pbase, pobj);
+      SCAST_PTR(::message::aura, pbase, pobj);
       // walk from the target user::interaction up to the hWndStop user::interaction checking
       //  if any user::interaction wants to translate this message
       
@@ -3009,7 +3009,7 @@ namespace mac
       oswindow m_hwnd;
       HDC m_hdc;
       
-      print_window(::axis::application * papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
+      print_window(::aura::application * papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
       element(papp),
       m_event(papp)
       
@@ -3017,7 +3017,7 @@ namespace mac
          m_event.ResetEvent();
          m_hwnd = hwnd;
          m_hdc = hdc;
-         __begin_thread(papp, &print_window::s_print_window, (LPVOID) this, ::axis::scheduling_priority_normal);
+         __begin_thread(papp, &print_window::s_print_window, (LPVOID) this, ::aura::scheduling_priority_normal);
          if(m_event.wait(millis(dwTimeout)).timeout())
          {
             TRACE("print_window::time_out");
@@ -3236,7 +3236,7 @@ namespace mac
       
       throw not_implemented(get_app());
       
-      //      SCAST_PTR(::message::axis, pbase, pobj);
+      //      SCAST_PTR(::message::aura, pbase, pobj);
       //
       //      PAINTSTRUCT paint;
       //      memset(&paint, 0, sizeof(paint));
@@ -3309,7 +3309,7 @@ namespace mac
    void interaction_impl::_001OnPrint(signal_details * pobj)
    {
       throw not_implemented(get_app());
-      //      SCAST_PTR(::message::axis, pbase, pobj);
+      //      SCAST_PTR(::message::aura, pbase, pobj);
       //
       //      if(pbase->m_wparam == NULL)
       //         return;
@@ -3700,7 +3700,7 @@ namespace mac
    }
    
    
-   /*   view_update_hint::view_update_hint(::axis::application * papp) :
+   /*   view_update_hint::view_update_hint(::aura::application * papp) :
     element(papp)
     {
     }
@@ -3983,7 +3983,7 @@ namespace mac
    
    }
    
-   /*   guie_message_wnd::guie_message_wnd(::axis::application * papp) :
+   /*   guie_message_wnd::guie_message_wnd(::aura::application * papp) :
     element(papp)
     {
     m_pguieForward = NULL;
@@ -4207,7 +4207,7 @@ namespace mac
    LRESULT interaction_impl::send_message(UINT message, WPARAM wparam, lparam lparam)
    {
       
-      ::smart_pointer < ::message::axis > spbase;
+      ::smart_pointer < ::message::aura > spbase;
       
       spbase = get_base(m_pui, message, wparam, lparam);
       
@@ -5316,7 +5316,7 @@ namespace mac
    
    void interaction_impl::_001OnSetCursor(signal_details * pobj)
    {
-      SCAST_PTR(::message::axis, pbase, pobj);
+      SCAST_PTR(::message::aura, pbase, pobj);
       if(Session.get_cursor() != NULL
          && Session.get_cursor()->m_ecursor != ::visual::cursor_system)
       {
@@ -5695,7 +5695,7 @@ namespace mac
    bool interaction_impl::round_window_key_down(::user::e_key ekey)
    {
       
-      sp(::message::axis) spbase;
+      sp(::message::aura) spbase;
       
       ::message::key * pkey = canew(::message::key(get_app()));
       
@@ -5714,7 +5714,7 @@ namespace mac
    bool interaction_impl::round_window_key_up(::user::e_key ekey)
    {
       
-      sp(::message::axis) spbase;
+      sp(::message::aura) spbase;
       
       ::message::key * pkey = canew(::message::key(get_app()));
       
@@ -5733,7 +5733,7 @@ namespace mac
    void interaction_impl::round_window_mouse_down(double x, double y)
    {
       
-      sp(::message::axis) spbase;
+      sp(::message::aura) spbase;
       
       if(::GetActiveWindow() != get_handle())
       {
@@ -5794,7 +5794,7 @@ namespace mac
    void interaction_impl::round_window_mouse_up(double x, double y)
    {
       
-      sp(::message::axis) spbase;
+      sp(::message::aura) spbase;
       
       ::message::mouse * pmouse = canew(::message::mouse(get_app()));
       
@@ -5814,7 +5814,7 @@ namespace mac
    void interaction_impl::round_window_mouse_moved(double x, double y)
    {
       
-      sp(::message::axis) spbase;
+      sp(::message::aura) spbase;
       
       ::message::mouse * pmouse = canew(::message::mouse(get_app()));
       
@@ -5834,7 +5834,7 @@ namespace mac
    void interaction_impl::round_window_mouse_dragged(double x, double y)
    {
       
-      sp(::message::axis) spbase;
+      sp(::message::aura) spbase;
       
       ::message::mouse * pmouse = canew(::message::mouse(get_app()));
       
@@ -6038,7 +6038,7 @@ __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lp
    //      if (bCallDefault)
    //         lResult = CallWindowProc(oldWndProc, hWnd, nMsg, wparam, lparam);
    //   }
-   //   catch(::exception::axis * pe)
+   //   catch(::exception::aura * pe)
    //   {
    //      // handle exception
    //      MESSAGE msg;

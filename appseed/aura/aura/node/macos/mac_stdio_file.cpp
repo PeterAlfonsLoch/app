@@ -7,7 +7,7 @@ namespace mac
    
    
    
-   stdio_file::stdio_file(::axis::application * papp) :
+   stdio_file::stdio_file(::aura::application * papp) :
    element(papp),
    ::mac::file(papp)
    {

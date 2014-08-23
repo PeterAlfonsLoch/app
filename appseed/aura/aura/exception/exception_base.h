@@ -9,15 +9,15 @@ class string;
 namespace exception
 {
 
-   class CLASS_DECL_AXIS base :
+   class CLASS_DECL_AURA base :
       virtual public ::exception::exception,
       virtual public call_stack
    {
    public:
 
 
-      base(sp(::axis::application) papp,uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = TRUE
-      explicit base(sp(::axis::application) papp,bool bAutoDelete,uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = bAutoDelete
+      base(sp(::aura::application) papp,uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = TRUE
+      explicit base(sp(::aura::application) papp,bool bAutoDelete,uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = bAutoDelete
       // Implementation (setting m_bAutoDelete to FALSE is advanced)
       virtual ~base();
 

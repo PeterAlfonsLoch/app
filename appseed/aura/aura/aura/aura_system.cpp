@@ -20,7 +20,7 @@ void dappy(const char * psz);
 #ifdef WINDOWSEX
 
 
-CLASS_DECL_AXIS HMONITOR GetUiMonitorHandle(HWND hwnd)
+CLASS_DECL_AURA HMONITOR GetUiMonitorHandle(HWND hwnd)
 {
 
    return MonitorFromWindow(hwnd,MONITOR_DEFAULTTOPRIMARY);
@@ -28,7 +28,7 @@ CLASS_DECL_AXIS HMONITOR GetUiMonitorHandle(HWND hwnd)
 }
 
 
-CLASS_DECL_AXIS HMONITOR GetPrimaryMonitorHandle()
+CLASS_DECL_AURA HMONITOR GetPrimaryMonitorHandle()
 {
 
    const POINT ptZero ={0,0};
@@ -38,7 +38,7 @@ CLASS_DECL_AXIS HMONITOR GetPrimaryMonitorHandle()
 }
 
 
-CLASS_DECL_AXIS bool GetPrimaryMonitorRect(LPRECT lprect)
+CLASS_DECL_AURA bool GetPrimaryMonitorRect(LPRECT lprect)
 {
 
    MONITORINFO mi;
@@ -73,7 +73,7 @@ CLASS_DECL_AXIS bool GetPrimaryMonitorRect(LPRECT lprect)
 #endif
 
 
-namespace axis
+namespace aura
 {
 
 
@@ -81,7 +81,7 @@ namespace axis
    class ::id_space * system::s_pidspace = NULL;
 
 
-   system::system(sp(::axis::application) papp):
+   system::system(sp(::aura::application) papp):
       m_libraryDraw2d(this)
    {
       
@@ -239,7 +239,7 @@ namespace axis
    void system::construct(const char * pszAppId)
    {
 
-      ::axis::application::construct(pszAppId);
+      ::aura::application::construct(pszAppId);
 
    }
 
@@ -283,7 +283,7 @@ namespace axis
       m_pfactory->cloneable_large < mutex >();
       m_pfactory->cloneable_large < event >();
 
-      if(!::axis::application::process_initialize())
+      if(!::aura::application::process_initialize())
          return false;
 
 #ifdef WINDOWSEX
@@ -312,12 +312,12 @@ namespace axis
 
 #ifdef WINDOWSEX
 
-      dappy(string(typeid(*this).name()) + " : Going to ::axis::system::m_spwindow->create_window_ex : " + ::str::from(m_iReturnCode));
+      dappy(string(typeid(*this).name()) + " : Going to ::aura::system::m_spwindow->create_window_ex : " + ::str::from(m_iReturnCode));
 
-      if(!m_spwindow->create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"::axis::system::interaction_impl::no_twf"))
+      if(!m_spwindow->create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"::aura::system::interaction_impl::no_twf"))
       {
 
-         dappy(string(typeid(*this).name()) + " : ::axis::system::m_spwindow->create_window_ex failure : " + ::str::from(m_iReturnCode));
+         dappy(string(typeid(*this).name()) + " : ::aura::system::m_spwindow->create_window_ex failure : " + ::str::from(m_iReturnCode));
 
          return false;
 
@@ -325,10 +325,10 @@ namespace axis
 
 #endif
 
-/*      dappy(string(typeid(*this).name()) + " : Going to ::axis::session " + ::str::from(m_iReturnCode));
+/*      dappy(string(typeid(*this).name()) + " : Going to ::aura::session " + ::str::from(m_iReturnCode));
 
 
-      m_paxissession = new ::axis::session(this);
+      m_paxissession = new ::aura::session(this);
 
       if(m_paxissession == NULL)
          return false;
@@ -341,7 +341,7 @@ namespace axis
          return false;
       }
 
-      dappy(string(typeid(*this).name()) + " : ::axis::session OK " + ::str::from(m_iReturnCode));*/
+      dappy(string(typeid(*this).name()) + " : ::aura::session OK " + ::str::from(m_iReturnCode));*/
 
       return true;
 
@@ -351,7 +351,7 @@ namespace axis
    bool system::initialize2()
    {
 
-      if(!::axis::application::initialize2())
+      if(!::aura::application::initialize2())
          return false;
 
       return true;
@@ -364,7 +364,7 @@ namespace axis
 
       m_pfactory->enable_simple_factory_request();
 
-      if(!::axis::application::initialize_instance())
+      if(!::aura::application::initialize_instance())
          return false;
 
       return true;
@@ -383,7 +383,7 @@ namespace axis
       try
       {
 
-         bOk = ::axis::application::finalize();
+         bOk = ::aura::application::finalize();
 
       }
       catch(...)
@@ -488,7 +488,7 @@ namespace axis
       try
       {
 
-         iRet = ::axis::application::exit_instance();
+         iRet = ::aura::application::exit_instance();
 
       }
       catch(...)
@@ -543,7 +543,7 @@ namespace axis
 
 
 
-      ::axis::application::exit_instance();
+      ::aura::application::exit_instance();
 
 #ifdef METROWIN
       m_pdevicecontext = nullptr;
@@ -646,7 +646,7 @@ namespace axis
       if(m_plog == NULL || !m_plog->m_bExtendedLog)
       {
 
-         return ::axis::SimpleDebugReport(iReportType,pszFileName,iLineNumber,pszModuleName,pszFormat,list);
+         return ::aura::SimpleDebugReport(iReportType,pszFileName,iLineNumber,pszModuleName,pszFormat,list);
 
       }
 
@@ -738,7 +738,7 @@ namespace axis
 
 
 
-   sp(element) system::on_alloc(sp(::axis::application) papp,sp(type) info)
+   sp(element) system::on_alloc(sp(::aura::application) papp,sp(type) info)
    {
       /*string str;
       str.Format("Could not alloc %s", info.name());
@@ -750,23 +750,23 @@ namespace axis
       return NULL;
    }
 
-   sp(element) system::alloc(sp(::axis::application) papp,sp(type) info)
+   sp(element) system::alloc(sp(::aura::application) papp,sp(type) info)
    {
       return on_alloc(papp,info);
    }
 
-   sp(element) system::alloc(sp(::axis::application) papp,const std_type_info & info)
+   sp(element) system::alloc(sp(::aura::application) papp,const std_type_info & info)
    {
       return on_alloc(papp,canew(type(info)));
    }
 
-   void system::on_allocation_error(sp(::axis::application) papp,sp(type) info)
+   void system::on_allocation_error(sp(::aura::application) papp,sp(type) info)
    {
       UNREFERENCED_PARAMETER(papp);
       UNREFERENCED_PARAMETER(info);
    }
 
-   sp(element) system::alloc(sp(::axis::application) papp,const class id & idType)
+   sp(element) system::alloc(sp(::aura::application) papp,const class id & idType)
    {
       return on_alloc(papp,get_type_info(idType));
    }
@@ -821,7 +821,7 @@ namespace axis
 
    }
 
-   ::axis::log & system::log()
+   ::aura::log & system::log()
    {
       return *m_plog;
    }
@@ -857,7 +857,7 @@ namespace axis
    }
 
 
-   sp(::axis::session) system::query_session(index iEdge)
+   sp(::aura::session) system::query_session(index iEdge)
    {
 
       return NULL;
@@ -865,7 +865,7 @@ namespace axis
    }
 
 
-   ::axis::os & system::os()
+   ::aura::os & system::os()
    {
 
       return *m_spos;
@@ -873,7 +873,7 @@ namespace axis
    }
 
 
-   spa(::axis::session) & system::basesessionptra()
+   spa(::aura::session) & system::basesessionptra()
    {
 
       return m_basesessionptra;
@@ -884,7 +884,7 @@ namespace axis
    {
       if(m_plog != NULL)
          return true;
-      m_plog = new ::axis::log(this);
+      m_plog = new ::aura::log(this);
       m_plog->set_extended_log();
       m_plog->set_app(this);
       if(!m_plog->initialize(pszId))
@@ -908,7 +908,7 @@ namespace axis
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
   //    {
-    //     sp(::axis::application) papp = appptra()(i);
+    //     sp(::aura::application) papp = appptra()(i);
       //   papp->load_string_table();
       //}
 
@@ -921,7 +921,7 @@ namespace axis
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
  //     {
-  //       sp(::axis::application) papp = appptra()(i);
+  //       sp(::aura::application) papp = appptra()(i);
   //       papp->set_locale(pszLocale,actioncontext);
   //    }
 
@@ -934,7 +934,7 @@ namespace axis
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
   //    {
-  //       sp(::axis::application) papp = appptra()(i);
+  //       sp(::aura::application) papp = appptra()(i);
   //       papp->set_schema(pszStyle,actioncontext);
   //    }
 
@@ -1379,7 +1379,7 @@ namespace axis
 #ifdef WINDOWSEX
 
 
-   system::interaction_impl::interaction_impl(sp(::axis::application) papp):
+   system::interaction_impl::interaction_impl(sp(::aura::application) papp):
       element(papp),
       ::user::interaction(papp)
    {
@@ -1391,8 +1391,8 @@ namespace axis
 
       ::user::interaction::install_message_handling(pdispatch);
 
-      IGUI_WIN_MSG_LINK(WM_SETTINGCHANGE,pdispatch,this,&::axis::system::interaction_impl::_001MessageHub);
-      IGUI_WIN_MSG_LINK(WM_DISPLAYCHANGE,pdispatch,this,&::axis::system::interaction_impl::_001MessageHub);
+      IGUI_WIN_MSG_LINK(WM_SETTINGCHANGE,pdispatch,this,&::aura::system::interaction_impl::_001MessageHub);
+      IGUI_WIN_MSG_LINK(WM_DISPLAYCHANGE,pdispatch,this,&::aura::system::interaction_impl::_001MessageHub);
 
    }
 
@@ -1737,7 +1737,7 @@ namespace axis
    }
 
 
-   string system::dir_appmatter_locator(sp(::axis::application) papp)
+   string system::dir_appmatter_locator(sp(::aura::application) papp)
    {
 
       throw not_implemented(get_app());
@@ -1745,7 +1745,7 @@ namespace axis
    }
 
 
-} // namespace axis
+} // namespace aura
 
 
 
@@ -1755,13 +1755,13 @@ namespace axis
 uint32_t _thread_proc_start_system(void * p)
 {
 
-   ::axis::system * psystem = (::axis::system *)p;
+   ::aura::system * psystem = (::aura::system *)p;
 
    return psystem->main();
 
 }
 
-CLASS_DECL_AXIS void __start_system(::axis::system * psystem)
+CLASS_DECL_AURA void __start_system(::aura::system * psystem)
 {
 
    ::create_thread(NULL,0,&_thread_proc_start_system,(LPVOID)psystem,0,0);
@@ -1771,11 +1771,11 @@ CLASS_DECL_AXIS void __start_system(::axis::system * psystem)
 #ifdef METROWIN
 
 
-namespace axis
+namespace aura
 {
 
 
-   CLASS_DECL_AXIS bool get_window_rect(::axis::system_window ^ pwindow,RECTD * lprect)
+   CLASS_DECL_AURA bool get_window_rect(::aura::system_window ^ pwindow,RECTD * lprect)
    {
 
       Windows::Foundation::Rect rect =  pwindow->get_window_rect();
@@ -1789,7 +1789,7 @@ namespace axis
    }
 
 
-   CLASS_DECL_AXIS bool get_window_rect(::axis::system_window ^ pwindow,LPRECT lprect)
+   CLASS_DECL_AURA bool get_window_rect(::aura::system_window ^ pwindow,LPRECT lprect)
    {
 
       rectd r;
@@ -1805,7 +1805,7 @@ namespace axis
    }
 
 
-} // namespace axis
+} // namespace aura
 
 
 #endif

@@ -6,7 +6,7 @@
 #endif
 
 
-namespace axis
+namespace aura
 {
 
 
@@ -227,8 +227,8 @@ namespace axis
 #endif
    }
 
-   CLASS_DECL_AXIS int32_t get_errno();
-   CLASS_DECL_AXIS void set_errno(int32_t _Value);
+   CLASS_DECL_AURA int32_t get_errno();
+   CLASS_DECL_AURA void set_errno(int32_t _Value);
 
 
 

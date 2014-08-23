@@ -5,9 +5,9 @@ namespace mac
 {
 
 
-   copydesk::copydesk(::axis::application * papp) :
+   copydesk::copydesk(::aura::application * papp) :
       element(papp),
-      ::axis::copydesk(papp),
+      ::aura::copydesk(papp),
       window_sp(papp)
    {
    }
@@ -115,7 +115,7 @@ namespace mac
    bool copydesk::initialize()
    {
 
-      if(!::axis::copydesk::initialize())
+      if(!::aura::copydesk::initialize())
          return false;
 
   //    if(!m_p->CreateEx(0, System.RegisterWndClass(0), NULL, 0, rect(0, 0, 0, 0), NULL, id()))
@@ -134,7 +134,7 @@ namespace mac
 
       bool bOk;
 
-      bOk = ::axis::copydesk::finalize();
+      bOk = ::aura::copydesk::finalize();
 
       if(window_sp::is_set() && window_sp::m_p->IsWindow())
       {

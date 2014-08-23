@@ -6,7 +6,7 @@ namespace metrowin
 {
 
 
-   class CLASS_DECL_AXIS thread :
+   class CLASS_DECL_AURA thread :
       virtual public ::thread_impl//,
       //virtual public ::message_queue
    {
@@ -32,7 +32,7 @@ namespace metrowin
 
       */
 
-      thread(::axis::application * papp);
+      thread(::aura::application * papp);
 
 
       //operator HANDLE() const;
@@ -122,7 +122,7 @@ namespace metrowin
       virtual int exit_instance(); // default will 'delete this'
 
       // Advanced: exception handling
-      virtual void ProcessWndProcException(::exception::axis * e, signal_details * pMsg);
+      virtual void ProcessWndProcException(::exception::aura * e, signal_details * pMsg);
 
       // Advanced: handling messages sent to message filter hook
       virtual void ProcessMessageFilter(int code, signal_details * pobj);
@@ -177,8 +177,8 @@ namespace metrowin
    };
 
 
-   //CLASS_DECL_AXIS ::thread * get_thread();
-//   CLASS_DECL_AXIS ::thread_state * get_thread_state();
+   //CLASS_DECL_AURA ::thread * get_thread();
+//   CLASS_DECL_AURA ::thread_state * get_thread_state();
 
 
 } // namespace metrowin

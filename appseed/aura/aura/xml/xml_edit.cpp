@@ -5,7 +5,7 @@ namespace xml
 {
 
 
-   edit_item::edit_item(sp(::axis::application) papp) :
+   edit_item::edit_item(sp(::aura::application) papp) :
       element(papp)
    {
    }
@@ -71,7 +71,7 @@ namespace xml
 
 
 
-   edit::edit(sp(::axis::application) papp) :
+   edit::edit(sp(::aura::application) papp) :
       element(papp),
       ::edit < ::xml::document > (papp)
    {

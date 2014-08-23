@@ -5,14 +5,14 @@
 #define session_parent session()
 
 
-namespace axis
+namespace aura
 {
 
 
-   class CLASS_DECL_AXIS session:
-      virtual public ::axis::application,
-      virtual public ::axis::session_interface,
-      virtual public ::user::schema
+   class CLASS_DECL_AURA session:
+      virtual public ::aura::application,
+      virtual public ::aura::session_interface //,
+      //virtual public ::user::schema
    {
    public:
 
@@ -34,34 +34,34 @@ namespace axis
 
 
       ::core::platform *                                       m_pcoreplatform;
-      string_map < sp(::axis::application) >                   m_mapApplication;
+      string_map < sp(::aura::application) >                   m_mapApplication;
 
 
       bool                                                     m_bDrawCursor;
 
 
-      ::visual::e_cursor                                       m_ecursor;
-      ::visual::e_cursor                                       m_ecursorDefault;
-      ::axis::copydesk_sp                                      m_spcopydesk;
+//      ::visual::e_cursor                                       m_ecursor;
+  //    ::visual::e_cursor                                       m_ecursorDefault;
+    //  ::aura::copydesk_sp                                      m_spcopydesk;
 
 
       application_ptra                                         m_appptra;
-      sp(::user::interaction)                                  m_spuiFocus;
-      sp(::user::str_context)                                  m_puserstrcontext;
+  //    sp(::user::interaction)                                  m_spuiFocus;
+//      sp(::user::str_context)                                  m_puserstrcontext;
       bool                                                     m_bZipIsDir;
-      map < ::user::e_key,::user::e_key,bool,bool > *          m_pmapKeyPressed;
-      sp(::axis::savings)                                      m_psavings;
-      sp(::user::user)                                         m_spuser;
+//      map < ::user::e_key,::user::e_key,bool,bool > *          m_pmapKeyPressed;
+      sp(::aura::savings)                                      m_psavings;
+  //    sp(::user::user)                                         m_spuser;
 
 
 
 
-      ::user::schema_simple_impl                               m_schemasimple;
+//      ::user::schema_simple_impl                               m_schemasimple;
 
 
 
 
-      session(sp(::axis::application) papp);
+      session(sp(::aura::application) papp);
       virtual ~session_parent;
 
 
@@ -70,7 +70,7 @@ namespace axis
       virtual bool is_session();
 
 
-      void construct(sp(::axis::application) papp, int iPhase);
+      void construct(sp(::aura::application) papp, int iPhase);
 
       virtual bool process_initialize();
 
@@ -87,11 +87,10 @@ namespace axis
       virtual int32_t exit_instance();
 
 
-      ::axis::copydesk & copydesk();
-      inline sp(class ::user::user)             user()         { return m_spuser; }
-      inline ::axis::savings &                  savings()      { return *m_psavings; }
+      ::aura::copydesk & copydesk();
+      inline ::aura::savings &                  savings()      { return *m_psavings; }
 
-      ::user::str_context *                     str_context();
+//      ::user::str_context *                     str_context();
 
 
 
@@ -115,18 +114,18 @@ namespace axis
 
 
 
-      virtual sp(::axis::application) start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext);
+      virtual sp(::aura::application) start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext);
 
       
-      virtual void set_cursor(::visual::e_cursor ecursor);
-      virtual void set_default_cursor(::visual::e_cursor ecursor);
+//      virtual void set_cursor(::visual::e_cursor ecursor);
+  //    virtual void set_default_cursor(::visual::e_cursor ecursor);
 
       
       virtual COLORREF get_default_color(uint64_t ui);
 
-      virtual bool is_key_pressed(::user::e_key ekey);
+//      virtual bool is_key_pressed(::user::e_key ekey);
 
-      virtual void set_key_pressed(::user::e_key ekey,bool bPressed);
+  //    virtual void set_key_pressed(::user::e_key ekey,bool bPressed);
 
 
 
@@ -156,8 +155,8 @@ namespace axis
 
       virtual void  get_monitor(rect_array & rectaMonitor, rect_array & rectaIntersect, const RECT & rect);
 
-      virtual index get_zoneing(LPRECT lprect, const RECT & rect,::user::EAppearance eappearance);
-      virtual index get_best_zoneing(::user::EAppearance * peappearance, LPRECT lprect,const RECT & rect);
+      virtual index get_zoneing(LPRECT lprect, const RECT & rect, e_align ealign);
+      virtual index get_best_zoneing(e_align * pealign, LPRECT lprect,const RECT & rect);
       virtual index get_best_monitor(LPRECT lprect,const RECT & rect);
       virtual index get_best_wkspace(LPRECT lprect,const RECT & rect);
       virtual index get_good_restore(LPRECT lprect,const RECT & rect);
@@ -179,9 +178,6 @@ namespace axis
 
 
 
-      virtual bool on_ui_mouse_message(::message::mouse * pmouse);
-
-
       virtual bool is_licensed(const char * pszId,bool bInteractive = true);
 
 
@@ -190,7 +186,7 @@ namespace axis
    };
 
 
-} // namespace axis
+} // namespace aura
 
 
 

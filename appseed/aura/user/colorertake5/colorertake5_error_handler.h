@@ -6,7 +6,7 @@
  * Parsing problems and warning.
  * @ingroup colorer
  */
-class CLASS_DECL_AXIS ErrorHandler
+class CLASS_DECL_AURA ErrorHandler
 {
 public:
   /**

@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_AXIS streambuf:
+   class CLASS_DECL_AURA streambuf:
       virtual public ::file::stream_buffer
    {
    public:

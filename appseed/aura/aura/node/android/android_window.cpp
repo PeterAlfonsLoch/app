@@ -6,15 +6,15 @@
 //#include <X11/extensions/Xcomposite.h>
 
 
-CLASS_DECL_AXIS int32_t oswindow_find_message_only_window(::user::interaction * puibaseMessageWindow);
-//CLASS_DECL_AXIS int32_t oswindow_find(Display * pdisplay,Window window);
-//CLASS_DECL_AXIS int32_t oswindow_find(Window window);
-CLASS_DECL_AXIS oswindow_data * oswindow_get_message_only_window(::user::interaction * puibaseMessageWindow);
-//CLASS_DECL_AXIS oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual = NULL);
-//CLASS_DECL_AXIS oswindow_data * oswindow_get(Window window);
-//CLASS_DECL_AXIS oswindow oswindow_defer_get(Window w);
-//CLASS_DECL_AXIS bool oswindow_remove(Display * pdisplay,Window window);
-CLASS_DECL_AXIS bool oswindow_remove_message_only_window(::user::interaction * puibaseMessageOnlyWindow);
+CLASS_DECL_AURA int32_t oswindow_find_message_only_window(::user::interaction * puibaseMessageWindow);
+//CLASS_DECL_AURA int32_t oswindow_find(Display * pdisplay,Window window);
+//CLASS_DECL_AURA int32_t oswindow_find(Window window);
+CLASS_DECL_AURA oswindow_data * oswindow_get_message_only_window(::user::interaction * puibaseMessageWindow);
+//CLASS_DECL_AURA oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual = NULL);
+//CLASS_DECL_AURA oswindow_data * oswindow_get(Window window);
+//CLASS_DECL_AURA oswindow oswindow_defer_get(Window w);
+//CLASS_DECL_AURA bool oswindow_remove(Display * pdisplay,Window window);
+CLASS_DECL_AURA bool oswindow_remove_message_only_window(::user::interaction * puibaseMessageOnlyWindow);
 
 
 
@@ -25,11 +25,11 @@ CLASS_DECL_AXIS bool oswindow_remove_message_only_window(::user::interaction * p
 
 //#include "sal.h"
 
-//CLASS_DECL_AXIS void hook_window_create(sp(::user::interaction) pWnd);
-//CLASS_DECL_AXIS bool unhook_window_create();
-//void CLASS_DECL_AXIS __pre_init_dialog(
+//CLASS_DECL_AURA void hook_window_create(sp(::user::interaction) pWnd);
+//CLASS_DECL_AURA bool unhook_window_create();
+//void CLASS_DECL_AURA __pre_init_dialog(
 //   sp(::user::interaction) pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld);
-//void CLASS_DECL_AXIS __post_init_dialog(
+//void CLASS_DECL_AURA __post_init_dialog(
 //   sp(::user::interaction) pWnd, const RECT& rectOld, DWORD dwStyleOld);
 //LRESULT CALLBACK
 //   __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam);
@@ -101,7 +101,7 @@ namespace android
 
    }
 
-   interaction_impl::interaction_impl(sp(::axis::application) papp) :
+   interaction_impl::interaction_impl(sp(::aura::application) papp) :
       element(papp)
    {
       m_pcallback = NULL;
@@ -116,9 +116,9 @@ namespace android
    interaction_impl::~interaction_impl()
    {
 
-      if(m_paxisapp != NULL && m_paxisapp->m_paxissession != NULL && m_paxisapp->m_paxissession->user().is_set() && m_paxisapp->m_paxissession->user()->m_pwindowmap != NULL)
+      if(m_pauraapp != NULL && m_pauraapp->m_paxissession != NULL && m_pauraapp->m_paxissession->user().is_set() && m_pauraapp->m_paxissession->user()->m_pwindowmap != NULL)
       {
-         m_paxisapp->m_paxissession->user()->m_pwindowmap->m_map.remove_key((int_ptr) get_handle());
+         m_pauraapp->m_paxissession->user()->m_pwindowmap->m_map.remove_key((int_ptr) get_handle());
       }
 
    }
@@ -145,7 +145,7 @@ namespace android
 
    // Change a interaction_impl's style
 
-   /*__STATIC bool CLASS_DECL_AXIS __modify_style(oswindow hWnd, int32_t nStyleOffset,
+   /*__STATIC bool CLASS_DECL_AURA __modify_style(oswindow hWnd, int32_t nStyleOffset,
       DWORD dwRemove, DWORD dwAdd, UINT nFlags)
    {
       ASSERT(hWnd != NULL);
@@ -605,7 +605,7 @@ d.unlock();
 
          send_message(WM_SIZE);
 
-         ANDROID_THREAD(m_paxisapp->m_p.m_p)->m_oswindowa.add(m_oswindow);
+         ANDROID_THREAD(m_pauraapp->m_p.m_p)->m_oswindowa.add(m_oswindow);
          */
       }
 
@@ -761,7 +761,7 @@ d.unlock();
          retry_single_lock sl(&pdraw->m_eventFree, millis(84), millis(84));
          pdraw->m_wndpaOut.remove(m_pui);
       }
-      //ANDROID_THREAD(m_paxisapp)->m_oswindowa.remove(m_oswindow);
+      //ANDROID_THREAD(m_pauraapp)->m_oswindowa.remove(m_oswindow);
       //oswindow_remove(m_oswindow->display(), m_oswindow->interaction_impl());
    }
 
@@ -775,7 +775,7 @@ d.unlock();
    void interaction_impl::_001OnNcDestroy(::signal_details * pobj)
    {
 
-      single_lock sl(m_paxisapp == NULL ? NULL : m_paxisapp->m_pmutex, TRUE);
+      single_lock sl(m_pauraapp == NULL ? NULL : m_pauraapp->m_pmutex, TRUE);
 
       pobj->m_bRet = true;
 
@@ -978,7 +978,7 @@ d.unlock();
 
       }
 
-      single_lock sl(m_paxisapp == NULL ? NULL : m_paxisapp->m_pmutex, TRUE);
+      single_lock sl(m_pauraapp == NULL ? NULL : m_pauraapp->m_pmutex, TRUE);
       sp(::user::interaction) pWnd;
       oswindow hWndOrig;
       bool bResult;
@@ -1001,8 +1001,8 @@ d.unlock();
 #ifdef DEBUG
 //            sp(::user::interaction) pWndPermanent =  (pMap->lookup_permanent(hWndOrig));;
   //          ASSERT(pWndPermanent == NULL);
-            // It is important to call axis class, including ca2 core
-            // axis classes implementation of install_message_handling
+            // It is important to call aura class, including ca2 core
+            // aura classes implementation of install_message_handling
             // inside derived class install_message_handling
 #endif
          }
@@ -1368,7 +1368,7 @@ d.unlock();
 
 
 
-   bool interaction_impl::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
+   bool interaction_impl::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
    {
       if(command_target_interface::_001OnCmdMsg(pcmdmsg))
          return TRUE;
@@ -1418,7 +1418,7 @@ d.unlock();
       }
       if(pbase->m_uiMessage == WM_TIMER)
       {
-         //m_paxisapp->step_timer();
+         //m_pauraapp->step_timer();
       }
       else if(pbase->m_uiMessage == WM_LBUTTONDOWN)
       {
@@ -1428,7 +1428,7 @@ d.unlock();
       {
       if(pbase->m_wparam == BERGEDGE_GETAPP)
       {
-      sp(::axis::application)* ppapp= (sp(::axis::application)*) pbase->m_lparam;
+      sp(::aura::application)* ppapp= (sp(::aura::application)*) pbase->m_lparam;
       *ppapp = get_app();
       pbase->m_bRet = true;
       return;
@@ -2233,7 +2233,7 @@ restart_mouse_hover_check:
    }
    */
 
-   /* trans oswindow CLASS_DECL_AXIS __get_parent_owner(sp(::user::interaction) hWnd)
+   /* trans oswindow CLASS_DECL_AURA __get_parent_owner(sp(::user::interaction) hWnd)
    {
    // check for permanent-owned interaction_impl first
    sp(::user::interaction) pWnd = sp(::user::interaction)::FromHandlePermanent(hWnd);
@@ -2365,7 +2365,7 @@ restart_mouse_hover_check:
    sp(::user::interaction) PASCAL interaction_impl::GetDescendantWindow(sp(::user::interaction) hWnd, id id)
    {
 
-      single_lock sl(hWnd->m_paxisapp->m_pmutex, TRUE);
+      single_lock sl(hWnd->m_pauraapp->m_pmutex, TRUE);
 
       for(int32_t i = 0; i < hWnd->m_uiptraChild.get_count(); i++)
       {
@@ -3156,7 +3156,7 @@ return 0;
       oswindow m_hwnd;
       HDC m_hdc;
 
-      print_window(sp(::axis::application) papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
+      print_window(sp(::aura::application) papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
          element(papp),
          m_event(papp)
 
@@ -3164,7 +3164,7 @@ return 0;
          m_event.ResetEvent();
          m_hwnd = hwnd;
          m_hdc = hdc;
-         __begin_thread(papp, &print_window::s_print_window, (LPVOID) this, ::axis::scheduling_priority_normal);
+         __begin_thread(papp, &print_window::s_print_window, (LPVOID) this, ::aura::scheduling_priority_normal);
          if(m_event.wait(millis(dwTimeout)).timeout())
          {
             TRACE("print_window::time_out");
@@ -3372,7 +3372,7 @@ throw not_implemented(get_app());
    void interaction_impl::_001OnProdevianSynch(::signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      System.get_event(m_paxisapp)->SetEvent();
+//      System.get_event(m_pauraapp)->SetEvent();
   //    System.get_event(System.get_twf())->wait(millis(8400));
    }
 
@@ -3841,7 +3841,7 @@ throw not_implemented(get_app());
 
 
 //
-//   id interaction_impl::RunModalLoop(DWORD dwFlags, ::axis::live_object * pliveobject)
+//   id interaction_impl::RunModalLoop(DWORD dwFlags, ::aura::live_object * pliveobject)
 //   {
 //      // for tracking the idle time state
 //      bool bIdle = TRUE;
@@ -3854,8 +3854,8 @@ throw not_implemented(get_app());
 //      m_iModalCount++;
 //
 //      m_iaModalThread.add(::GetCurrentThreadId());
-//      sp(::axis::application) pappThis1 =  (m_paxisapp->m_p);
-//      sp(::axis::application) pappThis2 =  (m_paxisapp);
+//      sp(::aura::application) pappThis1 =  (m_pauraapp->m_p);
+//      sp(::aura::application) pappThis2 =  (m_pauraapp);
 //
 //            //Display * d = XOpenDisplay(NULL);
 //            //XEvent  e;
@@ -3871,7 +3871,7 @@ throw not_implemented(get_app());
 //         // phase1: check to see if we can do idle work
 //         while (bIdle && !::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE))
 //         {
-//            ANDROID_THREAD(m_paxisapp->m_p.m_p)->defer_process_windows_messages();
+//            ANDROID_THREAD(m_pauraapp->m_p.m_p)->defer_process_windows_messages();
 ////            if(XCheckTypedEvent(d, -1, &e))
 //            {
 //
@@ -3901,14 +3901,14 @@ throw not_implemented(get_app());
 //
 //            }
 //
-//            m_paxisapp->m_p->m_dwAlive = m_paxisapp->m_dwAlive = ::get_tick_count();
+//            m_pauraapp->m_p->m_dwAlive = m_pauraapp->m_dwAlive = ::get_tick_count();
 //            if(pappThis1 != NULL)
 //            {
-//               pappThis1->m_dwAlive = m_paxisapp->m_dwAlive;
+//               pappThis1->m_dwAlive = m_pauraapp->m_dwAlive;
 //            }
 //            if(pappThis2 != NULL)
 //            {
-//               pappThis2->m_dwAlive = m_paxisapp->m_dwAlive;
+//               pappThis2->m_dwAlive = m_pauraapp->m_dwAlive;
 //            }
 //            if(pliveobject != NULL)
 //            {
@@ -3920,7 +3920,7 @@ throw not_implemented(get_app());
 //         // phase2: pump messages while available
 //         do
 //         {
-//            ANDROID_THREAD(m_paxisapp->m_p.m_p)->defer_process_windows_messages();
+//            ANDROID_THREAD(m_pauraapp->m_p.m_p)->defer_process_windows_messages();
 ////            if(XCheckTypedEvent(d, -1, &e))
 //            {
 //
@@ -3930,7 +3930,7 @@ throw not_implemented(get_app());
 //               goto ExitModal;
 //
 //            // pump message, but quit on WM_QUIT
-//            if (!m_paxisapp->pump_message())
+//            if (!m_pauraapp->pump_message())
 //            {
 //               __post_quit_message(0);
 //               return -1;
@@ -3955,14 +3955,14 @@ throw not_implemented(get_app());
 //               lIdleCount = 0;
 //            }
 //
-//            m_paxisapp->m_p->m_dwAlive = m_paxisapp->m_dwAlive = ::get_tick_count();
+//            m_pauraapp->m_p->m_dwAlive = m_pauraapp->m_dwAlive = ::get_tick_count();
 //            if(pappThis1 != NULL)
 //            {
-//               pappThis1->m_dwAlive = m_paxisapp->m_dwAlive;
+//               pappThis1->m_dwAlive = m_pauraapp->m_dwAlive;
 //            }
 //            if(pappThis2 != NULL)
 //            {
-//               pappThis2->m_dwAlive = m_paxisapp->m_dwAlive;
+//               pappThis2->m_dwAlive = m_pauraapp->m_dwAlive;
 //            }
 //            if(pliveobject != NULL)
 //            {
@@ -3978,9 +3978,9 @@ throw not_implemented(get_app());
 //         while (::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE) != FALSE);
 //
 //
-//         if(m_pui->m_paxisapp != NULL)
+//         if(m_pui->m_pauraapp != NULL)
 //         {
-//            m_pui->m_paxisapp->step_timer();
+//            m_pui->m_pauraapp->step_timer();
 //         }
 //         if (!ContinueModal(iLevel))
 //            goto ExitModal;
@@ -4118,7 +4118,7 @@ throw not_implemented(get_app());
    }
 
 
-   /*   view_update_hint::view_update_hint(sp(::axis::application) papp) :
+   /*   view_update_hint::view_update_hint(sp(::aura::application) papp) :
    element(papp)
    {
    }
@@ -4200,8 +4200,8 @@ throw not_implemented(get_app());
 
       /*bool b;
       bool * pb = &b;
-      if(m_paxisapp->s_ptwf != NULL)
-      pb = &m_paxisapp->s_ptwf->m_bProDevianMode;
+      if(m_pauraapp->s_ptwf != NULL)
+      pb = &m_pauraapp->s_ptwf->m_bProDevianMode;
       keep < bool > keepOnDemandDraw(pb, false, *pb, true);
       */
       ASSERT(::IsWindow((oswindow) get_handle()));
@@ -4470,7 +4470,7 @@ throw not_implemented(get_app());
    }
 
 
-   /*   guie_message_wnd::guie_message_wnd(sp(::axis::application) papp) :
+   /*   guie_message_wnd::guie_message_wnd(sp(::aura::application) papp) :
    element(papp)
    {
    m_pguieForward = NULL;
@@ -5218,7 +5218,7 @@ if(psurface == g_cairosurface)
 
         UNREFERENCED_PARAMETER(lpfnTimer);
 
-        m_pui->m_paxisapp->set_timer(m_pui, nIDEvent, nElapse);
+        m_pui->m_pauraapp->set_timer(m_pui, nIDEvent, nElapse);
 
         return nIDEvent;
 
@@ -5232,7 +5232,7 @@ if(psurface == g_cairosurface)
    bool interaction_impl::KillTimer(uint_ptr nIDEvent)
    {
 
-       m_pui->m_paxisapp->unset_timer(m_pui, nIDEvent);
+       m_pui->m_pauraapp->unset_timer(m_pui, nIDEvent);
 
        return TRUE;
 
@@ -6183,7 +6183,7 @@ if(psurface == g_cairosurface)
    /////////////////////////////////////////////////////////////////////////////
    // Official way to send message to a interaction_impl
 
-   CLASS_DECL_AXIS LRESULT __call_window_procedure(sp(::user::interaction) pinteraction, oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam)
+   CLASS_DECL_AURA LRESULT __call_window_procedure(sp(::user::interaction) pinteraction, oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam)
    {
       ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
       MESSAGE oldState = pThreadState->m_lastSentMsg;   // save for nesting
@@ -6229,7 +6229,7 @@ if(psurface == g_cairosurface)
 //      {
 //         try
 //         {
-//            if(App(pinteraction->m_paxisapp).on_run_exception((::ca2::exception &) e))
+//            if(App(pinteraction->m_pauraapp).on_run_exception((::ca2::exception &) e))
 //               goto run;
 //         }
 //         catch(...)
@@ -6326,10 +6326,10 @@ if(psurface == g_cairosurface)
 //            // the interaction_impl should not be in the permanent ::collection::map at this time
 //            ASSERT(sp(::user::interaction)::FromHandlePermanent(hWnd) == NULL);
 //
-//            pWndInit->m_paxisapp = dynamic_cast < ::thread * > (::android::get_thread());
-//            pWndInit->m_paxisapp->add(pWndInit);
-//            pWndInit->m_pui->m_paxisapp = pWndInit->m_paxisapp;
-//            pWndInit->m_pui->m_paxisapp->add(pWndInit->m_pui);
+//            pWndInit->m_pauraapp = dynamic_cast < ::thread * > (::android::get_thread());
+//            pWndInit->m_pauraapp->add(pWndInit);
+//            pWndInit->m_pui->m_pauraapp = pWndInit->m_pauraapp;
+//            pWndInit->m_pui->m_pauraapp->add(pWndInit->m_pui);
 //            pWndInit->m_pui->m_pimpl = pWndInit;
 //
 //            // connect the oswindow to pWndInit...
@@ -6439,7 +6439,7 @@ if(psurface == g_cairosurface)
 } // namespace android
 
 
-CTestCmdUI::CTestCmdUI(sp(::axis::application) papp) :
+CTestCmdUI::CTestCmdUI(sp(::aura::application) papp) :
    element(papp),
    cmd_ui(papp)
 {
@@ -6526,14 +6526,14 @@ LRESULT CALLBACK __window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPA
 }
 
 // always indirectly accessed via __get_window_procedure
-//WNDPROC CLASS_DECL_AXIS __get_window_procedure()
+//WNDPROC CLASS_DECL_AURA __get_window_procedure()
 //{
 //   return __get_module_state()->m_pfn_window_procedure;
 //}
 /////////////////////////////////////////////////////////////////////////////
 // Special helpers for certain windows messages
 
-__STATIC void CLASS_DECL_AXIS __pre_init_dialog(
+__STATIC void CLASS_DECL_AURA __pre_init_dialog(
    sp(::user::interaction) pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld)
 {
    ASSERT(lpRectOld != NULL);
@@ -6543,7 +6543,7 @@ __STATIC void CLASS_DECL_AXIS __pre_init_dialog(
    *pdwStyleOld = ANDROID_WINDOW(pWnd)->GetStyle();
 }
 
-__STATIC void CLASS_DECL_AXIS __post_init_dialog(
+__STATIC void CLASS_DECL_AURA __post_init_dialog(
    sp(::user::interaction) pWnd, const RECT& rectOld, DWORD dwStyleOld)
 {
    // must be hidden to start with
@@ -6574,7 +6574,7 @@ __STATIC void CLASS_DECL_AXIS __post_init_dialog(
 
 
 
-CLASS_DECL_AXIS bool hook_window_create(sp(::user::interaction) pWnd)
+CLASS_DECL_AURA bool hook_window_create(sp(::user::interaction) pWnd)
 {
 
 //      throw not_implemented(::get_thread_app());
@@ -6598,7 +6598,7 @@ CLASS_DECL_AXIS bool hook_window_create(sp(::user::interaction) pWnd)
 }
 
 
-CLASS_DECL_AXIS bool unhook_window_create()
+CLASS_DECL_AURA bool unhook_window_create()
 {
    ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
    if (pThreadState->m_pWndInit != NULL)
@@ -6611,7 +6611,7 @@ CLASS_DECL_AXIS bool unhook_window_create()
 
 
 
-CLASS_DECL_AXIS const char * __register_window_class(UINT nClassStyle,
+CLASS_DECL_AURA const char * __register_window_class(UINT nClassStyle,
                                                     HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon)
 {
 
@@ -6624,7 +6624,7 @@ CLASS_DECL_AXIS const char * __register_window_class(UINT nClassStyle,
 //   LPTSTR lpszName = __get_thread_state()->m_szTempClassName;
 //
 //   // generate a synthetic name for this class
-//   HINSTANCE hInst = Sys(::android::get_thread()->m_paxisapp).m_hInstance;
+//   HINSTANCE hInst = Sys(::android::get_thread()->m_pauraapp).m_hInstance;
 //
 //   if (hCursor == NULL && hbrBackground == NULL && hIcon == NULL)
 //   {
@@ -6669,7 +6669,7 @@ CLASS_DECL_AXIS const char * __register_window_class(UINT nClassStyle,
 }
 
 
-__STATIC void CLASS_DECL_AXIS
+__STATIC void CLASS_DECL_AURA
    __handle_activate(::sp(::user::interaction) pWnd, WPARAM nState, sp(::user::interaction) pWndOther)
 {
 
@@ -6700,7 +6700,7 @@ __STATIC void CLASS_DECL_AXIS
 //   }
 }
 
-__STATIC bool CLASS_DECL_AXIS
+__STATIC bool CLASS_DECL_AURA
    __handle_set_cursor(::sp(::user::interaction) pWnd, UINT nHitTest, UINT nMsg)
 {
 
@@ -6729,7 +6729,7 @@ __STATIC bool CLASS_DECL_AXIS
 /////////////////////////////////////////////////////////////////////////////
 // Standard init called by WinMain
 
-//__STATIC bool CLASS_DECL_AXIS __register_with_icon(WNDCLASS* pWndCls,
+//__STATIC bool CLASS_DECL_AURA __register_with_icon(WNDCLASS* pWndCls,
 //                                                  const char * lpszClassName, UINT nIDIcon)
 //{
 //   pWndCls->lpszClassName = lpszClassName;
@@ -6738,7 +6738,7 @@ __STATIC bool CLASS_DECL_AXIS
 //}
 
 
-//bool CLASS_DECL_AXIS __end_defer_register_class(LONG fToRegisterParam, const char ** ppszClass)
+//bool CLASS_DECL_AURA __end_defer_register_class(LONG fToRegisterParam, const char ** ppszClass)
 //{
 //   // mask off all classes that are already registered
 //   __MODULE_STATE* pModuleState = __get_module_state();
@@ -6778,7 +6778,7 @@ __STATIC bool CLASS_DECL_AXIS
 //   WNDCLASS wndcls;
 //   memset(&wndcls, 0, sizeof(WNDCLASS));   // start with NULL defaults
 //   wndcls.lpfnWndProc = DefWindowProc;
-//   wndcls.hInstance = Sys(::android::get_thread()->m_paxisapp).m_hInstance;
+//   wndcls.hInstance = Sys(::android::get_thread()->m_pauraapp).m_hInstance;
 //   //wndcls.hCursor = afxData.hcurArrow;
 //
 //   INITCOMMONCONTROLSEX init;
@@ -6950,7 +6950,7 @@ LRESULT CALLBACK
 // Additional helpers for WNDCLASS init
 
 // like RegisterClass, except will automatically call UnregisterClass
-//bool CLASS_DECL_AXIS __register_class(WNDCLASS* lpWndClass)
+//bool CLASS_DECL_AURA __register_class(WNDCLASS* lpWndClass)
 //{
 //   WNDCLASS wndcls;
 //   if (GetClassInfo(lpWndClass->hInstance, lpWndClass->lpszClassName,

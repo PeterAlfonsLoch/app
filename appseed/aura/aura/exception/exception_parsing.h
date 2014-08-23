@@ -1,24 +1,24 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS parsing_exception:
+class CLASS_DECL_AURA parsing_exception:
    virtual public simple_exception
 {
 public:
 
 
-   parsing_exception(sp(::axis::application) papp,const string & strMessage);
+   parsing_exception(sp(::aura::application) papp,const string & strMessage);
    virtual ~parsing_exception();
 
 
 };
 
 
-CLASS_DECL_AXIS bool get_avoid_parsing_exception();
-CLASS_DECL_AXIS bool throw_parsing_exception(const string & strMessage);
+CLASS_DECL_AURA bool get_avoid_parsing_exception();
+CLASS_DECL_AURA bool throw_parsing_exception(const string & strMessage);
 
 
-class CLASS_DECL_AXIS avoid_parsing_exception
+class CLASS_DECL_AURA avoid_parsing_exception
 {
 public:
 

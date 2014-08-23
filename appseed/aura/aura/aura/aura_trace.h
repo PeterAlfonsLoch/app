@@ -9,15 +9,15 @@ extern "C" IMAGE_DOS_HEADER __ImageBase;
 #endif
 
 
-namespace axis
+namespace aura
 {
 
    //typedef void ( * PFN_trace_v)(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
 
-   CLASS_DECL_AXIS void raw_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
-   //CLASS_DECL_AXIS void system_log_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
+   CLASS_DECL_AURA void raw_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
+   //CLASS_DECL_AURA void system_log_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
 
-   //extern CLASS_DECL_AXIS PFN_trace_v trace_v;
+   //extern CLASS_DECL_AURA PFN_trace_v trace_v;
 
    namespace trace
    {
@@ -75,7 +75,7 @@ namespace axis
 
       
       // Declare a global instance of this class to automatically register a custom trace category at startup
-      class CLASS_DECL_AXIS category
+      class CLASS_DECL_AURA category
       {
       public:
 
@@ -98,15 +98,15 @@ namespace axis
       };
 
 
-      class CLASS_DECL_AXIS trace
+      class CLASS_DECL_AURA trace
       {
       public:
 
-         sp(::axis::application) m_paxisapp;
+         sp(::aura::application) m_pauraapp;
 
-         trace(sp(::axis::application) papp)
+         trace(sp(::aura::application) papp)
          {
-            m_paxisapp = papp;
+            m_pauraapp = papp;
          }
 
          ~trace()
@@ -192,13 +192,13 @@ namespace axis
 #endif  // _NO_DEBUG_CRT
 
 
-      CLASS_DECL_AXIS void __cdecl __trace(const char * pszFormat, ...);
-      CLASS_DECL_AXIS void __cdecl __trace(const wchar_t * pszFormat, ...);
-      CLASS_DECL_AXIS void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const char * pszFormat, ...);
-      CLASS_DECL_AXIS void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const wchar_t * pszFormat, ...);
+      CLASS_DECL_AURA void __cdecl __trace(const char * pszFormat, ...);
+      CLASS_DECL_AURA void __cdecl __trace(const wchar_t * pszFormat, ...);
+      CLASS_DECL_AURA void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const char * pszFormat, ...);
+      CLASS_DECL_AURA void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const wchar_t * pszFormat, ...);
 #define TRACENOTIMPL(funcname)  do { TRACE(::core::atlTraceNotImpl, 0, "core: %s not implemented.\n", funcname); return E_NOTIMPL; } while(0)
    } // namespace trace
 
 
-};  // namespace axis
+};  // namespace aura
 

@@ -5,7 +5,7 @@ namespace ansios
 {
 
 
-   class CLASS_DECL_AXIS thread_impl:
+   class CLASS_DECL_AURA thread_impl:
       virtual public ::thread_impl
    {
    public:
@@ -13,7 +13,7 @@ namespace ansios
 
 
 
-      thread_impl(sp(::axis::application) papp);
+      thread_impl(sp(::aura::application) papp);
       virtual ~thread_impl();
 
 

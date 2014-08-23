@@ -12,7 +12,7 @@ namespace file
    typedef smart_pointer < reader > input_stream_sp;
 
 
-   class CLASS_DECL_AXIS input_stream :
+   class CLASS_DECL_AURA input_stream :
       virtual public stream_base,
       virtual public reader
    {
@@ -23,7 +23,7 @@ namespace file
 
 
       input_stream();
-      input_stream(const char * lpszFileName, uint32_t nOpenFlags, sp(::axis::application) papp = ::get_thread_app());
+      input_stream(const char * lpszFileName, uint32_t nOpenFlags, sp(::aura::application) papp = ::get_thread_app());
       input_stream(stream_buffer * preader);
       input_stream(const input_stream & preader);
       virtual ~input_stream();

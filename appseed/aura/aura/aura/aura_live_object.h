@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace axis
+namespace aura
 {
 
 
-   class CLASS_DECL_AXIS live_object :
+   class CLASS_DECL_AURA live_object :
       virtual public element
    {
    public:
@@ -26,7 +26,7 @@ namespace axis
    };
 
 
-} // namespace axis
+} // namespace aura
 
 
 

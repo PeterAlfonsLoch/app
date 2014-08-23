@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS mutex :
+class CLASS_DECL_AURA mutex :
    public sync_object
 {
 public:
@@ -33,14 +33,14 @@ public:
 #endif
 
 
-   mutex(sp(::axis::application) papp = NULL, bool bInitiallyOwn = FALSE, const char * lpszName = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
+   mutex(sp(::aura::application) papp = NULL, bool bInitiallyOwn = FALSE, const char * lpszName = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
 
 
 protected:
 
 #ifdef WINDOWS
 
-   mutex(sp(::axis::application) pappp, const char * pstrName, HANDLE h);
+   mutex(sp(::aura::application) pappp, const char * pstrName, HANDLE h);
 
 #elif defined(ANDROID)
 
@@ -75,13 +75,13 @@ public:
    virtual bool unlock();
 
 
-   static mutex * open_mutex(sp(::axis::application) papp, const char * pstrName);
+   static mutex * open_mutex(sp(::aura::application) papp, const char * pstrName);
 
 
 };
 
 
-CLASS_DECL_AXIS void wait_until_mutex_does_not_exist(const char * pszName);
+CLASS_DECL_AURA void wait_until_mutex_does_not_exist(const char * pszName);
 
 
 

@@ -9,7 +9,7 @@ namespace file
    class plain_text_input_stream;
 
 
-   class CLASS_DECL_AXIS plain_text_stream_base :
+   class CLASS_DECL_AURA plain_text_stream_base :
       virtual public stream_base
    {
    public:

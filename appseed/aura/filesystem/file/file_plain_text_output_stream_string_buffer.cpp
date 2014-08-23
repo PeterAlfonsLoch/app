@@ -6,7 +6,7 @@ namespace file
 
 
 
-   plain_text_output_stream_string_buffer::plain_text_output_stream_string_buffer(sp(::axis::application) papp) :
+   plain_text_output_stream_string_buffer::plain_text_output_stream_string_buffer(sp(::aura::application) papp) :
       element(papp.is_set() ? papp.m_p : get_thread_app())
    {
 

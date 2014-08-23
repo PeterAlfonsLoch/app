@@ -6,7 +6,7 @@ namespace xml
 
    
    // display optional environment
-   class CLASS_DECL_AXIS disp_option
+   class CLASS_DECL_AURA disp_option
    {
    public:
    
@@ -18,13 +18,13 @@ namespace xml
       int32_t tab_base;         // internal usage
       
       
-      disp_option(sp(::axis::application) papp);
+      disp_option(sp(::aura::application) papp);
       
       
    };
    
 
-   //extern CLASS_DECL_AXIS disp_option g_optDefault;
+   //extern CLASS_DECL_AURA disp_option g_optDefault;
 
 
 } // namespace xml

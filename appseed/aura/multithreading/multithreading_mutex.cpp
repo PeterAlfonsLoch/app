@@ -13,7 +13,7 @@
 
 
 
-mutex::mutex(sp(::axis::application) papp, bool bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttribute /* = NULL */) :
+mutex::mutex(sp(::aura::application) papp, bool bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttribute /* = NULL */) :
    sync_object(pstrName)
 {
 
@@ -163,7 +163,7 @@ mutex::mutex(sp(::axis::application) papp, bool bInitiallyOwn, const char * pstr
 
 #ifdef WINDOWS
 
-mutex::mutex(sp(::axis::application) papp, const char * pstrName, HANDLE h) :
+mutex::mutex(sp(::aura::application) papp, const char * pstrName, HANDLE h) :
    element(papp),
    sync_object(pstrName)
 {
@@ -560,7 +560,7 @@ bool mutex::unlock()
 
 
 
-mutex * mutex::open_mutex(sp(::axis::application) papp,  const char * pstrName)
+mutex * mutex::open_mutex(sp(::aura::application) papp,  const char * pstrName)
 {
 
 #ifdef WINDOWS

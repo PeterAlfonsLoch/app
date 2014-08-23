@@ -10,7 +10,7 @@
 ///				it monitors only the specified directory
 ///  \param		filter filter conditions that satisfy a change notification wait
 ///				can take values described by enum filter
-file_change_event::file_change_event(sp(::axis::application) papp, const char * path, bool watchsubtree, uint32_t filter) :
+file_change_event::file_change_event(sp(::aura::application) papp, const char * path, bool watchsubtree, uint32_t filter) :
 	event_base((int_ptr) ::FindFirstChangeNotificationW(::str::international::utf8_to_unicode(path), watchsubtree, filter) )
 {
 	if (item() == 0)

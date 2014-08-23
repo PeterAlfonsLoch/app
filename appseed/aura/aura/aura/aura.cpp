@@ -46,7 +46,7 @@ string_map < INT_PTR, INT_PTR > & __library()
 int g_iAxisRefCount = 0;
 
 
-CLASS_DECL_AXIS int get_axis_init()
+CLASS_DECL_AURA int get_axis_init()
 {
 
    return g_iAxisRefCount;
@@ -54,7 +54,7 @@ CLASS_DECL_AXIS int get_axis_init()
 }
 
 
-CLASS_DECL_AXIS int_bool defer_axis_init()
+CLASS_DECL_AURA int_bool defer_axis_init()
 {
 
    g_iAxisRefCount++;
@@ -70,7 +70,7 @@ CLASS_DECL_AXIS int_bool defer_axis_init()
 }
 
 
-CLASS_DECL_AXIS int_bool defer_axis_term()
+CLASS_DECL_AURA int_bool defer_axis_term()
 {
 
    g_iAxisRefCount--;
@@ -89,12 +89,12 @@ CLASS_DECL_AXIS int_bool defer_axis_term()
 bool axis_init()
 {
 
-   ::axis::static_start::init();
+   ::aura::static_start::init();
 
    if(!__node_axis_pre_init())
       return false;
 
-   //::axis::static_start::init();
+   //::aura::static_start::init();
 
    __init_threading_count();
 
@@ -130,7 +130,7 @@ bool axis_term()
 
    __node_axis_pos_term();
 
-   ::axis::static_start::term();
+   ::aura::static_start::term();
 
    return true;
 

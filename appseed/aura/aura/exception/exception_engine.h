@@ -41,7 +41,7 @@ namespace exception
 {
 
 
-   class CLASS_DECL_AXIS engine :
+   class CLASS_DECL_AURA engine :
       virtual public element
    {
    public:
@@ -69,7 +69,7 @@ namespace exception
 
 
 
-      engine(sp(::axis::application) papp);
+      engine(sp(::aura::application) papp);
       ~engine();
 
 

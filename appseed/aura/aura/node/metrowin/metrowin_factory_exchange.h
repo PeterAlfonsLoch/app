@@ -3,11 +3,11 @@
 namespace metrowin
 {
 
-   class CLASS_DECL_AXIS factory_exchange :
+   class CLASS_DECL_AURA factory_exchange :
       virtual public ::object
    {
    public:
-      factory_exchange(::axis::application * papp);
+      factory_exchange(::aura::application * papp);
       virtual ~factory_exchange();
    };
 

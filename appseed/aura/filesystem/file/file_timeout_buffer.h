@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_AXIS timeout_buffer :
+   class CLASS_DECL_AURA timeout_buffer :
       public ::file::binary_buffer
    {
    public:
@@ -19,7 +19,7 @@ namespace file
       sp(mutex)         m_spmutex;
 
 
-      timeout_buffer(sp(::axis::application) papp, ::file::buffer_sp  pfile, uint64_t uiExpectedSize = ((uint64_t)0));
+      timeout_buffer(sp(::aura::application) papp, ::file::buffer_sp  pfile, uint64_t uiExpectedSize = ((uint64_t)0));
       virtual ~timeout_buffer();
 
       virtual bool IsValid() const;

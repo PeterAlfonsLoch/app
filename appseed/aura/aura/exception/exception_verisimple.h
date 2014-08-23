@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS verisimple_exception:
+class CLASS_DECL_AURA verisimple_exception:
    public call_stack
 {
 public:
@@ -18,4 +18,4 @@ public:
 
 
 
-CLASS_DECL_AXIS ::file::output_stream & operator << (::file::output_stream & dumpcontext,const verisimple_exception & e);
+CLASS_DECL_AURA ::file::output_stream & operator << (::file::output_stream & dumpcontext,const verisimple_exception & e);

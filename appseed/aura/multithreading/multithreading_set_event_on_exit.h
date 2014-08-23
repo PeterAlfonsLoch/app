@@ -1,12 +1,12 @@
 //
 //  multithreading_set_event_on_exit.h
-//  axis
+//  aura
 //
 //
 //
 
 
-class CLASS_DECL_AXIS set_event_on_exit
+class CLASS_DECL_AURA set_event_on_exit
 {
 public:
    

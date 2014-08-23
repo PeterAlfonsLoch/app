@@ -28,7 +28,7 @@ public:
 namespace windows
 {
 
-   window_draw::window_draw(sp(::axis::application) papp):
+   window_draw::window_draw(sp(::aura::application) papp):
       element(papp),
       thread(papp),
       ::user::window_draw(papp),
@@ -151,29 +151,29 @@ namespace windows
                TRACE("window_draw::_synch_redraw :: during prodevian Performance Analysis Time Frame - %d milliseconds -,",iTimeFrame);
                TRACE("window_draw::_synch_redraw :: failure ::count has exceeded the maximum count - %d",iMaxFailureCount);
                TRACE("window_draw::_synch_redraw :: Going to try to save some resource that may favor drawing perfomance");
-               if(!Session.savings().is_trying_to_save(::axis::resource_blur_background))
+               if(!Session.savings().is_trying_to_save(::aura::resource_blur_background))
                {
                   TRACE("window_draw::_synch_redraw :: System is not trying to save \"blur background\" resource");
                   TRACE("window_draw::_synch_redraw :: Going to try to save \"blur background\" resource");
-                  Session.savings().try_to_save(::axis::resource_blur_background);
+                  Session.savings().try_to_save(::aura::resource_blur_background);
                }
-               else if(!Session.savings().is_trying_to_save(::axis::resource_blurred_text_embossing))
+               else if(!Session.savings().is_trying_to_save(::aura::resource_blurred_text_embossing))
                {
                   TRACE("window_draw::_synch_redraw :: System is not trying to save \"blurred text embossing\" resource");
                   TRACE("window_draw::_synch_redraw :: Going to try to save \"blurred text embossing\" resource");
-                  Session.savings().try_to_save(::axis::resource_blurred_text_embossing);
+                  Session.savings().try_to_save(::aura::resource_blurred_text_embossing);
                }
-               else if(!Session.savings().is_warning(::axis::resource_processing))
+               else if(!Session.savings().is_warning(::aura::resource_processing))
                {
                   TRACE("window_draw::_synch_redraw :: System is not warning to save \"processing\" resource");
                   TRACE("window_draw::_synch_redraw :: Going to warn to save \"processing\" resource");
-                  Session.savings().warn(::axis::resource_processing);
+                  Session.savings().warn(::aura::resource_processing);
                }
-               else if(!Session.savings().is_trying_to_save(::axis::resource_processing))
+               else if(!Session.savings().is_trying_to_save(::aura::resource_processing))
                {
                   TRACE("window_draw::_synch_redraw :: System is not trying to save \"processing\" resource");
                   TRACE("window_draw::_synch_redraw :: Going to try to save \"processing\" resource");
-                  Session.savings().try_to_save(::axis::resource_blur_background);
+                  Session.savings().try_to_save(::aura::resource_blur_background);
                }
             }
             s_iFrameFailureCount = 0;

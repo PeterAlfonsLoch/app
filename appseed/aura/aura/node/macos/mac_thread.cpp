@@ -12,7 +12,7 @@ namespace mac
 
    
    
-   thread::thread(::axis::application * papp) :
+   thread::thread(::aura::application * papp) :
    element(papp),
    ::thread_impl(papp),
    ::ansios::thread_impl(papp)

@@ -6,7 +6,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // Helper functions
 
-__STATIC long CLASS_DECL_AXIS _gen::MultMultDivDiv(
+__STATIC long CLASS_DECL_AURA _gen::MultMultDivDiv(
    int factor, int num1, int num2,
    int den1, int den2)
 {
@@ -476,7 +476,7 @@ size preview_dc::ScaleWindowExt(int xNum, int xDenom, int yNum, int yDenom)
 
 // private helpers for TextOut functions
 
-__STATIC int CLASS_DECL_AXIS _gen::ComputeNextTab(int x, UINT nTabStops, LPINT lpnTabStops, int nTabOrigin, int nTabWidth)
+__STATIC int CLASS_DECL_AURA _gen::ComputeNextTab(int x, UINT nTabStops, LPINT lpnTabStops, int nTabOrigin, int nTabWidth)
 {
    ENSURE(nTabWidth!=0);
    x -= nTabOrigin;        // normalize position to tab origin
@@ -664,7 +664,7 @@ bool preview_dc::ExtTextOut(int x, int y, UINT nOptions, LPCRECT lpRect,
          pDeltas = new int[nCount];
          pOutputString = new char[nCount];
       }
-      catch(::exception::axis * pe)
+      catch(::exception::aura * pe)
       {
          delete[] pDeltas;  // in case it was allocated
          // Note: DELETE_EXCEPTION(e) not required
@@ -716,7 +716,7 @@ size preview_dc::TabbedTextOut(int x, int y, const char * lpszString, int nCount
       pDeltas = new int[nCount];
       pOutputString = new char[nCount];
    }
-   catch(::exception::axis * pe)
+   catch(::exception::aura * pe)
    {
       delete[] pDeltas;
       // Note: DELETE_EXCEPTION(e) not required
@@ -987,7 +987,7 @@ void preview_dc::PrinterDPtoScreenDP(LPPOINT lpPoint) const
 ////////////////////////////////////////////////////////////////////////////
 // ::ca2::CreateDC
 
-HDC CLASS_DECL_AXIS ::ca2::CreateDC(HGLOBAL hDevNames, HGLOBAL hDevMode)
+HDC CLASS_DECL_AURA ::ca2::CreateDC(HGLOBAL hDevNames, HGLOBAL hDevMode)
 {
    if (hDevNames == NULL)
       return NULL;

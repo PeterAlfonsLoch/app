@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // Build data tables by including data file three times
 
-struct CLASS_DECL_AXIS __MAP_MESSAGE
+struct CLASS_DECL_AURA __MAP_MESSAGE
 {
    UINT    nMsg;
    const char *  lpszMsg;
@@ -212,7 +212,7 @@ static void TraceDDE(const char * lpszPrefix, const MSG* pMsg)
       if (!UnpackDDElParam(WM_DDE_EXECUTE, pMsg->lParam,
          &nDummy, (uint_ptr*)&hCommands))
       {
-//         ::OutputDebugString(::axis::trace::category_AppMsg, 0, "Warning: Unable to unpack WM_DDE_EXECUTE lParam %08lX.\n",
+//         ::OutputDebugString(::aura::trace::category_AppMsg, 0, "Warning: Unable to unpack WM_DDE_EXECUTE lParam %08lX.\n",
   //          pMsg->lParam);
          return;
       }
@@ -220,7 +220,7 @@ static void TraceDDE(const char * lpszPrefix, const MSG* pMsg)
 
       const char * lpszCommands = (const char *)::GlobalLock(hCommands);
       ENSURE_THROW(lpszCommands != NULL, throw ::memory_exception(get_thread_app()) );
-//      ::OutputDebugString(::axis::trace::category_AppMsg, 0, "%s: Execute '%s'.\n", lpszPrefix, lpszCommands);
+//      ::OutputDebugString(::aura::trace::category_AppMsg, 0, "%s: Execute '%s'.\n", lpszPrefix, lpszCommands);
       ::GlobalUnlock(hCommands);
    }
    else if (pMsg->message == WM_DDE_ADVISE)
@@ -231,7 +231,7 @@ static void TraceDDE(const char * lpszPrefix, const MSG* pMsg)
       if (!UnpackDDElParam(WM_DDE_ADVISE, pMsg->lParam,
          (uint_ptr*)&hAdvise, &nItem))
       {
-//         ::OutputDebugString(::axis::trace::category_AppMsg, 0, "Warning: Unable to unpack WM_DDE_ADVISE lParam %08lX.\n",
+//         ::OutputDebugString(::aura::trace::category_AppMsg, 0, "Warning: Unable to unpack WM_DDE_ADVISE lParam %08lX.\n",
 //            pMsg->lParam);
        return;
       }
@@ -326,11 +326,11 @@ void __trace_message(const char * lpszPrefix, signal_details * pobj)
    if (lpszMsgName != NULL)
    {
 #ifdef _WIN64
-      //TRACE(::axis::trace::category_WinMsg, 4, "%s: oswindow=%p, msg = %s (%p, %p)\n",
+      //TRACE(::aura::trace::category_WinMsg, 4, "%s: oswindow=%p, msg = %s (%p, %p)\n",
         // lpszPrefix, pbase->m_oswindow, lpszMsgName,
          //pbase->m_wparam, pbase->m_lparam);
 #else
-    //  ::OutputDebugString(::axis::trace::category_WinMsg, 4, "%s: oswindow=0x%08X, msg = %s (0x%08X, 0x%08X)\n",
+    //  ::OutputDebugString(::aura::trace::category_WinMsg, 4, "%s: oswindow=0x%08X, msg = %s (0x%08X, 0x%08X)\n",
 //         lpszPrefix, pbase->m_oswindow, lpszMsgName,
   //       pbase->m_wparam, pbase->m_lparam);
 #endif
@@ -338,11 +338,11 @@ void __trace_message(const char * lpszPrefix, signal_details * pobj)
    else
    {
 #ifdef _WIN64
-//      ::OutputDebugString(::axis::trace::category_WinMsg, 4, "%s: oswindow=%p, msg = 0x%04X (%p, %p)\n",
+//      ::OutputDebugString(::aura::trace::category_WinMsg, 4, "%s: oswindow=%p, msg = 0x%04X (%p, %p)\n",
   //       lpszPrefix, pbase->m_oswindow, lpszMsgName,
     //     pbase->m_wparam, pbase->m_lparam);
 #else
-//      ::OutputDebugString(::axis::trace::category_WinMsg, 4, "%s: oswindow=0x%08X, msg = 0x%04X (0x%08X, 0x%08X)\n",
+//      ::OutputDebugString(::aura::trace::category_WinMsg, 4, "%s: oswindow=0x%08X, msg = 0x%04X (0x%08X, 0x%08X)\n",
   //       lpszPrefix, pbase->m_oswindow, lpszMsgName,
     //     pbase->m_wparam, pbase->m_lparam);
 #endif
@@ -408,11 +408,11 @@ void __trace_message(const char * lpszPrefix, LPMSG lpmsg)
    if (lpszMsgName != NULL)
    {
 #ifdef WIN64
-//      TRACE(::axis::trace::category_WinMsg, 4, "%s: oswindow=%p, msg = %hs (%p, %p)\n",
+//      TRACE(::aura::trace::category_WinMsg, 4, "%s: oswindow=%p, msg = %hs (%p, %p)\n",
   //       lpszPrefix, pMsg->oswindow, lpszMsgName,
     //     pMsg->wParam, pMsg->lParam);
 #else
-//      ::OutputDebugString(::axis::trace::category_WinMsg, 4, "%s: oswindow=0x%08X, msg = %hs (0x%08X, 0x%08X)\n",
+//      ::OutputDebugString(::aura::trace::category_WinMsg, 4, "%s: oswindow=0x%08X, msg = %hs (0x%08X, 0x%08X)\n",
   //       lpszPrefix, lpmsg->oswindow, lpszMsgName,
     //     lpmsg->wParam, lpmsg->lParam);
 #endif
@@ -420,11 +420,11 @@ void __trace_message(const char * lpszPrefix, LPMSG lpmsg)
    else
    {
 #ifdef WIN64
-      //::OutputDebugString(::axis::trace::category_WinMsg, 4, "%s: oswindow=%p, msg = 0x%04X (%p, %p)\n",
+      //::OutputDebugString(::aura::trace::category_WinMsg, 4, "%s: oswindow=%p, msg = 0x%04X (%p, %p)\n",
         // lpszPrefix, pMsg->oswindow, lpszMsgName,
          //pMsg->wParam, pMsg->lParam);
 #else
-      //::OutputDebugString(::axis::trace::category_WinMsg, 4, "%s: oswindow=0x%08X, msg = 0x%04X (0x%08X, 0x%08X)\n",
+      //::OutputDebugString(::aura::trace::category_WinMsg, 4, "%s: oswindow=0x%08X, msg = 0x%04X (0x%08X, 0x%08X)\n",
         // lpszPrefix, lpmsg->oswindow, lpszMsgName,
          //lpmsg->wParam, lpmsg->lParam);
 #endif

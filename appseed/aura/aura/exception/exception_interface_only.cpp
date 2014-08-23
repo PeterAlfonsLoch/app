@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-interface_only_exception::interface_only_exception(sp(::axis::application) papp, const char * pszTip) : 
+interface_only_exception::interface_only_exception(sp(::aura::application) papp, const char * pszTip) : 
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),

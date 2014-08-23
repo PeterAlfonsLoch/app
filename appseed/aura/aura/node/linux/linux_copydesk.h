@@ -6,14 +6,14 @@ namespace linux
 
 
    class CLASS_DECL_LINUX copydesk :
-      virtual public ::axis::copydesk
+      virtual public ::aura::copydesk
    {
    public:
 
 
 
 
-      copydesk(sp(::axis::application) papp);
+      copydesk(sp(::aura::application) papp);
       virtual ~copydesk();
 
 

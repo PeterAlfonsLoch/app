@@ -16,7 +16,7 @@ class SharedInputSource : input_source
 
 public:
 
-  static SharedInputSource *getInputSource(string path, ::file::input_stream & axis);
+  static SharedInputSource *getInputSource(string path, ::file::input_stream & aura);
 
   /** Increments reference counter */
   int32_t addref(){

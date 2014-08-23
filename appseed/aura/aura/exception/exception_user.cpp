@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-user_exception::user_exception(sp(::axis::application) papp) :
+user_exception::user_exception(sp(::aura::application) papp) :
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),

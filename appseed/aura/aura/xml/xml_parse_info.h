@@ -8,7 +8,7 @@ namespace xml
    class node;
 
    // Parse info.
-   class CLASS_DECL_AXIS parse_info
+   class CLASS_DECL_AURA parse_info
    {
    public:
 
@@ -28,13 +28,13 @@ namespace xml
       sp(::xml::document)        m_pdoc;
 
       
-      parse_info(sp(::axis::application) papp);
+      parse_info(sp(::aura::application) papp);
       
       
    };
 
    
-   CLASS_DECL_AXIS char * LoadOtherNodes( node * node, bool* pbRet, const char * pszXml, parse_info * pi = NULL);
+   CLASS_DECL_AURA char * LoadOtherNodes( node * node, bool* pbRet, const char * pszXml, parse_info * pi = NULL);
    
 
 } // namespace xml

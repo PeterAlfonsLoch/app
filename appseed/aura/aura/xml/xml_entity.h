@@ -5,7 +5,7 @@ namespace xml
 {
 
    
-   class CLASS_DECL_AXIS entity
+   class CLASS_DECL_AURA entity
    {
    public:
 
@@ -24,7 +24,7 @@ namespace xml
    };
 
    
-   class CLASS_DECL_AXIS entities : 
+   class CLASS_DECL_AURA entities : 
       public array < entity >
    {
    public:

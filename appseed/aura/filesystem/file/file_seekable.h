@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_AXIS stream_get_size :
+   class CLASS_DECL_AURA stream_get_size :
       virtual public ::object
    {
    public:
@@ -23,7 +23,7 @@ namespace file
    };
 
 
-   class CLASS_DECL_AXIS seekable :
+   class CLASS_DECL_AURA seekable :
       virtual public ::object
    {
    public:

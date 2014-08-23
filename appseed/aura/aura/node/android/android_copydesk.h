@@ -5,15 +5,15 @@ namespace android
 {
 
 
-   class CLASS_DECL_AXIS copydesk :
-      virtual public ::axis::copydesk
+   class CLASS_DECL_AURA copydesk :
+      virtual public ::aura::copydesk
    {
    public:
 
 
 
 
-      copydesk(sp(::axis::application) papp);
+      copydesk(sp(::aura::application) papp);
       virtual ~copydesk();
 
 

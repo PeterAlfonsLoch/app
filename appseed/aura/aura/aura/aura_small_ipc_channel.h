@@ -10,7 +10,7 @@ typedef __key_t key_t;
 #endif
 
 
-class CLASS_DECL_AXIS small_ipc_channel_base
+class CLASS_DECL_AURA small_ipc_channel_base
 {
 public:
 
@@ -40,7 +40,7 @@ public:
 
 
 
-class CLASS_DECL_AXIS small_ipc_tx_channel :
+class CLASS_DECL_AURA small_ipc_tx_channel :
    virtual public  small_ipc_channel_base
 {
 public:
@@ -61,12 +61,12 @@ public:
 
 
 
-class CLASS_DECL_AXIS small_ipc_rx_channel :
+class CLASS_DECL_AURA small_ipc_rx_channel :
    virtual public  small_ipc_channel_base
 {
 public:
 
-   class CLASS_DECL_AXIS receiver
+   class CLASS_DECL_AURA receiver
    {
    public:
 
@@ -125,7 +125,7 @@ public:
 
 
 
-class CLASS_DECL_AXIS small_ipc_channel :
+class CLASS_DECL_AURA small_ipc_channel :
    virtual public small_ipc_tx_channel,
    virtual public small_ipc_rx_channel::receiver
 {

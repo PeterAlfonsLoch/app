@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_AXIS plain_text_input_stream :
+   class CLASS_DECL_AURA plain_text_input_stream :
       virtual public input_stream,
       virtual public plain_text_stream_base
    {
@@ -51,7 +51,7 @@ namespace file
 
 
 
-} // namespace axis
+} // namespace aura
 
 
 

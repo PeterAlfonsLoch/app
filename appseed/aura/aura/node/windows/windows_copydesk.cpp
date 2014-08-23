@@ -9,9 +9,9 @@ namespace windows
 {
 
 
-   copydesk::copydesk(sp(::axis::application) papp) :
+   copydesk::copydesk(sp(::aura::application) papp) :
       element(papp),
-      ::axis::copydesk(papp),
+      ::aura::copydesk(papp),
       ::user::interaction(papp)
    {
    }
@@ -107,7 +107,7 @@ namespace windows
    bool copydesk::initialize()
    {
       
-      if(!::axis::copydesk::initialize())
+      if(!::aura::copydesk::initialize())
          return false;
 
       if(!create_window_ex())
@@ -123,7 +123,7 @@ namespace windows
 
       bool bOk;
       
-      bOk = ::axis::copydesk::finalize();
+      bOk = ::aura::copydesk::finalize();
 
       return bOk;
 

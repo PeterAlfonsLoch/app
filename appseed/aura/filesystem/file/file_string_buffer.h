@@ -18,7 +18,7 @@ namespace file
    typedef sp(string_buffer) string_buffer_sp;
 
 
-   class CLASS_DECL_AXIS string_buffer :
+   class CLASS_DECL_AURA string_buffer :
       virtual public ::file::stream_buffer
    {
    public:
@@ -33,7 +33,7 @@ namespace file
 
 
       string_buffer();
-      string_buffer(sp(::axis::application) papp);
+      string_buffer(sp(::aura::application) papp);
       string_buffer(const string & str);
       string_buffer(const string_buffer & str);
       virtual ~string_buffer();

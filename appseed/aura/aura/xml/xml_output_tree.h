@@ -5,7 +5,7 @@ namespace xml
 {
 
 
-   class CLASS_DECL_AXIS output_tree :
+   class CLASS_DECL_AURA output_tree :
       public tree_base
    {
    public:
@@ -16,8 +16,8 @@ namespace xml
       sp(node)                m_pnode;
 
 
-      output_tree(sp(::axis::application) papp, tree_schema * pschema);
-      output_tree(sp(::axis::application) papp);
+      output_tree(sp(::aura::application) papp, tree_schema * pschema);
+      output_tree(sp(::aura::application) papp);
       virtual ~output_tree();
 
 

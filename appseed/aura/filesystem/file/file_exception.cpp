@@ -9,7 +9,7 @@ namespace file
 {
 
 
-   exception::exception(sp(::axis::application) papp, int32_t cause , LONG lOsError, const char * lpszArchiveName) :
+   exception::exception(sp(::aura::application) papp, int32_t cause , LONG lOsError, const char * lpszArchiveName) :
       element(papp),
       ::call_stack(papp),
       ::exception::base(papp),
@@ -325,7 +325,7 @@ static const char szUnknown[] = "unknown";
 #endif
 
 
-void throw_file_exception(::axis::application * papp, int32_t cause, LONG lOsError,   const char * lpszFileName /* == NULL */ )
+void throw_file_exception(::aura::application * papp, int32_t cause, LONG lOsError,   const char * lpszFileName /* == NULL */ )
 {
 
 #ifdef DEBUG

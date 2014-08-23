@@ -25,14 +25,14 @@
 #include <signal.h>
 #endif
 
-extern CLASS_DECL_AXIS bool g_bExiting;
+extern CLASS_DECL_AURA bool g_bExiting;
 
 
 namespace exception
 {
 
 
-   class CLASS_DECL_AXIS translator :
+   class CLASS_DECL_AURA translator :
       virtual public element
    {
    public:
@@ -81,7 +81,7 @@ namespace exception
 
 
 /*
-class CLASS_DECL_AXIS the_se_translator : public translator
+class CLASS_DECL_AURA the_se_translator : public translator
 {
 public:
    the_se_translator();

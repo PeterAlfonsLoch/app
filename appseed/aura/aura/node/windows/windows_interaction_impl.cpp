@@ -75,7 +75,7 @@ namespace windows
    }
 
 
-   interaction_impl::interaction_impl(sp(::axis::application) papp):
+   interaction_impl::interaction_impl(sp(::aura::application) papp):
       element(papp)
    {
 
@@ -100,7 +100,7 @@ namespace windows
    interaction_impl::~interaction_impl()
    {
 
-      if(m_paxisapp != NULL &&  m_paxisapp->m_paxissession != NULL &&  m_paxisapp->m_paxissession->m_spuser.is_set())
+      if(m_pauraapp != NULL &&  m_pauraapp->m_paxissession != NULL &&  m_pauraapp->m_paxissession->m_spuser.is_set())
       {
 
          if(Session.user()->m_pwindowmap != NULL)
@@ -134,7 +134,7 @@ namespace windows
 
    // Change a interaction_impl's style
 
-   __STATIC bool CLASS_DECL_AXIS __modify_style(oswindow oswindow,int32_t nStyleOffset,
+   __STATIC bool CLASS_DECL_AURA __modify_style(oswindow oswindow,int32_t nStyleOffset,
       uint32_t dwRemove,uint32_t dwAdd,UINT nFlags)
    {
       ASSERT(oswindow != NULL);
@@ -266,7 +266,7 @@ namespace windows
 
          //::simple_message_box(NULL,"h3","h3",MB_OK);
 
-         if(m_paxisapp == NULL)
+         if(m_pauraapp == NULL)
             return FALSE;
 
          uint32_t dwLastError = GetLastError();
@@ -275,9 +275,9 @@ namespace windows
          strMessage.Format("%s\n\nSystem Error Code: %d",strLastError,dwLastError);
 
 
-         TRACE(::axis::trace::category_AppMsg,0,"Warning: Window creation failed: GetLastError returned:\n");
+         TRACE(::aura::trace::category_AppMsg,0,"Warning: Window creation failed: GetLastError returned:\n");
 
-         TRACE(::axis::trace::category_AppMsg,0,"%s\n",strMessage);
+         TRACE(::aura::trace::category_AppMsg,0,"%s\n",strMessage);
 
          try
          {
@@ -581,19 +581,19 @@ namespace windows
    void interaction_impl::_001OnNcDestroy(signal_details * pobj)
    {
 
-      single_lock sl(m_pui->m_paxisapp->m_pmutex,TRUE);
+      single_lock sl(m_pui->m_pauraapp->m_pmutex,TRUE);
 
       ::window_sp pwindow;
 
-      if(m_pui->m_paxisapp != NULL && m_pui->m_paxisapp->m_pthreadimpl.is_set())
+      if(m_pui->m_pauraapp != NULL && m_pui->m_pauraapp->m_pthreadimpl.is_set())
       {
 
-         synch_lock sl(&m_pui->m_paxisapp->m_pthreadimpl->m_mutexUiPtra);
+         synch_lock sl(&m_pui->m_pauraapp->m_pthreadimpl->m_mutexUiPtra);
 
-         if(m_pui->m_paxisapp->m_pthreadimpl->m_spuiptra.is_set())
+         if(m_pui->m_pauraapp->m_pthreadimpl->m_spuiptra.is_set())
          {
 
-            m_pui->m_paxisapp->m_pthreadimpl->m_spuiptra->remove(m_pui);
+            m_pui->m_pauraapp->m_pthreadimpl->m_spuiptra->remove(m_pui);
 
          }
 
@@ -1005,7 +1005,7 @@ namespace windows
       // need to use top level parent (for the case where get_handle() is in DLL)
       sp(::user::interaction) pwindow = EnsureTopLevelParent();
 
-      TRACE(::axis::trace::category_AppMsg, 0, "WinHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
+      TRACE(::aura::trace::category_AppMsg, 0, "WinHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
 
       // finally, run the Windows Help engine
       /* trans   if (!::WinHelp(NODE_WINDOW(pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
@@ -1033,7 +1033,7 @@ namespace windows
    // need to use top level parent (for the case where get_handle() is in DLL)
    sp(::user::interaction) pwindow = EnsureTopLevelParent();
 
-   TRACE(::axis::trace::category_AppMsg, 0, "HtmlHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
+   TRACE(::aura::trace::category_AppMsg, 0, "HtmlHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
 
    // run the HTML Help engine
    /* trans   if (!::core::HtmlHelp(NODE_WINDOW(pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
@@ -1099,7 +1099,7 @@ namespace windows
 
 
 
-   bool interaction_impl::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
+   bool interaction_impl::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
    {
       if(command_target_interface::_001OnCmdMsg(pcmdmsg))
          return TRUE;
@@ -1179,7 +1179,7 @@ namespace windows
 
       if(pbase->m_uiMessage == WM_TIMER)
       {
-         m_pui->m_paxisapp->step_timer();
+         m_pui->m_pauraapp->step_timer();
       }
       else if(pbase->m_uiMessage == WM_LBUTTONDOWN)
       {
@@ -1207,7 +1207,7 @@ namespace windows
       {
       if(pbase->m_wparam == BERGEDGE_GETAPP)
       {
-      sp(::axis::application)* ppapp= (sp(::axis::application)*) pbase->m_lparam;
+      sp(::aura::application)* ppapp= (sp(::aura::application)*) pbase->m_lparam;
       *ppapp = get_app();
       pbase->m_bRet = true;
       return;
@@ -1484,7 +1484,7 @@ namespace windows
 
    sp(::user::interaction) interaction_impl::GetDescendantWindow(sp(::user::interaction) oswindow,id id)
    {
-      single_lock sl(oswindow->m_paxisapp->m_pmutex,TRUE);
+      single_lock sl(oswindow->m_pauraapp->m_pmutex,TRUE);
       // get_child_by_id recursive (return first found)
       // breadth-first for 1 level, then depth-first for next level
 
@@ -1795,7 +1795,7 @@ namespace windows
 
    // move and resize all the windows at once!
    if (layout.hDWP == NULL || !::EndDeferWindowPos(layout.hDWP))
-   TRACE(::axis::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");
+   TRACE(::aura::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");
    }
 
    */
@@ -2143,14 +2143,14 @@ namespace windows
       oswindow m_oswindow;
       HDC m_hdc;
 
-      print_window(sp(::axis::application) papp,oswindow oswindow,HDC hdc,uint32_t dwTimeout):
+      print_window(sp(::aura::application) papp,oswindow oswindow,HDC hdc,uint32_t dwTimeout):
          ::element(papp),
          m_event(papp)
       {
             m_event.ResetEvent();
             m_oswindow = oswindow;
             m_hdc = hdc;
-            __begin_thread(papp,&print_window::s_print_window,(LPVOID) this,::axis::scheduling_priority_above_normal);
+            __begin_thread(papp,&print_window::s_print_window,(LPVOID) this,::aura::scheduling_priority_above_normal);
             if(m_event.wait(millis(dwTimeout)).timeout())
             {
                TRACE("print_window::time_out");
@@ -2606,7 +2606,7 @@ namespace windows
       if(hDC == NULL)
       {
          // sometimes Win32 passes a NULL hDC in the WM_CTLCOLOR message.
-         //         TRACE(::axis::trace::category_AppMsg, 0, "Warning: hDC is NULL in interaction_impl::GrayCtlColor; WM_CTLCOLOR not processed.\n");
+         //         TRACE(::aura::trace::category_AppMsg, 0, "Warning: hDC is NULL in interaction_impl::GrayCtlColor; WM_CTLCOLOR not processed.\n");
          return FALSE;
       }
 
@@ -2848,7 +2848,7 @@ namespace windows
    }
 
    /*
-   id interaction_impl::RunModalLoop(uint32_t dwFlags,::axis::live_object * pliveobject)
+   id interaction_impl::RunModalLoop(uint32_t dwFlags,::aura::live_object * pliveobject)
    {
       // for tracking the idle time state
       bool bIdle = TRUE;
@@ -3055,9 +3055,9 @@ namespace windows
       else if(*lplpfn != oldWndProc)
       {
 
-         TRACE(::axis::trace::category_AppMsg,0,"p: Trying to use subclass_window with incorrect interaction_impl\n");
-         TRACE(::axis::trace::category_AppMsg,0,"\tderived class.\n");
-         TRACE(::axis::trace::category_AppMsg,0,"\toswindow_ = $%08X (nIDC=$%08X) is not a %hs.\n",(UINT)(uint_ptr)oswindow,__get_dialog_control_id(oswindow),typeid(*this).name());
+         TRACE(::aura::trace::category_AppMsg,0,"p: Trying to use subclass_window with incorrect interaction_impl\n");
+         TRACE(::aura::trace::category_AppMsg,0,"\tderived class.\n");
+         TRACE(::aura::trace::category_AppMsg,0,"\toswindow_ = $%08X (nIDC=$%08X) is not a %hs.\n",(UINT)(uint_ptr)oswindow,__get_dialog_control_id(oswindow),typeid(*this).name());
 
          ASSERT(FALSE);
 
@@ -3111,7 +3111,7 @@ namespace windows
    }
 
 
-   /*   ::user::view_update_hint::user::view_update_hint(sp(::axis::application) papp) :
+   /*   ::user::view_update_hint::user::view_update_hint(sp(::aura::application) papp) :
    element(papp)
    {
    }
@@ -5590,7 +5590,7 @@ LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam
 
 
 // always indirectly accessed via __get_window_procedure
-WNDPROC CLASS_DECL_AXIS __get_window_procedure()
+WNDPROC CLASS_DECL_AURA __get_window_procedure()
 {
    //return __get_module_state()->m_pfn_window_procedure;
    return &::__window_procedure;
@@ -5599,7 +5599,7 @@ WNDPROC CLASS_DECL_AXIS __get_window_procedure()
 
 
 
-CLASS_DECL_AXIS bool hook_window_create(::windows::interaction_impl * pwindow)
+CLASS_DECL_AURA bool hook_window_create(::windows::interaction_impl * pwindow)
 {
 
    if(pwindow == NULL)
@@ -5638,7 +5638,7 @@ CLASS_DECL_AXIS bool hook_window_create(::windows::interaction_impl * pwindow)
 
 }
 
-CLASS_DECL_AXIS bool unhook_window_create()
+CLASS_DECL_AURA bool unhook_window_create()
 {
 
    if(t_pwndInit != NULL)
@@ -5653,7 +5653,7 @@ CLASS_DECL_AXIS bool unhook_window_create()
 
 __declspec(thread) char t_szTempClassName[___TEMP_CLASS_NAME_SIZE] ={0};
 
-CLASS_DECL_AXIS const char * __register_window_class(sp(::axis::application) papp,UINT nClassStyle,HCURSOR hCursor,HBRUSH hbrBackground,HICON hIcon)
+CLASS_DECL_AURA const char * __register_window_class(sp(::aura::application) papp,UINT nClassStyle,HCURSOR hCursor,HBRUSH hbrBackground,HICON hIcon)
 {
    // Returns a temporary string name for the class
    //  Save in a string if you want to use it for a long time
@@ -5704,7 +5704,7 @@ CLASS_DECL_AXIS const char * __register_window_class(sp(::axis::application) pap
 }
 
 
-__STATIC void CLASS_DECL_AXIS
+__STATIC void CLASS_DECL_AURA
 __handle_activate(::window_sp pwindow,WPARAM nState,::window_sp pWndOther)
 {
    ASSERT(pwindow != NULL);
@@ -5733,7 +5733,7 @@ __handle_activate(::window_sp pwindow,WPARAM nState,::window_sp pWndOther)
    }
 }
 
-__STATIC bool CLASS_DECL_AXIS
+__STATIC bool CLASS_DECL_AURA
 __handle_set_cursor(::window_sp pwindow,UINT nHitTest,UINT nMsg)
 {
    if(nHitTest == HTERROR &&
@@ -5760,7 +5760,7 @@ __handle_set_cursor(::window_sp pwindow,UINT nHitTest,UINT nMsg)
 /////////////////////////////////////////////////////////////////////////////
 // Standard init called by WinMain
 
-__STATIC bool CLASS_DECL_AXIS __register_with_icon(WNDCLASS* pWndCls,
+__STATIC bool CLASS_DECL_AURA __register_with_icon(WNDCLASS* pWndCls,
    const char * lpszClassName,UINT nIDIcon)
 {
    pWndCls->lpszClassName = lpszClassName;
@@ -5769,7 +5769,7 @@ __STATIC bool CLASS_DECL_AXIS __register_with_icon(WNDCLASS* pWndCls,
 }
 
 
-string CLASS_DECL_AXIS get_user_interaction_window_class(sp(::user::interaction) pui)
+string CLASS_DECL_AURA get_user_interaction_window_class(sp(::user::interaction) pui)
 {
 
    ::user::interaction::e_type etype = pui->get_window_type();
@@ -5777,7 +5777,7 @@ string CLASS_DECL_AXIS get_user_interaction_window_class(sp(::user::interaction)
    WNDCLASS wndcls;
    memset(&wndcls,0,sizeof(WNDCLASS));   // start with NULL defaults
    wndcls.lpfnWndProc = DefWindowProc;
-   wndcls.hInstance = pui->m_paxisapp->m_hinstance;
+   wndcls.hInstance = pui->m_pauraapp->m_hinstance;
 
    INITCOMMONCONTROLSEX init;
    init.dwSize = sizeof(init);
@@ -5854,7 +5854,7 @@ __activation_window_procedure(oswindow oswindow,UINT nMsg,WPARAM wParam,LPARAM l
       msg.lParam = lParam;
 
       //lResult = __process_window_procedure_exception(pe, &msg);
-      //      TRACE(::axis::trace::category_AppMsg, 0, "Warning: Uncaught exception in __activation_window_procedure (returning %ld).\n",
+      //      TRACE(::aura::trace::category_AppMsg, 0, "Warning: Uncaught exception in __activation_window_procedure (returning %ld).\n",
       //       lResult);
       pe->Delete();
    }
@@ -5870,7 +5870,7 @@ __activation_window_procedure(oswindow oswindow,UINT nMsg,WPARAM wParam,LPARAM l
 // Additional helpers for WNDCLASS init
 
 // like RegisterClass, except will automatically call UnregisterClass
-bool CLASS_DECL_AXIS __register_class(WNDCLASS* lpWndClass)
+bool CLASS_DECL_AURA __register_class(WNDCLASS* lpWndClass)
 {
 
    WNDCLASS wndcls;

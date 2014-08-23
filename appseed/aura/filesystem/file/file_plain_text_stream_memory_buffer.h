@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_AXIS plain_text_stream_memory_buffer :
+   class CLASS_DECL_AURA plain_text_stream_memory_buffer :
       virtual public plain_text_stream
    {
    public:
@@ -14,9 +14,9 @@ namespace file
       memory_buffer_sp        m_spmemorybuffer;
 
 
-      plain_text_stream_memory_buffer(::axis::application * papp);
+      plain_text_stream_memory_buffer(::aura::application * papp);
       plain_text_stream_memory_buffer(::primitive::memory_base * pbase);
-      plain_text_stream_memory_buffer(::axis::application * papp, const void * data, ::primitive::memory_size c);
+      plain_text_stream_memory_buffer(::aura::application * papp, const void * data, ::primitive::memory_size c);
       virtual ~plain_text_stream_memory_buffer();
 
 

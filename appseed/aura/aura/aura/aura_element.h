@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS element :
+class CLASS_DECL_AURA element :
    virtual public root
 {
 public:
@@ -26,7 +26,7 @@ public:
 
    element();
    element(const element & o);
-   element(sp(::axis::application) papp);
+   element(sp(::aura::application) papp);
    virtual ~element();
 
    virtual void delete_this();
@@ -39,9 +39,9 @@ public:
 
    inline allocatorsp allocer();
 
-   inline ::axis::application * get_app() const { return m_paxisapp; }
+   inline ::aura::application * get_app() const { return m_pauraapp; }
 
-   virtual void set_app(sp(::axis::application) papp);
+   virtual void set_app(sp(::aura::application) papp);
 
    inline bool is_set_ca_flag(element::flag eflag)
    {
@@ -65,7 +65,7 @@ public:
 };
 
 
-class CLASS_DECL_AXIS allocator :
+class CLASS_DECL_AURA allocator :
    virtual public element
 {
 public:
@@ -77,13 +77,13 @@ public:
 };
 
 
-class CLASS_DECL_AXIS allocatorsp :
+class CLASS_DECL_AURA allocatorsp :
    public sp(allocator)
 {
 public:
 
 
-   allocatorsp(sp(::axis::application) papp);
+   allocatorsp(sp(::aura::application) papp);
 
 
 };

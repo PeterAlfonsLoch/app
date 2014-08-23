@@ -4,7 +4,7 @@
 class FileException;
 struct FileStatus;
 
-void CLASS_DECL_AXIS vfxGetRoot(const wchar_t * lpszPath, string& wstrRoot);
+void CLASS_DECL_AURA vfxGetRoot(const wchar_t * lpszPath, string& wstrRoot);
 
 namespace ios
 {
@@ -12,7 +12,7 @@ namespace ios
    /////////////////////////////////////////////////////////////////////////////
    // File - raw unbuffered disk file I/O
 
-   class CLASS_DECL_AXIS file :
+   class CLASS_DECL_AURA file :
       virtual public ::file::binary_buffer
    {
    public:
@@ -51,9 +51,9 @@ namespace ios
       int32_t        m_iFile;
       
       
-      file(::axis::application * papp);
-      file(::axis::application * papp, int32_t hFile);
-      file(::axis::application * papp, const char * lpszFileName, UINT nOpenFlags);
+      file(::aura::application * papp);
+      file(::aura::application * papp, int32_t hFile);
+      file(::aura::application * papp, const char * lpszFileName, UINT nOpenFlags);
       virtual ~file();
       
       
@@ -105,8 +105,8 @@ namespace ios
       
       int32_t PASCAL OsErrorToException(LONG lOsError);
       int32_t PASCAL ErrnoToException(int32_t nErrno);
-      void PASCAL ThrowOsError(::axis::application * papp, LONG lOsError, const char * lpszFileName = NULL);
-      void PASCAL ThrowErrno(::axis::application * papp, int32_t nErrno, const char * lpszFileName = NULL);
+      void PASCAL ThrowOsError(::aura::application * papp, LONG lOsError, const char * lpszFileName = NULL);
+      void PASCAL ThrowErrno(::aura::application * papp, int32_t nErrno, const char * lpszFileName = NULL);
       
       
    }  // namespace file_exception

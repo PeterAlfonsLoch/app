@@ -1,6 +1,6 @@
 //
 //  multithreading_thread_impl.h
-//  axis
+//  aura
 //
 //
 //
@@ -23,14 +23,14 @@ public:
    bool                    m_bSynch;
 
 
-   thread_startup(sp(::axis::application) papp);
+   thread_startup(sp(::aura::application) papp);
    ~thread_startup();
 
 };
 
 
 
-class CLASS_DECL_AXIS thread_impl :
+class CLASS_DECL_AURA thread_impl :
    virtual public command_target,
    virtual public message_queue_listener
 {
@@ -40,7 +40,7 @@ public:
    thread *                                  m_pthread;
 
    sp(ptr_array < ::user::interaction >)     m_spuiptra;
-   sp(::user::interaction::timer_array)      m_sptimera;
+   sp(::user::timer_array)                   m_sptimera;
    
    bool                                      m_bDupHandle;
    HTHREAD                                   m_hthread;
@@ -59,7 +59,7 @@ public:
    message_queue                             m_queue;
 
 
-   thread_impl(sp(::axis::application) papp);
+   thread_impl(sp(::aura::application) papp);
    virtual ~thread_impl();
    
    

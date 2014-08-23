@@ -12,7 +12,7 @@ namespace colorertake5
     * could be implemented or not depending on system archtecture.
     * @ingroup colorer
     */
-   class CLASS_DECL_AXIS line_source
+   class CLASS_DECL_AURA line_source
    {
    protected:
 

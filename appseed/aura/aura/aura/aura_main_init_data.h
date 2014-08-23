@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace axis
+namespace aura
 {
 
 
-   class CLASS_DECL_AXIS main_init_data
+   class CLASS_DECL_AURA main_init_data
    {
    public:
 
@@ -14,6 +14,6 @@ namespace axis
    };
 
 
-} // namespace axis
+} // namespace aura
 
 

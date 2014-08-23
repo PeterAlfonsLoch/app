@@ -5,7 +5,7 @@ namespace ios
 {
 
    
-   factory_exchange::factory_exchange(::axis::application * papp) :
+   factory_exchange::factory_exchange(::aura::application * papp) :
       element(papp)
    {
       
@@ -15,7 +15,7 @@ namespace ios
       System.factory().cloneable < file_system                >   (System.type_info < ::file::system          > (), 1);
 //    System.factory().cloneable_small < file_exception       >   (System.type_info < ::file::exception   > ());
 //    System.factory().cloneable <    WinResource             >   (System.type_info < ::ca2::resource         > (), 1);
-      System.factory().cloneable < application                >   (System.type_info < ::axis::application      > (), 1);
+      System.factory().cloneable < application                >   (System.type_info < ::aura::application      > (), 1);
       System.factory().cloneable < dir                        >   (System.type_info < ::file::dir::system     > (), 1);
 //    System.factory().cloneable_small < folder_watch         >   (System.type_info < ::ca2::folder_watch     > ());
       System.factory().creatable < window_draw                >   (System.type_info < ::user::window_draw     > (), 1);
@@ -40,7 +40,7 @@ namespace ios
 
 
 
-void __node_factory_exchange(sp(::axis::application) papp)
+void __node_factory_exchange(sp(::aura::application) papp)
 {
    
    ios::factory_exchange factoryexchange(papp);

@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS hresult_exception : 
+class CLASS_DECL_AURA hresult_exception : 
    virtual public ::exception::base
 {
 public:
@@ -10,7 +10,7 @@ public:
    HRESULT     m_hresult;
 
 
-   hresult_exception(sp(::axis::application) papp, HRESULT hr);
+   hresult_exception(sp(::aura::application) papp, HRESULT hr);
    virtual ~hresult_exception();
 
 

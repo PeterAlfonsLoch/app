@@ -1,13 +1,13 @@
 #pragma once
 
 
-namespace axis
+namespace aura
 {
 
 
-   class CLASS_DECL_AXIS application_interface:
+   class CLASS_DECL_AURA application_interface:
       virtual public ::thread,
-      virtual public ::axis::live_object,
+      virtual public ::aura::live_object,
       virtual public command_target_interface,
       virtual public request_interface,
       virtual public int_scalar_source
@@ -15,8 +15,11 @@ namespace axis
    public:
 
 
-      ::axis::system *                                m_paxissystem;
-      ::axis::session *                               m_paxissession;
+      ::aura::system *                                m_paurasystem;
+      ::aura::session *                               m_paurasession;
+      :: axis :: application *                        m_paxissapp; // can be used only from axis and upper
+      :: axis ::system *                              m_paxissystem; // can be used only from axis and upper
+      :: axis ::session *                             m_paxissession; // can be used only from axis and upper
       :: base :: application *                        m_pbasesapp; // can be used only from base and upper
       ::base::system *                                m_pbasesystem; // can be used only from base and upper
       ::base::session *                               m_pbasesession; // can be used only from base and upper
@@ -34,7 +37,7 @@ namespace axis
    };
 
 
-} // namespace axis
+} // namespace aura
 
 
 

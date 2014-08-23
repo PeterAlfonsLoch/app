@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 
 
-CLASS_DECL_AXIS int32_t FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, int32_t iFlags)
+CLASS_DECL_AURA int32_t FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, int32_t iFlags)
 {
 
    return ::MessageBox(NULL,pszMessage,pszTitle,iFlags);
@@ -12,7 +12,7 @@ CLASS_DECL_AXIS int32_t FUNCTION_DEBUGBOX(const char * pszMessage, const char * 
 #ifdef DEBUG
 void TRACELASTERROR()
 {
-   sp(::axis::application) m_paxisapp = get_thread_app();
+   sp(::aura::application) m_pauraapp = get_thread_app();
    string strErrorMessage = ::get_system_error_message(::GetLastError());
    TRACE("Error Message :\n%s\n", strErrorMessage.c_str());
 }

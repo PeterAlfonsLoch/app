@@ -33,7 +33,7 @@ namespace metrowin
 
    }
 
-   interaction_impl::interaction_impl(::axis::application * papp):
+   interaction_impl::interaction_impl(::aura::application * papp):
       element(papp)
    {
 
@@ -726,8 +726,8 @@ namespace metrowin
             #ifdef DEBUG
             ::user::interaction_impl * pWndPermanent = dynamic_cast < ::user::interaction_impl * > (pMap->lookup_permanent(hWndOrig));;
             ASSERT(pWndPermanent == NULL);
-            // It is important to call axis class, including ca2 core
-            // axis classes implementation of install_message_handling
+            // It is important to call aura class, including ca2 core
+            // aura classes implementation of install_message_handling
             // inside derived class install_message_handling
             #endif
             }
@@ -1128,7 +1128,7 @@ namespace metrowin
 
 #endif
 
-   bool interaction_impl::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
+   bool interaction_impl::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
    {
       if(command_target_interface::_001OnCmdMsg(pcmdmsg))
          return TRUE;
@@ -1161,7 +1161,7 @@ namespace metrowin
 
    void interaction_impl::message_handler(signal_details * pobj)
    {
-      SCAST_PTR(::message::axis,pbase,pobj);
+      SCAST_PTR(::message::aura,pbase,pobj);
 
       if(m_pui != NULL)
       {
@@ -1188,7 +1188,7 @@ namespace metrowin
       {
       if(pbase->m_wparam == BERGEDGE_GETAPP)
       {
-      ::axis::application ** ppapp= (::axis::application **) pbase->m_lparam;
+      ::aura::application ** ppapp= (::aura::application **) pbase->m_lparam;
       *ppapp = get_app();
       pbase->m_bRet = true;
       return;
@@ -1987,7 +1987,7 @@ namespace metrowin
       return NULL;
    }
 
-   /* trans oswindow CLASS_DECL_AXIS __get_parent_owner(::user::interaction * hWnd)
+   /* trans oswindow CLASS_DECL_AURA __get_parent_owner(::user::interaction * hWnd)
    {
    // check for permanent-owned interaction_impl first
    ::user::interaction_impl * pWnd = ::metrowin::interaction_impl::FromHandlePermanent(hWnd);
@@ -2669,7 +2669,7 @@ namespace metrowin
       ASSERT(puiStop == NULL || puiStop->IsWindow());
       ASSERT(pobj != NULL);
 
-      SCAST_PTR(::message::axis,pbase,pobj);
+      SCAST_PTR(::message::aura,pbase,pobj);
       // walk from the target interaction_impl up to the hWndStop interaction_impl checking
       //  if any interaction_impl wants to translate this message
 
@@ -2984,7 +2984,7 @@ namespace metrowin
       oswindow m_hwnd;
       HDC m_hdc;
 
-      print_window(::axis::application * papp,oswindow hwnd,HDC hdc,uint32_t dwTimeout):
+      print_window(::aura::application * papp,oswindow hwnd,HDC hdc,uint32_t dwTimeout):
          element(papp),
          m_event(papp)
       {
@@ -3210,7 +3210,7 @@ namespace metrowin
       //lock lock(m_pui, 1984);
       throw todo(get_app());
 
-      //SCAST_PTR(::message::axis, pbase, pobj);
+      //SCAST_PTR(::message::aura, pbase, pobj);
 
       //PAINTSTRUCT paint;
       //memset(&paint, 0, sizeof(paint));
@@ -3284,7 +3284,7 @@ namespace metrowin
    {
       throw todo(get_app());
 
-      //SCAST_PTR(::message::axis, pbase, pobj);
+      //SCAST_PTR(::message::aura, pbase, pobj);
 
       //if(pbase->m_wparam == NULL)
       //   return;
@@ -3456,7 +3456,7 @@ namespace metrowin
    ASSERT(!bOK);
    // Note: DELETE_EXCEPTION_(e) not required
    }
-   catch(::exception::axis * pe)
+   catch(::exception::aura * pe)
    {
    // validation failed due to OOM or other resource failure
    //e->ReportError(MB_ICONEXCLAMATION, __IDP_INTERNAL_FAILURE);
@@ -3762,8 +3762,8 @@ namespace metrowin
       m_iModalCount++;
 
       m_iaModalThread.add(::GetCurrentThreadId());
-      ::axis::application * pappThis1 = dynamic_cast <::axis::application *> (m_pthread->m_p.m_p);
-      ::axis::application * pappThis2 = dynamic_cast <::axis::application *> (m_pthread.m_p);
+      ::aura::application * pappThis1 = dynamic_cast <::aura::application *> (m_pthread->m_p.m_p);
+      ::aura::application * pappThis2 = dynamic_cast <::aura::application *> (m_pthread.m_p);
       // acquire and dispatch messages until the modal state is done
       MESSAGE msg;
       for(;;)
@@ -4026,7 +4026,7 @@ namespace metrowin
    }
 
 
-   /*   view_update_hint::view_update_hint(::axis::application * papp) :
+   /*   view_update_hint::view_update_hint(::aura::application * papp) :
    element(papp)
    {
    }
@@ -4320,7 +4320,7 @@ namespace metrowin
       return m_id;
    }
 
-   /*   guie_message_wnd::guie_message_wnd(::axis::application * papp) :
+   /*   guie_message_wnd::guie_message_wnd(::aura::application * papp) :
    element(papp)
    {
    m_pguieForward = NULL;
@@ -4582,7 +4582,7 @@ namespace metrowin
    LRESULT interaction_impl::send_message(UINT uiMessage,WPARAM wparam,lparam lparam)
    {
 
-      smart_pointer < ::message::axis > spbase;
+      smart_pointer < ::message::aura > spbase;
 
       spbase = get_base(m_pui,uiMessage,wparam,lparam);
 
@@ -5841,7 +5841,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //SCAST_PTR(::message::axis, pbase, pobj);
+      //SCAST_PTR(::message::aura, pbase, pobj);
       //if(System.get_cursor() != NULL
       //   && System.get_cursor()->m_ecursor != ::visual::cursor_system)
       //{
@@ -6319,7 +6319,7 @@ namespace metrowin
 
 #ifdef WINDOWSEX
 
-   CLASS_DECL_AXIS LRESULT __call_window_procedure(::user::interaction * pinteraction, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
+   CLASS_DECL_AURA LRESULT __call_window_procedure(::user::interaction * pinteraction, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
    {
       ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
       MSG oldState = pThreadState->m_lastSentMsg;   // save for nesting
@@ -6330,7 +6330,7 @@ namespace metrowin
 
       // Catch exceptions thrown outside the scope of a callback
       // in debug builds and warn the ::fontopus::user.
-      smart_pointer < ::message::axis > spbase;
+      smart_pointer < ::message::aura > spbase;
 
       spbase(pinteraction->get_base(pinteraction, nMsg, wParam, lParam));
 
@@ -6370,7 +6370,7 @@ namespace metrowin
          }
          return -1;
       }
-      catch(::exception::axis * pe)
+      catch(::exception::aura * pe)
       {
          __process_window_procedure_exception(pe, spbase);
          //         TRACE(::core::trace::category_AppMsg, 0, "Warning: Uncaught exception in message_handler (returning %ld).\n", spbase->get_lresult());
@@ -6638,14 +6638,14 @@ LRESULT CALLBACK __window_procedure(oswindow hWnd, UINT nMsg, WPARAM wParam, LPA
 }
 
 // always indirectly accessed via __get_window_procedure
-WNDPROC CLASS_DECL_AXIS __get_window_procedure()
+WNDPROC CLASS_DECL_AURA __get_window_procedure()
 {
    return __get_module_state()->m_pfn_window_procedure;
 }
 /////////////////////////////////////////////////////////////////////////////
 // Special helpers for certain windows messages
 
-__STATIC void CLASS_DECL_AXIS __pre_init_dialog(
+__STATIC void CLASS_DECL_AURA __pre_init_dialog(
    ::user::interaction * pWnd, LPRECT lpRectOld, uint32_t* pdwStyleOld)
 {
    ASSERT(lpRectOld != NULL);   
@@ -6655,7 +6655,7 @@ __STATIC void CLASS_DECL_AXIS __pre_init_dialog(
    *pdwStyleOld = WIN_WINDOW(pWnd)->GetStyle();
 }
 
-__STATIC void CLASS_DECL_AXIS __post_init_dialog(
+__STATIC void CLASS_DECL_AURA __post_init_dialog(
    ::user::interaction * pWnd, const RECT& rectOld, uint32_t dwStyleOld)
 {
    // must be hidden to start with      
@@ -6686,7 +6686,7 @@ __STATIC void CLASS_DECL_AXIS __post_init_dialog(
 
 
 
-CLASS_DECL_AXIS void hook_window_create(::user::interaction * pWnd)
+CLASS_DECL_AURA void hook_window_create(::user::interaction * pWnd)
 {
    ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
    if (pThreadState->m_pWndInit == pWnd)
@@ -6707,7 +6707,7 @@ CLASS_DECL_AXIS void hook_window_create(::user::interaction * pWnd)
    pThreadState->m_pWndInit = pWnd;
 }
 
-CLASS_DECL_AXIS bool unhook_window_create()
+CLASS_DECL_AURA bool unhook_window_create()
 {
    ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
    if (pThreadState->m_pWndInit != NULL)
@@ -6720,7 +6720,7 @@ CLASS_DECL_AXIS bool unhook_window_create()
 
 
 
-CLASS_DECL_AXIS const char * __register_window_class(UINT nClassStyle,
+CLASS_DECL_AURA const char * __register_window_class(UINT nClassStyle,
    HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon)
 {
    // Returns a temporary string name for the class
@@ -6774,7 +6774,7 @@ CLASS_DECL_AXIS const char * __register_window_class(UINT nClassStyle,
 
 
 
-__STATIC void CLASS_DECL_AXIS
+__STATIC void CLASS_DECL_AURA
 __handle_activate(::user::interaction_impl * pWnd, WPARAM nState, ::user::interaction_impl * pWndOther)
 {
    ASSERT(pWnd != NULL);      
@@ -6803,7 +6803,7 @@ __handle_activate(::user::interaction_impl * pWnd, WPARAM nState, ::user::intera
    }
 }
 
-__STATIC bool CLASS_DECL_AXIS
+__STATIC bool CLASS_DECL_AURA
 __handle_set_cursor(::user::interaction_impl * pWnd, UINT nHitTest, UINT nMsg)
 {
    if (nHitTest == HTERROR &&
@@ -6829,7 +6829,7 @@ __handle_set_cursor(::user::interaction_impl * pWnd, UINT nHitTest, UINT nMsg)
 /////////////////////////////////////////////////////////////////////////////
 // Standard init called by WinMain
 
-__STATIC bool CLASS_DECL_AXIS __register_with_icon(WNDCLASS* pWndCls,
+__STATIC bool CLASS_DECL_AURA __register_with_icon(WNDCLASS* pWndCls,
    const char * lpszClassName, UINT nIDIcon)
 {
    pWndCls->lpszClassName = lpszClassName;
@@ -6838,7 +6838,7 @@ __STATIC bool CLASS_DECL_AXIS __register_with_icon(WNDCLASS* pWndCls,
 }
 
 
-bool CLASS_DECL_AXIS __end_defer_register_class(LONG fToRegisterParam, const char ** ppszClass)
+bool CLASS_DECL_AURA __end_defer_register_class(LONG fToRegisterParam, const char ** ppszClass)
 {
    // mask off all classes that are already registered
    __MODULE_STATE* pModuleState = __get_module_state();
@@ -7022,7 +7022,7 @@ __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lP
       if (bCallDefault)
          lResult = CallWindowProc(oldWndProc, hWnd, nMsg, wParam, lParam);
    }
-   catch(::exception::axis * pe)
+   catch(::exception::aura * pe)
    {
       // handle exception
       MSG msg;
@@ -7048,7 +7048,7 @@ __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lP
 // Additional helpers for WNDCLASS init
 
 // like RegisterClass, except will automatically call UnregisterClass
-bool CLASS_DECL_AXIS __register_class(WNDCLASS* lpWndClass)
+bool CLASS_DECL_AURA __register_class(WNDCLASS* lpWndClass)
 {
    WNDCLASS wndcls;      
    if (GetClassInfo(lpWndClass->hInstance, lpWndClass->lpszClassName,
@@ -7080,7 +7080,7 @@ bool CLASS_DECL_AXIS __register_class(WNDCLASS* lpWndClass)
          *pModuleState->m_pstrUnregisterList += lpWndClass->lpszClassName;
          *pModuleState->m_pstrUnregisterList +='\n';
       }
-      catch(::exception::axis * pe)
+      catch(::exception::aura * pe)
       {
          ::ca2::rethrow(pe);
          // Note: DELETE_EXCEPTION not required.

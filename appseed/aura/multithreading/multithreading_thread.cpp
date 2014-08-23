@@ -17,7 +17,7 @@ thread::thread()
 
 
 
-thread::thread(sp(::axis::application) papp) :
+thread::thread(sp(::aura::application) papp) :
 element(papp),
 m_set(papp)
 {
@@ -33,17 +33,17 @@ m_set(papp)
    m_pthreadimpl->m_pthread = this;
    m_pthreadimpl->construct();
 
-   if(m_paxisapp != NULL && m_paxisapp->m_paxissession != NULL)
+   if(m_pauraapp != NULL && m_pauraapp->m_paxissession != NULL)
    {
 
-      m_bZipIsDir = m_paxisapp->m_paxissession->m_bZipIsDir;
+      m_bZipIsDir = m_pauraapp->m_paxissession->m_bZipIsDir;
 
    }
 
 }
 
 
-thread::thread(sp(::axis::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
+thread::thread(sp(::aura::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
 element(papp)
 {
 
@@ -53,10 +53,10 @@ element(papp)
    m_pthreadimpl->m_pthread = this;
    m_pthreadimpl->construct(pfnThreadProc, pParam);
 
-   if(m_paxisapp != NULL && m_paxisapp->m_paxissession != NULL)
+   if(m_pauraapp != NULL && m_pauraapp->m_paxissession != NULL)
    {
 
-      m_bZipIsDir = m_paxisapp->m_paxissession->m_bZipIsDir;
+      m_bZipIsDir = m_pauraapp->m_paxissession->m_bZipIsDir;
 
    }
 
@@ -384,7 +384,7 @@ int32_t thread::priority()
 
 
 
-CLASS_DECL_AXIS void thread_alloc_ready(bool bReady)
+CLASS_DECL_AURA void thread_alloc_ready(bool bReady)
 {
 
    thread::s_bAllocReady = bReady;
@@ -714,7 +714,7 @@ bool thread::on_run_step()
 
    step_timer();
 
-   sp(::axis::application) papp = (this);
+   sp(::aura::application) papp = (this);
 
    m_dwAlive = ::get_tick_count();
 
@@ -725,7 +725,7 @@ bool thread::on_run_step()
 
    }
 
-   sp(::axis::application) pappP = (this);
+   sp(::aura::application) pappP = (this);
 
    if (pappP != NULL)
    {
@@ -974,11 +974,11 @@ void thread::register_at_required_threads()
 
    // register default dependencies
 
-   sp(::axis::application) papp = this;
+   sp(::aura::application) papp = this;
 
-   sp(::axis::session) psession = this;
+   sp(::aura::session) psession = this;
 
-   sp(::axis::system) psystem = this;
+   sp(::aura::system) psystem = this;
 
    if(&Application != NULL)
    {

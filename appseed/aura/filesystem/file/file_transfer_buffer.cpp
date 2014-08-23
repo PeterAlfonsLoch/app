@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   transfer_buffer::transfer_buffer(sp(::axis::application) papp, mutex * pmutex) :
+   transfer_buffer::transfer_buffer(sp(::aura::application) papp, mutex * pmutex) :
       element(papp)
    {
 
@@ -35,7 +35,7 @@ namespace file
 
    // it is not currently designed to call open.
    //
-   transfer_buffer::transfer_buffer(sp(::axis::application) papp, ::file::memory_buffer * pmemoryfileIn) :
+   transfer_buffer::transfer_buffer(sp(::aura::application) papp, ::file::memory_buffer * pmemoryfileIn) :
       element(papp)
    {
 

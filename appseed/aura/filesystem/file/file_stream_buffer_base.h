@@ -20,7 +20,7 @@ namespace file
    struct file_status;
 
 
-   class CLASS_DECL_AXIS stream_buffer_base :
+   class CLASS_DECL_AURA stream_buffer_base :
       virtual public ::object,
       virtual public ::file::seekable,
       virtual public ::file::writer_flush

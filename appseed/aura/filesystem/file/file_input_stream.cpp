@@ -25,7 +25,7 @@ namespace file
    }
 
 
-   input_stream::input_stream(const char * lpszFileName,uint32_t nOpenFlags,sp(::axis::application) papp)
+   input_stream::input_stream(const char * lpszFileName,uint32_t nOpenFlags,sp(::aura::application) papp)
    {
 
       m_gcount = 0;

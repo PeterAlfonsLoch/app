@@ -130,7 +130,7 @@ no_track_object* process_local_object::get_data(
          if (m_pObject == NULL)
             m_pObject = (*pfnCreateObject)();
       }
-      catch(::exception::axis * pe)
+      catch(::exception::aura * pe)
       {
          ::exception::rethrow(pe);
       }
@@ -148,13 +148,13 @@ process_local_object::~process_local_object()
 /////////////////////////////////////////////////////////////////////////////
 // Init/Term for thread/process local data
 
-/*void CLASS_DECL_AXIS ::ca2::InitLocalData(HINSTANCE hInst)
+/*void CLASS_DECL_AURA ::ca2::InitLocalData(HINSTANCE hInst)
 {
    if (gen_ThreadData != NULL)
       gen_ThreadData->AssignInstance(hInst);
 }
 
-void CLASS_DECL_AXIS __term_local_data(HINSTANCE hInst, bool bAll)
+void CLASS_DECL_AURA __term_local_data(HINSTANCE hInst, bool bAll)
 {
    if (gen_ThreadData != NULL)
       gen_ThreadData->DeleteValues(hInst, bAll);
@@ -167,12 +167,12 @@ void CLASS_DECL_AXIS __term_local_data(HINSTANCE hInst, bool bAll)
 
 __STATIC_DATA long gen_TlsRef = 0;
 
-void CLASS_DECL_AXIS __tls_add_ref()
+void CLASS_DECL_AURA __tls_add_ref()
 {
    ++gen_TlsRef;
 }
 
-void CLASS_DECL_AXIS __tls_release()
+void CLASS_DECL_AURA __tls_release()
 {
    if (gen_TlsRef == 0 || --gen_TlsRef == 0)
    {

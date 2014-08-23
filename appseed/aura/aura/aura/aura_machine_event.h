@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS machine_event
+class CLASS_DECL_AURA machine_event
 {
 public:
 

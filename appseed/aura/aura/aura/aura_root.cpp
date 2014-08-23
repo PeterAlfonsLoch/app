@@ -6,17 +6,17 @@ root::root()
 
    m_countReference  = 1;
    m_bHeap           = false;
-   m_paxisapp        = NULL;
+   m_pauraapp        = NULL;
 
 }
 
 
-root::root(sp(::axis::application) papp)
+root::root(sp(::aura::application) papp)
 {
 
    m_countReference  = 1;
    m_bHeap           = false;
-   m_paxisapp        = papp.m_p;
+   m_pauraapp        = papp.m_p;
 
 }
 

@@ -5,7 +5,7 @@
 
 
 /// This class represents events for file changes
-class CLASS_DECL_AXIS file_change_event :
+class CLASS_DECL_AURA file_change_event :
    virtual public waitable,
    virtual public event_base
 {
@@ -29,7 +29,7 @@ public:
 	///				it monitors only the specified directory
 	///  \param		filter filter conditions that satisfy a change notification wait
 	///				can take values described by enum filter
-	file_change_event (sp(::axis::application) papp, const char * path, bool watchsubtree, uint32_t filter);
+	file_change_event (sp(::aura::application) papp, const char * path, bool watchsubtree, uint32_t filter);
 
 	///  \brief		destructor
 	~file_change_event();

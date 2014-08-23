@@ -5,7 +5,7 @@ namespace xml
 {
 
 
-   document::document(sp(::axis::application) papp, parse_info * pparseinfo) :
+   document::document(sp(::aura::application) papp, parse_info * pparseinfo) :
       element(papp.is_set() ? papp.m_p : get_thread_app()),
       data(papp.is_set() ? papp.m_p : get_thread_app()),
       node(papp.is_set() ? papp.m_p : get_thread_app())

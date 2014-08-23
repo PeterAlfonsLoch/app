@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace axis
+namespace aura
 {
 
 
-   class CLASS_DECL_AXIS log :
+   class CLASS_DECL_AURA log :
       virtual public element
    {
    public:
@@ -26,7 +26,7 @@ namespace axis
 
 
       bool                    m_bTrace;
-      ::axis::trace::trace *     m_ptrace;
+      ::aura::trace::trace *     m_ptrace;
       critical_section *      m_pcsTrace;
       stringa *               m_pstraSeparator;
       FILE *                  m_pfile;
@@ -39,7 +39,7 @@ namespace axis
       int32_t                     m_iDay;
 
 
-      log(sp(::axis::application) papp);
+      log(sp(::aura::application) papp);
       virtual ~log();
 
       virtual void print(const char * psz, ...);
@@ -83,13 +83,13 @@ namespace axis
    };
 
 
-   CLASS_DECL_AXIS int32_t SimpleDebugReport(int32_t,const char *,int32_t,const char *,const char * pszFormat,va_list list);
+   CLASS_DECL_AURA int32_t SimpleDebugReport(int32_t,const char *,int32_t,const char *,const char * pszFormat,va_list list);
 
 
-} // namespace axis
+} // namespace aura
 
 
-inline ::axis::log::e_level ca_get_level_warning() { return ::axis::log::level_warning; }
+inline ::aura::log::e_level ca_get_level_warning() { return ::aura::log::level_warning; }
 
 
 

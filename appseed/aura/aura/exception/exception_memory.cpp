@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-memory_exception::memory_exception(sp(::axis::application) papp) :
+memory_exception::memory_exception(sp(::aura::application) papp) :
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),
@@ -11,7 +11,7 @@ memory_exception::memory_exception(sp(::axis::application) papp) :
 }
 
 
-memory_exception::memory_exception(sp(::axis::application) papp, const char * pszMessage) :
+memory_exception::memory_exception(sp(::aura::application) papp, const char * pszMessage) :
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),

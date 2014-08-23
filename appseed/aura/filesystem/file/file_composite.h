@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_AXIS composite :
+   class CLASS_DECL_AURA composite :
       virtual public ::file::stream_buffer
    {
    public:

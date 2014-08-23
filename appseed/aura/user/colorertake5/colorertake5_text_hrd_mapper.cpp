@@ -5,7 +5,7 @@ namespace colorertake5
 {
 
 
-   TextHRDMapper::TextHRDMapper(sp(::axis::application) papp) :
+   TextHRDMapper::TextHRDMapper(sp(::aura::application) papp) :
       element(papp),
       RegionMapperImpl(papp)
    {
@@ -24,7 +24,7 @@ namespace colorertake5
       string str;
       is >> str;
 
-      sp(::xml::document) hbase = new xml::document(m_paxisapp);
+      sp(::xml::document) hbase = new xml::document(m_pauraapp);
       hbase->load(str);
 
       if (hbase->get_name() != "hrd")

@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_AXIS set :
+   class CLASS_DECL_AURA set :
       virtual public ::object
    {
    public:

@@ -73,6 +73,22 @@
 
 #include "aura_types.h"
 
-#include "aura/aura_policy/aura_policy.h"
+#include "aura/aura/os/os.h"
+
+#include "aura/primitive/math/_math.h"
+
+#include "aura_heap.h"
+
+#include "aura/primitive/str/str_c.h"
+
+#include "aura/filesystem/file/file_c.h"
+
+#include "aura/primitive/primitive_memory_c.h"
+
+#include "aura/primitive/datetime/datetime_c.h"
+
+#include "aura_number.h"
+
+#include "aura/aura/aura_policy/aura_policy.h"
 
 #endif

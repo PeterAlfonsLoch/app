@@ -5,13 +5,13 @@ namespace ios
 {
 
 
-   class CLASS_DECL_AXIS crypto :
+   class CLASS_DECL_AURA crypto :
       virtual public ::crypto::crypto
    {
    public:
 
 
-      crypto(::axis::application * papp);
+      crypto(::aura::application * papp);
       virtual ~crypto();
 
 

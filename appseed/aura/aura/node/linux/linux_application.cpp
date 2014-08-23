@@ -8,7 +8,7 @@
 namespace linux
 {
 
-   application::application(sp(::axis::application) papp) :
+   application::application(sp(::aura::application) papp) :
       element(papp)
    {
 
@@ -185,7 +185,7 @@ namespace linux
       m_pimpl->m_bRun = false;
       //LNX_THREAD(m_pimpl->::thread_sp::m_p)->m_bRun = false;
 
-      int32_t iRet = ::axis::application::exit_instance();
+      int32_t iRet = ::aura::application::exit_instance();
 
       //::ca2::smart_pointer<::ca2::application>::destroy();
 
@@ -195,7 +195,7 @@ namespace linux
    }
 /*
    // Advanced: exception handling
-   LRESULT application::ProcessWndProcException(::exception::axis* e, const MESSAGE* pMsg)
+   LRESULT application::ProcessWndProcException(::exception::aura* e, const MESSAGE* pMsg)
    {
       return   ::win::thread::ProcessWndProcException(e, pMsg);
    }
@@ -424,7 +424,7 @@ namespace linux
 
 
 
-   bool application::set_main_init_data(::axis::main_init_data * pdata)
+   bool application::set_main_init_data(::aura::main_init_data * pdata)
    {
 
       m_pmaininitdata = (::linux::main_init_data *) pdata;
@@ -452,7 +452,7 @@ namespace linux
          // fill in the initial state for the application
          // Windows specific initialization (not done if no application)
 // xxx         m_hInstance = hInstance;
-// xxx          (dynamic_cast < sp(::axis::application) >(m_papp))->m_hInstance = hInstance;
+// xxx          (dynamic_cast < sp(::aura::application) >(m_papp))->m_hInstance = hInstance;
          //hPrevInstance; // Obsolete.
 //         m_strCmdLine = strCmdLine;
   //       m_nCmdShow = nCmdShow;

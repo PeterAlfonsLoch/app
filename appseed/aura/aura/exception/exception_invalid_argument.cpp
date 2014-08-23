@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-invalid_argument_exception::invalid_argument_exception(sp(::axis::application) papp) :
+invalid_argument_exception::invalid_argument_exception(sp(::aura::application) papp) :
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),
@@ -12,7 +12,7 @@ invalid_argument_exception::invalid_argument_exception(sp(::axis::application) p
 }
 
 
-invalid_argument_exception::invalid_argument_exception(sp(::axis::application) papp, const char * pszMessage) :
+invalid_argument_exception::invalid_argument_exception(sp(::aura::application) papp, const char * pszMessage) :
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),
