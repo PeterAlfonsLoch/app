@@ -144,9 +144,6 @@
     <Filter Include="Header Files\aura\os\cross">
       <UniqueIdentifier>{e9b106f1-4ddd-4521-b7c1-6461c701be4f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\database">
-      <UniqueIdentifier>{1d5d8dc4-0d8b-4334-b743-43678a161c7a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\aura\os\cross\windows">
       <UniqueIdentifier>{105dbf8b-8b00-4530-b1fa-ac561338c12e}</UniqueIdentifier>
     </Filter>
@@ -4148,9 +4145,6 @@
     </None>
     <None Include="primitive\primitive_factory_impl.inl">
       <Filter>Header Files\primitive</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
