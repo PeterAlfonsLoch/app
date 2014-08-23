@@ -155,7 +155,7 @@ namespace aura
       virtual ::user::interaction * get_parent(::user::interaction * pui);
       virtual bool enable_window(::user::interaction * pui, bool bEnable = true);
       virtual bool set_window_text(::user::interaction * pui, const string & strText);
-      virtual ::thread get_thread(::user::interaction * pui);
+      virtual ::thread * get_thread(::user::interaction * pui);
       
 
 
