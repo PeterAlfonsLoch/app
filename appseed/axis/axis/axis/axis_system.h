@@ -8,7 +8,7 @@ namespace axis
 
 
    class CLASS_DECL_AXIS system:
-      virtual public ::axis::application
+      virtual public ::aura::system
    {
    public:
 
@@ -153,7 +153,7 @@ namespace axis
 
       virtual sp(::user::document) place_hold(sp(::user::interaction) pui);
 
-      virtual sp(::axis::session) query_session(index iEdge);
+      virtual sp(::aura::session) query_session(index iEdge);
 
 
       virtual void appa_load_string_table();

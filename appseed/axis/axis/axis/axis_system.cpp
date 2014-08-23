@@ -77,32 +77,11 @@ namespace axis
 {
 
 
-   class ::id system::idEmpty;
-   class ::id_space * system::s_pidspace = NULL;
-
-
    system::system(sp(::aura::application) papp):
       m_libraryDraw2d(this)
    {
       
-//      if(::get_thread() == NULL)
-      {
-         
-//         ::set_thread(this);
-         
-      }
-      
       m_ptwf = NULL;
-
-#ifdef MATTER_CACHE_FROM_HTTP_SERVER
-
-      m_bMatterFromHttpCache = true;
-
-#else
-
-      m_bMatterFromHttpCache = false;
-
-#endif
 
       m_psimpleui = NULL;
 
@@ -111,11 +90,6 @@ namespace axis
 #endif
 
       set_app(this);
-      m_nSafetyPoolSize          = 512;        // default size
-
-      m_pmath                    = canew(math::math(this));
-      m_pgeometry                = canew(geometry::geometry(this));
-      m_phtml = NULL;
 
 
       m_paxissystem = this;
@@ -133,105 +107,24 @@ namespace axis
 
       }
 
-      m_peengine = NULL;
 
 
-      m_pmachineeventcentral = NULL;
 
-      //::ca::application::m_file.set_app(this);
-      //::ca::application::m_dir.set_app(this);
-
-      string strId;
-      //strId = m_strAppName;
-      //strId += ::str::has_char(m_strAppId, ".");
-      //strId += ::str::has_char(m_strBaseSupportId, ".");
-
-
-      strId = "ca2log";
-
-
-      xxdebug_box("Going to start Log","Just before initialize log",0);
-
-      // log starts here
-      if(!initialize_log(strId))
-      {
-         xxdebug_box("Could not initialize log","Failed to initialize log",0);
-         throw "failed to initialize log";
-      }
-
-
-      /*
-      if(psystemParent == NULL)
-      {
-
-      m_peengine                                = new ::exception::engine(this);
-
-      }
-      else
-      {
-
-      m_peengine                                = psystemParent->m_peengine;
-
-      }
-      */
-
-
-      //use_base_ca2_allocator();
-
-
-      m_pfactory = new class base_factory(this);
-      m_pfactory->set_app(this);
-
-      m_pfactory->creatable_large < ::file::simple_binary_buffer >(type_info < ::file::binary_buffer >());
-      m_pfactory->creatable_large < ::file::string_buffer >();
-
+      
 #ifdef WINDOWS
       m_pmutexDc = NULL;
       m_pdevicecontext = NULL;
 #endif
 
-
-      factory().cloneable_large < stringa >();
-      factory().cloneable_large < ::primitive::memory >();
-      factory().cloneable_large < int_array >();
-
       __node_axis_factory_exchange(this);
-
-      thread::s_bAllocReady = true;
-
-      m_pxml = canew(::xml::departament(this));
-
-      m_pxml->construct(this);
-
-      if(!m_pxml->initialize1())
-         throw simple_exception(this,"failed to construct system m_pxml->initialize1()");
-
-      if(!m_pxml->initialize())
-         throw simple_exception(this,"failed to construct system m_pxml->initialize()");
-
-
-
-
 
       m_bSystemSynchronizedCursor = true;
 
       m_bSystemSynchronizedScreen = true;
 
-      m_spmutexUserAppData = canew(mutex(get_app(),false,"Local\\ca2.UserAppData"));
-      //m_spmutexSystemAppData = canew(mutex(get_app(),false,"Global\\ca2.SystemAppData"));
-      m_spmutexSystemAppData = canew(mutex(get_app(),false,"Local\\ca2.SystemAppData"));
-
-      m_spmutexFactory = canew(mutex(get_app()));
-
-      m_bGudoNetCache = true;
-
       ::draw2d::dib::static_initialize();
 
       m_pschemaLayeredFrame = new ::user::schema_layered_frame;
-
-      m_pthreadimpl.alloc(allocer());
-
-      m_pthreadimpl->m_pthread = this;
 
    }
 
