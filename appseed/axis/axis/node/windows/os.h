@@ -26,11 +26,6 @@ namespace windows
 
 
 
-// interaction_impl creation hooking
-CLASS_DECL_AXIS bool hook_window_create(::windows::interaction_impl * pwindow);
-CLASS_DECL_AXIS bool unhook_window_create();
-CLASS_DECL_AXIS void reset_message_cache();
-
 
 #include "win1.h"
 #include "windows_implementation.h"
@@ -42,7 +37,6 @@ CLASS_DECL_AXIS void reset_message_cache();
 CLASS_DECL_AXIS WNDPROC __get_window_procedure();
 #define __window_procedure (*__get_window_procedure())
 
-#define NODE_THREAD(pthread) (dynamic_cast < ::windows::thread * > (dynamic_cast < thread * >(pthread)))
 #define NODE_WINDOW(pwnd) ((sp(::windows::interaction_impl))(pwnd))
 
 

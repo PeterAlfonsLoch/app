@@ -8,7 +8,8 @@ namespace axis
 
    session::session(sp(::aura::application) papp) :
       element(papp),
-      ::thread(papp)
+      ::thread(papp),
+      ::aura::session(papp)
    {
 
       m_paxissession    = this;

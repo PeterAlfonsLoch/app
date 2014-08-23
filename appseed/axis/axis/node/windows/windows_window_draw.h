@@ -15,7 +15,7 @@ namespace windows
 
    class CLASS_DECL_AXIS window_draw:
       virtual public ::user::window_draw,
-      virtual public message_queue
+      virtual public ::windows::message_queue
    {
    public:
 

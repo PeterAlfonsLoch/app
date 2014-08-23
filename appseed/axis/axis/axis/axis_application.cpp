@@ -40,15 +40,7 @@ void dappy(const char * psz)
 
 namespace axis
 {
-   application_signal_details::application_signal_details(sp(application) papp,class ::signal * psignal,e_application_signal esignal):
-      element(papp),
-      ::signal_details(psignal)
-   {
 
-         m_esignal = esignal;
-         m_bOk = true;
-
-      }
 
    UINT application::APPM_LANGUAGE = WM_APP + 117;
    WPARAM application::WPARAM_LANGUAGE_UPDATE = 1;

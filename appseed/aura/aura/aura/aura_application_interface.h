@@ -17,10 +17,10 @@ namespace aura
 
       ::aura::system *                                m_paurasystem;
       ::aura::session *                               m_paurasession;
-      :: axis :: application *                        m_paxissapp; // can be used only from axis and upper
+      :: axis :: application *                        m_paxisapp; // can be used only from axis and upper
       :: axis ::system *                              m_paxissystem; // can be used only from axis and upper
       :: axis ::session *                             m_paxissession; // can be used only from axis and upper
-      :: base :: application *                        m_pbasesapp; // can be used only from base and upper
+      :: base :: application *                        m_pbaseapp; // can be used only from base and upper
       ::base::system *                                m_pbasesystem; // can be used only from base and upper
       ::base::session *                               m_pbasesession; // can be used only from base and upper
       ::core::application *                           m_pcoreapp; // can be used only from core and upper
