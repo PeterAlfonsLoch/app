@@ -1,4 +1,0 @@
-@set UPDATED 10 August 2014
-@set UPDATED-MONTH August 2014
-@set EDITION 1.29
-@set VERSION 1.29
