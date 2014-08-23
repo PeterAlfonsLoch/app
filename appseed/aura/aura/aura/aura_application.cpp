@@ -57,8 +57,7 @@ namespace aura
    application::application():
       m_allocer(this),
       m_mutexMatterLocator(this),
-      m_mutexStr(this),
-      m_framea(this)
+      m_mutexStr(this)
    {
 
       m_peventReady = NULL;
@@ -80,18 +79,18 @@ namespace aura
       if(m_pauraapp != NULL)
       {
 
-         m_paxissystem           = m_pauraapp->m_paxissystem;
+         m_paurasystem           = m_pauraapp->m_paurasystem;
 
-         if(m_pauraapp->m_paxissession == NULL && m_paxissystem != NULL)
+         if(m_pauraapp->m_paurasession == NULL && m_paurasystem != NULL)
          {
 
-            m_paxissession       = m_paxissystem->m_paxissession;
+            m_paurasession       = m_paurasystem->m_paurasession;
 
          }
          else
          {
 
-            m_paxissession       = m_pauraapp->m_paxissession;
+            m_paurasession       = m_pauraapp->m_paurasession;
 
          }
 
@@ -105,7 +104,7 @@ namespace aura
       else
       {
 
-         m_paxissystem           = NULL;
+         m_paurasystem           = NULL;
 
       }
 

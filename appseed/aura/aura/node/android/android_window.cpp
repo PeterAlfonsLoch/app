@@ -116,9 +116,9 @@ namespace android
    interaction_impl::~interaction_impl()
    {
 
-      if(m_pauraapp != NULL && m_pauraapp->m_paxissession != NULL && m_pauraapp->m_paxissession->user().is_set() && m_pauraapp->m_paxissession->user()->m_pwindowmap != NULL)
+      if(m_pauraapp != NULL && m_pauraapp->m_paurasession != NULL && m_pauraapp->m_paurasession->user().is_set() && m_pauraapp->m_paurasession->user()->m_pwindowmap != NULL)
       {
-         m_pauraapp->m_paxissession->user()->m_pwindowmap->m_map.remove_key((int_ptr) get_handle());
+         m_pauraapp->m_paurasession->user()->m_pwindowmap->m_map.remove_key((int_ptr) get_handle());
       }
 
    }

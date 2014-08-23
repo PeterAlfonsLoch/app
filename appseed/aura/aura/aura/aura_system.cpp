@@ -118,7 +118,7 @@ namespace aura
       m_phtml = NULL;
 
 
-      m_paxissystem = this;
+      m_paurasystem = this;
 
       if(papp == NULL)
       {
@@ -129,7 +129,7 @@ namespace aura
       else
       {
 
-         oprop("parent_system") = papp->m_paxissystem;
+         oprop("parent_system") = papp->m_paurasystem;
 
       }
 
@@ -328,15 +328,15 @@ namespace aura
 /*      dappy(string(typeid(*this).name()) + " : Going to ::aura::session " + ::str::from(m_iReturnCode));
 
 
-      m_paxissession = new ::aura::session(this);
+      m_paurasession = new ::aura::session(this);
 
-      if(m_paxissession == NULL)
+      if(m_paurasession == NULL)
          return false;
 
-      m_paxissession->construct(this,0);
+      m_paurasession->construct(this,0);
 
 
-      if(!m_paxissession->begin_synch(&m_iReturnCode))
+      if(!m_paurasession->begin_synch(&m_iReturnCode))
       {
          return false;
       }

@@ -35,10 +35,10 @@ m_set(papp)
    m_pthreadimpl->m_pthread = this;
    m_pthreadimpl->construct();
 
-   if(m_pauraapp != NULL && m_pauraapp->m_paxissession != NULL)
+   if(m_pauraapp != NULL && m_pauraapp->m_paurasession != NULL)
    {
 
-      m_bZipIsDir = m_pauraapp->m_paxissession->m_bZipIsDir;
+      m_bZipIsDir = m_pauraapp->m_paurasession->m_bZipIsDir;
 
    }
 
@@ -55,10 +55,10 @@ element(papp)
    m_pthreadimpl->m_pthread = this;
    m_pthreadimpl->construct(pfnThreadProc, pParam);
 
-   if(m_pauraapp != NULL && m_pauraapp->m_paxissession != NULL)
+   if(m_pauraapp != NULL && m_pauraapp->m_paurasession != NULL)
    {
 
-      m_bZipIsDir = m_pauraapp->m_paxissession->m_bZipIsDir;
+      m_bZipIsDir = m_pauraapp->m_paurasession->m_bZipIsDir;
 
    }
 

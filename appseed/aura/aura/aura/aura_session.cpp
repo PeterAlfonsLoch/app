@@ -11,16 +11,16 @@ namespace aura
       ::thread(papp)
    {
 
-      m_paxissession    = this;
+      m_paurasession    = this;
 
      
 
       m_pcoreplatform   = NULL;
 
-      m_bMatterFromHttpCache = m_paxissystem->m_bMatterFromHttpCache;
+      m_bMatterFromHttpCache = m_paurasystem->m_bMatterFromHttpCache;
 
-      m_bSystemSynchronizedCursor = m_paxissystem->m_bSystemSynchronizedCursor;
-      m_bSystemSynchronizedScreen = m_paxissystem->m_bSystemSynchronizedScreen;
+      m_bSystemSynchronizedCursor = m_paurasystem->m_bSystemSynchronizedCursor;
+      m_bSystemSynchronizedScreen = m_paurasystem->m_bSystemSynchronizedScreen;
       m_iMainMonitor = -1;
 
 #ifdef WINDOWS
@@ -51,7 +51,7 @@ namespace aura
       m_pmapKeyPressed           = NULL;
       m_puserstrcontext = NULL;
 
-      m_paxissystem->m_basesessionptra.add_unique(this);
+      m_paurasystem->m_basesessionptra.add_unique(this);
 
       m_puserschema = &m_schemasimple;
 
@@ -72,7 +72,7 @@ namespace aura
    session::~session_parent
    {
 
-      m_paxissystem->m_basesessionptra.remove(this);
+      m_paurasystem->m_basesessionptra.remove(this);
 
       POSITION pos = m_mapApplication.get_start_position();
 

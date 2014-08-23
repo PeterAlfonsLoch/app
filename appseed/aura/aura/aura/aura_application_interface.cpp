@@ -8,8 +8,8 @@ namespace aura
    application_interface::application_interface()
    {
 
-      m_paxissystem     = NULL;
-      m_paxissession    = NULL;
+      m_paurasystem     = NULL;
+      m_paurasession    = NULL;
       m_pbasesapp       = NULL;
       m_pbasesystem     = NULL;
       m_pbasesession    = NULL;

@@ -263,7 +263,7 @@ namespace xml
 //
 //      System.dir().mk(Application.dir_name(pszOutput),papp);
 //
-//      ::file::binary_buffer_sp fileOut = papp->m_paxissession->file_get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
+//      ::file::binary_buffer_sp fileOut = papp->m_paurasession->file_get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
 //
 //      if(fileOut.is_null())
 //         return false;
@@ -281,12 +281,12 @@ namespace xml
 //
 //      System.dir().mk(Application.dir_name(pszOutput),papp);
 //
-//      ::file::binary_buffer_sp fileOut = papp->m_paxissession->file_get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
+//      ::file::binary_buffer_sp fileOut = papp->m_paurasession->file_get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
 //
 //      if(fileOut.is_null())
 //         return false;
 //
-//      ::file::binary_buffer_sp fileIn = papp->m_paxissession->file_get_file(lpszInput,::file::type_binary | ::file::mode_read);
+//      ::file::binary_buffer_sp fileIn = papp->m_paurasession->file_get_file(lpszInput,::file::type_binary | ::file::mode_read);
 //
 //      if(fileIn.is_null())
 //         return false;

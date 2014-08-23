@@ -147,22 +147,22 @@ void thread_impl::pre_translate_message(signal_details * pobj)
 
       try
       {
-         if(m_pauraapp->m_paxissession != NULL)
+         if(m_pauraapp->m_paurasession != NULL)
          {
             try
             {
 
-               synch_index_iterator it(m_pauraapp->m_paxissession->m_framea);
+               synch_index_iterator it(m_pauraapp->m_paurasession->m_framea);
 
                ::user::interaction * pui;
 
-               for(it.m_i = 0; it.m_i < m_pauraapp->m_paxissession->frames().get_count(); it.m_i++)
+               for(it.m_i = 0; it.m_i < m_pauraapp->m_paurasession->frames().get_count(); it.m_i++)
                {
                   
                   try
                   {
 
-                     pui = m_pauraapp->m_paxissession->frames()[it.m_i];
+                     pui = m_pauraapp->m_paurasession->frames()[it.m_i];
 
                   }
                   catch(...)
@@ -1599,7 +1599,7 @@ bool thread_impl::pump_message()
                         try
                         {
 
-                           if(m_pauraapp->m_paxissystem != NULL)
+                           if(m_pauraapp->m_paurasystem != NULL)
                            {
 
                               m_pauraapp->m_paurasystem->pre_translate_message(spbase);
@@ -1630,13 +1630,13 @@ bool thread_impl::pump_message()
 
                         }
 
-                        if(m_pauraapp->m_paxissession != NULL)
+                        if(m_pauraapp->m_paurasession != NULL)
                         {
 
                            try
                            {
 
-                              m_pauraapp->m_paxissession->pre_translate_message(spbase);
+                              m_pauraapp->m_paurasession->pre_translate_message(spbase);
 
                               if(spbase->m_bRet)
                                  return true;
@@ -1649,9 +1649,9 @@ bool thread_impl::pump_message()
 
                            /*                              try
                            {
-                           if(m_pauraapp->m_paxissession->m_pbergedge != NULL)
+                           if(m_pauraapp->m_paurasession->m_pbergedge != NULL)
                            {
-                           m_pauraapp->m_paxissession->m_pbergedgeInterface->pre_translate_message(spbase);
+                           m_pauraapp->m_paurasession->m_pbergedgeInterface->pre_translate_message(spbase);
                            if(spbase->m_bRet)
                            return TRUE;
                            }
