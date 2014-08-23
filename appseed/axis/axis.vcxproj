@@ -75,7 +75,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{73A245F9-C92F-4487-AEF7-CB0531F665BD}</ProjectGuid>
+    <ProjectGuid>{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>axis</RootNamespace>
@@ -2814,6 +2814,12 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\os\windows\windows_utils.h" />
     <ClInclude Include="axis\os\windows\windows_windows.h" />
     <ClInclude Include="axis\os\windows\windows_window_gdi.h" />
+    <ClInclude Include="axis\policy\policy.h" />
+    <ClInclude Include="axis\policy\policy_c.h" />
+    <ClInclude Include="axis\policy\policy_cpp.h" />
+    <ClInclude Include="axis\policy\policy_objc.h" />
+    <ClInclude Include="axis\policy\policy_objcpp.h" />
+    <ClInclude Include="axis\policy\policy_winrt.h" />
     <ClInclude Include="axis\xml\xml.h" />
     <ClInclude Include="axis\xml\xml_attr.h" />
     <ClInclude Include="axis\xml\xml_base_array.h" />
@@ -3977,6 +3983,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\os\windows\windows_util.cpp" />
     <ClCompile Include="axis\os\windows\windows_utils.cpp" />
     <ClCompile Include="axis\os\windows\windows_window_gdi.cpp" />
+    <ClCompile Include="axis\policy\policy_c.c" />
     <ClCompile Include="database\database_application.cpp" />
     <ClCompile Include="database\database_base.cpp" />
     <ClCompile Include="database\database_client.cpp" />
