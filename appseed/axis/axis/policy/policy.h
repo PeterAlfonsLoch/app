@@ -32,24 +32,24 @@ END_EXTERN_C
 #if defined(__M)
 
 
-#include "axis_c.h"
-#include "axis_c_objc.h"
+#include "c.h"
+#include "policy_objc.h"
 
 
 #elif defined(__MM)
 
 
-#include "axis_c.h"
-#include "axis_c_objc.h"
-#include "axis_c_objcpp.h"
+#include "c.h"
+#include "policy_objc.h"
+#include "policy_objcpp.h"
 
 
 #elif defined(__cplusplus_winrt)
 
 
-#include "axis_c.h"
-#include "axis_c_cpp.h"
-#include "axis_c_winrt.h"
+#include "c.h"
+#include "policy_cpp.h"
+#include "policy_winrt.h"
 
 
 #else
