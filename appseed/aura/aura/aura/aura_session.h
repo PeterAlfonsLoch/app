@@ -103,6 +103,9 @@ namespace aura
 
       virtual bool  get_window_minimum_size(LPSIZE lpsize);
 
+
+      virtual void frame_pre_translate_message(signal_details * pobj);
+
       virtual bool is_licensed(const char * pszId,bool bInteractive = true);
 
 
