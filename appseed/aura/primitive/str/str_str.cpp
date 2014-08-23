@@ -453,7 +453,7 @@ namespace str
 
    }
 
-   string  random_replace(sp(::axis::application) papp, const stringa & straReplacement, const stringa & straSearch, const char * psz)
+   string  random_replace(sp(::aura::application) papp, const stringa & straReplacement, const stringa & straSearch, const char * psz)
    {
 
       string str(psz);

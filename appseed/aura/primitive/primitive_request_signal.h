@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS request_signal :
+class CLASS_DECL_AURA request_signal :
    public signal_details
 {
 public:
@@ -11,7 +11,7 @@ public:
    var         m_varQuery;
 
 
-   request_signal(sp(::axis::application) papp, class ::signal * psignal = NULL);
+   request_signal(sp(::aura::application) papp, class ::signal * psignal = NULL);
 
 
 };

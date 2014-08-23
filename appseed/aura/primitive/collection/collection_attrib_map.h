@@ -9,7 +9,7 @@ class attrib_map :
 public:
 
 
-   attrib_map(sp(::axis::application) papp = NULL, ::count nBlockSize = 10);
+   attrib_map(sp(::aura::application) papp = NULL, ::count nBlockSize = 10);
    attrib_map(const attrib_map & map);
 
    attrib_map & operator = (const attrib_map & map);
@@ -19,7 +19,7 @@ public:
 
 
 template < class type_map >
-attrib_map < type_map >::attrib_map(sp(::axis::application) papp, ::count nBlockSize) :
+attrib_map < type_map >::attrib_map(sp(::aura::application) papp, ::count nBlockSize) :
    element(papp),
    type_map(papp, nBlockSize)
 {

@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-istring::istring(sp(::axis::application) papp)
+istring::istring(sp(::aura::application) papp)
 {
 
-   m_paxisapp = papp;
+   m_pauraapp = papp;
 
 }
       
@@ -16,7 +16,7 @@ istring::~istring()
 void istring::update_string()
 {
 
-   m_paxisapp->load_string(m_str, m_strTemplate);
+   m_pauraapp->load_string(m_str, m_strTemplate);
 
 }
 

@@ -4,7 +4,7 @@
 BEGIN_EXTERN_C
 
 
-CLASS_DECL_AXIS void throw_cast_overflow();
+CLASS_DECL_AURA void throw_cast_overflow();
 
 
 END_EXTERN_C

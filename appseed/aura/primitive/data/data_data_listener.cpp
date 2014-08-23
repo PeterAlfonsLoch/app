@@ -4,7 +4,7 @@
 namespace data
 {
 
-   data_listener::data_listener(sp(::axis::application) papp) :
+   data_listener::data_listener(sp(::aura::application) papp) :
       element(papp)
    {
 

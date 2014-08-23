@@ -2,13 +2,13 @@
 
 
 
-class CLASS_DECL_AXIS double_scalar_source :
+class CLASS_DECL_AURA double_scalar_source :
    virtual public object
 {
 public:
 
 
-   class CLASS_DECL_AXIS listener :
+   class CLASS_DECL_AURA listener :
       virtual public object
    {
    public:
@@ -40,13 +40,13 @@ public:
 };
 
 
-class CLASS_DECL_AXIS int_scalar_source :
+class CLASS_DECL_AURA int_scalar_source :
    virtual public object
 {
 public:
 
 
-   class CLASS_DECL_AXIS listener :
+   class CLASS_DECL_AURA listener :
       virtual public object
    {
    public:
@@ -81,7 +81,7 @@ public:
 
 
 
-class CLASS_DECL_AXIS double_scalar
+class CLASS_DECL_AURA double_scalar
 {
 public:
 
@@ -115,7 +115,7 @@ public:
 
 
 
-class CLASS_DECL_AXIS int_scalar
+class CLASS_DECL_AURA int_scalar
 {
 public:
 

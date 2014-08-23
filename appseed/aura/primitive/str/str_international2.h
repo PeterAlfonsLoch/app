@@ -9,26 +9,26 @@ namespace str
    {
 
 
-//      void CLASS_DECL_AXIS unicode_to_utf8(stringa & stra, stringa & stra);
-  //    void CLASS_DECL_AXIS utf8_to_unicode(stringa & stra, stringa & stra);
+//      void CLASS_DECL_AURA unicode_to_utf8(stringa & stra, stringa & stra);
+  //    void CLASS_DECL_AURA utf8_to_unicode(stringa & stra, stringa & stra);
 
 
-      bool CLASS_DECL_AXIS UnicodeToMultiByte(UINT uiCodePage, primitive::memory & str, const wchar_t * lpcsz);
+      bool CLASS_DECL_AURA UnicodeToMultiByte(UINT uiCodePage, primitive::memory & str, const wchar_t * lpcsz);
 
-      bool CLASS_DECL_AXIS MultiByteToMultiByte(UINT uiCodePageDest, primitive::memory & str, UINT uiCodePageSrc, const char * lpcsz);
-      bool CLASS_DECL_AXIS MultiByteToMultiByte(UINT uiCodePageDest, primitive::memory & str, UINT uiCodePageSrc, const char * lpcsz, strsize nCount);
+      bool CLASS_DECL_AURA MultiByteToMultiByte(UINT uiCodePageDest, primitive::memory & str, UINT uiCodePageSrc, const char * lpcsz);
+      bool CLASS_DECL_AURA MultiByteToMultiByte(UINT uiCodePageDest, primitive::memory & str, UINT uiCodePageSrc, const char * lpcsz, strsize nCount);
 
-      bool CLASS_DECL_AXIS multibyte_to_utf8(UINT uiCodePageSrc, primitive::memory & str, const char * lpcsz);
-      bool CLASS_DECL_AXIS multibyte_to_utf8(UINT uiCodePageSrc, primitive::memory & str, const char * lpcsz, strsize nCount);
+      bool CLASS_DECL_AURA multibyte_to_utf8(UINT uiCodePageSrc, primitive::memory & str, const char * lpcsz);
+      bool CLASS_DECL_AURA multibyte_to_utf8(UINT uiCodePageSrc, primitive::memory & str, const char * lpcsz, strsize nCount);
 
-//      bool CLASS_DECL_AXIS OEMToMultiByte(UINT uiCodePage, primitive::memory & str, const char * lpcsz);
-//      bool CLASS_DECL_AXIS OEMToMultiByte(UINT uiCodePage, primitive::memory & str, const char * lpcsz, strsize nCount);
+//      bool CLASS_DECL_AURA OEMToMultiByte(UINT uiCodePage, primitive::memory & str, const char * lpcsz);
+//      bool CLASS_DECL_AURA OEMToMultiByte(UINT uiCodePage, primitive::memory & str, const char * lpcsz, strsize nCount);
 
-      bool CLASS_DECL_AXIS utf8_to_multibyte(UINT uiCodePage, primitive::memory & str, const char * lpcsz);
-      bool CLASS_DECL_AXIS utf8_to_multibyte(UINT uiCodePage, primitive::memory & str, const char * lpcsz, strsize nCount);
+      bool CLASS_DECL_AURA utf8_to_multibyte(UINT uiCodePage, primitive::memory & str, const char * lpcsz);
+      bool CLASS_DECL_AURA utf8_to_multibyte(UINT uiCodePage, primitive::memory & str, const char * lpcsz, strsize nCount);
 
-//      bool CLASS_DECL_AXIS OemToUtf8(primitive::memory & str, const char * lpcsz);
-//      bool CLASS_DECL_AXIS OemToUtf8(primitive::memory & str, const char * lpcsz, strsize nCount);
+//      bool CLASS_DECL_AURA OemToUtf8(primitive::memory & str, const char * lpcsz);
+//      bool CLASS_DECL_AURA OemToUtf8(primitive::memory & str, const char * lpcsz, strsize nCount);
 
 /*      inline void unicode_to_utf8(stringa & stra, stringa & stra)
       {

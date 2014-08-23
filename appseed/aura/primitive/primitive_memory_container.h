@@ -9,7 +9,7 @@ namespace primitive
    class virtual_memory;
 
 
-   class CLASS_DECL_AXIS memory_container :
+   class CLASS_DECL_AURA memory_container :
       virtual public ::object
    {
    protected:
@@ -22,9 +22,9 @@ namespace primitive
 
    public:
 
-      memory_container(sp(::axis::application) papp);
-      memory_container(sp(::axis::application) papp, void * pMemory, memory_size dwSize);
-      memory_container(sp(::axis::application) papp, memory_base * pmemory);
+      memory_container(sp(::aura::application) papp);
+      memory_container(sp(::aura::application) papp, void * pMemory, memory_size dwSize);
+      memory_container(sp(::aura::application) papp, memory_base * pmemory);
       memory_container(const memory_container & container);
       virtual ~memory_container();
 

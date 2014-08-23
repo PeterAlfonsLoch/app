@@ -8,7 +8,7 @@ namespace math
 
 
 
-   math::math(sp(::axis::application) papp) :
+   math::math(sp(::aura::application) papp) :
       element(papp),
       m_mutex(papp)
    {
@@ -213,7 +213,7 @@ namespace math
       else
       {
 
-         ::axis::microtimer timer;
+         ::aura::microtimer timer;
 
          double d1 = timer.getTimeInMicroSec();
 
@@ -430,17 +430,17 @@ namespace core
    namespace lemon
    {
 
-      int32_t CLASS_DECL_AXIS time_seed();
+      int32_t CLASS_DECL_AURA time_seed();
 
-      void CLASS_DECL_AXIS srand();
+      void CLASS_DECL_AURA srand();
 
-      int32_t CLASS_DECL_AXIS time_seed()
+      int32_t CLASS_DECL_AURA time_seed()
       {
          return (time(NULL) % 5000 + (::get_tick_count() / 100) % 5000) % 1000;
       }
 
 
-      void CLASS_DECL_AXIS srand()
+      void CLASS_DECL_AURA srand()
       {
          int32_t iSeed = time_seed();
          ::srand(iSeed);

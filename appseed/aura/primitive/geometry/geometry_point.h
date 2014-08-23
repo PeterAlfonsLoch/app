@@ -4,7 +4,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // point - A 2-D point, similar to Windows POINT structure.
 
-class CLASS_DECL_AXIS point : public tagPOINT
+class CLASS_DECL_AURA point : public tagPOINT
 {
 public:
 // Constructors
@@ -80,7 +80,7 @@ inline point null_point() { return point(0, 0); }
 /////////////////////////////////////////////////////////////////////////////
 // point64 - A 2-D point64, similar to Windows __point64 structure.
 
-class CLASS_DECL_AXIS point64 : public __point64
+class CLASS_DECL_AURA point64 : public __point64
 {
 public:
 // Constructors
@@ -157,7 +157,7 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // pointd - A 2-D pointd, similar to Windows POINTD structure.
 
-class CLASS_DECL_AXIS pointd : public tagPOINTD
+class CLASS_DECL_AURA pointd : public tagPOINTD
 {
 public:
 // Constructors

@@ -3,13 +3,13 @@
 
 
 
-class CLASS_DECL_AXIS var_array : 
+class CLASS_DECL_AURA var_array : 
    public ::file::serializable_array < array < var > >
 {
 public:
 
 
-   var_array(sp(::axis::application) papp = NULL);
+   var_array(sp(::aura::application) papp = NULL);
    var_array(const stringa & stra);
    var_array(const int_array & inta);
    var_array(const property_set & propset);

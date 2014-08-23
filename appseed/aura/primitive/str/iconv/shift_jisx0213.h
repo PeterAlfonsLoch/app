@@ -119,7 +119,7 @@ shift_jisx0213_mbtowc (conv_t conv, ucs4_t *pwc, const unsigned char *s, int n)
 #define shift_jisx0213_flushwc normal_flushwc
 
 /* Composition tables for each of the relevant combining characters.  */
-static const struct { unsigned short axis; unsigned short composed; } shift_jisx0213_comp_table_data[] = {
+static const struct { unsigned short aura; unsigned short composed; } shift_jisx0213_comp_table_data[] = {
 #define shift_jisx0213_comp_table02e5_idx 0
 #define shift_jisx0213_comp_table02e5_len 1
   { 0x8684, 0x8685 }, /* 0x12B65 = 0x12B64 U+02E5 */
@@ -187,7 +187,7 @@ shift_jisx0213_wctomb (conv_t conv, unsigned char *r, ucs4_t wc, int n)
       goto not_combining;
 
     do
-      if (shift_jisx0213_comp_table_data[idx].axis == lasttwo)
+      if (shift_jisx0213_comp_table_data[idx].aura == lasttwo)
         break;
     while (++idx, --len > 0);
 

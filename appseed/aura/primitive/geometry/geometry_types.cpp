@@ -86,7 +86,7 @@ bool y_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
 }
 
 
-CLASS_DECL_AXIS bool null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
+CLASS_DECL_AURA bool null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
 {
    if(x_null_intersect_rect(lprect,lpcrect1,lpcrect2)
       && y_null_intersect_rect(lprect,lpcrect1,lpcrect2))
@@ -136,7 +136,7 @@ bool y_top_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
 }
 
 
-CLASS_DECL_AXIS bool top_left_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
+CLASS_DECL_AURA bool top_left_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
 {
    if(x_left_null_intersect_rect(lprect,lpcrect1,lpcrect2)
       && y_top_null_intersect_rect(lprect,lpcrect1,lpcrect2))
@@ -388,22 +388,22 @@ bool unite(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2)
 
 
 
-CLASS_DECL_AXIS double width(LPCRECTD lpcrect)
+CLASS_DECL_AURA double width(LPCRECTD lpcrect)
 {
    return lpcrect->right - lpcrect->left;
 }
 
-CLASS_DECL_AXIS double height(LPCRECTD lpcrect)
+CLASS_DECL_AURA double height(LPCRECTD lpcrect)
 {
    return lpcrect->bottom - lpcrect->top;
 }
 
-CLASS_DECL_AXIS double width(const RECTD & rect)
+CLASS_DECL_AURA double width(const RECTD & rect)
 {
    return ::width(&rect);
 }
 
-CLASS_DECL_AXIS double height(const RECTD & rect)
+CLASS_DECL_AURA double height(const RECTD & rect)
 {
    return ::height(&rect);
 }
@@ -622,7 +622,7 @@ bool unite(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2)
 
 
 
-CLASS_DECL_AXIS bool deflate(LPRECT prect, LPCRECT lpcrect)
+CLASS_DECL_AURA bool deflate(LPRECT prect, LPCRECT lpcrect)
 {
    prect->left    += lpcrect->left;
    prect->right   -= lpcrect->right;
@@ -631,7 +631,7 @@ CLASS_DECL_AXIS bool deflate(LPRECT prect, LPCRECT lpcrect)
    return true;
 }
 
-CLASS_DECL_AXIS bool deflate(LPRECT prect,const RECT & rect)
+CLASS_DECL_AURA bool deflate(LPRECT prect,const RECT & rect)
 {
    return deflate(prect, &rect);
 }
@@ -659,7 +659,7 @@ bool polygon_contains(LPPOINT lppt, LPPOINT lpptPolygon, int iCount)
 }
 
 
-CLASS_DECL_AXIS bool copy(__point64 * lpptDst,const POINT * lpptSrc)
+CLASS_DECL_AURA bool copy(__point64 * lpptDst,const POINT * lpptSrc)
 {
    
    lpptDst->x = lpptSrc->x;
@@ -671,7 +671,7 @@ CLASS_DECL_AXIS bool copy(__point64 * lpptDst,const POINT * lpptSrc)
 }
 
 
-CLASS_DECL_AXIS bool copy(LPPOINT lpptDst,const __point64 * lpptSrc)
+CLASS_DECL_AURA bool copy(LPPOINT lpptDst,const __point64 * lpptSrc)
 {
 
    lpptDst->x = (LONG)lpptSrc->x;
@@ -722,7 +722,7 @@ void copy(CGRect & rect, LPCRECT lpcrect)
 #endif
 
 
-CLASS_DECL_AXIS int_bool IsRectEmpty(const RECT & rect)
+CLASS_DECL_AURA int_bool IsRectEmpty(const RECT & rect)
 {
 
    return IsRectEmpty((LPCRECT)&rect);

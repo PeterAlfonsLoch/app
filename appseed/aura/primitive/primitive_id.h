@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_AXIS id
+class CLASS_DECL_AURA id
 {
 public:
 

@@ -4,13 +4,13 @@ namespace primitive
 {
 
 
-   class CLASS_DECL_AXIS virtual_memory :
+   class CLASS_DECL_AURA virtual_memory :
       public ::primitive::memory_base
    {
    public:
 
 
-      virtual_memory(sp(::axis::application) papp);
+      virtual_memory(sp(::aura::application) papp);
       virtual_memory(const void *, memory_size iCount);
       virtual_memory(const memory_base & memory);
       virtual_memory(const char * psz);

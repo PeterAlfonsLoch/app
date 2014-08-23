@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-property_set::property_set(sp(::axis::application) papp, bool bAutoAdd, bool bMultiValue) :
+property_set::property_set(sp(::aura::application) papp, bool bAutoAdd, bool bMultiValue) :
    element(papp),
    m_propertya(papp)
 {

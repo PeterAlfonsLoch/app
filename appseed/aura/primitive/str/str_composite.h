@@ -4,7 +4,7 @@
 
 
 
-class CLASS_DECL_AXIS string_composite :
+class CLASS_DECL_AURA string_composite :
    public string_interface
 {
 private:

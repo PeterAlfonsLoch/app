@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS job :
+class CLASS_DECL_AURA job :
    virtual public ::thread
 {
 public:
@@ -10,7 +10,7 @@ public:
    bool        m_bCancel;
 
 
-   job(sp(::axis::application) papp);
+   job(sp(::aura::application) papp);
    virtual ~job();
 
 

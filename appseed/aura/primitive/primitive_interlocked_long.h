@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS interlocked_long
+class CLASS_DECL_AURA interlocked_long
 {
 public:
 

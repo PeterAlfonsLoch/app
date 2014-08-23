@@ -1994,7 +1994,7 @@ const ::duration & var::duration() const
 }
 
 
-property_set & var::propset(sp(::axis::application) papp)
+property_set & var::propset(sp(::aura::application) papp)
 {
    sp(property_set) pset;
    if(m_etype == type_pvar)

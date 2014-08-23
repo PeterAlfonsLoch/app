@@ -4,7 +4,7 @@
 
 
 // property set key is case insensitive
-class CLASS_DECL_AXIS property_set :
+class CLASS_DECL_AURA property_set :
    public object,
    public ::file::serializable
 {
@@ -19,7 +19,7 @@ public:
 
 
 
-   property_set(sp(::axis::application) papp = NULL, bool bAutoAdd = true, bool bMultiValue = false);
+   property_set(sp(::aura::application) papp = NULL, bool bAutoAdd = true, bool bMultiValue = false);
    property_set(const property_set & set);
    property_set(const pair_set_interface & set);
    property_set(const str_str_interface & set);
@@ -187,7 +187,7 @@ public:
 };
 
 
-class CLASS_DECL_AXIS PropertySignalObject : public signal_details
+class CLASS_DECL_AURA PropertySignalObject : public signal_details
 {
 public:
 

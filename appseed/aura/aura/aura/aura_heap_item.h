@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS heap_item
+class CLASS_DECL_AURA heap_item
 {
 public:
 

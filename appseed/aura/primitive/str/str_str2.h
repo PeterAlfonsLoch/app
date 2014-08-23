@@ -189,77 +189,77 @@ namespace str
    { return compare_ignore_case(left,right,len) == 0; }
 
 
-   inline CLASS_DECL_AXIS  string  from(char ca)
+   inline CLASS_DECL_AURA  string  from(char ca)
    {
       string str;
       from(str, ca);
       return str;
    }
 
-   inline CLASS_DECL_AXIS  string  from(uchar uch)
+   inline CLASS_DECL_AURA  string  from(uchar uch)
    {
       string str;
       from(str, uch);
       return str;
    }
 
-   inline CLASS_DECL_AXIS  string  from(int16_t i)
+   inline CLASS_DECL_AURA  string  from(int16_t i)
    {
       string str;
       from(str, i);
       return str;
    }
 
-   inline CLASS_DECL_AXIS  string  from(uint16_t ui)
+   inline CLASS_DECL_AURA  string  from(uint16_t ui)
    {
       string str;
       from(str, ui);
       return str;
    }
 
-   inline CLASS_DECL_AXIS  string  from(int32_t i)
+   inline CLASS_DECL_AURA  string  from(int32_t i)
    {
       string str;
       from(str, i);
       return str;
    }
 
-   inline CLASS_DECL_AXIS  string  from(uint32_t ui)
+   inline CLASS_DECL_AURA  string  from(uint32_t ui)
    {
       string str;
       from(str, ui);
       return str;
    }
 
-   inline CLASS_DECL_AXIS  string  from(int64_t i)
+   inline CLASS_DECL_AURA  string  from(int64_t i)
    {
       string str;
       from(str, i);
       return str;
    }
 
-   inline CLASS_DECL_AXIS  string  from(uint64_t ui)
+   inline CLASS_DECL_AURA  string  from(uint64_t ui)
    {
       string str;
       from(str, ui);
       return str;
    }
 
-   inline CLASS_DECL_AXIS string from(float f)
+   inline CLASS_DECL_AURA string from(float f)
    {
       string str;
       from(str, f);
       return str;
    }
 
-   inline CLASS_DECL_AXIS string from(double d)
+   inline CLASS_DECL_AURA string from(double d)
    {
       string str;
       from(str, d);
       return str;
    }
 
-   inline CLASS_DECL_AXIS bool     trimmed_is_empty(const char * psz)
+   inline CLASS_DECL_AURA bool     trimmed_is_empty(const char * psz)
    {
 
       string str(psz);
@@ -278,11 +278,11 @@ namespace str
 
 
 
-CLASS_DECL_AXIS const char * utf8_inc(const char * psz);
-CLASS_DECL_AXIS int32_t uni_index(const char * pszUtf8);
-CLASS_DECL_AXIS int32_t uni_to_utf8(char * psz, int32_t w);;
-CLASS_DECL_AXIS ::count utf16_len(const char * psz);
-CLASS_DECL_AXIS void utf8_to_utf16(wchar_t * pwsz, const char * psz);
-CLASS_DECL_AXIS int32_t utf8_len(const wchar_t * pwsz);
-CLASS_DECL_AXIS void utf16_to_utf8(char * psz, const wchar_t * pwsz);
+CLASS_DECL_AURA const char * utf8_inc(const char * psz);
+CLASS_DECL_AURA int32_t uni_index(const char * pszUtf8);
+CLASS_DECL_AURA int32_t uni_to_utf8(char * psz, int32_t w);;
+CLASS_DECL_AURA ::count utf16_len(const char * psz);
+CLASS_DECL_AURA void utf8_to_utf16(wchar_t * pwsz, const char * psz);
+CLASS_DECL_AURA int32_t utf8_len(const wchar_t * pwsz);
+CLASS_DECL_AURA void utf16_to_utf8(char * psz, const wchar_t * pwsz);
 

@@ -8,7 +8,7 @@ class string_map :
 public:
 
 
-   string_map(sp(::axis::application) papp = NULL, ::count nBlockSize = 10);
+   string_map(sp(::aura::application) papp = NULL, ::count nBlockSize = 10);
    string_map(const string_map & map);
 
 
@@ -18,7 +18,7 @@ public:
 };
 
 template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-string_map < VALUE, ARG_VALUE, HASH, EQUALS >::string_map(sp(::axis::application) papp, ::count nBlockSize) :
+string_map < VALUE, ARG_VALUE, HASH, EQUALS >::string_map(sp(::aura::application) papp, ::count nBlockSize) :
    element(papp),
    map < string, const string &, VALUE, ARG_VALUE, HASH, EQUALS > (papp, nBlockSize)
 {
@@ -45,11 +45,11 @@ string_map < VALUE, ARG_VALUE, HASH, EQUALS > & string_map < VALUE, ARG_VALUE, H
 }
 
 
-typedef CLASS_DECL_AXIS string_map < int_ptr, int_ptr > string_to_intptr;
+typedef CLASS_DECL_AURA string_map < int_ptr, int_ptr > string_to_intptr;
 
-typedef CLASS_DECL_AXIS string_map < int, int > string_to_int;
+typedef CLASS_DECL_AURA string_map < int, int > string_to_int;
 
-typedef CLASS_DECL_AXIS string_map < void *, void * > string_to_ptr;
+typedef CLASS_DECL_AURA string_map < void *, void * > string_to_ptr;
 
 
 #define strmap(T) string_map < T >

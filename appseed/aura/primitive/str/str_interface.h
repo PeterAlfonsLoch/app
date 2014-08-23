@@ -11,7 +11,7 @@ class string;
 class istring;
 
 
-class CLASS_DECL_AXIS string_interface :
+class CLASS_DECL_AURA string_interface :
    virtual public root
 {
 public:

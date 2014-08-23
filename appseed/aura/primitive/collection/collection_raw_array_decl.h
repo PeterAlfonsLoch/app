@@ -351,7 +351,7 @@ public:
 
 
 
-   raw_array(sp(::axis::application) papp = NULL, ::count nGrowBy = 32);
+   raw_array(sp(::aura::application) papp = NULL, ::count nGrowBy = 32);
    raw_array(const raw_array <TYPE, ARG_TYPE> & a);
 #ifdef MOVE_SEMANTICS
    raw_array(raw_array <TYPE,ARG_TYPE> && a);

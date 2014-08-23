@@ -31,7 +31,7 @@ namespace primitive
    class virtual_memory;
 
 
-   class CLASS_DECL_AXIS memory_base :
+   class CLASS_DECL_AURA memory_base :
       public object,
       public ::file::serializable
    {

@@ -44,7 +44,7 @@ set_program_name (const char *argv0)
      visible to the end user and to the test suite.
      Remove this "<dirname>/.libs/" or "<dirname>/.libs/lt-" prefix here.  */
   const char *slash;
-  const char *axis;
+  const char *aura;
 
   /* Sanity check.  POSIX requires the invoking process to pass a non-NULL
      argv[0].  */
@@ -57,13 +57,13 @@ set_program_name (const char *argv0)
     }
 
   slash = strrchr (argv0, '/');
-  axis = (slash != NULL ? slash + 1 : argv0);
-  if (axis - argv0 >= 7 && strncmp (axis - 7, "/.libs/", 7) == 0)
+  aura = (slash != NULL ? slash + 1 : argv0);
+  if (aura - argv0 >= 7 && strncmp (aura - 7, "/.libs/", 7) == 0)
     {
-      argv0 = axis;
-      if (strncmp (axis, "lt-", 3) == 0)
+      argv0 = aura;
+      if (strncmp (aura, "lt-", 3) == 0)
         {
-          argv0 = axis + 3;
+          argv0 = aura + 3;
           /* On glibc systems, remove the "lt-" prefix from the variable
              program_invocation_short_name.  */
 #if HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME

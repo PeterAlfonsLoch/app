@@ -130,7 +130,7 @@ void fixed_string_log::OnAllocateSpill(strsize nActualChars,strsize nFixedChars,
 ()nActualChars;
 ()nFixedChars;
 ()pData;
-//   TRACE(::axis::trace::category_String, 0, _T( "fixed_string_manager::allocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
+//   TRACE(::aura::trace::category_String, 0, _T( "fixed_string_manager::allocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
 ::OutputDebugStringA("fixed_string_log::OnAllocateSpill");
 }
 
@@ -139,7 +139,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 ()nActualChars;
 ()nFixedChars;
 ()pData;
-//   TRACE(::axis::trace::category_String, 0, _T( "fixed_string_manager::Reallocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
+//   TRACE(::aura::trace::category_String, 0, _T( "fixed_string_manager::Reallocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
 ::OutputDebugStringA("fixed_string_log::OnReallocateSpill");
 }
 
@@ -367,7 +367,7 @@ _INSECURE_DEPRECATE("You must pass an output size to crt_char_traits::StringLowe
 char * __cdecl crt_char_traits::StringUppercase(char * psz,size_t size ) throw()
 {
 
-   ::axis::strupr_s(psz, size);
+   ::aura::strupr_s(psz, size);
 
    return psz;
 
@@ -376,7 +376,7 @@ char * __cdecl crt_char_traits::StringUppercase(char * psz,size_t size ) throw()
 char * __cdecl crt_char_traits::StringLowercase(char * psz,size_t size ) throw()
 {
 
-   ::axis::strlwr_s(psz, size);
+   ::aura::strlwr_s(psz, size);
 
    return psz;
 
@@ -463,7 +463,7 @@ void __cdecl crt_char_traits::ConvertTochar(char * pszDest,strsize nDestLength, 
 {
    if (nSrcLength == -1) { nSrcLength=1 + GetcharLength(pszSrc); }
    // nLen is in XCHARs
-   ::axis::memcpy_s( pszDest, nDestLength*sizeof( char ),
+   ::aura::memcpy_s( pszDest, nDestLength*sizeof( char ),
       pszSrc, nSrcLength*sizeof( char ) );
 }
 
@@ -1004,7 +1004,7 @@ string & string::operator+=(wchar_t ch )
 
 }
 
-// Override from axis class
+// Override from aura class
 string_manager * string::GetManager() const throw()
 {
    string_manager * pstringmanager = simple_string::GetManager();
@@ -1251,7 +1251,7 @@ strsize string::Delete(strsize iIndex,strsize nCount)
       strsize nNewLength = nLength-nCount;
       strsize nXCHARsToCopy = nLength-(iIndex+nCount)+1;
       char * pszBuffer = GetBuffer();
-      ::axis::memmove_s( pszBuffer+iIndex, nXCHARsToCopy*sizeof( char ),
+      ::aura::memmove_s( pszBuffer+iIndex, nXCHARsToCopy*sizeof( char ),
          pszBuffer+iIndex+nCount, nXCHARsToCopy*sizeof( char ) );
       ReleaseBufferSetLength( nNewLength );
    }
@@ -1273,7 +1273,7 @@ strsize string::Insert(strsize iIndex,char ch )
    char * pszBuffer = GetBuffer( nNewLength );
 
    // move existing bytes down
-   ::axis::memmove_s( pszBuffer+iIndex+1, (nNewLength-iIndex)*sizeof( char ),
+   ::aura::memmove_s( pszBuffer+iIndex+1, (nNewLength-iIndex)*sizeof( char ),
       pszBuffer+iIndex, (nNewLength-iIndex)*sizeof( char ) );
    pszBuffer[iIndex] = ch;
 
@@ -1301,9 +1301,9 @@ strsize string::Insert(strsize iIndex,const char * psz )
 
       char * pszBuffer = GetBuffer( nNewLength );
       // move existing bytes down
-      ::axis::memmove_s( pszBuffer+iIndex+nInsertLength, (nNewLength-iIndex-nInsertLength+1)*sizeof( char ),
+      ::aura::memmove_s( pszBuffer+iIndex+nInsertLength, (nNewLength-iIndex-nInsertLength+1)*sizeof( char ),
          pszBuffer+iIndex, (nNewLength-iIndex-nInsertLength+1)*sizeof( char ) );
-      ::axis::memcpy_s( pszBuffer+iIndex, nInsertLength*sizeof( char ),
+      ::aura::memcpy_s( pszBuffer+iIndex, nInsertLength*sizeof( char ),
          psz, nInsertLength*sizeof( char ) );
       ReleaseBufferSetLength( nNewLength );
    }
@@ -1392,9 +1392,9 @@ strsize string::replace(const char * pszOld, const char * pszNew, strsize iStart
          while( (pszTarget = string_trait::StringFindString( pszStart, pszOld ) ) != NULL )
          {
             strsize nBalance = nOldLength-strsize(pszTarget-pszBuffer+nSourceLen);
-            ::axis::memmove_s( pszTarget+nReplacementLen, nBalance*sizeof( char ),
+            ::aura::memmove_s( pszTarget+nReplacementLen, nBalance*sizeof( char ),
                pszTarget+nSourceLen, nBalance*sizeof( char ) );
-            ::axis::memcpy_s( pszTarget, nReplacementLen*sizeof( char ),
+            ::aura::memcpy_s( pszTarget, nReplacementLen*sizeof( char ),
                pszNew, nReplacementLen*sizeof( char ) );
             pszStart = pszTarget+nReplacementLen;
             pszTarget[nReplacementLen+nBalance] = 0;
@@ -2140,7 +2140,7 @@ string& string::trim_left()
       char * pszBuffer = GetBuffer( get_length() );
       psz = pszBuffer+iFirst;
       strsize nDataLength = get_length()-iFirst;
-      ::axis::memmove_s( pszBuffer, (nDataLength+1)*sizeof( char ),
+      ::aura::memmove_s( pszBuffer, (nDataLength+1)*sizeof( char ),
          psz, (nDataLength+1)*sizeof( char ) );
       ReleaseBufferSetLength( nDataLength );
    }
@@ -2262,7 +2262,7 @@ string& string::trim_left(char chTarget )
       char * pszBuffer = GetBuffer( get_length() );
       psz = pszBuffer+iFirst;
       strsize nDataLength = get_length()-iFirst;
-      ::axis::memmove_s( pszBuffer, (nDataLength+1)*sizeof( char ),
+      ::aura::memmove_s( pszBuffer, (nDataLength+1)*sizeof( char ),
          psz, (nDataLength+1)*sizeof( char ) );
       ReleaseBufferSetLength( nDataLength );
    }
@@ -2292,7 +2292,7 @@ string& string::trim_left(const char * pszTargets )
       char * pszBuffer = GetBuffer( get_length() );
       psz = pszBuffer+iFirst;
       strsize nDataLength = get_length()-iFirst;
-      ::axis::memmove_s( pszBuffer, (nDataLength+1)*sizeof( char ),
+      ::aura::memmove_s( pszBuffer, (nDataLength+1)*sizeof( char ),
          psz, (nDataLength+1)*sizeof( char ) );
       ReleaseBufferSetLength( nDataLength );
    }
@@ -2771,7 +2771,7 @@ void __cdecl string::format_message(const char * pszFormat, ... )
 
 #endif
 
-bool string::load_string(sp(::axis::application) papp, id id)
+bool string::load_string(sp(::aura::application) papp, id id)
 {
    return App(papp).load_string(*this, id);
 }

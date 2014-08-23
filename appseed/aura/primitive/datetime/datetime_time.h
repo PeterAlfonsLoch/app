@@ -5,7 +5,7 @@ namespace datetime
 {
 
 
-   class CLASS_DECL_AXIS date_span
+   class CLASS_DECL_AURA date_span
    {
    public:
       date_span();
@@ -14,7 +14,7 @@ namespace datetime
       bool m_bConstraintMonth;
    };
 
-   class CLASS_DECL_AXIS time_span
+   class CLASS_DECL_AURA time_span
    {
    public:
 
@@ -57,7 +57,7 @@ namespace datetime
 
    };
 
-   class CLASS_DECL_AXIS time
+   class CLASS_DECL_AURA time
    {
    public:
 
@@ -164,7 +164,7 @@ namespace datetime
 
    };
 
-   class CLASS_DECL_AXIS file_time_span
+   class CLASS_DECL_AURA file_time_span
    {
    public:
       file_time_span() NOTHROW;
@@ -193,7 +193,7 @@ namespace datetime
       LONGLONG m_nSpan;
    };
 
-   class CLASS_DECL_AXIS file_time :
+   class CLASS_DECL_AURA file_time :
       public FILETIME
    {
    public:
@@ -234,8 +234,8 @@ namespace datetime
    };
 
    // Used only if these strings could not be found in resources.
-   extern CLASS_DECL_AXIS const char * const szInvalidDateTime;
-   extern CLASS_DECL_AXIS const char * const szInvalidDateTimeSpan;
+   extern CLASS_DECL_AURA const char * const szInvalidDateTime;
+   extern CLASS_DECL_AURA const char * const szInvalidDateTimeSpan;
 
    const int32_t maxTimeBufferSize = 128;
    const long maxDaysInSpan  =   3615897L;
@@ -391,16 +391,16 @@ namespace datetime
 
 
 
-CLASS_DECL_AXIS dump_context & operator <<(dump_context & dumpcontext, ::datetime::time time);
-CLASS_DECL_AXIS dump_context & operator <<(dump_context & dumpcontext, ::datetime::time_span time);
+CLASS_DECL_AURA dump_context & operator <<(dump_context & dumpcontext, ::datetime::time time);
+CLASS_DECL_AURA dump_context & operator <<(dump_context & dumpcontext, ::datetime::time_span time);
 
-CLASS_DECL_AXIS ::file::output_stream & operator <<(::file::output_stream & os, ::datetime::time time);
-CLASS_DECL_AXIS ::file::input_stream & operator >>(::file::input_stream & is, ::datetime::time & time);
-CLASS_DECL_AXIS ::file::output_stream & operator <<(::file::output_stream & os, ::datetime::time_span span);
-CLASS_DECL_AXIS ::file::input_stream & operator >>(::file::input_stream & is, ::datetime::time_span & span);
+CLASS_DECL_AURA ::file::output_stream & operator <<(::file::output_stream & os, ::datetime::time time);
+CLASS_DECL_AURA ::file::input_stream & operator >>(::file::input_stream & is, ::datetime::time & time);
+CLASS_DECL_AURA ::file::output_stream & operator <<(::file::output_stream & os, ::datetime::time_span span);
+CLASS_DECL_AURA ::file::input_stream & operator >>(::file::input_stream & is, ::datetime::time_span & span);
 
 
-inline CLASS_DECL_AXIS ::datetime::time_span operator - (const duration & duration, const ::datetime::time & time)
+inline CLASS_DECL_AURA ::datetime::time_span operator - (const duration & duration, const ::datetime::time & time)
 {
    
    return ::datetime::time_span(::datetime::time::get_current_time().m_time - duration.GetTimeSpan() - time.m_time);
@@ -408,7 +408,7 @@ inline CLASS_DECL_AXIS ::datetime::time_span operator - (const duration & durati
 }
 
 
-inline CLASS_DECL_AXIS ::datetime::time operator + (const duration & duration, const ::datetime::time & time)
+inline CLASS_DECL_AURA ::datetime::time operator + (const duration & duration, const ::datetime::time & time)
 {
 
    return ::datetime::time(duration.GetTimeSpan() + time.m_time);

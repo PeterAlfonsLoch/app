@@ -64,7 +64,7 @@ namespace md5
 {
 
 
-	class CLASS_DECL_AXIS md5
+	class CLASS_DECL_AURA md5
 	{
 	public:
 

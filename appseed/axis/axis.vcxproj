@@ -3623,7 +3623,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\data\data_simple_item.h" />
     <ClInclude Include="primitive\data\data_tree.h" />
     <ClInclude Include="primitive\data\data_tree_item.h" />
-    <ClInclude Include="primitive\datetime\datetime_c.h" />
     <ClInclude Include="primitive\datetime\datetime_departament.h" />
     <ClInclude Include="primitive\datetime\datetime_duration.h" />
     <ClInclude Include="primitive\datetime\datetime_time.h" />

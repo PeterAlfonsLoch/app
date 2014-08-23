@@ -5,10 +5,10 @@ class strid_array;
 class mutex;
 
 
-extern CLASS_DECL_AXIS mutex * g_pmutexFactory;
+extern CLASS_DECL_AURA mutex * g_pmutexFactory;
 
 
-class CLASS_DECL_AXIS factory_allocator :
+class CLASS_DECL_AURA factory_allocator :
    virtual public ::object
 {
 public:
@@ -21,7 +21,7 @@ public:
    bool                          m_bAligned;
 
 
-   factory_allocator(sp(::axis::application) papp, int32_t iCount, UINT uiAllocSize, id idType, bool bAligned) :
+   factory_allocator(sp(::aura::application) papp, int32_t iCount, UINT uiAllocSize, id idType, bool bAligned) :
       element(papp),
       m_iCount(iCount),
       m_uiAllocSize(uiAllocSize),
@@ -67,12 +67,12 @@ class factory_allocator_impl :
 public:
 
 #ifdef WINDOWS
-   factory_allocator_impl(sp(::axis::application) papp, int32_t iCount, bool bAligned) :
+   factory_allocator_impl(sp(::aura::application) papp, int32_t iCount, bool bAligned) :
       factory_allocator(papp, iCount, sizeof(TYPE), typeid(TYPE).name(), bAligned)
    {
    }
 #else
-   factory_allocator_impl(sp(::axis::application) papp, int32_t iCount, bool bAligned) :
+   factory_allocator_impl(sp(::aura::application) papp, int32_t iCount, bool bAligned) :
       factory_allocator(papp, iCount, sizeof(TYPE), typeid(TYPE).name(), bAligned)
    {
    }
@@ -104,19 +104,19 @@ public:
 };
 
 
-class CLASS_DECL_AXIS factory_item_base :
+class CLASS_DECL_AURA factory_item_base :
    virtual public ::object
 {
 public:
 
    sp(factory_allocator)    m_pallocator;
 
-   inline factory_item_base(sp(::axis::application) papp, sp(factory_allocator) pallocator) : element(papp), m_pallocator(pallocator) {}
+   inline factory_item_base(sp(::aura::application) papp, sp(factory_allocator) pallocator) : element(papp), m_pallocator(pallocator) {}
    virtual ~factory_item_base();
 
    
    using ::object::create;
-   virtual sp(element) create(sp(::axis::application) papp) = 0;
+   virtual sp(element) create(sp(::aura::application) papp) = 0;
    
    using ::object::clone;
    virtual sp(element) clone(sp(element) pobject) = 0;
@@ -129,10 +129,10 @@ class creatable_factory_item :
 {
 public:
 
-   inline creatable_factory_item(sp(::axis::application) papp, sp(factory_allocator) pallocator) : element(papp), factory_item_base(papp, pallocator) {}
+   inline creatable_factory_item(sp(::aura::application) papp, sp(factory_allocator) pallocator) : element(papp), factory_item_base(papp, pallocator) {}
 
    using ::factory_item_base::create;
-   virtual sp(element) create(sp(::axis::application) papp);
+   virtual sp(element) create(sp(::aura::application) papp);
 
    using ::factory_item_base::clone;
    virtual sp(element) clone(sp(element) pobject);
@@ -145,7 +145,7 @@ class cloneable_factory_item :
 {
 public:
 
-   inline cloneable_factory_item(sp(::axis::application) papp, sp(factory_allocator) pallocator) : element(papp), creatable_factory_item < CLONEABLE_TYPE > (papp, pallocator) {}
+   inline cloneable_factory_item(sp(::aura::application) papp, sp(factory_allocator) pallocator) : element(papp), creatable_factory_item < CLONEABLE_TYPE > (papp, pallocator) {}
 
    
    using creatable_factory_item < CLONEABLE_TYPE >::clone;
@@ -155,7 +155,7 @@ public:
 
 
 
-class CLASS_DECL_AXIS base_factory :
+class CLASS_DECL_AURA base_factory :
    virtual public ::object
 {
 public:
@@ -166,7 +166,7 @@ public:
 
 
 
-   base_factory(sp(::axis::application) papp);
+   base_factory(sp(::aura::application) papp);
    virtual ~base_factory();
 
 
@@ -232,7 +232,7 @@ public:
    void cloneable(sp(type)  info, int32_t iCount, bool bOverwrite = true, bool bAligned = false);
 
    using ::object::create;
-   virtual sp(element) create(sp(::axis::application) papp, sp(type) info);
+   virtual sp(element) create(sp(::aura::application) papp, sp(type) info);
    
    virtual sp(element) base_clone(sp(element) pobject);
 

@@ -130,7 +130,7 @@ public:
 };
 
 // need specialized version for object_list because of add_head/Tail ambiguity
-template<> class CLASS_DECL_AXIS typed_ptr_list < object_list * , object_list>
+template<> class CLASS_DECL_AURA typed_ptr_list < object_list * , object_list>
 	: public _typed_ptr_list < object_list *, object_list >
 {
 public:
@@ -152,7 +152,7 @@ public:
 };
 
 // need specialized version for pointer_list because of add_head/Tail ambiguity
-template<> class CLASS_DECL_AXIS typed_ptr_list < pointer_list *, pointer_list >
+template<> class CLASS_DECL_AURA typed_ptr_list < pointer_list *, pointer_list >
 	: public _typed_ptr_list < pointer_list *, pointer_list >
 {
 public:

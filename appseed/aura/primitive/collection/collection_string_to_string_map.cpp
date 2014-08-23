@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-string_to_string::string_to_string(sp(::axis::application) papp, int_ptr nBlockSize) :
+string_to_string::string_to_string(sp(::aura::application) papp, int_ptr nBlockSize) :
    element(papp),
    base_string_to_string(papp,  nBlockSize)
 {

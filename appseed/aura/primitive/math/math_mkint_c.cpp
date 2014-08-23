@@ -4,14 +4,14 @@
 BEGIN_EXTERN_C
 
 
-CLASS_DECL_AXIS int32_t mkint32(uint32_t ui)
+CLASS_DECL_AURA int32_t mkint32(uint32_t ui)
 {
    if (ui >= 0x7fffffff)
       throw_cast_overflow();
    return (int32_t)ui;
 }
 
-CLASS_DECL_AXIS  int64_t mkint64(uint64_t ull)
+CLASS_DECL_AURA  int64_t mkint64(uint64_t ull)
 {
    if (ull >= 0x7fffffffffffffffull)
       throw_cast_overflow();
@@ -19,14 +19,14 @@ CLASS_DECL_AXIS  int64_t mkint64(uint64_t ull)
 }
 
 
-CLASS_DECL_AXIS uint32_t natural32(int32_t i)
+CLASS_DECL_AURA uint32_t natural32(int32_t i)
 {
    if (i < 0)
       return 0;
    return (uint32_t)i;
 }
 
-CLASS_DECL_AXIS  uint64_t natural64(int64_t ll)
+CLASS_DECL_AURA  uint64_t natural64(int64_t ll)
 {
    if (ll < 0)
       return 0;

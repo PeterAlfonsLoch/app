@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS interlocked_long_pulse
+class CLASS_DECL_AURA interlocked_long_pulse
 {
 public:
 

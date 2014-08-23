@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_AXIS object_list :
+class CLASS_DECL_AURA object_list :
    public object
 {
 public:

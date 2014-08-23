@@ -5,7 +5,7 @@
 
 /*
     This file was automatically generated from
-    UNICODE 3.2.0 UnicodeData.txt axis.
+    UNICODE 3.2.0 UnicodeData.txt aura.
     Do not edit it with hands.
 */
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-relation_set::relation_set(sp(::axis::application) papp) :
+relation_set::relation_set(sp(::aura::application) papp) :
 element(papp),
 property_set(papp, true, true)
 {

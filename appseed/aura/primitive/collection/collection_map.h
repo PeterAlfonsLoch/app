@@ -219,7 +219,7 @@ public:
    }
 
    void construct(::count nBlockSize = 10);
-   map(sp(::axis::application) papp = NULL, ::count nBlockSize = 10);
+   map(sp(::aura::application) papp = NULL, ::count nBlockSize = 10);
    map(pair pairs[], int32_t iCount);
 
    ::count get_count() const;
@@ -443,7 +443,7 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::construct(::count nBlo
 }
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::map(sp(::axis::application) papp, ::count nBlockSize) :
+map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::map(sp(::aura::application) papp, ::count nBlockSize) :
    element(papp)
 {
    construct(nBlockSize);

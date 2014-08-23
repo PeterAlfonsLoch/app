@@ -8,7 +8,7 @@
 
 class command_line;
 
-class CLASS_DECL_AXIS command_line_sp :
+class CLASS_DECL_AURA command_line_sp :
    public smart_pointer < command_line >
 {
 public:
@@ -30,7 +30,7 @@ public:
 
 
 
-class CLASS_DECL_AXIS create_context :
+class CLASS_DECL_AURA create_context :
    virtual public ::primitive::command
 {
 public:
@@ -50,7 +50,7 @@ public:
 
 
 
-   create_context(sp(::axis::application) papp);
+   create_context(sp(::aura::application) papp);
    create_context(sp(::command_thread) pthreadParent);
    create_context(sp(::command_thread) pthreadParent, var varFile, bool bMakeVisible = true, sp(::user::interaction) puiParent = NULL);
    create_context(const create_context & createcontext);

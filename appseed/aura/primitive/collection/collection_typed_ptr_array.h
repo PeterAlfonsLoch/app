@@ -2,7 +2,7 @@
 
 /*
 
-class CLASS_DECL_AXIS ptr_array :
+class CLASS_DECL_AURA ptr_array :
    virtual public comparable_raw_array < void * >::type
 {
 public:

@@ -3152,6 +3152,24 @@
     <ClInclude Include="axis\exception\exception_verisimple.h">
       <Filter>Header Files\axis\exception</Filter>
     </ClInclude>
+    <ClInclude Include="axis\policy\policy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\policy\policy_c.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\policy\policy_cpp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\policy\policy_objc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\policy\policy_objcpp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\policy\policy_winrt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -4783,13 +4801,13 @@
     <ClCompile Include="axis\exception\exception_verisimple.cpp">
       <Filter>Source Files\axis\exception</Filter>
     </ClCompile>
+    <ClCompile Include="axis\policy\policy_c.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
       <Filter>Header Files\multithreading</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

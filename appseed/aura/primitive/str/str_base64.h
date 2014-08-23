@@ -5,7 +5,7 @@ namespace str
 {
 
 
-   class CLASS_DECL_AXIS base64 :
+   class CLASS_DECL_AURA base64 :
       virtual public ::object
    {
    protected:

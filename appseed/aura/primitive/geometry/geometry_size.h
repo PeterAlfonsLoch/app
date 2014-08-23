@@ -4,7 +4,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // size - An extent, similar to Windows SIZE structure.
 
-class CLASS_DECL_AXIS size : public tagSIZE
+class CLASS_DECL_AURA size : public tagSIZE
 {
 public:
 
@@ -81,7 +81,7 @@ inline bool size::is_empty() const throw()
 /////////////////////////////////////////////////////////////////////////////
 // size64 - An extent, similar to Windows SIZE structure.
 
-class CLASS_DECL_AXIS size64 : public __size64
+class CLASS_DECL_AURA size64 : public __size64
 {
 public:
 
@@ -154,7 +154,7 @@ inline bool size64::is_empty() const throw()
 /////////////////////////////////////////////////////////////////////////////
 // sized - An extent, similar to Windows SIZE structure.
 
-class CLASS_DECL_AXIS sized : public tagSIZED
+class CLASS_DECL_AURA sized : public tagSIZED
 {
 public:
 

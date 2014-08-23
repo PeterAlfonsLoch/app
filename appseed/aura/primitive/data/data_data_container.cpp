@@ -35,7 +35,7 @@ namespace data
    }
 
 
-   data_container_base::data_container_base(sp(::axis::application) papp)
+   data_container_base::data_container_base(sp(::aura::application) papp)
    {
    }
 

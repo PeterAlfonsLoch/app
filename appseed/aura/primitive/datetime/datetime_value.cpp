@@ -27,7 +27,7 @@ namespace datetime
 {
 
 
-   value span_strtotime(sp(::axis::application) pbaseapp, ::user::str_context * pcontext, const char * pszSpanExpression)
+   value span_strtotime(sp(::aura::application) pbaseapp, ::user::str_context * pcontext, const char * pszSpanExpression)
    {
 
       static id idCalendarDay("calendar:day");
@@ -116,11 +116,11 @@ namespace datetime
          {
             if(bAdd)
             {
-               Sys(pbaseapp->m_paxissystem).log().trace("strtotime: invalid char +");
+               Sys(pbaseapp->m_paurasystem).log().trace("strtotime: invalid char +");
             }
             else if(bMinus)
             {
-               Sys(pbaseapp->m_paxissystem).log().trace("strtotime: invalid char + on Minus state");
+               Sys(pbaseapp->m_paurasystem).log().trace("strtotime: invalid char + on Minus state");
             }
             bAdd = true;
             bMinus = false;
@@ -130,11 +130,11 @@ namespace datetime
          {
             if(bAdd)
             {
-               Sys(pbaseapp->m_paxissystem).log().trace("strtotime: invalid char - on add state");
+               Sys(pbaseapp->m_paurasystem).log().trace("strtotime: invalid char - on add state");
             }
             else if(bMinus)
             {
-               Sys(pbaseapp->m_paxissystem).log().trace("strtotime: invalid char - on Minus state");
+               Sys(pbaseapp->m_paurasystem).log().trace("strtotime: invalid char - on Minus state");
             }
             bAdd = false;
             bMinus = true;
@@ -153,7 +153,7 @@ namespace datetime
    }
 
 
-   value strtotime(sp(::axis::application) pbaseapp, ::user::str_context * pcontext, const char * psz, int32_t & iPath, int32_t & iPathCount, bool bUTC)
+   value strtotime(sp(::aura::application) pbaseapp, ::user::str_context * pcontext, const char * psz, int32_t & iPath, int32_t & iPathCount, bool bUTC)
    {
       ::datetime::time time;
       string str(psz);
@@ -173,7 +173,7 @@ namespace datetime
          && str.Mid(16, 1) == ":")
          {
             bBaseTime = true;
-            Sys(pbaseapp->m_paxissystem).datetime().international().parse_str(str, set);
+            Sys(pbaseapp->m_paurasystem).datetime().international().parse_str(str, set);
             string strWord = str.Mid(19);
             strWord.trim_left();
             strWord = ::str::get_word(strWord, " ");
@@ -220,7 +220,7 @@ namespace datetime
          && str.Mid(7, 1) == "-")
          {
             bBaseTime = true;
-            Sys(pbaseapp->m_paxissystem).datetime().international().parse_str(str, set);
+            Sys(pbaseapp->m_paurasystem).datetime().international().parse_str(str, set);
             time = ::datetime::time(
                set["year"],
                set["month"],
@@ -275,14 +275,14 @@ namespace datetime
          if(i1 != i2
          && i1 >= 1 && i1 <= 12
          && i2 >= 1 && i2 <=
-            Sys(pbaseapp->m_paxissystem).datetime().get_month_day_count(time.GetYear(), i1))
+            Sys(pbaseapp->m_paurasystem).datetime().get_month_day_count(time.GetYear(), i1))
          {
             bFirst = true;
             iCount++;
          }
          if(i2 >= 1 && i2 <= 12
          && i1 >= 1 && i1 <=
-            Sys(pbaseapp->m_paxissystem).datetime().get_month_day_count(time.GetYear(), i2))
+            Sys(pbaseapp->m_paurasystem).datetime().get_month_day_count(time.GetYear(), i2))
          {
             iCount++;
          }
@@ -404,7 +404,7 @@ namespace datetime
       return *this;
    }
 
-   string value::to_string(sp(::axis::application) pbaseapp, ::user::str_context * pcontext)
+   string value::to_string(sp(::aura::application) pbaseapp, ::user::str_context * pcontext)
    {
       string str;
       if(m_bSpan)
@@ -500,20 +500,20 @@ namespace datetime
             if(time.GetHour() == 0 && time.GetMinute() == 0)
             {
                str = time.Format("%Y-");
-               Sys(pbaseapp->m_paxissystem).datetime().get_month_str(pcontext, time.GetMonth());
+               Sys(pbaseapp->m_paurasystem).datetime().get_month_str(pcontext, time.GetMonth());
                str += time.Format("-%d");
             }
             else
             {
                str = time.Format("%Y-");
-               str += Sys(pbaseapp->m_paxissystem).datetime().get_month_str(pcontext, time.GetMonth());
+               str += Sys(pbaseapp->m_paurasystem).datetime().get_month_str(pcontext, time.GetMonth());
                str += time.Format("-%d %H:%M");
             }
          }
          else
          {
             str = time.Format("%Y-");
-            str += Sys(pbaseapp->m_paxissystem).datetime().get_month_str(pcontext, time.GetMonth());
+            str += Sys(pbaseapp->m_paurasystem).datetime().get_month_str(pcontext, time.GetMonth());
             str += time.Format("-%d %H:%M:%S");
          }
       }

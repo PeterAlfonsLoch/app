@@ -5,7 +5,7 @@
 __STATIC UINT __read_string_length(::file::input_stream & ar);
 
 
-stringa::stringa(sp(::axis::application) papp) :
+stringa::stringa(sp(::aura::application) papp) :
 element(papp)
 {
 }

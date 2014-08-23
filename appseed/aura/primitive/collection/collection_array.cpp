@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-void _123abc_debug_gen_array_randomize(sp(::axis::application) papp);
+void _123abc_debug_gen_array_randomize(sp(::aura::application) papp);
 void ___arrayStdSortTest();
 
 /*
-void _123abc_debug_gen_array_randomize(sp(::axis::application) papp)
+void _123abc_debug_gen_array_randomize(sp(::aura::application) papp)
 {
    int_array a;
    a.add_unique(1);

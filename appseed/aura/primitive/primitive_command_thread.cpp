@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-command_thread::command_thread(sp(::axis::application) papp) :
+command_thread::command_thread(sp(::aura::application) papp) :
    element(papp),
    m_mutex(papp)
 {

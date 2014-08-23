@@ -5,7 +5,7 @@ namespace primitive
 {
 
 
-   command::command(sp(::axis::application) papp) :
+   command::command(sp(::aura::application) papp) :
       element(papp)
    {
 

@@ -3,7 +3,7 @@
 
 
 
-class CLASS_DECL_AXIS point_array :
+class CLASS_DECL_AURA point_array :
    public array < point >,
    virtual public ::xml::exportable,
    virtual public ::xml::importable
@@ -33,7 +33,7 @@ public:
 
 };
 
-class CLASS_DECL_AXIS point64_array :
+class CLASS_DECL_AURA point64_array :
    public array < point64 >
 {
 public:
@@ -44,7 +44,7 @@ public:
 };
 
 
-class CLASS_DECL_AXIS pointd_array :
+class CLASS_DECL_AURA pointd_array :
    public array < pointd >
 {
 public:

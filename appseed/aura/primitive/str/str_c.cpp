@@ -1197,13 +1197,13 @@ int_bool matches_wildcard_criteria_ci(const char * pszCriteria, const char * psz
 }
 
 
-CLASS_DECL_AXIS string get_md5(const char * psz)
+CLASS_DECL_AURA string get_md5(const char * psz)
 {
    return get_md5(psz, strlen(psz));
 }
 
 /*
-CLASS_DECL_AXIS void zero_pad(string & str, count iPad)
+CLASS_DECL_AURA void zero_pad(string & str, count iPad)
 {
    while(str.get_length() < iPad)
    {

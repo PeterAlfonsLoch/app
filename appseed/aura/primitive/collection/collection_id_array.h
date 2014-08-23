@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS id_array :
+class CLASS_DECL_AURA id_array :
    virtual public ::comparable_array < id >
 {
 public:

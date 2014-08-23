@@ -1,32 +1,32 @@
 #pragma once
 
 
-CLASS_DECL_AXIS int32_t SWN(int32_t y, int32_t m, int32_t d);
+CLASS_DECL_AURA int32_t SWN(int32_t y, int32_t m, int32_t d);
 //where DP ("Days Passed") is given by:
 //   DP( y, 1 ) = 0
 //  DP( y, m+1 ) = DP( y, m ) + ML( y, m )
-CLASS_DECL_AXIS int32_t DP(int32_t y, int32_t m);
-CLASS_DECL_AXIS int32_t ML(int32_t y, int32_t m);
-CLASS_DECL_AXIS int32_t LEAP(int32_t y);
-CLASS_DECL_AXIS int32_t dayofweek(int32_t y, int32_t m, int32_t d);	/* 0 = Sunday */
-CLASS_DECL_AXIS int32_t SDOW(int32_t y, int32_t m, int32_t d); // ( 0 = Monday, ..., 6 = Sunday )
-CLASS_DECL_AXIS int32_t DOW(int32_t y, int32_t m, int32_t d);
-CLASS_DECL_AXIS int32_t getDayOfWeek(int32_t month, int32_t day, int32_t year, int32_t CalendarSystem);
+CLASS_DECL_AURA int32_t DP(int32_t y, int32_t m);
+CLASS_DECL_AURA int32_t ML(int32_t y, int32_t m);
+CLASS_DECL_AURA int32_t LEAP(int32_t y);
+CLASS_DECL_AURA int32_t dayofweek(int32_t y, int32_t m, int32_t d);	/* 0 = Sunday */
+CLASS_DECL_AURA int32_t SDOW(int32_t y, int32_t m, int32_t d); // ( 0 = Monday, ..., 6 = Sunday )
+CLASS_DECL_AURA int32_t DOW(int32_t y, int32_t m, int32_t d);
+CLASS_DECL_AURA int32_t getDayOfWeek(int32_t month, int32_t day, int32_t year, int32_t CalendarSystem);
 
 
 namespace datetime
 {
 
 
-   class CLASS_DECL_AXIS departament :
-      virtual public ::axis::departament
+   class CLASS_DECL_AURA departament :
+      virtual public ::aura::departament
    {
    public:
-      class CLASS_DECL_AXIS international :
+      class CLASS_DECL_AURA international :
          virtual public ::object
       {
       public:
-         international(sp(::axis::application) papp);
+         international(sp(::aura::application) papp);
          void parse_str(const char * psz, property_set & set);
          string get_gmt_date_time(const ::datetime::time & time);
          string get_gmt_date_time();
@@ -34,11 +34,11 @@ namespace datetime
          string get_local_date_time();
       };
 
-      class CLASS_DECL_AXIS str :
+      class CLASS_DECL_AURA str :
          virtual public ::object
       {
       public:
-         str(sp(::axis::application) papp);
+         str(sp(::aura::application) papp);
          departament * m_pdatetime;
          string get_gmt_date_time();
       };
@@ -48,7 +48,7 @@ namespace datetime
       class ::datetime::departament::str m_str;
 
 
-      departament(sp(::axis::application) papp);
+      departament(sp(::aura::application) papp);
 
       int32_t get_month_day_count(int32_t year, int32_t month);
       int32_t get_weekday(int32_t year, int32_t month, int32_t day);
@@ -91,4 +91,4 @@ namespace datetime
    };
 
 
-} // namespace axis
+} // namespace aura

@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS string_list :
+class CLASS_DECL_AURA string_list :
    virtual public ::object
 {
 public:

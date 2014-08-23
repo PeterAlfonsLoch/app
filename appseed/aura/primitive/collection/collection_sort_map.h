@@ -1605,12 +1605,12 @@ sort_int_map < VALUE, ARG_VALUE, COMPARE > & sort_int_map < VALUE, ARG_VALUE, CO
 
 }
 
-typedef CLASS_DECL_AXIS sort_attrib_map < sort_map < int32_t, int32_t, int32_t, int32_t > > sort_int_to_int;
-typedef CLASS_DECL_AXIS sort_attrib_map < sort_map < int32_t, int32_t, string, const string & > > sort_int_to_string;
-typedef CLASS_DECL_AXIS sort_string_map < void *, void * > sort_string_to_ptr;
+typedef CLASS_DECL_AURA sort_attrib_map < sort_map < int32_t, int32_t, int32_t, int32_t > > sort_int_to_int;
+typedef CLASS_DECL_AURA sort_attrib_map < sort_map < int32_t, int32_t, string, const string & > > sort_int_to_string;
+typedef CLASS_DECL_AURA sort_string_map < void *, void * > sort_string_to_ptr;
 
 template < class T >
-class CLASS_DECL_AXIS sort_string_to_pointer :
+class CLASS_DECL_AURA sort_string_to_pointer :
    virtual public string_to_ptr
 {
 public:
@@ -1673,9 +1673,9 @@ public:
 
 
 
-typedef CLASS_DECL_AXIS sort_string_map < int_ptr, int_ptr > sort_string_to_intptr;
+typedef CLASS_DECL_AURA sort_string_map < int_ptr, int_ptr > sort_string_to_intptr;
 
-typedef CLASS_DECL_AXIS sort_string_map < string, const string & > sort_string_to_string_map;
+typedef CLASS_DECL_AURA sort_string_map < string, const string & > sort_string_to_string_map;
 
 
 

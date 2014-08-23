@@ -9,7 +9,7 @@ namespace str
    {
 
 
-      class CLASS_DECL_AXIS locale_schema :
+      class CLASS_DECL_AURA locale_schema :
          virtual public ::object
       {
       public:
@@ -30,7 +30,7 @@ namespace str
          comparable_array < id >    m_idaSchema;
 
 
-         locale_schema(sp(::axis::application) papp);
+         locale_schema(sp(::aura::application) papp);
          locale_schema(const locale_schema & ls);
          virtual ~locale_schema();
 
@@ -78,7 +78,7 @@ namespace str
    }  // namespace international
 
 
-} // namespace axis
+} // namespace aura
 
 
 

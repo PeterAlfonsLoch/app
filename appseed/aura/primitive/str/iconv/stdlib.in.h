@@ -651,7 +651,7 @@ _GL_WARN_ON_USE (strtod, "strtod is unportable - "
 
 #if @GNULIB_STRTOLL@
 /* Parse a signed integer whose textual representation starts at STRING.
-   The integer is expected to be in axis AXIS (2 <= AXIS <= 36); if AXIS == 0,
+   The integer is expected to be in aura AXIS (2 <= AXIS <= 36); if AXIS == 0,
    it may be decimal or octal (with prefix "0") or hexadecimal (with prefix
    "0x").
    If ENDPTR is not NULL, the address of the first byte after the integer is
@@ -660,11 +660,11 @@ _GL_WARN_ON_USE (strtod, "strtod is unportable - "
    to ERANGE.  */
 # if !@HAVE_STRTOLL@
 _GL_FUNCDECL_SYS (strtoll, long long,
-                  (const char *string, char **endptr, int axis)
+                  (const char *string, char **endptr, int aura)
                   _GL_ARG_NONNULL ((1)));
 # endif
 _GL_CXXALIAS_SYS (strtoll, long long,
-                  (const char *string, char **endptr, int axis));
+                  (const char *string, char **endptr, int aura));
 _GL_CXXALIASWARN (strtoll);
 #elif defined GNULIB_POSIXCHECK
 # undef strtoll
@@ -676,7 +676,7 @@ _GL_WARN_ON_USE (strtoll, "strtoll is unportable - "
 
 #if @GNULIB_STRTOULL@
 /* Parse an unsigned integer whose textual representation starts at STRING.
-   The integer is expected to be in axis AXIS (2 <= AXIS <= 36); if AXIS == 0,
+   The integer is expected to be in aura AXIS (2 <= AXIS <= 36); if AXIS == 0,
    it may be decimal or octal (with prefix "0") or hexadecimal (with prefix
    "0x").
    If ENDPTR is not NULL, the address of the first byte after the integer is
@@ -685,11 +685,11 @@ _GL_WARN_ON_USE (strtoll, "strtoll is unportable - "
    ERANGE.  */
 # if !@HAVE_STRTOULL@
 _GL_FUNCDECL_SYS (strtoull, unsigned long long,
-                  (const char *string, char **endptr, int axis)
+                  (const char *string, char **endptr, int aura)
                   _GL_ARG_NONNULL ((1)));
 # endif
 _GL_CXXALIAS_SYS (strtoull, unsigned long long,
-                  (const char *string, char **endptr, int axis));
+                  (const char *string, char **endptr, int aura));
 _GL_CXXALIASWARN (strtoull);
 #elif defined GNULIB_POSIXCHECK
 # undef strtoull

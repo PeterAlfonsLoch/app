@@ -5,7 +5,7 @@ namespace datetime
 {
 
 
-   class CLASS_DECL_AXIS value
+   class CLASS_DECL_AURA value
    {
    public:
 
@@ -34,22 +34,22 @@ namespace datetime
       ::datetime::time_span GetSpan() const;
       value & operator = (const ::datetime::time & time);
 
-      string to_string(sp(::axis::application) pbaseapp, ::user::str_context * pcontext);
+      string to_string(sp(::aura::application) pbaseapp, ::user::str_context * pcontext);
 
    };
 
 
-   CLASS_DECL_AXIS value span_strtotime(sp(::axis::application) pbaseapp, ::user::str_context * pcontext, const char * psz);
-   CLASS_DECL_AXIS value strtotime(sp(::axis::application) pbaseapp, ::user::str_context * pcontext, const char * psz, int32_t & iPath, int32_t & iPathCount, bool bForceUTC = false);
+   CLASS_DECL_AURA value span_strtotime(sp(::aura::application) pbaseapp, ::user::str_context * pcontext, const char * psz);
+   CLASS_DECL_AURA value strtotime(sp(::aura::application) pbaseapp, ::user::str_context * pcontext, const char * psz, int32_t & iPath, int32_t & iPathCount, bool bForceUTC = false);
 
 
 } // namespace datetime
 
 
-CLASS_DECL_AXIS datetime::value operator + (const datetime::value & val1, const datetime::value & val2);
-CLASS_DECL_AXIS datetime::value operator - (const datetime::value & val1, const datetime::value & val2);
-CLASS_DECL_AXIS datetime::value operator * (const datetime::value & val1, double d);
-CLASS_DECL_AXIS datetime::value operator / (const datetime::value & val1, double d);
+CLASS_DECL_AURA datetime::value operator + (const datetime::value & val1, const datetime::value & val2);
+CLASS_DECL_AURA datetime::value operator - (const datetime::value & val1, const datetime::value & val2);
+CLASS_DECL_AURA datetime::value operator * (const datetime::value & val1, double d);
+CLASS_DECL_AURA datetime::value operator / (const datetime::value & val1, double d);
 
 
 

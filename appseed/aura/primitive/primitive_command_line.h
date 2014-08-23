@@ -14,7 +14,7 @@ namespace fs
 class command_thread;
 
 
-class CLASS_DECL_AXIS command_line :
+class CLASS_DECL_AURA command_line :
    virtual public ::object
 {
 public:
@@ -49,7 +49,7 @@ public:
    var                           m_varQuery;
    ::fs::item_array *            m_pitema;
 
-   sp(::axis::application)             m_pappFork;
+   sp(::aura::application)             m_pappFork;
    string                        m_strApp;
    string                        m_strAppType;
    sp(::user::interaction)  m_puiParent;
@@ -59,7 +59,7 @@ public:
 
 
 
-   command_line(sp(::axis::application) papp);
+   command_line(sp(::aura::application) papp);
    ~command_line();
 
    void common_construct();

@@ -199,7 +199,7 @@ ptra * type::new_ptra()
 }
 
 
-CLASS_DECL_AXIS bool operator == (const std_type_info & info1, const sp(type) info2)
+CLASS_DECL_AURA bool operator == (const std_type_info & info1, const sp(type) info2)
 {
 
 #ifdef WINDOWS
@@ -214,7 +214,7 @@ CLASS_DECL_AXIS bool operator == (const std_type_info & info1, const sp(type) in
 
 }
 
-CLASS_DECL_AXIS bool operator != (const std_type_info & info1, const sp(type) info2)
+CLASS_DECL_AURA bool operator != (const std_type_info & info1, const sp(type) info2)
 {
 
    return !operator == (info1, info2);

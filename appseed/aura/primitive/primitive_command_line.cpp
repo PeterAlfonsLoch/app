@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-command_line::command_line(sp(::axis::application) papp) :
+command_line::command_line(sp(::aura::application) papp) :
    element(papp),
    m_eventReady(papp)
 {

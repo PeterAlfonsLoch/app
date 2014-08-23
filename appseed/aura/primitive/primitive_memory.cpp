@@ -4,7 +4,7 @@
 namespace primitive
 {
 
-   memory::memory(sp(::axis::application) papp) :
+   memory::memory(sp(::aura::application) papp) :
       element(papp)
    {
 
@@ -19,7 +19,7 @@ namespace primitive
 
    }
 
-   memory::memory(sp(::axis::application) papp, bool bAligned) :
+   memory::memory(sp(::aura::application) papp, bool bAligned) :
       element(papp)
    {
 

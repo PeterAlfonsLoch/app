@@ -8,7 +8,7 @@ class map_to_smart_pointer :
 public:
 
 
-   map_to_smart_pointer(sp(::axis::application) papp = NULL, ::count nBlockSize = 10) :
+   map_to_smart_pointer(sp(::aura::application) papp = NULL, ::count nBlockSize = 10) :
       element(papp),
       map < TYPE, ARG_TYPE, smart_pointer < T >, const smart_pointer < T > & > (papp, nBlockSize)
    {
@@ -30,7 +30,7 @@ class string_to_smart_pointer :
 public:
 
 
-   string_to_smart_pointer(sp(::axis::application) papp = NULL, ::count nBlockSize = 10) :
+   string_to_smart_pointer(sp(::aura::application) papp = NULL, ::count nBlockSize = 10) :
       element(papp),
       string_map < smart_pointer < T >, const smart_pointer < T > & > (papp, nBlockSize)
    {

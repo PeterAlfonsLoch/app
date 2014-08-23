@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS string_array :
+class CLASS_DECL_AURA string_array :
    virtual public ::object
 {
 public:

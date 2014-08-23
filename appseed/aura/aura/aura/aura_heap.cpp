@@ -621,16 +621,16 @@ END_EXTERN_C
 void create_id_space()
 {
 
-   ::axis::system::s_pidspace = new id_space();
+   ::aura::system::s_pidspace = new id_space();
 
 }
 
 void destroy_id_space()
 {
 
-   delete ::axis::system::s_pidspace;
+   delete ::aura::system::s_pidspace;
 
-   ::axis::system::s_pidspace = NULL;
+   ::aura::system::s_pidspace = NULL;
 
 }
 

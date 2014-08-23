@@ -1,12 +1,12 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS istring
+class CLASS_DECL_AURA istring
 {
 protected:
 
 
-   sp(::axis::application)  m_paxisapp;
+   sp(::aura::application)  m_pauraapp;
    string               m_str;
    string               m_strTemplate;
 
@@ -14,7 +14,7 @@ protected:
 public:
 
 
-   istring(sp(::axis::application) papp);
+   istring(sp(::aura::application) papp);
    ~istring();
 
 

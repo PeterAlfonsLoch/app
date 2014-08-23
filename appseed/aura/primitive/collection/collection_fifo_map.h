@@ -946,12 +946,12 @@ fifo_int_map < VALUE, ARG_VALUE, COMPARE > & fifo_int_map < VALUE, ARG_VALUE, CO
 
 }
 
-typedef CLASS_DECL_AXIS fifo_attrib_map < fifo_map < int32_t, int32_t, int32_t, int32_t > > fifo_int_to_int;
-typedef CLASS_DECL_AXIS fifo_attrib_map < fifo_map < int32_t, int32_t, string, const string & > > fifo_int_to_string;
-typedef CLASS_DECL_AXIS fifo_string_map < void *, void * > fifo_string_to_ptr;
+typedef CLASS_DECL_AURA fifo_attrib_map < fifo_map < int32_t, int32_t, int32_t, int32_t > > fifo_int_to_int;
+typedef CLASS_DECL_AURA fifo_attrib_map < fifo_map < int32_t, int32_t, string, const string & > > fifo_int_to_string;
+typedef CLASS_DECL_AURA fifo_string_map < void *, void * > fifo_string_to_ptr;
 
 template < class T >
-class CLASS_DECL_AXIS fifo_string_to_pointer :
+class CLASS_DECL_AURA fifo_string_to_pointer :
    virtual public string_to_ptr
 {
 public:
@@ -1011,9 +1011,9 @@ public:
 };
 
 
-typedef CLASS_DECL_AXIS fifo_string_map < int_ptr, int_ptr > fifo_string_to_intptr;
+typedef CLASS_DECL_AURA fifo_string_map < int_ptr, int_ptr > fifo_string_to_intptr;
 
-typedef CLASS_DECL_AXIS fifo_string_map < string, const string & > fifo_string_to_string_map;
+typedef CLASS_DECL_AURA fifo_string_map < string, const string & > fifo_string_to_string_map;
 
 
 

@@ -33,7 +33,7 @@ class property_set;
 class object;
 class type;
 
-namespace axis
+namespace aura
 {
 
    class application;
@@ -46,7 +46,7 @@ namespace axis
 
 
 
-} // namespace axis
+} // namespace aura
 
 
 class dump_context;
@@ -173,7 +173,7 @@ namespace simple_ui
 
 }
 
-namespace axis
+namespace aura
 {
 
    template < typename T >
@@ -186,7 +186,7 @@ namespace axis
       }
    }
 
-} // namespace axis
+} // namespace aura
 
 
 
@@ -214,7 +214,7 @@ struct __SIZEPARENTPARAMS
 typedef struct tagRECTD RECTD;
 
 
-namespace axis
+namespace aura
 {
 
    class live_object;
@@ -231,8 +231,8 @@ namespace axis
 
    };
 
-   CLASS_DECL_AXIS bool get_window_rect(system_window ^ pwindow,RECTD * lprect);
-   CLASS_DECL_AXIS bool get_window_rect(system_window ^ pwindow,LPRECT lprect);
+   CLASS_DECL_AURA bool get_window_rect(system_window ^ pwindow,RECTD * lprect);
+   CLASS_DECL_AURA bool get_window_rect(system_window ^ pwindow,LPRECT lprect);
 
 #endif
 
@@ -249,7 +249,7 @@ namespace axis
 
    class session;
 
-} // namespace axis
+} // namespace aura
 
 
 // only usable from base and base dependants
@@ -299,20 +299,20 @@ namespace user
 
 #if defined METROWIN && defined(__cplusplus_winrt)
 
-   class CLASS_DECL_AXIS native_window_initialize
+   class CLASS_DECL_AURA native_window_initialize
    {
    public:
 
 
       Platform::Agile<Windows::UI::Core::CoreWindow> window;
-      ::axis::system_window ^ pwindow;
+      ::aura::system_window ^ pwindow;
 
 
    };
 
 #elif defined(APPLE_IOS)
 
-   class CLASS_DECL_AXIS native_window_initialize
+   class CLASS_DECL_AURA native_window_initialize
    {
    public:
 
@@ -335,7 +335,7 @@ namespace user
 
 
 
-   CLASS_DECL_AXIS bool is_descendant(::user::interaction * puiParent,::user::interaction * puiChild);
+   CLASS_DECL_AURA bool is_descendant(::user::interaction * puiParent,::user::interaction * puiChild);
 
 
 } // namespace user
@@ -423,21 +423,21 @@ typedef smart_pointer < thread_impl > thread_impl_sp;
 #define SCAST_REF(TYPE, rtarget, psource) TYPE & rtarget = *(dynamic_cast < TYPE * > (psource));
 
 
-#define CaSys(pca) (*pca->m_paxisapp->m_paxissystem)
-#define Sys(paxisapp) (*paxisapp->m_paxissystem)
-#define System (Sys(this->m_paxisapp))
+#define CaSys(pca) (*pca->m_pauraapp->m_paurasystem)
+#define Sys(pauraapp) (*pauraapp->m_paurasystem)
+#define System (Sys(this->m_pauraapp))
 #define threadSystem (Sys(get_thread_app()))
 
 
-#define Sess(paxisapp) (*paxisapp->m_paxissession)
-#define Session (Sess(m_paxisapp))
-#define Plat(paxisapp) (*paxisapp->m_pcoreplatform)
-#define Platform (Plat(m_paxisapp))
+#define Sess(pauraapp) (*pauraapp->m_paurasession)
+#define Session (Sess(m_pauraapp))
+#define Plat(pauraapp) (*pauraapp->m_pcoreplatform)
+#define Platform (Plat(m_pauraapp))
 
 
 #undef App
-#define App(paxisapp) (*paxisapp)
-#define Application (App(m_paxisapp))
+#define App(pauraapp) (*pauraapp)
+#define Application (App(m_pauraapp))
 
 
 // return - result - if not ok
@@ -463,41 +463,41 @@ typedef void * HDWP;
 #endif
 
 
-typedef  void(*PFN_ca2_factory_exchange)(sp(::axis::application) papp);
+typedef  void(*PFN_ca2_factory_exchange)(sp(::aura::application) papp);
 
 
 
 
 
-CLASS_DECL_AXIS bool axis_init();
-CLASS_DECL_AXIS bool axis_term();
+CLASS_DECL_AURA bool aura_init();
+CLASS_DECL_AURA bool aura_term();
 
-CLASS_DECL_AXIS bool __node_axis_pre_init();
-CLASS_DECL_AXIS bool __node_axis_pos_init();
+CLASS_DECL_AURA bool __node_aura_pre_init();
+CLASS_DECL_AURA bool __node_aura_pos_init();
 
-CLASS_DECL_AXIS bool __node_axis_pre_term();
-CLASS_DECL_AXIS bool __node_axis_pos_term();
-
-
-CLASS_DECL_AXIS ::axis::application * get_thread_app();
-
-#include "axis_definition.h"
-
-#include "axis_action_source.h"
-
-#include "axis_new.h"
-
-#include "axis_lparam.h"
-#include "axis_muldiv64.h"
-
-#include "axis_auto_pointer.h"
-
-#include "axis_smart_pointer1.h"
-#include "axis_root.h"
-#include "axis_smart_pointer2.h"
+CLASS_DECL_AURA bool __node_aura_pre_term();
+CLASS_DECL_AURA bool __node_aura_pos_term();
 
 
-#include "axis_keep_true.h"
+CLASS_DECL_AURA ::aura::application * get_thread_app();
+
+#include "aura_definition.h"
+
+#include "aura_action_source.h"
+
+#include "aura_new.h"
+
+#include "aura_lparam.h"
+#include "aura_muldiv64.h"
+
+#include "aura_auto_pointer.h"
+
+#include "aura_smart_pointer1.h"
+#include "aura_root.h"
+#include "aura_smart_pointer2.h"
+
+
+#include "aura_keep_true.h"
 
 
 namespace file
@@ -510,172 +510,172 @@ namespace file
 } // namespace file
 
 
-#include "axis/primitive/primitive_logic.h"
+#include "aura/primitive/primitive_logic.h"
 
 
 
-#include "axis/primitive/math/math_static_numeric_info.h"
-#include "axis/primitive/math/math_numeric_info.h"
-#include "axis/primitive/math/math_number.h"
+#include "aura/primitive/math/math_static_numeric_info.h"
+#include "aura/primitive/math/math_numeric_info.h"
+#include "aura/primitive/math/math_number.h"
 
 
-#include "axis/primitive/datetime/datetime_duration.h"
+#include "aura/primitive/datetime/datetime_duration.h"
 
 
-#include "axis_element.h"
+#include "aura_element.h"
 
-#include "axis_debug.h"
+#include "aura_debug.h"
 
 
 
 
 
 
-#include "axis_class.h"
+#include "aura_class.h"
 
-#include "axis/primitive/comparison/comparison_md5.h"
+#include "aura/primitive/comparison/comparison_md5.h"
 
-#include "axis_conv.h"
+#include "aura_conv.h"
 
-#include "axis_core.h"
+#include "aura_core.h"
 
-#include "axis/primitive/primitive_request_interface.h"
+#include "aura/primitive/primitive_request_interface.h"
 
-#include "axis/multithreading/multithreading_wait_result.h"
+#include "aura/multithreading/multithreading_wait_result.h"
 
-#include "axis/multithreading/multithreading_waitable.h"
+#include "aura/multithreading/multithreading_waitable.h"
 
-#include "axis/primitive/primitive_object.h"
+#include "aura/primitive/primitive_object.h"
 
 
-#include "axis/axis/xml/xml_exportable.h"
-#include "axis/axis/xml/xml_importable.h"
+#include "aura/aura/xml/xml_exportable.h"
+#include "aura/aura/xml/xml_importable.h"
 
 
-#include "axis/primitive/collection/collection_decl.h"
-#include "axis/primitive/collection/collection_array_decl.h"
-#include "axis/primitive/collection/collection_raw_array_decl.h"
-#include "axis/primitive/collection/collection_lemon_array_decl.h"
-#include "axis/primitive/collection/collection_smart_pointer_array.h"
+#include "aura/primitive/collection/collection_decl.h"
+#include "aura/primitive/collection/collection_array_decl.h"
+#include "aura/primitive/collection/collection_raw_array_decl.h"
+#include "aura/primitive/collection/collection_lemon_array_decl.h"
+#include "aura/primitive/collection/collection_smart_pointer_array.h"
 
 
-#include "axis_action_context.h"
+#include "aura_action_context.h"
 
 
 
-#include "axis_fixed_alloc.h"
+#include "aura_fixed_alloc.h"
 
 
 
-#include "axis_allocate.h"
-#include "axis_plex.h"
+#include "aura_allocate.h"
+#include "aura_plex.h"
 
 
-#include "axis/primitive/primitive_id.h"
+#include "aura/primitive/primitive_id.h"
 
 
-#include "axis/primitive/str/str.h"
-#include "axis/exception/exception.h"
-#include "axis_common.h"
+#include "aura/primitive/str/str.h"
+#include "aura/exception/exception.h"
+#include "aura_common.h"
 
 
-#include "axis_library.h"
+#include "aura_library.h"
 
 
 
-#include "axis/primitive/datetime/datetime_time.h"
+#include "aura/primitive/datetime/datetime_time.h"
 
 
 
 
-#include "axis/filesystem/filesystem.h"
+#include "aura/filesystem/filesystem.h"
 
 
 
 
 
-#include "axis/primitive/geometry/geometry.h"
+#include "aura/primitive/geometry/geometry.h"
 
 
-#include "axis/primitive/comparison/comparison.h"
+#include "aura/primitive/comparison/comparison.h"
 
 
-#include "axis/primitive/collection/collection.h"
+#include "aura/primitive/collection/collection.h"
 
 
-#include "axis/filesystem/file/file_string_buffer.h"
+#include "aura/filesystem/file/file_string_buffer.h"
 
 
-#include "axis/filesystem/file/file_set.h"
+#include "aura/filesystem/file/file_set.h"
 
 
-#include "axis/primitive/primitive_var2.h"
+#include "aura/primitive/primitive_var2.h"
 
 
-#include "axis/primitive/primitive_id_space.h"
+#include "aura/primitive/primitive_id_space.h"
 
 
-#include "axis/primitive/math/math_scalar_enum.h"
+#include "aura/primitive/math/math_scalar_enum.h"
 
 
-#include "axis/primitive/math/math_scalar.h"
+#include "aura/primitive/math/math_scalar.h"
 
 
-#include "axis_progress.h"
+#include "aura_progress.h"
 
 
-#include "axis_enum.h"
+#include "aura_enum.h"
 
 
-#include "axis/multithreading/multithreading.h"
+#include "aura/multithreading/multithreading.h"
 
 
-#include "axis_draw2d.h"
+#include "aura_draw2d.h"
 
 
-#include "axis_gudo.h"
+#include "aura_gudo.h"
 
 
 
 
-//#include "axis/user/user_create_context.h"
+//#include "aura/user/user_create_context.h"
 
 
 #if defined(LINUX)
 
-#include "axis/os/ansios/ansios.h"
-#include "axis/os/linux/linux_user_impl.h"
+#include "aura/os/ansios/ansios.h"
+#include "aura/os/linux/linux_user_impl.h"
 
 #elif defined(METROWIN)
 
-#include "axis/os/metrowin/metrowin.h"
-#include "axis/os/metrowin/metrowin_user_impl.h"
+#include "aura/os/metrowin/metrowin.h"
+#include "aura/os/metrowin/metrowin_user_impl.h"
 
 #elif defined(MACOS)
 
-#include "axis/os/ansios/ansios.h"
-#include "axis/os/macos/macos.h"
-#include "axis/os/macos/macos_windowing.h"
+#include "aura/os/ansios/ansios.h"
+#include "aura/os/macos/macos.h"
+#include "aura/os/macos/macos_windowing.h"
 
 #elif defined(ANDROID)
 
-#include "axis/os/ansios/ansios.h"
-#include "axis/os/android/android.h"
+#include "aura/os/ansios/ansios.h"
+#include "aura/os/android/android.h"
 
 #elif defined(WINDOWS)
 
-#include "axis/os/windows/windows.h"
+#include "aura/os/windows/windows.h"
 
 #elif defined(APPLE_IOS)
 
-#include "axis/os/ansios/ansios.h"
-#include "axis/os/ios/ios.h"
-#include "axis/os/ios/ios_windowing.h"
+#include "aura/os/ansios/ansios.h"
+#include "aura/os/ios/ios.h"
+#include "aura/os/ios/ios_windowing.h"
 
 #elif defined(SOLARIS)
 
-#include "axis/os/ansios/ansios.h"
-#include "axis/os/solaris/solaris_user_impl.h"
+#include "aura/os/ansios/ansios.h"
+#include "aura/os/solaris/solaris_user_impl.h"
 
 #else
 
@@ -690,27 +690,27 @@ namespace file
 
 
 
-CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
+CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 
-#include "axis_plex_heap.h"
+#include "aura_plex_heap.h"
 
-#include "axis/primitive/primitive_type.h"
+#include "aura/primitive/primitive_type.h"
 
 
-#include "axis/graphics/graphics.h"
+#include "aura/graphics/graphics.h"
 #include "user/user/user_enum.h"
 #include "user/user/user_keyboard_focus.h"
 #include "user/user/user_mouse_focus.h"
 #include "user/user/user_elemental.h"
-#include "axis_flags.h"
+#include "aura_flags.h"
 #include "primitive/primitive_check.h"
 #include "user/user/user_check_interface.h"
-#include "axis_command.h"
+#include "aura_command.h"
 #include "graphics/visual/visual_const.h"
 #include "user/user/user_key_enum.h"
-#include "axis/axis/message/message.h"
-#include "axis_command_target.h"
+#include "aura/aura/message/message.h"
+#include "aura_command_target.h"
 #include "user/user/user_schema.h"
 #include "user/user/user_schema_simple_impl.h"
 #include "user/user/user_schema_layered_frame.h"
@@ -719,8 +719,8 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 #include "user/user/user_window_util.h"
 #include "user/user/user_interaction_base.h"
 #include "user/user/user_buffer.h"
-#include "axis_keep.h"
-#include "axis/filesystem/file/file_stream2.h"
+#include "aura_keep.h"
+#include "aura/filesystem/file/file_stream2.h"
 #include "user/user/user_interaction.h"
 #include "user/user/user_interaction_impl_base.h"
 #include "user/user/user_interaction_child.h"
@@ -746,21 +746,21 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 #include "primitive/data/data_tree.h"
 #include "primitive/data/data_simple_item.h"
 
-#include "axis/primitive/primitive_edit.h"
-#include "axis_departament.h"
-#include "axis_departament_container.h"
-#include "axis/xml/xml.h"
-#include "axis/user/simple_ui/simple_ui_style.h"
-#include "axis/user/simple_ui/simple_ui_interaction.h"
-#include "axis/database/database.h"
+#include "aura/primitive/primitive_edit.h"
+#include "aura_departament.h"
+#include "aura_departament_container.h"
+#include "aura/xml/xml.h"
+#include "aura/user/simple_ui/simple_ui_style.h"
+#include "aura/user/simple_ui/simple_ui_interaction.h"
+#include "aura/database/database.h"
 #include "user/user/user_document_data_map.h"
 #include "user/user/user_document.h"
 #include "user/user/user_impact.h"
-#include "axis_live_object.h"
-#include "axis_live_signal.h"
+#include "aura_live_object.h"
+#include "aura_live_signal.h"
 #include "multithreading/multithreading_thread.h"
-#include "axis_message_queue_listener.h"
-#include "axis_message_queue.h"
+#include "aura_message_queue_listener.h"
+#include "aura_message_queue.h"
 #include "multithreading/multithreading_thread_impl.h"
 #include "multithreading/multithreading_simple_thread.h"
 #include "multithreading/multithreading_go_thread.h"
@@ -772,46 +772,46 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 
 
 
-#include "axis_log.h"
-#include "axis_trace.h"
+#include "aura_log.h"
+#include "aura_trace.h"
 
 
 
-#include "axis/primitive/primitive_memory_base.h"
-#include "axis/primitive/primitive_memory.h"
-#include "axis/primitive/primitive_shared_memory.h"
-#include "axis/primitive/primitive_virtual_memory.h"
-#include "axis/primitive/primitive_memory_container.h"
+#include "aura/primitive/primitive_memory_base.h"
+#include "aura/primitive/primitive_memory.h"
+#include "aura/primitive/primitive_shared_memory.h"
+#include "aura/primitive/primitive_virtual_memory.h"
+#include "aura/primitive/primitive_memory_container.h"
 
 
 
-#include "axis/filesystem/file/file_memory_buffer.h"
-#include "axis/filesystem/file/file_byte_stream_memory_buffer.h"
-#include "axis/filesystem/file/file_plain_text_stream_memory_buffer.h"
-#include "axis/filesystem/file/file_circular_buffer.h"
+#include "aura/filesystem/file/file_memory_buffer.h"
+#include "aura/filesystem/file/file_byte_stream_memory_buffer.h"
+#include "aura/filesystem/file/file_plain_text_stream_memory_buffer.h"
+#include "aura/filesystem/file/file_circular_buffer.h"
 
 
 #include "filesystem/file/file_timeout_buffer.h"
 #include "filesystem/file/file_transfer_buffer.h"
 
 
-#include "axis/primitive/str/str_international2.h"
+#include "aura/primitive/str/str_international2.h"
 
 
 
 #if defined(METROWIN)
 
-#include "app/appseed/axis/axis/os/metrowin/metrowin_sockets.h"
+#include "app/appseed/aura/aura/os/metrowin/metrowin_sockets.h"
 
 #endif
 
 
-#include "axis/primitive/primitive_factory.h"
+#include "aura/primitive/primitive_factory.h"
 
 
-#include "axis/primitive/math/math_math_rng.h"
-#include "axis/primitive/math/math_math.h"
-#include "axis/primitive/geometry/geometry_geometry.h"
+#include "aura/primitive/math/math_math_rng.h"
+#include "aura/primitive/math/math_math.h"
+#include "aura/primitive/geometry/geometry_geometry.h"
 
 
 
@@ -822,54 +822,54 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 #include "user/user/user_keyboard.h"
 #include "user/user/user_user.h"
 
-#include "axis_main_init_data.h"
+#include "aura_main_init_data.h"
 
-#include "axis_savings.h"
-
-
-#include "axis_application_interface.h"
-#include "axis_application.h"
+#include "aura_savings.h"
 
 
-#include "axis_gudo_application.inl"
+#include "aura_application_interface.h"
+#include "aura_application.h"
 
 
-#include "axis_application_signal_details.h"
-
-#include "axis_session_interface.h"
-#include "axis_session.h"
+#include "aura_gudo_application.inl"
 
 
+#include "aura_application_signal_details.h"
 
-#include "axis/primitive/primitive_application_bias.h"
-#include "axis/exception/exception_engine.h"
+#include "aura_session_interface.h"
+#include "aura_session.h"
 
-#include "axis_fixed_alloc_impl.h"
-#include "axis_plex_heap_impl.h"
-#include "axis/primitive/primitive_command_line.h"
-#include "axis/primitive/primitive_command.h"
+
+
+#include "aura/primitive/primitive_application_bias.h"
+#include "aura/exception/exception_engine.h"
+
+#include "aura_fixed_alloc_impl.h"
+#include "aura_plex_heap_impl.h"
+#include "aura/primitive/primitive_command_line.h"
+#include "aura/primitive/primitive_command.h"
 #include "user/user/user_create_context.h"
-#include "axis/primitive/primitive_create_context.h"
-#include "axis/primitive/primitive_request_signal.h"
+#include "aura/primitive/primitive_create_context.h"
+#include "aura/primitive/primitive_request_signal.h"
 
 
 
 
-#include "axis_net.h"
+#include "aura_net.h"
 
 
 
-#include "axis/primitive/primitive_command_thread.h"
+#include "aura/primitive/primitive_command_thread.h"
 
 
 
 
-#include "axis/filesystem/file/file_buffered_buffer.h"
+#include "aura/filesystem/file/file_buffered_buffer.h"
 
 
-#include "axis_machine_event_data.h"
-#include "axis_machine_event.h"
-#include "axis_machine_event_central.h"
+#include "aura_machine_event_data.h"
+#include "aura_machine_event.h"
+#include "aura_machine_event_central.h"
 
 #include "primitive/datetime/datetime_value.h"
 #include "primitive/datetime/datetime_departament.h"
@@ -877,23 +877,23 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 
 #include "user/user/user_window_draw.h"
 
-#include "axis/primitive/str/str_international_locale_schema.h"
+#include "aura/primitive/str/str_international_locale_schema.h"
 
 #include "user/user/user_str.h"
 
-#include "axis_id_pool.h"
+#include "aura_id_pool.h"
 
 
-#include "axis_launcher.h"
+#include "aura_launcher.h"
 #ifndef METROWIN
-#include "axis_small_ipc_channel.h"
+#include "aura_small_ipc_channel.h"
 #endif
 
 
-#include "axis/user/user/user.h"
+#include "aura/user/user/user.h"
 #include "user/user/user_control_event.h"
-#include "axis_cregexp.h"
-#include "axis_cregexp_util.h"
+#include "aura_cregexp.h"
+#include "aura_cregexp_util.h"
 
 #include "user/user/user_control.h"
 #include "user/user/user_scroll_bar.h"
@@ -909,15 +909,13 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 
 
 
-#include "axis_core_os.h"
+#include "aura_core_os.h"
 
-#include "axis_system.h"
+#include "aura_system.h"
 
-#include "axis_system_str.h"
+#include "aura_system_str.h"
 
-#include "axis/os/os_process.h"
-
-
+#include "aura/os/os_process.h"
 
 
 
@@ -926,13 +924,15 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 
 
 
-//#include "axis/install/install_trace.h"
+
+
+//#include "aura/install/install_trace.h"
 
 
 #define new AXIS_NEW
 
 
-#include "axis_system_trace.h"
+#include "aura_system_trace.h"
 
 
 #include "user/user/user_place_holder.h"
@@ -942,12 +942,12 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 #include "user/user/user_view_creator.h"
 
 
-#include "axis/multithreading/multithreading.inl"
+#include "aura/multithreading/multithreading.inl"
 
 
-#include "axis/primitive/str/str.inl"
+#include "aura/primitive/str/str.inl"
 
-#include "axis/axis/axis.inl"
+#include "aura/aura/aura.inl"
 
 #include "primitive/collection/collection.inl"
 
@@ -1065,7 +1065,7 @@ inline void string_format::printf(const char * & s)
 
 #ifndef WINDOWSEX
 
-#include "axis/os/cross/windows/windows_thread_impl.h"
+#include "aura/os/cross/windows/windows_thread_impl.h"
 
 #endif
 
@@ -1073,75 +1073,75 @@ inline void string_format::printf(const char * & s)
 
 
 
-#include "axis/primitive/collection/collection_array_impl.inl"
-#include "axis/primitive/collection/collection_raw_array_impl.inl"
-#include "axis/primitive/collection/collection_sort_array_impl.inl"
-#include "axis/primitive/collection/collection_lemon_array_impl.inl"
+#include "aura/primitive/collection/collection_array_impl.inl"
+#include "aura/primitive/collection/collection_raw_array_impl.inl"
+#include "aura/primitive/collection/collection_sort_array_impl.inl"
+#include "aura/primitive/collection/collection_lemon_array_impl.inl"
 
-#include "axis/primitive/collection/collection_list_impl.inl"
-#include "axis/primitive/collection/collection_map_impl.inl"
+#include "aura/primitive/collection/collection_list_impl.inl"
+#include "aura/primitive/collection/collection_map_impl.inl"
 
-#include "axis/primitive/collection/collection_sort_map_impl.inl"
+#include "aura/primitive/collection/collection_sort_map_impl.inl"
 
-#include "axis/primitive/collection/collection_fifo_map_impl.inl"
-
-
-
-#include "axis/primitive/primitive_factory_impl.inl"
+#include "aura/primitive/collection/collection_fifo_map_impl.inl"
 
 
 
-
-
-#include "axis_system_smart_pointer.inl"
-#include "axis_system_object.inl"
-#include "axis_system_id.inl"
-#include "axis_system_factory.inl"
-#include "axis_system_primitive_var.inl"
-#include "axis_system_xml.inl"
-
-
-
-#include "axis_core_copydesk.h"
-
-
-#include "axis_core_os.h"
+#include "aura/primitive/primitive_factory_impl.inl"
 
 
 
 
 
-// #include "axis/net/http/http.h"
-#include "axis_microtimer.h"
+#include "aura_system_smart_pointer.inl"
+#include "aura_system_object.inl"
+#include "aura_system_id.inl"
+#include "aura_system_factory.inl"
+#include "aura_system_primitive_var.inl"
+#include "aura_system_xml.inl"
 
 
+
+#include "aura_core_copydesk.h"
+
+
+#include "aura_core_os.h"
+
+
+
+
+
+// #include "aura/net/http/http.h"
+#include "aura_microtimer.h"
 
 
 
 
 
 
-#include "axis/vms/vms.h"
 
 
-#include "axis_cpu_architecture.h"
+#include "aura/vms/vms.h"
 
 
-#include "axis_libc.h"
+#include "aura_cpu_architecture.h"
 
 
-#include "axis_number.h"
+#include "aura_libc.h"
 
 
-#include "axis_debug.h"
+#include "aura_number.h"
 
 
-#include "axis_printf.h"
-#include "axis_sprintf.h"
+#include "aura_debug.h"
+
+
+#include "aura_printf.h"
+#include "aura_sprintf.h"
 
 
 
-#include "axis_math.h"
+#include "aura_math.h"
 
 
 
@@ -1158,42 +1158,42 @@ inline void string_format::printf(const char * & s)
 #ifndef BSD_STYLE_SOCKETS
 #define BSD_STYLE_SOCKETS 1
 #endif
-//#include "axis_small_ipc_channel.h"
+//#include "aura_small_ipc_channel.h"
 
 #endif
 
 
 
-#include "axis_file_watcher.h"
-#include "axis_file_watcher_impl.h"
+#include "aura_file_watcher.h"
+#include "aura_file_watcher_impl.h"
 
 
-#include "axis_os.h"
+#include "aura_os.h"
 
 
-#include "axis/multithreading/multithreading_data.h"
+#include "aura/multithreading/multithreading_data.h"
 
 
-#include "axis_simple_shell_launcher.h"
+#include "aura_simple_shell_launcher.h"
 
 
-#include "axis_file_watcher_thread.h"
-#include "axis_file_watcher_listener_thread.h"
-#include "axis_async.h"
+#include "aura_file_watcher_thread.h"
+#include "aura_file_watcher_listener_thread.h"
+#include "aura_async.h"
 
 
-//#include "axis/hotplugin/hotplugin.h"
+//#include "aura/hotplugin/hotplugin.h"
 
 
 
 
-#include "axis_message_loop.h"
+#include "aura_message_loop.h"
 
-#include "axis_url.h"
+#include "aura_url.h"
 
-#include "axis_international.h"
+#include "aura_international.h"
 
-#include "axis_static_start.h"
+#include "aura_static_start.h"
 
 
 
@@ -1212,26 +1212,26 @@ extern "C"
 }
 
 
-CLASS_DECL_AXIS string _ca_get_file_name(const char * psz,bool bCreate = false,int32_t * pfd = NULL);
+CLASS_DECL_AURA string _ca_get_file_name(const char * psz,bool bCreate = false,int32_t * pfd = NULL);
 
-CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
-
-
-#include "axis_simple_app.h"
+CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 
+#include "aura_simple_app.h"
 
 
 
 
 
 
-#include "app/appseed/axis/axis/node/node.h"
+
+
+#include "app/appseed/aura/aura/node/node.h"
 
 
 
-#include "axis/user/simple/simple.h"
-#include "axis/user/simple_ui/simple_ui.h"
+#include "aura/user/simple/simple.h"
+#include "aura/user/simple_ui/simple_ui.h"
 
 
 

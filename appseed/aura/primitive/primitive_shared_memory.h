@@ -7,7 +7,7 @@ namespace primitive
 {
 
 
-   class CLASS_DECL_AXIS shared_memory :
+   class CLASS_DECL_AURA shared_memory :
       public ::primitive::memory_base
    {
    public:

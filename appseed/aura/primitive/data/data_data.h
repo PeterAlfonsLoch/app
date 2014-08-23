@@ -13,12 +13,12 @@ namespace data
    class simple_data;
 
 
-   typedef CLASS_DECL_AXIS spa(data_listener) data_listener_ptra;
-   typedef CLASS_DECL_AXIS comparable_array < data * > data_ptra;
-   typedef CLASS_DECL_AXIS comparable_array < sp(element) > ca_ptra;
+   typedef CLASS_DECL_AURA spa(data_listener) data_listener_ptra;
+   typedef CLASS_DECL_AURA comparable_array < data * > data_ptra;
+   typedef CLASS_DECL_AURA comparable_array < sp(element) > ca_ptra;
 
 
-   class CLASS_DECL_AXIS simple_lock :
+   class CLASS_DECL_AURA simple_lock :
       public interlocked_long_pulse
    {
    public:
@@ -35,7 +35,7 @@ namespace data
    
 
 
-   class CLASS_DECL_AXIS simple_data :
+   class CLASS_DECL_AURA simple_data :
       virtual public root
    {
    public:
@@ -59,7 +59,7 @@ namespace data
 
 
 
-   class CLASS_DECL_AXIS lock :
+   class CLASS_DECL_AURA lock :
       public interlocked_long_pulse
    {
    public:
@@ -76,7 +76,7 @@ namespace data
 
 
 
-   class CLASS_DECL_AXIS data :
+   class CLASS_DECL_AURA data :
       virtual public ::object,
       virtual public simple_data
    {
@@ -92,7 +92,7 @@ namespace data
       sp(::user::document)              m_pdocument;
 
 
-      data(sp(::axis::application) papp);
+      data(sp(::aura::application) papp);
       virtual ~data();
 
 

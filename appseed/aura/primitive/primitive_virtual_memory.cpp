@@ -5,7 +5,7 @@ namespace primitive
 {
 
 
-   virtual_memory::virtual_memory(sp(::axis::application) papp) :
+   virtual_memory::virtual_memory(sp(::aura::application) papp) :
       element(papp)
    {
       m_pbStorage = NULL;

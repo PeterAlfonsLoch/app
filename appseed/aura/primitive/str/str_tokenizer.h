@@ -4,7 +4,7 @@
 namespace str
 {
 
-   class CLASS_DECL_AXIS tokenizer : public string 
+   class CLASS_DECL_AURA tokenizer : public string 
    {
    protected:
 

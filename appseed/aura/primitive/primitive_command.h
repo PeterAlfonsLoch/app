@@ -5,13 +5,13 @@ namespace primitive
 {
 
 
-   class CLASS_DECL_AXIS command :
+   class CLASS_DECL_AURA command :
       virtual public ::object
    {
    public:
 
 
-      command(sp(::axis::application) papp);
+      command(sp(::aura::application) papp);
       virtual ~command();
 
       virtual var run();

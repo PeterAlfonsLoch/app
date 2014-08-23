@@ -5,7 +5,7 @@ namespace data
 {
 
 
-   class CLASS_DECL_AXIS data_container :
+   class CLASS_DECL_AURA data_container :
       virtual public ::object
    {
    public:
@@ -27,7 +27,7 @@ namespace data
 
    };
 
-   class CLASS_DECL_AXIS data_container_base :
+   class CLASS_DECL_AURA data_container_base :
       virtual public ::object
    {
    public:
@@ -36,7 +36,7 @@ namespace data
       spa(data)       m_spadata;
 
 
-      data_container_base(sp(::axis::application) papp);
+      data_container_base(sp(::aura::application) papp);
       virtual ~data_container_base();
 
 

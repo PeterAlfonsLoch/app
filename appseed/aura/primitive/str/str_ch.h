@@ -1,8 +1,8 @@
 #pragma once
 
-#include "axis/primitive/str/x/x_charcategory.h"
-#include "axis/primitive/str/x/x_defines.h"
-#include "axis/primitive/str/x/x_tables.h"
+#include "aura/primitive/str/x/x_charcategory.h"
+#include "aura/primitive/str/x/x_defines.h"
+#include "aura/primitive/str/x/x_tables.h"
 
 
 /** Character information class.
@@ -31,7 +31,7 @@ namespace str
 {
 
 
-   class CLASS_DECL_AXIS utf8_char
+   class CLASS_DECL_AURA utf8_char
    {
    public:
 
@@ -49,9 +49,9 @@ namespace str
    namespace ch
    {
 
-      CLASS_DECL_AXIS  int64_t uni_index(const char * pszUtf8);
-      CLASS_DECL_AXIS  int64_t uni_index_len(const char * pszUtf8, strsize & len);
-      CLASS_DECL_AXIS  int64_t uni_index(const char * pszUtf8, const char * pszEnd);
+      CLASS_DECL_AURA  int64_t uni_index(const char * pszUtf8);
+      CLASS_DECL_AURA  int64_t uni_index_len(const char * pszUtf8, strsize & len);
+      CLASS_DECL_AURA  int64_t uni_index(const char * pszUtf8, const char * pszEnd);
 
 
       inline bool is_legal_uni_index(int64_t ca)
@@ -113,32 +113,32 @@ namespace str
       }
 
 
-      CLASS_DECL_AXIS string to_lower_case(const char * pszUtf8Char);
-      CLASS_DECL_AXIS string to_upper_case(const char * pszUtf8Char);
-      CLASS_DECL_AXIS string to_title_case(const char * pszUtf8Char);
+      CLASS_DECL_AURA string to_lower_case(const char * pszUtf8Char);
+      CLASS_DECL_AURA string to_upper_case(const char * pszUtf8Char);
+      CLASS_DECL_AURA string to_title_case(const char * pszUtf8Char);
 
-      CLASS_DECL_AXIS bool is_lower_case(const char * pszUtf8Char);
-      CLASS_DECL_AXIS bool is_upper_case(const char * pszUtf8Char);
-      CLASS_DECL_AXIS bool is_title_case(const char * pszUtf8Char);
-      CLASS_DECL_AXIS bool is_letter(const char * pszUtf8Char);
-      CLASS_DECL_AXIS bool is_letter_or_digit(const char * pszUtf8Char);
-      CLASS_DECL_AXIS bool is_digit(const char * pszUtf8Char);
-      CLASS_DECL_AXIS bool is_assigned(const char * pszUtf8Char);
-      CLASS_DECL_AXIS bool is_space_char(const char * pszUtf8Char);
-      CLASS_DECL_AXIS bool is_whitespace(const char * pszUtf8Char);
-      CLASS_DECL_AXIS bool is_whitespace(const char * pszUtf8Char, const char * pszEnd);
+      CLASS_DECL_AURA bool is_lower_case(const char * pszUtf8Char);
+      CLASS_DECL_AURA bool is_upper_case(const char * pszUtf8Char);
+      CLASS_DECL_AURA bool is_title_case(const char * pszUtf8Char);
+      CLASS_DECL_AURA bool is_letter(const char * pszUtf8Char);
+      CLASS_DECL_AURA bool is_letter_or_digit(const char * pszUtf8Char);
+      CLASS_DECL_AURA bool is_digit(const char * pszUtf8Char);
+      CLASS_DECL_AURA bool is_assigned(const char * pszUtf8Char);
+      CLASS_DECL_AURA bool is_space_char(const char * pszUtf8Char);
+      CLASS_DECL_AURA bool is_whitespace(const char * pszUtf8Char);
+      CLASS_DECL_AURA bool is_whitespace(const char * pszUtf8Char, const char * pszEnd);
 
-      CLASS_DECL_AXIS bool is_number(const char * pszUtf8Char);
-//      CLASS_DECL_AXIS bool to_numeric_value(const char * pszUtf8Char, float *f);
+      CLASS_DECL_AURA bool is_number(const char * pszUtf8Char);
+//      CLASS_DECL_AURA bool to_numeric_value(const char * pszUtf8Char, float *f);
 
-      CLASS_DECL_AXIS string get_category_name(const char * pszUtf8Char);
+      CLASS_DECL_AURA string get_category_name(const char * pszUtf8Char);
       ECharCategory get_category(const char * pszUtf8Char);
 
-      CLASS_DECL_AXIS int32_t get_combining_class(const char * pszUtf8Char);
-      CLASS_DECL_AXIS bool is_mirrored(const char * pszUtf8Char);
+      CLASS_DECL_AURA int32_t get_combining_class(const char * pszUtf8Char);
+      CLASS_DECL_AURA bool is_mirrored(const char * pszUtf8Char);
 
       /** @deprecated For debug purposes only. */
-      CLASS_DECL_AXIS int32_t size_of_tables();
+      CLASS_DECL_AURA int32_t size_of_tables();
 
 
    }

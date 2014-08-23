@@ -7,7 +7,7 @@ namespace data
    class data;
 
 
-   class CLASS_DECL_AXIS data_listener :
+   class CLASS_DECL_AURA data_listener :
       virtual public ::object
    {
    public:
@@ -16,7 +16,7 @@ namespace data
       comparable_array < data * > m_dataptra;
 
 
-      data_listener(sp(::axis::application) papp);
+      data_listener(sp(::aura::application) papp);
       virtual ~data_listener();
 
 

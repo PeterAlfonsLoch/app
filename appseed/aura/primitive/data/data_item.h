@@ -13,7 +13,7 @@ namespace data
    class tree;
 
 
-   class CLASS_DECL_AXIS item :
+   class CLASS_DECL_AURA item :
       virtual public simple_data
    {
    public:
@@ -32,7 +32,7 @@ namespace data
    };
 
 
-   class CLASS_DECL_AXIS item_array :
+   class CLASS_DECL_AURA item_array :
       public spa(item)
    {
    public:

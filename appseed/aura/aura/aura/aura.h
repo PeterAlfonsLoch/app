@@ -65,7 +65,7 @@
 #define CLASS_DECL_AURA  CLASS_DECL_IMPORT
 #endif
 
-#include "app/appseed/axis/version.h"
+#include "app/appseed/aura/version.h"
 
 #include "nodeapp/operational_system/_c.h"
 
@@ -73,5 +73,6 @@
 
 #include "aura_types.h"
 
+#include "aura/aura_policy/aura_policy.h"
 
 #endif

@@ -296,12 +296,12 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
 #endif
 
 //#ifdef WINDOWS
-DEFINE_C_NUMBER(CLASS_DECL_AXIS, os_lock_duration, uint32_t)
+DEFINE_C_NUMBER(CLASS_DECL_AURA, os_lock_duration, uint32_t)
 //#endif
 
-//DEFINE_C_NUMBER(CLASS_DECL_AXIS, file_size        , uint64_t)
-//DEFINE_C_NUMBER(CLASS_DECL_AXIS, file_position    , uint64_t)
-//DEFINE_C_NUMBER(CLASS_DECL_AXIS, file_offset      ,  int64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_AURA, file_size        , uint64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_AURA, file_position    , uint64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_AURA, file_offset      ,  int64_t)
 
 
 /*namespace numeric_info
@@ -349,7 +349,7 @@ namespace numeric_info_internal
 {
 
    template < typename T >
-   class CLASS_DECL_AXIS numeric_info < ::c_number < T > > :
+   class CLASS_DECL_AURA numeric_info < ::c_number < T > > :
    public numeric_info < T >
    {
    public:

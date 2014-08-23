@@ -5,7 +5,7 @@ namespace data
 {
 
 
-   tree::tree(sp(::axis::application) papp) :
+   tree::tree(sp(::aura::application) papp) :
       element(papp),
       ::data::data(papp),
       m_mutex(papp)
@@ -254,7 +254,7 @@ namespace data
          break;
       case RelativePreviousSibling:
          {
-            // all tree items that have siblings have a parent (at least the axis item)
+            // all tree items that have siblings have a parent (at least the aura item)
             ASSERT(pitemRelative->m_pparent != NULL);
             // Is pitemRelative a first child ?
             index iFind = pitemRelative->m_pparent->m_children.find_first(pitemRelative);
@@ -266,7 +266,7 @@ namespace data
          break;
       case RelativeNextSibling:
          {
-            // all tree items that have siblings have a parent (at least the axis item)
+            // all tree items that have siblings have a parent (at least the aura item)
             ASSERT(pitemRelative->m_pparent != NULL);
             // Is pitemRelative a first child ?
             index iFind = pitemRelative->m_pparent->m_children.find_first(pitemRelative);
@@ -280,7 +280,7 @@ namespace data
          break;
       case RelativeLastSibling:
          {
-            // all tree items that have siblings have a parent (at least the axis item)
+            // all tree items that have siblings have a parent (at least the aura item)
             ASSERT(pitemRelative->m_pparent != NULL);
             pitemRelative->m_pparent->m_children.add(pitemNew);
             pitemNew->m_pparent = pitemRelative->m_pparent;

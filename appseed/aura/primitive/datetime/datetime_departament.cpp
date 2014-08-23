@@ -6,9 +6,9 @@ namespace datetime
 
 
 
-   departament::departament(sp(::axis::application) papp) :
+   departament::departament(sp(::aura::application) papp) :
       element(papp),
-      ::axis::departament(papp),
+      ::aura::departament(papp),
       m_international(papp),
       m_str(papp)
    {
@@ -107,7 +107,7 @@ namespace datetime
       return time.get_time();
    }
 
-   departament::international::international(sp(::axis::application) papp) :
+   departament::international::international(sp(::aura::application) papp) :
       element(papp)
    {
    }
@@ -208,7 +208,7 @@ namespace datetime
       return get_local_date_time(time);
    }
 
-   departament::str::str(sp(::axis::application) papp)
+   departament::str::str(sp(::aura::application) papp)
    {
       UNREFERENCED_PARAMETER(papp);
       m_pdatetime = NULL;

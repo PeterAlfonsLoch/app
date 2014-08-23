@@ -34,7 +34,7 @@ public:
 
    numeric_array();
    numeric_array(::count cSize);
-   numeric_array(sp(::axis::application) papp);
+   numeric_array(sp(::aura::application) papp);
    numeric_array(const numeric_array & array);
 #ifdef MOVE_SEMANTICS
    numeric_array(numeric_array && array);
@@ -190,7 +190,7 @@ class unique_number_sort_array :
    public numeric_array < TYPE >
 {
 public:
-   unique_number_sort_array(sp(::axis::application) papp = NULL);
+   unique_number_sort_array(sp(::aura::application) papp = NULL);
    unique_number_sort_array(const unique_number_sort_array & array);
 
    index add(const TYPE & newElement)
@@ -298,7 +298,7 @@ numeric_array(::count cSize)
 
 template < class TYPE >
 numeric_array < TYPE >::
-   numeric_array(sp(::axis::application) papp) :
+   numeric_array(sp(::aura::application) papp) :
    element(papp)
 {
 }
@@ -738,7 +738,7 @@ inline TYPE numeric_array < TYPE > ::pop_to()
 
 template < class TYPE >
 unique_number_sort_array < TYPE >::
-   unique_number_sort_array(sp(::axis::application) papp) :
+   unique_number_sort_array(sp(::aura::application) papp) :
    element(papp)
 {
 }
@@ -788,23 +788,23 @@ unique_number_sort_array < TYPE >::
 
 
 
-typedef CLASS_DECL_AXIS numeric_array < index > index_array;
-typedef CLASS_DECL_AXIS numeric_array < count > count_array;
-typedef CLASS_DECL_AXIS numeric_array < int32_t > int_array;
-typedef CLASS_DECL_AXIS numeric_array < int64_t > int64_array;
-typedef CLASS_DECL_AXIS numeric_array < uint64_t > uint64_array;
-typedef CLASS_DECL_AXIS numeric_array < float > float_array;
-typedef CLASS_DECL_AXIS numeric_array < double > double_array;
-typedef CLASS_DECL_AXIS numeric_array < byte > byte_array;
-typedef CLASS_DECL_AXIS numeric_array < uint16_t > uint16_array;
-typedef CLASS_DECL_AXIS numeric_array < uint32_t > uint_array;
-typedef CLASS_DECL_AXIS numeric_array < uint_ptr > uint_ptr_array;
+typedef CLASS_DECL_AURA numeric_array < index > index_array;
+typedef CLASS_DECL_AURA numeric_array < count > count_array;
+typedef CLASS_DECL_AURA numeric_array < int32_t > int_array;
+typedef CLASS_DECL_AURA numeric_array < int64_t > int64_array;
+typedef CLASS_DECL_AURA numeric_array < uint64_t > uint64_array;
+typedef CLASS_DECL_AURA numeric_array < float > float_array;
+typedef CLASS_DECL_AURA numeric_array < double > double_array;
+typedef CLASS_DECL_AURA numeric_array < byte > byte_array;
+typedef CLASS_DECL_AURA numeric_array < uint16_t > uint16_array;
+typedef CLASS_DECL_AURA numeric_array < uint32_t > uint_array;
+typedef CLASS_DECL_AURA numeric_array < uint_ptr > uint_ptr_array;
 
 
 
 
-typedef CLASS_DECL_AXIS unique_number_sort_array < int32_t > unique_int_sort_array;
-typedef CLASS_DECL_AXIS unique_number_sort_array < index > unique_index_sort_array;
+typedef CLASS_DECL_AURA unique_number_sort_array < int32_t > unique_int_sort_array;
+typedef CLASS_DECL_AURA unique_number_sort_array < index > unique_index_sort_array;
 
 
 

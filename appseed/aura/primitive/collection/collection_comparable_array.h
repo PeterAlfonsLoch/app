@@ -232,7 +232,7 @@ operator = (ptr_array<  TYPE, ARRAY_TYPE> && a)
 
 
 
-class CLASS_DECL_AXIS const_char_ptra:
+class CLASS_DECL_AURA const_char_ptra:
    public ptr_array < const char >
 {
 };
