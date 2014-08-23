@@ -25,7 +25,7 @@
 
 
 
-#ifdef THE_LANGUAGE_OF_THE_LANGUAGE
+#ifdef AURA_LANGUAGE
 
 
 #ifdef cplusplus

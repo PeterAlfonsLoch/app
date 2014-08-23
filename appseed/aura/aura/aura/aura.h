@@ -1,14 +1,14 @@
+#pragma once
+
+
 #ifndef CA2_APP_AURA_AURA_AURA_AURA_H
 #define CA2_APP_AURA_AURA_AURA_AURA_H
 
 
-#pragma once
+#include "aura_aura.h"
 
 
-#include "axis_a_basic_rid_off.h"
-
-
-#ifdef THE_LANGUAGE_OF_THE_LANGUAGE
+#ifdef AURA_LANGUAGE
 
 
 #ifdef __cplusplus
