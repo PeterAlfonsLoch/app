@@ -19,7 +19,7 @@ typedef bool
     _In_ uint32_t dwFlag);
 
 
-CLASS_DECL_AXIS LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter = NULL;
+CLASS_DECL_AURA LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter = NULL;
 
 typedef  
 LSTATUS
@@ -513,7 +513,7 @@ int_bool is_windows_native_unicode()
 
 // Obsolete API
 /*
-void CLASS_DECL_AXIS __set_alloc_stop(LONG lRequestNumber)
+void CLASS_DECL_AURA __set_alloc_stop(LONG lRequestNumber)
 {
 _CrtSetBreakAlloc(lRequestNumber);
 }
@@ -522,7 +522,7 @@ _CrtSetBreakAlloc(lRequestNumber);
 /*
 // -- true if block of exact size, allocated on the heap
 // -- set *plRequestNumber to request number (or 0)
-bool CLASS_DECL_AXIS __is_memory_block(const void * pData, UINT nBytes,
+bool CLASS_DECL_AURA __is_memory_block(const void * pData, UINT nBytes,
 LONG* plRequestNumber)
 {
 return _CrtIsMemoryBlock(pData, nBytes, plRequestNumber, NULL, NULL);
@@ -533,7 +533,7 @@ END_EXTERN_C
 
 #ifdef DEBUG
 
-CLASS_DECL_AXIS bool  __check_memory()
+CLASS_DECL_AURA bool  __check_memory()
 {
 
    return _CrtCheckMemory() != FALSE;
@@ -633,12 +633,12 @@ int32_t __cdecl __crt_report_hook(int32_t nRptType,__in char *szMsg,int32_t* pRe
 
 
 // out-of-line cleanup called from inline __exception_link destructor
-CLASS_DECL_AXIS void __try_cleanup()
+CLASS_DECL_AURA void __try_cleanup()
 {
 }
 
 // special out-of-line implementation of THROW_LAST (for auto-delete behavior)
-void CLASS_DECL_AXIS __throw_last_cleanup()
+void CLASS_DECL_AURA __throw_last_cleanup()
 {
 }
 
@@ -652,7 +652,7 @@ namespace core
 
 #if defined( _CUSTOM_THROW )  // You can define your own throw hresult_exception to throw a custom exception.
 
-   CLASS_DECL_AXIS void WINAPI atl_throw_impl(HRESULT hr)
+   CLASS_DECL_AURA void WINAPI atl_throw_impl(HRESULT hr)
    {
       TRACE(atlTraceException,0,"throw hresult_exception: hr = 0x%x\n",hr);
 #ifdef _AFX
@@ -675,7 +675,7 @@ namespace core
    // Throw a atl_exception with th given HRESULT
 #if !defined( _CUSTOM_THROW )  // You can define your own throw hresult_exception
 
-   //CLASS_DECL_AXIS void WINAPI atl_throw_impl(HRESULT hr)
+   //CLASS_DECL_AURA void WINAPI atl_throw_impl(HRESULT hr)
    //{
    //   TRACE("throw hresult_exception: hr = 0x%x\n", hr);
    //  throw hresult_exception(hr);

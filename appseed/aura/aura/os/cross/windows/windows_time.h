@@ -11,8 +11,8 @@ struct timeval
 
 #endif
 
-CLASS_DECL_AXIS int_bool WINAPI LocalFileTimeToFileTime(const FILETIME *localft, LPFILETIME utcft);
-CLASS_DECL_AXIS int_bool WINAPI FileTimeToLocalFileTime(const FILETIME *utcft, LPFILETIME localft);
+CLASS_DECL_AURA int_bool WINAPI LocalFileTimeToFileTime(const FILETIME *localft, LPFILETIME utcft);
+CLASS_DECL_AURA int_bool WINAPI FileTimeToLocalFileTime(const FILETIME *utcft, LPFILETIME localft);
 #ifndef METROWIN
 int_bool FileTimeToSystemTime(const FILETIME *ft, LPSYSTEMTIME syst);
 #endif

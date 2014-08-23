@@ -34,7 +34,7 @@ struct NSWindow;
 typedef NSWindow * nswindow;
 
 
-class CLASS_DECL_AXIS oswindow_data
+class CLASS_DECL_AURA oswindow_data
 {
 public:
    

@@ -206,6 +206,6 @@ typedef GENERIC_MAPPING *PGENERIC_MAPPING;*/
 
 
 #ifdef METROWIN
-CLASS_DECL_AXIS BOOL WINAPI LockFile(HANDLE hfile, uint32_t dwLo, uint32_t dwHi, uint32_t dwCountLo, uint32_t dwCountHi);
-CLASS_DECL_AXIS BOOL WINAPI UnlockFile(HANDLE hfile, uint32_t dwLo, uint32_t dwHi, uint32_t dwCountLo, uint32_t dwCountHi);
+CLASS_DECL_AURA BOOL WINAPI LockFile(HANDLE hfile, uint32_t dwLo, uint32_t dwHi, uint32_t dwCountLo, uint32_t dwCountHi);
+CLASS_DECL_AURA BOOL WINAPI UnlockFile(HANDLE hfile, uint32_t dwLo, uint32_t dwHi, uint32_t dwCountLo, uint32_t dwCountHi);
 #endif

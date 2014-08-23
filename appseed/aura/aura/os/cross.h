@@ -11,7 +11,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AXIS create_struct:
+   class CLASS_DECL_AURA create_struct:
       public CREATESTRUCT
    {
    public:

@@ -1050,7 +1050,7 @@ BOOL WINAPI PostThreadMessageW(DWORD idThread, UINT message, WPARAM wparam, LPAR
 }
 
 
-CLASS_DECL_AXIS WINBOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
+CLASS_DECL_AURA WINBOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
 {
 
    HTHREAD  h = oswindow->m_pui->m_pthread->get_os_handle();

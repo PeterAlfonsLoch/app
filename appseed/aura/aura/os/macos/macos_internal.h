@@ -73,7 +73,7 @@ typedef int wxCoord;
 enum { wxDefaultCoord = -1 };
 
 
-class CLASS_DECL_AXIS wxSize
+class CLASS_DECL_AURA wxSize
 {
 public:
    // members are public for compatibility, don't use them directly.
@@ -141,7 +141,7 @@ public:
 };
 
 
-class CLASS_DECL_AXIS wxPoint
+class CLASS_DECL_AURA wxPoint
 {
 public:
    int x, y;
@@ -172,7 +172,7 @@ public:
 };
 
 
-class CLASS_DECL_AXIS device_context
+class CLASS_DECL_AURA device_context
 {
 public:
    

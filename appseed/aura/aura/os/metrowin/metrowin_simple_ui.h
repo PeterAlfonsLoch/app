@@ -5,7 +5,7 @@ namespace os
 {
 
 
-   class CLASS_DECL_AXIS simple_ui :
+   class CLASS_DECL_AURA simple_ui :
       virtual public ::simple_ui::interaction
    {
    public:

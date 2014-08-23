@@ -41,18 +41,18 @@
 //typedef struct hthread * HTHREAD;
 //#endif
 
-CLASS_DECL_AXIS HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_ptr unusedStackSize, uint32_t (* lpStartAddress)(void *) , void * lpParameter, uint32_t uiCreationFlags, uint32_t * puiId);
-CLASS_DECL_AXIS DWORD WINAPI ResumeThread(HTHREAD hThread);
-CLASS_DECL_AXIS int_bool WINAPI SetThreadPriority(HTHREAD hThread, int32_t nPriority);
-CLASS_DECL_AXIS int32_t WINAPI GetThreadPriority(HTHREAD hThread);
+CLASS_DECL_AURA HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_ptr unusedStackSize, uint32_t (* lpStartAddress)(void *) , void * lpParameter, uint32_t uiCreationFlags, uint32_t * puiId);
+CLASS_DECL_AURA DWORD WINAPI ResumeThread(HTHREAD hThread);
+CLASS_DECL_AURA int_bool WINAPI SetThreadPriority(HTHREAD hThread, int32_t nPriority);
+CLASS_DECL_AURA int32_t WINAPI GetThreadPriority(HTHREAD hThread);
 
 
-CLASS_DECL_AXIS VOID WINAPI Sleep(DWORD dwMilliseconds);
+CLASS_DECL_AURA VOID WINAPI Sleep(DWORD dwMilliseconds);
 
-CLASS_DECL_AXIS DWORD WINAPI TlsAlloc();
-CLASS_DECL_AXIS int_bool WINAPI TlsFree(DWORD dwTlsIndex);
-CLASS_DECL_AXIS LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex);
-CLASS_DECL_AXIS int_bool WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue);
+CLASS_DECL_AURA DWORD WINAPI TlsAlloc();
+CLASS_DECL_AURA int_bool WINAPI TlsFree(DWORD dwTlsIndex);
+CLASS_DECL_AURA LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex);
+CLASS_DECL_AURA int_bool WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue);
 
 void WINAPI TlsShutdown();
 
@@ -67,12 +67,12 @@ interface ID3D11DeviceContext;
 interface ID3D11Device1;
 interface IDXGIDevice;
 
-CLASS_DECL_AXIS IDWriteFactory * TlsGetWriteFactory();
-CLASS_DECL_AXIS ID2D1Factory1 * GetD2D1Factory1();
-CLASS_DECL_AXIS ID3D11Device * TlsGetD3D11Device();
-CLASS_DECL_AXIS ID3D11DeviceContext * TlsGetD3D11DeviceContext();
-CLASS_DECL_AXIS ID3D11Device1 * TlsGetD3D11Device1();
-CLASS_DECL_AXIS IDXGIDevice * TlsGetDXGIDevice();
+CLASS_DECL_AURA IDWriteFactory * TlsGetWriteFactory();
+CLASS_DECL_AURA ID2D1Factory1 * GetD2D1Factory1();
+CLASS_DECL_AURA ID3D11Device * TlsGetD3D11Device();
+CLASS_DECL_AURA ID3D11DeviceContext * TlsGetD3D11DeviceContext();
+CLASS_DECL_AURA ID3D11Device1 * TlsGetD3D11Device1();
+CLASS_DECL_AURA IDXGIDevice * TlsGetDXGIDevice();
 
 #define TLS_WRITE_FACTORY     12
 #define TLS_D2D1_FACTORY1     13

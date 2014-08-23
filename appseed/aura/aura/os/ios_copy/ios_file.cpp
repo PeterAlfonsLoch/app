@@ -10,7 +10,7 @@
 
 
 
-CLASS_DECL_AXIS void dll_processes(uint_array & dwa, stringa & straProcesses, const char * pszDll)
+CLASS_DECL_AURA void dll_processes(uint_array & dwa, stringa & straProcesses, const char * pszDll)
 {
    
    

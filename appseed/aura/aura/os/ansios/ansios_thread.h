@@ -31,11 +31,11 @@ public:
 
 class thread;
 
-class CLASS_DECL_AXIS message_array :
+class CLASS_DECL_AURA message_array :
 public array < MESSAGE > {
 };
 
-class CLASS_DECL_AXIS mq {
+class CLASS_DECL_AURA mq {
 public:
 
 
@@ -52,38 +52,38 @@ public:
 
 };
 
-CLASS_DECL_AXIS mq * get_mq(HTHREAD h);
+CLASS_DECL_AURA mq * get_mq(HTHREAD h);
 
-CLASS_DECL_AXIS int_bool WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
+CLASS_DECL_AURA int_bool WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
 
 #define GetMessage GetMessageW
 
-CLASS_DECL_AXIS int_bool WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
+CLASS_DECL_AURA int_bool WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
 
 #define PeekMessage PeekMessageW
 
-CLASS_DECL_AXIS DWORD WINAPI GetThreadId(HTHREAD Thread);
+CLASS_DECL_AURA DWORD WINAPI GetThreadId(HTHREAD Thread);
 
 #define PostThreadMessage  PostThreadMessageW
 
-CLASS_DECL_AXIS int_bool WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM wParam, LPARAM lParam);
+CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM wParam, LPARAM lParam);
 
 #define PostMessage  PostMessageW
 
-CLASS_DECL_AXIS int_bool WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam);
+CLASS_DECL_AURA int_bool WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam);
 
 
-CLASS_DECL_AXIS HTHREAD GetCurrentThread();
+CLASS_DECL_AURA HTHREAD GetCurrentThread();
 
-CLASS_DECL_AXIS UINT GetCurrentThreadId();
+CLASS_DECL_AURA UINT GetCurrentThreadId();
 
-CLASS_DECL_AXIS void thread_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
+CLASS_DECL_AURA void thread_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
 
-CLASS_DECL_AXIS int32_t thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+CLASS_DECL_AURA int32_t thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
-CLASS_DECL_AXIS void process_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
+CLASS_DECL_AURA void process_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
 
-CLASS_DECL_AXIS int32_t process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+CLASS_DECL_AURA int32_t process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
 
 

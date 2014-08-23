@@ -3,7 +3,7 @@
 extern thread_pointer < os_thread > t_posthread;
 extern thread_pointer < os_thread > currentThread;
 
-CLASS_DECL_AXIS bool __node_axis_pre_init()
+CLASS_DECL_AURA bool __node_axis_pre_init()
 {
 
    return true;
@@ -11,7 +11,7 @@ CLASS_DECL_AXIS bool __node_axis_pre_init()
 }
 
 
-CLASS_DECL_AXIS bool __node_axis_pos_init()
+CLASS_DECL_AURA bool __node_axis_pos_init()
 {
 
    t_posthread = new os_thread(NULL, NULL);
@@ -25,7 +25,7 @@ CLASS_DECL_AXIS bool __node_axis_pos_init()
 }
 
 
-CLASS_DECL_AXIS bool __node_axis_pre_term()
+CLASS_DECL_AURA bool __node_axis_pre_term()
 {
 
    if(t_posthread != NULL)
@@ -58,7 +58,7 @@ CLASS_DECL_AXIS bool __node_axis_pre_term()
 
 
 
-CLASS_DECL_AXIS bool __node_axis_pos_term()
+CLASS_DECL_AURA bool __node_axis_pos_term()
 {
 
    return true;

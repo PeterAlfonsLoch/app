@@ -5,13 +5,13 @@ namespace windows
 {
 
 
-   class CLASS_DECL_AXIS printer :
+   class CLASS_DECL_AURA printer :
       virtual public ::user::printer
    {
    public:
 
 
-      class CLASS_DECL_AXIS document_properties :
+      class CLASS_DECL_AURA document_properties :
          virtual public ::object
       {
       public:

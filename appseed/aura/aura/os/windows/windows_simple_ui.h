@@ -15,7 +15,7 @@ namespace os
 {
 
 
-   class CLASS_DECL_AXIS simple_ui :
+   class CLASS_DECL_AURA simple_ui :
       virtual public ::simple_ui::interaction
    {
    public:
@@ -100,4 +100,4 @@ namespace os
 
 
 
-CLASS_DECL_AXIS LRESULT layered_window_nc_calc_size(WPARAM wparam, LPARAM lparam);
+CLASS_DECL_AURA LRESULT layered_window_nc_calc_size(WPARAM wparam, LPARAM lparam);
