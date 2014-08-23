@@ -3317,6 +3317,15 @@ namespace axis
    }
 
 
+   bool application::set_window_text(::user::interaction * pui,const string & strText)
+   {
+
+      return pui->SetWindowText(strText);
+
+   }
+
+
+
 } // namespace axis
 
 
