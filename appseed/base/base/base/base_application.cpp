@@ -54,10 +54,10 @@ namespace base
 
 #endif
 
-      if(m_paxisapp != NULL)
+      if(m_pauraapp != NULL)
       {
 
-         m_pbasesapp              = m_paxisapp->m_pbasesapp;
+         m_pbasesapp              = m_pauraapp->m_pbasesapp;
 
       }
 
@@ -73,7 +73,7 @@ namespace base
 
          m_pbasesystem           = m_pbasesapp->m_pbasesystem;
 
-         if(m_paxisapp->m_pbasesession == NULL && m_pbasesystem != NULL)
+         if(m_pauraapp->m_pbasesession == NULL && m_pbasesystem != NULL)
          {
 
             m_pbasesession       = m_pbasesystem->m_pbasesession;

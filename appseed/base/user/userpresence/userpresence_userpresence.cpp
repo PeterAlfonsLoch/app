@@ -39,7 +39,7 @@ namespace userpresence
    bool userpresence::finalize()
    {
 
-      if(!m_paxisapp->is_system())
+      if(!m_pauraapp->is_system())
       {
          defer_finalize_user_presence();
       }

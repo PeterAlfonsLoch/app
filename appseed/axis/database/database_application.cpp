@@ -17,7 +17,7 @@ namespace database
    {
       
       
-      if(m_paxisapp->is_system())
+      if(m_pauraapp->is_system())
       {
          System.factory().creatable_large < ::database::result_set > ();
       }

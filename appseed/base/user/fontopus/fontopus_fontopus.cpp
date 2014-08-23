@@ -88,9 +88,9 @@ namespace fontopus
 
          if(m_puser != NULL
             && !::str::begins(m_puser->m_strLogin, "system")
-            && m_paxisapp->m_strAppId != "app-core/deepfish"
-            && !::str::begins(m_paxisapp->m_strAppName, "app-core/deepfish_")
-            && !m_paxisapp->is_serviceable())
+            && m_pauraapp->m_strAppId != "app-core/deepfish"
+            && !::str::begins(m_pauraapp->m_strAppName, "app-core/deepfish_")
+            && !m_pauraapp->is_serviceable())
          {
 
             on_user_login(m_puser);
@@ -136,11 +136,11 @@ namespace fontopus
           /*::draw2d::fontopus * papp;
       if(m_puiInitialPlaceHolderContainer != NULL)
       {
-      papp = m_puiInitialPlaceHolderContainer->m_paxisapp;
+      papp = m_puiInitialPlaceHolderContainer->m_pauraapp;
       }
       else if(System.m_puiInitialPlaceHolderContainer != NULL)
       {
-      papp = System.m_puiInitialPlaceHolderContainer->m_paxisapp;
+      papp = System.m_puiInitialPlaceHolderContainer->m_pauraapp;
       }
       else
       {
@@ -188,7 +188,7 @@ namespace fontopus
 
    user * fontopus::allocate_user()
    {
-      return new class user(m_paxisapp);
+      return new class user(m_pauraapp);
    }
 
    user * fontopus::create_user(::fontopus::user * puser)
@@ -198,11 +198,11 @@ namespace fontopus
          puser->m_strPathPrefix = Application.dir().default_os_user_path_prefix();
       }
       puser->m_strPath = Application.dir().default_userfolder(puser->m_strPathPrefix, puser->m_strLogin);
-      Sess(m_paxisapp).dir().mk(puser->m_strPath);
+      Sess(m_pauraapp).dir().mk(puser->m_strPath);
       puser->m_strDataPath = Application.dir().default_userdata(puser->m_strPathPrefix, puser->m_strLogin);
-      Sess(m_paxisapp).dir().mk(puser->m_strDataPath);
+      Sess(m_pauraapp).dir().mk(puser->m_strDataPath);
       puser->m_strAppDataPath = Application.dir().default_userappdata(puser->m_strPathPrefix, puser->m_strLogin);
-      Sess(m_paxisapp).dir().mk(puser->m_strAppDataPath);
+      Sess(m_pauraapp).dir().mk(puser->m_strAppDataPath);
       puser->create_ifs();
       return puser;
    }

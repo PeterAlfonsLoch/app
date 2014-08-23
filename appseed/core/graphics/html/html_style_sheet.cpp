@@ -53,7 +53,7 @@ namespace html
             
             strStyle.make_lower();
 
-            pstyle->m_etag = m_paxisapp->m_pcoresystem->m_phtml->tag_name_to_id(strStyle);
+            pstyle->m_etag = m_pauraapp->m_pcoresystem->m_phtml->tag_name_to_id(strStyle);
 
             if (pstyle->m_etag == tag_unknown)
                pstyle->m_etag = tag_none;

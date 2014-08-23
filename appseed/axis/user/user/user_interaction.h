@@ -133,9 +133,9 @@ namespace user
       // dialog support
       void UpdateDialogControls(command_target* pTarget,bool bDisableIfNoHndler);
       virtual void CenterWindow(sp(interaction) pAlternateOwner = NULL);
-      virtual id   run_modal_loop(::user::interaction * pui,uint32_t dwFlags = 0,::axis::live_object * pliveobject = NULL);
-      virtual id   RunModalLoop(uint32_t dwFlags = 0,::axis::live_object * pliveobject = NULL);
-      virtual id   _001RunModalLoop(uint32_t dwFlags = 0,::axis::live_object * pliveobject = NULL);
+      virtual id   run_modal_loop(::user::interaction * pui,uint32_t dwFlags = 0,::aura::live_object * pliveobject = NULL);
+      virtual id   RunModalLoop(uint32_t dwFlags = 0,::aura::live_object * pliveobject = NULL);
+      virtual id   _001RunModalLoop(uint32_t dwFlags = 0,::aura::live_object * pliveobject = NULL);
       virtual bool ContinueModal(int32_t iLevel);
       virtual void EndModalLoop(id nResult);
       virtual void EndAllModalLoops(id nResult);
@@ -579,7 +579,7 @@ namespace user
 
       virtual void show_keyboard(bool bShow = true);
 
-      virtual void keep_alive(::axis::live_object * pliveobject = NULL);
+      virtual void keep_alive(::aura::live_object * pliveobject = NULL);
 
       virtual sp(::user::interaction) best_top_level_parent(LPRECT lprect);
 

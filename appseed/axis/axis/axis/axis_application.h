@@ -502,7 +502,7 @@ namespace axis
 
 inline allocatorsp element::allocer()
 {
-   return m_paxisapp->m_allocer;
+   return m_pauraapp->m_allocer;
 }
 
 
@@ -510,7 +510,7 @@ inline allocatorsp element::allocer()
 inline sp(::command_thread) object::command_thread()
 {
 
-   return m_paxisapp->command_thread();
+   return m_pauraapp->command_thread();
 
 }
 

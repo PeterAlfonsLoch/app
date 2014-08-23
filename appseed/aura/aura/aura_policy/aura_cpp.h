@@ -1052,19 +1052,6 @@ inline void string_format::printf(const char * & s)
 
 
 
-#ifdef METROWIN
-
-#define BYESHYTOULA_STYLE_SOCKS
-
-#else
-
-#ifndef BSD_STYLE_SOCKETS
-#define BSD_STYLE_SOCKETS 1
-#endif
-//#include "aura_small_ipc_channel.h"
-
-#endif
-
 
 
 #include "aura_file_watcher.h"

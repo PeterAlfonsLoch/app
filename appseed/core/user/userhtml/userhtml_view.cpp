@@ -131,7 +131,7 @@ void html_view::_001OnCreate(signal_details * pobj)
       return;
 
    get_html_data()->m_pui = this;
-   /*get_html_data()->m_paxisapp = get_app();*/
+   /*get_html_data()->m_pauraapp = get_app();*/
    get_html_data()->m_strPathName = get_document()->get_path_name();
 
 

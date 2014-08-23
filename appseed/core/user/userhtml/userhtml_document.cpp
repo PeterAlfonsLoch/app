@@ -101,7 +101,7 @@ bool html_document::on_open_document(var varFile)
       return FALSE;
 
    set_path_name(get_html_data()->m_strPathName);
-   /*   m_document.m_paxisapp = get_app();*/
+   /*   m_document.m_pauraapp = get_app();*/
 
    html_view_update_hint uh;
    uh.m_etype = html_view_update_hint::type_document_complete;

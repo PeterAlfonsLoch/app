@@ -19,7 +19,7 @@ element::element()
 element::element(const element & o)
 {
 
-   m_paxisapp = o.m_paxisapp;
+   m_pauraapp = o.m_pauraapp;
    m_ulFlags = o.m_ulFlags;
    m_pfactoryitembase   = NULL;
 
@@ -29,7 +29,7 @@ element::element(const element & o)
 element::element(sp(::axis::application) papp)
 {
 
-   m_paxisapp = papp;
+   m_pauraapp = papp;
    m_ulFlags = (uint32_t)flag_auto_clean;
    m_pfactoryitembase   = NULL;
 
@@ -45,7 +45,7 @@ element::~element()
 /*sp(::axis::application) element::get_app() const
 {
 
-   return m_paxisapp;
+   return m_pauraapp;
 
 }*/
 
@@ -53,7 +53,7 @@ element::~element()
 void element::set_app(sp(::axis::application) papp)
 {
 
-   m_paxisapp = papp;
+   m_pauraapp = papp;
 
 }
 
@@ -73,7 +73,7 @@ element & element::operator = (const element & o)
    {
 
       m_ulFlags   = o.m_ulFlags;
-      m_paxisapp      = o.m_paxisapp;
+      m_pauraapp      = o.m_pauraapp;
 
    }
 
@@ -94,7 +94,7 @@ void element::delete_this()
    else if(m_ulFlags & flag_discard_to_factory)
    {
 
-      m_paxisapp->m_paxissystem->discard_to_factory(this);
+      m_pauraapp->m_paxissystem->discard_to_factory(this);
 
    }
    else if(is_heap())
@@ -123,7 +123,7 @@ allocatorsp::allocatorsp(sp(::axis::application) papp)
 
    sp(allocator) spallocator = canew(allocator());
 
-   spallocator->m_paxisapp = papp;
+   spallocator->m_pauraapp = papp;
 
    smart_pointer < allocator >::operator = (spallocator);
 

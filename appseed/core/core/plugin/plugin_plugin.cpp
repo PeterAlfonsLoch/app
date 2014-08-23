@@ -108,7 +108,7 @@ namespace plugin
 
          psystem->m_bDoNotExitIfNoApplications = true;
 
-         m_phost->m_paxisapp = psystem;
+         m_phost->m_pauraapp = psystem;
 
          mlSystem.unlock();
 

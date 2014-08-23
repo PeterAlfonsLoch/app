@@ -241,9 +241,9 @@ namespace plugin
       }
       else
       {
-         if(m_uiptraChild.get_size() > 0 && m_uiptraChild[0]->m_pbaseapp != NULL && m_uiptraChild[0]->m_pbaseapp->m_pbasesession->m_pcoreplatform != NULL)
+         if(m_uiptraChild.get_size() > 0 && m_uiptraChild[0]->m_pauraapp != NULL && m_uiptraChild[0]->m_pauraapp->m_pbasesession->m_pcoreplatform != NULL)
          {
-            set_app(m_uiptraChild[0]->m_pbaseapp);
+            set_app(m_uiptraChild[0]->m_pauraapp);
          }
       }
       ::user::interaction::_000OnMouse(pmouse);

@@ -68,7 +68,7 @@ namespace user
       sp(interaction) puiThis = (this);
       if(puiThis == NULL)
          return NULL;
-      single_lock(puiThis->m_paxisapp->m_pmutex,TRUE);
+      single_lock(puiThis->m_pauraapp->m_pmutex,TRUE);
       sp(interaction) pui = puiThis->above_sibling();
       while(pui != NULL)
       {

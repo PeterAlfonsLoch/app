@@ -1,8 +1,6 @@
 #pragma once
 
 
-#include "app/appseed/axis/primitive/primitive_color.h"
-
 
 namespace draw2d
 {

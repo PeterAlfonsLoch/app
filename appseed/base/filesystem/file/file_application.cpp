@@ -11,22 +11,22 @@ namespace file
 
    void application::copy(const char * pszNew, const char * pszOld, bool bFailIfExists, e_extract eextract)
    {
-      return m_paxisapp->m_pbasesystem->m_spfile->copy(pszNew, pszOld, bFailIfExists, eextract, m_paxisapp);
+      return m_pauraapp->m_pbasesystem->m_spfile->copy(pszNew, pszOld, bFailIfExists, eextract, m_pauraapp);
    }
 
    void application::trash_that_is_not_trash(const char * psz)
    {
-      return m_paxisapp->m_pbasesystem->m_spfile->trash_that_is_not_trash(psz, m_paxisapp);
+      return m_pauraapp->m_pbasesystem->m_spfile->trash_that_is_not_trash(psz, m_pauraapp);
    }
 
    void application::trash_that_is_not_trash(stringa & stra)
    {
-      return m_paxisapp->m_pbasesystem->m_spfile->trash_that_is_not_trash(stra, m_paxisapp);
+      return m_pauraapp->m_pbasesystem->m_spfile->trash_that_is_not_trash(stra, m_pauraapp);
    }
 
    void application::replace(const char * pszContext, const char * pszFind, const char * pszReplace)
    {
-      return m_paxisapp->m_pbasesystem->m_spfile->replace(pszContext, pszFind, pszReplace, m_paxisapp);
+      return m_pauraapp->m_pbasesystem->m_spfile->replace(pszContext, pszFind, pszReplace, m_pauraapp);
    }
 
    bool application::exists(const char * pszPath)
@@ -34,10 +34,10 @@ namespace file
 
       if(::str::begins_ci(pszPath, "uifs://"))
       {
-         return AppUser(m_paxisapp).m_pifs->file_exists(pszPath);
+         return AppUser(m_pauraapp).m_pifs->file_exists(pszPath);
       }
 
-      return m_paxisapp->m_pbasesystem->m_spfile->exists(pszPath, m_paxisapp);
+      return m_pauraapp->m_pbasesystem->m_spfile->exists(pszPath, m_pauraapp);
 
    }
 
@@ -47,11 +47,11 @@ namespace file
 
       if(::str::begins_ci_iws(strPath, "uifs://"))
       {
-         ::fontopus::user & user = AppUser(m_paxisapp);
+         ::fontopus::user & user = AppUser(m_pauraapp);
          return user.m_pifs->file_exists(strPath);
       }
 
-      return m_paxisapp->m_pbasesystem->m_spfile->exists(strPath, m_paxisapp);
+      return m_pauraapp->m_pbasesystem->m_spfile->exists(strPath, m_pauraapp);
 
    }
 
@@ -62,10 +62,10 @@ namespace file
 
       if(::str::begins_ci_iws(strPath, "uifs://"))
       {
-         return AppUser(m_paxisapp).m_pifs->file_exists(strPath);
+         return AppUser(m_pauraapp).m_pifs->file_exists(strPath);
       }
 
-      return m_paxisapp->m_pbasesystem->m_spfile->exists(strPath, m_paxisapp);
+      return m_pauraapp->m_pbasesystem->m_spfile->exists(strPath, m_pauraapp);
 
    }
 
@@ -76,11 +76,11 @@ namespace file
       if (::str::begins_ci(pszPath, "uifs://"))
       {
 
-         return AppUser(m_paxisapp).m_pifs->file_length(pszPath);
+         return AppUser(m_pauraapp).m_pifs->file_length(pszPath);
 
       }
 
-      return m_paxisapp->m_pbasesystem->m_spfile->length(pszPath, m_paxisapp);
+      return m_pauraapp->m_pbasesystem->m_spfile->length(pszPath, m_pauraapp);
 
    }
 
@@ -91,11 +91,11 @@ namespace file
       if (::str::begins_ci_iws(strPath, "uifs://"))
       {
 
-         return AppUser(m_paxisapp).m_pifs->file_length(strPath);
+         return AppUser(m_pauraapp).m_pifs->file_length(strPath);
 
       }
 
-      return m_paxisapp->m_pbasesystem->m_spfile->length(strPath, m_paxisapp);
+      return m_pauraapp->m_pbasesystem->m_spfile->length(strPath, m_pauraapp);
 
    }
 
@@ -108,11 +108,11 @@ namespace file
       if (::str::begins_ci_iws(strPath, "uifs://"))
       {
 
-         return AppUser(m_paxisapp).m_pifs->file_length(strPath);
+         return AppUser(m_pauraapp).m_pifs->file_length(strPath);
 
       }
 
-      return m_paxisapp->m_pbasesystem->m_spfile->length(strPath, m_paxisapp);
+      return m_pauraapp->m_pbasesystem->m_spfile->length(strPath, m_pauraapp);
 
    }
 
@@ -120,7 +120,7 @@ namespace file
    string application::time(const char * pszBasePath, int32_t iDepth, const char * pszPrefix, const char * pszSuffix)
    {
 
-      return m_paxisapp->m_pbasesystem->m_spfile->time(m_paxisapp, pszBasePath, iDepth, pszPrefix, pszSuffix);
+      return m_pauraapp->m_pbasesystem->m_spfile->time(m_pauraapp, pszBasePath, iDepth, pszPrefix, pszSuffix);
 
    }
 
@@ -128,74 +128,74 @@ namespace file
    string application::time_square(const char * pszPrefix, const char * pszSuffix)
    {
 
-      return m_paxisapp->m_pbasesystem->m_spfile->time_square(m_paxisapp, pszPrefix, pszSuffix);
+      return m_pauraapp->m_pbasesystem->m_spfile->time_square(m_pauraapp, pszPrefix, pszSuffix);
 
    }
 
 
    string application::time_log(const char * pszId)
    {
-      return m_paxisapp->m_pbasesystem->m_spfile->time_log(m_paxisapp, pszId);
+      return m_pauraapp->m_pbasesystem->m_spfile->time_log(m_pauraapp, pszId);
    }
 
    ::file::buffer_sp application::time_square_file(const char * pszPrefix, const char * pszSuffix)
    {
-      return m_paxisapp->m_pbasesystem->m_spfile->time_square_file(m_paxisapp, pszPrefix, pszSuffix);
+      return m_pauraapp->m_pbasesystem->m_spfile->time_square_file(m_pauraapp, pszPrefix, pszSuffix);
    }
 
    ::file::buffer_sp application::get(const char * name)
    {
-      return m_paxisapp->m_pbasesystem->m_spfile->get(name, m_paxisapp);
+      return m_pauraapp->m_pbasesystem->m_spfile->get(name, m_pauraapp);
    }
 
    string application::as_string(var varFile)
    {
-      return m_paxisapp->m_pbasesystem->m_spfile->as_string(varFile, m_paxisapp);
+      return m_pauraapp->m_pbasesystem->m_spfile->as_string(varFile, m_pauraapp);
    }
 
    string application::as_string(var varFile, var & varQuery)
    {
-      return m_paxisapp->m_pbasesystem->m_spfile->as_string(varFile, varQuery, m_paxisapp);
+      return m_pauraapp->m_pbasesystem->m_spfile->as_string(varFile, varQuery, m_pauraapp);
    }
 
    void application::as_memory(var varFile, primitive::memory & mem)
    {
-      return m_paxisapp->m_pbasesystem->m_spfile->as_memory(varFile, mem, m_paxisapp);
+      return m_pauraapp->m_pbasesystem->m_spfile->as_memory(varFile, mem, m_pauraapp);
    }
 
    void application::lines(stringa & stra, var varFile)
    {
-      return m_paxisapp->m_pbasesystem->m_spfile->lines(stra, varFile, m_paxisapp);
+      return m_pauraapp->m_pbasesystem->m_spfile->lines(stra, varFile, m_pauraapp);
    }
 
    bool application::put_contents(var varFile, const void * pvoidContents, ::count count)
    {
-      return m_paxisapp->m_pbasesystem->m_spfile->put_contents(varFile, pvoidContents, count, m_paxisapp);
+      return m_pauraapp->m_pbasesystem->m_spfile->put_contents(varFile, pvoidContents, count, m_pauraapp);
    }
 
    bool application::put_contents(var varFile, const char * lpcszContents)
    {
-      return m_paxisapp->m_pbasesystem->m_spfile->put_contents(varFile, lpcszContents, m_paxisapp);
+      return m_pauraapp->m_pbasesystem->m_spfile->put_contents(varFile, lpcszContents, m_pauraapp);
    }
 
    bool application::put_contents(var varFile, ::file::reader & reader)
    {
-      return m_paxisapp->m_pbasesystem->m_spfile->put_contents(varFile, reader, m_paxisapp);
+      return m_pauraapp->m_pbasesystem->m_spfile->put_contents(varFile, reader, m_pauraapp);
    }
 
    bool application::put_contents(var varFile, primitive::memory & mem)
    {
-      return m_paxisapp->m_pbasesystem->m_spfile->put_contents(varFile, mem, m_paxisapp);
+      return m_pauraapp->m_pbasesystem->m_spfile->put_contents(varFile, mem, m_pauraapp);
    }
 
    bool application::put_contents_utf8(var varFile, const char * lpcszContents)
    {
-      return m_paxisapp->m_pbasesystem->m_spfile->put_contents_utf8(varFile, lpcszContents, m_paxisapp);
+      return m_pauraapp->m_pbasesystem->m_spfile->put_contents_utf8(varFile, lpcszContents, m_pauraapp);
    }
 
    string application::sys_temp(const char * pszName, const char * pszExtension)
    {
-      return m_paxisapp->m_pbasesystem->m_spfile->sys_temp(pszName, pszExtension, m_paxisapp);
+      return m_pauraapp->m_pbasesystem->m_spfile->sys_temp(pszName, pszExtension, m_pauraapp);
    }
 
 
@@ -385,7 +385,7 @@ namespace file
                sl.lock();
             }
 
-            if (!Sys(m_paxisapp).http().m_straDownloading.contains(strPath) && Sess(m_paxisapp).m_http.exists(strPath, &varQuery, set))
+            if (!Sys(m_pauraapp).http().m_straDownloading.contains(strPath) && Sess(m_pauraapp).m_http.exists(strPath, &varQuery, set))
             {
 
                System.http().m_straDownloading.add(strPath);
@@ -413,7 +413,7 @@ namespace file
 
                      ::file::input_stream is(spfile);
 
-                     System.file().output(m_paxisapp, strFile, &System.compress(), &::base::compress::null, is);
+                     System.file().output(m_pauraapp, strFile, &System.compress(), &::base::compress::null, is);
 
                   }
                   catch (...)
@@ -452,7 +452,7 @@ namespace file
       else if(::str::begins(strPath, "ifs://") || ::str::begins(strPath, "uifs://"))
       {
 
-         if(&AppUser(m_paxisapp) == NULL)
+         if(&AppUser(m_pauraapp) == NULL)
          {
 
             spfile = NULL;
@@ -461,7 +461,7 @@ namespace file
          else
          {
 
-            spfile = AppUser(m_paxisapp).m_pifs->get_file(varFile, nOpenFlags);
+            spfile = AppUser(m_pauraapp).m_pifs->get_file(varFile, nOpenFlags);
 
          }
 
@@ -488,14 +488,14 @@ namespace file
 
          sp(::axis::application) papp = NULL;
 
-         if(System.url().get_server("matter://" + strPath) == m_paxisapp->m_strAppName)
+         if(System.url().get_server("matter://" + strPath) == m_pauraapp->m_strAppName)
          {
 
             strPath = System.url().get_object("matter://" + strPath).Mid(1);
 
             spfile = Application.alloc(System.type_info < ::file::binary_buffer > ());
 
-            if(!spfile->open(App(m_paxisapp).dir().matter(strPath), nOpenFlags))
+            if(!spfile->open(App(m_pauraapp).dir().matter(strPath), nOpenFlags))
             {
 
                spfile.release();
@@ -503,7 +503,7 @@ namespace file
             }
 
          }
-         else if(&Session != NULL && Session.m_mapApplication.Lookup(System.url().get_server("matter://" + strPath), papp) && App(m_paxisapp).m_strAppName.has_char())
+         else if(&Session != NULL && Session.m_mapApplication.Lookup(System.url().get_server("matter://" + strPath), papp) && App(m_pauraapp).m_strAppName.has_char())
          {
 
             spfile = App(papp).file().get_file("matter://" + strPath, nOpenFlags);
@@ -512,7 +512,7 @@ namespace file
          else
          {
 
-            spfile = get_file(App(m_paxisapp).dir().matter(strPath), nOpenFlags);
+            spfile = get_file(App(m_pauraapp).dir().matter(strPath), nOpenFlags);
 
          }
 
@@ -546,7 +546,7 @@ namespace file
       if(spfile.is_null())
       {
 
-         throw ::file::exception(m_paxisapp, ::file::exception::none, -1, strPath);
+         throw ::file::exception(m_pauraapp, ::file::exception::none, -1, strPath);
 
       }
 

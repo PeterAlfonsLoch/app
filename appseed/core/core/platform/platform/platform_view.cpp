@@ -15,7 +15,7 @@ namespace platform
 
    view::run::run()
    {
-      m_paxisapp = NULL;
+      m_pauraapp = NULL;
       m_pview = NULL;
       m_plink = NULL;
    }

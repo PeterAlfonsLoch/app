@@ -83,7 +83,7 @@ namespace user
 
       m_oswindowParent   = oswindowParent;
       m_pmenuParent  = pmenuParent;
-      //pwndParent->SendMessage(CA2M_BERGEDGE, BERGEDGE_GETAPP, (LPARAM) &m_paxisapp);
+      //pwndParent->SendMessage(CA2M_BERGEDGE, BERGEDGE_GETAPP, (LPARAM) &m_pauraapp);
 
 //      const char * lpcsz = System.RegisterWndClass(CS_DBLCLKS | CS_HREDRAW | CS_VREDRAW);
 

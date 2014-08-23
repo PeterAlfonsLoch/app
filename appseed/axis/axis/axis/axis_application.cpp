@@ -70,19 +70,19 @@ namespace axis
 
 #endif
 
-      if(m_paxisapp == NULL)
+      if(m_pauraapp == NULL)
       {
 
-         m_paxisapp              = this;
+         m_pauraapp              = this;
 
       }
 
-      if(m_paxisapp != NULL)
+      if(m_pauraapp != NULL)
       {
 
-         m_paxissystem           = m_paxisapp->m_paxissystem;
+         m_paxissystem           = m_pauraapp->m_paxissystem;
 
-         if(m_paxisapp->m_paxissession == NULL && m_paxissystem != NULL)
+         if(m_pauraapp->m_paxissession == NULL && m_paxissystem != NULL)
          {
 
             m_paxissession       = m_paxissystem->m_paxissession;
@@ -91,13 +91,13 @@ namespace axis
          else
          {
 
-            m_paxissession       = m_paxisapp->m_paxissession;
+            m_paxissession       = m_pauraapp->m_paxissession;
 
          }
 
 #ifdef WINDOWS
 
-         m_hinstance             = m_paxisapp->m_hinstance;
+         m_hinstance             = m_pauraapp->m_hinstance;
 
 #endif
 

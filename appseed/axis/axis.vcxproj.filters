@@ -180,9 +180,6 @@
     <Filter Include="Header Files\user\simple">
       <UniqueIdentifier>{87359dfc-dc8d-48ea-9e7a-cc1bd37769e0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\datetime">
-      <UniqueIdentifier>{d70cab31-5dbf-4ac5-ae42-56a54f7b9b53}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\primitive">
       <UniqueIdentifier>{c3a3f335-1f74-414c-af73-a3b4680deb20}</UniqueIdentifier>
     </Filter>
@@ -344,9 +341,6 @@
     <ClInclude Include="graphics\visual\visual_icon.h">
       <Filter>Header Files\graphics\visual</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filesystem.h">
-      <Filter>Header Files\filesystem</Filter>
-    </ClInclude>
     <ClInclude Include="multithreading\multithreading_signal_thread.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
@@ -453,9 +447,6 @@
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
     <ClInclude Include="axis\axis\axis_application.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_message_loop.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
     <ClInclude Include="axis\axis\axis_message_queue.h">
@@ -2264,9 +2255,6 @@
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
       <Filter>Header Files\multithreading</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

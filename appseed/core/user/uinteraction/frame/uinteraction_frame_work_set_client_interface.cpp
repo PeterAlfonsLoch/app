@@ -15,7 +15,7 @@ namespace user
 
          WorkSetClientInterface::WorkSetClientInterface()
          {
-            m_workset.set_app(m_paxisapp);
+            m_workset.set_app(m_pauraapp);
          }
 
          WorkSetClientInterface::~WorkSetClientInterface()

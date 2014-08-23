@@ -100,7 +100,7 @@ void simple_frame_window::_001OnDestroy(signal_details * pobj)
 {
    try
    {
-      if (m_paxisapp != NULL && &Application != NULL)
+      if (m_pauraapp != NULL && &Application != NULL)
       {
          Application.remove_frame(this);
       }
@@ -122,7 +122,7 @@ void simple_frame_window::_001OnDestroy(signal_details * pobj)
 
    try
    {
-      if (m_paxisapp != NULL && m_paxisapp->m_pcoresystem != NULL && &System != NULL)
+      if (m_pauraapp != NULL && m_pauraapp->m_pcoresystem != NULL && &System != NULL)
       {
          System.remove_frame(this);
       }

@@ -34,7 +34,7 @@ namespace user
    bool user::initialize1()
    {
 
-      if(m_paxisapp->is_session())
+      if(m_pauraapp->is_session())
       {
          m_pwindowmap = new class ::user::window_map(get_app());
       }
@@ -43,7 +43,7 @@ namespace user
          m_pwindowmap = Session.user()->m_pwindowmap;
       }
 
-      m_pkeyboard = new ::user::keyboard(m_paxisapp);
+      m_pkeyboard = new ::user::keyboard(m_pauraapp);
 
       if(m_pkeyboard == NULL)
          return false;
@@ -54,12 +54,12 @@ namespace user
 
 
 
-      if(m_paxisapp->is_system())
+      if(m_pauraapp->is_system())
       {
          System.factory().creatable_small < keyboard_layout > ();
       }
 
-//      m_pshellimageset = new filemanager::_shell::ImageSet(m_paxisapp);
+//      m_pshellimageset = new filemanager::_shell::ImageSet(m_pauraapp);
 
       if(!::axis::departament::initialize1())
          return false;
@@ -285,9 +285,9 @@ retry_license:
    int32_t user::simple_message_box(sp(::user::interaction) pwndOwner, const char * pszMessage, UINT fuStyle)
    {
 
-      //if(m_paxisapp->m_pcoreapp->m_psession != NULL)
+      //if(m_pauraapp->m_pcoreapp->m_psession != NULL)
       //{
-        // return m_paxisapp->m_pcoreapp->m_psession->m_pcoreplatform->m_pcoreplatform->simple_message_box(pwndOwner, pszMessage, fuStyle);
+        // return m_pauraapp->m_pcoreapp->m_psession->m_pcoreplatform->m_pcoreplatform->simple_message_box(pwndOwner, pszMessage, fuStyle);
       //}
 
       class ::userex::message_box box(get_app());

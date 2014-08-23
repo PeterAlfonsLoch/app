@@ -39,12 +39,12 @@ namespace userex
 
 
 
-      if(m_paxisapp->is_system())
+      if(m_pauraapp->is_system())
       {
          System.factory().creatable_small < keyboard_layout >();
       }
 
-      m_pshellimageset = new filemanager::_shell::ImageSet(m_paxisapp);
+      m_pshellimageset = new filemanager::_shell::ImageSet(m_pauraapp);
 
       if(!::axis::departament::initialize1())
          return false;
@@ -661,9 +661,9 @@ namespace userex
 
    sp(::form_document) userex::create_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
-      if(pwndParent != NULL && pwndParent->m_paxisapp != get_app())
+      if(pwndParent != NULL && pwndParent->m_pauraapp != get_app())
       {
-         return App(pwndParent->m_paxisapp).userex()->create_form(pcallback,pwndParent,var);
+         return App(pwndParent->m_pauraapp).userex()->create_form(pcallback,pwndParent,var);
       }
       sp(::form_document) pdoc;
       if(m_ptemplateForm == NULL)
@@ -708,9 +708,9 @@ namespace userex
 
    sp(::form_document) userex::create_child_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
-      if(pwndParent != NULL && pwndParent->m_paxisapp != get_app())
+      if(pwndParent != NULL && pwndParent->m_pauraapp != get_app())
       {
-         return App(pwndParent->m_paxisapp).userex()->create_child_form(pcallback,pwndParent,var);
+         return App(pwndParent->m_pauraapp).userex()->create_child_form(pcallback,pwndParent,var);
       }
       if(m_ptemplateChildForm == NULL)
          return NULL;

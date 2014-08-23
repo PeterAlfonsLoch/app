@@ -75,7 +75,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}</ProjectGuid>
+    <ProjectGuid>{73A245F9-C92F-4487-AEF7-CB0531F665BD}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>axis</RootNamespace>
@@ -1635,7 +1635,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\axis\axis.h" />
     <ClInclude Include="axis\axis\axis_application.h" />
     <ClInclude Include="axis\axis\axis_core_copydesk.h" />
-    <ClInclude Include="axis\axis\axis_message_loop.h" />
     <ClInclude Include="axis\axis\axis_message_queue.h" />
     <ClInclude Include="axis\axis\axis_message_queue_listener.h" />
     <ClInclude Include="axis\axis\axis_session.h" />
@@ -2687,7 +2686,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="database\database_template.h" />
     <ClInclude Include="database\database_update_hint.h" />
     <ClInclude Include="database\database_user_interaction.h" />
-    <ClInclude Include="filesystem\filesystem.h" />
     <ClCompile Include="axis\axis\axis_application_interface.cpp" />
     <ClCompile Include="axis\axis\axis_gudo.cpp" />
     <ClCompile Include="axis\axis\axis_id_pool.cpp" />

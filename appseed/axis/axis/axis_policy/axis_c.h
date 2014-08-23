@@ -33,8 +33,6 @@
 #define _(c_string_to_be_translated_from_english) c_string_to_be_translated_from_english
 
 
-#include "axis/primitive/math/math_mkint_c.h"
-
 #if defined(ANDROID)
 #include "axis/axis/os/android/android.h"
 #elif defined(MACOS)
@@ -52,12 +50,6 @@
 #else
 #error Not Supported Operational System
 #endif
-
-#define MAX(a, b) (((a) > (b)) ? (a) : (b))
-#define MIN(a, b) (((a) < (b)) ? (a) : (b))
-#define LIM(a, min, max) MIN(max, MAX(min, a))
-#define SORT_LIM(x,minmax,maxmin) ((minmax) < (maxmin) ? LIM(x,minmax,maxmin) : LIM(x,maxmin,minmax))
-#define CLIP_USHRT(x) LIM(x,0,USHRT_MAX)
 
 
 

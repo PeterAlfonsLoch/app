@@ -33,7 +33,7 @@ namespace axis
    void departament::connect_to_application_signal()
    {
 
-      m_paxisapp->m_psignal->connect(this,&departament::on_signal);
+      m_pauraapp->m_psignal->connect(this,&departament::on_signal);
 
    }
 

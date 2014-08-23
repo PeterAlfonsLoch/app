@@ -68,23 +68,23 @@ namespace install
 
 #undef CaSys
 #undef Sys
-#define CaSys(pca) (*pca->m_paxisapp->m_pbasesystem)
+#define CaSys(pca) (*pca->m_pauraapp->m_pbasesystem)
 #define Sys(pbaseapp) (*pbaseapp->m_pbasesystem)
 #define threadSystem (Sys(get_thread_app()))
 
 #undef Sess
 #define Sess(paxisapp) (*paxisapp->m_pbasesession)
-//#define Session (Sess(m_paxisapp))
+//#define Session (Sess(m_pauraapp))
 //#define Plat(paxisapp) (*paxisapp->m_pcoreplatform)
-//#define Platform (Plat(m_paxisapp))
+//#define Platform (Plat(m_pauraapp))
 
 #undef App
 #undef Application
 #define App(paxisapp) (*paxisapp->m_pbasesapp)
-#define Application (App(m_paxisapp->m_pbasesapp))
+#define Application (App(m_pauraapp->m_pbasesapp))
 
 #define AppUser(pbaseapp) (*pbaseapp->m_pbasesession->fontopus()->get_user())
-#define ApplicationUser (AppUser(m_paxisapp->m_pbasesapp))
+#define ApplicationUser (AppUser(m_pauraapp->m_pbasesapp))
 
 
 

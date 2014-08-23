@@ -182,9 +182,9 @@ namespace user
                iStyle &= ~WS_VISIBLE;
             }
             smart_pointer_array < timer_item > timera;
-            if(m_paxisapp != NULL && m_paxisapp->m_pthreadimpl != NULL && m_paxisapp->m_pthreadimpl->m_sptimera.is_set())
+            if(m_pauraapp != NULL && m_pauraapp->m_pthreadimpl != NULL && m_pauraapp->m_pthreadimpl->m_sptimera.is_set())
             {
-               m_paxisapp->m_pthreadimpl->m_sptimera->detach(timera,this);
+               m_pauraapp->m_pthreadimpl->m_sptimera->detach(timera,this);
             }
 
             rect rectWindow;
@@ -514,7 +514,7 @@ namespace user
          try
          {
 
-            m_paxisapp->remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
+            m_pauraapp->remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
 
          }
          catch(...)
@@ -525,10 +525,10 @@ namespace user
          try
          {
 
-            if(m_paxisapp->m_paxissession != NULL)
+            if(m_pauraapp->m_paxissession != NULL)
             {
 
-               m_paxisapp->m_paxissession->remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
+               m_pauraapp->m_paxissession->remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
 
             }
 
@@ -541,10 +541,10 @@ namespace user
          try
          {
 
-            if(m_paxisapp->m_paxissystem != NULL)
+            if(m_pauraapp->m_paxissystem != NULL)
             {
 
-               m_paxisapp->m_paxissystem->remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
+               m_pauraapp->m_paxissystem->remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
 
             }
 
@@ -790,7 +790,7 @@ namespace user
    void interaction::_001DrawChildren(::draw2d::graphics *pdc)
    {
 
-      single_lock sl(m_paxisapp->m_pmutex, true);
+      single_lock sl(m_pauraapp->m_pmutex, true);
 
       ptr_array < interaction > ptraChild(m_uiptraChild);
 
@@ -1001,40 +1001,40 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
 
 
-      if(m_paxisapp == NULL)
-         throw simple_exception(get_app(), "m_paxisapp cannot be null");
+      if(m_pauraapp == NULL)
+         throw simple_exception(get_app(), "m_pauraapp cannot be null");
 
       on_set_may_pro_devian();
 
       {
 
-         m_paxisapp->add(this);
+         m_pauraapp->add(this);
 
          if(GetParent() == NULL && !is_message_only_window())
          {
 
-//            synch_lock slUser(m_paxisapp->m_pmutex);
+//            synch_lock slUser(m_pauraapp->m_pmutex);
 
             synch_lock sl(m_spmutex);
 
-            if(m_paxisapp->m_paxissystem != NULL)
+            if(m_pauraapp->m_paxissystem != NULL)
             {
 
-               m_paxisapp->m_paxissystem->add_frame(this);
+               m_pauraapp->m_paxissystem->add_frame(this);
 
             }
 
-            if(m_paxisapp->m_paxissession != NULL)
+            if(m_pauraapp->m_paxissession != NULL)
             {
 
-               m_paxisapp->m_paxissession->add_frame(this);
+               m_pauraapp->m_paxissession->add_frame(this);
 
             }
 
-            if(m_paxisapp != NULL)
+            if(m_pauraapp != NULL)
             {
 
-               m_paxisapp->add_frame(this);
+               m_pauraapp->add_frame(this);
 
             }
 
@@ -1756,7 +1756,7 @@ namespace user
 
             }
 
-            single_lock sl(m_paxisapp->m_pmutex,TRUE);
+            single_lock sl(m_pauraapp->m_pmutex,TRUE);
 
             sl.unlock();
 
@@ -2743,7 +2743,7 @@ namespace user
    }
 
 
-   id interaction::run_modal_loop(::user::interaction * pui,uint32_t dwFlags,::axis::live_object * pliveobject)
+   id interaction::run_modal_loop(::user::interaction * pui,uint32_t dwFlags,::aura::live_object * pliveobject)
    {
 
       return pui->_001RunModalLoop(dwFlags,pliveobject);
@@ -2751,7 +2751,7 @@ namespace user
    }
 
 
-   id interaction::RunModalLoop(uint32_t dwFlags,::axis::live_object * pliveobject)
+   id interaction::RunModalLoop(uint32_t dwFlags,::aura::live_object * pliveobject)
    {
 
       return _001RunModalLoop(dwFlags,pliveobject);
@@ -2759,7 +2759,7 @@ namespace user
    }
 
 
-   id interaction::_001RunModalLoop(uint32_t dwFlags,::axis::live_object * pliveobject)
+   id interaction::_001RunModalLoop(uint32_t dwFlags,::aura::live_object * pliveobject)
    {
 
       // for tracking the idle time state
@@ -2893,7 +2893,7 @@ namespace user
 
    bool interaction::ContinueModal(int32_t iLevel)
    {
-      return iLevel < m_iModalCount && (::get_thread() == NULL || ::get_thread()->m_bRun) && m_paxisapp->m_bRun;
+      return iLevel < m_iModalCount && (::get_thread() == NULL || ::get_thread()->m_bRun) && m_pauraapp->m_bRun;
    }
 
    void interaction::EndModalLoop(id nResult)
@@ -3226,9 +3226,9 @@ namespace user
          if(m_pparent != NULL)
          {
 
-            single_lock sl(m_pparent->m_paxisapp->m_pmutex,TRUE);
+            single_lock sl(m_pparent->m_pauraapp->m_pmutex,TRUE);
 
-            single_lock sl2(m_paxisapp->m_pmutex,TRUE);
+            single_lock sl2(m_pauraapp->m_pmutex,TRUE);
 
             m_pparent->m_uiptraChild.remove(this);
 
@@ -3245,9 +3245,9 @@ namespace user
          if(puiParent != NULL)
          {
 
-            single_lock sl(puiParent->m_paxisapp->m_pmutex,TRUE);
+            single_lock sl(puiParent->m_pauraapp->m_pmutex,TRUE);
 
-            single_lock sl2(m_paxisapp->m_pmutex,TRUE);
+            single_lock sl2(m_pauraapp->m_pmutex,TRUE);
 
             puiParent->m_uiptraChild.add_unique(this);
 
@@ -3268,8 +3268,8 @@ namespace user
             {
 
                // A Copy Paste error (the commented out code below)?
-               //single_lock sl(puiParent->m_paxisapp->m_pmutex,TRUE);
-               //single_lock sl2(m_paxisapp->m_pmutex,TRUE);
+               //single_lock sl(puiParent->m_pauraapp->m_pmutex,TRUE);
+               //single_lock sl2(m_pauraapp->m_pmutex,TRUE);
 
                if(!pholder->is_holding(this))
                {
@@ -3438,7 +3438,7 @@ namespace user
 
    sp(interaction) interaction::get_bottom_child()
    {
-      single_lock sl(m_paxisapp->m_pmutex,TRUE);
+      single_lock sl(m_pauraapp->m_pmutex,TRUE);
       if(m_uiptraChild.get_count() <= 0)
          return NULL;
       else
@@ -3447,7 +3447,7 @@ namespace user
 
    sp(interaction) interaction::get_top_child()
    {
-      single_lock sl(m_paxisapp->m_pmutex,TRUE);
+      single_lock sl(m_pauraapp->m_pmutex,TRUE);
       if(m_uiptraChild.get_count() <= 0)
          return NULL;
       else
@@ -3456,7 +3456,7 @@ namespace user
 
    sp(interaction) interaction::under_sibling()
    {
-      single_lock sl(m_paxisapp->m_pmutex,TRUE);
+      single_lock sl(m_pauraapp->m_pmutex,TRUE);
       sp(interaction) pui = NULL;
       try
       {
@@ -3480,7 +3480,7 @@ namespace user
 
    sp(interaction) interaction::under_sibling(sp(interaction) pui)
    {
-      single_lock sl(m_paxisapp->m_pmutex,TRUE);
+      single_lock sl(m_pauraapp->m_pmutex,TRUE);
       index i = m_uiptraChild.find_first(pui);
       if(i < 0)
          return NULL;
@@ -3504,7 +3504,7 @@ namespace user
 
    sp(interaction) interaction::above_sibling()
    {
-      single_lock sl(m_paxisapp->m_pmutex,TRUE);
+      single_lock sl(m_pauraapp->m_pmutex,TRUE);
       sp(interaction) pui = NULL;
       try
       {
@@ -3550,7 +3550,7 @@ namespace user
 
    sp(interaction) interaction::above_sibling(sp(interaction) pui)
    {
-      single_lock sl(m_paxisapp->m_pmutex,TRUE);
+      single_lock sl(m_pauraapp->m_pmutex,TRUE);
       index i = m_uiptraChild.find_first(pui);
       if(i < 0)
          return NULL;
@@ -4319,7 +4319,7 @@ namespace user
       catch(::exception::base * pe)
       {
 
-         m_paxisapp->process_window_procedure_exception(pe,spbase);
+         m_pauraapp->process_window_procedure_exception(pe,spbase);
 
          pe->Delete();
 
@@ -4346,10 +4346,10 @@ namespace user
    }
 
 
-   void interaction::keep_alive(::axis::live_object * pliveobject)
+   void interaction::keep_alive(::aura::live_object * pliveobject)
    {
 
-      m_paxisapp->keep_alive();
+      m_pauraapp->keep_alive();
 
       if(::get_thread() != NULL)
       {
@@ -5063,7 +5063,7 @@ namespace user
             if(z == ZORDER_TOP || z == ZORDER_TOPMOST)
             {
 
-               single_lock sl(m_paxisapp->m_pmutex);
+               single_lock sl(m_pauraapp->m_pmutex);
 
                synch_lock slWindow(m_spmutex);
 

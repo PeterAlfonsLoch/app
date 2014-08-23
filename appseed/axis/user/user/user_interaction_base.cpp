@@ -1472,7 +1472,7 @@ namespace user
    }
 
 
-   id interaction_base::run_modal_loop(::user::interaction * pui,uint32_t dwFlags,::axis::live_object * pliveobject)
+   id interaction_base::run_modal_loop(::user::interaction * pui,uint32_t dwFlags,::aura::live_object * pliveobject)
    {
 
       throw interface_only_exception(get_app());
@@ -1480,7 +1480,7 @@ namespace user
    }
 
 
-   id interaction_base::RunModalLoop(uint32_t dwFlags,::axis::live_object * pliveobject)
+   id interaction_base::RunModalLoop(uint32_t dwFlags,::aura::live_object * pliveobject)
    {
 
       throw interface_only_exception(get_app());
@@ -1488,7 +1488,7 @@ namespace user
    }
 
 
-   id interaction_base::_001RunModalLoop(uint32_t dwFlags,::axis::live_object * pliveobject)
+   id interaction_base::_001RunModalLoop(uint32_t dwFlags,::aura::live_object * pliveobject)
    {
 
       throw interface_only_exception(get_app());
@@ -2241,7 +2241,7 @@ namespace user
    }
 
 
-   void interaction_base::keep_alive(::axis::live_object * pliveobject)
+   void interaction_base::keep_alive(::aura::live_object * pliveobject)
    {
 
       throw interface_only_exception(get_app());

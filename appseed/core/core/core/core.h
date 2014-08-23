@@ -96,13 +96,13 @@ namespace dynamic_source
 #define App(pbaseapp) CoreApp(pbaseapp)
 
 #undef CaSys
-#define CaSys(pca) (*pca->m_paxisapp->m_pcoresystem)
+#define CaSys(pca) (*pca->m_pauraapp->m_pcoresystem)
 
 #undef Sys
 #define Sys(pbaseapp) (*pbaseapp->m_pcoresystem)
 
 #define CoreApp(pbaseapp) (*pbaseapp->m_pcoreapp)
-#define CoreApplication (CoreApp(m_paxisapp))
+#define CoreApplication (CoreApp(m_pauraapp))
 
 inline ::core::platform & plat(sp(::axis::application) papp)
 {

@@ -29,13 +29,13 @@ namespace core
 
 
    application::application():
-      element(this), // start m_paxisapp as this for constructor referencing this app
+      element(this), // start m_pauraapp as this for constructor referencing this app
       m_mutex(this),
       thread(NULL),
       m_simpledb(this)
    {
 
-      if(m_paxisapp == NULL)
+      if(m_pauraapp == NULL)
       {
          set_app(this);
       }
@@ -3843,7 +3843,7 @@ namespace core
       if(strId.CompareNoCase("session") == 0)
       {
 
-         ::core::platform * psession = new ::core::platform(m_paxisapp->m_pbasesession);
+         ::core::platform * psession = new ::core::platform(m_pauraapp->m_pbasesession);
 
          papp = psession;
 

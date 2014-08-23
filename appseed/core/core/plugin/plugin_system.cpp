@@ -14,20 +14,20 @@ namespace plugin
 
          if (papp.is_set())
          {
-            m_paxisapp = papp;
+            m_pauraapp = papp;
          }
          
          if(m_paxissession == NULL)
          {
 
-            m_paxissession = m_paxisapp->m_paxissession;
+            m_paxissession = m_pauraapp->m_paxissession;
 
          }
 
       if (m_pbasesession == NULL)
       {
          
-            m_pbasesession = m_paxisapp->m_pbasesession;
+            m_pbasesession = m_pauraapp->m_pbasesession;
 
       }
 

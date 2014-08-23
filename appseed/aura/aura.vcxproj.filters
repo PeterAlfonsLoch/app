@@ -4044,9 +4044,6 @@
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="aura\aura\aura.inl">
       <Filter>Header Files\aura\aura</Filter>
     </None>

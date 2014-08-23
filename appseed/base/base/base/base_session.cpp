@@ -29,7 +29,7 @@ namespace base
       if(m_hinstance == NULL)
       {
 
-         m_hinstance = m_paxisapp->m_hinstance;
+         m_hinstance = m_pauraapp->m_hinstance;
 
       }
 

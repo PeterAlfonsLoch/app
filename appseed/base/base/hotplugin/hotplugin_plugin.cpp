@@ -62,8 +62,8 @@ namespace hotplugin
 
       m_eschema         = schema_normal;
 
-      m_paxisapp = this;
-      m_paxisapp->m_pbasesession = this;
+      m_pauraapp = this;
+      m_pauraapp->m_pbasesession = this;
       m_pbasesession = this;
 
    }
@@ -1005,7 +1005,7 @@ namespace hotplugin
    {
 
       m_phost = phost;
-      m_paxisapp = m_phost;
+      m_pauraapp = m_phost;
       m_pbasesession = m_phost;
 
       return true;

@@ -138,7 +138,7 @@ namespace filemanager
             {
 
 
-               m_paxisapp = get_app()->m_pcoreapp;
+               m_pauraapp = get_app()->m_pcoreapp;
                db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
                if(pcentral == NULL)
                   return;
@@ -337,7 +337,7 @@ namespace filemanager
    UINT c_cdecl file_list::ThreadProcFileSize(LPVOID lpparam)
    {
       file_size * psize = (file_size *) lpparam;
-      db_server * pcentral = dynamic_cast < db_server * > (&App(psize->m_pview->m_paxisapp).simpledb().db());
+      db_server * pcentral = dynamic_cast < db_server * > (&App(psize->m_pview->m_pauraapp).simpledb().db());
       if(pcentral == NULL)
          return 0;
       DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
@@ -376,7 +376,7 @@ namespace filemanager
          {
             int64_t i64Size;
             bool bPendingSize;
-            single_lock lock(m_paxisapp);
+            single_lock lock(m_pauraapp);
             if(!lock.lock(millis(1984)))
                return;
             if(i >= get_fs_list_data()->m_itema.get_count())
@@ -1255,7 +1255,7 @@ namespace filemanager
       }
    endloop:
       m_plist->post_message(MessageMainPost, MessageMainPostCreateImageListItemRedraw);
-      synch_lock lock(m_plist->m_paxisapp);
+      synch_lock lock(m_plist->m_pauraapp);
       m_plist->m_pcreateimagelistthread = NULL;
       return 0;
 
