@@ -37,7 +37,7 @@ namespace aura
 } // namespace aura
 
 
-void __node_axis_factory_exchange(sp(::aura::application) papp)
+void __node_aura_factory_exchange(sp(::aura::application) papp)
 {
 
    ::aura::windows::factory_exchange factoryexchange(papp);
