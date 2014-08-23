@@ -3309,6 +3309,13 @@ namespace axis
    }
 
 
+   bool application::enable_window(::user::interaction * pui, bool bEnable)
+   {
+
+      return pui->enable_window(bEnable);
+
+   }
+
 
 } // namespace axis
 
