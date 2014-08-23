@@ -148,7 +148,7 @@ void html_frame::ShowControlBars(bool bShow)
 
 }
 
-bool html_frame::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
+bool html_frame::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
 {
    // TODO: add your specialized code here and/or call the base class
 

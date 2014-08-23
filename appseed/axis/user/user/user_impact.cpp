@@ -218,7 +218,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Command routing
 
-   bool impact::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
+   bool impact::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
 
    {
 

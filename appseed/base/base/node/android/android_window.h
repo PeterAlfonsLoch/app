@@ -61,7 +61,7 @@ namespace android
 
       virtual oswindow get_handle() const;
 
-      virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 

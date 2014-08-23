@@ -44,7 +44,7 @@ bool simple_child_frame::pre_create_window(::user::create_struct& cs)
 
 }
 
-bool simple_child_frame::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)  
+bool simple_child_frame::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)  
 {
 
    if(simple_frame_window::_001OnCmdMsg(pcmdmsg))

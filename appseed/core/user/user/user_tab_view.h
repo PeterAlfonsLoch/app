@@ -40,7 +40,7 @@ namespace user
       
       sp(::user::interaction) _001GetTabWnd(int32_t iTab);
 
-      bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
+      bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
 
       virtual void set_view_creator(::user::view_creator * pview);

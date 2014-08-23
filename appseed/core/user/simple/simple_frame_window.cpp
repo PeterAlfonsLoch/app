@@ -1225,7 +1225,7 @@ bool simple_frame_window::create_window(const char * lpszClassName,const char * 
 
 
 
-bool simple_frame_window::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
+bool simple_frame_window::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
 {
 
    if (m_workset._001OnCmdMsg(pcmdmsg))

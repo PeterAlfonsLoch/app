@@ -392,7 +392,7 @@ namespace user
 #endif
 
 
-   bool interaction_impl::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
+   bool interaction_impl::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
    {
 
       UNREFERENCED_PARAMETER(pcmdmsg);

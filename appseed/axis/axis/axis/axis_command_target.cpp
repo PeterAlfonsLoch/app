@@ -64,20 +64,20 @@ namespace axis
 
 bool command_target_interface::_001SendCommand(id id)
 {
-   ::axis::cmd_msg msg(id);
+   ::aura::cmd_msg msg(id);
    return _001OnCmdMsg(&msg);
 }
 
 bool command_target_interface::_001SendUpdateCmdUi(cmd_ui * pcmdui)
 {
-   ::axis::cmd_msg msg(pcmdui);
+   ::aura::cmd_msg msg(pcmdui);
    return _001OnCmdMsg(&msg);
 }
 
-bool command_target_interface::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
+bool command_target_interface::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
 {
 
-   if(pcmdmsg->m_etype == ::axis::cmd_msg::type_command)
+   if(pcmdmsg->m_etype == ::aura::cmd_msg::type_command)
    {
 
       CTestCmdUI cmdui(get_app());
@@ -132,7 +132,7 @@ command_target_interface::command_target_interface(sp(::axis::application) papp)
 bool command_target_interface::on_simple_action(id id)
 {
    ::dispatch::signal_item_ptr_array signalptra;
-   get_command_signal_array(::axis::cmd_msg::type_command, signalptra, id);
+   get_command_signal_array(::aura::cmd_msg::type_command, signalptra, id);
    bool bOk = false;
    for(int32_t i = 0; i < signalptra.get_size(); i++)
    {
@@ -150,7 +150,7 @@ bool command_target_interface::_001HasCommandHandler(id id)
 
    ::dispatch::signal_item_ptr_array signalptra;
 
-   get_command_signal_array(::axis::cmd_msg::type_command, signalptra, id);
+   get_command_signal_array(::aura::cmd_msg::type_command, signalptra, id);
 
    return signalptra.get_size() > 0;
 
@@ -160,7 +160,7 @@ bool command_target_interface::_001HasCommandHandler(id id)
 bool command_target_interface::on_simple_update(cmd_ui * pcmdui)
 {
    ::dispatch::signal_item_ptr_array signalptra;
-   get_command_signal_array(::axis::cmd_msg::type_cmdui, signalptra, pcmdui->m_id);
+   get_command_signal_array(::aura::cmd_msg::type_cmdui, signalptra, pcmdui->m_id);
    bool bOk = false;
    for(int32_t i = 0; i < signalptra.get_size(); i++)
    {
@@ -173,7 +173,7 @@ bool command_target_interface::on_simple_update(cmd_ui * pcmdui)
    return bOk;
 }
 
-void command_target_interface::get_command_signal_array(::axis::cmd_msg::e_type etype, ::dispatch::signal_item_ptr_array & signalptra, id id)
+void command_target_interface::get_command_signal_array(::aura::cmd_msg::e_type etype, ::dispatch::signal_item_ptr_array & signalptra, id id)
 {
    command_signalid signalid;
    signalid.m_id = id;
@@ -183,11 +183,11 @@ void command_target_interface::get_command_signal_array(::axis::cmd_msg::e_type 
       class signalid * pid = m_signalidaCommand[i];
       if(pid->matches(&signalid))
       {
-         if(etype == ::axis::cmd_msg::type_command)
+         if(etype == ::aura::cmd_msg::type_command)
          {
             m_dispatchCommand.m_signala.GetSignalsById(signalptra, &signalid);
          }
-         else if(etype == ::axis::cmd_msg::type_cmdui)
+         else if(etype == ::aura::cmd_msg::type_cmdui)
          {
             m_dispatchUpdateCmdUi.m_signala.GetSignalsById(signalptra, &signalid);
          }

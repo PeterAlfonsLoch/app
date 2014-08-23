@@ -986,7 +986,7 @@ namespace core
       }
    }
 
-   bool application::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
+   bool application::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
 
    {
       if(command_target_interface::_001OnCmdMsg(pcmdmsg))

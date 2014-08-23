@@ -136,7 +136,7 @@ namespace user
       virtual void on_draw_view(::draw2d::graphics * pdc, spa(::data::data) spadata);
       virtual void defer_draw_view(::draw2d::graphics * pdc);
 
-      virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
       virtual bool pre_create_window(::user::create_struct& cs);
       virtual void PostNcDestroy();
@@ -206,7 +206,7 @@ namespace user
 
 
 
-      //      virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
+      //      virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
       //      virtual bool pre_create_window(::user::create_struct& cs);
 

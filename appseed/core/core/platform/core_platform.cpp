@@ -208,7 +208,7 @@ namespace core
    }
 
 
-   bool platform::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
+   bool platform::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
    {
 
       return application::_001OnCmdMsg(pcmdmsg);

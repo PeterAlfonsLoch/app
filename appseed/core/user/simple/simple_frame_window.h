@@ -202,7 +202,7 @@ public:
 
    virtual bool DeferFullScreen(bool bFullScreen, bool bRestore);
 
-   virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
+   virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
    virtual void data_on_after_change(signal_details * pobj);
 

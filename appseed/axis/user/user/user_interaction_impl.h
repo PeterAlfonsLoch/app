@@ -101,7 +101,7 @@ namespace user
       bool attach(oswindow oswindow_New);
       oswindow detach();
 
-      virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
       DECL_GEN_SIGNAL(_002OnDraw);
 

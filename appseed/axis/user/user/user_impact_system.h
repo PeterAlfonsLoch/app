@@ -125,7 +125,7 @@ namespace user
       virtual void assert_valid() const;
 
       virtual void on_idle();             // for all documents
-      virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
 
       bool on_open_document(sp(::user::document) pdoc, var varFile);

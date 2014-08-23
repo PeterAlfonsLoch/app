@@ -956,7 +956,7 @@ namespace user
    }
 
 
-   bool frame_window::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
+   bool frame_window::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
    {
 
 

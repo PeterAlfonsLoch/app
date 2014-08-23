@@ -64,7 +64,7 @@ namespace user
       return impact::GuieProc(pobj);
    }
 
-   bool menu_list_view::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
+   bool menu_list_view::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
    {
       if(m_puiNotify != NULL && m_puiNotify != this)
       {

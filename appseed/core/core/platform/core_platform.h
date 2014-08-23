@@ -89,7 +89,7 @@ namespace core
 
       void _001OnFileNew();
 
-      virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
       //virtual application * get_app() const;
 

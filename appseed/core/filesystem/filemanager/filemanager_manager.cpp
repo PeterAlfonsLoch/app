@@ -358,7 +358,7 @@ namespace filemanager
    }
 
 
-   /*bool manager::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
+   /*bool manager::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
    {
    if (nCode == CN_UPDATE_COMMAND_UI)
    {
@@ -596,9 +596,9 @@ namespace filemanager
       update_all_views(NULL,0,&uh);
    }
 
-   bool manager::HandleDefaultFileManagerItemCmdMsg(::axis::cmd_msg * pcmdmsg,::fs::item_array & itema)
+   bool manager::HandleDefaultFileManagerItemCmdMsg(::aura::cmd_msg * pcmdmsg,::fs::item_array & itema)
    {
-      if(pcmdmsg->m_etype == ::axis::cmd_msg::type_cmdui)
+      if(pcmdmsg->m_etype == ::aura::cmd_msg::type_cmdui)
       {
          if(get_filemanager_data()->m_pcallback->GetFileManagerItemCallback(
             get_filemanager_data(),pcmdmsg->m_pcmdui->m_id,itema))

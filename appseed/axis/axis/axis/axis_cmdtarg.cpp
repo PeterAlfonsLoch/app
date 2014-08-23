@@ -19,7 +19,7 @@ command_target::~command_target()
 {
 }
 
-bool command_target::handle(::axis::cmd_msg * pcmdmsg)
+bool command_target::handle(::aura::cmd_msg * pcmdmsg)
 {
    return pcmdmsg->handle(this);
 }
@@ -275,7 +275,7 @@ __STATIC bool _::core::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t
       IsEqualGUID(*(pGuid1), *(pGuid2))))
 
 /*
-bool command_target::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
+bool command_target::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
 
 {
 

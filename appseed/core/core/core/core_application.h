@@ -230,7 +230,7 @@ namespace core
       void OnUpdateRecentFileMenu(cmd_ui * pcmdui);
 
       virtual DECL_GEN_SIGNAL(OnAppLanguage);
-      virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
 
 

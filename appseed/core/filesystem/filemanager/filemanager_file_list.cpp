@@ -439,7 +439,7 @@ namespace filemanager
       //SetTimer(1234567, 50, NULL);
    }
 
-   bool file_list::_001OnCmdMsg(::axis::cmd_msg * pcmdmsg)
+   bool file_list::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
    {
       ::fs::item_array itema;
       GetSelected(itema);

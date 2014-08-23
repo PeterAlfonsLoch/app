@@ -11,7 +11,7 @@ public:
    virtual ~simple_child_frame();
 
    
-   virtual bool _001OnCmdMsg(::axis::cmd_msg * pcmdmsg); 
+   virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg); 
    virtual bool pre_create_window(::user::create_struct& cs);
 
 
