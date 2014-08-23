@@ -148,6 +148,7 @@ namespace aura
       virtual oswindow get_safe_handle(::user::interaction * pui);
       virtual void dispatch_user_message(::message::base * pbase);
       virtual ::user::interaction * get_parent(::user::interaction * pui);
+      virtual bool enable_window(::user::interaction * pui, bool bEnable = true);
 
 
 
