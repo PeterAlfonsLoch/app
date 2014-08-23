@@ -1199,6 +1199,9 @@
     <ClInclude Include="axis\axis\axis_simple_app.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
+    <ClInclude Include="axis\axis\axis_print_job.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -1510,157 +1513,19 @@
     <ClCompile Include="axis\axis\axis.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
-    <ClCompile Include="axis\axis\axis_allocate_mid_big.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_allocate_system_heap.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
     <ClCompile Include="axis\axis\axis_application.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_argcargv.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_assert.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_checked.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_cmdtarg.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_command_target.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_conv.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_cpu_architecture.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_cregexp.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_cregexp_util.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_debug.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_departament.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_departament_container.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_element.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_file_watcher.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_file_watcher_impl.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_file_watcher_listener_thread.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_file_watcher_thread.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_fixed_alloc.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_flags.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_heap.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_international.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_live_object.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_live_signal.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_log.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_machine_event.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_machine_event_central.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_machine_event_data.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_math.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
     <ClCompile Include="axis\axis\axis_message_queue.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
-    <ClCompile Include="axis\axis\axis_microtimer.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_mktime.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_muldiv64.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_plex.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_plex_heap.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_printf.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_root.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
     <ClCompile Include="axis\axis\axis_session.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_simple_shell_launcher.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_small_ipc_channel.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_sprintf.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
     <ClCompile Include="axis\axis\axis_system.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
-    <ClCompile Include="axis\axis\axis_template.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_trace.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
     <ClCompile Include="axis\axis\axis_core_copydesk.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_core_os.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_savings.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_progress.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_action_context.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
     <ClCompile Include="axis\os\android\android.cpp">
@@ -1833,9 +1698,6 @@
     </ClCompile>
     <ClCompile Include="user\user\user_menu_base_item.cpp">
       <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_id_pool.cpp">
-      <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_thread.cpp">
       <Filter>Source Files\multithreading</Filter>
@@ -2050,12 +1912,6 @@
     <ClCompile Include="axis\node\android\android_crypto.cpp">
       <Filter>Source Files\axis\node\android</Filter>
     </ClCompile>
-    <ClCompile Include="axis\axis\axis_session_interface.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_application_interface.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_interaction_base.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -2067,9 +1923,6 @@
     </ClCompile>
     <ClCompile Include="user\user\user_interaction_child.cpp">
       <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_gudo.cpp">
-      <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
     <ClCompile Include="axis\exception\exception_parsing.cpp">
       <Filter>Source Files\axis\exception</Filter>
@@ -2085,9 +1938,6 @@
     </ClCompile>
     <ClCompile Include="user\user\user_schema_simple_impl.cpp">
       <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_library.cpp">
-      <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_schema_layered_frame.cpp">
       <Filter>Source Files\user\user</Filter>
@@ -2224,9 +2074,6 @@
     <ClCompile Include="database\database_application.cpp">
       <Filter>Source Files\database</Filter>
     </ClCompile>
-    <ClCompile Include="axis\axis\axis_net.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
     <ClCompile Include="axis\os\windows\windows_gdi.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
@@ -2255,9 +2102,6 @@
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
       <Filter>Header Files\multithreading</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

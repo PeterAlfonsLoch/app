@@ -453,6 +453,7 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 
 #include "axis/user/user/user.h"
+#include "axis_print_job.h"
 #include "user/user/user_control_event.h"
 
 #include "user/user/user_control.h"
