@@ -158,7 +158,7 @@ public:
       node & operator * ()
       {
 
-         return m_pnode;
+         return *m_pnode;
 
       }
 
@@ -665,18 +665,15 @@ const typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >
 
 }
 
+
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
-typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::node* sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::PLookup(ARG_KEY key)
+typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node* sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::PLookup(ARG_KEY key)
 {
 
-   index i;
-
-   if(!find_key(key, i))
-      return NULL;
-
-   return m_ptra[i];
+   return find_node(key);
 
 }
+
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
 VALUE * sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::pget(ARG_KEY key)
@@ -684,12 +681,13 @@ VALUE * sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::pget(
 
    node * p = PLookup(key);
 
-   if(p)
-      return &p->second;
-   else
+   if(p == NULL)
       return NULL;
 
+   return &p->second;
+
 }
+
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
 VALUE& sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::operator[](ARG_KEY key)
@@ -874,12 +872,12 @@ typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::iter
 sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::find(ARG_KEY key)
 {
 
-   index i;
+   node * pnode = find_node(key);
 
-   if(!find_key(key, i))
+   if(pnode == NULL)
       return end();
 
-   return iterator(m_ptra[i], this);
+   return iterator(pnode, this);
 
 }
 
@@ -888,12 +886,12 @@ typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::cons
 sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::find(ARG_KEY key) const
 {
 
-   index i;
+   node * pnode = find_node(key);
 
-   if(!find_key(key, i))
+   if(pnode == NULL)
       return end();
 
-   return const_iterator(m_ptra[i], this);
+   return const_iterator(pnode,this);
 
 }
 
@@ -910,13 +908,13 @@ sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::parent_node(const 
    while(pnodeSearch != NULL)
    {
 
-      if(compare(key,pnodeSearch->first))
+      if(compare(*pnode,*pnodeSearch))
       {
 
          pnodeSearch = pnodeSearch->left;
 
       }
-      else if(compare(pnodeSearch->first,key))
+      else if(compare(*pnodeSearch,*pnode))
       {
 
          pnodeSearch = pnodeSearch->right;
