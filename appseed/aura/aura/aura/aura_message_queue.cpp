@@ -49,5 +49,10 @@ void message_queue::message_queue_message_handler(signal_details * pobj)
 }
 
 
+bool message_queue::is_initialized()
+{
 
+   return false;
+
+}
 

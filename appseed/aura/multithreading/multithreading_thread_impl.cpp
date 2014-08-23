@@ -1180,11 +1180,11 @@ bool thread_impl::initialize_message_queue()
    if(m_spuiptra.is_null())
    {
 
-      m_spuiptra = canew(ptr_array < ::user::interaction >(get_app()));
+      m_spuiptra = canew(ptr_array < ::user::interaction >));
 
    }
 
-   if(!m_queue.IsWindow())
+   if(!m_queue.is_initialized())
    {
 
       try

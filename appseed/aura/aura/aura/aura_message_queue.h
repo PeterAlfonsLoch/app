@@ -21,6 +21,8 @@ public:
    virtual void message_queue_message_handler(signal_details * pobj);
 
 
+   virtual bool is_initialized();
+
 };
 
 
