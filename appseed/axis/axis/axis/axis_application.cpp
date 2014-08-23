@@ -3335,6 +3335,19 @@ namespace axis
    }
 
 
+   if(m_hthread == NULL)
+      return false;
+
+   ::user::message * pmessage = new ::user::message;
+   pmessage->m_pui       = pui;
+   pmessage->m_uiMessage   = uiMessage;
+   pmessage->m_wparam      = wparam;
+   pmessage->m_lparam      = lparam;
+
+   return post_thread_message(WM_APP + 1984,77,(LPARAM)pmessage) != FALSE;
+
+
+
    bool application::is_window(::user::interaction * pui)
    {
 
