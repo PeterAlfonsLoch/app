@@ -301,7 +301,7 @@ namespace axis
 
       virtual bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
-      virtual sp(::user::document) _001OpenDocumentFile(var varFile);
+      virtual ::user::document * _001OpenDocumentFile(var varFile);
       virtual void _001OnFileNew(signal_details * pobj);
 
       virtual sp(::user::printer) get_printer(const char * pszDeviceName);
@@ -347,7 +347,7 @@ namespace axis
 
       virtual void on_service_request(sp(::create_context) pcreatecontext);
 
-      virtual sp(application) assert_running(const char * pszAppId);
+      virtual sp(::aura::application) assert_running(const char * pszAppId);
 
       virtual bool is_running();
 
