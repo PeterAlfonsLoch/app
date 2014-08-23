@@ -1,7 +1,7 @@
 #pragma once
 
 
-bool CLASS_DECL_AURA vfxResolveShortcut(string & strTarget, const char * pszSource, sp(::user::interaction) puiMessageParentOptional = NULL);
+bool CLASS_DECL_AURA vfxResolveShortcut(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional = NULL);
 
 
 namespace windows
@@ -56,7 +56,7 @@ namespace windows
       virtual bool start_service(sp(::aura::application) papp);
       virtual bool stop_service(sp(::aura::application) papp);
 
-      virtual bool resolve_link(string & strTarget, const char * pszSource, sp(::user::interaction) puiMessageParentOptional = NULL);
+      virtual bool resolve_link(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional = NULL);
 
       DECLSPEC_NO_RETURN void raise_exception( DWORD dwExceptionCode, DWORD dwExceptionFlags);
 

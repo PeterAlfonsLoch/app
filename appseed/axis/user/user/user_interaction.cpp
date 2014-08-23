@@ -5357,6 +5357,66 @@ namespace user
    }
 
 
+   sp(::message::base) interaction::peek_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
+   {
+      if(!::PeekMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax,wRemoveMsg))
+         return NULL;
+      return get_base(lpmsg,pwnd);
+   }
+
+   sp(::message::base) interaction::get_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
+   {
+      if(!::GetMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax))
+         return NULL;
+      return get_base(lpmsg,pwnd);
+   }
+
+   sp(::message::base) interaction::peek_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
+   {
+      MESSAGE msg;
+      return peek_message(&msg,pwnd,wMsgFilterMin,wMsgFilterMax,wRemoveMsg);
+   }
+
+
+   sp(::message::base) interaction::get_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
+   {
+      MESSAGE msg;
+      return get_message(&msg,pwnd,wMsgFilterMin,wMsgFilterMax);
+   }
+
+
+   sp(::message::base) interaction::peek_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
+   {
+      if(!::PeekMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax,wRemoveMsg))
+         return NULL;
+      return get_base(lpmsg,pwnd);
+   }
+
+   sp(::message::base) interaction::get_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
+   {
+      if(!::GetMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax))
+         return NULL;
+      return get_base(lpmsg,pwnd);
+   }
+
+   sp(::message::base) interaction::peek_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
+   {
+      MESSAGE msg;
+      return peek_message(&msg,pwnd,wMsgFilterMin,wMsgFilterMax,wRemoveMsg);
+   }
+
+
+   sp(::message::base) interaction::get_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
+   {
+      MESSAGE msg;
+      return get_message(&msg,pwnd,wMsgFilterMin,wMsgFilterMax);
+   }
+
+   
+
+
+
+
 } // namespace user
 
 

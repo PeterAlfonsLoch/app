@@ -14,7 +14,7 @@ namespace message
 
       virtual void set_lresult(LRESULT lresult);
       using ::message::base::set;
-      virtual void set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
       virtual void error(const char * lpcszErrorMessage);
       virtual void failed(const char * lpcszErrorMessage);
    };
@@ -26,7 +26,7 @@ namespace message
 
       timer(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       using ::message::base::set;
-      virtual void set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
       UINT m_nIDEvent;
    };
 
@@ -36,14 +36,14 @@ namespace message
 
 
       UINT  m_nState;
-      sp(::user::interaction) m_pWndOther;
+      ::user::interaction * m_pWndOther;
       bool  m_bMinimized;
 
 
       activate(sp(::aura::application) papp);
       using ::message::base::set;
 
-      virtual void set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
    };
 
    class CLASS_DECL_AURA move: public base
@@ -64,7 +64,7 @@ namespace message
       UINT     m_nType;
       ::size   m_size;
       using ::message::base::set;
-      virtual void set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
    };
 
 
@@ -76,9 +76,9 @@ namespace message
       scroll(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       UINT              m_nSBCode;
       int32_t           m_nPos;
-      sp(::user::interaction)  m_pScrollBar;
+      ::user::interaction *  m_pScrollBar;
       using ::message::base::set;
-      virtual void set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
    };
 
 
@@ -96,7 +96,7 @@ namespace message
       virtual ~mouse();
       using ::message::base::set;
 
-      virtual void set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
       static mouse * cast(signal_details * pobj) { return (mouse *)pobj; }
    };
 
@@ -111,7 +111,7 @@ namespace message
       point    GetPoint();
       using ::message::base::set;
 
-      virtual void set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
    };
 
 
@@ -121,7 +121,7 @@ namespace message
 
 
       mouse_activate(sp(::aura::application) papp): element(papp),::message::base(papp) {}
-      sp(::user::interaction) GetDesktopWindow();
+      ::user::interaction * GetDesktopWindow();
       UINT GetHitTest();
       UINT get_message();
    };
@@ -143,7 +143,7 @@ namespace message
 
 
       set_cursor(sp(::aura::application) papp): element(papp),::message::base(papp) {}
-      sp(::user::interaction) m_pWnd;
+      ::user::interaction * m_pWnd;
       UINT m_nHitTest;
       UINT m_message;
    };
@@ -157,7 +157,7 @@ namespace message
       bool m_bShow;
       UINT  m_nStatus;
       using ::message::base::set;
-      virtual void set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
    };
 
    class CLASS_DECL_AURA on_draw: public base
@@ -219,7 +219,7 @@ namespace message
       key(sp(::aura::application) papp);
 
       using ::message::base::set;
-      virtual void set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
    };
 
    class CLASS_DECL_AURA nc_activate: public base
@@ -233,7 +233,7 @@ namespace message
       nc_activate(sp(::aura::application) papp);
 
       using ::message::base::set;
-      virtual void set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
    };
 
 #ifdef WINDOWSEX
@@ -289,7 +289,7 @@ namespace message
 
       set_focus(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       using ::message::base::set;
-      virtual void set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
    };
 
 
@@ -301,7 +301,7 @@ namespace message
       window_pos(sp(::aura::application) papp): element(papp),::message::base(papp) {}
       WINDOWPOS * m_pwindowpos;
       using ::message::base::set;
-      virtual void set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
    };
 
 
@@ -330,7 +330,7 @@ namespace message
       NCCALCSIZE_PARAMS * m_pparams;
       bool GetCalcValidRects();
       using ::message::base::set;
-      virtual void set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
 
    };
 

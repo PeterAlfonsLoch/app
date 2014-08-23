@@ -603,6 +603,19 @@ namespace user
       virtual ::user::schema * get_parent_user_schema();
 
 
+      static sp(::message::base) peek_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
+      static sp(::message::base) get_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
+      static sp(::message::base) peek_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
+      static sp(::message::base) get_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
+
+      virtual sp(::message::base) peek_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
+      virtual sp(::message::base) get_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
+      virtual sp(::message::base) peek_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
+      virtual sp(::message::base) get_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
+
+
+
+
    };
 
 

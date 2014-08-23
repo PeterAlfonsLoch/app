@@ -179,7 +179,7 @@ namespace aura
    }
 
 
-   int32_t application::simple_message_box(sp(::user::interaction) puiOwner,const char * pszMessage,UINT fuStyle)
+   int32_t application::simple_message_box(::user::interaction * puiOwner,const char * pszMessage,UINT fuStyle)
    {
 
 #if defined(WINDOWSEX)
@@ -203,7 +203,7 @@ namespace aura
    }
 
    /*
-   int32_t application::simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle)
+   int32_t application::simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle)
    {
 
    #if defined(WINDOWSEX)
@@ -528,7 +528,7 @@ namespace aura
    }
 
 
-   void application::add_frame(sp(::user::interaction) pwnd)
+   void application::add_frame(::user::interaction * pwnd)
    {
 
       synch_lock sl(&m_framea.m_mutex); // recursive lock (on m_framea.add(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
@@ -545,7 +545,7 @@ namespace aura
    }
 
 
-   void application::remove_frame(sp(::user::interaction) pwnd)
+   void application::remove_frame(::user::interaction * pwnd)
    {
 
       synch_lock sl(&m_framea.m_mutex); // recursive lock (on m_framea.remove(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
@@ -566,7 +566,7 @@ namespace aura
 
 #if defined(METROWIN) || defined(APPLE_IOS)
 
-   sp(::user::interaction) application::window_from_os_data(void * pdata)
+   ::user::interaction * application::window_from_os_data(void * pdata)
    {
 
       return window_from_handle((oswindow)pdata);
@@ -575,7 +575,7 @@ namespace aura
 
 #else
 
-   sp(::user::interaction) application::window_from_os_data(void * pdata)
+   ::user::interaction * application::window_from_os_data(void * pdata)
    {
 
       return window_from_handle((oswindow)pdata);
@@ -661,7 +661,7 @@ namespace aura
 
 
 
-   sp(::user::interaction) application::FindWindow(const char * lpszClassName,const char * lpszWindowName)
+   ::user::interaction * application::FindWindow(const char * lpszClassName,const char * lpszWindowName)
    {
 
       throw interface_only_exception(this);
@@ -669,7 +669,7 @@ namespace aura
    }
 
 
-   sp(::user::interaction) application::FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow)
+   ::user::interaction * application::FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow)
    {
 
       throw interface_only_exception(this);
@@ -854,7 +854,7 @@ namespace aura
 
 
 
-   sp(::user::interaction) application::release_capture_uie()
+   ::user::interaction * application::release_capture_uie()
    {
 
 #if defined(LINUX)
@@ -887,7 +887,7 @@ namespace aura
    }
 
 
-   sp(::user::interaction) application::get_capture_uie()
+   ::user::interaction * application::get_capture_uie()
    {
 
 #if defined(METROWIN)
@@ -911,7 +911,7 @@ namespace aura
       if(oswindowCapture == NULL)
          return NULL;
 
-      sp(::user::interaction) pui = System.window_from_os_data(oswindowCapture);
+      ::user::interaction * pui = System.window_from_os_data(oswindowCapture);
 
       if(pui == NULL)
          return NULL;
@@ -2796,7 +2796,7 @@ namespace aura
    }
 
 
-   int32_t application::simple_message_box_timeout(sp(::user::interaction) pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle)
+   int32_t application::simple_message_box_timeout(::user::interaction * pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle)
    {
       UNREFERENCED_PARAMETER(durationTimeOut);
       return simple_message_box(pwndOwner,pszMessage,fuStyle);
@@ -3035,7 +3035,7 @@ namespace aura
    }
 
 
-   sp(::user::interaction) application::get_active_guie()
+   ::user::interaction * application::get_active_guie()
    {
 
       return Session.get_active_guie();
@@ -3043,7 +3043,7 @@ namespace aura
    }
 
 
-   sp(::user::interaction) application::get_focus_guie()
+   ::user::interaction * application::get_focus_guie()
    {
 
       return Session.get_focus_guie();

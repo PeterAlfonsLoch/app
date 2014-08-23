@@ -101,6 +101,8 @@ namespace axis
       
       CLASS_DECL_AXIS void init()
       {
+
+         ::set user_create_context_delfn(&::user::create_create::void_delete);
    
          xxdebug_box("axis.dll base_static_start (0)", "box", MB_OK);
          

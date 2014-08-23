@@ -40,17 +40,12 @@ CLASS_DECL_AURA void reset_message_cache();
 #include "windows_implementation.h"
 #include "windows_folder_watch.h"
 #include "windows_factory_exchange.h"
-#include "windows_window_draw.h"
 #include "windows_uac_tools.h"
 #include "windows_thread.h"
-#include "windows_interaction_impl.h"
 #include "windows_file.h"
 
-CLASS_DECL_AURA WNDPROC __get_window_procedure();
-#define __window_procedure (*__get_window_procedure())
 
 #define NODE_THREAD(pthread) (dynamic_cast < ::windows::thread * > (dynamic_cast < thread * >(pthread)))
-#define NODE_WINDOW(pwnd) ((sp(::windows::interaction_impl))(pwnd))
 
 
 
@@ -59,7 +54,6 @@ CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, LPMSG lpmsg);
 
 
 
-#include "windows_print_job.h"
 #include "windows_application.h"
 
 
@@ -77,7 +71,6 @@ int32_t CLASS_DECL_AURA __windows_main(sp(::aura::system) psystem, ::windows::ma
 #include "windows_file.h"
 #include "windows_shell.h"
 #include "windows_stdio_file.h"
-#include "windows_copydesk.h"
 #include "windows_registry.h"
 #include "windows_os.h"
 

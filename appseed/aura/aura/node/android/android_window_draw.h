@@ -47,7 +47,7 @@ namespace android
 
       virtual bool ScreenOutput();
 
-      virtual bool ScreenOutput(user::buffer *, sp(::user::interaction) pwnd);
+      virtual bool ScreenOutput(user::buffer *, ::user::interaction * pwnd);
 
       // Transparent drawing operations
       // controllers

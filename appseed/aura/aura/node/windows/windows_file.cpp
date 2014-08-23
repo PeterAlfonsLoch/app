@@ -1350,10 +1350,10 @@ bool CLASS_DECL_AURA vfxGetInProcServer(const char * lpszCLSID, string & str)
 //#endif  //!___NO_OLE_SUPPORT
 
 
-bool CLASS_DECL_AURA vfxResolveShortcut(string & strTarget, const char * pszSource, sp(::user::interaction) puiMessageParentOptional)
+bool CLASS_DECL_AURA vfxResolveShortcut(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional)
 {
 
-   sp(::user::interaction) pui = puiMessageParentOptional;
+   ::user::interaction * pui = puiMessageParentOptional;
 
    wstring wstrFileOut;
    wstring wstrFileIn = ::str::international::utf8_to_unicode(pszSource);

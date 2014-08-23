@@ -225,7 +225,7 @@ public:
    // if a popup sub menu - ID is for first in popup
 
    // if from some other interaction_impl
-   sp(::user::interaction)   m_pOther;         // NULL if a menu or not a interaction_impl
+   ::user::interaction *   m_pOther;         // NULL if a menu or not a interaction_impl
 
    bool                    m_bEnableChanged;
    bool                    m_bContinueRouting;

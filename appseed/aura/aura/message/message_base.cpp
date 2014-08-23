@@ -15,7 +15,7 @@ namespace message
       m_plresult = &m_lresult;
    }
 
-   base::base(sp(::aura::application) papp,sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult):
+   base::base(sp(::aura::application) papp,::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult):
       element(papp),
       signal_details(papp)
    {
@@ -23,7 +23,7 @@ namespace message
       set(pwnd,uiMessage,wparam,lparam,lresult);
    }
 
-   void base::set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
+   void base::set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
       m_pwnd            = pwnd;
       m_uiMessage       = uiMessage;
@@ -32,7 +32,7 @@ namespace message
       m_plresult        = &lresult;
    }
 
-   void base::set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam)
+   void base::set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam)
    {
       set(pwnd,uiMessage,wparam,lparam,m_lresult);
    }

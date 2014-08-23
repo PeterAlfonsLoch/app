@@ -78,23 +78,16 @@ namespace message
 
       virtual sp(::aura::application) calc_app();
 
-      virtual sp(::message::base) peek_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
-      virtual sp(::message::base) get_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
-      virtual sp(::message::base) peek_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
-      virtual sp(::message::base) get_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
-
-      virtual sp(::message::base) get_base(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam);
-      virtual sp(::message::base) get_base(LPMESSAGE lpmsg,sp(::user::interaction) pwnd = NULL);
+      static sp(::message::base) get_base(oswindow window,UINT uiMessage,WPARAM wparam,LPARAM lparam);
+      static sp(::message::base) get_base(LPMESSAGE lpmsg, oswindow window = NULL);
 
 #ifdef LINUX
 
-      virtual sp(::message::base) get_base(XEvent * pevent,sp(::user::interaction) pwnd = NULL);
+      virtual sp(::message::base) get_base(XEvent * pevent,::user::interaction * pwnd = NULL);
 
 #endif
 
       void RemoveMessageHandler(signalizable* psignalizable);
-      ::window_sp _GetWnd();
-      // Prototype_bool_WPARAM_LPARAM;
 
       template < class T >
       bool AddMessageHandler(

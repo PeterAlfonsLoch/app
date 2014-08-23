@@ -132,47 +132,6 @@ namespace html
 } // namespace html
 
 
-namespace user
-{
-
-   class interaction_impl;
-   class view_creator_data;
-   class schema;
-   class tree;
-
-}
-
-typedef sp(::user::interaction_impl) window_sp;
-
-namespace user
-{
-
-   class interaction;
-   class control_event;
-   class create_context;
-   class impact;
-   class printer;
-   class user;
-   class document;
-   class frame_window;
-
-   class form_interface;
-   class form_list;
-   class form_callback;
-
-
-} // namespace user
-
-
-namespace simple_ui
-{
-
-   class label;
-   class edit_box;
-   class password;
-   class tap;
-
-}
 
 namespace aura
 {
@@ -193,6 +152,13 @@ namespace aura
 
 class message_queue_listener;
 class image_list;
+
+namespace user
+{
+
+   class interaction;
+
+}
 
 
 
@@ -302,55 +268,6 @@ namespace xml
 
 } // namespace xml
 
-
-namespace user
-{
-
-   class place_holder;
-   class menu_base_item;
-
-#if defined METROWIN && defined(__cplusplus_winrt)
-
-   class CLASS_DECL_AURA native_window_initialize
-   {
-   public:
-
-
-      Platform::Agile<Windows::UI::Core::CoreWindow> window;
-      ::aura::system_window ^ pwindow;
-
-
-   };
-
-#elif defined(APPLE_IOS)
-
-   class CLASS_DECL_AURA native_window_initialize
-   {
-   public:
-
-      RECT   m_rect;
-
-   };
-
-#else
-
-   class native_window_initialize;
-
-#endif
-
-
-   class control_event;
-   class frame_window;
-   class menu_base;
-
-
-
-
-
-   CLASS_DECL_AURA bool is_descendant(::user::interaction * puiParent,::user::interaction * puiChild);
-
-
-} // namespace user
 
 
 
@@ -1209,9 +1126,6 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "app/appseed/aura/aura/node/node.h"
 
 
-
-#include "aura/user/simple/simple.h"
-#include "aura/user/simple_ui/simple_ui.h"
 
 
 

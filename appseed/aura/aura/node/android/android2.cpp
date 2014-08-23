@@ -14,7 +14,7 @@
 //   { ASSERT(hInstResource != NULL); afxCurrentResourceHandle = hInstResource; }
 // CLASS_DECL_AURA const char * __get_app_name()
 //   { ASSERT(afxCurrentAppName != NULL); return afxCurrentAppName; }
-// CLASS_DECL_AURA sp(::user::interaction) __get_main_window()
+// CLASS_DECL_AURA ::user::interaction * __get_main_window()
 //{
 //      ::thread* pThread = dynamic_cast < ::thread * > (::android::get_thread());
 //      return pThread != NULL ? pThread->GetMainWnd().m_p : NULL;

@@ -115,7 +115,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::from_os_data(void * pdata)
+   ::user::interaction * interaction_impl::from_os_data(void * pdata)
    {
 
       return from_handle((oswindow)pdata);
@@ -173,7 +173,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::from_handle(oswindow oswindow)
+   ::user::interaction * interaction_impl::from_handle(oswindow oswindow)
    {
 
       return ::window_from_handle(oswindow);
@@ -188,7 +188,7 @@ namespace windows
    }
 
    
-   bool interaction_impl::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) puiParent,id id,LPVOID lpParam)
+   bool interaction_impl::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * puiParent,id id,LPVOID lpParam)
    {
 
       if(!native_create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rect,puiParent->get_safe_handle(),id,lpParam))
@@ -337,7 +337,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,id id,sp(::create_context) pContext)
+   bool interaction_impl::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pParentWnd,id id,sp(::create_context) pContext)
    {
 
       // can't use for desktop or pop-up windows (use create_window_ex instead)
@@ -727,7 +727,7 @@ namespace windows
       dumpcontext << "\n";
    }
 
-   void interaction_impl::on_set_parent(sp(::user::interaction) pui)
+   void interaction_impl::on_set_parent(::user::interaction * pui)
    {
       if(pui != NULL)
       {
@@ -887,7 +887,7 @@ namespace windows
       }
       else
       {
-         sp(::user::interaction) pChild = GetDescendantWindow(lpMeasureItemStruct->CtlID);
+         ::user::interaction * pChild = GetDescendantWindow(lpMeasureItemStruct->CtlID);
          //         if (pChild != NULL && pChild->OnChildNotify(0, 0, 0, NULL))
          //          return;     // eaten by child
       }
@@ -1003,7 +1003,7 @@ namespace windows
       PrepareForHelp();
 
       // need to use top level parent (for the case where get_handle() is in DLL)
-      sp(::user::interaction) pwindow = EnsureTopLevelParent();
+      ::user::interaction * pwindow = EnsureTopLevelParent();
 
       TRACE(::aura::trace::category_AppMsg, 0, "WinHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
 
@@ -1031,7 +1031,7 @@ namespace windows
    PrepareForHelp();
 
    // need to use top level parent (for the case where get_handle() is in DLL)
-   sp(::user::interaction) pwindow = EnsureTopLevelParent();
+   ::user::interaction * pwindow = EnsureTopLevelParent();
 
    TRACE(::aura::trace::category_AppMsg, 0, "HtmlHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
 
@@ -1062,7 +1062,7 @@ namespace windows
       SendMessageToDescendants(WM_CANCELMODE,0,0,TRUE,TRUE);
 
       // need to use top level parent (for the case where get_handle() is in DLL)
-      sp(::user::interaction) pwindow = EnsureTopLevel();
+      ::user::interaction * pwindow = EnsureTopLevel();
       NODE_WINDOW(pwindow.m_p)->send_message(WM_CANCELMODE);
       NODE_WINDOW(pwindow.m_p)->SendMessageToDescendants(WM_CANCELMODE,0,0,TRUE,TRUE);
 
@@ -1298,7 +1298,7 @@ namespace windows
          {
             if(!m_guieptraMouseHover->element_at(i)->_001IsPointInside(pmouse->m_pt))
             {
-               sp(::user::interaction) pui = m_guieptraMouseHover->element_at(i);
+               ::user::interaction * pui = m_guieptraMouseHover->element_at(i);
                pui->send_message(WM_MOUSELEAVE);
                m_guieptraMouseHover->remove(pui);
                goto restart_mouse_hover_check;
@@ -1346,7 +1346,7 @@ namespace windows
          user::window_util::SortByZOrder(oswindowa);
          for(int32_t i = 0; i < oswindowa.get_size(); i++)
          {
-            sp(::user::interaction) pui = wnda.find_first(oswindowa[i]);
+            ::user::interaction * pui = wnda.find_first(oswindowa[i]);
             if(pui != NULL)
             {
                pui->_000OnMouse(pmouse);
@@ -1364,7 +1364,7 @@ namespace windows
 
          message::key * pkey = (::message::key *) pbase;
 
-         sp(::user::interaction) puiFocus = Session.user()->get_keyboard_focus();
+         ::user::interaction * puiFocus = Session.user()->get_keyboard_focus();
          if(puiFocus != NULL
             && puiFocus->IsWindow())
          {
@@ -1449,7 +1449,7 @@ namespace windows
       ASSERT(get_handle() != NULL);
       ASSERT_VALID(this);
 
-      sp(::user::interaction)pWndTopLevel=EnsureTopLevel();
+      ::user::interaction *pWndTopLevel=EnsureTopLevel();
 
       return interaction_impl::GetForegroundWindow() == pWndTopLevel->GetLastActivePopup();
    }
@@ -1482,14 +1482,14 @@ namespace windows
       return nResult;
    }
 
-   sp(::user::interaction) interaction_impl::GetDescendantWindow(sp(::user::interaction) oswindow,id id)
+   ::user::interaction * interaction_impl::GetDescendantWindow(::user::interaction * oswindow,id id)
    {
       single_lock sl(oswindow->m_pauraapp->m_pmutex,TRUE);
       // get_child_by_id recursive (return first found)
       // breadth-first for 1 level, then depth-first for next level
 
       // use get_child_by_id since it is a fast USER function
-      sp(::user::interaction) pWndChild;
+      ::user::interaction * pWndChild;
       if((pWndChild = oswindow->get_child_by_id(id)) != NULL)
       {
          if(pWndChild->GetTopWindow() != NULL)
@@ -1691,7 +1691,7 @@ namespace windows
    // NOTE: nIDFirst->nIDLast are usually 0->0xffff
 
    __SIZEPARENTPARAMS layout;
-   sp(::user::interaction) oswindow_LeftOver = NULL;
+   ::user::interaction * oswindow_LeftOver = NULL;
 
    layout.bStretch = bStretch;
    layout.sizeTotal.cx = layout.sizeTotal.cy = 0;
@@ -1712,11 +1712,11 @@ namespace windows
 
    if(m_pui != this && m_pui != NULL)
    {
-   for (sp(::user::interaction) oswindow_Child = m_pui->GetTopWindow(); oswindow_Child != NULL;
+   for (::user::interaction * oswindow_Child = m_pui->GetTopWindow(); oswindow_Child != NULL;
    oswindow_Child = oswindow_Child->GetNextWindow(GW_HWNDNEXT))
    {
    string strIdc = oswindow_Child->GetDlgCtrlId();
-   sp(::user::interaction) pwindow = oswindow_Child;
+   ::user::interaction * pwindow = oswindow_Child;
    if (strIdc == pszIdLeftOver)
    oswindow_LeftOver = oswindow_Child;
    else if (::str::begins(strIdc, pszPrefix) && pwindow != NULL)
@@ -1724,9 +1724,9 @@ namespace windows
    }
    for (int32_t i = 0; i < m_pui->m_uiptra.get_count();   i++)
    {
-   sp(::user::interaction) oswindow_Child = m_pui->m_uiptra[i];
+   ::user::interaction * oswindow_Child = m_pui->m_uiptra[i];
    string strIdc = oswindow_Child->GetDlgCtrlId();
-   sp(::user::interaction) pwindow = oswindow_Child;
+   ::user::interaction * pwindow = oswindow_Child;
    if (strIdc == pszIdLeftOver)
    oswindow_LeftOver = oswindow_Child;
    else if (::str::begins(strIdc, pszPrefix) && pwindow != NULL)
@@ -1735,11 +1735,11 @@ namespace windows
    }
    else
    {
-   for (sp(::user::interaction) oswindow_Child = GetTopWindow(); oswindow_Child != NULL;
+   for (::user::interaction * oswindow_Child = GetTopWindow(); oswindow_Child != NULL;
    oswindow_Child = oswindow_Child->GetNextWindow(GW_HWNDNEXT))
    {
    string strIdc = oswindow_Child->GetDlgCtrlId();
-   sp(::user::interaction) pwindow = oswindow_Child;
+   ::user::interaction * pwindow = oswindow_Child;
    if (strIdc == pszIdLeftOver)
    oswindow_LeftOver = oswindow_Child;
    else if (::str::begins(strIdc, pszPrefix) && pwindow != NULL)
@@ -1747,9 +1747,9 @@ namespace windows
    }
    for (int32_t i = 0; i < m_uiptra.get_count();   i++)
    {
-   sp(::user::interaction) oswindow_Child = m_uiptra[i];
+   ::user::interaction * oswindow_Child = m_uiptra[i];
    string strIdc = oswindow_Child->GetDlgCtrlId();
-   sp(::user::interaction) pwindow = oswindow_Child;
+   ::user::interaction * pwindow = oswindow_Child;
    if (strIdc == pszIdLeftOver)
    oswindow_LeftOver = oswindow_Child;
    else if (::str::begins(strIdc, pszPrefix) && pwindow != NULL)
@@ -1775,7 +1775,7 @@ namespace windows
    // the rest is the client size of the left-over pane
    if (pszIdLeftOver != NULL && oswindow_LeftOver != NULL)
    {
-   sp(::user::interaction) pLeftOver = oswindow_LeftOver;
+   ::user::interaction * pLeftOver = oswindow_LeftOver;
    // allow extra space as specified by lpRectBorder
    if ((nFlags & ~reposNoPosLeftOver) == reposExtra)
    {
@@ -1815,7 +1815,7 @@ namespace windows
    bool interaction_impl::HandleFloatingSysCommand(UINT nID,LPARAM lParam)
    {
 
-      sp(::user::interaction) pParent = GetTopLevel();
+      ::user::interaction * pParent = GetTopLevel();
 
       switch(nID & 0xfff0)
       {
@@ -1859,7 +1859,7 @@ namespace windows
       return false;
    }
 
-   void interaction_impl::WalkPreTranslateTree(sp(::user::interaction) puiStop,signal_details * pobj)
+   void interaction_impl::WalkPreTranslateTree(::user::interaction * puiStop,signal_details * pobj)
    {
       ASSERT(puiStop == NULL || puiStop->IsWindow());
       ASSERT(pobj != NULL);
@@ -1868,7 +1868,7 @@ namespace windows
       // walk from the target interaction_impl up to the oswindow_Stop interaction_impl checking
       //  if any interaction_impl wants to translate this message
 
-      for(sp(::user::interaction) pui = pbase->m_pwnd; pui != NULL; pui->GetParent())
+      for(::user::interaction * pui = pbase->m_pwnd; pui != NULL; pui->GetParent())
       {
 
          pui->pre_translate_message(pobj);
@@ -2636,13 +2636,13 @@ namespace windows
    }
 
 
-   void interaction_impl::CenterWindow(sp(::user::interaction) pAlternateOwner)
+   void interaction_impl::CenterWindow(::user::interaction * pAlternateOwner)
    {
       ASSERT(::IsWindow(get_handle()));
 
       // determine owner interaction_impl to center against
       uint32_t dwStyle = GetStyle();
-      sp(::user::interaction) oswindow_Center = pAlternateOwner;
+      ::user::interaction * oswindow_Center = pAlternateOwner;
       if(pAlternateOwner == NULL)
       {
          if(dwStyle & WS_CHILD)
@@ -2652,7 +2652,7 @@ namespace windows
          if(oswindow_Center != NULL)
          {
             // let parent determine alternate center interaction_impl
-            sp(::user::interaction) oswindow_Temp((lparam)oswindow_Center->send_message(WM_QUERYCENTERWND));
+            ::user::interaction * oswindow_Temp((lparam)oswindow_Center->send_message(WM_QUERYCENTERWND));
             if(oswindow_Temp != NULL)
                oswindow_Center = oswindow_Temp;
          }
@@ -2663,7 +2663,7 @@ namespace windows
       GetWindowRect(&rcDlg);
       rect rcArea;
       rect rcCenter;
-      sp(::user::interaction) oswindow_Parent;
+      ::user::interaction * oswindow_Parent;
       if(!(dwStyle & WS_CHILD))
       {
          // don't center against invisible or minimized windows
@@ -3506,7 +3506,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::GetParent() const
+   ::user::interaction * interaction_impl::GetParent() const
    {
 
       if(!::IsWindow(get_handle()))
@@ -3525,7 +3525,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::SetParent(sp(::user::interaction) pWndNewParent)
+   ::user::interaction * interaction_impl::SetParent(::user::interaction * pWndNewParent)
    {
 
       ASSERT(::IsWindow(get_handle()));
@@ -3534,7 +3534,7 @@ namespace windows
 
    }
 
-   sp(::user::interaction) interaction_impl::GetOwner() const
+   ::user::interaction * interaction_impl::GetOwner() const
    {
 
       if(!::IsWindow(get_handle()))
@@ -3551,7 +3551,7 @@ namespace windows
       return ::windows::interaction_impl::from_handle(hwndParent);
    }
 
-   sp(::user::interaction) interaction_impl::SetOwner(sp(::user::interaction) pWndNewParent)
+   ::user::interaction * interaction_impl::SetOwner(::user::interaction * pWndNewParent)
    {
 
       return NULL;
@@ -3584,12 +3584,12 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::ReleaseCapture()
+   ::user::interaction * interaction_impl::ReleaseCapture()
    {
       oswindow oswindowCapture = ::GetCapture();
       if(oswindowCapture == NULL)
       {
-         sp(::user::interaction) puieCapture = GetCapture();
+         ::user::interaction * puieCapture = GetCapture();
          if(puieCapture.is_set())
          {
             m_puiCapture = NULL;
@@ -3604,7 +3604,7 @@ namespace windows
       {
          if(oswindowCapture == get_handle())
          {
-            sp(::user::interaction) puieCapture = GetCapture();
+            ::user::interaction * puieCapture = GetCapture();
             if(::ReleaseCapture())
             {
                m_puiCapture = NULL;
@@ -3627,7 +3627,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::GetCapture()
+   ::user::interaction * interaction_impl::GetCapture()
    {
 
       oswindow oswindowCapture = ::GetCapture();
@@ -3988,7 +3988,7 @@ namespace windows
 
       // walk through HWNDs to avoid creating temporary interaction_impl objects
       // unless we need to call this function recursively
-      sp(::user::interaction) pui = m_pui->get_top_child();
+      ::user::interaction * pui = m_pui->get_top_child();
       while(pui != NULL)
       {
          try
@@ -4021,7 +4021,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::GetDescendantWindow(id id) const
+   ::user::interaction * interaction_impl::GetDescendantWindow(id id) const
    {
 
       ASSERT(::IsWindow(get_handle()));
@@ -4146,25 +4146,25 @@ namespace windows
 
    }
 
-   sp(::user::interaction) interaction_impl::GetActiveWindow()
+   ::user::interaction * interaction_impl::GetActiveWindow()
    {
 
-      return (sp(::user::interaction)) ::windows::interaction_impl::from_handle(::GetActiveWindow()).m_p;
+      return (::user::interaction *) ::windows::interaction_impl::from_handle(::GetActiveWindow()).m_p;
 
    }
 
 
-   sp(::user::interaction) interaction_impl::SetActiveWindow()
+   ::user::interaction * interaction_impl::SetActiveWindow()
    {
 
       ASSERT(::IsWindow(get_handle()));
 
-      return (sp(::user::interaction)) ::windows::interaction_impl::from_handle(::SetActiveWindow(get_handle())).m_p;
+      return (::user::interaction *) ::windows::interaction_impl::from_handle(::SetActiveWindow(get_handle())).m_p;
 
    }
 
 
-   sp(::user::interaction) interaction_impl::s_GetCapture()
+   ::user::interaction * interaction_impl::s_GetCapture()
    {
 
       return ::windows::interaction_impl::from_handle(::GetCapture());
@@ -4172,7 +4172,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::SetCapture(sp(::user::interaction) pinterface)
+   ::user::interaction * interaction_impl::SetCapture(::user::interaction * pinterface)
    {
 
       ASSERT(::IsWindow(get_handle()));
@@ -4185,7 +4185,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::GetFocus()
+   ::user::interaction * interaction_impl::GetFocus()
    {
 
       return ::windows::interaction_impl::from_handle(::GetFocus()).m_p;
@@ -4193,7 +4193,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::SetFocus()
+   ::user::interaction * interaction_impl::SetFocus()
    {
 
       ASSERT(::IsWindow(get_handle()));
@@ -4363,20 +4363,20 @@ namespace windows
    {
       ASSERT(::IsWindow(get_handle())); ::ShowScrollBar(get_handle(),nBar,bShow);
    }
-   sp(::user::interaction) interaction_impl::ChildWindowFromPoint(POINT point)
+   ::user::interaction * interaction_impl::ChildWindowFromPoint(POINT point)
    {
       ASSERT(::IsWindow(get_handle()));
 
-      return (sp(::user::interaction)) ::windows::interaction_impl::from_handle(::ChildWindowFromPoint(get_handle(),point)).m_p;
+      return (::user::interaction *) ::windows::interaction_impl::from_handle(::ChildWindowFromPoint(get_handle(),point)).m_p;
 
 
    }
 
-   sp(::user::interaction) interaction_impl::ChildWindowFromPoint(POINT point,UINT nFlags)
+   ::user::interaction * interaction_impl::ChildWindowFromPoint(POINT point,UINT nFlags)
    {
       ASSERT(::IsWindow(get_handle()));
 
-      return (sp(::user::interaction))  ::windows::interaction_impl::from_handle(::ChildWindowFromPointEx(get_handle(),point,nFlags)).m_p;
+      return (::user::interaction *)  ::windows::interaction_impl::from_handle(::ChildWindowFromPointEx(get_handle(),point,nFlags)).m_p;
 
 
    }
@@ -4391,18 +4391,18 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::GetNextWindow(UINT nFlag)
+   ::user::interaction * interaction_impl::GetNextWindow(UINT nFlag)
    {
 
       if(!::IsWindow(get_handle()))
          return NULL;
 
-      return (sp(::user::interaction)) ::windows::interaction_impl::from_handle(::GetNextWindow(get_handle(),nFlag)).m_p;
+      return (::user::interaction *) ::windows::interaction_impl::from_handle(::GetNextWindow(get_handle(),nFlag)).m_p;
 
    }
 
 
-   sp(::user::interaction) interaction_impl::GetTopWindow() const
+   ::user::interaction * interaction_impl::GetTopWindow() const
    {
 
       ASSERT(::IsWindow(get_handle()));
@@ -4412,7 +4412,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::GetWindow(UINT nCmd) const
+   ::user::interaction * interaction_impl::GetWindow(UINT nCmd) const
    {
 
       ASSERT(::IsWindow(get_handle()));
@@ -4422,7 +4422,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::GetLastActivePopup() const
+   ::user::interaction * interaction_impl::GetLastActivePopup() const
    {
 
       ASSERT(::IsWindow(get_handle()));
@@ -4432,7 +4432,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::WindowFromPoint(POINT point)
+   ::user::interaction * interaction_impl::WindowFromPoint(POINT point)
    {
 
       return ::windows::interaction_impl::from_handle(::WindowFromPoint(point));
@@ -5555,7 +5555,7 @@ namespace windows
    }
 
 
-   void interaction_impl::mouse_hover_add(sp(::user::interaction) pinterface)
+   void interaction_impl::mouse_hover_add(::user::interaction * pinterface)
    {
 
       m_guieptraMouseHover->add_unique(pinterface);
@@ -5563,7 +5563,7 @@ namespace windows
    }
 
 
-   void interaction_impl::mouse_hover_remove(sp(::user::interaction) pinterface)
+   void interaction_impl::mouse_hover_remove(::user::interaction * pinterface)
    {
 
       m_guieptraMouseHover->remove(pinterface);
@@ -5712,7 +5712,7 @@ __handle_activate(::window_sp pwindow,WPARAM nState,::window_sp pWndOther)
    // send WM_ACTIVATETOPLEVEL when top-level parents change
    if(!(NODE_WINDOW(pwindow)->GetStyle() & WS_CHILD))
    {
-      sp(::user::interaction) pTopLevel = NODE_WINDOW(pwindow)->GetTopLevel();
+      ::user::interaction * pTopLevel = NODE_WINDOW(pwindow)->GetTopLevel();
       if(pTopLevel && (pWndOther == NULL || !::IsWindow(NODE_WINDOW(pWndOther)->get_handle()) || pTopLevel != NODE_WINDOW(pWndOther)->GetTopLevel()))
       {
          // lParam points to interaction_impl getting the WM_ACTIVATE message and
@@ -5741,7 +5741,7 @@ __handle_set_cursor(::window_sp pwindow,UINT nHitTest,UINT nMsg)
       nMsg == WM_RBUTTONDOWN))
    {
       // activate the last active interaction_impl if not active
-      sp(::user::interaction) pLastActive = NODE_WINDOW(pwindow)->GetTopLevel();
+      ::user::interaction * pLastActive = NODE_WINDOW(pwindow)->GetTopLevel();
       if(pLastActive != NULL)
          pLastActive = pLastActive->GetLastActivePopup();
       if(pLastActive != NULL &&
@@ -5769,7 +5769,7 @@ __STATIC bool CLASS_DECL_AURA __register_with_icon(WNDCLASS* pWndCls,
 }
 
 
-string CLASS_DECL_AURA get_user_interaction_window_class(sp(::user::interaction) pui)
+string CLASS_DECL_AURA get_user_interaction_window_class(::user::interaction * pui)
 {
 
    ::user::interaction::e_type etype = pui->get_window_type();

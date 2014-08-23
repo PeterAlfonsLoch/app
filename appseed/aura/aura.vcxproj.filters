@@ -2522,9 +2522,6 @@
     <ClInclude Include="aura\node\windows\windows_thread.h">
       <Filter>Header Files\aura\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\windows\windows_window_draw.h">
-      <Filter>Header Files\aura\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="aura\os\windows\windows_base_file.h">
       <Filter>Header Files\aura\os\windows</Filter>
     </ClInclude>
@@ -2843,9 +2840,6 @@
     <ClInclude Include="user\simple\simple.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\windows\windows_interaction_impl.h">
-      <Filter>Header Files\aura\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="user\simple_ui\simple_ui_message_box.h">
       <Filter>Header Files\user\simple_ui</Filter>
     </ClInclude>
@@ -2896,9 +2890,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\file\file_folder_watch.h">
       <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\windows\windows_print_job.h">
-      <Filter>Header Files\aura\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="database\database_user_interaction.h">
       <Filter>Header Files\database</Filter>
@@ -3940,122 +3931,11 @@
     <ClCompile Include="aura\os\android\android_c.c">
       <Filter>Source Files\aura\os\android</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_buffer.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_check_interface.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_control_bar.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_control_event.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_create_context.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_draw_context.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_draw_interface.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_elemental.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_frame_window.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_impact.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_impact_system.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_impact_update_hint.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_interaction.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_job.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_keyboard.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_keyboard_focus.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_keyboard_layout.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_message.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_mouse_focus.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_place_holder.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_place_holder_container.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_printer.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_server.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_str.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_text_interface.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_user.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_view_container.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_view_creator.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_wait_cursor.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_window_draw.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_window_map.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_window_util.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_print_job.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\aura\aura_print_job.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\math\math_natural.cpp">
       <Filter>Source Files\primitive\math</Filter>
     </ClCompile>
     <ClCompile Include="primitive\math\math_mkint_c.cpp">
       <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_menu_base.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_menu_base_item.cpp">
-      <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="aura\aura\aura_id_pool.cpp">
       <Filter>Source Files\aura\aura</Filter>
@@ -4327,9 +4207,6 @@
     <ClCompile Include="multithreading\multithreading_thread_impl.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_windowing.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="multithreading\multithreading.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
@@ -4432,18 +4309,6 @@
     <ClCompile Include="aura\aura\aura_application_interface.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_interaction_base.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_interaction_impl_base.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_interaction_impl.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_interaction_child.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="aura\aura\aura_gudo.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
@@ -4453,29 +4318,8 @@
     <ClCompile Include="user\simple_ui\simple_ui_message_box.cpp">
       <Filter>Source Files\user\simple_ui</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_document.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_schema.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_schema_simple_impl.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="aura\aura\aura_library.cpp">
       <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_schema_layered_frame.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_edit_plain_text.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_scroll_view.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_control.cpp">
-      <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\colorertake5\colorertake5_base_editor.cpp">
       <Filter>Source Files\user\colorertake5</Filter>
@@ -4540,9 +4384,6 @@
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_impl.cpp">
       <Filter>Source Files\user\colorertake5</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_plain_text_data.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\data\data_data.cpp">
       <Filter>Source Files\primitive\data</Filter>
     </ClCompile>
@@ -4569,12 +4410,6 @@
     </ClCompile>
     <ClCompile Include="user\simple\simple_scroll_bar.cpp">
       <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_form_interface.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_scroll_bar.cpp">
-      <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="aura\node\windows\windows_interaction_impl.cpp">
       <Filter>Source Files\aura\node\windows</Filter>
@@ -4658,18 +4493,6 @@
     </None>
     <None Include="primitive\primitive_factory_impl.inl">
       <Filter>Header Files\primitive</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

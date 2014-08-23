@@ -87,7 +87,6 @@ namespace aura
       static WPARAM                                   WPARAM_LANGUAGE_UPDATE;
 
       bool                                            m_bShouldInitializeGTwf;
-      sp(::user::interaction)                         m_pwndMain;
       bool                                            m_bInitializeProDevianMode;
 
 
@@ -101,8 +100,8 @@ namespace aura
       virtual sp(element) alloc(const id & idType);
 
 
-      virtual int32_t simple_message_box(sp(::user::interaction) puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);
-      virtual int32_t simple_message_box_timeout(sp(::user::interaction) pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle);
+      virtual int32_t simple_message_box(::user::interaction * puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);
+      virtual int32_t simple_message_box_timeout(::user::interaction * pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle);
       int32_t simple_message_box(const char * pszMessage,UINT fuStyle);
       virtual string message_box(const string & pszMatter,property_set & propertyset);
 
@@ -133,8 +132,8 @@ namespace aura
 //      virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::user::impact_system) ptemplate,sp(::user::document) pdocument);
 
 
-  //    virtual sp(::user::interaction) release_capture_uie();
-    //  virtual sp(::user::interaction) get_capture_uie();
+  //    virtual ::user::interaction * release_capture_uie();
+    //  virtual ::user::interaction * get_capture_uie();
 
 
       void process(machine_event_data * pdata);
@@ -147,8 +146,8 @@ namespace aura
 
 
       ptr_array < ::user::interaction > frames();
-      virtual void add_frame(sp(::user::interaction) pwnd);
-      virtual void remove_frame(sp(::user::interaction) pwnd);
+      virtual void add_frame(::user::interaction * pwnd);
+      virtual void remove_frame(::user::interaction * pwnd);
 
       virtual void DoWaitCursor(int32_t nCode); // 0 => restore, 1=> begin, -1=> end
       virtual void ShowWaitCursor(bool bShow = true);
@@ -219,11 +218,11 @@ namespace aura
       virtual string get_license_id();
 
 
-      virtual sp(::user::interaction) get_active_guie();
-      virtual sp(::user::interaction) get_focus_guie();
+      virtual ::user::interaction * get_active_guie();
+      virtual ::user::interaction * get_focus_guie();
 
 
-      virtual sp(::user::interaction) window_from_os_data(void * pdata);
+      virtual ::user::interaction * window_from_os_data(void * pdata);
 
 
       virtual void construct(const char * pszAppId);
@@ -277,8 +276,8 @@ namespace aura
 
 
 
-      virtual sp(::user::interaction) FindWindow(const char * lpszClassName,const char * lpszWindowName);
-      virtual sp(::user::interaction) FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow);
+      virtual ::user::interaction * FindWindow(const char * lpszClassName,const char * lpszWindowName);
+      virtual ::user::interaction * FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow);
 
       virtual string get_version();
 

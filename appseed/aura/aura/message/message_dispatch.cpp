@@ -28,34 +28,7 @@ namespace message
       return true;
    }
 
-   sp(::message::base) dispatch::peek_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
-   {
-      if(!::PeekMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax,wRemoveMsg))
-         return NULL;
-      return get_base(lpmsg,pwnd);
-   }
-
-   sp(::message::base) dispatch::get_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
-   {
-      if(!::GetMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax))
-         return NULL;
-      return get_base(lpmsg,pwnd);
-   }
-
-   sp(::message::base) dispatch::peek_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
-   {
-      MESSAGE msg;
-      return peek_message(&msg,pwnd,wMsgFilterMin,wMsgFilterMax,wRemoveMsg);
-   }
-
-
-   sp(::message::base) dispatch::get_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
-   {
-      MESSAGE msg;
-      return get_message(&msg,pwnd,wMsgFilterMin,wMsgFilterMax);
-   }
-
-   sp(::message::base) dispatch::get_base(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam)
+   sp(::message::base) dispatch::get_base(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam)
    {
       sp(::message::base) pbase;
       e_prototype eprototype = PrototypeNone;
@@ -169,12 +142,12 @@ namespace message
       return pbase;
    }
 
-   sp(::message::base) dispatch::get_base(LPMESSAGE lpmsg,sp(::user::interaction) pwnd)
+   sp(::message::base) dispatch::get_base(LPMESSAGE lpmsg,::user::interaction * pwnd)
    {
 #if defined(METROWIN)
       if(pwnd == NULL && lpmsg->oswindow != NULL)
       {
-         sp(::user::interaction) pwindow = lpmsg->oswindow->interaction_impl();
+         ::user::interaction * pwindow = lpmsg->oswindow->interaction_impl();
 #else
       if(pwnd == NULL && lpmsg->hwnd != NULL)
       {
@@ -183,7 +156,7 @@ namespace message
 
             TRACE0("WM_DISPLAYCHANGE");
          }
-         sp(::user::interaction) pwindow = System.window_from_os_data(lpmsg->hwnd);
+         ::user::interaction * pwindow = System.window_from_os_data(lpmsg->hwnd);
 #endif
          if(pwindow != NULL)
          {
@@ -209,7 +182,7 @@ namespace message
 
 #if defined(LINUX)
 
-   sp(::message::base) dispatch::get_base(XEvent * pevent,sp(::user::interaction) pwnd)
+   sp(::message::base) dispatch::get_base(XEvent * pevent,::user::interaction * pwnd)
    {
 
       throw todo(get_app());

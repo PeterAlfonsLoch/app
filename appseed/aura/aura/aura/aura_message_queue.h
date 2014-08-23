@@ -7,7 +7,7 @@ class CLASS_DECL_AURA message_queue :
 public:
 
 
-   sp(::user::interaction)          m_spuiMessage;
+   ::user::interaction *          m_spuiMessage;
    message_queue_listener *         m_plistener;
 
 

@@ -242,7 +242,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) application::FindWindow(const char * lpszClassName,const char * lpszWindowName)
+   ::user::interaction * application::FindWindow(const char * lpszClassName,const char * lpszWindowName)
    {
 
       return interaction_impl::FindWindow(lpszClassName, lpszWindowName);
@@ -250,7 +250,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) application::FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow)
+   ::user::interaction * application::FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow)
    {
 
       return interaction_impl::FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);

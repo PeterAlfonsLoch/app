@@ -3,6 +3,7 @@
 
 class replace_thread;
 
+class user_interaction_ptr_array;
 
 
 class CLASS_DECL_AURA thread :
@@ -10,11 +11,12 @@ class CLASS_DECL_AURA thread :
 #ifdef WINDOWS
    virtual public ::exception::translator,
 #endif
-   virtual public ptr_array < ::user::interaction >,
    virtual public ::aura::live_object,
    virtual public event_base
 {
 public:
+
+   user_interaction_ptr_array *           m_puiptra;
 
    single_lock *                          m_pslUser;
    static bool                            s_bAllocReady;
@@ -105,7 +107,7 @@ public:
 
    virtual uint32_t ResumeThread();
    virtual bool post_thread_message(UINT message, WPARAM wParam = 0, lparam lParam = 0);
-   virtual bool post_message(sp(::user::interaction) pui, UINT message, WPARAM wParam = 0, lparam lParam = 0);
+   virtual bool post_message(::user::interaction * pui, UINT message, WPARAM wParam = 0, lparam lParam = 0);
 
    virtual bool pre_init_instance();
 
@@ -129,18 +131,18 @@ public:
 
    virtual void process_message_filter(int32_t code, signal_details * pobj);
 
-   virtual void add(sp(::user::interaction) pui);
+   virtual void add(::user::interaction * pui);
    virtual void remove(::user::interaction * pui);
    virtual ::count get_ui_count();
    virtual ::user::interaction * get_ui(index iIndex);
-   virtual void set_timer(sp(::user::interaction) pui, uint_ptr nIDEvent, UINT nEllapse);
-   virtual void unset_timer(sp(::user::interaction) pui, uint_ptr nIDEvent);
+   virtual void set_timer(::user::interaction * pui, uint_ptr nIDEvent, UINT nEllapse);
+   virtual void unset_timer(::user::interaction * pui, uint_ptr nIDEvent);
    virtual void set_auto_delete(bool bAutoDelete = true);
    virtual void set_run(bool bRun = true);
    virtual event & get_finish_event();
    virtual bool get_run();
-   virtual sp(::user::interaction) get_active_ui();
-   virtual sp(::user::interaction) set_active_ui(sp(::user::interaction) pui);
+   virtual ::user::interaction * get_active_ui();
+   virtual ::user::interaction * set_active_ui(::user::interaction * pui);
    virtual void step_timer();
    virtual bool on_run_step();
 

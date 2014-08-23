@@ -154,7 +154,7 @@ void thread_impl::pre_translate_message(signal_details * pobj)
 
                synch_index_iterator it(m_pauraapp->m_paxissession->m_framea);
 
-               sp(::user::interaction) pui;
+               ::user::interaction * pui;
 
                for(it.m_i = 0; it.m_i < m_pauraapp->m_paxissession->frames().get_count(); it.m_i++)
                {
@@ -291,8 +291,8 @@ void thread_impl::process_message_filter(int32_t code,signal_details * pobj)
    SCAST_PTR(::message::base,pbase,pobj);
 
    sp(::user::frame_window) pTopFrameWnd;
-   sp(::user::interaction) pMainWnd;
-   sp(::user::interaction) pMsgWnd;
+   ::user::interaction * pMainWnd;
+   ::user::interaction * pMsgWnd;
    switch(code)
    {
    //case MSGF_DDEMGR:
@@ -848,7 +848,7 @@ int32_t thread_impl::exit_instance()
          for(int32_t i = 0; i < puiptra->get_size(); i++)
          {
 
-            sp(::user::interaction) pui = puiptra->element_at(i);
+            ::user::interaction * pui = puiptra->element_at(i);
 
          }
 
@@ -895,7 +895,7 @@ bool thread_impl::on_idle(LONG lCount)
    {
       for(int32_t i = 0; i < m_spuiptra->get_count();)
       {
-         sp(::user::interaction) pui = m_spuiptra->element_at(i);
+         ::user::interaction * pui = m_spuiptra->element_at(i);
          bool bOk = false;
          try
          {
@@ -945,7 +945,7 @@ bool thread_impl::on_idle(LONG lCount)
 
 
 
-bool thread_impl::post_message(sp(::user::interaction) pui,UINT uiMessage,WPARAM wparam,lparam lparam)
+bool thread_impl::post_message(::user::interaction * pui,UINT uiMessage,WPARAM wparam,lparam lparam)
 {
 
    if(m_hthread == NULL)
@@ -1180,7 +1180,7 @@ int32_t thread_impl::thread_term()
 }
 
 
-void thread_impl::add(sp(::user::interaction) pui)
+void thread_impl::add(::user::interaction * pui)
 {
 
    single_lock sl(&m_mutexUiPtra,TRUE);
@@ -1249,7 +1249,7 @@ void thread_impl::remove(::user::interaction * pui)
 }
 
 
-void thread_impl::set_timer(sp(::user::interaction) pui,uint_ptr nIDEvent,UINT nEllapse)
+void thread_impl::set_timer(::user::interaction * pui,uint_ptr nIDEvent,UINT nEllapse)
 {
 
    if(m_sptimera.is_null())
@@ -1265,7 +1265,7 @@ void thread_impl::set_timer(sp(::user::interaction) pui,uint_ptr nIDEvent,UINT n
 }
 
 
-void thread_impl::unset_timer(sp(::user::interaction) pui,uint_ptr nIDEvent)
+void thread_impl::unset_timer(::user::interaction * pui,uint_ptr nIDEvent)
 {
    
    if(m_sptimera.is_null())

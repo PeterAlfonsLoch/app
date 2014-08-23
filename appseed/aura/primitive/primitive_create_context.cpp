@@ -39,7 +39,7 @@ create_context::create_context(sp(::command_thread) pthreadParent) :
 
 }
 
-create_context::create_context(sp(::command_thread) pthreadParent, var varFile, bool bMakeVisible, sp(::user::interaction) puiParent) :
+create_context::create_context(sp(::command_thread) pthreadParent, var varFile, bool bMakeVisible, ::user::interaction * puiParent) :
    element(pthreadParent->get_app()),
    command(pthreadParent->get_app()),
    m_spApplicationBias(allocer()),
@@ -101,3 +101,26 @@ create_context & create_context::operator = (const create_context & createcontex
 
 
 
+
+CLASS_DECL_AURA void(g_user_create_context_delfn *)(void * pusercreatecontext) = NULL;
+
+CLASS_DECL_AURA void set user_create_context_delfn( void (pfn_user_create_context_del *) (void *))
+{
+   g_user_create_context_delfn = pfn_user_create_context_del;
+}
+
+
+CLASS_DECL_AURA void user_create_context_delfn(void * pusercreatecontext)
+{
+
+   if(g_user_create_context_delfn == NULL)
+   {
+      ::OutputDebugString("user create context not deleted ; memory leak!!")
+         ::printf("user create context not deleted ; memory leak!!")
+   }
+   else
+   {
+      (*g_user_create_context_delfn)(pusercreatecontext);
+   }
+
+}

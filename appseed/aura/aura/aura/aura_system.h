@@ -30,7 +30,7 @@ namespace aura
       {
       public:
 
-         sp(::user::interaction)                      m_pui;
+         ::user::interaction *                      m_pui;
          ::aura::system_window ^                      m_pwindow;
 
 
@@ -41,7 +41,7 @@ namespace aura
       {
       public:
 
-         sp(::user::interaction)                      m_pui;
+         ::user::interaction *                      m_pui;
 
 
       };
@@ -312,7 +312,7 @@ namespace aura
          return get_enum_name(System.type_info < TYPE >(),(int32_t)e);
       }
 
-      virtual sp(::user::document) place_hold(sp(::user::interaction) pui);
+      virtual sp(::user::document) place_hold(::user::interaction * pui);
 
       virtual sp(::aura::session) query_session(index iEdge);
 
@@ -350,8 +350,8 @@ namespace aura
       virtual ::count get_desk_wkspace_count();
       virtual bool  get_desk_wkspace_rect(index iWkspace,LPRECT lprect);
 
-      virtual sp(::user::interaction) get_active_guie();
-      virtual sp(::user::interaction) get_focus_guie();
+      virtual ::user::interaction * get_active_guie();
+      virtual ::user::interaction * get_focus_guie();
 
 
       virtual ::count get_application_count();

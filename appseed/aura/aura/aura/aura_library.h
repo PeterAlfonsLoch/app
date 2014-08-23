@@ -55,8 +55,6 @@ namespace aura
       virtual void get_create_view_id_list(::array < id > & ida);
 
 
-      virtual void on_create_view(::user::view_creator_data * pcreatordata);
-
       virtual string get_root();
 
 

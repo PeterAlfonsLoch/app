@@ -843,7 +843,7 @@ namespace aura
    }
 
 
-   sp(::user::document) system::place_hold(sp(::user::interaction) pui)
+   sp(::user::document) system::place_hold(::user::interaction * pui)
    {
 
 
@@ -1437,7 +1437,7 @@ namespace aura
 #endif
 
 
-   sp(::user::interaction) system::get_active_guie()
+   ::user::interaction * system::get_active_guie()
    {
 
 #if defined(WINDOWSEX) || defined(LINUX) || defined(APPLEOS)
@@ -1456,7 +1456,7 @@ namespace aura
    }
 
 
-   sp(::user::interaction) system::get_focus_guie()
+   ::user::interaction * system::get_focus_guie()
    {
 
 #if defined (METROWIN)

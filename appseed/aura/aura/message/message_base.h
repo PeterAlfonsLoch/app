@@ -23,14 +23,14 @@ namespace message
       bool                       m_bReflect;
 
       base(sp(::aura::application) papp,class ::signal * psignal = NULL);
-      base(sp(::aura::application) papp,sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      base(sp(::aura::application) papp,::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
 
 
 
       virtual void set_lresult(LRESULT lresult);
       virtual LRESULT & get_lresult();
-      virtual void set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
-      virtual void set(sp(::user::interaction) pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam);
+      virtual void set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam);
    protected:
       LRESULT * m_plresult;
       LRESULT  m_lresult;

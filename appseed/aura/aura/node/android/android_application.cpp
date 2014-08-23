@@ -273,7 +273,7 @@ namespace android
    {
       return ::win::thread::post_thread_message(message, wParam, lParam);
    }
-   bool application::post_message(sp(::user::interaction) pguie, UINT message, WPARAM wParam, LPARAM lParam)
+   bool application::post_message(::user::interaction * pguie, UINT message, WPARAM wParam, LPARAM lParam)
    {
       return ::win::thread::post_message(pguie, message, wParam, lParam);
    }
@@ -408,7 +408,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
 
    // Advanced: access to GetMainWnd()
-   sp(::user::interaction) application::GetMainWnd()
+   ::user::interaction * application::GetMainWnd()
    {
       return ::win::thread::GetMainWnd();
    }
@@ -496,14 +496,14 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
    }
 
-   sp(::user::interaction) application::window_from_os_data(void * pdata)
+   ::user::interaction * application::window_from_os_data(void * pdata)
    {
       return ::window_from_handle((oswindow) pdata);
    }
 
-   sp(::user::interaction) application::window_from_os_data_permanent(void * pdata)
+   ::user::interaction * application::window_from_os_data_permanent(void * pdata)
    {
-      sp(::user::interaction) pwnd = ::window_from_handle((oswindow) pdata);
+      ::user::interaction * pwnd = ::window_from_handle((oswindow) pdata);
       if(pwnd != NULL)
          return pwnd;
       user::interaction_ptr_array wndptra = System.frames();
@@ -564,12 +564,12 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
    }
 
-   sp(::user::interaction) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+   ::user::interaction * application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
    {
       return interaction_impl::FindWindow(lpszClassName, lpszWindowName);
    }
 
-   sp(::user::interaction) application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
+   ::user::interaction * application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
    {
       return interaction_impl::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow);
    }

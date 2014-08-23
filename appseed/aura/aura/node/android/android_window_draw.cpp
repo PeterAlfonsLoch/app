@@ -267,7 +267,7 @@ namespace android
       else
       {
          ::user::interaction_base * ptwi = Session.user()->window_map().get((int_ptr) hwndParam);
-         sp(::user::interaction) pguie =  (ptwi);
+         ::user::interaction * pguie =  (ptwi);
          rect rectWindow;
          ::GetWindowRect((oswindow) hwndParam, rectWindow);
          //::GetClientRect(hwndParam, rectWindow);
@@ -535,7 +535,7 @@ namespace android
       {
          oswindow hwndTopic = wndaApp[j];
 
-         sp(::user::interaction) pwnd = NULL;
+         ::user::interaction * pwnd = NULL;
          //::interaction_impl * pwnd =  (System.window_map().get((int_ptr) hwndTopic));
          //if(pwnd == NULL)
          //{
@@ -648,7 +648,7 @@ namespace android
 
       for(int32_t i = 0; i < m_wndpaOut.get_count(); i++)
       {
-         sp(::user::interaction) pwnd = m_wndpaOut(i);
+         ::user::interaction * pwnd = m_wndpaOut(i);
 
          ScreenOutput(m_pbuffer, pwnd);
 
@@ -778,7 +778,7 @@ namespace android
 
       rect rectClient;
 
-      sp(::user::interaction) pguie =  (ptwi);
+      ::user::interaction * pguie =  (ptwi);
 
       pguie->GetClientRect(rectClient);
       pguie->ClientToScreen(rectClient);
@@ -799,7 +799,7 @@ namespace android
          return OptimizeNone;
       }
 
-   //    sp(::user::interaction) pwnd = interaction_impl::FromHandlePermanent(hwnd);
+   //    ::user::interaction * pwnd = interaction_impl::FromHandlePermanent(hwnd);
 
 
       if(ptwi == NULL)
@@ -890,7 +890,7 @@ namespace android
       ::GetWindowRect((::oswindow) oswindow, rectWindow);
 
 
-   //   sp(::user::interaction) pwnd = ::android::interaction_impl::from_handle(oswindow);
+   //   ::user::interaction * pwnd = ::android::interaction_impl::from_handle(oswindow);
 
       if(!TwfGetTopWindow(
             hwndParam,
@@ -996,7 +996,7 @@ throw not_implemented(get_app());
    {
       rect rectWindow;
 
-   //   sp(::user::interaction) pwndOpaque = interaction_impl::FromHandlePermanent(hwndOpaque);
+   //   ::user::interaction * pwndOpaque = interaction_impl::FromHandlePermanent(hwndOpaque);
 
       ::GetWindowRect((oswindow) hwndOpaque, rectWindow);
 
@@ -1094,7 +1094,7 @@ throw not_implemented(get_app());
       user::buffer * pbuffer,
       // hwndParam ::interaction_impl device context
       // is used from screen output
-      sp(::user::interaction) pwnd)
+      ::user::interaction * pwnd)
    {
       if(pwnd != NULL)
       {

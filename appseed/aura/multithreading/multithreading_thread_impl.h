@@ -98,7 +98,7 @@ public:
 
    virtual int_ptr item() const;
 
-   virtual void add(sp(::user::interaction) pui);
+   virtual void add(::user::interaction * pui);
    virtual void remove(::user::interaction * pui);
 
    virtual bool is_idle_message(signal_details * pobj);
@@ -106,12 +106,12 @@ public:
 
    virtual void post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam);
    virtual bool post_thread_message(UINT message,WPARAM wParam = 0,lparam lParam = 0);
-   virtual bool post_message(sp(::user::interaction) pui,UINT message,WPARAM wParam = 0,lparam lParam = 0);
+   virtual bool post_message(::user::interaction * pui,UINT message,WPARAM wParam = 0,lparam lParam = 0);
 
    virtual ::count get_ui_count();
    virtual ::user::interaction * get_ui(::index iIndex);
-   virtual void set_timer(sp(::user::interaction) pui,uint_ptr nIDEvent,UINT nEllapse);
-   virtual void unset_timer(sp(::user::interaction) pui,uint_ptr nIDEvent);
+   virtual void set_timer(::user::interaction * pui,uint_ptr nIDEvent,UINT nEllapse);
+   virtual void unset_timer(::user::interaction * pui,uint_ptr nIDEvent);
    virtual event & get_finish_event();
    virtual void step_timer();
 

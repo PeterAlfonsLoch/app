@@ -1,6 +1,6 @@
 #pragma once
 
-CLASS_DECL_AURA string get_user_interaction_window_class(sp(::user::interaction) pui);
+CLASS_DECL_AURA string get_user_interaction_window_class(::user::interaction * pui);
 
 
 

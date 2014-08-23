@@ -6,6 +6,6 @@
 #include "aura/aura/aura/aura.h"
 
 
-#define new AURA_NEW
+
 
 
