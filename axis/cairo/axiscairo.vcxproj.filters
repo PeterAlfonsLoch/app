@@ -137,9 +137,6 @@
     <ClCompile Include="src\cairo-egl-context.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cairo-error.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\cairo-fallback-compositor.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -559,6 +556,9 @@
     </ClCompile>
     <ClCompile Include="src\win32\cairo-win32-system.c">
       <Filter>Source Files\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cairo-cairoerror.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

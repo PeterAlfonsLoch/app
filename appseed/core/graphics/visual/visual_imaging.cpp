@@ -5,7 +5,7 @@
 #undef new
 #define min MIN
 #define max MAX
-#include <gdiplus.h>
+//#include <gdiplus.h>
 #undef min
 #undef max
 #define new AXIS_NEW
@@ -2494,7 +2494,7 @@ FIBITMAP * imaging::HBITMAPtoFI(::draw2d::bitmap_sp pbitmap)
 
    Gdiplus::Color colorBk(0, 0, 0, 0);
 
-   ((Gdiplus::Bitmap *) (pbitmap.m_p->get_os_data()))->GetHBITMAP(colorBk, &hbitmap);
+   pbitmap->GetHBITMAP(colorBk, &hbitmap);
 
    if(hbitmap == NULL)
       return NULL;

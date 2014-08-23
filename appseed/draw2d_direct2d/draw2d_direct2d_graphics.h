@@ -494,6 +494,8 @@ namespace draw2d_direct2d
 
       virtual bool draw(const ::draw2d::path::string_path & path,::draw2d::pen * ppen);
 
+      virtual bool flush();
+
 
    //protected:
       // used for implementation of non-virtual SelectObject calls

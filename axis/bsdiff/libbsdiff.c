@@ -30,6 +30,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "axis/axis/axis.h"
+
 #include <string.h>
 
 #if defined(_WIN32) || defined(LINUX)

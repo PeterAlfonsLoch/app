@@ -8,6 +8,12 @@ namespace draw2d
    bitmap::bitmap()
    {
 
+#ifdef WINDOWSEX
+
+      m_hbitmapGet            = NULL;
+
+#endif
+
 
    }
 
@@ -15,10 +21,24 @@ namespace draw2d
    bitmap::~bitmap()
    {
 
+#ifdef WINDOWSEX
+
+      // Implementators (derived classes) should have released or at last nulled m_hbitmapGet to
+      // indicate it is correctly Released through ReleaseHBITMAP
+
+      if(m_hbitmapGet != NULL)
+      {
+
+         ReleaseHBITMAP(m_hbitmapGet);
+
+      }
+
+#endif
+
    }
 
 
-   bool bitmap::CreateBitmap(::draw2d::graphics * pdc, int32_t nWidth, int32_t nHeight, UINT nPlanes, UINT nBitcount, const void * lpBits, int32_t stride)
+   bool bitmap::CreateBitmap(::draw2d::graphics * pdc,int32_t nWidth,int32_t nHeight,UINT nPlanes,UINT nBitcount,const void * lpBits,int32_t stride)
    {
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
@@ -29,13 +49,13 @@ namespace draw2d
       throw not_implemented(get_app());
    }
 
-   bool bitmap::CreateBitmapIndirect(::draw2d::graphics * pdc, LPBITMAP lpBitmap)
+   bool bitmap::CreateBitmapIndirect(::draw2d::graphics * pdc,LPBITMAP lpBitmap)
    {
       UNREFERENCED_PARAMETER(lpBitmap);
       throw not_implemented(get_app());
    }
 
-   bool bitmap::CreateDIBSection(::draw2d::graphics * pdc, const BITMAPINFO * lpbmi, UINT usage, void **ppvBits, int * stride, HANDLE hSection, uint32_t offset)
+   bool bitmap::CreateDIBSection(::draw2d::graphics * pdc,const BITMAPINFO * lpbmi,UINT usage,void **ppvBits,int * stride,HANDLE hSection,uint32_t offset)
    {
       UNREFERENCED_PARAMETER(pdc);
       UNREFERENCED_PARAMETER(lpbmi);
@@ -46,7 +66,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(offset);
       throw not_implemented(get_app());
    }
-   bool bitmap::CreateDIBitmap(::draw2d::graphics * pdc, const BITMAPINFOHEADER *pbmih, uint32_t flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage)
+   bool bitmap::CreateDIBitmap(::draw2d::graphics * pdc,const BITMAPINFOHEADER *pbmih,uint32_t flInit,const void *pjBits,const BITMAPINFO *pbmi,UINT iUsage)
    {
       UNREFERENCED_PARAMETER(pdc);
       UNREFERENCED_PARAMETER(pbmih);
@@ -57,27 +77,27 @@ namespace draw2d
       throw not_implemented(get_app());
    }
 
-   uint32_t bitmap::SetBitmapBits(uint32_t dwCount, const void * lpBits)
+   uint32_t bitmap::SetBitmapBits(uint32_t dwCount,const void * lpBits)
    {
       UNREFERENCED_PARAMETER(dwCount);
       UNREFERENCED_PARAMETER(lpBits);
       throw not_implemented(get_app());
    }
-   uint32_t bitmap::GetBitmapBits(uint32_t dwCount, LPVOID lpBits) const
+   uint32_t bitmap::GetBitmapBits(uint32_t dwCount,LPVOID lpBits) const
    {
       UNREFERENCED_PARAMETER(dwCount);
       UNREFERENCED_PARAMETER(lpBits);
       throw not_implemented(get_app());
    }
 
-   bool bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics, int32_t nWidth, int32_t nHeight)
+   bool bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics,int32_t nWidth,int32_t nHeight)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
       throw not_implemented(get_app());
    }
-   bool bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics, int32_t nWidth, int32_t nHeight)
+   bool bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics,int32_t nWidth,int32_t nHeight)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(nWidth);
@@ -92,7 +112,7 @@ namespace draw2d
    }
 
 
-   class size bitmap::SetBitmapDimension(int32_t nWidth, int32_t nHeight)
+   class size bitmap::SetBitmapDimension(int32_t nWidth,int32_t nHeight)
    {
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
@@ -116,7 +136,7 @@ namespace draw2d
    {
 
 
-      return SetBitmapDimension(size.cx, size.cy);
+      return SetBitmapDimension(size.cx,size.cy);
 
 
    }
@@ -126,7 +146,7 @@ namespace draw2d
 
 
       throw not_implemented(get_app());
-      class size sizeRet(0, 0);
+      class size sizeRet(0,0);
       return sizeRet;
 
 
@@ -150,6 +170,50 @@ namespace draw2d
 
    }
 
+#ifdef WINDOWSEX
+
+   HBITMAP bitmap::GetHBITMAP()
+   {
+
+      if(m_hbitmapGet != NULL)
+         return m_hbitmapGet;
+
+      m_hbitmapGet = _GetHBITMAP();
+
+      return m_hbitmapGet;
+
+   }
+   
+   void bitmap::ReleaseHBITMAP(HBITMAP hbitmap)
+   {
+
+      if(hbitmap == NULL)
+         return;
+
+      if(m_hbitmapGet == NULL)
+         return;
+
+      _ReleaseHBITMAP(hbitmap);
+
+      m_hbitmapGet = NULL;
+
+   }
+
+   HBITMAP bitmap::_GetHBITMAP()
+   {
+
+      return NULL;
+
+   }
+
+   void bitmap::_ReleaseHBITMAP(HBITMAP hbitmap)
+   {
+
+      UNREFERENCED_PARAMETER(hbitmap);
+
+   }
+
+#endif
 
 } // namespace draw2d
 

@@ -4859,6 +4859,16 @@ namespace draw2d_direct2d
    }
 
 
+   bool graphics::flush()
+   {
+
+      HRESULT hr = m_prendertarget->Flush();
+
+      return SUCCEEDED(hr);
+      
+   }
+
+
 } // namespace draw2d_direct2d
 
 

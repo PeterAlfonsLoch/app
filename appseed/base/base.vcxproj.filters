@@ -189,12 +189,6 @@
     <Filter Include="Header Files\base\os\windows">
       <UniqueIdentifier>{719bbac6-b1e2-43be-9042-48cec85915ad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\base\os\cross">
-      <UniqueIdentifier>{e9b106f1-4ddd-4521-b7c1-6461c701be4f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\os\cross\windows">
-      <UniqueIdentifier>{105dbf8b-8b00-4530-b1fa-ac561338c12e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\base\os\ansios">
       <UniqueIdentifier>{d8fdcc30-b719-4944-8c43-76d53cfb6b94}</UniqueIdentifier>
     </Filter>
@@ -221,15 +215,6 @@
     </Filter>
     <Filter Include="Source Files\base\os">
       <UniqueIdentifier>{245e3241-db5a-4886-814d-9434580575d9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\base\os\cross">
-      <UniqueIdentifier>{f22e1b28-50e1-41b7-ab05-fbf12e97db6e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\base\os\cross\metrowin">
-      <UniqueIdentifier>{e16bae98-9b4b-4f16-8aea-c1eeeb80d1d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\base\os\cross\windows">
-      <UniqueIdentifier>{c2c59a3f-bfe4-4a34-af7d-9cbdd458db15}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\base\os\android">
       <UniqueIdentifier>{58b6201f-03a2-4896-ae5a-477d9ea6a138}</UniqueIdentifier>
@@ -680,14 +665,8 @@
     <ClInclude Include="net\mail\simple_pop3.h">
       <Filter>Header Files\net\mail</Filter>
     </ClInclude>
-    <ClInclude Include="base\os\cross.h">
-      <Filter>Header Files\base\os</Filter>
-    </ClInclude>
     <ClInclude Include="base\os\os.h">
       <Filter>Header Files\base\os</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\cross.h">
-      <Filter>Header Files\base\os\cross</Filter>
     </ClInclude>
     <ClInclude Include="base\os\android\android_window_impl.h">
       <Filter>Header Files\base\os\android</Filter>
@@ -767,9 +746,6 @@
     <ClInclude Include="base\base\base_system.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
-    <ClInclude Include="base\os\os_binreloc.h">
-      <Filter>Header Files\base\os</Filter>
-    </ClInclude>
     <ClInclude Include="net\net_ip_enum.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
@@ -814,54 +790,6 @@
     </ClInclude>
     <ClInclude Include="base\os\android\android_android.h">
       <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_crt.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_defs.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_error.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_file.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_gdi.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_guid_def.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_internals.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_ole_automation.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_shared_memory.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_thread.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_thread_impl.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_time.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_types.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_user.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_winnt.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\os\ansios\ansios.h">
       <Filter>Header Files\base\os\ansios</Filter>
@@ -1045,51 +973,6 @@
     </ClInclude>
     <ClInclude Include="base\hotplugin\hotplugin_composer.h">
       <Filter>Header Files\base\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\e.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_base.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_base_tsd.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_common_controls.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_crtdefs.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_errno.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_mmeapi.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_mmsystem.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_nls.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_nt.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_ntstatus.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_poppack.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_pshpack2.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_pshpack4.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_pshpack8.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base_c.h">
       <Filter>Header Files\base\base</Filter>
@@ -1444,18 +1327,6 @@
     <ClCompile Include="net\mail\mail_simple_pop3.cpp">
       <Filter>Source Files\net\mail</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\os_file.cpp">
-      <Filter>Source Files\base\os</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\os_http.cpp">
-      <Filter>Source Files\base\os</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\os_process.cpp">
-      <Filter>Source Files\base\os</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\os_thread.cpp">
-      <Filter>Source Files\base\os</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\android\android_locale.c">
       <Filter>Source Files\base\os\android</Filter>
     </ClCompile>
@@ -1585,9 +1456,6 @@
     <ClCompile Include="base\os\android\android_window_android.cpp">
       <Filter>Source Files\base\os\android</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\os_binreloc.cpp">
-      <Filter>Source Files\base\os</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\ansios\ansios_cross_win.cpp">
       <Filter>Source Files\base\os\ansios</Filter>
     </ClCompile>
@@ -1692,33 +1560,6 @@
     </ClCompile>
     <ClCompile Include="base\os\windows\windows_simple_app.cpp">
       <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\cross\windows\cross_windows_crt.cpp">
-      <Filter>Source Files\base\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\cross\windows\cross_windows_datetime.cpp">
-      <Filter>Source Files\base\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\cross\windows\cross_windows_error.cpp">
-      <Filter>Source Files\base\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\cross\windows\cross_windows_locale.cpp">
-      <Filter>Source Files\base\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\cross\windows\cross_windows_shared_memory.cpp">
-      <Filter>Source Files\base\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\cross\windows\cross_windows_threading.cpp">
-      <Filter>Source Files\base\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\cross\windows\cross_windows_user.cpp">
-      <Filter>Source Files\base\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\cross\windows\cross_windows_windows.cpp">
-      <Filter>Source Files\base\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\cross\metrowin\cross_metrowin_user.cpp">
-      <Filter>Source Files\base\os\cross\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="base\node\windows\windows_dir.cpp">
       <Filter>Source Files\base\node\windows</Filter>
@@ -2012,6 +1853,9 @@
     </None>
     <None Include="base\base\base.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

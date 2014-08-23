@@ -702,59 +702,59 @@ set_lum (rgb_t *color, float sa, float l)
 static void
 set_sat (rgb_t *src, float sat)
 {
-    float *max, *mid, *MIN;
+    float *max, *mid, *min;
     float t;
 
     if (src->r > src->g)
     {
 	if (src->r > src->b)
 	{
-	    MAX = &(src->r);
+	    max = &(src->r);
 
 	    if (src->g > src->b)
 	    {
 		mid = &(src->g);
-		MIN = &(src->b);
+		min = &(src->b);
 	    }
 	    else
 	    {
 		mid = &(src->b);
-		MIN = &(src->g);
+		min = &(src->g);
 	    }
 	}
 	else
 	{
-	    MAX = &(src->b);
+	    max = &(src->b);
 	    mid = &(src->r);
-	    MIN = &(src->g);
+	    min = &(src->g);
 	}
     }
     else
     {
 	if (src->r > src->b)
 	{
-	    MAX = &(src->g);
+	    max = &(src->g);
 	    mid = &(src->r);
-	    MIN = &(src->b);
+	    min = &(src->b);
 	}
 	else
 	{
-	    MIN = &(src->r);
+	    min = &(src->r);
 
 	    if (src->g > src->b)
 	    {
-		MAX = &(src->g);
+		max = &(src->g);
 		mid = &(src->b);
 	    }
 	    else
 	    {
-		MAX = &(src->b);
+		max = &(src->b);
 		mid = &(src->g);
 	    }
 	}
     }
 
-    t = *max - *MIN;
+    t = *max - *min;
 
     if (FLOAT_IS_ZERO (t))
     {
@@ -762,11 +762,11 @@ set_sat (rgb_t *src, float sat)
     }
     else
     {
-	*mid = ((*mid - *MIN) * sat) / t;
+	*mid = ((*mid - *min) * sat) / t;
 	*max = sat;
     }
 
-    *MIN = 0.0f;
+    *min = 0.0f;
 }
 
 /*

@@ -5,7 +5,7 @@
 #undef new
 #define min MIN
 #define max MAX
-#include <gdiplus.h>
+//#include <gdiplus.h>
 #undef min
 #undef max
 #endif
@@ -299,7 +299,7 @@ namespace plugin
 
 #ifdef WINDOWSEX
 
-         ((Gdiplus::Graphics *) m_dib->get_graphics()->get_os_data())->Flush(Gdiplus::FlushIntentionSync);
+         m_dib->get_graphics()->sync_flush();
 
          ::GdiFlush();
 

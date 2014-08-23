@@ -5317,6 +5317,28 @@ synch_lock ml(&cairo_mutex());
 
     }
 
+
+    bool graphics::flush()
+    {
+
+       cairo_pattern_t * ppattern = cairo_get_source(m_pdc);
+
+       if(ppattern == NULL)
+          return true;
+
+       cairo_surface_t * psurface = NULL;
+       
+       cairo_pattern_get_surface(ppattern,&psurface);
+
+       if(psurface == NULL)
+          return true;
+
+       cairo_surface_flush(psurface);
+
+       return true;
+
+    }
+
 } // namespace draw2d_cairo
 
 

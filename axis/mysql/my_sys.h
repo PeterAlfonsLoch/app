@@ -321,7 +321,7 @@ typedef struct st_my_tmpdir
 {
   DYNAMIC_ARRAY full_list;
   char **list;
-  uint cur, MAX;
+  uint cur, max;
   mysql_mutex_t mutex;
 } MY_TMPDIR;
 

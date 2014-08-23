@@ -20,6 +20,7 @@ namespace draw2d
       m_pjob                  = NULL;
       m_dFontFactor           = 1.0;
       m_pdib                  = NULL;
+
    }
 
    ::user::str_context * graphics::str_context()
@@ -3293,12 +3294,21 @@ namespace draw2d
       return 96.0;
    }
 
+
    bool graphics::flush()
    {
-      throw interface_only_exception(get_app());
-      return false;
+
+      return true;
+
    }
 
+
+   bool graphics::sync_flush()
+   {
+      
+      return flush();
+
+   }
 
 
 

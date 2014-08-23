@@ -3149,6 +3149,9 @@
     <ClInclude Include="filesystem\file\file_streambuf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="axis\exception\exception_verisimple.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -4774,16 +4777,16 @@
     <ClCompile Include="filesystem\file\file_streambuf.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="axis\exception\exception_verisimple.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\windows\windows_gdi.cpp">
+      <Filter>Source Files\axis\os\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
       <Filter>Header Files\multithreading</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

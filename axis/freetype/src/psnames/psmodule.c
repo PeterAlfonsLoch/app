@@ -398,20 +398,20 @@
   ps_unicodes_char_index( PS_Unicodes  table,
                           FT_UInt32    unicode )
   {
-    PS_UniMap  *MIN, *max, *mid, *result = NULL;
+    PS_UniMap  *min, *max, *mid, *result = NULL;
 
 
     /* Perform a binary search on the table. */
 
-    MIN = table->maps;
-    MAX = MIN + table->num_maps - 1;
+    min = table->maps;
+    max = min + table->num_maps - 1;
 
-    while ( MIN <= MAX )
+    while ( min <= max )
     {
       FT_UInt32  base_glyph;
 
 
-      mid = MIN + ( ( MAX - MIN ) >> 1 );
+      mid = min + ( ( max - min ) >> 1 );
 
       if ( mid->unicode == unicode )
       {
@@ -424,13 +424,13 @@
       if ( base_glyph == unicode )
         result = mid; /* remember match but continue search for base glyph */
 
-      if ( MIN == MAX )
+      if ( min == max )
         break;
 
       if ( base_glyph < unicode )
-        MIN = mid + 1;
+        min = mid + 1;
       else
-        MAX = mid - 1;
+        max = mid - 1;
     }
 
     if ( result )
@@ -449,16 +449,16 @@
 
 
     {
-      FT_UInt     MIN = 0;
-      FT_UInt     MAX = table->num_maps;
+      FT_UInt     min = 0;
+      FT_UInt     max = table->num_maps;
       FT_UInt     mid;
       PS_UniMap*  map;
       FT_UInt32   base_glyph;
 
 
-      while ( MIN < MAX )
+      while ( min < max )
       {
-        mid = MIN + ( ( MAX - MIN ) >> 1 );
+        mid = min + ( ( max - min ) >> 1 );
         map = table->maps + mid;
 
         if ( map->unicode == char_code )
@@ -473,9 +473,9 @@
           result = map->glyph_index;
 
         if ( base_glyph < char_code )
-          MIN = mid + 1;
+          min = mid + 1;
         else
-          MAX = mid;
+          max = mid;
       }
 
       if ( result )
@@ -484,9 +484,9 @@
       /* we didn't find it; check whether we have a map just above it */
       char_code = 0;
 
-      if ( MIN < table->num_maps )
+      if ( min < table->num_maps )
       {
-        map       = table->maps + MIN;
+        map       = table->maps + min;
         result    = map->glyph_index;
         char_code = BASE_GLYPH( map->unicode );
       }

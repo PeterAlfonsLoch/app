@@ -2,7 +2,7 @@
 
 #ifdef WINDOWS
 #undef new
-#include <GdiPlus.h>
+//#include <GdiPlus.h>
 #define new AXIS_NEW
 #endif
 

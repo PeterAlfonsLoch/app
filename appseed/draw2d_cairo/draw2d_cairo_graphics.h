@@ -514,6 +514,9 @@ namespace draw2d_cairo
       bool fill();
       bool draw();
 
+
+      virtual bool flush();
+
    };
 
 

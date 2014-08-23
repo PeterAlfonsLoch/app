@@ -1,6 +1,7 @@
 #pragma once
 
 
+
 namespace draw2d
 {
 
@@ -9,6 +10,14 @@ namespace draw2d
       virtual public ::draw2d::object
    {
    public:
+
+
+#ifdef WINDOWSEX
+
+      HBITMAP        m_hbitmapGet;
+
+#endif
+
 
 
       bitmap();
@@ -39,6 +48,17 @@ namespace draw2d
       virtual void dump(dump_context & dumpcontext) const;
 
 
+#ifdef WINDOWSEX
+
+      virtual HBITMAP GetHBITMAP();
+      virtual void ReleaseHBITMAP(HBITMAP hbitmap);
+
+      virtual HBITMAP _GetHBITMAP();
+      virtual void _ReleaseHBITMAP(HBITMAP hbitmap);
+
+#endif
+
+
    };
 
 
@@ -48,3 +68,10 @@ namespace draw2d
 } // namespace draw2d
 
 
+
+
+#ifdef WINDOWSEX
+
+CLASS_DECL_AXIS HBITMAP CreateHBITMAP(COLORREF * pdata,int stride,int cx,int cy);
+
+#endif

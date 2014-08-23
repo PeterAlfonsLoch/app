@@ -599,7 +599,7 @@ TYPE numeric_array < TYPE >::GetMean()
    {
       dSum += this->element_at(i);
    }
-   return (typename ::numeric_info::type < TYPE >::TYPE) (dSum / (double) this->get_size());
+   return (typename ::numeric_info < TYPE >::TYPE) (dSum / (double) this->get_size());
 }
 
 template < class TYPE >

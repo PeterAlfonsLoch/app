@@ -35,7 +35,7 @@ namespace core
       if(pszEnd == psz)
          return false;
 
-      if(iConversion > numeric_info::get_maximum_value < int32_t > ())
+      if(iConversion > numeric_info< int32_t >::max ())
          return false;
 
       i = (int32_t) iConversion;
@@ -77,7 +77,7 @@ namespace core
       if(pszEnd == psz)
          return false;
 
-      if(iConversion > numeric_info::get_maximum_value < int32_t > ())
+      if(iConversion > numeric_info < int32_t >::max ())
          return false;
 
       i = (int32_t) iConversion;

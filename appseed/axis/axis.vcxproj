@@ -75,7 +75,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}</ProjectGuid>
+    <ProjectGuid>{73A245F9-C92F-4487-AEF7-CB0531F665BD}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>axis</RootNamespace>
@@ -3959,6 +3959,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="axis\os\windows\windows_file_watcher.cpp" />
+    <ClCompile Include="axis\os\windows\windows_gdi.cpp" />
     <ClCompile Include="axis\os\windows\windows_launcher.cpp" />
     <ClCompile Include="axis\os\windows\windows_library.cpp" />
     <ClCompile Include="axis\os\windows\windows_lock.cpp" />

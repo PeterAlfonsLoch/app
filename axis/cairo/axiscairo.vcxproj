@@ -1419,7 +1419,7 @@
     <ClCompile Include="src\cairo-egl-context.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\cairo-error.c" />
+    <ClCompile Include="src\cairo-cairoerror.c" />
     <ClCompile Include="src\cairo-fallback-compositor.c" />
     <ClCompile Include="src\cairo-fixed.c" />
     <ClCompile Include="src\cairo-font-face-twin-data.c" />
