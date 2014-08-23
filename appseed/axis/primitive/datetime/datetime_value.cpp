@@ -297,6 +297,121 @@ namespace datetime
          return span_strtotime(pbaseapp,pcontext,str.Mid(iStart));
       }
    }
+   string value::to_string(sp(::aura::application) pbaseapp,::user::str_context * pcontext)
+   {
+      string str;
+      if(m_bSpan)
+      {
+         stringa stra;
+         string strItem;
+         if(m_iYear != 0)
+         {
+            if(abs(m_iYear) == 1)
+            {
+               strItem.Format("%d year",m_iYear);
+            }
+            else
+            {
+               strItem.Format("%d years",m_iYear);
+            }
+            stra.add(strItem);
+         }
+         if(m_iMonth != 0)
+         {
+            if(abs(m_iMonth) == 1)
+            {
+               strItem.Format("%d month",m_iMonth);
+            }
+            else
+            {
+               strItem.Format("%d months",m_iMonth);
+            }
+            stra.add(strItem);
+         }
+         if(m_iDay != 0)
+         {
+            if(abs(m_iDay) == 1)
+            {
+               strItem.Format("%d day",m_iDay);
+            }
+            else
+            {
+               strItem.Format("%d days",m_iDay);
+            }
+            stra.add(strItem);
+         }
+         if(m_iHour != 0)
+         {
+            if(abs(m_iHour) == 1)
+            {
+               strItem.Format("%d hour",m_iHour);
+            }
+            else
+            {
+               strItem.Format("%d hours",m_iHour);
+            }
+            stra.add(strItem);
+         }
+         if(m_iMinute != 0)
+         {
+            if(abs(m_iMinute) == 1)
+            {
+               strItem.Format("%d minute",m_iMinute);
+            }
+            else
+            {
+               strItem.Format("%d minutes",m_iMinute);
+            }
+            stra.add(strItem);
+         }
+         if(m_iSecond != 0)
+         {
+            if(abs(m_iSecond) == 1)
+            {
+               strItem.Format("%d second",m_iSecond);
+            }
+            else
+            {
+               strItem.Format("%d seconds",m_iSecond);
+            }
+            stra.add(strItem);
+         }
+         if(stra.get_count() >= 2)
+         {
+            str = stra.implode(", ",0,stra.get_count() - 1) + " and " + stra.last_element();
+         }
+         else if(stra.get_count() == 1)
+         {
+            str = stra[0];
+         }
+      }
+      else
+      {
+         ::datetime::time time = get_time();
+         if(time.GetSecond() == 0)
+         {
+            if(time.GetHour() == 0 && time.GetMinute() == 0)
+            {
+               str = time.Format("%Y-");
+               Sys(pbaseapp->m_paurasystem).datetime().get_month_str(pcontext,time.GetMonth());
+               str += time.Format("-%d");
+            }
+            else
+            {
+               str = time.Format("%Y-");
+               str += Sys(pbaseapp->m_paurasystem).datetime().get_month_str(pcontext,time.GetMonth());
+               str += time.Format("-%d %H:%M");
+            }
+         }
+         else
+         {
+            str = time.Format("%Y-");
+            str += Sys(pbaseapp->m_paurasystem).datetime().get_month_str(pcontext,time.GetMonth());
+            str += time.Format("-%d %H:%M:%S");
+         }
+      }
+      return str;
+   }
 
 
 } // namespace datetime

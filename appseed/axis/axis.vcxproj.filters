@@ -2949,9 +2949,6 @@
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="axis\axis\axis.inl">
       <Filter>Header Files\axis\axis</Filter>
     </None>
