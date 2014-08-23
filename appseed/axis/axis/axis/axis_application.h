@@ -230,8 +230,8 @@ namespace axis
       virtual string get_license_id();
 
 
-      virtual sp(::user::interaction) get_active_guie();
-      virtual sp(::user::interaction) get_focus_guie();
+      virtual ::user::interaction * get_active_guie();
+      virtual ::user::interaction * get_focus_guie();
 
 
       virtual sp(::user::interaction) window_from_os_data(void * pdata);
