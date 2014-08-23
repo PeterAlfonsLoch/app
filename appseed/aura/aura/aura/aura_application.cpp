@@ -3068,6 +3068,15 @@ namespace aura
    }
 
 
+   ::thread application::get_thread(::user::interaction * pui)
+   {
+
+      UNREFERENCED_PARAMETER(pui);
+
+      return NULL;
+
+   }
+
 
 } // namespace aura
 

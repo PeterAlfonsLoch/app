@@ -3410,7 +3410,12 @@ namespace axis
    }
 
 
+   ::thread * application::get_thread(::user::interaction * pui)
+   {
 
+      return pui->m_pthread;
+
+   }
 
 
 } // namespace axis

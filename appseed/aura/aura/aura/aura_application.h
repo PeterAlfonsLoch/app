@@ -145,6 +145,7 @@ namespace aura
 
       virtual bool on_thread_on_idle(::thread_impl * pimpl,LONG lCount);
       virtual bool post_user_message(::thread_impl * pimpl,::user::interaction * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
+      
 
 
       virtual bool is_window(::user::interaction * pui);
@@ -154,6 +155,8 @@ namespace aura
       virtual ::user::interaction * get_parent(::user::interaction * pui);
       virtual bool enable_window(::user::interaction * pui, bool bEnable = true);
       virtual bool set_window_text(::user::interaction * pui, const string & strText);
+      virtual ::thread get_thread(::user::interaction * pui);
+      
 
 
       virtual ::user::interaction * get_active_guie();

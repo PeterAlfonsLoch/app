@@ -1067,7 +1067,7 @@ void thread_impl::remove(::user::interaction * pui)
 
    single_lock sl(&m_mutexUiPtra,TRUE);
 
-   if(pui->m_pthread == m_pthread)
+   if(Application.get_thread(pui) == m_pthread)
    {
 
       pui->m_pthread = NULL;

@@ -168,6 +168,7 @@ namespace axis
       virtual ::user::interaction * get_parent(::user::interaction * pui);
       virtual bool enable_window(::user::interaction * pui,bool bEnable = true);
       virtual bool set_window_text(::user::interaction * pui,const string & strText);
+      virutal ::thread * get_thread(::user::interaction * pui);
 
 
 
