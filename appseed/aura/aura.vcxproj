@@ -1632,180 +1632,180 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="axis\axis\axis.h" />
-    <ClInclude Include="axis\axis\axis_action_context.h" />
-    <ClInclude Include="axis\axis\axis_action_source.h" />
-    <ClInclude Include="axis\axis\axis_allocate.h" />
-    <ClInclude Include="axis\axis\axis_application.h" />
-    <ClInclude Include="axis\axis\axis_application_interface.h" />
-    <ClInclude Include="axis\axis\axis_application_signal_details.h" />
-    <ClInclude Include="axis\axis\axis_async.h" />
-    <ClInclude Include="axis\axis\axis_auto_pointer.h" />
-    <ClInclude Include="axis\axis\axis_c.h" />
-    <ClInclude Include="axis\axis\axis_command.h" />
-    <ClInclude Include="axis\axis\axis_command_target.h" />
-    <ClInclude Include="axis\axis\axis_common.h" />
-    <ClInclude Include="axis\axis\axis_conv.h" />
-    <ClInclude Include="axis\axis\axis_core.h" />
-    <ClInclude Include="axis\axis\axis_core_copydesk.h" />
-    <ClInclude Include="axis\axis\axis_core_os.h" />
-    <ClInclude Include="axis\axis\axis_cpu_architecture.h" />
-    <ClInclude Include="axis\axis\axis_cregexp.h" />
-    <ClInclude Include="axis\axis\axis_cregexp_util.h" />
-    <ClInclude Include="axis\axis\axis_c_cpp.h" />
-    <ClInclude Include="axis\axis\axis_c_objc.h" />
-    <ClInclude Include="axis\axis\axis_c_winrt.h" />
-    <ClInclude Include="axis\axis\axis_debug.h" />
-    <ClInclude Include="axis\axis\axis_definition.h" />
-    <ClInclude Include="axis\axis\axis_departament.h" />
-    <ClInclude Include="axis\axis\axis_departament_container.h" />
-    <ClInclude Include="axis\axis\axis_draw2d.h" />
-    <ClInclude Include="axis\axis\axis_element.h" />
-    <ClInclude Include="axis\axis\axis_enum.h" />
-    <ClInclude Include="axis\axis\axis_file_watcher.h" />
-    <ClInclude Include="axis\axis\axis_file_watcher_impl.h" />
-    <ClInclude Include="axis\axis\axis_file_watcher_listener_thread.h" />
-    <ClInclude Include="axis\axis\axis_file_watcher_thread.h" />
-    <ClInclude Include="axis\axis\axis_fixed_alloc.h" />
-    <ClInclude Include="axis\axis\axis_fixed_alloc_impl.h" />
-    <ClInclude Include="axis\axis\axis_flags.h" />
-    <ClInclude Include="axis\axis\axis_gudo.h" />
-    <ClInclude Include="axis\axis\axis_gudo_application.inl" />
-    <ClInclude Include="axis\axis\axis_heap.h" />
-    <ClInclude Include="axis\axis\axis_heap_item.h" />
-    <ClInclude Include="axis\axis\axis_heap_item_array.h" />
-    <ClInclude Include="axis\axis\axis_id_pool.h" />
-    <ClInclude Include="axis\axis\axis_international.h" />
-    <ClInclude Include="axis\axis\axis_keep.h" />
-    <ClInclude Include="axis\axis\axis_net.h" />
-    <ClInclude Include="axis\axis\axis_print_job.h" />
-    <ClInclude Include="axis\axis\axis_progress.h" />
-    <ClInclude Include="axis\axis\axis_keep_true.h" />
-    <ClInclude Include="axis\axis\axis_launcher.h" />
-    <ClInclude Include="axis\axis\axis_libc.h" />
-    <ClInclude Include="axis\axis\axis_library.h" />
-    <ClInclude Include="axis\axis\axis_live_object.h" />
-    <ClInclude Include="axis\axis\axis_live_signal.h" />
-    <ClInclude Include="axis\axis\axis_log.h" />
-    <ClInclude Include="axis\axis\axis_lparam.h" />
-    <ClInclude Include="axis\axis\axis_machine_event.h" />
-    <ClInclude Include="axis\axis\axis_machine_event_central.h" />
-    <ClInclude Include="axis\axis\axis_machine_event_data.h" />
-    <ClInclude Include="axis\axis\axis_main_init_data.h" />
-    <ClInclude Include="axis\axis\axis_math.h" />
-    <ClInclude Include="axis\axis\axis_message_loop.h" />
-    <ClInclude Include="axis\axis\axis_message_queue.h" />
-    <ClInclude Include="axis\axis\axis_message_queue_listener.h" />
-    <ClInclude Include="axis\axis\axis_microtimer.h" />
-    <ClInclude Include="axis\axis\axis_muldiv64.h" />
-    <ClInclude Include="axis\axis\axis_new.h" />
-    <ClInclude Include="axis\axis\axis_number.h" />
-    <ClInclude Include="axis\axis\axis_os.h" />
-    <ClInclude Include="axis\axis\axis_plex.h" />
-    <ClInclude Include="axis\axis\axis_plex_heap.h" />
-    <ClInclude Include="axis\axis\axis_plex_heap_impl.h" />
-    <ClInclude Include="axis\axis\axis_printf.h" />
-    <ClInclude Include="axis\axis\axis_root.h" />
-    <ClInclude Include="axis\axis\axis_savings.h" />
-    <ClInclude Include="axis\axis\axis_session.h" />
-    <ClInclude Include="axis\axis\axis_session_interface.h" />
-    <ClInclude Include="axis\axis\axis_simple_app.h" />
-    <ClInclude Include="axis\axis\axis_simple_pixel_font.h" />
-    <ClInclude Include="axis\axis\axis_simple_shell_launcher.h" />
-    <ClInclude Include="axis\axis\axis_small_ipc_channel.h" />
-    <ClInclude Include="axis\axis\axis_smart_pointer1.h" />
-    <ClInclude Include="axis\axis\axis_smart_pointer2.h" />
-    <ClInclude Include="axis\axis\axis_sprintf.h" />
-    <ClInclude Include="axis\axis\axis_static_start.h" />
-    <ClInclude Include="axis\axis\axis_system.h" />
-    <ClInclude Include="axis\axis\axis_system_str.h" />
-    <ClInclude Include="axis\axis\axis_system_trace.h" />
-    <ClInclude Include="axis\axis\axis_class.h" />
-    <ClInclude Include="axis\axis\axis_trace.h" />
-    <ClInclude Include="axis\axis\axis_types.h" />
-    <ClInclude Include="axis\axis\axis_url.h" />
-    <ClInclude Include="axis\compress\bsdiff\bsdiff.h" />
-    <ClInclude Include="axis\compress\bsdiff\bsdiff_private.h" />
-    <ClInclude Include="axis\compress\bsdiff\bzlib.h" />
-    <ClInclude Include="axis\compress\bsdiff\bzlib_private.h" />
-    <ClInclude Include="axis\compress\compress.h" />
-    <ClInclude Include="axis\compress\compress_bzip_stream.h" />
-    <ClInclude Include="axis\compress\compress_compress.h" />
-    <ClInclude Include="axis\compress\compress_gzip_stream.h" />
-    <ClInclude Include="axis\compress\zip\api.h" />
-    <ClInclude Include="axis\compress\zip\crypt.h" />
-    <ClInclude Include="axis\compress\zip\File.h" />
-    <ClInclude Include="axis\compress\zip\InFile.h" />
-    <ClInclude Include="axis\compress\zip\ioapi.h" />
-    <ClInclude Include="axis\compress\zip\iowin32.h" />
-    <ClInclude Include="axis\compress\zip\memory_buffer.h" />
-    <ClInclude Include="axis\compress\zip\unzip.h" />
-    <ClInclude Include="axis\compress\zip\Util.h" />
-    <ClInclude Include="axis\compress\zip\zip.h" />
-    <ClInclude Include="axis\compress\zlib\crc32.h" />
-    <ClInclude Include="axis\compress\zlib\deflate.h" />
-    <ClInclude Include="axis\compress\zlib\gzguts.h" />
-    <ClInclude Include="axis\compress\zlib\inffast.h" />
-    <ClInclude Include="axis\compress\zlib\inffixed.h" />
-    <ClInclude Include="axis\compress\zlib\inflate.h" />
-    <ClInclude Include="axis\compress\zlib\inftrees.h" />
-    <ClInclude Include="axis\compress\zlib\trees.h" />
-    <ClInclude Include="axis\compress\zlib\zconf.h" />
-    <ClInclude Include="axis\compress\zlib\zlib.h" />
-    <ClInclude Include="axis\compress\zlib\zutil.h" />
-    <ClInclude Include="axis\exception\exception.h" />
-    <ClInclude Include="axis\exception\exception2.h" />
-    <ClInclude Include="axis\exception\exception_assert.h" />
-    <ClInclude Include="axis\exception\exception_base.h" />
-    <ClInclude Include="axis\exception\exception_call_stack.h" />
-    <ClInclude Include="axis\exception\exception_debug.h" />
-    <ClInclude Include="axis\exception\exception_debug_stream.h" />
-    <ClInclude Include="axis\exception\exception_dump_context.h" />
-    <ClInclude Include="axis\exception\exception_engine.h" />
-    <ClInclude Include="axis\exception\exception_error.h" />
-    <ClInclude Include="axis\exception\exception_exception.h" />
-    <ClInclude Include="axis\exception\exception_exit.h" />
-    <ClInclude Include="axis\exception\exception_hresult.h" />
-    <ClInclude Include="axis\exception\exception_installing.h" />
-    <ClInclude Include="axis\exception\exception_interface_only.h" />
-    <ClInclude Include="axis\exception\exception_invalid_argument.h" />
-    <ClInclude Include="axis\exception\exception_invalid_character.h" />
-    <ClInclude Include="axis\exception\exception_invalid_handle.h" />
-    <ClInclude Include="axis\exception\exception_invalid_index.h" />
-    <ClInclude Include="axis\exception\exception_io.h" />
-    <ClInclude Include="axis\exception\exception_last_error.h" />
-    <ClInclude Include="axis\exception\exception_memory.h" />
-    <ClInclude Include="axis\exception\exception_memory_state.h" />
-    <ClInclude Include="axis\exception\exception_misc.h" />
-    <ClInclude Include="axis\exception\exception_not_implemented.h" />
-    <ClInclude Include="axis\exception\exception_not_installed.h" />
-    <ClInclude Include="axis\exception\exception_not_licensed.h" />
-    <ClInclude Include="axis\exception\exception_not_supported.h" />
-    <ClInclude Include="axis\exception\exception_operation_canceled.h" />
-    <ClInclude Include="axis\exception\exception_os.h" />
-    <ClInclude Include="axis\exception\exception_overflow_error.h" />
-    <ClInclude Include="axis\exception\exception_parsing.h" />
-    <ClInclude Include="axis\exception\exception_range_error.h" />
-    <ClInclude Include="axis\exception\exception_resource.h" />
-    <ClInclude Include="axis\exception\exception_runtime_error.h" />
-    <ClInclude Include="axis\exception\exception_simple.h" />
-    <ClInclude Include="axis\exception\exception_standard.h" />
-    <ClInclude Include="axis\exception\exception_standard_translator.h" />
-    <ClInclude Include="axis\exception\exception_system.h" />
-    <ClInclude Include="axis\exception\exception_temporary.h" />
-    <ClInclude Include="axis\exception\exception_todo.h" />
-    <ClInclude Include="axis\exception\exception_trap.h" />
-    <ClInclude Include="axis\exception\exception_unhandled_report.h" />
-    <ClInclude Include="axis\exception\exception_user.h" />
-    <ClInclude Include="axis\exception\exception_verisimple.h" />
-    <ClInclude Include="axis\exception\exception_void_implementation.h" />
-    <ClInclude Include="axis\message\message.h" />
-    <ClInclude Include="axis\message\message_base.h" />
-    <ClInclude Include="axis\message\message_cross_windows.h" />
-    <ClInclude Include="axis\message\message_definition.h" />
-    <ClInclude Include="axis\message\message_dispatch.h" />
-    <ClInclude Include="axis\message\message_user.h" />
-    <ClInclude Include="axis\node\android\android.h">
+    <ClInclude Include="aura\aura\aura.h" />
+    <ClInclude Include="aura\aura\aura_action_context.h" />
+    <ClInclude Include="aura\aura\aura_action_source.h" />
+    <ClInclude Include="aura\aura\aura_allocate.h" />
+    <ClInclude Include="aura\aura\aura_application.h" />
+    <ClInclude Include="aura\aura\aura_application_interface.h" />
+    <ClInclude Include="aura\aura\aura_application_signal_details.h" />
+    <ClInclude Include="aura\aura\aura_async.h" />
+    <ClInclude Include="aura\aura\aura_auto_pointer.h" />
+    <ClInclude Include="aura\aura\aura_c.h" />
+    <ClInclude Include="aura\aura\aura_command.h" />
+    <ClInclude Include="aura\aura\aura_command_target.h" />
+    <ClInclude Include="aura\aura\aura_common.h" />
+    <ClInclude Include="aura\aura\aura_conv.h" />
+    <ClInclude Include="aura\aura\aura_core.h" />
+    <ClInclude Include="aura\aura\aura_core_copydesk.h" />
+    <ClInclude Include="aura\aura\aura_core_os.h" />
+    <ClInclude Include="aura\aura\aura_cpu_architecture.h" />
+    <ClInclude Include="aura\aura\aura_cregexp.h" />
+    <ClInclude Include="aura\aura\aura_cregexp_util.h" />
+    <ClInclude Include="aura\aura\aura_c_cpp.h" />
+    <ClInclude Include="aura\aura\aura_c_objc.h" />
+    <ClInclude Include="aura\aura\aura_c_winrt.h" />
+    <ClInclude Include="aura\aura\aura_debug.h" />
+    <ClInclude Include="aura\aura\aura_definition.h" />
+    <ClInclude Include="aura\aura\aura_departament.h" />
+    <ClInclude Include="aura\aura\aura_departament_container.h" />
+    <ClInclude Include="aura\aura\aura_draw2d.h" />
+    <ClInclude Include="aura\aura\aura_element.h" />
+    <ClInclude Include="aura\aura\aura_enum.h" />
+    <ClInclude Include="aura\aura\aura_file_watcher.h" />
+    <ClInclude Include="aura\aura\aura_file_watcher_impl.h" />
+    <ClInclude Include="aura\aura\aura_file_watcher_listener_thread.h" />
+    <ClInclude Include="aura\aura\aura_file_watcher_thread.h" />
+    <ClInclude Include="aura\aura\aura_fixed_alloc.h" />
+    <ClInclude Include="aura\aura\aura_fixed_alloc_impl.h" />
+    <ClInclude Include="aura\aura\aura_flags.h" />
+    <ClInclude Include="aura\aura\aura_gudo.h" />
+    <ClInclude Include="aura\aura\aura_gudo_application.inl" />
+    <ClInclude Include="aura\aura\aura_heap.h" />
+    <ClInclude Include="aura\aura\aura_heap_item.h" />
+    <ClInclude Include="aura\aura\aura_heap_item_array.h" />
+    <ClInclude Include="aura\aura\aura_id_pool.h" />
+    <ClInclude Include="aura\aura\aura_international.h" />
+    <ClInclude Include="aura\aura\aura_keep.h" />
+    <ClInclude Include="aura\aura\aura_net.h" />
+    <ClInclude Include="aura\aura\aura_print_job.h" />
+    <ClInclude Include="aura\aura\aura_progress.h" />
+    <ClInclude Include="aura\aura\aura_keep_true.h" />
+    <ClInclude Include="aura\aura\aura_launcher.h" />
+    <ClInclude Include="aura\aura\aura_libc.h" />
+    <ClInclude Include="aura\aura\aura_library.h" />
+    <ClInclude Include="aura\aura\aura_live_object.h" />
+    <ClInclude Include="aura\aura\aura_live_signal.h" />
+    <ClInclude Include="aura\aura\aura_log.h" />
+    <ClInclude Include="aura\aura\aura_lparam.h" />
+    <ClInclude Include="aura\aura\aura_machine_event.h" />
+    <ClInclude Include="aura\aura\aura_machine_event_central.h" />
+    <ClInclude Include="aura\aura\aura_machine_event_data.h" />
+    <ClInclude Include="aura\aura\aura_main_init_data.h" />
+    <ClInclude Include="aura\aura\aura_math.h" />
+    <ClInclude Include="aura\aura\aura_message_loop.h" />
+    <ClInclude Include="aura\aura\aura_message_queue.h" />
+    <ClInclude Include="aura\aura\aura_message_queue_listener.h" />
+    <ClInclude Include="aura\aura\aura_microtimer.h" />
+    <ClInclude Include="aura\aura\aura_muldiv64.h" />
+    <ClInclude Include="aura\aura\aura_new.h" />
+    <ClInclude Include="aura\aura\aura_number.h" />
+    <ClInclude Include="aura\aura\aura_os.h" />
+    <ClInclude Include="aura\aura\aura_plex.h" />
+    <ClInclude Include="aura\aura\aura_plex_heap.h" />
+    <ClInclude Include="aura\aura\aura_plex_heap_impl.h" />
+    <ClInclude Include="aura\aura\aura_printf.h" />
+    <ClInclude Include="aura\aura\aura_root.h" />
+    <ClInclude Include="aura\aura\aura_savings.h" />
+    <ClInclude Include="aura\aura\aura_session.h" />
+    <ClInclude Include="aura\aura\aura_session_interface.h" />
+    <ClInclude Include="aura\aura\aura_simple_app.h" />
+    <ClInclude Include="aura\aura\aura_simple_pixel_font.h" />
+    <ClInclude Include="aura\aura\aura_simple_shell_launcher.h" />
+    <ClInclude Include="aura\aura\aura_small_ipc_channel.h" />
+    <ClInclude Include="aura\aura\aura_smart_pointer1.h" />
+    <ClInclude Include="aura\aura\aura_smart_pointer2.h" />
+    <ClInclude Include="aura\aura\aura_sprintf.h" />
+    <ClInclude Include="aura\aura\aura_static_start.h" />
+    <ClInclude Include="aura\aura\aura_system.h" />
+    <ClInclude Include="aura\aura\aura_system_str.h" />
+    <ClInclude Include="aura\aura\aura_system_trace.h" />
+    <ClInclude Include="aura\aura\aura_class.h" />
+    <ClInclude Include="aura\aura\aura_trace.h" />
+    <ClInclude Include="aura\aura\aura_types.h" />
+    <ClInclude Include="aura\aura\aura_url.h" />
+    <ClInclude Include="aura\compress\bsdiff\bsdiff.h" />
+    <ClInclude Include="aura\compress\bsdiff\bsdiff_private.h" />
+    <ClInclude Include="aura\compress\bsdiff\bzlib.h" />
+    <ClInclude Include="aura\compress\bsdiff\bzlib_private.h" />
+    <ClInclude Include="aura\compress\compress.h" />
+    <ClInclude Include="aura\compress\compress_bzip_stream.h" />
+    <ClInclude Include="aura\compress\compress_compress.h" />
+    <ClInclude Include="aura\compress\compress_gzip_stream.h" />
+    <ClInclude Include="aura\compress\zip\api.h" />
+    <ClInclude Include="aura\compress\zip\crypt.h" />
+    <ClInclude Include="aura\compress\zip\File.h" />
+    <ClInclude Include="aura\compress\zip\InFile.h" />
+    <ClInclude Include="aura\compress\zip\ioapi.h" />
+    <ClInclude Include="aura\compress\zip\iowin32.h" />
+    <ClInclude Include="aura\compress\zip\memory_buffer.h" />
+    <ClInclude Include="aura\compress\zip\unzip.h" />
+    <ClInclude Include="aura\compress\zip\Util.h" />
+    <ClInclude Include="aura\compress\zip\zip.h" />
+    <ClInclude Include="aura\compress\zlib\crc32.h" />
+    <ClInclude Include="aura\compress\zlib\deflate.h" />
+    <ClInclude Include="aura\compress\zlib\gzguts.h" />
+    <ClInclude Include="aura\compress\zlib\inffast.h" />
+    <ClInclude Include="aura\compress\zlib\inffixed.h" />
+    <ClInclude Include="aura\compress\zlib\inflate.h" />
+    <ClInclude Include="aura\compress\zlib\inftrees.h" />
+    <ClInclude Include="aura\compress\zlib\trees.h" />
+    <ClInclude Include="aura\compress\zlib\zconf.h" />
+    <ClInclude Include="aura\compress\zlib\zlib.h" />
+    <ClInclude Include="aura\compress\zlib\zutil.h" />
+    <ClInclude Include="aura\exception\exception.h" />
+    <ClInclude Include="aura\exception\exception2.h" />
+    <ClInclude Include="aura\exception\exception_assert.h" />
+    <ClInclude Include="aura\exception\exception_base.h" />
+    <ClInclude Include="aura\exception\exception_call_stack.h" />
+    <ClInclude Include="aura\exception\exception_debug.h" />
+    <ClInclude Include="aura\exception\exception_debug_stream.h" />
+    <ClInclude Include="aura\exception\exception_dump_context.h" />
+    <ClInclude Include="aura\exception\exception_engine.h" />
+    <ClInclude Include="aura\exception\exception_error.h" />
+    <ClInclude Include="aura\exception\exception_exception.h" />
+    <ClInclude Include="aura\exception\exception_exit.h" />
+    <ClInclude Include="aura\exception\exception_hresult.h" />
+    <ClInclude Include="aura\exception\exception_installing.h" />
+    <ClInclude Include="aura\exception\exception_interface_only.h" />
+    <ClInclude Include="aura\exception\exception_invalid_argument.h" />
+    <ClInclude Include="aura\exception\exception_invalid_character.h" />
+    <ClInclude Include="aura\exception\exception_invalid_handle.h" />
+    <ClInclude Include="aura\exception\exception_invalid_index.h" />
+    <ClInclude Include="aura\exception\exception_io.h" />
+    <ClInclude Include="aura\exception\exception_last_error.h" />
+    <ClInclude Include="aura\exception\exception_memory.h" />
+    <ClInclude Include="aura\exception\exception_memory_state.h" />
+    <ClInclude Include="aura\exception\exception_misc.h" />
+    <ClInclude Include="aura\exception\exception_not_implemented.h" />
+    <ClInclude Include="aura\exception\exception_not_installed.h" />
+    <ClInclude Include="aura\exception\exception_not_licensed.h" />
+    <ClInclude Include="aura\exception\exception_not_supported.h" />
+    <ClInclude Include="aura\exception\exception_operation_canceled.h" />
+    <ClInclude Include="aura\exception\exception_os.h" />
+    <ClInclude Include="aura\exception\exception_overflow_error.h" />
+    <ClInclude Include="aura\exception\exception_parsing.h" />
+    <ClInclude Include="aura\exception\exception_range_error.h" />
+    <ClInclude Include="aura\exception\exception_resource.h" />
+    <ClInclude Include="aura\exception\exception_runtime_error.h" />
+    <ClInclude Include="aura\exception\exception_simple.h" />
+    <ClInclude Include="aura\exception\exception_standard.h" />
+    <ClInclude Include="aura\exception\exception_standard_translator.h" />
+    <ClInclude Include="aura\exception\exception_system.h" />
+    <ClInclude Include="aura\exception\exception_temporary.h" />
+    <ClInclude Include="aura\exception\exception_todo.h" />
+    <ClInclude Include="aura\exception\exception_trap.h" />
+    <ClInclude Include="aura\exception\exception_unhandled_report.h" />
+    <ClInclude Include="aura\exception\exception_user.h" />
+    <ClInclude Include="aura\exception\exception_verisimple.h" />
+    <ClInclude Include="aura\exception\exception_void_implementation.h" />
+    <ClInclude Include="aura\message\message.h" />
+    <ClInclude Include="aura\message\message_base.h" />
+    <ClInclude Include="aura\message\message_cross_windows.h" />
+    <ClInclude Include="aura\message\message_definition.h" />
+    <ClInclude Include="aura\message\message_dispatch.h" />
+    <ClInclude Include="aura\message\message_user.h" />
+    <ClInclude Include="aura\node\android\android.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -1819,7 +1819,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android1.h">
+    <ClInclude Include="aura\node\android\android1.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -1833,7 +1833,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_application.h">
+    <ClInclude Include="aura\node\android\android_application.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -1847,7 +1847,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_copydesk.h">
+    <ClInclude Include="aura\node\android\android_copydesk.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -1861,7 +1861,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_crypto.h">
+    <ClInclude Include="aura\node\android\android_crypto.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -1875,7 +1875,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_dir.h">
+    <ClInclude Include="aura\node\android\android_dir.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -1889,7 +1889,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_factory_exchange.h">
+    <ClInclude Include="aura\node\android\android_factory_exchange.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -1903,7 +1903,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_file.h">
+    <ClInclude Include="aura\node\android\android_file.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -1917,7 +1917,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_file_set.h">
+    <ClInclude Include="aura\node\android\android_file_set.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -1931,7 +1931,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_file_system.h">
+    <ClInclude Include="aura\node\android\android_file_system.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -1945,7 +1945,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_implementation.h">
+    <ClInclude Include="aura\node\android\android_implementation.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -1959,7 +1959,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_internal.h">
+    <ClInclude Include="aura\node\android\android_internal.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -1973,7 +1973,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_ip_enum.h">
+    <ClInclude Include="aura\node\android\android_ip_enum.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -1987,7 +1987,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_os.h">
+    <ClInclude Include="aura\node\android\android_os.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2001,7 +2001,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_port_forward.h">
+    <ClInclude Include="aura\node\android\android_port_forward.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2015,7 +2015,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_shell.h">
+    <ClInclude Include="aura\node\android\android_shell.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2029,7 +2029,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_stdio_file.h">
+    <ClInclude Include="aura\node\android\android_stdio_file.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2043,7 +2043,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_thread.h">
+    <ClInclude Include="aura\node\android\android_thread.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2057,7 +2057,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_window.h">
+    <ClInclude Include="aura\node\android\android_window.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2071,7 +2071,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_window_draw.h">
+    <ClInclude Include="aura\node\android\android_window_draw.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2085,7 +2085,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\node\ansios\ansios.h">
+    <ClInclude Include="aura\node\ansios\ansios.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2099,7 +2099,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\node\ansios\ansios_thread_impl.h">
+    <ClInclude Include="aura\node\ansios\ansios_thread_impl.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2113,30 +2113,30 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\node\node.h" />
-    <ClInclude Include="axis\node\windows\os.h" />
-    <ClInclude Include="axis\node\windows\win.h" />
-    <ClInclude Include="axis\node\windows\win1.h" />
-    <ClInclude Include="axis\node\windows\windows_application.h" />
-    <ClInclude Include="axis\node\windows\windows_copydesk.h" />
-    <ClInclude Include="axis\node\windows\windows_exception.h" />
-    <ClInclude Include="axis\node\windows\windows_factory_exchange.h" />
-    <ClInclude Include="axis\node\windows\windows_file.h" />
-    <ClInclude Include="axis\node\windows\windows_file_find.h" />
-    <ClInclude Include="axis\node\windows\windows_file_system.h" />
-    <ClInclude Include="axis\node\windows\windows_folder_watch.h" />
-    <ClInclude Include="axis\node\windows\windows_implementation.h" />
-    <ClInclude Include="axis\node\windows\windows_interaction_impl.h" />
-    <ClInclude Include="axis\node\windows\windows_os.h" />
-    <ClInclude Include="axis\node\windows\windows_print_job.h" />
-    <ClInclude Include="axis\node\windows\windows_registry.h" />
-    <ClInclude Include="axis\node\windows\windows_shell.h" />
-    <ClInclude Include="axis\node\windows\windows_simple_hold_handle.h" />
-    <ClInclude Include="axis\node\windows\windows_stdio_file.h" />
-    <ClInclude Include="axis\node\windows\windows_thread.h" />
-    <ClInclude Include="axis\node\windows\windows_uac_tools.h" />
-    <ClInclude Include="axis\node\windows\windows_window_draw.h" />
-    <ClInclude Include="axis\os\android\android.h">
+    <ClInclude Include="aura\node\node.h" />
+    <ClInclude Include="aura\node\windows\os.h" />
+    <ClInclude Include="aura\node\windows\win.h" />
+    <ClInclude Include="aura\node\windows\win1.h" />
+    <ClInclude Include="aura\node\windows\windows_application.h" />
+    <ClInclude Include="aura\node\windows\windows_copydesk.h" />
+    <ClInclude Include="aura\node\windows\windows_exception.h" />
+    <ClInclude Include="aura\node\windows\windows_factory_exchange.h" />
+    <ClInclude Include="aura\node\windows\windows_file.h" />
+    <ClInclude Include="aura\node\windows\windows_file_find.h" />
+    <ClInclude Include="aura\node\windows\windows_file_system.h" />
+    <ClInclude Include="aura\node\windows\windows_folder_watch.h" />
+    <ClInclude Include="aura\node\windows\windows_implementation.h" />
+    <ClInclude Include="aura\node\windows\windows_interaction_impl.h" />
+    <ClInclude Include="aura\node\windows\windows_os.h" />
+    <ClInclude Include="aura\node\windows\windows_print_job.h" />
+    <ClInclude Include="aura\node\windows\windows_registry.h" />
+    <ClInclude Include="aura\node\windows\windows_shell.h" />
+    <ClInclude Include="aura\node\windows\windows_simple_hold_handle.h" />
+    <ClInclude Include="aura\node\windows\windows_stdio_file.h" />
+    <ClInclude Include="aura\node\windows\windows_thread.h" />
+    <ClInclude Include="aura\node\windows\windows_uac_tools.h" />
+    <ClInclude Include="aura\node\windows\windows_window_draw.h" />
+    <ClInclude Include="aura\os\android\android.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -2150,7 +2150,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\android\android_cross_win_file.h">
+    <ClInclude Include="aura\os\android\android_cross_win_file.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2164,7 +2164,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\android\android_cross_win_gdi.h">
+    <ClInclude Include="aura\os\android\android_cross_win_gdi.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2178,7 +2178,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\android\android_cross_win_gdi_internal.h">
+    <ClInclude Include="aura\os\android\android_cross_win_gdi_internal.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2192,7 +2192,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\android\android_file.h">
+    <ClInclude Include="aura\os\android\android_file.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2206,7 +2206,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\android\android_file_watcher.h">
+    <ClInclude Include="aura\os\android\android_file_watcher.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2220,7 +2220,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\android\android_graphics.h">
+    <ClInclude Include="aura\os\android\android_graphics.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2234,7 +2234,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\android\android_internal.h">
+    <ClInclude Include="aura\os\android\android_internal.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2248,7 +2248,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\android\android_process.h">
+    <ClInclude Include="aura\os\android\android_process.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2262,7 +2262,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\android\android_window_android.h">
+    <ClInclude Include="aura\os\android\android_window_android.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2276,7 +2276,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\android\android_window_impl.h">
+    <ClInclude Include="aura\os\android\android_window_impl.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -2290,7 +2290,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\android\android_android.h">
+    <ClInclude Include="aura\os\android\android_android.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2304,7 +2304,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\ansios\ansios.h">
+    <ClInclude Include="aura\os\ansios\ansios.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2318,7 +2318,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\ansios\ansios_file.h">
+    <ClInclude Include="aura\os\ansios\ansios_file.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2332,7 +2332,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\ansios\ansios_multithreading.h">
+    <ClInclude Include="aura\os\ansios\ansios_multithreading.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2346,7 +2346,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\ansios\ansios_thread.h">
+    <ClInclude Include="aura\os\ansios\ansios_thread.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2360,9 +2360,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross.h" />
-    <ClInclude Include="axis\os\cross\cross.h" />
-    <ClInclude Include="axis\os\cross\windows\e.h">
+    <ClInclude Include="aura\os\cross.h" />
+    <ClInclude Include="aura\os\cross\cross.h" />
+    <ClInclude Include="aura\os\cross\windows\e.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -2376,7 +2376,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows.h">
+    <ClInclude Include="aura\os\cross\windows\windows.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2390,7 +2390,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_base.h">
+    <ClInclude Include="aura\os\cross\windows\windows_base.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -2404,7 +2404,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_base_tsd.h">
+    <ClInclude Include="aura\os\cross\windows\windows_base_tsd.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -2418,7 +2418,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_common_controls.h">
+    <ClInclude Include="aura\os\cross\windows\windows_common_controls.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -2432,7 +2432,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_crt.h">
+    <ClInclude Include="aura\os\cross\windows\windows_crt.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2446,7 +2446,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_crtdefs.h">
+    <ClInclude Include="aura\os\cross\windows\windows_crtdefs.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -2460,7 +2460,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_defs.h">
+    <ClInclude Include="aura\os\cross\windows\windows_defs.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2474,7 +2474,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_errno.h">
+    <ClInclude Include="aura\os\cross\windows\windows_errno.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -2488,7 +2488,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_error.h">
+    <ClInclude Include="aura\os\cross\windows\windows_error.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2502,7 +2502,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_file.h">
+    <ClInclude Include="aura\os\cross\windows\windows_file.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2516,7 +2516,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_gdi.h">
+    <ClInclude Include="aura\os\cross\windows\windows_gdi.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2530,7 +2530,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_guid_def.h">
+    <ClInclude Include="aura\os\cross\windows\windows_guid_def.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2544,7 +2544,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_internals.h">
+    <ClInclude Include="aura\os\cross\windows\windows_internals.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2558,7 +2558,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_mmeapi.h">
+    <ClInclude Include="aura\os\cross\windows\windows_mmeapi.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -2572,7 +2572,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_mmsystem.h">
+    <ClInclude Include="aura\os\cross\windows\windows_mmsystem.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -2586,7 +2586,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_nls.h">
+    <ClInclude Include="aura\os\cross\windows\windows_nls.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -2600,7 +2600,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_nt.h">
+    <ClInclude Include="aura\os\cross\windows\windows_nt.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -2614,7 +2614,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_ntstatus.h">
+    <ClInclude Include="aura\os\cross\windows\windows_ntstatus.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -2628,7 +2628,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_ole_automation.h">
+    <ClInclude Include="aura\os\cross\windows\windows_ole_automation.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2642,7 +2642,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_poppack.h">
+    <ClInclude Include="aura\os\cross\windows\windows_poppack.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -2656,7 +2656,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_pshpack2.h">
+    <ClInclude Include="aura\os\cross\windows\windows_pshpack2.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -2670,7 +2670,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_pshpack4.h">
+    <ClInclude Include="aura\os\cross\windows\windows_pshpack4.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -2684,7 +2684,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_pshpack8.h">
+    <ClInclude Include="aura\os\cross\windows\windows_pshpack8.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -2698,7 +2698,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_shared_memory.h">
+    <ClInclude Include="aura\os\cross\windows\windows_shared_memory.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2712,7 +2712,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_thread.h">
+    <ClInclude Include="aura\os\cross\windows\windows_thread.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2726,7 +2726,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_thread_impl.h">
+    <ClInclude Include="aura\os\cross\windows\windows_thread_impl.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2740,7 +2740,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_time.h">
+    <ClInclude Include="aura\os\cross\windows\windows_time.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2754,7 +2754,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_types.h">
+    <ClInclude Include="aura\os\cross\windows\windows_types.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2768,7 +2768,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_user.h">
+    <ClInclude Include="aura\os\cross\windows\windows_user.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2782,7 +2782,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_winnt.h">
+    <ClInclude Include="aura\os\cross\windows\windows_winnt.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2796,51 +2796,51 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="axis\os\os.h" />
-    <ClInclude Include="axis\os\os_binreloc.h" />
-    <ClInclude Include="axis\os\os_process.h" />
-    <ClInclude Include="axis\os\windows\windows.h" />
-    <ClInclude Include="axis\os\windows\windows_base_file.h" />
-    <ClInclude Include="axis\os\windows\windows_base_internal.h" />
-    <ClInclude Include="axis\os\windows\windows_base_registry.h" />
-    <ClInclude Include="axis\os\windows\windows_file_watcher.h" />
-    <ClInclude Include="axis\os\windows\windows_implementation.h" />
-    <ClInclude Include="axis\os\windows\windows_multithreading.h" />
-    <ClInclude Include="axis\os\windows\windows_os.h" />
-    <ClInclude Include="axis\os\windows\windows_port_forward.h" />
-    <ClInclude Include="axis\os\windows\windows_process.h" />
-    <ClInclude Include="axis\os\windows\windows_shell.h" />
-    <ClInclude Include="axis\os\windows\windows_simple_hold_handle.h" />
-    <ClInclude Include="axis\os\windows\windows_utils.h" />
-    <ClInclude Include="axis\os\windows\windows_windows.h" />
-    <ClInclude Include="axis\os\windows\windows_window_gdi.h" />
-    <ClInclude Include="axis\policy\policy.h" />
-    <ClInclude Include="axis\policy\policy_c.h" />
-    <ClInclude Include="axis\policy\policy_cpp.h" />
-    <ClInclude Include="axis\policy\policy_objc.h" />
-    <ClInclude Include="axis\policy\policy_objcpp.h" />
-    <ClInclude Include="axis\policy\policy_winrt.h" />
-    <ClInclude Include="axis\xml\xml.h" />
-    <ClInclude Include="axis\xml\xml_attr.h" />
-    <ClInclude Include="axis\xml\xml_base_array.h" />
-    <ClInclude Include="axis\xml\xml_data.h" />
-    <ClInclude Include="axis\xml\xml_departament.h" />
-    <ClInclude Include="axis\xml\xml_disp_option.h" />
-    <ClInclude Include="axis\xml\xml_document.h" />
-    <ClInclude Include="axis\xml\xml_edit.h" />
-    <ClInclude Include="axis\xml\xml_entity.h" />
-    <ClInclude Include="axis\xml\xml_enum.h" />
-    <ClInclude Include="axis\xml\xml_exportable.h" />
-    <ClInclude Include="axis\xml\xml_importable.h" />
-    <ClInclude Include="axis\xml\xml_input_tree.h" />
-    <ClInclude Include="axis\xml\xml_node.h" />
-    <ClInclude Include="axis\xml\xml_output_tree.h" />
-    <ClInclude Include="axis\xml\xml_parse_info.h" />
-    <ClInclude Include="axis\xml\xml_property_exchange.h" />
-    <ClInclude Include="axis\xml\xml_tree_base.h" />
-    <ClInclude Include="axis\xml\xml_tree_schema.h" />
-    <ClInclude Include="axis\xml\xml_var_exchange.h" />
-    <ClInclude Include="axis\xml\xml_xmlite.h" />
+    <ClInclude Include="aura\os\os.h" />
+    <ClInclude Include="aura\os\os_binreloc.h" />
+    <ClInclude Include="aura\os\os_process.h" />
+    <ClInclude Include="aura\os\windows\windows.h" />
+    <ClInclude Include="aura\os\windows\windows_base_file.h" />
+    <ClInclude Include="aura\os\windows\windows_base_internal.h" />
+    <ClInclude Include="aura\os\windows\windows_base_registry.h" />
+    <ClInclude Include="aura\os\windows\windows_file_watcher.h" />
+    <ClInclude Include="aura\os\windows\windows_implementation.h" />
+    <ClInclude Include="aura\os\windows\windows_multithreading.h" />
+    <ClInclude Include="aura\os\windows\windows_os.h" />
+    <ClInclude Include="aura\os\windows\windows_port_forward.h" />
+    <ClInclude Include="aura\os\windows\windows_process.h" />
+    <ClInclude Include="aura\os\windows\windows_shell.h" />
+    <ClInclude Include="aura\os\windows\windows_simple_hold_handle.h" />
+    <ClInclude Include="aura\os\windows\windows_utils.h" />
+    <ClInclude Include="aura\os\windows\windows_windows.h" />
+    <ClInclude Include="aura\os\windows\windows_window_gdi.h" />
+    <ClInclude Include="aura\policy\policy.h" />
+    <ClInclude Include="aura\policy\policy_c.h" />
+    <ClInclude Include="aura\policy\policy_cpp.h" />
+    <ClInclude Include="aura\policy\policy_objc.h" />
+    <ClInclude Include="aura\policy\policy_objcpp.h" />
+    <ClInclude Include="aura\policy\policy_winrt.h" />
+    <ClInclude Include="aura\xml\xml.h" />
+    <ClInclude Include="aura\xml\xml_attr.h" />
+    <ClInclude Include="aura\xml\xml_base_array.h" />
+    <ClInclude Include="aura\xml\xml_data.h" />
+    <ClInclude Include="aura\xml\xml_departament.h" />
+    <ClInclude Include="aura\xml\xml_disp_option.h" />
+    <ClInclude Include="aura\xml\xml_document.h" />
+    <ClInclude Include="aura\xml\xml_edit.h" />
+    <ClInclude Include="aura\xml\xml_entity.h" />
+    <ClInclude Include="aura\xml\xml_enum.h" />
+    <ClInclude Include="aura\xml\xml_exportable.h" />
+    <ClInclude Include="aura\xml\xml_importable.h" />
+    <ClInclude Include="aura\xml\xml_input_tree.h" />
+    <ClInclude Include="aura\xml\xml_node.h" />
+    <ClInclude Include="aura\xml\xml_output_tree.h" />
+    <ClInclude Include="aura\xml\xml_parse_info.h" />
+    <ClInclude Include="aura\xml\xml_property_exchange.h" />
+    <ClInclude Include="aura\xml\xml_tree_base.h" />
+    <ClInclude Include="aura\xml\xml_tree_schema.h" />
+    <ClInclude Include="aura\xml\xml_var_exchange.h" />
+    <ClInclude Include="aura\xml\xml_xmlite.h" />
     <ClInclude Include="database\database.h" />
     <ClInclude Include="database\database_base.h" />
     <ClInclude Include="database\database_change_event.h" />
@@ -2906,21 +2906,21 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="filesystem\file\file_transfer_buffer.h" />
     <ClInclude Include="filesystem\file\file_writer.h" />
     <ClInclude Include="filesystem\file\file_writer_flush.h" />
-    <ClCompile Include="axis\axis\axis_application_interface.cpp" />
-    <ClCompile Include="axis\axis\axis_gudo.cpp" />
-    <ClCompile Include="axis\axis\axis_id_pool.cpp" />
-    <ClCompile Include="axis\axis\axis_library.cpp" />
-    <ClCompile Include="axis\axis\axis_net.cpp" />
-    <ClCompile Include="axis\axis\axis_print_job.cpp" />
-    <ClCompile Include="axis\axis\axis_session_interface.cpp" />
-    <ClCompile Include="axis\axis\axis_static_start.cpp" />
-    <ClCompile Include="axis\exception\exception_parsing.cpp" />
-    <ClCompile Include="axis\exception\exception_verisimple.cpp" />
-    <ClCompile Include="axis\message\message.cpp" />
-    <ClCompile Include="axis\message\message_base.cpp" />
-    <ClCompile Include="axis\message\message_dispatch.cpp" />
-    <ClCompile Include="axis\message\message_user.cpp" />
-    <ClCompile Include="axis\node\android\android_android.cpp">
+    <ClCompile Include="aura\aura\aura_application_interface.cpp" />
+    <ClCompile Include="aura\aura\aura_gudo.cpp" />
+    <ClCompile Include="aura\aura\aura_id_pool.cpp" />
+    <ClCompile Include="aura\aura\aura_library.cpp" />
+    <ClCompile Include="aura\aura\aura_net.cpp" />
+    <ClCompile Include="aura\aura\aura_print_job.cpp" />
+    <ClCompile Include="aura\aura\aura_session_interface.cpp" />
+    <ClCompile Include="aura\aura\aura_static_start.cpp" />
+    <ClCompile Include="aura\exception\exception_parsing.cpp" />
+    <ClCompile Include="aura\exception\exception_verisimple.cpp" />
+    <ClCompile Include="aura\message\message.cpp" />
+    <ClCompile Include="aura\message\message_base.cpp" />
+    <ClCompile Include="aura\message\message_dispatch.cpp" />
+    <ClCompile Include="aura\message\message_user.cpp" />
+    <ClCompile Include="aura\node\android\android_android.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2934,7 +2934,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android1.cpp">
+    <ClCompile Include="aura\node\android\android1.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2948,7 +2948,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android2.cpp">
+    <ClCompile Include="aura\node\android\android2.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2962,7 +2962,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_application.cpp">
+    <ClCompile Include="aura\node\android\android_application.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2976,7 +2976,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_copydesk.cpp">
+    <ClCompile Include="aura\node\android\android_copydesk.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -2990,7 +2990,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_crypto.cpp">
+    <ClCompile Include="aura\node\android\android_crypto.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -3004,7 +3004,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_dir.cpp">
+    <ClCompile Include="aura\node\android\android_dir.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -3018,7 +3018,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_dumpinit.cpp">
+    <ClCompile Include="aura\node\android\android_dumpinit.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -3032,7 +3032,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_error.cpp">
+    <ClCompile Include="aura\node\android\android_error.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -3046,7 +3046,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_exception.cpp">
+    <ClCompile Include="aura\node\android\android_exception.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -3060,7 +3060,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_factory_exchange.cpp">
+    <ClCompile Include="aura\node\android\android_factory_exchange.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -3074,7 +3074,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_file.cpp">
+    <ClCompile Include="aura\node\android\android_file.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -3088,7 +3088,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_file_set.cpp">
+    <ClCompile Include="aura\node\android\android_file_set.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -3102,7 +3102,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_file_system.cpp">
+    <ClCompile Include="aura\node\android\android_file_system.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -3116,7 +3116,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_ip_enum.cpp">
+    <ClCompile Include="aura\node\android\android_ip_enum.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -3130,7 +3130,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_main.cpp">
+    <ClCompile Include="aura\node\android\android_main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -3144,7 +3144,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_os.cpp">
+    <ClCompile Include="aura\node\android\android_os.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -3158,7 +3158,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_port_forward.cpp">
+    <ClCompile Include="aura\node\android\android_port_forward.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -3172,7 +3172,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_shell.cpp">
+    <ClCompile Include="aura\node\android\android_shell.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -3186,7 +3186,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_stdio_file.cpp">
+    <ClCompile Include="aura\node\android\android_stdio_file.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -3200,7 +3200,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_thread.cpp">
+    <ClCompile Include="aura\node\android\android_thread.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -3214,7 +3214,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_trace.cpp">
+    <ClCompile Include="aura\node\android\android_trace.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -3228,7 +3228,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_util.cpp">
+    <ClCompile Include="aura\node\android\android_util.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -3242,7 +3242,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_window.cpp">
+    <ClCompile Include="aura\node\android\android_window.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -3256,7 +3256,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_window_draw.cpp">
+    <ClCompile Include="aura\node\android\android_window_draw.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -3270,7 +3270,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\ansios\ansios_thread_impl.cpp">
+    <ClCompile Include="aura\node\ansios\ansios_thread_impl.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
@@ -3284,25 +3284,25 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\node.cpp" />
-    <ClCompile Include="axis\node\windows\win1.cpp" />
-    <ClCompile Include="axis\node\windows\windows_application.cpp" />
-    <ClCompile Include="axis\node\windows\windows_copydesk.cpp" />
-    <ClCompile Include="axis\node\windows\windows_factory_exchange.cpp" />
-    <ClCompile Include="axis\node\windows\windows_file.cpp" />
-    <ClCompile Include="axis\node\windows\windows_file_find.cpp" />
-    <ClCompile Include="axis\node\windows\windows_folder_watch.cpp" />
-    <ClCompile Include="axis\node\windows\windows_interaction_impl.cpp" />
-    <ClCompile Include="axis\node\windows\windows_os.cpp" />
-    <ClCompile Include="axis\node\windows\windows_print_job.cpp" />
-    <ClCompile Include="axis\node\windows\windows_registry.cpp" />
-    <ClCompile Include="axis\node\windows\windows_shell.cpp" />
-    <ClCompile Include="axis\node\windows\windows_stdio_file.cpp" />
-    <ClCompile Include="axis\node\windows\windows_thread.cpp" />
-    <ClCompile Include="axis\node\windows\windows_trace.cpp" />
-    <ClCompile Include="axis\node\windows\windows_uac_tools.cpp" />
-    <ClCompile Include="axis\node\windows\windows_window_draw.cpp" />
-    <ClCompile Include="axis\os\ansios\ansios_cross_win.cpp">
+    <ClCompile Include="aura\node\node.cpp" />
+    <ClCompile Include="aura\node\windows\win1.cpp" />
+    <ClCompile Include="aura\node\windows\windows_application.cpp" />
+    <ClCompile Include="aura\node\windows\windows_copydesk.cpp" />
+    <ClCompile Include="aura\node\windows\windows_factory_exchange.cpp" />
+    <ClCompile Include="aura\node\windows\windows_file.cpp" />
+    <ClCompile Include="aura\node\windows\windows_file_find.cpp" />
+    <ClCompile Include="aura\node\windows\windows_folder_watch.cpp" />
+    <ClCompile Include="aura\node\windows\windows_interaction_impl.cpp" />
+    <ClCompile Include="aura\node\windows\windows_os.cpp" />
+    <ClCompile Include="aura\node\windows\windows_print_job.cpp" />
+    <ClCompile Include="aura\node\windows\windows_registry.cpp" />
+    <ClCompile Include="aura\node\windows\windows_shell.cpp" />
+    <ClCompile Include="aura\node\windows\windows_stdio_file.cpp" />
+    <ClCompile Include="aura\node\windows\windows_thread.cpp" />
+    <ClCompile Include="aura\node\windows\windows_trace.cpp" />
+    <ClCompile Include="aura\node\windows\windows_uac_tools.cpp" />
+    <ClCompile Include="aura\node\windows\windows_window_draw.cpp" />
+    <ClCompile Include="aura\os\ansios\ansios_cross_win.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -3316,7 +3316,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\ansios\ansios_cross_windows_user.cpp">
+    <ClCompile Include="aura\os\ansios\ansios_cross_windows_user.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -3330,7 +3330,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\ansios\ansios_cross_win_file.cpp">
+    <ClCompile Include="aura\os\ansios\ansios_cross_win_file.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -3344,7 +3344,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\ansios\ansios_base_file.cpp">
+    <ClCompile Include="aura\os\ansios\ansios_base_file.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -3358,7 +3358,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\ansios\ansios_file_std.cpp">
+    <ClCompile Include="aura\os\ansios\ansios_file_std.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -3372,7 +3372,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\ansios\ansios_multithreading.cpp">
+    <ClCompile Include="aura\os\ansios\ansios_multithreading.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -3386,7 +3386,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\ansios\crypto\ansios_crypt.cpp">
+    <ClCompile Include="aura\os\ansios\crypto\ansios_crypt.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -3400,7 +3400,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_windows.cpp">
+    <ClCompile Include="aura\os\cross\windows\cross_windows_windows.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -3414,7 +3414,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_crt.cpp">
+    <ClCompile Include="aura\os\cross\windows\cross_windows_crt.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -3428,7 +3428,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_error.cpp">
+    <ClCompile Include="aura\os\cross\windows\cross_windows_error.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -3442,7 +3442,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_locale.cpp">
+    <ClCompile Include="aura\os\cross\windows\cross_windows_locale.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -3456,7 +3456,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_shared_memory.cpp">
+    <ClCompile Include="aura\os\cross\windows\cross_windows_shared_memory.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -3470,7 +3470,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_threading.cpp">
+    <ClCompile Include="aura\os\cross\windows\cross_windows_threading.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -3484,7 +3484,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_datetime.cpp">
+    <ClCompile Include="aura\os\cross\windows\cross_windows_datetime.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -3498,7 +3498,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_user.cpp">
+    <ClCompile Include="aura\os\cross\windows\cross_windows_user.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -3953,36 +3953,36 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\str\x\x_defines.h" />
     <ClInclude Include="primitive\str\x\x_encodings.h" />
     <ClInclude Include="primitive\str\x\x_tables.h" />
-    <ClCompile Include="axis\os\windows\win2.cpp" />
-    <ClCompile Include="axis\os\windows\windows.cpp" />
-    <ClCompile Include="axis\os\windows\windows_base_file.cpp" />
-    <ClCompile Include="axis\os\windows\windows_base_registry.cpp" />
-    <ClCompile Include="axis\os\windows\windows_debug.cpp" />
-    <ClCompile Include="axis\os\windows\windows_dll.cpp" />
-    <ClCompile Include="axis\os\windows\windows_error.cpp" />
-    <ClCompile Include="axis\os\windows\windows_file_std.cpp">
+    <ClCompile Include="aura\os\windows\win2.cpp" />
+    <ClCompile Include="aura\os\windows\windows.cpp" />
+    <ClCompile Include="aura\os\windows\windows_base_file.cpp" />
+    <ClCompile Include="aura\os\windows\windows_base_registry.cpp" />
+    <ClCompile Include="aura\os\windows\windows_debug.cpp" />
+    <ClCompile Include="aura\os\windows\windows_dll.cpp" />
+    <ClCompile Include="aura\os\windows\windows_error.cpp" />
+    <ClCompile Include="aura\os\windows\windows_file_std.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_file_watcher.cpp" />
-    <ClCompile Include="axis\os\windows\windows_gdi.cpp" />
-    <ClCompile Include="axis\os\windows\windows_launcher.cpp" />
-    <ClCompile Include="axis\os\windows\windows_library.cpp" />
-    <ClCompile Include="axis\os\windows\windows_lock.cpp" />
-    <ClCompile Include="axis\os\windows\windows_main.cpp" />
-    <ClCompile Include="axis\os\windows\windows_message_loop.cpp" />
-    <ClCompile Include="axis\os\windows\windows_multithreading.cpp" />
-    <ClCompile Include="axis\os\windows\windows_process.cpp" />
-    <ClCompile Include="axis\os\windows\windows_simple_app.cpp" />
-    <ClCompile Include="axis\os\windows\windows_simple_shell_launcher.cpp" />
-    <ClCompile Include="axis\os\windows\windows_small_ipc_channel.cpp" />
-    <ClCompile Include="axis\os\windows\windows_std_file.cpp">
+    <ClCompile Include="aura\os\windows\windows_file_watcher.cpp" />
+    <ClCompile Include="aura\os\windows\windows_gdi.cpp" />
+    <ClCompile Include="aura\os\windows\windows_launcher.cpp" />
+    <ClCompile Include="aura\os\windows\windows_library.cpp" />
+    <ClCompile Include="aura\os\windows\windows_lock.cpp" />
+    <ClCompile Include="aura\os\windows\windows_main.cpp" />
+    <ClCompile Include="aura\os\windows\windows_message_loop.cpp" />
+    <ClCompile Include="aura\os\windows\windows_multithreading.cpp" />
+    <ClCompile Include="aura\os\windows\windows_process.cpp" />
+    <ClCompile Include="aura\os\windows\windows_simple_app.cpp" />
+    <ClCompile Include="aura\os\windows\windows_simple_shell_launcher.cpp" />
+    <ClCompile Include="aura\os\windows\windows_small_ipc_channel.cpp" />
+    <ClCompile Include="aura\os\windows\windows_std_file.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_time.cpp" />
-    <ClCompile Include="axis\os\windows\windows_util.cpp" />
-    <ClCompile Include="axis\os\windows\windows_utils.cpp" />
-    <ClCompile Include="axis\os\windows\windows_window_gdi.cpp" />
-    <ClCompile Include="axis\policy\policy_c.c" />
+    <ClCompile Include="aura\os\windows\windows_time.cpp" />
+    <ClCompile Include="aura\os\windows\windows_util.cpp" />
+    <ClCompile Include="aura\os\windows\windows_utils.cpp" />
+    <ClCompile Include="aura\os\windows\windows_window_gdi.cpp" />
+    <ClCompile Include="aura\policy\policy_c.c" />
     <ClCompile Include="database\database_application.cpp" />
     <ClCompile Include="database\database_base.cpp" />
     <ClCompile Include="database\database_client.cpp" />
@@ -4188,98 +4188,98 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="version.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="axis\axis\axis.cpp" />
-    <ClCompile Include="axis\axis\axis_action_context.cpp" />
-    <ClCompile Include="axis\axis\axis_allocate_mid_big.cpp" />
-    <ClCompile Include="axis\axis\axis_allocate_system_heap.cpp" />
-    <ClCompile Include="axis\axis\axis_application.cpp" />
-    <ClCompile Include="axis\axis\axis_argcargv.cpp" />
-    <ClCompile Include="axis\axis\axis_assert.cpp" />
-    <ClCompile Include="axis\axis\axis_checked.cpp" />
-    <ClCompile Include="axis\axis\axis_cmdtarg.cpp" />
-    <ClCompile Include="axis\axis\axis_command_target.cpp" />
-    <ClCompile Include="axis\axis\axis_conv.cpp" />
-    <ClCompile Include="axis\axis\axis_core_copydesk.cpp" />
-    <ClCompile Include="axis\axis\axis_core_os.cpp" />
-    <ClCompile Include="axis\axis\axis_cpu_architecture.cpp" />
-    <ClCompile Include="axis\axis\axis_cregexp.cpp" />
-    <ClCompile Include="axis\axis\axis_cregexp_util.cpp" />
-    <ClCompile Include="axis\axis\axis_debug.cpp" />
-    <ClCompile Include="axis\axis\axis_departament.cpp" />
-    <ClCompile Include="axis\axis\axis_departament_container.cpp" />
-    <ClCompile Include="axis\axis\axis_element.cpp" />
-    <ClCompile Include="axis\axis\axis_file_watcher.cpp" />
-    <ClCompile Include="axis\axis\axis_file_watcher_impl.cpp" />
-    <ClCompile Include="axis\axis\axis_file_watcher_listener_thread.cpp" />
-    <ClCompile Include="axis\axis\axis_file_watcher_thread.cpp" />
-    <ClCompile Include="axis\axis\axis_fixed_alloc.cpp" />
-    <ClCompile Include="axis\axis\axis_flags.cpp" />
-    <ClCompile Include="axis\axis\axis_heap.cpp" />
-    <ClCompile Include="axis\axis\axis_international.cpp" />
-    <ClCompile Include="axis\axis\axis_progress.cpp" />
-    <ClCompile Include="axis\axis\axis_live_object.cpp" />
-    <ClCompile Include="axis\axis\axis_live_signal.cpp" />
-    <ClCompile Include="axis\axis\axis_log.cpp" />
-    <ClCompile Include="axis\axis\axis_machine_event.cpp" />
-    <ClCompile Include="axis\axis\axis_machine_event_central.cpp" />
-    <ClCompile Include="axis\axis\axis_machine_event_data.cpp" />
-    <ClCompile Include="axis\axis\axis_math.cpp" />
-    <ClCompile Include="axis\axis\axis_message_queue.cpp" />
-    <ClCompile Include="axis\axis\axis_microtimer.cpp" />
-    <ClCompile Include="axis\axis\axis_mktime.cpp" />
-    <ClCompile Include="axis\axis\axis_muldiv64.cpp" />
-    <ClCompile Include="axis\axis\axis_plex.cpp" />
-    <ClCompile Include="axis\axis\axis_plex_heap.cpp" />
-    <ClCompile Include="axis\axis\axis_printf.cpp" />
-    <ClCompile Include="axis\axis\axis_root.cpp" />
-    <ClCompile Include="axis\axis\axis_savings.cpp" />
-    <ClCompile Include="axis\axis\axis_session.cpp" />
-    <ClCompile Include="axis\axis\axis_simple_shell_launcher.cpp" />
-    <ClCompile Include="axis\axis\axis_small_ipc_channel.cpp" />
-    <ClCompile Include="axis\axis\axis_sprintf.cpp" />
-    <ClCompile Include="axis\axis\axis_system.cpp" />
-    <ClCompile Include="axis\axis\axis_template.cpp" />
-    <ClCompile Include="axis\axis\axis_trace.cpp" />
-    <ClCompile Include="axis\exception\exception.cpp" />
-    <ClCompile Include="axis\exception\exception_archive.cpp" />
-    <ClCompile Include="axis\exception\exception_archive_exception.cpp" />
-    <ClCompile Include="axis\exception\exception_base.cpp" />
-    <ClCompile Include="axis\exception\exception_call_stack.cpp" />
-    <ClCompile Include="axis\exception\exception_debug.cpp" />
-    <ClCompile Include="axis\exception\exception_dump.cpp" />
-    <ClCompile Include="axis\exception\exception_dump_context.cpp" />
-    <ClCompile Include="axis\exception\exception_dump_floating_point.cpp" />
-    <ClCompile Include="axis\exception\exception_dump_output.cpp" />
-    <ClCompile Include="axis\exception\exception_engine.cpp" />
-    <ClCompile Include="axis\exception\exception_error.cpp" />
-    <ClCompile Include="axis\exception\exception_exit.cpp" />
-    <ClCompile Include="axis\exception\exception_hresult.cpp" />
-    <ClCompile Include="axis\exception\exception_installing.cpp" />
-    <ClCompile Include="axis\exception\exception_interface_only.cpp" />
-    <ClCompile Include="axis\exception\exception_invalid_argument.cpp" />
-    <ClCompile Include="axis\exception\exception_invalid_character.cpp" />
-    <ClCompile Include="axis\exception\exception_invalid_handle.cpp" />
-    <ClCompile Include="axis\exception\exception_invalid_index.cpp" />
-    <ClCompile Include="axis\exception\exception_io.cpp" />
-    <ClCompile Include="axis\exception\exception_last_error.cpp" />
-    <ClCompile Include="axis\exception\exception_memory.cpp" />
-    <ClCompile Include="axis\exception\exception_not_implemented.cpp" />
-    <ClCompile Include="axis\exception\exception_not_installed.cpp" />
-    <ClCompile Include="axis\exception\exception_not_licensed.cpp" />
-    <ClCompile Include="axis\exception\exception_not_supported.cpp" />
-    <ClCompile Include="axis\exception\exception_operation_canceled.cpp" />
-    <ClCompile Include="axis\exception\exception_os.cpp" />
-    <ClCompile Include="axis\exception\exception_overflow_error.cpp" />
-    <ClCompile Include="axis\exception\exception_range_error.cpp" />
-    <ClCompile Include="axis\exception\exception_resource.cpp" />
-    <ClCompile Include="axis\exception\exception_runtime_error.cpp" />
-    <ClCompile Include="axis\exception\exception_simple.cpp" />
-    <ClCompile Include="axis\exception\exception_standard_translator.cpp" />
-    <ClCompile Include="axis\exception\exception_temporary.cpp" />
-    <ClCompile Include="axis\exception\exception_todo.cpp" />
-    <ClCompile Include="axis\exception\exception_user.cpp" />
-    <ClCompile Include="axis\exception\exception_void_implementation.cpp" />
-    <ClCompile Include="axis\os\android\android_c.c">
+    <ClCompile Include="aura\aura\aura.cpp" />
+    <ClCompile Include="aura\aura\aura_action_context.cpp" />
+    <ClCompile Include="aura\aura\aura_allocate_mid_big.cpp" />
+    <ClCompile Include="aura\aura\aura_allocate_system_heap.cpp" />
+    <ClCompile Include="aura\aura\aura_application.cpp" />
+    <ClCompile Include="aura\aura\aura_argcargv.cpp" />
+    <ClCompile Include="aura\aura\aura_assert.cpp" />
+    <ClCompile Include="aura\aura\aura_checked.cpp" />
+    <ClCompile Include="aura\aura\aura_cmdtarg.cpp" />
+    <ClCompile Include="aura\aura\aura_command_target.cpp" />
+    <ClCompile Include="aura\aura\aura_conv.cpp" />
+    <ClCompile Include="aura\aura\aura_core_copydesk.cpp" />
+    <ClCompile Include="aura\aura\aura_core_os.cpp" />
+    <ClCompile Include="aura\aura\aura_cpu_architecture.cpp" />
+    <ClCompile Include="aura\aura\aura_cregexp.cpp" />
+    <ClCompile Include="aura\aura\aura_cregexp_util.cpp" />
+    <ClCompile Include="aura\aura\aura_debug.cpp" />
+    <ClCompile Include="aura\aura\aura_departament.cpp" />
+    <ClCompile Include="aura\aura\aura_departament_container.cpp" />
+    <ClCompile Include="aura\aura\aura_element.cpp" />
+    <ClCompile Include="aura\aura\aura_file_watcher.cpp" />
+    <ClCompile Include="aura\aura\aura_file_watcher_impl.cpp" />
+    <ClCompile Include="aura\aura\aura_file_watcher_listener_thread.cpp" />
+    <ClCompile Include="aura\aura\aura_file_watcher_thread.cpp" />
+    <ClCompile Include="aura\aura\aura_fixed_alloc.cpp" />
+    <ClCompile Include="aura\aura\aura_flags.cpp" />
+    <ClCompile Include="aura\aura\aura_heap.cpp" />
+    <ClCompile Include="aura\aura\aura_international.cpp" />
+    <ClCompile Include="aura\aura\aura_progress.cpp" />
+    <ClCompile Include="aura\aura\aura_live_object.cpp" />
+    <ClCompile Include="aura\aura\aura_live_signal.cpp" />
+    <ClCompile Include="aura\aura\aura_log.cpp" />
+    <ClCompile Include="aura\aura\aura_machine_event.cpp" />
+    <ClCompile Include="aura\aura\aura_machine_event_central.cpp" />
+    <ClCompile Include="aura\aura\aura_machine_event_data.cpp" />
+    <ClCompile Include="aura\aura\aura_math.cpp" />
+    <ClCompile Include="aura\aura\aura_message_queue.cpp" />
+    <ClCompile Include="aura\aura\aura_microtimer.cpp" />
+    <ClCompile Include="aura\aura\aura_mktime.cpp" />
+    <ClCompile Include="aura\aura\aura_muldiv64.cpp" />
+    <ClCompile Include="aura\aura\aura_plex.cpp" />
+    <ClCompile Include="aura\aura\aura_plex_heap.cpp" />
+    <ClCompile Include="aura\aura\aura_printf.cpp" />
+    <ClCompile Include="aura\aura\aura_root.cpp" />
+    <ClCompile Include="aura\aura\aura_savings.cpp" />
+    <ClCompile Include="aura\aura\aura_session.cpp" />
+    <ClCompile Include="aura\aura\aura_simple_shell_launcher.cpp" />
+    <ClCompile Include="aura\aura\aura_small_ipc_channel.cpp" />
+    <ClCompile Include="aura\aura\aura_sprintf.cpp" />
+    <ClCompile Include="aura\aura\aura_system.cpp" />
+    <ClCompile Include="aura\aura\aura_template.cpp" />
+    <ClCompile Include="aura\aura\aura_trace.cpp" />
+    <ClCompile Include="aura\exception\exception.cpp" />
+    <ClCompile Include="aura\exception\exception_archive.cpp" />
+    <ClCompile Include="aura\exception\exception_archive_exception.cpp" />
+    <ClCompile Include="aura\exception\exception_base.cpp" />
+    <ClCompile Include="aura\exception\exception_call_stack.cpp" />
+    <ClCompile Include="aura\exception\exception_debug.cpp" />
+    <ClCompile Include="aura\exception\exception_dump.cpp" />
+    <ClCompile Include="aura\exception\exception_dump_context.cpp" />
+    <ClCompile Include="aura\exception\exception_dump_floating_point.cpp" />
+    <ClCompile Include="aura\exception\exception_dump_output.cpp" />
+    <ClCompile Include="aura\exception\exception_engine.cpp" />
+    <ClCompile Include="aura\exception\exception_error.cpp" />
+    <ClCompile Include="aura\exception\exception_exit.cpp" />
+    <ClCompile Include="aura\exception\exception_hresult.cpp" />
+    <ClCompile Include="aura\exception\exception_installing.cpp" />
+    <ClCompile Include="aura\exception\exception_interface_only.cpp" />
+    <ClCompile Include="aura\exception\exception_invalid_argument.cpp" />
+    <ClCompile Include="aura\exception\exception_invalid_character.cpp" />
+    <ClCompile Include="aura\exception\exception_invalid_handle.cpp" />
+    <ClCompile Include="aura\exception\exception_invalid_index.cpp" />
+    <ClCompile Include="aura\exception\exception_io.cpp" />
+    <ClCompile Include="aura\exception\exception_last_error.cpp" />
+    <ClCompile Include="aura\exception\exception_memory.cpp" />
+    <ClCompile Include="aura\exception\exception_not_implemented.cpp" />
+    <ClCompile Include="aura\exception\exception_not_installed.cpp" />
+    <ClCompile Include="aura\exception\exception_not_licensed.cpp" />
+    <ClCompile Include="aura\exception\exception_not_supported.cpp" />
+    <ClCompile Include="aura\exception\exception_operation_canceled.cpp" />
+    <ClCompile Include="aura\exception\exception_os.cpp" />
+    <ClCompile Include="aura\exception\exception_overflow_error.cpp" />
+    <ClCompile Include="aura\exception\exception_range_error.cpp" />
+    <ClCompile Include="aura\exception\exception_resource.cpp" />
+    <ClCompile Include="aura\exception\exception_runtime_error.cpp" />
+    <ClCompile Include="aura\exception\exception_simple.cpp" />
+    <ClCompile Include="aura\exception\exception_standard_translator.cpp" />
+    <ClCompile Include="aura\exception\exception_temporary.cpp" />
+    <ClCompile Include="aura\exception\exception_todo.cpp" />
+    <ClCompile Include="aura\exception\exception_user.cpp" />
+    <ClCompile Include="aura\exception\exception_void_implementation.cpp" />
+    <ClCompile Include="aura\os\android\android_c.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -4293,7 +4293,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android.cpp">
+    <ClCompile Include="aura\os\android\android.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -4307,7 +4307,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android_cross_win_file.cpp">
+    <ClCompile Include="aura\os\android\android_cross_win_file.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -4321,7 +4321,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android_cross_win_gdi.cpp">
+    <ClCompile Include="aura\os\android\android_cross_win_gdi.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -4335,7 +4335,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android_base_file.cpp">
+    <ClCompile Include="aura\os\android\android_base_file.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -4349,7 +4349,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android_file_watcher.cpp">
+    <ClCompile Include="aura\os\android\android_file_watcher.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -4363,7 +4363,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android_launcher.cpp">
+    <ClCompile Include="aura\os\android\android_launcher.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -4377,7 +4377,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android_library.cpp">
+    <ClCompile Include="aura\os\android\android_library.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -4391,7 +4391,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android_locale.c">
+    <ClCompile Include="aura\os\android\android_locale.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -4405,7 +4405,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android_lock.cpp">
+    <ClCompile Include="aura\os\android\android_lock.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -4419,7 +4419,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android_message_loop.cpp">
+    <ClCompile Include="aura\os\android\android_message_loop.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -4433,7 +4433,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android_process.cpp">
+    <ClCompile Include="aura\os\android\android_process.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -4447,7 +4447,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android_process_pid.cpp">
+    <ClCompile Include="aura\os\android\android_process_pid.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -4461,7 +4461,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android_simple_shell_launcher.cpp">
+    <ClCompile Include="aura\os\android\android_simple_shell_launcher.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -4475,7 +4475,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android_small_ipca_channel.cpp">
+    <ClCompile Include="aura\os\android\android_small_ipca_channel.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -4489,7 +4489,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android_multithreading.cpp">
+    <ClCompile Include="aura\os\android\android_multithreading.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -4503,7 +4503,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android_windowing.cpp">
+    <ClCompile Include="aura\os\android\android_windowing.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -4517,7 +4517,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android_window_android.cpp">
+    <ClCompile Include="aura\os\android\android_window_android.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -4531,7 +4531,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android_window_impl.cpp">
+    <ClCompile Include="aura\os\android\android_window_impl.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -4545,7 +4545,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android_win_base.cpp">
+    <ClCompile Include="aura\os\android\android_win_base.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -4559,8 +4559,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\cross\metrowin\cross_metrowin_user.cpp" />
-    <ClCompile Include="axis\os\os_binreloc.cpp">
+    <ClCompile Include="aura\os\cross\metrowin\cross_metrowin_user.cpp" />
+    <ClCompile Include="aura\os\os_binreloc.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -4574,29 +4574,29 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\os_file.cpp" />
-    <ClCompile Include="axis\os\os_http.cpp" />
-    <ClCompile Include="axis\os\os_process.cpp" />
-    <ClCompile Include="axis\os\os_thread.cpp" />
-    <ClCompile Include="axis\xml\xml_attr.cpp" />
-    <ClCompile Include="axis\xml\xml_base_array.cpp" />
-    <ClCompile Include="axis\xml\xml_data.cpp" />
-    <ClCompile Include="axis\xml\xml_disp_option.cpp" />
-    <ClCompile Include="axis\xml\xml_document.cpp" />
-    <ClCompile Include="axis\xml\xml_edit.cpp" />
-    <ClCompile Include="axis\xml\xml_entity.cpp" />
-    <ClCompile Include="axis\xml\xml_exportable.cpp" />
-    <ClCompile Include="axis\xml\xml_importable.cpp" />
-    <ClCompile Include="axis\xml\xml_input_tree.cpp" />
-    <ClCompile Include="axis\xml\xml_node.cpp" />
-    <ClCompile Include="axis\xml\xml_output_tree.cpp" />
-    <ClCompile Include="axis\xml\xml_parse_info.cpp" />
-    <ClCompile Include="axis\xml\xml_property_exchange.cpp" />
-    <ClCompile Include="axis\xml\xml_tree_base.cpp" />
-    <ClCompile Include="axis\xml\xml_tree_schema.cpp" />
-    <ClCompile Include="axis\xml\xml_var_exchange.cpp" />
-    <ClCompile Include="axis\xml\xml_xml.cpp" />
-    <ClCompile Include="axis\xml\xml_xmlite.cpp" />
+    <ClCompile Include="aura\os\os_file.cpp" />
+    <ClCompile Include="aura\os\os_http.cpp" />
+    <ClCompile Include="aura\os\os_process.cpp" />
+    <ClCompile Include="aura\os\os_thread.cpp" />
+    <ClCompile Include="aura\xml\xml_attr.cpp" />
+    <ClCompile Include="aura\xml\xml_base_array.cpp" />
+    <ClCompile Include="aura\xml\xml_data.cpp" />
+    <ClCompile Include="aura\xml\xml_disp_option.cpp" />
+    <ClCompile Include="aura\xml\xml_document.cpp" />
+    <ClCompile Include="aura\xml\xml_edit.cpp" />
+    <ClCompile Include="aura\xml\xml_entity.cpp" />
+    <ClCompile Include="aura\xml\xml_exportable.cpp" />
+    <ClCompile Include="aura\xml\xml_importable.cpp" />
+    <ClCompile Include="aura\xml\xml_input_tree.cpp" />
+    <ClCompile Include="aura\xml\xml_node.cpp" />
+    <ClCompile Include="aura\xml\xml_output_tree.cpp" />
+    <ClCompile Include="aura\xml\xml_parse_info.cpp" />
+    <ClCompile Include="aura\xml\xml_property_exchange.cpp" />
+    <ClCompile Include="aura\xml\xml_tree_base.cpp" />
+    <ClCompile Include="aura\xml\xml_tree_schema.cpp" />
+    <ClCompile Include="aura\xml\xml_var_exchange.cpp" />
+    <ClCompile Include="aura\xml\xml_xml.cpp" />
+    <ClCompile Include="aura\xml\xml_xmlite.cpp" />
     <ClCompile Include="filesystem\file\file_binary_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_buffered_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_byte_input_stream.cpp" />
@@ -5518,22 +5518,22 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
     </CustomBuild>
-    <None Include="axis.def" />
-    <None Include="axis\axis\axis.inl" />
-    <None Include="axis\axis\axis_system_factory.inl" />
-    <None Include="axis\axis\axis_system_id.inl" />
-    <None Include="axis\axis\axis_system_object.inl" />
-    <None Include="axis\axis\axis_system_primitive_var.inl" />
-    <None Include="axis\axis\axis_system_smart_pointer.inl" />
-    <None Include="axis\axis\axis_system_xml.inl" />
-    <None Include="axis\message\message.inl" />
+    <None Include="aura.def" />
+    <None Include="aura\aura\aura.inl" />
+    <None Include="aura\aura\aura_system_factory.inl" />
+    <None Include="aura\aura\aura_system_id.inl" />
+    <None Include="aura\aura\aura_system_object.inl" />
+    <None Include="aura\aura\aura_system_primitive_var.inl" />
+    <None Include="aura\aura\aura_system_smart_pointer.inl" />
+    <None Include="aura\aura\aura_system_xml.inl" />
+    <None Include="aura\message\message.inl" />
     <None Include="multithreading\multithreading.inl" />
     <None Include="primitive\collection\collection.inl" />
     <None Include="primitive\primitive_factory_impl.inl" />
     <None Include="primitive\str\str.inl" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="axis.rc" />
+    <ResourceCompile Include="aura.rc" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\aura\aura.vcxproj">
