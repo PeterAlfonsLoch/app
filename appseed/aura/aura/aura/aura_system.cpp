@@ -739,20 +739,6 @@ namespace aura
 
 
 
-   ::datetime::departament & system::datetime()
-   {
-      return *m_pdatetime;
-   }
-
-
-
-   sp(::user::window_draw) system::get_twf()
-   {
-
-      return m_ptwf;
-
-   }
-
    ::aura::log & system::log()
    {
       return *m_plog;
@@ -765,15 +751,6 @@ namespace aura
    {
       return *m_pmachineeventcentral;
    }
-
-
-   ::user::str & system::str()
-   {
-
-      return *m_puserstr;
-
-   }
-
 
 
    sp(::aura::session) system::query_session(index iEdge)
