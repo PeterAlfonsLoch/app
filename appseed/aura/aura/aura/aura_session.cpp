@@ -36,24 +36,13 @@ namespace aura
 
 
       m_bDrawCursor              = false;
-      m_ecursorDefault  = ::visual::cursor_arrow;
-      m_ecursor         = ::visual::cursor_default;
-
-
-      m_puiMouseMoveCapture = NULL;
-      m_puiLastLButtonDown = NULL;
 
       m_psavings                 = canew(class ::aura::savings(this));
 
       m_bZipIsDir                = true;
 
 
-      m_pmapKeyPressed           = NULL;
-      m_puserstrcontext = NULL;
-
       m_paurasystem->m_basesessionptra.add_unique(this);
-
-      m_puserschema = &m_schemasimple;
 
       m_schemasimple.m_pfont.alloc(allocer());
 

@@ -6,14 +6,14 @@ namespace user
 
 
 
-   interaction_base::timer_array::timer_array(sp(::aura::application) papp):
+   timer_array::timer_array(sp(::aura::application) papp):
       element(papp),
       m_mutex(papp)
    {
    }
 
 
-   bool interaction_base::timer_array::unset(sp(interaction) pui,uint_ptr uiId)
+   bool timer_array::unset(interaction * pui,uint_ptr uiId)
    {
 
 
@@ -33,7 +33,7 @@ namespace user
       return false;
    }
 
-   void interaction_base::timer_array::detach(smart_pointer_array < timer_item > & timera,sp(interaction) pui)
+   void timer_array::detach(smart_pointer_array < timer_item > & timera,interaction * pui)
    {
 
 
@@ -57,7 +57,7 @@ namespace user
 
    }
 
-   void interaction_base::timer_array::transfer(::window_sp pwindow,sp(interaction) pui)
+   void timer_array::transfer(::window_sp pwindow,interaction * pui)
    {
 
 
@@ -69,7 +69,7 @@ namespace user
 
    }
 
-   void interaction_base::timer_array::unset(sp(interaction) pui)
+   void timer_array::unset(interaction * pui)
    {
 
       retry_single_lock sl(&m_mutex,millis(177),millis(184));
@@ -88,7 +88,7 @@ namespace user
 
    }
 
-   index interaction_base::timer_array::find(sp(interaction) pui,uint_ptr uiId)
+   index timer_array::find(interaction * pui,uint_ptr uiId)
    {
 
 
@@ -107,7 +107,7 @@ namespace user
 
    }
 
-   index interaction_base::timer_array::find_from(sp(interaction) pui,index iStart)
+   index timer_array::find_from(interaction * pui,index iStart)
    {
 
 
@@ -126,19 +126,19 @@ namespace user
 
    }
 
-   void interaction_base::timer_array::dump(dump_context & dc) const
+   void timer_array::dump(dump_context & dc) const
    {
       UNREFERENCED_PARAMETER(dc);
    }
 
-   void interaction_base::timer_array::assert_valid() const
+   void timer_array::assert_valid() const
    {
 
    }
 
 
 
-   void interaction_base::timer_array::check()
+   void timer_array::check()
    {
 
 
@@ -219,7 +219,7 @@ namespace user
    }
 
 
-   uint_ptr interaction_base::timer_array::set(sp(interaction) pui,uint_ptr uiId,UINT uiElapse)
+   uint_ptr timer_array::set(interaction * pui,uint_ptr uiId,UINT uiElapse)
    {
 
 

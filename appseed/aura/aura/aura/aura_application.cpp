@@ -738,17 +738,6 @@ namespace aura
 #endif
 
 
-   bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::user::impact_system) ptemplate,::user::document *  pdocument)
-   {
-
-      UNREFERENCED_PARAMETER(varFile);
-      UNREFERENCED_PARAMETER(nIDSTitle);
-
-      return false;
-
-   }
-
-
    string CLASS_DECL_AURA application::get_cred(const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
 

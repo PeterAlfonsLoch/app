@@ -678,7 +678,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura/primitive/data/data_item.h"
 //#include "aura/primitive/data/data_tree_item.h"
 //#include "aura/primitive/data/data_tree.h"
-#include "aura/primitive/data/data_simple_item.h"
+//#include "aura/primitive/data/data_simple_item.h"
 
 #include "aura/primitive/primitive_edit.h"
 #include "aura_departament.h"
