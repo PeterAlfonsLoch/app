@@ -181,68 +181,15 @@ namespace aura
    int32_t application::simple_message_box(::user::interaction * puiOwner,const char * pszMessage,UINT fuStyle)
    {
 
-#if defined(WINDOWSEX)
-
-      return ::simple_message_box(puiOwner->get_safe_handle(),pszMessage,m_strAppName,fuStyle);
-      //return MessageBoxW(puiOwner->get_safe_handle(),wstring(pszMessage),wstring(m_strAppName),fuStyle);
-      //return MessageBoxW((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())),
-      //   wstring(pszMessage), wstring(m_strAppName), fuStyle);
-
-#elif  defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
-
-      return ::simple_message_box(puiOwner->get_safe_handle(),pszMessage,m_strAppName,fuStyle);
-      //   return simple_message_box((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
-
-#else
-
-      return ::simple_message_box(puiOwner->get_safe_handle(), pszMessage, m_strAppName, fuStyle);
-
-#endif
+      return ::simple_message_box(get_safe_handle(puiOwner), pszMessage, m_strAppName, fuStyle);
 
    }
 
-   /*
-   int32_t application::simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle)
-   {
-
-   #if defined(WINDOWSEX)
-
-   return MessageBoxW((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())),
-   wstring(pszMessage), wstring(m_strAppName), fuStyle);
-
-   #elif  defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
-
-   return simple_message_box((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
-
-   #else
-
-   return simple_message_box(m_psystem->m_posdata->m_pui->get_handle(), pszMessage, m_strAppName, fuStyle);
-
-   #endif
-
-   }
-   */
 
    int32_t application::simple_message_box(const char * pszMessage,UINT fuStyle)
    {
 
-#if defined(WINDOWSEX)
-
       return ::simple_message_box(NULL,pszMessage,m_strAppName,fuStyle);
-      //return MessageBoxW(NULL,wstring(pszMessage),wstring(m_strAppName),fuStyle);
-      //return MessageBoxW((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())),
-      //   wstring(pszMessage), wstring(m_strAppName), fuStyle);
-
-#elif  defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
-
-      return ::simple_message_box(NULL, pszMessage, m_strAppName, fuStyle);
-      //   return simple_message_box((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
-
-#else
-
-      return ::simple_message_box(NULL, pszMessage, m_strAppName, fuStyle);
-
-#endif
 
    }
 
@@ -3287,6 +3234,16 @@ namespace aura
       return 0;
 
    }
+
+   oswindow application::get_safe_handle(::user::interaction * pui)
+   {
+
+      UNREFERENCED_PARAMETER(pui);
+
+      return NULL;
+
+   }
+
 
 } // namespace aura
 
