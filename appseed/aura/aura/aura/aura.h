@@ -1,5 +1,5 @@
-#ifndef CA2_APP_AXIS_AXIS_AXIS_AXIS_H
-#define CA2_APP_AXIS_AXIS_AXIS_AXIS_H
+#ifndef CA2_APP_AURA_AURA_AURA_AURA_H
+#define CA2_APP_AURA_AURA_AURA_AURA_H
 
 
 #pragma once
@@ -56,13 +56,13 @@
 
 #include "nodeapp/operational_system/_.h"
 
-#ifdef _AXIS_STATIC
-#define CLASS_DECL_AXIS
-#elif defined(_AXIS_LIBRARY)
-#define CLASS_DECL_AXIS  CLASS_DECL_EXPORT
+#ifdef _AURA_STATIC
+#define CLASS_DECL_AURA
+#elif defined(_AURA_LIBRARY)
+#define CLASS_DECL_AURA  CLASS_DECL_EXPORT
 #define LIBIDN_BUILDING
 #else
-#define CLASS_DECL_AXIS  CLASS_DECL_IMPORT
+#define CLASS_DECL_AURA  CLASS_DECL_IMPORT
 #endif
 
 #include "app/appseed/axis/version.h"
