@@ -34,7 +34,7 @@ namespace axis
       CLASS_DECL_AXIS void init()
       {
 
-         ::set_user_create_context_delfn(&::user::create_create::void_delete);
+         ::set_user_create_context_delfn(&::user::create_context::void_delete);
 
          ::set_simple_message_box(&::simple_ui_message_box);
    
