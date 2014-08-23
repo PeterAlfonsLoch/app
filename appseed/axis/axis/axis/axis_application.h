@@ -157,7 +157,7 @@ namespace axis
       virtual void get_time(timeval *p);
 #endif
 
-      virtual bool on_thread_on_ide(::thread_impl * pimpl,LONG lCount);
+      virtual bool on_thread_on_idle(::thread_impl * pimpl,LONG lCount);
 
 
       virtual bool is_window(::user::interaction * pui);
