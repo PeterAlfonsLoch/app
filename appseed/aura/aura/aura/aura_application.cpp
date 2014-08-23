@@ -3078,6 +3078,16 @@ namespace aura
    }
 
 
+   void application::set_thread(::user::interaction * pui,::thread * pthread)
+   {
+
+      UNREFERENCED_PARAMETER(pui);
+      UNREFERENCED_PARAMETER(pthread);
+
+   }
+
+
+
 } // namespace aura
 
 
