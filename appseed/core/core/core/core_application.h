@@ -552,7 +552,7 @@ namespace core
       //       virtual sp(::bergedge::document) get_document();
 
 
-      virtual bool add_library(::axis::library * plibrary);
+      virtual bool add_library(::aura::library * plibrary);
 
       virtual ::userex::userex * create_userex();
       virtual ::userfs::userfs * create_userfs();

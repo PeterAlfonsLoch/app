@@ -54,19 +54,11 @@ namespace aura
       sp(mutex)                                    m_spmutexSystemAppData;
 
 
-#ifdef WINDOWS
-      ID2D1DeviceContext *                         m_pdevicecontext;
-      sp(mutex)                                    m_pmutexDc;
-#endif
 
       sp(mutex)                                    m_spmutexFactory;
 
-      ::aura::library                              m_libraryDraw2d;
-
 
       bool                                         m_bMatterFromHttpCache;
-      bool                                         m_bSystemSynchronizedCursor;
-      bool                                         m_bSystemSynchronizedScreen;
       bool                                         m_bGudoNetCache;
 
       string                                       m_strCa2ModulePath;

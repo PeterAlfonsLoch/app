@@ -57,9 +57,9 @@ namespace core
 
       bool                                         m_bDoNotExitIfNoApplications;
 
-      strid_map < ::axis::library * >              m_idmapCreateViewLibrary;
+      strid_map < ::aura::library * >              m_idmapCreateViewLibrary;
 
-      comparable_array < ::axis::library * >       m_libraryptra;
+      comparable_array < ::aura::library * >       m_libraryptra;
 
 #ifdef METROWIN
       Platform::Agile < Windows::UI::Core::CoreWindow > m_window;
@@ -191,7 +191,7 @@ namespace core
 
       virtual string get_host_location_url();
 
-      virtual bool add_library(::axis::library * plibrary);
+      virtual bool add_library(::aura::library * plibrary);
 
       //virtual void get_cursor_pos(LPPOINT lppoint);
 

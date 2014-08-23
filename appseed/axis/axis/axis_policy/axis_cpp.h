@@ -494,6 +494,7 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 #include "axis_static_start.h"
 
 
+#include "axis/primitive/datetime/datetime_departament.h"
 
 #include "axis_system.h"
 

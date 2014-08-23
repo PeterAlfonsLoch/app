@@ -402,7 +402,7 @@ namespace core
    bool system::map_application_library(const char * pszLibrary)
    {
 
-      ::axis::library library(this,0, NULL);
+      ::aura::library library(this,0, NULL);
 
       if(!strcmp(pszLibrary,"app_core_rdpclient.dll"))
       {
@@ -1083,7 +1083,7 @@ namespace core
    }
 
 
-   bool system::add_library(::axis::library * plibrary)
+   bool system::add_library(::aura::library * plibrary)
    {
 
       m_libraryptra.add(plibrary);

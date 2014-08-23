@@ -3993,7 +3993,7 @@ namespace core
 
 
 
-   bool application::add_library(::axis::library * plibrary)
+   bool application::add_library(::aura::library * plibrary)
    {
 
       plibrary->set_app(this);

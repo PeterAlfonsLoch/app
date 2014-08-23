@@ -153,7 +153,7 @@ namespace userex
    void pane_tab_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
 
-      ::axis::library * plibrary = NULL;
+      ::aura::library * plibrary = NULL;
 
       if(System.m_idmapCreateViewLibrary.Lookup(pcreatordata->m_id, plibrary) && plibrary != NULL)
       {

@@ -3155,7 +3155,7 @@ namespace base
 //      if(strLibrary.is_empty())
 //         strLibrary = "draw2d_cairo";
 //
-//      ::axis::library & library = System.m_libraryDraw2d;
+//      ::aura::library & library = System.m_libraryDraw2d;
 //
 //      if(library.is_opened())
 //         return;

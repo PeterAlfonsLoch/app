@@ -2,18 +2,6 @@
 
 
 
-class CLASS_DECL_AXIS ptra:
-   virtual public spa(element)
-{
-public:
-
-
-};
-
-
-typedef ::map < sp(element),sp(element),sp(element),sp(element) > element_map;
-typedef ::map < sp(element),sp(element),ptra,ptra > map_many;
-
 
 namespace axis
 {
@@ -57,37 +45,12 @@ namespace axis
       os_data *                                    m_posdata;
 
 
-      stridsp(type)                                m_typemap;
-      spa(service_base)                            m_serviceptra;
-      sp(base_factory)                             m_pfactory;
-      sp(class ::xml::departament)                 m_pxml;
-      const id_pool                                m_cidpool;
-      sp(class ::axis::log)                        m_plog;
-      sp(math::math)                               m_pmath;
-      sp(geometry::geometry)                       m_pgeometry;
 
-
-      ::exception::engine *                        m_peengine;
-
-
-      static id_space *                            s_pidspace;
-      static class id                              idEmpty;
-      class ::str::base64                          m_base64;
-
-      ::string_to_string                           m_mapAppLibrary;
-      class machine_event_central *                m_pmachineeventcentral;
       sp(class ::datetime::departament)            m_pdatetime;
       string_map < int_to_string >                 m_mapEnumToName;
       string_map < string_to_int >                 m_mapNameToEnum;
       ::user::window_draw *                        m_ptwf;
       sp(::user::str)                              m_puserstr;
-      ::axis::os_sp                                m_spos;
-      spa(::axis::session)                         m_basesessionptra;
-      sp(colorertake5::ParserFactory)              m_pparserfactory;
-
-
-      sp(mutex)                                    m_spmutexUserAppData;
-      sp(mutex)                                    m_spmutexSystemAppData;
 
 
 #ifdef WINDOWS
@@ -95,27 +58,11 @@ namespace axis
       sp(mutex)                                    m_pmutexDc;
 #endif
 
-      sp(mutex)                                    m_spmutexFactory;
-
-      ::axis::library                              m_libraryDraw2d;
+      ::aura::library                              m_libraryDraw2d;
 
 
-      bool                                         m_bMatterFromHttpCache;
       bool                                         m_bSystemSynchronizedCursor;
       bool                                         m_bSystemSynchronizedScreen;
-      bool                                         m_bGudoNetCache;
-
-      string                                       m_strCa2ModulePath;
-      string                                       m_strCa2ModuleFolder;
-      string                                       m_strModulePath;
-      string                                       m_strModuleFolder;
-
-      string                                       m_strCmdLine;
-      int32_t                                      m_nCmdShow;
-      size_t                                       m_nSafetyPoolSize;      // ideal size
-      ::html::html *                               m_phtml; // only defined  in core;
-
-      ::user::schema *                             m_pschemaLayeredFrame;
 
 
 #ifdef WINDOWSEX

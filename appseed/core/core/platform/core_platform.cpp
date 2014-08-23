@@ -1916,7 +1916,7 @@ namespace core
 
 #endif
 
-      ::axis::library library(pappNewApplicationParent,0,NULL);
+      ::aura::library library(pappNewApplicationParent,0,NULL);
 
 #ifdef CUBE
 

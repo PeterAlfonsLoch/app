@@ -38,7 +38,7 @@ namespace filehandler
       index get_image(sp(::data::tree) ptree);
 
 
-      void defer_add_library(::axis::library * plibrary);
+      void defer_add_library(::aura::library * plibrary);
       void add_library(::filehandler::library * plibrary);
       void add_menu_library(menu_library * plibrary);
 
