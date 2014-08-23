@@ -4818,9 +4818,6 @@
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="primitive\primitive_factory_impl.inl">
       <Filter>Header Files\primitive</Filter>
     </None>
