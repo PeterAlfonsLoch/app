@@ -99,6 +99,9 @@ namespace aura
       virtual sp(element) alloc(const id & idType);
 
 
+      
+
+
       virtual int32_t simple_message_box(::user::interaction * puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);
       virtual int32_t simple_message_box_timeout(::user::interaction * pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle);
       int32_t simple_message_box(const char * pszMessage,UINT fuStyle);
@@ -140,7 +143,8 @@ namespace aura
 #endif
 
 
-
+      virtual bool is_window(::user::interaction * pui);
+      virtual LRESULT send_message(::user::interaction * pui, UINT message, WPARAM wparam = 0, lparam lparam = 0);
 
 
 

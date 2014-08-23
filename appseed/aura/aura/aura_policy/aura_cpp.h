@@ -704,8 +704,9 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 #include "aura/primitive/primitive_job.h"
 
+#include "aura/user/simple/simple_message_box.h"
 
-
+#include "aura/user/user/user.h"
 
 #include "aura_log.h"
 #include "aura_trace.h"

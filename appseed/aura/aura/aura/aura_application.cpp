@@ -3268,6 +3268,26 @@ namespace aura
    }
 
 
+   bool application::is_window(::user::interaction * pui)
+   {
+
+      UNREFERENCED_PARAMETER(pui);
+
+      return false;
+
+   }
+
+   LRESULT application::send_message(::user::interaction * pui,UINT message,WPARAM wparam,lparam lparam)
+   {
+
+      UNREFERENCED_PARAMETER(pui);
+      UNREFERENCED_PARAMETER(message);
+      UNREFERENCED_PARAMETER(wparam);
+      UNREFERENCED_PARAMETER(lparam);
+
+      return 0;
+
+   }
 
 } // namespace aura
 

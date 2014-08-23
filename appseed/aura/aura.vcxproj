@@ -2722,23 +2722,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\xml\xml_tree_schema.h" />
     <ClInclude Include="aura\xml\xml_var_exchange.h" />
     <ClInclude Include="aura\xml\xml_xmlite.h" />
-    <ClInclude Include="database\database.h" />
-    <ClInclude Include="database\database_base.h" />
-    <ClInclude Include="database\database_change_event.h" />
-    <ClInclude Include="database\database_client.h" />
-    <ClInclude Include="database\database_database.h" />
-    <ClInclude Include="database\database_definition.h" />
-    <ClInclude Include="database\database_field_definition.h" />
-    <ClInclude Include="database\database_id.h" />
-    <ClInclude Include="database\database_key.h" />
-    <ClInclude Include="database\database_selection.h" />
-    <ClInclude Include="database\database_selection_item.h" />
-    <ClInclude Include="database\database_server.h" />
-    <ClInclude Include="database\database_set.h" />
-    <ClInclude Include="database\database_stringhelper.h" />
-    <ClInclude Include="database\database_template.h" />
-    <ClInclude Include="database\database_update_hint.h" />
-    <ClInclude Include="database\database_user_interaction.h" />
     <ClInclude Include="filesystem\filesystem.h" />
     <ClInclude Include="filesystem\file\file.h" />
     <ClInclude Include="filesystem\file\file_binary_buffer.h" />
@@ -2754,7 +2737,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="filesystem\file\file_circular_buffer.h" />
     <ClInclude Include="filesystem\file\file_composite.h" />
     <ClInclude Include="filesystem\file\file_dir.h" />
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_file_edit_buffer.h" />
     <ClInclude Include="filesystem\file\file_exception.h" />
     <ClInclude Include="filesystem\file\file_folder_watch.h" />
     <ClInclude Include="filesystem\file\file_input_stream.h" />
@@ -3375,24 +3357,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     </ClCompile>
     <ClInclude Include="framework.h" />
     <ClInclude Include="framework_c.h" />
-    <ClInclude Include="graphics\graphics_window_graphics.h" />
-    <ClInclude Include="graphics\draw2d\draw2d.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_bitmap.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_brush.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_dib.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_font.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_graphics.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_igui.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_object.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_palette.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_path.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_pen.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_region.h" />
-    <ClInclude Include="graphics\graphics.h" />
-    <ClInclude Include="graphics\visual\visual.h" />
-    <ClInclude Include="graphics\visual\visual_const.h" />
-    <ClInclude Include="graphics\visual\visual_cursor.h" />
-    <ClInclude Include="graphics\visual\visual_icon.h" />
     <ClInclude Include="multithreading\multithreading_data.h" />
     <ClInclude Include="multithreading\multithreading_go_thread.h" />
     <ClInclude Include="multithreading\multithreading_set_event_on_exit.h" />
@@ -3482,8 +3446,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\data\data_data_listener.h" />
     <ClInclude Include="primitive\data\data_item.h" />
     <ClInclude Include="primitive\data\data_simple_item.h" />
-    <ClInclude Include="primitive\data\aaa_want_to_remove_data_tree.h" />
-    <ClInclude Include="primitive\data\aaa_want_to_remove_data_tree_item.h" />
     <ClInclude Include="primitive\datetime\datetime_duration.h" />
     <ClInclude Include="primitive\datetime\datetime_time.h" />
     <ClInclude Include="primitive\datetime\datetime_value.h" />
@@ -3840,26 +3802,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="aura\os\windows\windows_time.cpp" />
     <ClCompile Include="aura\os\windows\windows_util.cpp" />
     <ClCompile Include="aura\os\windows\windows_utils.cpp" />
-    <ClCompile Include="aura\os\windows\windows_window_gdi.cpp" />
     <ClCompile Include="aura\policy\policy_c.c" />
-    <ClCompile Include="database\database_application.cpp" />
-    <ClCompile Include="database\database_base.cpp" />
-    <ClCompile Include="database\database_client.cpp" />
-    <ClCompile Include="database\database_definition.cpp" />
-    <ClCompile Include="database\database_event_change.cpp" />
-    <ClCompile Include="database\database_field_definition.cpp" />
-    <ClCompile Include="database\database_id.cpp" />
-    <ClCompile Include="database\database_key.cpp" />
-    <ClCompile Include="database\database_selection.cpp" />
-    <ClCompile Include="database\database_selection_item.cpp" />
-    <ClCompile Include="database\database_server.cpp" />
-    <ClCompile Include="database\database_set.cpp" />
-    <ClCompile Include="database\database_stringhelper.cpp" />
-    <ClCompile Include="database\database_update_hint.cpp" />
-    <ClCompile Include="database\database_user_interaction.cpp" />
     <ClCompile Include="filesystem\file\file.cpp" />
     <ClCompile Include="filesystem\file\file_c.cpp" />
-    <ClCompile Include="filesystem\file\aaa_want_to_remove_file_edit_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_serializable.cpp" />
     <ClCompile Include="filesystem\file\file_streambuf.cpp" />
     <ClCompile Include="framework.cpp">
@@ -3977,17 +3922,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\colorertake5\colorertake5_text_region.h" />
     <ClInclude Include="user\colorertake5\colorertake5_Writer.h" />
     <ClInclude Include="user\colorertake5\colorertake5_xmldom.h" />
-    <ClInclude Include="user\simple\simple.h" />
-    <ClInclude Include="user\simple\simple_scroll_bar.h" />
-    <ClInclude Include="user\simple_ui\simple_ui.h" />
-    <ClInclude Include="user\simple_ui\simple_ui_edit_box.h" />
-    <ClInclude Include="user\simple_ui\simple_ui_interaction.h" />
-    <ClInclude Include="user\simple_ui\simple_ui_label.h" />
-    <ClInclude Include="user\simple_ui\simple_ui_message_box.h" />
-    <ClInclude Include="user\simple_ui\simple_ui_password.h" />
-    <ClInclude Include="user\simple_ui\simple_ui_style.h" />
-    <ClInclude Include="user\simple_ui\simple_ui_tap.h" />
+    <ClInclude Include="user\simple\simple_message_box.h" />
+    <ClInclude Include="user\user\user.h" />
     <ClInclude Include="user\user\user_timer_array.h" />
+    <ClCompile Include="user\simple\simple_message_box.cpp" />
     <ClCompile Include="user\user\user_timer_item.cpp">
       <FileType>CppHeader</FileType>
     </ClCompile>
@@ -4486,19 +4424,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCHeader</CompileAs>
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">CompileAsCHeader</CompileAs>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp" />
-    <ClCompile Include="graphics\draw2d\draw2d_brush.cpp" />
-    <ClCompile Include="graphics\draw2d\draw2d_dib.cpp" />
-    <ClCompile Include="graphics\draw2d\draw2d_font.cpp" />
-    <ClCompile Include="graphics\draw2d\draw2d_graphics.cpp" />
-    <ClCompile Include="graphics\draw2d\draw2d_object.cpp" />
-    <ClCompile Include="graphics\draw2d\draw2d_palette.cpp" />
-    <ClCompile Include="graphics\draw2d\draw2d_path.cpp" />
-    <ClCompile Include="graphics\draw2d\draw2d_pen.cpp" />
-    <ClCompile Include="graphics\draw2d\draw2d_region.cpp" />
-    <ClCompile Include="graphics\graphics_window_graphics.cpp" />
-    <ClCompile Include="graphics\visual\visual_cursor.cpp" />
-    <ClCompile Include="graphics\visual\visual_icon.cpp" />
     <ClCompile Include="multithreading\multithreading.cpp" />
     <ClCompile Include="multithreading\multithreading_condition.cpp" />
     <ClCompile Include="multithreading\multithreading_core.cpp" />
@@ -5125,14 +5050,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\colorertake5\colorertake5_text_lines.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_helpers.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_impl.cpp" />
-    <ClCompile Include="user\simple\simple_scroll_bar.cpp" />
-    <ClCompile Include="user\simple_ui\simple_ui_edit_box.cpp" />
-    <ClCompile Include="user\simple_ui\simple_ui_interaction.cpp" />
-    <ClCompile Include="user\simple_ui\simple_ui_label.cpp" />
-    <ClCompile Include="user\simple_ui\simple_ui_message_box.cpp" />
-    <ClCompile Include="user\simple_ui\simple_ui_password.cpp" />
-    <ClCompile Include="user\simple_ui\simple_ui_style.cpp" />
-    <ClCompile Include="user\simple_ui\simple_ui_tap.cpp" />
     <ClCompile Include="user\user\user_timer_array.cpp" />
     <ClCompile Include="version.cpp" />
   </ItemGroup>

@@ -425,56 +425,11 @@
     <ClInclude Include="multithreading\multithreading_set_event_on_exit.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_bitmap.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_brush.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_dib.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_font.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_graphics.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_igui.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_object.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_palette.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_path.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_pen.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_region.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_color.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive_job.h">
       <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\graphics.h">
-      <Filter>Header Files\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_const.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual.h">
-      <Filter>Header Files\graphics\visual</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive_check.h">
       <Filter>Header Files\primitive</Filter>
@@ -746,14 +701,8 @@
     <ClInclude Include="primitive\comparison\comparison_var_strict.h">
       <Filter>Header Files\primitive\comparison</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\graphics_window_graphics.h">
-      <Filter>Header Files\graphics</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\geometry\geometry_types.h">
       <Filter>Header Files\primitive\geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_icon.h">
-      <Filter>Header Files\graphics\visual</Filter>
     </ClInclude>
     <ClInclude Include="primitive\geometry\geometry_geometry.h">
       <Filter>Header Files\primitive\geometry</Filter>
@@ -983,9 +932,6 @@
     <ClInclude Include="multithreading\multithreading_signal_thread.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\visual\visual_cursor.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_value.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
@@ -1163,21 +1109,6 @@
     <ClInclude Include="aura\os\android\android.h">
       <Filter>Header Files\aura\os\android</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui_edit_box.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui_label.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui_password.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui_tap.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
     <ClInclude Include="aura\exception\exception.h">
       <Filter>Header Files\aura\exception</Filter>
     </ClInclude>
@@ -1309,9 +1240,6 @@
     </ClInclude>
     <ClInclude Include="aura\exception\exception2.h">
       <Filter>Header Files\aura\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui_style.h">
-      <Filter>Header Files\user\simple_ui</Filter>
     </ClInclude>
     <ClInclude Include="aura\aura\aura.h">
       <Filter>Header Files\aura\aura</Filter>
@@ -2447,9 +2375,6 @@
     <ClInclude Include="aura\os\windows\windows_utils.h">
       <Filter>Header Files\aura\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\windows\windows_window_gdi.h">
-      <Filter>Header Files\aura\os\windows</Filter>
-    </ClInclude>
     <ClInclude Include="aura\os\windows\windows_windows.h">
       <Filter>Header Files\aura\os\windows</Filter>
     </ClInclude>
@@ -2515,9 +2440,6 @@
     </ClInclude>
     <ClInclude Include="aura\node\windows\windows_uac_tools.h">
       <Filter>Header Files\aura\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui_interaction.h">
-      <Filter>Header Files\user\simple_ui</Filter>
     </ClInclude>
     <ClInclude Include="aura\aura\aura_application_signal_details.h">
       <Filter>Header Files\aura\aura</Filter>
@@ -2780,15 +2702,6 @@
     <ClInclude Include="primitive\data\data_simple_item.h">
       <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\simple_scroll_bar.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple\simple.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui_message_box.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
     <ClInclude Include="aura\os\cross\windows\e.h">
       <Filter>Header Files\aura\os\cross\windows</Filter>
     </ClInclude>
@@ -2836,57 +2749,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\file\file_folder_watch.h">
       <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_user_interaction.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_update_hint.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_template.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_stringhelper.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_set.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_server.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_selection_item.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_selection.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_key.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_id.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_field_definition.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_definition.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_database.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_client.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_change_event.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_base.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database.h">
-      <Filter>Header Files\database</Filter>
     </ClInclude>
     <ClInclude Include="aura\aura\aura_net.h">
       <Filter>Header Files\aura\aura</Filter>
@@ -2954,13 +2816,10 @@
     <ClInclude Include="aura\aura_policy\aura_policy_winrt.h">
       <Filter>Header Files\aura\aura_policy</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\aaa_want_to_remove_data_tree.h">
+    <ClInclude Include="user\user\user.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\aaa_want_to_remove_data_tree_item.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_file_edit_buffer.h">
+    <ClInclude Include="user\simple\simple_message_box.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -3105,36 +2964,6 @@
     </ClCompile>
     <ClCompile Include="version.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_brush.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_dib.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_font.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_graphics.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_object.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_palette.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_path.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_pen.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_region.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_job.cpp">
       <Filter>Source Files\primitive</Filter>
@@ -3346,20 +3175,11 @@
     <ClCompile Include="multithreading\multithreading_go_thread.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\visual\visual_icon.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\visual\visual_cursor.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_value.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\math\math_math_rng.cpp">
       <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\graphics_window_graphics.cpp">
-      <Filter>Source Files\graphics</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_circular_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
@@ -3513,21 +3333,6 @@
     </ClCompile>
     <ClCompile Include="aura\os\android\android_window_impl.cpp">
       <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\simple_ui_style.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\simple_ui_edit_box.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\simple_ui_label.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\simple_ui_password.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\simple_ui_tap.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
     </ClCompile>
     <ClCompile Include="aura\exception\exception.cpp">
       <Filter>Source Files\aura\exception</Filter>
@@ -4048,9 +3853,6 @@
     <ClCompile Include="aura\os\windows\windows_utils.cpp">
       <Filter>Source Files\aura\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\windows\windows_window_gdi.cpp">
-      <Filter>Source Files\aura\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="aura\os\cross\windows\cross_windows_crt.cpp">
       <Filter>Source Files\aura\os\cross\windows</Filter>
     </ClCompile>
@@ -4122,9 +3924,6 @@
     </ClCompile>
     <ClCompile Include="aura\node\windows\win1.cpp">
       <Filter>Source Files\aura\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\simple_ui_interaction.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
     </ClCompile>
     <ClCompile Include="aura\os\windows\windows_process.cpp">
       <Filter>Source Files\aura\os\windows</Filter>
@@ -4252,9 +4051,6 @@
     <ClCompile Include="aura\exception\exception_parsing.cpp">
       <Filter>Source Files\aura\exception</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple_ui\simple_ui_message_box.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
     <ClCompile Include="aura\aura\aura_library.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
@@ -4342,9 +4138,6 @@
     <ClCompile Include="primitive\data\data_tree_item.cpp">
       <Filter>Source Files\primitive\data</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\simple_scroll_bar.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_serializable.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -4353,51 +4146,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\file\file_c.cpp">
       <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_user_interaction.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_update_hint.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_stringhelper.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_set.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_server.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_selection_item.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_selection.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_key.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_id.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_field_definition.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_event_change.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_definition.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_client.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_base.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_application.cpp">
-      <Filter>Source Files\database</Filter>
     </ClCompile>
     <ClCompile Include="aura\aura\aura_net.cpp">
       <Filter>Source Files\aura\aura</Filter>
@@ -4420,7 +4168,7 @@
     <ClCompile Include="user\user\user_timer_array.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\aaa_want_to_remove_file_edit_buffer.cpp">
+    <ClCompile Include="user\simple\simple_message_box.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -4430,15 +4178,6 @@
     </None>
     <None Include="primitive\primitive_factory_impl.inl">
       <Filter>Header Files\primitive</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

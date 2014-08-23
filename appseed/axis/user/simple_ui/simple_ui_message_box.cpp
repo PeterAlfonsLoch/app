@@ -484,12 +484,5 @@ int32_t simple_ui_message_box(oswindow interaction_impl,const char * lpText,cons
 
 
 
-extern "C"
-CLASS_DECL_AXIS int32_t simple_message_box(oswindow interaction_impl,const char * lpText,const char * lpCaption,uint32_t uiFlags)
-{
-
-   return simple_ui_message_box(interaction_impl,lpText,lpCaption,uiFlags);
-
-}
 
 

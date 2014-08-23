@@ -245,7 +245,7 @@ namespace windows
    ::user::interaction * application::FindWindow(const char * lpszClassName,const char * lpszWindowName)
    {
 
-      return interaction_impl::FindWindow(lpszClassName, lpszWindowName);
+      return NULL;
 
    }
 
@@ -253,7 +253,7 @@ namespace windows
    ::user::interaction * application::FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow)
    {
 
-      return interaction_impl::FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
+      return NULL;
 
    }
 
@@ -419,25 +419,6 @@ namespace windows
 
    }
    
-   sp(::user::printer) application::get_printer(const char * pszDeviceName)
-   {
-
-      //::windows::printer * pprinter = new ::windows::printer(get_app());
-
-      sp(::user::printer) pprinter(allocer());
-
-      if(!pprinter->open(pszDeviceName))
-      {
-
-         delete pprinter;
-
-         return NULL;
-
-      }
-
-      return pprinter;
-
-   }
 
    string application::veriwell_multimedia_music_midi_get_default_library_name()
    {

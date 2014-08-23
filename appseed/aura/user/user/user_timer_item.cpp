@@ -17,7 +17,7 @@ namespace user
          {
             // simple integrity check by calling "inoffensive" function
             // if it fails, most probably the object is damaged.
-            bWindow = m_pui->IsWindow() != FALSE;
+            bWindow = Application.is_window(m_pui) != FALSE;
             if(bWindow)
                bWindow = m_pui != NULL;
          }
@@ -33,7 +33,7 @@ namespace user
 
          try
          {
-            m_pui->send_message(WM_TIMER,m_uiId);
+            Application.send_message(m_pui,WM_TIMER,m_uiId);
          }
          catch(...)
          {
