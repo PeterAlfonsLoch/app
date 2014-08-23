@@ -180,6 +180,8 @@ namespace axis
 
 
       virtual bool on_ui_mouse_message(::message::mouse * pmouse);
+      virtual void frame_pre_translate_message(signal_details * pobj);
+
 
 
       virtual bool is_licensed(const char * pszId,bool bInteractive = true);
