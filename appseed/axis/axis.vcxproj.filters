@@ -210,6 +210,9 @@
     <Filter Include="Source Files\primitive\datetime">
       <UniqueIdentifier>{5c8f0aee-045e-4927-b077-38db80b4391c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\primitive\data">
+      <UniqueIdentifier>{bef40cbe-3ae4-49c1-b9d7-dbbc2ca62a45}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="multithreading\multithreading.h">
