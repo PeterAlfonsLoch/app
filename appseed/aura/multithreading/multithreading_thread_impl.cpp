@@ -94,12 +94,7 @@ void thread_impl::dispatch_thread_message(signal_details * pobj)
    SCAST_PTR(::message::base,pbase,pobj);
    if(!pbase->m_bRet && pbase->m_uiMessage == WM_APP + 1984 && pbase->m_wparam == 77)
    {
-      smart_pointer < ::user::message > spmessage(pbase->m_lparam);
-      spmessage->send();
-      pbase->m_uiMessage   = 0;    // ssshhhh.... - self-healing - sh...
-      pbase->m_wparam      = 0;    // ssshhhh.... - self-healing - sh...
-      pbase->m_bRet        = true;
-      return;
+      Application.dispatch_user_message(pbase);
    }
    LRESULT lresult;
    SignalPtrArray signalptra;

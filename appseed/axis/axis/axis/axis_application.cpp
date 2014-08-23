@@ -3288,6 +3288,18 @@ namespace axis
 
    }
 
+   void application::dispatch_user_message(::message::base * pbase)
+   {
+
+      smart_pointer < ::user::message > spmessage(pbase->m_lparam);
+      spmessage->send();
+      pbase->m_uiMessage   = 0;    // ssshhhh.... - self-healing - sh...
+      pbase->m_wparam      = 0;    // ssshhhh.... - self-healing - sh...
+      pbase->m_bRet        = true;
+      return;
+
+   }
+
 
 } // namespace axis
 
