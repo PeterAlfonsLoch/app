@@ -89,6 +89,9 @@ CLASS_DECL_AXIS int_bool defer_axis_term()
 bool axis_init()
 {
 
+   if(!defer_aura_init())
+      return false;
+
    ::axis::static_start::init();
 
    if(!__node_axis_pre_init())
@@ -131,6 +134,8 @@ bool axis_term()
    __node_axis_pos_term();
 
    ::axis::static_start::term();
+
+   defer_aura_term();
 
    return true;
 

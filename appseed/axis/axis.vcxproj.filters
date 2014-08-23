@@ -132,9 +132,6 @@
     <Filter Include="Source Files\axis\os\ansios">
       <UniqueIdentifier>{68334ac9-3045-461a-9922-b6f49f0a803d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\axis\exception">
-      <UniqueIdentifier>{376f71e3-e41a-4d8d-8e53-daad53a7e29d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\axis\axis">
       <UniqueIdentifier>{b15f9423-6971-4587-b04f-ca13192a9bcf}</UniqueIdentifier>
     </Filter>
@@ -1390,123 +1387,6 @@
     <ClCompile Include="user\simple_ui\simple_ui_tap.cpp">
       <Filter>Source Files\user\simple_ui</Filter>
     </ClCompile>
-    <ClCompile Include="axis\exception\exception.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_archive.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_archive_exception.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_base.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_call_stack.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_debug.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_dump.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_dump_context.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_dump_floating_point.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_dump_output.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_engine.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_error.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_exit.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_hresult.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_installing.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_interface_only.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_invalid_argument.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_invalid_character.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_invalid_handle.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_invalid_index.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_io.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_last_error.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_memory.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_not_implemented.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_not_installed.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_not_licensed.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_not_supported.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_operation_canceled.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_os.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_overflow_error.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_range_error.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_resource.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_runtime_error.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_simple.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_standard_translator.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_temporary.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_todo.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_user.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_void_implementation.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
     <ClCompile Include="axis\axis\axis.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
@@ -1759,15 +1639,6 @@
     <ClCompile Include="axis\node\node.cpp">
       <Filter>Source Files\axis\node</Filter>
     </ClCompile>
-    <ClCompile Include="axis\message\message.cpp">
-      <Filter>Source Files\axis\message</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\message\message_base.cpp">
-      <Filter>Source Files\axis\message</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\message\message_dispatch.cpp">
-      <Filter>Source Files\axis\message</Filter>
-    </ClCompile>
     <ClCompile Include="axis\message\message_user.cpp">
       <Filter>Source Files\axis\message</Filter>
     </ClCompile>
@@ -1884,9 +1755,6 @@
     </ClCompile>
     <ClCompile Include="user\user\user_interaction_child.cpp">
       <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\exception\exception_parsing.cpp">
-      <Filter>Source Files\axis\exception</Filter>
     </ClCompile>
     <ClCompile Include="user\simple_ui\simple_ui_message_box.cpp">
       <Filter>Source Files\user\simple_ui</Filter>
@@ -2038,9 +1906,6 @@
     <ClCompile Include="axis\os\windows\windows_gdi.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="axis\exception\exception_verisimple.cpp">
-      <Filter>Source Files\axis\exception</Filter>
-    </ClCompile>
     <ClCompile Include="axis\policy\policy_c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -2066,9 +1931,6 @@
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
       <Filter>Header Files\multithreading</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

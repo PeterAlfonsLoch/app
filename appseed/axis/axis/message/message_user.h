@@ -5,7 +5,7 @@ namespace message
 {
 
 
-   class CLASS_DECL_AURA create: public base
+   class CLASS_DECL_AXIS create: public base
    {
    public:
 
@@ -19,7 +19,7 @@ namespace message
       virtual void failed(const char * lpcszErrorMessage);
    };
 
-   class CLASS_DECL_AURA timer: public base
+   class CLASS_DECL_AXIS timer: public base
    {
    public:
 
@@ -30,7 +30,7 @@ namespace message
       UINT m_nIDEvent;
    };
 
-   class CLASS_DECL_AURA activate: public base
+   class CLASS_DECL_AXIS activate: public base
    {
    public:
 
@@ -46,7 +46,7 @@ namespace message
       virtual void set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
    };
 
-   class CLASS_DECL_AURA move: public base
+   class CLASS_DECL_AXIS move: public base
    {
    public:
 
@@ -55,7 +55,7 @@ namespace message
       point m_pt;
    };
 
-   class CLASS_DECL_AURA size: public base
+   class CLASS_DECL_AXIS size: public base
    {
    public:
 
@@ -68,7 +68,7 @@ namespace message
    };
 
 
-   class CLASS_DECL_AURA scroll: public base
+   class CLASS_DECL_AXIS scroll: public base
    {
    public:
 
@@ -82,7 +82,7 @@ namespace message
    };
 
 
-   class CLASS_DECL_AURA mouse: public base
+   class CLASS_DECL_AXIS mouse: public base
    {
    public:
 
@@ -100,7 +100,7 @@ namespace message
       static mouse * cast(signal_details * pobj) { return (mouse *)pobj; }
    };
 
-   class CLASS_DECL_AURA mouse_wheel: public mouse
+   class CLASS_DECL_AXIS mouse_wheel: public mouse
    {
    public:
 
@@ -115,7 +115,7 @@ namespace message
    };
 
 
-   class CLASS_DECL_AURA mouse_activate: public base
+   class CLASS_DECL_AXIS mouse_activate: public base
    {
    public:
 
@@ -126,7 +126,7 @@ namespace message
       UINT get_message();
    };
 
-   class CLASS_DECL_AURA context_menu: public base
+   class CLASS_DECL_AXIS context_menu: public base
    {
    public:
 
@@ -137,7 +137,7 @@ namespace message
    };
 
 
-   class CLASS_DECL_AURA set_cursor: public base
+   class CLASS_DECL_AXIS set_cursor: public base
    {
    public:
 
@@ -148,7 +148,7 @@ namespace message
       UINT m_message;
    };
 
-   class CLASS_DECL_AURA show_window: public base
+   class CLASS_DECL_AXIS show_window: public base
    {
    public:
 
@@ -160,7 +160,7 @@ namespace message
       virtual void set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
    };
 
-   class CLASS_DECL_AURA on_draw: public base
+   class CLASS_DECL_AXIS on_draw: public base
    {
    public:
 
@@ -169,7 +169,7 @@ namespace message
       ::draw2d::graphics * m_pdc;
    };
 
-   class CLASS_DECL_AURA erase_bkgnd: public base
+   class CLASS_DECL_AXIS erase_bkgnd: public base
    {
    public:
 
@@ -186,7 +186,7 @@ namespace message
    // WM_PAINT -> aura
    // WM_MOUSELEAVE -> aura
 
-   class CLASS_DECL_AURA nchittest: public base
+   class CLASS_DECL_AXIS nchittest: public base
    {
    public:
 
@@ -195,7 +195,7 @@ namespace message
       point m_pt;
    };
 
-   class CLASS_DECL_AURA key: public base
+   class CLASS_DECL_AXIS key: public base
    {
    public:
 
@@ -222,7 +222,7 @@ namespace message
       virtual void set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
    };
 
-   class CLASS_DECL_AURA nc_activate: public base
+   class CLASS_DECL_AXIS nc_activate: public base
    {
    public:
 
@@ -238,7 +238,7 @@ namespace message
 
 #ifdef WINDOWSEX
 
-   class CLASS_DECL_AURA notify: public base
+   class CLASS_DECL_AXIS notify: public base
    {
    public:
 
@@ -250,7 +250,7 @@ namespace message
 
 #endif
 
-   class CLASS_DECL_AURA update_cmd_ui: public base
+   class CLASS_DECL_AXIS update_cmd_ui: public base
    {
    public:
 
@@ -259,7 +259,7 @@ namespace message
       cmd_ui *    m_pcmdui;
    };
 
-   class CLASS_DECL_AURA command: public base
+   class CLASS_DECL_AXIS command: public base
    {
    public:
 
@@ -270,7 +270,7 @@ namespace message
       oswindow get_oswindow();
    };
 
-   class CLASS_DECL_AURA ctl_color: public base
+   class CLASS_DECL_AXIS ctl_color: public base
    {
    public:
 
@@ -282,7 +282,7 @@ namespace message
       UINT        m_nCtlType;
    };
 
-   class CLASS_DECL_AURA set_focus: public base
+   class CLASS_DECL_AXIS set_focus: public base
    {
    public:
 
@@ -294,7 +294,7 @@ namespace message
 
 
 
-   class CLASS_DECL_AURA window_pos: public base
+   class CLASS_DECL_AXIS window_pos: public base
    {
    public:
 
@@ -309,7 +309,7 @@ namespace message
 #ifdef WINDOWSEX
 
 
-   class CLASS_DECL_AURA measure_item: public base
+   class CLASS_DECL_AXIS measure_item: public base
    {
    public:
 
@@ -321,7 +321,7 @@ namespace message
 
 #endif
 
-   class CLASS_DECL_AURA nc_calc_size: public base
+   class CLASS_DECL_AXIS nc_calc_size: public base
    {
    public:
 
@@ -335,7 +335,7 @@ namespace message
    };
 
 
-   class CLASS_DECL_AURA enable: public base
+   class CLASS_DECL_AXIS enable: public base
    {
    public:
 

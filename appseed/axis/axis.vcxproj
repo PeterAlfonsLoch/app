@@ -2689,11 +2689,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\axis\axis_print_job.cpp" />
     <ClCompile Include="axis\axis\axis_static_start.cpp" />
     <ClCompile Include="axis\axis_policy\axis_c.c" />
-    <ClCompile Include="axis\exception\exception_parsing.cpp" />
-    <ClCompile Include="axis\exception\exception_verisimple.cpp" />
-    <ClCompile Include="axis\message\message.cpp" />
-    <ClCompile Include="axis\message\message_base.cpp" />
-    <ClCompile Include="axis\message\message_dispatch.cpp" />
     <ClCompile Include="axis\message\message_user.cpp" />
     <ClCompile Include="axis\node\android\android_android.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
@@ -3510,45 +3505,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\axis\axis_core_copydesk.cpp" />
     <ClCompile Include="axis\axis\axis_session.cpp" />
     <ClCompile Include="axis\axis\axis_system.cpp" />
-    <ClCompile Include="axis\exception\exception.cpp" />
-    <ClCompile Include="axis\exception\exception_archive.cpp" />
-    <ClCompile Include="axis\exception\exception_archive_exception.cpp" />
-    <ClCompile Include="axis\exception\exception_base.cpp" />
-    <ClCompile Include="axis\exception\exception_call_stack.cpp" />
-    <ClCompile Include="axis\exception\exception_debug.cpp" />
-    <ClCompile Include="axis\exception\exception_dump.cpp" />
-    <ClCompile Include="axis\exception\exception_dump_context.cpp" />
-    <ClCompile Include="axis\exception\exception_dump_floating_point.cpp" />
-    <ClCompile Include="axis\exception\exception_dump_output.cpp" />
-    <ClCompile Include="axis\exception\exception_engine.cpp" />
-    <ClCompile Include="axis\exception\exception_error.cpp" />
-    <ClCompile Include="axis\exception\exception_exit.cpp" />
-    <ClCompile Include="axis\exception\exception_hresult.cpp" />
-    <ClCompile Include="axis\exception\exception_installing.cpp" />
-    <ClCompile Include="axis\exception\exception_interface_only.cpp" />
-    <ClCompile Include="axis\exception\exception_invalid_argument.cpp" />
-    <ClCompile Include="axis\exception\exception_invalid_character.cpp" />
-    <ClCompile Include="axis\exception\exception_invalid_handle.cpp" />
-    <ClCompile Include="axis\exception\exception_invalid_index.cpp" />
-    <ClCompile Include="axis\exception\exception_io.cpp" />
-    <ClCompile Include="axis\exception\exception_last_error.cpp" />
-    <ClCompile Include="axis\exception\exception_memory.cpp" />
-    <ClCompile Include="axis\exception\exception_not_implemented.cpp" />
-    <ClCompile Include="axis\exception\exception_not_installed.cpp" />
-    <ClCompile Include="axis\exception\exception_not_licensed.cpp" />
-    <ClCompile Include="axis\exception\exception_not_supported.cpp" />
-    <ClCompile Include="axis\exception\exception_operation_canceled.cpp" />
-    <ClCompile Include="axis\exception\exception_os.cpp" />
-    <ClCompile Include="axis\exception\exception_overflow_error.cpp" />
-    <ClCompile Include="axis\exception\exception_range_error.cpp" />
-    <ClCompile Include="axis\exception\exception_resource.cpp" />
-    <ClCompile Include="axis\exception\exception_runtime_error.cpp" />
-    <ClCompile Include="axis\exception\exception_simple.cpp" />
-    <ClCompile Include="axis\exception\exception_standard_translator.cpp" />
-    <ClCompile Include="axis\exception\exception_temporary.cpp" />
-    <ClCompile Include="axis\exception\exception_todo.cpp" />
-    <ClCompile Include="axis\exception\exception_user.cpp" />
-    <ClCompile Include="axis\exception\exception_void_implementation.cpp" />
     <ClCompile Include="axis\os\android\android_c.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
