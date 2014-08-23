@@ -5,7 +5,7 @@ namespace visual
 {
 
 
-   class CLASS_DECL_CORE water_routine  
+   class CLASS_DECL_BASE water_routine  
    {
    public:
       water_routine();

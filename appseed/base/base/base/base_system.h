@@ -37,6 +37,8 @@ namespace base
       void *                                       m_ftlibrary;
 
 
+      ::visual::visual                             m_visual;
+
 
 
       system(sp(::axis::application) papp);
@@ -72,6 +74,8 @@ namespace base
       ::install::install                           & install() { return *m_spinstall; }
 
       void *                                       & ftlibrary();
+
+      inline class ::visual::visual                & visual()     { return m_visual       ; }
 
 
 

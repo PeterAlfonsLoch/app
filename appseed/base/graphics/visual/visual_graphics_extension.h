@@ -5,7 +5,7 @@ namespace visual
 {
 
 
-   class CLASS_DECL_CORE graphics_extension :
+   class CLASS_DECL_BASE graphics_extension :
       virtual public ::object
    {
    public:

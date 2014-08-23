@@ -1,19 +1,6 @@
 #pragma once
 
 
-#include "user/userpresence/userpresence.h"
-
-
-
-
-CLASS_DECL_CORE bool TextOutU(HDC hdc, int32_t x, int32_t y, const char * lpString, int32_t ca);
-CLASS_DECL_CORE bool GetTextExtentPoint32U(HDC hdc, const char * lpString, int32_t ca, LPSIZE psizl);
-CLASS_DECL_CORE int32_t  DrawTextU(HDC hdc, const char * lpchText, int32_t cchText, LPRECT lprc, UINT format);
-
-
-
-//#include "visual_clip.h"
-
 #include "visual_dib.h"
 #include "visual_fastblur.h"
 #include "visual_rgb_quad_array.h"
@@ -34,5 +21,10 @@ CLASS_DECL_CORE int32_t  DrawTextU(HDC hdc, const char * lpchText, int32_t cchTe
 
 #include "visual_visual.h"
 
-#include "visual_visual.h"
+
+
+
+CLASS_DECL_BASE bool TextOutU(HDC hdc,int32_t x,int32_t y,const char * lpString,int32_t ca);
+CLASS_DECL_BASE bool GetTextExtentPoint32U(HDC hdc,const char * lpString,int32_t ca,LPSIZE psizl);
+CLASS_DECL_BASE int32_t  DrawTextU(HDC hdc,const char * lpchText,int32_t cchText,LPRECT lprc,UINT format);
 

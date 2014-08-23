@@ -687,7 +687,7 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 #include "axis/primitive/primitive_type.h"
 
 
-#include "graphics/graphics.h"
+#include "axis/graphics/graphics.h"
 #include "user/user/user_enum.h"
 #include "user/user/user_keyboard_focus.h"
 #include "user/user/user_mouse_focus.h"

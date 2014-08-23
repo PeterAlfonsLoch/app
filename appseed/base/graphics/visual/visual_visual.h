@@ -1,36 +1,11 @@
 #pragma once
 
 
-/*
-namespace visual
-{
-
-   class CLASS_DECL_CORE visual
-   {
-   public:
-      visual(::draw2d::graphics * pdc);
-
-      virtual void Polygon(const point_array & pointa);
-
-      ::draw2d::graphics * m_pdc;
-
-   public:
-      virtual ~visual();
-   };
-
-} // namespace visual
-
-*/
-
-
-#pragma once
-
-
 namespace visual
 {
 
 
-   class CLASS_DECL_CORE visual  :
+   class CLASS_DECL_BASE visual  :
       virtual public ::axis::departament
    {
    public:

@@ -65,8 +65,6 @@ namespace core
       Platform::Agile < Windows::UI::Core::CoreWindow > m_window;
 #endif
 
-      ::visual::visual                    m_visual;
-
 
       system(sp(::axis::application) papp = NULL);
       virtual ~system();
@@ -150,8 +148,6 @@ namespace core
       ::filehandler::handler                 & filehandler();
 
       
-
-      inline class ::visual::visual          & visual()     { return m_visual       ; }
 
 
 

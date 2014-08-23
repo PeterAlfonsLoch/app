@@ -170,50 +170,7 @@ namespace draw2d
 
    }
 
-#ifdef WINDOWSEX
 
-   HBITMAP bitmap::GetHBITMAP()
-   {
-
-      if(m_hbitmapGet != NULL)
-         return m_hbitmapGet;
-
-      m_hbitmapGet = _GetHBITMAP();
-
-      return m_hbitmapGet;
-
-   }
-   
-   void bitmap::ReleaseHBITMAP(HBITMAP hbitmap)
-   {
-
-      if(hbitmap == NULL)
-         return;
-
-      if(m_hbitmapGet == NULL)
-         return;
-
-      _ReleaseHBITMAP(hbitmap);
-
-      m_hbitmapGet = NULL;
-
-   }
-
-   HBITMAP bitmap::_GetHBITMAP()
-   {
-
-      return NULL;
-
-   }
-
-   void bitmap::_ReleaseHBITMAP(HBITMAP hbitmap)
-   {
-
-      UNREFERENCED_PARAMETER(hbitmap);
-
-   }
-
-#endif
 
 } // namespace draw2d
 

@@ -1,8 +1,8 @@
+#pragma once
+
+
 #ifndef CA2_APP_BASE_BASE_BASE_BASE_H
 #define CA2_APP_BASE_BASE_BASE_BASE_H
-
-
-#pragma once
 
 
 #include "axis/axis/axis/axis.h"

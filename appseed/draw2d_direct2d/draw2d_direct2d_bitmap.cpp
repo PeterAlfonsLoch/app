@@ -419,30 +419,5 @@ namespace draw2d_direct2d
 
    }
 
-   
-   HBITMAP bitmap::_GetHBITMAP()
-   {
-
-      if(m_pbitmap == NULL)
-         return NULL;
-
-      HBITMAP hbitmap = NULL;
-
-      Gdiplus::Color colorBk(0,0,0,0);
-
-      m_pbitmap->GetHBITMAP(colorBk,&hbitmap);
-
-      return hbitmap;
-
-   }
-
-
-   void bitmap::_ReleaseHBITMAP(HBITMAP hbitmap)
-   {
-
-      ::DeleteObject(hbitmap);
-
-   }
-
 
 } // namespace draw2d_direct2d
