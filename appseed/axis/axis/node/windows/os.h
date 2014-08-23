@@ -1,10 +1,10 @@
 #pragma once
 
-#include <shlobj.h>
-#include <Security.h>
-#include <shlobj.h>
+//#include <shlobj.h>
+//#include <Security.h>
+//#include <shlobj.h>
 
-#include "windows_exception.h"
+//#include "windows_exception.h"
 
 
 
