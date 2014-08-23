@@ -115,12 +115,31 @@ CLASS_DECL_AURA void user_create_context_delfn(void * pusercreatecontext)
 
    if(g_user_create_context_delfn == NULL)
    {
-      ::OutputDebugString("user create context not deleted ; memory leak!!")
-         ::printf("user create context not deleted ; memory leak!!")
+
+      ::OutputDebugString("user create context not deleted ; memory leak!!");
+      ::printf("user create context not deleted ; memory leak!!");
+
    }
    else
    {
+
       (*g_user_create_context_delfn)(pusercreatecontext);
+
    }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
