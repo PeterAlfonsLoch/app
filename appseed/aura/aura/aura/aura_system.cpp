@@ -188,7 +188,7 @@ namespace aura
       factory().cloneable_large < ::primitive::memory >();
       factory().cloneable_large < int_array >();
 
-      __node_axis_factory_exchange(this);
+      __node_aura_factory_exchange(this);
 
       thread::s_bAllocReady = true;
 
