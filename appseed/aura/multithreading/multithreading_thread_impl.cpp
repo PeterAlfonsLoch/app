@@ -1070,7 +1070,7 @@ void thread_impl::remove(::user::interaction * pui)
    if(Application.get_thread(pui) == m_pthread)
    {
 
-      pui->m_pthread = NULL;
+      Application.set_thread(pui, NULL);
 
    }
 
