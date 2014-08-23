@@ -5357,6 +5357,21 @@ namespace user
    }
 
 
+
+   void timer_array::transfer(::window_sp pwindow,interaction * pui)
+   {
+
+
+      single_lock sl(&m_mutex,TRUE);
+
+      smart_pointer_array < timer_item > timera;
+      detach(timera,pui);
+      pwindow->set_timer(timera);
+
+   }
+
+
+
    sp(::message::base) interaction::peek_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
    {
       if(!::PeekMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax,wRemoveMsg))
