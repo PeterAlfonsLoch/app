@@ -1173,14 +1173,14 @@ bool thread_impl::initialize_message_queue()
    if(m_sptimera.is_null())
    {
 
-      m_sptimera = canew(::user::interaction::timer_array(get_app()));
+      m_sptimera = canew(::user::timer_array(get_app()));
 
    }
 
    if(m_spuiptra.is_null())
    {
 
-      m_spuiptra = canew(::user::interaction_ptr_array(get_app()));
+      m_spuiptra = canew(ptr_array < ::user::interaction >(get_app()));
 
    }
 
