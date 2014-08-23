@@ -437,8 +437,8 @@ void cmd_ui::_001SetCheck(check::e_check nCheck, ::action::context actioncontext
 
       // we can only check buttons or controls acting like buttons
       ENSURE(m_pOther != NULL);
-      if (m_pOther->send_message(WM_GETDLGCODE) & DLGC_BUTTON)
-         m_pOther->send_message(BM_SETCHECK, nCheck);
+      if (Application.send_message(m_pOther,WM_GETDLGCODE) & DLGC_BUTTON)
+         Application.send_message(m_pOther,BM_SETCHECK,nCheck);
       // otherwise ignore it
 
 #endif
