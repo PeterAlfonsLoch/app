@@ -16,17 +16,17 @@ namespace aura
       smart_pointer < application >                   m_pimpl;
       sp(service_base)                                m_pservice;
 
-      bool                                            m_bAxisProcessInitialize;
-      bool                                            m_bAxisProcessInitializeResult;
+      bool                                            m_bAuraProcessInitialize;
+      bool                                            m_bAuraProcessInitializeResult;
 
-      bool                                            m_bAxisInitializeInstance;
-      bool                                            m_bAxisInitializeInstanceResult;
+      bool                                            m_bAuraInitializeInstance;
+      bool                                            m_bAuraInitializeInstanceResult;
 
-      bool                                            m_bAxisInitialize1;
-      bool                                            m_bAxisInitialize1Result;
+      bool                                            m_bAuraInitialize1;
+      bool                                            m_bAuraInitialize1Result;
 
-      bool                                            m_bAxisInitialize;
-      bool                                            m_bAxisInitializeResult;
+      bool                                            m_bAuraInitialize;
+      bool                                            m_bAuraInitializeResult;
 
       string_to_ptr                                   m_appmap;
       string                                          m_strAppName;

@@ -124,17 +124,17 @@ namespace aura
       // initialize wait cursor state
       m_iWaitCursorCount         = 0;
 
-      m_bAxisProcessInitialize         = false;
-      m_bAxisProcessInitializeResult   = false;
+      m_bAuraProcessInitialize         = false;
+      m_bAuraProcessInitializeResult   = false;
 
-      m_bAxisInitialize1               = false;
-      m_bAxisInitialize1Result         = false;
+      m_bAuraInitialize1               = false;
+      m_bAuraInitialize1Result         = false;
 
-      m_bAxisInitialize                = false;
-      m_bAxisInitializeResult          = false;
+      m_bAuraInitialize                = false;
+      m_bAuraInitializeResult          = false;
 
-      m_bAxisInitializeInstance        = false;
-      m_bAxisInitializeInstanceResult  = false;
+      m_bAuraInitializeInstance        = false;
+      m_bAuraInitializeInstanceResult  = false;
 
 
       m_bShouldInitializeGTwf = true;
@@ -1582,11 +1582,11 @@ namespace aura
    bool application::process_initialize()
    {
 
-      if(m_bAxisProcessInitialize)
-         return m_bAxisProcessInitializeResult;
+      if(m_bAuraProcessInitialize)
+         return m_bAuraProcessInitializeResult;
 
-      m_bAxisProcessInitialize = true;
-      m_bAxisProcessInitializeResult = false;
+      m_bAuraProcessInitialize = true;
+      m_bAuraProcessInitializeResult = false;
 
 
       
@@ -1634,7 +1634,7 @@ namespace aura
          return false;
 
 
-      m_bAxisProcessInitializeResult = true;
+      m_bAuraProcessInitializeResult = true;
 
       return true;
 
@@ -1652,12 +1652,12 @@ namespace aura
    bool application::initialize1()
    {
 
-      if(m_bAxisInitialize1)
-         return m_bAxisInitialize1Result;
+      if(m_bAuraInitialize1)
+         return m_bAuraInitialize1Result;
 
-      m_bAxisInitialize1 = true;
+      m_bAuraInitialize1 = true;
 
-      m_bAxisInitialize1Result = false;
+      m_bAuraInitialize1Result = false;
 
       m_dwAlive = ::get_tick_count();
 
@@ -1673,7 +1673,7 @@ namespace aura
       if(!m_pimpl->initialize1())
          return false;
 
-      m_bAxisInitialize1Result = true;
+      m_bAuraInitialize1Result = true;
 
       return true;
 

@@ -6,7 +6,7 @@ namespace axis
 
 
    class CLASS_DECL_AXIS application :
-      virtual public application_interface
+      virtual public ::aura::application
    {
    public:
 
