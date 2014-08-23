@@ -34,6 +34,7 @@ CLASS_DECL_AURA void reset_message_cache();
 
 #include "win1.h"
 #include "windows_implementation.h"
+#include "windows_message_queue.h"
 #include "windows_factory_exchange.h"
 #include "windows_window_draw.h"
 #include "windows_interaction_impl.h"

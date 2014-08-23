@@ -6,7 +6,7 @@ namespace windows
 
 
    class CLASS_DECL_AURA copydesk : 
-      virtual public ::aura::copydesk,
+      virtual public ::axis::copydesk,
       virtual public ::user::interaction
    {
    public:

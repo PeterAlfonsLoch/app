@@ -1635,8 +1635,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\axis\axis.h" />
     <ClInclude Include="axis\axis\axis_application.h" />
     <ClInclude Include="axis\axis\axis_core_copydesk.h" />
-    <ClInclude Include="axis\axis\axis_message_queue.h" />
-    <ClInclude Include="axis\axis\axis_message_queue_listener.h" />
     <ClInclude Include="axis\axis\axis_print_job.h" />
     <ClInclude Include="axis\axis\axis_session.h" />
     <ClInclude Include="axis\axis\axis_simple_app.h" />
@@ -1966,6 +1964,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\node\windows\windows_factory_exchange.h" />
     <ClInclude Include="axis\node\windows\windows_implementation.h" />
     <ClInclude Include="axis\node\windows\windows_interaction_impl.h" />
+    <ClInclude Include="axis\node\windows\windows_message_queue.h" />
     <ClInclude Include="axis\node\windows\windows_window_draw.h" />
     <ClInclude Include="axis\os\android\android.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -3062,22 +3061,12 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     </ClCompile>
     <ClCompile Include="axis\node\node.cpp" />
     <ClCompile Include="axis\node\windows\win1.cpp" />
-    <ClCompile Include="axis\node\windows\windows_application.cpp" />
     <ClCompile Include="axis\node\windows\windows_copydesk.cpp" />
     <ClCompile Include="axis\node\windows\windows_factory_exchange.cpp" />
-    <ClCompile Include="axis\node\windows\windows_file.cpp" />
-    <ClCompile Include="axis\node\windows\windows_file_find.cpp" />
-    <ClCompile Include="axis\node\windows\windows_folder_watch.cpp" />
     <ClCompile Include="axis\node\windows\windows_interaction_impl.cpp" />
-    <ClCompile Include="axis\node\windows\windows_os.cpp" />
     <ClCompile Include="axis\node\windows\windows_print_job.cpp" />
-    <ClCompile Include="axis\node\windows\windows_registry.cpp" />
-    <ClCompile Include="axis\node\windows\windows_shell.cpp" />
-    <ClCompile Include="axis\node\windows\windows_stdio_file.cpp" />
-    <ClCompile Include="axis\node\windows\windows_thread.cpp" />
-    <ClCompile Include="axis\node\windows\windows_trace.cpp" />
-    <ClCompile Include="axis\node\windows\windows_uac_tools.cpp" />
     <ClCompile Include="axis\node\windows\windows_window_draw.cpp" />
+    <ClCompile Include="axis\node\windows\windows_message_queue.cpp" />
     <ClCompile Include="axis\os\ansios\ansios_cross_win.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
@@ -3519,7 +3508,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\axis\axis.cpp" />
     <ClCompile Include="axis\axis\axis_application.cpp" />
     <ClCompile Include="axis\axis\axis_core_copydesk.cpp" />
-    <ClCompile Include="axis\axis\axis_message_queue.cpp" />
     <ClCompile Include="axis\axis\axis_session.cpp" />
     <ClCompile Include="axis\axis\axis_system.cpp" />
     <ClCompile Include="axis\exception\exception.cpp" />
