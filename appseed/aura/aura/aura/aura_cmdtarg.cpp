@@ -473,7 +473,7 @@ void cmd_ui::SetText(const char * lpszText, ::action::context actioncontext)
 
    {
       ENSURE(m_pOther != NULL);
-      m_pOther->SetWindowText(lpszText);
+      Application.set_window_text(m_pOther, lpszText);
    }
 }
 

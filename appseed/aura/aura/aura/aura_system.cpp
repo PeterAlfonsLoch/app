@@ -92,8 +92,6 @@ namespace aura
          
       }
       
-      m_ptwf = NULL;
-
 #ifdef MATTER_CACHE_FROM_HTTP_SERVER
 
       m_bMatterFromHttpCache = true;
@@ -104,11 +102,6 @@ namespace aura
 
 #endif
 
-      m_psimpleui = NULL;
-
-#if defined(METROWIN) || defined(APPLE_IOS)
-      m_posdata = new os_data();
-#endif
 
       set_app(this);
       m_nSafetyPoolSize          = 512;        // default size
