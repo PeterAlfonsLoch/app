@@ -261,8 +261,6 @@ namespace aura
 
 
 
-      enum_display_monitors();
-
       m_peengine = new ::exception::engine(this);
 
       m_pfactory->cloneable_large < create_context >();
@@ -274,12 +272,6 @@ namespace aura
 
       if(!::aura::application::process_initialize())
          return false;
-
-#ifdef WINDOWSEX
-
-      m_spwindow = canew(interaction_impl(this));
-
-#endif
 
       m_spos.alloc(allocer());
 
@@ -299,38 +291,6 @@ namespace aura
 
       }
 
-#ifdef WINDOWSEX
-
-      dappy(string(typeid(*this).name()) + " : Going to ::aura::system::m_spwindow->create_window_ex : " + ::str::from(m_iReturnCode));
-
-      if(!m_spwindow->create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"::aura::system::interaction_impl::no_twf"))
-      {
-
-         dappy(string(typeid(*this).name()) + " : ::aura::system::m_spwindow->create_window_ex failure : " + ::str::from(m_iReturnCode));
-
-         return false;
-
-      }
-
-#endif
-
-/*      dappy(string(typeid(*this).name()) + " : Going to ::aura::session " + ::str::from(m_iReturnCode));
-
-
-      m_paurasession = new ::aura::session(this);
-
-      if(m_paurasession == NULL)
-         return false;
-
-      m_paurasession->construct(this,0);
-
-
-      if(!m_paurasession->begin_synch(&m_iReturnCode))
-      {
-         return false;
-      }
-
-      dappy(string(typeid(*this).name()) + " : ::aura::session OK " + ::str::from(m_iReturnCode));*/
 
       return true;
 

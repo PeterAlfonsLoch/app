@@ -293,8 +293,6 @@ namespace aura
       set_schema(strSchema,::action::source::database());
 
 
-      str_context()->localeschema().m_idaLocale.add(strLocale);
-      str_context()->localeschema().m_idaSchema.add(strSchema);
 
 
       return true;

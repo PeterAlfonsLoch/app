@@ -770,7 +770,7 @@ int32_t thread_impl::exit_instance()
       if(m_spuiptra.is_set())
       {
 
-         sp(::user::interaction_ptr_array) puiptra = m_spuiptra;
+         sp(ptr_array < ::user::interaction >) puiptra = m_spuiptra;
 
          m_spuiptra.release();
 
