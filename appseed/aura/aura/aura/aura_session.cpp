@@ -373,33 +373,12 @@ namespace aura
    }
 
 
-
-   ::user::interaction * session::get_active_guie()
-   {
-
-      return NULL;
-
-   }
-
-
-   ::user::interaction * session::get_focus_guie()
-   {
-
-
-      return NULL;
-
-   }
-
-
    application_ptra & session::appptra()
    {
 
       return m_appptra;
 
    }
-
-
-
 
 
    void session::set_locale(const string & lpcsz,::action::context actioncontext)
@@ -638,6 +617,7 @@ namespace aura
 
    ::user::interaction * session::get_focus_guie()
    {
+
 
       return NULL;
 

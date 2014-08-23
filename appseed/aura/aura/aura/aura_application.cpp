@@ -2974,7 +2974,7 @@ namespace aura
    }
 
 
-   bool application::on_thread_on_ide(::thread_impl * pimpl,LONG lCount)
+   bool application::on_thread_on_idle(::thread_impl * pimpl,LONG lCount)
    {
 
       UNREFERENCED_PARAMETER(pimpl);
