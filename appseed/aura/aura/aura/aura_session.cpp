@@ -1,4 +1,4 @@
-#include "framework.h"
+ferror#include "framework.h"
 
 
 
@@ -164,25 +164,8 @@ namespace aura
    bool session::initialize1()
    {
 
-      m_spcopydesk.alloc(allocer());
-
-      if(!m_spcopydesk->initialize())
-         return false;
-
       if(!::aura::application::initialize1())
          return false;
-
-      m_puserstrcontext = canew(::user::str_context(this));
-
-      if(m_puserstrcontext == NULL)
-         return false;
-
-      if(!m_spuser->initialize1())
-         return false;
-
-      if(!m_spuser->initialize2())
-         return false;
-
 
       string strLocaleSystem;
 
