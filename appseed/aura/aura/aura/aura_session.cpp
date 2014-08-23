@@ -1758,12 +1758,12 @@ namespace aura
 
 
 
-   bool session::on_ui_mouse_message(::message::mouse * pmouse)
+
+
+   void session::frame_pre_translate_message(signal_details * pobj)
    {
 
-      m_ptCursor = pmouse->m_pt;
-
-      return true;
+      UNREFERENCED_PARAMETER(pobj);
 
    }
 
