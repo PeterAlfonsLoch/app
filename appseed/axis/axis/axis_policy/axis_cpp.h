@@ -18,58 +18,18 @@
 
 
 
-template < class T >
-class smart_pointer;
-
-
-#define sp(TYPE) ::smart_pointer < TYPE >
-
-
-class string;
-class istring;
-class var;
-class property;
-class property_set;
-class object;
-class type;
-
 namespace axis
 {
 
    class application;
    class system;
-   class application_signal_details;
    class copydesk;
 
    typedef smart_pointer < copydesk > copydesk_sp;
-   class command;
 
 
 
 } // namespace axis
-
-
-class dump_context;
-class string_interface;
-class id_space;
-class type;
-class ptra;
-class factory_item_base;
-class fixed_alloc_no_sync;
-class critical_section;
-class allocatorsp;
-class var_array;
-class pair_set_interface;
-class str_str_interface;
-class command_thread;
-class thread;
-class command_target;
-class cmd_ui;
-class critical_section;
-class mutex;
-class stringa;
-class string;
-class id;
 
 
 
@@ -138,6 +98,7 @@ namespace user
    class view_creator_data;
    class schema;
    class tree;
+   class str_context;
 
 }
 
@@ -871,7 +832,7 @@ CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 #include "axis_machine_event.h"
 #include "axis_machine_event_central.h"
 
-#include "primitive/datetime/datetime_value.h"
+#include "axis/primitive/datetime/datetime_value.h"
 #include "primitive/datetime/datetime_departament.h"
 
 

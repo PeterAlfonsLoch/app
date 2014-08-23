@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace aura
+namespace axis
 {
 
 
@@ -25,7 +25,7 @@ namespace aura
    } // namespace windows
 
 
-} // namespace aura
+} // namespace axis
 
 
 

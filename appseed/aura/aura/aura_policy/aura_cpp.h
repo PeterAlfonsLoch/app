@@ -807,7 +807,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura_machine_event.h"
 #include "aura_machine_event_central.h"
 
-#include "primitive/datetime/datetime_value.h"
+#include "aura/primitive/datetime/datetime_value.h"
 
 #include "aura/primitive/str/str_international_locale_schema.h"
 
@@ -823,7 +823,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura_cregexp.h"
 #include "aura_cregexp_util.h"
 
-#include "user/colorertake5/colorertake5.h"
+#include "aura/user/colorertake5/colorertake5.h"
 //#include "filesystem/file/file_edit_buffer.h"
 
 

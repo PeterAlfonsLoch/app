@@ -48,23 +48,11 @@
     <Filter Include="Header Files\graphics\visual">
       <UniqueIdentifier>{2703a7f6-7ead-46b3-b241-4cbd23d6a89e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\axis\compress">
-      <UniqueIdentifier>{81b4689d-269d-4f05-8d03-9fd0d7fb0783}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\compress\zlib">
-      <UniqueIdentifier>{da7ff1e7-14c8-4c47-8f7b-c0623c1067f4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\compress\zip">
-      <UniqueIdentifier>{a8ba95fd-1ee1-4c54-885a-73221d29eba7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\filesystem">
       <UniqueIdentifier>{e735cbc7-6be2-44c9-b19a-0c3d6ee00183}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\filesystem\file">
       <UniqueIdentifier>{3a2d58e0-3564-457f-ad53-2b26fdc8b2f0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\compress\bsdiff">
-      <UniqueIdentifier>{947fc611-80aa-4333-afb9-5718aa778672}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\filesystem">
       <UniqueIdentifier>{22c285dd-ad96-4ecc-8b5f-c3b809e98645}</UniqueIdentifier>
@@ -83,9 +71,6 @@
     </Filter>
     <Filter Include="Source Files\user\simple_ui">
       <UniqueIdentifier>{b9ff5070-0942-458c-8d35-e0f4e463f2ce}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\exception">
-      <UniqueIdentifier>{3057931a-c1e2-4b6c-9059-d0ece06cdca4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\axis\axis">
       <UniqueIdentifier>{5dc0d2bc-fc5d-4202-9b04-2343b93cccb5}</UniqueIdentifier>
@@ -212,6 +197,12 @@
     </Filter>
     <Filter Include="Source Files\primitive\data">
       <UniqueIdentifier>{bef40cbe-3ae4-49c1-b9d7-dbbc2ca62a45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\axis_policy">
+      <UniqueIdentifier>{a16fcaca-ea5f-4d72-8dee-7ab35a286c93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\axis_policy">
+      <UniqueIdentifier>{2be2ffd3-b100-458f-88e6-49eb5577055f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -353,95 +344,8 @@
     <ClInclude Include="graphics\visual\visual_icon.h">
       <Filter>Header Files\graphics\visual</Filter>
     </ClInclude>
-    <ClInclude Include="axis\compress\zlib\crc32.h">
-      <Filter>Header Files\axis\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zlib\deflate.h">
-      <Filter>Header Files\axis\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zlib\gzguts.h">
-      <Filter>Header Files\axis\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zlib\inffast.h">
-      <Filter>Header Files\axis\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zlib\inffixed.h">
-      <Filter>Header Files\axis\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zlib\inflate.h">
-      <Filter>Header Files\axis\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zlib\inftrees.h">
-      <Filter>Header Files\axis\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zlib\trees.h">
-      <Filter>Header Files\axis\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zlib\zconf.h">
-      <Filter>Header Files\axis\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zlib\zlib.h">
-      <Filter>Header Files\axis\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zlib\zutil.h">
-      <Filter>Header Files\axis\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\api.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\crypt.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\File.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\InFile.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\ioapi.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\iowin32.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\memory_buffer.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\unzip.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\Util.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\zip.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\compress.h">
-      <Filter>Header Files\axis\compress</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filesystem.h">
       <Filter>Header Files\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\compress_bzip_stream.h">
-      <Filter>Header Files\axis\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\compress_gzip_stream.h">
-      <Filter>Header Files\axis\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\compress_compress.h">
-      <Filter>Header Files\axis\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\bsdiff\bsdiff.h">
-      <Filter>Header Files\axis\compress\bsdiff</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\bsdiff\bsdiff_private.h">
-      <Filter>Header Files\axis\compress\bsdiff</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\bsdiff\bzlib.h">
-      <Filter>Header Files\axis\compress\bsdiff</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\bsdiff\bzlib_private.h">
-      <Filter>Header Files\axis\compress\bsdiff</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_signal_thread.h">
       <Filter>Header Files\multithreading</Filter>
@@ -518,9 +422,6 @@
     <ClInclude Include="axis\os\os.h">
       <Filter>Header Files\axis\os</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\os_process.h">
-      <Filter>Header Files\axis\os</Filter>
-    </ClInclude>
     <ClInclude Include="axis\os\cross\cross.h">
       <Filter>Header Files\axis\os\cross</Filter>
     </ClInclude>
@@ -545,280 +446,13 @@
     <ClInclude Include="user\simple_ui\simple_ui_tap.h">
       <Filter>Header Files\user\simple_ui</Filter>
     </ClInclude>
-    <ClInclude Include="axis\exception\exception.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_assert.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_base.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_call_stack.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_debug.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_debug_stream.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_dump_context.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_engine.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_error.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_exception.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_exit.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_hresult.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_installing.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_interface_only.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_invalid_argument.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_invalid_character.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_invalid_handle.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_invalid_index.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_io.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_last_error.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_memory.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_memory_state.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_misc.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_not_implemented.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_not_installed.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_not_licensed.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_not_supported.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_operation_canceled.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_os.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_overflow_error.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_range_error.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_resource.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_runtime_error.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_simple.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_standard.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_standard_translator.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_system.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_temporary.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_todo.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_trap.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_unhandled_report.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_user.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_void_implementation.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception2.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
     <ClInclude Include="user\simple_ui\simple_ui_style.h">
       <Filter>Header Files\user\simple_ui</Filter>
     </ClInclude>
     <ClInclude Include="axis\axis\axis.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
-    <ClInclude Include="axis\axis\axis_allocate.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
     <ClInclude Include="axis\axis\axis_application.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_async.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_auto_pointer.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_c.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_c_cpp.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_c_objc.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_c_winrt.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_command.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_command_target.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_common.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_conv.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_core.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_cpu_architecture.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_cregexp.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_cregexp_util.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_debug.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_definition.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_departament.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_departament_container.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_draw2d.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_element.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_enum.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_file_watcher.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_file_watcher_impl.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_file_watcher_listener_thread.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_file_watcher_thread.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_fixed_alloc.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_fixed_alloc_impl.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_flags.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_heap.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_id_pool.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_international.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_keep_true.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_launcher.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_libc.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_library.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_live_object.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_live_signal.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_log.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_lparam.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_machine_event.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_machine_event_central.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_machine_event_data.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_main_init_data.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_math.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
     <ClInclude Include="axis\axis\axis_message_loop.h">
@@ -830,97 +464,13 @@
     <ClInclude Include="axis\axis\axis_message_queue_listener.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
-    <ClInclude Include="axis\axis\axis_microtimer.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_muldiv64.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_new.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_number.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_os.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_plex.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_plex_heap.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_plex_heap_impl.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_printf.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_root.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_session.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_simple_app.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_simple_pixel_font.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_simple_shell_launcher.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_small_ipc_channel.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_smart_pointer1.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_smart_pointer2.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_sprintf.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
     <ClInclude Include="axis\axis\axis_system.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
     <ClInclude Include="axis\axis\axis_system_str.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
-    <ClInclude Include="axis\axis\axis_system_trace.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_trace.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_types.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_url.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\os_binreloc.h">
-      <Filter>Header Files\axis\os</Filter>
-    </ClInclude>
     <ClInclude Include="axis\axis\axis_core_copydesk.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_core_os.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_savings.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_progress.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_action_context.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_action_source.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
     <ClInclude Include="version.config.h">
@@ -1124,9 +674,6 @@
     <ClInclude Include="user\user\user_print_job.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="axis\axis\axis_print_job.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_menu_base.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -1151,34 +698,7 @@
     <ClInclude Include="axis\os\windows\windows.h">
       <Filter>Header Files\axis\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\windows\windows_implementation.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\windows_multithreading.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\windows_os.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\windows_port_forward.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\windows_process.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\windows_shell.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\windows_simple_hold_handle.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\windows_utils.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
     <ClInclude Include="axis\os\windows\windows_window_gdi.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\windows_windows.h">
       <Filter>Header Files\axis\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\node.h">
@@ -1193,89 +713,20 @@
     <ClInclude Include="axis\node\windows\win1.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_application.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\windows\windows_copydesk.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_exception.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\windows\windows_factory_exchange.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_file.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_file_find.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_file_system.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_folder_watch.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\windows\windows_implementation.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_os.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_registry.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_shell.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_simple_hold_handle.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_stdio_file.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_thread.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\windows\windows_window_draw.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\windows\windows_base_file.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\windows_base_internal.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\windows_base_registry.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\windows_file_watcher.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_uac_tools.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="user\simple_ui\simple_ui_interaction.h">
       <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_application_signal_details.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\message\message_dispatch.h">
-      <Filter>Header Files\axis\message</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\message\message_definition.h">
-      <Filter>Header Files\axis\message</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\message\message.h">
-      <Filter>Header Files\axis\message</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\message\message_cross_windows.h">
-      <Filter>Header Files\axis\message</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\message\message_base.h">
-      <Filter>Header Files\axis\message</Filter>
     </ClInclude>
     <ClInclude Include="axis\message\message_user.h">
       <Filter>Header Files\axis\message</Filter>
@@ -1349,23 +800,11 @@
     <ClInclude Include="axis\node\ansios\ansios_thread_impl.h">
       <Filter>Header Files\axis\node\ansios</Filter>
     </ClInclude>
-    <ClInclude Include="axis\axis\axis_heap_item.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_heap_item_array.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
     <ClInclude Include="axis\axis\axis_static_start.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\android\android_crypto.h">
       <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_session_interface.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_application_interface.h">
-      <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_interaction_base.h">
       <Filter>Header Files\user\user</Filter>
@@ -1378,15 +817,6 @@
     </ClInclude>
     <ClInclude Include="user\user\user_interaction_impl_base.h">
       <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_gudo.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_keep.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_parsing.h">
-      <Filter>Header Files\axis\exception</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_synch_index_iterator.h">
       <Filter>Header Files\multithreading</Filter>
@@ -1634,9 +1064,6 @@
     <ClInclude Include="axis\os\cross\windows\windows_pshpack8.h">
       <Filter>Header Files\axis\os\cross\windows</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_print_job.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="database\database_user_interaction.h">
       <Filter>Header Files\database</Filter>
     </ClInclude>
@@ -1688,18 +1115,6 @@
     <ClInclude Include="database\database.h">
       <Filter>Header Files\database</Filter>
     </ClInclude>
-    <ClInclude Include="axis\axis\axis_net.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_class.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_gudo_application.inl">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\exception\exception_verisimple.h">
-      <Filter>Header Files\axis\exception</Filter>
-    </ClInclude>
     <ClInclude Include="axis\policy\policy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1729,6 +1144,69 @@
     </ClInclude>
     <ClInclude Include="user\user\user_str_context.h">
       <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis_policy\axis_c.h">
+      <Filter>Header Files\axis\axis_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis_policy\axis_cpp.h">
+      <Filter>Header Files\axis\axis_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis_policy\axis_policy.h">
+      <Filter>Header Files\axis\axis_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis_policy\axis_policy_objc.h">
+      <Filter>Header Files\axis\axis_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis_policy\axis_policy_objcpp.h">
+      <Filter>Header Files\axis\axis_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis_policy\axis_policy_winrt.h">
+      <Filter>Header Files\axis\axis_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_session.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_base_file.h">
+      <Filter>Header Files\axis\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_base_internal.h">
+      <Filter>Header Files\axis\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_base_registry.h">
+      <Filter>Header Files\axis\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_file_watcher.h">
+      <Filter>Header Files\axis\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_implementation.h">
+      <Filter>Header Files\axis\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_multithreading.h">
+      <Filter>Header Files\axis\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_os.h">
+      <Filter>Header Files\axis\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_port_forward.h">
+      <Filter>Header Files\axis\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_process.h">
+      <Filter>Header Files\axis\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_shell.h">
+      <Filter>Header Files\axis\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_simple_hold_handle.h">
+      <Filter>Header Files\axis\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_utils.h">
+      <Filter>Header Files\axis\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_windows.h">
+      <Filter>Header Files\axis\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_simple_app.h">
+      <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1899,18 +1377,6 @@
     </ClCompile>
     <ClCompile Include="axis\xml\xml_xmlite.cpp">
       <Filter>Source Files\axis\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\os_file.cpp">
-      <Filter>Source Files\axis\os</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\os_http.cpp">
-      <Filter>Source Files\axis\os</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\os_process.cpp">
-      <Filter>Source Files\axis\os</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\os_thread.cpp">
-      <Filter>Source Files\axis\os</Filter>
     </ClCompile>
     <ClCompile Include="axis\os\android\android_locale.c">
       <Filter>Source Files\axis\os\android</Filter>
@@ -2248,9 +1714,6 @@
     <ClCompile Include="axis\os\android\android_window_android.cpp">
       <Filter>Source Files\axis\os\android</Filter>
     </ClCompile>
-    <ClCompile Include="axis\os\os_binreloc.cpp">
-      <Filter>Source Files\axis\os</Filter>
-    </ClCompile>
     <ClCompile Include="axis\os\ansios\ansios_cross_win.cpp">
       <Filter>Source Files\axis\os\ansios</Filter>
     </ClCompile>
@@ -2392,61 +1855,10 @@
     <ClCompile Include="framework_c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="axis\os\windows\win2.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_base_file.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_base_registry.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="axis\os\windows\windows_dll.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_error.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_file_std.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_launcher.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_lock.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_main.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_message_loop.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_multithreading.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="axis\os\windows\windows_simple_app.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_simple_shell_launcher.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_small_ipc_channel.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_std_file.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_time.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_util.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_utils.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="axis\os\windows\windows_window_gdi.cpp">
@@ -2521,12 +1933,6 @@
     <ClCompile Include="axis\node\windows\windows_window_draw.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_library.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_file_watcher.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="axis\node\windows\windows_uac_tools.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
@@ -2535,9 +1941,6 @@
     </ClCompile>
     <ClCompile Include="user\simple_ui\simple_ui_interaction.cpp">
       <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_process.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="axis\node\node.cpp">
       <Filter>Source Files\axis\node</Filter>
@@ -2553,9 +1956,6 @@
     </ClCompile>
     <ClCompile Include="axis\message\message_user.cpp">
       <Filter>Source Files\axis\message</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_debug.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_thread_impl.cpp">
       <Filter>Source Files\multithreading</Filter>
@@ -2857,6 +2257,9 @@
     <ClCompile Include="primitive\datetime\datetime_value.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
+    <ClCompile Include="axis\axis_policy\axis_c.c">
+      <Filter>Source Files\axis\axis_policy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -2940,28 +2343,7 @@
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="axis\axis\axis.inl">
-      <Filter>Header Files\axis\axis</Filter>
-    </None>
-    <None Include="axis\axis\axis_system_factory.inl">
-      <Filter>Header Files\axis\axis</Filter>
-    </None>
-    <None Include="axis\axis\axis_system_id.inl">
-      <Filter>Header Files\axis\axis</Filter>
-    </None>
-    <None Include="axis\axis\axis_system_object.inl">
-      <Filter>Header Files\axis\axis</Filter>
-    </None>
-    <None Include="axis\axis\axis_system_primitive_var.inl">
-      <Filter>Header Files\axis\axis</Filter>
-    </None>
-    <None Include="axis\axis\axis_system_smart_pointer.inl">
       <Filter>Header Files\axis\axis</Filter>
     </None>
     <None Include="axis\axis\axis_system_xml.inl">
@@ -3113,9 +2495,6 @@
     </None>
     <None Include="axis.def">
       <Filter>Source Files</Filter>
-    </None>
-    <None Include="axis\message\message.inl">
-      <Filter>Header Files\axis\message</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

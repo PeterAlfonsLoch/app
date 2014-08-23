@@ -75,7 +75,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}</ProjectGuid>
+    <ProjectGuid>{73A245F9-C92F-4487-AEF7-CB0531F665BD}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>aura</RootNamespace>
@@ -1725,35 +1725,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\aura_policy\aura_policy_objc.h" />
     <ClInclude Include="aura\aura_policy\aura_policy_objcpp.h" />
     <ClInclude Include="aura\aura_policy\aura_policy_winrt.h" />
-    <ClInclude Include="aura\compress\bsdiff\bsdiff.h" />
-    <ClInclude Include="aura\compress\bsdiff\bsdiff_private.h" />
-    <ClInclude Include="aura\compress\bsdiff\bzlib.h" />
-    <ClInclude Include="aura\compress\bsdiff\bzlib_private.h" />
-    <ClInclude Include="aura\compress\compress.h" />
-    <ClInclude Include="aura\compress\compress_bzip_stream.h" />
-    <ClInclude Include="aura\compress\compress_compress.h" />
-    <ClInclude Include="aura\compress\compress_gzip_stream.h" />
-    <ClInclude Include="aura\compress\zip\api.h" />
-    <ClInclude Include="aura\compress\zip\crypt.h" />
-    <ClInclude Include="aura\compress\zip\File.h" />
-    <ClInclude Include="aura\compress\zip\InFile.h" />
-    <ClInclude Include="aura\compress\zip\ioapi.h" />
-    <ClInclude Include="aura\compress\zip\iowin32.h" />
-    <ClInclude Include="aura\compress\zip\memory_buffer.h" />
-    <ClInclude Include="aura\compress\zip\unzip.h" />
-    <ClInclude Include="aura\compress\zip\Util.h" />
-    <ClInclude Include="aura\compress\zip\zip.h" />
-    <ClInclude Include="aura\compress\zlib\crc32.h" />
-    <ClInclude Include="aura\compress\zlib\deflate.h" />
-    <ClInclude Include="aura\compress\zlib\gzguts.h" />
-    <ClInclude Include="aura\compress\zlib\inffast.h" />
-    <ClInclude Include="aura\compress\zlib\inffixed.h" />
-    <ClInclude Include="aura\compress\zlib\inflate.h" />
-    <ClInclude Include="aura\compress\zlib\inftrees.h" />
-    <ClInclude Include="aura\compress\zlib\trees.h" />
-    <ClInclude Include="aura\compress\zlib\zconf.h" />
-    <ClInclude Include="aura\compress\zlib\zlib.h" />
-    <ClInclude Include="aura\compress\zlib\zutil.h" />
     <ClInclude Include="aura\exception\exception.h" />
     <ClInclude Include="aura\exception\exception2.h" />
     <ClInclude Include="aura\exception\exception_assert.h" />

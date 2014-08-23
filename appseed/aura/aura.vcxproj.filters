@@ -84,23 +84,11 @@
     <Filter Include="Source Files\primitive\collection">
       <UniqueIdentifier>{b3a683c8-c4bd-46a0-9eab-beb79650277e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\aura\compress">
-      <UniqueIdentifier>{81b4689d-269d-4f05-8d03-9fd0d7fb0783}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\compress\zlib">
-      <UniqueIdentifier>{da7ff1e7-14c8-4c47-8f7b-c0623c1067f4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\compress\zip">
-      <UniqueIdentifier>{a8ba95fd-1ee1-4c54-885a-73221d29eba7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\filesystem">
       <UniqueIdentifier>{e735cbc7-6be2-44c9-b19a-0c3d6ee00183}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\filesystem\file">
       <UniqueIdentifier>{3a2d58e0-3564-457f-ad53-2b26fdc8b2f0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\compress\bsdiff">
-      <UniqueIdentifier>{947fc611-80aa-4333-afb9-5718aa778672}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\filesystem">
       <UniqueIdentifier>{22c285dd-ad96-4ecc-8b5f-c3b809e98645}</UniqueIdentifier>
@@ -698,83 +686,8 @@
     <ClInclude Include="primitive\math\math_math_rng.h">
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
-    <ClInclude Include="aura\compress\zlib\crc32.h">
-      <Filter>Header Files\aura\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zlib\deflate.h">
-      <Filter>Header Files\aura\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zlib\gzguts.h">
-      <Filter>Header Files\aura\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zlib\inffast.h">
-      <Filter>Header Files\aura\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zlib\inffixed.h">
-      <Filter>Header Files\aura\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zlib\inflate.h">
-      <Filter>Header Files\aura\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zlib\inftrees.h">
-      <Filter>Header Files\aura\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zlib\trees.h">
-      <Filter>Header Files\aura\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zlib\zconf.h">
-      <Filter>Header Files\aura\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zlib\zlib.h">
-      <Filter>Header Files\aura\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zlib\zutil.h">
-      <Filter>Header Files\aura\compress\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zip\api.h">
-      <Filter>Header Files\aura\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zip\crypt.h">
-      <Filter>Header Files\aura\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zip\File.h">
-      <Filter>Header Files\aura\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zip\InFile.h">
-      <Filter>Header Files\aura\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zip\ioapi.h">
-      <Filter>Header Files\aura\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zip\iowin32.h">
-      <Filter>Header Files\aura\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zip\memory_buffer.h">
-      <Filter>Header Files\aura\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zip\unzip.h">
-      <Filter>Header Files\aura\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zip\Util.h">
-      <Filter>Header Files\aura\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zip\zip.h">
-      <Filter>Header Files\aura\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\compress.h">
-      <Filter>Header Files\aura\compress</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filesystem.h">
       <Filter>Header Files\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\compress_bzip_stream.h">
-      <Filter>Header Files\aura\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\compress_gzip_stream.h">
-      <Filter>Header Files\aura\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\compress_compress.h">
-      <Filter>Header Files\aura\compress</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file.h">
       <Filter>Header Files\filesystem\file</Filter>
@@ -904,18 +817,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\file\file_writer_flush.h">
       <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\bsdiff\bsdiff.h">
-      <Filter>Header Files\aura\compress\bsdiff</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\bsdiff\bsdiff_private.h">
-      <Filter>Header Files\aura\compress\bsdiff</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\bsdiff\bzlib.h">
-      <Filter>Header Files\aura\compress\bsdiff</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\bsdiff\bzlib_private.h">
-      <Filter>Header Files\aura\compress\bsdiff</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_signal_thread.h">
       <Filter>Header Files\multithreading</Filter>
@@ -4131,14 +4032,8 @@
     <None Include="primitive\primitive_factory_impl.inl">
       <Filter>Header Files\primitive</Filter>
     </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="primitive\str\str.inl">
       <Filter>Header Files\primitive\str</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
