@@ -145,6 +145,7 @@ namespace aura
 
       virtual bool on_thread_on_idle(::thread_impl * pimpl,LONG lCount);
       virtual bool post_user_message(::thread_impl * pimpl,::user::interaction * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
+      virtual void message_handler(signal_details * pobj);
       
 
 

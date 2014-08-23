@@ -1306,76 +1306,7 @@ stop_run:
 void thread_impl::message_handler(signal_details * pobj)
 {
 
-   SCAST_PTR(::message::base,pbase,pobj);
-
-   ::window_sp pwindow = pbase->m_pwnd->GetWindow();
-
-   ASSERT(pwindow == NULL || pwindow == pbase->m_pwnd->m_pimpl);
-
-   if(pwindow == NULL || pwindow != pbase->m_pwnd->m_pimpl)
-   {
-
-   #ifdef WINDOWSEX
-
-      pbase->set_lresult(::DefWindowProc(pbase->m_pwnd->get_safe_handle(),pbase->m_uiMessage,pbase->m_wparam,pbase->m_lparam));
-
-   #else
-
-      pbase->set_lresult(0);
-
-   #endif
-
-      return;
-
-   }
-
-   __trace_message("message_handler",pobj);
-
-   try
-   {
-
-      if(pwindow->m_pui != NULL && pwindow->m_pui != pwindow)
-      {
-
-         pwindow->m_pui->message_handler(pobj);
-
-      }
-      else
-      {
-
-         pwindow->message_handler(pobj);
-
-      }
-
-   }
-   catch(const ::exception::exception & e)
-   {
-
-      if(App(get_app()).on_run_exception((::exception::exception &) e))
-         goto run;
-
-      if(App(get_app()).final_handle_exception((::exception::exception &) e))
-         goto run;
-
-      __post_quit_message(-1);
-
-      pbase->set_lresult(-1);
-
-      return;
-
-   }
-   catch(::exception::base * pe)
-   {
-
-      process_window_procedure_exception(pe,pbase);
-
-      TRACE(::aura::trace::category_AppMsg,0,"Warning: Uncaught exception in message_handler (returning %ld).\n",(int_ptr)pbase->get_lresult());
-
-      pe->Delete();
-
-   }
-
-run:;
+   Application.message_handler(this,pobj);
 
 }
 
