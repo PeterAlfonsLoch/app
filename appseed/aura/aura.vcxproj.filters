@@ -126,9 +126,6 @@
     <Filter Include="Header Files\user\simple_ui">
       <UniqueIdentifier>{7bdaa2c9-1de1-4163-8aba-35a5dcab23ba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\user\simple_ui">
-      <UniqueIdentifier>{b9ff5070-0942-458c-8d35-e0f4e463f2ce}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\aura\exception">
       <UniqueIdentifier>{3057931a-c1e2-4b6c-9059-d0ece06cdca4}</UniqueIdentifier>
     </Filter>
@@ -146,9 +143,6 @@
     </Filter>
     <Filter Include="Header Files\aura\os\cross">
       <UniqueIdentifier>{e9b106f1-4ddd-4521-b7c1-6461c701be4f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\database">
-      <UniqueIdentifier>{bbfdffee-c80a-4e8a-af08-72aae226b215}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\database">
       <UniqueIdentifier>{1d5d8dc4-0d8b-4334-b743-43678a161c7a}</UniqueIdentifier>
@@ -2798,11 +2792,11 @@
     <ClInclude Include="aura\aura_policy\aura_policy_winrt.h">
       <Filter>Header Files\aura\aura_policy</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="user\simple\simple_message_box.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user.h">
+      <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4138,17 +4132,14 @@
     <ClCompile Include="aura\exception\exception_verisimple.cpp">
       <Filter>Source Files\aura\exception</Filter>
     </ClCompile>
-    <ClCompile Include="aura\policy\policy_c.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_timer_item.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="user\simple\simple_message_box.cpp">
+      <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_timer_array.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\simple_message_box.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="user\user\user_timer_item.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -4157,9 +4148,6 @@
     </None>
     <None Include="primitive\primitive_factory_impl.inl">
       <Filter>Header Files\primitive</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
