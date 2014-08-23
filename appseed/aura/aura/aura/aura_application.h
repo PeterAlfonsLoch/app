@@ -146,6 +146,7 @@ namespace aura
       virtual bool is_window(::user::interaction * pui);
       virtual LRESULT send_message(::user::interaction * pui, UINT message, WPARAM wparam = 0, lparam lparam = 0);
       virtual oswindow get_safe_handle(::user::interaction * pui);
+      virtual void dispatch_user_message(::message::base * pbase);
 
 
 
