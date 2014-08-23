@@ -2974,6 +2974,16 @@ namespace aura
    }
 
 
+   bool application::on_thread_on_ide(::thread_impl * pimpl,LONG lCount)
+   {
+
+      UNREFERENCED_PARAMETER(pimpl);
+
+      return lCount < 0;
+
+   }
+
+
    bool application::is_window(::user::interaction * pui)
    {
 
