@@ -1608,7 +1608,7 @@ namespace aura
 
       if(::get_thread() == NULL)
       {
-         set_thread(dynamic_cast <thread *> (this));
+         ::set_thread(dynamic_cast <thread *> (this));
       }
 
       if(is_system())
