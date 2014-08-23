@@ -298,9 +298,6 @@ namespace aura
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
 
-      virtual ::visual::icon * set_icon(object * pobject,::visual::icon * picon,bool bBigIcon);
-      virtual ::visual::icon * get_icon(object * pobject,bool bBigIcon) const;
-
       virtual bool final_handle_exception(::exception::exception & e);
 
 
