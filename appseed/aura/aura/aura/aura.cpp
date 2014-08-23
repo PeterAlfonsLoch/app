@@ -120,8 +120,6 @@ bool aura_term()
 
    __node_aura_pre_term();
 
-   ::user::term_windowing();
-
    ::multithreading::term_multithreading();
 
    __term_threading_count();

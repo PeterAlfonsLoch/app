@@ -643,6 +643,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 //#include "graphics/visual/visual_const.h"
 //#include "user/user/user_key_enum.h"
 #include "aura/aura/message/message.h"
+#include "aura/user/user/user_check_interface.h"
 #include "aura_command_target.h"
 //#include "user/user/user_schema.h"
 //#include "user/user/user_schema_simple_impl.h"

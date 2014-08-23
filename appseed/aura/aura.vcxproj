@@ -75,7 +75,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{03E5B8E7-9E3B-44DD-9EDE-E0A74D52C1C5}</ProjectGuid>
+    <ProjectGuid>{73A245F9-C92F-4487-AEF7-CB0531F665BD}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>aura</RootNamespace>
@@ -3924,6 +3924,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\colorertake5\colorertake5_xmldom.h" />
     <ClInclude Include="user\simple\simple_message_box.h" />
     <ClInclude Include="user\user\user.h" />
+    <ClInclude Include="user\user\user_check_interface.h" />
     <ClInclude Include="user\user\user_timer_array.h" />
     <ClCompile Include="user\simple\simple_message_box.cpp" />
     <ClCompile Include="user\user\user_timer_item.cpp">

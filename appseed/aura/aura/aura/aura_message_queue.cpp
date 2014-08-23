@@ -20,7 +20,7 @@ bool message_queue::create_message_queue(const char * pszName, ::message_queue_l
 
    m_plistener = plistener;
 
-   return ::user::interaction::create_message_queue(pszName);
+   return true;
 
 }
 
@@ -32,8 +32,6 @@ void message_queue::message_handler(signal_details * pobj)
 
    if(pobj->m_bRet)
       return;
-
-   return ::user::interaction::message_handler(pobj);
 
 }
 

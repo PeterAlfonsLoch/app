@@ -365,7 +365,6 @@ const __MSGMAP* command_target::GetThisMessageMap()
 //        controls (usually buttons)
 
 cmd_ui::cmd_ui(sp(::aura::application) papp)  :
-   element(papp)
 {
 
    m_iIndex                      = 0;
