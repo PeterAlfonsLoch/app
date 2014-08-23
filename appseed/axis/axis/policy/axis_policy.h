@@ -7,8 +7,8 @@
 #ifdef cplusplus
 
 
-#include "c.h"
-#include "cpp.h"
+#include "axis_c.h"
+#include "axis_cpp.h"
 
 
 #else
@@ -17,7 +17,7 @@
 BEGIN_EXTERN_C
 
 
-#include "c.h"
+#include "axis_c.h"
 
 
 END_EXTERN_C
@@ -32,24 +32,24 @@ END_EXTERN_C
 #if defined(__M)
 
 
-#include "c.h"
-#include "policy_objc.h"
+#include "axis_c.h"
+#include "axis_policy_objc.h"
 
 
 #elif defined(__MM)
 
 
-#include "c.h"
-#include "policy_objc.h"
-#include "policy_objcpp.h"
+#include "axis_c.h"
+#include "axis_policy_objc.h"
+#include "axis_policy_objcpp.h"
 
 
 #elif defined(__cplusplus_winrt)
 
 
-#include "c.h"
-#include "policy_cpp.h"
-#include "policy_winrt.h"
+#include "axis_c.h"
+#include "axis_policy_cpp.h"
+#include "axis_policy_winrt.h"
 
 
 #else
