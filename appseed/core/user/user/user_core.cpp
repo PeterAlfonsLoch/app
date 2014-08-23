@@ -7,7 +7,7 @@ namespace user
 
    core::core(sp(::axis::application) papp) :
       element(papp),
-      ::axis::departament(papp)
+      ::aura::departament(papp)
    {
 
    }
@@ -21,7 +21,7 @@ namespace user
    bool core::initialize()
    {
 
-      if (!::axis::departament::initialize())
+      if (!::aura::departament::initialize())
          return false;
 
       if (Application.is_system())

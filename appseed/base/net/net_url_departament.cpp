@@ -13,7 +13,7 @@ namespace url
 
    departament::departament(sp(::axis::application) papp) :
 	   element(papp),
-      ::axis::departament(papp)
+      ::aura::departament(papp)
    {
 
    }

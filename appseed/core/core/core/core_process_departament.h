@@ -9,7 +9,7 @@ namespace core
 
 
    class CLASS_DECL_CORE process_departament :
-      public ::axis::departament
+      public ::aura::departament
    {
    public:
 

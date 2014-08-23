@@ -6,7 +6,7 @@ namespace fs
 
 
    class CLASS_DECL_BASE fs :
-      virtual public ::axis::departament
+      virtual public ::aura::departament
    {
    public:
 

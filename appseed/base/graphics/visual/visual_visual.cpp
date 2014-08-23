@@ -36,7 +36,7 @@ namespace visual
 
    visual::visual(sp(::axis::application) papp) :
       element(papp),
-      ::axis::departament(papp)
+      ::aura::departament(papp)
    {
       m_pimaging        = NULL;
       m_pfontcentral    = NULL;
@@ -61,7 +61,7 @@ namespace visual
    void visual::construct(sp(::axis::application) papp)
    {
 
-      ::axis::departament::construct(papp);
+      ::aura::departament::construct(papp);
 
       m_pvisualapi               = new ::visual::api(papp);
 
@@ -85,7 +85,7 @@ namespace visual
    bool visual::initialize1()
    {
 
-      if(!::axis::departament::initialize1())
+      if(!::aura::departament::initialize1())
          return false;
 
       m_pfontcentral = new class font_central(get_app());
@@ -109,7 +109,7 @@ namespace visual
    bool visual::process_initialize()
    {
 
-      if(!::axis::departament::process_initialize())
+      if(!::aura::departament::process_initialize())
          return false;
 
       if(!m_pvisualapi->open())
@@ -123,7 +123,7 @@ namespace visual
    bool visual::initialize()
    {
 
-      if(!::axis::departament::initialize())
+      if(!::aura::departament::initialize())
          return false;
 
       __begin_thread(get_app(), &visual::thread_proc_parallel_initialize, this, ::axis::scheduling_priority_highest);
@@ -355,7 +355,7 @@ namespace visual
       try
       {
 
-         iExitCode = ::axis::departament::exit_instance();
+         iExitCode = ::aura::departament::exit_instance();
 
       }
       catch(...)

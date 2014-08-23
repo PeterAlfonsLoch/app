@@ -7,7 +7,7 @@ namespace calculator
 
    calculator::calculator(sp(::axis::application) papp) :
       element(papp),
-      ::axis::departament(papp)
+      ::aura::departament(papp)
    {
    
    }

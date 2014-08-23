@@ -6,7 +6,7 @@ namespace usermail
 
 
    class CLASS_DECL_CORE usermail : 
-      virtual public ::axis::departament
+      virtual public ::aura::departament
    {
    public:
       

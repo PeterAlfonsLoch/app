@@ -6,7 +6,7 @@ namespace install
 
 
    class CLASS_DECL_BASE install :
-      virtual public ::axis::departament,
+      virtual public ::aura::departament,
       virtual public int_scalar_source
    {
    public:

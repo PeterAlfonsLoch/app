@@ -7,7 +7,7 @@ namespace fontopus
 
    fontopus::fontopus(::axis::application * papp) :
       element(papp),
-      ::axis::departament(papp)
+      ::aura::departament(papp)
    {
 
       m_puser                       = NULL;

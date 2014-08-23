@@ -7,7 +7,7 @@ namespace user
 
    user::user(::axis::application * papp) :
       element(papp),
-      ::axis::departament(papp)
+      ::aura::departament(papp)
    {
       
       
@@ -61,7 +61,7 @@ namespace user
 
 //      m_pshellimageset = new filemanager::_shell::ImageSet(m_pauraapp);
 
-      if(!::axis::departament::initialize1())
+      if(!::aura::departament::initialize1())
          return false;
 
       return true;
@@ -74,7 +74,7 @@ namespace user
 
 
 
-      if(!::axis::departament::initialize())
+      if(!::aura::departament::initialize())
          return false;
 
 
@@ -166,7 +166,7 @@ retry_license:
   //       return false;
 
 
-      if(!::axis::departament::initialize())
+      if(!::aura::departament::initialize())
          return false;
 
       return true;
@@ -180,7 +180,7 @@ retry_license:
    {
 
 
-      if(!::axis::departament::initialize2())
+      if(!::aura::departament::initialize2())
          return false;
 
 /* xxx
@@ -218,7 +218,7 @@ retry_license:
    {
       try
       {
-         ::axis::departament::finalize();
+         ::aura::departament::finalize();
       }
       catch(...)
       {

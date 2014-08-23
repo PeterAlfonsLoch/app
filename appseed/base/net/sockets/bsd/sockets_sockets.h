@@ -6,7 +6,7 @@
 
 
       class CLASS_DECL_BASE sockets :
-         virtual public ::axis::departament
+         virtual public ::aura::departament
       {
       public:
 

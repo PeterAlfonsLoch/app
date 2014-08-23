@@ -7,7 +7,7 @@ namespace sockets
 
    sockets::sockets(::axis::application * papp) :
      element(papp),
-     ::axis::departament(papp),
+     ::aura::departament(papp),
       m_mutexHttpPostBoundary(papp),
       m_mutexResolvCache(papp)
    {
@@ -23,7 +23,7 @@ namespace sockets
    bool sockets::initialize1()
    {
 
-      if(!::axis::departament::initialize1())
+      if(!::aura::departament::initialize1())
          return false;
 
       

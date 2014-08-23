@@ -11,7 +11,7 @@ namespace url
 
 
    class CLASS_DECL_BASE departament :
-      virtual public ::axis::departament
+      virtual public ::aura::departament
    {
    public:
 

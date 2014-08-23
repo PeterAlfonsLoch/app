@@ -7,7 +7,7 @@ namespace fs
 
    fs::fs(::axis::application * papp) :
       element(papp),
-      ::axis::departament(papp)
+      ::aura::departament(papp)
    {
 
    }
