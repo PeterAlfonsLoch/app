@@ -1789,6 +1789,9 @@ namespace axis
 
    }
 
+
+   bool session::frame_pre(const char * pszId,bool bInteractive)
+
    try
    {
 
