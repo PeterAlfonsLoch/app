@@ -27,7 +27,7 @@ namespace simple_ui
 
 
 
-   password::password(sp(::axis::application) papp) :
+   password::password(sp(::aura::application) papp) :
       element(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
@@ -108,7 +108,7 @@ namespace simple_ui
       m_dibBk->create(rectClient.size());
       m_dibBk->Fill(184, 184, 170);
       HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
-      ::visual::fastblur *( *pfnNew )(sp(::axis::application)) = (::visual::fastblur *(*)(sp(::axis::application))) ::GetProcAddress(hmodule, "new_fastblur");*/
+      ::visual::fastblur *( *pfnNew )(sp(::aura::application)) = (::visual::fastblur *(*)(sp(::aura::application))) ::GetProcAddress(hmodule, "new_fastblur");*/
       /*            m_fastblur.alloc(allocer());
       m_fastblur.initialize(rectClient.size(), 2);
       }

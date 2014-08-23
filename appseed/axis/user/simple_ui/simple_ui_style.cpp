@@ -5,7 +5,7 @@ namespace simple_ui
 {
 
 
-   style::style(sp(::axis::application) papp) :
+   style::style(sp(::aura::application) papp) :
       element(papp)
    {
 

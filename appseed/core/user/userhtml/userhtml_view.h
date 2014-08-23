@@ -12,7 +12,7 @@ public:
    string m_strLocationURL;
 
 
-   html_view(sp(::axis::application) papp);
+   html_view(sp(::aura::application) papp);
    virtual ~html_view();
 
 

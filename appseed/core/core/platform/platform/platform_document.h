@@ -29,7 +29,7 @@ namespace platform
       sp(::bergedge::document) m_pbergedgedocument;
 
 
-      document(sp(::axis::application) papp);
+      document(sp(::aura::application) papp);
       virtual ~document();
 
 

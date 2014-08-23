@@ -9,7 +9,7 @@ namespace userex // ca8 + cube
       virtual public wait_message_dialog
    {
    public:
-      message_box(sp(::axis::application) papp);
+      message_box(sp(::aura::application) papp);
 
       void on_show(const char * pszMatter, property_set & propertyset);
       bool on_timeout();

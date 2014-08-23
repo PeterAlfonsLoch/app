@@ -8,7 +8,7 @@ public:
 
 
 
-   simple_main_frame(sp(::axis::application) papp);
+   simple_main_frame(sp(::aura::application) papp);
    virtual ~simple_main_frame();
 
 

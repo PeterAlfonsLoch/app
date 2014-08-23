@@ -4,7 +4,7 @@
 namespace zip
 {
 
-   memory_buffer::memory_buffer(sp(::axis::application) papp) :
+   memory_buffer::memory_buffer(sp(::aura::application) papp) :
       element(papp),
       ::file::memory_buffer(papp),
       ::primitive::memory_container(papp)
@@ -14,7 +14,7 @@ namespace zip
 
    }
 
-   memory_buffer::memory_buffer(sp(::axis::application) papp, ::primitive::memory_base * pmemory) :
+   memory_buffer::memory_buffer(sp(::aura::application) papp, ::primitive::memory_base * pmemory) :
       element(papp),
       ::file::memory_buffer(papp, pmemory),
       ::primitive::memory_container(papp, pmemory)

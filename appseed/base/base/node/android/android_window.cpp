@@ -101,7 +101,7 @@ namespace android
 
    }
 
-   interaction_impl::interaction_impl(sp(::axis::application) papp) :
+   interaction_impl::interaction_impl(sp(::aura::application) papp) :
       element(papp)
    {
       m_pcallback = NULL;
@@ -1428,7 +1428,7 @@ d.unlock();
       {
       if(pbase->m_wparam == BERGEDGE_GETAPP)
       {
-      sp(::axis::application)* ppapp= (sp(::axis::application)*) pbase->m_lparam;
+      sp(::aura::application)* ppapp= (sp(::aura::application)*) pbase->m_lparam;
       *ppapp = get_app();
       pbase->m_bRet = true;
       return;
@@ -3156,7 +3156,7 @@ return 0;
       oswindow m_hwnd;
       HDC m_hdc;
 
-      print_window(sp(::axis::application) papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
+      print_window(sp(::aura::application) papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
          element(papp),
          m_event(papp)
 
@@ -3854,8 +3854,8 @@ throw not_implemented(get_app());
 //      m_iModalCount++;
 //
 //      m_iaModalThread.add(::GetCurrentThreadId());
-//      sp(::axis::application) pappThis1 =  (m_pauraapp->m_p);
-//      sp(::axis::application) pappThis2 =  (m_pauraapp);
+//      sp(::aura::application) pappThis1 =  (m_pauraapp->m_p);
+//      sp(::aura::application) pappThis2 =  (m_pauraapp);
 //
 //            //Display * d = XOpenDisplay(NULL);
 //            //XEvent  e;
@@ -4118,7 +4118,7 @@ throw not_implemented(get_app());
    }
 
 
-   /*   view_update_hint::view_update_hint(sp(::axis::application) papp) :
+   /*   view_update_hint::view_update_hint(sp(::aura::application) papp) :
    element(papp)
    {
    }
@@ -4470,7 +4470,7 @@ throw not_implemented(get_app());
    }
 
 
-   /*   guie_message_wnd::guie_message_wnd(sp(::axis::application) papp) :
+   /*   guie_message_wnd::guie_message_wnd(sp(::aura::application) papp) :
    element(papp)
    {
    m_pguieForward = NULL;
@@ -6439,7 +6439,7 @@ if(psurface == g_cairosurface)
 } // namespace android
 
 
-CTestCmdUI::CTestCmdUI(sp(::axis::application) papp) :
+CTestCmdUI::CTestCmdUI(sp(::aura::application) papp) :
    element(papp),
    cmd_ui(papp)
 {

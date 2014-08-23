@@ -9,7 +9,7 @@
 namespace install
 {
 
-   canvas::canvas(sp(::axis::application) papp) :
+   canvas::canvas(sp(::aura::application) papp) :
       element(papp)
    {
 

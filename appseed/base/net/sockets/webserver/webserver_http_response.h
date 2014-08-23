@@ -16,7 +16,7 @@ namespace http
    
 
 
-      response(sp(::axis::application) papp, const string & version = "HTTP/1.0");
+      response(sp(::aura::application) papp, const string & version = "HTTP/1.0");
       response(const response& src);
       ~response();
 

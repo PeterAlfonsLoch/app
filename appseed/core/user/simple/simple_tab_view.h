@@ -7,7 +7,7 @@ class CLASS_DECL_CORE simple_tab_view :
    virtual public ::user::tab
 {
 public:
-   simple_tab_view(sp(::axis::application) papp);
+   simple_tab_view(sp(::aura::application) papp);
    virtual ~simple_tab_view();
 
 

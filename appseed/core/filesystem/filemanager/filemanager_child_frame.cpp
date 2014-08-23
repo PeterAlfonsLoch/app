@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   child_frame::child_frame(sp(::axis::application) papp) :
+   child_frame::child_frame(sp(::aura::application) papp) :
       element(papp),
       simple_child_frame(papp)
    {

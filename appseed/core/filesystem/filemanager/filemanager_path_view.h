@@ -15,7 +15,7 @@ namespace filemanager
 
 
 
-       path_view(sp(::axis::application) papp);
+       path_view(sp(::aura::application) papp);
 
 
       virtual void _001OnAfterChangeText(::action::context actioncontext);

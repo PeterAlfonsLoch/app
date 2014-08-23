@@ -620,7 +620,7 @@ namespace user
       ASSERT(pContext->m_user->m_typeinfoNewView || pContext->m_user->m_puiNew != NULL);
 
 
-      sp(::axis::application) papp = pwndParent->get_app();
+      sp(::aura::application) papp = pwndParent->get_app();
 
       sp(::user::interaction) pui;
 

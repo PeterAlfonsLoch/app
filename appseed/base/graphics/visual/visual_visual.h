@@ -17,11 +17,11 @@ namespace visual
 
 
 
-      visual(sp(::axis::application) papp);
+      visual(sp(::aura::application) papp);
       virtual ~visual();
 
 
-      virtual void construct(sp(::axis::application) papp);
+      virtual void construct(sp(::aura::application) papp);
 
       virtual bool process_initialize();
       

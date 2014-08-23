@@ -5,7 +5,7 @@ namespace dynamic_source
 {
 
 
-   script_cache::script_cache(sp(::axis::application) papp) :
+   script_cache::script_cache(sp(::aura::application) papp) :
       element(papp)
    {
 

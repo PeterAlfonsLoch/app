@@ -7,7 +7,7 @@ class CLASS_DECL_CORE simple_combo_list :
 public:
 
 
-   simple_combo_list(sp(::axis::application) papp);
+   simple_combo_list(sp(::aura::application) papp);
    virtual ~simple_combo_list();
 
 

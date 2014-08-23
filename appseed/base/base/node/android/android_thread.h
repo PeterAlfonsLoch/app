@@ -10,7 +10,7 @@ namespace android
    public:
 
 
-      thread(sp(::axis::application) papp);
+      thread(sp(::aura::application) papp);
       virtual ~thread();
 
 

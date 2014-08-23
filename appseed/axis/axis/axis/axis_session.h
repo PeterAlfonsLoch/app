@@ -10,8 +10,8 @@ namespace axis
 
 
    class CLASS_DECL_AXIS session:
+      virtual public ::aura::session,
       virtual public ::axis::application,
-      virtual public ::axis::session_interface,
       virtual public ::user::schema
    {
    public:
@@ -33,9 +33,6 @@ namespace axis
 
 
 
-      ::core::platform *                                       m_pcoreplatform;
-      string_map < sp(::axis::application) >                   m_mapApplication;
-
 
       bool                                                     m_bDrawCursor;
 
@@ -45,12 +42,9 @@ namespace axis
       ::axis::copydesk_sp                                      m_spcopydesk;
 
 
-      application_ptra                                         m_appptra;
       sp(::user::interaction)                                  m_spuiFocus;
       sp(::user::str_context)                                  m_puserstrcontext;
-      bool                                                     m_bZipIsDir;
       map < ::user::e_key,::user::e_key,bool,bool > *          m_pmapKeyPressed;
-      sp(::axis::savings)                                      m_psavings;
       sp(::user::user)                                         m_spuser;
 
 
@@ -61,7 +55,7 @@ namespace axis
 
 
 
-      session(sp(::axis::application) papp);
+      session(sp(::aura::application) papp);
       virtual ~session_parent;
 
 
@@ -70,7 +64,7 @@ namespace axis
       virtual bool is_session();
 
 
-      void construct(sp(::axis::application) papp, int iPhase);
+      void construct(sp(::aura::application) papp, int iPhase);
 
       virtual bool process_initialize();
 
@@ -89,33 +83,14 @@ namespace axis
 
       ::axis::copydesk & copydesk();
       inline sp(class ::user::user)             user()         { return m_spuser; }
-      inline ::axis::savings &                  savings()      { return *m_psavings; }
 
       ::user::str_context *                     str_context();
 
 
 
-      virtual string get_locale();
-      virtual string get_schema();
-      virtual string get_locale_schema_dir(const string & strLocale,const string & strSchema);
-      virtual string get_locale_schema_dir(const string & strLocale);
-      virtual string get_locale_schema_dir();
 
 
-
-      virtual void set_locale(const string & lpcsz,::action::context actioncontext);
-      virtual void set_schema(const string & lpcsz,::action::context actioncontext);
-      virtual void on_set_locale(const string & lpcsz,::action::context actioncontext);
-      virtual void on_set_schema(const string & lpcsz,::action::context actioncontext);
-
-
-      virtual void fill_locale_schema(::str::international::locale_schema & localeschema);
-      virtual void fill_locale_schema(::str::international::locale_schema & localeschema,const char * pszLocale,const char * pszSchema);
-
-
-
-
-      virtual sp(::axis::application) start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext);
+      //virtual sp(::aura::application) start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext);
 
       
       virtual void set_cursor(::visual::e_cursor ecursor);
@@ -171,9 +146,6 @@ namespace axis
       virtual void  get_cursor_pos(LPPOINT lppoint);
 
       
-      virtual sp(::user::interaction) get_active_guie();
-      virtual sp(::user::interaction) get_focus_guie();
-
 
 
 
@@ -181,6 +153,10 @@ namespace axis
 
       virtual bool on_ui_mouse_message(::message::mouse * pmouse);
       virtual void frame_pre_translate_message(signal_details * pobj);
+
+
+      virtual ::user::interaction * get_active_guie();
+      virtual ::user::interaction * get_focus_guie();
 
 
 

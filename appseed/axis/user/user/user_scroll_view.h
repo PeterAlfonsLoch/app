@@ -42,7 +42,7 @@ namespace user
 
 
 
-      scroll_view(sp(::axis::application) papp);
+      scroll_view(sp(::aura::application) papp);
       virtual ~scroll_view();
 
 

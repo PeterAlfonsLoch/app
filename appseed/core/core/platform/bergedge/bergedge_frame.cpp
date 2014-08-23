@@ -5,7 +5,7 @@ namespace bergedge
 {
 
 
-   frame::frame(sp(::axis::application) papp) :
+   frame::frame(sp(::aura::application) papp) :
       element(papp),
       simple_frame_window(papp),
       message_queue(papp)

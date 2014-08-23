@@ -54,8 +54,8 @@ namespace sockets
       bool                 m_slave; ///< Indicates that this is a base_socket_handler run in socket_thread
 
 
-      socket_handler(sp(::axis::application) papp, logger * plogger = NULL);
-      socket_handler(sp(::axis::application) papp, mutex & mutex, logger * plogger = NULL);
+      socket_handler(sp(::aura::application) papp, logger * plogger = NULL);
+      socket_handler(sp(::aura::application) papp, mutex & mutex, logger * plogger = NULL);
       ~socket_handler();
 
 

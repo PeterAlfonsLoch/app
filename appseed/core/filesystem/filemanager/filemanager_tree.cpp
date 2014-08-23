@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   tree::tree(sp(::axis::application) papp) :
+   tree::tree(sp(::aura::application) papp) :
       element(papp),
       ::data::data(papp),
       ::data::tree(papp),
@@ -731,7 +731,7 @@ namespace filemanager
    }
 
 
-   tree::polishing::polishing(sp(::axis::application) papp, ::filemanager::tree * ptree,::user::tree * pusertree, bool bLowLatency) :
+   tree::polishing::polishing(sp(::aura::application) papp, ::filemanager::tree * ptree,::user::tree * pusertree, bool bLowLatency) :
       element(papp),
       thread(papp)
    {

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_scroll_bar::simple_scroll_bar(sp(::axis::application) papp) :
+simple_scroll_bar::simple_scroll_bar(sp(::aura::application) papp) :
    element(papp),
    ::user::interaction(papp),
    m_penDraw(allocer()),
@@ -913,7 +913,7 @@ public:
    point pt2;
 
    
-   trw(sp(::axis::application) papp): element(papp),::user::interaction(papp)
+   trw(sp(::aura::application) papp): element(papp),::user::interaction(papp)
    {
 
       if(create_window_ex(WS_EX_LAYERED,NULL,"",WS_VISIBLE,null_rect(),NULL, /*nIDResource*/ 0,NULL))

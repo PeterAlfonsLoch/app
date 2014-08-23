@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_status_bar::simple_status_bar(sp(::axis::application) papp) :
+simple_status_bar::simple_status_bar(sp(::aura::application) papp) :
    element(papp)
 {
 

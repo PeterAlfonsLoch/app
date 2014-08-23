@@ -20,7 +20,7 @@ namespace filemanager
 
    bool file_list_callback::initialize()
    {
-      sp(::axis::application) papp = get_app();
+      sp(::aura::application) papp = get_app();
       m_pimagelistSubItemHover = new image_list(papp);
       m_pimagelistItemHover = new image_list(papp);
       m_pimagelistNormal = new image_list(papp);

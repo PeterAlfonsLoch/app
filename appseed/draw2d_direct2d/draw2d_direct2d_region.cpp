@@ -5,7 +5,7 @@ namespace draw2d_direct2d
 {
 
    
-   region::region(sp(::axis::application) papp) :
+   region::region(sp(::aura::application) papp) :
       element(papp)
    { 
       

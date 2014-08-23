@@ -32,7 +32,7 @@ public:
    ::user::menu                  m_menu;
 
 
-   simple_menu_bar(sp(::axis::application) papp);
+   simple_menu_bar(sp(::aura::application) papp);
    virtual ~simple_menu_bar();
 
 

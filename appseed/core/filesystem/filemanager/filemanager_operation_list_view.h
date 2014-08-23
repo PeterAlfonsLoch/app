@@ -17,7 +17,7 @@ namespace filemanager
       uint32_t                         m_dwLast123Update;
 
 
-      operation_list_view(sp(::axis::application) papp);
+      operation_list_view(sp(::aura::application) papp);
 
       virtual void install_message_handling(::message::dispatch * pinterface);
 

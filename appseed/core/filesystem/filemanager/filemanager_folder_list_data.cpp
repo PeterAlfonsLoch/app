@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   folder_list_data::folder_list_data(sp(::axis::application) papp) :
+   folder_list_data::folder_list_data(sp(::aura::application) papp) :
       element(papp),
       ::user::list_data(papp)
    {

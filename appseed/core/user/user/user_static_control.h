@@ -33,7 +33,7 @@ namespace user
       bool                                m_bHover;
 
 
-      static_control(sp(::axis::application) papp);
+      static_control(sp(::aura::application) papp);
       virtual ~static_control();
 
 

@@ -71,7 +71,7 @@ namespace user
 
 
       interaction();
-      interaction(sp(::axis::application) papp);
+      interaction(sp(::aura::application) papp);
       virtual ~interaction();
 
 

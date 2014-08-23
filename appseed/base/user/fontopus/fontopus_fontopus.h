@@ -66,7 +66,7 @@ namespace fontopus
       manual_reset_event m_evReady;
       string m_strRequestUrl;
 
-      create_user_thread(sp(::axis::application) papp);
+      create_user_thread(sp(::aura::application) papp);
       virtual ~create_user_thread();
 
       int32_t run();

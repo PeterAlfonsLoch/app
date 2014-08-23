@@ -26,7 +26,7 @@ namespace usermail
       bool                    m_bTimerOn;
 
 
-      frame(sp(::axis::application) papp);
+      frame(sp(::aura::application) papp);
 
 
       virtual BOOL PreCreateWindow(::user::create_struct& cs);

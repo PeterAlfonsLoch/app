@@ -15,14 +15,14 @@ namespace user
       class CLASS_DECL_CORE system_menu
       {
       public:
-         system_menu(sp(::axis::application) papp);
+         system_menu(sp(::aura::application) papp);
          ::draw2d::font_sp    m_fontMarlett;
       };
 
       class CLASS_DECL_CORE menu
       {
       public:
-         menu(sp(::axis::application) papp);
+         menu(sp(::aura::application) papp);
          ~menu();
          ::draw2d::font_sp     m_font;
          button *          m_pschemaSysMenuButton;
@@ -38,7 +38,7 @@ namespace user
 
          bool                    m_bBorder;
 
-         button(sp(::axis::application) papp);
+         button(sp(::aura::application) papp);
 
 
       };
@@ -52,7 +52,7 @@ namespace user
       COLORREF       m_crTextNormal;
       
 
-      front_end_schema(sp(::axis::application) app);
+      front_end_schema(sp(::aura::application) app);
       ~front_end_schema();
 
       virtual void DrawCheck(check::check echeck, const RECT & rect, ::draw2d::graphics * pdc);

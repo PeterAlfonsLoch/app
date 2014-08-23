@@ -5,7 +5,7 @@ namespace http
 {
 
 
-   system::system(sp(::axis::application) papp) :
+   system::system(sp(::aura::application) papp) :
       element(papp),
       m_mutexPac(papp),
       m_mutexProxy(papp),
@@ -132,7 +132,7 @@ namespace http
 
    }
 
-   system::pac::pac(sp(::axis::application) papp) :
+   system::pac::pac(sp(::aura::application) papp) :
       element(papp),
       m_js(papp)
    {
@@ -192,7 +192,7 @@ namespace http
    }
 
 
-   system::proxy::proxy(sp(::axis::application) papp) :
+   system::proxy::proxy(sp(::aura::application) papp) :
       element(papp)
    {
    }
@@ -454,7 +454,7 @@ namespace http
       UNREFERENCED_PARAMETER(pszVersion);
       string strServer = pszHost;
       string strProtocol = pszProtocol;
-      sp(::axis::application) papp = set["app"].cast < application >();
+      sp(::aura::application) papp = set["app"].cast < application >();
       int32_t iPort;
       if(strProtocol == "https")
       {
@@ -689,7 +689,7 @@ retry:
 
          uint32_t dwTimeProfile1 = get_tick_count();
 
-         sp(::axis::application) papp = psession->get_app();
+         sp(::aura::application) papp = psession->get_app();
 
          string strRequest = System.url().get_object(pszRequest);
 
@@ -1101,7 +1101,7 @@ retry:
       string strServer = System.url().get_root(pszUrl);
       string strProtocol = System.url().get_protocol(pszUrl);
       string strObject = System.url().get_object(pszUrl);
-      sp(::axis::application) papp = set["app"].cast < application >();
+      sp(::aura::application) papp = set["app"].cast < application >();
       int32_t iPort;
       if(strProtocol == "https")
       {

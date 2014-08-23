@@ -13,7 +13,7 @@ namespace dynamic_source
       uint32_t dwReserved;    // must be zero
    } LOADPARMS32;
 
-   library_class::library_class(sp(::axis::application) papp)
+   library_class::library_class(sp(::aura::application) papp)
       :  element(papp),
       m_memfileError(papp),
       m_library(papp)
@@ -72,7 +72,7 @@ namespace dynamic_source
    }
 
 
-   sp(::axis::application) library_class::get_app() const
+   sp(::aura::application) library_class::get_app() const
    {
       return m_pmanager->get_app();
    }

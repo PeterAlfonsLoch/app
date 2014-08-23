@@ -13,7 +13,7 @@ namespace user
       {
 
 
-         control_box::control_box(sp(::axis::application) papp) :
+         control_box::control_box(sp(::aura::application) papp) :
             element(papp),
             ::user::interaction(papp),
             m_fontMarlett(allocer()),

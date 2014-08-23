@@ -32,7 +32,7 @@ namespace user
       map < int_ptr, int_ptr, ::user::interaction_base *, ::user::interaction_base * > m_map;
 
 
-      window_map(sp(::axis::application) papp);
+      window_map(sp(::aura::application) papp);
       virtual ~window_map();
 
 

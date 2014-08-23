@@ -32,7 +32,7 @@ namespace hi5
          bool                                      m_bLicense;
          bool                                      m_bInteractive;
 
-         authorization(sp(::axis::application) papp,const char * pszAuthorizationUrl, const char * pszForm, bool bAuth = false, bool bInteractive = true);
+         authorization(sp(::aura::application) papp,const char * pszAuthorizationUrl, const char * pszForm, bool bAuth = false, bool bInteractive = true);
          virtual ~authorization();
 
          void ensure_main_document();

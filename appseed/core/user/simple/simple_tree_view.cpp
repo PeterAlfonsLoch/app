@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_tree_view::simple_tree_view(sp(::axis::application) papp) :
+simple_tree_view::simple_tree_view(sp(::aura::application) papp) :
    element(papp),
    
    ::user::scroll_view(papp),

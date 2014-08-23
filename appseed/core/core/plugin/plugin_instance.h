@@ -17,7 +17,7 @@ namespace plugin
 
 
 
-      instance(sp(::axis::application) papp);
+      instance(sp(::aura::application) papp);
       virtual ~instance();
 
 

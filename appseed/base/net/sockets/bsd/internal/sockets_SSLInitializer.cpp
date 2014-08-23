@@ -63,7 +63,7 @@ void ssl_sigpipe_handle( int x ) {
 
 
 
-   SSLInitializer::SSLInitializer(sp(::axis::application) papp) :
+   SSLInitializer::SSLInitializer(sp(::aura::application) papp) :
       element(papp)
    {
 

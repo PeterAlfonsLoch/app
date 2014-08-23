@@ -5,7 +5,7 @@ namespace usermail
 {
 
 
-   usermail::usermail(sp(::axis::application) papp) : 
+   usermail::usermail(sp(::aura::application) papp) : 
       element(papp),
       ::aura::departament(papp)
    {

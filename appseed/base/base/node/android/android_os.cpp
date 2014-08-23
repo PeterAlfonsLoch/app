@@ -8,7 +8,7 @@ namespace android
 {
 
 
-   os::os(sp(::axis::application) papp) :
+   os::os(sp(::aura::application) papp) :
       element(papp),
       ::base::os(papp)
    {
@@ -570,7 +570,7 @@ namespace android
 
    }
 
-   bool os::create_service(sp(::axis::application) papp)
+   bool os::create_service(sp(::aura::application) papp)
    {
 
       //throw not_implemented(get_app());
@@ -580,21 +580,21 @@ namespace android
    }
 
 
-   bool os::remove_service(sp(::axis::application) papp)
+   bool os::remove_service(sp(::aura::application) papp)
    {
 //      throw not_implemented(get_app());
       return false;
 
    }
 
-   bool os::start_service(sp(::axis::application) papp)
+   bool os::start_service(sp(::aura::application) papp)
    {
       //throw not_implemented(get_app());
       return false;
 
    }
 
-   bool os::stop_service(sp(::axis::application) papp)
+   bool os::stop_service(sp(::aura::application) papp)
    {
       throw not_implemented(get_app());
       return false;

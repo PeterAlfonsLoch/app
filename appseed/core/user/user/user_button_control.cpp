@@ -2,7 +2,7 @@
 #include "framework.h"
 
 
-BaseButtonControl::BaseButtonControl(sp(::axis::application) papp) :
+BaseButtonControl::BaseButtonControl(sp(::aura::application) papp) :
    element(papp),
    ::user::button(papp)
 {

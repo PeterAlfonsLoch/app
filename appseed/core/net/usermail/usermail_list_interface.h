@@ -9,7 +9,7 @@ namespace usermail
       virtual public ::user::list
    {
    public:
-      list_interface(sp(::axis::application) appp);
+      list_interface(sp(::aura::application) appp);
       virtual ~list_interface();
 
       account * m_paccount;
@@ -23,7 +23,7 @@ namespace usermail
          stringa   m_straId;
 
 
-         data(sp(::axis::application) papp);
+         data(sp(::aura::application) papp);
 
          void update();
 

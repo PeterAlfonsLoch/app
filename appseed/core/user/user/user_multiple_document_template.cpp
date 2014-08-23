@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   multiple_document_template::multiple_document_template(sp(::axis::application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass) :
+   multiple_document_template::multiple_document_template(sp(::aura::application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass) :
       element(papp),
       ::user::impact_system(papp, pszMatter, pDocClass, pFrameClass, pViewClass)
    {

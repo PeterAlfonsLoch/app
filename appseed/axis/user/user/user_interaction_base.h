@@ -107,7 +107,7 @@ namespace user
          index                               m_iItem;
 
 
-         timer_array(sp(::axis::application) papp);
+         timer_array(sp(::aura::application) papp);
 
 
          uint_ptr set(sp(interaction) pui,uint_ptr uiId,UINT uiElapse);
@@ -129,7 +129,7 @@ namespace user
 
 
       interaction_base();
-      interaction_base(sp(::axis::application) papp);
+      interaction_base(sp(::aura::application) papp);
       virtual ~interaction_base();
 
 

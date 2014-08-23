@@ -28,7 +28,7 @@ namespace install
       RECT                    m_rectWindowDragStart;
 
 
-      interaction_impl(sp(::axis::application) papp);
+      interaction_impl(sp(::aura::application) papp);
       ~interaction_impl();
 
 

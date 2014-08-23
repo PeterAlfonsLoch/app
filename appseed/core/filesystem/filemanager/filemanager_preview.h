@@ -17,7 +17,7 @@ namespace filemanager
       //int64_array    m_iaSize;
       int32_t        m_iCurFile;
 
-      preview(sp(::axis::application) papp);
+      preview(sp(::aura::application) papp);
       virtual ~preview();
 
       virtual void install_message_handling(::message::dispatch * pdispatch);

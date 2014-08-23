@@ -18,7 +18,7 @@ public:
 
 
 
-   html_form(sp(::axis::application) papp);
+   html_form(sp(::aura::application) papp);
    virtual ~html_form();
 
    virtual void _001OnDraw(::draw2d::graphics * pdc);

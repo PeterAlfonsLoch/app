@@ -5,7 +5,7 @@ namespace core
 {
 
 
-   platform::platform(sp(::axis::application) papp):
+   platform::platform(sp(::aura::application) papp):
       element(papp),
       ::thread(papp)
    {
@@ -300,7 +300,7 @@ namespace core
 
       pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] = 1;
 
-      sp(::axis::application) pbaseapp = application_get("application", strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
+      sp(::aura::application) pbaseapp = application_get("application", strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
 
       sp(::core::platform) papp = pbaseapp;
 
@@ -462,7 +462,7 @@ namespace core
                if(strType.is_empty())
                   strType = "application";
 
-               sp(::axis::application) papp = (application_get(strType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
+               sp(::aura::application) papp = (application_get(strType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
                if(papp == NULL)
                   return;
 
@@ -618,12 +618,12 @@ namespace core
    }
 
 
-   sp(::axis::application) platform::start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext)
+   sp(::aura::application) platform::start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext)
    {
 
       string strApp(pszAppId);
 
-      sp(::axis::application) papp = application_get(pszType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
+      sp(::aura::application) papp = application_get(pszType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
       if(papp == NULL)
          return NULL;
 
@@ -777,7 +777,7 @@ namespace core
 
       }
 
-      sp(::axis::application) papp = application_get("application", strId, true, true, pcreatecontext->m_spApplicationBias);
+      sp(::aura::application) papp = application_get("application", strId, true, true, pcreatecontext->m_spApplicationBias);
 
       if(papp == NULL)
          return false;
@@ -963,9 +963,9 @@ namespace core
 
    }*/
    /*
-   sp(::axis::application) platform::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
+   sp(::aura::application) platform::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
-   sp(::axis::application) papp = NULL;
+   sp(::aura::application) papp = NULL;
 
    if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszId), papp))
    return papp;
@@ -1016,7 +1016,7 @@ namespace core
       return true;
    }
 
-   sp(::axis::application) platform::get_current_application()
+   sp(::aura::application) platform::get_current_application()
    {
       return m_pappCurrent;
    }
@@ -1279,7 +1279,7 @@ namespace core
 
 
 
-   void platform::on_app_request_bergedge_callback(sp(::axis::application) papp)
+   void platform::on_app_request_bergedge_callback(sp(::aura::application) papp)
    {
       if(&App(papp) != NULL)
       {
@@ -1420,10 +1420,10 @@ namespace core
 
    }*/
 
-   sp(::axis::application) platform::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
+   sp(::aura::application) platform::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
 
-      sp(::axis::application) papp = NULL;
+      sp(::aura::application) papp = NULL;
 
       if(m_pbasesession->m_mapApplication.Lookup(string(pszType) + ":" + string(pszId),papp))
       {
@@ -1686,7 +1686,7 @@ namespace core
    void platform::set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle)
    {
 
-      sp(::axis::application) papp = NULL;
+      sp(::aura::application) papp = NULL;
 
       if(m_pbasesession->m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != NULL)
       {
@@ -1829,7 +1829,7 @@ namespace core
 
 
 
-   void platform::register_bergedge_application(sp(::axis::application) papp)
+   void platform::register_bergedge_application(sp(::aura::application) papp)
    {
 
       retry_single_lock rsl(&m_mutex,millis(84),millis(84));
@@ -1852,7 +1852,7 @@ namespace core
 
    }
 
-   void platform::unregister_bergedge_application(sp(::axis::application) papp)
+   void platform::unregister_bergedge_application(sp(::aura::application) papp)
    {
 
       retry_single_lock rsl(&m_mutex,millis(84),millis(84));
@@ -1862,7 +1862,7 @@ namespace core
    }
 
 
-   sp(::axis::application) platform::get_new_app(sp(::axis::application) pappNewApplicationParent,const char * pszType,const char * pszAppId)
+   sp(::aura::application) platform::get_new_app(sp(::aura::application) pappNewApplicationParent,const char * pszType,const char * pszAppId)
    {
 
       string strId(pszAppId);
@@ -1939,7 +1939,7 @@ namespace core
 
 #endif
 
-      sp(::axis::application) papp = NULL;
+      sp(::aura::application) papp = NULL;
 
       if(!library.open(strLibrary,false,false))
          return NULL;
@@ -1952,7 +1952,7 @@ namespace core
       if(papp == NULL)
          return NULL;
 
-      sp(::axis::application) pgenapp = (papp);
+      sp(::aura::application) pgenapp = (papp);
 
       pgenapp->m_pcoreapp->m_strAppId = pszAppId;
 

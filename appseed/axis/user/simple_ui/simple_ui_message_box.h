@@ -21,7 +21,7 @@ namespace simple_ui
       manual_reset_event      m_evReady;
       
 
-      message_box(sp(::axis::application) papp,const char * pszMessage,const char * pszCaption,uint32_t uiFlags);
+      message_box(sp(::aura::application) papp,const char * pszMessage,const char * pszCaption,uint32_t uiFlags);
       virtual ~message_box();
 
 

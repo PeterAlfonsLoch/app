@@ -6,7 +6,7 @@ class CLASS_DECL_CORE simple_edit :
 public:
 
 
-   simple_edit(sp(::axis::application) papp);
+   simple_edit(sp(::aura::application) papp);
    virtual ~simple_edit();
 
 

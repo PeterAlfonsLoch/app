@@ -11,7 +11,7 @@ namespace fontopus
 {
 
 
-   simple_ui::simple_ui(sp(::axis::application) papp) :
+   simple_ui::simple_ui(sp(::aura::application) papp) :
       element(papp),
       ::simple_ui::style(papp),
       m_login(papp, 0, 0)
@@ -196,7 +196,7 @@ namespace fontopus
 
       if((rectFontopus.width() < 300 || rectFontopus.height() < 300) && puiParent != NULL)
       {
-         sp(::axis::application) papp = puiParent;
+         sp(::aura::application) papp = puiParent;
          if(papp != NULL)
          {
             papp->open_link("ca2account:this");

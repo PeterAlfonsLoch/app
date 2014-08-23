@@ -5,7 +5,7 @@ namespace hi5
 {
 
 
-   string prepare_basic_authentication(sp(::axis::application) papp, const char * inParam1, const char * inParam2 );
+   string prepare_basic_authentication(sp(::aura::application) papp, const char * inParam1, const char * inParam2 );
 
 
    namespace oAuthTwitterApiUrls
@@ -37,7 +37,7 @@ namespace hi5
    * @output: none
    *
    *--*/
-   twit::twit(sp(::axis::application) papp) :
+   twit::twit(sp(::aura::application) papp) :
       element(papp),
 
       /* Constants */

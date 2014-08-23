@@ -7,7 +7,7 @@ class CLASS_DECL_CORE simple_child_frame :
 public:
    
    
-   simple_child_frame(sp(::axis::application) papp);
+   simple_child_frame(sp(::aura::application) papp);
    virtual ~simple_child_frame();
 
    

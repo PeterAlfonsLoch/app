@@ -5,7 +5,7 @@ namespace draw2d_cairo
 {
 
 
-   region::region(sp(::axis::application) papp) :
+   region::region(sp(::aura::application) papp) :
       element(papp)
    {
 

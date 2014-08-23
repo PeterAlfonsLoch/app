@@ -17,7 +17,7 @@ namespace userex
       sp(pane_view) m_ppaneview;
 
 
-      pane_split_view(sp(::axis::application) papp);
+      pane_split_view(sp(::aura::application) papp);
       virtual ~pane_split_view();
 
 

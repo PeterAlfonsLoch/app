@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_tab_view::simple_tab_view(sp(::axis::application) papp) :
+simple_tab_view::simple_tab_view(sp(::aura::application) papp) :
    element(papp),
    ::user::interaction(papp), 
    ::user::tab(papp),

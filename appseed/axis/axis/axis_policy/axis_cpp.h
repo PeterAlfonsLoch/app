@@ -449,7 +449,7 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 #include "user/user/user_window_draw.h"
 
-#include "user/user/user_str.h"
+#include "user/user/user_str_context.h"
 
 
 #include "axis/user/user/user.h"

@@ -66,7 +66,7 @@ namespace core
 #endif
 
 
-      system(sp(::axis::application) papp = NULL);
+      system(sp(::aura::application) papp = NULL);
       virtual ~system();
 
 
@@ -130,7 +130,7 @@ namespace core
 
 
 
-      virtual void on_allocation_error(sp(::axis::application) papp,sp(type) info);
+      virtual void on_allocation_error(sp(::aura::application) papp,sp(type) info);
 
 
       ::core::stra                           & stra();

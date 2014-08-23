@@ -14,7 +14,7 @@ namespace user
    }
 
 
-   bool image_manager::Initialize(sp(::axis::application) papp, UINT uiaMenuV003Map [][2])
+   bool image_manager::Initialize(sp(::aura::application) papp, UINT uiaMenuV003Map [][2])
    {
       UNREFERENCED_PARAMETER(papp);
       UNREFERENCED_PARAMETER(uiaMenuV003Map);

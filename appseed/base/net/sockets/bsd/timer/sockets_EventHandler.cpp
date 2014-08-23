@@ -34,14 +34,14 @@ namespace sockets
 {
 
 
-   EventHandler::EventHandler(sp(::axis::application) papp, logger *p) :
+   EventHandler::EventHandler(sp(::aura::application) papp, logger *p) :
       element(papp),
       socket_handler(papp, p), m_quit(false), m_socket(NULL)
    {
    }
 
 
-   EventHandler::EventHandler(sp(::axis::application) papp, mutex & m,logger *p) :
+   EventHandler::EventHandler(sp(::aura::application) papp, mutex & m,logger *p) :
       element(papp),
       socket_handler(papp, m, p),
       m_quit(false), m_socket(NULL)

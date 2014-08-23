@@ -15,7 +15,7 @@ namespace fs
       strsp(data)                   m_fsdatamap;
 
 
-      set(sp(::axis::application) papp);
+      set(sp(::aura::application) papp);
       virtual ~set();
 
 

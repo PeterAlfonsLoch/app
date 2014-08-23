@@ -6,7 +6,7 @@ namespace axis
 {
 
 
-   session::session(sp(::axis::application) papp) :
+   session::session(sp(::aura::application) papp) :
       element(papp),
       ::thread(papp)
    {
@@ -63,7 +63,7 @@ namespace axis
    }
 
 
-   void session::construct(sp(::axis::application) papp, int iPhase)
+   void session::construct(sp(::aura::application) papp, int iPhase)
    {
 
 
@@ -78,7 +78,7 @@ namespace axis
 
       string strId;
 
-      sp(::axis::application) pbaseapp;
+      sp(::aura::application) pbaseapp;
 
       while(pos != NULL)
       {
@@ -89,7 +89,7 @@ namespace axis
 
          m_mapApplication.get_next_assoc(pos,strId,pbaseapp);
 
-         sp(::axis::application) papp = (pbaseapp);
+         sp(::aura::application) papp = (pbaseapp);
 
          papp->post_thread_message(WM_QUIT);
 
@@ -106,7 +106,7 @@ namespace axis
    }
 
 
-   sp(::axis::application) session::start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext)
+   sp(::aura::application) session::start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext)
    {
 
       throw interface_only_exception(this);

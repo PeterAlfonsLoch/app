@@ -32,7 +32,7 @@ public:
    ::draw2d::font_sp    m_fontSpin;
 
 
-   calendar(sp(::axis::application) papp);
+   calendar(sp(::aura::application) papp);
 
 
    virtual void GetRectDay(::datetime::time & time, LPRECT lprect);

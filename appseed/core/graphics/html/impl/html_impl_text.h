@@ -24,7 +24,7 @@ namespace html
          bool                          m_bOnAfterChangeText;
 
 
-         text(sp(::axis::application) papp);
+         text(sp(::aura::application) papp);
 
          DECL_GEN_SIGNAL(OnLButtonDown);
             DECL_GEN_SIGNAL(OnMouseMove);

@@ -16,7 +16,7 @@ namespace url
    public:
 
 
-      departament(sp(::axis::application) papp);
+      departament(sp(::aura::application) papp);
       virtual ~departament();
 
 

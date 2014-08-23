@@ -3,7 +3,7 @@
 namespace nature
 {
 
-   database::database(sp(::axis::application) papp) :
+   database::database(sp(::aura::application) papp) :
       element(papp)
    {
       m_bInitialized = false;

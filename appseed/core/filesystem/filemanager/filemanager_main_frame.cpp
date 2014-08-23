@@ -6,7 +6,7 @@ namespace filemanager
 
 
 
-   main_frame::main_frame(sp(::axis::application) papp) :
+   main_frame::main_frame(sp(::aura::application) papp) :
       element(papp),
       simple_frame_window(papp)
    {

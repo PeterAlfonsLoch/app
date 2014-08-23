@@ -5,7 +5,7 @@ namespace simpledb
 {
 
 
-   base::base(sp(::axis::application) papp) :
+   base::base(sp(::aura::application) papp) :
       element(papp),
       m_spfileMeta(papp),
       m_xmldocumentMeta(papp)

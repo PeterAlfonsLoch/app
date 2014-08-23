@@ -11,7 +11,7 @@ namespace filemanager
    public:
       
       
-      form_child_frame(sp(::axis::application) papp);
+      form_child_frame(sp(::aura::application) papp);
 
 
    };

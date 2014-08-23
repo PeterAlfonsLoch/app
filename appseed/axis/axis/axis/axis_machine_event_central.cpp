@@ -1,6 +1,6 @@
 #include "framework.h"
 
-machine_event_central::machine_event_central(sp(::axis::application) papp) :
+machine_event_central::machine_event_central(sp(::aura::application) papp) :
    element(papp), 
    thread(papp),
    simple_thread(papp)

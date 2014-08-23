@@ -17,7 +17,7 @@ namespace user
       interaction_ptr_array  m_uiptraHold;
 
 
-      place_holder(sp(::axis::application) papp);
+      place_holder(sp(::aura::application) papp);
       virtual ~place_holder();
 
 

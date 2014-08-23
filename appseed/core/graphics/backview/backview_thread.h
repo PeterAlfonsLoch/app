@@ -58,7 +58,7 @@ namespace backview
       static const WPARAM WPARAM_BACKVIEW_IMAGELOADED;
 
 
-      thread(sp(::axis::application) papp);
+      thread(sp(::aura::application) papp);
       virtual ~thread();
 
 

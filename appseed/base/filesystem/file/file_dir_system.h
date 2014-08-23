@@ -65,7 +65,7 @@ namespace file
             uint32_t             m_dwTimeOut;
 
 
-            is_dir_map(sp(::axis::application) papp);
+            is_dir_map(sp(::aura::application) papp);
 
 
             bool lookup(const string & strPath, bool &bIsDir, uint32_t & dwLastError);
@@ -84,7 +84,7 @@ namespace file
          string            m_strApiCc;
 
 
-         system(sp(::axis::application) papp);
+         system(sp(::aura::application) papp);
          virtual ~system();
 
 
@@ -108,30 +108,30 @@ namespace file
 
 
          virtual string relpath(const char * lpcszSource, const char * lpcszRelative, const char * lpcsz2 = NULL);
-         virtual void  ls_pattern(sp(::axis::application) papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, bool_array * pbaIsDir = NULL, int64_array * piaSize = NULL);
-         virtual void  ls(sp(::axis::application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, bool_array * pbaIsDir = NULL, int64_array * piaSize = NULL);
-         virtual void  rls_pattern(sp(::axis::application) papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, bool_array * pbaIsDir = NULL, int64_array * piaSize = NULL, e_extract eextract = extract_first);
-         virtual void  rls(sp(::axis::application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, e_extract eextract = extract_first);
-         virtual void  rls_dir(sp(::axis::application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL);
-         virtual void  ls_dir(sp(::axis::application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL);
-         virtual bool  has_subdir(sp(::axis::application) papp, const char * lpcsz);
-         virtual void  ls_file(sp(::axis::application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL);
+         virtual void  ls_pattern(sp(::aura::application) papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, bool_array * pbaIsDir = NULL, int64_array * piaSize = NULL);
+         virtual void  ls(sp(::aura::application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, bool_array * pbaIsDir = NULL, int64_array * piaSize = NULL);
+         virtual void  rls_pattern(sp(::aura::application) papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, bool_array * pbaIsDir = NULL, int64_array * piaSize = NULL, e_extract eextract = extract_first);
+         virtual void  rls(sp(::aura::application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, e_extract eextract = extract_first);
+         virtual void  rls_dir(sp(::aura::application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL);
+         virtual void  ls_dir(sp(::aura::application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL);
+         virtual bool  has_subdir(sp(::aura::application) papp, const char * lpcsz);
+         virtual void  ls_file(sp(::aura::application) papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL);
 
-         virtual bool  is(const char * lpcsz, sp(::axis::application) papp);
-         virtual bool  is(const string & str, sp(::axis::application) papp);
-         virtual bool  is(const var & var, sp(::axis::application) papp);
+         virtual bool  is(const char * lpcsz, sp(::aura::application) papp);
+         virtual bool  is(const string & str, sp(::aura::application) papp);
+         virtual bool  is(const var & var, sp(::aura::application) papp);
 
-         virtual bool  is_or_definitively_not(bool & bIs, const char * lpcsz, sp(::axis::application) papp);
+         virtual bool  is_or_definitively_not(bool & bIs, const char * lpcsz, sp(::aura::application) papp);
 
-         virtual bool  name_is(const char * lpcsz, sp(::axis::application) papp);
-         virtual bool  name_is(const string & str, sp(::axis::application) papp);
-         virtual bool  name_is(const var & var, sp(::axis::application) papp);
+         virtual bool  name_is(const char * lpcsz, sp(::aura::application) papp);
+         virtual bool  name_is(const string & str, sp(::aura::application) papp);
+         virtual bool  name_is(const var & var, sp(::aura::application) papp);
 
-         virtual bool  is_inside(const char * lpcszDir, const char * lpcszPath, sp(::axis::application) papp);
-         virtual bool  is_inside_time(const char * lpcsz, sp(::axis::application) papp);
-         virtual void  root_ones(stringa & straPath, stringa & straTitle, sp(::axis::application) papp);
-         virtual bool  mk(const char * lpcsz, sp(::axis::application) papp);
-         virtual bool  rm(sp(::axis::application) papp, const char * psz, bool bRecursive = true);
+         virtual bool  is_inside(const char * lpcszDir, const char * lpcszPath, sp(::aura::application) papp);
+         virtual bool  is_inside_time(const char * lpcsz, sp(::aura::application) papp);
+         virtual void  root_ones(stringa & straPath, stringa & straTitle, sp(::aura::application) papp);
+         virtual bool  mk(const char * lpcsz, sp(::aura::application) papp);
+         virtual bool  rm(sp(::aura::application) papp, const char * psz, bool bRecursive = true);
 
          virtual string name(const char * psz);
 
@@ -152,29 +152,29 @@ namespace file
          virtual void time_square(string &str);
          virtual string time_log(const char * pszId);
 
-         virtual string locale_schema(sp(::axis::application) papp, const string & strLocale, const string & strStyle);
-         virtual stringa locale_schema_matter(sp(::axis::application) papp, const string & strLocale, const string & strStyle, const char * pszRoot = NULL, const char * pszApp = NULL);
+         virtual string locale_schema(sp(::aura::application) papp, const string & strLocale, const string & strStyle);
+         virtual stringa locale_schema_matter(sp(::aura::application) papp, const string & strLocale, const string & strStyle, const char * pszRoot = NULL, const char * pszApp = NULL);
          virtual stringa locale_schema_matter(const string & strLocator, const string & strLocale, const string & strStyle);
-         virtual string matter(sp(::axis::application) papp, const stringa & stra, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
-         virtual string matter(sp(::axis::application) papp, const string & str, const string & str2, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
-         virtual string matter(sp(::axis::application) papp, const string & str, const char * psz, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
-         virtual string matter(sp(::axis::application) papp, const char * psz, const string & str, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
-         virtual string matter(sp(::axis::application) papp, const char * psz, const char * psz2, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
-         virtual string matter(sp(::axis::application) papp, const string & str, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
-         virtual string matter(sp(::axis::application) papp, const char * psz, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
+         virtual string matter(sp(::aura::application) papp, const stringa & stra, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
+         virtual string matter(sp(::aura::application) papp, const string & str, const string & str2, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
+         virtual string matter(sp(::aura::application) papp, const string & str, const char * psz, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
+         virtual string matter(sp(::aura::application) papp, const char * psz, const string & str, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
+         virtual string matter(sp(::aura::application) papp, const char * psz, const char * psz2, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
+         virtual string matter(sp(::aura::application) papp, const string & str, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
+         virtual string matter(sp(::aura::application) papp, const char * psz, bool bDir = false, const char * pszRoot = NULL, const char * pszApp = NULL);
 
-         virtual void   matter_ls(sp(::axis::application) papp, const string & str, stringa & stra);
-         virtual void   matter_ls_file(sp(::axis::application) papp, const string & str, stringa & stra);
+         virtual void   matter_ls(sp(::aura::application) papp, const string & str, stringa & stra);
+         virtual void   matter_ls_file(sp(::aura::application) papp, const string & str, stringa & stra);
 
-         virtual string matter(sp(::axis::application) papp);
+         virtual string matter(sp(::aura::application) papp);
 
          virtual string matter_from_locator(::user::str_context * pcontext, const string & strLocator);
          virtual string matter_from_locator(::user::str_context * pcontext, const string & strLocator, const string & str);
          virtual string matter_from_locator(::user::str_context * pcontext, const string & strLocator, const string & str, const string & str2);
-         virtual void appmatter_locators(string & strRoot, string & strDomain, sp(::axis::application) papp);
+         virtual void appmatter_locators(string & strRoot, string & strDomain, sp(::aura::application) papp);
          virtual void appmatter_locators(string & strRoot, string & strDomain, const string & strLibraryName, const string & strAppName);
          virtual void appmatter_locators(string & strRoot, string & strDomain, const string & strAppName);
-         virtual string appmatter_locator(sp(::axis::application) papp);
+         virtual string appmatter_locator(sp(::aura::application) papp);
          virtual string appmatter_locator(const string & strLibraryName, const string & strAppName);
          virtual string appmatter_locator(const string & strAppName);
          virtual string base_appmatter_locator(const string & strBase, const string & strLibraryName, const string & strAppName);
@@ -187,20 +187,20 @@ namespace file
          virtual string appdata(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
          virtual string commonappdata(const char * lpcsz = NULL,const char * lpcsz2 = NULL);
 
-         virtual string usersystemappdata(sp(::axis::application) papp, const char * lpcszPrefix, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
-         virtual string userappdata(sp(::axis::application) papp, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
-         virtual string userdata(sp(::axis::application) papp, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
-         virtual string userfolder(sp(::axis::application) papp, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
-         virtual string default_os_user_path_prefix(sp(::axis::application) papp);
-         virtual string default_userappdata(sp(::axis::application) papp, const char * lpcszPrefix, const char * lpcszLogin , const char * pszRelativePath = NULL);
-         virtual string default_userdata(sp(::axis::application) papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath = NULL);
-         virtual string default_userfolder(sp(::axis::application) papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath = NULL);
-         virtual string userquicklaunch(sp(::axis::application) papp, const char * pszRelativePath = NULL, const char * lpcsz2 = NULL);
-         virtual string userprograms(sp(::axis::application) papp, const char * pszRelativePath = NULL, const char * lpcsz2 = NULL);
+         virtual string usersystemappdata(sp(::aura::application) papp, const char * lpcszPrefix, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
+         virtual string userappdata(sp(::aura::application) papp, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
+         virtual string userdata(sp(::aura::application) papp, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
+         virtual string userfolder(sp(::aura::application) papp, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
+         virtual string default_os_user_path_prefix(sp(::aura::application) papp);
+         virtual string default_userappdata(sp(::aura::application) papp, const char * lpcszPrefix, const char * lpcszLogin , const char * pszRelativePath = NULL);
+         virtual string default_userdata(sp(::aura::application) papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath = NULL);
+         virtual string default_userfolder(sp(::aura::application) papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath = NULL);
+         virtual string userquicklaunch(sp(::aura::application) papp, const char * pszRelativePath = NULL, const char * lpcsz2 = NULL);
+         virtual string userprograms(sp(::aura::application) papp, const char * pszRelativePath = NULL, const char * lpcsz2 = NULL);
 
          virtual string commonprograms(const char * pszRelativePath = NULL, const char * lpcsz2 = NULL);
 
-         virtual string pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode, sp(::axis::application) papp);
+         virtual string pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode, sp(::aura::application) papp);
 
          virtual bool initialize();
 

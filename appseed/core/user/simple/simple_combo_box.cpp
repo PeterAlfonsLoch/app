@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_combo_box::simple_combo_box(sp(::axis::application) papp) :
+simple_combo_box::simple_combo_box(sp(::aura::application) papp) :
       element(papp),
       ::user::scroll_view(papp),
       data::data_listener(papp),

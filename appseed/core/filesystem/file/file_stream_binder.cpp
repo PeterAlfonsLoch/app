@@ -73,7 +73,7 @@ namespace file
 
 
 
-   stream_binder::stream_binder(sp(::axis::application) papp) :
+   stream_binder::stream_binder(sp(::aura::application) papp) :
       element(papp),
       _allBytesAreWritenEvent(papp),
       _thereAreBytesToReadEvent(papp),

@@ -81,7 +81,7 @@ namespace axis
    class ::id_space * system::s_pidspace = NULL;
 
 
-   system::system(sp(::axis::application) papp):
+   system::system(sp(::aura::application) papp):
       m_libraryDraw2d(this)
    {
       
@@ -738,7 +738,7 @@ namespace axis
 
 
 
-   sp(element) system::on_alloc(sp(::axis::application) papp,sp(type) info)
+   sp(element) system::on_alloc(sp(::aura::application) papp,sp(type) info)
    {
       /*string str;
       str.Format("Could not alloc %s", info.name());
@@ -750,23 +750,23 @@ namespace axis
       return NULL;
    }
 
-   sp(element) system::alloc(sp(::axis::application) papp,sp(type) info)
+   sp(element) system::alloc(sp(::aura::application) papp,sp(type) info)
    {
       return on_alloc(papp,info);
    }
 
-   sp(element) system::alloc(sp(::axis::application) papp,const std_type_info & info)
+   sp(element) system::alloc(sp(::aura::application) papp,const std_type_info & info)
    {
       return on_alloc(papp,canew(type(info)));
    }
 
-   void system::on_allocation_error(sp(::axis::application) papp,sp(type) info)
+   void system::on_allocation_error(sp(::aura::application) papp,sp(type) info)
    {
       UNREFERENCED_PARAMETER(papp);
       UNREFERENCED_PARAMETER(info);
    }
 
-   sp(element) system::alloc(sp(::axis::application) papp,const class id & idType)
+   sp(element) system::alloc(sp(::aura::application) papp,const class id & idType)
    {
       return on_alloc(papp,get_type_info(idType));
    }
@@ -908,7 +908,7 @@ namespace axis
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
   //    {
-    //     sp(::axis::application) papp = appptra()(i);
+    //     sp(::aura::application) papp = appptra()(i);
       //   papp->load_string_table();
       //}
 
@@ -921,7 +921,7 @@ namespace axis
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
  //     {
-  //       sp(::axis::application) papp = appptra()(i);
+  //       sp(::aura::application) papp = appptra()(i);
   //       papp->set_locale(pszLocale,actioncontext);
   //    }
 
@@ -934,7 +934,7 @@ namespace axis
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
   //    {
-  //       sp(::axis::application) papp = appptra()(i);
+  //       sp(::aura::application) papp = appptra()(i);
   //       papp->set_schema(pszStyle,actioncontext);
   //    }
 
@@ -1379,7 +1379,7 @@ namespace axis
 #ifdef WINDOWSEX
 
 
-   system::interaction_impl::interaction_impl(sp(::axis::application) papp):
+   system::interaction_impl::interaction_impl(sp(::aura::application) papp):
       element(papp),
       ::user::interaction(papp)
    {
@@ -1737,7 +1737,7 @@ namespace axis
    }
 
 
-   string system::dir_appmatter_locator(sp(::axis::application) papp)
+   string system::dir_appmatter_locator(sp(::aura::application) papp)
    {
 
       throw not_implemented(get_app());

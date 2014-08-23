@@ -28,7 +28,7 @@ public:
 
    ColorSchema *    m_pcolorschema;
 
-   SimplePushButton(sp(::axis::application) papp);
+   SimplePushButton(sp(::aura::application) papp);
    virtual ~SimplePushButton();
 
 

@@ -13,7 +13,7 @@ namespace filemanager
 
       double m_dAnime;
 
-      operation_info_view(sp(::axis::application) papp);
+      operation_info_view(sp(::aura::application) papp);
 
       void assert_valid() const;
       void dump(dump_context & context) const;

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-MetaControlBox::MetaControlBox(sp(::axis::application) papp) :
+MetaControlBox::MetaControlBox(sp(::aura::application) papp) :
 element(papp),
 ::user::interaction(papp),
 ::user::uinteraction::frame::control_box(papp)

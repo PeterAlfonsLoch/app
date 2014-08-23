@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      core(sp(::axis::application) papp);
+      core(sp(::aura::application) papp);
       virtual ~core();
 
 

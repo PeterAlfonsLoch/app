@@ -5,7 +5,7 @@ namespace nature
 {
 
 
-   pane_view::pane_view(sp(::axis::application) papp) :
+   pane_view::pane_view(sp(::aura::application) papp) :
       element(papp),
       ::user::tab(papp),
       

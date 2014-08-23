@@ -20,13 +20,13 @@ namespace platform
       m_plink = NULL;
    }
 
-   view::link::link(sp(::axis::application) papp) :
+   view::link::link(sp(::aura::application) papp) :
       m_button(papp)
    {
       m_prun = NULL;
    }
 
-   view::view(sp(::axis::application) papp) :
+   view::view(sp(::aura::application) papp) :
       element(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),

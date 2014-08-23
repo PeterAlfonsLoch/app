@@ -4,7 +4,7 @@
 #if defined(CUBE)
 
 
-void draw2d_factory_exchange(sp(::axis::application) papp);
+void draw2d_factory_exchange(sp(::aura::application) papp);
 
 
 #endif
@@ -2098,10 +2098,10 @@ namespace base
    //}
 
 
-   sp(::axis::application) application::assert_running(const char * pszAppId)
+   sp(::aura::application) application::assert_running(const char * pszAppId)
    {
 
-      sp(::axis::application) papp;
+      sp(::aura::application) papp;
 
       papp = Session.m_appptra.find_running_defer_try_quit_damaged(pszAppId);
 

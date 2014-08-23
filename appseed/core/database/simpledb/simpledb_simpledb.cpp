@@ -8,7 +8,7 @@ namespace simpledb
 {
 
 
-   simpledb::simpledb(sp(::axis::application) papp) :
+   simpledb::simpledb(sp(::aura::application) papp) :
       element(papp),
       ::aura::departament(papp)
    {

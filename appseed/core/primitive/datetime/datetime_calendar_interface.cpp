@@ -1,6 +1,6 @@
 #include "framework.h"
 
-calendar_interface::calendar_interface(sp(::axis::application) papp) :
+calendar_interface::calendar_interface(sp(::aura::application) papp) :
    element(papp)
 {
    ::datetime::time time = ::datetime::time::get_current_time();

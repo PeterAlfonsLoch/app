@@ -104,7 +104,7 @@ namespace dynamic_source
 #define CoreApp(pbaseapp) (*pbaseapp->m_pcoreapp)
 #define CoreApplication (CoreApp(m_pauraapp))
 
-inline ::core::platform & plat(sp(::axis::application) papp)
+inline ::core::platform & plat(sp(::aura::application) papp)
 {
    
    return *papp->m_pcoreplatform;
@@ -573,10 +573,10 @@ CLASS_DECL_CORE CArchive& operator>>(CArchive& ar, RECT& rect);
 
 
 
-CLASS_DECL_CORE void __get_gray_bitmap(sp(::axis::application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF crBackground);
-CLASS_DECL_CORE void __draw_gray_bitmap(sp(::axis::application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF crBackground);
-CLASS_DECL_CORE void __get_dithered_bitmap(sp(::axis::application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF cr1, COLORREF cr2);
-CLASS_DECL_CORE void __draw_dithered_bitmap(sp(::axis::application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
+CLASS_DECL_CORE void __get_gray_bitmap(sp(::aura::application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF crBackground);
+CLASS_DECL_CORE void __draw_gray_bitmap(sp(::aura::application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF crBackground);
+CLASS_DECL_CORE void __get_dithered_bitmap(sp(::aura::application) papp, const ::draw2d::bitmap &rSrc, ::draw2d::bitmap *pDest, COLORREF cr1, COLORREF cr2);
+CLASS_DECL_CORE void __draw_dithered_bitmap(sp(::aura::application) papp, ::draw2d::graphics * pgraphics, int32_t x, int32_t y, const ::draw2d::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
 
 
 #include "graphics/visual/visual_const.h"
@@ -895,7 +895,7 @@ class document;
 class main_frame;
 
 
-typedef sp(::axis::application) (* LP_GET_NEW_APP) ();
+typedef sp(::aura::application) (* LP_GET_NEW_APP) ();
 
 
 namespace core

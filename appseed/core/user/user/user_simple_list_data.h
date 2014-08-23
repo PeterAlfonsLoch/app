@@ -14,7 +14,7 @@ namespace user
       spa(stringa)         m_array;
 
       
-      simple_list_data(sp(::axis::application) papp);
+      simple_list_data(sp(::aura::application) papp);
       virtual ~simple_list_data();
 
 

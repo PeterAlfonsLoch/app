@@ -51,7 +51,7 @@ namespace zip {
         string m_strZipFile;
 
 
-        InFile(sp(::axis::application) papp);
+        InFile(sp(::aura::application) papp);
         virtual ~InFile();
 
 

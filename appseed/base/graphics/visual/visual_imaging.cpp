@@ -46,7 +46,7 @@ const imaging::CSysColorMap imaging::s_psyscolormap[] =
 
 #endif
 
-imaging::imaging(sp(::axis::application) papp) :
+imaging::imaging(sp(::aura::application) papp) :
    element(papp)
 {
 }
@@ -150,7 +150,7 @@ imaging::~imaging()
 }
 
 
-FIBITMAP * imaging::LoadImageFile(var varFile, sp(::axis::application) papp)
+FIBITMAP * imaging::LoadImageFile(var varFile, sp(::aura::application) papp)
 {
    ::file::memory_buffer memfile(get_app());
    System.file().as_memory(varFile, *memfile.get_memory(), papp);
@@ -159,7 +159,7 @@ FIBITMAP * imaging::LoadImageFile(var varFile, sp(::axis::application) papp)
    return LoadImageFile(&memfile);
 }
 
-bool imaging::LoadImageFile(::draw2d::dib * pdib, var varFile, sp(::axis::application) papp)
+bool imaging::LoadImageFile(::draw2d::dib * pdib, var varFile, sp(::aura::application) papp)
 {
 
    ::file::memory_buffer memfile(get_app());
@@ -186,7 +186,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib, var varFile, sp(::axis::applic
 }
 
 
-bool imaging::from(::draw2d::dib * pdib, ::draw2d::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI, sp(::axis::application) papp)
+bool imaging::from(::draw2d::dib * pdib, ::draw2d::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI, sp(::aura::application) papp)
 {
 
    if (pfibitmap == NULL)
@@ -2595,7 +2595,7 @@ return LoadImageSync(str);
 }*/
 
 
-::draw2d::bitmap_sp imaging::LoadImageSync(const char * lpcszImageFilePath, sp(::axis::application) papp)
+::draw2d::bitmap_sp imaging::LoadImageSync(const char * lpcszImageFilePath, sp(::aura::application) papp)
 {
 
    FIBITMAP * pfi = imaging::LoadImageFile(lpcszImageFilePath, papp);
@@ -2608,7 +2608,7 @@ return LoadImageSync(str);
 }
 
 
-bool imaging::LoadImageSync(::draw2d::dib * pdib, const char * lpcszImageFilePath, sp(::axis::application) papp)
+bool imaging::LoadImageSync(::draw2d::dib * pdib, const char * lpcszImageFilePath, sp(::aura::application) papp)
 {
 
    if(!imaging::LoadImageFile(pdib, lpcszImageFilePath, papp))
@@ -6615,7 +6615,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pdc, int32_t left, int32_t top, c
 }
 
 
-bool imaging::load_from_file(::draw2d::dib * pdib, var varFile, bool bCache, sp(::axis::application) papp)
+bool imaging::load_from_file(::draw2d::dib * pdib, var varFile, bool bCache, sp(::aura::application) papp)
 {
 
    if (papp == NULL)
@@ -6680,7 +6680,7 @@ bool imaging::load_from_file(::draw2d::dib * pdib, var varFile, bool bCache, sp(
 
 }
 
-bool imaging::read_from_file(::draw2d::dib * pdib, ::file::buffer_sp  pfile, sp(::axis::application) papp)
+bool imaging::read_from_file(::draw2d::dib * pdib, ::file::buffer_sp  pfile, sp(::aura::application) papp)
 {
 
    if (papp == NULL)
@@ -6714,7 +6714,7 @@ bool imaging::read_from_file(::draw2d::dib * pdib, ::file::buffer_sp  pfile, sp(
 
 
 
-bool imaging::load_from_matter(::draw2d::dib * pdib, var varFile, sp(::axis::application) papp)
+bool imaging::load_from_matter(::draw2d::dib * pdib, var varFile, sp(::aura::application) papp)
 {
 
    if (papp == NULL)
@@ -6726,7 +6726,7 @@ bool imaging::load_from_matter(::draw2d::dib * pdib, var varFile, sp(::axis::app
 }
 
 
-bool imaging::load_from_file(::visual::cursor * pcursor, var varFile, sp(::axis::application) papp)
+bool imaging::load_from_file(::visual::cursor * pcursor, var varFile, sp(::aura::application) papp)
 {
    string str(varFile);
    if (!::str::ends_eat_ci(str, ".png"))
@@ -6748,7 +6748,7 @@ bool imaging::load_from_file(::visual::cursor * pcursor, var varFile, sp(::axis:
    return true;
 }
 
-bool imaging::load_from_matter(::visual::cursor * pcursor, var varFile, sp(::axis::application) papp)
+bool imaging::load_from_matter(::visual::cursor * pcursor, var varFile, sp(::aura::application) papp)
 {
    if (papp == NULL)
       papp = get_app();
@@ -6757,7 +6757,7 @@ bool imaging::load_from_matter(::visual::cursor * pcursor, var varFile, sp(::axi
 
 }
 
-::visual::cursor_sp imaging::load_cursor_from_file(var varFile, sp(::axis::application) papp)
+::visual::cursor_sp imaging::load_cursor_from_file(var varFile, sp(::aura::application) papp)
 {
    if (papp == NULL)
       papp = get_app();
@@ -6771,7 +6771,7 @@ bool imaging::load_from_matter(::visual::cursor * pcursor, var varFile, sp(::axi
 
 }
 
-::visual::cursor_sp imaging::load_cursor_from_matter(var varFile, sp(::axis::application) papp)
+::visual::cursor_sp imaging::load_cursor_from_matter(var varFile, sp(::aura::application) papp)
 {
 
    if (papp == NULL)

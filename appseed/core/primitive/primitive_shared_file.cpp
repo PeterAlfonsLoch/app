@@ -8,7 +8,7 @@ namespace primitive
 {
 
 
-   shared_file::shared_file(sp(::axis::application) papp, UINT nAllocFlags, UINT nGrowBytes) :
+   shared_file::shared_file(sp(::aura::application) papp, UINT nAllocFlags, UINT nGrowBytes) :
       element(papp),
       memory_container(papp),
       memory_buffer(papp)

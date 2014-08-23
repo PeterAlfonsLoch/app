@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   split_view::split_view(sp(::axis::application) papp) :
+   split_view::split_view(sp(::aura::application) papp) :
       element(papp),
 
       split_layout(papp),

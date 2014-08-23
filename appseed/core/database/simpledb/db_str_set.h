@@ -47,7 +47,7 @@ public:
 
       smart_pointer_array < queue_item >               m_itema;
 
-      sync_queue(sp(::axis::application) papp);
+      sync_queue(sp(::aura::application) papp);
       virtual ~sync_queue();
 
 

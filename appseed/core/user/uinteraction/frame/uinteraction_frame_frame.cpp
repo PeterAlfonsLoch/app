@@ -13,7 +13,7 @@ namespace user
       {
 
 
-         frame::frame(sp(::axis::application) papp)
+         frame::frame(sp(::aura::application) papp)
          {
 
             m_typeinfoControlBox = System.type_info < MetaControlBox >();

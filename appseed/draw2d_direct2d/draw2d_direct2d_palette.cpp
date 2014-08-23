@@ -5,7 +5,7 @@ namespace draw2d_direct2d
 {
 
 
-   palette::palette(sp(::axis::application) papp) :
+   palette::palette(sp(::aura::application) papp) :
       element(papp)
    { }
    palette::~palette()

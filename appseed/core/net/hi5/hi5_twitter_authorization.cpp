@@ -4,7 +4,7 @@
 //#include <openssl/err.h>
 
 
-//typedef string ( *SALT)(sp(::axis::application), const char * , stringa &);
+//typedef string ( *SALT)(sp(::aura::application), const char * , stringa &);
 
 namespace hi5
 {
@@ -12,7 +12,7 @@ namespace hi5
    namespace twitter
    {
 
-      authorization::authorization(sp(::axis::application) papp, const char * pszAuthorizationUrl, const char * pszForm, bool bAuth, bool bInteractive) :
+      authorization::authorization(sp(::aura::application) papp, const char * pszAuthorizationUrl, const char * pszForm, bool bAuth, bool bInteractive) :
          element(papp)
       {
          m_strAuthorizationUrl=pszAuthorizationUrl;

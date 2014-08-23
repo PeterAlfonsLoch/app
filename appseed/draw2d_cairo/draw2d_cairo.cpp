@@ -11,7 +11,7 @@ mutex & cairo_mutex()
 }
 
 
-void init_cairo_mutex(sp(::axis::application) papp)
+void init_cairo_mutex(sp(::aura::application) papp)
 {
 
     s_pmutex = new mutex(papp);

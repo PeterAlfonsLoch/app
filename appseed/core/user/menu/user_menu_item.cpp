@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   menu_item::menu_item(sp(::axis::application) papp) :
+   menu_item::menu_item(sp(::aura::application) papp) :
       element(papp),
       menu_base_item(papp),
       m_button(papp)

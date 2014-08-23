@@ -23,7 +23,7 @@ namespace platform
          string                  m_strApp;
          string                  m_strQuery;
          sp(view)                  m_pview;
-         sp(::axis::application)     m_pauraapp;
+         sp(::aura::application)     m_pauraapp;
          bool                    m_bMakeVisible;
       };
 
@@ -31,7 +31,7 @@ namespace platform
          virtual public element
       {
       public:
-         link(sp(::axis::application) papp);
+         link(sp(::aura::application) papp);
          int32_t                     m_iId;
          run *                   m_prun;
          string                  m_strName;
@@ -93,7 +93,7 @@ namespace platform
 
 
       
-      view(sp(::axis::application) papp);
+      view(sp(::aura::application) papp);
       virtual ~view();
 
    #ifdef DEBUG

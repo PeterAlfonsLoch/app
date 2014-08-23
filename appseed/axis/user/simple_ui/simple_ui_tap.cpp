@@ -5,7 +5,7 @@ namespace simple_ui
 {
 
 
-   tap::tap(sp(::axis::application) papp) :
+   tap::tap(sp(::aura::application) papp) :
       element(papp)
    {
 

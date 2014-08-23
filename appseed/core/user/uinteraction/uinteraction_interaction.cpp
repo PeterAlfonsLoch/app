@@ -8,7 +8,7 @@ namespace user
    {
 
 
-      interaction::interaction(sp(::axis::application) papp) :
+      interaction::interaction(sp(::aura::application) papp) :
          element(papp)
       {
       }

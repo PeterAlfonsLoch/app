@@ -15,7 +15,7 @@ namespace draw2d_direct2d
       Microsoft::WRL::ComPtr<IDWriteTextFormat>                  m_pformat;
 
 
-      font(sp(::axis::application) papp);
+      font(sp(::aura::application) papp);
       virtual ~font();
 
 

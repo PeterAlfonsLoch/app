@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   tab_view::tab_view(sp(::axis::application) papp) :
+   tab_view::tab_view(sp(::aura::application) papp) :
       element(papp),
       ::user::tab(papp),
       ::user::tab_view(papp),

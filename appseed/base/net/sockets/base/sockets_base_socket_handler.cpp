@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   base_socket_handler::base_socket_handler(sp(::axis::application) papp, logger * plogger) :
+   base_socket_handler::base_socket_handler(sp(::aura::application) papp, logger * plogger) :
       element(papp),
       m_splogger(plogger)
    {

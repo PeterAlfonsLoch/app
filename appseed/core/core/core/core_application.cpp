@@ -3633,7 +3633,7 @@ namespace core
 
 
 
-   sp(::axis::application) application::get_system()
+   sp(::aura::application) application::get_system()
    {
       return new application();
    }
@@ -3771,7 +3771,7 @@ namespace core
 
 
 
-   //typedef  void (* PFN_ca2_factory_exchange)(sp(::axis::application) papp);
+   //typedef  void (* PFN_ca2_factory_exchange)(sp(::aura::application) papp);
 
 
 
@@ -3833,10 +3833,10 @@ namespace core
 
 
 
-   sp(::axis::application) application::instantiate_application(const char * pszType,const char * pszId,application_bias * pbias)
+   sp(::aura::application) application::instantiate_application(const char * pszType,const char * pszId,application_bias * pbias)
    {
 
-      sp(::axis::application) papp = NULL;
+      sp(::aura::application) papp = NULL;
 
       string strId(pszId);
 
@@ -3956,15 +3956,15 @@ namespace core
    }
 
 
-   sp(::axis::application) application::create_application(const char * pszType,const char * pszId,bool bSynch,application_bias * pbias)
+   sp(::aura::application) application::create_application(const char * pszType,const char * pszId,bool bSynch,application_bias * pbias)
    {
 
-      sp(::axis::application) pbaseapp = instantiate_application(pszType,pszId,pbias);
+      sp(::aura::application) pbaseapp = instantiate_application(pszType,pszId,pbias);
 
       if(pbaseapp == NULL)
          return NULL;
 
-      sp(::axis::application) papp = (pbaseapp);
+      sp(::aura::application) papp = (pbaseapp);
 
       if(!papp->m_pcoreapp->start_application(bSynch,pbias))
       {

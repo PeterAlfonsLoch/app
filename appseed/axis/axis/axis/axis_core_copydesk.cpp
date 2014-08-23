@@ -5,7 +5,7 @@ namespace axis
 {
 
 
-   copydesk::copydesk(sp(::axis::application) papp) :
+   copydesk::copydesk(sp(::aura::application) papp) :
       element(papp)
    {
    }

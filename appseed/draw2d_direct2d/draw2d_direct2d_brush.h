@@ -20,7 +20,7 @@ namespace draw2d_direct2d
       Microsoft::WRL::ComPtr<ID2D1LinearGradientBrush>    m_plineargradientbrush;
 
 
-      brush(sp(::axis::application) papp);
+      brush(sp(::aura::application) papp);
       //virtual void construct(COLORREF crColor);                // CreateSolidBrush
       //virtual void construct(int nIndex, COLORREF crColor);    // CreateHatchBrush
       //virtual void construct(::draw2d::bitmap * pbitmap);                // CreatePatternBrush

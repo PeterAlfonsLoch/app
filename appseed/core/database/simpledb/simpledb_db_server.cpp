@@ -5,7 +5,7 @@
 int32_t g_idbchange;
 
 
-db_server::db_server(sp(::axis::application) papp) :
+db_server::db_server(sp(::aura::application) papp) :
    element(papp)
 {
    m_pdb                = NULL;

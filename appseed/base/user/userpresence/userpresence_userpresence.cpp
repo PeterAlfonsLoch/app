@@ -5,7 +5,7 @@ namespace userpresence
 {
 
 
-   userpresence::userpresence(sp(::axis::application) papp) :
+   userpresence::userpresence(sp(::aura::application) papp) :
       element(papp),
       ::aura::departament(papp),
       m_queue(papp)

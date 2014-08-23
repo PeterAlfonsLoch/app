@@ -44,7 +44,7 @@ namespace dynamic_source
    }
 
 
-   script_manager::script_manager(sp(::axis::application) papp) :
+   script_manager::script_manager(sp(::aura::application) papp) :
       element(papp),
       thread(papp),
       message_queue(papp),

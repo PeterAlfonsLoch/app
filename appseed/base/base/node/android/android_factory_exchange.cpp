@@ -5,7 +5,7 @@ namespace android
 {
 
 
-   factory_exchange::factory_exchange(sp(::axis::application) papp) :
+   factory_exchange::factory_exchange(sp(::aura::application) papp) :
       element(papp)
    {
 
@@ -37,7 +37,7 @@ namespace android
 
 
 extern "C"
-void ca2_factory_exchange(sp(::axis::application) papp)
+void ca2_factory_exchange(sp(::aura::application) papp)
 {
    ::android::factory_exchange factoryexchange(papp);
 }

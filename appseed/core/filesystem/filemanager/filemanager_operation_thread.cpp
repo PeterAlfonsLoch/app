@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   operation_thread::operation_thread(sp(::axis::application) papp):
+   operation_thread::operation_thread(sp(::aura::application) papp):
       element(papp),
       thread(papp),
       simple_thread(papp),

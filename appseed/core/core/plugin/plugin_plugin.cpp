@@ -31,7 +31,7 @@ namespace plugin
    void my_se_translator_function(uint32_t, struct _EXCEPTION_POINTERS* );
 
 
-   plugin::plugin(sp(::axis::application) papp) :
+   plugin::plugin(sp(::aura::application) papp) :
       element(papp),
       ::simple_ui::style(papp),
       ::user::interaction(papp),

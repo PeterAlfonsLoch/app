@@ -5,7 +5,7 @@ namespace install
 {
 
 
-   starter_start::starter_start(sp(::axis::application) papp) :
+   starter_start::starter_start(sp(::aura::application) papp) :
       element(papp)
    {
 

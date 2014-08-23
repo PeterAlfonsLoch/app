@@ -11,8 +11,8 @@ namespace sockets
    public:
 
 
-      http_buffer(sp(::axis::application) papp, mutex * pmutex = NULL);
-      http_buffer(sp(::axis::application) papp, ::file::memory_buffer * pmemoryfileIn);
+      http_buffer(sp(::aura::application) papp, mutex * pmutex = NULL);
+      http_buffer(sp(::aura::application) papp, ::file::memory_buffer * pmemoryfileIn);
       virtual ~http_buffer();
 
 

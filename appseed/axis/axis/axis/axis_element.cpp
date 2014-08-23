@@ -26,7 +26,7 @@ element::element(const element & o)
 }
 
 
-element::element(sp(::axis::application) papp)
+element::element(sp(::aura::application) papp)
 {
 
    m_pauraapp = papp;
@@ -42,7 +42,7 @@ element::~element()
 }
 
 
-/*sp(::axis::application) element::get_app() const
+/*sp(::aura::application) element::get_app() const
 {
 
    return m_pauraapp;
@@ -50,7 +50,7 @@ element::~element()
 }*/
 
 
-void element::set_app(sp(::axis::application) papp)
+void element::set_app(sp(::aura::application) papp)
 {
 
    m_pauraapp = papp;
@@ -118,7 +118,7 @@ sp(element) element::clone()
 }
 
 
-allocatorsp::allocatorsp(sp(::axis::application) papp)
+allocatorsp::allocatorsp(sp(::aura::application) papp)
 {
 
    sp(allocator) spallocator = canew(allocator());

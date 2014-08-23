@@ -5,7 +5,7 @@ namespace android
 {
 
 
-   thread::thread(sp(::axis::application) papp) :
+   thread::thread(sp(::aura::application) papp) :
       element(papp),
       ::thread_impl(papp),
       ::ansios::thread_impl(papp)

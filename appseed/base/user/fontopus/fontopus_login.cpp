@@ -15,7 +15,7 @@ namespace fontopus
    UINT c_cdecl thread_proc_defer_translate_login(void * p);
 
 
-   login::login(sp(::axis::application) papp, int left, int top) :
+   login::login(sp(::aura::application) papp, int left, int top) :
       element(papp)
    {
 

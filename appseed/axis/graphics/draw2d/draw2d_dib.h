@@ -305,7 +305,7 @@ namespace draw2d
    {
    public:
 
-      dibmap(sp(::axis::application) papp) :
+      dibmap(sp(::aura::application) papp) :
          element(papp)
       {
       }
@@ -367,7 +367,7 @@ namespace draw2d
       int32_t m_iLimitCount;
 
 
-      dibmap_ex1(sp(::axis::application) papp, int32_t iLimitCount = 500) :
+      dibmap_ex1(sp(::aura::application) papp, int32_t iLimitCount = 500) :
          element(papp)
       {
 

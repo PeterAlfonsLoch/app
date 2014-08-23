@@ -25,7 +25,7 @@ namespace dynamic_source
       spa(script_instance)                      m_scriptinstanceptra;
 
 
-      script(sp(::axis::application) papp);
+      script(sp(::aura::application) papp);
       virtual ~script();
 
 
@@ -70,7 +70,7 @@ namespace dynamic_source
 
 
 
-      ds_script(sp(::axis::application) papp);
+      ds_script(sp(::aura::application) papp);
       ~ds_script();
 
 
@@ -93,7 +93,7 @@ namespace dynamic_source
       string get_stage_path();
 
 
-      sp(::axis::application) get_app() const;
+      sp(::aura::application) get_app() const;
 
       script_instance * create_instance();
 
@@ -107,7 +107,7 @@ namespace dynamic_source
    public:
 
 
-      t_script(sp(::axis::application) papp) : 
+      t_script(sp(::aura::application) papp) : 
          element(papp),
          script(papp)
       {

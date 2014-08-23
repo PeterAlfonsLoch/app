@@ -14,7 +14,7 @@ namespace install
       ::hotplugin::plugin  *           m_pplugin;
       string                           m_strCommandLine;
 
-      starter_start(sp(::axis::application) papp);
+      starter_start(sp(::aura::application) papp);
 
       UINT start();
 

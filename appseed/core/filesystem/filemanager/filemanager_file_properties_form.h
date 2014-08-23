@@ -20,7 +20,7 @@ namespace filemanager
       ::fs::item_array                          m_itema;
 
 
-      file_properties_form(sp(::axis::application) papp);
+      file_properties_form(sp(::aura::application) papp);
       virtual ~file_properties_form();
 
 

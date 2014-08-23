@@ -14,7 +14,7 @@ namespace simple_ui
       int_ptr         m_iPos;
 
 
-      edit_box(sp(::axis::application) papp);
+      edit_box(sp(::aura::application) papp);
       virtual ~edit_box();
 
 

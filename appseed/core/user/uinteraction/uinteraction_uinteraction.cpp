@@ -9,7 +9,7 @@ namespace user
    {
 
 
-      uinteraction::uinteraction(sp(::axis::application) papp) :
+      uinteraction::uinteraction(sp(::aura::application) papp) :
          element(papp),
          ::aura::departament(papp)
       {

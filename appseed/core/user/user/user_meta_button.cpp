@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-MetaButton::MetaButton(sp(::axis::application) papp) :
+MetaButton::MetaButton(sp(::aura::application) papp) :
    element(papp),
    ::user::button(papp),
    ::user::uinteraction::frame::control_box_button(papp),

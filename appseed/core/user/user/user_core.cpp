@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   core::core(sp(::axis::application) papp) :
+   core::core(sp(::aura::application) papp) :
       element(papp),
       ::aura::departament(papp)
    {

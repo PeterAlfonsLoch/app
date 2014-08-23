@@ -11,7 +11,7 @@ root::root()
 }
 
 
-root::root(sp(::axis::application) papp)
+root::root(sp(::aura::application) papp)
 {
 
    m_countReference  = 1;

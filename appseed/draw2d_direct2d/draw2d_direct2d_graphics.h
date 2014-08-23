@@ -41,7 +41,7 @@ namespace draw2d_direct2d
       };
 
       graphics();
-      graphics(sp(::axis::application) papp);
+      graphics(sp(::aura::application) papp);
       virtual ~graphics();
 
 
@@ -446,7 +446,7 @@ namespace draw2d_direct2d
       bool SelectClipPath(int nMode);
 
    // Misc Helper Functions
-      static ::draw2d::brush* GetHalftoneBrush(sp(::axis::application) papp);
+      static ::draw2d::brush* GetHalftoneBrush(sp(::aura::application) papp);
       void DrawDragRect(const RECT & lpRect, SIZE size,
          const RECT & lpRectLast, SIZE sizeLast,
          ::draw2d::brush* pBrush = NULL, ::draw2d::brush* pBrushLast = NULL);

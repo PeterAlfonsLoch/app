@@ -19,14 +19,14 @@ namespace core
 #ifndef _WIN32
 extern "C"
 #endif
-::axis::library * get_new_library(sp(::axis::application) papp);
+::axis::library * get_new_library(sp(::aura::application) papp);
 
 
 namespace core
 {
 
 
-   library::library(sp(::axis::application) papp):
+   library::library(sp(::aura::application) papp):
       element(papp),
       ::axis::library(papp,0,"app"),
       ::axis::single_application_library < application >(papp,"app"),
@@ -85,7 +85,7 @@ namespace core
 #ifndef _WIN32
 extern "C"
 #endif
-::axis::library * get_new_library(sp(::axis::application) papp)
+::axis::library * get_new_library(sp(::aura::application) papp)
 {
 
    return canew(::core::library(papp));

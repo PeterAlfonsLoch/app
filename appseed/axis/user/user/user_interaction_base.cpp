@@ -27,7 +27,7 @@ namespace user
    }
 
 
-   interaction_base::interaction_base(sp(::axis::application) papp) :
+   interaction_base::interaction_base(sp(::aura::application) papp) :
       element(papp),
       command_target_interface(papp)
    {

@@ -18,7 +18,7 @@ namespace filemanager
       sp(data)                   m_pdata;
 
 
-      folder_selection_list_view(sp(::axis::application) papp);
+      folder_selection_list_view(sp(::aura::application) papp);
       virtual ~folder_selection_list_view();
 
 

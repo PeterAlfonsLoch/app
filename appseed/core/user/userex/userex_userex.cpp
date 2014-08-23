@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   userex::userex(sp(::axis::application) papp):
+   userex::userex(sp(::aura::application) papp):
       element(papp),
       ::aura::departament(papp),
       ::user::core(papp)
@@ -538,14 +538,14 @@ namespace userex
    }
 
 
-   ::user::front_end_schema * GetUfeSchema(sp(::axis::application) papp)
+   ::user::front_end_schema * GetUfeSchema(sp(::aura::application) papp)
    {
 
       return App(papp).userex()->GetUfeSchema();
 
    }
 
-   ::user::front_end * GetUfe(sp(::axis::application) papp)
+   ::user::front_end * GetUfe(sp(::aura::application) papp)
    {
       return App(papp).userex()->GetUfe();
    }

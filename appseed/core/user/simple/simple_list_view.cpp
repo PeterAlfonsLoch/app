@@ -1,6 +1,6 @@
 #include "framework.h"
 
-simple_list_view::simple_list_view(sp(::axis::application) papp) :
+simple_list_view::simple_list_view(sp(::aura::application) papp) :
    element(papp),
    ::user::scroll_view(papp),
    ::user::list(papp),

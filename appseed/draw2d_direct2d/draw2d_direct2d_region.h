@@ -14,7 +14,7 @@ namespace draw2d_direct2d
       ID2D1Geometry *            m_pgeometry;
 
 
-      region(sp(::axis::application) papp);
+      region(sp(::aura::application) papp);
       virtual ~region();
 
             

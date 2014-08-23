@@ -16,7 +16,7 @@ namespace user
       menu_item *          m_pitemContainer;
 
 
-      menu_button_cmd_ui(sp(::axis::application) papp);
+      menu_button_cmd_ui(sp(::aura::application) papp);
 
 
       virtual void Enable(bool bOn, ::action::context actioncontext);
@@ -31,7 +31,7 @@ namespace user
       public button
    {
    public:
-      menu_button(sp(::axis::application) papp);
+      menu_button(sp(::aura::application) papp);
    public:
       virtual ~menu_button();
 

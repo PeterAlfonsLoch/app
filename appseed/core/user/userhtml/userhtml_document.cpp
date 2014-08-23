@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 
 
-html_document::html_document(sp(::axis::application) papp) :
+html_document::html_document(sp(::aura::application) papp) :
    element(papp),
    ::data::data_container_base(papp),
    ::user::document(papp)

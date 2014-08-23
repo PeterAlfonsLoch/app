@@ -9,7 +9,7 @@ namespace draw2d_direct2d
    public:
 
 
-      factory_exchange(sp(::axis::application) papp);
+      factory_exchange(sp(::aura::application) papp);
       virtual ~factory_exchange();
 
 

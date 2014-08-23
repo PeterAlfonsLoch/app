@@ -5,7 +5,7 @@ namespace userfs
 {
 
 
-   userfs::userfs(sp(::axis::application) papp) :
+   userfs::userfs(sp(::aura::application) papp) :
       element(papp),
       ::aura::departament(papp)
    {

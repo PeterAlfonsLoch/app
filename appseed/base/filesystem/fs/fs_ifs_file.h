@@ -12,7 +12,7 @@ public:
    var                                          m_varFile;
 
 
-   ifs_file(sp(::axis::application) papp, var varFile);
+   ifs_file(sp(::aura::application) papp, var varFile);
    virtual ~ifs_file();
 
    using ::sockets::http_batch_buffer::read;

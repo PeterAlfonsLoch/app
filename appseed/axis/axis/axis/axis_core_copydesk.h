@@ -11,7 +11,7 @@ namespace axis
    public:
 
 
-      copydesk(sp(::axis::application) papp);
+      copydesk(sp(::aura::application) papp);
       virtual ~copydesk();
 
 

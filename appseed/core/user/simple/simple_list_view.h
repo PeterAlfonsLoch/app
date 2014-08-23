@@ -8,7 +8,7 @@ public:
 
    simple_list_header_control    m_headerctrl;
    
-   simple_list_view(sp(::axis::application) papp);   
+   simple_list_view(sp(::aura::application) papp);   
    virtual ~simple_list_view();
 
    virtual void install_message_handling(::message::dispatch * pinterface);

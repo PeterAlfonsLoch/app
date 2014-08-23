@@ -31,7 +31,7 @@ namespace fontopus
       visual::icon *                m_picon95; // the best size to fit current ca2 icon (as of 2014)
 
 
-      login(sp(::axis::application) papp, int left, int top);
+      login(sp(::aura::application) papp, int left, int top);
       virtual ~login();
 
 

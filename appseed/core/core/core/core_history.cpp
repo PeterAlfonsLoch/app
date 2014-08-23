@@ -8,7 +8,7 @@ namespace core
       m_phistory = NULL;
    }
 
-   history::history(sp(::axis::application) papp) :
+   history::history(sp(::aura::application) papp) :
       element(papp)
    {
       m_phistory = NULL;

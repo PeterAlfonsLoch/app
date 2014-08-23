@@ -87,7 +87,7 @@ namespace sockets
       sp(logger)        m_splogger; ///< Registered log class, or NULL
 
 
-      base_socket_handler(sp(::axis::application) papp, logger * plogger = NULL);
+      base_socket_handler(sp(::aura::application) papp, logger * plogger = NULL);
       virtual ~base_socket_handler();
 
       /** get mutex reference for threadsafe operations. */

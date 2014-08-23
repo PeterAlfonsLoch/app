@@ -14,7 +14,7 @@ namespace userex // ca8 + cube
       string      m_strResponse;
 
 
-      wait_message_dialog(sp(::axis::application) papp);
+      wait_message_dialog(sp(::aura::application) papp);
       virtual ~wait_message_dialog();
 
       virtual void on_show(const char * pszMatter, property_set & propertyset);

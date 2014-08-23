@@ -21,7 +21,7 @@ namespace user
    public:
 
 
-      interaction_ptr_array(sp(::axis::application) papp);
+      interaction_ptr_array(sp(::aura::application) papp);
       interaction_ptr_array(const ptr_array < ::user::interaction > & a);
       interaction_ptr_array(const ::user::interaction_ptr_array & a)
       {

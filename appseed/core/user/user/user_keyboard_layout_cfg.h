@@ -12,7 +12,7 @@ namespace user
 
 
 
-      keyboard_layout_cfg(sp(::axis::application) papp);
+      keyboard_layout_cfg(sp(::aura::application) papp);
       virtual ~keyboard_layout_cfg();
 
       bool CreateViews();

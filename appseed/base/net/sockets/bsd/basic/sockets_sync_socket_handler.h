@@ -18,7 +18,7 @@ namespace sockets
       int32_t                 m_iDefaultTimeout;
 
       
-      sync_socket_handler(sp(::axis::application) papp, logger *log = NULL);
+      sync_socket_handler(sp(::aura::application) papp, logger *log = NULL);
       virtual ~sync_socket_handler();
 
 

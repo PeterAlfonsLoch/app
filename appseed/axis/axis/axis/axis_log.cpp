@@ -8,7 +8,7 @@ namespace axis
    uint32_t g_dwFirstTick = ::get_tick_count();
 
 
-   log::log(sp(::axis::application) papp) :
+   log::log(sp(::aura::application) papp) :
       element(papp)
    {
 
@@ -93,7 +93,7 @@ namespace axis
    }
 
 
-//   extern sp(::axis::application) g_papp;
+//   extern sp(::aura::application) g_papp;
 
    CLASS_DECL_AXIS int32_t SimpleDebugReport(int32_t iReportType, const char * pszFileName,int32_t iLine,const char *,const char * pszFormat, va_list list)
    {

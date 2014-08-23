@@ -29,7 +29,7 @@ protected:
 
 
 public:
-   imaging(sp(::axis::application) papp);
+   imaging(sp(::aura::application) papp);
     ~imaging();
 
 
@@ -294,14 +294,14 @@ public:
       HRSRC hRsrc,
       bool bMono = false);*/
 
-   virtual bool LoadImageFile(::draw2d::dib * pdib, var varFile, sp(::axis::application) papp);
-   virtual bool LoadImageSync(::draw2d::dib * pdib, const char * lpcszImageFilePath, sp(::axis::application) papp);
+   virtual bool LoadImageFile(::draw2d::dib * pdib, var varFile, sp(::aura::application) papp);
+   virtual bool LoadImageSync(::draw2d::dib * pdib, const char * lpcszImageFilePath, sp(::aura::application) papp);
 
-   virtual FIBITMAP * LoadImageFile(var varFile, sp(::axis::application) papp);
+   virtual FIBITMAP * LoadImageFile(var varFile, sp(::aura::application) papp);
    virtual FIBITMAP * LoadImageFile(::file::buffer_sp  pfile);
    virtual ::draw2d::bitmap_sp FItoHBITMAP(FIBITMAP * pfibitmap, bool bDestroyFI);
    virtual FIBITMAP * HBITMAPtoFI(::draw2d::bitmap_sp hbitmap);
-   virtual ::draw2d::bitmap_sp LoadImageSync(const char * lpcszImageFilePath, sp(::axis::application) papp);
+   virtual ::draw2d::bitmap_sp LoadImageSync(const char * lpcszImageFilePath, sp(::aura::application) papp);
    virtual void SaveJpeg(const char * lpcszFile, ::draw2d::bitmap_sp pbitmap);
    virtual void SavePng(const char * lpcszFile, ::draw2d::bitmap_sp pbitmap);
    virtual void SavePng(const char * lpcszFile, FIBITMAP * pfi, bool bUnload);
@@ -309,17 +309,17 @@ public:
    virtual void free(FIBITMAP * pfibitmap);
 
 
-   bool load_from_file(::draw2d::dib * pdib, var varFile, bool bCache = true, sp(::axis::application) papp = NULL);
-   bool load_from_matter(::draw2d::dib * pdib, var varFile, sp(::axis::application) papp = NULL);
-   bool read_from_file(::draw2d::dib * pdib, ::file::buffer_sp buffer, sp(::axis::application) papp = NULL);
+   bool load_from_file(::draw2d::dib * pdib, var varFile, bool bCache = true, sp(::aura::application) papp = NULL);
+   bool load_from_matter(::draw2d::dib * pdib, var varFile, sp(::aura::application) papp = NULL);
+   bool read_from_file(::draw2d::dib * pdib, ::file::buffer_sp buffer, sp(::aura::application) papp = NULL);
 
-   bool load_from_file(::visual::cursor * pcursor, var varFile, sp(::axis::application) papp = NULL);
-   bool load_from_matter(::visual::cursor * pcursor, var varFile, sp(::axis::application) papp = NULL);
+   bool load_from_file(::visual::cursor * pcursor, var varFile, sp(::aura::application) papp = NULL);
+   bool load_from_matter(::visual::cursor * pcursor, var varFile, sp(::aura::application) papp = NULL);
 
-   ::visual::cursor_sp load_cursor_from_file(var varFile, sp(::axis::application) papp = NULL);
-   ::visual::cursor_sp load_cursor_from_matter(var varFile, sp(::axis::application) papp = NULL);
+   ::visual::cursor_sp load_cursor_from_file(var varFile, sp(::aura::application) papp = NULL);
+   ::visual::cursor_sp load_cursor_from_matter(var varFile, sp(::aura::application) papp = NULL);
 
-   virtual bool from(::draw2d::dib * pdib, ::draw2d::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI, sp(::axis::application) papp = NULL);
+   virtual bool from(::draw2d::dib * pdib, ::draw2d::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI, sp(::aura::application) papp = NULL);
 
 };
 

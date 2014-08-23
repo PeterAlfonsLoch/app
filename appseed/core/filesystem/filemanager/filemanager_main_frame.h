@@ -11,7 +11,7 @@ namespace filemanager
    public:
 
 
-      main_frame(sp(::axis::application) papp);
+      main_frame(sp(::aura::application) papp);
       virtual ~main_frame();
 
       virtual bool on_create_bars();

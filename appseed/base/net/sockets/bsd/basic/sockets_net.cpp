@@ -18,7 +18,7 @@ namespace sockets
 {
 
 
-   net::net(sp(::axis::application) papp) :
+   net::net(sp(::aura::application) papp) :
       element(papp),
       m_mapCache(papp,"sockets::net::m_mapCache"),
       m_mapReverseCache(papp,"sockets::net::m_mapReverseCache")

@@ -13,7 +13,7 @@ namespace filemanager
       {
 
 
-         list_view::list_view(sp(::axis::application) papp) :
+         list_view::list_view(sp(::aura::application) papp) :
          element(papp),
             ::user::scroll_view(papp),
             ::user::list(papp),

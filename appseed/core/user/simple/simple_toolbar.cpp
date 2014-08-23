@@ -6,7 +6,7 @@ class SimpleToolCmdUI : public cmd_ui        // class private to this file !
 {
 public: // re-implementations only
 
-   SimpleToolCmdUI(sp(::axis::application) papp);
+   SimpleToolCmdUI(sp(::aura::application) papp);
    virtual void Enable(bool bOn = TRUE, ::action::context actioncontext = ::action::source_system);
 //   virtual void _001SetCheck(bool bCheck, ::action::context = ::action::source_system);   // 0, 1 or 2 (indeterminate)
    virtual void _001SetCheck(check::e_check echeck, ::action::context = ::action::source_system);   // 0, 1 or 2 (indeterminate)
@@ -39,7 +39,7 @@ public: // re-implementations only
 #define ITEMPADBOTTOM   4
 
 
-simple_toolbar::simple_toolbar(sp(::axis::application) papp) :
+simple_toolbar::simple_toolbar(sp(::aura::application) papp) :
 element(papp),
    m_dibDraft(allocer())
 {
@@ -1456,7 +1456,7 @@ void simple_toolbar::_001OnImageListAttrib()
 /////////////////////////////////////////////////////////////////////////////
 // simple_toolbar idle update through SimpleToolCmdUI class
 
-SimpleToolCmdUI::SimpleToolCmdUI(sp(::axis::application) papp) :
+SimpleToolCmdUI::SimpleToolCmdUI(sp(::aura::application) papp) :
 element(papp),
    cmd_ui(papp)
 {

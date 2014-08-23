@@ -125,7 +125,7 @@ namespace axis
       {
       public:
 
-         interaction_impl(sp(::axis::application) papp);
+         interaction_impl(sp(::aura::application) papp);
 
          void install_message_handling(::message::dispatch * pdispath);
 
@@ -145,7 +145,7 @@ namespace axis
 #endif
 
 
-      system(sp(::axis::application) papp);
+      system(sp(::aura::application) papp);
       virtual ~system();
 
 
@@ -195,10 +195,10 @@ namespace axis
 
 
       using ::axis::application::alloc;
-      virtual sp(element) alloc(sp(::axis::application) papp,sp(type) info);
-      virtual sp(element) alloc(sp(::axis::application) papp,const class id & idType);
+      virtual sp(element) alloc(sp(::aura::application) papp,sp(type) info);
+      virtual sp(element) alloc(sp(::aura::application) papp,const class id & idType);
 
-      virtual sp(element) on_alloc(sp(::axis::application) papp,sp(type) info);
+      virtual sp(element) on_alloc(sp(::aura::application) papp,sp(type) info);
       virtual sp(element) clone();
       template < class T >
       sp(T) clone(sp(T) p)
@@ -247,10 +247,10 @@ namespace axis
       sp(::user::window_draw)               get_twf();
 
 
-      virtual void on_allocation_error(sp(::axis::application) papp,sp(type) info);
-      //   sp(element) alloc(sp(::axis::application) papp, sp(type) info);
-      sp(element) alloc(sp(::axis::application) papp,const std_type_info & info);
-      //   virtual sp(element) on_alloc(sp(::axis::application) papp, sp(type) info);
+      virtual void on_allocation_error(sp(::aura::application) papp,sp(type) info);
+      //   sp(element) alloc(sp(::aura::application) papp, sp(type) info);
+      sp(element) alloc(sp(::aura::application) papp,const std_type_info & info);
+      //   virtual sp(element) on_alloc(sp(::aura::application) papp, sp(type) info);
 
 
       static inline class id id(const ::std_type_info & info);
@@ -397,7 +397,7 @@ namespace axis
       virtual string get_module_name();
 
 
-      virtual string dir_appmatter_locator(sp(::axis::application) papp);
+      virtual string dir_appmatter_locator(sp(::aura::application) papp);
 
    };
 

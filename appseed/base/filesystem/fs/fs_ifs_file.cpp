@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-ifs_file::ifs_file(sp(::axis::application) papp, var varFile) :
+ifs_file::ifs_file(sp(::aura::application) papp, var varFile) :
    element(papp),
    ::sockets::http_batch_buffer(papp),
    m_httpfile(canew(::sockets::http_buffer(papp))),

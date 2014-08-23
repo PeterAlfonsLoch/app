@@ -20,7 +20,7 @@ namespace user
    }
 
 
-   interaction_child::interaction_child(sp(::axis::application) papp):
+   interaction_child::interaction_child(sp(::aura::application) papp):
       element(papp)
    {
 

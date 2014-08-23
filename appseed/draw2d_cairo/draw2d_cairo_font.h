@@ -17,7 +17,7 @@ namespace draw2d_cairo
       cairo_scaled_font_t *      m_pfont;
 
 
-      font(sp(::axis::application) papp);
+      font(sp(::aura::application) papp);
       virtual ~font();
 
 

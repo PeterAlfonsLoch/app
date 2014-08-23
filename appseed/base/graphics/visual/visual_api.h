@@ -11,7 +11,7 @@ namespace visual
    public:
 
 
-      api(sp(::axis::application) papp);
+      api(sp(::aura::application) papp);
       virtual ~api();
 
 

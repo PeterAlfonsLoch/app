@@ -5,7 +5,7 @@ namespace html
 {
 
 
-   html::html(sp(::axis::application) papp) :
+   html::html(sp(::aura::application) papp) :
       element(papp),
       ::aura::departament(papp),
       m_entityresolver(papp)
@@ -20,7 +20,7 @@ namespace html
    }
 
 
-   void html::construct(sp(::axis::application) papp)
+   void html::construct(sp(::aura::application) papp)
    {
 
       ::aura::departament::construct(papp);

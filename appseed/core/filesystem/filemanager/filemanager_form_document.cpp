@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   form_document::form_document(sp(::axis::application) papp):
+   form_document::form_document(sp(::aura::application) papp):
       element(papp),
       ::data::data_container_base(papp),
       ::user::document(papp),

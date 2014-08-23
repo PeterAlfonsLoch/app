@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   save_as_view::save_as_view(sp(::axis::application) papp):
+   save_as_view::save_as_view(sp(::aura::application) papp):
       element(papp),
       ::data::data_listener(papp),
       colorertake5::base_editor(papp),

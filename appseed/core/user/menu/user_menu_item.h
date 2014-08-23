@@ -22,7 +22,7 @@ namespace user
       menu_base *          m_pbase;
 
 
-      menu_item(sp(::axis::application) papp);
+      menu_item(sp(::aura::application) papp);
       virtual ~menu_item();
 
 

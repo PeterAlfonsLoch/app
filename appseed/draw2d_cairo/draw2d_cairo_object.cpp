@@ -49,7 +49,7 @@ namespace draw2d_cairo
    }
 
 
-   object * graphics_object_allocator(sp(::axis::application) papp, HANDLE h)
+   object * graphics_object_allocator(sp(::aura::application) papp, HANDLE h)
    {
       /*switch(::GetObjectType(h))
       {

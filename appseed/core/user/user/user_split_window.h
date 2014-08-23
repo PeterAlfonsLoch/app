@@ -4,7 +4,7 @@ class CLASS_DECL_CORE BaseSplitWnd :
    virtual public ::user::split_layout
 {
 public:
-   BaseSplitWnd(sp(::axis::application) papp);
+   BaseSplitWnd(sp(::aura::application) papp);
 
    virtual void _001OnDraw(::draw2d::graphics * pdc);
 

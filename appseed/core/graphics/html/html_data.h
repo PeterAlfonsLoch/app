@@ -23,7 +23,7 @@ namespace html
          ::visual::dib_sp        m_spdib;
 
 
-         image(sp(::axis::application) papp);
+         image(sp(::aura::application) papp);
          virtual bool load_image();
 
       };
@@ -163,7 +163,7 @@ namespace html
 
 
 
-      data(sp(::axis::application) papp);
+      data(sp(::aura::application) papp);
       virtual ~data();
 
       virtual bool open_document(var varFile);

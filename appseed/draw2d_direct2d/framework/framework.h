@@ -3,7 +3,7 @@
 
 #include "draw2d_direct2d.h"
 mutex & draw2d_direct2_mutex();
-void init_draw2d_direct2_mutex(sp(::axis::application) papp);
+void init_draw2d_direct2_mutex(sp(::aura::application) papp);
 
 
 /************************************************************************

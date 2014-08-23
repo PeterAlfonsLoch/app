@@ -6,7 +6,7 @@ namespace databaseuser
 {
 
 
-   list_data::list_data(sp(::axis::application) papp) :
+   list_data::list_data(sp(::aura::application) papp) :
       element(papp),
       ::user::list_data(papp)
    {

@@ -60,7 +60,7 @@ public:
 
 
       
-      sync_queue(sp(::axis::application) papp);
+      sync_queue(sp(::aura::application) papp);
       virtual ~sync_queue();
 
 

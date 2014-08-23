@@ -14,7 +14,7 @@ namespace user
       sp(printer)       m_phprinter;
 
 
-      print_job(sp(::axis::application) papp);
+      print_job(sp(::aura::application) papp);
       virtual ~print_job();
 
 

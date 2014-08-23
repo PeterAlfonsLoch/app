@@ -1,6 +1,6 @@
 #include "framework.h"
 
-wait_cursor::wait_cursor(sp(::axis::application) papp) :
+wait_cursor::wait_cursor(sp(::aura::application) papp) :
    element(papp)
    { Application.BeginWaitCursor(); }
  wait_cursor::~wait_cursor()

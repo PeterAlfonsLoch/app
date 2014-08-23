@@ -5,7 +5,7 @@ namespace axis
 {
 
 
-   os::os(sp(::axis::application) papp) :
+   os::os(sp(::aura::application) papp) :
       element(papp)
    {
    }
@@ -203,7 +203,7 @@ namespace axis
 #endif
 
 
-   bool os::create_service(sp(::axis::application) papp)
+   bool os::create_service(sp(::aura::application) papp)
    {
 
 
@@ -216,7 +216,7 @@ namespace axis
    }
 
 
-   bool os::remove_service(sp(::axis::application) papp)
+   bool os::remove_service(sp(::aura::application) papp)
    {
 
 
@@ -229,7 +229,7 @@ namespace axis
    }
 
 
-   bool os::start_service(sp(::axis::application) papp)
+   bool os::start_service(sp(::aura::application) papp)
    {
 
 
@@ -242,7 +242,7 @@ namespace axis
    }
 
 
-   bool os::stop_service(sp(::axis::application) papp)
+   bool os::stop_service(sp(::aura::application) papp)
    {
 
 

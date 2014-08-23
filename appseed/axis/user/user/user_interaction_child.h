@@ -25,7 +25,7 @@ namespace user
 
 
       interaction_child();
-      interaction_child(sp(::axis::application) papp);
+      interaction_child(sp(::aura::application) papp);
       virtual ~interaction_child();
 
       using ::user::interaction_base::message_handler;

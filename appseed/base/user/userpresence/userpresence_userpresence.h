@@ -16,7 +16,7 @@ namespace userpresence
       message_queue           m_queue;
 
 
-      userpresence(sp(::axis::application) papp);
+      userpresence(sp(::aura::application) papp);
       virtual ~userpresence();
 
 

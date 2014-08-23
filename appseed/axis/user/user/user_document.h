@@ -28,7 +28,7 @@ namespace user
       document_data_map                m_datamap;
 
 
-      document(sp(::axis::application) papp);
+      document(sp(::aura::application) papp);
       virtual ~document();
 
 
@@ -166,7 +166,7 @@ namespace user
 
 
 
-//      virtual void on_alloc(sp(::axis::application) papp);
+//      virtual void on_alloc(sp(::aura::application) papp);
 
 //      virtual void dump(dump_context &) const;
   //    virtual void assert_valid() const;

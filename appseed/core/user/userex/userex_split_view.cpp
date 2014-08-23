@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   split_view::split_view(sp(::axis::application) papp) :
+   split_view::split_view(sp(::aura::application) papp) :
       element(papp),
       ::user::split_layout(papp),
       

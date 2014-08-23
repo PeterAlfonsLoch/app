@@ -26,7 +26,7 @@ public:
    strsp(bool_array)          m_mapdirFolderDir; // by now, always store item count?
 
 
-   ifs(sp(::axis::application) papp, const char * pszRoot);
+   ifs(sp(::aura::application) papp, const char * pszRoot);
 
    
    virtual bool has_subdir(const char * pszPath);

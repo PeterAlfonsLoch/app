@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   filemanager::filemanager(sp(::axis::application) papp) :
+   filemanager::filemanager(sp(::aura::application) papp) :
       element(papp),
       ::aura::departament(papp)
    {

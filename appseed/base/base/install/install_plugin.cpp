@@ -38,7 +38,7 @@ void simple_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers)
 namespace install
 {
 
-   plugin::plugin(sp(::axis::application) papp) :
+   plugin::plugin(sp(::aura::application) papp) :
       element(papp),
       ::simple_ui::style(papp),
       ::axis::session(papp),
@@ -1145,7 +1145,7 @@ restart:
 
 #ifndef CUBE
 
-::hotplugin::plugin * new_hotplugin(sp(::axis::application) papp)
+::hotplugin::plugin * new_hotplugin(sp(::aura::application) papp)
 {
    return new ::install::plugin(papp);
 }

@@ -78,7 +78,7 @@ namespace net
    }
 
 
-   address::address(sp(::axis::application) papp, const string & host, const string & strService)
+   address::address(sp(::aura::application) papp, const string & host, const string & strService)
    {
 
       zero(this, sizeof(u.m_sa));

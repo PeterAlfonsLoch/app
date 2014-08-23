@@ -154,12 +154,12 @@ namespace base
    }
 
 
-   bool compress::ungz(sp(::axis::application) papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed)
+   bool compress::ungz(sp(::aura::application) papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed)
    {
      return System.file().output(papp, lpcszUncompressed, this, &compress::ungz, lpcszGzFileCompressed);
    }
 
-   bool compress::gz(sp(::axis::application) papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed)
+   bool compress::gz(sp(::aura::application) papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed)
    {
       return System.file().output(papp, lpcszGzFileCompressed, this, &compress::gz, lpcszUncompressed);
    }
@@ -208,12 +208,12 @@ namespace base
       return true;
    }
 
-   bool compress::unbz(sp(::axis::application) papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed)
+   bool compress::unbz(sp(::aura::application) papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed)
    {
       return System.file().output(papp, lpcszUncompressed, this, &compress::unbz, lpcszGzFileCompressed);
    }
 
-   bool compress::bz(sp(::axis::application) papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed)
+   bool compress::bz(sp(::aura::application) papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed)
    {
       return System.file().output(papp, lpcszGzFileCompressed, this, &compress::bz, lpcszUncompressed);
    }
@@ -236,14 +236,14 @@ namespace base
    }
 
 
-   void compress::extract_all(const char * pszFile, sp(::axis::application) papp)
+   void compress::extract_all(const char * pszFile, sp(::aura::application) papp)
    {
       string strDir = pszFile;
       ::str::ends_eat_ci(strDir, ".zip");
       Sess(papp).file().copy(strDir, pszFile, false);
    }
 
-   void compress::zip(const char * pszZip, const char * psz, sp(::axis::application) papp)
+   void compress::zip(const char * pszZip, const char * psz, sp(::aura::application) papp)
    {
       zip::InFile infile(papp);
 
@@ -274,7 +274,7 @@ namespace base
    }
 
 
-   void compress::zip(const char * psz, sp(::axis::application) papp)
+   void compress::zip(const char * psz, sp(::aura::application) papp)
    {
 
    }

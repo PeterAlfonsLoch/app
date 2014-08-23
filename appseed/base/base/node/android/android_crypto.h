@@ -11,7 +11,7 @@ namespace android
    public:
 
 
-      crypto(sp(::axis::application) papp);
+      crypto(sp(::aura::application) papp);
       virtual ~crypto();
 
 

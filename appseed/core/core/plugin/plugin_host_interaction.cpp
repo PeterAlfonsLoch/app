@@ -13,7 +13,7 @@ namespace plugin
 {
 
 
-   host_interaction::host_interaction(sp(::axis::application) papp) :
+   host_interaction::host_interaction(sp(::aura::application) papp) :
       element(papp)
    {
 

@@ -14,7 +14,7 @@ namespace userex
    public:
 
 
-      property_page(sp(::axis::application) papp);
+      property_page(sp(::aura::application) papp);
       virtual ~property_page();
 
 

@@ -25,7 +25,7 @@ public:
    
 
 
-   simple_combo_box(sp(::axis::application) papp);
+   simple_combo_box(sp(::aura::application) papp);
    virtual ~simple_combo_box();
 
    

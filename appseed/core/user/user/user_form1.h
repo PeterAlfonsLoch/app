@@ -23,7 +23,7 @@ namespace core
          ::user::form_callback *       m_pcallback;
 
 
-         form(sp(::axis::application) papp);
+         form(sp(::aura::application) papp);
          virtual ~form();
 
 

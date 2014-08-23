@@ -29,7 +29,7 @@ namespace base
 
 
       //::core::platform *                                       m_pcoreplatform;
-      //string_map < sp(::axis::application) >                   m_mapApplication;
+      //string_map < sp(::aura::application) >                   m_mapApplication;
       sp(::userpresence::userpresence)                         m_puserpresence;
       sp(::ifs)                                                m_pifs;
       sp(::fs::remote_native)                                  m_prfs;
@@ -63,7 +63,7 @@ namespace base
 
 
 
-      session(sp(::axis::application) papp);
+      session(sp(::aura::application) papp);
       virtual ~session_parent;
 
       inline ::userpresence::userpresence & userpresence() { return *m_puserpresence; }
@@ -74,7 +74,7 @@ namespace base
       virtual bool is_session();
 
 
-      void construct(sp(::axis::application) papp, int iPhase);
+      void construct(sp(::aura::application) papp, int iPhase);
 
       virtual bool process_initialize();
 
@@ -103,7 +103,7 @@ namespace base
 
 
 
-      virtual sp(::axis::application) start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext);
+      virtual sp(::aura::application) start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext);
 
       
       virtual ::fontopus::fontopus * create_fontopus();

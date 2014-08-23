@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-menu_document::menu_document(sp(::axis::application) papp) :
+menu_document::menu_document(sp(::aura::application) papp) :
    element(papp),
    ::data::data_container_base(papp),
    ::user::document(papp),

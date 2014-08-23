@@ -14,7 +14,7 @@ namespace filemanager
       operation_thread  m_thread;
 
 
-      operation_document(sp(::axis::application) papp);
+      operation_document(sp(::aura::application) papp);
 
 
       virtual bool on_new_document();

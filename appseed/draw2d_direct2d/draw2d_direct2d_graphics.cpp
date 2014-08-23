@@ -9,7 +9,7 @@ namespace draw2d_direct2d
 {
 
    
-   graphics::graphics(sp(::axis::application) papp) :
+   graphics::graphics(sp(::aura::application) papp) :
       element(papp)
    {
 
@@ -2752,7 +2752,7 @@ namespace draw2d_direct2d
    /////////////////////////////////////////////////////////////////////////////
    // special graphics drawing primitives/helpers
 
-   ::draw2d::brush* graphics::GetHalftoneBrush(sp(::axis::application) papp)
+   ::draw2d::brush* graphics::GetHalftoneBrush(sp(::aura::application) papp)
    {
       /*
       ::core::LockGlobals(CRIT_HALFTONEBRUSH);

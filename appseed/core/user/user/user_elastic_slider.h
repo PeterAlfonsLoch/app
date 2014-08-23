@@ -26,7 +26,7 @@ namespace user
       index          m_iScalar;
       double_array   m_daScalar;
 
-      elastic_slider(sp(::axis::application) papp);
+      elastic_slider(sp(::aura::application) papp);
       virtual ~elastic_slider();
 
 

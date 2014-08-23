@@ -5,7 +5,7 @@ namespace net
 {
 
 
-   ip_enum::ip_enum(sp(::axis::application) papp) :
+   ip_enum::ip_enum(sp(::aura::application) papp) :
       element(papp)
    {
 

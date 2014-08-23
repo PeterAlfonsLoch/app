@@ -11,7 +11,7 @@ public:
    sp(::user::impact)                   m_pview;
 
 
-   simple_printer_list_view(sp(::axis::application) papp);
+   simple_printer_list_view(sp(::aura::application) papp);
    virtual ~simple_printer_list_view();
 
 

@@ -25,7 +25,7 @@ namespace core
          string                  m_strApp;
          string                  m_strQuery;
          sp(::core::platform)      m_pbergedgeParent;
-         sp(::axis::application)   m_pauraapp;
+         sp(::aura::application)   m_pauraapp;
          bool                    m_bMakeVisible;
          sp(::user::interaction) m_puiParent;
          property_set      m_setParameters;
@@ -49,7 +49,7 @@ namespace core
 
       bool                                                  m_bShowPlatform;
 
-      sp(::axis::application)                                   m_pappCurrent;
+      sp(::aura::application)                                   m_pappCurrent;
 
 
       var                                                   m_varTopicFile;
@@ -73,7 +73,7 @@ namespace core
       string_map < sp(::user::uinteraction::interaction) >     m_mapUinteraction;
 
 
-      platform(sp(::axis::application) papp);
+      platform(sp(::aura::application) papp);
       virtual ~platform_parent;
 
 
@@ -103,7 +103,7 @@ namespace core
 
       virtual bool create_bergedge(sp(::create_context) pcreatecontext);
 
-      virtual void on_app_request_bergedge_callback(sp(::axis::application) papp);
+      virtual void on_app_request_bergedge_callback(sp(::aura::application) papp);
 
 
 
@@ -155,10 +155,10 @@ namespace core
 
       void on_request(sp(::create_context) pcreatecontext);
 
-      //sp(::axis::application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, application_bias * pbiasCreate = NULL);
+      //sp(::aura::application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, application_bias * pbiasCreate = NULL);
 
 
-      sp(::axis::application) get_current_application();
+      sp(::aura::application) get_current_application();
 
       virtual bool on_install();
 
@@ -179,7 +179,7 @@ namespace core
       virtual bool is_remote_session();
 
       using ::core::application::start_application;
-      sp(::axis::application) start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext);
+      sp(::aura::application) start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext);
 
 
       virtual ::visual::cursor * get_cursor();
@@ -189,11 +189,11 @@ namespace core
       virtual bool      get_monitor_rect(index iMonitor,LPRECT lprect);
 
 
-      virtual void register_bergedge_application(sp(::axis::application) papp);
-      virtual void unregister_bergedge_application(sp(::axis::application) papp);
+      virtual void register_bergedge_application(sp(::aura::application) papp);
+      virtual void unregister_bergedge_application(sp(::aura::application) papp);
 
-      virtual sp(::axis::application) application_get(const char * pszType,const char * pszId,bool bCreate = true,bool bSynch = true,application_bias * pbiasCreate = NULL);
-      virtual sp(::axis::application) get_new_app(sp(::axis::application) pappNewApplicationParent,const char * pszType,const char * pszId);
+      virtual sp(::aura::application) application_get(const char * pszType,const char * pszId,bool bCreate = true,bool bSynch = true,application_bias * pbiasCreate = NULL);
+      virtual sp(::aura::application) get_new_app(sp(::aura::application) pappNewApplicationParent,const char * pszType,const char * pszId);
 //      virtual void open_by_file_extension(const char * pszPathName);
 
       virtual sp(::core::platform)             query_bergedge();

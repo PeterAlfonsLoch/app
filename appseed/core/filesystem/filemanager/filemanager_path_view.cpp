@@ -6,7 +6,7 @@ namespace filemanager
 
 
 
-   path_view::path_view(sp(::axis::application) papp) :
+   path_view::path_view(sp(::aura::application) papp) :
       element(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),

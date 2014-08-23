@@ -15,7 +15,7 @@ namespace draw2d_cairo
 
 
 
-      path(sp(::axis::application) papp);
+      path(sp(::aura::application) papp);
       virtual ~path();
 
 

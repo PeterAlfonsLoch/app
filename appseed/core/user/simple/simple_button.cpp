@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_button::simple_button(sp(::axis::application) papp) :
+simple_button::simple_button(sp(::aura::application) papp) :
    element(papp),
    
    ::user::button(papp),

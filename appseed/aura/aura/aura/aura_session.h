@@ -11,8 +11,7 @@ namespace aura
 
    class CLASS_DECL_AURA session:
       virtual public ::aura::application,
-      virtual public ::aura::session_interface //,
-      //virtual public ::user::schema
+      virtual public ::aura::session_interface
    {
    public:
 
@@ -21,31 +20,17 @@ namespace aura
 
       bool                                                     m_bMatterFromHttpCache;
 
-      bool                                                     m_bSystemSynchronizedCursor;
-      point                                                    m_ptCursor;
-      bool                                                     m_bSystemSynchronizedScreen;
-      rect_array                                               m_rectaMonitor;
-      rect_array                                               m_rectaWkspace;
-      index                                                    m_iMainMonitor;
-      index                                                    m_iMainWkspace;
-
 
 
       ::core::platform *                                       m_pcoreplatform;
       string_map < sp(::aura::application) >                   m_mapApplication;
 
 
-      bool                                                     m_bDrawCursor;
-
 
       application_ptra                                         m_appptra;
-      bool                                                     m_bZipIsDir;
       sp(::aura::savings)                                      m_psavings;
  
 
-
-
-//      ::user::schema_simple_impl                               m_schemasimple;
 
 
 

@@ -58,15 +58,15 @@ public:
       item();
 
 
-      void update_size(sp(::axis::application) papp, index & iIteration);
-      void update_size_recursive(sp(::axis::application) papp, index & iIteration);
+      void update_size(sp(::aura::application) papp, index & iIteration);
+      void update_size_recursive(sp(::aura::application) papp, index & iIteration);
 
-      item * FindItem(sp(::axis::application) papp, const char * pszPath, index & iIteration);
-      index FindName(sp(::axis::application) papp, const char * pszName, index & iIteration);
+      item * FindItem(sp(::aura::application) papp, const char * pszPath, index & iIteration);
+      index FindName(sp(::aura::application) papp, const char * pszName, index & iIteration);
 
       string path();
 
-      void ls(sp(::axis::application) papp, index & iIteration);
+      void ls(sp(::aura::application) papp, index & iIteration);
    };
 
 
@@ -85,7 +85,7 @@ public:
 
 
 
-   file_size_table(sp(::axis::application) papp);
+   file_size_table(sp(::aura::application) papp);
    ~file_size_table();
 
    bool check_map();
@@ -104,7 +104,7 @@ public:
    index                     m_iMaxIteration;
 
 
-   DBFileSystemSizeSet(sp(::axis::application) papp);
+   DBFileSystemSizeSet(sp(::aura::application) papp);
    ~DBFileSystemSizeSet();
 
 
@@ -127,7 +127,7 @@ class CLASS_DECL_CORE FileSystemSizeServerThread :
 {
 public:
 
-   FileSystemSizeServerThread(sp(::axis::application) papp);
+   FileSystemSizeServerThread(sp(::aura::application) papp);
 
    bool initialize_instance();
 
@@ -160,7 +160,7 @@ public:
    size_map                         m_map;
 
 
-   FileSystemSizeWnd(sp(::axis::application) papp);
+   FileSystemSizeWnd(sp(::aura::application) papp);
 
    bool CreateClient();
    bool CreateServer();

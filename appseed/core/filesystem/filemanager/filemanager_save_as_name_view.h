@@ -15,7 +15,7 @@ namespace filemanager
       bool m_bVoidSync;
 
 
-      save_as_view(sp(::axis::application) papp);
+      save_as_view(sp(::aura::application) papp);
 
 
       virtual void _001OnAfterChangeText(::action::context actioncontext);

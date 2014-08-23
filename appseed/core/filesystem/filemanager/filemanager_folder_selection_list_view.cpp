@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   folder_selection_list_view::folder_selection_list_view(sp(::axis::application) papp):
+   folder_selection_list_view::folder_selection_list_view(sp(::aura::application) papp):
       element(papp),
       ::user::split_layout(papp),
       ::user::split_view(papp),

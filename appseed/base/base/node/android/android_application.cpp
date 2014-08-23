@@ -8,7 +8,7 @@ namespace android
 
 
 
-   application::application(sp(::axis::application) papp) :
+   application::application(sp(::aura::application) papp) :
       element(papp)
    {
       m_pthreadimpl.alloc(allocer());
@@ -656,7 +656,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
          // fill in the initial state for the application
          // Windows specific initialization (not done if no application)
 // xxx         m_hInstance = hInstance;
-// xxx          (dynamic_cast < sp(::axis::application) >(m_papp))->m_hInstance = hInstance;
+// xxx          (dynamic_cast < sp(::aura::application) >(m_papp))->m_hInstance = hInstance;
          //hPrevInstance; // Obsolete.
          //m_strCmdLine = strCmdLine;
          //m_nCmdShow = nCmdShow;

@@ -4,7 +4,7 @@
 thread_int_ptr < int_ptr > t_iAvoidNumericParserException;
 
 
-numeric_parser_exception::numeric_parser_exception(sp(::axis::application) papp,const string & strMessage):
+numeric_parser_exception::numeric_parser_exception(sp(::aura::application) papp,const string & strMessage):
 element(papp),
 ::call_stack(get_app()),
 ::exception::base(get_app()),

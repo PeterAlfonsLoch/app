@@ -7,7 +7,7 @@ class CLASS_DECL_CORE plain_service :
 public:
 
 
-   plain_service(sp(::axis::application) papp);
+   plain_service(sp(::aura::application) papp);
    virtual ~plain_service();
 
 

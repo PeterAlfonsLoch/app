@@ -155,7 +155,7 @@ namespace sockets
       ::axis::gudo < ::file::byte_serializable_map < string_map < reverse_cache_item > > >   m_mapReverseCache;
 
 
-      net(sp(::axis::application) papp);
+      net(sp(::aura::application) papp);
       virtual ~net();
 
 

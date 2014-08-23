@@ -5,7 +5,7 @@ namespace bergedge
 {
 
 
-   pane_view::pane_view(sp(::axis::application) papp) :
+   pane_view::pane_view(sp(::aura::application) papp) :
       element(papp),
       ::user::tab(papp),
       
@@ -110,7 +110,7 @@ namespace bergedge
       string strId = get_view_id();
       if(::str::begins_eat(strId, "app:"))
       {
-         sp(::axis::application) pappTab;
+         sp(::aura::application) pappTab;
          if(Session.m_mapApplication.Lookup("application:" + strId, pappTab))
          {
             Platform.m_pappCurrent = pappTab;
@@ -194,7 +194,7 @@ namespace bergedge
 
       if(::str::begins_eat(strId, "app:"))
       {
-         sp(::axis::application) pappTab;
+         sp(::aura::application) pappTab;
          if(!Session.m_mapApplication.Lookup("application:" + strId, pappTab))
          {
 

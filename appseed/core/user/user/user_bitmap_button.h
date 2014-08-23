@@ -8,7 +8,7 @@ namespace user
       public ::user::tool_tip_tool
    {
    public:
-      bitmap_button(sp(::axis::application) papp);
+      bitmap_button(sp(::aura::application) papp);
 
       bool  m_bHover;            // set if cursor is over the button
       bool  m_bCommandEnable;    // set if command is enabled

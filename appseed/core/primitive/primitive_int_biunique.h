@@ -6,7 +6,7 @@ class  biunique :
    public ::file::serializable
 {
 public:
-   biunique(sp(::axis::application) papp = NULL);
+   biunique(sp(::aura::application) papp = NULL);
 
    bool has_a(T a) const;
    bool has_b(T b) const;
@@ -73,7 +73,7 @@ protected:
 
 
 template < class T, class T_to_T >
-biunique < T, T_to_T > ::biunique(sp(::axis::application) papp) :
+biunique < T, T_to_T > ::biunique(sp(::aura::application) papp) :
    element(papp)
 {
    m_bBiunivoca = true;
@@ -476,14 +476,14 @@ class CLASS_DECL_CORE index_biunique :
    public biunique < index >
 {
 public:
-   index_biunique(sp(::axis::application) papp = NULL);
+   index_biunique(sp(::aura::application) papp = NULL);
 };
 
 class CLASS_DECL_CORE int_biunique :
    public biunique < int32_t, int_to_int >
 {
 public:
-   int_biunique(sp(::axis::application) papp = NULL);
+   int_biunique(sp(::aura::application) papp = NULL);
 
 };
 

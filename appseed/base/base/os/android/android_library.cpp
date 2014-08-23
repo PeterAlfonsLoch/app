@@ -2,7 +2,7 @@
 #include <dlfcn.h>
 
 
-::axis::library::axis::library(sp(::axis::application) papp) : element(papp)
+::axis::library::axis::library(sp(::aura::application) papp) : element(papp)
 {
 
    m_plibrary = NULL;
@@ -12,7 +12,7 @@
 }
 
 
-::axis::library::axis::library(sp(::axis::application) papp, const char * pszOpen) :
+::axis::library::axis::library(sp(::aura::application) papp, const char * pszOpen) :
 element(papp)
 {
 
@@ -98,13 +98,13 @@ void * ::axis::library::raw_get(const char * pszElement)
    return dlsym(m_plibrary, pszElement);
 }
 
-ca2_library::ca2_library(sp(::axis::application) papp) :
+ca2_library::ca2_library(sp(::aura::application) papp) :
 element(papp),
 ::axis::library(papp)
 {
 }
 
-ca2_library::ca2_library(sp(::axis::application) papp, const char * pszOpen) :
+ca2_library::ca2_library(sp(::aura::application) papp, const char * pszOpen) :
 element(papp),
 ::axis::library(papp, pszOpen)
 {

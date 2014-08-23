@@ -28,7 +28,7 @@ namespace user
       bool is_type_of(e_hint ehint) const;
 
 
-      view_update_hint(sp(::axis::application) papp);
+      view_update_hint(sp(::aura::application) papp);
       virtual ~view_update_hint();
 
 

@@ -8,7 +8,7 @@ namespace user
       virtual public check_interface
    {
    public:
-      check_box(sp(::axis::application) papp);
+      check_box(sp(::aura::application) papp);
       virtual ~check_box();
 
    protected:

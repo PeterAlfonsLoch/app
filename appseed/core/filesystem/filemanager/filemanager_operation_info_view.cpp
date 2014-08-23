@@ -40,7 +40,7 @@ namespace filemanager
    }
 
 
-   operation_info_view::operation_info_view(sp(::axis::application) papp):
+   operation_info_view::operation_info_view(sp(::aura::application) papp):
       element(papp)
    {
       m_dAnime = 0.0;

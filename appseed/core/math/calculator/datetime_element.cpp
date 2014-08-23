@@ -20,7 +20,7 @@ namespace datetime
    }
 
 
-   value element::get_value(sp(::axis::application) pbaseapp, ::user::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const
+   value element::get_value(sp(::aura::application) pbaseapp, ::user::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const
    {
       if(m_ptoken->value == token::number || m_ptoken->value == token::identifier)
       {
@@ -85,7 +85,7 @@ namespace datetime
       return value();
    }
    
-   string element::get_expression(sp(::axis::application) pbaseapp, ::user::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const
+   string element::get_expression(sp(::aura::application) pbaseapp, ::user::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const
    {
       if(m_ptoken->value == token::number)
       {

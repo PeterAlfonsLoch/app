@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   operation::operation(sp(::axis::application) papp):
+   operation::operation(sp(::aura::application) papp):
       element(papp)
    {
 

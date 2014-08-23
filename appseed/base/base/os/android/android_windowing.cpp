@@ -714,7 +714,7 @@ public:
 
    rect m_rectDesktop;
 
-   xlib_simple_message_box(sp(::axis::application) papp) : element(papp), ::user::interaction(papp), ::user::interaction(papp)
+   xlib_simple_message_box(sp(::aura::application) papp) : element(papp), ::user::interaction(papp), ::user::interaction(papp)
    {
    }
 

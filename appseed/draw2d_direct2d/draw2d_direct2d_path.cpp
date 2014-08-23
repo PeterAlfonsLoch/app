@@ -9,7 +9,7 @@ namespace draw2d_direct2d
 {
 
 
-   graphics_path::graphics_path(sp(::axis::application) papp) :
+   graphics_path::graphics_path(sp(::aura::application) papp) :
       ::element(papp)
    {
 

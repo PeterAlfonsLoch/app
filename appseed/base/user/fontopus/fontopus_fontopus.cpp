@@ -361,7 +361,7 @@ namespace fontopus
 
          sp(::create_context) spcreatecontext(allocer());
 
-         sp(::axis::application) papp = Session.start_application("application", "app-core/deepfish", spcreatecontext);
+         sp(::aura::application) papp = Session.start_application("application", "app-core/deepfish", spcreatecontext);
 
          if(papp == NULL)
          {
@@ -479,7 +479,7 @@ namespace fontopus
 
       string strGetFontopus("http://" + strRequestingServer + "/get_fontopus");
 
-      sp(::axis::application) papp = get_app();
+      sp(::aura::application) papp = get_app();
 
       url_domain domainFontopus;
 
@@ -499,7 +499,7 @@ namespace fontopus
    }
 
 
-   create_user_thread::create_user_thread(sp(::axis::application) papp) :
+   create_user_thread::create_user_thread(sp(::aura::application) papp) :
       element(papp),
       ::thread(papp),
       m_evReady(papp)

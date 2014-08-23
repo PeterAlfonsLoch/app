@@ -83,7 +83,7 @@ namespace base
 
 
 
-   system::system(sp(::axis::application) papp):
+   system::system(sp(::aura::application) papp):
       axis::system(this),
       m_urldepartament(this),
       m_httpsystem(this)
@@ -778,7 +778,7 @@ namespace base
 
 
 
-   //sp(element) system::on_alloc(sp(::axis::application) papp,sp(type) info)
+   //sp(element) system::on_alloc(sp(::aura::application) papp,sp(type) info)
    //{
    //   /*string str;
    //   str.Format("Could not alloc %s", info.name());
@@ -790,23 +790,23 @@ namespace base
    //   return NULL;
    //}
 
-   //sp(element) system::alloc(sp(::axis::application) papp,sp(type) info)
+   //sp(element) system::alloc(sp(::aura::application) papp,sp(type) info)
    //{
    //   return on_alloc(papp,info);
    //}
 
-   /*sp(element) system::alloc(sp(::axis::application) papp,const std_type_info & info)
+   /*sp(element) system::alloc(sp(::aura::application) papp,const std_type_info & info)
    {
       return on_alloc(papp,canew(type(info)));
    }*/
 
-   void system::on_allocation_error(sp(::axis::application) papp,sp(type) info)
+   void system::on_allocation_error(sp(::aura::application) papp,sp(type) info)
    {
       UNREFERENCED_PARAMETER(papp);
       UNREFERENCED_PARAMETER(info);
    }
 
-//   sp(element) system::alloc(sp(::axis::application) papp,const class id & idType)
+//   sp(element) system::alloc(sp(::aura::application) papp,const class id & idType)
 //   {
 //      return on_alloc(papp,get_type_info(idType));
 //   }
@@ -978,7 +978,7 @@ namespace base
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
   //    {
-    //     sp(::axis::application) papp = appptra()(i);
+    //     sp(::aura::application) papp = appptra()(i);
       //   papp->load_string_table();
       //}
 
@@ -991,7 +991,7 @@ namespace base
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
  //     {
-  //       sp(::axis::application) papp = appptra()(i);
+  //       sp(::aura::application) papp = appptra()(i);
   //       papp->set_locale(pszLocale,actioncontext);
   //    }
 
@@ -1004,7 +1004,7 @@ namespace base
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
   //    {
-  //       sp(::axis::application) papp = appptra()(i);
+  //       sp(::aura::application) papp = appptra()(i);
   //       papp->set_schema(pszStyle,actioncontext);
   //    }
 
@@ -1449,7 +1449,7 @@ namespace base
 //#ifdef WINDOWSEX
 //
 //
-//   system::interaction_impl::interaction_impl(sp(::axis::application) papp):
+//   system::interaction_impl::interaction_impl(sp(::aura::application) papp):
 //      element(papp),
 //      ::user::interaction(papp)
 //   {
@@ -1762,7 +1762,7 @@ namespace base
 //
 
 
-string system::dir_appmatter_locator(sp(::axis::application) papp)
+string system::dir_appmatter_locator(sp(::aura::application) papp)
 {
 
    return dir().appmatter_locator(papp);

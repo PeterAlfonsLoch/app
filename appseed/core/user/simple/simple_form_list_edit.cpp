@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_form_list_edit::simple_form_list_edit(sp(::axis::application) papp) :
+simple_form_list_edit::simple_form_list_edit(sp(::aura::application) papp) :
     element(papp),
    ::user::interaction(papp),
    ::user::scroll_view(papp),

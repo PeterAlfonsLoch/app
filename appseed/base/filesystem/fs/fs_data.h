@@ -13,7 +13,7 @@ namespace fs
    {
    public:
 
-      data(sp(::axis::application) papp);
+      data(sp(::aura::application) papp);
 
 
       // optional if ls_dir is implemented

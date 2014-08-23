@@ -9,7 +9,7 @@ namespace simple_ui
 {
 
 
-   message_box::message_box(sp(::axis::application) papp,const char * pszMessage,const char * pszCaption, uint32_t uiFlags):
+   message_box::message_box(sp(::aura::application) papp,const char * pszMessage,const char * pszCaption, uint32_t uiFlags):
       element(papp),
       m_evReady(papp)
    {

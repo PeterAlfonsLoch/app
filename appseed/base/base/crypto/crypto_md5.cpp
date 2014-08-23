@@ -15,7 +15,7 @@ namespace crypto
    {
 
 
-      context::context(sp(::axis::application) papp) :
+      context::context(sp(::aura::application) papp) :
          element(papp),
          m_memoryDigest(papp)
       {

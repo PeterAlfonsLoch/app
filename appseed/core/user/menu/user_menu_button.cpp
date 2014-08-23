@@ -3,7 +3,7 @@
 namespace user
 {
 
-   menu_button::menu_button(sp(::axis::application) papp) :
+   menu_button::menu_button(sp(::aura::application) papp) :
       ::user::interaction(papp),
 
       ::user::button(papp),
@@ -111,7 +111,7 @@ namespace user
       }
    }
 
-   menu_button_cmd_ui::menu_button_cmd_ui(sp(::axis::application) papp) :
+   menu_button_cmd_ui::menu_button_cmd_ui(sp(::aura::application) papp) :
       element(papp),
       cmd_ui(papp)
    {

@@ -499,18 +499,3 @@ namespace axis
 } // namespace axis
 
 
-
-inline allocatorsp element::allocer()
-{
-   return m_pauraapp->m_allocer;
-}
-
-
-
-inline sp(::command_thread) object::command_thread()
-{
-
-   return m_pauraapp->command_thread();
-
-}
-

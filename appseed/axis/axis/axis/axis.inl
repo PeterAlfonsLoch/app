@@ -323,7 +323,7 @@ namespace xml
 //
 //   
 //   template < class T >
-//   bool system::output(sp(::axis::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,const char *),const char * lpszSource)
+//   bool system::output(sp(::aura::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,const char *),const char * lpszSource)
 //   {
 //
 //      System.dir().mk(Application.dir_name(pszOutput),papp);
@@ -341,7 +341,7 @@ namespace xml
 //
 //
 //   template < class T >
-//   bool system::output(sp(::axis::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),const char * lpszInput)
+//   bool system::output(sp(::aura::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),const char * lpszInput)
 //   {
 //
 //      System.dir().mk(Application.dir_name(pszOutput),papp);
@@ -366,7 +366,7 @@ namespace xml
 //
 //
 //   template < class T >
-//   bool system::output(sp(::axis::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),::file::input_stream & istream)
+//   bool system::output(sp(::aura::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),::file::input_stream & istream)
 //   {
 //
 //      ::file::output_stream ostream(get(pszOutput,papp));
@@ -395,13 +395,13 @@ namespace axis
 
    // impl
    template < class APP >
-   sp(::axis::application) single_application_library < APP > ::get_new_app(const char * pszAppId)
+   sp(::aura::application) single_application_library < APP > ::get_new_app(const char * pszAppId)
    {
 
       if(!contains_app(pszAppId))
          return NULL;
 
-      sp(::axis::application) papp = canew(APP());
+      sp(::aura::application) papp = canew(APP());
 
       if(papp == NULL)
          return NULL;

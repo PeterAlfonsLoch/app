@@ -15,7 +15,7 @@ namespace windows
    // Construction/Destruction
    //////////////////////////////////////////////////////////////////////
 
-   port_forward::port_forward(sp(::axis::application) papp) :
+   port_forward::port_forward(sp(::aura::application) papp) :
       element(papp)
    {
 	   InitializeMembersToNull();

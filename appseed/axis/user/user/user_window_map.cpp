@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   window_map::window_map(sp(::axis::application) papp) :
+   window_map::window_map(sp(::aura::application) papp) :
       element(papp)
    {
 

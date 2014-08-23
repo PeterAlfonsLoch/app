@@ -12,7 +12,7 @@ namespace filemanager
    public:
       
       
-      form_view(sp(::axis::application) papp);
+      form_view(sp(::aura::application) papp);
 
 
       void on_update(sp(::user::impact) pSender,LPARAM lHint,object* phint);

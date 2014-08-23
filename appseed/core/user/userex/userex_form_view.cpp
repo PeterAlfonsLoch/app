@@ -1,6 +1,6 @@
 #include "framework.h"
 
-form_view::form_view(sp(::axis::application) papp) :
+form_view::form_view(sp(::aura::application) papp) :
    element(papp),
    ::user::interaction(papp),
    ::user::scroll_view(papp),

@@ -5,7 +5,7 @@ namespace draw2d_cairo
 {
 
 
-   factory_exchange::factory_exchange(sp(::axis::application) papp) :
+   factory_exchange::factory_exchange(sp(::aura::application) papp) :
       element(papp)
    {
 
@@ -34,7 +34,7 @@ namespace draw2d_cairo
 
 
 extern "C"
-void ca2_factory_exchange(sp(::axis::application) papp)
+void ca2_factory_exchange(sp(::aura::application) papp)
 {
    draw2d_cairo::factory_exchange factoryexchange(papp);
 }

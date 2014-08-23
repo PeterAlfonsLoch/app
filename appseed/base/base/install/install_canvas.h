@@ -12,7 +12,7 @@ namespace install
       int32_t      m_iMode;
       int32_t      m_iModeCount;
 
-      canvas(sp(::axis::application) papp);
+      canvas(sp(::aura::application) papp);
       ~canvas();
 
       void on_paint(::draw2d::graphics * pgraphics, const RECT & rect);

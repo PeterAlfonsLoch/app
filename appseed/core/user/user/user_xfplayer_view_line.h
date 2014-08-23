@@ -88,7 +88,7 @@ public:
    COLORREF                         m_crLyricLeft;
    COLORREF                         m_crLyricRight;
 
-   XfplayerViewLine(sp(::axis::application) papp);
+   XfplayerViewLine(sp(::aura::application) papp);
    XfplayerViewLine(const XfplayerViewLine & line);
    XfplayerViewLine(XfplayerViewLines * pContainer);
    virtual ~XfplayerViewLine();

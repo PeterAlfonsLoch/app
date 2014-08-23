@@ -36,7 +36,7 @@ namespace user
          point                               m_pt;
 
 
-         pane(sp(::axis::application) papp);
+         pane(sp(::aura::application) papp);
          pane(const pane & pane);
          virtual ~pane();
 
@@ -55,7 +55,7 @@ namespace user
       public:
 
 
-         pane_array(sp(::axis::application) papp);
+         pane_array(sp(::aura::application) papp);
          virtual ~pane_array();
 
 
@@ -106,7 +106,7 @@ namespace user
          bool                             m_bEnableCloseAll;
 
 
-         data(sp(::axis::application) papp);
+         data(sp(::aura::application) papp);
          virtual ~data();
 
          virtual pane * get_pane_by_id(id id);
@@ -141,7 +141,7 @@ namespace user
       sp(::create_context)         m_spcreatecontext;
 
 
-      tab(sp(::axis::application) papp);
+      tab(sp(::aura::application) papp);
             virtual ~tab();
 
 

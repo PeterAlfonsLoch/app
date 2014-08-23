@@ -6,7 +6,7 @@
 namespace calculator
 {
 
-   parser::parser(sp(::axis::application) papp) :
+   parser::parser(sp(::aura::application) papp) :
       ::element(papp),
       m_scanner(papp)
    {

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-print_job::print_job(sp(::axis::application) papp) :
+print_job::print_job(sp(::aura::application) papp) :
    element(papp),
    ::job(papp),
    ::user::job(papp)

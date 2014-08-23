@@ -4,7 +4,7 @@
 namespace user
 {
 
-   notify_icon::notify_icon(sp(::axis::application) papp) :
+   notify_icon::notify_icon(sp(::aura::application) papp) :
       element(papp)
    {
 #ifdef WINDOWSEX

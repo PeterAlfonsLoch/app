@@ -41,7 +41,7 @@ namespace base
 
 
 
-      system(sp(::axis::application) papp);
+      system(sp(::aura::application) papp);
       virtual ~system();
 
 
@@ -85,7 +85,7 @@ namespace base
       virtual bool initialize2();
 
 
-      virtual void on_allocation_error(sp(::axis::application) papp,sp(type) info);
+      virtual void on_allocation_error(sp(::aura::application) papp,sp(type) info);
 
 
 
@@ -108,7 +108,7 @@ namespace base
 
 
 
-      virtual string dir_appmatter_locator(sp(::axis::application) papp);
+      virtual string dir_appmatter_locator(sp(::aura::application) papp);
 
       virtual sp(::user::interaction) get_active_guie();
       virtual sp(::user::interaction) get_focus_guie();

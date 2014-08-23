@@ -570,7 +570,7 @@ namespace user
                pwnd->ClientToScreen(&ptCursor);
                rect rectEvent;
                GetEventWindow()->GetWindowRect(rectEvent);
-               //sp(::axis::application) pApp = &System;
+               //sp(::aura::application) pApp = &System;
                bool bSize = false;
                rect rectWindow;
                if(m_ehittestMode == HitTestNone)

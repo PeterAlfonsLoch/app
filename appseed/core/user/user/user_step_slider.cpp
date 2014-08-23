@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   step_slider::step_slider(sp(::axis::application) papp) :
+   step_slider::step_slider(sp(::aura::application) papp) :
       element(papp),
       ::user::interaction(papp)
    {

@@ -11,7 +11,7 @@ namespace install
 {
 
 
-   install::install(sp(::axis::application) papp) :
+   install::install(sp(::aura::application) papp) :
       element(papp),
       ::aura::departament(papp),
       //m_mutex(papp, false, "Global\\spa_boot_install"),

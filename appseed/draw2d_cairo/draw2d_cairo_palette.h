@@ -10,7 +10,7 @@ namespace draw2d_cairo
    {
    public:
 
-      palette(sp(::axis::application) papp);
+      palette(sp(::aura::application) papp);
       virtual ~palette();
 
 

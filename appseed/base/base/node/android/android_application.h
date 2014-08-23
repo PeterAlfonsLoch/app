@@ -32,7 +32,7 @@ namespace android
       main_init_data *     m_pmaininitdata;
 
 
-      application(sp(::axis::application) papp);
+      application(sp(::aura::application) papp);
       virtual ~application();
 
       virtual HINSTANCE GetHinstance();

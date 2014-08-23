@@ -96,7 +96,7 @@ string defer_solve_relative_name(const char * pszRelative, const char * pszAbsol
 namespace html
 {
 
-   data::image::image(sp(::axis::application) papp) :
+   data::image::image(sp(::aura::application) papp) :
       element(papp),
       m_spdib(allocer())
    {
@@ -108,7 +108,7 @@ namespace html
    }
 
 
-   data::data(sp(::axis::application) papp) :
+   data::data(sp(::aura::application) papp) :
       element(papp),
       ::data::data(papp),
       m_imagea(papp),

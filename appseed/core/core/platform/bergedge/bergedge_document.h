@@ -19,7 +19,7 @@ namespace bergedge
       sp(::nature::document)                  m_pnaturedocument;
       
 
-      document(sp(::axis::application) papp); 
+      document(sp(::aura::application) papp); 
       virtual ~document();
 
 

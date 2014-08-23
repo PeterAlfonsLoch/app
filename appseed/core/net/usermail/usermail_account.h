@@ -21,7 +21,7 @@ namespace usermail
       db_pop3              m_pop3;
 
 
-      account(sp(::axis::application) papp);
+      account(sp(::aura::application) papp);
 
 
    };

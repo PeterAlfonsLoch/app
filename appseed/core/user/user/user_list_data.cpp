@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   simple_list_data::simple_list_data(sp(::axis::application) papp) :
+   simple_list_data::simple_list_data(sp(::aura::application) papp) :
       element(papp),
       ::user::list_data(papp)
    {

@@ -4,7 +4,7 @@
 #include "freeimage/Source/freeimage.h"
 #endif
 
-image_list::image_list(sp(::axis::application) papp) :
+image_list::image_list(sp(::aura::application) papp) :
    element(papp),
    m_spdib(allocer()),
    m_spdibWork(allocer()),
@@ -272,7 +272,7 @@ int32_t image_list::add_file(const char * lpcsz)
    return iItem;
 }
 
-int32_t image_list::add_matter(const char * lpcsz, sp(::axis::application) papp)
+int32_t image_list::add_matter(const char * lpcsz, sp(::aura::application) papp)
 {
    if(papp == NULL)
    {

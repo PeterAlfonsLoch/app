@@ -317,7 +317,7 @@ namespace base
 
       //virtual void on_service_request(sp(::create_context) pcreatecontext);
 
-      virtual sp(::axis::application) assert_running(const char * pszAppId);
+      virtual sp(::aura::application) assert_running(const char * pszAppId);
 
       virtual bool is_running();
 

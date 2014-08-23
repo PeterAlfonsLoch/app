@@ -45,7 +45,7 @@ namespace dynamic_source
 
 
 
-      library_class(sp(::axis::application) papp);
+      library_class(sp(::aura::application) papp);
       ~library_class();
 
 
@@ -59,7 +59,7 @@ namespace dynamic_source
 
 
 
-     sp(::axis::application) get_app() const;
+     sp(::aura::application) get_app() const;
 
    };
 

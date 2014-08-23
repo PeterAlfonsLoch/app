@@ -57,7 +57,7 @@ namespace file
 
 
    template < class T >
-   bool system::output(sp(::axis::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,const char *),const char * lpszSource)
+   bool system::output(sp(::aura::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,const char *),const char * lpszSource)
    {
 
       System.dir().mk(Application.dir_name(pszOutput),papp);
@@ -75,7 +75,7 @@ namespace file
 
 /*
 template < class T >
-bool ::file::system::output(sp(::axis::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, const char *), const char * lpszSource)
+bool ::file::system::output(sp(::aura::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, const char *), const char * lpszSource)
 {
 
 App(papp).dir().mk(Application.dir_name(pszOutput));
@@ -94,7 +94,7 @@ return (p->*lpfnOuput)(ostream, lpszSource);
 
 
 template < class T >
-bool ::file::system::output(sp(::axis::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, ::file::input_stream &), const char * lpszInput)
+bool ::file::system::output(sp(::aura::application) papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, ::file::input_stream &), const char * lpszInput)
 {
 
 App(papp).dir().mk(Application.dir_name(pszOutput));
@@ -160,7 +160,7 @@ return true;
 
 
    template < class T >
-   bool system::output(sp(::axis::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),::file::input_stream & istream)
+   bool system::output(sp(::aura::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),::file::input_stream & istream)
    {
 
       ::file::output_stream ostream(get(pszOutput,papp));

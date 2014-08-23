@@ -5,7 +5,7 @@ namespace visual
 {
 
 
-   api::api(sp(::axis::application) papp) :
+   api::api(sp(::aura::application) papp) :
       element(papp)
    {
 

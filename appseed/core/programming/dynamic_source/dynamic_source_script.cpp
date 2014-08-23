@@ -18,7 +18,7 @@ namespace dynamic_source
 
 
 
-   script::script(sp(::axis::application) papp) :
+   script::script(sp(::aura::application) papp) :
       element(papp),
       m_memfileError(papp),
       m_mutex(papp)
@@ -43,7 +43,7 @@ namespace dynamic_source
      uint32_t dwReserved;    // must be zero
    } LOADPARMS32;
 
-   ds_script::ds_script(sp(::axis::application) papp) :
+   ds_script::ds_script(sp(::aura::application) papp) :
       element(papp),
       script(papp),
       m_evCreationEnabled(papp),
@@ -522,7 +522,7 @@ namespace dynamic_source
    }
 
 
-   sp(::axis::application) ds_script::get_app() const
+   sp(::aura::application) ds_script::get_app() const
    {
       return m_pmanager->get_app();
    }
