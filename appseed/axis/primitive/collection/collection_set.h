@@ -233,7 +233,7 @@ search(typename BASE_ARRAY_TYPE::iterator & m, ARG_TYPE t)
 
       m = l.mid(u);
 
-      if(COMPARE::compare(t,*m))
+      if(COMPARE().operator()(t,*m))
       {
 
          if(m == begin())
@@ -244,7 +244,7 @@ search(typename BASE_ARRAY_TYPE::iterator & m, ARG_TYPE t)
          --u;
 
       }
-      else if(COMPARE::compare(*m,t))
+      else if(COMPARE().operator()(*m,t))
       {
          if(m == end())
             break;
