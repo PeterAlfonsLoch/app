@@ -3076,6 +3076,16 @@ namespace aura
    }
 
 
+   ::user::interaction * application::get_parent(::user::interaction * pui)
+   {
+
+      UNREFERENCED_PARAMETER(pbase);
+
+      return NULL;
+
+   }
+
+
 } // namespace aura
 
 
