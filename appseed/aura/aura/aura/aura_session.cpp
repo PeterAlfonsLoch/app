@@ -306,8 +306,6 @@ namespace aura
       if(!::aura::application::initialize2())
          return false;
 
-      fill_locale_schema(*str_context()->m_plocaleschema);
-
       return true;
 
    }
@@ -334,19 +332,6 @@ namespace aura
 
       if(!::aura::application::initialize())
          return false;
-
-      if(!is_installing() && !is_uninstalling())
-      {
-
-         if(!user()->keyboard().initialize())
-            return false;
-
-      }
-
-      if(!m_spuser->initialize())
-         return false;
-
-      user()->set_keyboard_layout(NULL,::action::source::database());
 
 
       return true;

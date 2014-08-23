@@ -500,23 +500,6 @@ namespace aura
       m_pmutexDc.release();
 #endif
 
-#ifdef WINDOWSEX
-
-
-
-      try
-      {
-
-         m_spwindow.release();
-
-      }
-      catch(...)
-      {
-
-         m_iReturnCode = -2;
-
-      }
-#endif
 
 
       if(m_peengine != NULL)
