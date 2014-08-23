@@ -123,9 +123,6 @@
     <Filter Include="Header Files\aura\xml">
       <UniqueIdentifier>{42770ef4-1efe-40e5-864d-38ad28249a78}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\user\simple_ui">
-      <UniqueIdentifier>{7bdaa2c9-1de1-4163-8aba-35a5dcab23ba}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\aura\exception">
       <UniqueIdentifier>{3057931a-c1e2-4b6c-9059-d0ece06cdca4}</UniqueIdentifier>
     </Filter>
@@ -4145,9 +4142,6 @@
     </None>
     <None Include="primitive\primitive_factory_impl.inl">
       <Filter>Header Files\primitive</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
