@@ -44,9 +44,6 @@ namespace aura
 
       m_paurasystem->m_basesessionptra.add_unique(this);
 
-      m_schemasimple.m_pfont.alloc(allocer());
-
-      m_schemasimple.m_pfont->create_pixel_font("Helvetica",16);
 
 
    }

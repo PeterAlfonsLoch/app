@@ -72,7 +72,7 @@ namespace user
 
       if(find_from(pui,0) < 0)
       {
-         remove(pui);
+         m_uiptra.remove(pui);
       }
 
    }

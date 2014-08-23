@@ -144,75 +144,8 @@ void thread_impl::pre_translate_message(signal_details * pobj)
       {
          if(m_pauraapp->m_paurasession != NULL)
          {
-            try
-            {
 
-               synch_index_iterator it(m_pauraapp->m_paurasession->m_framea);
-
-               ::user::interaction * pui;
-
-               for(it.m_i = 0; it.m_i < m_pauraapp->m_paurasession->frames().get_count(); it.m_i++)
-               {
-                  
-                  try
-                  {
-
-                     pui = m_pauraapp->m_paurasession->frames()[it.m_i];
-
-                  }
-                  catch(...)
-                  {
-
-                     pui = NULL;
-
-                  }
-                  
-                  try
-                  {
-                     it.unlock();
-                  }
-                  catch(...)
-                  {
-                  }
-
-                  try
-                  {
-
-                     if(pui != NULL)
-                     {
-
-                        pui->pre_translate_message(pobj);
-
-                        if(pobj->m_bRet)
-                           return;
-
-                     }
-
-                  }
-                  catch(exit_exception & e)
-                  {
-                     throw e;
-                  }
-                  catch(...)
-                  {
-                  }
-
-                  try
-                  {
-                     it.lock();
-                  }
-                  catch(...)
-                  {
-                  }
-               }
-            }
-            catch(exit_exception & e)
-            {
-               throw e;
-            }
-            catch(...)
-            {
-            }
+            m_pauraapp->m_paurasession->frame_pre_translate_message(pobj);
          }
       }
       catch(exit_exception & e)
