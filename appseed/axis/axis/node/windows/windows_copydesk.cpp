@@ -11,7 +11,7 @@ namespace windows
 
    copydesk::copydesk(sp(::aura::application) papp) :
       element(papp),
-      ::aura::copydesk(papp),
+      ::axis::copydesk(papp),
       ::user::interaction(papp)
    {
    }
