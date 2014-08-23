@@ -1790,76 +1790,79 @@ namespace axis
    }
 
 
-   bool session::frame_pre(const char * pszId,bool bInteractive)
-
-   try
+   void session::frame_pre_translate_message(signal_details * pobj)
    {
 
-      synch_index_iterator it(m_pauraapp->m_paurasession->m_framea);
-
-      ::user::interaction * pui;
-
-      for(it.m_i = 0; it.m_i < m_pauraapp->m_paurasession->frames().get_count(); it.m_i++)
+      try
       {
 
-         try
+         synch_index_iterator it(m_framea);
+
+         ::user::interaction * pui;
+
+         for(it.m_i = 0; it.m_i < frames().get_count(); it.m_i++)
          {
 
-            pui = m_pauraapp->m_paurasession->frames()[it.m_i];
-
-         }
-         catch(...)
-         {
-
-            pui = NULL;
-
-         }
-
-         try
-         {
-            it.unlock();
-         }
-         catch(...)
-         {
-         }
-
-         try
-         {
-
-            if(pui != NULL)
+            try
             {
 
-               pui->pre_translate_message(pobj);
+               pui = frames()[it.m_i];
 
-               if(pobj->m_bRet)
-                  return;
+            }
+            catch(...)
+            {
+
+               pui = NULL;
 
             }
 
-         }
-         catch(exit_exception & e)
-         {
-            throw e;
-         }
-         catch(...)
-         {
-         }
+            try
+            {
+               it.unlock();
+            }
+            catch(...)
+            {
+            }
 
-         try
-         {
-            it.lock();
-         }
-         catch(...)
-         {
+            try
+            {
+
+               if(pui != NULL)
+               {
+
+                  pui->pre_translate_message(pobj);
+
+                  if(pobj->m_bRet)
+                     return;
+
+               }
+
+            }
+            catch(exit_exception & e)
+            {
+               throw e;
+            }
+            catch(...)
+            {
+            }
+
+            try
+            {
+               it.lock();
+            }
+            catch(...)
+            {
+            }
          }
       }
-   }
-   catch(exit_exception & e)
-   {
-      throw e;
-   }
-   catch(...)
-   {
+      catch(exit_exception & e)
+      {
+         throw e;
+      }
+      catch(...)
+      {
+      }
+
    }
 
 
