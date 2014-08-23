@@ -280,7 +280,7 @@ namespace sort
                {
                   if(iMPos == iUPos)
                      break;
-                  if(COMPARE::compare(*iMPos,*iUPos))
+                  if(COMPARE().(*iMPos,*iUPos))
                      --iUPos;
                   else
                   {
@@ -297,7 +297,7 @@ namespace sort
                {
                   if(iMPos == iLPos)
                      break;
-                  if(COMPARE::compare(*iLPos,*iMPos))
+                  if(COMPARE().(*iLPos,*iMPos))
                      ++iLPos;
                   else
                   {
