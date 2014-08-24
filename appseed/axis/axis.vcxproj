@@ -3038,6 +3038,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="axis\node\node.cpp" />
+    <ClCompile Include="axis\node\windows\windows.cpp" />
     <ClCompile Include="axis\node\windows\windows_copydesk.cpp" />
     <ClCompile Include="axis\node\windows\windows_factory_exchange.cpp" />
     <ClCompile Include="axis\node\windows\windows_interaction_impl.cpp" />
@@ -3325,6 +3326,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCppHeader</CompileAs>
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">CompileAsCppHeader</CompileAs>
     </ClCompile>
+    <ClInclude Include="primitive\data\data_simple_item.h" />
+    <ClInclude Include="primitive\data\data_tree.h" />
+    <ClInclude Include="primitive\data\data_tree_item.h" />
     <ClInclude Include="primitive\datetime\datetime_departament.h" />
     <ClInclude Include="primitive\datetime\datetime_value.h" />
     <ClInclude Include="user\simple\simple.h" />
@@ -3737,6 +3741,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="graphics\graphics_window_graphics.cpp" />
     <ClCompile Include="graphics\visual\visual_cursor.cpp" />
     <ClCompile Include="graphics\visual\visual_icon.cpp" />
+    <ClCompile Include="primitive\data\data_simple_item.cpp" />
+    <ClCompile Include="primitive\data\data_tree.cpp" />
+    <ClCompile Include="primitive\data\data_tree_item.cpp" />
     <ClCompile Include="primitive\datetime\datetime_departament.cpp" />
     <ClCompile Include="primitive\datetime\datetime_value.cpp" />
     <ClCompile Include="user\simple\simple_scroll_bar.cpp" />

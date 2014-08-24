@@ -180,6 +180,9 @@
     <Filter Include="Source Files\axis\axis_policy">
       <UniqueIdentifier>{2be2ffd3-b100-458f-88e6-49eb5577055f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\primitive\data">
+      <UniqueIdentifier>{fc9dbcd3-5ad0-45d8-9b45-200ec76c6729}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\draw2d\draw2d.h">
@@ -863,6 +866,15 @@
     <ClInclude Include="axis\axis\axis_platform_interface.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\data\data_simple_item.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\data_tree.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\data_tree_item.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="version.cpp">
@@ -1383,6 +1395,18 @@
     </ClCompile>
     <ClCompile Include="axis\node\windows\windows_message_queue.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\data\data_simple_item.cpp">
+      <Filter>Source Files\primitive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\data\data_tree.cpp">
+      <Filter>Source Files\primitive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\data\data_tree_item.cpp">
+      <Filter>Source Files\primitive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\windows\windows.cpp">
+      <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

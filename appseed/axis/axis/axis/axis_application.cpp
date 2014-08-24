@@ -1362,6 +1362,32 @@ namespace axis
 
 
 
+   void application::on_service_request(sp(::create_context) pcreatecontext)
+   {
+
+      if(!is_serviceable())
+         return;
+
+      if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("create_service"))
+      {
+         create_service();
+      }
+      else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("start_service"))
+      {
+         start_service();
+      }
+      else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("stop_service"))
+      {
+         stop_service();
+      }
+      else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("remove_service"))
+      {
+         remove_service();
+      }
+
+
+   }
+
 
 
    bool application::process_initialize()

@@ -5,7 +5,7 @@ namespace data
 {
 
 
-   class CLASS_DECL_AURA tree :
+   class CLASS_DECL_AXIS tree :
       virtual public ::data::data,
       virtual public ::signalizable
    {

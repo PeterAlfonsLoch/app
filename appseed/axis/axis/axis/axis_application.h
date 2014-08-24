@@ -262,9 +262,9 @@ namespace axis
 
       virtual bool assert_user_logged_in();
 
-      virtual bool init_main_data(::aura::main_init_data * pdata);
+      //virtual bool init_main_data(::aura::main_init_data * pdata);
 
-      virtual bool set_main_init_data(::aura::main_init_data * pdata);
+      //virtual bool set_main_init_data(::aura::main_init_data * pdata);
 
       virtual sp(::message::base) get_message_base(LPMESSAGE lpmsg);
 
