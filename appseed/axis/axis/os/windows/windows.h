@@ -42,10 +42,25 @@
 
 
 
+#ifdef cplusplus
+
+
+CLASS_DECL_AXIS bool vfxResolveShortcut(string & strTarget,const char * pszSource,sp(::user::interaction) puiMessageParentOptional);
 
 
 
-bool CLASS_DECL_BASE vfxResolveShortcut(string & strTarget,const char * pszSource,sp(::user::interaction) puiMessageParentOptional);
+
+#endif
+
+
+
+
+
+
+
+
+
+
 
 
 
