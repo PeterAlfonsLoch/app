@@ -59,8 +59,3 @@ sp(::user::interaction) simple_list_view::OnDrawInterfaceGetWnd()
    return this;
 }
 
-sp(::user::interaction) simple_list_view::_GetWnd()
-{
-   return this;
-}
-

@@ -75,7 +75,6 @@ namespace user
       bool SetPane(int32_t iIndex, sp(::user::interaction)pwindow, bool bFixedSize, id idPane = id());
       bool RemovePaneAt(int32_t iIndex);
       void SetPaneFixedSize(int32_t iIndex, SIZE * pSize);
-      void SetVisible(bool bNewValue);
       void CalcSplitBarRect(int32_t iIndex, LPRECT lpRect);
       void CalcPaneRect(int32_t nMinPos, int32_t nMaxPos, LPRECT lpRect);
       void CalcPaneRect(int32_t iIndex, LPRECT lpRect);

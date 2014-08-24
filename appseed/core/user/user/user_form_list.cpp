@@ -257,11 +257,6 @@ namespace user
       list::_001UpdateColumns();
    }
 
-   sp(::user::interaction) form_list::_GetWnd()
-   {
-      return  (this);
-   }
-
    LRESULT form_list::_001BaseWndGetProperty(EProperty eprop, LPARAM lparam)
    {
       switch(eprop)

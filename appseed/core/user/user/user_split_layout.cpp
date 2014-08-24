@@ -134,7 +134,7 @@ namespace user
       {
          int32_t   fwKeys = (int32_t) lpMsg->wParam;        // key flags
          point ptClient = ptCursor;
-         _GetWnd()->ScreenToClient(&ptClient);
+         ScreenToClient(&ptClient);
          if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iIndex == m_iIndex))
          {
             single_lock sl(&m_mutex, true);
@@ -486,60 +486,6 @@ namespace user
 
    }
 
-   void split_layout::SetVisible(bool bNewValue)
-   {
-      if(bNewValue)
-      {
-         _GetWnd()->ShowWindow(SW_SHOW);
-         _GetWnd()->SetWindowPos(
-            ZORDER_TOP,
-            0, 0,
-            0, 0,
-            SWP_NOMOVE
-            | SWP_NOSIZE
-            | SWP_SHOWWINDOW);
-      }
-      else
-      {
-         _GetWnd()->ShowWindow(SW_HIDE);
-      }
-   //   int32_t i;
-   /*   Pane * pcomponent;
-      sp(::user::interaction) pwnd;
-      for(i = 0; i < get_pane_count(); i++)
-      {
-         pcomponent = m_panea.get_at(i);
-         ASSERT(pcomponent->m_etype == Pane::TypeHandle ||
-                  pcomponent->m_etype == Pane::TypeWndPointer );
-   //        if(pcomponent->m_etype == Pane::TypeWndPointer)
-     //          pwnd = pcomponent->m_pwnd;
-       //    else
-      //      pwnd = ::user::interaction::from_handle_dup(pcomponent->m_oswindow);
-         pwnd = pcomponent->m_psplitpane;
-           ASSERT(pwnd != NULL);
-         if(bNewValue)
-            pwnd->ShowWindow(SW_SHOW);
-         else
-            pwnd->ShowWindow(SW_HIDE);
-         if(i < get_split_count())
-         {
-            pwnd = m_splitbara.get_at(i);
-         if(bNewValue)
-            pwnd->SetWindowPos(
-            ZORDER_TOP,
-            0, 0, 0, 0,
-            SWP_SHOWWINDOW |
-            SWP_NOSIZE |
-            SWP_NOMOVE);
-         else
-            pwnd->ShowWindow(SW_HIDE);
-         }
-//         m_bVisible = bNewValue;
-
-
-      }*/
-
-   }
 
 
    bool split_layout::InsertPaneAt(int32_t iIndex, sp(::user::interaction)pwnd, bool bFixedSize, class id id)
