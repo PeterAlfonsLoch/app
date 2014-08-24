@@ -195,12 +195,6 @@
     <Filter Include="Header Files\base\geoip">
       <UniqueIdentifier>{a1196ae1-643e-46d0-9f06-361c06e383d7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\net\idn">
-      <UniqueIdentifier>{09524ebc-0318-4348-a462-4eee83de81bb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\idn">
-      <UniqueIdentifier>{8e679719-0ed1-4584-a8be-b13c4d00dc92}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\base">
       <UniqueIdentifier>{225c8e24-bbc5-4bf4-9da8-92ec39a039ec}</UniqueIdentifier>
     </Filter>
@@ -832,48 +826,6 @@
     </ClInclude>
     <ClInclude Include="base\geoip\global.h">
       <Filter>Header Files\base\geoip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\idn\ac-stdint.h">
-      <Filter>Header Files\net\idn</Filter>
-    </ClInclude>
-    <ClInclude Include="net\idn\config.h">
-      <Filter>Header Files\net\idn</Filter>
-    </ClInclude>
-    <ClInclude Include="net\idn\gunibreak.h">
-      <Filter>Header Files\net\idn</Filter>
-    </ClInclude>
-    <ClInclude Include="net\idn\gunicomp.h">
-      <Filter>Header Files\net\idn</Filter>
-    </ClInclude>
-    <ClInclude Include="net\idn\gunidecomp.h">
-      <Filter>Header Files\net\idn</Filter>
-    </ClInclude>
-    <ClInclude Include="net\idn\idna.h">
-      <Filter>Header Files\net\idn</Filter>
-    </ClInclude>
-    <ClInclude Include="net\idn\idn-free.h">
-      <Filter>Header Files\net\idn</Filter>
-    </ClInclude>
-    <ClInclude Include="net\idn\idn-int.h">
-      <Filter>Header Files\net\idn</Filter>
-    </ClInclude>
-    <ClInclude Include="net\idn\pr29.h">
-      <Filter>Header Files\net\idn</Filter>
-    </ClInclude>
-    <ClInclude Include="net\idn\punycode.h">
-      <Filter>Header Files\net\idn</Filter>
-    </ClInclude>
-    <ClInclude Include="net\idn\stdbool.h">
-      <Filter>Header Files\net\idn</Filter>
-    </ClInclude>
-    <ClInclude Include="net\idn\stringprep.h">
-      <Filter>Header Files\net\idn</Filter>
-    </ClInclude>
-    <ClInclude Include="net\idn\tld.h">
-      <Filter>Header Files\net\idn</Filter>
-    </ClInclude>
-    <ClInclude Include="net\idn\unistd.h">
-      <Filter>Header Files\net\idn</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
@@ -1561,54 +1513,6 @@
     <ClCompile Include="base\geoip\geoip_update.cpp">
       <Filter>Source Files\base\geoip</Filter>
     </ClCompile>
-    <ClCompile Include="net\idn\idna.c">
-      <Filter>Source Files\net\idn</Filter>
-    </ClCompile>
-    <ClCompile Include="net\idn\idn-free.c">
-      <Filter>Source Files\net\idn</Filter>
-    </ClCompile>
-    <ClCompile Include="net\idn\nfkc.c">
-      <Filter>Source Files\net\idn</Filter>
-    </ClCompile>
-    <ClCompile Include="net\idn\pr29.c">
-      <Filter>Source Files\net\idn</Filter>
-    </ClCompile>
-    <ClCompile Include="net\idn\profiles.c">
-      <Filter>Source Files\net\idn</Filter>
-    </ClCompile>
-    <ClCompile Include="net\idn\punycode.c">
-      <Filter>Source Files\net\idn</Filter>
-    </ClCompile>
-    <ClCompile Include="net\idn\rfc3454.c">
-      <Filter>Source Files\net\idn</Filter>
-    </ClCompile>
-    <ClCompile Include="net\idn\strerror-idna.c">
-      <Filter>Source Files\net\idn</Filter>
-    </ClCompile>
-    <ClCompile Include="net\idn\strerror-pr29.c">
-      <Filter>Source Files\net\idn</Filter>
-    </ClCompile>
-    <ClCompile Include="net\idn\strerror-punycode.c">
-      <Filter>Source Files\net\idn</Filter>
-    </ClCompile>
-    <ClCompile Include="net\idn\strerror-stringprep.c">
-      <Filter>Source Files\net\idn</Filter>
-    </ClCompile>
-    <ClCompile Include="net\idn\strerror-tld.c">
-      <Filter>Source Files\net\idn</Filter>
-    </ClCompile>
-    <ClCompile Include="net\idn\stringprep.c">
-      <Filter>Source Files\net\idn</Filter>
-    </ClCompile>
-    <ClCompile Include="net\idn\tld.c">
-      <Filter>Source Files\net\idn</Filter>
-    </ClCompile>
-    <ClCompile Include="net\idn\tlds.c">
-      <Filter>Source Files\net\idn</Filter>
-    </ClCompile>
-    <ClCompile Include="net\idn\toutf8.c">
-      <Filter>Source Files\net\idn</Filter>
-    </ClCompile>
     <ClCompile Include="base\install\install_plugin_bare_paint_full_screen.cpp">
       <Filter>Source Files\base\install</Filter>
     </ClCompile>
@@ -1964,6 +1868,9 @@
     </None>
     <None Include="base\base\base.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
