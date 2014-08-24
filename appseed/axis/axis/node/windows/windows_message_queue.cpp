@@ -21,10 +21,11 @@ namespace windows
    }
 
 
-   bool message_queue::create_message_queue(const char * pszName,::message_queue_listener * plistener)
+   bool message_queue::create_message_queue(const char * pszName,::aura::message_queue_listener * plistener)
    {
 
-      m_plistener = plistener;
+      if(!::aura::message_queue::create_message_queue(pszName,plistener))
+         return true;
 
       return ::user::interaction::create_message_queue(pszName);
 
