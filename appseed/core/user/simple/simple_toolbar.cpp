@@ -1491,7 +1491,7 @@ void SimpleToolCmdUI::_001SetCheck(check::e_check echeck, ::action::context acti
    ASSERT(echeck == check::checked
       || echeck == check::unchecked
       || echeck == check::tristate); // 0=>off, 1=>on, 2=>indeterminate
-   simple_toolbar* pToolBar = dynamic_cast < simple_toolbar * > (m_pOther.m_p);
+   simple_toolbar* pToolBar = dynamic_cast < simple_toolbar * > (m_pOther);
    ASSERT(pToolBar != NULL);
    ASSERT_KINDOF(simple_toolbar, pToolBar);
    ASSERT(m_iIndex < m_iCount);

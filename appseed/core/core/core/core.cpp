@@ -109,7 +109,7 @@ namespace core
 
       ASSERT(nLen >= 0);
 
-      ::axis::memcpy_s(rString.GetBufferSetLength(nLen), nLen*sizeof(char), lpszFullString, nLen*sizeof(char));
+      ::aura::memcpy_s(rString.GetBufferSetLength(nLen), nLen*sizeof(char), lpszFullString, nLen*sizeof(char));
 
       rString.ReleaseBuffer();   // Need to call ReleaseBuffer after calling GetBufferSetLength
 

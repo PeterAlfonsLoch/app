@@ -24,7 +24,7 @@ namespace user
    void tool_cmd_ui::Enable(bool bOn)
    {
       m_bEnableChanged = TRUE;
-      toolbar* pToolBar = dynamic_cast < toolbar * > (m_pOther.m_p);
+      toolbar* pToolBar = dynamic_cast < toolbar * > (m_pOther);
       ASSERT(pToolBar != NULL);
       ASSERT_KINDOF(toolbar, pToolBar);
       ASSERT(m_iIndex < m_iCount);
@@ -50,7 +50,7 @@ namespace user
    void tool_cmd_ui::SetCheck(int32_t nCheck)
    {
       ASSERT(nCheck >= 0 && nCheck <= 2); // 0=>off, 1=>on, 2=>indeterminate
-      toolbar* pToolBar = dynamic_cast < toolbar * > (m_pOther.m_p);
+      toolbar* pToolBar = dynamic_cast < toolbar * > (m_pOther);
       ASSERT(pToolBar != NULL);
       ASSERT_KINDOF(toolbar, pToolBar);
       ASSERT(m_iIndex < m_iCount);

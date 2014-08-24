@@ -722,7 +722,7 @@ namespace user
    void CStatusCmdUI::Enable(bool bOn)
    {
       m_bEnableChanged = TRUE;
-      status_bar* pStatusBar = dynamic_cast < status_bar * > (m_pOther.m_p);
+      status_bar* pStatusBar = dynamic_cast < status_bar * > (m_pOther);
       ASSERT(pStatusBar != NULL);
       ASSERT_KINDOF(status_bar, pStatusBar);
       ASSERT(m_iIndex < m_iCount);
@@ -735,7 +735,7 @@ namespace user
 
    void CStatusCmdUI::SetCheck(check::e_check echeck) // "checking" will pop out the text
    {
-      status_bar* pStatusBar = dynamic_cast < status_bar * > (m_pOther.m_p);
+      status_bar* pStatusBar = dynamic_cast < status_bar * > (m_pOther);
       ASSERT(pStatusBar != NULL);
       ASSERT_KINDOF(status_bar, pStatusBar);
       ASSERT(m_iIndex < m_iCount);
@@ -753,7 +753,7 @@ namespace user
 
    void CStatusCmdUI::SetText(const char * lpszText)
    {
-      status_bar* pStatusBar = dynamic_cast < status_bar * > (m_pOther.m_p);
+      status_bar* pStatusBar = dynamic_cast < status_bar * > (m_pOther);
       ASSERT(pStatusBar != NULL);
       ASSERT_KINDOF(status_bar, pStatusBar);
       ASSERT(m_iIndex < m_iCount);
