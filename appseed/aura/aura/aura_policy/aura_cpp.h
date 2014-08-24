@@ -230,6 +230,7 @@ namespace axis
    class application;
    class session;
    class system;
+   class platform_interface;
 
 }
 

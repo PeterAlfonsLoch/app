@@ -11,7 +11,7 @@ namespace aura
    public:
 
 
-      session_interface *     m_pplatformcomposite;
+      ::axis::platform_interface *     m_pplatformcomposite;
 
 
       session_interface();

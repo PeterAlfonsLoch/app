@@ -860,6 +860,9 @@
     <ClInclude Include="axis\node\windows\windows_message_queue.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
+    <ClInclude Include="axis\axis\axis_platform_interface.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="version.cpp">
@@ -1380,6 +1383,9 @@
     </ClCompile>
     <ClCompile Include="axis\node\windows\windows_message_queue.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\axis\axis_platform_interface.cpp">
+      <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1635,6 +1635,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\axis\axis.h" />
     <ClInclude Include="axis\axis\axis_application.h" />
     <ClInclude Include="axis\axis\axis_core_copydesk.h" />
+    <ClInclude Include="axis\axis\axis_platform_interface.h" />
     <ClInclude Include="axis\axis\axis_print_job.h" />
     <ClInclude Include="axis\axis\axis_session.h" />
     <ClInclude Include="axis\axis\axis_simple_app.h" />
@@ -2665,6 +2666,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="database\database_template.h" />
     <ClInclude Include="database\database_update_hint.h" />
     <ClInclude Include="database\database_user_interaction.h" />
+    <ClCompile Include="axis\axis\axis_platform_interface.cpp" />
     <ClCompile Include="axis\axis\axis_print_job.cpp" />
     <ClCompile Include="axis\axis\axis_static_start.cpp" />
     <ClCompile Include="axis\axis_policy\axis_c.c" />

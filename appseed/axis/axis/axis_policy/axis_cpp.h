@@ -380,7 +380,13 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 
 
+
 #include "axis/graphics/graphics.h"
+
+
+#include "axis_platform_interface.h"
+
+
 #include "user/user/user_enum.h"
 #include "user/user/user_keyboard_focus.h"
 #include "user/user/user_mouse_focus.h"
