@@ -234,11 +234,11 @@ namespace core
          return false;
 
 
-      m_puinteraction = canew(::user::wndfrm::wndfrm(this));
+      m_pwndfrm = canew(::user::wndfrm::wndfrm(this));
 
-      m_puinteraction->construct(this);
+      m_pwndfrm->construct(this);
 
-      if(!m_puinteraction->initialize())
+      if(!m_pwndfrm->initialize())
          return false;
 
 

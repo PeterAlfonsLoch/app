@@ -11,8 +11,8 @@
 #include "simple_static.h"
 #include "simple_push_button.h"
 
-#include "core/user/wndfrm/frame/uinteraction_frame_control_box_button.h"
-#include "core/user/wndfrm/frame/uinteraction_frame_control_box.h"
+#include "core/user/wndfrm/frame/wndfrm_frame_control_box_button.h"
+#include "core/user/wndfrm/frame/wndfrm_frame_control_box.h"
 #include "core/user/user/user_meta_button.h"
 #include "core/user/user/user_meta_control_box.h"
 #include "core/user/user/user_orto_button.h"

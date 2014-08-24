@@ -19,8 +19,8 @@ namespace user
          virtual ~wndfrm();
 
 
-         virtual sp(::user::wndfrm::interaction) get_new_uinteraction(const char * pszUinteractionLibrary);
-         virtual sp(::user::wndfrm::interaction) get_uinteraction(const char * pszUinteractionLibrary);
+         virtual sp(::user::wndfrm::interaction) get_new_wndfrm(const char * pszUinteractionLibrary);
+         virtual sp(::user::wndfrm::interaction) get_wndfrm(const char * pszUinteractionLibrary);
          virtual sp(frame::frame) get_frame_schema(const char * pszUinteractionLibrary, const char * pszFrameSchemaName);
 
       };

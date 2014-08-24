@@ -27,16 +27,16 @@ namespace user
 } // namespace user
 
 
-#include "uinteraction_interaction.h"
+#include "wndfrm_interaction.h"
 
 
 #include "core/database/databaseuser/databaseuser.h"
 
 
-#include "frame/uinteraction_frame.h"
+#include "frame/wndfrm_frame.h"
 
 
-#include "uinteraction_uinteraction.h"
+#include "wndfrm_wndfrm.h"
 
 
 

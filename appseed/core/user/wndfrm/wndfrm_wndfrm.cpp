@@ -23,7 +23,7 @@ namespace user
       }
 
 
-      sp(::user::wndfrm::interaction) wndfrm::get_new_uinteraction(const char * pszUinteractionLibrary)
+      sp(::user::wndfrm::interaction) wndfrm::get_new_wndfrm(const char * pszUinteractionLibrary)
       {
 
          string strId(pszUinteractionLibrary);
@@ -104,7 +104,7 @@ namespace user
       }
 
 
-      sp(::user::wndfrm::interaction) wndfrm::get_uinteraction(const char * pszUinteraction)
+      sp(::user::wndfrm::interaction) wndfrm::get_wndfrm(const char * pszUinteraction)
       {
 
          if(System.get_twf() == NULL)
@@ -120,7 +120,7 @@ namespace user
          if(Platform.m_mapUinteraction[pszUinteraction] == NULL)
          {
 
-            Platform.m_mapUinteraction[pszUinteraction] = Platform.wndfrm().get_new_uinteraction(pszUinteraction);
+            Platform.m_mapUinteraction[pszUinteraction] = Platform.wndfrm().get_new_wndfrm(pszUinteraction);
 
             pinteraction = Platform.m_mapUinteraction[pszUinteraction];
 
@@ -135,7 +135,7 @@ namespace user
       sp(::user::wndfrm::frame::frame) wndfrm::get_frame_schema(const char * pszLibrary, const char * pszFrameSchemaName)
       {
 
-         sp(::user::wndfrm::interaction) pinteraction = get_uinteraction(pszLibrary);
+         sp(::user::wndfrm::interaction) pinteraction = get_wndfrm(pszLibrary);
 
          if(pinteraction == NULL)
             return NULL;

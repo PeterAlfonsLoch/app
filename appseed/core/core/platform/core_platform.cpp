@@ -137,11 +137,11 @@ namespace core
       /*      if(System.directrix()->m_varTopicQuery.has_property("install")
       || System.directrix()->m_varTopicQuery.has_property("uninstall"))
       {
-      find_uinteractions_to_cache(m_mapUInteractionToLibrary);
+      find_wndfrms_to_cache(m_mapUInteractionToLibrary);
       }
       else
       {
-      find_uinteractions_from_cache(m_mapUInteractionToLibrary);
+      find_wndfrms_from_cache(m_mapUInteractionToLibrary);
       }*/
 
       return true;
