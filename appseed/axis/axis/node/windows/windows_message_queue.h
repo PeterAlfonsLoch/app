@@ -31,6 +31,8 @@ namespace windows
 
       virtual bool message_queue_set_timer(uint_ptr uiId,DWORD dwMillis);
 
+      virtual bool message_queue_del_timer(uint_ptr uiId);
+
       virtual bool message_queue_destroy();
 
 

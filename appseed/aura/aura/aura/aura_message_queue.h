@@ -26,8 +26,9 @@ namespace aura
 
       virtual bool message_queue_is_initialized();
 
-
       virtual bool message_queue_set_timer(uint_ptr uiId,DWORD dwMillis);
+
+      virtual bool message_queue_del_timer(uint_ptr uiId);
 
       virtual bool message_queue_destroy();
 

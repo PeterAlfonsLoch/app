@@ -59,7 +59,7 @@ namespace userpresence
            // m_spuiMessage = canew(::user::interaction());
          }
 
-         if(!m_queue.create_message_queue("ca5::user::userpresence::message_queue"))
+         if(!m_spqueue->create_message_queue("ca5::user::userpresence::message_queue"))
             return false;
 
       }
@@ -107,7 +107,7 @@ namespace userpresence
       }
 
 
-      m_queue.SetTimer(8888, 1000, NULL);
+      m_spqueue->message_queue_set_timer(8888, 1000);
 
       if(ApplicationUser.m_ppresence == NULL)
       {
@@ -140,12 +140,12 @@ namespace userpresence
          return true;
       }
 
-      if(m_queue.IsWindow())
+      if(m_spqueue->message_queue_is_initialized())
       {
 
-         m_queue.KillTimer(1984);
+         m_spqueue->message_queue_del_timer(1984);
 
-         m_queue.DestroyWindow();
+         m_spqueue->message_queue_destroy();
 
       }
 
@@ -166,7 +166,7 @@ namespace userpresence
    bool userpresence::is_initialized()
    {
 
-      if(!m_queue.IsWindow())
+      if(!m_spqueue->IsWindow())
          return false;
 
       return true;

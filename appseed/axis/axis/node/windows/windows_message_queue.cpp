@@ -73,6 +73,14 @@ namespace windows
    }
 
 
+   bool message_queue::message_queue_del_timer(uint_ptr uiId)
+   {
+
+      return KillTimer(uiId) != FALSE;
+
+   }
+
+
    bool message_queue::message_queue_destroy()
    {
 

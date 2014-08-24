@@ -71,6 +71,15 @@ namespace aura
    }
 
 
+   bool message_queue::message_queue_del_timer(uint_ptr uiId)
+   {
+
+      throw interface_only_exception(get_app());
+
+      return false;
+
+   }
+
 
    bool message_queue::message_queue_destroy()
    {
