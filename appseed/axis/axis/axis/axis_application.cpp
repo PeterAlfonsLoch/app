@@ -1481,7 +1481,7 @@ namespace axis
       try
       {
 
-         bOk = ::aura::application::exit_instance();
+         bOk = ::aura::application::finalize();
 
       }
       catch(...)

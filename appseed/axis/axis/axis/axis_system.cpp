@@ -153,23 +153,7 @@ namespace axis
 
 #endif
 
-      m_spos.alloc(allocer());
 
-
-      if(!set_main_init_data(m_pinitmaindata))
-         return false;
-
-
-      if(m_pmachineeventcentral == NULL)
-      {
-
-         m_pmachineeventcentral = new ::machine_event_central(this);
-         if(!m_pmachineeventcentral->initialize())
-            return false;
-         if(m_pmachineeventcentral->is_close_application())
-            return false;
-
-      }
 
 #ifdef WINDOWSEX
 
@@ -185,24 +169,6 @@ namespace axis
       }
 
 #endif
-
-/*      dappy(string(typeid(*this).name()) + " : Going to ::axis::session " + ::str::from(m_iReturnCode));
-
-
-      m_paxissession = new ::axis::session(this);
-
-      if(m_paxissession == NULL)
-         return false;
-
-      m_paxissession->construct(this,0);
-
-
-      if(!m_paxissession->begin_synch(&m_iReturnCode))
-      {
-         return false;
-      }
-
-      dappy(string(typeid(*this).name()) + " : ::axis::session OK " + ::str::from(m_iReturnCode));*/
 
       return true;
 
