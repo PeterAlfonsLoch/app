@@ -1332,35 +1332,35 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics * pdc,LPCRECT lpc
 
    pdc->SelectObject(brushGrip);
 
-   rect.Align(AlignLeft | AlignTop,rectDraw);
+   rect.Align(align_top_left,rectDraw);
 
    pdc->FillEllipse(rect);
 
-   rect.Align(AlignHorizontalCenter | AlignTop,rectDraw);
+   rect.Align(align_top_center,rectDraw);
 
    pdc->FillEllipse(rect);
 
-   rect.Align(AlignRight | AlignTop,rectDraw);
+   rect.Align(align_top_right,rectDraw);
 
    pdc->FillEllipse(rect);
 
-   rect.Align(AlignLeft | AlignVerticalCenter,rectDraw);
+   rect.Align(align_left_center,rectDraw);
 
    pdc->FillEllipse(rect);
 
-   rect.Align(AlignRight | AlignVerticalCenter,rectDraw);
+   rect.Align(align_right_center,rectDraw);
 
    pdc->FillEllipse(rect);
 
-   rect.Align(AlignLeft | AlignBottom,rectDraw);
+   rect.Align(align_bottom_left,rectDraw);
 
    pdc->FillEllipse(rect);
 
-   rect.Align(AlignHorizontalCenter | AlignBottom,rectDraw);
+   rect.Align(align_bottom_center,rectDraw);
 
    pdc->FillEllipse(rect);
 
-   rect.Align(AlignRight | AlignBottom,rectDraw);
+   rect.Align(align_bottom_right,rectDraw);
 
    pdc->FillEllipse(rect);
 
@@ -1374,19 +1374,19 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics * pdc,LPCRECT lpc
 
    rect = ::rect(0,0,iSize,iSize);
 
-   rect.Align(AlignLeft | AlignTop,rectDraw);
+   rect.Align(align_top_left,rectDraw);
 
    pdc->FillEllipse(rect);
 
-   rect.Align(AlignRight | AlignTop,rectDraw);
+   rect.Align(align_top_right,rectDraw);
 
    pdc->FillEllipse(rect);
 
-   rect.Align(AlignLeft | AlignBottom,rectDraw);
+   rect.Align(align_bottom_left,rectDraw);
 
    pdc->FillEllipse(rect);
 
-   rect.Align(AlignRight | AlignBottom,rectDraw);
+   rect.Align(align_bottom_right,rectDraw);
 
    pdc->FillEllipse(rect);
 

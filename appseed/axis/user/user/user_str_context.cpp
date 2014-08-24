@@ -684,16 +684,20 @@ namespace user
 
    bool str_context::match(const cregexp_util & u,string_array & stra,const char * psz,id pszExp,id pszRoot)
    {
+
       stringa straCandidate;
-      pcontext->get(straCandidate,pszRoot);
+
+      get(straCandidate,pszRoot);
+
       for(int32_t i = 0; i < straCandidate.get_count(); i++)
       {
+
          string strCandidate = straCandidate[i];
          strCandidate.replace("-","\\-");
          string strExp(pszExp);
          strExp.replace("%1",strCandidate);
          stringa straResult;
-         if(match(straResult,psz,strExp,true,2) > 0)
+         if(u.match(straResult,psz,strExp,true,2) > 0)
          {
             stra = straResult;
             return true;

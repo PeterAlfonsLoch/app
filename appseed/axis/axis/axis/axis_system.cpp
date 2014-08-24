@@ -1017,7 +1017,7 @@ namespace axis
 #endif
 
 
-   sp(::user::interaction) system::get_active_guie()
+   ::user::interaction * system::get_active_guie()
    {
 
 #if defined(WINDOWSEX) || defined(LINUX) || defined(APPLEOS)
@@ -1036,7 +1036,7 @@ namespace axis
    }
 
 
-   sp(::user::interaction) system::get_focus_guie()
+   ::user::interaction * system::get_focus_guie()
    {
 
 #if defined (METROWIN)
@@ -1080,76 +1080,6 @@ namespace axis
 
    }
 
-
-   ::count system::get_application_count()
-   {
-
-      ::count c = 0;
-
-      try
-      {
-
-         for(index iBaseSession = 0; iBaseSession < m_basesessionptra.get_count(); iBaseSession++)
-         {
-
-            try
-            {
-
-               c += m_basesessionptra[iBaseSession].appptra().get_count();
-
-            }
-            catch(...)
-            {
-
-            }
-
-         }
-
-      }
-      catch(...)
-      {
-
-      }
-
-      return c;
-
-   }
-
-
-   application_ptra system::get_appptra()
-   {
-
-      application_ptra appptra;
-
-      try
-      {
-
-         for(index iBaseSession = 0; iBaseSession < m_basesessionptra.get_count(); iBaseSession++)
-         {
-
-            try
-            {
-
-               appptra += m_basesessionptra[iBaseSession].appptra();
-
-            }
-            catch(...)
-            {
-
-            }
-
-         }
-
-      }
-      catch(...)
-      {
-
-
-      }
-
-      return appptra;
-
-   }
 
 
    string system::get_ca2_module_folder()

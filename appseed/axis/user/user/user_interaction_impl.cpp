@@ -971,17 +971,12 @@ namespace user
 
       ::smart_pointer < ::message::base > spbase;
 
-      spbase = get_base(this, message, wparam, lparam);
+      spbase = m_pui->get_base(message, wparam, lparam);
 
-      if(m_pui != NULL)
-      {
+      m_pui->walk_pre_translate_tree(spbase);
 
-         m_pui->walk_pre_translate_tree(spbase);
-
-         if(spbase->m_bRet)
-            return spbase->get_lresult();
-
-      }
+      if(spbase->m_bRet)
+         return spbase->get_lresult();
 
       message_handler(spbase);
 

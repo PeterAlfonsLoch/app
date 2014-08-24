@@ -1020,21 +1020,21 @@ namespace user
             if(m_pauraapp->m_paxissystem != NULL)
             {
 
-               m_pauraapp->m_paxissystem->add_frame(this);
+               System.add_frame(this);
 
             }
 
             if(m_pauraapp->m_paxissession != NULL)
             {
 
-               m_pauraapp->m_paxissession->add_frame(this);
+               Session.add_frame(this);
 
             }
 
             if(m_pauraapp != NULL)
             {
 
-               m_pauraapp->add_frame(this);
+               Application.add_frame(this);
 
             }
 
