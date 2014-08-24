@@ -1183,14 +1183,32 @@ bool thread_impl::initialize_message_queue()
 
    }
 
-   if(!m_queue.is_initialized())
+   if(m_spqueue.is_null())
+   {
+
+      m_spqueue.alloc(allocer());
+
+   }
+
+   if(m_spqueue.is_null())
+   {
+
+      return false;
+
+   }
+
+   if(!m_spqueue->message_queue_is_initialized())
    {
 
       try
       {
 
-         if(!m_queue.create_message_queue("",this))
+         if(!m_spqueue->create_message_queue("",this))
+         {
+
             return false;
+
+         }
 
       }
       catch(...)
@@ -1221,7 +1239,7 @@ bool thread_impl::initialize_message_queue()
 
    sl.unlock();
 
-   m_queue.message_queue_set_timer((uint_ptr)-2,iMin);
+   m_spqueue->message_queue_set_timer((uint_ptr)-2,iMin);
 
    return true;
 
@@ -1616,7 +1634,7 @@ void thread_impl::thread_impl_delete()
 bool thread_impl::finalize()
 {
    
-   m_queue.message_queue_destroy();
+   m_spqueue->message_queue_destroy();
 
 //   destroy_message_queue();
 

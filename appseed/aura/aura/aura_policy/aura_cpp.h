@@ -41,6 +41,7 @@ namespace aura
    class system;
    class application_signal_details;
    class copydesk;
+   class platform_interface;
 
    typedef smart_pointer < copydesk > copydesk_sp;
    class command;
@@ -231,7 +232,6 @@ namespace axis
    class application;
    class session;
    class system;
-   class platform_interface;
 
 }
 

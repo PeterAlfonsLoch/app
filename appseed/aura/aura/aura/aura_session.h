@@ -84,7 +84,7 @@ namespace aura
       virtual COLORREF get_default_color(uint64_t ui);
 
 
-      virtual index initial_frame_position(LPRECT lprect,const RECT & rect, bool bMove);
+      //virtual index initial_frame_position(LPRECT lprect,const RECT & rect, bool bMove);
 
       virtual bool  get_window_minimum_size(LPSIZE lpsize);
 

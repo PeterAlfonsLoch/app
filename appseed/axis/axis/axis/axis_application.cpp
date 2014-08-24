@@ -1897,6 +1897,50 @@ namespace axis
    }
 
 
+   sp(::message::base) application::get_message_base(LPMESSAGE lpmsg)
+   {
+
+      ::user::interaction * pwnd = this;
+
+#if defined(METROWIN)
+      if(pwnd == NULL && lpmsg->oswindow != NULL)
+      {
+         ::user::interaction * pwindow = lpmsg->oswindow->interaction_impl();
+#else
+      if(pwnd == NULL && lpmsg->hwnd != NULL)
+      {
+
+         if(lpmsg->message == 126)
+         {
+
+            TRACE0("WM_DISPLAYCHANGE");
+
+         }
+
+         ::user::interaction * pwindow = System.window_from_os_data(lpmsg->hwnd);
+#endif
+         if(pwindow != NULL)
+         {
+            try
+            {
+               pwnd = pwindow;
+            }
+            catch(...)
+            {
+               pwnd = NULL;
+            }
+         }
+
+         if(pwnd == NULL)
+            return NULL;
+
+      }
+
+      return get_base(pwnd,lpmsg->message,lpmsg->wParam,lpmsg->lParam);
+
+   }
+
+
 } // namespace axis
 
 
