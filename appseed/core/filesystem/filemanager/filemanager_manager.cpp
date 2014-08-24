@@ -56,7 +56,7 @@ namespace filemanager
          if(get_fs_data()->is_link(m_item->m_strPath))
          {
             
-            System.os().resolve_link(m_item->m_strPath,m_item->m_strPath);
+            System.file().resolve_link(m_item->m_strPath,m_item->m_strPath);
 
          }
 

@@ -693,8 +693,8 @@ namespace filemanager
       if(imagekey.m_iIcon == 0x80000000)
       {
          string strTarget;
-         //if(System.os().resolve_link(strTarget, strFilePath, System.window_from_os_data))
-         if(System.os().resolve_link(strTarget, strFilePath, NULL))
+         //if(System.file().resolve_link(strTarget, strFilePath, System.window_from_os_data))
+         if(System.file().resolve_link(strTarget, strFilePath, NULL))
          {
 
             wstring wstr = ::str::international::utf8_to_unicode(strTarget);

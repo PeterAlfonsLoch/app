@@ -10,8 +10,6 @@ namespace core
       ::thread(papp)
    {
 
-      m_pplatformcomposite                   = this;
-
       m_paxissession                      = papp->m_paxissession;
          
       m_pbasesession                      = papp->m_pbasesession;

@@ -169,7 +169,7 @@ namespace core
 
       virtual void post_fork_uri(const char * pszUri,application_bias * pbiasCreate);
 
-      sp(::axis::session) query_session(index iEdge);
+      sp(::aura::session) query_session(index iEdge);
 
       virtual bool wait_twf(uint32_t dwTimeOut = INFINITE);
 

@@ -89,11 +89,11 @@ namespace datetime
    {
       if(m_ptoken->value == token::number)
       {
-         return strtotime(pbaseapp, pcontext, m_ptoken->m_str, iPath, iPathCount).to_string(pbaseapp, pcontext);
+         return to_string(pbaseapp, pcontext, strtotime(pbaseapp,pcontext,m_ptoken->m_str,iPath,iPathCount));
       }
       else if(m_ptoken->value == token::identifier)
       {
-         return strtotime(pbaseapp, pcontext, m_ptoken->m_str, iPath, iPathCount).to_string(pbaseapp, pcontext);
+         return to_string(pbaseapp,pcontext,strtotime(pbaseapp,pcontext,m_ptoken->m_str,iPath,iPathCount));
       }
       else if(m_ptoken->value == token::addition)
       {

@@ -665,7 +665,7 @@ namespace filemanager
 
             string strTarget;
 
-            System.os().resolve_link(strTarget,pitem->m_pitem.cast < ::userfs::item >()->m_strPath);
+            System.file().resolve_link(strTarget,pitem->m_pitem.cast < ::userfs::item >()->m_strPath);
 
             pitem = find_item(strTarget);
 
@@ -716,7 +716,7 @@ namespace filemanager
 
          string strTarget;
 
-         System.os().resolve_link(strTarget, item->m_strPath);
+         System.file().resolve_link(strTarget, item->m_strPath);
 
          get_filemanager_manager()->FileManagerBrowse(strTarget,actioncontext);
 

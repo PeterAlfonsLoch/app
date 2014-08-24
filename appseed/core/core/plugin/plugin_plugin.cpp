@@ -36,6 +36,7 @@ namespace plugin
       ::simple_ui::style(papp),
       ::user::interaction(papp),
       hotplugin::plugin(papp),
+      ::aura::session(papp),
       ::axis::session(papp),
       ::base::session(papp)
    {

@@ -30,7 +30,6 @@ namespace core
 
    application::application():
       element(this), // start m_pauraapp as this for constructor referencing this app
-      m_mutex(this),
       thread(NULL),
       m_simpledb(this)
    {

@@ -7,9 +7,9 @@ namespace bergedge
 
    frame::frame(sp(::aura::application) papp) :
       element(papp),
-      simple_frame_window(papp),
-      message_queue(papp)
+      simple_frame_window(papp)
    {
+
       m_pdocument = NULL;
       m_iFrameData = 10;
       m_dataid = "core::frame";

@@ -14,6 +14,7 @@ namespace core
 
    system::system(sp(::aura::application) papp):
       ::element(papp),
+      ::aura::system(papp),
       ::axis::system(papp),
       ::base::system(papp),
       m_mutexDelete(this),
@@ -21,7 +22,6 @@ namespace core
 #ifndef METROWIN
       m_processsection(this),
 #endif
-      m_visual(this),
       m_emaildepartament(this)
    {
 
@@ -553,7 +553,7 @@ namespace core
       if(!m_bDoNotExitIfNoApplications)
       {
 
-         ::axis::application_ptra appptra;
+         ::aura::application_ptra appptra;
 
          appptra = get_appptra();
 
