@@ -17,7 +17,7 @@ namespace aura
       virtual ~message_queue();
 
 
-      virtual bool create_message_queue(const char * pszName,::message_queue_listener * plistener = NULL);
+      virtual bool create_message_queue(const char * pszName,::aura::message_queue_listener * plistener = NULL);
 
 
       virtual void message_handler(signal_details * pobj);
