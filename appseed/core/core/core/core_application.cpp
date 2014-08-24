@@ -2356,26 +2356,26 @@ namespace core
 
    void application::SetRegistryKey(const char * lpszRegistryKey)
    {
-      ASSERT(m_pszRegistryKey == NULL);
-      ASSERT(lpszRegistryKey != NULL);
-      ASSERT(m_strAppName.has_char());
+      //ASSERT(m_pszRegistryKey == NULL);
+      //ASSERT(lpszRegistryKey != NULL);
+      //ASSERT(m_strAppName.has_char());
 
-      //bool bEnable = __enable_memory_tracking(FALSE);
-      free((void *)m_pszRegistryKey);
-      m_pszRegistryKey = strdup(lpszRegistryKey);
-      free((void *)m_pszProfileName);
-      m_pszProfileName = strdup(m_strAppName);
-      //__enable_memory_tracking(bEnable);
+      ////bool bEnable = __enable_memory_tracking(FALSE);
+      //free((void *)m_pszRegistryKey);
+      //m_pszRegistryKey = strdup(lpszRegistryKey);
+      //free((void *)m_pszProfileName);
+      //m_pszProfileName = strdup(m_strAppName);
+      ////__enable_memory_tracking(bEnable);
    }
 
    void application::SetRegistryKey(UINT nIDRegistryKey)
    {
-      UNREFERENCED_PARAMETER(nIDRegistryKey);
-      ASSERT(m_pszRegistryKey == NULL);
-      throw not_implemented(get_app());
-      /*char szRegistryKey[256];
-      VERIFY(::core::LoadString(nIDRegistryKey, szRegistryKey));
-      SetRegistryKey(szRegistryKey);*/
+      //UNREFERENCED_PARAMETER(nIDRegistryKey);
+      //ASSERT(m_pszRegistryKey == NULL);
+      //throw not_implemented(get_app());
+      ///*char szRegistryKey[256];
+      //VERIFY(::core::LoadString(nIDRegistryKey, szRegistryKey));
+      //SetRegistryKey(szRegistryKey);*/
    }
 
 
@@ -2386,31 +2386,32 @@ namespace core
    // responsibility of the caller to call RegCloseKey() on the returned HKEY
    HKEY application::GetAppRegistryKey()
    {
-      ASSERT(m_pszRegistryKey != NULL);
-      ASSERT(m_pszProfileName != NULL);
+      //ASSERT(m_pszRegistryKey != NULL);
+      //ASSERT(m_pszProfileName != NULL);
 
-      HKEY hAppKey = NULL;
-      HKEY hSoftKey = NULL;
-      HKEY hCompanyKey = NULL;
-      if(RegOpenKeyEx(HKEY_CURRENT_USER,"software",0,KEY_WRITE | KEY_READ,
-         &hSoftKey) == ERROR_SUCCESS)
-      {
-         DWORD dw;
-         if(RegCreateKeyEx(hSoftKey,m_pszRegistryKey,0,REG_NONE,
-            REG_OPTION_NON_VOLATILE,KEY_WRITE | KEY_READ,NULL,
-            &hCompanyKey,&dw) == ERROR_SUCCESS)
-         {
-            RegCreateKeyEx(hCompanyKey,m_pszProfileName,0,REG_NONE,
-               REG_OPTION_NON_VOLATILE,KEY_WRITE | KEY_READ,NULL,
-               &hAppKey,&dw);
-         }
-      }
-      if(hSoftKey != NULL)
-         RegCloseKey(hSoftKey);
-      if(hCompanyKey != NULL)
-         RegCloseKey(hCompanyKey);
+      //HKEY hAppKey = NULL;
+      //HKEY hSoftKey = NULL;
+      //HKEY hCompanyKey = NULL;
+      //if(RegOpenKeyEx(HKEY_CURRENT_USER,"software",0,KEY_WRITE | KEY_READ,
+      //   &hSoftKey) == ERROR_SUCCESS)
+      //{
+      //   DWORD dw;
+      //   if(RegCreateKeyEx(hSoftKey,m_pszRegistryKey,0,REG_NONE,
+      //      REG_OPTION_NON_VOLATILE,KEY_WRITE | KEY_READ,NULL,
+      //      &hCompanyKey,&dw) == ERROR_SUCCESS)
+      //   {
+      //      RegCreateKeyEx(hCompanyKey,m_pszProfileName,0,REG_NONE,
+      //         REG_OPTION_NON_VOLATILE,KEY_WRITE | KEY_READ,NULL,
+      //         &hAppKey,&dw);
+      //   }
+      //}
+      //if(hSoftKey != NULL)
+      //   RegCloseKey(hSoftKey);
+      //if(hCompanyKey != NULL)
+      //   RegCloseKey(hCompanyKey);
 
-      return hAppKey;
+//      return hAppKey;
+      return NULL;
    }
 
    // returns key for:
@@ -2800,7 +2801,7 @@ namespace core
    }
 
 
-   sp(::user::document) application::_001OpenDocumentFile(var varFile)
+   ::user::document * application::_001OpenDocumentFile(var varFile)
    {
       string strId = m_strId;
       char chFirst = '\0';
@@ -2903,8 +2904,8 @@ namespace core
       //dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
       //dumpcontext << "\nm_pszAppName = " << m_strAppName;
       dumpcontext << "\nm_bHelpMode = " << m_bHelpMode;
-      dumpcontext << "\nm_pszHelpFilePath = " << m_pszHelpFilePath;
-      dumpcontext << "\nm_pszProfileName = " << m_pszProfileName;
+      dumpcontext << "\nm_pszHelpFilePath = " << m_strHelpFilePath;
+      dumpcontext << "\nm_pszProfileName = " << m_strProfileName;
 
 #ifdef WINDOWS
       dumpcontext << "\nm_hDevMode = " << (void *)m_hDevMode;
@@ -3033,15 +3034,8 @@ namespace core
 
       if(!m_pcalculator->initialize())
          return false;
+      
       xxdebug_box("m_pcalculator::initialize ok","m_pcalculator::initialize ok",MB_ICONINFORMATION);
-
-      m_pcolorertake5 = new ::colorertake5::colorertake5(this);
-
-      m_pcolorertake5->construct(this);
-
-      if(!m_pcolorertake5->initialize())
-         return false;
-
 
       xxdebug_box("m_pcolorertake5::initialize ok","m_pcolorertake5::initialize ok",MB_ICONINFORMATION);
 
@@ -3432,7 +3426,8 @@ namespace core
    sp(::user::printer) application::get_printer(const char * pszDeviceName)
    {
 
-      return m_pimpl->get_printer(pszDeviceName);
+//      return m_pimpl->get_printer(pszDeviceName);
+      return NULL;
 
    }
 

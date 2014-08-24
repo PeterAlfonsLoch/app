@@ -1,6 +1,9 @@
 #include "framework.h"
 
 
+#include "FreeImage/Source/FreeImage.h"
+
+
 
 int g_iBaseRefCount = 0;
 
@@ -72,6 +75,24 @@ bool base_init()
    if(!__node_base_pos_init())
       return false;*/
 
+
+   try
+   {
+
+      FreeImage_Initialise(FALSE);
+
+   }
+   catch(...)
+   {
+
+      ::simple_message_box(NULL,"Failure to initialize FreeImage (::core::init_core)","FreeImage_Initialise failure",MB_ICONEXCLAMATION);
+
+      return false;
+
+   }
+
+
+
    return true;
 
 }
@@ -79,6 +100,18 @@ bool base_init()
 
 bool base_term()
 {
+
+   try
+   {
+
+      FreeImage_DeInitialise();
+
+   }
+   catch(...)
+   {
+
+   }
+
 
    /*__wait_threading_count(::millis((5000) * 8));
 

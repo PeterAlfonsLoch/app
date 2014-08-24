@@ -1830,7 +1830,7 @@ namespace core
    void platform::register_bergedge_application(sp(::aura::application) papp)
    {
 
-      retry_single_lock rsl(&m_mutex,millis(84),millis(84));
+      retry_single_lock rsl(m_pmutex,millis(84),millis(84));
 
       if(papp.is_null() || papp->m_pcoreapp == NULL)
          return;
@@ -1853,7 +1853,7 @@ namespace core
    void platform::unregister_bergedge_application(sp(::aura::application) papp)
    {
 
-      retry_single_lock rsl(&m_mutex,millis(84),millis(84));
+      retry_single_lock rsl(m_pmutex,millis(84),millis(84));
 
       Session.m_appptra.remove(papp);
 

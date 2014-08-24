@@ -1,5 +1,4 @@
 #include "framework.h"
-#include "freeimage/source/freeimage.h"
 
 #ifdef WINDOWS
 #include <cderr.h>      // Commdlg Error definitions
@@ -123,21 +122,6 @@ namespace core
       if(!defer_base_init())
          return false;
 
-      try
-      {
-
-         FreeImage_Initialise(FALSE);
-
-      }
-      catch(...)
-      {
-
-         ::simple_message_box(NULL,"Failure to initialize FreeImage (::core::init_core)","FreeImage_Initialise failure",MB_ICONEXCLAMATION);
-
-         return false;
-
-      }
-
       return true;
 
    }
@@ -145,8 +129,6 @@ namespace core
 
    CLASS_DECL_CORE bool term_core()
    {
-
-      FreeImage_DeInitialise();
 
       defer_base_term();
 
