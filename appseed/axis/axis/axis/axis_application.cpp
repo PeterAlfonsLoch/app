@@ -1496,29 +1496,22 @@ namespace axis
    }
 
 
-
-
-
-
-   bool application::is_running()
-   {
-      return is_alive();
-   }
-
-
-
-
-
    void application::on_exclusive_instance_conflict(EExclusiveInstance eexclusive)
    {
+
       if(eexclusive == ExclusiveInstanceLocal)
       {
+
          on_exclusive_instance_local_conflict();
+
       }
+
    }
+
 
    void application::on_exclusive_instance_local_conflict()
    {
+
    }
 
 
