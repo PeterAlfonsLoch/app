@@ -514,7 +514,7 @@ namespace user
          try
          {
 
-            m_pauraapp->remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
+            Application.remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
 
          }
          catch(...)
@@ -528,7 +528,7 @@ namespace user
             if(m_pauraapp->m_paxissession != NULL)
             {
 
-               m_pauraapp->m_paxissession->remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
+               Session.remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
 
             }
 
@@ -544,7 +544,7 @@ namespace user
             if(m_pauraapp->m_paxissystem != NULL)
             {
 
-               m_pauraapp->m_paxissystem->remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
+               System.remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
 
             }
 

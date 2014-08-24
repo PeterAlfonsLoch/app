@@ -9,9 +9,8 @@ namespace user
    class interaction;
 
 
-   class CLASS_DECL_AURA create_context:  // Creation information structure
+   class CLASS_DECL_AURA create_context  // Creation information structure
       // All fields are optional and may be NULL
-      virtual public object
    {
    public:
       // for creating new views
@@ -27,10 +26,8 @@ namespace user
       ::user::interaction *           m_pCurrentFrame;
 
       // Implementation
-      create_context(sp(::aura::application) papp);
+      create_context();
       virtual ~create_context();
-
-      static void void_delete(void * pvoid);
 
    };
 

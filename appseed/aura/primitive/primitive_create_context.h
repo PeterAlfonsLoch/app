@@ -28,23 +28,6 @@ public:
 };
 
 
-CLASS_DECL_AURA void set_user_create_context_delfn(void (*pfn) (void *));
-CLASS_DECL_AURA void call_user_create_context_delfn(void * pvoid);
-
-
-class CLASS_DECL_AURA user_create_context_delfn
-{
-public:
-
-   inline void void_delete(void * pvoid)
-   {
-
-      call_user_create_context_delfn(pvoid);
-
-   }
-
-};
-
 
 class CLASS_DECL_AURA create_context :
    virtual public ::primitive::command

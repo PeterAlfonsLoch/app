@@ -34,8 +34,6 @@ namespace axis
       CLASS_DECL_AXIS void init()
       {
 
-         ::set_user_create_context_delfn(&::user::create_context::void_delete);
-
          ::set_simple_message_box(&::simple_ui_message_box);
    
          xxdebug_box("axis.dll base_static_start (0)", "box", MB_OK);
