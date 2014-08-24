@@ -552,7 +552,7 @@ namespace user
 
       if(pdrawitem->m_bListItemSelected)
       {
-         if(Session.savings().is_trying_to_save(::axis::resource_processing))
+         if(Session.savings().is_trying_to_save(::aura::resource_processing))
          {
             pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem, ARGB(255, 96,96,96));
          }

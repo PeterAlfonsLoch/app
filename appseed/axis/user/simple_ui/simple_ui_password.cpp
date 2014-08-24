@@ -94,8 +94,8 @@ namespace simple_ui
 
       }
 
-      /*else if(!Session.savings().is_trying_to_save(::axis::resource_processing)
-      && !Session.savings().is_trying_to_save(::axis::resource_blur_background))
+      /*else if(!Session.savings().is_trying_to_save(::aura::resource_processing)
+      && !Session.savings().is_trying_to_save(::aura::resource_blur_background))
       {
 
       pdc->blur(true, 4, rectClient);

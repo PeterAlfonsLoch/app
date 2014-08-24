@@ -2508,15 +2508,15 @@ namespace base
       {
          if(guideline()->m_varTopicQuery.propset().has_property("save_processing"))
          {
-            Session.savings().save(::axis::resource_processing);
+            Session.savings().save(::aura::resource_processing);
          }
          if(guideline()->m_varTopicQuery.propset().has_property("save_blur_back"))
          {
-            Session.savings().save(::axis::resource_blur_background);
+            Session.savings().save(::aura::resource_blur_background);
          }
          if(guideline()->m_varTopicQuery.propset().has_property("save_transparent_back"))
          {
-            Session.savings().save(::axis::resource_translucent_background);
+            Session.savings().save(::aura::resource_translucent_background);
          }
       }
 

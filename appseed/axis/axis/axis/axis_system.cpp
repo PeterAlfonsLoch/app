@@ -1,20 +1,6 @@
 #include "framework.h"
 
 
-#ifdef LINUX
-
-#include <fcntl.h>
-#include <unistd.h>
-
-
-#define __USE_GNU
-#include <link.h>
-
-
-#include <ctype.h>
-#include <sys/stat.h>
-#endif
-
 void dappy(const char * psz);
 
 #ifdef WINDOWSEX
