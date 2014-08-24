@@ -32,7 +32,7 @@ public:
 
 class CLASS_DECL_AURA thread_impl :
    virtual public command_target,
-   virtual public message_queue_listener
+   virtual public ::aura::message_queue_listener
 {
 public:
 
