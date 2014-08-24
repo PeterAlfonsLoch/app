@@ -37,7 +37,10 @@ namespace aura
 
    typedef sp(message_queue) message_queue_sp;
 
+
 } // namespace aura
+
+
 
 
 

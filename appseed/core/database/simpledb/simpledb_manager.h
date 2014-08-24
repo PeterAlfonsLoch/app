@@ -5,7 +5,7 @@ namespace simpledb
 
    class CLASS_DECL_CORE manager :
       virtual public thread,
-      virtual public ::aura::message_queue_lister
+      virtual public ::aura::message_queue_listener
    {
    public:
 

@@ -11,11 +11,6 @@ namespace base
    public:
 
 
-
-
-      //smart_pointer < application >                   m_pimpl;
-      //sp(service_base)                                m_pservice;
-
       bool                                            m_bBaseProcessInitialize;
       bool                                            m_bBaseProcessInitializeResult;
 
@@ -28,69 +23,8 @@ namespace base
       bool                                            m_bBaseInitialize;
       bool                                            m_bBaseInitializeResult;
 
-      //string_to_ptr                                   m_appmap;
-      //string                                          m_strAppName;
-      //allocatorsp                                     m_allocer;
-      //sp(::command_thread)                            m_pcommandthread;
-      //sp(class signal)                                m_psignal;
 
-      //::aura::main_init_data *            m_pinitmaindata;
-
-
-      //EExclusiveInstance                              m_eexclusiveinstance;
-
-      //sp(::mutex)                                     m_pmutexLocal;
-      //sp(::mutex)                                     m_pmutexLocalId;
-      //sp(::mutex)                                     m_pmutexGlobal;
-      //sp(::mutex)                                     m_pmutexGlobalId;
-
-
-
-//      stringa                                         m_straMatterLocator;
-//      string                                          m_strLibraryName;
-//      string                                          m_strAppId;
-//      synch_ptr_array < ::user::interaction >         m_framea;
-//      sp(::database::server)                          m_spdataserver;
-//#ifdef WINDOWS
-//      HINSTANCE                                       m_hinstance;
-//#endif
-//
-//
-//      bool                                            m_bUpdateMatterOnInstall;
-//
-//
-//      bool                                            m_bLicense;
-//      string                                          m_strBaseSupportId;
-//            int32_t                                         m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
-//
-//
-//      string                                          m_strRoot;
-//      string                                          m_strDomain;
-//      string                                          m_strLocale;
-//      string                                          m_strSchema;
-//
-//      // Initial state of the application's interaction_impl; normally,
-//      // this is an argument to ShowWindow().
-//      manual_reset_event *                            m_peventReady;
-//      string                                          m_strInstallToken;
-//      string                                          m_strInstallType;
-//      mutex                                           m_mutexMatterLocator;
-//
-//
-//
-//      mutex                                           m_mutexStr;
-//      string_table                                    m_stringtable;
-//      string_table                                    m_stringtableStd;
-//
-
-      //static UINT                                     APPM_LANGUAGE;
-      //static WPARAM                                   WPARAM_LANGUAGE_UPDATE;
-
-      //bool                                            m_bShouldInitializeGTwf;
-      //sp(::user::interaction)                         m_pwndMain;
-      //bool                                            m_bInitializeProDevianMode;
-
-      sp(::fontopus::licensing)                                     m_splicensing;
+      sp(::fontopus::licensing)                       m_splicensing;
 
       ::http::application                             m_http;
       ::file::dir::application                        m_dir;

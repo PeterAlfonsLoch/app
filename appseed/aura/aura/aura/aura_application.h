@@ -32,7 +32,7 @@ namespace aura
       sp(::command_thread)                            m_pcommandthread;
       sp(class signal)                                m_psignal;
 
-      ::aura::main_init_data *            m_pinitmaindata;
+      ::aura::main_init_data *                        m_pinitmaindata;
 
 
       EExclusiveInstance                              m_eexclusiveinstance;

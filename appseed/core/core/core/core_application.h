@@ -18,92 +18,67 @@ namespace core
    {
    public:
 
-      ::calculator::calculator *          m_pcalculator;
-      ::colorertake5::colorertake5 *      m_pcolorertake5;
 
+      ::calculator::calculator *             m_pcalculator;
 
-      sp(::userfs::userfs)                m_spuserfs;
+      sp(::userfs::userfs)                   m_spuserfs;
 
-      ::simpledb::simpledb                m_simpledb;
-      sp(::userex::userex)                m_spuserex;
+      ::simpledb::simpledb                   m_simpledb;
 
+      sp(::userex::userex)                   m_spuserex;
 
+      bool                                   m_bService;
 
-      bool                                m_bService;
+      class signal                           m_signalAppLanguageChange;
+      string                                 m_strHelpFilePath;
 
-      class signal                        m_signalAppLanguageChange;
-      string                              m_strHelpFilePath;
-      mutex                               m_mutex;
-
-      application_bias                    m_biasCalling;
+      application_bias                       m_biasCalling;
 
 
 #ifdef WINDOWS
 
 
-      HGLOBAL                             m_hDevMode;             // printer Dev Mode
-      HGLOBAL                             m_hDevNames;            // printer Device Names
+      HGLOBAL                                m_hDevMode;             // printer Dev Mode
+      HGLOBAL                                m_hDevNames;            // printer Device Names
 
 
 #endif
 
-      uint32_t                            m_dwPromptContext;        // help context override for message box
+      uint32_t                               m_dwPromptContext;        // help context override for message box
       // LKG
-      uint32_t                            m_dwPolicies;            // block for storing boolean system policies
+      uint32_t                               m_dwPolicies;            // block for storing boolean system policies
 
-      // Name of registry key for this application. See
-      // SetRegistryKey() member function.
-      const char *                        m_pszRegistryKey;
 
       // Pointer to ::user::document_manager used to manage document templates
       // for this application instance.
-      sp(::user::document_manager)        m_pdocmanager;
+      sp(::user::document_manager)           m_pdocmanager;
 
       // Support for Shift+F1 help mode.
       // TRUE if we're in SHIFT+F1 mode.
-      bool                                m_bHelpMode;
+      bool                                   m_bHelpMode;
 
       // set in constructor to override default
 
 
-      // Default based on this module's path.
-      const char *                  m_pszHelpFilePath;
-
       // Default based on this application's name.
-      const char *                  m_pszProfileName;
+      string                                 m_strProfileName;
       // help mode used by the cast
       //      __HELP_TYPE m_eHelpType;
-
-      //CCommandLineInfo* m_pCmdInfo;
 
       ATOM m_atomApp,m_atomSystemTopic;   // for DDE open
       UINT m_nNumPreviewPages;        // number of default printed pages
 
-      string                           m_strId;
-
-      //mutex                            m_mutexObjectLock;
-      //map < ::waitable *, ::waitable *, mutex *, mutex * > m_mapObjectMutex;
-
-      //mutex                            m_mutexObjectEvent;
-      //map < object *, object *, map < int32_t, int32_t, event *, event * > *, map < int32_t, int32_t, event *, event * >  * > m_mapObjectEvent;
-
-      //typedef map < object *, object *, property_set, property_set > oset;
-      //oset                             m_mapObjectSet;
+      string                                 m_strId;
 
 
 
-      int32_t                          m_iResourceId;
+      int32_t                                m_iResourceId;
 
-      //BaseIdSpaceIntegerMap      m_imapResource;
-      //BaseIdSpaceStringKeyMap    m_strmapResource;
-      //   id_space                   m_idspace;
       sp(::user::uinteraction::uinteraction) m_puinteraction;
-      //sp(::user::user)              m_puserbase;
-      //sp(::userex::userex) m_puserex;
-      sp(::usermail::usermail)         m_pusermail;
+      sp(::usermail::usermail)               m_pusermail;
 
-      stringa                          m_straAppInterest;
-      string_map < oswindow,oswindow > m_mapAppInterest;
+      stringa                                m_straAppInterest;
+      string_map < oswindow,oswindow >       m_mapAppInterest;
 
 
 
@@ -447,14 +422,12 @@ namespace core
       //      virtual ::core::file_system & file_system();
       virtual bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
-      virtual sp(::user::document) _001OpenDocumentFile(var varFile);
+      virtual ::user::document * _001OpenDocumentFile(var varFile);
       DECL_GEN_SIGNAL(_001OnFileNew);
 
 
       virtual string get_version();
 
-      virtual bool Ex2OnAppInstall();
-      virtual bool Ex2OnAppUninstall();
 
       virtual ::window_sp get_desktop_window();
 

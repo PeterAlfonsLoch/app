@@ -2850,15 +2850,6 @@ namespace core
    }
 
 
-   bool application::Ex2OnAppInstall()
-   {
-      return true;
-   }
-
-   bool application::Ex2OnAppUninstall()
-   {
-      return true;
-   }
 
 
 
