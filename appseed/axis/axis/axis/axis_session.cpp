@@ -1286,7 +1286,7 @@ namespace axis
    }
 
 
-   sp(::user::interaction) session::get_active_guie()
+   ::user::interaction * session::get_active_guie()
    {
 
       return System.get_active_guie();
@@ -1294,7 +1294,7 @@ namespace axis
    }
 
 
-   sp(::user::interaction) session::get_focus_guie()
+   ::user::interaction * session::get_focus_guie()
    {
 
 #if defined (METROWIN)
@@ -1350,15 +1350,6 @@ namespace axis
 #endif
 
    }
-
-
-   application_ptra & session::appptra()
-   {
-
-      return m_appptra;
-
-   }
-
 
 
    bool session::is_key_pressed(::user::e_key ekey)

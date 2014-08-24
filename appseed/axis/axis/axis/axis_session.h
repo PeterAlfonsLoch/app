@@ -59,8 +59,6 @@ namespace axis
       virtual ~session_parent;
 
 
-      application_ptra & appptra();
-
       virtual bool is_session();
 
 

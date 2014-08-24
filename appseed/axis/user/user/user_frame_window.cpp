@@ -1015,7 +1015,7 @@ namespace user
    {
       SCAST_PTR(::message::activate, pactivate, pobj);
 
-      sp(::user::interaction) pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther.m_p : this);
+      sp(::user::interaction) pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : this);
 
       pobj->previous();
 
