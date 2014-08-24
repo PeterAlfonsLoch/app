@@ -4283,7 +4283,7 @@ namespace user
 
       smart_pointer < ::message::base > spbase;
 
-      spbase = get_base(this,message,wparam,lparam);
+      spbase = get_base(message,wparam,lparam);
 
       __trace_message("window_procedure",spbase);
 
@@ -5358,33 +5358,43 @@ namespace user
 
 
 
-   void timer_array::transfer(::window_sp pwindow,interaction * pui)
+   void interaction::transfer_from(timer_array & ta, interaction * pui)
    {
 
 
-      single_lock sl(&m_mutex,TRUE);
+      single_lock sl(&ta.m_mutex,TRUE);
 
       smart_pointer_array < timer_item > timera;
-      detach(timera,pui);
-      pwindow->set_timer(timera);
+
+      ta.detach(timera,this);
+
+      set_timer(timera);
 
    }
 
-
+/*
 
    sp(::message::base) interaction::peek_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
    {
+      
       if(!::PeekMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax,wRemoveMsg))
          return NULL;
+
       return get_base(lpmsg,pwnd);
+
    }
+
 
    sp(::message::base) interaction::get_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
    {
+      
       if(!::GetMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax))
          return NULL;
+
       return get_base(lpmsg,pwnd);
+
    }
+
 
    sp(::message::base) interaction::peek_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
    {
@@ -5427,106 +5437,107 @@ namespace user
       return get_message(&msg,pwnd,wMsgFilterMin,wMsgFilterMax);
    }
 
+   */
    
    sp(::message::base) interaction::get_base(UINT uiMessage,WPARAM wparam,LPARAM lparam)
    {
-      ::user::interaction * pwnd = this;
+//      ::user::interaction * pwnd = this;
       sp(::message::base) pbase;
-      e_prototype eprototype = PrototypeNone;
+      ::message::e_prototype eprototype = ::message::PrototypeNone;
       //if(oswindow != NULL)
       {
-         eprototype = dispatch::GetMessagePrototype(uiMessage,0);
+         eprototype = ::message::dispatch::GetMessagePrototype(uiMessage,0);
       }
       switch(eprototype)
       {
-      case PrototypeNone:
+      case ::message::PrototypeNone:
       {
                            pbase = canew(::message::base(get_app()));
       }
          break;
-      case PrototypeCreate:
+      case ::message::PrototypeCreate:
       {
                              pbase = canew(::message::create(get_app()));
       }
          break;
-      case PrototypeNcActivate:
+      case ::message::PrototypeNcActivate:
       {
                                  pbase = canew(::message::nc_activate(get_app()));
       }
          break;
-      case PrototypeKey:
+      case ::message::PrototypeKey:
       {
                           pbase = canew(::message::key(get_app()));
       }
          break;
-      case PrototypeTimer:
+      case ::message::PrototypeTimer:
       {
                             pbase = canew(::message::timer(get_app()));
       }
          break;
-      case PrototypeShowWindow:
+      case ::message::PrototypeShowWindow:
       {
                                  pbase = canew(::message::show_window(get_app()));
       }
          break;
-      case PrototypeSetCursor:
+      case ::message::PrototypeSetCursor:
       {
                                 pbase = canew(::message::set_cursor(get_app()));
       }
          break;
-      case PrototypeNcHitTest:
+      case ::message::PrototypeNcHitTest:
       {
                                 pbase = canew(::message::nchittest(get_app()));
       }
          break;
-      case PrototypeMove:
+      case ::message::PrototypeMove:
       {
                            pbase = canew(::message::move(get_app()));
       }
          break;
-      case PrototypeEraseBkgnd:
+      case ::message::PrototypeEraseBkgnd:
       {
                                  pbase = canew(::message::erase_bkgnd(get_app()));
       }
          break;
-      case PrototypeScroll:
+      case ::message::PrototypeScroll:
       {
                              pbase = canew(::message::scroll(get_app()));
       }
          break;
-      case PrototypeSetFocus:
+      case ::message::PrototypeSetFocus:
       {
                                pbase = canew(::message::set_focus(get_app()));
       }
          break;
 #if !defined(METROWIN) && !defined(LINUX) && !defined(APPLEOS)
-      case PrototypeWindowPos:
+      case ::message::PrototypeWindowPos:
       {
                                 pbase = canew(::message::window_pos(get_app()));
       }
          break;
-      case PrototypeNcCalcSize:
+      case ::message::PrototypeNcCalcSize:
       {
                                  pbase = canew(::message::nc_calc_size(get_app()));
       }
          break;
 #endif
-      case PrototypeMouse:
+      case ::message::PrototypeMouse:
       {
                             pbase = canew(::message::mouse(get_app()));
       }
          break;
-      case PrototypeMouseWheel:
+      case ::message::PrototypeMouseWheel:
       {
                                  pbase = canew(::message::mouse_wheel(get_app()));
       }
          break;
-      case PrototypeSize:
+      case ::message::PrototypeSize:
       {
                            pbase = canew(::message::size(get_app()));
       }
          break;
-      case PrototypeActivate:
+      case ::message::PrototypeActivate:
       {
                                pbase = canew(::message::activate(get_app()));
       }
@@ -5539,47 +5550,15 @@ namespace user
       }
       if(pbase == NULL)
          return NULL;
-      pbase->set(pwnd,uiMessage,wparam,lparam);
+
+      pbase->set(this,uiMessage,wparam,lparam);
+
       return pbase;
-   }
-
-   sp(::message::base) interaction::get_base(LPMESSAGE lpmsg)
-   {
-      ::user::interaction * pwnd = this;
-#if defined(METROWIN)
-      if(pwnd == NULL && lpmsg->oswindow != NULL)
-      {
-         ::user::interaction * pwindow = lpmsg->oswindow->interaction_impl();
-#else
-      if(pwnd == NULL && lpmsg->hwnd != NULL)
-      {
-         if(lpmsg->message == 126)
-         {
-
-            TRACE0("WM_DISPLAYCHANGE");
-         }
-         ::user::interaction * pwindow = System.window_from_os_data(lpmsg->hwnd);
-#endif
-         if(pwindow != NULL)
-         {
-            try
-            {
-               pwnd = pwindow;
-            }
-            catch(...)
-            {
-               pwnd = NULL;
-            }
-         }
-
-         if(pwnd == NULL)
-            return NULL;
-
-      }
-
-      return get_base(pwnd,lpmsg->message,lpmsg->wParam,lpmsg->lParam);
 
    }
+
+
+
 
 
 

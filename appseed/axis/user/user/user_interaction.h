@@ -603,6 +603,8 @@ namespace user
       virtual ::user::schema * get_parent_user_schema();
 
 
+      /*
+      
       static sp(::message::base) peek_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
       static sp(::message::base) get_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
       static sp(::message::base) peek_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
@@ -613,12 +615,14 @@ namespace user
       virtual sp(::message::base) peek_message(UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
       virtual sp(::message::base) get_message(UINT wMsgFilterMin,UINT wMsgFilterMax);
 
+      */
+
 
       sp(::message::base) get_base(UINT uiMessage,WPARAM wparam,LPARAM lparam);
       sp(::message::base) get_base(LPMESSAGE lpmsg);
 
 
-      void transfer(timer_array & ta, ::user::interaction_impl * pwindow,interaction * pui);
+      void transfer_from(timer_array & ta, interaction * pui);
 
 
    };

@@ -1232,21 +1232,7 @@ namespace axis
 
    }
 
-   colorertake5::ParserFactory & system::parser_factory()
-   {
-
-      if(m_pparserfactory == NULL)
-      {
-
-         m_pparserfactory = new colorertake5::ParserFactory(this);
-
-      }
-
-      return *m_pparserfactory;
-
-   }
-
-
+   
    string system::dir_appmatter_locator(sp(::aura::application) papp)
    {
 

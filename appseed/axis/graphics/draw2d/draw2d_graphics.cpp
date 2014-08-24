@@ -3722,27 +3722,27 @@ namespace draw2d
       int32_t align = 0;
       if (uiFormat & DT_BOTTOM)
       {
-         align |= ::AlignBottom;
+         align |= ::align_bottom;
       }
       else if (uiFormat & DT_VCENTER)
       {
-         align |= ::AlignVerticalCenter;
+         align |= ::align_vertical_center;
       }
       else
       {
-         align |= ::AlignTop;
+         align |= ::align_top;
       }
       if (uiFormat & DT_RIGHT)
       {
-         align |= ::AlignRight;
+         align |= ::align_right;
       }
       else if (uiFormat & DT_CENTER)
       {
-         align |= ::AlignHorizontalCenter;
+         align |= ::align_horizontal_center;
       }
       else
       {
-         align |= ::AlignLeft;
+         align |= ::align_left;
       }
 
       rect.Align(align, rectParam);
@@ -4032,7 +4032,7 @@ namespace draw2d
          
          ::rect rect2(rect1);
          
-         rect2.Align(AlignBottom | AlignRight, rect);
+         rect2.Align(align_bottom_right, rect);
 
          draw_rect(rect2.left,rect2.top,rect2.right,rect2.bottom);
 

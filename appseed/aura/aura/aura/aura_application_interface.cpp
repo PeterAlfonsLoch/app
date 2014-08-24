@@ -10,7 +10,10 @@ namespace aura
 
       m_paurasystem     = NULL;
       m_paurasession    = NULL;
-      m_pbasesapp       = NULL;
+      m_paxisapp        = NULL;
+      m_paxissystem     = NULL;
+      m_paxissession    = NULL;
+      m_pbaseapp        = NULL;
       m_pbasesystem     = NULL;
       m_pbasesession    = NULL;
       m_pcoreapp        = NULL;

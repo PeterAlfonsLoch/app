@@ -5,8 +5,7 @@ namespace user
 {
 
 
-   create_context::create_context(sp(::aura::application) papp):
-      element(papp)
+   create_context::create_context()
    {
 
       m_pCurrentDoc        = NULL;
@@ -19,25 +18,6 @@ namespace user
 
    create_context::~create_context()
    {
-
-   }
-
-
-   void create_context::void_delete(void * pvoid)
-   {
-
-      ::user::create_context * pcreatecontext = (::user::create_context *) pvoid;
-
-      try
-      {
-
-         delete pcreatecontext;
-
-      }
-      catch(...)
-      {
-
-      }
 
    }
 

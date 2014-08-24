@@ -11,8 +11,6 @@ namespace aura
    public:
 
 
-
-
       smart_pointer < application >                   m_pimpl;
       sp(service_base)                                m_pservice;
 
@@ -456,7 +454,10 @@ namespace aura
       application * find_running_defer_try_quit_damaged(const string & strAppName);
 
 
-      };
+      sp(::message::base) get_message_base(LPMESSAGE lpmsg);
+
+
+   };
 
 
 
