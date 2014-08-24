@@ -104,6 +104,8 @@ namespace axis
       virtual void set_key_pressed(::user::e_key ekey,bool bPressed);
 
 
+      virtual ::visual::cursor * get_cursor();
+      virtual ::visual::cursor * get_default_cursor();
 
 
 
