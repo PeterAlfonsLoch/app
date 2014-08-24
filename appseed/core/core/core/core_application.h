@@ -74,7 +74,7 @@ namespace core
 
       int32_t                                m_iResourceId;
 
-      sp(::user::uinteraction::uinteraction) m_puinteraction;
+      sp(::user::wndfrm::wndfrm) m_puinteraction;
       sp(::usermail::usermail)               m_pusermail;
 
       stringa                                m_straAppInterest;
@@ -436,7 +436,7 @@ namespace core
 
       virtual bool set_keyboard_layout(const char * pszPath,::action::context actioncontext);
 
-      inline ::user::uinteraction::uinteraction          & uinteraction() { return *m_puinteraction; }
+      inline ::user::wndfrm::wndfrm          & wndfrm() { return *m_puinteraction; }
       inline ::usermail::usermail                          & usermail() { return *m_pusermail; }
 
 

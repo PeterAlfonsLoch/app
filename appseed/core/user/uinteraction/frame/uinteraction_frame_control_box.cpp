@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   namespace uinteraction
+   namespace wndfrm
    {
 
 
@@ -741,7 +741,7 @@ namespace user
          }
 
 
-         sp(::user::uinteraction::frame::control_box_button) control_box::get_box_button(e_button ebutton)
+         sp(::user::wndfrm::frame::control_box_button) control_box::get_box_button(e_button ebutton)
          {
 
             return get_button(ebutton);
@@ -827,7 +827,7 @@ namespace user
       } // namespace frame
 
 
-   } // namespace uinteraction
+   } // namespace wndfrm
 
 
 

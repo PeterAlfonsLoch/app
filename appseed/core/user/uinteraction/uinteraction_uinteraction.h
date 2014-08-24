@@ -5,28 +5,28 @@ namespace user
 {
 
 
-   namespace uinteraction
+   namespace wndfrm
    {
 
 
-      class CLASS_DECL_CORE uinteraction :
+      class CLASS_DECL_CORE wndfrm :
          virtual public ::aura::departament
       {
       public:
 
 
-         uinteraction(sp(::aura::application) papp);
-         virtual ~uinteraction();
+         wndfrm(sp(::aura::application) papp);
+         virtual ~wndfrm();
 
 
-         virtual sp(::user::uinteraction::interaction) get_new_uinteraction(const char * pszUinteractionLibrary);
-         virtual sp(::user::uinteraction::interaction) get_uinteraction(const char * pszUinteractionLibrary);
+         virtual sp(::user::wndfrm::interaction) get_new_uinteraction(const char * pszUinteractionLibrary);
+         virtual sp(::user::wndfrm::interaction) get_uinteraction(const char * pszUinteractionLibrary);
          virtual sp(frame::frame) get_frame_schema(const char * pszUinteractionLibrary, const char * pszFrameSchemaName);
 
       };
 
 
-   } // namespace uinteraction
+   } // namespace wndfrm
 
 
 } // namespace user

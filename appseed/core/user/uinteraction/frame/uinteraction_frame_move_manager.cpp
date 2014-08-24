@@ -6,7 +6,7 @@ namespace user
 
 
 
-   namespace uinteraction
+   namespace wndfrm
    {
 
 
@@ -552,7 +552,7 @@ namespace user
       } // namespace frame
 
 
-   } // namespace uinteraction
+   } // namespace wndfrm
 
 
 

@@ -118,7 +118,7 @@ class mini_dock_frame_window;    // forward reference (see afxpriv.h)
 class CDockState;           // forward reference (see afxpriv.h)
 
 
-#include "core/user/uinteraction/uinteraction.h"
+#include "core/user/wndfrm/wndfrm.h"
 
 
 

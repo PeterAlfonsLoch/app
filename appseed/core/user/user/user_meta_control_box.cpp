@@ -4,7 +4,7 @@
 MetaControlBox::MetaControlBox(sp(::aura::application) papp) :
 element(papp),
 ::user::interaction(papp),
-::user::uinteraction::frame::control_box(papp)
+::user::wndfrm::frame::control_box(papp)
 {
    
    m_crBackground = ARGB(204,84,208,77);
@@ -72,7 +72,7 @@ void MetaControlBox::_001OnTimer(signal_details * pobj)
 void MetaControlBox::install_message_handling(::message::dispatch *pinterface)
 {
    
-   ::user::uinteraction::frame::control_box::install_message_handling(pinterface);
+   ::user::wndfrm::frame::control_box::install_message_handling(pinterface);
 
    IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &MetaControlBox::_001OnShowWindow);
    IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &MetaControlBox::_001OnLButtonDown);

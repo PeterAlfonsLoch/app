@@ -46,7 +46,7 @@ namespace platform
 
       void super_dock_on_bergedge();
 
-      virtual sp(::user::uinteraction::frame::frame)create_frame_schema();
+      virtual sp(::user::wndfrm::frame::frame)create_frame_schema();
 
       DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnTimer);

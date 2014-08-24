@@ -8,7 +8,7 @@ enum e_stock_icon
    
    stock_icon_none,
    stock_icon_control_box_begin,
-   // TO Begin - TIGHTLY ORDERED Begin (relations : {ca2/app/core}::user::uinteraction::frame::e_button[button_close:stock_icon_close,...])
+   // TO Begin - TIGHTLY ORDERED Begin (relations : {ca2/app/core}::user::wndfrm::frame::e_button[button_close:stock_icon_close,...])
    stock_icon_close =  stock_icon_control_box_begin,
    stock_icon_level_up,
    stock_icon_level_down,

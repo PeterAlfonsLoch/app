@@ -136,10 +136,10 @@ void simple_frame_window::_001OnDestroy(signal_details * pobj)
 }
 
 
-sp(::user::uinteraction::frame::frame) simple_frame_window::create_frame_schema()
+sp(::user::wndfrm::frame::frame) simple_frame_window::create_frame_schema()
 {
 
-   sp(::user::uinteraction::frame::frame) pschema = Application.uinteraction().get_frame_schema("app-core/uinteraction", "005");
+   sp(::user::wndfrm::frame::frame) pschema = Application.wndfrm().get_frame_schema("app-core/wndfrm", "005");
 
    pschema->m_typeinfoControlBoxButton = System.type_info < MetaButton >();
 
@@ -211,7 +211,7 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
       // trans      HICON hicon = GetIcon(false);
 
-      sp(::user::uinteraction::frame::frame) pinteractionframe = NULL;
+      sp(::user::wndfrm::frame::frame) pinteractionframe = NULL;
 
       try
       {
@@ -1621,7 +1621,7 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
       while (pui != NULL)
       {
 
-         if (pui->IsWindowVisible() && !base_class < ::user::uinteraction::frame::control_box > ::bases(pui))
+         if (pui->IsWindowVisible() && !base_class < ::user::wndfrm::frame::control_box > ::bases(pui))
          {
 
             pui->_000OnDraw(pdc);
@@ -1638,7 +1638,7 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
 
       while (pui != NULL)
       {
-         if (base_class < ::user::uinteraction::frame::control_box > ::bases(pui))
+         if (base_class < ::user::wndfrm::frame::control_box > ::bases(pui))
          {
             string str;
             pui->GetWindowText(str);
@@ -1677,7 +1677,7 @@ void simple_frame_window::_011OnDraw(::draw2d::graphics *pdc)
    if ((m_bWindowFrame || _001IsTranslucent()) && !Session.savings().is_trying_to_save(::aura::resource_display_bandwidth))
    {
 
-      ::user::uinteraction::frame::WorkSetClientInterface::_001OnDraw(pdc);
+      ::user::wndfrm::frame::WorkSetClientInterface::_001OnDraw(pdc);
 
    }
    else

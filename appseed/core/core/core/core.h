@@ -40,10 +40,10 @@ namespace user
    class printer;
    class tree;
 
-   namespace uinteraction
+   namespace wndfrm
    {
 
-      class uinteraction;
+      class wndfrm;
 
    }
 
@@ -68,14 +68,14 @@ namespace user
    class view_creator_data;
 
 
-   namespace uinteraction
+   namespace wndfrm
    {
 
 
       class interaction;
 
 
-   } // namespace uinteraction
+   } // namespace wndfrm
 
 } // namespace user
 

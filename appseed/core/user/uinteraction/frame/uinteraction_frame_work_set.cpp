@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   namespace uinteraction
+   namespace wndfrm
    {
 
 
@@ -380,7 +380,7 @@ namespace user
 
                e_button ebutton = m_pframeschema->get_control_box()->get_control_box_button_type((pevent->m_puie.m_p)->GetDlgCtrlId());
 
-               if(ebutton == ::user::uinteraction::frame::button_dock)
+               if(ebutton == ::user::wndfrm::frame::button_dock)
                {
 
                   pinterface->m_workset.GetDockingManager()->_000OnLButtonDown(dynamic_cast <::message::mouse *> (pevent->m_pobj));
@@ -405,25 +405,25 @@ namespace user
                e_button ebutton = m_pframeschema->get_control_box()->get_control_box_button_type((pevent->m_puie.m_p)->GetDlgCtrlId());
                switch(ebutton)
                {
-               case ::user::uinteraction::frame::button_close:
+               case ::user::wndfrm::frame::button_close:
                   pinterface->WfiClose();
                   return TRUE;
-               case ::user::uinteraction::frame::button_minimize:
+               case ::user::wndfrm::frame::button_minimize:
                   pinterface->WfiMinimize();
                   return TRUE;
-               case ::user::uinteraction::frame::button_maximize:
+               case ::user::wndfrm::frame::button_maximize:
                   pinterface->WfiMaximize();
                   return TRUE;
-               case ::user::uinteraction::frame::button_restore:
+               case ::user::wndfrm::frame::button_restore:
                   pinterface->WfiRestore(true);
                   return TRUE;
-               case ::user::uinteraction::frame::button_up:
+               case ::user::wndfrm::frame::button_up:
                   pinterface->WfiUp();
                   return TRUE;
-               case ::user::uinteraction::frame::button_down:
+               case ::user::wndfrm::frame::button_down:
                   pinterface->WfiDown();
                   return TRUE;
-               case ::user::uinteraction::frame::button_notify_icon:
+               case ::user::wndfrm::frame::button_notify_icon:
                   pinterface->WfiNotifyIcon();
                   return TRUE;
                default:
@@ -444,29 +444,29 @@ namespace user
 
                ASSERT(pinterface != NULL);
 
-               ::user::uinteraction::frame::e_button ebutton = m_pframeschema->get_control_box()->get_control_box_button_type(pcmdmsg->m_id);
+               ::user::wndfrm::frame::e_button ebutton = m_pframeschema->get_control_box()->get_control_box_button_type(pcmdmsg->m_id);
 
                switch(ebutton)
                {
-               case ::user::uinteraction::frame::button_close:
+               case ::user::wndfrm::frame::button_close:
                   pinterface->WfiClose();
                   return TRUE;
-               case ::user::uinteraction::frame::button_minimize:
+               case ::user::wndfrm::frame::button_minimize:
                   pinterface->WfiMinimize();
                   return TRUE;
-               case ::user::uinteraction::frame::button_maximize:
+               case ::user::wndfrm::frame::button_maximize:
                   pinterface->WfiMaximize();
                   return TRUE;
-               case ::user::uinteraction::frame::button_restore:
+               case ::user::wndfrm::frame::button_restore:
                   pinterface->WfiRestore(true);
                   return TRUE;
-               case ::user::uinteraction::frame::button_up:
+               case ::user::wndfrm::frame::button_up:
                   pinterface->WfiUp();
                   return TRUE;
-               case ::user::uinteraction::frame::button_down:
+               case ::user::wndfrm::frame::button_down:
                   pinterface->WfiDown();
                   return TRUE;
-               case ::user::uinteraction::frame::button_dock:
+               case ::user::wndfrm::frame::button_dock:
                   return FALSE;
                default:
                   break;
@@ -1456,7 +1456,7 @@ namespace user
          return ModeNone;
          }*/
 
-         void WorkSet::AttachFrameSchema(sp(::user::uinteraction::frame::frame) pframeschema)
+         void WorkSet::AttachFrameSchema(sp(::user::wndfrm::frame::frame) pframeschema)
          {
 
             m_pframeschema = pframeschema;
@@ -1491,7 +1491,7 @@ namespace user
       } // namespace frame
 
 
-   } // namespace uinteraction
+   } // namespace wndfrm
 
 
 } // namespace user

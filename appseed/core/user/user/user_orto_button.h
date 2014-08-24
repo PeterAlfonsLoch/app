@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_CORE OrtoButton:
-   virtual public ::user::uinteraction::frame::control_box_button
+   virtual public ::user::wndfrm::frame::control_box_button
 {
 public:
 

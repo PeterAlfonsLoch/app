@@ -375,7 +375,7 @@ namespace user
          if(pActive != pframe)
          {
 
-            ::user::uinteraction::frame::WorkSet * pset = oprop("deactivate_together_set").cast < ::user::uinteraction::frame::WorkSet > ();
+            ::user::wndfrm::frame::WorkSet * pset = oprop("deactivate_together_set").cast < ::user::wndfrm::frame::WorkSet > ();
 
             if(pset != NULL)
             {

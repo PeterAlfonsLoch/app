@@ -29,9 +29,9 @@ class BaseMiniDockFrameWnd;
 class CLASS_DECL_CORE simple_frame_window :
    virtual public ::user::frame_window,
    virtual public database::user::interaction,
-   virtual public ::user::uinteraction::frame::WorkSetClientInterface,
-   virtual public ::user::uinteraction::frame::WorkSetListener,
-   virtual public ::user::uinteraction::frame::CWorkSetDownUpInterface
+   virtual public ::user::wndfrm::frame::WorkSetClientInterface,
+   virtual public ::user::wndfrm::frame::WorkSetListener,
+   virtual public ::user::wndfrm::frame::CWorkSetDownUpInterface
 {
 public:
 
@@ -39,7 +39,7 @@ public:
 
    ::database::id          m_datakeyFrame;
 
-   sp(::user::uinteraction::frame::frame)       m_pframeschema;
+   sp(::user::wndfrm::frame::frame)       m_pframeschema;
 
 
 //   HDC                           m_hdcOpenGL;
@@ -90,7 +90,7 @@ public:
 
    void OnUpdateControlBarMenu(cmd_ui * pcmdui);
 
-   virtual sp(::user::uinteraction::frame::frame) create_frame_schema();
+   virtual sp(::user::wndfrm::frame::frame) create_frame_schema();
 
    virtual bool LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, sp(::user::interaction) pParentWnd = NULL, sp(::create_context) pContext = NULL);
 
@@ -158,7 +158,7 @@ public:
    virtual bool WndFrameworkDownUpGetUpEnable();
    virtual bool WndFrameworkDownUpGetDownEnable();
 
-   using ::user::uinteraction::frame::WorkSetListener::attach;
+   using ::user::wndfrm::frame::WorkSetListener::attach;
    DECL_GEN_VSIGNAL(guserbaseOnInitialUpdate);
 
    virtual class mini_dock_frame_window* CreateFloatingFrame(uint32_t dwStyle);

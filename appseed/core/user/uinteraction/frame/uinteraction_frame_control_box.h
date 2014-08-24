@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   namespace uinteraction
+   namespace wndfrm
    {
 
 
@@ -87,7 +87,7 @@ namespace user
 
             virtual int32_t calc_control_box_full_screen_width();
 
-            ::user::uinteraction::frame::appearance * workset_get_appearance();
+            ::user::wndfrm::frame::appearance * workset_get_appearance();
 
             virtual void reset_layout();
 
@@ -116,7 +116,7 @@ namespace user
       } // namespace frame
 
 
-   } // namespace uinteraction
+   } // namespace wndfrm
 
 
 } // namespace user

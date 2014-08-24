@@ -70,7 +70,7 @@ namespace core
       nature::database *                                 m_pdatabase;
 
 
-      string_map < sp(::user::uinteraction::interaction) >     m_mapUinteraction;
+      string_map < sp(::user::wndfrm::interaction) >     m_mapUinteraction;
 
 
       platform(sp(::aura::application) papp);

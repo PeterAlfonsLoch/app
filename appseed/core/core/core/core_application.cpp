@@ -234,7 +234,7 @@ namespace core
          return false;
 
 
-      m_puinteraction = canew(::user::uinteraction::uinteraction(this));
+      m_puinteraction = canew(::user::wndfrm::wndfrm(this));
 
       m_puinteraction->construct(this);
 

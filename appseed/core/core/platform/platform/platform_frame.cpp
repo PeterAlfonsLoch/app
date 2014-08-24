@@ -294,10 +294,10 @@ namespace platform
    }
 
 
-   sp(::user::uinteraction::frame::frame) frame::create_frame_schema()
+   sp(::user::wndfrm::frame::frame) frame::create_frame_schema()
    {
 
-      sp(::user::uinteraction::frame::frame) pframe = Application.uinteraction().get_frame_schema("app-core/uinteraction", "005");
+      sp(::user::wndfrm::frame::frame) pframe = Application.wndfrm().get_frame_schema("app-core/wndfrm", "005");
 
       pframe->m_typeinfoControlBoxButton = System.type_info < MetaButton > ();
 

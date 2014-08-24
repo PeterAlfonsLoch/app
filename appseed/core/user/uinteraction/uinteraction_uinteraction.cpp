@@ -5,11 +5,11 @@ namespace user
 {
 
 
-   namespace uinteraction
+   namespace wndfrm
    {
 
 
-      uinteraction::uinteraction(sp(::aura::application) papp) :
+      wndfrm::wndfrm(sp(::aura::application) papp) :
          element(papp),
          ::aura::departament(papp)
       {
@@ -17,13 +17,13 @@ namespace user
       }
 
 
-      uinteraction::~uinteraction()
+      wndfrm::~wndfrm()
       {
 
       }
 
 
-      sp(::user::uinteraction::interaction) uinteraction::get_new_uinteraction(const char * pszUinteractionLibrary)
+      sp(::user::wndfrm::interaction) wndfrm::get_new_uinteraction(const char * pszUinteractionLibrary)
       {
 
          string strId(pszUinteractionLibrary);
@@ -46,10 +46,10 @@ namespace user
 #ifndef METROWIN
          if(!System.directrix()->m_varTopicQuery.has_property("install")
             && !System.directrix()->m_varTopicQuery.has_property("uninstall")
-            && !System.install().is(NULL, strBuildNumber, "uinteraction", strId, Application.m_strLocale, Application.m_strSchema))
+            && !System.install().is(NULL, strBuildNumber, "wndfrm", strId, Application.m_strLocale, Application.m_strSchema))
          {
 
-            throw not_installed(get_app(), NULL, strBuildNumber, "uinteraction", strId, Application.m_strLocale, Application.m_strSchema);
+            throw not_installed(get_app(), NULL, strBuildNumber, "wndfrm", strId, Application.m_strLocale, Application.m_strSchema);
 
          }
 
@@ -86,7 +86,7 @@ namespace user
 
          library.get_app_list(stra);
 
-         if(stra.get_size() != 1) // a uinteraction OSLibrary should have one uinteraction
+         if(stra.get_size() != 1) // a wndfrm OSLibrary should have one wndfrm
             return NULL;
 
          string strAppId(stra[0]);
@@ -94,7 +94,7 @@ namespace user
          if(strAppId.is_empty()) // trivial validity check
             return NULL;
 
-         sp(::user::uinteraction::interaction) pinteraction = library.create_object(get_app(), "uinteraction");
+         sp(::user::wndfrm::interaction) pinteraction = library.create_object(get_app(), "wndfrm");
 
          if(pinteraction == NULL)
             return NULL;
@@ -104,7 +104,7 @@ namespace user
       }
 
 
-      sp(::user::uinteraction::interaction) uinteraction::get_uinteraction(const char * pszUinteraction)
+      sp(::user::wndfrm::interaction) wndfrm::get_uinteraction(const char * pszUinteraction)
       {
 
          if(System.get_twf() == NULL)
@@ -115,12 +115,12 @@ namespace user
 
          }
 
-         sp(::user::uinteraction::interaction) pinteraction = Platform.m_mapUinteraction[pszUinteraction];
+         sp(::user::wndfrm::interaction) pinteraction = Platform.m_mapUinteraction[pszUinteraction];
 
          if(Platform.m_mapUinteraction[pszUinteraction] == NULL)
          {
 
-            Platform.m_mapUinteraction[pszUinteraction] = Platform.uinteraction().get_new_uinteraction(pszUinteraction);
+            Platform.m_mapUinteraction[pszUinteraction] = Platform.wndfrm().get_new_uinteraction(pszUinteraction);
 
             pinteraction = Platform.m_mapUinteraction[pszUinteraction];
 
@@ -132,10 +132,10 @@ namespace user
       }
 
 
-      sp(::user::uinteraction::frame::frame) uinteraction::get_frame_schema(const char * pszLibrary, const char * pszFrameSchemaName)
+      sp(::user::wndfrm::frame::frame) wndfrm::get_frame_schema(const char * pszLibrary, const char * pszFrameSchemaName)
       {
 
-         sp(::user::uinteraction::interaction) pinteraction = get_uinteraction(pszLibrary);
+         sp(::user::wndfrm::interaction) pinteraction = get_uinteraction(pszLibrary);
 
          if(pinteraction == NULL)
             return NULL;
@@ -146,7 +146,7 @@ namespace user
       }
 
 
-   } // namespace uinteraction
+   } // namespace wndfrm
 
 
 
