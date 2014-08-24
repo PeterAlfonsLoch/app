@@ -90,7 +90,7 @@ namespace dynamic_source
       string_map < bool >         m_mapIncludeHasScript;
       mutex                                     m_mutexIncludeExpandMd5;
       string_to_string                      m_mapIncludeExpandMd5;
-      sp(::aura::message_queue)                 m_spqueue;
+      ::aura::message_queue_sp                 m_spqueue;
 
       int32_t                                   m_iTunnelPluginCount;
       mutex                                     m_mutexOutLink;

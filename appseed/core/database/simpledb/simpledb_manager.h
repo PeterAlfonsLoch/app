@@ -5,12 +5,12 @@ namespace simpledb
 
    class CLASS_DECL_CORE manager :
       virtual public thread,
-      virtual public message_queue
+      virtual public ::aura::message_queue_lister
    {
    public:
 
 
-
+      ::aura::message_queue_sp           m_spqueue;
       uint32_t                         m_dwBuildTimeWindow;
       uint32_t                         m_dwBuildTimeRandomWindow;
 
