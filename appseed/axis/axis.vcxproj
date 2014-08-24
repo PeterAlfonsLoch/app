@@ -3748,7 +3748,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\user\user_control.cpp" />
     <ClCompile Include="user\user\user_control_bar.cpp" />
     <ClCompile Include="user\user\user_control_event.cpp" />
-    <ClCompile Include="user\user\user_create_context.cpp" />
     <ClCompile Include="user\user\user_draw_context.cpp" />
     <ClCompile Include="user\user\user_draw_interface.cpp" />
     <ClCompile Include="user\user\user_edit_plain_text.cpp" />

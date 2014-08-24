@@ -1015,9 +1015,6 @@
     <ClCompile Include="user\user\user_control_event.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_create_context.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_draw_context.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>

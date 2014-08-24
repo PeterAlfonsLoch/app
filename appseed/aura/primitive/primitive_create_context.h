@@ -57,12 +57,11 @@ public:
    bool                                                        m_bClientOnly;
    bool                                                        m_bOuterPopupAlertLike;
    bool                                                        m_bHold;
-   ::user::interaction *                                     m_puiParent;
-   ::user::interaction *                                     m_puiAlloc;
+   ::user::interaction *                                       m_puiParent;
+   ::user::interaction *                                       m_puiAlloc;
    sp(application_bias)                                        m_spApplicationBias;
    command_line_sp                                             m_spCommandLine;
-   stack < auto_pointer < ::user::create_context, 
-      user_create_context_delfn > >                            m_user; 
+   stack < ::user::create_context >                            m_user; 
    sp(::command_thread)                                        m_pthreadParent;
 
 

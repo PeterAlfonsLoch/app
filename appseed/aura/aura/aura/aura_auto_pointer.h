@@ -1,17 +1,6 @@
 #pragma once
 
 template < typename T >
-class default_delfn
-{
-public:
-   inline void void_delete(void * pvoid)
-   {
-      T * p = (T *)pvoid;
-      delete p;
-   }
-};
-
-template < typename T, class DEL = default_delfn < T > >
 class auto_pointer
 {
 public:
@@ -45,7 +34,16 @@ public:
       if(m_p != NULL)
       {
 
-         DEL().void_delete(m_p);
+         try
+         {
+
+            delete m_p;
+
+         }
+         catch(...)
+         {
+
+         }
 
          m_p = NULL;
 

@@ -245,9 +245,6 @@ namespace axis
 
       virtual void on_service_request(sp(::create_context) pcreatecontext);
 
-      virtual sp(::aura::application) assert_running(const char * pszAppId);
-
-      virtual bool is_running();
 
       virtual string get_mutex_name_gen();
 
@@ -257,9 +254,6 @@ namespace axis
 
 
       virtual void draw2d_factory_exchange();
-
-
-      bool safe_is_running();
 
 
       virtual void on_request(sp(::create_context) pcreatecontext);

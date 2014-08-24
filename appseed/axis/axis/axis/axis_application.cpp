@@ -889,7 +889,7 @@ namespace axis
 
       try
       {
-         application_signal_details signal(this,m_psignal,application_signal_start);
+         ::aura::application_signal_details signal(this,m_psignal,::aura::application_signal_start);
          m_psignal->emit(&signal);
       }
       catch(...)
@@ -1333,88 +1333,6 @@ namespace axis
    }
 
 
-   bool application::safe_is_running()
-   {
-
-      bool bRunning = false;
-
-      try
-      {
-
-         if(is_running())
-         {
-
-            bRunning = true;
-
-         }
-
-      }
-      catch(...)
-      {
-
-         bRunning = false;
-
-      }
-
-
-      return bRunning;
-
-   }
-
-
-   sp(application) application::assert_running(const char * pszAppId)
-   {
-
-      sp(application) papp;
-
-      papp = Session.m_appptra.find_running_defer_try_quit_damaged(pszAppId);
-
-      if(papp.is_null())
-      {
-
-         sp(::create_context) spcreatecontext(allocer());
-
-         papp = Session.start_application("application",pszAppId,spcreatecontext);
-
-      }
-
-      return papp;
-
-   }
-
-
-
-
-
-   typedef  void(*PFN_ca2_factory_exchange)(sp(application) papp);
-
-
-
-
-   /*::file::binary_buffer_sp application::friendly_get_file(var varFile, UINT nOpenFlags)
-   {
-
-   try
-   {
-
-   return m_file.get_file(varFile, nOpenFlags);
-
-   }
-   catch (::file::exception & e)
-   {
-
-   string strMessage = e.get_message();
-
-   App(this).simple_message_box(NULL, strMessage, MB_OK);
-
-   return NULL;
-
-   }
-
-   }
-   */
-
-
 
 
    bool application::is_installing()
@@ -1429,79 +1347,6 @@ namespace axis
    {
 
       return directrix()->has_property("uninstall");
-
-   }
-
-
-   bool application::create_new_service()
-   {
-
-      if(m_pservice != NULL)
-         return false;
-
-      m_pservice = allocate_new_service();
-
-      if(m_pservice == NULL)
-         return false;
-
-      return true;
-
-   }
-
-
-
-   bool application::create_service()
-   {
-
-      return System.os().create_service(this);
-
-   }
-
-   bool application::remove_service()
-   {
-
-      return System.os().remove_service(this);
-
-   }
-
-   bool application::start_service()
-   {
-
-      return System.os().start_service(this);
-
-   }
-
-   bool application::stop_service()
-   {
-
-      return System.os().stop_service(this);
-
-   }
-
-
-   void application::on_service_request(sp(::create_context) pcreatecontext)
-   {
-
-      if(!is_serviceable())
-         return;
-
-      if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("create_service"))
-      {
-         create_service();
-      }
-      else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("start_service"))
-      {
-         start_service();
-      }
-      else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("stop_service"))
-      {
-         stop_service();
-      }
-      else if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("remove_service"))
-      {
-         remove_service();
-      }
-
 
    }
 

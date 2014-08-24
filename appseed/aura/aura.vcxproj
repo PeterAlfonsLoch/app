@@ -3887,6 +3887,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\simple\simple_message_box.h" />
     <ClInclude Include="user\user\user.h" />
     <ClInclude Include="user\user\user_check_interface.h" />
+    <ClInclude Include="user\user\user_create_context.h" />
     <ClInclude Include="user\user\user_timer_array.h" />
     <ClCompile Include="user\colorertake5\colorertake5_base_editor.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_colorertake5.cpp" />
@@ -3911,9 +3912,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_impl.cpp" />
     <ClCompile Include="user\simple\simple_message_box.cpp" />
     <ClCompile Include="user\user\user_check_interface.cpp" />
-    <ClCompile Include="user\user\user_timer_item.cpp">
-      <FileType>CppHeader</FileType>
-    </ClCompile>
+    <ClCompile Include="user\user\user_create_context.cpp" />
     <ClInclude Include="user\user\user_timer_item.h" />
     <ClInclude Include="version.config.h" />
     <ClInclude Include="version.h" />
@@ -5011,6 +5010,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="primitive\str\str_verisimple_wstring.cpp" />
     <ClCompile Include="primitive\str\str_wtostring.cpp" />
     <ClCompile Include="user\user\user_timer_array.cpp" />
+    <ClCompile Include="user\user\user_timer_item.cpp" />
     <ClCompile Include="version.cpp" />
   </ItemGroup>
   <ItemGroup>
