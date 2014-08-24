@@ -85,16 +85,7 @@ bool axis_init()
 
    //::axis::static_start::init();
 
-   __init_threading_count();
-
-   ::multithreading::init_multithreading();
-
    ::user::init_windowing();
-
-   ::os_thread::s_pmutex = new mutex();
-
-   ::os_thread::s_pptra = new comparable_raw_array < os_thread * >::type();
-
 
    if(!__node_axis_pos_init())
       return false;
@@ -112,10 +103,6 @@ bool axis_term()
    __node_axis_pre_term();
 
    ::user::term_windowing();
-
-   ::multithreading::term_multithreading();
-
-   __term_threading_count();
 
    __node_axis_pos_term();
 

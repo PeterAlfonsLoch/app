@@ -40,10 +40,8 @@ namespace aura
    class application;
    class system;
    class application_signal_details;
-   class copydesk;
    class platform_interface;
 
-   typedef smart_pointer < copydesk > copydesk_sp;
    class command;
 
 

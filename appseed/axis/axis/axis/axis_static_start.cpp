@@ -40,8 +40,6 @@ namespace axis
          
    
     
-         new plex_heap_alloc_array();
-   
     
 #if defined(LINUX)
    

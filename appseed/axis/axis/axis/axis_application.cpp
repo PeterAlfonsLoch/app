@@ -59,17 +59,24 @@ namespace axis
 
 #endif
 
-      if(m_pauraapp == NULL)
-      {
-
-         m_pauraapp              = this;
-
-      }
-
       if(m_pauraapp != NULL)
       {
 
-         m_paxissystem           = m_pauraapp->m_paxissystem;
+         m_paxisapp              = m_pauraapp->m_paxisapp;
+
+      }
+
+      if(m_paxisapp == NULL)
+      {
+
+         m_paxisapp              = this;
+
+      }
+
+      if(m_paxisapp != NULL)
+      {
+
+         m_paxissystem           = m_paxisapp->m_paxissystem;
 
          if(m_pauraapp->m_paxissession == NULL && m_paxissystem != NULL)
          {
@@ -80,7 +87,7 @@ namespace axis
          else
          {
 
-            m_paxissession       = m_pauraapp->m_paxissession;
+            m_paxissession       = m_paxisapp->m_paxissession;
 
          }
 

@@ -42,11 +42,11 @@ BOOL APIENTRY
 DllMain(HANDLE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
 	switch (ul_reason_for_call) {
 		case DLL_PROCESS_ATTACH :
-			FreeImage_Initialise(FALSE);
+			//FreeImage_Initialise(FALSE);
 			break;
 
 		case DLL_PROCESS_DETACH :
-			FreeImage_DeInitialise();
+			//FreeImage_DeInitialise();
 			break;
 
 		case DLL_THREAD_ATTACH :

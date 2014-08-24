@@ -578,6 +578,8 @@ void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::construc
 
    UNREFERENCED_PARAMETER(nBlockSize);
 
+   m_pnode = NULL;
+
 }
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >

@@ -28,10 +28,10 @@ namespace base
 
 #endif
 
-      if(m_pauraapp != NULL)
+      if(m_paxisapp != NULL)
       {
 
-         m_pbaseapp              = m_pauraapp->m_pbaseapp;
+         m_pbaseapp              = m_paxisapp->m_pbaseapp;
 
       }
 

@@ -91,12 +91,6 @@ namespace base
 
 #endif
 
-      m_pfactory->cloneable_large < create_context >();
-      m_pfactory->cloneable_large < application_bias >();
-      m_pfactory->cloneable_large < command_line >();
-      m_pfactory->cloneable_large < manual_reset_event >();
-      m_pfactory->cloneable_large < mutex >();
-      m_pfactory->cloneable_large < event >();
 
 
       if(!::axis::system::process_initialize())

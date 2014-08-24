@@ -34,7 +34,7 @@ void sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE, m_bMultiKey >::add_pair(ARG
          }
 
       }
-      else if(m_bMultiKey || compare(key,pnode->first))
+      else if(m_bMultiKey || compare(pnode->first, key))
       {
 
          if(pnode->right == NULL)
