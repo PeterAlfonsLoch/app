@@ -1,14 +1,14 @@
 #include "framework.h"
 
 
-namespace axis
+namespace aura
 {
 
 
    platform_interface::platform_interface()
    {
 
-      
+
 
    }
 
@@ -34,7 +34,7 @@ namespace axis
    }
 
 
-} // namespace axis
+} // namespace aura
 
 
 

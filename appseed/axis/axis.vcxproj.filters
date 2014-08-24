@@ -1384,9 +1384,6 @@
     <ClCompile Include="axis\node\windows\windows_message_queue.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="axis\axis\axis_platform_interface.cpp">
-      <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="base.def">

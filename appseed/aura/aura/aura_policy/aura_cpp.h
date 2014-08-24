@@ -79,6 +79,7 @@ namespace visual
 
 
    class icon;
+   class cursor;
 
 
 } // namespace visual
@@ -775,6 +776,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura_application_signal_details.h"
 
 #include "aura_session_interface.h"
+#include "aura_platform_interface.h"
 #include "aura_session.h"
 
 
