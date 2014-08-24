@@ -384,9 +384,9 @@ if(__get_module_state()->m_pmapHWND == NULL)
       //ANDROID_THREAD(m_pthreadimpl.m_p)->m_bRun = false;
       //ANDROID_THREAD(::ca2::application_base::m_p->::ca2::thread_sp::m_p)->m_bRun = false;
 
-      int32_t iRet = ::axis::application::exit_instance();
+      int32_t iRet = ::aura::application::exit_instance();
 
-      //::ca2::smart_pointer<::axis::application>::destroy();
+      //::ca2::smart_pointer<::aura::application>::destroy();
 
 
 
@@ -557,8 +557,8 @@ if(__get_module_state()->m_pmapHWND == NULL)
       strExeName = System.get_module_title();
 
 
-//      dynamic_cast < ::android::thread * > ((smart_pointer < ::axis::application >::m_p->::ca2::thread_sp::m_p))->m_hThread = __get_thread()->m_hThread;
-  //    dynamic_cast < ::android::thread * > ((smart_pointer < ::axis::application >::m_p->::ca2::thread_sp::m_p))->m_nThreadID = __get_thread()->m_nThreadID;
+//      dynamic_cast < ::android::thread * > ((smart_pointer < ::aura::application >::m_p->::ca2::thread_sp::m_p))->m_hThread = __get_thread()->m_hThread;
+  //    dynamic_cast < ::android::thread * > ((smart_pointer < ::aura::application >::m_p->::ca2::thread_sp::m_p))->m_nThreadID = __get_thread()->m_nThreadID;
       //m_pimpl->m_hthread      =  ::GetCurrentThread();
 
 

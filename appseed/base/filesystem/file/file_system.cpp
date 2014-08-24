@@ -84,10 +84,14 @@ namespace file
 
    }
 
+
    bool system::path::is_relative(const char * psz)
    {
-      return file_path_is_relative_dup(psz);
+
+      return file_path_is_relative_dup(psz) != FALSE;
+
    }
+
 
    void system::get_ascendants_path(const char * lpcsz, stringa & straParam)
    {

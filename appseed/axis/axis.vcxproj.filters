@@ -815,45 +815,6 @@
     <ClInclude Include="axis\axis\axis_session.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_base_file.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_base_internal.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_base_registry.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_file_watcher.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_implementation.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_multithreading.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_os.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_port_forward.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_process.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_shell.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_simple_hold_handle.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_utils.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_windows.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
     <ClInclude Include="axis\axis\axis_simple_app.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
@@ -1408,11 +1369,11 @@
     <ClCompile Include="axis\node\windows\windows.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
+    <ClCompile Include="axis\os\windows\windows_os.cpp">
+      <Filter>Source Files\axis\os\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

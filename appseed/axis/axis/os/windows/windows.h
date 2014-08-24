@@ -43,3 +43,10 @@
 
 
 
+
+
+bool CLASS_DECL_BASE vfxResolveShortcut(string & strTarget,const char * pszSource,sp(::user::interaction) puiMessageParentOptional);
+
+
+
+

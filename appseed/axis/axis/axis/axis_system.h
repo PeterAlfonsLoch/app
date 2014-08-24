@@ -9,7 +9,7 @@ namespace axis
 
    class CLASS_DECL_AXIS system:
       virtual public ::aura::system,
-      virtual public ::axis::application
+      virtual public :: axis ::application
    {
    public:
 

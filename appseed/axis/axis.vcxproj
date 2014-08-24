@@ -2629,19 +2629,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     </ClInclude>
     <ClInclude Include="axis\os\os.h" />
     <ClInclude Include="axis\os\windows\windows.h" />
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_base_file.h" />
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_base_internal.h" />
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_base_registry.h" />
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_file_watcher.h" />
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_implementation.h" />
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_multithreading.h" />
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_os.h" />
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_port_forward.h" />
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_process.h" />
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_shell.h" />
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_simple_hold_handle.h" />
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_utils.h" />
-    <ClInclude Include="axis\os\windows\aaa_want_to_remove_windows_windows.h" />
     <ClInclude Include="axis\os\windows\windows_window_gdi.h" />
     <ClInclude Include="axis\policy\policy.h" />
     <ClInclude Include="axis\policy\policy_c.h" />
@@ -3278,6 +3265,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="graphics\visual\visual_icon.h" />
     <ClCompile Include="axis\os\windows\windows_dll.cpp" />
     <ClCompile Include="axis\os\windows\windows_gdi.cpp" />
+    <ClCompile Include="axis\os\windows\windows_os.cpp" />
     <ClCompile Include="axis\os\windows\windows_simple_app.cpp" />
     <ClCompile Include="axis\os\windows\windows_window_gdi.cpp" />
     <ClCompile Include="database\database_application.cpp" />

@@ -6,7 +6,7 @@ namespace base
 
 
    class CLASS_DECL_BASE application :
-      virtual public ::axis::application
+      virtual public :: axis ::application
    {
    public:
 

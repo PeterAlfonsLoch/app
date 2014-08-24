@@ -20,7 +20,7 @@ namespace android
 
 
    class CLASS_DECL_BASE application :
-      virtual public ::axis::application
+      virtual public ::aura::application
    {
    public:
 

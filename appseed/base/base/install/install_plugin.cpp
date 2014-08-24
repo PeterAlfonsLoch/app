@@ -41,6 +41,7 @@ namespace install
    plugin::plugin(sp(::aura::application) papp) :
       element(papp),
       ::simple_ui::style(papp),
+      ::aura::session(papp),
       ::axis::session(papp),
       ::base::session(papp),
       hotplugin::plugin(papp),

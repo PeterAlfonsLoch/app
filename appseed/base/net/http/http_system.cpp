@@ -1587,7 +1587,7 @@ retry:
       
       ::sockets::socket_handler handler(get_app());
 
-      ::file::buffer_sp spfile = set.cast < ::axis::application >("app", get_app())->m_pbasesession->file().get_file(pszFile,
+      ::file::buffer_sp spfile = set.cast < ::aura::application >("app", get_app())->m_pbasesession->file().get_file(pszFile,
          ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
 
       set["file"] = spfile;
@@ -1806,7 +1806,7 @@ retry:
    bool system::get(const char * pszUrl, property_set & set)
    {
 
-      sockets::socket_handler h(set.cast < ::axis::application >("app", get_app()));
+      sockets::socket_handler h(set.cast < ::aura::application >("app", get_app()));
 
       sp(::sockets::http_client_socket) psocket = System.http().get(h, pszUrl, set);
 

@@ -37,6 +37,7 @@ namespace hotplugin
       element(papp),
       ::simple_ui::style(papp),
       ::thread(papp),
+      ::aura::session(papp),
       ::axis::session(papp),
       ::base::session(papp)
    {

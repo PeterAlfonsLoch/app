@@ -11,7 +11,7 @@ namespace axis
 
    class CLASS_DECL_AXIS session:
       virtual public ::aura::session,
-      virtual public ::axis::application,
+      virtual public :: axis ::application,
       virtual public ::user::schema
    {
    public:

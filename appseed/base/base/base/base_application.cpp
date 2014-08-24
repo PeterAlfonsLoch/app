@@ -1,32 +1,6 @@
 #include "framework.h"
 
 
-#if defined(CUBE)
-
-
-void draw2d_factory_exchange(sp(::aura::application) papp);
-
-
-#endif
-
-
-#if defined(APPLEOS)
-
-void openURL(const string &url_str);
-
-#endif
-
-#if defined(LINUX)
-#ifdef _GNU_SOURCE
-#undef _GNU_SOURCE
-#endif
-#define _GNU_SOURCE
-#define __USE_GNU
-#include <link.h>
-#elif defined(APPLEOS)
-#include <dlfcn.h>
-#endif
-
 
 void dappy(const char * psz)
 {
@@ -761,7 +735,7 @@ namespace base
    void application::SetCurrentHandles()
    {
 
-      ::axis::application::SetCurrentHandles();
+      ::aura::application::SetCurrentHandles();
 
 
       if(is_installing() || is_uninstalling())
@@ -2257,7 +2231,7 @@ namespace base
       m_bBaseProcessInitializeResult = false;
 
 
-      if(!::axis::application::process_initialize())
+      if(!::aura::application::process_initialize())
          return false;
       
 
@@ -3458,103 +3432,6 @@ namespace base
    }
 
 
-/*
-   bool application::defer_initialize_twf()
-   {
-
-      if(System.m_ptwf == NULL && (System.m_bShouldInitializeGTwf && m_bShouldInitializeGTwf && m_bInitializeProDevianMode))
-      {
-
-         if(!System.initialize_twf())
-            return false;
-
-      }
-
-      return true;
-
-   }
-
-   bool application::gudo_get(const string & strKey,::file::serializable & obj)
-   {
-
-      string strPath(strKey);
-
-      strPath.replace("::","/");
-
-      synch_lock sl(System.m_spmutexUserAppData);
-
-      {
-
-         ::file::binary_buffer_sp file = Session.file_get_file(Application.dir().userappdata(strPath),::file::mode_read);
-
-         if(file.is_null())
-         {
-
-            return false;
-
-         }
-
-         ::file::buffered_buffer buffer(this,file);
-
-         ::file::byte_input_stream is(&buffer);
-
-         try
-         {
-
-            obj.read(is);
-
-         }
-         catch(...)
-         {
-
-         }
-
-      }
-
-      return true;
-
-   }
-
-   bool application::gudo_set(const string & strKey,::file::serializable & obj)
-   {
-
-      string strPath(strKey);
-
-      strPath.replace("::","/");
-
-      synch_lock sl(System.m_spmutexUserAppData);
-
-      {
-
-         ::file::binary_buffer_sp file = Session.file_get_file(Application.dir().userappdata(strPath),::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
-
-         if(file.is_null())
-         {
-
-            return false;
-
-         }
-
-         ::file::buffered_buffer buffer(this, file);
-
-         ::file::byte_output_stream os(&buffer);
-
-         try
-         {
-
-            obj.write(os);
-
-         }
-         catch(...)
-         {
-
-         }
-
-      }
-
-      return true;
-
-   }*/
 
 
    bool application::assert_user_logged_in()
@@ -3568,25 +3445,8 @@ namespace base
 
    }
 
-/*
-   bool application::init_main_data(::aura::main_init_data * pdata)
-   {
 
-      m_pinitmaindata = pdata;
-
-      return true;
-
-   }
-
-   bool application::set_main_init_data(::aura::main_init_data * pdata)
-   {
-
-      return m_pimpl->set_main_init_data(pdata);
-
-   }
-*/
-
-   sp(::user::interaction) application::get_active_guie()
+   ::user::interaction * application::get_active_guie()
    {
 
       return Session.get_active_guie();
@@ -3594,7 +3454,7 @@ namespace base
    }
 
 
-   sp(::user::interaction) application::get_focus_guie()
+   ::user::interaction * application::get_focus_guie()
    {
 
       return Session.get_focus_guie();
