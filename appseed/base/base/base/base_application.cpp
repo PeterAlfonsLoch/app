@@ -2742,7 +2742,7 @@ namespace base
          try
          {
 
-            ::axis::application   * papp = m_pimpl.detach();
+            ::aura::application * papp = m_pimpl.detach();
 
             if(papp != NULL && papp != this && !papp->is_system())
             {
