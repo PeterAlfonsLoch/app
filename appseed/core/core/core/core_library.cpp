@@ -29,7 +29,7 @@ namespace core
    library::library(sp(::aura::application) papp):
       element(papp),
       ::aura::library(papp,0,"app"),
-      ::axis::single_application_library < application >(papp,"app"),
+      ::aura::single_application_library < application >(papp,"app"),
       ::filehandler::library(papp),
       ::filehandler::menu_library(papp)
    {

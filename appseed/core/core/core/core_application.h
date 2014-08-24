@@ -144,7 +144,6 @@ namespace core
 
 
       inline ::calculator::calculator           & calculator() { return *m_pcalculator; }
-      inline ::colorertake5::colorertake5       & colorertake5() { return *m_pcolorertake5; }
 
       inline class ::simpledb::simpledb         & simpledb()   { return m_simpledb; }
       inline sp(::userex::userex)               userex()       { return m_spuserex; }
