@@ -111,15 +111,9 @@ namespace aura
       virtual bool is_session();
       virtual bool is_serviceable();
 
-
       void process(machine_event_data * pdata);
 
-
-
       virtual bool open_link(const string & strLink,const string & pszTarget = "");
-
-
-
 
 
       virtual void DoWaitCursor(int32_t nCode); // 0 => restore, 1=> begin, -1=> end
@@ -127,15 +121,14 @@ namespace aura
 
 
 #ifndef METROWIN
-      virtual void get_time(timeval *p);
-#endif
 
+      virtual void get_time(timeval *p);
+
+#endif
 
       virtual bool on_thread_on_idle(::thread_impl * pimpl,LONG lCount);
       virtual bool post_user_message(::thread_impl * pimpl,::user::interaction * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
       virtual void message_handler(::thread_impl * pimpl, signal_details * pobj);
-      
-
 
       virtual bool is_window(::user::interaction * pui);
       virtual LRESULT send_message(::user::interaction * pui, UINT message, WPARAM wparam = 0, lparam lparam = 0);

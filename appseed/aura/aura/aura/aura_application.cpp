@@ -117,9 +117,6 @@ namespace aura
 
       m_bLicense                 = true;
 
-      // initialize wait cursor state
-      m_iWaitCursorCount         = 0;
-
       m_bAuraProcessInitialize         = false;
       m_bAuraProcessInitializeResult   = false;
 
@@ -132,17 +129,14 @@ namespace aura
       m_bAuraInitializeInstance        = false;
       m_bAuraInitializeInstanceResult  = false;
 
-
-      m_bShouldInitializeGTwf = true;
-      m_bInitializeProDevianMode = true;
-
       m_pinitmaindata = NULL;
-
 
    }
 
+
    application::~application()
    {
+
    }
 
 
@@ -151,8 +145,8 @@ namespace aura
 
       thread::assert_valid();
 
-
    }
+
 
    void application::dump(dump_context & dumpcontext) const
    {
@@ -462,73 +456,10 @@ namespace aura
    }
 
 
-
-
-
-   void application::DoWaitCursor(int32_t nCode)
-   {
-
-      if(nCode < 0)
-      {
-
-         m_iWaitCursorCount = 0;
-         ShowWaitCursor(false);
-
-      }
-      else if(nCode == 0)
-      {
-
-         if(m_iWaitCursorCount > 0)
-         {
-            m_iWaitCursorCount--;
-         }
-
-         if(m_iWaitCursorCount > 0)
-         {
-
-            ShowWaitCursor(true);
-
-         }
-
-         m_iWaitCursorCount = 0;
-         ShowWaitCursor(false);
-
-      }
-      else
-      {
-
-         if(m_iWaitCursorCount < 0)
-         {
-            m_iWaitCursorCount = 0;
-         }
-
-         m_iWaitCursorCount++;
-
-         ShowWaitCursor(true);
-
-      }
-
-
-
-   }
-
-   void application::ShowWaitCursor(bool bShow)
-   {
-
-      if(m_pimpl == NULL)
-         return;
-
-      m_pimpl->ShowWaitCursor(bShow);
-
-   }
-
-
-
    void application::construct(const char * pszAppId)
    {
 
    }
-
 
 
    void application::TermThread(HINSTANCE hInstTerm)
@@ -537,7 +468,6 @@ namespace aura
       throw interface_only_exception(this);
 
    }
-
 
 
    string application::get_version()
@@ -722,6 +652,20 @@ namespace aura
 
 
 
+   void application::DoWaitCursor(int32_t nCode) // 0 => restore, 1=> begin, -1=> end
+   {
+
+      UNREFERENCED_PARAMETER(nCode);
+
+   }
+      
+   
+   void application::ShowWaitCursor(bool bShow)
+   {
+
+      UNREFERENCED_PARAMETER(bShow);
+
+   }
 
 
 #ifndef METROWIN

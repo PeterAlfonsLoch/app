@@ -13,15 +13,9 @@ namespace aura
 
       m_paurasession    = this;
 
-     
-
       m_pcoreplatform   = NULL;
 
       m_bMatterFromHttpCache = m_paurasystem->m_bMatterFromHttpCache;
-
-      m_bSystemSynchronizedCursor = m_paurasystem->m_bSystemSynchronizedCursor;
-      m_bSystemSynchronizedScreen = m_paurasystem->m_bSystemSynchronizedScreen;
-      m_iMainMonitor = -1;
 
 #ifdef WINDOWS
 
@@ -34,17 +28,11 @@ namespace aura
 
 #endif
 
-
-      m_bDrawCursor              = false;
-
       m_psavings                 = canew(class ::aura::savings(this));
 
       m_bZipIsDir                = true;
 
-
       m_paurasystem->m_basesessionptra.add_unique(this);
-
-
 
    }
 
@@ -52,8 +40,8 @@ namespace aura
    void session::construct(sp(::aura::application) papp, int iPhase)
    {
 
-
    }
+
 
    session::~session_parent
    {

@@ -11,9 +11,6 @@ namespace axis
    public:
 
 
-
-
-
       bool                                            m_bAxisProcessInitialize;
       bool                                            m_bAxisProcessInitializeResult;
 
@@ -92,6 +89,7 @@ namespace axis
       ptr_array < ::user::interaction > frames();
       virtual void add_frame(sp(::user::interaction) pwnd);
       virtual void remove_frame(sp(::user::interaction) pwnd);
+
 
       virtual void DoWaitCursor(int32_t nCode); // 0 => restore, 1=> begin, -1=> end
       virtual void ShowWaitCursor(bool bShow = true);

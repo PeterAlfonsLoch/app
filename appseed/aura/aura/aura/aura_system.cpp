@@ -122,12 +122,6 @@ namespace aura
       m_pfactory->creatable_large < ::file::simple_binary_buffer >(type_info < ::file::binary_buffer >());
       m_pfactory->creatable_large < ::file::string_buffer >();
 
-#ifdef WINDOWS
-      m_pmutexDc = NULL;
-      m_pdevicecontext = NULL;
-#endif
-
-
       factory().cloneable_large < stringa >();
       factory().cloneable_large < ::primitive::memory >();
       factory().cloneable_large < int_array >();
@@ -146,16 +140,8 @@ namespace aura
       if(!m_pxml->initialize())
          throw simple_exception(this,"failed to construct system m_pxml->initialize()");
 
-
-
-
-
-      m_bSystemSynchronizedCursor = true;
-
-      m_bSystemSynchronizedScreen = true;
-
       m_spmutexUserAppData = canew(mutex(get_app(),false,"Local\\ca2.UserAppData"));
-      //m_spmutexSystemAppData = canew(mutex(get_app(),false,"Global\\ca2.SystemAppData"));
+      
       m_spmutexSystemAppData = canew(mutex(get_app(),false,"Local\\ca2.SystemAppData"));
 
       m_spmutexFactory = canew(mutex(get_app()));

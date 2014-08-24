@@ -12,8 +12,7 @@ uint32_t __thread_entry(void * pparam);
 thread_impl::thread_impl(sp(::aura::application) papp):
 element(papp),
 m_evFinish(papp),
-m_mutexUiPtra(papp),
-m_queue(papp)
+m_mutexUiPtra(papp)
 {
 
    
