@@ -29,7 +29,7 @@ namespace dynamic_source
 
    class CLASS_DECL_CORE script_manager :
       virtual public thread,
-      virtual public ::message_queue_listener
+      virtual public ::aura::message_queue_listener
    {
    public:
 

@@ -7,7 +7,7 @@ namespace userpresence
 
    class CLASS_DECL_BASE userpresence :
       virtual public ::aura::departament,
-      virtual public message_queue_listener
+      virtual public ::aura::message_queue_listener
    {
    public:
 

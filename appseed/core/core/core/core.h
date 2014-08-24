@@ -1018,9 +1018,6 @@ class Ex1FactoryImpl;
 #include "core/programming/dynamic_source/dynamic_source.h"
 
 
-#include "core/graphics/visual/visual.h"
-
-
 #include "core/user/user/user.h"
 
 
