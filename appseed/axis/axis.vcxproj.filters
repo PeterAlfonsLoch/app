@@ -153,12 +153,6 @@
     <Filter Include="Source Files\axis\node\ansios">
       <UniqueIdentifier>{a082445c-e80b-4002-8250-1fd29ecad1d1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\user\colorertake5">
-      <UniqueIdentifier>{0c23c4ce-27f7-46af-9b9e-571b9d43d36d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\user\colorertake5">
-      <UniqueIdentifier>{8962965e-f8b9-4deb-b8e6-5f1271a7adc0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\user\simple">
       <UniqueIdentifier>{e035613e-26d4-49da-a3f4-14a8924d15cb}</UniqueIdentifier>
     </Filter>
@@ -649,153 +643,6 @@
     </ClInclude>
     <ClInclude Include="user\user\user_control.h">
       <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_base_editor.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_colorertake5.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_cregexp.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_default_error_handler.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_editor_listener.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_error_handler.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_error_handler_writer.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_exception.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_features.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_file_input_source.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_file_type.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_file_type_impl.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_file_writer.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_hrc_parser.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_hrc_parser_helpers.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_hrc_parser_impl.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_line_region.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_line_regions_compact_support.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_line_regions_support.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_line_source.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_logging.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_memory_chunks.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_memory_file.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_outline_item.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_outliner.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_pair_match.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_parsed_line_writer.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_parser_factory.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_parser_factory_exception.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_region.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_region_define.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_region_handler.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_region_mapper.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_region_mapper_impl.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_scheme.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_shared_input_source.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_string_buffer.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_styled_hrd_mapper.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_styled_region.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_text_console_viewer.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_text_hrd_mapper.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_text_lines.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_text_parser.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_text_parser_helpers.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_text_parser_impl.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_text_region.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_Writer.h">
-      <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_xmldom.h">
-      <Filter>Header Files\user\colorertake5</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_plain_text_data.h">
       <Filter>Header Files\user\user</Filter>
@@ -1456,69 +1303,6 @@
     <ClCompile Include="user\user\user_control.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_base_editor.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_colorertake5.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_default_error_handler.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_error_handler_writer.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_exception.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_hrc_parser_helpers.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_hrc_parser_impl.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_line_regions_compact_support.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_line_regions_support.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_line_source.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_logging.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_outliner.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_parsed_line_writer.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_parser_factory.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_region_handler.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_region_mapper_impl.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_styled_hrd_mapper.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_text_hrd_mapper.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_text_lines.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_text_parser_helpers.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="user\colorertake5\colorertake5_text_parser_impl.cpp">
-      <Filter>Source Files\user\colorertake5</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_plain_text_data.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -1602,9 +1386,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
