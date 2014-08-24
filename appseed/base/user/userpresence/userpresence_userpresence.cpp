@@ -166,7 +166,7 @@ namespace userpresence
    bool userpresence::is_initialized()
    {
 
-      if(!m_spqueue->IsWindow())
+      if(!m_spqueue->message_queue_is_initialized())
          return false;
 
       return true;
