@@ -107,16 +107,6 @@ namespace axis
    }
 
 
-   sp(::aura::application) session::start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext)
-   {
-
-      throw interface_only_exception(this);
-
-      return NULL;
-
-   }
-
-
 
 
    void session::set_cursor(::visual::e_cursor ecursor)
