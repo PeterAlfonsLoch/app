@@ -53,6 +53,14 @@ namespace base
    }
 
 
+
+
+   ::sockets::net & system::net()
+   {
+      return *m_spnet;
+   }
+
+
    void * & system::ftlibrary()
    {
 
@@ -634,6 +642,9 @@ namespace base
       return dir().appmatter_locator(papp);
 
    }
+
+
+
 
 } // namespace base
 

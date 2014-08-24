@@ -66,12 +66,6 @@ namespace draw2d_direct2d
 
       virtual bool destroy();
 
-#ifdef WINDOWSEX
-
-      virtual HBITMAP _GetHBITMAP();
-      virtual void _ReleaseHBITMAP(HBITMAP hbitmap);
-
-#endif
 
 
    };
