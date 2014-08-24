@@ -8,7 +8,7 @@ namespace userpresence
    userpresence::userpresence(sp(::aura::application) papp) :
       element(papp),
       ::aura::departament(papp),
-      m_queue(papp)
+      m_spqueue(allocer())
    {
 
       m_bUserPresenceFeatureRequired = false;
