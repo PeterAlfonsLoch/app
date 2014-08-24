@@ -53,12 +53,6 @@ namespace draw2d_cairo
 
       virtual bool destroy();
 
-#ifdef WINDOWSEX
-
-      virtual HBITMAP _GetHBITMAP();
-      virtual void _ReleaseHBITMAP(HBITMAP hbitmap);
-
-#endif
 
 
    };

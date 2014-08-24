@@ -3482,6 +3482,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ProjectReference Include="..\..\axis\freetype\axisfreetype.vcxproj">
       <Project>{78b079bd-9fc7-4b9e-b4a6-96da0f00248b}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\axis\idn\axisidn.vcxproj">
+      <Project>{e8ac3ef0-11c5-4e12-a944-5f7efed6e0c4}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\axis\openssl\axisopenssl.vcxproj">
       <Project>{29676444-4d0f-4dd0-9104-0499d94da2c9}</Project>
     </ProjectReference>
