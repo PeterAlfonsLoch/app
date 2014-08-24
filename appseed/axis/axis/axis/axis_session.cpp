@@ -1414,6 +1414,28 @@ namespace axis
 
    }
 
+
+   ::visual::cursor * session::get_cursor()
+   {
+
+      if(m_pplatformcomposite == NULL)
+         return NULL;
+
+      return m_pplatformcomposite->get_cursor();
+
+   }
+
+
+   ::visual::cursor * session::get_default_cursor()
+   {
+
+      if(m_pplatformcomposite == NULL)
+         return NULL;
+
+      return m_pplatformcomposite->get_default_cursor();
+
+   }
+
    ::user::str_context * session::str_context()
    {
 
