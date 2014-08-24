@@ -193,6 +193,14 @@ namespace axis
    }
 
    
+   bool application::verb()
+   {
+
+      axiom()->run();
+
+      return true;
+
+   }
 
 
    ptr_array < ::user::interaction > application::frames()
@@ -1900,7 +1908,7 @@ namespace axis
    sp(::message::base) application::get_message_base(LPMESSAGE lpmsg)
    {
 
-      ::user::interaction * pwnd = this;
+      ::user::interaction * pwnd = NULL;
 
 #if defined(METROWIN)
       if(pwnd == NULL && lpmsg->oswindow != NULL)
@@ -1936,7 +1944,16 @@ namespace axis
 
       }
 
-      return get_base(pwnd,lpmsg->message,lpmsg->wParam,lpmsg->lParam);
+
+      if(pwnd != NULL)
+         return pwnd->get_base(lpmsg->message,lpmsg->wParam,lpmsg->lParam);
+
+      ::thread * pthread = ::get_thread();
+
+      if(pthread != NULL)
+         return pthread->get_base(lpmsg->message,lpmsg->wParam,lpmsg->lParam);
+
+      return get_base(lpmsg->message,lpmsg->wParam,lpmsg->lParam);
 
    }
 

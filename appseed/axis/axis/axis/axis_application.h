@@ -266,17 +266,16 @@ namespace axis
 
       virtual bool set_main_init_data(::aura::main_init_data * pdata);
 
+      virtual sp(::message::base) get_message_base(LPMESSAGE lpmsg);
 
 
    };
 
 
-
-
-
-
-
-
 } // namespace axis
+
+
+
+
 
 
