@@ -82,13 +82,13 @@ namespace axis
 
       };
 
-      sp(interaction_impl)                                   m_spwindow;
+      sp(interaction_impl)                         m_spwindow;
 
       raw_array < MONITORINFO >                    m_monitorinfoa;
       raw_array < HMONITOR >                       m_hmonitora;
       raw_array < MONITORINFO >                    m_monitorinfoaDesk;
 
-
+      ::user::schema *                             m_pschemaLayeredFrame;
 
 #endif
 
