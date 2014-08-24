@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   create_context::create_context(sp(::aura::application) papp) :
+   create_context::create_context(sp(::aura::application) papp):
       element(papp)
    {
 
