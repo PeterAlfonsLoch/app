@@ -60,7 +60,6 @@ namespace aura
 
       bool                                            m_bLicense;
       string                                          m_strBaseSupportId;
-      int32_t                                         m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
 
 
       string                                          m_strRoot;
@@ -80,15 +79,6 @@ namespace aura
       mutex                                           m_mutexStr;
       string_table                                    m_stringtable;
       string_table                                    m_stringtableStd;
-
-
-      static UINT                                     APPM_LANGUAGE;
-      static WPARAM                                   WPARAM_LANGUAGE_UPDATE;
-
-      bool                                            m_bShouldInitializeGTwf;
-      bool                                            m_bInitializeProDevianMode;
-
-
 
 
       application();

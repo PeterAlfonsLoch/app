@@ -10,12 +10,12 @@ public:
 
    TYPE * operator ->()
    {
-      return &BASE_CONTAINER::last_element();
+      return BASE_CONTAINER::last_element();
    }
 
    const TYPE * operator ->() const
    {
-      return &BASE_CONTAINER::last_element();
+      return BASE_CONTAINER::last_element();
    }
 
    TYPE & top()

@@ -149,14 +149,14 @@ namespace user
       sp(::create_context) pContext = (::create_context *) pcreate->m_lpcreatestruct->lpCreateParams;
 
       // A ::user::impact should be created in a given context!
-      if (pContext != NULL && pContext->m_user->m_pCurrentDoc != NULL)
+      if (pContext != NULL && pContext->m_user.top()->m_pCurrentDoc != NULL)
       {
-         pContext->m_user->m_pCurrentDoc->add_view(this);
+         pContext->m_user.top()->m_pCurrentDoc->add_view(this);
          ASSERT(::user::impact::get_document() != NULL);
       }
       else
       {
-         TRACE(::axis::trace::category_AppMsg, 0, "Warning: Creating a pane with no ::user::document.\n");
+         TRACE(::aura::trace::category_AppMsg, 0, "Warning: Creating a pane with no ::user::document.\n");
       }
 
       pcreate->set_lresult(0);

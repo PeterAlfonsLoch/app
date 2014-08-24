@@ -16,7 +16,7 @@ namespace user
    {
 #ifdef DEBUG
       if (m_pdocument != NULL)
-         TRACE(::axis::trace::category_AppMsg, 0, "Warning: destroying single_document_template with live ::user::document.\n");
+         TRACE(::aura::trace::category_AppMsg, 0, "Warning: destroying single_document_template with live ::user::document.\n");
 #endif
    }
 
@@ -126,7 +126,7 @@ namespace user
          if (!pdocument->on_new_document())
          {
             // user has been alerted to what failed in on_new_document
-            TRACE(::axis::trace::category_AppMsg, 0, "::user::document::on_new_document returned FALSE.\n");
+            TRACE(::aura::trace::category_AppMsg, 0, "::user::document::on_new_document returned FALSE.\n");
             if (bCreated)
                pFrame->DestroyWindow();    // will destroy ::user::document
             return;
@@ -143,7 +143,7 @@ namespace user
          if (!on_open_document(pdocument, pcreatecontext->m_spCommandLine->m_varFile))
          {
             // user has been alerted to what failed in on_open_document
-            TRACE(::axis::trace::category_AppMsg, 0, "::user::document::on_open_document returned FALSE.\n");
+            TRACE(::aura::trace::category_AppMsg, 0, "::user::document::on_open_document returned FALSE.\n");
             if (bCreated)
             {
                pFrame->DestroyWindow();    // will destroy ::user::document
@@ -160,7 +160,7 @@ namespace user
 
                if (!pdocument->on_new_document())
                {
-                  TRACE(::axis::trace::category_AppMsg, 0, "Error: on_new_document failed after trying "
+                  TRACE(::aura::trace::category_AppMsg, 0, "Error: on_new_document failed after trying "
                      "to open a ::user::document - trying to continue.\n");
                   // assume we can continue
                }

@@ -911,7 +911,7 @@ namespace core
       /*   if (m_puiMain == NULL) // may be a service or console application window
       {
       // Not launched /Embedding or /Automation, but has no main window!
-      TRACE(::axis::trace::category_AppMsg, 0, "Warning: m_puiMain is NULL in application::run - quitting application.\n");
+      TRACE(::aura::trace::category_AppMsg, 0, "Warning: m_puiMain is NULL in application::run - quitting application.\n");
       __post_quit_message(0);
       }*/
       //      return application::run();
@@ -2081,7 +2081,7 @@ namespace core
    string string;
    if (!string.load_string(nIDPrompt))
    {
-   TRACE(::axis::trace::category_AppMsg, 0, "Error: failed to load message box prompt string 0x%04x.\n",
+   TRACE(::aura::trace::category_AppMsg, 0, "Error: failed to load message box prompt string 0x%04x.\n",
    nIDPrompt);
    ASSERT(FALSE);
    }

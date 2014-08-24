@@ -157,7 +157,7 @@ namespace user
    if (::RegSetValue(HKEY_CLASSES_ROOT, lpszKey, REG_SZ,
    lpszValue, lstrlen(lpszValue) * sizeof(char)) != ERROR_SUCCESS)
    {
-   //         TRACE(::axis::trace::category_AppMsg, 0, "Warning: registration database update failed for key '%s'.\n",
+   //         TRACE(::aura::trace::category_AppMsg, 0, "Warning: registration database update failed for key '%s'.\n",
    //          lpszKey);
    return FALSE;
    }
@@ -175,7 +175,7 @@ namespace user
    if(::RegCloseKey(hKey) == ERROR_SUCCESS && lResult == ERROR_SUCCESS)
    return TRUE;
    }
-   //TRACE(::axis::trace::category_AppMsg, 0, "Warning: registration database update failed for key '%s'.\n", lpszKey);
+   //TRACE(::aura::trace::category_AppMsg, 0, "Warning: registration database update failed for key '%s'.\n", lpszKey);
    return FALSE;
    }
    }
@@ -715,7 +715,7 @@ namespace user
    {
    if (m_templateptra.is_empty())
    {
-   TRACE(::axis::trace::category_AppMsg, 0, "Error: no document templates registered with application.\n");
+   TRACE(::aura::trace::category_AppMsg, 0, "Error: no document templates registered with application.\n");
    // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
    System.simple_message_box(NULL, "Failed to create document");
    return;
@@ -848,7 +848,7 @@ namespace user
             sp(::user::frame_window) pFrame = pview->GetParentFrame();
 
             if (pFrame == NULL)
-               TRACE(::axis::trace::category_AppMsg, 0, "Error: Can not find a frame for document to activate.\n");
+               TRACE(::aura::trace::category_AppMsg, 0, "Error: Can not find a frame for document to activate.\n");
             else
             {
                pFrame->ActivateFrame();
@@ -862,7 +862,7 @@ namespace user
             }
          }
          else
-            TRACE(::axis::trace::category_AppMsg, 0, "Error: Can not find a ::user::impact for document to activate.\n");
+            TRACE(::aura::trace::category_AppMsg, 0, "Error: Can not find a ::user::impact for document to activate.\n");
 
          pcreatecontext->m_spCommandLine->m_varQuery["document"] = pOpenDocument;
       }

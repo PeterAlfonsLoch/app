@@ -153,11 +153,13 @@ namespace axis
 
       enum_display_monitors();
 
-      if(!::aura::application::process_initialize())
-         return false;
-
       if(!::aura::system::process_initialize())
          return false;
+
+
+      if(!::axis::application::process_initialize())
+         return false;
+
 
 #ifdef WINDOWSEX
 
@@ -224,11 +226,12 @@ namespace axis
    bool system::initialize2()
    {
 
-      if(!::aura::application::initialize2())
-         return false;
-
       if(!::aura::system::initialize2())
          return false;
+
+      if(!::axis::application::initialize2())
+         return false;
+
 
       return true;
 
@@ -238,12 +241,10 @@ namespace axis
    bool system::initialize_instance()
    {
 
-      m_pfactory->enable_simple_factory_request();
-
-      if(!::aura::application::initialize_instance())
+      if(!::aura::system::initialize_instance())
          return false;
 
-      if(!::aura::system::initialize_instance())
+      if(!::axis::application::initialize_instance())
          return false;
 
       return true;
@@ -255,6 +256,8 @@ namespace axis
    {
 
       __wait_threading_count_except(this,::millis((5000) * 77));
+
+
 
       bool bOk = false;
 
@@ -272,6 +275,20 @@ namespace axis
 
       }
 
+      try
+      {
+
+         bOk = ::aura::system::finalize();
+
+      }
+      catch(...)
+      {
+
+         bOk = false;
+
+      }
+
+
       return bOk;
 
    }
@@ -282,86 +299,8 @@ namespace axis
 
       __wait_threading_count(::millis((5000) * 8));
 
-      try
-      {
-
-
-         /*      try
-         {
-         if(m_plemonarray != NULL)
-         {
-         delete m_plemonarray;
-         }
-         }
-         catch(...)
-         {
-         }
-         m_plemonarray = NULL;
-         */
-
-
-         m_pmath.release();
-
-         m_pgeometry.release();
-
-      }
-      catch(...)
-      {
-
-         m_iReturnCode = -86;
-
-      }
-
-
-      for(int i = 0; i < m_serviceptra.get_size(); i++)
-      {
-
-         try
-         {
-
-            m_serviceptra(i)->Stop(0);
-
-         }
-         catch(...)
-         {
-
-         }
-
-      }
-
-
-      for(int i = 0; i < m_serviceptra.get_size(); i++)
-      {
-         try
-         {
-            m_serviceptra(i)->Stop((5000) * 2);
-         }
-         catch(...)
-         {
-         }
-      }
-
-      m_serviceptra.remove_all();
-
-      try
-      {
-         if(m_pfactory != NULL)
-         {
-
-            m_pfactory->enable_simple_factory_request(false);
-
-            m_pfactory.release();
-
-         }
-
-      }
-      catch(...)
-      {
-         TRACE("system::exit_instance: Potentially catastrophical error : error disabling simple factory request");
-      }
-
-
       int32_t iRet = 0;
+
 
 
       try
@@ -376,53 +315,6 @@ namespace axis
       }
 
 
-      try
-      {
-
-         m_spos.release();
-
-      }
-      catch(...)
-      {
-
-      }
-
-
-      try
-      {
-
-         if(m_pmachineeventcentral != NULL)
-         {
-
-            m_pmachineeventcentral->set_run(false);
-
-         }
-
-      }
-      catch(...)
-      {
-
-      }
-
-
-
-      m_plog.release();
-
-
-
-      {
-
-         synch_lock sl(m_spmutexFactory);
-
-         m_typemap.remove_all();
-
-         m_typemap.release();
-
-      }
-
-
-
-      ::axis::application::exit_instance();
 
 #ifdef METROWIN
       m_pdevicecontext = nullptr;
@@ -448,15 +340,17 @@ namespace axis
       }
 #endif
 
-
-      if(m_peengine != NULL)
+      try
       {
 
-         delete m_peengine;
-
-         m_peengine = NULL;
+         iRet = ::aura::system::exit_instance();
 
       }
+      catch(...)
+      {
+
+      }
+
 
 
       return iRet;
@@ -750,33 +644,6 @@ namespace axis
       return *m_spos;
 
    }
-
-
-   spa(::axis::session) & system::basesessionptra()
-   {
-
-      return m_basesessionptra;
-
-   }
-
-   bool system::initialize_log(const char * pszId)
-   {
-      if(m_plog != NULL)
-         return true;
-      m_plog = new ::axis::log(this);
-      m_plog->set_extended_log();
-      m_plog->set_app(this);
-      if(!m_plog->initialize(pszId))
-      {
-         m_plog.release();
-         return false;
-      }
-      //      ::core::trace_v = &::core::system_log_trace_v;
-      return true;
-   }
-
-
-
 
 
 

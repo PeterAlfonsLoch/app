@@ -25,7 +25,7 @@ namespace user
    {
 #ifdef DEBUG
       if (!m_docptra.is_empty())
-         TRACE(::axis::trace::category_AppMsg, 0, "Warning: destroying multiple_document_template with %d documents alive.\n", m_docptra.get_count());
+         TRACE(::aura::trace::category_AppMsg, 0, "Warning: destroying multiple_document_template with %d documents alive.\n", m_docptra.get_count());
 #endif
    }
 
@@ -69,7 +69,7 @@ namespace user
       sp(::user::document) pdocument = create_new_document(pcreatecontext);
       if (pdocument == NULL)
       {
-         TRACE(::axis::trace::category_AppMsg, 0, "impact_system::create_new_document returned NULL.\n");
+         TRACE(::aura::trace::category_AppMsg, 0, "impact_system::create_new_document returned NULL.\n");
          // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
          System.simple_message_box(NULL, "failed to create ::user::document");
          return;
@@ -100,7 +100,7 @@ namespace user
          if (!pdocument->on_new_document())
          {
             // ::fontopus::user has be alerted to what failed in on_new_document
-            TRACE(::axis::trace::category_AppMsg, 0, "::user::document::on_new_document returned FALSE.\n");
+            TRACE(::aura::trace::category_AppMsg, 0, "::user::document::on_new_document returned FALSE.\n");
             pFrame->DestroyWindow();
             return;
          }
@@ -117,7 +117,7 @@ namespace user
             // if m_bQueueDocumentOpening flag is set, document opening is queued, and failure would be reported in a unknown way
             // prepare core for async operations and also async failures
             // ::fontopus::user has be alerted to what failed in on_open_document
-            TRACE(::axis::trace::category_AppMsg, 0, "::user::document::on_open_document returned FALSE.\n");
+            TRACE(::aura::trace::category_AppMsg, 0, "::user::document::on_open_document returned FALSE.\n");
             pFrame->DestroyWindow();
             return;
          }

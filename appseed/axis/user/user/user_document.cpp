@@ -26,7 +26,7 @@ namespace user
       // do not call delete_contents here !
 #ifdef DEBUG
       if (is_modified())
-         TRACE(::axis::trace::category_AppMsg, 0, "Warning: destroying an unsaved document.\n");
+         TRACE(::aura::trace::category_AppMsg, 0, "Warning: destroying an unsaved document.\n");
 #endif
 
       // there should be no views left!
@@ -403,7 +403,7 @@ namespace user
    {
 #ifdef DEBUG
       if (is_modified())
-         TRACE(::axis::trace::category_AppMsg, 0, "Warning: on_new_document replaces an unsaved document_interface.\n");
+         TRACE(::aura::trace::category_AppMsg, 0, "Warning: on_new_document replaces an unsaved document_interface.\n");
 #endif
 
       delete_contents();
@@ -417,7 +417,7 @@ namespace user
    {
 #ifdef DEBUG
       if (is_modified())
-         TRACE(::axis::trace::category_AppMsg, 0, "Warning: on_open_document replaces an unsaved document_interface.\n");
+         TRACE(::aura::trace::category_AppMsg, 0, "Warning: on_open_document replaces an unsaved document_interface.\n");
 #endif
 
       ::file::buffer_sp spfile;
@@ -620,7 +620,7 @@ namespace user
             {
                ::file::exception * pfe = dynamic_cast < ::file::exception * > (e);
                // throw not_implemented(get_app());
-               TRACE(::axis::trace::category_AppMsg, 0, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
+               TRACE(::aura::trace::category_AppMsg, 0, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
                   pfe->m_lOsError);
 
 
@@ -821,7 +821,7 @@ namespace user
             }
             catch (::exception::base * pe)
             {
-               TRACE(::axis::trace::category_AppMsg, 0, "Warning: failed to delete file after failed SaveAs.\n");
+               TRACE(::aura::trace::category_AppMsg, 0, "Warning: failed to delete file after failed SaveAs.\n");
                pe->Delete();
             }
 
@@ -848,7 +848,7 @@ namespace user
          if (!do_save(var(var::type_empty)))
          {
 
-            TRACE(::axis::trace::category_AppMsg, 0, "Warning: File save with new name failed.\n");
+            TRACE(::aura::trace::category_AppMsg, 0, "Warning: File save with new name failed.\n");
 
             return FALSE;
 
@@ -861,7 +861,7 @@ namespace user
          if (!do_save(m_strPathName))
          {
 
-            TRACE(::axis::trace::category_AppMsg, 0, "Warning: File save failed.\n");
+            TRACE(::aura::trace::category_AppMsg, 0, "Warning: File save failed.\n");
 
             return FALSE;
 

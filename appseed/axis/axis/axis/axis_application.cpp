@@ -47,9 +47,6 @@ namespace axis
 
 
    application::application():
-      m_allocer(this),
-      m_mutexMatterLocator(this),
-      m_mutexStr(this),
       m_framea(this)
    {
 
@@ -172,121 +169,6 @@ namespace axis
 
 
 
-   string application::simple_message_box(const string & pszMatter,property_set & propertyset)
-   {
-
-      simple_message_box(pszMatter,0);
-
-      return "";
-
-   }
-
-   string application::load_string(id id)
-   {
-      string str;
-      if(!load_string(str,id))
-      {
-         return (const string &)id;
-      }
-      return str;
-   }
-
-   bool application::load_string(string & str,id id)
-   {
-      if(!load_cached_string(str,id,true))
-      {
-         return false;
-      }
-      return true;
-   }
-
-   bool application::load_cached_string(string & str,id id,bool bLoadStringTable)
-   {
-      ::xml::document doc(this);
-      if(!doc.load(id))
-      {
-         return load_cached_string_by_id(str,id,"",bLoadStringTable);
-      }
-      sp(::xml::node) pnodeRoot = doc.get_root();
-      if(pnodeRoot->get_name() == "string")
-      {
-         string strId = pnodeRoot->attr("id");
-         string strValue = pnodeRoot->get_value();
-         return load_cached_string_by_id(str,strId,strValue,bLoadStringTable);
-      }
-      str = doc.get_name();
-      return true;
-   }
-
-   bool application::load_cached_string_by_id(string & str,id id,const string & pszFallbackValue,bool bLoadStringTable)
-   {
-
-      synch_lock sl(&m_mutexStr);
-
-      string strId(*id.m_pstr);
-      string strTable;
-      string strString;
-      string_to_string * pmap = NULL;
-      index iFind = 0;
-      if((iFind = strId.find(':')) <= 0)
-      {
-         strTable = "";
-         strString = strId;
-      }
-      else
-      {
-         strTable = strId.Mid(0,iFind);
-         strString = strId.Mid(iFind + 1);
-      }
-      if(m_stringtableStd.Lookup(strTable,pmap))
-      {
-         if(pmap->Lookup(strString,str))
-         {
-            return true;
-         }
-      }
-      else if(m_stringtable.Lookup(strTable,pmap))
-      {
-         if(pmap->Lookup(strString,str))
-         {
-            return true;
-         }
-      }
-      else if(bLoadStringTable)
-      {
-         load_string_table(strTable,"");
-         return load_cached_string_by_id(str,id,pszFallbackValue,false);
-      }
-      if(pszFallbackValue.is_empty())
-         str = strId;
-      else
-         str = pszFallbackValue;
-      return true;
-   }
-
-   void application::load_string_table(const string & pszApp,const string & pszId)
-   {
-
-   }
-
-
-
-
-   void application::load_string_table()
-   {
-      load_string_table("","");
-   }
-
-
-   sp(element) application::alloc(sp(type) info)
-   {
-      return System.alloc(this,info);
-   }
-
-   sp(element) application::alloc(const  id & idType)
-   {
-      return System.alloc(this,idType);
-   }
 
    bool application::is_system()
    {
@@ -311,138 +193,6 @@ namespace axis
    }
 
    
-
-   bool application::app_map_lookup(const char * psz,void * & p)
-   {
-      return m_appmap.Lookup(psz,p) != FALSE;
-   }
-
-   void application::app_map_set(const char * psz,void * p)
-   {
-      m_appmap.set_at(psz,p);
-   }
-
-
-   sp(::command_thread) application::command_central()
-   {
-      return m_pcommandthread;
-   }
-
-   sp(::command_thread) application::command_thread()
-   {
-      return m_pcommandthread;
-   }
-
-   sp(::command_thread) application::command()
-   {
-      return m_pcommandthread;
-   }
-
-   sp(::command_thread) application::guideline()
-   {
-      return m_pcommandthread;
-   }
-
-   sp(::command_thread) application::directrix()
-   {
-      return m_pcommandthread;
-   }
-
-   sp(::command_thread) application::axiom()
-   {
-      return m_pcommandthread;
-   }
-
-   bool application::verb()
-   {
-      axiom()->run();
-      return true;
-   }
-
-   sp(::command_thread) application::creation()
-   {
-      return m_pcommandthread;
-   }
-
-   class open_url
-   {
-   public:
-      string m_strLink;
-      string m_strTarget;
-      open_url(const string & strLink,const string & pszTarget);
-      bool open();
-   };
-
-
-   open_url::open_url(const string & strLink,const string & pszTarget)
-   {
-      m_strLink = strLink;
-      m_strTarget = pszTarget;
-   }
-
-
-   uint32_t c_cdecl thread_proc_open_url(void * p)
-   {
-
-      open_url * popenurl = (open_url *) p;
-
-      if(!popenurl->open())
-         return -1;
-
-      return 0;
-   }
-
-   bool open_url::open()
-   {
-      string strLink = m_strLink;
-      string pszTarget = m_strTarget;
-#ifdef WINDOWSEX
-      string strUrl = strLink;
-      if(!::str::begins_ci(strUrl,"http://")
-         && !::str::begins_ci(strUrl,"https://"))
-      {
-         strUrl = "http://" + strUrl;
-      }
-      ::ShellExecuteA(NULL,"open",strUrl,NULL,NULL,SW_SHOW);
-      return true;
-#elif defined METROWIN
-#pragma push_macro("System")
-#undef System
-      ::Windows::Foundation::Uri ^ uri = ref new ::Windows::Foundation::Uri(strLink);
-      ::Windows::System::LauncherOptions ^ options = ref new ::Windows::System::LauncherOptions();
-      options->TreatAsUntrusted = false;
-      bool success = ::wait(::Windows::System::Launcher::LaunchUriAsync(uri,options));
-
-      return success;
-
-#pragma pop_macro("System")
-#elif defined(LINUX)
-      ::system("xdg-open " + strLink);
-      return true;
-#elif defined(APPLEOS)
-      openURL(strLink);
-      return true;
-#else
-      throw not_implemented(get_thread_app());
-#endif
-
-   }
-
-
-   bool application::open_link(const string & strLink,const string & pszTarget)
-   {
-      if(is_system())
-      {
-         return __begin_thread(this,thread_proc_open_url,new open_url(strLink, pszTarget)) != FALSE;
-      }
-      else
-      {
-         return System.open_link(strLink,pszTarget);
-      }
-
-      return false;
-
-   }
 
 
    ptr_array < ::user::interaction > application::frames()
@@ -1785,6 +1535,8 @@ namespace axis
       m_bAxisProcessInitializeResult = false;
 
 
+      if(!::aura::application::process_initialize())
+         return false;
       
 
       if(m_pthreadimpl == NULL)
@@ -1840,6 +1592,9 @@ namespace axis
    bool application::initialize_instance()
    {
 
+      if(!::aura::application::initialize_instance())
+         return false;
+
       return true;
 
    }
@@ -1854,6 +1609,10 @@ namespace axis
       m_bAxisInitialize1 = true;
 
       m_bAxisInitialize1Result = false;
+
+      if(!::aura::application::initialize1())
+         return false;
+
 
       m_dwAlive = ::get_tick_count();
 
@@ -1879,6 +1638,9 @@ namespace axis
    bool application::initialize2()
    {
 
+      if(!::aura::application::initialize2())
+         return false;
+
       if(!m_pimpl->initialize2())
          return false;
 
@@ -1893,6 +1655,9 @@ namespace axis
    bool application::initialize3()
    {
 
+      if(!::aura::application::initialize3())
+         return false;
+
       if(!m_pimpl->initialize3())
          return false;
 
@@ -1906,9 +1671,11 @@ namespace axis
 
    bool application::initialize()
    {
+
+      if(!::aura::application::initialize())
+         return false;
       
       return true;
-
 
    }
 
@@ -2133,6 +1900,21 @@ namespace axis
 
       }
 
+
+      try
+      {
+
+         m_iReturnCode = ::aura::application::exit_instance();
+
+      }
+      catch(...)
+      {
+
+         m_iReturnCode = -1;
+
+      }
+
+
       return m_iReturnCode;
 
    }
@@ -2146,7 +1928,7 @@ namespace axis
       try
       {
 
-         bOk = thread::finalize();
+         bOk = ::aura::application::exit_instance();
 
       }
       catch(...)
@@ -2405,39 +2187,6 @@ namespace axis
    }
 
 
-
-   bool application::ca_process_initialize()
-   {
-      application_signal_details signal(this,m_psignal,application_signal_process_initialize);
-      m_psignal->emit(&signal);
-      return true;
-   }
-
-   bool application::ca_initialize1()
-   {
-      application_signal_details signal(this,m_psignal,application_signal_initialize1);
-      m_psignal->emit(&signal);
-      return signal.m_bOk;
-   }
-
-
-
-   bool application::ca_finalize()
-   {
-      application_signal_details signal(this,m_psignal,application_signal_finalize);
-      try
-      {
-         m_psignal->emit(&signal);
-      }
-      catch(...)
-      {
-      }
-
-
-
-
-      return signal.m_bOk;
-   }
 
 
 

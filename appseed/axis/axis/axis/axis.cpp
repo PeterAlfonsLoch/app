@@ -17,20 +17,6 @@ int32_t ___()
 }
 
 
-void __post_quit_message(int32_t nExitCode)
-{
-
-#ifdef WINDOWSEX
-
-   ::PostQuitMessage(nExitCode);
-
-#else
-
-   throw not_implemented(get_thread_app());
-
-#endif
-
-}
 
 string_map < INT_PTR,INT_PTR > * g_pmapLibrary = NULL;
 

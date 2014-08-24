@@ -1020,6 +1020,9 @@ namespace axis
    bool session::process_initialize()
    {
 
+      if(!::aura::session::process_initialize())
+         return false;
+
       if(!::axis::application::process_initialize())
          return false;
 
@@ -1043,7 +1046,10 @@ namespace axis
       if(!m_spcopydesk->initialize())
          return false;
 
-      if(!::aura::application::initialize1())
+      if(!::aura::session::initialize1())
+         return false;
+
+      if(!::axis::application::initialize1())
          return false;
 
       m_puserstrcontext = canew(::user::str_context(this));
@@ -1057,11 +1063,9 @@ namespace axis
       if(!m_spuser->initialize2())
          return false;
 
+      str_context()->localeschema().m_idaLocale.add(get_locale());
 
-
-      str_context()->localeschema().m_idaLocale.add(strLocale);
-      str_context()->localeschema().m_idaSchema.add(strSchema);
-
+      str_context()->localeschema().m_idaSchema.add(get_schema());
 
       return true;
 
@@ -1070,6 +1074,9 @@ namespace axis
 
    bool session::initialize2()
    {
+
+      if(!::aura::session::initialize2())
+         return false;
 
       if(!::axis::application::initialize2())
          return false;
@@ -1085,12 +1092,11 @@ namespace axis
    bool session::initialize_instance()
    {
 
-
-
+      if(!::aura::session::initialize_instance())
+         return false;
 
       if(!::axis::application::initialize_instance())
          return false;
-
 
       return true;
 
@@ -1099,6 +1105,9 @@ namespace axis
 
    bool session::initialize()
    {
+
+      if(!::aura::session::initialize())
+         return false;
 
       if(!::axis::application::initialize())
          return false;
@@ -1127,11 +1136,22 @@ namespace axis
 
       bool bOk = true;
 
-
       try
       {
 
          bOk = ::axis::application::finalize();
+
+      }
+      catch(...)
+      {
+
+         bOk = false;
+      }
+
+      try
+      {
+
+         bOk = ::aura::session::finalize();
 
       }
       catch(...)
@@ -1161,8 +1181,9 @@ namespace axis
 
       }
 
-
       ::axis::application::exit_instance();
+
+      ::aura::session::exit_instance();
 
       return 0;
 

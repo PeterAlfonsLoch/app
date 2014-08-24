@@ -1412,7 +1412,7 @@ LRESULT simple_frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
    // don't execute the command when the window is disabled
    if (!is_window_enabled())
    {
-      TRACE(::axis::trace::category_AppMsg, 0, "Warning: DDE command '%s' ignored because window is disabled.\n",
+      TRACE(::aura::trace::category_AppMsg, 0, "Warning: DDE command '%s' ignored because window is disabled.\n",
          strCommand.GetString());
       return 0;
    }
@@ -1420,7 +1420,7 @@ LRESULT simple_frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
    // execute the command
    LPTSTR lpszCommand = strCommand.GetBuffer();
    if (!System.OnDDECommand(lpszCommand))
-      TRACE(::axis::trace::category_AppMsg, 0, "Error: failed to execute DDE command '%s'.\n", lpszCommand);
+      TRACE(::aura::trace::category_AppMsg, 0, "Error: failed to execute DDE command '%s'.\n", lpszCommand);
    strCommand.ReleaseBuffer();
 
 #else

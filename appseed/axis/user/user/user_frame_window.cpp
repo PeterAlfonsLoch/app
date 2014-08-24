@@ -628,7 +628,7 @@ namespace user
       if (!::user::interaction::create_window_ex(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id(), pContext))
       {
 
-         TRACE(::axis::trace::category_AppMsg, 0, "Warning: failed to create frame_window.\n");
+         TRACE(::aura::trace::category_AppMsg, 0, "Warning: failed to create frame_window.\n");
 
          return FALSE;
 
@@ -650,7 +650,7 @@ namespace user
    sp(::user::interaction) pview =  (System.alloc(pContext->m_typeinfoNewView));
    if (pview == NULL)
    {
-   TRACE(::axis::trace::category_AppMsg, 0, "Warning: Dynamic create of ::user::impact type %hs failed.\n",
+   TRACE(::aura::trace::category_AppMsg, 0, "Warning: Dynamic create of ::user::impact type %hs failed.\n",
    pContext->m_typeinfoNewView.name());
    return NULL;
    }
@@ -660,7 +660,7 @@ namespace user
    if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
    rect(0,0,0,0), this, nID, pContext))
    {
-   TRACE(::axis::trace::category_AppMsg, 0, "Warning: could not create ::user::impact for frame.\n");
+   TRACE(::aura::trace::category_AppMsg, 0, "Warning: could not create ::user::impact for frame.\n");
    return NULL;        // can't continue without a ::user::impact
    }
 
@@ -715,7 +715,7 @@ namespace user
       // create special children first
       if (!on_create_client(lpcs, pContext))
       {
-         TRACE(::axis::trace::category_AppMsg, 0, "Failed to create client pane/::user::impact for frame.\n");
+         TRACE(::aura::trace::category_AppMsg, 0, "Failed to create client pane/::user::impact for frame.\n");
          return -1;
       }
 
@@ -1260,7 +1260,7 @@ namespace user
       else
       {
       // not found
-      TRACE(::axis::trace::category_AppMsg, 0, "Warning: no message line prompt for ID 0x%04X.\n", nID);
+      TRACE(::aura::trace::category_AppMsg, 0, "Warning: no message line prompt for ID 0x%04X.\n", nID);
       }
       rMessage.ReleaseBuffer();*/
    }

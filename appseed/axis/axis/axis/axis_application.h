@@ -13,8 +13,6 @@ namespace axis
 
 
 
-      smart_pointer < application >                   m_pimpl;
-      sp(service_base)                                m_pservice;
 
       bool                                            m_bAxisProcessInitialize;
       bool                                            m_bAxisProcessInitializeResult;
@@ -28,27 +26,6 @@ namespace axis
       bool                                            m_bAxisInitialize;
       bool                                            m_bAxisInitializeResult;
 
-      string_to_ptr                                   m_appmap;
-      string                                          m_strAppName;
-      allocatorsp                                     m_allocer;
-      sp(::command_thread)                            m_pcommandthread;
-      sp(class signal)                                m_psignal;
-
-      ::aura::main_init_data *            m_pinitmaindata;
-
-
-      EExclusiveInstance                              m_eexclusiveinstance;
-
-      sp(::mutex)                                     m_pmutexLocal;
-      sp(::mutex)                                     m_pmutexLocalId;
-      sp(::mutex)                                     m_pmutexGlobal;
-      sp(::mutex)                                     m_pmutexGlobalId;
-
-
-
-      stringa                                         m_straMatterLocator;
-      string                                          m_strLibraryName;
-      string                                          m_strAppId;
       synch_ptr_array < ::user::interaction >         m_framea;
       sp(::database::server)                          m_spdataserver;
 #ifdef WINDOWS
@@ -59,28 +36,11 @@ namespace axis
       bool                                            m_bUpdateMatterOnInstall;
 
 
-      bool                                            m_bLicense;
-      string                                          m_strBaseSupportId;
       int32_t                                         m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
 
 
-      string                                          m_strRoot;
-      string                                          m_strDomain;
-      string                                          m_strLocale;
-      string                                          m_strSchema;
-
-      // Initial state of the application's interaction_impl; normally,
-      // this is an argument to ShowWindow().
-      manual_reset_event *                            m_peventReady;
-      string                                          m_strInstallToken;
-      string                                          m_strInstallType;
-      mutex                                           m_mutexMatterLocator;
 
 
-
-      mutex                                           m_mutexStr;
-      string_table                                    m_stringtable;
-      string_table                                    m_stringtableStd;
 
 
       static UINT                                     APPM_LANGUAGE;
@@ -97,23 +57,13 @@ namespace axis
       virtual ~application();
 
 
-      virtual sp(element) alloc(sp(type) info);
-      virtual sp(element) alloc(const id & idType);
+      
+      inline ::database::server &               dataserver()   { return *m_spdataserver; }
 
 
-      using ::aura::application::simple_message_box;
+
       virtual int32_t simple_message_box_timeout(sp(::user::interaction) pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle);
-      int32_t simple_message_box(const char * pszMessage,UINT fuStyle);
 
-
-      virtual string load_string(id id);
-      virtual bool load_string(string & str,id id);
-      virtual void load_string_table();
-      //   virtual string load_string(id id);
-      // virtual bool load_string(string & str, id id);
-      bool load_cached_string(string & str,id id,bool bLoadStringTable);
-      bool load_cached_string_by_id(string & str,id id,const string & pszFallbackValue,bool bLoadStringTable);
-      void load_string_table(const string & pszApp,const string & pszId);
 
 
 
@@ -123,9 +73,6 @@ namespace axis
 
 
       virtual ::user::user * create_user();
-
-
-      inline ::database::server &               dataserver()   { return *m_spdataserver; }
 
 
 
@@ -138,9 +85,6 @@ namespace axis
 
       void process(machine_event_data * pdata);
 
-
-
-      virtual bool open_link(const string & strLink,const string & pszTarget = "");
 
 
 
@@ -175,14 +119,6 @@ namespace axis
 
 
 
-      // Wall-eeeeee aliases
-      sp(::command_thread) command_central();
-      sp(::command_thread) command_thread();
-      sp(::command_thread) guideline();
-      sp(::command_thread) command();
-      sp(::command_thread) directrix();
-      sp(::command_thread) axiom();
-      sp(::command_thread) creation();
 
 
 
@@ -195,34 +131,12 @@ namespace axis
 
 
 
-      virtual bool app_map_lookup(const char * psz,void * &);
-      virtual void app_map_set(const char * psz,void *);
 
       virtual bool Ex2OnAppInstall();
       virtual bool Ex2OnAppUninstall();
 
 
-      template < class APP >
-      APP & cast_app()
-      {
-         if(this == NULL)
-            return (*(APP *)NULL);
-         void * papp;
-#ifdef WINDOWS
-         if(!app_map_lookup(typeid(APP).name(),papp))
-#else
-         if(!app_map_lookup(typeid(APP).name(), papp))
-#endif
-         {
-            papp = dynamic_cast <APP *> (this);
-#ifdef WINDOWS
-            app_map_set(typeid(APP).name(),papp);
-#else
-            app_map_set(typeid(APP).name(), papp);
-#endif
-         }
-         return (*(APP *)papp);
-      }
+
 
       virtual void _001CloseApplication();
 
@@ -252,12 +166,6 @@ namespace axis
       virtual bool initialize();
       virtual bool finalize();
 
-      bool ca_process_initialize();
-      bool ca_initialize1();
-      bool ca_initialize2();
-      bool ca_initialize3();
-
-      bool ca_finalize();
 
       virtual bool is_installing();
       virtual bool is_uninstalling();
@@ -334,16 +242,6 @@ namespace axis
 
 
 
-      service_base * get_service();
-      virtual service_base * allocate_new_service();
-      virtual bool create_new_service();
-
-      virtual bool create_service();
-      virtual bool remove_service();
-
-      virtual bool start_service();
-      virtual bool stop_service();
-
 
       virtual void on_service_request(sp(::create_context) pcreatecontext);
 
@@ -356,33 +254,9 @@ namespace axis
       virtual void on_exclusive_instance_conflict(EExclusiveInstance eexclusive);
       virtual void on_exclusive_instance_local_conflict();
 
-      virtual string get_local_mutex_id();
-      virtual string get_global_mutex_id();
 
-      virtual ::mutex * get_local_mutex();
-      virtual ::mutex * get_global_mutex();
-
-      virtual string get_local_mutex_name(const char * pszAppName);
-      virtual string get_local_id_mutex_name(const char * pszAppName,const char * pszId);
-      virtual string get_global_mutex_name(const char * pszAppName);
-      virtual string get_global_id_mutex_name(const char * pszAppName,const char * pszId);
-
-      virtual string get_local_mutex_name();
-      virtual string get_local_id_mutex_name();
-      virtual string get_global_mutex_name();
-      virtual string get_global_id_mutex_name();
-
-      virtual bool check_exclusive();
-      virtual bool release_exclusive();
 
       virtual void draw2d_factory_exchange();
-
-
-      virtual void on_set_scalar(e_scalar escalar,int64_t iValue);
-      virtual void get_scalar_minimum(e_scalar escalar,int64_t & i);
-      virtual void get_scalar(e_scalar escalar,int64_t & i);
-      virtual void get_scalar_maximum(e_scalar escalar,int64_t & i);
-
 
 
       bool safe_is_running();
@@ -392,10 +266,6 @@ namespace axis
 
       virtual bool defer_initialize_twf();
 
-      // name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
-      // get/set serializables to user directory
-      bool gudo_get(const string & strKey,::file::serializable & obj);
-      bool gudo_set(const string & strKey,::file::serializable & obj);
 
 
       virtual bool assert_user_logged_in();
@@ -405,35 +275,6 @@ namespace axis
       virtual bool set_main_init_data(::aura::main_init_data * pdata);
 
 
-      virtual void dir_matter_ls_file(const string & str,stringa & stra);
-      virtual string matter_as_string(const char * pszMatter,const char * pszMatter2 = NULL);
-      virtual string file_as_string(var varFile);
-      virtual string file_as_string(var varFile,var & varQuery);
-      virtual string dir_matter(const char * pszMatter,const char * pszMatter2 = NULL);
-      virtual bool is_inside_time_dir(const char * pszPath);
-      virtual bool file_is_read_only(const char * pszPath);
-      virtual bool file_exists(const char * pszPath);
-      virtual bool file_is_equal_path(const char * pszPath1,const char * pszPath2);
-      virtual bool dir_is(const char * psz);
-      virtual bool file_del(const char * psz);
-      virtual string file_extension(const char * pszPath);
-      virtual string dir_path(const char * psz1,const char * psz2,const char * psz3 = NULL);
-      virtual string dir_element(const char * psz = NULL);
-      virtual string dir_ca2module(const char * psz = NULL);
-      virtual string dir_name(const char * psz);
-      virtual void  dir_ls_dir(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL);
-      virtual void  dir_rls(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,stringa * pstraRelative = NULL);
-      virtual bool dir_mk(const char * psz);
-      virtual string file_title(const char * psz);
-      virtual string file_name(const char * psz);
-      virtual string file_time_square();
-      virtual string dir_userappdata(const char * lpcsz = NULL,const char * lpcsz2 = NULL);
-      virtual string dir_appdata(const char * lpcsz = NULL,const char * lpcsz2 = NULL);
-      virtual string dir_simple_path(const string & str1,const string & str2);
-
-      virtual ::file::buffer_sp file_get_file(var varFile,uint32_t uiFlags);
-
-      virtual string http_get_locale_schema(const char * pszUrl,const char * pszLocale,const char * pszSchema);
 
    };
 
