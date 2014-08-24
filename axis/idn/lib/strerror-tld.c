@@ -33,8 +33,8 @@
 
 #include "tld.h"
 
-#include "gettext.h"
-#define _(String) dgettext (PACKAGE, String)
+//#include "gettext.h"
+//#define _(String) dgettext (PACKAGE, String)
 
 /**
  * tld_strerror:
@@ -60,7 +60,7 @@ tld_strerror (Tld_rc rc)
 {
   const char *p;
 
-  bindtextdomain (PACKAGE, LOCALEDIR);
+  // TODO bindtextdomain (PACKAGE, LOCALEDIR);
 
   switch (rc)
     {

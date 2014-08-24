@@ -33,8 +33,8 @@
 
 #include "punycode.h"
 
-#include "gettext.h"
-#define _(String) dgettext (PACKAGE, String)
+//#include "gettext.h"
+//#define _(String) dgettext (PACKAGE, String)
 
 /**
  * punycode_strerror:
@@ -58,7 +58,7 @@ punycode_strerror (Punycode_status rc)
 {
   const char *p;
 
-  bindtextdomain (PACKAGE, LOCALEDIR);
+  // TODO bindtextdomain (PACKAGE, LOCALEDIR);
 
   switch (rc)
     {

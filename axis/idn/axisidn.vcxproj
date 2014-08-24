@@ -19,55 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="crc32.h" />
-    <ClInclude Include="deflate.h" />
-    <ClInclude Include="gzguts.h" />
-    <ClInclude Include="gzip_stream.h" />
-    <ClInclude Include="inffast.h" />
-    <ClInclude Include="inffixed.h" />
-    <ClInclude Include="inflate.h" />
-    <ClInclude Include="inftrees.h" />
-    <ClInclude Include="mangle.h" />
-    <ClInclude Include="trees.h" />
-    <ClInclude Include="zconf.h" />
-    <ClInclude Include="zlib.h" />
-    <ClInclude Include="zutil.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="adler32.c" />
-    <ClCompile Include="compress.c" />
-    <ClCompile Include="contrib\masmx64\inffas8664.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="crc32.c" />
-    <ClCompile Include="deflate.c" />
-    <ClCompile Include="gzclose.c" />
-    <ClCompile Include="gzip_stream.cpp">
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(ProjectDir)../../../include;$(ProjectDir)../../..;$(ProjectDir)../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(ProjectDir)..;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">_ZLIB_LIBRARY</PreprocessorDefinitions>
-    </ClCompile>
-    <ClCompile Include="gzlib.c" />
-    <ClCompile Include="gzread.c" />
-    <ClCompile Include="gzwrite.c" />
-    <ClCompile Include="infback.c" />
-    <ClCompile Include="inffast.c" />
-    <ClCompile Include="inflate.c" />
-    <ClCompile Include="inftrees.c" />
-    <ClCompile Include="trees.c" />
-    <ClCompile Include="uncompr.c" />
-    <ClCompile Include="zutil.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="axiszlib.def" />
-    <None Include="contrib\masmx64\gvmat64.asm" />
-    <None Include="contrib\masmx64\inffasx64.asm" />
-    <None Include="contrib\masmx86\inffas32.asm">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
-      </ExcludedFromBuild>
-    </None>
-    <None Include="contrib\masmx86\match686.asm" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\appseed\aura\aura.vcxproj">
       <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>
@@ -75,10 +26,75 @@
       <Project>{73a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\idna.h" />
+    <ClInclude Include="config.h" />
+    <ClInclude Include="lib\gltests\alloca.in.h" />
+    <ClInclude Include="lib\gltests\glthread\lock.h" />
+    <ClInclude Include="lib\gltests\glthread\thread.h" />
+    <ClInclude Include="lib\gltests\glthread\yield.h" />
+    <ClInclude Include="lib\gltests\intprops.h" />
+    <ClInclude Include="lib\gltests\inttypes.in.h" />
+    <ClInclude Include="lib\gltests\locale.in.h" />
+    <ClInclude Include="lib\gltests\localename.h" />
+    <ClInclude Include="lib\gltests\macros.h" />
+    <ClInclude Include="lib\gltests\malloca.h" />
+    <ClInclude Include="lib\gltests\signature.h" />
+    <ClInclude Include="lib\gltests\stdlib.in.h" />
+    <ClInclude Include="lib\gltests\test-sys_wait.h" />
+    <ClInclude Include="lib\gltests\unistd.in.h" />
+    <ClInclude Include="lib\gltests\verify.h" />
+    <ClInclude Include="lib\gltests\wchar.in.h" />
+    <ClInclude Include="lib\gl\c-ctype.h" />
+    <ClInclude Include="lib\gl\c-strcase.h" />
+    <ClInclude Include="lib\gl\gettext.h" />
+    <ClInclude Include="lib\gl\iconv.in.h" />
+    <ClInclude Include="lib\gl\iconv_open-aix.h" />
+    <ClInclude Include="lib\gl\iconv_open-hpux.h" />
+    <ClInclude Include="lib\gl\iconv_open-irix.h" />
+    <ClInclude Include="lib\gl\iconv_open-osf.h" />
+    <ClInclude Include="lib\gl\iconv_open-solaris.h" />
+    <ClInclude Include="lib\gl\stdbool.in.h" />
+    <ClInclude Include="lib\gl\stddef.in.h" />
+    <ClInclude Include="lib\gl\stdint.in.h" />
+    <ClInclude Include="lib\gl\striconv.h" />
+    <ClInclude Include="lib\gl\string.in.h" />
+    <ClInclude Include="lib\gl\sys_types.in.h" />
+    <ClInclude Include="lib\gl\unistr.in.h" />
+    <ClInclude Include="lib\gl\unitypes.in.h" />
+    <ClInclude Include="lib\gunibreak.h" />
+    <ClInclude Include="lib\gunicomp.h" />
+    <ClInclude Include="lib\gunidecomp.h" />
+    <ClInclude Include="lib\idn-free.h" />
+    <ClInclude Include="lib\pr29.h" />
+    <ClInclude Include="lib\stringprep.h" />
+    <ClInclude Include="lib\tld.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="lib\idn-free.c" />
+    <ClCompile Include="lib\idna.c" />
+    <ClCompile Include="lib\nfkc.c" />
+    <ClCompile Include="lib\pr29.c" />
+    <ClCompile Include="lib\profiles.c" />
+    <ClCompile Include="lib\punycode.c" />
+    <ClCompile Include="lib\rfc3454.c" />
+    <ClCompile Include="lib\strerror-idna.c" />
+    <ClCompile Include="lib\strerror-pr29.c" />
+    <ClCompile Include="lib\strerror-punycode.c" />
+    <ClCompile Include="lib\strerror-stringprep.c" />
+    <ClCompile Include="lib\strerror-tld.c" />
+    <ClCompile Include="lib\stringprep.c" />
+    <ClCompile Include="lib\tld.c" />
+    <ClCompile Include="lib\tlds.c" />
+    <ClCompile Include="lib\toutf8.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="axisidn.def" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8FD826F8-3739-44E6-8CC8-997122E53B8D}</ProjectGuid>
-    <ProjectName>axiszlib</ProjectName>
-    <RootNamespace>axiszlib</RootNamespace>
+    <ProjectName>axisidn</ProjectName>
+    <RootNamespace>axisidn</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
@@ -198,8 +214,8 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)../../include;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS;ZLIB_DLL;ASMV;ASMINF;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)../../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(ProjectDir)../../include;.;lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>LIBIDN_BUILDING;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <BufferSecurityCheck>true</BufferSecurityCheck>
@@ -234,7 +250,7 @@
       <SubSystem>Windows</SubSystem>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <AdditionalDependencies>inffas.o;match.o;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(IntDir)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
@@ -244,9 +260,8 @@
       </Command>
     </PreBuildEvent>
     <PreLinkEvent>
-      <Command>ml /safeseh /coff /Zi /Fo"$(IntDir)inffas.o" /c /Fl"$(IntDir)inffas.lst" "$(ProjectDir)contrib/masmx86/inffas32.asm"
-ml /safeseh /coff /Zi /Fo"$(IntDir)match.o" /c /Fl"$(IntDir)match.lst" "$(ProjectDir)contrib/masmx86/match686.asm"
-</Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">

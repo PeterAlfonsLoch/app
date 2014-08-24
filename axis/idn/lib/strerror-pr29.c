@@ -33,8 +33,8 @@
 
 #include "pr29.h"
 
-#include "gettext.h"
-#define _(String) dgettext (PACKAGE, String)
+//#include "gettext.h"
+//#define _(String) dgettext (PACKAGE, String)
 
 /**
  * pr29_strerror:
@@ -58,7 +58,7 @@ pr29_strerror (Pr29_rc rc)
 {
   const char *p;
 
-  bindtextdomain (PACKAGE, LOCALEDIR);
+  // TODO bindtextdomain (PACKAGE, LOCALEDIR);
 
   switch (rc)
     {

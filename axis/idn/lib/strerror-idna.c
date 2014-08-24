@@ -33,8 +33,8 @@
 
 #include "idna.h"
 
-#include "gettext.h"
-#define _(String) dgettext (PACKAGE, String)
+//#include "gettext.h"
+//#define _(String) dgettext (PACKAGE, String)
 
 /**
  * idna_strerror:
@@ -74,7 +74,8 @@ idna_strerror (Idna_rc rc)
 {
   const char *p;
 
-  bindtextdomain (PACKAGE, LOCALEDIR);
+  // TODO
+  //// TODO bindtextdomain (PACKAGE, LOCALEDIR);
 
   switch (rc)
     {

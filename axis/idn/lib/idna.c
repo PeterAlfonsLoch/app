@@ -39,7 +39,7 @@
 #include "idna.h"
 
 /* Get c_strcasecmp. */
-#include <c-strcase.h>
+//#include <c-strcase.h>
 
 #define DOTP(c) ((c) == 0x002E || (c) == 0x3002 ||	\
 		 (c) == 0xFF0E || (c) == 0xFF61)

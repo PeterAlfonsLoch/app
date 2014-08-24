@@ -1,9 +1,7 @@
 #include "framework.h"
 
 
-#if defined(LINUX)
-//#include <ctype.h>
-#endif
+#include "idn/idn.h"
 
 
 

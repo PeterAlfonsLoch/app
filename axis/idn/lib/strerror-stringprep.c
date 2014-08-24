@@ -33,8 +33,8 @@
 
 #include "stringprep.h"
 
-#include "gettext.h"
-#define _(String) dgettext (PACKAGE, String)
+//#include "gettext.h"
+//#define _(String) dgettext (PACKAGE, String)
 
 /**
  * stringprep_strerror:
@@ -78,7 +78,7 @@ stringprep_strerror (Stringprep_rc rc)
 {
   const char *p;
 
-  bindtextdomain (PACKAGE, LOCALEDIR);
+  // TODO bindtextdomain (PACKAGE, LOCALEDIR);
 
   switch (rc)
     {

@@ -1,4 +1,7 @@
+#pragma once
 /* config.h.in.  Generated from configure.ac by autoheader.  */
+
+#include "axis/axis/axis.h"
 
 /* Define to the number of bits in type 'ptrdiff_t'. */
 #undef BITSIZEOF_PTRDIFF_T
@@ -1273,3 +1276,10 @@
 
 /* Define as a macro for copying va_list variables. */
 #undef va_copy
+
+
+
+#ifdef _WIN32
+#define c_strncasecmp strnicmp
+#define c_strcasecmp stricmp
+#endif
