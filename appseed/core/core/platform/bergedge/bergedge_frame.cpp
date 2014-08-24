@@ -443,7 +443,7 @@ namespace bergedge
          {
 #ifdef WINDOWSEX
             smart_pointer < message::base > spbase;
-            spbase = get_base(pmsg);
+            spbase = Application.get_base(pmsg);
             pre_translate_message(spbase);
             if(!spbase->m_bRet)
             {

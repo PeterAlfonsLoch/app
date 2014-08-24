@@ -619,7 +619,6 @@ namespace user
 
 
       sp(::message::base) get_base(UINT uiMessage,WPARAM wparam,LPARAM lparam);
-      sp(::message::base) get_base(LPMESSAGE lpmsg);
 
 
       void transfer_from(timer_array & ta, interaction * pui);
