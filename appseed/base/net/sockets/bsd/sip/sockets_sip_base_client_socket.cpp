@@ -386,7 +386,7 @@ namespace sockets
    #ifdef HAVE_OPENSSL
          EnableSSL();
    #else
-         log("url_this", -1, "SSL not available", ::axis::log::level_warning);
+         log("url_this", -1, "SSL not available", ::aura::log::level_warning);
    #endif
          port = 443;
       }

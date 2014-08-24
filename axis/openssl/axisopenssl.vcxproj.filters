@@ -2836,7 +2836,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="baseopenssl.def">
+    <None Include="axisopenssl.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

@@ -80,7 +80,7 @@ namespace sockets
       }
       else
       {
-         log("AddFile", Errno, StrError(Errno), ::axis::log::level_fatal);
+         log("AddFile", Errno, StrError(Errno), ::aura::log::level_fatal);
          SetCloseAndDelete();
       }
    }

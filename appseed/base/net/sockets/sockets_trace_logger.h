@@ -11,7 +11,7 @@ namespace sockets
    public:
 
 
-      virtual void log(base_socket_handler *, base_socket * , const string & strUser, int32_t err, const string & strSystem, ::axis::log::e_level elevel = ::axis::log::level_warning);
+      virtual void log(base_socket_handler *, base_socket * , const string & strUser, int32_t err, const string & strSystem, ::aura::log::e_level elevel = ::aura::log::level_warning);
 
 
    };

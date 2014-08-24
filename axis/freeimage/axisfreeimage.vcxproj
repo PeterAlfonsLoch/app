@@ -109,7 +109,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)../../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../include;$(ProjectDir)..;Source;Source\DeprecationManager;Source\LibJPEG;Source\LibRawLite;Source\OpenEXR;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)../../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(ProjectDir)../../include;$(ProjectDir)..;Source;Source\DeprecationManager;Source\LibJPEG;Source\LibRawLite;Source\OpenEXR;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NO_LCMS;NO_JASPER;USE_JPIP;_DEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -3447,6 +3447,9 @@ copy Source\FreeImage.h Dist
     <None Include="Source\LibTIFF4\tif_config.h.in" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\appseed\aura\aura.vcxproj">
+      <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\appseed\axis\axis.vcxproj">
       <Project>{73a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
     </ProjectReference>

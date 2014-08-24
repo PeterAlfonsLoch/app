@@ -69,17 +69,17 @@ namespace str
 } // namespace str
 
 
-inline static string log_level_name(::axis::log::e_level elevel)
+inline static string log_level_name(::aura::log::e_level elevel)
 {
    switch (elevel)
    {
-   case ::axis::log::level_warning:
+   case ::aura::log::level_warning:
       return "warning";
-   case ::axis::log::level_error:
+   case ::aura::log::level_error:
       return "error";
-   case ::axis::log::level_fatal:
+   case ::aura::log::level_fatal:
       return "fatal";
-   case ::axis::log::level_info:
+   case ::aura::log::level_info:
       return "info";
    default:
       return "undefined log error";

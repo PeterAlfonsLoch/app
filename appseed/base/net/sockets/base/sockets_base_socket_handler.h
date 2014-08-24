@@ -73,7 +73,7 @@ namespace sockets
 
          void OnRead()
          {
-            log("OnRead", 0, "data on hibernating socket", ::axis::log::level_fatal);
+            log("OnRead", 0, "data on hibernating socket", ::aura::log::level_fatal);
             SetCloseAndDelete();
             SetLost();
          }
@@ -96,7 +96,7 @@ namespace sockets
       virtual void set_logger(logger * plog);
 
       /** Log error to log class for print out / storage. */
-      virtual void log(base_socket *p,const string & user_text,int err,const string & sys_err, ::axis::log::e_level elevel = ::ca_get_level_warning());
+      virtual void log(base_socket *p,const string & user_text,int err,const string & sys_err, ::aura::log::e_level elevel = ::ca_get_level_warning());
 
       // -------------------------------------------------------------------------
       // socket stuff

@@ -43,7 +43,7 @@
     <ClCompile Include="deflate.c" />
     <ClCompile Include="gzclose.c" />
     <ClCompile Include="gzip_stream.cpp">
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(ProjectDir)../../../include;$(ProjectDir)../../..;$(ProjectDir)../..;;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)..;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(ProjectDir)../../../include;$(ProjectDir)../../..;$(ProjectDir)../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(ProjectDir)..;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">_ZLIB_LIBRARY</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="gzlib.c" />
@@ -68,6 +68,9 @@
     <None Include="contrib\masmx86\match686.asm" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\appseed\aura\aura.vcxproj">
+      <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\appseed\axis\axis.vcxproj">
       <Project>{73a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
     </ProjectReference>

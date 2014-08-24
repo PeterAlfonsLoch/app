@@ -57,7 +57,7 @@ namespace sockets
       else
       {
 
-         log("SetFile", Errno, StrError(Errno), ::axis::log::level_fatal);
+         log("SetFile", Errno, StrError(Errno), ::aura::log::level_fatal);
 
          SetCloseAndDelete();
 

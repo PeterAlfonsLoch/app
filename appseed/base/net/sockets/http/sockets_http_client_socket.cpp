@@ -84,7 +84,7 @@ namespace sockets
    {
       if (!IsResponse())
       {
-         log("OnFirst", 0, "Response expected but not received - aborting", ::axis::log::level_fatal);
+         log("OnFirst", 0, "Response expected but not received - aborting", ::aura::log::level_fatal);
          SetCloseAndDelete();
       }
       m_content = m_response.attr(__id(http_version)) + " " +

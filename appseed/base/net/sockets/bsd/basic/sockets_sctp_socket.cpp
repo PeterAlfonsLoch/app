@@ -44,7 +44,7 @@ namespace sockets
    {
       if (!ad.IsValid())
       {
-         log("SctpSocket", -1, "invalid address", ::axis::log::level_error);
+         log("SctpSocket", -1, "invalid address", ::aura::log::level_error);
          return -1;
       }
       if (GetSocket() == INVALID_SOCKET)
@@ -56,7 +56,7 @@ namespace sockets
          int32_t n = bind(GetSocket(), ad, ad);
          if (n == -1)
          {
-            log("SctpSocket", -1, "bind() failed", ::axis::log::level_error);
+            log("SctpSocket", -1, "bind() failed", ::aura::log::level_error);
    #ifdef ENABLE_EXCEPTIONS
             throw Exception("bind() failed for SctpSocket, port: " + Utility::l2string(ad.GetPort()));
    #endif
@@ -87,18 +87,18 @@ namespace sockets
    {
       if (!ad.IsValid())
       {
-         log("SctpSocket", -1, "invalid address", ::axis::log::level_error);
+         log("SctpSocket", -1, "invalid address", ::aura::log::level_error);
          return -1;
       }
       if (GetSocket() == INVALID_SOCKET)
       {
-         log("SctpSocket", -1, "AddAddress called with invalid file descriptor", ::axis::log::level_error);
+         log("SctpSocket", -1, "AddAddress called with invalid file descriptor", ::aura::log::level_error);
          return -1;
       }
       int32_t n = sctp_bindx(GetSocket(), ad, ad, SCTP_BINDX_ADD_ADDR);
       if (n == -1)
       {
-         log("SctpSocket", -1, "sctp_bindx() failed", ::axis::log::level_error);
+         log("SctpSocket", -1, "sctp_bindx() failed", ::aura::log::level_error);
       }
       return n;
    }
@@ -124,18 +124,18 @@ namespace sockets
    {
       if (!ad.IsValid())
       {
-         log("SctpSocket", -1, "invalid address", ::axis::log::level_error);
+         log("SctpSocket", -1, "invalid address", ::aura::log::level_error);
          return -1;
       }
       if (GetSocket() == INVALID_SOCKET)
       {
-         log("SctpSocket", -1, "RemoveAddress called with invalid file descriptor", ::axis::log::level_error);
+         log("SctpSocket", -1, "RemoveAddress called with invalid file descriptor", ::aura::log::level_error);
          return -1;
       }
       int32_t n = sctp_bindx(GetSocket(), ad, ad, SCTP_BINDX_REM_ADDR);
       if (n == -1)
       {
-         log("SctpSocket", -1, "sctp_bindx() failed", ::axis::log::level_error);
+         log("SctpSocket", -1, "sctp_bindx() failed", ::aura::log::level_error);
       }
       return n;
    }
@@ -161,7 +161,7 @@ namespace sockets
    {
       if (!ad.IsValid())
       {
-         log("SctpSocket", -1, "invalid address", ::axis::log::level_error);
+         log("SctpSocket", -1, "invalid address", ::aura::log::level_error);
          return -1;
       }
       if (GetSocket() == INVALID_SOCKET)
@@ -184,12 +184,12 @@ namespace sockets
             if (Errno == EINPROGRESS)
    #endif
             {
-               log("connect: connection pending", Errno, StrError(Errno), ::axis::log::level_info);
+               log("connect: connection pending", Errno, StrError(Errno), ::aura::log::level_info);
                SetConnecting( true ); // this flag will control fd_set's
             }
             else
             {
-               log("SctpSocket", -1, "connect() failed", ::axis::log::level_error);
+               log("SctpSocket", -1, "connect() failed", ::aura::log::level_error);
             }
          }
          return n;
@@ -219,18 +219,18 @@ namespace sockets
    {
       if (!ad.IsValid())
       {
-         log("SctpSocket", -1, "invalid address", ::axis::log::level_error);
+         log("SctpSocket", -1, "invalid address", ::aura::log::level_error);
          return -1;
       }
       if (GetSocket() == INVALID_SOCKET)
       {
-         log("SctpSocket", -1, "AddConnection called with invalid file descriptor", ::axis::log::level_error);
+         log("SctpSocket", -1, "AddConnection called with invalid file descriptor", ::aura::log::level_error);
          return -1;
       }
       int32_t n = sctp_connectx(GetSocket(), ad, ad);
       if (n == -1)
       {
-         log("SctpSocket", -1, "sctp_connectx() failed", ::axis::log::level_error);
+         log("SctpSocket", -1, "sctp_connectx() failed", ::aura::log::level_error);
       }
       else
       {
@@ -247,7 +247,7 @@ namespace sockets
       int32_t n = sctp_getpaddrs(GetSocket(), id, &p);
       if (!n || n == -1)
       {
-         log("SctpSocket", -1, "sctp_getpaddrs failed", ::axis::log::level_warning);
+         log("SctpSocket", -1, "sctp_getpaddrs failed", ::aura::log::level_warning);
          return n;
       }
       for (int32_t i = 0; i < n; i++)
@@ -265,7 +265,7 @@ namespace sockets
       int32_t n = sctp_getladdrs(GetSocket(), id, &p);
       if (!n || n == -1)
       {
-         log("SctpSocket", -1, "sctp_getladdrs failed", ::axis::log::level_warning);
+         log("SctpSocket", -1, "sctp_getladdrs failed", ::aura::log::level_warning);
          return n;
       }
       for (int32_t i = 0; i < n; i++)
@@ -282,7 +282,7 @@ namespace sockets
       int32_t n = sctp_peeloff(GetSocket(), id);
       if (n == -1)
       {
-         log("SctpSocket", -1, "PeelOff failed", ::axis::log::level_warning);
+         log("SctpSocket", -1, "PeelOff failed", ::aura::log::level_warning);
          return -1;
       }
       socket *p = create();
@@ -319,7 +319,7 @@ namespace sockets
       int32_t n = sctp_recvmsg(GetSocket(), m_buf, SCTP_BUFSIZE_READ, &sa, &sa_len, &sinfo, &flags);
       if (n == -1)
       {
-         log("SctpSocket", Errno, StrError(Errno), ::axis::log::level_fatal);
+         log("SctpSocket", Errno, StrError(Errno), ::aura::log::level_fatal);
          SetCloseAndDelete();
       }
       else
@@ -349,7 +349,7 @@ namespace sockets
             SetCallOnConnect();
             return;
          }
-         log("sctp: connect failed", err, StrError(err), ::axis::log::level_fatal);
+         log("sctp: connect failed", err, StrError(err), ::aura::log::level_fatal);
          set(false, false); // no more monitoring because connection failed
 
          // failed
@@ -380,7 +380,7 @@ namespace sockets
 
    void SctpSocket::OnConnectTimeout()
    {
-      log("connect", -1, "connect timeout", ::axis::log::level_fatal);
+      log("connect", -1, "connect timeout", ::aura::log::level_fatal);
    #ifdef ENABLE_SOCKS4
       if (Socks4())
       {
@@ -446,7 +446,7 @@ namespace sockets
       // %! exception doesn't always mean something bad happened, this code should be reworked
       // errno valid here?
       int32_t err = SoError();
-      log("exception on select", err, StrError(err), ::axis::log::level_fatal);
+      log("exception on select", err, StrError(err), ::aura::log::level_fatal);
       SetCloseAndDelete();
    }
    #endif // _WIN32
