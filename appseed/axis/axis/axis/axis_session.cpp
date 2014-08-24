@@ -1553,12 +1553,6 @@ namespace axis
 
    }
 
-   void session::platform_register_dependent_thread(::thread * pthread)
-   {
-
-      m_pplatformcomposite->register_dependent_thread(this);
-
-   }
 
 } // namespace axis
 
