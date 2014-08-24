@@ -158,7 +158,8 @@ namespace userex
       if(System.m_idmapCreateViewLibrary.Lookup(pcreatordata->m_id, plibrary) && plibrary != NULL)
       {
 
-         plibrary->on_create_view(pcreatordata);
+         
+         //plibrary->on_create_view(pcreatordata);
 
       }
 

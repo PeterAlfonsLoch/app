@@ -890,7 +890,7 @@ namespace plugin
       try
       {
 
-         get_thread()->post_to_all_threads(WM_QUIT, 0, 0);
+         ::get_thread()->post_to_all_threads(WM_QUIT, 0, 0);
 
       }
       catch(...)
@@ -1009,7 +1009,7 @@ namespace plugin
 
             smart_pointer < message::base > spbase;
 
-            spbase = m_puiHost->get_base(m_puiHost, uiMessage, wparam, lparam);
+            spbase = m_puiHost->get_base(uiMessage, wparam, lparam);
 
             m_puiHost->message_handler(spbase);
 
