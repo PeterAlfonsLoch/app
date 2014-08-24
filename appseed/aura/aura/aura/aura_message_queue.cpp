@@ -53,7 +53,7 @@ namespace aura
    }
 
 
-   bool message_queue::is_initialized()
+   bool message_queue::message_queue_is_initialized()
    {
 
       return false;
