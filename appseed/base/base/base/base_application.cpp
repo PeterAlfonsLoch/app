@@ -1411,7 +1411,7 @@ namespace base
 
       try
       {
-         ::axis::application_signal_details signal(this,m_psignal,::axis::application_signal_start);
+         ::aura::application_signal_details signal(this,m_psignal,::aura::application_signal_start);
          m_psignal->emit(&signal);
       }
       catch(...)
@@ -2495,7 +2495,7 @@ namespace base
       m_bBaseInitialize = true;
       m_bBaseInitializeResult = false;
 
-      ::axis::application_signal_details signal(this,m_psignal,::axis::application_signal_initialize);
+      ::aura::application_signal_details signal(this,m_psignal,::aura::application_signal_initialize);
 
       m_psignal->emit(&signal);
 
@@ -2638,7 +2638,7 @@ namespace base
          if(m_psignal != NULL)
          {
 
-            ::axis::application_signal_details signal(this,m_psignal,::axis::application_signal_exit_instance);
+            ::aura::application_signal_details signal(this,m_psignal,::aura::application_signal_exit_instance);
 
             try
             {
