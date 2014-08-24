@@ -51,10 +51,6 @@ namespace core
 
       ::core::profiler::initialize();
 
-      m_pszRegistryKey = NULL;
-      m_pszHelpFilePath = NULL;
-      m_pszProfileName = NULL;
-
       m_pcoreapp = this;
 
       m_pwndMain = NULL;
@@ -71,8 +67,6 @@ namespace core
       m_strSchema = "_std";
 
       m_pcalculator = NULL;
-      m_pcolorertake5 = NULL;
-
 
    }
 

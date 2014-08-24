@@ -1464,7 +1464,7 @@ element(papp),
 void SimpleToolCmdUI::Enable(bool bOn, ::action::context actioncontext)
 {
    m_bEnableChanged = TRUE;
-   simple_toolbar* pToolBar = dynamic_cast < simple_toolbar * > (m_pOther.m_p);
+   simple_toolbar* pToolBar = dynamic_cast < simple_toolbar * > (m_pOther);
    ASSERT(pToolBar != NULL);
    //   ASSERT_KINDOF(simple_toolbar, pToolBar);
    ASSERT(m_iIndex < m_iCount);

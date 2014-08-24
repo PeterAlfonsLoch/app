@@ -47,7 +47,7 @@ namespace dynamic_source
    script_manager::script_manager(sp(::aura::application) papp) :
       element(papp),
       thread(papp),
-      message_queue(papp),
+      m_spqueue(allocer()),
       m_mutexIncludeMatches(papp),
       m_mutexIncludeHasScript(papp),
       m_mutexIncludeExpandMd5(papp),
@@ -122,14 +122,22 @@ namespace dynamic_source
    bool script_manager::initialize_instance()
    {
 
-      create_message_queue("::core::netnode::ca2");
+      m_spqueue->create_message_queue("::core::netnode::ca2");
+
       m_pcompiler->initialize();
+
 #ifdef WINDOWS
+
       {
+
          clear_include_matches_folder_watch * pwatch = new clear_include_matches_folder_watch();
+
          pwatch->m_pmanager = this;
+
          pwatch->add_file_watch( m_strNetseedDsCa2Path, true);
+
          pwatch->begin();
+
       }
 
       stringa straPath;

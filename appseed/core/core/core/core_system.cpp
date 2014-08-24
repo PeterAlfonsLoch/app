@@ -720,16 +720,23 @@ namespace core
    */
 
 
-   sp(::axis::session) system::query_session(index iEdge)
+   sp(::aura::session) system::query_session(index iEdge)
    {
+
       sp(::core::platform) pbergedge = NULL;
+
       if(m_pbergedgemap == NULL)
          return NULL;
+
       if(!m_pbergedgemap->Lookup(iEdge,pbergedge))
       {
+
          return NULL;
+
       }
+
       return pbergedge;
+
    }
 
 

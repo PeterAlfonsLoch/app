@@ -889,10 +889,13 @@ namespace plugin
 
       try
       {
+
          get_thread()->post_to_all_threads(WM_QUIT, 0, 0);
+
       }
       catch(...)
       {
+
       }
 
       Sleep(1984);

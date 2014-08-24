@@ -70,7 +70,7 @@ namespace core
             else if (rglpsz[i] != NULL)
             {
                size_t nLen = strlen(rglpsz[i]);
-               ::axis::strcpy_s(pchDest, nTotalLen + 1, rglpsz[i]);
+               ::aura::strcpy_s(pchDest, nTotalLen + 1, rglpsz[i]);
                nTotalLen -= nLen;
                pchDest += nLen;
             }
