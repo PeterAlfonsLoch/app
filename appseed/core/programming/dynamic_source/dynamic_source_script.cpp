@@ -447,7 +447,7 @@ namespace dynamic_source
          try
          {
 
-            ::axis::set_thread_priority(::aura::scheduling_priority_highest);
+            ::aura::set_thread_priority(::aura::scheduling_priority_highest);
 
          }
          catch(...)
@@ -497,7 +497,7 @@ namespace dynamic_source
          try
          {
 
-            ::axis::set_thread_priority(::aura::scheduling_priority_normal);
+            ::aura::set_thread_priority(::aura::scheduling_priority_normal);
 
          }
          catch(...)
