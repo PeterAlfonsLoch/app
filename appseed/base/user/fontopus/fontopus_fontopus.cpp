@@ -5,7 +5,7 @@ namespace fontopus
 {
 
 
-   fontopus::fontopus(::axis::application * papp) :
+   fontopus::fontopus(::aura::application * papp) :
       element(papp),
       ::aura::departament(papp)
    {

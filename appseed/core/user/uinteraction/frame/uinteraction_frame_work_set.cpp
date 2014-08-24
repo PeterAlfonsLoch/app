@@ -51,11 +51,11 @@ namespace user
          WorkSet::~WorkSet()
          {
 
-            ::base::del(m_psizemanager);
-            ::base::del(m_pmovemanager);
-            ::base::del(m_pdockmanager);
-            ::base::del(m_pappearance);
-            ::base::del(m_psystemmenumanager);
+            ::aura::del(m_psizemanager);
+            ::aura::del(m_pmovemanager);
+            ::aura::del(m_pdockmanager);
+            ::aura::del(m_pappearance);
+            ::aura::del(m_psystemmenumanager);
 
          }
 

@@ -545,7 +545,7 @@ namespace file
 
             string strTarget;
 
-            if(System.os().resolve_link(strTarget,lpcszPath))
+            if(System.file().resolve_link(strTarget,lpcszPath))
             {
 
                bIs = is(strTarget,papp);

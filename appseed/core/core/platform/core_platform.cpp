@@ -26,7 +26,7 @@ namespace core
 
       m_pauraapp                          = this;
 
-      m_pbasesapp                         = this;
+      m_pbaseapp                         = this;
       
       m_pcoreapp                          = this;
 

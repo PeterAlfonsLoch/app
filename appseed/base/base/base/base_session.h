@@ -131,8 +131,8 @@ namespace base
       virtual bool on_ui_mouse_message(::message::mouse * pmouse);
 
 
-      virtual sp(::user::interaction) get_active_guie();
-      virtual sp(::user::interaction) get_focus_guie();
+      virtual ::user::interaction * get_active_guie();
+      virtual ::user::interaction * get_focus_guie();
 
 
       //virtual string matter_as_string(const char * pszMatter,const char * pszMatter2);
@@ -153,7 +153,7 @@ namespace base
 
 
 
-//inline ::base::session & Sess(::axis::application * papp);
+//inline ::base::session & Sess(::aura::application * papp);
 
 
 

@@ -13,7 +13,7 @@ namespace fs
 
 
 
-      fs(::axis::application * papp);
+      fs(::aura::application * papp);
       virtual ~fs();
 
       bool initialize();

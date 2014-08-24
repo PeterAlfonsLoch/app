@@ -493,7 +493,7 @@ namespace dynamic_source
 
       ::core::process process;
 
-      process.create_child_process(strBuildCmd, false, System.dir().name(pscript->m_strBuildBat), ::axis::scheduling_priority_highest);
+      process.create_child_process(strBuildCmd, false, System.dir().name(pscript->m_strBuildBat), ::aura::scheduling_priority_highest);
 
       uint32_t dwStart = ::get_tick_count();
       uint32_t dwExitCode;
@@ -1049,7 +1049,7 @@ namespace dynamic_source
 #ifndef METROWIN
          ::core::process process;
 
-         process.create_child_process(strCmd, false, System.dir().element("stage\\front"), ::axis::scheduling_priority_highest);
+         process.create_child_process(strCmd, false, System.dir().element("stage\\front"), ::aura::scheduling_priority_highest);
 
 
          uint32_t dwExitCode;
@@ -1127,7 +1127,7 @@ namespace dynamic_source
       ::core::process process;
 
 
-      process.create_child_process(strCmd, false, System.dir().name(strCmd), ::axis::scheduling_priority_highest);
+      process.create_child_process(strCmd, false, System.dir().name(strCmd), ::aura::scheduling_priority_highest);
 
       uint32_t dwExitCode;
       while(true)

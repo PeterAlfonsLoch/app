@@ -2490,11 +2490,7 @@ FIBITMAP * imaging::HBITMAPtoFI(::draw2d::bitmap_sp pbitmap)
 
 #ifdef WINDOWSEX
 
-   HBITMAP hbitmap = NULL;
-
-   Gdiplus::Color colorBk(0, 0, 0, 0);
-
-   pbitmap->GetHBITMAP(colorBk, &hbitmap);
+   HBITMAP hbitmap = pbitmap->GetHBITMAP();
 
    if(hbitmap == NULL)
       return NULL;
@@ -2515,7 +2511,7 @@ FIBITMAP * imaging::HBITMAPtoFI(::draw2d::bitmap_sp pbitmap)
 
    ::DeleteDC(hdc);
 
-   ::DeleteObject(hbitmap);
+   pbitmap->ReleaseHBITMAP(hbitmap);
 
    // restore BITMAPINFO members
    FreeImage_GetInfoHeader(fi)->biClrUsed = nColors;

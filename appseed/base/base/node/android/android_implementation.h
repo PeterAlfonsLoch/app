@@ -6,8 +6,8 @@ CLASS_DECL_BASE BOOL AfxEndDeferRegisterClass(LONG fToRegister, const char ** pp
 
 
 // Temporary ::collection::map management (locks temp ::collection::map on current thread)
-//CLASS_DECL_BASE void AfxLockTempMaps(::axis::application * papp);
-//CLASS_DECL_BASE BOOL AfxUnlockTempMaps(::axis::application * papp, BOOL bDeleteTemps = TRUE);
+//CLASS_DECL_BASE void AfxLockTempMaps(::aura::application * papp);
+//CLASS_DECL_BASE BOOL AfxUnlockTempMaps(::aura::application * papp, BOOL bDeleteTemps = TRUE);
 
 
 

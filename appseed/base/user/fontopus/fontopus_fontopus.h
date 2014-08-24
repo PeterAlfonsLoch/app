@@ -20,7 +20,7 @@ namespace fontopus
 
 
 
-      fontopus(::axis::application * papp);
+      fontopus(::aura::application * papp);
       virtual ~fontopus();
 
 

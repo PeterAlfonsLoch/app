@@ -204,8 +204,8 @@ namespace base
       virtual string get_license_id();
 
 
-      virtual sp(::user::interaction) get_active_guie();
-      virtual sp(::user::interaction) get_focus_guie();
+      virtual ::user::interaction * get_active_guie();
+      virtual ::user::interaction * get_focus_guie();
 
 
       //virtual sp(::user::interaction) window_from_os_data(void * pdata);
@@ -271,7 +271,7 @@ namespace base
 
       virtual bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
-      virtual sp(::user::document) _001OpenDocumentFile(var varFile);
+      virtual ::user::document * _001OpenDocumentFile(var varFile);
       virtual void _001OnFileNew(signal_details * pobj);
 
       //virtual sp(::user::printer) get_printer(const char * pszDeviceName);

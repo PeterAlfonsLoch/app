@@ -151,8 +151,8 @@ namespace sockets
       };
 
       mutex                                                                                  m_mutexCache;
-      ::axis::gudo < ::file::byte_serializable_map < string_map < dns_cache_item > > >       m_mapCache;
-      ::axis::gudo < ::file::byte_serializable_map < string_map < reverse_cache_item > > >   m_mapReverseCache;
+      ::aura::gudo < ::file::byte_serializable_map < string_map < dns_cache_item > > >       m_mapCache;
+      ::aura::gudo < ::file::byte_serializable_map < string_map < reverse_cache_item > > >   m_mapReverseCache;
 
 
       net(sp(::aura::application) papp);

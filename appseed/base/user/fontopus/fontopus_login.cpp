@@ -72,11 +72,11 @@ namespace fontopus
        
       Sleep(49);
 
-      ::base::del(m_plabelUser);
-      ::base::del(m_peditUser);
-      ::base::del(m_plabelPassword);
-      ::base::del(m_ppassword);
-      ::base::del(m_ptap);
+      ::aura::del(m_plabelUser);
+      ::aura::del(m_peditUser);
+      ::aura::del(m_plabelPassword);
+      ::aura::del(m_ppassword);
+      ::aura::del(m_ptap);
 
    }
 
@@ -530,7 +530,7 @@ namespace fontopus
    UINT c_cdecl thread_proc_pre_login(void * p)
    {
 
-      ::axis::application * papp = (::axis::application *) p;
+      ::aura::application * papp = (::aura::application *) p;
 
       return 0;
 

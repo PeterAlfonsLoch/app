@@ -120,7 +120,7 @@ namespace draw2d
 
 
       path();
-      path(::axis::application * papp);
+      path(::aura::application * papp);
       virtual ~path();
 
 

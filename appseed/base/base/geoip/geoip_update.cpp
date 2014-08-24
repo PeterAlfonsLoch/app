@@ -498,10 +498,10 @@ int16_t GeoIP_update_database (char * license_key, int32_t verbose, void (*f)( c
 
 }
 
-int16_t GeoIP_update_database_general (::axis::application * papp, char * user_id,char * license_key,char *data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *));
+int16_t GeoIP_update_database_general (::aura::application * papp, char * user_id,char * license_key,char *data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *));
 
 
-int16_t GeoIP_update_database_general (::axis::application * papp, char * user_id,char * license_key,char *data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *)) {
+int16_t GeoIP_update_database_general (::aura::application * papp, char * user_id,char * license_key,char *data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *)) {
 
 #ifdef BSD_STYLE_SOCKETS
    struct hostent *hostlist;

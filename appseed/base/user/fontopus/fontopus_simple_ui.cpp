@@ -461,7 +461,7 @@ namespace fontopus
 
 
 
-   string CLASS_DECL_BASE get_cred(::axis::application * papp,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   string CLASS_DECL_BASE get_cred(::aura::application * papp,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
 
       ::fontopus::simple_ui ui(papp);
@@ -486,7 +486,7 @@ namespace fontopus
 
    }
 
-   string CLASS_DECL_BASE get_cred(::axis::application * papp, string & strUsername, string & strPassword, string strToken)
+   string CLASS_DECL_BASE get_cred(::aura::application * papp, string & strUsername, string & strPassword, string strToken)
    {
 
       string str;
@@ -498,7 +498,7 @@ namespace fontopus
 
    }
 
-   void set_cred(::axis::application * papp, string strToken, const char * pszUsername, const char * pszPassword)
+   void set_cred(::aura::application * papp, string strToken, const char * pszUsername, const char * pszPassword)
    {
 
       string strUsername(pszUsername);
@@ -519,7 +519,7 @@ namespace fontopus
    }
 
 
-   void set_cred_ok(::axis::application * papp,string strToken,bool bOk)
+   void set_cred_ok(::aura::application * papp,string strToken,bool bOk)
    {
 
       if(bOk)

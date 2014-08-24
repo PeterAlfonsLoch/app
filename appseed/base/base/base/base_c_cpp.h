@@ -80,11 +80,11 @@ namespace install
 
 #undef App
 #undef Application
-#define App(paxisapp) (*paxisapp->m_pbasesapp)
-#define Application (App(m_pauraapp->m_pbasesapp))
+#define App(paxisapp) (*paxisapp->m_pbaseapp)
+#define Application (App(m_pauraapp->m_pbaseapp))
 
 #define AppUser(pbaseapp) (*pbaseapp->m_pbasesession->fontopus()->get_user())
-#define ApplicationUser (AppUser(m_pauraapp->m_pbasesapp))
+#define ApplicationUser (AppUser(m_pauraapp->m_pbaseapp))
 
 
 

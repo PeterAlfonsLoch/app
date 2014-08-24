@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   sockets::sockets(::axis::application * papp) :
+   sockets::sockets(::aura::application * papp) :
      element(papp),
      ::aura::departament(papp),
       m_mutexHttpPostBoundary(papp),

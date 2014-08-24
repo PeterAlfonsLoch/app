@@ -57,21 +57,21 @@ namespace base
       if(m_pauraapp != NULL)
       {
 
-         m_pbasesapp              = m_pauraapp->m_pbasesapp;
+         m_pbaseapp              = m_pauraapp->m_pbaseapp;
 
       }
 
-      if(m_pbasesapp == NULL)
+      if(m_pbaseapp == NULL)
       {
 
-         m_pbasesapp              = this;
+         m_pbaseapp              = this;
 
       }
 
-      if(m_pbasesapp != NULL)
+      if(m_pbaseapp != NULL)
       {
 
-         m_pbasesystem           = m_pbasesapp->m_pbasesystem;
+         m_pbasesystem           = m_pbaseapp->m_pbasesystem;
 
          if(m_pauraapp->m_pbasesession == NULL && m_pbasesystem != NULL)
          {
@@ -82,13 +82,13 @@ namespace base
          else
          {
 
-            m_pbasesession       = m_pbasesapp->m_pbasesession;
+            m_pbasesession       = m_pbaseapp->m_pbasesession;
 
          }
 
 #ifdef WINDOWS
 
-         m_hinstance             = m_pbasesapp->m_hinstance;
+         m_hinstance             = m_pbaseapp->m_hinstance;
 
 #endif
 
@@ -830,7 +830,7 @@ namespace base
    }
 
 
-   sp(::user::document) application::_001OpenDocumentFile(var varFile)
+   ::user::document * application::_001OpenDocumentFile(var varFile)
    {
 
       throw interface_only_exception(this);

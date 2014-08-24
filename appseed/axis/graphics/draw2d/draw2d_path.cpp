@@ -91,7 +91,7 @@ namespace draw2d
 
    }
 
-   path::path(::axis::application * papp) :
+   path::path(::aura::application * papp) :
       ::element(papp)
    {
 

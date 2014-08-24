@@ -9,10 +9,11 @@ namespace base
    session::session(sp(::aura::application) papp) :
       element(papp),
       ::thread(papp),
+      ::aura::session(papp),
       ::axis::session(papp)
    {
 
-      m_pbasesapp       = this;
+      m_pbaseapp       = this;
 
       m_pbasesession    = this;
 
@@ -1611,7 +1612,7 @@ namespace base
 //   }
 
 
-   sp(::user::interaction) session::get_active_guie()
+   ::user::interaction * session::get_active_guie()
    {
 
       return ::axis::session::get_active_guie();
@@ -1619,7 +1620,7 @@ namespace base
    }
 
 
-   sp(::user::interaction) session::get_focus_guie()
+   ::user::interaction * session::get_focus_guie()
    {
 
       return ::axis::session::get_active_guie();

@@ -136,30 +136,11 @@ namespace axis
       sp(::user::window_draw)               get_twf();
 
 
-      virtual void on_allocation_error(sp(::aura::application) papp,sp(type) info);
-
-
-
-      virtual int32_t _001OnDebugReport(int32_t i1,const char * psz1,int32_t i2,const char * psz2,const char * psz3,va_list args);
-      virtual int32_t _debug_logging_report(int32_t iReportType, const char * pszFilename, int32_t iLinenumber, const char * iModuleName, const char * pszFormat, va_list list);
-      virtual bool assert_failed_line(const char * lpszFileName,int32_t iLine);
-      virtual bool on_assert_failed_line(const char * pszFileName,int32_t iLine);
-
-
-
-
 
       virtual sp(::user::document) place_hold(sp(::user::interaction) pui);
 
       virtual sp(::aura::session) query_session(index iEdge);
 
-
-      virtual void appa_load_string_table();
-      virtual void appa_set_locale(const char * pszLocale,::action::context actioncontext);
-      virtual void appa_set_schema(const char * pszStyle,::action::context actioncontext);
-
-      virtual bool assert_running_global(const char * pszAppName,const char * pszId = NULL);
-      virtual bool assert_running_local(const char * pszAppName,const char * pszId = NULL);
 
 
       virtual bool initialize_twf();

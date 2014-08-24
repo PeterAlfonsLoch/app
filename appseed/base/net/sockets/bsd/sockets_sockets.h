@@ -26,7 +26,7 @@
 
 
 
-         sockets(::axis::application * papp);
+         sockets(::aura::application * papp);
          virtual ~sockets();
 
 

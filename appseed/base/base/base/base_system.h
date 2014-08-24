@@ -56,12 +56,7 @@ namespace base
       virtual int32_t exit_instance();
       virtual bool finalize();
 
-      spa(::base::session)                         & basesessionptra();
-      //application_ptra                                get_appptra();
-
-      class base_factory                           & factory();
       inline ::url::departament                    & url()     { return m_urldepartament; }
-      class ::str::base64                          & base64();
 
       inline class ::http::system                  & http()    { return m_httpsystem; }
       inline ::file::system                        & file()    { return *m_spfile; }
@@ -85,33 +80,14 @@ namespace base
       virtual bool initialize2();
 
 
-      virtual void on_allocation_error(sp(::aura::application) papp,sp(type) info);
-
-
-
-      virtual int32_t _001OnDebugReport(int32_t i1,const char * psz1,int32_t i2,const char * psz2,const char * psz3,va_list args);
-      virtual int32_t _debug_logging_report(int32_t iReportType, const char * pszFilename, int32_t iLinenumber, const char * iModuleName, const char * pszFormat, va_list list);
-      virtual bool assert_failed_line(const char * lpszFileName,int32_t iLine);
-      virtual bool on_assert_failed_line(const char * pszFileName,int32_t iLine);
-
-
-
-
-
-      virtual void appa_load_string_table();
-      virtual void appa_set_locale(const char * pszLocale,::action::context actioncontext);
-      virtual void appa_set_schema(const char * pszStyle,::action::context actioncontext);
-
-      virtual bool assert_running_global(const char * pszAppName,const char * pszId = NULL);
-      virtual bool assert_running_local(const char * pszAppName,const char * pszId = NULL);
 
 
 
 
       virtual string dir_appmatter_locator(sp(::aura::application) papp);
 
-      virtual sp(::user::interaction) get_active_guie();
-      virtual sp(::user::interaction) get_focus_guie();
+      virtual ::user::interaction * get_active_guie();
+      virtual ::user::interaction * get_focus_guie();
 
 
       virtual bool is_system();

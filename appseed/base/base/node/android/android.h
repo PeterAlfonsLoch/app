@@ -3,7 +3,7 @@
 
 string get_error_message(DWORD dwError);
 
-::axis::application *     win_instantiate_application(::axis::application * pappSystem, const char * pszId);
+::aura::application *     win_instantiate_application(::aura::application * pappSystem, const char * pszId);
 
 /////////////////////////////////////////////////////////////////////////////
 // explicit initialization for general purpose classes

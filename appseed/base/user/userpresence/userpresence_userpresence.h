@@ -12,8 +12,8 @@ namespace userpresence
    public:
 
 
-      bool                    m_bUserPresenceFeatureRequired;
-      message_queue           m_queue;
+      bool                       m_bUserPresenceFeatureRequired;
+      sp(::aura::message_queue)  m_spqueue;
 
 
       userpresence(sp(::aura::application) papp);
