@@ -137,9 +137,6 @@ namespace axis
 
 
       virtual void on_allocation_error(sp(::aura::application) papp,sp(type) info);
-      //   sp(element) alloc(sp(::aura::application) papp, sp(type) info);
-      sp(element) alloc(sp(::aura::application) papp,const std_type_info & info);
-      //   virtual sp(element) on_alloc(sp(::aura::application) papp, sp(type) info);
 
 
 

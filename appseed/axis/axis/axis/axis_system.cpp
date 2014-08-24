@@ -358,39 +358,11 @@ namespace axis
    }
 
 
-   UINT system::os_post_to_all_threads(UINT uiMessage,WPARAM wparam,lparam lparam)
-   {
-
-      post_to_all_threads(uiMessage,wparam,lparam);
-
-      return 0;
-
-   }
-
-   sp(element) system::clone()
-   {
-      // by the time, it is not possible to clone a system
-      return NULL;
-   }
-
-
-
-   void system::discard_to_factory(sp(element) pca)
-   {
-
-      if(m_pfactory == NULL)
-         return;
-
-      m_pfactory->discard(pca);
-
-   }
-
-
-
    void system::wait_twf()
    {
 
    }
+
 
    bool system::is_system()
    {
@@ -398,10 +370,6 @@ namespace axis
       return true;
 
    }
-
-
-
-
 
 
    int32_t system::_001OnDebugReport(int32_t i1,const char * psz1,int32_t i2,const char * psz2,const char * psz3,va_list args)
@@ -412,14 +380,13 @@ namespace axis
    }
 
 
-
    int32_t system::_debug_logging_report(int32_t iReportType, const char * pszFileName, int32_t iLineNumber, const char * pszModuleName, const char * pszFormat,va_list list)
    {
 
       if(m_plog == NULL || !m_plog->m_bExtendedLog)
       {
 
-         return ::axis::SimpleDebugReport(iReportType,pszFileName,iLineNumber,pszModuleName,pszFormat,list);
+         return ::aura::SimpleDebugReport(iReportType,pszFileName,iLineNumber,pszModuleName,pszFormat,list);
 
       }
 
@@ -509,80 +476,17 @@ namespace axis
    }
 
 
-
-
-   sp(element) system::on_alloc(sp(::aura::application) papp,sp(type) info)
-   {
-      /*string str;
-      str.Format("Could not alloc %s", info.name());
-      simple_message_box(str);*/
-      sp(element) pobj = m_pfactory->create(papp,info);
-      if(pobj != NULL)
-         return pobj;
-      on_allocation_error(papp,info);
-      return NULL;
-   }
-
-   sp(element) system::alloc(sp(::aura::application) papp,sp(type) info)
-   {
-      return on_alloc(papp,info);
-   }
-
-   sp(element) system::alloc(sp(::aura::application) papp,const std_type_info & info)
-   {
-      return on_alloc(papp,canew(type(info)));
-   }
-
    void system::on_allocation_error(sp(::aura::application) papp,sp(type) info)
    {
       UNREFERENCED_PARAMETER(papp);
       UNREFERENCED_PARAMETER(info);
    }
 
-   sp(element) system::alloc(sp(::aura::application) papp,const class id & idType)
-   {
-      return on_alloc(papp,get_type_info(idType));
-   }
-
-
-   sp(type) system::get_type_info(const ::std_type_info & info)
-   {
-
-      synch_lock sl(m_spmutexFactory);
-
-#ifdef WINDOWS
-      sp(type) & typeinfo = m_typemap[info.raw_name()];
-#else
-      sp(type) & typeinfo = m_typemap[info.name()];
-#endif
-
-      if(typeinfo.is_null())
-         typeinfo = canew(type(info));
-
-      return typeinfo;
-
-   }
-
-
-   ::xml::departament & system::xml()
-   {
-      return *m_pxml;
-   }
-
-
-
-   class ::str::base64 & system::base64()
-   {
-
-      return m_base64;
-
-   }
-
-
-
    ::datetime::departament & system::datetime()
    {
+
       return *m_pdatetime;
+
    }
 
 
@@ -592,19 +496,6 @@ namespace axis
 
       return m_ptwf;
 
-   }
-
-   ::axis::log & system::log()
-   {
-      return *m_plog;
-   }
-
-
-
-
-   machine_event_central & system::machine_event_central()
-   {
-      return *m_pmachineeventcentral;
    }
 
 
@@ -630,21 +521,12 @@ namespace axis
    }
 
 
-   sp(::axis::session) system::query_session(index iEdge)
+   sp(::aura::session) system::query_session(index iEdge)
    {
 
       return NULL;
 
    }
-
-
-   ::axis::os & system::os()
-   {
-
-      return *m_spos;
-
-   }
-
 
 
    void system::appa_load_string_table()

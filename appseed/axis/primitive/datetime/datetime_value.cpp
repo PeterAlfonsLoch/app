@@ -297,82 +297,83 @@ namespace datetime
          return span_strtotime(pbaseapp,pcontext,str.Mid(iStart));
       }
    }
-   string value::to_string(sp(::aura::application) pbaseapp,::user::str_context * pcontext)
+
+   string to_string(sp(::aura::application) pbaseapp,::user::str_context * pcontext, ::datetime::value & value)
    {
       string str;
-      if(m_bSpan)
+      if(value.m_bSpan)
       {
          stringa stra;
          string strItem;
-         if(m_iYear != 0)
+         if(value.m_iYear != 0)
          {
-            if(abs(m_iYear) == 1)
+            if(abs(value.m_iYear) == 1)
             {
-               strItem.Format("%d year",m_iYear);
+               strItem.Format("%d year",value.m_iYear);
             }
             else
             {
-               strItem.Format("%d years",m_iYear);
+               strItem.Format("%d years",value.m_iYear);
             }
             stra.add(strItem);
          }
-         if(m_iMonth != 0)
+         if(value.m_iMonth != 0)
          {
-            if(abs(m_iMonth) == 1)
+            if(abs(value.m_iMonth) == 1)
             {
-               strItem.Format("%d month",m_iMonth);
+               strItem.Format("%d month",value.m_iMonth);
             }
             else
             {
-               strItem.Format("%d months",m_iMonth);
+               strItem.Format("%d months",value.m_iMonth);
             }
             stra.add(strItem);
          }
-         if(m_iDay != 0)
+         if(value.m_iDay != 0)
          {
-            if(abs(m_iDay) == 1)
+            if(abs(value.m_iDay) == 1)
             {
-               strItem.Format("%d day",m_iDay);
+               strItem.Format("%d day",value.m_iDay);
             }
             else
             {
-               strItem.Format("%d days",m_iDay);
+               strItem.Format("%d days",value.m_iDay);
             }
             stra.add(strItem);
          }
-         if(m_iHour != 0)
+         if(value.m_iHour != 0)
          {
-            if(abs(m_iHour) == 1)
+            if(abs(value.m_iHour) == 1)
             {
-               strItem.Format("%d hour",m_iHour);
+               strItem.Format("%d hour",value.m_iHour);
             }
             else
             {
-               strItem.Format("%d hours",m_iHour);
+               strItem.Format("%d hours",value.m_iHour);
             }
             stra.add(strItem);
          }
-         if(m_iMinute != 0)
+         if(value.m_iMinute != 0)
          {
-            if(abs(m_iMinute) == 1)
+            if(abs(value.m_iMinute) == 1)
             {
-               strItem.Format("%d minute",m_iMinute);
+               strItem.Format("%d minute",value.m_iMinute);
             }
             else
             {
-               strItem.Format("%d minutes",m_iMinute);
+               strItem.Format("%d minutes",value.m_iMinute);
             }
             stra.add(strItem);
          }
-         if(m_iSecond != 0)
+         if(value.m_iSecond != 0)
          {
-            if(abs(m_iSecond) == 1)
+            if(abs(value.m_iSecond) == 1)
             {
-               strItem.Format("%d second",m_iSecond);
+               strItem.Format("%d second",value.m_iSecond);
             }
             else
             {
-               strItem.Format("%d seconds",m_iSecond);
+               strItem.Format("%d seconds",value.m_iSecond);
             }
             stra.add(strItem);
          }
@@ -387,7 +388,7 @@ namespace datetime
       }
       else
       {
-         ::datetime::time time = get_time();
+         ::datetime::time time = value.get_time();
          if(time.GetSecond() == 0)
          {
             if(time.GetHour() == 0 && time.GetMinute() == 0)
