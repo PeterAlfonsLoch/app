@@ -239,26 +239,12 @@ namespace axis
 
 
 
-#if defined(METROWIN) || defined(APPLE_IOS)
-
-   sp(::user::interaction) application::window_from_os_data(void * pdata)
+   ::user::interaction * application::window_from_os_data(void * pdata)
    {
 
       return window_from_handle((oswindow)pdata);
 
    }
-
-#else
-
-   sp(::user::interaction) application::window_from_os_data(void * pdata)
-   {
-
-      return window_from_handle((oswindow)pdata);
-
-   }
-
-#endif
-
 
 
    void application::DoWaitCursor(int32_t nCode)
@@ -410,7 +396,7 @@ namespace axis
    }
 
 
-   sp(::user::document) application::_001OpenDocumentFile(var varFile)
+   ::user::document * application::_001OpenDocumentFile(var varFile)
    {
 
       throw interface_only_exception(this);
@@ -1539,48 +1525,12 @@ namespace axis
          return false;
       
 
-      if(m_pthreadimpl == NULL)
-      {
-
-         m_pthreadimpl.alloc(allocer());
-
-         m_pthreadimpl->m_pthread = this;
-
-      }
-
-      m_pimpl.alloc(allocer());
-
-      m_pimpl->construct(NULL);
-
-      m_pimpl->m_pimpl = this;
-
-      if(::get_thread() == NULL)
-      {
-         set_thread(dynamic_cast <thread *> (this));
-      }
-
-      if(is_system())
-      {
-
-         if(!update_module_paths())
-            return false;
-
-      }
-
-
-      if(!ca_process_initialize())
-         return false;
-
       if(is_system())
       {
 
          draw2d_factory_exchange();
 
       }
-
-      if(!m_pimpl->process_initialize())
-         return false;
-
 
       m_bAxisProcessInitializeResult = true;
 
@@ -1613,20 +1563,7 @@ namespace axis
       if(!::aura::application::initialize1())
          return false;
 
-
       m_dwAlive = ::get_tick_count();
-
-      m_straMatterLocator.add_unique(System.dir_appmatter_locator(this));
-
-      if(!ca_initialize1())
-         return false;
-
-
-
-
-
-      if(!m_pimpl->initialize1())
-         return false;
 
       m_bAxisInitialize1Result = true;
 
@@ -1641,12 +1578,6 @@ namespace axis
       if(!::aura::application::initialize2())
          return false;
 
-      if(!m_pimpl->initialize2())
-         return false;
-
-      if(!ca_initialize2())
-         return false;
-
       return true;
 
    }
@@ -1656,12 +1587,6 @@ namespace axis
    {
 
       if(!::aura::application::initialize3())
-         return false;
-
-      if(!m_pimpl->initialize3())
-         return false;
-
-      if(!ca_initialize3())
          return false;
 
       return true;
@@ -1952,293 +1877,6 @@ namespace axis
       return is_alive();
    }
 
-   service_base * application::allocate_new_service()
-   {
-
-      return NULL;
-
-   }
-
-
-
-
-
-
-
-   bool application::ca_initialize2()
-   {
-
-      application_signal_details signal(this,m_psignal,application_signal_initialize2);
-      m_psignal->emit(&signal);
-      return signal.m_bOk;
-
-   }
-
-
-   bool application::ca_initialize3()
-   {
-
-      application_signal_details signal(this,m_psignal,application_signal_initialize3);
-      m_psignal->emit(&signal);
-      if(!signal.m_bOk)
-         return false;
-
-      return true;
-
-   }
-
-
-
-
-
-
-
-
-
-
-   bool application::check_exclusive()
-   {
-
-#ifdef METROWIN
-
-      return true;
-
-#endif
-
-      bool bSetOk;
-
-      LPSECURITY_ATTRIBUTES lpsa = NULL;
-
-      bool bResourceException = false;
-
-#ifdef WINDOWSEX
-
-      bSetOk = false;
-
-      SECURITY_ATTRIBUTES MutexAttributes;
-      ZeroMemory(&MutexAttributes,sizeof(MutexAttributes));
-      MutexAttributes.nLength = sizeof(MutexAttributes);
-      MutexAttributes.bInheritHandle = FALSE; // object uninheritable
-      // declare and initialize a security descriptor
-      SECURITY_DESCRIPTOR SD;
-      bool bInitOk = InitializeSecurityDescriptor(&SD,SECURITY_DESCRIPTOR_REVISION) != FALSE;
-      if(bInitOk)
-      {
-         // give the security descriptor a Null Dacl
-         // done using the  "TRUE, (PACL)NULL" here
-         bSetOk = SetSecurityDescriptorDacl(&SD,
-            TRUE,
-            (PACL)NULL,
-            FALSE) != FALSE;
-      }
-
-      if(bSetOk)
-      {
-
-         MutexAttributes.lpSecurityDescriptor = &SD;
-
-         lpsa = &MutexAttributes;
-
-      }
-
-#else
-
-      bSetOk = true;
-
-#endif
-
-      if(bSetOk)
-      {
-         // Make the security attributes point
-         // to the security descriptor
-         bResourceException = false;
-         try
-         {
-            m_pmutexGlobal = new mutex(this,FALSE,get_global_mutex_name(),lpsa);
-         }
-         catch(resource_exception &)
-         {
-            try
-            {
-               m_pmutexGlobal = new mutex(this,FALSE,get_global_mutex_name());
-            }
-            catch(resource_exception &)
-            {
-               bResourceException = true;
-            }
-         }
-
-         if(m_eexclusiveinstance == ExclusiveInstanceGlobal
-            && (::GetLastError() == ERROR_ALREADY_EXISTS || bResourceException))
-         {
-            // Should in some way activate the other instance, but this is global, what to do? do not know yet.
-            //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
-            TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
-            on_exclusive_instance_conflict(ExclusiveInstanceGlobal);
-            return false;
-         }
-         if(m_eexclusiveinstance == ExclusiveInstanceGlobalId)
-         {
-            bResourceException = false;
-            try
-            {
-               m_pmutexGlobalId = new mutex(this,FALSE,get_global_id_mutex_name(),lpsa);
-            }
-            catch(resource_exception &)
-            {
-               try
-               {
-                  m_pmutexGlobalId = new mutex(this,FALSE,get_global_id_mutex_name());
-               }
-               catch(resource_exception &)
-               {
-                  bResourceException = true;
-               }
-            }
-            if(::GetLastError() == ERROR_ALREADY_EXISTS || bResourceException)
-            {
-               // Should in some way activate the other instance
-               //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
-               TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same id.<br><br>Exiting this new instance.");
-               on_exclusive_instance_conflict(ExclusiveInstanceGlobalId);
-               return false;
-            }
-         }
-         bResourceException = false;
-         try
-         {
-            m_pmutexLocal = new mutex(this,FALSE,get_local_mutex_name(),lpsa);
-         }
-         catch(resource_exception &)
-         {
-            try
-            {
-               m_pmutexLocal = new mutex(this,FALSE,get_local_mutex_name());
-            }
-            catch(resource_exception &)
-            {
-               bResourceException = true;
-            }
-         }
-         if(m_eexclusiveinstance == ExclusiveInstanceLocal && (::GetLastError() == ERROR_ALREADY_EXISTS || bResourceException))
-         {
-            // Should in some way activate the other instance
-            //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
-            TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
-            on_exclusive_instance_conflict(ExclusiveInstanceLocal);
-            return false;
-         }
-         if(m_eexclusiveinstance == ExclusiveInstanceLocalId)
-         {
-            bResourceException = false;
-            try
-            {
-               m_pmutexLocalId = new mutex(this,FALSE,get_local_id_mutex_name(),lpsa);
-            }
-            catch(resource_exception &)
-            {
-               try
-               {
-                  m_pmutexLocalId = new mutex(this,FALSE,get_local_id_mutex_name());
-               }
-               catch(resource_exception &)
-               {
-                  bResourceException = true;
-               }
-            }
-            if(::GetLastError() == ERROR_ALREADY_EXISTS || bResourceException)
-            {
-               // Should in some way activate the other instance
-               //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
-               TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
-               on_exclusive_instance_conflict(ExclusiveInstanceLocalId);
-               return false;
-            }
-         }
-      }
-      else
-      {
-         return false;
-      }
-
-      return true;
-
-   }
-
-   bool application::release_exclusive()
-   {
-      if(m_pmutexGlobal.is_set())
-      {
-         m_pmutexGlobal.release();
-      }
-      if(m_pmutexGlobalId.is_set())
-      {
-         m_pmutexGlobalId.release();
-      }
-      if(m_pmutexLocal.is_set())
-      {
-         m_pmutexLocal.release();
-      }
-      if(m_pmutexLocalId.is_set())
-      {
-         m_pmutexLocalId.release();
-      }
-      return true;
-   }
-
-
-
-
-
-   string application::get_local_mutex_name(const char * pszAppName)
-   {
-      string strMutex;
-      strMutex.Format("Local\\ca2_application_local_mutex:%s",pszAppName);
-      return strMutex;
-   }
-
-   string application::get_local_id_mutex_name(const char * pszAppName,const char * pszId)
-   {
-      string strId(pszId);
-      string strMutex;
-      strMutex.Format("Local\\ca2_application_local_mutex:%s, id:%s",pszAppName,strId.c_str());
-      return strMutex;
-   }
-
-   string application::get_global_mutex_name(const char * pszAppName)
-   {
-      string strMutex;
-      strMutex.Format("Global\\ca2_application_global_mutex:%s",pszAppName);
-      return strMutex;
-   }
-
-   string application::get_global_id_mutex_name(const char * pszAppName,const char * pszId)
-   {
-      string strId(pszId);
-      string strMutex;
-      strMutex.Format("Global\\ca2_application_global_mutex:%s, id:%s",pszAppName,strId.c_str());
-      return strMutex;
-   }
-
-   string application::get_local_mutex_name()
-   {
-      return get_local_mutex_name(get_mutex_name_gen());
-   }
-
-   string application::get_local_id_mutex_name()
-   {
-      return get_local_id_mutex_name(get_mutex_name_gen(),get_local_mutex_id());
-   }
-
-   string application::get_global_mutex_name()
-   {
-      return get_global_mutex_name(get_mutex_name_gen());
-   }
-
-   string application::get_global_id_mutex_name()
-   {
-      return get_global_id_mutex_name(get_mutex_name_gen(),get_global_mutex_id());
-   }
 
 
 
@@ -2259,26 +1897,6 @@ namespace axis
    string application::get_mutex_name_gen()
    {
       return m_strAppName;
-   }
-
-   string application::get_local_mutex_id()
-   {
-      return command()->m_varTopicQuery["local_mutex_id"];
-   }
-
-   string application::get_global_mutex_id()
-   {
-      return command()->m_varTopicQuery["global_mutex_id"];
-   }
-
-   ::mutex * application::get_local_mutex()
-   {
-      return m_pmutexLocal;
-   }
-
-   ::mutex * application::get_global_mutex()
-   {
-      return m_pmutexGlobal;
    }
 
 
@@ -2308,7 +1926,7 @@ namespace axis
       if(strLibrary.is_empty())
          strLibrary = "draw2d_cairo";
 
-      library & library = System.m_libraryDraw2d;
+      ::aura::library & library = System.m_libraryDraw2d;
 
       if(library.is_opened())
          return;
@@ -2692,24 +2310,8 @@ namespace axis
 
    }
 
-   bool application::init_main_data(main_init_data * pdata)
-   {
 
-      m_pinitmaindata = pdata;
-
-      return true;
-
-   }
-
-   bool application::set_main_init_data(main_init_data * pdata)
-   {
-
-      return m_pimpl->set_main_init_data(pdata);
-
-   }
-
-
-   sp(::user::interaction) application::get_active_guie()
+   ::user::interaction * application::get_active_guie()
    {
 
       return Session.get_active_guie();
@@ -2717,7 +2319,7 @@ namespace axis
    }
 
 
-   sp(::user::interaction) application::get_focus_guie()
+   ::user::interaction * application::get_focus_guie()
    {
 
       return Session.get_focus_guie();
@@ -2725,224 +2327,9 @@ namespace axis
    }
 
 
-   void application::dir_matter_ls_file(const string & str,stringa & stra)
-   {
-
-      throw not_implemented(get_app());
-
-   }
-
-
-   string application::file_as_string(var varFile)
-   {
-
-      return ::file_as_string_dup(varFile.get_string());
-
-   }
-
    
-   string application::file_as_string(var varFile,var & varQuery)
-   {
 
-      return file_as_string(varFile);
-
-   }
-
-
-   string application::matter_as_string(const char * pszMatter,const char * pszMatter2)
-   {
-
-      var varQuery;
-
-      varQuery["disable_ca2_sessid"] = true;
-
-      return file_as_string(dir_matter(pszMatter,pszMatter2),varQuery);
-
-   }
-
-   string application::dir_matter(const char * pszMatter,const char * pszMatter2)
-   {
-
-      return dir_matter(pszMatter,pszMatter2);
-
-   }
-
-   bool application::is_inside_time_dir(const char * pszPath)
-   {
-      throw not_implemented(this);
-      return false;
-   }
-
-   bool application::file_is_read_only(const char * pszPath)
-   {
-      throw not_implemented(this);
-      return false;
-   }
-
-
-   bool application::file_exists(const char * pszPath)
-   {
-
-      return ::file_exists_dup(pszPath) != FALSE;
-
-   }
-
-
-   bool application::file_is_equal_path(const char * pszPath1,const char * pszPath2)
-   {
-
-      return ::file_is_equal_path_dup(pszPath1,pszPath2) != FALSE;
-
-   }
-
-
-   bool application::dir_is(const char * psz)
-   {
-
-      return ::dir::is(psz);
-
-   }
-
-
-   bool application::file_del(const char * psz)
-   {
-
-      return file_delete_dup(psz) != FALSE;
-   
-   }
-
-   string application::file_extension(const char * pszPath)
-   {
-
-      return ::file_extension_dup(pszPath);
-
-   }
-
-
-   string application::dir_userappdata(const char * lpcsz,const char * lpcsz2)
-   {
-
-      throw not_implemented(this);
-
-   }
-
-   string application::dir_appdata(const char * lpcsz,const char * lpcsz2)
-   {
-
-      throw not_implemented(this);
-
-   }
-
-
-   string application::dir_simple_path(const string & str1,const string & str2)
-   {
-      
-      return dir_path(str1,str2);
-
-   }
-
-
-   string application::dir_path(const char * psz1,const char * psz2,const char * psz3)
-   {
-
-      return ::dir::path(psz1,psz2,psz3);
-
-   }
-
-
-   string application::dir_element(const char * psz)
-   {
-
-      return ::dir::path(::dir::element(),psz);
-
-   }
-
-   string application::dir_ca2module(const char * psz)
-   {
-
-      return ::dir::path(::dir::get_ca2_module_folder(),psz);
-
-   }
-
-   string application::dir_name(const char * psz)
-   {
-
-      return ::dir::name(psz);
-
-   }
-
-
-   void application::dir_ls_dir(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
-   {
-
-      throw not_implemented(get_app());
-
-   }
-
-
-   void application::dir_rls(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,stringa * pstraRelative)
-   {
-
-      throw not_implemented(get_app());
-
-   }
-
-
-   bool application::dir_mk(const char * psz)
-   {
-
-      return ::dir::mk(psz);
-
-   }
-
-
-   string application::file_title(const char * psz)
-   {
-
-      return ::file_title_dup(psz);
-
-   }
-
-
-   string application::file_name(const char * psz)
-   {
-
-      return ::file_name_dup(psz);
-
-   }
-
-
-   string application::file_time_square()
-   {
-
-      //return get_temp_file_name_template(
-      throw not_implemented(get_app());
-
-   }
-
-
-   string application::http_get_locale_schema(const char * pszUrl,const char * pszLocale,const char * pszSchema)
-   {
-
-      throw not_implemented(get_app());
-
-   }
-
-
-   ::file::buffer_sp application::file_get_file(var varFile,uint32_t uiFlags)
-   {
-
-      ::file::buffer_sp buffer(allocer());
-
-      if(!buffer->open(varFile,uiFlags))
-         return NULL;
-
-      return buffer;
-
-   }
-
-
-   bool application::on_thread_on_ide(::thread_impl * pimpl, LONG lCount)
+   bool application::on_thread_on_idle(::thread_impl * pimpl, LONG lCount)
    {
 
       ASSERT_VALID(this);
