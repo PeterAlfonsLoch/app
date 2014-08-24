@@ -80,52 +80,6 @@ namespace user
 
 
 
-      class CLASS_DECL_AXIS timer_item:
-         virtual public element
-      {
-      public:
-
-
-         interaction *        m_pui;
-         uint_ptr             m_uiId;
-         UINT                 m_uiElapse;
-         UINT                 m_uiLastSent;
-
-         bool check(single_lock & sl);
-
-
-      };
-
-      class CLASS_DECL_AXIS timer_array:
-         virtual public spa(interaction)
-      {
-      public:
-
-
-         mutex                               m_mutex;
-         spa(timer_item)                     m_timera;
-         index                               m_iItem;
-
-
-         timer_array(sp(::aura::application) papp);
-
-
-         uint_ptr set(sp(interaction) pui,uint_ptr uiId,UINT uiElapse);
-         void check();
-         bool unset(sp(interaction) pui,uint_ptr uiId);
-         void unset(sp(interaction) pui);
-         void detach(spa(timer_item) & timera,sp(interaction) pui);
-         void transfer(::window_sp pwindow,sp(interaction) pui);
-         sp(interaction) find(sp(element) pca);
-         index find(sp(interaction) pui,uint_ptr uiId);
-         index find_from(sp(interaction) pui,index iStart);
-
-         virtual void assert_valid() const;
-         virtual void dump(dump_context & dc) const;
-
-         };
-
-
 
 
       interaction_base();
