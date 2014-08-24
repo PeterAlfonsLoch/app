@@ -172,7 +172,7 @@ namespace axis
 
 
 
-   string application::message_box(const string & pszMatter,property_set & propertyset)
+   string application::simple_message_box(const string & pszMatter,property_set & propertyset)
    {
 
       simple_message_box(pszMatter,0);

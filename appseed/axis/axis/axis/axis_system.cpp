@@ -144,21 +144,6 @@ namespace axis
    }
 
 
-   base_factory & system::factory()
-   {
-
-      return *m_pfactory;
-
-   }
-
-
-   ::exception::engine & system::eengine()
-   {
-
-      return *m_peengine;
-
-   }
-
 
    bool system::process_initialize()
    {
@@ -168,16 +153,10 @@ namespace axis
 
       enum_display_monitors();
 
-      m_peengine = new ::exception::engine(this);
+      if(!::aura::application::process_initialize())
+         return false;
 
-      m_pfactory->cloneable_large < create_context >();
-      m_pfactory->cloneable_large < application_bias >();
-      m_pfactory->cloneable_large < command_line >();
-      m_pfactory->cloneable_large < manual_reset_event >();
-      m_pfactory->cloneable_large < mutex >();
-      m_pfactory->cloneable_large < event >();
-
-      if(!::axis::application::process_initialize())
+      if(!::aura::system::process_initialize())
          return false;
 
 #ifdef WINDOWSEX
@@ -245,7 +224,10 @@ namespace axis
    bool system::initialize2()
    {
 
-      if(!::axis::application::initialize2())
+      if(!::aura::application::initialize2())
+         return false;
+
+      if(!::aura::system::initialize2())
          return false;
 
       return true;
@@ -258,7 +240,10 @@ namespace axis
 
       m_pfactory->enable_simple_factory_request();
 
-      if(!::axis::application::initialize_instance())
+      if(!::aura::application::initialize_instance())
+         return false;
+
+      if(!::aura::system::initialize_instance())
          return false;
 
       return true;

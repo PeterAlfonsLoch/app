@@ -606,7 +606,7 @@ namespace windows
       ::thread* pThread = ::get_thread();
       if(pThread != NULL)
       {
-         if(pThread->get_active_ui() == this)
+         if(pThread->get_active_ui() == m_pui)
             pThread->set_active_ui(NULL);
       }
 
