@@ -229,6 +229,8 @@ FreeImage_Initialise(BOOL load_local_plugins_only) {
 		in order to avoid race conditions with multi-threading
 		*/
 
+      TagLib::create_instance();
+
 		// initialise the TagLib singleton
 		TagLib& s = TagLib::instance();
 
@@ -349,12 +351,18 @@ FreeImage_Initialise(BOOL load_local_plugins_only) {
 }
 
 void DLL_CALLCONV
-FreeImage_DeInitialise() {
+FreeImage_DeInitialise()
+{
 	--s_plugin_reference_count;
 
-	if (s_plugin_reference_count == 0) {
+	if (s_plugin_reference_count == 0)
+   {
 		delete s_plugins;
+
+      TagLib::destroy_instance();
+
 	}
+
 }
 
 // =====================================================================

@@ -51,6 +51,7 @@ namespace windows
 
       virtual bool pre_run();
       virtual int32_t run();
+      virtual bool finalize();
 
       virtual UINT RedrawProc();
 

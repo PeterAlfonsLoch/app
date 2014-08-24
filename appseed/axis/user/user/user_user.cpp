@@ -590,17 +590,17 @@ retry_license:
 
    ::user::keyboard & user::keyboard()
    {
-      if(!Application.is_session())
-      {
-         return Session.user()->keyboard();
-      }
+
       return *m_pkeyboard;
+
    }
 
 
    class window_map & user::window_map()
    {
+
       return *m_pwindowmap;
+
    }
 
 

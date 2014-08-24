@@ -402,7 +402,10 @@ public:
 	/**
 	@return Returns a reference to the TagLib instance
 	*/
-	static TagLib& instance();
+   static TagLib * s_plib;
+	static TagLib & instance();
+   static void create_instance();
+   static void destroy_instance();
 
 	/**
 	Given a tag ID, returns its TagInfo descriptor

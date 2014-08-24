@@ -1633,10 +1633,20 @@ void thread_impl::thread_impl_delete()
 
 bool thread_impl::finalize()
 {
-   
-   m_spqueue->message_queue_destroy();
 
-//   destroy_message_queue();
+   if(m_spqueue.is_set())
+   {
+
+      if(m_spqueue->message_queue_is_initialized())
+      {
+
+         m_spqueue->message_queue_destroy();
+
+      }
+
+      m_spqueue.release();
+
+   }
 
    return true;
 

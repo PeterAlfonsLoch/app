@@ -183,6 +183,17 @@ namespace windows
       }
    }
 
+   
+   bool window_draw::finalize()
+   {
+
+      message_queue_destroy();
+
+      ::user::window_draw::finalize();
+
+      return true;
+
+   }
 
 
    bool window_draw::pre_run()
@@ -200,6 +211,14 @@ namespace windows
       }
 
       ::AttachThreadInput(::GetCurrentThreadId(),get_os_int(),TRUE);
+
+
+      if(!::user::window_draw::pre_run())
+      {
+
+         return false;
+
+      }
 
       return true;
 

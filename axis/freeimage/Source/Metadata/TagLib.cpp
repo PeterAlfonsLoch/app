@@ -1508,12 +1508,35 @@ TagLib::~TagLib() {
 	}
 }
 
+TagLib * TagLib::s_plib = NULL;
 
-TagLib& 
-TagLib::instance() {
-	static TagLib s;
-	return s;
+
+TagLib::instance()
+{
+	
+	return *s_plib;
+
 }
+
+void TagLib::create_instance()
+{
+   
+   s_plib = new TagLib;
+
+}
+
+void TagLib::destroy_instance()
+{
+
+   if(s_plib == NULL)
+      return;
+
+   delete s_plib;
+
+   s_plib = NULL;
+
+}
+
 
 const TagInfo* 
 TagLib::getTagInfo(MDMODEL md_model, WORD tagID) {
