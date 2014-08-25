@@ -1627,7 +1627,7 @@ namespace core
 
                      uint32_t dwExitCode;
                      string str;
-                     ::core::process process;
+                     ::process::process process(get_app());
                      bool bOk = true;
                      if(!process.create_child_process(strPath,false,System.dir().name(strPath)))
                      {

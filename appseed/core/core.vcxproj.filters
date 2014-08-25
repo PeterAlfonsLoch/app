@@ -1802,9 +1802,6 @@
     <ClInclude Include="core\core\core_util.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core\core_util1.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core\core_simple_app.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1972,6 +1969,9 @@
     </ClInclude>
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set_listener_array.h">
       <Filter>Header Files\user\wndfrm\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_util1.h">
+      <Filter>Header Files\core\install</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

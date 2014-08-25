@@ -107,7 +107,6 @@ namespace core
       DECL_GEN_SIGNAL(on_application_signal);
 
 
-      using ::core::application::process;
       bool set_history(::core::history * phistory);
 
 
