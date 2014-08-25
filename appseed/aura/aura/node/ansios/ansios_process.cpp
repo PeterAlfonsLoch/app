@@ -23,8 +23,9 @@ namespace ansios
 {
 
 
-   process::process():
-      m_pipe(true)
+   process::process(sp(::aura::application) papp):
+      element(papp),
+      ::process::process(papp)
    {
 
    }
