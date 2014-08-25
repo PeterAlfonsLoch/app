@@ -201,48 +201,6 @@ namespace ansios
    {
 
 
-#ifdef WINDOWSEX
-
-      DWORD dwExitCode;
-      bool bExited;
-
-
-      if(!GetExitCodeProcess(m_pi.hProcess,&dwExitCode))
-      {
-
-         bExited = true;
-
-      }
-      else
-      {
-
-         if(dwExitCode == STILL_ACTIVE)
-         {
-
-            bExited = false;
-
-         }
-         else
-         {
-
-            bExited = true;
-
-         }
-
-      }
-
-      if(puiExitCode != NULL)
-      {
-
-         *puiExitCode = dwExitCode;
-      }
-      return bExited;
-
-#elif defined(METROWIN)
-
-      throw todo(get_thread_app());
-
-#else
       int32_t iExitCode;
       //      bool bExited;
 
@@ -293,9 +251,6 @@ namespace ansios
 
       return false;
 
-
-
-#endif
 
 
    }
