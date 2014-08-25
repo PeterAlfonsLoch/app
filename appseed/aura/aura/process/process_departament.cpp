@@ -5,7 +5,7 @@ namespace process
 {
 
 
-   departament::departament(application * papp):
+   departament::departament(sp(::aura::application) papp):
       element(papp),
       ::aura::departament(papp)
    {
