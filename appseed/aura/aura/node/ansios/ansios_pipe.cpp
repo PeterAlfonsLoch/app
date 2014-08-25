@@ -226,7 +226,6 @@ namespace ansios
       UNREFERENCED_PARAMETER(dwErrorCode);
       overlapped * plap = NULL;
       plap = plap->from(lpOverlapped);
-      int32_t iLimit = MIN(dwNumberOfBytesTransfered,1024);
 
 
 } // namespace core
