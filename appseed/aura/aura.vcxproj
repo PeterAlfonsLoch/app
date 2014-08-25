@@ -3105,6 +3105,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="aura\node\windows\windows_file_find.cpp" />
     <ClCompile Include="aura\node\windows\windows_folder_watch.cpp" />
     <ClCompile Include="aura\node\windows\windows_os.cpp" />
+    <ClCompile Include="aura\node\windows\windows_process.cpp" />
     <ClCompile Include="aura\node\windows\windows_registry.cpp" />
     <ClCompile Include="aura\node\windows\windows_shell.cpp" />
     <ClCompile Include="aura\node\windows\windows_stdio_file.cpp" />
@@ -3757,7 +3758,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="aura\os\windows\windows_main.cpp" />
     <ClCompile Include="aura\os\windows\windows_message_loop.cpp" />
     <ClCompile Include="aura\os\windows\windows_multithreading.cpp" />
-    <ClCompile Include="aura\os\windows\windows_process.cpp" />
+    <ClCompile Include="aura\os\windows\windows_base_process.cpp" />
     <ClCompile Include="aura\os\windows\windows_simple_app.cpp" />
     <ClCompile Include="aura\os\windows\windows_simple_shell_launcher.cpp" />
     <ClCompile Include="aura\os\windows\windows_small_ipc_channel.cpp" />
