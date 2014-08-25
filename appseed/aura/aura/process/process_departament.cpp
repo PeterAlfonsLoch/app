@@ -115,6 +115,7 @@ namespace process
       element(papp),
       thread(papp),
       simple_thread(papp),
+      m_spprocess(allocer()),
       m_pstrRead(pstrRead),
       m_pevReady(pevReady)
    {
