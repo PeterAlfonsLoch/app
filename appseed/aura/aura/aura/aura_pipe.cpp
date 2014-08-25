@@ -136,7 +136,7 @@ namespace aura
       if(!m_pipeOut->create(bBlock,bInherit))
          return false;
 
-      if(!m_pipeOut.not_inherit_read())
+      if(!m_pipeOut->not_inherit_read())
          return false;
 
       return true;
