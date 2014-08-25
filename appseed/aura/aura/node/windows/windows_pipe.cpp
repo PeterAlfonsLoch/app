@@ -62,7 +62,6 @@ namespace windows
       }
 
 
-
 #endif
 
       return true;
