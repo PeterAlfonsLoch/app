@@ -133,7 +133,7 @@ namespace aura
       if(!m_sppipeIn->create(bBlock, bInherit))
          return false;
 
-      if(!m_pipeIn->not_inherit_write())
+      if(!m_sppipeIn->not_inherit_write())
          return false;
 
       if(!m_pipeOut->create(bBlock,bInherit))
