@@ -5,18 +5,6 @@ namespace process
 {
 
 
-   class CLASS_DECL_AURA pipe:
-      virtual public ::object
-   {
-   public:
-
-
-      char *               m_pchBuf;
-      string               m_strRead;
-
-      bool                 m_bInherit;
-      bool                 m_bBlock;
-
 
       pipe(sp(::aura::application) papp);
       virtual ~pipe();
