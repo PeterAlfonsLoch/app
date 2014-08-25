@@ -27,9 +27,6 @@ namespace ansios
       m_pipe(true)
    {
 
-      m_bPiped = false;
-
-
    }
 
    process::~process()
