@@ -100,6 +100,7 @@ namespace windows
       bSuccess = WriteFile(m_hWrite,(const char *)psz,dwLen,&dwWritten,NULL) != FALSE;
 
       return bSuccess != FALSE && dwWritten == dwLen;
+
    }
 
    string pipe::read()
