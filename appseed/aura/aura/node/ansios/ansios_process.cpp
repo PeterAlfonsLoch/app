@@ -1,6 +1,8 @@
 #include "framework.h"
 
 
+#ifndef METROWIN
+
 #if defined(ANDROID)
 #include <sys/wait.h>
 #include <unistd.h>
@@ -19,7 +21,7 @@ extern char * const * environ;
 
 
 
-namespace windows
+namespace core
 {
 
    process::process():
