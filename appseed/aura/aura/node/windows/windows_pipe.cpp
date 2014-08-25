@@ -276,7 +276,6 @@ namespace core
       m_pipeIn(bInherit),
       m_pipeOut(bInherit)
    {
-   }
 
 
 
