@@ -9,11 +9,6 @@ namespace process
 
 
 
-   bool pipe::not_inherit_read()
-   {
-
-      return true;
-
    }
 
    bool pipe::not_inherit_write()
