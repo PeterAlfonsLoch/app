@@ -205,6 +205,7 @@ namespace windows
       m_overlapped.m_ppipe = this;
 
       ReadFileEx(m_hRead,m_pchBuf,1024,&m_overlapped.m_overlapped,(LPOVERLAPPED_COMPLETION_ROUTINE)&pipe::read_complete);
+
    }
 
    void WINAPI pipe::read_complete(
