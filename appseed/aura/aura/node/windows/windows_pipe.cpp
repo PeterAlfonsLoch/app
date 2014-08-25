@@ -113,7 +113,6 @@ namespace windows
 
       DWORD dwRead;
 
-#else
       size_t dwRead;
 #endif
       bool bSuccess;
