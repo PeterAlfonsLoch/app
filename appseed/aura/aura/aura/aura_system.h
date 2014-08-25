@@ -160,6 +160,9 @@ namespace aura
 
       ::exception::engine & eengine();
 
+      ::aura::process_departament            & process();
+
+
 
       virtual UINT os_post_to_all_threads(UINT uiMessage,WPARAM wparam,lparam lparam);
 
