@@ -21,7 +21,7 @@ namespace aura
       virtual ~pipe();
 
 
-      bool set_inherit(
+      virtual bool set_inherit(bool bInherit)
 
       bool create(bool bBlock = true);
 
