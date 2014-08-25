@@ -135,9 +135,6 @@ namespace core
 
       ::core::stra                           & stra();
       ::core::service                        & service();
-#ifndef METROWIN
-      ::core::process_departament            & process();
-#endif
       ::core::history                        & hist();
 
       class ::core::patch                    & patch();
