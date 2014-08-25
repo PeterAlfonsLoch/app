@@ -56,8 +56,6 @@ namespace process
 
       string strBin = consume_param(pszCmdLine,&pszEnd);
 
-
-
 #ifdef METROWIN
 
       throw todo(get_app());
@@ -71,8 +69,8 @@ namespace process
 #endif
 
 
-
    }
+
 
    int32_t departament::s_on_retry(int32_t iTry,uint_ptr dwParam)
    {
