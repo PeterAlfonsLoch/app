@@ -36,7 +36,7 @@ namespace windows
    bool pipe::create(bool bBlock, bool bInherit)
    {
 
-      if(!::aura::pipe::create(bBlock,bInherit))
+      if(!::process::pipe::create(bBlock,bInherit))
          return false;
 
       m_sa.nLength = sizeof(SECURITY_ATTRIBUTES);
