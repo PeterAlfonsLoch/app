@@ -2755,12 +2755,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="aura\aura\aura_id_pool.cpp" />
     <ClCompile Include="aura\aura\aura_library.cpp" />
     <ClCompile Include="aura\aura\aura_net.cpp" />
-    <ClCompile Include="aura\aura\aura_pipe.cpp" />
     <ClCompile Include="aura\aura\aura_platform_interface.cpp" />
     <ClCompile Include="aura\aura\aura_session_interface.cpp" />
     <ClCompile Include="aura\aura\aura_static_start.cpp" />
-    <ClCompile Include="aura\aura_process.cpp" />
-    <ClCompile Include="aura\aura_process_departament.cpp" />
     <ClCompile Include="aura\exception\exception_parsing.cpp" />
     <ClCompile Include="aura\exception\exception_verisimple.cpp" />
     <ClCompile Include="aura\message\message.cpp" />
