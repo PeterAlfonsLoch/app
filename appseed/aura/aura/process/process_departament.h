@@ -45,7 +45,7 @@ namespace process
 
 
       // run process and get output
-      var get_output(const char * pszCmdLine);
+      virtual var get_output(const char * pszCmdLine);
       uint32_t retry(const char * pszCmdLine,uint32_t dwTimeOut,int32_t iShow = SW_HIDE);
       uint32_t synch(const char * pszCmdLine,int32_t iShow = SW_HIDE);
       bool launch(const char * pszCmdLine,int32_t iShow = SW_HIDE);
