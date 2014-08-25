@@ -40,6 +40,7 @@ namespace aura
 
    bool process::write(const char * psz)
    {
+
       return m_pipe.m_sppipeIn->write(psz);
 
    }
