@@ -97,7 +97,6 @@ namespace ansios
 
       bool bSuccess = false;
 
-      bSuccess = WriteFile(m_hWrite,(const char *)psz,dwLen,&dwWritten,NULL) != FALSE;
 #else
       size_t dwWritten;
       dwWritten = ::write(m_fd[1],(const char *)psz,dwLen);
