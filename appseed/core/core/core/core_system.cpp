@@ -404,19 +404,19 @@ namespace core
 
       ::aura::library library(this,0, NULL);
 
-      if(!strcmp(pszLibrary,"app_core_rdpclient.dll"))
+      if(!strcmp(pszLibrary,"app_core_rdpclient"))
       {
          TRACE("reach");
       }
 
-      if(!stricmp_dup(pszLibrary,"app_core_hellomultiverse.dll"))
+      if(!stricmp_dup(pszLibrary,"app_core_hellomultiverse"))
       {
-         TRACE("reach app_core_hellomultiverse.dll");
+         TRACE("reach app_core_hellomultiverse");
       }
 
-      if(!stricmp_dup(pszLibrary,"wndfrm_core.dll"))
+      if(!stricmp_dup(pszLibrary,"wndfrm_core"))
       {
-         TRACE("reach wndfrm_core.dll");
+         TRACE("reach wndfrm_core");
       }
 
       if(!stricmp_dup(pszLibrary,"app_core_hellomultiverse"))
