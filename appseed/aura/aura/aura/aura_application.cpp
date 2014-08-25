@@ -2865,6 +2865,70 @@ namespace aura
 
    void application::process_message_filter(int32_t code,signal_details * pobj)
    {
+
+      //if(pobj == NULL)
+      //   return;   // not handled
+
+      //SCAST_PTR(::message::base,pbase,pobj);
+
+      //sp(::user::frame_window) pTopFrameWnd;
+      //::user::interaction * pMainWnd;
+      //::user::interaction * pMsgWnd;
+      //switch(code)
+      //{
+      ////case MSGF_DDEMGR:
+      //   // Unlike other WH_MSGFILTER codes, MSGF_DDEMGR should
+      //   //  never call the next hook.
+      //   // By returning FALSE, the message will be dispatched
+      //   //  instead (the default behavior).
+      //   //return;
+
+      //case MSGF_MENU:
+      //   pMsgWnd = pbase->m_pwnd;
+      //   if(pMsgWnd != NULL)
+      //   {
+      //      pTopFrameWnd = pMsgWnd->GetTopLevelFrame();
+      //      if(pTopFrameWnd != NULL && pTopFrameWnd->IsTracking() &&
+      //         pTopFrameWnd->m_bHelpMode)
+      //      {
+      //         //pMainWnd = __get_main_window();
+      //         //if((m_puiMain != NULL) && (IsEnterKey(pbase) || IsButtonUp(pbase)))
+      //         //{
+      //         //   //                  pMainWnd->SendMessage(WM_COMMAND, ID_HELP);
+      //         //   pbase->m_bRet = true;
+      //         //   return;
+      //         //}
+      //      }
+      //   }
+      //   // fall through...
+
+      //case MSGF_DIALOGBOX:    // handles message boxes as well.
+      //   //pMainWnd = __get_main_window();
+      //   if(code == MSGF_DIALOGBOX && m_pthread->m_puiActive != NULL &&
+      //      pbase->m_uiMessage >= WM_KEYFIRST && pbase->m_uiMessage <= WM_KEYLAST)
+      //   {
+      //      //// need to translate messages for the in-place container
+      //      //___THREAD_STATE* pThreadState = __get_thread_state();
+      //      //ENSURE(pThreadState);
+
+      //      //if (pThreadState->m_bInMsgFilter)
+      //      //   return;
+      //      //pThreadState->m_bInMsgFilter = TRUE;    // avoid reentering this code
+      //      //if (m_puiActive->is_window_enabled())
+      //      //{
+      //      //   pre_translate_message(pobj);
+      //      //   if(pobj->m_bRet)
+      //      //   {
+      //      //      pThreadState->m_bInMsgFilter = FALSE;
+      //      //      return;
+      //      //   }
+      //      //}
+      //      //pThreadState->m_bInMsgFilter = FALSE;    // ok again
+      //   }
+      //   break;
+      //}
+      //// default to not handled
+
    }
 
    bool application::on_thread_on_idle(::thread_impl * pimpl,LONG lCount)
