@@ -18,7 +18,6 @@ namespace windows
       m_hWrite = NULL;
 
 
-
    }
 
    pipe::~pipe()
