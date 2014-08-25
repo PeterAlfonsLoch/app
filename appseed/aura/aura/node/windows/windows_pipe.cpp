@@ -151,6 +151,7 @@ namespace windows
 
    string pipe::one_pass_read()
    {
+
       string str;
       const int32_t BUFSIZE = 1024 * 8;
 #ifdef WINDOWS
