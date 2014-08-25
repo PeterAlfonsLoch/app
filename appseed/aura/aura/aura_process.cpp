@@ -64,6 +64,7 @@ namespace aura
          i++;
       }
       return dwExitCode;
+
    }
 
    bool process::has_exited(uint32_t * puiExitCode)
