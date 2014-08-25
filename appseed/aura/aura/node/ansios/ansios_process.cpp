@@ -78,13 +78,13 @@ namespace ansios
       if(bPiped)
       {
 
-         pipe * ppipeOut = m_pipe.m_sppipeOut.cast < ::ansios::pipe >();
+         pipe * ppipeOut = m_pipe.m_sppipeOut.cast < pipe >();
 
          posix_spawn_file_actions_adddup2(&actions, ppipeOut->m_fd[1],STDOUT_FILENO);
 
          posix_spawn_file_actions_adddup2(&actions, ppipeOut->m_fd[1],STDERR_FILENO);
 
-         pipe * ppipeIn = m_pipe.m_sppipeIn.cast < ::ansios::pipe >();
+         pipe * ppipeIn = m_pipe.m_sppipeIn.cast < pipe >();
 
          posix_spawn_file_actions_adddup2(&actions, ppipeOut->m_fd[0],STDIN_FILENO);
 
