@@ -3070,12 +3070,6 @@
     <ClCompile Include="core\core\core_patch.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core\core_process.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_process_section.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core\core_profiler.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
