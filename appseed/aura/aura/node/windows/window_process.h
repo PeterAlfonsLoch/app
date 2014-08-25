@@ -1,22 +1,21 @@
 #pragma once
 
 
-#ifndef METROWIN
-
-
-namespace aura
+namespace windows
 {
 
 
-   class CLASS_DECL_CORE process
+   class CLASS_DECL_AURA process :
+      virtual public ::aura::process
    {
    public:
 
 
-      cross_pipe              m_pipe;
-      bool                    m_bPiped;
+      PROCESS_INFORMATION     m_pi;
+      STARTUPINFOW             m_si;
 
-      process();
+
+      process(sp(::aura::application) papp);
       virtual ~process();
 
 
@@ -28,16 +27,7 @@ namespace aura
       bool write(const char * psz);
       string read(bool bUntilExit = false);
 
-
    };
 
 
-} // namespace aura
-
-
-
-#endif
-
-
-
-
+} // namespace windows
