@@ -171,7 +171,9 @@ namespace ansios
       size_t dwRead;
 #endif
       bool bSuccess = false;
+
       char chBuf[BUFSIZE];
+
       memset(chBuf,0,BUFSIZE);
 
       try
