@@ -1,25 +1,6 @@
 #include "framework.h"
 
 
-#ifndef METROWIN
-
-#if defined(ANDROID)
-#include <sys/wait.h>
-#include <unistd.h>
-#elif defined(LINUX)
-#include <sys/wait.h>
-#include <unistd.h>
-#include <spawn.h>
-extern char **environ;
-#elif defined(APPLEOS)
-#include <sys/wait.h>
-#include <unistd.h>
-#include <spawn.h>
-extern char * const * environ;
-#endif
-
-
-
 
 namespace core
 {
