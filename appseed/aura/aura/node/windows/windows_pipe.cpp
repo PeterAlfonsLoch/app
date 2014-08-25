@@ -199,6 +199,7 @@ namespace windows
             throw memory_exception(get_thread_app());
 
       }
+
       memset(&m_overlapped,0,sizeof(m_overlapped));
       m_overlapped.m_ppipe = this;
       ReadFileEx(m_hRead,m_pchBuf,1024,&m_overlapped.m_overlapped,(LPOVERLAPPED_COMPLETION_ROUTINE)&pipe::read_complete);
