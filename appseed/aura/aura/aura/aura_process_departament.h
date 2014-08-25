@@ -1,9 +1,6 @@
 #pragma once
 
 
-#ifndef METROWIN
-
-
 namespace core
 {
 
@@ -62,6 +59,4 @@ namespace core
 
 } // namespace core
 
-
-#endif
 
