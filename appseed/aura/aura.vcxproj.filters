@@ -4072,9 +4072,6 @@
     <ClCompile Include="aura\node\ansios\ansios_pipe.cpp">
       <Filter>Source Files\aura\node\ansios</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura_pipe.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
     <ClCompile Include="aura\aura_process_departament.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
