@@ -213,7 +213,6 @@ namespace ansios
             throw memory_exception(get_thread_app());
       }
       memset(&m_overlapped,0,sizeof(m_overlapped));
-      m_overlapped.m_ppipe = this;
 
 
 } // namespace core
