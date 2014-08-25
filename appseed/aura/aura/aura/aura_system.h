@@ -66,7 +66,7 @@ namespace aura
       string                                       m_strModulePath;
       string                                       m_strModuleFolder;
 
-      class ::core::process_departament            m_processsection;
+      class ::aura::process_departament            m_processsection;
 
 
       string                                       m_strCmdLine;
