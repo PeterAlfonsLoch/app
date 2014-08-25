@@ -23,7 +23,9 @@ namespace process
    {
 
       string strRead;
+
       manual_reset_event evReady(get_app());
+
       evReady.ResetEvent();
       process_thread * pthread = new process_thread(get_app(),&strRead,&evReady);
       pthread->m_bAutoDelete = true;
