@@ -26,7 +26,8 @@ namespace aura
    class ::id_space * system::s_pidspace = NULL;
 
 
-   system::system(sp(::aura::application) papp)
+   system::system(sp(::aura::application) papp) :
+      m_process(this)
    {
       
 #ifdef MATTER_CACHE_FROM_HTTP_SERVER
