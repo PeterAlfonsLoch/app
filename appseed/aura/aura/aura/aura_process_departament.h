@@ -16,7 +16,7 @@ namespace aura
       public:
 
 
-         ::core::process            m_process;
+         sp(::aura::process)        m_spprocess;
          string *                   m_pstrRead;
          manual_reset_event *       m_pevReady;
 
