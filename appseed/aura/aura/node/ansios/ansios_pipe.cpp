@@ -49,7 +49,6 @@ namespace ansios
    bool pipe::create(bool bBlock)
    {
 
-
 #else
 
       int32_t iFlags = bBlock ? 0 : O_NONBLOCK;
