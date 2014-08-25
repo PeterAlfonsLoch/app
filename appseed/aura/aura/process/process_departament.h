@@ -5,7 +5,7 @@ namespace process
 {
 
 
-   class CLASS_DECL_AURA process_departament:
+   class CLASS_DECL_AURA departament:
       public ::aura::departament
    {
    public:
@@ -16,9 +16,9 @@ namespace process
       public:
 
 
-         sp(::aura::process)        m_spprocess;
-         string *                   m_pstrRead;
-         manual_reset_event *       m_pevReady;
+         sp(process)                      m_spprocess;
+         string *                         m_pstrRead;
+         manual_reset_event *             m_pevReady;
 
 
          process_thread(sp(::aura::application) papp,string * pstrRead = NULL,manual_reset_event * pevReady = NULL);
@@ -57,6 +57,6 @@ namespace process
    };
 
 
-} // namespace aura
+} // namespace process
 
 
