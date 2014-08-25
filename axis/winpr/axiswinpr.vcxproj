@@ -232,7 +232,7 @@
     <None Include="basewinpr.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>basewinpr</ProjectName>
+    <ProjectName>axiswinpr</ProjectName>
     <ProjectGuid>{E4841F02-7CCA-4144-89A2-149302677B3F}</ProjectGuid>
     <RootNamespace>basewinpr</RootNamespace>
   </PropertyGroup>
