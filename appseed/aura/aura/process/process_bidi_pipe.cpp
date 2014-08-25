@@ -6,7 +6,7 @@ namespace process
 
 
 
-   cross_pipe::cross_pipe(sp(::aura::application) papp):
+   bidi_pipe::bidi_pipe(sp(::aura::application) papp):
       element(papp),
       m_sppipeIn(allocer()),
       m_sppipeOut(allocer())
@@ -15,7 +15,7 @@ namespace process
    }
 
 
-   bool cross_pipe::create(bool bBlock,bool bInherit)
+   bool bidi_pipe::create(bool bBlock,bool bInherit)
    {
 
       if(!m_sppipeIn->create(bBlock,bInherit))
