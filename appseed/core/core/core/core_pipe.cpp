@@ -25,21 +25,3 @@ namespace core
       m_sa.lpSecurityDescriptor = NULL;
       m_hRead = NULL;
       m_hWrite = NULL;
-
-#else
-
-      m_fd[0] = -1;
-      m_fd[1] = -1;
-
-#endif
-
-
-   }
-
-   pipe::~pipe()
-   {
-
-      if(m_pchBuf != NULL)
-      {
-         free(m_pchBuf);
-      }
