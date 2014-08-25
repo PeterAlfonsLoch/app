@@ -241,6 +241,7 @@ namespace core
 
    void pipe::readex()
    {
+
       if(m_pchBuf == NULL)
       {
          m_pchBuf = (char *)malloc(1025);
