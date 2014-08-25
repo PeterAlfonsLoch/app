@@ -1,11 +1,9 @@
 #include "framework.h"
 
 
-
-
-
 namespace windows
 {
+
 
    process::process():
       m_pipe(true)
@@ -18,6 +16,7 @@ namespace windows
       memset(&m_si,0,sizeof(STARTUPINFO));
 
    }
+
 
    process::~process()
    {
@@ -205,9 +204,8 @@ namespace windows
 
          *puiExitCode = dwExitCode;
       }
+
       return bExited;
-
-
 
    }
 
@@ -215,7 +213,5 @@ namespace windows
 } // namespace core
 
 
-
-#endif
 
 
