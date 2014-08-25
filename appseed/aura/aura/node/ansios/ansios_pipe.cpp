@@ -191,7 +191,7 @@ namespace ansios
    }
 
 
-} // namespace core
+} // namespace ansios
 
 
 
