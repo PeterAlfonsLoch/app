@@ -182,9 +182,6 @@ namespace aura
    bool system::process_initialize()
    {
 
-
-
-
       m_peengine = new ::exception::engine(this);
 
       m_pfactory->cloneable_large < create_context >();
@@ -671,6 +668,7 @@ namespace aura
 
 
 
+
    machine_event_central & system::machine_event_central()
    {
       return *m_pmachineeventcentral;
@@ -699,6 +697,15 @@ namespace aura
       return m_basesessionptra;
 
    }
+
+
+   ::process::departament & system::process()
+   {
+
+      return m_process;
+
+   }
+
 
    bool system::initialize_log(const char * pszId)
    {
