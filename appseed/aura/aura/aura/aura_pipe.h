@@ -18,7 +18,6 @@ namespace aura
       bool                 m_bBlock;
 
 
-
       pipe(sp(::aura::application) papp);
       virtual ~pipe();
 
