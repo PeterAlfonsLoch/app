@@ -1,9 +1,6 @@
 #include "framework.h"
 
 
-#ifndef METROWIN
-
-
 namespace core
 {
 
