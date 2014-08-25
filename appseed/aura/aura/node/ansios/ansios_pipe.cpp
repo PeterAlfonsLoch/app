@@ -77,7 +77,6 @@ namespace ansios
    bool pipe::not_inherit_read()
    {
 
-
       if(!SetHandleInformation(m_hRead,HANDLE_FLAG_INHERIT,0))
          return false;
 
