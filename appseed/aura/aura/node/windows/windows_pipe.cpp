@@ -2,7 +2,6 @@
 
 
 
-#if defined(LINUX) || defined(ANDROID)
 #include <fcntl.h>
 #include <unistd.h>
 #endif
