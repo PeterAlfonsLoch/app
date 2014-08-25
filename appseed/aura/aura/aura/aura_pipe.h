@@ -8,8 +8,7 @@ namespace core
    {
    public:
 
-      class overlapped
-      {
+      
       public:
          pipe * m_ppipe;
          OVERLAPPED m_overlapped;
