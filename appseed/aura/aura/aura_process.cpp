@@ -63,6 +63,7 @@ namespace aura
          Sleep(100);
          i++;
       }
+
       return dwExitCode;
 
    }
