@@ -11,7 +11,6 @@ namespace aura
 
       m_bPiped = false;
 
-
    }
 
    process::~process()
