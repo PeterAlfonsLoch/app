@@ -6,7 +6,7 @@ namespace windows
 
 
    class CLASS_DECL_AURA process :
-      virtual public ::aura::process
+      virtual public ::process::process
    {
    public:
 
