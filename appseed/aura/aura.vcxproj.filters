@@ -4102,6 +4102,15 @@
     <ClCompile Include="aura\aura\aura_pipe.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
+    <ClCompile Include="aura\process\process_departament.cpp">
+      <Filter>Source Files\aura\process</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\process\process_pipe.cpp">
+      <Filter>Source Files\aura\process</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\process\process_process.cpp">
+      <Filter>Source Files\aura\process</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
