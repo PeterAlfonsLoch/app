@@ -44,7 +44,6 @@ namespace windows
    bool pipe::create(bool bBlock, bool bInherit)
    {
 
-
       if(!::aura::pipe::create(bBlock,bInherit))
          return false;
 
