@@ -43,17 +43,6 @@ namespace user
 
 #else
 
-#ifndef METROWIN
-         if(!System.directrix()->m_varTopicQuery.has_property("install")
-            && !System.directrix()->m_varTopicQuery.has_property("uninstall")
-            && !System.install().is(NULL, strBuildNumber, "wndfrm_core", strId, Application.m_strLocale, Application.m_strSchema))
-         {
-
-            throw not_installed(get_app(), NULL, strBuildNumber, "wndfrm_core", strId, Application.m_strLocale, Application.m_strSchema);
-
-         }
-
-#endif
 
 #endif
 
