@@ -182,7 +182,6 @@ namespace ansios
 
          bSuccess = true;
 
-
       }
       catch(...)
       {
