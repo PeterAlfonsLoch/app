@@ -16,7 +16,6 @@ namespace ansios
 
       m_pchBuf = NULL;
 
-      m_hWrite = NULL;
 
 #else
 
