@@ -128,18 +128,3 @@ namespace core
       return true;
 
    }
-
-   bool pipe::not_inherit_write()
-   {
-
-#ifdef WINDOWS
-
-      if(!SetHandleInformation(m_hWrite, HANDLE_FLAG_INHERIT, 0))
-         return false;
-
-#endif
-
-      return true;
-
-   }
-
