@@ -690,9 +690,10 @@ namespace filemanager
       ::user::document::on_create(pcreatecontext);
 
       m_spfilemanagerdata = pcreatecontext->oprop("filemanager::data").cast < ::filemanager::data >();
-      m_spfilemanagerdata->m_pmanager = this;
-      m_spfilemanagerdata->m_pmanagerMain = this;
 
+      m_spfilemanagerdata->m_pmanager = this;
+
+      m_spfilemanagerdata->m_pmanagerMain = this;
 
    }
 
