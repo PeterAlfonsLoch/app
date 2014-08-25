@@ -142,7 +142,7 @@ namespace core
    }
 
 
-} // namespace core
+} // namespace aura
 
 
 
