@@ -47,7 +47,7 @@ namespace windows
       virtual string one_pass_read();
 
 
-      void readex();
+      virtual void readex();
 
 
       static void WINAPI read_complete(
