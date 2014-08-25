@@ -32,18 +32,6 @@ namespace ansios
       string one_pass_read();
 
 
-#ifdef WINDOWS
-
-      void readex();
-
-
-      static void WINAPI read_complete(
-         uint32_t dwErrorCode,
-         uint32_t dwNumberOfBytesTransfered,
-         LPOVERLAPPED lpOverlapped
-         );
-
-#endif
 
    };
 
