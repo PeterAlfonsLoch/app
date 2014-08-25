@@ -145,10 +145,14 @@ namespace process
 
       while(get_run())
       {
-         strRead = m_process.m_pipe.m_pipeOut.read();
+
+         strRead = m_spprocess->m_pipe.m_sppipeOut.read();
+
          if(strRead.is_empty())
          {
+
             break;
+
          }
          else
          {
