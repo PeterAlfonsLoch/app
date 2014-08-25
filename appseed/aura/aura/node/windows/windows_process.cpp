@@ -6,7 +6,7 @@ namespace windows
 
 
    process::process(sp(::aura::application) papp):
-      
+      element(papp),
       m_pipe(true)
    {
 
