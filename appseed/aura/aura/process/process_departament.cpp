@@ -1,24 +1,24 @@
 #include "framework.h"
 
 
-namespace aura
+namespace process
 {
 
 
-   process_departament::process_departament(application * papp):
+   departament::departament(application * papp):
       element(papp),
       ::aura::departament(papp)
    {
       }
 
 
-   process_departament::~process_departament()
+   departament::~departament()
    {
 
    }
 
 
-   var process_departament::get_output(const char * pszCmdLine)
+   var departament::get_output(const char * pszCmdLine)
    {
 
       string strRead;
@@ -34,7 +34,7 @@ namespace aura
 
    }
 
-   uint32_t process_departament::retry(const char * pszCmdLine,uint32_t dwTimeout,int32_t iShow)
+   uint32_t departament::retry(const char * pszCmdLine,uint32_t dwTimeout,int32_t iShow)
    {
 
       class on_retry onretry;
@@ -54,7 +54,7 @@ namespace aura
 
 #else
 
-      uint32_t dwExitCode = call_sync(strBin,pszEnd,NULL,iShow,-1,484,&process_departament::s_on_retry,(uint_ptr)&onretry);
+      uint32_t dwExitCode = call_sync(strBin,pszEnd,NULL,iShow,-1,484,&departament::s_on_retry,(uint_ptr)&onretry);
 
       return dwExitCode;
 
@@ -64,7 +64,7 @@ namespace aura
 
    }
 
-   int32_t process_departament::s_on_retry(int32_t iTry,uint_ptr dwParam)
+   int32_t departament::s_on_retry(int32_t iTry,uint_ptr dwParam)
    {
 
       UNREFERENCED_PARAMETER(iTry);
@@ -75,12 +75,12 @@ namespace aura
 
    }
 
-   uint32_t process_departament::synch(const char * pszCmdLine,int32_t iShow)
+   uint32_t departament::synch(const char * pszCmdLine,int32_t iShow)
    {
       return retry(pszCmdLine,0,iShow);
    }
 
-   bool process_departament::launch(const char * pszCmdLine,int32_t iShow)
+   bool departament::launch(const char * pszCmdLine,int32_t iShow)
    {
 
       const char * pszEnd = NULL;
@@ -101,7 +101,7 @@ namespace aura
 
    }
 
-   process_departament::process_thread::process_thread(sp(::aura::application) papp,string * pstrRead,manual_reset_event * pevReady):
+   departament::process_thread::process_thread(sp(::aura::application) papp,string * pstrRead,manual_reset_event * pevReady):
       element(papp),
       thread(papp),
       simple_thread(papp),
@@ -110,7 +110,7 @@ namespace aura
    {
    }
 
-   int32_t process_departament::process_thread::run()
+   int32_t departament::process_thread::run()
    {
       string strRead;
       while(!m_process.has_exited())
@@ -145,7 +145,7 @@ namespace aura
    }
 
 
-} // namespace aura
+} // namespace process
 
 
 
