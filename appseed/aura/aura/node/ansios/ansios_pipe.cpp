@@ -94,7 +94,6 @@ namespace ansios
    {
       uint32_t dwLen = (uint32_t)strlen(psz);
       bool bSuccess = FALSE;
-      DWORD dwWritten;
       bSuccess = WriteFile(m_hWrite,(const char *)psz,dwLen,&dwWritten,NULL) != FALSE;
 #else
       size_t dwWritten;
