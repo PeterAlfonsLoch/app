@@ -16,7 +16,6 @@ namespace core
 
 
 
-
       pipe(bool bInherit);
       virtual ~pipe();
 
