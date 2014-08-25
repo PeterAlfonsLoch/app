@@ -69,17 +69,3 @@ namespace core
    bool pipe::create(bool bBlock)
    {
 
-
-#ifdef WINDOWS
-
-      if(!CreatePipe(&m_hRead, &m_hWrite, &m_sa, 0))
-         return false;
-
-      if(!bBlock)
-      {
-
-         DWORD dwMode = PIPE_NOWAIT;
-         VERIFY(SetNamedPipeHandleState(m_hRead   , &dwMode, NULL, NULL));
-         VERIFY(SetNamedPipeHandleState(m_hWrite  , &dwMode, NULL, NULL));
-
-      }
