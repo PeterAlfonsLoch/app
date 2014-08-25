@@ -165,7 +165,6 @@ namespace ansios
    {
       string str;
       const int32_t BUFSIZE = 1024 * 8;
-#ifdef WINDOWS
       size_t dwRead;
 
       bool bSuccess = false;
