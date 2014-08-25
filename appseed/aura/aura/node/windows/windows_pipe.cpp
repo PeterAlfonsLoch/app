@@ -161,6 +161,7 @@ namespace windows
       bool bSuccess = false;
 
       char chBuf[BUFSIZE];
+
       memset(chBuf,0,BUFSIZE);
 
       try
