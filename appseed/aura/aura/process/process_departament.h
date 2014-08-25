@@ -39,7 +39,7 @@ namespace process
       };
 
 
-      departament(application * papp);
+      departament(sp(application * papp);
       virtual ~departament();
 
 
