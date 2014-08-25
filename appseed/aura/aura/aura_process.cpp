@@ -45,6 +45,7 @@ namespace aura
 
    string process::read(bool bUntilExit)
    {
+
       UNREFERENCED_PARAMETER(bUntilExit);
       return m_pipe.m_sppipeOut->read();
 
