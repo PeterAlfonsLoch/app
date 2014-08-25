@@ -225,7 +225,6 @@ namespace ansios
    {
       UNREFERENCED_PARAMETER(dwErrorCode);
       overlapped * plap = NULL;
-      plap = plap->from(lpOverlapped);
 
 
 } // namespace core
