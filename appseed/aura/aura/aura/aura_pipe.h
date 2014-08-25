@@ -15,7 +15,6 @@ namespace core
 
 
 
-
 #else
 
       int32_t                  m_fd[2];
