@@ -71,7 +71,6 @@ namespace windows
 
       if(!SetHandleInformation(m_hRead,HANDLE_FLAG_INHERIT,0))
          return false;
-
 #endif
 
       return true;
