@@ -5,7 +5,7 @@ namespace process
 {
 
 
-   process::process(sp(:):
+   process::process(sp():
       m_pipe(true)
    {
 
