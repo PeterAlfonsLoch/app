@@ -47,6 +47,7 @@ namespace aura
    {
 
       UNREFERENCED_PARAMETER(bUntilExit);
+
       return m_pipe.m_sppipeOut->read();
 
    }
