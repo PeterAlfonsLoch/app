@@ -53,12 +53,16 @@ namespace windows
       if(bPiped)
       {
 
-         m_si.hStdError = m_pipe.m_pipeOut.m_hWrite;
-         m_si.hStdOutput = m_pipe.m_pipeOut.m_hWrite;
-         m_si.hStdInput = m_pipe.m_pipeIn.m_hRead;
-         m_si.dwFlags |= STARTF_USESTDHANDLES;
+         m_si.hStdError       = m_pipe.m_pipeOut.m_hWrite;
+
+         m_si.hStdOutput      = m_pipe.m_pipeOut.m_hWrite;
+
+         m_si.hStdInput       = m_pipe.m_pipeIn.m_hRead;
+
+         m_si.dwFlags         |= STARTF_USESTDHANDLES;
 
       }
+
       /* STARTUPINFO si;
       PROCESS_INFORMATION pi;
       memset(&si, 0, sizeof(si));
