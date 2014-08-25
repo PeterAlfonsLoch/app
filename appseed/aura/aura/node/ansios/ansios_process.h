@@ -18,9 +18,9 @@ namespace ansios
       virtual ~process();
 
 
-      bool create_child_process(const char * pszCmdLine,bool bPiped,const char * pszDir = NULL,int32_t iPriorityClass = ::get_scheduling_priority_none());
+      virtual bool create_child_process(const char * pszCmdLine,bool bPiped,const char * pszDir = NULL,int32_t iPriorityClass = ::get_scheduling_priority_none());
 
-      bool has_exited(uint32_t * pdwExitCode = NULL);
+      virtual bool has_exited(uint32_t * pdwExitCode = NULL);
 
 
    };
