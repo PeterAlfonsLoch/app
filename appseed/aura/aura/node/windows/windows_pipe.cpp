@@ -172,7 +172,7 @@ namespace windows
       }
       catch(...)
       {
-         bSuccess = FALSE;
+         bSuccess = false;
       }
 
       if(!bSuccess || dwRead == 0)
