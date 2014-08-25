@@ -178,7 +178,6 @@ namespace ansios
       {
 
 
-
          dwRead = ::read(m_fd[0],chBuf,BUFSIZE);
 
          bSuccess = true;
