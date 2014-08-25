@@ -92,31 +92,25 @@ namespace aura
       virtual int32_t exit_instance();
       virtual bool finalize();
 
-      spa(::aura::session)                         & basesessionptra();
+      spa(::aura::session)                         &  basesessionptra();
       application_ptra                                get_appptra();
 
 
 
-      class ::aura::os                             & os();
-      class base_factory                           & factory();
-      ::xml::departament                           & xml();
-      class ::str::base64                          & base64();
+      class ::aura::os                             &  os();
+      class base_factory                           &  factory();
+      ::exception::engine                          &  eengine();
+      ::process::departament                       &  process();
+      ::xml::departament                           &  xml();
+      class ::str::base64                          &  base64();
 
-      class ::aura::log                            & log();
+      class ::aura::log                            &  log();
 
-      class ::machine_event_central                & machine_event_central();
+      class ::machine_event_central                &  machine_event_central();
 
-      geometry::geometry                           & geometry() { return *m_pgeometry; }
-      ::colorertake5::ParserFactory                & parser_factory();
-
-
-
-
-//      application_ptra           get_appptra();
-
-
-
-      math::math & math() { return *m_pmath; }
+      geometry::geometry                           &  geometry() { return *m_pgeometry; }
+      math::math                                   &  math() { return *m_pmath; }
+      ::colorertake5::ParserFactory                &  parser_factory();
 
 
 
@@ -161,9 +155,6 @@ namespace aura
       virtual void discard_to_factory(sp(element) pca);
 
 
-      ::exception::engine & eengine();
-
-      ::aura::process_departament            & process();
 
 
 
