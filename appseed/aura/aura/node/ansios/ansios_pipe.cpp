@@ -84,7 +84,6 @@ namespace ansios
    bool pipe::not_inherit_write()
    {
 
-
       if(!SetHandleInformation(m_hWrite,HANDLE_FLAG_INHERIT,0))
          return false;
 
