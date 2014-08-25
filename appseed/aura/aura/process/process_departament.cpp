@@ -124,7 +124,9 @@ namespace process
 
    int32_t departament::process_thread::run()
    {
+
       string strRead;
+
       while(!m_process.has_exited())
       {
          strRead = m_process.m_pipe.m_pipeOut.read();
