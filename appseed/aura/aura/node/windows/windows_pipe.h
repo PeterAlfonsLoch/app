@@ -4,7 +4,7 @@
 namespace core
 {
 
-   class CLASS_DECL_CORE pipe
+   class CLASS_DECL_AuRE pipe
    {
    public:
 
