@@ -15,23 +15,23 @@ namespace aura
       string               m_strRead;
 
       bool                 m_bInherit;
+      bool                 m_bBlock;
+
 
 
       pipe(sp(::aura::application) papp);
       virtual ~pipe();
 
 
-      virtual bool set_inherit(bool bInherit);
-
-      bool create(bool bBlock = true);
+      virtual bool create(bool bBlock = true, bool bInherit = false);
 
 
-      bool not_inherit_read();
-      bool not_inherit_write();
+      virtual bool not_inherit_read();
+      virtual bool not_inherit_write();
 
-      bool write(const char * psz);
-      string read();
-      string one_pass_read();
+      virtual bool write(const char * psz);
+      virtual string read();
+      virtual string one_pass_read();
 
 
    };
@@ -49,10 +49,7 @@ namespace aura
 
       cross_pipe(sp(::aura::application) papp);
 
-      virtual void set_inherit(bool bInherit);
-
-
-      bool create(bool bBlock = true);
+      virtual bool create(bool bBlock = true, bool bInherit = false);
 
 
    };

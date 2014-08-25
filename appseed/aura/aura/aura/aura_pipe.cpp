@@ -16,22 +16,10 @@ namespace core
    pipe::pipe(bool bInherit)
    {
 
+      m_bInherit = false;
+
       m_pchBuf = NULL;
 
-#ifdef WINDOWS
-
-      m_sa.nLength = sizeof(SECURITY_ATTRIBUTES);
-      m_sa.bInheritHandle = bInherit ? TRUE : FALSE;
-      m_sa.lpSecurityDescriptor = NULL;
-      m_hRead = NULL;
-      m_hWrite = NULL;
-
-#else
-
-      m_fd[0] = -1;
-      m_fd[1] = -1;
-
-#endif
 
 
    }
@@ -44,25 +32,6 @@ namespace core
          free(m_pchBuf);
       }
 
-#ifdef WINDOWS
-
-      ::CloseHandle(m_hRead);
-      ::CloseHandle(m_hWrite);
-
-#else
-
-      if(m_fd[0] != -1)
-      {
-         ::close(m_fd[0]);
-      }
-
-      if(m_fd[1] != -1)
-      {
-         ::close(m_fd[1]);
-      }
-
-#endif
-
    }
 
 
@@ -70,46 +39,6 @@ namespace core
    {
 
 
-#ifdef WINDOWS
-
-      if(!CreatePipe(&m_hRead,&m_hWrite,&m_sa,0))
-         return false;
-
-      if(!bBlock)
-      {
-
-         DWORD dwMode = PIPE_NOWAIT;
-         VERIFY(SetNamedPipeHandleState(m_hRead,&dwMode,NULL,NULL));
-         VERIFY(SetNamedPipeHandleState(m_hWrite,&dwMode,NULL,NULL));
-
-      }
-
-#else
-
-      int32_t iFlags = bBlock ? 0 : O_NONBLOCK;
-
-      if(::pipe(m_fd))
-      {
-         // errno
-         return false;
-      }
-
-      if(fcntl(m_fd[0],F_SETFL,iFlags))
-      {
-         close(m_fd[0]);
-         close(m_fd[1]);
-         return false;
-      }
-
-      if(fcntl(m_fd[1],F_SETFL,iFlags))
-      {
-         close(m_fd[0]);
-         close(m_fd[1]);
-         return false;
-      }
-
-
-#endif
 
       return true;
 
