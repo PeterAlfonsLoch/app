@@ -59,7 +59,7 @@ namespace windows
 
          m_si.hStdOutput      = m_pipe.m_sppipeOut.m_hWrite;
 
-         pipe * ppipeIn = m_pipe.m_sppipeIn.cast < ::ansios::pipe >();
+         pipe * ppipeIn       = m_pipe.m_sppipeIn.cast < ::ansios::pipe >();
 
          m_si.hStdInput       = m_pipe.m_sppipeIn.m_hRead;
 
