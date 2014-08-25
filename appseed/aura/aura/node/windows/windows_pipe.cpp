@@ -43,7 +43,6 @@ namespace windows
          ::close(m_fd[1]);
       }
 
-
    }
 
 
