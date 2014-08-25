@@ -127,7 +127,7 @@ namespace aura
    bool cross_pipe::create(bool bBlock, bool bInherit)
    {
 
-      if(!m_sppipeIn.create(bBlock, bInherit))
+      if(!m_sppipeIn->create(bBlock, bInherit))
          return false;
 
       if(!m_pipeIn.not_inherit_write())
