@@ -202,8 +202,6 @@ namespace ansios
       return str;
    }
 
-#ifdef WINDOWS
-
 
 
 } // namespace core
