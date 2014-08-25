@@ -278,7 +278,6 @@ namespace core
    {
    }
 
-   bool cross_pipe::create(bool bBlock)
 
 
 
