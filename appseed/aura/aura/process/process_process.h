@@ -10,7 +10,7 @@ namespace process
    public:
 
 
-      cross_pipe              m_pipe;
+      bidi_pipe               m_pipe;
       bool                    m_bPiped;
 
 
