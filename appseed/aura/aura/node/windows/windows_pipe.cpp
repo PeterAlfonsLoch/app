@@ -272,7 +272,6 @@ namespace core
 #endif
 
 
-
 } // namespace core
 
 
