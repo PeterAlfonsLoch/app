@@ -98,6 +98,9 @@ namespace ansios
 
 #endif
 
+      if(m_bPiped)
+      {
+
       posix_spawn_file_actions_destroy
 
       posix_spawnattr_destroy(&attr);
