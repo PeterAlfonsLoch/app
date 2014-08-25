@@ -235,7 +235,6 @@ namespace ansios
 #endif
 
 
-
 } // namespace core
 
 
