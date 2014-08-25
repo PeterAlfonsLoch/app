@@ -36,13 +36,13 @@ namespace windows
       virtual ~pipe();
 
 
-      bool create(bool bBlock = true);
+      virtual bool create(bool bBlock = true);
 
 
-      bool not_inherit_read();
-      bool not_inherit_write();
+      virtual bool not_inherit_read();
+      virtual bool not_inherit_write();
 
-      bool write(const char * psz);
+      virtual bool write(const char * psz);
       string read();
       string one_pass_read();
 
