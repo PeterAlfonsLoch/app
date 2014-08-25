@@ -61,7 +61,6 @@ namespace windows
 
       }
 
-         // errno
          return false;
       }
 
