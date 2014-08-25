@@ -1978,7 +1978,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="aura\node\ansios\ansios_pipe.h" />
+    <ClInclude Include="aura\node\ansios\ansios_pipe.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="aura\node\node.h" />
     <ClInclude Include="aura\node\windows\os.h" />
     <ClInclude Include="aura\node\windows\win1.h" />
