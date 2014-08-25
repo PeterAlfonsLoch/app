@@ -92,9 +92,10 @@ namespace aura
       virtual int32_t exit_instance();
       virtual bool finalize();
 
-      spa(::aura::session)                         &  basesessionptra();
       application_ptra                                get_appptra();
 
+
+      spa(::aura::session)                         &  basesessionptra();
 
 
       class ::aura::os                             &  os();
