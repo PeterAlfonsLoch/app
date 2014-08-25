@@ -66,6 +66,3 @@ namespace core
    }
 
 
-   bool pipe::create(bool bBlock)
-   {
-
