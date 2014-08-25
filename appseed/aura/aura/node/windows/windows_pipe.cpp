@@ -219,6 +219,7 @@ namespace windows
       UNREFERENCED_PARAMETER(dwErrorCode);
 
       overlapped * plap = NULL;
+
       plap = plap->from(lpOverlapped);
       int32_t iLimit = MIN(dwNumberOfBytesTransfered,1024);
       plap->m_ppipe->m_pchBuf[iLimit] = '\0';
