@@ -14,7 +14,6 @@ namespace core
       string               m_strRead;
 
 
-
       pipe(bool bInherit);
       virtual ~pipe();
 
