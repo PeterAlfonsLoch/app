@@ -13,6 +13,7 @@ namespace aura
       cross_pipe              m_pipe;
       bool                    m_bPiped;
 
+
       process(sp(::aura::application) papp);
       virtual ~process();
 
@@ -30,6 +31,21 @@ namespace aura
 
 
 } // namespace aura
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
