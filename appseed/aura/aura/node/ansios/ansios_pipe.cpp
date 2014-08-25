@@ -100,7 +100,7 @@ namespace ansios
       size_t dwWritten;
 
       dwWritten = ::write(m_fd[1],(const char *)psz,dwLen);
-#endif
+
       return bSuccess != FALSE && dwWritten == dwLen;
    }
 
