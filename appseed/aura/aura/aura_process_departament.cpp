@@ -14,6 +14,7 @@ namespace aura
 
    process_departament::~process_departament()
    {
+
    }
 
    var process_departament::get_output(const char * pszCmdLine)
