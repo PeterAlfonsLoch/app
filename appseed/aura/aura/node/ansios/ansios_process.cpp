@@ -19,8 +19,9 @@ extern char * const * environ;
 
 
 
-namespace core
+namespace ansios
 {
+
 
    process::process():
       m_pipe(true)
@@ -419,7 +420,7 @@ namespace core
    }
 
 
-} // namespace core
+} // namespace ansios
 
 
 
