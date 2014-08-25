@@ -50,11 +50,17 @@ int32_t machine_event_central::run()
 
 bool machine_event_central::is_close_application()
 {
+   
    synch_lock lockMachineEvent(&m_machineevent.m_mutex);
+
    machine_event_data data;
+
    m_machineevent.read(&data);
-   System.process(&data);
+
+   System.process_machine_event_data(&data);
+
    return data.m_fixed.m_bRequestCloseApplication;
+
 }
 
 
