@@ -30,6 +30,7 @@ namespace windows
 
 
       ::CloseHandle(m_hRead);
+
       ::CloseHandle(m_hWrite);
 
 
