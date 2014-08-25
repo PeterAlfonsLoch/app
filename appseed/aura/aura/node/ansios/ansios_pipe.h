@@ -72,23 +72,6 @@ namespace core
 
    };
 
-   class CLASS_DECL_CORE cross_pipe
-   {
-   public:
-
-
-      pipe m_pipeIn;
-      pipe m_pipeOut;
-
-
-      cross_pipe(bool bInherit);
-
-
-      bool create(bool bBlock = true);
-
-
-   };
-
 
 } // namespace core
 
