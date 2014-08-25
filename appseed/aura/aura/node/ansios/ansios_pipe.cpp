@@ -77,7 +77,6 @@ namespace ansios
    bool pipe::not_inherit_read()
    {
 
-
 #endif
 
       return true;
