@@ -9,7 +9,6 @@ namespace core
    public:
 
       
-            return (overlapped *)((BYTE *)poverlapped - sizeof(pipe *));
          }
       };
 
