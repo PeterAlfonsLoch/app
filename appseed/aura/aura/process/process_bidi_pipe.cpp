@@ -7,18 +7,6 @@ namespace process
 
 
 
-
-
-   }
-
-   bool pipe::not_inherit_write()
-   {
-
-      return true;
-
-   }
-
-
    bool pipe::write(const char * psz)
    {
 
