@@ -4,6 +4,7 @@
 namespace windows
 {
 
+
    class CLASS_DECL_AURA pipe :
       virtual public ::aura::pipe
    {
