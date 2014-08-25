@@ -1,6 +1,5 @@
 #pragma once
 
-#ifndef METROWIN
 
 namespace core
 {
