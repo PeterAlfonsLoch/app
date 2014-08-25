@@ -73,10 +73,10 @@ namespace ansios
 
       posix_spawn_file_actions_t actions;
 
+      posix_spawn_file_actions_init(&actions);
+
       if(bPiped)
       {
-
-         posix_spawn_file_actions_init(&actions);
 
          posix_spawn_file_actions_adddup2(&actions, m_pipe.m_sppipeOut.cast < ::ansions::pipe >()->m_fd[1],STDOUT_FILENO);
 
@@ -87,7 +87,7 @@ namespace ansios
       }
 
 
-      int status = posix_spawn(&m_iPid,pszCmdLine,NULL,&attr,argv,environ);
+      int status = posix_spawn(&m_iPid,pszCmdLine,&actions,&attr,argv,environ);
 
 #ifdef APPLEOS
 
@@ -105,12 +105,7 @@ namespace ansios
 //#ifdef LINUX
 
 
-      if(m_bPiped)
-      {
-
-         posix_spawn_file_actions_destroy(&actions);
-
-      }
+      posix_spawn_file_actions_destroy(&actions);
 
       posix_spawnattr_destroy(&attr);
 
