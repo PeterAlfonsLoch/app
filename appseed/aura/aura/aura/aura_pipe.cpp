@@ -35,9 +35,11 @@ namespace core
    }
 
 
-   bool pipe::create(bool bBlock)
+   bool pipe::create(bool bBlock, bool bInherit)
    {
 
+      m_bBlock = bBlock;
+      m_bInherit = bInherit;
 
 
       return true;
