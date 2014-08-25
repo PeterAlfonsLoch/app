@@ -16,7 +16,6 @@ namespace core
 
 
 
-      int32_t                  m_fd[2];
 
 #endif
 
