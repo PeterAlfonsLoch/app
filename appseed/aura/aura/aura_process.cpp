@@ -5,6 +5,7 @@
 namespace aura
 {
 
+
    process::process():
       m_pipe(true)
    {
