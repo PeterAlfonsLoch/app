@@ -28,7 +28,6 @@ namespace core
       string read();
       string one_pass_read();
 
-
       
 
       static void WINAPI read_complete(
