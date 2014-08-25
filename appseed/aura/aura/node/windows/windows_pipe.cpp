@@ -174,6 +174,7 @@ namespace windows
       {
 
          bSuccess = false;
+
       }
 
       if(!bSuccess || dwRead == 0)
