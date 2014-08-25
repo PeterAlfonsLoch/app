@@ -227,6 +227,7 @@ namespace windows
       plap->m_ppipe->m_pchBuf[iLimit] = '\0';
 
       plap->m_ppipe->m_strRead += plap->m_ppipe->m_pchBuf;
+
    }
 
 
