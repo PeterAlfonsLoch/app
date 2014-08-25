@@ -1992,7 +1992,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\node\windows\windows_folder_watch.h" />
     <ClInclude Include="aura\node\windows\windows_implementation.h" />
     <ClInclude Include="aura\node\windows\windows_os.h" />
-    <ClInclude Include="aura\node\windows\windows_pip.h" />
+    <ClInclude Include="aura\node\windows\windows_pipe.h" />
     <ClInclude Include="aura\node\windows\windows_registry.h" />
     <ClInclude Include="aura\node\windows\windows_shell.h" />
     <ClInclude Include="aura\node\windows\windows_simple_hold_handle.h" />

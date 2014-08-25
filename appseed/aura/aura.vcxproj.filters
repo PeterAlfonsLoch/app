@@ -2714,7 +2714,7 @@
     <ClInclude Include="aura\node\ansios\ansios_pipe.h">
       <Filter>Header Files\aura\node\ansios</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\windows\windows_pip.h">
+    <ClInclude Include="aura\node\windows\windows_pipe.h">
       <Filter>Header Files\aura\node\windows</Filter>
     </ClInclude>
   </ItemGroup>
