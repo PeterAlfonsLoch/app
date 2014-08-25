@@ -61,7 +61,6 @@ namespace windows
 
       }
 
-      if(::pipe(m_fd))
       {
          // errno
          return false;
