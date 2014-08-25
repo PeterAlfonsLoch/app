@@ -101,7 +101,11 @@ namespace aura
       class ::aura::os                             &  os();
       class base_factory                           &  factory();
       ::exception::engine                          &  eengine();
+
+      using ::aura::application::process;
       ::process::departament                       &  process();
+
+
       ::xml::departament                           &  xml();
       class ::str::base64                          &  base64();
 
