@@ -69,7 +69,6 @@ namespace ansios
          return false;
       }
 
-#endif
 
       return true;
 
