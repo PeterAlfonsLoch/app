@@ -13,7 +13,6 @@ namespace core
       char *               m_pchBuf;
       string               m_strRead;
 
-#ifdef WINDOWS
 
       overlapped           m_overlapped;
 
