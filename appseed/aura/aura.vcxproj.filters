@@ -234,6 +234,9 @@
     <Filter Include="Header Files\aura\process">
       <UniqueIdentifier>{2fedfefb-a349-4ba7-9fa2-f86d10306aa9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\aura\process">
+      <UniqueIdentifier>{6d592c90-2d43-41e1-a493-c0746f96e320}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_wstringtou.h">
