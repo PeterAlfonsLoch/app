@@ -20,7 +20,6 @@ namespace ansios
 
       m_fd[1] = -1;
 
-
    }
 
 
