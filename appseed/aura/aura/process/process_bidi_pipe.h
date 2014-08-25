@@ -5,22 +5,6 @@ namespace process
 {
 
 
-
-      pipe(sp(::aura::application) papp);
-      virtual ~pipe();
-
-
-      virtual bool create(bool bBlock = true,bool bInherit = false);
-
-
-      virtual bool not_inherit_read();
-      virtual bool not_inherit_write();
-
-      virtual bool write(const char * psz);
-      virtual string read();
-      virtual string one_pass_read();
-
-
 #ifdef WINDOWS
 
       void readex();
