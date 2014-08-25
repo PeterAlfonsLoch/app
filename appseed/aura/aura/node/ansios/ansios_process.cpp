@@ -29,13 +29,6 @@ namespace ansios
 
       m_bPiped = false;
 
-#ifdef WINDOWSEX
-
-      memset(&m_pi,0,sizeof(PROCESS_INFORMATION));
-
-      memset(&m_si,0,sizeof(STARTUPINFO));
-
-#endif
 
    }
 
