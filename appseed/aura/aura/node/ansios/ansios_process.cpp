@@ -1,8 +1,6 @@
 #include "framework.h"
 
 
-#ifndef METROWIN
-
 #if defined(ANDROID)
 #include <sys/wait.h>
 #include <unistd.h>
@@ -424,7 +422,5 @@ namespace core
 } // namespace core
 
 
-
-#endif
 
 
