@@ -2979,6 +2979,14 @@ namespace aura
 
    }
 
+   
+   sp(::message::base) application::get_message_base(LPMESSAGE lpmsg)
+   {
+
+      return NULL;
+
+   }
+
 
 } // namespace aura
 

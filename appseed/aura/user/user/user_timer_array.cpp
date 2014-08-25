@@ -10,6 +10,13 @@ namespace user
       element(papp),
       m_mutex(papp)
    {
+
+   }
+
+
+   timer_array::~timer_array()
+   {
+
    }
 
 
@@ -234,7 +241,7 @@ namespace user
       else
       {
 
-         sp(timer_item) item(new timer_item);
+         sp(timer_item) item(canew(timer_item(get_app())));
 
          item->m_pui = pui;
          item->m_uiId = uiId;

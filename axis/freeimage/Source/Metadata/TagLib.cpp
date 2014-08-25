@@ -1511,7 +1511,7 @@ TagLib::~TagLib() {
 TagLib * TagLib::s_plib = NULL;
 
 
-TagLib::instance()
+TagLib & TagLib::instance()
 {
 	
 	return *s_plib;

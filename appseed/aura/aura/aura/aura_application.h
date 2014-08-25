@@ -388,6 +388,11 @@ namespace aura
 
       virtual string http_get_locale_schema(const char * pszUrl,const char * pszLocale,const char * pszSchema);
 
+      virtual sp(::message::base) get_message_base(LPMESSAGE lpmsg);
+
+
+
+
    };
 
 
@@ -442,9 +447,6 @@ namespace aura
       application * find_by_app_name(const string & strAppName);
 
       application * find_running_defer_try_quit_damaged(const string & strAppName);
-
-
-      sp(::message::base) get_message_base(LPMESSAGE lpmsg);
 
 
    };

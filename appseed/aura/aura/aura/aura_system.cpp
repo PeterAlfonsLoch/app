@@ -29,13 +29,6 @@ namespace aura
    system::system(sp(::aura::application) papp)
    {
       
-//      if(::get_thread() == NULL)
-      {
-         
-//         ::set_thread(this);
-         
-      }
-      
 #ifdef MATTER_CACHE_FROM_HTTP_SERVER
 
       m_bMatterFromHttpCache = true;

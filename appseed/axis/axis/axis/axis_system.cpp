@@ -68,18 +68,19 @@ namespace axis
       m_libraryDraw2d(this)
    {
       
-      m_ptwf = NULL;
+      m_ptwf            = NULL;
 
-      m_psimpleui = NULL;
+      m_psimpleui       = NULL;
 
 #if defined(METROWIN) || defined(APPLE_IOS)
-      m_posdata = new os_data();
+
+      m_posdata         = new os_data();
+
 #endif
 
       set_app(this);
 
-
-      m_paxissystem = this;
+      m_paxissystem     = this;
 
       if(papp == NULL)
       {
@@ -93,14 +94,13 @@ namespace axis
          oprop("parent_system") = papp->m_paxissystem;
 
       }
-
-
-
-
       
 #ifdef WINDOWS
-      m_pmutexDc = NULL;
-      m_pdevicecontext = NULL;
+
+      m_pmutexDc           = NULL;
+
+      m_pdevicecontext     = NULL;
+
 #endif
 
       __node_axis_factory_exchange(this);

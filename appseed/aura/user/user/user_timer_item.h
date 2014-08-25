@@ -16,6 +16,11 @@ namespace user
       UINT                 m_uiElapse;
       UINT                 m_uiLastSent;
 
+
+      timer_item(sp(::aura::application) papp);
+      virtual ~timer_item();
+
+
       bool check(single_lock & sl);
 
 

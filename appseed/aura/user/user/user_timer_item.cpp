@@ -5,6 +5,19 @@ namespace user
 {
 
 
+   timer_item::timer_item(sp(::aura::application) papp):
+      element(papp)
+   {
+
+   }
+
+
+   timer_item::~timer_item()
+   {
+
+   }
+
+
    bool timer_item::check(single_lock & sl)
    {
 
@@ -17,7 +30,7 @@ namespace user
          {
             // simple integrity check by calling "inoffensive" function
             // if it fails, most probably the object is damaged.
-            bWindow = Application.is_window(m_pui) != FALSE;
+            bWindow = m_pauraapp->is_window(m_pui) != FALSE;
             if(bWindow)
                bWindow = m_pui != NULL;
          }

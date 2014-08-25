@@ -12,49 +12,50 @@ namespace axis
       ::aura::session(papp)
    {
 
-      m_paxissession    = this;
+      m_paxissession                = this;
 
-     
+      m_pcoreplatform               = NULL;
 
-      m_pcoreplatform   = NULL;
+      m_bMatterFromHttpCache        = m_paxissystem->m_bMatterFromHttpCache;
 
-      m_bMatterFromHttpCache = m_paxissystem->m_bMatterFromHttpCache;
+      m_bSystemSynchronizedCursor   = m_paxissystem->m_bSystemSynchronizedCursor;
 
-      m_bSystemSynchronizedCursor = m_paxissystem->m_bSystemSynchronizedCursor;
-      m_bSystemSynchronizedScreen = m_paxissystem->m_bSystemSynchronizedScreen;
-      m_iMainMonitor = -1;
+      m_bSystemSynchronizedScreen   = m_paxissystem->m_bSystemSynchronizedScreen;
+
+      m_iMainMonitor                = -1;
 
 #ifdef WINDOWS
 
       if(m_hinstance == NULL)
       {
 
-         m_hinstance = m_pauraapp->m_hinstance;
+         m_hinstance                = m_pauraapp->m_hinstance;
 
       }
 
 #endif
 
+      m_bDrawCursor                 = false;
 
-      m_bDrawCursor              = false;
-      m_ecursorDefault  = ::visual::cursor_arrow;
-      m_ecursor         = ::visual::cursor_default;
+      m_ecursorDefault              = ::visual::cursor_arrow;
 
+      m_ecursor                     = ::visual::cursor_default;
 
-      m_puiMouseMoveCapture = NULL;
-      m_puiLastLButtonDown = NULL;
+      m_puiMouseMoveCapture         = NULL;
 
-      m_psavings                 = canew(class ::aura::savings(this));
+      m_puiLastLButtonDown          = NULL;
 
-      m_bZipIsDir                = true;
+      m_psavings                    = canew(class ::aura::savings(this));
 
+      m_bZipIsDir                   = true;
 
-      m_pmapKeyPressed           = NULL;
-      m_puserstrcontext = NULL;
+      m_pmapKeyPressed              = NULL;
+
+      m_puserstrcontext             = NULL;
 
       m_paxissystem->m_basesessionptra.add_unique(this);
 
-      m_puserschema = &m_schemasimple;
+      m_puserschema                 = &m_schemasimple;
 
       m_schemasimple.m_pfont.alloc(allocer());
 
@@ -1023,7 +1024,7 @@ namespace axis
       if(!::aura::session::process_initialize())
          return false;
 
-      if(!::aura::application::process_initialize())
+      if(!::axis::application::process_initialize())
          return false;
 
       m_spuser = create_user();
@@ -1049,7 +1050,7 @@ namespace axis
       if(!::aura::session::initialize1())
          return false;
 
-      if(!::aura::application::initialize1())
+      if(!::axis::application::initialize1())
          return false;
 
       m_puserstrcontext = canew(::user::str_context(this));
@@ -1078,7 +1079,7 @@ namespace axis
       if(!::aura::session::initialize2())
          return false;
 
-      if(!::aura::application::initialize2())
+      if(!::axis::application::initialize2())
          return false;
 
       fill_locale_schema(*str_context()->m_plocaleschema);
@@ -1095,7 +1096,7 @@ namespace axis
       if(!::aura::session::initialize_instance())
          return false;
 
-      if(!::aura::application::initialize_instance())
+      if(!::axis::application::initialize_instance())
          return false;
 
       return true;
@@ -1109,7 +1110,7 @@ namespace axis
       if(!::aura::session::initialize())
          return false;
 
-      if(!::aura::application::initialize())
+      if(!::axis::application::initialize())
          return false;
 
       if(!is_installing() && !is_uninstalling())
@@ -1139,7 +1140,7 @@ namespace axis
       try
       {
 
-         bOk = ::aura::application::finalize();
+         bOk = ::axis::application::finalize();
 
       }
       catch(...)
@@ -1181,7 +1182,7 @@ namespace axis
 
       }
 
-      ::aura::application::exit_instance();
+      ::axis::application::exit_instance();
 
       ::aura::session::exit_instance();
 

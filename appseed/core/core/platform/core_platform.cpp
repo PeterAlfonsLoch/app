@@ -1953,6 +1953,8 @@ namespace core
       sp(::aura::application) pgenapp = (papp);
 
       pgenapp->m_pcoreapp->m_strAppId = pszAppId;
+      
+      pgenapp->m_paurasystem = m_paurasystem;
 
       pgenapp->m_paxissystem = m_paxissystem;
 

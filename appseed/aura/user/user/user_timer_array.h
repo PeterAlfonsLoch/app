@@ -18,6 +18,7 @@ namespace user
 
 
       timer_array(sp(::aura::application) papp);
+      virtual ~timer_array();
 
 
       uint_ptr set(interaction * pui,uint_ptr uiId,UINT uiElapse);

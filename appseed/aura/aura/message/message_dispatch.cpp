@@ -44,9 +44,7 @@ namespace message
    sp(::message::base) dispatch::get_base(LPMESSAGE lpmsg)
    {
 
-      ASSERT(lpmsg->hwnd == NULL);
-
-      return get_base(lpmsg->message,lpmsg->wParam,lpmsg->lParam);
+      return m_pauraapp->get_message_base(lpmsg);
 
    }
 

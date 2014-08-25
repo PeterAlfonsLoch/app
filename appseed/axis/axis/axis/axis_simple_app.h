@@ -10,7 +10,6 @@ namespace axis
    public:
 
 
-      //HINSTANCE                   m_hinstance;
       int32_t                       __argc;
       TCHAR **                      __targv;
 

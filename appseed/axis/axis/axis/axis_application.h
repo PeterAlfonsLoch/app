@@ -25,10 +25,6 @@ namespace axis
 
       synch_ptr_array < ::user::interaction >         m_framea;
       sp(::database::server)                          m_spdataserver;
-#ifdef WINDOWS
-      HINSTANCE                                       m_hinstance;
-#endif
-
 
       bool                                            m_bUpdateMatterOnInstall;
 

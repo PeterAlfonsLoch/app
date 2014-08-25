@@ -13,55 +13,56 @@ namespace base
       ::axis::session(papp)
    {
 
-      m_pbaseapp       = this;
+      m_pbasesession                = this;
 
-      m_pbasesession    = this;
+      m_pcoreplatform               = NULL;
 
-      m_pcoreplatform   = NULL;
+      m_bMatterFromHttpCache        = m_pbasesystem->m_bMatterFromHttpCache;
 
-      m_bMatterFromHttpCache = m_pbasesystem->m_bMatterFromHttpCache;
+      m_bSystemSynchronizedCursor   = m_pbasesystem->m_bSystemSynchronizedCursor;
 
-      m_bSystemSynchronizedCursor = m_pbasesystem->m_bSystemSynchronizedCursor;
-      m_bSystemSynchronizedScreen = m_pbasesystem->m_bSystemSynchronizedScreen;
-      m_iMainMonitor = -1;
+      m_bSystemSynchronizedScreen   = m_pbasesystem->m_bSystemSynchronizedScreen;
+
+      m_iMainMonitor                = -1;
 
 #ifdef WINDOWS
 
       if(m_hinstance == NULL)
       {
 
-         m_hinstance = m_pauraapp->m_hinstance;
+         m_hinstance                = m_pauraapp->m_hinstance;
 
       }
 
 #endif
 
+      m_bDrawCursor                 = false;
 
-      m_bDrawCursor              = false;
-      m_ecursorDefault  = ::visual::cursor_arrow;
-      m_ecursor         = ::visual::cursor_default;
+      m_ecursorDefault              = ::visual::cursor_arrow;
 
+      m_ecursor                     = ::visual::cursor_default;
 
-      m_puiMouseMoveCapture = NULL;
-      m_puiLastLButtonDown = NULL;
-      m_bIfs                     = true;
+      m_puiMouseMoveCapture         = NULL;
 
-      m_psavings                 = canew(class ::aura::savings(this));
+      m_puiLastLButtonDown          = NULL;
 
-      m_bZipIsDir                = true;
+      m_bIfs                        = true;
 
+      m_psavings                    = canew(class ::aura::savings(this));
 
-      m_pmapKeyPressed           = NULL;
-      m_puserstrcontext = NULL;
+      m_bZipIsDir                   = true;
+
+      m_pmapKeyPressed              = NULL;
+
+      m_puserstrcontext             = NULL;
 
       m_pbasesystem->m_basesessionptra.add_unique(this);
 
-      m_puserschema = &m_schemasimple;
+      m_puserschema                 = &m_schemasimple;
 
       m_schemasimple.m_pfont.alloc(allocer());
 
       m_schemasimple.m_pfont->create_pixel_font("Helvetica",16);
-
 
    }
 

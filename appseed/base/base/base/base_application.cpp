@@ -28,24 +28,12 @@ namespace base
 
 #endif
 
-      if(m_paxisapp != NULL)
+      m_pbaseapp              = this;
+
+      if(m_pauraapp != NULL)
       {
 
-         m_pbaseapp              = m_paxisapp->m_pbaseapp;
-
-      }
-
-      if(m_pbaseapp == NULL)
-      {
-
-         m_pbaseapp              = this;
-
-      }
-
-      if(m_pbaseapp != NULL)
-      {
-
-         m_pbasesystem           = m_pbaseapp->m_pbasesystem;
+         m_pbasesystem           = m_pauraapp->m_pbasesystem;
 
          if(m_pauraapp->m_pbasesession == NULL && m_pbasesystem != NULL)
          {
@@ -56,7 +44,7 @@ namespace base
          else
          {
 
-            m_pbasesession       = m_pbaseapp->m_pbasesession;
+            m_pbasesession       = m_pauraapp->m_pbasesession;
 
          }
 
@@ -2413,16 +2401,7 @@ namespace base
 
       m_dwAlive = ::get_tick_count();
 
-      m_straMatterLocator.add_unique(System.dir().appmatter_locator(this));
-
-      if(!ca_initialize1())
-         return false;
-
-
-
-
-
-      if(!m_pimpl->initialize1())
+      if(!::axis::application::initialize1())
          return false;
 
       m_bBaseInitialize1Result = true;

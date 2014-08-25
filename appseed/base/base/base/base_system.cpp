@@ -638,8 +638,6 @@ namespace base
    }
 
 
-
-
 } // namespace base
 
 
