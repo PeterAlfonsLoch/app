@@ -2714,6 +2714,18 @@
     <ClInclude Include="aura\process\process_process.h">
       <Filter>Header Files\aura\process</Filter>
     </ClInclude>
+    <ClInclude Include="aura\node\windows\windows_pipe.h">
+      <Filter>Header Files\aura\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\windows\windows_process.h">
+      <Filter>Header Files\aura\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\ansios\ansios_process.h">
+      <Filter>Header Files\aura\node\ansios</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\ansios\ansios_pipe.h">
+      <Filter>Header Files\aura\node\ansios</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -4068,6 +4080,18 @@
     </ClCompile>
     <ClCompile Include="aura\os\windows\windows_base_process.cpp">
       <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\windows\windows_pipe.cpp">
+      <Filter>Source Files\aura\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\windows\windows_process.cpp">
+      <Filter>Source Files\aura\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\ansios\ansios_pipe.cpp">
+      <Filter>Source Files\aura\node\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\ansios\ansios_process.cpp">
+      <Filter>Source Files\aura\node\ansios</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -308,15 +308,6 @@ typedef void (__clrcall * _CRT_DUMP_CLIENT_M)(void *, size_t);
 //#define _MRTIMP __declspec(dllimport)
 //#endif  /* _MRTIMP */
 //
-///* Define CLASS_DECL_AURA */
-//
-//#ifndef CLASS_DECL_AURA
-//#ifdef  _DLL
-//#define CLASS_DECL_AURA __declspec(dllimport)
-//#else   /* ndef _DLL */
-//#define CLASS_DECL_AURA
-//#endif  /* _DLL */
-//#endif  /* CLASS_DECL_AURA */
 //
 // /****************************************************************************
 // *

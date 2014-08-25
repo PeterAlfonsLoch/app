@@ -59,18 +59,6 @@ LONG TIME_GetBias(void);
 #endif*/
 
 
-/*#ifdef _WIN32
-#ifdef __CA__LIB
-   #define CLASS_DECL_AURA
-#elif defined(__CA__DLL)
-   #define CLASS_DECL_AURA  _declspec(dllexport)
-#else
-   #define CLASS_DECL_AURA  _declspec(dllimport)
-#endif
-#else
-   #define CLASS_DECL_AURA
-#endif
-*/
 
 
 //#include "nodeapp/operational_system/bare_operational_system.h"
