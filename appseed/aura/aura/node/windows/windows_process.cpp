@@ -22,8 +22,6 @@ namespace windows
    process::~process()
    {
 
-#ifdef WINDOWSEX
-
       if(m_pi.hProcess != INVALID_HANDLE_VALUE && m_pi.hProcess != NULL)
       {
 
@@ -37,8 +35,6 @@ namespace windows
          CloseHandle(m_pi.hThread);
 
       }
-
-#endif
 
    }
 
