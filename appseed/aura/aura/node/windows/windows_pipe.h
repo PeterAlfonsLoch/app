@@ -36,7 +36,7 @@ namespace windows
       virtual ~pipe();
 
 
-      virtual bool create(bool bBlock = true);
+      virtual bool create(bool bBlock = true, bool bInherit = false);
 
 
       virtual bool not_inherit_read();
