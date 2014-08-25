@@ -117,6 +117,7 @@ namespace ansios
 
       bool bSuccess = false;
       char chBuf[BUFSIZE];
+
       for(;;)
       {
          memset(chBuf,0,BUFSIZE);
