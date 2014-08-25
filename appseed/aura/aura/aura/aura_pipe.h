@@ -17,7 +17,7 @@ namespace aura
       bool                 m_bInherit;
 
 
-      pipe();
+      pipe(sp(::aura::application) papp);
       virtual ~pipe();
 
 
