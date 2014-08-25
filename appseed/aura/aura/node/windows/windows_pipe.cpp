@@ -158,7 +158,7 @@ namespace windows
 
       DWORD dwRead;
 
-      bool bSuccess = FALSE;
+      bool bSuccess = false;
       char chBuf[BUFSIZE];
       memset(chBuf,0,BUFSIZE);
 
