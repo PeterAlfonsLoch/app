@@ -10,22 +10,6 @@ namespace ansios
    {
    public:
 
-#ifdef WINDOWS
-
-      class overlapped
-      {
-      public:
-         pipe * m_ppipe;
-         OVERLAPPED m_overlapped;
-         inline overlapped * from(OVERLAPPED * poverlapped)
-         {
-            return (overlapped *)((BYTE *)poverlapped - sizeof(pipe *));
-         }
-      };
-
-#endif
-
-
       char *               m_pchBuf;
       string               m_strRead;
 
