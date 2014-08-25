@@ -172,6 +172,7 @@ namespace windows
       }
       catch(...)
       {
+
          bSuccess = false;
       }
 
