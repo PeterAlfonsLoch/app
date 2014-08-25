@@ -283,7 +283,6 @@ namespace core
       if(!m_pipeIn.create(bBlock))
          return false;
       if(!m_pipeIn.not_inherit_write())
-         return false;
 
 
 
