@@ -20,6 +20,7 @@ namespace aura
 
    var process_departament::get_output(const char * pszCmdLine)
    {
+
       string strRead;
       manual_reset_event evReady(get_app());
       evReady.ResetEvent();
