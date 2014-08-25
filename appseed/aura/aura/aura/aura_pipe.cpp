@@ -124,7 +124,7 @@ namespace aura
 
    m_sppipeOut->set_inherit(bInherit);
 
-   bool cross_pipe::create(bool bBlock)
+   bool cross_pipe::create(bool bBlock, bool bInherit)
    {
       if(!m_sppipeIn.create(bBlock))
          return false;
