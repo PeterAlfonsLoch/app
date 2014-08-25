@@ -165,12 +165,17 @@ namespace process
             }
 
          }
+
       }
+
       if(m_pevReady != NULL)
       {
+
          m_pevReady->SetEvent();
       }
+
       return 0;
+
    }
 
 
