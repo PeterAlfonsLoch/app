@@ -2,7 +2,7 @@
 
 
 
-namespace core
+namespace aura
 {
 
    process::process():
