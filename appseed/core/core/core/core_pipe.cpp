@@ -294,4 +294,3 @@ namespace core
 } // namespace core
 
 
-#endif
