@@ -17,8 +17,6 @@ namespace ansios
       m_pchBuf = NULL;
 
 
-#else
-
       m_fd[0] = -1;
       m_fd[1] = -1;
 
