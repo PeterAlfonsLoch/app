@@ -2428,10 +2428,15 @@ namespace user
 
    void interaction_impl::set_handle(oswindow oswindow)
    {
+      
+      if(m_pui != NULL)
+      {
 
-      oswindow_remove(m_pui);
+         oswindow_remove(m_pui);
 
-      oswindow_assign(oswindow,m_pui);
+         oswindow_assign(oswindow,m_pui);
+
+      }
 
       m_oswindow = oswindow;
 

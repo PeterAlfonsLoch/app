@@ -69,6 +69,11 @@ CLASS_DECL_AXIS bool oswindow_assign(oswindow oswindow,::user::interaction * pui
 CLASS_DECL_AXIS bool oswindow_remove(::user::interaction * pui)
 {
 
+   ASSERT(pui != NULL);
+
+   if(pui == NULL)
+      return false;
+
    synch_lock slOsWindow(::user::g_pmutexUi);
 
    ::user::g_pmapUi->remove_key(::user::g_pmapHandle->operator[](pui));
