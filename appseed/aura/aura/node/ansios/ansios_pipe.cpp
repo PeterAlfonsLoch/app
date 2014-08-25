@@ -84,7 +84,6 @@ namespace ansios
    bool pipe::not_inherit_write()
    {
 
-         
 #endif
 
       return true;
