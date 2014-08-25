@@ -5,7 +5,6 @@ namespace process
 {
 
 
-
    bidi_pipe::bidi_pipe(sp(::aura::application) papp):
       element(papp),
       m_sppipeIn(allocer()),
