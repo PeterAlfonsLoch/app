@@ -4,14 +4,12 @@
 namespace core
 {
 
+
    class CLASS_DECL_AURA pipe
    {
    public:
 
       
-#endif
-
-
       char *               m_pchBuf;
       string               m_strRead;
 
