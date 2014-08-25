@@ -119,7 +119,8 @@ namespace aura
 
    }
 
-   cross_pipe::cross_pipe(sp(::aura)
+   cross_pipe::cross_pipe(sp(::aura::application) papp) :
+      element(papp)
    {
    }
 
