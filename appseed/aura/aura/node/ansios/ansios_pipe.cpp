@@ -50,7 +50,6 @@ namespace ansios
    {
 
 
-      if(!CreatePipe(&m_hRead,&m_hWrite,&m_sa,0))
          return false;
 
       if(!bBlock)
