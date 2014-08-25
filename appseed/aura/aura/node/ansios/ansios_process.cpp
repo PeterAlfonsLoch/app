@@ -71,10 +71,10 @@ namespace ansios
 
 #endif
 
+      posix_spawn_file_actions_t actions;
+
       if(bPiped)
       {
-
-         posix_spawn_file_actions_t actions;
 
          posix_spawn_file_actions_init(&actions);
          dup2(m_pipe.m_pipeOut.m_fd[1],STDOUT_FILENO);
@@ -105,7 +105,7 @@ namespace ansios
       if(m_bPiped)
       {
 
-         posix_spawn_file_actions_destroy
+         posix_spawn_file_actions_destroy(&actions);
 
       }
 
