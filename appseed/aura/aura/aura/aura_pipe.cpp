@@ -64,17 +64,11 @@ namespace core
 
    bool pipe::write(const char * psz)
    {
-      uint32_t dwLen = (uint32_t)strlen(psz);
-      bool bSuccess = FALSE;
-#ifdef WINDOWS
-      DWORD dwWritten;
-      bSuccess = WriteFile(m_hWrite,(const char *)psz,dwLen,&dwWritten,NULL) != FALSE;
-#else
-      size_t dwWritten;
-      dwWritten = ::write(m_fd[1],(const char *)psz,dwLen);
-#endif
-      return bSuccess != FALSE && dwWritten == dwLen;
+
+      return true;
+
    }
+
 
    string pipe::read()
    {
