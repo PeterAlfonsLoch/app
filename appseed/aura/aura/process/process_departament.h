@@ -46,9 +46,9 @@ namespace process
 
       // run process and get output
       virtual var get_output(const char * pszCmdLine);
-      uint32_t retry(const char * pszCmdLine,uint32_t dwTimeOut,int32_t iShow = SW_HIDE);
-      uint32_t synch(const char * pszCmdLine,int32_t iShow = SW_HIDE);
-      bool launch(const char * pszCmdLine,int32_t iShow = SW_HIDE);
+      virtual uint32_t retry(const char * pszCmdLine,uint32_t dwTimeOut,int32_t iShow = SW_HIDE);
+      virtual uint32_t synch(const char * pszCmdLine,int32_t iShow = SW_HIDE);
+      virtual bool launch(const char * pszCmdLine,int32_t iShow = SW_HIDE);
 
 
       static int32_t s_on_retry(int32_t iTry,uint_ptr dwParam);
