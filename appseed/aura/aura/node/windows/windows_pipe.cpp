@@ -269,7 +269,6 @@ namespace core
    }
 
 
-
 } // namespace core
 
 
