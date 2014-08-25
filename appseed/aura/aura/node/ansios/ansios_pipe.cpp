@@ -49,7 +49,6 @@ namespace ansios
    bool pipe::create(bool bBlock)
    {
 
-      {
 
          DWORD dwMode = PIPE_NOWAIT;
          VERIFY(SetNamedPipeHandleState(m_hRead,&dwMode,NULL,NULL));
