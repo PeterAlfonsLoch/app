@@ -28,7 +28,6 @@ namespace windows
          free(m_pchBuf);
       }
 
-
       ::CloseHandle(m_hRead);
 
       ::CloseHandle(m_hWrite);
