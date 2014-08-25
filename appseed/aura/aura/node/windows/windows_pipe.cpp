@@ -8,11 +8,6 @@ namespace windows
    pipe::pipe(bool bInherit)
    {
 
-      m_pchBuf = NULL;
-
-      m_sa.nLength = sizeof(SECURITY_ATTRIBUTES);
-      m_sa.bInheritHandle = bInherit ? TRUE : FALSE;
-      m_sa.lpSecurityDescriptor = NULL;
 
       m_hRead = NULL;
       m_hWrite = NULL;
@@ -46,8 +41,14 @@ namespace windows
    }
 
 
-   bool pipe::create(bool bBlock)
+   bool pipe::create(bool bBlock, bool bInherit)
    {
+
+
+      m_sa.nLength = sizeof(SECURITY_ATTRIBUTES);
+      m_sa.bInheritHandle = bInherit ? TRUE : FALSE;
+      m_sa.lpSecurityDescriptor = NULL;
+
 
       if(!CreatePipe(&m_hRead,&m_hWrite,&m_sa,0))
          return false;
