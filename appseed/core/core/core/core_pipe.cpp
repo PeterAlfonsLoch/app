@@ -43,9 +43,3 @@ namespace core
       {
          free(m_pchBuf);
       }
-
-#ifdef WINDOWS
-
-      ::CloseHandle(m_hRead);
-      ::CloseHandle(m_hWrite);
-
