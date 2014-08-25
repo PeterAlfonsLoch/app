@@ -161,6 +161,7 @@ namespace ansios
 
    }
 
+
    string pipe::one_pass_read()
    {
 
