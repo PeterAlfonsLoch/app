@@ -96,6 +96,7 @@ namespace windows
       bool bSuccess = false;
 
       DWORD dwWritten;
+
       bSuccess = WriteFile(m_hWrite,(const char *)psz,dwLen,&dwWritten,NULL) != FALSE;
 #else
       size_t dwWritten;
