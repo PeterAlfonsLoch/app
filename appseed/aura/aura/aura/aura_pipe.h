@@ -15,7 +15,6 @@ namespace core
 
 
 
-      HANDLE               m_hWrite;
 
 #else
 
