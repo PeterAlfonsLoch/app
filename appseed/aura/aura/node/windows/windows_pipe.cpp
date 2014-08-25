@@ -10,7 +10,6 @@ namespace windows
 
       m_pchBuf = NULL;
 
-
       m_sa.nLength = sizeof(SECURITY_ATTRIBUTES);
       m_sa.bInheritHandle = bInherit ? TRUE : FALSE;
       m_sa.lpSecurityDescriptor = NULL;
