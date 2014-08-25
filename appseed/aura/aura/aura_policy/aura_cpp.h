@@ -1118,7 +1118,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 
 
-#include "aura_pip.h
+#include "aura_pipe.h"
 #include "aura_process.h"
 #include "aura_process_departament.h"
 
