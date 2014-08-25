@@ -231,6 +231,12 @@
     <Filter Include="Header Files\user\colorertake5">
       <UniqueIdentifier>{f5b305ca-65b3-4b2a-918b-250947ae62ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\aura\process">
+      <UniqueIdentifier>{3f21eca0-1c7c-4595-a982-08f67566920a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\process">
+      <UniqueIdentifier>{5d74699a-06f9-4f48-a523-e566763c1ca8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_wstringtou.h">
@@ -2696,6 +2702,18 @@
     <ClInclude Include="aura\aura\aura_platform_interface.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
+    <ClInclude Include="aura\process\process_bidi_pipe.h">
+      <Filter>Header Files\aura\process</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\process\process_departament.h">
+      <Filter>Header Files\aura\process</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\process\process_pipe.h">
+      <Filter>Header Files\aura\process</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\process\process_process.h">
+      <Filter>Header Files\aura\process</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -4039,6 +4057,18 @@
     <ClCompile Include="aura\aura\aura_platform_interface.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
+    <ClCompile Include="aura\process\process_bidi_pipe.cpp">
+      <Filter>Source Files\aura\process</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\process\process_departament.cpp">
+      <Filter>Source Files\aura\process</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\process\process_pipe.cpp">
+      <Filter>Source Files\aura\process</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\process\process_process.cpp">
+      <Filter>Source Files\aura\process</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -4070,9 +4100,6 @@
     </None>
     <None Include="aura\aura\aura_system_xml.inl">
       <Filter>Header Files\aura\aura</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

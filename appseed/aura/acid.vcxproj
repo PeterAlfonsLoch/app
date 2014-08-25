@@ -2666,6 +2666,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\os\windows\windows_simple_hold_handle.h" />
     <ClInclude Include="aura\os\windows\windows_utils.h" />
     <ClInclude Include="aura\os\windows\windows_windows.h" />
+    <ClInclude Include="aura\process\process_bidi_pipe.h" />
+    <ClInclude Include="aura\process\process_departament.h" />
+    <ClInclude Include="aura\process\process_pipe.h" />
+    <ClInclude Include="aura\process\process_process.h" />
     <ClInclude Include="aura\xml\xml.h" />
     <ClInclude Include="aura\xml\xml_attr.h" />
     <ClInclude Include="aura\xml\xml_base_array.h" />
@@ -3767,6 +3771,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="aura\os\windows\windows_time.cpp" />
     <ClCompile Include="aura\os\windows\windows_util.cpp" />
     <ClCompile Include="aura\os\windows\windows_utils.cpp" />
+    <ClCompile Include="aura\process\process_bidi_pipe.cpp" />
+    <ClCompile Include="aura\process\process_departament.cpp" />
+    <ClCompile Include="aura\process\process_pipe.cpp" />
+    <ClCompile Include="aura\process\process_process.cpp" />
     <ClCompile Include="filesystem\file\file.cpp" />
     <ClCompile Include="filesystem\file\file_c.cpp" />
     <ClCompile Include="filesystem\file\file_serializable.cpp" />
