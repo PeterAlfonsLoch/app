@@ -29,7 +29,6 @@ namespace core
       string one_pass_read();
 
 
-#ifdef WINDOWS
 
       void readex();
 
