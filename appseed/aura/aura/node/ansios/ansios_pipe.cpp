@@ -110,7 +110,6 @@ namespace ansios
    {
       string str;
       const int32_t BUFSIZE = 1024 * 8;
-#ifdef WINDOWS
       DWORD dwRead;
       size_t dwRead;
 
