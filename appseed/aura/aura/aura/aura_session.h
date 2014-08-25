@@ -2,7 +2,7 @@
 
 
 
-#define session_parent session()
+#define session_parent session( )
 
 
 namespace aura

@@ -1,6 +1,6 @@
 #pragma once
 
-#define platform_parent platform()
+#define platform_parent platform( )
 
 namespace core
 {

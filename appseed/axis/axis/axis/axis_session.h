@@ -2,8 +2,6 @@
 
 
 
-#define session_parent session()
-
 
 namespace axis
 {
