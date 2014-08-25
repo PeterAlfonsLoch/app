@@ -113,7 +113,6 @@ namespace windows
 
       DWORD dwRead;
 
-      size_t dwRead;
 #endif
       bool bSuccess;
       char chBuf[BUFSIZE];
