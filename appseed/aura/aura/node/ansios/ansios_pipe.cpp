@@ -170,7 +170,7 @@ namespace ansios
 #else
       size_t dwRead;
 #endif
-      bool bSuccess = FALSE;
+      bool bSuccess = false;
       char chBuf[BUFSIZE];
       memset(chBuf,0,BUFSIZE);
 
