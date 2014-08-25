@@ -119,7 +119,9 @@ namespace aura
 
    }
 
-   cross_pipe::cross_pipe(bool bInherit):
+   cross_pipe::cross_pipe(sp(::aura)
+   {
+   }
 
 
    bool cross_pipe::create(bool bBlock, bool bInherit)
