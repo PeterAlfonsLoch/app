@@ -113,7 +113,7 @@ namespace windows
 
       DWORD dwRead;
 
-      bool bSuccess;
+      bool bSuccess = false; 
       char chBuf[BUFSIZE];
       for(;;)
       {
