@@ -4069,6 +4069,9 @@
     <ClCompile Include="aura\node\windows\windows_pipe.cpp">
       <Filter>Source Files\aura\node\windows</Filter>
     </ClCompile>
+    <ClCompile Include="aura\node\ansios\ansios_pipe.cpp">
+      <Filter>Source Files\aura\node\ansios</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
