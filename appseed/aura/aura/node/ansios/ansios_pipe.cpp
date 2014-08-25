@@ -50,7 +50,6 @@ namespace ansios
    {
 
 
-         DWORD dwMode = PIPE_NOWAIT;
          VERIFY(SetNamedPipeHandleState(m_hRead,&dwMode,NULL,NULL));
          VERIFY(SetNamedPipeHandleState(m_hWrite,&dwMode,NULL,NULL));
 
