@@ -30,13 +30,20 @@ int32_t machine_event_central::run()
       {
          synch_lock lockMachineEvent(&m_machineevent.m_mutex);
          machine_event_data data;
+
          m_machineevent.read(&data);
-         System.process(&data);
+
+         System.process_machine_event_data(&data);
       }
+
       Sleep(484);
+
    }
+
    return 0;
+
 }
+
 
 bool machine_event_central::is_close_application()
 {

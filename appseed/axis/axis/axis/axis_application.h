@@ -76,7 +76,7 @@ namespace axis
       virtual sp(::user::interaction) get_capture_uie();
 
 
-      //void process(machine_event_data * pdata);
+      //void process_machine_event_data(machine_event_data * pdata);
 
 
 

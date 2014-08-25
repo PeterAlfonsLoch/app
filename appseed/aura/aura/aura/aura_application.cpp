@@ -619,7 +619,7 @@ namespace aura
 
 
 
-   void application::process(machine_event_data * pdata)
+   void application::process_machine_event_data(machine_event_data * pdata)
    {
 
       if(pdata->m_fixed.m_bRequestCloseApplication)

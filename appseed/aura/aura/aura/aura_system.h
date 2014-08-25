@@ -102,7 +102,6 @@ namespace aura
       class base_factory                           &  factory();
       ::exception::engine                          &  eengine();
 
-      using ::aura::application::process;
       ::process::departament                       &  process();
 
 

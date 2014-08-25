@@ -111,7 +111,7 @@ namespace aura
       virtual bool is_session();
       virtual bool is_serviceable();
 
-      void process(machine_event_data * pdata);
+      void process_machine_event_data(machine_event_data * pdata);
 
       virtual bool open_link(const string & strLink,const string & pszTarget = "");
 
