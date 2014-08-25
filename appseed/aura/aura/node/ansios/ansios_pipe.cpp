@@ -116,6 +116,7 @@ namespace ansios
       size_t dwRead;
 
       bool bSuccess = false;
+
       char chBuf[BUFSIZE];
 
       for(;;)
