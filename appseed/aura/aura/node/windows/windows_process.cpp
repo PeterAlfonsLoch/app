@@ -40,7 +40,7 @@ namespace windows
    {
 
 
-      if(!::aura::create_child_process(pszCmdLine,bPiped,pszDir,iCa2Priority))
+      if(!::aura::process::create_child_process(pszCmdLine,bPiped,pszDir,iCa2Priority))
          return false;
 
       string szCmdline = pszCmdLine;
