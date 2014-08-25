@@ -54,6 +54,7 @@ namespace aura
       uint32_t dwExitCode = 0;
       uint32_t dwStartTime = ::get_tick_count();
       int32_t i = 1;
+
       while(true)
       {
          if(has_exited(&dwExitCode))
