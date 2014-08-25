@@ -196,6 +196,7 @@ namespace ansios
       str += chBuf;
 
       return str;
+
    }
 
 
