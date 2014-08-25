@@ -103,6 +103,7 @@ namespace windows
 
    }
 
+
    string pipe::read()
    {
       string str;
