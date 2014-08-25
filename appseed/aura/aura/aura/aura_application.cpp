@@ -2863,7 +2863,7 @@ namespace aura
 
 
 
-   virtual void application::process_message_filter(int32_t code,signal_details * pobj)
+   void application::process_message_filter(int32_t code,signal_details * pobj)
    {
    }
 
