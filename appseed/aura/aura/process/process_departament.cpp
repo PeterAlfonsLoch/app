@@ -134,10 +134,15 @@ namespace process
 
          if(m_pstrRead != NULL)
          {
+
             *m_pstrRead += strRead;
+
          }
+
          Sleep(100);
+
       }
+
       while(get_run())
       {
          strRead = m_process.m_pipe.m_pipeOut.read();
