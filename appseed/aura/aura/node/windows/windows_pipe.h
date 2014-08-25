@@ -46,8 +46,6 @@ namespace core
       string one_pass_read();
 
 
-#ifdef WINDOWS
-
       void readex();
 
 
@@ -56,8 +54,6 @@ namespace core
          uint32_t dwNumberOfBytesTransfered,
          LPOVERLAPPED lpOverlapped
          );
-
-#endif
 
    };
 
