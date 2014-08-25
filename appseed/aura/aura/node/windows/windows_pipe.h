@@ -32,7 +32,7 @@ namespace windows
       HANDLE               m_hWrite;
 
 
-      pipe(bool bInherit);
+      pipe(sp();
       virtual ~pipe();
 
 
