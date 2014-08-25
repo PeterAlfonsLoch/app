@@ -152,6 +152,7 @@ namespace ansios
          if(!bSuccess || dwRead == 0)
             break;
          str += chBuf;
+
          if(dwRead < BUFSIZE)
             break;
 
