@@ -59,7 +59,7 @@ namespace windows
    };
 
 
-} // namespace core
+} // namespace windows
 
 
 
