@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace core
+namespace ansios
 {
 
 
@@ -29,7 +29,7 @@ namespace core
    };
 
 
-} // namespace core
+} // namespace ansios
 
 
 
