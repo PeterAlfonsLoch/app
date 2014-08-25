@@ -14,6 +14,13 @@ namespace process
    }
 
 
+   bidi_pipe::~bidi_pipe()
+   {
+
+   }
+
+
+
    bool bidi_pipe::create(bool bBlock,bool bInherit)
    {
 
