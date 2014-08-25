@@ -288,7 +288,7 @@ namespace core
          return false;
       if(!m_pipeOut.not_inherit_read())
          return false;
-      return true;
+
 
 
 } // namespace core
