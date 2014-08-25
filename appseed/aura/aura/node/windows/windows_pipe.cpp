@@ -69,7 +69,6 @@ namespace windows
    bool pipe::not_inherit_read()
    {
 
-#ifdef WINDOWS
 
       if(!SetHandleInformation(m_hRead,HANDLE_FLAG_INHERIT,0))
          return false;
