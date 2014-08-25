@@ -452,7 +452,9 @@ namespace aura
 
          strPrefix += "_";
 
-         if(::str::begins_eat_ci(strAppId,strPrefix))
+         ::str::begins_eat_ci(strAppId,strPrefix);
+
+         //if(::str::begins_eat_ci(strAppId,strPrefix))
          {
 
             stra.add(strAppId);

@@ -139,7 +139,7 @@ void simple_frame_window::_001OnDestroy(signal_details * pobj)
 sp(::user::wndfrm::frame::frame) simple_frame_window::create_frame_schema()
 {
 
-   sp(::user::wndfrm::frame::frame) pschema = Application.wndfrm().get_frame_schema("app-core/wndfrm", "005");
+   sp(::user::wndfrm::frame::frame) pschema = Application.wndfrm().get_frame_schema("wndfrm_core", "005");
 
    pschema->m_typeinfoControlBoxButton = System.type_info < MetaButton >();
 

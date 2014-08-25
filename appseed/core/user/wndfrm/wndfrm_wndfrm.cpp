@@ -46,10 +46,10 @@ namespace user
 #ifndef METROWIN
          if(!System.directrix()->m_varTopicQuery.has_property("install")
             && !System.directrix()->m_varTopicQuery.has_property("uninstall")
-            && !System.install().is(NULL, strBuildNumber, "wndfrm", strId, Application.m_strLocale, Application.m_strSchema))
+            && !System.install().is(NULL, strBuildNumber, "wndfrm_core", strId, Application.m_strLocale, Application.m_strSchema))
          {
 
-            throw not_installed(get_app(), NULL, strBuildNumber, "wndfrm", strId, Application.m_strLocale, Application.m_strSchema);
+            throw not_installed(get_app(), NULL, strBuildNumber, "wndfrm_core", strId, Application.m_strLocale, Application.m_strSchema);
 
          }
 
@@ -94,7 +94,7 @@ namespace user
          if(strAppId.is_empty()) // trivial validity check
             return NULL;
 
-         sp(::user::wndfrm::interaction) pinteraction = library.create_object(get_app(), "wndfrm");
+         sp(::user::wndfrm::interaction) pinteraction = library.create_object(get_app(), "wndfrm_core");
 
          if(pinteraction == NULL)
             return NULL;

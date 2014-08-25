@@ -414,6 +414,11 @@ namespace core
          TRACE("reach app_core_hellomultiverse.dll");
       }
 
+      if(!stricmp_dup(pszLibrary,"wndfrm_core.dll"))
+      {
+         TRACE("reach wndfrm_core.dll");
+      }
+
       if(!stricmp_dup(pszLibrary,"app_core_hellomultiverse"))
       {
          TRACE("reach app_core_hellomultiverse");
