@@ -24,12 +24,12 @@ namespace ansios
       virtual bool create(bool bBlock = true, bool bInherit = false);
 
 
-      bool not_inherit_read();
-      bool not_inherit_write();
+      virtual bool not_inherit_read();
+      virtual bool not_inherit_write();
 
-      bool write(const char * psz);
-      string read();
-      string one_pass_read();
+      virtual bool write(const char * psz);
+      virtual string read();
+      virtual string one_pass_read();
 
 
 
