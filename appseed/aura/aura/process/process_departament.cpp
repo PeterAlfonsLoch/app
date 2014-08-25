@@ -110,6 +110,7 @@ namespace process
    {
    }
 
+
    int32_t departament::process_thread::run()
    {
       string strRead;
