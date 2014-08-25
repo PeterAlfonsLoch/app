@@ -45,13 +45,12 @@ namespace windows
    {
 
 
-      if(!::aura::p
-
+      if(!::aura::pipe::create(bBlock,bInherit))
+         return false;
 
       m_sa.nLength = sizeof(SECURITY_ATTRIBUTES);
       m_sa.bInheritHandle = bInherit ? TRUE : FALSE;
       m_sa.lpSecurityDescriptor = NULL;
-
 
       if(!CreatePipe(&m_hRead,&m_hWrite,&m_sa,0))
          return false;
