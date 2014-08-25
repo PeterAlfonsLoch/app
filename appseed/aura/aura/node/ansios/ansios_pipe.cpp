@@ -204,8 +204,6 @@ namespace ansios
 
 #ifdef WINDOWS
 
-   void pipe::readex()
-   {
 
 
 } // namespace core
