@@ -142,7 +142,7 @@ namespace ansios
             bSuccess = ReadFile(m_hRead,chBuf,BUFSIZE,&dwRead,NULL) != FALSE;
 #else
             dwRead =::read(m_fd[0],chBuf,BUFSIZE);
-            bSuccess = TRUE;
+            bSuccess = true;
 
          }
          catch(...)
