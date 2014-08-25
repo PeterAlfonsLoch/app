@@ -77,6 +77,11 @@ namespace ansios
       {
 
          posix_spawn_file_actions_init(&actions);
+
+         posix_spawn_file_actions_adddup2(
+            posix_spawn_file_actions_t *fact_p,
+            int fd,
+            int new_fd);
          dup2(m_pipe.m_pipeOut.m_fd[1],STDOUT_FILENO);
          dup2(m_pipe.m_pipeOut.m_fd[1],STDERR_FILENO);
          dup2(m_pipe.m_pipeIn.m_fd[0],STDIN_FILENO);
