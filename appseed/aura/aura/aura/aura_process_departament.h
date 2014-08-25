@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace core
+namespace aura
 {
 
 
@@ -57,6 +57,6 @@ namespace core
    };
 
 
-} // namespace core
+} // namespace aura
 
 
