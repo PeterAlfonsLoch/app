@@ -60,7 +60,7 @@ namespace fontopus
 
          int32_t iRetry = 3;
          ::fontopus::user * puser = NULL;
-         while(iRetry > 0)
+         while(iRetry > 0 && (::get_thread() == NULL || ::get_thread()->m_bRun))
          {
             puser = login(set);
             if(puser != NULL)
