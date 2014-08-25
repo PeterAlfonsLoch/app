@@ -145,14 +145,7 @@ namespace windows
       while(true)
       {
          if(has_exited(&dwExitCode))
-            break;
-         if(iWaitMax >= 0 && get_tick_count() > dwStartTime + iWaitMax)
-            break;
-         Sleep(100);
-         i++;
-      }
-      return dwExitCode;
-   }
+ 
 
    bool process::has_exited(uint32_t * puiExitCode)
    {
