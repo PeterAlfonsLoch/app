@@ -235,7 +235,6 @@ namespace ansios
 #endif
 
 
-   cross_pipe::cross_pipe(bool bInherit):
 
 
 } // namespace core
