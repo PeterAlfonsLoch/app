@@ -33,7 +33,6 @@ namespace ansios
       }
 
 
-
       if(m_fd[0] != -1)
       {
          ::close(m_fd[0]);
