@@ -10,22 +10,12 @@ namespace ansios
    {
    public:
 
+
       char *               m_pchBuf;
       string               m_strRead;
 
-#ifdef WINDOWS
-
-      overlapped           m_overlapped;
-
-      SECURITY_ATTRIBUTES  m_sa;
-      HANDLE               m_hRead;
-      HANDLE               m_hWrite;
-
-#else
-
       int32_t                  m_fd[2];
 
-#endif
 
       pipe(bool bInherit);
       virtual ~pipe();
