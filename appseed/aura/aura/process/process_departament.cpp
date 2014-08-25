@@ -32,7 +32,7 @@ namespace process
 
       pthread->m_bAutoDelete = true;
 
-      if(!pthread->m_process.create_child_process(pszCmdLine,true))
+      if(!pthread->m_spprocess.create_child_process(pszCmdLine,true))
          return false;
 
       pthread->begin();
