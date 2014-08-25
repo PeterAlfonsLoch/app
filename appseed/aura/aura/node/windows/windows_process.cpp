@@ -5,7 +5,7 @@ namespace windows
 {
 
 
-   process::process():
+   process::process(sp():
       
       m_pipe(true)
    {
