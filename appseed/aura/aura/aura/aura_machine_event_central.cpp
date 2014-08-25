@@ -29,6 +29,7 @@ int32_t machine_event_central::run()
    {
       {
          synch_lock lockMachineEvent(&m_machineevent.m_mutex);
+
          machine_event_data data;
 
          m_machineevent.read(&data);
