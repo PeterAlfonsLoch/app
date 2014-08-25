@@ -6,7 +6,7 @@ namespace ansios
 
 
    class CLASS_DECL_CORE pipe :
-      virtual public ::aura::
+      virtual public ::aura::pipe
    {
    public:
 
