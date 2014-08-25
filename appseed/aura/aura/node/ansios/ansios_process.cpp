@@ -82,7 +82,7 @@ namespace ansios
 
          posix_spawn_file_actions_adddup2(&actions, ppipeOut->m_fd[1],STDOUT_FILENO);
 
-         posix_spawn_file_actions_adddup2(&actions,m_pipe.m_sppipeOut.cast < ::ansions::pipe >()->m_fd[1],STDERR_FILENO);
+         posix_spawn_file_actions_adddup2(&actions, ppipeOut.m_sppipeOut.cast < ::ansions::pipe >()->m_fd[1],STDERR_FILENO);
 
          pipe * ppipeIn = m_pipe.m_sppipeIn.cast < ::ansios::pipe >();
 
