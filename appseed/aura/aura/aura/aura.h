@@ -56,7 +56,7 @@
 
 #include "nodeapp/operational_system/_.h"
 
-#ifdef _AURA_STATIC
+#if defined(_ACID_LIBRARY)
 #define CLASS_DECL_AURA
 #elif defined(_AURA_LIBRARY)
 #define CLASS_DECL_AURA  CLASS_DECL_EXPORT
