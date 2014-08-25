@@ -61,7 +61,6 @@ namespace windows
 
       }
 
-      {
          close(m_fd[0]);
          close(m_fd[1]);
          return false;
