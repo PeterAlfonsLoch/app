@@ -122,7 +122,6 @@ namespace aura
    cross_pipe::cross_pipe(bool bInherit):
       m_sppipeIn->set_inherit(bInherit);
 
-   m_sppipeOut->set_inherit(bInherit);
 
    bool cross_pipe::create(bool bBlock, bool bInherit)
    {
