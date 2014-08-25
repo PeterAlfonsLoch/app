@@ -181,6 +181,7 @@ namespace windows
          return str;
 
       str += chBuf;
+
       return str;
    }
 
