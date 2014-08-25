@@ -37,7 +37,7 @@ namespace aura
    public:
 
 
-      spipe m_pipeIn;
+      sppipe m_pipeIn;
       pipe m_pipeOut;
 
 
