@@ -212,7 +212,6 @@ namespace ansios
          if(m_pchBuf == NULL)
             throw memory_exception(get_thread_app());
       }
-      memset(&m_overlapped,0,sizeof(m_overlapped));
 
 
 } // namespace core
