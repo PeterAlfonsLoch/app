@@ -37,7 +37,7 @@ namespace aura
    public:
 
 
-      sp(pipe m_pipeIn;
+      sp(pipe) m_pipeIn;
       pipe m_pipeOut;
 
 
@@ -51,6 +51,7 @@ namespace aura
 
 
 } // namespace aura
+
 
 
 
