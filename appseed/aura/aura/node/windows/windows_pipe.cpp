@@ -32,7 +32,6 @@ namespace windows
       ::CloseHandle(m_hRead);
       ::CloseHandle(m_hWrite);
 
-#else
 
       if(m_fd[0] != -1)
       {
