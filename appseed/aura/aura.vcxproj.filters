@@ -2705,6 +2705,9 @@
     <ClInclude Include="aura\node\ansios\ansios_process.h">
       <Filter>Header Files\aura\node\ansios</Filter>
     </ClInclude>
+    <ClInclude Include="aura\aura\aura_process_departament.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
