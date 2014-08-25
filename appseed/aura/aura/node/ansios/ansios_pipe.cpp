@@ -42,7 +42,6 @@ namespace ansios
       {
          ::close(m_fd[1]);
       }
-
 #endif
 
    }
