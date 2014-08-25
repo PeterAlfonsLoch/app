@@ -79,7 +79,7 @@ template < class APP >
 static int32_t s_main(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR lpCmdLine,int32_t nCmdShow)
 {
 
-   if(!defer_base_init())
+   if(!defer_aura_init())
    {
       return -1;
    }
@@ -111,7 +111,7 @@ static int32_t s_main(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR lpCmdLi
    {
    }
 
-   defer_base_term();
+   defer_aura_term();
 
    return iRet;
 

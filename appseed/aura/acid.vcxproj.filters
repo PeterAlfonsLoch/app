@@ -4066,6 +4066,9 @@
     <ClCompile Include="aura\process\process_process.cpp">
       <Filter>Source Files\aura\process</Filter>
     </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_base_process.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
