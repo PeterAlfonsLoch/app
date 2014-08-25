@@ -247,7 +247,6 @@ namespace ansios
          return false;
       if(!m_pipeIn.not_inherit_write())
          return false;
-      if(!m_pipeOut.create(bBlock))
 
 } // namespace core
 
