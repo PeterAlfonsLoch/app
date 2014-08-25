@@ -33,7 +33,6 @@ namespace ansios
       }
 
 
-#else
 
       if(m_fd[0] != -1)
       {
