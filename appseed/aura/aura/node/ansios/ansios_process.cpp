@@ -98,6 +98,9 @@ namespace ansios
 
 #endif
 
+#ifdef LINUX
+
+
       if(m_bPiped)
       {
 
