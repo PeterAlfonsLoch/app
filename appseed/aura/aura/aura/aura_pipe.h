@@ -15,7 +15,6 @@ namespace core
 
 
 
-      HANDLE               m_hRead;
       HANDLE               m_hWrite;
 
 #else
