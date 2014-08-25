@@ -90,8 +90,9 @@ namespace windows
 
    bool pipe::write(const char * psz)
    {
+
       uint32_t dwLen = (uint32_t)strlen(psz);
-      bool bSuccess = FALSE;
+      bool bSuccess = false;
       DWORD dwWritten;
       bSuccess = WriteFile(m_hWrite,(const char *)psz,dwLen,&dwWritten,NULL) != FALSE;
 #else
