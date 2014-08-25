@@ -39,8 +39,8 @@ namespace core
    {
 
       m_bBlock = bBlock;
-      m_bInherit = bInherit;
 
+      m_bInherit = bInherit;
 
       return true;
 
