@@ -217,7 +217,6 @@ namespace ansios
       ReadFileEx(m_hRead,m_pchBuf,1024,&m_overlapped.m_overlapped,(LPOVERLAPPED_COMPLETION_ROUTINE)&pipe::read_complete);
    }
 
-   void WINAPI pipe::read_complete(
       uint32_t dwErrorCode,
       uint32_t dwNumberOfBytesTransfered,
       LPOVERLAPPED lpOverlapped
