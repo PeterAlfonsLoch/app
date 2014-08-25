@@ -43,8 +43,8 @@ namespace windows
       virtual bool not_inherit_write();
 
       virtual bool write(const char * psz);
-      string read();
-      string one_pass_read();
+      virtual string read();
+      virtual string one_pass_read();
 
 
       void readex();
