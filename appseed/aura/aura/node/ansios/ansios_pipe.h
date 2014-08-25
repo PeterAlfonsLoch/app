@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace core
+namespace ansios
 {
 
    class CLASS_DECL_CORE pipe
