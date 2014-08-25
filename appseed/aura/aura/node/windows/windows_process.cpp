@@ -53,11 +53,11 @@ namespace windows
       if(bPiped)
       {
 
-         m_si.hStdError       = m_pipe.m_pipeOut.m_hWrite;
+         m_si.hStdError       = m_pipe.m_sppipeOut->m_hWrite;
 
-         m_si.hStdOutput      = m_pipe.m_pipeOut.m_hWrite;
+         m_si.hStdOutput      = m_pipe.m_sppipeOut.m_hWrite;
 
-         m_si.hStdInput       = m_pipe.m_pipeIn.m_hRead;
+         m_si.hStdInput       = m_pipe.m_sppipeIn.m_hRead;
 
          m_si.dwFlags         |= STARTF_USESTDHANDLES;
 
