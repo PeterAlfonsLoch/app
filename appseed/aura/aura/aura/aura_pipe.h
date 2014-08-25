@@ -31,6 +31,7 @@ namespace core
 
    };
 
+
    class CLASS_DECL_CORE cross_pipe
    {
    public:
