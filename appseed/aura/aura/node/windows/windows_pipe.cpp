@@ -274,7 +274,6 @@ namespace core
 
    cross_pipe::cross_pipe(bool bInherit):
       m_pipeIn(bInherit),
-      m_pipeOut(bInherit)
 
 
 
