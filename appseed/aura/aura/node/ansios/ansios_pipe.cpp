@@ -130,7 +130,7 @@ namespace ansios
 #else
       size_t dwRead;
 #endif
-      bool bSuccess;
+      bool bSuccess = false;
       char chBuf[BUFSIZE];
       for(;;)
       {
