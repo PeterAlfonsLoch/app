@@ -105,6 +105,7 @@ namespace ansios
 
    }
 
+
    string pipe::read()
    {
       string str;
