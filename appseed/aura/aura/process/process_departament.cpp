@@ -85,8 +85,10 @@ namespace process
 
    }
 
+
    uint32_t departament::synch(const char * pszCmdLine,int32_t iShow)
    {
+
       return retry(pszCmdLine,0,iShow);
 
    }
