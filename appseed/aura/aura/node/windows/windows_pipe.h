@@ -32,7 +32,7 @@ namespace windows
       HANDLE               m_hWrite;
 
 
-      pipe(sp(::aura::application));
+      pipe(sp(::aura::application) papp);
       virtual ~pipe();
 
 
