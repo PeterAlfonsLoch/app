@@ -19,9 +19,6 @@ namespace core
       ::base::system(papp),
       m_mutexDelete(this),
       m_mutex(this),
-#ifndef METROWIN
-      m_processsection(this),
-#endif
       m_emaildepartament(this)
    {
 
@@ -80,9 +77,6 @@ namespace core
          //      m_url.set_app(this);
          m_userset.set_app(this);
          m_service.set_app(this);
-#ifndef METROWIN
-         m_processsection.set_app(this);
-#endif
          m_pdatetime = new class ::datetime::departament(this);
          //      m_email.set_app(this);
 

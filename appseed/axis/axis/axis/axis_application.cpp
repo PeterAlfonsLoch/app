@@ -497,32 +497,12 @@ namespace axis
    }
 
 
-
-
-
-
-
-
-
-
-   void application::process(machine_event_data * pdata)
-   {
-      if(pdata->m_fixed.m_bRequestCloseApplication)
-      {
-         _001CloseApplication();
-      }
-   }
-
-
    void application::_001CloseApplication()
    {
 
       throw todo(get_app());
 
    }
-
-
-
 
 
    sp(::user::interaction) application::release_capture_uie()
