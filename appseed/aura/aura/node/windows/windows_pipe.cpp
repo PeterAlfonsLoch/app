@@ -4,7 +4,6 @@
 namespace windows
 {
 
-
    pipe::pipe(bool bInherit)
    {
 
