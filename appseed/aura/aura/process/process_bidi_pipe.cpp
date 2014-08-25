@@ -9,18 +9,6 @@ namespace process
 
 
 
-   bool pipe::create(bool bBlock,bool bInherit)
-   {
-
-      m_bBlock = bBlock;
-
-      m_bInherit = bInherit;
-
-      return true;
-
-   }
-
-
    bool pipe::not_inherit_read()
    {
 
