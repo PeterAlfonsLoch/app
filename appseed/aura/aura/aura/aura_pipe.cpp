@@ -273,14 +273,21 @@ namespace core
 
 
    cross_pipe::cross_pipe(bool bInherit):
-      m_pipeIn(bInherit),
-      m_pipeOut(bInherit)
+      m_sppipeIn(bInherit),
+      m_sppipeOut(bInherit)
    {
+
+
    }
+
+   cross_pipe::cross_pipe(bool bInherit):
+      m_sppipeIn->set_inherit(bInherit);
+
+   m_sppipeOut->set_inherit(bInherit);
 
    bool cross_pipe::create(bool bBlock)
    {
-      if(!m_pipeIn.create(bBlock))
+      if(!m_sppipeIn.create(bBlock))
          return false;
       if(!m_pipeIn.not_inherit_write())
          return false;

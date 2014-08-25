@@ -178,6 +178,20 @@ namespace aura
    }
 
 
+#ifndef METROWIN
+
+   ::core::process_departament & system::process()
+   {
+      return m_processsection;
+   }
+
+#endif
+
+
+
+
+
+
    bool system::process_initialize()
    {
 
