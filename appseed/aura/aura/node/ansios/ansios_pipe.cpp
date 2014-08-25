@@ -242,7 +242,6 @@ namespace ansios
    }
 
    bool cross_pipe::create(bool bBlock)
-   {
 
 } // namespace core
 
