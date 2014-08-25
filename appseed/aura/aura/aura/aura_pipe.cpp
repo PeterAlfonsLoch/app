@@ -80,44 +80,11 @@ namespace core
 
    string pipe::one_pass_read()
    {
-      string str;
-      const int32_t BUFSIZE = 1024 * 8;
-#ifdef WINDOWS
-      DWORD dwRead;
-#else
-      size_t dwRead;
-#endif
-      bool bSuccess = FALSE;
-      char chBuf[BUFSIZE];
-      memset(chBuf,0,BUFSIZE);
 
-      try
-      {
+      return "";
 
-#ifdef WINDOWS
-
-         bSuccess = ReadFile(m_hRead,chBuf,BUFSIZE,&dwRead,NULL) != FALSE;
-
-#else
-
-         dwRead = ::read(m_fd[0],chBuf,BUFSIZE);
-
-         bSuccess = true;
-
-#endif
-
-      }
-      catch(...)
-      {
-         bSuccess = FALSE;
-      }
-
-      if(!bSuccess || dwRead == 0)
-         return str;
-
-      str += chBuf;
-      return str;
    }
+
 
 #ifdef WINDOWS
 
