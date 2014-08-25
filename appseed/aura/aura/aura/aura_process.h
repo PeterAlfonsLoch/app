@@ -13,7 +13,7 @@ namespace aura
       cross_pipe              m_pipe;
       bool                    m_bPiped;
 
-      process();
+      process(sp(::aura::application) papp);
       virtual ~process();
 
 
