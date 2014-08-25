@@ -179,14 +179,6 @@ namespace aura
    }
 
 
-   ::aura::process_departament & system::process()
-   {
-
-      return m_processsection;
-
-   }
-
-
    bool system::process_initialize()
    {
 
