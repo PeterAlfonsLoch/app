@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace core
+namespace aura
 {
 
    process_departament::process_departament(application * papp):
