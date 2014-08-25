@@ -239,7 +239,6 @@ namespace ansios
       m_pipeIn(bInherit),
       m_pipeOut(bInherit)
    {
-   }
 
 
 } // namespace core
