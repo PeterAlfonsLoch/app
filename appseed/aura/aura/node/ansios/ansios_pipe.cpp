@@ -16,7 +16,6 @@ namespace ansios
 
       m_pchBuf = NULL;
 
-#ifdef WINDOWS
 
       m_sa.nLength = sizeof(SECURITY_ATTRIBUTES);
       m_sa.bInheritHandle = bInherit ? TRUE : FALSE;
