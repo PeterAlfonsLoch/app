@@ -50,7 +50,7 @@ namespace aura
    };
 
 
-} // namespace co
+} // namespace c
 
 
 #endif
