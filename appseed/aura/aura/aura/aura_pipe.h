@@ -5,7 +5,8 @@ namespace aura
 {
 
 
-   class CLASS_DECL_AURA pipe
+   class CLASS_DECL_AURA pipe :
+      virtual public ::object
    {
    public:
 
@@ -32,7 +33,8 @@ namespace aura
    };
 
    
-   class CLASS_DECL_AURA cross_pipe
+   class CLASS_DECL_AURA cross_pipe :
+      virtual public ::object
    {
    public:
 
@@ -41,7 +43,9 @@ namespace aura
       sp(pipe)    m_sppipeOut;
 
 
-      cross_pipe(bool bInherit);
+      cross_pipe(sp(::aura::application) papp);
+
+      virtual void set_inherit(bool bInherit);
 
 
       bool create(bool bBlock = true);
