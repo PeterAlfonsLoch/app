@@ -54,99 +54,6 @@ namespace ansios
 
       m_bPiped = bPiped;
 
-#ifdef WINDOWSEX
-
-
-      bool bSuccess = FALSE;
-
-
-      // set up members of the STARTUPINFO structure.
-      // This structure specifies the STDIN and STDOUT handles for redirection.
-
-      m_si.cb = sizeof(STARTUPINFO);
-      if(bPiped)
-      {
-         m_si.hStdError = m_pipe.m_pipeOut.m_hWrite;
-         m_si.hStdOutput = m_pipe.m_pipeOut.m_hWrite;
-         m_si.hStdInput = m_pipe.m_pipeIn.m_hRead;
-         m_si.dwFlags |= STARTF_USESTDHANDLES;
-
-      }
-      /* STARTUPINFO si;
-      PROCESS_INFORMATION pi;
-      memset(&si, 0, sizeof(si));
-      memset(&pi, 0, sizeof(pi));
-      si.cb = sizeof(si);
-      si.dwFlags = STARTF_USESHOWWINDOW;
-      si.wShowWindow = SW_HIDE; */
-      //         if(!::CreateProcess(NULL, (LPTSTR) (const char *) System.dir().appdata("production\\build.bat"), NULL, NULL, FALSE, CREATE_NEW_CONSOLE, NULL, NULL, &si, &pi))
-      m_si.dwFlags |= STARTF_USESHOWWINDOW;
-      m_si.wShowWindow = SW_HIDE;
-
-
-      DWORD dwPriorityClass = ::get_os_priority_class(iCa2Priority);
-
-
-      // create the child process.
-
-
-      if(::str::ends_ci(szCmdline,".bat"))
-      {
-         string strCmd;
-
-         strCmd = "";
-         strCmd += szCmdline;
-         strCmd += "";
-
-         wstring wstr = strCmd;
-
-         bSuccess = CreateProcessW(NULL,
-            (wchar_t *)(const wchar_t *)wstr,     // command line
-            NULL,          // process security attributes
-            NULL,          // primary thread security attributes
-            TRUE,          // handles are inherited
-            CREATE_NEW_CONSOLE | CREATE_UNICODE_ENVIRONMENT | dwPriorityClass,             // creation flags
-            NULL,          // use parent's environment
-            wstring(pszDir),
-            &m_si,  // STARTUPINFO pointer
-            &m_pi) != FALSE;  // receives PROCESS_INFORMATION
-      }
-      else
-      {
-         bSuccess = CreateProcessW(NULL,
-            (wchar_t *)(const wchar_t *)wstring(szCmdline),     // command line
-            NULL,          // process security attributes
-            NULL,          // primary thread security attributes
-            TRUE,          // handles are inherited
-            CREATE_NEW_CONSOLE | dwPriorityClass,             // creation flags
-            NULL,          // use parent's environment
-            wstring(pszDir),
-            &m_si,  // STARTUPINFO pointer
-            &m_pi) != FALSE;  // receives PROCESS_INFORMATION
-      }
-      // If an error occurs, exit the application.
-      if(! bSuccess)
-         return false;
-      else
-      {
-         // close handles to the child process and its primary thread.
-         // Some applications might keep these handles to monitor the status
-         // of the child process, for example.
-
-         //CloseHandle(m_pi.hProcess);
-         //CloseHandle(m_pi.hThread);
-      }
-      return true;
-
-#elif defined(METROWIN)
-
-      throw todo(get_thread_app());
-
-#elif defined(ANDROID)
-
-      throw todo(get_thread_app());
-
-#else
 
       char * argv[] ={(char *)pszCmdLine,0};
 
@@ -260,7 +167,6 @@ namespace ansios
       return 1;*/
 
 
-#endif
    }
 
    bool process::write(const char * psz)
