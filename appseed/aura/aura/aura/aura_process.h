@@ -8,7 +8,7 @@ namespace aura
 {
 
 
-   class CLASS_DECL_CORE process
+   class CLASS_DECL_AURA process
    {
    public:
 

@@ -117,3 +117,7 @@ inline int32_t __invariant_stricmp(const wchar_t *pwszLeft,const wchar_t *pwszRi
 #define __set_dialog_control_id_(oswindow, nID)     oswindow->SetWindowLong(GWL_ID, nID)
 #define __get_dialog_control_id(oswindow)         ((UINT)(WORD)::GetDlgCtrlID(oswindow))
 #define __get_dialog_control_id_(oswindow)         ((UINT)(WORD)oswindow->GetDlgCtrlId())
+
+
+
+#include "windows_process.h"
