@@ -3788,6 +3788,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="aura\os\windows\windows_time.cpp" />
     <ClCompile Include="aura\os\windows\windows_util.cpp" />
     <ClCompile Include="aura\os\windows\windows_utils.cpp" />
+    <ClCompile Include="aura\process\process_bidi_pipe.cpp" />
     <ClCompile Include="aura\process\process_departament.cpp" />
     <ClCompile Include="aura\process\process_pipe.cpp" />
     <ClCompile Include="aura\process\process_process.cpp" />
