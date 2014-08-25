@@ -40,20 +40,12 @@ namespace windows
    {
 
 
+      if(!::aura::create_child_process(pszCmdLine,bPiped,pszDir,iCa2Priority))
+         return false;
+
       string szCmdline = pszCmdLine;
 
-      // set up members of the PROCESS_INFORMATION structure.
-
-      if(bPiped)
-      {
-         if(!m_pipe.create(false))
-            return false;
-      }
-
-      m_bPiped = bPiped;
-
-      bool bSuccess = FALSE;
-
+      bool bSuccess = false;
 
       // set up members of the STARTUPINFO structure.
       // This structure specifies the STDIN and STDOUT handles for redirection.
