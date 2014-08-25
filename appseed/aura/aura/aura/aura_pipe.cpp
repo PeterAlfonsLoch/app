@@ -130,6 +130,7 @@ namespace aura
          return false;
       if(!m_pipeIn.not_inherit_write())
          return false;
+
       if(!m_pipeOut.create(bBlock,bInherit))
          return false;
 
