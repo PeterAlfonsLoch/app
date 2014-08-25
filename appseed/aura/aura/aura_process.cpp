@@ -63,6 +63,7 @@ namespace aura
 
          if(has_exited(&dwExitCode))
             break;
+
          if(iWaitMax >= 0 && get_tick_count() > dwStartTime + iWaitMax)
             break;
          Sleep(100);
