@@ -183,6 +183,7 @@ namespace windows
       str += chBuf;
 
       return str;
+
    }
 
    void pipe::readex()
