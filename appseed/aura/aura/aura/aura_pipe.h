@@ -14,7 +14,6 @@ namespace core
       string               m_strRead;
 
 
-      overlapped           m_overlapped;
 
       SECURITY_ATTRIBUTES  m_sa;
       HANDLE               m_hRead;
