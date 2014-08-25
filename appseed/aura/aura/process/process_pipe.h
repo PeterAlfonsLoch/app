@@ -44,15 +44,6 @@ namespace process
    };
 
    
-   class CLASS_DECL_AURA bidi_pipe :
-      virtual public ::object
-   {
-   public:
-
-
-      sp(pipe)    m_sppipeIn;
-      sp(pipe)    m_sppipeOut;
-
 
       bidi_pipe(sp(::aura::application) papp);
       virtual ~bidi_pipe();
