@@ -3814,9 +3814,6 @@
     <ClCompile Include="aura\node\windows\win1.cpp">
       <Filter>Source Files\aura\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\windows\windows_process.cpp">
-      <Filter>Source Files\aura\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="aura\node\node.cpp">
       <Filter>Source Files\aura\node</Filter>
     </ClCompile>
