@@ -155,6 +155,7 @@ namespace windows
       string str;
 
       const int32_t BUFSIZE = 1024 * 8;
+
 #ifdef WINDOWS
       DWORD dwRead;
 #else
