@@ -52,8 +52,10 @@ namespace windows
       // This structure specifies the STDIN and STDOUT handles for redirection.
 
       m_si.cb = sizeof(STARTUPINFO);
+
       if(bPiped)
       {
+
          m_si.hStdError = m_pipe.m_pipeOut.m_hWrite;
          m_si.hStdOutput = m_pipe.m_pipeOut.m_hWrite;
          m_si.hStdInput = m_pipe.m_pipeIn.m_hRead;
