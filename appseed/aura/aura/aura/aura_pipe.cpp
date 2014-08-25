@@ -5,7 +5,7 @@ namespace aura
 {
 
 
-   pipe::pipe(bool bInherit)
+   pipe::pipe(sp(::aura::application) papp)
    {
 
       m_bInherit = false;
