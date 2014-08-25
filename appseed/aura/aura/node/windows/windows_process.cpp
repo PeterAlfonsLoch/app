@@ -6,6 +6,7 @@ namespace windows
 
 
    process::process():
+      
       m_pipe(true)
    {
 
