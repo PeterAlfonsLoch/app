@@ -55,9 +55,9 @@ namespace windows
 
          pipe * ppipeOut      = m_pipe.m_sppipeOut.cast < pipe >();
 
-         m_si.hStdError       = m_pipe.m_sppipeOut->m_hWrite;
+         m_si.hStdError       = ppipeOut->m_hWrite;
 
-         m_si.hStdOutput      = m_pipe.m_sppipeOut.m_hWrite;
+         m_si.hStdOutput      = ppipeOut.m_hWrite;
 
          pipe * ppipeIn       = m_pipe.m_sppipeIn.cast < pipe >();
 
