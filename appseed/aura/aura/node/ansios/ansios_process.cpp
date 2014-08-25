@@ -72,8 +72,7 @@ namespace ansios
       if(bPiped)
       {
 
-         posix_spawn_file_actions_init(
-            posix_spawn_file_actions_t *fact_p);
+         posix_spawn_file_actions_t actions;
 
          posix_spawn_file_actions_init(
             posix_spawn_file_actions_t *fact_p);
