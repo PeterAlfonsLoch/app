@@ -489,9 +489,7 @@ namespace dynamic_source
 
       bool bTimeout = false;
 
-#ifndef METROWIN
-
-      ::core::process process;
+      ::process::process process(get_app());
 
       process.create_child_process(strBuildCmd, false, System.dir().name(pscript->m_strBuildBat), ::aura::scheduling_priority_highest);
 
@@ -518,11 +516,6 @@ namespace dynamic_source
       var varLinkOutput;
       varLinkOutput = System.process().get_output(strLinkCmd);*/
 
-#else
-
-      throw todo(get_app());
-
-#endif
 
 
 #ifdef LINUX
@@ -1046,8 +1039,7 @@ namespace dynamic_source
          //Application.file().put_contents_utf8(strCmd, str);
          Application.file().put_contents(strCmd, str);
 
-#ifndef METROWIN
-         ::core::process process;
+         ::process::process process(get_app());
 
          process.create_child_process(strCmd, false, System.dir().element("stage\\front"), ::aura::scheduling_priority_highest);
 
@@ -1059,12 +1051,7 @@ namespace dynamic_source
                break;
             Sleep(100);
          }
-#else
 
-         throw todo(get_app());
-
-
-#endif
          m_memfileLibError << "<html><head></head><body><pre>";
          str.Format(System.dir().path(m_strTime, "dynamic_source\\library\\%s-compile-log.txt"), str1);
          str = Application.file().as_string(str);
