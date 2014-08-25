@@ -80,7 +80,7 @@ namespace axis
 
 
 
-
+      virtual void process_message_filter(int32_t code,signal_details * pobj);
 
       ptr_array < ::user::interaction > frames();
       virtual void add_frame(sp(::user::interaction) pwnd);
