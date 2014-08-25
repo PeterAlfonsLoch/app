@@ -120,7 +120,7 @@ namespace aura
 
    cross_pipe::cross_pipe(sp(::aura::application) papp) :
       element(papp),
-      m_sppipeIn(bInherit),
+      m_sppipeIn(allocer()),
       m_sppipeOut(bInherit)
    {
 
