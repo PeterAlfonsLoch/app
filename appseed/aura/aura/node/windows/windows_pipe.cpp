@@ -82,7 +82,6 @@ namespace windows
 
       if(!SetHandleInformation(m_hWrite,HANDLE_FLAG_INHERIT,0))
          return false;
-#endif
 
       return true;
 
