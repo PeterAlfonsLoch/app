@@ -207,7 +207,6 @@ namespace ansios
    void pipe::readex()
    {
       if(m_pchBuf == NULL)
-      {
 
 
 } // namespace core
