@@ -6,6 +6,7 @@ namespace process
 
 
    process::process(sp(::aura::application) papp):
+      element(papp),
       m_pipe(true)
    {
 
