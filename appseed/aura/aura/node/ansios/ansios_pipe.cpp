@@ -33,7 +33,6 @@ namespace ansios
       }
 
 
-      ::CloseHandle(m_hRead);
       ::CloseHandle(m_hWrite);
 
 #else
