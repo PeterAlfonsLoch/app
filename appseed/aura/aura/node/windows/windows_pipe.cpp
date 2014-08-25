@@ -64,7 +64,6 @@ namespace windows
          return false;
       }
 
-      if(fcntl(m_fd[0],F_SETFL,iFlags))
       {
          close(m_fd[0]);
          close(m_fd[1]);
