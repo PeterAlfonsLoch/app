@@ -102,6 +102,7 @@ namespace ansios
       dwWritten = ::write(m_fd[1],(const char *)psz,dwLen);
 
       return bSuccess != FALSE && dwWritten == dwLen;
+
    }
 
    string pipe::read()
