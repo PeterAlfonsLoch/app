@@ -21,7 +21,7 @@ namespace ansios
       virtual ~pipe();
 
 
-      bool create(bool bBlock = true, bool bInherit = false);
+      virtual bool create(bool bBlock = true, bool bInherit = false);
 
 
       bool not_inherit_read();
