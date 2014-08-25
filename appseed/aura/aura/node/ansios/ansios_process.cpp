@@ -35,24 +35,6 @@ namespace ansios
    process::~process()
    {
 
-#ifdef WINDOWSEX
-
-      if(m_pi.hProcess != INVALID_HANDLE_VALUE && m_pi.hProcess != NULL)
-      {
-
-         CloseHandle(m_pi.hProcess);
-
-      }
-
-      if(m_pi.hThread != INVALID_HANDLE_VALUE && m_pi.hThread != NULL)
-      {
-
-         CloseHandle(m_pi.hThread);
-
-      }
-
-#endif
-
    }
 
 
