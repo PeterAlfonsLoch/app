@@ -139,6 +139,7 @@ namespace windows
             break;
 
          str += chBuf;
+
          if(dwRead < BUFSIZE)
             break;
 
