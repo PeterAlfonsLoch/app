@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace AURA
+namespace AURa
 {
 
 
