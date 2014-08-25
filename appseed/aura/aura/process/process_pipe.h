@@ -45,15 +45,6 @@ namespace process
 
    
 
-      bidi_pipe(sp(::aura::application) papp);
-      virtual ~bidi_pipe();
-
-      virtual bool create(bool bBlock = true, bool bInherit = false);
-
-
-   };
-
-
 } // namespace process
 
 
