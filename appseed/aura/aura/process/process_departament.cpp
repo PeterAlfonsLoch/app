@@ -130,7 +130,7 @@ namespace process
       while(!m_spprocess->has_exited())
       {
 
-         strRead = m_spprocess->m_pipe.m_pipeOut.read();
+         strRead = m_spprocess->m_pipe.m_sppipeOut->read();
 
          if(m_pstrRead != NULL)
          {
