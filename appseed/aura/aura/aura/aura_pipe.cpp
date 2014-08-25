@@ -72,43 +72,11 @@ namespace core
 
    string pipe::read()
    {
-      string str;
-      const int32_t BUFSIZE = 1024 * 8;
-#ifdef WINDOWS
-      DWORD dwRead;
-#else
-      size_t dwRead;
-#endif
-      bool bSuccess;
-      char chBuf[BUFSIZE];
-      for(;;)
-      {
-         memset(chBuf,0,BUFSIZE);
 
-         try
-         {
-#ifdef WINDOWS
-            bSuccess = ReadFile(m_hRead,chBuf,BUFSIZE,&dwRead,NULL) != FALSE;
-#else
-            dwRead =::read(m_fd[0],chBuf,BUFSIZE);
-            bSuccess = TRUE;
-#endif
-         }
-         catch(...)
-         {
-            bSuccess = FALSE;
-         }
-         if(!bSuccess || dwRead == 0)
-            break;
-         str += chBuf;
-         if(dwRead < BUFSIZE)
-            break;
-
-      }
-
-      return str;
+      return "";
 
    }
+
 
    string pipe::one_pass_read()
    {
