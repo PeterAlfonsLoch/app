@@ -25,9 +25,6 @@ namespace core
       mutex                                        m_mutexDelete;
       class ::core::stra                           m_stra;
       class ::core::service                        m_service;
-#ifndef METROWIN
-      class ::core::process_departament            m_processsection;
-#endif
 
       class ::core::patch                          m_patch;
       ::net::email_departament                     m_emaildepartament;

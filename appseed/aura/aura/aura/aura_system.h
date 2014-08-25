@@ -66,6 +66,9 @@ namespace aura
       string                                       m_strModulePath;
       string                                       m_strModuleFolder;
 
+      class ::core::process_departament            m_processsection;
+
+
       string                                       m_strCmdLine;
       int32_t                                      m_nCmdShow;
       size_t                                       m_nSafetyPoolSize;      // ideal size
