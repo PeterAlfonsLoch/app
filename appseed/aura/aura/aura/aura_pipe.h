@@ -38,7 +38,7 @@ namespace aura
 
 
       sp(pipe)    m_spipeIn;
-      sp(pipe)    m_spipeOut;
+      sp(pipe)    m_sppipeOut;
 
 
       cross_pipe(bool bInherit);

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace core
+namespace windows
 {
 
    class CLASS_DECL_AURE pipe :
