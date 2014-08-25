@@ -119,6 +119,7 @@ namespace windows
 
       for(;;)
       {
+
          memset(chBuf,0,BUFSIZE);
 
          try
