@@ -228,7 +228,6 @@ namespace ansios
       plap = plap->from(lpOverlapped);
       int32_t iLimit = MIN(dwNumberOfBytesTransfered,1024);
       plap->m_ppipe->m_pchBuf[iLimit] = '\0';
-      plap->m_ppipe->m_strRead += plap->m_ppipe->m_pchBuf;
 
 
 } // namespace core
