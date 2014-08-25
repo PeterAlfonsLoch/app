@@ -9,8 +9,6 @@ namespace core
    public:
 
       
-      };
-
 #endif
 
 
