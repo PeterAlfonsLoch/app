@@ -49,7 +49,6 @@ namespace windows
    bool pipe::create(bool bBlock)
    {
 
-#ifdef WINDOWS
 
       if(!CreatePipe(&m_hRead,&m_hWrite,&m_sa,0))
          return false;
