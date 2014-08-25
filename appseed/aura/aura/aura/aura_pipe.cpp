@@ -89,11 +89,6 @@ namespace aura
       
    }
 
-   void WINAPI pipe::read_complete(uint32_t dwErrorCode, uint32_t dwNumberOfBytesTransfered, LPOVERLAPPED lpOverlapped)
-   {
-
-   }
-
 #endif
 
 
