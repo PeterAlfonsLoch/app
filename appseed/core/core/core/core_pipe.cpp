@@ -83,36 +83,3 @@ namespace core
          VERIFY(SetNamedPipeHandleState(m_hWrite  , &dwMode, NULL, NULL));
 
       }
-
-#else
-
-      int32_t iFlags = bBlock ? 0 : O_NONBLOCK;
-
-      if(::pipe(m_fd))
-      {
-         // errno
-         return false;
-      }
-
-      if(fcntl(m_fd[0], F_SETFL, iFlags))
-      {
-         close(m_fd[0]);
-         close(m_fd[1]);
-         return false;
-      }
-
-      if(fcntl(m_fd[1], F_SETFL, iFlags))
-      {
-         close(m_fd[0]);
-         close(m_fd[1]);
-         return false;
-      }
-
-
-#endif
-
-      return true;
-
-   }
-
- 
