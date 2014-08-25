@@ -25,11 +25,6 @@ namespace aura
    bool process::create_child_process(const char * pszCmdLine,bool bPiped,const char * pszDir,int32_t iCa2Priority)
    {
 
-
-      string szCmdline = pszCmdLine;
-
-      // set up members of the PROCESS_INFORMATION structure.
-
       if(bPiped)
       {
          if(!m_pipe.create(false))
