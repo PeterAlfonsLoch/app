@@ -121,7 +121,7 @@ namespace process
    }
 
 
-} // namespace core
+} // namespace process
 
 
 
