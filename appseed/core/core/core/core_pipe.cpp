@@ -49,20 +49,3 @@ namespace core
       ::CloseHandle(m_hRead);
       ::CloseHandle(m_hWrite);
 
-#else
-
-      if(m_fd[0] != -1)
-      {
-         ::close(m_fd[0]);
-      }
-
-      if(m_fd[1] != -1)
-      {
-         ::close(m_fd[1]);
-      }
-
-#endif
-
-   }
-
-
