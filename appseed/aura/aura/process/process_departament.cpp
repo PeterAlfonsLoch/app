@@ -146,7 +146,7 @@ namespace process
       while(get_run())
       {
 
-         strRead = m_spprocess->m_pipe.m_sppipeOut.read();
+         strRead = m_spprocess->m_pipe.m_sppipeOut->read();
 
          if(strRead.is_empty())
          {
@@ -156,10 +156,14 @@ namespace process
          }
          else
          {
+
             if(m_pstrRead != NULL)
             {
+
                *m_pstrRead += strRead;
+
             }
+
          }
       }
       if(m_pevReady != NULL)
