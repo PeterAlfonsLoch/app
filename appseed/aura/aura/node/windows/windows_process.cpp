@@ -55,9 +55,6 @@ namespace windows
 
       m_bPiped = bPiped;
 
-#ifdef WINDOWSEX
-
-
       bool bSuccess = FALSE;
 
 
@@ -137,132 +134,11 @@ namespace windows
          //CloseHandle(m_pi.hProcess);
          //CloseHandle(m_pi.hThread);
       }
+
       return true;
 
-#elif defined(METROWIN)
-
-      throw todo(get_thread_app());
-
-#elif defined(ANDROID)
-
-      throw todo(get_thread_app());
-
-#else
-
-      char * argv[] ={(char *)pszCmdLine,0};
-
-      posix_spawnattr_t attr;
-
-      posix_spawnattr_init(&attr);
-
-#ifdef LINUX
-
-      if(iCa2Priority != (int32_t) ::aura::scheduling_priority_none)
-      {
-
-         int32_t iPolicy = SCHED_OTHER;
-
-         sched_param schedparam;
-
-         schedparam.sched_priority = 0;
-
-         process_get_os_priority(&iPolicy,&schedparam,iCa2Priority);
-
-         posix_spawnattr_setschedpolicy(&attr,iPolicy);
-
-         posix_spawnattr_setschedparam(&attr,&schedparam);
-
-      }
-
-#endif
-
-      int status = posix_spawn(&m_iPid,pszCmdLine,NULL,&attr,argv,environ);
-
-#ifdef APPLEOS
-
-      if(iCa2Priority != (int32_t) ::aura::scheduling_priority_none)
-      {
-
-         int32_t iOsPriority = process_get_os_priority(iCa2Priority);
-
-         setpriority(PRIO_PROCESS,m_iPid,iOsPriority);
-
-      }
-
-#endif
-
-      posix_spawnattr_destroy(&attr);
-
-
-
-
-      return status == 0;
-
-      /*
-      char *	cmd_line;
-
-      cmd_line = (char *) memory_alloc(strlen(pszCmdLine ) + 1 );
-
-      if(cmd_line == NULL)
-      return 0;
-
-      strcpy_dup(cmd_line, pszCmdLine);
-
-      char *   exec_path_name = cmd_line;
-
-      if((m_iPid = fork()) == 0)
-      {
-
-      if(bPiped)
-      {
-      dup2(m_pipe.m_pipeOut.m_fd[1] , STDOUT_FILENO);
-      dup2(m_pipe.m_pipeOut.m_fd[1] , STDERR_FILENO);
-      dup2(m_pipe.m_pipeIn.m_fd[0]  , STDIN_FILENO);
-      }
-
-
-      // child
-      char		*pArg, *pPtr;
-      char		*argv[1024 + 1];
-      int32_t		 argc;
-      if( ( pArg = strrchr_dup( exec_path_name, '/' ) ) != NULL )
-      pArg++;
-      else
-      pArg = exec_path_name;
-      argv[0] = pArg;
-      argc = 1;
-
-      if( cmd_line != NULL && *cmd_line != '\0' )
-      {
-      pArg = strtok_r_dup(cmd_line, " ", &pPtr);
-      while( pArg != NULL )
-      {
-      argv[argc] = pArg;
-      argc++;
-      if( argc >= 1024 )
-      break;
-      pArg = strtok_r_dup(NULL, " ", &pPtr);
-      }
-      }
-      argv[argc] = NULL;
-
-      execv(exec_path_name, argv);
-      free(cmd_line);
-      exit( -1 );
-      }
-      else if(m_iPid == -1)
-      {
-      // in parent, but error
-      m_iPid = 0;
-      free(cmd_line);
-      return 0;
-      }
-      // in parent, success
-      return 1;*/
-
-
-#endif
    }
+
 
    bool process::write(const char * psz)
    {
