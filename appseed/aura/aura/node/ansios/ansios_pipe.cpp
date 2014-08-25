@@ -169,7 +169,6 @@ namespace ansios
       DWORD dwRead;
 #else
       size_t dwRead;
-#endif
 
       bool bSuccess = false;
 
