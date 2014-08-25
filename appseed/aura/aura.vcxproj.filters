@@ -231,6 +231,9 @@
     <Filter Include="Header Files\user\colorertake5">
       <UniqueIdentifier>{f5b305ca-65b3-4b2a-918b-250947ae62ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\aura\process">
+      <UniqueIdentifier>{2fedfefb-a349-4ba7-9fa2-f86d10306aa9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_wstringtou.h">
@@ -2716,6 +2719,21 @@
     </ClInclude>
     <ClInclude Include="aura\node\windows\windows_pipe.h">
       <Filter>Header Files\aura\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_bidi_pipe.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\process\process_bidi_pipe.h">
+      <Filter>Header Files\aura\process</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\process\process_departament.h">
+      <Filter>Header Files\aura\process</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\process\process_pipe.h">
+      <Filter>Header Files\aura\process</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\process\process_process.h">
+      <Filter>Header Files\aura\process</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

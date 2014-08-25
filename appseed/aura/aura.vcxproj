@@ -1641,6 +1641,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\aura\aura_application_signal_details.h" />
     <ClInclude Include="aura\aura\aura_async.h" />
     <ClInclude Include="aura\aura\aura_auto_pointer.h" />
+    <ClInclude Include="aura\aura\aura_bidi_pipe.h" />
     <ClInclude Include="aura\aura\aura_command.h" />
     <ClInclude Include="aura\aura\aura_command_target.h" />
     <ClInclude Include="aura\aura\aura_common.h" />
@@ -2677,6 +2678,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\os\windows\windows_simple_hold_handle.h" />
     <ClInclude Include="aura\os\windows\windows_utils.h" />
     <ClInclude Include="aura\os\windows\windows_windows.h" />
+    <ClInclude Include="aura\process\process_bidi_pipe.h" />
+    <ClInclude Include="aura\process\process_departament.h" />
+    <ClInclude Include="aura\process\process_pipe.h" />
+    <ClInclude Include="aura\process\process_process.h" />
     <ClInclude Include="aura\xml\xml.h" />
     <ClInclude Include="aura\xml\xml_attr.h" />
     <ClInclude Include="aura\xml\xml_base_array.h" />
