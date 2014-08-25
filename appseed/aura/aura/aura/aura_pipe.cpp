@@ -111,12 +111,7 @@ namespace aura
 #endif
 
 
-   cross_pipe::cross_pipe(bool bInherit):
-   {
-
-
-   }
-
+   
 
    cross_pipe::cross_pipe(sp(::aura::application) papp) :
       element(papp),
