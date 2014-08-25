@@ -4,7 +4,8 @@
 namespace core
 {
 
-   class CLASS_DECL_AuRE pipe
+   class CLASS_DECL_AuRE pipe :
+      virtual public ::aura::pipe
    {
    public:
 
