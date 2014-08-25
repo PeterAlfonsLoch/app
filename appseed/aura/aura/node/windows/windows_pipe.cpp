@@ -99,7 +99,6 @@ namespace windows
 
       bSuccess = WriteFile(m_hWrite,(const char *)psz,dwLen,&dwWritten,NULL) != FALSE;
 
-#endif
       return bSuccess != FALSE && dwWritten == dwLen;
    }
 
