@@ -1109,9 +1109,7 @@ namespace dynamic_source
       //Application.file().put_contents_utf8(strCmd, str);
       Application.file().put_contents(strCmd, str);
 
-#ifndef METROWIN
-
-      ::core::process process;
+      ::process::process process(get_app());
 
 
       process.create_child_process(strCmd, false, System.dir().name(strCmd), ::aura::scheduling_priority_highest);
@@ -1123,8 +1121,6 @@ namespace dynamic_source
             break;
          Sleep(100);
       }
-
-#endif
 
 
       str.Format(System.dir().path(m_strTime, "dynamic_source\\library\\%s-link-log.txt"), strName);
