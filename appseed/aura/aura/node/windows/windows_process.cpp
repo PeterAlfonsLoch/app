@@ -53,6 +53,8 @@ namespace windows
       if(bPiped)
       {
 
+         pipe * ppipeOut = m_pipe.m_sppipeOut.cast < ::ansios::pipe >();
+
          m_si.hStdError       = m_pipe.m_sppipeOut->m_hWrite;
 
          m_si.hStdOutput      = m_pipe.m_sppipeOut.m_hWrite;
