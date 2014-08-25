@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace cor
+namespace co
 {
 
 
