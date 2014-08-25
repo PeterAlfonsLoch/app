@@ -9,7 +9,6 @@ namespace core
    public:
 
       
-      public:
          pipe * m_ppipe;
          OVERLAPPED m_overlapped;
          inline overlapped * from(OVERLAPPED * poverlapped)
