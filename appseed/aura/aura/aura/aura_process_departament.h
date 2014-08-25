@@ -5,7 +5,7 @@ namespace core
 {
 
 
-   class CLASS_DECL_CORE process_departament:
+   class CLASS_DECL_AURA process_departament:
       public ::aura::departament
    {
    public:
