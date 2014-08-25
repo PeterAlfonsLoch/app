@@ -15,7 +15,6 @@ namespace core
 
 
 
-      SECURITY_ATTRIBUTES  m_sa;
       HANDLE               m_hRead;
       HANDLE               m_hWrite;
 
