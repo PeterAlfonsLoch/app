@@ -14,10 +14,14 @@ namespace aura
       char *               m_pchBuf;
       string               m_strRead;
 
+      bool                 m_bInherit;
 
-      pipe(bool bInherit);
+
+      pipe();
       virtual ~pipe();
 
+
+      bool set_inherit(
 
       bool create(bool bBlock = true);
 
