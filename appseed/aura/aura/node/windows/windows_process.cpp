@@ -172,8 +172,6 @@ namespace windows
    {
 
 
-#ifdef WINDOWSEX
-
       DWORD dwExitCode;
       bool bExited;
 
@@ -209,64 +207,6 @@ namespace windows
       }
       return bExited;
 
-#elif defined(METROWIN)
-
-      throw todo(get_thread_app());
-
-#else
-      int32_t iExitCode;
-      //      bool bExited;
-
-      int32_t wpid = waitpid(m_iPid,&iExitCode,
-         0
-#ifdef WNOHANG
-         | WNOHANG
-#endif
-#ifdef WCONTINUED
-         | WCONTINUED
-#endif
-         );
-
-      if(wpid == -1)
-         return true;
-
-      if(WIFEXITED(iExitCode))
-      {
-         if(puiExitCode != NULL)
-         {
-            *puiExitCode = WEXITSTATUS(iExitCode);
-
-         }
-         return false;
-      }
-      else if(WIFSIGNALED(iExitCode))
-      {
-         if(puiExitCode != NULL)
-         {
-            *puiExitCode = WTERMSIG(iExitCode);
-         }
-         return false;
-      }
-      else if(WIFSTOPPED(iExitCode))
-      {
-         if(puiExitCode != NULL)
-         {
-            *puiExitCode = WSTOPSIG(iExitCode);
-         }
-         return false;
-      }
-#ifdef WIFCONTINUED
-      else if(WIFCONTINUED(iExitCode))
-      {
-         return false;
-      }
-#endif
-
-      return false;
-
-
-
-#endif
 
 
    }
