@@ -45,6 +45,9 @@ namespace windows
    {
 
 
+      if(!::aura::p
+
+
       m_sa.nLength = sizeof(SECURITY_ATTRIBUTES);
       m_sa.bInheritHandle = bInherit ? TRUE : FALSE;
       m_sa.lpSecurityDescriptor = NULL;
