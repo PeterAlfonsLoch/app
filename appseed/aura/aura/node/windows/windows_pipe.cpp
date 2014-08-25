@@ -272,7 +272,6 @@ namespace core
 #endif
 
 
-   cross_pipe::cross_pipe(bool bInherit):
 
 
 
