@@ -240,7 +240,6 @@ namespace core
    }
 
 #ifdef WINDOWS
-
    void pipe::readex()
    {
       if(m_pchBuf == NULL)
