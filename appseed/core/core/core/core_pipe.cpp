@@ -253,17 +253,3 @@ namespace core
       m_overlapped.m_ppipe = this;
       ReadFileEx(m_hRead, m_pchBuf, 1024, &m_overlapped.m_overlapped, (LPOVERLAPPED_COMPLETION_ROUTINE) &pipe::read_complete);
    }
-
-   void WINAPI pipe::read_complete(
-         uint32_t dwErrorCode,
-         uint32_t dwNumberOfBytesTransfered,
-         LPOVERLAPPED lpOverlapped
-         )
-   {
-      UNREFERENCED_PARAMETER(dwErrorCode);
-      overlapped * plap = NULL;
-      plap = plap->from(lpOverlapped);
-      int32_t iLimit = MIN(dwNumberOfBytesTransfered, 1024);
-      plap->m_ppipe->m_pchBuf[iLimit] = '\0';
-      plap->m_ppipe->m_strRead += plap->m_ppipe->m_pchBuf;
-   
