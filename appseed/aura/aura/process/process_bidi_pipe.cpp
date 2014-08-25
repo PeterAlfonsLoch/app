@@ -6,16 +6,6 @@ namespace process
 
 
 
-#ifdef WINDOWS
-
-   void pipe::readex()
-   {
-
-   }
-
-#endif
-
-
    cross_pipe::cross_pipe(sp(::aura::application) papp):
       element(papp),
       m_sppipeIn(allocer()),
