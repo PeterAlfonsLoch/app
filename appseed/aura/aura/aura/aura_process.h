@@ -23,14 +23,18 @@ namespace aura
       uint32_t wait_until_exit(int32_t iWaitMax = 0);
       bool has_exited(uint32_t * pdwExitCode = NULL);
 
-      bool write(const char * psz);
-      string read(bool bUntilExit = false);
+      virtual bool write(const char * psz);
+      virtual string read(bool bUntilExit = false);
 
 
    };
 
 
 } // namespace aura
+
+
+
+
 
 
 
