@@ -60,7 +60,7 @@ CLASS_DECL_AXIS bool vfxResolveShortcut(string & strTarget,const char * pszSourc
 
 
 
-
+#ifdef cplusplus
 
 
 
@@ -115,6 +115,12 @@ namespace axis
 
 
 } // namespace axis
+
+
+
+
+
+#endif
 
 
 
