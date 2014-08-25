@@ -73,46 +73,55 @@ CLASS_DECL_AURA void __set_resource_handle(HINSTANCE hInstResource);
 CLASS_DECL_AURA HINSTANCE __get_resource_handle();
 CLASS_DECL_AURA HINSTANCE __find_string_resource_handle(UINT nID);
 
-
-
-template < class APP >
-static int32_t s_main(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR lpCmdLine,int32_t nCmdShow)
+namespace aura
 {
 
-   if(!defer_aura_init())
-   {
-      return -1;
-   }
 
-   APP  * papp = new APP;
-   ::windows::main_init_data * pmaininitdata = new ::windows::main_init_data;
-
-
-   pmaininitdata->m_hInstance = hInstance;
-   pmaininitdata->m_hPrevInstance = hPrevInstance;
-   pmaininitdata->m_vssCommandLine = ::str::international::unicode_to_utf8(::GetCommandLineW());
-   pmaininitdata->m_nCmdShow = nCmdShow;
-
-   papp->init_main_data(pmaininitdata);
-
-   int32_t iRet;
-
-   iRet = papp->main();
-
-   try
+   template < class APP >
+   static int32_t simple_app_main(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR lpCmdLine,int32_t nCmdShow)
    {
 
-      delete papp;
+      if(!defer_aura_init())
+      {
+         return -1;
+      }
 
-      papp = NULL;
+      APP  * papp = new APP;
+      ::windows::main_init_data * pmaininitdata = new ::windows::main_init_data;
+
+
+      pmaininitdata->m_hInstance = hInstance;
+      pmaininitdata->m_hPrevInstance = hPrevInstance;
+      pmaininitdata->m_vssCommandLine = ::str::international::unicode_to_utf8(::GetCommandLineW());
+      pmaininitdata->m_nCmdShow = nCmdShow;
+
+      papp->init_main_data(pmaininitdata);
+
+      int32_t iRet;
+
+      iRet = papp->main();
+
+      try
+      {
+
+         delete papp;
+
+         papp = NULL;
+
+      }
+      catch(...)
+      {
+      }
+
+      defer_aura_term();
+
+      return iRet;
 
    }
-   catch(...)
-   {
-   }
 
-   defer_aura_term();
 
-   return iRet;
+} // namespace aura
 
-}
+
+
+
