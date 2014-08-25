@@ -36,7 +36,7 @@ namespace aura
 #ifdef WINDOWS
 
       void readex();
-      void WINAPI pipe::read_complete(uint32_t dwErrorCode,uint32_t dwNumberOfBytesTransfered,LPOVERLAPPED lpOverlapped);
+      void read_complete(uint32_t dwErrorCode,uint32_t dwNumberOfBytesTransfered,LPOVERLAPPED lpOverlapped);
 
 #endif
 
