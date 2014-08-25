@@ -6,6 +6,7 @@ namespace ansios
 
 
    class CLASS_DECL_CORE pipe :
+      virtual
    {
    public:
 
