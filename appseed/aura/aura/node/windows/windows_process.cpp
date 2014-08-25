@@ -7,7 +7,7 @@ namespace windows
 
    process::process(sp(::aura::application) papp):
       element(papp),
-      m_pipe(true)
+      m_pipe(papp)
    {
 
       memset(&m_pi,0,sizeof(PROCESS_INFORMATION));
