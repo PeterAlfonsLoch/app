@@ -27,8 +27,10 @@ namespace process
 
       if(bPiped)
       {
+
          if(!m_pipe.create(false))
             return false;
+
       }
 
       m_bPiped = bPiped;
