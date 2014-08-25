@@ -36,10 +36,13 @@ namespace process
          return false;
 
       pthread->begin();
+
       evReady.wait();
+
       return strRead;
 
    }
+
 
    uint32_t departament::retry(const char * pszCmdLine,uint32_t dwTimeout,int32_t iShow)
    {
