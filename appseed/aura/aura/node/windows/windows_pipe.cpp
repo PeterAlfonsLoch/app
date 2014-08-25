@@ -64,7 +64,6 @@ namespace windows
          return false;
       }
 
-         close(m_fd[1]);
          return false;
       }
 
