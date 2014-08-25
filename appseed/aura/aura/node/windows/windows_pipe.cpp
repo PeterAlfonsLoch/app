@@ -61,7 +61,6 @@ namespace windows
 
       }
 
-
       int32_t iFlags = bBlock ? 0 : O_NONBLOCK;
 
       if(::pipe(m_fd))
