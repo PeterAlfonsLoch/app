@@ -9,7 +9,6 @@ namespace core
    public:
 
       
-         }
       };
 
 #endif
