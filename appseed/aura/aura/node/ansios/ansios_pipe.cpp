@@ -44,7 +44,7 @@ namespace ansios
    }
 
 
-   bool pipe::create(bool bBlock)
+   bool pipe::create(bool bBlock, bool bInherit)
    {
 
       if(!::aura::pipe::create(bBlock,bInherit))
