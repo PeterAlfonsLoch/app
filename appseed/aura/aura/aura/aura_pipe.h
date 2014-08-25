@@ -29,8 +29,7 @@ namespace core
       string one_pass_read();
 
 
-      void readex();
-
+      
 
       static void WINAPI read_complete(
          uint32_t dwErrorCode,
