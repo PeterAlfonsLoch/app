@@ -61,7 +61,7 @@ namespace windows
 
          pipe * ppipeIn       = m_pipe.m_sppipeIn.cast < pipe >();
 
-         m_si.hStdInput       = sppipeIn->m_hRead;
+         m_si.hStdInput       = ppipeIn->m_hRead;
 
          m_si.dwFlags         |= STARTF_USESTDHANDLES;
 
