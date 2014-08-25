@@ -187,6 +187,7 @@ namespace ansios
       {
 
          bSuccess = false;
+
       }
 
       if(!bSuccess || dwRead == 0)
