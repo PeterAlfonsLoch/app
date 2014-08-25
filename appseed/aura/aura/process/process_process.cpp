@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace aura
+namespace process
 {
 
 
@@ -90,7 +90,7 @@ namespace aura
    }
 
 
-} // namespace core
+} // namespace process
 
 
 
