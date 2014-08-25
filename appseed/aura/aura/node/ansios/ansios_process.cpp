@@ -38,19 +38,10 @@ namespace ansios
    bool process::create_child_process(const char * pszCmdLine,bool bPiped,const char * pszDir,int32_t iCa2Priority)
    {
 
+      if(!::aura::create_child_process(pszCmdLine,bPiped,pszDir,iCa2Priority))
+         return false;
 
       string szCmdline = pszCmdLine;
-
-      // set up members of the PROCESS_INFORMATION structure.
-
-      if(bPiped)
-      {
-         if(!m_pipe.create(false))
-            return false;
-      }
-
-      m_bPiped = bPiped;
-
 
       char * argv[] ={(char *)pszCmdLine,0};
 
@@ -95,9 +86,6 @@ namespace ansios
 #endif
 
       posix_spawnattr_destroy(&attr);
-
-
-
 
       return status == 0;
 
