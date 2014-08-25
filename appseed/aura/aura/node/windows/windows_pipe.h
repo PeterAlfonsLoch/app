@@ -8,7 +8,6 @@ namespace core
    {
    public:
 
-#ifdef WINDOWS
 
       class overlapped
       {
@@ -20,8 +19,6 @@ namespace core
             return (overlapped *)((BYTE *)poverlapped - sizeof(pipe *));
          }
       };
-
-#endif
 
 
       char *               m_pchBuf;
