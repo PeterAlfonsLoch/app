@@ -5,7 +5,7 @@ namespace windows
 {
 
 
-   process::process(sp(::aura::):
+   process::process(sp(::aura::application) papp):
       
       m_pipe(true)
    {
