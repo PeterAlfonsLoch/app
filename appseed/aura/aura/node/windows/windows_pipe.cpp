@@ -17,7 +17,6 @@ namespace windows
       m_hRead = NULL;
       m_hWrite = NULL;
 
-#else
 
       m_fd[0] = -1;
       m_fd[1] = -1;
