@@ -127,7 +127,7 @@ namespace process
 
       string strRead;
 
-      while(!m_process.has_exited())
+      while(!m_process->has_exited())
       {
          strRead = m_process.m_pipe.m_pipeOut.read();
          if(m_pstrRead != NULL)
