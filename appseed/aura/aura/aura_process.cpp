@@ -68,6 +68,7 @@ namespace aura
             break;
 
          Sleep(100);
+
          i++;
 
       }
