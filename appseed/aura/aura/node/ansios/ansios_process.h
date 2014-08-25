@@ -14,7 +14,7 @@ namespace ansios
       int32_t                     m_iPid;
 
 
-      process();
+      process(sp(::aura::applicaton) papp);
       virtual ~process();
 
 
