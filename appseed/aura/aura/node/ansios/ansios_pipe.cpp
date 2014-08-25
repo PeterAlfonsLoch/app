@@ -49,7 +49,6 @@ namespace ansios
    bool pipe::create(bool bBlock)
    {
 
-
       if(!bBlock)
       {
 
