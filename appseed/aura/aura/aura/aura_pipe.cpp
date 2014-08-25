@@ -13,9 +13,8 @@ namespace aura
 
       m_pchBuf = NULL;
 
-
-
    }
+
 
    pipe::~pipe()
    {
