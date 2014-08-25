@@ -157,8 +157,6 @@ namespace windows
       const int32_t BUFSIZE = 1024 * 8;
 
       DWORD dwRead;
-#else
-      size_t dwRead;
 #endif
       bool bSuccess = FALSE;
       char chBuf[BUFSIZE];
