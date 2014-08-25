@@ -148,6 +148,7 @@ namespace ansios
          catch(...)
          {
             bSuccess = false;
+
          }
 
          if(!bSuccess || dwRead == 0)
