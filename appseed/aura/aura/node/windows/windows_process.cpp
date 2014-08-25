@@ -9,8 +9,6 @@ namespace windows
       m_pipe(true)
    {
 
-      m_bPiped = false;
-
       memset(&m_pi,0,sizeof(PROCESS_INFORMATION));
 
       memset(&m_si,0,sizeof(STARTUPINFO));
