@@ -6,22 +6,6 @@ namespace process
 
 
 
-   string pipe::read()
-   {
-
-      return "";
-
-   }
-
-
-   string pipe::one_pass_read()
-   {
-
-      return "";
-
-   }
-
-
 #ifdef WINDOWS
 
    void pipe::readex()
