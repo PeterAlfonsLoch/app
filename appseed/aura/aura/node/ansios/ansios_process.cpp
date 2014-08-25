@@ -69,6 +69,8 @@ namespace ansios
 
       }
 
+#endif
+
       if(bPiped)
       {
 
@@ -81,7 +83,6 @@ namespace ansios
 
       }
 
-#endif
 
       int status = posix_spawn(&m_iPid,pszCmdLine,NULL,&attr,argv,environ);
 
