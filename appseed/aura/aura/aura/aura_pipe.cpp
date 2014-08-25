@@ -9,6 +9,8 @@ namespace aura
       element(papp)
    {
 
+      m_bBlock = false;
+
       m_bInherit = false;
 
       m_pchBuf = NULL;
@@ -21,7 +23,9 @@ namespace aura
 
       if(m_pchBuf != NULL)
       {
+
          free(m_pchBuf);
+
       }
 
    }
