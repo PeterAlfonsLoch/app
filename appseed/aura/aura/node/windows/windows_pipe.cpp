@@ -239,7 +239,6 @@ namespace core
       return str;
    }
 
-#ifdef WINDOWS
    void pipe::readex()
    {
       if(m_pchBuf == NULL)
