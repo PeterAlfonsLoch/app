@@ -76,6 +76,7 @@ namespace windows
 
    }
 
+
    bool pipe::not_inherit_write()
    {
 
