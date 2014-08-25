@@ -98,6 +98,8 @@ namespace ansios
 
 #endif
 
+      posix_spawn_file_actions_destroy
+
       posix_spawnattr_destroy(&attr);
 
       return status == 0;
