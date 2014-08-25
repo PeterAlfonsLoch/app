@@ -48,9 +48,6 @@ namespace windows
 
       bool bSuccess = false;
 
-      // set up members of the STARTUPINFO structure.
-      // This structure specifies the STDIN and STDOUT handles for redirection.
-
       m_si.cb = sizeof(STARTUPINFO);
 
       if(bPiped)
