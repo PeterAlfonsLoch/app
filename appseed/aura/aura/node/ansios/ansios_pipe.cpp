@@ -149,6 +149,7 @@ namespace ansios
          {
             bSuccess = FALSE;
          }
+
          if(!bSuccess || dwRead == 0)
             break;
 
