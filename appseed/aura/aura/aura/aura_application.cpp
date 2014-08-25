@@ -2862,6 +2862,11 @@ namespace aura
    }
 
 
+
+   virtual void application::process_message_filter(int32_t code,signal_details * pobj)
+   {
+   }
+
    bool application::on_thread_on_idle(::thread_impl * pimpl,LONG lCount)
    {
 
