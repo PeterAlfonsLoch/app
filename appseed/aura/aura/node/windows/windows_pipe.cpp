@@ -244,6 +244,7 @@ namespace core
 
       if(m_pchBuf == NULL)
       {
+
          m_pchBuf = (char *)malloc(1025);
          if(m_pchBuf == NULL)
             throw memory_exception(get_thread_app());
