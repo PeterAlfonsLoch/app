@@ -1757,9 +1757,6 @@
     <ClInclude Include="core\core\core_process_data.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core\core_process_departament.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core\core_profiler.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>

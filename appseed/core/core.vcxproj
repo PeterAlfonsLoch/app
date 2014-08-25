@@ -1583,7 +1583,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core\core_os_implementation.h" />
     <ClInclude Include="core\core\core_patch.h" />
     <ClInclude Include="core\core\core_process_data.h" />
-    <ClInclude Include="core\core\core_process_departament.h" />
     <ClInclude Include="core\core\core_profiler.h" />
     <ClInclude Include="core\core\core_progress_interface.h" />
     <ClInclude Include="core\core\core_raw_pointer.h" />
