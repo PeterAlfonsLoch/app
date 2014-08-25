@@ -13,7 +13,7 @@ namespace aura
    static int32_t simple_app_main(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR lpCmdLine,int32_t nCmdShow)
    {
 
-      if(!defer_aura_init())
+      if(!defer_base_init())
       {
          return -1;
       }
