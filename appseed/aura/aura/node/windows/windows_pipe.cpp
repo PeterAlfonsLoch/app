@@ -32,7 +32,6 @@ namespace windows
 
       ::CloseHandle(m_hWrite);
 
-
       if(m_fd[0] != -1)
       {
          ::close(m_fd[0]);
