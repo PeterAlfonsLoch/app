@@ -177,7 +177,6 @@ namespace ansios
       try
       {
 
-#ifdef WINDOWS
 
 
          dwRead = ::read(m_fd[0],chBuf,BUFSIZE);
