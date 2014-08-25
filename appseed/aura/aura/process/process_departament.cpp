@@ -32,7 +32,7 @@ namespace process
 
       pthread->m_bAutoDelete = true;
 
-      if(!pthread->m_spprocess.create_child_process(pszCmdLine,true))
+      if(!pthread->m_spprocess->create_child_process(pszCmdLine,true))
          return false;
 
       pthread->begin();
@@ -50,6 +50,7 @@ namespace process
       class on_retry onretry;
 
       onretry.m_dwTimeout     = dwTimeout;
+
       onretry.m_dwStartTime   = ::get_tick_count();
 
       const char * pszEnd = NULL;
