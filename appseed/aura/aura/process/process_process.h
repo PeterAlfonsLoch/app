@@ -5,7 +5,8 @@ namespace process
 {
 
 
-   class CLASS_DECL_AURA process
+   class CLASS_DECL_AURA process :
+      virtual public ::object
    {
    public:
 
