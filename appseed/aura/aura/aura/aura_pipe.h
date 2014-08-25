@@ -32,7 +32,7 @@ namespace core
    };
 
 
-   class CLASS_DECL_CORE cross_pipe
+   class CLASS_DECL_CRE cross_pipe
    {
    public:
 
