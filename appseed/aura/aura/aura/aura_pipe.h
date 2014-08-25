@@ -8,8 +8,6 @@ namespace core
    {
    public:
 
-#ifdef WINDOWS
-
       class overlapped
       {
       public:
