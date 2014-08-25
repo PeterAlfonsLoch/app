@@ -170,7 +170,6 @@ namespace windows
          bSuccess = ReadFile(m_hRead,chBuf,BUFSIZE,&dwRead,NULL) != FALSE;
 
 
-#endif
 
       }
       catch(...)
