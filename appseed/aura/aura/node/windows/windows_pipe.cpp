@@ -106,6 +106,7 @@ namespace windows
 
    string pipe::read()
    {
+
       string str;
 
       const int32_t BUFSIZE = 1024 * 8;
