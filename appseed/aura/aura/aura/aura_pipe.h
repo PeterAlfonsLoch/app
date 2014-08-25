@@ -9,7 +9,6 @@ namespace core
    public:
 
       
-         inline overlapped * from(OVERLAPPED * poverlapped)
          {
             return (overlapped *)((BYTE *)poverlapped - sizeof(pipe *));
          }
