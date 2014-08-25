@@ -854,8 +854,6 @@ namespace core
 
 
 
-#include "core_pipe.h"
-#include "core_process.h"
 
 #include "core_base64.h"
 
