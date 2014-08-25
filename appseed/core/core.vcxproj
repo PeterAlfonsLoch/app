@@ -1793,7 +1793,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="core\core\core_memory.cpp" />
     <ClCompile Include="core\core\core_os_history.cpp" />
     <ClCompile Include="core\core\core_patch.cpp" />
-    <ClCompile Include="core\core\core_pipe.cpp" />
     <ClCompile Include="core\core\core_process.cpp" />
     <ClCompile Include="core\core\core_process_section.cpp" />
     <ClCompile Include="core\core\core_profiler.cpp" />
