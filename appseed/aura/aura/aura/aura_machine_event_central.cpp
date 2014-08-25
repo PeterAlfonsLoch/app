@@ -25,8 +25,10 @@ bool machine_event_central::initialize()
 
 int32_t machine_event_central::run()
 {
+
    while(get_run())
    {
+
       {
          synch_lock lockMachineEvent(&m_machineevent.m_mutex);
 
