@@ -238,7 +238,7 @@ namespace axis
 
       case MSGF_DIALOGBOX:    // handles message boxes as well.
          //pMainWnd = __get_main_window();
-         if(code == MSGF_DIALOGBOX && m_pthread->m_puiActive != NULL &&
+         if(code == MSGF_DIALOGBOX && m_puiActive != NULL &&
             pbase->m_uiMessage >= WM_KEYFIRST && pbase->m_uiMessage <= WM_KEYLAST)
          {
             //// need to translate messages for the in-place container
