@@ -6,15 +6,6 @@ namespace process
 
 
 
-
-   bool pipe::write(const char * psz)
-   {
-
-      return true;
-
-   }
-
-
    string pipe::read()
    {
 
