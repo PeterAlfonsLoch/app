@@ -67,6 +67,94 @@
       <Project>{e4841f02-7cca-4144-89a2-149302677b3f}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="channels\audin\client\audin_main.h" />
+    <ClInclude Include="channels\client\addin.h" />
+    <ClInclude Include="channels\client\channels.h" />
+    <ClInclude Include="channels\client\framework.h" />
+    <ClInclude Include="channels\client\init.h" />
+    <ClInclude Include="channels\client\open.h" />
+    <ClInclude Include="channels\client\tables.h" />
+    <ClInclude Include="channels\cliprdr\client\cliprdr_format.h" />
+    <ClInclude Include="channels\cliprdr\client\cliprdr_main.h" />
+    <ClInclude Include="channels\disp\client\disp_main.h" />
+    <ClInclude Include="channels\drdynvc\client\drdynvc_main.h" />
+    <ClInclude Include="channels\drdynvc\client\drdynvc_types.h" />
+    <ClInclude Include="channels\drdynvc\client\dvcman.h" />
+    <ClInclude Include="channels\drive\client\dirent.h" />
+    <ClInclude Include="channels\drive\client\drive_file.h" />
+    <ClInclude Include="channels\drive\client\statvfs.h" />
+    <ClInclude Include="channels\echo\client\echo_main.h" />
+    <ClInclude Include="channels\printer\client\printer_cups.h" />
+    <ClInclude Include="channels\printer\client\printer_main.h" />
+    <ClInclude Include="channels\printer\client\printer_win.h" />
+    <ClInclude Include="channels\rail\client\rail_main.h" />
+    <ClInclude Include="channels\rail\client\rail_orders.h" />
+    <ClInclude Include="channels\rdpdr\client\devman.h" />
+    <ClInclude Include="channels\rdpdr\client\irp.h" />
+    <ClInclude Include="channels\rdpdr\client\rdpdr_capabilities.h" />
+    <ClInclude Include="channels\rdpdr\client\rdpdr_main.h" />
+    <ClInclude Include="channels\rdpei\client\rdpei_common.h" />
+    <ClInclude Include="channels\rdpei\client\rdpei_main.h" />
+    <ClInclude Include="channels\rdpgfx\client\rdpgfx_common.h" />
+    <ClInclude Include="channels\rdpgfx\client\rdpgfx_main.h" />
+    <ClInclude Include="channels\rdpsnd\client\rdpsnd_main.h" />
+    <ClInclude Include="channels\serial\client\serial_constants.h" />
+    <ClInclude Include="channels\serial\client\serial_tty.h" />
+    <ClInclude Include="channels\smartcard\client\smartcard_main.h" />
+    <ClInclude Include="channels\tsmf\client\tsmf_audio.h" />
+    <ClInclude Include="channels\tsmf\client\tsmf_codec.h" />
+    <ClInclude Include="channels\tsmf\client\tsmf_constants.h" />
+    <ClInclude Include="channels\tsmf\client\tsmf_ifman.h" />
+    <ClInclude Include="channels\tsmf\client\tsmf_main.h" />
+    <ClInclude Include="channels\tsmf\client\tsmf_media.h" />
+    <ClInclude Include="channels\tsmf\client\tsmf_types.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="channels\audin\client\audin_main.c" />
+    <ClCompile Include="channels\client\addin.c" />
+    <ClCompile Include="channels\client\channels.c" />
+    <ClCompile Include="channels\client\framework.c" />
+    <ClCompile Include="channels\client\init.c" />
+    <ClCompile Include="channels\client\open.c" />
+    <ClCompile Include="channels\cliprdr\client\cliprdr_format.c" />
+    <ClCompile Include="channels\cliprdr\client\cliprdr_main.c" />
+    <ClCompile Include="channels\disp\client\disp_main.c" />
+    <ClCompile Include="channels\drdynvc\client\drdynvc_main.c" />
+    <ClCompile Include="channels\drdynvc\client\dvcman.c" />
+    <ClCompile Include="channels\drive\client\drive_file.c" />
+    <ClCompile Include="channels\drive\client\drive_main.c" />
+    <ClCompile Include="channels\drive\client\statvfs.c" />
+    <ClCompile Include="channels\echo\client\echo_main.c" />
+    <ClCompile Include="channels\parallel\client\parallel_main.c" />
+    <ClCompile Include="channels\printer\client\printer_cups.c" />
+    <ClCompile Include="channels\printer\client\printer_main.c" />
+    <ClCompile Include="channels\printer\client\printer_win.c" />
+    <ClCompile Include="channels\rail\client\rail_main.c" />
+    <ClCompile Include="channels\rail\client\rail_orders.c" />
+    <ClCompile Include="channels\rail\rail_common.c" />
+    <ClCompile Include="channels\rdpdr\client\devman.c" />
+    <ClCompile Include="channels\rdpdr\client\irp.c" />
+    <ClCompile Include="channels\rdpdr\client\rdpdr_capabilities.c" />
+    <ClCompile Include="channels\rdpdr\client\rdpdr_main.c" />
+    <ClCompile Include="channels\rdpei\client\rdpei_common.c" />
+    <ClCompile Include="channels\rdpei\client\rdpei_main.c" />
+    <ClCompile Include="channels\rdpgfx\client\rdpgfx_common.c" />
+    <ClCompile Include="channels\rdpgfx\client\rdpgfx_main.c" />
+    <ClCompile Include="channels\rdpsnd\client\rdpsnd_main.c" />
+    <ClCompile Include="channels\rdpsnd\client\winmm\rdpsnd_winmm.c" />
+    <ClCompile Include="channels\serial\client\serial_main.c" />
+    <ClCompile Include="channels\serial\client\serial_tty.c" />
+    <ClCompile Include="channels\smartcard\client\smartcard_main.c" />
+    <ClCompile Include="channels\smartcard\client\smartcard_operations.c" />
+    <ClCompile Include="channels\tables.c" />
+    <ClCompile Include="channels\tsmf\client\tsmf_audio.c" />
+    <ClCompile Include="channels\tsmf\client\tsmf_codec.c" />
+    <ClCompile Include="channels\tsmf\client\tsmf_decoder.c" />
+    <ClCompile Include="channels\tsmf\client\tsmf_ifman.c" />
+    <ClCompile Include="channels\tsmf\client\tsmf_main.c" />
+    <ClCompile Include="channels\tsmf\client\tsmf_media.c" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>axisclientchannels</ProjectName>
     <ProjectGuid>{3C27B10B-E5DB-4DBA-8292-051830AAF103}</ProjectGuid>
