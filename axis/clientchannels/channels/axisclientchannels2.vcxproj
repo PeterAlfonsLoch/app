@@ -281,9 +281,9 @@
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>axisclientchannels</ProjectName>
-    <ProjectGuid>{3C27B10B-E5DB-4DBA-8292-051830AAF103}</ProjectGuid>
-    <RootNamespace>baseclientchannels</RootNamespace>
+    <ProjectName>axisclientchannels2</ProjectName>
+    <ProjectGuid>{AF34E7F9-151B-4144-BCBD-20B6CBFA17A6}</ProjectGuid>
+    <RootNamespace>baseclientchannels2</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
