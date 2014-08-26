@@ -1,6 +1,8 @@
 #pragma once
 
 
+#ifdef cplusplus
+
 namespace base
 {
 
@@ -50,5 +52,10 @@ namespace base
 
 } // namespace base
 
+
+
+
+
+#endif
 
 

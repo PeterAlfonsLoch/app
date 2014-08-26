@@ -20,7 +20,7 @@
 #ifndef FREERDP_PRIVATE_CLIENT_CHANNELS
 #define FREERDP_PRIVATE_CLIENT_CHANNELS
 
-#include "base/base/base.h"
+#include "axis/axis/axis.h"
 
 #include <winpr/crt.h>
 #include <winpr/synch.h>
