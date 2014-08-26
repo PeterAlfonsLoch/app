@@ -663,8 +663,8 @@ bool polygon_contains(LPPOINTD lppt,LPPOINTD lpptPolygon,int iCount)
 {
 
    int i,j = iCount - 1;
-   int x = lppt->x;
-   int y = lppt->y;
+   double x = lppt->x;
+   double y = lppt->y;
    bool oddNodes = false;
 
    for(i = 0; i < iCount; i++)
