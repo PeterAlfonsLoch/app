@@ -63,7 +63,8 @@ namespace draw2d
       virtual bool create_oval(LPCRECT lpRect);
       virtual bool create_polygon(LPPOINT lpPoints, int32_t nCount, ::draw2d::e_fill_mode efillmode);
       virtual bool create_polygon(LPPOINTD lpPoints,int32_t nCount,::draw2d::e_fill_mode efillmode);
-      virtual bool create_poly_polygon(LPPOINT lpPoints, LPINT lpPolyCounts, int32_t nCount, ::draw2d::e_fill_mode efillmode);
+      virtual bool create_poly_polygon(LPPOINTD lpPoints, LPINT lpPolyCounts, int32_t nCount, ::draw2d::e_fill_mode efillmode);
+      virtual bool create_poly_polygon(LPPOINT lpPoints,LPINT lpPolyCounts,int32_t nCount,::draw2d::e_fill_mode efillmode);
       //virtual bool add_round_rect(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3);
 //      virtual bool add_path(::draw2d::path * ppath);
 

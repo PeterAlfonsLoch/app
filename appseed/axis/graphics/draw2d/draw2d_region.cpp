@@ -435,7 +435,7 @@ namespace draw2d
    }
 
 
-   bool region::create_poly_polygon(LPPOINT lppoints, LPINT lppolycounts, int32_t nCount, ::draw2d::e_fill_mode efillmode)
+   bool region::create_poly_polygon(LPPOINTD lppoints, LPINT lppolycounts, int32_t nCount, ::draw2d::e_fill_mode efillmode)
    {
 
       if(m_etype != type_none)
@@ -462,6 +462,53 @@ namespace draw2d
       return true;
 
    }
+
+
+   bool region::create_poly_polygon(LPPOINT lppoints,LPINT lppolycounts,int32_t nCount,::draw2d::e_fill_mode efillmode)
+   {
+
+      if(m_etype != type_none)
+      {
+
+         destroy();
+
+      }
+
+      m_etype = type_poly_polygon;
+
+      m_nCount = nCount;
+
+      m_lppolycounts = new INT[m_nCount];
+
+      memcpy(m_lppolycounts,lppolycounts,sizeof(INT)* m_nCount);
+
+      int32_t iTotalCount = 0;
+
+      for(int32_t i = 0; i < nCount; i++)
+      {
+
+         iTotalCount += m_lppolycounts[i];
+
+      }
+      
+      m_lppoints = new POINTD[iTotalCount];
+
+      for(int32_t i = 0; i < iTotalCount; i++)
+      {
+
+         m_lppoints[i].x = lppoints[i].x;
+
+         m_lppoints[i].y = lppoints[i].y;
+
+      }
+
+      m_efillmode = efillmode;
+
+      return true;
+
+   }
+
+
    //virtual bool add_round_rect(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3);
 //      virtual bool add_path(::draw2d::path * ppath);
 
