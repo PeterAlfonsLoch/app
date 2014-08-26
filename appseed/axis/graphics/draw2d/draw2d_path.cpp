@@ -354,7 +354,7 @@ namespace draw2d
       for(int32_t i = 0; i < nCount; i++)
       {
 
-         if(!add_line(lppoint[i]))
+         if(!add_line(lppoint[i]., lppoint[i].y))
             bOk = false;
       }
 
