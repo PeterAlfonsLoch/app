@@ -107,6 +107,13 @@ namespace draw2d
       virtual void max_bounding_box_poly_polygon(LPRECT lpRect) const;
       virtual void max_bounding_box_combine(LPRECT lpRect) const;
 
+      virtual void max_bounding_box(LPRECTD lpRect) const;
+      virtual void max_bounding_box_rect(LPRECTD lpRect) const;
+      virtual void max_bounding_box_oval(LPRECTD lpRect) const;
+      virtual void max_bounding_box_polygon(LPRECTD lpRect) const;
+      virtual void max_bounding_box_poly_polygon(LPRECTD lpRect) const;
+      virtual void max_bounding_box_combine(LPRECTD lpRect) const;
+
       virtual bool destroy();
 
       region & operator = (const ::draw2d::region & regionSrc);
