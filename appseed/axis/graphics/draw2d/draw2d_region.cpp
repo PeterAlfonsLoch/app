@@ -573,8 +573,8 @@ namespace draw2d
          return *this;
       case type_polygon:
          m_nCount = regionSrc.m_nCount;
-         m_lppoints = new POINT[m_nCount];
-         memcpy(m_lppoints, regionSrc.m_lppoints, sizeof(POINT) * m_nCount);
+         m_lppoints = new POINTD[m_nCount];
+         memcpy(m_lppoints, regionSrc.m_lppoints, sizeof(POINTD) * m_nCount);
          m_efillmode = regionSrc.m_efillmode;
          return *this;
       case type_poly_polygon:
@@ -587,8 +587,8 @@ namespace draw2d
             {
                iTotalCount += m_lppolycounts[i];
             }
-            m_lppoints = new POINT[iTotalCount];
-            memcpy(m_lppoints, regionSrc.m_lppoints, sizeof(POINT) * iTotalCount);
+            m_lppoints = new POINTD[iTotalCount];
+            memcpy(m_lppoints, regionSrc.m_lppoints, sizeof(POINTD) * iTotalCount);
             m_efillmode = regionSrc.m_efillmode;
          }
          return *this;
