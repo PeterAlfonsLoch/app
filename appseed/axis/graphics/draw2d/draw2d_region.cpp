@@ -448,15 +448,24 @@ namespace draw2d
       m_etype = type_poly_polygon;
 
       m_nCount = nCount;
+
       m_lppolycounts = new INT[m_nCount];
+
       memcpy(m_lppolycounts, lppolycounts, sizeof(INT) * m_nCount);
+
       int32_t iTotalCount = 0;
+
       for(int32_t i = 0; i < nCount; i++)
       {
+
          iTotalCount += m_lppolycounts[i];
+
       }
-      m_lppoints = new POINT[iTotalCount];
+      
+      m_lppoints = new POINTD[iTotalCount];
+
       memcpy(m_lppoints, lppoints, sizeof(POINT) * iTotalCount);
+
       m_efillmode = efillmode;
 
       return true;
