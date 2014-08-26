@@ -10,12 +10,12 @@ namespace userstack
 
 
    class CLASS_DECL_sphere frame : 
-      public simple_frame_window,
-      public ::message_queue
+      virtual public simple_frame_window,
+      virtual public ::aura::message_queue_listener
    {
    public:
       
-      
+      ::aura::message_queue_sp   m_spqueue;
       string                     m_strAnimatedStatusBarText;
       int32_t                        m_iAnimateStep;
       image_list  *              m_pimagelist;

@@ -6,13 +6,14 @@ namespace command
 
 
    class CLASS_DECL_sphere frame : 
-      public simple_frame_window,
-      public ::message_queue
+      virtual public simple_frame_window,
+      virtual public ::aura::message_queue_listener
    {
    public:
 
-      string                  m_strAnimatedStatusBarText;
-      bool                    m_bAutoHideOnOutClick;
+      ::aura::message_queue_sp   m_spqueue;
+      string                     m_strAnimatedStatusBarText;
+      bool                       m_bAutoHideOnOutClick;
       int32_t                 m_iAnimateStep;
       sp(image_list)          m_pimagelist;
       bool                    m_bTimerHide;
