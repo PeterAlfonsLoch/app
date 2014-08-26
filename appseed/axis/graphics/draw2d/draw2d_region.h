@@ -37,13 +37,13 @@ namespace draw2d
 
 
       e_type                  m_etype;
-      int32_t                 m_x1;
-      int32_t                 m_y1;
-      int32_t                 m_x2;
-      int32_t                 m_y2;
-      int32_t                 m_x3;
-      int32_t                 m_y3;
-      LPPOINT                 m_lppoints;
+      double                 m_x1;
+      double                 m_y1;
+      double                 m_x2;
+      double                 m_y2;
+      double                 m_x3;
+      double                 m_y3;
+      LPPOINTD                m_lppoints;
       LPINT                   m_lppolycounts;
       int32_t                 m_nCount;
       ::draw2d::e_fill_mode      m_efillmode;
@@ -62,6 +62,7 @@ namespace draw2d
       virtual bool create_oval(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool create_oval(LPCRECT lpRect);
       virtual bool create_polygon(LPPOINT lpPoints, int32_t nCount, ::draw2d::e_fill_mode efillmode);
+      virtual bool create_polygon(LPPOINTD lpPoints,int32_t nCount,::draw2d::e_fill_mode efillmode);
       virtual bool create_poly_polygon(LPPOINT lpPoints, LPINT lpPolyCounts, int32_t nCount, ::draw2d::e_fill_mode efillmode);
       //virtual bool add_round_rect(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3);
 //      virtual bool add_path(::draw2d::path * ppath);
