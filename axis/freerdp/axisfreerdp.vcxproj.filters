@@ -673,6 +673,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="basefreerdp.def" />
+    <None Include="axisfreerdp.def" />
   </ItemGroup>
 </Project>

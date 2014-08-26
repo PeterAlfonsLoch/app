@@ -73,9 +73,6 @@
     <Filter Include="Source Files\handle">
       <UniqueIdentifier>{da645c33-e259-45a5-afa3-085dc5c47188}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\NewFilter3">
-      <UniqueIdentifier>{0390be0f-4da6-44f8-b66c-ea08408deb96}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\library">
       <UniqueIdentifier>{94481362-bad3-427d-8cc8-78478b7db2d8}</UniqueIdentifier>
     </Filter>
@@ -135,12 +132,6 @@
     </Filter>
     <Filter Include="Source Files\synch">
       <UniqueIdentifier>{3cd8f73f-d2d0-4a06-9ee8-dfe1ba97d2f7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\NewFilter9">
-      <UniqueIdentifier>{4438574f-ea79-480b-b8b8-9345e29b54a6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\NewFilter3">
-      <UniqueIdentifier>{8ca34bd7-cf74-4a34-8128-431b99117368}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\sysinfo">
       <UniqueIdentifier>{277a5b92-d2f3-4787-af30-ee0edbe09d9f}</UniqueIdentifier>
@@ -281,12 +272,6 @@
     </ClCompile>
     <ClCompile Include="pipe\pipe.c">
       <Filter>Source Files\pipe</Filter>
-    </ClCompile>
-    <ClCompile Include="registry\registry.c">
-      <Filter>Source Files\NewFilter3</Filter>
-    </ClCompile>
-    <ClCompile Include="registry\registry_reg.c">
-      <Filter>Source Files\NewFilter3</Filter>
     </ClCompile>
     <ClCompile Include="rpc\midl.c">
       <Filter>Source Files\rpc</Filter>
@@ -665,11 +650,8 @@
     <ClInclude Include="framework\framework.h">
       <Filter>Header Files\framework</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\winpr\winpr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="basewinpr.def" />
+    <None Include="axiswinpr.def" />
   </ItemGroup>
 </Project>

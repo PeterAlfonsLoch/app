@@ -370,6 +370,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="baseclientchannels.def" />
+    <None Include="axisclientchannels.def" />
   </ItemGroup>
 </Project>

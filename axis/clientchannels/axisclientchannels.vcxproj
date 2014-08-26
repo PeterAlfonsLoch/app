@@ -275,10 +275,10 @@
     <ClInclude Include="tsmf\client\tsmf_types.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="baseclientchannels.def" />
+    <None Include="axisclientchannels.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>baseclientchannels</ProjectName>
+    <ProjectName>axisclientchannels</ProjectName>
     <ProjectGuid>{3C27B10B-E5DB-4DBA-8292-051830AAF103}</ProjectGuid>
     <RootNamespace>baseclientchannels</RootNamespace>
   </PropertyGroup>
@@ -585,7 +585,7 @@
       <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>baseclientchannels.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <SubSystem>Windows</SubSystem>
       <AdditionalDependencies>Ws2_32.lib;winmm.lib;Shlwapi.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
