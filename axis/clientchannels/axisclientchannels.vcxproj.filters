@@ -251,21 +251,6 @@
     <ClCompile Include="channels\audin\client\audin_main.c">
       <Filter>Source Files\channels\audin</Filter>
     </ClCompile>
-    <ClCompile Include="channels\client\addin.c">
-      <Filter>Source Files\channels\client</Filter>
-    </ClCompile>
-    <ClCompile Include="channels\client\channels.c">
-      <Filter>Source Files\channels\client</Filter>
-    </ClCompile>
-    <ClCompile Include="channels\client\init.c">
-      <Filter>Source Files\channels\client</Filter>
-    </ClCompile>
-    <ClCompile Include="channels\client\open.c">
-      <Filter>Source Files\channels\client</Filter>
-    </ClCompile>
-    <ClCompile Include="channels\tables.c">
-      <Filter>Source Files\channels\client</Filter>
-    </ClCompile>
     <ClCompile Include="channels\cliprdr\client\cliprdr_format.c">
       <Filter>Source Files\channels\cliprdr</Filter>
     </ClCompile>
@@ -295,9 +280,6 @@
     </ClCompile>
     <ClCompile Include="channels\parallel\client\parallel_main.c">
       <Filter>Source Files\channels\parallel</Filter>
-    </ClCompile>
-    <ClCompile Include="channels\printer\client\printer_cups.c">
-      <Filter>Source Files\channels\printer</Filter>
     </ClCompile>
     <ClCompile Include="channels\printer\client\printer_main.c">
       <Filter>Source Files\channels\printer</Filter>
@@ -347,9 +329,6 @@
     <ClCompile Include="channels\serial\client\serial_main.c">
       <Filter>Source Files\channels\serial</Filter>
     </ClCompile>
-    <ClCompile Include="channels\serial\client\serial_tty.c">
-      <Filter>Source Files\channels\serial</Filter>
-    </ClCompile>
     <ClCompile Include="channels\smartcard\client\smartcard_main.c">
       <Filter>Source Files\channels\smartcard</Filter>
     </ClCompile>
@@ -373,6 +352,9 @@
     </ClCompile>
     <ClCompile Include="channels\tsmf\client\tsmf_media.c">
       <Filter>Source Files\channels\tsmf</Filter>
+    </ClCompile>
+    <ClCompile Include="channels\client\addin.c">
+      <Filter>Source Files\channels\client</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

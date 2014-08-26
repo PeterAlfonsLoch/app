@@ -26,6 +26,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <winsock2.h>
 #include <Windows.h>
 #include <MMSystem.h>
 
@@ -36,7 +37,7 @@
 #include <freerdp/codec/dsp.h>
 #include <freerdp/channels/log.h>
 
-#include "rdpsnd_main.h"
+#include "../rdpsnd_main.h"
 
 typedef struct rdpsnd_winmm_plugin rdpsndWinmmPlugin;
 

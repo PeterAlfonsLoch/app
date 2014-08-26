@@ -113,10 +113,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="channels\audin\client\audin_main.c" />
-    <ClCompile Include="channels\client\addin.c" />
-    <ClCompile Include="channels\client\channels.c" />
-    <ClCompile Include="channels\client\init.c" />
-    <ClCompile Include="channels\client\open.c" />
+    <ClCompile Include="channels\client\addin.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="channels\cliprdr\client\cliprdr_format.c" />
     <ClCompile Include="channels\cliprdr\client\cliprdr_main.c" />
     <ClCompile Include="channels\disp\client\disp_main.c" />
@@ -126,8 +125,9 @@
     <ClCompile Include="channels\drive\client\drive_main.c" />
     <ClCompile Include="channels\drive\client\statvfs.c" />
     <ClCompile Include="channels\echo\client\echo_main.c" />
-    <ClCompile Include="channels\parallel\client\parallel_main.c" />
-    <ClCompile Include="channels\printer\client\printer_cups.c" />
+    <ClCompile Include="channels\parallel\client\parallel_main.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="channels\printer\client\printer_main.c" />
     <ClCompile Include="channels\printer\client\printer_win.c" />
     <ClCompile Include="channels\rail\client\rail_main.c" />
@@ -144,16 +144,16 @@
     <ClCompile Include="channels\rdpsnd\client\rdpsnd_main.c" />
     <ClCompile Include="channels\rdpsnd\client\winmm\rdpsnd_winmm.c" />
     <ClCompile Include="channels\serial\client\serial_main.c" />
-    <ClCompile Include="channels\serial\client\serial_tty.c" />
     <ClCompile Include="channels\smartcard\client\smartcard_main.c" />
     <ClCompile Include="channels\smartcard\client\smartcard_operations.c" />
-    <ClCompile Include="channels\tables.c" />
     <ClCompile Include="channels\tsmf\client\tsmf_audio.c" />
     <ClCompile Include="channels\tsmf\client\tsmf_codec.c" />
     <ClCompile Include="channels\tsmf\client\tsmf_decoder.c" />
     <ClCompile Include="channels\tsmf\client\tsmf_ifman.c" />
     <ClCompile Include="channels\tsmf\client\tsmf_main.c" />
-    <ClCompile Include="channels\tsmf\client\tsmf_media.c" />
+    <ClCompile Include="channels\tsmf\client\tsmf_media.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>axisclientchannels</ProjectName>
@@ -416,7 +416,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>client;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;client;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>HAVE_CONFIG_H;_USRDLL; _CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
