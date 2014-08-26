@@ -7,7 +7,7 @@ namespace sphere
 
    library::library(sp(::axis::application) papp) :
       element(papp),
-      ::axis::library(papp,0, "app"),
+      ::aura::library(papp,0, "app"),
       ::aura::single_application_library < application > (papp, "app"),
       ::filehandler::library(papp),
       ::filehandler::menu_library(papp)
@@ -84,7 +84,7 @@ namespace sphere
 #ifndef _WIN32
 extern "C"
 #endif
-::axis::library * get_new_library(sp(::axis::application) papp)
+::aura::library * get_new_library(sp(::axis::application) papp)
 {
 
    return new ::sphere::library(papp);
