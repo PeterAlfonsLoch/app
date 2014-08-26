@@ -422,9 +422,9 @@ namespace draw2d
       for(index i = 0; i < m_nCount; i++)
       {
          
-         m_lppoints[i].x = lppoints[i].x;
+         m_lppoints[i].x = (double) lppoints[i].x;
          
-         m_lppoints[i].y = lppoints[i].y;
+         m_lppoints[i].y = (double) lppoints[i].y;
 
       }
 
@@ -433,6 +433,7 @@ namespace draw2d
       return true;
 
    }
+
 
    bool region::create_poly_polygon(LPPOINT lppoints, LPINT lppolycounts, int32_t nCount, ::draw2d::e_fill_mode efillmode)
    {
