@@ -623,7 +623,7 @@ namespace draw2d
    bool region::contains(POINTD point) const
    {
 
-      return ((region *) this)->internal_contains(&point);
+      return ((region *) this)->internal_contains(point);
 
    }
 
@@ -784,7 +784,7 @@ namespace draw2d
    }
 
 
-   bool region::internal_contains(LPPOINT lppt)
+   bool region::internal_contains(POINTD point)
    {
 
       switch(m_etype)
@@ -792,15 +792,15 @@ namespace draw2d
       case type_none:
          return false;
       case type_rect:
-         return internal_rect_contains(lppt);
+         return internal_rect_contains(point);
       case type_oval:
-         return internal_oval_contains(lppt);
+         return internal_oval_contains(point);
       case type_polygon:
-         return internal_polygon_contains(lppt);
+         return internal_polygon_contains(point);
       case type_poly_polygon:
-         return internal_poly_polygon_contains(lppt);
+         return internal_poly_polygon_contains(point);
       case type_combine:
-         return internal_combine_contains(lppt);
+         return internal_combine_contains(point);
       default:
          throw not_implemented(get_app());
       }
@@ -809,14 +809,14 @@ namespace draw2d
 
    }
 
-   bool region::internal_rect_contains(LPPOINT lppt)
+   bool region::internal_rect_contains(POINTD point)
    {
 
-      return lppt->x >= m_x1 && lppt->y >= m_y1 && lppt->x <= m_x2 && lppt->y <= m_y2;
+      return point.x >= m_x1 && point.y >= m_y1 && point.x <= m_x2 && point.y <= m_y2;
 
    }
 
-   bool region::internal_oval_contains(LPPOINT lppt)
+   bool region::internal_oval_contains(POINTD point)
    {
 
       double centerx    = (m_x2 + m_x1) / 2.0;
@@ -828,28 +828,28 @@ namespace draw2d
       if(radiusx == 0.0 || radiusy == 0.0)
          return false;
 
-      double x = lppt->x;
-      double y = lppt->y;
+      double x = point.x;
+      double y = point.y;
 
       return ((x - centerx) * (x - centerx) / (radiusx * radiusx) + (y - centery) * (y - centery) / (radiusy * radiusy)) <= 1.0;
 
    }
 
 
-   bool region::internal_polygon_contains(LPPOINT lppt)
+   bool region::internal_polygon_contains(POINTD point)
    {
 
       if(m_nCount <= 0)
          return false;
 
-      if(::polygon_contains(lppt, m_lppoints, m_nCount))
+      if(::polygon_contains(point, m_lppoints, m_nCount))
          return true;
 
       return false;
 
    }
 
-   bool region::internal_poly_polygon_contains(LPPOINT lppt)
+   bool region::internal_poly_polygon_contains(POINTD point)
    {
 
       int32_t n = 0;
@@ -857,7 +857,7 @@ namespace draw2d
       for(int32_t i = 0; i < m_nCount;i++)
       {
          int32_t iCount = m_lppolycounts[i];
-         if(::polygon_contains(lppt, &m_lppoints[n], iCount))
+         if(::polygon_contains(&point, &m_lppoints[n], iCount))
             return true;
          n += iCount;
       }
@@ -866,44 +866,44 @@ namespace draw2d
 
    }
 
-   bool region::internal_combine_contains(LPPOINT lppt)
+   bool region::internal_combine_contains(POINTD point)
    {
 
       if(m_ecombine == ::draw2d::region::combine_add)
       {
-         if(m_pregion1->internal_contains(lppt))
+         if(m_pregion1->internal_contains(point))
             return true;
-         if(m_pregion2->internal_contains(lppt))
+         if(m_pregion2->internal_contains(point))
             return true;
          return false;
       }
       else if(m_ecombine == ::draw2d::region::combine_exclude)
       {
-         if(m_pregion2->internal_contains(lppt))
+         if(m_pregion2->internal_contains(point))
             return false;
-         if(m_pregion1->internal_contains(lppt))
+         if(m_pregion1->internal_contains(point))
             return true;
          return false;
       }
       else if(m_ecombine == ::draw2d::region::combine_intersect)
       {
-         if(m_pregion1->internal_contains(lppt))
+         if(m_pregion1->internal_contains(point))
          {
-            if(m_pregion2->internal_contains(lppt))
+            if(m_pregion2->internal_contains(point))
                return true;
          }
          return false;
       }
       else if(m_ecombine == ::draw2d::region::combine_xor)
       {
-         if(m_pregion1->internal_contains(lppt))
+         if(m_pregion1->internal_contains(point))
          {
-            if(m_pregion2->internal_contains(lppt))
+            if(m_pregion2->internal_contains(point))
                return false;
             else
                return true;
          }
-         else if(m_pregion2->internal_contains(lppt))
+         else if(m_pregion2->internal_contains(point))
          {
             return true;
          }
