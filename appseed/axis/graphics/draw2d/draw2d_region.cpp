@@ -382,7 +382,7 @@ namespace draw2d
 
    }
 
-   bool region::create_polygon(LPPOINT lppoints, int32_t nCount, ::draw2d::e_fill_mode efillmode)
+   bool region::create_polygon(LPPOINTD lppoints, int32_t nCount, ::draw2d::e_fill_mode efillmode)
    {
 
       if(m_etype != type_none)
@@ -395,11 +395,43 @@ namespace draw2d
       m_etype = type_polygon;
 
       m_nCount = nCount;
-      m_lppoints = new POINT[m_nCount];
+      m_lppoints = new POINTD[m_nCount];
       memcpy(m_lppoints, lppoints, sizeof(POINT) * m_nCount);
       m_efillmode = efillmode;
 
       return true;
+   }
+
+
+   bool region::create_polygon(LPPOINT lppoints,int32_t nCount,::draw2d::e_fill_mode efillmode)
+   {
+
+      if(m_etype != type_none)
+      {
+
+         destroy();
+
+      }
+
+      m_etype = type_polygon;
+
+      m_nCount = nCount;
+
+      m_lppoints = new POINTD[m_nCount];
+
+      for(index i = 0; i < m_nCount; i++)
+      {
+         
+         m_lppoints[i].x = lppoints[i].x;
+         
+         m_lppoints[i].y = lppoints[i].y;
+
+      }
+
+      m_efillmode = efillmode;
+
+      return true;
+
    }
 
    bool region::create_poly_polygon(LPPOINT lppoints, LPINT lppolycounts, int32_t nCount, ::draw2d::e_fill_mode efillmode)
