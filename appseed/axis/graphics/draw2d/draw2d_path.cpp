@@ -177,12 +177,13 @@ namespace draw2d
 
    }
 
-   bool path::add_line(int32_t x, int32_t y)
+
+   bool path::add_line(double x,double y)
    {
 
       if(!has_current_point())
       {
-         return add_move(x, y);
+         return add_move(x,y);
       }
 
       element e;
@@ -203,7 +204,28 @@ namespace draw2d
 
    }
 
-   bool path::add_line(int32_t x, int32_t y, int32_t x2, int32_t y2)
+   
+   bool path::add_line(int32_t x, int32_t y)
+   {
+
+      return add_line((double)x,(double)y);
+
+   }
+
+
+   bool path::add_line(double x,double y,double x2,double y2)
+   {
+
+      bool bOk1 = add_line(x,y);
+
+      bool bOk2 = add_line(x2,y2);
+
+      return bOk1 && bOk2;
+
+   }
+
+
+   bool path::add_line(int32_t x,int32_t y,int32_t x2,int32_t y2)
    {
 
       bool bOk1 = add_line(x, y);
@@ -307,6 +329,7 @@ namespace draw2d
 
    }
 
+
    bool path::add_line(point p)
    {
 
@@ -314,7 +337,33 @@ namespace draw2d
 
    }
 
+
+   bool path::add_line(pointd p)
+   {
+
+      return add_line(p.x,p.y);
+
+   }
+
+
    bool path::add_lines(const POINT * lppoint, int32_t nCount)
+   {
+
+      bool bOk = true;
+
+      for(int32_t i = 0; i < nCount; i++)
+      {
+
+         if(!add_line(lppoint[i]))
+            bOk = false;
+      }
+
+      return bOk;
+
+   }
+
+
+   bool path::add_lines(const POINTD * lppoint,int32_t nCount)
    {
 
       bool bOk = true;
