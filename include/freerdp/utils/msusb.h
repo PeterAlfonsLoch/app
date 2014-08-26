@@ -26,6 +26,13 @@
 
 #include <winpr/stream.h>
 
+
+#ifdef _MSC_VER
+#define	__attribute__(...)
+#endif
+
+
+
 /* a safer free helper */
 #define zfree(p) do { if (p != NULL) {free(p); p = NULL;} } while (0)
 

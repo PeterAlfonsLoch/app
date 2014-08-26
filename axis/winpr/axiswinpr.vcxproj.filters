@@ -567,6 +567,12 @@
     <ClCompile Include="libwinpr\utils\ssl.c">
       <Filter>Source Files\libwinpr\utils</Filter>
     </ClCompile>
+    <ClCompile Include="libwinpr\utils\collections\BitStream.c">
+      <Filter>Source Files\libwinpr\utils\collections</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\collections\HashTable.c">
+      <Filter>Source Files\libwinpr\utils\collections</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libwinpr\crt\utf.h">

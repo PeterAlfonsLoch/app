@@ -312,7 +312,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(ProjectDir)../../include;.;framework;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>HAVE_CONFIG_H;FREERDP_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>HAVE_CONFIG_H;FREERDP_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -337,7 +337,8 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
       <SmallerTypeCheck>false</SmallerTypeCheck>
-      <ForcedIncludeFiles>framework.h</ForcedIncludeFiles>
+      <ForcedIncludeFiles>
+      </ForcedIncludeFiles>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
@@ -1102,6 +1103,9 @@
     <ProjectReference Include="..\..\appseed\axis\axis.vcxproj">
       <Project>{73a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\freeimage\axisfreeimage.vcxproj">
+      <Project>{b39ed2b3-d53a-4077-b957-930979a3577d}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\openssl\axisopenssl.vcxproj">
       <Project>{29676444-4d0f-4dd0-9104-0499d94da2c9}</Project>
     </ProjectReference>
@@ -1213,12 +1217,19 @@
     <ClCompile Include="libfreerdp\codec\audio.c" />
     <ClCompile Include="libfreerdp\codec\bitmap_decode.c" />
     <ClCompile Include="libfreerdp\codec\bitmap_encode.c" />
+    <ClCompile Include="libfreerdp\codec\clear.c" />
     <ClCompile Include="libfreerdp\codec\color.c" />
     <ClCompile Include="libfreerdp\codec\dsp.c" />
+    <ClCompile Include="libfreerdp\codec\h264.c" />
     <ClCompile Include="libfreerdp\codec\jpeg.c" />
+    <ClCompile Include="libfreerdp\codec\mppc.c" />
+    <ClCompile Include="libfreerdp\codec\ncrush.c" />
     <ClCompile Include="libfreerdp\codec\nsc.c" />
     <ClCompile Include="libfreerdp\codec\nsc_encode.c" />
     <ClCompile Include="libfreerdp\codec\nsc_sse2.c" />
+    <ClCompile Include="libfreerdp\codec\planar.c" />
+    <ClCompile Include="libfreerdp\codec\progressive.c" />
+    <ClCompile Include="libfreerdp\codec\region.c" />
     <ClCompile Include="libfreerdp\codec\rfx.c" />
     <ClCompile Include="libfreerdp\codec\rfx_decode.c" />
     <ClCompile Include="libfreerdp\codec\rfx_differential.c" />
@@ -1228,6 +1239,8 @@
     <ClCompile Include="libfreerdp\codec\rfx_quantization.c" />
     <ClCompile Include="libfreerdp\codec\rfx_rlgr.c" />
     <ClCompile Include="libfreerdp\codec\rfx_sse2.c" />
+    <ClCompile Include="libfreerdp\codec\xcrush.c" />
+    <ClCompile Include="libfreerdp\codec\zgfx.c" />
     <ClCompile Include="libfreerdp\common\assistance.c" />
     <ClCompile Include="libfreerdp\common\common_addin.c" />
     <ClCompile Include="libfreerdp\common\common_settings.c" />
@@ -1288,7 +1301,6 @@
     <ClCompile Include="libfreerdp\crypto\crypto_er.c" />
     <ClCompile Include="libfreerdp\crypto\crypto_per.c" />
     <ClCompile Include="libfreerdp\crypto\crypto_tls.c" />
-    <ClCompile Include="libfreerdp\framework\framework.c" />
     <ClCompile Include="libfreerdp\gdi\16bpp.c" />
     <ClCompile Include="libfreerdp\gdi\32bpp.c" />
     <ClCompile Include="libfreerdp\gdi\8bpp.c" />
@@ -1331,7 +1343,6 @@
     <ClCompile Include="libfreerdp\rail\rail_window_list.c" />
     <ClCompile Include="libfreerdp\utils\utils_bitmap.c" />
     <ClCompile Include="libfreerdp\utils\utils_event.c" />
-    <ClCompile Include="libfreerdp\utils\utils_list.c" />
     <ClCompile Include="libfreerdp\utils\utils_msusb.c" />
     <ClCompile Include="libfreerdp\utils\utils_passphrase.c" />
     <ClCompile Include="libfreerdp\utils\utils_pcap.c" />

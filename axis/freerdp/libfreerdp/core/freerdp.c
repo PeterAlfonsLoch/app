@@ -40,7 +40,7 @@
 #include <freerdp/event.h>
 #include <freerdp/locale/keyboard.h>
 #include <freerdp/channels/channels.h>
-#include <freerdp/version.h>
+//#include <freerdp/version.h>
 
 /* connectErrorCode is 'extern' in error.h. See comment there.*/
 
@@ -359,13 +359,16 @@ FREERDP_API BOOL freerdp_focus_required(freerdp* instance)
 void freerdp_get_version(int* major, int* minor, int* revision)
 {
 	if (major != NULL)
-		*major = FREERDP_VERSION_MAJOR;
+		//*major = FREERDP_VERSION_MAJOR;
+      *major = 0;
 
 	if (minor != NULL)
-		*minor = FREERDP_VERSION_MINOR;
+		//*minor = FREERDP_VERSION_MINOR;
+      *minor = 0;
 
 	if (revision != NULL)
-		*revision = FREERDP_VERSION_REVISION;
+		//*revision = FREERDP_VERSION_REVISION;
+      *revision = 0;
 }
 
 static wEventType FreeRDP_Events[] =
