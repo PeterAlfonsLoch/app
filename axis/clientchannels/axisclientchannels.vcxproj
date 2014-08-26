@@ -109,12 +109,12 @@
     <ClInclude Include="channels\tsmf\client\tsmf_main.h" />
     <ClInclude Include="channels\tsmf\client\tsmf_media.h" />
     <ClInclude Include="channels\tsmf\client\tsmf_types.h" />
+    <ClInclude Include="config.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="channels\audin\client\audin_main.c" />
     <ClCompile Include="channels\client\addin.c" />
     <ClCompile Include="channels\client\channels.c" />
-    <ClCompile Include="channels\client\framework.c" />
     <ClCompile Include="channels\client\init.c" />
     <ClCompile Include="channels\client\open.c" />
     <ClCompile Include="channels\cliprdr\client\cliprdr_format.c" />

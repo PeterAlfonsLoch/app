@@ -82,9 +82,6 @@
     <Filter Include="Source Files\channels\echo">
       <UniqueIdentifier>{e7888f58-8906-41f7-9695-34cfe18119c9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\channels\framework">
-      <UniqueIdentifier>{6fd13cab-3d6a-4595-89e7-dc03ac0b66db}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\channels\parallel">
       <UniqueIdentifier>{3568a37a-681c-4692-a8f3-dbc6d942a230}</UniqueIdentifier>
     </Filter>
@@ -246,6 +243,9 @@
     <ClInclude Include="channels\tsmf\client\tsmf_types.h">
       <Filter>Header Files\channels\tsmf</Filter>
     </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="channels\audin\client\audin_main.c">
@@ -292,9 +292,6 @@
     </ClCompile>
     <ClCompile Include="channels\echo\client\echo_main.c">
       <Filter>Source Files\channels\echo</Filter>
-    </ClCompile>
-    <ClCompile Include="channels\client\framework.c">
-      <Filter>Source Files\channels\framework</Filter>
     </ClCompile>
     <ClCompile Include="channels\parallel\client\parallel_main.c">
       <Filter>Source Files\channels\parallel</Filter>
