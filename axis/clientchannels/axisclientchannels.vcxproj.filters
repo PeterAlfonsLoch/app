@@ -7,6 +7,12 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{e91e119a-e247-46ab-ac2c-cca97cc0a375}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\channels">
+      <UniqueIdentifier>{4ada0f0d-8820-456a-a7e5-868e8a8af3c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\channels">
+      <UniqueIdentifier>{0b248a09-2f17-4f6f-ae0e-27341ac924ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="axisclientchannels.def" />
