@@ -276,8 +276,8 @@ int clear_decompress(CLEAR_CONTEXT* clear, BYTE* pSrcData, UINT32 SrcSize,
 			UINT32 vBarHeight;
 			UINT32 vBarPixelCount;
 			UINT32 vBarShortPixelCount;
-			CLEAR_VBAR_ENTRY* vBarEntry;
-			CLEAR_VBAR_ENTRY* vBarShortEntry;
+			CLEAR_VBAR_ENTRY* vBarEntry = NULL;
+			CLEAR_VBAR_ENTRY* vBarShortEntry = NULL;
 
 			if ((bandsByteCount - suboffset) < 11)
 				return -1021;
@@ -454,7 +454,7 @@ int clear_decompress(CLEAR_CONTEXT* clear, BYTE* pSrcData, UINT32 SrcSize,
 					if ((y + count) > vBarPixelCount)
 						count = (vBarPixelCount > y) ? (vBarPixelCount - y) : 0;
 
-					pSrcPixel32 = &(vBarShortEntry->pixels[y - vBarYOn]);
+ 					pSrcPixel32 = &(vBarShortEntry->pixels[y - vBarYOn]);
 					CopyMemory(pDstPixel32, pSrcPixel32, count * 4);
 					pDstPixel32 += count;
 

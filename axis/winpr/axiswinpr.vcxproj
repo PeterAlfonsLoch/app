@@ -51,9 +51,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <None Include="axiswinpr.def" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\appseed\aura\aura.vcxproj">
       <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>
@@ -63,6 +60,48 @@
     <ProjectReference Include="..\openssl\axisopenssl.vcxproj">
       <Project>{29676444-4d0f-4dd0-9104-0499d94da2c9}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="libwinpr\crt\utf.h" />
+    <ClInclude Include="libwinpr\crypto\crypto.h" />
+    <ClInclude Include="libwinpr\framework\framework.h" />
+    <ClInclude Include="libwinpr\handle\handle.h" />
+    <ClInclude Include="libwinpr\io\io.h" />
+    <ClInclude Include="libwinpr\nt\nt.h" />
+    <ClInclude Include="libwinpr\pipe\pipe.h" />
+    <ClInclude Include="libwinpr\pool\pool.h" />
+    <ClInclude Include="libwinpr\registry\registry_reg.h" />
+    <ClInclude Include="libwinpr\rpc\ndr_array.h" />
+    <ClInclude Include="libwinpr\rpc\ndr_context.h" />
+    <ClInclude Include="libwinpr\rpc\ndr_correlation.h" />
+    <ClInclude Include="libwinpr\rpc\ndr_pointer.h" />
+    <ClInclude Include="libwinpr\rpc\ndr_private.h" />
+    <ClInclude Include="libwinpr\rpc\ndr_simple.h" />
+    <ClInclude Include="libwinpr\rpc\ndr_string.h" />
+    <ClInclude Include="libwinpr\rpc\ndr_structure.h" />
+    <ClInclude Include="libwinpr\rpc\ndr_union.h" />
+    <ClInclude Include="libwinpr\security\security.h" />
+    <ClInclude Include="libwinpr\sspi\CredSSP\credssp.h" />
+    <ClInclude Include="libwinpr\sspi\sspi.h" />
+    <ClInclude Include="libwinpr\synch\synch.h" />
+    <ClInclude Include="libwinpr\thread\thread.h" />
+    <ClInclude Include="libwinpr\utils\trio\strio.h" />
+    <ClInclude Include="libwinpr\utils\trio\trio.h" />
+    <ClInclude Include="libwinpr\utils\trio\triodef.h" />
+    <ClInclude Include="libwinpr\utils\trio\trionan.h" />
+    <ClInclude Include="libwinpr\utils\trio\triop.h" />
+    <ClInclude Include="libwinpr\utils\trio\triostr.h" />
+    <ClInclude Include="libwinpr\utils\wlog\Appender.h" />
+    <ClInclude Include="libwinpr\utils\wlog\BinaryAppender.h" />
+    <ClInclude Include="libwinpr\utils\wlog\ConsoleAppender.h" />
+    <ClInclude Include="libwinpr\utils\wlog\DataMessage.h" />
+    <ClInclude Include="libwinpr\utils\wlog\FileAppender.h" />
+    <ClInclude Include="libwinpr\utils\wlog\ImageMessage.h" />
+    <ClInclude Include="libwinpr\utils\wlog\Layout.h" />
+    <ClInclude Include="libwinpr\utils\wlog\Message.h" />
+    <ClInclude Include="libwinpr\utils\wlog\PacketMessage.h" />
+    <ClInclude Include="libwinpr\utils\wlog\TextMessage.h" />
+    <ClInclude Include="libwinpr\utils\wlog\wlog.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libwinpr\asn1\asn1.c" />
@@ -184,46 +223,7 @@
     <ClCompile Include="libwinpr\wtsapi\wtsrpc_c.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="libwinpr\crt\utf.h" />
-    <ClInclude Include="libwinpr\crypto\crypto.h" />
-    <ClInclude Include="libwinpr\framework\framework.h" />
-    <ClInclude Include="libwinpr\handle\handle.h" />
-    <ClInclude Include="libwinpr\io\io.h" />
-    <ClInclude Include="libwinpr\nt\nt.h" />
-    <ClInclude Include="libwinpr\pipe\pipe.h" />
-    <ClInclude Include="libwinpr\pool\pool.h" />
-    <ClInclude Include="libwinpr\registry\registry_reg.h" />
-    <ClInclude Include="libwinpr\rpc\ndr_array.h" />
-    <ClInclude Include="libwinpr\rpc\ndr_context.h" />
-    <ClInclude Include="libwinpr\rpc\ndr_correlation.h" />
-    <ClInclude Include="libwinpr\rpc\ndr_pointer.h" />
-    <ClInclude Include="libwinpr\rpc\ndr_private.h" />
-    <ClInclude Include="libwinpr\rpc\ndr_simple.h" />
-    <ClInclude Include="libwinpr\rpc\ndr_string.h" />
-    <ClInclude Include="libwinpr\rpc\ndr_structure.h" />
-    <ClInclude Include="libwinpr\rpc\ndr_union.h" />
-    <ClInclude Include="libwinpr\security\security.h" />
-    <ClInclude Include="libwinpr\sspi\CredSSP\credssp.h" />
-    <ClInclude Include="libwinpr\sspi\sspi.h" />
-    <ClInclude Include="libwinpr\synch\synch.h" />
-    <ClInclude Include="libwinpr\thread\thread.h" />
-    <ClInclude Include="libwinpr\utils\trio\strio.h" />
-    <ClInclude Include="libwinpr\utils\trio\trio.h" />
-    <ClInclude Include="libwinpr\utils\trio\triodef.h" />
-    <ClInclude Include="libwinpr\utils\trio\trionan.h" />
-    <ClInclude Include="libwinpr\utils\trio\triop.h" />
-    <ClInclude Include="libwinpr\utils\trio\triostr.h" />
-    <ClInclude Include="libwinpr\utils\wlog\Appender.h" />
-    <ClInclude Include="libwinpr\utils\wlog\BinaryAppender.h" />
-    <ClInclude Include="libwinpr\utils\wlog\ConsoleAppender.h" />
-    <ClInclude Include="libwinpr\utils\wlog\DataMessage.h" />
-    <ClInclude Include="libwinpr\utils\wlog\FileAppender.h" />
-    <ClInclude Include="libwinpr\utils\wlog\ImageMessage.h" />
-    <ClInclude Include="libwinpr\utils\wlog\Layout.h" />
-    <ClInclude Include="libwinpr\utils\wlog\Message.h" />
-    <ClInclude Include="libwinpr\utils\wlog\PacketMessage.h" />
-    <ClInclude Include="libwinpr\utils\wlog\TextMessage.h" />
-    <ClInclude Include="libwinpr\utils\wlog\wlog.h" />
+    <None Include="axiswinpr.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>axiswinpr</ProjectName>
@@ -486,8 +486,8 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>framework;utils/trio;utils;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>HAVE_CONFIG_H;WINPR_EXPORTS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>framework;libwinpr/utils/trio;libwinpr/utils;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;WINPR_EXPORTS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -512,7 +512,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
       <SmallerTypeCheck>false</SmallerTypeCheck>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
     </ClCompile>

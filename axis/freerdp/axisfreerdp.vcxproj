@@ -311,8 +311,8 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;framework;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>STATIC_CHANNELS;FREERDP_EXPORTS;_USRDLL;OPJ_STATIC;_CRT_SECURE_NO_WARNINGS;WITH_NATIVE_SSPI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)../../include;.;framework;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>HAVE_CONFIG_H;FREERDP_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -338,9 +338,10 @@
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <ForcedIncludeFiles>framework.h</ForcedIncludeFiles>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
+      <DisableSpecificWarnings>4018</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1095,229 +1096,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\include\freerdp\addin.h" />
-    <ClInclude Include="..\..\..\include\freerdp\altsec.h" />
-    <ClInclude Include="..\..\..\include\freerdp\api.h" />
-    <ClInclude Include="codec\nsc_encode.h" />
-    <ClInclude Include="codec\nsc_sse2.h" />
-    <ClInclude Include="codec\nsc_types.h" />
-    <ClInclude Include="codec\rfx_bitstream.h" />
-    <ClInclude Include="codec\rfx_constants.h" />
-    <ClInclude Include="codec\rfx_decode.h" />
-    <ClInclude Include="codec\rfx_differential.h" />
-    <ClInclude Include="codec\rfx_dwt.h" />
-    <ClInclude Include="codec\rfx_encode.h" />
-    <ClInclude Include="codec\rfx_neon.h" />
-    <ClInclude Include="codec\rfx_quantization.h" />
-    <ClInclude Include="codec\rfx_rlgr.h" />
-    <ClInclude Include="codec\rfx_sse2.h" />
-    <ClInclude Include="codec\rfx_types.h" />
-    <ClInclude Include="core\activation.h" />
-    <ClInclude Include="core\capabilities.h" />
-    <ClInclude Include="core\certificate.h" />
-    <ClInclude Include="core\channel.h" />
-    <ClInclude Include="core\connection.h" />
-    <ClInclude Include="core\errinfo.h" />
-    <ClInclude Include="core\extension.h" />
-    <ClInclude Include="core\fastpath.h" />
-    <ClInclude Include="core\gcc.h" />
-    <ClInclude Include="core\info.h" />
-    <ClInclude Include="core\input.h" />
-    <ClInclude Include="core\license.h" />
-    <ClInclude Include="core\listener.h" />
-    <ClInclude Include="core\mcs.h" />
-    <ClInclude Include="core\message.h" />
-    <ClInclude Include="core\nego.h" />
-    <ClInclude Include="core\nla.h" />
-    <ClInclude Include="core\orders.h" />
-    <ClInclude Include="core\peer.h" />
-    <ClInclude Include="core\rdp.h" />
-    <ClInclude Include="core\redirection.h" />
-    <ClInclude Include="core\security.h" />
-    <ClInclude Include="core\surface.h" />
-    <ClInclude Include="core\tcp.h" />
-    <ClInclude Include="core\timezone.h" />
-    <ClInclude Include="core\tpdu.h" />
-    <ClInclude Include="core\tpkt.h" />
-    <ClInclude Include="core\transport.h" />
-    <ClInclude Include="core\update.h" />
-    <ClInclude Include="core\window.h" />
-    <ClInclude Include="framework\framework.h" />
-    <ClInclude Include="gdi\gdi.h" />
-    <ClInclude Include="gdi\graphics.h" />
-    <ClInclude Include="locale\keyboard_sun.h" />
-    <ClInclude Include="locale\keyboard_x11.h" />
-    <ClInclude Include="locale\keyboard_xkbfile.h" />
-    <ClInclude Include="locale\liblocale.h" />
-    <ClInclude Include="locale\xkb_layout_ids.h" />
-    <ClInclude Include="primitives\prim_add.h" />
-    <ClInclude Include="primitives\prim_alphaComp.h" />
-    <ClInclude Include="primitives\prim_andor.h" />
-    <ClInclude Include="primitives\prim_colors.h" />
-    <ClInclude Include="primitives\prim_internal.h" />
-    <ClInclude Include="primitives\prim_set.h" />
-    <ClInclude Include="primitives\prim_shift.h" />
-    <ClInclude Include="primitives\prim_sign.h" />
-    <ClInclude Include="primitives\prim_templates.h" />
-    <ClInclude Include="rail\librail.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="cache\cache_bitmap.c" />
-    <ClCompile Include="cache\cache_brush.c" />
-    <ClCompile Include="cache\cache_cache.c" />
-    <ClCompile Include="cache\cache_glyph.c" />
-    <ClCompile Include="cache\cache_nine_grid.c" />
-    <ClCompile Include="cache\cache_offscreen.c" />
-    <ClCompile Include="cache\cache_palette.c" />
-    <ClCompile Include="cache\cache_pointer.c" />
-    <ClCompile Include="codec\audio.c" />
-    <ClCompile Include="codec\bitmap_decode.c" />
-    <ClCompile Include="codec\bitmap_encode.c" />
-    <ClCompile Include="codec\color.c" />
-    <ClCompile Include="codec\dsp.c" />
-    <ClCompile Include="codec\jpeg.c" />
-    <ClCompile Include="codec\mppc_dec.c" />
-    <ClCompile Include="codec\mppc_enc.c" />
-    <ClCompile Include="codec\nsc.c" />
-    <ClCompile Include="codec\nsc_encode.c" />
-    <ClCompile Include="codec\nsc_sse2.c" />
-    <ClCompile Include="codec\rfx.c" />
-    <ClCompile Include="codec\rfx_decode.c" />
-    <ClCompile Include="codec\rfx_differential.c" />
-    <ClCompile Include="codec\rfx_dwt.c" />
-    <ClCompile Include="codec\rfx_encode.c" />
-    <ClCompile Include="codec\rfx_neon.c" />
-    <ClCompile Include="codec\rfx_quantization.c" />
-    <ClCompile Include="codec\rfx_rlgr.c" />
-    <ClCompile Include="codec\rfx_sse2.c" />
-    <ClCompile Include="common\addin.c" />
-    <ClCompile Include="common\settings.c" />
-    <ClCompile Include="core\core_activation.c" />
-    <ClCompile Include="core\core_capabilities.c" />
-    <ClCompile Include="core\core_certificate.c" />
-    <ClCompile Include="core\core_channel.c" />
-    <ClCompile Include="core\core_connection.c" />
-    <ClCompile Include="core\core_errinfo.c" />
-    <ClCompile Include="core\core_extension.c" />
-    <ClCompile Include="core\core_fastpath.c" />
-    <ClCompile Include="core\core_freerdp.c" />
-    <ClCompile Include="core\core_gcc.c" />
-    <ClCompile Include="core\core_graphics.c" />
-    <ClCompile Include="core\core_info.c" />
-    <ClCompile Include="core\core_input.c" />
-    <ClCompile Include="core\core_license.c" />
-    <ClCompile Include="core\core_listener.c" />
-    <ClCompile Include="core\core_mcs.c" />
-    <ClCompile Include="core\core_message.c" />
-    <ClCompile Include="core\core_nego.c" />
-    <ClCompile Include="core\core_nla.c" />
-    <ClCompile Include="core\core_orders.c" />
-    <ClCompile Include="core\core_peer.c" />
-    <ClCompile Include="core\core_rdp.c" />
-    <ClCompile Include="core\core_redirection.c" />
-    <ClCompile Include="core\core_security.c" />
-    <ClCompile Include="core\core_settings.c" />
-    <ClCompile Include="core\core_surface.c" />
-    <ClCompile Include="core\core_tcp.c" />
-    <ClCompile Include="core\core_timezone.c" />
-    <ClCompile Include="core\core_tpdu.c" />
-    <ClCompile Include="core\core_tpkt.c" />
-    <ClCompile Include="core\core_transport.c" />
-    <ClCompile Include="core\core_update.c" />
-    <ClCompile Include="core\core_window.c" />
-    <ClCompile Include="core\gateway\http.c" />
-    <ClCompile Include="core\gateway\ncacn_http.c" />
-    <ClCompile Include="core\gateway\ntlm.c" />
-    <ClCompile Include="core\gateway\rpc.c" />
-    <ClCompile Include="core\gateway\rpc_bind.c" />
-    <ClCompile Include="core\gateway\rpc_client.c" />
-    <ClCompile Include="core\gateway\rpc_fault.c" />
-    <ClCompile Include="core\gateway\rts.c" />
-    <ClCompile Include="core\gateway\rts_signature.c" />
-    <ClCompile Include="core\gateway\tsg.c" />
-    <ClCompile Include="crypto\base64.c" />
-    <ClCompile Include="crypto\ber.c" />
-    <ClCompile Include="crypto\certificate.c" />
-    <ClCompile Include="crypto\crypto.c" />
-    <ClCompile Include="crypto\der.c" />
-    <ClCompile Include="crypto\er.c" />
-    <ClCompile Include="crypto\per.c" />
-    <ClCompile Include="crypto\tls.c" />
-    <ClCompile Include="framework\framework.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="gdi\16bpp.c" />
-    <ClCompile Include="gdi\32bpp.c" />
-    <ClCompile Include="gdi\8bpp.c" />
-    <ClCompile Include="gdi\bitmap.c" />
-    <ClCompile Include="gdi\brush.c" />
-    <ClCompile Include="gdi\clipping.c" />
-    <ClCompile Include="gdi\dc.c" />
-    <ClCompile Include="gdi\drawing.c" />
-    <ClCompile Include="gdi\gdi.c" />
-    <ClCompile Include="gdi\graphics.c" />
-    <ClCompile Include="gdi\line.c" />
-    <ClCompile Include="gdi\palette.c" />
-    <ClCompile Include="gdi\pen.c" />
-    <ClCompile Include="gdi\region.c" />
-    <ClCompile Include="gdi\shape.c" />
-    <ClCompile Include="locale\keyboard.c" />
-    <ClCompile Include="locale\keyboard_layout.c" />
-    <ClCompile Include="locale\locale.c" />
-    <ClCompile Include="locale\timezone.c" />
-    <ClCompile Include="locale\xkb_layout_ids.c" />
-    <ClCompile Include="primitives\primitives.c" />
-    <ClCompile Include="primitives\prim_add.c" />
-    <ClCompile Include="primitives\prim_add_opt.c" />
-    <ClCompile Include="primitives\prim_alphaComp.c" />
-    <ClCompile Include="primitives\prim_alphaComp_opt.c" />
-    <ClCompile Include="primitives\prim_andor.c" />
-    <ClCompile Include="primitives\prim_andor_opt.c" />
-    <ClCompile Include="primitives\prim_colors.c" />
-    <ClCompile Include="primitives\prim_colors_opt.c" />
-    <ClCompile Include="primitives\prim_copy.c" />
-    <ClCompile Include="primitives\prim_set.c" />
-    <ClCompile Include="primitives\prim_set_opt.c" />
-    <ClCompile Include="primitives\prim_shift.c" />
-    <ClCompile Include="primitives\prim_shift_opt.c" />
-    <ClCompile Include="primitives\prim_sign.c" />
-    <ClCompile Include="primitives\prim_sign_opt.c" />
-    <ClCompile Include="rail\icon.c" />
-    <ClCompile Include="rail\rail.c" />
-    <ClCompile Include="rail\window.c" />
-    <ClCompile Include="rail\window_list.c" />
-    <ClCompile Include="utils\utils_bitmap.c" />
-    <ClCompile Include="utils\utils_event.c" />
-    <ClCompile Include="utils\utils_list.c" />
-    <ClCompile Include="utils\utils_msusb.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="utils\utils_passphrase.c" />
-    <ClCompile Include="utils\utils_pcap.c" />
-    <ClCompile Include="utils\utils_profiler.c" />
-    <ClCompile Include="utils\utils_rail.c" />
-    <ClCompile Include="utils\utils_signal.c" />
-    <ClCompile Include="utils\utils_stopwatch.c" />
-    <ClCompile Include="utils\utils_svc_plugin.c" />
-    <ClCompile Include="utils\utils_tcp.c" />
-    <ClCompile Include="utils\utils_time.c" />
-    <ClCompile Include="utils\utils_uds.c" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="axisfreerdp.def" />
   </ItemGroup>
   <ItemGroup>
@@ -1333,6 +1111,225 @@
     <ProjectReference Include="..\winpr\axiswinpr.vcxproj">
       <Project>{e4841f02-7cca-4144-89a2-149302677b3f}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="libfreerdp\cache\cache_bitmap.c" />
+    <ClCompile Include="libfreerdp\cache\cache_brush.c" />
+    <ClCompile Include="libfreerdp\cache\cache_cache.c" />
+    <ClCompile Include="libfreerdp\cache\cache_glyph.c" />
+    <ClCompile Include="libfreerdp\cache\cache_nine_grid.c" />
+    <ClCompile Include="libfreerdp\cache\cache_offscreen.c" />
+    <ClCompile Include="libfreerdp\cache\cache_palette.c" />
+    <ClCompile Include="libfreerdp\cache\cache_pointer.c" />
+    <ClCompile Include="libfreerdp\codec\audio.c" />
+    <ClCompile Include="libfreerdp\codec\bitmap_decode.c" />
+    <ClCompile Include="libfreerdp\codec\bitmap_encode.c" />
+    <ClCompile Include="libfreerdp\codec\clear.c" />
+    <ClCompile Include="libfreerdp\codec\color.c" />
+    <ClCompile Include="libfreerdp\codec\dsp.c" />
+    <ClCompile Include="libfreerdp\codec\h264.c" />
+    <ClCompile Include="libfreerdp\codec\jpeg.c" />
+    <ClCompile Include="libfreerdp\codec\mppc.c" />
+    <ClCompile Include="libfreerdp\codec\ncrush.c" />
+    <ClCompile Include="libfreerdp\codec\nsc.c" />
+    <ClCompile Include="libfreerdp\codec\nsc_encode.c" />
+    <ClCompile Include="libfreerdp\codec\nsc_sse2.c" />
+    <ClCompile Include="libfreerdp\codec\planar.c" />
+    <ClCompile Include="libfreerdp\codec\progressive.c" />
+    <ClCompile Include="libfreerdp\codec\region.c" />
+    <ClCompile Include="libfreerdp\codec\rfx.c" />
+    <ClCompile Include="libfreerdp\codec\rfx_decode.c" />
+    <ClCompile Include="libfreerdp\codec\rfx_differential.c" />
+    <ClCompile Include="libfreerdp\codec\rfx_dwt.c" />
+    <ClCompile Include="libfreerdp\codec\rfx_encode.c" />
+    <ClCompile Include="libfreerdp\codec\rfx_neon.c" />
+    <ClCompile Include="libfreerdp\codec\rfx_quantization.c" />
+    <ClCompile Include="libfreerdp\codec\rfx_rlgr.c" />
+    <ClCompile Include="libfreerdp\codec\rfx_sse2.c" />
+    <ClCompile Include="libfreerdp\codec\xcrush.c" />
+    <ClCompile Include="libfreerdp\codec\zgfx.c" />
+    <ClCompile Include="libfreerdp\common\common_addin.c" />
+    <ClCompile Include="libfreerdp\common\common_settings.c" />
+    <ClCompile Include="libfreerdp\core\activation.c" />
+    <ClCompile Include="libfreerdp\core\autodetect.c" />
+    <ClCompile Include="libfreerdp\core\bulk.c" />
+    <ClCompile Include="libfreerdp\core\capabilities.c" />
+    <ClCompile Include="libfreerdp\core\certificate.c" />
+    <ClCompile Include="libfreerdp\core\channels.c" />
+    <ClCompile Include="libfreerdp\core\client.c" />
+    <ClCompile Include="libfreerdp\core\connection.c" />
+    <ClCompile Include="libfreerdp\core\errinfo.c" />
+    <ClCompile Include="libfreerdp\core\fastpath.c" />
+    <ClCompile Include="libfreerdp\core\freerdp.c" />
+    <ClCompile Include="libfreerdp\core\gateway\http.c" />
+    <ClCompile Include="libfreerdp\core\gateway\ncacn_http.c" />
+    <ClCompile Include="libfreerdp\core\gateway\ntlm.c" />
+    <ClCompile Include="libfreerdp\core\gateway\rpc.c" />
+    <ClCompile Include="libfreerdp\core\gateway\rpc_bind.c" />
+    <ClCompile Include="libfreerdp\core\gateway\rpc_client.c" />
+    <ClCompile Include="libfreerdp\core\gateway\rpc_fault.c" />
+    <ClCompile Include="libfreerdp\core\gateway\rts.c" />
+    <ClCompile Include="libfreerdp\core\gateway\rts_signature.c" />
+    <ClCompile Include="libfreerdp\core\gateway\tsg.c" />
+    <ClCompile Include="libfreerdp\core\gcc.c" />
+    <ClCompile Include="libfreerdp\core\graphics.c" />
+    <ClCompile Include="libfreerdp\core\heartbeat.c" />
+    <ClCompile Include="libfreerdp\core\info.c" />
+    <ClCompile Include="libfreerdp\core\input.c" />
+    <ClCompile Include="libfreerdp\core\license.c" />
+    <ClCompile Include="libfreerdp\core\listener.c" />
+    <ClCompile Include="libfreerdp\core\mcs.c" />
+    <ClCompile Include="libfreerdp\core\message.c" />
+    <ClCompile Include="libfreerdp\core\metrics.c" />
+    <ClCompile Include="libfreerdp\core\multitransport.c" />
+    <ClCompile Include="libfreerdp\core\nego.c" />
+    <ClCompile Include="libfreerdp\core\nla.c" />
+    <ClCompile Include="libfreerdp\core\orders.c" />
+    <ClCompile Include="libfreerdp\core\peer.c" />
+    <ClCompile Include="libfreerdp\core\rdp.c" />
+    <ClCompile Include="libfreerdp\core\redirection.c" />
+    <ClCompile Include="libfreerdp\core\security.c" />
+    <ClCompile Include="libfreerdp\core\server.c" />
+    <ClCompile Include="libfreerdp\core\settings.c" />
+    <ClCompile Include="libfreerdp\core\surface.c" />
+    <ClCompile Include="libfreerdp\core\tcp.c" />
+    <ClCompile Include="libfreerdp\core\timezone.c" />
+    <ClCompile Include="libfreerdp\core\tpdu.c" />
+    <ClCompile Include="libfreerdp\core\tpkt.c" />
+    <ClCompile Include="libfreerdp\core\transport.c" />
+    <ClCompile Include="libfreerdp\core\update.c" />
+    <ClCompile Include="libfreerdp\core\window.c" />
+    <ClCompile Include="libfreerdp\crypto\crypto_base64.c" />
+    <ClCompile Include="libfreerdp\crypto\crypto_ber.c" />
+    <ClCompile Include="libfreerdp\crypto\crypto_certificate.c" />
+    <ClCompile Include="libfreerdp\crypto\crypto_crypto.c" />
+    <ClCompile Include="libfreerdp\crypto\crypto_der.c" />
+    <ClCompile Include="libfreerdp\crypto\crypto_er.c" />
+    <ClCompile Include="libfreerdp\crypto\crypto_per.c" />
+    <ClCompile Include="libfreerdp\crypto\crypto_tls.c" />
+    <ClCompile Include="libfreerdp\framework\framework.c" />
+    <ClCompile Include="libfreerdp\gdi\16bpp.c" />
+    <ClCompile Include="libfreerdp\gdi\32bpp.c" />
+    <ClCompile Include="libfreerdp\gdi\8bpp.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_bitmap.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_brush.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_clipping.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_dc.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_drawing.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_gdi.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_graphics.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_line.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_palette.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_pen.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_region.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_shape.c" />
+    <ClCompile Include="libfreerdp\locale\keyboard.c" />
+    <ClCompile Include="libfreerdp\locale\keyboard_layout.c" />
+    <ClCompile Include="libfreerdp\locale\locale.c" />
+    <ClCompile Include="libfreerdp\locale\locale_timezone.c" />
+    <ClCompile Include="libfreerdp\locale\xkb_layout_ids.c" />
+    <ClCompile Include="libfreerdp\primitives\primitives.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_add.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_add_opt.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_alphaComp.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_alphaComp_opt.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_andor.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_andor_opt.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_colors.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_colors_opt.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_copy.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_set.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_set_opt.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_shift.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_shift_opt.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_sign.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_sign_opt.c" />
+    <ClCompile Include="libfreerdp\rail\rail_icon.c" />
+    <ClCompile Include="libfreerdp\rail\rail_rail.c" />
+    <ClCompile Include="libfreerdp\rail\rail_window.c" />
+    <ClCompile Include="libfreerdp\rail\rail_window_list.c" />
+    <ClCompile Include="libfreerdp\utils\utils_bitmap.c" />
+    <ClCompile Include="libfreerdp\utils\utils_event.c" />
+    <ClCompile Include="libfreerdp\utils\utils_msusb.c" />
+    <ClCompile Include="libfreerdp\utils\utils_passphrase.c" />
+    <ClCompile Include="libfreerdp\utils\utils_pcap.c" />
+    <ClCompile Include="libfreerdp\utils\utils_profiler.c" />
+    <ClCompile Include="libfreerdp\utils\utils_rail.c" />
+    <ClCompile Include="libfreerdp\utils\utils_ringbuffer.c" />
+    <ClCompile Include="libfreerdp\utils\utils_signal.c" />
+    <ClCompile Include="libfreerdp\utils\utils_stopwatch.c" />
+    <ClCompile Include="libfreerdp\utils\utils_svc_plugin.c" />
+    <ClCompile Include="libfreerdp\utils\utils_tcp.c" />
+    <ClCompile Include="libfreerdp\utils\utils_time.c" />
+    <ClCompile Include="libfreerdp\utils\utils_uds.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\freerdp\addin.h" />
+    <ClInclude Include="..\..\include\freerdp\altsec.h" />
+    <ClInclude Include="..\..\include\freerdp\api.h" />
+    <ClInclude Include="config.h" />
+    <ClInclude Include="libfreerdp\codec\nsc_encode.h" />
+    <ClInclude Include="libfreerdp\codec\nsc_sse2.h" />
+    <ClInclude Include="libfreerdp\codec\nsc_types.h" />
+    <ClInclude Include="libfreerdp\codec\rfx_bitstream.h" />
+    <ClInclude Include="libfreerdp\codec\rfx_constants.h" />
+    <ClInclude Include="libfreerdp\codec\rfx_decode.h" />
+    <ClInclude Include="libfreerdp\codec\rfx_differential.h" />
+    <ClInclude Include="libfreerdp\codec\rfx_dwt.h" />
+    <ClInclude Include="libfreerdp\codec\rfx_encode.h" />
+    <ClInclude Include="libfreerdp\codec\rfx_neon.h" />
+    <ClInclude Include="libfreerdp\codec\rfx_quantization.h" />
+    <ClInclude Include="libfreerdp\codec\rfx_rlgr.h" />
+    <ClInclude Include="libfreerdp\codec\rfx_sse2.h" />
+    <ClInclude Include="libfreerdp\codec\rfx_types.h" />
+    <ClInclude Include="libfreerdp\core\activation.h" />
+    <ClInclude Include="libfreerdp\core\capabilities.h" />
+    <ClInclude Include="libfreerdp\core\certificate.h" />
+    <ClInclude Include="libfreerdp\core\channel.h" />
+    <ClInclude Include="libfreerdp\core\connection.h" />
+    <ClInclude Include="libfreerdp\core\errinfo.h" />
+    <ClInclude Include="libfreerdp\core\extension.h" />
+    <ClInclude Include="libfreerdp\core\fastpath.h" />
+    <ClInclude Include="libfreerdp\core\gcc.h" />
+    <ClInclude Include="libfreerdp\core\info.h" />
+    <ClInclude Include="libfreerdp\core\input.h" />
+    <ClInclude Include="libfreerdp\core\license.h" />
+    <ClInclude Include="libfreerdp\core\listener.h" />
+    <ClInclude Include="libfreerdp\core\mcs.h" />
+    <ClInclude Include="libfreerdp\core\message.h" />
+    <ClInclude Include="libfreerdp\core\nego.h" />
+    <ClInclude Include="libfreerdp\core\nla.h" />
+    <ClInclude Include="libfreerdp\core\orders.h" />
+    <ClInclude Include="libfreerdp\core\peer.h" />
+    <ClInclude Include="libfreerdp\core\rdp.h" />
+    <ClInclude Include="libfreerdp\core\redirection.h" />
+    <ClInclude Include="libfreerdp\core\security.h" />
+    <ClInclude Include="libfreerdp\core\surface.h" />
+    <ClInclude Include="libfreerdp\core\tcp.h" />
+    <ClInclude Include="libfreerdp\core\timezone.h" />
+    <ClInclude Include="libfreerdp\core\tpdu.h" />
+    <ClInclude Include="libfreerdp\core\tpkt.h" />
+    <ClInclude Include="libfreerdp\core\transport.h" />
+    <ClInclude Include="libfreerdp\core\update.h" />
+    <ClInclude Include="libfreerdp\core\window.h" />
+    <ClInclude Include="libfreerdp\framework\framework.h" />
+    <ClInclude Include="libfreerdp\gdi\gdi.h" />
+    <ClInclude Include="libfreerdp\gdi\graphics.h" />
+    <ClInclude Include="libfreerdp\locale\keyboard_sun.h" />
+    <ClInclude Include="libfreerdp\locale\keyboard_x11.h" />
+    <ClInclude Include="libfreerdp\locale\keyboard_xkbfile.h" />
+    <ClInclude Include="libfreerdp\locale\liblocale.h" />
+    <ClInclude Include="libfreerdp\locale\xkb_layout_ids.h" />
+    <ClInclude Include="libfreerdp\primitives\prim_add.h" />
+    <ClInclude Include="libfreerdp\primitives\prim_alphaComp.h" />
+    <ClInclude Include="libfreerdp\primitives\prim_andor.h" />
+    <ClInclude Include="libfreerdp\primitives\prim_colors.h" />
+    <ClInclude Include="libfreerdp\primitives\prim_internal.h" />
+    <ClInclude Include="libfreerdp\primitives\prim_set.h" />
+    <ClInclude Include="libfreerdp\primitives\prim_shift.h" />
+    <ClInclude Include="libfreerdp\primitives\prim_sign.h" />
+    <ClInclude Include="libfreerdp\primitives\prim_templates.h" />
+    <ClInclude Include="libfreerdp\rail\librail.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

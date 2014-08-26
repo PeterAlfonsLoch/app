@@ -285,17 +285,21 @@ WINPR_API char* GetEnvironmentPath(char* name);
 WINPR_API char* GetEnvironmentSubPath(char* name, const char* path);
 WINPR_API char* GetCombinedPath(const char* basePath, const char* subPath);
 
+#ifndef _WIN32
 WINPR_API BOOL PathFileExistsA(LPCSTR pszPath);
 WINPR_API BOOL PathFileExistsW(LPCWSTR pszPath);
+#endif
 
 #ifdef __cplusplus
 }
 #endif
 
+#ifndef _WIN32
 #ifdef UNICODE
 #define PathFileExists	PathFileExistsW
 #else
 #define PathFileExists	PathFileExistsA
+#endif
 #endif
 
 #endif /* WINPR_PATH_H */

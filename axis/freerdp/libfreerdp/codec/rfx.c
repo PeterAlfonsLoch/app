@@ -261,16 +261,17 @@ RFX_CONTEXT* rfx_context_new(BOOL encoder)
 
 #ifdef _WIN32
 	{
-		BOOL isVistaOrLater;
-		OSVERSIONINFOA verinfo;
+		//BOOL isVistaOrLater = TRUE;
+		//OSVERSIONINFOA verinfo;
 
-		ZeroMemory(&verinfo, sizeof(OSVERSIONINFOA));
-		verinfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFOA);
+		//ZeroMemory(&verinfo, sizeof(OSVERSIONINFOA));
+		//verinfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFOA);
 
-		GetVersionExA(&verinfo);
-		isVistaOrLater = ((verinfo.dwMajorVersion >= 6) && (verinfo.dwMinorVersion >= 0)) ? TRUE : FALSE;
+		//GetVersionExA(&verinfo);
+		//isVistaOrLater = ((verinfo.dwMajorVersion >= 6) && (verinfo.dwMinorVersion >= 0)) ? TRUE : FALSE;
 
-		priv->UseThreads = isVistaOrLater;
+		//priv->UseThreads = isVistaOrLater;
+      priv->UseThreads = TRUE;
 	}
 #else
 	priv->UseThreads = TRUE;

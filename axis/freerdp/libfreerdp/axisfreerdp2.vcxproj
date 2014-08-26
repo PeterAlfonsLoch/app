@@ -51,8 +51,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>axisfreerdp</ProjectName>
-    <ProjectGuid>{E0D54AEC-E0A5-475B-8A02-8758BDD686E1}</ProjectGuid>
+    <ProjectName>axisfreerdp2</ProjectName>
+    <ProjectGuid>{77D8FBEE-B101-40E0-9A73-FDF4B408B05B}</ProjectGuid>
     <RootNamespace>basefreerdp</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

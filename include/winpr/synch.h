@@ -306,7 +306,7 @@ WINPR_API VOID InitOnceInitialize(PINIT_ONCE InitOnce);
 
 /* Synchronization Barrier */
 
-#if (!defined(_WIN32)) || (defined(_WIN32) && (_WIN32_WINNT < 0x0602))
+#if (!defined(_WIN32)) || (defined(_WIN32) && (_WIN32_WINNT < 0x0602) && !defined(_RTL_RUN_ONCE_DEF))
 
 typedef struct _RTL_BARRIER
 {

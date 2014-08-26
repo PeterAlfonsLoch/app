@@ -235,9 +235,9 @@
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>axiswinpr</ProjectName>
-    <ProjectGuid>{E4841F02-7CCA-4144-89A2-149302677B3F}</ProjectGuid>
-    <RootNamespace>basewinpr</RootNamespace>
+    <ProjectName>axiswinpr2</ProjectName>
+    <ProjectGuid>{2175082F-F23D-4356-806D-FC4D3C762E26}</ProjectGuid>
+    <RootNamespace>basewinpr2</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">

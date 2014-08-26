@@ -29,8 +29,10 @@
 #endif
 
 #include <winsock2.h>
+#define _WINSOCKAPI_
 #include <windows.h>
 #include <ws2tcpip.h>
+
 
 #endif
 

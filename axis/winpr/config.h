@@ -27,7 +27,7 @@
 //#define HAVE_POLL_H
 //#define HAVE_PTHREAD_GNU_EXT
 //#define HAVE_VALGRIND_MEMCHECK_H
-#define HAVE_EXECINFO_H
+//#define HAVE_EXECINFO_H
 
 /* Options */
 #define WITH_PROFILER
