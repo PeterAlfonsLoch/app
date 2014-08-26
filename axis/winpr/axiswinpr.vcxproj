@@ -149,9 +149,11 @@
     <ClCompile Include="libwinpr\timezone\timezone.c" />
     <ClCompile Include="libwinpr\utils\cmdline.c" />
     <ClCompile Include="libwinpr\utils\collections\ArrayList.c" />
+    <ClCompile Include="libwinpr\utils\collections\BitStream.c" />
     <ClCompile Include="libwinpr\utils\collections\BufferPool.c" />
     <ClCompile Include="libwinpr\utils\collections\CountdownEvent.c" />
     <ClCompile Include="libwinpr\utils\collections\Dictionary.c" />
+    <ClCompile Include="libwinpr\utils\collections\HashTable.c" />
     <ClCompile Include="libwinpr\utils\collections\KeyValuePair.c" />
     <ClCompile Include="libwinpr\utils\collections\LinkedList.c" />
     <ClCompile Include="libwinpr\utils\collections\ListDictionary.c" />

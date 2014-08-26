@@ -788,6 +788,9 @@
     <ClCompile Include="libfreerdp\codec\zgfx.c">
       <Filter>Source Files\libfreerdp\codec</Filter>
     </ClCompile>
+    <ClCompile Include="libfreerdp\utils\utils_ringbuffer.c">
+      <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="axisfreerdp.def">

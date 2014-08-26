@@ -1348,6 +1348,7 @@
     <ClCompile Include="libfreerdp\utils\utils_pcap.c" />
     <ClCompile Include="libfreerdp\utils\utils_profiler.c" />
     <ClCompile Include="libfreerdp\utils\utils_rail.c" />
+    <ClCompile Include="libfreerdp\utils\utils_ringbuffer.c" />
     <ClCompile Include="libfreerdp\utils\utils_signal.c" />
     <ClCompile Include="libfreerdp\utils\utils_stopwatch.c" />
     <ClCompile Include="libfreerdp\utils\utils_svc_plugin.c" />
