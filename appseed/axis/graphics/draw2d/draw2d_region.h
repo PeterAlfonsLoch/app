@@ -78,7 +78,8 @@ namespace draw2d
       virtual bool get_bounding_box(LPRECT lpRect) const;
       //virtual int32_t GetRgnBox(rect64 * lpRect) const;
       //virtual bool contains(int32_t x, int32_t y) const;
-      virtual bool contains(POINT point) const;
+      virtual bool contains(POINT point) { return contains(pointd(point));  }
+      virtual bool contains(POINTD point) const;
       //virtual bool RectInRegion(LPCRECT lpRect) const;
 //#ifdef WINDOWS
       //virtual int32_t GetRegionData(LPRGNDATA lpRgnData, int32_t nCount) const;

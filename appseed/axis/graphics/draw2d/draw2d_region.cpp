@@ -620,7 +620,7 @@ namespace draw2d
 
    }
 
-   bool region::contains(POINT point) const
+   bool region::contains(POINTD point) const
    {
 
       return ((region *) this)->internal_contains(&point);
