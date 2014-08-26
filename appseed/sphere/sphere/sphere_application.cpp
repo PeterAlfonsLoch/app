@@ -23,7 +23,7 @@ namespace sphere
    {
    }
 
-   sp(::axis::application) application::get_system()
+   sp(::aura::application) application::get_system()
    {
       return new application();
    }

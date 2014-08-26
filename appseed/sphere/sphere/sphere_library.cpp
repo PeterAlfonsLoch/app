@@ -5,7 +5,7 @@ namespace sphere
 {
 
 
-   library::library(sp(::axis::application) papp) :
+   library::library(sp(::aura::application) papp) :
       element(papp),
       ::aura::library(papp,0, "app"),
       ::aura::single_application_library < application > (papp, "app"),
@@ -53,7 +53,7 @@ namespace sphere
    }
 
 
-/*   sp(::axis::application) library::get_new_app(const char * pszAppId)
+/*   sp(::aura::application) library::get_new_app(const char * pszAppId)
    {
 
       if(::str::equals_ci(pszAppId, "calculator"))
@@ -84,7 +84,7 @@ namespace sphere
 #ifndef _WIN32
 extern "C"
 #endif
-::aura::library * get_new_library(sp(::axis::application) papp)
+::aura::library * get_new_library(sp(::aura::application) papp)
 {
 
    return new ::sphere::library(papp);

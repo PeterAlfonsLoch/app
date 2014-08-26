@@ -30,7 +30,7 @@ namespace userstack
       sp(pane_view)                m_ppaneview;
 
 
-      frame(sp(::axis::application) papp);
+      frame(sp(::aura::application) papp);
       virtual void install_message_handling(::message::dispatch * pinterface);
 
       DECL_GEN_SIGNAL(_001OnApp1);

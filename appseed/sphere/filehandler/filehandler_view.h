@@ -27,7 +27,7 @@ namespace filehandler
          rect           m_rectStatusImage;
          rect           m_rectName;
 
-         item(sp(::axis::application) papp);
+         item(sp(::aura::application) papp);
 
          void parse(const char * pszApp);
 
@@ -42,7 +42,7 @@ namespace filehandler
 
          int32_t m_iItemHeight;
 
-         list(sp(::axis::application) papp);
+         list(sp(::aura::application) papp);
 
 
          void parse(handler * phandler, const char * pszTopic);
@@ -61,7 +61,7 @@ namespace filehandler
       ::draw2d::font_sp       m_spfont;
 
 
-      view(sp(::axis::application) papp);
+      view(sp(::aura::application) papp);
 
 
       virtual void _001OnDraw(::draw2d::graphics * pdc);

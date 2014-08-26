@@ -23,7 +23,7 @@ namespace userstack
 
 
 
-      pane_view(sp(::axis::application) papp);
+      pane_view(sp(::aura::application) papp);
       virtual ~pane_view();
 
       using ::user::tab_view::on_show_view;

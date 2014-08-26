@@ -2401,7 +2401,7 @@ namespace base
 
       m_dwAlive = ::get_tick_count();
 
-      if(!::axis::application::initialize1())
+      if(!::aura::application::initialize1())
          return false;
 
       m_bBaseInitialize1Result = true;

@@ -5,7 +5,7 @@ namespace userstack
 {
 
 
-   frame::frame(sp(::axis::application) papp) :
+   frame::frame(sp(::aura::application) papp) :
       element(papp),
       simple_frame_window(papp),
       m_spqueue(allocer())

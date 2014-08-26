@@ -143,7 +143,7 @@ namespace axis
          return false;
 
 
-      if(!::axis::application::process_initialize())
+      if(!::aura::application::process_initialize())
          return false;
 
 
@@ -181,7 +181,7 @@ namespace axis
       if(!::aura::system::initialize2())
          return false;
 
-      if(!::axis::application::initialize2())
+      if(!::aura::application::initialize2())
          return false;
 
 
@@ -196,7 +196,7 @@ namespace axis
       if(!::aura::system::initialize_instance())
          return false;
 
-      if(!::axis::application::initialize_instance())
+      if(!::aura::application::initialize_instance())
          return false;
 
       return true;
@@ -217,7 +217,7 @@ namespace axis
       try
       {
 
-         bOk = ::axis::application::finalize();
+         bOk = ::aura::application::finalize();
 
       }
       catch(...)
@@ -258,7 +258,7 @@ namespace axis
       try
       {
 
-         iRet = ::axis::application::exit_instance();
+         iRet = ::aura::application::exit_instance();
 
       }
       catch(...)

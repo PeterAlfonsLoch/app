@@ -41,7 +41,7 @@ namespace sphere
 
       ::user::document * _001OpenDocumentFile(var varFile);
 
-      sp(::axis::application) get_system();
+      sp(::aura::application) get_system();
 
    };
 

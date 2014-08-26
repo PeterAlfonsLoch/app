@@ -5,7 +5,7 @@ namespace command
 {
 
 
-   view::view(sp(::axis::application) papp) :
+   view::view(sp(::aura::application) papp) :
       element(papp),
       ::user::interaction(papp)
    {

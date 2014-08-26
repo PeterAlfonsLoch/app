@@ -11,7 +11,7 @@ namespace command
    public:
 
 
-      document(sp(::axis::application) papp);
+      document(sp(::aura::application) papp);
 	   virtual ~document();
 
    

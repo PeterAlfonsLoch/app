@@ -7,7 +7,7 @@ namespace filehandler
 {
 
 
-   pane_view::pane_view(sp(::axis::application) papp) :
+   pane_view::pane_view(sp(::aura::application) papp) :
       element(papp),
       ::user::tab(papp),
 
@@ -91,7 +91,7 @@ namespace filehandler
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
-      /*   sp(::axis::application) papp =  (get_app());
+      /*   sp(::aura::application) papp =  (get_app());
       POSITION pos = papp->m_ptemplate_html->get_document_count();
       while(pos != NULL)
       {
